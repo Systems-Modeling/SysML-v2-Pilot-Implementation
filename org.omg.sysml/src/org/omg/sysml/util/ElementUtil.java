@@ -187,6 +187,10 @@ public class ElementUtil {
 		ElementAdapterFactory.removeAdapter(element);
 	}
 	
+	public static void clearCachesOf(Element element) {
+		getElementAdapter(element).clearCaches();
+	}
+	
 	// Transformation 
 	
 	public static void transformAll(ResourceSet resourceSet, boolean addImplicitElements) {

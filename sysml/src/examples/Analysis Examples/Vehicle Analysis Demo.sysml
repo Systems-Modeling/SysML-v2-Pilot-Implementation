@@ -9,7 +9,7 @@ package 'Vehicle Analysis Demo' {
 	    attribute def DistancePerVolumeUnit :> DerivedUnit {
 	    	private attribute distancePF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = 1; }
 	        private attribute volumePF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = -3; }
-	        attribute :>> quantityDimension { :>> quantityPowerFactors = {distancePF, volumePF}; }
+	        attribute :>> quantityDimension { :>> quantityPowerFactors = (distancePF, volumePF); }
 	    }
 
 	    attribute def DistancePerVolumeValue :> QuantityValue {
@@ -153,6 +153,7 @@ package 'Vehicle Analysis Demo' {
 	    import BaseFunctions::size;
 	    import Collections::SampledFunction;
 	    import Collections::SamplePair;
+	    import ControlFunctions::forAll;
 	
 		attribute def ScenarioState {
 			position : LengthValue;
@@ -203,7 +204,7 @@ package 'Vehicle Analysis Demo' {
 				 * to support the scenarios.
 				 */
 				assert constraint straightLineDynamics {
-					{1..sc.n-1}->forAll i (
+					(1..sc.n-1)->forAll {in i: Integer;
 						StraightLineDynamicsEquations (
 							p => power[i],
 							m => vehicle::mass,
@@ -214,7 +215,7 @@ package 'Vehicle Analysis Demo' {
 							v_f => sc.samples.s.velocity[i+1],
 							a => acceleration[i]                    
 						)
-					)
+					}
 				}
 			}
 

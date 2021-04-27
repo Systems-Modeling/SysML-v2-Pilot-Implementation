@@ -2,6 +2,7 @@ package BaseFunctions {
 	private import Base::Anything;
 	private import Objects::Object;
 	private import ScalarValues::*;
+	private import ControlFunctions::exists;
 	
 	function '=='(x: Anything[0..*], y: Anything[0..*]): Boolean;
 	function '!='(x: Anything[0..*], y: Anything[0..*]): Boolean;
@@ -14,7 +15,7 @@ package BaseFunctions {
 		!isEmpty(seq)
 	}
 	function includes(seq: Anything[0..*], value: Anything[1]): Boolean {
-		seq->exists x (x == value)
+		seq->exists {in x; x == value}
 	}
 	
 	function union(seq1: Anything[0..*] nonunique, seq2: Anything[0..*] nonunique): Anything[0..*] nonunique;

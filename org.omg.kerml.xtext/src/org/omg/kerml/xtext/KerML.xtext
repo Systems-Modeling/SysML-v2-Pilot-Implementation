@@ -995,6 +995,6 @@ ItemFlowFeature returns SysML::ItemFlowFeature :
 /* EXPRESSIONS */
 
 @Override
-BodyParameter returns SysML::Feature :
-	{SysML::Feature} ( TypedBy MultiplicityPart? | MultiplicityPart TypedBy? )?
+ExpressionBody returns SysML::Expression :
+	FunctionBody
 ;

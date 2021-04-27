@@ -23,7 +23,7 @@ package ISQBase {
      */
     attribute def LengthUnit :> SimpleUnit {
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = 1; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {lengthPF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = lengthPF; }
     }
 
     attribute def LengthValue :> ScalarQuantityValue {
@@ -37,7 +37,7 @@ package ISQBase {
      */
 
     attribute def Cartesian3dSpatialCoordinateSystem :> VectorMeasurementReference {
-        attribute :>> dimensions = {3};
+        attribute :>> dimensions = 3;
         attribute :>> isBound = true;
         attribute :>> isOrthogonal = true;
         attribute :>> mRefs: LengthValue[3];
@@ -56,7 +56,7 @@ package ISQBase {
      */
     attribute def DurationUnit :> SimpleUnit {
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = 1; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {durationPF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = durationPF; }
     }
 
     attribute def DurationValue :> ScalarQuantityValue {
@@ -78,7 +78,7 @@ package ISQBase {
      */
     attribute def MassUnit :> SimpleUnit {
         private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq::M; :>> exponent = 1; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {massPF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = massPF; }
     }
 
     attribute def MassValue :> ScalarQuantityValue {
@@ -100,7 +100,7 @@ package ISQBase {
      */
     attribute def ThermodynamicTemperatureUnit :> SimpleUnit {
         private attribute thermodynamicTemperaturePF: QuantityPowerFactor[1] { :>> quantity = isq::'Θ'; :>> exponent = 1; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {thermodynamicTemperaturePF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = thermodynamicTemperaturePF; }
     }
 
     attribute def ThermodynamicTemperatureValue :> ScalarQuantityValue {
@@ -122,7 +122,7 @@ package ISQBase {
      */
     attribute def ElectricCurrentUnit :> SimpleUnit {
         private attribute electricCurrentPF: QuantityPowerFactor[1] { :>> quantity = isq::I; :>> exponent = 1; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {electricCurrentPF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = electricCurrentPF; }
     }
 
     attribute def ElectricCurrentValue :> ScalarQuantityValue {
@@ -144,7 +144,7 @@ package ISQBase {
      */
     attribute def LuminousIntensityUnit :> SimpleUnit {
         private attribute luminousIntensityPF: QuantityPowerFactor[1] { :>> quantity = isq::J; :>> exponent = 1; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {luminousIntensityPF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = luminousIntensityPF; }
     }
 
     attribute def LuminousIntensityValue :> ScalarQuantityValue {
@@ -166,7 +166,7 @@ package ISQBase {
      */
     attribute def AmountOfSubstanceUnit :> SimpleUnit {
         private attribute amountOfSubstancePF: QuantityPowerFactor[1] { :>> quantity = isq::N; :>> exponent = 1; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {amountOfSubstancePF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = amountOfSubstancePF; }
     }
 
     attribute def AmountOfSubstanceValue :> ScalarQuantityValue {
@@ -181,7 +181,7 @@ package ISQBase {
      */
     isq: SystemOfQuantities {
         attribute :>> longName = "International System of Quantities";
-        attribute :>> baseQuantities = { L, M, T, I, 'Θ', N, J };
+        attribute :>> baseQuantities = ( L, M, T, I, 'Θ', N, J );
         
 	    attribute L: LengthValue[1];
 	    attribute M: MassValue[1];

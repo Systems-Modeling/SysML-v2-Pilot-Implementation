@@ -42,7 +42,14 @@ OwnedExpressionMember returns SysML::FeatureMembership :
 ;
 
 OwnedExpression returns SysML::Expression :
-	 ConditionalExpression
+	 ExpressionBody | ConditionalExpression
+;
+
+// Expression Bodies
+
+ExpressionBody returns SysML::Expression :
+	'{' ( ownedRelationship += BodyParameterMember ';' )* 
+	    ownedRelationship += ResultExpressionMember '}'
 ;
 
 // Conditional Test Expressions
@@ -236,27 +243,21 @@ ExtentExpression returns SysML::Expression :
 /* Primary Expressions */
 
 PrimaryExpression returns SysML::Expression :
-	( SequenceConstructionExpression | BaseExpression )
+	BaseExpression
 	( {SysML::OperatorExpression.operand += current} 
 	  operator = '[' operand += OwnedExpression ']'
 	| {SysML::OperatorExpression.operand += current} '->' 
-	  operator = Name ( ownedRelationship += BodyExpressionMember )+
+	  ownedRelationship += OwnedFeatureTyping 
+	  ( ownedRelationship += ExpressionBodyMember | ArgumentList )
 	| {SysML::PathStepExpression.operand += current} '.' 
 	  operand += FeatureReferenceExpression
 	| {SysML::PathSelectExpression.operand += current} '.'
-	  '[' ownedRelationship += BodyExpressionMember ']'
+	  ownedRelationship += ExpressionBodyMember
 	)*
 ;
 
-BodyExpressionMember returns SysML::FeatureMembership :
-	ownedRelatedElement += BodyExpression // ownedMemberFeature = BodyExpression
-;
-
-BodyExpression returns SysML::Expression :
-	   => ( ownedRelationship += BodyParameterMember 
-	   	    ( ownedRelationship += BodyParameterMember )* 
-	        '(' ownedRelationship += ResultExpressionMember ')' )
-	 | ownedRelationship += OwnedFeatureTyping
+ExpressionBodyMember returns SysML::FeatureMembership :
+	ownedRelatedElement += ExpressionBody // ownedMemberFeature = BodyExpression
 ;
 
 ResultExpressionMember returns SysML::ResultExpressionMembership :
@@ -264,24 +265,11 @@ ResultExpressionMember returns SysML::ResultExpressionMembership :
 ;
 
 BodyParameterMember returns SysML::ParameterMembership :
-	memberName = Name ownedRelatedElement += BodyParameter // ownedMemberParameter = BodyParameter
+	'in' memberName = Name ownedRelatedElement += BodyParameter // ownedMemberParameter = BodyParameter
 ;
 
 BodyParameter returns SysML::Feature :
 	{SysML::Feature}
-;
-
-SequenceConstructionExpression returns SysML::Expression :
-	  {SysML::NullExpression} '{' '}'
-	| '{' OwnedExpression
-	      ( {SysML::OperatorExpression.operand += current} operator = ',' operand += SequenceElementList
-	      | {SysML::OperatorExpression.operand += current} operator = '..' operand += OwnedExpression
-	      )?
-	  '}'
-;
-
-SequenceElementList returns SysML::Expression :	
-	OwnedExpression ( {SysML::OperatorExpression.operand += current} operator = ',' operand += SequenceElementList )?
 ;
 
 /* Base Expressions */
@@ -291,7 +279,18 @@ BaseExpression returns SysML::Expression :
 	| LiteralExpression 
 	| FeatureReferenceExpression 
 	| InvocationExpression 
-	| '(' OwnedExpression ')'
+	| '(' SequenceExpression ')'
+;
+
+SequenceExpression returns SysML::Expression :
+	OwnedExpression
+	( {SysML::OperatorExpression.operand += current} operator = ',' operand += SequenceElementList
+	| {SysML::OperatorExpression.operand += current} operator = '..' operand += OwnedExpression
+	)?	
+;
+
+SequenceElementList returns SysML::Expression :	
+	OwnedExpression ( {SysML::OperatorExpression.operand += current} operator = ',' operand += SequenceElementList )?
 ;
 
 // Feature Reference Expressions
@@ -307,11 +306,11 @@ FeatureReferenceMember returns SysML::Membership :
 // Invocation Expressions
 
 InvocationExpression returns SysML::InvocationExpression :
-	ownedRelationship += OwnedFeatureTyping '(' ArgumentList? ')'
+	ownedRelationship += OwnedFeatureTyping ArgumentList
 ;
 
 fragment ArgumentList returns SysML::Expression :
-	PositionalArgumentList | NamedArgumentList
+	'(' ( PositionalArgumentList | NamedArgumentList )? ')'
 ;
 
 fragment PositionalArgumentList returns SysML::Expression :
@@ -330,7 +329,7 @@ NamedExpressionMember returns SysML::FeatureMembership :
 
 // Null Expressions
 NullExpression returns SysML::NullExpression :
-	{SysML::NullExpression} 'null'
+	{SysML::NullExpression} ( 'null' | '(' ')' )
 ;
 
 /* Literal Expressions */

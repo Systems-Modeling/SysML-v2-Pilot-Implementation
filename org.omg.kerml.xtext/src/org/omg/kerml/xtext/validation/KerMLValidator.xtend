@@ -45,6 +45,7 @@ import org.omg.sysml.lang.sysml.NullExpression
 import org.omg.sysml.lang.sysml.ElementFilterMembership
 import org.omg.sysml.lang.sysml.MetadataFeatureValue
 import org.omg.sysml.util.TypeUtil
+import org.omg.sysml.util.ElementUtil
 
 /**
  * This class contains custom validation rules. 
@@ -116,6 +117,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 						
 			}
 			if (namesp instanceof Type){
+				ElementUtil.clearCachesOf(namesp) // Force recomputation of inherited memberships.
 				for (m : namesp.inheritedMembership) {
 					if (m.memberElement !== mem.memberElement && !mem.isDistinguishableFrom(m)){
 						if (mem.ownedMemberElement !== null) {
@@ -171,6 +173,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 		// (or have no featuring types and are thus implicitly inherited from Anything).
 		val cOwner = c.owner
 		if (cOwner instanceof Type) {
+			ElementUtil.clearCachesOf(cOwner) // Force recomputation of inherited memberships.
 			val ownerFeatures = cOwner.inheritedFeature
 			relatedFeatures.removeIf[f|f.featuringType.empty || ownerFeatures.contains(f)]
 		}

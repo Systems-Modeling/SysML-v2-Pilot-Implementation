@@ -9,6 +9,7 @@ package Occurrences {
 	private import Links::*;
 	
 	private import BaseFunctions::*;
+	private import ControlFunctions::forAll;
 	
 	/**
 	 * Occurrence is the most general classifier of entities that have identity and 
@@ -69,7 +70,7 @@ package Occurrences {
 		 * (i.e., have no duration).
 		 */
 		portion feature all snapshots: Occurrence[1..*] subsets timeSlices;
-		inv { snapshots->forAll s:Occurrence (s::startShot == s::endShot) }
+		inv { snapshots->forAll {in s:Occurrence; s::startShot == s::endShot} }
 		inv { snapshots == union(startShot, union(middleShots, endShot)) }
 		
 		/**

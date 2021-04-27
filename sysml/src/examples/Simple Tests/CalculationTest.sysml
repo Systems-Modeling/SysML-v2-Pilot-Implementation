@@ -19,7 +19,7 @@ package CalculationExample {
 	}
 	
 	calc ms: MassSum (
-		partMasses = {vehicle::eng::m, vehicle::trans::m})
+		partMasses = (vehicle::eng::m, vehicle::trans::m))
 		totalMass = vehicle::m;
 		
 	calc def MassSum1 {
@@ -28,7 +28,7 @@ package CalculationExample {
 	}
 	
 	calc ms1: MassSum {
-		in partMasses = {vehicle::eng::m, vehicle::trans::m};
+		in partMasses = (vehicle::eng::m, vehicle::trans::m);
 		return totalMass = vehicle::m;
 	}
 }

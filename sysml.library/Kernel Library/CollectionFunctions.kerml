@@ -1,5 +1,6 @@
 package CollectionFunctions {
 	private import Base::Anything;
+	private import ControlFunctions::exists;
 	import ScalarValues::*;
 	import Collections::*;
 	
@@ -16,7 +17,7 @@ package CollectionFunctions {
 	}
 	
 	function contains(col: Collection[1], value: Anything): Boolean {
-		col::elements->exists x (x == value)
+		col::elements->exists {in x; x == value}
 	}	
 	
 	function head specializes BaseFunctions::head (col: OrderedCollection[1]): Anything[0..1] {

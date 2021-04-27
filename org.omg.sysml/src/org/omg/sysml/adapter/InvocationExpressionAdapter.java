@@ -36,6 +36,8 @@ import org.omg.sysml.lang.sysml.impl.FeatureImpl;
 import org.omg.sysml.util.FeatureUtil;
 import org.omg.sysml.util.TypeUtil;
 
+import com.google.common.base.Predicates;
+
 public class InvocationExpressionAdapter extends ExpressionAdapter {
 
 	public InvocationExpressionAdapter(InvocationExpression element) {
@@ -52,7 +54,7 @@ public class InvocationExpressionAdapter extends ExpressionAdapter {
 	@Override
 	public Type getExpressionType() {
 		return getTarget().getOwnedTyping().stream().
-				map(FeatureTyping::getType).findFirst().
+				map(FeatureTyping::getType).filter(Predicates.notNull()).findFirst().
 				orElseGet(()->getFirstImplicitGeneralType(SysMLPackage.Literals.FEATURE_TYPING));
 	}
 	

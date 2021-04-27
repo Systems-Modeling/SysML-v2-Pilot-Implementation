@@ -2250,6 +2250,6 @@ RenderingRefUsage returns SysML::RenderingUsage :
 /* EXPRESSIONS */
 
 @Override
-BodyParameter returns SysML::ReferenceUsage :
-	{SysML::ReferenceUsage} ( TypedBy MultiplicityPart? | MultiplicityPart TypedBy? )?
+ExpressionBody returns SysML::Expression :
+	CalculationBody
 ;

@@ -32,7 +32,7 @@ package ISQLight {
     attribute def SpeedOfLightInAMediumUnit :> DerivedUnit {
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = L; :>> exponent = 1; }
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = T; :>> exponent = -1; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {lengthPF, durationPF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, durationPF); }
     }
 
     attribute def SpeedOfLightInAMediumValue :> ScalarQuantityValue {
@@ -53,7 +53,7 @@ package ISQLight {
      * remarks: The value of the refractive index can depend on the frequency, polarization, and direction. The refractive index is expressed by n = c_0/c, where c_()_0 is the speed of light in vacuum and c is the speed of light in the medium. For a medium with absorption, the complex refractive index n is defined by n = n + ik where k is spectral absorption index (IEC 60050-845) and i is imaginary unit. The refractivity is expressed by n -1, where n is refractive index.
      */
     attribute def RefractiveIndexUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
     }
 
     attribute def RefractiveIndexValue :> ScalarQuantityValue {
@@ -90,7 +90,7 @@ package ISQLight {
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = L; :>> exponent = 1; }
         private attribute massPF: QuantityPowerFactor[1] { :>> quantity = M; :>> exponent = 1; }
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = T; :>> exponent = -2; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {lengthPF, massPF, durationPF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF, durationPF); }
     }
 
     attribute def SpectralRadiantEnergyValue :> ScalarQuantityValue {
@@ -114,7 +114,7 @@ package ISQLight {
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = L; :>> exponent = -1; }
         private attribute massPF: QuantityPowerFactor[1] { :>> quantity = M; :>> exponent = 1; }
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = T; :>> exponent = -2; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {lengthPF, massPF, durationPF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF, durationPF); }
     }
 
     attribute def RadiantEnergyDensityValue :> ScalarQuantityValue {
@@ -138,7 +138,7 @@ package ISQLight {
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = L; :>> exponent = -2; }
         private attribute massPF: QuantityPowerFactor[1] { :>> quantity = M; :>> exponent = 1; }
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = T; :>> exponent = -2; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {lengthPF, massPF, durationPF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF, durationPF); }
     }
 
     attribute def SpectralRadiantEnergyDensityInTermsOfWavelengthValue :> ScalarQuantityValue {
@@ -161,7 +161,7 @@ package ISQLight {
     attribute def SpectralRadiantEnergyDensityInTermsOfWavenumberUnit :> DerivedUnit {
         private attribute massPF: QuantityPowerFactor[1] { :>> quantity = M; :>> exponent = 1; }
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = T; :>> exponent = -2; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {massPF, durationPF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (massPF, durationPF); }
     }
 
     attribute def SpectralRadiantEnergyDensityInTermsOfWavenumberValue :> ScalarQuantityValue {
@@ -185,7 +185,7 @@ package ISQLight {
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = L; :>> exponent = 2; }
         private attribute massPF: QuantityPowerFactor[1] { :>> quantity = M; :>> exponent = 1; }
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = T; :>> exponent = -3; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {lengthPF, massPF, durationPF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF, durationPF); }
     }
 
     attribute def RadiantFluxValue :> ScalarQuantityValue {
@@ -213,7 +213,7 @@ package ISQLight {
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = L; :>> exponent = 1; }
         private attribute massPF: QuantityPowerFactor[1] { :>> quantity = M; :>> exponent = 1; }
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = T; :>> exponent = -3; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {lengthPF, massPF, durationPF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF, durationPF); }
     }
 
     attribute def SpectralRadiantFluxValue :> ScalarQuantityValue {
@@ -241,7 +241,7 @@ package ISQLight {
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = L; :>> exponent = 2; }
         private attribute massPF: QuantityPowerFactor[1] { :>> quantity = M; :>> exponent = 1; }
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = T; :>> exponent = -3; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {lengthPF, massPF, durationPF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF, durationPF); }
     }
 
     attribute def RadiantIntensityValue :> ScalarQuantityValue {
@@ -265,7 +265,7 @@ package ISQLight {
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = L; :>> exponent = 1; }
         private attribute massPF: QuantityPowerFactor[1] { :>> quantity = M; :>> exponent = 1; }
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = T; :>> exponent = -3; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {lengthPF, massPF, durationPF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF, durationPF); }
     }
 
     attribute def SpectralRadiantIntensityValue :> ScalarQuantityValue {
@@ -288,7 +288,7 @@ package ISQLight {
     attribute def RadianceUnit :> DerivedUnit {
         private attribute massPF: QuantityPowerFactor[1] { :>> quantity = M; :>> exponent = 1; }
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = T; :>> exponent = -3; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {massPF, durationPF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (massPF, durationPF); }
     }
 
     attribute def RadianceValue :> ScalarQuantityValue {
@@ -312,7 +312,7 @@ package ISQLight {
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = L; :>> exponent = -1; }
         private attribute massPF: QuantityPowerFactor[1] { :>> quantity = M; :>> exponent = 1; }
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = T; :>> exponent = -3; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {lengthPF, massPF, durationPF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF, durationPF); }
     }
 
     attribute def SpectralRadianceValue :> ScalarQuantityValue {
@@ -335,7 +335,7 @@ package ISQLight {
     attribute def IrradianceUnit :> DerivedUnit {
         private attribute massPF: QuantityPowerFactor[1] { :>> quantity = M; :>> exponent = 1; }
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = T; :>> exponent = -3; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {massPF, durationPF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (massPF, durationPF); }
     }
 
     attribute def IrradianceValue :> ScalarQuantityValue {
@@ -359,7 +359,7 @@ package ISQLight {
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = L; :>> exponent = -1; }
         private attribute massPF: QuantityPowerFactor[1] { :>> quantity = M; :>> exponent = 1; }
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = T; :>> exponent = -3; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {lengthPF, massPF, durationPF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF, durationPF); }
     }
 
     attribute def SpectralIrradianceValue :> ScalarQuantityValue {
@@ -382,7 +382,7 @@ package ISQLight {
     attribute def RadiantExitanceUnit :> DerivedUnit {
         private attribute massPF: QuantityPowerFactor[1] { :>> quantity = M; :>> exponent = 1; }
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = T; :>> exponent = -3; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {massPF, durationPF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (massPF, durationPF); }
     }
 
     attribute def RadiantExitanceValue :> ScalarQuantityValue {
@@ -410,7 +410,7 @@ package ISQLight {
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = L; :>> exponent = -1; }
         private attribute massPF: QuantityPowerFactor[1] { :>> quantity = M; :>> exponent = 1; }
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = T; :>> exponent = -3; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {lengthPF, massPF, durationPF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF, durationPF); }
     }
 
     attribute def SpectralRadiantExitanceValue :> ScalarQuantityValue {
@@ -433,7 +433,7 @@ package ISQLight {
     attribute def RadiantExposureUnit :> DerivedUnit {
         private attribute massPF: QuantityPowerFactor[1] { :>> quantity = M; :>> exponent = 1; }
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = T; :>> exponent = -2; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {massPF, durationPF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (massPF, durationPF); }
     }
 
     attribute def RadiantExposureValue :> ScalarQuantityValue {
@@ -457,7 +457,7 @@ package ISQLight {
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = L; :>> exponent = -1; }
         private attribute massPF: QuantityPowerFactor[1] { :>> quantity = M; :>> exponent = 1; }
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = T; :>> exponent = -2; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {lengthPF, massPF, durationPF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF, durationPF); }
     }
 
     attribute def SpectralRadiantExposureValue :> ScalarQuantityValue {
@@ -478,7 +478,7 @@ package ISQLight {
      * remarks: Luminous efficiency for photopic vision is expressed by `V = (int_0^oo Φ_(e,λ)(λ) V(λ) d λ)/(int_0^oo Φ_(e,λ)(λ) d λ) = K/K_m` where Φ_(e,)_λ is spectral radiant flux (item 7-4.2), V(λ) is spectral luminous efficiency, λ is wavelength, K is luminous efficacy of radiation (item 7-11.1), and K_m is maximum luminous efficacy (item 7-11.3). For scotopic and mesopic vision see 0.4 and 0.5. Symbols for different photometric conditions: V, <for photopic vision>; V′, <for scotopic vision>; V_(mes;m), <for mesopic vision>; V_(10), <for the CIE 10° photopic photometric observer>; V_M, <for the CIE 1988 modified 2° spectral luminous efficiency function for photopic vision>.
      */
     attribute def LuminousEfficiencyUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
     }
 
     attribute def LuminousEfficiencyValue :> ScalarQuantityValue {
@@ -499,7 +499,7 @@ package ISQLight {
      * remarks: The spectral luminous efficiency of the human eye depends on a number of factors, particularly the state of visual adaptation and the size and position of the source in the visual field. The photometric condition should be specified (e.g. photopic, scotopic, mesopic). If it is not specified, photopic vision is assumed and the symbol V(λ) is used. For scotopic and mesopic vision see 0.4 and 0.5. Symbols for different photometric conditions: V (λ), <for photopic vision>; V′(λ), <for scotopic vision>; V_(mes;m)(λ), <for mesopic vision>; V_(10)(λ), <for the CIE 10° photopic photometric observer>; V_M(λ), <for the CIE 1988 modified 2° spectral luminous efficiency function for photopic vision>.
      */
     attribute def SpectralLuminousEfficiencyUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
     }
 
     attribute def SpectralLuminousEfficiencyValue :> ScalarQuantityValue {
@@ -524,7 +524,7 @@ package ISQLight {
         private attribute massPF: QuantityPowerFactor[1] { :>> quantity = M; :>> exponent = -1; }
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = T; :>> exponent = 3; }
         private attribute luminousIntensityPF: QuantityPowerFactor[1] { :>> quantity = J; :>> exponent = 1; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {lengthPF, massPF, durationPF, luminousIntensityPF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF, durationPF, luminousIntensityPF); }
     }
 
     attribute def LuminousEfficacyOfRadiationValue :> ScalarQuantityValue {
@@ -549,7 +549,7 @@ package ISQLight {
         private attribute massPF: QuantityPowerFactor[1] { :>> quantity = M; :>> exponent = -1; }
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = T; :>> exponent = 3; }
         private attribute luminousIntensityPF: QuantityPowerFactor[1] { :>> quantity = J; :>> exponent = 1; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {lengthPF, massPF, durationPF, luminousIntensityPF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF, durationPF, luminousIntensityPF); }
     }
 
     attribute def SpectralLuminousEfficacyValue :> ScalarQuantityValue {
@@ -574,7 +574,7 @@ package ISQLight {
         private attribute massPF: QuantityPowerFactor[1] { :>> quantity = M; :>> exponent = -1; }
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = T; :>> exponent = 3; }
         private attribute luminousIntensityPF: QuantityPowerFactor[1] { :>> quantity = J; :>> exponent = 1; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {lengthPF, massPF, durationPF, luminousIntensityPF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF, durationPF, luminousIntensityPF); }
     }
 
     attribute def MaximumLuminousEfficacyValue :> ScalarQuantityValue {
@@ -599,7 +599,7 @@ package ISQLight {
         private attribute massPF: QuantityPowerFactor[1] { :>> quantity = M; :>> exponent = -1; }
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = T; :>> exponent = 3; }
         private attribute luminousIntensityPF: QuantityPowerFactor[1] { :>> quantity = J; :>> exponent = 1; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {lengthPF, massPF, durationPF, luminousIntensityPF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF, durationPF, luminousIntensityPF); }
     }
 
     attribute def LuminousEfficacyOfASourceValue :> ScalarQuantityValue {
@@ -622,7 +622,7 @@ package ISQLight {
     attribute def LuminousEnergyUnit :> DerivedUnit {
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = T; :>> exponent = 1; }
         private attribute luminousIntensityPF: QuantityPowerFactor[1] { :>> quantity = J; :>> exponent = 1; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {durationPF, luminousIntensityPF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (durationPF, luminousIntensityPF); }
     }
 
     attribute def LuminousEnergyValue :> ScalarQuantityValue {
@@ -648,7 +648,7 @@ package ISQLight {
      */
     attribute def LuminousFluxUnit :> DerivedUnit {
         private attribute luminousIntensityPF: QuantityPowerFactor[1] { :>> quantity = J; :>> exponent = 1; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {luminousIntensityPF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (luminousIntensityPF); }
     }
 
     attribute def LuminousFluxValue :> ScalarQuantityValue {
@@ -688,7 +688,7 @@ package ISQLight {
     attribute def LuminanceUnit :> DerivedUnit {
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = L; :>> exponent = -2; }
         private attribute luminousIntensityPF: QuantityPowerFactor[1] { :>> quantity = J; :>> exponent = 1; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {lengthPF, luminousIntensityPF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, luminousIntensityPF); }
     }
 
     attribute def LuminanceValue :> ScalarQuantityValue {
@@ -711,7 +711,7 @@ package ISQLight {
     attribute def IlluminanceUnit :> DerivedUnit {
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = L; :>> exponent = -2; }
         private attribute luminousIntensityPF: QuantityPowerFactor[1] { :>> quantity = J; :>> exponent = 1; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {lengthPF, luminousIntensityPF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, luminousIntensityPF); }
     }
 
     attribute def IlluminanceValue :> ScalarQuantityValue {
@@ -734,7 +734,7 @@ package ISQLight {
     attribute def LuminousExitanceUnit :> DerivedUnit {
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = L; :>> exponent = -2; }
         private attribute luminousIntensityPF: QuantityPowerFactor[1] { :>> quantity = J; :>> exponent = 1; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {lengthPF, luminousIntensityPF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, luminousIntensityPF); }
     }
 
     attribute def LuminousExitanceValue :> ScalarQuantityValue {
@@ -758,7 +758,7 @@ package ISQLight {
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = L; :>> exponent = -2; }
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = T; :>> exponent = 1; }
         private attribute luminousIntensityPF: QuantityPowerFactor[1] { :>> quantity = J; :>> exponent = 1; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {lengthPF, durationPF, luminousIntensityPF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, durationPF, luminousIntensityPF); }
     }
 
     attribute def LuminousExposureValue :> ScalarQuantityValue {
@@ -787,7 +787,7 @@ package ISQLight {
      * remarks: Photon number can also be expressed by the time integral of the photon flux (item 7-20), Φ_p, over a given duration, Δt, `N_p = int_(Δt) Φ_p dt`
      */
     attribute def PhotonNumberUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
     }
 
     attribute def PhotonNumberValue :> ScalarQuantityValue {
@@ -826,7 +826,7 @@ package ISQLight {
      */
     attribute def PhotonFluxUnit :> DerivedUnit {
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = T; :>> exponent = -1; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {durationPF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (durationPF); }
     }
 
     attribute def PhotonFluxValue :> ScalarQuantityValue {
@@ -848,7 +848,7 @@ package ISQLight {
      */
     attribute def PhotonIntensityUnit :> DerivedUnit {
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = T; :>> exponent = -1; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {durationPF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (durationPF); }
     }
 
     attribute def PhotonIntensityValue :> ScalarQuantityValue {
@@ -871,7 +871,7 @@ package ISQLight {
     attribute def PhotonRadianceUnit :> DerivedUnit {
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = L; :>> exponent = -2; }
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = T; :>> exponent = -1; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {lengthPF, durationPF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, durationPF); }
     }
 
     attribute def PhotonRadianceValue :> ScalarQuantityValue {
@@ -894,7 +894,7 @@ package ISQLight {
     attribute def PhotonIrradianceUnit :> DerivedUnit {
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = L; :>> exponent = -2; }
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = T; :>> exponent = -1; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {lengthPF, durationPF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, durationPF); }
     }
 
     attribute def PhotonIrradianceValue :> ScalarQuantityValue {
@@ -917,7 +917,7 @@ package ISQLight {
     attribute def PhotonExitanceUnit :> DerivedUnit {
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = L; :>> exponent = -2; }
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = T; :>> exponent = -1; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {lengthPF, durationPF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, durationPF); }
     }
 
     attribute def PhotonExitanceValue :> ScalarQuantityValue {
@@ -939,7 +939,7 @@ package ISQLight {
      */
     attribute def PhotonExposureUnit :> DerivedUnit {
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = L; :>> exponent = -2; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {lengthPF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF); }
     }
 
     attribute def PhotonExposureValue :> ScalarQuantityValue {
@@ -960,7 +960,7 @@ package ISQLight {
      * remarks: For a given colour stimulus described by the colour stimulus function `φ_λ(λ)` of a radiometric quantity, `X = k int_0^∞ φ_λ(λ) overline x(λ) dλ`, `Y = k int_0^∞ φ_λ(λ) overline y(λ) dλ`, `Z = k int_0^∞ φ_λ(λ) overline z(λ) dλ`, where `overline x(λ)`, `overline y(λ)`, `overline z(λ)` are the CIE colour-matching functions for the CIE 1931 standard colorimetric observer (2° observer) (item 7-27.1). For sources, `k` may be chosen as `k = K_m` where `K_m` is the maximum luminous efficacy (item 7-11.3) so that `Y = L_v` (item 7-15) and the unit of `X`, `Y`, `Z` is `[cd*m^-2]`. For object colours, `φ_λ(λ)` is given by one of the three products `φ_λ(λ) = S_λ(λ) * {(ρ(λ)), (τ(λ)), (β(λ)):}` where `S_λ(λ)` is the relative spectral distribution of a quantity characterizing the source illuminating the object, `ρ(λ)` is the spectral reflectance, `τ(λ)` is the spectral transmittance, `β(λ)` is the spectral radiance factor, and `k` is chosen to be `k = 100 // int_0^∞ S_λ(λ) overline y(λ) dλ`. Integral limits can be confined depending on the spectral sensitivity of the detectors used as a sensor. In this case, the unit of `X`, `Y`, `Z` is `[1]`.
      */
     attribute def TristimulusValuesForTheCie1931StandardColorimetricObserverUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
     }
 
     attribute def TristimulusValuesForTheCie1931StandardColorimetricObserverValue :> ScalarQuantityValue {
@@ -981,7 +981,7 @@ package ISQLight {
      * remarks: For a given colour stimulus described by the colour stimulus function `φ_λ(λ)` of a radiometric quantity, `X_10 = k int_0^∞ φ_λ(λ) overline x_10(λ) dλ`, `Y_10 = k int_0^∞ φ_λ(λ) overline y_10(λ) dλ`, `Z_10 = k int_0^∞ φ_λ(λ) overline z_10(λ) dλ`, where `overline x_10(λ)` , `overline y_10(λ)` , `overline z_10(λ)` are the CIE colour-matching functions for the CIE 1964 standard colorimetric observer (10° observer) (item 7-27.2). For sources, `k` may be chosen as `k = K_(10)`, where `K_(10)` is the maximum luminous efficacy (item 7-11.3) of the CIE 1964 standard colorimetric observer so that `Y_(10) = L_(10)` and the unit of `X`, `Y`, `Z` is `[cd*m^-2]`. For object colours, `φ_λ(λ)` is given by one of the three products `φ_λ(λ) = S_λ(λ) * {(ρ(λ)), (τ(λ)), (β(λ)):}`, where `S_λ(λ)` is the relative spectral distribution of a quantity characterizing the source illuminating the object, `ρ(λ)` is the spectral reflectance, `τ(λ)` is the spectral transmittance, `β(λ)` is the spectral radiance factor, and `k` is chosen to be `k = 100 // int_0^∞ S_λ(λ) overline y(λ) dλ`. Integral limits can be confined depending on the spectral sensitivity of the detectors used as a sensor. In this case, the unit of `X`, `Y`, `Z` is `[1]`.
      */
     attribute def TristimulusValuesForTheCie1964StandardColorimetricObserverUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
     }
 
     attribute def TristimulusValuesForTheCie1964StandardColorimetricObserverValue :> ScalarQuantityValue {
@@ -1002,7 +1002,7 @@ package ISQLight {
      * remarks: Values of `overline x(λ)` , `overline y(λ)` and `overline z(λ)` are defined in the CIE 1931 standard colorimetric system (2° observer) — applicable to fields of observation of angular opening from 1° to 4°.
      */
     attribute def CieColourMatchingFunctionsForTheCie1931StandardColorimetricObserverUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
     }
 
     attribute def CieColourMatchingFunctionsForTheCie1931StandardColorimetricObserverValue :> ScalarQuantityValue {
@@ -1023,7 +1023,7 @@ package ISQLight {
      * remarks: Values of `overline x_10(λ)` , `overline y_10(λ)` and `overline z_10(λ)` are defined in the CIE 1964 standard colorimetric system (10° observer) — applicable to fields of observation with angles greater than 4°.
      */
     attribute def CieColourMatchingFunctionsForTheCie1964StandardColorimetricObserverUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
     }
 
     attribute def CieColourMatchingFunctionsForTheCie1964StandardColorimetricObserverValue :> ScalarQuantityValue {
@@ -1044,7 +1044,7 @@ package ISQLight {
      * remarks: Since `x + y + z = 1`, two variables are sufficient to express chromaticity.
      */
     attribute def ChromaticityCoordinatesInTheCie1931StandardColorimetricSystemUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
     }
 
     attribute def ChromaticityCoordinatesInTheCie1931StandardColorimetricSystemValue :> ScalarQuantityValue {
@@ -1065,7 +1065,7 @@ package ISQLight {
      * remarks: Since `x_(10) + y_(10) + z_(10) = 1`, two variables are sufficient to express chromaticity.
      */
     attribute def ChromaticityCoordinatesInTheCie1964StandardColorimetricSystemUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
     }
 
     attribute def ChromaticityCoordinatesInTheCie1964StandardColorimetricSystemValue :> ScalarQuantityValue {
@@ -1112,7 +1112,7 @@ package ISQLight {
      * remarks: 
      */
     attribute def EmissivityUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
     }
 
     attribute def EmissivityValue :> ScalarQuantityValue {
@@ -1133,7 +1133,7 @@ package ISQLight {
      * remarks: 
      */
     attribute def EmissivityAtASpecifiedWavelengthUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
     }
 
     attribute def EmissivityAtASpecifiedWavelengthValue :> ScalarQuantityValue {
@@ -1154,7 +1154,7 @@ package ISQLight {
      * remarks: This quantity is also defined spectrally in terms of wavelength, in which case “spectral” is added before the quantity name. Due to energy conservation, α + ρ + τ = 1 except when polarized radiation is observed, where ρ is reflectance (item 7-31.3) and τ is transmittance (item 7-31.5).
      */
     attribute def AbsorptanceUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
     }
 
     attribute def AbsorptanceValue :> ScalarQuantityValue {
@@ -1175,7 +1175,7 @@ package ISQLight {
      * remarks: From spectral absorptance, α(λ), luminous absorptance can be calculated by `α_v = (int_0^∞ α(λ) Φ_(e,λ)(λ) V(λ) dλ)/(int_0^∞ Φ_(e,λ)(λ) V(λ) dλ)` where Φ_(e,)_λ(λ) is spectral radiant flux (or relative spectral distribution) of the source, and V(λ) is spectral luminous efficiency (item 7-10.2). See also item 7-31.1.
      */
     attribute def LuminousAbsorptanceUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
     }
 
     attribute def LuminousAbsorptanceValue :> ScalarQuantityValue {
@@ -1196,7 +1196,7 @@ package ISQLight {
      * remarks: This quantity is also defined spectrally in terms of wavelength, in which case, “spectral” is added before the quantity name. Due to energy conservation, α + ρ + τ = 1 except when polarized radiation is observed, where α is absorptance (item 7-31.1) and τ is transmittance (item 7-31.5).
      */
     attribute def ReflectanceUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
     }
 
     attribute def ReflectanceValue :> ScalarQuantityValue {
@@ -1217,7 +1217,7 @@ package ISQLight {
      * remarks: From spectral reflectance, ρ(λ), luminous reflectance can be calculated by `ρ_v = (int_0^∞ ρ(λ) Φ_(e,λ)(λ) V(λ) dλ)/(int_0^∞ Φ_(e,λ)(λ) V(λ) dλ)` where Φ_(e,)_λ(λ) is spectral radiant flux (or relative spectral distribution) of the source, and V(λ) is spectral luminous efficiency (item 7-10.2). See also item 7-31.3.
      */
     attribute def LuminousReflectanceUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
     }
 
     attribute def LuminousReflectanceValue :> ScalarQuantityValue {
@@ -1238,7 +1238,7 @@ package ISQLight {
      * remarks: This quantity is also defined spectrally in terms of wavelength, in which case, “spectral” is added before the quantity name. Due to energy conservation, α + ρ + τ = 1 except when polarized radiation is observed, where α is absorptance (item 7-31.1) and ρ is reflectance (item 7-31.3).
      */
     attribute def TransmittanceUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
     }
 
     attribute def TransmittanceValue :> ScalarQuantityValue {
@@ -1259,7 +1259,7 @@ package ISQLight {
      * remarks: From the spectral transmittance τ(λ), luminous transmittance can be calculated by `τ_v = (int_0^∞ τ(λ) Φ_(e,λ)(λ) V(λ) dλ)/(int_0^∞ Φ_(e,λ)(λ) V(λ) dλ)` where Φ_(e,)_λ(λ) is the spectral radiant flux (or relative spectral distribution) of the source, and V(λ) is the spectral luminous efficiency (item 7-10.2). See also item 7-31.5.
      */
     attribute def LuminousTransmittanceUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
     }
 
     attribute def LuminousTransmittanceValue :> ScalarQuantityValue {
@@ -1280,7 +1280,7 @@ package ISQLight {
      * remarks: If defined in terms of wavelength, the optical density can be expressed by `A_10(λ) = -log(τ(λ))` where τ(λ) is the transmittance (item 7-31.5) in terms of wavelength. In spectroscopy, the name “absorbance A_(10)” is generally used.
      */
     attribute def TransmittanceOpticalDensityUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
     }
 
     attribute def TransmittanceOpticalDensityValue :> ScalarQuantityValue {
@@ -1313,7 +1313,7 @@ package ISQLight {
      * remarks: If defined in terms of wavelength, the Napierian absorbance can be expressed by `A_n(λ) = B(λ) = -log(τ(λ))` It can also be expressed as `A_n(λ) = I α(λ)` where α is linear absorption coefficient (item 7-35.2) and l is length (ISO 80000-3) traversed.
      */
     attribute def NapierianAbsorbanceUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
     }
 
     attribute def NapierianAbsorbanceValue :> ScalarQuantityValue {
@@ -1334,7 +1334,7 @@ package ISQLight {
      * remarks: The definition holds for a surface element of a non-self-radiating medium, in a given direction and under specified conditions of irradiation. Radiance factor is equivalent to reflectance factor (item 7-34) or luminance factor (item 7-33.2) when the cone angle is infinitely small, and is equivalent to reflectance (item 7-31.3) when the cone angle is 2π sr. These quantities are also defined spectrally and called spectral radiance factor β(λ) and spectral reflectance factor R(λ). The ideal isotropic (Lambertian) diffuser with reflectance (item 7-31.3) or transmittance (item 7-31.5) equal to 1 is called “perfect diffuser”.
      */
     attribute def RadianceFactorUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
     }
 
     attribute def RadianceFactorValue :> ScalarQuantityValue {
@@ -1355,7 +1355,7 @@ package ISQLight {
      * remarks: The definition holds for a surface element of a non-luminous medium, in a given direction and under specified conditions of irradiation. This quantity is also defined spectrally and is called “spectral luminance factor”. For the analogous radiant quantity “radiance factor”, see item 7-33.1.
      */
     attribute def LuminanceFactorUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
     }
 
     attribute def LuminanceFactorValue :> ScalarQuantityValue {
@@ -1376,7 +1376,7 @@ package ISQLight {
      * remarks: The flux can be a radiant flux (item 7‐4.1) or a luminous flux (item 7‐13). The definition holds for a surface element, for the part of the reflected radiation contained in a given cone with apex at the surface element, and for incident radiation of given spectral composition, polarization and geometric distribution. Reflectance factor is equivalent to radiance factor (item 7-33.1) or luminance factor (item 7-33.2) when the cone angle is infinitely small, and is equivalent to reflectance (item 7-31.3) when the cone angle is 2π sr. These quantities are also defined spectrally and called spectral radiance factor β(λ) and spectral reflectance factor R(λ). The ideal isotropic (Lambertian) diffuser with reflectance (item 7-31.3) or transmittance (item 7-31.5) equal to 1 is called a perfect diffuser.
      */
     attribute def ReflectanceFactorUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
     }
 
     attribute def ReflectanceFactorValue :> ScalarQuantityValue {
@@ -1398,7 +1398,7 @@ package ISQLight {
      */
     attribute def LinearAttenuationCoefficientUnit :> DerivedUnit {
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = L; :>> exponent = -1; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {lengthPF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF); }
     }
 
     attribute def LinearAttenuationCoefficientValue :> ScalarQuantityValue {
@@ -1424,7 +1424,7 @@ package ISQLight {
      */
     attribute def LinearAbsorptionCoefficientUnit :> DerivedUnit {
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = L; :>> exponent = -1; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {lengthPF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF); }
     }
 
     attribute def LinearAbsorptionCoefficientValue :> ScalarQuantityValue {
@@ -1447,7 +1447,7 @@ package ISQLight {
     attribute def MassAttenuationCoefficientUnit :> DerivedUnit {
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = L; :>> exponent = 2; }
         private attribute massPF: QuantityPowerFactor[1] { :>> quantity = M; :>> exponent = -1; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {lengthPF, massPF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF); }
     }
 
     attribute def MassAttenuationCoefficientValue :> ScalarQuantityValue {
@@ -1470,7 +1470,7 @@ package ISQLight {
     attribute def MassAbsorptionCoefficientUnit :> DerivedUnit {
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = L; :>> exponent = 2; }
         private attribute massPF: QuantityPowerFactor[1] { :>> quantity = M; :>> exponent = -1; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {lengthPF, massPF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF); }
     }
 
     attribute def MassAbsorptionCoefficientValue :> ScalarQuantityValue {
@@ -1493,7 +1493,7 @@ package ISQLight {
     attribute def MolarAbsorptionCoefficientUnit :> DerivedUnit {
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = L; :>> exponent = 2; }
         private attribute amountOfSubstancePF: QuantityPowerFactor[1] { :>> quantity = N; :>> exponent = -1; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {lengthPF, amountOfSubstancePF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, amountOfSubstancePF); }
     }
 
     attribute def MolarAbsorptionCoefficientValue :> ScalarQuantityValue {

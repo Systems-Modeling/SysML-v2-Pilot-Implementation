@@ -164,11 +164,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 	}
 	 
 	@Check
-	def checkConnector(Connector c){
-		if (c.owner instanceof FeatureReferenceExpression) {
-			return // ignore reference connectors in FeatureReferenceExpressions for now
-		}
-		
+	def checkConnector(Connector c){		
 		var relatedFeatures = c.relatedFeature
 		
 		// Allow related features that are inherited by the owner of the connector

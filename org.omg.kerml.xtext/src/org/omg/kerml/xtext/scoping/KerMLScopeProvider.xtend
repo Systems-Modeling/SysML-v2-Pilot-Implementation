@@ -49,6 +49,7 @@ import org.omg.sysml.lang.sysml.Redefinition
 import org.omg.sysml.lang.sysml.Expression
 import org.omg.sysml.lang.sysml.FeatureReferenceExpression
 import org.omg.sysml.lang.sysml.PathStepExpression
+import org.omg.sysml.lang.sysml.InvocationExpression
 
 class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 
@@ -109,10 +110,24 @@ class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 		EcoreUtil2.getContainerOfType(element.eContainer, Namespace)
 	}
 	
+	def static Namespace getNonExpressionNamespace(Element element) {
+		var namespace = getParentNamespace(element)
+		while (namespace instanceof InvocationExpression || 
+			   namespace instanceof FeatureReferenceExpression
+		) {
+			namespace = getParentNamespace(namespace)
+		}
+		namespace
+	}
+	
 	def scope_owningNamespace(Element element, EObject context, EReference reference) {
 		element.scope_Namespace(element?.parentNamespace, context, reference, true)
 	}
 
+	def scope_nonExpressionNamespace(Element element, EObject context, EReference reference) {
+		element.scope_Namespace(element?.nonExpressionNamespace, context, reference, true)
+	}
+	
 	def scope_Namespace(Element element, Namespace namespace, EObject context, EReference reference, boolean isInsideScope) {
 		if (namespace === null)
 			super.getScope(element, reference)		
@@ -124,7 +139,11 @@ class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 	
 	def scope_relativeNamespace(Element element, Namespace ns, EObject context, EReference reference) {
 		val rel = ns.relativeNamespace
-		return element.scope_Namespace(rel, context, reference, rel === ns)
+		if (rel === null) {
+			element.scope_nonExpressionNamespace(context, reference)
+		} else {
+			element.scope_Namespace(rel, context, reference, false)
+		}
 	}
 
 	def Namespace featureRefNamespace(PathStepExpression qps) {
@@ -139,7 +158,7 @@ class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 	}
 
 	def Namespace relativeNamespace(Namespace ns) {
-		var rel = ns
+		var Namespace rel = null;
 		if (ns instanceof FeatureReferenceExpression) {
 			val oe = ns.owner
 			if (oe instanceof PathStepExpression) {
@@ -156,7 +175,7 @@ class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 				}
 			}
 		}
-		return if (rel === null) ns else rel
+		return rel;
 	}
 
 	def IScope scopeFor(Namespace pack, EReference reference, Element element, boolean isInsideScope, boolean isFirstScope, boolean isRedefinition, Element skip) {

@@ -2,7 +2,7 @@ package 'Analysis Case Definition Example' {
 	import 'Calculation Definitions'::*;
 	import 'Analytical Constraints'::*;
 	import USCustomaryUnits::*;
-	import BaseFunctions::size;
+	import SequenceFunctions::size;
 	import Quantities::ScalarQuantityValue;
 	import ControlFunctions::*;
 	

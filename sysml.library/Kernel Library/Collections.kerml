@@ -1,7 +1,7 @@
 package Collections {
 	private import Base::*;
 	private import ScalarValues::*;
-	private import BaseFunctions::size;
+	private import SequenceFunctions::size;
 	private import IntegerFunctions::*;
 	private import ControlFunctions::*;
 

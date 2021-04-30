@@ -8,9 +8,6 @@ package Occurrences {
 	private import Base::things;
 	private import Links::*;
 	
-	private import BaseFunctions::*;
-	private import ControlFunctions::forAll;
-	
 	/**
 	 * Occurrence is the most general classifier of entities that have identity and 
 	 * may occur over time.
@@ -19,7 +16,8 @@ package Occurrences {
 	 * snapshots of an occurrence over time.
 	 */
 	abstract class Occurrence specializes Anything {
-		private import BaseFunctions::size;
+		private import SequenceFunctions::*;
+		private import ControlFunctions::forAll;
 		
 		feature portionOfLife : Life[1] subsets portionOf;
 		

@@ -150,7 +150,7 @@ package 'Vehicle Analysis Demo' {
 	    import VehicleModel::*;
 	    import FuelEconomyRequirementsModel::*;
 	    import DynamicsModel::*;
-	    import BaseFunctions::size;
+	    import SequenceFunctions::size;
 	    import Collections::SampledFunction;
 	    import Collections::SamplePair;
 	    import ControlFunctions::forAll;

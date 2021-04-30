@@ -163,8 +163,9 @@ public class SatisfyRequirementUsageImpl extends RequirementUsageImpl implements
 	 * @generated NOT
 	 */
 	public Feature basicGetSatisfyingFeature() {
-		BindingConnector connector = UsageUtil.getSatisfyingFeatureConnectorOf(this);		
-		return connector == null? null: connector.getRelatedFeature().get(1);
+		BindingConnector connector = UsageUtil.getSatisfyingFeatureConnectorOf(this);
+		return connector == null? null: 
+			connector.getRelatedFeature().stream().skip(1).findFirst().orElse(null);
 	}
 
 	/**

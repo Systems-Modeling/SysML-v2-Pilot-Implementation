@@ -55,6 +55,7 @@ public class KerMLExpressionsParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getNameAccess().getAlternatives(), "rule__Name__Alternatives");
 			builder.put(grammarAccess.getExpressionBodyAccess().getGroup(), "rule__ExpressionBody__Group__0");
 			builder.put(grammarAccess.getExpressionBodyAccess().getGroup_1(), "rule__ExpressionBody__Group_1__0");
+			builder.put(grammarAccess.getBodyParameterMemberAccess().getGroup(), "rule__BodyParameterMember__Group__0");
 			builder.put(grammarAccess.getConditionalExpressionAccess().getGroup(), "rule__ConditionalExpression__Group__0");
 			builder.put(grammarAccess.getConditionalExpressionAccess().getGroup_1(), "rule__ConditionalExpression__Group_1__0");
 			builder.put(grammarAccess.getNullCoalescingExpressionAccess().getGroup(), "rule__NullCoalescingExpression__Group__0");
@@ -76,6 +77,8 @@ public class KerMLExpressionsParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getClassificationExpressionAccess().getGroup_1(), "rule__ClassificationExpression__Group_1__0");
 			builder.put(grammarAccess.getRelationalExpressionAccess().getGroup(), "rule__RelationalExpression__Group__0");
 			builder.put(grammarAccess.getRelationalExpressionAccess().getGroup_1(), "rule__RelationalExpression__Group_1__0");
+			builder.put(grammarAccess.getRangeExpressionAccess().getGroup(), "rule__RangeExpression__Group__0");
+			builder.put(grammarAccess.getRangeExpressionAccess().getGroup_1(), "rule__RangeExpression__Group_1__0");
 			builder.put(grammarAccess.getAdditiveExpressionAccess().getGroup(), "rule__AdditiveExpression__Group__0");
 			builder.put(grammarAccess.getAdditiveExpressionAccess().getGroup_1(), "rule__AdditiveExpression__Group_1__0");
 			builder.put(grammarAccess.getMultiplicativeExpressionAccess().getGroup(), "rule__MultiplicativeExpression__Group__0");
@@ -91,13 +94,9 @@ public class KerMLExpressionsParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getPrimaryExpressionAccess().getGroup_1_1(), "rule__PrimaryExpression__Group_1_1__0");
 			builder.put(grammarAccess.getPrimaryExpressionAccess().getGroup_1_2(), "rule__PrimaryExpression__Group_1_2__0");
 			builder.put(grammarAccess.getPrimaryExpressionAccess().getGroup_1_3(), "rule__PrimaryExpression__Group_1_3__0");
-			builder.put(grammarAccess.getBodyParameterMemberAccess().getGroup(), "rule__BodyParameterMember__Group__0");
 			builder.put(grammarAccess.getBaseExpressionAccess().getGroup_4(), "rule__BaseExpression__Group_4__0");
 			builder.put(grammarAccess.getSequenceExpressionAccess().getGroup(), "rule__SequenceExpression__Group__0");
-			builder.put(grammarAccess.getSequenceExpressionAccess().getGroup_1_0(), "rule__SequenceExpression__Group_1_0__0");
 			builder.put(grammarAccess.getSequenceExpressionAccess().getGroup_1_1(), "rule__SequenceExpression__Group_1_1__0");
-			builder.put(grammarAccess.getSequenceElementListAccess().getGroup(), "rule__SequenceElementList__Group__0");
-			builder.put(grammarAccess.getSequenceElementListAccess().getGroup_1(), "rule__SequenceElementList__Group_1__0");
 			builder.put(grammarAccess.getInvocationExpressionAccess().getGroup(), "rule__InvocationExpression__Group__0");
 			builder.put(grammarAccess.getArgumentListAccess().getGroup(), "rule__ArgumentList__Group__0");
 			builder.put(grammarAccess.getPositionalArgumentListAccess().getGroup(), "rule__PositionalArgumentList__Group__0");
@@ -114,6 +113,9 @@ public class KerMLExpressionsParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getOwnedExpressionMemberAccess().getOwnedRelatedElementAssignment(), "rule__OwnedExpressionMember__OwnedRelatedElementAssignment");
 			builder.put(grammarAccess.getExpressionBodyAccess().getOwnedRelationshipAssignment_1_0(), "rule__ExpressionBody__OwnedRelationshipAssignment_1_0");
 			builder.put(grammarAccess.getExpressionBodyAccess().getOwnedRelationshipAssignment_2(), "rule__ExpressionBody__OwnedRelationshipAssignment_2");
+			builder.put(grammarAccess.getResultExpressionMemberAccess().getOwnedRelatedElementAssignment(), "rule__ResultExpressionMember__OwnedRelatedElementAssignment");
+			builder.put(grammarAccess.getBodyParameterMemberAccess().getMemberNameAssignment_1(), "rule__BodyParameterMember__MemberNameAssignment_1");
+			builder.put(grammarAccess.getBodyParameterMemberAccess().getOwnedRelatedElementAssignment_2(), "rule__BodyParameterMember__OwnedRelatedElementAssignment_2");
 			builder.put(grammarAccess.getConditionalExpressionAccess().getOperatorAssignment_1_1(), "rule__ConditionalExpression__OperatorAssignment_1_1");
 			builder.put(grammarAccess.getConditionalExpressionAccess().getOperandAssignment_1_2(), "rule__ConditionalExpression__OperandAssignment_1_2");
 			builder.put(grammarAccess.getConditionalExpressionAccess().getOperandAssignment_1_4(), "rule__ConditionalExpression__OperandAssignment_1_4");
@@ -143,6 +145,8 @@ public class KerMLExpressionsParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getSelfReferenceMemberAccess().getOwnedRelatedElementAssignment(), "rule__SelfReferenceMember__OwnedRelatedElementAssignment");
 			builder.put(grammarAccess.getRelationalExpressionAccess().getOperatorAssignment_1_1(), "rule__RelationalExpression__OperatorAssignment_1_1");
 			builder.put(grammarAccess.getRelationalExpressionAccess().getOperandAssignment_1_2(), "rule__RelationalExpression__OperandAssignment_1_2");
+			builder.put(grammarAccess.getRangeExpressionAccess().getOperatorAssignment_1_1(), "rule__RangeExpression__OperatorAssignment_1_1");
+			builder.put(grammarAccess.getRangeExpressionAccess().getOperandAssignment_1_2(), "rule__RangeExpression__OperandAssignment_1_2");
 			builder.put(grammarAccess.getAdditiveExpressionAccess().getOperatorAssignment_1_1(), "rule__AdditiveExpression__OperatorAssignment_1_1");
 			builder.put(grammarAccess.getAdditiveExpressionAccess().getOperandAssignment_1_2(), "rule__AdditiveExpression__OperandAssignment_1_2");
 			builder.put(grammarAccess.getMultiplicativeExpressionAccess().getOperatorAssignment_1_1(), "rule__MultiplicativeExpression__OperatorAssignment_1_1");
@@ -162,15 +166,8 @@ public class KerMLExpressionsParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getPrimaryExpressionAccess().getOperandAssignment_1_2_2(), "rule__PrimaryExpression__OperandAssignment_1_2_2");
 			builder.put(grammarAccess.getPrimaryExpressionAccess().getOwnedRelationshipAssignment_1_3_2(), "rule__PrimaryExpression__OwnedRelationshipAssignment_1_3_2");
 			builder.put(grammarAccess.getExpressionBodyMemberAccess().getOwnedRelatedElementAssignment(), "rule__ExpressionBodyMember__OwnedRelatedElementAssignment");
-			builder.put(grammarAccess.getResultExpressionMemberAccess().getOwnedRelatedElementAssignment(), "rule__ResultExpressionMember__OwnedRelatedElementAssignment");
-			builder.put(grammarAccess.getBodyParameterMemberAccess().getMemberNameAssignment_1(), "rule__BodyParameterMember__MemberNameAssignment_1");
-			builder.put(grammarAccess.getBodyParameterMemberAccess().getOwnedRelatedElementAssignment_2(), "rule__BodyParameterMember__OwnedRelatedElementAssignment_2");
-			builder.put(grammarAccess.getSequenceExpressionAccess().getOperatorAssignment_1_0_1(), "rule__SequenceExpression__OperatorAssignment_1_0_1");
-			builder.put(grammarAccess.getSequenceExpressionAccess().getOperandAssignment_1_0_2(), "rule__SequenceExpression__OperandAssignment_1_0_2");
 			builder.put(grammarAccess.getSequenceExpressionAccess().getOperatorAssignment_1_1_1(), "rule__SequenceExpression__OperatorAssignment_1_1_1");
 			builder.put(grammarAccess.getSequenceExpressionAccess().getOperandAssignment_1_1_2(), "rule__SequenceExpression__OperandAssignment_1_1_2");
-			builder.put(grammarAccess.getSequenceElementListAccess().getOperatorAssignment_1_1(), "rule__SequenceElementList__OperatorAssignment_1_1");
-			builder.put(grammarAccess.getSequenceElementListAccess().getOperandAssignment_1_2(), "rule__SequenceElementList__OperandAssignment_1_2");
 			builder.put(grammarAccess.getFeatureReferenceExpressionAccess().getOwnedRelationshipAssignment(), "rule__FeatureReferenceExpression__OwnedRelationshipAssignment");
 			builder.put(grammarAccess.getFeatureReferenceMemberAccess().getMemberElementAssignment(), "rule__FeatureReferenceMember__MemberElementAssignment");
 			builder.put(grammarAccess.getInvocationExpressionAccess().getOwnedRelationshipAssignment_0(), "rule__InvocationExpression__OwnedRelationshipAssignment_0");

@@ -54,8 +54,8 @@ public class KerMLExpressionsSemanticSequencer extends AbstractDelegatingSemanti
 				sequence_ExpressionBody(context, (Expression) semanticObject); 
 				return; 
 			case SysMLPackage.FEATURE:
-				if (rule == grammarAccess.getEmptyFeatureRule()
-						|| rule == grammarAccess.getBodyParameterRule()) {
+				if (rule == grammarAccess.getBodyParameterRule()
+						|| rule == grammarAccess.getEmptyFeatureRule()) {
 					sequence_BodyParameter_EmptyFeature(context, (Feature) semanticObject); 
 					return; 
 				}
@@ -104,6 +104,8 @@ public class KerMLExpressionsSemanticSequencer extends AbstractDelegatingSemanti
 						|| action == grammarAccess.getClassificationExpressionAccess().getOperatorExpressionOperandAction_0_1_0()
 						|| rule == grammarAccess.getRelationalExpressionRule()
 						|| action == grammarAccess.getRelationalExpressionAccess().getOperatorExpressionOperandAction_1_0()
+						|| rule == grammarAccess.getRangeExpressionRule()
+						|| action == grammarAccess.getRangeExpressionAccess().getOperatorExpressionOperandAction_1_0()
 						|| rule == grammarAccess.getAdditiveExpressionRule()
 						|| action == grammarAccess.getAdditiveExpressionAccess().getOperatorExpressionOperandAction_1_0()
 						|| rule == grammarAccess.getMultiplicativeExpressionRule()
@@ -121,10 +123,7 @@ public class KerMLExpressionsSemanticSequencer extends AbstractDelegatingSemanti
 						|| action == grammarAccess.getPrimaryExpressionAccess().getPathSelectExpressionOperandAction_1_3_0()
 						|| rule == grammarAccess.getBaseExpressionRule()
 						|| rule == grammarAccess.getSequenceExpressionRule()
-						|| action == grammarAccess.getSequenceExpressionAccess().getOperatorExpressionOperandAction_1_0_0()
 						|| action == grammarAccess.getSequenceExpressionAccess().getOperatorExpressionOperandAction_1_1_0()
-						|| rule == grammarAccess.getSequenceElementListRule()
-						|| action == grammarAccess.getSequenceElementListAccess().getOperatorExpressionOperandAction_1_0()
 						|| rule == grammarAccess.getFeatureReferenceExpressionRule()) {
 					sequence_FeatureReferenceExpression(context, (FeatureReferenceExpression) semanticObject); 
 					return; 
@@ -162,55 +161,8 @@ public class KerMLExpressionsSemanticSequencer extends AbstractDelegatingSemanti
 				sequence_NullExpression(context, (NullExpression) semanticObject); 
 				return; 
 			case SysMLPackage.OPERATOR_EXPRESSION:
-				if (rule == grammarAccess.getSequenceElementListRule()) {
-					sequence_AdditiveExpression_AndExpression_ClassificationExpression_ConditionalAndExpression_ConditionalExpression_ConditionalOrExpression_EqualityExpression_ExponentiationExpression_ExtentExpression_MultiplicativeExpression_NamedArgumentList_NullCoalescingExpression_OrExpression_PositionalArgumentList_PrimaryExpression_RelationalExpression_SequenceElementList_SequenceExpression_UnaryExpression_UnitsExpression_XorExpression(context, (OperatorExpression) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getOwnedExpressionRule()
-						|| rule == grammarAccess.getConditionalExpressionRule()
-						|| action == grammarAccess.getConditionalExpressionAccess().getOperatorExpressionOperandAction_1_0()
-						|| rule == grammarAccess.getNullCoalescingExpressionRule()
-						|| action == grammarAccess.getNullCoalescingExpressionAccess().getOperatorExpressionOperandAction_1_0()
-						|| rule == grammarAccess.getConditionalOrExpressionRule()
-						|| action == grammarAccess.getConditionalOrExpressionAccess().getOperatorExpressionOperandAction_1_0()
-						|| rule == grammarAccess.getConditionalAndExpressionRule()
-						|| action == grammarAccess.getConditionalAndExpressionAccess().getOperatorExpressionOperandAction_1_0()
-						|| rule == grammarAccess.getOrExpressionRule()
-						|| action == grammarAccess.getOrExpressionAccess().getOperatorExpressionOperandAction_1_0()
-						|| rule == grammarAccess.getXorExpressionRule()
-						|| action == grammarAccess.getXorExpressionAccess().getOperatorExpressionOperandAction_1_0()
-						|| rule == grammarAccess.getAndExpressionRule()
-						|| action == grammarAccess.getAndExpressionAccess().getOperatorExpressionOperandAction_1_0()
-						|| rule == grammarAccess.getEqualityExpressionRule()
-						|| action == grammarAccess.getEqualityExpressionAccess().getOperatorExpressionOperandAction_1_0()
-						|| rule == grammarAccess.getClassificationExpressionRule()
-						|| action == grammarAccess.getClassificationExpressionAccess().getOperatorExpressionOperandAction_0_1_0()
-						|| rule == grammarAccess.getRelationalExpressionRule()
-						|| action == grammarAccess.getRelationalExpressionAccess().getOperatorExpressionOperandAction_1_0()
-						|| rule == grammarAccess.getAdditiveExpressionRule()
-						|| action == grammarAccess.getAdditiveExpressionAccess().getOperatorExpressionOperandAction_1_0()
-						|| rule == grammarAccess.getMultiplicativeExpressionRule()
-						|| action == grammarAccess.getMultiplicativeExpressionAccess().getOperatorExpressionOperandAction_1_0()
-						|| rule == grammarAccess.getExponentiationExpressionRule()
-						|| action == grammarAccess.getExponentiationExpressionAccess().getOperatorExpressionOperandAction_1_0()
-						|| rule == grammarAccess.getUnitsExpressionRule()
-						|| action == grammarAccess.getUnitsExpressionAccess().getOperatorExpressionOperandAction_1_0()
-						|| rule == grammarAccess.getUnaryExpressionRule()
-						|| rule == grammarAccess.getExtentExpressionRule()
-						|| rule == grammarAccess.getPrimaryExpressionRule()
-						|| action == grammarAccess.getPrimaryExpressionAccess().getOperatorExpressionOperandAction_1_0_0()
-						|| action == grammarAccess.getPrimaryExpressionAccess().getOperatorExpressionOperandAction_1_1_0()
-						|| action == grammarAccess.getPrimaryExpressionAccess().getPathStepExpressionOperandAction_1_2_0()
-						|| action == grammarAccess.getPrimaryExpressionAccess().getPathSelectExpressionOperandAction_1_3_0()
-						|| rule == grammarAccess.getBaseExpressionRule()
-						|| rule == grammarAccess.getSequenceExpressionRule()
-						|| action == grammarAccess.getSequenceExpressionAccess().getOperatorExpressionOperandAction_1_0_0()
-						|| action == grammarAccess.getSequenceExpressionAccess().getOperatorExpressionOperandAction_1_1_0()
-						|| action == grammarAccess.getSequenceElementListAccess().getOperatorExpressionOperandAction_1_0()) {
-					sequence_AdditiveExpression_AndExpression_ClassificationExpression_ConditionalAndExpression_ConditionalExpression_ConditionalOrExpression_EqualityExpression_ExponentiationExpression_ExtentExpression_MultiplicativeExpression_NamedArgumentList_NullCoalescingExpression_OrExpression_PositionalArgumentList_PrimaryExpression_RelationalExpression_SequenceExpression_UnaryExpression_UnitsExpression_XorExpression(context, (OperatorExpression) semanticObject); 
-					return; 
-				}
-				else break;
+				sequence_AdditiveExpression_AndExpression_ClassificationExpression_ConditionalAndExpression_ConditionalExpression_ConditionalOrExpression_EqualityExpression_ExponentiationExpression_ExtentExpression_MultiplicativeExpression_NamedArgumentList_NullCoalescingExpression_OrExpression_PositionalArgumentList_PrimaryExpression_RangeExpression_RelationalExpression_SequenceExpression_UnaryExpression_UnitsExpression_XorExpression(context, (OperatorExpression) semanticObject); 
+				return; 
 			case SysMLPackage.PARAMETER_MEMBERSHIP:
 				sequence_BodyParameterMember(context, (ParameterMembership) semanticObject); 
 				return; 
@@ -230,49 +182,6 @@ public class KerMLExpressionsSemanticSequencer extends AbstractDelegatingSemanti
 		if (errorAcceptor != null)
 			errorAcceptor.accept(diagnosticProvider.createInvalidContextOrTypeDiagnostic(semanticObject, context));
 	}
-	
-	/**
-	 * Contexts:
-	 *     SequenceElementList returns OperatorExpression
-	 *
-	 * Constraint:
-	 *     (
-	 *         (operand+=ConditionalExpression_OperatorExpression_1_0 operator=ConditionalTestOperator operand+=OwnedExpression operand+=ConditionalExpression) | 
-	 *         (operand+=NullCoalescingExpression_OperatorExpression_1_0 operator=NullCoalescingOperator operand+=ConditionalOrExpression) | 
-	 *         (operand+=ConditionalOrExpression_OperatorExpression_1_0 operator=ConditionalOrOperator operand+=ConditionalAndExpression) | 
-	 *         (operand+=ConditionalAndExpression_OperatorExpression_1_0 operator=ConditionalAndOperator operand+=OrExpression) | 
-	 *         (operand+=OrExpression_OperatorExpression_1_0 operator=OrOperator operand+=XorExpression) | 
-	 *         (operand+=XorExpression_OperatorExpression_1_0 operator=XorOperator operand+=AndExpression) | 
-	 *         (operand+=AndExpression_OperatorExpression_1_0 operator=AndOperator operand+=EqualityExpression) | 
-	 *         (operand+=EqualityExpression_OperatorExpression_1_0 operator=EqualityOperator operand+=ClassificationExpression) | 
-	 *         (operand+=ClassificationExpression_OperatorExpression_0_1_0 operator=ClassificationOperator ownedRelationship+=TypeReferenceMember) | 
-	 *         (operand+=SelfReferenceExpression operator=ClassificationOperator ownedRelationship+=TypeReferenceMember) | 
-	 *         (operand+=RelationalExpression_OperatorExpression_1_0 operator=RelationalOperator operand+=AdditiveExpression) | 
-	 *         (operand+=AdditiveExpression_OperatorExpression_1_0 operator=AdditiveOperator operand+=MultiplicativeExpression) | 
-	 *         (operand+=MultiplicativeExpression_OperatorExpression_1_0 operator=MultiplicativeOperator operand+=ExponentiationExpression) | 
-	 *         (operand+=ExponentiationExpression_OperatorExpression_1_0 operator=ExponentiationOperator operand+=UnitsExpression) | 
-	 *         (operand+=UnitsExpression_OperatorExpression_1_0 operator='@[' operand+=OwnedExpression) | 
-	 *         (operator=UnaryOperator operand+=ExtentExpression) | 
-	 *         (operator='all' ownedRelationship+=TypeReferenceMember) | 
-	 *         (operand+=PrimaryExpression_OperatorExpression_1_0_0 operator='[' operand+=OwnedExpression) | 
-	 *         (
-	 *             operand+=PrimaryExpression_OperatorExpression_1_1_0 
-	 *             ownedRelationship+=OwnedFeatureTyping 
-	 *             (
-	 *                 ownedRelationship+=ExpressionBodyMember | 
-	 *                 (ownedRelationship+=OwnedExpressionMember ownedRelationship+=OwnedExpressionMember*) | 
-	 *                 (ownedRelationship+=NamedExpressionMember ownedRelationship+=NamedExpressionMember*)
-	 *             )?
-	 *         ) | 
-	 *         (operand+=SequenceExpression_OperatorExpression_1_0_0 operator=',' operand+=SequenceElementList) | 
-	 *         (operand+=SequenceExpression_OperatorExpression_1_1_0 operator='..' operand+=OwnedExpression) | 
-	 *         (operand+=SequenceElementList_OperatorExpression_1_0 operator=',' operand+=SequenceElementList)
-	 *     )
-	 */
-	protected void sequence_AdditiveExpression_AndExpression_ClassificationExpression_ConditionalAndExpression_ConditionalExpression_ConditionalOrExpression_EqualityExpression_ExponentiationExpression_ExtentExpression_MultiplicativeExpression_NamedArgumentList_NullCoalescingExpression_OrExpression_PositionalArgumentList_PrimaryExpression_RelationalExpression_SequenceElementList_SequenceExpression_UnaryExpression_UnitsExpression_XorExpression(ISerializationContext context, OperatorExpression semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
 	
 	/**
 	 * Contexts:
@@ -297,6 +206,8 @@ public class KerMLExpressionsSemanticSequencer extends AbstractDelegatingSemanti
 	 *     ClassificationExpression.OperatorExpression_0_1_0 returns OperatorExpression
 	 *     RelationalExpression returns OperatorExpression
 	 *     RelationalExpression.OperatorExpression_1_0 returns OperatorExpression
+	 *     RangeExpression returns OperatorExpression
+	 *     RangeExpression.OperatorExpression_1_0 returns OperatorExpression
 	 *     AdditiveExpression returns OperatorExpression
 	 *     AdditiveExpression.OperatorExpression_1_0 returns OperatorExpression
 	 *     MultiplicativeExpression returns OperatorExpression
@@ -314,9 +225,7 @@ public class KerMLExpressionsSemanticSequencer extends AbstractDelegatingSemanti
 	 *     PrimaryExpression.PathSelectExpression_1_3_0 returns OperatorExpression
 	 *     BaseExpression returns OperatorExpression
 	 *     SequenceExpression returns OperatorExpression
-	 *     SequenceExpression.OperatorExpression_1_0_0 returns OperatorExpression
 	 *     SequenceExpression.OperatorExpression_1_1_0 returns OperatorExpression
-	 *     SequenceElementList.OperatorExpression_1_0 returns OperatorExpression
 	 *
 	 * Constraint:
 	 *     (
@@ -330,14 +239,15 @@ public class KerMLExpressionsSemanticSequencer extends AbstractDelegatingSemanti
 	 *         (operand+=EqualityExpression_OperatorExpression_1_0 operator=EqualityOperator operand+=ClassificationExpression) | 
 	 *         (operand+=ClassificationExpression_OperatorExpression_0_1_0 operator=ClassificationOperator ownedRelationship+=TypeReferenceMember) | 
 	 *         (operand+=SelfReferenceExpression operator=ClassificationOperator ownedRelationship+=TypeReferenceMember) | 
-	 *         (operand+=RelationalExpression_OperatorExpression_1_0 operator=RelationalOperator operand+=AdditiveExpression) | 
+	 *         (operand+=RelationalExpression_OperatorExpression_1_0 operator=RelationalOperator operand+=RangeExpression) | 
+	 *         (operand+=RangeExpression_OperatorExpression_1_0 operator='..' operand+=AdditiveExpression) | 
 	 *         (operand+=AdditiveExpression_OperatorExpression_1_0 operator=AdditiveOperator operand+=MultiplicativeExpression) | 
 	 *         (operand+=MultiplicativeExpression_OperatorExpression_1_0 operator=MultiplicativeOperator operand+=ExponentiationExpression) | 
 	 *         (operand+=ExponentiationExpression_OperatorExpression_1_0 operator=ExponentiationOperator operand+=UnitsExpression) | 
 	 *         (operand+=UnitsExpression_OperatorExpression_1_0 operator='@[' operand+=OwnedExpression) | 
 	 *         (operator=UnaryOperator operand+=ExtentExpression) | 
 	 *         (operator='all' ownedRelationship+=TypeReferenceMember) | 
-	 *         (operand+=PrimaryExpression_OperatorExpression_1_0_0 operator='[' operand+=OwnedExpression) | 
+	 *         (operand+=PrimaryExpression_OperatorExpression_1_0_0 operator='[' operand+=SequenceExpression) | 
 	 *         (
 	 *             operand+=PrimaryExpression_OperatorExpression_1_1_0 
 	 *             ownedRelationship+=OwnedFeatureTyping 
@@ -347,11 +257,10 @@ public class KerMLExpressionsSemanticSequencer extends AbstractDelegatingSemanti
 	 *                 (ownedRelationship+=NamedExpressionMember ownedRelationship+=NamedExpressionMember*)
 	 *             )?
 	 *         ) | 
-	 *         (operand+=SequenceExpression_OperatorExpression_1_0_0 operator=',' operand+=SequenceElementList) | 
-	 *         (operand+=SequenceExpression_OperatorExpression_1_1_0 operator='..' operand+=OwnedExpression)
+	 *         (operand+=SequenceExpression_OperatorExpression_1_1_0 operator=',' operand+=SequenceExpression)
 	 *     )
 	 */
-	protected void sequence_AdditiveExpression_AndExpression_ClassificationExpression_ConditionalAndExpression_ConditionalExpression_ConditionalOrExpression_EqualityExpression_ExponentiationExpression_ExtentExpression_MultiplicativeExpression_NamedArgumentList_NullCoalescingExpression_OrExpression_PositionalArgumentList_PrimaryExpression_RelationalExpression_SequenceExpression_UnaryExpression_UnitsExpression_XorExpression(ISerializationContext context, OperatorExpression semanticObject) {
+	protected void sequence_AdditiveExpression_AndExpression_ClassificationExpression_ConditionalAndExpression_ConditionalExpression_ConditionalOrExpression_EqualityExpression_ExponentiationExpression_ExtentExpression_MultiplicativeExpression_NamedArgumentList_NullCoalescingExpression_OrExpression_PositionalArgumentList_PrimaryExpression_RangeExpression_RelationalExpression_SequenceExpression_UnaryExpression_UnitsExpression_XorExpression(ISerializationContext context, OperatorExpression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -370,8 +279,8 @@ public class KerMLExpressionsSemanticSequencer extends AbstractDelegatingSemanti
 	
 	/**
 	 * Contexts:
-	 *     EmptyFeature returns Feature
 	 *     BodyParameter returns Feature
+	 *     EmptyFeature returns Feature
 	 *
 	 * Constraint:
 	 *     {Feature}
@@ -417,6 +326,8 @@ public class KerMLExpressionsSemanticSequencer extends AbstractDelegatingSemanti
 	 *     ClassificationExpression.OperatorExpression_0_1_0 returns Expression
 	 *     RelationalExpression returns Expression
 	 *     RelationalExpression.OperatorExpression_1_0 returns Expression
+	 *     RangeExpression returns Expression
+	 *     RangeExpression.OperatorExpression_1_0 returns Expression
 	 *     AdditiveExpression returns Expression
 	 *     AdditiveExpression.OperatorExpression_1_0 returns Expression
 	 *     MultiplicativeExpression returns Expression
@@ -434,10 +345,7 @@ public class KerMLExpressionsSemanticSequencer extends AbstractDelegatingSemanti
 	 *     PrimaryExpression.PathSelectExpression_1_3_0 returns Expression
 	 *     BaseExpression returns Expression
 	 *     SequenceExpression returns Expression
-	 *     SequenceExpression.OperatorExpression_1_0_0 returns Expression
 	 *     SequenceExpression.OperatorExpression_1_1_0 returns Expression
-	 *     SequenceElementList returns Expression
-	 *     SequenceElementList.OperatorExpression_1_0 returns Expression
 	 *
 	 * Constraint:
 	 *     (ownedRelationship+=BodyParameterMember* ownedRelationship+=ResultExpressionMember)
@@ -470,6 +378,8 @@ public class KerMLExpressionsSemanticSequencer extends AbstractDelegatingSemanti
 	 *     ClassificationExpression.OperatorExpression_0_1_0 returns FeatureReferenceExpression
 	 *     RelationalExpression returns FeatureReferenceExpression
 	 *     RelationalExpression.OperatorExpression_1_0 returns FeatureReferenceExpression
+	 *     RangeExpression returns FeatureReferenceExpression
+	 *     RangeExpression.OperatorExpression_1_0 returns FeatureReferenceExpression
 	 *     AdditiveExpression returns FeatureReferenceExpression
 	 *     AdditiveExpression.OperatorExpression_1_0 returns FeatureReferenceExpression
 	 *     MultiplicativeExpression returns FeatureReferenceExpression
@@ -487,10 +397,7 @@ public class KerMLExpressionsSemanticSequencer extends AbstractDelegatingSemanti
 	 *     PrimaryExpression.PathSelectExpression_1_3_0 returns FeatureReferenceExpression
 	 *     BaseExpression returns FeatureReferenceExpression
 	 *     SequenceExpression returns FeatureReferenceExpression
-	 *     SequenceExpression.OperatorExpression_1_0_0 returns FeatureReferenceExpression
 	 *     SequenceExpression.OperatorExpression_1_1_0 returns FeatureReferenceExpression
-	 *     SequenceElementList returns FeatureReferenceExpression
-	 *     SequenceElementList.OperatorExpression_1_0 returns FeatureReferenceExpression
 	 *     FeatureReferenceExpression returns FeatureReferenceExpression
 	 *
 	 * Constraint:
@@ -542,6 +449,8 @@ public class KerMLExpressionsSemanticSequencer extends AbstractDelegatingSemanti
 	 *     ClassificationExpression.OperatorExpression_0_1_0 returns InvocationExpression
 	 *     RelationalExpression returns InvocationExpression
 	 *     RelationalExpression.OperatorExpression_1_0 returns InvocationExpression
+	 *     RangeExpression returns InvocationExpression
+	 *     RangeExpression.OperatorExpression_1_0 returns InvocationExpression
 	 *     AdditiveExpression returns InvocationExpression
 	 *     AdditiveExpression.OperatorExpression_1_0 returns InvocationExpression
 	 *     MultiplicativeExpression returns InvocationExpression
@@ -559,10 +468,7 @@ public class KerMLExpressionsSemanticSequencer extends AbstractDelegatingSemanti
 	 *     PrimaryExpression.PathSelectExpression_1_3_0 returns InvocationExpression
 	 *     BaseExpression returns InvocationExpression
 	 *     SequenceExpression returns InvocationExpression
-	 *     SequenceExpression.OperatorExpression_1_0_0 returns InvocationExpression
 	 *     SequenceExpression.OperatorExpression_1_1_0 returns InvocationExpression
-	 *     SequenceElementList returns InvocationExpression
-	 *     SequenceElementList.OperatorExpression_1_0 returns InvocationExpression
 	 *     InvocationExpression returns InvocationExpression
 	 *
 	 * Constraint:
@@ -602,6 +508,8 @@ public class KerMLExpressionsSemanticSequencer extends AbstractDelegatingSemanti
 	 *     ClassificationExpression.OperatorExpression_0_1_0 returns LiteralBoolean
 	 *     RelationalExpression returns LiteralBoolean
 	 *     RelationalExpression.OperatorExpression_1_0 returns LiteralBoolean
+	 *     RangeExpression returns LiteralBoolean
+	 *     RangeExpression.OperatorExpression_1_0 returns LiteralBoolean
 	 *     AdditiveExpression returns LiteralBoolean
 	 *     AdditiveExpression.OperatorExpression_1_0 returns LiteralBoolean
 	 *     MultiplicativeExpression returns LiteralBoolean
@@ -619,10 +527,7 @@ public class KerMLExpressionsSemanticSequencer extends AbstractDelegatingSemanti
 	 *     PrimaryExpression.PathSelectExpression_1_3_0 returns LiteralBoolean
 	 *     BaseExpression returns LiteralBoolean
 	 *     SequenceExpression returns LiteralBoolean
-	 *     SequenceExpression.OperatorExpression_1_0_0 returns LiteralBoolean
 	 *     SequenceExpression.OperatorExpression_1_1_0 returns LiteralBoolean
-	 *     SequenceElementList returns LiteralBoolean
-	 *     SequenceElementList.OperatorExpression_1_0 returns LiteralBoolean
 	 *     LiteralExpression returns LiteralBoolean
 	 *     LiteralBoolean returns LiteralBoolean
 	 *
@@ -663,6 +568,8 @@ public class KerMLExpressionsSemanticSequencer extends AbstractDelegatingSemanti
 	 *     ClassificationExpression.OperatorExpression_0_1_0 returns LiteralInteger
 	 *     RelationalExpression returns LiteralInteger
 	 *     RelationalExpression.OperatorExpression_1_0 returns LiteralInteger
+	 *     RangeExpression returns LiteralInteger
+	 *     RangeExpression.OperatorExpression_1_0 returns LiteralInteger
 	 *     AdditiveExpression returns LiteralInteger
 	 *     AdditiveExpression.OperatorExpression_1_0 returns LiteralInteger
 	 *     MultiplicativeExpression returns LiteralInteger
@@ -680,10 +587,7 @@ public class KerMLExpressionsSemanticSequencer extends AbstractDelegatingSemanti
 	 *     PrimaryExpression.PathSelectExpression_1_3_0 returns LiteralInteger
 	 *     BaseExpression returns LiteralInteger
 	 *     SequenceExpression returns LiteralInteger
-	 *     SequenceExpression.OperatorExpression_1_0_0 returns LiteralInteger
 	 *     SequenceExpression.OperatorExpression_1_1_0 returns LiteralInteger
-	 *     SequenceElementList returns LiteralInteger
-	 *     SequenceElementList.OperatorExpression_1_0 returns LiteralInteger
 	 *     LiteralExpression returns LiteralInteger
 	 *     LiteralInteger returns LiteralInteger
 	 *     LiteralUnlimitedNatural returns LiteralInteger
@@ -725,6 +629,8 @@ public class KerMLExpressionsSemanticSequencer extends AbstractDelegatingSemanti
 	 *     ClassificationExpression.OperatorExpression_0_1_0 returns LiteralReal
 	 *     RelationalExpression returns LiteralReal
 	 *     RelationalExpression.OperatorExpression_1_0 returns LiteralReal
+	 *     RangeExpression returns LiteralReal
+	 *     RangeExpression.OperatorExpression_1_0 returns LiteralReal
 	 *     AdditiveExpression returns LiteralReal
 	 *     AdditiveExpression.OperatorExpression_1_0 returns LiteralReal
 	 *     MultiplicativeExpression returns LiteralReal
@@ -742,10 +648,7 @@ public class KerMLExpressionsSemanticSequencer extends AbstractDelegatingSemanti
 	 *     PrimaryExpression.PathSelectExpression_1_3_0 returns LiteralReal
 	 *     BaseExpression returns LiteralReal
 	 *     SequenceExpression returns LiteralReal
-	 *     SequenceExpression.OperatorExpression_1_0_0 returns LiteralReal
 	 *     SequenceExpression.OperatorExpression_1_1_0 returns LiteralReal
-	 *     SequenceElementList returns LiteralReal
-	 *     SequenceElementList.OperatorExpression_1_0 returns LiteralReal
 	 *     LiteralExpression returns LiteralReal
 	 *     LiteralReal returns LiteralReal
 	 *
@@ -786,6 +689,8 @@ public class KerMLExpressionsSemanticSequencer extends AbstractDelegatingSemanti
 	 *     ClassificationExpression.OperatorExpression_0_1_0 returns LiteralString
 	 *     RelationalExpression returns LiteralString
 	 *     RelationalExpression.OperatorExpression_1_0 returns LiteralString
+	 *     RangeExpression returns LiteralString
+	 *     RangeExpression.OperatorExpression_1_0 returns LiteralString
 	 *     AdditiveExpression returns LiteralString
 	 *     AdditiveExpression.OperatorExpression_1_0 returns LiteralString
 	 *     MultiplicativeExpression returns LiteralString
@@ -803,10 +708,7 @@ public class KerMLExpressionsSemanticSequencer extends AbstractDelegatingSemanti
 	 *     PrimaryExpression.PathSelectExpression_1_3_0 returns LiteralString
 	 *     BaseExpression returns LiteralString
 	 *     SequenceExpression returns LiteralString
-	 *     SequenceExpression.OperatorExpression_1_0_0 returns LiteralString
 	 *     SequenceExpression.OperatorExpression_1_1_0 returns LiteralString
-	 *     SequenceElementList returns LiteralString
-	 *     SequenceElementList.OperatorExpression_1_0 returns LiteralString
 	 *     LiteralExpression returns LiteralString
 	 *     LiteralString returns LiteralString
 	 *
@@ -847,6 +749,8 @@ public class KerMLExpressionsSemanticSequencer extends AbstractDelegatingSemanti
 	 *     ClassificationExpression.OperatorExpression_0_1_0 returns LiteralUnbounded
 	 *     RelationalExpression returns LiteralUnbounded
 	 *     RelationalExpression.OperatorExpression_1_0 returns LiteralUnbounded
+	 *     RangeExpression returns LiteralUnbounded
+	 *     RangeExpression.OperatorExpression_1_0 returns LiteralUnbounded
 	 *     AdditiveExpression returns LiteralUnbounded
 	 *     AdditiveExpression.OperatorExpression_1_0 returns LiteralUnbounded
 	 *     MultiplicativeExpression returns LiteralUnbounded
@@ -864,10 +768,7 @@ public class KerMLExpressionsSemanticSequencer extends AbstractDelegatingSemanti
 	 *     PrimaryExpression.PathSelectExpression_1_3_0 returns LiteralUnbounded
 	 *     BaseExpression returns LiteralUnbounded
 	 *     SequenceExpression returns LiteralUnbounded
-	 *     SequenceExpression.OperatorExpression_1_0_0 returns LiteralUnbounded
 	 *     SequenceExpression.OperatorExpression_1_1_0 returns LiteralUnbounded
-	 *     SequenceElementList returns LiteralUnbounded
-	 *     SequenceElementList.OperatorExpression_1_0 returns LiteralUnbounded
 	 *     LiteralExpression returns LiteralUnbounded
 	 *     LiteralUnbounded returns LiteralUnbounded
 	 *     LiteralUnlimitedNatural returns LiteralUnbounded
@@ -915,6 +816,8 @@ public class KerMLExpressionsSemanticSequencer extends AbstractDelegatingSemanti
 	 *     ClassificationExpression.OperatorExpression_0_1_0 returns NullExpression
 	 *     RelationalExpression returns NullExpression
 	 *     RelationalExpression.OperatorExpression_1_0 returns NullExpression
+	 *     RangeExpression returns NullExpression
+	 *     RangeExpression.OperatorExpression_1_0 returns NullExpression
 	 *     AdditiveExpression returns NullExpression
 	 *     AdditiveExpression.OperatorExpression_1_0 returns NullExpression
 	 *     MultiplicativeExpression returns NullExpression
@@ -932,10 +835,7 @@ public class KerMLExpressionsSemanticSequencer extends AbstractDelegatingSemanti
 	 *     PrimaryExpression.PathSelectExpression_1_3_0 returns NullExpression
 	 *     BaseExpression returns NullExpression
 	 *     SequenceExpression returns NullExpression
-	 *     SequenceExpression.OperatorExpression_1_0_0 returns NullExpression
 	 *     SequenceExpression.OperatorExpression_1_1_0 returns NullExpression
-	 *     SequenceElementList returns NullExpression
-	 *     SequenceElementList.OperatorExpression_1_0 returns NullExpression
 	 *     NullExpression returns NullExpression
 	 *
 	 * Constraint:
@@ -999,6 +899,8 @@ public class KerMLExpressionsSemanticSequencer extends AbstractDelegatingSemanti
 	 *     ClassificationExpression.OperatorExpression_0_1_0 returns PathSelectExpression
 	 *     RelationalExpression returns PathSelectExpression
 	 *     RelationalExpression.OperatorExpression_1_0 returns PathSelectExpression
+	 *     RangeExpression returns PathSelectExpression
+	 *     RangeExpression.OperatorExpression_1_0 returns PathSelectExpression
 	 *     AdditiveExpression returns PathSelectExpression
 	 *     AdditiveExpression.OperatorExpression_1_0 returns PathSelectExpression
 	 *     MultiplicativeExpression returns PathSelectExpression
@@ -1016,10 +918,7 @@ public class KerMLExpressionsSemanticSequencer extends AbstractDelegatingSemanti
 	 *     PrimaryExpression.PathSelectExpression_1_3_0 returns PathSelectExpression
 	 *     BaseExpression returns PathSelectExpression
 	 *     SequenceExpression returns PathSelectExpression
-	 *     SequenceExpression.OperatorExpression_1_0_0 returns PathSelectExpression
 	 *     SequenceExpression.OperatorExpression_1_1_0 returns PathSelectExpression
-	 *     SequenceElementList returns PathSelectExpression
-	 *     SequenceElementList.OperatorExpression_1_0 returns PathSelectExpression
 	 *
 	 * Constraint:
 	 *     (operand+=PrimaryExpression_PathSelectExpression_1_3_0 ownedRelationship+=ExpressionBodyMember)
@@ -1052,6 +951,8 @@ public class KerMLExpressionsSemanticSequencer extends AbstractDelegatingSemanti
 	 *     ClassificationExpression.OperatorExpression_0_1_0 returns PathStepExpression
 	 *     RelationalExpression returns PathStepExpression
 	 *     RelationalExpression.OperatorExpression_1_0 returns PathStepExpression
+	 *     RangeExpression returns PathStepExpression
+	 *     RangeExpression.OperatorExpression_1_0 returns PathStepExpression
 	 *     AdditiveExpression returns PathStepExpression
 	 *     AdditiveExpression.OperatorExpression_1_0 returns PathStepExpression
 	 *     MultiplicativeExpression returns PathStepExpression
@@ -1069,10 +970,7 @@ public class KerMLExpressionsSemanticSequencer extends AbstractDelegatingSemanti
 	 *     PrimaryExpression.PathSelectExpression_1_3_0 returns PathStepExpression
 	 *     BaseExpression returns PathStepExpression
 	 *     SequenceExpression returns PathStepExpression
-	 *     SequenceExpression.OperatorExpression_1_0_0 returns PathStepExpression
 	 *     SequenceExpression.OperatorExpression_1_1_0 returns PathStepExpression
-	 *     SequenceElementList returns PathStepExpression
-	 *     SequenceElementList.OperatorExpression_1_0 returns PathStepExpression
 	 *
 	 * Constraint:
 	 *     (operand+=PrimaryExpression_PathStepExpression_1_2_0 operand+=FeatureReferenceExpression)

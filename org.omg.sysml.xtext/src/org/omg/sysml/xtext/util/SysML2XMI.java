@@ -74,20 +74,20 @@ public class SysML2XMI extends KerML2XMI {
 	
 	/**
 	 * The main program reads all the KerML and SySML resources rooted in the paths given as arguments and then
-	 * writes out KerML and SysML XMI files for the resources from the first argument path.
+	 * writes out KerML and SysML XMI files for the resources from the input-path argument.
 	 * 
-	 * @param 	args	the first argument is a path for reading input resources, while other arguments
-	 * 					are paths for reading library resources
+	 * <p>Usage:
+	 * 
+	 * <p>SysML2XMI [-g] input-path [library-path library-path...]
+	 * 
+	 * <p>where:
+	 * 
+	 * <li>-g                     specifies that implicit generalizations should be generated (the default is not to)</li>
+	 * <li>input-path             is a path for reading input resources</li>
+	 * <li>library-paths          are paths for reading library resources, relative to the library-base-path (if one is given)</li>
 	 */
 	public static void main(String[] args) {
-		try {
-			SysML2XMI util = new SysML2XMI();
-			
-			util.read(args);			
-			util.write();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		new SysML2XMI().run(args);
 	}
 
 }

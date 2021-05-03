@@ -69,15 +69,6 @@ public interface SysMLFactory extends EFactory {
 	AssertConstraintUsage createAssertConstraintUsage();
 
 	/**
-	 * Returns a new object of class '<em>Track4</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Track4</em>'.
-	 * @generated
-	 */
-	Track4 createTrack4();
-
-	/**
 	 * Returns a new object of class '<em>Expose</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -197,7 +197,6 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 			case SysMLPackage.ALLOCATION_DEFINITION: return createAllocationDefinition();
 			case SysMLPackage.INDIVIDUAL_DEFINITION: return createIndividualDefinition();
 			case SysMLPackage.ASSERT_CONSTRAINT_USAGE: return createAssertConstraintUsage();
-			case SysMLPackage.TRACK4: return createTrack4();
 			case SysMLPackage.DEPENDENCY: return createDependency();
 			case SysMLPackage.EXPOSE: return createExpose();
 			case SysMLPackage.VIEW_RENDERING_MEMBERSHIP: return createViewRenderingMembership();
@@ -300,17 +299,6 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	public AssertConstraintUsage createAssertConstraintUsage() {
 		AssertConstraintUsageImpl assertConstraintUsage = new AssertConstraintUsageImpl();
 		return assertConstraintUsage;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Track4 createTrack4() {
-		Track4Impl track4 = new Track4Impl();
-		return track4;
 	}
 
 	/**

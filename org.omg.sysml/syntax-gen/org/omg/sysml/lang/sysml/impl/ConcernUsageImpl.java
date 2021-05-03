@@ -57,7 +57,7 @@ public class ConcernUsageImpl extends RequirementUsageImpl implements ConcernUsa
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public ConcernDefinition basicGetConcernDefinition() {
 		RequirementDefinition definition = super.basicGetRequirementDefinition();

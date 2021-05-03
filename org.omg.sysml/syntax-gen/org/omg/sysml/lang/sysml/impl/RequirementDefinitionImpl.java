@@ -223,7 +223,7 @@ public class RequirementDefinitionImpl extends ConstraintDefinitionImpl implemen
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public EList<ConcernUsage> getAddressedConcern() {

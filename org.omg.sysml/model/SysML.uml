@@ -3718,7 +3718,6 @@ endif</body>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="99550646-ae87-41da-8cbb-e2afca4d7547" name="" visibility="public" value="*"/>
     </ownedEnd>
   </packagedElement>
-  <packagedElement xmi:type="uml:Class" xmi:id="ce5be5fb-a95a-46ce-9ae9-956bf6294be2" name="Track 4" visibility="public"/>
   <packagedElement xmi:type="uml:Class" xmi:id="ace0f696-55e9-4501-b2f7-8ce04daf34bd" name="ConstraintDefinition" visibility="public">
     <ownedComment xmi:id="ee856a89-8309-4d9b-9c08-795faae8557c" annotatedElement="ace0f696-55e9-4501-b2f7-8ce04daf34bd">
       <body>&lt;p>A ConstraintDefinition is a Definition that is also a Predicate that defines a constraint that may be asserted to hold on a system or part of a system.&lt;/p>

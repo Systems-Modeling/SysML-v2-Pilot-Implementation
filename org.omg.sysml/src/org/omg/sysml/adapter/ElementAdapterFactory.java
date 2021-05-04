@@ -302,6 +302,11 @@ public class ElementAdapterFactory {
 		}
 		
 		@Override
+		public ElementAdapter caseStakeholderUsage(StakeholderUsage element) {
+			return new StakeholderUsageAdapter(element);
+		}
+		
+		@Override
 		public ElementAdapter caseStateDefinition(StateDefinition element) {
 			return new StateDefinitionAdapter(element);
 		}

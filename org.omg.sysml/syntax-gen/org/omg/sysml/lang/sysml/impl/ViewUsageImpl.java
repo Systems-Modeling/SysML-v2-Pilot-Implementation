@@ -44,13 +44,13 @@ import org.omg.sysml.lang.sysml.PartDefinition;
 import org.omg.sysml.lang.sysml.RenderingUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.ViewDefinition;
-import org.omg.sysml.lang.sysml.ViewRenderingMembership;
 import org.omg.sysml.lang.sysml.ViewUsage;
 import org.omg.sysml.lang.sysml.ViewpointUsage;
 import org.omg.sysml.util.ExpressionUtil;
 import org.omg.sysml.util.NamespaceUtil;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
 import org.omg.sysml.util.TypeUtil;
+import org.omg.sysml.util.UsageUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -171,11 +171,8 @@ public class ViewUsageImpl extends PartUsageImpl implements ViewUsage {
 	 * @generated NOT
 	 */
 	public RenderingUsage basicGetViewRendering() {
-		return getOwnedMembership().stream().
-				filter(ViewRenderingMembership.class::isInstance).
-				map(ViewRenderingMembership.class::cast).
-				map(ViewRenderingMembership::getReferencedRendering).
-				findFirst().orElse(null);
+		EList<RenderingUsage> renderings = getNestedRendering();
+		return renderings.isEmpty()? UsageUtil.getViewRenderingOf(this): renderings.get(0);
 	}
 
 	/**

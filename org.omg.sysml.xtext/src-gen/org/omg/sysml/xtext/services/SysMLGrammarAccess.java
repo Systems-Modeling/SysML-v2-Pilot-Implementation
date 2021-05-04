@@ -18320,7 +18320,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//ClassificationOperator:
-	//	'instanceof' | 'hastype' | 'istype' | '@';
+	//	'instanceof' | 'hastype' | 'istype' | '@' | 'as';
 	public KerMLExpressionsGrammarAccess.ClassificationOperatorElements getClassificationOperatorAccess() {
 		return gaKerMLExpressions.getClassificationOperatorAccess();
 	}
@@ -18478,7 +18478,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		return getExponentiationOperatorAccess().getRule();
 	}
 	
-	//// Units Expressions
+	//// Units Expressions (Deprecated)
 	//UnitsExpression SysML::Expression:
 	//	UnaryExpression ({SysML::OperatorExpression.operand+=current} operator='@[' operand+=OwnedExpression ']')?;
 	public KerMLExpressionsGrammarAccess.UnitsExpressionElements getUnitsExpressionAccess() {

@@ -687,12 +687,13 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 		private final Keyword cHastypeKeyword_1 = (Keyword)cAlternatives.eContents().get(1);
 		private final Keyword cIstypeKeyword_2 = (Keyword)cAlternatives.eContents().get(2);
 		private final Keyword cCommercialAtKeyword_3 = (Keyword)cAlternatives.eContents().get(3);
+		private final Keyword cAsKeyword_4 = (Keyword)cAlternatives.eContents().get(4);
 		
 		//ClassificationOperator:
-		//	'instanceof' | 'hastype' | 'istype' | '@';
+		//	'instanceof' | 'hastype' | 'istype' | '@' | 'as';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'instanceof' | 'hastype' | 'istype' | '@'
+		//'instanceof' | 'hastype' | 'istype' | '@' | 'as'
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//'instanceof'
@@ -706,6 +707,9 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 		
 		//'@'
 		public Keyword getCommercialAtKeyword_3() { return cCommercialAtKeyword_3; }
+		
+		//'as'
+		public Keyword getAsKeyword_4() { return cAsKeyword_4; }
 	}
 	public class TypeReferenceMemberElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.expressions.xtext.KerMLExpressions.TypeReferenceMember");
@@ -1095,7 +1099,7 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 		private final RuleCall cOperandOwnedExpressionParserRuleCall_1_2_0 = (RuleCall)cOperandAssignment_1_2.eContents().get(0);
 		private final Keyword cRightSquareBracketKeyword_1_3 = (Keyword)cGroup_1.eContents().get(3);
 		
-		//// Units Expressions
+		//// Units Expressions (Deprecated)
 		//UnitsExpression SysML::Expression:
 		//	UnaryExpression ({SysML::OperatorExpression.operand+=current} operator='@[' operand+=OwnedExpression ']')?;
 		@Override public ParserRule getRule() { return rule; }
@@ -2387,7 +2391,7 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 	}
 	
 	//ClassificationOperator:
-	//	'instanceof' | 'hastype' | 'istype' | '@';
+	//	'instanceof' | 'hastype' | 'istype' | '@' | 'as';
 	public ClassificationOperatorElements getClassificationOperatorAccess() {
 		return pClassificationOperator;
 	}
@@ -2555,7 +2559,7 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 		return getExponentiationOperatorAccess().getRule();
 	}
 	
-	//// Units Expressions
+	//// Units Expressions (Deprecated)
 	//UnitsExpression SysML::Expression:
 	//	UnaryExpression ({SysML::OperatorExpression.operand+=current} operator='@[' operand+=OwnedExpression ']')?;
 	public UnitsExpressionElements getUnitsExpressionAccess() {

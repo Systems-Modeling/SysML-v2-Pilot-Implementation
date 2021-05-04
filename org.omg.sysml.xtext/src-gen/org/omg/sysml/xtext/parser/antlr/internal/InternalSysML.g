@@ -24417,6 +24417,12 @@ ruleClassificationOperator returns [AntlrDatatypeRuleToken current=new AntlrData
 			$current.merge(kw);
 			newLeafNode(kw, grammarAccess.getClassificationOperatorAccess().getCommercialAtKeyword_3());
 		}
+		    |
+		kw='as'
+		{
+			$current.merge(kw);
+			newLeafNode(kw, grammarAccess.getClassificationOperatorAccess().getAsKeyword_4());
+		}
 	)
 ;
 

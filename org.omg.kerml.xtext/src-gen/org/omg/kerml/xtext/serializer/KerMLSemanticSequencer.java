@@ -227,11 +227,8 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 					sequence_ConnectorEndMember(context, (EndFeatureMembership) semanticObject); 
 					return; 
 				}
-				else if (rule == grammarAccess.getFeatureTypeMemberRule()) {
-					sequence_EndFeatureMember_FeatureMemberFlags_TypeMemberPrefix(context, (EndFeatureMembership) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getEndFeatureMemberRule()) {
+				else if (rule == grammarAccess.getFeatureTypeMemberRule()
+						|| rule == grammarAccess.getEndFeatureMemberRule()) {
 					sequence_EndFeatureMember_FeatureMemberFlags_TypeMemberPrefix(context, (EndFeatureMembership) semanticObject); 
 					return; 
 				}
@@ -1124,10 +1121,10 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	 *         ((ownedRelationship+=OwnedSuperclassing ownedRelationship+=OwnedSuperclassing*) | ownedRelationship+=ClassifierConjugation)? 
 	 *         (ownedRelationship+=ParameterMember ownedRelationship+=ParameterMember*)? 
 	 *         (ownedRelationship+=ReturnParameterMember | ownedRelationship+=EmptyReturnParameterMember) 
-	 *         ownedRelationship+=OwnedDocumentation? 
+	 *         ownedRelationship+=NonFeatureTypeMember? 
 	 *         (
-	 *             (ownedRelationship+=NonFeatureTypeMember | ownedRelationship+=FeatureTypeMember | ownedRelationship+=Import)? 
-	 *             ownedRelationship+=OwnedDocumentation?
+	 *             (ownedRelationship+=OwnedDocumentation | ownedRelationship+=FeatureTypeMember | ownedRelationship+=Import)? 
+	 *             ownedRelationship+=NonFeatureTypeMember?
 	 *         )* 
 	 *         ownedRelationship+=ResultExpressionMember?
 	 *     )
@@ -1151,10 +1148,10 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	 *         ((ownedRelationship+=OwnedSuperclassing ownedRelationship+=OwnedSuperclassing*) | ownedRelationship+=ClassifierConjugation)? 
 	 *         (ownedRelationship+=ParameterMember ownedRelationship+=ParameterMember*)? 
 	 *         (ownedRelationship+=ReturnParameterMember | ownedRelationship+=EmptyReturnParameterMember) 
-	 *         ownedRelationship+=OwnedDocumentation? 
+	 *         ownedRelationship+=NonFeatureTypeMember? 
 	 *         (
-	 *             (ownedRelationship+=NonFeatureTypeMember | ownedRelationship+=FeatureTypeMember | ownedRelationship+=Import)? 
-	 *             ownedRelationship+=OwnedDocumentation?
+	 *             (ownedRelationship+=OwnedDocumentation | ownedRelationship+=FeatureTypeMember | ownedRelationship+=Import)? 
+	 *             ownedRelationship+=NonFeatureTypeMember?
 	 *         )* 
 	 *         ownedRelationship+=ResultExpressionMember?
 	 *     )
@@ -1511,10 +1508,11 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	/**
 	 * Contexts:
 	 *     FeatureTypeMember returns EndFeatureMembership
+	 *     EndFeatureMember returns EndFeatureMembership
 	 *
 	 * Constraint:
 	 *     (
-	 *         ownedRelationship+=PrefixDocumentation? 
+	 *         ownedRelationship+=PrefixDocumentation* 
 	 *         visibility=VisibilityIndicator? 
 	 *         direction=FeatureDirection? 
 	 *         (isComposite?='composite' | isPortion?='portion')? 
@@ -1526,25 +1524,6 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
-	
-	// This method is commented out because it has the same signature as another method in this class.
-	// This is probably a bug in Xtext's serializer, please report it here: 
-	// https://bugs.eclipse.org/bugs/enter_bug.cgi?product=TMF
-	//
-	// Contexts:
-	//     EndFeatureMember returns EndFeatureMembership
-	//
-	// Constraint:
-	//     (
-	//         ownedRelationship+=PrefixDocumentation* 
-	//         visibility=VisibilityIndicator? 
-	//         direction=FeatureDirection? 
-	//         (isComposite?='composite' | isPortion?='portion')? 
-	//         isPort?='port'? 
-	//         ownedRelatedElement+=FeatureElement
-	//     )
-	//
-	// protected void sequence_EndFeatureMember_FeatureMemberFlags_TypeMemberPrefix(ISerializationContext context, EndFeatureMembership semanticObject) { }
 	
 	/**
 	 * Contexts:

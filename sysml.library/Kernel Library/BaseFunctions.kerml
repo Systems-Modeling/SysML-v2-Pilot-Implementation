@@ -23,20 +23,24 @@ package BaseFunctions {
 		abstract feature all 'type': Object;
 	}
 	
-	abstract function 'istype'(x: Anything): Boolean {
+	abstract function 'istype'(x: Anything[1]): Boolean {
 		abstract feature 'type': Anything;
 	}
 	
-	abstract function '@'(x: Anything): Boolean {
+	abstract function '@'(x: Anything[1]): Boolean {
 		abstract feature 'type': Anything;
 	}
 	
 	/** Deprecated */
-	abstract function 'instanceof'(x: Anything): Boolean {
+	abstract function 'instanceof'(x: Anything[1]): Boolean {
 		abstract feature 'type': Anything;
 	}
 	
-	abstract function 'hastype'(x: Anything): Boolean {
+	abstract function 'hastype'(x: Anything[1]): Boolean {
+		abstract feature 'type': Anything;
+	}
+	
+	abstract function 'as'(seq: Anything[0..*]): Anything[0..*] {
 		abstract feature 'type': Anything;
 	}
 	

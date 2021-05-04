@@ -159,7 +159,7 @@ ClassificationExpression returns SysML::Expression :
 ;
 
 ClassificationOperator :
-	'instanceof' | 'hastype' | 'istype' | '@'
+	'instanceof' | 'hastype' | 'istype' | '@' | 'as'
 ;
 
 TypeReferenceMember returns SysML::FeatureMembership :
@@ -234,7 +234,7 @@ ExponentiationOperator :
 	'**'
 ;
 
-// Units Expressions
+// Units Expressions (Deprecated)
 
 UnitsExpression returns SysML::Expression :
 	UnaryExpression ( {SysML::OperatorExpression.operand += current} 

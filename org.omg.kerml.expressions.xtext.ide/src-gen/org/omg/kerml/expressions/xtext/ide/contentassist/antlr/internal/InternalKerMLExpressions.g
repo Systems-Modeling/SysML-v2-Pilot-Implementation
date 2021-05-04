@@ -1741,6 +1741,12 @@ rule__ClassificationOperator__Alternatives
 		'@'
 		{ after(grammarAccess.getClassificationOperatorAccess().getCommercialAtKeyword_3()); }
 	)
+	|
+	(
+		{ before(grammarAccess.getClassificationOperatorAccess().getAsKeyword_4()); }
+		'as'
+		{ after(grammarAccess.getClassificationOperatorAccess().getAsKeyword_4()); }
+	)
 ;
 finally {
 	restoreStackSize(stackSize);

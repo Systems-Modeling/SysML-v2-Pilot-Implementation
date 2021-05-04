@@ -27,11 +27,17 @@ import java.util.List;
 import java.util.Map;
 
 public class Show {
-    private static final MagicsArgs SHOW_ARGS = MagicsArgs.builder().required("element").onlyKnownKeywords().onlyKnownFlags().build();
+    private static final MagicsArgs SHOW_ARGS = MagicsArgs.builder().onlyKnownKeywords().onlyKnownFlags()
+    		.optional("element")
+            .flag("help", 'h', "true")
+    		.build();
 
     @LineMagic
     public static String show(List<String> args) {
         Map<String, List<String>> vals = SHOW_ARGS.parse(args);
-        return ISysML.getKernelInstance().getInteractive().show(vals.get("element").get(0));
+        List<String> elements = vals.get("element");
+        String element = elements.isEmpty()? null:elements.get(0);
+        List<String> help = vals.get("help");
+        return ISysML.getKernelInstance().getInteractive().show(element, help);
     }
 }

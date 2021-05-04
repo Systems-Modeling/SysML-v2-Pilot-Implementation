@@ -6,7 +6,7 @@ package AnalysisTooling {
 	private import ScalarValues::*;
 	
 	/**
-	 * ToolExection metadata identifies an external analysis tool to be
+	 * ToolExecution metadata identifies an external analysis tool to be
 	 * used to implement the annotated action.
 	 */
 	attribute def ToolExecution {

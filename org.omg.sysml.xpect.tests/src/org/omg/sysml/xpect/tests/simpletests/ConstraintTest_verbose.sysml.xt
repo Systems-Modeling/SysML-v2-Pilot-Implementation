@@ -110,7 +110,7 @@ package ConstraintTest {
 	part vehicle1b :> vehicle {
 		assert constraint massAnalysis : MassAnalysis {
 			attribute totalMass redefines MassAnalysis::totalMass = mass;
-			attribute componentMasses redefines MassAnalysis::componentMasses = {engine::mass, frontAxleAssembly::mass, rearAxleAssembly::mass};		
+			attribute componentMasses redefines MassAnalysis::componentMasses = (engine::mass, frontAxleAssembly::mass, rearAxleAssembly::mass);		
 		}	
 		attribute mass redefines vehicle::mass;
 		part engine redefines vehicle::engine {
@@ -152,7 +152,7 @@ package ConstraintTest {
 	part vehicle2b :> vehicle {
 		assert constraint massAnalysis2 : MassAnalysis2 (
 			totalMass = mass,
-			componentMasses = {engine::mass, frontAxleAssembly::mass, rearAxleAssembly::mass}
+			componentMasses = (engine::mass, frontAxleAssembly::mass, rearAxleAssembly::mass)
 		);
 		attribute mass redefines vehicle::mass;
 		part engine redefines vehicle::engine {
@@ -175,7 +175,7 @@ package ConstraintTest {
 	part vehicle3 :> vehicle {
 		assert massAnalysis3 (
 			totalMass = mass,
-			componentMasses = {engine::mass, frontAxleAssembly::mass, rearAxleAssembly::mass}
+			componentMasses = (engine::mass, frontAxleAssembly::mass, rearAxleAssembly::mass)
 		);
 		attribute mass redefines vehicle::mass;
 		part engine redefines vehicle::engine {

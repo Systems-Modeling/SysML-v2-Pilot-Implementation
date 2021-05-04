@@ -158,7 +158,7 @@ package ISQAtomicNuclear {
      * remarks: A particle is said to be electrically neutral if its charge number is equal to zero. The charge number of a particle can be positive, negative, or zero. The state of charge of a particle may be presented as a superscript to the symbol of that particle, e.g. `H^+, He^(++), Al^(3+), Cl^-, S^(--), N^(3-)`.
      */
     attribute def ChargeNumberUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
     }
 
     attribute def ChargeNumberValue :> ScalarQuantityValue {
@@ -197,7 +197,7 @@ package ISQAtomicNuclear {
      */
     attribute def RydbergConstantUnit :> DerivedUnit {
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = L; :>> exponent = -1; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {lengthPF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = lengthPF; }
     }
 
     attribute def RydbergConstantValue :> ScalarQuantityValue {
@@ -221,7 +221,7 @@ package ISQAtomicNuclear {
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = L; :>> exponent = 6; }
         private attribute massPF: QuantityPowerFactor[1] { :>> quantity = M; :>> exponent = 3; }
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = T; :>> exponent = -6; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {lengthPF, massPF, durationPF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF, durationPF); }
     }
 
     attribute def HartreeEnergyValue :> ScalarQuantityValue {
@@ -244,7 +244,7 @@ package ISQAtomicNuclear {
     attribute def MagneticDipoleMomentUnit :> DerivedUnit {
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = L; :>> exponent = 2; }
         private attribute electricCurrentPF: QuantityPowerFactor[1] { :>> quantity = I; :>> exponent = 1; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {lengthPF, electricCurrentPF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, electricCurrentPF); }
     }
 
     attribute def MagneticDipoleMomentValue :> ScalarQuantityValue {
@@ -265,14 +265,14 @@ package ISQAtomicNuclear {
      * remarks: For an atom or nucleus, this energy is quantized and can be written as: `W` = `g μ_x M B` where `g` is the appropriate `g` factor (item 10-14.1 or item 10-14.2), `μ_x` is mostly the Bohr magneton or nuclear magneton (item 10-9.2 or item 10-9.3), `M` is magnetic quantum number (item 10-13.4), and `B` is magnitude of the magnetic flux density. See also IEC 80000-6.
      */
     attribute def Cartesian3dMagneticDipoleMomentCoordinateSystem :> VectorMeasurementReference {
-        attribute :>> dimensions = {3};
+        attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> isOrthogonal = true;
         attribute :>> mRefs: MagneticDipoleMomentUnit[3];
     }
 
     attribute def Cartesian3dMagneticDipoleMomentVector :> VectorQuantityValue {
-        attribute :>> dimensions = {3};
+        attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> num: Real[3];
         attribute :>> mRef: Cartesian3dMagneticDipoleMomentCoordinateSystem[1];
@@ -320,7 +320,7 @@ package ISQAtomicNuclear {
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = L; :>> exponent = 2; }
         private attribute massPF: QuantityPowerFactor[1] { :>> quantity = M; :>> exponent = 1; }
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = T; :>> exponent = -1; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {lengthPF, massPF, durationPF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF, durationPF); }
     }
 
     attribute def SpinValue :> ScalarQuantityValue {
@@ -341,14 +341,14 @@ package ISQAtomicNuclear {
      * remarks: Spin is an additive vector quantity.
      */
     attribute def Cartesian3dSpinCoordinateSystem :> VectorMeasurementReference {
-        attribute :>> dimensions = {3};
+        attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> isOrthogonal = true;
         attribute :>> mRefs: SpinUnit[3];
     }
 
     attribute def Cartesian3dSpinVector :> VectorQuantityValue {
-        attribute :>> dimensions = {3};
+        attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> num: Real[3];
         attribute :>> mRef: Cartesian3dSpinCoordinateSystem[1];
@@ -370,7 +370,7 @@ package ISQAtomicNuclear {
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = L; :>> exponent = 2; }
         private attribute massPF: QuantityPowerFactor[1] { :>> quantity = M; :>> exponent = 1; }
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = T; :>> exponent = -1; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {lengthPF, massPF, durationPF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF, durationPF); }
     }
 
     attribute def TotalAngularMomentumValue :> ScalarQuantityValue {
@@ -391,14 +391,14 @@ package ISQAtomicNuclear {
      * remarks: In atomic and nuclear physics, orbital angular momentum is usually denoted by `vec(l)` or `vec(L)`. The magnitude of `vec(J)` is quantized so that: `J^2 = ℏ^2 j (j+1)` where `j` is the total angular momentum quantum number (item 10-13.6). Total angular momentum and magnetic dipole moment have the same direction. `j` is not the magnitude of the total angular momentum `vec(J)` but its projection onto the quantization axis, divided by `ℏ`.
      */
     attribute def Cartesian3dTotalAngularMomentumCoordinateSystem :> VectorMeasurementReference {
-        attribute :>> dimensions = {3};
+        attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> isOrthogonal = true;
         attribute :>> mRefs: TotalAngularMomentumUnit[3];
     }
 
     attribute def Cartesian3dTotalAngularMomentumVector :> VectorQuantityValue {
-        attribute :>> dimensions = {3};
+        attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> num: Real[3];
         attribute :>> mRef: Cartesian3dTotalAngularMomentumCoordinateSystem[1];
@@ -420,7 +420,7 @@ package ISQAtomicNuclear {
         private attribute massPF: QuantityPowerFactor[1] { :>> quantity = M; :>> exponent = -1; }
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = T; :>> exponent = 1; }
         private attribute electricCurrentPF: QuantityPowerFactor[1] { :>> quantity = I; :>> exponent = 1; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {massPF, durationPF, electricCurrentPF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (massPF, durationPF, electricCurrentPF); }
     }
 
     attribute def GyromagneticRatioValue :> ScalarQuantityValue {
@@ -452,7 +452,7 @@ package ISQAtomicNuclear {
         private attribute massPF: QuantityPowerFactor[1] { :>> quantity = M; :>> exponent = -1; }
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = T; :>> exponent = 1; }
         private attribute electricCurrentPF: QuantityPowerFactor[1] { :>> quantity = I; :>> exponent = 1; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {massPF, durationPF, electricCurrentPF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (massPF, durationPF, electricCurrentPF); }
     }
 
     attribute def GyromagneticRatioOfTheElectronValue :> ScalarQuantityValue {
@@ -481,7 +481,7 @@ package ISQAtomicNuclear {
      * remarks: Electron states determine the binding energy `E` = `E`(`n`,`l`,`m`,`j`,`s`,`f`) in an atom. Upper case letters `N`, `L`, `M`, `J`, `S, F` are usually used for the whole system. The spatial probability distribution of an electron is given by │`Ψ`│^2, where `Ψ` is its wave function. For an electron in an H atom in a non-relativistic approximation, the wave function can be presented as: `ψ(r, θ, φ) = R_(nl)(r)*Y_l^m(θ, φ) ` where `r, θ, φ` are spherical coordinates (ISO 80000-2) with respect to the nucleus and to a given (quantization) axis, `R_(nl)(r)` is the radial distribution function, and `Y_l^m(θ, φ) ` are spherical harmonics. In the Bohr model of one-electron atoms, `n`, `l`, and `m` define the possible orbits of an electron about the nucleus.
      */
     attribute def QuantumNumberUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
     }
 
     attribute def QuantumNumberValue :> ScalarQuantityValue {
@@ -502,7 +502,7 @@ package ISQAtomicNuclear {
      * remarks: In the Bohr model, `n` = 1,2,…,∞ is related to the binding energy of an electron and the radius of spherical orbits (principal axis of the elliptic orbits). For an electron in an H atom, the semi-classical radius of its orbit is `r_n` = `a_0``n`^2 and its binding energy is `E_n` = `E_H`/`n`^2.
      */
     attribute def PrincipalQuantumNumberUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
     }
 
     attribute def PrincipalQuantumNumberValue :> ScalarQuantityValue {
@@ -523,7 +523,7 @@ package ISQAtomicNuclear {
      * remarks: `abs(l)^2 = ℏ^2 l (l-1)` , `l = 0, 1, …, n-1` where `vec(l)` is the orbital angular momentum and `ℏ` is the reduced Planck constant (ISO 80000-1). If reference is made to a specific particle `i`, the symbol `l_i` is used instead of `l`; if reference is made to the whole system, the symbol `L` is used instead of `l`. An electron in an H atom for `l` = 0 appears as a spherical cloud. In the Bohr model, it is related to the form of the orbit.
      */
     attribute def OrbitalAngularMomentumQuantumNumberUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
     }
 
     attribute def OrbitalAngularMomentumQuantumNumberValue :> ScalarQuantityValue {
@@ -544,7 +544,7 @@ package ISQAtomicNuclear {
      * remarks: `l_z = m_l ℏ` , `j_z = m_j ℏ` , and `s_z = m_s ℏ` , with the ranges from `-l` to `l`, from `-j` to `j`, and ±1/2, respectively. `m_i` refers to a specific particle `i`. `M` is used for the whole system. Subscripts `l`, `s`, `j`, etc., as appropriate, indicate the angular momentum involved. `ℏ` is the reduced Planck constant (ISO 80000-1).
      */
     attribute def MagneticQuantumNumberUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
     }
 
     attribute def MagneticQuantumNumberValue :> ScalarQuantityValue {
@@ -565,7 +565,7 @@ package ISQAtomicNuclear {
      * remarks: Spin quantum numbers of fermions are odd multiples of 1/2, and those of bosons are integers.
      */
     attribute def SpinQuantumNumberUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
     }
 
     attribute def SpinQuantumNumberValue :> ScalarQuantityValue {
@@ -586,7 +586,7 @@ package ISQAtomicNuclear {
      * remarks: `j_i` refers to a specific particle `i`; `J` is used for the whole system. The quantum number `J` and the magnitude of total angular momentum `vec(J)` (item 10-11) are different quantities. The two values of `j` are `l`±1/2. (See item 10-13.3.)
      */
     attribute def TotalAngularMomentumQuantumNumberUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
     }
 
     attribute def TotalAngularMomentumQuantumNumberValue :> ScalarQuantityValue {
@@ -607,7 +607,7 @@ package ISQAtomicNuclear {
      * remarks: Nuclear spin is composed of spins of the nucleons (protons and neutrons) and their (orbital) motions. In principle there is no upper limit for the nuclear spin quantum number. It has possible values `I` = 0,1,2,… for even `A` and `I = 1/2, 3/2, …` for odd `A`. In nuclear and particle physics, `vec(J)` is often used.
      */
     attribute def NuclearSpinQuantumNumberUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
     }
 
     attribute def NuclearSpinQuantumNumberValue :> ScalarQuantityValue {
@@ -628,7 +628,7 @@ package ISQAtomicNuclear {
      * remarks: The interval of `F` is │`I`-`J`│, │`I`-`J`│+1, ..., `I`-`J`. This is related to the hyperfine splitting of the atomic energy levels due to the interaction between the electron and nuclear magnetic moments.
      */
     attribute def HyperfineStructureQuantumNumberUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
     }
 
     attribute def HyperfineStructureQuantumNumberValue :> ScalarQuantityValue {
@@ -649,7 +649,7 @@ package ISQAtomicNuclear {
      * remarks: These quantities are also called `g` values. The Landé factor can be calculated from the expression: `g(L, S, J) = 1 + (g_e -1) xx (J(J+1) + S(S+1) - L(L+1))/(2J(J+1))` where `g_e` is the` g` factor of the electron.
      */
     attribute def LandeFactorUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
     }
 
     attribute def LandeFactorValue :> ScalarQuantityValue {
@@ -674,7 +674,7 @@ package ISQAtomicNuclear {
      * remarks: The `g` factors for nuclei or nucleons are known from measurements.
      */
     attribute def GFactorOfNucleusOrNuclearParticleUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
     }
 
     attribute def GFactorOfNucleusOrNuclearParticleValue :> ScalarQuantityValue {
@@ -709,7 +709,7 @@ package ISQAtomicNuclear {
      */
     attribute def LarmorFrequencyUnit :> DerivedUnit {
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = T; :>> exponent = -1; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {durationPF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = durationPF; }
     }
 
     attribute def LarmorFrequencyValue :> ScalarQuantityValue {
@@ -744,7 +744,7 @@ package ISQAtomicNuclear {
      */
     attribute def CyclotronAngularFrequencyUnit :> DerivedUnit {
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = T; :>> exponent = -1; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {durationPF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = durationPF; }
     }
 
     attribute def CyclotronAngularFrequencyValue :> ScalarQuantityValue {
@@ -781,7 +781,7 @@ package ISQAtomicNuclear {
      */
     attribute def NuclearQuadrupoleMomentUnit :> DerivedUnit {
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = L; :>> exponent = 2; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {lengthPF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = lengthPF; }
     }
 
     attribute def NuclearQuadrupoleMomentValue :> ScalarQuantityValue {
@@ -867,7 +867,7 @@ package ISQAtomicNuclear {
      * remarks: 
      */
     attribute def RelativeMassExcessUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
     }
 
     attribute def RelativeMassExcessValue :> ScalarQuantityValue {
@@ -888,7 +888,7 @@ package ISQAtomicNuclear {
      * remarks: 
      */
     attribute def RelativeMassDefectUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
     }
 
     attribute def RelativeMassDefectValue :> ScalarQuantityValue {
@@ -909,7 +909,7 @@ package ISQAtomicNuclear {
      * remarks: 
      */
     attribute def PackingFractionUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
     }
 
     attribute def PackingFractionValue :> ScalarQuantityValue {
@@ -930,7 +930,7 @@ package ISQAtomicNuclear {
      * remarks: 
      */
     attribute def BindingFractionUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
     }
 
     attribute def BindingFractionValue :> ScalarQuantityValue {
@@ -952,7 +952,7 @@ package ISQAtomicNuclear {
      */
     attribute def DecayConstantUnit :> DerivedUnit {
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = T; :>> exponent = -1; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {durationPF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = durationPF; }
     }
 
     attribute def DecayConstantValue :> ScalarQuantityValue {
@@ -1006,7 +1006,7 @@ package ISQAtomicNuclear {
      */
     attribute def NuclearActivityUnit :> DerivedUnit {
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = T; :>> exponent = -1; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {durationPF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = durationPF; }
     }
 
     attribute def NuclearActivityValue :> ScalarQuantityValue {
@@ -1029,7 +1029,7 @@ package ISQAtomicNuclear {
     attribute def SpecificActivityUnit :> DerivedUnit {
         private attribute massPF: QuantityPowerFactor[1] { :>> quantity = M; :>> exponent = -1; }
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = T; :>> exponent = -1; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {massPF, durationPF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (massPF, durationPF); }
     }
 
     attribute def SpecificActivityValue :> ScalarQuantityValue {
@@ -1056,7 +1056,7 @@ package ISQAtomicNuclear {
     attribute def ActivityDensityUnit :> DerivedUnit {
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = L; :>> exponent = -3; }
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = T; :>> exponent = -1; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {lengthPF, durationPF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, durationPF); }
     }
 
     attribute def ActivityDensityValue :> ScalarQuantityValue {
@@ -1087,7 +1087,7 @@ package ISQAtomicNuclear {
     attribute def SurfaceActivityDensityUnit :> DerivedUnit {
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = L; :>> exponent = -2; }
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = T; :>> exponent = -1; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {lengthPF, durationPF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, durationPF); }
     }
 
     attribute def SurfaceActivityDensityValue :> ScalarQuantityValue {
@@ -1160,7 +1160,7 @@ package ISQAtomicNuclear {
      * remarks: The quantity `α`/(`α`+1) is also used and called the internal-conversion fraction. Partial conversion fractions referring to the various electron shells K, L, ... are indicated by `α_K`, `α_L`, …. `α_K`/`α_L` is called the K-to-L internal conversion ratio.
      */
     attribute def InternalConversionFactorUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
     }
 
     attribute def InternalConversionFactorValue :> ScalarQuantityValue {
@@ -1181,7 +1181,7 @@ package ISQAtomicNuclear {
      * remarks: Usually the kind of particles is specified, e.g. neutron emission rate or alpha particle emission rate.
      */
     attribute def ParticleEmissionRateUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
     }
 
     attribute def ParticleEmissionRateValue :> ScalarQuantityValue {
@@ -1255,7 +1255,7 @@ package ISQAtomicNuclear {
      */
     attribute def DirectionDistributionOfCrossSectionUnit :> DerivedUnit {
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = L; :>> exponent = 2; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {lengthPF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = lengthPF; }
     }
 
     attribute def DirectionDistributionOfCrossSectionValue :> ScalarQuantityValue {
@@ -1278,7 +1278,7 @@ package ISQAtomicNuclear {
     attribute def EnergyDistributionOfCrossSectionUnit :> DerivedUnit {
         private attribute massPF: QuantityPowerFactor[1] { :>> quantity = M; :>> exponent = -1; }
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = T; :>> exponent = 2; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {massPF, durationPF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (massPF, durationPF); }
     }
 
     attribute def EnergyDistributionOfCrossSectionValue :> ScalarQuantityValue {
@@ -1301,7 +1301,7 @@ package ISQAtomicNuclear {
     attribute def DirectionAndEnergyDistributionOfCrossSectionUnit :> DerivedUnit {
         private attribute massPF: QuantityPowerFactor[1] { :>> quantity = M; :>> exponent = -1; }
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = T; :>> exponent = 2; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {massPF, durationPF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (massPF, durationPF); }
     }
 
     attribute def DirectionAndEnergyDistributionOfCrossSectionValue :> ScalarQuantityValue {
@@ -1323,7 +1323,7 @@ package ISQAtomicNuclear {
      */
     attribute def VolumicCrossSectionUnit :> DerivedUnit {
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = L; :>> exponent = -1; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {lengthPF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = lengthPF; }
     }
 
     attribute def VolumicCrossSectionValue :> ScalarQuantityValue {
@@ -1349,7 +1349,7 @@ package ISQAtomicNuclear {
      */
     attribute def VolumicTotalCrossSectionUnit :> DerivedUnit {
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = L; :>> exponent = -1; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {lengthPF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = lengthPF; }
     }
 
     attribute def VolumicTotalCrossSectionValue :> ScalarQuantityValue {
@@ -1375,7 +1375,7 @@ package ISQAtomicNuclear {
      */
     attribute def ParticleFluenceUnit :> DerivedUnit {
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = L; :>> exponent = -2; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {lengthPF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = lengthPF; }
     }
 
     attribute def ParticleFluenceValue :> ScalarQuantityValue {
@@ -1398,7 +1398,7 @@ package ISQAtomicNuclear {
     attribute def ParticleFluenceRateUnit :> DerivedUnit {
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = L; :>> exponent = -2; }
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = T; :>> exponent = -1; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {lengthPF, durationPF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, durationPF); }
     }
 
     attribute def ParticleFluenceRateValue :> ScalarQuantityValue {
@@ -1434,7 +1434,7 @@ package ISQAtomicNuclear {
     attribute def EnergyFluenceUnit :> DerivedUnit {
         private attribute massPF: QuantityPowerFactor[1] { :>> quantity = M; :>> exponent = 1; }
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = T; :>> exponent = -2; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {massPF, durationPF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (massPF, durationPF); }
     }
 
     attribute def EnergyFluenceValue :> ScalarQuantityValue {
@@ -1457,7 +1457,7 @@ package ISQAtomicNuclear {
     attribute def EnergyFluenceRateUnit :> DerivedUnit {
         private attribute massPF: QuantityPowerFactor[1] { :>> quantity = M; :>> exponent = 1; }
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = T; :>> exponent = -3; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {massPF, durationPF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (massPF, durationPF); }
     }
 
     attribute def EnergyFluenceRateValue :> ScalarQuantityValue {
@@ -1480,7 +1480,7 @@ package ISQAtomicNuclear {
     attribute def ParticleCurrentDensityUnit :> DerivedUnit {
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = L; :>> exponent = -2; }
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = T; :>> exponent = -1; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {lengthPF, durationPF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, durationPF); }
     }
 
     attribute def ParticleCurrentDensityValue :> ScalarQuantityValue {
@@ -1501,14 +1501,14 @@ package ISQAtomicNuclear {
      * remarks: Usually the word “particle” is replaced by the name of a specific particle, for example proton current. Symbol `vec(S)` is recommended when there is a possibility of confusion with the symbol `vec(J)` for electric current density. For neutron current, the symbol `vec(J)` is generally used. The distribution functions expressed in terms of speed and energy, `vec(J_v)` and `vec(J_E)`, are related to `vec(J)` by: `vec(J) = int vec(J_v) dv = int vec(J_E) dE`. The directional distribution of the particle fluence rate is also denoted as particle radiance.
      */
     attribute def Cartesian3dParticleCurrentDensityCoordinateSystem :> VectorMeasurementReference {
-        attribute :>> dimensions = {3};
+        attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> isOrthogonal = true;
         attribute :>> mRefs: ParticleCurrentDensityUnit[3];
     }
 
     attribute def Cartesian3dParticleCurrentDensityVector :> VectorQuantityValue {
-        attribute :>> dimensions = {3};
+        attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> num: Real[3];
         attribute :>> mRef: Cartesian3dParticleCurrentDensityCoordinateSystem[1];
@@ -1561,7 +1561,7 @@ package ISQAtomicNuclear {
     attribute def MolarAttenuationCoefficientUnit :> DerivedUnit {
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = L; :>> exponent = 2; }
         private attribute amountOfSubstancePF: QuantityPowerFactor[1] { :>> quantity = N; :>> exponent = -1; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {lengthPF, amountOfSubstancePF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, amountOfSubstancePF); }
     }
 
     attribute def MolarAttenuationCoefficientValue :> ScalarQuantityValue {
@@ -1583,7 +1583,7 @@ package ISQAtomicNuclear {
      */
     attribute def AtomicAttenuationCoefficientUnit :> DerivedUnit {
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = L; :>> exponent = 2; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {lengthPF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = lengthPF; }
     }
 
     attribute def AtomicAttenuationCoefficientValue :> ScalarQuantityValue {
@@ -1620,7 +1620,7 @@ package ISQAtomicNuclear {
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = L; :>> exponent = 1; }
         private attribute massPF: QuantityPowerFactor[1] { :>> quantity = M; :>> exponent = 1; }
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = T; :>> exponent = -2; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {lengthPF, massPF, durationPF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF, durationPF); }
     }
 
     attribute def TotalLinearStoppingPowerValue :> ScalarQuantityValue {
@@ -1647,7 +1647,7 @@ package ISQAtomicNuclear {
     attribute def TotalMassStoppingPowerUnit :> DerivedUnit {
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = L; :>> exponent = 4; }
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = T; :>> exponent = -2; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {lengthPF, durationPF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, durationPF); }
     }
 
     attribute def TotalMassStoppingPowerValue :> ScalarQuantityValue {
@@ -1687,7 +1687,7 @@ package ISQAtomicNuclear {
     attribute def MeanMassRangeUnit :> DerivedUnit {
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = L; :>> exponent = -2; }
         private attribute massPF: QuantityPowerFactor[1] { :>> quantity = M; :>> exponent = 1; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {lengthPF, massPF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF); }
     }
 
     attribute def MeanMassRangeValue :> ScalarQuantityValue {
@@ -1709,7 +1709,7 @@ package ISQAtomicNuclear {
      */
     attribute def LinearIonizationUnit :> DerivedUnit {
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = L; :>> exponent = -1; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {lengthPF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = lengthPF; }
     }
 
     attribute def LinearIonizationValue :> ScalarQuantityValue {
@@ -1730,7 +1730,7 @@ package ISQAtomicNuclear {
      * remarks: `N_i = int N_(il) dl` See item 10-58.
      */
     attribute def TotalIonizationUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
     }
 
     attribute def TotalIonizationValue :> ScalarQuantityValue {
@@ -1754,7 +1754,7 @@ package ISQAtomicNuclear {
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = L; :>> exponent = 2; }
         private attribute massPF: QuantityPowerFactor[1] { :>> quantity = M; :>> exponent = 1; }
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = T; :>> exponent = -2; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {lengthPF, massPF, durationPF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF, durationPF); }
     }
 
     attribute def AverageEnergyLossPerElementaryChargeProducedValue :> ScalarQuantityValue {
@@ -1778,7 +1778,7 @@ package ISQAtomicNuclear {
         private attribute massPF: QuantityPowerFactor[1] { :>> quantity = M; :>> exponent = -1; }
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = T; :>> exponent = 2; }
         private attribute electricCurrentPF: QuantityPowerFactor[1] { :>> quantity = I; :>> exponent = 1; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {massPF, durationPF, electricCurrentPF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (massPF, durationPF, electricCurrentPF); }
     }
 
     attribute def MobilityValue :> ScalarQuantityValue {
@@ -1800,7 +1800,7 @@ package ISQAtomicNuclear {
      */
     attribute def ParticleNumberDensityUnit :> DerivedUnit {
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = L; :>> exponent = -3; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {lengthPF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = lengthPF; }
     }
 
     attribute def ParticleNumberDensityValue :> ScalarQuantityValue {
@@ -1822,7 +1822,7 @@ package ISQAtomicNuclear {
      */
     attribute def IonNumberDensityUnit :> DerivedUnit {
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = L; :>> exponent = -3; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {lengthPF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = lengthPF; }
     }
 
     attribute def IonNumberDensityValue :> ScalarQuantityValue {
@@ -1849,7 +1849,7 @@ package ISQAtomicNuclear {
     attribute def RecombinationCoefficientUnit :> DerivedUnit {
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = L; :>> exponent = 3; }
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = T; :>> exponent = -1; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {lengthPF, durationPF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, durationPF); }
     }
 
     attribute def RecombinationCoefficientValue :> ScalarQuantityValue {
@@ -1905,7 +1905,7 @@ package ISQAtomicNuclear {
     attribute def ParticleSourceDensityUnit :> DerivedUnit {
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = L; :>> exponent = -3; }
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = T; :>> exponent = -1; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {lengthPF, durationPF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, durationPF); }
     }
 
     attribute def ParticleSourceDensityValue :> ScalarQuantityValue {
@@ -1928,7 +1928,7 @@ package ISQAtomicNuclear {
     attribute def SlowingDownDensityUnit :> DerivedUnit {
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = L; :>> exponent = -3; }
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = T; :>> exponent = -1; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {lengthPF, durationPF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, durationPF); }
     }
 
     attribute def SlowingDownDensityValue :> ScalarQuantityValue {
@@ -1949,7 +1949,7 @@ package ISQAtomicNuclear {
      * remarks: 
      */
     attribute def ResonanceEscapeProbabilityUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
     }
 
     attribute def ResonanceEscapeProbabilityValue :> ScalarQuantityValue {
@@ -1970,7 +1970,7 @@ package ISQAtomicNuclear {
      * remarks: Lethargy is also referred to as logarithmic energy decrement.
      */
     attribute def LethargyUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
     }
 
     attribute def LethargyValue :> ScalarQuantityValue {
@@ -1991,7 +1991,7 @@ package ISQAtomicNuclear {
      * remarks: 
      */
     attribute def AverageLogarithmicEnergyDecrementUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
     }
 
     attribute def AverageLogarithmicEnergyDecrementValue :> ScalarQuantityValue {
@@ -2129,7 +2129,7 @@ package ISQAtomicNuclear {
      * remarks: The class of neutrons must be specified, e.g. thermal.
      */
     attribute def FastFissionFactorUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
     }
 
     attribute def FastFissionFactorValue :> ScalarQuantityValue {
@@ -2150,7 +2150,7 @@ package ISQAtomicNuclear {
      * remarks: 
      */
     attribute def ThermalUtilizationFactorUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
     }
 
     attribute def ThermalUtilizationFactorValue :> ScalarQuantityValue {
@@ -2171,7 +2171,7 @@ package ISQAtomicNuclear {
      * remarks: 
      */
     attribute def NonLeakageProbabilityUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
     }
 
     attribute def NonLeakageProbabilityValue :> ScalarQuantityValue {
@@ -2192,7 +2192,7 @@ package ISQAtomicNuclear {
      * remarks: 
      */
     attribute def MultiplicationFactorUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
     }
 
     attribute def MultiplicationFactorValue :> ScalarQuantityValue {
@@ -2213,7 +2213,7 @@ package ISQAtomicNuclear {
      * remarks: For a thermal reactor, `k_∞ = η*ε*p*f`
      */
     attribute def InfiniteMultiplicationFactorUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
     }
 
     attribute def InfiniteMultiplicationFactorValue :> ScalarQuantityValue {
@@ -2250,7 +2250,7 @@ package ISQAtomicNuclear {
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = L; :>> exponent = 2; }
         private attribute massPF: QuantityPowerFactor[1] { :>> quantity = M; :>> exponent = 1; }
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = T; :>> exponent = -2; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {lengthPF, massPF, durationPF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF, durationPF); }
     }
 
     attribute def EnergyImpartedValue :> ScalarQuantityValue {
@@ -2286,7 +2286,7 @@ package ISQAtomicNuclear {
     attribute def AbsorbedDoseUnit :> DerivedUnit {
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = L; :>> exponent = 2; }
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = T; :>> exponent = -2; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {lengthPF, durationPF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, durationPF); }
     }
 
     attribute def AbsorbedDoseValue :> ScalarQuantityValue {
@@ -2338,7 +2338,7 @@ package ISQAtomicNuclear {
     attribute def DoseEquivalentUnit :> DerivedUnit {
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = L; :>> exponent = 2; }
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = T; :>> exponent = -2; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {lengthPF, durationPF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, durationPF); }
     }
 
     attribute def DoseEquivalentValue :> ScalarQuantityValue {
@@ -2374,7 +2374,7 @@ package ISQAtomicNuclear {
     attribute def AbsorbedDoseRateUnit :> DerivedUnit {
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = L; :>> exponent = 2; }
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = T; :>> exponent = -3; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {lengthPF, durationPF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, durationPF); }
     }
 
     attribute def AbsorbedDoseRateValue :> ScalarQuantityValue {
@@ -2398,7 +2398,7 @@ package ISQAtomicNuclear {
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = L; :>> exponent = 1; }
         private attribute massPF: QuantityPowerFactor[1] { :>> quantity = M; :>> exponent = 1; }
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = T; :>> exponent = -2; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {lengthPF, massPF, durationPF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF, durationPF); }
     }
 
     attribute def LinearEnergyTransferValue :> ScalarQuantityValue {
@@ -2421,7 +2421,7 @@ package ISQAtomicNuclear {
     attribute def KermaUnit :> DerivedUnit {
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = L; :>> exponent = 2; }
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = T; :>> exponent = -2; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {lengthPF, durationPF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, durationPF); }
     }
 
     attribute def KermaValue :> ScalarQuantityValue {
@@ -2444,7 +2444,7 @@ package ISQAtomicNuclear {
     attribute def KermaRateUnit :> DerivedUnit {
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = L; :>> exponent = 2; }
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = T; :>> exponent = -3; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {lengthPF, durationPF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, durationPF); }
     }
 
     attribute def KermaRateValue :> ScalarQuantityValue {
@@ -2467,7 +2467,7 @@ package ISQAtomicNuclear {
     attribute def MassEnergyTransferCoefficientUnit :> DerivedUnit {
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = L; :>> exponent = 2; }
         private attribute massPF: QuantityPowerFactor[1] { :>> quantity = M; :>> exponent = -1; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {lengthPF, massPF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF); }
     }
 
     attribute def MassEnergyTransferCoefficientValue :> ScalarQuantityValue {
@@ -2491,7 +2491,7 @@ package ISQAtomicNuclear {
         private attribute massPF: QuantityPowerFactor[1] { :>> quantity = M; :>> exponent = -1; }
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = T; :>> exponent = 1; }
         private attribute electricCurrentPF: QuantityPowerFactor[1] { :>> quantity = I; :>> exponent = 1; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {massPF, durationPF, electricCurrentPF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (massPF, durationPF, electricCurrentPF); }
     }
 
     attribute def ExposureValue :> ScalarQuantityValue {
@@ -2514,7 +2514,7 @@ package ISQAtomicNuclear {
     attribute def ExposureRateUnit :> DerivedUnit {
         private attribute massPF: QuantityPowerFactor[1] { :>> quantity = M; :>> exponent = -1; }
         private attribute electricCurrentPF: QuantityPowerFactor[1] { :>> quantity = I; :>> exponent = 1; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {massPF, electricCurrentPF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (massPF, electricCurrentPF); }
     }
 
     attribute def ExposureRateValue :> ScalarQuantityValue {

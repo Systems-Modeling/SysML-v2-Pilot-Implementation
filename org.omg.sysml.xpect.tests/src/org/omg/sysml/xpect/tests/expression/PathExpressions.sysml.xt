@@ -47,7 +47,7 @@ package P {
 
     attribute v2_mass: Real = vehicle_1a.mass;
     
-    part vehicle4cyl: Vehicle = {vehicle_1, vehicle_1a}.[v:Vehicle (cylinders == 4)];
+    part vehicle4cyl: Vehicle = (vehicle_1, vehicle_1a).{in ref v:Vehicle; v.cylinders == 4};
 
-    part vehicles[*]: Vehicle = (all Vehicle).[v:Vehicle (v.mass > 100)];
+    part vehicles[*]: Vehicle = (all Vehicle).{in ref v:Vehicle; v.mass > 100};
 }

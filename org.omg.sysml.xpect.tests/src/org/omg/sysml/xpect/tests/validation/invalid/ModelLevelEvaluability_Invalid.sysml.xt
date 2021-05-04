@@ -36,6 +36,7 @@ END_SETUP
 */
 package Test {
 	import ScalarValues::*;
+	import ControlFunctions::collect;
 	
 	attribute def A {
 		attribute x : Integer;
@@ -49,8 +50,8 @@ package Test {
 	filter f(A::y);
 	// XPECT errors --> "Must be model-level evaluable" at "filter ~A::z;"
 	filter ~A::z;
-	// XPECT errors --> "Must be model-level evaluable" at "filter A::y->collect x (x);"
-	filter A::y->collect x (x);
+	// XPECT errors --> "Must be model-level evaluable" at "filter A::y->collect {in ref x; x};"
+	filter A::y->collect {in ref x; x};
 	// XPECT errors --> "Must be model-level evaluable" at "filter A(1, "", false);"
 	filter A(1, "", false);
 	

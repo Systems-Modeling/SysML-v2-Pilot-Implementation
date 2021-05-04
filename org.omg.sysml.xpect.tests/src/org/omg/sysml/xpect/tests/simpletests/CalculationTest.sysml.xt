@@ -12,6 +12,7 @@ XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLTests
 		File {from ="/library.kernel/TransitionPerformances.kerml"}
 		File {from ="/library.kernel/Transfers.kerml"}
 		File {from ="/library.kernel/ScalarFunctions.kerml"}
+		File {from ="/library.kernel/ControlFunctions.kerml"}
 		File {from ="/library.kernel/ScalarValues.kerml"}
 		File {from ="/library.systems/Items.sysml"}
  		File {from ="/library.systems/Parts.sysml"}
@@ -32,6 +33,7 @@ XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLTests
 				File {from ="/library.kernel/TransitionPerformances.kerml"}
 				File {from ="/library.kernel/Transfers.kerml"}
 				File {from ="/library.kernel/ScalarFunctions.kerml"}
+				File {from ="/library.kernel/ControlFunctions.kerml"}
 				File {from ="/library.kernel/ScalarValues.kerml"}
 				File {from ="/library.systems/Items.sysml"}
 		 		File {from ="/library.systems/Parts.sysml"}
@@ -45,18 +47,15 @@ END_SETUP
 // XPECT noErrors ---> ""
 package CalculationExample {
 	import ScalarValues::Real;
-	import ScalarFunctions::sum;
+	import ScalarFunctions::*;
 	
-	part vehicle {
-		attribute m: Real;
-		
-		part eng {
-			attribute m: Real;
-		}
-		
-		part trans {
-			attribute m: Real;
-		}
+	part def VehiclePart {
+		attribute m : Real;
+	}
+	
+	part vehicle : VehiclePart {		
+		part eng : VehiclePart;		
+		part trans : VehiclePart;
 	}
 	
 	calc def MassSum (partMasses : Real[0..*]) totalMass : Real {
@@ -64,8 +63,8 @@ package CalculationExample {
 	}
 	
 	calc ms: MassSum (
-		partMasses = {vehicle::eng::m, vehicle::trans::m})
-		totalMass = vehicle::m;
+		partMasses = (vehicle::eng.m, vehicle::trans.m))
+		totalMass = vehicle.m;
 		
 	calc def MassSum1 {
 		in partMasses : Real[0..*];
@@ -73,9 +72,11 @@ package CalculationExample {
 	}
 	
 	calc ms1: MassSum {
-		in partMasses = {vehicle::eng::m, vehicle::trans::m};
-		return totalMass = vehicle::m;
+		in partMasses = (vehicle.eng.m, vehicle.trans.m);
+		return totalMass = vehicle.m;
 	}
-
-	calc c;
+	
+	part vehicles[*] = (vehicle, vehicle);
+	attribute masses1[*] = (vehicles as VehiclePart).m;
+	attribute masses2[*] = (vehicles as vehicle).m;
 }

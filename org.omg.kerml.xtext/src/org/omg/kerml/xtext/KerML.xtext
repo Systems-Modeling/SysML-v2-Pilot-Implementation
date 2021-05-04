@@ -450,7 +450,12 @@ OwnedConjugation returns SysML::Conjugation :
 /* Feature Membership */
 
 FeatureMember returns SysML::FeatureMembership :
-	TypeMemberPrefix FeatureMemberFlags 
+	TypeMemberPrefix ( direction = FeatureDirection )? 
+	UndirectedFeaturePart
+;
+
+fragment UndirectedFeaturePart returns SysML::FeatureMembership :
+	FeatureMemberFlags
 	( ownedRelatedElement += FeatureElement // ownedMemberFeature = FeatureElement
 	| 'feature'? ( memberName = Name )? 'is' memberFeature = [SysML::Feature|QualifiedName] ';'
 	)
@@ -460,8 +465,7 @@ EndFeatureMember returns SysML::EndFeatureMembership :
 	TypeMemberPrefix 'end' FeatureMemberFlags ownedRelatedElement += FeatureElement // ownedMemberFeature = FeatureElement
 ;
 
-fragment FeatureMemberFlags returns SysML::FeatureMembership :
-	( direction = FeatureDirection )? 
+fragment FeatureMemberFlags returns SysML::FeatureMembership :	
 	( isComposite ?= 'composite' | isPortion ?= 'portion' )? 
 	( isPort ?= 'port' )?
 ;
@@ -760,7 +764,7 @@ fragment SuccessionDeclaration returns SysML::Succession :
 
 Behavior returns SysML::Behavior :
 	( isAbstract ?= 'abstract')? 'behavior' 
-	BehaviorDeclaration TypeBody
+	BehaviorDeclaration BehaviorBody
 ;
 
 fragment BehaviorDeclaration returns SysML::Behavior :
@@ -799,11 +803,30 @@ fragment ParameterSpecialization returns SysML::Feature :
 	TypedBy | Subsets | Redefines
 ;
 
+fragment BehaviorBody returns SysML::Type :
+	';' | 
+	'{' ( ownedRelationship += OwnedDocumentation
+		| ownedRelationship += NonFeatureTypeMember 
+		| ownedRelationship += UndirectedFeatureMember 
+		| ownedRelationship += DirectedFeatureMember 
+		| ownedRelationship += EndFeatureMember 
+		| ownedRelationship += Import
+	)* '}'
+;
+
+UndirectedFeatureMember returns SysML::FeatureMembership :
+	TypeMemberPrefix UndirectedFeaturePart
+;
+
+DirectedFeatureMember returns SysML::ParameterMembership :
+	TypeMemberPrefix direction = FeatureDirection UndirectedFeaturePart
+;
+
 /* Steps */
 
 Step returns SysML::Step :
 	( isAbstract ?= 'abstract' )? 'step' 
-	StepDeclaration TypeBody
+	StepDeclaration BehaviorBody
 ;
 
 fragment StepDeclaration returns SysML::Step :
@@ -865,7 +888,9 @@ fragment FunctionBody returns SysML::Type :
 	  ';'
 	| '{' ( ownedRelationship += OwnedDocumentation
 		  | ownedRelationship += NonFeatureTypeMember 
-		  | ownedRelationship += FeatureTypeMember
+		  | ownedRelationship += UndirectedFeatureMember 
+		  | ownedRelationship += DirectedFeatureMember 
+		  | ownedRelationship += EndFeatureMember 
 		  | ownedRelationship += Import
 		  )* 
 		  ( ownedRelationship += ResultExpressionMember )? 
@@ -932,18 +957,18 @@ TrueLiteralExpression returns SysML::LiteralBoolean :
 
 Interaction returns SysML::Interaction :
 	( isAbstract ?= 'abstract' )? 'interaction' 
-	BehaviorDeclaration TypeBody
+	BehaviorDeclaration BehaviorBody
 ;
 
 /* Item Flows */
 
 ItemFlow returns SysML::ItemFlow :
 	( isAbstract ?= 'abstract' )? 'stream' 
-	ItemFlowDeclaration TypeBody
+	ItemFlowDeclaration BehaviorBody
 ;
 
 SuccessionItemFlow returns SysML::SuccessionItemFlow :
-	( isAbstract ?= 'abstract' )? 'flow' ItemFlowDeclaration TypeBody
+	( isAbstract ?= 'abstract' )? 'flow' ItemFlowDeclaration BehaviorBody
 ;
 
 fragment ItemFlowDeclaration returns SysML::ItemFlow :

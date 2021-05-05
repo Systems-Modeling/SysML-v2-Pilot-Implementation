@@ -45,7 +45,7 @@ import org.eclipse.emf.common.util.EList;
  * type = typing.type
  * isEnd = owningFeatureMembership <> null and owningFeatureMembership.oclIsKindOf(EndFeatureMembership)
  * multiplicity <> null implies multiplicity.featuringType = featuringType 
- * allSupertypes()->includes(Kernel Library::things)
+ * allSupertypes()->includes(KernelLibrary::things)
  * <!-- end-model-doc -->
  *
  * <p>
@@ -506,5 +506,41 @@ public interface Feature extends Type {
 	 * @generated
 	 */
 	boolean isFeaturedWithin(Type type);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>By default, the naming feature of a Feature is given by its first <code>redefinedFeature</code>, if any.</p>
+	 * <!-- end-model-doc -->
+	 * @model ordered="false"
+	 *        annotation="http://www.eclipse.org/uml2/1.1.0/GenModel body='firstRedefinedFeature()'"
+	 * @generated
+	 */
+	Feature namingFeature();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Return the first Feature that is redefined by this Feature, if any.</p>
+	 * <!-- end-model-doc -->
+	 * @model ordered="false"
+	 *        annotation="http://www.eclipse.org/uml2/1.1.0/GenModel body='let redefinitions : Sequence(Redefinition) = ownedRedefinition in\nif redefinitions-&gt;isEmpty() then\n    null\nelse\n    redefinitions-&gt;at(1).redefinedFeature\nendif'"
+	 * @generated
+	 */
+	Feature firstRedefinedFeature();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Get the first Feature that is subsetted by this Feature but <emph>not</emph> redefined, if any.</p>
+	 * <!-- end-model-doc -->
+	 * @model ordered="false"
+	 *        annotation="http://www.eclipse.org/uml2/1.1.0/GenModel body='let subsettings : Sequence(Subsetting) = \n    ownedSubsetting-&gt;reject(oclIsKindOf(Redefinition)) in\nif subsettings-&gt;isEmpty() then\n    null\nelse\n    subsettings-&gt;at(1).subsettedFeature\nendif'"
+	 * @generated
+	 */
+	Feature firstSubsettedFeature();
 
 } // Feature

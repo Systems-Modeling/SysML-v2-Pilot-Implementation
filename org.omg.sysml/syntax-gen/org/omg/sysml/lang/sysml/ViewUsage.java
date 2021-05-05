@@ -42,7 +42,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.omg.sysml.lang.sysml.ViewUsage#getViewDefinition <em>View Definition</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.ViewUsage#getSatisfiedViewpoint <em>Satisfied Viewpoint</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.ViewUsage#getExposedNamespace <em>Exposed Namespace</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.ViewUsage#getRendering <em>Rendering</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.ViewUsage#getViewRendering <em>View Rendering</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.ViewUsage#getViewCondition <em>View Condition</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.ViewUsage#getViewedElement <em>Viewed Element</em>}</li>
  * </ul>
@@ -125,7 +125,7 @@ public interface ViewUsage extends PartUsage {
 	EList<Namespace> getExposedNamespace();
 
 	/**
-	 * Returns the value of the '<em><b>Rendering</b></em>' reference.
+	 * Returns the value of the '<em><b>View Rendering</b></em>' reference.
 	 * <p>
 	 * This feature subsets the following features:
 	 * </p>
@@ -135,27 +135,27 @@ public interface ViewUsage extends PartUsage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The RenderingUsage to be used to render the view specified by this ViewUsage.<p>
+	 * <p>The RenderingUsage to be used to render views defined by this ViewUsage. Derived as the <code>referencedRendering</code> of the ViewRenderingMembership of the ViewUsage. A ViewUsage may have at most one.<p>
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Rendering</em>' reference.
-	 * @see #setRendering(RenderingUsage)
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getViewUsage_Rendering()
+	 * @return the value of the '<em>View Rendering</em>' reference.
+	 * @see #setViewRendering(RenderingUsage)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getViewUsage_ViewRendering()
 	 * @model transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='renderingOwningView'"
 	 *        annotation="subsets"
 	 * @generated
 	 */
-	RenderingUsage getRendering();
+	RenderingUsage getViewRendering();
 
 	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.ViewUsage#getRendering <em>Rendering</em>}' reference.
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.ViewUsage#getViewRendering <em>View Rendering</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Rendering</em>' reference.
-	 * @see #getRendering()
+	 * @param value the new value of the '<em>View Rendering</em>' reference.
+	 * @see #getViewRendering()
 	 * @generated
 	 */
-	void setRendering(RenderingUsage value);
+	void setViewRendering(RenderingUsage value);
 
 	/**
 	 * Returns the value of the '<em><b>View Condition</b></em>' reference list.

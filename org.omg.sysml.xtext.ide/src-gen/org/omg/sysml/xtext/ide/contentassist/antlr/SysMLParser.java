@@ -978,7 +978,6 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getQueryPathExpressionAccess().getOwnedRelationshipAssignment_1_2(), "rule__QueryPathExpression__OwnedRelationshipAssignment_1_2");
 			builder.put(grammarAccess.getQueryPathExpressionAccess().getOperandAssignment_2_2(), "rule__QueryPathExpression__OperandAssignment_2_2");
 			builder.put(grammarAccess.getQueryPathExpressionAccess().getOwnedRelationshipAssignment_2_3_2(), "rule__QueryPathExpression__OwnedRelationshipAssignment_2_3_2");
-			builder.put(grammarAccess.getQueryNameExpressionAccess().getOwnedRelationshipAssignment(), "rule__QueryNameExpression__OwnedRelationshipAssignment");
 			builder.put(grammarAccess.getQueryHeadExpressionAccess().getOwnedRelationshipAssignment_1(), "rule__QueryHeadExpression__OwnedRelationshipAssignment_1");
 			builder.put(grammarAccess.getOwnedExpressionMemberAccess().getOwnedRelatedElementAssignment(), "rule__OwnedExpressionMember__OwnedRelatedElementAssignment");
 			builder.put(grammarAccess.getConditionalExpressionAccess().getOperatorAssignment_1_1(), "rule__ConditionalExpression__OperatorAssignment_1_1");

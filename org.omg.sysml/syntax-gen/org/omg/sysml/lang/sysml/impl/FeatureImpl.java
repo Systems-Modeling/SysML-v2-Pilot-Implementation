@@ -508,29 +508,6 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public FeatureDirectionKind directionFor(Type type) {
-		return type.directionOf(this);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public boolean isFeaturedWithin(Type type) {
-		List<Type> featuringTypes = getFeaturingType();
-		return featuringTypes.isEmpty() ||
-			   type != null && featuringTypes.contains(type) ||
-			   featuringTypes.stream().anyMatch(featuringType->
-					   featuringType instanceof Feature &&
-					   ((Feature)featuringType).isFeaturedWithin(type));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -565,6 +542,88 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 * @ordered
 	 */
 	protected static final int[] OWNED_TYPE_FEATURING_ESUPERSETS = new int[] {SysMLPackage.FEATURE__OWNED_RELATIONSHIP};
+	
+	// Operations
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public FeatureDirectionKind directionFor(Type type) {
+		return type.directionOf(this);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean isFeaturedWithin(Type type) {
+		List<Type> featuringTypes = getFeaturingType();
+		return featuringTypes.isEmpty() ||
+			   type != null && featuringTypes.contains(type) ||
+			   featuringTypes.stream().anyMatch(featuringType->
+					   featuringType instanceof Feature &&
+					   ((Feature)featuringType).isFeaturedWithin(type));
+	}
+
+	protected String effectiveName = null;
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public String effectiveName() {
+		return effectiveName(new HashSet<Feature>());
+	}
+	
+	public String effectiveName(Set<Feature> visited) {
+		String name = super.effectiveName();
+		if (name == null) {
+			if (effectiveName == null) {
+				visited.add(this);
+				Feature namingFeature = namingFeature();
+				if (namingFeature != null && !visited.contains(namingFeature)) {
+					effectiveName = ((FeatureImpl)namingFeature).effectiveName(visited);
+				}
+			}
+			name = effectiveName;
+		}
+		return name;
+	}
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public Feature namingFeature() {
+		return firstRedefinedFeature();
+	}
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public Feature firstSubsettedFeature() {
+		return FeatureUtil.getSubsettedNotRedefinedFeaturesOf(this).stream().
+				findFirst().orElse(null);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public Feature firstRedefinedFeature() {
+		return FeatureUtil.getRedefinedFeaturesWithComputedOf(this, null).stream().
+				findFirst().orElse(null);
+	}
+
 	/**
 	 * The cached OCL expression body for the '{@link #directionFor(org.omg.sysml.lang.sysml.Type) <em>Direction For</em>}' operation.
 	 * <!-- begin-user-doc -->
@@ -605,36 +664,72 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 * @ordered
 	 */
 	protected static OCLExpression<EClassifier> IS_FEATURED_WITHIN__TYPE__EOCL_QRY;
+	/**
+	 * The cached OCL expression body for the '{@link #namingFeature() <em>Naming Feature</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #namingFeature()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String NAMING_FEATURE__EOCL_EXP = "firstRedefinedFeature()";
+	/**
+	 * The cached OCL query for the '{@link #namingFeature() <em>Naming Feature</em>}' query operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #namingFeature()
+	 * @generated
+	 * @ordered
+	 */
+	protected static OCLExpression<EClassifier> NAMING_FEATURE__EOCL_QRY;
+	/**
+	 * The cached OCL expression body for the '{@link #firstRedefinedFeature() <em>First Redefined Feature</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #firstRedefinedFeature()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String FIRST_REDEFINED_FEATURE__EOCL_EXP = "let redefinitions : Sequence(Redefinition) = ownedRedefinition in"+
+"if redefinitions->isEmpty() then"+
+"    null"+
+"else"+
+"    redefinitions->at(1).redefinedFeature"+
+"endif";
+	/**
+	 * The cached OCL query for the '{@link #firstRedefinedFeature() <em>First Redefined Feature</em>}' query operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #firstRedefinedFeature()
+	 * @generated
+	 * @ordered
+	 */
+	protected static OCLExpression<EClassifier> FIRST_REDEFINED_FEATURE__EOCL_QRY;
+	/**
+	 * The cached OCL expression body for the '{@link #firstSubsettedFeature() <em>First Subsetted Feature</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #firstSubsettedFeature()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String FIRST_SUBSETTED_FEATURE__EOCL_EXP = "let subsettings : Sequence(Subsetting) = "+
+"    ownedSubsetting->reject(oclIsKindOf(Redefinition)) in"+
+"if subsettings->isEmpty() then"+
+"    null"+
+"else"+
+"    subsettings->at(1).subsettedFeature"+
+"endif";
+	/**
+	 * The cached OCL query for the '{@link #firstSubsettedFeature() <em>First Subsetted Feature</em>}' query operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #firstSubsettedFeature()
+	 * @generated
+	 * @ordered
+	 */
+	protected static OCLExpression<EClassifier> FIRST_SUBSETTED_FEATURE__EOCL_QRY;
 
-	// Additional derivations and overrides
-	
-	protected String effectiveName = null;
-	
-	public String getEffectiveName() {
-		return getEffectiveName(new HashSet<Feature>());
-	}
-	
-	public String getEffectiveName(Set<Feature> visited) {
-		String name = getName();
-		if (name == null) {
-			if (effectiveName == null) {
-				visited.add(this);
-				Feature namingFeature = getNamingFeature();
-				if (namingFeature != null && !visited.contains(namingFeature)) {
-					effectiveName = ((FeatureImpl)namingFeature).getEffectiveName(visited);
-				}
-			}
-			name = effectiveName;
-		}
-		return name;
-	}
-	
-	protected Feature getNamingFeature() {
-		List<Feature> redefinedFeatures = FeatureUtil.getRedefinedFeaturesWithComputedOf(this, null);
-		return redefinedFeatures.isEmpty()? null:
-			redefinedFeatures.get(0);
-	}
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -876,6 +971,12 @@ public class FeatureImpl extends TypeImpl implements Feature {
 				return directionFor((Type)arguments.get(0));
 			case SysMLPackage.FEATURE___IS_FEATURED_WITHIN__TYPE:
 				return isFeaturedWithin((Type)arguments.get(0));
+			case SysMLPackage.FEATURE___NAMING_FEATURE:
+				return namingFeature();
+			case SysMLPackage.FEATURE___FIRST_REDEFINED_FEATURE:
+				return firstRedefinedFeature();
+			case SysMLPackage.FEATURE___FIRST_SUBSETTED_FEATURE:
+				return firstSubsettedFeature();
 		}
 		return super.eInvoke(operationID, arguments);
 	}

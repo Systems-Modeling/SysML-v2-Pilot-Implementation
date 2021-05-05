@@ -32,6 +32,6 @@ package P {
 	part def A;
 	part def C;
 	part f : C;
-	part a : C = ./f;
+	part a : C = f;
 }
 

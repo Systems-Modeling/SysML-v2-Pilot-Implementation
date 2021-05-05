@@ -47,11 +47,13 @@ import org.omg.sysml.lang.sysml.ItemUsage;
 import org.omg.sysml.lang.sysml.PartUsage;
 import org.omg.sysml.lang.sysml.CalculationUsage;
 import org.omg.sysml.lang.sysml.CaseUsage;
+import org.omg.sysml.lang.sysml.ConcernUsage;
 import org.omg.sysml.lang.sysml.ConnectionUsage;
 import org.omg.sysml.lang.sysml.PortUsage;
 import org.omg.sysml.lang.sysml.ReferenceUsage;
 import org.omg.sysml.lang.sysml.RenderingUsage;
 import org.omg.sysml.lang.sysml.RequirementUsage;
+import org.omg.sysml.lang.sysml.StakeholderUsage;
 import org.omg.sysml.lang.sysml.StateUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.TransitionUsage;
@@ -61,7 +63,6 @@ import org.omg.sysml.lang.sysml.VariantMembership;
 import org.omg.sysml.lang.sysml.VerificationCaseUsage;
 import org.omg.sysml.lang.sysml.ViewUsage;
 import org.omg.sysml.lang.sysml.ViewpointUsage;
-import org.omg.sysml.util.FeatureUtil;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
 import org.omg.sysml.util.UsageUtil;
 
@@ -103,6 +104,8 @@ import org.omg.sysml.util.UsageUtil;
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedVerificationCase <em>Nested Verification Case</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedEnumeration <em>Nested Enumeration</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedAllocation <em>Nested Allocation</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedConcern <em>Nested Concern</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedStakeholder <em>Nested Stakeholder</em>}</li>
  * </ul>
  *
  * @generated
@@ -497,6 +500,26 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 	 * @generated NOT
 	 */
 	@Override
+	public EList<ConcernUsage> getNestedConcern() {
+		return new DerivedEObjectEList<>(ConcernUsage.class, this, SysMLPackage.USAGE__NESTED_CONCERN, new int[] {SysMLPackage.TYPE__OWNED_FEATURE});
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public EList<StakeholderUsage> getNestedStakeholder() {
+		return new DerivedEObjectEList<>(StakeholderUsage.class, this, SysMLPackage.USAGE__NESTED_STAKEHOLDER, new int[] {SysMLPackage.TYPE__OWNED_FEATURE});
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
 	public EList<ActionUsage> getNestedAction() {
 		return new DerivedEObjectEList<>(ActionUsage.class, this, SysMLPackage.USAGE__NESTED_ACTION, new int[] {SysMLPackage.TYPE__OWNED_FEATURE});
 	}
@@ -519,13 +542,19 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 	}
 
 	@Override
-	protected Feature getNamingFeature() {
-		return getVariantSubsettedFeature().orElseGet(super::getNamingFeature);
+	public Feature namingFeature() {
+		return getVariantSubsettedFeature().orElseGet(super::namingFeature);
 	}
 	
 	protected Optional<Feature> getVariantSubsettedFeature() {
-		return UsageUtil.getOwningVariantMembershipFor(this) == null? Optional.empty():
-			FeatureUtil.getFirstSubsettedFeatureOf(this).filter(f->f != UsageUtil.getOwningVariationUsageFor(this));
+		if (UsageUtil.getOwningVariantMembershipFor(this) != null) {
+			Feature subsettedFeature = firstSubsettedFeature();
+			if (subsettedFeature != null && 
+					subsettedFeature != UsageUtil.getOwningVariationUsageFor(this)) {
+				return Optional.of(subsettedFeature);
+			}
+		}
+		return Optional.empty();
 	}
 	
 	//
@@ -600,6 +629,10 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 				return getNestedEnumeration();
 			case SysMLPackage.USAGE__NESTED_ALLOCATION:
 				return getNestedAllocation();
+			case SysMLPackage.USAGE__NESTED_CONCERN:
+				return getNestedConcern();
+			case SysMLPackage.USAGE__NESTED_STAKEHOLDER:
+				return getNestedStakeholder();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -730,6 +763,14 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 				getNestedAllocation().clear();
 				getNestedAllocation().addAll((Collection<? extends AllocationUsage>)newValue);
 				return;
+			case SysMLPackage.USAGE__NESTED_CONCERN:
+				getNestedConcern().clear();
+				getNestedConcern().addAll((Collection<? extends ConcernUsage>)newValue);
+				return;
+			case SysMLPackage.USAGE__NESTED_STAKEHOLDER:
+				getNestedStakeholder().clear();
+				getNestedStakeholder().addAll((Collection<? extends StakeholderUsage>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -832,6 +873,12 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 			case SysMLPackage.USAGE__NESTED_ALLOCATION:
 				getNestedAllocation().clear();
 				return;
+			case SysMLPackage.USAGE__NESTED_CONCERN:
+				getNestedConcern().clear();
+				return;
+			case SysMLPackage.USAGE__NESTED_STAKEHOLDER:
+				getNestedStakeholder().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -904,6 +951,10 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 				return !getNestedEnumeration().isEmpty();
 			case SysMLPackage.USAGE__NESTED_ALLOCATION:
 				return !getNestedAllocation().isEmpty();
+			case SysMLPackage.USAGE__NESTED_CONCERN:
+				return !getNestedConcern().isEmpty();
+			case SysMLPackage.USAGE__NESTED_STAKEHOLDER:
+				return !getNestedStakeholder().isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

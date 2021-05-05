@@ -69,7 +69,8 @@ public class InvocationExpressionImpl extends ExpressionImpl implements Invocati
 	}
 	
 	public boolean functionIsModelLevelEvaluable() {
-		return getFunctionImpl() != null;
+		Function function = getFunction();
+		return function != null && function.isModelLevelEvaluable();
 	}
 	
 	public boolean argumentsAreModelLevelEvaluable() {
@@ -83,11 +84,11 @@ public class InvocationExpressionImpl extends ExpressionImpl implements Invocati
 	
 	@Override
 	public EList<Element> evaluate(Element target) {
-		ModelLevelFunction function = getFunctionImpl();
+		ModelLevelFunction function = getModelLevelFunctionImpl();
 		return function == null? null: function.invoke(this, target);
 	}
 	
-	protected ModelLevelFunction getFunctionImpl() {
+	protected ModelLevelFunction getModelLevelFunctionImpl() {
 		return ModelLevelFunction.getFunctionImpl(getFunction());
 	}
 

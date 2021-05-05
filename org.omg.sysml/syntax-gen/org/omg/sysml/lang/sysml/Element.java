@@ -47,6 +47,7 @@ import org.eclipse.emf.ecore.EObject;
  * documentation = ownedAnnotation->selectByKind(Documentation)
  * ownedAnnotation = ownedRelationship->selectByKind(Annotation)->
  *     select(a | a.annotatedElement = self)
+ * effectiveName()
  * <!-- end-model-doc -->
  *
  * <p>
@@ -54,11 +55,11 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwningMembership <em>Owning Membership</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwningNamespace <em>Owning Namespace</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwnedRelationship <em>Owned Relationship</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwningRelationship <em>Owning Relationship</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwningNamespace <em>Owning Namespace</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getIdentifier <em>Identifier</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getName <em>Name</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwnedRelationship <em>Owned Relationship</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwner <em>Owner</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwnedElement <em>Owned Element</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getDocumentation <em>Documentation</em>}</li>
@@ -66,6 +67,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getDocumentationComment <em>Documentation Comment</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwnedTextualRepresentation <em>Owned Textual Representation</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getQualifiedName <em>Qualified Name</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Element#getEffectiveName <em>Effective Name</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getAliasId <em>Alias Id</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getHumanId <em>Human Id</em>}</li>
  * </ul>
@@ -272,6 +274,31 @@ public interface Element extends EObject {
 	void setQualifiedName(String value);
 
 	/**
+	 * Returns the value of the '<em><b>Effective Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The effective name to be used for this Element during name resolution within its <code>owningNamespace</code>.</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Effective Name</em>' attribute.
+	 * @see #setEffectiveName(String)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getElement_EffectiveName()
+	 * @model dataType="org.omg.sysml.lang.types.String" transient="true" volatile="true" derived="true" ordered="false"
+	 * @generated
+	 */
+	String getEffectiveName();
+
+	/**
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Element#getEffectiveName <em>Effective Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Effective Name</em>' attribute.
+	 * @see #getEffectiveName()
+	 * @generated
+	 */
+	void setEffectiveName(String value);
+
+	/**
 	 * Returns the value of the '<em><b>Alias Id</b></em>' attribute list.
 	 * The list contents are of type {@link java.lang.String}.
 	 * <!-- begin-user-doc -->
@@ -361,11 +388,22 @@ public interface Element extends EObject {
 	 * <p>The globally unique identifier for this Element. This is intended to be set by tooling, and it must not change during the lifetime of the Element.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Identifier</em>' attribute.
+	 * @see #setIdentifier(String)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getElement_Identifier()
-	 * @model id="true" dataType="org.omg.sysml.lang.types.String" required="true" changeable="false" ordered="false"
+	 * @model id="true" dataType="org.omg.sysml.lang.types.String" required="true" ordered="false"
 	 * @generated
 	 */
 	String getIdentifier();
+
+	/**
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Element#getIdentifier <em>Identifier</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Identifier</em>' attribute.
+	 * @see #getIdentifier()
+	 * @generated
+	 */
+	void setIdentifier(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.
@@ -478,11 +516,23 @@ public interface Element extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Return either the <code>name</code> of this Element, if this has the form of a basic name (or is null), or, otherwise, its representation as a restricted name that according to the lexical structure of the KerML textual notation (i.e., with special characters escaped and surrounded by single quote characters).<p>
+	 * <p>Return either the <code>name</code> of this Element, if this has the form of a basic name (or is null), or, otherwise, its representation as a restricted name according to the lexical structure of the KerML textual notation (i.e., with special characters escaped and surrounded by single quote characters).<p>
 	 * <!-- end-model-doc -->
-	 * @model dataType="org.omg.sysml.lang.types.String" required="true" ordered="false"
+	 * @model dataType="org.omg.sysml.lang.types.String" ordered="false"
 	 * @generated
 	 */
 	String escapedName();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Return the effective name for this Element. By default this is the same as its <code>name</code>, but, for certain kinds of Elements, this may be overridden if the Element <code>name</code> is empty (e.g., for redefining Features).</p>
+	 * <!-- end-model-doc -->
+	 * @model dataType="org.omg.sysml.lang.types.String" ordered="false"
+	 *        annotation="http://www.eclipse.org/uml2/1.1.0/GenModel body='name'"
+	 * @generated
+	 */
+	String effectiveName();
 	
 } // Element

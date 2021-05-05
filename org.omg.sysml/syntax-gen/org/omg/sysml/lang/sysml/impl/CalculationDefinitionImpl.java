@@ -48,12 +48,23 @@ import org.omg.sysml.util.TypeUtil;
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.CalculationDefinitionImpl#getExpression <em>Expression</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.CalculationDefinitionImpl#getResult <em>Result</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.CalculationDefinitionImpl#isModelLevelEvaluable <em>Is Model Level Evaluable</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.CalculationDefinitionImpl#getCalculation <em>Calculation</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class CalculationDefinitionImpl extends ActionDefinitionImpl implements CalculationDefinition {
+
+	/**
+	 * The default value of the '{@link #isModelLevelEvaluable() <em>Is Model Level Evaluable</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isModelLevelEvaluable()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean IS_MODEL_LEVEL_EVALUABLE_EDEFAULT = false;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -130,6 +141,26 @@ public class CalculationDefinitionImpl extends ActionDefinitionImpl implements C
 	 * @generated NOT
 	 */
 	@Override
+	public boolean isModelLevelEvaluable() {
+		return false;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public void setIsModelLevelEvaluable(boolean newIsModelLevelEvaluable) {
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
 	public EList<CalculationUsage> getCalculation() {
 		return new DerivedEObjectEList<CalculationUsage>(CalculationUsage.class, this, SysMLPackage.CALCULATION_DEFINITION__CALCULATION,
 				new int[] { SysMLPackage.TYPE__FEATURE });
@@ -169,6 +200,8 @@ public class CalculationDefinitionImpl extends ActionDefinitionImpl implements C
 			case SysMLPackage.CALCULATION_DEFINITION__RESULT:
 				if (resolve) return getResult();
 				return basicGetResult();
+			case SysMLPackage.CALCULATION_DEFINITION__IS_MODEL_LEVEL_EVALUABLE:
+				return isModelLevelEvaluable();
 			case SysMLPackage.CALCULATION_DEFINITION__CALCULATION:
 				return getCalculation();
 		}
@@ -190,6 +223,9 @@ public class CalculationDefinitionImpl extends ActionDefinitionImpl implements C
 				return;
 			case SysMLPackage.CALCULATION_DEFINITION__RESULT:
 				setResult((Feature)newValue);
+				return;
+			case SysMLPackage.CALCULATION_DEFINITION__IS_MODEL_LEVEL_EVALUABLE:
+				setIsModelLevelEvaluable((Boolean)newValue);
 				return;
 			case SysMLPackage.CALCULATION_DEFINITION__CALCULATION:
 				getCalculation().clear();
@@ -213,6 +249,9 @@ public class CalculationDefinitionImpl extends ActionDefinitionImpl implements C
 			case SysMLPackage.CALCULATION_DEFINITION__RESULT:
 				setResult((Feature)null);
 				return;
+			case SysMLPackage.CALCULATION_DEFINITION__IS_MODEL_LEVEL_EVALUABLE:
+				setIsModelLevelEvaluable(IS_MODEL_LEVEL_EVALUABLE_EDEFAULT);
+				return;
 			case SysMLPackage.CALCULATION_DEFINITION__CALCULATION:
 				getCalculation().clear();
 				return;
@@ -234,6 +273,8 @@ public class CalculationDefinitionImpl extends ActionDefinitionImpl implements C
 				return isSetExpression();
 			case SysMLPackage.CALCULATION_DEFINITION__RESULT:
 				return basicGetResult() != null;
+			case SysMLPackage.CALCULATION_DEFINITION__IS_MODEL_LEVEL_EVALUABLE:
+				return isModelLevelEvaluable() != IS_MODEL_LEVEL_EVALUABLE_EDEFAULT;
 			case SysMLPackage.CALCULATION_DEFINITION__CALCULATION:
 				return !getCalculation().isEmpty();
 		}
@@ -251,6 +292,7 @@ public class CalculationDefinitionImpl extends ActionDefinitionImpl implements C
 			switch (derivedFeatureID) {
 				case SysMLPackage.CALCULATION_DEFINITION__EXPRESSION: return SysMLPackage.FUNCTION__EXPRESSION;
 				case SysMLPackage.CALCULATION_DEFINITION__RESULT: return SysMLPackage.FUNCTION__RESULT;
+				case SysMLPackage.CALCULATION_DEFINITION__IS_MODEL_LEVEL_EVALUABLE: return SysMLPackage.FUNCTION__IS_MODEL_LEVEL_EVALUABLE;
 				default: return -1;
 			}
 		}
@@ -268,6 +310,7 @@ public class CalculationDefinitionImpl extends ActionDefinitionImpl implements C
 			switch (baseFeatureID) {
 				case SysMLPackage.FUNCTION__EXPRESSION: return SysMLPackage.CALCULATION_DEFINITION__EXPRESSION;
 				case SysMLPackage.FUNCTION__RESULT: return SysMLPackage.CALCULATION_DEFINITION__RESULT;
+				case SysMLPackage.FUNCTION__IS_MODEL_LEVEL_EVALUABLE: return SysMLPackage.CALCULATION_DEFINITION__IS_MODEL_LEVEL_EVALUABLE;
 				default: return -1;
 			}
 		}

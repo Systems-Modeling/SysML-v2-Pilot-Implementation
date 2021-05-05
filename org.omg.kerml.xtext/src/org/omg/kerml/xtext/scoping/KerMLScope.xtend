@@ -41,7 +41,6 @@ import org.eclipse.xtext.resource.IEObjectDescription
 import org.eclipse.emf.ecore.EClass
 import java.util.HashSet
 import org.omg.sysml.lang.sysml.Feature
-import org.omg.sysml.lang.sysml.impl.ElementImpl
 import org.omg.sysml.lang.sysml.Membership
 import org.omg.sysml.lang.sysml.impl.MembershipImpl
 import org.omg.sysml.lang.sysml.Namespace
@@ -184,7 +183,7 @@ class KerMLScope extends AbstractScope {
 						var memberElement = r.ownedMemberElement
 						var elementName = 
 							if (r.memberName !== null || (isFirstScope && ns == this.ns && memberElement === element)) r.memberName 
-							else (memberElement as ElementImpl)?.effectiveName
+							else memberElement?.getEffectiveName
 						if (elementName !== null) {
 							val elementqn = qn.append(elementName)
 							if ((isInsideScope || r.visibility == VisibilityKind.PUBLIC || 

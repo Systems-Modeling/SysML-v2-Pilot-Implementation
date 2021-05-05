@@ -29,10 +29,13 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.uml2.common.util.UnionEObjectEList;
+import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.PartDefinition;
 import org.omg.sysml.lang.sysml.RenderingDefinition;
 import org.omg.sysml.lang.sysml.RenderingUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.lang.sysml.ViewRenderingMembership;
 
 /**
  * <!-- begin-user-doc -->
@@ -108,6 +111,18 @@ public class RenderingUsageImpl extends PartUsageImpl implements RenderingUsage 
 	public boolean isSetRenderingDefinition() {
 		return basicGetRenderingDefinition() != null;
 	}
+	
+	// Additional overrides
+	
+	@Override
+	public Feature namingFeature() {
+		FeatureMembership membership = getOwningFeatureMembership();
+		return membership instanceof ViewRenderingMembership?
+				((ViewRenderingMembership)membership).getReferencedRendering():
+				super.namingFeature();
+	}
+	
+	//
 
 	/**
 	 * <!-- begin-user-doc -->

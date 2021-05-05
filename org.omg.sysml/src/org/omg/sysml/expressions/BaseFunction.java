@@ -18,23 +18,14 @@
  * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
  *  
  *******************************************************************************/
+
 package org.omg.sysml.expressions;
 
-import org.eclipse.emf.common.util.EList;
-import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.lang.sysml.InvocationExpression;
-
-public class SizeFunction extends SequenceFunction {
+public abstract class BaseFunction extends ModelLevelFunction {
 
 	@Override
-	public String getOperatorName() {
-		return "size";
-	}
-
-	@Override
-	public EList<Element> invoke(InvocationExpression invocation, Element target) {
-		EList<Element> list = evaluateArgument(invocation, 0, target);
-		return list == null? null: integerResult(list.size());
+	public String getPackageName() {
+		return "BaseFunctions";
 	}
 
 }

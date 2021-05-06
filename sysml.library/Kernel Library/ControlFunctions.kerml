@@ -66,12 +66,12 @@ package ControlFunctions {
 	
 	function minimize(collection: ScalarValue[1..*]): ScalarValue {
 		composite abstract expr fn[0..*] (argument: ScalarValue[1]): ScalarValue[1];
-		collection->collect {in x; fn(x)}->reduce {Min}
+		collection->collect {in x; fn(x)}->reduce Min
 	}
 	
 	function maximize(collection: ScalarValue[1..*]): ScalarValue {
 		composite abstract expr fn[0..*] (argument: ScalarValue[1]): ScalarValue[1];
-		collection->collect {in x; fn(x)}->reduce {Max}
+		collection->collect {in x; fn(x)}->reduce Max
 	}
 	
 }

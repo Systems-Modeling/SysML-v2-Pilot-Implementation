@@ -18526,8 +18526,9 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	///* Primary Expressions */ PrimaryExpression SysML::Expression:
 	//	BaseExpression ({SysML::OperatorExpression.operand+=current} operator='[' operand+=SequenceExpression ']'
 	//	| {SysML::OperatorExpression.operand+=current} '->'
-	//	ownedRelationship+=super::OwnedFeatureTyping (ownedRelationship+=ExpressionBodyMember | ArgumentList) |
-	//	{SysML::PathStepExpression.operand+=current} '.'
+	//	ownedRelationship+=super::OwnedFeatureTyping (ownedRelationship+=ExpressionBodyMember
+	//	| ownedRelationship+=FunctionReferenceMember
+	//	| ArgumentList) | {SysML::PathStepExpression.operand+=current} '.'
 	//	operand+=FeatureReferenceExpression
 	//	| {SysML::PathSelectExpression.operand+=current} '.'
 	//	ownedRelationship+=ExpressionBodyMember)*;
@@ -18548,6 +18549,27 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	
 	public ParserRule getExpressionBodyMemberRule() {
 		return getExpressionBodyMemberAccess().getRule();
+	}
+	
+	//FunctionReferenceMember SysML::FeatureMembership:
+	//	ownedRelatedElement+=FunctionReference // ownedMemberFeature = FunctionReference
+	//;
+	public KerMLExpressionsGrammarAccess.FunctionReferenceMemberElements getFunctionReferenceMemberAccess() {
+		return gaKerMLExpressions.getFunctionReferenceMemberAccess();
+	}
+	
+	public ParserRule getFunctionReferenceMemberRule() {
+		return getFunctionReferenceMemberAccess().getRule();
+	}
+	
+	//FunctionReference SysML::Expression:
+	//	ownedRelationship+=super::OwnedFeatureTyping;
+	public KerMLExpressionsGrammarAccess.FunctionReferenceElements getFunctionReferenceAccess() {
+		return gaKerMLExpressions.getFunctionReferenceAccess();
+	}
+	
+	public ParserRule getFunctionReferenceRule() {
+		return getFunctionReferenceAccess().getRule();
 	}
 	
 	///* Base Expressions */ BaseExpression SysML::Expression:

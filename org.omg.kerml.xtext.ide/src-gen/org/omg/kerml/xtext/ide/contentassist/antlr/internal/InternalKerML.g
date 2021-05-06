@@ -4722,6 +4722,56 @@ finally {
 	restoreStackSize(stackSize);
 }
 
+// Entry rule entryRuleFunctionReferenceMember
+entryRuleFunctionReferenceMember
+:
+{ before(grammarAccess.getFunctionReferenceMemberRule()); }
+	 ruleFunctionReferenceMember
+{ after(grammarAccess.getFunctionReferenceMemberRule()); } 
+	 EOF 
+;
+
+// Rule FunctionReferenceMember
+ruleFunctionReferenceMember 
+	@init {
+		int stackSize = keepStackSize();
+	}
+	:
+	(
+		{ before(grammarAccess.getFunctionReferenceMemberAccess().getOwnedRelatedElementAssignment()); }
+		(rule__FunctionReferenceMember__OwnedRelatedElementAssignment)
+		{ after(grammarAccess.getFunctionReferenceMemberAccess().getOwnedRelatedElementAssignment()); }
+	)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+// Entry rule entryRuleFunctionReference
+entryRuleFunctionReference
+:
+{ before(grammarAccess.getFunctionReferenceRule()); }
+	 ruleFunctionReference
+{ after(grammarAccess.getFunctionReferenceRule()); } 
+	 EOF 
+;
+
+// Rule FunctionReference
+ruleFunctionReference 
+	@init {
+		int stackSize = keepStackSize();
+	}
+	:
+	(
+		{ before(grammarAccess.getFunctionReferenceAccess().getOwnedRelationshipAssignment()); }
+		(rule__FunctionReference__OwnedRelationshipAssignment)
+		{ after(grammarAccess.getFunctionReferenceAccess().getOwnedRelationshipAssignment()); }
+	)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
 // Entry rule entryRuleBaseExpression
 entryRuleBaseExpression
 :
@@ -7458,9 +7508,15 @@ rule__PrimaryExpression__Alternatives_1_1_3
 	)
 	|
 	(
-		{ before(grammarAccess.getPrimaryExpressionAccess().getArgumentListParserRuleCall_1_1_3_1()); }
+		{ before(grammarAccess.getPrimaryExpressionAccess().getOwnedRelationshipAssignment_1_1_3_1()); }
+		(rule__PrimaryExpression__OwnedRelationshipAssignment_1_1_3_1)
+		{ after(grammarAccess.getPrimaryExpressionAccess().getOwnedRelationshipAssignment_1_1_3_1()); }
+	)
+	|
+	(
+		{ before(grammarAccess.getPrimaryExpressionAccess().getArgumentListParserRuleCall_1_1_3_2()); }
 		ruleArgumentList
-		{ after(grammarAccess.getPrimaryExpressionAccess().getArgumentListParserRuleCall_1_1_3_1()); }
+		{ after(grammarAccess.getPrimaryExpressionAccess().getArgumentListParserRuleCall_1_1_3_2()); }
 	)
 ;
 finally {
@@ -30294,6 +30350,21 @@ finally {
 	restoreStackSize(stackSize);
 }
 
+rule__PrimaryExpression__OwnedRelationshipAssignment_1_1_3_1
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	(
+		{ before(grammarAccess.getPrimaryExpressionAccess().getOwnedRelationshipFunctionReferenceMemberParserRuleCall_1_1_3_1_0()); }
+		ruleFunctionReferenceMember
+		{ after(grammarAccess.getPrimaryExpressionAccess().getOwnedRelationshipFunctionReferenceMemberParserRuleCall_1_1_3_1_0()); }
+	)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
 rule__PrimaryExpression__OperandAssignment_1_2_2
 	@init {
 		int stackSize = keepStackSize();
@@ -30333,6 +30404,36 @@ rule__ExpressionBodyMember__OwnedRelatedElementAssignment
 		{ before(grammarAccess.getExpressionBodyMemberAccess().getOwnedRelatedElementExpressionBodyParserRuleCall_0()); }
 		ruleExpressionBody
 		{ after(grammarAccess.getExpressionBodyMemberAccess().getOwnedRelatedElementExpressionBodyParserRuleCall_0()); }
+	)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__FunctionReferenceMember__OwnedRelatedElementAssignment
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	(
+		{ before(grammarAccess.getFunctionReferenceMemberAccess().getOwnedRelatedElementFunctionReferenceParserRuleCall_0()); }
+		ruleFunctionReference
+		{ after(grammarAccess.getFunctionReferenceMemberAccess().getOwnedRelatedElementFunctionReferenceParserRuleCall_0()); }
+	)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__FunctionReference__OwnedRelationshipAssignment
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	(
+		{ before(grammarAccess.getFunctionReferenceAccess().getOwnedRelationshipOwnedFeatureTypingParserRuleCall_0()); }
+		ruleOwnedFeatureTyping
+		{ after(grammarAccess.getFunctionReferenceAccess().getOwnedRelationshipOwnedFeatureTypingParserRuleCall_0()); }
 	)
 ;
 finally {

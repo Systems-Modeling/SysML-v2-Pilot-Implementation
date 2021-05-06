@@ -33,10 +33,10 @@ package ScalarFunctions {
 	abstract function product specializes DataFunctions::product (collection: ScalarValue[0..*]): ScalarValue;
 	
 	function sum0 specializes DataFunctions::sum0 (collection: ScalarValue[0..*], zero: ScalarValue): ScalarValue {
-		collection->reduce {'+'} ?? zero
+		collection->reduce '+' ?? zero
 	}
 	
 	function product1 specializes DataFunctions::product1 (collection: ScalarValue[0..*], one: ScalarValue): ScalarValue {
-		collection->reduce {'*'} ?? one
+		collection->reduce '*' ?? one
 	}
 }

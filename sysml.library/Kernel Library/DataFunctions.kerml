@@ -34,10 +34,10 @@ package DataFunctions {
 	abstract function product(collection: DataValue[0..*]): DataValue;
 	
 	function sum0(collection: DataValue[0..*], zero: DataValue): DataValue {
-		collection->reduce {'+'} ?? zero
+		collection->reduce '+' ?? zero
 	}
 	
 	function product1(collection: DataValue[0..*], one: DataValue): DataValue {
-		collection->reduce {'*'} ?? one
+		collection->reduce '*' ?? one
 	}
 }

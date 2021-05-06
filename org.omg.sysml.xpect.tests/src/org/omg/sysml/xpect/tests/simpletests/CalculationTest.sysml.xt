@@ -53,7 +53,9 @@ package CalculationExample {
 		attribute m : Real;
 	}
 	
-	part vehicle : VehiclePart {		
+	part def Vehicle :> VehiclePart;
+	
+	part vehicle : Vehicle {		
 		part eng : VehiclePart;		
 		part trans : VehiclePart;
 	}

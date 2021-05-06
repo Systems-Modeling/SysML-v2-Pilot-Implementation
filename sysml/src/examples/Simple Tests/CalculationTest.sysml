@@ -6,7 +6,9 @@ package CalculationExample {
 		attribute m : MassValue;
 	}
 	
-	part vehicle : VehiclePart {		
+	part def Vehicle :> VehiclePart;
+	
+	part vehicle : Vehicle {		
 		part eng : VehiclePart;		
 		part trans : VehiclePart;
 	}

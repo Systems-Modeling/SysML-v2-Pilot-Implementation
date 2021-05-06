@@ -16,8 +16,8 @@ package '15_05-Unification of Expression and Constraint Definition' {
 	}
 	
 	part def Vehicle_2 {
-		attribute mass : MassValue[1] = 1200@[kg];
-		attribute length : LengthValue[1] = 4.82@[m];
+		attribute mass : MassValue[1] = 1200 [kg];
+		attribute length : LengthValue[1] = 4.82 [m];
 		
 		part wheelAssy : WheelAssy[4];
 		
@@ -43,6 +43,6 @@ package '15_05-Unification of Expression and Constraint Definition' {
 	}
 	
 	part def DiscBrakeAssy {
-		attribute radius : LengthValue[1] = 95@[mm];
+		attribute radius : LengthValue[1] = 95 [mm];
 	}
 }

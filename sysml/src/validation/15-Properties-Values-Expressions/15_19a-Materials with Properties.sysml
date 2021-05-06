@@ -64,6 +64,6 @@ package '15_19a-Materials with Properties' {
         private attribute fraction2: MaterialFraction { :>> material = Carbon; :>> massFraction = 0.0018[one]; }
         private attribute fraction3: MaterialFraction { :>> material = Manganese; :>> massFraction = 0.012[one]; }
     	attribute :>> fractions = (fraction1, fraction2, fraction3);
-        attribute tensileStrength: TensileStrengthValue = 980@['N/mm²'];
+        attribute tensileStrength: TensileStrengthValue = 980 ['N/mm²'];
     } 
 }

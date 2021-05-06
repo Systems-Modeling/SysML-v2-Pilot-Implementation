@@ -31,12 +31,12 @@ package 'Analysis Case Definition Example' {
 			 */
 			
 			assume constraint {
-				vehicle::wheelDiameter == 33@['in'] &
+				vehicle::wheelDiameter == 33 ['in'] &
 				vehicle::driveTrainEfficiency == 0.4
 			}
 			
 			require constraint {
-				fuelEconomyResult > 30@[mi / gallon]
+				fuelEconomyResult > 30 [mi / gallon]
 			}
 		}
 	    

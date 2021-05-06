@@ -1,6 +1,6 @@
 /**
  * International System of Quantities and Units
- * Generated on 2021-04-06T20:54:34Z from standard ISO-80000-3:2019 "Space and Time"
+ * Generated on 2021-05-06T13:20:43Z from standard ISO-80000-3:2019 "Space and Time"
  * see also https://www.iso.org/obp/ui/#iso:std:iso:80000:-3:ed-2:v1:en
  *
  * Note 1: In documentation comments, AsciiMath notation (see http://asciimath.org/) is used for mathematical concepts,
@@ -14,7 +14,6 @@ package ISQSpaceTime {
     private import Quantities::*;
     private import UnitsAndScales::*;
     private import ISQBase::*;
-    private import ISQBase::isq::*;
 
     /**
      * source: item 3-1.1 length
@@ -149,7 +148,7 @@ package ISQSpaceTime {
      * source: item 3-1.10 position vector
      * symbol(s): `vec(r)`
      * application domain: generic
-     * name: Position (specializes Length)
+     * name: PositionVector
      * quantity dimension: L^1
      * measurement unit(s): m
      * tensor order: 1
@@ -168,7 +167,7 @@ package ISQSpaceTime {
      * source: item 3-1.11 displacement
      * symbol(s): `vec(Δr)`
      * application domain: generic
-     * name: Displacement (specializes Length)
+     * name: Displacement
      * quantity dimension: L^1
      * measurement unit(s): m
      * tensor order: 1
@@ -208,7 +207,7 @@ package ISQSpaceTime {
      * remarks: The curvature is given by: `κ = 1/ρ` where `ρ` denotes the radius of curvature (item 3-1.12).
      */
     attribute def CurvatureUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = L; :>> exponent = -1; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = -1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF); }
     }
 
@@ -230,7 +229,7 @@ package ISQSpaceTime {
      * remarks: The surface element at a given point of a surface is given by: `dA = g du dv` where `u` and `v` denote the Gaussian surface coordinates and `g` denotes the determinant of the metric tensor (ISO 80000-2) at the particular point. The symbol `dσ` is also used for the surface element.
      */
     attribute def AreaUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = L; :>> exponent = 2; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = 2; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF); }
     }
 
@@ -252,7 +251,7 @@ package ISQSpaceTime {
      * remarks: The volume element in Euclidean space is given by: `dV = dx dy dz` where `dx`, `dy`, and `dz` denote the differentials of the Cartesian coordinates (ISO 80000-2). The symbol `dτ` is also used for the volume element.
      */
     attribute def VolumeUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = L; :>> exponent = 3; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = 3; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF); }
     }
 
@@ -311,7 +310,7 @@ package ISQSpaceTime {
      * measurement unit(s): rad, 1
      * tensor order: 0
      * definition: angular measure (item 3-5) between the positive real axis and the radius of the polar representation of the complex number in the complex plane
-     * remarks: The phase angle (often imprecisely referred to as the “phase”) is the argument of a complex number. Other symbols are also used.
+     * remarks: The phase angle (often imprecisely referred to as the "phase") is the argument of a complex number. Other symbols are also used.
      */
     attribute phaseAngle: AngularMeasureValue :> scalarQuantities;
 
@@ -361,7 +360,7 @@ package ISQSpaceTime {
      * source: item 3-10.1 velocity
      * symbol(s): `vec(v)`, `u,v,w`
      * application domain: generic
-     * name: Velocity (specializes Speed)
+     * name: Velocity
      * quantity dimension: L^1*T^-1
      * measurement unit(s): m/s, m*s^-1
      * tensor order: 1
@@ -392,11 +391,11 @@ package ISQSpaceTime {
      * measurement unit(s): m/s, m*s^-1
      * tensor order: 0
      * definition: magnitude (ISO 80000-2) of the velocity (item 3-10.1)
-     * remarks: 
+     * remarks: None.
      */
     attribute def SpeedUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = L; :>> exponent = 1; }
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = T; :>> exponent = -1; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = 1; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = -1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, durationPF); }
     }
 
@@ -407,19 +406,19 @@ package ISQSpaceTime {
     attribute speed: SpeedValue :> scalarQuantities;
 
     /**
-     * source: item 3-11 acceleration (scalar)
+     * source: item 3-11 acceleration (magnitude)
      * symbol(s): `a`
      * application domain: generic
      * name: Acceleration
      * quantity dimension: L^1*T^-2
      * measurement unit(s): m*s^-2
-     * tensor order: 1
+     * tensor order: 0
      * definition: vector (ISO 80000-2) quantity giving the rate of change of velocity (item 3-10)
      * remarks: The acceleration vector is given by: `vec(a) = (d vec(v))/(dt)` where `vec(v)` denotes the velocity (item 3-10.1) and `t` the duration (item 3-9). The magnitude (ISO 80000-2) of the acceleration of free fall is usually denoted by `g`.
      */
     attribute def AccelerationUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = L; :>> exponent = 1; }
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = T; :>> exponent = -2; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = 1; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = -2; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, durationPF); }
     }
 
@@ -456,18 +455,18 @@ package ISQSpaceTime {
     attribute accelerationVector: Cartesian3dAccelerationVector :> vectorQuantities;
 
     /**
-     * source: item 3-12 angular velocity (scalar)
+     * source: item 3-12 angular velocity (magnitude)
      * symbol(s): `ω`
      * application domain: generic
      * name: AngularVelocity
      * quantity dimension: T^-1
      * measurement unit(s): rad*s^-1, s^-1
-     * tensor order: 1
+     * tensor order: 0
      * definition: vector (ISO 80000-2) quantity giving the rate of change of the rotational displacement (item 3-6) as its magnitude (ISO 80000-2) and with a direction equal to the direction of the axis of rotation
      * remarks: The angular velocity vector is given by: `vec(ω) = (d φ) / (dt) vec(u)` where `φ` denotes the angular displacement (item 3-6), `t` the duration (item 3-9), and `vec(u)` the unit vector (ISO 80000-2) along the axis of rotation in the direction for which the rotation corresponds to a right-hand spiral.
      */
     attribute def AngularVelocityUnit :> DerivedUnit {
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = T; :>> exponent = -1; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = -1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (durationPF); }
     }
 
@@ -504,18 +503,18 @@ package ISQSpaceTime {
     attribute angularVelocityVector: Cartesian3dAngularVelocityVector :> vectorQuantities;
 
     /**
-     * source: item 3-13 angular acceleration (scalar)
+     * source: item 3-13 angular acceleration (magnitude)
      * symbol(s): `α`
      * application domain: generic
      * name: AngularAcceleration
      * quantity dimension: T^-2
      * measurement unit(s): rad*s^-2, s^-2
-     * tensor order: 1
+     * tensor order: 0
      * definition: vector (ISO 80000-2) quantity giving the rate of change of angular velocity (item 3-12)
      * remarks: The angular acceleration vector is given by: `vec α = (d vec(ω))/(dt)` Where `vec(ω)` denotes the angular velocity (item 3-12) and `t` the duration (item 3-9).
      */
     attribute def AngularAccelerationUnit :> DerivedUnit {
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = T; :>> exponent = -2; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = -2; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (durationPF); }
     }
 
@@ -604,7 +603,7 @@ package ISQSpaceTime {
      * remarks: The frequency is given by: `f = 1/T` where `T` denotes the period duration (item 3-14).
      */
     attribute def FrequencyUnit :> DerivedUnit {
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = T; :>> exponent = -1; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = -1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (durationPF); }
     }
 
@@ -639,7 +638,7 @@ package ISQSpaceTime {
      * remarks: The angular frequency is given by: `ω = 2 π f` where `f` denotes the frequency (item 3-17.1).
      */
     attribute def AngularFrequencyUnit :> DerivedUnit {
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = T; :>> exponent = -1; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = -1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (durationPF); }
     }
 
@@ -658,7 +657,7 @@ package ISQSpaceTime {
      * measurement unit(s): m
      * tensor order: 0
      * definition: length (item 3-1.1) of the repetition interval of a wave
-     * remarks: 
+     * remarks: None.
      */
     attribute wavelength: LengthValue :> scalarQuantities;
 
@@ -674,7 +673,7 @@ package ISQSpaceTime {
      * remarks: The repetency is given by: `σ = 1 / λ` where `λ` denotes the wavelength (item 3-19).
      */
     attribute def RepetencyUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = L; :>> exponent = -1; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = -1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF); }
     }
 
@@ -689,43 +688,21 @@ package ISQSpaceTime {
     alias repetency as wavenumber;
 
     /**
-     * source: item 3-21 wave vector (scalar)
-     * symbol(s): `k`
-     * application domain: generic
-     * name: Wave
-     * quantity dimension: L^-1
-     * measurement unit(s): m^-1
-     * tensor order: 1
-     * definition: vector normal to the surfaces of constant phase angle (item 3-7) of a wave, with the magnitude (ISO 80000-2) of repetency (item 3-20)
-     * remarks: 
-     */
-    attribute def WaveUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = L; :>> exponent = -1; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF); }
-    }
-
-    attribute def WaveValue :> ScalarQuantityValue {
-        attribute :>> num: Real;
-        attribute :>> mRef: WaveUnit[1];
-    }
-    attribute wave: WaveValue :> scalarQuantities;
-
-    /**
-     * source: item 3-21 wave vector (vector)
+     * source: item 3-21 wave vector
      * symbol(s): `vec(k)`
      * application domain: generic
-     * name: Wave
+     * name: WaveVector
      * quantity dimension: L^-1
      * measurement unit(s): m^-1
      * tensor order: 1
      * definition: vector normal to the surfaces of constant phase angle (item 3-7) of a wave, with the magnitude (ISO 80000-2) of repetency (item 3-20)
-     * remarks: 
+     * remarks: None.
      */
     attribute def Cartesian3dWaveCoordinateSystem :> VectorMeasurementReference {
         attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> isOrthogonal = true;
-        attribute :>> mRefs: WaveUnit[3];
+        attribute :>> mRefs: RepetencyUnit[3];
     }
 
     attribute def Cartesian3dWaveVector :> VectorQuantityValue {
@@ -748,7 +725,7 @@ package ISQSpaceTime {
      * remarks: The angular repetency is given by: `κ = (2 π)/λ` where `λ` denotes the wavelength (item 3-19).
      */
     attribute def AngularRepetencyUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = L; :>> exponent = -1; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = -1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF); }
     }
 
@@ -774,8 +751,8 @@ package ISQSpaceTime {
      * remarks: The phase velocity is given by: `c = ω/κ` where `ω` denotes the angular frequency (item 3-18) and `k` the angular repetency (item 3-22). If phase velocities of electromagnetic waves and other phase velocities are both involved, then `c` should be used for the former and `υ` for the latter. Phase velocity can also be written as `c = λ f`.
      */
     attribute def PhaseVelocityUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = L; :>> exponent = 1; }
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = T; :>> exponent = -1; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = 1; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = -1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, durationPF); }
     }
 
@@ -813,10 +790,10 @@ package ISQSpaceTime {
      * measurement unit(s): s^-1
      * tensor order: 0
      * definition: inverse of the time constant (item 3-15) of an exponentially varying quantity
-     * remarks: 
+     * remarks: None.
      */
     attribute def DampingCoefficientUnit :> DerivedUnit {
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = T; :>> exponent = -1; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = -1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (durationPF); }
     }
 
@@ -835,7 +812,7 @@ package ISQSpaceTime {
      * measurement unit(s): 1
      * tensor order: 0
      * definition: product of damping coefficient (item 3-24) and period duration (item 3-14)
-     * remarks: 
+     * remarks: None.
      */
     attribute def LogarithmicDecrementUnit :> DimensionOneUnit {
         attribute :>> quantityDimension { :>> quantityPowerFactors = (); }

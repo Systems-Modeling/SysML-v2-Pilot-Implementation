@@ -263,11 +263,11 @@ package sfriedenthal_VehicleModel_1_simplified{
             //examples of enumberations
             enum def Colors {black;grey;red;}
             enum def DiameterChoices:>ISQ::LengthValue{
-                enum = 60  [mm];
-                enum = 80  [mm];
-                enum = 100  [mm];
+                enum = 60 [mm];
+                enum = 80 [mm];
+                enum = 100 [mm];
             }
-            attribute cylinderDiameter: DiameterChoices = 80  [mm];       
+            attribute cylinderDiameter: DiameterChoices = 80 [mm];       
 
             // (from Ed's model) the following defines new quantities and units used in fuel economy reqts and analysis
             import Quantities::*;
@@ -677,20 +677,20 @@ package sfriedenthal_VehicleModel_1_simplified{
                     requirement id '1' vehicleMassRequirement: MassRequirement {
                         doc /* The total mass of a vehicle shall be less than or equal to the required mass. */
                         /* Assume total mass includes a full tank of gas*/
-                        attribute redefines massRequired=2000  [kg];
+                        attribute redefines massRequired=2000 [kg];
                         attribute redefines massActual = vehicle::mass;
                     }
                     requirement id '2' vehicleFuelEconomyRequirements{
                         doc /* fuel economy requirements group */
                         attribute assumedCargoMass:>ISQ::mass;
                         requirement id '2_1' cityFuelEconomyRequirement:FuelEconomyRequirement{
-                            redefines requiredFuelEconomy= 10  [km / L];
-                            assume constraint {assumedCargoMass>=500  [kg]}
+                            redefines requiredFuelEconomy= 10 [km/L];
+                            assume constraint {assumedCargoMass>=500 [kg]}
                         }
                         requirement id ' 2_2' highwayFuelEconomyRequirement:FuelEconomyRequirement{
-                            redefines requiredFuelEconomy= 12.75  [km / L];
+                            redefines requiredFuelEconomy= 12.75 [km/L];
                             attribute assumedCargoMass:>ISQ::mass;
-                            assume constraint {assumedCargoMass>=500  [kg]}
+                            assume constraint {assumedCargoMass>=500 [kg]}
                         }
                     }
                 }
@@ -930,7 +930,7 @@ package sfriedenthal_VehicleModel_1_simplified{
                 part vehicle_b_engine4cyl:>vehicleAlternatives{   
                     part engine redefines engine{
                         part cylinders :>> cylinders [4];
-                        attribute mass redefines mass=180  [kg];
+                        attribute mass redefines mass=180 [kg];
                         attribute peakHorsePower redefines peakHorsePower = 180;
                         attribute fuelEfficiency redefines fuelEfficiency=.6;
                         attribute cost redefines cost = 1000;                     

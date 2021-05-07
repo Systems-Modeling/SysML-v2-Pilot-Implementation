@@ -33,12 +33,14 @@ import org.omg.sysml.interactive.SysMLInteractive;
 import org.omg.sysml.lang.sysml.AnnotatingFeature;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
+import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.LiteralBoolean;
 import org.omg.sysml.lang.sysml.LiteralInteger;
 import org.omg.sysml.lang.sysml.LiteralReal;
 import org.omg.sysml.lang.sysml.LiteralString;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.ResultExpressionMembership;
+import org.omg.sysml.util.ExpressionUtil;
 import org.omg.sysml.util.TypeUtil;
 
 public class ModelLevelEvaluationTest extends SysMLInteractiveTest {
@@ -109,9 +111,19 @@ public class ModelLevelEvaluationTest extends SysMLInteractiveTest {
 		
 		Element annotatingFeature = ((Namespace)target).getOwnedMembership().get(0).getOwnedMemberElement();
 		assertTrue(annotatingFeature instanceof AnnotatingFeature);		
-		assertTrue("Annotation".equals(((AnnotatingFeature)annotatingFeature).getMetadataType().getName()));
+		assertTrue(annotationName.equals(((AnnotatingFeature)annotatingFeature).getMetadataType().getName()));
 		
 		return (AnnotatingFeature)annotatingFeature;
+	}
+	
+	protected Feature checkMetaclassFeature(SysMLInteractive instance, String elementName) {
+		Element target = instance.resolve(elementName);
+		assertNotNull(target);
+		
+		Feature metaclassFeature = ExpressionUtil.getMetaclassFeatureFor(target);
+		assertNotNull(metaclassFeature);
+		
+		return metaclassFeature;
 	}
 	
 	@Test
@@ -286,6 +298,26 @@ public class ModelLevelEvaluationTest extends SysMLInteractiveTest {
 		assertTrue(evaluateBooleanValue(instance, 
 				checkAnnotatingFeature(instance, "Annotation", "x"), 
 				"@Annotation"));
+	}
+	
+	@Test
+	public void testSelfIsMetaclassEvaluation() throws Exception {
+		SysMLInteractive instance = getSysMLInteractiveInstance();
+		eval(instance, "attribute a; part p;");
+		
+		assertTrue(evaluateBooleanValue(instance, 
+				checkMetaclassFeature(instance, "a"), 
+				"@SysML::AttributeUsage"));
+		assertFalse(evaluateBooleanValue(instance, 
+				checkMetaclassFeature(instance, "a"), 
+				"@SysML::PartUsage"));
+				
+		assertTrue(evaluateBooleanValue(instance, 
+				checkMetaclassFeature(instance, "p"), 
+				"@SysML::PartUsage"));
+		assertFalse(evaluateBooleanValue(instance, 
+				checkMetaclassFeature(instance, "p"), 
+				"@SysML::AttributeUsage"));
 	}
 
 }

@@ -1,6 +1,6 @@
 /**
  * International System of Quantities and Units
- * Generated on 2021-05-06T13:20:43Z from standard ISO-80000-4:2019 "Mechanics"
+ * Generated on 2021-05-07T14:31:30Z from standard ISO-80000-4:2019 "Mechanics"
  * see also https://www.iso.org/obp/ui/#iso:std:iso:80000:-4:ed-2:v1:en
  *
  * Note 1: In documentation comments, AsciiMath notation (see http://asciimath.org/) is used for mathematical concepts,
@@ -89,25 +89,16 @@ package ISQMechanics {
      * source: item 4-4 relative mass density, relative density
      * symbol(s): `d`
      * application domain: generic
-     * name: RelativeMassDensity
+     * name: RelativeMassDensity (specializes DimensionOneQuantity)
      * quantity dimension: 1
      * measurement unit(s): 1
      * tensor order: 0
      * definition: quotient of mass density of a substance `ρ` and mass density of a reference substance `ρ_0` : `d = ρ/ρ_0`
      * remarks: Conditions and material should be specified for the reference substance.
      */
-    attribute def RelativeMassDensityUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
-    }
-
-    attribute def RelativeMassDensityValue :> ScalarQuantityValue {
-        attribute :>> num: Real;
-        attribute :>> mRef: RelativeMassDensityUnit[1];
-    }
+    attribute def RelativeMassDensityValue :> DimensionOneValue;
     attribute relativeMassDensity: RelativeMassDensityValue :> scalarQuantities;
 
-    alias RelativeMassDensityUnit as RelativeDensityUnit;
-    alias RelativeMassDensityValue as RelativeDensityValue;
     alias relativeMassDensity as relativeDensity;
 
     /**
@@ -782,9 +773,7 @@ package ISQMechanics {
      * definition: tensor (ISO 80000-2) quantity representing the deformation of matter caused by stress
      * remarks: Strain tensor is symmetric and has three linear-strain and three shear strain (Cartesian) components.
      */
-    attribute def StrainUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
-    }
+    attribute def StrainUnit :> DimensionOneUnit;
 
     attribute def StrainValue :> ScalarQuantityValue {
         attribute :>> num: Real;
@@ -820,84 +809,56 @@ package ISQMechanics {
      * source: item 4-17.2 relative linear strain
      * symbol(s): `ε`, `(e)`
      * application domain: generic
-     * name: RelativeLinearStrain
+     * name: RelativeLinearStrain (specializes DimensionOneQuantity)
      * quantity dimension: 1
      * measurement unit(s): 1
      * tensor order: 0
      * definition: quotient of change in length `Δl` (ISO 80000-3) of an object and its length `l` (ISO 80000-3): `ε = (Δl)/l`
      * remarks: None.
      */
-    attribute def RelativeLinearStrainUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
-    }
-
-    attribute def RelativeLinearStrainValue :> ScalarQuantityValue {
-        attribute :>> num: Real;
-        attribute :>> mRef: RelativeLinearStrainUnit[1];
-    }
+    attribute def RelativeLinearStrainValue :> DimensionOneValue;
     attribute relativeLinearStrain: RelativeLinearStrainValue :> scalarQuantities;
 
     /**
      * source: item 4-17.3 shear strain
      * symbol(s): `γ`
      * application domain: generic
-     * name: ShearStrain
+     * name: ShearStrain (specializes DimensionOneQuantity)
      * quantity dimension: 1
      * measurement unit(s): 1
      * tensor order: 0
      * definition: quotient of parallel displacement `Δx` (ISO 80000-3) of two surfaces of a layer and the thickness `d` (ISO 80000-3) of the layer: `γ = (Δx)/d`
      * remarks: None.
      */
-    attribute def ShearStrainUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
-    }
-
-    attribute def ShearStrainValue :> ScalarQuantityValue {
-        attribute :>> num: Real;
-        attribute :>> mRef: ShearStrainUnit[1];
-    }
+    attribute def ShearStrainValue :> DimensionOneValue;
     attribute shearStrain: ShearStrainValue :> scalarQuantities;
 
     /**
      * source: item 4-17.4 relative volume strain
      * symbol(s): `θ`
      * application domain: generic
-     * name: RelativeVolumeStrain
+     * name: RelativeVolumeStrain (specializes DimensionOneQuantity)
      * quantity dimension: 1
      * measurement unit(s): 1
      * tensor order: 0
      * definition: quotient of change in volume `ΔV` (ISO 80000-3) of an object and its volume `V_0` (ISO 80000-3): `θ = (ΔV)/V_0`
      * remarks: None.
      */
-    attribute def RelativeVolumeStrainUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
-    }
-
-    attribute def RelativeVolumeStrainValue :> ScalarQuantityValue {
-        attribute :>> num: Real;
-        attribute :>> mRef: RelativeVolumeStrainUnit[1];
-    }
+    attribute def RelativeVolumeStrainValue :> DimensionOneValue;
     attribute relativeVolumeStrain: RelativeVolumeStrainValue :> scalarQuantities;
 
     /**
      * source: item 4-18 Poisson number
      * symbol(s): `μ`, `(v)`
      * application domain: generic
-     * name: PoissonNumber
+     * name: PoissonNumber (specializes DimensionOneQuantity)
      * quantity dimension: 1
      * measurement unit(s): 1
      * tensor order: 0
      * definition: quotient of change in width `Δb` (width is defined in ISO 80000-3) and change in length `Δl` (length is defined in ISO 80000-3) of an object: `μ = (Δb)/(Δl)`
      * remarks: None.
      */
-    attribute def PoissonNumberUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
-    }
-
-    attribute def PoissonNumberValue :> ScalarQuantityValue {
-        attribute :>> num: Real;
-        attribute :>> mRef: PoissonNumberUnit[1];
-    }
+    attribute def PoissonNumberValue :> DimensionOneValue;
     attribute poissonNumber: PoissonNumberValue :> scalarQuantities;
 
     /**
@@ -1021,7 +982,7 @@ package ISQMechanics {
      */
     attribute def SecondAxialMomentOfAreaUnit :> DerivedUnit {
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = 4; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF); }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = lengthPF; }
     }
 
     attribute def SecondAxialMomentOfAreaValue :> ScalarQuantityValue {
@@ -1043,7 +1004,7 @@ package ISQMechanics {
      */
     attribute def SecondPolarMomentOfAreaUnit :> DerivedUnit {
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = 4; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF); }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = lengthPF; }
     }
 
     attribute def SecondPolarMomentOfAreaValue :> ScalarQuantityValue {
@@ -1065,7 +1026,7 @@ package ISQMechanics {
      */
     attribute def SectionModulusUnit :> DerivedUnit {
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = 3; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF); }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = lengthPF; }
     }
 
     attribute def SectionModulusValue :> ScalarQuantityValue {
@@ -1078,100 +1039,64 @@ package ISQMechanics {
      * source: item 4-23.1 static friction coefficient, static friction factor, coefficient of static friction
      * symbol(s): `μ_s`, `(f_s)`
      * application domain: generic
-     * name: StaticFrictionCoefficient
+     * name: StaticFrictionCoefficient (specializes DimensionOneQuantity)
      * quantity dimension: 1
      * measurement unit(s): 1
      * tensor order: 0
      * definition: proportionality factor between the maximum magnitude of the tangential component `F_max` of the static friction force (item 4-9.3) and the magnitude of the normal component `N` of the contact force (item 4-9.1) between two bodies at relative rest with respect to each other: `F_max = μ_s * N`
      * remarks: When it is not necessary to distinguish between dynamic friction factor and static friction factor, the name friction factor may be used for both.
      */
-    attribute def StaticFrictionCoefficientUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
-    }
-
-    attribute def StaticFrictionCoefficientValue :> ScalarQuantityValue {
-        attribute :>> num: Real;
-        attribute :>> mRef: StaticFrictionCoefficientUnit[1];
-    }
+    attribute def StaticFrictionCoefficientValue :> DimensionOneValue;
     attribute staticFrictionCoefficient: StaticFrictionCoefficientValue :> scalarQuantities;
 
-    alias StaticFrictionCoefficientUnit as StaticFrictionFactorUnit;
-    alias StaticFrictionCoefficientValue as StaticFrictionFactorValue;
     alias staticFrictionCoefficient as staticFrictionFactor;
 
-    alias StaticFrictionCoefficientUnit as CoefficientOfStaticFrictionUnit;
-    alias StaticFrictionCoefficientValue as CoefficientOfStaticFrictionValue;
     alias staticFrictionCoefficient as coefficientOfStaticFriction;
 
     /**
      * source: item 4-23.2 kinetic friction factor, dynamic friction factor
      * symbol(s): `μ`, `(f)`
      * application domain: generic
-     * name: KineticFrictionFactor
+     * name: KineticFrictionFactor (specializes DimensionOneQuantity)
      * quantity dimension: 1
      * measurement unit(s): 1
      * tensor order: 0
      * definition: proportionality factor between the magnitudes of the kinetic friction force, `F_μ` (item 4-9.4) and the normal component `N` of the contact force (item 4-9.1): `F_μ = μ * N`
      * remarks: When it is not necessary to distinguish between dynamic friction factor and static friction factor, the name friction factor may be used for both. The dynamic friction factor `µ` is independent in first approximation of the contact surface.
      */
-    attribute def KineticFrictionFactorUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
-    }
-
-    attribute def KineticFrictionFactorValue :> ScalarQuantityValue {
-        attribute :>> num: Real;
-        attribute :>> mRef: KineticFrictionFactorUnit[1];
-    }
+    attribute def KineticFrictionFactorValue :> DimensionOneValue;
     attribute kineticFrictionFactor: KineticFrictionFactorValue :> scalarQuantities;
 
-    alias KineticFrictionFactorUnit as DynamicFrictionFactorUnit;
-    alias KineticFrictionFactorValue as DynamicFrictionFactorValue;
     alias kineticFrictionFactor as dynamicFrictionFactor;
 
     /**
      * source: item 4-23.3 rolling resistance factor
      * symbol(s): `C_"rr"`
      * application domain: generic
-     * name: RollingResistanceFactor
+     * name: RollingResistanceFactor (specializes DimensionOneQuantity)
      * quantity dimension: 1
      * measurement unit(s): 1
      * tensor order: 0
      * definition: proportionality factor between the magnitude of the tangential component `F` and the magnitude of the normal component `N` of the force applied to a body rolling on a surface at constant speed: `F = C_(rr)*N`
      * remarks: Also known as rolling resistance coefficient, RRC.
      */
-    attribute def RollingResistanceFactorUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
-    }
-
-    attribute def RollingResistanceFactorValue :> ScalarQuantityValue {
-        attribute :>> num: Real;
-        attribute :>> mRef: RollingResistanceFactorUnit[1];
-    }
+    attribute def RollingResistanceFactorValue :> DimensionOneValue;
     attribute rollingResistanceFactor: RollingResistanceFactorValue :> scalarQuantities;
 
     /**
      * source: item 4-23.4 drag coefficient, drag factor
      * symbol(s): `C_D`
      * application domain: generic
-     * name: DragCoefficient
+     * name: DragCoefficient (specializes DimensionOneQuantity)
      * quantity dimension: 1
      * measurement unit(s): 1
      * tensor order: 0
      * definition: factor proportional to magnitude `F_D` of the drag force (item 4-9.6) of a body moving in a fluid, dependent on the shape and speed `v` (ISO 80000-3) of a body: `F_D = 1/2 * C_D * ρ * v^2 * A` where `ρ` is mass density (item 4-2) of the fluid and `A` is cross-section area (ISO 80000-3) of the body
      * remarks: None.
      */
-    attribute def DragCoefficientUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
-    }
-
-    attribute def DragCoefficientValue :> ScalarQuantityValue {
-        attribute :>> num: Real;
-        attribute :>> mRef: DragCoefficientUnit[1];
-    }
+    attribute def DragCoefficientValue :> DimensionOneValue;
     attribute dragCoefficient: DragCoefficientValue :> scalarQuantities;
 
-    alias DragCoefficientUnit as DragFactorUnit;
-    alias DragCoefficientValue as DragFactorValue;
     alias dragCoefficient as dragFactor;
 
     /**
@@ -1343,21 +1268,14 @@ package ISQMechanics {
      * source: item 4-29 mechanical efficiency
      * symbol(s): `η`
      * application domain: mechanics
-     * name: MechanicalEfficiency
+     * name: MechanicalEfficiency (specializes DimensionOneQuantity)
      * quantity dimension: 1
      * measurement unit(s): 1
      * tensor order: 0
      * definition: quotient of output power `P_"out"` (item 4-27) from a system and input power `P_"in"` (item 4-27) to this system: `η = P_"out"/P_"in"`
      * remarks: The system must be specified. This quantity is often expressed by the unit percent, symbol %.
      */
-    attribute def MechanicalEfficiencyUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
-    }
-
-    attribute def MechanicalEfficiencyValue :> ScalarQuantityValue {
-        attribute :>> num: Real;
-        attribute :>> mRef: MechanicalEfficiencyUnit[1];
-    }
+    attribute def MechanicalEfficiencyValue :> DimensionOneValue;
     attribute mechanicalEfficiency: MechanicalEfficiencyValue :> scalarQuantities;
 
     /**

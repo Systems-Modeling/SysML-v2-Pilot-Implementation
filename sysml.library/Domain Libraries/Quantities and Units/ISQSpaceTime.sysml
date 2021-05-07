@@ -1,6 +1,6 @@
 /**
  * International System of Quantities and Units
- * Generated on 2021-05-06T13:20:43Z from standard ISO-80000-3:2019 "Space and Time"
+ * Generated on 2021-05-07T14:31:30Z from standard ISO-80000-3:2019 "Space and Time"
  * see also https://www.iso.org/obp/ui/#iso:std:iso:80000:-3:ed-2:v1:en
  *
  * Note 1: In documentation comments, AsciiMath notation (see http://asciimath.org/) is used for mathematical concepts,
@@ -208,7 +208,7 @@ package ISQSpaceTime {
      */
     attribute def CurvatureUnit :> DerivedUnit {
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = -1; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF); }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = lengthPF; }
     }
 
     attribute def CurvatureValue :> ScalarQuantityValue {
@@ -230,7 +230,7 @@ package ISQSpaceTime {
      */
     attribute def AreaUnit :> DerivedUnit {
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = 2; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF); }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = lengthPF; }
     }
 
     attribute def AreaValue :> ScalarQuantityValue {
@@ -252,7 +252,7 @@ package ISQSpaceTime {
      */
     attribute def VolumeUnit :> DerivedUnit {
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = 3; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF); }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = lengthPF; }
     }
 
     attribute def VolumeValue :> ScalarQuantityValue {
@@ -272,9 +272,7 @@ package ISQSpaceTime {
      * definition: measure of a geometric figure, called plane angle, formed by two rays, called the sides of the plane angle, emanating from a common point, called the vertex of the plane angle
      * remarks: The angular measure is given by: `α = s/r` where `s` denotes the arc length (item 3-1.7) of the included arc of a circle, centred at the vertex of the plane angle, and `r` the radius (item 3-1.6) of that circle. Other symbols are also used.
      */
-    attribute def AngularMeasureUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
-    }
+    attribute def AngularMeasureUnit :> DimensionOneUnit;
 
     attribute def AngularMeasureValue :> ScalarQuantityValue {
         attribute :>> num: Real;
@@ -325,9 +323,7 @@ package ISQSpaceTime {
      * definition: measure of a conical geometric figure, called solid angle, formed by all rays, originating from a common point, called the vertex of the solid angle, and passing through the points of a closed, non-self-intersecting curve in space considered as the border of a surface
      * remarks: The differential solid angular measure expressed in spherical coordinates (ISO 80000-2) is given by: `dΩ = A/r^2 * sin(θ * dθ * dφ)` where `A` is area, `r` is radius, `θ` and `φ` are spherical coordinates.
      */
-    attribute def SolidAngularMeasureUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
-    }
+    attribute def SolidAngularMeasureUnit :> DimensionOneUnit;
 
     attribute def SolidAngularMeasureValue :> ScalarQuantityValue {
         attribute :>> num: Real;
@@ -467,7 +463,7 @@ package ISQSpaceTime {
      */
     attribute def AngularVelocityUnit :> DerivedUnit {
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = -1; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = (durationPF); }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = durationPF; }
     }
 
     attribute def AngularVelocityValue :> ScalarQuantityValue {
@@ -515,7 +511,7 @@ package ISQSpaceTime {
      */
     attribute def AngularAccelerationUnit :> DerivedUnit {
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = -2; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = (durationPF); }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = durationPF; }
     }
 
     attribute def AngularAccelerationValue :> ScalarQuantityValue {
@@ -604,7 +600,7 @@ package ISQSpaceTime {
      */
     attribute def FrequencyUnit :> DerivedUnit {
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = -1; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = (durationPF); }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = durationPF; }
     }
 
     attribute def FrequencyValue :> ScalarQuantityValue {
@@ -639,7 +635,7 @@ package ISQSpaceTime {
      */
     attribute def AngularFrequencyUnit :> DerivedUnit {
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = -1; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = (durationPF); }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = durationPF; }
     }
 
     attribute def AngularFrequencyValue :> ScalarQuantityValue {
@@ -674,7 +670,7 @@ package ISQSpaceTime {
      */
     attribute def RepetencyUnit :> DerivedUnit {
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = -1; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF); }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = lengthPF; }
     }
 
     attribute def RepetencyValue :> ScalarQuantityValue {
@@ -726,7 +722,7 @@ package ISQSpaceTime {
      */
     attribute def AngularRepetencyUnit :> DerivedUnit {
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = -1; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF); }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = lengthPF; }
     }
 
     attribute def AngularRepetencyValue :> ScalarQuantityValue {
@@ -794,7 +790,7 @@ package ISQSpaceTime {
      */
     attribute def DampingCoefficientUnit :> DerivedUnit {
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = -1; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = (durationPF); }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = durationPF; }
     }
 
     attribute def DampingCoefficientValue :> ScalarQuantityValue {
@@ -807,21 +803,14 @@ package ISQSpaceTime {
      * source: item 3-25 logarithmic decrement
      * symbol(s): `Λ`
      * application domain: generic
-     * name: LogarithmicDecrement
+     * name: LogarithmicDecrement (specializes DimensionOneQuantity)
      * quantity dimension: 1
      * measurement unit(s): 1
      * tensor order: 0
      * definition: product of damping coefficient (item 3-24) and period duration (item 3-14)
      * remarks: None.
      */
-    attribute def LogarithmicDecrementUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
-    }
-
-    attribute def LogarithmicDecrementValue :> ScalarQuantityValue {
-        attribute :>> num: Real;
-        attribute :>> mRef: LogarithmicDecrementUnit[1];
-    }
+    attribute def LogarithmicDecrementValue :> DimensionOneValue;
     attribute logarithmicDecrement: LogarithmicDecrementValue :> scalarQuantities;
 
     /**
@@ -829,14 +818,15 @@ package ISQSpaceTime {
      * symbol(s): `α`
      * application domain: generic
      * name: Attenuation
-     * quantity dimension: 1
-     * measurement unit(s): 1
+     * quantity dimension: L^-1
+     * measurement unit(s): m^-1
      * tensor order: 0
      * definition: gradual decrease in magnitude (ISO 80000-2) of any kind of flux through a medium
      * remarks: If a quantity is a function of distance (item 3-1.8) expressed by: `f(x) prop e^(-α x)` where `x` denotes distance (item 3-1.8), then `α` denotes attenuation. The inverse of attenuation is called attenuation length.
      */
-    attribute def AttenuationUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
+    attribute def AttenuationUnit :> DerivedUnit {
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = -1; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = lengthPF; }
     }
 
     attribute def AttenuationValue :> ScalarQuantityValue {
@@ -854,14 +844,15 @@ package ISQSpaceTime {
      * symbol(s): `β`
      * application domain: generic
      * name: PhaseCoefficient
-     * quantity dimension: 1
-     * measurement unit(s): 1
+     * quantity dimension: L^-1
+     * measurement unit(s): rad/m, m^-1
      * tensor order: 0
      * definition: change of phase angle (item 3-7) with the length (item 3-1.1) along the path travelled by a plane wave
      * remarks: If a quantity is a function of distance expressed by: `f(x) prop cos(β(x-x_0))` where `x` denotes distance (item 3-1.8), then `β` denotes the phase coefficient.
      */
-    attribute def PhaseCoefficientUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
+    attribute def PhaseCoefficientUnit :> DerivedUnit {
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = -1; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = lengthPF; }
     }
 
     attribute def PhaseCoefficientValue :> ScalarQuantityValue {
@@ -875,14 +866,15 @@ package ISQSpaceTime {
      * symbol(s): `γ`
      * application domain: generic
      * name: PropagationCoefficient
-     * quantity dimension: 1
-     * measurement unit(s): 1
+     * quantity dimension: L^-1
+     * measurement unit(s): m^-1
      * tensor order: 0
      * definition: measure of the change of amplitude and phase angle (item 3-7) of a plane wave propagating in a given direction
      * remarks: The propagation coefficient is given by: `γ = α + iβ` where `α` denotes attenuation (item 3-26.1) and `β` the phase coefficient (item 3-26.2) of a plane wave.
      */
-    attribute def PropagationCoefficientUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
+    attribute def PropagationCoefficientUnit :> DerivedUnit {
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = -1; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = lengthPF; }
     }
 
     attribute def PropagationCoefficientValue :> ScalarQuantityValue {

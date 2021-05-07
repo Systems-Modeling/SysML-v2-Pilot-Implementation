@@ -1,6 +1,6 @@
 /**
  * International System of Quantities and Units
- * Generated on 2021-05-06T13:20:43Z from standard ISO-80000-7:2019 "Light"
+ * Generated on 2021-05-07T14:31:30Z from standard ISO-80000-7:2019 "Light"
  * see also https://www.iso.org/obp/ui/#iso:std:iso:80000:-7:ed-2:v1:en
  *
  * Note 1: In documentation comments, AsciiMath notation (see http://asciimath.org/) is used for mathematical concepts,
@@ -45,21 +45,14 @@ package ISQLight {
      * source: item 7-1.2 refractive index
      * symbol(s): `n`
      * application domain: generic
-     * name: RefractiveIndex
+     * name: RefractiveIndex (specializes DimensionOneQuantity)
      * quantity dimension: 1
      * measurement unit(s): 1
      * tensor order: 0
      * definition: quotient of speed of light in vacuum (ISO 80000-1) and speed of light in a medium (item 7-1.1)
      * remarks: The value of the refractive index can depend on the frequency, polarization, and direction. The refractive index is expressed by n = c_0/c, where c_()_0 is the speed of light in vacuum and c is the speed of light in the medium. For a medium with absorption, the complex refractive index n is defined by n = n + ik where k is spectral absorption index (IEC 60050-845) and i is imaginary unit. The refractivity is expressed by n -1, where n is refractive index.
      */
-    attribute def RefractiveIndexUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
-    }
-
-    attribute def RefractiveIndexValue :> ScalarQuantityValue {
-        attribute :>> num: Real;
-        attribute :>> mRef: RefractiveIndexUnit[1];
-    }
+    attribute def RefractiveIndexValue :> DimensionOneValue;
     attribute refractiveIndex: RefractiveIndexValue :> scalarQuantities;
 
     /**
@@ -470,42 +463,28 @@ package ISQLight {
      * source: item 7-10.1 luminous efficiency
      * symbol(s): `V`
      * application domain: specified photometric condition
-     * name: LuminousEfficiency
+     * name: LuminousEfficiency (specializes DimensionOneQuantity)
      * quantity dimension: 1
      * measurement unit(s): 1
      * tensor order: 0
      * definition: quotient of radiant flux (item 7-4.1) weighted by the spectral luminous efficiency (item 7-10.2) and the corresponding radiant flux for a specified photometric condition
      * remarks: Luminous efficiency for photopic vision is expressed by `V = (int_0^∞ Φ_(e,λ)(λ) V(λ) d λ)/(int_0^∞ Φ_(e,λ)(λ) d λ) = K/K_m`, where `Φ_(e,λ)` is spectral radiant flux (item 7-4.2), `V(λ)` is spectral luminous efficiency, `λ` is wavelength, `K` is luminous efficacy of radiation (item 7-11.1), and `K_m` is maximum luminous efficacy (item 7-11.3). For scotopic and mesopic vision see 0.4 and 0.5. Symbols for different photometric conditions: `V` for photopic vision; `V'` for scotopic vision; `V_(mes;m)` for mesopic vision; `V_10` for the CIE 10° photopic photometric observer; `V_M` for the CIE 1988 modified 2° spectral luminous efficiency function for photopic vision.
      */
-    attribute def LuminousEfficiencyUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
-    }
-
-    attribute def LuminousEfficiencyValue :> ScalarQuantityValue {
-        attribute :>> num: Real;
-        attribute :>> mRef: LuminousEfficiencyUnit[1];
-    }
+    attribute def LuminousEfficiencyValue :> DimensionOneValue;
     attribute luminousEfficiency: LuminousEfficiencyValue :> scalarQuantities;
 
     /**
      * source: item 7-10.2 spectral luminous efficiency
      * symbol(s): `V(λ)`
      * application domain: specified photometric condition
-     * name: SpectralLuminousEfficiency
+     * name: SpectralLuminousEfficiency (specializes DimensionOneQuantity)
      * quantity dimension: 1
      * measurement unit(s): 1
      * tensor order: 0
      * definition: quotient of the radiant flux (item 7-4.1) at wavelength `λ_m` and that at wavelength `λ`, such that both produce equally intense luminous sensations for a specified photometric condition and `λ_m` is chosen so that the maximum value of this quotient is equal to 1
      * remarks: The spectral luminous efficiency of the human eye depends on a number of factors, particularly the state of visual adaptation and the size and position of the source in the visual field. The photometric condition should be specified (e.g. photopic, scotopic, mesopic). If it is not specified, photopic vision is assumed and the symbol `V(λ)` is used. For scotopic and mesopic vision see 0.4 and 0.5. Symbols for different photometric conditions: `V(λ)` for photopic vision; `V'(λ)` for scotopic vision; `V_(mes;m)(λ)` for mesopic vision; `V_10(λ)` for the CIE 10° photopic photometric observer; `V_M(λ)` for the CIE 1988 modified 2° spectral luminous efficiency function for photopic vision.
      */
-    attribute def SpectralLuminousEfficiencyUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
-    }
-
-    attribute def SpectralLuminousEfficiencyValue :> ScalarQuantityValue {
-        attribute :>> num: Real;
-        attribute :>> mRef: SpectralLuminousEfficiencyUnit[1];
-    }
+    attribute def SpectralLuminousEfficiencyValue :> DimensionOneValue;
     attribute spectralLuminousEfficiency: SpectralLuminousEfficiencyValue :> scalarQuantities;
 
     /**
@@ -648,7 +627,7 @@ package ISQLight {
      */
     attribute def LuminousFluxUnit :> DerivedUnit {
         private attribute luminousIntensityPF: QuantityPowerFactor[1] { :>> quantity = isq::J; :>> exponent = 1; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = (luminousIntensityPF); }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = luminousIntensityPF; }
     }
 
     attribute def LuminousFluxValue :> ScalarQuantityValue {
@@ -779,25 +758,16 @@ package ISQLight {
      * source: item 7-19.1 photon number, number of photons
      * symbol(s): `N_p`
      * application domain: generic
-     * name: PhotonNumber
+     * name: PhotonNumber (specializes DimensionOneQuantity)
      * quantity dimension: 1
      * measurement unit(s): 1
      * tensor order: 0
      * definition: quotient of radiant energy and photon energy, expressed by `N_p = Q_e/(h ν)`, where `Q_e` is radiant energy (item 7-2.1), `h` is the Planck constant (ISO 80000-1), and `ν` is the frequency (ISO 80000-3) of the corresponding electromagnetic wave
      * remarks: Photon number can also be expressed by the time integral of the photon flux (item 7-20), `Φ_p`, over a given duration, `Δt`, `N_p = int_(Δt) Φ_p dt`
      */
-    attribute def PhotonNumberUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
-    }
-
-    attribute def PhotonNumberValue :> ScalarQuantityValue {
-        attribute :>> num: Real;
-        attribute :>> mRef: PhotonNumberUnit[1];
-    }
+    attribute def PhotonNumberValue :> DimensionOneValue;
     attribute photonNumber: PhotonNumberValue :> scalarQuantities;
 
-    alias PhotonNumberUnit as NumberOfPhotonsUnit;
-    alias PhotonNumberValue as NumberOfPhotonsValue;
     alias photonNumber as numberOfPhotons;
 
     /**
@@ -826,7 +796,7 @@ package ISQLight {
      */
     attribute def PhotonFluxUnit :> DerivedUnit {
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = -1; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = (durationPF); }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = durationPF; }
     }
 
     attribute def PhotonFluxValue :> ScalarQuantityValue {
@@ -848,7 +818,7 @@ package ISQLight {
      */
     attribute def PhotonIntensityUnit :> DerivedUnit {
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = -1; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = (durationPF); }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = durationPF; }
     }
 
     attribute def PhotonIntensityValue :> ScalarQuantityValue {
@@ -939,7 +909,7 @@ package ISQLight {
      */
     attribute def PhotonExposureUnit :> DerivedUnit {
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = -2; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF); }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = lengthPF; }
     }
 
     attribute def PhotonExposureValue :> ScalarQuantityValue {
@@ -953,14 +923,16 @@ package ISQLight {
      * symbol(s): `X,Y,Z`
      * application domain: generic
      * name: TristimulusValuesForTheCie1931StandardColorimetricObserver
-     * quantity dimension: 1
-     * measurement unit(s): cd*m^-2, 1
+     * quantity dimension: L^-2*J^1
+     * measurement unit(s): cd*m^-2
      * tensor order: 0
      * definition: amounts of the three reference colour stimuli in the CIE 1931 standard colorimetric system, required to match the colour of the stimulus considered
      * remarks: For a given colour stimulus described by the colour stimulus function `φ_λ(λ)` of a radiometric quantity, `X = k int_0^∞ φ_λ(λ) overline x(λ) dλ`, `Y = k int_0^∞ φ_λ(λ) overline y(λ) dλ`, `Z = k int_0^∞ φ_λ(λ) overline z(λ) dλ`, where `overline x(λ)`, `overline y(λ)`, `overline z(λ)` are the CIE colour-matching functions for the CIE 1931 standard colorimetric observer (2° observer) (item 7-27.1). For sources, `k` may be chosen as `k = K_m` where `K_m` is the maximum luminous efficacy (item 7-11.3) so that `Y = L_v` (item 7-15) and the unit of `X`, `Y`, `Z` is `[cd*m^-2]`. For object colours, `φ_λ(λ)` is given by one of the three products `φ_λ(λ) = S_λ(λ) * {(ρ(λ)), (τ(λ)), (β(λ)):}` where `S_λ(λ)` is the relative spectral distribution of a quantity characterizing the source illuminating the object, `ρ(λ)` is the spectral reflectance, `τ(λ)` is the spectral transmittance, `β(λ)` is the spectral radiance factor, and `k` is chosen to be `k = 100 // int_0^∞ S_λ(λ) overline y(λ) dλ`. Integral limits can be confined depending on the spectral sensitivity of the detectors used as a sensor. In this case, the unit of `X`, `Y`, `Z` is `[1]`.
      */
-    attribute def TristimulusValuesForTheCie1931StandardColorimetricObserverUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
+    attribute def TristimulusValuesForTheCie1931StandardColorimetricObserverUnit :> DerivedUnit {
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = -2; }
+        private attribute luminousIntensityPF: QuantityPowerFactor[1] { :>> quantity = isq::J; :>> exponent = 1; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, luminousIntensityPF); }
     }
 
     attribute def TristimulusValuesForTheCie1931StandardColorimetricObserverValue :> ScalarQuantityValue {
@@ -971,17 +943,19 @@ package ISQLight {
 
     /**
      * source: item 7-26.2 tristimulus values for the CIE 1964 standard colorimetric observer
-     * symbol(s): `X_(10),Y_(10),Z_(10)`
+     * symbol(s): `X_10,Y_10,Z_10`
      * application domain: generic
      * name: TristimulusValuesForTheCie1964StandardColorimetricObserver
-     * quantity dimension: 1
-     * measurement unit(s): cd*m^-2, 1
+     * quantity dimension: L^-2*J^1
+     * measurement unit(s): cd*m^-2
      * tensor order: 0
      * definition: amounts of the three reference colour stimuli in the CIE 1964 standard colorimetric system, required to match the colour of the stimulus considered
      * remarks: For a given colour stimulus described by the colour stimulus function `φ_λ(λ)` of a radiometric quantity, `X = k int_0^∞ φ_λ(λ) overline x(λ) dλ`, `Y = k int_0^∞ φ_λ(λ) overline y(λ) dλ`, `Z = k int_0^∞ φ_λ(λ) overline z(λ) dλ`, where `overline x(λ)`, `overline y(λ)`, `overline z(λ)` are the CIE colour-matching functions for the CIE 1931 standard colorimetric observer (2° observer) (item 7-27.1). For sources, `k` may be chosen as `k = K_m` where `K_m` is the maximum luminous efficacy (item 7-11.3) so that `Y = L_v` (item 7-15) and the unit of `X`, `Y`, `Z` is `["cd"*"m"^-2]`. For object colours, `φ_λ(λ)` is given by one of the three products `φ_λ(λ) = S_λ(λ) * {(ρ(λ)), (τ(λ)), (β(λ)):}` where `S_λ(λ)` is the relative spectral distribution of a quantity characterizing the source illuminating the object, `ρ(λ)` is the spectral reflectance, `τ(λ)` is the spectral transmittance, `β(λ)` is the spectral radiance factor, and `k` is chosen to be `k = 100 /( int_0^∞ S_λ(λ) overline y(λ) dλ)`. Integral limits can be confined depending on the spectral sensitivity of the detectors used as a sensor. In this case, the unit of `X`, `Y`, `Z` is `[1]`.
      */
-    attribute def TristimulusValuesForTheCie1964StandardColorimetricObserverUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
+    attribute def TristimulusValuesForTheCie1964StandardColorimetricObserverUnit :> DerivedUnit {
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = -2; }
+        private attribute luminousIntensityPF: QuantityPowerFactor[1] { :>> quantity = isq::J; :>> exponent = 1; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, luminousIntensityPF); }
     }
 
     attribute def TristimulusValuesForTheCie1964StandardColorimetricObserverValue :> ScalarQuantityValue {
@@ -994,84 +968,56 @@ package ISQLight {
      * source: item 7-27.1 CIE colour-matching functions for the CIE 1931 standard colorimetric observer
      * symbol(s): `overline x(λ)`, `overline y(λ)`, `overline z(λ)`
      * application domain: generic
-     * name: CieColourMatchingFunctionsForTheCie1931StandardColorimetricObserver
+     * name: CieColourMatchingFunctionsForTheCie1931StandardColorimetricObserver (specializes DimensionOneQuantity)
      * quantity dimension: 1
      * measurement unit(s): 1
      * tensor order: 0
      * definition: functions `overline x(λ)` , `overline y(λ)` , `overline z(λ)` in the CIE 1931 standard colorimetric system
      * remarks: Values of `overline x(λ)` , `overline y(λ)` and `overline z(λ)` are defined in the CIE 1931 standard colorimetric system (2° observer) — applicable to fields of observation of angular opening from 1° to 4°.
      */
-    attribute def CieColourMatchingFunctionsForTheCie1931StandardColorimetricObserverUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
-    }
-
-    attribute def CieColourMatchingFunctionsForTheCie1931StandardColorimetricObserverValue :> ScalarQuantityValue {
-        attribute :>> num: Real;
-        attribute :>> mRef: CieColourMatchingFunctionsForTheCie1931StandardColorimetricObserverUnit[1];
-    }
+    attribute def CieColourMatchingFunctionsForTheCie1931StandardColorimetricObserverValue :> DimensionOneValue;
     attribute cieColourMatchingFunctionsForTheCie1931StandardColorimetricObserver: CieColourMatchingFunctionsForTheCie1931StandardColorimetricObserverValue :> scalarQuantities;
 
     /**
      * source: item 7-27.2 CIE colour-matching functions for the CIE 1964 standard colorimetric observer
      * symbol(s): `overline x_10(λ)`, `overline y_10(λ)`, `overline z_10(λ)`
      * application domain: generic
-     * name: CieColourMatchingFunctionsForTheCie1964StandardColorimetricObserver
+     * name: CieColourMatchingFunctionsForTheCie1964StandardColorimetricObserver (specializes DimensionOneQuantity)
      * quantity dimension: 1
      * measurement unit(s): 1
      * tensor order: 0
      * definition: functions `overline x_10(λ)` , `overline y_10(λ)` , `overline z_10(λ)` in the CIE 1964 standard colorimetric system
      * remarks: Values of `overline x_10(λ)` , `overline y_10(λ)` and `overline z_10(λ)` are defined in the CIE 1964 standard colorimetric system (10° observer) — applicable to fields of observation with angles greater than 4°.
      */
-    attribute def CieColourMatchingFunctionsForTheCie1964StandardColorimetricObserverUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
-    }
-
-    attribute def CieColourMatchingFunctionsForTheCie1964StandardColorimetricObserverValue :> ScalarQuantityValue {
-        attribute :>> num: Real;
-        attribute :>> mRef: CieColourMatchingFunctionsForTheCie1964StandardColorimetricObserverUnit[1];
-    }
+    attribute def CieColourMatchingFunctionsForTheCie1964StandardColorimetricObserverValue :> DimensionOneValue;
     attribute cieColourMatchingFunctionsForTheCie1964StandardColorimetricObserver: CieColourMatchingFunctionsForTheCie1964StandardColorimetricObserverValue :> scalarQuantities;
 
     /**
      * source: item 7-28.1 chromaticity coordinates in the CIE 1931 standard colorimetric system
      * symbol(s): `x,y,z`
      * application domain: generic
-     * name: ChromaticityCoordinatesInTheCie1931StandardColorimetricSystem
+     * name: ChromaticityCoordinatesInTheCie1931StandardColorimetricSystem (specializes DimensionOneQuantity)
      * quantity dimension: 1
      * measurement unit(s): 1
      * tensor order: 0
      * definition: coordinates expressing the quotients of each of a set of three tristimulus values for the CIE 1931 standard colorimetric observer (item 7-26.1) and their sum, expressed by `x = X / (X+Y+Z)` , `y = Y / (X+Y+Z)` , `z = Z / (X+Y+Z)`
      * remarks: Since `x + y + z = 1`, two variables are sufficient to express chromaticity.
      */
-    attribute def ChromaticityCoordinatesInTheCie1931StandardColorimetricSystemUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
-    }
-
-    attribute def ChromaticityCoordinatesInTheCie1931StandardColorimetricSystemValue :> ScalarQuantityValue {
-        attribute :>> num: Real;
-        attribute :>> mRef: ChromaticityCoordinatesInTheCie1931StandardColorimetricSystemUnit[1];
-    }
+    attribute def ChromaticityCoordinatesInTheCie1931StandardColorimetricSystemValue :> DimensionOneValue;
     attribute chromaticityCoordinatesInTheCie1931StandardColorimetricSystem: ChromaticityCoordinatesInTheCie1931StandardColorimetricSystemValue :> scalarQuantities;
 
     /**
      * source: item 7-28.2 chromaticity coordinates in the CIE 1964 standard colorimetric system
      * symbol(s): `x_10,y_10,z_10`
      * application domain: generic
-     * name: ChromaticityCoordinatesInTheCie1964StandardColorimetricSystem
+     * name: ChromaticityCoordinatesInTheCie1964StandardColorimetricSystem (specializes DimensionOneQuantity)
      * quantity dimension: 1
      * measurement unit(s): 1
      * tensor order: 0
      * definition: coordinates expressing the quotients of each of a set of three tristimulus values for the CIE 1964 standard colorimetric observer (item 7-26.2) and their sum, expressed by `x_10 = X_10 / (X_10+Y_10+Z_10)`, `y_10 = Y_10 / (X_10+Y_10+Z_10)`, `z_10 = Z_10 / (X_10+Y_10+Z_10)`
      * remarks: Since `x_10 + y_10 + z_10 = 1`, two variables are sufficient to express chromaticity.
      */
-    attribute def ChromaticityCoordinatesInTheCie1964StandardColorimetricSystemUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
-    }
-
-    attribute def ChromaticityCoordinatesInTheCie1964StandardColorimetricSystemValue :> ScalarQuantityValue {
-        attribute :>> num: Real;
-        attribute :>> mRef: ChromaticityCoordinatesInTheCie1964StandardColorimetricSystemUnit[1];
-    }
+    attribute def ChromaticityCoordinatesInTheCie1964StandardColorimetricSystemValue :> DimensionOneValue;
     attribute chromaticityCoordinatesInTheCie1964StandardColorimetricSystem: ChromaticityCoordinatesInTheCie1964StandardColorimetricSystemValue :> scalarQuantities;
 
     /**
@@ -1104,285 +1050,188 @@ package ISQLight {
      * source: item 7-30.1 emissivity
      * symbol(s): `ε`, `ε_T`
      * application domain: generic
-     * name: Emissivity
+     * name: Emissivity (specializes DimensionOneQuantity)
      * quantity dimension: 1
      * measurement unit(s): 1
      * tensor order: 0
      * definition: quotient of the radiant exitance of a radiator and the radiant exitance of a Planckian radiator at the same temperature, expressed by `ε = M/M_b`, where `M` is the radiant exitance (item 7-8.1) of a thermal radiator and `M_b` is the radiant exitance of a Planckian radiator at the same temperature (ISO 80000-5)
      * remarks: None.
      */
-    attribute def EmissivityUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
-    }
-
-    attribute def EmissivityValue :> ScalarQuantityValue {
-        attribute :>> num: Real;
-        attribute :>> mRef: EmissivityUnit[1];
-    }
+    attribute def EmissivityValue :> DimensionOneValue;
     attribute emissivity: EmissivityValue :> scalarQuantities;
 
     /**
      * source: item 7-30.2 emissivity at a specified wavelength
      * symbol(s): `ε(λ)`
      * application domain: generic
-     * name: EmissivityAtASpecifiedWavelength
+     * name: EmissivityAtASpecifiedWavelength (specializes DimensionOneQuantity)
      * quantity dimension: 1
      * measurement unit(s): 1
      * tensor order: 0
      * definition: quotient of the radiant exitance of a radiator at a specified wavelength and the radiant exitance of a Planckian radiator at the same temperature and at the same wavelength, expressed by `ε(λ) = M(λ) / M_b(λ)`, where `M(λ)` is the radiant exitance (item 7-8.1) of a thermal radiator at a specified wavelength and `M_b(λ)` is the radiant exitance of a Planckian radiator at the same temperature at a specified wavelength (ISO 80000-3)
      * remarks: None.
      */
-    attribute def EmissivityAtASpecifiedWavelengthUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
-    }
-
-    attribute def EmissivityAtASpecifiedWavelengthValue :> ScalarQuantityValue {
-        attribute :>> num: Real;
-        attribute :>> mRef: EmissivityAtASpecifiedWavelengthUnit[1];
-    }
+    attribute def EmissivityAtASpecifiedWavelengthValue :> DimensionOneValue;
     attribute emissivityAtASpecifiedWavelength: EmissivityAtASpecifiedWavelengthValue :> scalarQuantities;
 
     /**
      * source: item 7-31.1 absorptance
      * symbol(s): `α`, `a`
      * application domain: generic
-     * name: Absorptance
+     * name: Absorptance (specializes DimensionOneQuantity)
      * quantity dimension: 1
      * measurement unit(s): 1
      * tensor order: 0
      * definition: quotient of absorbed radiant flux and incident radiant flux, expressed by `α = Φ_a/Φ_m`, where `Φ_a` is absorbed radiant flux (item 7-4.1) and `Φ_m` is incident radiant flux
      * remarks: This quantity is also defined spectrally in terms of wavelength, in which case "spectral" is added before the quantity name. Due to energy conservation, `α + ρ + τ = 1` except when polarized radiation is observed, where `ρ` is reflectance (item 7-31.3) and `τ` is transmittance (item 7-31.5).
      */
-    attribute def AbsorptanceUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
-    }
-
-    attribute def AbsorptanceValue :> ScalarQuantityValue {
-        attribute :>> num: Real;
-        attribute :>> mRef: AbsorptanceUnit[1];
-    }
+    attribute def AbsorptanceValue :> DimensionOneValue;
     attribute absorptance: AbsorptanceValue :> scalarQuantities;
 
     /**
      * source: item 7-31.2 luminous absorptance
      * symbol(s): `α_v`
      * application domain: generic
-     * name: LuminousAbsorptance
+     * name: LuminousAbsorptance (specializes DimensionOneQuantity)
      * quantity dimension: 1
      * measurement unit(s): 1
      * tensor order: 0
      * definition: quotient of absorbed luminous flux and incident luminous flux, expressed by `α_v = Φ_(v,a)/Φ_(v,m)`, where `Φ_(v,a)` is absorbed luminous flux (item 7-13) and `Φ_(v,m)` is incident luminous flux
      * remarks: From spectral absorptance, `α(λ)`, luminous absorptance can be calculated by `α_v = (int_0^∞ α(λ) Φ_(e,λ)(λ) V(λ) dλ)/(int_0^∞ Φ_(e,λ)(λ) V(λ) dλ)`, where `Φ_(e,λ)(λ)` is spectral radiant flux (or relative spectral distribution) of the source, and `V(λ)` is spectral luminous efficiency (item 7-10.2). See also item 7-31.1.
      */
-    attribute def LuminousAbsorptanceUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
-    }
-
-    attribute def LuminousAbsorptanceValue :> ScalarQuantityValue {
-        attribute :>> num: Real;
-        attribute :>> mRef: LuminousAbsorptanceUnit[1];
-    }
+    attribute def LuminousAbsorptanceValue :> DimensionOneValue;
     attribute luminousAbsorptance: LuminousAbsorptanceValue :> scalarQuantities;
 
     /**
      * source: item 7-31.3 reflectance
      * symbol(s): `ρ`
      * application domain: generic
-     * name: Reflectance
+     * name: Reflectance (specializes DimensionOneQuantity)
      * quantity dimension: 1
      * measurement unit(s): 1
      * tensor order: 0
      * definition: quotient of reflected radiant flux and incident radiant flux, expressed by `ρ = Φ_r/Φ_m`, where `Φ_r` is reflected radiant flux (item 7-4.1) and `Φ_m` is incident radiant flux
      * remarks: This quantity is also defined spectrally in terms of wavelength, in which case, "spectral" is added before the quantity name. Due to energy conservation, `α + ρ + τ = 1` except when polarized radiation is observed, where `α` is absorptance (item 7-31.1) and `τ` is transmittance (item 7-31.5).
      */
-    attribute def ReflectanceUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
-    }
-
-    attribute def ReflectanceValue :> ScalarQuantityValue {
-        attribute :>> num: Real;
-        attribute :>> mRef: ReflectanceUnit[1];
-    }
+    attribute def ReflectanceValue :> DimensionOneValue;
     attribute reflectance: ReflectanceValue :> scalarQuantities;
 
     /**
      * source: item 7-31.4 luminous reflectance
      * symbol(s): `ρ_v`
      * application domain: generic
-     * name: LuminousReflectance
+     * name: LuminousReflectance (specializes DimensionOneQuantity)
      * quantity dimension: 1
      * measurement unit(s): 1
      * tensor order: 0
      * definition: quotient of reflected luminous flux and incident luminous flux, is expressed by `ρ_v = Φ_(v,r)/Φ_(v,m)`, where `Φ_(v,r)` is reflected luminous flux (item 7-13) and `Φ_(v,m)` is incident luminous flux
      * remarks: From spectral reflectance, `ρ(λ)`, luminous reflectance can be calculated by `ρ_v = (int_0^∞ ρ(λ) Φ_(e,λ)(λ) V(λ) dλ)/(int_0^∞ Φ_(e,λ)(λ) V(λ) dλ)`, where `Φ_(e,λ)(λ)` is spectral radiant flux (or relative spectral distribution) of the source, and `V(λ)` is spectral luminous efficiency (item 7-10.2). See also item 7-31.3.
      */
-    attribute def LuminousReflectanceUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
-    }
-
-    attribute def LuminousReflectanceValue :> ScalarQuantityValue {
-        attribute :>> num: Real;
-        attribute :>> mRef: LuminousReflectanceUnit[1];
-    }
+    attribute def LuminousReflectanceValue :> DimensionOneValue;
     attribute luminousReflectance: LuminousReflectanceValue :> scalarQuantities;
 
     /**
      * source: item 7-31.5 transmittance
      * symbol(s): `τ`, `T`
      * application domain: generic
-     * name: Transmittance
+     * name: Transmittance (specializes DimensionOneQuantity)
      * quantity dimension: 1
      * measurement unit(s): 1
      * tensor order: 0
      * definition: quotient of transmitted radiant flux and incident radiant flux, expressed by `τ = Φ_t/Φ_m`, where `Φ_t` is transmitted radiant flux (item 7-4.1) and `Φ_m` is incident radiant flux
      * remarks: This quantity is also defined spectrally in terms of wavelength, in which case, "spectral" is added before the quantity name. Due to energy conservation, `α + ρ + τ = 1` except when polarized radiation is observed, where `α` is absorptance (item 7-31.1) and `ρ` is reflectance (item 7-31.3).
      */
-    attribute def TransmittanceUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
-    }
-
-    attribute def TransmittanceValue :> ScalarQuantityValue {
-        attribute :>> num: Real;
-        attribute :>> mRef: TransmittanceUnit[1];
-    }
+    attribute def TransmittanceValue :> DimensionOneValue;
     attribute transmittance: TransmittanceValue :> scalarQuantities;
 
     /**
      * source: item 7-31.6 luminous transmittance
      * symbol(s): `τ_v`
      * application domain: generic
-     * name: LuminousTransmittance
+     * name: LuminousTransmittance (specializes DimensionOneQuantity)
      * quantity dimension: 1
      * measurement unit(s): 1
      * tensor order: 0
      * definition: quotient of transmitted luminous flux and incident luminous flux, expressed by `τ_v = Φ_(v,t)/Φ_(v,m)`, where `Φ_(v,t)` is transmitted luminous flux (item 7-13) and `Φ_(v,m)` is luminous flux of the incident radiation
      * remarks: From the spectral transmittance `τ(λ)`, luminous transmittance can be calculated by `τ_v = (int_0^∞ τ(λ) Φ_(e,λ)(λ) V(λ) dλ)/(int_0^∞ Φ_(e,λ)(λ) V(λ) dλ)`, where `Φ_(e,λ)(λ)` is the spectral radiant flux (or relative spectral distribution) of the source, and `V(λ)` is the spectral luminous efficiency (item 7-10.2). See also item 7-31.5.
      */
-    attribute def LuminousTransmittanceUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
-    }
-
-    attribute def LuminousTransmittanceValue :> ScalarQuantityValue {
-        attribute :>> num: Real;
-        attribute :>> mRef: LuminousTransmittanceUnit[1];
-    }
+    attribute def LuminousTransmittanceValue :> DimensionOneValue;
     attribute luminousTransmittance: LuminousTransmittanceValue :> scalarQuantities;
 
     /**
      * source: item 7-32.1 transmittance optical density, optical density, transmittance density, decadic absorbance
      * symbol(s): `D`, `A_10`, `D_τ`
      * application domain: generic
-     * name: TransmittanceOpticalDensity
+     * name: TransmittanceOpticalDensity (specializes DimensionOneQuantity)
      * quantity dimension: 1
      * measurement unit(s): 1
      * tensor order: 0
      * definition: logarithm to base 10 of the reciprocal of the transmittance, `τ` (item 7-31.5)
      * remarks: If defined in terms of wavelength, the optical density can be expressed by `A_10(λ) = -log(τ(λ))`, where `τ(λ)` is the transmittance (item 7-31.5) in terms of wavelength. In spectroscopy, the name "absorbance" `A_10` is generally used.
      */
-    attribute def TransmittanceOpticalDensityUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
-    }
-
-    attribute def TransmittanceOpticalDensityValue :> ScalarQuantityValue {
-        attribute :>> num: Real;
-        attribute :>> mRef: TransmittanceOpticalDensityUnit[1];
-    }
+    attribute def TransmittanceOpticalDensityValue :> DimensionOneValue;
     attribute transmittanceOpticalDensity: TransmittanceOpticalDensityValue :> scalarQuantities;
 
-    alias TransmittanceOpticalDensityUnit as OpticalDensityUnit;
-    alias TransmittanceOpticalDensityValue as OpticalDensityValue;
     alias transmittanceOpticalDensity as opticalDensity;
 
-    alias TransmittanceOpticalDensityUnit as TransmittanceDensityUnit;
-    alias TransmittanceOpticalDensityValue as TransmittanceDensityValue;
     alias transmittanceOpticalDensity as transmittanceDensity;
 
-    alias TransmittanceOpticalDensityUnit as DecadicAbsorbanceUnit;
-    alias TransmittanceOpticalDensityValue as DecadicAbsorbanceValue;
     alias transmittanceOpticalDensity as decadicAbsorbance;
 
     /**
      * source: item 7-32.2 Napierian absorbance
      * symbol(s): `A_n`, `B`
      * application domain: generic
-     * name: NapierianAbsorbance
+     * name: NapierianAbsorbance (specializes DimensionOneQuantity)
      * quantity dimension: 1
      * measurement unit(s): 1
      * tensor order: 0
      * definition: natural (Napierian) logarithm of the reciprocal of the transmittance, `τ` (item 7-31.5)
      * remarks: If defined in terms of wavelength, the Napierian absorbance can be expressed by `A_n(λ) = B(λ) = -log(τ(λ))`. It can also be expressed as `A_n(λ) = l*α(λ)`, where `α` is linear absorption coefficient (item 7-35.2) and `l` is length (ISO 80000-3) traversed.
      */
-    attribute def NapierianAbsorbanceUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
-    }
-
-    attribute def NapierianAbsorbanceValue :> ScalarQuantityValue {
-        attribute :>> num: Real;
-        attribute :>> mRef: NapierianAbsorbanceUnit[1];
-    }
+    attribute def NapierianAbsorbanceValue :> DimensionOneValue;
     attribute napierianAbsorbance: NapierianAbsorbanceValue :> scalarQuantities;
 
     /**
      * source: item 7-33.1 radiance factor
      * symbol(s): `β_e`, `(β)`
      * application domain: generic
-     * name: RadianceFactor
+     * name: RadianceFactor (specializes DimensionOneQuantity)
      * quantity dimension: 1
      * measurement unit(s): 1
      * tensor order: 0
      * definition: quotient of the radiance of a surface element in a specified direction and the radiance of the perfect reflecting diffuser or perfect transmitting diffuser identically irradiated and viewed, expressed by `β_e = L_(e,n)/L_(e,d)`, where `L_(e,n)` is the radiance (item 7-6.1) of a surface element in a given direction and `L_(e,d)` is the radiance of the perfect reflecting or transmitting diffuser identically irradiated and viewed
      * remarks: The definition holds for a surface element of a non-self-radiating medium, in a given direction and under specified conditions of irradiation. Radiance factor is equivalent to reflectance factor (item 7-34) or luminance factor (item 7-33.2) when the cone angle is infinitely small, and is equivalent to reflectance (item 7-31.3) when the cone angle is `2π ["sr"]`. These quantities are also defined spectrally and called spectral radiance factor `β(λ)` and spectral reflectance factor `R(λ)`. The ideal isotropic (Lambertian) diffuser with reflectance (item 7-31.3) or transmittance (item 7-31.5) equal to 1 is called "perfect diffuser".
      */
-    attribute def RadianceFactorUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
-    }
-
-    attribute def RadianceFactorValue :> ScalarQuantityValue {
-        attribute :>> num: Real;
-        attribute :>> mRef: RadianceFactorUnit[1];
-    }
+    attribute def RadianceFactorValue :> DimensionOneValue;
     attribute radianceFactor: RadianceFactorValue :> scalarQuantities;
 
     /**
      * source: item 7-33.2 luminance factor
      * symbol(s): `β_v`, `(β)`
      * application domain: generic
-     * name: LuminanceFactor
+     * name: LuminanceFactor (specializes DimensionOneQuantity)
      * quantity dimension: 1
      * measurement unit(s): 1
      * tensor order: 0
      * definition: quotient of the luminance of a surface element in a specified direction and the luminance of the perfect reflecting diffuser or perfect transmitting diffuser identically illuminated and viewed, expressed by `β_v = L_(v,n)/L_(v,d)`, where `L_(v,n)` is the luminance (item 7-15) of a surface element in a given direction and `L_(v,d)` is the luminance of the perfect reflecting or transmitting diffuser identically illuminated and viewed
      * remarks: The definition holds for a surface element of a non-luminous medium, in a given direction and under specified conditions of irradiation. This quantity is also defined spectrally and is called "spectral luminance factor". For the analogous radiant quantity "radiance factor", see item 7-33.1.
      */
-    attribute def LuminanceFactorUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
-    }
-
-    attribute def LuminanceFactorValue :> ScalarQuantityValue {
-        attribute :>> num: Real;
-        attribute :>> mRef: LuminanceFactorUnit[1];
-    }
+    attribute def LuminanceFactorValue :> DimensionOneValue;
     attribute luminanceFactor: LuminanceFactorValue :> scalarQuantities;
 
     /**
      * source: item 7-34 reflectance factor
      * symbol(s): `R`
      * application domain: generic
-     * name: ReflectanceFactor
+     * name: ReflectanceFactor (specializes DimensionOneQuantity)
      * quantity dimension: 1
      * measurement unit(s): 1
      * tensor order: 0
      * definition: quotient of the flux reflected in the directions delimited by a given cone with apex at a surface element and the flux reflected in the same directions by a perfect reflecting diffuser identically irradiated or illuminated, expressed by `R = Φ_n/Φ_d`, where `Φ_n` is the flux reflected in the directions delimited by a given cone and `Φ_d` is the flux reflected in the same directions by an identically irradiated diffuser of reflectance (item 7-31.3) equal to 1
      * remarks: The flux can be a radiant flux (item 7‐4.1) or a luminous flux (item 7‐13). The definition holds for a surface element, for the part of the reflected radiation contained in a given cone with apex at the surface element, and for incident radiation of given spectral composition, polarization and geometric distribution. Reflectance factor is equivalent to radiance factor (item 7-33.1) or luminance factor (item 7-33.2) when the cone angle is infinitely small, and is equivalent to reflectance (item 7-31.3) when the cone angle is 2π sr. These quantities are also defined spectrally and called spectral radiance factor `β(λ)` and spectral reflectance factor `R(λ)`. The ideal isotropic (Lambertian) diffuser with reflectance (item 7-31.3) or transmittance (item 7-31.5) equal to 1 is called a perfect diffuser.
      */
-    attribute def ReflectanceFactorUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
-    }
-
-    attribute def ReflectanceFactorValue :> ScalarQuantityValue {
-        attribute :>> num: Real;
-        attribute :>> mRef: ReflectanceFactorUnit[1];
-    }
+    attribute def ReflectanceFactorValue :> DimensionOneValue;
     attribute reflectanceFactor: ReflectanceFactorValue :> scalarQuantities;
 
     /**
@@ -1398,7 +1247,7 @@ package ISQLight {
      */
     attribute def LinearAttenuationCoefficientUnit :> DerivedUnit {
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = -1; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF); }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = lengthPF; }
     }
 
     attribute def LinearAttenuationCoefficientValue :> ScalarQuantityValue {
@@ -1424,7 +1273,7 @@ package ISQLight {
      */
     attribute def LinearAbsorptionCoefficientUnit :> DerivedUnit {
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = -1; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF); }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = lengthPF; }
     }
 
     attribute def LinearAbsorptionCoefficientValue :> ScalarQuantityValue {

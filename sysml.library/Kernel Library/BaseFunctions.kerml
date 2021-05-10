@@ -6,13 +6,13 @@ package BaseFunctions {
 	private import ControlFunctions::select;
 	private import ControlFunctions::reject;
 	
-	function '=='(x: Anything[0..*], y: Anything[0..*]): Boolean;
-	function '!='(x: Anything[0..*], y: Anything[0..*]): Boolean;
+	function '=='(x: Anything[0..*] ordered nonunique, y: Anything[0..*] ordered nonunique): Boolean;
+	function '!='(x: Anything[0..*] ordered nonunique, y: Anything[0..*] ordered nonunique): Boolean;
 	
 	function ToString(x: Anything[0..1]): String;
 	
-	function '['(seq: Anything[0..*] ordered, index: Anything[0..*]): Anything[0..1];
-	function ','(seq1: Anything[0..*] ordered, seq2: Anything[0..*] ordered): Anything[0..*] ordered;
+	function '['(seq: Anything[0..*] ordered nonunique, index: Anything[0..*] ordered nonunique): Anything[0..1];
+	function ','(seq1: Anything[0..*] ordered nonunique, seq2: Anything[0..*] ordered nonunique): Anything[0..*] ordered nonunique;
 	
     abstract function 'all'(): Object[0..*] {
     	abstract feature all 'type': Object;
@@ -40,7 +40,7 @@ package BaseFunctions {
 		abstract feature 'type': Anything;
 	}
 	
-	abstract function 'as'(seq: Anything[0..*]): Anything[0..*] {
+	abstract function 'as'(seq: Anything[0..*] ordered nonunique): Anything[0..*] ordered nonunique {
 		abstract feature 'type': Anything;
 	}
 	

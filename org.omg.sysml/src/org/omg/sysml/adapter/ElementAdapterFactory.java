@@ -112,6 +112,11 @@ public class ElementAdapterFactory {
 		}
 		
 		@Override
+		public ElementAdapter caseConcernUsage(ConcernUsage element) {
+			return new ConcernUsageAdapter(element);
+		}
+		
+		@Override
 		public ElementAdapter caseConnectionDefinition(ConnectionDefinition element) {
 			return new ConnectionDefinitionAdapter(element);
 		}

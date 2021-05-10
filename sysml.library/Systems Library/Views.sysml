@@ -3,10 +3,10 @@
  * in the SysML language.
  */
 package Views {
-	import Parts::Part;
-	import Parts::parts;
-	import Requirements::RequirementCheck;
-	import Requirements::requirementChecks;
+	private import Parts::Part;
+	private import Parts::parts;
+	private import Requirements::RequirementCheck;
+	private import Requirements::requirementChecks;
 	
 	abstract view def View :> Part {
 		ref view self : View :>> Part::self;
@@ -74,17 +74,17 @@ package Views {
 	/**
 	 * views is the base feature of all ViewUsages.
 	 */
-	abstract view views : View[0..*] :> parts;
+	abstract view views : View[0..*] nonunique :> parts;
 	
 	/**
 	 * viewpointChecks is the base feature of all ViewpointUsages.
 	 */
-	abstract viewpoint viewpointChecks : ViewpointCheck[0..*] :> requirementChecks;
+	abstract viewpoint viewpointChecks : ViewpointCheck[0..*] nonunique :> requirementChecks;
 	
 	/**
 	 * renderings is the base feature of all RenderingUsages.
 	 */
-	abstract rendering renderings : Rendering[0..*] :> parts;
+	abstract rendering renderings : Rendering[0..*] nonunique :> parts;
 	
 	/**
 	 * asTextualNotation renders a View into textual notation as defined in the 

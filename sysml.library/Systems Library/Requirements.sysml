@@ -126,16 +126,16 @@ package Requirements {
 	/**
 	 * requirementChecks is the base feature of all requirement usages.
 	 */
-	abstract requirement requirementChecks: RequirementCheck[0..*] :> constraintChecks;
+	abstract requirement requirementChecks: RequirementCheck[0..*] nonunique :> constraintChecks;
 	
 	/**
 	 * concernChecks is the base feature of all ConcernUsages.
 	 */
-	abstract concern concernChecks: ConcernCheck[0..*] :> requirementChecks;
+	abstract concern concernChecks: ConcernCheck[0..*] nonunique :> requirementChecks;
 	
 	/**
 	 * stakeholders is the base feature of all Stakeholders.
 	 */
-	abstract stakeholder stakeholders: Stakeholder[0..*] :> parts;
+	abstract stakeholder stakeholders: Stakeholder[0..*] nonunique :> parts;
 	
 }

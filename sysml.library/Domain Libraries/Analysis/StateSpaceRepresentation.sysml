@@ -1,10 +1,10 @@
 package StateSpaceRepresentation {
     import ISQ::DurationValue;
+    import Quantities::VectorQuantityValue;
 
-    // TODO: StateSpace should be a vector (rank-one tensor)
-    abstract attribute def StateSpace;
-    abstract attribute def Input;
-    abstract attribute def Output;
+    abstract attribute def StateSpace :> VectorQuantityValue;
+    abstract attribute def Input :> VectorQuantityValue;
+    abstract attribute def Output :> VectorQuantityValue;
    
     abstract calc def NextState(input: Input, stateSpace: StateSpace, timeStep: DurationValue): StateSpace;
     abstract calc def GetOutput(input: Input, stateSpace: StateSpace): Output;

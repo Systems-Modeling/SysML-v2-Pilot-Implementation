@@ -22,11 +22,8 @@
 package org.omg.sysml.util;
 
 import java.util.List;
-import java.util.Optional;
-
 import org.eclipse.emf.common.util.EList;
 import org.omg.sysml.adapter.ExpressionAdapter;
-import org.omg.sysml.adapter.FeatureReferenceExpressionAdapter;
 import org.omg.sysml.adapter.InvocationExpressionAdapter;
 import org.omg.sysml.lang.sysml.AnnotatingFeature;
 import org.omg.sysml.lang.sysml.Element;
@@ -36,14 +33,12 @@ import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureReferenceExpression;
 import org.omg.sysml.lang.sysml.InvocationExpression;
 import org.omg.sysml.lang.sysml.LiteralBoolean;
+import org.omg.sysml.lang.sysml.Membership;
+import org.omg.sysml.lang.sysml.ParameterMembership;
 import org.omg.sysml.lang.sysml.TransitionFeatureKind;
 import org.omg.sysml.lang.sysml.TransitionFeatureMembership;
 import org.omg.sysml.lang.sysml.Type;
 
-/**
- * @author seidewitz
- *
- */
 public class ExpressionUtil {
 	
 	private ExpressionUtil() {
@@ -65,8 +60,11 @@ public class ExpressionUtil {
 		return ((InvocationExpressionAdapter)getExpressionAdapter(expression)).getTypeFeatures();
 	}
 
-	public static Optional<Feature> getReferentFeatureFor(FeatureReferenceExpression expression) {
-		return ((FeatureReferenceExpressionAdapter)getExpressionAdapter(expression)).getReferentFeature();
+	public static Element getReferentFor(FeatureReferenceExpression expression) {
+		return expression.getOwnedMembership().stream().
+				filter(mem->!(mem instanceof ParameterMembership)).
+				map(Membership::getMemberElement).
+				findFirst().orElse(null);
 	}
 
 	public static boolean isTransitionGuard(Expression expression) {

@@ -46,6 +46,8 @@ import org.omg.sysml.lang.sysml.ElementFilterMembership
 import org.omg.sysml.lang.sysml.MetadataFeatureValue
 import org.omg.sysml.util.TypeUtil
 import org.omg.sysml.util.ElementUtil
+import org.omg.kerml.xtext.scoping.KerMLScopeProvider
+import org.omg.sysml.util.ExpressionUtil
 
 /**
  * This class contains custom validation rules. 
@@ -74,6 +76,8 @@ class KerMLValidator extends AbstractKerMLValidator {
 	public static val INVALID_ELEMENT_FILTER_MEMBERSHIP__NOT_MODEL_LEVEL_MSG = "Must be model-level evaluable"
 	public static val INVALID_METADATA_FEATURE_VALUE__NOT_MODEL_LEVEL = "Invalid MetadataFeatureValue - Not model-level"
 	public static val INVALID_METADATA_FEATURE_VALUE__NOT_MODEL_LEVEL_MSG = "Must be model-level evaluable"
+	public static val INVALID_FEATURE_REFERENCE_EXPRESSION__INVALID_FEATURE = "Invalid FeatureReferenceExpression - Invalid feature"
+	public static val INVALID_FEATURE_REFERENCE_EXPRESSION__INVALID_FEATURE_MSG = "Must be a valid feature"
 		
 	@Check
 	def checkElement(Element elm) {
@@ -153,6 +157,20 @@ class KerMLValidator extends AbstractKerMLValidator {
 		val types = f.type;
 		if (types !== null && types.isEmpty)
 			error(INVALID_FEATURE__NO_TYPE_MSG, f, SysMLPackage.eINSTANCE.feature_Type, INVALID_FEATURE__NO_TYPE)
+	}
+	
+	@Check
+	def checkFeatureReferenceExpression(FeatureReferenceExpression e) {
+		val feature = ExpressionUtil.getReferentFor(e)
+		val rel = KerMLScopeProvider.relativeNamespace(e)
+		if (feature !== null &&
+			(!(feature instanceof Feature) || 
+				rel instanceof Type &&
+				!(feature as Feature).featuringType.isEmpty &&
+				!(feature as Feature).featuringType.exists[t | (rel as Type).conformsTo(t)]
+			)) {
+			error(INVALID_FEATURE_REFERENCE_EXPRESSION__INVALID_FEATURE_MSG, e, null, INVALID_FEATURE_REFERENCE_EXPRESSION__INVALID_FEATURE)
+		}
 	}
 	
 	@Check

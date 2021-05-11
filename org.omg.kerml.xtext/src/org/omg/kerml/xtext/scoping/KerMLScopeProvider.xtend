@@ -146,7 +146,7 @@ class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 		}
 	}
 
-	def Namespace featureRefNamespace(PathStepExpression qps) {
+	def static Namespace featureRefNamespace(PathStepExpression qps) {
 		var ops = qps.operand
 		if (ops.size() >= 2) {
 			var op1 = ops.get(1)
@@ -157,7 +157,7 @@ class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 		return null;
 	}
 
-	def Namespace relativeNamespace(Namespace ns) {
+	def static Namespace relativeNamespace(Namespace ns) {
 		var Namespace rel = null;
 		if (ns instanceof FeatureReferenceExpression) {
 			val oe = ns.owner

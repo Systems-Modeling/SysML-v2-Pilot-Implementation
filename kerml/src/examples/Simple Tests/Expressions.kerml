@@ -9,7 +9,7 @@ package Expressions {
 	
 	b = x > y? x-y: y-x;
 	c = x->collect {in xx; xx + 1}; 
-	d = x->while({in q; q > 3}, {in r; r - 1})->reduce {in s; in t; s + t}->reduce {ScalarFunctions::'+'};
+	d = x->while({in q; q > 3}, {in r; r - 1})->reduce {in s; in t; s + t}->reduce ScalarFunctions::'+';
 	
 	function w specializes ControlFunctions::while (initial) result {
 		expr condition redefines ControlFunctions::while::condition (v){v > 3}
@@ -22,7 +22,7 @@ package Expressions {
 	     0;
     
     function TotalMass(partMass, subparts) {
-		partMass + (subparts->collect {in p; totalMass(partMass, subparts)}->reduce {ScalarFunctions::'+'} ?? 0.0)
+		partMass + (subparts->collect {in p; totalMass(partMass, subparts)}->reduce ScalarFunctions::'+' ?? 0.0)
 	}
 	
 	expr totalMass: TotalMass (mass, sub);

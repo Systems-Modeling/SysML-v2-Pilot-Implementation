@@ -886,6 +886,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     ownedRelationship+=DirectedFeatureMember '}' (ambiguity) ')' (rule end)
 	 *     ownedRelationship+=EndFeatureMember '}' (ambiguity) ')' (rule end)
 	 *     ownedRelationship+=ExpressionBodyMember (ambiguity) ')' (rule end)
+	 *     ownedRelationship+=FunctionReferenceMember (ambiguity) ')' (rule end)
 	 *     ownedRelationship+=Import '}' (ambiguity) ')' (rule end)
 	 *     ownedRelationship+=NamedExpressionMember ')' (ambiguity) ')' (rule end)
 	 *     ownedRelationship+=NonFeatureTypeMember '}' (ambiguity) ')' (rule end)

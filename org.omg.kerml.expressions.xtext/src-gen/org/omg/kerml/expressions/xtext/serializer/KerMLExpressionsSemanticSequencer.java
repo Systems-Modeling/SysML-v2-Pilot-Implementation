@@ -51,8 +51,56 @@ public class KerMLExpressionsSemanticSequencer extends AbstractDelegatingSemanti
 		if (epackage == SysMLPackage.eINSTANCE)
 			switch (semanticObject.eClass().getClassifierID()) {
 			case SysMLPackage.EXPRESSION:
-				sequence_ExpressionBody(context, (Expression) semanticObject); 
-				return; 
+				if (rule == grammarAccess.getOwnedExpressionRule()
+						|| rule == grammarAccess.getExpressionBodyRule()
+						|| rule == grammarAccess.getConditionalExpressionRule()
+						|| action == grammarAccess.getConditionalExpressionAccess().getOperatorExpressionOperandAction_1_0()
+						|| rule == grammarAccess.getNullCoalescingExpressionRule()
+						|| action == grammarAccess.getNullCoalescingExpressionAccess().getOperatorExpressionOperandAction_1_0()
+						|| rule == grammarAccess.getConditionalOrExpressionRule()
+						|| action == grammarAccess.getConditionalOrExpressionAccess().getOperatorExpressionOperandAction_1_0()
+						|| rule == grammarAccess.getConditionalAndExpressionRule()
+						|| action == grammarAccess.getConditionalAndExpressionAccess().getOperatorExpressionOperandAction_1_0()
+						|| rule == grammarAccess.getOrExpressionRule()
+						|| action == grammarAccess.getOrExpressionAccess().getOperatorExpressionOperandAction_1_0()
+						|| rule == grammarAccess.getXorExpressionRule()
+						|| action == grammarAccess.getXorExpressionAccess().getOperatorExpressionOperandAction_1_0()
+						|| rule == grammarAccess.getAndExpressionRule()
+						|| action == grammarAccess.getAndExpressionAccess().getOperatorExpressionOperandAction_1_0()
+						|| rule == grammarAccess.getEqualityExpressionRule()
+						|| action == grammarAccess.getEqualityExpressionAccess().getOperatorExpressionOperandAction_1_0()
+						|| rule == grammarAccess.getClassificationExpressionRule()
+						|| action == grammarAccess.getClassificationExpressionAccess().getOperatorExpressionOperandAction_0_1_0()
+						|| rule == grammarAccess.getRelationalExpressionRule()
+						|| action == grammarAccess.getRelationalExpressionAccess().getOperatorExpressionOperandAction_1_0()
+						|| rule == grammarAccess.getRangeExpressionRule()
+						|| action == grammarAccess.getRangeExpressionAccess().getOperatorExpressionOperandAction_1_0()
+						|| rule == grammarAccess.getAdditiveExpressionRule()
+						|| action == grammarAccess.getAdditiveExpressionAccess().getOperatorExpressionOperandAction_1_0()
+						|| rule == grammarAccess.getMultiplicativeExpressionRule()
+						|| action == grammarAccess.getMultiplicativeExpressionAccess().getOperatorExpressionOperandAction_1_0()
+						|| rule == grammarAccess.getExponentiationExpressionRule()
+						|| action == grammarAccess.getExponentiationExpressionAccess().getOperatorExpressionOperandAction_1_0()
+						|| rule == grammarAccess.getUnitsExpressionRule()
+						|| action == grammarAccess.getUnitsExpressionAccess().getOperatorExpressionOperandAction_1_0()
+						|| rule == grammarAccess.getUnaryExpressionRule()
+						|| rule == grammarAccess.getExtentExpressionRule()
+						|| rule == grammarAccess.getPrimaryExpressionRule()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getOperatorExpressionOperandAction_1_0_0()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getOperatorExpressionOperandAction_1_1_0()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getPathStepExpressionOperandAction_1_2_0()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getPathSelectExpressionOperandAction_1_3_0()
+						|| rule == grammarAccess.getBaseExpressionRule()
+						|| rule == grammarAccess.getSequenceExpressionRule()
+						|| action == grammarAccess.getSequenceExpressionAccess().getOperatorExpressionOperandAction_1_1_0()) {
+					sequence_ExpressionBody(context, (Expression) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getFunctionReferenceRule()) {
+					sequence_FunctionReference(context, (Expression) semanticObject); 
+					return; 
+				}
+				else break;
 			case SysMLPackage.FEATURE:
 				if (rule == grammarAccess.getBodyParameterRule()
 						|| rule == grammarAccess.getEmptyFeatureRule()) {
@@ -67,6 +115,10 @@ public class KerMLExpressionsSemanticSequencer extends AbstractDelegatingSemanti
 			case SysMLPackage.FEATURE_MEMBERSHIP:
 				if (rule == grammarAccess.getExpressionBodyMemberRule()) {
 					sequence_ExpressionBodyMember(context, (FeatureMembership) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getFunctionReferenceMemberRule()) {
+					sequence_FunctionReferenceMember(context, (FeatureMembership) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getNamedExpressionMemberRule()) {
@@ -253,6 +305,7 @@ public class KerMLExpressionsSemanticSequencer extends AbstractDelegatingSemanti
 	 *             ownedRelationship+=OwnedFeatureTyping 
 	 *             (
 	 *                 ownedRelationship+=ExpressionBodyMember | 
+	 *                 ownedRelationship+=FunctionReferenceMember | 
 	 *                 (ownedRelationship+=OwnedExpressionMember ownedRelationship+=OwnedExpressionMember*) | 
 	 *                 (ownedRelationship+=NamedExpressionMember ownedRelationship+=NamedExpressionMember*)
 	 *             )?
@@ -423,6 +476,30 @@ public class KerMLExpressionsSemanticSequencer extends AbstractDelegatingSemanti
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getFeatureReferenceMemberAccess().getMemberElementFeatureQualifiedNameParserRuleCall_0_1(), semanticObject.eGet(SysMLPackage.Literals.MEMBERSHIP__MEMBER_ELEMENT, false));
 		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     FunctionReferenceMember returns FeatureMembership
+	 *
+	 * Constraint:
+	 *     ownedRelatedElement+=FunctionReference
+	 */
+	protected void sequence_FunctionReferenceMember(ISerializationContext context, FeatureMembership semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     FunctionReference returns Expression
+	 *
+	 * Constraint:
+	 *     ownedRelationship+=OwnedFeatureTyping
+	 */
+	protected void sequence_FunctionReference(ISerializationContext context, Expression semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	

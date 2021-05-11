@@ -163,9 +163,12 @@ public class KerMLExpressionsParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getPrimaryExpressionAccess().getOperandAssignment_1_0_2(), "rule__PrimaryExpression__OperandAssignment_1_0_2");
 			builder.put(grammarAccess.getPrimaryExpressionAccess().getOwnedRelationshipAssignment_1_1_2(), "rule__PrimaryExpression__OwnedRelationshipAssignment_1_1_2");
 			builder.put(grammarAccess.getPrimaryExpressionAccess().getOwnedRelationshipAssignment_1_1_3_0(), "rule__PrimaryExpression__OwnedRelationshipAssignment_1_1_3_0");
+			builder.put(grammarAccess.getPrimaryExpressionAccess().getOwnedRelationshipAssignment_1_1_3_1(), "rule__PrimaryExpression__OwnedRelationshipAssignment_1_1_3_1");
 			builder.put(grammarAccess.getPrimaryExpressionAccess().getOperandAssignment_1_2_2(), "rule__PrimaryExpression__OperandAssignment_1_2_2");
 			builder.put(grammarAccess.getPrimaryExpressionAccess().getOwnedRelationshipAssignment_1_3_2(), "rule__PrimaryExpression__OwnedRelationshipAssignment_1_3_2");
 			builder.put(grammarAccess.getExpressionBodyMemberAccess().getOwnedRelatedElementAssignment(), "rule__ExpressionBodyMember__OwnedRelatedElementAssignment");
+			builder.put(grammarAccess.getFunctionReferenceMemberAccess().getOwnedRelatedElementAssignment(), "rule__FunctionReferenceMember__OwnedRelatedElementAssignment");
+			builder.put(grammarAccess.getFunctionReferenceAccess().getOwnedRelationshipAssignment(), "rule__FunctionReference__OwnedRelationshipAssignment");
 			builder.put(grammarAccess.getSequenceExpressionAccess().getOperatorAssignment_1_1_1(), "rule__SequenceExpression__OperatorAssignment_1_1_1");
 			builder.put(grammarAccess.getSequenceExpressionAccess().getOperandAssignment_1_1_2(), "rule__SequenceExpression__OperandAssignment_1_1_2");
 			builder.put(grammarAccess.getFeatureReferenceExpressionAccess().getOwnedRelationshipAssignment(), "rule__FeatureReferenceExpression__OwnedRelationshipAssignment");

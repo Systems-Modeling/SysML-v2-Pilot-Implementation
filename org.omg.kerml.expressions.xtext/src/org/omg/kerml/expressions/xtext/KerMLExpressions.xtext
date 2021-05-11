@@ -268,7 +268,10 @@ PrimaryExpression returns SysML::Expression :
 	  operator = '[' operand += SequenceExpression ']'
 	| {SysML::OperatorExpression.operand += current} '->' 
 	  ownedRelationship += OwnedFeatureTyping 
-	  ( ownedRelationship += ExpressionBodyMember | ArgumentList )
+	  ( ownedRelationship += ExpressionBodyMember 
+	  | ownedRelationship += FunctionReferenceMember 
+	  | ArgumentList
+	  )
 	| {SysML::PathStepExpression.operand += current} '.' 
 	  operand += FeatureReferenceExpression
 	| {SysML::PathSelectExpression.operand += current} '.'
@@ -278,6 +281,14 @@ PrimaryExpression returns SysML::Expression :
 
 ExpressionBodyMember returns SysML::FeatureMembership :
 	ownedRelatedElement += ExpressionBody // ownedMemberFeature = BodyExpression
+;
+
+FunctionReferenceMember returns SysML::FeatureMembership :
+	ownedRelatedElement += FunctionReference // ownedMemberFeature = FunctionReference
+;
+
+FunctionReference returns SysML::Expression :
+	ownedRelationship += OwnedFeatureTyping
 ;
 
 /* Base Expressions */

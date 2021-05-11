@@ -4337,29 +4337,87 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.ConnectorEnd");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cOwnedRelationshipAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cOwnedRelationshipOwnedSubsettingParserRuleCall_0_0 = (RuleCall)cOwnedRelationshipAssignment_0.eContents().get(0);
+		private final Alternatives cOwnedRelationshipAlternatives_0_0 = (Alternatives)cOwnedRelationshipAssignment_0.eContents().get(0);
+		private final RuleCall cOwnedRelationshipOwnedSubsettingParserRuleCall_0_0_0 = (RuleCall)cOwnedRelationshipAlternatives_0_0.eContents().get(0);
+		private final RuleCall cOwnedRelationshipFeaturePathExpressionMemberParserRuleCall_0_0_1 = (RuleCall)cOwnedRelationshipAlternatives_0_0.eContents().get(1);
 		private final Assignment cOwnedRelationshipAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cOwnedRelationshipMultiplicityMemberParserRuleCall_1_0 = (RuleCall)cOwnedRelationshipAssignment_1.eContents().get(0);
 		
 		//ConnectorEnd SysML::Feature:
-		//	ownedRelationship+=OwnedSubsetting
-		//	ownedRelationship+=MultiplicityMember?;
+		//	ownedRelationship+=(OwnedSubsetting | FeaturePathExpressionMember) ownedRelationship+=MultiplicityMember?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//ownedRelationship+=OwnedSubsetting ownedRelationship+=MultiplicityMember?
+		//ownedRelationship+=(OwnedSubsetting | FeaturePathExpressionMember) ownedRelationship+=MultiplicityMember?
 		public Group getGroup() { return cGroup; }
 		
-		//ownedRelationship+=OwnedSubsetting
+		//ownedRelationship+=(OwnedSubsetting | FeaturePathExpressionMember)
 		public Assignment getOwnedRelationshipAssignment_0() { return cOwnedRelationshipAssignment_0; }
 		
+		//(OwnedSubsetting | FeaturePathExpressionMember)
+		public Alternatives getOwnedRelationshipAlternatives_0_0() { return cOwnedRelationshipAlternatives_0_0; }
+		
 		//OwnedSubsetting
-		public RuleCall getOwnedRelationshipOwnedSubsettingParserRuleCall_0_0() { return cOwnedRelationshipOwnedSubsettingParserRuleCall_0_0; }
+		public RuleCall getOwnedRelationshipOwnedSubsettingParserRuleCall_0_0_0() { return cOwnedRelationshipOwnedSubsettingParserRuleCall_0_0_0; }
+		
+		//FeaturePathExpressionMember
+		public RuleCall getOwnedRelationshipFeaturePathExpressionMemberParserRuleCall_0_0_1() { return cOwnedRelationshipFeaturePathExpressionMemberParserRuleCall_0_0_1; }
 		
 		//ownedRelationship+=MultiplicityMember?
 		public Assignment getOwnedRelationshipAssignment_1() { return cOwnedRelationshipAssignment_1; }
 		
 		//MultiplicityMember
 		public RuleCall getOwnedRelationshipMultiplicityMemberParserRuleCall_1_0() { return cOwnedRelationshipMultiplicityMemberParserRuleCall_1_0; }
+	}
+	public class FeaturePathExpressionMemberElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.FeaturePathExpressionMember");
+		private final Assignment cOwnedRelatedElementAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cOwnedRelatedElementFeaturePathExpressionParserRuleCall_0 = (RuleCall)cOwnedRelatedElementAssignment.eContents().get(0);
+		
+		//FeaturePathExpressionMember SysML::FeatureMembership:
+		//	ownedRelatedElement+=FeaturePathExpression;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//ownedRelatedElement+=FeaturePathExpression
+		public Assignment getOwnedRelatedElementAssignment() { return cOwnedRelatedElementAssignment; }
+		
+		//FeaturePathExpression
+		public RuleCall getOwnedRelatedElementFeaturePathExpressionParserRuleCall_0() { return cOwnedRelatedElementFeaturePathExpressionParserRuleCall_0; }
+	}
+	public class FeaturePathExpressionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.FeaturePathExpression");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final RuleCall cFeatureReferenceExpressionParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final Action cPathStepExpressionOperandAction_1_0 = (Action)cGroup_1.eContents().get(0);
+		private final Keyword cFullStopKeyword_1_1 = (Keyword)cGroup_1.eContents().get(1);
+		private final Assignment cOperandAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
+		private final RuleCall cOperandFeatureReferenceExpressionParserRuleCall_1_2_0 = (RuleCall)cOperandAssignment_1_2.eContents().get(0);
+		
+		//FeaturePathExpression SysML::Expression:
+		//	FeatureReferenceExpression ({SysML::PathStepExpression.operand+=current}
+		//	'.' operand+=FeatureReferenceExpression)+;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//FeatureReferenceExpression ({SysML::PathStepExpression.operand+=current} '.' operand+=FeatureReferenceExpression)+
+		public Group getGroup() { return cGroup; }
+		
+		//FeatureReferenceExpression
+		public RuleCall getFeatureReferenceExpressionParserRuleCall_0() { return cFeatureReferenceExpressionParserRuleCall_0; }
+		
+		//({SysML::PathStepExpression.operand+=current} '.' operand+=FeatureReferenceExpression)+
+		public Group getGroup_1() { return cGroup_1; }
+		
+		//{SysML::PathStepExpression.operand+=current}
+		public Action getPathStepExpressionOperandAction_1_0() { return cPathStepExpressionOperandAction_1_0; }
+		
+		//'.'
+		public Keyword getFullStopKeyword_1_1() { return cFullStopKeyword_1_1; }
+		
+		//operand+=FeatureReferenceExpression
+		public Assignment getOperandAssignment_1_2() { return cOperandAssignment_1_2; }
+		
+		//FeatureReferenceExpression
+		public RuleCall getOperandFeatureReferenceExpressionParserRuleCall_1_2_0() { return cOperandFeatureReferenceExpressionParserRuleCall_1_2_0; }
 	}
 	public class BindingConnectorElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.BindingConnector");
@@ -6293,6 +6351,8 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	private final NaryConnectorDeclarationElements pNaryConnectorDeclaration;
 	private final ConnectorEndMemberElements pConnectorEndMember;
 	private final ConnectorEndElements pConnectorEnd;
+	private final FeaturePathExpressionMemberElements pFeaturePathExpressionMember;
+	private final FeaturePathExpressionElements pFeaturePathExpression;
 	private final BindingConnectorElements pBindingConnector;
 	private final BindingConnectorDeclarationElements pBindingConnectorDeclaration;
 	private final SuccessionElements pSuccession;
@@ -6474,6 +6534,8 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		this.pNaryConnectorDeclaration = new NaryConnectorDeclarationElements();
 		this.pConnectorEndMember = new ConnectorEndMemberElements();
 		this.pConnectorEnd = new ConnectorEndElements();
+		this.pFeaturePathExpressionMember = new FeaturePathExpressionMemberElements();
+		this.pFeaturePathExpression = new FeaturePathExpressionElements();
 		this.pBindingConnector = new BindingConnectorElements();
 		this.pBindingConnectorDeclaration = new BindingConnectorDeclarationElements();
 		this.pSuccession = new SuccessionElements();
@@ -7859,14 +7921,34 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//ConnectorEnd SysML::Feature:
-	//	ownedRelationship+=OwnedSubsetting
-	//	ownedRelationship+=MultiplicityMember?;
+	//	ownedRelationship+=(OwnedSubsetting | FeaturePathExpressionMember) ownedRelationship+=MultiplicityMember?;
 	public ConnectorEndElements getConnectorEndAccess() {
 		return pConnectorEnd;
 	}
 	
 	public ParserRule getConnectorEndRule() {
 		return getConnectorEndAccess().getRule();
+	}
+	
+	//FeaturePathExpressionMember SysML::FeatureMembership:
+	//	ownedRelatedElement+=FeaturePathExpression;
+	public FeaturePathExpressionMemberElements getFeaturePathExpressionMemberAccess() {
+		return pFeaturePathExpressionMember;
+	}
+	
+	public ParserRule getFeaturePathExpressionMemberRule() {
+		return getFeaturePathExpressionMemberAccess().getRule();
+	}
+	
+	//FeaturePathExpression SysML::Expression:
+	//	FeatureReferenceExpression ({SysML::PathStepExpression.operand+=current}
+	//	'.' operand+=FeatureReferenceExpression)+;
+	public FeaturePathExpressionElements getFeaturePathExpressionAccess() {
+		return pFeaturePathExpression;
+	}
+	
+	public ParserRule getFeaturePathExpressionRule() {
+		return getFeaturePathExpressionAccess().getRule();
 	}
 	
 	///* Binding Connectors */ BindingConnector SysML::BindingConnector:

@@ -349,7 +349,7 @@ package sfriedenthal_VehicleModel_1_simplified{
                     attribute dryMass redefines Vehicle::dryMass=sum(partMasses);
                     attribute redefines Vehicle::cargoMass=0;
                     attribute partMasses [*] nonunique :>ISQ::mass;
-                    //attribute partMasses={fuelTank::mass,frontAxleAssembly::mass,rearAxleAssembly::mass};
+                    //attribute partMasses=(fuelTank::mass,frontAxleAssembly::mass,rearAxleAssembly::mass);
                     part fuelTank:FuelTank{
                         attribute redefines mass=75@[kg];
                         ref item redefines fuel{
@@ -381,7 +381,7 @@ package sfriedenthal_VehicleModel_1_simplified{
                     attribute mass redefines mass=dryMass+cargoMass+fuelTank::fuel::fuelMass;
                     attribute dryMass redefines dryMass=sum(partMasses);
                     attribute redefines cargoMass=0;
-                    attribute partMasses={fuelTank::mass,frontAxleAssembly::mass,rearAxleAssembly::mass,engine::mass,transmission::mass,driveshaft::mass};
+                    attribute partMasses=(fuelTank::mass,frontAxleAssembly::mass,rearAxleAssembly::mass,engine::mass,transmission::mass,driveshaft::mass);
                     attribute avgFuelEconomy :> distancePerVolume;
                     port fuelCmdPort: FuelCmdPort redefines pwrCmdPort {
                         in item redefines fuelCmd;

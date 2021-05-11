@@ -221,11 +221,11 @@ package VehicleModel {
                         dryMass + cargoMass + fuelTank::fuel::fuelMass;
                     attribute dryMass redefines Vehicle::dryMass = sum(partMasses);
                     attribute redefines Vehicle::cargoMass = 0;
-                    attribute partMasses = {
+                    attribute partMasses = (
                         fuelTank::mass,
                         frontAxleAssembly::mass,
                         rearAxleAssembly::mass
-                    };
+                    );
                     part fuelTank: FuelTank {
                         attribute redefines mass = 75 @[kg];
                         ref item redefines fuel {
@@ -256,14 +256,14 @@ package VehicleModel {
                         dryMass + cargoMass + fuelTank::fuel::fuelMass;
                     attribute dryMass redefines Vehicle::dryMass = sum(partMasses);
                     attribute redefines Vehicle::cargoMass = 0;
-                    attribute partMasses = {
+                    attribute partMasses = (
                         fuelTank::mass,
                         frontAxleAssembly::mass,
                         rearAxleAssembly::mass,
                         engine::mass,
                         transmission::mass,
                         driveshaft::mass
-                    };
+                    );
                     port redefines fuelCmdPort {
                         in item redefines fuelCmd;
                     }

@@ -21,13 +21,11 @@
 
 package org.omg.sysml.adapter;
 
-import java.util.Optional;
-
+import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureReferenceExpression;
-import org.omg.sysml.lang.sysml.Membership;
-import org.omg.sysml.lang.sysml.ParameterMembership;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.util.ExpressionUtil;
 import org.omg.sysml.util.TypeUtil;
 
 public class FeatureReferenceExpressionAdapter extends ExpressionAdapter {
@@ -41,17 +39,6 @@ public class FeatureReferenceExpressionAdapter extends ExpressionAdapter {
 		return (FeatureReferenceExpression)super.getTarget();
 	}
 	
-	// Derivation
-	
-	public Optional<Feature> getReferentFeature() {
-		return getTarget().getOwnedMembership().stream().
-				filter(mem->!(mem instanceof ParameterMembership)).
-				map(Membership::getMemberElement).
-				filter(Feature.class::isInstance).
-				map(Feature.class::cast).
-				findFirst();
-	}	
-	
 	// Transformation
 	
 	protected void addReferenceConnector() {
@@ -62,9 +49,10 @@ public class FeatureReferenceExpressionAdapter extends ExpressionAdapter {
 	protected void addResultSubsetting() {
 		FeatureReferenceExpression expression = getTarget();
 		Feature result = expression.getResult();
-		if (getReferentFeature().isPresent()) {
+		Element referent = ExpressionUtil.getReferentFor(expression);
+		if (referent instanceof Feature) {
 			TypeUtil.addImplicitGeneralTypeTo(result,
-					SysMLPackage.eINSTANCE.getSubsetting(), expression.getReferent());
+					SysMLPackage.eINSTANCE.getSubsetting(), (Feature)referent);
 		}
 	}
 	

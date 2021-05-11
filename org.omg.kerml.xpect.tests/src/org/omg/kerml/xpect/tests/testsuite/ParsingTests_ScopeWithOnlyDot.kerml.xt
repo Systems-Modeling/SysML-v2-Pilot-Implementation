@@ -18,13 +18,13 @@ END_SETUP
 // XPECT noErrors ---> ""
 package test{
 	class C {
-		//* XPECT scope at OuterPackage.B.b ---
+		//* XPECT scope at OuterPackage::B::b ---
 		c.a1, C.c.a1, test.C.c.a1,
 	  	C, C.c, 
 	  	c, test.C, test.C.c,
 	  	OuterPackage.A, OuterPackage.A.a1, OuterPackage.B, OuterPackage.B.b, OuterPackage.B.b.a1,
 	--- */
-		feature c : OuterPackage.B.b;
+		feature c : OuterPackage::B::b;
 	}
 }
 

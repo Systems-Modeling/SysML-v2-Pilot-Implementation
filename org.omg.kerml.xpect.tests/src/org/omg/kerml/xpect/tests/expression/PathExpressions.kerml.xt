@@ -1,0 +1,54 @@
+//* XPECT_SETUP org.omg.kerml.xpect.tests.expression.KerMLExpressionTest
+        ResourceSet {
+                ThisFile {}
+                File {from ="/library/Base.kerml"}
+                File {from ="/library/Links.kerml"}
+                File {from ="/library/Occurrences.kerml"}
+                File {from ="/library/Objects.kerml"}
+                File {from ="/library/Performances.kerml"}
+                File {from ="/library/ScalarValues.kerml"}
+                File {from ="/library/BaseFunctions.kerml"}
+                File {from ="/library/DataFunctions.kerml"}
+                File {from ="/library/ControlFunctions.kerml"}
+        }
+        Workspace {
+                JavaProject {
+                        SrcFolder {
+                                ThisFile {}
+                                File {from ="/library/Base.kerml"}
+                                File {from ="/library/Links.kerml"}
+                                File {from ="/library/Occurrences.kerml"}
+                 				File {from ="/library/Objects.kerml"}
+                				File {from ="/library/Performances.kerml"}
+                                File {from ="/library/ScalarValues.kerml"}
+                                File {from ="/library/BaseFunctions.kerml"}
+                                File {from ="/library/DataFunctions.kerml"}
+                				File {from ="/library/ControlFunctions.kerml"}
+                        }
+                }
+        }
+END_SETUP
+*/
+
+package P {
+    import ScalarValues::*;
+    
+    struct V {
+    	feature n : Integer;
+    	struct S;
+    }
+    
+    feature v1 : V;
+        
+    feature v1_n : Integer = v1.n;
+    
+    //* XPECT errors ---
+        "Must be a valid feature" at "S"
+        "Must be a valid feature" at "S"
+        --- */
+    feature v1_m : Integer = v1.S;
+    
+    // XPECT errors ---> "Must be a valid feature" at "V"
+    feature v2_m : Integer = V;
+    
+}

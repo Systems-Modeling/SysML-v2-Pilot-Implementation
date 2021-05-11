@@ -245,7 +245,7 @@ package UnitsAndScales {
 	 */
 	attribute def DimensionOneUnit :> DerivedUnit {
 		attribute :>> longName = "unit of dimension one";
-		attribute :>> unitPowerFactors = {};
+		attribute :>> unitPowerFactors = ();
 	}
 	attribute def DimensionOneValue :> QuantityValue {
 		attribute num: Real redefines QuantityValue::num;

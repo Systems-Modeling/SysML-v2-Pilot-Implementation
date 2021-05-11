@@ -1,10 +1,11 @@
 package '15_05-Unification of Expression and Constraint Definition' {
 	import '15_03-Value Expression'::*;
+	import ControlFunctions::forAll;
 	
 	constraint def DiscBrakeConstraint(wheelAssy : WheelAssy[4]) {
-		wheelAssy->forAll w: WheelAssy ( 
+		wheelAssy->forAll {in ref w: WheelAssy; 
 			2 * w::discBrakeAssy::radius < w::wheel::outerDiameter
-		)
+		}
 	}
 	
 	constraint def DiscBrakeFitConstraint_Alt(

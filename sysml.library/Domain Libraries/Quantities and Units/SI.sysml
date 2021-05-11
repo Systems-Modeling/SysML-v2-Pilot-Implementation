@@ -38,7 +38,7 @@ package SI {
      */
 	attribute systemOfUnits: SystemOfUnits {
 		:>> longName = "ISO/IEC 80000 International System of Units";
-		:>> baseUnits = {m, kg, s, A, K, mol, cd};
+		:>> baseUnits = (m, kg, s, A, K, mol, cd);
 	}
 
     /*
@@ -302,7 +302,7 @@ package SI {
         private attribute celsiusToKelvinScaleMapping: ScaleValueMapping = ScaleValueMapping(
             mappedScaleValue => temperatureWaterAtTriplePointInC, referenceScaleValue => K::temperatureOfWaterAtTriplePointInK
         );
-        attribute :>> scaleValueDefinitions = {temperatureWaterAtTriplePointInC, temperatureWaterAtFreezingPointInC};
+        attribute :>> scaleValueDefinitions = (temperatureWaterAtTriplePointInC, temperatureWaterAtFreezingPointInC);
         attribute :>> scaleValueMapping = celsiusToKelvinScaleMapping;
         // Experimental zero shift w.r.t. to K (kelvin) thermodynamic temperature ratio scale
         // Such CoordinateTransformation can be used instead of the celsiusToKelvinScaleMapping

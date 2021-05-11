@@ -47,10 +47,10 @@ package Test1{
  	--- */
 	class C specializes A{}
 	
-	//XPECT linkedName at A.B --> Test1.A.B
-	//* XPECT scope at A.B ---
+	//XPECT linkedName at A::B --> Test1.A.B
+	//* XPECT scope at A::B ---
    		A, A.B, A.B.B, C, C.B, D, D.B,
 		Test1.A, Test1.A.B, Test1.A.B.B, Test1.C, Test1.C.B, Test1.D, Test1.D.B
  	--- */
-	class D specializes A.B{}
+	class D specializes A::B{}
 }

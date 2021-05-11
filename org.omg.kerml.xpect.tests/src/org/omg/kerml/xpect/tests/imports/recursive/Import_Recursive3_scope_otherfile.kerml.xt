@@ -72,5 +72,5 @@ package RecursiveImport {
 	s: S1;
 	t: T1;
 	u: U1;
-	xx1: S1.X1;
+	xx1: S1::X1;
 }

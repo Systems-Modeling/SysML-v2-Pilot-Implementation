@@ -152,8 +152,10 @@ public class OperatorExpressionImpl extends InvocationExpressionImpl implements 
 
 	@Override
 	public Function getFunction() {
-		return (Function)SysMLLibraryUtil.getLibraryType(this, 
-				OperatorExpressionAdapter.getOperatorQualifiedNames(getOperator()));
+		String operator = getOperator();
+		return operator == null? super.getFunction():
+			   (Function)SysMLLibraryUtil.getLibraryType(this, 
+					   OperatorExpressionAdapter.getOperatorQualifiedNames(getOperator()));
 	}
 	
 	/**

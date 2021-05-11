@@ -159,9 +159,9 @@ public class ModelLevelEvaluationTest extends SysMLInteractiveTest {
 	@Test
 	public void testListOpsModelLevelEvaluability() throws Exception {
 		SysMLInteractive instance = getSysMLInteractiveInstance();
-		checkExpressionIsModelLevelEvaluable(instance, "{1, 2, 3}");
-		checkExpressionIsModelLevelEvaluable(instance, "BaseFunctions::size(null)");
-		checkExpressionIsModelLevelEvaluable(instance, "BaseFunctions::includes(null, 1)");
+		checkExpressionIsModelLevelEvaluable(instance, "(1, 2, 3)");
+		checkExpressionIsModelLevelEvaluable(instance, "SequenceFunctions::size(null)");
+		checkExpressionIsModelLevelEvaluable(instance, "SequenceFunctions::includes(null, 1)");
 	}
 
 	@Test
@@ -222,8 +222,8 @@ public class ModelLevelEvaluationTest extends SysMLInteractiveTest {
 	
 	@Test
 	public void testListEvaluation() throws Exception {
-		assertEquals(3, evaluateIntegerValue(null, null, "BaseFunctions::size({1, 2, 3})"));
-		assertEquals(true, evaluateBooleanValue(null, null, "BaseFunctions::includes({1, 2, 3}, 1)"));
+		assertEquals(3, evaluateIntegerValue(null, null, "SequenceFunctions::size((1, 2, 3))"));
+		assertEquals(true, evaluateBooleanValue(null, null, "SequenceFunctions::includes((1, 2, 3), 1)"));
 	}
 	
 	@Test

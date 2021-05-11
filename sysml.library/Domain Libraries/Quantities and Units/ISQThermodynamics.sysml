@@ -50,7 +50,7 @@ package ISQThermodynamics {
      */
     attribute def CelsiusTemperatureUnit :> DerivedUnit {
         private attribute thermodynamicTemperaturePF: QuantityPowerFactor[1] { :>> quantity = 'Θ'; :>> exponent = 1; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {thermodynamicTemperaturePF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (thermodynamicTemperaturePF); }
     }
 
     attribute def CelsiusTemperatureValue :> ScalarQuantityValue {
@@ -72,7 +72,7 @@ package ISQThermodynamics {
      */
     attribute def LinearExpansionCoefficientUnit :> DerivedUnit {
         private attribute thermodynamicTemperaturePF: QuantityPowerFactor[1] { :>> quantity = 'Θ'; :>> exponent = -1; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {thermodynamicTemperaturePF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (thermodynamicTemperaturePF); }
     }
 
     attribute def LinearExpansionCoefficientValue :> ScalarQuantityValue {
@@ -94,7 +94,7 @@ package ISQThermodynamics {
      */
     attribute def CubicExpansionCoefficientUnit :> DerivedUnit {
         private attribute thermodynamicTemperaturePF: QuantityPowerFactor[1] { :>> quantity = 'Θ'; :>> exponent = -1; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {thermodynamicTemperaturePF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (thermodynamicTemperaturePF); }
     }
 
     attribute def CubicExpansionCoefficientValue :> ScalarQuantityValue {
@@ -116,7 +116,7 @@ package ISQThermodynamics {
      */
     attribute def RelativePressureCoefficientUnit :> DerivedUnit {
         private attribute thermodynamicTemperaturePF: QuantityPowerFactor[1] { :>> quantity = 'Θ'; :>> exponent = -1; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {thermodynamicTemperaturePF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (thermodynamicTemperaturePF); }
     }
 
     attribute def RelativePressureCoefficientValue :> ScalarQuantityValue {
@@ -141,7 +141,7 @@ package ISQThermodynamics {
         private attribute massPF: QuantityPowerFactor[1] { :>> quantity = M; :>> exponent = 1; }
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = T; :>> exponent = -2; }
         private attribute thermodynamicTemperaturePF: QuantityPowerFactor[1] { :>> quantity = 'Θ'; :>> exponent = -1; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {lengthPF, massPF, durationPF, thermodynamicTemperaturePF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF, durationPF, thermodynamicTemperaturePF); }
     }
 
     attribute def PressureCoefficientValue :> ScalarQuantityValue {
@@ -165,7 +165,7 @@ package ISQThermodynamics {
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = L; :>> exponent = 1; }
         private attribute massPF: QuantityPowerFactor[1] { :>> quantity = M; :>> exponent = -1; }
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = T; :>> exponent = 2; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {lengthPF, massPF, durationPF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF, durationPF); }
     }
 
     attribute def IsothermalCompressibilityValue :> ScalarQuantityValue {
@@ -189,7 +189,7 @@ package ISQThermodynamics {
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = L; :>> exponent = 1; }
         private attribute massPF: QuantityPowerFactor[1] { :>> quantity = M; :>> exponent = -1; }
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = T; :>> exponent = 2; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {lengthPF, massPF, durationPF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF, durationPF); }
     }
 
     attribute def IsentropicCompressibilityValue :> ScalarQuantityValue {
@@ -213,7 +213,7 @@ package ISQThermodynamics {
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = L; :>> exponent = 2; }
         private attribute massPF: QuantityPowerFactor[1] { :>> quantity = M; :>> exponent = 1; }
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = T; :>> exponent = -2; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {lengthPF, massPF, durationPF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF, durationPF); }
     }
 
     attribute def HeatValue :> ScalarQuantityValue {
@@ -241,7 +241,7 @@ package ISQThermodynamics {
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = L; :>> exponent = 2; }
         private attribute massPF: QuantityPowerFactor[1] { :>> quantity = M; :>> exponent = 1; }
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = T; :>> exponent = -2; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {lengthPF, massPF, durationPF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF, durationPF); }
     }
 
     attribute def LatentHeatValue :> ScalarQuantityValue {
@@ -265,7 +265,7 @@ package ISQThermodynamics {
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = L; :>> exponent = 2; }
         private attribute massPF: QuantityPowerFactor[1] { :>> quantity = M; :>> exponent = 1; }
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = T; :>> exponent = -3; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {lengthPF, massPF, durationPF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF, durationPF); }
     }
 
     attribute def HeatFlowRateValue :> ScalarQuantityValue {
@@ -288,7 +288,7 @@ package ISQThermodynamics {
     attribute def DensityOfHeatFlowRateUnit :> DerivedUnit {
         private attribute massPF: QuantityPowerFactor[1] { :>> quantity = M; :>> exponent = 1; }
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = T; :>> exponent = -3; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {massPF, durationPF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (massPF, durationPF); }
     }
 
     attribute def DensityOfHeatFlowRateValue :> ScalarQuantityValue {
@@ -313,7 +313,7 @@ package ISQThermodynamics {
         private attribute massPF: QuantityPowerFactor[1] { :>> quantity = M; :>> exponent = 1; }
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = T; :>> exponent = -3; }
         private attribute thermodynamicTemperaturePF: QuantityPowerFactor[1] { :>> quantity = 'Θ'; :>> exponent = -1; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {lengthPF, massPF, durationPF, thermodynamicTemperaturePF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF, durationPF, thermodynamicTemperaturePF); }
     }
 
     attribute def ThermalConductivityValue :> ScalarQuantityValue {
@@ -337,7 +337,7 @@ package ISQThermodynamics {
         private attribute massPF: QuantityPowerFactor[1] { :>> quantity = M; :>> exponent = 1; }
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = T; :>> exponent = -3; }
         private attribute thermodynamicTemperaturePF: QuantityPowerFactor[1] { :>> quantity = 'Θ'; :>> exponent = -1; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {massPF, durationPF, thermodynamicTemperaturePF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (massPF, durationPF, thermodynamicTemperaturePF); }
     }
 
     attribute def CoefficientOfHeatTransferValue :> ScalarQuantityValue {
@@ -361,7 +361,7 @@ package ISQThermodynamics {
         private attribute massPF: QuantityPowerFactor[1] { :>> quantity = M; :>> exponent = 1; }
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = T; :>> exponent = -3; }
         private attribute thermodynamicTemperaturePF: QuantityPowerFactor[1] { :>> quantity = 'Θ'; :>> exponent = -1; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {massPF, durationPF, thermodynamicTemperaturePF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (massPF, durationPF, thermodynamicTemperaturePF); }
     }
 
     attribute def SurfaceCoefficientOfHeatTransferValue :> ScalarQuantityValue {
@@ -385,7 +385,7 @@ package ISQThermodynamics {
         private attribute massPF: QuantityPowerFactor[1] { :>> quantity = M; :>> exponent = -1; }
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = T; :>> exponent = 3; }
         private attribute thermodynamicTemperaturePF: QuantityPowerFactor[1] { :>> quantity = 'Θ'; :>> exponent = 1; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {massPF, durationPF, thermodynamicTemperaturePF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (massPF, durationPF, thermodynamicTemperaturePF); }
     }
 
     attribute def ThermalInsulanceValue :> ScalarQuantityValue {
@@ -414,7 +414,7 @@ package ISQThermodynamics {
         private attribute massPF: QuantityPowerFactor[1] { :>> quantity = M; :>> exponent = -1; }
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = T; :>> exponent = 3; }
         private attribute thermodynamicTemperaturePF: QuantityPowerFactor[1] { :>> quantity = 'Θ'; :>> exponent = 1; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {lengthPF, massPF, durationPF, thermodynamicTemperaturePF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF, durationPF, thermodynamicTemperaturePF); }
     }
 
     attribute def ThermalResistanceValue :> ScalarQuantityValue {
@@ -439,7 +439,7 @@ package ISQThermodynamics {
         private attribute massPF: QuantityPowerFactor[1] { :>> quantity = M; :>> exponent = 1; }
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = T; :>> exponent = -3; }
         private attribute thermodynamicTemperaturePF: QuantityPowerFactor[1] { :>> quantity = 'Θ'; :>> exponent = -1; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {lengthPF, massPF, durationPF, thermodynamicTemperaturePF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF, durationPF, thermodynamicTemperaturePF); }
     }
 
     attribute def ThermalConductanceValue :> ScalarQuantityValue {
@@ -462,7 +462,7 @@ package ISQThermodynamics {
     attribute def ThermalDiffusivityUnit :> DerivedUnit {
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = L; :>> exponent = 2; }
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = T; :>> exponent = -1; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {lengthPF, durationPF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, durationPF); }
     }
 
     attribute def ThermalDiffusivityValue :> ScalarQuantityValue {
@@ -487,7 +487,7 @@ package ISQThermodynamics {
         private attribute massPF: QuantityPowerFactor[1] { :>> quantity = M; :>> exponent = 1; }
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = T; :>> exponent = -2; }
         private attribute thermodynamicTemperaturePF: QuantityPowerFactor[1] { :>> quantity = 'Θ'; :>> exponent = -1; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {lengthPF, massPF, durationPF, thermodynamicTemperaturePF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF, durationPF, thermodynamicTemperaturePF); }
     }
 
     attribute def HeatCapacityValue :> ScalarQuantityValue {
@@ -511,7 +511,7 @@ package ISQThermodynamics {
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = L; :>> exponent = 2; }
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = T; :>> exponent = -2; }
         private attribute thermodynamicTemperaturePF: QuantityPowerFactor[1] { :>> quantity = 'Θ'; :>> exponent = -1; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {lengthPF, durationPF, thermodynamicTemperaturePF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, durationPF, thermodynamicTemperaturePF); }
     }
 
     attribute def SpecificHeatCapacityValue :> ScalarQuantityValue {
@@ -535,7 +535,7 @@ package ISQThermodynamics {
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = L; :>> exponent = 2; }
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = T; :>> exponent = -2; }
         private attribute thermodynamicTemperaturePF: QuantityPowerFactor[1] { :>> quantity = 'Θ'; :>> exponent = -1; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {lengthPF, durationPF, thermodynamicTemperaturePF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, durationPF, thermodynamicTemperaturePF); }
     }
 
     attribute def SpecificHeatCapacityAtConstantPressureValue :> ScalarQuantityValue {
@@ -559,7 +559,7 @@ package ISQThermodynamics {
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = L; :>> exponent = 2; }
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = T; :>> exponent = -2; }
         private attribute thermodynamicTemperaturePF: QuantityPowerFactor[1] { :>> quantity = 'Θ'; :>> exponent = -1; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {lengthPF, durationPF, thermodynamicTemperaturePF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, durationPF, thermodynamicTemperaturePF); }
     }
 
     attribute def SpecificHeatCapacityAtConstantVolumeValue :> ScalarQuantityValue {
@@ -583,7 +583,7 @@ package ISQThermodynamics {
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = L; :>> exponent = 2; }
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = T; :>> exponent = -2; }
         private attribute thermodynamicTemperaturePF: QuantityPowerFactor[1] { :>> quantity = 'Θ'; :>> exponent = -1; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {lengthPF, durationPF, thermodynamicTemperaturePF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, durationPF, thermodynamicTemperaturePF); }
     }
 
     attribute def SpecificHeatCapacityAtSaturatedVapourPressureValue :> ScalarQuantityValue {
@@ -604,7 +604,7 @@ package ISQThermodynamics {
      * remarks: This quantity can also be expressed by `γ = C_p/C_V` where `C_p` is heat capacity at constant pressure and `C_V` is heat capacity at constant volume.
      */
     attribute def RatioOfSpecificHeatCapacitiesUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
     }
 
     attribute def RatioOfSpecificHeatCapacitiesValue :> ScalarQuantityValue {
@@ -625,7 +625,7 @@ package ISQThermodynamics {
      * remarks: For an ideal gas, `ϰ` is equal to `γ` (item 5-17.1).
      */
     attribute def IsentropicExponentUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
     }
 
     attribute def IsentropicExponentValue :> ScalarQuantityValue {
@@ -654,7 +654,7 @@ package ISQThermodynamics {
         private attribute massPF: QuantityPowerFactor[1] { :>> quantity = M; :>> exponent = 1; }
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = T; :>> exponent = -2; }
         private attribute thermodynamicTemperaturePF: QuantityPowerFactor[1] { :>> quantity = 'Θ'; :>> exponent = -1; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {lengthPF, massPF, durationPF, thermodynamicTemperaturePF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF, durationPF, thermodynamicTemperaturePF); }
     }
 
     attribute def EntropyValue :> ScalarQuantityValue {
@@ -678,7 +678,7 @@ package ISQThermodynamics {
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = L; :>> exponent = 2; }
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = T; :>> exponent = -2; }
         private attribute thermodynamicTemperaturePF: QuantityPowerFactor[1] { :>> quantity = 'Θ'; :>> exponent = -1; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {lengthPF, durationPF, thermodynamicTemperaturePF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, durationPF, thermodynamicTemperaturePF); }
     }
 
     attribute def SpecificEntropyValue :> ScalarQuantityValue {
@@ -702,7 +702,7 @@ package ISQThermodynamics {
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = L; :>> exponent = 2; }
         private attribute massPF: QuantityPowerFactor[1] { :>> quantity = M; :>> exponent = 1; }
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = T; :>> exponent = -2; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {lengthPF, massPF, durationPF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF, durationPF); }
     }
 
     attribute def EnergyValue :> ScalarQuantityValue {
@@ -741,7 +741,7 @@ package ISQThermodynamics {
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = L; :>> exponent = 2; }
         private attribute massPF: QuantityPowerFactor[1] { :>> quantity = M; :>> exponent = 1; }
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = T; :>> exponent = -2; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {lengthPF, massPF, durationPF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF, durationPF); }
     }
 
     attribute def EnthalpyValue :> ScalarQuantityValue {
@@ -794,7 +794,7 @@ package ISQThermodynamics {
     attribute def SpecificEnergyUnit :> DerivedUnit {
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = L; :>> exponent = 2; }
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = T; :>> exponent = -2; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {lengthPF, durationPF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, durationPF); }
     }
 
     attribute def SpecificEnergyValue :> ScalarQuantityValue {
@@ -832,7 +832,7 @@ package ISQThermodynamics {
     attribute def SpecificEnthalpyUnit :> DerivedUnit {
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = L; :>> exponent = 2; }
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = T; :>> exponent = -2; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {lengthPF, durationPF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, durationPF); }
     }
 
     attribute def SpecificEnthalpyValue :> ScalarQuantityValue {
@@ -887,7 +887,7 @@ package ISQThermodynamics {
         private attribute massPF: QuantityPowerFactor[1] { :>> quantity = M; :>> exponent = 1; }
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = T; :>> exponent = -2; }
         private attribute thermodynamicTemperaturePF: QuantityPowerFactor[1] { :>> quantity = 'Θ'; :>> exponent = -1; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {lengthPF, massPF, durationPF, thermodynamicTemperaturePF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF, durationPF, thermodynamicTemperaturePF); }
     }
 
     attribute def MassieuFunctionValue :> ScalarQuantityValue {
@@ -912,7 +912,7 @@ package ISQThermodynamics {
         private attribute massPF: QuantityPowerFactor[1] { :>> quantity = M; :>> exponent = 1; }
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = T; :>> exponent = -2; }
         private attribute thermodynamicTemperaturePF: QuantityPowerFactor[1] { :>> quantity = 'Θ'; :>> exponent = -1; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {lengthPF, massPF, durationPF, thermodynamicTemperaturePF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF, durationPF, thermodynamicTemperaturePF); }
     }
 
     attribute def PlanckFunctionValue :> ScalarQuantityValue {
@@ -937,7 +937,7 @@ package ISQThermodynamics {
         private attribute massPF: QuantityPowerFactor[1] { :>> quantity = M; :>> exponent = -1; }
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = T; :>> exponent = 2; }
         private attribute thermodynamicTemperaturePF: QuantityPowerFactor[1] { :>> quantity = 'Θ'; :>> exponent = 1; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {lengthPF, massPF, durationPF, thermodynamicTemperaturePF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF, durationPF, thermodynamicTemperaturePF); }
     }
 
     attribute def JouleThomsonCoefficientValue :> ScalarQuantityValue {
@@ -958,7 +958,7 @@ package ISQThermodynamics {
      * remarks: 
      */
     attribute def ThermalEfficiencyUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
     }
 
     attribute def ThermalEfficiencyValue :> ScalarQuantityValue {
@@ -979,7 +979,7 @@ package ISQThermodynamics {
      * remarks: An ideal heat engine operating according to the Carnot process is delivering the maximum efficiency.
      */
     attribute def MaximumThermalEfficiencyUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
     }
 
     attribute def MaximumThermalEfficiencyValue :> ScalarQuantityValue {
@@ -1003,7 +1003,7 @@ package ISQThermodynamics {
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = L; :>> exponent = 2; }
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = T; :>> exponent = -2; }
         private attribute thermodynamicTemperaturePF: QuantityPowerFactor[1] { :>> quantity = 'Θ'; :>> exponent = -1; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {lengthPF, durationPF, thermodynamicTemperaturePF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, durationPF, thermodynamicTemperaturePF); }
     }
 
     attribute def SpecificGasConstantValue :> ScalarQuantityValue {
@@ -1026,7 +1026,7 @@ package ISQThermodynamics {
     attribute def MassConcentrationOfWaterUnit :> DerivedUnit {
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = L; :>> exponent = -3; }
         private attribute massPF: QuantityPowerFactor[1] { :>> quantity = M; :>> exponent = 1; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {lengthPF, massPF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF); }
     }
 
     attribute def MassConcentrationOfWaterValue :> ScalarQuantityValue {
@@ -1049,7 +1049,7 @@ package ISQThermodynamics {
     attribute def MassConcentrationOfWaterVapourAbsoluteHumidityUnit :> DerivedUnit {
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = L; :>> exponent = -3; }
         private attribute massPF: QuantityPowerFactor[1] { :>> quantity = M; :>> exponent = 1; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {lengthPF, massPF}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF); }
     }
 
     attribute def MassConcentrationOfWaterVapourAbsoluteHumidityValue :> ScalarQuantityValue {
@@ -1070,7 +1070,7 @@ package ISQThermodynamics {
      * remarks: Mass ratio of water to dry matter at saturation is denoted `u_"sat"`.
      */
     attribute def MassRatioOfWaterToDryMatterUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
     }
 
     attribute def MassRatioOfWaterToDryMatterValue :> ScalarQuantityValue {
@@ -1091,7 +1091,7 @@ package ISQThermodynamics {
      * remarks: Mass ratio of water vapour to dry gas at saturation is denoted `r_"sat"`. Mass ratio of water vapour to dry gas is also called mixing ratio.
      */
     attribute def MassRatioOfWaterVapourToDryGasUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
     }
 
     attribute def MassRatioOfWaterVapourToDryGasValue :> ScalarQuantityValue {
@@ -1112,7 +1112,7 @@ package ISQThermodynamics {
      * remarks: 
      */
     attribute def MassFractionOfWaterUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
     }
 
     attribute def MassFractionOfWaterValue :> ScalarQuantityValue {
@@ -1133,7 +1133,7 @@ package ISQThermodynamics {
      * remarks: 
      */
     attribute def MassFractionOfDryMatterUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
     }
 
     attribute def MassFractionOfDryMatterValue :> ScalarQuantityValue {
@@ -1154,7 +1154,7 @@ package ISQThermodynamics {
      * remarks: Relative humidity is often referred to as RH and expressed in percent. See also remark in item 5-35.
      */
     attribute def RelativeHumidityUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
     }
 
     attribute def RelativeHumidityValue :> ScalarQuantityValue {
@@ -1175,7 +1175,7 @@ package ISQThermodynamics {
      * remarks: For water vapour concentrations up to 1 kg/m^3, the relative humidity (item 5-33) is assumed to be equal to relative mass concentration of vapour. For details see Reference [8].
      */
     attribute def RelativeMassConcentrationOfVapourUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
     }
 
     attribute def RelativeMassConcentrationOfVapourValue :> ScalarQuantityValue {
@@ -1196,7 +1196,7 @@ package ISQThermodynamics {
      * remarks: This quantity is also used as an approximation of relative humidity (item 5-33).
      */
     attribute def RelativeMassRatioOfVapourUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = {}; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
     }
 
     attribute def RelativeMassRatioOfVapourValue :> ScalarQuantityValue {

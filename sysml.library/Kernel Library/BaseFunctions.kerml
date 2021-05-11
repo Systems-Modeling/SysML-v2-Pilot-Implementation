@@ -2,12 +2,11 @@ package BaseFunctions {
 	private import Base::Anything;
 	private import Objects::Object;
 	private import ScalarValues::*;
-	private import ControlFunctions::exists;
-	private import ControlFunctions::select;
-	private import ControlFunctions::reject;
 	
-	function '=='(x: Anything[0..*] ordered nonunique, y: Anything[0..*] ordered nonunique): Boolean;
-	function '!='(x: Anything[0..*] ordered nonunique, y: Anything[0..*] ordered nonunique): Boolean;
+	abstract function '=='(x: Anything[0..1] ordered nonunique, y: Anything[0..1] ordered nonunique): Boolean[1];
+	function '!='(x: Anything[0..1] ordered nonunique, y: Anything[0..1] ordered nonunique): Boolean[1] {
+		!(x == y)
+	}
 	
 	function ToString(x: Anything[0..1]): String;
 	
@@ -23,25 +22,25 @@ package BaseFunctions {
 		abstract feature all 'type': Object;
 	}
 	
-	abstract function 'istype'(x: Anything[1]): Boolean {
+	abstract function 'istype'(x: Anything[1]): Boolean[1] {
 		abstract feature 'type': Anything;
 	}
 	
-	abstract function '@'(x: Anything[1]): Boolean {
+	abstract function '@'(x: Anything[1]): Boolean[1] {
 		abstract feature 'type': Anything;
 	}
 	
 	/** Deprecated */
 	abstract function 'instanceof'(x: Anything[1]): Boolean {
-		abstract feature 'type': Anything;
+		abstract feature 'type': Anything[1];
 	}
 	
 	abstract function 'hastype'(x: Anything[1]): Boolean {
-		abstract feature 'type': Anything;
+		abstract feature 'type': Anything[1];
 	}
 	
 	abstract function 'as'(seq: Anything[0..*] ordered nonunique): Anything[0..*] ordered nonunique {
-		abstract feature 'type': Anything;
+		abstract feature 'type': Anything[1];
 	}
 	
 }

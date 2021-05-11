@@ -23,7 +23,7 @@ import java.util.HashMap;
 @SuppressWarnings("all")
 public class InternalSysMLParser extends AbstractInternalAntlrParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_REGULAR_COMMENT", "RULE_DOCUMENTATION_COMMENT", "RULE_STRING_VALUE", "RULE_DECIMAL_VALUE", "RULE_EXP_VALUE", "RULE_ID", "RULE_UNRESTRICTED_NAME", "RULE_ML_NOTE", "RULE_SL_NOTE", "RULE_WS", "'id'", "'comment'", "'about'", "','", "'doc'", "'rep'", "'language'", "'@'", "'metadata'", "';'", "'{'", "'}'", "'feature'", "':>>'", "'redefines'", "'='", "'package'", "'filter'", "'alias'", "'import'", "'as'", "'::'", "'.'", "'*'", "'**'", "']'", "'end'", "':>'", "'specializes'", "'ordered'", "'nonunique'", "':'", "'defined'", "'by'", "'subsets'", "'['", "'..'", "'=>'", "'bind'", "'abstract'", "'succession'", "'first'", "'then'", "'stream'", "'flow'", "'of'", "'from'", "'to'", "'dependency'", "'variation'", "'variant'", "'ref'", "'attribute'", "'def'", "'value'", "'type'", "'enum'", "'item'", "'part'", "'block'", "'port'", "'interface'", "'~'", "'connection'", "'assoc'", "'connect'", "'link'", "'('", "')'", "'allocation'", "'allocate'", "'individual'", "'timeslice'", "'snapshot'", "'action'", "'activity'", "'perform'", "'accept'", "'for'", "'send'", "'merge'", "'decide'", "'join'", "'fork'", "'else'", "'state'", "'entry'", "'do'", "'exit'", "'exhibit'", "'transition'", "'calc'", "'return'", "'constraint'", "'assert'", "'requirement'", "'subject'", "'satisfy'", "'concern'", "'involve'", "'stakeholder'", "'case'", "'objective'", "'analysis'", "'verification'", "'view'", "'render'", "'expose'", "'viewpoint'", "'rendering'", "'/'", "'./'", "'?'", "'??'", "'||'", "'&&'", "'|'", "'^'", "'&'", "'=='", "'!='", "'instanceof'", "'hastype'", "'istype'", "'<'", "'>'", "'<='", "'>='", "'+'", "'-'", "'%'", "'@['", "'!'", "'all'", "'allInstances'", "'->'", "'null'", "'true'", "'false'", "'public'", "'private'", "'protected'", "'in'", "'out'", "'inout'", "'if'", "'assume'", "'require'", "'frame'", "'verify'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_REGULAR_COMMENT", "RULE_DOCUMENTATION_COMMENT", "RULE_STRING_VALUE", "RULE_DECIMAL_VALUE", "RULE_EXP_VALUE", "RULE_ID", "RULE_UNRESTRICTED_NAME", "RULE_ML_NOTE", "RULE_SL_NOTE", "RULE_WS", "'id'", "'comment'", "'about'", "','", "'doc'", "'rep'", "'language'", "'@'", "'metadata'", "';'", "'{'", "'}'", "'feature'", "':>>'", "'redefines'", "'='", "'package'", "'filter'", "'alias'", "'import'", "'as'", "'::'", "'.'", "'*'", "'**'", "']'", "'end'", "':>'", "'specializes'", "'ordered'", "'nonunique'", "':'", "'defined'", "'by'", "'subsets'", "'['", "'..'", "'=>'", "'bind'", "'abstract'", "'succession'", "'first'", "'then'", "'stream'", "'flow'", "'of'", "'from'", "'to'", "'dependency'", "'variation'", "'variant'", "'ref'", "'attribute'", "'def'", "'value'", "'type'", "'enum'", "'item'", "'part'", "'block'", "'port'", "'interface'", "'~'", "'connection'", "'assoc'", "'connect'", "'link'", "'('", "')'", "'allocation'", "'allocate'", "'individual'", "'timeslice'", "'snapshot'", "'action'", "'activity'", "'perform'", "'accept'", "'for'", "'send'", "'merge'", "'decide'", "'join'", "'fork'", "'else'", "'state'", "'entry'", "'do'", "'exit'", "'exhibit'", "'transition'", "'calc'", "'return'", "'constraint'", "'assert'", "'requirement'", "'subject'", "'satisfy'", "'concern'", "'affect'", "'stakeholder'", "'case'", "'objective'", "'analysis'", "'verification'", "'view'", "'render'", "'expose'", "'viewpoint'", "'rendering'", "'/'", "'./'", "'?'", "'??'", "'||'", "'&&'", "'|'", "'^'", "'&'", "'=='", "'!='", "'instanceof'", "'hastype'", "'istype'", "'<'", "'>'", "'<='", "'>='", "'+'", "'-'", "'%'", "'@['", "'!'", "'all'", "'allInstances'", "'->'", "'null'", "'true'", "'false'", "'public'", "'private'", "'protected'", "'in'", "'out'", "'inout'", "'if'", "'assume'", "'require'", "'frame'", "'verify'"
     };
     public static final int T__144=144;
     public static final int T__143=143;
@@ -61271,7 +61271,7 @@ public class InternalSysMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleConcernBodyItem"
-    // InternalSysML.g:20860:1: ruleConcernBodyItem[EObject in_current] returns [EObject current=in_current] : (this_RequirementBodyItem_0= ruleRequirementBodyItem[$current] | ( (lv_ownedRelationship_1_0= ruleInvolvedStakeholderMember ) ) ) ;
+    // InternalSysML.g:20860:1: ruleConcernBodyItem[EObject in_current] returns [EObject current=in_current] : (this_RequirementBodyItem_0= ruleRequirementBodyItem[$current] | ( (lv_ownedRelationship_1_0= ruleAffectedStakeholderMember ) ) ) ;
     public final EObject ruleConcernBodyItem(EObject in_current) throws RecognitionException {
         EObject current = in_current;
 
@@ -61284,10 +61284,10 @@ public class InternalSysMLParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalSysML.g:20866:2: ( (this_RequirementBodyItem_0= ruleRequirementBodyItem[$current] | ( (lv_ownedRelationship_1_0= ruleInvolvedStakeholderMember ) ) ) )
-            // InternalSysML.g:20867:2: (this_RequirementBodyItem_0= ruleRequirementBodyItem[$current] | ( (lv_ownedRelationship_1_0= ruleInvolvedStakeholderMember ) ) )
+            // InternalSysML.g:20866:2: ( (this_RequirementBodyItem_0= ruleRequirementBodyItem[$current] | ( (lv_ownedRelationship_1_0= ruleAffectedStakeholderMember ) ) ) )
+            // InternalSysML.g:20867:2: (this_RequirementBodyItem_0= ruleRequirementBodyItem[$current] | ( (lv_ownedRelationship_1_0= ruleAffectedStakeholderMember ) ) )
             {
-            // InternalSysML.g:20867:2: (this_RequirementBodyItem_0= ruleRequirementBodyItem[$current] | ( (lv_ownedRelationship_1_0= ruleInvolvedStakeholderMember ) ) )
+            // InternalSysML.g:20867:2: (this_RequirementBodyItem_0= ruleRequirementBodyItem[$current] | ( (lv_ownedRelationship_1_0= ruleAffectedStakeholderMember ) ) )
             int alt360=2;
             alt360 = dfa360.predict(input);
             switch (alt360) {
@@ -61317,21 +61317,21 @@ public class InternalSysMLParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalSysML.g:20880:3: ( (lv_ownedRelationship_1_0= ruleInvolvedStakeholderMember ) )
+                    // InternalSysML.g:20880:3: ( (lv_ownedRelationship_1_0= ruleAffectedStakeholderMember ) )
                     {
-                    // InternalSysML.g:20880:3: ( (lv_ownedRelationship_1_0= ruleInvolvedStakeholderMember ) )
-                    // InternalSysML.g:20881:4: (lv_ownedRelationship_1_0= ruleInvolvedStakeholderMember )
+                    // InternalSysML.g:20880:3: ( (lv_ownedRelationship_1_0= ruleAffectedStakeholderMember ) )
+                    // InternalSysML.g:20881:4: (lv_ownedRelationship_1_0= ruleAffectedStakeholderMember )
                     {
-                    // InternalSysML.g:20881:4: (lv_ownedRelationship_1_0= ruleInvolvedStakeholderMember )
-                    // InternalSysML.g:20882:5: lv_ownedRelationship_1_0= ruleInvolvedStakeholderMember
+                    // InternalSysML.g:20881:4: (lv_ownedRelationship_1_0= ruleAffectedStakeholderMember )
+                    // InternalSysML.g:20882:5: lv_ownedRelationship_1_0= ruleAffectedStakeholderMember
                     {
                     if ( state.backtracking==0 ) {
 
-                      					newCompositeNode(grammarAccess.getConcernBodyItemAccess().getOwnedRelationshipInvolvedStakeholderMemberParserRuleCall_1_0());
+                      					newCompositeNode(grammarAccess.getConcernBodyItemAccess().getOwnedRelationshipAffectedStakeholderMemberParserRuleCall_1_0());
                       				
                     }
                     pushFollow(FOLLOW_2);
-                    lv_ownedRelationship_1_0=ruleInvolvedStakeholderMember();
+                    lv_ownedRelationship_1_0=ruleAffectedStakeholderMember();
 
                     state._fsp--;
                     if (state.failed) return current;
@@ -61344,7 +61344,7 @@ public class InternalSysMLParser extends AbstractInternalAntlrParser {
                       						current,
                       						"ownedRelationship",
                       						lv_ownedRelationship_1_0,
-                      						"org.omg.sysml.xtext.SysML.InvolvedStakeholderMember");
+                      						"org.omg.sysml.xtext.SysML.AffectedStakeholderMember");
                       					afterParserOrEnumRuleCall();
                       				
                     }
@@ -61381,28 +61381,28 @@ public class InternalSysMLParser extends AbstractInternalAntlrParser {
     // $ANTLR end "ruleConcernBodyItem"
 
 
-    // $ANTLR start "entryRuleInvolvedStakeholderMember"
-    // InternalSysML.g:20903:1: entryRuleInvolvedStakeholderMember returns [EObject current=null] : iv_ruleInvolvedStakeholderMember= ruleInvolvedStakeholderMember EOF ;
-    public final EObject entryRuleInvolvedStakeholderMember() throws RecognitionException {
+    // $ANTLR start "entryRuleAffectedStakeholderMember"
+    // InternalSysML.g:20903:1: entryRuleAffectedStakeholderMember returns [EObject current=null] : iv_ruleAffectedStakeholderMember= ruleAffectedStakeholderMember EOF ;
+    public final EObject entryRuleAffectedStakeholderMember() throws RecognitionException {
         EObject current = null;
 
-        EObject iv_ruleInvolvedStakeholderMember = null;
+        EObject iv_ruleAffectedStakeholderMember = null;
 
 
         try {
-            // InternalSysML.g:20903:66: (iv_ruleInvolvedStakeholderMember= ruleInvolvedStakeholderMember EOF )
-            // InternalSysML.g:20904:2: iv_ruleInvolvedStakeholderMember= ruleInvolvedStakeholderMember EOF
+            // InternalSysML.g:20903:66: (iv_ruleAffectedStakeholderMember= ruleAffectedStakeholderMember EOF )
+            // InternalSysML.g:20904:2: iv_ruleAffectedStakeholderMember= ruleAffectedStakeholderMember EOF
             {
             if ( state.backtracking==0 ) {
-               newCompositeNode(grammarAccess.getInvolvedStakeholderMemberRule()); 
+               newCompositeNode(grammarAccess.getAffectedStakeholderMemberRule()); 
             }
             pushFollow(FOLLOW_1);
-            iv_ruleInvolvedStakeholderMember=ruleInvolvedStakeholderMember();
+            iv_ruleAffectedStakeholderMember=ruleAffectedStakeholderMember();
 
             state._fsp--;
             if (state.failed) return current;
             if ( state.backtracking==0 ) {
-               current =iv_ruleInvolvedStakeholderMember; 
+               current =iv_ruleAffectedStakeholderMember; 
             }
             match(input,EOF,FOLLOW_2); if (state.failed) return current;
 
@@ -61418,12 +61418,12 @@ public class InternalSysMLParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end "entryRuleInvolvedStakeholderMember"
+    // $ANTLR end "entryRuleAffectedStakeholderMember"
 
 
-    // $ANTLR start "ruleInvolvedStakeholderMember"
-    // InternalSysML.g:20910:1: ruleInvolvedStakeholderMember returns [EObject current=null] : (this_DefinitionMemberPrefix_0= ruleDefinitionMemberPrefix[$current] otherlv_1= 'involve' ( (lv_ownedRelatedElement_2_0= ruleInvolvedStakeholderUsage ) ) ) ;
-    public final EObject ruleInvolvedStakeholderMember() throws RecognitionException {
+    // $ANTLR start "ruleAffectedStakeholderMember"
+    // InternalSysML.g:20910:1: ruleAffectedStakeholderMember returns [EObject current=null] : (this_DefinitionMemberPrefix_0= ruleDefinitionMemberPrefix[$current] otherlv_1= 'affect' ( (lv_ownedRelatedElement_2_0= ruleAffectedStakeholderUsage ) ) ) ;
+    public final EObject ruleAffectedStakeholderMember() throws RecognitionException {
         EObject current = null;
 
         Token otherlv_1=null;
@@ -61436,18 +61436,18 @@ public class InternalSysMLParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalSysML.g:20916:2: ( (this_DefinitionMemberPrefix_0= ruleDefinitionMemberPrefix[$current] otherlv_1= 'involve' ( (lv_ownedRelatedElement_2_0= ruleInvolvedStakeholderUsage ) ) ) )
-            // InternalSysML.g:20917:2: (this_DefinitionMemberPrefix_0= ruleDefinitionMemberPrefix[$current] otherlv_1= 'involve' ( (lv_ownedRelatedElement_2_0= ruleInvolvedStakeholderUsage ) ) )
+            // InternalSysML.g:20916:2: ( (this_DefinitionMemberPrefix_0= ruleDefinitionMemberPrefix[$current] otherlv_1= 'affect' ( (lv_ownedRelatedElement_2_0= ruleAffectedStakeholderUsage ) ) ) )
+            // InternalSysML.g:20917:2: (this_DefinitionMemberPrefix_0= ruleDefinitionMemberPrefix[$current] otherlv_1= 'affect' ( (lv_ownedRelatedElement_2_0= ruleAffectedStakeholderUsage ) ) )
             {
-            // InternalSysML.g:20917:2: (this_DefinitionMemberPrefix_0= ruleDefinitionMemberPrefix[$current] otherlv_1= 'involve' ( (lv_ownedRelatedElement_2_0= ruleInvolvedStakeholderUsage ) ) )
-            // InternalSysML.g:20918:3: this_DefinitionMemberPrefix_0= ruleDefinitionMemberPrefix[$current] otherlv_1= 'involve' ( (lv_ownedRelatedElement_2_0= ruleInvolvedStakeholderUsage ) )
+            // InternalSysML.g:20917:2: (this_DefinitionMemberPrefix_0= ruleDefinitionMemberPrefix[$current] otherlv_1= 'affect' ( (lv_ownedRelatedElement_2_0= ruleAffectedStakeholderUsage ) ) )
+            // InternalSysML.g:20918:3: this_DefinitionMemberPrefix_0= ruleDefinitionMemberPrefix[$current] otherlv_1= 'affect' ( (lv_ownedRelatedElement_2_0= ruleAffectedStakeholderUsage ) )
             {
             if ( state.backtracking==0 ) {
 
               			if (current==null) {
-              				current = createModelElement(grammarAccess.getInvolvedStakeholderMemberRule());
+              				current = createModelElement(grammarAccess.getAffectedStakeholderMemberRule());
               			}
-              			newCompositeNode(grammarAccess.getInvolvedStakeholderMemberAccess().getDefinitionMemberPrefixParserRuleCall_0());
+              			newCompositeNode(grammarAccess.getAffectedStakeholderMemberAccess().getDefinitionMemberPrefixParserRuleCall_0());
               		
             }
             pushFollow(FOLLOW_201);
@@ -61464,35 +61464,35 @@ public class InternalSysMLParser extends AbstractInternalAntlrParser {
             otherlv_1=(Token)match(input,113,FOLLOW_202); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
-              			newLeafNode(otherlv_1, grammarAccess.getInvolvedStakeholderMemberAccess().getInvolveKeyword_1());
+              			newLeafNode(otherlv_1, grammarAccess.getAffectedStakeholderMemberAccess().getAffectKeyword_1());
               		
             }
-            // InternalSysML.g:20933:3: ( (lv_ownedRelatedElement_2_0= ruleInvolvedStakeholderUsage ) )
-            // InternalSysML.g:20934:4: (lv_ownedRelatedElement_2_0= ruleInvolvedStakeholderUsage )
+            // InternalSysML.g:20933:3: ( (lv_ownedRelatedElement_2_0= ruleAffectedStakeholderUsage ) )
+            // InternalSysML.g:20934:4: (lv_ownedRelatedElement_2_0= ruleAffectedStakeholderUsage )
             {
-            // InternalSysML.g:20934:4: (lv_ownedRelatedElement_2_0= ruleInvolvedStakeholderUsage )
-            // InternalSysML.g:20935:5: lv_ownedRelatedElement_2_0= ruleInvolvedStakeholderUsage
+            // InternalSysML.g:20934:4: (lv_ownedRelatedElement_2_0= ruleAffectedStakeholderUsage )
+            // InternalSysML.g:20935:5: lv_ownedRelatedElement_2_0= ruleAffectedStakeholderUsage
             {
             if ( state.backtracking==0 ) {
 
-              					newCompositeNode(grammarAccess.getInvolvedStakeholderMemberAccess().getOwnedRelatedElementInvolvedStakeholderUsageParserRuleCall_2_0());
+              					newCompositeNode(grammarAccess.getAffectedStakeholderMemberAccess().getOwnedRelatedElementAffectedStakeholderUsageParserRuleCall_2_0());
               				
             }
             pushFollow(FOLLOW_2);
-            lv_ownedRelatedElement_2_0=ruleInvolvedStakeholderUsage();
+            lv_ownedRelatedElement_2_0=ruleAffectedStakeholderUsage();
 
             state._fsp--;
             if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
               					if (current==null) {
-              						current = createModelElementForParent(grammarAccess.getInvolvedStakeholderMemberRule());
+              						current = createModelElementForParent(grammarAccess.getAffectedStakeholderMemberRule());
               					}
               					add(
               						current,
               						"ownedRelatedElement",
               						lv_ownedRelatedElement_2_0,
-              						"org.omg.sysml.xtext.SysML.InvolvedStakeholderUsage");
+              						"org.omg.sysml.xtext.SysML.AffectedStakeholderUsage");
               					afterParserOrEnumRuleCall();
               				
             }
@@ -61523,31 +61523,31 @@ public class InternalSysMLParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end "ruleInvolvedStakeholderMember"
+    // $ANTLR end "ruleAffectedStakeholderMember"
 
 
-    // $ANTLR start "entryRuleInvolvedStakeholderUsage"
-    // InternalSysML.g:20956:1: entryRuleInvolvedStakeholderUsage returns [EObject current=null] : iv_ruleInvolvedStakeholderUsage= ruleInvolvedStakeholderUsage EOF ;
-    public final EObject entryRuleInvolvedStakeholderUsage() throws RecognitionException {
+    // $ANTLR start "entryRuleAffectedStakeholderUsage"
+    // InternalSysML.g:20956:1: entryRuleAffectedStakeholderUsage returns [EObject current=null] : iv_ruleAffectedStakeholderUsage= ruleAffectedStakeholderUsage EOF ;
+    public final EObject entryRuleAffectedStakeholderUsage() throws RecognitionException {
         EObject current = null;
 
-        EObject iv_ruleInvolvedStakeholderUsage = null;
+        EObject iv_ruleAffectedStakeholderUsage = null;
 
 
         try {
-            // InternalSysML.g:20956:65: (iv_ruleInvolvedStakeholderUsage= ruleInvolvedStakeholderUsage EOF )
-            // InternalSysML.g:20957:2: iv_ruleInvolvedStakeholderUsage= ruleInvolvedStakeholderUsage EOF
+            // InternalSysML.g:20956:65: (iv_ruleAffectedStakeholderUsage= ruleAffectedStakeholderUsage EOF )
+            // InternalSysML.g:20957:2: iv_ruleAffectedStakeholderUsage= ruleAffectedStakeholderUsage EOF
             {
             if ( state.backtracking==0 ) {
-               newCompositeNode(grammarAccess.getInvolvedStakeholderUsageRule()); 
+               newCompositeNode(grammarAccess.getAffectedStakeholderUsageRule()); 
             }
             pushFollow(FOLLOW_1);
-            iv_ruleInvolvedStakeholderUsage=ruleInvolvedStakeholderUsage();
+            iv_ruleAffectedStakeholderUsage=ruleAffectedStakeholderUsage();
 
             state._fsp--;
             if (state.failed) return current;
             if ( state.backtracking==0 ) {
-               current =iv_ruleInvolvedStakeholderUsage; 
+               current =iv_ruleAffectedStakeholderUsage; 
             }
             match(input,EOF,FOLLOW_2); if (state.failed) return current;
 
@@ -61563,12 +61563,12 @@ public class InternalSysMLParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end "entryRuleInvolvedStakeholderUsage"
+    // $ANTLR end "entryRuleAffectedStakeholderUsage"
 
 
-    // $ANTLR start "ruleInvolvedStakeholderUsage"
-    // InternalSysML.g:20963:1: ruleInvolvedStakeholderUsage returns [EObject current=null] : ( ( ( (lv_ownedRelationship_0_0= ruleOwnedSubsetting ) ) (this_FeatureSpecialization_1= ruleFeatureSpecialization[$current] )* this_UsageBody_2= ruleUsageBody[$current] ) | ( ruleStakeholderUsageKeyword (this_UsageDeclaration_4= ruleUsageDeclaration[$current] )? this_UsageBody_5= ruleUsageBody[$current] ) ) ;
-    public final EObject ruleInvolvedStakeholderUsage() throws RecognitionException {
+    // $ANTLR start "ruleAffectedStakeholderUsage"
+    // InternalSysML.g:20963:1: ruleAffectedStakeholderUsage returns [EObject current=null] : ( ( ( (lv_ownedRelationship_0_0= ruleOwnedSubsetting ) ) (this_FeatureSpecialization_1= ruleFeatureSpecialization[$current] )* this_UsageBody_2= ruleUsageBody[$current] ) | ( ruleStakeholderUsageKeyword (this_UsageDeclaration_4= ruleUsageDeclaration[$current] )? this_UsageBody_5= ruleUsageBody[$current] ) ) ;
+    public final EObject ruleAffectedStakeholderUsage() throws RecognitionException {
         EObject current = null;
 
         EObject lv_ownedRelationship_0_0 = null;
@@ -61621,7 +61621,7 @@ public class InternalSysMLParser extends AbstractInternalAntlrParser {
                     {
                     if ( state.backtracking==0 ) {
 
-                      						newCompositeNode(grammarAccess.getInvolvedStakeholderUsageAccess().getOwnedRelationshipOwnedSubsettingParserRuleCall_0_0_0());
+                      						newCompositeNode(grammarAccess.getAffectedStakeholderUsageAccess().getOwnedRelationshipOwnedSubsettingParserRuleCall_0_0_0());
                       					
                     }
                     pushFollow(FOLLOW_76);
@@ -61632,7 +61632,7 @@ public class InternalSysMLParser extends AbstractInternalAntlrParser {
                     if ( state.backtracking==0 ) {
 
                       						if (current==null) {
-                      							current = createModelElementForParent(grammarAccess.getInvolvedStakeholderUsageRule());
+                      							current = createModelElementForParent(grammarAccess.getAffectedStakeholderUsageRule());
                       						}
                       						add(
                       							current,
@@ -61666,9 +61666,9 @@ public class InternalSysMLParser extends AbstractInternalAntlrParser {
                     	    if ( state.backtracking==0 ) {
 
                     	      					if (current==null) {
-                    	      						current = createModelElement(grammarAccess.getInvolvedStakeholderUsageRule());
+                    	      						current = createModelElement(grammarAccess.getAffectedStakeholderUsageRule());
                     	      					}
-                    	      					newCompositeNode(grammarAccess.getInvolvedStakeholderUsageAccess().getFeatureSpecializationParserRuleCall_0_1());
+                    	      					newCompositeNode(grammarAccess.getAffectedStakeholderUsageAccess().getFeatureSpecializationParserRuleCall_0_1());
                     	      				
                     	    }
                     	    pushFollow(FOLLOW_76);
@@ -61694,9 +61694,9 @@ public class InternalSysMLParser extends AbstractInternalAntlrParser {
                     if ( state.backtracking==0 ) {
 
                       				if (current==null) {
-                      					current = createModelElement(grammarAccess.getInvolvedStakeholderUsageRule());
+                      					current = createModelElement(grammarAccess.getAffectedStakeholderUsageRule());
                       				}
-                      				newCompositeNode(grammarAccess.getInvolvedStakeholderUsageAccess().getUsageBodyParserRuleCall_0_2());
+                      				newCompositeNode(grammarAccess.getAffectedStakeholderUsageAccess().getUsageBodyParserRuleCall_0_2());
                       			
                     }
                     pushFollow(FOLLOW_2);
@@ -61724,7 +61724,7 @@ public class InternalSysMLParser extends AbstractInternalAntlrParser {
                     {
                     if ( state.backtracking==0 ) {
 
-                      				newCompositeNode(grammarAccess.getInvolvedStakeholderUsageAccess().getStakeholderUsageKeywordParserRuleCall_1_0());
+                      				newCompositeNode(grammarAccess.getAffectedStakeholderUsageAccess().getStakeholderUsageKeywordParserRuleCall_1_0());
                       			
                     }
                     pushFollow(FOLLOW_76);
@@ -61751,9 +61751,9 @@ public class InternalSysMLParser extends AbstractInternalAntlrParser {
                             if ( state.backtracking==0 ) {
 
                               					if (current==null) {
-                              						current = createModelElement(grammarAccess.getInvolvedStakeholderUsageRule());
+                              						current = createModelElement(grammarAccess.getAffectedStakeholderUsageRule());
                               					}
-                              					newCompositeNode(grammarAccess.getInvolvedStakeholderUsageAccess().getUsageDeclarationParserRuleCall_1_1());
+                              					newCompositeNode(grammarAccess.getAffectedStakeholderUsageAccess().getUsageDeclarationParserRuleCall_1_1());
                               				
                             }
                             pushFollow(FOLLOW_76);
@@ -61776,9 +61776,9 @@ public class InternalSysMLParser extends AbstractInternalAntlrParser {
                     if ( state.backtracking==0 ) {
 
                       				if (current==null) {
-                      					current = createModelElement(grammarAccess.getInvolvedStakeholderUsageRule());
+                      					current = createModelElement(grammarAccess.getAffectedStakeholderUsageRule());
                       				}
-                      				newCompositeNode(grammarAccess.getInvolvedStakeholderUsageAccess().getUsageBodyParserRuleCall_1_2());
+                      				newCompositeNode(grammarAccess.getAffectedStakeholderUsageAccess().getUsageBodyParserRuleCall_1_2());
                       			
                     }
                     pushFollow(FOLLOW_2);
@@ -61819,7 +61819,7 @@ public class InternalSysMLParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end "ruleInvolvedStakeholderUsage"
+    // $ANTLR end "ruleAffectedStakeholderUsage"
 
 
     // $ANTLR start "entryRuleConcernUsageKeyword"
@@ -93863,7 +93863,7 @@ public class InternalSysMLParser extends AbstractInternalAntlrParser {
             this.transition = dfa_240;
         }
         public String getDescription() {
-            return "20867:2: (this_RequirementBodyItem_0= ruleRequirementBodyItem[$current] | ( (lv_ownedRelationship_1_0= ruleInvolvedStakeholderMember ) ) )";
+            return "20867:2: (this_RequirementBodyItem_0= ruleRequirementBodyItem[$current] | ( (lv_ownedRelationship_1_0= ruleAffectedStakeholderMember ) ) )";
         }
     }
     static final String dfa_241s = "\u0093\uffff";

@@ -11229,55 +11229,55 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cRequirementBodyItemParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final Assignment cOwnedRelationshipAssignment_1 = (Assignment)cAlternatives.eContents().get(1);
-		private final RuleCall cOwnedRelationshipInvolvedStakeholderMemberParserRuleCall_1_0 = (RuleCall)cOwnedRelationshipAssignment_1.eContents().get(0);
+		private final RuleCall cOwnedRelationshipAffectedStakeholderMemberParserRuleCall_1_0 = (RuleCall)cOwnedRelationshipAssignment_1.eContents().get(0);
 		
 		//fragment ConcernBodyItem returns SysML::Type:
 		//	RequirementBodyItem
-		//	| ownedRelationship+=InvolvedStakeholderMember;
+		//	| ownedRelationship+=AffectedStakeholderMember;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//RequirementBodyItem | ownedRelationship+=InvolvedStakeholderMember
+		//RequirementBodyItem | ownedRelationship+=AffectedStakeholderMember
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//RequirementBodyItem
 		public RuleCall getRequirementBodyItemParserRuleCall_0() { return cRequirementBodyItemParserRuleCall_0; }
 		
-		//ownedRelationship+=InvolvedStakeholderMember
+		//ownedRelationship+=AffectedStakeholderMember
 		public Assignment getOwnedRelationshipAssignment_1() { return cOwnedRelationshipAssignment_1; }
 		
-		//InvolvedStakeholderMember
-		public RuleCall getOwnedRelationshipInvolvedStakeholderMemberParserRuleCall_1_0() { return cOwnedRelationshipInvolvedStakeholderMemberParserRuleCall_1_0; }
+		//AffectedStakeholderMember
+		public RuleCall getOwnedRelationshipAffectedStakeholderMemberParserRuleCall_1_0() { return cOwnedRelationshipAffectedStakeholderMemberParserRuleCall_1_0; }
 	}
-	public class InvolvedStakeholderMemberElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.InvolvedStakeholderMember");
+	public class AffectedStakeholderMemberElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.AffectedStakeholderMember");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final RuleCall cDefinitionMemberPrefixParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
-		private final Keyword cInvolveKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Keyword cAffectKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cOwnedRelatedElementAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cOwnedRelatedElementInvolvedStakeholderUsageParserRuleCall_2_0 = (RuleCall)cOwnedRelatedElementAssignment_2.eContents().get(0);
+		private final RuleCall cOwnedRelatedElementAffectedStakeholderUsageParserRuleCall_2_0 = (RuleCall)cOwnedRelatedElementAssignment_2.eContents().get(0);
 		
-		//InvolvedStakeholderMember SysML::FeatureMembership:
-		//	DefinitionMemberPrefix 'involve'
-		//	ownedRelatedElement+=InvolvedStakeholderUsage;
+		//AffectedStakeholderMember SysML::FeatureMembership:
+		//	DefinitionMemberPrefix 'affect'
+		//	ownedRelatedElement+=AffectedStakeholderUsage;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//DefinitionMemberPrefix 'involve' ownedRelatedElement+=InvolvedStakeholderUsage
+		//DefinitionMemberPrefix 'affect' ownedRelatedElement+=AffectedStakeholderUsage
 		public Group getGroup() { return cGroup; }
 		
 		//DefinitionMemberPrefix
 		public RuleCall getDefinitionMemberPrefixParserRuleCall_0() { return cDefinitionMemberPrefixParserRuleCall_0; }
 		
-		//'involve'
-		public Keyword getInvolveKeyword_1() { return cInvolveKeyword_1; }
+		//'affect'
+		public Keyword getAffectKeyword_1() { return cAffectKeyword_1; }
 		
-		//ownedRelatedElement+=InvolvedStakeholderUsage
+		//ownedRelatedElement+=AffectedStakeholderUsage
 		public Assignment getOwnedRelatedElementAssignment_2() { return cOwnedRelatedElementAssignment_2; }
 		
-		//InvolvedStakeholderUsage
-		public RuleCall getOwnedRelatedElementInvolvedStakeholderUsageParserRuleCall_2_0() { return cOwnedRelatedElementInvolvedStakeholderUsageParserRuleCall_2_0; }
+		//AffectedStakeholderUsage
+		public RuleCall getOwnedRelatedElementAffectedStakeholderUsageParserRuleCall_2_0() { return cOwnedRelatedElementAffectedStakeholderUsageParserRuleCall_2_0; }
 	}
-	public class InvolvedStakeholderUsageElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.InvolvedStakeholderUsage");
+	public class AffectedStakeholderUsageElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.AffectedStakeholderUsage");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
 		private final Assignment cOwnedRelationshipAssignment_0_0 = (Assignment)cGroup_0.eContents().get(0);
@@ -11289,7 +11289,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final RuleCall cUsageDeclarationParserRuleCall_1_1 = (RuleCall)cGroup_1.eContents().get(1);
 		private final RuleCall cUsageBodyParserRuleCall_1_2 = (RuleCall)cGroup_1.eContents().get(2);
 		
-		//InvolvedStakeholderUsage SysML::StakeholderUsage:
+		//AffectedStakeholderUsage SysML::StakeholderUsage:
 		//	ownedRelationship+=OwnedSubsetting FeatureSpecialization*
 		//	UsageBody
 		//	| StakeholderUsageKeyword UsageDeclaration? UsageBody;
@@ -13856,8 +13856,8 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	private final ConcernDefinitionElements pConcernDefinition;
 	private final ConcernBodyElements pConcernBody;
 	private final ConcernBodyItemElements pConcernBodyItem;
-	private final InvolvedStakeholderMemberElements pInvolvedStakeholderMember;
-	private final InvolvedStakeholderUsageElements pInvolvedStakeholderUsage;
+	private final AffectedStakeholderMemberElements pAffectedStakeholderMember;
+	private final AffectedStakeholderUsageElements pAffectedStakeholderUsage;
 	private final ConcernUsageKeywordElements pConcernUsageKeyword;
 	private final ConcernUsageElements pConcernUsage;
 	private final ConcernFlowUsageElements pConcernFlowUsage;
@@ -14311,8 +14311,8 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		this.pConcernDefinition = new ConcernDefinitionElements();
 		this.pConcernBody = new ConcernBodyElements();
 		this.pConcernBodyItem = new ConcernBodyItemElements();
-		this.pInvolvedStakeholderMember = new InvolvedStakeholderMemberElements();
-		this.pInvolvedStakeholderUsage = new InvolvedStakeholderUsageElements();
+		this.pAffectedStakeholderMember = new AffectedStakeholderMemberElements();
+		this.pAffectedStakeholderUsage = new AffectedStakeholderUsageElements();
 		this.pConcernUsageKeyword = new ConcernUsageKeywordElements();
 		this.pConcernUsage = new ConcernUsageElements();
 		this.pConcernFlowUsage = new ConcernFlowUsageElements();
@@ -18499,7 +18499,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	
 	//fragment ConcernBodyItem returns SysML::Type:
 	//	RequirementBodyItem
-	//	| ownedRelationship+=InvolvedStakeholderMember;
+	//	| ownedRelationship+=AffectedStakeholderMember;
 	public ConcernBodyItemElements getConcernBodyItemAccess() {
 		return pConcernBodyItem;
 	}
@@ -18508,27 +18508,27 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		return getConcernBodyItemAccess().getRule();
 	}
 	
-	//InvolvedStakeholderMember SysML::FeatureMembership:
-	//	DefinitionMemberPrefix 'involve'
-	//	ownedRelatedElement+=InvolvedStakeholderUsage;
-	public InvolvedStakeholderMemberElements getInvolvedStakeholderMemberAccess() {
-		return pInvolvedStakeholderMember;
+	//AffectedStakeholderMember SysML::FeatureMembership:
+	//	DefinitionMemberPrefix 'affect'
+	//	ownedRelatedElement+=AffectedStakeholderUsage;
+	public AffectedStakeholderMemberElements getAffectedStakeholderMemberAccess() {
+		return pAffectedStakeholderMember;
 	}
 	
-	public ParserRule getInvolvedStakeholderMemberRule() {
-		return getInvolvedStakeholderMemberAccess().getRule();
+	public ParserRule getAffectedStakeholderMemberRule() {
+		return getAffectedStakeholderMemberAccess().getRule();
 	}
 	
-	//InvolvedStakeholderUsage SysML::StakeholderUsage:
+	//AffectedStakeholderUsage SysML::StakeholderUsage:
 	//	ownedRelationship+=OwnedSubsetting FeatureSpecialization*
 	//	UsageBody
 	//	| StakeholderUsageKeyword UsageDeclaration? UsageBody;
-	public InvolvedStakeholderUsageElements getInvolvedStakeholderUsageAccess() {
-		return pInvolvedStakeholderUsage;
+	public AffectedStakeholderUsageElements getAffectedStakeholderUsageAccess() {
+		return pAffectedStakeholderUsage;
 	}
 	
-	public ParserRule getInvolvedStakeholderUsageRule() {
-		return getInvolvedStakeholderUsageAccess().getRule();
+	public ParserRule getAffectedStakeholderUsageRule() {
+		return getAffectedStakeholderUsageAccess().getRule();
 	}
 	
 	///* Concern Usages */ ConcernUsageKeyword:

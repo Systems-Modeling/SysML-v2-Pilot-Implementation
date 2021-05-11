@@ -6,11 +6,11 @@ package ViewTest {
 	stakeholder s : S;
 	
 	concern def C {
-		involve s;
+		affect s;
 	}
 	
 	concern c : C {
-		involve stakeholder s1;
+		affect stakeholder s1;
 	}
 	
 	viewpoint def VP {

@@ -39,6 +39,7 @@
 'accept'=91
 'action'=88
 'activity'=89
+'affect'=113
 'alias'=32
 'all'=147
 'allInstances'=148
@@ -91,7 +92,6 @@
 'inout'=158
 'instanceof'=135
 'interface'=75
-'involve'=113
 'istype'=137
 'item'=71
 'join'=96

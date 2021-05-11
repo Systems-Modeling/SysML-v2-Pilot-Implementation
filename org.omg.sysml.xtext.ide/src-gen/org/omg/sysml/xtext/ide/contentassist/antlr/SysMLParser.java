@@ -151,7 +151,7 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getSatisfyRequirementUsageAccess().getAlternatives_3(), "rule__SatisfyRequirementUsage__Alternatives_3");
 			builder.put(grammarAccess.getConcernBodyAccess().getAlternatives(), "rule__ConcernBody__Alternatives");
 			builder.put(grammarAccess.getConcernBodyItemAccess().getAlternatives(), "rule__ConcernBodyItem__Alternatives");
-			builder.put(grammarAccess.getInvolvedStakeholderUsageAccess().getAlternatives(), "rule__InvolvedStakeholderUsage__Alternatives");
+			builder.put(grammarAccess.getAffectedStakeholderUsageAccess().getAlternatives(), "rule__AffectedStakeholderUsage__Alternatives");
 			builder.put(grammarAccess.getConcernRefUsageAccess().getAlternatives_1(), "rule__ConcernRefUsage__Alternatives_1");
 			builder.put(grammarAccess.getStakeholderRefUsageAccess().getAlternatives_1(), "rule__StakeholderRefUsage__Alternatives_1");
 			builder.put(grammarAccess.getCaseBodyAccess().getAlternatives(), "rule__CaseBody__Alternatives");
@@ -532,9 +532,9 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getConcernDefKeywordAccess().getGroup(), "rule__ConcernDefKeyword__Group__0");
 			builder.put(grammarAccess.getConcernDefinitionAccess().getGroup(), "rule__ConcernDefinition__Group__0");
 			builder.put(grammarAccess.getConcernBodyAccess().getGroup_1(), "rule__ConcernBody__Group_1__0");
-			builder.put(grammarAccess.getInvolvedStakeholderMemberAccess().getGroup(), "rule__InvolvedStakeholderMember__Group__0");
-			builder.put(grammarAccess.getInvolvedStakeholderUsageAccess().getGroup_0(), "rule__InvolvedStakeholderUsage__Group_0__0");
-			builder.put(grammarAccess.getInvolvedStakeholderUsageAccess().getGroup_1(), "rule__InvolvedStakeholderUsage__Group_1__0");
+			builder.put(grammarAccess.getAffectedStakeholderMemberAccess().getGroup(), "rule__AffectedStakeholderMember__Group__0");
+			builder.put(grammarAccess.getAffectedStakeholderUsageAccess().getGroup_0(), "rule__AffectedStakeholderUsage__Group_0__0");
+			builder.put(grammarAccess.getAffectedStakeholderUsageAccess().getGroup_1(), "rule__AffectedStakeholderUsage__Group_1__0");
 			builder.put(grammarAccess.getConcernUsageAccess().getGroup(), "rule__ConcernUsage__Group__0");
 			builder.put(grammarAccess.getConcernFlowUsageAccess().getGroup(), "rule__ConcernFlowUsage__Group__0");
 			builder.put(grammarAccess.getConcernRefUsageAccess().getGroup(), "rule__ConcernRefUsage__Group__0");
@@ -989,8 +989,8 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getSatisfactionConnectorAccess().getOwnedRelationshipAssignment_0(), "rule__SatisfactionConnector__OwnedRelationshipAssignment_0");
 			builder.put(grammarAccess.getSatisfactionConnectorAccess().getOwnedRelationshipAssignment_1(), "rule__SatisfactionConnector__OwnedRelationshipAssignment_1");
 			builder.put(grammarAccess.getConcernBodyItemAccess().getOwnedRelationshipAssignment_1(), "rule__ConcernBodyItem__OwnedRelationshipAssignment_1");
-			builder.put(grammarAccess.getInvolvedStakeholderMemberAccess().getOwnedRelatedElementAssignment_2(), "rule__InvolvedStakeholderMember__OwnedRelatedElementAssignment_2");
-			builder.put(grammarAccess.getInvolvedStakeholderUsageAccess().getOwnedRelationshipAssignment_0_0(), "rule__InvolvedStakeholderUsage__OwnedRelationshipAssignment_0_0");
+			builder.put(grammarAccess.getAffectedStakeholderMemberAccess().getOwnedRelatedElementAssignment_2(), "rule__AffectedStakeholderMember__OwnedRelatedElementAssignment_2");
+			builder.put(grammarAccess.getAffectedStakeholderUsageAccess().getOwnedRelationshipAssignment_0_0(), "rule__AffectedStakeholderUsage__OwnedRelationshipAssignment_0_0");
 			builder.put(grammarAccess.getConcernRefUsageAccess().getIsCompositeAssignment_1_1(), "rule__ConcernRefUsage__IsCompositeAssignment_1_1");
 			builder.put(grammarAccess.getStakeholderRefUsageAccess().getIsCompositeAssignment_1_1(), "rule__StakeholderRefUsage__IsCompositeAssignment_1_1");
 			builder.put(grammarAccess.getCaseBodyAccess().getOwnedRelationshipAssignment_1_2(), "rule__CaseBody__OwnedRelationshipAssignment_1_2");

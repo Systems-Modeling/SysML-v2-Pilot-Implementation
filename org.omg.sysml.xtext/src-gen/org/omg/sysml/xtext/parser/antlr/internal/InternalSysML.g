@@ -20880,9 +20880,9 @@ ruleConcernBodyItem[EObject in_current]  returns [EObject current=in_current]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getConcernBodyItemAccess().getOwnedRelationshipInvolvedStakeholderMemberParserRuleCall_1_0());
+					newCompositeNode(grammarAccess.getConcernBodyItemAccess().getOwnedRelationshipAffectedStakeholderMemberParserRuleCall_1_0());
 				}
-				lv_ownedRelationship_1_0=ruleInvolvedStakeholderMember
+				lv_ownedRelationship_1_0=ruleAffectedStakeholderMember
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getConcernBodyItemRule());
@@ -20891,7 +20891,7 @@ ruleConcernBodyItem[EObject in_current]  returns [EObject current=in_current]
 						$current,
 						"ownedRelationship",
 						lv_ownedRelationship_1_0,
-						"org.omg.sysml.xtext.SysML.InvolvedStakeholderMember");
+						"org.omg.sysml.xtext.SysML.AffectedStakeholderMember");
 					afterParserOrEnumRuleCall();
 				}
 			)
@@ -20899,15 +20899,15 @@ ruleConcernBodyItem[EObject in_current]  returns [EObject current=in_current]
 	)
 ;
 
-// Entry rule entryRuleInvolvedStakeholderMember
-entryRuleInvolvedStakeholderMember returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getInvolvedStakeholderMemberRule()); }
-	iv_ruleInvolvedStakeholderMember=ruleInvolvedStakeholderMember
-	{ $current=$iv_ruleInvolvedStakeholderMember.current; }
+// Entry rule entryRuleAffectedStakeholderMember
+entryRuleAffectedStakeholderMember returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getAffectedStakeholderMemberRule()); }
+	iv_ruleAffectedStakeholderMember=ruleAffectedStakeholderMember
+	{ $current=$iv_ruleAffectedStakeholderMember.current; }
 	EOF;
 
-// Rule InvolvedStakeholderMember
-ruleInvolvedStakeholderMember returns [EObject current=null]
+// Rule AffectedStakeholderMember
+ruleAffectedStakeholderMember returns [EObject current=null]
 @init {
 	enterRule();
 }
@@ -20917,34 +20917,34 @@ ruleInvolvedStakeholderMember returns [EObject current=null]
 	(
 		{
 			if ($current==null) {
-				$current = createModelElement(grammarAccess.getInvolvedStakeholderMemberRule());
+				$current = createModelElement(grammarAccess.getAffectedStakeholderMemberRule());
 			}
-			newCompositeNode(grammarAccess.getInvolvedStakeholderMemberAccess().getDefinitionMemberPrefixParserRuleCall_0());
+			newCompositeNode(grammarAccess.getAffectedStakeholderMemberAccess().getDefinitionMemberPrefixParserRuleCall_0());
 		}
 		this_DefinitionMemberPrefix_0=ruleDefinitionMemberPrefix[$current]
 		{
 			$current = $this_DefinitionMemberPrefix_0.current;
 			afterParserOrEnumRuleCall();
 		}
-		otherlv_1='involve'
+		otherlv_1='affect'
 		{
-			newLeafNode(otherlv_1, grammarAccess.getInvolvedStakeholderMemberAccess().getInvolveKeyword_1());
+			newLeafNode(otherlv_1, grammarAccess.getAffectedStakeholderMemberAccess().getAffectKeyword_1());
 		}
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getInvolvedStakeholderMemberAccess().getOwnedRelatedElementInvolvedStakeholderUsageParserRuleCall_2_0());
+					newCompositeNode(grammarAccess.getAffectedStakeholderMemberAccess().getOwnedRelatedElementAffectedStakeholderUsageParserRuleCall_2_0());
 				}
-				lv_ownedRelatedElement_2_0=ruleInvolvedStakeholderUsage
+				lv_ownedRelatedElement_2_0=ruleAffectedStakeholderUsage
 				{
 					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getInvolvedStakeholderMemberRule());
+						$current = createModelElementForParent(grammarAccess.getAffectedStakeholderMemberRule());
 					}
 					add(
 						$current,
 						"ownedRelatedElement",
 						lv_ownedRelatedElement_2_0,
-						"org.omg.sysml.xtext.SysML.InvolvedStakeholderUsage");
+						"org.omg.sysml.xtext.SysML.AffectedStakeholderUsage");
 					afterParserOrEnumRuleCall();
 				}
 			)
@@ -20952,15 +20952,15 @@ ruleInvolvedStakeholderMember returns [EObject current=null]
 	)
 ;
 
-// Entry rule entryRuleInvolvedStakeholderUsage
-entryRuleInvolvedStakeholderUsage returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getInvolvedStakeholderUsageRule()); }
-	iv_ruleInvolvedStakeholderUsage=ruleInvolvedStakeholderUsage
-	{ $current=$iv_ruleInvolvedStakeholderUsage.current; }
+// Entry rule entryRuleAffectedStakeholderUsage
+entryRuleAffectedStakeholderUsage returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getAffectedStakeholderUsageRule()); }
+	iv_ruleAffectedStakeholderUsage=ruleAffectedStakeholderUsage
+	{ $current=$iv_ruleAffectedStakeholderUsage.current; }
 	EOF;
 
-// Rule InvolvedStakeholderUsage
-ruleInvolvedStakeholderUsage returns [EObject current=null]
+// Rule AffectedStakeholderUsage
+ruleAffectedStakeholderUsage returns [EObject current=null]
 @init {
 	enterRule();
 }
@@ -20972,12 +20972,12 @@ ruleInvolvedStakeholderUsage returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getInvolvedStakeholderUsageAccess().getOwnedRelationshipOwnedSubsettingParserRuleCall_0_0_0());
+						newCompositeNode(grammarAccess.getAffectedStakeholderUsageAccess().getOwnedRelationshipOwnedSubsettingParserRuleCall_0_0_0());
 					}
 					lv_ownedRelationship_0_0=ruleOwnedSubsetting
 					{
 						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getInvolvedStakeholderUsageRule());
+							$current = createModelElementForParent(grammarAccess.getAffectedStakeholderUsageRule());
 						}
 						add(
 							$current,
@@ -20991,9 +20991,9 @@ ruleInvolvedStakeholderUsage returns [EObject current=null]
 			(
 				{
 					if ($current==null) {
-						$current = createModelElement(grammarAccess.getInvolvedStakeholderUsageRule());
+						$current = createModelElement(grammarAccess.getAffectedStakeholderUsageRule());
 					}
-					newCompositeNode(grammarAccess.getInvolvedStakeholderUsageAccess().getFeatureSpecializationParserRuleCall_0_1());
+					newCompositeNode(grammarAccess.getAffectedStakeholderUsageAccess().getFeatureSpecializationParserRuleCall_0_1());
 				}
 				this_FeatureSpecialization_1=ruleFeatureSpecialization[$current]
 				{
@@ -21003,9 +21003,9 @@ ruleInvolvedStakeholderUsage returns [EObject current=null]
 			)*
 			{
 				if ($current==null) {
-					$current = createModelElement(grammarAccess.getInvolvedStakeholderUsageRule());
+					$current = createModelElement(grammarAccess.getAffectedStakeholderUsageRule());
 				}
-				newCompositeNode(grammarAccess.getInvolvedStakeholderUsageAccess().getUsageBodyParserRuleCall_0_2());
+				newCompositeNode(grammarAccess.getAffectedStakeholderUsageAccess().getUsageBodyParserRuleCall_0_2());
 			}
 			this_UsageBody_2=ruleUsageBody[$current]
 			{
@@ -21016,7 +21016,7 @@ ruleInvolvedStakeholderUsage returns [EObject current=null]
 		    |
 		(
 			{
-				newCompositeNode(grammarAccess.getInvolvedStakeholderUsageAccess().getStakeholderUsageKeywordParserRuleCall_1_0());
+				newCompositeNode(grammarAccess.getAffectedStakeholderUsageAccess().getStakeholderUsageKeywordParserRuleCall_1_0());
 			}
 			ruleStakeholderUsageKeyword
 			{
@@ -21025,9 +21025,9 @@ ruleInvolvedStakeholderUsage returns [EObject current=null]
 			(
 				{
 					if ($current==null) {
-						$current = createModelElement(grammarAccess.getInvolvedStakeholderUsageRule());
+						$current = createModelElement(grammarAccess.getAffectedStakeholderUsageRule());
 					}
-					newCompositeNode(grammarAccess.getInvolvedStakeholderUsageAccess().getUsageDeclarationParserRuleCall_1_1());
+					newCompositeNode(grammarAccess.getAffectedStakeholderUsageAccess().getUsageDeclarationParserRuleCall_1_1());
 				}
 				this_UsageDeclaration_4=ruleUsageDeclaration[$current]
 				{
@@ -21037,9 +21037,9 @@ ruleInvolvedStakeholderUsage returns [EObject current=null]
 			)?
 			{
 				if ($current==null) {
-					$current = createModelElement(grammarAccess.getInvolvedStakeholderUsageRule());
+					$current = createModelElement(grammarAccess.getAffectedStakeholderUsageRule());
 				}
-				newCompositeNode(grammarAccess.getInvolvedStakeholderUsageAccess().getUsageBodyParserRuleCall_1_2());
+				newCompositeNode(grammarAccess.getAffectedStakeholderUsageAccess().getUsageBodyParserRuleCall_1_2());
 			}
 			this_UsageBody_5=ruleUsageBody[$current]
 			{

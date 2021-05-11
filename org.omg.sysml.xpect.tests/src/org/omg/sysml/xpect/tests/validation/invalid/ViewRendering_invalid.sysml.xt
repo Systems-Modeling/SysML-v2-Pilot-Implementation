@@ -1,0 +1,47 @@
+//*
+XPECT_SETUP org.omg.sysml.xpect.tests.validation.invalid.SysMLTests
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library.kernel/Base.kerml"}
+		File {from ="/library.kernel/BaseFunctions.kerml"}
+		File {from ="/library.kernel/Objects.kerml"}
+		File {from ="/library.kernel/Occurrences.kerml"}
+		File {from ="/library.kernel/Performances.kerml"}
+		File {from ="/library.systems/Constraints.sysml"}
+		File {from ="/library.systems/Requirements.sysml"}
+		File {from ="/library.systems/Views.sysml"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library.kernel/Base.kerml"}
+				File {from ="/library.kernel/BaseFunctions.kerml"}
+				File {from ="/library.kernel/Objects.kerml"}
+				File {from ="/library.kernel/Occurrences.kerml"}
+				File {from ="/library.kernel/Performances.kerml"}
+				File {from ="/library.systems/Constraints.sysml"}
+				File {from ="/library.systems/Requirements.sysml"}
+				File {from ="/library.systems/Views.sysml"}
+			}
+		}
+	}
+END_SETUP
+*/
+package ViewRendering_invalid {
+	rendering r;
+	
+	view def V {
+		rendering r1;
+		// XPECT errors ---> "A view definition may have at most one rendering." at "rendering r2;"
+		rendering r2;
+	}
+
+	view v {
+		render r;
+		// XPECT errors ---> "A view may have at most one rendering." at "rendering r3;"
+		rendering r3;
+		// XPECT errors ---> "A view may have at most one rendering." at "rendering r4;"
+		rendering r4;
+	}
+}

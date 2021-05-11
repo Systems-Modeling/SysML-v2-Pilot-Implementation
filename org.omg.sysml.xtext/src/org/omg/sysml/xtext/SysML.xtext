@@ -2031,15 +2031,15 @@ fragment ConcernBody returns SysML::Type :
 
 fragment ConcernBodyItem returns SysML::Type :
 	  RequirementBodyItem
-	| ownedRelationship += InvolvedStakeholderMember
+	| ownedRelationship += AffectedStakeholderMember
 ;
 
-InvolvedStakeholderMember returns SysML::FeatureMembership :
-	DefinitionMemberPrefix 'involve'
-	ownedRelatedElement += InvolvedStakeholderUsage
+AffectedStakeholderMember returns SysML::FeatureMembership :
+	DefinitionMemberPrefix 'affect'
+	ownedRelatedElement += AffectedStakeholderUsage
 ;
 
-InvolvedStakeholderUsage returns SysML::StakeholderUsage :
+AffectedStakeholderUsage returns SysML::StakeholderUsage :
       ownedRelationship += OwnedSubsetting FeatureSpecialization* 
       UsageBody
     | StakeholderUsageKeyword UsageDeclaration? UsageBody

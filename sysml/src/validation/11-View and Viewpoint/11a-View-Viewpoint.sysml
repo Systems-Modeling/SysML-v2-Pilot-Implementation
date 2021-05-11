@@ -35,7 +35,7 @@ package '11a-View-Viewpoint' {
 		stakeholder 'systems engineer';
 		
 		concern 'system breakdown' {
-			involve 'systems engineer';
+			affect 'systems engineer';
 		}
 		
 		viewpoint 'system structure perspective' {		

@@ -306,7 +306,7 @@ package SI {
         attribute :>> scaleValueMapping = celsiusToKelvinScaleMapping;
         // Experimental zero shift w.r.t. to K (kelvin) thermodynamic temperature ratio scale
         // Such CoordinateTransformation can be used instead of the celsiusToKelvinScaleMapping
-        attribute zeroShift : CoordinateTransformation { :>> source = K; :>> target = self; :>> origin = 27316/100@[K]; }
+        attribute zeroShift : CoordinateTransformation { :>> source = K; :>> target = self; :>> origin = 27316/100 [K]; }
     }
     alias '°C_scale' as '°C';
 }

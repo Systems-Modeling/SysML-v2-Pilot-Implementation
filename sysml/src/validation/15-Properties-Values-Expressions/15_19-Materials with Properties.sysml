@@ -48,7 +48,7 @@ package '15_19-Materials with Properties' {
     }
 
     individual def Iron :> Metal {
-        attribute :>> atomicMass = 55.845@[Da];
+        attribute :>> atomicMass = 55.845 [Da];
     }
 
     individual def Carbon :> Metal {

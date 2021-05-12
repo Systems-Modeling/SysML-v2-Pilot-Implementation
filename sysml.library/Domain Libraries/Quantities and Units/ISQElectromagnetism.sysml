@@ -1,6 +1,6 @@
 /**
  * International System of Quantities and Units
- * Generated on 2021-05-06T13:20:43Z from standard IEC-80000-6:2008 "Electromagnetism"
+ * Generated on 2021-05-07T14:31:30Z from standard IEC-80000-6:2008 "Electromagnetism"
  * see also https://www.iso.org/obp/ui/#iso:std:iec:80000:-6:ed-1:v1:en,fr
  *
  * Note 1: In documentation comments, AsciiMath notation (see http://asciimath.org/) is used for mathematical concepts,
@@ -600,42 +600,28 @@ package ISQElectromagnetism {
      * source: item 6-15 relative permittivity
      * symbol(s): `ε_r`
      * application domain: generic
-     * name: RelativePermittivity
+     * name: RelativePermittivity (specializes DimensionOneQuantity)
      * quantity dimension: 1
      * measurement unit(s): 1
      * tensor order: 0
      * definition: `ε_r = ε / ε_0` where `ε` is permittivity (item 6-14.2) and `ε_0` is the electric constant (item 6-14.1)
      * remarks: See IEC 60050-121, item 121-12-13.
      */
-    attribute def RelativePermittivityUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
-    }
-
-    attribute def RelativePermittivityValue :> ScalarQuantityValue {
-        attribute :>> num: Real;
-        attribute :>> mRef: RelativePermittivityUnit[1];
-    }
+    attribute def RelativePermittivityValue :> DimensionOneValue;
     attribute relativePermittivity: RelativePermittivityValue :> scalarQuantities;
 
     /**
      * source: item 6-16 electric susceptibility
      * symbol(s): `χ`
      * application domain: generic
-     * name: ElectricSusceptibility
+     * name: ElectricSusceptibility (specializes DimensionOneQuantity)
      * quantity dimension: 1
      * measurement unit(s): 1
      * tensor order: 0
      * definition: `vec(P) = ε_0 χ vec(E)` where `vec(P)` is electric polarization (item 6-7), `ε_0` is the electric constant (item 6-14. 1) and `vec(E)` is electric field strength (item 6-10)
      * remarks: `χ = ε_r - 1`. The definition applies to an isotropic medium. For an anisotropic medium, electric susceptibility is a second order tensor. See IEC 60050-121, item 121-12-19.
      */
-    attribute def ElectricSusceptibilityUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
-    }
-
-    attribute def ElectricSusceptibilityValue :> ScalarQuantityValue {
-        attribute :>> num: Real;
-        attribute :>> mRef: ElectricSusceptibilityUnit[1];
-    }
+    attribute def ElectricSusceptibilityValue :> DimensionOneValue;
     attribute electricSusceptibility: ElectricSusceptibilityValue :> scalarQuantities;
 
     /**
@@ -1096,42 +1082,28 @@ package ISQElectromagnetism {
      * source: item 6-27 relative permeability
      * symbol(s): `μ_r`
      * application domain: generic
-     * name: RelativePermeability
+     * name: RelativePermeability (specializes DimensionOneQuantity)
      * quantity dimension: 1
      * measurement unit(s): 1
      * tensor order: 0
      * definition: `μ_r = μ / μ_0`  where `μ` is permeability (item 6-24) and `μ_0` is the magnetic constant (item 6-26.1)
      * remarks: See IEC 60050-121, item 121-12-29.
      */
-    attribute def RelativePermeabilityUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
-    }
-
-    attribute def RelativePermeabilityValue :> ScalarQuantityValue {
-        attribute :>> num: Real;
-        attribute :>> mRef: RelativePermeabilityUnit[1];
-    }
+    attribute def RelativePermeabilityValue :> DimensionOneValue;
     attribute relativePermeability: RelativePermeabilityValue :> scalarQuantities;
 
     /**
      * source: item 6-28 magnetic susceptibility
      * symbol(s): `κ`, `χ_m`
      * application domain: generic
-     * name: MagneticSusceptibility
+     * name: MagneticSusceptibility (specializes DimensionOneQuantity)
      * quantity dimension: 1
      * measurement unit(s): 1
      * tensor order: 0
      * definition: `vec(M) = κ vec(H)` where `vec(M)` is magnetization (item 6-24) and `vec(H)` is magnetic field strength (item 6-25)
      * remarks: `κ = μ_r - 1` This definition applies to an isotropic medium. For an anisotropic medium magnetic susceptibility is a second order tensor. See IEC 60050-121, item 121-12-37.
      */
-    attribute def MagneticSusceptibilityUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
-    }
-
-    attribute def MagneticSusceptibilityValue :> ScalarQuantityValue {
-        attribute :>> num: Real;
-        attribute :>> mRef: MagneticSusceptibilityUnit[1];
-    }
+    attribute def MagneticSusceptibilityValue :> DimensionOneValue;
     attribute magneticSusceptibility: MagneticSusceptibilityValue :> scalarQuantities;
 
     /**
@@ -1504,7 +1476,7 @@ package ISQElectromagnetism {
      */
     attribute def MagnetomotiveForceUnit :> DerivedUnit {
         private attribute electricCurrentPF: QuantityPowerFactor[1] { :>> quantity = isq::I; :>> exponent = 1; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = (electricCurrentPF); }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = electricCurrentPF; }
     }
 
     attribute def MagnetomotiveForceValue :> ScalarQuantityValue {
@@ -1647,42 +1619,28 @@ package ISQElectromagnetism {
      * source: item 6-42.1 coupling factor
      * symbol(s): `k`
      * application domain: generic
-     * name: CouplingFactor
+     * name: CouplingFactor (specializes DimensionOneQuantity)
      * quantity dimension: 1
      * measurement unit(s): 1
      * tensor order: 0
      * definition: for inductive coupling between two inductive elements `k = |L_(mn)| / sqrt(L_m L_n)` where `L_m` and `L_n` are their self inductances (item 6-41 .1 ), and `L_(mn)` is their mutual inductance (item 6-41.2)
      * remarks: See IEC 60050-131 , item 131-12-41.
      */
-    attribute def CouplingFactorUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
-    }
-
-    attribute def CouplingFactorValue :> ScalarQuantityValue {
-        attribute :>> num: Real;
-        attribute :>> mRef: CouplingFactorUnit[1];
-    }
+    attribute def CouplingFactorValue :> DimensionOneValue;
     attribute couplingFactor: CouplingFactorValue :> scalarQuantities;
 
     /**
      * source: item 6-42.2 leakage factor
      * symbol(s): `σ`
      * application domain: generic
-     * name: LeakageFactor
+     * name: LeakageFactor (specializes DimensionOneQuantity)
      * quantity dimension: 1
      * measurement unit(s): 1
      * tensor order: 0
      * definition: `σ = 1 - k^2` where `k` is the coupling factor (item 6-42 .1)
      * remarks: See IEC 60050-131 , item 131-12-42.
      */
-    attribute def LeakageFactorUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
-    }
-
-    attribute def LeakageFactorValue :> ScalarQuantityValue {
-        attribute :>> num: Real;
-        attribute :>> mRef: LeakageFactorUnit[1];
-    }
+    attribute def LeakageFactorValue :> DimensionOneValue;
     attribute leakageFactor: LeakageFactorValue :> scalarQuantities;
 
     /**
@@ -1811,9 +1769,7 @@ package ISQElectromagnetism {
      * definition: `φ = φ_u - φ_i` where `φ_u` is the initial phase of the voltage (item 6-11 .3) and `φ_i` is the initial phase of the electric current (item 6-1)
      * remarks: When `u = hat(U) cos(ωt - φ_u)`, `i = hat(I) cos(ωt - φ_i)` where `u` is the voltage (item 6-11 . 3) and `i` is the electric current (item 6-1 ), `ω` is angular frequency (ISO 80000-3, item 3-16) and `t` is time (ISO 80000-3, item 3-7), then `φ` is phase difference. For phase angle, see items 6-49 and 6-50.
      */
-    attribute def PhaseDifferenceUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
-    }
+    attribute def PhaseDifferenceUnit :> DimensionOneUnit;
 
     attribute def PhaseDifferenceValue :> ScalarQuantityValue {
         attribute :>> num: Real;
@@ -2047,42 +2003,28 @@ package ISQElectromagnetism {
      * source: item 6-53 quality factor
      * symbol(s): `Q`
      * application domain: generic
-     * name: QualityFactor
+     * name: QualityFactor (specializes DimensionOneQuantity)
      * quantity dimension: 1
      * measurement unit(s): 1
      * tensor order: 0
      * definition: for non-radiating systems, if `underline(Z) = R + jX`, then `Q = |X|/R` where `underline(Z)` is impedance (item 6-51. 1), `R` is resistance (item 6-51 .2), and `X` is reactance (item 6-51.3)
      * remarks: None.
      */
-    attribute def QualityFactorUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
-    }
-
-    attribute def QualityFactorValue :> ScalarQuantityValue {
-        attribute :>> num: Real;
-        attribute :>> mRef: QualityFactorUnit[1];
-    }
+    attribute def QualityFactorValue :> DimensionOneValue;
     attribute qualityFactor: QualityFactorValue :> scalarQuantities;
 
     /**
      * source: item 6-54 loss factor
      * symbol(s): `d`
      * application domain: generic
-     * name: LossFactor
+     * name: LossFactor (specializes DimensionOneQuantity)
      * quantity dimension: 1
      * measurement unit(s): 1
      * tensor order: 0
      * definition: `d = 1/Q` where `Q` quality factor (item 6-53)
      * remarks: It is also named dissipation factor.
      */
-    attribute def LossFactorUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
-    }
-
-    attribute def LossFactorValue :> ScalarQuantityValue {
-        attribute :>> num: Real;
-        attribute :>> mRef: LossFactorUnit[1];
-    }
+    attribute def LossFactorValue :> DimensionOneValue;
     attribute lossFactor: LossFactorValue :> scalarQuantities;
 
     /**
@@ -2128,21 +2070,14 @@ package ISQElectromagnetism {
      * source: item 6-58 power factor
      * symbol(s): `λ`
      * application domain: generic
-     * name: PowerFactor
+     * name: PowerFactor (specializes DimensionOneQuantity)
      * quantity dimension: 1
      * measurement unit(s): 1
      * tensor order: 0
      * definition: `λ = |P|/|S|` where `P`  is active power (item 6-56) and `S` is apparent power (item 6-57)
      * remarks: See I EC 60050-131, item 131-11-46.
      */
-    attribute def PowerFactorUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
-    }
-
-    attribute def PowerFactorValue :> ScalarQuantityValue {
-        attribute :>> num: Real;
-        attribute :>> mRef: PowerFactorUnit[1];
-    }
+    attribute def PowerFactorValue :> DimensionOneValue;
     attribute powerFactor: PowerFactorValue :> scalarQuantities;
 
     /**

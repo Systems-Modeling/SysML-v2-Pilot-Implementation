@@ -1,6 +1,6 @@
 /**
  * International System of Quantities and Units
- * Generated on 2021-05-06T13:20:43Z from standard ISO-80000-5:2019 "Thermodynamics"
+ * Generated on 2021-05-07T14:31:30Z from standard ISO-80000-5:2019 "Thermodynamics"
  * see also https://www.iso.org/obp/ui/#iso:std:iso:80000:-5:ed-2:v1:en
  *
  * Note 1: In documentation comments, AsciiMath notation (see http://asciimath.org/) is used for mathematical concepts,
@@ -52,7 +52,7 @@ package ISQThermodynamics {
      */
     attribute def CelsiusTemperatureUnit :> DerivedUnit {
         private attribute thermodynamicTemperaturePF: QuantityPowerFactor[1] { :>> quantity = isq::'Θ'; :>> exponent = 1; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = (thermodynamicTemperaturePF); }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = thermodynamicTemperaturePF; }
     }
 
     attribute def CelsiusTemperatureValue :> ScalarQuantityValue {
@@ -74,7 +74,7 @@ package ISQThermodynamics {
      */
     attribute def LinearExpansionCoefficientUnit :> DerivedUnit {
         private attribute thermodynamicTemperaturePF: QuantityPowerFactor[1] { :>> quantity = isq::'Θ'; :>> exponent = -1; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = (thermodynamicTemperaturePF); }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = thermodynamicTemperaturePF; }
     }
 
     attribute def LinearExpansionCoefficientValue :> ScalarQuantityValue {
@@ -96,7 +96,7 @@ package ISQThermodynamics {
      */
     attribute def CubicExpansionCoefficientUnit :> DerivedUnit {
         private attribute thermodynamicTemperaturePF: QuantityPowerFactor[1] { :>> quantity = isq::'Θ'; :>> exponent = -1; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = (thermodynamicTemperaturePF); }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = thermodynamicTemperaturePF; }
     }
 
     attribute def CubicExpansionCoefficientValue :> ScalarQuantityValue {
@@ -118,7 +118,7 @@ package ISQThermodynamics {
      */
     attribute def RelativePressureCoefficientUnit :> DerivedUnit {
         private attribute thermodynamicTemperaturePF: QuantityPowerFactor[1] { :>> quantity = isq::'Θ'; :>> exponent = -1; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = (thermodynamicTemperaturePF); }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = thermodynamicTemperaturePF; }
     }
 
     attribute def RelativePressureCoefficientValue :> ScalarQuantityValue {
@@ -574,46 +574,30 @@ package ISQThermodynamics {
      * source: item 5-17.1 ratio of specific heat capacities
      * symbol(s): `γ`
      * application domain: generic
-     * name: RatioOfSpecificHeatCapacities
+     * name: RatioOfSpecificHeatCapacities (specializes DimensionOneQuantity)
      * quantity dimension: 1
      * measurement unit(s): 1
      * tensor order: 0
      * definition: quotient of specific heat capacity at constant pressure and specific heat capacity at constant volume: `γ = c_p/c_V` where `c_p` is specific heat capacity at constant pressure (item 5-16.2) and `c_V` is specific heat capacity at constant volume (item 5-16.3)
      * remarks: This quantity can also be expressed by `γ = C_p/C_V` where `C_p` is heat capacity at constant pressure and `C_V` is heat capacity at constant volume.
      */
-    attribute def RatioOfSpecificHeatCapacitiesUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
-    }
-
-    attribute def RatioOfSpecificHeatCapacitiesValue :> ScalarQuantityValue {
-        attribute :>> num: Real;
-        attribute :>> mRef: RatioOfSpecificHeatCapacitiesUnit[1];
-    }
+    attribute def RatioOfSpecificHeatCapacitiesValue :> DimensionOneValue;
     attribute ratioOfSpecificHeatCapacities: RatioOfSpecificHeatCapacitiesValue :> scalarQuantities;
 
     /**
      * source: item 5-17.2 isentropic exponent, isentropic expansion factor
      * symbol(s): `ϰ`
      * application domain: generic
-     * name: IsentropicExponent
+     * name: IsentropicExponent (specializes DimensionOneQuantity)
      * quantity dimension: 1
      * measurement unit(s): 1
      * tensor order: 0
      * definition: the negative of relative pressure change, divided by relative volume change, at constant entropy: `ϰ = - V/p * ((partial p)/(partial V))_S` where `V` is volume (ISO 80000-3), `p` is pressure (ISO 80000-4), and `S` is entropy (item 5-18)
      * remarks: For an ideal gas, `ϰ` is equal to `γ` (item 5-17.1).
      */
-    attribute def IsentropicExponentUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
-    }
-
-    attribute def IsentropicExponentValue :> ScalarQuantityValue {
-        attribute :>> num: Real;
-        attribute :>> mRef: IsentropicExponentUnit[1];
-    }
+    attribute def IsentropicExponentValue :> DimensionOneValue;
     attribute isentropicExponent: IsentropicExponentValue :> scalarQuantities;
 
-    alias IsentropicExponentUnit as IsentropicExpansionFactorUnit;
-    alias IsentropicExponentValue as IsentropicExpansionFactorValue;
     alias isentropicExponent as isentropicExpansionFactor;
 
     /**
@@ -917,42 +901,28 @@ package ISQThermodynamics {
      * source: item 5-25.1 thermal efficiency
      * symbol(s): `η`
      * application domain: thermodynamics
-     * name: ThermalEfficiency
+     * name: ThermalEfficiency (specializes DimensionOneQuantity)
      * quantity dimension: 1
      * measurement unit(s): 1
      * tensor order: 0
      * definition: quotient of work (ISO 80000-4) delivered by a heat engine and supplied heat: `η = W/Q` where `W` is work (ISO 80000-4) and `Q` is heat (item 5-6.1)
      * remarks: None.
      */
-    attribute def ThermalEfficiencyUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
-    }
-
-    attribute def ThermalEfficiencyValue :> ScalarQuantityValue {
-        attribute :>> num: Real;
-        attribute :>> mRef: ThermalEfficiencyUnit[1];
-    }
+    attribute def ThermalEfficiencyValue :> DimensionOneValue;
     attribute thermalEfficiency: ThermalEfficiencyValue :> scalarQuantities;
 
     /**
      * source: item 5-25.2 maximum thermal efficiency
      * symbol(s): `η_"max"`
      * application domain: generic
-     * name: MaximumThermalEfficiency
+     * name: MaximumThermalEfficiency (specializes DimensionOneQuantity)
      * quantity dimension: 1
      * measurement unit(s): 1
      * tensor order: 0
      * definition: efficiency determined by the quotient of the temperatures of the hot source and the cold sink: `η_max = 1 - T_c/T_h` where `T_c` is the thermodynamic temperature (item 5-1) of the cold sink and `T_h` is the thermodynamic temperature (item 5-1) of the hot source
      * remarks: An ideal heat engine operating according to the Carnot process is delivering the maximum efficiency.
      */
-    attribute def MaximumThermalEfficiencyUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
-    }
-
-    attribute def MaximumThermalEfficiencyValue :> ScalarQuantityValue {
-        attribute :>> num: Real;
-        attribute :>> mRef: MaximumThermalEfficiencyUnit[1];
-    }
+    attribute def MaximumThermalEfficiencyValue :> DimensionOneValue;
     attribute maximumThermalEfficiency: MaximumThermalEfficiencyValue :> scalarQuantities;
 
     /**
@@ -1029,147 +999,98 @@ package ISQThermodynamics {
      * source: item 5-29 mass ratio of water to dry matter
      * symbol(s): `u`
      * application domain: generic
-     * name: MassRatioOfWaterToDryMatter
+     * name: MassRatioOfWaterToDryMatter (specializes DimensionOneQuantity)
      * quantity dimension: 1
      * measurement unit(s): 1
      * tensor order: 0
      * definition: quotient of mass of water and mass of dry matter: `u = m/m_d` where `m` is mass (ISO 80000-4) of water and `m_d` is mass of dry matter
      * remarks: Mass ratio of water to dry matter at saturation is denoted `u_"sat"`.
      */
-    attribute def MassRatioOfWaterToDryMatterUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
-    }
-
-    attribute def MassRatioOfWaterToDryMatterValue :> ScalarQuantityValue {
-        attribute :>> num: Real;
-        attribute :>> mRef: MassRatioOfWaterToDryMatterUnit[1];
-    }
+    attribute def MassRatioOfWaterToDryMatterValue :> DimensionOneValue;
     attribute massRatioOfWaterToDryMatter: MassRatioOfWaterToDryMatterValue :> scalarQuantities;
 
     /**
      * source: item 5-30 mass ratio of water vapour to dry gas
      * symbol(s): `r`, `(x)`
      * application domain: generic
-     * name: MassRatioOfWaterVapourToDryGas
+     * name: MassRatioOfWaterVapourToDryGas (specializes DimensionOneQuantity)
      * quantity dimension: 1
      * measurement unit(s): 1
      * tensor order: 0
      * definition: quotient of mass of water vapour and mass of dry gas: `r = m/m_d` where `m` is mass (ISO 80000-4) of water vapour and `m_d` is mass of dry gas
      * remarks: Mass ratio of water vapour to dry gas at saturation is denoted `r_"sat"`. Mass ratio of water vapour to dry gas is also called mixing ratio.
      */
-    attribute def MassRatioOfWaterVapourToDryGasUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
-    }
-
-    attribute def MassRatioOfWaterVapourToDryGasValue :> ScalarQuantityValue {
-        attribute :>> num: Real;
-        attribute :>> mRef: MassRatioOfWaterVapourToDryGasUnit[1];
-    }
+    attribute def MassRatioOfWaterVapourToDryGasValue :> DimensionOneValue;
     attribute massRatioOfWaterVapourToDryGas: MassRatioOfWaterVapourToDryGasValue :> scalarQuantities;
 
     /**
      * source: item 5-31 mass fraction of water
      * symbol(s): `w_(H_(2)O)`
      * application domain: generic
-     * name: MassFractionOfWater
+     * name: MassFractionOfWater (specializes DimensionOneQuantity)
      * quantity dimension: 1
      * measurement unit(s): 1
      * tensor order: 0
      * definition: quantity given by: `w_(H_(2)O) = u/(1+u)` where `u` is mass ratio of water to dry matter (item 5-29)
      * remarks: None.
      */
-    attribute def MassFractionOfWaterUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
-    }
-
-    attribute def MassFractionOfWaterValue :> ScalarQuantityValue {
-        attribute :>> num: Real;
-        attribute :>> mRef: MassFractionOfWaterUnit[1];
-    }
+    attribute def MassFractionOfWaterValue :> DimensionOneValue;
     attribute massFractionOfWater: MassFractionOfWaterValue :> scalarQuantities;
 
     /**
      * source: item 5-32 mass fraction of dry matter
      * symbol(s): `w_d`
      * application domain: generic
-     * name: MassFractionOfDryMatter
+     * name: MassFractionOfDryMatter (specializes DimensionOneQuantity)
      * quantity dimension: 1
      * measurement unit(s): 1
      * tensor order: 0
      * definition: quantity given by: `w_d = 1 - w_(H_(2)O)` where `w_(H_(2)O)` is mass fraction of water (item 5-31)
      * remarks: None.
      */
-    attribute def MassFractionOfDryMatterUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
-    }
-
-    attribute def MassFractionOfDryMatterValue :> ScalarQuantityValue {
-        attribute :>> num: Real;
-        attribute :>> mRef: MassFractionOfDryMatterUnit[1];
-    }
+    attribute def MassFractionOfDryMatterValue :> DimensionOneValue;
     attribute massFractionOfDryMatter: MassFractionOfDryMatterValue :> scalarQuantities;
 
     /**
      * source: item 5-33 relative humidity
      * symbol(s): `φ`
      * application domain: generic
-     * name: RelativeHumidity
+     * name: RelativeHumidity (specializes DimensionOneQuantity)
      * quantity dimension: 1
      * measurement unit(s): 1
      * tensor order: 0
      * definition: quotient of partial pressure of water vapour and partial pressure at its saturation: `φ = p/p_"sat"` where `p` is partial pressure (ISO 80000-4) of vapour and `p_"sat"` is its partial pressure at saturation at the same temperature
      * remarks: Relative humidity is often referred to as RH and expressed in percent. See also remark in item 5-35.
      */
-    attribute def RelativeHumidityUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
-    }
-
-    attribute def RelativeHumidityValue :> ScalarQuantityValue {
-        attribute :>> num: Real;
-        attribute :>> mRef: RelativeHumidityUnit[1];
-    }
+    attribute def RelativeHumidityValue :> DimensionOneValue;
     attribute relativeHumidity: RelativeHumidityValue :> scalarQuantities;
 
     /**
      * source: item 5-34 relative mass concentration of vapour
      * symbol(s): `φ`
      * application domain: generic
-     * name: RelativeMassConcentrationOfVapour
+     * name: RelativeMassConcentrationOfVapour (specializes DimensionOneQuantity)
      * quantity dimension: 1
      * measurement unit(s): 1
      * tensor order: 0
      * definition: quotient of mass concentration of water vapour and mass concentration at its saturation: `φ = v/v_"sat"` where `v` is mass concentration of water vapour (item 5-28) and `v_"sat"` is its mass concentration of water vapour at saturation of the same temperature
      * remarks: For water vapour concentrations up to 1 kg/m^3, the relative humidity (item 5-33) is assumed to be equal to relative mass concentration of vapour. For details see Reference [8].
      */
-    attribute def RelativeMassConcentrationOfVapourUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
-    }
-
-    attribute def RelativeMassConcentrationOfVapourValue :> ScalarQuantityValue {
-        attribute :>> num: Real;
-        attribute :>> mRef: RelativeMassConcentrationOfVapourUnit[1];
-    }
+    attribute def RelativeMassConcentrationOfVapourValue :> DimensionOneValue;
     attribute relativeMassConcentrationOfVapour: RelativeMassConcentrationOfVapourValue :> scalarQuantities;
 
     /**
      * source: item 5-35 relative mass ratio of vapour
      * symbol(s): `ψ`
      * application domain: generic
-     * name: RelativeMassRatioOfVapour
+     * name: RelativeMassRatioOfVapour (specializes DimensionOneQuantity)
      * quantity dimension: 1
      * measurement unit(s): 1
      * tensor order: 0
      * definition: quotient of mass ratio of water vapour to dry gas and mass ratio of water vapour to dry gas at saturation: `ψ = r/r_"sat"` where `r` is mass ratio of water vapour to dry gas (item 5-30) and `r_"sat"` is its mass ratio of water vapour to dry gas at saturation of the same temperature
      * remarks: This quantity is also used as an approximation of relative humidity (item 5-33).
      */
-    attribute def RelativeMassRatioOfVapourUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
-    }
-
-    attribute def RelativeMassRatioOfVapourValue :> ScalarQuantityValue {
-        attribute :>> num: Real;
-        attribute :>> mRef: RelativeMassRatioOfVapourUnit[1];
-    }
+    attribute def RelativeMassRatioOfVapourValue :> DimensionOneValue;
     attribute relativeMassRatioOfVapour: RelativeMassRatioOfVapourValue :> scalarQuantities;
 
     /**

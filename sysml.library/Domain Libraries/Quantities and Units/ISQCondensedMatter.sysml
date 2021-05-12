@@ -1,6 +1,6 @@
 /**
  * International System of Quantities and Units
- * Generated on 2021-05-06T13:20:43Z from standard ISO-80000-12:2019 "Condensed matter physics"
+ * Generated on 2021-05-07T14:31:30Z from standard ISO-80000-12:2019 "Condensed matter physics"
  * see also https://www.iso.org/obp/ui/#iso:std:iso:80000:-12:ed-2:v1:en
  *
  * Note 1: In documentation comments, AsciiMath notation (see http://asciimath.org/) is used for mathematical concepts,
@@ -75,7 +75,7 @@ package ISQCondensedMatter {
      */
     attribute def AngularReciprocalLatticeVectorMagnitudeUnit :> DerivedUnit {
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = -1; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF); }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = lengthPF; }
     }
 
     attribute def AngularReciprocalLatticeVectorMagnitudeValue :> ScalarQuantityValue {
@@ -123,7 +123,7 @@ package ISQCondensedMatter {
      */
     attribute def FundamentalReciprocalLatticeVectorMagnitudeUnit :> DerivedUnit {
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = -1; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF); }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = lengthPF; }
     }
 
     attribute def FundamentalReciprocalLatticeVectorMagnitudeValue :> ScalarQuantityValue {
@@ -188,84 +188,56 @@ package ISQCondensedMatter {
      * source: item 12-5.1 short-range order parameter
      * symbol(s): `r`, `σ`
      * application domain: generic
-     * name: ShortRangeOrderParameter
+     * name: ShortRangeOrderParameter (specializes DimensionOneQuantity)
      * quantity dimension: 1
      * measurement unit(s): 1
      * tensor order: 0
      * definition: fraction of nearest-neighbour atom pairs in an Ising ferromagnet having magnetic moments in one direction, minus the fraction having magnetic moments in the opposite direction
      * remarks: Similar definitions apply to other order-disorder phenomena. Other symbols are frequently used.
      */
-    attribute def ShortRangeOrderParameterUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
-    }
-
-    attribute def ShortRangeOrderParameterValue :> ScalarQuantityValue {
-        attribute :>> num: Real;
-        attribute :>> mRef: ShortRangeOrderParameterUnit[1];
-    }
+    attribute def ShortRangeOrderParameterValue :> DimensionOneValue;
     attribute shortRangeOrderParameter: ShortRangeOrderParameterValue :> scalarQuantities;
 
     /**
      * source: item 12-5.2 long-range order parameter
      * symbol(s): `R`, `s`
      * application domain: generic
-     * name: LongRangeOrderParameter
+     * name: LongRangeOrderParameter (specializes DimensionOneQuantity)
      * quantity dimension: 1
      * measurement unit(s): 1
      * tensor order: 0
      * definition: fraction of atoms in an Ising ferromagnet having magnetic moments in one direction, minus the fraction having magnetic moments in the opposite direction
      * remarks: Similar definitions apply to other order-disorder phenomena. Other symbols are frequently used.
      */
-    attribute def LongRangeOrderParameterUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
-    }
-
-    attribute def LongRangeOrderParameterValue :> ScalarQuantityValue {
-        attribute :>> num: Real;
-        attribute :>> mRef: LongRangeOrderParameterUnit[1];
-    }
+    attribute def LongRangeOrderParameterValue :> DimensionOneValue;
     attribute longRangeOrderParameter: LongRangeOrderParameterValue :> scalarQuantities;
 
     /**
      * source: item 12-5.3 atomic scattering factor
      * symbol(s): `f`
      * application domain: generic
-     * name: AtomicScatteringFactor
+     * name: AtomicScatteringFactor (specializes DimensionOneQuantity)
      * quantity dimension: 1
      * measurement unit(s): 1
      * tensor order: 0
      * definition: quotient of radiation amplitude scattered by the atom and radiation amplitude scattered by a single electron
      * remarks: The atomic scattering factor can be expressed by: `f = E_a/(E_e`, where `E_a` is the radiation amplitude scattered by the atom and `E_e` is the radiation amplitude scattered by a single electron.
      */
-    attribute def AtomicScatteringFactorUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
-    }
-
-    attribute def AtomicScatteringFactorValue :> ScalarQuantityValue {
-        attribute :>> num: Real;
-        attribute :>> mRef: AtomicScatteringFactorUnit[1];
-    }
+    attribute def AtomicScatteringFactorValue :> DimensionOneValue;
     attribute atomicScatteringFactor: AtomicScatteringFactorValue :> scalarQuantities;
 
     /**
      * source: item 12-5.4 structure factor
      * symbol(s): `F(h,k,l)`
      * application domain: generic
-     * name: StructureFactor
+     * name: StructureFactor (specializes DimensionOneQuantity)
      * quantity dimension: 1
      * measurement unit(s): 1
      * tensor order: 0
      * definition: quantity given by: `F(h,k,l) = sum_(n=1)^N f_n exp[2π i (h x_n + k y_n + l z_n)]`, where `f_n` is the atomic scattering factor (item 12-5.3) for atom `n`, `x_n`, `y_n`, `z_n` are fractional coordinates of its position, `N` is the total number of atoms in the unit cell and `h`, `k`, `l` are the Miller indices
      * remarks: For the Miller indices `h`, `k`, `l`, see Annex A.
      */
-    attribute def StructureFactorUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
-    }
-
-    attribute def StructureFactorValue :> ScalarQuantityValue {
-        attribute :>> num: Real;
-        attribute :>> mRef: StructureFactorUnit[1];
-    }
+    attribute def StructureFactorValue :> DimensionOneValue;
     attribute structureFactor: StructureFactorValue :> scalarQuantities;
 
     /**
@@ -348,21 +320,14 @@ package ISQCondensedMatter {
      * source: item 12-8 Debye-Waller factor
      * symbol(s): `D`, `B`
      * application domain: generic
-     * name: DebyeWallerFactor
+     * name: DebyeWallerFactor (specializes DimensionOneQuantity)
      * quantity dimension: 1
      * measurement unit(s): 1
      * tensor order: 0
      * definition: factor by which the intensity of a diffraction line is reduced because of the lattice vibrations
      * remarks: `D` is sometimes expressed as `D = exp(−2W)`; in Mössbauer spectroscopy, it is also called the `f` factor and denoted by `f`.
      */
-    attribute def DebyeWallerFactorUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
-    }
-
-    attribute def DebyeWallerFactorValue :> ScalarQuantityValue {
-        attribute :>> num: Real;
-        attribute :>> mRef: DebyeWallerFactorUnit[1];
-    }
+    attribute def DebyeWallerFactorValue :> DimensionOneValue;
     attribute debyeWallerFactor: DebyeWallerFactorValue :> scalarQuantities;
 
     /**
@@ -463,42 +428,28 @@ package ISQCondensedMatter {
      * source: item 12-13 thermodynamic Grüneisen parameter
      * symbol(s): `γ_G`, `Γ_G`
      * application domain: generic
-     * name: ThermodynamicGrüneisenParameter
+     * name: ThermodynamicGrüneisenParameter (specializes DimensionOneQuantity)
      * quantity dimension: 1
      * measurement unit(s): 1
      * tensor order: 0
      * definition: quantity given by: `γ_G = (α_V)/(κ_T c_V ρ)`, where `α_V` is cubic expansion coefficient (ISO 80000-5), `κ_T` is isothermal compressibility (ISO 80000-5), `c_V` is specific heat capacity at constant volume (ISO 80000-5), and `ρ` is mass density (ISO 80000-4)
      * remarks: None.
      */
-    attribute def 'ThermodynamicGrüneisenParameterUnit' :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
-    }
-
-    attribute def 'ThermodynamicGrüneisenParameterValue' :> ScalarQuantityValue {
-        attribute :>> num: Real;
-        attribute :>> mRef: 'ThermodynamicGrüneisenParameterUnit'[1];
-    }
+    attribute def 'ThermodynamicGrüneisenParameterValue' :> DimensionOneValue;
     attribute 'thermodynamicGrüneisenParameter': 'ThermodynamicGrüneisenParameterValue' :> scalarQuantities;
 
     /**
      * source: item 12-14 Grüneisen parameter
      * symbol(s): `γ`
      * application domain: generic
-     * name: GrüneisenParameter
+     * name: GrüneisenParameter (specializes DimensionOneQuantity)
      * quantity dimension: 1
      * measurement unit(s): 1
      * tensor order: 0
      * definition: quantity given by minus the partial differential quotient: `γ = - (del ln ω)/(del ln V)`, where `ω` is a lattice vibration frequency (ISO 80000-3), and `V` is volume (ISO 80000-3)
      * remarks: `ω` can also refer to an average of the vibrational spectrum, for instance as represented by a Debye angular frequency (item 12-10).
      */
-    attribute def 'GrüneisenParameterUnit' :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
-    }
-
-    attribute def 'GrüneisenParameterValue' :> ScalarQuantityValue {
-        attribute :>> num: Real;
-        attribute :>> mRef: 'GrüneisenParameterUnit'[1];
-    }
+    attribute def 'GrüneisenParameterValue' :> DimensionOneValue;
     attribute 'grüneisenParameter': 'GrüneisenParameterValue' :> scalarQuantities;
 
     /**
@@ -601,9 +552,7 @@ package ISQCondensedMatter {
      * definition: in an isotropic conductor, relation between electric field strength, `vec(E)`, (IEC 80000-6) and electric current density, `vec(J)`, (IEC 80000-6) expressed as: `vec(E) = ρ vec(J) + R_H (vec(B) xx vec(J))`, where `ρ` is resistivity (IEC 80000-6), and `vec(B)` is magnetic flux density (IEC 80000-6)
      * remarks: None.
      */
-    attribute def HallCoefficientUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
-    }
+    attribute def HallCoefficientUnit :> DimensionOneUnit;
 
     attribute def HallCoefficientValue :> ScalarQuantityValue {
         attribute :>> num: Real;
@@ -804,7 +753,7 @@ package ISQCondensedMatter {
      */
     attribute def ElectronDensityUnit :> DerivedUnit {
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = -3; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF); }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = lengthPF; }
     }
 
     attribute def ElectronDensityValue :> ScalarQuantityValue {
@@ -826,7 +775,7 @@ package ISQCondensedMatter {
      */
     attribute def HoleDensityUnit :> DerivedUnit {
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = -3; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF); }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = lengthPF; }
     }
 
     attribute def HoleDensityValue :> ScalarQuantityValue {
@@ -848,7 +797,7 @@ package ISQCondensedMatter {
      */
     attribute def IntrinsicCarrierDensityUnit :> DerivedUnit {
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = -3; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF); }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = lengthPF; }
     }
 
     attribute def IntrinsicCarrierDensityValue :> ScalarQuantityValue {
@@ -870,7 +819,7 @@ package ISQCondensedMatter {
      */
     attribute def DonorDensityUnit :> DerivedUnit {
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = -3; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF); }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = lengthPF; }
     }
 
     attribute def DonorDensityValue :> ScalarQuantityValue {
@@ -892,7 +841,7 @@ package ISQCondensedMatter {
      */
     attribute def AcceptorDensityUnit :> DerivedUnit {
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = -3; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF); }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = lengthPF; }
     }
 
     attribute def AcceptorDensityValue :> ScalarQuantityValue {
@@ -918,21 +867,14 @@ package ISQCondensedMatter {
      * source: item 12-31 mobility ratio
      * symbol(s): `b`
      * application domain: generic
-     * name: MobilityRatio
+     * name: MobilityRatio (specializes DimensionOneQuantity)
      * quantity dimension: 1
      * measurement unit(s): 1
      * tensor order: 0
      * definition: quotient of mobilities (ISO 80000-10) of electrons and holes, respectively
      * remarks: The mobility ratio can be expressed by: `b = μ_n/μ_p`, where `μ_n` and `μ_p` are mobilities (ISO 80000-10) for electrons and holes, respectively.
      */
-    attribute def MobilityRatioUnit :> DimensionOneUnit {
-        attribute :>> quantityDimension { :>> quantityPowerFactors = (); }
-    }
-
-    attribute def MobilityRatioValue :> ScalarQuantityValue {
-        attribute :>> num: Real;
-        attribute :>> mRef: MobilityRatioUnit[1];
-    }
+    attribute def MobilityRatioValue :> DimensionOneValue;
     attribute mobilityRatio: MobilityRatioValue :> scalarQuantities;
 
     /**

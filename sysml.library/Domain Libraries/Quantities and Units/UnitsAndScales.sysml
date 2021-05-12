@@ -261,9 +261,9 @@ package UnitsAndScales {
 		attribute :>> longName = "unit of dimension one";
 		attribute :>> unitPowerFactors = ();
 	}
-	attribute def DimensionOneValue :> QuantityValue {
-		attribute num: Real redefines QuantityValue::num;
-		attribute mRef: DimensionOneUnit redefines QuantityValue::mRef;
+	attribute def DimensionOneValue :> ScalarQuantityValue {
+		attribute :>> num: Real;
+		attribute :>> mRef: DimensionOneUnit;
 	}
 	attribute dimensionOneQuantities : DimensionOneValue[0..*] nonunique :> scalarQuantities;
 

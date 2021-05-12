@@ -1,6 +1,6 @@
 /**
  * International System of Quantities and Units
- * Generated on 2021-05-06T13:20:43Z from standard ISO-80000-11:2019 "Characteristic numbers"
+ * Generated on 2021-05-07T14:31:30Z from standard ISO-80000-11:2019 "Characteristic numbers"
  * see also https://www.iso.org/obp/ui/#iso:std:iso:80000:-11:ed-2:v1:en
  *
  * Note 1: In documentation comments, AsciiMath notation (see http://asciimath.org/) is used for mathematical concepts,
@@ -933,7 +933,7 @@ package ISQCharacteristicNumbers {
     attribute def 'PécletNumberForMassTransferValue' :> DimensionOneValue;
     attribute 'pécletNumberForMassTransfer': 'PécletNumberForMassTransferValue' :> scalarQuantities;
 
-    alias 'pécletNumber' as bodensteinNumber;
+    alias 'pécletNumberForMassTransfer' as bodensteinNumberForMassTransfer;
 
     /**
      * source: item 11-6.3 Grashof number
@@ -1005,7 +1005,7 @@ package ISQCharacteristicNumbers {
     attribute def MassTransferFactorValue :> DimensionOneValue;
     attribute massTransferFactor: MassTransferFactorValue :> scalarQuantities;
 
-    alias massTransferFactor as jFactor;
+    alias massTransferFactor as jFactorForMassTransfer;
 
     /**
      * source: item 11-6.8 Atwood number

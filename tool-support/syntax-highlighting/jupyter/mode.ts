@@ -33,24 +33,24 @@ export function defineSysMLv2Mode(): void {
 		return CodeMirror.getMode(gc_mode, {
 			name: 'clike',
 			keywords: [
-				"about", "abstract", "accept", "action", "activity", "alias", "all", "allInstances", "allocate",
-				"allocation", "analysis", "as", "assert", "assoc", "assume", "attribute", "bind", "block", "by", "calc",
-				"case", "comment", "connect", "connection", "constraint", "decide", "def", "defined", "dependency",
+				"about", "abstract", "accept", "action", "activity", "affect", "alias", "all", "allocate", "allocation",
+				"analysis", "as", "assert", "assoc", "assume", "attribute", "bind", "block", "by", "calc", "case",
+				"comment", "concern", "connect", "connection", "constraint", "decide", "def", "defined", "dependency",
 				"do", "doc", "else", "end", "entry", "enum", "exhibit", "exit", "expose", "feature", "filter", "first",
-				"flow", "for", "fork", "from", "hastype", "id", "if", "import", "in", "individual", "inout",
+				"flow", "for", "fork", "frame", "from", "hastype", "id", "if", "import", "in", "individual", "inout",
 				"instanceof", "interface", "istype", "item", "join", "language", "link", "merge", "metadata",
 				"nonunique", "objective", "of", "ordered", "out", "package", "part", "perform", "port", "private",
-				"protected", "public", "redefines", "ref", "rendering", "rep", "require", "requirement", "return",
-				"satisfy", "send", "snapshot", "specializes", "state", "stream", "subject", "subsets", "succession",
-				"then", "timeslice", "to", "transition", "type", "value", "variant", "variation", "verification",
-				"verify", "view", "viewpoint"
+				"protected", "public", "redefines", "ref", "render", "rendering", "rep", "require", "requirement",
+				"return", "satisfy", "send", "snapshot", "specializes", "stakeholder", "state", "stream", "subject",
+				"subsets", "succession", "then", "timeslice", "to", "transition", "type", "value", "variant",
+				"variation", "verification", "verify", "view", "viewpoint"
 			].reduce(f_wordify, {}),
 			defKeywords: [
 				"action", "activity", "allocation", "analysis", "attribute", "block", "calc", "case", "comment",
-				"connection", "constraint", "def", "doc", "enum", "id", "individual", "interface", "item", "link",
-				"metadata", "objective", "package", "part", "port", "ref", "rendering", "rep", "requirement",
-				"snapshot", "state", "subject", "timeslice", "transition", "type", "value", "verification", "view",
-				"viewpoint"
+				"concern", "connection", "constraint", "def", "doc", "enum", "id", "individual", "interface", "item",
+				"link", "metadata", "objective", "package", "part", "port", "ref", "rendering", "rep", "requirement",
+				"snapshot", "stakeholder", "state", "subject", "timeslice", "transition", "type", "value",
+				"verification", "view", "viewpoint"
 			].reduce(f_wordify, {}),
 			typeFirstDefinitions: true,
 			atoms: ['true', 'false', 'null'].reduce(f_wordify),

@@ -1,0 +1,56 @@
+//* XPECT_SETUP org.omg.kerml.xpect.tests.expression.KerMLExpressionTest
+        ResourceSet {
+                ThisFile {}
+                File {from ="/library/Base.kerml"}
+                File {from ="/library/Links.kerml"}
+                File {from ="/library/Occurrences.kerml"}
+                File {from ="/library/Objects.kerml"}
+                File {from ="/library/Performances.kerml"}
+                File {from ="/library/ScalarValues.kerml"}
+                File {from ="/library/BaseFunctions.kerml"}
+                File {from ="/library/DataFunctions.kerml"}
+                File {from ="/library/ControlFunctions.kerml"}
+        }
+        Workspace {
+                JavaProject {
+                        SrcFolder {
+                                ThisFile {}
+                                File {from ="/library/Base.kerml"}
+                                File {from ="/library/Links.kerml"}
+                                File {from ="/library/Occurrences.kerml"}
+                 				File {from ="/library/Objects.kerml"}
+                				File {from ="/library/Performances.kerml"}
+                                File {from ="/library/ScalarValues.kerml"}
+                                File {from ="/library/BaseFunctions.kerml"}
+                                File {from ="/library/DataFunctions.kerml"}
+                				File {from ="/library/ControlFunctions.kerml"}
+                        }
+                }
+        }
+END_SETUP
+*/
+
+// XPECT noErrors ---> ""
+package P {
+    import ScalarValues::*;
+    
+    struct V {
+    	feature n : Integer;
+    	feature m : Real;
+    }
+    
+    feature v1 : V {
+    	feature :>> n;
+    	feature :>> m;
+    }
+    
+    feature v2 :> v1;
+    
+    feature v1_n : Integer = v1.n;
+    feature v1_m : Real = v1.m;
+    feature v2_m : Real = v2.m;
+    
+    feature v_4 : V = (v1, v2).{in v : V; v.n == 4};
+    feature vv[*] : V = (all V).{in v : V; v.m > 100};
+
+}

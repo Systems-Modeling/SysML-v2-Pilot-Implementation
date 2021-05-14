@@ -23,8 +23,8 @@ package Test {
 		//XPECT linkedName at A --> Test.Test1.A
 		class B specializes A;
 		
-		//XPECT linkedName at VP2.A --> Test.VP.VP2.A
-		class C specializes VP2.A;
+		//XPECT linkedName at VP2::A --> Test.VP.VP2.A
+		class C specializes VP2::A;
 
 		//XPECT linkedName at A_Id --> Test.VP.VP2.A
 		class D specializes A_Id;

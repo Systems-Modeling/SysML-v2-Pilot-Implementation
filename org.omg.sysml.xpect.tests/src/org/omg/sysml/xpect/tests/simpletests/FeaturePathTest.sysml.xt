@@ -4,6 +4,7 @@ XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLTests
 		ThisFile {} 
 		File {from ="/library.systems/Items.sysml"}
 		File {from ="/library.systems/Parts.sysml"}
+		File {from ="/library.systems/Connections.sysml"}
 		File {from ="/library.kernel/Base.kerml"}
 		File {from ="/library.kernel/BaseFunctions.kerml"}
 		File {from ="/library.kernel/ControlFunctions.kerml"}
@@ -18,6 +19,7 @@ XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLTests
 				ThisFile {} 
 				File {from ="/library.systems/Items.sysml"}
 				File {from ="/library.systems/Parts.sysml"}
+				File {from ="/library.systems/Connections.sysml"}
 				File {from ="/library.kernel/Base.kerml"}
 				File {from ="/library.kernel/BaseFunctions.kerml"}
 				File {from ="/library.kernel/ControlFunctions.kerml"}
@@ -32,10 +34,23 @@ END_SETUP
 */
 // XPECT noErrors ---> ""
 package Q {
-  part f {
+  part def F {
   	part a;
   }
-  part def C {
-    part g = ./f/a; 
+  
+  part f : F;
+  
+  part def A {
+    part g = f.a;
+  }
+  
+  part def B {
+  	part f : F;
+  	part a : A;
+  }
+  
+  part b : B {
+  	connect f.a to a.g;
+  	bind f.a = a.g;
   }
 }

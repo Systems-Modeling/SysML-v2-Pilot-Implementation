@@ -23,12 +23,10 @@ package org.omg.sysml.adapter;
 
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.ConstraintUsage;
-import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.ItemDefinition;
 import org.omg.sysml.lang.sysml.ItemUsage;
 import org.omg.sysml.lang.sysml.RequirementDefinition;
 import org.omg.sysml.lang.sysml.RequirementUsage;
-import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
 import org.omg.sysml.util.TypeUtil;
@@ -83,13 +81,6 @@ public class ConstraintUsageAdapter extends UsageAdapter {
 		addSubsetting(CONSTRAINT_SUBSETTING_REQUIREMENT_FEATURE);
 	}
 	
-	protected void addSubsetting(String subsettedFeatureName) {
-		Feature feature = (Feature)getLibraryType(subsettedFeatureName);
-		if (feature != null) {
-			addImplicitGeneralType(SysMLPackage.eINSTANCE.getSubsetting(), feature);
-		}
-	}
-
 	@Override
 	public void computeImplicitGeneralTypes() {
 		ConstraintUsage target = getTarget();

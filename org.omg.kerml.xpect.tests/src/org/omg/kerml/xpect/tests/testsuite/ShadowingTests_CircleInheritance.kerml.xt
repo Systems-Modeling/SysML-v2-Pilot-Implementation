@@ -14,7 +14,7 @@ END_SETUP
 */
 // XPECT noErrors --> ""
 package Test1{
-	class id 'A_Id' A specializes A.B{
+	class id 'A_Id' A specializes A::B{
 		//XPECT linkedName at A --> Test1.A
 		//* XPECT scope at A ---
    		A, A.B, A.B.B, B, B.B, 

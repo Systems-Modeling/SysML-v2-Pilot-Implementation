@@ -9,7 +9,7 @@ package Vehicle {
         value mass :>> Vehicle::mass = 1.1;
     }
 
-    part vehicle_1a :>> vehicle_1 {
+    part vehicle_1a :> vehicle_1 {
         value cylinders :>> vehicle_1::cylinders = 6;
         value mass :>> vehicle_1::mass = 2.1;
 

@@ -47,7 +47,7 @@ public class GlobalNameRedefinitionTest extends SysMLInteractiveTest {
 		System.out.println(result2);
 		String id2 = result2.getRootElement().getOwnedElement().get(0).getIdentifier();
 		
-		System.out.println(instance.show("y"));
+		System.out.println(instance.show("y", null));
 		String resolvedIdentifier = instance.resolve("y").getIdentifier();
 		
 		assertNotEquals(id1, id2);
@@ -71,7 +71,7 @@ public class GlobalNameRedefinitionTest extends SysMLInteractiveTest {
 		System.out.println(result2);
 		String id2 = result2.getRootElement().getOwnedElement().get(0).getIdentifier();
 		
-		System.out.println(instance.show("y"));
+		System.out.println(instance.show("y", null));
 		String resolvedIdentifier = instance.resolve("y").getIdentifier();
 		
 		assertNotEquals(id1, id2);
@@ -90,10 +90,10 @@ public class GlobalNameRedefinitionTest extends SysMLInteractiveTest {
 		System.out.println(result2);
 		String id2 = result2.getRootElement().getOwnedElement().get(0).getIdentifier();
 		
-		System.out.println(instance.show("y"));
+		System.out.println(instance.show("y", null));
 		Element resolvedElement1 = instance.resolve("y");
 		
-		System.out.println(instance.show("Y"));
+		System.out.println(instance.show("Y", null));
 		Element resolvedElement2 = instance.resolve("Y");
 		
 		assertNotNull(resolvedElement1);

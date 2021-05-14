@@ -46,9 +46,10 @@ import org.omg.sysml.lang.sysml.Connector
 import org.omg.sysml.lang.sysml.Subsetting
 import org.omg.sysml.lang.sysml.Namespace
 import org.omg.sysml.lang.sysml.Redefinition
-import org.omg.sysml.lang.sysml.InvocationExpression
+import org.omg.sysml.lang.sysml.Expression
 import org.omg.sysml.lang.sysml.FeatureReferenceExpression
 import org.omg.sysml.lang.sysml.PathStepExpression
+import org.omg.sysml.lang.sysml.InvocationExpression
 
 class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 
@@ -94,15 +95,11 @@ class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 		} else if (context instanceof Generalization)
 			(context.eContainer as Element).scope_owningNamespace(context, reference)
 		else if (context instanceof Membership) {
-			var owningNamespace = context.membershipOwningNamespace
-		    if (owningNamespace instanceof FeatureReferenceExpression)
-			    context.scope_QueryPathExpression(owningNamespace, context, reference)
-		    else 
-	    		context.scope_nonExpressionNamespace(context, reference)
+	    	context.scope_relativeNamespace(context.membershipOwningNamespace, context, reference)
 		} else if (context instanceof Import)
-			context.scope_Namespace(context.importOwningNamespace, context, reference)
+			context.scope_Namespace(context.importOwningNamespace, context, reference, true)
 		else if (context instanceof Namespace) 
-			context.scopeFor(reference, null, true, false, null)
+			context.scopeFor(reference, null, true, true, false, null)
 		else if (context instanceof Element)
 			context.scope_owningNamespace(context, reference)
 		else
@@ -124,68 +121,75 @@ class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 	}
 	
 	def scope_owningNamespace(Element element, EObject context, EReference reference) {
-		element.scope_Namespace(element?.parentNamespace, context, reference)
+		element.scope_Namespace(element?.parentNamespace, context, reference, true)
 	}
 
 	def scope_nonExpressionNamespace(Element element, EObject context, EReference reference) {
-		element.scope_Namespace(element?.nonExpressionNamespace, context, reference)
+		element.scope_Namespace(element?.nonExpressionNamespace, context, reference, true)
 	}
 	
-	def scope_Namespace(Element element, Namespace namespace, EObject context, EReference reference) {
+	def scope_Namespace(Element element, Namespace namespace, EObject context, EReference reference, boolean isInsideScope) {
 		if (namespace === null)
 			super.getScope(element, reference)		
 		else 
-			namespace.scopeFor(reference, element, true,
+			namespace.scopeFor(reference, element, isInsideScope, true,
 				reference == SysMLPackage.eINSTANCE.redefinition_RedefinedFeature, 
 				if (context instanceof Element) context else null)
 	}
+	
+	def scope_relativeNamespace(Element element, Namespace ns, EObject context, EReference reference) {
+		val rel = ns.relativeNamespace
+		if (rel === null) {
+			element.scope_nonExpressionNamespace(context, reference)
+		} else {
+			element.scope_Namespace(rel, context, reference, false)
+		}
+	}
 
-	def FeatureReferenceExpression prevQueryPath(PathStepExpression qps) {
+	def static Namespace featureRefNamespace(PathStepExpression qps) {
 		var ops = qps.operand
 		if (ops.size() >= 2) {
 			var op1 = ops.get(1)
 			if (op1 instanceof FeatureReferenceExpression) {
-				return op1
+				return op1.result
 			}
 		}
 		return null;
 	}
 
-	def FeatureReferenceExpression prevQueryPath(FeatureReferenceExpression qpe) {
-		var oe = qpe.owner
-		if (oe instanceof PathStepExpression) {
-			var ops = oe.operand
-			if (ops.size() >= 2) {
-				var op1 = ops.get(0);
-				if (op1 == qpe) {
-					return null;
-				} else if (op1 instanceof FeatureReferenceExpression) {
-					return op1
-				} else if (op1 instanceof PathStepExpression) {
-					return prevQueryPath(op1)
+	def static Namespace relativeNamespace(Namespace ns) {
+		var Namespace rel = null;
+		if (ns instanceof FeatureReferenceExpression) {
+			val oe = ns.owner
+			if (oe instanceof PathStepExpression) {
+				var ops = oe.operand
+				if (ops.size() >= 2) {
+					var op1 = ops.get(0);
+					if (op1 !== ns) {
+						if (op1 instanceof PathStepExpression) {
+							rel = op1.featureRefNamespace
+						} else if (op1 instanceof Expression) {
+							rel = op1.result
+						}
+					}
 				}
 			}
 		}
-		return null
+		return rel;
 	}
 
-	def IScope scope_QueryPathExpression(Element element, FeatureReferenceExpression qpe, EObject context, EReference reference) {
-		var prev = prevQueryPath(qpe)
-		if (prev !== null)
-			element.scope_Namespace(prev.referent, context, reference)
-		else 
-			element.scope_nonExpressionNamespace(context, reference)
-	}
-	
-	def IScope scopeFor(Namespace pack, EReference reference, Element element, boolean isFirstScope, boolean isRedefinition, Element skip) {
-		val parent = pack.parentNamespace
-		val outerscope = 
-			if (parent === null) // Root Package
-				globalScope.getScope(pack.eResource, reference, Predicates.alwaysTrue)
-			else
-				parent.scopeFor(reference, element, false, false, skip)		
+	def IScope scopeFor(Namespace pack, EReference reference, Element element, boolean isInsideScope, boolean isFirstScope, boolean isRedefinition, Element skip) {
+		var outerscope = IScope.NULLSCOPE;
+		if (isInsideScope) {
+			val parent = pack.parentNamespace
+			outerscope = 
+				if (parent === null) // Root Package
+					globalScope.getScope(pack.eResource, reference, Predicates.alwaysTrue)
+				else
+					parent.scopeFor(reference, element, true, false, false, skip)
+		}	
 
-		new KerMLScope(outerscope, pack, reference.EReferenceType, this, isFirstScope, isRedefinition, element, skip)
+		new KerMLScope(outerscope, pack, reference.EReferenceType, this, isInsideScope, isFirstScope, isRedefinition, element, skip)
 	}
 	
 }

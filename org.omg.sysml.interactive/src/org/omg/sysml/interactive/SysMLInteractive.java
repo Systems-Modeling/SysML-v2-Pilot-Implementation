@@ -57,7 +57,9 @@ import org.omg.kerml.xtext.naming.KerMLQualifiedNameConverter;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
+import org.omg.sysml.lang.sysml.RenderingUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.lang.sysml.ViewUsage;
 import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
 import org.omg.sysml.plantuml.SysML2PlantUMLLinkProvider;
 import org.omg.sysml.plantuml.SysML2PlantUMLSvc;
@@ -238,12 +240,24 @@ public class SysMLInteractive extends SysMLUtil {
 		}
 	}
 	
-	public String list(String query) {
-		return Strings.isNullOrEmpty(query)? listLibrary(): listQuery(query);
+	public String list(String query, List<String> help) {
+		return Strings.isNullOrEmpty(query)? 
+					!help.isEmpty()? SysMLInteractiveHelp.getListHelp():
+					listLibrary(): 
+				listQuery(query);
 	}
 	
-	public String show(String name) {
+	protected String list(String query) {
+		return "-h".equals(query)? 
+				list(null, Collections.singletonList("true")):
+				list(query, Collections.emptyList());
+	}
+	
+	public String show(String name, List<String> help) {
 		this.counter++;
+		if (Strings.isNullOrEmpty(name)) {
+			return help.isEmpty()? "": SysMLInteractiveHelp.getShowHelp();
+		}
 		try {
 			Element element = this.resolve(name);
 			return element == null? "ERROR:Couldn't resolve reference to Element '" + name + "'\n":
@@ -253,8 +267,17 @@ public class SysMLInteractive extends SysMLUtil {
 		}
 	}
 	
-	public String publish(String name) {
+	protected String show(String name) {
+		return "-h".equals(name)? 
+				show(null, Collections.singletonList("true")):
+				show(name, Collections.emptyList());
+	}
+	
+	public String publish(String name, List<String> help) {
 		this.counter++;
+		if (Strings.isNullOrEmpty(name)) {
+			return help.isEmpty()? "": SysMLInteractiveHelp.getPublishHelp();
+		}
 		try {
 			Element element = this.resolve(name);
 			if (element == null) {
@@ -274,6 +297,12 @@ public class SysMLInteractive extends SysMLUtil {
 		}
 	}
 	
+	protected String publish(String name) {
+		return "-h".equals(name)? 
+				publish(null, Collections.singletonList("true")):
+				publish(name, Collections.emptyList());
+	}
+	
 	protected ApiElementProcessingFacade getProcessingFacade(String modelName) {
 		System.out.println("API base path: " + this.apiBasePath);
 		ApiElementProcessingFacade processingFacade = new ApiElementProcessingFacade(modelName, this.apiBasePath);	
@@ -281,47 +310,89 @@ public class SysMLInteractive extends SysMLUtil {
 		return processingFacade;
 	}
 	
+	public VizResult view(String name, List<String> renders, List<String> styles, List<String> help) {
+		this.counter++;
+        if (!help.isEmpty()
+                || (name == null && renders.isEmpty() && styles.isEmpty())) {
+                return VizResult.textResult(SysMLInteractiveHelp.getViewHelp());
+        }
+        if (name == null) {
+        	return VizResult.emptyResult();
+        }
+		Element element = this.resolve(name);
+		if (element == null) {
+			return VizResult.unresolvedResult(name);
+		} else if (!(element instanceof ViewUsage)) {
+			return VizResult.vizExceptionResult("ERROR:'" + name + "' is not a view\n");
+		}
+    	ViewUsage viewSpec = (ViewUsage)element;
+    	RenderingUsage rendering = viewSpec.getViewRendering();
+    	if (rendering != null) {
+    		String renderingName = rendering.getEffectiveName();
+    		if ("asTreeDiagram".equals(renderingName)) {
+    			renders.add(0, "TREE");
+    		} else if ("asInterconnectionDiagram".equals(renderingName)) {
+    			renders.add(0, "INTERCONNECTION");
+    		} else {
+    			return VizResult.vizExceptionResult("ERROR:Rendering " + renderingName + " is not a supported\n");
+    		}
+    	}
+    	List<EObject> elements = new ArrayList<>();
+    	elements.addAll(viewSpec.getViewedElement());
+    	return viz(elements, renders, styles);
+	}
+	
+	protected VizResult view(String name) {
+		return "-h".equals(name)? 
+				this.view(null, new ArrayList<String>(), Collections.emptyList(), Collections.singletonList("true")):
+				this.view(name, new ArrayList<String>(), Collections.singletonList("PUMLCODE"), Collections.emptyList());
+	}
+	
 	public VizResult viz(List<String> names, List<String> views, List<String> styles, List<String> help) {
 		this.counter++;
         if (!help.isEmpty()
             || (names.isEmpty() && views.isEmpty() && styles.isEmpty())) {
-            return VizResult.textResult(getSysML2PlantUMLSvc().getHelpString());
+            return VizResult.textResult(SysMLInteractiveHelp.getVizHelp());
         }
         List<EObject> elements = new ArrayList<EObject>(names.size());
-		try {
-            for (String name: names) {
-                Element element = this.resolve(name);
-                if (element != null) {
-                    elements.add(element);
-                } else {
-                    return VizResult.unresolvedResult(name);
-                }
-            }
-            if (!elements.isEmpty()) {
-                SysML2PlantUMLSvc svc = getSysML2PlantUMLSvc();
-                if (!views.isEmpty()) {
-                    String view = views.get(0);
-                    svc.setView(view);
-                }
-
-                List<String> fStyles = filterStyle(styles, "PUMLCODE");
-                if (fStyles.size() != styles.size()) {
-                    // --style PUMLCODE option
-                    return VizResult.plantumlResult(svc.getPlantUMLCode(elements, fStyles));
-                } else {
-                    return VizResult.svgResult(svc.getSVG(elements, fStyles));
-                }
-
+        for (String name: names) {
+            Element element = this.resolve(name);
+            if (element != null) {
+                elements.add(element);
             } else {
-                return VizResult.emptyResult();
+                return VizResult.unresolvedResult(name);
             }
-		} catch (Exception e) {
-			return VizResult.exceptionResult(e);
-		}
+        }
+        return viz(elements, views, styles);
+	}
+	
+	protected VizResult viz(List<EObject> elements, List<String> views, List<String> styles) {
+        if (elements.isEmpty()) {
+        	return VizResult.emptyResult();
+        } else {
+        	try {
+        		SysML2PlantUMLSvc svc = getSysML2PlantUMLSvc();
+        		if (!views.isEmpty()) {
+        			String view = views.get(0);
+        			svc.setView(view);
+        		}
+        		List<String> fStyles = filterStyle(styles, "PUMLCODE");
+        		if (fStyles.size() != styles.size()) {
+        			// --style PUMLCODE option
+        			return VizResult.plantumlResult(svc.getPlantUMLCode(elements, fStyles));
+        		} else {
+        			return VizResult.svgResult(svc.getSVG(elements, fStyles));
+        		}
+        	} catch (Exception e) {
+        		return VizResult.exceptionResult(e);
+        	}
+        }
 	}
 	
 	protected VizResult viz(String name) {
-		return this.viz(Collections.singletonList(name), Collections.emptyList(), Collections.singletonList("PUMLCODE"), Collections.emptyList());
+		return "-h".equals(name)? 
+				this.viz(Collections.emptyList(), Collections.emptyList(), Collections.emptyList(), Collections.singletonList("true")):
+				this.viz(Collections.singletonList(name), Collections.emptyList(), Collections.singletonList("PUMLCODE"), Collections.emptyList());
 	}
 	
     private static List<String> filterStyle(List<String> styles, String name) {
@@ -407,6 +478,10 @@ public class SysMLInteractive extends SysMLUtil {
 	        			} else if ("%viz".equals(command)) {
 	        				if (!"".equals(argument)) {
 	        					System.out.print(this.viz(argument));
+	        				}
+	        			} else if ("%view".equals(command)) {
+	        				if (!"".equals(argument)) {
+	        					System.out.print(this.view(argument));
 	        				}
 	        			} else {
 	        				System.out.println("ERROR:Invalid command '" + input + "'");

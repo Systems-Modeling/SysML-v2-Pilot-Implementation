@@ -31,7 +31,7 @@ import org.omg.sysml.lang.sysml.LiteralExpression;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.util.TypeUtil;
 
-public class IsTypeFunction extends ModelLevelFunction {
+public class IsTypeFunction extends BaseFunction {
 
 	@Override
 	public String getOperatorName() {

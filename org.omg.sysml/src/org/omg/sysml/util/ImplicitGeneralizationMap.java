@@ -134,6 +134,10 @@ public class ImplicitGeneralizationMap {
 		put(CaseUsageImpl.class, "base", "Cases::cases");
 		put(CaseUsageImpl.class, "subaction", "AnalysisCases::AnalysisCase::subcases");
 		
+		put(ConcernDefinitionImpl.class, "base", "Requirements::ConcernCheck");
+		put(ConcernUsageImpl.class, "base", "Requirements::concernChecks");
+		put(ConcernUsageImpl.class, "subrequirement", "Requirements::RequirementCheck::concerns");
+		
 		put(ConnectionDefinitionImpl.class, "binary", "Connections::Connection");
 		put(ConnectionUsageImpl.class, "base", "Links::links");
 		put(ConnectionUsageImpl.class, "binary", "Connections::connections");
@@ -179,6 +183,10 @@ public class ImplicitGeneralizationMap {
 		put(SendActionUsageImpl.class, "base", "Actions::sendActions");
 		put(SendActionUsageImpl.class, "subaction", "Actions::Action::sendSubactions");
 		
+		put(StakeholderDefinitionImpl.class, "base", "Requirements::Stakeholder");
+		put(StakeholderUsageImpl.class, "base", "Requirements::stakeholders");
+		put(StakeholderUsageImpl.class, "concernedStakeholder", "Requirements::ConcernCheck::concernedStakeholder");
+		
 		put(StateDefinitionImpl.class, "base", "States::StateAction");
 		put(StateUsageImpl.class, "base", "States::stateActions");
 		put(StateUsageImpl.class, "subaction", "States::StateAction::substates");
@@ -195,7 +203,7 @@ public class ImplicitGeneralizationMap {
 
 		put(ViewpointDefinitionImpl.class, "base", "Views::ViewpointCheck");
 		put(ViewpointUsageImpl.class, "base", "Views::viewpointChecks");
-		put(ViewpointUsageImpl.class, "satisfied", "Views::View::viewpointSatisfications");
+		put(ViewpointUsageImpl.class, "satisfied", "Views::View::viewpointSatisfactions");
 		
 	}
 	

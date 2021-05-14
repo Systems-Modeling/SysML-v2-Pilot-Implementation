@@ -25,7 +25,7 @@ import org.eclipse.emf.common.util.EList;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.InvocationExpression;
 
-public class IndexFunction extends ModelLevelFunction {
+public class IndexFunction extends BaseFunction {
 
 	@Override
 	public String getOperatorName() {

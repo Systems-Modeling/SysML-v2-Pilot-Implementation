@@ -37,7 +37,7 @@ package ControlFunctions {
 	
 	function selectOne(collection: Anything[0..*]): Anything[0..1] {
 		composite abstract expr selector1[0..*] (argument: Anything[1]): Boolean;
-		collection->select x (selector1(x))[1]
+		collection->select {in x; selector1(x)}[1]
 	}
 	
 	abstract function reject(collection: Anything[0..*]): Anything[0..*] {
@@ -57,21 +57,21 @@ package ControlFunctions {
 	}
 	
 	function allTrue(collection: Boolean[0..*]): Boolean {
-		collection->forAll x (x)
+		collection->forAll {in x; x}
 	}
 	
 	function anyTrue(collection: Boolean[0..*]): Boolean {
-		collection->exists x (x)
+		collection->exists {in x; x}
 	}
 	
 	function minimize(collection: ScalarValue[1..*]): ScalarValue {
 		composite abstract expr fn[0..*] (argument: ScalarValue[1]): ScalarValue[1];
-		collection->collect x (fn(x))->reduce Min
+		collection->collect {in x; fn(x)}->reduce {Min}
 	}
 	
 	function maximize(collection: ScalarValue[1..*]): ScalarValue {
 		composite abstract expr fn[0..*] (argument: ScalarValue[1]): ScalarValue[1];
-		collection->collect x (fn(x))->reduce Max
+		collection->collect {in x; fn(x)}->reduce {Max}
 	}
 	
 }

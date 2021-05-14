@@ -26,7 +26,9 @@ import java.util.stream.Stream;
 
 import org.omg.sysml.adapter.UsageAdapter;
 import org.omg.sysml.lang.sysml.ActionUsage;
+import org.omg.sysml.lang.sysml.AddressedConcernMembership;
 import org.omg.sysml.lang.sysml.BindingConnector;
+import org.omg.sysml.lang.sysml.ConcernUsage;
 import org.omg.sysml.lang.sysml.ConstraintUsage;
 import org.omg.sysml.lang.sysml.Definition;
 import org.omg.sysml.lang.sysml.Feature;
@@ -34,6 +36,7 @@ import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.ObjectiveMembership;
+import org.omg.sysml.lang.sysml.RenderingUsage;
 import org.omg.sysml.lang.sysml.RequirementConstraintKind;
 import org.omg.sysml.lang.sysml.RequirementConstraintMembership;
 import org.omg.sysml.lang.sysml.RequirementDefinition;
@@ -49,6 +52,7 @@ import org.omg.sysml.lang.sysml.Usage;
 import org.omg.sysml.lang.sysml.VariantMembership;
 import org.omg.sysml.lang.sysml.VerificationCaseDefinition;
 import org.omg.sysml.lang.sysml.VerificationCaseUsage;
+import org.omg.sysml.lang.sysml.ViewRenderingMembership;
 
 public class UsageUtil {
 	
@@ -152,7 +156,11 @@ public class UsageUtil {
 		} else {
 			return false;
 		}
-	}	
+	}
+	
+	public static boolean isAddressedConcern(ConcernUsage concern) {
+		return concern.getOwningFeatureMembership() instanceof AddressedConcernMembership;
+	}
 	
 	// Transitions
 	
@@ -161,6 +169,17 @@ public class UsageUtil {
 				filter(mem->(mem instanceof TransitionFeatureMembership) && ((TransitionFeatureMembership)mem).getKind() == kind).
 				map(mem->mem.getMemberFeature()).
 				filter(f->f != null);
+	}
+	
+	// Views
+	
+	public static RenderingUsage getViewRenderingOf(Type view) {
+		return view.getOwnedMembership().stream().
+				filter(ViewRenderingMembership.class::isInstance).
+				map(ViewRenderingMembership.class::cast).
+				map(ViewRenderingMembership::getReferencedRendering).
+				findFirst().
+				orElse(null);
 	}
 		
 }

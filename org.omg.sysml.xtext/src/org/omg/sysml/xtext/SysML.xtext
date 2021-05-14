@@ -238,6 +238,8 @@ DefinitionElement returns SysML::Element :
 	| StateDefinition
 	| ConstraintDefinition
 	| RequirementDefinition
+	| ConcernDefinition
+	| StakeholderDefinition
 	| CaseDefinition
 	| AnalysisCaseDefinition
 	| VerificationCaseDefinition
@@ -265,6 +267,8 @@ UsageElement returns SysML::Usage :
 	| StateUsage
 	| ConstraintUsage
 	| RequirementUsage
+	| ConcernUsage
+	| StakeholderUsage
 	| SatisfyRequirementUsage
 	| CaseUsage
 	| AnalysisCaseUsage
@@ -732,6 +736,7 @@ StructureUsageElement returns SysML::Feature :
 	| EnumerationUsage
 	| ItemRefUsage
 	| PartRefUsage
+	| StakeholderRefUsage
 	| ViewRefUsage
 	| RenderingRefUsage
 	| PortUsage
@@ -757,6 +762,7 @@ BehaviorUsageElement returns SysML::Usage :
 	| StateRefUsage
 	| ConstraintRefUsage
 	| RequirementRefUsage
+	| ConcernRefUsage
 	| CaseRefUsage
 	| AnalysisCaseRefUsage
 	| VerificationCaseRefUsage
@@ -772,6 +778,7 @@ VariantUsageElement returns SysML::Usage :
 	| AttributeVariantUsage
 	| ItemRefUsage
 	| PartRefUsage
+	| StakeholderRefUsage
 	| PortUsage
 	| ConnectionUsage
 	| Connector
@@ -787,6 +794,7 @@ FlowUsageElement returns SysML::Usage :
 	| EnumerationUsage
 	| ItemFlowUsage
 	| PartFlowUsage
+	| StakeholderFlowUsage
 	| ViewFlowUsage
 	| RenderingFlowUsage
 	| ActionFlowUsage
@@ -794,6 +802,7 @@ FlowUsageElement returns SysML::Usage :
 	| StateFlowUsage
 	| ConstraintFlowUsage
 	| RequirementFlowUsage
+	| ConcernFlowUsage
 	| CaseFlowUsage
 	| AnalysisCaseFlowUsage
 	| VerificationCaseFlowUsage
@@ -1927,6 +1936,7 @@ fragment RequirementBodyItem returns SysML::Type :
 	  DefinitionBodyItem
 	| ownedRelationship += SubjectMember
 	| ownedRelationship += RequirementConstraintMember
+	| ownedRelationship += AddressedConcernMember
 	| ownedRelationship += RequirementVerificationMember
 ;
 
@@ -1951,6 +1961,21 @@ RequirementConstraintUsage returns SysML::ConstraintUsage :
       ownedRelationship += OwnedSubsetting FeatureSpecialization* 
       CalculationUsageParameterPart? RequirementBody
     | 'constraint' CalculationUsageDeclaration CalculationBody
+;
+
+AddressedConcernMember returns SysML::AddressedConcernMembership :
+	DefinitionMemberPrefix kind = AddressConcernKind 
+	ownedRelatedElement += AddressedConcernUsage // ownedMemberFeature = AddressedConcernUsage
+;
+
+enum AddressConcernKind returns SysML::RequirementConstraintKind :
+	requirement = 'frame'
+;
+
+AddressedConcernUsage returns SysML::ConcernUsage :
+      ownedRelationship += OwnedSubsetting FeatureSpecialization* 
+      CalculationUsageParameterPart? RequirementBody
+    | ConcernUsageKeyword CalculationUsageDeclaration CalculationBody
 ;
 
 /* Requirement Usages */
@@ -1988,6 +2013,91 @@ SatisfactionConnectorMember returns SysML::Membership :
 
 SatisfactionConnector returns SysML::BindingConnector :
 	ownedRelationship += EmptySourceEndMember ownedRelationship += ConnectorEndMember
+;
+
+/* CONCERNS */
+
+/* Concern Definitions */
+
+ConcernKeyword :
+	'concern'
+;
+
+ConcernDefKeyword :
+	ConcernKeyword 'def'
+;
+
+ConcernDefinition returns SysML::ConcernDefinition :
+	DefinitionPrefix? ConcernDefKeyword ConstraintDeclaration ConcernBody  
+;
+
+fragment ConcernBody returns SysML::Type :
+	  ';' | '{' => ConcernBodyItem* '}'
+;
+
+fragment ConcernBodyItem returns SysML::Type :
+	  RequirementBodyItem
+	| ownedRelationship += AffectedStakeholderMember
+;
+
+AffectedStakeholderMember returns SysML::FeatureMembership :
+	DefinitionMemberPrefix 'affect'
+	ownedRelatedElement += AffectedStakeholderUsage
+;
+
+AffectedStakeholderUsage returns SysML::StakeholderUsage :
+      ownedRelationship += OwnedSubsetting FeatureSpecialization* 
+      UsageBody
+    | StakeholderUsageKeyword UsageDeclaration? UsageBody
+;
+
+/* Concern Usages */
+
+ConcernUsageKeyword :
+	ConcernKeyword
+;
+
+ConcernUsage returns SysML::ConcernUsage :
+	UsagePrefix? ConcernUsageKeyword CalculationUsageDeclaration ConcernBody
+;
+
+ConcernFlowUsage returns SysML::ConcernUsage :
+	UsagePrefix? 'ref'? ConcernUsageKeyword CalculationUsageDeclaration ConcernBody
+;
+
+ConcernRefUsage returns SysML::ConcernUsage :
+	UsagePrefix? ( 'ref' ConcernUsageKeyword | isComposite ?= ConcernUsageKeyword ) 
+	CalculationUsageDeclaration ConcernBody
+;
+
+/* STAKEHOLDERS */
+
+StakeholderKeyword :
+	'stakeholder'
+;
+
+StakeholderDefKeyword :
+	StakeholderKeyword 'def'
+;
+
+StakeholderDefinition returns SysML::StakeholderDefinition :
+	DefinitionPrefix? StakeholderDefKeyword Definition
+;
+
+StakeholderUsageKeyword :
+	StakeholderKeyword
+;
+
+StakeholderUsage returns SysML::StakeholderUsage :
+	UsagePrefix? StakeholderUsageKeyword Usage
+;
+
+StakeholderFlowUsage returns SysML::StakeholderUsage :
+	UsagePrefix? 'ref' StakeholderUsageKeyword Usage
+;
+
+StakeholderRefUsage returns SysML::StakeholderUsage :
+	UsagePrefix? ( 'ref' StakeholderUsageKeyword | isComposite ?= StakeholderUsageKeyword ) Usage
 ;
 
 /* CASES */
@@ -2148,6 +2258,16 @@ fragment ViewDefinitionBody returns SysML::ViewDefinition :
 fragment ViewDefinitionBodyItem returns SysML::ViewDefinition :
 	  DefinitionBodyItem
 	| ownedRelationship += ElementFilterMember
+	| ownedRelationship += ViewRenderingMember
+;
+
+ViewRenderingMember returns SysML::ViewRenderingMembership :
+	DefinitionMemberPrefix 'render' 
+	ownedRelatedElement += ViewRenderingUsage // ownedRendering = ViewRenderingUsage
+;
+
+ViewRenderingUsage returns SysML::RenderingUsage :
+	 ownedRelationship += OwnedSubsetting FeatureSpecialization* UsageBody
 ;
 
 /* View Usages */
@@ -2173,11 +2293,11 @@ fragment ViewBody returns SysML::ViewUsage :
 	';' | '{' ViewBodyItem* '}'
 ;
 
-
 fragment ViewBodyItem returns SysML::ViewUsage :
 	  DefinitionBodyItem
 	| ownedRelationship += ElementFilterMember
 	| ownedRelationship += Expose
+	| ownedRelationship += ViewRenderingMember
 ;
 
 Expose returns SysML::Expose :

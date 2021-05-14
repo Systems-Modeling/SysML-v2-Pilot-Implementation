@@ -1,7 +1,7 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020 Mgnite Inc.
- * Copyright (c) 2020 Model Driven Solutions, Inc.
+ * Copyright (c) 2020, 2021 Mgnite Inc.
+ * Copyright (c) 2020, 2021 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -37,8 +37,16 @@ public class VizResult {
     public final Kind kind;
     private final String result;
     private final Exception exception;
+    
+    public static class VizException extends Exception {
+		private static final long serialVersionUID = 1L;
+		
+    	public VizException(String message) {
+			super(message);
+		}
+    }
 
-    public static class UnresolvedException extends Exception {
+    public static class UnresolvedException extends VizException {
 		private static final long serialVersionUID = 1L;
 
 		public UnresolvedException(String name) {
@@ -51,8 +59,8 @@ public class VizResult {
     }
 
     public String formatException() {
-        if (exception == null) return "";
-        return this.exception instanceof UnresolvedException? this.exception.getMessage():
+        return this.exception == null? "":
+        	   this.exception instanceof VizException? this.exception.getMessage():
         	   SysMLInteractiveUtil.formatException(exception);
     }
 
@@ -109,7 +117,6 @@ public class VizResult {
         return new VizResult(Kind.PLANTUML, plantuml);
     }
 
-
     public static VizResult textResult(String text) {
         if (text == null) return emptyResult();
         return new VizResult(Kind.TEXT, text);
@@ -117,6 +124,10 @@ public class VizResult {
 
     public static VizResult unresolvedResult(String name) {
         return new VizResult(new UnresolvedException(name));
+    }
+    
+    public static VizResult vizExceptionResult(String message) {
+    	return new VizResult(new VizException(message));
     }
 
     public static VizResult emptyResult() {

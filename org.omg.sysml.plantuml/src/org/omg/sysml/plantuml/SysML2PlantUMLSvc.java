@@ -1,6 +1,7 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation, PlantUML Visualization
- * Copyright (c) 2020 Mgnite Inc.
+ * Copyright (c) 2020, 2021 Mgnite Inc.
+ * Copyright (c) 2021 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -19,6 +20,7 @@
  * 
  * Contributors:
  *  Hisashi Miyashita, Mgnite Inc.
+ *  Ed Seidewitz, Model Driven Solutions, Inc.
  * 
  *****************************************************************************/
 
@@ -94,32 +96,6 @@ public class SysML2PlantUMLSvc {
         return sb.toString();
     }
     
-    private static final String HELPSTRING =
-	      "Usage: %viz [--view=<VIEW>] [--style=<STYLE>...] <NAME> [<NAME>...]\n\n"
-	    + "Visualize model elements of <NAME>(s). <NAME>s must be fully qualified.\n\n"
-	    + "<VIEW> is case insensitive and possible candidates are:\n"
-	    + "   DEFAULT\t\tAutomatically choose an appropriate view from the given model element names\n"
-	    + "   TREE\t\t\tShow a tree-structural view, like a Block Definition Diagram (BDD)\n"
-	    + "   INTERCONNECTION\tShow an interconnection view, like an Internal Block Diagram (IBD)\n"
-	    + "   STATE\t\tShow state machines\n"
-	    + "   ACTION\t\tShow actions like an activity diagram\n"
-	    + "   MIXED\t\tShow multiple views\n\n"
-	    + "<STYLE> is also case insensitive. Multiple --style options are allowed.  The possible style names are:\n"
-	    + "   DEFAULT\t\tStandard B&W format\n"
-	    + "   STDCOLOR\t\tStandard format with colors\n"
-	    + "   PLANTUML\t\tPlantUML format\n"
-	    + "   PUMLCODE\t\tShow PlantUML code mainly for debugging\n"
-	    + "   TB\t\t\tTop-to-Bottom orientation\n"
-	    + "   LR\t\t\tLeft-to-Right orientation\n"
-	    + "   POLYLINE\t\tPolyline style\n"
-	    + "   ORTHOLINE\t\tOrthogonal line style\n"
-	    + "   COMPTREE\t\tShow tree structures in compartments";
-
-    public String getHelpString() {
-        return HELPSTRING;
-    }
-
-
     public String getSVG(List<EObject> eObjs, List<String> styles) throws IOException {
         String pcode = getPlantUMLCode(eObjs, styles);
 

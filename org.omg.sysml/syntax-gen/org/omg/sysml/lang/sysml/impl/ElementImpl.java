@@ -468,7 +468,7 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 			return name;
 		} else {
 			Membership owningMembership = this.getOwningMembership();
-			return owningMembership == null? null: owningMembership.getMemberName(); 
+			return owningMembership == null? null: ((MembershipImpl)owningMembership).basicGetMemberName(); 
 		}
 	}
 

@@ -319,10 +319,13 @@ class Converter(object):
 
         logging.info(f"Saved generated JetBrains language definition in {target_path}")
 
-    def export_jupyter_code_mirror_mode_file(self, target_path: str):
+    def export_jupyter_syntax_highlighting_files(self, mode_target_path: str, kernel_target_path: str):
 
-        with open("./jupyter/mode.ts.template", mode="r") as template_file:
-            code_mirror_mode_template = template_file.read()
+        with open("jupyter/mode_template.ts", mode="r") as mode_template_file:
+            mode_template = mode_template_file.read()
+
+        with open("jupyter/kernel_template.js", mode="r") as kernel_template_file:
+            kernel_template = kernel_template_file.read()
 
         with open("./jupyter/additional_def_keywords.txt", mode="r") as additional_def_keywords_file:
             additional_def_keywords: Set[str] = set(["def"])
@@ -343,21 +346,26 @@ class Converter(object):
         def_keywords_set = set(self.def_keywords)
         def_keywords_set.update(additional_def_keywords)
         self.def_keywords = sorted(def_keywords_set)
+        for def_keyword in self.def_keywords:
+            if def_keyword not in keywords_minus_atoms:
+                logging.error(f"def keyword '{def_keyword}' "
+                              f"is not in the list of keywords obtained from the xtext grammar")
 
-        indent = 4*"\t"
-        keywords_block = f"\n{indent}".join(textwrap.wrap('"'+'", "'.join(keywords_minus_atoms)+'"', 104))
-        def_keywords_block = f"\n{indent}".join(textwrap.wrap('"'+'", "'.join(self.def_keywords)+'"', 104))
+        indent = 4 * "\t"
+        keywords_block = f"\n{indent}".join(textwrap.wrap('"' + '", "'.join(keywords_minus_atoms) + '"', 104))
+        def_keywords_block = f"\n{indent}".join(textwrap.wrap('"' + '", "'.join(self.def_keywords) + '"', 104))
 
-        code_mirror_mode_content = code_mirror_mode_template.format(
-            KEYWORDS=keywords_block,
-            DEF_KEYWORDS=def_keywords_block
-        )
+        mode_content = mode_template.replace('"$KEYWORDS"', keywords_block)
+        mode_content = mode_content.replace('"$DEF_KEYWORDS"', def_keywords_block)
+        with open(mode_target_path, mode="w") as output_file:
+            output_file.write(mode_content)
+        logging.info(f"Saved generated CodeMirror language definition for Jupyter in {mode_target_path}")
 
-        output_file = open(target_path, "w")
-        output_file.write(code_mirror_mode_content)
-        output_file.close()
-
-        logging.info(f"Saved generated CodeMirror language definition for Jupyter in {target_path}")
+        kernel_content = kernel_template.replace('"$KEYWORDS"', keywords_block)
+        kernel_content = kernel_content.replace('"$DEF_KEYWORDS"', def_keywords_block)
+        with open(kernel_target_path, mode="w") as output_file:
+            output_file.write(kernel_content)
+        logging.info(f"Saved generated CodeMirror language definition for Jupyter in {kernel_target_path}")
 
     @staticmethod
     def escape_regex(s: str) -> str:
@@ -408,4 +416,5 @@ if __name__ == "__main__":
     converter.parse_xtext_grammar(xtext_source_paths=[sysml_xtext_def, kerml_expressions_xtext_def])
     converter.export_text_mate_language_file(target_path="./vscode/sysml/syntaxes/sysml.tmLanguage.json")
     converter.export_jetbrains_language_file(target_path="./jetbrains/SysML.xml")
-    converter.export_jupyter_code_mirror_mode_file(target_path="./jupyter/mode.ts")
+    converter.export_jupyter_syntax_highlighting_files(
+        mode_target_path="./jupyter/mode.ts", kernel_target_path="./jupyter/kernel.js")

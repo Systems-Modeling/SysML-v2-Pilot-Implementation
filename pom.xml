@@ -5,7 +5,7 @@
 
   <properties>
     <revision>0.12.0-SNAPSHOT</revision>
-    <tycho-version>1.6.0</tycho-version>
+    <tycho-version>2.3.0</tycho-version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <eclipse-repository>https://download.eclipse.org/releases/2021-06</eclipse-repository>
     <plantuml-repository>https://github.com/himi/p2-update-puml-sysmlv2/raw/main/updates</plantuml-repository>

@@ -1409,7 +1409,8 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 		private final RuleCall cOwnedRelatedElementFunctionReferenceParserRuleCall_0 = (RuleCall)cOwnedRelatedElementAssignment.eContents().get(0);
 		
 		//FunctionReferenceMember SysML::FeatureMembership:
-		//	ownedRelatedElement+=FunctionReference;
+		//	ownedRelatedElement+=FunctionReference // ownedMemberFeature = FunctionReference
+		//;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//ownedRelatedElement+=FunctionReference
@@ -2676,7 +2677,8 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 	}
 	
 	//FunctionReferenceMember SysML::FeatureMembership:
-	//	ownedRelatedElement+=FunctionReference;
+	//	ownedRelatedElement+=FunctionReference // ownedMemberFeature = FunctionReference
+	//;
 	public FunctionReferenceMemberElements getFunctionReferenceMemberAccess() {
 		return pFunctionReferenceMember;
 	}

@@ -1423,16 +1423,16 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	 *         ((ownedRelationship+=OwnedSuperclassing ownedRelationship+=OwnedSuperclassing*) | ownedRelationship+=ClassifierConjugation)? 
 	 *         (ownedRelationship+=ParameterMember ownedRelationship+=ParameterMember*)? 
 	 *         (ownedRelationship+=ReturnParameterMember | ownedRelationship+=EmptyReturnParameterMember) 
-	 *         ownedRelationship+=UndirectedFeatureMember? 
+	 *         ownedRelationship+=NonFeatureTypeMember? 
 	 *         (
 	 *             (
 	 *                 ownedRelationship+=OwnedDocumentation | 
-	 *                 ownedRelationship+=NonFeatureTypeMember | 
+	 *                 ownedRelationship+=UndirectedFeatureMember | 
 	 *                 ownedRelationship+=DirectedFeatureMember | 
 	 *                 ownedRelationship+=EndFeatureMember | 
 	 *                 ownedRelationship+=Import
 	 *             )? 
-	 *             ownedRelationship+=UndirectedFeatureMember?
+	 *             ownedRelationship+=NonFeatureTypeMember?
 	 *         )* 
 	 *         ownedRelationship+=ResultExpressionMember?
 	 *     )
@@ -1456,16 +1456,16 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	 *         ((ownedRelationship+=OwnedSuperclassing ownedRelationship+=OwnedSuperclassing*) | ownedRelationship+=ClassifierConjugation)? 
 	 *         (ownedRelationship+=ParameterMember ownedRelationship+=ParameterMember*)? 
 	 *         (ownedRelationship+=ReturnParameterMember | ownedRelationship+=EmptyReturnParameterMember) 
-	 *         ownedRelationship+=UndirectedFeatureMember? 
+	 *         ownedRelationship+=NonFeatureTypeMember? 
 	 *         (
 	 *             (
 	 *                 ownedRelationship+=OwnedDocumentation | 
-	 *                 ownedRelationship+=NonFeatureTypeMember | 
+	 *                 ownedRelationship+=UndirectedFeatureMember | 
 	 *                 ownedRelationship+=DirectedFeatureMember | 
 	 *                 ownedRelationship+=EndFeatureMember | 
 	 *                 ownedRelationship+=Import
 	 *             )? 
-	 *             ownedRelationship+=UndirectedFeatureMember?
+	 *             ownedRelationship+=NonFeatureTypeMember?
 	 *         )* 
 	 *         ownedRelationship+=ResultExpressionMember?
 	 *     )

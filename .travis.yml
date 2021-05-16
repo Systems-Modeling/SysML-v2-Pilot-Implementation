@@ -1,6 +1,9 @@
 language: java
 jdk:
   - openjdk11
+env:
+  global:
+    - MAVEN_OPTS=-Dhttps.protocols=TLSv1.2
 before_cache:
   - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
   - rm -fr $HOME/.gradle/caches/*/plugin-resolution/

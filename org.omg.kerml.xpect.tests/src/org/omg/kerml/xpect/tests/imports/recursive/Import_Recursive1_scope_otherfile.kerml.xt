@@ -19,8 +19,13 @@ package RecursiveImport {
   
   	import P::**; 
   	
-  	//All X, Y and Z are visible here.
+  	// NOTE: There is some duplication due to the implicit import of "P" itself
+  	// as part of the recursive import.
 	//* XPECT scope at X ---
+	P.X, RecursiveImport.P.X, 
+	P.Q.Y, RecursiveImport.P.Q.Y,
+	P.Q.R.Z, RecursiveImport.P.Q.R.Z,
+	
 	P.X,
 	P.Q.Y,
 	P.Q.R.Z,

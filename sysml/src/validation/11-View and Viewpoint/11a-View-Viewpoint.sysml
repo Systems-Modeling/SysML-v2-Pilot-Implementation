@@ -44,7 +44,7 @@ package '11a-View-Viewpoint' {
 		
 		view 'system structure generation' {
 			satisfy 'system structure perspective';
-			expose SystemModel::**[@SysML::PartUsage];
+			expose SystemModel::vehicle::**[@SysML::PartUsage];
 			render asElementTable {
 				view :>> columnView[1] {
 					render asTextualNotation;

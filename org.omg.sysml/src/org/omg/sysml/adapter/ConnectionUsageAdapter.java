@@ -44,8 +44,10 @@ public class ConnectionUsageAdapter extends PartUsageAdapter {
 	
 	@Override
 	public void doTransform() {
+		ConnectionUsage target = getTarget();
 		super.doTransform();
-		addFeaturingTypeIfNecessary(ConnectorUtil.getContextTypeFor(getTarget()));
+		addFeaturingTypeIfNecessary(ConnectorUtil.getContextTypeFor(target));
+		ConnectorAdapter.addEndSubsetting(target);
 	}
 	
 }

@@ -42,11 +42,12 @@ import org.omg.sysml.lang.sysml.Membership
 import org.omg.sysml.lang.sysml.FeatureReferenceExpression
 import org.omg.sysml.lang.sysml.LiteralExpression
 import org.omg.sysml.lang.sysml.NullExpression
-import org.omg.sysml.lang.sysml.impl.MembershipImpl
-import org.omg.sysml.lang.sysml.impl.ElementImpl
 import org.omg.sysml.lang.sysml.ElementFilterMembership
 import org.omg.sysml.lang.sysml.MetadataFeatureValue
 import org.omg.sysml.util.TypeUtil
+import org.omg.sysml.util.ElementUtil
+import org.omg.kerml.xtext.scoping.KerMLScopeProvider
+import org.omg.sysml.util.ExpressionUtil
 
 /**
  * This class contains custom validation rules. 
@@ -75,6 +76,8 @@ class KerMLValidator extends AbstractKerMLValidator {
 	public static val INVALID_ELEMENT_FILTER_MEMBERSHIP__NOT_MODEL_LEVEL_MSG = "Must be model-level evaluable"
 	public static val INVALID_METADATA_FEATURE_VALUE__NOT_MODEL_LEVEL = "Invalid MetadataFeatureValue - Not model-level"
 	public static val INVALID_METADATA_FEATURE_VALUE__NOT_MODEL_LEVEL_MSG = "Must be model-level evaluable"
+	public static val INVALID_FEATURE_REFERENCE_EXPRESSION__INVALID_FEATURE = "Invalid FeatureReferenceExpression - Invalid feature"
+	public static val INVALID_FEATURE_REFERENCE_EXPRESSION__INVALID_FEATURE_MSG = "Must be a valid feature"
 		
 	@Check
 	def checkElement(Element elm) {
@@ -83,7 +86,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 			if (owner !== null) {
 				for (e: owner.ownedElement) {
 					if (e != elm) {
-						if (elm.humanId == e.humanId || elm.humanId == (e as ElementImpl).effectiveName) {
+						if (elm.humanId == e.humanId || elm.humanId == e.getEffectiveName) {
 							warning(INVALID_ELEMENT__ID_DISTINGUISHABILITY_MSG, elm, SysMLPackage.eINSTANCE.element_HumanId, INVALID_ELEMENT__ID_DISTINGUISHABILITY)							
 						}						
 					}
@@ -99,7 +102,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 		if (!(namesp instanceof InvocationExpression || namesp instanceof FeatureReferenceExpression || namesp instanceof LiteralExpression || namesp instanceof NullExpression ||
 			  namesp instanceof BindingConnector)) {
 			for (e : namesp.ownedElement) {
-				if (mem.memberElement !== e && e.humanId !== null && (mem as MembershipImpl).memberEffectiveName == e.humanId) {
+				if (mem.memberElement !== e && e.humanId !== null && mem.effectiveMemberName == e.humanId) {
 					if (mem.ownedMemberElement !== null) {
 						warning(INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_0, mem.ownedMemberElement, SysMLPackage.eINSTANCE.element_Name, INVALID_MEMBERSHIP__DISTINGUISHABILITY)
 					} else {
@@ -118,6 +121,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 						
 			}
 			if (namesp instanceof Type){
+				ElementUtil.clearCachesOf(namesp) // Force recomputation of inherited memberships.
 				for (m : namesp.inheritedMembership) {
 					if (m.memberElement !== mem.memberElement && !mem.isDistinguishableFrom(m)){
 						if (mem.ownedMemberElement !== null) {
@@ -156,6 +160,20 @@ class KerMLValidator extends AbstractKerMLValidator {
 	}
 	
 	@Check
+	def checkFeatureReferenceExpression(FeatureReferenceExpression e) {
+		val feature = ExpressionUtil.getReferentFor(e)
+		val rel = KerMLScopeProvider.relativeNamespace(e)
+		if (feature !== null &&
+			(!(feature instanceof Feature) || 
+				rel instanceof Type &&
+				!(feature as Feature).featuringType.isEmpty &&
+				!(feature as Feature).featuringType.exists[t | (rel as Type).conformsTo(t)]
+			)) {
+			error(INVALID_FEATURE_REFERENCE_EXPRESSION__INVALID_FEATURE_MSG, e, null, INVALID_FEATURE_REFERENCE_EXPRESSION__INVALID_FEATURE)
+		}
+	}
+	
+	@Check
 	def checkRelationship(Relationship r){
 		// Allow abstract associations and connectors to have less than two ends.
 		if (!(r instanceof Type && (r as Type).isAbstract)) {
@@ -166,17 +184,14 @@ class KerMLValidator extends AbstractKerMLValidator {
 	}
 	 
 	@Check
-	def checkConnector(Connector c){
-		if (c.owner instanceof FeatureReferenceExpression) {
-			return // ignore reference connectors in FeatureReferenceExpressions for now
-		}
-		
+	def checkConnector(Connector c){		
 		var relatedFeatures = c.relatedFeature
 		
 		// Allow related features that are inherited by the owner of the connector
 		// (or have no featuring types and are thus implicitly inherited from Anything).
 		val cOwner = c.owner
 		if (cOwner instanceof Type) {
+			ElementUtil.clearCachesOf(cOwner) // Force recomputation of inherited memberships.
 			val ownerFeatures = cOwner.inheritedFeature
 			relatedFeatures.removeIf[f|f.featuringType.empty || ownerFeatures.contains(f)]
 		}

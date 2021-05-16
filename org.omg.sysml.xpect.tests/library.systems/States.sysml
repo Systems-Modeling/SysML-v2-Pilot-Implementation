@@ -44,9 +44,9 @@ package States {
 		ref action transitionLinkSource: Action :>> StateTransitionPerformance::transitionLinkSource;
 		action effect: Action :>> StateTransitionPerformance::effect;		
 		action accepter: AcceptAction {
-			ref incomingTransfersToSelf :>> AcceptAction::incomingTransfersToSelf;
+			ref incomingTransfersToSelf :>> AcceptAction::incomingTransfer;
 		}
-		bind trigger = accepter.incomingTransfersToSelf;
+		bind trigger = accepter::incomingTransfersToSelf;
 	}
 	
 	/**

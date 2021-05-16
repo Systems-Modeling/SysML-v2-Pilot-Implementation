@@ -51,12 +51,23 @@ import org.omg.sysml.util.TypeUtil;
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConstraintDefinitionImpl#getParameter <em>Parameter</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConstraintDefinitionImpl#getExpression <em>Expression</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConstraintDefinitionImpl#getResult <em>Result</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ConstraintDefinitionImpl#isModelLevelEvaluable <em>Is Model Level Evaluable</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class ConstraintDefinitionImpl extends DefinitionImpl implements ConstraintDefinition {
 	
+	/**
+	 * The default value of the '{@link #isModelLevelEvaluable() <em>Is Model Level Evaluable</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isModelLevelEvaluable()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean IS_MODEL_LEVEL_EVALUABLE_EDEFAULT = false;
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -140,6 +151,26 @@ public class ConstraintDefinitionImpl extends DefinitionImpl implements Constrai
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public boolean isModelLevelEvaluable() {
+		return false;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public void setIsModelLevelEvaluable(boolean newIsModelLevelEvaluable) {
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EList<Step> getStep() {
@@ -174,6 +205,8 @@ public class ConstraintDefinitionImpl extends DefinitionImpl implements Constrai
 			case SysMLPackage.CONSTRAINT_DEFINITION__RESULT:
 				if (resolve) return getResult();
 				return basicGetResult();
+			case SysMLPackage.CONSTRAINT_DEFINITION__IS_MODEL_LEVEL_EVALUABLE:
+				return isModelLevelEvaluable();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -202,6 +235,9 @@ public class ConstraintDefinitionImpl extends DefinitionImpl implements Constrai
 			case SysMLPackage.CONSTRAINT_DEFINITION__RESULT:
 				setResult((Feature)newValue);
 				return;
+			case SysMLPackage.CONSTRAINT_DEFINITION__IS_MODEL_LEVEL_EVALUABLE:
+				setIsModelLevelEvaluable((Boolean)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -226,6 +262,9 @@ public class ConstraintDefinitionImpl extends DefinitionImpl implements Constrai
 			case SysMLPackage.CONSTRAINT_DEFINITION__RESULT:
 				setResult((Feature)null);
 				return;
+			case SysMLPackage.CONSTRAINT_DEFINITION__IS_MODEL_LEVEL_EVALUABLE:
+				setIsModelLevelEvaluable(IS_MODEL_LEVEL_EVALUABLE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -246,6 +285,8 @@ public class ConstraintDefinitionImpl extends DefinitionImpl implements Constrai
 				return isSetExpression();
 			case SysMLPackage.CONSTRAINT_DEFINITION__RESULT:
 				return basicGetResult() != null;
+			case SysMLPackage.CONSTRAINT_DEFINITION__IS_MODEL_LEVEL_EVALUABLE:
+				return isModelLevelEvaluable() != IS_MODEL_LEVEL_EVALUABLE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -273,6 +314,7 @@ public class ConstraintDefinitionImpl extends DefinitionImpl implements Constrai
 			switch (derivedFeatureID) {
 				case SysMLPackage.CONSTRAINT_DEFINITION__EXPRESSION: return SysMLPackage.FUNCTION__EXPRESSION;
 				case SysMLPackage.CONSTRAINT_DEFINITION__RESULT: return SysMLPackage.FUNCTION__RESULT;
+				case SysMLPackage.CONSTRAINT_DEFINITION__IS_MODEL_LEVEL_EVALUABLE: return SysMLPackage.FUNCTION__IS_MODEL_LEVEL_EVALUABLE;
 				default: return -1;
 			}
 		}
@@ -307,6 +349,7 @@ public class ConstraintDefinitionImpl extends DefinitionImpl implements Constrai
 			switch (baseFeatureID) {
 				case SysMLPackage.FUNCTION__EXPRESSION: return SysMLPackage.CONSTRAINT_DEFINITION__EXPRESSION;
 				case SysMLPackage.FUNCTION__RESULT: return SysMLPackage.CONSTRAINT_DEFINITION__RESULT;
+				case SysMLPackage.FUNCTION__IS_MODEL_LEVEL_EVALUABLE: return SysMLPackage.CONSTRAINT_DEFINITION__IS_MODEL_LEVEL_EVALUABLE;
 				default: return -1;
 			}
 		}

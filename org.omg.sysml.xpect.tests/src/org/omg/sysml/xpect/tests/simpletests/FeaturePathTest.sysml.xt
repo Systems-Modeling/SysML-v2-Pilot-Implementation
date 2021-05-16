@@ -1,0 +1,56 @@
+//*
+XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLTests
+	ResourceSet {
+		ThisFile {} 
+		File {from ="/library.systems/Items.sysml"}
+		File {from ="/library.systems/Parts.sysml"}
+		File {from ="/library.systems/Connections.sysml"}
+		File {from ="/library.kernel/Base.kerml"}
+		File {from ="/library.kernel/BaseFunctions.kerml"}
+		File {from ="/library.kernel/ControlFunctions.kerml"}
+		File {from ="/library.kernel/Links.kerml"}
+		File {from ="/library.kernel/Objects.kerml"}
+		File {from ="/library.kernel/Occurrences.kerml"}
+		File {from ="/library.kernel/Performances.kerml"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {} 
+				File {from ="/library.systems/Items.sysml"}
+				File {from ="/library.systems/Parts.sysml"}
+				File {from ="/library.systems/Connections.sysml"}
+				File {from ="/library.kernel/Base.kerml"}
+				File {from ="/library.kernel/BaseFunctions.kerml"}
+				File {from ="/library.kernel/ControlFunctions.kerml"}
+				File {from ="/library.kernel/Links.kerml"}
+				File {from ="/library.kernel/Objects.kerml"}
+				File {from ="/library.kernel/Occurrences.kerml"}
+				File {from ="/library.kernel/Performances.kerml"}
+			}
+		}
+	}
+END_SETUP
+*/
+// XPECT noErrors ---> ""
+package Q {
+  part def F {
+  	part a;
+  }
+  
+  part f : F;
+  
+  part def A {
+    part g = f.a;
+  }
+  
+  part def B {
+  	part f : F;
+  	part a : A;
+  }
+  
+  part b : B {
+  	connect f.a to a.g;
+  	bind f.a = a.g;
+  }
+}

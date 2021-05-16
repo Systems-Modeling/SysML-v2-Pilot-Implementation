@@ -16,7 +16,7 @@ END_SETUP
 */
 
 package test{
-	import OuterPackage.B;
+	import OuterPackage::B;
 	class C {
 		// XPECT errors ---> "Couldn't resolve reference to Type 'b'." at "b"
 		feature c: b;

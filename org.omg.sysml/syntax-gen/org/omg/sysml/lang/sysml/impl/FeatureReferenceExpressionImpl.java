@@ -92,7 +92,10 @@ public class FeatureReferenceExpressionImpl extends ExpressionImpl implements Fe
 	 * @generated NOT
 	 */
 	public Feature basicGetReferent() {
-		return ExpressionUtil.getReferentFeatureFor(this).orElseGet(this::getSelfReferenceFeature);
+		Element referent = ExpressionUtil.getReferentFor(this);
+		return referent instanceof Feature? (Feature)referent:
+			   referent == null? getSelfReferenceFeature():
+			   null;
 	}
 	
 	protected Feature getSelfReferenceFeature() {

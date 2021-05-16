@@ -36,17 +36,35 @@ import org.eclipse.emf.common.util.EList;
  *     select(g | g.special = self)
  *     
  * multiplicity = feature->select(oclIsKindOf(Multiplicity))
+ * ownedFeatureMembership = ownedRelationship->selectByKind(FeatureMembership)
  * let ownedConjugators: Sequence(Conjugator) = 
  *     ownedRelationship->selectByKind(Conjugation) in
  *     ownedConjugators->size() = 1 and
  *     ownedConjugator = ownedConjugators->at(1)
- * ownedFeatureMembership = ownedRelationship->selectByKind(FeatureMembership)
+ * output =
+ *     if isConjugated then 
+ *         conjugator.originalType.input
+ *     else 
+ *         featureMembership->
+ *             select(direction = out or direction = inout).
+ *             memberFeature
+ *     endif
+ * input = 
+ *     if isConjugated then 
+ *         conjugator.originalType.output
+ *     else 
+ *         featureMembership-> 
+ *             select(direction = _'in' or direction = inout).
+ *             memberFeature
+ *     endif
+ * inheritedMemberships(Set{})
  * <!-- end-model-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedGeneralization <em>Owned Generalization</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedFeatureMembership <em>Owned Feature Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedFeature <em>Owned Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedEndFeature <em>Owned End Feature</em>}</li>
@@ -62,7 +80,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getFeatureMembership <em>Feature Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getInheritedFeature <em>Inherited Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getMultiplicity <em>Multiplicity</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedGeneralization <em>Owned Generalization</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getType()
@@ -137,6 +154,7 @@ public interface Type extends Namespace {
 	 * 
 	 * <!-- end-model-doc -->
 	 * @model ordered="false" featureRequired="true" featureOrdered="false"
+	 *        annotation="http://www.eclipse.org/uml2/1.1.0/GenModel body='if input-&gt;includes(feature) and output-&gt;includes(feature) then \n    FeatureDirectionKind::inout\nelse if input-&gt;includes(feature) then \n    FeatureDirectionKind::_\'in\'\nelse if input-&gt;includes(feature) then \n    FeatureDirectionKind::out\nelse \n    null \nendif endif endif'"
 	 * @generated
 	 */
 	FeatureDirectionKind directionOf(Feature feature);
@@ -144,7 +162,11 @@ public interface Type extends Namespace {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Return all Types related to this Type as supertypes directly or transitively by Generalization Relationships.</p>
+	 * <!-- end-model-doc -->
 	 * @model required="true" ordered="false"
+	 *        annotation="http://www.eclipse.org/uml2/1.1.0/GenModel body='ownedGeneralization-&gt;\n    closure(general.ownedGeneralization).general-&gt;\n    including(self)'"
 	 * @generated
 	 */
 	EList<Type> allSupertypes();
@@ -531,6 +553,17 @@ public interface Type extends Namespace {
 	 * @generated
 	 */
 	void setMultiplicity(Multiplicity value);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Return the inherited Memberships of this Type, excluding those supertypes in the <code>excluded</code> set.</code>
+	 * <!-- end-model-doc -->
+	 * @model excludedMany="true" excludedOrdered="false"
+	 * @generated
+	 */
+	EList<Membership> inheritedMemberships(EList<Type> excluded);
 
 	/**
 	 * Returns the value of the '<em><b>Owned End Feature</b></em>' reference list.

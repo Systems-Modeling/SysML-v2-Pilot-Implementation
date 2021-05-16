@@ -38,6 +38,7 @@ import org.omg.sysml.lang.sysml.ViewUsage;
 import org.omg.sysml.lang.sysml.ViewpointUsage;
 import org.omg.sysml.util.NamespaceUtil;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
+import org.omg.sysml.util.UsageUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -49,7 +50,7 @@ import org.omg.sysml.util.NonNotifyingEObjectEList;
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ViewDefinitionImpl#getView <em>View</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ViewDefinitionImpl#getSatisfiedViewpoint <em>Satisfied Viewpoint</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.ViewDefinitionImpl#getRendering <em>Rendering</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ViewDefinitionImpl#getViewRendering <em>View Rendering</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ViewDefinitionImpl#getViewCondition <em>View Condition</em>}</li>
  * </ul>
  *
@@ -102,9 +103,9 @@ public class ViewDefinitionImpl extends PartDefinitionImpl implements ViewDefini
 	 * @generated
 	 */
 	@Override
-	public RenderingUsage getRendering() {
-		RenderingUsage rendering = basicGetRendering();
-		return rendering != null && rendering.eIsProxy() ? (RenderingUsage)eResolveProxy((InternalEObject)rendering) : rendering;
+	public RenderingUsage getViewRendering() {
+		RenderingUsage viewRendering = basicGetViewRendering();
+		return viewRendering != null && viewRendering.eIsProxy() ? (RenderingUsage)eResolveProxy((InternalEObject)viewRendering) : viewRendering;
 	}
 
 	/**
@@ -112,10 +113,9 @@ public class ViewDefinitionImpl extends PartDefinitionImpl implements ViewDefini
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public RenderingUsage basicGetRendering() {
-		return (RenderingUsage)getOwnedUsage().stream().
-				filter(RenderingUsage.class::isInstance).
-				findFirst().orElse(null);
+	public RenderingUsage basicGetViewRendering() {
+		EList<RenderingUsage> renderings = getOwnedRendering();
+		return renderings.isEmpty()? UsageUtil.getViewRenderingOf(this): renderings.get(0);
 	}
 
 	/**
@@ -124,7 +124,7 @@ public class ViewDefinitionImpl extends PartDefinitionImpl implements ViewDefini
 	 * @generated NOT
 	 */
 	@Override
-	public void setRendering(RenderingUsage newRendering) {
+	public void setViewRendering(RenderingUsage newViewRendering) {
 		throw new UnsupportedOperationException();
 	}
 
@@ -152,9 +152,9 @@ public class ViewDefinitionImpl extends PartDefinitionImpl implements ViewDefini
 				return getView();
 			case SysMLPackage.VIEW_DEFINITION__SATISFIED_VIEWPOINT:
 				return getSatisfiedViewpoint();
-			case SysMLPackage.VIEW_DEFINITION__RENDERING:
-				if (resolve) return getRendering();
-				return basicGetRendering();
+			case SysMLPackage.VIEW_DEFINITION__VIEW_RENDERING:
+				if (resolve) return getViewRendering();
+				return basicGetViewRendering();
 			case SysMLPackage.VIEW_DEFINITION__VIEW_CONDITION:
 				return getViewCondition();
 		}
@@ -178,8 +178,8 @@ public class ViewDefinitionImpl extends PartDefinitionImpl implements ViewDefini
 				getSatisfiedViewpoint().clear();
 				getSatisfiedViewpoint().addAll((Collection<? extends ViewpointUsage>)newValue);
 				return;
-			case SysMLPackage.VIEW_DEFINITION__RENDERING:
-				setRendering((RenderingUsage)newValue);
+			case SysMLPackage.VIEW_DEFINITION__VIEW_RENDERING:
+				setViewRendering((RenderingUsage)newValue);
 				return;
 			case SysMLPackage.VIEW_DEFINITION__VIEW_CONDITION:
 				getViewCondition().clear();
@@ -203,8 +203,8 @@ public class ViewDefinitionImpl extends PartDefinitionImpl implements ViewDefini
 			case SysMLPackage.VIEW_DEFINITION__SATISFIED_VIEWPOINT:
 				getSatisfiedViewpoint().clear();
 				return;
-			case SysMLPackage.VIEW_DEFINITION__RENDERING:
-				setRendering((RenderingUsage)null);
+			case SysMLPackage.VIEW_DEFINITION__VIEW_RENDERING:
+				setViewRendering((RenderingUsage)null);
 				return;
 			case SysMLPackage.VIEW_DEFINITION__VIEW_CONDITION:
 				getViewCondition().clear();
@@ -225,8 +225,8 @@ public class ViewDefinitionImpl extends PartDefinitionImpl implements ViewDefini
 				return !getView().isEmpty();
 			case SysMLPackage.VIEW_DEFINITION__SATISFIED_VIEWPOINT:
 				return !getSatisfiedViewpoint().isEmpty();
-			case SysMLPackage.VIEW_DEFINITION__RENDERING:
-				return basicGetRendering() != null;
+			case SysMLPackage.VIEW_DEFINITION__VIEW_RENDERING:
+				return basicGetViewRendering() != null;
 			case SysMLPackage.VIEW_DEFINITION__VIEW_CONDITION:
 				return !getViewCondition().isEmpty();
 		}

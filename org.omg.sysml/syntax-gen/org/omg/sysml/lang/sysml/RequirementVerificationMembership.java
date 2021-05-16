@@ -47,16 +47,23 @@ package org.omg.sysml.lang.sysml;
 public interface RequirementVerificationMembership extends RequirementConstraintMembership {
 	/**
 	 * Returns the value of the '<em><b>Verified Requirement</b></em>' reference.
+	 * <p>
+	 * This feature redefines the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.RequirementConstraintMembership#getReferencedConstraint() <em>Referenced Constraint</em>}'</li>
+	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p> The RequirementUsage that is identified as being verified. This is derived as being the first RequirementUsage subset by the <code>owningRequirement</code>, if there is one, and, otherwise, the <code>owningRequirement</code> itself.</p>
+	 * <p> The RequirementUsage that is identified as being verified. This is derived as being the first RequirementUsage subset by the <code>ownedRequirement</code>, if there is one, and, otherwise, the <code>ownedRequirement</code> itself.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Verified Requirement</em>' reference.
 	 * @see #setVerifiedRequirement(RequirementUsage)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getRequirementVerificationMembership_VerifiedRequirement()
 	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='requirementVerification'"
+	 *        annotation="redefines"
 	 * @generated
 	 */
 	RequirementUsage getVerifiedRequirement();
@@ -77,7 +84,7 @@ public interface RequirementVerificationMembership extends RequirementConstraint
 	 * This feature redefines the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.RequirementConstraintMembership#getConstraint() <em>Constraint</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.RequirementConstraintMembership#getOwnedConstraint() <em>Owned Constraint</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>

@@ -39,7 +39,7 @@ package RecursiveImport {
   }
   import P::S::**;
   	
-	//* XPECT scope at T1.X1 ---
+	//* XPECT scope at T1::X1 ---
   	P.X, RecursiveImport.P.X,
 	P.X.X1, RecursiveImport.P.X.X1,
 	P.Q.Y, RecursiveImport.P.Q.Y,
@@ -63,6 +63,6 @@ package RecursiveImport {
 	
 --- */
 	
-	x1: T1.X1;
+	x1: T1::X1;
 	
 }

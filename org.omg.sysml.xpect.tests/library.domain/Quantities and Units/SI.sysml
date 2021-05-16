@@ -5,7 +5,6 @@
  * Note 2: This is a representative but not yet complete list of measurement units.
  */
 package SI {
-    private import RationalFunctions::Rat;
     private import UnitsAndScales::*;
     import ISQ::*;
     import SIPrefixes::*;
@@ -26,7 +25,7 @@ package SI {
     attribute K: TemperatureUnit {
         :>> longName = "kelvin";
         attribute temperatureOfWaterAtTriplePointInK: ScaleValueDefinition {
-            :>> num = Rat(27316, 100);
+            :>> num = 27316/100;
             :>> description = "temperature in kelvin of pure water at the triple point";
         }
         attribute :>> scaleValueDefinitions = temperatureOfWaterAtTriplePointInK;
@@ -39,7 +38,7 @@ package SI {
      */
 	attribute systemOfUnits: SystemOfUnits {
 		:>> longName = "ISO/IEC 80000 International System of Units";
-		:>> baseUnits = {m, kg, s, A, K, mol, cd};
+		:>> baseUnits = (m, kg, s, A, K, mol, cd);
 	}
 
     /*
@@ -298,16 +297,16 @@ package SI {
             num => 0, description => "temperature in degree Celsius of pure water at freezing point"
         );
         private attribute temperatureWaterAtTriplePointInC: ScaleValueDefinition = ScaleValueDefinition(
-            num => Rat(1, 100), description => "temperature in degree Celsius of pure water at the triple point"
+            num => 1/100, description => "temperature in degree Celsius of pure water at the triple point"
         );
         private attribute celsiusToKelvinScaleMapping: ScaleValueMapping = ScaleValueMapping(
             mappedScaleValue => temperatureWaterAtTriplePointInC, referenceScaleValue => K::temperatureOfWaterAtTriplePointInK
         );
-        attribute :>> scaleValueDefinitions = {temperatureWaterAtTriplePointInC, temperatureWaterAtFreezingPointInC};
+        attribute :>> scaleValueDefinitions = (temperatureWaterAtTriplePointInC, temperatureWaterAtFreezingPointInC);
         attribute :>> scaleValueMapping = celsiusToKelvinScaleMapping;
         // Experimental zero shift w.r.t. to K (kelvin) thermodynamic temperature ratio scale
         // Such CoordinateTransformation can be used instead of the celsiusToKelvinScaleMapping
-        attribute zeroShift : CoordinateTransformation { :>> source = K; :>> target = self; :>> origin = Rat(27316, 100)@[K]; }
+        attribute zeroShift : CoordinateTransformation { :>> source = K; :>> target = self; :>> origin = 27316/100@[K]; }
     }
     alias '°C_scale' as '°C';
 }

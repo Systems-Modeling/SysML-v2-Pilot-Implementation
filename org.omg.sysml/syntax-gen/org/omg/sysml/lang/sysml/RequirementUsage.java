@@ -45,6 +45,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.omg.sysml.lang.sysml.RequirementUsage#getRequiredConstraint <em>Required Constraint</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.RequirementUsage#getAssumedConstraint <em>Assumed Constraint</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.RequirementUsage#getSubjectParameter <em>Subject Parameter</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.RequirementUsage#getAddressedConcern <em>Addressed Concern</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getRequirementUsage()
@@ -67,7 +68,7 @@ public interface RequirementUsage extends ConstraintUsage {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The RequirementDefinition that is the single type of this RequirementUsage.</[>
+	 * <p>The RequirementDefinition that is the single type of this RequirementUsage.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Requirement Definition</em>' reference.
 	 * @see #setRequirementDefinition(RequirementDefinition)
@@ -122,6 +123,29 @@ public interface RequirementUsage extends ConstraintUsage {
 	 * @generated
 	 */
 	void setSubjectParameter(Usage value);
+
+	/**
+	 * Returns the value of the '<em><b>Addressed Concern</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.ConcernUsage}.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.RequirementUsage#getRequiredConstraint() <em>Required Constraint</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The Concerns addressed by this RequirementUsage, derived as the <code>addressedConcerns</code> of all <code>AddressedConcernMemberships</code> of the RequirementUsage.</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Addressed Concern</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getRequirementUsage_AddressedConcern()
+	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='addressingRequirement'"
+	 *        annotation="subsets"
+	 * @generated
+	 */
+	EList<ConcernUsage> getAddressedConcern();
 
 	/**
 	 * Returns the value of the '<em><b>Req Id</b></em>' attribute.
@@ -194,7 +218,7 @@ public interface RequirementUsage extends ConstraintUsage {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The owned ConstraintUsages that represent requirements of this RequirementUsage. These are derived as the ConstraintUsages related to the RequirementUsage by a RequirementConstraintMembership with <tt>kind</tt> = <tt>requirement</tt>.</p>
+	 * <p>The owned ConstraintUsages that represent requirements of this RequirementUsage. These are derived as the ConstraintUsages related to the RequirementUsage by a RequirementConstraintMembership with <code>kind</code> = <code>requirement</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Required Constraint</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getRequirementUsage_RequiredConstraint()
@@ -221,7 +245,7 @@ public interface RequirementUsage extends ConstraintUsage {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The owned ConstraintUsages that represent assumptions of this RequirementUsage. These are derived as the ConstraintUsages related to the RequirementUsage by a RequirementConstraintMembership with <tt>kind</tt> = <tt>assumption</tt>.</p>
+	 * <p>The owned ConstraintUsages that represent assumptions of this RequirementUsage. These are derived as the ConstraintUsages related to the RequirementUsage by a RequirementConstraintMembership with <code>kind</code> = <code>assumption</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Assumed Constraint</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getRequirementUsage_AssumedConstraint()

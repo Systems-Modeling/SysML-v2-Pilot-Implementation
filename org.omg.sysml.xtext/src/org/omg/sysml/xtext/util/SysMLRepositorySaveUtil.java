@@ -41,14 +41,16 @@ public class SysMLRepositorySaveUtil extends KerMLRepositorySaveUtil {
 	 * 
 	 * <p>Usage:
 	 * 
-	 * <p>SysMLXtextRepositorySaveImpl [-b base-path-url] input-path [library-path library-path...]
+	 * <p>SysMLRepositorySaveUtil [-b base-path-url] [-l library-base-path] [-g] input-path [library-path library-path...]
 	 * 
 	 * <p>where:
 	 * 
 	 * <ul>
-	 * <li>base-path-url is the URL for the base path to be used for the API endpoint (if none is given, the default is used)</li>
-	 * <li>input-path is a path for reading input resources</li>
-	 * <li>library-paths are paths for reading library resources</li>
+	 * <li>-b base-path-url       gives the URL for the base path to be used for the API endpoint (if none is given, the default is used)</li>
+	 * <li>-l library-base-path   gives the base path to used for reading model library resources</li>
+	 * <li>-g                     specifies that implicit generalizations should be generated (the default is not to)</li>
+	 * <li>input-path             is a path for reading input resources</li>
+	 * <li>library-paths          are paths for reading library resources, relative to the library-base-path (if one is given)</li>
 	 * </ul>
 	 * 
 	 */

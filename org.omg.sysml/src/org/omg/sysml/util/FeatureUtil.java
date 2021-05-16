@@ -28,8 +28,9 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.function.Consumer;
-import java.util.function.Predicate;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
+
 import org.eclipse.emf.common.util.EList;
 import org.omg.sysml.adapter.FeatureAdapter;
 import org.omg.sysml.lang.sysml.Behavior;
@@ -99,13 +100,8 @@ public class FeatureUtil {
 		return getFeatureAdapter(feature).getSubsettedFeatures();
 	}
 
-	public static <T extends Feature> T getSubsettedFeatureOf(T feature, Class<T> kind, Predicate<? super Feature> isIgnored) {
-		return feature.getOwnedSubsetting().stream().
-				map(Subsetting::getSubsettedFeature).
-				filter(isIgnored.negate()).
-				filter(kind::isInstance).
-				map(kind::cast).
-				findFirst().orElse(feature);
+	public static List<Feature> getSubsettedNotRedefinedFeaturesOf(Feature feature) {
+		return getFeatureAdapter(feature).getSubsettedNotRedefinedFeatures().collect(Collectors.toList());
 	}
 
 	public static Optional<Subsetting> getFirstOwnedSubsettingOf(Feature feature) {
@@ -113,15 +109,20 @@ public class FeatureUtil {
 				filter(subsetting->!(subsetting instanceof Redefinition)).findFirst();
 	}
 	
-	public static Optional<Feature> getFirstSubsettedFeatureOf(Feature feature) {
-		return getFeatureAdapter(feature).getFirstSubsettedFeature();
-	}
-
 	public static Subsetting addSubsettingTo(Feature feature) {
 		Subsetting subsetting = SysMLFactory.eINSTANCE.createSubsetting();
 		subsetting.setSubsettingFeature(feature);
 		feature.getOwnedRelationship().add(subsetting);
 		return subsetting;
+	}
+
+	public static <T extends Feature> T getReferencedFeatureOf(T feature, Class<T> kind) {
+		return feature.getOwnedSubsetting().stream().
+				filter(sub->!(sub instanceof Redefinition)).
+				map(Subsetting::getSubsettedFeature).
+				filter(kind::isInstance).
+				map(kind::cast).
+				findFirst().orElse(feature);
 	}
 
 	public static List<Feature> getRedefinedFeaturesOf(Feature feature) {

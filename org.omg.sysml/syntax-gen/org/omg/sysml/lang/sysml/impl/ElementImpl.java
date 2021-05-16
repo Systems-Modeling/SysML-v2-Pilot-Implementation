@@ -30,6 +30,7 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
@@ -39,6 +40,8 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.ocl.ecore.OCL;
+import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.uml2.common.util.DerivedEObjectEList;
 import org.eclipse.uml2.common.util.SubsetSupersetEDataTypeUniqueEList;
 import org.omg.sysml.lang.sysml.Annotation;
@@ -75,6 +78,7 @@ import org.omg.sysml.util.NonNotifyingEObjectEList;
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getDocumentationComment <em>Documentation Comment</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getOwnedTextualRepresentation <em>Owned Textual Representation</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getQualifiedName <em>Qualified Name</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getEffectiveName <em>Effective Name</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getHumanId <em>Human Id</em>}</li>
  * </ul>
  *
@@ -140,6 +144,16 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	 * @ordered
 	 */
 	protected static final String QUALIFIED_NAME_EDEFAULT = null;
+
+	/**
+	 * The default value of the '{@link #getEffectiveName() <em>Effective Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getEffectiveName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String EFFECTIVE_NAME_EDEFAULT = null;
 
 	/**
 	 * The default value of the '{@link #getHumanId() <em>Human Id</em>}' attribute.
@@ -433,6 +447,19 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setIdentifier(String newIdentifier) {
+		String oldIdentifier = identifier;
+		identifier = newIdentifier;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.ELEMENT__IDENTIFIER, oldIdentifier, identifier));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	public String getName() {
@@ -441,7 +468,7 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 			return name;
 		} else {
 			Membership owningMembership = this.getOwningMembership();
-			return owningMembership == null? null: owningMembership.getMemberName(); 
+			return owningMembership == null? null: ((MembershipImpl)owningMembership).basicGetMemberName(); 
 		}
 	}
 
@@ -538,12 +565,61 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * Get the effective name for this element, which by default is just its regular name.
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public String getEffectiveName() {
+		return effectiveName();
+	}
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public void setEffectiveName(String newEffectiveName) {
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	public String escapedName() {
 		return ElementUtil.escapeName(getName());
 	}	
+
+	/**
+	 * The cached OCL expression body for the '{@link #effectiveName() <em>Effective Name</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #effectiveName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String EFFECTIVE_NAME__EOCL_EXP = "name";
+
+	/**
+	 * The cached OCL query for the '{@link #effectiveName() <em>Effective Name</em>}' query operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #effectiveName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static OCLExpression<EClassifier> EFFECTIVE_NAME__EOCL_QRY;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public String effectiveName() {
+		return getName();
+	}
 
 	// Additional
 	
@@ -563,12 +639,7 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 		name = newName;
 	}
 	
-	/**
-	 * Get the effective name for this element, which by default is just its regular name.
-	 */
-	public String getEffectiveName() {
-		return getName();
-	}
+	//
 	
 	/**
 	 * <!-- begin-user-doc -->
@@ -658,6 +729,8 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 				return getOwnedTextualRepresentation();
 			case SysMLPackage.ELEMENT__QUALIFIED_NAME:
 				return getQualifiedName();
+			case SysMLPackage.ELEMENT__EFFECTIVE_NAME:
+				return getEffectiveName();
 			case SysMLPackage.ELEMENT__HUMAN_ID:
 				return getHumanId();
 		}
@@ -690,6 +763,9 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 			case SysMLPackage.ELEMENT__OWNING_NAMESPACE:
 				setOwningNamespace((Namespace)newValue);
 				return;
+			case SysMLPackage.ELEMENT__IDENTIFIER:
+				setIdentifier((String)newValue);
+				return;
 			case SysMLPackage.ELEMENT__NAME:
 				setName((String)newValue);
 				return;
@@ -718,6 +794,9 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 				return;
 			case SysMLPackage.ELEMENT__QUALIFIED_NAME:
 				setQualifiedName((String)newValue);
+				return;
+			case SysMLPackage.ELEMENT__EFFECTIVE_NAME:
+				setEffectiveName((String)newValue);
 				return;
 			case SysMLPackage.ELEMENT__HUMAN_ID:
 				setHumanId((String)newValue);
@@ -749,6 +828,9 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 			case SysMLPackage.ELEMENT__OWNING_NAMESPACE:
 				setOwningNamespace((Namespace)null);
 				return;
+			case SysMLPackage.ELEMENT__IDENTIFIER:
+				setIdentifier(IDENTIFIER_EDEFAULT);
+				return;
 			case SysMLPackage.ELEMENT__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -772,6 +854,9 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 				return;
 			case SysMLPackage.ELEMENT__QUALIFIED_NAME:
 				setQualifiedName(QUALIFIED_NAME_EDEFAULT);
+				return;
+			case SysMLPackage.ELEMENT__EFFECTIVE_NAME:
+				setEffectiveName(EFFECTIVE_NAME_EDEFAULT);
 				return;
 			case SysMLPackage.ELEMENT__HUMAN_ID:
 				setHumanId(HUMAN_ID_EDEFAULT);
@@ -816,6 +901,8 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 				return !getOwnedTextualRepresentation().isEmpty();
 			case SysMLPackage.ELEMENT__QUALIFIED_NAME:
 				return QUALIFIED_NAME_EDEFAULT == null ? getQualifiedName() != null : !QUALIFIED_NAME_EDEFAULT.equals(getQualifiedName());
+			case SysMLPackage.ELEMENT__EFFECTIVE_NAME:
+				return EFFECTIVE_NAME_EDEFAULT == null ? getEffectiveName() != null : !EFFECTIVE_NAME_EDEFAULT.equals(getEffectiveName());
 			case SysMLPackage.ELEMENT__HUMAN_ID:
 				return HUMAN_ID_EDEFAULT == null ? humanId != null : !HUMAN_ID_EDEFAULT.equals(humanId);
 		}
@@ -832,6 +919,8 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 		switch (operationID) {
 			case SysMLPackage.ELEMENT___ESCAPED_NAME:
 				return escapedName();
+			case SysMLPackage.ELEMENT___EFFECTIVE_NAME:
+				return effectiveName();
 		}
 		return super.eInvoke(operationID, arguments);
 	}
@@ -855,5 +944,14 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 		result.append(')');
 		return result.toString();
 	}
+
+	/**
+	 * The cached environment for evaluating OCL expressions.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	protected static final OCL EOCL_ENV = OCL.newInstance();
 
 } //ElementImpl

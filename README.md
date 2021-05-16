@@ -68,8 +68,8 @@ The project provides a configuration file for the [Eclipse Installer](https://wi
 
 **Note:** 
    * [Gradle](https://gradle.org/) is used to build project `org.omg.sysml.jupyter`.
-   * [Maven](https://maven.apache.org/) is used to build `org.omg.sysml.interactive\dist\sysmli.jar` (which is used by `org.omg.sysml.jupyter`). 
-        * To build the JAR, invoke `mvn clean package` from the base `SysML-v2-Pilot-Implementation` directory. 
+   * [Maven](https://maven.apache.org/) is used to build the SysML Interactive JAR file that is used by `org.omg.sysml.jupyter`. 
+        * To build the JAR, invoke `mvn clean package` from the base `SysML-v2-Pilot-Implementation` directory. The JAR is packaged in the `org.omg.sysml.interactive/target` directory (which is not saved to the repository).
         * If you have [M2Eclipse](https://www.eclipse.org/m2e/) installed (with the Tycho Project Configurators connector), it can also be built using the launch configuration in `SysML-v2-Pilot-Implementation/launch`.
 
 ### Prototype SysML Implementation

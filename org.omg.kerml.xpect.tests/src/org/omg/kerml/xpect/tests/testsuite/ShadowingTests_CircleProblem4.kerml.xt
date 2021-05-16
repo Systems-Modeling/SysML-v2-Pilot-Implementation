@@ -17,14 +17,14 @@ END_SETUP
 
 // XPECT noErrors ---> ""
 package Test1{
-	//XPECT linkedName at A.B --> Test1.A.B
-	//* XPECT scope at A.B ---
+	//XPECT linkedName at A::B --> Test1.A.B
+	//* XPECT scope at A::B ---
 	   	   A.B.B, Test1.A.B.B,
 	   	   A.B.b.B, Test1.A.B.b.B,
 		   A, A.B, Test1.A, Test1.A.B,
 		   OuterPackage.A, OuterPackage.A.a1, OuterPackage.B, OuterPackage.B.b.a1, 
 	--- */
-	class A specializes A.B {
+	class A specializes A::B {
 		class B {
 			import A::*;
 			//* XPECT scope at B ---

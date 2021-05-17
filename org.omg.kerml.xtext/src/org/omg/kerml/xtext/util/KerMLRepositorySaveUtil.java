@@ -95,9 +95,6 @@ public class KerMLRepositorySaveUtil extends KerMLTraversalUtil {
 	 * <li> Set the base path if the "-b" option is present.</li>
 	 * <li> Set the library path if the "-l" option is present.</li>
 	 * <li> Set flag to add implicit generalizations if the "-g" option is present.</li>
-	 * <li> Set the project name as the file name from the first argument after
-	 *      any options, stripped of its extension, with the current date/time
-	 *      appended.</li>
 	 * <li> Return the list of arguments with any options removed and the
 	 *      library path (if any) prepended to all arguments other than the
 	 *      first.</li>
@@ -128,13 +125,6 @@ public class KerMLRepositorySaveUtil extends KerMLTraversalUtil {
 			if (i < n) {
 				args = Arrays.copyOfRange(args, i, n);
 				
-				this.projectName = Paths.get(args[0]).getFileName().toString();
-				int j = this.projectName.indexOf('.');
-				if (j >= 0) {
-					this.projectName = this.projectName.substring(0, j);
-				}
-				this.projectName += " " + new Date();
-				
 				if (this.libraryPath != null) {
 					for (int k = 1; k < args.length; k++) {
 						args[k] = this.libraryPath + args[k];
@@ -149,14 +139,25 @@ public class KerMLRepositorySaveUtil extends KerMLTraversalUtil {
 	
 	/**
 	 * Initialize the traversal with an ApiProcessingFacade to write to a new repository Project.
+	 * Set the project name as the file name from the first argument after any options, stripped 
+	 * of its extension, with the current date/time appended.
+	 * 
+	 * @param 	args		the command line arguments after processing, with options removed
 	 */
-	protected void initialize()  {
+	protected void initialize(String[] args)  {
 		String libraryPath = this.getLibraryPath();
 		if (libraryPath != null) {
 			SysMLLibraryUtil.setModelLibraryDirectory(libraryPath);
 		}
 		
-		ApiElementProcessingFacade processingFacade = new ApiElementProcessingFacade(this.getProjectName(), this.getBasePath());	
+		this.projectName = Paths.get(args[0]).getFileName().toString();
+		int j = this.projectName.indexOf('.');
+		if (j >= 0) {
+			this.projectName = this.projectName.substring(0, j);
+		}
+		this.projectName += " " + new Date();
+		
+		ApiElementProcessingFacade processingFacade = new ApiElementProcessingFacade(this.projectName, this.getBasePath());	
 		processingFacade.setTraversal(this.initialize(processingFacade));
 		processingFacade.setIsVerbose(true);
 		this.projectId = processingFacade.getProjectId();
@@ -177,26 +178,22 @@ public class KerMLRepositorySaveUtil extends KerMLTraversalUtil {
 	 * @param 	args		the array of main program arguments
 	 */
 	public void run(String[] args) {
-		try {
-			args = this.processArgs(args);
+		args = this.processArgs(args);
+		
+		if (args != null) {
 			
-			if (args != null) {
-				
-				this.initialize();				
-				this.read(args);
-				
-				println("Transforming" + 
-						(this.isAddImplicitGeneralizations? " (adding implicit generalizations)... ": " ..."));
-				ElementUtil.transformAll(this.resourceSet, this.isAddImplicitGeneralizations);
-				
-				println("\nBase path is " + this.getBasePath());
-				println("Saving to Project (" + this.getProjectName() + ") " + this.getProjectId());
-				println("");
-				
-				this.process();
-			}
-		} catch (Exception e) {
-			System.out.println("Error: " + e);
+			this.initialize(args);				
+			this.read(args);
+			
+			println("Transforming" + 
+					(this.isAddImplicitGeneralizations? " (adding implicit generalizations)... ": " ..."));
+			ElementUtil.transformAll(this.resourceSet, this.isAddImplicitGeneralizations);
+			
+			println("\nBase path is " + this.getBasePath());
+			println("Saving to Project (" + this.getProjectName() + ") " + this.getProjectId());
+			println("");
+			
+			this.process();
 		}
 	}
 
@@ -221,7 +218,11 @@ public class KerMLRepositorySaveUtil extends KerMLTraversalUtil {
 	 * 
 	 */
 	public static void main(String[] args) {
-		new KerMLRepositorySaveUtil().run(args);
+		try {
+			new KerMLRepositorySaveUtil().run(args);
+		} catch (Exception e) {
+			System.out.println("Error: " + e);
+		}
 	}
 
 }

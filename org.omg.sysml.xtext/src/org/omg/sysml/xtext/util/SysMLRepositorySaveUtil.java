@@ -55,7 +55,11 @@ public class SysMLRepositorySaveUtil extends KerMLRepositorySaveUtil {
 	 * 
 	 */
 	public static void main(String[] args) {
-		new SysMLRepositorySaveUtil().run(args);
+		try {
+			new SysMLRepositorySaveUtil().run(args);
+		} catch (Exception e) {
+			System.out.println("Error: " + e);
+		}
 	}
 
 }

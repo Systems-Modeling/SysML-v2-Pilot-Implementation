@@ -1,9 +1,8 @@
 """
-Basic TextMate grammar for kerml and sysml language as part of SysML 2 Pilot Implementation
+Converter/generator of syntax highlighting definitions for the kerml and sysml languages from their xtext grammars
+for various non-Eclipse editors as part of the SysML 2 Pilot Implementation
 
-Copyright (c) 2020 DEKonsult
-
-Purpose: Syntax highlighting in VS Code  editor similar to Jupyter Notebook
+Copyright (c) 2020-2021 DEKonsult
 
 Contributor(s):
 - Hans Peter de Koning (DEKonsult)
@@ -15,8 +14,6 @@ import re
 import textwrap
 from typing import List, Set, Dict
 import logging
-
-NEW_LINE = "\n"
 
 
 class DATA:
@@ -351,7 +348,8 @@ class Converter(object):
                 logging.error(f"def keyword '{def_keyword}' "
                               f"is not in the list of keywords obtained from the xtext grammar")
 
-        indent = 4 * "\t"
+        four_spaces = "    "
+        indent = 4 * four_spaces
         keywords_block = f"\n{indent}".join(textwrap.wrap('"' + '", "'.join(keywords_minus_atoms) + '"', 104))
         def_keywords_block = f"\n{indent}".join(textwrap.wrap('"' + '", "'.join(self.def_keywords) + '"', 104))
 

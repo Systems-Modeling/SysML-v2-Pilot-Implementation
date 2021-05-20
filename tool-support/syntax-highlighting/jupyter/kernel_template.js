@@ -55,21 +55,21 @@ var enableMode = function (CodeMirror) {
             number: /^(?:0x[a-f\d_]+|0b[01_]+|(?:[\d_]+\.?\d*|\.\d+)(?:e[-+]?[\d_]+)?)(u|ll?|l|f)?/i,
             modeProps: {fold: ["brace"]},
             hooks: {
-				"'": function(stream) {
-						var escaped = false, next;
-						while ((next = stream.next()) != null) {
-							if (next == "'" && !escaped) { break; }
-							escaped = !escaped && next == "\\";
-						}
-						return "variable";
-				},
-				"/": function(stream) {
-					if (stream.match("/*", false)) {
-						stream.next();
-					}
-					return false;
-				}
-			}
+                "'": function(stream) {
+                        var escaped = false, next;
+                        while ((next = stream.next()) != null) {
+                            if (next == "'" && !escaped) { break; }
+                            escaped = !escaped && next == "\\";
+                        }
+                        return "variable";
+                },
+                "/": function(stream) {
+                    if (stream.match("/*", false)) {
+                        stream.next();
+                    }
+                    return false;
+                }
+            }
         });
     });
     CodeMirror.defineMIME("text/x-sysml", "sysml");

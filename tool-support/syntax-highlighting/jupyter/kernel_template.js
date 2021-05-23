@@ -18,6 +18,13 @@
  * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
  */
 
+/*
+ * ATTENTION: This file is auto-generated from the Xtext grammar definitions by script:
+ *   $SCRIPT
+ * Source code modifications should be applied to template file:
+ *   $TEMPLATE_FILE
+ */
+
 define([
     'codemirror/lib/codemirror',
     'codemirror/mode/clike/clike',
@@ -46,24 +53,26 @@ var enableMode = function (CodeMirror) {
             name: "clike",
             keywords: words([
                 "$KEYWORDS"
-                ]),
+            ]),
             defKeywords: words([
                 "$DEF_KEYWORDS"
-                ]),
+            ]),
             typeFirstDefinitions: true,
             atoms: words("true false null"),
             number: /^(?:0x[a-f\d_]+|0b[01_]+|(?:[\d_]+\.?\d*|\.\d+)(?:e[-+]?[\d_]+)?)(u|ll?|l|f)?/i,
             modeProps: {fold: ["brace"]},
             hooks: {
-                "'": function(stream) {
-                        var escaped = false, next;
-                        while ((next = stream.next()) != null) {
-                            if (next == "'" && !escaped) { break; }
-                            escaped = !escaped && next == "\\";
+                "'": function (stream) {
+                    var escaped = false, next;
+                    while ((next = stream.next()) != null) {
+                        if (next == "'" && !escaped) {
+                            break;
                         }
-                        return "variable";
+                        escaped = !escaped && next == "\\";
+                    }
+                    return "variable";
                 },
-                "/": function(stream) {
+                "/": function (stream) {
                     if (stream.match("/*", false)) {
                         stream.next();
                     }

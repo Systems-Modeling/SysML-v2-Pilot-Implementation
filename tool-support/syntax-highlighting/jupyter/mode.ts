@@ -18,6 +18,13 @@
  * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
  */
 
+/*
+ * ATTENTION: This file is auto-generated from the Xtext grammar definitions by script:
+ *   $GIT_REPO_DIR/tool-support/syntax-highlighting/xtext_grammar_converter.py
+ * Source code modifications should be applied to template file:
+ *   $GIT_REPO_DIR/tool-support/syntax-highlighting/jupyter/mode_template.ts
+ */
+
 // tslint:disable-next-line
 import 'codemirror/addon/mode/simple';
 

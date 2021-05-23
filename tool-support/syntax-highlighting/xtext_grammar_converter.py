@@ -1,6 +1,11 @@
 """
 Converter/generator of syntax highlighting definitions for the kerml and sysml languages from their xtext grammars
-for various non-Eclipse editors as part of the SysML 2 Pilot Implementation
+for various non-Eclipse editors as part of the SysML 2 Pilot Implementation.
+
+Supported editors are:
+- Visual Studio Code
+- Jetbrains IntelliJ IDEA family
+- JupyterLab and Jupyter Notebook
 
 Copyright (c) 2020-2021 DEKonsult
 
@@ -11,6 +16,7 @@ Contributor(s):
 import sys
 import os
 import re
+import datetime
 import textwrap
 from typing import List, Set, Dict
 import logging
@@ -155,9 +161,10 @@ class Converter(object):
     Converter from xtext grammar definition file to TextMate grammar
     """
 
-    def __init__(self):
+    def __init__(self, repo_dir_path):
         self.language_name: str = ""
 
+        self.repo_dir_path: [str] = repo_dir_path
         self.keywords: [str] = []
         self.def_keywords: [str] = []
         self.brackets: [str] = []
@@ -205,7 +212,6 @@ class Converter(object):
         single_quote_string_pattern = re.compile(r"['][^']+[']")
         term_before_def_pattern = re.compile(r"([A-Za-z][A-Za-z0-9]*)\s+('def')")
         keyword_declaration_pattern = re.compile(r"([A-Z][A-Za-z0-9]*Keyword)\s*:\s+(.+)")
-        keyword_def_declaration_pattern = re.compile(r"([A-Z][A-Za-z0-9]*DefKeyword)\s*:\s+(.+)")
         bracket_like_char_pattern = re.compile(r"^([(){}\[\]])")
 
         keywords_dict: Dict[str, List[str]] = dict()
@@ -294,10 +300,8 @@ class Converter(object):
             OPERATORS_OTHER="|".join([Converter.escape_regex(op) for op in self.operators_other])
         )
 
-        output_file = open(target_path, "w")
-        output_file.write(text_mate_language_definition)
-        output_file.close()
-
+        with open(target_path, mode="w", encoding="utf_8") as output_file:
+            output_file.write(text_mate_language_definition)
         logging.info(f"Saved generated TextMate grammar in {target_path}")
 
     def export_jetbrains_language_file(self, target_path: str):
@@ -310,22 +314,27 @@ class Converter(object):
             OPERATORS=";".join([Converter.convert_xml_special(op) for op in self.operators])
         )
 
-        output_file = open(target_path, "w")
-        output_file.write(jetbrains_language_definition)
-        output_file.close()
-
+        with open(target_path, mode="w", encoding="utf_8") as output_file:
+            output_file.write(jetbrains_language_definition)
         logging.info(f"Saved generated JetBrains language definition in {target_path}")
 
-    def export_jupyter_syntax_highlighting_files(self, mode_target_path: str, kernel_target_path: str):
+    def export_jupyter_syntax_highlighting_files(
+            self,
+            working_folder: str,
+            jupyter_lab_target_folder: str,
+            jupyter_kernel_target_folder: str):
 
-        with open("jupyter/mode_template.ts", mode="r") as mode_template_file:
+        mode_template_path = os.path.join(working_folder, "mode_template.ts")
+        with open(mode_template_path, mode="r") as mode_template_file:
             mode_template = mode_template_file.read()
 
-        with open("jupyter/kernel_template.js", mode="r") as kernel_template_file:
+        kernel_template_path = os.path.join(working_folder, "kernel_template.js")
+        with open(kernel_template_path, mode="r") as kernel_template_file:
             kernel_template = kernel_template_file.read()
 
-        with open("./jupyter/additional_def_keywords.txt", mode="r") as additional_def_keywords_file:
-            additional_def_keywords: Set[str] = set(["def"])
+        additional_def_keywords_path = os.path.join(working_folder, "additional_def_keywords.txt")
+        with open(additional_def_keywords_path, mode="r") as additional_def_keywords_file:
+            additional_def_keywords: Set[str] = {"def"}
             for line in additional_def_keywords_file:
                 # Skip comment lines
                 if line.startswith("#") or line.startswith("//"):
@@ -350,20 +359,44 @@ class Converter(object):
 
         four_spaces = "    "
         indent = 4 * four_spaces
-        keywords_block = f"\n{indent}".join(textwrap.wrap('"' + '", "'.join(keywords_minus_atoms) + '"', 104))
-        def_keywords_block = f"\n{indent}".join(textwrap.wrap('"' + '", "'.join(self.def_keywords) + '"', 104))
+        keywords_block = f"\n{indent}".join(textwrap.wrap('", "'.join(keywords_minus_atoms), 104))
+        def_keywords_block = f"\n{indent}".join(textwrap.wrap('", "'.join(self.def_keywords), 104))
 
-        mode_content = mode_template.replace('"$KEYWORDS"', keywords_block)
-        mode_content = mode_content.replace('"$DEF_KEYWORDS"', def_keywords_block)
-        with open(mode_target_path, mode="w") as output_file:
+        # Create and save generated mode.ts files
+        script_path = self.get_relative_repo_path(sys.argv[0])
+        mode_content = mode_template.replace('$SCRIPT', script_path)
+        mode_content = mode_content.replace('$TEMPLATE_FILE', self.get_relative_repo_path(mode_template_path))
+        mode_content = mode_content.replace('$KEYWORDS', keywords_block)
+        mode_content = mode_content.replace('$DEF_KEYWORDS', def_keywords_block)
+
+        mode_content_path = os.path.join(working_folder, "mode.ts")
+        with open(mode_content_path, mode="w") as output_file:
             output_file.write(mode_content)
-        logging.info(f"Saved generated CodeMirror language definition for Jupyter in {mode_target_path}")
+        logging.info(f"Saved generated CodeMirror language definition for JupyterLab in {mode_content_path}")
 
-        kernel_content = kernel_template.replace('"$KEYWORDS"', keywords_block)
-        kernel_content = kernel_content.replace('"$DEF_KEYWORDS"', def_keywords_block)
-        with open(kernel_target_path, mode="w") as output_file:
+        mode_content_path = os.path.join(jupyter_lab_target_folder, "mode.ts")
+        with open(mode_content_path, mode="w") as output_file:
+            output_file.write(mode_content)
+        logging.info(f"Saved generated CodeMirror language definition for JupyterLab in {mode_content_path}")
+
+        # Create and save generated kernel.js files
+        kernel_content = kernel_template.replace('$SCRIPT', script_path)
+        kernel_content = kernel_content.replace('$TEMPLATE_FILE', self.get_relative_repo_path(kernel_template_path))
+        kernel_content = kernel_content.replace('$KEYWORDS', keywords_block)
+        kernel_content = kernel_content.replace('$DEF_KEYWORDS', def_keywords_block)
+
+        kernel_content_path = os.path.join(working_folder, "kernel.js")
+        with open(kernel_content_path, mode="w") as output_file:
             output_file.write(kernel_content)
-        logging.info(f"Saved generated CodeMirror language definition for Jupyter in {kernel_target_path}")
+        logging.info(f"Saved generated CodeMirror language definition for Jupyter kernel in {kernel_content_path}")
+
+        kernel_content_path = os.path.join(jupyter_kernel_target_folder, "kernel.js")
+        with open(kernel_content_path, mode="w") as output_file:
+            output_file.write(kernel_content)
+        logging.info(f"Saved generated CodeMirror language definition for Jupyter kernel in {kernel_content_path}")
+
+    def get_relative_repo_path(self, abspath: str):
+        return "$GIT_REPO_DIR/" + os.path.relpath(abspath, start=self.repo_dir_path).replace("\\", "/")
 
     @staticmethod
     def escape_regex(s: str) -> str:
@@ -400,19 +433,39 @@ class Converter(object):
 
 
 if __name__ == "__main__":
-    logging.basicConfig(level=logging.INFO)
-    assert len(sys.argv) == 1
-    converter = Converter()
+    logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
+    if len(sys.argv) != 1:
+        logging.fatal(f"{sys.argv[0]} does not support any arguments, but found {sys.argv[1:]}")
+        sys.exit(1)
+
+    start_timestamp = datetime.datetime.now()
+    script_name = os.path.basename(sys.argv[0])
+    logging.info(f"{script_name} run started at {start_timestamp.isoformat()}")
+
+    converter = Converter(repo_dir_path="../..")
 
     kerml_xtext_def = "../../org.omg.kerml.xtext/src/org/omg/kerml/xtext/KerML.xtext"
-    kerml_expressions_xtext_def = "../../org.omg.kerml.expressions.xtext/src/org/omg/kerml/expressions/xtext/KerMLExpressions.xtext"
-    converter.parse_xtext_grammar(xtext_source_paths=[kerml_xtext_def, kerml_expressions_xtext_def])
-    converter.export_text_mate_language_file(target_path="./vscode/kerml/syntaxes/kerml.tmLanguage.json")
-    converter.export_jetbrains_language_file(target_path="./jetbrains/KerML.xml")
+    kerml_expressions_xtext_def = \
+        "../../org.omg.kerml.expressions.xtext/src/org/omg/kerml/expressions/xtext/KerMLExpressions.xtext"
+    converter.parse_xtext_grammar(
+        xtext_source_paths=[kerml_xtext_def, kerml_expressions_xtext_def])
+    converter.export_text_mate_language_file(
+        target_path="./vscode/kerml/syntaxes/kerml.tmLanguage.json")
+    converter.export_jetbrains_language_file(
+        target_path="./jetbrains/KerML.xml")
 
     sysml_xtext_def = "../../org.omg.sysml.xtext/src/org/omg/sysml/xtext/SysML.xtext"
-    converter.parse_xtext_grammar(xtext_source_paths=[sysml_xtext_def, kerml_expressions_xtext_def])
-    converter.export_text_mate_language_file(target_path="./vscode/sysml/syntaxes/sysml.tmLanguage.json")
-    converter.export_jetbrains_language_file(target_path="./jetbrains/SysML.xml")
+    converter.parse_xtext_grammar(
+        xtext_source_paths=[sysml_xtext_def, kerml_expressions_xtext_def])
+    converter.export_text_mate_language_file(
+        target_path="./vscode/sysml/syntaxes/sysml.tmLanguage.json")
+    converter.export_jetbrains_language_file(
+        target_path="./jetbrains/SysML.xml")
     converter.export_jupyter_syntax_highlighting_files(
-        mode_target_path="./jupyter/mode.ts", kernel_target_path="./jupyter/kernel.js")
+        working_folder="./jupyter",
+        jupyter_lab_target_folder="../../org.omg.sysml.jupyter.jupyterlab/src/main",
+        jupyter_kernel_target_folder="../../org.omg.sysml.jupyter.kernel/src/main/resources/kernel")
+
+    end_timestamp = datetime.datetime.now()
+    elapsed_time = end_timestamp - start_timestamp
+    logging.info(f"Run completed at {end_timestamp.isoformat()} in {elapsed_time.total_seconds():.3f} s")

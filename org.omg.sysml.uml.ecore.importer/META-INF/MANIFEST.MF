@@ -4,7 +4,6 @@ Bundle-Name: Custom UML Importer
 Bundle-SymbolicName: org.omg.sysml.uml.ecore.importer;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Automatic-Module-Name: org.omg.sysml.uml.ecore.importer
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
 Bundle-Localization: plugin
 Require-Bundle: org.eclipse.core.runtime,

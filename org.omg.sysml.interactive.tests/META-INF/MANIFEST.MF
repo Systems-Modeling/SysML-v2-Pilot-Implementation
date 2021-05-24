@@ -4,7 +4,6 @@ Bundle-Name: Tests
 Bundle-SymbolicName: org.omg.sysml.interactive.tests;singleton:=true
 Bundle-Version: 0.12.0.qualifier
 Automatic-Module-Name: org.omg.sysml.interactive.tests
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.omg.sysml.interactive;bundle-version="0.3.2",
  org.junit;bundle-version="4.12.0",

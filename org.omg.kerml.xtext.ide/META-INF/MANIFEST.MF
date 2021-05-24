@@ -12,6 +12,5 @@ Require-Bundle: org.omg.kerml.xtext,
  org.antlr.runtime;bundle-version="[3.2.0,3.2.1)",
  org.omg.kerml.expressions.xtext;bundle-version="0.9.0",
  org.omg.kerml.expressions.xtext.ide;bundle-version="0.9.0"
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: org.omg.kerml.xtext.ide.contentassist.antlr,
  org.omg.kerml.xtext.ide.contentassist.antlr.internal

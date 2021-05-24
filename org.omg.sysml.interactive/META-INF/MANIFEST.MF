@@ -12,3 +12,4 @@ Require-Bundle: org.eclipse.emf.ecore,
  org.omg.sysml.xtext;bundle-version="0.2.0"
 Import-Package: org.omg.sysml.plantuml
 Bundle-Vendor: SysML v2 Submission Team
+Automatic-Module-Name: org.omg.sysml.interactive

@@ -28,3 +28,4 @@ Export-Package: org.omg.kerml.owl,
  org.omg.kerml.owl.services,
  org.omg.kerml.owl.validation
 Import-Package: org.apache.log4j
+Automatic-Module-Name: org.omg.kerml.owl

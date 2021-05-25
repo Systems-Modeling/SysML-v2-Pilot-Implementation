@@ -303,8 +303,8 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 				else break;
 			case SysMLPackage.FEATURE:
 				if (rule == grammarAccess.getEmptyParameterRule()
-						|| rule == grammarAccess.getBodyParameterRule()
-						|| rule == grammarAccess.getEmptyFeatureRule()) {
+						|| rule == grammarAccess.getEmptyFeatureRule()
+						|| rule == grammarAccess.getBodyParameterRule()) {
 					sequence_BodyParameter_EmptyFeature(context, (Feature) semanticObject); 
 					return; 
 				}

@@ -29,8 +29,8 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	protected AbstractElementAlias match_AnnotatingFeatureBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__;
 	protected AbstractElementAlias match_AnnotatingFeature_CommercialAtKeyword_0_0_or_MetadataKeyword_0_1;
 	protected AbstractElementAlias match_AttributeUsage_AttributeUsageKeywordParserRuleCall_1_0_0_q;
-	protected AbstractElementAlias match_BaseExpression_LeftParenthesisKeyword_4_0_a;
-	protected AbstractElementAlias match_BaseExpression_LeftParenthesisKeyword_4_0_p;
+	protected AbstractElementAlias match_BaseExpression_LeftParenthesisKeyword_5_0_a;
+	protected AbstractElementAlias match_BaseExpression_LeftParenthesisKeyword_5_0_p;
 	protected AbstractElementAlias match_CalculationBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_3__;
 	protected AbstractElementAlias match_CalculationFlowUsage_RefKeyword_1_q;
 	protected AbstractElementAlias match_CalculationReturnParameterMember_ReturnKeyword_0_q;
@@ -90,8 +90,8 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 		match_AnnotatingFeatureBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getAnnotatingFeatureBodyAccess().getLeftCurlyBracketKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getAnnotatingFeatureBodyAccess().getRightCurlyBracketKeyword_1_2())), new TokenAlias(false, false, grammarAccess.getAnnotatingFeatureBodyAccess().getSemicolonKeyword_0()));
 		match_AnnotatingFeature_CommercialAtKeyword_0_0_or_MetadataKeyword_0_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getAnnotatingFeatureAccess().getCommercialAtKeyword_0_0()), new TokenAlias(false, false, grammarAccess.getAnnotatingFeatureAccess().getMetadataKeyword_0_1()));
 		match_AttributeUsage_AttributeUsageKeywordParserRuleCall_1_0_0_q = new TokenAlias(false, true, grammarAccess.getAttributeUsageAccess().getAttributeUsageKeywordParserRuleCall_1_0_0());
-		match_BaseExpression_LeftParenthesisKeyword_4_0_a = new TokenAlias(true, true, grammarAccess.getBaseExpressionAccess().getLeftParenthesisKeyword_4_0());
-		match_BaseExpression_LeftParenthesisKeyword_4_0_p = new TokenAlias(true, false, grammarAccess.getBaseExpressionAccess().getLeftParenthesisKeyword_4_0());
+		match_BaseExpression_LeftParenthesisKeyword_5_0_a = new TokenAlias(true, true, grammarAccess.getBaseExpressionAccess().getLeftParenthesisKeyword_5_0());
+		match_BaseExpression_LeftParenthesisKeyword_5_0_p = new TokenAlias(true, false, grammarAccess.getBaseExpressionAccess().getLeftParenthesisKeyword_5_0());
 		match_CalculationBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_3__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getCalculationBodyAccess().getLeftCurlyBracketKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getCalculationBodyAccess().getRightCurlyBracketKeyword_1_3())), new TokenAlias(false, false, grammarAccess.getCalculationBodyAccess().getSemicolonKeyword_0()));
 		match_CalculationFlowUsage_RefKeyword_1_q = new TokenAlias(false, true, grammarAccess.getCalculationFlowUsageAccess().getRefKeyword_1());
 		match_CalculationReturnParameterMember_ReturnKeyword_0_q = new TokenAlias(false, true, grammarAccess.getCalculationReturnParameterMemberAccess().getReturnKeyword_0());
@@ -921,10 +921,10 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 				emit_AnnotatingFeature_CommercialAtKeyword_0_0_or_MetadataKeyword_0_1(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_AttributeUsage_AttributeUsageKeywordParserRuleCall_1_0_0_q.equals(syntax))
 				emit_AttributeUsage_AttributeUsageKeywordParserRuleCall_1_0_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_BaseExpression_LeftParenthesisKeyword_4_0_a.equals(syntax))
-				emit_BaseExpression_LeftParenthesisKeyword_4_0_a(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_BaseExpression_LeftParenthesisKeyword_4_0_p.equals(syntax))
-				emit_BaseExpression_LeftParenthesisKeyword_4_0_p(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_BaseExpression_LeftParenthesisKeyword_5_0_a.equals(syntax))
+				emit_BaseExpression_LeftParenthesisKeyword_5_0_a(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_BaseExpression_LeftParenthesisKeyword_5_0_p.equals(syntax))
+				emit_BaseExpression_LeftParenthesisKeyword_5_0_p(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_CalculationBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_3__.equals(syntax))
 				emit_CalculationBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_3__(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_CalculationFlowUsage_RefKeyword_1_q.equals(syntax))
@@ -1330,7 +1330,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) {PathSelectExpression.operand+=}
 	 *     (rule start) (ambiguity) {PathStepExpression.operand+=}
 	 */
-	protected void emit_BaseExpression_LeftParenthesisKeyword_4_0_a(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_BaseExpression_LeftParenthesisKeyword_5_0_a(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
@@ -1339,21 +1339,6 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     '('+
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) (ambiguity) '{' ownedRelationship+=ActionNodeMember
-	 *     (rule start) (ambiguity) '{' ownedRelationship+=BehaviorUsageMember
-	 *     (rule start) (ambiguity) '{' ownedRelationship+=EmptySuccessionMember
-	 *     (rule start) (ambiguity) '{' ownedRelationship+=GuardedSuccessionMember
-	 *     (rule start) (ambiguity) '{' ownedRelationship+=Import
-	 *     (rule start) (ambiguity) '{' ownedRelationship+=IndividualUsageMember
-	 *     (rule start) (ambiguity) '{' ownedRelationship+=InitialNodeMember
-	 *     (rule start) (ambiguity) '{' ownedRelationship+=NestedDefinitionMember
-	 *     (rule start) (ambiguity) '{' ownedRelationship+=OwnedDocumentation
-	 *     (rule start) (ambiguity) '{' ownedRelationship+=ParameterFlowUsageMember
-	 *     (rule start) (ambiguity) '{' ownedRelationship+=ResultExpressionMember
-	 *     (rule start) (ambiguity) '{' ownedRelationship+=ReturnParameterFlowUsageMember
-	 *     (rule start) (ambiguity) '{' ownedRelationship+=StructureUsageMember
-	 *     (rule start) (ambiguity) '{' ownedRelationship+=VariantUsageMember
-	 *     (rule start) (ambiguity) (';' | ('{' '}')) ','? ')' (rule start)
 	 *     (rule start) (ambiguity) operand+=SelfReferenceExpression
 	 *     (rule start) (ambiguity) operator='all'
 	 *     (rule start) (ambiguity) operator=UnaryOperator
@@ -1361,7 +1346,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) {PathSelectExpression.operand+=}
 	 *     (rule start) (ambiguity) {PathStepExpression.operand+=}
 	 */
-	protected void emit_BaseExpression_LeftParenthesisKeyword_4_0_p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_BaseExpression_LeftParenthesisKeyword_5_0_p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
@@ -1371,7 +1356,6 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) '('* (ambiguity) (rule start)
-	 *     (rule start) '('+ (ambiguity) ','? ')' (rule start)
 	 *     (rule start) 'constraint' (ambiguity) (rule start)
 	 *     (rule start) 'ref' CalculationUsageKeyword (ambiguity) (rule start)
 	 *     (rule start) 'ref' ConstraintUsageKeyword (ambiguity) (rule start)
@@ -1970,10 +1954,10 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isAbstract?='abstract' 'ref' ItemUsageKeyword (ambiguity) (rule end)
 	 *     isAbstract?='abstract' 'ref' PartUsageKeyword (ambiguity) (rule end)
 	 *     isAbstract?='abstract' 'ref' RenderingUsageKeyword (ambiguity) (rule end)
+	 *     isAbstract?='abstract' 'ref' SnapshotKeyword (ambiguity) (rule end)
 	 *     isAbstract?='abstract' 'ref' SnapshotKeyword (ambiguity) ownedRelationship+=SnapshotFeatureMember
+	 *     isAbstract?='abstract' 'ref' SnapshotKeyword (ambiguity) ownedRelationship+=TimeSliceFeatureMember
 	 *     isAbstract?='abstract' 'ref' StakeholderUsageKeyword (ambiguity) (rule end)
-	 *     isAbstract?='abstract' 'ref' TimeSliceKeyword (ambiguity) (rule end)
-	 *     isAbstract?='abstract' 'ref' TimeSliceKeyword (ambiguity) ownedRelationship+=SnapshotFeatureMember
 	 *     isAbstract?='abstract' 'ref' TimeSliceKeyword (ambiguity) ownedRelationship+=TimeSliceFeatureMember
 	 *     isAbstract?='abstract' 'ref'? ItemUsageKeyword (ambiguity) (rule end)
 	 *     isAbstract?='abstract' 'ref'? PartUsageKeyword (ambiguity) (rule end)
@@ -2019,10 +2003,10 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isVariation?='variation' 'ref' ItemUsageKeyword (ambiguity) (rule end)
 	 *     isVariation?='variation' 'ref' PartUsageKeyword (ambiguity) (rule end)
 	 *     isVariation?='variation' 'ref' RenderingUsageKeyword (ambiguity) (rule end)
+	 *     isVariation?='variation' 'ref' SnapshotKeyword (ambiguity) (rule end)
 	 *     isVariation?='variation' 'ref' SnapshotKeyword (ambiguity) ownedRelationship+=SnapshotFeatureMember
+	 *     isVariation?='variation' 'ref' SnapshotKeyword (ambiguity) ownedRelationship+=TimeSliceFeatureMember
 	 *     isVariation?='variation' 'ref' StakeholderUsageKeyword (ambiguity) (rule end)
-	 *     isVariation?='variation' 'ref' TimeSliceKeyword (ambiguity) (rule end)
-	 *     isVariation?='variation' 'ref' TimeSliceKeyword (ambiguity) ownedRelationship+=SnapshotFeatureMember
 	 *     isVariation?='variation' 'ref' TimeSliceKeyword (ambiguity) ownedRelationship+=TimeSliceFeatureMember
 	 *     isVariation?='variation' 'ref'? ItemUsageKeyword (ambiguity) (rule end)
 	 *     isVariation?='variation' 'ref'? PartUsageKeyword (ambiguity) (rule end)
@@ -2687,7 +2671,6 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     ','?
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) '('+ (';' | ('{' '}')) (ambiguity) ')' (rule start)
 	 *     operand+=AdditiveExpression (ambiguity) ')' (rule end)
 	 *     operand+=AndExpression (ambiguity) ')' (rule end)
 	 *     operand+=ClassificationExpression (ambiguity) ')' (rule end)
@@ -2705,26 +2688,12 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     operand+=SequenceExpression ']' (ambiguity) ')' (rule end)
 	 *     operand+=UnitsExpression (ambiguity) ')' (rule end)
 	 *     operand+=XorExpression (ambiguity) ')' (rule end)
-	 *     ownedRelationship+=ActionNodeMember '}' (ambiguity) ')' (rule end)
-	 *     ownedRelationship+=BehaviorUsageMember '}' (ambiguity) ')' (rule end)
 	 *     ownedRelationship+=ExpressionBodyMember (ambiguity) ')' (rule end)
 	 *     ownedRelationship+=FunctionReferenceMember (ambiguity) ')' (rule end)
-	 *     ownedRelationship+=GuardedSuccessionMember '}' (ambiguity) ')' (rule end)
-	 *     ownedRelationship+=Import '}' (ambiguity) ')' (rule end)
-	 *     ownedRelationship+=IndividualUsageMember '}' (ambiguity) ')' (rule end)
-	 *     ownedRelationship+=InitialNodeMember '}' (ambiguity) ')' (rule end)
 	 *     ownedRelationship+=NamedExpressionMember ')' (ambiguity) ')' (rule end)
-	 *     ownedRelationship+=NestedDefinitionMember '}' (ambiguity) ')' (rule end)
-	 *     ownedRelationship+=OwnedDocumentation '}' (ambiguity) ')' (rule end)
 	 *     ownedRelationship+=OwnedExpressionMember ')' (ambiguity) ')' (rule end)
 	 *     ownedRelationship+=OwnedFeatureTyping '(' ')' (ambiguity) ')' (rule end)
-	 *     ownedRelationship+=ParameterFlowUsageMember '}' (ambiguity) ')' (rule end)
-	 *     ownedRelationship+=ResultExpressionMember '}' (ambiguity) ')' (rule end)
-	 *     ownedRelationship+=ReturnParameterFlowUsageMember '}' (ambiguity) ')' (rule end)
-	 *     ownedRelationship+=StructureUsageMember '}' (ambiguity) ')' (rule end)
-	 *     ownedRelationship+=TargetSuccessionMember '}' (ambiguity) ')' (rule end)
 	 *     ownedRelationship+=TypeReferenceMember (ambiguity) ')' (rule end)
-	 *     ownedRelationship+=VariantUsageMember '}' (ambiguity) ')' (rule end)
 	 */
 	protected void emit_SequenceExpression_CommaKeyword_1_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);

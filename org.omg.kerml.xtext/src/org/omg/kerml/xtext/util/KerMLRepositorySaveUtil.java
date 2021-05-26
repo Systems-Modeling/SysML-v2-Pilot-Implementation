@@ -51,6 +51,11 @@ public class KerMLRepositorySaveUtil extends KerMLTraversalUtil {
 	private boolean isAddImplicitGeneralizations = false;
 	private String projectName;
 	
+	public KerMLRepositorySaveUtil() {
+		super();
+		this.setVerbose(false);
+	}
+	
 	/**
 	 * Return the identifier for the repository Project to which Elements and Relationships are being
 	 * saved.
@@ -95,6 +100,7 @@ public class KerMLRepositorySaveUtil extends KerMLTraversalUtil {
 	 * <li> Set the base path if the "-b" option is present.</li>
 	 * <li> Set the library path if the "-l" option is present.</li>
 	 * <li> Set flag to add implicit generalizations if the "-g" option is present.</li>
+	 * <li> Set flag for verbose mode if the "-v" option is present.</li>
 	 * <li> Return the list of arguments with any options removed and the
 	 *      library path (if any) prepended to all arguments other than the
 	 *      first.</li>
@@ -108,7 +114,7 @@ public class KerMLRepositorySaveUtil extends KerMLTraversalUtil {
 		int n = args.length;
 		if (n > 0) {
 			int i = 0;
-			while(("-b".equals(args[i]) || "-l".equals(args[i]) || "-g".equals(args[i])) && 
+			while(("-b".equals(args[i]) || "-l".equals(args[i]) || "-g".equals(args[i]) || "-v".equals(args[i])) && 
 					i + 1 < n) {
 				if ("-b".equals(args[i])) {
 					this.basePath = args[++i];
@@ -119,6 +125,8 @@ public class KerMLRepositorySaveUtil extends KerMLTraversalUtil {
 					}
 				} else if ("-g".equals(args[i])) {
 					this.isAddImplicitGeneralizations = true;
+				} else if ("-v".equals(args[i])) {
+					this.isVerbose = true;
 				}
 				i++;
 			}
@@ -159,7 +167,7 @@ public class KerMLRepositorySaveUtil extends KerMLTraversalUtil {
 		
 		ApiElementProcessingFacade processingFacade = new ApiElementProcessingFacade(this.projectName, this.getBasePath());	
 		processingFacade.setTraversal(this.initialize(processingFacade));
-		processingFacade.setIsVerbose(true);
+		processingFacade.setIsVerbose(this.isVerbose);
 		this.projectId = processingFacade.getProjectId();
 	}
 	
@@ -182,16 +190,18 @@ public class KerMLRepositorySaveUtil extends KerMLTraversalUtil {
 		
 		if (args != null) {
 			
+			System.out.println("Saving " + args[0] + "...");
+			
 			this.initialize(args);				
 			this.read(args);
 			
-			println("Transforming" + 
-					(this.isAddImplicitGeneralizations? " (adding implicit generalizations)... ": " ..."));
+			System.out.println("Transforming" + 
+					(this.isAddImplicitGeneralizations? " (adding implicit generalizations)... ": "..."));
 			ElementUtil.transformAll(this.resourceSet, this.isAddImplicitGeneralizations);
 			
-			println("\nBase path is " + this.getBasePath());
-			println("Saving to Project (" + this.getProjectName() + ") " + this.getProjectId());
-			println("");
+			System.out.println("\nBase path is " + this.getBasePath());
+			System.out.println("Saving to Project (" + this.getProjectName() + ") " + this.getProjectId());
+			System.out.println("");
 			
 			this.process();
 		}
@@ -204,7 +214,7 @@ public class KerMLRepositorySaveUtil extends KerMLTraversalUtil {
 	 * 
 	 * <p>Usage:
 	 * 
-	 * <p>KerMLRepositorySaveUtil [-b base-path-url] [-l library-base-path] [-g] input-path [library-path library-path...]
+	 * <p>KerMLRepositorySaveUtil [-b base-path-url] [-l library-base-path] [-g] [-v] input-path [library-path library-path...]
 	 * 
 	 * <p>where:
 	 * 
@@ -212,6 +222,7 @@ public class KerMLRepositorySaveUtil extends KerMLTraversalUtil {
 	 * <li>-b base-path-url       gives the URL for the base path to be used for the API endpoint (if none is given, the default is used)</li>
 	 * <li>-l library-base-path   gives the base path to used for reading model library resources</li>
 	 * <li>-g                     specifies that implicit generalizations should be generated (the default is not to)</li>
+	 * <li>-v                     specifies verbose mode (the default is non-verbose)</li>
 	 * <li>input-path             is a path for reading input resources</li>
 	 * <li>library-paths          are paths for reading library resources, relative to the library-base-path (if one is given)</li>
 	 * </ul>

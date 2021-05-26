@@ -2256,7 +2256,7 @@
         <details key="body" value="targetConnector"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="&lt;p>The target &lt;code>relatedFeatires&lt;/code> for this Connector. This includes all the &lt;code>relatedFeatures&lt;/code> other than the &lt;code>sourceFeature&lt;/code>. If this is a binary Connector, then the end Feature corresponding to the &lt;code>targetFeature&lt;/code> must redefine the &lt;code>target&lt;/code> Feature of the Connector &lt;code>binaryLinks&lt;/Code> from the Kernel Library.&lt;/p>"/>
+        <details key="documentation" value="&lt;p>The target &lt;code>relatedFeatures&lt;/code> for this Connector. This includes all the &lt;code>relatedFeatures&lt;/code> other than the &lt;code>sourceFeature&lt;/code>. If this is a binary Connector, then the end Feature corresponding to the &lt;code>targetFeature&lt;/code> must redefine the &lt;code>target&lt;/code> Feature of the Connector &lt;code>binaryLinks&lt;/Code> from the Kernel Library.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="redefines" references="#//Relationship/target"/>
       <eAnnotations source="subsets" references="#//Connector/relatedFeature"/>

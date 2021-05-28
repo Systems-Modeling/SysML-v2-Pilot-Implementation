@@ -18,7 +18,6 @@ Require-Bundle: org.omg.kerml.owl,
  org.eclipse.xtend.lib;bundle-version="2.14.0";resolution:=optional,
  org.eclipse.xtext.xbase.lib;bundle-version="2.14.0"
 Import-Package: org.apache.log4j
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: org.omg.kerml.owl.ui.internal,
  org.omg.kerml.owl.ui,
  org.omg.kerml.owl.ui.contentassist,
@@ -26,3 +25,4 @@ Export-Package: org.omg.kerml.owl.ui.internal,
  org.omg.kerml.owl.ui.outline,
  org.omg.kerml.owl.ui.quickfix
 Bundle-Activator: org.omg.kerml.owl.ui.internal.OwlActivator
+Automatic-Module-Name: org.omg.kerml.owl.ui

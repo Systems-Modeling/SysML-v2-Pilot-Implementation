@@ -189,16 +189,16 @@ query SysML::Type::owningFeature(): SysML::Feature {
 }
 
 query SysML::Type::name(): String {
-	var effectiveName := self.name;
-	if effectiveName = null then {
+	var typeName := self.name;
+	if typeName = null then {
 		var owningFeature := self.owningFeature();
 		if owningFeature <> null then {
-			effectiveName := '_' + owningFeature.name()
+			typeName := '_' + owningFeature.name()
 		} else {
-			effectiveName := '_anonymous_';
+			typeName := '_anonymous_';
 		} endif;
 	} endif;
-	return effectiveName;
+	return typeName;
 }
 	
 query SysML::Type::IRI(): String {

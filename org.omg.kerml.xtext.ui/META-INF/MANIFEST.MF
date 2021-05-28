@@ -23,7 +23,6 @@ Require-Bundle: org.omg.kerml.xtext,
  org.omg.kerml.expressions.xtext.ide;bundle-version="0.9.0",
  org.omg.kerml.expressions.xtext.ui;bundle-version="0.9.0"
 Import-Package: org.apache.log4j
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: org.omg.kerml.xtext.ui,
  org.omg.kerml.xtext.ui.contentassist,
  org.omg.kerml.xtext.ui.internal,

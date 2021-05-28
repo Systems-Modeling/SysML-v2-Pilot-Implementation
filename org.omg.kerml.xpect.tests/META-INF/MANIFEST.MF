@@ -14,5 +14,5 @@ Require-Bundle: org.eclipse.core.runtime,
  org.omg.kerml.xtext;bundle-version="0.2.0",
  org.omg.kerml.xtext.ui;bundle-version="0.2.0"
 Bundle-ActivationPolicy: lazy
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: org.omg.kerml.xpect.tests
+Automatic-Module-Name: org.omg.kerml.xpect.tests

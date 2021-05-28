@@ -12,3 +12,4 @@ Require-Bundle: org.omg.kerml.owl,
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: org.omg.kerml.owl.ide.contentassist.antlr,
  org.omg.kerml.owl.ide.contentassist.antlr.internal
+Automatic-Module-Name: org.omg.kerml.owl.ide

@@ -103,9 +103,7 @@ public abstract class ModelLevelFunction {
 	}
 	
 	public abstract String getOperatorName();
-	public String getPackageName() {
-		return "BaseFunctions";
-	}
+	abstract public String getPackageName();
 	public String getFunctionName() {
 		return getPackageName() + "::" + getOperatorName();
 	}

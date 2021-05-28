@@ -31,6 +31,7 @@ import org.omg.sysml.jupyter.kernel.magic.Listing;
 import org.omg.sysml.jupyter.kernel.magic.MyMagicParser;
 import org.omg.sysml.jupyter.kernel.magic.Publish;
 import org.omg.sysml.jupyter.kernel.magic.Show;
+import org.omg.sysml.jupyter.kernel.magic.View;
 import org.omg.sysml.jupyter.kernel.magic.Viz;
 
 import java.io.File;
@@ -67,6 +68,7 @@ public class SysMLKernel extends BaseKernel {
         this.magics.registerMagics(Show.class);
         this.magics.registerMagics(Publish.class);
         this.magics.registerMagics(Viz.class);
+        this.magics.registerMagics(View.class);
 
         this.magicParser = new MyMagicParser();
     }

@@ -36,8 +36,8 @@ import org.eclipse.emf.common.util.EList;
  * 
  * <p>However, if a Definition has <code>isVariation</code> = <code>true</code>, then it represents a <em>variation point</em> Definition. In this case, all of its <code>members</code> must be <code>variant</code> Usages, related to the Definition by VariantMembership Relationships. Rather than being <code>features</code> of the Definition, <code>variant</code> Usages model different concrete alternatives that can be chosen to fill in for an abstract Usage of the variation point Definition.</p>
  * 
- * variant = variantMembership.ownedVariantUsage
  * isVariation implies variantMembership = ownedMembership
+ * variant = variantMembership.ownedVariantUsage
  * variantMembership = ownedMembership->selectByKind(VariantMembership)
  * not isVariation implies variantMembership->isEmpty()
  * <!-- end-model-doc -->
@@ -73,6 +73,8 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedVerificationCase <em>Owned Verification Case</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedEnumeration <em>Owned Enumeration</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedAllocation <em>Owned Allocation</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedConcern <em>Owned Concern</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedStakeholder <em>Owned Stakeholder</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedUsage <em>Owned Usage</em>}</li>
  * </ul>
  *
@@ -464,6 +466,52 @@ public interface Definition extends Classifier {
 	EList<AllocationUsage> getOwnedAllocation();
 
 	/**
+	 * Returns the value of the '<em><b>Owned Concern</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.ConcernUsage}.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Definition#getOwnedRequirement() <em>Owned Requirement</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The ConcernUsages that are <code>ownedUsages</code> of this Definition.</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Owned Concern</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_OwnedConcern()
+	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='concernOwningDefinition'"
+	 *        annotation="subsets"
+	 * @generated
+	 */
+	EList<ConcernUsage> getOwnedConcern();
+
+	/**
+	 * Returns the value of the '<em><b>Owned Stakeholder</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.StakeholderUsage}.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Definition#getOwnedPart() <em>Owned Part</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The StakeholderUsages that are <code>ownedUsages</code> of this Definition.</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Owned Stakeholder</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_OwnedStakeholder()
+	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='stakeholderOwningDefinition'"
+	 *        annotation="subsets"
+	 * @generated
+	 */
+	EList<StakeholderUsage> getOwnedStakeholder();
+
+	/**
 	 * Returns the value of the '<em><b>Variant Membership</b></em>' reference list.
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.VariantMembership}.
 	 * <p>
@@ -587,7 +635,7 @@ public interface Definition extends Classifier {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The RequirementUsages that are <tt>ownedUsages</tt> of this Definition.</p>
+	 * <p>The RequirementUsages that are <code>ownedUsages</code> of this Definition.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Requirement</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_OwnedRequirement()

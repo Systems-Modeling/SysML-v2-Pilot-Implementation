@@ -32,10 +32,12 @@ import java.util.stream.Collectors;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.BasicInternalEList;
@@ -69,6 +71,7 @@ import org.omg.sysml.util.TypeUtil;
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeImpl#getMembership <em>Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeImpl#getOwnedRelationship <em>Owned Relationship</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeImpl#getOwnedGeneralization <em>Owned Generalization</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeImpl#getOwnedFeatureMembership <em>Owned Feature Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeImpl#getOwnedFeature <em>Owned Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeImpl#getOwnedEndFeature <em>Owned End Feature</em>}</li>
@@ -84,7 +87,6 @@ import org.omg.sysml.util.TypeUtil;
  *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeImpl#getFeatureMembership <em>Feature Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeImpl#getInheritedFeature <em>Inherited Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeImpl#getMultiplicity <em>Multiplicity</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeImpl#getOwnedGeneralization <em>Owned Generalization</em>}</li>
  * </ul>
  *
  * @generated
@@ -326,8 +328,7 @@ public class TypeImpl extends NamespaceImpl implements Type {
 	 */
 	@Override
 	public EList<Membership> getInheritedMembership() {
-		return TypeUtil.cacheInheritedMembershipOf(this, ()->
-			getInheritedMembership(new HashSet<Namespace>(), new HashSet<Type>(), true));
+		return TypeUtil.cacheInheritedMembershipOf(this, ()->inheritedMemberships(new BasicEList<>()));
 	}
 	
 	/**
@@ -500,6 +501,15 @@ public class TypeImpl extends NamespaceImpl implements Type {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
+	public EList<Membership> inheritedMemberships(EList<Type> excluded) {
+		return getInheritedMembership(new HashSet<Namespace>(), new HashSet<>(excluded), true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
 	@Override
 	public EList<Feature> getOwnedEndFeature() {
 		EList<Feature> features = new NonNotifyingEObjectEList<>(Feature.class, this, SysMLPackage.TYPE__END_FEATURE);
@@ -575,6 +585,34 @@ public class TypeImpl extends NamespaceImpl implements Type {
 	protected static final int[] OWNED_GENERALIZATION_ESUPERSETS = new int[] {SysMLPackage.TYPE__OWNED_RELATIONSHIP};
 
 	/**
+	 * The cached OCL expression body for the '{@link #directionOf(org.omg.sysml.lang.sysml.Feature) <em>Direction Of</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #directionOf(org.omg.sysml.lang.sysml.Feature)
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String DIRECTION_OF__FEATURE__EOCL_EXP = "if input->includes(feature) and output->includes(feature) then "+
+"    FeatureDirectionKind::inout"+
+"else if input->includes(feature) then "+
+"    FeatureDirectionKind::_'in'"+
+"else if input->includes(feature) then "+
+"    FeatureDirectionKind::out"+
+"else "+
+"    null "+
+"endif endif endif";
+
+	/**
+	 * The cached OCL query for the '{@link #directionOf(org.omg.sysml.lang.sysml.Feature) <em>Direction Of</em>}' query operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #directionOf(org.omg.sysml.lang.sysml.Feature)
+	 * @generated
+	 * @ordered
+	 */
+	protected static OCLExpression<EClassifier> DIRECTION_OF__FEATURE__EOCL_QRY;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -598,6 +636,28 @@ public class TypeImpl extends NamespaceImpl implements Type {
 			   isOutput? FeatureDirectionKind.OUT:
 			   null;
 	}
+
+	/**
+	 * The cached OCL expression body for the '{@link #allSupertypes() <em>All Supertypes</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #allSupertypes()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String ALL_SUPERTYPES__EOCL_EXP = "ownedGeneralization->"+
+"    closure(general.ownedGeneralization).general->"+
+"    including(self)";
+
+	/**
+	 * The cached OCL query for the '{@link #allSupertypes() <em>All Supertypes</em>}' query operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #allSupertypes()
+	 * @generated
+	 * @ordered
+	 */
+	protected static OCLExpression<EClassifier> ALL_SUPERTYPES__EOCL_QRY;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -664,6 +724,8 @@ public class TypeImpl extends NamespaceImpl implements Type {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case SysMLPackage.TYPE__OWNED_GENERALIZATION:
+				return getOwnedGeneralization();
 			case SysMLPackage.TYPE__OWNED_FEATURE_MEMBERSHIP:
 				return getOwnedFeatureMembership();
 			case SysMLPackage.TYPE__OWNED_FEATURE:
@@ -696,8 +758,6 @@ public class TypeImpl extends NamespaceImpl implements Type {
 			case SysMLPackage.TYPE__MULTIPLICITY:
 				if (resolve) return getMultiplicity();
 				return basicGetMultiplicity();
-			case SysMLPackage.TYPE__OWNED_GENERALIZATION:
-				return getOwnedGeneralization();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -711,6 +771,10 @@ public class TypeImpl extends NamespaceImpl implements Type {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case SysMLPackage.TYPE__OWNED_GENERALIZATION:
+				getOwnedGeneralization().clear();
+				getOwnedGeneralization().addAll((Collection<? extends Generalization>)newValue);
+				return;
 			case SysMLPackage.TYPE__OWNED_FEATURE_MEMBERSHIP:
 				getOwnedFeatureMembership().clear();
 				getOwnedFeatureMembership().addAll((Collection<? extends FeatureMembership>)newValue);
@@ -766,10 +830,6 @@ public class TypeImpl extends NamespaceImpl implements Type {
 			case SysMLPackage.TYPE__MULTIPLICITY:
 				setMultiplicity((Multiplicity)newValue);
 				return;
-			case SysMLPackage.TYPE__OWNED_GENERALIZATION:
-				getOwnedGeneralization().clear();
-				getOwnedGeneralization().addAll((Collection<? extends Generalization>)newValue);
-				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -782,6 +842,9 @@ public class TypeImpl extends NamespaceImpl implements Type {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case SysMLPackage.TYPE__OWNED_GENERALIZATION:
+				getOwnedGeneralization().clear();
+				return;
 			case SysMLPackage.TYPE__OWNED_FEATURE_MEMBERSHIP:
 				getOwnedFeatureMembership().clear();
 				return;
@@ -827,9 +890,6 @@ public class TypeImpl extends NamespaceImpl implements Type {
 			case SysMLPackage.TYPE__MULTIPLICITY:
 				setMultiplicity((Multiplicity)null);
 				return;
-			case SysMLPackage.TYPE__OWNED_GENERALIZATION:
-				getOwnedGeneralization().clear();
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -846,6 +906,8 @@ public class TypeImpl extends NamespaceImpl implements Type {
 				return isSetMembership();
 			case SysMLPackage.TYPE__OWNED_RELATIONSHIP:
 				return ownedRelationship != null && !ownedRelationship.isEmpty();
+			case SysMLPackage.TYPE__OWNED_GENERALIZATION:
+				return !getOwnedGeneralization().isEmpty();
 			case SysMLPackage.TYPE__OWNED_FEATURE_MEMBERSHIP:
 				return !getOwnedFeatureMembership().isEmpty();
 			case SysMLPackage.TYPE__OWNED_FEATURE:
@@ -876,8 +938,6 @@ public class TypeImpl extends NamespaceImpl implements Type {
 				return !getInheritedFeature().isEmpty();
 			case SysMLPackage.TYPE__MULTIPLICITY:
 				return basicGetMultiplicity() != null;
-			case SysMLPackage.TYPE__OWNED_GENERALIZATION:
-				return !getOwnedGeneralization().isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -888,8 +948,11 @@ public class TypeImpl extends NamespaceImpl implements Type {
 	 * @generated
 	 */
 	@Override
+	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
+			case SysMLPackage.TYPE___INHERITED_MEMBERSHIPS__ELIST:
+				return inheritedMemberships((EList<Type>)arguments.get(0));
 			case SysMLPackage.TYPE___DIRECTION_OF__FEATURE:
 				return directionOf((Feature)arguments.get(0));
 			case SysMLPackage.TYPE___ALL_SUPERTYPES:

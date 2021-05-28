@@ -306,7 +306,7 @@ public class ApiElementProcessingFacade implements ElementProcessingFacade {
 //			System.out.println(new org.omg.sysml.JSON().serialize(commit));
 			int n = changeSet.size();
 			System.out.print("\nPosting Commit (" + n + " element" + (n == 1? ")...": "s)..."));
-			commit = this.commitApi.postCommitByProject(this.project.getId(), commit);
+			commit = this.commitApi.postCommitByProject(this.project.getId(), commit, null);
 			System.out.println(commit.getId());
 		} catch (ApiException e) {
 			System.out.println("\nError: " + e.getCode() + " " + e.getMessage());

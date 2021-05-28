@@ -15,11 +15,13 @@ XPECT_SETUP org.omg.kerml.xpect.tests.visibility.KerMLVisibilityTest
 END_SETUP 
 */
 
-
-package Test3{
-	//XPECT errors --> "Couldn't resolve reference to Namespace 'VisibilityPackage::c_clazz::c_Package::c_publicc'." at "VisibilityPackage::c_clazz::c_Package::c_publicc"
-	import VisibilityPackage::c_clazz::c_Package::c_publicc::*;
-	//XPECT errors --> "Couldn't resolve reference to Namespace 'VisibilityPackage::c_clazz::c_Public::c_protect'." at "VisibilityPackage::c_clazz::c_Public::c_protect"
-	import VisibilityPackage::c_clazz::c_Public::c_protect::*;
+package Classes {
+	import VisibilityPackage::c_clazz;
+	// XPECT errors --> "Couldn't resolve reference to Classifier 'c_clazz::c_Package::c_publicc'." at "c_clazz::c_Package::c_publicc"	
+	class A specializes c_clazz::c_Package::c_publicc{}
+	// XPECT errors --> "Couldn't resolve reference to Type 'c_clazz::c_Package::c_publicc'." at "c_clazz::c_Package::c_publicc"
+	feature f : c_clazz::c_Package::c_publicc;
+	// XPECT errors --> "Couldn't resolve reference to Classifier 'c_clazz::c_Public::c_protect'." at "c_clazz::c_Public::c_protect"
+	class B specializes c_clazz::c_Public::c_protect{}
 }
 

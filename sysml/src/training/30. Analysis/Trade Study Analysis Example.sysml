@@ -18,7 +18,7 @@ package 'Trade Study Analysis Example' {
 		}
 		
 	analysis engineTradeStudy : TradeStudy {
-		subject : Engine = {engine4cyl, engine6cyl};
+		subject : Engine = (engine4cyl, engine6cyl);
 		objective : MaximizeObjective;
 
 		calc :>> objectiveFunction {
@@ -30,7 +30,7 @@ package 'Trade Study Analysis Example' {
 			calc costRollup: CostRollup (engine) return cost : Real;
 			
 			return :>> result : Real = EngineEvaluation(
-				powerRollup::power, massRollup::mass, efficiencyRollup::efficiency, costRollup::cost
+				powerRollup.power, massRollup.mass, efficiencyRollup.efficiency, costRollup.cost
 			);
 		}
 		

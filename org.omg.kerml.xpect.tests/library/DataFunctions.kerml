@@ -1,6 +1,7 @@
 package DataFunctions {
 	private import Base::DataValue;
 	private import ScalarValues::Boolean;
+	private import ControlFunctions::reduce;
 	
 	abstract function '+'(x: DataValue, y: DataValue[0..1]): DataValue;
 	abstract function '-'(x: DataValue, y: DataValue[0..1]): DataValue;
@@ -33,10 +34,10 @@ package DataFunctions {
 	abstract function product(collection: DataValue[0..*]): DataValue;
 	
 	function sum0(collection: DataValue[0..*], zero: DataValue): DataValue {
-		collection->reduce '+' ?? zero
+		collection->reduce {'+'} ?? zero
 	}
 	
 	function product1(collection: DataValue[0..*], one: DataValue): DataValue {
-		collection->reduce '*' ?? one
+		collection->reduce {'*'} ?? one
 	}
 }

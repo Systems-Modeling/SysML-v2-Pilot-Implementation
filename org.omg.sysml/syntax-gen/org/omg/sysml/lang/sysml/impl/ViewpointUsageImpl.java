@@ -22,13 +22,17 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
+import java.util.Collection;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.omg.sysml.lang.sysml.RequirementDefinition;
+import org.omg.sysml.lang.sysml.StakeholderUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.ViewpointDefinition;
 import org.omg.sysml.lang.sysml.ViewpointUsage;
+import org.omg.sysml.util.NonNotifyingEObjectEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -39,6 +43,7 @@ import org.omg.sysml.lang.sysml.ViewpointUsage;
  * </p>
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ViewpointUsageImpl#getViewpointDefinition <em>Viewpoint Definition</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ViewpointUsageImpl#getViewpointStakeholder <em>Viewpoint Stakeholder</em>}</li>
  * </ul>
  *
  * @generated
@@ -107,6 +112,22 @@ public class ViewpointUsageImpl extends RequirementUsageImpl implements Viewpoin
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public EList<StakeholderUsage> getViewpointStakeholder() {
+		EList<StakeholderUsage> stakeholders = new NonNotifyingEObjectEList<>(StakeholderUsage.class, this, SysMLPackage.VIEWPOINT_USAGE__VIEWPOINT_STAKEHOLDER);
+		getAddressedConcern().stream().
+			flatMap(concern->concern.getFeature().stream()).
+			filter(StakeholderUsage.class::isInstance).
+			map(StakeholderUsage.class::cast).
+			forEachOrdered(stakeholders::add);
+		return stakeholders;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -115,6 +136,8 @@ public class ViewpointUsageImpl extends RequirementUsageImpl implements Viewpoin
 			case SysMLPackage.VIEWPOINT_USAGE__VIEWPOINT_DEFINITION:
 				if (resolve) return getViewpointDefinition();
 				return basicGetViewpointDefinition();
+			case SysMLPackage.VIEWPOINT_USAGE__VIEWPOINT_STAKEHOLDER:
+				return getViewpointStakeholder();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -124,11 +147,16 @@ public class ViewpointUsageImpl extends RequirementUsageImpl implements Viewpoin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case SysMLPackage.VIEWPOINT_USAGE__VIEWPOINT_DEFINITION:
 				setViewpointDefinition((ViewpointDefinition)newValue);
+				return;
+			case SysMLPackage.VIEWPOINT_USAGE__VIEWPOINT_STAKEHOLDER:
+				getViewpointStakeholder().clear();
+				getViewpointStakeholder().addAll((Collection<? extends StakeholderUsage>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -144,6 +172,9 @@ public class ViewpointUsageImpl extends RequirementUsageImpl implements Viewpoin
 		switch (featureID) {
 			case SysMLPackage.VIEWPOINT_USAGE__VIEWPOINT_DEFINITION:
 				setViewpointDefinition((ViewpointDefinition)null);
+				return;
+			case SysMLPackage.VIEWPOINT_USAGE__VIEWPOINT_STAKEHOLDER:
+				getViewpointStakeholder().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -161,6 +192,8 @@ public class ViewpointUsageImpl extends RequirementUsageImpl implements Viewpoin
 				return isSetRequirementDefinition();
 			case SysMLPackage.VIEWPOINT_USAGE__VIEWPOINT_DEFINITION:
 				return isSetViewpointDefinition();
+			case SysMLPackage.VIEWPOINT_USAGE__VIEWPOINT_STAKEHOLDER:
+				return !getViewpointStakeholder().isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

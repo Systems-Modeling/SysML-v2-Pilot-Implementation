@@ -38,11 +38,10 @@ import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Generalization;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
-import org.omg.sysml.lang.sysml.impl.FeatureImpl;
 
 public class VDefault extends VTraverser {
     protected static String getFeatureName(Feature f) {
-        return ((FeatureImpl) f).getEffectiveName();
+        return f.getEffectiveName();
     }
 
     protected static String getName(Type typ) {

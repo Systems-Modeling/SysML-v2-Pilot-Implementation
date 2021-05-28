@@ -48,7 +48,7 @@ public class ItemFlowEndAdapter extends FeatureAdapter {
 	// Implicit Generalization
 	
 	@Override
-	protected Stream<Feature> getSubsettedNotRedefinedFeatures() {
+	public Stream<Feature> getSubsettedNotRedefinedFeatures() {
 		addItemFlowEndSubsetting();
 		return super.getSubsettedNotRedefinedFeatures();
 	}

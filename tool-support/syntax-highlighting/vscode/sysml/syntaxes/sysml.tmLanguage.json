@@ -18,11 +18,11 @@
   "repository": {
     "keywords": {
       "patterns": [
-        { "match": "\\b(about|abstract|accept|action|activity|alias|all|allInstances|allocate|allocation|analysis|as|assert|assoc|assume|attribute|bind|block|by|calc|case|comment|connect|connection|constraint|decide|def|defined|dependency|do|doc|else|end|entry|enum|exhibit|exit|expose|false|feature|filter|first|flow|for|fork|from|hastype|id|if|import|in|individual|inout|instanceof|interface|istype|item|join|language|link|merge|metadata|nonunique|null|objective|of|ordered|out|package|part|perform|port|private|protected|public|redefines|ref|rendering|rep|require|requirement|return|satisfy|send|snapshot|specializes|state|stream|subject|subsets|succession|then|timeslice|to|transition|true|type|value|variant|variation|verification|verify|view|viewpoint)\\b", "name": "keyword.other.sysml" },
+        { "match": "\\b(about|abstract|accept|action|activity|affect|alias|all|allocate|allocation|analysis|as|assert|assoc|assume|attribute|bind|block|by|calc|case|comment|concern|connect|connection|constraint|decide|def|defined|dependency|do|doc|else|end|entry|enum|exhibit|exit|expose|false|feature|filter|first|flow|for|fork|frame|from|hastype|id|if|import|in|individual|inout|instanceof|interface|istype|item|join|language|link|merge|metadata|nonunique|null|objective|of|ordered|out|package|part|perform|port|private|protected|public|redefines|ref|render|rendering|rep|require|requirement|return|satisfy|send|snapshot|specializes|stakeholder|state|stream|subject|subsets|succession|then|timeslice|to|transition|true|type|value|variant|variation|verification|verify|view|viewpoint)\\b", "name": "keyword.other.sysml" },
         { "match": "(&|&&|\\?|\\?\\?|@\\[|\\^|\\||\\|\\|)", "name": "keyword.operator.logical.sysml" },
-        { "match": "(!|!=|\\<|\\<=|=|==|=\\>|\\>|\\>=)", "name": "keyword.operator.comparison.sysml" },
+        { "match": "(!|!=|\\<|\\<=|=|==|\\>|\\>=)", "name": "keyword.operator.comparison.sysml" },
         { "match": "(\\*|\\*\\*|\\+|\\-|/)", "name": "keyword.operator.arithmetic.sysml" },
-        { "match": "(\\-\\>|\\.\\.|\\./|:|::|:\\>|:\\>\\>|@|~)", "name": "keyword.operator.other.sysml" }
+        { "match": "(\\-\\>|\\.\\.|:|::|:\\>|:\\>\\>|=\\>|@|~)", "name": "keyword.operator.other.sysml" }
       ]
     },
     "strings": {

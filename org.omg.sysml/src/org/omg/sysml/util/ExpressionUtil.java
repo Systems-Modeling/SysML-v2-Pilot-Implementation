@@ -21,29 +21,27 @@
 
 package org.omg.sysml.util;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-
 import org.eclipse.emf.common.util.EList;
 import org.omg.sysml.adapter.ExpressionAdapter;
-import org.omg.sysml.adapter.FeatureReferenceExpressionAdapter;
 import org.omg.sysml.adapter.InvocationExpressionAdapter;
-import org.omg.sysml.lang.sysml.AnnotatingFeature;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureReferenceExpression;
+import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.InvocationExpression;
 import org.omg.sysml.lang.sysml.LiteralBoolean;
+import org.omg.sysml.lang.sysml.Membership;
+import org.omg.sysml.lang.sysml.ParameterMembership;
+import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.TransitionFeatureKind;
 import org.omg.sysml.lang.sysml.TransitionFeatureMembership;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
 
-/**
- * @author seidewitz
- *
- */
 public class ExpressionUtil {
 	
 	private ExpressionUtil() {
@@ -65,8 +63,11 @@ public class ExpressionUtil {
 		return ((InvocationExpressionAdapter)getExpressionAdapter(expression)).getTypeFeatures();
 	}
 
-	public static Optional<Feature> getReferentFeatureFor(FeatureReferenceExpression expression) {
-		return ((FeatureReferenceExpressionAdapter)getExpressionAdapter(expression)).getReferentFeature();
+	public static Element getReferentFor(FeatureReferenceExpression expression) {
+		return expression.getOwnedMembership().stream().
+				filter(mem->!(mem instanceof ParameterMembership)).
+				map(Membership::getMemberElement).
+				findFirst().orElse(null);
 	}
 
 	public static boolean isTransitionGuard(Expression expression) {
@@ -79,7 +80,12 @@ public class ExpressionUtil {
 		if (element == null) {
 			return false;
 		} else {
-			List<AnnotatingFeature> annotatingFeatures = ElementUtil.getAllAnnotatingFeaturesOf(element);
+			List<Feature> annotatingFeatures = new ArrayList<>(); 
+			annotatingFeatures.addAll(ElementUtil.getAllAnnotatingFeaturesOf(element));
+			Feature metaclassFeature = getMetaclassFeatureFor(element);
+			if (metaclassFeature != null) {
+				annotatingFeatures.add(metaclassFeature);
+			}
 			return conditions.stream().allMatch(cond->
 				annotatingFeatures.isEmpty()? checkConditionOn(null, cond):
 				annotatingFeatures.stream().anyMatch(elem->checkConditionOn(elem, cond)));
@@ -95,6 +101,24 @@ public class ExpressionUtil {
 					result.size() == 1 && result.get(0) instanceof LiteralBoolean && 
 					((LiteralBoolean)result.get(0)).isValue();
 		}
+	}
+	
+	public static Feature getMetaclassFeatureFor(Element element) {
+		Type metaclass = getMetaclassOf(element);
+		if (metaclass == null) {
+			return null;
+		} else {
+			FeatureTyping typing = SysMLFactory.eINSTANCE.createFeatureTyping();
+			typing.setType(metaclass);
+			Feature metaclassFeature = SysMLFactory.eINSTANCE.createFeature();
+			metaclassFeature.getOwnedRelationship().add(typing);
+			return metaclassFeature;
+		}
+	}
+	
+	public static Type getMetaclassOf(Element element) {
+		String metaclassName = element.eClass().getName();
+		return SysMLLibraryUtil.getLibraryType(element, "KerML::" + metaclassName, "SysML::" + metaclassName);
 	}
 
 }

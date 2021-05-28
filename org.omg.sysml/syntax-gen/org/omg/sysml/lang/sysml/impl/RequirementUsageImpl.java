@@ -32,18 +32,16 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.omg.sysml.adapter.RequirementUsageAdapter;
+import org.omg.sysml.lang.sysml.AddressedConcernMembership;
 import org.omg.sysml.lang.sysml.Comment;
+import org.omg.sysml.lang.sysml.ConcernUsage;
 import org.omg.sysml.lang.sysml.ConstraintUsage;
-import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Predicate;
 import org.omg.sysml.lang.sysml.RequirementConstraintKind;
 import org.omg.sysml.lang.sysml.RequirementDefinition;
 import org.omg.sysml.lang.sysml.RequirementUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
-import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
 import org.omg.sysml.util.ElementUtil;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
 import org.omg.sysml.util.TypeUtil;
@@ -62,13 +60,12 @@ import org.omg.sysml.util.TypeUtil;
  *   <li>{@link org.omg.sysml.lang.sysml.impl.RequirementUsageImpl#getRequiredConstraint <em>Required Constraint</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.RequirementUsageImpl#getAssumedConstraint <em>Assumed Constraint</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.RequirementUsageImpl#getSubjectParameter <em>Subject Parameter</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.RequirementUsageImpl#getAddressedConcern <em>Addressed Concern</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class RequirementUsageImpl extends ConstraintUsageImpl implements RequirementUsage {
-
-	private Type subsettingVerificationFeature = null;
 
 	/**
 	 * The default value of the '{@link #getReqId() <em>Req Id</em>}' attribute.
@@ -222,7 +219,7 @@ public class RequirementUsageImpl extends ConstraintUsageImpl implements Require
 	 */
 	@Override
 	public EList<String> getText() {
-		EList<String> text = new NonNotifyingEObjectEList<>(String.class, this, SysMLPackage.REQUIREMENT_DEFINITION__TEXT);
+		EList<String> text = new NonNotifyingEObjectEList<>(String.class, this, SysMLPackage.REQUIREMENT_USAGE__TEXT);
 		getDocumentationComment().stream().map(Comment::getBody).forEachOrdered(text::add);
 		return text;
 	}
@@ -234,7 +231,7 @@ public class RequirementUsageImpl extends ConstraintUsageImpl implements Require
 	 */
 	@Override
 	public EList<ConstraintUsage> getRequiredConstraint() {
-		EList<ConstraintUsage> constraints = new NonNotifyingEObjectEList<>(ConstraintUsage.class, this, SysMLPackage.REQUIREMENT_DEFINITION__ASSUMED_CONSTRAINT);
+		EList<ConstraintUsage> constraints = new NonNotifyingEObjectEList<>(ConstraintUsage.class, this, SysMLPackage.REQUIREMENT_USAGE__ASSUMED_CONSTRAINT);
 		RequirementDefinitionImpl.getRequirementConstraints(this, RequirementConstraintKind.ASSUMPTION).forEachOrdered(constraints::add);
 		return constraints;
 	}
@@ -246,9 +243,22 @@ public class RequirementUsageImpl extends ConstraintUsageImpl implements Require
 	 */
 	@Override
 	public EList<ConstraintUsage> getAssumedConstraint() {
-		EList<ConstraintUsage> constraints = new NonNotifyingEObjectEList<>(ConstraintUsage.class, this, SysMLPackage.REQUIREMENT_DEFINITION__REQUIRED_CONSTRAINT);
+		EList<ConstraintUsage> constraints = new NonNotifyingEObjectEList<>(ConstraintUsage.class, this, SysMLPackage.REQUIREMENT_USAGE__REQUIRED_CONSTRAINT);
 		RequirementDefinitionImpl.getRequirementConstraints(this, RequirementConstraintKind.REQUIREMENT).forEachOrdered(constraints::add);
 		return constraints;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public EList<ConcernUsage> getAddressedConcern() {
+		EList<ConcernUsage> concerns = new NonNotifyingEObjectEList<>(ConcernUsage.class, this, SysMLPackage.REQUIREMENT_USAGE__ADDRESSED_CONCERN);
+		RequirementDefinitionImpl.getRequirementConstraints(this, AddressedConcernMembership.class, RequirementConstraintKind.REQUIREMENT).
+			map(ConcernUsage.class::cast).forEachOrdered(concerns::add);
+		return concerns;
 	}
 
 	/**
@@ -320,23 +330,6 @@ public class RequirementUsageImpl extends ConstraintUsageImpl implements Require
   		return false;
 	}
 	
-	// Additional overrides
-	
-	@Override
-	protected boolean isIgnoredSubsetting(Feature feature) {
-		return feature == getSubsettingVerificationFeature() ||
-			   super.isIgnoredSubsetting(feature);
-	}
-	
-	protected Type getSubsettingVerificationFeature() {
-		if (subsettingVerificationFeature == null) {
-			subsettingVerificationFeature = SysMLLibraryUtil.getLibraryType(this, RequirementUsageAdapter.REQUIREMENT_SUBSETTING_VERIFICATION_FEATURE);
-		}
-		return subsettingVerificationFeature;
-	}
-
-	//
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -359,6 +352,8 @@ public class RequirementUsageImpl extends ConstraintUsageImpl implements Require
 			case SysMLPackage.REQUIREMENT_USAGE__SUBJECT_PARAMETER:
 				if (resolve) return getSubjectParameter();
 				return basicGetSubjectParameter();
+			case SysMLPackage.REQUIREMENT_USAGE__ADDRESSED_CONCERN:
+				return getAddressedConcern();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -393,6 +388,10 @@ public class RequirementUsageImpl extends ConstraintUsageImpl implements Require
 			case SysMLPackage.REQUIREMENT_USAGE__SUBJECT_PARAMETER:
 				setSubjectParameter((Usage)newValue);
 				return;
+			case SysMLPackage.REQUIREMENT_USAGE__ADDRESSED_CONCERN:
+				getAddressedConcern().clear();
+				getAddressedConcern().addAll((Collection<? extends ConcernUsage>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -423,6 +422,9 @@ public class RequirementUsageImpl extends ConstraintUsageImpl implements Require
 			case SysMLPackage.REQUIREMENT_USAGE__SUBJECT_PARAMETER:
 				setSubjectParameter((Usage)null);
 				return;
+			case SysMLPackage.REQUIREMENT_USAGE__ADDRESSED_CONCERN:
+				getAddressedConcern().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -451,6 +453,8 @@ public class RequirementUsageImpl extends ConstraintUsageImpl implements Require
 				return !getAssumedConstraint().isEmpty();
 			case SysMLPackage.REQUIREMENT_USAGE__SUBJECT_PARAMETER:
 				return basicGetSubjectParameter() != null;
+			case SysMLPackage.REQUIREMENT_USAGE__ADDRESSED_CONCERN:
+				return !getAddressedConcern().isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

@@ -18,7 +18,7 @@ The project provides a configuration file for the [Eclipse Installer](https://wi
 3. Open Eclipse Installer and switch to Advanced mode:
 ![switch to advanced mode](installer-advanced.png)
 
-4. In the product list, select "Eclipse Modeling Tools" with Product Version: 2020-06.
+4. In the product list, select "Eclipse Modeling Tools" with Product Version: 2021-03.
 
 5. In the Projects window, to the right of the text box, click the "+" to the add the Sysml2 project as user project. In the dialog, choose Catalog: Github Projects and browse the file system to select the setup file from the local git repository.
    * e.g. `file:/C:/git/sysml/SysML-v2-Pilot-Implementation/org.omg.sysml.installer/SysML2.setup`
@@ -41,15 +41,12 @@ The project provides a configuration file for the [Eclipse Installer](https://wi
 
 #### Manual installation
 
-1. Install Eclipse 2020-06 (4.16) and Xtext.
-   * If you are installing Eclipse fresh, the easiest approach is to just install the “Eclipse IDE for Java and DSL Development” package, which includes Xtext.
-      * https://www.eclipse.org/downloads/packages/release/2020-06/r/eclipse-ide-java-and-dsl-developers
+1. Install Eclipse 2021-03 (4.19) and Xtext.
+   * Install the “Eclipse Modeling Tools” package.
+      * https://www.eclipse.org/downloads/packages/release/2021-03/r/eclipse-modeling-tools
       
-   * Alternatively, you can install the “Eclipse Modeling Tools” package (which includes other modeling capabilities, like UML, that you don’t need now but will likely be useful in the future), and install Xtext into that (per below).
-      * https://www.eclipse.org/downloads/packages/release/2020-06/r/eclipse-modeling-tools
-      
-   * To install Xtext into an existing Eclipse 4.16 instance, select Help > Install New Software, use the update site URLgiven below, and install “Xtext Complete SDK” (under General Purpose Tools).
-      * http://download.eclipse.org/releases/2020-06
+   * To install Xtext, select Help > Install New Software, use the update site URLgiven below, and install “Xtext Complete SDK” (under General Purpose Tools).
+      * http://download.eclipse.org/releases/2021-03
 
    * (Optional) For PlantUML visualization, you need to install PlantUML-Eclipse with SysMLv2 extensions from
      the update site of https://github.com/himi/p2-update-puml-sysmlv2/raw/main/updates with Help > Install New Software.
@@ -68,8 +65,8 @@ The project provides a configuration file for the [Eclipse Installer](https://wi
 
 **Note:** 
    * [Gradle](https://gradle.org/) is used to build project `org.omg.sysml.jupyter`.
-   * [Maven](https://maven.apache.org/) is used to build `org.omg.sysml.interactive\dist\sysmli.jar` (which is used by `org.omg.sysml.jupyter`). 
-        * To build the JAR, invoke `mvn clean package` from the base `SysML-v2-Pilot-Implementation` directory. 
+   * [Maven](https://maven.apache.org/) is used to build the SysML Interactive JAR file that is used by `org.omg.sysml.jupyter`. 
+        * To build the JAR, invoke `mvn clean package` from the base `SysML-v2-Pilot-Implementation` directory. The JAR is packaged in the `org.omg.sysml.interactive/target` directory (which is not saved to the repository).
         * If you have [M2Eclipse](https://www.eclipse.org/m2e/) installed (with the Tycho Project Configurators connector), it can also be built using the launch configuration in `SysML-v2-Pilot-Implementation/launch`.
 
 ### Prototype SysML Implementation

@@ -24,7 +24,7 @@ import org.eclipse.emf.common.util.EList;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.InvocationExpression;
 
-public class SizeFunction extends ModelLevelFunction {
+public class SizeFunction extends SequenceFunction {
 
 	@Override
 	public String getOperatorName() {

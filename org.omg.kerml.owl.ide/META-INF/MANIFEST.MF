@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: org.omg.kerml.owl.ide
 Bundle-Vendor: My Company
-Bundle-Version: 0.11.1.qualifier
+Bundle-Version: 0.12.0.qualifier
 Bundle-SymbolicName: org.omg.kerml.owl.ide;singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.omg.kerml.owl,
@@ -12,3 +12,4 @@ Require-Bundle: org.omg.kerml.owl,
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: org.omg.kerml.owl.ide.contentassist.antlr,
  org.omg.kerml.owl.ide.contentassist.antlr.internal
+Automatic-Module-Name: org.omg.kerml.owl.ide

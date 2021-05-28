@@ -37,8 +37,8 @@ import org.eclipse.emf.common.util.EList;
  * <p>However, if a Usage has <code>isVariation</code> = true, then it represents a <em>variation point</em> Usage. In this case, all of its <code>members</code> must be <code>variant</code> Usages, related to the Usage by VariantMembership Relationships. Rather than being <code>features</code> of the Usage, <code>variant</code> Usages model different concrete alternatives that can be chosen to fill in for the variation point Usage.</p>
  * variant = variantMembership.ownedVariantUsage
  * variantMembership = ownedMembership->selectByKind(VariantMembership)
- * isVariation implies variantMembership = ownedMembership
  * not isVariation implies variantMembership->isEmpty()
+ * isVariation implies variantMembership = ownedMembership
  * <!-- end-model-doc -->
  *
  * <p>
@@ -75,6 +75,8 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedVerificationCase <em>Nested Verification Case</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedEnumeration <em>Nested Enumeration</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedAllocation <em>Nested Allocation</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedConcern <em>Nested Concern</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedStakeholder <em>Nested Stakeholder</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage()
@@ -339,7 +341,7 @@ public interface Usage extends Feature {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The RequirementUsages that are <tt>ownedUsages</tt> of this Usage.</p>
+	 * <p>The RequirementUsages that are <code>ownedUsages</code> of this Usage.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Nested Requirement</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedRequirement()
@@ -813,6 +815,52 @@ public interface Usage extends Feature {
 	 * @generated
 	 */
 	EList<AllocationUsage> getNestedAllocation();
+
+	/**
+	 * Returns the value of the '<em><b>Nested Concern</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.ConcernUsage}.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Usage#getNestedRequirement() <em>Nested Requirement</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The ConcernUsages that are <code>ownedUsages</code> of this Usage.</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Nested Concern</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedConcern()
+	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='concernOwningUsage'"
+	 *        annotation="subsets"
+	 * @generated
+	 */
+	EList<ConcernUsage> getNestedConcern();
+
+	/**
+	 * Returns the value of the '<em><b>Nested Stakeholder</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.StakeholderUsage}.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Usage#getNestedPart() <em>Nested Part</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The StakeholderUsages that are <code>nestedUsages</code> of this Usage.</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Nested Stakeholder</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedStakeholder()
+	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='stakeholderOwningUsage'"
+	 *        annotation="subsets"
+	 * @generated
+	 */
+	EList<StakeholderUsage> getNestedStakeholder();
 
 	/**
 	 * Returns the value of the '<em><b>Nested Action</b></em>' reference list.

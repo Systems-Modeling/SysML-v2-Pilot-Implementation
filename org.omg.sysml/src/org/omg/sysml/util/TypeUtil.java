@@ -30,6 +30,7 @@ import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.omg.sysml.adapter.DefinitionAdapter;
@@ -95,6 +96,8 @@ public class TypeUtil {
 	protected static boolean conforms(Type subtype, Type supertype, Set<Type> visited) {
 		if (subtype == supertype) {
 			return true;
+		} else if (subtype == null) {
+			return false;
 		} else {
 			visited.add(subtype);
 			if (subtype.isConjugated()) {
@@ -111,7 +114,7 @@ public class TypeUtil {
 	// Features
 	
 	public static List<Feature> getPublicFeaturesOf(Type type) {
-		return type.publicMemberships().stream().
+		return type.publicMemberships(new BasicEList<>()).stream().
 				filter(FeatureMembership.class::isInstance).
 				map(FeatureMembership.class::cast).
 				map(FeatureMembership::getMemberFeature).

@@ -68,7 +68,7 @@ public class VRequirement extends VCompartment {
             default:
                 return "";
             }
-            ConstraintUsage c = rcm.getConstraint();
+            ConstraintUsage c = rcm.getOwnedConstraint();
             addFeature(c, null, prefix, true, true);
         }
         return "";

@@ -29,10 +29,7 @@ import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.PerformActionUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
 import org.omg.sysml.util.FeatureUtil;
-import org.omg.sysml.util.ImplicitGeneralizationMap;
 
 /**
  * <!-- begin-user-doc -->
@@ -48,9 +45,6 @@ import org.omg.sysml.util.ImplicitGeneralizationMap;
  * @generated
  */
 public class PerformActionUsageImpl extends ActionUsageImpl implements PerformActionUsage {
-
-	private Type subsettingBaseDefault;
-	private Type subsettingPartDefault;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -88,30 +82,11 @@ public class PerformActionUsageImpl extends ActionUsageImpl implements PerformAc
 	 * @generated NOT
 	 */
 	public ActionUsage basicGetPerformedAction() {
-		Type subsettingBaseDefault = getSubsettingBaseDefault();
-		Type subsettingPartDefault = getSubsettingPartDefault();
-		return FeatureUtil.getSubsettedFeatureOf(this, ActionUsage.class, 
-				feature->feature == subsettingBaseDefault || feature == subsettingPartDefault);
+		return FeatureUtil.getReferencedFeatureOf(this, ActionUsage.class);
 	}
 
-	protected Type getSubsettingBaseDefault() {
-		if (subsettingBaseDefault == null) {
-			subsettingBaseDefault = SysMLLibraryUtil.getLibraryType(this, 
-					ImplicitGeneralizationMap.getDefaultSupertypeFor(this.getClass(), "base"));
-		}
-		return subsettingBaseDefault;
-	}
-
-	protected Type getSubsettingPartDefault() {
-		if (subsettingPartDefault == null) {
-			subsettingPartDefault = SysMLLibraryUtil.getLibraryType(this, 
-					ImplicitGeneralizationMap.getDefaultSupertypeFor(this.getClass(), "enactedPerformance"));
-		}
-		return subsettingPartDefault;
-	}
-	
 	@Override
-	protected Feature getNamingFeature() {
+	public Feature namingFeature() {
 		return getPerformedAction();
 	}
 

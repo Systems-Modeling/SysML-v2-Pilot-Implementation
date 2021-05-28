@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: org.omg.sysml.interactive
 Bundle-SymbolicName: org.omg.sysml.interactive
-Bundle-Version: 0.11.1.qualifier
+Bundle-Version: 0.12.0.qualifier
 Export-Package: org.omg.sysml.interactive
 Require-Bundle: org.eclipse.emf.ecore,
  com.google.inject,
@@ -12,3 +12,4 @@ Require-Bundle: org.eclipse.emf.ecore,
  org.omg.sysml.xtext;bundle-version="0.2.0"
 Import-Package: org.omg.sysml.plantuml
 Bundle-Vendor: SysML v2 Submission Team
+Automatic-Module-Name: org.omg.sysml.interactive

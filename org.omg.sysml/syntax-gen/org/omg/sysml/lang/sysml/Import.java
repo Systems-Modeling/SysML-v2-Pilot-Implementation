@@ -93,7 +93,7 @@ public interface Import extends Relationship {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Whether the imported <code>members</code> from this Import become public or private <code>members</code> of the <code>importOwningNamespace</code>.</p>
+	 * <p>The visibility level of the imported <code>members</code> from this Import relative to the <code>importOwningNamespace</code>.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Visibility</em>' attribute.
@@ -147,11 +147,16 @@ public interface Import extends Relationship {
 	 * Returns the value of the '<em><b>Import Owning Namespace</b></em>' reference.
 	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Namespace#getOwnedImport <em>Owned Import</em>}'.
 	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Relationship#getOwningRelatedElement() <em>Owning Related Element</em>}'</li>
+	 * </ul>
+	 * <p>
 	 * This feature redefines the following features:
 	 * </p>
 	 * <ul>
 	 *   <li>'{@link org.omg.sysml.lang.sysml.Relationship#getSource() <em>Source</em>}'</li>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Relationship#getOwningRelatedElement() <em>Owning Related Element</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -165,6 +170,7 @@ public interface Import extends Relationship {
 	 * @see org.omg.sysml.lang.sysml.Namespace#getOwnedImport
 	 * @model opposite="ownedImport" required="true" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="redefines"
+	 *        annotation="subsets"
 	 * @generated
 	 */
 	Namespace getImportOwningNamespace();
@@ -180,14 +186,16 @@ public interface Import extends Relationship {
 	void setImportOwningNamespace(Namespace value);
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Returns the Memberships of the <code>importedNamespace</code> whose <code>memberElements</code> are to become imported <code>members</code> of the <code>importOwningNamespace</code>. By default, this is the set of publicly visible Memberships of the <code>importedNamespace</code>, but this may be overridden in specializations of Import</p>
+	 * <p>Returns the Memberships of the <code>importedNamespace</code> whose <code>memberElements</code> are to become imported <code>members</code> of the <code>importOwningNamespace</code>. By default, this is the set of publicly visible Memberships of the <code>importedNamespace</code>, but this may be overridden in specializations of Import. (The <code>excluded</code> parameter is used to handle the possibility of circular Import Relationships.)</p>
 	 * 
 	 * <!-- end-model-doc -->
-	 * @model
+	 * @model excludedMany="true" excludedOrdered="false"
+	 *        annotation="http://www.eclipse.org/uml2/1.1.0/GenModel body='importedPackage.publicMemberships(\n    excluded-&gt;including(importOwningNamespace))'"
 	 * @generated
 	 */
-	EList<Membership> importedMembership();
+	EList<Membership> importedMembership(EList<Namespace> excluded);
 
 } // Import

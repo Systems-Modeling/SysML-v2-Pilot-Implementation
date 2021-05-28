@@ -20,21 +20,23 @@ package RecursiveImport {
     class C {
     	class C1 {
     		class C2;
-    		package P3 {
-    			package P4 {
-    				class C5;
-    			}
-    		}
     	}
     }
-   
+	package P3 {
+		package P4 {
+			class C5;
+		}
+	}
   }
+  
   import P::C::**;
   x1: C1;
-  x2: C1.C2;
-  x2_invalid: C2;
+  x2: C1::C2;
+  x3: C2;
+  x4: C;
   
-  import P::C::C1::P3::**;
-  x5:C5;
+  import P::P3::**;
+  x5: C5;
+  x6: P3::P4::C5;
 	
 }

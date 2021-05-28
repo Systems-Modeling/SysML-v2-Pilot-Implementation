@@ -31,6 +31,8 @@ import org.eclipse.emf.common.util.EList;
  *
  * <!-- begin-model-doc -->
  * <p>A Package is a Namespace used to group Elements, without any instance-level semantics. It may have one or more model-level evaluable <code>filterCondition</code> Expressions used to filter its <code>importedMemberships</code>. Any imported <code>member</code> must meet all of the <code>filterConditions</code>.</p>
+ * ownedMembership->forAll(visibility <> VisibilityKind::protected)
+ * ownedImport->forAll(visibility <> VisibilityKind::protected)
  * <!-- end-model-doc -->
  *
  * <p>

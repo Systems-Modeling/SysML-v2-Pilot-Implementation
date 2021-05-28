@@ -25,6 +25,7 @@
 package org.omg.kerml.xtext.util;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -77,12 +78,13 @@ public class KerML2XMI extends SysMLUtil {
 	 * 
 	 * @throws 	IOException
 	 */
-	public void write() throws IOException {
+	public void write(boolean isAddImplicitGeneralizations) throws IOException {
 		println("Resolving proxies...");
 		EcoreUtil.resolveAll(this.resourceSet);
 		
-		println("Transforming...");
-		ElementUtil.transformAll(this.resourceSet, true);
+		println("Transforming" + 
+				(isAddImplicitGeneralizations? " (adding implicit generalizations)... ": " ..."));
+		ElementUtil.transformAll(this.resourceSet, isAddImplicitGeneralizations);
 		
 		Set<Resource> outputResources = new HashSet<Resource>();
  		for (Object object: this.resourceSet.getResources().toArray()) {
@@ -116,21 +118,42 @@ public class KerML2XMI extends SysMLUtil {
 	}
 	
 	/**
-	 * The main program reads all the KerML resources rooted in the paths given as arguments and then
-	 * writes out KerML XMI files for the resources from the first argument path.
-	 * 
-	 * @param 	args	the first argument is a path for reading input resources, while other arguments
-	 * 					are paths for reading library resources
+	 * Run the creation of XMI for the resources given in the main program arguments.
+	 *  
+	 * @param 	args		the array of main program arguments
 	 */
-	public static void main(String[] args) {
+	public void run(String[] args) {
 		try {
-			KerML2XMI util = new KerML2XMI();
+			boolean isAddImplicitGeneralizations = false;
 			
-			util.read(args);			
-			util.write();
+			if (args.length > 0 && "-g".equals(args[0])) {
+				isAddImplicitGeneralizations = true;
+				args = Arrays.copyOfRange(args, 1, args.length);
+			}
+			
+			this.read(args);			
+			this.write(isAddImplicitGeneralizations);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	/**
+	 * The main program reads all the KerML resources rooted in the paths given as arguments and then
+	 * writes out KerML XMI files for the resources from the input-path argument.
+	 * 
+	 * <p>Usage:
+	 * 
+	 * <p>Kerml2XMI [-g] input-path [library-path library-path...]
+	 * 
+	 * <p>where:
+	 * 
+	 * <li>-g                     specifies that implicit generalizations should be generated (the default is not to)</li>
+	 * <li>input-path             is a path for reading input resources</li>
+	 * <li>library-paths          are paths for reading library resources, relative to the library-base-path (if one is given)</li>
+	 */
+	public static void main(String[] args) {
+		new KerML2XMI().run(args);
 	}
 
 }

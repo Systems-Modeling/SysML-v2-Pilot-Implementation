@@ -25,7 +25,7 @@ import org.eclipse.emf.common.util.EList;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.InvocationExpression;
 
-public class EqualsFunction extends ModelLevelFunction {
+public class EqualsFunction extends BaseFunction {
 
 	@Override
 	public String getOperatorName() {

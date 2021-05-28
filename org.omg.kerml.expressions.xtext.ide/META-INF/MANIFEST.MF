@@ -3,13 +3,12 @@ Automatic-Module-Name: org.omg.kerml.expressions.xtext.ide
 Bundle-ManifestVersion: 2
 Bundle-Name: org.omg.kerml.xtext.ide
 Bundle-Vendor: SysML v2 Submission Team
-Bundle-Version: 0.11.1.qualifier
+Bundle-Version: 0.12.0.qualifier
 Bundle-SymbolicName: org.omg.kerml.expressions.xtext.ide; singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.omg.kerml.expressions.xtext,
  org.eclipse.xtext.ide,
  org.eclipse.xtext.xbase.ide,
  org.antlr.runtime;bundle-version="[3.2.0,3.2.1)"
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: org.omg.kerml.expressions.xtext.ide.contentassist.antlr.internal,
  org.omg.kerml.expressions.xtext.ide.contentassist.antlr

@@ -29,6 +29,7 @@ import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.uml2.common.util.DerivedEObjectEList;
+import org.omg.sysml.expressions.ModelLevelFunction;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Function;
@@ -45,11 +46,22 @@ import org.omg.sysml.util.TypeUtil;
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FunctionImpl#getExpression <em>Expression</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FunctionImpl#getResult <em>Result</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.FunctionImpl#isModelLevelEvaluable <em>Is Model Level Evaluable</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class FunctionImpl extends BehaviorImpl implements Function {
+
+	/**
+	 * The default value of the '{@link #isModelLevelEvaluable() <em>Is Model Level Evaluable</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isModelLevelEvaluable()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean IS_MODEL_LEVEL_EVALUABLE_EDEFAULT = false;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -117,6 +129,26 @@ public class FunctionImpl extends BehaviorImpl implements Function {
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public boolean isModelLevelEvaluable() {
+		return ModelLevelFunction.getFunctionImpl(this) != null;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public void setIsModelLevelEvaluable(boolean newIsModelLevelEvaluable) {
+		throw new UnsupportedOperationException();
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -147,6 +179,8 @@ public class FunctionImpl extends BehaviorImpl implements Function {
 			case SysMLPackage.FUNCTION__RESULT:
 				if (resolve) return getResult();
 				return basicGetResult();
+			case SysMLPackage.FUNCTION__IS_MODEL_LEVEL_EVALUABLE:
+				return isModelLevelEvaluable();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -166,6 +200,9 @@ public class FunctionImpl extends BehaviorImpl implements Function {
 			case SysMLPackage.FUNCTION__RESULT:
 				setResult((Feature)newValue);
 				return;
+			case SysMLPackage.FUNCTION__IS_MODEL_LEVEL_EVALUABLE:
+				setIsModelLevelEvaluable((Boolean)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -182,6 +219,9 @@ public class FunctionImpl extends BehaviorImpl implements Function {
 				return;
 			case SysMLPackage.FUNCTION__RESULT:
 				setResult((Feature)null);
+				return;
+			case SysMLPackage.FUNCTION__IS_MODEL_LEVEL_EVALUABLE:
+				setIsModelLevelEvaluable(IS_MODEL_LEVEL_EVALUABLE_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -200,6 +240,8 @@ public class FunctionImpl extends BehaviorImpl implements Function {
 				return isSetExpression();
 			case SysMLPackage.FUNCTION__RESULT:
 				return basicGetResult() != null;
+			case SysMLPackage.FUNCTION__IS_MODEL_LEVEL_EVALUABLE:
+				return isModelLevelEvaluable() != IS_MODEL_LEVEL_EVALUABLE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}

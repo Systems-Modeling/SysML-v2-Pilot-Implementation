@@ -20,9 +20,9 @@ package Classes {
 	import VisibilityPackage::c_Public;
 	class Try specializes c_Public {
 		feature f1: c_protected;
-		feature f2: Try.c_protected;
-		feature f3: Classes.Try.c_protected;
-		feature f4: c_Public.c_protected;
-		feature f5: Classes.c_Public.c_protected;
+		feature f2: Try::c_protected;
+		feature f3: Classes::Try::c_protected;
+		feature f4: c_Public::c_protected;
+		feature f5: Classes::c_Public::c_protected;
 	}
 }

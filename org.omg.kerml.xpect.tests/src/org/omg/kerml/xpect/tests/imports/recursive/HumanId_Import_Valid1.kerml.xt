@@ -18,7 +18,23 @@ package Test {
 
 	package Test1 {
 		import VP::**;
+		
+		// NOTE: There is some duplication due to the implicit import of "VP" itself as part of the recursive import.
 		//* XPECT scope at c_Public ---	    
+		Test.Test1.VP.VP1.c_Public, Test.Test1.VP.VP1.c_Public.c_public,
+		Test.Test1.VP.VP1.c_Public_Id, Test.Test1.VP.VP1.c_Public_Id.c_public, Test.Test1.VP.VP2.A,
+		Test.Test1.VP.VP2.A_Id,
+		
+		Test1.VP.VP1.c_Public,
+		Test1.VP.VP1.c_Public.c_public, Test1.VP.VP1.c_Public_Id, Test1.VP.VP1.c_Public_Id.c_public, Test1.VP.VP2.A,
+		Test1.VP.VP2.A_Id,
+		
+		VP.VP1.c_Public,
+		VP.VP1.c_Public.c_public,
+		VP.VP1.c_Public_Id,
+		VP.VP1.c_Public_Id.c_public,
+		VP.VP2.A, VP.VP2.A_Id,
+		
 		c_public, A, A.c_public, Test1.A, Test1.A.c_public, Test.Test1.A, Test.Test1.A.c_public, 
 		c_Public, Test1.c_Public, Test.Test1.c_Public, VP.VP1.c_Public, Test.VP.VP1.c_Public,  
 		c_Public.c_public, Test1.c_Public.c_public, Test.Test1.c_Public.c_public, VP.VP1.c_Public.c_public, Test.VP.VP1.c_Public.c_public,

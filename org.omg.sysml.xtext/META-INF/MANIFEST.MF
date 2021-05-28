@@ -3,7 +3,7 @@ Automatic-Module-Name: org.omg.sysml.xtext
 Bundle-ManifestVersion: 2
 Bundle-Name: org.omg.sysml.xtext
 Bundle-Vendor: SysML v2 Submission Team
-Bundle-Version: 0.11.1.qualifier
+Bundle-Version: 0.12.0.qualifier
 Bundle-SymbolicName: org.omg.sysml.xtext; singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.xtext,
@@ -18,7 +18,6 @@ Require-Bundle: org.eclipse.xtext,
  org.eclipse.uml2.uml.resources,
  org.omg.kerml.xtext;bundle-version="0.2.0",
  org.omg.kerml.expressions.xtext;bundle-version="0.2.0"
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: org.omg.sysml.xtext,
  org.omg.sysml.xtext.generator,
  org.omg.sysml.xtext.library,

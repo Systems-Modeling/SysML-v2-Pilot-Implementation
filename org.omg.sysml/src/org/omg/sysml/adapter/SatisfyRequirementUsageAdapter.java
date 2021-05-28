@@ -21,7 +21,14 @@
 
 package org.omg.sysml.adapter;
 
+import org.omg.sysml.lang.sysml.RequirementUsage;
 import org.omg.sysml.lang.sysml.SatisfyRequirementUsage;
+import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.lang.sysml.ViewDefinition;
+import org.omg.sysml.lang.sysml.ViewUsage;
+import org.omg.sysml.lang.sysml.ViewpointUsage;
+import org.omg.sysml.util.ImplicitGeneralizationMap;
+import org.omg.sysml.util.UsageUtil;
 
 public class SatisfyRequirementUsageAdapter extends RequirementUsageAdapter {
 	
@@ -32,6 +39,25 @@ public class SatisfyRequirementUsageAdapter extends RequirementUsageAdapter {
 	@Override
 	public SatisfyRequirementUsage getTarget() {
 		return (SatisfyRequirementUsage)super.getTarget();
+	}
+	
+	@Override
+	public void computeImplicitGeneralTypes() {
+		addSatisfiedViewpointSubsetting();
+		super.computeImplicitGeneralTypes();
+	}
+	
+	protected void addSatisfiedViewpointSubsetting() {
+		SatisfyRequirementUsage target = getTarget();
+		Type owningType = target.getOwningType();
+		if ((owningType instanceof ViewDefinition || owningType instanceof ViewUsage) &&
+				UsageUtil.getSatisfyingFeatureConnectorOf(target) == null) {
+			RequirementUsage satisfiedRequirement = target.getSatisfiedRequirement();
+			if (satisfiedRequirement instanceof ViewpointUsage) {
+				addSubsetting(ImplicitGeneralizationMap.getDefaultSupertypeFor(
+						satisfiedRequirement.getClass(), "satisfied"));
+			}
+		}
 	}
 
 	@Override

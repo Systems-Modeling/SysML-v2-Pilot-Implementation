@@ -96,6 +96,8 @@ public class TypeUtil {
 	protected static boolean conforms(Type subtype, Type supertype, Set<Type> visited) {
 		if (subtype == supertype) {
 			return true;
+		} else if (subtype == null) {
+			return false;
 		} else {
 			visited.add(subtype);
 			if (subtype.isConjugated()) {

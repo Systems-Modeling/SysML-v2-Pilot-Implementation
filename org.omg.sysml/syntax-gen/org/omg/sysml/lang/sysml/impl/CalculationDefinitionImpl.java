@@ -138,7 +138,7 @@ public class CalculationDefinitionImpl extends ActionDefinitionImpl implements C
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public boolean isModelLevelEvaluable() {

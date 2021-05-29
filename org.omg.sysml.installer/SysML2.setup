@@ -15,9 +15,9 @@
     label="SysML2">
   <setupTask
       xsi:type="jdt:JRETask"
-      version="JavaSE-1.8"
-      location="${jre.location-1.8}"
-      name="JRE for JavaSE-1.8">
+      version="JavaSE-11"
+      location="${jre.location-11}"
+      name="JRE for JavaSE-11">
     <description>Define the JRE needed to compile and run the Java projects of ${scope.project.label}</description>
   </setupTask>
   <setupTask
@@ -44,7 +44,7 @@
     <requirement
         name="org.eclipse.m2e.feature.feature.group"/>
     <repository
-        url="http://download.eclipse.org/releases/2020-06/"/>
+        url="http://download.eclipse.org/releases/2021-03/"/>
     <repository
         url="https://ci.eclipse.org/xpect/job/Xpect/job/master/lastBuild/artifact/org.eclipse.xpect.releng/p2-repository/target/repository"/>
     <repository

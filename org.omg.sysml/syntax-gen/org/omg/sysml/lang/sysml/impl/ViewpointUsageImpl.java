@@ -112,7 +112,7 @@ public class ViewpointUsageImpl extends RequirementUsageImpl implements Viewpoin
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public EList<StakeholderUsage> getViewpointStakeholder() {

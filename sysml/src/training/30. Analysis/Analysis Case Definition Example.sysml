@@ -31,12 +31,12 @@ package 'Analysis Case Definition Example' {
 			 */
 			
 			assume constraint {
-				vehicle::wheelDiameter == 33@['in'] &
-				vehicle::driveTrainEfficiency == 0.4
+				vehicle.wheelDiameter == 33 ['in'] &
+				vehicle.driveTrainEfficiency == 0.4
 			}
 			
 			require constraint {
-				fuelEconomyResult > 30@[mi / gallon]
+				fuelEconomyResult > 30 [mi / gallon]
 			}
 		}
 	    
@@ -58,12 +58,12 @@ package 'Analysis Case Definition Example' {
 				(1..size(scenario)-1)->forAll {in i: ScalarValues::Natural;
 					StraightLineDynamicsEquations (
 						power[i],
-						vehicle::mass,
-						scenario::time[i+1] - scenario::time[i],
-						scenario::position[i],
-						scenario::velocity[i],
-						scenario::position[i+1],
-						scenario::velocity[i+1],
+						vehicle.mass,
+						scenario.time[i+1] - scenario.time[i],
+						scenario.position[i],
+						scenario.velocity[i],
+						scenario.position[i+1],
+						scenario.velocity[i+1],
 						acceleration[i+1]                    
 					)
 				}

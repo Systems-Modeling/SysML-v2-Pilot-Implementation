@@ -42,6 +42,9 @@ package RecursiveImport {
   	y: Y;
 	
 	//* XPECT scope at Z ---
+	Q.R.Z, Q.Y,
+	RecursiveImport.Q.R.Z, RecursiveImport.Q.Y,
+	
   	P.X, RecursiveImport.P.X,
 	P.X.X1, RecursiveImport.P.X.X1,
 	P.Q.Y, RecursiveImport.P.Q.Y,

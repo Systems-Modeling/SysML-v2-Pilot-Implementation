@@ -256,28 +256,24 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.MEMBERSHIP__OWNING_RELATED_ELEMENT, newOwningRelatedElement, newOwningRelatedElement));
 	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public String getMemberName() {
-		if (memberName == null) {
-			ElementImpl memberElement = (ElementImpl)this.basicGetOwnedMemberElement();
-			if (memberElement != null) {
-				memberName = memberElement.basicGetName();
-				memberElement.basicSetName(null);
-			} else {
-				memberElement = (ElementImpl)this.getMemberElement();
-				if (memberElement != null) {
-					memberName = memberElement.getName();
-				}
-			}
-		}
+	
+	public String basicGetMemberName() {
 		return memberName;
 	}
 
+	private boolean isNameSet = false;
+
+	public String getMemberName() {
+		Element ownedMemberElement = basicGetOwnedMemberElement();
+		if (!isNameSet && ownedMemberElement != null) {
+			memberName = ((ElementImpl)ownedMemberElement).basicGetName();
+		} else if (memberName == null && memberElement != null) {
+			// Note: User getter to ensure proxy resolution.
+			memberName = getMemberElementGen().getName();
+		}
+		return memberName;
+	}
+	
 	@Override
 	public void setMemberName(String newMemberName) {
 		isNameSet = true;
@@ -417,7 +413,6 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 		EList<Element> ownedRelatedElements = super.getOwnedRelatedElement();
 		ownedRelatedElements.remove(getOwnedMemberElement());
 		if (newOwnedMemberElement != null) { 
-			setMemberNameFrom(newOwnedMemberElement);
 			ownedRelatedElements.add(0, newOwnedMemberElement);
 			setMemberElement(newOwnedMemberElement);
 		}
@@ -493,19 +488,6 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
   		return false;
 	}
 	
-	// Additional
-	
-	private boolean isNameSet = false;
-	
-	protected void setMemberNameFrom(Element element) {
-		if (!isNameSet) {
-			memberName = ((ElementImpl)element).basicGetName();
-			((ElementImpl)element).basicSetName(null);
-		}
-	}
-	
-	//
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

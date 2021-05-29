@@ -320,7 +320,7 @@ public abstract class DefinitionImpl extends ClassifierImpl implements Definitio
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public EList<StakeholderUsage> getOwnedStakeholder() {

@@ -60,6 +60,13 @@ public class UsageAdapter extends FeatureAdapter {
 	
 	// Implicit Generalization
 	
+	protected void addSubsetting(String subsettedFeatureName) {
+		Feature feature = (Feature)getLibraryType(subsettedFeatureName);
+		if (feature != null) {
+			addImplicitGeneralType(SysMLPackage.eINSTANCE.getSubsetting(), feature);
+		}
+	}
+
 	public void addVariationSubsetting() {
 		Usage usage = getTarget();
 		Usage variationUsage = UsageUtil.getOwningVariationUsageFor(usage);

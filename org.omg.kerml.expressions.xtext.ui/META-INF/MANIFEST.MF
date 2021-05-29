@@ -3,7 +3,7 @@ Automatic-Module-Name: org.omg.kerml.expressions.xtext.ui
 Bundle-ManifestVersion: 2
 Bundle-Name: org.omg.kerml.xtext.ui
 Bundle-Vendor: SysML v2 Submission Team
-Bundle-Version: 0.11.1.qualifier
+Bundle-Version: 0.12.0.qualifier
 Bundle-SymbolicName: org.omg.kerml.expressions.xtext.ui; singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.omg.kerml.expressions.xtext,
@@ -20,7 +20,6 @@ Require-Bundle: org.omg.kerml.expressions.xtext,
  org.eclipse.xtend.lib;bundle-version="2.14.0";resolution:=optional,
  org.omg.sysml;bundle-version="0.2.0"
 Import-Package: org.apache.log4j
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: org.omg.kerml.expressions.xtext.ui.quickfix,
  org.omg.kerml.expressions.xtext.ui.contentassist,
  org.omg.kerml.expressions.xtext.ui.internal

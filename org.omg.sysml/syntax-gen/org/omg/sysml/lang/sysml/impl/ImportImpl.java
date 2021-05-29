@@ -415,8 +415,14 @@ public class ImportImpl extends RelationshipImpl implements Import {
 			Namespace owningNamespace = this.getImportOwningNamespace();
 			excludedNamespaces.add(owningNamespace);
 			importMembershipFrom(importedNamespace, importedMembership, nonpublicMembership, 
-					excludedNamespaces, excludedTypes, this.isRecursive);
+					excludedNamespaces, excludedTypes, isRecursive);
 			excludedNamespaces.remove(owningNamespace);
+			if (isRecursive) {
+				Membership importedNamespaceMembership = importedNamespace.getOwningMembership();
+				if (importedNamespaceMembership != null) {
+					importedMembership.add(importedNamespaceMembership);
+				}
+			}
 		}
 		return importedMembership;
 	}

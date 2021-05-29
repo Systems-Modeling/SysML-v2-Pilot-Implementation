@@ -1,7 +1,7 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2018 IncQuery Labs Ltd.
- * Copyright (c) 2018, 2019, 2020 Model Driven Solutions, Inc.
+ * Copyright (c) 2018, 2019, 2020, 2021 Model Driven Solutions, Inc.
  * Copyright (c) 2018, 2019, 2020 California Institute of Technology/Jet Propulsion Laboratory
  *    
  * This program is free software: you can redistribute it and/or modify
@@ -232,14 +232,21 @@ class KerMLScope extends AbstractScope {
 		(!checkIfAdded || !visitedqns.contains(elementqn))
 	}
 	
-	protected def visitQualifiedName(QualifiedName elementqn, Element memberElement, Set<Namespace> ownedvisited, Set<Namespace> visited, boolean includeImplicitGen) {
+	protected def addQualifiedName(QualifiedName elementqn, Element memberElement) {
 		visitedqns.add(elementqn)
 		if (targetqn === null || targetqn == elementqn) {
 			elements.addName(elementqn, memberElement)
 			if (findFirst && targetqn == elementqn) {
-				return true;
+				return true
 			}
 		}
+		false
+	}
+	
+	protected def visitQualifiedName(QualifiedName elementqn, Element memberElement, Set<Namespace> ownedvisited, Set<Namespace> visited, boolean includeImplicitGen) {
+		if (addQualifiedName(elementqn, memberElement)) {
+			return true
+		}		
 		if (targetqn != elementqn) {
 			if (memberElement instanceof Namespace) {
 				isShadowing = true;
@@ -259,6 +266,7 @@ class KerMLScope extends AbstractScope {
 				}
 			}
 		}
+		false
 	}
 	
 	protected def boolean isInheritedProtected(Type general, Element protectedOwningNamespace) {
@@ -336,7 +344,9 @@ class KerMLScope extends AbstractScope {
 					// NOTE: Exclude the import e to avoid possible circular name resolution
 					// when resolving a proxy for e.importedNamespace.
 					scopeProvider.addVisited(e)
-					val found = e.importedNamespace.resolveIfUnvisited(qn, true, visited, newHashSet, e.isRecursive, includeImplicitGen)
+					val found = 
+						if (e.isRecursive) e.importedNamespace.resolveRecursiveImport(qn, visited)
+						else e.importedNamespace.resolveIfUnvisited(qn, true, visited, newHashSet, false, includeImplicitGen)
 					scopeProvider.removeVisited(e)
 					importingPackages.remove(ns)
 					if (found) return true
@@ -346,7 +356,34 @@ class KerMLScope extends AbstractScope {
 		return false
 	}
 	
-	protected def boolean resolveRecursiveImport(Namespace ns, QualifiedName qn, Set<Namespace> visited){
+	protected def boolean resolveRecursiveImport(Namespace ns, QualifiedName qn, Set<Namespace> visited) {
+		val nsName = ns.getEffectiveName;
+		if (nsName !== null) {
+			val elementqn = qn.append(nsName)
+			if (elementqn.checkQualifiedName(true) && elementqn.addQualifiedName(ns)) {
+				return true
+			}
+			if (ns.resolveIfUnvisited(elementqn, true, visited, newHashSet, false, false)) {
+				return true
+			}
+		}
+		return ns.resolveIfUnvisited(qn, true, visited, newHashSet, true, false)
+	}
+	
+	protected def boolean resolveIfUnvisited(Namespace ns, QualifiedName qn, boolean checkIfAdded, Set<Namespace> visited, Set<Element> redefined, boolean isRecursive, boolean includeImplicitGen) {
+		var found = false
+		if (ns !== null && !ns.eIsProxy && !visited.contains(ns)) {
+			visited.add(ns)
+			found = ns.resolve(qn, checkIfAdded, false, visited, redefined, includeImplicitGen)
+			if (!found && isRecursive) {
+				found = resolveRecursive(ns, qn, visited)
+			}
+			visited.remove(ns)
+		}
+		found
+	}
+	
+	protected def boolean resolveRecursive(Namespace ns, QualifiedName qn, Set<Namespace> visited) {
 		for (r: ns.ownedRelationship) {
 			if (r instanceof Membership) {
 				if (r.visibility == VisibilityKind.PUBLIC) {
@@ -361,17 +398,4 @@ class KerMLScope extends AbstractScope {
 		return false
 	}
 
-	protected def boolean resolveIfUnvisited(Namespace ns, QualifiedName qn, boolean checkIfAdded, Set<Namespace> visited, Set<Element> redefined, boolean isRecursive, boolean includeImplicitGen) {
-		var found = false
-		if (ns !== null && !ns.eIsProxy && !visited.contains(ns)) {
-			visited.add(ns)
-			found = ns.resolve(qn, checkIfAdded, false, visited, redefined, includeImplicitGen)
-			if (!found && isRecursive) {
-				found = resolveRecursiveImport(ns, qn, visited)
-			}
-			visited.remove(ns)
-		}
-		found
-	}
-	
 }

@@ -3718,7 +3718,6 @@ endif</body>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="99550646-ae87-41da-8cbb-e2afca4d7547" name="" visibility="public" value="*"/>
     </ownedEnd>
   </packagedElement>
-  <packagedElement xmi:type="uml:Class" xmi:id="ce5be5fb-a95a-46ce-9ae9-956bf6294be2" name="Track 4" visibility="public"/>
   <packagedElement xmi:type="uml:Class" xmi:id="ace0f696-55e9-4501-b2f7-8ce04daf34bd" name="ConstraintDefinition" visibility="public">
     <ownedComment xmi:id="ee856a89-8309-4d9b-9c08-795faae8557c" annotatedElement="ace0f696-55e9-4501-b2f7-8ce04daf34bd">
       <body>&lt;p>A ConstraintDefinition is a Definition that is also a Predicate that defines a constraint that may be asserted to hold on a system or part of a system.&lt;/p>
@@ -4172,7 +4171,7 @@ endif</body>
       <body>&lt;p>A ViewRenderingMembership is a FeatureMembership that identifies the &lt;code>viewRendering&lt;/code> of a View. The &lt;code>ownedMemberFeature&lt;/code> of a RequirementConstraintMembership must be a RenderingUsage.&lt;/p></body>
     </ownedComment>
     <generalization xmi:id="ae6fc714-0861-4731-82ef-39b18f9e8e77" general="387c1ace-4ad1-44eb-b8b5-bfe420975a97"/>
-    <ownedAttribute xmi:id="07fb5386-724b-400c-9502-20e1c958bf4e" name="ownedRendering" visibility="public" type="718bb9d4-b1db-48f1-9ac3-8c1a9cc01608" association="5bb9118e-9abd-40fe-a889-423e68615dc4">
+    <ownedAttribute xmi:id="07fb5386-724b-400c-9502-20e1c958bf4e" name="ownedRendering" visibility="public" type="718bb9d4-b1db-48f1-9ac3-8c1a9cc01608" aggregation="composite" redefinedProperty="077a3948-ff80-405a-b769-123a0a235d1f" association="5bb9118e-9abd-40fe-a889-423e68615dc4">
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="8762fcc8-ec7f-46d8-a393-5b150eb7e04f" name="" visibility="public" value="1"/>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="fa1634bd-a9c6-4a78-9ac7-757d6639a8bb" name="" visibility="public" value="1"/>
     </ownedAttribute>

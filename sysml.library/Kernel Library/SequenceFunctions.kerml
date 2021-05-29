@@ -1,23 +1,26 @@
 package SequenceFunctions {
 	private import Base::Anything;
 	private import ScalarValues::*;
-	private import ControlFunctions::exists;
-	private import ControlFunctions::select;
-	private import ControlFunctions::reject;
+	private import ControlFunctions::*;
+	
+	function equals (x: Anything[0..*] ordered nonunique, y: Anything[0..*] ordered nonunique): Boolean {
+		size(x) == size(y) &&
+		(1..size(x))->forAll {in i; x[i] == y[i]}
+	}
 
-	function size(seq: Anything[0..*] ordered nonunique): Natural {
+	function size(seq: Anything[0..*] ordered nonunique): Natural[1] {
 		isEmpty(seq)? 0: size(tail(seq)) + 1
 	}
-	function isEmpty(seq: Anything[0..*] ordered nonunique): Boolean {
+	function isEmpty(seq: Anything[0..*] ordered nonunique): Boolean[1] {
 		seq == null
 	}
-	function notEmpty(seq: Anything[0..*] ordered nonunique): Boolean {
+	function notEmpty(seq: Anything[0..*] ordered nonunique): Boolean[1] {
 		!isEmpty(seq)
 	}
-	function includes(seq: Anything[0..*] ordered nonunique, value: Anything[1]): Boolean {
+	function includes(seq: Anything[0..*] ordered nonunique, value: Anything[1]): Boolean[1] {
 		seq->exists {in x; x == value}
 	}
-	function excludes(seq: Anything[0..*] ordered nonunique, value: Anything[1]): Boolean {
+	function excludes(seq: Anything[0..*] ordered nonunique, value: Anything[1]): Boolean[1] {
 		!seq->includes(value)
 	}
 	
@@ -34,11 +37,14 @@ package SequenceFunctions {
 		seq->reject {in x; x == value}
 	}
 	
+	function subsequence(seq: Anything[0..*] ordered nonunique, startIndex: Positive[1], endIndex: Positive[1]): Anything[0..*] {
+		(startIndex..endIndex)->collect {in i; seq[i]}
+	}
 	function head(seq: Anything[0..*] ordered nonunique): Anything[0..1] {
 		seq[1]
 	}
 	function tail(seq: Anything[0..*] ordered nonunique): Anything[0..*] ordered nonunique {
-		seq->excluding(head(seq))
+		subsequence(seq, 2, size(seq))
 	}
 	function last(seq: Anything[0..*] ordered nonunique): Anything[0..1] {
 		seq[size(seq)]

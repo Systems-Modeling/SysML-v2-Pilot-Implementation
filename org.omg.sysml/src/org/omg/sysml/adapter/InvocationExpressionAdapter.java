@@ -32,7 +32,6 @@ import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.InvocationExpression;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.lang.sysml.impl.FeatureImpl;
 import org.omg.sysml.util.FeatureUtil;
 import org.omg.sysml.util.TypeUtil;
 
@@ -86,10 +85,10 @@ public class InvocationExpressionAdapter extends ExpressionAdapter {
 	
 	public static Expression getArgumentForFeature(List<Expression> arguments, Feature feature, int index) {
 		Expression argument = null;
-		if (!arguments.isEmpty()) {
+		if (!arguments.isEmpty() && feature != null) {
 			argument = arguments.get(0);
 			String argumentName = argument.getName();
-			String featureName = ((FeatureImpl)feature).getEffectiveName();
+			String featureName = feature.getEffectiveName();
 			if (argumentName == null || featureName == null) {
 				if (index < arguments.size()) {
 					argument = arguments.get(index);

@@ -846,7 +846,7 @@ public interface SysMLPackage extends EPackage {
 	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getSendActionUsage()
 	 * @generated
 	 */
-	int SEND_ACTION_USAGE = 132;
+	int SEND_ACTION_USAGE = 131;
 
 	/**
 	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.impl.AcceptActionUsageImpl <em>Accept Action Usage</em>}' class.
@@ -866,7 +866,7 @@ public interface SysMLPackage extends EPackage {
 	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getPerformActionUsage()
 	 * @generated
 	 */
-	int PERFORM_ACTION_USAGE = 127;
+	int PERFORM_ACTION_USAGE = 126;
 
 	/**
 	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.impl.ControlNodeImpl <em>Control Node</em>}' class.
@@ -876,7 +876,7 @@ public interface SysMLPackage extends EPackage {
 	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getControlNode()
 	 * @generated
 	 */
-	int CONTROL_NODE = 128;
+	int CONTROL_NODE = 127;
 
 	/**
 	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.impl.ForkNodeImpl <em>Fork Node</em>}' class.
@@ -886,7 +886,7 @@ public interface SysMLPackage extends EPackage {
 	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getForkNode()
 	 * @generated
 	 */
-	int FORK_NODE = 130;
+	int FORK_NODE = 129;
 
 	/**
 	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.impl.DecisionNodeImpl <em>Decision Node</em>}' class.
@@ -896,7 +896,7 @@ public interface SysMLPackage extends EPackage {
 	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getDecisionNode()
 	 * @generated
 	 */
-	int DECISION_NODE = 131;
+	int DECISION_NODE = 130;
 
 	/**
 	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.impl.JoinNodeImpl <em>Join Node</em>}' class.
@@ -906,7 +906,7 @@ public interface SysMLPackage extends EPackage {
 	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getJoinNode()
 	 * @generated
 	 */
-	int JOIN_NODE = 129;
+	int JOIN_NODE = 128;
 
 	/**
 	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.impl.MergeNodeImpl <em>Merge Node</em>}' class.
@@ -916,7 +916,7 @@ public interface SysMLPackage extends EPackage {
 	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getMergeNode()
 	 * @generated
 	 */
-	int MERGE_NODE = 133;
+	int MERGE_NODE = 132;
 
 	/**
 	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.impl.MultiplicityRangeImpl <em>Multiplicity Range</em>}' class.
@@ -996,7 +996,7 @@ public interface SysMLPackage extends EPackage {
 	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getStateDefinition()
 	 * @generated
 	 */
-	int STATE_DEFINITION = 139;
+	int STATE_DEFINITION = 138;
 
 	/**
 	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.impl.TransitionUsageImpl <em>Transition Usage</em>}' class.
@@ -1016,7 +1016,7 @@ public interface SysMLPackage extends EPackage {
 	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getTransitionFeatureMembership()
 	 * @generated
 	 */
-	int TRANSITION_FEATURE_MEMBERSHIP = 140;
+	int TRANSITION_FEATURE_MEMBERSHIP = 139;
 
 	/**
 	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.impl.ConstraintUsageImpl <em>Constraint Usage</em>}' class.
@@ -1046,7 +1046,7 @@ public interface SysMLPackage extends EPackage {
 	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getExhibitStateUsage()
 	 * @generated
 	 */
-	int EXHIBIT_STATE_USAGE = 138;
+	int EXHIBIT_STATE_USAGE = 137;
 
 	/**
 	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.impl.ConjugatedPortTypingImpl <em>Conjugated Port Typing</em>}' class.
@@ -1056,7 +1056,7 @@ public interface SysMLPackage extends EPackage {
 	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getConjugatedPortTyping()
 	 * @generated
 	 */
-	int CONJUGATED_PORT_TYPING = 136;
+	int CONJUGATED_PORT_TYPING = 135;
 
 	/**
 	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.impl.AssertConstraintUsageImpl <em>Assert Constraint Usage</em>}' class.
@@ -1086,7 +1086,7 @@ public interface SysMLPackage extends EPackage {
 	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getStateSubactionMembership()
 	 * @generated
 	 */
-	int STATE_SUBACTION_MEMBERSHIP = 141;
+	int STATE_SUBACTION_MEMBERSHIP = 140;
 
 	/**
 	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.impl.IndividualUsageImpl <em>Individual Usage</em>}' class.
@@ -1116,7 +1116,7 @@ public interface SysMLPackage extends EPackage {
 	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getSatisfyRequirementUsage()
 	 * @generated
 	 */
-	int SATISFY_REQUIREMENT_USAGE = 143;
+	int SATISFY_REQUIREMENT_USAGE = 142;
 
 	/**
 	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.impl.RequirementDefinitionImpl <em>Requirement Definition</em>}' class.
@@ -1166,7 +1166,7 @@ public interface SysMLPackage extends EPackage {
 	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getRequirementConstraintMembership()
 	 * @generated
 	 */
-	int REQUIREMENT_CONSTRAINT_MEMBERSHIP = 135;
+	int REQUIREMENT_CONSTRAINT_MEMBERSHIP = 134;
 
 	/**
 	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.impl.ResultExpressionMembershipImpl <em>Result Expression Membership</em>}' class.
@@ -1346,7 +1346,7 @@ public interface SysMLPackage extends EPackage {
 	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getSubjectMembership()
 	 * @generated
 	 */
-	int SUBJECT_MEMBERSHIP = 144;
+	int SUBJECT_MEMBERSHIP = 143;
 
 	/**
 	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.impl.ObjectiveMembershipImpl <em>Objective Membership</em>}' class.
@@ -1356,7 +1356,7 @@ public interface SysMLPackage extends EPackage {
 	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getObjectiveMembership()
 	 * @generated
 	 */
-	int OBJECTIVE_MEMBERSHIP = 137;
+	int OBJECTIVE_MEMBERSHIP = 136;
 
 	/**
 	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.impl.DependencyImpl <em>Dependency</em>}' class.
@@ -1366,7 +1366,7 @@ public interface SysMLPackage extends EPackage {
 	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getDependency()
 	 * @generated
 	 */
-	int DEPENDENCY = 124;
+	int DEPENDENCY = 123;
 
 	/**
 	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.impl.DocumentationImpl <em>Documentation</em>}' class.
@@ -1506,7 +1506,7 @@ public interface SysMLPackage extends EPackage {
 	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getExpose()
 	 * @generated
 	 */
-	int EXPOSE = 125;
+	int EXPOSE = 124;
 
 	/**
 	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.impl.RequirementVerificationMembershipImpl <em>Requirement Verification Membership</em>}' class.
@@ -1516,7 +1516,7 @@ public interface SysMLPackage extends EPackage {
 	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getRequirementVerificationMembership()
 	 * @generated
 	 */
-	int REQUIREMENT_VERIFICATION_MEMBERSHIP = 134;
+	int REQUIREMENT_VERIFICATION_MEMBERSHIP = 133;
 
 	/**
 	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.impl.AssociationStructureImpl <em>Association Structure</em>}' class.
@@ -12252,16 +12252,6 @@ public interface SysMLPackage extends EPackage {
 	int STAKEHOLDER_DEFINITION = 111;
 
 	/**
-	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.impl.Track4Impl <em>Track4</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.omg.sysml.lang.sysml.impl.Track4Impl
-	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getTrack4()
-	 * @generated
-	 */
-	int TRACK4 = 123;
-
-	/**
 	 * The feature id for the '<em><b>Owning Membership</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -15356,7 +15346,7 @@ public interface SysMLPackage extends EPackage {
 	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getViewRenderingMembership()
 	 * @generated
 	 */
-	int VIEW_RENDERING_MEMBERSHIP = 126;
+	int VIEW_RENDERING_MEMBERSHIP = 125;
 
 	/**
 	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.impl.AddressedConcernMembershipImpl <em>Addressed Concern Membership</em>}' class.
@@ -15366,7 +15356,7 @@ public interface SysMLPackage extends EPackage {
 	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getAddressedConcernMembership()
 	 * @generated
 	 */
-	int ADDRESSED_CONCERN_MEMBERSHIP = 142;
+	int ADDRESSED_CONCERN_MEMBERSHIP = 141;
 
 	/**
 	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.impl.PathSelectExpressionImpl <em>Path Select Expression</em>}' class.
@@ -82070,24 +82060,6 @@ public interface SysMLPackage extends EPackage {
 	int ASSERT_CONSTRAINT_USAGE_OPERATION_COUNT = CONSTRAINT_USAGE_OPERATION_COUNT + 0;
 
 	/**
-	 * The number of structural features of the '<em>Track4</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TRACK4_FEATURE_COUNT = 0;
-
-	/**
-	 * The number of operations of the '<em>Track4</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TRACK4_OPERATION_COUNT = 0;
-
-	/**
 	 * The feature id for the '<em><b>Owning Membership</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -95712,7 +95684,7 @@ public interface SysMLPackage extends EPackage {
 	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getVisibilityKind()
 	 * @generated
 	 */
-	int VISIBILITY_KIND = 145;
+	int VISIBILITY_KIND = 144;
 
 	/**
 	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.FeatureDirectionKind <em>Feature Direction Kind</em>}' enum.
@@ -95722,7 +95694,7 @@ public interface SysMLPackage extends EPackage {
 	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getFeatureDirectionKind()
 	 * @generated
 	 */
-	int FEATURE_DIRECTION_KIND = 146;
+	int FEATURE_DIRECTION_KIND = 145;
 
 
 	/**
@@ -95733,7 +95705,7 @@ public interface SysMLPackage extends EPackage {
 	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getTransitionFeatureKind()
 	 * @generated
 	 */
-	int TRANSITION_FEATURE_KIND = 149;
+	int TRANSITION_FEATURE_KIND = 148;
 
 	/**
 	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.StateSubactionKind <em>State Subaction Kind</em>}' enum.
@@ -95743,7 +95715,7 @@ public interface SysMLPackage extends EPackage {
 	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getStateSubactionKind()
 	 * @generated
 	 */
-	int STATE_SUBACTION_KIND = 148;
+	int STATE_SUBACTION_KIND = 147;
 
 	/**
 	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.RequirementConstraintKind <em>Requirement Constraint Kind</em>}' enum.
@@ -95753,7 +95725,7 @@ public interface SysMLPackage extends EPackage {
 	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getRequirementConstraintKind()
 	 * @generated
 	 */
-	int REQUIREMENT_CONSTRAINT_KIND = 147;
+	int REQUIREMENT_CONSTRAINT_KIND = 146;
 
 	/**
 	 * Returns the meta object for class '{@link org.omg.sysml.lang.sysml.EndFeatureMembership <em>End Feature Membership</em>}'.
@@ -95817,16 +95789,6 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getAssertConstraintUsage_AssertedConstraint();
-
-	/**
-	 * Returns the meta object for class '{@link org.omg.sysml.lang.sysml.Track4 <em>Track4</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Track4</em>'.
-	 * @see org.omg.sysml.lang.sysml.Track4
-	 * @generated
-	 */
-	EClass getTrack4();
 
 	/**
 	 * Returns the meta object for class '{@link org.omg.sysml.lang.sysml.Expose <em>Expose</em>}'.
@@ -101282,16 +101244,6 @@ public interface SysMLPackage extends EPackage {
 		 * @generated
 		 */
 		EReference ASSERT_CONSTRAINT_USAGE__ASSERTED_CONSTRAINT = eINSTANCE.getAssertConstraintUsage_AssertedConstraint();
-
-		/**
-		 * The meta object literal for the '{@link org.omg.sysml.lang.sysml.impl.Track4Impl <em>Track4</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.omg.sysml.lang.sysml.impl.Track4Impl
-		 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getTrack4()
-		 * @generated
-		 */
-		EClass TRACK4 = eINSTANCE.getTrack4();
 
 		/**
 		 * The meta object literal for the '{@link org.omg.sysml.lang.sysml.impl.ExposeImpl <em>Expose</em>}' class.

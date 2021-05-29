@@ -28,3 +28,7 @@ target
 # JetBrains IDE settings
 .idea/
 *.iml
+
+# MacOS Finder
+.DS_Store
+

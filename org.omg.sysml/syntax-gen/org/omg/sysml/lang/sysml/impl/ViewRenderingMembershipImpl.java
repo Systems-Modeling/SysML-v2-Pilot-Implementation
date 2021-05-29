@@ -2,13 +2,9 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
-import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
+import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.RenderingUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.ViewRenderingMembership;
@@ -29,16 +25,6 @@ import org.omg.sysml.util.FeatureUtil;
  * @generated
  */
 public class ViewRenderingMembershipImpl extends FeatureMembershipImpl implements ViewRenderingMembership {
-	/**
-	 * The cached value of the '{@link #getOwnedRendering() <em>Owned Rendering</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOwnedRendering()
-	 * @generated
-	 * @ordered
-	 */
-	protected RenderingUsage ownedRendering;
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -65,37 +51,37 @@ public class ViewRenderingMembershipImpl extends FeatureMembershipImpl implement
 	 */
 	@Override
 	public RenderingUsage getOwnedRendering() {
-		if (ownedRendering != null && ownedRendering.eIsProxy()) {
-			InternalEObject oldOwnedRendering = (InternalEObject)ownedRendering;
-			ownedRendering = (RenderingUsage)eResolveProxy(oldOwnedRendering);
-			if (ownedRendering != oldOwnedRendering) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SysMLPackage.VIEW_RENDERING_MEMBERSHIP__OWNED_RENDERING, oldOwnedRendering, ownedRendering));
-			}
-		}
-		return ownedRendering;
+		RenderingUsage ownedRendering = basicGetOwnedRendering();
+		return ownedRendering != null && ownedRendering.eIsProxy() ? (RenderingUsage)eResolveProxy((InternalEObject)ownedRendering) : ownedRendering;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public RenderingUsage basicGetOwnedRendering() {
-		return ownedRendering;
+		Feature ownedMemberFeature = super.basicGetOwnedMemberFeature();
+		return ownedMemberFeature instanceof RenderingUsage? (RenderingUsage)ownedMemberFeature: null;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public void setOwnedRendering(RenderingUsage newOwnedRendering) {
-		RenderingUsage oldOwnedRendering = ownedRendering;
-		ownedRendering = newOwnedRendering;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.VIEW_RENDERING_MEMBERSHIP__OWNED_RENDERING, oldOwnedRendering, ownedRendering));
+		super.setOwnedMemberElement(newOwnedRendering);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetOwnedRendering() {
+		return basicGetOwnedRendering() != null;
 	}
 
 	/**
@@ -190,12 +176,55 @@ public class ViewRenderingMembershipImpl extends FeatureMembershipImpl implement
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case SysMLPackage.VIEW_RENDERING_MEMBERSHIP__OWNED_MEMBER_FEATURE:
+				return isSetOwnedMemberFeature();
 			case SysMLPackage.VIEW_RENDERING_MEMBERSHIP__OWNED_RENDERING:
-				return ownedRendering != null;
+				return isSetOwnedRendering();
 			case SysMLPackage.VIEW_RENDERING_MEMBERSHIP__REFERENCED_RENDERING:
 				return basicGetReferencedRendering() != null;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Feature getOwnedMemberFeature() {
+		return getOwnedRendering();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Feature basicGetOwnedMemberFeature() {
+		return basicGetOwnedRendering();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setOwnedMemberFeature(Feature newOwnedMemberFeature) {
+		if (newOwnedMemberFeature != null && !(newOwnedMemberFeature instanceof RenderingUsage)) {
+			throw new IllegalArgumentException("newOwnedMemberFeature must be an instance of RenderingUsage");
+		}
+		setOwnedRendering((RenderingUsage) newOwnedMemberFeature);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetOwnedMemberFeature() {
+  		return false;
 	}
 
 } //ViewRenderingMembershipImpl

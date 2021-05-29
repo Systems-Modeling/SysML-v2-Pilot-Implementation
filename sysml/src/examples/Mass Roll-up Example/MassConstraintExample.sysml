@@ -99,7 +99,7 @@ package MassConstraintExample {
 	part def Vehicle5 {
 		assert constraint ml : MassLimit (
 			mass = m, 
-			maxMass = 2500@[kg]
+			maxMass = 2500 [kg]
 		);
 		
 		attribute m : MassValue = eng::m + trans::m;

@@ -5140,11 +5140,6 @@
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Track4">
-    <eAnnotations source="http://www.eclipse.org/uml2/2.0.0/UML">
-      <details key="originalName" value="Track 4"/>
-    </eAnnotations>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Dependency" eSuperTypes="#//Relationship">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="&lt;p>A Dependency is a Relationship that indicates that one or more &lt;code>client&lt;/code> Elements require one more &lt;code>supplier&lt;/code> Elements for their complete specification. In general, this means that a change to one of the &lt;code>supplier&lt;/code> Elements may necessitate a change to, or re-specification of, the &lt;code>client&lt;/code> Elements.&lt;/p>&#xA;&#xA;&lt;p>Note that a Dependency is entirely a model-level Relationship, without instance-level semantics.&lt;/p>"/>
@@ -5180,10 +5175,12 @@
       <details key="documentation" value="&lt;p>A ViewRenderingMembership is a FeatureMembership that identifies the &lt;code>viewRendering&lt;/code> of a View. The &lt;code>ownedMemberFeature&lt;/code> of a RequirementConstraintMembership must be a RenderingUsage.&lt;/p>"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedRendering" ordered="false"
-        lowerBound="1" eType="#//RenderingUsage">
+        lowerBound="1" eType="#//RenderingUsage" volatile="true" transient="true"
+        derived="true">
       <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName">
         <details key="body" value="viewRenderingMembership"/>
       </eAnnotations>
+      <eAnnotations source="redefines" references="#//FeatureMembership/ownedMemberFeature"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="referencedRendering" ordered="false"
         lowerBound="1" eType="#//RenderingUsage" volatile="true" transient="true"

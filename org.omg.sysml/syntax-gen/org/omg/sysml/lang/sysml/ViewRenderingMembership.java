@@ -27,6 +27,12 @@ package org.omg.sysml.lang.sysml;
 public interface ViewRenderingMembership extends FeatureMembership {
 	/**
 	 * Returns the value of the '<em><b>Owned Rendering</b></em>' reference.
+	 * <p>
+	 * This feature redefines the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.FeatureMembership#getOwnedMemberFeature() <em>Owned Member Feature</em>}'</li>
+	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Owned Rendering</em>' reference isn't clear,
@@ -36,8 +42,9 @@ public interface ViewRenderingMembership extends FeatureMembership {
 	 * @return the value of the '<em>Owned Rendering</em>' reference.
 	 * @see #setOwnedRendering(RenderingUsage)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getViewRenderingMembership_OwnedRendering()
-	 * @model required="true" ordered="false"
+	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='viewRenderingMembership'"
+	 *        annotation="redefines"
 	 * @generated
 	 */
 	RenderingUsage getOwnedRendering();

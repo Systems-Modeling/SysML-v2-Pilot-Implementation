@@ -579,10 +579,6 @@ public class SysMLAdapterFactory extends AdapterFactoryImpl {
 				return createAssertConstraintUsageAdapter();
 			}
 			@Override
-			public Adapter caseTrack4(Track4 object) {
-				return createTrack4Adapter();
-			}
-			@Override
 			public Adapter caseDependency(Dependency object) {
 				return createDependencyAdapter();
 			}
@@ -725,20 +721,6 @@ public class SysMLAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createAssertConstraintUsageAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.omg.sysml.lang.sysml.Track4 <em>Track4</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.omg.sysml.lang.sysml.Track4
-	 * @generated
-	 */
-	public Adapter createTrack4Adapter() {
 		return null;
 	}
 

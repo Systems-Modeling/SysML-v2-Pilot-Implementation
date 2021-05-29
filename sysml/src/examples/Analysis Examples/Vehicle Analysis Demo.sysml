@@ -86,11 +86,11 @@ package 'Vehicle Analysis Demo' {
 	    }
 	
 	    requirement cityFuelEconomyRequirement : FuelEconomyRequirement {
-	        :>> requiredFuelEconomy = 25@[mpg];
+	        :>> requiredFuelEconomy = 25 [mpg];
 	    }
 	
 	    requirement highwayFuelEconomyRequirement : FuelEconomyRequirement {
-	        :>> requiredFuelEconomy = 30@[mpg];
+	        :>> requiredFuelEconomy = 30 [mpg];
 	    }
 	}
 	
@@ -183,7 +183,7 @@ package 'Vehicle Analysis Demo' {
 				 */
 				
 				assume constraint {
-					vehicle::wheelDiameter == 33@['in'] &
+					vehicle::wheelDiameter == 33 ['in'] &
 					vehicle::driveTrainEfficiency == 0.4
 				}
 				
@@ -206,9 +206,9 @@ package 'Vehicle Analysis Demo' {
 				assert constraint straightLineDynamics {
 					(1..sc.n-1)->forAll {in i: Integer;
 						private thisSample : NominalScenario::TimeStateRecord = 
-							(sc[i] as NominalScenario).samples;
+							sc.samples[i];
 						private nextSample : NominalScenario::TimeStateRecord = 
-							(sc[i+1] as NominalScenario).samples;
+							sc.samples[i+1];
 						StraightLineDynamicsEquations (
 							p => power[i],
 							m => vehicle.mass,
@@ -252,7 +252,7 @@ package 'Vehicle Analysis Demo' {
 	
 	            :>> actualFuelEconomy = vehicle::fuelEconomy_city;
 	
-	            assume constraint { vehicle::cargoMass == 1000@[lb] }
+	            assume constraint { vehicle::cargoMass == 1000 [lb] }
 	        }
 	
 	        requirement vehicleFuelEconomyRequirement_highway :> highwayFuelEconomyRequirement {
@@ -262,7 +262,7 @@ package 'Vehicle Analysis Demo' {
 	
 	            :>> actualFuelEconomy = vehicle::fuelEconomy_highway;
 	
-	            assume constraint { vehicle::cargoMass == 1000@[lb] }
+	            assume constraint { vehicle::cargoMass == 1000 [lb] }
 	        }
 	
 	    }

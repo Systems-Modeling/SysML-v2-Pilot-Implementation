@@ -19,17 +19,20 @@ package StateSpaceRepresentation {
     /** StateSpaceDynamics is the simplest form of State Space Representation,
         and nextState directly computes the stateSpace of the next timestep. */
     abstract action def StateSpaceDynamics {
-    	in attribute input: Input;
-    	
+        in attribute input: Input;
+        
         abstract calc nextState: NextState;
         abstract calc getOutput: GetOutput;
         attribute stateSpace: StateSpace;
 
-       	out attribute output: Output = getOutput(input, stateSpace);
+        out attribute output: Output = getOutput(input, stateSpace);
     }
    
     /** The definition of the time derivative of StateSpace, which means dx/dt, where x is StateSpace */
-    abstract attribute def StateDerivative;
+    abstract attribute def StateDerivative :> VectorQuantityValue {
+        ref stateSpace: StateSpace;
+        constraint { stateSpace::order == order }
+    }
    
     /** Computes the time derivative of stateSpace, which corresponds dx/dt = f(u, x), where u is input and x is stateSpace. */
     abstract calc def Derivative(input: Input, stateSpace: StateSpace): StateDerivative;

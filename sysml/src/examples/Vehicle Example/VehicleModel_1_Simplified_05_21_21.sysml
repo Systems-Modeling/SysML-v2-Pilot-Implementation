@@ -1238,40 +1238,4 @@ package sfriedenthal_VehicleModel_1_simplified{
     }
 }
 
-%publish sfriedenthal_VehicleModel_1_simplified
-
-%view sfriedenthal_VehicleModel_1_simplified::Views_Viewpoints::VehicleViews::vehiclePartsTree_Safety
-
-%viz --view tree sfriedenthal_VehicleModel_1_simplified::Definitions::PartDefinitions::Vehicle
-
-%viz --view tree sfriedenthal_VehicleModel_1_simplified::Definitions::PartDefinitions::FuelTank
-
-%viz --view tree sfriedenthal_VehicleModel_1_simplified::Definitions::PartDefinitions::FrontAxle
-
-%viz --view tree sfriedenthal_VehicleModel_1_simplified::VehicleConfigurations::VehicleConfiguration_b::PartsTree::vehicle_b
-
-%viz --view tree sfriedenthal_VehicleModel_1_simplified::VehicleConfigurations::VehicleConfiguration_B::VehicleDecomposition::Vehicle_B
-
-%viz --view interconnection --style ortholine sfriedenthal_VehicleModel_1_simplified::VehicleConfigurations::VehicleConfiguration_b::PartsTree::vehicle_b
-
-%viz --view interconnection --style ortholine sfriedenthal_VehicleModel_1_simplified::VehicleConfigurations::VehicleConfiguration_B::VehicleDecomposition::Vehicle_B
-
-%viz sfriedenthal_VehicleModel_1_simplified::VehicleConfigurations::VehicleConfiguration_b::PartsTree::vehicle_b::rearAxleAssembly
-
-%viz --view Action --style ortholine sfriedenthal_VehicleModel_1_simplified::MissionContext::TransportPassengerScenario::transportPassenger
-
-%viz --view Action --style ortholine sfriedenthal_VehicleModel_1_simplified::VehicleConfigurations::VehicleConfiguration_b::ActionTree::providePower
-
-%viz --view tree --style ortholine sfriedenthal_VehicleModel_1_simplified::VehicleConfigurations::VehicleConfiguration_b::ActionTree::providePower
-
-%viz --view State --style ortholine sfriedenthal_VehicleModel_1_simplified::VehicleConfigurations::VehicleConfiguration_b::States::vehicleStates
-
-%viz --view tree sfriedenthal_VehicleModel_1_simplified::Definitions::RequirementDefinitions::MassRequirement
-
-%viz --view tree sfriedenthal_VehicleModel_1_simplified::VehicleConfigurations::VehicleConfiguration_b::Requirements::vehicleSpecification
-
-%viz --view tree sfriedenthal_VehicleModel_1_simplified::VehicleAnalysis::FuelEconomyAnalysisModel::fuelEconomyAnalysis
-
-%viz --view tree sfriedenthal_VehicleModel_1_simplified::SafetyandSecurity
-
 

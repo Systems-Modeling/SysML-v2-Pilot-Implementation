@@ -102,7 +102,7 @@ image:oomph-projects.png[oomph projects]
 
 2. Select General/Project.
 
-3. Given the project its expected name (and location if necessary), then press Next.
+3. Give the project its expected name (and location if necessary), then press Next.
 
 4. On the Project References page, check the `sysml.library` project. This step tells Eclipse which other projects should be visible for resolving cross-references.
 +

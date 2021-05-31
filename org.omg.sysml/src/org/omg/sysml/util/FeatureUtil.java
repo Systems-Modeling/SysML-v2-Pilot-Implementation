@@ -226,13 +226,4 @@ public class FeatureUtil {
 		return owningType instanceof Behavior || owningType instanceof Step;
 	}
 	
-	// Individuals
-
-	/**
-	 * This method is used for time slice and snapshot features.
-	 */
-	public static void setIndividualTypingFor(Feature feature) {
-		getFeatureAdapter(feature).setIndividualTyping();
-	}
-
 }

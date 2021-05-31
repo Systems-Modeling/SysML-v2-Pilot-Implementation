@@ -47,7 +47,6 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedUsage <em>Nested Usage</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getOwningUsage <em>Owning Usage</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Usage#getOwningDefinition <em>Owning Definition</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedPort <em>Nested Port</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedAction <em>Nested Action</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedState <em>Nested State</em>}</li>
@@ -66,7 +65,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedConnection <em>Nested Connection</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedItem <em>Nested Item</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedPart <em>Nested Part</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedIndividual <em>Nested Individual</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedInterface <em>Nested Interface</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedAttribute <em>Nested Attribute</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedView <em>Nested View</em>}</li>
@@ -77,6 +75,9 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedAllocation <em>Nested Allocation</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedConcern <em>Nested Concern</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedStakeholder <em>Nested Stakeholder</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedOccurrence <em>Nested Occurrence</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Usage#getDefinition <em>Definition</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Usage#getOwningDefinition <em>Owning Definition</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage()
@@ -278,7 +279,7 @@ public interface Usage extends Feature {
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Usage#getNestedUsage() <em>Nested Usage</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Usage#getNestedOccurrence() <em>Nested Occurrence</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -287,7 +288,7 @@ public interface Usage extends Feature {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The ConstraintUsages that are <tt>ownedUsages</tt> of this Usage.</p>
+	 * <p>The ConstraintUsages that are <code>ownedUsages</code> of this Usage.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Nested Constraint</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedConstraint()
@@ -570,7 +571,7 @@ public interface Usage extends Feature {
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Usage#getNestedUsage() <em>Nested Usage</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Usage#getNestedOccurrence() <em>Nested Occurrence</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -608,29 +609,6 @@ public interface Usage extends Feature {
 	 * @generated
 	 */
 	EList<PartUsage> getNestedPart();
-
-	/**
-	 * Returns the value of the '<em><b>Nested Individual</b></em>' reference list.
-	 * The list contents are of type {@link org.omg.sysml.lang.sysml.IndividualUsage}.
-	 * <p>
-	 * This feature subsets the following features:
-	 * </p>
-	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Usage#getNestedItem() <em>Nested Item</em>}'</li>
-	 * </ul>
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * <p.The IndividualUsages that are <code>nestedUsages</code> of this Usage.</p>
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Nested Individual</em>' reference list.
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedIndividual()
-	 * @model transient="true" volatile="true" derived="true" ordered="false"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='indvidualOwningUsage'"
-	 *        annotation="subsets"
-	 * @generated
-	 */
-	EList<IndividualUsage> getNestedIndividual();
 
 	/**
 	 * Returns the value of the '<em><b>Nested Interface</b></em>' reference list.
@@ -863,13 +841,59 @@ public interface Usage extends Feature {
 	EList<StakeholderUsage> getNestedStakeholder();
 
 	/**
+	 * Returns the value of the '<em><b>Nested Occurrence</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.OccurrenceUsage}.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Usage#getNestedUsage() <em>Nested Usage</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The OccurrenceUsages that are <code>nestedUsages</code> of this Usage.</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Nested Occurrence</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedOccurrence()
+	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='occurrenceOwningUsage'"
+	 *        annotation="subsets"
+	 * @generated
+	 */
+	EList<OccurrenceUsage> getNestedOccurrence();
+
+	/**
+	 * Returns the value of the '<em><b>Definition</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Classifier}.
+	 * <p>
+	 * This feature redefines the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Feature#getType() <em>Type</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The Classifiers that are the types of this Usage. Nominally, these are Definitions, but other kinds of Kernel Classifiers are also allowed, to permit use of Classifiers from the Kernel Library.</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Definition</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_Definition()
+	 * @model required="true" transient="true" volatile="true" derived="true"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='definedUsage'"
+	 *        annotation="redefines"
+	 * @generated
+	 */
+	EList<Classifier> getDefinition();
+
+	/**
 	 * Returns the value of the '<em><b>Nested Action</b></em>' reference list.
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.ActionUsage}.
 	 * <p>
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Usage#getNestedUsage() <em>Nested Usage</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Usage#getNestedOccurrence() <em>Nested Occurrence</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>

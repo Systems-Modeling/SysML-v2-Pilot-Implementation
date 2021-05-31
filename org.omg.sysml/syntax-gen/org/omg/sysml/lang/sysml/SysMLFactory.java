@@ -555,6 +555,24 @@ public interface SysMLFactory extends EFactory {
 	ActionUsage createActionUsage();
 
 	/**
+	 * Returns a new object of class '<em>Occurrence Usage</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Occurrence Usage</em>'.
+	 * @generated
+	 */
+	OccurrenceUsage createOccurrenceUsage();
+
+	/**
+	 * Returns a new object of class '<em>Portioning Feature</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Portioning Feature</em>'.
+	 * @generated
+	 */
+	PortioningFeature createPortioningFeature();
+
+	/**
 	 * Returns a new object of class '<em>Exhibit State Usage</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -618,24 +636,6 @@ public interface SysMLFactory extends EFactory {
 	ConjugatedPortTyping createConjugatedPortTyping();
 
 	/**
-	 * Returns a new object of class '<em>Individual Usage</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Individual Usage</em>'.
-	 * @generated
-	 */
-	IndividualUsage createIndividualUsage();
-
-	/**
-	 * Returns a new object of class '<em>Individual Definition</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Individual Definition</em>'.
-	 * @generated
-	 */
-	IndividualDefinition createIndividualDefinition();
-
-	/**
 	 * Returns a new object of class '<em>Item Definition</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -643,6 +643,15 @@ public interface SysMLFactory extends EFactory {
 	 * @generated
 	 */
 	ItemDefinition createItemDefinition();
+
+	/**
+	 * Returns a new object of class '<em>Occurrence Definition</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Occurrence Definition</em>'.
+	 * @generated
+	 */
+	OccurrenceDefinition createOccurrenceDefinition();
 
 	/**
 	 * Returns a new object of class '<em>Interface Definition</em>'.
@@ -1084,24 +1093,6 @@ public interface SysMLFactory extends EFactory {
 	 * @generated
 	 */
 	Dependency createDependency();
-
-	/**
-	 * Returns a new object of class '<em>Time Slice Feature</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Time Slice Feature</em>'.
-	 * @generated
-	 */
-	TimeSliceFeature createTimeSliceFeature();
-
-	/**
-	 * Returns a new object of class '<em>Snapshot Feature</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Snapshot Feature</em>'.
-	 * @generated
-	 */
-	SnapshotFeature createSnapshotFeature();
 
 	/**
 	 * Returns a new object of class '<em>Requirement Constraint Membership</em>'.

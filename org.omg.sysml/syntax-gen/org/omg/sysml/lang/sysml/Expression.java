@@ -157,6 +157,7 @@ public interface Expression extends Step {
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * <p>If this Expression <code>isModelLevelEvaluable</code>, then evaluate it using the <code>target</code> as the context Element for resolving Feature names and testing classification. The result is a collection of Elements, each of which must be a LiteralExpression or an AnnotatingFeature.</p>
+	 * isModelLevelEvaluable
 	 * <!-- end-model-doc -->
 	 * @model unique="false" targetRequired="true" targetOrdered="false"
 	 * @generated

@@ -1,6 +1,7 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation, PlantUML Visualization
  * Copyright (c) 2020 Mgnite Inc.
+ * Copyright (c) 2021 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -19,6 +20,7 @@
  * 
  * Contributors:
  *  Hisashi Miyashita, Mgnite Inc.
+ *  Ed Seideiwtz, MDS
  * 
  *****************************************************************************/
 
@@ -47,17 +49,18 @@ import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.Generalization;
-import org.omg.sysml.lang.sysml.IndividualUsage;
 import org.omg.sysml.lang.sysml.ItemDefinition;
 import org.omg.sysml.lang.sysml.ItemFlow;
 import org.omg.sysml.lang.sysml.ItemUsage;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.ObjectiveMembership;
+import org.omg.sysml.lang.sysml.OccurrenceUsage;
 import org.omg.sysml.lang.sysml.PartDefinition;
 import org.omg.sysml.lang.sysml.PartUsage;
 import org.omg.sysml.lang.sysml.PerformActionUsage;
 import org.omg.sysml.lang.sysml.PortUsage;
+import org.omg.sysml.lang.sysml.PortionKind;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.ReferenceUsage;
 import org.omg.sysml.lang.sysml.RequirementConstraintMembership;
@@ -446,13 +449,15 @@ public class SysML2PlantUMLStyle {
 		}
 
 		@Override
-        public String caseIndividualUsage(IndividualUsage iu) {
-            if (iu.isTimeSlice()) {
+        public String caseOccurrenceUsage(OccurrenceUsage ou) {
+            if (ou.getPortionKind() == PortionKind.TIMESLICE) {
                 return "<<timeslice>> ";
-            } else if (iu.isSnapshot()) {
+            } else if (ou.getPortionKind() == PortionKind.SNAPSHOT) {
                 return "<<snapshot>> ";
-            } else {
+            } else if (ou.isIndividual()){
                 return "<<individual>> ";
+            } else {
+            	return "<<occurrence>> ";
             }
         }
         

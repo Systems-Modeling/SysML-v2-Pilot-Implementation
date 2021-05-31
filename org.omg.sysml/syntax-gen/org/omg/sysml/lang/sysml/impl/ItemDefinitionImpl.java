@@ -34,7 +34,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  *
  * @generated
  */
-public class ItemDefinitionImpl extends DefinitionImpl implements ItemDefinition {
+public class ItemDefinitionImpl extends OccurrenceDefinitionImpl implements ItemDefinition {
 
 	/**
 	 * <!-- begin-user-doc -->

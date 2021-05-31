@@ -41,12 +41,13 @@ import org.omg.sysml.lang.sysml.Definition;
 import org.omg.sysml.lang.sysml.EnumerationUsage;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
-import org.omg.sysml.lang.sysml.IndividualUsage;
 import org.omg.sysml.lang.sysml.InterfaceUsage;
 import org.omg.sysml.lang.sysml.ItemUsage;
+import org.omg.sysml.lang.sysml.OccurrenceUsage;
 import org.omg.sysml.lang.sysml.PartUsage;
 import org.omg.sysml.lang.sysml.CalculationUsage;
 import org.omg.sysml.lang.sysml.CaseUsage;
+import org.omg.sysml.lang.sysml.Classifier;
 import org.omg.sysml.lang.sysml.ConcernUsage;
 import org.omg.sysml.lang.sysml.ConnectionUsage;
 import org.omg.sysml.lang.sysml.PortUsage;
@@ -76,7 +77,6 @@ import org.omg.sysml.util.UsageUtil;
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedUsage <em>Nested Usage</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getOwningUsage <em>Owning Usage</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getOwningDefinition <em>Owning Definition</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedPort <em>Nested Port</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedAction <em>Nested Action</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedState <em>Nested State</em>}</li>
@@ -95,7 +95,6 @@ import org.omg.sysml.util.UsageUtil;
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedConnection <em>Nested Connection</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedItem <em>Nested Item</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedPart <em>Nested Part</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedIndividual <em>Nested Individual</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedInterface <em>Nested Interface</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedAttribute <em>Nested Attribute</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedView <em>Nested View</em>}</li>
@@ -106,6 +105,9 @@ import org.omg.sysml.util.UsageUtil;
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedAllocation <em>Nested Allocation</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedConcern <em>Nested Concern</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedStakeholder <em>Nested Stakeholder</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedOccurrence <em>Nested Occurrence</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getDefinition <em>Definition</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getOwningDefinition <em>Owning Definition</em>}</li>
  * </ul>
  *
  * @generated
@@ -410,16 +412,6 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 	 * @generated NOT
 	 */
 	@Override
-	public EList<IndividualUsage> getNestedIndividual() {
-		return new DerivedEObjectEList<>(IndividualUsage.class, this, SysMLPackage.USAGE__NESTED_INDIVIDUAL, new int[] {SysMLPackage.TYPE__OWNED_FEATURE});
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	@Override
 	public EList<InterfaceUsage> getNestedInterface() {
 		return new DerivedEObjectEList<>(InterfaceUsage.class, this, SysMLPackage.USAGE__NESTED_INTERFACE, new int[] {SysMLPackage.TYPE__OWNED_FEATURE});
 	}
@@ -520,6 +512,41 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 	 * @generated NOT
 	 */
 	@Override
+	public EList<OccurrenceUsage> getNestedOccurrence() {
+		return new DerivedEObjectEList<>(OccurrenceUsage.class, this, SysMLPackage.USAGE__NESTED_OCCURRENCE, new int[] {SysMLPackage.TYPE__OWNED_FEATURE});
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public EList<Classifier> getDefinition() {
+		EList<Classifier> definitions =
+				new NonNotifyingEObjectEList<>(Classifier.class, this, SysMLPackage.USAGE__DEFINITION);
+		super.getType().stream().
+			filter(Classifier.class::isInstance).
+			map(Classifier.class::cast).
+			forEachOrdered(definitions::add);
+		return definitions;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetDefinition() {
+		return !getDefinition().isEmpty();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
 	public EList<ActionUsage> getNestedAction() {
 		return new DerivedEObjectEList<>(ActionUsage.class, this, SysMLPackage.USAGE__NESTED_ACTION, new int[] {SysMLPackage.TYPE__OWNED_FEATURE});
 	}
@@ -572,9 +599,6 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 			case SysMLPackage.USAGE__OWNING_USAGE:
 				if (resolve) return getOwningUsage();
 				return basicGetOwningUsage();
-			case SysMLPackage.USAGE__OWNING_DEFINITION:
-				if (resolve) return getOwningDefinition();
-				return basicGetOwningDefinition();
 			case SysMLPackage.USAGE__NESTED_PORT:
 				return getNestedPort();
 			case SysMLPackage.USAGE__NESTED_ACTION:
@@ -611,8 +635,6 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 				return getNestedItem();
 			case SysMLPackage.USAGE__NESTED_PART:
 				return getNestedPart();
-			case SysMLPackage.USAGE__NESTED_INDIVIDUAL:
-				return getNestedIndividual();
 			case SysMLPackage.USAGE__NESTED_INTERFACE:
 				return getNestedInterface();
 			case SysMLPackage.USAGE__NESTED_ATTRIBUTE:
@@ -633,6 +655,13 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 				return getNestedConcern();
 			case SysMLPackage.USAGE__NESTED_STAKEHOLDER:
 				return getNestedStakeholder();
+			case SysMLPackage.USAGE__NESTED_OCCURRENCE:
+				return getNestedOccurrence();
+			case SysMLPackage.USAGE__DEFINITION:
+				return getDefinition();
+			case SysMLPackage.USAGE__OWNING_DEFINITION:
+				if (resolve) return getOwningDefinition();
+				return basicGetOwningDefinition();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -652,9 +681,6 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 				return;
 			case SysMLPackage.USAGE__OWNING_USAGE:
 				setOwningUsage((Usage)newValue);
-				return;
-			case SysMLPackage.USAGE__OWNING_DEFINITION:
-				setOwningDefinition((Definition)newValue);
 				return;
 			case SysMLPackage.USAGE__NESTED_PORT:
 				getNestedPort().clear();
@@ -727,10 +753,6 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 				getNestedPart().clear();
 				getNestedPart().addAll((Collection<? extends PartUsage>)newValue);
 				return;
-			case SysMLPackage.USAGE__NESTED_INDIVIDUAL:
-				getNestedIndividual().clear();
-				getNestedIndividual().addAll((Collection<? extends IndividualUsage>)newValue);
-				return;
 			case SysMLPackage.USAGE__NESTED_INTERFACE:
 				getNestedInterface().clear();
 				getNestedInterface().addAll((Collection<? extends InterfaceUsage>)newValue);
@@ -771,6 +793,17 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 				getNestedStakeholder().clear();
 				getNestedStakeholder().addAll((Collection<? extends StakeholderUsage>)newValue);
 				return;
+			case SysMLPackage.USAGE__NESTED_OCCURRENCE:
+				getNestedOccurrence().clear();
+				getNestedOccurrence().addAll((Collection<? extends OccurrenceUsage>)newValue);
+				return;
+			case SysMLPackage.USAGE__DEFINITION:
+				getDefinition().clear();
+				getDefinition().addAll((Collection<? extends Classifier>)newValue);
+				return;
+			case SysMLPackage.USAGE__OWNING_DEFINITION:
+				setOwningDefinition((Definition)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -788,9 +821,6 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 				return;
 			case SysMLPackage.USAGE__OWNING_USAGE:
 				setOwningUsage((Usage)null);
-				return;
-			case SysMLPackage.USAGE__OWNING_DEFINITION:
-				setOwningDefinition((Definition)null);
 				return;
 			case SysMLPackage.USAGE__NESTED_PORT:
 				getNestedPort().clear();
@@ -846,9 +876,6 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 			case SysMLPackage.USAGE__NESTED_PART:
 				getNestedPart().clear();
 				return;
-			case SysMLPackage.USAGE__NESTED_INDIVIDUAL:
-				getNestedIndividual().clear();
-				return;
 			case SysMLPackage.USAGE__NESTED_INTERFACE:
 				getNestedInterface().clear();
 				return;
@@ -879,6 +906,15 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 			case SysMLPackage.USAGE__NESTED_STAKEHOLDER:
 				getNestedStakeholder().clear();
 				return;
+			case SysMLPackage.USAGE__NESTED_OCCURRENCE:
+				getNestedOccurrence().clear();
+				return;
+			case SysMLPackage.USAGE__DEFINITION:
+				getDefinition().clear();
+				return;
+			case SysMLPackage.USAGE__OWNING_DEFINITION:
+				setOwningDefinition((Definition)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -891,12 +927,12 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case SysMLPackage.USAGE__TYPE:
+				return isSetType();
 			case SysMLPackage.USAGE__NESTED_USAGE:
 				return !getNestedUsage().isEmpty();
 			case SysMLPackage.USAGE__OWNING_USAGE:
 				return basicGetOwningUsage() != null;
-			case SysMLPackage.USAGE__OWNING_DEFINITION:
-				return basicGetOwningDefinition() != null;
 			case SysMLPackage.USAGE__NESTED_PORT:
 				return !getNestedPort().isEmpty();
 			case SysMLPackage.USAGE__NESTED_ACTION:
@@ -933,8 +969,6 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 				return !getNestedItem().isEmpty();
 			case SysMLPackage.USAGE__NESTED_PART:
 				return !getNestedPart().isEmpty();
-			case SysMLPackage.USAGE__NESTED_INDIVIDUAL:
-				return !getNestedIndividual().isEmpty();
 			case SysMLPackage.USAGE__NESTED_INTERFACE:
 				return !getNestedInterface().isEmpty();
 			case SysMLPackage.USAGE__NESTED_ATTRIBUTE:
@@ -955,6 +989,12 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 				return !getNestedConcern().isEmpty();
 			case SysMLPackage.USAGE__NESTED_STAKEHOLDER:
 				return !getNestedStakeholder().isEmpty();
+			case SysMLPackage.USAGE__NESTED_OCCURRENCE:
+				return !getNestedOccurrence().isEmpty();
+			case SysMLPackage.USAGE__DEFINITION:
+				return isSetDefinition();
+			case SysMLPackage.USAGE__OWNING_DEFINITION:
+				return basicGetOwningDefinition() != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -973,6 +1013,26 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 		result.append(isVariation);
 		result.append(')');
 		return result.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Type> getType() {
+		@SuppressWarnings("unchecked")
+		EList<Type> definition = (EList<Type>)((EList<?>)getDefinition());
+		return definition;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetType() {
+  		return false;
 	}
 
 } //UsageImpl

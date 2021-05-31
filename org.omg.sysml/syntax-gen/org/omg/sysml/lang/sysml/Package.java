@@ -75,9 +75,14 @@ public interface Package extends Namespace {
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * <p>Determine whether the given <code>element</code> meets all the <code>filterConditions</code>.</p>
+	 * let metadataAnnotations: Sequence(AnnotatingElement) = 
+	 *     element.ownedAnnotation.annotatingElement->
+	 *         select(oclIsKindOf(AnnotatingFeature)) in
+	 *     self.filterCondition->forAll(cond | 
+	 *         metadataAnnotations->exists(elem | 
+	 *             self.checkCondition(elem, cond)))
 	 * <!-- end-model-doc -->
 	 * @model dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false" elementRequired="true" elementOrdered="false"
-	 *        annotation="http://www.eclipse.org/uml2/1.1.0/GenModel body='let metadataAnnotations: Sequence(AnnotatingElement) = \n    element.ownedAnnotation.annotatingElement-&gt;\n        select(oclIsKindOf(AnnotatingFeature)) in\n    self.filterCondition-&gt;forAll(cond | \n        metadataAnnotations-&gt;exists(elem | \n            self.checkCondition(elem, cond)))'"
 	 * @generated
 	 */
 	boolean includeAsMember(Element element);
@@ -87,9 +92,12 @@ public interface Package extends Namespace {
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * <p>Model-level evaluate the given <code>condition</code> Expression with the given <code>element</code> as its target. If the result is a LiteralBoolean, return its <code>value</code>. Otherwise return <em>false</em>.</p>
+	 * let results: Sequence(Element) = condition.evaluate(element) in
+	 *     result->size() = 1 and
+	 *     results->at(1).oclIsKindOf(LiteralBoolean) and 
+	 *     results->at(1).oclAsType(LiteralBoolean).value
 	 * <!-- end-model-doc -->
 	 * @model dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false" elementRequired="true" elementOrdered="false" conditionRequired="true" conditionOrdered="false"
-	 *        annotation="http://www.eclipse.org/uml2/1.1.0/GenModel body='let results: Sequence(Element) = condition.evaluate(element) in\n    result-&gt;size() = 1 and\n    results-&gt;at(1).oclIsKindOf(LiteralBoolean) and \n    results-&gt;at(1).oclAsType(LiteralBoolean).value'"
 	 * @generated
 	 */
 	boolean checkCondition(Element element, Expression condition);

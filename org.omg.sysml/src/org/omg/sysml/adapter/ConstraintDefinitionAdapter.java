@@ -23,7 +23,7 @@ package org.omg.sysml.adapter;
 
 import org.omg.sysml.lang.sysml.ConstraintDefinition;
 
-public class ConstraintDefinitionAdapter extends DefinitionAdapter {
+public class ConstraintDefinitionAdapter extends OccurrenceDefinitionAdapter {
 
 	public ConstraintDefinitionAdapter(ConstraintDefinition element) {
 		super(element);

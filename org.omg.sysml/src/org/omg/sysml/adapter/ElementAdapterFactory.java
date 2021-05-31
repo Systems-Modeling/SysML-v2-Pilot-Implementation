@@ -182,11 +182,6 @@ public class ElementAdapterFactory {
 		}
 		
 		@Override
-		public ElementAdapter caseIndividualUsage(IndividualUsage element) {
-			return new IndividualUsageAdapter(element);
-		}
-		
-		@Override
 		public ElementAdapter caseInvariant(Invariant element) {
 			return new InvariantAdapter(element);
 		}
@@ -242,6 +237,16 @@ public class ElementAdapterFactory {
 		}
 		
 		@Override
+		public ElementAdapter caseOccurrenceDefinition(OccurrenceDefinition element) {
+			return new OccurrenceDefinitionAdapter(element);
+		}
+		
+		@Override
+		public ElementAdapter caseOccurrenceUsage(OccurrenceUsage element) {
+			return new OccurrenceUsageAdapter(element);
+		}
+		
+		@Override
 		public ElementAdapter caseOperatorExpression(OperatorExpression element) {
 			return new OperatorExpressionAdapter(element);
 		}
@@ -272,6 +277,11 @@ public class ElementAdapterFactory {
 		}
 		
 		@Override
+		public ElementAdapter casePortioningFeature(PortioningFeature element) {
+			return new PortioningFeatureAdapter(element);
+		}
+		
+		@Override
 		public ElementAdapter caseRenderingUsage(RenderingUsage element) {
 			return new RenderingUsageAdapter(element);
 		}
@@ -294,11 +304,6 @@ public class ElementAdapterFactory {
 		@Override
 		public ElementAdapter caseSendActionUsage(SendActionUsage element) {
 			return new SendActionUsageAdapter(element);
-		}
-		
-		@Override
-		public ElementAdapter caseSnapshotFeature(SnapshotFeature element) {
-			return new SnapshotFeatureAdapter(element);
 		}
 		
 		@Override
@@ -344,11 +349,6 @@ public class ElementAdapterFactory {
 		@Override
 		public ElementAdapter caseTargetEnd(TargetEnd element) {
 			return new TargetEndAdapter(element);
-		}
-		
-		@Override
-		public ElementAdapter caseTimeSliceFeature(TimeSliceFeature element) {
-			return new TimeSliceFeatureAdapter(element);
 		}
 		
 		@Override

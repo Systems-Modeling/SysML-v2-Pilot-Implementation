@@ -244,7 +244,7 @@ public interface Connector extends Feature, Relationship {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The target <code>relatedFeatires</code> for this Connector. This includes all the <code>relatedFeatures</code> other than the <code>sourceFeature</code>. If this is a binary Connector, then the end Feature corresponding to the <code>targetFeature</code> must redefine the <code>target</code> Feature of the Connector <code>binaryLinks</Code> from the Kernel Library.</p>
+	 * <p>The target <code>relatedFeatures</code> for this Connector. This includes all the <code>relatedFeatures</code> other than the <code>sourceFeature</code>. If this is a binary Connector, then the end Feature corresponding to the <code>targetFeature</code> must redefine the <code>target</code> Feature of the Connector <code>binaryLinks</Code> from the Kernel Library.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Target Feature</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getConnector_TargetFeature()

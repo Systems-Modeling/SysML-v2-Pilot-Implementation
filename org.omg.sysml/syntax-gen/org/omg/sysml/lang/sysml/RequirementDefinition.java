@@ -98,7 +98,7 @@ public interface RequirementDefinition extends ConstraintDefinition {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Concerns addressed by this RequirementDefinition, derived as the <code>addressedConcerns</code> of all <code>AddressedConcernMemberships</code> of the RequirementDefinition.</p>
+	 * <p>The Concerns addressed by this RequirementDefinition, derived as the <code>ownedConcerns</code> of all <code>AddressedConcernMemberships</code> of the RequirementDefinition.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Addressed Concern</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getRequirementDefinition_AddressedConcern()
@@ -180,7 +180,7 @@ public interface RequirementDefinition extends ConstraintDefinition {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The owned ConstraintUsages that represent requirements of this RequirementDefinition. These are derived as the ConstraintUsages related to the RequirementDefinition by a RequirementConstraintMembership with <code>kind</code> = <code>requirement</code>.</p>
+	 * <p>The owned ConstraintUsages that represent assumptions of this RequirementDefinition, derived as the <code>ownedConstraints</code> of the <code>RequirementConstraintMemberships</code> of the RequirementDefinition with <code>kind</code> = <code>assumption</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Assumed Constraint</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getRequirementDefinition_AssumedConstraint()
@@ -207,7 +207,7 @@ public interface RequirementDefinition extends ConstraintDefinition {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The owned ConstraintUsages that represent requirements of this RequirementDefinition. These are derived as the ConstraintUsages related to the RequirementDefinition by a RequirementConstraintMembership with <code>kind</code> = <code>requirement</code>.</p>
+	 * <p>The owned ConstraintUsages that represent requirements of this RequirementDefinition, derived as the <code>ownedConstraints</code> of the <code>RequirementConstraintMemberships</code> of the RequirementDefinition with <code>kind</code> = <code>requirement</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Required Constraint</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getRequirementDefinition_RequiredConstraint()

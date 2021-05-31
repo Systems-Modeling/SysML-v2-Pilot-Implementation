@@ -136,7 +136,7 @@ public interface RequirementUsage extends ConstraintUsage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Concerns addressed by this RequirementUsage, derived as the <code>addressedConcerns</code> of all <code>AddressedConcernMemberships</code> of the RequirementUsage.</p>
+	 * <p>The Concerns addressed by this RequirementUsage, derived as the <code>ownedConcerns</code> of all <code>AddressedConcernMemberships</code> of the RequirementUsage.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Addressed Concern</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getRequirementUsage_AddressedConcern()
@@ -218,7 +218,7 @@ public interface RequirementUsage extends ConstraintUsage {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The owned ConstraintUsages that represent requirements of this RequirementUsage. These are derived as the ConstraintUsages related to the RequirementUsage by a RequirementConstraintMembership with <code>kind</code> = <code>requirement</code>.</p>
+	 * <p>The owned ConstraintUsages that represent requirements of this RequirementUsage, derived as the <code>ownedConstraints</code> of the <code>RequirementConstraintMemberships</code> of the RequirementUsage with <code>kind</code> = <code>requirement</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Required Constraint</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getRequirementUsage_RequiredConstraint()
@@ -245,7 +245,7 @@ public interface RequirementUsage extends ConstraintUsage {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The owned ConstraintUsages that represent assumptions of this RequirementUsage. These are derived as the ConstraintUsages related to the RequirementUsage by a RequirementConstraintMembership with <code>kind</code> = <code>assumption</code>.</p>
+	 * <p>The owned ConstraintUsages that represent assumptions of this RequirementUsage, derived as the <code>ownedConstraints</code> of the <code>RequirementConstraintMemberships</code> of the RequirementUsage with <code>kind</code> = <code>assumption</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Assumed Constraint</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getRequirementUsage_AssumedConstraint()

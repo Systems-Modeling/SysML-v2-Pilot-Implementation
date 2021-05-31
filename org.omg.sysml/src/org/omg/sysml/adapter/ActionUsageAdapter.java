@@ -33,7 +33,7 @@ import org.omg.sysml.lang.sysml.TransitionFeatureMembership;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.util.TypeUtil;
 
-public class ActionUsageAdapter extends UsageAdapter {
+public class ActionUsageAdapter extends OccurrenceUsageAdapter {
 	
 	public static final String STATE_BASE = "States::StateAction";
 	public static final String TRANSITION_BASE = "States::TransitionAction";

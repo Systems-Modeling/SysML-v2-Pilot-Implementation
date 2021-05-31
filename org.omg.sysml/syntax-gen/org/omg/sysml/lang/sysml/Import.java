@@ -191,9 +191,10 @@ public interface Import extends Relationship {
 	 * <!-- begin-model-doc -->
 	 * <p>Returns the Memberships of the <code>importedNamespace</code> whose <code>memberElements</code> are to become imported <code>members</code> of the <code>importOwningNamespace</code>. By default, this is the set of publicly visible Memberships of the <code>importedNamespace</code>, but this may be overridden in specializations of Import. (The <code>excluded</code> parameter is used to handle the possibility of circular Import Relationships.)</p>
 	 * 
+	 * importedPackage.publicMemberships(
+	 *     excluded->including(importOwningNamespace))
 	 * <!-- end-model-doc -->
 	 * @model excludedMany="true" excludedOrdered="false"
-	 *        annotation="http://www.eclipse.org/uml2/1.1.0/GenModel body='importedPackage.publicMemberships(\n    excluded-&gt;including(importOwningNamespace))'"
 	 * @generated
 	 */
 	EList<Membership> importedMembership(EList<Namespace> excluded);

@@ -37,10 +37,8 @@ import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.uml2.common.util.DerivedEObjectEList;
 import org.eclipse.uml2.common.util.DerivedUnionEObjectEList;
 import org.omg.sysml.lang.sysml.Type;
@@ -64,11 +62,11 @@ import org.omg.sysml.util.NonNotifyingEObjectEList;
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.NamespaceImpl#getMembership <em>Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.NamespaceImpl#getOwnedRelationship <em>Owned Relationship</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.NamespaceImpl#getOwnedMembership <em>Owned Membership</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.NamespaceImpl#getOwnedMember <em>Owned Member</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.NamespaceImpl#getOwnedImport <em>Owned Import</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.NamespaceImpl#getMember <em>Member</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.NamespaceImpl#getOwnedMember <em>Owned Member</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.NamespaceImpl#getImportedMembership <em>Imported Membership</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.NamespaceImpl#getOwnedMembership <em>Owned Membership</em>}</li>
  * </ul>
  *
  * @generated
@@ -111,7 +109,7 @@ public class NamespaceImpl extends ElementImpl implements Namespace {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int[] MEMBERSHIP_ESUBSETS = new int[] {SysMLPackage.NAMESPACE__IMPORTED_MEMBERSHIP, SysMLPackage.NAMESPACE__OWNED_MEMBERSHIP};
+	protected static final int[] MEMBERSHIP_ESUBSETS = new int[] {SysMLPackage.NAMESPACE__OWNED_MEMBERSHIP, SysMLPackage.NAMESPACE__IMPORTED_MEMBERSHIP};
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -190,19 +188,10 @@ public class NamespaceImpl extends ElementImpl implements Namespace {
 	 * @generated
 	 */
 	public boolean isSetMembership() {
-		return eIsSet(SysMLPackage.NAMESPACE__IMPORTED_MEMBERSHIP)
-			|| eIsSet(SysMLPackage.NAMESPACE__OWNED_MEMBERSHIP);
+		return eIsSet(SysMLPackage.NAMESPACE__OWNED_MEMBERSHIP)
+			|| eIsSet(SysMLPackage.NAMESPACE__IMPORTED_MEMBERSHIP);
 	}
 
-	/**
-	 * The array of superset feature identifiers for the '{@link #getOwnedImport() <em>Owned Import</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOwnedImport()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final int[] OWNED_IMPORT_ESUPERSETS = new int[] {SysMLPackage.NAMESPACE__OWNED_RELATIONSHIP};
 	/**
 	 * The array of superset feature identifiers for the '{@link #getOwnedMembership() <em>Owned Membership</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -212,25 +201,15 @@ public class NamespaceImpl extends ElementImpl implements Namespace {
 	 * @ordered
 	 */
 	protected static final int[] OWNED_MEMBERSHIP_ESUPERSETS = new int[] {SysMLPackage.NAMESPACE__OWNED_RELATIONSHIP};
-
 	/**
-	 * The cached OCL expression body for the '{@link #namesOf(org.omg.sysml.lang.sysml.Element) <em>Names Of</em>}' operation.
+	 * The array of superset feature identifiers for the '{@link #getOwnedImport() <em>Owned Import</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #namesOf(org.omg.sysml.lang.sysml.Element)
+	 * @see #getOwnedImport()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String NAMES_OF__ELEMENT__EOCL_EXP = "memberships->select(memberElement = element).effectiveMemberName->asSet()";
-	/**
-	 * The cached OCL query for the '{@link #namesOf(org.omg.sysml.lang.sysml.Element) <em>Names Of</em>}' query operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #namesOf(org.omg.sysml.lang.sysml.Element)
-	 * @generated
-	 * @ordered
-	 */
-	protected static OCLExpression<EClassifier> NAMES_OF__ELEMENT__EOCL_QRY;
+	protected static final int[] OWNED_IMPORT_ESUPERSETS = new int[] {SysMLPackage.NAMESPACE__OWNED_RELATIONSHIP};
 
 	// Operations
 
@@ -250,26 +229,6 @@ public class NamespaceImpl extends ElementImpl implements Namespace {
 	}
 
 	/**
-	 * The cached OCL expression body for the '{@link #publicMemberships(org.eclipse.emf.common.util.EList) <em>Public Memberships</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #publicMemberships(org.eclipse.emf.common.util.EList)
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String PUBLIC_MEMBERSHIPS__ELIST__EOCL_EXP = "ownedMembership->union(importedMembership(excluded))->"+
-"    select(m | visibilityOf(m) = VisibilityKind::public)";
-	/**
-	 * The cached OCL query for the '{@link #publicMemberships(org.eclipse.emf.common.util.EList) <em>Public Memberships</em>}' query operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #publicMemberships(org.eclipse.emf.common.util.EList)
-	 * @generated
-	 * @ordered
-	 */
-	protected static OCLExpression<EClassifier> PUBLIC_MEMBERSHIPS__ELIST__EOCL_QRY;
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated NOT
@@ -278,31 +237,6 @@ public class NamespaceImpl extends ElementImpl implements Namespace {
 	public EList<Membership> publicMemberships(EList<Namespace> excluded) {
 		return getPublicMembership(new HashSet<>(excluded), new HashSet<Type>());
 	}	
-
-	/**
-	 * The cached OCL expression body for the '{@link #visibilityOf(org.omg.sysml.lang.sysml.Membership) <em>Visibility Of</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #visibilityOf(org.omg.sysml.lang.sysml.Membership)
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String VISIBILITY_OF__MEMBERSHIP__EOCL_EXP = "if importedMemberships->includes(mem) then"+
-"    ownedImport->select(importedMembership()->includes(mem)).visibility"+
-"else if memberships->includes(mem) then"+
-"    mem.visibility"+
-"else"+
-"    VisibilityKind::private"+
-"endif";
-	/**
-	 * The cached OCL query for the '{@link #visibilityOf(org.omg.sysml.lang.sysml.Membership) <em>Visibility Of</em>}' query operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #visibilityOf(org.omg.sysml.lang.sysml.Membership)
-	 * @generated
-	 * @ordered
-	 */
-	protected static OCLExpression<EClassifier> VISIBILITY_OF__MEMBERSHIP__EOCL_QRY;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -319,28 +253,6 @@ public class NamespaceImpl extends ElementImpl implements Namespace {
 	}
 
 	/**
-	 * The cached OCL expression body for the '{@link #importedMemberships(org.eclipse.emf.common.util.EList) <em>Imported Memberships</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #importedMemberships(org.eclipse.emf.common.util.EList)
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String IMPORTED_MEMBERSHIPS__ELIST__EOCL_EXP = "let includedImports : OrderedSet(Import) ="+
-"    ownedImport->excluding(excluded->contains(importOwningNamespace)) in"+
-"excludeCollisions(includedImports.importedMembership(excluded))->"+
-"    select(m1 | ownedMembership->forAll(m2 | m1.isDistinguishableFrom(m2)))";
-	/**
-	 * The cached OCL query for the '{@link #importedMemberships(org.eclipse.emf.common.util.EList) <em>Imported Memberships</em>}' query operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #importedMemberships(org.eclipse.emf.common.util.EList)
-	 * @generated
-	 * @ordered
-	 */
-	protected static OCLExpression<EClassifier> IMPORTED_MEMBERSHIPS__ELIST__EOCL_QRY;
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated NOT
@@ -348,25 +260,6 @@ public class NamespaceImpl extends ElementImpl implements Namespace {
 	public EList<Membership> importedMemberships(EList<Namespace> excluded) {
 		return getImportedMembership(new HashSet<>(excluded), new HashSet<Type>(), false);
 	}
-
-	/**
-	 * The cached OCL expression body for the '{@link #excludeCollisions(org.eclipse.emf.common.util.EList) <em>Exclude Collisions</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #excludeCollisions(org.eclipse.emf.common.util.EList)
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String EXCLUDE_COLLISIONS__ELIST__EOCL_EXP = "mem->reject(m1 | mem->exists(m2 | not m1.isDistinguishable(m2)))";
-	/**
-	 * The cached OCL query for the '{@link #excludeCollisions(org.eclipse.emf.common.util.EList) <em>Exclude Collisions</em>}' query operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #excludeCollisions(org.eclipse.emf.common.util.EList)
-	 * @generated
-	 * @ordered
-	 */
-	protected static OCLExpression<EClassifier> EXCLUDE_COLLISIONS__ELIST__EOCL_QRY;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -444,16 +337,16 @@ public class NamespaceImpl extends ElementImpl implements Namespace {
 		switch (featureID) {
 			case SysMLPackage.NAMESPACE__MEMBERSHIP:
 				return getMembership();
+			case SysMLPackage.NAMESPACE__OWNED_MEMBERSHIP:
+				return getOwnedMembership();
+			case SysMLPackage.NAMESPACE__OWNED_MEMBER:
+				return getOwnedMember();
 			case SysMLPackage.NAMESPACE__OWNED_IMPORT:
 				return getOwnedImport();
 			case SysMLPackage.NAMESPACE__MEMBER:
 				return getMember();
-			case SysMLPackage.NAMESPACE__OWNED_MEMBER:
-				return getOwnedMember();
 			case SysMLPackage.NAMESPACE__IMPORTED_MEMBERSHIP:
 				return getImportedMembership();
-			case SysMLPackage.NAMESPACE__OWNED_MEMBERSHIP:
-				return getOwnedMembership();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -467,6 +360,14 @@ public class NamespaceImpl extends ElementImpl implements Namespace {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case SysMLPackage.NAMESPACE__OWNED_MEMBERSHIP:
+				getOwnedMembership().clear();
+				getOwnedMembership().addAll((Collection<? extends Membership>)newValue);
+				return;
+			case SysMLPackage.NAMESPACE__OWNED_MEMBER:
+				getOwnedMember().clear();
+				getOwnedMember().addAll((Collection<? extends Element>)newValue);
+				return;
 			case SysMLPackage.NAMESPACE__OWNED_IMPORT:
 				getOwnedImport().clear();
 				getOwnedImport().addAll((Collection<? extends Import>)newValue);
@@ -475,17 +376,9 @@ public class NamespaceImpl extends ElementImpl implements Namespace {
 				getMember().clear();
 				getMember().addAll((Collection<? extends Element>)newValue);
 				return;
-			case SysMLPackage.NAMESPACE__OWNED_MEMBER:
-				getOwnedMember().clear();
-				getOwnedMember().addAll((Collection<? extends Element>)newValue);
-				return;
 			case SysMLPackage.NAMESPACE__IMPORTED_MEMBERSHIP:
 				getImportedMembership().clear();
 				getImportedMembership().addAll((Collection<? extends Membership>)newValue);
-				return;
-			case SysMLPackage.NAMESPACE__OWNED_MEMBERSHIP:
-				getOwnedMembership().clear();
-				getOwnedMembership().addAll((Collection<? extends Membership>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -499,20 +392,20 @@ public class NamespaceImpl extends ElementImpl implements Namespace {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case SysMLPackage.NAMESPACE__OWNED_MEMBERSHIP:
+				getOwnedMembership().clear();
+				return;
+			case SysMLPackage.NAMESPACE__OWNED_MEMBER:
+				getOwnedMember().clear();
+				return;
 			case SysMLPackage.NAMESPACE__OWNED_IMPORT:
 				getOwnedImport().clear();
 				return;
 			case SysMLPackage.NAMESPACE__MEMBER:
 				getMember().clear();
 				return;
-			case SysMLPackage.NAMESPACE__OWNED_MEMBER:
-				getOwnedMember().clear();
-				return;
 			case SysMLPackage.NAMESPACE__IMPORTED_MEMBERSHIP:
 				getImportedMembership().clear();
-				return;
-			case SysMLPackage.NAMESPACE__OWNED_MEMBERSHIP:
-				getOwnedMembership().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -530,16 +423,16 @@ public class NamespaceImpl extends ElementImpl implements Namespace {
 				return isSetMembership();
 			case SysMLPackage.NAMESPACE__OWNED_RELATIONSHIP:
 				return ownedRelationship != null && !ownedRelationship.isEmpty();
+			case SysMLPackage.NAMESPACE__OWNED_MEMBERSHIP:
+				return !getOwnedMembership().isEmpty();
+			case SysMLPackage.NAMESPACE__OWNED_MEMBER:
+				return !getOwnedMember().isEmpty();
 			case SysMLPackage.NAMESPACE__OWNED_IMPORT:
 				return !getOwnedImport().isEmpty();
 			case SysMLPackage.NAMESPACE__MEMBER:
 				return !getMember().isEmpty();
-			case SysMLPackage.NAMESPACE__OWNED_MEMBER:
-				return !getOwnedMember().isEmpty();
 			case SysMLPackage.NAMESPACE__IMPORTED_MEMBERSHIP:
 				return !getImportedMembership().isEmpty();
-			case SysMLPackage.NAMESPACE__OWNED_MEMBERSHIP:
-				return !getOwnedMembership().isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

@@ -24,34 +24,30 @@
 
 modeltype UML uses "http://www.eclipse.org/uml2/5.0.0/UML";
 
-transformation PrepareMetamodel(inout uml: UML);
+transformation PrepareMetamodel(in export: UML, out prepared: UML);
 
 main() {
-	var model := uml.rootObjects()![Model];
-	model.packageImport := Set{};
-	model.elementImport := Set{};
-	var syntax := uml.objects()[Package]![name = "1. Abstract Syntax"];
+	var syntax := export.objects()[Package]![name = "1. Abstract Syntax"];
 	assert fatal (syntax <> null) with log ("Abstract Syntax not found.");
-	model.unapplyProfiles();
+	
+	var model = object Model { 
+		name := "sysml";
+		URI := "http://www.omg.org/spec/SysML/2.0";
+	};
 	syntax.map Namespace(model);
 	model.packagedElement[Package]->destroy();
-	model.name := "sysml";
-	model.URI := "http://www.omg.org/spec/SysML/2.0";
-	var featureClass := uml.objects()[Class]![name = "Feature"];
+
+	var featureClass := prepared.objects()[Class]![name = "Feature"];
 	assert warning (featureClass <> null) with log ("Feature class not found.");
 	if featureClass <> null then {
 		featureClass.addNonuniqueAttribute();
 	} endif;
-}
-
-helper Package::unapplyProfiles() {
-	self.getAppliedProfiles()->forEach(profile) {
-		self.unapplyProfile(profile);
-	};
-	// Remove stereotype applications
-	uml.rootObjects()[obj | obj <> self]->forEach(obj) {
-		uml.removeElement(obj)
-	};
+	
+	var identifierProperty := prepared.objects()[Property]![name = "identifier"];
+	assert warning (identifierProperty <> null) with log ("identifier property not found.");
+	if identifierProperty <> null then {
+		makeReadable(identifierProperty);
+	} endif;
 }
 
 helper Class::addNonuniqueAttribute() {
@@ -68,6 +64,11 @@ helper Class::addNonuniqueAttribute() {
 	};
 	self.oclAsType(Class).ownedAttribute += isNonuniqueProperty;
 	log("Added Property " + isNonuniqueProperty.featureQualifiedName());
+}
+
+helper makeReadable(inout attr: Property) {
+	attr.isReadOnly := false;
+	log("Made readable " + attr.featureQualifiedName());
 }
 
 mapping Package::Namespace(inout model: Model) 

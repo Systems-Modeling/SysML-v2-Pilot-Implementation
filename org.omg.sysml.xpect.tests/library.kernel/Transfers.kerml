@@ -138,10 +138,10 @@ package Transfers {
 	}
 	  
 	/**
-	 * transferBefores is a specialization of transfers and happensBeforeLinks restricted to
-	 * type TransferBefore. It is the default subsetting for succession (non-streaming) item flows.
+	 * successionTransfers is a specialization of transfers and successions restricted to
+	 * type TransferBefore. It is the default subsetting for sucession (non-streaming) item flows.
 	 */
-	step transferBefores: TransferBefore[0..*] nonunique subsets transfers, happensBeforeLinks {
+	step flows: TransferBefore[0..*] nonunique subsets transfers, successions {
 		end feature transferSource: Occurrence[0..*] redefines transfers::transferSource, HappensBefore::earlierOccurrence;
 		end feature transferTarget: Occurrence[0..*] redefines transfers::transferTarget, HappensBefore::laterOccurrence;
 	}

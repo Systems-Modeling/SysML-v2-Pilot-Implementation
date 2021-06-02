@@ -2,16 +2,17 @@ package BaseFunctions {
 	private import Base::Anything;
 	private import Objects::Object;
 	private import ScalarValues::*;
+	private import ControlFunctions::exists;
+	private import ControlFunctions::select;
+	private import ControlFunctions::reject;
 	
-	abstract function '=='(x: Anything[0..1] ordered nonunique, y: Anything[0..1] ordered nonunique): Boolean[1];
-	function '!='(x: Anything[0..1] ordered nonunique, y: Anything[0..1] ordered nonunique): Boolean[1] {
-		!(x == y)
-	}
+	function '=='(x: Anything[0..*], y: Anything[0..*]): Boolean;
+	function '!='(x: Anything[0..*], y: Anything[0..*]): Boolean;
 	
 	function ToString(x: Anything[0..1]): String;
 	
-	function '['(seq: Anything[0..*] ordered nonunique, index: Anything[0..*] ordered nonunique): Anything[0..1];
-	function ','(seq1: Anything[0..*] ordered nonunique, seq2: Anything[0..*] ordered nonunique): Anything[0..*] ordered nonunique;
+	function '['(seq: Anything[0..*] ordered, index: Anything[0..*]): Anything[0..1];
+	function ','(seq1: Anything[0..*] ordered, seq2: Anything[0..*] ordered): Anything[0..*] ordered;
 	
     abstract function 'all'(): Object[0..*] {
     	abstract feature all 'type': Object;
@@ -22,25 +23,25 @@ package BaseFunctions {
 		abstract feature all 'type': Object;
 	}
 	
-	abstract function 'istype'(x: Anything[1]): Boolean[1] {
+	abstract function 'istype'(x: Anything[1]): Boolean {
 		abstract feature 'type': Anything;
 	}
 	
-	abstract function '@'(x: Anything[1]): Boolean[1] {
+	abstract function '@'(x: Anything[1]): Boolean {
 		abstract feature 'type': Anything;
 	}
 	
 	/** Deprecated */
 	abstract function 'instanceof'(x: Anything[1]): Boolean {
-		abstract feature 'type': Anything[1];
+		abstract feature 'type': Anything;
 	}
 	
 	abstract function 'hastype'(x: Anything[1]): Boolean {
-		abstract feature 'type': Anything[1];
+		abstract feature 'type': Anything;
 	}
 	
-	abstract function 'as'(seq: Anything[0..*] ordered nonunique): Anything[0..*] ordered nonunique {
-		abstract feature 'type': Anything[1];
+	abstract function 'as'(seq: Anything[0..*]): Anything[0..*] {
+		abstract feature 'type': Anything;
 	}
 	
 }

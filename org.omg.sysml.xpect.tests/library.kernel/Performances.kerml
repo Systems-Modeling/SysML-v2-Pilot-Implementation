@@ -45,9 +45,9 @@ package Performances {
 		step subtransfers: Transfers::Transfer[0..*] nonunique subsets Transfers::transfers, subperformances;
 		
 		/**
-		 * Subtransfers of this performance that are transfers-before.
+		 * Subtransfers of this performance that are transfers-before (succession flows).
 		 */
-		step subtransferBefores: Transfers::TransferBefore[0..*] nonunique subsets Transfers::transferBefores, subtransfers;
+		step subflows: Transfers::TransferBefore[0..*] nonunique subsets Transfers::flows, subtransfers;
 	}
 	
 	/**

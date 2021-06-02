@@ -37,7 +37,7 @@ public class SuccessionItemFlowAdapter extends ItemFlowAdapter {
 	@Override
 	protected String getDefaultSupertype() {
 		return isSubperformance() ? 
-				getDefaultSupertype("subtransfer"): 
+				getDefaultSupertype("subperformance"): 
 				getDefaultSupertype("base");
 	}
 	

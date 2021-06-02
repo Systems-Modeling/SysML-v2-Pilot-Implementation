@@ -79,7 +79,7 @@ public class ImplicitGeneralizationMap {
 		put(FunctionImpl.class, "base", "Performances::Evaluation");
 		
 		put(ItemFlowImpl.class, "base", "Transfers::transfers");
-		put(ItemFlowImpl.class, "subperformance", "Transfers::transfers");
+		put(ItemFlowImpl.class, "subperformance", "Performances::Performance::subtransfers");
 		
 		put(LiteralExpressionImpl.class, "base", "Performances::literalEvaluations");
 		
@@ -96,10 +96,10 @@ public class ImplicitGeneralizationMap {
 		
 		put(StructureImpl.class, "base", "Objects::Object");
 		
-		put(SuccessionImpl.class, "base", "Occurrences::successions");
+		put(SuccessionImpl.class, "binary", "Occurrences::happensBeforeLinks");
 		
-		put(SuccessionItemFlowImpl.class, "base", "Transfers::flows");
-		put(SuccessionItemFlowImpl.class, "subtransfer", "Performances::Performance::subflows");
+		put(SuccessionItemFlowImpl.class, "base", "Transfers::transferBefores");
+		put(SuccessionItemFlowImpl.class, "subperformance", "Performances::Performance::subtransferBefores");
 
 		put(TypeImpl.class, "base", "Base::Anything");
 

@@ -210,10 +210,10 @@ package Occurrences {
 	}
 	
 	/**
-	 * successions is a specialization of binaryLinks restricted to type HappensBefore.
+	 * happensBeforeLinks is a specialization of binaryLinks restricted to type HappensBefore.
 	 * It is the default subsetting for succession connectors.
 	 */
-	 feature successions: HappensBefore[0..*] nonunique subsets binaryLinks {
+	 feature happensBeforeLinks: HappensBefore[0..*] nonunique subsets binaryLinks {
 	 	end feature earlierOccurrence: Occurrence[0..*] redefines HappensBefore::earlierOccurrence, binaryLinks::source;
 	 	end feature laterOccurrence: Occurrence[0..*] redefines HappensBefore::laterOccurrence, binaryLinks::target;
 	 }

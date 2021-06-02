@@ -47,7 +47,7 @@ package Performances {
 		/**
 		 * Subtransfers of this performance that are transfers-before.
 		 */
-		step subtransferBefores: Transfers::TransferBefore[0..*] nonunique subsets Transfers::transferBefores, subtransfers;
+		step subtransfersBefore: Transfers::TransferBefore[0..*] nonunique subsets Transfers::transfersBefore, subtransfers;
 	}
 	
 	/**

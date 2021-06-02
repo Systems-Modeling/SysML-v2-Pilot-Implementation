@@ -98,8 +98,8 @@ public class ImplicitGeneralizationMap {
 		
 		put(SuccessionImpl.class, "binary", "Occurrences::happensBeforeLinks");
 		
-		put(SuccessionItemFlowImpl.class, "base", "Transfers::transferBefores");
-		put(SuccessionItemFlowImpl.class, "subperformance", "Performances::Performance::subtransferBefores");
+		put(SuccessionItemFlowImpl.class, "base", "Transfers::transfersBefore");
+		put(SuccessionItemFlowImpl.class, "subperformance", "Performances::Performance::subtransfersBefore");
 
 		put(TypeImpl.class, "base", "Base::Anything");
 

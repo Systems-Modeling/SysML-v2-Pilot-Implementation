@@ -55,6 +55,7 @@ import org.omg.sysml.lang.sysml.ItemUsage;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.ObjectiveMembership;
+import org.omg.sysml.lang.sysml.OccurrenceDefinition;
 import org.omg.sysml.lang.sysml.OccurrenceUsage;
 import org.omg.sysml.lang.sysml.PartDefinition;
 import org.omg.sysml.lang.sysml.PartUsage;
@@ -457,7 +458,16 @@ public class SysML2PlantUMLStyle {
             } else if (ou.isIndividual()){
                 return "<<individual>> ";
             } else {
-            	return "<<occurrence>> ";
+            	return null;
+            }
+        }
+        
+		@Override
+        public String caseOccurrenceDefinition(OccurrenceDefinition od) {
+            if (od.isIndividual()){
+                return "<<individual def>> ";
+            } else {
+            	return null;
             }
         }
         

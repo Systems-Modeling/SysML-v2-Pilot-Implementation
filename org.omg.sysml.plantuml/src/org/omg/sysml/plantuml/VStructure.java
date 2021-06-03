@@ -176,6 +176,7 @@ public abstract class VStructure extends VDefault {
             }
             if (ft == null) continue;
             Type typ = ft.getType();
+            if (typ == null) continue;
             String typeName = typ.getName();
             if (typeName == null) continue;
             sb.append(typeName);

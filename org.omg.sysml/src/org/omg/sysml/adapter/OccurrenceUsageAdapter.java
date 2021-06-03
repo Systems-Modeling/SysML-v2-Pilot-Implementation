@@ -21,12 +21,10 @@
 
 package org.omg.sysml.adapter;
 
-import org.omg.sysml.lang.sysml.FeatureTyping;
+import org.omg.sysml.lang.sysml.OccurrenceDefinition;
 import org.omg.sysml.lang.sysml.OccurrenceUsage;
-import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.util.TypeUtil;
 
 public class OccurrenceUsageAdapter extends UsageAdapter {
 
@@ -39,34 +37,21 @@ public class OccurrenceUsageAdapter extends UsageAdapter {
 		return (OccurrenceUsage)super.getTarget();
 	}
 
-	protected boolean needsIndividualDefinition() {
+	protected void addOccurrenceTyping() {
 		OccurrenceUsage target = getTarget();
-		return target.isIndividual() &&
-			   target.getOwnedTyping().stream().
-			   		map(FeatureTyping::getType).
-			   		noneMatch(TypeUtil::isIndividual) &&
-			   target.getOwnedSubsetting().stream().
-			   		map(Subsetting::getSubsettedFeature).
-					noneMatch(TypeUtil::isIndividual);
-	}
-		
-	protected void addIndividualDefinition() {
-		OccurrenceUsage target = getTarget();
-		if (target.getPortionKind() != null && needsIndividualDefinition()) {
-			Type owningType = target.getOwningType();
-			if (TypeUtil.isIndividual(owningType)) {
-				addImplicitGeneralType(
-						owningType instanceof OccurrenceUsage? 
-								SysMLPackage.eINSTANCE.getSubsetting():
-								SysMLPackage.eINSTANCE.getFeatureTyping(), 
-						owningType);
+		Type owningType = target.getOwningType();
+		if (target.getPortionKind() != null && target.getOwnedGeneralization().isEmpty()) {
+			if (owningType instanceof OccurrenceDefinition) {
+				addImplicitGeneralType(SysMLPackage.eINSTANCE.getFeatureTyping(), owningType);
+			} else if (owningType instanceof OccurrenceUsage) {
+				addImplicitGeneralType(SysMLPackage.eINSTANCE.getSubsetting(), owningType);
 			}
 		}
 	}
 	
 	@Override
 	public void computeImplicitGeneralTypes() {
-		addIndividualDefinition();
+		addOccurrenceTyping();
 		super.computeImplicitGeneralTypes();
 	}
 	

@@ -194,9 +194,6 @@ public class OccurrenceUsageImpl extends UsageImpl implements OccurrenceUsage {
 	 */
 	@Override
 	public boolean isIndividual() {
-		if (portionKind != null) {
-			isIndividual = true;
-		}
 		return isIndividual;
 	}
 

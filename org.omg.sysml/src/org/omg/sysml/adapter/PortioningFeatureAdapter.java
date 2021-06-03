@@ -26,12 +26,10 @@ import java.util.List;
 
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.OccurrenceUsage;
 import org.omg.sysml.lang.sysml.PortionKind;
 import org.omg.sysml.lang.sysml.PortioningFeature;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.util.TypeUtil;
 
 public class PortioningFeatureAdapter extends FeatureAdapter {
 
@@ -47,19 +45,18 @@ public class PortioningFeatureAdapter extends FeatureAdapter {
 		return (PortioningFeature)super.getTarget();
 	}
 
-	public void setIndividualTyping() {
-		Feature target = getTarget();
-		Type owningType = target.getOwningType();
-		if (TypeUtil.isIndividual(owningType)) {
-			Type type = owningType instanceof OccurrenceUsage? 
-					((OccurrenceUsage)owningType).getIndividualDefinition(): 
-					owningType;
-			addImplicitGeneralType(SysMLPackage.eINSTANCE.getFeatureTyping(), type);
+	public void setPortioningFeatureTyping() {
+		Type owningType = getTarget().getOwningType();
+		if (owningType instanceof Feature) {
+			((Feature)owningType).getType().stream().forEach(type->{
+				addImplicitGeneralType(SysMLPackage.eINSTANCE.getFeatureTyping(), type);
+			});
 		}
-	}	
+	}
+	
 	@Override
 	public void computeImplicitGeneralTypes() {
-		setIndividualTyping();
+		setPortioningFeatureTyping();
 		super.computeImplicitGeneralTypes();
 	}
 		

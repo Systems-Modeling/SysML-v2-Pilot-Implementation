@@ -499,6 +499,25 @@ fragment SuccessionDeclaration returns SysML::Succession :
 
 /* INTERACTIONS */
 
+/* Messages */
+
+MessageKeyword :
+	'message'
+;
+
+Message returns SysML::ItemFlow :
+	isAbstract ?= MessageKeyword
+	MessageDeclaration TypeBody
+;
+
+fragment MessageDeclaration returns SysML::ItemFlow :
+	FeatureDeclaration? 
+    ( 'of'  ownedRelationship += ItemFeatureMember 
+    | ownedRelationship += EmptyItemFeatureMember  
+    ) 
+    ( 'from' BinaryConnectorPart | ValuePart )?  
+;
+
 /* Item Flows */
 
 ItemFlowKeyword :
@@ -744,6 +763,7 @@ StructureUsageElement returns SysML::Feature :
 	  OccurrenceRefUsage
 	| IndividualRefUsage
 	| PortionUsage
+	| EventOccurrenceUsage
 	| ItemRefUsage
 	| PartRefUsage
 	| StakeholderRefUsage
@@ -754,6 +774,7 @@ StructureUsageElement returns SysML::Feature :
 	| Connector
 	| InterfaceUsage
 	| AllocationUsage
+	| Message
 	| ItemFlow
 	| SuccessionItemFlow
 ;
@@ -948,7 +969,8 @@ IndividualUsage returns SysML::OccurrenceUsage :
 IndividualRefUsage returns SysML::OccurrenceUsage :
 	  UsagePrefix? 'ref' isIndividual ?= 'individual' Usage
 	| UsagePrefix? isIndividual ?= 'individual'
-	  UsageDeclaration? ( isComposite ?= ';' | isComposite ?= '{' DefinitionBodyItem* '}' )
+	  UsageDeclaration? ValueOrFlowPart?
+	  ( isComposite ?= ';' | isComposite ?= '{' DefinitionBodyItem* '}' )
 ;
 
 PortionUsage returns SysML::OccurrenceUsage :
@@ -966,6 +988,13 @@ PortioningFeatureMember returns SysML::FeatureMembership :
 
 PortioningFeature returns SysML::PortioningFeature :
 	{SysML::PortioningFeature}
+;
+
+EventOccurrenceUsage returns SysML::EventOccurrenceUsage :
+	 UsagePrefix? OccurrenceUsagePrefix? 'event'
+	( ownedRelationship += OwnedSubsetting FeatureSpecializationPart?
+   	| OccurrenceUsageKeyword UsageDeclaration? )
+    UsageCompletion
 ;
 
 /* Occurrence Succession */

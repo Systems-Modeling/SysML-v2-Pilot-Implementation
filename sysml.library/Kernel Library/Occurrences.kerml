@@ -107,35 +107,35 @@ package Occurrences {
 		 * The incoming transfers received by this occurrence. 
 		 */
 		feature incomingTransfers: Transfers::Transfer[0..*] subsets Transfers::transfers {
-			end feature redefines transferSource;
-			end feature redefines transferTarget;
+			end feature redefines source;
+			end feature redefines target;
 		}
 		
 		/**
 		 * The incoming transfers with this occurrence as the target. 
 		 */
 		feature all incomingTransfersToSelf subsets incomingTransfers {
-			end feature redefines transferSource;
-			end feature redefines transferTarget;
+			end feature redefines source;
+			end feature redefines target;
 		}
-		binding incomingTransfersToSelf::transferTarget = self;
+		binding incomingTransfersToSelf::target = self;
 
 		/**
 		 * The outgoing transfers sent from this occurrence. 
 		 */
 		feature outgoingTransfers: Transfers::Transfer[0..*] subsets Transfers::transfers {
-			end feature redefines transferSource;
-			end feature redefines transferTarget;
+			end feature redefines source;
+			end feature redefines target;
 		}
 		
 		/**
 		 * The outgoing transfers with this occurrence as the source. 
 		 */
 		feature all outgoingTransfersFromSelf subsets outgoingTransfers {
-			end feature redefines transferSource;
-			end feature redefines transferTarget;
+			end feature redefines source;
+			end feature redefines target;
 		}
-		binding outgoingTransfersFromSelf::transferSource = self;
+		binding outgoingTransfersFromSelf::source = self;
 	}
 	
 	abstract class all Life specializes Occurrence {

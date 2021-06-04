@@ -234,6 +234,8 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 			return getItemFlowKeywordToken(semanticObject, ruleCall, node);
 		else if (ruleCall.getRule() == grammarAccess.getItemUsageKeywordRule())
 			return getItemUsageKeywordToken(semanticObject, ruleCall, node);
+		else if (ruleCall.getRule() == grammarAccess.getMessageKeywordRule())
+			return getMessageKeywordToken(semanticObject, ruleCall, node);
 		else if (ruleCall.getRule() == grammarAccess.getOccurrenceDefKeywordRule())
 			return getOccurrenceDefKeywordToken(semanticObject, ruleCall, node);
 		else if (ruleCall.getRule() == grammarAccess.getOccurrenceUsageKeywordRule())
@@ -608,6 +610,17 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 		if (node != null)
 			return getTokenText(node);
 		return "item";
+	}
+	
+	/**
+	 * MessageKeyword :
+	 * 	'message'
+	 * ;
+	 */
+	protected String getMessageKeywordToken(EObject semanticObject, RuleCall ruleCall, INode node) {
+		if (node != null)
+			return getTokenText(node);
+		return "message";
 	}
 	
 	/**
@@ -2114,6 +2127,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     ';' | ('{' '}')
 	 *
 	 * This ambiguous syntax occurs at:
+	 *     (rule start) 'event' OccurrenceUsageKeyword (ambiguity) (rule start)
 	 *     (rule start) 'ref' ItemUsageKeyword (ambiguity) (rule start)
 	 *     (rule start) 'ref' OccurrenceUsageKeyword (ambiguity) (rule start)
 	 *     (rule start) 'ref' OccurrenceUsageKeyword (ambiguity) ownedRelationship+=PortioningFeatureMember
@@ -2147,6 +2161,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     humanId=Name (ambiguity) ownedRelationship+=ConjugatedPortDefinitionMember
 	 *     humanId=Name (ambiguity) ownedRelationship+=LifeClassMembership
 	 *     humanId=Name (ambiguity) ownedRelationship+=PortioningFeatureMember
+	 *     isAbstract?='abstract' 'event' OccurrenceUsageKeyword (ambiguity) (rule end)
 	 *     isAbstract?='abstract' 'ref' ItemUsageKeyword (ambiguity) (rule end)
 	 *     isAbstract?='abstract' 'ref' OccurrenceUsageKeyword (ambiguity) (rule end)
 	 *     isAbstract?='abstract' 'ref' OccurrenceUsageKeyword (ambiguity) ownedRelationship+=PortioningFeatureMember
@@ -2180,6 +2195,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isComposite?=RenderingUsageKeyword (ambiguity) (rule end)
 	 *     isComposite?=StakeholderUsageKeyword (ambiguity) (rule end)
 	 *     isIndividual?='individual' 'def' (ambiguity) ownedRelationship+=LifeClassMembership
+	 *     isIndividual?='individual' 'event' OccurrenceUsageKeyword (ambiguity) (rule end)
 	 *     isIndividual?='individual' 'ref' StakeholderUsageKeyword (ambiguity) (rule end)
 	 *     isIndividual?='individual' (ambiguity) (rule end)
 	 *     isIndividual?='individual' (ambiguity) ownedRelationship+=PortioningFeatureMember
@@ -2198,6 +2214,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isNonunique?='nonunique' (ambiguity) ownedRelationship+=PortioningFeatureMember
 	 *     isOrdered?='ordered' (ambiguity) (rule end)
 	 *     isOrdered?='ordered' (ambiguity) ownedRelationship+=PortioningFeatureMember
+	 *     isVariation?='variation' 'event' OccurrenceUsageKeyword (ambiguity) (rule end)
 	 *     isVariation?='variation' 'ref' ItemUsageKeyword (ambiguity) (rule end)
 	 *     isVariation?='variation' 'ref' OccurrenceUsageKeyword (ambiguity) (rule end)
 	 *     isVariation?='variation' 'ref' OccurrenceUsageKeyword (ambiguity) ownedRelationship+=PortioningFeatureMember
@@ -2242,6 +2259,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     ownedRelationship+=OwnedSuperclassing (ambiguity) ownedRelationship+=ConjugatedPortDefinitionMember
 	 *     ownedRelationship+=OwnedSuperclassing (ambiguity) ownedRelationship+=LifeClassMembership
 	 *     ownedRelationship+=PortTyping (ambiguity) (rule end)
+	 *     ownedRelationship+=PortioningFeatureMember 'event' OccurrenceUsageKeyword (ambiguity) (rule end)
 	 *     ownedRelationship+=PortioningFeatureMember 'ref' StakeholderUsageKeyword (ambiguity) (rule end)
 	 *     ownedRelationship+=PortioningFeatureMember ItemUsageKeyword (ambiguity) (rule end)
 	 *     ownedRelationship+=PortioningFeatureMember OccurrenceUsageKeyword (ambiguity) (rule end)
@@ -3262,6 +3280,9 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     ownedRelationship+=ConnectorEndMember (ambiguity) (rule end)
+	 *     ownedRelationship+=EmptyItemFeatureMember (ambiguity) (rule end)
+	 *     ownedRelationship+=FeatureValue (ambiguity) (rule end)
+	 *     ownedRelationship+=ItemFeatureMember (ambiguity) (rule end)
 	 *     ownedRelationship+=ItemFlowEndMember (ambiguity) (rule end)
 	 */
 	protected void emit_TypeBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {

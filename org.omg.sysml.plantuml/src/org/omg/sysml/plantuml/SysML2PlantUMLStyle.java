@@ -455,7 +455,7 @@ public class SysML2PlantUMLStyle {
                 return "<<timeslice>> ";
             } else if (ou.getPortionKind() == PortionKind.SNAPSHOT) {
                 return "<<snapshot>> ";
-            } else if (ou.isIndividual()){
+            } else if (ou.isIndividual()) {
                 return "<<individual>> ";
             } else {
             	return null;
@@ -464,7 +464,7 @@ public class SysML2PlantUMLStyle {
         
 		@Override
         public String caseOccurrenceDefinition(OccurrenceDefinition od) {
-            if (od.isIndividual()){
+            if (od.isIndividual()) {
                 return "<<individual def>> ";
             } else {
             	return null;

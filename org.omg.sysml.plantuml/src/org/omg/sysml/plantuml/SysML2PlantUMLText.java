@@ -373,7 +373,7 @@ public class SysML2PlantUMLText {
         }
 
         Integer newId(Element e) {
-            Integer ii = new Integer(idCounter++);
+            Integer ii = idCounter++;
             idMap.put(e, ii);
             return ii;
         }

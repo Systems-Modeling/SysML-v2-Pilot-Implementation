@@ -659,6 +659,10 @@ public class SysMLAdapterFactory extends AdapterFactoryImpl {
 				return createViewRenderingMembershipAdapter();
 			}
 			@Override
+			public Adapter caseEventOccurrenceUsage(EventOccurrenceUsage object) {
+				return createEventOccurrenceUsageAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -745,6 +749,20 @@ public class SysMLAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createViewRenderingMembershipAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.omg.sysml.lang.sysml.EventOccurrenceUsage <em>Event Occurrence Usage</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.omg.sysml.lang.sysml.EventOccurrenceUsage
+	 * @generated
+	 */
+	public Adapter createEventOccurrenceUsageAdapter() {
 		return null;
 	}
 

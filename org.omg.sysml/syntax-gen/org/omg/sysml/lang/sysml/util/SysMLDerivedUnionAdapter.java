@@ -494,6 +494,9 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 			case SysMLPackage.VIEW_RENDERING_MEMBERSHIP:
 				notifyViewRenderingMembershipChanged(notification, eClass);
 				break;
+			case SysMLPackage.EVENT_OCCURRENCE_USAGE:
+				notifyEventOccurrenceUsageChanged(notification, eClass);
+				break;
 		}
 	}
 
@@ -661,6 +664,34 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 				break;
 			case SysMLPackage.VIEW_RENDERING_MEMBERSHIP__OWNING_FEATURE_OF_TYPE:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.RELATIONSHIP__RELATED_ELEMENT);
+				break;
+		}
+	}
+
+	/**
+	 * Calls <code>notifyChanged</code> for each affected derived union.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param notification a description of the change.
+	 * @param eClass the Ecore class of the notifier.
+	 * @generated
+	 */
+	protected void notifyEventOccurrenceUsageChanged(Notification notification, EClass eClass) {
+		switch (notification.getFeatureID(EventOccurrenceUsage.class)) {
+			case SysMLPackage.EVENT_OCCURRENCE_USAGE__OWNED_MEMBERSHIP:
+				notifyChanged(notification, eClass, SysMLPackage.Literals.NAMESPACE__MEMBERSHIP);
+				break;
+			case SysMLPackage.EVENT_OCCURRENCE_USAGE__IMPORTED_MEMBERSHIP:
+				notifyChanged(notification, eClass, SysMLPackage.Literals.NAMESPACE__MEMBERSHIP);
+				break;
+			case SysMLPackage.EVENT_OCCURRENCE_USAGE__OWNED_FEATURE_MEMBERSHIP:
+				notifyChanged(notification, eClass, SysMLPackage.Literals.NAMESPACE__MEMBERSHIP);
+				break;
+			case SysMLPackage.EVENT_OCCURRENCE_USAGE__INHERITED_MEMBERSHIP:
+				notifyChanged(notification, eClass, SysMLPackage.Literals.NAMESPACE__MEMBERSHIP);
+				break;
+			case SysMLPackage.EVENT_OCCURRENCE_USAGE__VARIANT_MEMBERSHIP:
+				notifyChanged(notification, eClass, SysMLPackage.Literals.NAMESPACE__MEMBERSHIP);
 				break;
 		}
 	}

@@ -4065,4 +4065,9 @@
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EventOccurrenceUsage" eSuperTypes="#//OccurrenceUsage">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="occurringEvent" ordered="false"
+        lowerBound="1" eType="#//OccurrenceUsage" volatile="true" transient="true"
+        derived="true"/>
+  </eClassifiers>
 </ecore:EPackage>

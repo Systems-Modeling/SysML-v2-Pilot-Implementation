@@ -147,6 +147,8 @@ public class ImplicitGeneralizationMap {
 		
 		put(DecisionNodeImpl.class, "base", "Actions::Action::decisions");
 		
+		put(EventOccurrenceUsageImpl.class, "suboccurrence", "Occurrences::Occurrence::suboccurrences");
+
 		put(ExhibitStateUsageImpl.class, "enactedPerformance", "Parts::Part::exhibitedStates");
 		
 		put(ForkNodeImpl.class, "base", "Actions::Action::fork");

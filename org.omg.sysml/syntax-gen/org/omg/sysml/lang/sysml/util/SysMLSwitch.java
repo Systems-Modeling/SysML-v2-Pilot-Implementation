@@ -26,148 +26,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.util.Switch;
-import org.omg.sysml.lang.sysml.AcceptActionUsage;
-import org.omg.sysml.lang.sysml.ActionDefinition;
-import org.omg.sysml.lang.sysml.ActionUsage;
-import org.omg.sysml.lang.sysml.AddressedConcernMembership;
-import org.omg.sysml.lang.sysml.AllocationDefinition;
-import org.omg.sysml.lang.sysml.AllocationUsage;
-import org.omg.sysml.lang.sysml.AnalysisCaseDefinition;
-import org.omg.sysml.lang.sysml.AnalysisCaseUsage;
-import org.omg.sysml.lang.sysml.AnnotatingElement;
-import org.omg.sysml.lang.sysml.AnnotatingFeature;
-import org.omg.sysml.lang.sysml.Annotation;
-import org.omg.sysml.lang.sysml.AssertConstraintUsage;
-import org.omg.sysml.lang.sysml.Association;
-import org.omg.sysml.lang.sysml.AssociationStructure;
-import org.omg.sysml.lang.sysml.AttributeDefinition;
-import org.omg.sysml.lang.sysml.AttributeUsage;
-import org.omg.sysml.lang.sysml.Behavior;
-import org.omg.sysml.lang.sysml.BindingConnector;
-import org.omg.sysml.lang.sysml.BooleanExpression;
-import org.omg.sysml.lang.sysml.CalculationDefinition;
-import org.omg.sysml.lang.sysml.CalculationUsage;
-import org.omg.sysml.lang.sysml.CaseDefinition;
-import org.omg.sysml.lang.sysml.CaseUsage;
-import org.omg.sysml.lang.sysml.Classifier;
-import org.omg.sysml.lang.sysml.Comment;
-import org.omg.sysml.lang.sysml.ConcernDefinition;
-import org.omg.sysml.lang.sysml.ConcernUsage;
-import org.omg.sysml.lang.sysml.ConjugatedPortDefinition;
-import org.omg.sysml.lang.sysml.ConjugatedPortTyping;
-import org.omg.sysml.lang.sysml.Conjugation;
-import org.omg.sysml.lang.sysml.ConnectionDefinition;
-import org.omg.sysml.lang.sysml.ConnectionUsage;
-import org.omg.sysml.lang.sysml.Connector;
-import org.omg.sysml.lang.sysml.ConstraintDefinition;
-import org.omg.sysml.lang.sysml.ConstraintUsage;
-import org.omg.sysml.lang.sysml.ControlNode;
-import org.omg.sysml.lang.sysml.DataType;
-import org.omg.sysml.lang.sysml.DecisionNode;
-import org.omg.sysml.lang.sysml.Definition;
-import org.omg.sysml.lang.sysml.Dependency;
-import org.omg.sysml.lang.sysml.Documentation;
-import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.lang.sysml.ElementFilterMembership;
-import org.omg.sysml.lang.sysml.EndFeatureMembership;
-import org.omg.sysml.lang.sysml.EnumerationDefinition;
-import org.omg.sysml.lang.sysml.EnumerationUsage;
-import org.omg.sysml.lang.sysml.ExhibitStateUsage;
-import org.omg.sysml.lang.sysml.Expose;
-import org.omg.sysml.lang.sysml.Expression;
-import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.FeatureMembership;
-import org.omg.sysml.lang.sysml.FeatureReferenceExpression;
-import org.omg.sysml.lang.sysml.FeatureTyping;
-import org.omg.sysml.lang.sysml.FeatureValue;
-import org.omg.sysml.lang.sysml.ForkNode;
-import org.omg.sysml.lang.sysml.Function;
-import org.omg.sysml.lang.sysml.Generalization;
-import org.omg.sysml.lang.sysml.Import;
-import org.omg.sysml.lang.sysml.Interaction;
-import org.omg.sysml.lang.sysml.InterfaceDefinition;
-import org.omg.sysml.lang.sysml.InterfaceUsage;
-import org.omg.sysml.lang.sysml.Invariant;
-import org.omg.sysml.lang.sysml.InvocationExpression;
-import org.omg.sysml.lang.sysml.ItemDefinition;
-import org.omg.sysml.lang.sysml.ItemFeature;
-import org.omg.sysml.lang.sysml.ItemFlow;
-import org.omg.sysml.lang.sysml.ItemFlowEnd;
-import org.omg.sysml.lang.sysml.ItemFlowFeature;
-import org.omg.sysml.lang.sysml.ItemUsage;
-import org.omg.sysml.lang.sysml.JoinNode;
-import org.omg.sysml.lang.sysml.LifeClass;
-import org.omg.sysml.lang.sysml.LiteralBoolean;
-import org.omg.sysml.lang.sysml.LiteralExpression;
-import org.omg.sysml.lang.sysml.LiteralInteger;
-import org.omg.sysml.lang.sysml.LiteralReal;
-import org.omg.sysml.lang.sysml.LiteralString;
-import org.omg.sysml.lang.sysml.LiteralUnbounded;
-import org.omg.sysml.lang.sysml.Membership;
-import org.omg.sysml.lang.sysml.MergeNode;
-import org.omg.sysml.lang.sysml.MetadataFeature;
-import org.omg.sysml.lang.sysml.MetadataFeatureValue;
-import org.omg.sysml.lang.sysml.Multiplicity;
-import org.omg.sysml.lang.sysml.MultiplicityRange;
-import org.omg.sysml.lang.sysml.Namespace;
-import org.omg.sysml.lang.sysml.NullExpression;
-import org.omg.sysml.lang.sysml.ObjectiveMembership;
-import org.omg.sysml.lang.sysml.OccurrenceDefinition;
-import org.omg.sysml.lang.sysml.OccurrenceUsage;
-import org.omg.sysml.lang.sysml.OperatorExpression;
-import org.omg.sysml.lang.sysml.ParameterMembership;
-import org.omg.sysml.lang.sysml.PartDefinition;
-import org.omg.sysml.lang.sysml.PartUsage;
-import org.omg.sysml.lang.sysml.PathSelectExpression;
-import org.omg.sysml.lang.sysml.PathStepExpression;
-import org.omg.sysml.lang.sysml.PerformActionUsage;
-import org.omg.sysml.lang.sysml.PortConjugation;
-import org.omg.sysml.lang.sysml.PortDefinition;
-import org.omg.sysml.lang.sysml.PortUsage;
-import org.omg.sysml.lang.sysml.PortioningFeature;
-import org.omg.sysml.lang.sysml.Predicate;
-import org.omg.sysml.lang.sysml.Redefinition;
-import org.omg.sysml.lang.sysml.ReferenceUsage;
-import org.omg.sysml.lang.sysml.Relationship;
-import org.omg.sysml.lang.sysml.RenderingDefinition;
-import org.omg.sysml.lang.sysml.RenderingUsage;
-import org.omg.sysml.lang.sysml.RequirementConstraintMembership;
-import org.omg.sysml.lang.sysml.RequirementDefinition;
-import org.omg.sysml.lang.sysml.RequirementUsage;
-import org.omg.sysml.lang.sysml.RequirementVerificationMembership;
-import org.omg.sysml.lang.sysml.ResultExpressionMembership;
-import org.omg.sysml.lang.sysml.ReturnParameterMembership;
-import org.omg.sysml.lang.sysml.SatisfyRequirementUsage;
-import org.omg.sysml.lang.sysml.SendActionUsage;
-import org.omg.sysml.lang.sysml.SourceEnd;
-import org.omg.sysml.lang.sysml.StakeholderDefinition;
-import org.omg.sysml.lang.sysml.StakeholderUsage;
-import org.omg.sysml.lang.sysml.StateDefinition;
-import org.omg.sysml.lang.sysml.StateSubactionMembership;
-import org.omg.sysml.lang.sysml.StateUsage;
-import org.omg.sysml.lang.sysml.Step;
-import org.omg.sysml.lang.sysml.Structure;
-import org.omg.sysml.lang.sysml.SubjectMembership;
-import org.omg.sysml.lang.sysml.Subsetting;
-import org.omg.sysml.lang.sysml.Succession;
-import org.omg.sysml.lang.sysml.SuccessionItemFlow;
-import org.omg.sysml.lang.sysml.Superclassing;
-import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.lang.sysml.TargetEnd;
-import org.omg.sysml.lang.sysml.TextualRepresentation;
-import org.omg.sysml.lang.sysml.TransitionFeatureMembership;
-import org.omg.sysml.lang.sysml.TransitionUsage;
-import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.lang.sysml.TypeFeaturing;
-import org.omg.sysml.lang.sysml.Usage;
-import org.omg.sysml.lang.sysml.VariantMembership;
-import org.omg.sysml.lang.sysml.VerificationCaseDefinition;
-import org.omg.sysml.lang.sysml.VerificationCaseUsage;
-import org.omg.sysml.lang.sysml.ViewDefinition;
-import org.omg.sysml.lang.sysml.ViewRenderingMembership;
-import org.omg.sysml.lang.sysml.ViewUsage;
-import org.omg.sysml.lang.sysml.ViewpointDefinition;
-import org.omg.sysml.lang.sysml.ViewpointUsage;
 import org.omg.sysml.lang.sysml.*;
 
 /**
@@ -1993,6 +1851,18 @@ public class SysMLSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case SysMLPackage.EVENT_OCCURRENCE_USAGE: {
+				EventOccurrenceUsage eventOccurrenceUsage = (EventOccurrenceUsage)theEObject;
+				T result = caseEventOccurrenceUsage(eventOccurrenceUsage);
+				if (result == null) result = caseOccurrenceUsage(eventOccurrenceUsage);
+				if (result == null) result = caseUsage(eventOccurrenceUsage);
+				if (result == null) result = caseFeature(eventOccurrenceUsage);
+				if (result == null) result = caseType(eventOccurrenceUsage);
+				if (result == null) result = caseNamespace(eventOccurrenceUsage);
+				if (result == null) result = caseElement(eventOccurrenceUsage);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -2069,6 +1939,21 @@ public class SysMLSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseViewRenderingMembership(ViewRenderingMembership object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Event Occurrence Usage</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Event Occurrence Usage</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseEventOccurrenceUsage(EventOccurrenceUsage object) {
 		return null;
 	}
 

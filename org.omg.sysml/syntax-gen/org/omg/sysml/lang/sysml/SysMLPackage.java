@@ -97044,6 +97044,988 @@ public interface SysMLPackage extends EPackage {
 	int VIEW_RENDERING_MEMBERSHIP_OPERATION_COUNT = FEATURE_MEMBERSHIP_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.impl.EventOccurrenceUsageImpl <em>Event Occurrence Usage</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.omg.sysml.lang.sysml.impl.EventOccurrenceUsageImpl
+	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getEventOccurrenceUsage()
+	 * @generated
+	 */
+	int EVENT_OCCURRENCE_USAGE = 143;
+
+	/**
+	 * The feature id for the '<em><b>Owning Membership</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_OCCURRENCE_USAGE__OWNING_MEMBERSHIP = OCCURRENCE_USAGE__OWNING_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Relationship</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_OCCURRENCE_USAGE__OWNED_RELATIONSHIP = OCCURRENCE_USAGE__OWNED_RELATIONSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owning Relationship</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_OCCURRENCE_USAGE__OWNING_RELATIONSHIP = OCCURRENCE_USAGE__OWNING_RELATIONSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_OCCURRENCE_USAGE__IDENTIFIER = OCCURRENCE_USAGE__IDENTIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Owning Namespace</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_OCCURRENCE_USAGE__OWNING_NAMESPACE = OCCURRENCE_USAGE__OWNING_NAMESPACE;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_OCCURRENCE_USAGE__NAME = OCCURRENCE_USAGE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owner</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_OCCURRENCE_USAGE__OWNER = OCCURRENCE_USAGE__OWNER;
+
+	/**
+	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_OCCURRENCE_USAGE__OWNED_ELEMENT = OCCURRENCE_USAGE__OWNED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Documentation</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_OCCURRENCE_USAGE__DOCUMENTATION = OCCURRENCE_USAGE__DOCUMENTATION;
+
+	/**
+	 * The feature id for the '<em><b>Owned Annotation</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_OCCURRENCE_USAGE__OWNED_ANNOTATION = OCCURRENCE_USAGE__OWNED_ANNOTATION;
+
+	/**
+	 * The feature id for the '<em><b>Documentation Comment</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_OCCURRENCE_USAGE__DOCUMENTATION_COMMENT = OCCURRENCE_USAGE__DOCUMENTATION_COMMENT;
+
+	/**
+	 * The feature id for the '<em><b>Owned Textual Representation</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_OCCURRENCE_USAGE__OWNED_TEXTUAL_REPRESENTATION = OCCURRENCE_USAGE__OWNED_TEXTUAL_REPRESENTATION;
+
+	/**
+	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_OCCURRENCE_USAGE__QUALIFIED_NAME = OCCURRENCE_USAGE__QUALIFIED_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Effective Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_OCCURRENCE_USAGE__EFFECTIVE_NAME = OCCURRENCE_USAGE__EFFECTIVE_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Alias Id</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_OCCURRENCE_USAGE__ALIAS_ID = OCCURRENCE_USAGE__ALIAS_ID;
+
+	/**
+	 * The feature id for the '<em><b>Human Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_OCCURRENCE_USAGE__HUMAN_ID = OCCURRENCE_USAGE__HUMAN_ID;
+
+	/**
+	 * The feature id for the '<em><b>Owned Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_OCCURRENCE_USAGE__OWNED_MEMBERSHIP = OCCURRENCE_USAGE__OWNED_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Member</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_OCCURRENCE_USAGE__OWNED_MEMBER = OCCURRENCE_USAGE__OWNED_MEMBER;
+
+	/**
+	 * The feature id for the '<em><b>Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_OCCURRENCE_USAGE__MEMBERSHIP = OCCURRENCE_USAGE__MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_OCCURRENCE_USAGE__OWNED_IMPORT = OCCURRENCE_USAGE__OWNED_IMPORT;
+
+	/**
+	 * The feature id for the '<em><b>Member</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_OCCURRENCE_USAGE__MEMBER = OCCURRENCE_USAGE__MEMBER;
+
+	/**
+	 * The feature id for the '<em><b>Imported Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_OCCURRENCE_USAGE__IMPORTED_MEMBERSHIP = OCCURRENCE_USAGE__IMPORTED_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_OCCURRENCE_USAGE__OWNED_GENERALIZATION = OCCURRENCE_USAGE__OWNED_GENERALIZATION;
+
+	/**
+	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_OCCURRENCE_USAGE__OWNED_FEATURE_MEMBERSHIP = OCCURRENCE_USAGE__OWNED_FEATURE_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Feature</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_OCCURRENCE_USAGE__FEATURE = OCCURRENCE_USAGE__FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Feature</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_OCCURRENCE_USAGE__OWNED_FEATURE = OCCURRENCE_USAGE__OWNED_FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Input</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_OCCURRENCE_USAGE__INPUT = OCCURRENCE_USAGE__INPUT;
+
+	/**
+	 * The feature id for the '<em><b>Output</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_OCCURRENCE_USAGE__OUTPUT = OCCURRENCE_USAGE__OUTPUT;
+
+	/**
+	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_OCCURRENCE_USAGE__IS_ABSTRACT = OCCURRENCE_USAGE__IS_ABSTRACT;
+
+	/**
+	 * The feature id for the '<em><b>Inherited Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_OCCURRENCE_USAGE__INHERITED_MEMBERSHIP = OCCURRENCE_USAGE__INHERITED_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>End Feature</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_OCCURRENCE_USAGE__END_FEATURE = OCCURRENCE_USAGE__END_FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Owned End Feature</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_OCCURRENCE_USAGE__OWNED_END_FEATURE = OCCURRENCE_USAGE__OWNED_END_FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Is Sufficient</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_OCCURRENCE_USAGE__IS_SUFFICIENT = OCCURRENCE_USAGE__IS_SUFFICIENT;
+
+	/**
+	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_OCCURRENCE_USAGE__OWNED_CONJUGATOR = OCCURRENCE_USAGE__OWNED_CONJUGATOR;
+
+	/**
+	 * The feature id for the '<em><b>Is Conjugated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_OCCURRENCE_USAGE__IS_CONJUGATED = OCCURRENCE_USAGE__IS_CONJUGATED;
+
+	/**
+	 * The feature id for the '<em><b>Feature Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_OCCURRENCE_USAGE__FEATURE_MEMBERSHIP = OCCURRENCE_USAGE__FEATURE_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Inherited Feature</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_OCCURRENCE_USAGE__INHERITED_FEATURE = OCCURRENCE_USAGE__INHERITED_FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Multiplicity</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_OCCURRENCE_USAGE__MULTIPLICITY = OCCURRENCE_USAGE__MULTIPLICITY;
+
+	/**
+	 * The feature id for the '<em><b>Owned Type Featuring</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_OCCURRENCE_USAGE__OWNED_TYPE_FEATURING = OCCURRENCE_USAGE__OWNED_TYPE_FEATURING;
+
+	/**
+	 * The feature id for the '<em><b>Owning Feature Membership</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_OCCURRENCE_USAGE__OWNING_FEATURE_MEMBERSHIP = OCCURRENCE_USAGE__OWNING_FEATURE_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owning Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_OCCURRENCE_USAGE__OWNING_TYPE = OCCURRENCE_USAGE__OWNING_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>End Owning Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_OCCURRENCE_USAGE__END_OWNING_TYPE = OCCURRENCE_USAGE__END_OWNING_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Is Unique</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_OCCURRENCE_USAGE__IS_UNIQUE = OCCURRENCE_USAGE__IS_UNIQUE;
+
+	/**
+	 * The feature id for the '<em><b>Is Ordered</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_OCCURRENCE_USAGE__IS_ORDERED = OCCURRENCE_USAGE__IS_ORDERED;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_OCCURRENCE_USAGE__TYPE = OCCURRENCE_USAGE__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_OCCURRENCE_USAGE__OWNED_REDEFINITION = OCCURRENCE_USAGE__OWNED_REDEFINITION;
+
+	/**
+	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_OCCURRENCE_USAGE__OWNED_SUBSETTING = OCCURRENCE_USAGE__OWNED_SUBSETTING;
+
+	/**
+	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_OCCURRENCE_USAGE__IS_COMPOSITE = OCCURRENCE_USAGE__IS_COMPOSITE;
+
+	/**
+	 * The feature id for the '<em><b>Is End</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_OCCURRENCE_USAGE__IS_END = OCCURRENCE_USAGE__IS_END;
+
+	/**
+	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_OCCURRENCE_USAGE__OWNED_TYPING = OCCURRENCE_USAGE__OWNED_TYPING;
+
+	/**
+	 * The feature id for the '<em><b>Featuring Type</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_OCCURRENCE_USAGE__FEATURING_TYPE = OCCURRENCE_USAGE__FEATURING_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Is Nonunique</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_OCCURRENCE_USAGE__IS_NONUNIQUE = OCCURRENCE_USAGE__IS_NONUNIQUE;
+
+	/**
+	 * The feature id for the '<em><b>Nested Usage</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_OCCURRENCE_USAGE__NESTED_USAGE = OCCURRENCE_USAGE__NESTED_USAGE;
+
+	/**
+	 * The feature id for the '<em><b>Owning Usage</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_OCCURRENCE_USAGE__OWNING_USAGE = OCCURRENCE_USAGE__OWNING_USAGE;
+
+	/**
+	 * The feature id for the '<em><b>Nested Port</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_OCCURRENCE_USAGE__NESTED_PORT = OCCURRENCE_USAGE__NESTED_PORT;
+
+	/**
+	 * The feature id for the '<em><b>Nested Action</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_OCCURRENCE_USAGE__NESTED_ACTION = OCCURRENCE_USAGE__NESTED_ACTION;
+
+	/**
+	 * The feature id for the '<em><b>Nested State</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_OCCURRENCE_USAGE__NESTED_STATE = OCCURRENCE_USAGE__NESTED_STATE;
+
+	/**
+	 * The feature id for the '<em><b>Nested Constraint</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_OCCURRENCE_USAGE__NESTED_CONSTRAINT = OCCURRENCE_USAGE__NESTED_CONSTRAINT;
+
+	/**
+	 * The feature id for the '<em><b>Nested Transition</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_OCCURRENCE_USAGE__NESTED_TRANSITION = OCCURRENCE_USAGE__NESTED_TRANSITION;
+
+	/**
+	 * The feature id for the '<em><b>Nested Requirement</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_OCCURRENCE_USAGE__NESTED_REQUIREMENT = OCCURRENCE_USAGE__NESTED_REQUIREMENT;
+
+	/**
+	 * The feature id for the '<em><b>Nested Calculation</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_OCCURRENCE_USAGE__NESTED_CALCULATION = OCCURRENCE_USAGE__NESTED_CALCULATION;
+
+	/**
+	 * The feature id for the '<em><b>Is Variation</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_OCCURRENCE_USAGE__IS_VARIATION = OCCURRENCE_USAGE__IS_VARIATION;
+
+	/**
+	 * The feature id for the '<em><b>Flow Feature</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_OCCURRENCE_USAGE__FLOW_FEATURE = OCCURRENCE_USAGE__FLOW_FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Nested Case</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_OCCURRENCE_USAGE__NESTED_CASE = OCCURRENCE_USAGE__NESTED_CASE;
+
+	/**
+	 * The feature id for the '<em><b>Nested Analysis Case</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_OCCURRENCE_USAGE__NESTED_ANALYSIS_CASE = OCCURRENCE_USAGE__NESTED_ANALYSIS_CASE;
+
+	/**
+	 * The feature id for the '<em><b>Variant Membership</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_OCCURRENCE_USAGE__VARIANT_MEMBERSHIP = OCCURRENCE_USAGE__VARIANT_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Usage</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_OCCURRENCE_USAGE__USAGE = OCCURRENCE_USAGE__USAGE;
+
+	/**
+	 * The feature id for the '<em><b>Variant</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_OCCURRENCE_USAGE__VARIANT = OCCURRENCE_USAGE__VARIANT;
+
+	/**
+	 * The feature id for the '<em><b>Nested Reference</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_OCCURRENCE_USAGE__NESTED_REFERENCE = OCCURRENCE_USAGE__NESTED_REFERENCE;
+
+	/**
+	 * The feature id for the '<em><b>Nested Connection</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_OCCURRENCE_USAGE__NESTED_CONNECTION = OCCURRENCE_USAGE__NESTED_CONNECTION;
+
+	/**
+	 * The feature id for the '<em><b>Nested Item</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_OCCURRENCE_USAGE__NESTED_ITEM = OCCURRENCE_USAGE__NESTED_ITEM;
+
+	/**
+	 * The feature id for the '<em><b>Nested Part</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_OCCURRENCE_USAGE__NESTED_PART = OCCURRENCE_USAGE__NESTED_PART;
+
+	/**
+	 * The feature id for the '<em><b>Nested Interface</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_OCCURRENCE_USAGE__NESTED_INTERFACE = OCCURRENCE_USAGE__NESTED_INTERFACE;
+
+	/**
+	 * The feature id for the '<em><b>Nested Attribute</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_OCCURRENCE_USAGE__NESTED_ATTRIBUTE = OCCURRENCE_USAGE__NESTED_ATTRIBUTE;
+
+	/**
+	 * The feature id for the '<em><b>Nested View</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_OCCURRENCE_USAGE__NESTED_VIEW = OCCURRENCE_USAGE__NESTED_VIEW;
+
+	/**
+	 * The feature id for the '<em><b>Nested Viewpoint</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_OCCURRENCE_USAGE__NESTED_VIEWPOINT = OCCURRENCE_USAGE__NESTED_VIEWPOINT;
+
+	/**
+	 * The feature id for the '<em><b>Nested Rendering</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_OCCURRENCE_USAGE__NESTED_RENDERING = OCCURRENCE_USAGE__NESTED_RENDERING;
+
+	/**
+	 * The feature id for the '<em><b>Nested Verification Case</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_OCCURRENCE_USAGE__NESTED_VERIFICATION_CASE = OCCURRENCE_USAGE__NESTED_VERIFICATION_CASE;
+
+	/**
+	 * The feature id for the '<em><b>Nested Enumeration</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_OCCURRENCE_USAGE__NESTED_ENUMERATION = OCCURRENCE_USAGE__NESTED_ENUMERATION;
+
+	/**
+	 * The feature id for the '<em><b>Nested Allocation</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_OCCURRENCE_USAGE__NESTED_ALLOCATION = OCCURRENCE_USAGE__NESTED_ALLOCATION;
+
+	/**
+	 * The feature id for the '<em><b>Nested Concern</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_OCCURRENCE_USAGE__NESTED_CONCERN = OCCURRENCE_USAGE__NESTED_CONCERN;
+
+	/**
+	 * The feature id for the '<em><b>Nested Stakeholder</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_OCCURRENCE_USAGE__NESTED_STAKEHOLDER = OCCURRENCE_USAGE__NESTED_STAKEHOLDER;
+
+	/**
+	 * The feature id for the '<em><b>Nested Occurrence</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_OCCURRENCE_USAGE__NESTED_OCCURRENCE = OCCURRENCE_USAGE__NESTED_OCCURRENCE;
+
+	/**
+	 * The feature id for the '<em><b>Definition</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_OCCURRENCE_USAGE__DEFINITION = OCCURRENCE_USAGE__DEFINITION;
+
+	/**
+	 * The feature id for the '<em><b>Owning Definition</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_OCCURRENCE_USAGE__OWNING_DEFINITION = OCCURRENCE_USAGE__OWNING_DEFINITION;
+
+	/**
+	 * The feature id for the '<em><b>Occurrence Definition</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_OCCURRENCE_USAGE__OCCURRENCE_DEFINITION = OCCURRENCE_USAGE__OCCURRENCE_DEFINITION;
+
+	/**
+	 * The feature id for the '<em><b>Portioning Feature</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_OCCURRENCE_USAGE__PORTIONING_FEATURE = OCCURRENCE_USAGE__PORTIONING_FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Individual Definition</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_OCCURRENCE_USAGE__INDIVIDUAL_DEFINITION = OCCURRENCE_USAGE__INDIVIDUAL_DEFINITION;
+
+	/**
+	 * The feature id for the '<em><b>Is Individual</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_OCCURRENCE_USAGE__IS_INDIVIDUAL = OCCURRENCE_USAGE__IS_INDIVIDUAL;
+
+	/**
+	 * The feature id for the '<em><b>Portion Kind</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_OCCURRENCE_USAGE__PORTION_KIND = OCCURRENCE_USAGE__PORTION_KIND;
+
+	/**
+	 * The feature id for the '<em><b>Occurring Event</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_OCCURRENCE_USAGE__OCCURRING_EVENT = OCCURRENCE_USAGE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Event Occurrence Usage</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_OCCURRENCE_USAGE_FEATURE_COUNT = OCCURRENCE_USAGE_FEATURE_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Escaped Name</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_OCCURRENCE_USAGE___ESCAPED_NAME = OCCURRENCE_USAGE___ESCAPED_NAME;
+
+	/**
+	 * The operation id for the '<em>Effective Name</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_OCCURRENCE_USAGE___EFFECTIVE_NAME = OCCURRENCE_USAGE___EFFECTIVE_NAME;
+
+	/**
+	 * The operation id for the '<em>Names Of</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_OCCURRENCE_USAGE___NAMES_OF__ELEMENT = OCCURRENCE_USAGE___NAMES_OF__ELEMENT;
+
+	/**
+	 * The operation id for the '<em>Public Memberships</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_OCCURRENCE_USAGE___PUBLIC_MEMBERSHIPS__ELIST = OCCURRENCE_USAGE___PUBLIC_MEMBERSHIPS__ELIST;
+
+	/**
+	 * The operation id for the '<em>Visibility Of</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_OCCURRENCE_USAGE___VISIBILITY_OF__MEMBERSHIP = OCCURRENCE_USAGE___VISIBILITY_OF__MEMBERSHIP;
+
+	/**
+	 * The operation id for the '<em>Imported Memberships</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_OCCURRENCE_USAGE___IMPORTED_MEMBERSHIPS__ELIST = OCCURRENCE_USAGE___IMPORTED_MEMBERSHIPS__ELIST;
+
+	/**
+	 * The operation id for the '<em>Exclude Collisions</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_OCCURRENCE_USAGE___EXCLUDE_COLLISIONS__ELIST = OCCURRENCE_USAGE___EXCLUDE_COLLISIONS__ELIST;
+
+	/**
+	 * The operation id for the '<em>Inherited Memberships</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_OCCURRENCE_USAGE___INHERITED_MEMBERSHIPS__ELIST = OCCURRENCE_USAGE___INHERITED_MEMBERSHIPS__ELIST;
+
+	/**
+	 * The operation id for the '<em>Direction Of</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_OCCURRENCE_USAGE___DIRECTION_OF__FEATURE = OCCURRENCE_USAGE___DIRECTION_OF__FEATURE;
+
+	/**
+	 * The operation id for the '<em>All Supertypes</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_OCCURRENCE_USAGE___ALL_SUPERTYPES = OCCURRENCE_USAGE___ALL_SUPERTYPES;
+
+	/**
+	 * The operation id for the '<em>Direction For</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_OCCURRENCE_USAGE___DIRECTION_FOR__TYPE = OCCURRENCE_USAGE___DIRECTION_FOR__TYPE;
+
+	/**
+	 * The operation id for the '<em>Is Featured Within</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_OCCURRENCE_USAGE___IS_FEATURED_WITHIN__TYPE = OCCURRENCE_USAGE___IS_FEATURED_WITHIN__TYPE;
+
+	/**
+	 * The operation id for the '<em>Naming Feature</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_OCCURRENCE_USAGE___NAMING_FEATURE = OCCURRENCE_USAGE___NAMING_FEATURE;
+
+	/**
+	 * The operation id for the '<em>First Redefined Feature</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_OCCURRENCE_USAGE___FIRST_REDEFINED_FEATURE = OCCURRENCE_USAGE___FIRST_REDEFINED_FEATURE;
+
+	/**
+	 * The operation id for the '<em>First Subsetted Feature</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_OCCURRENCE_USAGE___FIRST_SUBSETTED_FEATURE = OCCURRENCE_USAGE___FIRST_SUBSETTED_FEATURE;
+
+	/**
+	 * The number of operations of the '<em>Event Occurrence Usage</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_OCCURRENCE_USAGE_OPERATION_COUNT = OCCURRENCE_USAGE_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.VisibilityKind <em>Visibility Kind</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -97051,7 +98033,7 @@ public interface SysMLPackage extends EPackage {
 	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getVisibilityKind()
 	 * @generated
 	 */
-	int VISIBILITY_KIND = 143;
+	int VISIBILITY_KIND = 144;
 
 	/**
 	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.FeatureDirectionKind <em>Feature Direction Kind</em>}' enum.
@@ -97061,7 +98043,7 @@ public interface SysMLPackage extends EPackage {
 	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getFeatureDirectionKind()
 	 * @generated
 	 */
-	int FEATURE_DIRECTION_KIND = 144;
+	int FEATURE_DIRECTION_KIND = 145;
 
 
 	/**
@@ -97072,7 +98054,7 @@ public interface SysMLPackage extends EPackage {
 	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getPortionKind()
 	 * @generated
 	 */
-	int PORTION_KIND = 145;
+	int PORTION_KIND = 146;
 
 	/**
 	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.TransitionFeatureKind <em>Transition Feature Kind</em>}' enum.
@@ -97082,7 +98064,7 @@ public interface SysMLPackage extends EPackage {
 	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getTransitionFeatureKind()
 	 * @generated
 	 */
-	int TRANSITION_FEATURE_KIND = 147;
+	int TRANSITION_FEATURE_KIND = 148;
 
 	/**
 	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.StateSubactionKind <em>State Subaction Kind</em>}' enum.
@@ -97092,7 +98074,7 @@ public interface SysMLPackage extends EPackage {
 	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getStateSubactionKind()
 	 * @generated
 	 */
-	int STATE_SUBACTION_KIND = 148;
+	int STATE_SUBACTION_KIND = 149;
 
 	/**
 	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.RequirementConstraintKind <em>Requirement Constraint Kind</em>}' enum.
@@ -97102,7 +98084,7 @@ public interface SysMLPackage extends EPackage {
 	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getRequirementConstraintKind()
 	 * @generated
 	 */
-	int REQUIREMENT_CONSTRAINT_KIND = 146;
+	int REQUIREMENT_CONSTRAINT_KIND = 147;
 
 	/**
 	 * Returns the meta object for class '{@link org.omg.sysml.lang.sysml.EndFeatureMembership <em>End Feature Membership</em>}'.
@@ -97208,6 +98190,27 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getViewRenderingMembership_ReferencedRendering();
+
+	/**
+	 * Returns the meta object for class '{@link org.omg.sysml.lang.sysml.EventOccurrenceUsage <em>Event Occurrence Usage</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Event Occurrence Usage</em>'.
+	 * @see org.omg.sysml.lang.sysml.EventOccurrenceUsage
+	 * @generated
+	 */
+	EClass getEventOccurrenceUsage();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.omg.sysml.lang.sysml.EventOccurrenceUsage#getOccurringEvent <em>Occurring Event</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Occurring Event</em>'.
+	 * @see org.omg.sysml.lang.sysml.EventOccurrenceUsage#getOccurringEvent()
+	 * @see #getEventOccurrenceUsage()
+	 * @generated
+	 */
+	EReference getEventOccurrenceUsage_OccurringEvent();
 
 	/**
 	 * Returns the meta object for class '{@link org.omg.sysml.lang.sysml.RequirementVerificationMembership <em>Requirement Verification Membership</em>}'.
@@ -102679,6 +103682,24 @@ public interface SysMLPackage extends EPackage {
 		 * @generated
 		 */
 		EReference VIEW_RENDERING_MEMBERSHIP__REFERENCED_RENDERING = eINSTANCE.getViewRenderingMembership_ReferencedRendering();
+
+		/**
+		 * The meta object literal for the '{@link org.omg.sysml.lang.sysml.impl.EventOccurrenceUsageImpl <em>Event Occurrence Usage</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.omg.sysml.lang.sysml.impl.EventOccurrenceUsageImpl
+		 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getEventOccurrenceUsage()
+		 * @generated
+		 */
+		EClass EVENT_OCCURRENCE_USAGE = eINSTANCE.getEventOccurrenceUsage();
+
+		/**
+		 * The meta object literal for the '<em><b>Occurring Event</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference EVENT_OCCURRENCE_USAGE__OCCURRING_EVENT = eINSTANCE.getEventOccurrenceUsage_OccurringEvent();
 
 		/**
 		 * The meta object literal for the '{@link org.omg.sysml.lang.sysml.impl.RequirementVerificationMembershipImpl <em>Requirement Verification Membership</em>}' class.

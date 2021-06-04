@@ -7166,4 +7166,8 @@ endif</body>
       <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="e61b21c0-cfdd-419a-b79b-3260172b3b8f" name="" visibility="public"/>
     </ownedAttribute>
   </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_PZ--YMVlEeudYZMEDVAEig" name="EventOccurrenceUsage">
+    <generalization xmi:id="_U_xiMMVlEeudYZMEDVAEig" general="da9d7196-5acc-4b5d-bfad-15a6229d604d"/>
+    <ownedAttribute xmi:id="_a6iQcMVlEeudYZMEDVAEig" name="occurringEvent" type="da9d7196-5acc-4b5d-bfad-15a6229d604d" isDerived="true"/>
+  </packagedElement>
 </uml:Model>

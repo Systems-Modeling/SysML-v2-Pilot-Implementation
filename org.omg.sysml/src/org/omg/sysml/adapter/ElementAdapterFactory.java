@@ -157,6 +157,11 @@ public class ElementAdapterFactory {
 		}
 		
 		@Override
+		public ElementAdapter caseEventOccurrenceUsage(EventOccurrenceUsage element) {
+			return new EventOccurrenceUsageAdapter(element);
+		}
+		
+		@Override
 		public ElementAdapter caseExhibitStateUsage(ExhibitStateUsage element) {
 			return new ExhibitStateUsageAdapter(element);
 		}

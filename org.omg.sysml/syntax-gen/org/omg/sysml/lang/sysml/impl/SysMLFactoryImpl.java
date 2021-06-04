@@ -216,6 +216,7 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 			case SysMLPackage.DEPENDENCY: return createDependency();
 			case SysMLPackage.EXPOSE: return createExpose();
 			case SysMLPackage.VIEW_RENDERING_MEMBERSHIP: return createViewRenderingMembership();
+			case SysMLPackage.EVENT_OCCURRENCE_USAGE: return createEventOccurrenceUsage();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -324,6 +325,17 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	public ViewRenderingMembership createViewRenderingMembership() {
 		ViewRenderingMembershipImpl viewRenderingMembership = new ViewRenderingMembershipImpl();
 		return viewRenderingMembership;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EventOccurrenceUsage createEventOccurrenceUsage() {
+		EventOccurrenceUsageImpl eventOccurrenceUsage = new EventOccurrenceUsageImpl();
+		return eventOccurrenceUsage;
 	}
 
 	/**

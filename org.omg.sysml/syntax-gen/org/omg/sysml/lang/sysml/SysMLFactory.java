@@ -87,6 +87,15 @@ public interface SysMLFactory extends EFactory {
 	ViewRenderingMembership createViewRenderingMembership();
 
 	/**
+	 * Returns a new object of class '<em>Event Occurrence Usage</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Event Occurrence Usage</em>'.
+	 * @generated
+	 */
+	EventOccurrenceUsage createEventOccurrenceUsage();
+
+	/**
 	 * Returns a new object of class '<em>Requirement Verification Membership</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

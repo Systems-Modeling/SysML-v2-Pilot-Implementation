@@ -21,41 +21,41 @@
 
 package org.omg.sysml.adapter;
 
-import org.omg.sysml.lang.sysml.ExhibitStateUsage;
-import org.omg.sysml.lang.sysml.PartDefinition;
-import org.omg.sysml.lang.sysml.PartUsage;
+import org.omg.sysml.lang.sysml.EventOccurrenceUsage;
+import org.omg.sysml.lang.sysml.OccurrenceDefinition;
+import org.omg.sysml.lang.sysml.OccurrenceUsage;
 import org.omg.sysml.lang.sysml.Type;
 
-public class ExhibitStateUsageAdapter extends StateUsageAdapter {
+public class EventOccurrenceUsageAdapter extends OccurrenceUsageAdapter {
 
-	public ExhibitStateUsageAdapter(ExhibitStateUsage element) {
+	public EventOccurrenceUsageAdapter(EventOccurrenceUsage element) {
 		super(element);
 	}
 	
 	@Override
-	public ExhibitStateUsage getTarget() {
-		return (ExhibitStateUsage)super.getTarget();
+	public EventOccurrenceUsage getTarget() {
+		return (EventOccurrenceUsage)super.getTarget();
 	}
 
 	@Override
 	public void addDefaultGeneralType() {
 		super.addDefaultGeneralType();
-		if (isEnactedPerformance()) {
+		if (isSuboccurrence()) {
 			addImplicitGeneralType(getGeneralizationEClass(), 
-					getLibraryType(getDefaultSupertype("enactedPerformance")));;
+					getLibraryType(getDefaultSupertype("suboccurrence")));;
 		}
 	}
 
 	@Override
 	protected String getDefaultSupertype() {
-		return isEnactedPerformance()? 
-				getDefaultSupertype("enactedPerformance"):
+		return isSuboccurrence()? 
+				getDefaultSupertype("suboccurrence"):
 				super.getDefaultSupertype();
 	}
 	
-	public boolean isEnactedPerformance() {		
+	public boolean isSuboccurrence() {		
 		Type owningType = getTarget().getOwningType();
-		return owningType instanceof PartDefinition || owningType instanceof PartUsage;
+		return owningType instanceof OccurrenceDefinition || owningType instanceof OccurrenceUsage;
 	}
 	
 }

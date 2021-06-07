@@ -16,9 +16,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  *
  * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
- */
-
-/*
+ *
  * ATTENTION: This file is auto-generated from the Xtext grammar definitions by script:
  *   $SCRIPT
  * Source code modifications should be applied to template file:

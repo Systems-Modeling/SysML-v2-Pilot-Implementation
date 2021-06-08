@@ -915,12 +915,12 @@ OccurrenceDefKeyword :
 ;
 
 fragment OccurrenceDefinitionPrefix returns SysML::OccurrenceDefinition :
-	DefinitionPrefix? isIndividual ?= 'individual'?
+	DefinitionPrefix? 
+	( isIndividual ?= 'individual' ownedRelationship += LifeClassMembership )?
 ;
 
 OccurrenceDefinition returns SysML::OccurrenceDefinition :
 	OccurrenceDefinitionPrefix OccurrenceDefKeyword Definition
-	ownedRelationship += LifeClassMembership
 ;
 
 IndividualDefinition returns SysML::OccurrenceDefinition :
@@ -943,23 +943,23 @@ OccurrenceUsageKeyword :
 ;
 
 fragment OccurrenceUsagePrefix returns SysML::OccurrenceUsage :
-	  isIndividual ?= 'individual'
-	| portionKind = PortionKind
-	  ownedRelationship += PortioningFeatureMember
+	  ( isIndividual ?= 'individual' )?
+	  ( portionKind = PortionKind
+	    ownedRelationship += PortioningFeatureMember )?
 ;
 
 OccurrenceUsage returns SysML::OccurrenceUsage :
-	UsagePrefix? OccurrenceUsagePrefix? OccurrenceUsageKeyword Usage
+	UsagePrefix? OccurrenceUsagePrefix OccurrenceUsageKeyword Usage
 ;
 
 OccurrenceRefUsage returns SysML::OccurrenceUsage :
 	UsagePrefix? 
-	( 'ref' OccurrenceUsagePrefix? OccurrenceUsageKeyword 
-	| OccurrenceUsagePrefix? isComposite ?= OccurrenceUsageKeyword ) Usage
+	( 'ref' OccurrenceUsagePrefix OccurrenceUsageKeyword 
+	| OccurrenceUsagePrefix isComposite ?= OccurrenceUsageKeyword ) Usage
 ;
 
 OccurrenceFlowUsage returns SysML::OccurrenceUsage :
-	UsagePrefix? 'ref'? OccurrenceUsagePrefix? OccurrenceUsageKeyword Usage
+	UsagePrefix? 'ref'? OccurrenceUsagePrefix OccurrenceUsageKeyword Usage
 ;
 
 IndividualUsage returns SysML::OccurrenceUsage :
@@ -974,8 +974,10 @@ IndividualRefUsage returns SysML::OccurrenceUsage :
 ;
 
 PortionUsage returns SysML::OccurrenceUsage :
-	UsagePrefix? portionKind = PortionKind Usage
-	ownedRelationship += PortioningFeatureMember 
+	UsagePrefix? ( isIndividual ?= 'individual' )?
+	portionKind = PortionKind
+	ownedRelationship += PortioningFeatureMember
+	Usage
 ;
 
 enum PortionKind returns SysML::PortionKind :
@@ -991,7 +993,7 @@ PortioningFeature returns SysML::PortioningFeature :
 ;
 
 EventOccurrenceUsage returns SysML::EventOccurrenceUsage :
-	 UsagePrefix? OccurrenceUsagePrefix? 'event'
+	 UsagePrefix? OccurrenceUsagePrefix 'event'
 	( ownedRelationship += OwnedSubsetting FeatureSpecializationPart?
    	| OccurrenceUsageKeyword UsageDeclaration? )
     UsageCompletion
@@ -1043,17 +1045,17 @@ ItemDefinition returns SysML::ItemDefinition :
 ;
 
 ItemUsage returns SysML::ItemUsage :
-	UsagePrefix? OccurrenceUsagePrefix? ItemUsageKeyword Usage
+	UsagePrefix? OccurrenceUsagePrefix ItemUsageKeyword Usage
 ;
 
 ItemFlowUsage returns SysML::ItemUsage :
-	UsagePrefix? 'ref'? OccurrenceUsagePrefix? ItemUsageKeyword Usage
+	UsagePrefix? 'ref'? OccurrenceUsagePrefix ItemUsageKeyword Usage
 ;
 
 ItemRefUsage returns SysML::ItemUsage :
 	UsagePrefix? 
-	( 'ref' OccurrenceUsagePrefix? ItemUsageKeyword 
-	| OccurrenceUsagePrefix? isComposite ?= ItemUsageKeyword ) Usage
+	( 'ref' OccurrenceUsagePrefix ItemUsageKeyword 
+	| OccurrenceUsagePrefix isComposite ?= ItemUsageKeyword ) Usage
 ;
 
 /* PARTS */
@@ -1075,17 +1077,17 @@ PartDefinition returns SysML::PartDefinition :
 ;
 
 PartUsage returns SysML::PartUsage :
-	UsagePrefix? OccurrenceUsagePrefix? PartUsageKeyword Usage
+	UsagePrefix? OccurrenceUsagePrefix PartUsageKeyword Usage
 ;
 
 PartFlowUsage returns SysML::PartUsage :
-	UsagePrefix? 'ref'? OccurrenceUsagePrefix? PartUsageKeyword Usage
+	UsagePrefix? 'ref'? OccurrenceUsagePrefix PartUsageKeyword Usage
 ;
 
 PartRefUsage returns SysML::PartUsage :
 	UsagePrefix? 
-	( 'ref' OccurrenceUsagePrefix? PartUsageKeyword 
-	| OccurrenceUsagePrefix? isComposite ?= PartUsageKeyword ) Usage
+	( 'ref' OccurrenceUsagePrefix PartUsageKeyword 
+	| OccurrenceUsagePrefix isComposite ?= PartUsageKeyword ) Usage
 ;
 
 /* PORTS */
@@ -1211,7 +1213,7 @@ ConnectorKeyword :
 ;
 
 Connector returns SysML::ConnectionUsage :
-	UsagePrefix? OccurrenceUsagePrefix? ConnectorKeyword ConnectorPart ConnectionBody
+	UsagePrefix? OccurrenceUsagePrefix ConnectorKeyword ConnectorPart ConnectionBody
 ;
 
 ConnectionUsageKeyword :
@@ -1219,7 +1221,7 @@ ConnectionUsageKeyword :
 ;
 
 ConnectionUsage returns SysML::ConnectionUsage :
-	UsagePrefix? OccurrenceUsagePrefix? ConnectionUsageKeyword UsageDeclaration? 
+	UsagePrefix? OccurrenceUsagePrefix ConnectionUsageKeyword UsageDeclaration? 
 	( ConnectorKeyword ConnectorPart )? ConnectionBody
 ;
 
@@ -1292,7 +1294,7 @@ InterfaceUsageKeyword :
 ;
 
 InterfaceUsage returns SysML::InterfaceUsage :	 
-	UsagePrefix? OccurrenceUsagePrefix? InterfaceUsageKeyword InterfaceUsageDeclaration InterfaceDefBody
+	UsagePrefix? OccurrenceUsagePrefix InterfaceUsageKeyword InterfaceUsageDeclaration InterfaceDefBody
 ;
 
 fragment InterfaceUsageDeclaration returns SysML::InterfaceUsage :
@@ -1330,7 +1332,7 @@ AllocateKeyword :
 ;
 
 AllocationUsage returns SysML::AllocationUsage :	 
-	UsagePrefix? OccurrenceUsagePrefix? AllocationUsageDeclaration ConnectionBody
+	UsagePrefix? OccurrenceUsagePrefix AllocationUsageDeclaration ConnectionBody
 ;
 
 fragment AllocationUsageDeclaration returns SysML::AllocationUsage :
@@ -1453,22 +1455,22 @@ ActionUsageKeyword :
 ;
 
 ActionUsage returns SysML::ActionUsage :
-	UsagePrefix? OccurrenceUsagePrefix? ActionUsageKeyword ActionUsageDeclaration ActionBody
+	UsagePrefix? OccurrenceUsagePrefix ActionUsageKeyword ActionUsageDeclaration ActionBody
 ;
 
 ActionFlowUsage returns SysML::ActionUsage :
-	UsagePrefix? 'ref'? OccurrenceUsagePrefix? ActionUsageKeyword ActionUsageDeclaration ActionBody
+	UsagePrefix? 'ref'? OccurrenceUsagePrefix ActionUsageKeyword ActionUsageDeclaration ActionBody
 ;
 
 ActionRefUsage returns SysML::ActionUsage :
 	UsagePrefix? 
-	( 'ref' OccurrenceUsagePrefix? ActionUsageKeyword 
-	| OccurrenceUsagePrefix? isComposite ?= ActionUsageKeyword ) 
+	( 'ref' OccurrenceUsagePrefix ActionUsageKeyword 
+	| OccurrenceUsagePrefix isComposite ?= ActionUsageKeyword ) 
 	ActionUsageDeclaration ActionBody
 ;
 
 PerformActionUsage returns SysML::PerformActionUsage :
-	UsagePrefix? OccurrenceUsagePrefix? 'perform' PerformActionUsageDeclaration ActionBody
+	UsagePrefix? OccurrenceUsagePrefix 'perform' PerformActionUsageDeclaration ActionBody
 ;
 
 fragment PerformActionUsageDeclaration returns SysML::ActionUsage :
@@ -1501,7 +1503,7 @@ ActionNode returns SysML::ActionUsage :
 ;
 
 AcceptNode returns SysML::AcceptActionUsage :
-	UsagePrefix? OccurrenceUsagePrefix? AcceptNodeDeclaration ActionBody
+	UsagePrefix? OccurrenceUsagePrefix AcceptNodeDeclaration ActionBody
 ;
 
 fragment AcceptNodeDeclaration returns SysML::ActionUsage :
@@ -1530,7 +1532,7 @@ fragment ItemParameterSpecializationPart returns SysML::Feature :
 ;
 
 SendNode returns SysML::SendActionUsage :
-	UsagePrefix? OccurrenceUsagePrefix? SendNodeDeclaration ActionBody
+	UsagePrefix? OccurrenceUsagePrefix SendNodeDeclaration ActionBody
 ;
 
 fragment SendNodeDeclaration returns SysML::ActionUsage :
@@ -1554,19 +1556,19 @@ ControlNode returns SysML::ControlNode :
 ;
 
 MergeNode returns SysML::MergeNode :
-	UsagePrefix? OccurrenceUsagePrefix? isComposite ?= 'merge' UsageDeclaration? ';'
+	UsagePrefix? OccurrenceUsagePrefix isComposite ?= 'merge' UsageDeclaration? ';'
 ;
 
 DecisionNode returns SysML::DecisionNode :
-	UsagePrefix? OccurrenceUsagePrefix? isComposite ?= 'decide' UsageDeclaration? ';'
+	UsagePrefix? OccurrenceUsagePrefix isComposite ?= 'decide' UsageDeclaration? ';'
 ;
 
 JoinNode returns SysML::JoinNode :
-	UsagePrefix? OccurrenceUsagePrefix? isComposite ?= 'join' UsageDeclaration? ';'
+	UsagePrefix? OccurrenceUsagePrefix isComposite ?= 'join' UsageDeclaration? ';'
 ;
 
 ForkNode returns SysML::ForkNode :
-	UsagePrefix? OccurrenceUsagePrefix? isComposite ?= 'fork' UsageDeclaration? ';'
+	UsagePrefix? OccurrenceUsagePrefix isComposite ?= 'fork' UsageDeclaration? ';'
 ;
 
 EmptyParameterMember returns SysML::ParameterMembership :
@@ -1711,22 +1713,22 @@ StateUsageKeyword :
 ;
 
 StateUsage returns SysML::StateUsage :
-	UsagePrefix? OccurrenceUsagePrefix? StateUsageKeyword ActionUsageDeclaration StateBody
+	UsagePrefix? OccurrenceUsagePrefix StateUsageKeyword ActionUsageDeclaration StateBody
 ;
 
 StateFlowUsage returns SysML::StateUsage :
-	UsagePrefix? 'ref'? OccurrenceUsagePrefix? StateUsageKeyword ActionUsageDeclaration StateBody
+	UsagePrefix? 'ref'? OccurrenceUsagePrefix StateUsageKeyword ActionUsageDeclaration StateBody
 ;
 
 StateRefUsage returns SysML::StateUsage :
 	UsagePrefix? 
-	( 'ref' OccurrenceUsagePrefix? StateUsageKeyword 
-	| OccurrenceUsagePrefix? isComposite ?= StateUsageKeyword ) 
+	( 'ref' OccurrenceUsagePrefix StateUsageKeyword 
+	| OccurrenceUsagePrefix isComposite ?= StateUsageKeyword ) 
 	ActionUsageDeclaration StateBody
 ;
 
 ExhibitStateUsage returns SysML::ExhibitStateUsage :
-    UsagePrefix? OccurrenceUsagePrefix? 'exhibit' 
+    UsagePrefix? OccurrenceUsagePrefix 'exhibit' 
     ( ownedRelationship += OwnedSubsetting FeatureSpecializationPart?
     | StateUsageKeyword UsageDeclaration?
     )
@@ -1866,17 +1868,17 @@ CalculationUsageKeyword :
 ;
 
 CalculationUsage returns SysML::CalculationUsage :
-	UsagePrefix? OccurrenceUsagePrefix? CalculationUsageKeyword CalculationUsageDeclaration CalculationBody
+	UsagePrefix? OccurrenceUsagePrefix CalculationUsageKeyword CalculationUsageDeclaration CalculationBody
 ;
 
 CalculationFlowUsage returns SysML::CalculationUsage :
-	UsagePrefix? 'ref'? OccurrenceUsagePrefix? CalculationUsageKeyword CalculationUsageDeclaration CalculationBody
+	UsagePrefix? 'ref'? OccurrenceUsagePrefix CalculationUsageKeyword CalculationUsageDeclaration CalculationBody
 ;
 
 CalculationRefUsage returns SysML::CalculationUsage :
 	UsagePrefix? 
-	( 'ref' OccurrenceUsagePrefix? CalculationUsageKeyword 
-	| OccurrenceUsagePrefix? isComposite ?= CalculationUsageKeyword ) 
+	( 'ref' OccurrenceUsagePrefix CalculationUsageKeyword 
+	| OccurrenceUsagePrefix isComposite ?= CalculationUsageKeyword ) 
 	CalculationUsageDeclaration CalculationBody
 ;
 
@@ -1931,22 +1933,22 @@ ConstraintUsageKeyword :
 ;
 
 ConstraintUsage returns SysML::ConstraintUsage :
-	UsagePrefix? OccurrenceUsagePrefix? ConstraintUsageKeyword CalculationUsageDeclaration CalculationBody
+	UsagePrefix? OccurrenceUsagePrefix ConstraintUsageKeyword CalculationUsageDeclaration CalculationBody
 ;
 
 ConstraintFlowUsage returns SysML::ConstraintUsage :
-	UsagePrefix? 'ref'? OccurrenceUsagePrefix? ConstraintUsageKeyword CalculationUsageDeclaration CalculationBody
+	UsagePrefix? 'ref'? OccurrenceUsagePrefix ConstraintUsageKeyword CalculationUsageDeclaration CalculationBody
 ;
 
 ConstraintRefUsage returns SysML::ConstraintUsage :
 	UsagePrefix? 
-	( 'ref' OccurrenceUsagePrefix? ConstraintUsageKeyword 
-	| OccurrenceUsagePrefix? isComposite ?= ConstraintUsageKeyword ) 
+	( 'ref' OccurrenceUsagePrefix ConstraintUsageKeyword 
+	| OccurrenceUsagePrefix isComposite ?= ConstraintUsageKeyword ) 
 	CalculationUsageDeclaration CalculationBody
 ;
 
 AssertConstraintUsage returns SysML::AssertConstraintUsage :
-	UsagePrefix? OccurrenceUsagePrefix? 'assert'
+	UsagePrefix? OccurrenceUsagePrefix 'assert'
     ( ownedRelationship += OwnedSubsetting FeatureSpecializationPart?
     | ConstraintUsageKeyword UsageDeclaration? 
     )
@@ -2038,22 +2040,22 @@ RequirementUsageKeyword :
 ;
 
 RequirementUsage returns SysML::RequirementUsage :
-	UsagePrefix? OccurrenceUsagePrefix? RequirementUsageKeyword CalculationUsageDeclaration RequirementBody
+	UsagePrefix? OccurrenceUsagePrefix RequirementUsageKeyword CalculationUsageDeclaration RequirementBody
 ;
 
 RequirementFlowUsage returns SysML::RequirementUsage :
-	UsagePrefix? 'ref'? OccurrenceUsagePrefix? RequirementUsageKeyword CalculationUsageDeclaration RequirementBody
+	UsagePrefix? 'ref'? OccurrenceUsagePrefix RequirementUsageKeyword CalculationUsageDeclaration RequirementBody
 ;
 
 RequirementRefUsage returns SysML::RequirementUsage :
 	UsagePrefix? 
-	( 'ref' OccurrenceUsagePrefix? RequirementUsageKeyword 
-	| OccurrenceUsagePrefix? isComposite ?= RequirementUsageKeyword ) 
+	( 'ref' OccurrenceUsagePrefix RequirementUsageKeyword 
+	| OccurrenceUsagePrefix isComposite ?= RequirementUsageKeyword ) 
 	CalculationUsageDeclaration RequirementBody
 ;
 
 SatisfyRequirementUsage returns SysML::SatisfyRequirementUsage :
-	UsagePrefix? OccurrenceUsagePrefix? 'satisfy'
+	UsagePrefix? OccurrenceUsagePrefix 'satisfy'
 	( ownedRelationship += OwnedSubsetting FeatureSpecializationPart?
     | RequirementUsageKeyword UsageDeclaration? 
     )
@@ -2113,17 +2115,17 @@ ConcernUsageKeyword :
 ;
 
 ConcernUsage returns SysML::ConcernUsage :
-	UsagePrefix? OccurrenceUsagePrefix? ConcernUsageKeyword CalculationUsageDeclaration ConcernBody
+	UsagePrefix? OccurrenceUsagePrefix ConcernUsageKeyword CalculationUsageDeclaration ConcernBody
 ;
 
 ConcernFlowUsage returns SysML::ConcernUsage :
-	UsagePrefix? 'ref'? OccurrenceUsagePrefix? ConcernUsageKeyword CalculationUsageDeclaration ConcernBody
+	UsagePrefix? 'ref'? OccurrenceUsagePrefix ConcernUsageKeyword CalculationUsageDeclaration ConcernBody
 ;
 
 ConcernRefUsage returns SysML::ConcernUsage :
 	UsagePrefix? 
-	( 'ref' OccurrenceUsagePrefix? ConcernUsageKeyword 
-	| OccurrenceUsagePrefix? isComposite ?= ConcernUsageKeyword ) 
+	( 'ref' OccurrenceUsagePrefix ConcernUsageKeyword 
+	| OccurrenceUsagePrefix isComposite ?= ConcernUsageKeyword ) 
 	CalculationUsageDeclaration ConcernBody
 ;
 
@@ -2146,17 +2148,17 @@ StakeholderUsageKeyword :
 ;
 
 StakeholderUsage returns SysML::StakeholderUsage :
-	UsagePrefix? OccurrenceUsagePrefix? StakeholderUsageKeyword Usage
+	UsagePrefix? OccurrenceUsagePrefix StakeholderUsageKeyword Usage
 ;
 
 StakeholderFlowUsage returns SysML::StakeholderUsage :
-	UsagePrefix? OccurrenceUsagePrefix? 'ref' StakeholderUsageKeyword Usage
+	UsagePrefix? OccurrenceUsagePrefix 'ref' StakeholderUsageKeyword Usage
 ;
 
 StakeholderRefUsage returns SysML::StakeholderUsage :
 	UsagePrefix? 
-	( 'ref' OccurrenceUsagePrefix? StakeholderUsageKeyword 
-	| OccurrenceUsagePrefix? isComposite ?= StakeholderUsageKeyword ) Usage
+	( 'ref' OccurrenceUsagePrefix StakeholderUsageKeyword 
+	| OccurrenceUsagePrefix isComposite ?= StakeholderUsageKeyword ) Usage
 ;
 
 /* CASES */
@@ -2204,17 +2206,17 @@ CaseUsageKeyword :
 ;
 
 CaseUsage returns SysML::CaseUsage :
-	UsagePrefix? OccurrenceUsagePrefix? CaseUsageKeyword CalculationUsageDeclaration CaseBody
+	UsagePrefix? OccurrenceUsagePrefix CaseUsageKeyword CalculationUsageDeclaration CaseBody
 ;
 
 CaseFlowUsage returns SysML::CaseUsage :
-	UsagePrefix? 'ref'? OccurrenceUsagePrefix? CaseUsageKeyword CalculationUsageDeclaration CaseBody
+	UsagePrefix? 'ref'? OccurrenceUsagePrefix CaseUsageKeyword CalculationUsageDeclaration CaseBody
 ;
 
 CaseRefUsage returns SysML::CaseUsage :
 	UsagePrefix? 
-	( 'ref' OccurrenceUsagePrefix? CaseUsageKeyword 
-	| OccurrenceUsagePrefix? isComposite ?= CaseUsageKeyword ) 
+	( 'ref' OccurrenceUsagePrefix CaseUsageKeyword 
+	| OccurrenceUsagePrefix isComposite ?= CaseUsageKeyword ) 
 	CalculationUsageDeclaration CaseBody
 ;
 
@@ -2237,17 +2239,17 @@ AnalysisCaseDefinition returns SysML::AnalysisCaseDefinition :
 ;
 
 AnalysisCaseUsage returns SysML::AnalysisCaseUsage :
-	UsagePrefix? OccurrenceUsagePrefix? AnalysisCaseUsageKeyword CalculationUsageDeclaration CaseBody
+	UsagePrefix? OccurrenceUsagePrefix AnalysisCaseUsageKeyword CalculationUsageDeclaration CaseBody
 ;
 
 AnalysisCaseFlowUsage returns SysML::AnalysisCaseUsage :
-	UsagePrefix? 'ref'? OccurrenceUsagePrefix? AnalysisCaseUsageKeyword CalculationUsageDeclaration CaseBody
+	UsagePrefix? 'ref'? OccurrenceUsagePrefix AnalysisCaseUsageKeyword CalculationUsageDeclaration CaseBody
 ;
 
 AnalysisCaseRefUsage returns SysML::AnalysisCaseUsage :
 	UsagePrefix? 
-	( 'ref' OccurrenceUsagePrefix? AnalysisCaseUsageKeyword 
-	| OccurrenceUsagePrefix? isComposite ?= AnalysisCaseUsageKeyword ) 
+	( 'ref' OccurrenceUsagePrefix AnalysisCaseUsageKeyword 
+	| OccurrenceUsagePrefix isComposite ?= AnalysisCaseUsageKeyword ) 
 	CalculationUsageDeclaration CaseBody
 ;
 
@@ -2270,17 +2272,17 @@ VerificationCaseDefinition returns SysML::VerificationCaseDefinition :
 ;
 
 VerificationCaseUsage returns SysML::VerificationCaseUsage :
-	UsagePrefix? OccurrenceUsagePrefix? VerificationCaseUsageKeyword CalculationUsageDeclaration CaseBody
+	UsagePrefix? OccurrenceUsagePrefix VerificationCaseUsageKeyword CalculationUsageDeclaration CaseBody
 ;
 
 VerificationCaseFlowUsage returns SysML::VerificationCaseUsage :
-	UsagePrefix? 'ref'? OccurrenceUsagePrefix? VerificationCaseUsageKeyword CalculationUsageDeclaration CaseBody
+	UsagePrefix? 'ref'? OccurrenceUsagePrefix VerificationCaseUsageKeyword CalculationUsageDeclaration CaseBody
 ;
 
 VerificationCaseRefUsage returns SysML::VerificationCaseUsage :
 	UsagePrefix? 
-	( 'ref' OccurrenceUsagePrefix? VerificationCaseUsageKeyword 
-	| OccurrenceUsagePrefix? isComposite ?= VerificationCaseUsageKeyword ) 
+	( 'ref' OccurrenceUsagePrefix VerificationCaseUsageKeyword 
+	| OccurrenceUsagePrefix isComposite ?= VerificationCaseUsageKeyword ) 
 	CalculationUsageDeclaration CaseBody
 ;
 
@@ -2342,17 +2344,17 @@ ViewUsageKeyword :
 ;
 
 ViewUsage returns SysML::ViewUsage :
-	UsagePrefix? OccurrenceUsagePrefix? ViewUsageKeyword UsageDeclaration? ValueOrFlowPart? ViewBody
+	UsagePrefix? OccurrenceUsagePrefix ViewUsageKeyword UsageDeclaration? ValueOrFlowPart? ViewBody
 ;
 
 ViewFlowUsage returns SysML::ViewUsage :
-	UsagePrefix? 'ref'? OccurrenceUsagePrefix? ViewUsageKeyword UsageDeclaration? ValueOrFlowPart? ViewBody
+	UsagePrefix? 'ref'? OccurrenceUsagePrefix ViewUsageKeyword UsageDeclaration? ValueOrFlowPart? ViewBody
 ;
 
 ViewRefUsage returns SysML::ViewUsage :
 	UsagePrefix? 
-	( 'ref' OccurrenceUsagePrefix? ViewUsageKeyword 
-	| OccurrenceUsagePrefix? isComposite ?= ViewUsageKeyword ) 
+	( 'ref' OccurrenceUsagePrefix ViewUsageKeyword 
+	| OccurrenceUsagePrefix isComposite ?= ViewUsageKeyword ) 
 	UsageDeclaration? ValueOrFlowPart? ViewBody
 ;
 
@@ -2392,17 +2394,17 @@ ViewpointDefinition returns SysML::ViewpointDefinition :
 ;
 
 ViewpointUsage returns SysML::ViewpointUsage :
-	UsagePrefix? OccurrenceUsagePrefix? ViewpointUsageKeyword CalculationUsageDeclaration RequirementBody
+	UsagePrefix? OccurrenceUsagePrefix ViewpointUsageKeyword CalculationUsageDeclaration RequirementBody
 ;
 
 ViewpointFlowUsage returns SysML::ViewpointUsage :
-	UsagePrefix? 'ref'? OccurrenceUsagePrefix? ViewpointUsageKeyword CalculationUsageDeclaration RequirementBody
+	UsagePrefix? 'ref'? OccurrenceUsagePrefix ViewpointUsageKeyword CalculationUsageDeclaration RequirementBody
 ;
 
 ViewpointRefUsage returns SysML::ViewpointUsage :
 	UsagePrefix? 
-	( 'ref' OccurrenceUsagePrefix? ViewpointUsageKeyword 
-	| OccurrenceUsagePrefix? isComposite ?= ViewpointUsageKeyword ) 
+	( 'ref' OccurrenceUsagePrefix ViewpointUsageKeyword 
+	| OccurrenceUsagePrefix isComposite ?= ViewpointUsageKeyword ) 
 	CalculationUsageDeclaration RequirementBody
 ;
 
@@ -2425,17 +2427,17 @@ RenderingUsageKeyword :
 ;
 
 RenderingUsage returns SysML::RenderingUsage :
-	UsagePrefix? OccurrenceUsagePrefix? RenderingUsageKeyword Usage
+	UsagePrefix? OccurrenceUsagePrefix RenderingUsageKeyword Usage
 ;
 
 RenderingFlowUsage returns SysML::RenderingUsage :
-	UsagePrefix? 'ref'? OccurrenceUsagePrefix? RenderingUsageKeyword Usage
+	UsagePrefix? 'ref'? OccurrenceUsagePrefix RenderingUsageKeyword Usage
 ;
 
 RenderingRefUsage returns SysML::RenderingUsage :
 	UsagePrefix? 
-	( 'ref' OccurrenceUsagePrefix? RenderingUsageKeyword 
-	| OccurrenceUsagePrefix? isComposite ?= RenderingUsageKeyword ) Usage
+	( 'ref' OccurrenceUsagePrefix RenderingUsageKeyword 
+	| OccurrenceUsagePrefix isComposite ?= RenderingUsageKeyword ) Usage
 ;
 
 /* EXPRESSIONS */

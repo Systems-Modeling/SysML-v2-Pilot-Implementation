@@ -4,7 +4,7 @@ package OccurrenceTest {
 		ref occurrence occ1 : Occ;
 		occurrence occ2 : Occ;
 		
-		snapshot s;
+		individual snapshot s : Ind;
 		timeslice t;
 	}
 
@@ -14,6 +14,8 @@ package OccurrenceTest {
 	}
 	individual occurrence ind : Ind, Occ {
 		snapshot s3;
-		timeslice t3;
+		individual timeslice t3;
 	}
+	
+	individual snapshot s4 : Ind;
 }

@@ -46,7 +46,7 @@ package 'Individuals and Roles' {
 	// XPECT errors --> "An individual must be typed by one individual definition." at "individual two_types : A_1, B_1;"
 	individual two_types : A_1, B_1;
 
-	// XPECT errors -->"An individual must be typed by one individual definition." at "snapshot b_1_1 : B;"
-	snapshot b_1_1 : B;
+	// XPECT noErrors -->"An individual must be typed by one individual definition." at "snapshot b_1_1 : B;"
+	individual snapshot b_1_1 : B;
 	
 }

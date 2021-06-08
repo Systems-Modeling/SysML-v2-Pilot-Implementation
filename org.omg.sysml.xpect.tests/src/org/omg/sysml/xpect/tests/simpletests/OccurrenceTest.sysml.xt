@@ -1,0 +1,39 @@
+//* 
+XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLTests
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library.kernel/Base.kerml"}
+       	File {from ="/library.kernel/Occurrences.kerml"}
+       	File {from ="/library.kernel/Objects.kerml"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library.kernel/Base.kerml"}
+		       	File {from ="/library.kernel/Occurrences.kerml"}
+		       	File {from ="/library.kernel/Objects.kerml"}
+			}
+		}
+	}
+END_SETUP 
+*/
+// XPECT noErrors ---> ""
+package OccurrenceTest {
+    occurrence def Occ {
+//*		ref occurrence occ1 : Occ;
+		occurrence occ2 : Occ;
+		
+		snapshot s;
+		timeslice t;
+	}
+
+	individual occurrence def Ind {
+		snapshot s2;
+		timeslice t2;
+	}
+	individual occurrence ind : Ind, Occ {
+		snapshot s3;
+		timeslice t3;*/
+	}
+}

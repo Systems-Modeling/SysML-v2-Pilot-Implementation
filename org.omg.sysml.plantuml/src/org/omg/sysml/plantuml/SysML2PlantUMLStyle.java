@@ -297,11 +297,7 @@ public class SysML2PlantUMLStyle {
 
 		@Override
         public String caseFeatureMembership(FeatureMembership fm) {
-            if (fm.getOwnedMemberFeature() == null) {
-                return " o-- ";
-            } else {
-                return " *-- ";
-            }
+			return fm.isComposite() ? " *-- ": " o-- ";
         }
 
 		@Override

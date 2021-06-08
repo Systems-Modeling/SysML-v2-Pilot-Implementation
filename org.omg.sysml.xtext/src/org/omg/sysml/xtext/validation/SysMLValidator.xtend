@@ -41,8 +41,6 @@ import org.omg.sysml.lang.sysml.ActionUsage
 import org.omg.sysml.lang.sysml.Behavior
 import org.omg.sysml.lang.sysml.impl.FeatureImpl
 import org.omg.sysml.lang.sysml.ConstraintUsage
-import org.omg.sysml.lang.sysml.IndividualUsage
-import org.omg.sysml.lang.sysml.IndividualDefinition
 import org.omg.sysml.lang.sysml.ConnectionUsage
 import org.omg.sysml.lang.sysml.Feature
 import org.eclipse.emf.ecore.EReference
@@ -91,6 +89,8 @@ import org.omg.sysml.lang.sysml.EnumerationUsage
 import org.omg.sysml.lang.sysml.AllocationUsage
 import org.omg.sysml.lang.sysml.AllocationDefinition
 import org.omg.sysml.util.UsageUtil
+import org.omg.sysml.lang.sysml.OccurrenceUsage
+import org.omg.sysml.lang.sysml.OccurrenceDefinition
 
 /**
  * This class contains custom validation rules. 
@@ -197,7 +197,7 @@ class SysMLValidator extends KerMLValidator {
 	}	
 	@Check //All types must be Classes. 
 	def checkItemUsageTypes(ItemUsage iu){
-		if (!(iu instanceof IndividualUsage || iu instanceof PartUsage))	
+		if (!(iu instanceof PartUsage))	
 			checkAllTypes(iu, org.omg.sysml.lang.sysml.Class, SysMLValidator.INVALID_ITEMUSAGE_MSG, SysMLPackage.eINSTANCE.itemUsage_ItemDefinition, SysMLValidator.INVALID_ITEMUSAGE)
 	}
 	@Check //All types must be Classes, at least one must be a PartDefinition. 
@@ -229,9 +229,10 @@ class SysMLValidator extends KerMLValidator {
 	def checkVerificationCaseUsageTypes(VerificationCaseUsage usg){
 		checkOneType(usg, VerificationCaseDefinition, SysMLValidator.INVALID_VERIFICATIONCASEUSAGE_MSG, SysMLPackage.eINSTANCE.verificationCaseUsage_VerificationCaseDefinition, SysMLValidator.INVALID_VERIFICATIONCASEUSAGE)
 	}
-	@Check //Must have exactly one type, which is an IndividualDefinition
-	def checkIndividualUsageTypes(IndividualUsage usg){
-		checkOneType(usg, IndividualDefinition, SysMLValidator.INVALID_INDIVIDUALUSAGE_MSG, SysMLPackage.eINSTANCE.individualUsage_IndividualDefinition, SysMLValidator.INVALID_INDIVIDUALUSAGE)
+	@Check //Must have one occurrenceDefinition that is an individual.
+	def checkIndividualUsageTypes(OccurrenceUsage usg){
+		if (usg.isIndividual && usg.occurrenceDefinition.filter[t | t instanceof OccurrenceDefinition && (t as OccurrenceDefinition).isIndividual].size() != 1)
+			error (SysMLValidator.INVALID_INDIVIDUALUSAGE_MSG, SysMLPackage.eINSTANCE.occurrenceUsage_OccurrenceDefinition, SysMLValidator.INVALID_INDIVIDUALUSAGE)	
 	}
 	@Check //All types must be Associations.
 	def checkConnectionUsageTypes(ConnectionUsage usg){
@@ -352,7 +353,7 @@ class SysMLValidator extends KerMLValidator {
 	
 	//check types but must have exactly one type
 	protected def boolean checkOneType(Feature f, Class<?> requiredType, String msg, EReference ref, String eId){
-		val types = (f as FeatureImpl).allTypes;
+		val types = (f as FeatureImpl).allTypes
 		val check = types.length == 1 && types.exists[u| requiredType.isInstance(u)]
 		if (!check)
 			error (msg, ref, eId)

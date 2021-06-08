@@ -459,8 +459,8 @@ public class ConnectionUsageImpl extends PartUsageImpl implements ConnectionUsag
 	@Override
 	public EList<Type> getType() {
 		@SuppressWarnings("unchecked")
-		EList<Type> itemDefinition = (EList<Type>)((EList<?>)getItemDefinition());
-		return itemDefinition;
+		EList<Type> definition = (EList<Type>)((EList<?>)getDefinition());
+		return definition;
 	}
 
 	/**

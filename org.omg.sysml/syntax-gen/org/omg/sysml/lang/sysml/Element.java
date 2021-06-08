@@ -57,8 +57,8 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwningMembership <em>Owning Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwnedRelationship <em>Owned Relationship</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwningRelationship <em>Owning Relationship</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwningNamespace <em>Owning Namespace</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getIdentifier <em>Identifier</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwningNamespace <em>Owning Namespace</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getName <em>Name</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwner <em>Owner</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwnedElement <em>Owned Element</em>}</li>
@@ -528,9 +528,9 @@ public interface Element extends EObject {
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * <p>Return the effective name for this Element. By default this is the same as its <code>name</code>, but, for certain kinds of Elements, this may be overridden if the Element <code>name</code> is empty (e.g., for redefining Features).</p>
+	 * name
 	 * <!-- end-model-doc -->
 	 * @model dataType="org.omg.sysml.lang.types.String" ordered="false"
-	 *        annotation="http://www.eclipse.org/uml2/1.1.0/GenModel body='name'"
 	 * @generated
 	 */
 	String effectiveName();

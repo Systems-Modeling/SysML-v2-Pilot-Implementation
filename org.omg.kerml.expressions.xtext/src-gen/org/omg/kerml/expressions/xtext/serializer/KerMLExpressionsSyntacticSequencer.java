@@ -22,16 +22,16 @@ import org.omg.kerml.expressions.xtext.services.KerMLExpressionsGrammarAccess;
 public class KerMLExpressionsSyntacticSequencer extends AbstractSyntacticSequencer {
 
 	protected KerMLExpressionsGrammarAccess grammarAccess;
-	protected AbstractElementAlias match_BaseExpression_LeftParenthesisKeyword_4_0_a;
-	protected AbstractElementAlias match_BaseExpression_LeftParenthesisKeyword_4_0_p;
+	protected AbstractElementAlias match_BaseExpression_LeftParenthesisKeyword_5_0_a;
+	protected AbstractElementAlias match_BaseExpression_LeftParenthesisKeyword_5_0_p;
 	protected AbstractElementAlias match_NullExpression_NullKeyword_1_0_or___LeftParenthesisKeyword_1_1_0_RightParenthesisKeyword_1_1_1__;
 	protected AbstractElementAlias match_SequenceExpression_CommaKeyword_1_0_q;
 	
 	@Inject
 	protected void init(IGrammarAccess access) {
 		grammarAccess = (KerMLExpressionsGrammarAccess) access;
-		match_BaseExpression_LeftParenthesisKeyword_4_0_a = new TokenAlias(true, true, grammarAccess.getBaseExpressionAccess().getLeftParenthesisKeyword_4_0());
-		match_BaseExpression_LeftParenthesisKeyword_4_0_p = new TokenAlias(true, false, grammarAccess.getBaseExpressionAccess().getLeftParenthesisKeyword_4_0());
+		match_BaseExpression_LeftParenthesisKeyword_5_0_a = new TokenAlias(true, true, grammarAccess.getBaseExpressionAccess().getLeftParenthesisKeyword_5_0());
+		match_BaseExpression_LeftParenthesisKeyword_5_0_p = new TokenAlias(true, false, grammarAccess.getBaseExpressionAccess().getLeftParenthesisKeyword_5_0());
 		match_NullExpression_NullKeyword_1_0_or___LeftParenthesisKeyword_1_1_0_RightParenthesisKeyword_1_1_1__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getNullExpressionAccess().getLeftParenthesisKeyword_1_1_0()), new TokenAlias(false, false, grammarAccess.getNullExpressionAccess().getRightParenthesisKeyword_1_1_1())), new TokenAlias(false, false, grammarAccess.getNullExpressionAccess().getNullKeyword_1_0()));
 		match_SequenceExpression_CommaKeyword_1_0_q = new TokenAlias(false, true, grammarAccess.getSequenceExpressionAccess().getCommaKeyword_1_0());
 	}
@@ -48,10 +48,10 @@ public class KerMLExpressionsSyntacticSequencer extends AbstractSyntacticSequenc
 		List<INode> transitionNodes = collectNodes(fromNode, toNode);
 		for (AbstractElementAlias syntax : transition.getAmbiguousSyntaxes()) {
 			List<INode> syntaxNodes = getNodesFor(transitionNodes, syntax);
-			if (match_BaseExpression_LeftParenthesisKeyword_4_0_a.equals(syntax))
-				emit_BaseExpression_LeftParenthesisKeyword_4_0_a(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_BaseExpression_LeftParenthesisKeyword_4_0_p.equals(syntax))
-				emit_BaseExpression_LeftParenthesisKeyword_4_0_p(semanticObject, getLastNavigableState(), syntaxNodes);
+			if (match_BaseExpression_LeftParenthesisKeyword_5_0_a.equals(syntax))
+				emit_BaseExpression_LeftParenthesisKeyword_5_0_a(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_BaseExpression_LeftParenthesisKeyword_5_0_p.equals(syntax))
+				emit_BaseExpression_LeftParenthesisKeyword_5_0_p(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_NullExpression_NullKeyword_1_0_or___LeftParenthesisKeyword_1_1_0_RightParenthesisKeyword_1_1_1__.equals(syntax))
 				emit_NullExpression_NullKeyword_1_0_or___LeftParenthesisKeyword_1_1_0_RightParenthesisKeyword_1_1_1__(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_SequenceExpression_CommaKeyword_1_0_q.equals(syntax))
@@ -82,7 +82,7 @@ public class KerMLExpressionsSyntacticSequencer extends AbstractSyntacticSequenc
 	 *     (rule start) (ambiguity) {PathSelectExpression.operand+=}
 	 *     (rule start) (ambiguity) {PathStepExpression.operand+=}
 	 */
-	protected void emit_BaseExpression_LeftParenthesisKeyword_4_0_a(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_BaseExpression_LeftParenthesisKeyword_5_0_a(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
@@ -91,8 +91,6 @@ public class KerMLExpressionsSyntacticSequencer extends AbstractSyntacticSequenc
 	 *     '('+
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) (ambiguity) '{' ownedRelationship+=BodyParameterMember
-	 *     (rule start) (ambiguity) '{' ownedRelationship+=ResultExpressionMember
 	 *     (rule start) (ambiguity) operand+=SelfReferenceExpression
 	 *     (rule start) (ambiguity) operator='all'
 	 *     (rule start) (ambiguity) operator=UnaryOperator
@@ -100,7 +98,7 @@ public class KerMLExpressionsSyntacticSequencer extends AbstractSyntacticSequenc
 	 *     (rule start) (ambiguity) {PathSelectExpression.operand+=}
 	 *     (rule start) (ambiguity) {PathStepExpression.operand+=}
 	 */
-	protected void emit_BaseExpression_LeftParenthesisKeyword_4_0_p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_BaseExpression_LeftParenthesisKeyword_5_0_p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
@@ -143,7 +141,6 @@ public class KerMLExpressionsSyntacticSequencer extends AbstractSyntacticSequenc
 	 *     ownedRelationship+=NamedExpressionMember ')' (ambiguity) ')' (rule end)
 	 *     ownedRelationship+=OwnedExpressionMember ')' (ambiguity) ')' (rule end)
 	 *     ownedRelationship+=OwnedFeatureTyping '(' ')' (ambiguity) ')' (rule end)
-	 *     ownedRelationship+=ResultExpressionMember '}' (ambiguity) ')' (rule end)
 	 *     ownedRelationship+=TypeReferenceMember (ambiguity) ')' (rule end)
 	 */
 	protected void emit_SequenceExpression_CommaKeyword_1_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {

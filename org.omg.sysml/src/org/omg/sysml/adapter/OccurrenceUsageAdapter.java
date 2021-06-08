@@ -22,39 +22,44 @@
 package org.omg.sysml.adapter;
 
 import org.omg.sysml.lang.sysml.FeatureTyping;
-import org.omg.sysml.lang.sysml.IndividualDefinition;
-import org.omg.sysml.lang.sysml.IndividualUsage;
+import org.omg.sysml.lang.sysml.OccurrenceUsage;
 import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.util.TypeUtil;
 
-public class IndividualUsageAdapter extends ItemUsageAdapter {
+public class OccurrenceUsageAdapter extends UsageAdapter {
 
-	public IndividualUsageAdapter(IndividualUsage element) {
+	public OccurrenceUsageAdapter(OccurrenceUsage element) {
 		super(element);
 	}
 	
 	@Override
-	public IndividualUsage getTarget() {
-		return (IndividualUsage)super.getTarget();
+	public OccurrenceUsage getTarget() {
+		return (OccurrenceUsage)super.getTarget();
 	}
 
 	protected boolean needsIndividualDefinition() {
-		IndividualUsage target = getTarget();
-		return target.getOwnedTyping().stream().map(FeatureTyping::getType).
-					noneMatch(IndividualDefinition.class::isInstance) &&
-			   target.getOwnedSubsetting().stream().map(Subsetting::getSubsettedFeature).
-					noneMatch(IndividualUsage.class::isInstance);
+		OccurrenceUsage target = getTarget();
+		return target.isIndividual() &&
+			   target.getOwnedTyping().stream().
+			   		map(FeatureTyping::getType).
+			   		noneMatch(TypeUtil::isIndividual) &&
+			   target.getOwnedSubsetting().stream().
+			   		map(Subsetting::getSubsettedFeature).
+					noneMatch(TypeUtil::isIndividual);
 	}
 		
 	protected void addIndividualDefinition() {
-		IndividualUsage target = getTarget();
-		if ((target.isTimeSlice() || target.isSnapshot()) && needsIndividualDefinition()) {
+		OccurrenceUsage target = getTarget();
+		if (target.getPortionKind() != null && needsIndividualDefinition()) {
 			Type owningType = target.getOwningType();
-			if (owningType instanceof IndividualDefinition) {
-				addImplicitGeneralType(SysMLPackage.eINSTANCE.getFeatureTyping(), owningType);
-			} else if (owningType instanceof IndividualUsage) {
-				addImplicitGeneralType(SysMLPackage.eINSTANCE.getSubsetting(), owningType);
+			if (TypeUtil.isIndividual(owningType)) {
+				addImplicitGeneralType(
+						owningType instanceof OccurrenceUsage? 
+								SysMLPackage.eINSTANCE.getSubsetting():
+								SysMLPackage.eINSTANCE.getFeatureTyping(), 
+						owningType);
 			}
 		}
 	}

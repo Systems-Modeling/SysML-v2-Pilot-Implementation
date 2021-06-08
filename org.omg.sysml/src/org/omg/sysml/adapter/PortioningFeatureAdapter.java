@@ -26,22 +26,38 @@ import java.util.List;
 
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.TimeSliceFeature;
+import org.omg.sysml.lang.sysml.OccurrenceUsage;
+import org.omg.sysml.lang.sysml.PortionKind;
+import org.omg.sysml.lang.sysml.PortioningFeature;
+import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.util.TypeUtil;
 
-public class TimeSliceFeatureAdapter extends FeatureAdapter {
+public class PortioningFeatureAdapter extends FeatureAdapter {
 
+	public static final String SNAPSHOT_FEATURE_REDEFINED_FEATURE = "Occurrences::Occurrence::snapshotOf";
 	public static final String TIME_SLICE_FEATURE_REDEFINED_FEATURE = "Occurrences::Occurrence::timeSliceOf";
 
-	public TimeSliceFeatureAdapter(TimeSliceFeature element) {
+	public PortioningFeatureAdapter(PortioningFeature element) {
 		super(element);
 	}
 	
 	@Override
-	public TimeSliceFeature getTarget() {
-		return (TimeSliceFeature)super.getTarget();
+	public PortioningFeature getTarget() {
+		return (PortioningFeature)super.getTarget();
 	}
 
+	public void setIndividualTyping() {
+		Feature target = getTarget();
+		Type owningType = target.getOwningType();
+		if (TypeUtil.isIndividual(owningType)) {
+			Type type = owningType instanceof OccurrenceUsage? 
+					((OccurrenceUsage)owningType).getIndividualDefinition(): 
+					owningType;
+			addImplicitGeneralType(SysMLPackage.eINSTANCE.getFeatureTyping(), type);
+		}
+	}	
+	@Override
 	public void computeImplicitGeneralTypes() {
 		setIndividualTyping();
 		super.computeImplicitGeneralTypes();
@@ -54,9 +70,12 @@ public class TimeSliceFeatureAdapter extends FeatureAdapter {
 	
 	@Override
 	protected List<? extends Feature> getRelevantFeatures(Type type) {
-		TimeSliceFeature target = getTarget();
+		PortioningFeature target = getTarget();
 		return Collections.singletonList(type == target.getOwner()? target:
-			   (Feature)getLibraryType(TIME_SLICE_FEATURE_REDEFINED_FEATURE));
+			   (Feature)getLibraryType(
+					   target.getPortionKind() == PortionKind.SNAPSHOT? 
+							   SNAPSHOT_FEATURE_REDEFINED_FEATURE:
+							   TIME_SLICE_FEATURE_REDEFINED_FEATURE));
 	}
-	
+
 }

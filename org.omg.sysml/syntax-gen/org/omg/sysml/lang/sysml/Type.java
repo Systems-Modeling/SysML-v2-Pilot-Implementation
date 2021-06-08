@@ -57,7 +57,7 @@ import org.eclipse.emf.common.util.EList;
  *             select(direction = _'in' or direction = inout).
  *             memberFeature
  *     endif
- * inheritedMemberships(Set{})
+ * inheritedMembership = inheritedMemberships(Set{})
  * <!-- end-model-doc -->
  *
  * <p>
@@ -66,14 +66,14 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedGeneralization <em>Owned Generalization</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedFeatureMembership <em>Owned Feature Membership</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedFeature <em>Owned Feature</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedEndFeature <em>Owned End Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getFeature <em>Feature</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedFeature <em>Owned Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getInput <em>Input</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getOutput <em>Output</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#isAbstract <em>Is Abstract</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getInheritedMembership <em>Inherited Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getEndFeature <em>End Feature</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedEndFeature <em>Owned End Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#isSufficient <em>Is Sufficient</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedConjugator <em>Owned Conjugator</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#isConjugated <em>Is Conjugated</em>}</li>
@@ -152,9 +152,17 @@ public interface Type extends Namespace {
 	 * <!-- begin-model-doc -->
 	 * <p>If the given feature is a feature of this type, then return its direction relative to this type, taking conjugation into account.</p>
 	 * 
+	 * if input->includes(feature) and output->includes(feature) then 
+	 *     FeatureDirectionKind::inout
+	 * else if input->includes(feature) then 
+	 *     FeatureDirectionKind::_'in'
+	 * else if input->includes(feature) then 
+	 *     FeatureDirectionKind::out
+	 * else 
+	 *     null 
+	 * endif endif endif
 	 * <!-- end-model-doc -->
 	 * @model ordered="false" featureRequired="true" featureOrdered="false"
-	 *        annotation="http://www.eclipse.org/uml2/1.1.0/GenModel body='if input-&gt;includes(feature) and output-&gt;includes(feature) then \n    FeatureDirectionKind::inout\nelse if input-&gt;includes(feature) then \n    FeatureDirectionKind::_\'in\'\nelse if input-&gt;includes(feature) then \n    FeatureDirectionKind::out\nelse \n    null \nendif endif endif'"
 	 * @generated
 	 */
 	FeatureDirectionKind directionOf(Feature feature);
@@ -164,9 +172,13 @@ public interface Type extends Namespace {
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * <p>Return all Types related to this Type as supertypes directly or transitively by Generalization Relationships.</p>
+	 *  result = let g : Bag = generalization.general in
+	 *    g->union(g->collect(allSupertypes()))->flatten()->asSet()->including(self)
+	 * ownedGeneralization->
+	 *     closure(general.ownedGeneralization).general->
+	 *     including(self)
 	 * <!-- end-model-doc -->
 	 * @model required="true" ordered="false"
-	 *        annotation="http://www.eclipse.org/uml2/1.1.0/GenModel body='ownedGeneralization-&gt;\n    closure(general.ownedGeneralization).general-&gt;\n    including(self)'"
 	 * @generated
 	 */
 	EList<Type> allSupertypes();

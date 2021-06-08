@@ -25,8 +25,8 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	protected AbstractElementAlias match_AnnotatingFeatureBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__;
 	protected AbstractElementAlias match_AnnotatingFeatureDeclaration_ColonKeyword_0_1_0_or___TypedKeyword_0_1_1_0_ByKeyword_0_1_1_1__;
 	protected AbstractElementAlias match_AnnotatingFeature_CommercialAtKeyword_0_0_or_MetadataKeyword_0_1;
-	protected AbstractElementAlias match_BaseExpression_LeftParenthesisKeyword_4_0_a;
-	protected AbstractElementAlias match_BaseExpression_LeftParenthesisKeyword_4_0_p;
+	protected AbstractElementAlias match_BaseExpression_LeftParenthesisKeyword_5_0_a;
+	protected AbstractElementAlias match_BaseExpression_LeftParenthesisKeyword_5_0_p;
 	protected AbstractElementAlias match_BehaviorBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__;
 	protected AbstractElementAlias match_BinaryConnectorDeclaration_FromKeyword_0_0_1_q;
 	protected AbstractElementAlias match_BinaryConnectorDeclaration_FromKeyword_0_1_1_q;
@@ -82,8 +82,8 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 		match_AnnotatingFeatureBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getAnnotatingFeatureBodyAccess().getLeftCurlyBracketKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getAnnotatingFeatureBodyAccess().getRightCurlyBracketKeyword_1_2())), new TokenAlias(false, false, grammarAccess.getAnnotatingFeatureBodyAccess().getSemicolonKeyword_0()));
 		match_AnnotatingFeatureDeclaration_ColonKeyword_0_1_0_or___TypedKeyword_0_1_1_0_ByKeyword_0_1_1_1__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getAnnotatingFeatureDeclarationAccess().getTypedKeyword_0_1_1_0()), new TokenAlias(false, false, grammarAccess.getAnnotatingFeatureDeclarationAccess().getByKeyword_0_1_1_1())), new TokenAlias(false, false, grammarAccess.getAnnotatingFeatureDeclarationAccess().getColonKeyword_0_1_0()));
 		match_AnnotatingFeature_CommercialAtKeyword_0_0_or_MetadataKeyword_0_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getAnnotatingFeatureAccess().getCommercialAtKeyword_0_0()), new TokenAlias(false, false, grammarAccess.getAnnotatingFeatureAccess().getMetadataKeyword_0_1()));
-		match_BaseExpression_LeftParenthesisKeyword_4_0_a = new TokenAlias(true, true, grammarAccess.getBaseExpressionAccess().getLeftParenthesisKeyword_4_0());
-		match_BaseExpression_LeftParenthesisKeyword_4_0_p = new TokenAlias(true, false, grammarAccess.getBaseExpressionAccess().getLeftParenthesisKeyword_4_0());
+		match_BaseExpression_LeftParenthesisKeyword_5_0_a = new TokenAlias(true, true, grammarAccess.getBaseExpressionAccess().getLeftParenthesisKeyword_5_0());
+		match_BaseExpression_LeftParenthesisKeyword_5_0_p = new TokenAlias(true, false, grammarAccess.getBaseExpressionAccess().getLeftParenthesisKeyword_5_0());
 		match_BehaviorBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getBehaviorBodyAccess().getLeftCurlyBracketKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getBehaviorBodyAccess().getRightCurlyBracketKeyword_1_2())), new TokenAlias(false, false, grammarAccess.getBehaviorBodyAccess().getSemicolonKeyword_0()));
 		match_BinaryConnectorDeclaration_FromKeyword_0_0_1_q = new TokenAlias(false, true, grammarAccess.getBinaryConnectorDeclarationAccess().getFromKeyword_0_0_1());
 		match_BinaryConnectorDeclaration_FromKeyword_0_1_1_q = new TokenAlias(false, true, grammarAccess.getBinaryConnectorDeclarationAccess().getFromKeyword_0_1_1());
@@ -152,10 +152,10 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 				emit_AnnotatingFeatureDeclaration_ColonKeyword_0_1_0_or___TypedKeyword_0_1_1_0_ByKeyword_0_1_1_1__(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_AnnotatingFeature_CommercialAtKeyword_0_0_or_MetadataKeyword_0_1.equals(syntax))
 				emit_AnnotatingFeature_CommercialAtKeyword_0_0_or_MetadataKeyword_0_1(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_BaseExpression_LeftParenthesisKeyword_4_0_a.equals(syntax))
-				emit_BaseExpression_LeftParenthesisKeyword_4_0_a(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_BaseExpression_LeftParenthesisKeyword_4_0_p.equals(syntax))
-				emit_BaseExpression_LeftParenthesisKeyword_4_0_p(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_BaseExpression_LeftParenthesisKeyword_5_0_a.equals(syntax))
+				emit_BaseExpression_LeftParenthesisKeyword_5_0_a(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_BaseExpression_LeftParenthesisKeyword_5_0_p.equals(syntax))
+				emit_BaseExpression_LeftParenthesisKeyword_5_0_p(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_BehaviorBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__.equals(syntax))
 				emit_BehaviorBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_BinaryConnectorDeclaration_FromKeyword_0_0_1_q.equals(syntax))
@@ -321,7 +321,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) {PathSelectExpression.operand+=}
 	 *     (rule start) (ambiguity) {PathStepExpression.operand+=}
 	 */
-	protected void emit_BaseExpression_LeftParenthesisKeyword_4_0_a(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_BaseExpression_LeftParenthesisKeyword_5_0_a(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
@@ -330,14 +330,6 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     '('+
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) (ambiguity) '{' ownedRelationship+=DirectedFeatureMember
-	 *     (rule start) (ambiguity) '{' ownedRelationship+=EndFeatureMember
-	 *     (rule start) (ambiguity) '{' ownedRelationship+=Import
-	 *     (rule start) (ambiguity) '{' ownedRelationship+=NonFeatureTypeMember
-	 *     (rule start) (ambiguity) '{' ownedRelationship+=OwnedDocumentation
-	 *     (rule start) (ambiguity) '{' ownedRelationship+=ResultExpressionMember
-	 *     (rule start) (ambiguity) '{' ownedRelationship+=UndirectedFeatureMember
-	 *     (rule start) (ambiguity) (';' | ('{' '}')) ','? ')' (rule start)
 	 *     (rule start) (ambiguity) operand+=SelfReferenceExpression
 	 *     (rule start) (ambiguity) operator='all'
 	 *     (rule start) (ambiguity) operator=UnaryOperator
@@ -345,7 +337,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) {PathSelectExpression.operand+=}
 	 *     (rule start) (ambiguity) {PathStepExpression.operand+=}
 	 */
-	protected void emit_BaseExpression_LeftParenthesisKeyword_4_0_p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_BaseExpression_LeftParenthesisKeyword_5_0_p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
@@ -614,7 +606,6 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) '('* (ambiguity) (rule start)
-	 *     (rule start) '('+ (ambiguity) ','? ')' (rule start)
 	 *     (rule start) 'bool' (ambiguity) (rule start)
 	 *     (rule start) 'expr' (ambiguity) (rule start)
 	 *     (rule start) (ambiguity) (rule start)
@@ -865,7 +856,6 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     ','?
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) '('+ (';' | ('{' '}')) (ambiguity) ')' (rule start)
 	 *     operand+=AdditiveExpression (ambiguity) ')' (rule end)
 	 *     operand+=AndExpression (ambiguity) ')' (rule end)
 	 *     operand+=ClassificationExpression (ambiguity) ')' (rule end)
@@ -883,19 +873,12 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     operand+=SequenceExpression ']' (ambiguity) ')' (rule end)
 	 *     operand+=UnitsExpression (ambiguity) ')' (rule end)
 	 *     operand+=XorExpression (ambiguity) ')' (rule end)
-	 *     ownedRelationship+=DirectedFeatureMember '}' (ambiguity) ')' (rule end)
-	 *     ownedRelationship+=EndFeatureMember '}' (ambiguity) ')' (rule end)
 	 *     ownedRelationship+=ExpressionBodyMember (ambiguity) ')' (rule end)
 	 *     ownedRelationship+=FunctionReferenceMember (ambiguity) ')' (rule end)
-	 *     ownedRelationship+=Import '}' (ambiguity) ')' (rule end)
 	 *     ownedRelationship+=NamedExpressionMember ')' (ambiguity) ')' (rule end)
-	 *     ownedRelationship+=NonFeatureTypeMember '}' (ambiguity) ')' (rule end)
-	 *     ownedRelationship+=OwnedDocumentation '}' (ambiguity) ')' (rule end)
 	 *     ownedRelationship+=OwnedExpressionMember ')' (ambiguity) ')' (rule end)
 	 *     ownedRelationship+=OwnedFeatureTyping '(' ')' (ambiguity) ')' (rule end)
-	 *     ownedRelationship+=ResultExpressionMember '}' (ambiguity) ')' (rule end)
 	 *     ownedRelationship+=TypeReferenceMember (ambiguity) ')' (rule end)
-	 *     ownedRelationship+=UndirectedFeatureMember '}' (ambiguity) ')' (rule end)
 	 */
 	protected void emit_SequenceExpression_CommaKeyword_1_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);

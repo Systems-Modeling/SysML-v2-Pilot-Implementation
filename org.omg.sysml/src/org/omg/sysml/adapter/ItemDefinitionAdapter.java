@@ -23,7 +23,7 @@ package org.omg.sysml.adapter;
 
 import org.omg.sysml.lang.sysml.ItemDefinition;
 
-public class ItemDefinitionAdapter extends DefinitionAdapter {
+public class ItemDefinitionAdapter extends OccurrenceDefinitionAdapter {
 
 	public ItemDefinitionAdapter(ItemDefinition element) {
 		super(element);

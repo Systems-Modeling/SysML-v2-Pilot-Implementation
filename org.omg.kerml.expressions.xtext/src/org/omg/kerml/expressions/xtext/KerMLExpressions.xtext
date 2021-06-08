@@ -42,27 +42,7 @@ OwnedExpressionMember returns SysML::FeatureMembership :
 ;
 
 OwnedExpression returns SysML::Expression :
-	 ExpressionBody | ConditionalExpression
-;
-
-// Expression Bodies
-
-// This default production is overridden in the KerML and SysML grammars.
-ExpressionBody returns SysML::Expression :
-	'{' ( ownedRelationship += BodyParameterMember ';' )* 
-	    ownedRelationship += ResultExpressionMember '}'
-;
-
-ResultExpressionMember returns SysML::ResultExpressionMembership :
-	ownedRelatedElement += OwnedExpression // ownedResultExpression = OwnedExpression
-;
-
-BodyParameterMember returns SysML::ParameterMembership :
-	'in' memberName = Name ownedRelatedElement += BodyParameter // ownedMemberParameter = BodyParameter
-;
-
-BodyParameter returns SysML::Feature :
-	{SysML::Feature}
+	 ConditionalExpression
 ;
 
 // Conditional Test Expressions
@@ -298,7 +278,28 @@ BaseExpression returns SysML::Expression :
 	| LiteralExpression 
 	| FeatureReferenceExpression 
 	| InvocationExpression 
+	| ExpressionBody
 	| '(' SequenceExpression ')'
+;
+
+// Expression Bodies
+
+// This default production is overridden in the KerML and SysML grammars.
+ExpressionBody returns SysML::Expression :
+	'{' ( ownedRelationship += BodyParameterMember ';' )* 
+	    ownedRelationship += ResultExpressionMember '}'
+;
+
+ResultExpressionMember returns SysML::ResultExpressionMembership :
+	ownedRelatedElement += OwnedExpression // ownedResultExpression = OwnedExpression
+;
+
+BodyParameterMember returns SysML::ParameterMembership :
+	'in' memberName = Name ownedRelatedElement += BodyParameter // ownedMemberParameter = BodyParameter
+;
+
+BodyParameter returns SysML::Feature :
+	{SysML::Feature}
 ;
 
 // Sequence Expressions

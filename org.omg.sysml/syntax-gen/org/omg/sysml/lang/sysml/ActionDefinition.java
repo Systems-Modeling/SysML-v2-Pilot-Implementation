@@ -46,7 +46,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface ActionDefinition extends Definition, Behavior {
+public interface ActionDefinition extends OccurrenceDefinition, Behavior {
 	/**
 	 * Returns the value of the '<em><b>Action</b></em>' reference list.
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.ActionUsage}.

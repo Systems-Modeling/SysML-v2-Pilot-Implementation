@@ -41,4 +41,4 @@ package org.omg.sysml.lang.sysml;
  * @generated
  */
 public interface PartDefinition extends ItemDefinition {
-} // Block
+} // PartDefinition

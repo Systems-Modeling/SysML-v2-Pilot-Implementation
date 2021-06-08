@@ -1,6 +1,7 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation, PlantUML Visualization
  * Copyright (c) 2020 Mgnite Inc.
+ * Copyright (c) 2021 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -19,6 +20,7 @@
  * 
  * Contributors:
  *  Hisashi Miyashita, Mgnite Inc.
+ *  Ed Seidewitz, MDS
  * 
  *****************************************************************************/
 
@@ -35,11 +37,10 @@ import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.LifeClass;
 import org.omg.sysml.lang.sysml.Membership;
+import org.omg.sysml.lang.sysml.PortioningFeature;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.ResultExpressionMembership;
 import org.omg.sysml.lang.sysml.SatisfyRequirementUsage;
-import org.omg.sysml.lang.sysml.SnapshotFeature;
-import org.omg.sysml.lang.sysml.TimeSliceFeature;
 import org.omg.sysml.lang.sysml.Type;
 
 public abstract class VStructure extends VDefault {
@@ -175,6 +176,7 @@ public abstract class VStructure extends VDefault {
             }
             if (ft == null) continue;
             Type typ = ft.getType();
+            if (typ == null) continue;
             String typeName = typ.getName();
             if (typeName == null) continue;
             sb.append(typeName);
@@ -247,14 +249,8 @@ public abstract class VStructure extends VDefault {
     }
 
     @Override
-    public String caseTimeSliceFeature(TimeSliceFeature tsf) {
-        // Do not show life classes
-        return "";
-    }
-
-    @Override
-    public String caseSnapshotFeature(SnapshotFeature sf) {
-        // Do not show life classes
+    public String casePortioningFeature(PortioningFeature tsf) {
+        // Do not show portioning feature
         return "";
     }
 

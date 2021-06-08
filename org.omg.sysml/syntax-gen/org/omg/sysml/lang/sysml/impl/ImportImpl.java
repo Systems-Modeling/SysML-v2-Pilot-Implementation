@@ -30,11 +30,9 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.util.BasicInternalEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -239,27 +237,6 @@ public class ImportImpl extends RelationshipImpl implements Import {
 	 * @ordered
 	 */
 	protected static final int[] TARGET_ESUBSETS = new int[] {SysMLPackage.IMPORT__IMPORTED_NAMESPACE};
-
-	/**
-	 * The cached OCL expression body for the '{@link #importedMembership(org.eclipse.emf.common.util.EList) <em>Imported Membership</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #importedMembership(org.eclipse.emf.common.util.EList)
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String IMPORTED_MEMBERSHIP__ELIST__EOCL_EXP = "importedPackage.publicMemberships("+
-"    excluded->including(importOwningNamespace))";
-
-	/**
-	 * The cached OCL query for the '{@link #importedMembership(org.eclipse.emf.common.util.EList) <em>Imported Membership</em>}' query operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #importedMembership(org.eclipse.emf.common.util.EList)
-	 * @generated
-	 * @ordered
-	 */
-	protected static OCLExpression<EClassifier> IMPORTED_MEMBERSHIP__ELIST__EOCL_QRY;
 
 	@Override
 	public Namespace getImportedNamespace() {

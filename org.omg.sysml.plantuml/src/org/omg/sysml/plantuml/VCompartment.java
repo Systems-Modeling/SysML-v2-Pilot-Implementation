@@ -1,6 +1,7 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation, PlantUML Visualization
  * Copyright (c) 2020 Mgnite Inc.
+ * Copyright (c) 2021 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -19,6 +20,7 @@
  * 
  * Contributors:
  *  Hisashi Miyashita, Mgnite Inc.
+ *  Ed Seidewitz, MDS
  * 
  *****************************************************************************/
 
@@ -43,9 +45,9 @@ import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureTyping;
-import org.omg.sysml.lang.sysml.IndividualUsage;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.ObjectiveMembership;
+import org.omg.sysml.lang.sysml.OccurrenceUsage;
 import org.omg.sysml.lang.sysml.PartUsage;
 import org.omg.sysml.lang.sysml.PortUsage;
 import org.omg.sysml.lang.sysml.ReferenceUsage;
@@ -258,8 +260,8 @@ public class VCompartment extends VStructure {
     }
 
     @Override
-    public String caseIndividualUsage(IndividualUsage iu) {
-        recCurrentMembership(iu, true);
+    public String caseOccurrenceUsage(OccurrenceUsage ou) {
+        recCurrentMembership(ou, true);
         return "";
     }
 

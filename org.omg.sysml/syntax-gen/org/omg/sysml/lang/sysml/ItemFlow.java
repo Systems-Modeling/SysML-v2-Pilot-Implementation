@@ -31,6 +31,8 @@ import org.eclipse.emf.common.util.EList;
  * <!-- begin-model-doc -->
  * <p>An ItemFlow is a Step that represents the transfer of objects or values from one Feature to another. ItemFlows can take non-zero time to complete.</p>
  * 
+ * <p>An ItemFlow must be typed by the Interaction <em>Transfer</em> from the Kernel library, or a specialization of it.</p>
+ * 
  * <!-- end-model-doc -->
  *
  * <p>
@@ -77,13 +79,13 @@ public interface ItemFlow extends Connector, Step {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Feature that receives the ItemFlow.</p>
-	 * 
+	 * <p>The Features that receive the ItemFlow. They must be owned <code>outputs</code> of the target participant of the ItemFlow. If there are no such Features, then the ItemFlow must be abstract.</p>
 	 * <p>The Feature that receives the ItemFlow.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Target Input Feature</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getItemFlow_TargetInputFeature()
-	 * @model required="true" transient="true" volatile="true" derived="true"
+	 * @model transient="true" volatile="true" derived="true"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='itemFlowToInput'"
 	 * @generated
 	 */
 	EList<Feature> getTargetInputFeature();
@@ -104,7 +106,8 @@ public interface ItemFlow extends Connector, Step {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Source Output Feature</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getItemFlow_SourceOutputFeature()
-	 * @model required="true" transient="true" volatile="true" derived="true"
+	 * @model transient="true" volatile="true" derived="true"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='itemFlowFromOutput'"
 	 * @generated
 	 */
 	EList<Feature> getSourceOutputFeature();

@@ -88,7 +88,7 @@ public interface ViewpointUsage extends RequirementUsage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The features that identify the stakeholders with concerns addressed by this ViewpointUsage, derived as the <code>ownedStakeholders</code> of the <code>addressedConcerns</code> of this ViewpointUsage.</p>
+	 * <p>The features that identify the stakeholders with concerns addressed by this ViewpointUsage, derived as the owned and inherited Stakeholders of the <code>addressedConcerns</code> of this ViewpointUsage.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Viewpoint Stakeholder</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getViewpointUsage_ViewpointStakeholder()

@@ -32,7 +32,7 @@ import org.omg.sysml.lang.sysml.Usage;
 import org.omg.sysml.util.TypeUtil;
 import org.omg.sysml.util.UsageUtil;
 
-public class ConstraintUsageAdapter extends UsageAdapter {
+public class ConstraintUsageAdapter extends OccurrenceUsageAdapter {
 
 	public static final String CONSTRAINT_SUBSETTING_ASSUMPTION_FEATURE = "Requirements::RequirementCheck::assumptions";
 	public static final String CONSTRAINT_SUBSETTING_REQUIREMENT_FEATURE = "Requirements::RequirementCheck::constraints";

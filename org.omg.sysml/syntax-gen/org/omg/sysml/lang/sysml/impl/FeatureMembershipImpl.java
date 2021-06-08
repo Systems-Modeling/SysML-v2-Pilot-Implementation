@@ -50,12 +50,12 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * </p>
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureMembershipImpl#getOwningRelatedElement <em>Owning Related Element</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureMembershipImpl#getOwningFeatureOfType <em>Owning Feature Of Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureMembershipImpl#getFeaturingType <em>Featuring Type</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureMembershipImpl#getOwningFeatureOfType <em>Owning Feature Of Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureMembershipImpl#getMemberFeature <em>Member Feature</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureMembershipImpl#getOwnedMemberFeature <em>Owned Member Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureMembershipImpl#isDerived <em>Is Derived</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureMembershipImpl#isReadOnly <em>Is Read Only</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureMembershipImpl#getOwnedMemberFeature <em>Owned Member Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureMembershipImpl#isComposite <em>Is Composite</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureMembershipImpl#isPortion <em>Is Portion</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureMembershipImpl#isPort <em>Is Port</em>}</li>
@@ -887,22 +887,22 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 			case SysMLPackage.FEATURE_MEMBERSHIP__FEATURE_OF_TYPE:
 				if (resolve) return getFeatureOfType();
 				return basicGetFeatureOfType();
-			case SysMLPackage.FEATURE_MEMBERSHIP__OWNING_FEATURE_OF_TYPE:
-				if (resolve) return getOwningFeatureOfType();
-				return basicGetOwningFeatureOfType();
 			case SysMLPackage.FEATURE_MEMBERSHIP__FEATURING_TYPE:
 				if (resolve) return getFeaturingType();
 				return basicGetFeaturingType();
+			case SysMLPackage.FEATURE_MEMBERSHIP__OWNING_FEATURE_OF_TYPE:
+				if (resolve) return getOwningFeatureOfType();
+				return basicGetOwningFeatureOfType();
 			case SysMLPackage.FEATURE_MEMBERSHIP__MEMBER_FEATURE:
 				if (resolve) return getMemberFeature();
 				return basicGetMemberFeature();
-			case SysMLPackage.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE:
-				if (resolve) return getOwnedMemberFeature();
-				return basicGetOwnedMemberFeature();
 			case SysMLPackage.FEATURE_MEMBERSHIP__IS_DERIVED:
 				return isDerived();
 			case SysMLPackage.FEATURE_MEMBERSHIP__IS_READ_ONLY:
 				return isReadOnly();
+			case SysMLPackage.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE:
+				if (resolve) return getOwnedMemberFeature();
+				return basicGetOwnedMemberFeature();
 			case SysMLPackage.FEATURE_MEMBERSHIP__IS_COMPOSITE:
 				return isComposite();
 			case SysMLPackage.FEATURE_MEMBERSHIP__IS_PORTION:
@@ -929,23 +929,23 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 			case SysMLPackage.FEATURE_MEMBERSHIP__FEATURE_OF_TYPE:
 				setFeatureOfType((Feature)newValue);
 				return;
-			case SysMLPackage.FEATURE_MEMBERSHIP__OWNING_FEATURE_OF_TYPE:
-				setOwningFeatureOfType((Feature)newValue);
-				return;
 			case SysMLPackage.FEATURE_MEMBERSHIP__FEATURING_TYPE:
 				setFeaturingType((Type)newValue);
 				return;
+			case SysMLPackage.FEATURE_MEMBERSHIP__OWNING_FEATURE_OF_TYPE:
+				setOwningFeatureOfType((Feature)newValue);
+				return;
 			case SysMLPackage.FEATURE_MEMBERSHIP__MEMBER_FEATURE:
 				setMemberFeature((Feature)newValue);
-				return;
-			case SysMLPackage.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE:
-				setOwnedMemberFeature((Feature)newValue);
 				return;
 			case SysMLPackage.FEATURE_MEMBERSHIP__IS_DERIVED:
 				setIsDerived((Boolean)newValue);
 				return;
 			case SysMLPackage.FEATURE_MEMBERSHIP__IS_READ_ONLY:
 				setIsReadOnly((Boolean)newValue);
+				return;
+			case SysMLPackage.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE:
+				setOwnedMemberFeature((Feature)newValue);
 				return;
 			case SysMLPackage.FEATURE_MEMBERSHIP__IS_COMPOSITE:
 				setIsComposite((Boolean)newValue);
@@ -977,23 +977,23 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 			case SysMLPackage.FEATURE_MEMBERSHIP__FEATURE_OF_TYPE:
 				setFeatureOfType((Feature)null);
 				return;
-			case SysMLPackage.FEATURE_MEMBERSHIP__OWNING_FEATURE_OF_TYPE:
-				setOwningFeatureOfType((Feature)null);
-				return;
 			case SysMLPackage.FEATURE_MEMBERSHIP__FEATURING_TYPE:
 				setFeaturingType((Type)null);
 				return;
+			case SysMLPackage.FEATURE_MEMBERSHIP__OWNING_FEATURE_OF_TYPE:
+				setOwningFeatureOfType((Feature)null);
+				return;
 			case SysMLPackage.FEATURE_MEMBERSHIP__MEMBER_FEATURE:
 				setMemberFeature((Feature)null);
-				return;
-			case SysMLPackage.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE:
-				setOwnedMemberFeature((Feature)null);
 				return;
 			case SysMLPackage.FEATURE_MEMBERSHIP__IS_DERIVED:
 				setIsDerived(IS_DERIVED_EDEFAULT);
 				return;
 			case SysMLPackage.FEATURE_MEMBERSHIP__IS_READ_ONLY:
 				setIsReadOnly(IS_READ_ONLY_EDEFAULT);
+				return;
+			case SysMLPackage.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE:
+				setOwnedMemberFeature((Feature)null);
 				return;
 			case SysMLPackage.FEATURE_MEMBERSHIP__IS_COMPOSITE:
 				setIsComposite(IS_COMPOSITE_EDEFAULT);
@@ -1030,24 +1030,24 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 				return isSetSource();
 			case SysMLPackage.FEATURE_MEMBERSHIP__TARGET:
 				return isSetTarget();
-			case SysMLPackage.FEATURE_MEMBERSHIP__OWNING_FEATURE_OF_TYPE:
-				return basicGetOwningFeatureOfType() != null;
 			case SysMLPackage.FEATURE_MEMBERSHIP__FEATURING_TYPE:
 				return isSetFeaturingType();
+			case SysMLPackage.FEATURE_MEMBERSHIP__OWNING_FEATURE_OF_TYPE:
+				return basicGetOwningFeatureOfType() != null;
 			case SysMLPackage.FEATURE_MEMBERSHIP__MEMBER_FEATURE:
 				return isSetMemberFeature();
-			case SysMLPackage.FEATURE_MEMBERSHIP__OWNED_MEMBER_ELEMENT:
-				return isSetOwnedMemberElement();
 			case SysMLPackage.FEATURE_MEMBERSHIP__MEMBER_ELEMENT:
 				return isSetMemberElement();
+			case SysMLPackage.FEATURE_MEMBERSHIP__OWNED_MEMBER_ELEMENT:
+				return isSetOwnedMemberElement();
 			case SysMLPackage.FEATURE_MEMBERSHIP__MEMBERSHIP_OWNING_NAMESPACE:
 				return isSetMembershipOwningNamespace();
-			case SysMLPackage.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE:
-				return isSetOwnedMemberFeature();
 			case SysMLPackage.FEATURE_MEMBERSHIP__IS_DERIVED:
 				return isDerived != IS_DERIVED_EDEFAULT;
 			case SysMLPackage.FEATURE_MEMBERSHIP__IS_READ_ONLY:
 				return isReadOnly != IS_READ_ONLY_EDEFAULT;
+			case SysMLPackage.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE:
+				return isSetOwnedMemberFeature();
 			case SysMLPackage.FEATURE_MEMBERSHIP__IS_COMPOSITE:
 				return isComposite != IS_COMPOSITE_EDEFAULT;
 			case SysMLPackage.FEATURE_MEMBERSHIP__IS_PORTION:
@@ -1072,8 +1072,8 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 		if (baseClass == TypeFeaturing.class) {
 			switch (derivedFeatureID) {
 				case SysMLPackage.FEATURE_MEMBERSHIP__FEATURE_OF_TYPE: return SysMLPackage.TYPE_FEATURING__FEATURE_OF_TYPE;
-				case SysMLPackage.FEATURE_MEMBERSHIP__OWNING_FEATURE_OF_TYPE: return SysMLPackage.TYPE_FEATURING__OWNING_FEATURE_OF_TYPE;
 				case SysMLPackage.FEATURE_MEMBERSHIP__FEATURING_TYPE: return SysMLPackage.TYPE_FEATURING__FEATURING_TYPE;
+				case SysMLPackage.FEATURE_MEMBERSHIP__OWNING_FEATURE_OF_TYPE: return SysMLPackage.TYPE_FEATURING__OWNING_FEATURE_OF_TYPE;
 				default: return -1;
 			}
 		}
@@ -1090,8 +1090,8 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 		if (baseClass == TypeFeaturing.class) {
 			switch (baseFeatureID) {
 				case SysMLPackage.TYPE_FEATURING__FEATURE_OF_TYPE: return SysMLPackage.FEATURE_MEMBERSHIP__FEATURE_OF_TYPE;
-				case SysMLPackage.TYPE_FEATURING__OWNING_FEATURE_OF_TYPE: return SysMLPackage.FEATURE_MEMBERSHIP__OWNING_FEATURE_OF_TYPE;
 				case SysMLPackage.TYPE_FEATURING__FEATURING_TYPE: return SysMLPackage.FEATURE_MEMBERSHIP__FEATURING_TYPE;
+				case SysMLPackage.TYPE_FEATURING__OWNING_FEATURE_OF_TYPE: return SysMLPackage.FEATURE_MEMBERSHIP__OWNING_FEATURE_OF_TYPE;
 				default: return -1;
 			}
 		}

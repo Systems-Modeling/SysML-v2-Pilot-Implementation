@@ -23,7 +23,7 @@ package org.omg.sysml.adapter;
 
 import org.omg.sysml.lang.sysml.ItemUsage;
 
-public class ItemUsageAdapter extends UsageAdapter {
+public class ItemUsageAdapter extends OccurrenceUsageAdapter {
 
 	public ItemUsageAdapter(ItemUsage element) {
 		super(element);

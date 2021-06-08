@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2021 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -18,20 +18,20 @@
  * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
  *  
  *******************************************************************************/
-/**
- */
-package org.omg.sysml.lang.sysml;
 
+package org.omg.sysml.adapter;
 
-/**
- * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Time Slice Feature</b></em>'.
- * <!-- end-user-doc -->
- *
- *
- * @see org.omg.sysml.lang.sysml.SysMLPackage#getTimeSliceFeature()
- * @model
- * @generated
- */
-public interface TimeSliceFeature extends Feature {
-} // TimeSliceFeature
+import org.omg.sysml.lang.sysml.OccurrenceDefinition;
+
+public class OccurrenceDefinitionAdapter extends DefinitionAdapter {
+
+	public OccurrenceDefinitionAdapter(OccurrenceDefinition element) {
+		super(element);
+	}
+	
+	@Override
+	public OccurrenceDefinition getTarget() {
+		return (OccurrenceDefinition)super.getTarget();
+	}
+
+}

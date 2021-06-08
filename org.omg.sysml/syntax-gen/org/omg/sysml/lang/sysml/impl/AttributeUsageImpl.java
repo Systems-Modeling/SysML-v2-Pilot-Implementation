@@ -97,8 +97,8 @@ public class AttributeUsageImpl extends UsageImpl implements AttributeUsage {
 	@Override
 	public EList<Type> getType() {
 		@SuppressWarnings("unchecked")
-		EList<Type> attributeDefinition = (EList<Type>)((EList<?>)getAttributeDefinition());
-		return attributeDefinition;
+		EList<Type> definition = (EList<Type>)((EList<?>)getDefinition());
+		return definition;
 	}
 
 	/**

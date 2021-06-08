@@ -28,6 +28,11 @@ package org.omg.sysml.lang.sysml;
  * A representation of the model object '<em><b>Life Class</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * <p>A LifeClass is a Class that specializes both the <em>Base::Life Class</em> from the Kernel Library and a single OccurrenceDefinition, and has a multiplicity of 0..1. This constrains the OccurrenceDefinition to have at most one instance that is a complete Life.</p>
+ * 
+ * <!-- end-model-doc -->
+ *
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getLifeClass()
  * @model

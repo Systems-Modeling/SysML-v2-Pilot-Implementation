@@ -56,7 +56,7 @@ import org.omg.sysml.util.TypeUtil;
  *
  * @generated
  */
-public class ConstraintDefinitionImpl extends DefinitionImpl implements ConstraintDefinition {
+public class ConstraintDefinitionImpl extends OccurrenceDefinitionImpl implements ConstraintDefinition {
 	
 	/**
 	 * The default value of the '{@link #isModelLevelEvaluable() <em>Is Model Level Evaluable</em>}' attribute.
@@ -298,11 +298,6 @@ public class ConstraintDefinitionImpl extends DefinitionImpl implements Constrai
 	 */
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-		if (baseClass == org.omg.sysml.lang.sysml.Class.class) {
-			switch (derivedFeatureID) {
-				default: return -1;
-			}
-		}
 		if (baseClass == Behavior.class) {
 			switch (derivedFeatureID) {
 				case SysMLPackage.CONSTRAINT_DEFINITION__STEP: return SysMLPackage.BEHAVIOR__STEP;
@@ -333,11 +328,6 @@ public class ConstraintDefinitionImpl extends DefinitionImpl implements Constrai
 	 */
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-		if (baseClass == org.omg.sysml.lang.sysml.Class.class) {
-			switch (baseFeatureID) {
-				default: return -1;
-			}
-		}
 		if (baseClass == Behavior.class) {
 			switch (baseFeatureID) {
 				case SysMLPackage.BEHAVIOR__STEP: return SysMLPackage.CONSTRAINT_DEFINITION__STEP;

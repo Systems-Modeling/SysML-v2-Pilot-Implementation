@@ -37,9 +37,9 @@ import org.omg.sysml.lang.sysml.ConstraintUsage;
 import org.omg.sysml.lang.sysml.Definition;
 import org.omg.sysml.lang.sysml.EnumerationUsage;
 import org.omg.sysml.lang.sysml.FeatureMembership;
-import org.omg.sysml.lang.sysml.IndividualUsage;
 import org.omg.sysml.lang.sysml.InterfaceUsage;
 import org.omg.sysml.lang.sysml.ItemUsage;
+import org.omg.sysml.lang.sysml.OccurrenceUsage;
 import org.omg.sysml.lang.sysml.PartUsage;
 import org.omg.sysml.lang.sysml.CalculationUsage;
 import org.omg.sysml.lang.sysml.CaseUsage;
@@ -68,6 +68,7 @@ import org.omg.sysml.util.NonNotifyingEObjectEList;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getOwnedUsage <em>Owned Usage</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getOwnedPort <em>Owned Port</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getFlowFeature <em>Flow Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getUsage <em>Usage</em>}</li>
@@ -86,7 +87,6 @@ import org.omg.sysml.util.NonNotifyingEObjectEList;
  *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getOwnedConnection <em>Owned Connection</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getOwnedItem <em>Owned Item</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getOwnedPart <em>Owned Part</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getOwnedIndividual <em>Owned Individual</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getOwnedInterface <em>Owned Interface</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getOwnedAttribute <em>Owned Attribute</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getOwnedView <em>Owned View</em>}</li>
@@ -97,7 +97,7 @@ import org.omg.sysml.util.NonNotifyingEObjectEList;
  *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getOwnedAllocation <em>Owned Allocation</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getOwnedConcern <em>Owned Concern</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getOwnedStakeholder <em>Owned Stakeholder</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getOwnedUsage <em>Owned Usage</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getOwnedOccurrence <em>Owned Occurrence</em>}</li>
  * </ul>
  *
  * @generated
@@ -223,16 +223,6 @@ public abstract class DefinitionImpl extends ClassifierImpl implements Definitio
 	 * @generated NOT
 	 */
 	@Override
-	public EList<IndividualUsage> getOwnedIndividual() {
-		return new DerivedEObjectEList<>(IndividualUsage.class, this, SysMLPackage.DEFINITION__OWNED_INDIVIDUAL, new int[] {SysMLPackage.TYPE__OWNED_FEATURE});
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	@Override
 	public EList<InterfaceUsage> getOwnedInterface() {
 		return new DerivedEObjectEList<>(InterfaceUsage.class, this, SysMLPackage.DEFINITION__OWNED_INTERFACE, new int[] {SysMLPackage.TYPE__OWNED_FEATURE});
 	}
@@ -325,6 +315,16 @@ public abstract class DefinitionImpl extends ClassifierImpl implements Definitio
 	@Override
 	public EList<StakeholderUsage> getOwnedStakeholder() {
 		return new DerivedEObjectEList<>(StakeholderUsage.class, this, SysMLPackage.DEFINITION__OWNED_STAKEHOLDER, new int[] {SysMLPackage.TYPE__OWNED_FEATURE});
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public EList<OccurrenceUsage> getOwnedOccurrence() {
+		return new DerivedEObjectEList<>(OccurrenceUsage.class, this, SysMLPackage.DEFINITION__OWNED_OCCURRENCE, new int[] {SysMLPackage.TYPE__OWNED_FEATURE});
 	}
 
 	/**
@@ -481,6 +481,8 @@ public abstract class DefinitionImpl extends ClassifierImpl implements Definitio
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case SysMLPackage.DEFINITION__OWNED_USAGE:
+				return getOwnedUsage();
 			case SysMLPackage.DEFINITION__OWNED_PORT:
 				return getOwnedPort();
 			case SysMLPackage.DEFINITION__FLOW_FEATURE:
@@ -517,8 +519,6 @@ public abstract class DefinitionImpl extends ClassifierImpl implements Definitio
 				return getOwnedItem();
 			case SysMLPackage.DEFINITION__OWNED_PART:
 				return getOwnedPart();
-			case SysMLPackage.DEFINITION__OWNED_INDIVIDUAL:
-				return getOwnedIndividual();
 			case SysMLPackage.DEFINITION__OWNED_INTERFACE:
 				return getOwnedInterface();
 			case SysMLPackage.DEFINITION__OWNED_ATTRIBUTE:
@@ -539,8 +539,8 @@ public abstract class DefinitionImpl extends ClassifierImpl implements Definitio
 				return getOwnedConcern();
 			case SysMLPackage.DEFINITION__OWNED_STAKEHOLDER:
 				return getOwnedStakeholder();
-			case SysMLPackage.DEFINITION__OWNED_USAGE:
-				return getOwnedUsage();
+			case SysMLPackage.DEFINITION__OWNED_OCCURRENCE:
+				return getOwnedOccurrence();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -554,6 +554,10 @@ public abstract class DefinitionImpl extends ClassifierImpl implements Definitio
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case SysMLPackage.DEFINITION__OWNED_USAGE:
+				getOwnedUsage().clear();
+				getOwnedUsage().addAll((Collection<? extends Usage>)newValue);
+				return;
 			case SysMLPackage.DEFINITION__OWNED_PORT:
 				getOwnedPort().clear();
 				getOwnedPort().addAll((Collection<? extends PortUsage>)newValue);
@@ -625,10 +629,6 @@ public abstract class DefinitionImpl extends ClassifierImpl implements Definitio
 				getOwnedPart().clear();
 				getOwnedPart().addAll((Collection<? extends PartUsage>)newValue);
 				return;
-			case SysMLPackage.DEFINITION__OWNED_INDIVIDUAL:
-				getOwnedIndividual().clear();
-				getOwnedIndividual().addAll((Collection<? extends IndividualUsage>)newValue);
-				return;
 			case SysMLPackage.DEFINITION__OWNED_INTERFACE:
 				getOwnedInterface().clear();
 				getOwnedInterface().addAll((Collection<? extends InterfaceUsage>)newValue);
@@ -669,9 +669,9 @@ public abstract class DefinitionImpl extends ClassifierImpl implements Definitio
 				getOwnedStakeholder().clear();
 				getOwnedStakeholder().addAll((Collection<? extends StakeholderUsage>)newValue);
 				return;
-			case SysMLPackage.DEFINITION__OWNED_USAGE:
-				getOwnedUsage().clear();
-				getOwnedUsage().addAll((Collection<? extends Usage>)newValue);
+			case SysMLPackage.DEFINITION__OWNED_OCCURRENCE:
+				getOwnedOccurrence().clear();
+				getOwnedOccurrence().addAll((Collection<? extends OccurrenceUsage>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -685,6 +685,9 @@ public abstract class DefinitionImpl extends ClassifierImpl implements Definitio
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case SysMLPackage.DEFINITION__OWNED_USAGE:
+				getOwnedUsage().clear();
+				return;
 			case SysMLPackage.DEFINITION__OWNED_PORT:
 				getOwnedPort().clear();
 				return;
@@ -739,9 +742,6 @@ public abstract class DefinitionImpl extends ClassifierImpl implements Definitio
 			case SysMLPackage.DEFINITION__OWNED_PART:
 				getOwnedPart().clear();
 				return;
-			case SysMLPackage.DEFINITION__OWNED_INDIVIDUAL:
-				getOwnedIndividual().clear();
-				return;
 			case SysMLPackage.DEFINITION__OWNED_INTERFACE:
 				getOwnedInterface().clear();
 				return;
@@ -772,8 +772,8 @@ public abstract class DefinitionImpl extends ClassifierImpl implements Definitio
 			case SysMLPackage.DEFINITION__OWNED_STAKEHOLDER:
 				getOwnedStakeholder().clear();
 				return;
-			case SysMLPackage.DEFINITION__OWNED_USAGE:
-				getOwnedUsage().clear();
+			case SysMLPackage.DEFINITION__OWNED_OCCURRENCE:
+				getOwnedOccurrence().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -787,6 +787,8 @@ public abstract class DefinitionImpl extends ClassifierImpl implements Definitio
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case SysMLPackage.DEFINITION__OWNED_USAGE:
+				return !getOwnedUsage().isEmpty();
 			case SysMLPackage.DEFINITION__OWNED_PORT:
 				return !getOwnedPort().isEmpty();
 			case SysMLPackage.DEFINITION__FLOW_FEATURE:
@@ -823,8 +825,6 @@ public abstract class DefinitionImpl extends ClassifierImpl implements Definitio
 				return !getOwnedItem().isEmpty();
 			case SysMLPackage.DEFINITION__OWNED_PART:
 				return !getOwnedPart().isEmpty();
-			case SysMLPackage.DEFINITION__OWNED_INDIVIDUAL:
-				return !getOwnedIndividual().isEmpty();
 			case SysMLPackage.DEFINITION__OWNED_INTERFACE:
 				return !getOwnedInterface().isEmpty();
 			case SysMLPackage.DEFINITION__OWNED_ATTRIBUTE:
@@ -845,8 +845,8 @@ public abstract class DefinitionImpl extends ClassifierImpl implements Definitio
 				return !getOwnedConcern().isEmpty();
 			case SysMLPackage.DEFINITION__OWNED_STAKEHOLDER:
 				return !getOwnedStakeholder().isEmpty();
-			case SysMLPackage.DEFINITION__OWNED_USAGE:
-				return !getOwnedUsage().isEmpty();
+			case SysMLPackage.DEFINITION__OWNED_OCCURRENCE:
+				return !getOwnedOccurrence().isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

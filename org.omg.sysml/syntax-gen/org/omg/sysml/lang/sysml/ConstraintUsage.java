@@ -29,7 +29,7 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A ConstraintUsage is a Usage that is also a BooleanExpression, and, so, is typed by a Predicate. Nominally, if the type is a ConstraintDefinition, a ConstraintUsage is a Usage of that ConstraintDefinition. However, other kinds of kernel Predicates are also allowed, to permit use of Predicates from the Kernel Library.</p>
+ * <p>A ConstraintUsage is a OccurrenceUsage that is also a BooleanExpression, and, so, is typed by a Predicate. Nominally, if the type is a ConstraintDefinition, a ConstraintUsage is a Usage of that ConstraintDefinition. However, other kinds of kernel Predicates are also allowed, to permit use of Predicates from the Kernel Library.</p>
  * 
  * <p>A ConstraintUsage (other than an AssertConstraintUsage owned by a Part) must subset, directly or indirectly, the base ConstraintUsage <code>constraintChecks</code> from the Systems model library.</p>
  * <!-- end-model-doc -->
@@ -45,7 +45,7 @@ package org.omg.sysml.lang.sysml;
  * @model
  * @generated
  */
-public interface ConstraintUsage extends Usage, BooleanExpression {
+public interface ConstraintUsage extends OccurrenceUsage, BooleanExpression {
 	/**
 	 * Returns the value of the '<em><b>Constraint Definition</b></em>' reference.
 	 * <p>

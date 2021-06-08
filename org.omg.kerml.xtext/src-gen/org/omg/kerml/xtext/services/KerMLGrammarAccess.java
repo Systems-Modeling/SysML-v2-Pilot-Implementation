@@ -9271,7 +9271,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//OwnedExpression returns SysML::Expression :
-	//     ExpressionBody | ConditionalExpression
+	//     ConditionalExpression
 	//;
 	public KerMLExpressionsGrammarAccess.OwnedExpressionElements getOwnedExpressionAccess() {
 		return gaKerMLExpressions.getOwnedExpressionAccess();
@@ -9279,28 +9279,6 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	
 	public ParserRule getOwnedExpressionRule() {
 		return getOwnedExpressionAccess().getRule();
-	}
-	
-	//BodyParameterMember returns SysML::ParameterMembership :
-	//    'in' memberName = Name ownedRelatedElement += BodyParameter // ownedMemberParameter = BodyParameter
-	//;
-	public KerMLExpressionsGrammarAccess.BodyParameterMemberElements getBodyParameterMemberAccess() {
-		return gaKerMLExpressions.getBodyParameterMemberAccess();
-	}
-	
-	public ParserRule getBodyParameterMemberRule() {
-		return getBodyParameterMemberAccess().getRule();
-	}
-	
-	//BodyParameter returns SysML::Feature :
-	//    {SysML::Feature}
-	//;
-	public KerMLExpressionsGrammarAccess.BodyParameterElements getBodyParameterAccess() {
-		return gaKerMLExpressions.getBodyParameterAccess();
-	}
-	
-	public ParserRule getBodyParameterRule() {
-		return getBodyParameterAccess().getRule();
 	}
 	
 	//// Conditional Test Expressions
@@ -9796,6 +9774,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	//    | LiteralExpression
 	//    | FeatureReferenceExpression
 	//    | InvocationExpression
+	//    | ExpressionBody
 	//    | '(' SequenceExpression ')'
 	//;
 	public KerMLExpressionsGrammarAccess.BaseExpressionElements getBaseExpressionAccess() {
@@ -9804,6 +9783,28 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	
 	public ParserRule getBaseExpressionRule() {
 		return getBaseExpressionAccess().getRule();
+	}
+	
+	//BodyParameterMember returns SysML::ParameterMembership :
+	//    'in' memberName = Name ownedRelatedElement += BodyParameter // ownedMemberParameter = BodyParameter
+	//;
+	public KerMLExpressionsGrammarAccess.BodyParameterMemberElements getBodyParameterMemberAccess() {
+		return gaKerMLExpressions.getBodyParameterMemberAccess();
+	}
+	
+	public ParserRule getBodyParameterMemberRule() {
+		return getBodyParameterMemberAccess().getRule();
+	}
+	
+	//BodyParameter returns SysML::Feature :
+	//    {SysML::Feature}
+	//;
+	public KerMLExpressionsGrammarAccess.BodyParameterElements getBodyParameterAccess() {
+		return gaKerMLExpressions.getBodyParameterAccess();
+	}
+	
+	public ParserRule getBodyParameterRule() {
+		return getBodyParameterAccess().getRule();
 	}
 	
 	//// Sequence Expressions

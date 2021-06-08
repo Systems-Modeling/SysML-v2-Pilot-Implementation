@@ -21,43 +21,41 @@
 
 package org.omg.sysml.adapter;
 
-import java.util.Collections;
-import java.util.List;
-
-import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.SnapshotFeature;
+import org.omg.sysml.lang.sysml.EventOccurrenceUsage;
+import org.omg.sysml.lang.sysml.OccurrenceDefinition;
+import org.omg.sysml.lang.sysml.OccurrenceUsage;
 import org.omg.sysml.lang.sysml.Type;
 
-public class SnapshotFeatureAdapter extends FeatureAdapter {
+public class EventOccurrenceUsageAdapter extends OccurrenceUsageAdapter {
 
-	public static final String SNAPSHOT_FEATURE_REDEFINED_FEATURE = "Occurrences::Occurrence::snapshotOf";
-
-	public SnapshotFeatureAdapter(SnapshotFeature element) {
+	public EventOccurrenceUsageAdapter(EventOccurrenceUsage element) {
 		super(element);
 	}
 	
 	@Override
-	public SnapshotFeature getTarget() {
-		return (SnapshotFeature)super.getTarget();
+	public EventOccurrenceUsage getTarget() {
+		return (EventOccurrenceUsage)super.getTarget();
 	}
 
 	@Override
-	public void computeImplicitGeneralTypes() {
-		setIndividualTyping();
-		super.computeImplicitGeneralTypes();
+	public void addDefaultGeneralType() {
+		super.addDefaultGeneralType();
+		if (isSuboccurrence()) {
+			addImplicitGeneralType(getGeneralizationEClass(), 
+					getLibraryType(getDefaultSupertype("suboccurrence")));;
+		}
 	}
-		
+
 	@Override
-	protected List<Type> getGeneralTypes(Type type, Element skip) {
-		return Collections.singletonList(null);
+	protected String getDefaultSupertype() {
+		return isSuboccurrence()? 
+				getDefaultSupertype("suboccurrence"):
+				super.getDefaultSupertype();
 	}
 	
-	@Override
-	protected List<? extends Feature> getRelevantFeatures(Type type) {
-		SnapshotFeature target = getTarget();
-		return Collections.singletonList(type == target.getOwner()? target:
-			   (Feature)getLibraryType(SNAPSHOT_FEATURE_REDEFINED_FEATURE));
+	public boolean isSuboccurrence() {		
+		Type owningType = getTarget().getOwningType();
+		return owningType instanceof OccurrenceDefinition || owningType instanceof OccurrenceUsage;
 	}
-
+	
 }

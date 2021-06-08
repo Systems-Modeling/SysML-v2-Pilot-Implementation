@@ -48,7 +48,7 @@ import org.omg.sysml.util.TypeUtil;
  *
  * @generated
  */
-public class ActionUsageImpl extends UsageImpl implements ActionUsage {
+public class ActionUsageImpl extends OccurrenceUsageImpl implements ActionUsage {
 	
 	/**
 	 * <!-- begin-user-doc -->
@@ -89,7 +89,7 @@ public class ActionUsageImpl extends UsageImpl implements ActionUsage {
 	@Override
 	public EList<Behavior> getActionDefinition() {
 		EList<Behavior> behaviors = new NonNotifyingEObjectEList<>(Behavior.class, this, SysMLPackage.ACTION_USAGE__ACTION_DEFINITION);
-		super.getType().stream().
+		super.getOccurrenceDefinition().stream().
 			filter(type->type instanceof Behavior).
 			map(type->(Behavior)type).
 			forEachOrdered(behaviors::add);
@@ -113,8 +113,8 @@ public class ActionUsageImpl extends UsageImpl implements ActionUsage {
 	@Override
 	public EList<Type> getType() {
 		@SuppressWarnings("unchecked")
-		EList<Type> behavior = (EList<Type>)((EList<?>)getBehavior());
-		return behavior;
+		EList<Type> definition = (EList<Type>)((EList<?>)getDefinition());
+		return definition;
 	}
 
 	/**
@@ -141,6 +141,26 @@ public class ActionUsageImpl extends UsageImpl implements ActionUsage {
 	 * @generated
 	 */
 	public boolean isSetBehavior() {
+  		return false;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<org.omg.sysml.lang.sysml.Class> getOccurrenceDefinition() {
+		@SuppressWarnings("unchecked")
+		EList<org.omg.sysml.lang.sysml.Class> actionDefinition = (EList<org.omg.sysml.lang.sysml.Class>)((EList<?>)getActionDefinition());
+		return actionDefinition;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetOccurrenceDefinition() {
   		return false;
 	}
 
@@ -222,6 +242,8 @@ public class ActionUsageImpl extends UsageImpl implements ActionUsage {
 				return isSetBehavior();
 			case SysMLPackage.ACTION_USAGE__PARAMETER:
 				return !getParameter().isEmpty();
+			case SysMLPackage.ACTION_USAGE__OCCURRENCE_DEFINITION:
+				return isSetOccurrenceDefinition();
 			case SysMLPackage.ACTION_USAGE__ACTION_DEFINITION:
 				return isSetActionDefinition();
 		}

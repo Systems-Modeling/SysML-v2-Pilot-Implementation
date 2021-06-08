@@ -226,9 +226,10 @@ DefinitionElement returns SysML::Element :
 	| Dependency	  
 	| AttributeDefinition
 	| EnumerationDefinition
+	| OccurrenceDefinition
+	| IndividualDefinition
 	| ItemDefinition
 	| PartDefinition
-	| IndividualDefinition
 	| ConnectionDefinition
 	| InterfaceDefinition
 	| AllocationDefinition
@@ -251,11 +252,11 @@ DefinitionElement returns SysML::Element :
 UsageElement returns SysML::Usage :
 	  AttributeUsage
 	| EnumerationUsage
+	| OccurrenceUsage
+	| IndividualUsage
+	| PortionUsage
 	| ItemUsage
 	| PartUsage
-	| IndividualUsage
-	| TimeSliceUsage
-	| SnapshotUsage
 	| PortUsage
 	| ConnectionUsage
 	| AssertConstraintUsage
@@ -734,6 +735,7 @@ StructureUsageElement returns SysML::Feature :
 	  ReferenceUsage
 	| AttributeUsage
 	| EnumerationUsage
+	| OccurrenceRefUsage
 	| ItemRefUsage
 	| PartRefUsage
 	| StakeholderRefUsage
@@ -752,8 +754,7 @@ StructureUsageElement returns SysML::Feature :
 
 IndividualUsageElement returns SysML::Usage :
 	  IndividualRefUsage
-	| TimeSliceRefUsage
-	| SnapshotRefUsage
+	| PortionUsage
 ;
 
 BehaviorUsageElement returns SysML::Usage :
@@ -776,6 +777,7 @@ BehaviorUsageElement returns SysML::Usage :
 VariantUsageElement returns SysML::Usage :
 	  ReferenceVariantUsage
 	| AttributeVariantUsage
+	| OccurrenceRefUsage
 	| ItemRefUsage
 	| PartRefUsage
 	| StakeholderRefUsage
@@ -792,6 +794,7 @@ FlowUsageElement returns SysML::Usage :
 	  ReferenceUsage
 	| AttributeUsage
 	| EnumerationUsage
+	| OccurrenceFlowUsage
 	| ItemFlowUsage
 	| PartFlowUsage
 	| StakeholderFlowUsage
@@ -870,6 +873,109 @@ EnumeratedValue returns SysML::EnumerationUsage :
 
 EnumerationUsage returns SysML::EnumerationUsage :
 	EnumerationUsageKeyword Usage
+;
+
+/* OCCURRENCES */
+
+/* Occurrence Definitions */
+
+OccurrenceKeyword :
+	'occurrence'
+;
+
+OccurrenceDefKeyword :
+	OccurrenceKeyword 'def'
+;
+
+OccurrenceDefinition returns SysML::OccurrenceDefinition :
+	DefinitionPrefix? OccurrenceDefKeyword Definition
+	ownedRelationship += LifeClassMembership
+;
+
+IndividualDefinition returns SysML::OccurrenceDefinition :
+	DefinitionPrefix? isIndividual ?= 'individual' 
+	OccurrenceKeyword? 'def' Definition
+	ownedRelationship += LifeClassMembership
+;
+
+LifeClassMembership returns SysML::Membership :
+	ownedRelatedElement += LifeClass // ownedMemberElement = LifeClass
+;
+
+LifeClass returns SysML::LifeClass :
+	{SysML::LifeClass}
+;
+
+/* Occurrence Usages */
+
+OccurrenceUsageKeyword :
+	OccurrenceKeyword
+;
+
+OccurrenceUsage returns SysML::OccurrenceUsage :
+	UsagePrefix? OccurrenceUsageKeyword Usage
+;
+
+OccurrenceRefUsage returns SysML::OccurrenceUsage :
+	UsagePrefix? ( 'ref' OccurrenceUsageKeyword | isComposite ?= OccurrenceUsageKeyword ) Usage
+;
+
+OccurrenceFlowUsage returns SysML::OccurrenceUsage :
+	UsagePrefix? 'ref'? OccurrenceUsageKeyword Usage
+;
+
+IndividualUsage returns SysML::OccurrenceUsage :
+	UsagePrefix? isIndividual ?= 'individual' OccurrenceUsageKeyword? Usage
+;
+
+IndividualRefUsage returns SysML::OccurrenceUsage :
+	  UsagePrefix? 'ref' isIndividual ?= 'individual' OccurrenceUsageKeyword? Usage
+	| UsagePrefix? isIndividual ?= 'individual' OccurrenceUsageKeyword? 
+	  UsageDeclaration? ( isComposite ?= ';' | isComposite ?= '{' DefinitionBodyItem* '}' )
+;
+
+PortionUsage returns SysML::OccurrenceUsage :
+	UsagePrefix? portionKind = PortionKind Usage
+	ownedRelationship += PortioningFeatureMember 
+;
+
+enum PortionKind returns SysML::PortionKind :
+	snapshot | timeslice
+;
+
+PortioningFeatureMember returns SysML::FeatureMembership :
+	ownedRelatedElement += PortioningFeature // ownedMemberFeature = PortioningFeature
+;
+
+PortioningFeature returns SysML::PortioningFeature :
+	{SysML::PortioningFeature}
+;
+
+/* Occurrence Succession */
+
+EmptySuccessionMember returns SysML::FeatureMembership :
+	ownedRelatedElement += EmptySuccession // ownedMemberFeature = EmptySuccession
+;
+
+EmptySuccession returns SysML::Succession :
+	'then' ownedRelationship += MultiplicitySourceEndMember 
+	ownedRelationship += EmptyTargetEndMember
+;
+
+MultiplicitySourceEndMember returns SysML::EndFeatureMembership :
+	ownedRelatedElement += MultiplicitySourceEnd // ownedMemberFeature = MultiplicitySourceEnd
+;
+
+MultiplicitySourceEnd returns SysML::Feature :
+	{SysML::SourceEnd} ( ownedRelationship += MultiplicityMember )?
+;
+
+EmptyTargetEndMember returns SysML::EndFeatureMembership :
+	ownedRelatedElement += EmptyTargetEnd // ownedMemberFeature = EmptyTargetEnd
+;
+
+EmptyTargetEnd returns SysML::Feature :
+	{SysML::TargetEnd}
 ;
 
 /* ITEMS */
@@ -1182,116 +1288,6 @@ AllocationUsage returns SysML::AllocationUsage :
 fragment AllocationUsageDeclaration returns SysML::AllocationUsage :
 	    AllocationUsageKeyword UsageDeclaration? ( AllocateKeyword ConnectorPart )?
 	  | AllocateKeyword ConnectorPart
-;
-
-/* INDIVIDUALS */
-
-/* Individual Definitions */
-
-IndividualKeyword :
-	'individual'
-;
-
-IndividualDefKeyword :
-	IndividualKeyword 'def'
-;
-
-IndividualDefinition returns SysML::IndividualDefinition :
-	DefinitionPrefix? IndividualDefKeyword Definition
-	ownedRelationship += LifeClassMembership
-;
-
-LifeClassMembership returns SysML::Membership :
-	ownedRelatedElement += LifeClass // ownedMemberElement = LifeClass
-;
-
-LifeClass returns SysML::LifeClass :
-	{SysML::LifeClass}
-;
-
-/* Individual Usages */
-
-IndividualUsageKeyword :
-	IndividualKeyword
-;
-
-TimeSliceKeyword :
-	'timeslice'
-;
-
-SnapshotKeyword :
-	'snapshot'
-;
-
-IndividualUsage returns SysML::IndividualUsage :
-	UsagePrefix? IndividualUsageKeyword Usage
-;
-
-IndividualRefUsage returns SysML::IndividualUsage :
-	UsagePrefix? ( 'ref' IndividualUsageKeyword | isComposite ?= IndividualUsageKeyword ) Usage
-;
-
-TimeSliceUsage returns SysML::IndividualUsage :
-	UsagePrefix? TimeSliceKeyword Usage
-	ownedRelationship += TimeSliceFeatureMember 
-;
-
-TimeSliceRefUsage returns SysML::IndividualUsage :
-	UsagePrefix? ( 'ref' TimeSliceKeyword | isComposite ?= TimeSliceKeyword ) Usage 
-	ownedRelationship += TimeSliceFeatureMember 
-;
-
-TimeSliceFeatureMember returns SysML::FeatureMembership :
-	ownedRelatedElement += TimeSliceFeature // ownedMemberFeature = TimeSliceFeature
-;
-
-TimeSliceFeature returns SysML::TimeSliceFeature :
-	{SysML::TimeSliceFeature}
-;
-
-SnapshotUsage returns SysML::IndividualUsage :
-	UsagePrefix? SnapshotKeyword Usage
-	ownedRelationship += SnapshotFeatureMember
-;
-
-SnapshotRefUsage returns SysML::IndividualUsage :
-	UsagePrefix? ( 'ref' SnapshotKeyword | isComposite ?= SnapshotKeyword ) Usage 
-	ownedRelationship += SnapshotFeatureMember 
-;
-
-SnapshotFeatureMember returns SysML::FeatureMembership :
-	ownedRelatedElement += SnapshotFeature // ownedMemberFeature = SnapshotFeature
-;
-
-SnapshotFeature returns SysML::SnapshotFeature :
-	{SysML::SnapshotFeature}
-;
-
-/* Individual Succession */
-
-EmptySuccessionMember returns SysML::FeatureMembership :
-	ownedRelatedElement += EmptySuccession // ownedMemberFeature = EmptySuccession
-;
-
-EmptySuccession returns SysML::Succession :
-	'then' ownedRelationship += MultiplicitySourceEndMember 
-	ownedRelationship += EmptyTargetEndMember
-;
-
-MultiplicitySourceEndMember returns SysML::EndFeatureMembership :
-	ownedRelatedElement += MultiplicitySourceEnd // ownedMemberFeature = MultiplicitySourceEnd
-;
-
-MultiplicitySourceEnd returns SysML::Feature :
-	{SysML::SourceEnd} ( ownedRelationship += MultiplicityMember )?
-;
-
-EmptyTargetEndMember returns SysML::EndFeatureMembership :
-	ownedRelatedElement += EmptyTargetEnd // ownedMemberFeature = EmptyTargetEnd
-;
-
-EmptyTargetEnd returns SysML::Feature :
-	{SysML::TargetEnd}
 ;
 
 /* ACTION */

@@ -123,27 +123,29 @@ public class FeatureReferenceExpressionImpl extends ExpressionImpl implements Fe
 	public EList<Element> evaluate(Element target) {
 		if (target instanceof Type) {
 			Feature referent = getReferent();
-			if (TypeUtil.conforms(referent, getSelfReferenceFeature())) {
-				EList<Element> result = new BasicEList<>();
-				result.add(target);
-				return result;
-			} else {
-				Optional<FeatureImpl> feature = ((Type)target).getFeature().stream().
-						map(FeatureImpl.class::cast).
-						filter(f->FeatureUtil.getRedefinedFeaturesOf(f).contains(referent)).
-						findFirst();
-				if (feature.isPresent()) {
-					FeatureValue featureValue = FeatureUtil.getValuationFor(feature.get());
-					if (featureValue != null) {
-						Expression value = featureValue.getValue();
-						if (value != null) {
-							return value.evaluate(target);
-						}
-					}
-				} else if (referent.getFeaturingType().isEmpty()) {
+			if (referent != null) {
+				if (TypeUtil.conforms(referent, getSelfReferenceFeature())) {
 					EList<Element> result = new BasicEList<>();
-					result.add(referent);
+					result.add(target);
 					return result;
+				} else {
+					Optional<FeatureImpl> feature = ((Type)target).getFeature().stream().
+							map(FeatureImpl.class::cast).
+							filter(f->FeatureUtil.getRedefinedFeaturesOf(f).contains(referent)).
+							findFirst();
+					if (feature.isPresent()) {
+						FeatureValue featureValue = FeatureUtil.getValuationFor(feature.get());
+						if (featureValue != null) {
+							Expression value = featureValue.getValue();
+							if (value != null) {
+								return value.evaluate(target);
+							}
+						}
+					} else if (referent.getFeaturingType().isEmpty()) {
+						EList<Element> result = new BasicEList<>();
+						result.add(referent);
+						return result;
+					}
 				}
 			}
 		}

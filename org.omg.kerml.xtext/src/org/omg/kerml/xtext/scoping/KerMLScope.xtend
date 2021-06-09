@@ -144,15 +144,17 @@ class KerMLScope extends AbstractScope {
 		ns.imp(qn, isInsideScope, visited, includeImplicitGen)
 	}
 	
-	protected def void addName(Map<Element, Set<QualifiedName>> elements, QualifiedName qn, Element el) {
-		if (referenceType.isInstance(el) && el.includeAsMember) {
+	protected def boolean addName(Map<Element, Set<QualifiedName>> elements, QualifiedName qn, Element el) {
+		if (referenceType.isInstance(el)) {
 			var qns = elements.get(el)
 			if (qns === null) {
 				elements.put(el, newHashSet(qn))
 			} else {
 				qns.add(qn)
-			}					
+			}
+			return true				
 		}
+		false
 	}
 	
 	protected def boolean isIncludeAsMember(Element el) {
@@ -235,15 +237,22 @@ class KerMLScope extends AbstractScope {
 	protected def addQualifiedName(QualifiedName elementqn, Element memberElement) {
 		visitedqns.add(elementqn)
 		if (targetqn === null || targetqn == elementqn) {
-			elements.addName(elementqn, memberElement)
-			if (findFirst && targetqn == elementqn) {
-				return true
+			if (elements.addName(elementqn, memberElement)) {
+				if (targetqn != elementqn && memberElement instanceof Namespace) {
+					isShadowing = true
+				}
+				if (findFirst && targetqn == elementqn) {
+					return true
+				}
 			}
 		}
 		false
 	}
 	
 	protected def visitQualifiedName(QualifiedName elementqn, Element memberElement, Set<Namespace> ownedvisited, Set<Namespace> visited, boolean includeImplicitGen) {
+		if (!memberElement.includeAsMember) {
+			return false
+		}
 		if (addQualifiedName(elementqn, memberElement)) {
 			return true
 		}		

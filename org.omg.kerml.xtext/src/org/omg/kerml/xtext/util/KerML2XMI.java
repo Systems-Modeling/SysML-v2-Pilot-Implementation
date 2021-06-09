@@ -1,6 +1,6 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2018-2020 Model Driven Solutions, Inc.
+ * Copyright (c) 2018-2021 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -29,10 +29,14 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
+import org.eclipse.emf.ecore.xmi.XMIResource;
+import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 import org.omg.kerml.xtext.KerMLStandaloneSetup;
+import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.util.ElementUtil;
 import org.omg.sysml.util.SysMLUtil;
 
@@ -54,9 +58,30 @@ public class KerML2XMI extends SysMLUtil {
 	
 	public KerML2XMI() {
 		super();
-	    Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(KERML_XMI_EXTENSION, new XMIResourceFactoryImpl());
 		KerMLStandaloneSetup.doSetup();
 		this.addExtension("." + KERML_EXTENSION);
+	}
+	
+	/**
+	 * Create an XMIResource for output, using Element identifiers for XMI IDs, and add it to the
+	 * resource set.
+	 * 
+	 * @param 	path			the path to be used for the new resource.
+	 * @return	the newly created resource
+	 */
+	protected XMIResource createOutputResource(String path) {
+		final XMIResource resource = new XMIResourceImpl(URI.createFileURI(path)) {
+			@Override
+			public void attachedHelper(EObject eObject) {
+				if (eObject instanceof Element) {
+					setID(eObject, ((Element)eObject).getIdentifier());
+				}
+				super.attachedHelper(eObject);
+			}
+		};
+		
+		this.resourceSet.getResources().add(resource);
+		return resource;
 	}
 	
 	/**
@@ -71,8 +96,8 @@ public class KerML2XMI extends SysMLUtil {
 	}
 	
 	/**
-	 * Create SysML output resources for all resources that have been read, but only write out those
-	 * output resources that correspond to identified input resources, no those that correspond to
+	 * Create KerML output resources for all resources that have been read, but only write out those
+	 * output resources that correspond to identified input resources, not those that correspond to
 	 * library resources. Note that, at the end of this method, all content has been removed from
 	 * the originally read resources.
 	 * 
@@ -83,13 +108,13 @@ public class KerML2XMI extends SysMLUtil {
 		EcoreUtil.resolveAll(this.resourceSet);
 		
 		println("Transforming" + 
-				(isAddImplicitGeneralizations? " (adding implicit generalizations)... ": " ..."));
+				(isAddImplicitGeneralizations? " (adding implicit generalizations)... ": "..."));
 		ElementUtil.transformAll(this.resourceSet, isAddImplicitGeneralizations);
 		
 		Set<Resource> outputResources = new HashSet<Resource>();
  		for (Object object: this.resourceSet.getResources().toArray()) {
 			Resource resource = (Resource)object;
-			Resource outputResource = this.createResource(this.getOutputPath(resource.getURI().toFileString()));
+			Resource outputResource = this.createOutputResource(this.getOutputPath(resource.getURI().toFileString()));
 			outputResource.getContents().addAll(resource.getContents());
 			if (this.isInputResource(resource)) {
 				outputResources.add(outputResource);

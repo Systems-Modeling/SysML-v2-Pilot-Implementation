@@ -1,6 +1,6 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2019-2020 Model Driven Solutions, Inc.
+ * Copyright (c) 2019-2021 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -24,8 +24,6 @@
 
 package org.omg.sysml.xtext.util;
 
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.omg.kerml.xtext.util.KerML2XMI;
 import org.omg.sysml.xtext.SysMLStandaloneSetup;
 
@@ -47,7 +45,6 @@ public class SysML2XMI extends KerML2XMI {
 	
 	public SysML2XMI() {
 		super();
-	    Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(SYSML_XMI_EXTENSION, new XMIResourceFactoryImpl());
 		SysMLStandaloneSetup.doSetup();
 		this.addExtension("." + SYSML_EXTENSION);
 	}

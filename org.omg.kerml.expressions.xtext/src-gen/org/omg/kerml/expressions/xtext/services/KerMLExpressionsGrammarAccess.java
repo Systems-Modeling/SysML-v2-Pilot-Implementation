@@ -127,30 +127,30 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 	public class NullCoalescingExpressionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.expressions.xtext.KerMLExpressions.NullCoalescingExpression");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final RuleCall cConditionalImpliesExpressionParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
+		private final RuleCall cImpliesExpressionParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
 		private final Action cOperatorExpressionOperandAction_1_0 = (Action)cGroup_1.eContents().get(0);
 		private final Assignment cOperatorAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
 		private final RuleCall cOperatorNullCoalescingOperatorParserRuleCall_1_1_0 = (RuleCall)cOperatorAssignment_1_1.eContents().get(0);
 		private final Assignment cOperandAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
-		private final RuleCall cOperandConditionalImpliesExpressionParserRuleCall_1_2_0 = (RuleCall)cOperandAssignment_1_2.eContents().get(0);
+		private final RuleCall cOperandImpliesExpressionParserRuleCall_1_2_0 = (RuleCall)cOperandAssignment_1_2.eContents().get(0);
 		
 		//// Null Coalescing Expressions
 		//NullCoalescingExpression returns SysML::Expression :
-		//    ConditionalImpliesExpression ( {SysML::OperatorExpression.operand += current}
-		//        operator = NullCoalescingOperator operand += ConditionalImpliesExpression )*
+		//    ImpliesExpression ( {SysML::OperatorExpression.operand += current}
+		//        operator = NullCoalescingOperator operand += ImpliesExpression )*
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//ConditionalImpliesExpression ( {SysML::OperatorExpression.operand += current}
-		//    operator = NullCoalescingOperator operand += ConditionalImpliesExpression )*
+		//ImpliesExpression ( {SysML::OperatorExpression.operand += current}
+		//    operator = NullCoalescingOperator operand += ImpliesExpression )*
 		public Group getGroup() { return cGroup; }
 		
-		//ConditionalImpliesExpression
-		public RuleCall getConditionalImpliesExpressionParserRuleCall_0() { return cConditionalImpliesExpressionParserRuleCall_0; }
+		//ImpliesExpression
+		public RuleCall getImpliesExpressionParserRuleCall_0() { return cImpliesExpressionParserRuleCall_0; }
 		
 		//( {SysML::OperatorExpression.operand += current}
-		//       operator = NullCoalescingOperator operand += ConditionalImpliesExpression )*
+		//       operator = NullCoalescingOperator operand += ImpliesExpression )*
 		public Group getGroup_1() { return cGroup_1; }
 		
 		//{SysML::OperatorExpression.operand += current}
@@ -162,11 +162,11 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 		//NullCoalescingOperator
 		public RuleCall getOperatorNullCoalescingOperatorParserRuleCall_1_1_0() { return cOperatorNullCoalescingOperatorParserRuleCall_1_1_0; }
 		
-		//operand += ConditionalImpliesExpression
+		//operand += ImpliesExpression
 		public Assignment getOperandAssignment_1_2() { return cOperandAssignment_1_2; }
 		
-		//ConditionalImpliesExpression
-		public RuleCall getOperandConditionalImpliesExpressionParserRuleCall_1_2_0() { return cOperandConditionalImpliesExpressionParserRuleCall_1_2_0; }
+		//ImpliesExpression
+		public RuleCall getOperandImpliesExpressionParserRuleCall_1_2_0() { return cOperandImpliesExpressionParserRuleCall_1_2_0; }
 	}
 	public class NullCoalescingOperatorElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.expressions.xtext.KerMLExpressions.NullCoalescingOperator");
@@ -180,161 +180,43 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 		//'??'
 		public Keyword getQuestionMarkQuestionMarkKeyword() { return cQuestionMarkQuestionMarkKeyword; }
 	}
-	public class ConditionalImpliesExpressionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.expressions.xtext.KerMLExpressions.ConditionalImpliesExpression");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final RuleCall cConditionalOrExpressionParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
-		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final Action cOperatorExpressionOperandAction_1_0 = (Action)cGroup_1.eContents().get(0);
-		private final Assignment cOperatorAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
-		private final RuleCall cOperatorConditionalImpliesOperatorParserRuleCall_1_1_0 = (RuleCall)cOperatorAssignment_1_1.eContents().get(0);
-		private final Assignment cOperandAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
-		private final RuleCall cOperandConditionalOrExpressionParserRuleCall_1_2_0 = (RuleCall)cOperandAssignment_1_2.eContents().get(0);
-		
-		//// Conditional Logical Expressions
-		//ConditionalImpliesExpression returns SysML::Expression :
-		//    ConditionalOrExpression ( {SysML::OperatorExpression.operand += current}
-		//        operator = ConditionalImpliesOperator operand += ConditionalOrExpression )*
-		//;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//ConditionalOrExpression ( {SysML::OperatorExpression.operand += current}
-		//    operator = ConditionalImpliesOperator operand += ConditionalOrExpression )*
-		public Group getGroup() { return cGroup; }
-		
-		//ConditionalOrExpression
-		public RuleCall getConditionalOrExpressionParserRuleCall_0() { return cConditionalOrExpressionParserRuleCall_0; }
-		
-		//( {SysML::OperatorExpression.operand += current}
-		//       operator = ConditionalImpliesOperator operand += ConditionalOrExpression )*
-		public Group getGroup_1() { return cGroup_1; }
-		
-		//{SysML::OperatorExpression.operand += current}
-		public Action getOperatorExpressionOperandAction_1_0() { return cOperatorExpressionOperandAction_1_0; }
-		
-		//operator = ConditionalImpliesOperator
-		public Assignment getOperatorAssignment_1_1() { return cOperatorAssignment_1_1; }
-		
-		//ConditionalImpliesOperator
-		public RuleCall getOperatorConditionalImpliesOperatorParserRuleCall_1_1_0() { return cOperatorConditionalImpliesOperatorParserRuleCall_1_1_0; }
-		
-		//operand += ConditionalOrExpression
-		public Assignment getOperandAssignment_1_2() { return cOperandAssignment_1_2; }
-		
-		//ConditionalOrExpression
-		public RuleCall getOperandConditionalOrExpressionParserRuleCall_1_2_0() { return cOperandConditionalOrExpressionParserRuleCall_1_2_0; }
-	}
-	public class ConditionalImpliesOperatorElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.expressions.xtext.KerMLExpressions.ConditionalImpliesOperator");
-		private final Keyword cImpliesKeyword = (Keyword)rule.eContents().get(1);
-		
-		//ConditionalImpliesOperator :
-		//    'implies'
-		//;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//'implies'
-		public Keyword getImpliesKeyword() { return cImpliesKeyword; }
-	}
-	public class ConditionalOrExpressionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.expressions.xtext.KerMLExpressions.ConditionalOrExpression");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final RuleCall cConditionalAndExpressionParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
-		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final Action cOperatorExpressionOperandAction_1_0 = (Action)cGroup_1.eContents().get(0);
-		private final Assignment cOperatorAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
-		private final RuleCall cOperatorConditionalOrOperatorParserRuleCall_1_1_0 = (RuleCall)cOperatorAssignment_1_1.eContents().get(0);
-		private final Assignment cOperandAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
-		private final RuleCall cOperandConditionalAndExpressionParserRuleCall_1_2_0 = (RuleCall)cOperandAssignment_1_2.eContents().get(0);
-		
-		//ConditionalOrExpression returns SysML::Expression :
-		//    ConditionalAndExpression ( {SysML::OperatorExpression.operand += current}
-		//        operator = ConditionalOrOperator operand += ConditionalAndExpression )*
-		//;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//ConditionalAndExpression ( {SysML::OperatorExpression.operand += current}
-		//    operator = ConditionalOrOperator operand += ConditionalAndExpression )*
-		public Group getGroup() { return cGroup; }
-		
-		//ConditionalAndExpression
-		public RuleCall getConditionalAndExpressionParserRuleCall_0() { return cConditionalAndExpressionParserRuleCall_0; }
-		
-		//( {SysML::OperatorExpression.operand += current}
-		//       operator = ConditionalOrOperator operand += ConditionalAndExpression )*
-		public Group getGroup_1() { return cGroup_1; }
-		
-		//{SysML::OperatorExpression.operand += current}
-		public Action getOperatorExpressionOperandAction_1_0() { return cOperatorExpressionOperandAction_1_0; }
-		
-		//operator = ConditionalOrOperator
-		public Assignment getOperatorAssignment_1_1() { return cOperatorAssignment_1_1; }
-		
-		//ConditionalOrOperator
-		public RuleCall getOperatorConditionalOrOperatorParserRuleCall_1_1_0() { return cOperatorConditionalOrOperatorParserRuleCall_1_1_0; }
-		
-		//operand += ConditionalAndExpression
-		public Assignment getOperandAssignment_1_2() { return cOperandAssignment_1_2; }
-		
-		//ConditionalAndExpression
-		public RuleCall getOperandConditionalAndExpressionParserRuleCall_1_2_0() { return cOperandConditionalAndExpressionParserRuleCall_1_2_0; }
-	}
-	public class ConditionalOrOperatorElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.expressions.xtext.KerMLExpressions.ConditionalOrOperator");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final Keyword cVerticalLineVerticalLineKeyword_0 = (Keyword)cAlternatives.eContents().get(0);
-		private final Keyword cOrKeyword_1 = (Keyword)cAlternatives.eContents().get(1);
-		
-		//ConditionalOrOperator :
-		//    '||' | 'or'
-		//;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//'||' | 'or'
-		public Alternatives getAlternatives() { return cAlternatives; }
-		
-		//'||'
-		public Keyword getVerticalLineVerticalLineKeyword_0() { return cVerticalLineVerticalLineKeyword_0; }
-		
-		//'or'
-		public Keyword getOrKeyword_1() { return cOrKeyword_1; }
-	}
-	public class ConditionalAndExpressionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.expressions.xtext.KerMLExpressions.ConditionalAndExpression");
+	public class ImpliesExpressionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.expressions.xtext.KerMLExpressions.ImpliesExpression");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final RuleCall cOrExpressionParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
 		private final Action cOperatorExpressionOperandAction_1_0 = (Action)cGroup_1.eContents().get(0);
 		private final Assignment cOperatorAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
-		private final RuleCall cOperatorConditionalAndOperatorParserRuleCall_1_1_0 = (RuleCall)cOperatorAssignment_1_1.eContents().get(0);
+		private final RuleCall cOperatorImpliesOperatorParserRuleCall_1_1_0 = (RuleCall)cOperatorAssignment_1_1.eContents().get(0);
 		private final Assignment cOperandAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
 		private final RuleCall cOperandOrExpressionParserRuleCall_1_2_0 = (RuleCall)cOperandAssignment_1_2.eContents().get(0);
 		
-		//ConditionalAndExpression returns SysML::Expression :
+		//// Logical Expressions
+		//ImpliesExpression returns SysML::Expression :
 		//    OrExpression ( {SysML::OperatorExpression.operand += current}
-		//        operator = ConditionalAndOperator operand += OrExpression )*
+		//        operator = ImpliesOperator operand += OrExpression )*
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//OrExpression ( {SysML::OperatorExpression.operand += current}
-		//    operator = ConditionalAndOperator operand += OrExpression )*
+		//    operator = ImpliesOperator operand += OrExpression )*
 		public Group getGroup() { return cGroup; }
 		
 		//OrExpression
 		public RuleCall getOrExpressionParserRuleCall_0() { return cOrExpressionParserRuleCall_0; }
 		
 		//( {SysML::OperatorExpression.operand += current}
-		//       operator = ConditionalAndOperator operand += OrExpression )*
+		//       operator = ImpliesOperator operand += OrExpression )*
 		public Group getGroup_1() { return cGroup_1; }
 		
 		//{SysML::OperatorExpression.operand += current}
 		public Action getOperatorExpressionOperandAction_1_0() { return cOperatorExpressionOperandAction_1_0; }
 		
-		//operator = ConditionalAndOperator
+		//operator = ImpliesOperator
 		public Assignment getOperatorAssignment_1_1() { return cOperatorAssignment_1_1; }
 		
-		//ConditionalAndOperator
-		public RuleCall getOperatorConditionalAndOperatorParserRuleCall_1_1_0() { return cOperatorConditionalAndOperatorParserRuleCall_1_1_0; }
+		//ImpliesOperator
+		public RuleCall getOperatorImpliesOperatorParserRuleCall_1_1_0() { return cOperatorImpliesOperatorParserRuleCall_1_1_0; }
 		
 		//operand += OrExpression
 		public Assignment getOperandAssignment_1_2() { return cOperandAssignment_1_2; }
@@ -342,25 +224,17 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 		//OrExpression
 		public RuleCall getOperandOrExpressionParserRuleCall_1_2_0() { return cOperandOrExpressionParserRuleCall_1_2_0; }
 	}
-	public class ConditionalAndOperatorElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.expressions.xtext.KerMLExpressions.ConditionalAndOperator");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final Keyword cAmpersandAmpersandKeyword_0 = (Keyword)cAlternatives.eContents().get(0);
-		private final Keyword cAndKeyword_1 = (Keyword)cAlternatives.eContents().get(1);
+	public class ImpliesOperatorElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.expressions.xtext.KerMLExpressions.ImpliesOperator");
+		private final Keyword cImpliesKeyword = (Keyword)rule.eContents().get(1);
 		
-		//ConditionalAndOperator :
-		//    '&&' | 'and'
+		//ImpliesOperator :
+		//    'implies'
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'&&' | 'and'
-		public Alternatives getAlternatives() { return cAlternatives; }
-		
-		//'&&'
-		public Keyword getAmpersandAmpersandKeyword_0() { return cAmpersandAmpersandKeyword_0; }
-		
-		//'and'
-		public Keyword getAndKeyword_1() { return cAndKeyword_1; }
+		//'implies'
+		public Keyword getImpliesKeyword() { return cImpliesKeyword; }
 	}
 	public class OrExpressionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.expressions.xtext.KerMLExpressions.OrExpression");
@@ -373,7 +247,6 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 		private final Assignment cOperandAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
 		private final RuleCall cOperandXorExpressionParserRuleCall_1_2_0 = (RuleCall)cOperandAssignment_1_2.eContents().get(0);
 		
-		//// Logical Expressions
 		//OrExpression returns SysML::Expression :
 		//    XorExpression ( {SysML::OperatorExpression.operand += current}
 		//        operator = OrOperator operand += XorExpression )*
@@ -408,15 +281,27 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 	}
 	public class OrOperatorElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.expressions.xtext.KerMLExpressions.OrOperator");
-		private final Keyword cVerticalLineKeyword = (Keyword)rule.eContents().get(1);
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final Keyword cVerticalLineKeyword_0 = (Keyword)cAlternatives.eContents().get(0);
+		private final Keyword cVerticalLineVerticalLineKeyword_1 = (Keyword)cAlternatives.eContents().get(1);
+		private final Keyword cOrKeyword_2 = (Keyword)cAlternatives.eContents().get(2);
 		
 		//OrOperator :
-		//    '|'
+		//    '|' | '||' | 'or'
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
+		//'|' | '||' | 'or'
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
 		//'|'
-		public Keyword getVerticalLineKeyword() { return cVerticalLineKeyword; }
+		public Keyword getVerticalLineKeyword_0() { return cVerticalLineKeyword_0; }
+		
+		//'||'
+		public Keyword getVerticalLineVerticalLineKeyword_1() { return cVerticalLineVerticalLineKeyword_1; }
+		
+		//'or'
+		public Keyword getOrKeyword_2() { return cOrKeyword_2; }
 	}
 	public class XorExpressionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.expressions.xtext.KerMLExpressions.XorExpression");
@@ -526,15 +411,27 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 	}
 	public class AndOperatorElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.expressions.xtext.KerMLExpressions.AndOperator");
-		private final Keyword cAmpersandKeyword = (Keyword)rule.eContents().get(1);
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final Keyword cAmpersandKeyword_0 = (Keyword)cAlternatives.eContents().get(0);
+		private final Keyword cAmpersandAmpersandKeyword_1 = (Keyword)cAlternatives.eContents().get(1);
+		private final Keyword cAndKeyword_2 = (Keyword)cAlternatives.eContents().get(2);
 		
 		//AndOperator :
-		//    '&'
+		//    '&' | '&&' | 'and'
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
+		//'&' | '&&' | 'and'
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
 		//'&'
-		public Keyword getAmpersandKeyword() { return cAmpersandKeyword; }
+		public Keyword getAmpersandKeyword_0() { return cAmpersandKeyword_0; }
+		
+		//'&&'
+		public Keyword getAmpersandAmpersandKeyword_1() { return cAmpersandAmpersandKeyword_1; }
+		
+		//'and'
+		public Keyword getAndKeyword_2() { return cAndKeyword_2; }
 	}
 	public class EqualityExpressionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.expressions.xtext.KerMLExpressions.EqualityExpression");
@@ -2248,12 +2145,8 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 	private final ConditionalTestOperatorElements pConditionalTestOperator;
 	private final NullCoalescingExpressionElements pNullCoalescingExpression;
 	private final NullCoalescingOperatorElements pNullCoalescingOperator;
-	private final ConditionalImpliesExpressionElements pConditionalImpliesExpression;
-	private final ConditionalImpliesOperatorElements pConditionalImpliesOperator;
-	private final ConditionalOrExpressionElements pConditionalOrExpression;
-	private final ConditionalOrOperatorElements pConditionalOrOperator;
-	private final ConditionalAndExpressionElements pConditionalAndExpression;
-	private final ConditionalAndOperatorElements pConditionalAndOperator;
+	private final ImpliesExpressionElements pImpliesExpression;
+	private final ImpliesOperatorElements pImpliesOperator;
 	private final OrExpressionElements pOrExpression;
 	private final OrOperatorElements pOrOperator;
 	private final XorExpressionElements pXorExpression;
@@ -2334,12 +2227,8 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 		this.pConditionalTestOperator = new ConditionalTestOperatorElements();
 		this.pNullCoalescingExpression = new NullCoalescingExpressionElements();
 		this.pNullCoalescingOperator = new NullCoalescingOperatorElements();
-		this.pConditionalImpliesExpression = new ConditionalImpliesExpressionElements();
-		this.pConditionalImpliesOperator = new ConditionalImpliesOperatorElements();
-		this.pConditionalOrExpression = new ConditionalOrExpressionElements();
-		this.pConditionalOrOperator = new ConditionalOrOperatorElements();
-		this.pConditionalAndExpression = new ConditionalAndExpressionElements();
-		this.pConditionalAndOperator = new ConditionalAndOperatorElements();
+		this.pImpliesExpression = new ImpliesExpressionElements();
+		this.pImpliesOperator = new ImpliesOperatorElements();
 		this.pOrExpression = new OrExpressionElements();
 		this.pOrOperator = new OrOperatorElements();
 		this.pXorExpression = new XorExpressionElements();
@@ -2484,8 +2373,8 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 	
 	//// Null Coalescing Expressions
 	//NullCoalescingExpression returns SysML::Expression :
-	//    ConditionalImpliesExpression ( {SysML::OperatorExpression.operand += current}
-	//        operator = NullCoalescingOperator operand += ConditionalImpliesExpression )*
+	//    ImpliesExpression ( {SysML::OperatorExpression.operand += current}
+	//        operator = NullCoalescingOperator operand += ImpliesExpression )*
 	//;
 	public NullCoalescingExpressionElements getNullCoalescingExpressionAccess() {
 		return pNullCoalescingExpression;
@@ -2506,77 +2395,30 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 		return getNullCoalescingOperatorAccess().getRule();
 	}
 	
-	//// Conditional Logical Expressions
-	//ConditionalImpliesExpression returns SysML::Expression :
-	//    ConditionalOrExpression ( {SysML::OperatorExpression.operand += current}
-	//        operator = ConditionalImpliesOperator operand += ConditionalOrExpression )*
+	//// Logical Expressions
+	//ImpliesExpression returns SysML::Expression :
+	//    OrExpression ( {SysML::OperatorExpression.operand += current}
+	//        operator = ImpliesOperator operand += OrExpression )*
 	//;
-	public ConditionalImpliesExpressionElements getConditionalImpliesExpressionAccess() {
-		return pConditionalImpliesExpression;
+	public ImpliesExpressionElements getImpliesExpressionAccess() {
+		return pImpliesExpression;
 	}
 	
-	public ParserRule getConditionalImpliesExpressionRule() {
-		return getConditionalImpliesExpressionAccess().getRule();
+	public ParserRule getImpliesExpressionRule() {
+		return getImpliesExpressionAccess().getRule();
 	}
 	
-	//ConditionalImpliesOperator :
+	//ImpliesOperator :
 	//    'implies'
 	//;
-	public ConditionalImpliesOperatorElements getConditionalImpliesOperatorAccess() {
-		return pConditionalImpliesOperator;
+	public ImpliesOperatorElements getImpliesOperatorAccess() {
+		return pImpliesOperator;
 	}
 	
-	public ParserRule getConditionalImpliesOperatorRule() {
-		return getConditionalImpliesOperatorAccess().getRule();
+	public ParserRule getImpliesOperatorRule() {
+		return getImpliesOperatorAccess().getRule();
 	}
 	
-	//ConditionalOrExpression returns SysML::Expression :
-	//    ConditionalAndExpression ( {SysML::OperatorExpression.operand += current}
-	//        operator = ConditionalOrOperator operand += ConditionalAndExpression )*
-	//;
-	public ConditionalOrExpressionElements getConditionalOrExpressionAccess() {
-		return pConditionalOrExpression;
-	}
-	
-	public ParserRule getConditionalOrExpressionRule() {
-		return getConditionalOrExpressionAccess().getRule();
-	}
-	
-	//ConditionalOrOperator :
-	//    '||' | 'or'
-	//;
-	public ConditionalOrOperatorElements getConditionalOrOperatorAccess() {
-		return pConditionalOrOperator;
-	}
-	
-	public ParserRule getConditionalOrOperatorRule() {
-		return getConditionalOrOperatorAccess().getRule();
-	}
-	
-	//ConditionalAndExpression returns SysML::Expression :
-	//    OrExpression ( {SysML::OperatorExpression.operand += current}
-	//        operator = ConditionalAndOperator operand += OrExpression )*
-	//;
-	public ConditionalAndExpressionElements getConditionalAndExpressionAccess() {
-		return pConditionalAndExpression;
-	}
-	
-	public ParserRule getConditionalAndExpressionRule() {
-		return getConditionalAndExpressionAccess().getRule();
-	}
-	
-	//ConditionalAndOperator :
-	//    '&&' | 'and'
-	//;
-	public ConditionalAndOperatorElements getConditionalAndOperatorAccess() {
-		return pConditionalAndOperator;
-	}
-	
-	public ParserRule getConditionalAndOperatorRule() {
-		return getConditionalAndOperatorAccess().getRule();
-	}
-	
-	//// Logical Expressions
 	//OrExpression returns SysML::Expression :
 	//    XorExpression ( {SysML::OperatorExpression.operand += current}
 	//        operator = OrOperator operand += XorExpression )*
@@ -2590,7 +2432,7 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 	}
 	
 	//OrOperator :
-	//    '|'
+	//    '|' | '||' | 'or'
 	//;
 	public OrOperatorElements getOrOperatorAccess() {
 		return pOrOperator;
@@ -2636,7 +2478,7 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 	}
 	
 	//AndOperator :
-	//    '&'
+	//    '&' | '&&' | 'and'
 	//;
 	public AndOperatorElements getAndOperatorAccess() {
 		return pAndOperator;

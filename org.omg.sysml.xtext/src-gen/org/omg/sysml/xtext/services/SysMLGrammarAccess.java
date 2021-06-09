@@ -20614,8 +20614,8 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	
 	//// Null Coalescing Expressions
 	//NullCoalescingExpression returns SysML::Expression :
-	//    ConditionalImpliesExpression ( {SysML::OperatorExpression.operand += current}
-	//        operator = NullCoalescingOperator operand += ConditionalImpliesExpression )*
+	//    ImpliesExpression ( {SysML::OperatorExpression.operand += current}
+	//        operator = NullCoalescingOperator operand += ImpliesExpression )*
 	//;
 	public KerMLExpressionsGrammarAccess.NullCoalescingExpressionElements getNullCoalescingExpressionAccess() {
 		return gaKerMLExpressions.getNullCoalescingExpressionAccess();
@@ -20636,77 +20636,30 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		return getNullCoalescingOperatorAccess().getRule();
 	}
 	
-	//// Conditional Logical Expressions
-	//ConditionalImpliesExpression returns SysML::Expression :
-	//    ConditionalOrExpression ( {SysML::OperatorExpression.operand += current}
-	//        operator = ConditionalImpliesOperator operand += ConditionalOrExpression )*
+	//// Logical Expressions
+	//ImpliesExpression returns SysML::Expression :
+	//    OrExpression ( {SysML::OperatorExpression.operand += current}
+	//        operator = ImpliesOperator operand += OrExpression )*
 	//;
-	public KerMLExpressionsGrammarAccess.ConditionalImpliesExpressionElements getConditionalImpliesExpressionAccess() {
-		return gaKerMLExpressions.getConditionalImpliesExpressionAccess();
+	public KerMLExpressionsGrammarAccess.ImpliesExpressionElements getImpliesExpressionAccess() {
+		return gaKerMLExpressions.getImpliesExpressionAccess();
 	}
 	
-	public ParserRule getConditionalImpliesExpressionRule() {
-		return getConditionalImpliesExpressionAccess().getRule();
+	public ParserRule getImpliesExpressionRule() {
+		return getImpliesExpressionAccess().getRule();
 	}
 	
-	//ConditionalImpliesOperator :
+	//ImpliesOperator :
 	//    'implies'
 	//;
-	public KerMLExpressionsGrammarAccess.ConditionalImpliesOperatorElements getConditionalImpliesOperatorAccess() {
-		return gaKerMLExpressions.getConditionalImpliesOperatorAccess();
+	public KerMLExpressionsGrammarAccess.ImpliesOperatorElements getImpliesOperatorAccess() {
+		return gaKerMLExpressions.getImpliesOperatorAccess();
 	}
 	
-	public ParserRule getConditionalImpliesOperatorRule() {
-		return getConditionalImpliesOperatorAccess().getRule();
+	public ParserRule getImpliesOperatorRule() {
+		return getImpliesOperatorAccess().getRule();
 	}
 	
-	//ConditionalOrExpression returns SysML::Expression :
-	//    ConditionalAndExpression ( {SysML::OperatorExpression.operand += current}
-	//        operator = ConditionalOrOperator operand += ConditionalAndExpression )*
-	//;
-	public KerMLExpressionsGrammarAccess.ConditionalOrExpressionElements getConditionalOrExpressionAccess() {
-		return gaKerMLExpressions.getConditionalOrExpressionAccess();
-	}
-	
-	public ParserRule getConditionalOrExpressionRule() {
-		return getConditionalOrExpressionAccess().getRule();
-	}
-	
-	//ConditionalOrOperator :
-	//    '||' | 'or'
-	//;
-	public KerMLExpressionsGrammarAccess.ConditionalOrOperatorElements getConditionalOrOperatorAccess() {
-		return gaKerMLExpressions.getConditionalOrOperatorAccess();
-	}
-	
-	public ParserRule getConditionalOrOperatorRule() {
-		return getConditionalOrOperatorAccess().getRule();
-	}
-	
-	//ConditionalAndExpression returns SysML::Expression :
-	//    OrExpression ( {SysML::OperatorExpression.operand += current}
-	//        operator = ConditionalAndOperator operand += OrExpression )*
-	//;
-	public KerMLExpressionsGrammarAccess.ConditionalAndExpressionElements getConditionalAndExpressionAccess() {
-		return gaKerMLExpressions.getConditionalAndExpressionAccess();
-	}
-	
-	public ParserRule getConditionalAndExpressionRule() {
-		return getConditionalAndExpressionAccess().getRule();
-	}
-	
-	//ConditionalAndOperator :
-	//    '&&' | 'and'
-	//;
-	public KerMLExpressionsGrammarAccess.ConditionalAndOperatorElements getConditionalAndOperatorAccess() {
-		return gaKerMLExpressions.getConditionalAndOperatorAccess();
-	}
-	
-	public ParserRule getConditionalAndOperatorRule() {
-		return getConditionalAndOperatorAccess().getRule();
-	}
-	
-	//// Logical Expressions
 	//OrExpression returns SysML::Expression :
 	//    XorExpression ( {SysML::OperatorExpression.operand += current}
 	//        operator = OrOperator operand += XorExpression )*
@@ -20720,7 +20673,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//OrOperator :
-	//    '|'
+	//    '|' | '||' | 'or'
 	//;
 	public KerMLExpressionsGrammarAccess.OrOperatorElements getOrOperatorAccess() {
 		return gaKerMLExpressions.getOrOperatorAccess();
@@ -20766,7 +20719,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//AndOperator :
-	//    '&'
+	//    '&' | '&&' | 'and'
 	//;
 	public KerMLExpressionsGrammarAccess.AndOperatorElements getAndOperatorAccess() {
 		return gaKerMLExpressions.getAndOperatorAccess();

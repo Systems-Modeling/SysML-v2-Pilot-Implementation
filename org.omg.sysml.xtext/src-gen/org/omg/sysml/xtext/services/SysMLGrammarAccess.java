@@ -20593,7 +20593,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	//          operator = ConditionalOperator operand += OwnedExpression ':' operand += ConditionalExpression
 	//      )?
 	//    | {SysML::OperatorExpression} 'if' operand += NullCoalescingExpression
-	//          operator = ConditionalOperator operand += OwnedExpression ':' operand += ConditionalExpression
+	//          operator = ConditionalOperator operand += OwnedExpression 'else' operand += ConditionalExpression
 	//;
 	public KerMLExpressionsGrammarAccess.ConditionalExpressionElements getConditionalExpressionAccess() {
 		return gaKerMLExpressions.getConditionalExpressionAccess();

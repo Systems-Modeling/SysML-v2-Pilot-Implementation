@@ -58,10 +58,10 @@ package Expressions {
 	     x == 3? c:
 	     0;
 	     
-	yy = if x == 1 and y == 2? a:
-	     if x == 2? b:
-	     if x == 3? c:
-	     0;
+	yy = if x == 1 and y == 2? a
+	     else if x == 2? b
+	     else if x == 3? c
+	     else 0;
     
     function TotalMass(partMass, subparts) {
 		partMass + (subparts->collect {in p; totalMass(partMass, subparts)}->reduce '+' ?? 0.0)

@@ -22747,9 +22747,9 @@ rule__ConditionalExpression__Group_1__5__Impl
 	}
 :
 (
-	{ before(grammarAccess.getConditionalExpressionAccess().getColonKeyword_1_5()); }
-	':'
-	{ after(grammarAccess.getConditionalExpressionAccess().getColonKeyword_1_5()); }
+	{ before(grammarAccess.getConditionalExpressionAccess().getElseKeyword_1_5()); }
+	'else'
+	{ after(grammarAccess.getConditionalExpressionAccess().getElseKeyword_1_5()); }
 )
 ;
 finally {

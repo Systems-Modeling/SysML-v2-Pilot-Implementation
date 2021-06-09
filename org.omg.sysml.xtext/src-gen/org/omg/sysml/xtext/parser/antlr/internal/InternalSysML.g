@@ -24978,9 +24978,9 @@ ruleConditionalExpression returns [EObject current=null]
 					}
 				)
 			)
-			otherlv_11=':'
+			otherlv_11='else'
 			{
-				newLeafNode(otherlv_11, grammarAccess.getConditionalExpressionAccess().getColonKeyword_1_5());
+				newLeafNode(otherlv_11, grammarAccess.getConditionalExpressionAccess().getElseKeyword_1_5());
 			}
 			(
 				(

@@ -76,7 +76,7 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 		private final RuleCall cOperatorConditionalOperatorParserRuleCall_1_3_0 = (RuleCall)cOperatorAssignment_1_3.eContents().get(0);
 		private final Assignment cOperandAssignment_1_4 = (Assignment)cGroup_1.eContents().get(4);
 		private final RuleCall cOperandOwnedExpressionParserRuleCall_1_4_0 = (RuleCall)cOperandAssignment_1_4.eContents().get(0);
-		private final Keyword cColonKeyword_1_5 = (Keyword)cGroup_1.eContents().get(5);
+		private final Keyword cElseKeyword_1_5 = (Keyword)cGroup_1.eContents().get(5);
 		private final Assignment cOperandAssignment_1_6 = (Assignment)cGroup_1.eContents().get(6);
 		private final RuleCall cOperandConditionalExpressionParserRuleCall_1_6_0 = (RuleCall)cOperandAssignment_1_6.eContents().get(0);
 		
@@ -86,7 +86,7 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 		//          operator = ConditionalOperator operand += OwnedExpression ':' operand += ConditionalExpression
 		//      )?
 		//    | {SysML::OperatorExpression} 'if' operand += NullCoalescingExpression
-		//          operator = ConditionalOperator operand += OwnedExpression ':' operand += ConditionalExpression
+		//          operator = ConditionalOperator operand += OwnedExpression 'else' operand += ConditionalExpression
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -94,7 +94,7 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 		//      operator = ConditionalOperator operand += OwnedExpression ':' operand += ConditionalExpression
 		//  )?
 		//| {SysML::OperatorExpression} 'if' operand += NullCoalescingExpression
-		//      operator = ConditionalOperator operand += OwnedExpression ':' operand += ConditionalExpression
+		//      operator = ConditionalOperator operand += OwnedExpression 'else' operand += ConditionalExpression
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//NullCoalescingExpression ( {SysML::OperatorExpression.operand += current}
@@ -135,7 +135,7 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 		public RuleCall getOperandConditionalExpressionParserRuleCall_0_1_4_0() { return cOperandConditionalExpressionParserRuleCall_0_1_4_0; }
 		
 		//{SysML::OperatorExpression} 'if' operand += NullCoalescingExpression
-		//         operator = ConditionalOperator operand += OwnedExpression ':' operand += ConditionalExpression
+		//         operator = ConditionalOperator operand += OwnedExpression 'else' operand += ConditionalExpression
 		public Group getGroup_1() { return cGroup_1; }
 		
 		//{SysML::OperatorExpression}
@@ -162,8 +162,8 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 		//OwnedExpression
 		public RuleCall getOperandOwnedExpressionParserRuleCall_1_4_0() { return cOperandOwnedExpressionParserRuleCall_1_4_0; }
 		
-		//':'
-		public Keyword getColonKeyword_1_5() { return cColonKeyword_1_5; }
+		//'else'
+		public Keyword getElseKeyword_1_5() { return cElseKeyword_1_5; }
 		
 		//operand += ConditionalExpression
 		public Assignment getOperandAssignment_1_6() { return cOperandAssignment_1_6; }
@@ -2411,7 +2411,7 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 	//          operator = ConditionalOperator operand += OwnedExpression ':' operand += ConditionalExpression
 	//      )?
 	//    | {SysML::OperatorExpression} 'if' operand += NullCoalescingExpression
-	//          operator = ConditionalOperator operand += OwnedExpression ':' operand += ConditionalExpression
+	//          operator = ConditionalOperator operand += OwnedExpression 'else' operand += ConditionalExpression
 	//;
 	public ConditionalExpressionElements getConditionalExpressionAccess() {
 		return pConditionalExpression;

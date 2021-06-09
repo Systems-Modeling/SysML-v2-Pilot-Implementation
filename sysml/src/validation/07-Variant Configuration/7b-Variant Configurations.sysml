@@ -93,7 +93,8 @@ package '7b-Variant Configurations' {
 			
 			assert constraint 'engine choice constraint' {
 				if engineRqtChoice == engineRqtChoice::highPerformanceRequirement? 
-					engineChoice == engineChoice::'6cylEngine':
+					engineChoice == engineChoice::'6cylEngine' 
+				else
 					engineChoice == engineChoice::'4cylEngine'
 			}
 			

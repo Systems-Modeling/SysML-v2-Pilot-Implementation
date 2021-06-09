@@ -16,13 +16,8 @@ package '15_04-Logical Expressions' {
 		part transmission: Transmission[1];
 		
 		assert constraint {
-			/**
-			 * This is the ternary expression notation for 
-			 * "if...then...else".
-			 */
-			if isHighPerformance? 
-				engine istype '6CylEngine': 
-				engine istype '4CylEngine'
+			if isHighPerformance? engine istype '6CylEngine'
+			else engine istype '4CylEngine'
 		}
 		
 		assert constraint {

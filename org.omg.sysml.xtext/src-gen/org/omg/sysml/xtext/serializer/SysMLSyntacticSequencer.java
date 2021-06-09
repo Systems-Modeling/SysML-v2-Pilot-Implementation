@@ -2741,6 +2741,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     operand+=ClassificationExpression (ambiguity) ')' (rule end)
 	 *     operand+=ConditionalAndExpression (ambiguity) ')' (rule end)
 	 *     operand+=ConditionalExpression (ambiguity) ')' (rule end)
+	 *     operand+=ConditionalImpliesExpression (ambiguity) ')' (rule end)
 	 *     operand+=ConditionalOrExpression (ambiguity) ')' (rule end)
 	 *     operand+=EqualityExpression (ambiguity) ')' (rule end)
 	 *     operand+=ExponentiationExpression (ambiguity) ')' (rule end)

@@ -249,6 +249,8 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 						|| action == grammarAccess.getConditionalExpressionAccess().getOperatorExpressionOperandAction_1_0()
 						|| rule == grammarAccess.getNullCoalescingExpressionRule()
 						|| action == grammarAccess.getNullCoalescingExpressionAccess().getOperatorExpressionOperandAction_1_0()
+						|| rule == grammarAccess.getConditionalImpliesExpressionRule()
+						|| action == grammarAccess.getConditionalImpliesExpressionAccess().getOperatorExpressionOperandAction_1_0()
 						|| rule == grammarAccess.getConditionalOrExpressionRule()
 						|| action == grammarAccess.getConditionalOrExpressionAccess().getOperatorExpressionOperandAction_1_0()
 						|| rule == grammarAccess.getConditionalAndExpressionRule()
@@ -392,6 +394,8 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 						|| action == grammarAccess.getConditionalExpressionAccess().getOperatorExpressionOperandAction_1_0()
 						|| rule == grammarAccess.getNullCoalescingExpressionRule()
 						|| action == grammarAccess.getNullCoalescingExpressionAccess().getOperatorExpressionOperandAction_1_0()
+						|| rule == grammarAccess.getConditionalImpliesExpressionRule()
+						|| action == grammarAccess.getConditionalImpliesExpressionAccess().getOperatorExpressionOperandAction_1_0()
 						|| rule == grammarAccess.getConditionalOrExpressionRule()
 						|| action == grammarAccess.getConditionalOrExpressionAccess().getOperatorExpressionOperandAction_1_0()
 						|| rule == grammarAccess.getConditionalAndExpressionRule()
@@ -513,6 +517,8 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 						|| action == grammarAccess.getConditionalExpressionAccess().getOperatorExpressionOperandAction_1_0()
 						|| rule == grammarAccess.getNullCoalescingExpressionRule()
 						|| action == grammarAccess.getNullCoalescingExpressionAccess().getOperatorExpressionOperandAction_1_0()
+						|| rule == grammarAccess.getConditionalImpliesExpressionRule()
+						|| action == grammarAccess.getConditionalImpliesExpressionAccess().getOperatorExpressionOperandAction_1_0()
 						|| rule == grammarAccess.getConditionalOrExpressionRule()
 						|| action == grammarAccess.getConditionalOrExpressionAccess().getOperatorExpressionOperandAction_1_0()
 						|| rule == grammarAccess.getConditionalAndExpressionRule()
@@ -617,7 +623,7 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 				sequence_NullExpression(context, (NullExpression) semanticObject); 
 				return; 
 			case SysMLPackage.OPERATOR_EXPRESSION:
-				sequence_AdditiveExpression_AndExpression_ClassificationExpression_ConditionalAndExpression_ConditionalExpression_ConditionalOrExpression_EqualityExpression_ExponentiationExpression_ExtentExpression_MultiplicativeExpression_NamedArgumentList_NullCoalescingExpression_OrExpression_PositionalArgumentList_PrimaryExpression_RangeExpression_RelationalExpression_SequenceExpression_UnaryExpression_UnitsExpression_XorExpression(context, (OperatorExpression) semanticObject); 
+				sequence_AdditiveExpression_AndExpression_ClassificationExpression_ConditionalAndExpression_ConditionalExpression_ConditionalImpliesExpression_ConditionalOrExpression_EqualityExpression_ExponentiationExpression_ExtentExpression_MultiplicativeExpression_NamedArgumentList_NullCoalescingExpression_OrExpression_PositionalArgumentList_PrimaryExpression_RangeExpression_RelationalExpression_SequenceExpression_UnaryExpression_UnitsExpression_XorExpression(context, (OperatorExpression) semanticObject); 
 				return; 
 			case SysMLPackage.PACKAGE:
 				if (rule == grammarAccess.getFilterPackageRule()) {
@@ -662,6 +668,8 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 						|| action == grammarAccess.getConditionalExpressionAccess().getOperatorExpressionOperandAction_1_0()
 						|| rule == grammarAccess.getNullCoalescingExpressionRule()
 						|| action == grammarAccess.getNullCoalescingExpressionAccess().getOperatorExpressionOperandAction_1_0()
+						|| rule == grammarAccess.getConditionalImpliesExpressionRule()
+						|| action == grammarAccess.getConditionalImpliesExpressionAccess().getOperatorExpressionOperandAction_1_0()
 						|| rule == grammarAccess.getConditionalOrExpressionRule()
 						|| action == grammarAccess.getConditionalOrExpressionAccess().getOperatorExpressionOperandAction_1_0()
 						|| rule == grammarAccess.getConditionalAndExpressionRule()
@@ -1423,16 +1431,16 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	 *         ((ownedRelationship+=OwnedSuperclassing ownedRelationship+=OwnedSuperclassing*) | ownedRelationship+=ClassifierConjugation)? 
 	 *         (ownedRelationship+=ParameterMember ownedRelationship+=ParameterMember*)? 
 	 *         (ownedRelationship+=ReturnParameterMember | ownedRelationship+=EmptyReturnParameterMember) 
-	 *         ownedRelationship+=NonFeatureTypeMember? 
+	 *         ownedRelationship+=DirectedFeatureMember? 
 	 *         (
 	 *             (
 	 *                 ownedRelationship+=OwnedDocumentation | 
+	 *                 ownedRelationship+=NonFeatureTypeMember | 
 	 *                 ownedRelationship+=UndirectedFeatureMember | 
-	 *                 ownedRelationship+=DirectedFeatureMember | 
 	 *                 ownedRelationship+=EndFeatureMember | 
 	 *                 ownedRelationship+=Import
 	 *             )? 
-	 *             ownedRelationship+=NonFeatureTypeMember?
+	 *             ownedRelationship+=DirectedFeatureMember?
 	 *         )* 
 	 *         ownedRelationship+=ResultExpressionMember?
 	 *     )
@@ -1456,16 +1464,16 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	 *         ((ownedRelationship+=OwnedSuperclassing ownedRelationship+=OwnedSuperclassing*) | ownedRelationship+=ClassifierConjugation)? 
 	 *         (ownedRelationship+=ParameterMember ownedRelationship+=ParameterMember*)? 
 	 *         (ownedRelationship+=ReturnParameterMember | ownedRelationship+=EmptyReturnParameterMember) 
-	 *         ownedRelationship+=NonFeatureTypeMember? 
+	 *         ownedRelationship+=DirectedFeatureMember? 
 	 *         (
 	 *             (
 	 *                 ownedRelationship+=OwnedDocumentation | 
+	 *                 ownedRelationship+=NonFeatureTypeMember | 
 	 *                 ownedRelationship+=UndirectedFeatureMember | 
-	 *                 ownedRelationship+=DirectedFeatureMember | 
 	 *                 ownedRelationship+=EndFeatureMember | 
 	 *                 ownedRelationship+=Import
 	 *             )? 
-	 *             ownedRelationship+=NonFeatureTypeMember?
+	 *             ownedRelationship+=DirectedFeatureMember?
 	 *         )* 
 	 *         ownedRelationship+=ResultExpressionMember?
 	 *     )
@@ -2110,6 +2118,8 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	 *     ConditionalExpression.OperatorExpression_1_0 returns Expression
 	 *     NullCoalescingExpression returns Expression
 	 *     NullCoalescingExpression.OperatorExpression_1_0 returns Expression
+	 *     ConditionalImpliesExpression returns Expression
+	 *     ConditionalImpliesExpression.OperatorExpression_1_0 returns Expression
 	 *     ConditionalOrExpression returns Expression
 	 *     ConditionalOrExpression.OperatorExpression_1_0 returns Expression
 	 *     ConditionalAndExpression returns Expression

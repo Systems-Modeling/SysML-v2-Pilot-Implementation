@@ -1,11 +1,14 @@
 package Expressions {
+	import ScalarFunctions::*;
 	import BaseFunctions::ToString;
 	import ControlFunctions::*;
 	
-	a: ScalarValues::Integer;
-	x = ToString(a * a + 3 == 4); 
+	a: Integer;
+	aa : Boolean;
+	x = ToString(a * a + 3 == 4);
 	y = NumericalFunctions::'+'(1,2);
-	z = a & true ^ x | false;
+	z : Boolean = aa & true ^^ zz | false;
+	zz : Boolean = aa and true xor aa or false implies z;
 	
 	b = x > y? x-y: y-x;
 	c = x->collect {in xx; xx + 1}; 

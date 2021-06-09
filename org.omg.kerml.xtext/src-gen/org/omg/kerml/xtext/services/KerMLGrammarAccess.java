@@ -9283,9 +9283,11 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	
 	//// Conditional Test Expressions
 	//ConditionalExpression returns SysML::Expression :
-	//    NullCoalescingExpression ( {SysML::OperatorExpression.operand += current}
-	//        operator = ConditionalTestOperator operand += OwnedExpression ':' operand += ConditionalExpression
-	//    )?
+	//      NullCoalescingExpression ( {SysML::OperatorExpression.operand += current}
+	//          operator = ConditionalOperator operand += OwnedExpression ':' operand += ConditionalExpression
+	//      )?
+	//    | {SysML::OperatorExpression} 'if' operand += NullCoalescingExpression
+	//          operator = ConditionalOperator operand += OwnedExpression ':' operand += ConditionalExpression
 	//;
 	public KerMLExpressionsGrammarAccess.ConditionalExpressionElements getConditionalExpressionAccess() {
 		return gaKerMLExpressions.getConditionalExpressionAccess();
@@ -9295,15 +9297,15 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		return getConditionalExpressionAccess().getRule();
 	}
 	
-	//ConditionalTestOperator:
+	//ConditionalOperator :
 	//    '?'
 	//;
-	public KerMLExpressionsGrammarAccess.ConditionalTestOperatorElements getConditionalTestOperatorAccess() {
-		return gaKerMLExpressions.getConditionalTestOperatorAccess();
+	public KerMLExpressionsGrammarAccess.ConditionalOperatorElements getConditionalOperatorAccess() {
+		return gaKerMLExpressions.getConditionalOperatorAccess();
 	}
 	
-	public ParserRule getConditionalTestOperatorRule() {
-		return getConditionalTestOperatorAccess().getRule();
+	public ParserRule getConditionalOperatorRule() {
+		return getConditionalOperatorAccess().getRule();
 	}
 	
 	//// Null Coalescing Expressions

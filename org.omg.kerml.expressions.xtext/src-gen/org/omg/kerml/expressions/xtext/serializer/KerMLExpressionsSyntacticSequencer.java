@@ -66,6 +66,7 @@ public class KerMLExpressionsSyntacticSequencer extends AbstractSyntacticSequenc
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) (ambiguity) '*' (rule start)
+	 *     (rule start) (ambiguity) 'if' operand+=NullCoalescingExpression
 	 *     (rule start) (ambiguity) '{' ownedRelationship+=BodyParameterMember
 	 *     (rule start) (ambiguity) '{' ownedRelationship+=ResultExpressionMember
 	 *     (rule start) (ambiguity) ('null' | ('(' ')')) (rule start)
@@ -91,6 +92,7 @@ public class KerMLExpressionsSyntacticSequencer extends AbstractSyntacticSequenc
 	 *     '('+
 	 *
 	 * This ambiguous syntax occurs at:
+	 *     (rule start) (ambiguity) 'if' operand+=NullCoalescingExpression
 	 *     (rule start) (ambiguity) operand+=SelfReferenceExpression
 	 *     (rule start) (ambiguity) operator='all'
 	 *     (rule start) (ambiguity) operator=UnaryOperator

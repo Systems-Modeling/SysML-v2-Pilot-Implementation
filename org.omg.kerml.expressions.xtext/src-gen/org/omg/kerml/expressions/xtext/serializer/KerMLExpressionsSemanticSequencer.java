@@ -53,7 +53,7 @@ public class KerMLExpressionsSemanticSequencer extends AbstractDelegatingSemanti
 			case SysMLPackage.EXPRESSION:
 				if (rule == grammarAccess.getOwnedExpressionRule()
 						|| rule == grammarAccess.getConditionalExpressionRule()
-						|| action == grammarAccess.getConditionalExpressionAccess().getOperatorExpressionOperandAction_1_0()
+						|| action == grammarAccess.getConditionalExpressionAccess().getOperatorExpressionOperandAction_0_1_0()
 						|| rule == grammarAccess.getNullCoalescingExpressionRule()
 						|| action == grammarAccess.getNullCoalescingExpressionAccess().getOperatorExpressionOperandAction_1_0()
 						|| rule == grammarAccess.getImpliesExpressionRule()
@@ -135,7 +135,7 @@ public class KerMLExpressionsSemanticSequencer extends AbstractDelegatingSemanti
 			case SysMLPackage.FEATURE_REFERENCE_EXPRESSION:
 				if (rule == grammarAccess.getOwnedExpressionRule()
 						|| rule == grammarAccess.getConditionalExpressionRule()
-						|| action == grammarAccess.getConditionalExpressionAccess().getOperatorExpressionOperandAction_1_0()
+						|| action == grammarAccess.getConditionalExpressionAccess().getOperatorExpressionOperandAction_0_1_0()
 						|| rule == grammarAccess.getNullCoalescingExpressionRule()
 						|| action == grammarAccess.getNullCoalescingExpressionAccess().getOperatorExpressionOperandAction_1_0()
 						|| rule == grammarAccess.getImpliesExpressionRule()
@@ -235,7 +235,7 @@ public class KerMLExpressionsSemanticSequencer extends AbstractDelegatingSemanti
 	 * Contexts:
 	 *     OwnedExpression returns OperatorExpression
 	 *     ConditionalExpression returns OperatorExpression
-	 *     ConditionalExpression.OperatorExpression_1_0 returns OperatorExpression
+	 *     ConditionalExpression.OperatorExpression_0_1_0 returns OperatorExpression
 	 *     NullCoalescingExpression returns OperatorExpression
 	 *     NullCoalescingExpression.OperatorExpression_1_0 returns OperatorExpression
 	 *     ImpliesExpression returns OperatorExpression
@@ -275,7 +275,8 @@ public class KerMLExpressionsSemanticSequencer extends AbstractDelegatingSemanti
 	 *
 	 * Constraint:
 	 *     (
-	 *         (operand+=ConditionalExpression_OperatorExpression_1_0 operator=ConditionalTestOperator operand+=OwnedExpression operand+=ConditionalExpression) | 
+	 *         (operand+=ConditionalExpression_OperatorExpression_0_1_0 operator=ConditionalOperator operand+=OwnedExpression operand+=ConditionalExpression) | 
+	 *         (operand+=NullCoalescingExpression operator=ConditionalOperator operand+=OwnedExpression operand+=ConditionalExpression) | 
 	 *         (operand+=NullCoalescingExpression_OperatorExpression_1_0 operator=NullCoalescingOperator operand+=ImpliesExpression) | 
 	 *         (operand+=ImpliesExpression_OperatorExpression_1_0 operator=ImpliesOperator operand+=OrExpression) | 
 	 *         (operand+=OrExpression_OperatorExpression_1_0 operator=OrOperator operand+=XorExpression) | 
@@ -352,7 +353,7 @@ public class KerMLExpressionsSemanticSequencer extends AbstractDelegatingSemanti
 	 * Contexts:
 	 *     OwnedExpression returns Expression
 	 *     ConditionalExpression returns Expression
-	 *     ConditionalExpression.OperatorExpression_1_0 returns Expression
+	 *     ConditionalExpression.OperatorExpression_0_1_0 returns Expression
 	 *     NullCoalescingExpression returns Expression
 	 *     NullCoalescingExpression.OperatorExpression_1_0 returns Expression
 	 *     ImpliesExpression returns Expression
@@ -403,7 +404,7 @@ public class KerMLExpressionsSemanticSequencer extends AbstractDelegatingSemanti
 	 * Contexts:
 	 *     OwnedExpression returns FeatureReferenceExpression
 	 *     ConditionalExpression returns FeatureReferenceExpression
-	 *     ConditionalExpression.OperatorExpression_1_0 returns FeatureReferenceExpression
+	 *     ConditionalExpression.OperatorExpression_0_1_0 returns FeatureReferenceExpression
 	 *     NullCoalescingExpression returns FeatureReferenceExpression
 	 *     NullCoalescingExpression.OperatorExpression_1_0 returns FeatureReferenceExpression
 	 *     ImpliesExpression returns FeatureReferenceExpression
@@ -496,7 +497,7 @@ public class KerMLExpressionsSemanticSequencer extends AbstractDelegatingSemanti
 	 * Contexts:
 	 *     OwnedExpression returns InvocationExpression
 	 *     ConditionalExpression returns InvocationExpression
-	 *     ConditionalExpression.OperatorExpression_1_0 returns InvocationExpression
+	 *     ConditionalExpression.OperatorExpression_0_1_0 returns InvocationExpression
 	 *     NullCoalescingExpression returns InvocationExpression
 	 *     NullCoalescingExpression.OperatorExpression_1_0 returns InvocationExpression
 	 *     ImpliesExpression returns InvocationExpression
@@ -553,7 +554,7 @@ public class KerMLExpressionsSemanticSequencer extends AbstractDelegatingSemanti
 	 * Contexts:
 	 *     OwnedExpression returns LiteralBoolean
 	 *     ConditionalExpression returns LiteralBoolean
-	 *     ConditionalExpression.OperatorExpression_1_0 returns LiteralBoolean
+	 *     ConditionalExpression.OperatorExpression_0_1_0 returns LiteralBoolean
 	 *     NullCoalescingExpression returns LiteralBoolean
 	 *     NullCoalescingExpression.OperatorExpression_1_0 returns LiteralBoolean
 	 *     ImpliesExpression returns LiteralBoolean
@@ -611,7 +612,7 @@ public class KerMLExpressionsSemanticSequencer extends AbstractDelegatingSemanti
 	 * Contexts:
 	 *     OwnedExpression returns LiteralInteger
 	 *     ConditionalExpression returns LiteralInteger
-	 *     ConditionalExpression.OperatorExpression_1_0 returns LiteralInteger
+	 *     ConditionalExpression.OperatorExpression_0_1_0 returns LiteralInteger
 	 *     NullCoalescingExpression returns LiteralInteger
 	 *     NullCoalescingExpression.OperatorExpression_1_0 returns LiteralInteger
 	 *     ImpliesExpression returns LiteralInteger
@@ -670,7 +671,7 @@ public class KerMLExpressionsSemanticSequencer extends AbstractDelegatingSemanti
 	 * Contexts:
 	 *     OwnedExpression returns LiteralReal
 	 *     ConditionalExpression returns LiteralReal
-	 *     ConditionalExpression.OperatorExpression_1_0 returns LiteralReal
+	 *     ConditionalExpression.OperatorExpression_0_1_0 returns LiteralReal
 	 *     NullCoalescingExpression returns LiteralReal
 	 *     NullCoalescingExpression.OperatorExpression_1_0 returns LiteralReal
 	 *     ImpliesExpression returns LiteralReal
@@ -728,7 +729,7 @@ public class KerMLExpressionsSemanticSequencer extends AbstractDelegatingSemanti
 	 * Contexts:
 	 *     OwnedExpression returns LiteralString
 	 *     ConditionalExpression returns LiteralString
-	 *     ConditionalExpression.OperatorExpression_1_0 returns LiteralString
+	 *     ConditionalExpression.OperatorExpression_0_1_0 returns LiteralString
 	 *     NullCoalescingExpression returns LiteralString
 	 *     NullCoalescingExpression.OperatorExpression_1_0 returns LiteralString
 	 *     ImpliesExpression returns LiteralString
@@ -786,7 +787,7 @@ public class KerMLExpressionsSemanticSequencer extends AbstractDelegatingSemanti
 	 * Contexts:
 	 *     OwnedExpression returns LiteralUnbounded
 	 *     ConditionalExpression returns LiteralUnbounded
-	 *     ConditionalExpression.OperatorExpression_1_0 returns LiteralUnbounded
+	 *     ConditionalExpression.OperatorExpression_0_1_0 returns LiteralUnbounded
 	 *     NullCoalescingExpression returns LiteralUnbounded
 	 *     NullCoalescingExpression.OperatorExpression_1_0 returns LiteralUnbounded
 	 *     ImpliesExpression returns LiteralUnbounded
@@ -851,7 +852,7 @@ public class KerMLExpressionsSemanticSequencer extends AbstractDelegatingSemanti
 	 * Contexts:
 	 *     OwnedExpression returns NullExpression
 	 *     ConditionalExpression returns NullExpression
-	 *     ConditionalExpression.OperatorExpression_1_0 returns NullExpression
+	 *     ConditionalExpression.OperatorExpression_0_1_0 returns NullExpression
 	 *     NullCoalescingExpression returns NullExpression
 	 *     NullCoalescingExpression.OperatorExpression_1_0 returns NullExpression
 	 *     ImpliesExpression returns NullExpression
@@ -932,7 +933,7 @@ public class KerMLExpressionsSemanticSequencer extends AbstractDelegatingSemanti
 	 * Contexts:
 	 *     OwnedExpression returns PathSelectExpression
 	 *     ConditionalExpression returns PathSelectExpression
-	 *     ConditionalExpression.OperatorExpression_1_0 returns PathSelectExpression
+	 *     ConditionalExpression.OperatorExpression_0_1_0 returns PathSelectExpression
 	 *     NullCoalescingExpression returns PathSelectExpression
 	 *     NullCoalescingExpression.OperatorExpression_1_0 returns PathSelectExpression
 	 *     ImpliesExpression returns PathSelectExpression
@@ -982,7 +983,7 @@ public class KerMLExpressionsSemanticSequencer extends AbstractDelegatingSemanti
 	 * Contexts:
 	 *     OwnedExpression returns PathStepExpression
 	 *     ConditionalExpression returns PathStepExpression
-	 *     ConditionalExpression.OperatorExpression_1_0 returns PathStepExpression
+	 *     ConditionalExpression.OperatorExpression_0_1_0 returns PathStepExpression
 	 *     NullCoalescingExpression returns PathStepExpression
 	 *     NullCoalescingExpression.OperatorExpression_1_0 returns PathStepExpression
 	 *     ImpliesExpression returns PathStepExpression

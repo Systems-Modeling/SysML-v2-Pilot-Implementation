@@ -48,12 +48,14 @@ OwnedExpression returns SysML::Expression :
 // Conditional Test Expressions
 
 ConditionalExpression returns SysML::Expression :
-	NullCoalescingExpression ( {SysML::OperatorExpression.operand += current}
-		operator = ConditionalTestOperator operand += OwnedExpression ':' operand += ConditionalExpression
-	)?
+	  NullCoalescingExpression ( {SysML::OperatorExpression.operand += current}
+		  operator = ConditionalOperator operand += OwnedExpression ':' operand += ConditionalExpression
+	  )?
+	| {SysML::OperatorExpression} 'if' operand += NullCoalescingExpression 
+		  operator = ConditionalOperator operand += OwnedExpression ':' operand += ConditionalExpression	
 ;
 
-ConditionalTestOperator: 
+ConditionalOperator :
 	'?'
 ;
 

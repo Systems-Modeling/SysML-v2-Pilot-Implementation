@@ -55,68 +55,127 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 	}
 	public class ConditionalExpressionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.expressions.xtext.KerMLExpressions.ConditionalExpression");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final RuleCall cNullCoalescingExpressionParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
-		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final Action cOperatorExpressionOperandAction_1_0 = (Action)cGroup_1.eContents().get(0);
-		private final Assignment cOperatorAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
-		private final RuleCall cOperatorConditionalTestOperatorParserRuleCall_1_1_0 = (RuleCall)cOperatorAssignment_1_1.eContents().get(0);
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
+		private final RuleCall cNullCoalescingExpressionParserRuleCall_0_0 = (RuleCall)cGroup_0.eContents().get(0);
+		private final Group cGroup_0_1 = (Group)cGroup_0.eContents().get(1);
+		private final Action cOperatorExpressionOperandAction_0_1_0 = (Action)cGroup_0_1.eContents().get(0);
+		private final Assignment cOperatorAssignment_0_1_1 = (Assignment)cGroup_0_1.eContents().get(1);
+		private final RuleCall cOperatorConditionalOperatorParserRuleCall_0_1_1_0 = (RuleCall)cOperatorAssignment_0_1_1.eContents().get(0);
+		private final Assignment cOperandAssignment_0_1_2 = (Assignment)cGroup_0_1.eContents().get(2);
+		private final RuleCall cOperandOwnedExpressionParserRuleCall_0_1_2_0 = (RuleCall)cOperandAssignment_0_1_2.eContents().get(0);
+		private final Keyword cColonKeyword_0_1_3 = (Keyword)cGroup_0_1.eContents().get(3);
+		private final Assignment cOperandAssignment_0_1_4 = (Assignment)cGroup_0_1.eContents().get(4);
+		private final RuleCall cOperandConditionalExpressionParserRuleCall_0_1_4_0 = (RuleCall)cOperandAssignment_0_1_4.eContents().get(0);
+		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
+		private final Action cOperatorExpressionAction_1_0 = (Action)cGroup_1.eContents().get(0);
+		private final Keyword cIfKeyword_1_1 = (Keyword)cGroup_1.eContents().get(1);
 		private final Assignment cOperandAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
-		private final RuleCall cOperandOwnedExpressionParserRuleCall_1_2_0 = (RuleCall)cOperandAssignment_1_2.eContents().get(0);
-		private final Keyword cColonKeyword_1_3 = (Keyword)cGroup_1.eContents().get(3);
+		private final RuleCall cOperandNullCoalescingExpressionParserRuleCall_1_2_0 = (RuleCall)cOperandAssignment_1_2.eContents().get(0);
+		private final Assignment cOperatorAssignment_1_3 = (Assignment)cGroup_1.eContents().get(3);
+		private final RuleCall cOperatorConditionalOperatorParserRuleCall_1_3_0 = (RuleCall)cOperatorAssignment_1_3.eContents().get(0);
 		private final Assignment cOperandAssignment_1_4 = (Assignment)cGroup_1.eContents().get(4);
-		private final RuleCall cOperandConditionalExpressionParserRuleCall_1_4_0 = (RuleCall)cOperandAssignment_1_4.eContents().get(0);
+		private final RuleCall cOperandOwnedExpressionParserRuleCall_1_4_0 = (RuleCall)cOperandAssignment_1_4.eContents().get(0);
+		private final Keyword cColonKeyword_1_5 = (Keyword)cGroup_1.eContents().get(5);
+		private final Assignment cOperandAssignment_1_6 = (Assignment)cGroup_1.eContents().get(6);
+		private final RuleCall cOperandConditionalExpressionParserRuleCall_1_6_0 = (RuleCall)cOperandAssignment_1_6.eContents().get(0);
 		
 		//// Conditional Test Expressions
 		//ConditionalExpression returns SysML::Expression :
-		//    NullCoalescingExpression ( {SysML::OperatorExpression.operand += current}
-		//        operator = ConditionalTestOperator operand += OwnedExpression ':' operand += ConditionalExpression
-		//    )?
+		//      NullCoalescingExpression ( {SysML::OperatorExpression.operand += current}
+		//          operator = ConditionalOperator operand += OwnedExpression ':' operand += ConditionalExpression
+		//      )?
+		//    | {SysML::OperatorExpression} 'if' operand += NullCoalescingExpression
+		//          operator = ConditionalOperator operand += OwnedExpression ':' operand += ConditionalExpression
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
+		//  NullCoalescingExpression ( {SysML::OperatorExpression.operand += current}
+		//      operator = ConditionalOperator operand += OwnedExpression ':' operand += ConditionalExpression
+		//  )?
+		//| {SysML::OperatorExpression} 'if' operand += NullCoalescingExpression
+		//      operator = ConditionalOperator operand += OwnedExpression ':' operand += ConditionalExpression
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
 		//NullCoalescingExpression ( {SysML::OperatorExpression.operand += current}
-		//    operator = ConditionalTestOperator operand += OwnedExpression ':' operand += ConditionalExpression
+		//    operator = ConditionalOperator operand += OwnedExpression ':' operand += ConditionalExpression
 		//)?
-		public Group getGroup() { return cGroup; }
+		public Group getGroup_0() { return cGroup_0; }
 		
 		//NullCoalescingExpression
-		public RuleCall getNullCoalescingExpressionParserRuleCall_0() { return cNullCoalescingExpressionParserRuleCall_0; }
+		public RuleCall getNullCoalescingExpressionParserRuleCall_0_0() { return cNullCoalescingExpressionParserRuleCall_0_0; }
 		
 		//( {SysML::OperatorExpression.operand += current}
-		//       operator = ConditionalTestOperator operand += OwnedExpression ':' operand += ConditionalExpression
-		//   )?
-		public Group getGroup_1() { return cGroup_1; }
+		//         operator = ConditionalOperator operand += OwnedExpression ':' operand += ConditionalExpression
+		//     )?
+		public Group getGroup_0_1() { return cGroup_0_1; }
 		
 		//{SysML::OperatorExpression.operand += current}
-		public Action getOperatorExpressionOperandAction_1_0() { return cOperatorExpressionOperandAction_1_0; }
+		public Action getOperatorExpressionOperandAction_0_1_0() { return cOperatorExpressionOperandAction_0_1_0; }
 		
-		//operator = ConditionalTestOperator
-		public Assignment getOperatorAssignment_1_1() { return cOperatorAssignment_1_1; }
+		//operator = ConditionalOperator
+		public Assignment getOperatorAssignment_0_1_1() { return cOperatorAssignment_0_1_1; }
 		
-		//ConditionalTestOperator
-		public RuleCall getOperatorConditionalTestOperatorParserRuleCall_1_1_0() { return cOperatorConditionalTestOperatorParserRuleCall_1_1_0; }
+		//ConditionalOperator
+		public RuleCall getOperatorConditionalOperatorParserRuleCall_0_1_1_0() { return cOperatorConditionalOperatorParserRuleCall_0_1_1_0; }
 		
 		//operand += OwnedExpression
-		public Assignment getOperandAssignment_1_2() { return cOperandAssignment_1_2; }
+		public Assignment getOperandAssignment_0_1_2() { return cOperandAssignment_0_1_2; }
 		
 		//OwnedExpression
-		public RuleCall getOperandOwnedExpressionParserRuleCall_1_2_0() { return cOperandOwnedExpressionParserRuleCall_1_2_0; }
+		public RuleCall getOperandOwnedExpressionParserRuleCall_0_1_2_0() { return cOperandOwnedExpressionParserRuleCall_0_1_2_0; }
 		
 		//':'
-		public Keyword getColonKeyword_1_3() { return cColonKeyword_1_3; }
+		public Keyword getColonKeyword_0_1_3() { return cColonKeyword_0_1_3; }
 		
 		//operand += ConditionalExpression
-		public Assignment getOperandAssignment_1_4() { return cOperandAssignment_1_4; }
+		public Assignment getOperandAssignment_0_1_4() { return cOperandAssignment_0_1_4; }
 		
 		//ConditionalExpression
-		public RuleCall getOperandConditionalExpressionParserRuleCall_1_4_0() { return cOperandConditionalExpressionParserRuleCall_1_4_0; }
+		public RuleCall getOperandConditionalExpressionParserRuleCall_0_1_4_0() { return cOperandConditionalExpressionParserRuleCall_0_1_4_0; }
+		
+		//{SysML::OperatorExpression} 'if' operand += NullCoalescingExpression
+		//         operator = ConditionalOperator operand += OwnedExpression ':' operand += ConditionalExpression
+		public Group getGroup_1() { return cGroup_1; }
+		
+		//{SysML::OperatorExpression}
+		public Action getOperatorExpressionAction_1_0() { return cOperatorExpressionAction_1_0; }
+		
+		//'if'
+		public Keyword getIfKeyword_1_1() { return cIfKeyword_1_1; }
+		
+		//operand += NullCoalescingExpression
+		public Assignment getOperandAssignment_1_2() { return cOperandAssignment_1_2; }
+		
+		//NullCoalescingExpression
+		public RuleCall getOperandNullCoalescingExpressionParserRuleCall_1_2_0() { return cOperandNullCoalescingExpressionParserRuleCall_1_2_0; }
+		
+		//operator = ConditionalOperator
+		public Assignment getOperatorAssignment_1_3() { return cOperatorAssignment_1_3; }
+		
+		//ConditionalOperator
+		public RuleCall getOperatorConditionalOperatorParserRuleCall_1_3_0() { return cOperatorConditionalOperatorParserRuleCall_1_3_0; }
+		
+		//operand += OwnedExpression
+		public Assignment getOperandAssignment_1_4() { return cOperandAssignment_1_4; }
+		
+		//OwnedExpression
+		public RuleCall getOperandOwnedExpressionParserRuleCall_1_4_0() { return cOperandOwnedExpressionParserRuleCall_1_4_0; }
+		
+		//':'
+		public Keyword getColonKeyword_1_5() { return cColonKeyword_1_5; }
+		
+		//operand += ConditionalExpression
+		public Assignment getOperandAssignment_1_6() { return cOperandAssignment_1_6; }
+		
+		//ConditionalExpression
+		public RuleCall getOperandConditionalExpressionParserRuleCall_1_6_0() { return cOperandConditionalExpressionParserRuleCall_1_6_0; }
 	}
-	public class ConditionalTestOperatorElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.expressions.xtext.KerMLExpressions.ConditionalTestOperator");
+	public class ConditionalOperatorElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.expressions.xtext.KerMLExpressions.ConditionalOperator");
 		private final Keyword cQuestionMarkKeyword = (Keyword)rule.eContents().get(1);
 		
-		//ConditionalTestOperator:
+		//ConditionalOperator :
 		//    '?'
 		//;
 		@Override public ParserRule getRule() { return rule; }
@@ -2142,7 +2201,7 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 	private final OwnedExpressionMemberElements pOwnedExpressionMember;
 	private final OwnedExpressionElements pOwnedExpression;
 	private final ConditionalExpressionElements pConditionalExpression;
-	private final ConditionalTestOperatorElements pConditionalTestOperator;
+	private final ConditionalOperatorElements pConditionalOperator;
 	private final NullCoalescingExpressionElements pNullCoalescingExpression;
 	private final NullCoalescingOperatorElements pNullCoalescingOperator;
 	private final ImpliesExpressionElements pImpliesExpression;
@@ -2224,7 +2283,7 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 		this.pOwnedExpressionMember = new OwnedExpressionMemberElements();
 		this.pOwnedExpression = new OwnedExpressionElements();
 		this.pConditionalExpression = new ConditionalExpressionElements();
-		this.pConditionalTestOperator = new ConditionalTestOperatorElements();
+		this.pConditionalOperator = new ConditionalOperatorElements();
 		this.pNullCoalescingExpression = new NullCoalescingExpressionElements();
 		this.pNullCoalescingOperator = new NullCoalescingOperatorElements();
 		this.pImpliesExpression = new ImpliesExpressionElements();
@@ -2348,9 +2407,11 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 	
 	//// Conditional Test Expressions
 	//ConditionalExpression returns SysML::Expression :
-	//    NullCoalescingExpression ( {SysML::OperatorExpression.operand += current}
-	//        operator = ConditionalTestOperator operand += OwnedExpression ':' operand += ConditionalExpression
-	//    )?
+	//      NullCoalescingExpression ( {SysML::OperatorExpression.operand += current}
+	//          operator = ConditionalOperator operand += OwnedExpression ':' operand += ConditionalExpression
+	//      )?
+	//    | {SysML::OperatorExpression} 'if' operand += NullCoalescingExpression
+	//          operator = ConditionalOperator operand += OwnedExpression ':' operand += ConditionalExpression
 	//;
 	public ConditionalExpressionElements getConditionalExpressionAccess() {
 		return pConditionalExpression;
@@ -2360,15 +2421,15 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 		return getConditionalExpressionAccess().getRule();
 	}
 	
-	//ConditionalTestOperator:
+	//ConditionalOperator :
 	//    '?'
 	//;
-	public ConditionalTestOperatorElements getConditionalTestOperatorAccess() {
-		return pConditionalTestOperator;
+	public ConditionalOperatorElements getConditionalOperatorAccess() {
+		return pConditionalOperator;
 	}
 	
-	public ParserRule getConditionalTestOperatorRule() {
-		return getConditionalTestOperatorAccess().getRule();
+	public ParserRule getConditionalOperatorRule() {
+		return getConditionalOperatorAccess().getRule();
 	}
 	
 	//// Null Coalescing Expressions

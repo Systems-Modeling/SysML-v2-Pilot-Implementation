@@ -167,6 +167,7 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getExposeAccess().getAlternatives_3(), "rule__Expose__Alternatives_3");
 			builder.put(grammarAccess.getViewpointRefUsageAccess().getAlternatives_1(), "rule__ViewpointRefUsage__Alternatives_1");
 			builder.put(grammarAccess.getRenderingRefUsageAccess().getAlternatives_1(), "rule__RenderingRefUsage__Alternatives_1");
+			builder.put(grammarAccess.getConditionalExpressionAccess().getAlternatives(), "rule__ConditionalExpression__Alternatives");
 			builder.put(grammarAccess.getOrOperatorAccess().getAlternatives(), "rule__OrOperator__Alternatives");
 			builder.put(grammarAccess.getXorOperatorAccess().getAlternatives(), "rule__XorOperator__Alternatives");
 			builder.put(grammarAccess.getAndOperatorAccess().getAlternatives(), "rule__AndOperator__Alternatives");
@@ -592,7 +593,8 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getRenderingFlowUsageAccess().getGroup(), "rule__RenderingFlowUsage__Group__0");
 			builder.put(grammarAccess.getRenderingRefUsageAccess().getGroup(), "rule__RenderingRefUsage__Group__0");
 			builder.put(grammarAccess.getRenderingRefUsageAccess().getGroup_1_0(), "rule__RenderingRefUsage__Group_1_0__0");
-			builder.put(grammarAccess.getConditionalExpressionAccess().getGroup(), "rule__ConditionalExpression__Group__0");
+			builder.put(grammarAccess.getConditionalExpressionAccess().getGroup_0(), "rule__ConditionalExpression__Group_0__0");
+			builder.put(grammarAccess.getConditionalExpressionAccess().getGroup_0_1(), "rule__ConditionalExpression__Group_0_1__0");
 			builder.put(grammarAccess.getConditionalExpressionAccess().getGroup_1(), "rule__ConditionalExpression__Group_1__0");
 			builder.put(grammarAccess.getNullCoalescingExpressionAccess().getGroup(), "rule__NullCoalescingExpression__Group__0");
 			builder.put(grammarAccess.getNullCoalescingExpressionAccess().getGroup_1(), "rule__NullCoalescingExpression__Group_1__0");
@@ -1005,9 +1007,13 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getViewpointRefUsageAccess().getIsCompositeAssignment_1_1(), "rule__ViewpointRefUsage__IsCompositeAssignment_1_1");
 			builder.put(grammarAccess.getRenderingRefUsageAccess().getIsCompositeAssignment_1_1(), "rule__RenderingRefUsage__IsCompositeAssignment_1_1");
 			builder.put(grammarAccess.getOwnedExpressionMemberAccess().getOwnedRelatedElementAssignment(), "rule__OwnedExpressionMember__OwnedRelatedElementAssignment");
-			builder.put(grammarAccess.getConditionalExpressionAccess().getOperatorAssignment_1_1(), "rule__ConditionalExpression__OperatorAssignment_1_1");
+			builder.put(grammarAccess.getConditionalExpressionAccess().getOperatorAssignment_0_1_1(), "rule__ConditionalExpression__OperatorAssignment_0_1_1");
+			builder.put(grammarAccess.getConditionalExpressionAccess().getOperandAssignment_0_1_2(), "rule__ConditionalExpression__OperandAssignment_0_1_2");
+			builder.put(grammarAccess.getConditionalExpressionAccess().getOperandAssignment_0_1_4(), "rule__ConditionalExpression__OperandAssignment_0_1_4");
 			builder.put(grammarAccess.getConditionalExpressionAccess().getOperandAssignment_1_2(), "rule__ConditionalExpression__OperandAssignment_1_2");
+			builder.put(grammarAccess.getConditionalExpressionAccess().getOperatorAssignment_1_3(), "rule__ConditionalExpression__OperatorAssignment_1_3");
 			builder.put(grammarAccess.getConditionalExpressionAccess().getOperandAssignment_1_4(), "rule__ConditionalExpression__OperandAssignment_1_4");
+			builder.put(grammarAccess.getConditionalExpressionAccess().getOperandAssignment_1_6(), "rule__ConditionalExpression__OperandAssignment_1_6");
 			builder.put(grammarAccess.getNullCoalescingExpressionAccess().getOperatorAssignment_1_1(), "rule__NullCoalescingExpression__OperatorAssignment_1_1");
 			builder.put(grammarAccess.getNullCoalescingExpressionAccess().getOperandAssignment_1_2(), "rule__NullCoalescingExpression__OperandAssignment_1_2");
 			builder.put(grammarAccess.getImpliesExpressionAccess().getOperatorAssignment_1_1(), "rule__ImpliesExpression__OperatorAssignment_1_1");

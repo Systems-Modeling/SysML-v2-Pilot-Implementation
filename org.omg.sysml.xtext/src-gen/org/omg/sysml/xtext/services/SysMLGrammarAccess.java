@@ -7496,10 +7496,10 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//    | ( ownedRelationship += EmptySuccessionMember )?
 		//      ownedRelationship += IndividualUsageMember
 		//    | ownedRelationship += InitialNodeMember
-		//      ( ownedRelationship += TargetSuccessionMember )*
+		//      ( => ownedRelationship += TargetSuccessionMember )*
 		//    | ( ownedRelationship += EmptySuccessionMember )?
 		//      ownedRelationship += ( BehaviorUsageMember | ActionNodeMember )
-		//      ( ownedRelationship += TargetSuccessionMember )*
+		//      ( => ownedRelationship += TargetSuccessionMember )*
 		//    | ownedRelationship += GuardedSuccessionMember
 		//    | ownedRelationship += Import
 		//;
@@ -7513,10 +7513,10 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//| ( ownedRelationship += EmptySuccessionMember )?
 		//  ownedRelationship += IndividualUsageMember
 		//| ownedRelationship += InitialNodeMember
-		//  ( ownedRelationship += TargetSuccessionMember )*
+		//  ( => ownedRelationship += TargetSuccessionMember )*
 		//| ( ownedRelationship += EmptySuccessionMember )?
 		//  ownedRelationship += ( BehaviorUsageMember | ActionNodeMember )
-		//  ( ownedRelationship += TargetSuccessionMember )*
+		//  ( => ownedRelationship += TargetSuccessionMember )*
 		//| ownedRelationship += GuardedSuccessionMember
 		//| ownedRelationship += Import
 		public Alternatives getAlternatives() { return cAlternatives; }
@@ -7568,7 +7568,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		public RuleCall getOwnedRelationshipIndividualUsageMemberParserRuleCall_5_1_0() { return cOwnedRelationshipIndividualUsageMemberParserRuleCall_5_1_0; }
 		
 		//ownedRelationship += InitialNodeMember
-		//     ( ownedRelationship += TargetSuccessionMember )*
+		//     ( => ownedRelationship += TargetSuccessionMember )*
 		public Group getGroup_6() { return cGroup_6; }
 		
 		//ownedRelationship += InitialNodeMember
@@ -7577,7 +7577,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//InitialNodeMember
 		public RuleCall getOwnedRelationshipInitialNodeMemberParserRuleCall_6_0_0() { return cOwnedRelationshipInitialNodeMemberParserRuleCall_6_0_0; }
 		
-		//( ownedRelationship += TargetSuccessionMember )*
+		//( => ownedRelationship += TargetSuccessionMember )*
 		public Assignment getOwnedRelationshipAssignment_6_1() { return cOwnedRelationshipAssignment_6_1; }
 		
 		//TargetSuccessionMember
@@ -7585,7 +7585,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		
 		//( ownedRelationship += EmptySuccessionMember )?
 		//     ownedRelationship += ( BehaviorUsageMember | ActionNodeMember )
-		//     ( ownedRelationship += TargetSuccessionMember )*
+		//     ( => ownedRelationship += TargetSuccessionMember )*
 		public Group getGroup_7() { return cGroup_7; }
 		
 		//( ownedRelationship += EmptySuccessionMember )?
@@ -7606,7 +7606,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//ActionNodeMember
 		public RuleCall getOwnedRelationshipActionNodeMemberParserRuleCall_7_1_0_1() { return cOwnedRelationshipActionNodeMemberParserRuleCall_7_1_0_1; }
 		
-		//( ownedRelationship += TargetSuccessionMember )*
+		//( => ownedRelationship += TargetSuccessionMember )*
 		public Assignment getOwnedRelationshipAssignment_7_2() { return cOwnedRelationshipAssignment_7_2; }
 		
 		//TargetSuccessionMember
@@ -18107,10 +18107,10 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	//    | ( ownedRelationship += EmptySuccessionMember )?
 	//      ownedRelationship += IndividualUsageMember
 	//    | ownedRelationship += InitialNodeMember
-	//      ( ownedRelationship += TargetSuccessionMember )*
+	//      ( => ownedRelationship += TargetSuccessionMember )*
 	//    | ( ownedRelationship += EmptySuccessionMember )?
 	//      ownedRelationship += ( BehaviorUsageMember | ActionNodeMember )
-	//      ( ownedRelationship += TargetSuccessionMember )*
+	//      ( => ownedRelationship += TargetSuccessionMember )*
 	//    | ownedRelationship += GuardedSuccessionMember
 	//    | ownedRelationship += Import
 	//;
@@ -20589,9 +20589,11 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	
 	//// Conditional Test Expressions
 	//ConditionalExpression returns SysML::Expression :
-	//    NullCoalescingExpression ( {SysML::OperatorExpression.operand += current}
-	//        operator = ConditionalTestOperator operand += OwnedExpression ':' operand += ConditionalExpression
-	//    )?
+	//      NullCoalescingExpression ( {SysML::OperatorExpression.operand += current}
+	//          operator = ConditionalOperator operand += OwnedExpression ':' operand += ConditionalExpression
+	//      )?
+	//    | {SysML::OperatorExpression} 'if' operand += NullCoalescingExpression
+	//          operator = ConditionalOperator operand += OwnedExpression ':' operand += ConditionalExpression
 	//;
 	public KerMLExpressionsGrammarAccess.ConditionalExpressionElements getConditionalExpressionAccess() {
 		return gaKerMLExpressions.getConditionalExpressionAccess();
@@ -20601,15 +20603,15 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		return getConditionalExpressionAccess().getRule();
 	}
 	
-	//ConditionalTestOperator:
+	//ConditionalOperator :
 	//    '?'
 	//;
-	public KerMLExpressionsGrammarAccess.ConditionalTestOperatorElements getConditionalTestOperatorAccess() {
-		return gaKerMLExpressions.getConditionalTestOperatorAccess();
+	public KerMLExpressionsGrammarAccess.ConditionalOperatorElements getConditionalOperatorAccess() {
+		return gaKerMLExpressions.getConditionalOperatorAccess();
 	}
 	
-	public ParserRule getConditionalTestOperatorRule() {
-		return getConditionalTestOperatorAccess().getRule();
+	public ParserRule getConditionalOperatorRule() {
+		return getConditionalOperatorAccess().getRule();
 	}
 	
 	//// Null Coalescing Expressions

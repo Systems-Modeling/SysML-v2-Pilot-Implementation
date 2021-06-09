@@ -237,6 +237,11 @@ public class ElementAdapterFactory {
 		}
 		
 		@Override
+		public ElementAdapter caseMembership(Membership element) {
+			return new MembershipAdapter(element);
+		}
+		
+		@Override
 		public ElementAdapter caseNamespace(Namespace element) {
 			return new NamespaceAdapter(element);
 		}

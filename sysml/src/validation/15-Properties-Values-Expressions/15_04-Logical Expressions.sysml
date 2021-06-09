@@ -20,7 +20,7 @@ package '15_04-Logical Expressions' {
 			 * This is the ternary expression notation for 
 			 * "if...then...else".
 			 */
-			isHighPerformance? 
+			if isHighPerformance? 
 				engine istype '6CylEngine': 
 				engine istype '4CylEngine'
 		}

@@ -23,16 +23,20 @@ package org.omg.sysml.adapter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Stream;
 
 import org.eclipse.emf.common.util.EList;
 import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.ItemFlow;
 import org.omg.sysml.lang.sysml.ItemFlowEnd;
+import org.omg.sysml.lang.sysml.PathStepExpression;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.util.ElementUtil;
 
 public class ItemFlowEndAdapter extends FeatureAdapter {
 
@@ -76,14 +80,28 @@ public class ItemFlowEndAdapter extends FeatureAdapter {
 	public void addItemFlowEndSubsetting() {
 		EList<Feature> features = getTarget().getOwnedFeature();
 		if (!features.isEmpty()) {
-			features.get(0).getOwnedRedefinition().stream().findFirst().
-				map(Redefinition::getRedefinedFeature).
-				filter(feature->feature != null).
-				map(Feature::getOwningType).
-				filter(Feature.class::isInstance).
-				ifPresent(owner->
-					addImplicitGeneralType(SysMLPackage.eINSTANCE.getSubsetting(), owner)
-				);
+			Feature feature = features.get(0);
+			Optional<PathStepExpression> pathExpression = feature.getOwnedFeature().stream().
+					filter(PathStepExpression.class::isInstance).
+					map(PathStepExpression.class::cast).
+					findFirst();
+			if (pathExpression.isPresent()) {
+				Expression expression = pathExpression.get().getOperand().get(0);
+				if (expression instanceof PathStepExpression) {
+					expression = ((PathStepExpression) expression).getOperand().get(1);
+				}
+				ElementUtil.transform(expression);
+				addImplicitGeneralType(SysMLPackage.eINSTANCE.getSubsetting(), expression.getResult());
+			} else {
+				feature.getOwnedRedefinition().stream().findFirst().
+					map(Redefinition::getRedefinedFeature).
+					filter(f->f != null).
+					map(Feature::getOwningType).
+					filter(Feature.class::isInstance).
+					ifPresent(owner->
+						addImplicitGeneralType(SysMLPackage.eINSTANCE.getSubsetting(), owner)
+					);
+			}
 		}
 	}	
 

@@ -50,6 +50,7 @@ import org.omg.sysml.lang.sysml.Expression
 import org.omg.sysml.lang.sysml.FeatureReferenceExpression
 import org.omg.sysml.lang.sysml.PathStepExpression
 import org.omg.sysml.lang.sysml.InvocationExpression
+import org.omg.sysml.util.ElementUtil
 
 class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 
@@ -169,6 +170,7 @@ class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 						if (op1 instanceof PathStepExpression) {
 							rel = op1.featureRefNamespace
 						} else if (op1 instanceof Expression) {
+							ElementUtil.transform(op1)
 							rel = op1.result
 						}
 					}

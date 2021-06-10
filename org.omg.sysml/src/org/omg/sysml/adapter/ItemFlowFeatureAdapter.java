@@ -23,12 +23,16 @@ package org.omg.sysml.adapter;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 import org.omg.sysml.lang.sysml.Connector;
 import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.FeatureReferenceExpression;
 import org.omg.sysml.lang.sysml.ItemFlowEnd;
 import org.omg.sysml.lang.sysml.ItemFlowFeature;
+import org.omg.sysml.lang.sysml.PathStepExpression;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 
@@ -70,6 +74,29 @@ public class ItemFlowFeatureAdapter extends FeatureAdapter {
 			}
 		}
 		return 0;
+	}
+	
+	protected void addRedefinitionFromPath() {
+		ItemFlowFeature target = getTarget();
+		Optional<PathStepExpression> expression = target.getOwnedFeature().stream().
+				filter(PathStepExpression.class::isInstance).
+				map(PathStepExpression.class::cast).
+				findFirst();
+		if (expression.isPresent()) {
+			Expression featureRef = expression.get().getOperand().get(1);
+			if (featureRef instanceof FeatureReferenceExpression) {
+				Feature referent = ((FeatureReferenceExpression)featureRef).getReferent();
+				if (referent != null) {
+					addImplicitGeneralType(SysMLPackage.eINSTANCE.getRedefinition(), referent);
+				}
+			}
+		}
+	}
+	
+	@Override
+	public void doTransform() {
+		super.doTransform();
+		addRedefinitionFromPath();
 	}
 
 }

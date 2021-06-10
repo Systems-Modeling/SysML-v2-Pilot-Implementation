@@ -60,9 +60,11 @@ public class ItemFlowAdapter extends ConnectorAdapter {
 		if (owner instanceof Feature) {
 			if (ends.size() >= 2) {
 				EList<Feature> endFeatures = ends.get(1).getOwnedFeature();
-				endFeatures.get(0).getOwnedRedefinition().stream().findFirst().
-					filter(redefinition->((RedefinitionImpl)redefinition).basicGetRedefinedFeature() == null).
-					ifPresent(redefinition->redefinition.setRedefinedFeature((Feature)owner));
+				if (!endFeatures.isEmpty()) {
+					endFeatures.get(0).getOwnedRedefinition().stream().findFirst().
+						filter(redefinition->((RedefinitionImpl)redefinition).basicGetRedefinedFeature() == null).
+						ifPresent(redefinition->redefinition.setRedefinedFeature((Feature)owner));
+				}
 			}
 		}
 	}

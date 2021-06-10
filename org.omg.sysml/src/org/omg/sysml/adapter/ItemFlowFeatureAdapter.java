@@ -34,7 +34,7 @@ import org.omg.sysml.lang.sysml.Type;
 
 public class ItemFlowFeatureAdapter extends FeatureAdapter {
 
-	public static final String[] ITEM_FLOW_INPUT_OUTPUT_FEATURES = { "Transfers::Transfer::transferSource::sourceOutput", "Transfers::Transfer::transferTarget::targetInput" };
+	public static final String[] ITEM_FLOW_INPUT_OUTPUT_FEATURES = { "Transfers::Transfer::source::sourceOutput", "Transfers::Transfer::target::targetInput" };
 
 	public ItemFlowFeatureAdapter(ItemFlowFeature element) {
 		super(element);

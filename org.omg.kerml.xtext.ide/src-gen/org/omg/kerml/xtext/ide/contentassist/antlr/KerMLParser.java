@@ -105,7 +105,6 @@ public class KerMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getExpressionDeclarationAccess().getAlternatives_1(), "rule__ExpressionDeclaration__Alternatives_1");
 			builder.put(grammarAccess.getExpressionDeclarationAccess().getAlternatives_1_1_1(), "rule__ExpressionDeclaration__Alternatives_1_1_1");
 			builder.put(grammarAccess.getItemFlowDeclarationAccess().getAlternatives_0(), "rule__ItemFlowDeclaration__Alternatives_0");
-			builder.put(grammarAccess.getItemFlowDeclarationAccess().getAlternatives_0_0_1(), "rule__ItemFlowDeclaration__Alternatives_0_0_1");
 			builder.put(grammarAccess.getItemFeatureAccess().getAlternatives(), "rule__ItemFeature__Alternatives");
 			builder.put(grammarAccess.getEqualityOperatorAccess().getAlternatives(), "rule__EqualityOperator__Alternatives");
 			builder.put(grammarAccess.getClassificationExpressionAccess().getAlternatives(), "rule__ClassificationExpression__Alternatives");
@@ -310,8 +309,7 @@ public class KerMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getSuccessionItemFlowAccess().getGroup(), "rule__SuccessionItemFlow__Group__0");
 			builder.put(grammarAccess.getItemFlowDeclarationAccess().getGroup(), "rule__ItemFlowDeclaration__Group__0");
 			builder.put(grammarAccess.getItemFlowDeclarationAccess().getGroup_0_0(), "rule__ItemFlowDeclaration__Group_0_0__0");
-			builder.put(grammarAccess.getItemFlowDeclarationAccess().getGroup_0_0_1_0(), "rule__ItemFlowDeclaration__Group_0_0_1_0__0");
-			builder.put(grammarAccess.getItemFlowDeclarationAccess().getGroup_0_1(), "rule__ItemFlowDeclaration__Group_0_1__0");
+			builder.put(grammarAccess.getItemFlowDeclarationAccess().getGroup_0_0_1(), "rule__ItemFlowDeclaration__Group_0_0_1__0");
 			builder.put(grammarAccess.getItemFeatureMemberAccess().getGroup(), "rule__ItemFeatureMember__Group__0");
 			builder.put(grammarAccess.getItemFeatureMemberAccess().getGroup_0(), "rule__ItemFeatureMember__Group_0__0");
 			builder.put(grammarAccess.getItemFeatureAccess().getGroup_0(), "rule__ItemFeature__Group_0__0");
@@ -584,10 +582,8 @@ public class KerMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getInteractionAccess().getIsAbstractAssignment_0(), "rule__Interaction__IsAbstractAssignment_0");
 			builder.put(grammarAccess.getItemFlowAccess().getIsAbstractAssignment_0(), "rule__ItemFlow__IsAbstractAssignment_0");
 			builder.put(grammarAccess.getSuccessionItemFlowAccess().getIsAbstractAssignment_0(), "rule__SuccessionItemFlow__IsAbstractAssignment_0");
-			builder.put(grammarAccess.getItemFlowDeclarationAccess().getOwnedRelationshipAssignment_0_0_1_0_1(), "rule__ItemFlowDeclaration__OwnedRelationshipAssignment_0_0_1_0_1");
 			builder.put(grammarAccess.getItemFlowDeclarationAccess().getOwnedRelationshipAssignment_0_0_1_1(), "rule__ItemFlowDeclaration__OwnedRelationshipAssignment_0_0_1_1");
-			builder.put(grammarAccess.getItemFlowDeclarationAccess().getIsSufficientAssignment_0_1_0(), "rule__ItemFlowDeclaration__IsSufficientAssignment_0_1_0");
-			builder.put(grammarAccess.getItemFlowDeclarationAccess().getOwnedRelationshipAssignment_0_1_1(), "rule__ItemFlowDeclaration__OwnedRelationshipAssignment_0_1_1");
+			builder.put(grammarAccess.getItemFlowDeclarationAccess().getIsSufficientAssignment_0_1(), "rule__ItemFlowDeclaration__IsSufficientAssignment_0_1");
 			builder.put(grammarAccess.getItemFlowDeclarationAccess().getOwnedRelationshipAssignment_1(), "rule__ItemFlowDeclaration__OwnedRelationshipAssignment_1");
 			builder.put(grammarAccess.getItemFlowDeclarationAccess().getOwnedRelationshipAssignment_3(), "rule__ItemFlowDeclaration__OwnedRelationshipAssignment_3");
 			builder.put(grammarAccess.getItemFeatureMemberAccess().getMemberNameAssignment_0_0(), "rule__ItemFeatureMember__MemberNameAssignment_0_0");
@@ -596,7 +592,6 @@ public class KerMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getItemFeatureAccess().getOwnedRelationshipAssignment_0_1(), "rule__ItemFeature__OwnedRelationshipAssignment_0_1");
 			builder.put(grammarAccess.getItemFeatureAccess().getOwnedRelationshipAssignment_1_0(), "rule__ItemFeature__OwnedRelationshipAssignment_1_0");
 			builder.put(grammarAccess.getItemFeatureAccess().getOwnedRelationshipAssignment_1_1(), "rule__ItemFeature__OwnedRelationshipAssignment_1_1");
-			builder.put(grammarAccess.getEmptyItemFeatureMemberAccess().getOwnedRelatedElementAssignment(), "rule__EmptyItemFeatureMember__OwnedRelatedElementAssignment");
 			builder.put(grammarAccess.getItemFlowEndMemberAccess().getOwnedRelatedElementAssignment(), "rule__ItemFlowEndMember__OwnedRelatedElementAssignment");
 			builder.put(grammarAccess.getItemFlowEndAccess().getOwnedRelationshipAssignment(), "rule__ItemFlowEnd__OwnedRelationshipAssignment");
 			builder.put(grammarAccess.getItemFlowFeatureMemberAccess().getOwnedRelatedElementAssignment(), "rule__ItemFlowFeatureMember__OwnedRelatedElementAssignment");

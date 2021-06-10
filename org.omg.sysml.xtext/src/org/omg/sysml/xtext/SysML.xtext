@@ -279,58 +279,6 @@ UsageElement returns SysML::Usage :
 	| RenderingUsage
 ;
 
-/* TYPES */
-
-fragment TypeBody returns SysML::Type :
-	';' | 
-	'{' ( ownedRelationship += OwnedDocumentation 
-		| ownedRelationship += Import
-		| ownedRelationship += NonFeatureTypeMember 
-		| ownedRelationship += FeatureTypeMember
-	)* '}'
-;
-
-NonFeatureTypeMember returns SysML::Membership : 
-	TypeMemberPrefix NonUsagePackageMember
-;
-
-FeatureTypeMember returns SysML::FeatureMembership : 
-	FeatureMember | EndFeatureMember
-;
-
-fragment TypeMemberPrefix returns SysML::Membership :
-	( ownedRelationship += PrefixDocumentation )*
-    ( visibility = VisibilityIndicator )?
-;
-
-enum VisibilityIndicator returns SysML::VisibilityKind :
-	public = 'public' | private = 'private' | protected = 'protected'
-;
-
-/* Feature Memberships */
-
-FeatureMember returns SysML::FeatureMembership :
-	TypeMemberPrefix direction = FeatureDirection 
-	ownedRelatedElement += FeatureElement // ownedMemberFeature = FeatureElement
-;
-
-EndFeatureMember returns SysML::EndFeatureMembership :
-	TypeMemberPrefix 'end' direction = FeatureDirection 
-	ownedRelatedElement += FeatureElement // ownedMemberFeature = FeatureElement
-;
-
-enum FeatureDirection returns SysML::FeatureDirectionKind:
-	in = 'in' | out = 'out' | inout = 'inout'
-;
-
-FeatureElement returns SysML::Feature :
-      UsageElement
-    | BindingConnector
-    | Succession
-    | ItemFlow
-    | SuccessionItemFlow
-;
-
 /* CLASSIFIERS */
 
 /* Superclassing */
@@ -472,7 +420,7 @@ BindingKeyword :
 
 BindingConnector returns SysML::BindingConnector :
 	( isAbstract ?= 'abstract' )? BindingKeyword 
-	BindingConnectorDeclaration TypeBody	
+	BindingConnectorDeclaration DefinitionBody	
 ;
 
 fragment BindingConnectorDeclaration returns SysML::BindingConnector :
@@ -488,7 +436,7 @@ SuccessionKeyword :
 ;
 
 Succession returns SysML::Succession :
-	( isAbstract ?= 'abstract' )? SuccessionKeyword SuccessionDeclaration TypeBody
+	( isAbstract ?= 'abstract' )? SuccessionKeyword SuccessionDeclaration DefinitionBody
 ;
 
 fragment SuccessionDeclaration returns SysML::Succession :
@@ -507,14 +455,12 @@ MessageKeyword :
 
 Message returns SysML::ItemFlow :
 	isAbstract ?= MessageKeyword
-	MessageDeclaration TypeBody
+	MessageDeclaration DefinitionBody
 ;
 
 fragment MessageDeclaration returns SysML::ItemFlow :
 	FeatureDeclaration? 
-    ( 'of'  ownedRelationship += ItemFeatureMember 
-    | ownedRelationship += EmptyItemFeatureMember  
-    ) 
+    ( 'of'  ownedRelationship += ItemFeatureMember )?
     ( 'from' BinaryConnectorPart | ValuePart )?  
 ;
 
@@ -526,7 +472,7 @@ ItemFlowKeyword :
 
 ItemFlow returns SysML::ItemFlow :
 	( isAbstract ?= 'abstract' )? ItemFlowKeyword 
-	ItemFlowDeclaration TypeBody
+	ItemFlowDeclaration DefinitionBody
 ;
 
 SuccessionItemFlowKeyword :
@@ -535,16 +481,14 @@ SuccessionItemFlowKeyword :
 
 SuccessionItemFlow returns SysML::SuccessionItemFlow :
 	( isAbstract ?= 'abstract' )? SuccessionItemFlowKeyword 
-	ItemFlowDeclaration TypeBody
+	ItemFlowDeclaration DefinitionBody
 ;
 
 fragment ItemFlowDeclaration returns SysML::ItemFlow :
 	( FeatureDeclaration? 
-      ( 'of'  ownedRelationship += ItemFeatureMember
-      | ownedRelationship += EmptyItemFeatureMember
-      ) 'from'
-    | ownedRelationship += EmptyItemFeatureMember
-    )
+      ( 'of'  ownedRelationship += ItemFeatureMember )?
+      'from' 
+    )?
 	ownedRelationship += ItemFlowEndMember 'to' 
 	ownedRelationship += ItemFlowEndMember
 ;
@@ -560,20 +504,12 @@ ItemFeature returns SysML::ItemFeature :
 	  ( ownedRelationship += OwnedFeatureTyping )?
 ;
 
-EmptyItemFeature returns SysML::ItemFeature :
-	{SysML::ItemFeature}
-;
-
 ItemFlowEndMember returns SysML::EndFeatureMembership :
 	ownedRelatedElement += ItemFlowEnd // ownedMemberFeature = ItemFlowEnd
 ;
 
 ItemFlowEnd returns SysML::ItemFlowEnd :
 	ownedRelationship += ItemFlowFeatureMember
-;
-
-EmptyItemFeatureMember returns SysML::FeatureMembership :
-	ownedRelatedElement += EmptyItemFeature // ownedMemberFeature = EmptyItemFeature
 ;
 
 EmptyItemFlowEnd returns SysML::ItemFlowEnd :
@@ -645,7 +581,7 @@ fragment DefinitionBodyItem returns SysML::Type :
 ;
 
 NestedDefinitionMember returns SysML::Membership : 
-	NonFeatureTypeMember
+	DefinitionMemberPrefix NonUsagePackageMember
 ;
 
 VariantUsageMember returns SysML::VariantMembership :
@@ -677,6 +613,14 @@ FlowUsageMember returns SysML::FeatureMembership :
 fragment DefinitionMemberPrefix returns SysML::Membership :
 	( ownedRelationship += PrefixDocumentation )*
     ( visibility = VisibilityIndicator )?
+;
+
+enum VisibilityIndicator returns SysML::VisibilityKind :
+	public = 'public' | private = 'private' | protected = 'protected'
+;
+
+enum FeatureDirection returns SysML::FeatureDirectionKind:
+	in = 'in' | out = 'out' | inout = 'inout'
 ;
 
 /* Usages */
@@ -719,7 +663,6 @@ SourceItemFlowMember returns SysML::Membership :
 
 SourceItemFlow returns SysML::ItemFlow :
 	( ItemFlowKeyword | {SysML::SuccessionItemFlow} SuccessionItemFlowKeyword ) 
-	ownedRelationship += EmptyItemFeatureMember 
 	'from' ownedRelationship += ItemFlowEndMember
 	ownedRelationship += EmptyItemFlowEndMember
 ;

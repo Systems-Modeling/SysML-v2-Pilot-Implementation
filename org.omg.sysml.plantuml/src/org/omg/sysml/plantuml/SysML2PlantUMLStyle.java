@@ -1,6 +1,7 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation, PlantUML Visualization
  * Copyright (c) 2020 Mgnite Inc.
+ * Copyright (c) 2021 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -19,6 +20,7 @@
  * 
  * Contributors:
  *  Hisashi Miyashita, Mgnite Inc.
+ *  Ed Seideiwtz, MDS
  * 
  *****************************************************************************/
 
@@ -47,7 +49,6 @@ import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.Generalization;
-import org.omg.sysml.lang.sysml.IndividualUsage;
 import org.omg.sysml.lang.sysml.ItemDefinition;
 import org.omg.sysml.lang.sysml.ItemFlow;
 import org.omg.sysml.lang.sysml.ItemUsage;
@@ -422,40 +423,28 @@ public class SysML2PlantUMLStyle {
 
 		@Override
 		public String casePerformActionUsage(PerformActionUsage pau) {
-            return "<<perform action>> ";
+            return " perform action>> ";
 		}
 
 		@Override
 		public String caseAcceptActionUsage(AcceptActionUsage aau) {
-            return "<<accept action>> ";
+            return " accept action>> ";
 		}
 
 		@Override
 		public String caseSendActionUsage(SendActionUsage sau) {
-            return "<<send action>> ";
+            return " send action>> ";
 		}
 
 		@Override
 		public String caseAnalysisCaseUsage(AnalysisCaseUsage acu) {
-            return "<<analysis>> ";
+            return " analysis>> ";
 		}
 
 		@Override
 		public String caseAnalysisCaseDefinition(AnalysisCaseDefinition acd) {
-            return "<<analysis def>> ";
+            return " analysis def>> ";
 		}
-
-		@Override
-        public String caseIndividualUsage(IndividualUsage iu) {
-            if (iu.isTimeSlice()) {
-                return "<<timeslice>> ";
-            } else if (iu.isSnapshot()) {
-                return "<<snapshot>> ";
-            } else {
-                return "<<individual>> ";
-            }
-        }
-        
     }
 
 }

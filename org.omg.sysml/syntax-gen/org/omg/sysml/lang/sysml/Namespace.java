@@ -45,12 +45,12 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link org.omg.sysml.lang.sysml.Namespace#getOwnedMembership <em>Owned Membership</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Namespace#getOwnedMember <em>Owned Member</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Namespace#getMembership <em>Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Namespace#getOwnedImport <em>Owned Import</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Namespace#getMember <em>Member</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Namespace#getOwnedMember <em>Owned Member</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Namespace#getImportedMembership <em>Imported Membership</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Namespace#getOwnedMembership <em>Owned Membership</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getNamespace()
@@ -116,9 +116,9 @@ public interface Namespace extends Element {
 	 * <!-- begin-model-doc -->
 	 * <p>Return the names of the given <code>element</code> as it is known in this Namespace.</p>
 	 * 
+	 * memberships->select(memberElement = element).effectiveMemberName->asSet()
 	 * <!-- end-model-doc -->
 	 * @model dataType="org.omg.sysml.lang.types.String" ordered="false" elementRequired="true" elementOrdered="false"
-	 *        annotation="http://www.eclipse.org/uml2/1.1.0/GenModel body='memberships-&gt;select(memberElement = element).effectiveMemberName-&gt;asSet()'"
 	 * @generated
 	 */
 	EList<String> namesOf(Element element);
@@ -129,9 +129,10 @@ public interface Namespace extends Element {
 	 * <!-- begin-model-doc -->
 	 * <p>Return the publicly visible Memberships of this Namespace, which includes those <code>ownedMemberships</code> that have a <code>visibility</code> of <code>public</code> and those <code>importedMemberships</code> imported with a <code>visibility</code> of <code>public</code>.</p>
 	 * 
+	 * ownedMembership->union(importedMembership(excluded))->
+	 *     select(m | visibilityOf(m) = VisibilityKind::public)
 	 * <!-- end-model-doc -->
 	 * @model excludedMany="true" excludedOrdered="false"
-	 *        annotation="http://www.eclipse.org/uml2/1.1.0/GenModel body='ownedMembership-&gt;union(importedMembership(excluded))-&gt;\n    select(m | visibilityOf(m) = VisibilityKind::public)'"
 	 * @generated
 	 */
 	EList<Membership> publicMemberships(EList<Namespace> excluded);
@@ -141,9 +142,15 @@ public interface Namespace extends Element {
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * <p>Returns this visibility of <code>mem</code> relative to this Namespace. If <code>mem</code> is an <code>importedMembership</code>, this is the <code>visibility</code> of its Import. Otherwise it is the <code>visibility</code> of the Membership itself.</p>
+	 * if importedMembership->includes(mem) then
+	 *     ownedImport->any(importedMembership(Set{})->includes(mem)).visibility
+	 * else if memberships->includes(mem) then
+	 *     mem.visibility
+	 * else
+	 *     VisibilityKind::private
+	 * endif
 	 * <!-- end-model-doc -->
 	 * @model required="true" ordered="false" memRequired="true" memOrdered="false"
-	 *        annotation="http://www.eclipse.org/uml2/1.1.0/GenModel body='if importedMemberships-&gt;includes(mem) then\n    ownedImport-&gt;select(importedMembership()-&gt;includes(mem)).visibility\nelse if memberships-&gt;includes(mem) then\n    mem.visibility\nelse\n    VisibilityKind::private\nendif'"
 	 * @generated
 	 */
 	VisibilityKind visibilityOf(Membership mem);
@@ -153,9 +160,12 @@ public interface Namespace extends Element {
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * <p>Derive the imported Memberships of this Namespace as the <code>importedMembership</code> of all <code>ownedImports</code>, excluding those Imports whose <code>importOwningNamespace</code> is in the <code>excluded</code> set, and excluding Memberships that have distinguisibility collisions with each other or with any <code>ownedMembership</code>.</p>
+	 * let includedImports : OrderedSet(Import) =
+	 *     ownedImport->excluding(excluded->contains(importOwningNamespace)) in
+	 * excludeCollisions(includedImports.importedMembership(excluded))->
+	 *     select(m1 | ownedMembership->forAll(m2 | m1.isDistinguishableFrom(m2)))
 	 * <!-- end-model-doc -->
 	 * @model excludedMany="true" excludedOrdered="false"
-	 *        annotation="http://www.eclipse.org/uml2/1.1.0/GenModel body='let includedImports : OrderedSet(Import) =\n    ownedImport-&gt;excluding(excluded-&gt;contains(importOwningNamespace)) in\nexcludeCollisions(includedImports.importedMembership(excluded))-&gt;\n    select(m1 | ownedMembership-&gt;forAll(m2 | m1.isDistinguishableFrom(m2)))'"
 	 * @generated
 	 */
 	EList<Membership> importedMemberships(EList<Namespace> excluded);
@@ -271,9 +281,9 @@ public interface Namespace extends Element {
 	 * <!-- begin-model-doc -->
 	 * <p>Exclude from the given set <code>mem</code> of Memberships those that would not be distinguishable from each other if imported into this Namespace.</p>
 	 * 
+	 * mem->reject(m1 | mem->exists(m2 | not m1.isDistinguishable(m2)))
 	 * <!-- end-model-doc -->
 	 * @model memMany="true"
-	 *        annotation="http://www.eclipse.org/uml2/1.1.0/GenModel body='mem-&gt;reject(m1 | mem-&gt;exists(m2 | not m1.isDistinguishable(m2)))'"
 	 * @generated
 	 */
 	EList<Membership> excludeCollisions(EList<Membership> mem);

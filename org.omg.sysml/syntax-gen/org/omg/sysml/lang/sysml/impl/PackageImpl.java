@@ -27,9 +27,6 @@ import java.util.Collection;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
-
-import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.ocl.expressions.OCLExpression;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.ElementFilterMembership;
 import org.omg.sysml.lang.sysml.Expression;
@@ -94,30 +91,6 @@ public class PackageImpl extends NamespaceImpl implements org.omg.sysml.lang.sys
 	}
 
 	/**
-	 * The cached OCL expression body for the '{@link #includeAsMember(org.omg.sysml.lang.sysml.Element) <em>Include As Member</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #includeAsMember(org.omg.sysml.lang.sysml.Element)
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String INCLUDE_AS_MEMBER__ELEMENT__EOCL_EXP = "let metadataAnnotations: Sequence(AnnotatingElement) = "+
-"    element.ownedAnnotation.annotatingElement->"+
-"        select(oclIsKindOf(AnnotatingFeature)) in"+
-"    self.filterCondition->forAll(cond | "+
-"        metadataAnnotations->exists(elem | "+
-"            self.checkCondition(elem, cond)))";
-	/**
-	 * The cached OCL query for the '{@link #includeAsMember(org.omg.sysml.lang.sysml.Element) <em>Include As Member</em>}' query operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #includeAsMember(org.omg.sysml.lang.sysml.Element)
-	 * @generated
-	 * @ordered
-	 */
-	protected static OCLExpression<EClassifier> INCLUDE_AS_MEMBER__ELEMENT__EOCL_QRY;
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated NOT
@@ -126,28 +99,6 @@ public class PackageImpl extends NamespaceImpl implements org.omg.sysml.lang.sys
 		return ExpressionUtil.checkConditionsOn(element, getFilterCondition());
 	}
 	
-	/**
-	 * The cached OCL expression body for the '{@link #checkCondition(org.omg.sysml.lang.sysml.Element, org.omg.sysml.lang.sysml.Expression) <em>Check Condition</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #checkCondition(org.omg.sysml.lang.sysml.Element, org.omg.sysml.lang.sysml.Expression)
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String CHECK_CONDITION__ELEMENT_EXPRESSION__EOCL_EXP = "let results: Sequence(Element) = condition.evaluate(element) in"+
-"    result->size() = 1 and"+
-"    results->at(1).oclIsKindOf(LiteralBoolean) and "+
-"    results->at(1).oclAsType(LiteralBoolean).value";
-	/**
-	 * The cached OCL query for the '{@link #checkCondition(org.omg.sysml.lang.sysml.Element, org.omg.sysml.lang.sysml.Expression) <em>Check Condition</em>}' query operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #checkCondition(org.omg.sysml.lang.sysml.Element, org.omg.sysml.lang.sysml.Expression)
-	 * @generated
-	 * @ordered
-	 */
-	protected static OCLExpression<EClassifier> CHECK_CONDITION__ELEMENT_EXPRESSION__EOCL_QRY;
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

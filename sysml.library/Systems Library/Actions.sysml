@@ -81,7 +81,7 @@ package Actions {
 	 */
 	action def SendAction(in items[0..*], in receiver: Occurrence[1]) {
 	    ref outgoingTransfer: TransferBefore[1] :>> outgoingTransfersFromSelf :> receiver::incomingTransfers {
-	    	ref :>> transferSource: SendAction {
+	    	ref :>> source: SendAction {
 	    		ref :>> sourceOutput = items;
 	    	}
 	    }
@@ -99,7 +99,7 @@ package Actions {
 	 */
 	action def AcceptAction(out items[0..*], in receiver: Occurrence[1]) {
 		ref incomingTransfer: TransferBefore[1] :>> incomingTransfersToSelf :> receiver::incomingTransfers {
-			ref :>> transferTarget: AcceptAction {
+			ref :>> target: AcceptAction {
 				ref :>> targetInput = items;
 			}
 		}

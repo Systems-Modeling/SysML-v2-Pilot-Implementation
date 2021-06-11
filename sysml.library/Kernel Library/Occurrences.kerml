@@ -107,35 +107,35 @@ package Occurrences {
 		 * The incoming transfers received by this occurrence. 
 		 */
 		feature incomingTransfers: Transfers::Transfer[0..*] subsets Transfers::transfers {
-			end feature redefines transferSource;
-			end feature redefines transferTarget;
+			end feature redefines source;
+			end feature redefines target;
 		}
 		
 		/**
 		 * The incoming transfers with this occurrence as the target. 
 		 */
 		feature all incomingTransfersToSelf subsets incomingTransfers {
-			end feature redefines transferSource;
-			end feature redefines transferTarget;
+			end feature redefines source;
+			end feature redefines target;
 		}
-		binding incomingTransfersToSelf::transferTarget = self;
+		binding incomingTransfersToSelf::target = self;
 
 		/**
 		 * The outgoing transfers sent from this occurrence. 
 		 */
 		feature outgoingTransfers: Transfers::Transfer[0..*] subsets Transfers::transfers {
-			end feature redefines transferSource;
-			end feature redefines transferTarget;
+			end feature redefines source;
+			end feature redefines target;
 		}
 		
 		/**
 		 * The outgoing transfers with this occurrence as the source. 
 		 */
 		feature all outgoingTransfersFromSelf subsets outgoingTransfers {
-			end feature redefines transferSource;
-			end feature redefines transferTarget;
+			end feature redefines source;
+			end feature redefines target;
 		}
-		binding outgoingTransfersFromSelf::transferSource = self;
+		binding outgoingTransfersFromSelf::source = self;
 	}
 	
 	abstract class all Life specializes Occurrence {
@@ -146,6 +146,18 @@ package Occurrences {
 	}
 	
 	abstract feature occurrences: Occurrence[0..*] subsets things;
+	
+	/**
+	 * HappensLink is the base of the associations that assert temporal relationships 
+	 * between a sourceOccurrence and a targetOccurrence. Because HappensLinks assert 
+	 * temporal relationships, they cannot themselves be Occurrences that happen in time.
+	 * Therefore HappensLink is disjoint with LinkObject, that is, no HappensLink can 
+	 * also be a LinkObject.
+	 */
+	assoc HappensLink {
+		end feature sourceOccurrence: Occurrence[0..*];
+		end feature targetOccurrence: Occurrence[0..*];
+	}
 
 	/**
 	 * HappensDuring asserts that the shorterOccurrence happens during the longerOccurrence.
@@ -154,9 +166,9 @@ package Occurrences {
 	 * same time as) some snapshot of the longerOccurrence. Note that this means every
 	 *  occurrence happens during itself.
 	 */
-	assoc HappensDuring {
-		end feature shorterOccurrence: Occurrence[1..*] redefines Occurrence::suboccurrences, BinaryLink::source;
-		end feature longerOccurrence: Occurrence[1..*];
+	assoc HappensDuring specializes HappensLink {
+		end feature shorterOccurrence: Occurrence[1..*] redefines Occurrence::suboccurrences, sourceOccurrence;
+		end feature longerOccurrence: Occurrence[1..*] redefines targetOccurrence;
 	}
 	
 	/**
@@ -178,7 +190,7 @@ package Occurrences {
 	 * laterOccurrence, or every snapshot of the earlierOccurrence happens before every 
 	 * snapshot of the laterOccurrence. Note that this means no occurrence happens before itself.
 	 */
-	assoc HappensBefore {
+	assoc HappensBefore specializes HappensLink {
 		end feature earlierOccurrence: Occurrence[0..*] redefines Occurrence::predecessors, BinaryLink::source;
 		end feature laterOccurrence: Occurrence[0..*] redefines Occurrence::successors, BinaryLink::target;
 		
@@ -210,10 +222,10 @@ package Occurrences {
 	}
 	
 	/**
-	 * successions is a specialization of binaryLinks restricted to type HappensBefore.
+	 * happensBeforeLinks is a specialization of binaryLinks restricted to type HappensBefore.
 	 * It is the default subsetting for succession connectors.
 	 */
-	 feature successions: HappensBefore[0..*] nonunique subsets binaryLinks {
+	 feature happensBeforeLinks: HappensBefore[0..*] nonunique subsets binaryLinks {
 	 	end feature earlierOccurrence: Occurrence[0..*] redefines HappensBefore::earlierOccurrence, binaryLinks::source;
 	 	end feature laterOccurrence: Occurrence[0..*] redefines HappensBefore::laterOccurrence, binaryLinks::target;
 	 }

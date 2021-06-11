@@ -42,27 +42,11 @@ package 'Individuals and Roles' {
 		part c_1 : C;
 	}
 	individual def B_1 :> B;
+	
 	// XPECT errors --> "An individual must be typed by one individual definition." at "individual two_types : A_1, B_1;"
 	individual two_types : A_1, B_1;
 
-	individual a_1 : A_1 {
-		snapshot a_1_1 {
-			snapshot b_1_1 : AA :>> b_1;
-		}
-		
-		snapshot a_1_2 {
-			// XPECT errors --> "An individual must be typed by one individual definition." at "snapshot c_1_1 : CC :>> c_1;"
-			snapshot c_1_1 : CC :>> c_1;
-			//cc is part-def-typed by A, but c_1 is part-def=typed by C
-		}
-		snapshot a_1_3 {
-			// XPECT errors --> "An individual must be typed by one individual definition." at "snapshot c_1_1 : DD :>> c_1;"
-			snapshot c_1_1 : DD :>> c_1;
-			//DD has no part-def-type, but c_1 is part-def-typed by C
-		}		
-		snapshot a_1_4 {
-			// XPECT errors -->"An individual must be typed by one individual definition." at "snapshot b_1_1 : B :>> b_1;"
-			snapshot b_1_1 : B :>> b_1;
-		}
-	}
+	// XPECT errors -->"An individual must be typed by one individual definition." at "individual snapshot b_1_1 : B;"
+	individual snapshot b_1_1 : B;
+	
 }

@@ -47,7 +47,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface ActionUsage extends Usage, Step {
+public interface ActionUsage extends OccurrenceUsage, Step {
 	/**
 	 * Returns the value of the '<em><b>Action Definition</b></em>' reference list.
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Behavior}.
@@ -56,6 +56,7 @@ public interface ActionUsage extends Usage, Step {
 	 * </p>
 	 * <ul>
 	 *   <li>'{@link org.omg.sysml.lang.sysml.Step#getBehavior() <em>Behavior</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.OccurrenceUsage#getOccurrenceDefinition() <em>Occurrence Definition</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

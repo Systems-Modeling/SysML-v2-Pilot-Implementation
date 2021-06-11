@@ -63,7 +63,7 @@ import org.omg.sysml.util.UsageUtil;
  *
  * @generated
  */
-public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
+public class ConstraintUsageImpl extends OccurrenceUsageImpl implements ConstraintUsage {
 	
 	/**
 	 * The default value of the '{@link #isModelLevelEvaluable() <em>Is Model Level Evaluable</em>}' attribute.
@@ -124,7 +124,7 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 	 * @generated NOT
 	 */
 	public Predicate basicGetConstraintDefinition() {
-		return (Predicate)super.getType().stream().
+		return (Predicate)super.getOccurrenceDefinition().stream().
 				filter(type->type instanceof Predicate).
 				findFirst().orElse(null);
 	}
@@ -165,8 +165,8 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 	@Override
 	public EList<Type> getType() {
 		@SuppressWarnings("unchecked")
-		EList<Type> behavior = (EList<Type>)((EList<?>)getBehavior());
-		return behavior;
+		EList<Type> definition = (EList<Type>)((EList<?>)getDefinition());
+		return definition;
 	}
 
 	/**

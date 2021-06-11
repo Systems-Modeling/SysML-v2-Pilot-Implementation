@@ -1,47 +1,54 @@
 package SequenceFunctions {
 	private import Base::Anything;
 	private import ScalarValues::*;
-	private import ControlFunctions::exists;
-	private import ControlFunctions::select;
-	private import ControlFunctions::reject;
+	private import ControlFunctions::*;
+	
+	function equals (x: Anything[0..*] ordered nonunique, y: Anything[0..*] ordered nonunique): Boolean {
+		size(x) == size(y) &&
+		(1..size(x))->forAll {in i; x[i] == y[i]}
+	}
 
-	function size(seq: Anything[0..*]): Natural {
+	function size(seq: Anything[0..*] ordered nonunique): Natural[1] {
 		isEmpty(seq)? 0: size(tail(seq)) + 1
 	}
-	function isEmpty(seq: Anything[0..*]): Boolean {
+	function isEmpty(seq: Anything[0..*] ordered nonunique): Boolean[1] {
 		seq == null
 	}
-	function notEmpty(seq: Anything[0..*]): Boolean {
+	function notEmpty(seq: Anything[0..*] ordered nonunique): Boolean[1] {
 		!isEmpty(seq)
 	}
-	function includes(seq: Anything[0..*], value: Anything[1]): Boolean {
+	function includes(seq: Anything[0..*] ordered nonunique, value: Anything[1]): Boolean[1] {
 		seq->exists {in x; x == value}
 	}
-	function excludes(seq: Anything[0..*], value: Anything[1]): Boolean {
+	function excludes(seq: Anything[0..*] ordered nonunique, value: Anything[1]): Boolean[1] {
 		!seq->includes(value)
 	}
 	
-	function union(seq1: Anything[0..*] nonunique, seq2: Anything[0..*] nonunique): Anything[0..*] nonunique {
+	function union(seq1: Anything[0..*] ordered nonunique, seq2: Anything[0..*] ordered nonunique): Anything[0..*] ordered nonunique {
 		(seq1, seq2)
 	}
-	function intersection(seq1: Anything[0..*] nonunique, seq2: Anything[0..*] nonunique): Anything[0..*] nonunique {
+	function intersection(seq1: Anything[0..*] ordered nonunique, seq2: Anything[0..*] ordered nonunique): Anything[0..*] ordered nonunique {
 		seq1->select {in x; seq2->includes(x)}
 	}
-	function including(seq: Anything[0..*] nonunique, value : Anything[1]): Anything[0..*] nonunique {
+	function including(seq: Anything[0..*] ordered nonunique, value : Anything[1]): Anything[0..*] ordered nonunique {
 		(seq, value)
 	}
-	function excluding(seq: Anything[0..*] nonunique, value : Anything[1]): Anything[0..*] nonunique {
+	function excluding(seq: Anything[0..*] ordered nonunique, value : Anything[1]): Anything[0..*] ordered nonunique {
 		seq->reject {in x; x == value}
 	}
 	
-	function head(seq: Anything[0..*] ordered): Anything[0..1] {
+	function subsequence(seq: Anything[0..*] ordered nonunique, startIndex: Positive[1], endIndex: Positive[1]): Anything[0..*] {
+		(startIndex..endIndex)->collect {in i; seq[i]}
+	}
+	function head(seq: Anything[0..*] ordered nonunique): Anything[0..1] {
 		seq[1]
 	}
-	function tail(seq: Anything[0..*] ordered): Anything[0..1] {
-		seq->excluding(head(seq))
+	function tail(seq: Anything[0..*] ordered nonunique): Anything[0..*] ordered nonunique {
+		subsequence(seq, 2, size(seq))
 	}
-	function last(seq: Anything[0..*] ordered): Anything[0..1] {
+	function last(seq: Anything[0..*] ordered nonunique): Anything[0..1] {
 		seq[size(seq)]
 	}
 	
+	function '[' specializes BaseFunctions::'[' (seq: Anything[0..*] ordered nonunique, index: Positive[1]): Anything[0..1];
 }

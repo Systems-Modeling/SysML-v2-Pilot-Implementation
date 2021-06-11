@@ -41,8 +41,6 @@ import org.omg.sysml.lang.sysml.ActionUsage
 import org.omg.sysml.lang.sysml.Behavior
 import org.omg.sysml.lang.sysml.impl.FeatureImpl
 import org.omg.sysml.lang.sysml.ConstraintUsage
-import org.omg.sysml.lang.sysml.IndividualUsage
-import org.omg.sysml.lang.sysml.IndividualDefinition
 import org.omg.sysml.lang.sysml.ConnectionUsage
 import org.omg.sysml.lang.sysml.Feature
 import org.eclipse.emf.ecore.EReference
@@ -91,6 +89,10 @@ import org.omg.sysml.lang.sysml.EnumerationUsage
 import org.omg.sysml.lang.sysml.AllocationUsage
 import org.omg.sysml.lang.sysml.AllocationDefinition
 import org.omg.sysml.util.UsageUtil
+import org.omg.sysml.lang.sysml.OccurrenceUsage
+import org.omg.sysml.lang.sysml.OccurrenceDefinition
+import org.omg.sysml.lang.sysml.Structure
+import org.omg.sysml.lang.sysml.Step
 
 /**
  * This class contains custom validation rules. 
@@ -111,12 +113,18 @@ class SysMLValidator extends KerMLValidator {
 	public static val INVALID_USAGE_VARIATION = 'Invalid Usage - invalid variation'
 	public static val INVALID_USAGE_VARIATION_MSG = 'A variation must only have variant owned members.'
 	
-	public static val INVALID_ACTIONUSAGE = 'Invalid Action Usage - invalid type'
-	public static val INVALID_ACTIONUSAGE_MSG = 'An action must be typed by action definitions.'
+	public static val INVALID_ATTRIBUTEUSAGE = 'Invalid attribute usage - invalid type'
+	public static val INVALID_ATTRIBUTEUSAGE_MSG = 'An attribute must be typed by attribute definitions.'
+	public static val INVALID_ENUMERATIONATTRIBUTEUSAGE = 'Invalid attribute usage - too many enumeration types'
+	public static val INVALID_ENUMERATIONATTRIBUTEUSAGE_MSG = 'An enumeration attribute cannot have more than one type.'
+	public static val INVALID_ENUMERATIONUSAGE = 'Invalid enumeration usage - invalid type'
+	public static val INVALID_ENUMERATIONUSAGE_MSG = 'An enumeration must be typed by one enumeration definition.'
+	public static val INVALID_OCCURRENCEUSAGE = 'Invalid OccurrenceUsage - invalid type'
+	public static val INVALID_OCCURRENCEUSAGE_MSG = 'An occurrence must be typed by occurrence definitions.'
 	public static val INVALID_ITEMUSAGE = 'Invalid Item Usage - invalid type'
-	public static val INVALID_ITEMUSAGE_MSG = 'An item usage must be typed by item definitions.'
-	public static val INVALID_PARTUSAGE = 'Invalid Block Property - invalid type'
-	public static val INVALID_PARTUSAGE_MSG = 'A part usage must be typed by item definitions and at least one part definition.'
+	public static val INVALID_ITEMUSAGE_MSG = 'An item must be typed by item definitions.'
+	public static val INVALID_PARTUSAGE = 'Invalid Part Usage - invalid type'
+	public static val INVALID_PARTUSAGE_MSG = 'A part must be typed by item definitions and at least one part definition.'
 	public static val INVALID_CONSTRAINTUSAGE = 'Invalid Constraint Usage - invalid type'
 	public static val INVALID_CONSTRAINTUSAGE_MSG = 'A constraint must be typed by one constraint definition.'
 	public static val INVALID_INDIVIDUALUSAGE = 'Invalid IndividualUsage - invalid type'
@@ -131,14 +139,10 @@ class SysMLValidator extends KerMLValidator {
 	public static val INVALID_PORTUSAGE_MSG = 'A port must be typed by port definitions.'
 	public static val INVALID_REQUIREMENTUSAGE = 'Invalid RequirementUsage - invalid type'
 	public static val INVALID_REQUIREMENTUSAGE_MSG = 'A requirement must be typed by one requirement definition.'
+	public static val INVALID_ACTIONUSAGE = 'Invalid Action Usage - invalid type'
+	public static val INVALID_ACTIONUSAGE_MSG = 'An action must be typed by action definitions.'
 	public static val INVALID_STATEUSAGE = 'Invalid StateUsage - invalid type'
 	public static val INVALID_STATEUSAGE_MSG = 'A state must be typed by state definitions.'
-	public static val INVALID_ATTRIBUTEUSAGE = 'Invalid attribute usage - invalid type'
-	public static val INVALID_ATTRIBUTEUSAGE_MSG = 'An attribute must be typed by attribute definitions.'
-	public static val INVALID_ENUMERATIONATTRIBUTEUSAGE = 'Invalid attribute usage - too many enumeration types'
-	public static val INVALID_ENUMERATIONATTRIBUTEUSAGE_MSG = 'An enumeration attribute cannot have more than one type.'
-	public static val INVALID_ENUMERATIONUSAGE = 'Invalid enumeration usage - invalid type'
-	public static val INVALID_ENUMERATIONUSAGE_MSG = 'An enumeration must be typed by one enumeration definition.'
 	public static val INVALID_CALCULATIONUSAGE = 'Invalid CalculationUsage - invalid type'
 	public static val INVALID_CALCULATIONUSAGE_MSG = 'A calculation must be typed by one calculation definition.'
 	public static val INVALID_CASEUSAGE = 'Invalid CaseUsage - invalid type'
@@ -190,22 +194,41 @@ class SysMLValidator extends KerMLValidator {
 		else false
 	}
 
+	@Check //All types must be DataTypes.
+	def checkAttributeUsageTypes(AttributeUsage usg){
+		checkAllTypes(usg, DataType, SysMLValidator.INVALID_ATTRIBUTEUSAGE_MSG, SysMLPackage.eINSTANCE.attributeUsage_AttributeDefinition, SysMLValidator.INVALID_ATTRIBUTEUSAGE)
+		if (!(usg instanceof EnumerationUsage)) {
+		val types = (usg as FeatureImpl).allTypes
+			if (types.exists[t | t instanceof EnumerationDefinition] && types.size > 1) {
+				error(INVALID_ENUMERATIONATTRIBUTEUSAGE_MSG, SysMLPackage.eINSTANCE.attributeUsage_AttributeDefinition, SysMLValidator.INVALID_ENUMERATIONATTRIBUTEUSAGE)
+			}
+		}
+	}
+	@Check // Must have exactly one type, which is an EnumerationDefinition
+	def checkEnumerationUsage(EnumerationUsage usg){
+		checkOneType(usg, EnumerationDefinition, INVALID_ENUMERATIONUSAGE_MSG, SysMLPackage.eINSTANCE.enumerationUsage_EnumerationDefinition, INVALID_ENUMERATIONUSAGE)
+	}
+	@Check //All types must be Classes. 
+	def checkOccurreceUsageTypes(OccurrenceUsage ou){
+		if (!(ou instanceof ItemUsage || ou instanceof Step))	
+			checkAllTypes(ou, org.omg.sysml.lang.sysml.Class, SysMLValidator.INVALID_OCCURRENCEUSAGE_MSG, SysMLPackage.eINSTANCE.occurrenceUsage_OccurrenceDefinition, SysMLValidator.INVALID_OCCURRENCEUSAGE)
+	}
+	@Check //All types must be Structures. 
+	def checkItemUsageTypes(ItemUsage iu){
+		if (!(iu instanceof PartUsage))	
+			checkAllTypes(iu, Structure, SysMLValidator.INVALID_ITEMUSAGE_MSG, SysMLPackage.eINSTANCE.itemUsage_ItemDefinition, SysMLValidator.INVALID_ITEMUSAGE)
+	}
+	@Check //All types must be Structures, at least one must be a PartDefinition. 
+	def checkPartUsageTypes(PartUsage pu){
+		if (!(pu instanceof PortUsage || pu instanceof ConnectionUsage))
+			if (checkAllTypes(pu, Structure, SysMLValidator.INVALID_PARTUSAGE_MSG, SysMLPackage.eINSTANCE.itemUsage_ItemDefinition, SysMLValidator.INVALID_PARTUSAGE))
+				checkAtLeastOneType(pu, PartDefinition, SysMLValidator.INVALID_PARTUSAGE_MSG, SysMLPackage.eINSTANCE.partUsage_PartDefinition, SysMLValidator.INVALID_PARTUSAGE)
+	}
 	@Check //All types must be Behaviors
 	def checkActionUsageTypes(ActionUsage usg){
 		if (!(usg instanceof StateUsage|| usg instanceof CalculationUsage) )
 			checkAllTypes(usg, Behavior, SysMLValidator.INVALID_ACTIONUSAGE_MSG, SysMLPackage.eINSTANCE.actionUsage_ActionDefinition, SysMLValidator.INVALID_ACTIONUSAGE)
 	}	
-	@Check //All types must be Classes. 
-	def checkItemUsageTypes(ItemUsage iu){
-		if (!(iu instanceof IndividualUsage || iu instanceof PartUsage))	
-			checkAllTypes(iu, org.omg.sysml.lang.sysml.Class, SysMLValidator.INVALID_ITEMUSAGE_MSG, SysMLPackage.eINSTANCE.itemUsage_ItemDefinition, SysMLValidator.INVALID_ITEMUSAGE)
-	}
-	@Check //All types must be Classes, at least one must be a PartDefinition. 
-	def checkPartUsageTypes(PartUsage pu){
-		if (!(pu instanceof PortUsage || pu instanceof ConnectionUsage))
-			if (checkAllTypes(pu, org.omg.sysml.lang.sysml.Class, SysMLValidator.INVALID_PARTUSAGE_MSG, SysMLPackage.eINSTANCE.itemUsage_ItemDefinition, SysMLValidator.INVALID_PARTUSAGE))
-				checkAtLeastOneType(pu, PartDefinition, SysMLValidator.INVALID_PARTUSAGE_MSG, SysMLPackage.eINSTANCE.partUsage_PartDefinition, SysMLValidator.INVALID_PARTUSAGE)
-	}
 	@Check //Must have exactly one type, which is a Predicate.
 	def checkConstraintUsageTypes(ConstraintUsage usg){
 		if (!(usg instanceof RequirementUsage))
@@ -229,9 +252,10 @@ class SysMLValidator extends KerMLValidator {
 	def checkVerificationCaseUsageTypes(VerificationCaseUsage usg){
 		checkOneType(usg, VerificationCaseDefinition, SysMLValidator.INVALID_VERIFICATIONCASEUSAGE_MSG, SysMLPackage.eINSTANCE.verificationCaseUsage_VerificationCaseDefinition, SysMLValidator.INVALID_VERIFICATIONCASEUSAGE)
 	}
-	@Check //Must have exactly one type, which is an IndividualDefinition
-	def checkIndividualUsageTypes(IndividualUsage usg){
-		checkOneType(usg, IndividualDefinition, SysMLValidator.INVALID_INDIVIDUALUSAGE_MSG, SysMLPackage.eINSTANCE.individualUsage_IndividualDefinition, SysMLValidator.INVALID_INDIVIDUALUSAGE)
+	@Check //Must have one occurrenceDefinition that is an individual.
+	def checkIndividualUsageTypes(OccurrenceUsage usg){
+		if (usg.isIndividual && usg.occurrenceDefinition.filter[t | t instanceof OccurrenceDefinition && (t as OccurrenceDefinition).isIndividual].size() != 1)
+			error (SysMLValidator.INVALID_INDIVIDUALUSAGE_MSG, SysMLPackage.eINSTANCE.occurrenceUsage_OccurrenceDefinition, SysMLValidator.INVALID_INDIVIDUALUSAGE)	
 	}
 	@Check //All types must be Associations.
 	def checkConnectionUsageTypes(ConnectionUsage usg){
@@ -257,20 +281,6 @@ class SysMLValidator extends KerMLValidator {
 	@Check //All types must be Behaviors.
 	def checkStateDefinitionTypes(StateUsage usg){
 		checkAllTypes(usg, Behavior, SysMLValidator.INVALID_STATEUSAGE_MSG, SysMLPackage.eINSTANCE.stateUsage_StateDefinition, SysMLValidator.INVALID_STATEUSAGE)
-	}
-	@Check //All types must be DataTypes.
-	def checkAttributeUsageTypes(AttributeUsage usg){
-		checkAllTypes(usg, DataType, SysMLValidator.INVALID_ATTRIBUTEUSAGE_MSG, SysMLPackage.eINSTANCE.attributeUsage_AttributeDefinition, SysMLValidator.INVALID_ATTRIBUTEUSAGE)
-		if (!(usg instanceof EnumerationUsage)) {
-		val types = (usg as FeatureImpl).allTypes
-			if (types.exists[t | t instanceof EnumerationDefinition] && types.size > 1) {
-				error(INVALID_ENUMERATIONATTRIBUTEUSAGE_MSG, SysMLPackage.eINSTANCE.attributeUsage_AttributeDefinition, SysMLValidator.INVALID_ENUMERATIONATTRIBUTEUSAGE)
-			}
-		}
-	}
-	@Check // Must have exactly one type, which is an EnumerationDefinition
-	def checkEnumerationUsage(EnumerationUsage usg){
-		checkOneType(usg, EnumerationDefinition, INVALID_ENUMERATIONUSAGE_MSG, SysMLPackage.eINSTANCE.enumerationUsage_EnumerationDefinition, INVALID_ENUMERATIONUSAGE)
 	}
 	@Check //Must have exactly one type, which is a ViewDefinition.
 	def checkViewUsageTypes(ViewUsage usg){
@@ -352,7 +362,7 @@ class SysMLValidator extends KerMLValidator {
 	
 	//check types but must have exactly one type
 	protected def boolean checkOneType(Feature f, Class<?> requiredType, String msg, EReference ref, String eId){
-		val types = (f as FeatureImpl).allTypes;
+		val types = (f as FeatureImpl).allTypes
 		val check = types.length == 1 && types.exists[u| requiredType.isInstance(u)]
 		if (!check)
 			error (msg, ref, eId)

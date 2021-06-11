@@ -55,7 +55,7 @@ public interface ViewpointDefinition extends RequirementDefinition {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The features that identify the stakeholders with concerns addressed by this ViewpointDefinition, derived as the <code>ownedStakeholders</code> of the <code>addressedConcerns</code> of this ViewpointDefinition.</p>
+	 * <p>The features that identify the stakeholders with concerns addressed by this ViewpointDefinition, derived as the owned and inherited Stakeholders of the <code>addressedConcerns</code> of this ViewpointDefinition.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Viewpoint Stakeholder</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getViewpointDefinition_ViewpointStakeholder()

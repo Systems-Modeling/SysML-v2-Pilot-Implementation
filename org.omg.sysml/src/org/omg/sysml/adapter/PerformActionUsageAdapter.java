@@ -36,6 +36,15 @@ public class PerformActionUsageAdapter extends ActionUsageAdapter {
 	public PerformActionUsage getTarget() {
 		return (PerformActionUsage)super.getTarget();
 	}
+	
+	@Override
+	public void addDefaultGeneralType() {
+		super.addDefaultGeneralType();
+		if (isEnactedPerformance()) {
+			addImplicitGeneralType(getGeneralizationEClass(), 
+					getLibraryType(getDefaultSupertype("enactedPerformance")));;
+		}
+	}
 
 	@Override
 	protected String getDefaultSupertype() {

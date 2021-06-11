@@ -42,8 +42,6 @@ import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.Function;
-import org.omg.sysml.lang.sysml.IndividualDefinition;
-import org.omg.sysml.lang.sysml.IndividualUsage;
 import org.omg.sysml.lang.sysml.InvocationExpression;
 import org.omg.sysml.lang.sysml.LiteralBoolean;
 import org.omg.sysml.lang.sysml.Namespace;
@@ -358,20 +356,6 @@ public class FeatureAdapter extends TypeAdapter {
 	}
 	
 	// Transformation
-	
-	/**
-	 * This method is used for time slice and snapshot features.
-	 */
-	public void setIndividualTyping() {
-		Feature target = getTarget();
-		Type owningType = target.getOwningType();
-		if (owningType instanceof IndividualDefinition || owningType instanceof IndividualUsage) {
-			Type type = owningType instanceof IndividualUsage? 
-					((IndividualUsage)owningType).getIndividualDefinition(): 
-					owningType;
-					addImplicitGeneralType(SysMLPackage.eINSTANCE.getFeatureTyping(), type);
-		}
-	}	
 	
 	protected BindingConnector valueConnector;
 	

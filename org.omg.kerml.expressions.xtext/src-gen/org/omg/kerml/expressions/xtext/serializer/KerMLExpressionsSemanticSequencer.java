@@ -52,7 +52,6 @@ public class KerMLExpressionsSemanticSequencer extends AbstractDelegatingSemanti
 			switch (semanticObject.eClass().getClassifierID()) {
 			case SysMLPackage.EXPRESSION:
 				if (rule == grammarAccess.getOwnedExpressionRule()
-						|| rule == grammarAccess.getExpressionBodyRule()
 						|| rule == grammarAccess.getConditionalExpressionRule()
 						|| action == grammarAccess.getConditionalExpressionAccess().getOperatorExpressionOperandAction_1_0()
 						|| rule == grammarAccess.getNullCoalescingExpressionRule()
@@ -91,6 +90,7 @@ public class KerMLExpressionsSemanticSequencer extends AbstractDelegatingSemanti
 						|| action == grammarAccess.getPrimaryExpressionAccess().getPathStepExpressionOperandAction_1_2_0()
 						|| action == grammarAccess.getPrimaryExpressionAccess().getPathSelectExpressionOperandAction_1_3_0()
 						|| rule == grammarAccess.getBaseExpressionRule()
+						|| rule == grammarAccess.getExpressionBodyRule()
 						|| rule == grammarAccess.getSequenceExpressionRule()
 						|| action == grammarAccess.getSequenceExpressionAccess().getOperatorExpressionOperandAction_1_1_0()) {
 					sequence_ExpressionBody(context, (Expression) semanticObject); 
@@ -102,8 +102,8 @@ public class KerMLExpressionsSemanticSequencer extends AbstractDelegatingSemanti
 				}
 				else break;
 			case SysMLPackage.FEATURE:
-				if (rule == grammarAccess.getBodyParameterRule()
-						|| rule == grammarAccess.getEmptyFeatureRule()) {
+				if (rule == grammarAccess.getEmptyFeatureRule()
+						|| rule == grammarAccess.getBodyParameterRule()) {
 					sequence_BodyParameter_EmptyFeature(context, (Feature) semanticObject); 
 					return; 
 				}
@@ -332,8 +332,8 @@ public class KerMLExpressionsSemanticSequencer extends AbstractDelegatingSemanti
 	
 	/**
 	 * Contexts:
-	 *     BodyParameter returns Feature
 	 *     EmptyFeature returns Feature
+	 *     BodyParameter returns Feature
 	 *
 	 * Constraint:
 	 *     {Feature}
@@ -358,7 +358,6 @@ public class KerMLExpressionsSemanticSequencer extends AbstractDelegatingSemanti
 	/**
 	 * Contexts:
 	 *     OwnedExpression returns Expression
-	 *     ExpressionBody returns Expression
 	 *     ConditionalExpression returns Expression
 	 *     ConditionalExpression.OperatorExpression_1_0 returns Expression
 	 *     NullCoalescingExpression returns Expression
@@ -397,6 +396,7 @@ public class KerMLExpressionsSemanticSequencer extends AbstractDelegatingSemanti
 	 *     PrimaryExpression.PathStepExpression_1_2_0 returns Expression
 	 *     PrimaryExpression.PathSelectExpression_1_3_0 returns Expression
 	 *     BaseExpression returns Expression
+	 *     ExpressionBody returns Expression
 	 *     SequenceExpression returns Expression
 	 *     SequenceExpression.OperatorExpression_1_1_0 returns Expression
 	 *

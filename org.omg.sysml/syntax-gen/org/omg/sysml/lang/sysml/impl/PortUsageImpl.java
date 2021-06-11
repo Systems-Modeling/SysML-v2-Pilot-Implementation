@@ -156,8 +156,8 @@ public class PortUsageImpl extends UsageImpl implements PortUsage {
 	@Override
 	public EList<Type> getType() {
 		@SuppressWarnings("unchecked")
-		EList<Type> portDefinition = (EList<Type>)((EList<?>)getPortDefinition());
-		return portDefinition;
+		EList<Type> definition = (EList<Type>)((EList<?>)getDefinition());
+		return definition;
 	}
 
 	/**

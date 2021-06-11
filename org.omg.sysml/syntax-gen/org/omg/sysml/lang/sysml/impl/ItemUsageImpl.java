@@ -27,10 +27,10 @@ import java.util.Collection;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.omg.sysml.lang.sysml.Classifier;
 import org.omg.sysml.lang.sysml.ItemUsage;
 import org.omg.sysml.lang.sysml.Structure;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
 
 /**
@@ -46,7 +46,7 @@ import org.omg.sysml.util.NonNotifyingEObjectEList;
  *
  * @generated
  */
-public class ItemUsageImpl extends UsageImpl implements ItemUsage {
+public class ItemUsageImpl extends OccurrenceUsageImpl implements ItemUsage {
 	
 	/**
 	 * <!-- begin-user-doc -->
@@ -76,7 +76,7 @@ public class ItemUsageImpl extends UsageImpl implements ItemUsage {
 	public EList<Structure> getItemDefinition() {
 		EList<Structure> itemDefinitions =
 				new NonNotifyingEObjectEList<>(Structure.class, this, SysMLPackage.ITEM_USAGE__ITEM_DEFINITION);
-		super.getType().stream().
+		super.getOccurrenceDefinition().stream().
 			filter(Structure.class::isInstance).
 			map(Structure.class::cast).
 			forEachOrdered(itemDefinitions::add);
@@ -146,8 +146,8 @@ public class ItemUsageImpl extends UsageImpl implements ItemUsage {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.ITEM_USAGE__TYPE:
-				return isSetType();
+			case SysMLPackage.ITEM_USAGE__DEFINITION:
+				return isSetDefinition();
 			case SysMLPackage.ITEM_USAGE__ITEM_DEFINITION:
 				return isSetItemDefinition();
 		}
@@ -159,11 +159,10 @@ public class ItemUsageImpl extends UsageImpl implements ItemUsage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public EList<Type> getType() {
+	public EList<Classifier> getDefinition() {
 		@SuppressWarnings("unchecked")
-		EList<Type> itemDefinition = (EList<Type>)((EList<?>)getItemDefinition());
-		return itemDefinition;
+		EList<Classifier> occurrenceDefinition = (EList<Classifier>)((EList<?>)getOccurrenceDefinition());
+		return occurrenceDefinition;
 	}
 
 	/**
@@ -171,7 +170,7 @@ public class ItemUsageImpl extends UsageImpl implements ItemUsage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isSetType() {
+	public boolean isSetDefinition() {
   		return false;
 	}
 

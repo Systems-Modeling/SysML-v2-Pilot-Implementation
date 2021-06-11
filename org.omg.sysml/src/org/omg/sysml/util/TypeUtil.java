@@ -46,6 +46,8 @@ import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.Generalization;
 import org.omg.sysml.lang.sysml.ItemFeature;
 import org.omg.sysml.lang.sysml.Membership;
+import org.omg.sysml.lang.sysml.OccurrenceDefinition;
+import org.omg.sysml.lang.sysml.OccurrenceUsage;
 import org.omg.sysml.lang.sysml.ParameterMembership;
 import org.omg.sysml.lang.sysml.RequirementUsage;
 import org.omg.sysml.lang.sysml.SubjectMembership;
@@ -393,6 +395,13 @@ public class TypeUtil {
 		} else {
 			targetTypes.addAll(relatedTypes);
 		}
+	}
+	
+	// Individuals
+	
+	public static boolean isIndividual(Type type) {
+		return type instanceof OccurrenceDefinition && ((OccurrenceDefinition)type).isIndividual() ||
+			   type instanceof OccurrenceUsage && ((OccurrenceUsage)type).isIndividual();
 	}
 
 }

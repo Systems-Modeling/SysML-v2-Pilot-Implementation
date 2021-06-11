@@ -29,6 +29,8 @@ package org.omg.sysml.lang.sysml;
  * <!-- begin-model-doc -->
  * <p>A SuccessionItemFlow is an ItemFlow that also provides temporal ordering. It classifies <em>Transfers</em> that cannot start until the source <em>Occurrence</em> has completed and that must complete before the target <em>Occurrence</em> can start.</p>
  * 
+ * <p>A SuccessionItemFlow must be typed by the Interaction <em>TransferBefore</em> from the Kernel Library, or a specialization of it.</p>
+ * 
  * <p>SuccessionItemFlows are ItemFlows that also provide temporal ordering. They classify Transfers that must complete before the target behavior can start.</p>
  * 
  * <p>Must be typed by M1 TransferBefore or one of its specializations.<br />

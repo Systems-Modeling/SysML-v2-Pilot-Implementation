@@ -46,6 +46,7 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedUsage <em>Owned Usage</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedPort <em>Owned Port</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Definition#getFlowFeature <em>Flow Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Definition#getUsage <em>Usage</em>}</li>
@@ -64,7 +65,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedConnection <em>Owned Connection</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedItem <em>Owned Item</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedPart <em>Owned Part</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedIndividual <em>Owned Individual</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedInterface <em>Owned Interface</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedAttribute <em>Owned Attribute</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedView <em>Owned View</em>}</li>
@@ -75,7 +75,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedAllocation <em>Owned Allocation</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedConcern <em>Owned Concern</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedStakeholder <em>Owned Stakeholder</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedUsage <em>Owned Usage</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedOccurrence <em>Owned Occurrence</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition()
@@ -164,7 +164,7 @@ public interface Definition extends Classifier {
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Definition#getOwnedUsage() <em>Owned Usage</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Definition#getOwnedOccurrence() <em>Owned Occurrence</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -214,7 +214,7 @@ public interface Definition extends Classifier {
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Definition#getOwnedUsage() <em>Owned Usage</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Definition#getOwnedOccurrence() <em>Owned Occurrence</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -256,30 +256,6 @@ public interface Definition extends Classifier {
 	 * @generated
 	 */
 	EList<PartUsage> getOwnedPart();
-
-	/**
-	 * Returns the value of the '<em><b>Owned Individual</b></em>' reference list.
-	 * The list contents are of type {@link org.omg.sysml.lang.sysml.IndividualUsage}.
-	 * <p>
-	 * This feature subsets the following features:
-	 * </p>
-	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Definition#getOwnedItem() <em>Owned Item</em>}'</li>
-	 * </ul>
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * <p>The IndividualUsages that are <code>ownedUsages</code> of this Definition.</p>
-	 * 
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Owned Individual</em>' reference list.
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_OwnedIndividual()
-	 * @model transient="true" volatile="true" derived="true" ordered="false"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='individualOwningDefinition'"
-	 *        annotation="subsets"
-	 * @generated
-	 */
-	EList<IndividualUsage> getOwnedIndividual();
 
 	/**
 	 * Returns the value of the '<em><b>Owned Interface</b></em>' reference list.
@@ -512,6 +488,29 @@ public interface Definition extends Classifier {
 	EList<StakeholderUsage> getOwnedStakeholder();
 
 	/**
+	 * Returns the value of the '<em><b>Owned Occurrence</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.OccurrenceUsage}.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Definition#getOwnedUsage() <em>Owned Usage</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The OccurrenceUsages that are <code>ownedUsages</code> of this Definition.</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Owned Occurrence</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_OwnedOccurrence()
+	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='occurrenceOwningDefinition'"
+	 *        annotation="subsets"
+	 * @generated
+	 */
+	EList<OccurrenceUsage> getOwnedOccurrence();
+
+	/**
 	 * Returns the value of the '<em><b>Variant Membership</b></em>' reference list.
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.VariantMembership}.
 	 * <p>
@@ -545,7 +544,7 @@ public interface Definition extends Classifier {
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Definition#getOwnedUsage() <em>Owned Usage</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Definition#getOwnedAction() <em>Owned Action</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -572,7 +571,7 @@ public interface Definition extends Classifier {
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Definition#getOwnedUsage() <em>Owned Usage</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Definition#getOwnedOccurrence() <em>Owned Occurrence</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -581,7 +580,7 @@ public interface Definition extends Classifier {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The ConstraintUsages that are <tt>ownedUsages</tt> of this Definition.</p>
+	 * <p>The ConstraintUsages that are <code>ownedUsages</cpde> of this Definition.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Constraint</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_OwnedConstraint()

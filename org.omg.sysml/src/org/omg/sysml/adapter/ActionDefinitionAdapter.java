@@ -27,7 +27,7 @@ import java.util.List;
 import org.omg.sysml.lang.sysml.ActionDefinition;
 import org.omg.sysml.lang.sysml.Feature;
 
-public class ActionDefinitionAdapter extends DefinitionAdapter {
+public class ActionDefinitionAdapter extends OccurrenceDefinitionAdapter {
 	
 	public ActionDefinitionAdapter(ActionDefinition element) {
 		super(element);

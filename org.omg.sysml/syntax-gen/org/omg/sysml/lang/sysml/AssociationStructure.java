@@ -28,7 +28,7 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * allSupertypes()->includes(Kernel Library::LinkOccurrence)
+ * allSupertypes()->includes(Kernel Library::LinkObject)
  * <!-- end-model-doc -->
  *
  *

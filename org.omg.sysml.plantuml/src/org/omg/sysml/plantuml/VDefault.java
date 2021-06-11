@@ -69,7 +69,7 @@ public class VDefault extends VTraverser {
     protected void addGeneralizations(Type typ) {
         for (Generalization g: typ.getOwnedGeneralization()) {
             Type gt = g.getGeneral();
-            if (gt.getName() == null) continue;
+            if (gt == null || gt.getName() == null) continue;
             addPRelation(typ, gt, g);
         }
     }

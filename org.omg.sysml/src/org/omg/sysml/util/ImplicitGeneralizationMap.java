@@ -79,7 +79,7 @@ public class ImplicitGeneralizationMap {
 		put(FunctionImpl.class, "base", "Performances::Evaluation");
 		
 		put(ItemFlowImpl.class, "base", "Transfers::transfers");
-		put(ItemFlowImpl.class, "subperformance", "Transfers::transfers");
+		put(ItemFlowImpl.class, "subperformance", "Performances::Performance::subtransfers");
 		
 		put(LiteralExpressionImpl.class, "base", "Performances::literalEvaluations");
 		
@@ -96,10 +96,10 @@ public class ImplicitGeneralizationMap {
 		
 		put(StructureImpl.class, "base", "Objects::Object");
 		
-		put(SuccessionImpl.class, "base", "Occurrences::successions");
+		put(SuccessionImpl.class, "binary", "Occurrences::happensBeforeLinks");
 		
-		put(SuccessionItemFlowImpl.class, "base", "Transfers::flows");
-		put(SuccessionItemFlowImpl.class, "subtransfer", "Performances::Performance::subflows");
+		put(SuccessionItemFlowImpl.class, "base", "Transfers::transfersBefore");
+		put(SuccessionItemFlowImpl.class, "subperformance", "Performances::Performance::subtransfersBefore");
 
 		put(TypeImpl.class, "base", "Base::Anything");
 
@@ -147,6 +147,8 @@ public class ImplicitGeneralizationMap {
 		
 		put(DecisionNodeImpl.class, "base", "Actions::Action::decisions");
 		
+		put(EventOccurrenceUsageImpl.class, "suboccurrence", "Occurrences::Occurrence::suboccurrences");
+
 		put(ExhibitStateUsageImpl.class, "enactedPerformance", "Parts::Part::exhibitedStates");
 		
 		put(ForkNodeImpl.class, "base", "Actions::Action::fork");
@@ -162,6 +164,9 @@ public class ImplicitGeneralizationMap {
 		put(LifeClassImpl.class, "base", "Occurrences::Life");
 		
 		put(MergeNodeImpl.class, "base", "Actions::Action::merges");
+		
+		put(OccurrenceDefinitionImpl.class, "base", "Occurrences::Occurrence");
+		put(OccurrenceUsageImpl.class, "base", "Occurrences::occurrences");
 		
 		put(PartDefinitionImpl.class, "base", "Parts::Part");
 		put(PartUsageImpl.class, "base", "Parts::parts");

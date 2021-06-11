@@ -52,19 +52,19 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwnedTypeFeaturing <em>Owned Type Featuring</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwningFeatureMembership <em>Owning Feature Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwningType <em>Owning Type</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Feature#getEndOwningType <em>End Owning Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isUnique <em>Is Unique</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isOrdered <em>Is Ordered</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getType <em>Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwnedRedefinition <em>Owned Redefinition</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwnedSubsetting <em>Owned Subsetting</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwningFeatureMembership <em>Owning Feature Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isComposite <em>Is Composite</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isEnd <em>Is End</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Feature#getEndOwningType <em>End Owning Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwnedTyping <em>Owned Typing</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getFeaturingType <em>Featuring Type</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwnedTypeFeaturing <em>Owned Type Featuring</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isNonunique <em>Is Nonunique</em>}</li>
  * </ul>
  *
@@ -488,9 +488,9 @@ public interface Feature extends Type {
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * <p>Return the <code>directionOf</code> this Feature relative to the given <code>type</code>.</p>
+	 * type.directionOf(self)
 	 * <!-- end-model-doc -->
 	 * @model ordered="false" typeRequired="true" typeOrdered="false"
-	 *        annotation="http://www.eclipse.org/uml2/1.1.0/GenModel body='type.directionOf(self)'"
 	 * @generated
 	 */
 	FeatureDirectionKind directionFor(Type type);
@@ -500,9 +500,13 @@ public interface Feature extends Type {
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * <p>Return whether this Feature has the given <code>type</code> as a direct or indirect <code>featuringType</code>. If <code>type</code> is null, then check if this Feature is implicitly directly or indirectly featured in <em>Base::Anything</em>.</p>
+	 * type = null and feature.featuringType->isEmpty() or
+	 *     type <> null and feature.featuringType->includes(type) or
+	 *     feature.featuringType->exists(t |
+	 *         t.oclIsKindOf(Feature) and
+	 *         t.oclAsType(Feature).isFeaturedWithin(type)) 
 	 * <!-- end-model-doc -->
 	 * @model dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false" typeOrdered="false"
-	 *        annotation="http://www.eclipse.org/uml2/1.1.0/GenModel body='type = null and feature.featuringType-&gt;isEmpty() or\n    type &lt;&gt; null and feature.featuringType-&gt;includes(type) or\n    feature.featuringType-&gt;exists(t |\n        t.oclIsKindOf(Feature) and\n        t.oclAsType(Feature).isFeaturedWithin(type)) '"
 	 * @generated
 	 */
 	boolean isFeaturedWithin(Type type);
@@ -512,9 +516,9 @@ public interface Feature extends Type {
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * <p>By default, the naming feature of a Feature is given by its first <code>redefinedFeature</code>, if any.</p>
+	 * firstRedefinedFeature()
 	 * <!-- end-model-doc -->
 	 * @model ordered="false"
-	 *        annotation="http://www.eclipse.org/uml2/1.1.0/GenModel body='firstRedefinedFeature()'"
 	 * @generated
 	 */
 	Feature namingFeature();
@@ -524,9 +528,14 @@ public interface Feature extends Type {
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * <p>Return the first Feature that is redefined by this Feature, if any.</p>
+	 * let redefinitions : Sequence(Redefinition) = ownedRedefinition in
+	 * if redefinitions->isEmpty() then
+	 *     null
+	 * else
+	 *     redefinitions->at(1).redefinedFeature
+	 * endif
 	 * <!-- end-model-doc -->
 	 * @model ordered="false"
-	 *        annotation="http://www.eclipse.org/uml2/1.1.0/GenModel body='let redefinitions : Sequence(Redefinition) = ownedRedefinition in\nif redefinitions-&gt;isEmpty() then\n    null\nelse\n    redefinitions-&gt;at(1).redefinedFeature\nendif'"
 	 * @generated
 	 */
 	Feature firstRedefinedFeature();
@@ -536,9 +545,15 @@ public interface Feature extends Type {
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * <p>Get the first Feature that is subsetted by this Feature but <emph>not</emph> redefined, if any.</p>
+	 * let subsettings : Sequence(Subsetting) = 
+	 *     ownedSubsetting->reject(oclIsKindOf(Redefinition)) in
+	 * if subsettings->isEmpty() then
+	 *     null
+	 * else
+	 *     subsettings->at(1).subsettedFeature
+	 * endif
 	 * <!-- end-model-doc -->
 	 * @model ordered="false"
-	 *        annotation="http://www.eclipse.org/uml2/1.1.0/GenModel body='let subsettings : Sequence(Subsetting) = \n    ownedSubsetting-&gt;reject(oclIsKindOf(Redefinition)) in\nif subsettings-&gt;isEmpty() then\n    null\nelse\n    subsettings-&gt;at(1).subsettedFeature\nendif'"
 	 * @generated
 	 */
 	Feature firstSubsettedFeature();

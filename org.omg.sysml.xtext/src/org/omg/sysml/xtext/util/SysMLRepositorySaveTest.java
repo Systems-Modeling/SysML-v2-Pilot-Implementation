@@ -63,13 +63,18 @@ public class SysMLRepositorySaveTest extends SysMLRepositorySaveUtil {
 	}
 	
 	@Override
-	protected void initialize(String[] args) {
-		if (!args[0].endsWith("/")) {
-			args[0] += "/";
-		}
-		args[0] += this.testFilePath;
+	protected String[] processArgs(String[] args) {
 		
-		super.initialize(args);
+		args = super.processArgs(args);
+		
+		if (args != null) {
+			if (!args[0].endsWith("/")) {
+				args[0] += "/";
+			}
+			args[0] += this.testFilePath;
+		}
+		
+		return args;
 	}
 	
 	public static void main(String[] args) {
@@ -77,6 +82,7 @@ public class SysMLRepositorySaveTest extends SysMLRepositorySaveUtil {
 			String[] args1 = Arrays.copyOf(args, args.length);
 			for (String testFile: TEST_FILES) {
 				new SysMLRepositorySaveTest(testFile).run(args1);
+				System.out.println();
 			}
 		} catch (Exception e) {
 			System.out.println("Error: " + e);

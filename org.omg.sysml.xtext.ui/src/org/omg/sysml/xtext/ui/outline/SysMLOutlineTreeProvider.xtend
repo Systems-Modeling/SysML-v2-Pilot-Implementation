@@ -11,6 +11,7 @@ import org.omg.sysml.lang.sysml.Type
 import org.eclipse.xtext.ui.editor.outline.IOutlineNode
 import org.omg.sysml.lang.sysml.SysMLPackage
 import org.omg.sysml.lang.sysml.RequirementUsage
+import org.omg.sysml.util.TypeUtil
 
 /**
  * Customization of the default outline structure.
@@ -25,6 +26,24 @@ class SysMLOutlineTreeProvider extends KerMLOutlineTreeProvider {
 	
 	def String _text(RequirementConstraintMembership membership) {
 		membership.featurePrefixText + " " + membership.kind + " " + membership.nameText
+	}
+	
+	override String _text(Type type) {
+		var text = type.eClass.name;
+		if (type.isAbstract) {
+			text += ' abstract'
+		}
+		if (TypeUtil.isIndividual(type)) {
+			text += ' individual'
+		}
+		if (type.humanId !== null) {
+			text += ' id ' + type.humanId
+		}
+		val name = type.getEffectiveName
+		if (name !== null) {
+			text += ' ' + name;
+		}
+		text
 	}
 	
 	def boolean _isLeaf(RequirementDefinition requirementDef) {

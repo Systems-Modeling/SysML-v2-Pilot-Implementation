@@ -37,28 +37,28 @@ END_SETUP
 package pkg {
 	import ScalarValues::*;
 	item def A {
-		// XPECT errors --> "An item usage must be typed by item definitions." at "item areal: Real;"
+		// XPECT errors --> "An item must be typed by item definitions." at "item areal: Real;"
 		item areal: Real;
-		// XPECT errors --> "An item usage must be typed by item definitions." at "item avalue: aValue;"
+		// XPECT errors --> "An item must be typed by item definitions." at "item avalue: aValue;"
 		item avalue: aValue;
-		// XPECT errors --> "An item usage must be typed by item definitions." at "item anaction: anAction;"
+		// XPECT errors --> "An item must be typed by item definitions." at "item anaction: anAction;"
 		item anaction: anAction;
 		/* XPECT errors ---	
-		 	"An item usage must be typed by item definitions." at "item aportdef: APortDef;"
+		 	"An item must be typed by item definitions." at "item aportdef: APortDef;"
 		 	"Features must have at least one type" at "item aportdef: APortDef;"
 		--- */ 
 		item aportdef: APortDef;
 		/* XPECT errors ---
-		 	"An item usage must be typed by item definitions." at "item aport: ABlock::aPort;"
+		 	"An item must be typed by item definitions." at "item aport: ABlock::aPort;"
 		 	"Features must have at least one type" at "item aport: ABlock::aPort;"
 		--- */
 		item aport: ABlock::aPort;
 		/* XPECT errors ---
-		 "An item usage must be typed by item definitions." at "item apart: ABlock::aPart;"
+		 "An item must be typed by item definitions." at "item apart: ABlock::aPart;"
 		 "Features must have at least one type" at "item apart: ABlock::aPart;"
 		--- */
 		item apart: ABlock::aPart;
-		// XPECT errors --> "An item usage must be typed by item definitions." at "item twoTypes: ABlock, APortDef;"
+		// XPECT errors --> "An item must be typed by item definitions." at "item twoTypes: ABlock, APortDef;"
 		item twoTypes: ABlock, APortDef;
 	}
 	attribute aValue: Real;

@@ -45,6 +45,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	protected AbstractElementAlias match_FunctionBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_3__;
 	protected AbstractElementAlias match_Generalization_ColonGreaterThanSignKeyword_3_0_or_SpecializesKeyword_3_1;
 	protected AbstractElementAlias match_Generalization_GeneralizationKeyword_0_0_q;
+	protected AbstractElementAlias match_ItemFlowDeclaration_FromKeyword_0_0_2_q;
 	protected AbstractElementAlias match_MetadataFeature_FeatureKeyword_0_q;
 	protected AbstractElementAlias match_MetadataFeature___ColonGreaterThanSignGreaterThanSignKeyword_1_0_or_RedefinesKeyword_1_1__q;
 	protected AbstractElementAlias match_NamespaceBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__;
@@ -102,6 +103,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 		match_FunctionBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_3__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getFunctionBodyAccess().getLeftCurlyBracketKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getFunctionBodyAccess().getRightCurlyBracketKeyword_1_3())), new TokenAlias(false, false, grammarAccess.getFunctionBodyAccess().getSemicolonKeyword_0()));
 		match_Generalization_ColonGreaterThanSignKeyword_3_0_or_SpecializesKeyword_3_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getGeneralizationAccess().getColonGreaterThanSignKeyword_3_0()), new TokenAlias(false, false, grammarAccess.getGeneralizationAccess().getSpecializesKeyword_3_1()));
 		match_Generalization_GeneralizationKeyword_0_0_q = new TokenAlias(false, true, grammarAccess.getGeneralizationAccess().getGeneralizationKeyword_0_0());
+		match_ItemFlowDeclaration_FromKeyword_0_0_2_q = new TokenAlias(false, true, grammarAccess.getItemFlowDeclarationAccess().getFromKeyword_0_0_2());
 		match_MetadataFeature_FeatureKeyword_0_q = new TokenAlias(false, true, grammarAccess.getMetadataFeatureAccess().getFeatureKeyword_0());
 		match_MetadataFeature___ColonGreaterThanSignGreaterThanSignKeyword_1_0_or_RedefinesKeyword_1_1__q = new AlternativeAlias(false, true, new TokenAlias(false, false, grammarAccess.getMetadataFeatureAccess().getColonGreaterThanSignGreaterThanSignKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getMetadataFeatureAccess().getRedefinesKeyword_1_1()));
 		match_NamespaceBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getNamespaceBodyAccess().getLeftCurlyBracketKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getNamespaceBodyAccess().getRightCurlyBracketKeyword_1_2())), new TokenAlias(false, false, grammarAccess.getNamespaceBodyAccess().getSemicolonKeyword_0()));
@@ -192,6 +194,8 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 				emit_Generalization_ColonGreaterThanSignKeyword_3_0_or_SpecializesKeyword_3_1(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_Generalization_GeneralizationKeyword_0_0_q.equals(syntax))
 				emit_Generalization_GeneralizationKeyword_0_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_ItemFlowDeclaration_FromKeyword_0_0_2_q.equals(syntax))
+				emit_ItemFlowDeclaration_FromKeyword_0_0_2_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_MetadataFeature_FeatureKeyword_0_q.equals(syntax))
 				emit_MetadataFeature_FeatureKeyword_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_MetadataFeature___ColonGreaterThanSignGreaterThanSignKeyword_1_0_or_RedefinesKeyword_1_1__q.equals(syntax))
@@ -649,6 +653,20 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) 'subtype' specific=[Type|QualifiedName]
 	 */
 	protected void emit_Generalization_GeneralizationKeyword_0_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Ambiguous syntax:
+	 *     'from'?
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     (rule start) 'flow' (ambiguity) ownedRelationship+=ItemFlowEndMember
+	 *     (rule start) 'stream' (ambiguity) ownedRelationship+=ItemFlowEndMember
+	 *     isAbstract?='abstract' 'flow' (ambiguity) ownedRelationship+=ItemFlowEndMember
+	 *     isAbstract?='abstract' 'stream' (ambiguity) ownedRelationship+=ItemFlowEndMember
+	 */
+	protected void emit_ItemFlowDeclaration_FromKeyword_0_0_2_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	

@@ -55,13 +55,10 @@ import org.omg.sysml.lang.sysml.ItemUsage;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.ObjectiveMembership;
-import org.omg.sysml.lang.sysml.OccurrenceDefinition;
-import org.omg.sysml.lang.sysml.OccurrenceUsage;
 import org.omg.sysml.lang.sysml.PartDefinition;
 import org.omg.sysml.lang.sysml.PartUsage;
 import org.omg.sysml.lang.sysml.PerformActionUsage;
 import org.omg.sysml.lang.sysml.PortUsage;
-import org.omg.sysml.lang.sysml.PortionKind;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.ReferenceUsage;
 import org.omg.sysml.lang.sysml.RequirementConstraintMembership;
@@ -422,51 +419,28 @@ public class SysML2PlantUMLStyle {
 
 		@Override
 		public String casePerformActionUsage(PerformActionUsage pau) {
-            return "<<perform action>> ";
+            return " perform action>> ";
 		}
 
 		@Override
 		public String caseAcceptActionUsage(AcceptActionUsage aau) {
-            return "<<accept action>> ";
+            return " accept action>> ";
 		}
 
 		@Override
 		public String caseSendActionUsage(SendActionUsage sau) {
-            return "<<send action>> ";
+            return " send action>> ";
 		}
 
 		@Override
 		public String caseAnalysisCaseUsage(AnalysisCaseUsage acu) {
-            return "<<analysis>> ";
+            return " analysis>> ";
 		}
 
 		@Override
 		public String caseAnalysisCaseDefinition(AnalysisCaseDefinition acd) {
-            return "<<analysis def>> ";
+            return " analysis def>> ";
 		}
-
-		@Override
-        public String caseOccurrenceUsage(OccurrenceUsage ou) {
-            if (ou.getPortionKind() == PortionKind.TIMESLICE) {
-                return "<<timeslice>> ";
-            } else if (ou.getPortionKind() == PortionKind.SNAPSHOT) {
-                return "<<snapshot>> ";
-            } else if (ou.isIndividual()) {
-                return "<<individual>> ";
-            } else {
-            	return null;
-            }
-        }
-        
-		@Override
-        public String caseOccurrenceDefinition(OccurrenceDefinition od) {
-            if (od.isIndividual()) {
-                return "<<individual def>> ";
-            } else {
-            	return null;
-            }
-        }
-        
     }
 
 }

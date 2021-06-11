@@ -22,7 +22,7 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalKerMLExpressionsParser extends AbstractInternalContentAssistParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_EXP_VALUE", "RULE_DECIMAL_VALUE", "RULE_ID", "RULE_UNRESTRICTED_NAME", "RULE_STRING_VALUE", "RULE_REGULAR_COMMENT", "RULE_DOCUMENTATION_COMMENT", "RULE_ML_NOTE", "RULE_SL_NOTE", "RULE_WS", "'?'", "'??'", "'||'", "'&&'", "'|'", "'^'", "'&'", "'**'", "'=='", "'!='", "'instanceof'", "'hastype'", "'istype'", "'@'", "'as'", "'<'", "'>'", "'<='", "'>='", "'+'", "'-'", "'*'", "'/'", "'%'", "'!'", "'~'", "','", "'null'", "'true'", "'false'", "':'", "']'", "'->'", "'.'", "'('", "')'", "'{'", "'}'", "';'", "'in'", "'=>'", "'::'", "'..'", "'@['", "'all'", "'['"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_EXP_VALUE", "RULE_DECIMAL_VALUE", "RULE_ID", "RULE_UNRESTRICTED_NAME", "RULE_STRING_VALUE", "RULE_REGULAR_COMMENT", "RULE_DOCUMENTATION_COMMENT", "RULE_ML_NOTE", "RULE_SL_NOTE", "RULE_WS", "'?'", "'??'", "'implies'", "'|'", "'||'", "'or'", "'^^'", "'xor'", "'&'", "'&&'", "'and'", "'=='", "'!='", "'instanceof'", "'hastype'", "'istype'", "'@'", "'as'", "'<'", "'>'", "'<='", "'>='", "'+'", "'-'", "'*'", "'/'", "'%'", "'**'", "'^'", "'!'", "'~'", "'not'", "','", "'null'", "'true'", "'false'", "':'", "'if'", "'else'", "']'", "'->'", "'.'", "'('", "')'", "'{'", "'}'", "';'", "'in'", "'=>'", "'::'", "'..'", "'@['", "'all'", "'['"
     };
     public static final int T__50=50;
     public static final int RULE_SL_NOTE=12;
@@ -42,6 +42,8 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
     public static final int T__53=53;
     public static final int RULE_DOCUMENTATION_COMMENT=10;
     public static final int T__54=54;
+    public static final int T__60=60;
+    public static final int T__61=61;
     public static final int RULE_ID=6;
     public static final int RULE_DECIMAL_VALUE=5;
     public static final int T__26=26;
@@ -49,12 +51,18 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
     public static final int T__28=28;
     public static final int T__29=29;
     public static final int T__22=22;
+    public static final int T__66=66;
     public static final int T__23=23;
+    public static final int T__67=67;
     public static final int T__24=24;
     public static final int T__25=25;
     public static final int RULE_ML_NOTE=11;
+    public static final int T__62=62;
+    public static final int T__63=63;
     public static final int T__20=20;
+    public static final int T__64=64;
     public static final int T__21=21;
+    public static final int T__65=65;
     public static final int RULE_REGULAR_COMMENT=9;
     public static final int T__37=37;
     public static final int T__38=38;
@@ -296,31 +304,31 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "ruleConditionalExpression"
-    // InternalKerMLExpressions.g:112:1: ruleConditionalExpression : ( ( rule__ConditionalExpression__Group__0 ) ) ;
+    // InternalKerMLExpressions.g:112:1: ruleConditionalExpression : ( ( rule__ConditionalExpression__Alternatives ) ) ;
     public final void ruleConditionalExpression() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:116:2: ( ( ( rule__ConditionalExpression__Group__0 ) ) )
-            // InternalKerMLExpressions.g:117:2: ( ( rule__ConditionalExpression__Group__0 ) )
+            // InternalKerMLExpressions.g:116:2: ( ( ( rule__ConditionalExpression__Alternatives ) ) )
+            // InternalKerMLExpressions.g:117:2: ( ( rule__ConditionalExpression__Alternatives ) )
             {
-            // InternalKerMLExpressions.g:117:2: ( ( rule__ConditionalExpression__Group__0 ) )
-            // InternalKerMLExpressions.g:118:3: ( rule__ConditionalExpression__Group__0 )
+            // InternalKerMLExpressions.g:117:2: ( ( rule__ConditionalExpression__Alternatives ) )
+            // InternalKerMLExpressions.g:118:3: ( rule__ConditionalExpression__Alternatives )
             {
-             before(grammarAccess.getConditionalExpressionAccess().getGroup()); 
-            // InternalKerMLExpressions.g:119:3: ( rule__ConditionalExpression__Group__0 )
-            // InternalKerMLExpressions.g:119:4: rule__ConditionalExpression__Group__0
+             before(grammarAccess.getConditionalExpressionAccess().getAlternatives()); 
+            // InternalKerMLExpressions.g:119:3: ( rule__ConditionalExpression__Alternatives )
+            // InternalKerMLExpressions.g:119:4: rule__ConditionalExpression__Alternatives
             {
             pushFollow(FOLLOW_2);
-            rule__ConditionalExpression__Group__0();
+            rule__ConditionalExpression__Alternatives();
 
             state._fsp--;
 
 
             }
 
-             after(grammarAccess.getConditionalExpressionAccess().getGroup()); 
+             after(grammarAccess.getConditionalExpressionAccess().getAlternatives()); 
 
             }
 
@@ -342,20 +350,20 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
     // $ANTLR end "ruleConditionalExpression"
 
 
-    // $ANTLR start "entryRuleConditionalTestOperator"
-    // InternalKerMLExpressions.g:128:1: entryRuleConditionalTestOperator : ruleConditionalTestOperator EOF ;
-    public final void entryRuleConditionalTestOperator() throws RecognitionException {
+    // $ANTLR start "entryRuleConditionalOperator"
+    // InternalKerMLExpressions.g:128:1: entryRuleConditionalOperator : ruleConditionalOperator EOF ;
+    public final void entryRuleConditionalOperator() throws RecognitionException {
         try {
-            // InternalKerMLExpressions.g:129:1: ( ruleConditionalTestOperator EOF )
-            // InternalKerMLExpressions.g:130:1: ruleConditionalTestOperator EOF
+            // InternalKerMLExpressions.g:129:1: ( ruleConditionalOperator EOF )
+            // InternalKerMLExpressions.g:130:1: ruleConditionalOperator EOF
             {
-             before(grammarAccess.getConditionalTestOperatorRule()); 
+             before(grammarAccess.getConditionalOperatorRule()); 
             pushFollow(FOLLOW_1);
-            ruleConditionalTestOperator();
+            ruleConditionalOperator();
 
             state._fsp--;
 
-             after(grammarAccess.getConditionalTestOperatorRule()); 
+             after(grammarAccess.getConditionalOperatorRule()); 
             match(input,EOF,FOLLOW_2); 
 
             }
@@ -369,12 +377,12 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
         }
         return ;
     }
-    // $ANTLR end "entryRuleConditionalTestOperator"
+    // $ANTLR end "entryRuleConditionalOperator"
 
 
-    // $ANTLR start "ruleConditionalTestOperator"
-    // InternalKerMLExpressions.g:137:1: ruleConditionalTestOperator : ( '?' ) ;
-    public final void ruleConditionalTestOperator() throws RecognitionException {
+    // $ANTLR start "ruleConditionalOperator"
+    // InternalKerMLExpressions.g:137:1: ruleConditionalOperator : ( '?' ) ;
+    public final void ruleConditionalOperator() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -385,9 +393,9 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
             // InternalKerMLExpressions.g:142:2: ( '?' )
             // InternalKerMLExpressions.g:143:3: '?'
             {
-             before(grammarAccess.getConditionalTestOperatorAccess().getQuestionMarkKeyword()); 
+             before(grammarAccess.getConditionalOperatorAccess().getQuestionMarkKeyword()); 
             match(input,14,FOLLOW_2); 
-             after(grammarAccess.getConditionalTestOperatorAccess().getQuestionMarkKeyword()); 
+             after(grammarAccess.getConditionalOperatorAccess().getQuestionMarkKeyword()); 
 
             }
 
@@ -406,7 +414,7 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
         }
         return ;
     }
-    // $ANTLR end "ruleConditionalTestOperator"
+    // $ANTLR end "ruleConditionalOperator"
 
 
     // $ANTLR start "entryRuleNullCoalescingExpression"
@@ -553,20 +561,20 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
     // $ANTLR end "ruleNullCoalescingOperator"
 
 
-    // $ANTLR start "entryRuleConditionalOrExpression"
-    // InternalKerMLExpressions.g:203:1: entryRuleConditionalOrExpression : ruleConditionalOrExpression EOF ;
-    public final void entryRuleConditionalOrExpression() throws RecognitionException {
+    // $ANTLR start "entryRuleImpliesExpression"
+    // InternalKerMLExpressions.g:203:1: entryRuleImpliesExpression : ruleImpliesExpression EOF ;
+    public final void entryRuleImpliesExpression() throws RecognitionException {
         try {
-            // InternalKerMLExpressions.g:204:1: ( ruleConditionalOrExpression EOF )
-            // InternalKerMLExpressions.g:205:1: ruleConditionalOrExpression EOF
+            // InternalKerMLExpressions.g:204:1: ( ruleImpliesExpression EOF )
+            // InternalKerMLExpressions.g:205:1: ruleImpliesExpression EOF
             {
-             before(grammarAccess.getConditionalOrExpressionRule()); 
+             before(grammarAccess.getImpliesExpressionRule()); 
             pushFollow(FOLLOW_1);
-            ruleConditionalOrExpression();
+            ruleImpliesExpression();
 
             state._fsp--;
 
-             after(grammarAccess.getConditionalOrExpressionRule()); 
+             after(grammarAccess.getImpliesExpressionRule()); 
             match(input,EOF,FOLLOW_2); 
 
             }
@@ -580,35 +588,35 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
         }
         return ;
     }
-    // $ANTLR end "entryRuleConditionalOrExpression"
+    // $ANTLR end "entryRuleImpliesExpression"
 
 
-    // $ANTLR start "ruleConditionalOrExpression"
-    // InternalKerMLExpressions.g:212:1: ruleConditionalOrExpression : ( ( rule__ConditionalOrExpression__Group__0 ) ) ;
-    public final void ruleConditionalOrExpression() throws RecognitionException {
+    // $ANTLR start "ruleImpliesExpression"
+    // InternalKerMLExpressions.g:212:1: ruleImpliesExpression : ( ( rule__ImpliesExpression__Group__0 ) ) ;
+    public final void ruleImpliesExpression() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:216:2: ( ( ( rule__ConditionalOrExpression__Group__0 ) ) )
-            // InternalKerMLExpressions.g:217:2: ( ( rule__ConditionalOrExpression__Group__0 ) )
+            // InternalKerMLExpressions.g:216:2: ( ( ( rule__ImpliesExpression__Group__0 ) ) )
+            // InternalKerMLExpressions.g:217:2: ( ( rule__ImpliesExpression__Group__0 ) )
             {
-            // InternalKerMLExpressions.g:217:2: ( ( rule__ConditionalOrExpression__Group__0 ) )
-            // InternalKerMLExpressions.g:218:3: ( rule__ConditionalOrExpression__Group__0 )
+            // InternalKerMLExpressions.g:217:2: ( ( rule__ImpliesExpression__Group__0 ) )
+            // InternalKerMLExpressions.g:218:3: ( rule__ImpliesExpression__Group__0 )
             {
-             before(grammarAccess.getConditionalOrExpressionAccess().getGroup()); 
-            // InternalKerMLExpressions.g:219:3: ( rule__ConditionalOrExpression__Group__0 )
-            // InternalKerMLExpressions.g:219:4: rule__ConditionalOrExpression__Group__0
+             before(grammarAccess.getImpliesExpressionAccess().getGroup()); 
+            // InternalKerMLExpressions.g:219:3: ( rule__ImpliesExpression__Group__0 )
+            // InternalKerMLExpressions.g:219:4: rule__ImpliesExpression__Group__0
             {
             pushFollow(FOLLOW_2);
-            rule__ConditionalOrExpression__Group__0();
+            rule__ImpliesExpression__Group__0();
 
             state._fsp--;
 
 
             }
 
-             after(grammarAccess.getConditionalOrExpressionAccess().getGroup()); 
+             after(grammarAccess.getImpliesExpressionAccess().getGroup()); 
 
             }
 
@@ -627,23 +635,23 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
         }
         return ;
     }
-    // $ANTLR end "ruleConditionalOrExpression"
+    // $ANTLR end "ruleImpliesExpression"
 
 
-    // $ANTLR start "entryRuleConditionalOrOperator"
-    // InternalKerMLExpressions.g:228:1: entryRuleConditionalOrOperator : ruleConditionalOrOperator EOF ;
-    public final void entryRuleConditionalOrOperator() throws RecognitionException {
+    // $ANTLR start "entryRuleImpliesOperator"
+    // InternalKerMLExpressions.g:228:1: entryRuleImpliesOperator : ruleImpliesOperator EOF ;
+    public final void entryRuleImpliesOperator() throws RecognitionException {
         try {
-            // InternalKerMLExpressions.g:229:1: ( ruleConditionalOrOperator EOF )
-            // InternalKerMLExpressions.g:230:1: ruleConditionalOrOperator EOF
+            // InternalKerMLExpressions.g:229:1: ( ruleImpliesOperator EOF )
+            // InternalKerMLExpressions.g:230:1: ruleImpliesOperator EOF
             {
-             before(grammarAccess.getConditionalOrOperatorRule()); 
+             before(grammarAccess.getImpliesOperatorRule()); 
             pushFollow(FOLLOW_1);
-            ruleConditionalOrOperator();
+            ruleImpliesOperator();
 
             state._fsp--;
 
-             after(grammarAccess.getConditionalOrOperatorRule()); 
+             after(grammarAccess.getImpliesOperatorRule()); 
             match(input,EOF,FOLLOW_2); 
 
             }
@@ -657,25 +665,25 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
         }
         return ;
     }
-    // $ANTLR end "entryRuleConditionalOrOperator"
+    // $ANTLR end "entryRuleImpliesOperator"
 
 
-    // $ANTLR start "ruleConditionalOrOperator"
-    // InternalKerMLExpressions.g:237:1: ruleConditionalOrOperator : ( '||' ) ;
-    public final void ruleConditionalOrOperator() throws RecognitionException {
+    // $ANTLR start "ruleImpliesOperator"
+    // InternalKerMLExpressions.g:237:1: ruleImpliesOperator : ( 'implies' ) ;
+    public final void ruleImpliesOperator() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:241:2: ( ( '||' ) )
-            // InternalKerMLExpressions.g:242:2: ( '||' )
+            // InternalKerMLExpressions.g:241:2: ( ( 'implies' ) )
+            // InternalKerMLExpressions.g:242:2: ( 'implies' )
             {
-            // InternalKerMLExpressions.g:242:2: ( '||' )
-            // InternalKerMLExpressions.g:243:3: '||'
+            // InternalKerMLExpressions.g:242:2: ( 'implies' )
+            // InternalKerMLExpressions.g:243:3: 'implies'
             {
-             before(grammarAccess.getConditionalOrOperatorAccess().getVerticalLineVerticalLineKeyword()); 
+             before(grammarAccess.getImpliesOperatorAccess().getImpliesKeyword()); 
             match(input,16,FOLLOW_2); 
-             after(grammarAccess.getConditionalOrOperatorAccess().getVerticalLineVerticalLineKeyword()); 
+             after(grammarAccess.getImpliesOperatorAccess().getImpliesKeyword()); 
 
             }
 
@@ -694,159 +702,15 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
         }
         return ;
     }
-    // $ANTLR end "ruleConditionalOrOperator"
-
-
-    // $ANTLR start "entryRuleConditionalAndExpression"
-    // InternalKerMLExpressions.g:253:1: entryRuleConditionalAndExpression : ruleConditionalAndExpression EOF ;
-    public final void entryRuleConditionalAndExpression() throws RecognitionException {
-        try {
-            // InternalKerMLExpressions.g:254:1: ( ruleConditionalAndExpression EOF )
-            // InternalKerMLExpressions.g:255:1: ruleConditionalAndExpression EOF
-            {
-             before(grammarAccess.getConditionalAndExpressionRule()); 
-            pushFollow(FOLLOW_1);
-            ruleConditionalAndExpression();
-
-            state._fsp--;
-
-             after(grammarAccess.getConditionalAndExpressionRule()); 
-            match(input,EOF,FOLLOW_2); 
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-        }
-        return ;
-    }
-    // $ANTLR end "entryRuleConditionalAndExpression"
-
-
-    // $ANTLR start "ruleConditionalAndExpression"
-    // InternalKerMLExpressions.g:262:1: ruleConditionalAndExpression : ( ( rule__ConditionalAndExpression__Group__0 ) ) ;
-    public final void ruleConditionalAndExpression() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-        	
-        try {
-            // InternalKerMLExpressions.g:266:2: ( ( ( rule__ConditionalAndExpression__Group__0 ) ) )
-            // InternalKerMLExpressions.g:267:2: ( ( rule__ConditionalAndExpression__Group__0 ) )
-            {
-            // InternalKerMLExpressions.g:267:2: ( ( rule__ConditionalAndExpression__Group__0 ) )
-            // InternalKerMLExpressions.g:268:3: ( rule__ConditionalAndExpression__Group__0 )
-            {
-             before(grammarAccess.getConditionalAndExpressionAccess().getGroup()); 
-            // InternalKerMLExpressions.g:269:3: ( rule__ConditionalAndExpression__Group__0 )
-            // InternalKerMLExpressions.g:269:4: rule__ConditionalAndExpression__Group__0
-            {
-            pushFollow(FOLLOW_2);
-            rule__ConditionalAndExpression__Group__0();
-
-            state._fsp--;
-
-
-            }
-
-             after(grammarAccess.getConditionalAndExpressionAccess().getGroup()); 
-
-            }
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "ruleConditionalAndExpression"
-
-
-    // $ANTLR start "entryRuleConditionalAndOperator"
-    // InternalKerMLExpressions.g:278:1: entryRuleConditionalAndOperator : ruleConditionalAndOperator EOF ;
-    public final void entryRuleConditionalAndOperator() throws RecognitionException {
-        try {
-            // InternalKerMLExpressions.g:279:1: ( ruleConditionalAndOperator EOF )
-            // InternalKerMLExpressions.g:280:1: ruleConditionalAndOperator EOF
-            {
-             before(grammarAccess.getConditionalAndOperatorRule()); 
-            pushFollow(FOLLOW_1);
-            ruleConditionalAndOperator();
-
-            state._fsp--;
-
-             after(grammarAccess.getConditionalAndOperatorRule()); 
-            match(input,EOF,FOLLOW_2); 
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-        }
-        return ;
-    }
-    // $ANTLR end "entryRuleConditionalAndOperator"
-
-
-    // $ANTLR start "ruleConditionalAndOperator"
-    // InternalKerMLExpressions.g:287:1: ruleConditionalAndOperator : ( '&&' ) ;
-    public final void ruleConditionalAndOperator() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-        	
-        try {
-            // InternalKerMLExpressions.g:291:2: ( ( '&&' ) )
-            // InternalKerMLExpressions.g:292:2: ( '&&' )
-            {
-            // InternalKerMLExpressions.g:292:2: ( '&&' )
-            // InternalKerMLExpressions.g:293:3: '&&'
-            {
-             before(grammarAccess.getConditionalAndOperatorAccess().getAmpersandAmpersandKeyword()); 
-            match(input,17,FOLLOW_2); 
-             after(grammarAccess.getConditionalAndOperatorAccess().getAmpersandAmpersandKeyword()); 
-
-            }
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "ruleConditionalAndOperator"
+    // $ANTLR end "ruleImpliesOperator"
 
 
     // $ANTLR start "entryRuleOrExpression"
-    // InternalKerMLExpressions.g:303:1: entryRuleOrExpression : ruleOrExpression EOF ;
+    // InternalKerMLExpressions.g:253:1: entryRuleOrExpression : ruleOrExpression EOF ;
     public final void entryRuleOrExpression() throws RecognitionException {
         try {
-            // InternalKerMLExpressions.g:304:1: ( ruleOrExpression EOF )
-            // InternalKerMLExpressions.g:305:1: ruleOrExpression EOF
+            // InternalKerMLExpressions.g:254:1: ( ruleOrExpression EOF )
+            // InternalKerMLExpressions.g:255:1: ruleOrExpression EOF
             {
              before(grammarAccess.getOrExpressionRule()); 
             pushFollow(FOLLOW_1);
@@ -872,21 +736,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "ruleOrExpression"
-    // InternalKerMLExpressions.g:312:1: ruleOrExpression : ( ( rule__OrExpression__Group__0 ) ) ;
+    // InternalKerMLExpressions.g:262:1: ruleOrExpression : ( ( rule__OrExpression__Group__0 ) ) ;
     public final void ruleOrExpression() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:316:2: ( ( ( rule__OrExpression__Group__0 ) ) )
-            // InternalKerMLExpressions.g:317:2: ( ( rule__OrExpression__Group__0 ) )
+            // InternalKerMLExpressions.g:266:2: ( ( ( rule__OrExpression__Group__0 ) ) )
+            // InternalKerMLExpressions.g:267:2: ( ( rule__OrExpression__Group__0 ) )
             {
-            // InternalKerMLExpressions.g:317:2: ( ( rule__OrExpression__Group__0 ) )
-            // InternalKerMLExpressions.g:318:3: ( rule__OrExpression__Group__0 )
+            // InternalKerMLExpressions.g:267:2: ( ( rule__OrExpression__Group__0 ) )
+            // InternalKerMLExpressions.g:268:3: ( rule__OrExpression__Group__0 )
             {
              before(grammarAccess.getOrExpressionAccess().getGroup()); 
-            // InternalKerMLExpressions.g:319:3: ( rule__OrExpression__Group__0 )
-            // InternalKerMLExpressions.g:319:4: rule__OrExpression__Group__0
+            // InternalKerMLExpressions.g:269:3: ( rule__OrExpression__Group__0 )
+            // InternalKerMLExpressions.g:269:4: rule__OrExpression__Group__0
             {
             pushFollow(FOLLOW_2);
             rule__OrExpression__Group__0();
@@ -919,11 +783,11 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "entryRuleOrOperator"
-    // InternalKerMLExpressions.g:328:1: entryRuleOrOperator : ruleOrOperator EOF ;
+    // InternalKerMLExpressions.g:278:1: entryRuleOrOperator : ruleOrOperator EOF ;
     public final void entryRuleOrOperator() throws RecognitionException {
         try {
-            // InternalKerMLExpressions.g:329:1: ( ruleOrOperator EOF )
-            // InternalKerMLExpressions.g:330:1: ruleOrOperator EOF
+            // InternalKerMLExpressions.g:279:1: ( ruleOrOperator EOF )
+            // InternalKerMLExpressions.g:280:1: ruleOrOperator EOF
             {
              before(grammarAccess.getOrOperatorRule()); 
             pushFollow(FOLLOW_1);
@@ -949,21 +813,31 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "ruleOrOperator"
-    // InternalKerMLExpressions.g:337:1: ruleOrOperator : ( '|' ) ;
+    // InternalKerMLExpressions.g:287:1: ruleOrOperator : ( ( rule__OrOperator__Alternatives ) ) ;
     public final void ruleOrOperator() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:341:2: ( ( '|' ) )
-            // InternalKerMLExpressions.g:342:2: ( '|' )
+            // InternalKerMLExpressions.g:291:2: ( ( ( rule__OrOperator__Alternatives ) ) )
+            // InternalKerMLExpressions.g:292:2: ( ( rule__OrOperator__Alternatives ) )
             {
-            // InternalKerMLExpressions.g:342:2: ( '|' )
-            // InternalKerMLExpressions.g:343:3: '|'
+            // InternalKerMLExpressions.g:292:2: ( ( rule__OrOperator__Alternatives ) )
+            // InternalKerMLExpressions.g:293:3: ( rule__OrOperator__Alternatives )
             {
-             before(grammarAccess.getOrOperatorAccess().getVerticalLineKeyword()); 
-            match(input,18,FOLLOW_2); 
-             after(grammarAccess.getOrOperatorAccess().getVerticalLineKeyword()); 
+             before(grammarAccess.getOrOperatorAccess().getAlternatives()); 
+            // InternalKerMLExpressions.g:294:3: ( rule__OrOperator__Alternatives )
+            // InternalKerMLExpressions.g:294:4: rule__OrOperator__Alternatives
+            {
+            pushFollow(FOLLOW_2);
+            rule__OrOperator__Alternatives();
+
+            state._fsp--;
+
+
+            }
+
+             after(grammarAccess.getOrOperatorAccess().getAlternatives()); 
 
             }
 
@@ -986,11 +860,11 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "entryRuleXorExpression"
-    // InternalKerMLExpressions.g:353:1: entryRuleXorExpression : ruleXorExpression EOF ;
+    // InternalKerMLExpressions.g:303:1: entryRuleXorExpression : ruleXorExpression EOF ;
     public final void entryRuleXorExpression() throws RecognitionException {
         try {
-            // InternalKerMLExpressions.g:354:1: ( ruleXorExpression EOF )
-            // InternalKerMLExpressions.g:355:1: ruleXorExpression EOF
+            // InternalKerMLExpressions.g:304:1: ( ruleXorExpression EOF )
+            // InternalKerMLExpressions.g:305:1: ruleXorExpression EOF
             {
              before(grammarAccess.getXorExpressionRule()); 
             pushFollow(FOLLOW_1);
@@ -1016,21 +890,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "ruleXorExpression"
-    // InternalKerMLExpressions.g:362:1: ruleXorExpression : ( ( rule__XorExpression__Group__0 ) ) ;
+    // InternalKerMLExpressions.g:312:1: ruleXorExpression : ( ( rule__XorExpression__Group__0 ) ) ;
     public final void ruleXorExpression() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:366:2: ( ( ( rule__XorExpression__Group__0 ) ) )
-            // InternalKerMLExpressions.g:367:2: ( ( rule__XorExpression__Group__0 ) )
+            // InternalKerMLExpressions.g:316:2: ( ( ( rule__XorExpression__Group__0 ) ) )
+            // InternalKerMLExpressions.g:317:2: ( ( rule__XorExpression__Group__0 ) )
             {
-            // InternalKerMLExpressions.g:367:2: ( ( rule__XorExpression__Group__0 ) )
-            // InternalKerMLExpressions.g:368:3: ( rule__XorExpression__Group__0 )
+            // InternalKerMLExpressions.g:317:2: ( ( rule__XorExpression__Group__0 ) )
+            // InternalKerMLExpressions.g:318:3: ( rule__XorExpression__Group__0 )
             {
              before(grammarAccess.getXorExpressionAccess().getGroup()); 
-            // InternalKerMLExpressions.g:369:3: ( rule__XorExpression__Group__0 )
-            // InternalKerMLExpressions.g:369:4: rule__XorExpression__Group__0
+            // InternalKerMLExpressions.g:319:3: ( rule__XorExpression__Group__0 )
+            // InternalKerMLExpressions.g:319:4: rule__XorExpression__Group__0
             {
             pushFollow(FOLLOW_2);
             rule__XorExpression__Group__0();
@@ -1063,11 +937,11 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "entryRuleXorOperator"
-    // InternalKerMLExpressions.g:378:1: entryRuleXorOperator : ruleXorOperator EOF ;
+    // InternalKerMLExpressions.g:328:1: entryRuleXorOperator : ruleXorOperator EOF ;
     public final void entryRuleXorOperator() throws RecognitionException {
         try {
-            // InternalKerMLExpressions.g:379:1: ( ruleXorOperator EOF )
-            // InternalKerMLExpressions.g:380:1: ruleXorOperator EOF
+            // InternalKerMLExpressions.g:329:1: ( ruleXorOperator EOF )
+            // InternalKerMLExpressions.g:330:1: ruleXorOperator EOF
             {
              before(grammarAccess.getXorOperatorRule()); 
             pushFollow(FOLLOW_1);
@@ -1093,21 +967,31 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "ruleXorOperator"
-    // InternalKerMLExpressions.g:387:1: ruleXorOperator : ( '^' ) ;
+    // InternalKerMLExpressions.g:337:1: ruleXorOperator : ( ( rule__XorOperator__Alternatives ) ) ;
     public final void ruleXorOperator() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:391:2: ( ( '^' ) )
-            // InternalKerMLExpressions.g:392:2: ( '^' )
+            // InternalKerMLExpressions.g:341:2: ( ( ( rule__XorOperator__Alternatives ) ) )
+            // InternalKerMLExpressions.g:342:2: ( ( rule__XorOperator__Alternatives ) )
             {
-            // InternalKerMLExpressions.g:392:2: ( '^' )
-            // InternalKerMLExpressions.g:393:3: '^'
+            // InternalKerMLExpressions.g:342:2: ( ( rule__XorOperator__Alternatives ) )
+            // InternalKerMLExpressions.g:343:3: ( rule__XorOperator__Alternatives )
             {
-             before(grammarAccess.getXorOperatorAccess().getCircumflexAccentKeyword()); 
-            match(input,19,FOLLOW_2); 
-             after(grammarAccess.getXorOperatorAccess().getCircumflexAccentKeyword()); 
+             before(grammarAccess.getXorOperatorAccess().getAlternatives()); 
+            // InternalKerMLExpressions.g:344:3: ( rule__XorOperator__Alternatives )
+            // InternalKerMLExpressions.g:344:4: rule__XorOperator__Alternatives
+            {
+            pushFollow(FOLLOW_2);
+            rule__XorOperator__Alternatives();
+
+            state._fsp--;
+
+
+            }
+
+             after(grammarAccess.getXorOperatorAccess().getAlternatives()); 
 
             }
 
@@ -1130,11 +1014,11 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "entryRuleAndExpression"
-    // InternalKerMLExpressions.g:403:1: entryRuleAndExpression : ruleAndExpression EOF ;
+    // InternalKerMLExpressions.g:353:1: entryRuleAndExpression : ruleAndExpression EOF ;
     public final void entryRuleAndExpression() throws RecognitionException {
         try {
-            // InternalKerMLExpressions.g:404:1: ( ruleAndExpression EOF )
-            // InternalKerMLExpressions.g:405:1: ruleAndExpression EOF
+            // InternalKerMLExpressions.g:354:1: ( ruleAndExpression EOF )
+            // InternalKerMLExpressions.g:355:1: ruleAndExpression EOF
             {
              before(grammarAccess.getAndExpressionRule()); 
             pushFollow(FOLLOW_1);
@@ -1160,21 +1044,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "ruleAndExpression"
-    // InternalKerMLExpressions.g:412:1: ruleAndExpression : ( ( rule__AndExpression__Group__0 ) ) ;
+    // InternalKerMLExpressions.g:362:1: ruleAndExpression : ( ( rule__AndExpression__Group__0 ) ) ;
     public final void ruleAndExpression() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:416:2: ( ( ( rule__AndExpression__Group__0 ) ) )
-            // InternalKerMLExpressions.g:417:2: ( ( rule__AndExpression__Group__0 ) )
+            // InternalKerMLExpressions.g:366:2: ( ( ( rule__AndExpression__Group__0 ) ) )
+            // InternalKerMLExpressions.g:367:2: ( ( rule__AndExpression__Group__0 ) )
             {
-            // InternalKerMLExpressions.g:417:2: ( ( rule__AndExpression__Group__0 ) )
-            // InternalKerMLExpressions.g:418:3: ( rule__AndExpression__Group__0 )
+            // InternalKerMLExpressions.g:367:2: ( ( rule__AndExpression__Group__0 ) )
+            // InternalKerMLExpressions.g:368:3: ( rule__AndExpression__Group__0 )
             {
              before(grammarAccess.getAndExpressionAccess().getGroup()); 
-            // InternalKerMLExpressions.g:419:3: ( rule__AndExpression__Group__0 )
-            // InternalKerMLExpressions.g:419:4: rule__AndExpression__Group__0
+            // InternalKerMLExpressions.g:369:3: ( rule__AndExpression__Group__0 )
+            // InternalKerMLExpressions.g:369:4: rule__AndExpression__Group__0
             {
             pushFollow(FOLLOW_2);
             rule__AndExpression__Group__0();
@@ -1207,11 +1091,11 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "entryRuleAndOperator"
-    // InternalKerMLExpressions.g:428:1: entryRuleAndOperator : ruleAndOperator EOF ;
+    // InternalKerMLExpressions.g:378:1: entryRuleAndOperator : ruleAndOperator EOF ;
     public final void entryRuleAndOperator() throws RecognitionException {
         try {
-            // InternalKerMLExpressions.g:429:1: ( ruleAndOperator EOF )
-            // InternalKerMLExpressions.g:430:1: ruleAndOperator EOF
+            // InternalKerMLExpressions.g:379:1: ( ruleAndOperator EOF )
+            // InternalKerMLExpressions.g:380:1: ruleAndOperator EOF
             {
              before(grammarAccess.getAndOperatorRule()); 
             pushFollow(FOLLOW_1);
@@ -1237,21 +1121,31 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "ruleAndOperator"
-    // InternalKerMLExpressions.g:437:1: ruleAndOperator : ( '&' ) ;
+    // InternalKerMLExpressions.g:387:1: ruleAndOperator : ( ( rule__AndOperator__Alternatives ) ) ;
     public final void ruleAndOperator() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:441:2: ( ( '&' ) )
-            // InternalKerMLExpressions.g:442:2: ( '&' )
+            // InternalKerMLExpressions.g:391:2: ( ( ( rule__AndOperator__Alternatives ) ) )
+            // InternalKerMLExpressions.g:392:2: ( ( rule__AndOperator__Alternatives ) )
             {
-            // InternalKerMLExpressions.g:442:2: ( '&' )
-            // InternalKerMLExpressions.g:443:3: '&'
+            // InternalKerMLExpressions.g:392:2: ( ( rule__AndOperator__Alternatives ) )
+            // InternalKerMLExpressions.g:393:3: ( rule__AndOperator__Alternatives )
             {
-             before(grammarAccess.getAndOperatorAccess().getAmpersandKeyword()); 
-            match(input,20,FOLLOW_2); 
-             after(grammarAccess.getAndOperatorAccess().getAmpersandKeyword()); 
+             before(grammarAccess.getAndOperatorAccess().getAlternatives()); 
+            // InternalKerMLExpressions.g:394:3: ( rule__AndOperator__Alternatives )
+            // InternalKerMLExpressions.g:394:4: rule__AndOperator__Alternatives
+            {
+            pushFollow(FOLLOW_2);
+            rule__AndOperator__Alternatives();
+
+            state._fsp--;
+
+
+            }
+
+             after(grammarAccess.getAndOperatorAccess().getAlternatives()); 
 
             }
 
@@ -1274,11 +1168,11 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "entryRuleEqualityExpression"
-    // InternalKerMLExpressions.g:453:1: entryRuleEqualityExpression : ruleEqualityExpression EOF ;
+    // InternalKerMLExpressions.g:403:1: entryRuleEqualityExpression : ruleEqualityExpression EOF ;
     public final void entryRuleEqualityExpression() throws RecognitionException {
         try {
-            // InternalKerMLExpressions.g:454:1: ( ruleEqualityExpression EOF )
-            // InternalKerMLExpressions.g:455:1: ruleEqualityExpression EOF
+            // InternalKerMLExpressions.g:404:1: ( ruleEqualityExpression EOF )
+            // InternalKerMLExpressions.g:405:1: ruleEqualityExpression EOF
             {
              before(grammarAccess.getEqualityExpressionRule()); 
             pushFollow(FOLLOW_1);
@@ -1304,21 +1198,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "ruleEqualityExpression"
-    // InternalKerMLExpressions.g:462:1: ruleEqualityExpression : ( ( rule__EqualityExpression__Group__0 ) ) ;
+    // InternalKerMLExpressions.g:412:1: ruleEqualityExpression : ( ( rule__EqualityExpression__Group__0 ) ) ;
     public final void ruleEqualityExpression() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:466:2: ( ( ( rule__EqualityExpression__Group__0 ) ) )
-            // InternalKerMLExpressions.g:467:2: ( ( rule__EqualityExpression__Group__0 ) )
+            // InternalKerMLExpressions.g:416:2: ( ( ( rule__EqualityExpression__Group__0 ) ) )
+            // InternalKerMLExpressions.g:417:2: ( ( rule__EqualityExpression__Group__0 ) )
             {
-            // InternalKerMLExpressions.g:467:2: ( ( rule__EqualityExpression__Group__0 ) )
-            // InternalKerMLExpressions.g:468:3: ( rule__EqualityExpression__Group__0 )
+            // InternalKerMLExpressions.g:417:2: ( ( rule__EqualityExpression__Group__0 ) )
+            // InternalKerMLExpressions.g:418:3: ( rule__EqualityExpression__Group__0 )
             {
              before(grammarAccess.getEqualityExpressionAccess().getGroup()); 
-            // InternalKerMLExpressions.g:469:3: ( rule__EqualityExpression__Group__0 )
-            // InternalKerMLExpressions.g:469:4: rule__EqualityExpression__Group__0
+            // InternalKerMLExpressions.g:419:3: ( rule__EqualityExpression__Group__0 )
+            // InternalKerMLExpressions.g:419:4: rule__EqualityExpression__Group__0
             {
             pushFollow(FOLLOW_2);
             rule__EqualityExpression__Group__0();
@@ -1351,11 +1245,11 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "entryRuleEqualityOperator"
-    // InternalKerMLExpressions.g:478:1: entryRuleEqualityOperator : ruleEqualityOperator EOF ;
+    // InternalKerMLExpressions.g:428:1: entryRuleEqualityOperator : ruleEqualityOperator EOF ;
     public final void entryRuleEqualityOperator() throws RecognitionException {
         try {
-            // InternalKerMLExpressions.g:479:1: ( ruleEqualityOperator EOF )
-            // InternalKerMLExpressions.g:480:1: ruleEqualityOperator EOF
+            // InternalKerMLExpressions.g:429:1: ( ruleEqualityOperator EOF )
+            // InternalKerMLExpressions.g:430:1: ruleEqualityOperator EOF
             {
              before(grammarAccess.getEqualityOperatorRule()); 
             pushFollow(FOLLOW_1);
@@ -1381,21 +1275,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "ruleEqualityOperator"
-    // InternalKerMLExpressions.g:487:1: ruleEqualityOperator : ( ( rule__EqualityOperator__Alternatives ) ) ;
+    // InternalKerMLExpressions.g:437:1: ruleEqualityOperator : ( ( rule__EqualityOperator__Alternatives ) ) ;
     public final void ruleEqualityOperator() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:491:2: ( ( ( rule__EqualityOperator__Alternatives ) ) )
-            // InternalKerMLExpressions.g:492:2: ( ( rule__EqualityOperator__Alternatives ) )
+            // InternalKerMLExpressions.g:441:2: ( ( ( rule__EqualityOperator__Alternatives ) ) )
+            // InternalKerMLExpressions.g:442:2: ( ( rule__EqualityOperator__Alternatives ) )
             {
-            // InternalKerMLExpressions.g:492:2: ( ( rule__EqualityOperator__Alternatives ) )
-            // InternalKerMLExpressions.g:493:3: ( rule__EqualityOperator__Alternatives )
+            // InternalKerMLExpressions.g:442:2: ( ( rule__EqualityOperator__Alternatives ) )
+            // InternalKerMLExpressions.g:443:3: ( rule__EqualityOperator__Alternatives )
             {
              before(grammarAccess.getEqualityOperatorAccess().getAlternatives()); 
-            // InternalKerMLExpressions.g:494:3: ( rule__EqualityOperator__Alternatives )
-            // InternalKerMLExpressions.g:494:4: rule__EqualityOperator__Alternatives
+            // InternalKerMLExpressions.g:444:3: ( rule__EqualityOperator__Alternatives )
+            // InternalKerMLExpressions.g:444:4: rule__EqualityOperator__Alternatives
             {
             pushFollow(FOLLOW_2);
             rule__EqualityOperator__Alternatives();
@@ -1428,11 +1322,11 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "entryRuleClassificationExpression"
-    // InternalKerMLExpressions.g:503:1: entryRuleClassificationExpression : ruleClassificationExpression EOF ;
+    // InternalKerMLExpressions.g:453:1: entryRuleClassificationExpression : ruleClassificationExpression EOF ;
     public final void entryRuleClassificationExpression() throws RecognitionException {
         try {
-            // InternalKerMLExpressions.g:504:1: ( ruleClassificationExpression EOF )
-            // InternalKerMLExpressions.g:505:1: ruleClassificationExpression EOF
+            // InternalKerMLExpressions.g:454:1: ( ruleClassificationExpression EOF )
+            // InternalKerMLExpressions.g:455:1: ruleClassificationExpression EOF
             {
              before(grammarAccess.getClassificationExpressionRule()); 
             pushFollow(FOLLOW_1);
@@ -1458,21 +1352,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "ruleClassificationExpression"
-    // InternalKerMLExpressions.g:512:1: ruleClassificationExpression : ( ( rule__ClassificationExpression__Alternatives ) ) ;
+    // InternalKerMLExpressions.g:462:1: ruleClassificationExpression : ( ( rule__ClassificationExpression__Alternatives ) ) ;
     public final void ruleClassificationExpression() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:516:2: ( ( ( rule__ClassificationExpression__Alternatives ) ) )
-            // InternalKerMLExpressions.g:517:2: ( ( rule__ClassificationExpression__Alternatives ) )
+            // InternalKerMLExpressions.g:466:2: ( ( ( rule__ClassificationExpression__Alternatives ) ) )
+            // InternalKerMLExpressions.g:467:2: ( ( rule__ClassificationExpression__Alternatives ) )
             {
-            // InternalKerMLExpressions.g:517:2: ( ( rule__ClassificationExpression__Alternatives ) )
-            // InternalKerMLExpressions.g:518:3: ( rule__ClassificationExpression__Alternatives )
+            // InternalKerMLExpressions.g:467:2: ( ( rule__ClassificationExpression__Alternatives ) )
+            // InternalKerMLExpressions.g:468:3: ( rule__ClassificationExpression__Alternatives )
             {
              before(grammarAccess.getClassificationExpressionAccess().getAlternatives()); 
-            // InternalKerMLExpressions.g:519:3: ( rule__ClassificationExpression__Alternatives )
-            // InternalKerMLExpressions.g:519:4: rule__ClassificationExpression__Alternatives
+            // InternalKerMLExpressions.g:469:3: ( rule__ClassificationExpression__Alternatives )
+            // InternalKerMLExpressions.g:469:4: rule__ClassificationExpression__Alternatives
             {
             pushFollow(FOLLOW_2);
             rule__ClassificationExpression__Alternatives();
@@ -1505,11 +1399,11 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "entryRuleClassificationOperator"
-    // InternalKerMLExpressions.g:528:1: entryRuleClassificationOperator : ruleClassificationOperator EOF ;
+    // InternalKerMLExpressions.g:478:1: entryRuleClassificationOperator : ruleClassificationOperator EOF ;
     public final void entryRuleClassificationOperator() throws RecognitionException {
         try {
-            // InternalKerMLExpressions.g:529:1: ( ruleClassificationOperator EOF )
-            // InternalKerMLExpressions.g:530:1: ruleClassificationOperator EOF
+            // InternalKerMLExpressions.g:479:1: ( ruleClassificationOperator EOF )
+            // InternalKerMLExpressions.g:480:1: ruleClassificationOperator EOF
             {
              before(grammarAccess.getClassificationOperatorRule()); 
             pushFollow(FOLLOW_1);
@@ -1535,21 +1429,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "ruleClassificationOperator"
-    // InternalKerMLExpressions.g:537:1: ruleClassificationOperator : ( ( rule__ClassificationOperator__Alternatives ) ) ;
+    // InternalKerMLExpressions.g:487:1: ruleClassificationOperator : ( ( rule__ClassificationOperator__Alternatives ) ) ;
     public final void ruleClassificationOperator() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:541:2: ( ( ( rule__ClassificationOperator__Alternatives ) ) )
-            // InternalKerMLExpressions.g:542:2: ( ( rule__ClassificationOperator__Alternatives ) )
+            // InternalKerMLExpressions.g:491:2: ( ( ( rule__ClassificationOperator__Alternatives ) ) )
+            // InternalKerMLExpressions.g:492:2: ( ( rule__ClassificationOperator__Alternatives ) )
             {
-            // InternalKerMLExpressions.g:542:2: ( ( rule__ClassificationOperator__Alternatives ) )
-            // InternalKerMLExpressions.g:543:3: ( rule__ClassificationOperator__Alternatives )
+            // InternalKerMLExpressions.g:492:2: ( ( rule__ClassificationOperator__Alternatives ) )
+            // InternalKerMLExpressions.g:493:3: ( rule__ClassificationOperator__Alternatives )
             {
              before(grammarAccess.getClassificationOperatorAccess().getAlternatives()); 
-            // InternalKerMLExpressions.g:544:3: ( rule__ClassificationOperator__Alternatives )
-            // InternalKerMLExpressions.g:544:4: rule__ClassificationOperator__Alternatives
+            // InternalKerMLExpressions.g:494:3: ( rule__ClassificationOperator__Alternatives )
+            // InternalKerMLExpressions.g:494:4: rule__ClassificationOperator__Alternatives
             {
             pushFollow(FOLLOW_2);
             rule__ClassificationOperator__Alternatives();
@@ -1582,11 +1476,11 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "entryRuleTypeReferenceMember"
-    // InternalKerMLExpressions.g:553:1: entryRuleTypeReferenceMember : ruleTypeReferenceMember EOF ;
+    // InternalKerMLExpressions.g:503:1: entryRuleTypeReferenceMember : ruleTypeReferenceMember EOF ;
     public final void entryRuleTypeReferenceMember() throws RecognitionException {
         try {
-            // InternalKerMLExpressions.g:554:1: ( ruleTypeReferenceMember EOF )
-            // InternalKerMLExpressions.g:555:1: ruleTypeReferenceMember EOF
+            // InternalKerMLExpressions.g:504:1: ( ruleTypeReferenceMember EOF )
+            // InternalKerMLExpressions.g:505:1: ruleTypeReferenceMember EOF
             {
              before(grammarAccess.getTypeReferenceMemberRule()); 
             pushFollow(FOLLOW_1);
@@ -1612,21 +1506,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "ruleTypeReferenceMember"
-    // InternalKerMLExpressions.g:562:1: ruleTypeReferenceMember : ( ( rule__TypeReferenceMember__OwnedRelatedElementAssignment ) ) ;
+    // InternalKerMLExpressions.g:512:1: ruleTypeReferenceMember : ( ( rule__TypeReferenceMember__OwnedRelatedElementAssignment ) ) ;
     public final void ruleTypeReferenceMember() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:566:2: ( ( ( rule__TypeReferenceMember__OwnedRelatedElementAssignment ) ) )
-            // InternalKerMLExpressions.g:567:2: ( ( rule__TypeReferenceMember__OwnedRelatedElementAssignment ) )
+            // InternalKerMLExpressions.g:516:2: ( ( ( rule__TypeReferenceMember__OwnedRelatedElementAssignment ) ) )
+            // InternalKerMLExpressions.g:517:2: ( ( rule__TypeReferenceMember__OwnedRelatedElementAssignment ) )
             {
-            // InternalKerMLExpressions.g:567:2: ( ( rule__TypeReferenceMember__OwnedRelatedElementAssignment ) )
-            // InternalKerMLExpressions.g:568:3: ( rule__TypeReferenceMember__OwnedRelatedElementAssignment )
+            // InternalKerMLExpressions.g:517:2: ( ( rule__TypeReferenceMember__OwnedRelatedElementAssignment ) )
+            // InternalKerMLExpressions.g:518:3: ( rule__TypeReferenceMember__OwnedRelatedElementAssignment )
             {
              before(grammarAccess.getTypeReferenceMemberAccess().getOwnedRelatedElementAssignment()); 
-            // InternalKerMLExpressions.g:569:3: ( rule__TypeReferenceMember__OwnedRelatedElementAssignment )
-            // InternalKerMLExpressions.g:569:4: rule__TypeReferenceMember__OwnedRelatedElementAssignment
+            // InternalKerMLExpressions.g:519:3: ( rule__TypeReferenceMember__OwnedRelatedElementAssignment )
+            // InternalKerMLExpressions.g:519:4: rule__TypeReferenceMember__OwnedRelatedElementAssignment
             {
             pushFollow(FOLLOW_2);
             rule__TypeReferenceMember__OwnedRelatedElementAssignment();
@@ -1659,11 +1553,11 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "entryRuleTypeReference"
-    // InternalKerMLExpressions.g:578:1: entryRuleTypeReference : ruleTypeReference EOF ;
+    // InternalKerMLExpressions.g:528:1: entryRuleTypeReference : ruleTypeReference EOF ;
     public final void entryRuleTypeReference() throws RecognitionException {
         try {
-            // InternalKerMLExpressions.g:579:1: ( ruleTypeReference EOF )
-            // InternalKerMLExpressions.g:580:1: ruleTypeReference EOF
+            // InternalKerMLExpressions.g:529:1: ( ruleTypeReference EOF )
+            // InternalKerMLExpressions.g:530:1: ruleTypeReference EOF
             {
              before(grammarAccess.getTypeReferenceRule()); 
             pushFollow(FOLLOW_1);
@@ -1689,21 +1583,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "ruleTypeReference"
-    // InternalKerMLExpressions.g:587:1: ruleTypeReference : ( ( rule__TypeReference__OwnedRelationshipAssignment ) ) ;
+    // InternalKerMLExpressions.g:537:1: ruleTypeReference : ( ( rule__TypeReference__OwnedRelationshipAssignment ) ) ;
     public final void ruleTypeReference() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:591:2: ( ( ( rule__TypeReference__OwnedRelationshipAssignment ) ) )
-            // InternalKerMLExpressions.g:592:2: ( ( rule__TypeReference__OwnedRelationshipAssignment ) )
+            // InternalKerMLExpressions.g:541:2: ( ( ( rule__TypeReference__OwnedRelationshipAssignment ) ) )
+            // InternalKerMLExpressions.g:542:2: ( ( rule__TypeReference__OwnedRelationshipAssignment ) )
             {
-            // InternalKerMLExpressions.g:592:2: ( ( rule__TypeReference__OwnedRelationshipAssignment ) )
-            // InternalKerMLExpressions.g:593:3: ( rule__TypeReference__OwnedRelationshipAssignment )
+            // InternalKerMLExpressions.g:542:2: ( ( rule__TypeReference__OwnedRelationshipAssignment ) )
+            // InternalKerMLExpressions.g:543:3: ( rule__TypeReference__OwnedRelationshipAssignment )
             {
              before(grammarAccess.getTypeReferenceAccess().getOwnedRelationshipAssignment()); 
-            // InternalKerMLExpressions.g:594:3: ( rule__TypeReference__OwnedRelationshipAssignment )
-            // InternalKerMLExpressions.g:594:4: rule__TypeReference__OwnedRelationshipAssignment
+            // InternalKerMLExpressions.g:544:3: ( rule__TypeReference__OwnedRelationshipAssignment )
+            // InternalKerMLExpressions.g:544:4: rule__TypeReference__OwnedRelationshipAssignment
             {
             pushFollow(FOLLOW_2);
             rule__TypeReference__OwnedRelationshipAssignment();
@@ -1736,11 +1630,11 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "entryRuleOwnedFeatureTyping"
-    // InternalKerMLExpressions.g:603:1: entryRuleOwnedFeatureTyping : ruleOwnedFeatureTyping EOF ;
+    // InternalKerMLExpressions.g:553:1: entryRuleOwnedFeatureTyping : ruleOwnedFeatureTyping EOF ;
     public final void entryRuleOwnedFeatureTyping() throws RecognitionException {
         try {
-            // InternalKerMLExpressions.g:604:1: ( ruleOwnedFeatureTyping EOF )
-            // InternalKerMLExpressions.g:605:1: ruleOwnedFeatureTyping EOF
+            // InternalKerMLExpressions.g:554:1: ( ruleOwnedFeatureTyping EOF )
+            // InternalKerMLExpressions.g:555:1: ruleOwnedFeatureTyping EOF
             {
              before(grammarAccess.getOwnedFeatureTypingRule()); 
             pushFollow(FOLLOW_1);
@@ -1766,21 +1660,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "ruleOwnedFeatureTyping"
-    // InternalKerMLExpressions.g:612:1: ruleOwnedFeatureTyping : ( ( rule__OwnedFeatureTyping__TypeAssignment ) ) ;
+    // InternalKerMLExpressions.g:562:1: ruleOwnedFeatureTyping : ( ( rule__OwnedFeatureTyping__TypeAssignment ) ) ;
     public final void ruleOwnedFeatureTyping() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:616:2: ( ( ( rule__OwnedFeatureTyping__TypeAssignment ) ) )
-            // InternalKerMLExpressions.g:617:2: ( ( rule__OwnedFeatureTyping__TypeAssignment ) )
+            // InternalKerMLExpressions.g:566:2: ( ( ( rule__OwnedFeatureTyping__TypeAssignment ) ) )
+            // InternalKerMLExpressions.g:567:2: ( ( rule__OwnedFeatureTyping__TypeAssignment ) )
             {
-            // InternalKerMLExpressions.g:617:2: ( ( rule__OwnedFeatureTyping__TypeAssignment ) )
-            // InternalKerMLExpressions.g:618:3: ( rule__OwnedFeatureTyping__TypeAssignment )
+            // InternalKerMLExpressions.g:567:2: ( ( rule__OwnedFeatureTyping__TypeAssignment ) )
+            // InternalKerMLExpressions.g:568:3: ( rule__OwnedFeatureTyping__TypeAssignment )
             {
              before(grammarAccess.getOwnedFeatureTypingAccess().getTypeAssignment()); 
-            // InternalKerMLExpressions.g:619:3: ( rule__OwnedFeatureTyping__TypeAssignment )
-            // InternalKerMLExpressions.g:619:4: rule__OwnedFeatureTyping__TypeAssignment
+            // InternalKerMLExpressions.g:569:3: ( rule__OwnedFeatureTyping__TypeAssignment )
+            // InternalKerMLExpressions.g:569:4: rule__OwnedFeatureTyping__TypeAssignment
             {
             pushFollow(FOLLOW_2);
             rule__OwnedFeatureTyping__TypeAssignment();
@@ -1813,11 +1707,11 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "entryRuleSelfReferenceExpression"
-    // InternalKerMLExpressions.g:628:1: entryRuleSelfReferenceExpression : ruleSelfReferenceExpression EOF ;
+    // InternalKerMLExpressions.g:578:1: entryRuleSelfReferenceExpression : ruleSelfReferenceExpression EOF ;
     public final void entryRuleSelfReferenceExpression() throws RecognitionException {
         try {
-            // InternalKerMLExpressions.g:629:1: ( ruleSelfReferenceExpression EOF )
-            // InternalKerMLExpressions.g:630:1: ruleSelfReferenceExpression EOF
+            // InternalKerMLExpressions.g:579:1: ( ruleSelfReferenceExpression EOF )
+            // InternalKerMLExpressions.g:580:1: ruleSelfReferenceExpression EOF
             {
              before(grammarAccess.getSelfReferenceExpressionRule()); 
             pushFollow(FOLLOW_1);
@@ -1843,21 +1737,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "ruleSelfReferenceExpression"
-    // InternalKerMLExpressions.g:637:1: ruleSelfReferenceExpression : ( ( rule__SelfReferenceExpression__OwnedRelationshipAssignment ) ) ;
+    // InternalKerMLExpressions.g:587:1: ruleSelfReferenceExpression : ( ( rule__SelfReferenceExpression__OwnedRelationshipAssignment ) ) ;
     public final void ruleSelfReferenceExpression() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:641:2: ( ( ( rule__SelfReferenceExpression__OwnedRelationshipAssignment ) ) )
-            // InternalKerMLExpressions.g:642:2: ( ( rule__SelfReferenceExpression__OwnedRelationshipAssignment ) )
+            // InternalKerMLExpressions.g:591:2: ( ( ( rule__SelfReferenceExpression__OwnedRelationshipAssignment ) ) )
+            // InternalKerMLExpressions.g:592:2: ( ( rule__SelfReferenceExpression__OwnedRelationshipAssignment ) )
             {
-            // InternalKerMLExpressions.g:642:2: ( ( rule__SelfReferenceExpression__OwnedRelationshipAssignment ) )
-            // InternalKerMLExpressions.g:643:3: ( rule__SelfReferenceExpression__OwnedRelationshipAssignment )
+            // InternalKerMLExpressions.g:592:2: ( ( rule__SelfReferenceExpression__OwnedRelationshipAssignment ) )
+            // InternalKerMLExpressions.g:593:3: ( rule__SelfReferenceExpression__OwnedRelationshipAssignment )
             {
              before(grammarAccess.getSelfReferenceExpressionAccess().getOwnedRelationshipAssignment()); 
-            // InternalKerMLExpressions.g:644:3: ( rule__SelfReferenceExpression__OwnedRelationshipAssignment )
-            // InternalKerMLExpressions.g:644:4: rule__SelfReferenceExpression__OwnedRelationshipAssignment
+            // InternalKerMLExpressions.g:594:3: ( rule__SelfReferenceExpression__OwnedRelationshipAssignment )
+            // InternalKerMLExpressions.g:594:4: rule__SelfReferenceExpression__OwnedRelationshipAssignment
             {
             pushFollow(FOLLOW_2);
             rule__SelfReferenceExpression__OwnedRelationshipAssignment();
@@ -1890,11 +1784,11 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "entryRuleSelfReferenceMember"
-    // InternalKerMLExpressions.g:653:1: entryRuleSelfReferenceMember : ruleSelfReferenceMember EOF ;
+    // InternalKerMLExpressions.g:603:1: entryRuleSelfReferenceMember : ruleSelfReferenceMember EOF ;
     public final void entryRuleSelfReferenceMember() throws RecognitionException {
         try {
-            // InternalKerMLExpressions.g:654:1: ( ruleSelfReferenceMember EOF )
-            // InternalKerMLExpressions.g:655:1: ruleSelfReferenceMember EOF
+            // InternalKerMLExpressions.g:604:1: ( ruleSelfReferenceMember EOF )
+            // InternalKerMLExpressions.g:605:1: ruleSelfReferenceMember EOF
             {
              before(grammarAccess.getSelfReferenceMemberRule()); 
             pushFollow(FOLLOW_1);
@@ -1920,21 +1814,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "ruleSelfReferenceMember"
-    // InternalKerMLExpressions.g:662:1: ruleSelfReferenceMember : ( ( rule__SelfReferenceMember__OwnedRelatedElementAssignment ) ) ;
+    // InternalKerMLExpressions.g:612:1: ruleSelfReferenceMember : ( ( rule__SelfReferenceMember__OwnedRelatedElementAssignment ) ) ;
     public final void ruleSelfReferenceMember() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:666:2: ( ( ( rule__SelfReferenceMember__OwnedRelatedElementAssignment ) ) )
-            // InternalKerMLExpressions.g:667:2: ( ( rule__SelfReferenceMember__OwnedRelatedElementAssignment ) )
+            // InternalKerMLExpressions.g:616:2: ( ( ( rule__SelfReferenceMember__OwnedRelatedElementAssignment ) ) )
+            // InternalKerMLExpressions.g:617:2: ( ( rule__SelfReferenceMember__OwnedRelatedElementAssignment ) )
             {
-            // InternalKerMLExpressions.g:667:2: ( ( rule__SelfReferenceMember__OwnedRelatedElementAssignment ) )
-            // InternalKerMLExpressions.g:668:3: ( rule__SelfReferenceMember__OwnedRelatedElementAssignment )
+            // InternalKerMLExpressions.g:617:2: ( ( rule__SelfReferenceMember__OwnedRelatedElementAssignment ) )
+            // InternalKerMLExpressions.g:618:3: ( rule__SelfReferenceMember__OwnedRelatedElementAssignment )
             {
              before(grammarAccess.getSelfReferenceMemberAccess().getOwnedRelatedElementAssignment()); 
-            // InternalKerMLExpressions.g:669:3: ( rule__SelfReferenceMember__OwnedRelatedElementAssignment )
-            // InternalKerMLExpressions.g:669:4: rule__SelfReferenceMember__OwnedRelatedElementAssignment
+            // InternalKerMLExpressions.g:619:3: ( rule__SelfReferenceMember__OwnedRelatedElementAssignment )
+            // InternalKerMLExpressions.g:619:4: rule__SelfReferenceMember__OwnedRelatedElementAssignment
             {
             pushFollow(FOLLOW_2);
             rule__SelfReferenceMember__OwnedRelatedElementAssignment();
@@ -1967,11 +1861,11 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "entryRuleEmptyFeature"
-    // InternalKerMLExpressions.g:678:1: entryRuleEmptyFeature : ruleEmptyFeature EOF ;
+    // InternalKerMLExpressions.g:628:1: entryRuleEmptyFeature : ruleEmptyFeature EOF ;
     public final void entryRuleEmptyFeature() throws RecognitionException {
         try {
-            // InternalKerMLExpressions.g:679:1: ( ruleEmptyFeature EOF )
-            // InternalKerMLExpressions.g:680:1: ruleEmptyFeature EOF
+            // InternalKerMLExpressions.g:629:1: ( ruleEmptyFeature EOF )
+            // InternalKerMLExpressions.g:630:1: ruleEmptyFeature EOF
             {
              before(grammarAccess.getEmptyFeatureRule()); 
             pushFollow(FOLLOW_1);
@@ -1997,21 +1891,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "ruleEmptyFeature"
-    // InternalKerMLExpressions.g:687:1: ruleEmptyFeature : ( () ) ;
+    // InternalKerMLExpressions.g:637:1: ruleEmptyFeature : ( () ) ;
     public final void ruleEmptyFeature() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:691:2: ( ( () ) )
-            // InternalKerMLExpressions.g:692:2: ( () )
+            // InternalKerMLExpressions.g:641:2: ( ( () ) )
+            // InternalKerMLExpressions.g:642:2: ( () )
             {
-            // InternalKerMLExpressions.g:692:2: ( () )
-            // InternalKerMLExpressions.g:693:3: ()
+            // InternalKerMLExpressions.g:642:2: ( () )
+            // InternalKerMLExpressions.g:643:3: ()
             {
              before(grammarAccess.getEmptyFeatureAccess().getFeatureAction()); 
-            // InternalKerMLExpressions.g:694:3: ()
-            // InternalKerMLExpressions.g:694:4: 
+            // InternalKerMLExpressions.g:644:3: ()
+            // InternalKerMLExpressions.g:644:4: 
             {
             }
 
@@ -2034,11 +1928,11 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "entryRuleRelationalExpression"
-    // InternalKerMLExpressions.g:703:1: entryRuleRelationalExpression : ruleRelationalExpression EOF ;
+    // InternalKerMLExpressions.g:653:1: entryRuleRelationalExpression : ruleRelationalExpression EOF ;
     public final void entryRuleRelationalExpression() throws RecognitionException {
         try {
-            // InternalKerMLExpressions.g:704:1: ( ruleRelationalExpression EOF )
-            // InternalKerMLExpressions.g:705:1: ruleRelationalExpression EOF
+            // InternalKerMLExpressions.g:654:1: ( ruleRelationalExpression EOF )
+            // InternalKerMLExpressions.g:655:1: ruleRelationalExpression EOF
             {
              before(grammarAccess.getRelationalExpressionRule()); 
             pushFollow(FOLLOW_1);
@@ -2064,21 +1958,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "ruleRelationalExpression"
-    // InternalKerMLExpressions.g:712:1: ruleRelationalExpression : ( ( rule__RelationalExpression__Group__0 ) ) ;
+    // InternalKerMLExpressions.g:662:1: ruleRelationalExpression : ( ( rule__RelationalExpression__Group__0 ) ) ;
     public final void ruleRelationalExpression() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:716:2: ( ( ( rule__RelationalExpression__Group__0 ) ) )
-            // InternalKerMLExpressions.g:717:2: ( ( rule__RelationalExpression__Group__0 ) )
+            // InternalKerMLExpressions.g:666:2: ( ( ( rule__RelationalExpression__Group__0 ) ) )
+            // InternalKerMLExpressions.g:667:2: ( ( rule__RelationalExpression__Group__0 ) )
             {
-            // InternalKerMLExpressions.g:717:2: ( ( rule__RelationalExpression__Group__0 ) )
-            // InternalKerMLExpressions.g:718:3: ( rule__RelationalExpression__Group__0 )
+            // InternalKerMLExpressions.g:667:2: ( ( rule__RelationalExpression__Group__0 ) )
+            // InternalKerMLExpressions.g:668:3: ( rule__RelationalExpression__Group__0 )
             {
              before(grammarAccess.getRelationalExpressionAccess().getGroup()); 
-            // InternalKerMLExpressions.g:719:3: ( rule__RelationalExpression__Group__0 )
-            // InternalKerMLExpressions.g:719:4: rule__RelationalExpression__Group__0
+            // InternalKerMLExpressions.g:669:3: ( rule__RelationalExpression__Group__0 )
+            // InternalKerMLExpressions.g:669:4: rule__RelationalExpression__Group__0
             {
             pushFollow(FOLLOW_2);
             rule__RelationalExpression__Group__0();
@@ -2111,11 +2005,11 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "entryRuleRelationalOperator"
-    // InternalKerMLExpressions.g:728:1: entryRuleRelationalOperator : ruleRelationalOperator EOF ;
+    // InternalKerMLExpressions.g:678:1: entryRuleRelationalOperator : ruleRelationalOperator EOF ;
     public final void entryRuleRelationalOperator() throws RecognitionException {
         try {
-            // InternalKerMLExpressions.g:729:1: ( ruleRelationalOperator EOF )
-            // InternalKerMLExpressions.g:730:1: ruleRelationalOperator EOF
+            // InternalKerMLExpressions.g:679:1: ( ruleRelationalOperator EOF )
+            // InternalKerMLExpressions.g:680:1: ruleRelationalOperator EOF
             {
              before(grammarAccess.getRelationalOperatorRule()); 
             pushFollow(FOLLOW_1);
@@ -2141,21 +2035,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "ruleRelationalOperator"
-    // InternalKerMLExpressions.g:737:1: ruleRelationalOperator : ( ( rule__RelationalOperator__Alternatives ) ) ;
+    // InternalKerMLExpressions.g:687:1: ruleRelationalOperator : ( ( rule__RelationalOperator__Alternatives ) ) ;
     public final void ruleRelationalOperator() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:741:2: ( ( ( rule__RelationalOperator__Alternatives ) ) )
-            // InternalKerMLExpressions.g:742:2: ( ( rule__RelationalOperator__Alternatives ) )
+            // InternalKerMLExpressions.g:691:2: ( ( ( rule__RelationalOperator__Alternatives ) ) )
+            // InternalKerMLExpressions.g:692:2: ( ( rule__RelationalOperator__Alternatives ) )
             {
-            // InternalKerMLExpressions.g:742:2: ( ( rule__RelationalOperator__Alternatives ) )
-            // InternalKerMLExpressions.g:743:3: ( rule__RelationalOperator__Alternatives )
+            // InternalKerMLExpressions.g:692:2: ( ( rule__RelationalOperator__Alternatives ) )
+            // InternalKerMLExpressions.g:693:3: ( rule__RelationalOperator__Alternatives )
             {
              before(grammarAccess.getRelationalOperatorAccess().getAlternatives()); 
-            // InternalKerMLExpressions.g:744:3: ( rule__RelationalOperator__Alternatives )
-            // InternalKerMLExpressions.g:744:4: rule__RelationalOperator__Alternatives
+            // InternalKerMLExpressions.g:694:3: ( rule__RelationalOperator__Alternatives )
+            // InternalKerMLExpressions.g:694:4: rule__RelationalOperator__Alternatives
             {
             pushFollow(FOLLOW_2);
             rule__RelationalOperator__Alternatives();
@@ -2188,11 +2082,11 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "entryRuleRangeExpression"
-    // InternalKerMLExpressions.g:753:1: entryRuleRangeExpression : ruleRangeExpression EOF ;
+    // InternalKerMLExpressions.g:703:1: entryRuleRangeExpression : ruleRangeExpression EOF ;
     public final void entryRuleRangeExpression() throws RecognitionException {
         try {
-            // InternalKerMLExpressions.g:754:1: ( ruleRangeExpression EOF )
-            // InternalKerMLExpressions.g:755:1: ruleRangeExpression EOF
+            // InternalKerMLExpressions.g:704:1: ( ruleRangeExpression EOF )
+            // InternalKerMLExpressions.g:705:1: ruleRangeExpression EOF
             {
              before(grammarAccess.getRangeExpressionRule()); 
             pushFollow(FOLLOW_1);
@@ -2218,21 +2112,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "ruleRangeExpression"
-    // InternalKerMLExpressions.g:762:1: ruleRangeExpression : ( ( rule__RangeExpression__Group__0 ) ) ;
+    // InternalKerMLExpressions.g:712:1: ruleRangeExpression : ( ( rule__RangeExpression__Group__0 ) ) ;
     public final void ruleRangeExpression() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:766:2: ( ( ( rule__RangeExpression__Group__0 ) ) )
-            // InternalKerMLExpressions.g:767:2: ( ( rule__RangeExpression__Group__0 ) )
+            // InternalKerMLExpressions.g:716:2: ( ( ( rule__RangeExpression__Group__0 ) ) )
+            // InternalKerMLExpressions.g:717:2: ( ( rule__RangeExpression__Group__0 ) )
             {
-            // InternalKerMLExpressions.g:767:2: ( ( rule__RangeExpression__Group__0 ) )
-            // InternalKerMLExpressions.g:768:3: ( rule__RangeExpression__Group__0 )
+            // InternalKerMLExpressions.g:717:2: ( ( rule__RangeExpression__Group__0 ) )
+            // InternalKerMLExpressions.g:718:3: ( rule__RangeExpression__Group__0 )
             {
              before(grammarAccess.getRangeExpressionAccess().getGroup()); 
-            // InternalKerMLExpressions.g:769:3: ( rule__RangeExpression__Group__0 )
-            // InternalKerMLExpressions.g:769:4: rule__RangeExpression__Group__0
+            // InternalKerMLExpressions.g:719:3: ( rule__RangeExpression__Group__0 )
+            // InternalKerMLExpressions.g:719:4: rule__RangeExpression__Group__0
             {
             pushFollow(FOLLOW_2);
             rule__RangeExpression__Group__0();
@@ -2265,11 +2159,11 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "entryRuleAdditiveExpression"
-    // InternalKerMLExpressions.g:778:1: entryRuleAdditiveExpression : ruleAdditiveExpression EOF ;
+    // InternalKerMLExpressions.g:728:1: entryRuleAdditiveExpression : ruleAdditiveExpression EOF ;
     public final void entryRuleAdditiveExpression() throws RecognitionException {
         try {
-            // InternalKerMLExpressions.g:779:1: ( ruleAdditiveExpression EOF )
-            // InternalKerMLExpressions.g:780:1: ruleAdditiveExpression EOF
+            // InternalKerMLExpressions.g:729:1: ( ruleAdditiveExpression EOF )
+            // InternalKerMLExpressions.g:730:1: ruleAdditiveExpression EOF
             {
              before(grammarAccess.getAdditiveExpressionRule()); 
             pushFollow(FOLLOW_1);
@@ -2295,21 +2189,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "ruleAdditiveExpression"
-    // InternalKerMLExpressions.g:787:1: ruleAdditiveExpression : ( ( rule__AdditiveExpression__Group__0 ) ) ;
+    // InternalKerMLExpressions.g:737:1: ruleAdditiveExpression : ( ( rule__AdditiveExpression__Group__0 ) ) ;
     public final void ruleAdditiveExpression() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:791:2: ( ( ( rule__AdditiveExpression__Group__0 ) ) )
-            // InternalKerMLExpressions.g:792:2: ( ( rule__AdditiveExpression__Group__0 ) )
+            // InternalKerMLExpressions.g:741:2: ( ( ( rule__AdditiveExpression__Group__0 ) ) )
+            // InternalKerMLExpressions.g:742:2: ( ( rule__AdditiveExpression__Group__0 ) )
             {
-            // InternalKerMLExpressions.g:792:2: ( ( rule__AdditiveExpression__Group__0 ) )
-            // InternalKerMLExpressions.g:793:3: ( rule__AdditiveExpression__Group__0 )
+            // InternalKerMLExpressions.g:742:2: ( ( rule__AdditiveExpression__Group__0 ) )
+            // InternalKerMLExpressions.g:743:3: ( rule__AdditiveExpression__Group__0 )
             {
              before(grammarAccess.getAdditiveExpressionAccess().getGroup()); 
-            // InternalKerMLExpressions.g:794:3: ( rule__AdditiveExpression__Group__0 )
-            // InternalKerMLExpressions.g:794:4: rule__AdditiveExpression__Group__0
+            // InternalKerMLExpressions.g:744:3: ( rule__AdditiveExpression__Group__0 )
+            // InternalKerMLExpressions.g:744:4: rule__AdditiveExpression__Group__0
             {
             pushFollow(FOLLOW_2);
             rule__AdditiveExpression__Group__0();
@@ -2342,11 +2236,11 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "entryRuleAdditiveOperator"
-    // InternalKerMLExpressions.g:803:1: entryRuleAdditiveOperator : ruleAdditiveOperator EOF ;
+    // InternalKerMLExpressions.g:753:1: entryRuleAdditiveOperator : ruleAdditiveOperator EOF ;
     public final void entryRuleAdditiveOperator() throws RecognitionException {
         try {
-            // InternalKerMLExpressions.g:804:1: ( ruleAdditiveOperator EOF )
-            // InternalKerMLExpressions.g:805:1: ruleAdditiveOperator EOF
+            // InternalKerMLExpressions.g:754:1: ( ruleAdditiveOperator EOF )
+            // InternalKerMLExpressions.g:755:1: ruleAdditiveOperator EOF
             {
              before(grammarAccess.getAdditiveOperatorRule()); 
             pushFollow(FOLLOW_1);
@@ -2372,21 +2266,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "ruleAdditiveOperator"
-    // InternalKerMLExpressions.g:812:1: ruleAdditiveOperator : ( ( rule__AdditiveOperator__Alternatives ) ) ;
+    // InternalKerMLExpressions.g:762:1: ruleAdditiveOperator : ( ( rule__AdditiveOperator__Alternatives ) ) ;
     public final void ruleAdditiveOperator() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:816:2: ( ( ( rule__AdditiveOperator__Alternatives ) ) )
-            // InternalKerMLExpressions.g:817:2: ( ( rule__AdditiveOperator__Alternatives ) )
+            // InternalKerMLExpressions.g:766:2: ( ( ( rule__AdditiveOperator__Alternatives ) ) )
+            // InternalKerMLExpressions.g:767:2: ( ( rule__AdditiveOperator__Alternatives ) )
             {
-            // InternalKerMLExpressions.g:817:2: ( ( rule__AdditiveOperator__Alternatives ) )
-            // InternalKerMLExpressions.g:818:3: ( rule__AdditiveOperator__Alternatives )
+            // InternalKerMLExpressions.g:767:2: ( ( rule__AdditiveOperator__Alternatives ) )
+            // InternalKerMLExpressions.g:768:3: ( rule__AdditiveOperator__Alternatives )
             {
              before(grammarAccess.getAdditiveOperatorAccess().getAlternatives()); 
-            // InternalKerMLExpressions.g:819:3: ( rule__AdditiveOperator__Alternatives )
-            // InternalKerMLExpressions.g:819:4: rule__AdditiveOperator__Alternatives
+            // InternalKerMLExpressions.g:769:3: ( rule__AdditiveOperator__Alternatives )
+            // InternalKerMLExpressions.g:769:4: rule__AdditiveOperator__Alternatives
             {
             pushFollow(FOLLOW_2);
             rule__AdditiveOperator__Alternatives();
@@ -2419,11 +2313,11 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "entryRuleMultiplicativeExpression"
-    // InternalKerMLExpressions.g:828:1: entryRuleMultiplicativeExpression : ruleMultiplicativeExpression EOF ;
+    // InternalKerMLExpressions.g:778:1: entryRuleMultiplicativeExpression : ruleMultiplicativeExpression EOF ;
     public final void entryRuleMultiplicativeExpression() throws RecognitionException {
         try {
-            // InternalKerMLExpressions.g:829:1: ( ruleMultiplicativeExpression EOF )
-            // InternalKerMLExpressions.g:830:1: ruleMultiplicativeExpression EOF
+            // InternalKerMLExpressions.g:779:1: ( ruleMultiplicativeExpression EOF )
+            // InternalKerMLExpressions.g:780:1: ruleMultiplicativeExpression EOF
             {
              before(grammarAccess.getMultiplicativeExpressionRule()); 
             pushFollow(FOLLOW_1);
@@ -2449,21 +2343,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "ruleMultiplicativeExpression"
-    // InternalKerMLExpressions.g:837:1: ruleMultiplicativeExpression : ( ( rule__MultiplicativeExpression__Group__0 ) ) ;
+    // InternalKerMLExpressions.g:787:1: ruleMultiplicativeExpression : ( ( rule__MultiplicativeExpression__Group__0 ) ) ;
     public final void ruleMultiplicativeExpression() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:841:2: ( ( ( rule__MultiplicativeExpression__Group__0 ) ) )
-            // InternalKerMLExpressions.g:842:2: ( ( rule__MultiplicativeExpression__Group__0 ) )
+            // InternalKerMLExpressions.g:791:2: ( ( ( rule__MultiplicativeExpression__Group__0 ) ) )
+            // InternalKerMLExpressions.g:792:2: ( ( rule__MultiplicativeExpression__Group__0 ) )
             {
-            // InternalKerMLExpressions.g:842:2: ( ( rule__MultiplicativeExpression__Group__0 ) )
-            // InternalKerMLExpressions.g:843:3: ( rule__MultiplicativeExpression__Group__0 )
+            // InternalKerMLExpressions.g:792:2: ( ( rule__MultiplicativeExpression__Group__0 ) )
+            // InternalKerMLExpressions.g:793:3: ( rule__MultiplicativeExpression__Group__0 )
             {
              before(grammarAccess.getMultiplicativeExpressionAccess().getGroup()); 
-            // InternalKerMLExpressions.g:844:3: ( rule__MultiplicativeExpression__Group__0 )
-            // InternalKerMLExpressions.g:844:4: rule__MultiplicativeExpression__Group__0
+            // InternalKerMLExpressions.g:794:3: ( rule__MultiplicativeExpression__Group__0 )
+            // InternalKerMLExpressions.g:794:4: rule__MultiplicativeExpression__Group__0
             {
             pushFollow(FOLLOW_2);
             rule__MultiplicativeExpression__Group__0();
@@ -2496,11 +2390,11 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "entryRuleMultiplicativeOperator"
-    // InternalKerMLExpressions.g:853:1: entryRuleMultiplicativeOperator : ruleMultiplicativeOperator EOF ;
+    // InternalKerMLExpressions.g:803:1: entryRuleMultiplicativeOperator : ruleMultiplicativeOperator EOF ;
     public final void entryRuleMultiplicativeOperator() throws RecognitionException {
         try {
-            // InternalKerMLExpressions.g:854:1: ( ruleMultiplicativeOperator EOF )
-            // InternalKerMLExpressions.g:855:1: ruleMultiplicativeOperator EOF
+            // InternalKerMLExpressions.g:804:1: ( ruleMultiplicativeOperator EOF )
+            // InternalKerMLExpressions.g:805:1: ruleMultiplicativeOperator EOF
             {
              before(grammarAccess.getMultiplicativeOperatorRule()); 
             pushFollow(FOLLOW_1);
@@ -2526,21 +2420,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "ruleMultiplicativeOperator"
-    // InternalKerMLExpressions.g:862:1: ruleMultiplicativeOperator : ( ( rule__MultiplicativeOperator__Alternatives ) ) ;
+    // InternalKerMLExpressions.g:812:1: ruleMultiplicativeOperator : ( ( rule__MultiplicativeOperator__Alternatives ) ) ;
     public final void ruleMultiplicativeOperator() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:866:2: ( ( ( rule__MultiplicativeOperator__Alternatives ) ) )
-            // InternalKerMLExpressions.g:867:2: ( ( rule__MultiplicativeOperator__Alternatives ) )
+            // InternalKerMLExpressions.g:816:2: ( ( ( rule__MultiplicativeOperator__Alternatives ) ) )
+            // InternalKerMLExpressions.g:817:2: ( ( rule__MultiplicativeOperator__Alternatives ) )
             {
-            // InternalKerMLExpressions.g:867:2: ( ( rule__MultiplicativeOperator__Alternatives ) )
-            // InternalKerMLExpressions.g:868:3: ( rule__MultiplicativeOperator__Alternatives )
+            // InternalKerMLExpressions.g:817:2: ( ( rule__MultiplicativeOperator__Alternatives ) )
+            // InternalKerMLExpressions.g:818:3: ( rule__MultiplicativeOperator__Alternatives )
             {
              before(grammarAccess.getMultiplicativeOperatorAccess().getAlternatives()); 
-            // InternalKerMLExpressions.g:869:3: ( rule__MultiplicativeOperator__Alternatives )
-            // InternalKerMLExpressions.g:869:4: rule__MultiplicativeOperator__Alternatives
+            // InternalKerMLExpressions.g:819:3: ( rule__MultiplicativeOperator__Alternatives )
+            // InternalKerMLExpressions.g:819:4: rule__MultiplicativeOperator__Alternatives
             {
             pushFollow(FOLLOW_2);
             rule__MultiplicativeOperator__Alternatives();
@@ -2573,11 +2467,11 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "entryRuleExponentiationExpression"
-    // InternalKerMLExpressions.g:878:1: entryRuleExponentiationExpression : ruleExponentiationExpression EOF ;
+    // InternalKerMLExpressions.g:828:1: entryRuleExponentiationExpression : ruleExponentiationExpression EOF ;
     public final void entryRuleExponentiationExpression() throws RecognitionException {
         try {
-            // InternalKerMLExpressions.g:879:1: ( ruleExponentiationExpression EOF )
-            // InternalKerMLExpressions.g:880:1: ruleExponentiationExpression EOF
+            // InternalKerMLExpressions.g:829:1: ( ruleExponentiationExpression EOF )
+            // InternalKerMLExpressions.g:830:1: ruleExponentiationExpression EOF
             {
              before(grammarAccess.getExponentiationExpressionRule()); 
             pushFollow(FOLLOW_1);
@@ -2603,21 +2497,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "ruleExponentiationExpression"
-    // InternalKerMLExpressions.g:887:1: ruleExponentiationExpression : ( ( rule__ExponentiationExpression__Group__0 ) ) ;
+    // InternalKerMLExpressions.g:837:1: ruleExponentiationExpression : ( ( rule__ExponentiationExpression__Group__0 ) ) ;
     public final void ruleExponentiationExpression() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:891:2: ( ( ( rule__ExponentiationExpression__Group__0 ) ) )
-            // InternalKerMLExpressions.g:892:2: ( ( rule__ExponentiationExpression__Group__0 ) )
+            // InternalKerMLExpressions.g:841:2: ( ( ( rule__ExponentiationExpression__Group__0 ) ) )
+            // InternalKerMLExpressions.g:842:2: ( ( rule__ExponentiationExpression__Group__0 ) )
             {
-            // InternalKerMLExpressions.g:892:2: ( ( rule__ExponentiationExpression__Group__0 ) )
-            // InternalKerMLExpressions.g:893:3: ( rule__ExponentiationExpression__Group__0 )
+            // InternalKerMLExpressions.g:842:2: ( ( rule__ExponentiationExpression__Group__0 ) )
+            // InternalKerMLExpressions.g:843:3: ( rule__ExponentiationExpression__Group__0 )
             {
              before(grammarAccess.getExponentiationExpressionAccess().getGroup()); 
-            // InternalKerMLExpressions.g:894:3: ( rule__ExponentiationExpression__Group__0 )
-            // InternalKerMLExpressions.g:894:4: rule__ExponentiationExpression__Group__0
+            // InternalKerMLExpressions.g:844:3: ( rule__ExponentiationExpression__Group__0 )
+            // InternalKerMLExpressions.g:844:4: rule__ExponentiationExpression__Group__0
             {
             pushFollow(FOLLOW_2);
             rule__ExponentiationExpression__Group__0();
@@ -2650,11 +2544,11 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "entryRuleExponentiationOperator"
-    // InternalKerMLExpressions.g:903:1: entryRuleExponentiationOperator : ruleExponentiationOperator EOF ;
+    // InternalKerMLExpressions.g:853:1: entryRuleExponentiationOperator : ruleExponentiationOperator EOF ;
     public final void entryRuleExponentiationOperator() throws RecognitionException {
         try {
-            // InternalKerMLExpressions.g:904:1: ( ruleExponentiationOperator EOF )
-            // InternalKerMLExpressions.g:905:1: ruleExponentiationOperator EOF
+            // InternalKerMLExpressions.g:854:1: ( ruleExponentiationOperator EOF )
+            // InternalKerMLExpressions.g:855:1: ruleExponentiationOperator EOF
             {
              before(grammarAccess.getExponentiationOperatorRule()); 
             pushFollow(FOLLOW_1);
@@ -2680,21 +2574,31 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "ruleExponentiationOperator"
-    // InternalKerMLExpressions.g:912:1: ruleExponentiationOperator : ( '**' ) ;
+    // InternalKerMLExpressions.g:862:1: ruleExponentiationOperator : ( ( rule__ExponentiationOperator__Alternatives ) ) ;
     public final void ruleExponentiationOperator() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:916:2: ( ( '**' ) )
-            // InternalKerMLExpressions.g:917:2: ( '**' )
+            // InternalKerMLExpressions.g:866:2: ( ( ( rule__ExponentiationOperator__Alternatives ) ) )
+            // InternalKerMLExpressions.g:867:2: ( ( rule__ExponentiationOperator__Alternatives ) )
             {
-            // InternalKerMLExpressions.g:917:2: ( '**' )
-            // InternalKerMLExpressions.g:918:3: '**'
+            // InternalKerMLExpressions.g:867:2: ( ( rule__ExponentiationOperator__Alternatives ) )
+            // InternalKerMLExpressions.g:868:3: ( rule__ExponentiationOperator__Alternatives )
             {
-             before(grammarAccess.getExponentiationOperatorAccess().getAsteriskAsteriskKeyword()); 
-            match(input,21,FOLLOW_2); 
-             after(grammarAccess.getExponentiationOperatorAccess().getAsteriskAsteriskKeyword()); 
+             before(grammarAccess.getExponentiationOperatorAccess().getAlternatives()); 
+            // InternalKerMLExpressions.g:869:3: ( rule__ExponentiationOperator__Alternatives )
+            // InternalKerMLExpressions.g:869:4: rule__ExponentiationOperator__Alternatives
+            {
+            pushFollow(FOLLOW_2);
+            rule__ExponentiationOperator__Alternatives();
+
+            state._fsp--;
+
+
+            }
+
+             after(grammarAccess.getExponentiationOperatorAccess().getAlternatives()); 
 
             }
 
@@ -2717,11 +2621,11 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "entryRuleUnitsExpression"
-    // InternalKerMLExpressions.g:928:1: entryRuleUnitsExpression : ruleUnitsExpression EOF ;
+    // InternalKerMLExpressions.g:878:1: entryRuleUnitsExpression : ruleUnitsExpression EOF ;
     public final void entryRuleUnitsExpression() throws RecognitionException {
         try {
-            // InternalKerMLExpressions.g:929:1: ( ruleUnitsExpression EOF )
-            // InternalKerMLExpressions.g:930:1: ruleUnitsExpression EOF
+            // InternalKerMLExpressions.g:879:1: ( ruleUnitsExpression EOF )
+            // InternalKerMLExpressions.g:880:1: ruleUnitsExpression EOF
             {
              before(grammarAccess.getUnitsExpressionRule()); 
             pushFollow(FOLLOW_1);
@@ -2747,21 +2651,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "ruleUnitsExpression"
-    // InternalKerMLExpressions.g:937:1: ruleUnitsExpression : ( ( rule__UnitsExpression__Group__0 ) ) ;
+    // InternalKerMLExpressions.g:887:1: ruleUnitsExpression : ( ( rule__UnitsExpression__Group__0 ) ) ;
     public final void ruleUnitsExpression() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:941:2: ( ( ( rule__UnitsExpression__Group__0 ) ) )
-            // InternalKerMLExpressions.g:942:2: ( ( rule__UnitsExpression__Group__0 ) )
+            // InternalKerMLExpressions.g:891:2: ( ( ( rule__UnitsExpression__Group__0 ) ) )
+            // InternalKerMLExpressions.g:892:2: ( ( rule__UnitsExpression__Group__0 ) )
             {
-            // InternalKerMLExpressions.g:942:2: ( ( rule__UnitsExpression__Group__0 ) )
-            // InternalKerMLExpressions.g:943:3: ( rule__UnitsExpression__Group__0 )
+            // InternalKerMLExpressions.g:892:2: ( ( rule__UnitsExpression__Group__0 ) )
+            // InternalKerMLExpressions.g:893:3: ( rule__UnitsExpression__Group__0 )
             {
              before(grammarAccess.getUnitsExpressionAccess().getGroup()); 
-            // InternalKerMLExpressions.g:944:3: ( rule__UnitsExpression__Group__0 )
-            // InternalKerMLExpressions.g:944:4: rule__UnitsExpression__Group__0
+            // InternalKerMLExpressions.g:894:3: ( rule__UnitsExpression__Group__0 )
+            // InternalKerMLExpressions.g:894:4: rule__UnitsExpression__Group__0
             {
             pushFollow(FOLLOW_2);
             rule__UnitsExpression__Group__0();
@@ -2794,11 +2698,11 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "entryRuleUnaryExpression"
-    // InternalKerMLExpressions.g:953:1: entryRuleUnaryExpression : ruleUnaryExpression EOF ;
+    // InternalKerMLExpressions.g:903:1: entryRuleUnaryExpression : ruleUnaryExpression EOF ;
     public final void entryRuleUnaryExpression() throws RecognitionException {
         try {
-            // InternalKerMLExpressions.g:954:1: ( ruleUnaryExpression EOF )
-            // InternalKerMLExpressions.g:955:1: ruleUnaryExpression EOF
+            // InternalKerMLExpressions.g:904:1: ( ruleUnaryExpression EOF )
+            // InternalKerMLExpressions.g:905:1: ruleUnaryExpression EOF
             {
              before(grammarAccess.getUnaryExpressionRule()); 
             pushFollow(FOLLOW_1);
@@ -2824,21 +2728,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "ruleUnaryExpression"
-    // InternalKerMLExpressions.g:962:1: ruleUnaryExpression : ( ( rule__UnaryExpression__Alternatives ) ) ;
+    // InternalKerMLExpressions.g:912:1: ruleUnaryExpression : ( ( rule__UnaryExpression__Alternatives ) ) ;
     public final void ruleUnaryExpression() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:966:2: ( ( ( rule__UnaryExpression__Alternatives ) ) )
-            // InternalKerMLExpressions.g:967:2: ( ( rule__UnaryExpression__Alternatives ) )
+            // InternalKerMLExpressions.g:916:2: ( ( ( rule__UnaryExpression__Alternatives ) ) )
+            // InternalKerMLExpressions.g:917:2: ( ( rule__UnaryExpression__Alternatives ) )
             {
-            // InternalKerMLExpressions.g:967:2: ( ( rule__UnaryExpression__Alternatives ) )
-            // InternalKerMLExpressions.g:968:3: ( rule__UnaryExpression__Alternatives )
+            // InternalKerMLExpressions.g:917:2: ( ( rule__UnaryExpression__Alternatives ) )
+            // InternalKerMLExpressions.g:918:3: ( rule__UnaryExpression__Alternatives )
             {
              before(grammarAccess.getUnaryExpressionAccess().getAlternatives()); 
-            // InternalKerMLExpressions.g:969:3: ( rule__UnaryExpression__Alternatives )
-            // InternalKerMLExpressions.g:969:4: rule__UnaryExpression__Alternatives
+            // InternalKerMLExpressions.g:919:3: ( rule__UnaryExpression__Alternatives )
+            // InternalKerMLExpressions.g:919:4: rule__UnaryExpression__Alternatives
             {
             pushFollow(FOLLOW_2);
             rule__UnaryExpression__Alternatives();
@@ -2871,11 +2775,11 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "entryRuleUnaryOperator"
-    // InternalKerMLExpressions.g:978:1: entryRuleUnaryOperator : ruleUnaryOperator EOF ;
+    // InternalKerMLExpressions.g:928:1: entryRuleUnaryOperator : ruleUnaryOperator EOF ;
     public final void entryRuleUnaryOperator() throws RecognitionException {
         try {
-            // InternalKerMLExpressions.g:979:1: ( ruleUnaryOperator EOF )
-            // InternalKerMLExpressions.g:980:1: ruleUnaryOperator EOF
+            // InternalKerMLExpressions.g:929:1: ( ruleUnaryOperator EOF )
+            // InternalKerMLExpressions.g:930:1: ruleUnaryOperator EOF
             {
              before(grammarAccess.getUnaryOperatorRule()); 
             pushFollow(FOLLOW_1);
@@ -2901,21 +2805,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "ruleUnaryOperator"
-    // InternalKerMLExpressions.g:987:1: ruleUnaryOperator : ( ( rule__UnaryOperator__Alternatives ) ) ;
+    // InternalKerMLExpressions.g:937:1: ruleUnaryOperator : ( ( rule__UnaryOperator__Alternatives ) ) ;
     public final void ruleUnaryOperator() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:991:2: ( ( ( rule__UnaryOperator__Alternatives ) ) )
-            // InternalKerMLExpressions.g:992:2: ( ( rule__UnaryOperator__Alternatives ) )
+            // InternalKerMLExpressions.g:941:2: ( ( ( rule__UnaryOperator__Alternatives ) ) )
+            // InternalKerMLExpressions.g:942:2: ( ( rule__UnaryOperator__Alternatives ) )
             {
-            // InternalKerMLExpressions.g:992:2: ( ( rule__UnaryOperator__Alternatives ) )
-            // InternalKerMLExpressions.g:993:3: ( rule__UnaryOperator__Alternatives )
+            // InternalKerMLExpressions.g:942:2: ( ( rule__UnaryOperator__Alternatives ) )
+            // InternalKerMLExpressions.g:943:3: ( rule__UnaryOperator__Alternatives )
             {
              before(grammarAccess.getUnaryOperatorAccess().getAlternatives()); 
-            // InternalKerMLExpressions.g:994:3: ( rule__UnaryOperator__Alternatives )
-            // InternalKerMLExpressions.g:994:4: rule__UnaryOperator__Alternatives
+            // InternalKerMLExpressions.g:944:3: ( rule__UnaryOperator__Alternatives )
+            // InternalKerMLExpressions.g:944:4: rule__UnaryOperator__Alternatives
             {
             pushFollow(FOLLOW_2);
             rule__UnaryOperator__Alternatives();
@@ -2948,11 +2852,11 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "entryRuleExtentExpression"
-    // InternalKerMLExpressions.g:1003:1: entryRuleExtentExpression : ruleExtentExpression EOF ;
+    // InternalKerMLExpressions.g:953:1: entryRuleExtentExpression : ruleExtentExpression EOF ;
     public final void entryRuleExtentExpression() throws RecognitionException {
         try {
-            // InternalKerMLExpressions.g:1004:1: ( ruleExtentExpression EOF )
-            // InternalKerMLExpressions.g:1005:1: ruleExtentExpression EOF
+            // InternalKerMLExpressions.g:954:1: ( ruleExtentExpression EOF )
+            // InternalKerMLExpressions.g:955:1: ruleExtentExpression EOF
             {
              before(grammarAccess.getExtentExpressionRule()); 
             pushFollow(FOLLOW_1);
@@ -2978,21 +2882,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "ruleExtentExpression"
-    // InternalKerMLExpressions.g:1012:1: ruleExtentExpression : ( ( rule__ExtentExpression__Alternatives ) ) ;
+    // InternalKerMLExpressions.g:962:1: ruleExtentExpression : ( ( rule__ExtentExpression__Alternatives ) ) ;
     public final void ruleExtentExpression() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:1016:2: ( ( ( rule__ExtentExpression__Alternatives ) ) )
-            // InternalKerMLExpressions.g:1017:2: ( ( rule__ExtentExpression__Alternatives ) )
+            // InternalKerMLExpressions.g:966:2: ( ( ( rule__ExtentExpression__Alternatives ) ) )
+            // InternalKerMLExpressions.g:967:2: ( ( rule__ExtentExpression__Alternatives ) )
             {
-            // InternalKerMLExpressions.g:1017:2: ( ( rule__ExtentExpression__Alternatives ) )
-            // InternalKerMLExpressions.g:1018:3: ( rule__ExtentExpression__Alternatives )
+            // InternalKerMLExpressions.g:967:2: ( ( rule__ExtentExpression__Alternatives ) )
+            // InternalKerMLExpressions.g:968:3: ( rule__ExtentExpression__Alternatives )
             {
              before(grammarAccess.getExtentExpressionAccess().getAlternatives()); 
-            // InternalKerMLExpressions.g:1019:3: ( rule__ExtentExpression__Alternatives )
-            // InternalKerMLExpressions.g:1019:4: rule__ExtentExpression__Alternatives
+            // InternalKerMLExpressions.g:969:3: ( rule__ExtentExpression__Alternatives )
+            // InternalKerMLExpressions.g:969:4: rule__ExtentExpression__Alternatives
             {
             pushFollow(FOLLOW_2);
             rule__ExtentExpression__Alternatives();
@@ -3025,11 +2929,11 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "entryRulePrimaryExpression"
-    // InternalKerMLExpressions.g:1028:1: entryRulePrimaryExpression : rulePrimaryExpression EOF ;
+    // InternalKerMLExpressions.g:978:1: entryRulePrimaryExpression : rulePrimaryExpression EOF ;
     public final void entryRulePrimaryExpression() throws RecognitionException {
         try {
-            // InternalKerMLExpressions.g:1029:1: ( rulePrimaryExpression EOF )
-            // InternalKerMLExpressions.g:1030:1: rulePrimaryExpression EOF
+            // InternalKerMLExpressions.g:979:1: ( rulePrimaryExpression EOF )
+            // InternalKerMLExpressions.g:980:1: rulePrimaryExpression EOF
             {
              before(grammarAccess.getPrimaryExpressionRule()); 
             pushFollow(FOLLOW_1);
@@ -3055,21 +2959,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rulePrimaryExpression"
-    // InternalKerMLExpressions.g:1037:1: rulePrimaryExpression : ( ( rule__PrimaryExpression__Group__0 ) ) ;
+    // InternalKerMLExpressions.g:987:1: rulePrimaryExpression : ( ( rule__PrimaryExpression__Group__0 ) ) ;
     public final void rulePrimaryExpression() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:1041:2: ( ( ( rule__PrimaryExpression__Group__0 ) ) )
-            // InternalKerMLExpressions.g:1042:2: ( ( rule__PrimaryExpression__Group__0 ) )
+            // InternalKerMLExpressions.g:991:2: ( ( ( rule__PrimaryExpression__Group__0 ) ) )
+            // InternalKerMLExpressions.g:992:2: ( ( rule__PrimaryExpression__Group__0 ) )
             {
-            // InternalKerMLExpressions.g:1042:2: ( ( rule__PrimaryExpression__Group__0 ) )
-            // InternalKerMLExpressions.g:1043:3: ( rule__PrimaryExpression__Group__0 )
+            // InternalKerMLExpressions.g:992:2: ( ( rule__PrimaryExpression__Group__0 ) )
+            // InternalKerMLExpressions.g:993:3: ( rule__PrimaryExpression__Group__0 )
             {
              before(grammarAccess.getPrimaryExpressionAccess().getGroup()); 
-            // InternalKerMLExpressions.g:1044:3: ( rule__PrimaryExpression__Group__0 )
-            // InternalKerMLExpressions.g:1044:4: rule__PrimaryExpression__Group__0
+            // InternalKerMLExpressions.g:994:3: ( rule__PrimaryExpression__Group__0 )
+            // InternalKerMLExpressions.g:994:4: rule__PrimaryExpression__Group__0
             {
             pushFollow(FOLLOW_2);
             rule__PrimaryExpression__Group__0();
@@ -3102,11 +3006,11 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "entryRuleExpressionBodyMember"
-    // InternalKerMLExpressions.g:1053:1: entryRuleExpressionBodyMember : ruleExpressionBodyMember EOF ;
+    // InternalKerMLExpressions.g:1003:1: entryRuleExpressionBodyMember : ruleExpressionBodyMember EOF ;
     public final void entryRuleExpressionBodyMember() throws RecognitionException {
         try {
-            // InternalKerMLExpressions.g:1054:1: ( ruleExpressionBodyMember EOF )
-            // InternalKerMLExpressions.g:1055:1: ruleExpressionBodyMember EOF
+            // InternalKerMLExpressions.g:1004:1: ( ruleExpressionBodyMember EOF )
+            // InternalKerMLExpressions.g:1005:1: ruleExpressionBodyMember EOF
             {
              before(grammarAccess.getExpressionBodyMemberRule()); 
             pushFollow(FOLLOW_1);
@@ -3132,21 +3036,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "ruleExpressionBodyMember"
-    // InternalKerMLExpressions.g:1062:1: ruleExpressionBodyMember : ( ( rule__ExpressionBodyMember__OwnedRelatedElementAssignment ) ) ;
+    // InternalKerMLExpressions.g:1012:1: ruleExpressionBodyMember : ( ( rule__ExpressionBodyMember__OwnedRelatedElementAssignment ) ) ;
     public final void ruleExpressionBodyMember() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:1066:2: ( ( ( rule__ExpressionBodyMember__OwnedRelatedElementAssignment ) ) )
-            // InternalKerMLExpressions.g:1067:2: ( ( rule__ExpressionBodyMember__OwnedRelatedElementAssignment ) )
+            // InternalKerMLExpressions.g:1016:2: ( ( ( rule__ExpressionBodyMember__OwnedRelatedElementAssignment ) ) )
+            // InternalKerMLExpressions.g:1017:2: ( ( rule__ExpressionBodyMember__OwnedRelatedElementAssignment ) )
             {
-            // InternalKerMLExpressions.g:1067:2: ( ( rule__ExpressionBodyMember__OwnedRelatedElementAssignment ) )
-            // InternalKerMLExpressions.g:1068:3: ( rule__ExpressionBodyMember__OwnedRelatedElementAssignment )
+            // InternalKerMLExpressions.g:1017:2: ( ( rule__ExpressionBodyMember__OwnedRelatedElementAssignment ) )
+            // InternalKerMLExpressions.g:1018:3: ( rule__ExpressionBodyMember__OwnedRelatedElementAssignment )
             {
              before(grammarAccess.getExpressionBodyMemberAccess().getOwnedRelatedElementAssignment()); 
-            // InternalKerMLExpressions.g:1069:3: ( rule__ExpressionBodyMember__OwnedRelatedElementAssignment )
-            // InternalKerMLExpressions.g:1069:4: rule__ExpressionBodyMember__OwnedRelatedElementAssignment
+            // InternalKerMLExpressions.g:1019:3: ( rule__ExpressionBodyMember__OwnedRelatedElementAssignment )
+            // InternalKerMLExpressions.g:1019:4: rule__ExpressionBodyMember__OwnedRelatedElementAssignment
             {
             pushFollow(FOLLOW_2);
             rule__ExpressionBodyMember__OwnedRelatedElementAssignment();
@@ -3179,11 +3083,11 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "entryRuleFunctionReferenceMember"
-    // InternalKerMLExpressions.g:1078:1: entryRuleFunctionReferenceMember : ruleFunctionReferenceMember EOF ;
+    // InternalKerMLExpressions.g:1028:1: entryRuleFunctionReferenceMember : ruleFunctionReferenceMember EOF ;
     public final void entryRuleFunctionReferenceMember() throws RecognitionException {
         try {
-            // InternalKerMLExpressions.g:1079:1: ( ruleFunctionReferenceMember EOF )
-            // InternalKerMLExpressions.g:1080:1: ruleFunctionReferenceMember EOF
+            // InternalKerMLExpressions.g:1029:1: ( ruleFunctionReferenceMember EOF )
+            // InternalKerMLExpressions.g:1030:1: ruleFunctionReferenceMember EOF
             {
              before(grammarAccess.getFunctionReferenceMemberRule()); 
             pushFollow(FOLLOW_1);
@@ -3209,21 +3113,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "ruleFunctionReferenceMember"
-    // InternalKerMLExpressions.g:1087:1: ruleFunctionReferenceMember : ( ( rule__FunctionReferenceMember__OwnedRelatedElementAssignment ) ) ;
+    // InternalKerMLExpressions.g:1037:1: ruleFunctionReferenceMember : ( ( rule__FunctionReferenceMember__OwnedRelatedElementAssignment ) ) ;
     public final void ruleFunctionReferenceMember() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:1091:2: ( ( ( rule__FunctionReferenceMember__OwnedRelatedElementAssignment ) ) )
-            // InternalKerMLExpressions.g:1092:2: ( ( rule__FunctionReferenceMember__OwnedRelatedElementAssignment ) )
+            // InternalKerMLExpressions.g:1041:2: ( ( ( rule__FunctionReferenceMember__OwnedRelatedElementAssignment ) ) )
+            // InternalKerMLExpressions.g:1042:2: ( ( rule__FunctionReferenceMember__OwnedRelatedElementAssignment ) )
             {
-            // InternalKerMLExpressions.g:1092:2: ( ( rule__FunctionReferenceMember__OwnedRelatedElementAssignment ) )
-            // InternalKerMLExpressions.g:1093:3: ( rule__FunctionReferenceMember__OwnedRelatedElementAssignment )
+            // InternalKerMLExpressions.g:1042:2: ( ( rule__FunctionReferenceMember__OwnedRelatedElementAssignment ) )
+            // InternalKerMLExpressions.g:1043:3: ( rule__FunctionReferenceMember__OwnedRelatedElementAssignment )
             {
              before(grammarAccess.getFunctionReferenceMemberAccess().getOwnedRelatedElementAssignment()); 
-            // InternalKerMLExpressions.g:1094:3: ( rule__FunctionReferenceMember__OwnedRelatedElementAssignment )
-            // InternalKerMLExpressions.g:1094:4: rule__FunctionReferenceMember__OwnedRelatedElementAssignment
+            // InternalKerMLExpressions.g:1044:3: ( rule__FunctionReferenceMember__OwnedRelatedElementAssignment )
+            // InternalKerMLExpressions.g:1044:4: rule__FunctionReferenceMember__OwnedRelatedElementAssignment
             {
             pushFollow(FOLLOW_2);
             rule__FunctionReferenceMember__OwnedRelatedElementAssignment();
@@ -3256,11 +3160,11 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "entryRuleFunctionReference"
-    // InternalKerMLExpressions.g:1103:1: entryRuleFunctionReference : ruleFunctionReference EOF ;
+    // InternalKerMLExpressions.g:1053:1: entryRuleFunctionReference : ruleFunctionReference EOF ;
     public final void entryRuleFunctionReference() throws RecognitionException {
         try {
-            // InternalKerMLExpressions.g:1104:1: ( ruleFunctionReference EOF )
-            // InternalKerMLExpressions.g:1105:1: ruleFunctionReference EOF
+            // InternalKerMLExpressions.g:1054:1: ( ruleFunctionReference EOF )
+            // InternalKerMLExpressions.g:1055:1: ruleFunctionReference EOF
             {
              before(grammarAccess.getFunctionReferenceRule()); 
             pushFollow(FOLLOW_1);
@@ -3286,21 +3190,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "ruleFunctionReference"
-    // InternalKerMLExpressions.g:1112:1: ruleFunctionReference : ( ( rule__FunctionReference__OwnedRelationshipAssignment ) ) ;
+    // InternalKerMLExpressions.g:1062:1: ruleFunctionReference : ( ( rule__FunctionReference__OwnedRelationshipAssignment ) ) ;
     public final void ruleFunctionReference() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:1116:2: ( ( ( rule__FunctionReference__OwnedRelationshipAssignment ) ) )
-            // InternalKerMLExpressions.g:1117:2: ( ( rule__FunctionReference__OwnedRelationshipAssignment ) )
+            // InternalKerMLExpressions.g:1066:2: ( ( ( rule__FunctionReference__OwnedRelationshipAssignment ) ) )
+            // InternalKerMLExpressions.g:1067:2: ( ( rule__FunctionReference__OwnedRelationshipAssignment ) )
             {
-            // InternalKerMLExpressions.g:1117:2: ( ( rule__FunctionReference__OwnedRelationshipAssignment ) )
-            // InternalKerMLExpressions.g:1118:3: ( rule__FunctionReference__OwnedRelationshipAssignment )
+            // InternalKerMLExpressions.g:1067:2: ( ( rule__FunctionReference__OwnedRelationshipAssignment ) )
+            // InternalKerMLExpressions.g:1068:3: ( rule__FunctionReference__OwnedRelationshipAssignment )
             {
              before(grammarAccess.getFunctionReferenceAccess().getOwnedRelationshipAssignment()); 
-            // InternalKerMLExpressions.g:1119:3: ( rule__FunctionReference__OwnedRelationshipAssignment )
-            // InternalKerMLExpressions.g:1119:4: rule__FunctionReference__OwnedRelationshipAssignment
+            // InternalKerMLExpressions.g:1069:3: ( rule__FunctionReference__OwnedRelationshipAssignment )
+            // InternalKerMLExpressions.g:1069:4: rule__FunctionReference__OwnedRelationshipAssignment
             {
             pushFollow(FOLLOW_2);
             rule__FunctionReference__OwnedRelationshipAssignment();
@@ -3333,11 +3237,11 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "entryRuleBaseExpression"
-    // InternalKerMLExpressions.g:1128:1: entryRuleBaseExpression : ruleBaseExpression EOF ;
+    // InternalKerMLExpressions.g:1078:1: entryRuleBaseExpression : ruleBaseExpression EOF ;
     public final void entryRuleBaseExpression() throws RecognitionException {
         try {
-            // InternalKerMLExpressions.g:1129:1: ( ruleBaseExpression EOF )
-            // InternalKerMLExpressions.g:1130:1: ruleBaseExpression EOF
+            // InternalKerMLExpressions.g:1079:1: ( ruleBaseExpression EOF )
+            // InternalKerMLExpressions.g:1080:1: ruleBaseExpression EOF
             {
              before(grammarAccess.getBaseExpressionRule()); 
             pushFollow(FOLLOW_1);
@@ -3363,21 +3267,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "ruleBaseExpression"
-    // InternalKerMLExpressions.g:1137:1: ruleBaseExpression : ( ( rule__BaseExpression__Alternatives ) ) ;
+    // InternalKerMLExpressions.g:1087:1: ruleBaseExpression : ( ( rule__BaseExpression__Alternatives ) ) ;
     public final void ruleBaseExpression() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:1141:2: ( ( ( rule__BaseExpression__Alternatives ) ) )
-            // InternalKerMLExpressions.g:1142:2: ( ( rule__BaseExpression__Alternatives ) )
+            // InternalKerMLExpressions.g:1091:2: ( ( ( rule__BaseExpression__Alternatives ) ) )
+            // InternalKerMLExpressions.g:1092:2: ( ( rule__BaseExpression__Alternatives ) )
             {
-            // InternalKerMLExpressions.g:1142:2: ( ( rule__BaseExpression__Alternatives ) )
-            // InternalKerMLExpressions.g:1143:3: ( rule__BaseExpression__Alternatives )
+            // InternalKerMLExpressions.g:1092:2: ( ( rule__BaseExpression__Alternatives ) )
+            // InternalKerMLExpressions.g:1093:3: ( rule__BaseExpression__Alternatives )
             {
              before(grammarAccess.getBaseExpressionAccess().getAlternatives()); 
-            // InternalKerMLExpressions.g:1144:3: ( rule__BaseExpression__Alternatives )
-            // InternalKerMLExpressions.g:1144:4: rule__BaseExpression__Alternatives
+            // InternalKerMLExpressions.g:1094:3: ( rule__BaseExpression__Alternatives )
+            // InternalKerMLExpressions.g:1094:4: rule__BaseExpression__Alternatives
             {
             pushFollow(FOLLOW_2);
             rule__BaseExpression__Alternatives();
@@ -3410,11 +3314,11 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "entryRuleExpressionBody"
-    // InternalKerMLExpressions.g:1153:1: entryRuleExpressionBody : ruleExpressionBody EOF ;
+    // InternalKerMLExpressions.g:1103:1: entryRuleExpressionBody : ruleExpressionBody EOF ;
     public final void entryRuleExpressionBody() throws RecognitionException {
         try {
-            // InternalKerMLExpressions.g:1154:1: ( ruleExpressionBody EOF )
-            // InternalKerMLExpressions.g:1155:1: ruleExpressionBody EOF
+            // InternalKerMLExpressions.g:1104:1: ( ruleExpressionBody EOF )
+            // InternalKerMLExpressions.g:1105:1: ruleExpressionBody EOF
             {
              before(grammarAccess.getExpressionBodyRule()); 
             pushFollow(FOLLOW_1);
@@ -3440,21 +3344,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "ruleExpressionBody"
-    // InternalKerMLExpressions.g:1162:1: ruleExpressionBody : ( ( rule__ExpressionBody__Group__0 ) ) ;
+    // InternalKerMLExpressions.g:1112:1: ruleExpressionBody : ( ( rule__ExpressionBody__Group__0 ) ) ;
     public final void ruleExpressionBody() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:1166:2: ( ( ( rule__ExpressionBody__Group__0 ) ) )
-            // InternalKerMLExpressions.g:1167:2: ( ( rule__ExpressionBody__Group__0 ) )
+            // InternalKerMLExpressions.g:1116:2: ( ( ( rule__ExpressionBody__Group__0 ) ) )
+            // InternalKerMLExpressions.g:1117:2: ( ( rule__ExpressionBody__Group__0 ) )
             {
-            // InternalKerMLExpressions.g:1167:2: ( ( rule__ExpressionBody__Group__0 ) )
-            // InternalKerMLExpressions.g:1168:3: ( rule__ExpressionBody__Group__0 )
+            // InternalKerMLExpressions.g:1117:2: ( ( rule__ExpressionBody__Group__0 ) )
+            // InternalKerMLExpressions.g:1118:3: ( rule__ExpressionBody__Group__0 )
             {
              before(grammarAccess.getExpressionBodyAccess().getGroup()); 
-            // InternalKerMLExpressions.g:1169:3: ( rule__ExpressionBody__Group__0 )
-            // InternalKerMLExpressions.g:1169:4: rule__ExpressionBody__Group__0
+            // InternalKerMLExpressions.g:1119:3: ( rule__ExpressionBody__Group__0 )
+            // InternalKerMLExpressions.g:1119:4: rule__ExpressionBody__Group__0
             {
             pushFollow(FOLLOW_2);
             rule__ExpressionBody__Group__0();
@@ -3487,11 +3391,11 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "entryRuleResultExpressionMember"
-    // InternalKerMLExpressions.g:1178:1: entryRuleResultExpressionMember : ruleResultExpressionMember EOF ;
+    // InternalKerMLExpressions.g:1128:1: entryRuleResultExpressionMember : ruleResultExpressionMember EOF ;
     public final void entryRuleResultExpressionMember() throws RecognitionException {
         try {
-            // InternalKerMLExpressions.g:1179:1: ( ruleResultExpressionMember EOF )
-            // InternalKerMLExpressions.g:1180:1: ruleResultExpressionMember EOF
+            // InternalKerMLExpressions.g:1129:1: ( ruleResultExpressionMember EOF )
+            // InternalKerMLExpressions.g:1130:1: ruleResultExpressionMember EOF
             {
              before(grammarAccess.getResultExpressionMemberRule()); 
             pushFollow(FOLLOW_1);
@@ -3517,21 +3421,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "ruleResultExpressionMember"
-    // InternalKerMLExpressions.g:1187:1: ruleResultExpressionMember : ( ( rule__ResultExpressionMember__OwnedRelatedElementAssignment ) ) ;
+    // InternalKerMLExpressions.g:1137:1: ruleResultExpressionMember : ( ( rule__ResultExpressionMember__OwnedRelatedElementAssignment ) ) ;
     public final void ruleResultExpressionMember() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:1191:2: ( ( ( rule__ResultExpressionMember__OwnedRelatedElementAssignment ) ) )
-            // InternalKerMLExpressions.g:1192:2: ( ( rule__ResultExpressionMember__OwnedRelatedElementAssignment ) )
+            // InternalKerMLExpressions.g:1141:2: ( ( ( rule__ResultExpressionMember__OwnedRelatedElementAssignment ) ) )
+            // InternalKerMLExpressions.g:1142:2: ( ( rule__ResultExpressionMember__OwnedRelatedElementAssignment ) )
             {
-            // InternalKerMLExpressions.g:1192:2: ( ( rule__ResultExpressionMember__OwnedRelatedElementAssignment ) )
-            // InternalKerMLExpressions.g:1193:3: ( rule__ResultExpressionMember__OwnedRelatedElementAssignment )
+            // InternalKerMLExpressions.g:1142:2: ( ( rule__ResultExpressionMember__OwnedRelatedElementAssignment ) )
+            // InternalKerMLExpressions.g:1143:3: ( rule__ResultExpressionMember__OwnedRelatedElementAssignment )
             {
              before(grammarAccess.getResultExpressionMemberAccess().getOwnedRelatedElementAssignment()); 
-            // InternalKerMLExpressions.g:1194:3: ( rule__ResultExpressionMember__OwnedRelatedElementAssignment )
-            // InternalKerMLExpressions.g:1194:4: rule__ResultExpressionMember__OwnedRelatedElementAssignment
+            // InternalKerMLExpressions.g:1144:3: ( rule__ResultExpressionMember__OwnedRelatedElementAssignment )
+            // InternalKerMLExpressions.g:1144:4: rule__ResultExpressionMember__OwnedRelatedElementAssignment
             {
             pushFollow(FOLLOW_2);
             rule__ResultExpressionMember__OwnedRelatedElementAssignment();
@@ -3564,11 +3468,11 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "entryRuleBodyParameterMember"
-    // InternalKerMLExpressions.g:1203:1: entryRuleBodyParameterMember : ruleBodyParameterMember EOF ;
+    // InternalKerMLExpressions.g:1153:1: entryRuleBodyParameterMember : ruleBodyParameterMember EOF ;
     public final void entryRuleBodyParameterMember() throws RecognitionException {
         try {
-            // InternalKerMLExpressions.g:1204:1: ( ruleBodyParameterMember EOF )
-            // InternalKerMLExpressions.g:1205:1: ruleBodyParameterMember EOF
+            // InternalKerMLExpressions.g:1154:1: ( ruleBodyParameterMember EOF )
+            // InternalKerMLExpressions.g:1155:1: ruleBodyParameterMember EOF
             {
              before(grammarAccess.getBodyParameterMemberRule()); 
             pushFollow(FOLLOW_1);
@@ -3594,21 +3498,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "ruleBodyParameterMember"
-    // InternalKerMLExpressions.g:1212:1: ruleBodyParameterMember : ( ( rule__BodyParameterMember__Group__0 ) ) ;
+    // InternalKerMLExpressions.g:1162:1: ruleBodyParameterMember : ( ( rule__BodyParameterMember__Group__0 ) ) ;
     public final void ruleBodyParameterMember() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:1216:2: ( ( ( rule__BodyParameterMember__Group__0 ) ) )
-            // InternalKerMLExpressions.g:1217:2: ( ( rule__BodyParameterMember__Group__0 ) )
+            // InternalKerMLExpressions.g:1166:2: ( ( ( rule__BodyParameterMember__Group__0 ) ) )
+            // InternalKerMLExpressions.g:1167:2: ( ( rule__BodyParameterMember__Group__0 ) )
             {
-            // InternalKerMLExpressions.g:1217:2: ( ( rule__BodyParameterMember__Group__0 ) )
-            // InternalKerMLExpressions.g:1218:3: ( rule__BodyParameterMember__Group__0 )
+            // InternalKerMLExpressions.g:1167:2: ( ( rule__BodyParameterMember__Group__0 ) )
+            // InternalKerMLExpressions.g:1168:3: ( rule__BodyParameterMember__Group__0 )
             {
              before(grammarAccess.getBodyParameterMemberAccess().getGroup()); 
-            // InternalKerMLExpressions.g:1219:3: ( rule__BodyParameterMember__Group__0 )
-            // InternalKerMLExpressions.g:1219:4: rule__BodyParameterMember__Group__0
+            // InternalKerMLExpressions.g:1169:3: ( rule__BodyParameterMember__Group__0 )
+            // InternalKerMLExpressions.g:1169:4: rule__BodyParameterMember__Group__0
             {
             pushFollow(FOLLOW_2);
             rule__BodyParameterMember__Group__0();
@@ -3641,11 +3545,11 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "entryRuleBodyParameter"
-    // InternalKerMLExpressions.g:1228:1: entryRuleBodyParameter : ruleBodyParameter EOF ;
+    // InternalKerMLExpressions.g:1178:1: entryRuleBodyParameter : ruleBodyParameter EOF ;
     public final void entryRuleBodyParameter() throws RecognitionException {
         try {
-            // InternalKerMLExpressions.g:1229:1: ( ruleBodyParameter EOF )
-            // InternalKerMLExpressions.g:1230:1: ruleBodyParameter EOF
+            // InternalKerMLExpressions.g:1179:1: ( ruleBodyParameter EOF )
+            // InternalKerMLExpressions.g:1180:1: ruleBodyParameter EOF
             {
              before(grammarAccess.getBodyParameterRule()); 
             pushFollow(FOLLOW_1);
@@ -3671,21 +3575,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "ruleBodyParameter"
-    // InternalKerMLExpressions.g:1237:1: ruleBodyParameter : ( () ) ;
+    // InternalKerMLExpressions.g:1187:1: ruleBodyParameter : ( () ) ;
     public final void ruleBodyParameter() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:1241:2: ( ( () ) )
-            // InternalKerMLExpressions.g:1242:2: ( () )
+            // InternalKerMLExpressions.g:1191:2: ( ( () ) )
+            // InternalKerMLExpressions.g:1192:2: ( () )
             {
-            // InternalKerMLExpressions.g:1242:2: ( () )
-            // InternalKerMLExpressions.g:1243:3: ()
+            // InternalKerMLExpressions.g:1192:2: ( () )
+            // InternalKerMLExpressions.g:1193:3: ()
             {
              before(grammarAccess.getBodyParameterAccess().getFeatureAction()); 
-            // InternalKerMLExpressions.g:1244:3: ()
-            // InternalKerMLExpressions.g:1244:4: 
+            // InternalKerMLExpressions.g:1194:3: ()
+            // InternalKerMLExpressions.g:1194:4: 
             {
             }
 
@@ -3708,11 +3612,11 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "entryRuleSequenceExpression"
-    // InternalKerMLExpressions.g:1253:1: entryRuleSequenceExpression : ruleSequenceExpression EOF ;
+    // InternalKerMLExpressions.g:1203:1: entryRuleSequenceExpression : ruleSequenceExpression EOF ;
     public final void entryRuleSequenceExpression() throws RecognitionException {
         try {
-            // InternalKerMLExpressions.g:1254:1: ( ruleSequenceExpression EOF )
-            // InternalKerMLExpressions.g:1255:1: ruleSequenceExpression EOF
+            // InternalKerMLExpressions.g:1204:1: ( ruleSequenceExpression EOF )
+            // InternalKerMLExpressions.g:1205:1: ruleSequenceExpression EOF
             {
              before(grammarAccess.getSequenceExpressionRule()); 
             pushFollow(FOLLOW_1);
@@ -3738,21 +3642,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "ruleSequenceExpression"
-    // InternalKerMLExpressions.g:1262:1: ruleSequenceExpression : ( ( rule__SequenceExpression__Group__0 ) ) ;
+    // InternalKerMLExpressions.g:1212:1: ruleSequenceExpression : ( ( rule__SequenceExpression__Group__0 ) ) ;
     public final void ruleSequenceExpression() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:1266:2: ( ( ( rule__SequenceExpression__Group__0 ) ) )
-            // InternalKerMLExpressions.g:1267:2: ( ( rule__SequenceExpression__Group__0 ) )
+            // InternalKerMLExpressions.g:1216:2: ( ( ( rule__SequenceExpression__Group__0 ) ) )
+            // InternalKerMLExpressions.g:1217:2: ( ( rule__SequenceExpression__Group__0 ) )
             {
-            // InternalKerMLExpressions.g:1267:2: ( ( rule__SequenceExpression__Group__0 ) )
-            // InternalKerMLExpressions.g:1268:3: ( rule__SequenceExpression__Group__0 )
+            // InternalKerMLExpressions.g:1217:2: ( ( rule__SequenceExpression__Group__0 ) )
+            // InternalKerMLExpressions.g:1218:3: ( rule__SequenceExpression__Group__0 )
             {
              before(grammarAccess.getSequenceExpressionAccess().getGroup()); 
-            // InternalKerMLExpressions.g:1269:3: ( rule__SequenceExpression__Group__0 )
-            // InternalKerMLExpressions.g:1269:4: rule__SequenceExpression__Group__0
+            // InternalKerMLExpressions.g:1219:3: ( rule__SequenceExpression__Group__0 )
+            // InternalKerMLExpressions.g:1219:4: rule__SequenceExpression__Group__0
             {
             pushFollow(FOLLOW_2);
             rule__SequenceExpression__Group__0();
@@ -3785,11 +3689,11 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "entryRuleFeatureReferenceExpression"
-    // InternalKerMLExpressions.g:1278:1: entryRuleFeatureReferenceExpression : ruleFeatureReferenceExpression EOF ;
+    // InternalKerMLExpressions.g:1228:1: entryRuleFeatureReferenceExpression : ruleFeatureReferenceExpression EOF ;
     public final void entryRuleFeatureReferenceExpression() throws RecognitionException {
         try {
-            // InternalKerMLExpressions.g:1279:1: ( ruleFeatureReferenceExpression EOF )
-            // InternalKerMLExpressions.g:1280:1: ruleFeatureReferenceExpression EOF
+            // InternalKerMLExpressions.g:1229:1: ( ruleFeatureReferenceExpression EOF )
+            // InternalKerMLExpressions.g:1230:1: ruleFeatureReferenceExpression EOF
             {
              before(grammarAccess.getFeatureReferenceExpressionRule()); 
             pushFollow(FOLLOW_1);
@@ -3815,21 +3719,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "ruleFeatureReferenceExpression"
-    // InternalKerMLExpressions.g:1287:1: ruleFeatureReferenceExpression : ( ( rule__FeatureReferenceExpression__OwnedRelationshipAssignment ) ) ;
+    // InternalKerMLExpressions.g:1237:1: ruleFeatureReferenceExpression : ( ( rule__FeatureReferenceExpression__OwnedRelationshipAssignment ) ) ;
     public final void ruleFeatureReferenceExpression() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:1291:2: ( ( ( rule__FeatureReferenceExpression__OwnedRelationshipAssignment ) ) )
-            // InternalKerMLExpressions.g:1292:2: ( ( rule__FeatureReferenceExpression__OwnedRelationshipAssignment ) )
+            // InternalKerMLExpressions.g:1241:2: ( ( ( rule__FeatureReferenceExpression__OwnedRelationshipAssignment ) ) )
+            // InternalKerMLExpressions.g:1242:2: ( ( rule__FeatureReferenceExpression__OwnedRelationshipAssignment ) )
             {
-            // InternalKerMLExpressions.g:1292:2: ( ( rule__FeatureReferenceExpression__OwnedRelationshipAssignment ) )
-            // InternalKerMLExpressions.g:1293:3: ( rule__FeatureReferenceExpression__OwnedRelationshipAssignment )
+            // InternalKerMLExpressions.g:1242:2: ( ( rule__FeatureReferenceExpression__OwnedRelationshipAssignment ) )
+            // InternalKerMLExpressions.g:1243:3: ( rule__FeatureReferenceExpression__OwnedRelationshipAssignment )
             {
              before(grammarAccess.getFeatureReferenceExpressionAccess().getOwnedRelationshipAssignment()); 
-            // InternalKerMLExpressions.g:1294:3: ( rule__FeatureReferenceExpression__OwnedRelationshipAssignment )
-            // InternalKerMLExpressions.g:1294:4: rule__FeatureReferenceExpression__OwnedRelationshipAssignment
+            // InternalKerMLExpressions.g:1244:3: ( rule__FeatureReferenceExpression__OwnedRelationshipAssignment )
+            // InternalKerMLExpressions.g:1244:4: rule__FeatureReferenceExpression__OwnedRelationshipAssignment
             {
             pushFollow(FOLLOW_2);
             rule__FeatureReferenceExpression__OwnedRelationshipAssignment();
@@ -3862,11 +3766,11 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "entryRuleFeatureReferenceMember"
-    // InternalKerMLExpressions.g:1303:1: entryRuleFeatureReferenceMember : ruleFeatureReferenceMember EOF ;
+    // InternalKerMLExpressions.g:1253:1: entryRuleFeatureReferenceMember : ruleFeatureReferenceMember EOF ;
     public final void entryRuleFeatureReferenceMember() throws RecognitionException {
         try {
-            // InternalKerMLExpressions.g:1304:1: ( ruleFeatureReferenceMember EOF )
-            // InternalKerMLExpressions.g:1305:1: ruleFeatureReferenceMember EOF
+            // InternalKerMLExpressions.g:1254:1: ( ruleFeatureReferenceMember EOF )
+            // InternalKerMLExpressions.g:1255:1: ruleFeatureReferenceMember EOF
             {
              before(grammarAccess.getFeatureReferenceMemberRule()); 
             pushFollow(FOLLOW_1);
@@ -3892,21 +3796,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "ruleFeatureReferenceMember"
-    // InternalKerMLExpressions.g:1312:1: ruleFeatureReferenceMember : ( ( rule__FeatureReferenceMember__MemberElementAssignment ) ) ;
+    // InternalKerMLExpressions.g:1262:1: ruleFeatureReferenceMember : ( ( rule__FeatureReferenceMember__MemberElementAssignment ) ) ;
     public final void ruleFeatureReferenceMember() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:1316:2: ( ( ( rule__FeatureReferenceMember__MemberElementAssignment ) ) )
-            // InternalKerMLExpressions.g:1317:2: ( ( rule__FeatureReferenceMember__MemberElementAssignment ) )
+            // InternalKerMLExpressions.g:1266:2: ( ( ( rule__FeatureReferenceMember__MemberElementAssignment ) ) )
+            // InternalKerMLExpressions.g:1267:2: ( ( rule__FeatureReferenceMember__MemberElementAssignment ) )
             {
-            // InternalKerMLExpressions.g:1317:2: ( ( rule__FeatureReferenceMember__MemberElementAssignment ) )
-            // InternalKerMLExpressions.g:1318:3: ( rule__FeatureReferenceMember__MemberElementAssignment )
+            // InternalKerMLExpressions.g:1267:2: ( ( rule__FeatureReferenceMember__MemberElementAssignment ) )
+            // InternalKerMLExpressions.g:1268:3: ( rule__FeatureReferenceMember__MemberElementAssignment )
             {
              before(grammarAccess.getFeatureReferenceMemberAccess().getMemberElementAssignment()); 
-            // InternalKerMLExpressions.g:1319:3: ( rule__FeatureReferenceMember__MemberElementAssignment )
-            // InternalKerMLExpressions.g:1319:4: rule__FeatureReferenceMember__MemberElementAssignment
+            // InternalKerMLExpressions.g:1269:3: ( rule__FeatureReferenceMember__MemberElementAssignment )
+            // InternalKerMLExpressions.g:1269:4: rule__FeatureReferenceMember__MemberElementAssignment
             {
             pushFollow(FOLLOW_2);
             rule__FeatureReferenceMember__MemberElementAssignment();
@@ -3939,11 +3843,11 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "entryRuleInvocationExpression"
-    // InternalKerMLExpressions.g:1328:1: entryRuleInvocationExpression : ruleInvocationExpression EOF ;
+    // InternalKerMLExpressions.g:1278:1: entryRuleInvocationExpression : ruleInvocationExpression EOF ;
     public final void entryRuleInvocationExpression() throws RecognitionException {
         try {
-            // InternalKerMLExpressions.g:1329:1: ( ruleInvocationExpression EOF )
-            // InternalKerMLExpressions.g:1330:1: ruleInvocationExpression EOF
+            // InternalKerMLExpressions.g:1279:1: ( ruleInvocationExpression EOF )
+            // InternalKerMLExpressions.g:1280:1: ruleInvocationExpression EOF
             {
              before(grammarAccess.getInvocationExpressionRule()); 
             pushFollow(FOLLOW_1);
@@ -3969,21 +3873,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "ruleInvocationExpression"
-    // InternalKerMLExpressions.g:1337:1: ruleInvocationExpression : ( ( rule__InvocationExpression__Group__0 ) ) ;
+    // InternalKerMLExpressions.g:1287:1: ruleInvocationExpression : ( ( rule__InvocationExpression__Group__0 ) ) ;
     public final void ruleInvocationExpression() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:1341:2: ( ( ( rule__InvocationExpression__Group__0 ) ) )
-            // InternalKerMLExpressions.g:1342:2: ( ( rule__InvocationExpression__Group__0 ) )
+            // InternalKerMLExpressions.g:1291:2: ( ( ( rule__InvocationExpression__Group__0 ) ) )
+            // InternalKerMLExpressions.g:1292:2: ( ( rule__InvocationExpression__Group__0 ) )
             {
-            // InternalKerMLExpressions.g:1342:2: ( ( rule__InvocationExpression__Group__0 ) )
-            // InternalKerMLExpressions.g:1343:3: ( rule__InvocationExpression__Group__0 )
+            // InternalKerMLExpressions.g:1292:2: ( ( rule__InvocationExpression__Group__0 ) )
+            // InternalKerMLExpressions.g:1293:3: ( rule__InvocationExpression__Group__0 )
             {
              before(grammarAccess.getInvocationExpressionAccess().getGroup()); 
-            // InternalKerMLExpressions.g:1344:3: ( rule__InvocationExpression__Group__0 )
-            // InternalKerMLExpressions.g:1344:4: rule__InvocationExpression__Group__0
+            // InternalKerMLExpressions.g:1294:3: ( rule__InvocationExpression__Group__0 )
+            // InternalKerMLExpressions.g:1294:4: rule__InvocationExpression__Group__0
             {
             pushFollow(FOLLOW_2);
             rule__InvocationExpression__Group__0();
@@ -4016,21 +3920,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "ruleArgumentList"
-    // InternalKerMLExpressions.g:1354:1: ruleArgumentList : ( ( rule__ArgumentList__Group__0 ) ) ;
+    // InternalKerMLExpressions.g:1304:1: ruleArgumentList : ( ( rule__ArgumentList__Group__0 ) ) ;
     public final void ruleArgumentList() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:1358:2: ( ( ( rule__ArgumentList__Group__0 ) ) )
-            // InternalKerMLExpressions.g:1359:2: ( ( rule__ArgumentList__Group__0 ) )
+            // InternalKerMLExpressions.g:1308:2: ( ( ( rule__ArgumentList__Group__0 ) ) )
+            // InternalKerMLExpressions.g:1309:2: ( ( rule__ArgumentList__Group__0 ) )
             {
-            // InternalKerMLExpressions.g:1359:2: ( ( rule__ArgumentList__Group__0 ) )
-            // InternalKerMLExpressions.g:1360:3: ( rule__ArgumentList__Group__0 )
+            // InternalKerMLExpressions.g:1309:2: ( ( rule__ArgumentList__Group__0 ) )
+            // InternalKerMLExpressions.g:1310:3: ( rule__ArgumentList__Group__0 )
             {
              before(grammarAccess.getArgumentListAccess().getGroup()); 
-            // InternalKerMLExpressions.g:1361:3: ( rule__ArgumentList__Group__0 )
-            // InternalKerMLExpressions.g:1361:4: rule__ArgumentList__Group__0
+            // InternalKerMLExpressions.g:1311:3: ( rule__ArgumentList__Group__0 )
+            // InternalKerMLExpressions.g:1311:4: rule__ArgumentList__Group__0
             {
             pushFollow(FOLLOW_2);
             rule__ArgumentList__Group__0();
@@ -4063,21 +3967,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rulePositionalArgumentList"
-    // InternalKerMLExpressions.g:1371:1: rulePositionalArgumentList : ( ( rule__PositionalArgumentList__Group__0 ) ) ;
+    // InternalKerMLExpressions.g:1321:1: rulePositionalArgumentList : ( ( rule__PositionalArgumentList__Group__0 ) ) ;
     public final void rulePositionalArgumentList() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:1375:2: ( ( ( rule__PositionalArgumentList__Group__0 ) ) )
-            // InternalKerMLExpressions.g:1376:2: ( ( rule__PositionalArgumentList__Group__0 ) )
+            // InternalKerMLExpressions.g:1325:2: ( ( ( rule__PositionalArgumentList__Group__0 ) ) )
+            // InternalKerMLExpressions.g:1326:2: ( ( rule__PositionalArgumentList__Group__0 ) )
             {
-            // InternalKerMLExpressions.g:1376:2: ( ( rule__PositionalArgumentList__Group__0 ) )
-            // InternalKerMLExpressions.g:1377:3: ( rule__PositionalArgumentList__Group__0 )
+            // InternalKerMLExpressions.g:1326:2: ( ( rule__PositionalArgumentList__Group__0 ) )
+            // InternalKerMLExpressions.g:1327:3: ( rule__PositionalArgumentList__Group__0 )
             {
              before(grammarAccess.getPositionalArgumentListAccess().getGroup()); 
-            // InternalKerMLExpressions.g:1378:3: ( rule__PositionalArgumentList__Group__0 )
-            // InternalKerMLExpressions.g:1378:4: rule__PositionalArgumentList__Group__0
+            // InternalKerMLExpressions.g:1328:3: ( rule__PositionalArgumentList__Group__0 )
+            // InternalKerMLExpressions.g:1328:4: rule__PositionalArgumentList__Group__0
             {
             pushFollow(FOLLOW_2);
             rule__PositionalArgumentList__Group__0();
@@ -4110,21 +4014,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "ruleNamedArgumentList"
-    // InternalKerMLExpressions.g:1388:1: ruleNamedArgumentList : ( ( rule__NamedArgumentList__Group__0 ) ) ;
+    // InternalKerMLExpressions.g:1338:1: ruleNamedArgumentList : ( ( rule__NamedArgumentList__Group__0 ) ) ;
     public final void ruleNamedArgumentList() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:1392:2: ( ( ( rule__NamedArgumentList__Group__0 ) ) )
-            // InternalKerMLExpressions.g:1393:2: ( ( rule__NamedArgumentList__Group__0 ) )
+            // InternalKerMLExpressions.g:1342:2: ( ( ( rule__NamedArgumentList__Group__0 ) ) )
+            // InternalKerMLExpressions.g:1343:2: ( ( rule__NamedArgumentList__Group__0 ) )
             {
-            // InternalKerMLExpressions.g:1393:2: ( ( rule__NamedArgumentList__Group__0 ) )
-            // InternalKerMLExpressions.g:1394:3: ( rule__NamedArgumentList__Group__0 )
+            // InternalKerMLExpressions.g:1343:2: ( ( rule__NamedArgumentList__Group__0 ) )
+            // InternalKerMLExpressions.g:1344:3: ( rule__NamedArgumentList__Group__0 )
             {
              before(grammarAccess.getNamedArgumentListAccess().getGroup()); 
-            // InternalKerMLExpressions.g:1395:3: ( rule__NamedArgumentList__Group__0 )
-            // InternalKerMLExpressions.g:1395:4: rule__NamedArgumentList__Group__0
+            // InternalKerMLExpressions.g:1345:3: ( rule__NamedArgumentList__Group__0 )
+            // InternalKerMLExpressions.g:1345:4: rule__NamedArgumentList__Group__0
             {
             pushFollow(FOLLOW_2);
             rule__NamedArgumentList__Group__0();
@@ -4157,11 +4061,11 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "entryRuleNamedExpressionMember"
-    // InternalKerMLExpressions.g:1404:1: entryRuleNamedExpressionMember : ruleNamedExpressionMember EOF ;
+    // InternalKerMLExpressions.g:1354:1: entryRuleNamedExpressionMember : ruleNamedExpressionMember EOF ;
     public final void entryRuleNamedExpressionMember() throws RecognitionException {
         try {
-            // InternalKerMLExpressions.g:1405:1: ( ruleNamedExpressionMember EOF )
-            // InternalKerMLExpressions.g:1406:1: ruleNamedExpressionMember EOF
+            // InternalKerMLExpressions.g:1355:1: ( ruleNamedExpressionMember EOF )
+            // InternalKerMLExpressions.g:1356:1: ruleNamedExpressionMember EOF
             {
              before(grammarAccess.getNamedExpressionMemberRule()); 
             pushFollow(FOLLOW_1);
@@ -4187,21 +4091,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "ruleNamedExpressionMember"
-    // InternalKerMLExpressions.g:1413:1: ruleNamedExpressionMember : ( ( rule__NamedExpressionMember__Group__0 ) ) ;
+    // InternalKerMLExpressions.g:1363:1: ruleNamedExpressionMember : ( ( rule__NamedExpressionMember__Group__0 ) ) ;
     public final void ruleNamedExpressionMember() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:1417:2: ( ( ( rule__NamedExpressionMember__Group__0 ) ) )
-            // InternalKerMLExpressions.g:1418:2: ( ( rule__NamedExpressionMember__Group__0 ) )
+            // InternalKerMLExpressions.g:1367:2: ( ( ( rule__NamedExpressionMember__Group__0 ) ) )
+            // InternalKerMLExpressions.g:1368:2: ( ( rule__NamedExpressionMember__Group__0 ) )
             {
-            // InternalKerMLExpressions.g:1418:2: ( ( rule__NamedExpressionMember__Group__0 ) )
-            // InternalKerMLExpressions.g:1419:3: ( rule__NamedExpressionMember__Group__0 )
+            // InternalKerMLExpressions.g:1368:2: ( ( rule__NamedExpressionMember__Group__0 ) )
+            // InternalKerMLExpressions.g:1369:3: ( rule__NamedExpressionMember__Group__0 )
             {
              before(grammarAccess.getNamedExpressionMemberAccess().getGroup()); 
-            // InternalKerMLExpressions.g:1420:3: ( rule__NamedExpressionMember__Group__0 )
-            // InternalKerMLExpressions.g:1420:4: rule__NamedExpressionMember__Group__0
+            // InternalKerMLExpressions.g:1370:3: ( rule__NamedExpressionMember__Group__0 )
+            // InternalKerMLExpressions.g:1370:4: rule__NamedExpressionMember__Group__0
             {
             pushFollow(FOLLOW_2);
             rule__NamedExpressionMember__Group__0();
@@ -4234,11 +4138,11 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "entryRuleNullExpression"
-    // InternalKerMLExpressions.g:1429:1: entryRuleNullExpression : ruleNullExpression EOF ;
+    // InternalKerMLExpressions.g:1379:1: entryRuleNullExpression : ruleNullExpression EOF ;
     public final void entryRuleNullExpression() throws RecognitionException {
         try {
-            // InternalKerMLExpressions.g:1430:1: ( ruleNullExpression EOF )
-            // InternalKerMLExpressions.g:1431:1: ruleNullExpression EOF
+            // InternalKerMLExpressions.g:1380:1: ( ruleNullExpression EOF )
+            // InternalKerMLExpressions.g:1381:1: ruleNullExpression EOF
             {
              before(grammarAccess.getNullExpressionRule()); 
             pushFollow(FOLLOW_1);
@@ -4264,21 +4168,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "ruleNullExpression"
-    // InternalKerMLExpressions.g:1438:1: ruleNullExpression : ( ( rule__NullExpression__Group__0 ) ) ;
+    // InternalKerMLExpressions.g:1388:1: ruleNullExpression : ( ( rule__NullExpression__Group__0 ) ) ;
     public final void ruleNullExpression() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:1442:2: ( ( ( rule__NullExpression__Group__0 ) ) )
-            // InternalKerMLExpressions.g:1443:2: ( ( rule__NullExpression__Group__0 ) )
+            // InternalKerMLExpressions.g:1392:2: ( ( ( rule__NullExpression__Group__0 ) ) )
+            // InternalKerMLExpressions.g:1393:2: ( ( rule__NullExpression__Group__0 ) )
             {
-            // InternalKerMLExpressions.g:1443:2: ( ( rule__NullExpression__Group__0 ) )
-            // InternalKerMLExpressions.g:1444:3: ( rule__NullExpression__Group__0 )
+            // InternalKerMLExpressions.g:1393:2: ( ( rule__NullExpression__Group__0 ) )
+            // InternalKerMLExpressions.g:1394:3: ( rule__NullExpression__Group__0 )
             {
              before(grammarAccess.getNullExpressionAccess().getGroup()); 
-            // InternalKerMLExpressions.g:1445:3: ( rule__NullExpression__Group__0 )
-            // InternalKerMLExpressions.g:1445:4: rule__NullExpression__Group__0
+            // InternalKerMLExpressions.g:1395:3: ( rule__NullExpression__Group__0 )
+            // InternalKerMLExpressions.g:1395:4: rule__NullExpression__Group__0
             {
             pushFollow(FOLLOW_2);
             rule__NullExpression__Group__0();
@@ -4311,11 +4215,11 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "entryRuleLiteralExpression"
-    // InternalKerMLExpressions.g:1454:1: entryRuleLiteralExpression : ruleLiteralExpression EOF ;
+    // InternalKerMLExpressions.g:1404:1: entryRuleLiteralExpression : ruleLiteralExpression EOF ;
     public final void entryRuleLiteralExpression() throws RecognitionException {
         try {
-            // InternalKerMLExpressions.g:1455:1: ( ruleLiteralExpression EOF )
-            // InternalKerMLExpressions.g:1456:1: ruleLiteralExpression EOF
+            // InternalKerMLExpressions.g:1405:1: ( ruleLiteralExpression EOF )
+            // InternalKerMLExpressions.g:1406:1: ruleLiteralExpression EOF
             {
              before(grammarAccess.getLiteralExpressionRule()); 
             pushFollow(FOLLOW_1);
@@ -4341,21 +4245,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "ruleLiteralExpression"
-    // InternalKerMLExpressions.g:1463:1: ruleLiteralExpression : ( ( rule__LiteralExpression__Alternatives ) ) ;
+    // InternalKerMLExpressions.g:1413:1: ruleLiteralExpression : ( ( rule__LiteralExpression__Alternatives ) ) ;
     public final void ruleLiteralExpression() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:1467:2: ( ( ( rule__LiteralExpression__Alternatives ) ) )
-            // InternalKerMLExpressions.g:1468:2: ( ( rule__LiteralExpression__Alternatives ) )
+            // InternalKerMLExpressions.g:1417:2: ( ( ( rule__LiteralExpression__Alternatives ) ) )
+            // InternalKerMLExpressions.g:1418:2: ( ( rule__LiteralExpression__Alternatives ) )
             {
-            // InternalKerMLExpressions.g:1468:2: ( ( rule__LiteralExpression__Alternatives ) )
-            // InternalKerMLExpressions.g:1469:3: ( rule__LiteralExpression__Alternatives )
+            // InternalKerMLExpressions.g:1418:2: ( ( rule__LiteralExpression__Alternatives ) )
+            // InternalKerMLExpressions.g:1419:3: ( rule__LiteralExpression__Alternatives )
             {
              before(grammarAccess.getLiteralExpressionAccess().getAlternatives()); 
-            // InternalKerMLExpressions.g:1470:3: ( rule__LiteralExpression__Alternatives )
-            // InternalKerMLExpressions.g:1470:4: rule__LiteralExpression__Alternatives
+            // InternalKerMLExpressions.g:1420:3: ( rule__LiteralExpression__Alternatives )
+            // InternalKerMLExpressions.g:1420:4: rule__LiteralExpression__Alternatives
             {
             pushFollow(FOLLOW_2);
             rule__LiteralExpression__Alternatives();
@@ -4388,11 +4292,11 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "entryRuleLiteralBoolean"
-    // InternalKerMLExpressions.g:1479:1: entryRuleLiteralBoolean : ruleLiteralBoolean EOF ;
+    // InternalKerMLExpressions.g:1429:1: entryRuleLiteralBoolean : ruleLiteralBoolean EOF ;
     public final void entryRuleLiteralBoolean() throws RecognitionException {
         try {
-            // InternalKerMLExpressions.g:1480:1: ( ruleLiteralBoolean EOF )
-            // InternalKerMLExpressions.g:1481:1: ruleLiteralBoolean EOF
+            // InternalKerMLExpressions.g:1430:1: ( ruleLiteralBoolean EOF )
+            // InternalKerMLExpressions.g:1431:1: ruleLiteralBoolean EOF
             {
              before(grammarAccess.getLiteralBooleanRule()); 
             pushFollow(FOLLOW_1);
@@ -4418,21 +4322,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "ruleLiteralBoolean"
-    // InternalKerMLExpressions.g:1488:1: ruleLiteralBoolean : ( ( rule__LiteralBoolean__ValueAssignment ) ) ;
+    // InternalKerMLExpressions.g:1438:1: ruleLiteralBoolean : ( ( rule__LiteralBoolean__ValueAssignment ) ) ;
     public final void ruleLiteralBoolean() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:1492:2: ( ( ( rule__LiteralBoolean__ValueAssignment ) ) )
-            // InternalKerMLExpressions.g:1493:2: ( ( rule__LiteralBoolean__ValueAssignment ) )
+            // InternalKerMLExpressions.g:1442:2: ( ( ( rule__LiteralBoolean__ValueAssignment ) ) )
+            // InternalKerMLExpressions.g:1443:2: ( ( rule__LiteralBoolean__ValueAssignment ) )
             {
-            // InternalKerMLExpressions.g:1493:2: ( ( rule__LiteralBoolean__ValueAssignment ) )
-            // InternalKerMLExpressions.g:1494:3: ( rule__LiteralBoolean__ValueAssignment )
+            // InternalKerMLExpressions.g:1443:2: ( ( rule__LiteralBoolean__ValueAssignment ) )
+            // InternalKerMLExpressions.g:1444:3: ( rule__LiteralBoolean__ValueAssignment )
             {
              before(grammarAccess.getLiteralBooleanAccess().getValueAssignment()); 
-            // InternalKerMLExpressions.g:1495:3: ( rule__LiteralBoolean__ValueAssignment )
-            // InternalKerMLExpressions.g:1495:4: rule__LiteralBoolean__ValueAssignment
+            // InternalKerMLExpressions.g:1445:3: ( rule__LiteralBoolean__ValueAssignment )
+            // InternalKerMLExpressions.g:1445:4: rule__LiteralBoolean__ValueAssignment
             {
             pushFollow(FOLLOW_2);
             rule__LiteralBoolean__ValueAssignment();
@@ -4465,11 +4369,11 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "entryRuleBooleanValue"
-    // InternalKerMLExpressions.g:1504:1: entryRuleBooleanValue : ruleBooleanValue EOF ;
+    // InternalKerMLExpressions.g:1454:1: entryRuleBooleanValue : ruleBooleanValue EOF ;
     public final void entryRuleBooleanValue() throws RecognitionException {
         try {
-            // InternalKerMLExpressions.g:1505:1: ( ruleBooleanValue EOF )
-            // InternalKerMLExpressions.g:1506:1: ruleBooleanValue EOF
+            // InternalKerMLExpressions.g:1455:1: ( ruleBooleanValue EOF )
+            // InternalKerMLExpressions.g:1456:1: ruleBooleanValue EOF
             {
              before(grammarAccess.getBooleanValueRule()); 
             pushFollow(FOLLOW_1);
@@ -4495,21 +4399,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "ruleBooleanValue"
-    // InternalKerMLExpressions.g:1513:1: ruleBooleanValue : ( ( rule__BooleanValue__Alternatives ) ) ;
+    // InternalKerMLExpressions.g:1463:1: ruleBooleanValue : ( ( rule__BooleanValue__Alternatives ) ) ;
     public final void ruleBooleanValue() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:1517:2: ( ( ( rule__BooleanValue__Alternatives ) ) )
-            // InternalKerMLExpressions.g:1518:2: ( ( rule__BooleanValue__Alternatives ) )
+            // InternalKerMLExpressions.g:1467:2: ( ( ( rule__BooleanValue__Alternatives ) ) )
+            // InternalKerMLExpressions.g:1468:2: ( ( rule__BooleanValue__Alternatives ) )
             {
-            // InternalKerMLExpressions.g:1518:2: ( ( rule__BooleanValue__Alternatives ) )
-            // InternalKerMLExpressions.g:1519:3: ( rule__BooleanValue__Alternatives )
+            // InternalKerMLExpressions.g:1468:2: ( ( rule__BooleanValue__Alternatives ) )
+            // InternalKerMLExpressions.g:1469:3: ( rule__BooleanValue__Alternatives )
             {
              before(grammarAccess.getBooleanValueAccess().getAlternatives()); 
-            // InternalKerMLExpressions.g:1520:3: ( rule__BooleanValue__Alternatives )
-            // InternalKerMLExpressions.g:1520:4: rule__BooleanValue__Alternatives
+            // InternalKerMLExpressions.g:1470:3: ( rule__BooleanValue__Alternatives )
+            // InternalKerMLExpressions.g:1470:4: rule__BooleanValue__Alternatives
             {
             pushFollow(FOLLOW_2);
             rule__BooleanValue__Alternatives();
@@ -4542,11 +4446,11 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "entryRuleLiteralString"
-    // InternalKerMLExpressions.g:1529:1: entryRuleLiteralString : ruleLiteralString EOF ;
+    // InternalKerMLExpressions.g:1479:1: entryRuleLiteralString : ruleLiteralString EOF ;
     public final void entryRuleLiteralString() throws RecognitionException {
         try {
-            // InternalKerMLExpressions.g:1530:1: ( ruleLiteralString EOF )
-            // InternalKerMLExpressions.g:1531:1: ruleLiteralString EOF
+            // InternalKerMLExpressions.g:1480:1: ( ruleLiteralString EOF )
+            // InternalKerMLExpressions.g:1481:1: ruleLiteralString EOF
             {
              before(grammarAccess.getLiteralStringRule()); 
             pushFollow(FOLLOW_1);
@@ -4572,21 +4476,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "ruleLiteralString"
-    // InternalKerMLExpressions.g:1538:1: ruleLiteralString : ( ( rule__LiteralString__ValueAssignment ) ) ;
+    // InternalKerMLExpressions.g:1488:1: ruleLiteralString : ( ( rule__LiteralString__ValueAssignment ) ) ;
     public final void ruleLiteralString() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:1542:2: ( ( ( rule__LiteralString__ValueAssignment ) ) )
-            // InternalKerMLExpressions.g:1543:2: ( ( rule__LiteralString__ValueAssignment ) )
+            // InternalKerMLExpressions.g:1492:2: ( ( ( rule__LiteralString__ValueAssignment ) ) )
+            // InternalKerMLExpressions.g:1493:2: ( ( rule__LiteralString__ValueAssignment ) )
             {
-            // InternalKerMLExpressions.g:1543:2: ( ( rule__LiteralString__ValueAssignment ) )
-            // InternalKerMLExpressions.g:1544:3: ( rule__LiteralString__ValueAssignment )
+            // InternalKerMLExpressions.g:1493:2: ( ( rule__LiteralString__ValueAssignment ) )
+            // InternalKerMLExpressions.g:1494:3: ( rule__LiteralString__ValueAssignment )
             {
              before(grammarAccess.getLiteralStringAccess().getValueAssignment()); 
-            // InternalKerMLExpressions.g:1545:3: ( rule__LiteralString__ValueAssignment )
-            // InternalKerMLExpressions.g:1545:4: rule__LiteralString__ValueAssignment
+            // InternalKerMLExpressions.g:1495:3: ( rule__LiteralString__ValueAssignment )
+            // InternalKerMLExpressions.g:1495:4: rule__LiteralString__ValueAssignment
             {
             pushFollow(FOLLOW_2);
             rule__LiteralString__ValueAssignment();
@@ -4619,11 +4523,11 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "entryRuleLiteralInteger"
-    // InternalKerMLExpressions.g:1554:1: entryRuleLiteralInteger : ruleLiteralInteger EOF ;
+    // InternalKerMLExpressions.g:1504:1: entryRuleLiteralInteger : ruleLiteralInteger EOF ;
     public final void entryRuleLiteralInteger() throws RecognitionException {
         try {
-            // InternalKerMLExpressions.g:1555:1: ( ruleLiteralInteger EOF )
-            // InternalKerMLExpressions.g:1556:1: ruleLiteralInteger EOF
+            // InternalKerMLExpressions.g:1505:1: ( ruleLiteralInteger EOF )
+            // InternalKerMLExpressions.g:1506:1: ruleLiteralInteger EOF
             {
              before(grammarAccess.getLiteralIntegerRule()); 
             pushFollow(FOLLOW_1);
@@ -4649,21 +4553,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "ruleLiteralInteger"
-    // InternalKerMLExpressions.g:1563:1: ruleLiteralInteger : ( ( rule__LiteralInteger__ValueAssignment ) ) ;
+    // InternalKerMLExpressions.g:1513:1: ruleLiteralInteger : ( ( rule__LiteralInteger__ValueAssignment ) ) ;
     public final void ruleLiteralInteger() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:1567:2: ( ( ( rule__LiteralInteger__ValueAssignment ) ) )
-            // InternalKerMLExpressions.g:1568:2: ( ( rule__LiteralInteger__ValueAssignment ) )
+            // InternalKerMLExpressions.g:1517:2: ( ( ( rule__LiteralInteger__ValueAssignment ) ) )
+            // InternalKerMLExpressions.g:1518:2: ( ( rule__LiteralInteger__ValueAssignment ) )
             {
-            // InternalKerMLExpressions.g:1568:2: ( ( rule__LiteralInteger__ValueAssignment ) )
-            // InternalKerMLExpressions.g:1569:3: ( rule__LiteralInteger__ValueAssignment )
+            // InternalKerMLExpressions.g:1518:2: ( ( rule__LiteralInteger__ValueAssignment ) )
+            // InternalKerMLExpressions.g:1519:3: ( rule__LiteralInteger__ValueAssignment )
             {
              before(grammarAccess.getLiteralIntegerAccess().getValueAssignment()); 
-            // InternalKerMLExpressions.g:1570:3: ( rule__LiteralInteger__ValueAssignment )
-            // InternalKerMLExpressions.g:1570:4: rule__LiteralInteger__ValueAssignment
+            // InternalKerMLExpressions.g:1520:3: ( rule__LiteralInteger__ValueAssignment )
+            // InternalKerMLExpressions.g:1520:4: rule__LiteralInteger__ValueAssignment
             {
             pushFollow(FOLLOW_2);
             rule__LiteralInteger__ValueAssignment();
@@ -4696,11 +4600,11 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "entryRuleLiteralReal"
-    // InternalKerMLExpressions.g:1579:1: entryRuleLiteralReal : ruleLiteralReal EOF ;
+    // InternalKerMLExpressions.g:1529:1: entryRuleLiteralReal : ruleLiteralReal EOF ;
     public final void entryRuleLiteralReal() throws RecognitionException {
         try {
-            // InternalKerMLExpressions.g:1580:1: ( ruleLiteralReal EOF )
-            // InternalKerMLExpressions.g:1581:1: ruleLiteralReal EOF
+            // InternalKerMLExpressions.g:1530:1: ( ruleLiteralReal EOF )
+            // InternalKerMLExpressions.g:1531:1: ruleLiteralReal EOF
             {
              before(grammarAccess.getLiteralRealRule()); 
             pushFollow(FOLLOW_1);
@@ -4726,21 +4630,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "ruleLiteralReal"
-    // InternalKerMLExpressions.g:1588:1: ruleLiteralReal : ( ( rule__LiteralReal__ValueAssignment ) ) ;
+    // InternalKerMLExpressions.g:1538:1: ruleLiteralReal : ( ( rule__LiteralReal__ValueAssignment ) ) ;
     public final void ruleLiteralReal() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:1592:2: ( ( ( rule__LiteralReal__ValueAssignment ) ) )
-            // InternalKerMLExpressions.g:1593:2: ( ( rule__LiteralReal__ValueAssignment ) )
+            // InternalKerMLExpressions.g:1542:2: ( ( ( rule__LiteralReal__ValueAssignment ) ) )
+            // InternalKerMLExpressions.g:1543:2: ( ( rule__LiteralReal__ValueAssignment ) )
             {
-            // InternalKerMLExpressions.g:1593:2: ( ( rule__LiteralReal__ValueAssignment ) )
-            // InternalKerMLExpressions.g:1594:3: ( rule__LiteralReal__ValueAssignment )
+            // InternalKerMLExpressions.g:1543:2: ( ( rule__LiteralReal__ValueAssignment ) )
+            // InternalKerMLExpressions.g:1544:3: ( rule__LiteralReal__ValueAssignment )
             {
              before(grammarAccess.getLiteralRealAccess().getValueAssignment()); 
-            // InternalKerMLExpressions.g:1595:3: ( rule__LiteralReal__ValueAssignment )
-            // InternalKerMLExpressions.g:1595:4: rule__LiteralReal__ValueAssignment
+            // InternalKerMLExpressions.g:1545:3: ( rule__LiteralReal__ValueAssignment )
+            // InternalKerMLExpressions.g:1545:4: rule__LiteralReal__ValueAssignment
             {
             pushFollow(FOLLOW_2);
             rule__LiteralReal__ValueAssignment();
@@ -4773,11 +4677,11 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "entryRuleRealValue"
-    // InternalKerMLExpressions.g:1604:1: entryRuleRealValue : ruleRealValue EOF ;
+    // InternalKerMLExpressions.g:1554:1: entryRuleRealValue : ruleRealValue EOF ;
     public final void entryRuleRealValue() throws RecognitionException {
         try {
-            // InternalKerMLExpressions.g:1605:1: ( ruleRealValue EOF )
-            // InternalKerMLExpressions.g:1606:1: ruleRealValue EOF
+            // InternalKerMLExpressions.g:1555:1: ( ruleRealValue EOF )
+            // InternalKerMLExpressions.g:1556:1: ruleRealValue EOF
             {
              before(grammarAccess.getRealValueRule()); 
             pushFollow(FOLLOW_1);
@@ -4803,21 +4707,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "ruleRealValue"
-    // InternalKerMLExpressions.g:1613:1: ruleRealValue : ( ( rule__RealValue__Alternatives ) ) ;
+    // InternalKerMLExpressions.g:1563:1: ruleRealValue : ( ( rule__RealValue__Alternatives ) ) ;
     public final void ruleRealValue() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:1617:2: ( ( ( rule__RealValue__Alternatives ) ) )
-            // InternalKerMLExpressions.g:1618:2: ( ( rule__RealValue__Alternatives ) )
+            // InternalKerMLExpressions.g:1567:2: ( ( ( rule__RealValue__Alternatives ) ) )
+            // InternalKerMLExpressions.g:1568:2: ( ( rule__RealValue__Alternatives ) )
             {
-            // InternalKerMLExpressions.g:1618:2: ( ( rule__RealValue__Alternatives ) )
-            // InternalKerMLExpressions.g:1619:3: ( rule__RealValue__Alternatives )
+            // InternalKerMLExpressions.g:1568:2: ( ( rule__RealValue__Alternatives ) )
+            // InternalKerMLExpressions.g:1569:3: ( rule__RealValue__Alternatives )
             {
              before(grammarAccess.getRealValueAccess().getAlternatives()); 
-            // InternalKerMLExpressions.g:1620:3: ( rule__RealValue__Alternatives )
-            // InternalKerMLExpressions.g:1620:4: rule__RealValue__Alternatives
+            // InternalKerMLExpressions.g:1570:3: ( rule__RealValue__Alternatives )
+            // InternalKerMLExpressions.g:1570:4: rule__RealValue__Alternatives
             {
             pushFollow(FOLLOW_2);
             rule__RealValue__Alternatives();
@@ -4850,11 +4754,11 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "entryRuleLiteralUnbounded"
-    // InternalKerMLExpressions.g:1629:1: entryRuleLiteralUnbounded : ruleLiteralUnbounded EOF ;
+    // InternalKerMLExpressions.g:1579:1: entryRuleLiteralUnbounded : ruleLiteralUnbounded EOF ;
     public final void entryRuleLiteralUnbounded() throws RecognitionException {
         try {
-            // InternalKerMLExpressions.g:1630:1: ( ruleLiteralUnbounded EOF )
-            // InternalKerMLExpressions.g:1631:1: ruleLiteralUnbounded EOF
+            // InternalKerMLExpressions.g:1580:1: ( ruleLiteralUnbounded EOF )
+            // InternalKerMLExpressions.g:1581:1: ruleLiteralUnbounded EOF
             {
              before(grammarAccess.getLiteralUnboundedRule()); 
             pushFollow(FOLLOW_1);
@@ -4880,21 +4784,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "ruleLiteralUnbounded"
-    // InternalKerMLExpressions.g:1638:1: ruleLiteralUnbounded : ( ( rule__LiteralUnbounded__Group__0 ) ) ;
+    // InternalKerMLExpressions.g:1588:1: ruleLiteralUnbounded : ( ( rule__LiteralUnbounded__Group__0 ) ) ;
     public final void ruleLiteralUnbounded() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:1642:2: ( ( ( rule__LiteralUnbounded__Group__0 ) ) )
-            // InternalKerMLExpressions.g:1643:2: ( ( rule__LiteralUnbounded__Group__0 ) )
+            // InternalKerMLExpressions.g:1592:2: ( ( ( rule__LiteralUnbounded__Group__0 ) ) )
+            // InternalKerMLExpressions.g:1593:2: ( ( rule__LiteralUnbounded__Group__0 ) )
             {
-            // InternalKerMLExpressions.g:1643:2: ( ( rule__LiteralUnbounded__Group__0 ) )
-            // InternalKerMLExpressions.g:1644:3: ( rule__LiteralUnbounded__Group__0 )
+            // InternalKerMLExpressions.g:1593:2: ( ( rule__LiteralUnbounded__Group__0 ) )
+            // InternalKerMLExpressions.g:1594:3: ( rule__LiteralUnbounded__Group__0 )
             {
              before(grammarAccess.getLiteralUnboundedAccess().getGroup()); 
-            // InternalKerMLExpressions.g:1645:3: ( rule__LiteralUnbounded__Group__0 )
-            // InternalKerMLExpressions.g:1645:4: rule__LiteralUnbounded__Group__0
+            // InternalKerMLExpressions.g:1595:3: ( rule__LiteralUnbounded__Group__0 )
+            // InternalKerMLExpressions.g:1595:4: rule__LiteralUnbounded__Group__0
             {
             pushFollow(FOLLOW_2);
             rule__LiteralUnbounded__Group__0();
@@ -4927,11 +4831,11 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "entryRuleName"
-    // InternalKerMLExpressions.g:1654:1: entryRuleName : ruleName EOF ;
+    // InternalKerMLExpressions.g:1604:1: entryRuleName : ruleName EOF ;
     public final void entryRuleName() throws RecognitionException {
         try {
-            // InternalKerMLExpressions.g:1655:1: ( ruleName EOF )
-            // InternalKerMLExpressions.g:1656:1: ruleName EOF
+            // InternalKerMLExpressions.g:1605:1: ( ruleName EOF )
+            // InternalKerMLExpressions.g:1606:1: ruleName EOF
             {
              before(grammarAccess.getNameRule()); 
             pushFollow(FOLLOW_1);
@@ -4957,21 +4861,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "ruleName"
-    // InternalKerMLExpressions.g:1663:1: ruleName : ( ( rule__Name__Alternatives ) ) ;
+    // InternalKerMLExpressions.g:1613:1: ruleName : ( ( rule__Name__Alternatives ) ) ;
     public final void ruleName() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:1667:2: ( ( ( rule__Name__Alternatives ) ) )
-            // InternalKerMLExpressions.g:1668:2: ( ( rule__Name__Alternatives ) )
+            // InternalKerMLExpressions.g:1617:2: ( ( ( rule__Name__Alternatives ) ) )
+            // InternalKerMLExpressions.g:1618:2: ( ( rule__Name__Alternatives ) )
             {
-            // InternalKerMLExpressions.g:1668:2: ( ( rule__Name__Alternatives ) )
-            // InternalKerMLExpressions.g:1669:3: ( rule__Name__Alternatives )
+            // InternalKerMLExpressions.g:1618:2: ( ( rule__Name__Alternatives ) )
+            // InternalKerMLExpressions.g:1619:3: ( rule__Name__Alternatives )
             {
              before(grammarAccess.getNameAccess().getAlternatives()); 
-            // InternalKerMLExpressions.g:1670:3: ( rule__Name__Alternatives )
-            // InternalKerMLExpressions.g:1670:4: rule__Name__Alternatives
+            // InternalKerMLExpressions.g:1620:3: ( rule__Name__Alternatives )
+            // InternalKerMLExpressions.g:1620:4: rule__Name__Alternatives
             {
             pushFollow(FOLLOW_2);
             rule__Name__Alternatives();
@@ -5004,11 +4908,11 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "entryRuleQualifiedName"
-    // InternalKerMLExpressions.g:1679:1: entryRuleQualifiedName : ruleQualifiedName EOF ;
+    // InternalKerMLExpressions.g:1629:1: entryRuleQualifiedName : ruleQualifiedName EOF ;
     public final void entryRuleQualifiedName() throws RecognitionException {
         try {
-            // InternalKerMLExpressions.g:1680:1: ( ruleQualifiedName EOF )
-            // InternalKerMLExpressions.g:1681:1: ruleQualifiedName EOF
+            // InternalKerMLExpressions.g:1630:1: ( ruleQualifiedName EOF )
+            // InternalKerMLExpressions.g:1631:1: ruleQualifiedName EOF
             {
              before(grammarAccess.getQualifiedNameRule()); 
             pushFollow(FOLLOW_1);
@@ -5034,21 +4938,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "ruleQualifiedName"
-    // InternalKerMLExpressions.g:1688:1: ruleQualifiedName : ( ( rule__QualifiedName__Group__0 ) ) ;
+    // InternalKerMLExpressions.g:1638:1: ruleQualifiedName : ( ( rule__QualifiedName__Group__0 ) ) ;
     public final void ruleQualifiedName() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:1692:2: ( ( ( rule__QualifiedName__Group__0 ) ) )
-            // InternalKerMLExpressions.g:1693:2: ( ( rule__QualifiedName__Group__0 ) )
+            // InternalKerMLExpressions.g:1642:2: ( ( ( rule__QualifiedName__Group__0 ) ) )
+            // InternalKerMLExpressions.g:1643:2: ( ( rule__QualifiedName__Group__0 ) )
             {
-            // InternalKerMLExpressions.g:1693:2: ( ( rule__QualifiedName__Group__0 ) )
-            // InternalKerMLExpressions.g:1694:3: ( rule__QualifiedName__Group__0 )
+            // InternalKerMLExpressions.g:1643:2: ( ( rule__QualifiedName__Group__0 ) )
+            // InternalKerMLExpressions.g:1644:3: ( rule__QualifiedName__Group__0 )
             {
              before(grammarAccess.getQualifiedNameAccess().getGroup()); 
-            // InternalKerMLExpressions.g:1695:3: ( rule__QualifiedName__Group__0 )
-            // InternalKerMLExpressions.g:1695:4: rule__QualifiedName__Group__0
+            // InternalKerMLExpressions.g:1645:3: ( rule__QualifiedName__Group__0 )
+            // InternalKerMLExpressions.g:1645:4: rule__QualifiedName__Group__0
             {
             pushFollow(FOLLOW_2);
             rule__QualifiedName__Group__0();
@@ -5080,21 +4984,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
     // $ANTLR end "ruleQualifiedName"
 
 
-    // $ANTLR start "rule__EqualityOperator__Alternatives"
-    // InternalKerMLExpressions.g:1703:1: rule__EqualityOperator__Alternatives : ( ( '==' ) | ( '!=' ) );
-    public final void rule__EqualityOperator__Alternatives() throws RecognitionException {
+    // $ANTLR start "rule__ConditionalExpression__Alternatives"
+    // InternalKerMLExpressions.g:1653:1: rule__ConditionalExpression__Alternatives : ( ( ( rule__ConditionalExpression__Group_0__0 ) ) | ( ( rule__ConditionalExpression__Group_1__0 ) ) );
+    public final void rule__ConditionalExpression__Alternatives() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:1707:1: ( ( '==' ) | ( '!=' ) )
+            // InternalKerMLExpressions.g:1657:1: ( ( ( rule__ConditionalExpression__Group_0__0 ) ) | ( ( rule__ConditionalExpression__Group_1__0 ) ) )
             int alt1=2;
             int LA1_0 = input.LA(1);
 
-            if ( (LA1_0==22) ) {
+            if ( (LA1_0==EOF||(LA1_0>=RULE_EXP_VALUE && LA1_0<=RULE_STRING_VALUE)||(LA1_0>=27 && LA1_0<=31)||(LA1_0>=36 && LA1_0<=38)||(LA1_0>=43 && LA1_0<=45)||(LA1_0>=47 && LA1_0<=49)||(LA1_0>=55 && LA1_0<=56)||LA1_0==58||LA1_0==66) ) {
                 alt1=1;
             }
-            else if ( (LA1_0==23) ) {
+            else if ( (LA1_0==51) ) {
                 alt1=2;
             }
             else {
@@ -5105,13 +5009,365 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
             }
             switch (alt1) {
                 case 1 :
-                    // InternalKerMLExpressions.g:1708:2: ( '==' )
+                    // InternalKerMLExpressions.g:1658:2: ( ( rule__ConditionalExpression__Group_0__0 ) )
                     {
-                    // InternalKerMLExpressions.g:1708:2: ( '==' )
-                    // InternalKerMLExpressions.g:1709:3: '=='
+                    // InternalKerMLExpressions.g:1658:2: ( ( rule__ConditionalExpression__Group_0__0 ) )
+                    // InternalKerMLExpressions.g:1659:3: ( rule__ConditionalExpression__Group_0__0 )
+                    {
+                     before(grammarAccess.getConditionalExpressionAccess().getGroup_0()); 
+                    // InternalKerMLExpressions.g:1660:3: ( rule__ConditionalExpression__Group_0__0 )
+                    // InternalKerMLExpressions.g:1660:4: rule__ConditionalExpression__Group_0__0
+                    {
+                    pushFollow(FOLLOW_2);
+                    rule__ConditionalExpression__Group_0__0();
+
+                    state._fsp--;
+
+
+                    }
+
+                     after(grammarAccess.getConditionalExpressionAccess().getGroup_0()); 
+
+                    }
+
+
+                    }
+                    break;
+                case 2 :
+                    // InternalKerMLExpressions.g:1664:2: ( ( rule__ConditionalExpression__Group_1__0 ) )
+                    {
+                    // InternalKerMLExpressions.g:1664:2: ( ( rule__ConditionalExpression__Group_1__0 ) )
+                    // InternalKerMLExpressions.g:1665:3: ( rule__ConditionalExpression__Group_1__0 )
+                    {
+                     before(grammarAccess.getConditionalExpressionAccess().getGroup_1()); 
+                    // InternalKerMLExpressions.g:1666:3: ( rule__ConditionalExpression__Group_1__0 )
+                    // InternalKerMLExpressions.g:1666:4: rule__ConditionalExpression__Group_1__0
+                    {
+                    pushFollow(FOLLOW_2);
+                    rule__ConditionalExpression__Group_1__0();
+
+                    state._fsp--;
+
+
+                    }
+
+                     after(grammarAccess.getConditionalExpressionAccess().getGroup_1()); 
+
+                    }
+
+
+                    }
+                    break;
+
+            }
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__ConditionalExpression__Alternatives"
+
+
+    // $ANTLR start "rule__OrOperator__Alternatives"
+    // InternalKerMLExpressions.g:1674:1: rule__OrOperator__Alternatives : ( ( '|' ) | ( '||' ) | ( 'or' ) );
+    public final void rule__OrOperator__Alternatives() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalKerMLExpressions.g:1678:1: ( ( '|' ) | ( '||' ) | ( 'or' ) )
+            int alt2=3;
+            switch ( input.LA(1) ) {
+            case 17:
+                {
+                alt2=1;
+                }
+                break;
+            case 18:
+                {
+                alt2=2;
+                }
+                break;
+            case 19:
+                {
+                alt2=3;
+                }
+                break;
+            default:
+                NoViableAltException nvae =
+                    new NoViableAltException("", 2, 0, input);
+
+                throw nvae;
+            }
+
+            switch (alt2) {
+                case 1 :
+                    // InternalKerMLExpressions.g:1679:2: ( '|' )
+                    {
+                    // InternalKerMLExpressions.g:1679:2: ( '|' )
+                    // InternalKerMLExpressions.g:1680:3: '|'
+                    {
+                     before(grammarAccess.getOrOperatorAccess().getVerticalLineKeyword_0()); 
+                    match(input,17,FOLLOW_2); 
+                     after(grammarAccess.getOrOperatorAccess().getVerticalLineKeyword_0()); 
+
+                    }
+
+
+                    }
+                    break;
+                case 2 :
+                    // InternalKerMLExpressions.g:1685:2: ( '||' )
+                    {
+                    // InternalKerMLExpressions.g:1685:2: ( '||' )
+                    // InternalKerMLExpressions.g:1686:3: '||'
+                    {
+                     before(grammarAccess.getOrOperatorAccess().getVerticalLineVerticalLineKeyword_1()); 
+                    match(input,18,FOLLOW_2); 
+                     after(grammarAccess.getOrOperatorAccess().getVerticalLineVerticalLineKeyword_1()); 
+
+                    }
+
+
+                    }
+                    break;
+                case 3 :
+                    // InternalKerMLExpressions.g:1691:2: ( 'or' )
+                    {
+                    // InternalKerMLExpressions.g:1691:2: ( 'or' )
+                    // InternalKerMLExpressions.g:1692:3: 'or'
+                    {
+                     before(grammarAccess.getOrOperatorAccess().getOrKeyword_2()); 
+                    match(input,19,FOLLOW_2); 
+                     after(grammarAccess.getOrOperatorAccess().getOrKeyword_2()); 
+
+                    }
+
+
+                    }
+                    break;
+
+            }
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__OrOperator__Alternatives"
+
+
+    // $ANTLR start "rule__XorOperator__Alternatives"
+    // InternalKerMLExpressions.g:1701:1: rule__XorOperator__Alternatives : ( ( '^^' ) | ( 'xor' ) );
+    public final void rule__XorOperator__Alternatives() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalKerMLExpressions.g:1705:1: ( ( '^^' ) | ( 'xor' ) )
+            int alt3=2;
+            int LA3_0 = input.LA(1);
+
+            if ( (LA3_0==20) ) {
+                alt3=1;
+            }
+            else if ( (LA3_0==21) ) {
+                alt3=2;
+            }
+            else {
+                NoViableAltException nvae =
+                    new NoViableAltException("", 3, 0, input);
+
+                throw nvae;
+            }
+            switch (alt3) {
+                case 1 :
+                    // InternalKerMLExpressions.g:1706:2: ( '^^' )
+                    {
+                    // InternalKerMLExpressions.g:1706:2: ( '^^' )
+                    // InternalKerMLExpressions.g:1707:3: '^^'
+                    {
+                     before(grammarAccess.getXorOperatorAccess().getCircumflexAccentCircumflexAccentKeyword_0()); 
+                    match(input,20,FOLLOW_2); 
+                     after(grammarAccess.getXorOperatorAccess().getCircumflexAccentCircumflexAccentKeyword_0()); 
+
+                    }
+
+
+                    }
+                    break;
+                case 2 :
+                    // InternalKerMLExpressions.g:1712:2: ( 'xor' )
+                    {
+                    // InternalKerMLExpressions.g:1712:2: ( 'xor' )
+                    // InternalKerMLExpressions.g:1713:3: 'xor'
+                    {
+                     before(grammarAccess.getXorOperatorAccess().getXorKeyword_1()); 
+                    match(input,21,FOLLOW_2); 
+                     after(grammarAccess.getXorOperatorAccess().getXorKeyword_1()); 
+
+                    }
+
+
+                    }
+                    break;
+
+            }
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__XorOperator__Alternatives"
+
+
+    // $ANTLR start "rule__AndOperator__Alternatives"
+    // InternalKerMLExpressions.g:1722:1: rule__AndOperator__Alternatives : ( ( '&' ) | ( '&&' ) | ( 'and' ) );
+    public final void rule__AndOperator__Alternatives() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalKerMLExpressions.g:1726:1: ( ( '&' ) | ( '&&' ) | ( 'and' ) )
+            int alt4=3;
+            switch ( input.LA(1) ) {
+            case 22:
+                {
+                alt4=1;
+                }
+                break;
+            case 23:
+                {
+                alt4=2;
+                }
+                break;
+            case 24:
+                {
+                alt4=3;
+                }
+                break;
+            default:
+                NoViableAltException nvae =
+                    new NoViableAltException("", 4, 0, input);
+
+                throw nvae;
+            }
+
+            switch (alt4) {
+                case 1 :
+                    // InternalKerMLExpressions.g:1727:2: ( '&' )
+                    {
+                    // InternalKerMLExpressions.g:1727:2: ( '&' )
+                    // InternalKerMLExpressions.g:1728:3: '&'
+                    {
+                     before(grammarAccess.getAndOperatorAccess().getAmpersandKeyword_0()); 
+                    match(input,22,FOLLOW_2); 
+                     after(grammarAccess.getAndOperatorAccess().getAmpersandKeyword_0()); 
+
+                    }
+
+
+                    }
+                    break;
+                case 2 :
+                    // InternalKerMLExpressions.g:1733:2: ( '&&' )
+                    {
+                    // InternalKerMLExpressions.g:1733:2: ( '&&' )
+                    // InternalKerMLExpressions.g:1734:3: '&&'
+                    {
+                     before(grammarAccess.getAndOperatorAccess().getAmpersandAmpersandKeyword_1()); 
+                    match(input,23,FOLLOW_2); 
+                     after(grammarAccess.getAndOperatorAccess().getAmpersandAmpersandKeyword_1()); 
+
+                    }
+
+
+                    }
+                    break;
+                case 3 :
+                    // InternalKerMLExpressions.g:1739:2: ( 'and' )
+                    {
+                    // InternalKerMLExpressions.g:1739:2: ( 'and' )
+                    // InternalKerMLExpressions.g:1740:3: 'and'
+                    {
+                     before(grammarAccess.getAndOperatorAccess().getAndKeyword_2()); 
+                    match(input,24,FOLLOW_2); 
+                     after(grammarAccess.getAndOperatorAccess().getAndKeyword_2()); 
+
+                    }
+
+
+                    }
+                    break;
+
+            }
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__AndOperator__Alternatives"
+
+
+    // $ANTLR start "rule__EqualityOperator__Alternatives"
+    // InternalKerMLExpressions.g:1749:1: rule__EqualityOperator__Alternatives : ( ( '==' ) | ( '!=' ) );
+    public final void rule__EqualityOperator__Alternatives() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalKerMLExpressions.g:1753:1: ( ( '==' ) | ( '!=' ) )
+            int alt5=2;
+            int LA5_0 = input.LA(1);
+
+            if ( (LA5_0==25) ) {
+                alt5=1;
+            }
+            else if ( (LA5_0==26) ) {
+                alt5=2;
+            }
+            else {
+                NoViableAltException nvae =
+                    new NoViableAltException("", 5, 0, input);
+
+                throw nvae;
+            }
+            switch (alt5) {
+                case 1 :
+                    // InternalKerMLExpressions.g:1754:2: ( '==' )
+                    {
+                    // InternalKerMLExpressions.g:1754:2: ( '==' )
+                    // InternalKerMLExpressions.g:1755:3: '=='
                     {
                      before(grammarAccess.getEqualityOperatorAccess().getEqualsSignEqualsSignKeyword_0()); 
-                    match(input,22,FOLLOW_2); 
+                    match(input,25,FOLLOW_2); 
                      after(grammarAccess.getEqualityOperatorAccess().getEqualsSignEqualsSignKeyword_0()); 
 
                     }
@@ -5120,13 +5376,13 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
                     }
                     break;
                 case 2 :
-                    // InternalKerMLExpressions.g:1714:2: ( '!=' )
+                    // InternalKerMLExpressions.g:1760:2: ( '!=' )
                     {
-                    // InternalKerMLExpressions.g:1714:2: ( '!=' )
-                    // InternalKerMLExpressions.g:1715:3: '!='
+                    // InternalKerMLExpressions.g:1760:2: ( '!=' )
+                    // InternalKerMLExpressions.g:1761:3: '!='
                     {
                      before(grammarAccess.getEqualityOperatorAccess().getExclamationMarkEqualsSignKeyword_1()); 
-                    match(input,23,FOLLOW_2); 
+                    match(input,26,FOLLOW_2); 
                      after(grammarAccess.getEqualityOperatorAccess().getExclamationMarkEqualsSignKeyword_1()); 
 
                     }
@@ -5152,38 +5408,38 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__ClassificationExpression__Alternatives"
-    // InternalKerMLExpressions.g:1724:1: rule__ClassificationExpression__Alternatives : ( ( ( rule__ClassificationExpression__Group_0__0 ) ) | ( ( rule__ClassificationExpression__Group_1__0 ) ) );
+    // InternalKerMLExpressions.g:1770:1: rule__ClassificationExpression__Alternatives : ( ( ( rule__ClassificationExpression__Group_0__0 ) ) | ( ( rule__ClassificationExpression__Group_1__0 ) ) );
     public final void rule__ClassificationExpression__Alternatives() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:1728:1: ( ( ( rule__ClassificationExpression__Group_0__0 ) ) | ( ( rule__ClassificationExpression__Group_1__0 ) ) )
-            int alt2=2;
-            int LA2_0 = input.LA(1);
+            // InternalKerMLExpressions.g:1774:1: ( ( ( rule__ClassificationExpression__Group_0__0 ) ) | ( ( rule__ClassificationExpression__Group_1__0 ) ) )
+            int alt6=2;
+            int LA6_0 = input.LA(1);
 
-            if ( ((LA2_0>=RULE_EXP_VALUE && LA2_0<=RULE_STRING_VALUE)||(LA2_0>=33 && LA2_0<=35)||(LA2_0>=38 && LA2_0<=39)||(LA2_0>=41 && LA2_0<=43)||(LA2_0>=47 && LA2_0<=48)||LA2_0==50||LA2_0==58) ) {
-                alt2=1;
+            if ( ((LA6_0>=RULE_EXP_VALUE && LA6_0<=RULE_STRING_VALUE)||(LA6_0>=36 && LA6_0<=38)||(LA6_0>=43 && LA6_0<=45)||(LA6_0>=47 && LA6_0<=49)||(LA6_0>=55 && LA6_0<=56)||LA6_0==58||LA6_0==66) ) {
+                alt6=1;
             }
-            else if ( (LA2_0==EOF||(LA2_0>=24 && LA2_0<=28)) ) {
-                alt2=2;
+            else if ( (LA6_0==EOF||(LA6_0>=27 && LA6_0<=31)) ) {
+                alt6=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 2, 0, input);
+                    new NoViableAltException("", 6, 0, input);
 
                 throw nvae;
             }
-            switch (alt2) {
+            switch (alt6) {
                 case 1 :
-                    // InternalKerMLExpressions.g:1729:2: ( ( rule__ClassificationExpression__Group_0__0 ) )
+                    // InternalKerMLExpressions.g:1775:2: ( ( rule__ClassificationExpression__Group_0__0 ) )
                     {
-                    // InternalKerMLExpressions.g:1729:2: ( ( rule__ClassificationExpression__Group_0__0 ) )
-                    // InternalKerMLExpressions.g:1730:3: ( rule__ClassificationExpression__Group_0__0 )
+                    // InternalKerMLExpressions.g:1775:2: ( ( rule__ClassificationExpression__Group_0__0 ) )
+                    // InternalKerMLExpressions.g:1776:3: ( rule__ClassificationExpression__Group_0__0 )
                     {
                      before(grammarAccess.getClassificationExpressionAccess().getGroup_0()); 
-                    // InternalKerMLExpressions.g:1731:3: ( rule__ClassificationExpression__Group_0__0 )
-                    // InternalKerMLExpressions.g:1731:4: rule__ClassificationExpression__Group_0__0
+                    // InternalKerMLExpressions.g:1777:3: ( rule__ClassificationExpression__Group_0__0 )
+                    // InternalKerMLExpressions.g:1777:4: rule__ClassificationExpression__Group_0__0
                     {
                     pushFollow(FOLLOW_2);
                     rule__ClassificationExpression__Group_0__0();
@@ -5201,14 +5457,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
                     }
                     break;
                 case 2 :
-                    // InternalKerMLExpressions.g:1735:2: ( ( rule__ClassificationExpression__Group_1__0 ) )
+                    // InternalKerMLExpressions.g:1781:2: ( ( rule__ClassificationExpression__Group_1__0 ) )
                     {
-                    // InternalKerMLExpressions.g:1735:2: ( ( rule__ClassificationExpression__Group_1__0 ) )
-                    // InternalKerMLExpressions.g:1736:3: ( rule__ClassificationExpression__Group_1__0 )
+                    // InternalKerMLExpressions.g:1781:2: ( ( rule__ClassificationExpression__Group_1__0 ) )
+                    // InternalKerMLExpressions.g:1782:3: ( rule__ClassificationExpression__Group_1__0 )
                     {
                      before(grammarAccess.getClassificationExpressionAccess().getGroup_1()); 
-                    // InternalKerMLExpressions.g:1737:3: ( rule__ClassificationExpression__Group_1__0 )
-                    // InternalKerMLExpressions.g:1737:4: rule__ClassificationExpression__Group_1__0
+                    // InternalKerMLExpressions.g:1783:3: ( rule__ClassificationExpression__Group_1__0 )
+                    // InternalKerMLExpressions.g:1783:4: rule__ClassificationExpression__Group_1__0
                     {
                     pushFollow(FOLLOW_2);
                     rule__ClassificationExpression__Group_1__0();
@@ -5243,56 +5499,56 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__ClassificationOperator__Alternatives"
-    // InternalKerMLExpressions.g:1745:1: rule__ClassificationOperator__Alternatives : ( ( 'instanceof' ) | ( 'hastype' ) | ( 'istype' ) | ( '@' ) | ( 'as' ) );
+    // InternalKerMLExpressions.g:1791:1: rule__ClassificationOperator__Alternatives : ( ( 'instanceof' ) | ( 'hastype' ) | ( 'istype' ) | ( '@' ) | ( 'as' ) );
     public final void rule__ClassificationOperator__Alternatives() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:1749:1: ( ( 'instanceof' ) | ( 'hastype' ) | ( 'istype' ) | ( '@' ) | ( 'as' ) )
-            int alt3=5;
+            // InternalKerMLExpressions.g:1795:1: ( ( 'instanceof' ) | ( 'hastype' ) | ( 'istype' ) | ( '@' ) | ( 'as' ) )
+            int alt7=5;
             switch ( input.LA(1) ) {
-            case 24:
-                {
-                alt3=1;
-                }
-                break;
-            case 25:
-                {
-                alt3=2;
-                }
-                break;
-            case 26:
-                {
-                alt3=3;
-                }
-                break;
             case 27:
                 {
-                alt3=4;
+                alt7=1;
                 }
                 break;
             case 28:
                 {
-                alt3=5;
+                alt7=2;
+                }
+                break;
+            case 29:
+                {
+                alt7=3;
+                }
+                break;
+            case 30:
+                {
+                alt7=4;
+                }
+                break;
+            case 31:
+                {
+                alt7=5;
                 }
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("", 3, 0, input);
+                    new NoViableAltException("", 7, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt3) {
+            switch (alt7) {
                 case 1 :
-                    // InternalKerMLExpressions.g:1750:2: ( 'instanceof' )
+                    // InternalKerMLExpressions.g:1796:2: ( 'instanceof' )
                     {
-                    // InternalKerMLExpressions.g:1750:2: ( 'instanceof' )
-                    // InternalKerMLExpressions.g:1751:3: 'instanceof'
+                    // InternalKerMLExpressions.g:1796:2: ( 'instanceof' )
+                    // InternalKerMLExpressions.g:1797:3: 'instanceof'
                     {
                      before(grammarAccess.getClassificationOperatorAccess().getInstanceofKeyword_0()); 
-                    match(input,24,FOLLOW_2); 
+                    match(input,27,FOLLOW_2); 
                      after(grammarAccess.getClassificationOperatorAccess().getInstanceofKeyword_0()); 
 
                     }
@@ -5301,13 +5557,13 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
                     }
                     break;
                 case 2 :
-                    // InternalKerMLExpressions.g:1756:2: ( 'hastype' )
+                    // InternalKerMLExpressions.g:1802:2: ( 'hastype' )
                     {
-                    // InternalKerMLExpressions.g:1756:2: ( 'hastype' )
-                    // InternalKerMLExpressions.g:1757:3: 'hastype'
+                    // InternalKerMLExpressions.g:1802:2: ( 'hastype' )
+                    // InternalKerMLExpressions.g:1803:3: 'hastype'
                     {
                      before(grammarAccess.getClassificationOperatorAccess().getHastypeKeyword_1()); 
-                    match(input,25,FOLLOW_2); 
+                    match(input,28,FOLLOW_2); 
                      after(grammarAccess.getClassificationOperatorAccess().getHastypeKeyword_1()); 
 
                     }
@@ -5316,13 +5572,13 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
                     }
                     break;
                 case 3 :
-                    // InternalKerMLExpressions.g:1762:2: ( 'istype' )
+                    // InternalKerMLExpressions.g:1808:2: ( 'istype' )
                     {
-                    // InternalKerMLExpressions.g:1762:2: ( 'istype' )
-                    // InternalKerMLExpressions.g:1763:3: 'istype'
+                    // InternalKerMLExpressions.g:1808:2: ( 'istype' )
+                    // InternalKerMLExpressions.g:1809:3: 'istype'
                     {
                      before(grammarAccess.getClassificationOperatorAccess().getIstypeKeyword_2()); 
-                    match(input,26,FOLLOW_2); 
+                    match(input,29,FOLLOW_2); 
                      after(grammarAccess.getClassificationOperatorAccess().getIstypeKeyword_2()); 
 
                     }
@@ -5331,13 +5587,13 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
                     }
                     break;
                 case 4 :
-                    // InternalKerMLExpressions.g:1768:2: ( '@' )
+                    // InternalKerMLExpressions.g:1814:2: ( '@' )
                     {
-                    // InternalKerMLExpressions.g:1768:2: ( '@' )
-                    // InternalKerMLExpressions.g:1769:3: '@'
+                    // InternalKerMLExpressions.g:1814:2: ( '@' )
+                    // InternalKerMLExpressions.g:1815:3: '@'
                     {
                      before(grammarAccess.getClassificationOperatorAccess().getCommercialAtKeyword_3()); 
-                    match(input,27,FOLLOW_2); 
+                    match(input,30,FOLLOW_2); 
                      after(grammarAccess.getClassificationOperatorAccess().getCommercialAtKeyword_3()); 
 
                     }
@@ -5346,13 +5602,13 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
                     }
                     break;
                 case 5 :
-                    // InternalKerMLExpressions.g:1774:2: ( 'as' )
+                    // InternalKerMLExpressions.g:1820:2: ( 'as' )
                     {
-                    // InternalKerMLExpressions.g:1774:2: ( 'as' )
-                    // InternalKerMLExpressions.g:1775:3: 'as'
+                    // InternalKerMLExpressions.g:1820:2: ( 'as' )
+                    // InternalKerMLExpressions.g:1821:3: 'as'
                     {
                      before(grammarAccess.getClassificationOperatorAccess().getAsKeyword_4()); 
-                    match(input,28,FOLLOW_2); 
+                    match(input,31,FOLLOW_2); 
                      after(grammarAccess.getClassificationOperatorAccess().getAsKeyword_4()); 
 
                     }
@@ -5378,51 +5634,51 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__RelationalOperator__Alternatives"
-    // InternalKerMLExpressions.g:1784:1: rule__RelationalOperator__Alternatives : ( ( '<' ) | ( '>' ) | ( '<=' ) | ( '>=' ) );
+    // InternalKerMLExpressions.g:1830:1: rule__RelationalOperator__Alternatives : ( ( '<' ) | ( '>' ) | ( '<=' ) | ( '>=' ) );
     public final void rule__RelationalOperator__Alternatives() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:1788:1: ( ( '<' ) | ( '>' ) | ( '<=' ) | ( '>=' ) )
-            int alt4=4;
+            // InternalKerMLExpressions.g:1834:1: ( ( '<' ) | ( '>' ) | ( '<=' ) | ( '>=' ) )
+            int alt8=4;
             switch ( input.LA(1) ) {
-            case 29:
-                {
-                alt4=1;
-                }
-                break;
-            case 30:
-                {
-                alt4=2;
-                }
-                break;
-            case 31:
-                {
-                alt4=3;
-                }
-                break;
             case 32:
                 {
-                alt4=4;
+                alt8=1;
+                }
+                break;
+            case 33:
+                {
+                alt8=2;
+                }
+                break;
+            case 34:
+                {
+                alt8=3;
+                }
+                break;
+            case 35:
+                {
+                alt8=4;
                 }
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("", 4, 0, input);
+                    new NoViableAltException("", 8, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt4) {
+            switch (alt8) {
                 case 1 :
-                    // InternalKerMLExpressions.g:1789:2: ( '<' )
+                    // InternalKerMLExpressions.g:1835:2: ( '<' )
                     {
-                    // InternalKerMLExpressions.g:1789:2: ( '<' )
-                    // InternalKerMLExpressions.g:1790:3: '<'
+                    // InternalKerMLExpressions.g:1835:2: ( '<' )
+                    // InternalKerMLExpressions.g:1836:3: '<'
                     {
                      before(grammarAccess.getRelationalOperatorAccess().getLessThanSignKeyword_0()); 
-                    match(input,29,FOLLOW_2); 
+                    match(input,32,FOLLOW_2); 
                      after(grammarAccess.getRelationalOperatorAccess().getLessThanSignKeyword_0()); 
 
                     }
@@ -5431,13 +5687,13 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
                     }
                     break;
                 case 2 :
-                    // InternalKerMLExpressions.g:1795:2: ( '>' )
+                    // InternalKerMLExpressions.g:1841:2: ( '>' )
                     {
-                    // InternalKerMLExpressions.g:1795:2: ( '>' )
-                    // InternalKerMLExpressions.g:1796:3: '>'
+                    // InternalKerMLExpressions.g:1841:2: ( '>' )
+                    // InternalKerMLExpressions.g:1842:3: '>'
                     {
                      before(grammarAccess.getRelationalOperatorAccess().getGreaterThanSignKeyword_1()); 
-                    match(input,30,FOLLOW_2); 
+                    match(input,33,FOLLOW_2); 
                      after(grammarAccess.getRelationalOperatorAccess().getGreaterThanSignKeyword_1()); 
 
                     }
@@ -5446,13 +5702,13 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
                     }
                     break;
                 case 3 :
-                    // InternalKerMLExpressions.g:1801:2: ( '<=' )
+                    // InternalKerMLExpressions.g:1847:2: ( '<=' )
                     {
-                    // InternalKerMLExpressions.g:1801:2: ( '<=' )
-                    // InternalKerMLExpressions.g:1802:3: '<='
+                    // InternalKerMLExpressions.g:1847:2: ( '<=' )
+                    // InternalKerMLExpressions.g:1848:3: '<='
                     {
                      before(grammarAccess.getRelationalOperatorAccess().getLessThanSignEqualsSignKeyword_2()); 
-                    match(input,31,FOLLOW_2); 
+                    match(input,34,FOLLOW_2); 
                      after(grammarAccess.getRelationalOperatorAccess().getLessThanSignEqualsSignKeyword_2()); 
 
                     }
@@ -5461,13 +5717,13 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
                     }
                     break;
                 case 4 :
-                    // InternalKerMLExpressions.g:1807:2: ( '>=' )
+                    // InternalKerMLExpressions.g:1853:2: ( '>=' )
                     {
-                    // InternalKerMLExpressions.g:1807:2: ( '>=' )
-                    // InternalKerMLExpressions.g:1808:3: '>='
+                    // InternalKerMLExpressions.g:1853:2: ( '>=' )
+                    // InternalKerMLExpressions.g:1854:3: '>='
                     {
                      before(grammarAccess.getRelationalOperatorAccess().getGreaterThanSignEqualsSignKeyword_3()); 
-                    match(input,32,FOLLOW_2); 
+                    match(input,35,FOLLOW_2); 
                      after(grammarAccess.getRelationalOperatorAccess().getGreaterThanSignEqualsSignKeyword_3()); 
 
                     }
@@ -5493,37 +5749,37 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__AdditiveOperator__Alternatives"
-    // InternalKerMLExpressions.g:1817:1: rule__AdditiveOperator__Alternatives : ( ( '+' ) | ( '-' ) );
+    // InternalKerMLExpressions.g:1863:1: rule__AdditiveOperator__Alternatives : ( ( '+' ) | ( '-' ) );
     public final void rule__AdditiveOperator__Alternatives() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:1821:1: ( ( '+' ) | ( '-' ) )
-            int alt5=2;
-            int LA5_0 = input.LA(1);
+            // InternalKerMLExpressions.g:1867:1: ( ( '+' ) | ( '-' ) )
+            int alt9=2;
+            int LA9_0 = input.LA(1);
 
-            if ( (LA5_0==33) ) {
-                alt5=1;
+            if ( (LA9_0==36) ) {
+                alt9=1;
             }
-            else if ( (LA5_0==34) ) {
-                alt5=2;
+            else if ( (LA9_0==37) ) {
+                alt9=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 5, 0, input);
+                    new NoViableAltException("", 9, 0, input);
 
                 throw nvae;
             }
-            switch (alt5) {
+            switch (alt9) {
                 case 1 :
-                    // InternalKerMLExpressions.g:1822:2: ( '+' )
+                    // InternalKerMLExpressions.g:1868:2: ( '+' )
                     {
-                    // InternalKerMLExpressions.g:1822:2: ( '+' )
-                    // InternalKerMLExpressions.g:1823:3: '+'
+                    // InternalKerMLExpressions.g:1868:2: ( '+' )
+                    // InternalKerMLExpressions.g:1869:3: '+'
                     {
                      before(grammarAccess.getAdditiveOperatorAccess().getPlusSignKeyword_0()); 
-                    match(input,33,FOLLOW_2); 
+                    match(input,36,FOLLOW_2); 
                      after(grammarAccess.getAdditiveOperatorAccess().getPlusSignKeyword_0()); 
 
                     }
@@ -5532,13 +5788,13 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
                     }
                     break;
                 case 2 :
-                    // InternalKerMLExpressions.g:1828:2: ( '-' )
+                    // InternalKerMLExpressions.g:1874:2: ( '-' )
                     {
-                    // InternalKerMLExpressions.g:1828:2: ( '-' )
-                    // InternalKerMLExpressions.g:1829:3: '-'
+                    // InternalKerMLExpressions.g:1874:2: ( '-' )
+                    // InternalKerMLExpressions.g:1875:3: '-'
                     {
                      before(grammarAccess.getAdditiveOperatorAccess().getHyphenMinusKeyword_1()); 
-                    match(input,34,FOLLOW_2); 
+                    match(input,37,FOLLOW_2); 
                      after(grammarAccess.getAdditiveOperatorAccess().getHyphenMinusKeyword_1()); 
 
                     }
@@ -5564,46 +5820,46 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__MultiplicativeOperator__Alternatives"
-    // InternalKerMLExpressions.g:1838:1: rule__MultiplicativeOperator__Alternatives : ( ( '*' ) | ( '/' ) | ( '%' ) );
+    // InternalKerMLExpressions.g:1884:1: rule__MultiplicativeOperator__Alternatives : ( ( '*' ) | ( '/' ) | ( '%' ) );
     public final void rule__MultiplicativeOperator__Alternatives() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:1842:1: ( ( '*' ) | ( '/' ) | ( '%' ) )
-            int alt6=3;
+            // InternalKerMLExpressions.g:1888:1: ( ( '*' ) | ( '/' ) | ( '%' ) )
+            int alt10=3;
             switch ( input.LA(1) ) {
-            case 35:
+            case 38:
                 {
-                alt6=1;
+                alt10=1;
                 }
                 break;
-            case 36:
+            case 39:
                 {
-                alt6=2;
+                alt10=2;
                 }
                 break;
-            case 37:
+            case 40:
                 {
-                alt6=3;
+                alt10=3;
                 }
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("", 6, 0, input);
+                    new NoViableAltException("", 10, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt6) {
+            switch (alt10) {
                 case 1 :
-                    // InternalKerMLExpressions.g:1843:2: ( '*' )
+                    // InternalKerMLExpressions.g:1889:2: ( '*' )
                     {
-                    // InternalKerMLExpressions.g:1843:2: ( '*' )
-                    // InternalKerMLExpressions.g:1844:3: '*'
+                    // InternalKerMLExpressions.g:1889:2: ( '*' )
+                    // InternalKerMLExpressions.g:1890:3: '*'
                     {
                      before(grammarAccess.getMultiplicativeOperatorAccess().getAsteriskKeyword_0()); 
-                    match(input,35,FOLLOW_2); 
+                    match(input,38,FOLLOW_2); 
                      after(grammarAccess.getMultiplicativeOperatorAccess().getAsteriskKeyword_0()); 
 
                     }
@@ -5612,13 +5868,13 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
                     }
                     break;
                 case 2 :
-                    // InternalKerMLExpressions.g:1849:2: ( '/' )
+                    // InternalKerMLExpressions.g:1895:2: ( '/' )
                     {
-                    // InternalKerMLExpressions.g:1849:2: ( '/' )
-                    // InternalKerMLExpressions.g:1850:3: '/'
+                    // InternalKerMLExpressions.g:1895:2: ( '/' )
+                    // InternalKerMLExpressions.g:1896:3: '/'
                     {
                      before(grammarAccess.getMultiplicativeOperatorAccess().getSolidusKeyword_1()); 
-                    match(input,36,FOLLOW_2); 
+                    match(input,39,FOLLOW_2); 
                      after(grammarAccess.getMultiplicativeOperatorAccess().getSolidusKeyword_1()); 
 
                     }
@@ -5627,13 +5883,13 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
                     }
                     break;
                 case 3 :
-                    // InternalKerMLExpressions.g:1855:2: ( '%' )
+                    // InternalKerMLExpressions.g:1901:2: ( '%' )
                     {
-                    // InternalKerMLExpressions.g:1855:2: ( '%' )
-                    // InternalKerMLExpressions.g:1856:3: '%'
+                    // InternalKerMLExpressions.g:1901:2: ( '%' )
+                    // InternalKerMLExpressions.g:1902:3: '%'
                     {
                      before(grammarAccess.getMultiplicativeOperatorAccess().getPercentSignKeyword_2()); 
-                    match(input,37,FOLLOW_2); 
+                    match(input,40,FOLLOW_2); 
                      after(grammarAccess.getMultiplicativeOperatorAccess().getPercentSignKeyword_2()); 
 
                     }
@@ -5658,39 +5914,110 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
     // $ANTLR end "rule__MultiplicativeOperator__Alternatives"
 
 
+    // $ANTLR start "rule__ExponentiationOperator__Alternatives"
+    // InternalKerMLExpressions.g:1911:1: rule__ExponentiationOperator__Alternatives : ( ( '**' ) | ( '^' ) );
+    public final void rule__ExponentiationOperator__Alternatives() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalKerMLExpressions.g:1915:1: ( ( '**' ) | ( '^' ) )
+            int alt11=2;
+            int LA11_0 = input.LA(1);
+
+            if ( (LA11_0==41) ) {
+                alt11=1;
+            }
+            else if ( (LA11_0==42) ) {
+                alt11=2;
+            }
+            else {
+                NoViableAltException nvae =
+                    new NoViableAltException("", 11, 0, input);
+
+                throw nvae;
+            }
+            switch (alt11) {
+                case 1 :
+                    // InternalKerMLExpressions.g:1916:2: ( '**' )
+                    {
+                    // InternalKerMLExpressions.g:1916:2: ( '**' )
+                    // InternalKerMLExpressions.g:1917:3: '**'
+                    {
+                     before(grammarAccess.getExponentiationOperatorAccess().getAsteriskAsteriskKeyword_0()); 
+                    match(input,41,FOLLOW_2); 
+                     after(grammarAccess.getExponentiationOperatorAccess().getAsteriskAsteriskKeyword_0()); 
+
+                    }
+
+
+                    }
+                    break;
+                case 2 :
+                    // InternalKerMLExpressions.g:1922:2: ( '^' )
+                    {
+                    // InternalKerMLExpressions.g:1922:2: ( '^' )
+                    // InternalKerMLExpressions.g:1923:3: '^'
+                    {
+                     before(grammarAccess.getExponentiationOperatorAccess().getCircumflexAccentKeyword_1()); 
+                    match(input,42,FOLLOW_2); 
+                     after(grammarAccess.getExponentiationOperatorAccess().getCircumflexAccentKeyword_1()); 
+
+                    }
+
+
+                    }
+                    break;
+
+            }
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__ExponentiationOperator__Alternatives"
+
+
     // $ANTLR start "rule__UnaryExpression__Alternatives"
-    // InternalKerMLExpressions.g:1865:1: rule__UnaryExpression__Alternatives : ( ( ( rule__UnaryExpression__Group_0__0 ) ) | ( ruleExtentExpression ) );
+    // InternalKerMLExpressions.g:1932:1: rule__UnaryExpression__Alternatives : ( ( ( rule__UnaryExpression__Group_0__0 ) ) | ( ruleExtentExpression ) );
     public final void rule__UnaryExpression__Alternatives() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:1869:1: ( ( ( rule__UnaryExpression__Group_0__0 ) ) | ( ruleExtentExpression ) )
-            int alt7=2;
-            int LA7_0 = input.LA(1);
+            // InternalKerMLExpressions.g:1936:1: ( ( ( rule__UnaryExpression__Group_0__0 ) ) | ( ruleExtentExpression ) )
+            int alt12=2;
+            int LA12_0 = input.LA(1);
 
-            if ( ((LA7_0>=33 && LA7_0<=34)||(LA7_0>=38 && LA7_0<=39)) ) {
-                alt7=1;
+            if ( ((LA12_0>=36 && LA12_0<=37)||(LA12_0>=43 && LA12_0<=45)) ) {
+                alt12=1;
             }
-            else if ( ((LA7_0>=RULE_EXP_VALUE && LA7_0<=RULE_STRING_VALUE)||LA7_0==35||(LA7_0>=41 && LA7_0<=43)||(LA7_0>=47 && LA7_0<=48)||LA7_0==50||LA7_0==58) ) {
-                alt7=2;
+            else if ( ((LA12_0>=RULE_EXP_VALUE && LA12_0<=RULE_STRING_VALUE)||LA12_0==38||(LA12_0>=47 && LA12_0<=49)||(LA12_0>=55 && LA12_0<=56)||LA12_0==58||LA12_0==66) ) {
+                alt12=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 7, 0, input);
+                    new NoViableAltException("", 12, 0, input);
 
                 throw nvae;
             }
-            switch (alt7) {
+            switch (alt12) {
                 case 1 :
-                    // InternalKerMLExpressions.g:1870:2: ( ( rule__UnaryExpression__Group_0__0 ) )
+                    // InternalKerMLExpressions.g:1937:2: ( ( rule__UnaryExpression__Group_0__0 ) )
                     {
-                    // InternalKerMLExpressions.g:1870:2: ( ( rule__UnaryExpression__Group_0__0 ) )
-                    // InternalKerMLExpressions.g:1871:3: ( rule__UnaryExpression__Group_0__0 )
+                    // InternalKerMLExpressions.g:1937:2: ( ( rule__UnaryExpression__Group_0__0 ) )
+                    // InternalKerMLExpressions.g:1938:3: ( rule__UnaryExpression__Group_0__0 )
                     {
                      before(grammarAccess.getUnaryExpressionAccess().getGroup_0()); 
-                    // InternalKerMLExpressions.g:1872:3: ( rule__UnaryExpression__Group_0__0 )
-                    // InternalKerMLExpressions.g:1872:4: rule__UnaryExpression__Group_0__0
+                    // InternalKerMLExpressions.g:1939:3: ( rule__UnaryExpression__Group_0__0 )
+                    // InternalKerMLExpressions.g:1939:4: rule__UnaryExpression__Group_0__0
                     {
                     pushFollow(FOLLOW_2);
                     rule__UnaryExpression__Group_0__0();
@@ -5708,10 +6035,10 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
                     }
                     break;
                 case 2 :
-                    // InternalKerMLExpressions.g:1876:2: ( ruleExtentExpression )
+                    // InternalKerMLExpressions.g:1943:2: ( ruleExtentExpression )
                     {
-                    // InternalKerMLExpressions.g:1876:2: ( ruleExtentExpression )
-                    // InternalKerMLExpressions.g:1877:3: ruleExtentExpression
+                    // InternalKerMLExpressions.g:1943:2: ( ruleExtentExpression )
+                    // InternalKerMLExpressions.g:1944:3: ruleExtentExpression
                     {
                      before(grammarAccess.getUnaryExpressionAccess().getExtentExpressionParserRuleCall_1()); 
                     pushFollow(FOLLOW_2);
@@ -5744,51 +6071,56 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__UnaryOperator__Alternatives"
-    // InternalKerMLExpressions.g:1886:1: rule__UnaryOperator__Alternatives : ( ( '+' ) | ( '-' ) | ( '!' ) | ( '~' ) );
+    // InternalKerMLExpressions.g:1953:1: rule__UnaryOperator__Alternatives : ( ( '+' ) | ( '-' ) | ( '!' ) | ( '~' ) | ( 'not' ) );
     public final void rule__UnaryOperator__Alternatives() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:1890:1: ( ( '+' ) | ( '-' ) | ( '!' ) | ( '~' ) )
-            int alt8=4;
+            // InternalKerMLExpressions.g:1957:1: ( ( '+' ) | ( '-' ) | ( '!' ) | ( '~' ) | ( 'not' ) )
+            int alt13=5;
             switch ( input.LA(1) ) {
-            case 33:
+            case 36:
                 {
-                alt8=1;
+                alt13=1;
                 }
                 break;
-            case 34:
+            case 37:
                 {
-                alt8=2;
+                alt13=2;
                 }
                 break;
-            case 38:
+            case 43:
                 {
-                alt8=3;
+                alt13=3;
                 }
                 break;
-            case 39:
+            case 44:
                 {
-                alt8=4;
+                alt13=4;
+                }
+                break;
+            case 45:
+                {
+                alt13=5;
                 }
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("", 8, 0, input);
+                    new NoViableAltException("", 13, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt8) {
+            switch (alt13) {
                 case 1 :
-                    // InternalKerMLExpressions.g:1891:2: ( '+' )
+                    // InternalKerMLExpressions.g:1958:2: ( '+' )
                     {
-                    // InternalKerMLExpressions.g:1891:2: ( '+' )
-                    // InternalKerMLExpressions.g:1892:3: '+'
+                    // InternalKerMLExpressions.g:1958:2: ( '+' )
+                    // InternalKerMLExpressions.g:1959:3: '+'
                     {
                      before(grammarAccess.getUnaryOperatorAccess().getPlusSignKeyword_0()); 
-                    match(input,33,FOLLOW_2); 
+                    match(input,36,FOLLOW_2); 
                      after(grammarAccess.getUnaryOperatorAccess().getPlusSignKeyword_0()); 
 
                     }
@@ -5797,13 +6129,13 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
                     }
                     break;
                 case 2 :
-                    // InternalKerMLExpressions.g:1897:2: ( '-' )
+                    // InternalKerMLExpressions.g:1964:2: ( '-' )
                     {
-                    // InternalKerMLExpressions.g:1897:2: ( '-' )
-                    // InternalKerMLExpressions.g:1898:3: '-'
+                    // InternalKerMLExpressions.g:1964:2: ( '-' )
+                    // InternalKerMLExpressions.g:1965:3: '-'
                     {
                      before(grammarAccess.getUnaryOperatorAccess().getHyphenMinusKeyword_1()); 
-                    match(input,34,FOLLOW_2); 
+                    match(input,37,FOLLOW_2); 
                      after(grammarAccess.getUnaryOperatorAccess().getHyphenMinusKeyword_1()); 
 
                     }
@@ -5812,13 +6144,13 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
                     }
                     break;
                 case 3 :
-                    // InternalKerMLExpressions.g:1903:2: ( '!' )
+                    // InternalKerMLExpressions.g:1970:2: ( '!' )
                     {
-                    // InternalKerMLExpressions.g:1903:2: ( '!' )
-                    // InternalKerMLExpressions.g:1904:3: '!'
+                    // InternalKerMLExpressions.g:1970:2: ( '!' )
+                    // InternalKerMLExpressions.g:1971:3: '!'
                     {
                      before(grammarAccess.getUnaryOperatorAccess().getExclamationMarkKeyword_2()); 
-                    match(input,38,FOLLOW_2); 
+                    match(input,43,FOLLOW_2); 
                      after(grammarAccess.getUnaryOperatorAccess().getExclamationMarkKeyword_2()); 
 
                     }
@@ -5827,14 +6159,29 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
                     }
                     break;
                 case 4 :
-                    // InternalKerMLExpressions.g:1909:2: ( '~' )
+                    // InternalKerMLExpressions.g:1976:2: ( '~' )
                     {
-                    // InternalKerMLExpressions.g:1909:2: ( '~' )
-                    // InternalKerMLExpressions.g:1910:3: '~'
+                    // InternalKerMLExpressions.g:1976:2: ( '~' )
+                    // InternalKerMLExpressions.g:1977:3: '~'
                     {
                      before(grammarAccess.getUnaryOperatorAccess().getTildeKeyword_3()); 
-                    match(input,39,FOLLOW_2); 
+                    match(input,44,FOLLOW_2); 
                      after(grammarAccess.getUnaryOperatorAccess().getTildeKeyword_3()); 
+
+                    }
+
+
+                    }
+                    break;
+                case 5 :
+                    // InternalKerMLExpressions.g:1982:2: ( 'not' )
+                    {
+                    // InternalKerMLExpressions.g:1982:2: ( 'not' )
+                    // InternalKerMLExpressions.g:1983:3: 'not'
+                    {
+                     before(grammarAccess.getUnaryOperatorAccess().getNotKeyword_4()); 
+                    match(input,45,FOLLOW_2); 
+                     after(grammarAccess.getUnaryOperatorAccess().getNotKeyword_4()); 
 
                     }
 
@@ -5859,38 +6206,38 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__ExtentExpression__Alternatives"
-    // InternalKerMLExpressions.g:1919:1: rule__ExtentExpression__Alternatives : ( ( ( rule__ExtentExpression__Group_0__0 ) ) | ( rulePrimaryExpression ) );
+    // InternalKerMLExpressions.g:1992:1: rule__ExtentExpression__Alternatives : ( ( ( rule__ExtentExpression__Group_0__0 ) ) | ( rulePrimaryExpression ) );
     public final void rule__ExtentExpression__Alternatives() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:1923:1: ( ( ( rule__ExtentExpression__Group_0__0 ) ) | ( rulePrimaryExpression ) )
-            int alt9=2;
-            int LA9_0 = input.LA(1);
+            // InternalKerMLExpressions.g:1996:1: ( ( ( rule__ExtentExpression__Group_0__0 ) ) | ( rulePrimaryExpression ) )
+            int alt14=2;
+            int LA14_0 = input.LA(1);
 
-            if ( (LA9_0==58) ) {
-                alt9=1;
+            if ( (LA14_0==66) ) {
+                alt14=1;
             }
-            else if ( ((LA9_0>=RULE_EXP_VALUE && LA9_0<=RULE_STRING_VALUE)||LA9_0==35||(LA9_0>=41 && LA9_0<=43)||(LA9_0>=47 && LA9_0<=48)||LA9_0==50) ) {
-                alt9=2;
+            else if ( ((LA14_0>=RULE_EXP_VALUE && LA14_0<=RULE_STRING_VALUE)||LA14_0==38||(LA14_0>=47 && LA14_0<=49)||(LA14_0>=55 && LA14_0<=56)||LA14_0==58) ) {
+                alt14=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 9, 0, input);
+                    new NoViableAltException("", 14, 0, input);
 
                 throw nvae;
             }
-            switch (alt9) {
+            switch (alt14) {
                 case 1 :
-                    // InternalKerMLExpressions.g:1924:2: ( ( rule__ExtentExpression__Group_0__0 ) )
+                    // InternalKerMLExpressions.g:1997:2: ( ( rule__ExtentExpression__Group_0__0 ) )
                     {
-                    // InternalKerMLExpressions.g:1924:2: ( ( rule__ExtentExpression__Group_0__0 ) )
-                    // InternalKerMLExpressions.g:1925:3: ( rule__ExtentExpression__Group_0__0 )
+                    // InternalKerMLExpressions.g:1997:2: ( ( rule__ExtentExpression__Group_0__0 ) )
+                    // InternalKerMLExpressions.g:1998:3: ( rule__ExtentExpression__Group_0__0 )
                     {
                      before(grammarAccess.getExtentExpressionAccess().getGroup_0()); 
-                    // InternalKerMLExpressions.g:1926:3: ( rule__ExtentExpression__Group_0__0 )
-                    // InternalKerMLExpressions.g:1926:4: rule__ExtentExpression__Group_0__0
+                    // InternalKerMLExpressions.g:1999:3: ( rule__ExtentExpression__Group_0__0 )
+                    // InternalKerMLExpressions.g:1999:4: rule__ExtentExpression__Group_0__0
                     {
                     pushFollow(FOLLOW_2);
                     rule__ExtentExpression__Group_0__0();
@@ -5908,10 +6255,10 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
                     }
                     break;
                 case 2 :
-                    // InternalKerMLExpressions.g:1930:2: ( rulePrimaryExpression )
+                    // InternalKerMLExpressions.g:2003:2: ( rulePrimaryExpression )
                     {
-                    // InternalKerMLExpressions.g:1930:2: ( rulePrimaryExpression )
-                    // InternalKerMLExpressions.g:1931:3: rulePrimaryExpression
+                    // InternalKerMLExpressions.g:2003:2: ( rulePrimaryExpression )
+                    // InternalKerMLExpressions.g:2004:3: rulePrimaryExpression
                     {
                      before(grammarAccess.getExtentExpressionAccess().getPrimaryExpressionParserRuleCall_1()); 
                     pushFollow(FOLLOW_2);
@@ -5944,38 +6291,38 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__PrimaryExpression__Alternatives_1"
-    // InternalKerMLExpressions.g:1940:1: rule__PrimaryExpression__Alternatives_1 : ( ( ( rule__PrimaryExpression__Group_1_0__0 ) ) | ( ( rule__PrimaryExpression__Group_1_1__0 ) ) | ( ( rule__PrimaryExpression__Group_1_2__0 ) ) | ( ( rule__PrimaryExpression__Group_1_3__0 ) ) );
+    // InternalKerMLExpressions.g:2013:1: rule__PrimaryExpression__Alternatives_1 : ( ( ( rule__PrimaryExpression__Group_1_0__0 ) ) | ( ( rule__PrimaryExpression__Group_1_1__0 ) ) | ( ( rule__PrimaryExpression__Group_1_2__0 ) ) | ( ( rule__PrimaryExpression__Group_1_3__0 ) ) );
     public final void rule__PrimaryExpression__Alternatives_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:1944:1: ( ( ( rule__PrimaryExpression__Group_1_0__0 ) ) | ( ( rule__PrimaryExpression__Group_1_1__0 ) ) | ( ( rule__PrimaryExpression__Group_1_2__0 ) ) | ( ( rule__PrimaryExpression__Group_1_3__0 ) ) )
-            int alt10=4;
+            // InternalKerMLExpressions.g:2017:1: ( ( ( rule__PrimaryExpression__Group_1_0__0 ) ) | ( ( rule__PrimaryExpression__Group_1_1__0 ) ) | ( ( rule__PrimaryExpression__Group_1_2__0 ) ) | ( ( rule__PrimaryExpression__Group_1_3__0 ) ) )
+            int alt15=4;
             switch ( input.LA(1) ) {
-            case 59:
+            case 67:
                 {
-                alt10=1;
+                alt15=1;
                 }
                 break;
-            case 46:
+            case 54:
                 {
-                alt10=2;
+                alt15=2;
                 }
                 break;
-            case 47:
+            case 55:
                 {
-                int LA10_3 = input.LA(2);
+                int LA15_3 = input.LA(2);
 
-                if ( (LA10_3==50) ) {
-                    alt10=4;
+                if ( (LA15_3==58) ) {
+                    alt15=4;
                 }
-                else if ( ((LA10_3>=RULE_ID && LA10_3<=RULE_UNRESTRICTED_NAME)) ) {
-                    alt10=3;
+                else if ( ((LA15_3>=RULE_ID && LA15_3<=RULE_UNRESTRICTED_NAME)) ) {
+                    alt15=3;
                 }
                 else {
                     NoViableAltException nvae =
-                        new NoViableAltException("", 10, 3, input);
+                        new NoViableAltException("", 15, 3, input);
 
                     throw nvae;
                 }
@@ -5983,21 +6330,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("", 10, 0, input);
+                    new NoViableAltException("", 15, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt10) {
+            switch (alt15) {
                 case 1 :
-                    // InternalKerMLExpressions.g:1945:2: ( ( rule__PrimaryExpression__Group_1_0__0 ) )
+                    // InternalKerMLExpressions.g:2018:2: ( ( rule__PrimaryExpression__Group_1_0__0 ) )
                     {
-                    // InternalKerMLExpressions.g:1945:2: ( ( rule__PrimaryExpression__Group_1_0__0 ) )
-                    // InternalKerMLExpressions.g:1946:3: ( rule__PrimaryExpression__Group_1_0__0 )
+                    // InternalKerMLExpressions.g:2018:2: ( ( rule__PrimaryExpression__Group_1_0__0 ) )
+                    // InternalKerMLExpressions.g:2019:3: ( rule__PrimaryExpression__Group_1_0__0 )
                     {
                      before(grammarAccess.getPrimaryExpressionAccess().getGroup_1_0()); 
-                    // InternalKerMLExpressions.g:1947:3: ( rule__PrimaryExpression__Group_1_0__0 )
-                    // InternalKerMLExpressions.g:1947:4: rule__PrimaryExpression__Group_1_0__0
+                    // InternalKerMLExpressions.g:2020:3: ( rule__PrimaryExpression__Group_1_0__0 )
+                    // InternalKerMLExpressions.g:2020:4: rule__PrimaryExpression__Group_1_0__0
                     {
                     pushFollow(FOLLOW_2);
                     rule__PrimaryExpression__Group_1_0__0();
@@ -6015,14 +6362,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
                     }
                     break;
                 case 2 :
-                    // InternalKerMLExpressions.g:1951:2: ( ( rule__PrimaryExpression__Group_1_1__0 ) )
+                    // InternalKerMLExpressions.g:2024:2: ( ( rule__PrimaryExpression__Group_1_1__0 ) )
                     {
-                    // InternalKerMLExpressions.g:1951:2: ( ( rule__PrimaryExpression__Group_1_1__0 ) )
-                    // InternalKerMLExpressions.g:1952:3: ( rule__PrimaryExpression__Group_1_1__0 )
+                    // InternalKerMLExpressions.g:2024:2: ( ( rule__PrimaryExpression__Group_1_1__0 ) )
+                    // InternalKerMLExpressions.g:2025:3: ( rule__PrimaryExpression__Group_1_1__0 )
                     {
                      before(grammarAccess.getPrimaryExpressionAccess().getGroup_1_1()); 
-                    // InternalKerMLExpressions.g:1953:3: ( rule__PrimaryExpression__Group_1_1__0 )
-                    // InternalKerMLExpressions.g:1953:4: rule__PrimaryExpression__Group_1_1__0
+                    // InternalKerMLExpressions.g:2026:3: ( rule__PrimaryExpression__Group_1_1__0 )
+                    // InternalKerMLExpressions.g:2026:4: rule__PrimaryExpression__Group_1_1__0
                     {
                     pushFollow(FOLLOW_2);
                     rule__PrimaryExpression__Group_1_1__0();
@@ -6040,14 +6387,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
                     }
                     break;
                 case 3 :
-                    // InternalKerMLExpressions.g:1957:2: ( ( rule__PrimaryExpression__Group_1_2__0 ) )
+                    // InternalKerMLExpressions.g:2030:2: ( ( rule__PrimaryExpression__Group_1_2__0 ) )
                     {
-                    // InternalKerMLExpressions.g:1957:2: ( ( rule__PrimaryExpression__Group_1_2__0 ) )
-                    // InternalKerMLExpressions.g:1958:3: ( rule__PrimaryExpression__Group_1_2__0 )
+                    // InternalKerMLExpressions.g:2030:2: ( ( rule__PrimaryExpression__Group_1_2__0 ) )
+                    // InternalKerMLExpressions.g:2031:3: ( rule__PrimaryExpression__Group_1_2__0 )
                     {
                      before(grammarAccess.getPrimaryExpressionAccess().getGroup_1_2()); 
-                    // InternalKerMLExpressions.g:1959:3: ( rule__PrimaryExpression__Group_1_2__0 )
-                    // InternalKerMLExpressions.g:1959:4: rule__PrimaryExpression__Group_1_2__0
+                    // InternalKerMLExpressions.g:2032:3: ( rule__PrimaryExpression__Group_1_2__0 )
+                    // InternalKerMLExpressions.g:2032:4: rule__PrimaryExpression__Group_1_2__0
                     {
                     pushFollow(FOLLOW_2);
                     rule__PrimaryExpression__Group_1_2__0();
@@ -6065,14 +6412,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
                     }
                     break;
                 case 4 :
-                    // InternalKerMLExpressions.g:1963:2: ( ( rule__PrimaryExpression__Group_1_3__0 ) )
+                    // InternalKerMLExpressions.g:2036:2: ( ( rule__PrimaryExpression__Group_1_3__0 ) )
                     {
-                    // InternalKerMLExpressions.g:1963:2: ( ( rule__PrimaryExpression__Group_1_3__0 ) )
-                    // InternalKerMLExpressions.g:1964:3: ( rule__PrimaryExpression__Group_1_3__0 )
+                    // InternalKerMLExpressions.g:2036:2: ( ( rule__PrimaryExpression__Group_1_3__0 ) )
+                    // InternalKerMLExpressions.g:2037:3: ( rule__PrimaryExpression__Group_1_3__0 )
                     {
                      before(grammarAccess.getPrimaryExpressionAccess().getGroup_1_3()); 
-                    // InternalKerMLExpressions.g:1965:3: ( rule__PrimaryExpression__Group_1_3__0 )
-                    // InternalKerMLExpressions.g:1965:4: rule__PrimaryExpression__Group_1_3__0
+                    // InternalKerMLExpressions.g:2038:3: ( rule__PrimaryExpression__Group_1_3__0 )
+                    // InternalKerMLExpressions.g:2038:4: rule__PrimaryExpression__Group_1_3__0
                     {
                     pushFollow(FOLLOW_2);
                     rule__PrimaryExpression__Group_1_3__0();
@@ -6107,48 +6454,48 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__PrimaryExpression__Alternatives_1_1_3"
-    // InternalKerMLExpressions.g:1973:1: rule__PrimaryExpression__Alternatives_1_1_3 : ( ( ( rule__PrimaryExpression__OwnedRelationshipAssignment_1_1_3_0 ) ) | ( ( rule__PrimaryExpression__OwnedRelationshipAssignment_1_1_3_1 ) ) | ( ruleArgumentList ) );
+    // InternalKerMLExpressions.g:2046:1: rule__PrimaryExpression__Alternatives_1_1_3 : ( ( ( rule__PrimaryExpression__OwnedRelationshipAssignment_1_1_3_0 ) ) | ( ( rule__PrimaryExpression__OwnedRelationshipAssignment_1_1_3_1 ) ) | ( ruleArgumentList ) );
     public final void rule__PrimaryExpression__Alternatives_1_1_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:1977:1: ( ( ( rule__PrimaryExpression__OwnedRelationshipAssignment_1_1_3_0 ) ) | ( ( rule__PrimaryExpression__OwnedRelationshipAssignment_1_1_3_1 ) ) | ( ruleArgumentList ) )
-            int alt11=3;
+            // InternalKerMLExpressions.g:2050:1: ( ( ( rule__PrimaryExpression__OwnedRelationshipAssignment_1_1_3_0 ) ) | ( ( rule__PrimaryExpression__OwnedRelationshipAssignment_1_1_3_1 ) ) | ( ruleArgumentList ) )
+            int alt16=3;
             switch ( input.LA(1) ) {
-            case 50:
+            case 58:
                 {
-                alt11=1;
+                alt16=1;
                 }
                 break;
             case RULE_ID:
             case RULE_UNRESTRICTED_NAME:
                 {
-                alt11=2;
+                alt16=2;
                 }
                 break;
-            case 48:
+            case 56:
                 {
-                alt11=3;
+                alt16=3;
                 }
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("", 11, 0, input);
+                    new NoViableAltException("", 16, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt11) {
+            switch (alt16) {
                 case 1 :
-                    // InternalKerMLExpressions.g:1978:2: ( ( rule__PrimaryExpression__OwnedRelationshipAssignment_1_1_3_0 ) )
+                    // InternalKerMLExpressions.g:2051:2: ( ( rule__PrimaryExpression__OwnedRelationshipAssignment_1_1_3_0 ) )
                     {
-                    // InternalKerMLExpressions.g:1978:2: ( ( rule__PrimaryExpression__OwnedRelationshipAssignment_1_1_3_0 ) )
-                    // InternalKerMLExpressions.g:1979:3: ( rule__PrimaryExpression__OwnedRelationshipAssignment_1_1_3_0 )
+                    // InternalKerMLExpressions.g:2051:2: ( ( rule__PrimaryExpression__OwnedRelationshipAssignment_1_1_3_0 ) )
+                    // InternalKerMLExpressions.g:2052:3: ( rule__PrimaryExpression__OwnedRelationshipAssignment_1_1_3_0 )
                     {
                      before(grammarAccess.getPrimaryExpressionAccess().getOwnedRelationshipAssignment_1_1_3_0()); 
-                    // InternalKerMLExpressions.g:1980:3: ( rule__PrimaryExpression__OwnedRelationshipAssignment_1_1_3_0 )
-                    // InternalKerMLExpressions.g:1980:4: rule__PrimaryExpression__OwnedRelationshipAssignment_1_1_3_0
+                    // InternalKerMLExpressions.g:2053:3: ( rule__PrimaryExpression__OwnedRelationshipAssignment_1_1_3_0 )
+                    // InternalKerMLExpressions.g:2053:4: rule__PrimaryExpression__OwnedRelationshipAssignment_1_1_3_0
                     {
                     pushFollow(FOLLOW_2);
                     rule__PrimaryExpression__OwnedRelationshipAssignment_1_1_3_0();
@@ -6166,14 +6513,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
                     }
                     break;
                 case 2 :
-                    // InternalKerMLExpressions.g:1984:2: ( ( rule__PrimaryExpression__OwnedRelationshipAssignment_1_1_3_1 ) )
+                    // InternalKerMLExpressions.g:2057:2: ( ( rule__PrimaryExpression__OwnedRelationshipAssignment_1_1_3_1 ) )
                     {
-                    // InternalKerMLExpressions.g:1984:2: ( ( rule__PrimaryExpression__OwnedRelationshipAssignment_1_1_3_1 ) )
-                    // InternalKerMLExpressions.g:1985:3: ( rule__PrimaryExpression__OwnedRelationshipAssignment_1_1_3_1 )
+                    // InternalKerMLExpressions.g:2057:2: ( ( rule__PrimaryExpression__OwnedRelationshipAssignment_1_1_3_1 ) )
+                    // InternalKerMLExpressions.g:2058:3: ( rule__PrimaryExpression__OwnedRelationshipAssignment_1_1_3_1 )
                     {
                      before(grammarAccess.getPrimaryExpressionAccess().getOwnedRelationshipAssignment_1_1_3_1()); 
-                    // InternalKerMLExpressions.g:1986:3: ( rule__PrimaryExpression__OwnedRelationshipAssignment_1_1_3_1 )
-                    // InternalKerMLExpressions.g:1986:4: rule__PrimaryExpression__OwnedRelationshipAssignment_1_1_3_1
+                    // InternalKerMLExpressions.g:2059:3: ( rule__PrimaryExpression__OwnedRelationshipAssignment_1_1_3_1 )
+                    // InternalKerMLExpressions.g:2059:4: rule__PrimaryExpression__OwnedRelationshipAssignment_1_1_3_1
                     {
                     pushFollow(FOLLOW_2);
                     rule__PrimaryExpression__OwnedRelationshipAssignment_1_1_3_1();
@@ -6191,10 +6538,10 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
                     }
                     break;
                 case 3 :
-                    // InternalKerMLExpressions.g:1990:2: ( ruleArgumentList )
+                    // InternalKerMLExpressions.g:2063:2: ( ruleArgumentList )
                     {
-                    // InternalKerMLExpressions.g:1990:2: ( ruleArgumentList )
-                    // InternalKerMLExpressions.g:1991:3: ruleArgumentList
+                    // InternalKerMLExpressions.g:2063:2: ( ruleArgumentList )
+                    // InternalKerMLExpressions.g:2064:3: ruleArgumentList
                     {
                      before(grammarAccess.getPrimaryExpressionAccess().getArgumentListParserRuleCall_1_1_3_2()); 
                     pushFollow(FOLLOW_2);
@@ -6227,21 +6574,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__BaseExpression__Alternatives"
-    // InternalKerMLExpressions.g:2000:1: rule__BaseExpression__Alternatives : ( ( ruleNullExpression ) | ( ruleLiteralExpression ) | ( ruleFeatureReferenceExpression ) | ( ruleInvocationExpression ) | ( ruleExpressionBody ) | ( ( rule__BaseExpression__Group_5__0 ) ) );
+    // InternalKerMLExpressions.g:2073:1: rule__BaseExpression__Alternatives : ( ( ruleNullExpression ) | ( ruleLiteralExpression ) | ( ruleFeatureReferenceExpression ) | ( ruleInvocationExpression ) | ( ruleExpressionBody ) | ( ( rule__BaseExpression__Group_5__0 ) ) );
     public final void rule__BaseExpression__Alternatives() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:2004:1: ( ( ruleNullExpression ) | ( ruleLiteralExpression ) | ( ruleFeatureReferenceExpression ) | ( ruleInvocationExpression ) | ( ruleExpressionBody ) | ( ( rule__BaseExpression__Group_5__0 ) ) )
-            int alt12=6;
-            alt12 = dfa12.predict(input);
-            switch (alt12) {
+            // InternalKerMLExpressions.g:2077:1: ( ( ruleNullExpression ) | ( ruleLiteralExpression ) | ( ruleFeatureReferenceExpression ) | ( ruleInvocationExpression ) | ( ruleExpressionBody ) | ( ( rule__BaseExpression__Group_5__0 ) ) )
+            int alt17=6;
+            alt17 = dfa17.predict(input);
+            switch (alt17) {
                 case 1 :
-                    // InternalKerMLExpressions.g:2005:2: ( ruleNullExpression )
+                    // InternalKerMLExpressions.g:2078:2: ( ruleNullExpression )
                     {
-                    // InternalKerMLExpressions.g:2005:2: ( ruleNullExpression )
-                    // InternalKerMLExpressions.g:2006:3: ruleNullExpression
+                    // InternalKerMLExpressions.g:2078:2: ( ruleNullExpression )
+                    // InternalKerMLExpressions.g:2079:3: ruleNullExpression
                     {
                      before(grammarAccess.getBaseExpressionAccess().getNullExpressionParserRuleCall_0()); 
                     pushFollow(FOLLOW_2);
@@ -6257,10 +6604,10 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
                     }
                     break;
                 case 2 :
-                    // InternalKerMLExpressions.g:2011:2: ( ruleLiteralExpression )
+                    // InternalKerMLExpressions.g:2084:2: ( ruleLiteralExpression )
                     {
-                    // InternalKerMLExpressions.g:2011:2: ( ruleLiteralExpression )
-                    // InternalKerMLExpressions.g:2012:3: ruleLiteralExpression
+                    // InternalKerMLExpressions.g:2084:2: ( ruleLiteralExpression )
+                    // InternalKerMLExpressions.g:2085:3: ruleLiteralExpression
                     {
                      before(grammarAccess.getBaseExpressionAccess().getLiteralExpressionParserRuleCall_1()); 
                     pushFollow(FOLLOW_2);
@@ -6276,10 +6623,10 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
                     }
                     break;
                 case 3 :
-                    // InternalKerMLExpressions.g:2017:2: ( ruleFeatureReferenceExpression )
+                    // InternalKerMLExpressions.g:2090:2: ( ruleFeatureReferenceExpression )
                     {
-                    // InternalKerMLExpressions.g:2017:2: ( ruleFeatureReferenceExpression )
-                    // InternalKerMLExpressions.g:2018:3: ruleFeatureReferenceExpression
+                    // InternalKerMLExpressions.g:2090:2: ( ruleFeatureReferenceExpression )
+                    // InternalKerMLExpressions.g:2091:3: ruleFeatureReferenceExpression
                     {
                      before(grammarAccess.getBaseExpressionAccess().getFeatureReferenceExpressionParserRuleCall_2()); 
                     pushFollow(FOLLOW_2);
@@ -6295,10 +6642,10 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
                     }
                     break;
                 case 4 :
-                    // InternalKerMLExpressions.g:2023:2: ( ruleInvocationExpression )
+                    // InternalKerMLExpressions.g:2096:2: ( ruleInvocationExpression )
                     {
-                    // InternalKerMLExpressions.g:2023:2: ( ruleInvocationExpression )
-                    // InternalKerMLExpressions.g:2024:3: ruleInvocationExpression
+                    // InternalKerMLExpressions.g:2096:2: ( ruleInvocationExpression )
+                    // InternalKerMLExpressions.g:2097:3: ruleInvocationExpression
                     {
                      before(grammarAccess.getBaseExpressionAccess().getInvocationExpressionParserRuleCall_3()); 
                     pushFollow(FOLLOW_2);
@@ -6314,10 +6661,10 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
                     }
                     break;
                 case 5 :
-                    // InternalKerMLExpressions.g:2029:2: ( ruleExpressionBody )
+                    // InternalKerMLExpressions.g:2102:2: ( ruleExpressionBody )
                     {
-                    // InternalKerMLExpressions.g:2029:2: ( ruleExpressionBody )
-                    // InternalKerMLExpressions.g:2030:3: ruleExpressionBody
+                    // InternalKerMLExpressions.g:2102:2: ( ruleExpressionBody )
+                    // InternalKerMLExpressions.g:2103:3: ruleExpressionBody
                     {
                      before(grammarAccess.getBaseExpressionAccess().getExpressionBodyParserRuleCall_4()); 
                     pushFollow(FOLLOW_2);
@@ -6333,14 +6680,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
                     }
                     break;
                 case 6 :
-                    // InternalKerMLExpressions.g:2035:2: ( ( rule__BaseExpression__Group_5__0 ) )
+                    // InternalKerMLExpressions.g:2108:2: ( ( rule__BaseExpression__Group_5__0 ) )
                     {
-                    // InternalKerMLExpressions.g:2035:2: ( ( rule__BaseExpression__Group_5__0 ) )
-                    // InternalKerMLExpressions.g:2036:3: ( rule__BaseExpression__Group_5__0 )
+                    // InternalKerMLExpressions.g:2108:2: ( ( rule__BaseExpression__Group_5__0 ) )
+                    // InternalKerMLExpressions.g:2109:3: ( rule__BaseExpression__Group_5__0 )
                     {
                      before(grammarAccess.getBaseExpressionAccess().getGroup_5()); 
-                    // InternalKerMLExpressions.g:2037:3: ( rule__BaseExpression__Group_5__0 )
-                    // InternalKerMLExpressions.g:2037:4: rule__BaseExpression__Group_5__0
+                    // InternalKerMLExpressions.g:2110:3: ( rule__BaseExpression__Group_5__0 )
+                    // InternalKerMLExpressions.g:2110:4: rule__BaseExpression__Group_5__0
                     {
                     pushFollow(FOLLOW_2);
                     rule__BaseExpression__Group_5__0();
@@ -6375,47 +6722,47 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__SequenceExpression__Alternatives_1"
-    // InternalKerMLExpressions.g:2045:1: rule__SequenceExpression__Alternatives_1 : ( ( ',' ) | ( ( rule__SequenceExpression__Group_1_1__0 ) ) );
+    // InternalKerMLExpressions.g:2118:1: rule__SequenceExpression__Alternatives_1 : ( ( ',' ) | ( ( rule__SequenceExpression__Group_1_1__0 ) ) );
     public final void rule__SequenceExpression__Alternatives_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:2049:1: ( ( ',' ) | ( ( rule__SequenceExpression__Group_1_1__0 ) ) )
-            int alt13=2;
-            int LA13_0 = input.LA(1);
+            // InternalKerMLExpressions.g:2122:1: ( ( ',' ) | ( ( rule__SequenceExpression__Group_1_1__0 ) ) )
+            int alt18=2;
+            int LA18_0 = input.LA(1);
 
-            if ( (LA13_0==40) ) {
-                int LA13_1 = input.LA(2);
+            if ( (LA18_0==46) ) {
+                int LA18_1 = input.LA(2);
 
-                if ( (LA13_1==EOF||LA13_1==45||LA13_1==49) ) {
-                    alt13=1;
+                if ( (LA18_1==EOF||LA18_1==53||LA18_1==57) ) {
+                    alt18=1;
                 }
-                else if ( ((LA13_1>=RULE_EXP_VALUE && LA13_1<=RULE_STRING_VALUE)||(LA13_1>=24 && LA13_1<=28)||(LA13_1>=33 && LA13_1<=35)||(LA13_1>=38 && LA13_1<=39)||(LA13_1>=41 && LA13_1<=43)||(LA13_1>=47 && LA13_1<=48)||LA13_1==50||LA13_1==58) ) {
-                    alt13=2;
+                else if ( ((LA18_1>=RULE_EXP_VALUE && LA18_1<=RULE_STRING_VALUE)||(LA18_1>=27 && LA18_1<=31)||(LA18_1>=36 && LA18_1<=38)||(LA18_1>=43 && LA18_1<=45)||(LA18_1>=47 && LA18_1<=49)||LA18_1==51||(LA18_1>=55 && LA18_1<=56)||LA18_1==58||LA18_1==66) ) {
+                    alt18=2;
                 }
                 else {
                     NoViableAltException nvae =
-                        new NoViableAltException("", 13, 1, input);
+                        new NoViableAltException("", 18, 1, input);
 
                     throw nvae;
                 }
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 13, 0, input);
+                    new NoViableAltException("", 18, 0, input);
 
                 throw nvae;
             }
-            switch (alt13) {
+            switch (alt18) {
                 case 1 :
-                    // InternalKerMLExpressions.g:2050:2: ( ',' )
+                    // InternalKerMLExpressions.g:2123:2: ( ',' )
                     {
-                    // InternalKerMLExpressions.g:2050:2: ( ',' )
-                    // InternalKerMLExpressions.g:2051:3: ','
+                    // InternalKerMLExpressions.g:2123:2: ( ',' )
+                    // InternalKerMLExpressions.g:2124:3: ','
                     {
                      before(grammarAccess.getSequenceExpressionAccess().getCommaKeyword_1_0()); 
-                    match(input,40,FOLLOW_2); 
+                    match(input,46,FOLLOW_2); 
                      after(grammarAccess.getSequenceExpressionAccess().getCommaKeyword_1_0()); 
 
                     }
@@ -6424,14 +6771,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
                     }
                     break;
                 case 2 :
-                    // InternalKerMLExpressions.g:2056:2: ( ( rule__SequenceExpression__Group_1_1__0 ) )
+                    // InternalKerMLExpressions.g:2129:2: ( ( rule__SequenceExpression__Group_1_1__0 ) )
                     {
-                    // InternalKerMLExpressions.g:2056:2: ( ( rule__SequenceExpression__Group_1_1__0 ) )
-                    // InternalKerMLExpressions.g:2057:3: ( rule__SequenceExpression__Group_1_1__0 )
+                    // InternalKerMLExpressions.g:2129:2: ( ( rule__SequenceExpression__Group_1_1__0 ) )
+                    // InternalKerMLExpressions.g:2130:3: ( rule__SequenceExpression__Group_1_1__0 )
                     {
                      before(grammarAccess.getSequenceExpressionAccess().getGroup_1_1()); 
-                    // InternalKerMLExpressions.g:2058:3: ( rule__SequenceExpression__Group_1_1__0 )
-                    // InternalKerMLExpressions.g:2058:4: rule__SequenceExpression__Group_1_1__0
+                    // InternalKerMLExpressions.g:2131:3: ( rule__SequenceExpression__Group_1_1__0 )
+                    // InternalKerMLExpressions.g:2131:4: rule__SequenceExpression__Group_1_1__0
                     {
                     pushFollow(FOLLOW_2);
                     rule__SequenceExpression__Group_1_1__0();
@@ -6466,52 +6813,54 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__ArgumentList__Alternatives_1"
-    // InternalKerMLExpressions.g:2066:1: rule__ArgumentList__Alternatives_1 : ( ( rulePositionalArgumentList ) | ( ruleNamedArgumentList ) );
+    // InternalKerMLExpressions.g:2139:1: rule__ArgumentList__Alternatives_1 : ( ( rulePositionalArgumentList ) | ( ruleNamedArgumentList ) );
     public final void rule__ArgumentList__Alternatives_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:2070:1: ( ( rulePositionalArgumentList ) | ( ruleNamedArgumentList ) )
-            int alt14=2;
+            // InternalKerMLExpressions.g:2143:1: ( ( rulePositionalArgumentList ) | ( ruleNamedArgumentList ) )
+            int alt19=2;
             switch ( input.LA(1) ) {
             case RULE_EXP_VALUE:
             case RULE_DECIMAL_VALUE:
             case RULE_STRING_VALUE:
-            case 24:
-            case 25:
-            case 26:
             case 27:
             case 28:
-            case 33:
-            case 34:
-            case 35:
+            case 29:
+            case 30:
+            case 31:
+            case 36:
+            case 37:
             case 38:
-            case 39:
-            case 41:
-            case 42:
             case 43:
+            case 44:
+            case 45:
             case 47:
             case 48:
-            case 50:
+            case 49:
+            case 51:
+            case 55:
+            case 56:
             case 58:
+            case 66:
                 {
-                alt14=1;
+                alt19=1;
                 }
                 break;
             case RULE_ID:
                 {
-                int LA14_2 = input.LA(2);
+                int LA19_2 = input.LA(2);
 
-                if ( ((LA14_2>=14 && LA14_2<=37)||LA14_2==40||(LA14_2>=46 && LA14_2<=49)||(LA14_2>=55 && LA14_2<=57)||LA14_2==59) ) {
-                    alt14=1;
+                if ( (LA19_2==62) ) {
+                    alt19=2;
                 }
-                else if ( (LA14_2==54) ) {
-                    alt14=2;
+                else if ( ((LA19_2>=14 && LA19_2<=42)||LA19_2==46||(LA19_2>=54 && LA19_2<=57)||(LA19_2>=63 && LA19_2<=65)||LA19_2==67) ) {
+                    alt19=1;
                 }
                 else {
                     NoViableAltException nvae =
-                        new NoViableAltException("", 14, 2, input);
+                        new NoViableAltException("", 19, 2, input);
 
                     throw nvae;
                 }
@@ -6519,17 +6868,17 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
                 break;
             case RULE_UNRESTRICTED_NAME:
                 {
-                int LA14_3 = input.LA(2);
+                int LA19_3 = input.LA(2);
 
-                if ( (LA14_3==54) ) {
-                    alt14=2;
+                if ( ((LA19_3>=14 && LA19_3<=42)||LA19_3==46||(LA19_3>=54 && LA19_3<=57)||(LA19_3>=63 && LA19_3<=65)||LA19_3==67) ) {
+                    alt19=1;
                 }
-                else if ( ((LA14_3>=14 && LA14_3<=37)||LA14_3==40||(LA14_3>=46 && LA14_3<=49)||(LA14_3>=55 && LA14_3<=57)||LA14_3==59) ) {
-                    alt14=1;
+                else if ( (LA19_3==62) ) {
+                    alt19=2;
                 }
                 else {
                     NoViableAltException nvae =
-                        new NoViableAltException("", 14, 3, input);
+                        new NoViableAltException("", 19, 3, input);
 
                     throw nvae;
                 }
@@ -6537,17 +6886,17 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("", 14, 0, input);
+                    new NoViableAltException("", 19, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt14) {
+            switch (alt19) {
                 case 1 :
-                    // InternalKerMLExpressions.g:2071:2: ( rulePositionalArgumentList )
+                    // InternalKerMLExpressions.g:2144:2: ( rulePositionalArgumentList )
                     {
-                    // InternalKerMLExpressions.g:2071:2: ( rulePositionalArgumentList )
-                    // InternalKerMLExpressions.g:2072:3: rulePositionalArgumentList
+                    // InternalKerMLExpressions.g:2144:2: ( rulePositionalArgumentList )
+                    // InternalKerMLExpressions.g:2145:3: rulePositionalArgumentList
                     {
                      before(grammarAccess.getArgumentListAccess().getPositionalArgumentListParserRuleCall_1_0()); 
                     pushFollow(FOLLOW_2);
@@ -6563,10 +6912,10 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
                     }
                     break;
                 case 2 :
-                    // InternalKerMLExpressions.g:2077:2: ( ruleNamedArgumentList )
+                    // InternalKerMLExpressions.g:2150:2: ( ruleNamedArgumentList )
                     {
-                    // InternalKerMLExpressions.g:2077:2: ( ruleNamedArgumentList )
-                    // InternalKerMLExpressions.g:2078:3: ruleNamedArgumentList
+                    // InternalKerMLExpressions.g:2150:2: ( ruleNamedArgumentList )
+                    // InternalKerMLExpressions.g:2151:3: ruleNamedArgumentList
                     {
                      before(grammarAccess.getArgumentListAccess().getNamedArgumentListParserRuleCall_1_1()); 
                     pushFollow(FOLLOW_2);
@@ -6599,37 +6948,37 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__NullExpression__Alternatives_1"
-    // InternalKerMLExpressions.g:2087:1: rule__NullExpression__Alternatives_1 : ( ( 'null' ) | ( ( rule__NullExpression__Group_1_1__0 ) ) );
+    // InternalKerMLExpressions.g:2160:1: rule__NullExpression__Alternatives_1 : ( ( 'null' ) | ( ( rule__NullExpression__Group_1_1__0 ) ) );
     public final void rule__NullExpression__Alternatives_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:2091:1: ( ( 'null' ) | ( ( rule__NullExpression__Group_1_1__0 ) ) )
-            int alt15=2;
-            int LA15_0 = input.LA(1);
+            // InternalKerMLExpressions.g:2164:1: ( ( 'null' ) | ( ( rule__NullExpression__Group_1_1__0 ) ) )
+            int alt20=2;
+            int LA20_0 = input.LA(1);
 
-            if ( (LA15_0==41) ) {
-                alt15=1;
+            if ( (LA20_0==47) ) {
+                alt20=1;
             }
-            else if ( (LA15_0==48) ) {
-                alt15=2;
+            else if ( (LA20_0==56) ) {
+                alt20=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 15, 0, input);
+                    new NoViableAltException("", 20, 0, input);
 
                 throw nvae;
             }
-            switch (alt15) {
+            switch (alt20) {
                 case 1 :
-                    // InternalKerMLExpressions.g:2092:2: ( 'null' )
+                    // InternalKerMLExpressions.g:2165:2: ( 'null' )
                     {
-                    // InternalKerMLExpressions.g:2092:2: ( 'null' )
-                    // InternalKerMLExpressions.g:2093:3: 'null'
+                    // InternalKerMLExpressions.g:2165:2: ( 'null' )
+                    // InternalKerMLExpressions.g:2166:3: 'null'
                     {
                      before(grammarAccess.getNullExpressionAccess().getNullKeyword_1_0()); 
-                    match(input,41,FOLLOW_2); 
+                    match(input,47,FOLLOW_2); 
                      after(grammarAccess.getNullExpressionAccess().getNullKeyword_1_0()); 
 
                     }
@@ -6638,14 +6987,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
                     }
                     break;
                 case 2 :
-                    // InternalKerMLExpressions.g:2098:2: ( ( rule__NullExpression__Group_1_1__0 ) )
+                    // InternalKerMLExpressions.g:2171:2: ( ( rule__NullExpression__Group_1_1__0 ) )
                     {
-                    // InternalKerMLExpressions.g:2098:2: ( ( rule__NullExpression__Group_1_1__0 ) )
-                    // InternalKerMLExpressions.g:2099:3: ( rule__NullExpression__Group_1_1__0 )
+                    // InternalKerMLExpressions.g:2171:2: ( ( rule__NullExpression__Group_1_1__0 ) )
+                    // InternalKerMLExpressions.g:2172:3: ( rule__NullExpression__Group_1_1__0 )
                     {
                      before(grammarAccess.getNullExpressionAccess().getGroup_1_1()); 
-                    // InternalKerMLExpressions.g:2100:3: ( rule__NullExpression__Group_1_1__0 )
-                    // InternalKerMLExpressions.g:2100:4: rule__NullExpression__Group_1_1__0
+                    // InternalKerMLExpressions.g:2173:3: ( rule__NullExpression__Group_1_1__0 )
+                    // InternalKerMLExpressions.g:2173:4: rule__NullExpression__Group_1_1__0
                     {
                     pushFollow(FOLLOW_2);
                     rule__NullExpression__Group_1_1__0();
@@ -6680,81 +7029,81 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__LiteralExpression__Alternatives"
-    // InternalKerMLExpressions.g:2108:1: rule__LiteralExpression__Alternatives : ( ( ruleLiteralBoolean ) | ( ruleLiteralString ) | ( ruleLiteralInteger ) | ( ruleLiteralReal ) | ( ruleLiteralUnbounded ) );
+    // InternalKerMLExpressions.g:2181:1: rule__LiteralExpression__Alternatives : ( ( ruleLiteralBoolean ) | ( ruleLiteralString ) | ( ruleLiteralInteger ) | ( ruleLiteralReal ) | ( ruleLiteralUnbounded ) );
     public final void rule__LiteralExpression__Alternatives() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:2112:1: ( ( ruleLiteralBoolean ) | ( ruleLiteralString ) | ( ruleLiteralInteger ) | ( ruleLiteralReal ) | ( ruleLiteralUnbounded ) )
-            int alt16=5;
+            // InternalKerMLExpressions.g:2185:1: ( ( ruleLiteralBoolean ) | ( ruleLiteralString ) | ( ruleLiteralInteger ) | ( ruleLiteralReal ) | ( ruleLiteralUnbounded ) )
+            int alt21=5;
             switch ( input.LA(1) ) {
-            case 42:
-            case 43:
+            case 48:
+            case 49:
                 {
-                alt16=1;
+                alt21=1;
                 }
                 break;
             case RULE_STRING_VALUE:
                 {
-                alt16=2;
+                alt21=2;
                 }
                 break;
             case RULE_DECIMAL_VALUE:
                 {
-                int LA16_3 = input.LA(2);
+                int LA21_3 = input.LA(2);
 
-                if ( (LA16_3==EOF||(LA16_3>=14 && LA16_3<=37)||LA16_3==40||(LA16_3>=44 && LA16_3<=46)||LA16_3==49||LA16_3==51||(LA16_3>=56 && LA16_3<=57)||LA16_3==59) ) {
-                    alt16=3;
+                if ( (LA21_3==EOF||(LA21_3>=14 && LA21_3<=42)||LA21_3==46||LA21_3==50||(LA21_3>=52 && LA21_3<=54)||LA21_3==57||LA21_3==59||(LA21_3>=64 && LA21_3<=65)||LA21_3==67) ) {
+                    alt21=3;
                 }
-                else if ( (LA16_3==47) ) {
-                    int LA16_7 = input.LA(3);
+                else if ( (LA21_3==55) ) {
+                    int LA21_7 = input.LA(3);
 
-                    if ( ((LA16_7>=RULE_ID && LA16_7<=RULE_UNRESTRICTED_NAME)||LA16_7==50) ) {
-                        alt16=3;
+                    if ( ((LA21_7>=RULE_ID && LA21_7<=RULE_UNRESTRICTED_NAME)||LA21_7==58) ) {
+                        alt21=3;
                     }
-                    else if ( ((LA16_7>=RULE_EXP_VALUE && LA16_7<=RULE_DECIMAL_VALUE)) ) {
-                        alt16=4;
+                    else if ( ((LA21_7>=RULE_EXP_VALUE && LA21_7<=RULE_DECIMAL_VALUE)) ) {
+                        alt21=4;
                     }
                     else {
                         NoViableAltException nvae =
-                            new NoViableAltException("", 16, 7, input);
+                            new NoViableAltException("", 21, 7, input);
 
                         throw nvae;
                     }
                 }
                 else {
                     NoViableAltException nvae =
-                        new NoViableAltException("", 16, 3, input);
+                        new NoViableAltException("", 21, 3, input);
 
                     throw nvae;
                 }
                 }
                 break;
             case RULE_EXP_VALUE:
-            case 47:
+            case 55:
                 {
-                alt16=4;
+                alt21=4;
                 }
                 break;
-            case 35:
+            case 38:
                 {
-                alt16=5;
+                alt21=5;
                 }
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("", 16, 0, input);
+                    new NoViableAltException("", 21, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt16) {
+            switch (alt21) {
                 case 1 :
-                    // InternalKerMLExpressions.g:2113:2: ( ruleLiteralBoolean )
+                    // InternalKerMLExpressions.g:2186:2: ( ruleLiteralBoolean )
                     {
-                    // InternalKerMLExpressions.g:2113:2: ( ruleLiteralBoolean )
-                    // InternalKerMLExpressions.g:2114:3: ruleLiteralBoolean
+                    // InternalKerMLExpressions.g:2186:2: ( ruleLiteralBoolean )
+                    // InternalKerMLExpressions.g:2187:3: ruleLiteralBoolean
                     {
                      before(grammarAccess.getLiteralExpressionAccess().getLiteralBooleanParserRuleCall_0()); 
                     pushFollow(FOLLOW_2);
@@ -6770,10 +7119,10 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
                     }
                     break;
                 case 2 :
-                    // InternalKerMLExpressions.g:2119:2: ( ruleLiteralString )
+                    // InternalKerMLExpressions.g:2192:2: ( ruleLiteralString )
                     {
-                    // InternalKerMLExpressions.g:2119:2: ( ruleLiteralString )
-                    // InternalKerMLExpressions.g:2120:3: ruleLiteralString
+                    // InternalKerMLExpressions.g:2192:2: ( ruleLiteralString )
+                    // InternalKerMLExpressions.g:2193:3: ruleLiteralString
                     {
                      before(grammarAccess.getLiteralExpressionAccess().getLiteralStringParserRuleCall_1()); 
                     pushFollow(FOLLOW_2);
@@ -6789,10 +7138,10 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
                     }
                     break;
                 case 3 :
-                    // InternalKerMLExpressions.g:2125:2: ( ruleLiteralInteger )
+                    // InternalKerMLExpressions.g:2198:2: ( ruleLiteralInteger )
                     {
-                    // InternalKerMLExpressions.g:2125:2: ( ruleLiteralInteger )
-                    // InternalKerMLExpressions.g:2126:3: ruleLiteralInteger
+                    // InternalKerMLExpressions.g:2198:2: ( ruleLiteralInteger )
+                    // InternalKerMLExpressions.g:2199:3: ruleLiteralInteger
                     {
                      before(grammarAccess.getLiteralExpressionAccess().getLiteralIntegerParserRuleCall_2()); 
                     pushFollow(FOLLOW_2);
@@ -6808,10 +7157,10 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
                     }
                     break;
                 case 4 :
-                    // InternalKerMLExpressions.g:2131:2: ( ruleLiteralReal )
+                    // InternalKerMLExpressions.g:2204:2: ( ruleLiteralReal )
                     {
-                    // InternalKerMLExpressions.g:2131:2: ( ruleLiteralReal )
-                    // InternalKerMLExpressions.g:2132:3: ruleLiteralReal
+                    // InternalKerMLExpressions.g:2204:2: ( ruleLiteralReal )
+                    // InternalKerMLExpressions.g:2205:3: ruleLiteralReal
                     {
                      before(grammarAccess.getLiteralExpressionAccess().getLiteralRealParserRuleCall_3()); 
                     pushFollow(FOLLOW_2);
@@ -6827,10 +7176,10 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
                     }
                     break;
                 case 5 :
-                    // InternalKerMLExpressions.g:2137:2: ( ruleLiteralUnbounded )
+                    // InternalKerMLExpressions.g:2210:2: ( ruleLiteralUnbounded )
                     {
-                    // InternalKerMLExpressions.g:2137:2: ( ruleLiteralUnbounded )
-                    // InternalKerMLExpressions.g:2138:3: ruleLiteralUnbounded
+                    // InternalKerMLExpressions.g:2210:2: ( ruleLiteralUnbounded )
+                    // InternalKerMLExpressions.g:2211:3: ruleLiteralUnbounded
                     {
                      before(grammarAccess.getLiteralExpressionAccess().getLiteralUnboundedParserRuleCall_4()); 
                     pushFollow(FOLLOW_2);
@@ -6863,37 +7212,37 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__BooleanValue__Alternatives"
-    // InternalKerMLExpressions.g:2147:1: rule__BooleanValue__Alternatives : ( ( 'true' ) | ( 'false' ) );
+    // InternalKerMLExpressions.g:2220:1: rule__BooleanValue__Alternatives : ( ( 'true' ) | ( 'false' ) );
     public final void rule__BooleanValue__Alternatives() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:2151:1: ( ( 'true' ) | ( 'false' ) )
-            int alt17=2;
-            int LA17_0 = input.LA(1);
+            // InternalKerMLExpressions.g:2224:1: ( ( 'true' ) | ( 'false' ) )
+            int alt22=2;
+            int LA22_0 = input.LA(1);
 
-            if ( (LA17_0==42) ) {
-                alt17=1;
+            if ( (LA22_0==48) ) {
+                alt22=1;
             }
-            else if ( (LA17_0==43) ) {
-                alt17=2;
+            else if ( (LA22_0==49) ) {
+                alt22=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 17, 0, input);
+                    new NoViableAltException("", 22, 0, input);
 
                 throw nvae;
             }
-            switch (alt17) {
+            switch (alt22) {
                 case 1 :
-                    // InternalKerMLExpressions.g:2152:2: ( 'true' )
+                    // InternalKerMLExpressions.g:2225:2: ( 'true' )
                     {
-                    // InternalKerMLExpressions.g:2152:2: ( 'true' )
-                    // InternalKerMLExpressions.g:2153:3: 'true'
+                    // InternalKerMLExpressions.g:2225:2: ( 'true' )
+                    // InternalKerMLExpressions.g:2226:3: 'true'
                     {
                      before(grammarAccess.getBooleanValueAccess().getTrueKeyword_0()); 
-                    match(input,42,FOLLOW_2); 
+                    match(input,48,FOLLOW_2); 
                      after(grammarAccess.getBooleanValueAccess().getTrueKeyword_0()); 
 
                     }
@@ -6902,13 +7251,13 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
                     }
                     break;
                 case 2 :
-                    // InternalKerMLExpressions.g:2158:2: ( 'false' )
+                    // InternalKerMLExpressions.g:2231:2: ( 'false' )
                     {
-                    // InternalKerMLExpressions.g:2158:2: ( 'false' )
-                    // InternalKerMLExpressions.g:2159:3: 'false'
+                    // InternalKerMLExpressions.g:2231:2: ( 'false' )
+                    // InternalKerMLExpressions.g:2232:3: 'false'
                     {
                      before(grammarAccess.getBooleanValueAccess().getFalseKeyword_1()); 
-                    match(input,43,FOLLOW_2); 
+                    match(input,49,FOLLOW_2); 
                      after(grammarAccess.getBooleanValueAccess().getFalseKeyword_1()); 
 
                     }
@@ -6934,38 +7283,38 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__RealValue__Alternatives"
-    // InternalKerMLExpressions.g:2168:1: rule__RealValue__Alternatives : ( ( ( rule__RealValue__Group_0__0 ) ) | ( RULE_EXP_VALUE ) );
+    // InternalKerMLExpressions.g:2241:1: rule__RealValue__Alternatives : ( ( ( rule__RealValue__Group_0__0 ) ) | ( RULE_EXP_VALUE ) );
     public final void rule__RealValue__Alternatives() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:2172:1: ( ( ( rule__RealValue__Group_0__0 ) ) | ( RULE_EXP_VALUE ) )
-            int alt18=2;
-            int LA18_0 = input.LA(1);
+            // InternalKerMLExpressions.g:2245:1: ( ( ( rule__RealValue__Group_0__0 ) ) | ( RULE_EXP_VALUE ) )
+            int alt23=2;
+            int LA23_0 = input.LA(1);
 
-            if ( (LA18_0==RULE_DECIMAL_VALUE||LA18_0==47) ) {
-                alt18=1;
+            if ( (LA23_0==RULE_DECIMAL_VALUE||LA23_0==55) ) {
+                alt23=1;
             }
-            else if ( (LA18_0==RULE_EXP_VALUE) ) {
-                alt18=2;
+            else if ( (LA23_0==RULE_EXP_VALUE) ) {
+                alt23=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 18, 0, input);
+                    new NoViableAltException("", 23, 0, input);
 
                 throw nvae;
             }
-            switch (alt18) {
+            switch (alt23) {
                 case 1 :
-                    // InternalKerMLExpressions.g:2173:2: ( ( rule__RealValue__Group_0__0 ) )
+                    // InternalKerMLExpressions.g:2246:2: ( ( rule__RealValue__Group_0__0 ) )
                     {
-                    // InternalKerMLExpressions.g:2173:2: ( ( rule__RealValue__Group_0__0 ) )
-                    // InternalKerMLExpressions.g:2174:3: ( rule__RealValue__Group_0__0 )
+                    // InternalKerMLExpressions.g:2246:2: ( ( rule__RealValue__Group_0__0 ) )
+                    // InternalKerMLExpressions.g:2247:3: ( rule__RealValue__Group_0__0 )
                     {
                      before(grammarAccess.getRealValueAccess().getGroup_0()); 
-                    // InternalKerMLExpressions.g:2175:3: ( rule__RealValue__Group_0__0 )
-                    // InternalKerMLExpressions.g:2175:4: rule__RealValue__Group_0__0
+                    // InternalKerMLExpressions.g:2248:3: ( rule__RealValue__Group_0__0 )
+                    // InternalKerMLExpressions.g:2248:4: rule__RealValue__Group_0__0
                     {
                     pushFollow(FOLLOW_2);
                     rule__RealValue__Group_0__0();
@@ -6983,10 +7332,10 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
                     }
                     break;
                 case 2 :
-                    // InternalKerMLExpressions.g:2179:2: ( RULE_EXP_VALUE )
+                    // InternalKerMLExpressions.g:2252:2: ( RULE_EXP_VALUE )
                     {
-                    // InternalKerMLExpressions.g:2179:2: ( RULE_EXP_VALUE )
-                    // InternalKerMLExpressions.g:2180:3: RULE_EXP_VALUE
+                    // InternalKerMLExpressions.g:2252:2: ( RULE_EXP_VALUE )
+                    // InternalKerMLExpressions.g:2253:3: RULE_EXP_VALUE
                     {
                      before(grammarAccess.getRealValueAccess().getEXP_VALUETerminalRuleCall_1()); 
                     match(input,RULE_EXP_VALUE,FOLLOW_2); 
@@ -7015,34 +7364,34 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__RealValue__Alternatives_0_2"
-    // InternalKerMLExpressions.g:2189:1: rule__RealValue__Alternatives_0_2 : ( ( RULE_DECIMAL_VALUE ) | ( RULE_EXP_VALUE ) );
+    // InternalKerMLExpressions.g:2262:1: rule__RealValue__Alternatives_0_2 : ( ( RULE_DECIMAL_VALUE ) | ( RULE_EXP_VALUE ) );
     public final void rule__RealValue__Alternatives_0_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:2193:1: ( ( RULE_DECIMAL_VALUE ) | ( RULE_EXP_VALUE ) )
-            int alt19=2;
-            int LA19_0 = input.LA(1);
+            // InternalKerMLExpressions.g:2266:1: ( ( RULE_DECIMAL_VALUE ) | ( RULE_EXP_VALUE ) )
+            int alt24=2;
+            int LA24_0 = input.LA(1);
 
-            if ( (LA19_0==RULE_DECIMAL_VALUE) ) {
-                alt19=1;
+            if ( (LA24_0==RULE_DECIMAL_VALUE) ) {
+                alt24=1;
             }
-            else if ( (LA19_0==RULE_EXP_VALUE) ) {
-                alt19=2;
+            else if ( (LA24_0==RULE_EXP_VALUE) ) {
+                alt24=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 19, 0, input);
+                    new NoViableAltException("", 24, 0, input);
 
                 throw nvae;
             }
-            switch (alt19) {
+            switch (alt24) {
                 case 1 :
-                    // InternalKerMLExpressions.g:2194:2: ( RULE_DECIMAL_VALUE )
+                    // InternalKerMLExpressions.g:2267:2: ( RULE_DECIMAL_VALUE )
                     {
-                    // InternalKerMLExpressions.g:2194:2: ( RULE_DECIMAL_VALUE )
-                    // InternalKerMLExpressions.g:2195:3: RULE_DECIMAL_VALUE
+                    // InternalKerMLExpressions.g:2267:2: ( RULE_DECIMAL_VALUE )
+                    // InternalKerMLExpressions.g:2268:3: RULE_DECIMAL_VALUE
                     {
                      before(grammarAccess.getRealValueAccess().getDECIMAL_VALUETerminalRuleCall_0_2_0()); 
                     match(input,RULE_DECIMAL_VALUE,FOLLOW_2); 
@@ -7054,10 +7403,10 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
                     }
                     break;
                 case 2 :
-                    // InternalKerMLExpressions.g:2200:2: ( RULE_EXP_VALUE )
+                    // InternalKerMLExpressions.g:2273:2: ( RULE_EXP_VALUE )
                     {
-                    // InternalKerMLExpressions.g:2200:2: ( RULE_EXP_VALUE )
-                    // InternalKerMLExpressions.g:2201:3: RULE_EXP_VALUE
+                    // InternalKerMLExpressions.g:2273:2: ( RULE_EXP_VALUE )
+                    // InternalKerMLExpressions.g:2274:3: RULE_EXP_VALUE
                     {
                      before(grammarAccess.getRealValueAccess().getEXP_VALUETerminalRuleCall_0_2_1()); 
                     match(input,RULE_EXP_VALUE,FOLLOW_2); 
@@ -7086,34 +7435,34 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__Name__Alternatives"
-    // InternalKerMLExpressions.g:2210:1: rule__Name__Alternatives : ( ( RULE_ID ) | ( RULE_UNRESTRICTED_NAME ) );
+    // InternalKerMLExpressions.g:2283:1: rule__Name__Alternatives : ( ( RULE_ID ) | ( RULE_UNRESTRICTED_NAME ) );
     public final void rule__Name__Alternatives() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:2214:1: ( ( RULE_ID ) | ( RULE_UNRESTRICTED_NAME ) )
-            int alt20=2;
-            int LA20_0 = input.LA(1);
+            // InternalKerMLExpressions.g:2287:1: ( ( RULE_ID ) | ( RULE_UNRESTRICTED_NAME ) )
+            int alt25=2;
+            int LA25_0 = input.LA(1);
 
-            if ( (LA20_0==RULE_ID) ) {
-                alt20=1;
+            if ( (LA25_0==RULE_ID) ) {
+                alt25=1;
             }
-            else if ( (LA20_0==RULE_UNRESTRICTED_NAME) ) {
-                alt20=2;
+            else if ( (LA25_0==RULE_UNRESTRICTED_NAME) ) {
+                alt25=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 20, 0, input);
+                    new NoViableAltException("", 25, 0, input);
 
                 throw nvae;
             }
-            switch (alt20) {
+            switch (alt25) {
                 case 1 :
-                    // InternalKerMLExpressions.g:2215:2: ( RULE_ID )
+                    // InternalKerMLExpressions.g:2288:2: ( RULE_ID )
                     {
-                    // InternalKerMLExpressions.g:2215:2: ( RULE_ID )
-                    // InternalKerMLExpressions.g:2216:3: RULE_ID
+                    // InternalKerMLExpressions.g:2288:2: ( RULE_ID )
+                    // InternalKerMLExpressions.g:2289:3: RULE_ID
                     {
                      before(grammarAccess.getNameAccess().getIDTerminalRuleCall_0()); 
                     match(input,RULE_ID,FOLLOW_2); 
@@ -7125,10 +7474,10 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
                     }
                     break;
                 case 2 :
-                    // InternalKerMLExpressions.g:2221:2: ( RULE_UNRESTRICTED_NAME )
+                    // InternalKerMLExpressions.g:2294:2: ( RULE_UNRESTRICTED_NAME )
                     {
-                    // InternalKerMLExpressions.g:2221:2: ( RULE_UNRESTRICTED_NAME )
-                    // InternalKerMLExpressions.g:2222:3: RULE_UNRESTRICTED_NAME
+                    // InternalKerMLExpressions.g:2294:2: ( RULE_UNRESTRICTED_NAME )
+                    // InternalKerMLExpressions.g:2295:3: RULE_UNRESTRICTED_NAME
                     {
                      before(grammarAccess.getNameAccess().getUNRESTRICTED_NAMETerminalRuleCall_1()); 
                     match(input,RULE_UNRESTRICTED_NAME,FOLLOW_2); 
@@ -7156,23 +7505,23 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
     // $ANTLR end "rule__Name__Alternatives"
 
 
-    // $ANTLR start "rule__ConditionalExpression__Group__0"
-    // InternalKerMLExpressions.g:2231:1: rule__ConditionalExpression__Group__0 : rule__ConditionalExpression__Group__0__Impl rule__ConditionalExpression__Group__1 ;
-    public final void rule__ConditionalExpression__Group__0() throws RecognitionException {
+    // $ANTLR start "rule__ConditionalExpression__Group_0__0"
+    // InternalKerMLExpressions.g:2304:1: rule__ConditionalExpression__Group_0__0 : rule__ConditionalExpression__Group_0__0__Impl rule__ConditionalExpression__Group_0__1 ;
+    public final void rule__ConditionalExpression__Group_0__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:2235:1: ( rule__ConditionalExpression__Group__0__Impl rule__ConditionalExpression__Group__1 )
-            // InternalKerMLExpressions.g:2236:2: rule__ConditionalExpression__Group__0__Impl rule__ConditionalExpression__Group__1
+            // InternalKerMLExpressions.g:2308:1: ( rule__ConditionalExpression__Group_0__0__Impl rule__ConditionalExpression__Group_0__1 )
+            // InternalKerMLExpressions.g:2309:2: rule__ConditionalExpression__Group_0__0__Impl rule__ConditionalExpression__Group_0__1
             {
             pushFollow(FOLLOW_3);
-            rule__ConditionalExpression__Group__0__Impl();
+            rule__ConditionalExpression__Group_0__0__Impl();
 
             state._fsp--;
 
             pushFollow(FOLLOW_2);
-            rule__ConditionalExpression__Group__1();
+            rule__ConditionalExpression__Group_0__1();
 
             state._fsp--;
 
@@ -7191,29 +7540,29 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
         }
         return ;
     }
-    // $ANTLR end "rule__ConditionalExpression__Group__0"
+    // $ANTLR end "rule__ConditionalExpression__Group_0__0"
 
 
-    // $ANTLR start "rule__ConditionalExpression__Group__0__Impl"
-    // InternalKerMLExpressions.g:2243:1: rule__ConditionalExpression__Group__0__Impl : ( ruleNullCoalescingExpression ) ;
-    public final void rule__ConditionalExpression__Group__0__Impl() throws RecognitionException {
+    // $ANTLR start "rule__ConditionalExpression__Group_0__0__Impl"
+    // InternalKerMLExpressions.g:2316:1: rule__ConditionalExpression__Group_0__0__Impl : ( ruleNullCoalescingExpression ) ;
+    public final void rule__ConditionalExpression__Group_0__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:2247:1: ( ( ruleNullCoalescingExpression ) )
-            // InternalKerMLExpressions.g:2248:1: ( ruleNullCoalescingExpression )
+            // InternalKerMLExpressions.g:2320:1: ( ( ruleNullCoalescingExpression ) )
+            // InternalKerMLExpressions.g:2321:1: ( ruleNullCoalescingExpression )
             {
-            // InternalKerMLExpressions.g:2248:1: ( ruleNullCoalescingExpression )
-            // InternalKerMLExpressions.g:2249:2: ruleNullCoalescingExpression
+            // InternalKerMLExpressions.g:2321:1: ( ruleNullCoalescingExpression )
+            // InternalKerMLExpressions.g:2322:2: ruleNullCoalescingExpression
             {
-             before(grammarAccess.getConditionalExpressionAccess().getNullCoalescingExpressionParserRuleCall_0()); 
+             before(grammarAccess.getConditionalExpressionAccess().getNullCoalescingExpressionParserRuleCall_0_0()); 
             pushFollow(FOLLOW_2);
             ruleNullCoalescingExpression();
 
             state._fsp--;
 
-             after(grammarAccess.getConditionalExpressionAccess().getNullCoalescingExpressionParserRuleCall_0()); 
+             after(grammarAccess.getConditionalExpressionAccess().getNullCoalescingExpressionParserRuleCall_0_0()); 
 
             }
 
@@ -7232,21 +7581,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
         }
         return ;
     }
-    // $ANTLR end "rule__ConditionalExpression__Group__0__Impl"
+    // $ANTLR end "rule__ConditionalExpression__Group_0__0__Impl"
 
 
-    // $ANTLR start "rule__ConditionalExpression__Group__1"
-    // InternalKerMLExpressions.g:2258:1: rule__ConditionalExpression__Group__1 : rule__ConditionalExpression__Group__1__Impl ;
-    public final void rule__ConditionalExpression__Group__1() throws RecognitionException {
+    // $ANTLR start "rule__ConditionalExpression__Group_0__1"
+    // InternalKerMLExpressions.g:2331:1: rule__ConditionalExpression__Group_0__1 : rule__ConditionalExpression__Group_0__1__Impl ;
+    public final void rule__ConditionalExpression__Group_0__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:2262:1: ( rule__ConditionalExpression__Group__1__Impl )
-            // InternalKerMLExpressions.g:2263:2: rule__ConditionalExpression__Group__1__Impl
+            // InternalKerMLExpressions.g:2335:1: ( rule__ConditionalExpression__Group_0__1__Impl )
+            // InternalKerMLExpressions.g:2336:2: rule__ConditionalExpression__Group_0__1__Impl
             {
             pushFollow(FOLLOW_2);
-            rule__ConditionalExpression__Group__1__Impl();
+            rule__ConditionalExpression__Group_0__1__Impl();
 
             state._fsp--;
 
@@ -7265,36 +7614,36 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
         }
         return ;
     }
-    // $ANTLR end "rule__ConditionalExpression__Group__1"
+    // $ANTLR end "rule__ConditionalExpression__Group_0__1"
 
 
-    // $ANTLR start "rule__ConditionalExpression__Group__1__Impl"
-    // InternalKerMLExpressions.g:2269:1: rule__ConditionalExpression__Group__1__Impl : ( ( rule__ConditionalExpression__Group_1__0 )? ) ;
-    public final void rule__ConditionalExpression__Group__1__Impl() throws RecognitionException {
+    // $ANTLR start "rule__ConditionalExpression__Group_0__1__Impl"
+    // InternalKerMLExpressions.g:2342:1: rule__ConditionalExpression__Group_0__1__Impl : ( ( rule__ConditionalExpression__Group_0_1__0 )? ) ;
+    public final void rule__ConditionalExpression__Group_0__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:2273:1: ( ( ( rule__ConditionalExpression__Group_1__0 )? ) )
-            // InternalKerMLExpressions.g:2274:1: ( ( rule__ConditionalExpression__Group_1__0 )? )
+            // InternalKerMLExpressions.g:2346:1: ( ( ( rule__ConditionalExpression__Group_0_1__0 )? ) )
+            // InternalKerMLExpressions.g:2347:1: ( ( rule__ConditionalExpression__Group_0_1__0 )? )
             {
-            // InternalKerMLExpressions.g:2274:1: ( ( rule__ConditionalExpression__Group_1__0 )? )
-            // InternalKerMLExpressions.g:2275:2: ( rule__ConditionalExpression__Group_1__0 )?
+            // InternalKerMLExpressions.g:2347:1: ( ( rule__ConditionalExpression__Group_0_1__0 )? )
+            // InternalKerMLExpressions.g:2348:2: ( rule__ConditionalExpression__Group_0_1__0 )?
             {
-             before(grammarAccess.getConditionalExpressionAccess().getGroup_1()); 
-            // InternalKerMLExpressions.g:2276:2: ( rule__ConditionalExpression__Group_1__0 )?
-            int alt21=2;
-            int LA21_0 = input.LA(1);
+             before(grammarAccess.getConditionalExpressionAccess().getGroup_0_1()); 
+            // InternalKerMLExpressions.g:2349:2: ( rule__ConditionalExpression__Group_0_1__0 )?
+            int alt26=2;
+            int LA26_0 = input.LA(1);
 
-            if ( (LA21_0==14) ) {
-                alt21=1;
+            if ( (LA26_0==14) ) {
+                alt26=1;
             }
-            switch (alt21) {
+            switch (alt26) {
                 case 1 :
-                    // InternalKerMLExpressions.g:2276:3: rule__ConditionalExpression__Group_1__0
+                    // InternalKerMLExpressions.g:2349:3: rule__ConditionalExpression__Group_0_1__0
                     {
                     pushFollow(FOLLOW_2);
-                    rule__ConditionalExpression__Group_1__0();
+                    rule__ConditionalExpression__Group_0_1__0();
 
                     state._fsp--;
 
@@ -7304,7 +7653,7 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
             }
 
-             after(grammarAccess.getConditionalExpressionAccess().getGroup_1()); 
+             after(grammarAccess.getConditionalExpressionAccess().getGroup_0_1()); 
 
             }
 
@@ -7323,20 +7672,420 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
         }
         return ;
     }
-    // $ANTLR end "rule__ConditionalExpression__Group__1__Impl"
+    // $ANTLR end "rule__ConditionalExpression__Group_0__1__Impl"
+
+
+    // $ANTLR start "rule__ConditionalExpression__Group_0_1__0"
+    // InternalKerMLExpressions.g:2358:1: rule__ConditionalExpression__Group_0_1__0 : rule__ConditionalExpression__Group_0_1__0__Impl rule__ConditionalExpression__Group_0_1__1 ;
+    public final void rule__ConditionalExpression__Group_0_1__0() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalKerMLExpressions.g:2362:1: ( rule__ConditionalExpression__Group_0_1__0__Impl rule__ConditionalExpression__Group_0_1__1 )
+            // InternalKerMLExpressions.g:2363:2: rule__ConditionalExpression__Group_0_1__0__Impl rule__ConditionalExpression__Group_0_1__1
+            {
+            pushFollow(FOLLOW_3);
+            rule__ConditionalExpression__Group_0_1__0__Impl();
+
+            state._fsp--;
+
+            pushFollow(FOLLOW_2);
+            rule__ConditionalExpression__Group_0_1__1();
+
+            state._fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__ConditionalExpression__Group_0_1__0"
+
+
+    // $ANTLR start "rule__ConditionalExpression__Group_0_1__0__Impl"
+    // InternalKerMLExpressions.g:2370:1: rule__ConditionalExpression__Group_0_1__0__Impl : ( () ) ;
+    public final void rule__ConditionalExpression__Group_0_1__0__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalKerMLExpressions.g:2374:1: ( ( () ) )
+            // InternalKerMLExpressions.g:2375:1: ( () )
+            {
+            // InternalKerMLExpressions.g:2375:1: ( () )
+            // InternalKerMLExpressions.g:2376:2: ()
+            {
+             before(grammarAccess.getConditionalExpressionAccess().getOperatorExpressionOperandAction_0_1_0()); 
+            // InternalKerMLExpressions.g:2377:2: ()
+            // InternalKerMLExpressions.g:2377:3: 
+            {
+            }
+
+             after(grammarAccess.getConditionalExpressionAccess().getOperatorExpressionOperandAction_0_1_0()); 
+
+            }
+
+
+            }
+
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__ConditionalExpression__Group_0_1__0__Impl"
+
+
+    // $ANTLR start "rule__ConditionalExpression__Group_0_1__1"
+    // InternalKerMLExpressions.g:2385:1: rule__ConditionalExpression__Group_0_1__1 : rule__ConditionalExpression__Group_0_1__1__Impl rule__ConditionalExpression__Group_0_1__2 ;
+    public final void rule__ConditionalExpression__Group_0_1__1() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalKerMLExpressions.g:2389:1: ( rule__ConditionalExpression__Group_0_1__1__Impl rule__ConditionalExpression__Group_0_1__2 )
+            // InternalKerMLExpressions.g:2390:2: rule__ConditionalExpression__Group_0_1__1__Impl rule__ConditionalExpression__Group_0_1__2
+            {
+            pushFollow(FOLLOW_4);
+            rule__ConditionalExpression__Group_0_1__1__Impl();
+
+            state._fsp--;
+
+            pushFollow(FOLLOW_2);
+            rule__ConditionalExpression__Group_0_1__2();
+
+            state._fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__ConditionalExpression__Group_0_1__1"
+
+
+    // $ANTLR start "rule__ConditionalExpression__Group_0_1__1__Impl"
+    // InternalKerMLExpressions.g:2397:1: rule__ConditionalExpression__Group_0_1__1__Impl : ( ( rule__ConditionalExpression__OperatorAssignment_0_1_1 ) ) ;
+    public final void rule__ConditionalExpression__Group_0_1__1__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalKerMLExpressions.g:2401:1: ( ( ( rule__ConditionalExpression__OperatorAssignment_0_1_1 ) ) )
+            // InternalKerMLExpressions.g:2402:1: ( ( rule__ConditionalExpression__OperatorAssignment_0_1_1 ) )
+            {
+            // InternalKerMLExpressions.g:2402:1: ( ( rule__ConditionalExpression__OperatorAssignment_0_1_1 ) )
+            // InternalKerMLExpressions.g:2403:2: ( rule__ConditionalExpression__OperatorAssignment_0_1_1 )
+            {
+             before(grammarAccess.getConditionalExpressionAccess().getOperatorAssignment_0_1_1()); 
+            // InternalKerMLExpressions.g:2404:2: ( rule__ConditionalExpression__OperatorAssignment_0_1_1 )
+            // InternalKerMLExpressions.g:2404:3: rule__ConditionalExpression__OperatorAssignment_0_1_1
+            {
+            pushFollow(FOLLOW_2);
+            rule__ConditionalExpression__OperatorAssignment_0_1_1();
+
+            state._fsp--;
+
+
+            }
+
+             after(grammarAccess.getConditionalExpressionAccess().getOperatorAssignment_0_1_1()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__ConditionalExpression__Group_0_1__1__Impl"
+
+
+    // $ANTLR start "rule__ConditionalExpression__Group_0_1__2"
+    // InternalKerMLExpressions.g:2412:1: rule__ConditionalExpression__Group_0_1__2 : rule__ConditionalExpression__Group_0_1__2__Impl rule__ConditionalExpression__Group_0_1__3 ;
+    public final void rule__ConditionalExpression__Group_0_1__2() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalKerMLExpressions.g:2416:1: ( rule__ConditionalExpression__Group_0_1__2__Impl rule__ConditionalExpression__Group_0_1__3 )
+            // InternalKerMLExpressions.g:2417:2: rule__ConditionalExpression__Group_0_1__2__Impl rule__ConditionalExpression__Group_0_1__3
+            {
+            pushFollow(FOLLOW_5);
+            rule__ConditionalExpression__Group_0_1__2__Impl();
+
+            state._fsp--;
+
+            pushFollow(FOLLOW_2);
+            rule__ConditionalExpression__Group_0_1__3();
+
+            state._fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__ConditionalExpression__Group_0_1__2"
+
+
+    // $ANTLR start "rule__ConditionalExpression__Group_0_1__2__Impl"
+    // InternalKerMLExpressions.g:2424:1: rule__ConditionalExpression__Group_0_1__2__Impl : ( ( rule__ConditionalExpression__OperandAssignment_0_1_2 ) ) ;
+    public final void rule__ConditionalExpression__Group_0_1__2__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalKerMLExpressions.g:2428:1: ( ( ( rule__ConditionalExpression__OperandAssignment_0_1_2 ) ) )
+            // InternalKerMLExpressions.g:2429:1: ( ( rule__ConditionalExpression__OperandAssignment_0_1_2 ) )
+            {
+            // InternalKerMLExpressions.g:2429:1: ( ( rule__ConditionalExpression__OperandAssignment_0_1_2 ) )
+            // InternalKerMLExpressions.g:2430:2: ( rule__ConditionalExpression__OperandAssignment_0_1_2 )
+            {
+             before(grammarAccess.getConditionalExpressionAccess().getOperandAssignment_0_1_2()); 
+            // InternalKerMLExpressions.g:2431:2: ( rule__ConditionalExpression__OperandAssignment_0_1_2 )
+            // InternalKerMLExpressions.g:2431:3: rule__ConditionalExpression__OperandAssignment_0_1_2
+            {
+            pushFollow(FOLLOW_2);
+            rule__ConditionalExpression__OperandAssignment_0_1_2();
+
+            state._fsp--;
+
+
+            }
+
+             after(grammarAccess.getConditionalExpressionAccess().getOperandAssignment_0_1_2()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__ConditionalExpression__Group_0_1__2__Impl"
+
+
+    // $ANTLR start "rule__ConditionalExpression__Group_0_1__3"
+    // InternalKerMLExpressions.g:2439:1: rule__ConditionalExpression__Group_0_1__3 : rule__ConditionalExpression__Group_0_1__3__Impl rule__ConditionalExpression__Group_0_1__4 ;
+    public final void rule__ConditionalExpression__Group_0_1__3() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalKerMLExpressions.g:2443:1: ( rule__ConditionalExpression__Group_0_1__3__Impl rule__ConditionalExpression__Group_0_1__4 )
+            // InternalKerMLExpressions.g:2444:2: rule__ConditionalExpression__Group_0_1__3__Impl rule__ConditionalExpression__Group_0_1__4
+            {
+            pushFollow(FOLLOW_4);
+            rule__ConditionalExpression__Group_0_1__3__Impl();
+
+            state._fsp--;
+
+            pushFollow(FOLLOW_2);
+            rule__ConditionalExpression__Group_0_1__4();
+
+            state._fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__ConditionalExpression__Group_0_1__3"
+
+
+    // $ANTLR start "rule__ConditionalExpression__Group_0_1__3__Impl"
+    // InternalKerMLExpressions.g:2451:1: rule__ConditionalExpression__Group_0_1__3__Impl : ( ':' ) ;
+    public final void rule__ConditionalExpression__Group_0_1__3__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalKerMLExpressions.g:2455:1: ( ( ':' ) )
+            // InternalKerMLExpressions.g:2456:1: ( ':' )
+            {
+            // InternalKerMLExpressions.g:2456:1: ( ':' )
+            // InternalKerMLExpressions.g:2457:2: ':'
+            {
+             before(grammarAccess.getConditionalExpressionAccess().getColonKeyword_0_1_3()); 
+            match(input,50,FOLLOW_2); 
+             after(grammarAccess.getConditionalExpressionAccess().getColonKeyword_0_1_3()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__ConditionalExpression__Group_0_1__3__Impl"
+
+
+    // $ANTLR start "rule__ConditionalExpression__Group_0_1__4"
+    // InternalKerMLExpressions.g:2466:1: rule__ConditionalExpression__Group_0_1__4 : rule__ConditionalExpression__Group_0_1__4__Impl ;
+    public final void rule__ConditionalExpression__Group_0_1__4() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalKerMLExpressions.g:2470:1: ( rule__ConditionalExpression__Group_0_1__4__Impl )
+            // InternalKerMLExpressions.g:2471:2: rule__ConditionalExpression__Group_0_1__4__Impl
+            {
+            pushFollow(FOLLOW_2);
+            rule__ConditionalExpression__Group_0_1__4__Impl();
+
+            state._fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__ConditionalExpression__Group_0_1__4"
+
+
+    // $ANTLR start "rule__ConditionalExpression__Group_0_1__4__Impl"
+    // InternalKerMLExpressions.g:2477:1: rule__ConditionalExpression__Group_0_1__4__Impl : ( ( rule__ConditionalExpression__OperandAssignment_0_1_4 ) ) ;
+    public final void rule__ConditionalExpression__Group_0_1__4__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalKerMLExpressions.g:2481:1: ( ( ( rule__ConditionalExpression__OperandAssignment_0_1_4 ) ) )
+            // InternalKerMLExpressions.g:2482:1: ( ( rule__ConditionalExpression__OperandAssignment_0_1_4 ) )
+            {
+            // InternalKerMLExpressions.g:2482:1: ( ( rule__ConditionalExpression__OperandAssignment_0_1_4 ) )
+            // InternalKerMLExpressions.g:2483:2: ( rule__ConditionalExpression__OperandAssignment_0_1_4 )
+            {
+             before(grammarAccess.getConditionalExpressionAccess().getOperandAssignment_0_1_4()); 
+            // InternalKerMLExpressions.g:2484:2: ( rule__ConditionalExpression__OperandAssignment_0_1_4 )
+            // InternalKerMLExpressions.g:2484:3: rule__ConditionalExpression__OperandAssignment_0_1_4
+            {
+            pushFollow(FOLLOW_2);
+            rule__ConditionalExpression__OperandAssignment_0_1_4();
+
+            state._fsp--;
+
+
+            }
+
+             after(grammarAccess.getConditionalExpressionAccess().getOperandAssignment_0_1_4()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__ConditionalExpression__Group_0_1__4__Impl"
 
 
     // $ANTLR start "rule__ConditionalExpression__Group_1__0"
-    // InternalKerMLExpressions.g:2285:1: rule__ConditionalExpression__Group_1__0 : rule__ConditionalExpression__Group_1__0__Impl rule__ConditionalExpression__Group_1__1 ;
+    // InternalKerMLExpressions.g:2493:1: rule__ConditionalExpression__Group_1__0 : rule__ConditionalExpression__Group_1__0__Impl rule__ConditionalExpression__Group_1__1 ;
     public final void rule__ConditionalExpression__Group_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:2289:1: ( rule__ConditionalExpression__Group_1__0__Impl rule__ConditionalExpression__Group_1__1 )
-            // InternalKerMLExpressions.g:2290:2: rule__ConditionalExpression__Group_1__0__Impl rule__ConditionalExpression__Group_1__1
+            // InternalKerMLExpressions.g:2497:1: ( rule__ConditionalExpression__Group_1__0__Impl rule__ConditionalExpression__Group_1__1 )
+            // InternalKerMLExpressions.g:2498:2: rule__ConditionalExpression__Group_1__0__Impl rule__ConditionalExpression__Group_1__1
             {
-            pushFollow(FOLLOW_3);
+            pushFollow(FOLLOW_4);
             rule__ConditionalExpression__Group_1__0__Impl();
 
             state._fsp--;
@@ -7365,25 +8114,25 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__ConditionalExpression__Group_1__0__Impl"
-    // InternalKerMLExpressions.g:2297:1: rule__ConditionalExpression__Group_1__0__Impl : ( () ) ;
+    // InternalKerMLExpressions.g:2505:1: rule__ConditionalExpression__Group_1__0__Impl : ( () ) ;
     public final void rule__ConditionalExpression__Group_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:2301:1: ( ( () ) )
-            // InternalKerMLExpressions.g:2302:1: ( () )
+            // InternalKerMLExpressions.g:2509:1: ( ( () ) )
+            // InternalKerMLExpressions.g:2510:1: ( () )
             {
-            // InternalKerMLExpressions.g:2302:1: ( () )
-            // InternalKerMLExpressions.g:2303:2: ()
+            // InternalKerMLExpressions.g:2510:1: ( () )
+            // InternalKerMLExpressions.g:2511:2: ()
             {
-             before(grammarAccess.getConditionalExpressionAccess().getOperatorExpressionOperandAction_1_0()); 
-            // InternalKerMLExpressions.g:2304:2: ()
-            // InternalKerMLExpressions.g:2304:3: 
+             before(grammarAccess.getConditionalExpressionAccess().getOperatorExpressionAction_1_0()); 
+            // InternalKerMLExpressions.g:2512:2: ()
+            // InternalKerMLExpressions.g:2512:3: 
             {
             }
 
-             after(grammarAccess.getConditionalExpressionAccess().getOperatorExpressionOperandAction_1_0()); 
+             after(grammarAccess.getConditionalExpressionAccess().getOperatorExpressionAction_1_0()); 
 
             }
 
@@ -7402,16 +8151,16 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__ConditionalExpression__Group_1__1"
-    // InternalKerMLExpressions.g:2312:1: rule__ConditionalExpression__Group_1__1 : rule__ConditionalExpression__Group_1__1__Impl rule__ConditionalExpression__Group_1__2 ;
+    // InternalKerMLExpressions.g:2520:1: rule__ConditionalExpression__Group_1__1 : rule__ConditionalExpression__Group_1__1__Impl rule__ConditionalExpression__Group_1__2 ;
     public final void rule__ConditionalExpression__Group_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:2316:1: ( rule__ConditionalExpression__Group_1__1__Impl rule__ConditionalExpression__Group_1__2 )
-            // InternalKerMLExpressions.g:2317:2: rule__ConditionalExpression__Group_1__1__Impl rule__ConditionalExpression__Group_1__2
+            // InternalKerMLExpressions.g:2524:1: ( rule__ConditionalExpression__Group_1__1__Impl rule__ConditionalExpression__Group_1__2 )
+            // InternalKerMLExpressions.g:2525:2: rule__ConditionalExpression__Group_1__1__Impl rule__ConditionalExpression__Group_1__2
             {
-            pushFollow(FOLLOW_4);
+            pushFollow(FOLLOW_6);
             rule__ConditionalExpression__Group_1__1__Impl();
 
             state._fsp--;
@@ -7440,31 +8189,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__ConditionalExpression__Group_1__1__Impl"
-    // InternalKerMLExpressions.g:2324:1: rule__ConditionalExpression__Group_1__1__Impl : ( ( rule__ConditionalExpression__OperatorAssignment_1_1 ) ) ;
+    // InternalKerMLExpressions.g:2532:1: rule__ConditionalExpression__Group_1__1__Impl : ( 'if' ) ;
     public final void rule__ConditionalExpression__Group_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:2328:1: ( ( ( rule__ConditionalExpression__OperatorAssignment_1_1 ) ) )
-            // InternalKerMLExpressions.g:2329:1: ( ( rule__ConditionalExpression__OperatorAssignment_1_1 ) )
+            // InternalKerMLExpressions.g:2536:1: ( ( 'if' ) )
+            // InternalKerMLExpressions.g:2537:1: ( 'if' )
             {
-            // InternalKerMLExpressions.g:2329:1: ( ( rule__ConditionalExpression__OperatorAssignment_1_1 ) )
-            // InternalKerMLExpressions.g:2330:2: ( rule__ConditionalExpression__OperatorAssignment_1_1 )
+            // InternalKerMLExpressions.g:2537:1: ( 'if' )
+            // InternalKerMLExpressions.g:2538:2: 'if'
             {
-             before(grammarAccess.getConditionalExpressionAccess().getOperatorAssignment_1_1()); 
-            // InternalKerMLExpressions.g:2331:2: ( rule__ConditionalExpression__OperatorAssignment_1_1 )
-            // InternalKerMLExpressions.g:2331:3: rule__ConditionalExpression__OperatorAssignment_1_1
-            {
-            pushFollow(FOLLOW_2);
-            rule__ConditionalExpression__OperatorAssignment_1_1();
-
-            state._fsp--;
-
-
-            }
-
-             after(grammarAccess.getConditionalExpressionAccess().getOperatorAssignment_1_1()); 
+             before(grammarAccess.getConditionalExpressionAccess().getIfKeyword_1_1()); 
+            match(input,51,FOLLOW_2); 
+             after(grammarAccess.getConditionalExpressionAccess().getIfKeyword_1_1()); 
 
             }
 
@@ -7487,16 +8226,16 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__ConditionalExpression__Group_1__2"
-    // InternalKerMLExpressions.g:2339:1: rule__ConditionalExpression__Group_1__2 : rule__ConditionalExpression__Group_1__2__Impl rule__ConditionalExpression__Group_1__3 ;
+    // InternalKerMLExpressions.g:2547:1: rule__ConditionalExpression__Group_1__2 : rule__ConditionalExpression__Group_1__2__Impl rule__ConditionalExpression__Group_1__3 ;
     public final void rule__ConditionalExpression__Group_1__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:2343:1: ( rule__ConditionalExpression__Group_1__2__Impl rule__ConditionalExpression__Group_1__3 )
-            // InternalKerMLExpressions.g:2344:2: rule__ConditionalExpression__Group_1__2__Impl rule__ConditionalExpression__Group_1__3
+            // InternalKerMLExpressions.g:2551:1: ( rule__ConditionalExpression__Group_1__2__Impl rule__ConditionalExpression__Group_1__3 )
+            // InternalKerMLExpressions.g:2552:2: rule__ConditionalExpression__Group_1__2__Impl rule__ConditionalExpression__Group_1__3
             {
-            pushFollow(FOLLOW_5);
+            pushFollow(FOLLOW_3);
             rule__ConditionalExpression__Group_1__2__Impl();
 
             state._fsp--;
@@ -7525,21 +8264,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__ConditionalExpression__Group_1__2__Impl"
-    // InternalKerMLExpressions.g:2351:1: rule__ConditionalExpression__Group_1__2__Impl : ( ( rule__ConditionalExpression__OperandAssignment_1_2 ) ) ;
+    // InternalKerMLExpressions.g:2559:1: rule__ConditionalExpression__Group_1__2__Impl : ( ( rule__ConditionalExpression__OperandAssignment_1_2 ) ) ;
     public final void rule__ConditionalExpression__Group_1__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:2355:1: ( ( ( rule__ConditionalExpression__OperandAssignment_1_2 ) ) )
-            // InternalKerMLExpressions.g:2356:1: ( ( rule__ConditionalExpression__OperandAssignment_1_2 ) )
+            // InternalKerMLExpressions.g:2563:1: ( ( ( rule__ConditionalExpression__OperandAssignment_1_2 ) ) )
+            // InternalKerMLExpressions.g:2564:1: ( ( rule__ConditionalExpression__OperandAssignment_1_2 ) )
             {
-            // InternalKerMLExpressions.g:2356:1: ( ( rule__ConditionalExpression__OperandAssignment_1_2 ) )
-            // InternalKerMLExpressions.g:2357:2: ( rule__ConditionalExpression__OperandAssignment_1_2 )
+            // InternalKerMLExpressions.g:2564:1: ( ( rule__ConditionalExpression__OperandAssignment_1_2 ) )
+            // InternalKerMLExpressions.g:2565:2: ( rule__ConditionalExpression__OperandAssignment_1_2 )
             {
              before(grammarAccess.getConditionalExpressionAccess().getOperandAssignment_1_2()); 
-            // InternalKerMLExpressions.g:2358:2: ( rule__ConditionalExpression__OperandAssignment_1_2 )
-            // InternalKerMLExpressions.g:2358:3: rule__ConditionalExpression__OperandAssignment_1_2
+            // InternalKerMLExpressions.g:2566:2: ( rule__ConditionalExpression__OperandAssignment_1_2 )
+            // InternalKerMLExpressions.g:2566:3: rule__ConditionalExpression__OperandAssignment_1_2
             {
             pushFollow(FOLLOW_2);
             rule__ConditionalExpression__OperandAssignment_1_2();
@@ -7572,14 +8311,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__ConditionalExpression__Group_1__3"
-    // InternalKerMLExpressions.g:2366:1: rule__ConditionalExpression__Group_1__3 : rule__ConditionalExpression__Group_1__3__Impl rule__ConditionalExpression__Group_1__4 ;
+    // InternalKerMLExpressions.g:2574:1: rule__ConditionalExpression__Group_1__3 : rule__ConditionalExpression__Group_1__3__Impl rule__ConditionalExpression__Group_1__4 ;
     public final void rule__ConditionalExpression__Group_1__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:2370:1: ( rule__ConditionalExpression__Group_1__3__Impl rule__ConditionalExpression__Group_1__4 )
-            // InternalKerMLExpressions.g:2371:2: rule__ConditionalExpression__Group_1__3__Impl rule__ConditionalExpression__Group_1__4
+            // InternalKerMLExpressions.g:2578:1: ( rule__ConditionalExpression__Group_1__3__Impl rule__ConditionalExpression__Group_1__4 )
+            // InternalKerMLExpressions.g:2579:2: rule__ConditionalExpression__Group_1__3__Impl rule__ConditionalExpression__Group_1__4
             {
             pushFollow(FOLLOW_4);
             rule__ConditionalExpression__Group_1__3__Impl();
@@ -7610,21 +8349,31 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__ConditionalExpression__Group_1__3__Impl"
-    // InternalKerMLExpressions.g:2378:1: rule__ConditionalExpression__Group_1__3__Impl : ( ':' ) ;
+    // InternalKerMLExpressions.g:2586:1: rule__ConditionalExpression__Group_1__3__Impl : ( ( rule__ConditionalExpression__OperatorAssignment_1_3 ) ) ;
     public final void rule__ConditionalExpression__Group_1__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:2382:1: ( ( ':' ) )
-            // InternalKerMLExpressions.g:2383:1: ( ':' )
+            // InternalKerMLExpressions.g:2590:1: ( ( ( rule__ConditionalExpression__OperatorAssignment_1_3 ) ) )
+            // InternalKerMLExpressions.g:2591:1: ( ( rule__ConditionalExpression__OperatorAssignment_1_3 ) )
             {
-            // InternalKerMLExpressions.g:2383:1: ( ':' )
-            // InternalKerMLExpressions.g:2384:2: ':'
+            // InternalKerMLExpressions.g:2591:1: ( ( rule__ConditionalExpression__OperatorAssignment_1_3 ) )
+            // InternalKerMLExpressions.g:2592:2: ( rule__ConditionalExpression__OperatorAssignment_1_3 )
             {
-             before(grammarAccess.getConditionalExpressionAccess().getColonKeyword_1_3()); 
-            match(input,44,FOLLOW_2); 
-             after(grammarAccess.getConditionalExpressionAccess().getColonKeyword_1_3()); 
+             before(grammarAccess.getConditionalExpressionAccess().getOperatorAssignment_1_3()); 
+            // InternalKerMLExpressions.g:2593:2: ( rule__ConditionalExpression__OperatorAssignment_1_3 )
+            // InternalKerMLExpressions.g:2593:3: rule__ConditionalExpression__OperatorAssignment_1_3
+            {
+            pushFollow(FOLLOW_2);
+            rule__ConditionalExpression__OperatorAssignment_1_3();
+
+            state._fsp--;
+
+
+            }
+
+             after(grammarAccess.getConditionalExpressionAccess().getOperatorAssignment_1_3()); 
 
             }
 
@@ -7647,17 +8396,22 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__ConditionalExpression__Group_1__4"
-    // InternalKerMLExpressions.g:2393:1: rule__ConditionalExpression__Group_1__4 : rule__ConditionalExpression__Group_1__4__Impl ;
+    // InternalKerMLExpressions.g:2601:1: rule__ConditionalExpression__Group_1__4 : rule__ConditionalExpression__Group_1__4__Impl rule__ConditionalExpression__Group_1__5 ;
     public final void rule__ConditionalExpression__Group_1__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:2397:1: ( rule__ConditionalExpression__Group_1__4__Impl )
-            // InternalKerMLExpressions.g:2398:2: rule__ConditionalExpression__Group_1__4__Impl
+            // InternalKerMLExpressions.g:2605:1: ( rule__ConditionalExpression__Group_1__4__Impl rule__ConditionalExpression__Group_1__5 )
+            // InternalKerMLExpressions.g:2606:2: rule__ConditionalExpression__Group_1__4__Impl rule__ConditionalExpression__Group_1__5
             {
-            pushFollow(FOLLOW_2);
+            pushFollow(FOLLOW_7);
             rule__ConditionalExpression__Group_1__4__Impl();
+
+            state._fsp--;
+
+            pushFollow(FOLLOW_2);
+            rule__ConditionalExpression__Group_1__5();
 
             state._fsp--;
 
@@ -7680,21 +8434,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__ConditionalExpression__Group_1__4__Impl"
-    // InternalKerMLExpressions.g:2404:1: rule__ConditionalExpression__Group_1__4__Impl : ( ( rule__ConditionalExpression__OperandAssignment_1_4 ) ) ;
+    // InternalKerMLExpressions.g:2613:1: rule__ConditionalExpression__Group_1__4__Impl : ( ( rule__ConditionalExpression__OperandAssignment_1_4 ) ) ;
     public final void rule__ConditionalExpression__Group_1__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:2408:1: ( ( ( rule__ConditionalExpression__OperandAssignment_1_4 ) ) )
-            // InternalKerMLExpressions.g:2409:1: ( ( rule__ConditionalExpression__OperandAssignment_1_4 ) )
+            // InternalKerMLExpressions.g:2617:1: ( ( ( rule__ConditionalExpression__OperandAssignment_1_4 ) ) )
+            // InternalKerMLExpressions.g:2618:1: ( ( rule__ConditionalExpression__OperandAssignment_1_4 ) )
             {
-            // InternalKerMLExpressions.g:2409:1: ( ( rule__ConditionalExpression__OperandAssignment_1_4 ) )
-            // InternalKerMLExpressions.g:2410:2: ( rule__ConditionalExpression__OperandAssignment_1_4 )
+            // InternalKerMLExpressions.g:2618:1: ( ( rule__ConditionalExpression__OperandAssignment_1_4 ) )
+            // InternalKerMLExpressions.g:2619:2: ( rule__ConditionalExpression__OperandAssignment_1_4 )
             {
              before(grammarAccess.getConditionalExpressionAccess().getOperandAssignment_1_4()); 
-            // InternalKerMLExpressions.g:2411:2: ( rule__ConditionalExpression__OperandAssignment_1_4 )
-            // InternalKerMLExpressions.g:2411:3: rule__ConditionalExpression__OperandAssignment_1_4
+            // InternalKerMLExpressions.g:2620:2: ( rule__ConditionalExpression__OperandAssignment_1_4 )
+            // InternalKerMLExpressions.g:2620:3: rule__ConditionalExpression__OperandAssignment_1_4
             {
             pushFollow(FOLLOW_2);
             rule__ConditionalExpression__OperandAssignment_1_4();
@@ -7726,17 +8480,172 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
     // $ANTLR end "rule__ConditionalExpression__Group_1__4__Impl"
 
 
+    // $ANTLR start "rule__ConditionalExpression__Group_1__5"
+    // InternalKerMLExpressions.g:2628:1: rule__ConditionalExpression__Group_1__5 : rule__ConditionalExpression__Group_1__5__Impl rule__ConditionalExpression__Group_1__6 ;
+    public final void rule__ConditionalExpression__Group_1__5() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalKerMLExpressions.g:2632:1: ( rule__ConditionalExpression__Group_1__5__Impl rule__ConditionalExpression__Group_1__6 )
+            // InternalKerMLExpressions.g:2633:2: rule__ConditionalExpression__Group_1__5__Impl rule__ConditionalExpression__Group_1__6
+            {
+            pushFollow(FOLLOW_4);
+            rule__ConditionalExpression__Group_1__5__Impl();
+
+            state._fsp--;
+
+            pushFollow(FOLLOW_2);
+            rule__ConditionalExpression__Group_1__6();
+
+            state._fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__ConditionalExpression__Group_1__5"
+
+
+    // $ANTLR start "rule__ConditionalExpression__Group_1__5__Impl"
+    // InternalKerMLExpressions.g:2640:1: rule__ConditionalExpression__Group_1__5__Impl : ( 'else' ) ;
+    public final void rule__ConditionalExpression__Group_1__5__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalKerMLExpressions.g:2644:1: ( ( 'else' ) )
+            // InternalKerMLExpressions.g:2645:1: ( 'else' )
+            {
+            // InternalKerMLExpressions.g:2645:1: ( 'else' )
+            // InternalKerMLExpressions.g:2646:2: 'else'
+            {
+             before(grammarAccess.getConditionalExpressionAccess().getElseKeyword_1_5()); 
+            match(input,52,FOLLOW_2); 
+             after(grammarAccess.getConditionalExpressionAccess().getElseKeyword_1_5()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__ConditionalExpression__Group_1__5__Impl"
+
+
+    // $ANTLR start "rule__ConditionalExpression__Group_1__6"
+    // InternalKerMLExpressions.g:2655:1: rule__ConditionalExpression__Group_1__6 : rule__ConditionalExpression__Group_1__6__Impl ;
+    public final void rule__ConditionalExpression__Group_1__6() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalKerMLExpressions.g:2659:1: ( rule__ConditionalExpression__Group_1__6__Impl )
+            // InternalKerMLExpressions.g:2660:2: rule__ConditionalExpression__Group_1__6__Impl
+            {
+            pushFollow(FOLLOW_2);
+            rule__ConditionalExpression__Group_1__6__Impl();
+
+            state._fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__ConditionalExpression__Group_1__6"
+
+
+    // $ANTLR start "rule__ConditionalExpression__Group_1__6__Impl"
+    // InternalKerMLExpressions.g:2666:1: rule__ConditionalExpression__Group_1__6__Impl : ( ( rule__ConditionalExpression__OperandAssignment_1_6 ) ) ;
+    public final void rule__ConditionalExpression__Group_1__6__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalKerMLExpressions.g:2670:1: ( ( ( rule__ConditionalExpression__OperandAssignment_1_6 ) ) )
+            // InternalKerMLExpressions.g:2671:1: ( ( rule__ConditionalExpression__OperandAssignment_1_6 ) )
+            {
+            // InternalKerMLExpressions.g:2671:1: ( ( rule__ConditionalExpression__OperandAssignment_1_6 ) )
+            // InternalKerMLExpressions.g:2672:2: ( rule__ConditionalExpression__OperandAssignment_1_6 )
+            {
+             before(grammarAccess.getConditionalExpressionAccess().getOperandAssignment_1_6()); 
+            // InternalKerMLExpressions.g:2673:2: ( rule__ConditionalExpression__OperandAssignment_1_6 )
+            // InternalKerMLExpressions.g:2673:3: rule__ConditionalExpression__OperandAssignment_1_6
+            {
+            pushFollow(FOLLOW_2);
+            rule__ConditionalExpression__OperandAssignment_1_6();
+
+            state._fsp--;
+
+
+            }
+
+             after(grammarAccess.getConditionalExpressionAccess().getOperandAssignment_1_6()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__ConditionalExpression__Group_1__6__Impl"
+
+
     // $ANTLR start "rule__NullCoalescingExpression__Group__0"
-    // InternalKerMLExpressions.g:2420:1: rule__NullCoalescingExpression__Group__0 : rule__NullCoalescingExpression__Group__0__Impl rule__NullCoalescingExpression__Group__1 ;
+    // InternalKerMLExpressions.g:2682:1: rule__NullCoalescingExpression__Group__0 : rule__NullCoalescingExpression__Group__0__Impl rule__NullCoalescingExpression__Group__1 ;
     public final void rule__NullCoalescingExpression__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:2424:1: ( rule__NullCoalescingExpression__Group__0__Impl rule__NullCoalescingExpression__Group__1 )
-            // InternalKerMLExpressions.g:2425:2: rule__NullCoalescingExpression__Group__0__Impl rule__NullCoalescingExpression__Group__1
+            // InternalKerMLExpressions.g:2686:1: ( rule__NullCoalescingExpression__Group__0__Impl rule__NullCoalescingExpression__Group__1 )
+            // InternalKerMLExpressions.g:2687:2: rule__NullCoalescingExpression__Group__0__Impl rule__NullCoalescingExpression__Group__1
             {
-            pushFollow(FOLLOW_6);
+            pushFollow(FOLLOW_8);
             rule__NullCoalescingExpression__Group__0__Impl();
 
             state._fsp--;
@@ -7765,25 +8674,25 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__NullCoalescingExpression__Group__0__Impl"
-    // InternalKerMLExpressions.g:2432:1: rule__NullCoalescingExpression__Group__0__Impl : ( ruleConditionalOrExpression ) ;
+    // InternalKerMLExpressions.g:2694:1: rule__NullCoalescingExpression__Group__0__Impl : ( ruleImpliesExpression ) ;
     public final void rule__NullCoalescingExpression__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:2436:1: ( ( ruleConditionalOrExpression ) )
-            // InternalKerMLExpressions.g:2437:1: ( ruleConditionalOrExpression )
+            // InternalKerMLExpressions.g:2698:1: ( ( ruleImpliesExpression ) )
+            // InternalKerMLExpressions.g:2699:1: ( ruleImpliesExpression )
             {
-            // InternalKerMLExpressions.g:2437:1: ( ruleConditionalOrExpression )
-            // InternalKerMLExpressions.g:2438:2: ruleConditionalOrExpression
+            // InternalKerMLExpressions.g:2699:1: ( ruleImpliesExpression )
+            // InternalKerMLExpressions.g:2700:2: ruleImpliesExpression
             {
-             before(grammarAccess.getNullCoalescingExpressionAccess().getConditionalOrExpressionParserRuleCall_0()); 
+             before(grammarAccess.getNullCoalescingExpressionAccess().getImpliesExpressionParserRuleCall_0()); 
             pushFollow(FOLLOW_2);
-            ruleConditionalOrExpression();
+            ruleImpliesExpression();
 
             state._fsp--;
 
-             after(grammarAccess.getNullCoalescingExpressionAccess().getConditionalOrExpressionParserRuleCall_0()); 
+             after(grammarAccess.getNullCoalescingExpressionAccess().getImpliesExpressionParserRuleCall_0()); 
 
             }
 
@@ -7806,14 +8715,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__NullCoalescingExpression__Group__1"
-    // InternalKerMLExpressions.g:2447:1: rule__NullCoalescingExpression__Group__1 : rule__NullCoalescingExpression__Group__1__Impl ;
+    // InternalKerMLExpressions.g:2709:1: rule__NullCoalescingExpression__Group__1 : rule__NullCoalescingExpression__Group__1__Impl ;
     public final void rule__NullCoalescingExpression__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:2451:1: ( rule__NullCoalescingExpression__Group__1__Impl )
-            // InternalKerMLExpressions.g:2452:2: rule__NullCoalescingExpression__Group__1__Impl
+            // InternalKerMLExpressions.g:2713:1: ( rule__NullCoalescingExpression__Group__1__Impl )
+            // InternalKerMLExpressions.g:2714:2: rule__NullCoalescingExpression__Group__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__NullCoalescingExpression__Group__1__Impl();
@@ -7839,35 +8748,35 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__NullCoalescingExpression__Group__1__Impl"
-    // InternalKerMLExpressions.g:2458:1: rule__NullCoalescingExpression__Group__1__Impl : ( ( rule__NullCoalescingExpression__Group_1__0 )* ) ;
+    // InternalKerMLExpressions.g:2720:1: rule__NullCoalescingExpression__Group__1__Impl : ( ( rule__NullCoalescingExpression__Group_1__0 )* ) ;
     public final void rule__NullCoalescingExpression__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:2462:1: ( ( ( rule__NullCoalescingExpression__Group_1__0 )* ) )
-            // InternalKerMLExpressions.g:2463:1: ( ( rule__NullCoalescingExpression__Group_1__0 )* )
+            // InternalKerMLExpressions.g:2724:1: ( ( ( rule__NullCoalescingExpression__Group_1__0 )* ) )
+            // InternalKerMLExpressions.g:2725:1: ( ( rule__NullCoalescingExpression__Group_1__0 )* )
             {
-            // InternalKerMLExpressions.g:2463:1: ( ( rule__NullCoalescingExpression__Group_1__0 )* )
-            // InternalKerMLExpressions.g:2464:2: ( rule__NullCoalescingExpression__Group_1__0 )*
+            // InternalKerMLExpressions.g:2725:1: ( ( rule__NullCoalescingExpression__Group_1__0 )* )
+            // InternalKerMLExpressions.g:2726:2: ( rule__NullCoalescingExpression__Group_1__0 )*
             {
              before(grammarAccess.getNullCoalescingExpressionAccess().getGroup_1()); 
-            // InternalKerMLExpressions.g:2465:2: ( rule__NullCoalescingExpression__Group_1__0 )*
-            loop22:
+            // InternalKerMLExpressions.g:2727:2: ( rule__NullCoalescingExpression__Group_1__0 )*
+            loop27:
             do {
-                int alt22=2;
-                int LA22_0 = input.LA(1);
+                int alt27=2;
+                int LA27_0 = input.LA(1);
 
-                if ( (LA22_0==15) ) {
-                    alt22=1;
+                if ( (LA27_0==15) ) {
+                    alt27=1;
                 }
 
 
-                switch (alt22) {
+                switch (alt27) {
             	case 1 :
-            	    // InternalKerMLExpressions.g:2465:3: rule__NullCoalescingExpression__Group_1__0
+            	    // InternalKerMLExpressions.g:2727:3: rule__NullCoalescingExpression__Group_1__0
             	    {
-            	    pushFollow(FOLLOW_7);
+            	    pushFollow(FOLLOW_9);
             	    rule__NullCoalescingExpression__Group_1__0();
 
             	    state._fsp--;
@@ -7877,7 +8786,7 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
             	    break;
 
             	default :
-            	    break loop22;
+            	    break loop27;
                 }
             } while (true);
 
@@ -7904,16 +8813,16 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__NullCoalescingExpression__Group_1__0"
-    // InternalKerMLExpressions.g:2474:1: rule__NullCoalescingExpression__Group_1__0 : rule__NullCoalescingExpression__Group_1__0__Impl rule__NullCoalescingExpression__Group_1__1 ;
+    // InternalKerMLExpressions.g:2736:1: rule__NullCoalescingExpression__Group_1__0 : rule__NullCoalescingExpression__Group_1__0__Impl rule__NullCoalescingExpression__Group_1__1 ;
     public final void rule__NullCoalescingExpression__Group_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:2478:1: ( rule__NullCoalescingExpression__Group_1__0__Impl rule__NullCoalescingExpression__Group_1__1 )
-            // InternalKerMLExpressions.g:2479:2: rule__NullCoalescingExpression__Group_1__0__Impl rule__NullCoalescingExpression__Group_1__1
+            // InternalKerMLExpressions.g:2740:1: ( rule__NullCoalescingExpression__Group_1__0__Impl rule__NullCoalescingExpression__Group_1__1 )
+            // InternalKerMLExpressions.g:2741:2: rule__NullCoalescingExpression__Group_1__0__Impl rule__NullCoalescingExpression__Group_1__1
             {
-            pushFollow(FOLLOW_6);
+            pushFollow(FOLLOW_8);
             rule__NullCoalescingExpression__Group_1__0__Impl();
 
             state._fsp--;
@@ -7942,21 +8851,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__NullCoalescingExpression__Group_1__0__Impl"
-    // InternalKerMLExpressions.g:2486:1: rule__NullCoalescingExpression__Group_1__0__Impl : ( () ) ;
+    // InternalKerMLExpressions.g:2748:1: rule__NullCoalescingExpression__Group_1__0__Impl : ( () ) ;
     public final void rule__NullCoalescingExpression__Group_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:2490:1: ( ( () ) )
-            // InternalKerMLExpressions.g:2491:1: ( () )
+            // InternalKerMLExpressions.g:2752:1: ( ( () ) )
+            // InternalKerMLExpressions.g:2753:1: ( () )
             {
-            // InternalKerMLExpressions.g:2491:1: ( () )
-            // InternalKerMLExpressions.g:2492:2: ()
+            // InternalKerMLExpressions.g:2753:1: ( () )
+            // InternalKerMLExpressions.g:2754:2: ()
             {
              before(grammarAccess.getNullCoalescingExpressionAccess().getOperatorExpressionOperandAction_1_0()); 
-            // InternalKerMLExpressions.g:2493:2: ()
-            // InternalKerMLExpressions.g:2493:3: 
+            // InternalKerMLExpressions.g:2755:2: ()
+            // InternalKerMLExpressions.g:2755:3: 
             {
             }
 
@@ -7979,16 +8888,16 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__NullCoalescingExpression__Group_1__1"
-    // InternalKerMLExpressions.g:2501:1: rule__NullCoalescingExpression__Group_1__1 : rule__NullCoalescingExpression__Group_1__1__Impl rule__NullCoalescingExpression__Group_1__2 ;
+    // InternalKerMLExpressions.g:2763:1: rule__NullCoalescingExpression__Group_1__1 : rule__NullCoalescingExpression__Group_1__1__Impl rule__NullCoalescingExpression__Group_1__2 ;
     public final void rule__NullCoalescingExpression__Group_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:2505:1: ( rule__NullCoalescingExpression__Group_1__1__Impl rule__NullCoalescingExpression__Group_1__2 )
-            // InternalKerMLExpressions.g:2506:2: rule__NullCoalescingExpression__Group_1__1__Impl rule__NullCoalescingExpression__Group_1__2
+            // InternalKerMLExpressions.g:2767:1: ( rule__NullCoalescingExpression__Group_1__1__Impl rule__NullCoalescingExpression__Group_1__2 )
+            // InternalKerMLExpressions.g:2768:2: rule__NullCoalescingExpression__Group_1__1__Impl rule__NullCoalescingExpression__Group_1__2
             {
-            pushFollow(FOLLOW_4);
+            pushFollow(FOLLOW_6);
             rule__NullCoalescingExpression__Group_1__1__Impl();
 
             state._fsp--;
@@ -8017,21 +8926,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__NullCoalescingExpression__Group_1__1__Impl"
-    // InternalKerMLExpressions.g:2513:1: rule__NullCoalescingExpression__Group_1__1__Impl : ( ( rule__NullCoalescingExpression__OperatorAssignment_1_1 ) ) ;
+    // InternalKerMLExpressions.g:2775:1: rule__NullCoalescingExpression__Group_1__1__Impl : ( ( rule__NullCoalescingExpression__OperatorAssignment_1_1 ) ) ;
     public final void rule__NullCoalescingExpression__Group_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:2517:1: ( ( ( rule__NullCoalescingExpression__OperatorAssignment_1_1 ) ) )
-            // InternalKerMLExpressions.g:2518:1: ( ( rule__NullCoalescingExpression__OperatorAssignment_1_1 ) )
+            // InternalKerMLExpressions.g:2779:1: ( ( ( rule__NullCoalescingExpression__OperatorAssignment_1_1 ) ) )
+            // InternalKerMLExpressions.g:2780:1: ( ( rule__NullCoalescingExpression__OperatorAssignment_1_1 ) )
             {
-            // InternalKerMLExpressions.g:2518:1: ( ( rule__NullCoalescingExpression__OperatorAssignment_1_1 ) )
-            // InternalKerMLExpressions.g:2519:2: ( rule__NullCoalescingExpression__OperatorAssignment_1_1 )
+            // InternalKerMLExpressions.g:2780:1: ( ( rule__NullCoalescingExpression__OperatorAssignment_1_1 ) )
+            // InternalKerMLExpressions.g:2781:2: ( rule__NullCoalescingExpression__OperatorAssignment_1_1 )
             {
              before(grammarAccess.getNullCoalescingExpressionAccess().getOperatorAssignment_1_1()); 
-            // InternalKerMLExpressions.g:2520:2: ( rule__NullCoalescingExpression__OperatorAssignment_1_1 )
-            // InternalKerMLExpressions.g:2520:3: rule__NullCoalescingExpression__OperatorAssignment_1_1
+            // InternalKerMLExpressions.g:2782:2: ( rule__NullCoalescingExpression__OperatorAssignment_1_1 )
+            // InternalKerMLExpressions.g:2782:3: rule__NullCoalescingExpression__OperatorAssignment_1_1
             {
             pushFollow(FOLLOW_2);
             rule__NullCoalescingExpression__OperatorAssignment_1_1();
@@ -8064,14 +8973,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__NullCoalescingExpression__Group_1__2"
-    // InternalKerMLExpressions.g:2528:1: rule__NullCoalescingExpression__Group_1__2 : rule__NullCoalescingExpression__Group_1__2__Impl ;
+    // InternalKerMLExpressions.g:2790:1: rule__NullCoalescingExpression__Group_1__2 : rule__NullCoalescingExpression__Group_1__2__Impl ;
     public final void rule__NullCoalescingExpression__Group_1__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:2532:1: ( rule__NullCoalescingExpression__Group_1__2__Impl )
-            // InternalKerMLExpressions.g:2533:2: rule__NullCoalescingExpression__Group_1__2__Impl
+            // InternalKerMLExpressions.g:2794:1: ( rule__NullCoalescingExpression__Group_1__2__Impl )
+            // InternalKerMLExpressions.g:2795:2: rule__NullCoalescingExpression__Group_1__2__Impl
             {
             pushFollow(FOLLOW_2);
             rule__NullCoalescingExpression__Group_1__2__Impl();
@@ -8097,21 +9006,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__NullCoalescingExpression__Group_1__2__Impl"
-    // InternalKerMLExpressions.g:2539:1: rule__NullCoalescingExpression__Group_1__2__Impl : ( ( rule__NullCoalescingExpression__OperandAssignment_1_2 ) ) ;
+    // InternalKerMLExpressions.g:2801:1: rule__NullCoalescingExpression__Group_1__2__Impl : ( ( rule__NullCoalescingExpression__OperandAssignment_1_2 ) ) ;
     public final void rule__NullCoalescingExpression__Group_1__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:2543:1: ( ( ( rule__NullCoalescingExpression__OperandAssignment_1_2 ) ) )
-            // InternalKerMLExpressions.g:2544:1: ( ( rule__NullCoalescingExpression__OperandAssignment_1_2 ) )
+            // InternalKerMLExpressions.g:2805:1: ( ( ( rule__NullCoalescingExpression__OperandAssignment_1_2 ) ) )
+            // InternalKerMLExpressions.g:2806:1: ( ( rule__NullCoalescingExpression__OperandAssignment_1_2 ) )
             {
-            // InternalKerMLExpressions.g:2544:1: ( ( rule__NullCoalescingExpression__OperandAssignment_1_2 ) )
-            // InternalKerMLExpressions.g:2545:2: ( rule__NullCoalescingExpression__OperandAssignment_1_2 )
+            // InternalKerMLExpressions.g:2806:1: ( ( rule__NullCoalescingExpression__OperandAssignment_1_2 ) )
+            // InternalKerMLExpressions.g:2807:2: ( rule__NullCoalescingExpression__OperandAssignment_1_2 )
             {
              before(grammarAccess.getNullCoalescingExpressionAccess().getOperandAssignment_1_2()); 
-            // InternalKerMLExpressions.g:2546:2: ( rule__NullCoalescingExpression__OperandAssignment_1_2 )
-            // InternalKerMLExpressions.g:2546:3: rule__NullCoalescingExpression__OperandAssignment_1_2
+            // InternalKerMLExpressions.g:2808:2: ( rule__NullCoalescingExpression__OperandAssignment_1_2 )
+            // InternalKerMLExpressions.g:2808:3: rule__NullCoalescingExpression__OperandAssignment_1_2
             {
             pushFollow(FOLLOW_2);
             rule__NullCoalescingExpression__OperandAssignment_1_2();
@@ -8143,440 +9052,23 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
     // $ANTLR end "rule__NullCoalescingExpression__Group_1__2__Impl"
 
 
-    // $ANTLR start "rule__ConditionalOrExpression__Group__0"
-    // InternalKerMLExpressions.g:2555:1: rule__ConditionalOrExpression__Group__0 : rule__ConditionalOrExpression__Group__0__Impl rule__ConditionalOrExpression__Group__1 ;
-    public final void rule__ConditionalOrExpression__Group__0() throws RecognitionException {
+    // $ANTLR start "rule__ImpliesExpression__Group__0"
+    // InternalKerMLExpressions.g:2817:1: rule__ImpliesExpression__Group__0 : rule__ImpliesExpression__Group__0__Impl rule__ImpliesExpression__Group__1 ;
+    public final void rule__ImpliesExpression__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:2559:1: ( rule__ConditionalOrExpression__Group__0__Impl rule__ConditionalOrExpression__Group__1 )
-            // InternalKerMLExpressions.g:2560:2: rule__ConditionalOrExpression__Group__0__Impl rule__ConditionalOrExpression__Group__1
-            {
-            pushFollow(FOLLOW_8);
-            rule__ConditionalOrExpression__Group__0__Impl();
-
-            state._fsp--;
-
-            pushFollow(FOLLOW_2);
-            rule__ConditionalOrExpression__Group__1();
-
-            state._fsp--;
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__ConditionalOrExpression__Group__0"
-
-
-    // $ANTLR start "rule__ConditionalOrExpression__Group__0__Impl"
-    // InternalKerMLExpressions.g:2567:1: rule__ConditionalOrExpression__Group__0__Impl : ( ruleConditionalAndExpression ) ;
-    public final void rule__ConditionalOrExpression__Group__0__Impl() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-        	
-        try {
-            // InternalKerMLExpressions.g:2571:1: ( ( ruleConditionalAndExpression ) )
-            // InternalKerMLExpressions.g:2572:1: ( ruleConditionalAndExpression )
-            {
-            // InternalKerMLExpressions.g:2572:1: ( ruleConditionalAndExpression )
-            // InternalKerMLExpressions.g:2573:2: ruleConditionalAndExpression
-            {
-             before(grammarAccess.getConditionalOrExpressionAccess().getConditionalAndExpressionParserRuleCall_0()); 
-            pushFollow(FOLLOW_2);
-            ruleConditionalAndExpression();
-
-            state._fsp--;
-
-             after(grammarAccess.getConditionalOrExpressionAccess().getConditionalAndExpressionParserRuleCall_0()); 
-
-            }
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__ConditionalOrExpression__Group__0__Impl"
-
-
-    // $ANTLR start "rule__ConditionalOrExpression__Group__1"
-    // InternalKerMLExpressions.g:2582:1: rule__ConditionalOrExpression__Group__1 : rule__ConditionalOrExpression__Group__1__Impl ;
-    public final void rule__ConditionalOrExpression__Group__1() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-        	
-        try {
-            // InternalKerMLExpressions.g:2586:1: ( rule__ConditionalOrExpression__Group__1__Impl )
-            // InternalKerMLExpressions.g:2587:2: rule__ConditionalOrExpression__Group__1__Impl
-            {
-            pushFollow(FOLLOW_2);
-            rule__ConditionalOrExpression__Group__1__Impl();
-
-            state._fsp--;
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__ConditionalOrExpression__Group__1"
-
-
-    // $ANTLR start "rule__ConditionalOrExpression__Group__1__Impl"
-    // InternalKerMLExpressions.g:2593:1: rule__ConditionalOrExpression__Group__1__Impl : ( ( rule__ConditionalOrExpression__Group_1__0 )* ) ;
-    public final void rule__ConditionalOrExpression__Group__1__Impl() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-        	
-        try {
-            // InternalKerMLExpressions.g:2597:1: ( ( ( rule__ConditionalOrExpression__Group_1__0 )* ) )
-            // InternalKerMLExpressions.g:2598:1: ( ( rule__ConditionalOrExpression__Group_1__0 )* )
-            {
-            // InternalKerMLExpressions.g:2598:1: ( ( rule__ConditionalOrExpression__Group_1__0 )* )
-            // InternalKerMLExpressions.g:2599:2: ( rule__ConditionalOrExpression__Group_1__0 )*
-            {
-             before(grammarAccess.getConditionalOrExpressionAccess().getGroup_1()); 
-            // InternalKerMLExpressions.g:2600:2: ( rule__ConditionalOrExpression__Group_1__0 )*
-            loop23:
-            do {
-                int alt23=2;
-                int LA23_0 = input.LA(1);
-
-                if ( (LA23_0==16) ) {
-                    alt23=1;
-                }
-
-
-                switch (alt23) {
-            	case 1 :
-            	    // InternalKerMLExpressions.g:2600:3: rule__ConditionalOrExpression__Group_1__0
-            	    {
-            	    pushFollow(FOLLOW_9);
-            	    rule__ConditionalOrExpression__Group_1__0();
-
-            	    state._fsp--;
-
-
-            	    }
-            	    break;
-
-            	default :
-            	    break loop23;
-                }
-            } while (true);
-
-             after(grammarAccess.getConditionalOrExpressionAccess().getGroup_1()); 
-
-            }
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__ConditionalOrExpression__Group__1__Impl"
-
-
-    // $ANTLR start "rule__ConditionalOrExpression__Group_1__0"
-    // InternalKerMLExpressions.g:2609:1: rule__ConditionalOrExpression__Group_1__0 : rule__ConditionalOrExpression__Group_1__0__Impl rule__ConditionalOrExpression__Group_1__1 ;
-    public final void rule__ConditionalOrExpression__Group_1__0() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-        	
-        try {
-            // InternalKerMLExpressions.g:2613:1: ( rule__ConditionalOrExpression__Group_1__0__Impl rule__ConditionalOrExpression__Group_1__1 )
-            // InternalKerMLExpressions.g:2614:2: rule__ConditionalOrExpression__Group_1__0__Impl rule__ConditionalOrExpression__Group_1__1
-            {
-            pushFollow(FOLLOW_8);
-            rule__ConditionalOrExpression__Group_1__0__Impl();
-
-            state._fsp--;
-
-            pushFollow(FOLLOW_2);
-            rule__ConditionalOrExpression__Group_1__1();
-
-            state._fsp--;
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__ConditionalOrExpression__Group_1__0"
-
-
-    // $ANTLR start "rule__ConditionalOrExpression__Group_1__0__Impl"
-    // InternalKerMLExpressions.g:2621:1: rule__ConditionalOrExpression__Group_1__0__Impl : ( () ) ;
-    public final void rule__ConditionalOrExpression__Group_1__0__Impl() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-        	
-        try {
-            // InternalKerMLExpressions.g:2625:1: ( ( () ) )
-            // InternalKerMLExpressions.g:2626:1: ( () )
-            {
-            // InternalKerMLExpressions.g:2626:1: ( () )
-            // InternalKerMLExpressions.g:2627:2: ()
-            {
-             before(grammarAccess.getConditionalOrExpressionAccess().getOperatorExpressionOperandAction_1_0()); 
-            // InternalKerMLExpressions.g:2628:2: ()
-            // InternalKerMLExpressions.g:2628:3: 
-            {
-            }
-
-             after(grammarAccess.getConditionalOrExpressionAccess().getOperatorExpressionOperandAction_1_0()); 
-
-            }
-
-
-            }
-
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__ConditionalOrExpression__Group_1__0__Impl"
-
-
-    // $ANTLR start "rule__ConditionalOrExpression__Group_1__1"
-    // InternalKerMLExpressions.g:2636:1: rule__ConditionalOrExpression__Group_1__1 : rule__ConditionalOrExpression__Group_1__1__Impl rule__ConditionalOrExpression__Group_1__2 ;
-    public final void rule__ConditionalOrExpression__Group_1__1() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-        	
-        try {
-            // InternalKerMLExpressions.g:2640:1: ( rule__ConditionalOrExpression__Group_1__1__Impl rule__ConditionalOrExpression__Group_1__2 )
-            // InternalKerMLExpressions.g:2641:2: rule__ConditionalOrExpression__Group_1__1__Impl rule__ConditionalOrExpression__Group_1__2
-            {
-            pushFollow(FOLLOW_4);
-            rule__ConditionalOrExpression__Group_1__1__Impl();
-
-            state._fsp--;
-
-            pushFollow(FOLLOW_2);
-            rule__ConditionalOrExpression__Group_1__2();
-
-            state._fsp--;
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__ConditionalOrExpression__Group_1__1"
-
-
-    // $ANTLR start "rule__ConditionalOrExpression__Group_1__1__Impl"
-    // InternalKerMLExpressions.g:2648:1: rule__ConditionalOrExpression__Group_1__1__Impl : ( ( rule__ConditionalOrExpression__OperatorAssignment_1_1 ) ) ;
-    public final void rule__ConditionalOrExpression__Group_1__1__Impl() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-        	
-        try {
-            // InternalKerMLExpressions.g:2652:1: ( ( ( rule__ConditionalOrExpression__OperatorAssignment_1_1 ) ) )
-            // InternalKerMLExpressions.g:2653:1: ( ( rule__ConditionalOrExpression__OperatorAssignment_1_1 ) )
-            {
-            // InternalKerMLExpressions.g:2653:1: ( ( rule__ConditionalOrExpression__OperatorAssignment_1_1 ) )
-            // InternalKerMLExpressions.g:2654:2: ( rule__ConditionalOrExpression__OperatorAssignment_1_1 )
-            {
-             before(grammarAccess.getConditionalOrExpressionAccess().getOperatorAssignment_1_1()); 
-            // InternalKerMLExpressions.g:2655:2: ( rule__ConditionalOrExpression__OperatorAssignment_1_1 )
-            // InternalKerMLExpressions.g:2655:3: rule__ConditionalOrExpression__OperatorAssignment_1_1
-            {
-            pushFollow(FOLLOW_2);
-            rule__ConditionalOrExpression__OperatorAssignment_1_1();
-
-            state._fsp--;
-
-
-            }
-
-             after(grammarAccess.getConditionalOrExpressionAccess().getOperatorAssignment_1_1()); 
-
-            }
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__ConditionalOrExpression__Group_1__1__Impl"
-
-
-    // $ANTLR start "rule__ConditionalOrExpression__Group_1__2"
-    // InternalKerMLExpressions.g:2663:1: rule__ConditionalOrExpression__Group_1__2 : rule__ConditionalOrExpression__Group_1__2__Impl ;
-    public final void rule__ConditionalOrExpression__Group_1__2() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-        	
-        try {
-            // InternalKerMLExpressions.g:2667:1: ( rule__ConditionalOrExpression__Group_1__2__Impl )
-            // InternalKerMLExpressions.g:2668:2: rule__ConditionalOrExpression__Group_1__2__Impl
-            {
-            pushFollow(FOLLOW_2);
-            rule__ConditionalOrExpression__Group_1__2__Impl();
-
-            state._fsp--;
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__ConditionalOrExpression__Group_1__2"
-
-
-    // $ANTLR start "rule__ConditionalOrExpression__Group_1__2__Impl"
-    // InternalKerMLExpressions.g:2674:1: rule__ConditionalOrExpression__Group_1__2__Impl : ( ( rule__ConditionalOrExpression__OperandAssignment_1_2 ) ) ;
-    public final void rule__ConditionalOrExpression__Group_1__2__Impl() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-        	
-        try {
-            // InternalKerMLExpressions.g:2678:1: ( ( ( rule__ConditionalOrExpression__OperandAssignment_1_2 ) ) )
-            // InternalKerMLExpressions.g:2679:1: ( ( rule__ConditionalOrExpression__OperandAssignment_1_2 ) )
-            {
-            // InternalKerMLExpressions.g:2679:1: ( ( rule__ConditionalOrExpression__OperandAssignment_1_2 ) )
-            // InternalKerMLExpressions.g:2680:2: ( rule__ConditionalOrExpression__OperandAssignment_1_2 )
-            {
-             before(grammarAccess.getConditionalOrExpressionAccess().getOperandAssignment_1_2()); 
-            // InternalKerMLExpressions.g:2681:2: ( rule__ConditionalOrExpression__OperandAssignment_1_2 )
-            // InternalKerMLExpressions.g:2681:3: rule__ConditionalOrExpression__OperandAssignment_1_2
-            {
-            pushFollow(FOLLOW_2);
-            rule__ConditionalOrExpression__OperandAssignment_1_2();
-
-            state._fsp--;
-
-
-            }
-
-             after(grammarAccess.getConditionalOrExpressionAccess().getOperandAssignment_1_2()); 
-
-            }
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__ConditionalOrExpression__Group_1__2__Impl"
-
-
-    // $ANTLR start "rule__ConditionalAndExpression__Group__0"
-    // InternalKerMLExpressions.g:2690:1: rule__ConditionalAndExpression__Group__0 : rule__ConditionalAndExpression__Group__0__Impl rule__ConditionalAndExpression__Group__1 ;
-    public final void rule__ConditionalAndExpression__Group__0() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-        	
-        try {
-            // InternalKerMLExpressions.g:2694:1: ( rule__ConditionalAndExpression__Group__0__Impl rule__ConditionalAndExpression__Group__1 )
-            // InternalKerMLExpressions.g:2695:2: rule__ConditionalAndExpression__Group__0__Impl rule__ConditionalAndExpression__Group__1
+            // InternalKerMLExpressions.g:2821:1: ( rule__ImpliesExpression__Group__0__Impl rule__ImpliesExpression__Group__1 )
+            // InternalKerMLExpressions.g:2822:2: rule__ImpliesExpression__Group__0__Impl rule__ImpliesExpression__Group__1
             {
             pushFollow(FOLLOW_10);
-            rule__ConditionalAndExpression__Group__0__Impl();
+            rule__ImpliesExpression__Group__0__Impl();
 
             state._fsp--;
 
             pushFollow(FOLLOW_2);
-            rule__ConditionalAndExpression__Group__1();
+            rule__ImpliesExpression__Group__1();
 
             state._fsp--;
 
@@ -8595,29 +9087,29 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
         }
         return ;
     }
-    // $ANTLR end "rule__ConditionalAndExpression__Group__0"
+    // $ANTLR end "rule__ImpliesExpression__Group__0"
 
 
-    // $ANTLR start "rule__ConditionalAndExpression__Group__0__Impl"
-    // InternalKerMLExpressions.g:2702:1: rule__ConditionalAndExpression__Group__0__Impl : ( ruleOrExpression ) ;
-    public final void rule__ConditionalAndExpression__Group__0__Impl() throws RecognitionException {
+    // $ANTLR start "rule__ImpliesExpression__Group__0__Impl"
+    // InternalKerMLExpressions.g:2829:1: rule__ImpliesExpression__Group__0__Impl : ( ruleOrExpression ) ;
+    public final void rule__ImpliesExpression__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:2706:1: ( ( ruleOrExpression ) )
-            // InternalKerMLExpressions.g:2707:1: ( ruleOrExpression )
+            // InternalKerMLExpressions.g:2833:1: ( ( ruleOrExpression ) )
+            // InternalKerMLExpressions.g:2834:1: ( ruleOrExpression )
             {
-            // InternalKerMLExpressions.g:2707:1: ( ruleOrExpression )
-            // InternalKerMLExpressions.g:2708:2: ruleOrExpression
+            // InternalKerMLExpressions.g:2834:1: ( ruleOrExpression )
+            // InternalKerMLExpressions.g:2835:2: ruleOrExpression
             {
-             before(grammarAccess.getConditionalAndExpressionAccess().getOrExpressionParserRuleCall_0()); 
+             before(grammarAccess.getImpliesExpressionAccess().getOrExpressionParserRuleCall_0()); 
             pushFollow(FOLLOW_2);
             ruleOrExpression();
 
             state._fsp--;
 
-             after(grammarAccess.getConditionalAndExpressionAccess().getOrExpressionParserRuleCall_0()); 
+             after(grammarAccess.getImpliesExpressionAccess().getOrExpressionParserRuleCall_0()); 
 
             }
 
@@ -8636,21 +9128,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
         }
         return ;
     }
-    // $ANTLR end "rule__ConditionalAndExpression__Group__0__Impl"
+    // $ANTLR end "rule__ImpliesExpression__Group__0__Impl"
 
 
-    // $ANTLR start "rule__ConditionalAndExpression__Group__1"
-    // InternalKerMLExpressions.g:2717:1: rule__ConditionalAndExpression__Group__1 : rule__ConditionalAndExpression__Group__1__Impl ;
-    public final void rule__ConditionalAndExpression__Group__1() throws RecognitionException {
+    // $ANTLR start "rule__ImpliesExpression__Group__1"
+    // InternalKerMLExpressions.g:2844:1: rule__ImpliesExpression__Group__1 : rule__ImpliesExpression__Group__1__Impl ;
+    public final void rule__ImpliesExpression__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:2721:1: ( rule__ConditionalAndExpression__Group__1__Impl )
-            // InternalKerMLExpressions.g:2722:2: rule__ConditionalAndExpression__Group__1__Impl
+            // InternalKerMLExpressions.g:2848:1: ( rule__ImpliesExpression__Group__1__Impl )
+            // InternalKerMLExpressions.g:2849:2: rule__ImpliesExpression__Group__1__Impl
             {
             pushFollow(FOLLOW_2);
-            rule__ConditionalAndExpression__Group__1__Impl();
+            rule__ImpliesExpression__Group__1__Impl();
 
             state._fsp--;
 
@@ -8669,40 +9161,40 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
         }
         return ;
     }
-    // $ANTLR end "rule__ConditionalAndExpression__Group__1"
+    // $ANTLR end "rule__ImpliesExpression__Group__1"
 
 
-    // $ANTLR start "rule__ConditionalAndExpression__Group__1__Impl"
-    // InternalKerMLExpressions.g:2728:1: rule__ConditionalAndExpression__Group__1__Impl : ( ( rule__ConditionalAndExpression__Group_1__0 )* ) ;
-    public final void rule__ConditionalAndExpression__Group__1__Impl() throws RecognitionException {
+    // $ANTLR start "rule__ImpliesExpression__Group__1__Impl"
+    // InternalKerMLExpressions.g:2855:1: rule__ImpliesExpression__Group__1__Impl : ( ( rule__ImpliesExpression__Group_1__0 )* ) ;
+    public final void rule__ImpliesExpression__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:2732:1: ( ( ( rule__ConditionalAndExpression__Group_1__0 )* ) )
-            // InternalKerMLExpressions.g:2733:1: ( ( rule__ConditionalAndExpression__Group_1__0 )* )
+            // InternalKerMLExpressions.g:2859:1: ( ( ( rule__ImpliesExpression__Group_1__0 )* ) )
+            // InternalKerMLExpressions.g:2860:1: ( ( rule__ImpliesExpression__Group_1__0 )* )
             {
-            // InternalKerMLExpressions.g:2733:1: ( ( rule__ConditionalAndExpression__Group_1__0 )* )
-            // InternalKerMLExpressions.g:2734:2: ( rule__ConditionalAndExpression__Group_1__0 )*
+            // InternalKerMLExpressions.g:2860:1: ( ( rule__ImpliesExpression__Group_1__0 )* )
+            // InternalKerMLExpressions.g:2861:2: ( rule__ImpliesExpression__Group_1__0 )*
             {
-             before(grammarAccess.getConditionalAndExpressionAccess().getGroup_1()); 
-            // InternalKerMLExpressions.g:2735:2: ( rule__ConditionalAndExpression__Group_1__0 )*
-            loop24:
+             before(grammarAccess.getImpliesExpressionAccess().getGroup_1()); 
+            // InternalKerMLExpressions.g:2862:2: ( rule__ImpliesExpression__Group_1__0 )*
+            loop28:
             do {
-                int alt24=2;
-                int LA24_0 = input.LA(1);
+                int alt28=2;
+                int LA28_0 = input.LA(1);
 
-                if ( (LA24_0==17) ) {
-                    alt24=1;
+                if ( (LA28_0==16) ) {
+                    alt28=1;
                 }
 
 
-                switch (alt24) {
+                switch (alt28) {
             	case 1 :
-            	    // InternalKerMLExpressions.g:2735:3: rule__ConditionalAndExpression__Group_1__0
+            	    // InternalKerMLExpressions.g:2862:3: rule__ImpliesExpression__Group_1__0
             	    {
             	    pushFollow(FOLLOW_11);
-            	    rule__ConditionalAndExpression__Group_1__0();
+            	    rule__ImpliesExpression__Group_1__0();
 
             	    state._fsp--;
 
@@ -8711,11 +9203,11 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
             	    break;
 
             	default :
-            	    break loop24;
+            	    break loop28;
                 }
             } while (true);
 
-             after(grammarAccess.getConditionalAndExpressionAccess().getGroup_1()); 
+             after(grammarAccess.getImpliesExpressionAccess().getGroup_1()); 
 
             }
 
@@ -8734,26 +9226,26 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
         }
         return ;
     }
-    // $ANTLR end "rule__ConditionalAndExpression__Group__1__Impl"
+    // $ANTLR end "rule__ImpliesExpression__Group__1__Impl"
 
 
-    // $ANTLR start "rule__ConditionalAndExpression__Group_1__0"
-    // InternalKerMLExpressions.g:2744:1: rule__ConditionalAndExpression__Group_1__0 : rule__ConditionalAndExpression__Group_1__0__Impl rule__ConditionalAndExpression__Group_1__1 ;
-    public final void rule__ConditionalAndExpression__Group_1__0() throws RecognitionException {
+    // $ANTLR start "rule__ImpliesExpression__Group_1__0"
+    // InternalKerMLExpressions.g:2871:1: rule__ImpliesExpression__Group_1__0 : rule__ImpliesExpression__Group_1__0__Impl rule__ImpliesExpression__Group_1__1 ;
+    public final void rule__ImpliesExpression__Group_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:2748:1: ( rule__ConditionalAndExpression__Group_1__0__Impl rule__ConditionalAndExpression__Group_1__1 )
-            // InternalKerMLExpressions.g:2749:2: rule__ConditionalAndExpression__Group_1__0__Impl rule__ConditionalAndExpression__Group_1__1
+            // InternalKerMLExpressions.g:2875:1: ( rule__ImpliesExpression__Group_1__0__Impl rule__ImpliesExpression__Group_1__1 )
+            // InternalKerMLExpressions.g:2876:2: rule__ImpliesExpression__Group_1__0__Impl rule__ImpliesExpression__Group_1__1
             {
             pushFollow(FOLLOW_10);
-            rule__ConditionalAndExpression__Group_1__0__Impl();
+            rule__ImpliesExpression__Group_1__0__Impl();
 
             state._fsp--;
 
             pushFollow(FOLLOW_2);
-            rule__ConditionalAndExpression__Group_1__1();
+            rule__ImpliesExpression__Group_1__1();
 
             state._fsp--;
 
@@ -8772,29 +9264,29 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
         }
         return ;
     }
-    // $ANTLR end "rule__ConditionalAndExpression__Group_1__0"
+    // $ANTLR end "rule__ImpliesExpression__Group_1__0"
 
 
-    // $ANTLR start "rule__ConditionalAndExpression__Group_1__0__Impl"
-    // InternalKerMLExpressions.g:2756:1: rule__ConditionalAndExpression__Group_1__0__Impl : ( () ) ;
-    public final void rule__ConditionalAndExpression__Group_1__0__Impl() throws RecognitionException {
+    // $ANTLR start "rule__ImpliesExpression__Group_1__0__Impl"
+    // InternalKerMLExpressions.g:2883:1: rule__ImpliesExpression__Group_1__0__Impl : ( () ) ;
+    public final void rule__ImpliesExpression__Group_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:2760:1: ( ( () ) )
-            // InternalKerMLExpressions.g:2761:1: ( () )
+            // InternalKerMLExpressions.g:2887:1: ( ( () ) )
+            // InternalKerMLExpressions.g:2888:1: ( () )
             {
-            // InternalKerMLExpressions.g:2761:1: ( () )
-            // InternalKerMLExpressions.g:2762:2: ()
+            // InternalKerMLExpressions.g:2888:1: ( () )
+            // InternalKerMLExpressions.g:2889:2: ()
             {
-             before(grammarAccess.getConditionalAndExpressionAccess().getOperatorExpressionOperandAction_1_0()); 
-            // InternalKerMLExpressions.g:2763:2: ()
-            // InternalKerMLExpressions.g:2763:3: 
+             before(grammarAccess.getImpliesExpressionAccess().getOperatorExpressionOperandAction_1_0()); 
+            // InternalKerMLExpressions.g:2890:2: ()
+            // InternalKerMLExpressions.g:2890:3: 
             {
             }
 
-             after(grammarAccess.getConditionalAndExpressionAccess().getOperatorExpressionOperandAction_1_0()); 
+             after(grammarAccess.getImpliesExpressionAccess().getOperatorExpressionOperandAction_1_0()); 
 
             }
 
@@ -8809,26 +9301,26 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
         }
         return ;
     }
-    // $ANTLR end "rule__ConditionalAndExpression__Group_1__0__Impl"
+    // $ANTLR end "rule__ImpliesExpression__Group_1__0__Impl"
 
 
-    // $ANTLR start "rule__ConditionalAndExpression__Group_1__1"
-    // InternalKerMLExpressions.g:2771:1: rule__ConditionalAndExpression__Group_1__1 : rule__ConditionalAndExpression__Group_1__1__Impl rule__ConditionalAndExpression__Group_1__2 ;
-    public final void rule__ConditionalAndExpression__Group_1__1() throws RecognitionException {
+    // $ANTLR start "rule__ImpliesExpression__Group_1__1"
+    // InternalKerMLExpressions.g:2898:1: rule__ImpliesExpression__Group_1__1 : rule__ImpliesExpression__Group_1__1__Impl rule__ImpliesExpression__Group_1__2 ;
+    public final void rule__ImpliesExpression__Group_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:2775:1: ( rule__ConditionalAndExpression__Group_1__1__Impl rule__ConditionalAndExpression__Group_1__2 )
-            // InternalKerMLExpressions.g:2776:2: rule__ConditionalAndExpression__Group_1__1__Impl rule__ConditionalAndExpression__Group_1__2
+            // InternalKerMLExpressions.g:2902:1: ( rule__ImpliesExpression__Group_1__1__Impl rule__ImpliesExpression__Group_1__2 )
+            // InternalKerMLExpressions.g:2903:2: rule__ImpliesExpression__Group_1__1__Impl rule__ImpliesExpression__Group_1__2
             {
-            pushFollow(FOLLOW_4);
-            rule__ConditionalAndExpression__Group_1__1__Impl();
+            pushFollow(FOLLOW_6);
+            rule__ImpliesExpression__Group_1__1__Impl();
 
             state._fsp--;
 
             pushFollow(FOLLOW_2);
-            rule__ConditionalAndExpression__Group_1__2();
+            rule__ImpliesExpression__Group_1__2();
 
             state._fsp--;
 
@@ -8847,35 +9339,35 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
         }
         return ;
     }
-    // $ANTLR end "rule__ConditionalAndExpression__Group_1__1"
+    // $ANTLR end "rule__ImpliesExpression__Group_1__1"
 
 
-    // $ANTLR start "rule__ConditionalAndExpression__Group_1__1__Impl"
-    // InternalKerMLExpressions.g:2783:1: rule__ConditionalAndExpression__Group_1__1__Impl : ( ( rule__ConditionalAndExpression__OperatorAssignment_1_1 ) ) ;
-    public final void rule__ConditionalAndExpression__Group_1__1__Impl() throws RecognitionException {
+    // $ANTLR start "rule__ImpliesExpression__Group_1__1__Impl"
+    // InternalKerMLExpressions.g:2910:1: rule__ImpliesExpression__Group_1__1__Impl : ( ( rule__ImpliesExpression__OperatorAssignment_1_1 ) ) ;
+    public final void rule__ImpliesExpression__Group_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:2787:1: ( ( ( rule__ConditionalAndExpression__OperatorAssignment_1_1 ) ) )
-            // InternalKerMLExpressions.g:2788:1: ( ( rule__ConditionalAndExpression__OperatorAssignment_1_1 ) )
+            // InternalKerMLExpressions.g:2914:1: ( ( ( rule__ImpliesExpression__OperatorAssignment_1_1 ) ) )
+            // InternalKerMLExpressions.g:2915:1: ( ( rule__ImpliesExpression__OperatorAssignment_1_1 ) )
             {
-            // InternalKerMLExpressions.g:2788:1: ( ( rule__ConditionalAndExpression__OperatorAssignment_1_1 ) )
-            // InternalKerMLExpressions.g:2789:2: ( rule__ConditionalAndExpression__OperatorAssignment_1_1 )
+            // InternalKerMLExpressions.g:2915:1: ( ( rule__ImpliesExpression__OperatorAssignment_1_1 ) )
+            // InternalKerMLExpressions.g:2916:2: ( rule__ImpliesExpression__OperatorAssignment_1_1 )
             {
-             before(grammarAccess.getConditionalAndExpressionAccess().getOperatorAssignment_1_1()); 
-            // InternalKerMLExpressions.g:2790:2: ( rule__ConditionalAndExpression__OperatorAssignment_1_1 )
-            // InternalKerMLExpressions.g:2790:3: rule__ConditionalAndExpression__OperatorAssignment_1_1
+             before(grammarAccess.getImpliesExpressionAccess().getOperatorAssignment_1_1()); 
+            // InternalKerMLExpressions.g:2917:2: ( rule__ImpliesExpression__OperatorAssignment_1_1 )
+            // InternalKerMLExpressions.g:2917:3: rule__ImpliesExpression__OperatorAssignment_1_1
             {
             pushFollow(FOLLOW_2);
-            rule__ConditionalAndExpression__OperatorAssignment_1_1();
+            rule__ImpliesExpression__OperatorAssignment_1_1();
 
             state._fsp--;
 
 
             }
 
-             after(grammarAccess.getConditionalAndExpressionAccess().getOperatorAssignment_1_1()); 
+             after(grammarAccess.getImpliesExpressionAccess().getOperatorAssignment_1_1()); 
 
             }
 
@@ -8894,21 +9386,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
         }
         return ;
     }
-    // $ANTLR end "rule__ConditionalAndExpression__Group_1__1__Impl"
+    // $ANTLR end "rule__ImpliesExpression__Group_1__1__Impl"
 
 
-    // $ANTLR start "rule__ConditionalAndExpression__Group_1__2"
-    // InternalKerMLExpressions.g:2798:1: rule__ConditionalAndExpression__Group_1__2 : rule__ConditionalAndExpression__Group_1__2__Impl ;
-    public final void rule__ConditionalAndExpression__Group_1__2() throws RecognitionException {
+    // $ANTLR start "rule__ImpliesExpression__Group_1__2"
+    // InternalKerMLExpressions.g:2925:1: rule__ImpliesExpression__Group_1__2 : rule__ImpliesExpression__Group_1__2__Impl ;
+    public final void rule__ImpliesExpression__Group_1__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:2802:1: ( rule__ConditionalAndExpression__Group_1__2__Impl )
-            // InternalKerMLExpressions.g:2803:2: rule__ConditionalAndExpression__Group_1__2__Impl
+            // InternalKerMLExpressions.g:2929:1: ( rule__ImpliesExpression__Group_1__2__Impl )
+            // InternalKerMLExpressions.g:2930:2: rule__ImpliesExpression__Group_1__2__Impl
             {
             pushFollow(FOLLOW_2);
-            rule__ConditionalAndExpression__Group_1__2__Impl();
+            rule__ImpliesExpression__Group_1__2__Impl();
 
             state._fsp--;
 
@@ -8927,35 +9419,35 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
         }
         return ;
     }
-    // $ANTLR end "rule__ConditionalAndExpression__Group_1__2"
+    // $ANTLR end "rule__ImpliesExpression__Group_1__2"
 
 
-    // $ANTLR start "rule__ConditionalAndExpression__Group_1__2__Impl"
-    // InternalKerMLExpressions.g:2809:1: rule__ConditionalAndExpression__Group_1__2__Impl : ( ( rule__ConditionalAndExpression__OperandAssignment_1_2 ) ) ;
-    public final void rule__ConditionalAndExpression__Group_1__2__Impl() throws RecognitionException {
+    // $ANTLR start "rule__ImpliesExpression__Group_1__2__Impl"
+    // InternalKerMLExpressions.g:2936:1: rule__ImpliesExpression__Group_1__2__Impl : ( ( rule__ImpliesExpression__OperandAssignment_1_2 ) ) ;
+    public final void rule__ImpliesExpression__Group_1__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:2813:1: ( ( ( rule__ConditionalAndExpression__OperandAssignment_1_2 ) ) )
-            // InternalKerMLExpressions.g:2814:1: ( ( rule__ConditionalAndExpression__OperandAssignment_1_2 ) )
+            // InternalKerMLExpressions.g:2940:1: ( ( ( rule__ImpliesExpression__OperandAssignment_1_2 ) ) )
+            // InternalKerMLExpressions.g:2941:1: ( ( rule__ImpliesExpression__OperandAssignment_1_2 ) )
             {
-            // InternalKerMLExpressions.g:2814:1: ( ( rule__ConditionalAndExpression__OperandAssignment_1_2 ) )
-            // InternalKerMLExpressions.g:2815:2: ( rule__ConditionalAndExpression__OperandAssignment_1_2 )
+            // InternalKerMLExpressions.g:2941:1: ( ( rule__ImpliesExpression__OperandAssignment_1_2 ) )
+            // InternalKerMLExpressions.g:2942:2: ( rule__ImpliesExpression__OperandAssignment_1_2 )
             {
-             before(grammarAccess.getConditionalAndExpressionAccess().getOperandAssignment_1_2()); 
-            // InternalKerMLExpressions.g:2816:2: ( rule__ConditionalAndExpression__OperandAssignment_1_2 )
-            // InternalKerMLExpressions.g:2816:3: rule__ConditionalAndExpression__OperandAssignment_1_2
+             before(grammarAccess.getImpliesExpressionAccess().getOperandAssignment_1_2()); 
+            // InternalKerMLExpressions.g:2943:2: ( rule__ImpliesExpression__OperandAssignment_1_2 )
+            // InternalKerMLExpressions.g:2943:3: rule__ImpliesExpression__OperandAssignment_1_2
             {
             pushFollow(FOLLOW_2);
-            rule__ConditionalAndExpression__OperandAssignment_1_2();
+            rule__ImpliesExpression__OperandAssignment_1_2();
 
             state._fsp--;
 
 
             }
 
-             after(grammarAccess.getConditionalAndExpressionAccess().getOperandAssignment_1_2()); 
+             after(grammarAccess.getImpliesExpressionAccess().getOperandAssignment_1_2()); 
 
             }
 
@@ -8974,18 +9466,18 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
         }
         return ;
     }
-    // $ANTLR end "rule__ConditionalAndExpression__Group_1__2__Impl"
+    // $ANTLR end "rule__ImpliesExpression__Group_1__2__Impl"
 
 
     // $ANTLR start "rule__OrExpression__Group__0"
-    // InternalKerMLExpressions.g:2825:1: rule__OrExpression__Group__0 : rule__OrExpression__Group__0__Impl rule__OrExpression__Group__1 ;
+    // InternalKerMLExpressions.g:2952:1: rule__OrExpression__Group__0 : rule__OrExpression__Group__0__Impl rule__OrExpression__Group__1 ;
     public final void rule__OrExpression__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:2829:1: ( rule__OrExpression__Group__0__Impl rule__OrExpression__Group__1 )
-            // InternalKerMLExpressions.g:2830:2: rule__OrExpression__Group__0__Impl rule__OrExpression__Group__1
+            // InternalKerMLExpressions.g:2956:1: ( rule__OrExpression__Group__0__Impl rule__OrExpression__Group__1 )
+            // InternalKerMLExpressions.g:2957:2: rule__OrExpression__Group__0__Impl rule__OrExpression__Group__1
             {
             pushFollow(FOLLOW_12);
             rule__OrExpression__Group__0__Impl();
@@ -9016,17 +9508,17 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__OrExpression__Group__0__Impl"
-    // InternalKerMLExpressions.g:2837:1: rule__OrExpression__Group__0__Impl : ( ruleXorExpression ) ;
+    // InternalKerMLExpressions.g:2964:1: rule__OrExpression__Group__0__Impl : ( ruleXorExpression ) ;
     public final void rule__OrExpression__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:2841:1: ( ( ruleXorExpression ) )
-            // InternalKerMLExpressions.g:2842:1: ( ruleXorExpression )
+            // InternalKerMLExpressions.g:2968:1: ( ( ruleXorExpression ) )
+            // InternalKerMLExpressions.g:2969:1: ( ruleXorExpression )
             {
-            // InternalKerMLExpressions.g:2842:1: ( ruleXorExpression )
-            // InternalKerMLExpressions.g:2843:2: ruleXorExpression
+            // InternalKerMLExpressions.g:2969:1: ( ruleXorExpression )
+            // InternalKerMLExpressions.g:2970:2: ruleXorExpression
             {
              before(grammarAccess.getOrExpressionAccess().getXorExpressionParserRuleCall_0()); 
             pushFollow(FOLLOW_2);
@@ -9057,14 +9549,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__OrExpression__Group__1"
-    // InternalKerMLExpressions.g:2852:1: rule__OrExpression__Group__1 : rule__OrExpression__Group__1__Impl ;
+    // InternalKerMLExpressions.g:2979:1: rule__OrExpression__Group__1 : rule__OrExpression__Group__1__Impl ;
     public final void rule__OrExpression__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:2856:1: ( rule__OrExpression__Group__1__Impl )
-            // InternalKerMLExpressions.g:2857:2: rule__OrExpression__Group__1__Impl
+            // InternalKerMLExpressions.g:2983:1: ( rule__OrExpression__Group__1__Impl )
+            // InternalKerMLExpressions.g:2984:2: rule__OrExpression__Group__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__OrExpression__Group__1__Impl();
@@ -9090,33 +9582,33 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__OrExpression__Group__1__Impl"
-    // InternalKerMLExpressions.g:2863:1: rule__OrExpression__Group__1__Impl : ( ( rule__OrExpression__Group_1__0 )* ) ;
+    // InternalKerMLExpressions.g:2990:1: rule__OrExpression__Group__1__Impl : ( ( rule__OrExpression__Group_1__0 )* ) ;
     public final void rule__OrExpression__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:2867:1: ( ( ( rule__OrExpression__Group_1__0 )* ) )
-            // InternalKerMLExpressions.g:2868:1: ( ( rule__OrExpression__Group_1__0 )* )
+            // InternalKerMLExpressions.g:2994:1: ( ( ( rule__OrExpression__Group_1__0 )* ) )
+            // InternalKerMLExpressions.g:2995:1: ( ( rule__OrExpression__Group_1__0 )* )
             {
-            // InternalKerMLExpressions.g:2868:1: ( ( rule__OrExpression__Group_1__0 )* )
-            // InternalKerMLExpressions.g:2869:2: ( rule__OrExpression__Group_1__0 )*
+            // InternalKerMLExpressions.g:2995:1: ( ( rule__OrExpression__Group_1__0 )* )
+            // InternalKerMLExpressions.g:2996:2: ( rule__OrExpression__Group_1__0 )*
             {
              before(grammarAccess.getOrExpressionAccess().getGroup_1()); 
-            // InternalKerMLExpressions.g:2870:2: ( rule__OrExpression__Group_1__0 )*
-            loop25:
+            // InternalKerMLExpressions.g:2997:2: ( rule__OrExpression__Group_1__0 )*
+            loop29:
             do {
-                int alt25=2;
-                int LA25_0 = input.LA(1);
+                int alt29=2;
+                int LA29_0 = input.LA(1);
 
-                if ( (LA25_0==18) ) {
-                    alt25=1;
+                if ( ((LA29_0>=17 && LA29_0<=19)) ) {
+                    alt29=1;
                 }
 
 
-                switch (alt25) {
+                switch (alt29) {
             	case 1 :
-            	    // InternalKerMLExpressions.g:2870:3: rule__OrExpression__Group_1__0
+            	    // InternalKerMLExpressions.g:2997:3: rule__OrExpression__Group_1__0
             	    {
             	    pushFollow(FOLLOW_13);
             	    rule__OrExpression__Group_1__0();
@@ -9128,7 +9620,7 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
             	    break;
 
             	default :
-            	    break loop25;
+            	    break loop29;
                 }
             } while (true);
 
@@ -9155,14 +9647,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__OrExpression__Group_1__0"
-    // InternalKerMLExpressions.g:2879:1: rule__OrExpression__Group_1__0 : rule__OrExpression__Group_1__0__Impl rule__OrExpression__Group_1__1 ;
+    // InternalKerMLExpressions.g:3006:1: rule__OrExpression__Group_1__0 : rule__OrExpression__Group_1__0__Impl rule__OrExpression__Group_1__1 ;
     public final void rule__OrExpression__Group_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:2883:1: ( rule__OrExpression__Group_1__0__Impl rule__OrExpression__Group_1__1 )
-            // InternalKerMLExpressions.g:2884:2: rule__OrExpression__Group_1__0__Impl rule__OrExpression__Group_1__1
+            // InternalKerMLExpressions.g:3010:1: ( rule__OrExpression__Group_1__0__Impl rule__OrExpression__Group_1__1 )
+            // InternalKerMLExpressions.g:3011:2: rule__OrExpression__Group_1__0__Impl rule__OrExpression__Group_1__1
             {
             pushFollow(FOLLOW_12);
             rule__OrExpression__Group_1__0__Impl();
@@ -9193,21 +9685,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__OrExpression__Group_1__0__Impl"
-    // InternalKerMLExpressions.g:2891:1: rule__OrExpression__Group_1__0__Impl : ( () ) ;
+    // InternalKerMLExpressions.g:3018:1: rule__OrExpression__Group_1__0__Impl : ( () ) ;
     public final void rule__OrExpression__Group_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:2895:1: ( ( () ) )
-            // InternalKerMLExpressions.g:2896:1: ( () )
+            // InternalKerMLExpressions.g:3022:1: ( ( () ) )
+            // InternalKerMLExpressions.g:3023:1: ( () )
             {
-            // InternalKerMLExpressions.g:2896:1: ( () )
-            // InternalKerMLExpressions.g:2897:2: ()
+            // InternalKerMLExpressions.g:3023:1: ( () )
+            // InternalKerMLExpressions.g:3024:2: ()
             {
              before(grammarAccess.getOrExpressionAccess().getOperatorExpressionOperandAction_1_0()); 
-            // InternalKerMLExpressions.g:2898:2: ()
-            // InternalKerMLExpressions.g:2898:3: 
+            // InternalKerMLExpressions.g:3025:2: ()
+            // InternalKerMLExpressions.g:3025:3: 
             {
             }
 
@@ -9230,16 +9722,16 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__OrExpression__Group_1__1"
-    // InternalKerMLExpressions.g:2906:1: rule__OrExpression__Group_1__1 : rule__OrExpression__Group_1__1__Impl rule__OrExpression__Group_1__2 ;
+    // InternalKerMLExpressions.g:3033:1: rule__OrExpression__Group_1__1 : rule__OrExpression__Group_1__1__Impl rule__OrExpression__Group_1__2 ;
     public final void rule__OrExpression__Group_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:2910:1: ( rule__OrExpression__Group_1__1__Impl rule__OrExpression__Group_1__2 )
-            // InternalKerMLExpressions.g:2911:2: rule__OrExpression__Group_1__1__Impl rule__OrExpression__Group_1__2
+            // InternalKerMLExpressions.g:3037:1: ( rule__OrExpression__Group_1__1__Impl rule__OrExpression__Group_1__2 )
+            // InternalKerMLExpressions.g:3038:2: rule__OrExpression__Group_1__1__Impl rule__OrExpression__Group_1__2
             {
-            pushFollow(FOLLOW_4);
+            pushFollow(FOLLOW_6);
             rule__OrExpression__Group_1__1__Impl();
 
             state._fsp--;
@@ -9268,21 +9760,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__OrExpression__Group_1__1__Impl"
-    // InternalKerMLExpressions.g:2918:1: rule__OrExpression__Group_1__1__Impl : ( ( rule__OrExpression__OperatorAssignment_1_1 ) ) ;
+    // InternalKerMLExpressions.g:3045:1: rule__OrExpression__Group_1__1__Impl : ( ( rule__OrExpression__OperatorAssignment_1_1 ) ) ;
     public final void rule__OrExpression__Group_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:2922:1: ( ( ( rule__OrExpression__OperatorAssignment_1_1 ) ) )
-            // InternalKerMLExpressions.g:2923:1: ( ( rule__OrExpression__OperatorAssignment_1_1 ) )
+            // InternalKerMLExpressions.g:3049:1: ( ( ( rule__OrExpression__OperatorAssignment_1_1 ) ) )
+            // InternalKerMLExpressions.g:3050:1: ( ( rule__OrExpression__OperatorAssignment_1_1 ) )
             {
-            // InternalKerMLExpressions.g:2923:1: ( ( rule__OrExpression__OperatorAssignment_1_1 ) )
-            // InternalKerMLExpressions.g:2924:2: ( rule__OrExpression__OperatorAssignment_1_1 )
+            // InternalKerMLExpressions.g:3050:1: ( ( rule__OrExpression__OperatorAssignment_1_1 ) )
+            // InternalKerMLExpressions.g:3051:2: ( rule__OrExpression__OperatorAssignment_1_1 )
             {
              before(grammarAccess.getOrExpressionAccess().getOperatorAssignment_1_1()); 
-            // InternalKerMLExpressions.g:2925:2: ( rule__OrExpression__OperatorAssignment_1_1 )
-            // InternalKerMLExpressions.g:2925:3: rule__OrExpression__OperatorAssignment_1_1
+            // InternalKerMLExpressions.g:3052:2: ( rule__OrExpression__OperatorAssignment_1_1 )
+            // InternalKerMLExpressions.g:3052:3: rule__OrExpression__OperatorAssignment_1_1
             {
             pushFollow(FOLLOW_2);
             rule__OrExpression__OperatorAssignment_1_1();
@@ -9315,14 +9807,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__OrExpression__Group_1__2"
-    // InternalKerMLExpressions.g:2933:1: rule__OrExpression__Group_1__2 : rule__OrExpression__Group_1__2__Impl ;
+    // InternalKerMLExpressions.g:3060:1: rule__OrExpression__Group_1__2 : rule__OrExpression__Group_1__2__Impl ;
     public final void rule__OrExpression__Group_1__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:2937:1: ( rule__OrExpression__Group_1__2__Impl )
-            // InternalKerMLExpressions.g:2938:2: rule__OrExpression__Group_1__2__Impl
+            // InternalKerMLExpressions.g:3064:1: ( rule__OrExpression__Group_1__2__Impl )
+            // InternalKerMLExpressions.g:3065:2: rule__OrExpression__Group_1__2__Impl
             {
             pushFollow(FOLLOW_2);
             rule__OrExpression__Group_1__2__Impl();
@@ -9348,21 +9840,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__OrExpression__Group_1__2__Impl"
-    // InternalKerMLExpressions.g:2944:1: rule__OrExpression__Group_1__2__Impl : ( ( rule__OrExpression__OperandAssignment_1_2 ) ) ;
+    // InternalKerMLExpressions.g:3071:1: rule__OrExpression__Group_1__2__Impl : ( ( rule__OrExpression__OperandAssignment_1_2 ) ) ;
     public final void rule__OrExpression__Group_1__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:2948:1: ( ( ( rule__OrExpression__OperandAssignment_1_2 ) ) )
-            // InternalKerMLExpressions.g:2949:1: ( ( rule__OrExpression__OperandAssignment_1_2 ) )
+            // InternalKerMLExpressions.g:3075:1: ( ( ( rule__OrExpression__OperandAssignment_1_2 ) ) )
+            // InternalKerMLExpressions.g:3076:1: ( ( rule__OrExpression__OperandAssignment_1_2 ) )
             {
-            // InternalKerMLExpressions.g:2949:1: ( ( rule__OrExpression__OperandAssignment_1_2 ) )
-            // InternalKerMLExpressions.g:2950:2: ( rule__OrExpression__OperandAssignment_1_2 )
+            // InternalKerMLExpressions.g:3076:1: ( ( rule__OrExpression__OperandAssignment_1_2 ) )
+            // InternalKerMLExpressions.g:3077:2: ( rule__OrExpression__OperandAssignment_1_2 )
             {
              before(grammarAccess.getOrExpressionAccess().getOperandAssignment_1_2()); 
-            // InternalKerMLExpressions.g:2951:2: ( rule__OrExpression__OperandAssignment_1_2 )
-            // InternalKerMLExpressions.g:2951:3: rule__OrExpression__OperandAssignment_1_2
+            // InternalKerMLExpressions.g:3078:2: ( rule__OrExpression__OperandAssignment_1_2 )
+            // InternalKerMLExpressions.g:3078:3: rule__OrExpression__OperandAssignment_1_2
             {
             pushFollow(FOLLOW_2);
             rule__OrExpression__OperandAssignment_1_2();
@@ -9395,14 +9887,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__XorExpression__Group__0"
-    // InternalKerMLExpressions.g:2960:1: rule__XorExpression__Group__0 : rule__XorExpression__Group__0__Impl rule__XorExpression__Group__1 ;
+    // InternalKerMLExpressions.g:3087:1: rule__XorExpression__Group__0 : rule__XorExpression__Group__0__Impl rule__XorExpression__Group__1 ;
     public final void rule__XorExpression__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:2964:1: ( rule__XorExpression__Group__0__Impl rule__XorExpression__Group__1 )
-            // InternalKerMLExpressions.g:2965:2: rule__XorExpression__Group__0__Impl rule__XorExpression__Group__1
+            // InternalKerMLExpressions.g:3091:1: ( rule__XorExpression__Group__0__Impl rule__XorExpression__Group__1 )
+            // InternalKerMLExpressions.g:3092:2: rule__XorExpression__Group__0__Impl rule__XorExpression__Group__1
             {
             pushFollow(FOLLOW_14);
             rule__XorExpression__Group__0__Impl();
@@ -9433,17 +9925,17 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__XorExpression__Group__0__Impl"
-    // InternalKerMLExpressions.g:2972:1: rule__XorExpression__Group__0__Impl : ( ruleAndExpression ) ;
+    // InternalKerMLExpressions.g:3099:1: rule__XorExpression__Group__0__Impl : ( ruleAndExpression ) ;
     public final void rule__XorExpression__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:2976:1: ( ( ruleAndExpression ) )
-            // InternalKerMLExpressions.g:2977:1: ( ruleAndExpression )
+            // InternalKerMLExpressions.g:3103:1: ( ( ruleAndExpression ) )
+            // InternalKerMLExpressions.g:3104:1: ( ruleAndExpression )
             {
-            // InternalKerMLExpressions.g:2977:1: ( ruleAndExpression )
-            // InternalKerMLExpressions.g:2978:2: ruleAndExpression
+            // InternalKerMLExpressions.g:3104:1: ( ruleAndExpression )
+            // InternalKerMLExpressions.g:3105:2: ruleAndExpression
             {
              before(grammarAccess.getXorExpressionAccess().getAndExpressionParserRuleCall_0()); 
             pushFollow(FOLLOW_2);
@@ -9474,14 +9966,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__XorExpression__Group__1"
-    // InternalKerMLExpressions.g:2987:1: rule__XorExpression__Group__1 : rule__XorExpression__Group__1__Impl ;
+    // InternalKerMLExpressions.g:3114:1: rule__XorExpression__Group__1 : rule__XorExpression__Group__1__Impl ;
     public final void rule__XorExpression__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:2991:1: ( rule__XorExpression__Group__1__Impl )
-            // InternalKerMLExpressions.g:2992:2: rule__XorExpression__Group__1__Impl
+            // InternalKerMLExpressions.g:3118:1: ( rule__XorExpression__Group__1__Impl )
+            // InternalKerMLExpressions.g:3119:2: rule__XorExpression__Group__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__XorExpression__Group__1__Impl();
@@ -9507,33 +9999,33 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__XorExpression__Group__1__Impl"
-    // InternalKerMLExpressions.g:2998:1: rule__XorExpression__Group__1__Impl : ( ( rule__XorExpression__Group_1__0 )* ) ;
+    // InternalKerMLExpressions.g:3125:1: rule__XorExpression__Group__1__Impl : ( ( rule__XorExpression__Group_1__0 )* ) ;
     public final void rule__XorExpression__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:3002:1: ( ( ( rule__XorExpression__Group_1__0 )* ) )
-            // InternalKerMLExpressions.g:3003:1: ( ( rule__XorExpression__Group_1__0 )* )
+            // InternalKerMLExpressions.g:3129:1: ( ( ( rule__XorExpression__Group_1__0 )* ) )
+            // InternalKerMLExpressions.g:3130:1: ( ( rule__XorExpression__Group_1__0 )* )
             {
-            // InternalKerMLExpressions.g:3003:1: ( ( rule__XorExpression__Group_1__0 )* )
-            // InternalKerMLExpressions.g:3004:2: ( rule__XorExpression__Group_1__0 )*
+            // InternalKerMLExpressions.g:3130:1: ( ( rule__XorExpression__Group_1__0 )* )
+            // InternalKerMLExpressions.g:3131:2: ( rule__XorExpression__Group_1__0 )*
             {
              before(grammarAccess.getXorExpressionAccess().getGroup_1()); 
-            // InternalKerMLExpressions.g:3005:2: ( rule__XorExpression__Group_1__0 )*
-            loop26:
+            // InternalKerMLExpressions.g:3132:2: ( rule__XorExpression__Group_1__0 )*
+            loop30:
             do {
-                int alt26=2;
-                int LA26_0 = input.LA(1);
+                int alt30=2;
+                int LA30_0 = input.LA(1);
 
-                if ( (LA26_0==19) ) {
-                    alt26=1;
+                if ( ((LA30_0>=20 && LA30_0<=21)) ) {
+                    alt30=1;
                 }
 
 
-                switch (alt26) {
+                switch (alt30) {
             	case 1 :
-            	    // InternalKerMLExpressions.g:3005:3: rule__XorExpression__Group_1__0
+            	    // InternalKerMLExpressions.g:3132:3: rule__XorExpression__Group_1__0
             	    {
             	    pushFollow(FOLLOW_15);
             	    rule__XorExpression__Group_1__0();
@@ -9545,7 +10037,7 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
             	    break;
 
             	default :
-            	    break loop26;
+            	    break loop30;
                 }
             } while (true);
 
@@ -9572,14 +10064,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__XorExpression__Group_1__0"
-    // InternalKerMLExpressions.g:3014:1: rule__XorExpression__Group_1__0 : rule__XorExpression__Group_1__0__Impl rule__XorExpression__Group_1__1 ;
+    // InternalKerMLExpressions.g:3141:1: rule__XorExpression__Group_1__0 : rule__XorExpression__Group_1__0__Impl rule__XorExpression__Group_1__1 ;
     public final void rule__XorExpression__Group_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:3018:1: ( rule__XorExpression__Group_1__0__Impl rule__XorExpression__Group_1__1 )
-            // InternalKerMLExpressions.g:3019:2: rule__XorExpression__Group_1__0__Impl rule__XorExpression__Group_1__1
+            // InternalKerMLExpressions.g:3145:1: ( rule__XorExpression__Group_1__0__Impl rule__XorExpression__Group_1__1 )
+            // InternalKerMLExpressions.g:3146:2: rule__XorExpression__Group_1__0__Impl rule__XorExpression__Group_1__1
             {
             pushFollow(FOLLOW_14);
             rule__XorExpression__Group_1__0__Impl();
@@ -9610,21 +10102,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__XorExpression__Group_1__0__Impl"
-    // InternalKerMLExpressions.g:3026:1: rule__XorExpression__Group_1__0__Impl : ( () ) ;
+    // InternalKerMLExpressions.g:3153:1: rule__XorExpression__Group_1__0__Impl : ( () ) ;
     public final void rule__XorExpression__Group_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:3030:1: ( ( () ) )
-            // InternalKerMLExpressions.g:3031:1: ( () )
+            // InternalKerMLExpressions.g:3157:1: ( ( () ) )
+            // InternalKerMLExpressions.g:3158:1: ( () )
             {
-            // InternalKerMLExpressions.g:3031:1: ( () )
-            // InternalKerMLExpressions.g:3032:2: ()
+            // InternalKerMLExpressions.g:3158:1: ( () )
+            // InternalKerMLExpressions.g:3159:2: ()
             {
              before(grammarAccess.getXorExpressionAccess().getOperatorExpressionOperandAction_1_0()); 
-            // InternalKerMLExpressions.g:3033:2: ()
-            // InternalKerMLExpressions.g:3033:3: 
+            // InternalKerMLExpressions.g:3160:2: ()
+            // InternalKerMLExpressions.g:3160:3: 
             {
             }
 
@@ -9647,16 +10139,16 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__XorExpression__Group_1__1"
-    // InternalKerMLExpressions.g:3041:1: rule__XorExpression__Group_1__1 : rule__XorExpression__Group_1__1__Impl rule__XorExpression__Group_1__2 ;
+    // InternalKerMLExpressions.g:3168:1: rule__XorExpression__Group_1__1 : rule__XorExpression__Group_1__1__Impl rule__XorExpression__Group_1__2 ;
     public final void rule__XorExpression__Group_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:3045:1: ( rule__XorExpression__Group_1__1__Impl rule__XorExpression__Group_1__2 )
-            // InternalKerMLExpressions.g:3046:2: rule__XorExpression__Group_1__1__Impl rule__XorExpression__Group_1__2
+            // InternalKerMLExpressions.g:3172:1: ( rule__XorExpression__Group_1__1__Impl rule__XorExpression__Group_1__2 )
+            // InternalKerMLExpressions.g:3173:2: rule__XorExpression__Group_1__1__Impl rule__XorExpression__Group_1__2
             {
-            pushFollow(FOLLOW_4);
+            pushFollow(FOLLOW_6);
             rule__XorExpression__Group_1__1__Impl();
 
             state._fsp--;
@@ -9685,21 +10177,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__XorExpression__Group_1__1__Impl"
-    // InternalKerMLExpressions.g:3053:1: rule__XorExpression__Group_1__1__Impl : ( ( rule__XorExpression__OperatorAssignment_1_1 ) ) ;
+    // InternalKerMLExpressions.g:3180:1: rule__XorExpression__Group_1__1__Impl : ( ( rule__XorExpression__OperatorAssignment_1_1 ) ) ;
     public final void rule__XorExpression__Group_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:3057:1: ( ( ( rule__XorExpression__OperatorAssignment_1_1 ) ) )
-            // InternalKerMLExpressions.g:3058:1: ( ( rule__XorExpression__OperatorAssignment_1_1 ) )
+            // InternalKerMLExpressions.g:3184:1: ( ( ( rule__XorExpression__OperatorAssignment_1_1 ) ) )
+            // InternalKerMLExpressions.g:3185:1: ( ( rule__XorExpression__OperatorAssignment_1_1 ) )
             {
-            // InternalKerMLExpressions.g:3058:1: ( ( rule__XorExpression__OperatorAssignment_1_1 ) )
-            // InternalKerMLExpressions.g:3059:2: ( rule__XorExpression__OperatorAssignment_1_1 )
+            // InternalKerMLExpressions.g:3185:1: ( ( rule__XorExpression__OperatorAssignment_1_1 ) )
+            // InternalKerMLExpressions.g:3186:2: ( rule__XorExpression__OperatorAssignment_1_1 )
             {
              before(grammarAccess.getXorExpressionAccess().getOperatorAssignment_1_1()); 
-            // InternalKerMLExpressions.g:3060:2: ( rule__XorExpression__OperatorAssignment_1_1 )
-            // InternalKerMLExpressions.g:3060:3: rule__XorExpression__OperatorAssignment_1_1
+            // InternalKerMLExpressions.g:3187:2: ( rule__XorExpression__OperatorAssignment_1_1 )
+            // InternalKerMLExpressions.g:3187:3: rule__XorExpression__OperatorAssignment_1_1
             {
             pushFollow(FOLLOW_2);
             rule__XorExpression__OperatorAssignment_1_1();
@@ -9732,14 +10224,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__XorExpression__Group_1__2"
-    // InternalKerMLExpressions.g:3068:1: rule__XorExpression__Group_1__2 : rule__XorExpression__Group_1__2__Impl ;
+    // InternalKerMLExpressions.g:3195:1: rule__XorExpression__Group_1__2 : rule__XorExpression__Group_1__2__Impl ;
     public final void rule__XorExpression__Group_1__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:3072:1: ( rule__XorExpression__Group_1__2__Impl )
-            // InternalKerMLExpressions.g:3073:2: rule__XorExpression__Group_1__2__Impl
+            // InternalKerMLExpressions.g:3199:1: ( rule__XorExpression__Group_1__2__Impl )
+            // InternalKerMLExpressions.g:3200:2: rule__XorExpression__Group_1__2__Impl
             {
             pushFollow(FOLLOW_2);
             rule__XorExpression__Group_1__2__Impl();
@@ -9765,21 +10257,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__XorExpression__Group_1__2__Impl"
-    // InternalKerMLExpressions.g:3079:1: rule__XorExpression__Group_1__2__Impl : ( ( rule__XorExpression__OperandAssignment_1_2 ) ) ;
+    // InternalKerMLExpressions.g:3206:1: rule__XorExpression__Group_1__2__Impl : ( ( rule__XorExpression__OperandAssignment_1_2 ) ) ;
     public final void rule__XorExpression__Group_1__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:3083:1: ( ( ( rule__XorExpression__OperandAssignment_1_2 ) ) )
-            // InternalKerMLExpressions.g:3084:1: ( ( rule__XorExpression__OperandAssignment_1_2 ) )
+            // InternalKerMLExpressions.g:3210:1: ( ( ( rule__XorExpression__OperandAssignment_1_2 ) ) )
+            // InternalKerMLExpressions.g:3211:1: ( ( rule__XorExpression__OperandAssignment_1_2 ) )
             {
-            // InternalKerMLExpressions.g:3084:1: ( ( rule__XorExpression__OperandAssignment_1_2 ) )
-            // InternalKerMLExpressions.g:3085:2: ( rule__XorExpression__OperandAssignment_1_2 )
+            // InternalKerMLExpressions.g:3211:1: ( ( rule__XorExpression__OperandAssignment_1_2 ) )
+            // InternalKerMLExpressions.g:3212:2: ( rule__XorExpression__OperandAssignment_1_2 )
             {
              before(grammarAccess.getXorExpressionAccess().getOperandAssignment_1_2()); 
-            // InternalKerMLExpressions.g:3086:2: ( rule__XorExpression__OperandAssignment_1_2 )
-            // InternalKerMLExpressions.g:3086:3: rule__XorExpression__OperandAssignment_1_2
+            // InternalKerMLExpressions.g:3213:2: ( rule__XorExpression__OperandAssignment_1_2 )
+            // InternalKerMLExpressions.g:3213:3: rule__XorExpression__OperandAssignment_1_2
             {
             pushFollow(FOLLOW_2);
             rule__XorExpression__OperandAssignment_1_2();
@@ -9812,14 +10304,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__AndExpression__Group__0"
-    // InternalKerMLExpressions.g:3095:1: rule__AndExpression__Group__0 : rule__AndExpression__Group__0__Impl rule__AndExpression__Group__1 ;
+    // InternalKerMLExpressions.g:3222:1: rule__AndExpression__Group__0 : rule__AndExpression__Group__0__Impl rule__AndExpression__Group__1 ;
     public final void rule__AndExpression__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:3099:1: ( rule__AndExpression__Group__0__Impl rule__AndExpression__Group__1 )
-            // InternalKerMLExpressions.g:3100:2: rule__AndExpression__Group__0__Impl rule__AndExpression__Group__1
+            // InternalKerMLExpressions.g:3226:1: ( rule__AndExpression__Group__0__Impl rule__AndExpression__Group__1 )
+            // InternalKerMLExpressions.g:3227:2: rule__AndExpression__Group__0__Impl rule__AndExpression__Group__1
             {
             pushFollow(FOLLOW_16);
             rule__AndExpression__Group__0__Impl();
@@ -9850,17 +10342,17 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__AndExpression__Group__0__Impl"
-    // InternalKerMLExpressions.g:3107:1: rule__AndExpression__Group__0__Impl : ( ruleEqualityExpression ) ;
+    // InternalKerMLExpressions.g:3234:1: rule__AndExpression__Group__0__Impl : ( ruleEqualityExpression ) ;
     public final void rule__AndExpression__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:3111:1: ( ( ruleEqualityExpression ) )
-            // InternalKerMLExpressions.g:3112:1: ( ruleEqualityExpression )
+            // InternalKerMLExpressions.g:3238:1: ( ( ruleEqualityExpression ) )
+            // InternalKerMLExpressions.g:3239:1: ( ruleEqualityExpression )
             {
-            // InternalKerMLExpressions.g:3112:1: ( ruleEqualityExpression )
-            // InternalKerMLExpressions.g:3113:2: ruleEqualityExpression
+            // InternalKerMLExpressions.g:3239:1: ( ruleEqualityExpression )
+            // InternalKerMLExpressions.g:3240:2: ruleEqualityExpression
             {
              before(grammarAccess.getAndExpressionAccess().getEqualityExpressionParserRuleCall_0()); 
             pushFollow(FOLLOW_2);
@@ -9891,14 +10383,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__AndExpression__Group__1"
-    // InternalKerMLExpressions.g:3122:1: rule__AndExpression__Group__1 : rule__AndExpression__Group__1__Impl ;
+    // InternalKerMLExpressions.g:3249:1: rule__AndExpression__Group__1 : rule__AndExpression__Group__1__Impl ;
     public final void rule__AndExpression__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:3126:1: ( rule__AndExpression__Group__1__Impl )
-            // InternalKerMLExpressions.g:3127:2: rule__AndExpression__Group__1__Impl
+            // InternalKerMLExpressions.g:3253:1: ( rule__AndExpression__Group__1__Impl )
+            // InternalKerMLExpressions.g:3254:2: rule__AndExpression__Group__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__AndExpression__Group__1__Impl();
@@ -9924,33 +10416,33 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__AndExpression__Group__1__Impl"
-    // InternalKerMLExpressions.g:3133:1: rule__AndExpression__Group__1__Impl : ( ( rule__AndExpression__Group_1__0 )* ) ;
+    // InternalKerMLExpressions.g:3260:1: rule__AndExpression__Group__1__Impl : ( ( rule__AndExpression__Group_1__0 )* ) ;
     public final void rule__AndExpression__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:3137:1: ( ( ( rule__AndExpression__Group_1__0 )* ) )
-            // InternalKerMLExpressions.g:3138:1: ( ( rule__AndExpression__Group_1__0 )* )
+            // InternalKerMLExpressions.g:3264:1: ( ( ( rule__AndExpression__Group_1__0 )* ) )
+            // InternalKerMLExpressions.g:3265:1: ( ( rule__AndExpression__Group_1__0 )* )
             {
-            // InternalKerMLExpressions.g:3138:1: ( ( rule__AndExpression__Group_1__0 )* )
-            // InternalKerMLExpressions.g:3139:2: ( rule__AndExpression__Group_1__0 )*
+            // InternalKerMLExpressions.g:3265:1: ( ( rule__AndExpression__Group_1__0 )* )
+            // InternalKerMLExpressions.g:3266:2: ( rule__AndExpression__Group_1__0 )*
             {
              before(grammarAccess.getAndExpressionAccess().getGroup_1()); 
-            // InternalKerMLExpressions.g:3140:2: ( rule__AndExpression__Group_1__0 )*
-            loop27:
+            // InternalKerMLExpressions.g:3267:2: ( rule__AndExpression__Group_1__0 )*
+            loop31:
             do {
-                int alt27=2;
-                int LA27_0 = input.LA(1);
+                int alt31=2;
+                int LA31_0 = input.LA(1);
 
-                if ( (LA27_0==20) ) {
-                    alt27=1;
+                if ( ((LA31_0>=22 && LA31_0<=24)) ) {
+                    alt31=1;
                 }
 
 
-                switch (alt27) {
+                switch (alt31) {
             	case 1 :
-            	    // InternalKerMLExpressions.g:3140:3: rule__AndExpression__Group_1__0
+            	    // InternalKerMLExpressions.g:3267:3: rule__AndExpression__Group_1__0
             	    {
             	    pushFollow(FOLLOW_17);
             	    rule__AndExpression__Group_1__0();
@@ -9962,7 +10454,7 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
             	    break;
 
             	default :
-            	    break loop27;
+            	    break loop31;
                 }
             } while (true);
 
@@ -9989,14 +10481,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__AndExpression__Group_1__0"
-    // InternalKerMLExpressions.g:3149:1: rule__AndExpression__Group_1__0 : rule__AndExpression__Group_1__0__Impl rule__AndExpression__Group_1__1 ;
+    // InternalKerMLExpressions.g:3276:1: rule__AndExpression__Group_1__0 : rule__AndExpression__Group_1__0__Impl rule__AndExpression__Group_1__1 ;
     public final void rule__AndExpression__Group_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:3153:1: ( rule__AndExpression__Group_1__0__Impl rule__AndExpression__Group_1__1 )
-            // InternalKerMLExpressions.g:3154:2: rule__AndExpression__Group_1__0__Impl rule__AndExpression__Group_1__1
+            // InternalKerMLExpressions.g:3280:1: ( rule__AndExpression__Group_1__0__Impl rule__AndExpression__Group_1__1 )
+            // InternalKerMLExpressions.g:3281:2: rule__AndExpression__Group_1__0__Impl rule__AndExpression__Group_1__1
             {
             pushFollow(FOLLOW_16);
             rule__AndExpression__Group_1__0__Impl();
@@ -10027,21 +10519,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__AndExpression__Group_1__0__Impl"
-    // InternalKerMLExpressions.g:3161:1: rule__AndExpression__Group_1__0__Impl : ( () ) ;
+    // InternalKerMLExpressions.g:3288:1: rule__AndExpression__Group_1__0__Impl : ( () ) ;
     public final void rule__AndExpression__Group_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:3165:1: ( ( () ) )
-            // InternalKerMLExpressions.g:3166:1: ( () )
+            // InternalKerMLExpressions.g:3292:1: ( ( () ) )
+            // InternalKerMLExpressions.g:3293:1: ( () )
             {
-            // InternalKerMLExpressions.g:3166:1: ( () )
-            // InternalKerMLExpressions.g:3167:2: ()
+            // InternalKerMLExpressions.g:3293:1: ( () )
+            // InternalKerMLExpressions.g:3294:2: ()
             {
              before(grammarAccess.getAndExpressionAccess().getOperatorExpressionOperandAction_1_0()); 
-            // InternalKerMLExpressions.g:3168:2: ()
-            // InternalKerMLExpressions.g:3168:3: 
+            // InternalKerMLExpressions.g:3295:2: ()
+            // InternalKerMLExpressions.g:3295:3: 
             {
             }
 
@@ -10064,16 +10556,16 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__AndExpression__Group_1__1"
-    // InternalKerMLExpressions.g:3176:1: rule__AndExpression__Group_1__1 : rule__AndExpression__Group_1__1__Impl rule__AndExpression__Group_1__2 ;
+    // InternalKerMLExpressions.g:3303:1: rule__AndExpression__Group_1__1 : rule__AndExpression__Group_1__1__Impl rule__AndExpression__Group_1__2 ;
     public final void rule__AndExpression__Group_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:3180:1: ( rule__AndExpression__Group_1__1__Impl rule__AndExpression__Group_1__2 )
-            // InternalKerMLExpressions.g:3181:2: rule__AndExpression__Group_1__1__Impl rule__AndExpression__Group_1__2
+            // InternalKerMLExpressions.g:3307:1: ( rule__AndExpression__Group_1__1__Impl rule__AndExpression__Group_1__2 )
+            // InternalKerMLExpressions.g:3308:2: rule__AndExpression__Group_1__1__Impl rule__AndExpression__Group_1__2
             {
-            pushFollow(FOLLOW_4);
+            pushFollow(FOLLOW_6);
             rule__AndExpression__Group_1__1__Impl();
 
             state._fsp--;
@@ -10102,21 +10594,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__AndExpression__Group_1__1__Impl"
-    // InternalKerMLExpressions.g:3188:1: rule__AndExpression__Group_1__1__Impl : ( ( rule__AndExpression__OperatorAssignment_1_1 ) ) ;
+    // InternalKerMLExpressions.g:3315:1: rule__AndExpression__Group_1__1__Impl : ( ( rule__AndExpression__OperatorAssignment_1_1 ) ) ;
     public final void rule__AndExpression__Group_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:3192:1: ( ( ( rule__AndExpression__OperatorAssignment_1_1 ) ) )
-            // InternalKerMLExpressions.g:3193:1: ( ( rule__AndExpression__OperatorAssignment_1_1 ) )
+            // InternalKerMLExpressions.g:3319:1: ( ( ( rule__AndExpression__OperatorAssignment_1_1 ) ) )
+            // InternalKerMLExpressions.g:3320:1: ( ( rule__AndExpression__OperatorAssignment_1_1 ) )
             {
-            // InternalKerMLExpressions.g:3193:1: ( ( rule__AndExpression__OperatorAssignment_1_1 ) )
-            // InternalKerMLExpressions.g:3194:2: ( rule__AndExpression__OperatorAssignment_1_1 )
+            // InternalKerMLExpressions.g:3320:1: ( ( rule__AndExpression__OperatorAssignment_1_1 ) )
+            // InternalKerMLExpressions.g:3321:2: ( rule__AndExpression__OperatorAssignment_1_1 )
             {
              before(grammarAccess.getAndExpressionAccess().getOperatorAssignment_1_1()); 
-            // InternalKerMLExpressions.g:3195:2: ( rule__AndExpression__OperatorAssignment_1_1 )
-            // InternalKerMLExpressions.g:3195:3: rule__AndExpression__OperatorAssignment_1_1
+            // InternalKerMLExpressions.g:3322:2: ( rule__AndExpression__OperatorAssignment_1_1 )
+            // InternalKerMLExpressions.g:3322:3: rule__AndExpression__OperatorAssignment_1_1
             {
             pushFollow(FOLLOW_2);
             rule__AndExpression__OperatorAssignment_1_1();
@@ -10149,14 +10641,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__AndExpression__Group_1__2"
-    // InternalKerMLExpressions.g:3203:1: rule__AndExpression__Group_1__2 : rule__AndExpression__Group_1__2__Impl ;
+    // InternalKerMLExpressions.g:3330:1: rule__AndExpression__Group_1__2 : rule__AndExpression__Group_1__2__Impl ;
     public final void rule__AndExpression__Group_1__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:3207:1: ( rule__AndExpression__Group_1__2__Impl )
-            // InternalKerMLExpressions.g:3208:2: rule__AndExpression__Group_1__2__Impl
+            // InternalKerMLExpressions.g:3334:1: ( rule__AndExpression__Group_1__2__Impl )
+            // InternalKerMLExpressions.g:3335:2: rule__AndExpression__Group_1__2__Impl
             {
             pushFollow(FOLLOW_2);
             rule__AndExpression__Group_1__2__Impl();
@@ -10182,21 +10674,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__AndExpression__Group_1__2__Impl"
-    // InternalKerMLExpressions.g:3214:1: rule__AndExpression__Group_1__2__Impl : ( ( rule__AndExpression__OperandAssignment_1_2 ) ) ;
+    // InternalKerMLExpressions.g:3341:1: rule__AndExpression__Group_1__2__Impl : ( ( rule__AndExpression__OperandAssignment_1_2 ) ) ;
     public final void rule__AndExpression__Group_1__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:3218:1: ( ( ( rule__AndExpression__OperandAssignment_1_2 ) ) )
-            // InternalKerMLExpressions.g:3219:1: ( ( rule__AndExpression__OperandAssignment_1_2 ) )
+            // InternalKerMLExpressions.g:3345:1: ( ( ( rule__AndExpression__OperandAssignment_1_2 ) ) )
+            // InternalKerMLExpressions.g:3346:1: ( ( rule__AndExpression__OperandAssignment_1_2 ) )
             {
-            // InternalKerMLExpressions.g:3219:1: ( ( rule__AndExpression__OperandAssignment_1_2 ) )
-            // InternalKerMLExpressions.g:3220:2: ( rule__AndExpression__OperandAssignment_1_2 )
+            // InternalKerMLExpressions.g:3346:1: ( ( rule__AndExpression__OperandAssignment_1_2 ) )
+            // InternalKerMLExpressions.g:3347:2: ( rule__AndExpression__OperandAssignment_1_2 )
             {
              before(grammarAccess.getAndExpressionAccess().getOperandAssignment_1_2()); 
-            // InternalKerMLExpressions.g:3221:2: ( rule__AndExpression__OperandAssignment_1_2 )
-            // InternalKerMLExpressions.g:3221:3: rule__AndExpression__OperandAssignment_1_2
+            // InternalKerMLExpressions.g:3348:2: ( rule__AndExpression__OperandAssignment_1_2 )
+            // InternalKerMLExpressions.g:3348:3: rule__AndExpression__OperandAssignment_1_2
             {
             pushFollow(FOLLOW_2);
             rule__AndExpression__OperandAssignment_1_2();
@@ -10229,14 +10721,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__EqualityExpression__Group__0"
-    // InternalKerMLExpressions.g:3230:1: rule__EqualityExpression__Group__0 : rule__EqualityExpression__Group__0__Impl rule__EqualityExpression__Group__1 ;
+    // InternalKerMLExpressions.g:3357:1: rule__EqualityExpression__Group__0 : rule__EqualityExpression__Group__0__Impl rule__EqualityExpression__Group__1 ;
     public final void rule__EqualityExpression__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:3234:1: ( rule__EqualityExpression__Group__0__Impl rule__EqualityExpression__Group__1 )
-            // InternalKerMLExpressions.g:3235:2: rule__EqualityExpression__Group__0__Impl rule__EqualityExpression__Group__1
+            // InternalKerMLExpressions.g:3361:1: ( rule__EqualityExpression__Group__0__Impl rule__EqualityExpression__Group__1 )
+            // InternalKerMLExpressions.g:3362:2: rule__EqualityExpression__Group__0__Impl rule__EqualityExpression__Group__1
             {
             pushFollow(FOLLOW_18);
             rule__EqualityExpression__Group__0__Impl();
@@ -10267,17 +10759,17 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__EqualityExpression__Group__0__Impl"
-    // InternalKerMLExpressions.g:3242:1: rule__EqualityExpression__Group__0__Impl : ( ruleClassificationExpression ) ;
+    // InternalKerMLExpressions.g:3369:1: rule__EqualityExpression__Group__0__Impl : ( ruleClassificationExpression ) ;
     public final void rule__EqualityExpression__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:3246:1: ( ( ruleClassificationExpression ) )
-            // InternalKerMLExpressions.g:3247:1: ( ruleClassificationExpression )
+            // InternalKerMLExpressions.g:3373:1: ( ( ruleClassificationExpression ) )
+            // InternalKerMLExpressions.g:3374:1: ( ruleClassificationExpression )
             {
-            // InternalKerMLExpressions.g:3247:1: ( ruleClassificationExpression )
-            // InternalKerMLExpressions.g:3248:2: ruleClassificationExpression
+            // InternalKerMLExpressions.g:3374:1: ( ruleClassificationExpression )
+            // InternalKerMLExpressions.g:3375:2: ruleClassificationExpression
             {
              before(grammarAccess.getEqualityExpressionAccess().getClassificationExpressionParserRuleCall_0()); 
             pushFollow(FOLLOW_2);
@@ -10308,14 +10800,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__EqualityExpression__Group__1"
-    // InternalKerMLExpressions.g:3257:1: rule__EqualityExpression__Group__1 : rule__EqualityExpression__Group__1__Impl ;
+    // InternalKerMLExpressions.g:3384:1: rule__EqualityExpression__Group__1 : rule__EqualityExpression__Group__1__Impl ;
     public final void rule__EqualityExpression__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:3261:1: ( rule__EqualityExpression__Group__1__Impl )
-            // InternalKerMLExpressions.g:3262:2: rule__EqualityExpression__Group__1__Impl
+            // InternalKerMLExpressions.g:3388:1: ( rule__EqualityExpression__Group__1__Impl )
+            // InternalKerMLExpressions.g:3389:2: rule__EqualityExpression__Group__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__EqualityExpression__Group__1__Impl();
@@ -10341,33 +10833,33 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__EqualityExpression__Group__1__Impl"
-    // InternalKerMLExpressions.g:3268:1: rule__EqualityExpression__Group__1__Impl : ( ( rule__EqualityExpression__Group_1__0 )* ) ;
+    // InternalKerMLExpressions.g:3395:1: rule__EqualityExpression__Group__1__Impl : ( ( rule__EqualityExpression__Group_1__0 )* ) ;
     public final void rule__EqualityExpression__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:3272:1: ( ( ( rule__EqualityExpression__Group_1__0 )* ) )
-            // InternalKerMLExpressions.g:3273:1: ( ( rule__EqualityExpression__Group_1__0 )* )
+            // InternalKerMLExpressions.g:3399:1: ( ( ( rule__EqualityExpression__Group_1__0 )* ) )
+            // InternalKerMLExpressions.g:3400:1: ( ( rule__EqualityExpression__Group_1__0 )* )
             {
-            // InternalKerMLExpressions.g:3273:1: ( ( rule__EqualityExpression__Group_1__0 )* )
-            // InternalKerMLExpressions.g:3274:2: ( rule__EqualityExpression__Group_1__0 )*
+            // InternalKerMLExpressions.g:3400:1: ( ( rule__EqualityExpression__Group_1__0 )* )
+            // InternalKerMLExpressions.g:3401:2: ( rule__EqualityExpression__Group_1__0 )*
             {
              before(grammarAccess.getEqualityExpressionAccess().getGroup_1()); 
-            // InternalKerMLExpressions.g:3275:2: ( rule__EqualityExpression__Group_1__0 )*
-            loop28:
+            // InternalKerMLExpressions.g:3402:2: ( rule__EqualityExpression__Group_1__0 )*
+            loop32:
             do {
-                int alt28=2;
-                int LA28_0 = input.LA(1);
+                int alt32=2;
+                int LA32_0 = input.LA(1);
 
-                if ( ((LA28_0>=22 && LA28_0<=23)) ) {
-                    alt28=1;
+                if ( ((LA32_0>=25 && LA32_0<=26)) ) {
+                    alt32=1;
                 }
 
 
-                switch (alt28) {
+                switch (alt32) {
             	case 1 :
-            	    // InternalKerMLExpressions.g:3275:3: rule__EqualityExpression__Group_1__0
+            	    // InternalKerMLExpressions.g:3402:3: rule__EqualityExpression__Group_1__0
             	    {
             	    pushFollow(FOLLOW_19);
             	    rule__EqualityExpression__Group_1__0();
@@ -10379,7 +10871,7 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
             	    break;
 
             	default :
-            	    break loop28;
+            	    break loop32;
                 }
             } while (true);
 
@@ -10406,14 +10898,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__EqualityExpression__Group_1__0"
-    // InternalKerMLExpressions.g:3284:1: rule__EqualityExpression__Group_1__0 : rule__EqualityExpression__Group_1__0__Impl rule__EqualityExpression__Group_1__1 ;
+    // InternalKerMLExpressions.g:3411:1: rule__EqualityExpression__Group_1__0 : rule__EqualityExpression__Group_1__0__Impl rule__EqualityExpression__Group_1__1 ;
     public final void rule__EqualityExpression__Group_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:3288:1: ( rule__EqualityExpression__Group_1__0__Impl rule__EqualityExpression__Group_1__1 )
-            // InternalKerMLExpressions.g:3289:2: rule__EqualityExpression__Group_1__0__Impl rule__EqualityExpression__Group_1__1
+            // InternalKerMLExpressions.g:3415:1: ( rule__EqualityExpression__Group_1__0__Impl rule__EqualityExpression__Group_1__1 )
+            // InternalKerMLExpressions.g:3416:2: rule__EqualityExpression__Group_1__0__Impl rule__EqualityExpression__Group_1__1
             {
             pushFollow(FOLLOW_18);
             rule__EqualityExpression__Group_1__0__Impl();
@@ -10444,21 +10936,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__EqualityExpression__Group_1__0__Impl"
-    // InternalKerMLExpressions.g:3296:1: rule__EqualityExpression__Group_1__0__Impl : ( () ) ;
+    // InternalKerMLExpressions.g:3423:1: rule__EqualityExpression__Group_1__0__Impl : ( () ) ;
     public final void rule__EqualityExpression__Group_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:3300:1: ( ( () ) )
-            // InternalKerMLExpressions.g:3301:1: ( () )
+            // InternalKerMLExpressions.g:3427:1: ( ( () ) )
+            // InternalKerMLExpressions.g:3428:1: ( () )
             {
-            // InternalKerMLExpressions.g:3301:1: ( () )
-            // InternalKerMLExpressions.g:3302:2: ()
+            // InternalKerMLExpressions.g:3428:1: ( () )
+            // InternalKerMLExpressions.g:3429:2: ()
             {
              before(grammarAccess.getEqualityExpressionAccess().getOperatorExpressionOperandAction_1_0()); 
-            // InternalKerMLExpressions.g:3303:2: ()
-            // InternalKerMLExpressions.g:3303:3: 
+            // InternalKerMLExpressions.g:3430:2: ()
+            // InternalKerMLExpressions.g:3430:3: 
             {
             }
 
@@ -10481,16 +10973,16 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__EqualityExpression__Group_1__1"
-    // InternalKerMLExpressions.g:3311:1: rule__EqualityExpression__Group_1__1 : rule__EqualityExpression__Group_1__1__Impl rule__EqualityExpression__Group_1__2 ;
+    // InternalKerMLExpressions.g:3438:1: rule__EqualityExpression__Group_1__1 : rule__EqualityExpression__Group_1__1__Impl rule__EqualityExpression__Group_1__2 ;
     public final void rule__EqualityExpression__Group_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:3315:1: ( rule__EqualityExpression__Group_1__1__Impl rule__EqualityExpression__Group_1__2 )
-            // InternalKerMLExpressions.g:3316:2: rule__EqualityExpression__Group_1__1__Impl rule__EqualityExpression__Group_1__2
+            // InternalKerMLExpressions.g:3442:1: ( rule__EqualityExpression__Group_1__1__Impl rule__EqualityExpression__Group_1__2 )
+            // InternalKerMLExpressions.g:3443:2: rule__EqualityExpression__Group_1__1__Impl rule__EqualityExpression__Group_1__2
             {
-            pushFollow(FOLLOW_4);
+            pushFollow(FOLLOW_6);
             rule__EqualityExpression__Group_1__1__Impl();
 
             state._fsp--;
@@ -10519,21 +11011,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__EqualityExpression__Group_1__1__Impl"
-    // InternalKerMLExpressions.g:3323:1: rule__EqualityExpression__Group_1__1__Impl : ( ( rule__EqualityExpression__OperatorAssignment_1_1 ) ) ;
+    // InternalKerMLExpressions.g:3450:1: rule__EqualityExpression__Group_1__1__Impl : ( ( rule__EqualityExpression__OperatorAssignment_1_1 ) ) ;
     public final void rule__EqualityExpression__Group_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:3327:1: ( ( ( rule__EqualityExpression__OperatorAssignment_1_1 ) ) )
-            // InternalKerMLExpressions.g:3328:1: ( ( rule__EqualityExpression__OperatorAssignment_1_1 ) )
+            // InternalKerMLExpressions.g:3454:1: ( ( ( rule__EqualityExpression__OperatorAssignment_1_1 ) ) )
+            // InternalKerMLExpressions.g:3455:1: ( ( rule__EqualityExpression__OperatorAssignment_1_1 ) )
             {
-            // InternalKerMLExpressions.g:3328:1: ( ( rule__EqualityExpression__OperatorAssignment_1_1 ) )
-            // InternalKerMLExpressions.g:3329:2: ( rule__EqualityExpression__OperatorAssignment_1_1 )
+            // InternalKerMLExpressions.g:3455:1: ( ( rule__EqualityExpression__OperatorAssignment_1_1 ) )
+            // InternalKerMLExpressions.g:3456:2: ( rule__EqualityExpression__OperatorAssignment_1_1 )
             {
              before(grammarAccess.getEqualityExpressionAccess().getOperatorAssignment_1_1()); 
-            // InternalKerMLExpressions.g:3330:2: ( rule__EqualityExpression__OperatorAssignment_1_1 )
-            // InternalKerMLExpressions.g:3330:3: rule__EqualityExpression__OperatorAssignment_1_1
+            // InternalKerMLExpressions.g:3457:2: ( rule__EqualityExpression__OperatorAssignment_1_1 )
+            // InternalKerMLExpressions.g:3457:3: rule__EqualityExpression__OperatorAssignment_1_1
             {
             pushFollow(FOLLOW_2);
             rule__EqualityExpression__OperatorAssignment_1_1();
@@ -10566,14 +11058,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__EqualityExpression__Group_1__2"
-    // InternalKerMLExpressions.g:3338:1: rule__EqualityExpression__Group_1__2 : rule__EqualityExpression__Group_1__2__Impl ;
+    // InternalKerMLExpressions.g:3465:1: rule__EqualityExpression__Group_1__2 : rule__EqualityExpression__Group_1__2__Impl ;
     public final void rule__EqualityExpression__Group_1__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:3342:1: ( rule__EqualityExpression__Group_1__2__Impl )
-            // InternalKerMLExpressions.g:3343:2: rule__EqualityExpression__Group_1__2__Impl
+            // InternalKerMLExpressions.g:3469:1: ( rule__EqualityExpression__Group_1__2__Impl )
+            // InternalKerMLExpressions.g:3470:2: rule__EqualityExpression__Group_1__2__Impl
             {
             pushFollow(FOLLOW_2);
             rule__EqualityExpression__Group_1__2__Impl();
@@ -10599,21 +11091,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__EqualityExpression__Group_1__2__Impl"
-    // InternalKerMLExpressions.g:3349:1: rule__EqualityExpression__Group_1__2__Impl : ( ( rule__EqualityExpression__OperandAssignment_1_2 ) ) ;
+    // InternalKerMLExpressions.g:3476:1: rule__EqualityExpression__Group_1__2__Impl : ( ( rule__EqualityExpression__OperandAssignment_1_2 ) ) ;
     public final void rule__EqualityExpression__Group_1__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:3353:1: ( ( ( rule__EqualityExpression__OperandAssignment_1_2 ) ) )
-            // InternalKerMLExpressions.g:3354:1: ( ( rule__EqualityExpression__OperandAssignment_1_2 ) )
+            // InternalKerMLExpressions.g:3480:1: ( ( ( rule__EqualityExpression__OperandAssignment_1_2 ) ) )
+            // InternalKerMLExpressions.g:3481:1: ( ( rule__EqualityExpression__OperandAssignment_1_2 ) )
             {
-            // InternalKerMLExpressions.g:3354:1: ( ( rule__EqualityExpression__OperandAssignment_1_2 ) )
-            // InternalKerMLExpressions.g:3355:2: ( rule__EqualityExpression__OperandAssignment_1_2 )
+            // InternalKerMLExpressions.g:3481:1: ( ( rule__EqualityExpression__OperandAssignment_1_2 ) )
+            // InternalKerMLExpressions.g:3482:2: ( rule__EqualityExpression__OperandAssignment_1_2 )
             {
              before(grammarAccess.getEqualityExpressionAccess().getOperandAssignment_1_2()); 
-            // InternalKerMLExpressions.g:3356:2: ( rule__EqualityExpression__OperandAssignment_1_2 )
-            // InternalKerMLExpressions.g:3356:3: rule__EqualityExpression__OperandAssignment_1_2
+            // InternalKerMLExpressions.g:3483:2: ( rule__EqualityExpression__OperandAssignment_1_2 )
+            // InternalKerMLExpressions.g:3483:3: rule__EqualityExpression__OperandAssignment_1_2
             {
             pushFollow(FOLLOW_2);
             rule__EqualityExpression__OperandAssignment_1_2();
@@ -10646,14 +11138,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__ClassificationExpression__Group_0__0"
-    // InternalKerMLExpressions.g:3365:1: rule__ClassificationExpression__Group_0__0 : rule__ClassificationExpression__Group_0__0__Impl rule__ClassificationExpression__Group_0__1 ;
+    // InternalKerMLExpressions.g:3492:1: rule__ClassificationExpression__Group_0__0 : rule__ClassificationExpression__Group_0__0__Impl rule__ClassificationExpression__Group_0__1 ;
     public final void rule__ClassificationExpression__Group_0__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:3369:1: ( rule__ClassificationExpression__Group_0__0__Impl rule__ClassificationExpression__Group_0__1 )
-            // InternalKerMLExpressions.g:3370:2: rule__ClassificationExpression__Group_0__0__Impl rule__ClassificationExpression__Group_0__1
+            // InternalKerMLExpressions.g:3496:1: ( rule__ClassificationExpression__Group_0__0__Impl rule__ClassificationExpression__Group_0__1 )
+            // InternalKerMLExpressions.g:3497:2: rule__ClassificationExpression__Group_0__0__Impl rule__ClassificationExpression__Group_0__1
             {
             pushFollow(FOLLOW_20);
             rule__ClassificationExpression__Group_0__0__Impl();
@@ -10684,17 +11176,17 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__ClassificationExpression__Group_0__0__Impl"
-    // InternalKerMLExpressions.g:3377:1: rule__ClassificationExpression__Group_0__0__Impl : ( ruleRelationalExpression ) ;
+    // InternalKerMLExpressions.g:3504:1: rule__ClassificationExpression__Group_0__0__Impl : ( ruleRelationalExpression ) ;
     public final void rule__ClassificationExpression__Group_0__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:3381:1: ( ( ruleRelationalExpression ) )
-            // InternalKerMLExpressions.g:3382:1: ( ruleRelationalExpression )
+            // InternalKerMLExpressions.g:3508:1: ( ( ruleRelationalExpression ) )
+            // InternalKerMLExpressions.g:3509:1: ( ruleRelationalExpression )
             {
-            // InternalKerMLExpressions.g:3382:1: ( ruleRelationalExpression )
-            // InternalKerMLExpressions.g:3383:2: ruleRelationalExpression
+            // InternalKerMLExpressions.g:3509:1: ( ruleRelationalExpression )
+            // InternalKerMLExpressions.g:3510:2: ruleRelationalExpression
             {
              before(grammarAccess.getClassificationExpressionAccess().getRelationalExpressionParserRuleCall_0_0()); 
             pushFollow(FOLLOW_2);
@@ -10725,14 +11217,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__ClassificationExpression__Group_0__1"
-    // InternalKerMLExpressions.g:3392:1: rule__ClassificationExpression__Group_0__1 : rule__ClassificationExpression__Group_0__1__Impl ;
+    // InternalKerMLExpressions.g:3519:1: rule__ClassificationExpression__Group_0__1 : rule__ClassificationExpression__Group_0__1__Impl ;
     public final void rule__ClassificationExpression__Group_0__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:3396:1: ( rule__ClassificationExpression__Group_0__1__Impl )
-            // InternalKerMLExpressions.g:3397:2: rule__ClassificationExpression__Group_0__1__Impl
+            // InternalKerMLExpressions.g:3523:1: ( rule__ClassificationExpression__Group_0__1__Impl )
+            // InternalKerMLExpressions.g:3524:2: rule__ClassificationExpression__Group_0__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__ClassificationExpression__Group_0__1__Impl();
@@ -10758,29 +11250,29 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__ClassificationExpression__Group_0__1__Impl"
-    // InternalKerMLExpressions.g:3403:1: rule__ClassificationExpression__Group_0__1__Impl : ( ( rule__ClassificationExpression__Group_0_1__0 )? ) ;
+    // InternalKerMLExpressions.g:3530:1: rule__ClassificationExpression__Group_0__1__Impl : ( ( rule__ClassificationExpression__Group_0_1__0 )? ) ;
     public final void rule__ClassificationExpression__Group_0__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:3407:1: ( ( ( rule__ClassificationExpression__Group_0_1__0 )? ) )
-            // InternalKerMLExpressions.g:3408:1: ( ( rule__ClassificationExpression__Group_0_1__0 )? )
+            // InternalKerMLExpressions.g:3534:1: ( ( ( rule__ClassificationExpression__Group_0_1__0 )? ) )
+            // InternalKerMLExpressions.g:3535:1: ( ( rule__ClassificationExpression__Group_0_1__0 )? )
             {
-            // InternalKerMLExpressions.g:3408:1: ( ( rule__ClassificationExpression__Group_0_1__0 )? )
-            // InternalKerMLExpressions.g:3409:2: ( rule__ClassificationExpression__Group_0_1__0 )?
+            // InternalKerMLExpressions.g:3535:1: ( ( rule__ClassificationExpression__Group_0_1__0 )? )
+            // InternalKerMLExpressions.g:3536:2: ( rule__ClassificationExpression__Group_0_1__0 )?
             {
              before(grammarAccess.getClassificationExpressionAccess().getGroup_0_1()); 
-            // InternalKerMLExpressions.g:3410:2: ( rule__ClassificationExpression__Group_0_1__0 )?
-            int alt29=2;
-            int LA29_0 = input.LA(1);
+            // InternalKerMLExpressions.g:3537:2: ( rule__ClassificationExpression__Group_0_1__0 )?
+            int alt33=2;
+            int LA33_0 = input.LA(1);
 
-            if ( ((LA29_0>=24 && LA29_0<=28)) ) {
-                alt29=1;
+            if ( ((LA33_0>=27 && LA33_0<=31)) ) {
+                alt33=1;
             }
-            switch (alt29) {
+            switch (alt33) {
                 case 1 :
-                    // InternalKerMLExpressions.g:3410:3: rule__ClassificationExpression__Group_0_1__0
+                    // InternalKerMLExpressions.g:3537:3: rule__ClassificationExpression__Group_0_1__0
                     {
                     pushFollow(FOLLOW_2);
                     rule__ClassificationExpression__Group_0_1__0();
@@ -10816,14 +11308,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__ClassificationExpression__Group_0_1__0"
-    // InternalKerMLExpressions.g:3419:1: rule__ClassificationExpression__Group_0_1__0 : rule__ClassificationExpression__Group_0_1__0__Impl rule__ClassificationExpression__Group_0_1__1 ;
+    // InternalKerMLExpressions.g:3546:1: rule__ClassificationExpression__Group_0_1__0 : rule__ClassificationExpression__Group_0_1__0__Impl rule__ClassificationExpression__Group_0_1__1 ;
     public final void rule__ClassificationExpression__Group_0_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:3423:1: ( rule__ClassificationExpression__Group_0_1__0__Impl rule__ClassificationExpression__Group_0_1__1 )
-            // InternalKerMLExpressions.g:3424:2: rule__ClassificationExpression__Group_0_1__0__Impl rule__ClassificationExpression__Group_0_1__1
+            // InternalKerMLExpressions.g:3550:1: ( rule__ClassificationExpression__Group_0_1__0__Impl rule__ClassificationExpression__Group_0_1__1 )
+            // InternalKerMLExpressions.g:3551:2: rule__ClassificationExpression__Group_0_1__0__Impl rule__ClassificationExpression__Group_0_1__1
             {
             pushFollow(FOLLOW_20);
             rule__ClassificationExpression__Group_0_1__0__Impl();
@@ -10854,21 +11346,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__ClassificationExpression__Group_0_1__0__Impl"
-    // InternalKerMLExpressions.g:3431:1: rule__ClassificationExpression__Group_0_1__0__Impl : ( () ) ;
+    // InternalKerMLExpressions.g:3558:1: rule__ClassificationExpression__Group_0_1__0__Impl : ( () ) ;
     public final void rule__ClassificationExpression__Group_0_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:3435:1: ( ( () ) )
-            // InternalKerMLExpressions.g:3436:1: ( () )
+            // InternalKerMLExpressions.g:3562:1: ( ( () ) )
+            // InternalKerMLExpressions.g:3563:1: ( () )
             {
-            // InternalKerMLExpressions.g:3436:1: ( () )
-            // InternalKerMLExpressions.g:3437:2: ()
+            // InternalKerMLExpressions.g:3563:1: ( () )
+            // InternalKerMLExpressions.g:3564:2: ()
             {
              before(grammarAccess.getClassificationExpressionAccess().getOperatorExpressionOperandAction_0_1_0()); 
-            // InternalKerMLExpressions.g:3438:2: ()
-            // InternalKerMLExpressions.g:3438:3: 
+            // InternalKerMLExpressions.g:3565:2: ()
+            // InternalKerMLExpressions.g:3565:3: 
             {
             }
 
@@ -10891,14 +11383,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__ClassificationExpression__Group_0_1__1"
-    // InternalKerMLExpressions.g:3446:1: rule__ClassificationExpression__Group_0_1__1 : rule__ClassificationExpression__Group_0_1__1__Impl rule__ClassificationExpression__Group_0_1__2 ;
+    // InternalKerMLExpressions.g:3573:1: rule__ClassificationExpression__Group_0_1__1 : rule__ClassificationExpression__Group_0_1__1__Impl rule__ClassificationExpression__Group_0_1__2 ;
     public final void rule__ClassificationExpression__Group_0_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:3450:1: ( rule__ClassificationExpression__Group_0_1__1__Impl rule__ClassificationExpression__Group_0_1__2 )
-            // InternalKerMLExpressions.g:3451:2: rule__ClassificationExpression__Group_0_1__1__Impl rule__ClassificationExpression__Group_0_1__2
+            // InternalKerMLExpressions.g:3577:1: ( rule__ClassificationExpression__Group_0_1__1__Impl rule__ClassificationExpression__Group_0_1__2 )
+            // InternalKerMLExpressions.g:3578:2: rule__ClassificationExpression__Group_0_1__1__Impl rule__ClassificationExpression__Group_0_1__2
             {
             pushFollow(FOLLOW_21);
             rule__ClassificationExpression__Group_0_1__1__Impl();
@@ -10929,21 +11421,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__ClassificationExpression__Group_0_1__1__Impl"
-    // InternalKerMLExpressions.g:3458:1: rule__ClassificationExpression__Group_0_1__1__Impl : ( ( rule__ClassificationExpression__OperatorAssignment_0_1_1 ) ) ;
+    // InternalKerMLExpressions.g:3585:1: rule__ClassificationExpression__Group_0_1__1__Impl : ( ( rule__ClassificationExpression__OperatorAssignment_0_1_1 ) ) ;
     public final void rule__ClassificationExpression__Group_0_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:3462:1: ( ( ( rule__ClassificationExpression__OperatorAssignment_0_1_1 ) ) )
-            // InternalKerMLExpressions.g:3463:1: ( ( rule__ClassificationExpression__OperatorAssignment_0_1_1 ) )
+            // InternalKerMLExpressions.g:3589:1: ( ( ( rule__ClassificationExpression__OperatorAssignment_0_1_1 ) ) )
+            // InternalKerMLExpressions.g:3590:1: ( ( rule__ClassificationExpression__OperatorAssignment_0_1_1 ) )
             {
-            // InternalKerMLExpressions.g:3463:1: ( ( rule__ClassificationExpression__OperatorAssignment_0_1_1 ) )
-            // InternalKerMLExpressions.g:3464:2: ( rule__ClassificationExpression__OperatorAssignment_0_1_1 )
+            // InternalKerMLExpressions.g:3590:1: ( ( rule__ClassificationExpression__OperatorAssignment_0_1_1 ) )
+            // InternalKerMLExpressions.g:3591:2: ( rule__ClassificationExpression__OperatorAssignment_0_1_1 )
             {
              before(grammarAccess.getClassificationExpressionAccess().getOperatorAssignment_0_1_1()); 
-            // InternalKerMLExpressions.g:3465:2: ( rule__ClassificationExpression__OperatorAssignment_0_1_1 )
-            // InternalKerMLExpressions.g:3465:3: rule__ClassificationExpression__OperatorAssignment_0_1_1
+            // InternalKerMLExpressions.g:3592:2: ( rule__ClassificationExpression__OperatorAssignment_0_1_1 )
+            // InternalKerMLExpressions.g:3592:3: rule__ClassificationExpression__OperatorAssignment_0_1_1
             {
             pushFollow(FOLLOW_2);
             rule__ClassificationExpression__OperatorAssignment_0_1_1();
@@ -10976,14 +11468,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__ClassificationExpression__Group_0_1__2"
-    // InternalKerMLExpressions.g:3473:1: rule__ClassificationExpression__Group_0_1__2 : rule__ClassificationExpression__Group_0_1__2__Impl ;
+    // InternalKerMLExpressions.g:3600:1: rule__ClassificationExpression__Group_0_1__2 : rule__ClassificationExpression__Group_0_1__2__Impl ;
     public final void rule__ClassificationExpression__Group_0_1__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:3477:1: ( rule__ClassificationExpression__Group_0_1__2__Impl )
-            // InternalKerMLExpressions.g:3478:2: rule__ClassificationExpression__Group_0_1__2__Impl
+            // InternalKerMLExpressions.g:3604:1: ( rule__ClassificationExpression__Group_0_1__2__Impl )
+            // InternalKerMLExpressions.g:3605:2: rule__ClassificationExpression__Group_0_1__2__Impl
             {
             pushFollow(FOLLOW_2);
             rule__ClassificationExpression__Group_0_1__2__Impl();
@@ -11009,21 +11501,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__ClassificationExpression__Group_0_1__2__Impl"
-    // InternalKerMLExpressions.g:3484:1: rule__ClassificationExpression__Group_0_1__2__Impl : ( ( rule__ClassificationExpression__OwnedRelationshipAssignment_0_1_2 ) ) ;
+    // InternalKerMLExpressions.g:3611:1: rule__ClassificationExpression__Group_0_1__2__Impl : ( ( rule__ClassificationExpression__OwnedRelationshipAssignment_0_1_2 ) ) ;
     public final void rule__ClassificationExpression__Group_0_1__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:3488:1: ( ( ( rule__ClassificationExpression__OwnedRelationshipAssignment_0_1_2 ) ) )
-            // InternalKerMLExpressions.g:3489:1: ( ( rule__ClassificationExpression__OwnedRelationshipAssignment_0_1_2 ) )
+            // InternalKerMLExpressions.g:3615:1: ( ( ( rule__ClassificationExpression__OwnedRelationshipAssignment_0_1_2 ) ) )
+            // InternalKerMLExpressions.g:3616:1: ( ( rule__ClassificationExpression__OwnedRelationshipAssignment_0_1_2 ) )
             {
-            // InternalKerMLExpressions.g:3489:1: ( ( rule__ClassificationExpression__OwnedRelationshipAssignment_0_1_2 ) )
-            // InternalKerMLExpressions.g:3490:2: ( rule__ClassificationExpression__OwnedRelationshipAssignment_0_1_2 )
+            // InternalKerMLExpressions.g:3616:1: ( ( rule__ClassificationExpression__OwnedRelationshipAssignment_0_1_2 ) )
+            // InternalKerMLExpressions.g:3617:2: ( rule__ClassificationExpression__OwnedRelationshipAssignment_0_1_2 )
             {
              before(grammarAccess.getClassificationExpressionAccess().getOwnedRelationshipAssignment_0_1_2()); 
-            // InternalKerMLExpressions.g:3491:2: ( rule__ClassificationExpression__OwnedRelationshipAssignment_0_1_2 )
-            // InternalKerMLExpressions.g:3491:3: rule__ClassificationExpression__OwnedRelationshipAssignment_0_1_2
+            // InternalKerMLExpressions.g:3618:2: ( rule__ClassificationExpression__OwnedRelationshipAssignment_0_1_2 )
+            // InternalKerMLExpressions.g:3618:3: rule__ClassificationExpression__OwnedRelationshipAssignment_0_1_2
             {
             pushFollow(FOLLOW_2);
             rule__ClassificationExpression__OwnedRelationshipAssignment_0_1_2();
@@ -11056,16 +11548,16 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__ClassificationExpression__Group_1__0"
-    // InternalKerMLExpressions.g:3500:1: rule__ClassificationExpression__Group_1__0 : rule__ClassificationExpression__Group_1__0__Impl rule__ClassificationExpression__Group_1__1 ;
+    // InternalKerMLExpressions.g:3627:1: rule__ClassificationExpression__Group_1__0 : rule__ClassificationExpression__Group_1__0__Impl rule__ClassificationExpression__Group_1__1 ;
     public final void rule__ClassificationExpression__Group_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:3504:1: ( rule__ClassificationExpression__Group_1__0__Impl rule__ClassificationExpression__Group_1__1 )
-            // InternalKerMLExpressions.g:3505:2: rule__ClassificationExpression__Group_1__0__Impl rule__ClassificationExpression__Group_1__1
+            // InternalKerMLExpressions.g:3631:1: ( rule__ClassificationExpression__Group_1__0__Impl rule__ClassificationExpression__Group_1__1 )
+            // InternalKerMLExpressions.g:3632:2: rule__ClassificationExpression__Group_1__0__Impl rule__ClassificationExpression__Group_1__1
             {
-            pushFollow(FOLLOW_4);
+            pushFollow(FOLLOW_6);
             rule__ClassificationExpression__Group_1__0__Impl();
 
             state._fsp--;
@@ -11094,21 +11586,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__ClassificationExpression__Group_1__0__Impl"
-    // InternalKerMLExpressions.g:3512:1: rule__ClassificationExpression__Group_1__0__Impl : ( () ) ;
+    // InternalKerMLExpressions.g:3639:1: rule__ClassificationExpression__Group_1__0__Impl : ( () ) ;
     public final void rule__ClassificationExpression__Group_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:3516:1: ( ( () ) )
-            // InternalKerMLExpressions.g:3517:1: ( () )
+            // InternalKerMLExpressions.g:3643:1: ( ( () ) )
+            // InternalKerMLExpressions.g:3644:1: ( () )
             {
-            // InternalKerMLExpressions.g:3517:1: ( () )
-            // InternalKerMLExpressions.g:3518:2: ()
+            // InternalKerMLExpressions.g:3644:1: ( () )
+            // InternalKerMLExpressions.g:3645:2: ()
             {
              before(grammarAccess.getClassificationExpressionAccess().getOperatorExpressionAction_1_0()); 
-            // InternalKerMLExpressions.g:3519:2: ()
-            // InternalKerMLExpressions.g:3519:3: 
+            // InternalKerMLExpressions.g:3646:2: ()
+            // InternalKerMLExpressions.g:3646:3: 
             {
             }
 
@@ -11131,14 +11623,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__ClassificationExpression__Group_1__1"
-    // InternalKerMLExpressions.g:3527:1: rule__ClassificationExpression__Group_1__1 : rule__ClassificationExpression__Group_1__1__Impl rule__ClassificationExpression__Group_1__2 ;
+    // InternalKerMLExpressions.g:3654:1: rule__ClassificationExpression__Group_1__1 : rule__ClassificationExpression__Group_1__1__Impl rule__ClassificationExpression__Group_1__2 ;
     public final void rule__ClassificationExpression__Group_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:3531:1: ( rule__ClassificationExpression__Group_1__1__Impl rule__ClassificationExpression__Group_1__2 )
-            // InternalKerMLExpressions.g:3532:2: rule__ClassificationExpression__Group_1__1__Impl rule__ClassificationExpression__Group_1__2
+            // InternalKerMLExpressions.g:3658:1: ( rule__ClassificationExpression__Group_1__1__Impl rule__ClassificationExpression__Group_1__2 )
+            // InternalKerMLExpressions.g:3659:2: rule__ClassificationExpression__Group_1__1__Impl rule__ClassificationExpression__Group_1__2
             {
             pushFollow(FOLLOW_20);
             rule__ClassificationExpression__Group_1__1__Impl();
@@ -11169,21 +11661,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__ClassificationExpression__Group_1__1__Impl"
-    // InternalKerMLExpressions.g:3539:1: rule__ClassificationExpression__Group_1__1__Impl : ( ( rule__ClassificationExpression__OperandAssignment_1_1 ) ) ;
+    // InternalKerMLExpressions.g:3666:1: rule__ClassificationExpression__Group_1__1__Impl : ( ( rule__ClassificationExpression__OperandAssignment_1_1 ) ) ;
     public final void rule__ClassificationExpression__Group_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:3543:1: ( ( ( rule__ClassificationExpression__OperandAssignment_1_1 ) ) )
-            // InternalKerMLExpressions.g:3544:1: ( ( rule__ClassificationExpression__OperandAssignment_1_1 ) )
+            // InternalKerMLExpressions.g:3670:1: ( ( ( rule__ClassificationExpression__OperandAssignment_1_1 ) ) )
+            // InternalKerMLExpressions.g:3671:1: ( ( rule__ClassificationExpression__OperandAssignment_1_1 ) )
             {
-            // InternalKerMLExpressions.g:3544:1: ( ( rule__ClassificationExpression__OperandAssignment_1_1 ) )
-            // InternalKerMLExpressions.g:3545:2: ( rule__ClassificationExpression__OperandAssignment_1_1 )
+            // InternalKerMLExpressions.g:3671:1: ( ( rule__ClassificationExpression__OperandAssignment_1_1 ) )
+            // InternalKerMLExpressions.g:3672:2: ( rule__ClassificationExpression__OperandAssignment_1_1 )
             {
              before(grammarAccess.getClassificationExpressionAccess().getOperandAssignment_1_1()); 
-            // InternalKerMLExpressions.g:3546:2: ( rule__ClassificationExpression__OperandAssignment_1_1 )
-            // InternalKerMLExpressions.g:3546:3: rule__ClassificationExpression__OperandAssignment_1_1
+            // InternalKerMLExpressions.g:3673:2: ( rule__ClassificationExpression__OperandAssignment_1_1 )
+            // InternalKerMLExpressions.g:3673:3: rule__ClassificationExpression__OperandAssignment_1_1
             {
             pushFollow(FOLLOW_2);
             rule__ClassificationExpression__OperandAssignment_1_1();
@@ -11216,14 +11708,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__ClassificationExpression__Group_1__2"
-    // InternalKerMLExpressions.g:3554:1: rule__ClassificationExpression__Group_1__2 : rule__ClassificationExpression__Group_1__2__Impl rule__ClassificationExpression__Group_1__3 ;
+    // InternalKerMLExpressions.g:3681:1: rule__ClassificationExpression__Group_1__2 : rule__ClassificationExpression__Group_1__2__Impl rule__ClassificationExpression__Group_1__3 ;
     public final void rule__ClassificationExpression__Group_1__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:3558:1: ( rule__ClassificationExpression__Group_1__2__Impl rule__ClassificationExpression__Group_1__3 )
-            // InternalKerMLExpressions.g:3559:2: rule__ClassificationExpression__Group_1__2__Impl rule__ClassificationExpression__Group_1__3
+            // InternalKerMLExpressions.g:3685:1: ( rule__ClassificationExpression__Group_1__2__Impl rule__ClassificationExpression__Group_1__3 )
+            // InternalKerMLExpressions.g:3686:2: rule__ClassificationExpression__Group_1__2__Impl rule__ClassificationExpression__Group_1__3
             {
             pushFollow(FOLLOW_21);
             rule__ClassificationExpression__Group_1__2__Impl();
@@ -11254,21 +11746,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__ClassificationExpression__Group_1__2__Impl"
-    // InternalKerMLExpressions.g:3566:1: rule__ClassificationExpression__Group_1__2__Impl : ( ( rule__ClassificationExpression__OperatorAssignment_1_2 ) ) ;
+    // InternalKerMLExpressions.g:3693:1: rule__ClassificationExpression__Group_1__2__Impl : ( ( rule__ClassificationExpression__OperatorAssignment_1_2 ) ) ;
     public final void rule__ClassificationExpression__Group_1__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:3570:1: ( ( ( rule__ClassificationExpression__OperatorAssignment_1_2 ) ) )
-            // InternalKerMLExpressions.g:3571:1: ( ( rule__ClassificationExpression__OperatorAssignment_1_2 ) )
+            // InternalKerMLExpressions.g:3697:1: ( ( ( rule__ClassificationExpression__OperatorAssignment_1_2 ) ) )
+            // InternalKerMLExpressions.g:3698:1: ( ( rule__ClassificationExpression__OperatorAssignment_1_2 ) )
             {
-            // InternalKerMLExpressions.g:3571:1: ( ( rule__ClassificationExpression__OperatorAssignment_1_2 ) )
-            // InternalKerMLExpressions.g:3572:2: ( rule__ClassificationExpression__OperatorAssignment_1_2 )
+            // InternalKerMLExpressions.g:3698:1: ( ( rule__ClassificationExpression__OperatorAssignment_1_2 ) )
+            // InternalKerMLExpressions.g:3699:2: ( rule__ClassificationExpression__OperatorAssignment_1_2 )
             {
              before(grammarAccess.getClassificationExpressionAccess().getOperatorAssignment_1_2()); 
-            // InternalKerMLExpressions.g:3573:2: ( rule__ClassificationExpression__OperatorAssignment_1_2 )
-            // InternalKerMLExpressions.g:3573:3: rule__ClassificationExpression__OperatorAssignment_1_2
+            // InternalKerMLExpressions.g:3700:2: ( rule__ClassificationExpression__OperatorAssignment_1_2 )
+            // InternalKerMLExpressions.g:3700:3: rule__ClassificationExpression__OperatorAssignment_1_2
             {
             pushFollow(FOLLOW_2);
             rule__ClassificationExpression__OperatorAssignment_1_2();
@@ -11301,14 +11793,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__ClassificationExpression__Group_1__3"
-    // InternalKerMLExpressions.g:3581:1: rule__ClassificationExpression__Group_1__3 : rule__ClassificationExpression__Group_1__3__Impl ;
+    // InternalKerMLExpressions.g:3708:1: rule__ClassificationExpression__Group_1__3 : rule__ClassificationExpression__Group_1__3__Impl ;
     public final void rule__ClassificationExpression__Group_1__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:3585:1: ( rule__ClassificationExpression__Group_1__3__Impl )
-            // InternalKerMLExpressions.g:3586:2: rule__ClassificationExpression__Group_1__3__Impl
+            // InternalKerMLExpressions.g:3712:1: ( rule__ClassificationExpression__Group_1__3__Impl )
+            // InternalKerMLExpressions.g:3713:2: rule__ClassificationExpression__Group_1__3__Impl
             {
             pushFollow(FOLLOW_2);
             rule__ClassificationExpression__Group_1__3__Impl();
@@ -11334,21 +11826,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__ClassificationExpression__Group_1__3__Impl"
-    // InternalKerMLExpressions.g:3592:1: rule__ClassificationExpression__Group_1__3__Impl : ( ( rule__ClassificationExpression__OwnedRelationshipAssignment_1_3 ) ) ;
+    // InternalKerMLExpressions.g:3719:1: rule__ClassificationExpression__Group_1__3__Impl : ( ( rule__ClassificationExpression__OwnedRelationshipAssignment_1_3 ) ) ;
     public final void rule__ClassificationExpression__Group_1__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:3596:1: ( ( ( rule__ClassificationExpression__OwnedRelationshipAssignment_1_3 ) ) )
-            // InternalKerMLExpressions.g:3597:1: ( ( rule__ClassificationExpression__OwnedRelationshipAssignment_1_3 ) )
+            // InternalKerMLExpressions.g:3723:1: ( ( ( rule__ClassificationExpression__OwnedRelationshipAssignment_1_3 ) ) )
+            // InternalKerMLExpressions.g:3724:1: ( ( rule__ClassificationExpression__OwnedRelationshipAssignment_1_3 ) )
             {
-            // InternalKerMLExpressions.g:3597:1: ( ( rule__ClassificationExpression__OwnedRelationshipAssignment_1_3 ) )
-            // InternalKerMLExpressions.g:3598:2: ( rule__ClassificationExpression__OwnedRelationshipAssignment_1_3 )
+            // InternalKerMLExpressions.g:3724:1: ( ( rule__ClassificationExpression__OwnedRelationshipAssignment_1_3 ) )
+            // InternalKerMLExpressions.g:3725:2: ( rule__ClassificationExpression__OwnedRelationshipAssignment_1_3 )
             {
              before(grammarAccess.getClassificationExpressionAccess().getOwnedRelationshipAssignment_1_3()); 
-            // InternalKerMLExpressions.g:3599:2: ( rule__ClassificationExpression__OwnedRelationshipAssignment_1_3 )
-            // InternalKerMLExpressions.g:3599:3: rule__ClassificationExpression__OwnedRelationshipAssignment_1_3
+            // InternalKerMLExpressions.g:3726:2: ( rule__ClassificationExpression__OwnedRelationshipAssignment_1_3 )
+            // InternalKerMLExpressions.g:3726:3: rule__ClassificationExpression__OwnedRelationshipAssignment_1_3
             {
             pushFollow(FOLLOW_2);
             rule__ClassificationExpression__OwnedRelationshipAssignment_1_3();
@@ -11381,14 +11873,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__RelationalExpression__Group__0"
-    // InternalKerMLExpressions.g:3608:1: rule__RelationalExpression__Group__0 : rule__RelationalExpression__Group__0__Impl rule__RelationalExpression__Group__1 ;
+    // InternalKerMLExpressions.g:3735:1: rule__RelationalExpression__Group__0 : rule__RelationalExpression__Group__0__Impl rule__RelationalExpression__Group__1 ;
     public final void rule__RelationalExpression__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:3612:1: ( rule__RelationalExpression__Group__0__Impl rule__RelationalExpression__Group__1 )
-            // InternalKerMLExpressions.g:3613:2: rule__RelationalExpression__Group__0__Impl rule__RelationalExpression__Group__1
+            // InternalKerMLExpressions.g:3739:1: ( rule__RelationalExpression__Group__0__Impl rule__RelationalExpression__Group__1 )
+            // InternalKerMLExpressions.g:3740:2: rule__RelationalExpression__Group__0__Impl rule__RelationalExpression__Group__1
             {
             pushFollow(FOLLOW_22);
             rule__RelationalExpression__Group__0__Impl();
@@ -11419,17 +11911,17 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__RelationalExpression__Group__0__Impl"
-    // InternalKerMLExpressions.g:3620:1: rule__RelationalExpression__Group__0__Impl : ( ruleRangeExpression ) ;
+    // InternalKerMLExpressions.g:3747:1: rule__RelationalExpression__Group__0__Impl : ( ruleRangeExpression ) ;
     public final void rule__RelationalExpression__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:3624:1: ( ( ruleRangeExpression ) )
-            // InternalKerMLExpressions.g:3625:1: ( ruleRangeExpression )
+            // InternalKerMLExpressions.g:3751:1: ( ( ruleRangeExpression ) )
+            // InternalKerMLExpressions.g:3752:1: ( ruleRangeExpression )
             {
-            // InternalKerMLExpressions.g:3625:1: ( ruleRangeExpression )
-            // InternalKerMLExpressions.g:3626:2: ruleRangeExpression
+            // InternalKerMLExpressions.g:3752:1: ( ruleRangeExpression )
+            // InternalKerMLExpressions.g:3753:2: ruleRangeExpression
             {
              before(grammarAccess.getRelationalExpressionAccess().getRangeExpressionParserRuleCall_0()); 
             pushFollow(FOLLOW_2);
@@ -11460,14 +11952,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__RelationalExpression__Group__1"
-    // InternalKerMLExpressions.g:3635:1: rule__RelationalExpression__Group__1 : rule__RelationalExpression__Group__1__Impl ;
+    // InternalKerMLExpressions.g:3762:1: rule__RelationalExpression__Group__1 : rule__RelationalExpression__Group__1__Impl ;
     public final void rule__RelationalExpression__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:3639:1: ( rule__RelationalExpression__Group__1__Impl )
-            // InternalKerMLExpressions.g:3640:2: rule__RelationalExpression__Group__1__Impl
+            // InternalKerMLExpressions.g:3766:1: ( rule__RelationalExpression__Group__1__Impl )
+            // InternalKerMLExpressions.g:3767:2: rule__RelationalExpression__Group__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__RelationalExpression__Group__1__Impl();
@@ -11493,33 +11985,33 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__RelationalExpression__Group__1__Impl"
-    // InternalKerMLExpressions.g:3646:1: rule__RelationalExpression__Group__1__Impl : ( ( rule__RelationalExpression__Group_1__0 )* ) ;
+    // InternalKerMLExpressions.g:3773:1: rule__RelationalExpression__Group__1__Impl : ( ( rule__RelationalExpression__Group_1__0 )* ) ;
     public final void rule__RelationalExpression__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:3650:1: ( ( ( rule__RelationalExpression__Group_1__0 )* ) )
-            // InternalKerMLExpressions.g:3651:1: ( ( rule__RelationalExpression__Group_1__0 )* )
+            // InternalKerMLExpressions.g:3777:1: ( ( ( rule__RelationalExpression__Group_1__0 )* ) )
+            // InternalKerMLExpressions.g:3778:1: ( ( rule__RelationalExpression__Group_1__0 )* )
             {
-            // InternalKerMLExpressions.g:3651:1: ( ( rule__RelationalExpression__Group_1__0 )* )
-            // InternalKerMLExpressions.g:3652:2: ( rule__RelationalExpression__Group_1__0 )*
+            // InternalKerMLExpressions.g:3778:1: ( ( rule__RelationalExpression__Group_1__0 )* )
+            // InternalKerMLExpressions.g:3779:2: ( rule__RelationalExpression__Group_1__0 )*
             {
              before(grammarAccess.getRelationalExpressionAccess().getGroup_1()); 
-            // InternalKerMLExpressions.g:3653:2: ( rule__RelationalExpression__Group_1__0 )*
-            loop30:
+            // InternalKerMLExpressions.g:3780:2: ( rule__RelationalExpression__Group_1__0 )*
+            loop34:
             do {
-                int alt30=2;
-                int LA30_0 = input.LA(1);
+                int alt34=2;
+                int LA34_0 = input.LA(1);
 
-                if ( ((LA30_0>=29 && LA30_0<=32)) ) {
-                    alt30=1;
+                if ( ((LA34_0>=32 && LA34_0<=35)) ) {
+                    alt34=1;
                 }
 
 
-                switch (alt30) {
+                switch (alt34) {
             	case 1 :
-            	    // InternalKerMLExpressions.g:3653:3: rule__RelationalExpression__Group_1__0
+            	    // InternalKerMLExpressions.g:3780:3: rule__RelationalExpression__Group_1__0
             	    {
             	    pushFollow(FOLLOW_23);
             	    rule__RelationalExpression__Group_1__0();
@@ -11531,7 +12023,7 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
             	    break;
 
             	default :
-            	    break loop30;
+            	    break loop34;
                 }
             } while (true);
 
@@ -11558,14 +12050,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__RelationalExpression__Group_1__0"
-    // InternalKerMLExpressions.g:3662:1: rule__RelationalExpression__Group_1__0 : rule__RelationalExpression__Group_1__0__Impl rule__RelationalExpression__Group_1__1 ;
+    // InternalKerMLExpressions.g:3789:1: rule__RelationalExpression__Group_1__0 : rule__RelationalExpression__Group_1__0__Impl rule__RelationalExpression__Group_1__1 ;
     public final void rule__RelationalExpression__Group_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:3666:1: ( rule__RelationalExpression__Group_1__0__Impl rule__RelationalExpression__Group_1__1 )
-            // InternalKerMLExpressions.g:3667:2: rule__RelationalExpression__Group_1__0__Impl rule__RelationalExpression__Group_1__1
+            // InternalKerMLExpressions.g:3793:1: ( rule__RelationalExpression__Group_1__0__Impl rule__RelationalExpression__Group_1__1 )
+            // InternalKerMLExpressions.g:3794:2: rule__RelationalExpression__Group_1__0__Impl rule__RelationalExpression__Group_1__1
             {
             pushFollow(FOLLOW_22);
             rule__RelationalExpression__Group_1__0__Impl();
@@ -11596,21 +12088,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__RelationalExpression__Group_1__0__Impl"
-    // InternalKerMLExpressions.g:3674:1: rule__RelationalExpression__Group_1__0__Impl : ( () ) ;
+    // InternalKerMLExpressions.g:3801:1: rule__RelationalExpression__Group_1__0__Impl : ( () ) ;
     public final void rule__RelationalExpression__Group_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:3678:1: ( ( () ) )
-            // InternalKerMLExpressions.g:3679:1: ( () )
+            // InternalKerMLExpressions.g:3805:1: ( ( () ) )
+            // InternalKerMLExpressions.g:3806:1: ( () )
             {
-            // InternalKerMLExpressions.g:3679:1: ( () )
-            // InternalKerMLExpressions.g:3680:2: ()
+            // InternalKerMLExpressions.g:3806:1: ( () )
+            // InternalKerMLExpressions.g:3807:2: ()
             {
              before(grammarAccess.getRelationalExpressionAccess().getOperatorExpressionOperandAction_1_0()); 
-            // InternalKerMLExpressions.g:3681:2: ()
-            // InternalKerMLExpressions.g:3681:3: 
+            // InternalKerMLExpressions.g:3808:2: ()
+            // InternalKerMLExpressions.g:3808:3: 
             {
             }
 
@@ -11633,16 +12125,16 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__RelationalExpression__Group_1__1"
-    // InternalKerMLExpressions.g:3689:1: rule__RelationalExpression__Group_1__1 : rule__RelationalExpression__Group_1__1__Impl rule__RelationalExpression__Group_1__2 ;
+    // InternalKerMLExpressions.g:3816:1: rule__RelationalExpression__Group_1__1 : rule__RelationalExpression__Group_1__1__Impl rule__RelationalExpression__Group_1__2 ;
     public final void rule__RelationalExpression__Group_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:3693:1: ( rule__RelationalExpression__Group_1__1__Impl rule__RelationalExpression__Group_1__2 )
-            // InternalKerMLExpressions.g:3694:2: rule__RelationalExpression__Group_1__1__Impl rule__RelationalExpression__Group_1__2
+            // InternalKerMLExpressions.g:3820:1: ( rule__RelationalExpression__Group_1__1__Impl rule__RelationalExpression__Group_1__2 )
+            // InternalKerMLExpressions.g:3821:2: rule__RelationalExpression__Group_1__1__Impl rule__RelationalExpression__Group_1__2
             {
-            pushFollow(FOLLOW_4);
+            pushFollow(FOLLOW_6);
             rule__RelationalExpression__Group_1__1__Impl();
 
             state._fsp--;
@@ -11671,21 +12163,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__RelationalExpression__Group_1__1__Impl"
-    // InternalKerMLExpressions.g:3701:1: rule__RelationalExpression__Group_1__1__Impl : ( ( rule__RelationalExpression__OperatorAssignment_1_1 ) ) ;
+    // InternalKerMLExpressions.g:3828:1: rule__RelationalExpression__Group_1__1__Impl : ( ( rule__RelationalExpression__OperatorAssignment_1_1 ) ) ;
     public final void rule__RelationalExpression__Group_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:3705:1: ( ( ( rule__RelationalExpression__OperatorAssignment_1_1 ) ) )
-            // InternalKerMLExpressions.g:3706:1: ( ( rule__RelationalExpression__OperatorAssignment_1_1 ) )
+            // InternalKerMLExpressions.g:3832:1: ( ( ( rule__RelationalExpression__OperatorAssignment_1_1 ) ) )
+            // InternalKerMLExpressions.g:3833:1: ( ( rule__RelationalExpression__OperatorAssignment_1_1 ) )
             {
-            // InternalKerMLExpressions.g:3706:1: ( ( rule__RelationalExpression__OperatorAssignment_1_1 ) )
-            // InternalKerMLExpressions.g:3707:2: ( rule__RelationalExpression__OperatorAssignment_1_1 )
+            // InternalKerMLExpressions.g:3833:1: ( ( rule__RelationalExpression__OperatorAssignment_1_1 ) )
+            // InternalKerMLExpressions.g:3834:2: ( rule__RelationalExpression__OperatorAssignment_1_1 )
             {
              before(grammarAccess.getRelationalExpressionAccess().getOperatorAssignment_1_1()); 
-            // InternalKerMLExpressions.g:3708:2: ( rule__RelationalExpression__OperatorAssignment_1_1 )
-            // InternalKerMLExpressions.g:3708:3: rule__RelationalExpression__OperatorAssignment_1_1
+            // InternalKerMLExpressions.g:3835:2: ( rule__RelationalExpression__OperatorAssignment_1_1 )
+            // InternalKerMLExpressions.g:3835:3: rule__RelationalExpression__OperatorAssignment_1_1
             {
             pushFollow(FOLLOW_2);
             rule__RelationalExpression__OperatorAssignment_1_1();
@@ -11718,14 +12210,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__RelationalExpression__Group_1__2"
-    // InternalKerMLExpressions.g:3716:1: rule__RelationalExpression__Group_1__2 : rule__RelationalExpression__Group_1__2__Impl ;
+    // InternalKerMLExpressions.g:3843:1: rule__RelationalExpression__Group_1__2 : rule__RelationalExpression__Group_1__2__Impl ;
     public final void rule__RelationalExpression__Group_1__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:3720:1: ( rule__RelationalExpression__Group_1__2__Impl )
-            // InternalKerMLExpressions.g:3721:2: rule__RelationalExpression__Group_1__2__Impl
+            // InternalKerMLExpressions.g:3847:1: ( rule__RelationalExpression__Group_1__2__Impl )
+            // InternalKerMLExpressions.g:3848:2: rule__RelationalExpression__Group_1__2__Impl
             {
             pushFollow(FOLLOW_2);
             rule__RelationalExpression__Group_1__2__Impl();
@@ -11751,21 +12243,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__RelationalExpression__Group_1__2__Impl"
-    // InternalKerMLExpressions.g:3727:1: rule__RelationalExpression__Group_1__2__Impl : ( ( rule__RelationalExpression__OperandAssignment_1_2 ) ) ;
+    // InternalKerMLExpressions.g:3854:1: rule__RelationalExpression__Group_1__2__Impl : ( ( rule__RelationalExpression__OperandAssignment_1_2 ) ) ;
     public final void rule__RelationalExpression__Group_1__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:3731:1: ( ( ( rule__RelationalExpression__OperandAssignment_1_2 ) ) )
-            // InternalKerMLExpressions.g:3732:1: ( ( rule__RelationalExpression__OperandAssignment_1_2 ) )
+            // InternalKerMLExpressions.g:3858:1: ( ( ( rule__RelationalExpression__OperandAssignment_1_2 ) ) )
+            // InternalKerMLExpressions.g:3859:1: ( ( rule__RelationalExpression__OperandAssignment_1_2 ) )
             {
-            // InternalKerMLExpressions.g:3732:1: ( ( rule__RelationalExpression__OperandAssignment_1_2 ) )
-            // InternalKerMLExpressions.g:3733:2: ( rule__RelationalExpression__OperandAssignment_1_2 )
+            // InternalKerMLExpressions.g:3859:1: ( ( rule__RelationalExpression__OperandAssignment_1_2 ) )
+            // InternalKerMLExpressions.g:3860:2: ( rule__RelationalExpression__OperandAssignment_1_2 )
             {
              before(grammarAccess.getRelationalExpressionAccess().getOperandAssignment_1_2()); 
-            // InternalKerMLExpressions.g:3734:2: ( rule__RelationalExpression__OperandAssignment_1_2 )
-            // InternalKerMLExpressions.g:3734:3: rule__RelationalExpression__OperandAssignment_1_2
+            // InternalKerMLExpressions.g:3861:2: ( rule__RelationalExpression__OperandAssignment_1_2 )
+            // InternalKerMLExpressions.g:3861:3: rule__RelationalExpression__OperandAssignment_1_2
             {
             pushFollow(FOLLOW_2);
             rule__RelationalExpression__OperandAssignment_1_2();
@@ -11798,14 +12290,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__RangeExpression__Group__0"
-    // InternalKerMLExpressions.g:3743:1: rule__RangeExpression__Group__0 : rule__RangeExpression__Group__0__Impl rule__RangeExpression__Group__1 ;
+    // InternalKerMLExpressions.g:3870:1: rule__RangeExpression__Group__0 : rule__RangeExpression__Group__0__Impl rule__RangeExpression__Group__1 ;
     public final void rule__RangeExpression__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:3747:1: ( rule__RangeExpression__Group__0__Impl rule__RangeExpression__Group__1 )
-            // InternalKerMLExpressions.g:3748:2: rule__RangeExpression__Group__0__Impl rule__RangeExpression__Group__1
+            // InternalKerMLExpressions.g:3874:1: ( rule__RangeExpression__Group__0__Impl rule__RangeExpression__Group__1 )
+            // InternalKerMLExpressions.g:3875:2: rule__RangeExpression__Group__0__Impl rule__RangeExpression__Group__1
             {
             pushFollow(FOLLOW_24);
             rule__RangeExpression__Group__0__Impl();
@@ -11836,17 +12328,17 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__RangeExpression__Group__0__Impl"
-    // InternalKerMLExpressions.g:3755:1: rule__RangeExpression__Group__0__Impl : ( ruleAdditiveExpression ) ;
+    // InternalKerMLExpressions.g:3882:1: rule__RangeExpression__Group__0__Impl : ( ruleAdditiveExpression ) ;
     public final void rule__RangeExpression__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:3759:1: ( ( ruleAdditiveExpression ) )
-            // InternalKerMLExpressions.g:3760:1: ( ruleAdditiveExpression )
+            // InternalKerMLExpressions.g:3886:1: ( ( ruleAdditiveExpression ) )
+            // InternalKerMLExpressions.g:3887:1: ( ruleAdditiveExpression )
             {
-            // InternalKerMLExpressions.g:3760:1: ( ruleAdditiveExpression )
-            // InternalKerMLExpressions.g:3761:2: ruleAdditiveExpression
+            // InternalKerMLExpressions.g:3887:1: ( ruleAdditiveExpression )
+            // InternalKerMLExpressions.g:3888:2: ruleAdditiveExpression
             {
              before(grammarAccess.getRangeExpressionAccess().getAdditiveExpressionParserRuleCall_0()); 
             pushFollow(FOLLOW_2);
@@ -11877,14 +12369,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__RangeExpression__Group__1"
-    // InternalKerMLExpressions.g:3770:1: rule__RangeExpression__Group__1 : rule__RangeExpression__Group__1__Impl ;
+    // InternalKerMLExpressions.g:3897:1: rule__RangeExpression__Group__1 : rule__RangeExpression__Group__1__Impl ;
     public final void rule__RangeExpression__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:3774:1: ( rule__RangeExpression__Group__1__Impl )
-            // InternalKerMLExpressions.g:3775:2: rule__RangeExpression__Group__1__Impl
+            // InternalKerMLExpressions.g:3901:1: ( rule__RangeExpression__Group__1__Impl )
+            // InternalKerMLExpressions.g:3902:2: rule__RangeExpression__Group__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__RangeExpression__Group__1__Impl();
@@ -11910,29 +12402,29 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__RangeExpression__Group__1__Impl"
-    // InternalKerMLExpressions.g:3781:1: rule__RangeExpression__Group__1__Impl : ( ( rule__RangeExpression__Group_1__0 )? ) ;
+    // InternalKerMLExpressions.g:3908:1: rule__RangeExpression__Group__1__Impl : ( ( rule__RangeExpression__Group_1__0 )? ) ;
     public final void rule__RangeExpression__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:3785:1: ( ( ( rule__RangeExpression__Group_1__0 )? ) )
-            // InternalKerMLExpressions.g:3786:1: ( ( rule__RangeExpression__Group_1__0 )? )
+            // InternalKerMLExpressions.g:3912:1: ( ( ( rule__RangeExpression__Group_1__0 )? ) )
+            // InternalKerMLExpressions.g:3913:1: ( ( rule__RangeExpression__Group_1__0 )? )
             {
-            // InternalKerMLExpressions.g:3786:1: ( ( rule__RangeExpression__Group_1__0 )? )
-            // InternalKerMLExpressions.g:3787:2: ( rule__RangeExpression__Group_1__0 )?
+            // InternalKerMLExpressions.g:3913:1: ( ( rule__RangeExpression__Group_1__0 )? )
+            // InternalKerMLExpressions.g:3914:2: ( rule__RangeExpression__Group_1__0 )?
             {
              before(grammarAccess.getRangeExpressionAccess().getGroup_1()); 
-            // InternalKerMLExpressions.g:3788:2: ( rule__RangeExpression__Group_1__0 )?
-            int alt31=2;
-            int LA31_0 = input.LA(1);
+            // InternalKerMLExpressions.g:3915:2: ( rule__RangeExpression__Group_1__0 )?
+            int alt35=2;
+            int LA35_0 = input.LA(1);
 
-            if ( (LA31_0==56) ) {
-                alt31=1;
+            if ( (LA35_0==64) ) {
+                alt35=1;
             }
-            switch (alt31) {
+            switch (alt35) {
                 case 1 :
-                    // InternalKerMLExpressions.g:3788:3: rule__RangeExpression__Group_1__0
+                    // InternalKerMLExpressions.g:3915:3: rule__RangeExpression__Group_1__0
                     {
                     pushFollow(FOLLOW_2);
                     rule__RangeExpression__Group_1__0();
@@ -11968,14 +12460,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__RangeExpression__Group_1__0"
-    // InternalKerMLExpressions.g:3797:1: rule__RangeExpression__Group_1__0 : rule__RangeExpression__Group_1__0__Impl rule__RangeExpression__Group_1__1 ;
+    // InternalKerMLExpressions.g:3924:1: rule__RangeExpression__Group_1__0 : rule__RangeExpression__Group_1__0__Impl rule__RangeExpression__Group_1__1 ;
     public final void rule__RangeExpression__Group_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:3801:1: ( rule__RangeExpression__Group_1__0__Impl rule__RangeExpression__Group_1__1 )
-            // InternalKerMLExpressions.g:3802:2: rule__RangeExpression__Group_1__0__Impl rule__RangeExpression__Group_1__1
+            // InternalKerMLExpressions.g:3928:1: ( rule__RangeExpression__Group_1__0__Impl rule__RangeExpression__Group_1__1 )
+            // InternalKerMLExpressions.g:3929:2: rule__RangeExpression__Group_1__0__Impl rule__RangeExpression__Group_1__1
             {
             pushFollow(FOLLOW_24);
             rule__RangeExpression__Group_1__0__Impl();
@@ -12006,21 +12498,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__RangeExpression__Group_1__0__Impl"
-    // InternalKerMLExpressions.g:3809:1: rule__RangeExpression__Group_1__0__Impl : ( () ) ;
+    // InternalKerMLExpressions.g:3936:1: rule__RangeExpression__Group_1__0__Impl : ( () ) ;
     public final void rule__RangeExpression__Group_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:3813:1: ( ( () ) )
-            // InternalKerMLExpressions.g:3814:1: ( () )
+            // InternalKerMLExpressions.g:3940:1: ( ( () ) )
+            // InternalKerMLExpressions.g:3941:1: ( () )
             {
-            // InternalKerMLExpressions.g:3814:1: ( () )
-            // InternalKerMLExpressions.g:3815:2: ()
+            // InternalKerMLExpressions.g:3941:1: ( () )
+            // InternalKerMLExpressions.g:3942:2: ()
             {
              before(grammarAccess.getRangeExpressionAccess().getOperatorExpressionOperandAction_1_0()); 
-            // InternalKerMLExpressions.g:3816:2: ()
-            // InternalKerMLExpressions.g:3816:3: 
+            // InternalKerMLExpressions.g:3943:2: ()
+            // InternalKerMLExpressions.g:3943:3: 
             {
             }
 
@@ -12043,16 +12535,16 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__RangeExpression__Group_1__1"
-    // InternalKerMLExpressions.g:3824:1: rule__RangeExpression__Group_1__1 : rule__RangeExpression__Group_1__1__Impl rule__RangeExpression__Group_1__2 ;
+    // InternalKerMLExpressions.g:3951:1: rule__RangeExpression__Group_1__1 : rule__RangeExpression__Group_1__1__Impl rule__RangeExpression__Group_1__2 ;
     public final void rule__RangeExpression__Group_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:3828:1: ( rule__RangeExpression__Group_1__1__Impl rule__RangeExpression__Group_1__2 )
-            // InternalKerMLExpressions.g:3829:2: rule__RangeExpression__Group_1__1__Impl rule__RangeExpression__Group_1__2
+            // InternalKerMLExpressions.g:3955:1: ( rule__RangeExpression__Group_1__1__Impl rule__RangeExpression__Group_1__2 )
+            // InternalKerMLExpressions.g:3956:2: rule__RangeExpression__Group_1__1__Impl rule__RangeExpression__Group_1__2
             {
-            pushFollow(FOLLOW_4);
+            pushFollow(FOLLOW_6);
             rule__RangeExpression__Group_1__1__Impl();
 
             state._fsp--;
@@ -12081,21 +12573,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__RangeExpression__Group_1__1__Impl"
-    // InternalKerMLExpressions.g:3836:1: rule__RangeExpression__Group_1__1__Impl : ( ( rule__RangeExpression__OperatorAssignment_1_1 ) ) ;
+    // InternalKerMLExpressions.g:3963:1: rule__RangeExpression__Group_1__1__Impl : ( ( rule__RangeExpression__OperatorAssignment_1_1 ) ) ;
     public final void rule__RangeExpression__Group_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:3840:1: ( ( ( rule__RangeExpression__OperatorAssignment_1_1 ) ) )
-            // InternalKerMLExpressions.g:3841:1: ( ( rule__RangeExpression__OperatorAssignment_1_1 ) )
+            // InternalKerMLExpressions.g:3967:1: ( ( ( rule__RangeExpression__OperatorAssignment_1_1 ) ) )
+            // InternalKerMLExpressions.g:3968:1: ( ( rule__RangeExpression__OperatorAssignment_1_1 ) )
             {
-            // InternalKerMLExpressions.g:3841:1: ( ( rule__RangeExpression__OperatorAssignment_1_1 ) )
-            // InternalKerMLExpressions.g:3842:2: ( rule__RangeExpression__OperatorAssignment_1_1 )
+            // InternalKerMLExpressions.g:3968:1: ( ( rule__RangeExpression__OperatorAssignment_1_1 ) )
+            // InternalKerMLExpressions.g:3969:2: ( rule__RangeExpression__OperatorAssignment_1_1 )
             {
              before(grammarAccess.getRangeExpressionAccess().getOperatorAssignment_1_1()); 
-            // InternalKerMLExpressions.g:3843:2: ( rule__RangeExpression__OperatorAssignment_1_1 )
-            // InternalKerMLExpressions.g:3843:3: rule__RangeExpression__OperatorAssignment_1_1
+            // InternalKerMLExpressions.g:3970:2: ( rule__RangeExpression__OperatorAssignment_1_1 )
+            // InternalKerMLExpressions.g:3970:3: rule__RangeExpression__OperatorAssignment_1_1
             {
             pushFollow(FOLLOW_2);
             rule__RangeExpression__OperatorAssignment_1_1();
@@ -12128,14 +12620,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__RangeExpression__Group_1__2"
-    // InternalKerMLExpressions.g:3851:1: rule__RangeExpression__Group_1__2 : rule__RangeExpression__Group_1__2__Impl ;
+    // InternalKerMLExpressions.g:3978:1: rule__RangeExpression__Group_1__2 : rule__RangeExpression__Group_1__2__Impl ;
     public final void rule__RangeExpression__Group_1__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:3855:1: ( rule__RangeExpression__Group_1__2__Impl )
-            // InternalKerMLExpressions.g:3856:2: rule__RangeExpression__Group_1__2__Impl
+            // InternalKerMLExpressions.g:3982:1: ( rule__RangeExpression__Group_1__2__Impl )
+            // InternalKerMLExpressions.g:3983:2: rule__RangeExpression__Group_1__2__Impl
             {
             pushFollow(FOLLOW_2);
             rule__RangeExpression__Group_1__2__Impl();
@@ -12161,21 +12653,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__RangeExpression__Group_1__2__Impl"
-    // InternalKerMLExpressions.g:3862:1: rule__RangeExpression__Group_1__2__Impl : ( ( rule__RangeExpression__OperandAssignment_1_2 ) ) ;
+    // InternalKerMLExpressions.g:3989:1: rule__RangeExpression__Group_1__2__Impl : ( ( rule__RangeExpression__OperandAssignment_1_2 ) ) ;
     public final void rule__RangeExpression__Group_1__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:3866:1: ( ( ( rule__RangeExpression__OperandAssignment_1_2 ) ) )
-            // InternalKerMLExpressions.g:3867:1: ( ( rule__RangeExpression__OperandAssignment_1_2 ) )
+            // InternalKerMLExpressions.g:3993:1: ( ( ( rule__RangeExpression__OperandAssignment_1_2 ) ) )
+            // InternalKerMLExpressions.g:3994:1: ( ( rule__RangeExpression__OperandAssignment_1_2 ) )
             {
-            // InternalKerMLExpressions.g:3867:1: ( ( rule__RangeExpression__OperandAssignment_1_2 ) )
-            // InternalKerMLExpressions.g:3868:2: ( rule__RangeExpression__OperandAssignment_1_2 )
+            // InternalKerMLExpressions.g:3994:1: ( ( rule__RangeExpression__OperandAssignment_1_2 ) )
+            // InternalKerMLExpressions.g:3995:2: ( rule__RangeExpression__OperandAssignment_1_2 )
             {
              before(grammarAccess.getRangeExpressionAccess().getOperandAssignment_1_2()); 
-            // InternalKerMLExpressions.g:3869:2: ( rule__RangeExpression__OperandAssignment_1_2 )
-            // InternalKerMLExpressions.g:3869:3: rule__RangeExpression__OperandAssignment_1_2
+            // InternalKerMLExpressions.g:3996:2: ( rule__RangeExpression__OperandAssignment_1_2 )
+            // InternalKerMLExpressions.g:3996:3: rule__RangeExpression__OperandAssignment_1_2
             {
             pushFollow(FOLLOW_2);
             rule__RangeExpression__OperandAssignment_1_2();
@@ -12208,14 +12700,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__AdditiveExpression__Group__0"
-    // InternalKerMLExpressions.g:3878:1: rule__AdditiveExpression__Group__0 : rule__AdditiveExpression__Group__0__Impl rule__AdditiveExpression__Group__1 ;
+    // InternalKerMLExpressions.g:4005:1: rule__AdditiveExpression__Group__0 : rule__AdditiveExpression__Group__0__Impl rule__AdditiveExpression__Group__1 ;
     public final void rule__AdditiveExpression__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:3882:1: ( rule__AdditiveExpression__Group__0__Impl rule__AdditiveExpression__Group__1 )
-            // InternalKerMLExpressions.g:3883:2: rule__AdditiveExpression__Group__0__Impl rule__AdditiveExpression__Group__1
+            // InternalKerMLExpressions.g:4009:1: ( rule__AdditiveExpression__Group__0__Impl rule__AdditiveExpression__Group__1 )
+            // InternalKerMLExpressions.g:4010:2: rule__AdditiveExpression__Group__0__Impl rule__AdditiveExpression__Group__1
             {
             pushFollow(FOLLOW_25);
             rule__AdditiveExpression__Group__0__Impl();
@@ -12246,17 +12738,17 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__AdditiveExpression__Group__0__Impl"
-    // InternalKerMLExpressions.g:3890:1: rule__AdditiveExpression__Group__0__Impl : ( ruleMultiplicativeExpression ) ;
+    // InternalKerMLExpressions.g:4017:1: rule__AdditiveExpression__Group__0__Impl : ( ruleMultiplicativeExpression ) ;
     public final void rule__AdditiveExpression__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:3894:1: ( ( ruleMultiplicativeExpression ) )
-            // InternalKerMLExpressions.g:3895:1: ( ruleMultiplicativeExpression )
+            // InternalKerMLExpressions.g:4021:1: ( ( ruleMultiplicativeExpression ) )
+            // InternalKerMLExpressions.g:4022:1: ( ruleMultiplicativeExpression )
             {
-            // InternalKerMLExpressions.g:3895:1: ( ruleMultiplicativeExpression )
-            // InternalKerMLExpressions.g:3896:2: ruleMultiplicativeExpression
+            // InternalKerMLExpressions.g:4022:1: ( ruleMultiplicativeExpression )
+            // InternalKerMLExpressions.g:4023:2: ruleMultiplicativeExpression
             {
              before(grammarAccess.getAdditiveExpressionAccess().getMultiplicativeExpressionParserRuleCall_0()); 
             pushFollow(FOLLOW_2);
@@ -12287,14 +12779,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__AdditiveExpression__Group__1"
-    // InternalKerMLExpressions.g:3905:1: rule__AdditiveExpression__Group__1 : rule__AdditiveExpression__Group__1__Impl ;
+    // InternalKerMLExpressions.g:4032:1: rule__AdditiveExpression__Group__1 : rule__AdditiveExpression__Group__1__Impl ;
     public final void rule__AdditiveExpression__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:3909:1: ( rule__AdditiveExpression__Group__1__Impl )
-            // InternalKerMLExpressions.g:3910:2: rule__AdditiveExpression__Group__1__Impl
+            // InternalKerMLExpressions.g:4036:1: ( rule__AdditiveExpression__Group__1__Impl )
+            // InternalKerMLExpressions.g:4037:2: rule__AdditiveExpression__Group__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__AdditiveExpression__Group__1__Impl();
@@ -12320,33 +12812,33 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__AdditiveExpression__Group__1__Impl"
-    // InternalKerMLExpressions.g:3916:1: rule__AdditiveExpression__Group__1__Impl : ( ( rule__AdditiveExpression__Group_1__0 )* ) ;
+    // InternalKerMLExpressions.g:4043:1: rule__AdditiveExpression__Group__1__Impl : ( ( rule__AdditiveExpression__Group_1__0 )* ) ;
     public final void rule__AdditiveExpression__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:3920:1: ( ( ( rule__AdditiveExpression__Group_1__0 )* ) )
-            // InternalKerMLExpressions.g:3921:1: ( ( rule__AdditiveExpression__Group_1__0 )* )
+            // InternalKerMLExpressions.g:4047:1: ( ( ( rule__AdditiveExpression__Group_1__0 )* ) )
+            // InternalKerMLExpressions.g:4048:1: ( ( rule__AdditiveExpression__Group_1__0 )* )
             {
-            // InternalKerMLExpressions.g:3921:1: ( ( rule__AdditiveExpression__Group_1__0 )* )
-            // InternalKerMLExpressions.g:3922:2: ( rule__AdditiveExpression__Group_1__0 )*
+            // InternalKerMLExpressions.g:4048:1: ( ( rule__AdditiveExpression__Group_1__0 )* )
+            // InternalKerMLExpressions.g:4049:2: ( rule__AdditiveExpression__Group_1__0 )*
             {
              before(grammarAccess.getAdditiveExpressionAccess().getGroup_1()); 
-            // InternalKerMLExpressions.g:3923:2: ( rule__AdditiveExpression__Group_1__0 )*
-            loop32:
+            // InternalKerMLExpressions.g:4050:2: ( rule__AdditiveExpression__Group_1__0 )*
+            loop36:
             do {
-                int alt32=2;
-                int LA32_0 = input.LA(1);
+                int alt36=2;
+                int LA36_0 = input.LA(1);
 
-                if ( ((LA32_0>=33 && LA32_0<=34)) ) {
-                    alt32=1;
+                if ( ((LA36_0>=36 && LA36_0<=37)) ) {
+                    alt36=1;
                 }
 
 
-                switch (alt32) {
+                switch (alt36) {
             	case 1 :
-            	    // InternalKerMLExpressions.g:3923:3: rule__AdditiveExpression__Group_1__0
+            	    // InternalKerMLExpressions.g:4050:3: rule__AdditiveExpression__Group_1__0
             	    {
             	    pushFollow(FOLLOW_26);
             	    rule__AdditiveExpression__Group_1__0();
@@ -12358,7 +12850,7 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
             	    break;
 
             	default :
-            	    break loop32;
+            	    break loop36;
                 }
             } while (true);
 
@@ -12385,14 +12877,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__AdditiveExpression__Group_1__0"
-    // InternalKerMLExpressions.g:3932:1: rule__AdditiveExpression__Group_1__0 : rule__AdditiveExpression__Group_1__0__Impl rule__AdditiveExpression__Group_1__1 ;
+    // InternalKerMLExpressions.g:4059:1: rule__AdditiveExpression__Group_1__0 : rule__AdditiveExpression__Group_1__0__Impl rule__AdditiveExpression__Group_1__1 ;
     public final void rule__AdditiveExpression__Group_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:3936:1: ( rule__AdditiveExpression__Group_1__0__Impl rule__AdditiveExpression__Group_1__1 )
-            // InternalKerMLExpressions.g:3937:2: rule__AdditiveExpression__Group_1__0__Impl rule__AdditiveExpression__Group_1__1
+            // InternalKerMLExpressions.g:4063:1: ( rule__AdditiveExpression__Group_1__0__Impl rule__AdditiveExpression__Group_1__1 )
+            // InternalKerMLExpressions.g:4064:2: rule__AdditiveExpression__Group_1__0__Impl rule__AdditiveExpression__Group_1__1
             {
             pushFollow(FOLLOW_25);
             rule__AdditiveExpression__Group_1__0__Impl();
@@ -12423,21 +12915,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__AdditiveExpression__Group_1__0__Impl"
-    // InternalKerMLExpressions.g:3944:1: rule__AdditiveExpression__Group_1__0__Impl : ( () ) ;
+    // InternalKerMLExpressions.g:4071:1: rule__AdditiveExpression__Group_1__0__Impl : ( () ) ;
     public final void rule__AdditiveExpression__Group_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:3948:1: ( ( () ) )
-            // InternalKerMLExpressions.g:3949:1: ( () )
+            // InternalKerMLExpressions.g:4075:1: ( ( () ) )
+            // InternalKerMLExpressions.g:4076:1: ( () )
             {
-            // InternalKerMLExpressions.g:3949:1: ( () )
-            // InternalKerMLExpressions.g:3950:2: ()
+            // InternalKerMLExpressions.g:4076:1: ( () )
+            // InternalKerMLExpressions.g:4077:2: ()
             {
              before(grammarAccess.getAdditiveExpressionAccess().getOperatorExpressionOperandAction_1_0()); 
-            // InternalKerMLExpressions.g:3951:2: ()
-            // InternalKerMLExpressions.g:3951:3: 
+            // InternalKerMLExpressions.g:4078:2: ()
+            // InternalKerMLExpressions.g:4078:3: 
             {
             }
 
@@ -12460,16 +12952,16 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__AdditiveExpression__Group_1__1"
-    // InternalKerMLExpressions.g:3959:1: rule__AdditiveExpression__Group_1__1 : rule__AdditiveExpression__Group_1__1__Impl rule__AdditiveExpression__Group_1__2 ;
+    // InternalKerMLExpressions.g:4086:1: rule__AdditiveExpression__Group_1__1 : rule__AdditiveExpression__Group_1__1__Impl rule__AdditiveExpression__Group_1__2 ;
     public final void rule__AdditiveExpression__Group_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:3963:1: ( rule__AdditiveExpression__Group_1__1__Impl rule__AdditiveExpression__Group_1__2 )
-            // InternalKerMLExpressions.g:3964:2: rule__AdditiveExpression__Group_1__1__Impl rule__AdditiveExpression__Group_1__2
+            // InternalKerMLExpressions.g:4090:1: ( rule__AdditiveExpression__Group_1__1__Impl rule__AdditiveExpression__Group_1__2 )
+            // InternalKerMLExpressions.g:4091:2: rule__AdditiveExpression__Group_1__1__Impl rule__AdditiveExpression__Group_1__2
             {
-            pushFollow(FOLLOW_4);
+            pushFollow(FOLLOW_6);
             rule__AdditiveExpression__Group_1__1__Impl();
 
             state._fsp--;
@@ -12498,21 +12990,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__AdditiveExpression__Group_1__1__Impl"
-    // InternalKerMLExpressions.g:3971:1: rule__AdditiveExpression__Group_1__1__Impl : ( ( rule__AdditiveExpression__OperatorAssignment_1_1 ) ) ;
+    // InternalKerMLExpressions.g:4098:1: rule__AdditiveExpression__Group_1__1__Impl : ( ( rule__AdditiveExpression__OperatorAssignment_1_1 ) ) ;
     public final void rule__AdditiveExpression__Group_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:3975:1: ( ( ( rule__AdditiveExpression__OperatorAssignment_1_1 ) ) )
-            // InternalKerMLExpressions.g:3976:1: ( ( rule__AdditiveExpression__OperatorAssignment_1_1 ) )
+            // InternalKerMLExpressions.g:4102:1: ( ( ( rule__AdditiveExpression__OperatorAssignment_1_1 ) ) )
+            // InternalKerMLExpressions.g:4103:1: ( ( rule__AdditiveExpression__OperatorAssignment_1_1 ) )
             {
-            // InternalKerMLExpressions.g:3976:1: ( ( rule__AdditiveExpression__OperatorAssignment_1_1 ) )
-            // InternalKerMLExpressions.g:3977:2: ( rule__AdditiveExpression__OperatorAssignment_1_1 )
+            // InternalKerMLExpressions.g:4103:1: ( ( rule__AdditiveExpression__OperatorAssignment_1_1 ) )
+            // InternalKerMLExpressions.g:4104:2: ( rule__AdditiveExpression__OperatorAssignment_1_1 )
             {
              before(grammarAccess.getAdditiveExpressionAccess().getOperatorAssignment_1_1()); 
-            // InternalKerMLExpressions.g:3978:2: ( rule__AdditiveExpression__OperatorAssignment_1_1 )
-            // InternalKerMLExpressions.g:3978:3: rule__AdditiveExpression__OperatorAssignment_1_1
+            // InternalKerMLExpressions.g:4105:2: ( rule__AdditiveExpression__OperatorAssignment_1_1 )
+            // InternalKerMLExpressions.g:4105:3: rule__AdditiveExpression__OperatorAssignment_1_1
             {
             pushFollow(FOLLOW_2);
             rule__AdditiveExpression__OperatorAssignment_1_1();
@@ -12545,14 +13037,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__AdditiveExpression__Group_1__2"
-    // InternalKerMLExpressions.g:3986:1: rule__AdditiveExpression__Group_1__2 : rule__AdditiveExpression__Group_1__2__Impl ;
+    // InternalKerMLExpressions.g:4113:1: rule__AdditiveExpression__Group_1__2 : rule__AdditiveExpression__Group_1__2__Impl ;
     public final void rule__AdditiveExpression__Group_1__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:3990:1: ( rule__AdditiveExpression__Group_1__2__Impl )
-            // InternalKerMLExpressions.g:3991:2: rule__AdditiveExpression__Group_1__2__Impl
+            // InternalKerMLExpressions.g:4117:1: ( rule__AdditiveExpression__Group_1__2__Impl )
+            // InternalKerMLExpressions.g:4118:2: rule__AdditiveExpression__Group_1__2__Impl
             {
             pushFollow(FOLLOW_2);
             rule__AdditiveExpression__Group_1__2__Impl();
@@ -12578,21 +13070,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__AdditiveExpression__Group_1__2__Impl"
-    // InternalKerMLExpressions.g:3997:1: rule__AdditiveExpression__Group_1__2__Impl : ( ( rule__AdditiveExpression__OperandAssignment_1_2 ) ) ;
+    // InternalKerMLExpressions.g:4124:1: rule__AdditiveExpression__Group_1__2__Impl : ( ( rule__AdditiveExpression__OperandAssignment_1_2 ) ) ;
     public final void rule__AdditiveExpression__Group_1__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:4001:1: ( ( ( rule__AdditiveExpression__OperandAssignment_1_2 ) ) )
-            // InternalKerMLExpressions.g:4002:1: ( ( rule__AdditiveExpression__OperandAssignment_1_2 ) )
+            // InternalKerMLExpressions.g:4128:1: ( ( ( rule__AdditiveExpression__OperandAssignment_1_2 ) ) )
+            // InternalKerMLExpressions.g:4129:1: ( ( rule__AdditiveExpression__OperandAssignment_1_2 ) )
             {
-            // InternalKerMLExpressions.g:4002:1: ( ( rule__AdditiveExpression__OperandAssignment_1_2 ) )
-            // InternalKerMLExpressions.g:4003:2: ( rule__AdditiveExpression__OperandAssignment_1_2 )
+            // InternalKerMLExpressions.g:4129:1: ( ( rule__AdditiveExpression__OperandAssignment_1_2 ) )
+            // InternalKerMLExpressions.g:4130:2: ( rule__AdditiveExpression__OperandAssignment_1_2 )
             {
              before(grammarAccess.getAdditiveExpressionAccess().getOperandAssignment_1_2()); 
-            // InternalKerMLExpressions.g:4004:2: ( rule__AdditiveExpression__OperandAssignment_1_2 )
-            // InternalKerMLExpressions.g:4004:3: rule__AdditiveExpression__OperandAssignment_1_2
+            // InternalKerMLExpressions.g:4131:2: ( rule__AdditiveExpression__OperandAssignment_1_2 )
+            // InternalKerMLExpressions.g:4131:3: rule__AdditiveExpression__OperandAssignment_1_2
             {
             pushFollow(FOLLOW_2);
             rule__AdditiveExpression__OperandAssignment_1_2();
@@ -12625,14 +13117,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__MultiplicativeExpression__Group__0"
-    // InternalKerMLExpressions.g:4013:1: rule__MultiplicativeExpression__Group__0 : rule__MultiplicativeExpression__Group__0__Impl rule__MultiplicativeExpression__Group__1 ;
+    // InternalKerMLExpressions.g:4140:1: rule__MultiplicativeExpression__Group__0 : rule__MultiplicativeExpression__Group__0__Impl rule__MultiplicativeExpression__Group__1 ;
     public final void rule__MultiplicativeExpression__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:4017:1: ( rule__MultiplicativeExpression__Group__0__Impl rule__MultiplicativeExpression__Group__1 )
-            // InternalKerMLExpressions.g:4018:2: rule__MultiplicativeExpression__Group__0__Impl rule__MultiplicativeExpression__Group__1
+            // InternalKerMLExpressions.g:4144:1: ( rule__MultiplicativeExpression__Group__0__Impl rule__MultiplicativeExpression__Group__1 )
+            // InternalKerMLExpressions.g:4145:2: rule__MultiplicativeExpression__Group__0__Impl rule__MultiplicativeExpression__Group__1
             {
             pushFollow(FOLLOW_27);
             rule__MultiplicativeExpression__Group__0__Impl();
@@ -12663,17 +13155,17 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__MultiplicativeExpression__Group__0__Impl"
-    // InternalKerMLExpressions.g:4025:1: rule__MultiplicativeExpression__Group__0__Impl : ( ruleExponentiationExpression ) ;
+    // InternalKerMLExpressions.g:4152:1: rule__MultiplicativeExpression__Group__0__Impl : ( ruleExponentiationExpression ) ;
     public final void rule__MultiplicativeExpression__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:4029:1: ( ( ruleExponentiationExpression ) )
-            // InternalKerMLExpressions.g:4030:1: ( ruleExponentiationExpression )
+            // InternalKerMLExpressions.g:4156:1: ( ( ruleExponentiationExpression ) )
+            // InternalKerMLExpressions.g:4157:1: ( ruleExponentiationExpression )
             {
-            // InternalKerMLExpressions.g:4030:1: ( ruleExponentiationExpression )
-            // InternalKerMLExpressions.g:4031:2: ruleExponentiationExpression
+            // InternalKerMLExpressions.g:4157:1: ( ruleExponentiationExpression )
+            // InternalKerMLExpressions.g:4158:2: ruleExponentiationExpression
             {
              before(grammarAccess.getMultiplicativeExpressionAccess().getExponentiationExpressionParserRuleCall_0()); 
             pushFollow(FOLLOW_2);
@@ -12704,14 +13196,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__MultiplicativeExpression__Group__1"
-    // InternalKerMLExpressions.g:4040:1: rule__MultiplicativeExpression__Group__1 : rule__MultiplicativeExpression__Group__1__Impl ;
+    // InternalKerMLExpressions.g:4167:1: rule__MultiplicativeExpression__Group__1 : rule__MultiplicativeExpression__Group__1__Impl ;
     public final void rule__MultiplicativeExpression__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:4044:1: ( rule__MultiplicativeExpression__Group__1__Impl )
-            // InternalKerMLExpressions.g:4045:2: rule__MultiplicativeExpression__Group__1__Impl
+            // InternalKerMLExpressions.g:4171:1: ( rule__MultiplicativeExpression__Group__1__Impl )
+            // InternalKerMLExpressions.g:4172:2: rule__MultiplicativeExpression__Group__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__MultiplicativeExpression__Group__1__Impl();
@@ -12737,33 +13229,33 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__MultiplicativeExpression__Group__1__Impl"
-    // InternalKerMLExpressions.g:4051:1: rule__MultiplicativeExpression__Group__1__Impl : ( ( rule__MultiplicativeExpression__Group_1__0 )* ) ;
+    // InternalKerMLExpressions.g:4178:1: rule__MultiplicativeExpression__Group__1__Impl : ( ( rule__MultiplicativeExpression__Group_1__0 )* ) ;
     public final void rule__MultiplicativeExpression__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:4055:1: ( ( ( rule__MultiplicativeExpression__Group_1__0 )* ) )
-            // InternalKerMLExpressions.g:4056:1: ( ( rule__MultiplicativeExpression__Group_1__0 )* )
+            // InternalKerMLExpressions.g:4182:1: ( ( ( rule__MultiplicativeExpression__Group_1__0 )* ) )
+            // InternalKerMLExpressions.g:4183:1: ( ( rule__MultiplicativeExpression__Group_1__0 )* )
             {
-            // InternalKerMLExpressions.g:4056:1: ( ( rule__MultiplicativeExpression__Group_1__0 )* )
-            // InternalKerMLExpressions.g:4057:2: ( rule__MultiplicativeExpression__Group_1__0 )*
+            // InternalKerMLExpressions.g:4183:1: ( ( rule__MultiplicativeExpression__Group_1__0 )* )
+            // InternalKerMLExpressions.g:4184:2: ( rule__MultiplicativeExpression__Group_1__0 )*
             {
              before(grammarAccess.getMultiplicativeExpressionAccess().getGroup_1()); 
-            // InternalKerMLExpressions.g:4058:2: ( rule__MultiplicativeExpression__Group_1__0 )*
-            loop33:
+            // InternalKerMLExpressions.g:4185:2: ( rule__MultiplicativeExpression__Group_1__0 )*
+            loop37:
             do {
-                int alt33=2;
-                int LA33_0 = input.LA(1);
+                int alt37=2;
+                int LA37_0 = input.LA(1);
 
-                if ( ((LA33_0>=35 && LA33_0<=37)) ) {
-                    alt33=1;
+                if ( ((LA37_0>=38 && LA37_0<=40)) ) {
+                    alt37=1;
                 }
 
 
-                switch (alt33) {
+                switch (alt37) {
             	case 1 :
-            	    // InternalKerMLExpressions.g:4058:3: rule__MultiplicativeExpression__Group_1__0
+            	    // InternalKerMLExpressions.g:4185:3: rule__MultiplicativeExpression__Group_1__0
             	    {
             	    pushFollow(FOLLOW_28);
             	    rule__MultiplicativeExpression__Group_1__0();
@@ -12775,7 +13267,7 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
             	    break;
 
             	default :
-            	    break loop33;
+            	    break loop37;
                 }
             } while (true);
 
@@ -12802,14 +13294,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__MultiplicativeExpression__Group_1__0"
-    // InternalKerMLExpressions.g:4067:1: rule__MultiplicativeExpression__Group_1__0 : rule__MultiplicativeExpression__Group_1__0__Impl rule__MultiplicativeExpression__Group_1__1 ;
+    // InternalKerMLExpressions.g:4194:1: rule__MultiplicativeExpression__Group_1__0 : rule__MultiplicativeExpression__Group_1__0__Impl rule__MultiplicativeExpression__Group_1__1 ;
     public final void rule__MultiplicativeExpression__Group_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:4071:1: ( rule__MultiplicativeExpression__Group_1__0__Impl rule__MultiplicativeExpression__Group_1__1 )
-            // InternalKerMLExpressions.g:4072:2: rule__MultiplicativeExpression__Group_1__0__Impl rule__MultiplicativeExpression__Group_1__1
+            // InternalKerMLExpressions.g:4198:1: ( rule__MultiplicativeExpression__Group_1__0__Impl rule__MultiplicativeExpression__Group_1__1 )
+            // InternalKerMLExpressions.g:4199:2: rule__MultiplicativeExpression__Group_1__0__Impl rule__MultiplicativeExpression__Group_1__1
             {
             pushFollow(FOLLOW_27);
             rule__MultiplicativeExpression__Group_1__0__Impl();
@@ -12840,21 +13332,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__MultiplicativeExpression__Group_1__0__Impl"
-    // InternalKerMLExpressions.g:4079:1: rule__MultiplicativeExpression__Group_1__0__Impl : ( () ) ;
+    // InternalKerMLExpressions.g:4206:1: rule__MultiplicativeExpression__Group_1__0__Impl : ( () ) ;
     public final void rule__MultiplicativeExpression__Group_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:4083:1: ( ( () ) )
-            // InternalKerMLExpressions.g:4084:1: ( () )
+            // InternalKerMLExpressions.g:4210:1: ( ( () ) )
+            // InternalKerMLExpressions.g:4211:1: ( () )
             {
-            // InternalKerMLExpressions.g:4084:1: ( () )
-            // InternalKerMLExpressions.g:4085:2: ()
+            // InternalKerMLExpressions.g:4211:1: ( () )
+            // InternalKerMLExpressions.g:4212:2: ()
             {
              before(grammarAccess.getMultiplicativeExpressionAccess().getOperatorExpressionOperandAction_1_0()); 
-            // InternalKerMLExpressions.g:4086:2: ()
-            // InternalKerMLExpressions.g:4086:3: 
+            // InternalKerMLExpressions.g:4213:2: ()
+            // InternalKerMLExpressions.g:4213:3: 
             {
             }
 
@@ -12877,16 +13369,16 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__MultiplicativeExpression__Group_1__1"
-    // InternalKerMLExpressions.g:4094:1: rule__MultiplicativeExpression__Group_1__1 : rule__MultiplicativeExpression__Group_1__1__Impl rule__MultiplicativeExpression__Group_1__2 ;
+    // InternalKerMLExpressions.g:4221:1: rule__MultiplicativeExpression__Group_1__1 : rule__MultiplicativeExpression__Group_1__1__Impl rule__MultiplicativeExpression__Group_1__2 ;
     public final void rule__MultiplicativeExpression__Group_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:4098:1: ( rule__MultiplicativeExpression__Group_1__1__Impl rule__MultiplicativeExpression__Group_1__2 )
-            // InternalKerMLExpressions.g:4099:2: rule__MultiplicativeExpression__Group_1__1__Impl rule__MultiplicativeExpression__Group_1__2
+            // InternalKerMLExpressions.g:4225:1: ( rule__MultiplicativeExpression__Group_1__1__Impl rule__MultiplicativeExpression__Group_1__2 )
+            // InternalKerMLExpressions.g:4226:2: rule__MultiplicativeExpression__Group_1__1__Impl rule__MultiplicativeExpression__Group_1__2
             {
-            pushFollow(FOLLOW_4);
+            pushFollow(FOLLOW_6);
             rule__MultiplicativeExpression__Group_1__1__Impl();
 
             state._fsp--;
@@ -12915,21 +13407,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__MultiplicativeExpression__Group_1__1__Impl"
-    // InternalKerMLExpressions.g:4106:1: rule__MultiplicativeExpression__Group_1__1__Impl : ( ( rule__MultiplicativeExpression__OperatorAssignment_1_1 ) ) ;
+    // InternalKerMLExpressions.g:4233:1: rule__MultiplicativeExpression__Group_1__1__Impl : ( ( rule__MultiplicativeExpression__OperatorAssignment_1_1 ) ) ;
     public final void rule__MultiplicativeExpression__Group_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:4110:1: ( ( ( rule__MultiplicativeExpression__OperatorAssignment_1_1 ) ) )
-            // InternalKerMLExpressions.g:4111:1: ( ( rule__MultiplicativeExpression__OperatorAssignment_1_1 ) )
+            // InternalKerMLExpressions.g:4237:1: ( ( ( rule__MultiplicativeExpression__OperatorAssignment_1_1 ) ) )
+            // InternalKerMLExpressions.g:4238:1: ( ( rule__MultiplicativeExpression__OperatorAssignment_1_1 ) )
             {
-            // InternalKerMLExpressions.g:4111:1: ( ( rule__MultiplicativeExpression__OperatorAssignment_1_1 ) )
-            // InternalKerMLExpressions.g:4112:2: ( rule__MultiplicativeExpression__OperatorAssignment_1_1 )
+            // InternalKerMLExpressions.g:4238:1: ( ( rule__MultiplicativeExpression__OperatorAssignment_1_1 ) )
+            // InternalKerMLExpressions.g:4239:2: ( rule__MultiplicativeExpression__OperatorAssignment_1_1 )
             {
              before(grammarAccess.getMultiplicativeExpressionAccess().getOperatorAssignment_1_1()); 
-            // InternalKerMLExpressions.g:4113:2: ( rule__MultiplicativeExpression__OperatorAssignment_1_1 )
-            // InternalKerMLExpressions.g:4113:3: rule__MultiplicativeExpression__OperatorAssignment_1_1
+            // InternalKerMLExpressions.g:4240:2: ( rule__MultiplicativeExpression__OperatorAssignment_1_1 )
+            // InternalKerMLExpressions.g:4240:3: rule__MultiplicativeExpression__OperatorAssignment_1_1
             {
             pushFollow(FOLLOW_2);
             rule__MultiplicativeExpression__OperatorAssignment_1_1();
@@ -12962,14 +13454,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__MultiplicativeExpression__Group_1__2"
-    // InternalKerMLExpressions.g:4121:1: rule__MultiplicativeExpression__Group_1__2 : rule__MultiplicativeExpression__Group_1__2__Impl ;
+    // InternalKerMLExpressions.g:4248:1: rule__MultiplicativeExpression__Group_1__2 : rule__MultiplicativeExpression__Group_1__2__Impl ;
     public final void rule__MultiplicativeExpression__Group_1__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:4125:1: ( rule__MultiplicativeExpression__Group_1__2__Impl )
-            // InternalKerMLExpressions.g:4126:2: rule__MultiplicativeExpression__Group_1__2__Impl
+            // InternalKerMLExpressions.g:4252:1: ( rule__MultiplicativeExpression__Group_1__2__Impl )
+            // InternalKerMLExpressions.g:4253:2: rule__MultiplicativeExpression__Group_1__2__Impl
             {
             pushFollow(FOLLOW_2);
             rule__MultiplicativeExpression__Group_1__2__Impl();
@@ -12995,21 +13487,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__MultiplicativeExpression__Group_1__2__Impl"
-    // InternalKerMLExpressions.g:4132:1: rule__MultiplicativeExpression__Group_1__2__Impl : ( ( rule__MultiplicativeExpression__OperandAssignment_1_2 ) ) ;
+    // InternalKerMLExpressions.g:4259:1: rule__MultiplicativeExpression__Group_1__2__Impl : ( ( rule__MultiplicativeExpression__OperandAssignment_1_2 ) ) ;
     public final void rule__MultiplicativeExpression__Group_1__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:4136:1: ( ( ( rule__MultiplicativeExpression__OperandAssignment_1_2 ) ) )
-            // InternalKerMLExpressions.g:4137:1: ( ( rule__MultiplicativeExpression__OperandAssignment_1_2 ) )
+            // InternalKerMLExpressions.g:4263:1: ( ( ( rule__MultiplicativeExpression__OperandAssignment_1_2 ) ) )
+            // InternalKerMLExpressions.g:4264:1: ( ( rule__MultiplicativeExpression__OperandAssignment_1_2 ) )
             {
-            // InternalKerMLExpressions.g:4137:1: ( ( rule__MultiplicativeExpression__OperandAssignment_1_2 ) )
-            // InternalKerMLExpressions.g:4138:2: ( rule__MultiplicativeExpression__OperandAssignment_1_2 )
+            // InternalKerMLExpressions.g:4264:1: ( ( rule__MultiplicativeExpression__OperandAssignment_1_2 ) )
+            // InternalKerMLExpressions.g:4265:2: ( rule__MultiplicativeExpression__OperandAssignment_1_2 )
             {
              before(grammarAccess.getMultiplicativeExpressionAccess().getOperandAssignment_1_2()); 
-            // InternalKerMLExpressions.g:4139:2: ( rule__MultiplicativeExpression__OperandAssignment_1_2 )
-            // InternalKerMLExpressions.g:4139:3: rule__MultiplicativeExpression__OperandAssignment_1_2
+            // InternalKerMLExpressions.g:4266:2: ( rule__MultiplicativeExpression__OperandAssignment_1_2 )
+            // InternalKerMLExpressions.g:4266:3: rule__MultiplicativeExpression__OperandAssignment_1_2
             {
             pushFollow(FOLLOW_2);
             rule__MultiplicativeExpression__OperandAssignment_1_2();
@@ -13042,14 +13534,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__ExponentiationExpression__Group__0"
-    // InternalKerMLExpressions.g:4148:1: rule__ExponentiationExpression__Group__0 : rule__ExponentiationExpression__Group__0__Impl rule__ExponentiationExpression__Group__1 ;
+    // InternalKerMLExpressions.g:4275:1: rule__ExponentiationExpression__Group__0 : rule__ExponentiationExpression__Group__0__Impl rule__ExponentiationExpression__Group__1 ;
     public final void rule__ExponentiationExpression__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:4152:1: ( rule__ExponentiationExpression__Group__0__Impl rule__ExponentiationExpression__Group__1 )
-            // InternalKerMLExpressions.g:4153:2: rule__ExponentiationExpression__Group__0__Impl rule__ExponentiationExpression__Group__1
+            // InternalKerMLExpressions.g:4279:1: ( rule__ExponentiationExpression__Group__0__Impl rule__ExponentiationExpression__Group__1 )
+            // InternalKerMLExpressions.g:4280:2: rule__ExponentiationExpression__Group__0__Impl rule__ExponentiationExpression__Group__1
             {
             pushFollow(FOLLOW_29);
             rule__ExponentiationExpression__Group__0__Impl();
@@ -13080,17 +13572,17 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__ExponentiationExpression__Group__0__Impl"
-    // InternalKerMLExpressions.g:4160:1: rule__ExponentiationExpression__Group__0__Impl : ( ruleUnitsExpression ) ;
+    // InternalKerMLExpressions.g:4287:1: rule__ExponentiationExpression__Group__0__Impl : ( ruleUnitsExpression ) ;
     public final void rule__ExponentiationExpression__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:4164:1: ( ( ruleUnitsExpression ) )
-            // InternalKerMLExpressions.g:4165:1: ( ruleUnitsExpression )
+            // InternalKerMLExpressions.g:4291:1: ( ( ruleUnitsExpression ) )
+            // InternalKerMLExpressions.g:4292:1: ( ruleUnitsExpression )
             {
-            // InternalKerMLExpressions.g:4165:1: ( ruleUnitsExpression )
-            // InternalKerMLExpressions.g:4166:2: ruleUnitsExpression
+            // InternalKerMLExpressions.g:4292:1: ( ruleUnitsExpression )
+            // InternalKerMLExpressions.g:4293:2: ruleUnitsExpression
             {
              before(grammarAccess.getExponentiationExpressionAccess().getUnitsExpressionParserRuleCall_0()); 
             pushFollow(FOLLOW_2);
@@ -13121,14 +13613,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__ExponentiationExpression__Group__1"
-    // InternalKerMLExpressions.g:4175:1: rule__ExponentiationExpression__Group__1 : rule__ExponentiationExpression__Group__1__Impl ;
+    // InternalKerMLExpressions.g:4302:1: rule__ExponentiationExpression__Group__1 : rule__ExponentiationExpression__Group__1__Impl ;
     public final void rule__ExponentiationExpression__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:4179:1: ( rule__ExponentiationExpression__Group__1__Impl )
-            // InternalKerMLExpressions.g:4180:2: rule__ExponentiationExpression__Group__1__Impl
+            // InternalKerMLExpressions.g:4306:1: ( rule__ExponentiationExpression__Group__1__Impl )
+            // InternalKerMLExpressions.g:4307:2: rule__ExponentiationExpression__Group__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__ExponentiationExpression__Group__1__Impl();
@@ -13154,33 +13646,33 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__ExponentiationExpression__Group__1__Impl"
-    // InternalKerMLExpressions.g:4186:1: rule__ExponentiationExpression__Group__1__Impl : ( ( rule__ExponentiationExpression__Group_1__0 )* ) ;
+    // InternalKerMLExpressions.g:4313:1: rule__ExponentiationExpression__Group__1__Impl : ( ( rule__ExponentiationExpression__Group_1__0 )* ) ;
     public final void rule__ExponentiationExpression__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:4190:1: ( ( ( rule__ExponentiationExpression__Group_1__0 )* ) )
-            // InternalKerMLExpressions.g:4191:1: ( ( rule__ExponentiationExpression__Group_1__0 )* )
+            // InternalKerMLExpressions.g:4317:1: ( ( ( rule__ExponentiationExpression__Group_1__0 )* ) )
+            // InternalKerMLExpressions.g:4318:1: ( ( rule__ExponentiationExpression__Group_1__0 )* )
             {
-            // InternalKerMLExpressions.g:4191:1: ( ( rule__ExponentiationExpression__Group_1__0 )* )
-            // InternalKerMLExpressions.g:4192:2: ( rule__ExponentiationExpression__Group_1__0 )*
+            // InternalKerMLExpressions.g:4318:1: ( ( rule__ExponentiationExpression__Group_1__0 )* )
+            // InternalKerMLExpressions.g:4319:2: ( rule__ExponentiationExpression__Group_1__0 )*
             {
              before(grammarAccess.getExponentiationExpressionAccess().getGroup_1()); 
-            // InternalKerMLExpressions.g:4193:2: ( rule__ExponentiationExpression__Group_1__0 )*
-            loop34:
+            // InternalKerMLExpressions.g:4320:2: ( rule__ExponentiationExpression__Group_1__0 )*
+            loop38:
             do {
-                int alt34=2;
-                int LA34_0 = input.LA(1);
+                int alt38=2;
+                int LA38_0 = input.LA(1);
 
-                if ( (LA34_0==21) ) {
-                    alt34=1;
+                if ( ((LA38_0>=41 && LA38_0<=42)) ) {
+                    alt38=1;
                 }
 
 
-                switch (alt34) {
+                switch (alt38) {
             	case 1 :
-            	    // InternalKerMLExpressions.g:4193:3: rule__ExponentiationExpression__Group_1__0
+            	    // InternalKerMLExpressions.g:4320:3: rule__ExponentiationExpression__Group_1__0
             	    {
             	    pushFollow(FOLLOW_30);
             	    rule__ExponentiationExpression__Group_1__0();
@@ -13192,7 +13684,7 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
             	    break;
 
             	default :
-            	    break loop34;
+            	    break loop38;
                 }
             } while (true);
 
@@ -13219,14 +13711,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__ExponentiationExpression__Group_1__0"
-    // InternalKerMLExpressions.g:4202:1: rule__ExponentiationExpression__Group_1__0 : rule__ExponentiationExpression__Group_1__0__Impl rule__ExponentiationExpression__Group_1__1 ;
+    // InternalKerMLExpressions.g:4329:1: rule__ExponentiationExpression__Group_1__0 : rule__ExponentiationExpression__Group_1__0__Impl rule__ExponentiationExpression__Group_1__1 ;
     public final void rule__ExponentiationExpression__Group_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:4206:1: ( rule__ExponentiationExpression__Group_1__0__Impl rule__ExponentiationExpression__Group_1__1 )
-            // InternalKerMLExpressions.g:4207:2: rule__ExponentiationExpression__Group_1__0__Impl rule__ExponentiationExpression__Group_1__1
+            // InternalKerMLExpressions.g:4333:1: ( rule__ExponentiationExpression__Group_1__0__Impl rule__ExponentiationExpression__Group_1__1 )
+            // InternalKerMLExpressions.g:4334:2: rule__ExponentiationExpression__Group_1__0__Impl rule__ExponentiationExpression__Group_1__1
             {
             pushFollow(FOLLOW_29);
             rule__ExponentiationExpression__Group_1__0__Impl();
@@ -13257,21 +13749,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__ExponentiationExpression__Group_1__0__Impl"
-    // InternalKerMLExpressions.g:4214:1: rule__ExponentiationExpression__Group_1__0__Impl : ( () ) ;
+    // InternalKerMLExpressions.g:4341:1: rule__ExponentiationExpression__Group_1__0__Impl : ( () ) ;
     public final void rule__ExponentiationExpression__Group_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:4218:1: ( ( () ) )
-            // InternalKerMLExpressions.g:4219:1: ( () )
+            // InternalKerMLExpressions.g:4345:1: ( ( () ) )
+            // InternalKerMLExpressions.g:4346:1: ( () )
             {
-            // InternalKerMLExpressions.g:4219:1: ( () )
-            // InternalKerMLExpressions.g:4220:2: ()
+            // InternalKerMLExpressions.g:4346:1: ( () )
+            // InternalKerMLExpressions.g:4347:2: ()
             {
              before(grammarAccess.getExponentiationExpressionAccess().getOperatorExpressionOperandAction_1_0()); 
-            // InternalKerMLExpressions.g:4221:2: ()
-            // InternalKerMLExpressions.g:4221:3: 
+            // InternalKerMLExpressions.g:4348:2: ()
+            // InternalKerMLExpressions.g:4348:3: 
             {
             }
 
@@ -13294,16 +13786,16 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__ExponentiationExpression__Group_1__1"
-    // InternalKerMLExpressions.g:4229:1: rule__ExponentiationExpression__Group_1__1 : rule__ExponentiationExpression__Group_1__1__Impl rule__ExponentiationExpression__Group_1__2 ;
+    // InternalKerMLExpressions.g:4356:1: rule__ExponentiationExpression__Group_1__1 : rule__ExponentiationExpression__Group_1__1__Impl rule__ExponentiationExpression__Group_1__2 ;
     public final void rule__ExponentiationExpression__Group_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:4233:1: ( rule__ExponentiationExpression__Group_1__1__Impl rule__ExponentiationExpression__Group_1__2 )
-            // InternalKerMLExpressions.g:4234:2: rule__ExponentiationExpression__Group_1__1__Impl rule__ExponentiationExpression__Group_1__2
+            // InternalKerMLExpressions.g:4360:1: ( rule__ExponentiationExpression__Group_1__1__Impl rule__ExponentiationExpression__Group_1__2 )
+            // InternalKerMLExpressions.g:4361:2: rule__ExponentiationExpression__Group_1__1__Impl rule__ExponentiationExpression__Group_1__2
             {
-            pushFollow(FOLLOW_4);
+            pushFollow(FOLLOW_6);
             rule__ExponentiationExpression__Group_1__1__Impl();
 
             state._fsp--;
@@ -13332,21 +13824,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__ExponentiationExpression__Group_1__1__Impl"
-    // InternalKerMLExpressions.g:4241:1: rule__ExponentiationExpression__Group_1__1__Impl : ( ( rule__ExponentiationExpression__OperatorAssignment_1_1 ) ) ;
+    // InternalKerMLExpressions.g:4368:1: rule__ExponentiationExpression__Group_1__1__Impl : ( ( rule__ExponentiationExpression__OperatorAssignment_1_1 ) ) ;
     public final void rule__ExponentiationExpression__Group_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:4245:1: ( ( ( rule__ExponentiationExpression__OperatorAssignment_1_1 ) ) )
-            // InternalKerMLExpressions.g:4246:1: ( ( rule__ExponentiationExpression__OperatorAssignment_1_1 ) )
+            // InternalKerMLExpressions.g:4372:1: ( ( ( rule__ExponentiationExpression__OperatorAssignment_1_1 ) ) )
+            // InternalKerMLExpressions.g:4373:1: ( ( rule__ExponentiationExpression__OperatorAssignment_1_1 ) )
             {
-            // InternalKerMLExpressions.g:4246:1: ( ( rule__ExponentiationExpression__OperatorAssignment_1_1 ) )
-            // InternalKerMLExpressions.g:4247:2: ( rule__ExponentiationExpression__OperatorAssignment_1_1 )
+            // InternalKerMLExpressions.g:4373:1: ( ( rule__ExponentiationExpression__OperatorAssignment_1_1 ) )
+            // InternalKerMLExpressions.g:4374:2: ( rule__ExponentiationExpression__OperatorAssignment_1_1 )
             {
              before(grammarAccess.getExponentiationExpressionAccess().getOperatorAssignment_1_1()); 
-            // InternalKerMLExpressions.g:4248:2: ( rule__ExponentiationExpression__OperatorAssignment_1_1 )
-            // InternalKerMLExpressions.g:4248:3: rule__ExponentiationExpression__OperatorAssignment_1_1
+            // InternalKerMLExpressions.g:4375:2: ( rule__ExponentiationExpression__OperatorAssignment_1_1 )
+            // InternalKerMLExpressions.g:4375:3: rule__ExponentiationExpression__OperatorAssignment_1_1
             {
             pushFollow(FOLLOW_2);
             rule__ExponentiationExpression__OperatorAssignment_1_1();
@@ -13379,14 +13871,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__ExponentiationExpression__Group_1__2"
-    // InternalKerMLExpressions.g:4256:1: rule__ExponentiationExpression__Group_1__2 : rule__ExponentiationExpression__Group_1__2__Impl ;
+    // InternalKerMLExpressions.g:4383:1: rule__ExponentiationExpression__Group_1__2 : rule__ExponentiationExpression__Group_1__2__Impl ;
     public final void rule__ExponentiationExpression__Group_1__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:4260:1: ( rule__ExponentiationExpression__Group_1__2__Impl )
-            // InternalKerMLExpressions.g:4261:2: rule__ExponentiationExpression__Group_1__2__Impl
+            // InternalKerMLExpressions.g:4387:1: ( rule__ExponentiationExpression__Group_1__2__Impl )
+            // InternalKerMLExpressions.g:4388:2: rule__ExponentiationExpression__Group_1__2__Impl
             {
             pushFollow(FOLLOW_2);
             rule__ExponentiationExpression__Group_1__2__Impl();
@@ -13412,21 +13904,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__ExponentiationExpression__Group_1__2__Impl"
-    // InternalKerMLExpressions.g:4267:1: rule__ExponentiationExpression__Group_1__2__Impl : ( ( rule__ExponentiationExpression__OperandAssignment_1_2 ) ) ;
+    // InternalKerMLExpressions.g:4394:1: rule__ExponentiationExpression__Group_1__2__Impl : ( ( rule__ExponentiationExpression__OperandAssignment_1_2 ) ) ;
     public final void rule__ExponentiationExpression__Group_1__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:4271:1: ( ( ( rule__ExponentiationExpression__OperandAssignment_1_2 ) ) )
-            // InternalKerMLExpressions.g:4272:1: ( ( rule__ExponentiationExpression__OperandAssignment_1_2 ) )
+            // InternalKerMLExpressions.g:4398:1: ( ( ( rule__ExponentiationExpression__OperandAssignment_1_2 ) ) )
+            // InternalKerMLExpressions.g:4399:1: ( ( rule__ExponentiationExpression__OperandAssignment_1_2 ) )
             {
-            // InternalKerMLExpressions.g:4272:1: ( ( rule__ExponentiationExpression__OperandAssignment_1_2 ) )
-            // InternalKerMLExpressions.g:4273:2: ( rule__ExponentiationExpression__OperandAssignment_1_2 )
+            // InternalKerMLExpressions.g:4399:1: ( ( rule__ExponentiationExpression__OperandAssignment_1_2 ) )
+            // InternalKerMLExpressions.g:4400:2: ( rule__ExponentiationExpression__OperandAssignment_1_2 )
             {
              before(grammarAccess.getExponentiationExpressionAccess().getOperandAssignment_1_2()); 
-            // InternalKerMLExpressions.g:4274:2: ( rule__ExponentiationExpression__OperandAssignment_1_2 )
-            // InternalKerMLExpressions.g:4274:3: rule__ExponentiationExpression__OperandAssignment_1_2
+            // InternalKerMLExpressions.g:4401:2: ( rule__ExponentiationExpression__OperandAssignment_1_2 )
+            // InternalKerMLExpressions.g:4401:3: rule__ExponentiationExpression__OperandAssignment_1_2
             {
             pushFollow(FOLLOW_2);
             rule__ExponentiationExpression__OperandAssignment_1_2();
@@ -13459,14 +13951,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__UnitsExpression__Group__0"
-    // InternalKerMLExpressions.g:4283:1: rule__UnitsExpression__Group__0 : rule__UnitsExpression__Group__0__Impl rule__UnitsExpression__Group__1 ;
+    // InternalKerMLExpressions.g:4410:1: rule__UnitsExpression__Group__0 : rule__UnitsExpression__Group__0__Impl rule__UnitsExpression__Group__1 ;
     public final void rule__UnitsExpression__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:4287:1: ( rule__UnitsExpression__Group__0__Impl rule__UnitsExpression__Group__1 )
-            // InternalKerMLExpressions.g:4288:2: rule__UnitsExpression__Group__0__Impl rule__UnitsExpression__Group__1
+            // InternalKerMLExpressions.g:4414:1: ( rule__UnitsExpression__Group__0__Impl rule__UnitsExpression__Group__1 )
+            // InternalKerMLExpressions.g:4415:2: rule__UnitsExpression__Group__0__Impl rule__UnitsExpression__Group__1
             {
             pushFollow(FOLLOW_31);
             rule__UnitsExpression__Group__0__Impl();
@@ -13497,17 +13989,17 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__UnitsExpression__Group__0__Impl"
-    // InternalKerMLExpressions.g:4295:1: rule__UnitsExpression__Group__0__Impl : ( ruleUnaryExpression ) ;
+    // InternalKerMLExpressions.g:4422:1: rule__UnitsExpression__Group__0__Impl : ( ruleUnaryExpression ) ;
     public final void rule__UnitsExpression__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:4299:1: ( ( ruleUnaryExpression ) )
-            // InternalKerMLExpressions.g:4300:1: ( ruleUnaryExpression )
+            // InternalKerMLExpressions.g:4426:1: ( ( ruleUnaryExpression ) )
+            // InternalKerMLExpressions.g:4427:1: ( ruleUnaryExpression )
             {
-            // InternalKerMLExpressions.g:4300:1: ( ruleUnaryExpression )
-            // InternalKerMLExpressions.g:4301:2: ruleUnaryExpression
+            // InternalKerMLExpressions.g:4427:1: ( ruleUnaryExpression )
+            // InternalKerMLExpressions.g:4428:2: ruleUnaryExpression
             {
              before(grammarAccess.getUnitsExpressionAccess().getUnaryExpressionParserRuleCall_0()); 
             pushFollow(FOLLOW_2);
@@ -13538,14 +14030,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__UnitsExpression__Group__1"
-    // InternalKerMLExpressions.g:4310:1: rule__UnitsExpression__Group__1 : rule__UnitsExpression__Group__1__Impl ;
+    // InternalKerMLExpressions.g:4437:1: rule__UnitsExpression__Group__1 : rule__UnitsExpression__Group__1__Impl ;
     public final void rule__UnitsExpression__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:4314:1: ( rule__UnitsExpression__Group__1__Impl )
-            // InternalKerMLExpressions.g:4315:2: rule__UnitsExpression__Group__1__Impl
+            // InternalKerMLExpressions.g:4441:1: ( rule__UnitsExpression__Group__1__Impl )
+            // InternalKerMLExpressions.g:4442:2: rule__UnitsExpression__Group__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__UnitsExpression__Group__1__Impl();
@@ -13571,29 +14063,29 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__UnitsExpression__Group__1__Impl"
-    // InternalKerMLExpressions.g:4321:1: rule__UnitsExpression__Group__1__Impl : ( ( rule__UnitsExpression__Group_1__0 )? ) ;
+    // InternalKerMLExpressions.g:4448:1: rule__UnitsExpression__Group__1__Impl : ( ( rule__UnitsExpression__Group_1__0 )? ) ;
     public final void rule__UnitsExpression__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:4325:1: ( ( ( rule__UnitsExpression__Group_1__0 )? ) )
-            // InternalKerMLExpressions.g:4326:1: ( ( rule__UnitsExpression__Group_1__0 )? )
+            // InternalKerMLExpressions.g:4452:1: ( ( ( rule__UnitsExpression__Group_1__0 )? ) )
+            // InternalKerMLExpressions.g:4453:1: ( ( rule__UnitsExpression__Group_1__0 )? )
             {
-            // InternalKerMLExpressions.g:4326:1: ( ( rule__UnitsExpression__Group_1__0 )? )
-            // InternalKerMLExpressions.g:4327:2: ( rule__UnitsExpression__Group_1__0 )?
+            // InternalKerMLExpressions.g:4453:1: ( ( rule__UnitsExpression__Group_1__0 )? )
+            // InternalKerMLExpressions.g:4454:2: ( rule__UnitsExpression__Group_1__0 )?
             {
              before(grammarAccess.getUnitsExpressionAccess().getGroup_1()); 
-            // InternalKerMLExpressions.g:4328:2: ( rule__UnitsExpression__Group_1__0 )?
-            int alt35=2;
-            int LA35_0 = input.LA(1);
+            // InternalKerMLExpressions.g:4455:2: ( rule__UnitsExpression__Group_1__0 )?
+            int alt39=2;
+            int LA39_0 = input.LA(1);
 
-            if ( (LA35_0==57) ) {
-                alt35=1;
+            if ( (LA39_0==65) ) {
+                alt39=1;
             }
-            switch (alt35) {
+            switch (alt39) {
                 case 1 :
-                    // InternalKerMLExpressions.g:4328:3: rule__UnitsExpression__Group_1__0
+                    // InternalKerMLExpressions.g:4455:3: rule__UnitsExpression__Group_1__0
                     {
                     pushFollow(FOLLOW_2);
                     rule__UnitsExpression__Group_1__0();
@@ -13629,14 +14121,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__UnitsExpression__Group_1__0"
-    // InternalKerMLExpressions.g:4337:1: rule__UnitsExpression__Group_1__0 : rule__UnitsExpression__Group_1__0__Impl rule__UnitsExpression__Group_1__1 ;
+    // InternalKerMLExpressions.g:4464:1: rule__UnitsExpression__Group_1__0 : rule__UnitsExpression__Group_1__0__Impl rule__UnitsExpression__Group_1__1 ;
     public final void rule__UnitsExpression__Group_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:4341:1: ( rule__UnitsExpression__Group_1__0__Impl rule__UnitsExpression__Group_1__1 )
-            // InternalKerMLExpressions.g:4342:2: rule__UnitsExpression__Group_1__0__Impl rule__UnitsExpression__Group_1__1
+            // InternalKerMLExpressions.g:4468:1: ( rule__UnitsExpression__Group_1__0__Impl rule__UnitsExpression__Group_1__1 )
+            // InternalKerMLExpressions.g:4469:2: rule__UnitsExpression__Group_1__0__Impl rule__UnitsExpression__Group_1__1
             {
             pushFollow(FOLLOW_31);
             rule__UnitsExpression__Group_1__0__Impl();
@@ -13667,21 +14159,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__UnitsExpression__Group_1__0__Impl"
-    // InternalKerMLExpressions.g:4349:1: rule__UnitsExpression__Group_1__0__Impl : ( () ) ;
+    // InternalKerMLExpressions.g:4476:1: rule__UnitsExpression__Group_1__0__Impl : ( () ) ;
     public final void rule__UnitsExpression__Group_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:4353:1: ( ( () ) )
-            // InternalKerMLExpressions.g:4354:1: ( () )
+            // InternalKerMLExpressions.g:4480:1: ( ( () ) )
+            // InternalKerMLExpressions.g:4481:1: ( () )
             {
-            // InternalKerMLExpressions.g:4354:1: ( () )
-            // InternalKerMLExpressions.g:4355:2: ()
+            // InternalKerMLExpressions.g:4481:1: ( () )
+            // InternalKerMLExpressions.g:4482:2: ()
             {
              before(grammarAccess.getUnitsExpressionAccess().getOperatorExpressionOperandAction_1_0()); 
-            // InternalKerMLExpressions.g:4356:2: ()
-            // InternalKerMLExpressions.g:4356:3: 
+            // InternalKerMLExpressions.g:4483:2: ()
+            // InternalKerMLExpressions.g:4483:3: 
             {
             }
 
@@ -13704,14 +14196,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__UnitsExpression__Group_1__1"
-    // InternalKerMLExpressions.g:4364:1: rule__UnitsExpression__Group_1__1 : rule__UnitsExpression__Group_1__1__Impl rule__UnitsExpression__Group_1__2 ;
+    // InternalKerMLExpressions.g:4491:1: rule__UnitsExpression__Group_1__1 : rule__UnitsExpression__Group_1__1__Impl rule__UnitsExpression__Group_1__2 ;
     public final void rule__UnitsExpression__Group_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:4368:1: ( rule__UnitsExpression__Group_1__1__Impl rule__UnitsExpression__Group_1__2 )
-            // InternalKerMLExpressions.g:4369:2: rule__UnitsExpression__Group_1__1__Impl rule__UnitsExpression__Group_1__2
+            // InternalKerMLExpressions.g:4495:1: ( rule__UnitsExpression__Group_1__1__Impl rule__UnitsExpression__Group_1__2 )
+            // InternalKerMLExpressions.g:4496:2: rule__UnitsExpression__Group_1__1__Impl rule__UnitsExpression__Group_1__2
             {
             pushFollow(FOLLOW_4);
             rule__UnitsExpression__Group_1__1__Impl();
@@ -13742,21 +14234,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__UnitsExpression__Group_1__1__Impl"
-    // InternalKerMLExpressions.g:4376:1: rule__UnitsExpression__Group_1__1__Impl : ( ( rule__UnitsExpression__OperatorAssignment_1_1 ) ) ;
+    // InternalKerMLExpressions.g:4503:1: rule__UnitsExpression__Group_1__1__Impl : ( ( rule__UnitsExpression__OperatorAssignment_1_1 ) ) ;
     public final void rule__UnitsExpression__Group_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:4380:1: ( ( ( rule__UnitsExpression__OperatorAssignment_1_1 ) ) )
-            // InternalKerMLExpressions.g:4381:1: ( ( rule__UnitsExpression__OperatorAssignment_1_1 ) )
+            // InternalKerMLExpressions.g:4507:1: ( ( ( rule__UnitsExpression__OperatorAssignment_1_1 ) ) )
+            // InternalKerMLExpressions.g:4508:1: ( ( rule__UnitsExpression__OperatorAssignment_1_1 ) )
             {
-            // InternalKerMLExpressions.g:4381:1: ( ( rule__UnitsExpression__OperatorAssignment_1_1 ) )
-            // InternalKerMLExpressions.g:4382:2: ( rule__UnitsExpression__OperatorAssignment_1_1 )
+            // InternalKerMLExpressions.g:4508:1: ( ( rule__UnitsExpression__OperatorAssignment_1_1 ) )
+            // InternalKerMLExpressions.g:4509:2: ( rule__UnitsExpression__OperatorAssignment_1_1 )
             {
              before(grammarAccess.getUnitsExpressionAccess().getOperatorAssignment_1_1()); 
-            // InternalKerMLExpressions.g:4383:2: ( rule__UnitsExpression__OperatorAssignment_1_1 )
-            // InternalKerMLExpressions.g:4383:3: rule__UnitsExpression__OperatorAssignment_1_1
+            // InternalKerMLExpressions.g:4510:2: ( rule__UnitsExpression__OperatorAssignment_1_1 )
+            // InternalKerMLExpressions.g:4510:3: rule__UnitsExpression__OperatorAssignment_1_1
             {
             pushFollow(FOLLOW_2);
             rule__UnitsExpression__OperatorAssignment_1_1();
@@ -13789,14 +14281,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__UnitsExpression__Group_1__2"
-    // InternalKerMLExpressions.g:4391:1: rule__UnitsExpression__Group_1__2 : rule__UnitsExpression__Group_1__2__Impl rule__UnitsExpression__Group_1__3 ;
+    // InternalKerMLExpressions.g:4518:1: rule__UnitsExpression__Group_1__2 : rule__UnitsExpression__Group_1__2__Impl rule__UnitsExpression__Group_1__3 ;
     public final void rule__UnitsExpression__Group_1__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:4395:1: ( rule__UnitsExpression__Group_1__2__Impl rule__UnitsExpression__Group_1__3 )
-            // InternalKerMLExpressions.g:4396:2: rule__UnitsExpression__Group_1__2__Impl rule__UnitsExpression__Group_1__3
+            // InternalKerMLExpressions.g:4522:1: ( rule__UnitsExpression__Group_1__2__Impl rule__UnitsExpression__Group_1__3 )
+            // InternalKerMLExpressions.g:4523:2: rule__UnitsExpression__Group_1__2__Impl rule__UnitsExpression__Group_1__3
             {
             pushFollow(FOLLOW_32);
             rule__UnitsExpression__Group_1__2__Impl();
@@ -13827,21 +14319,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__UnitsExpression__Group_1__2__Impl"
-    // InternalKerMLExpressions.g:4403:1: rule__UnitsExpression__Group_1__2__Impl : ( ( rule__UnitsExpression__OperandAssignment_1_2 ) ) ;
+    // InternalKerMLExpressions.g:4530:1: rule__UnitsExpression__Group_1__2__Impl : ( ( rule__UnitsExpression__OperandAssignment_1_2 ) ) ;
     public final void rule__UnitsExpression__Group_1__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:4407:1: ( ( ( rule__UnitsExpression__OperandAssignment_1_2 ) ) )
-            // InternalKerMLExpressions.g:4408:1: ( ( rule__UnitsExpression__OperandAssignment_1_2 ) )
+            // InternalKerMLExpressions.g:4534:1: ( ( ( rule__UnitsExpression__OperandAssignment_1_2 ) ) )
+            // InternalKerMLExpressions.g:4535:1: ( ( rule__UnitsExpression__OperandAssignment_1_2 ) )
             {
-            // InternalKerMLExpressions.g:4408:1: ( ( rule__UnitsExpression__OperandAssignment_1_2 ) )
-            // InternalKerMLExpressions.g:4409:2: ( rule__UnitsExpression__OperandAssignment_1_2 )
+            // InternalKerMLExpressions.g:4535:1: ( ( rule__UnitsExpression__OperandAssignment_1_2 ) )
+            // InternalKerMLExpressions.g:4536:2: ( rule__UnitsExpression__OperandAssignment_1_2 )
             {
              before(grammarAccess.getUnitsExpressionAccess().getOperandAssignment_1_2()); 
-            // InternalKerMLExpressions.g:4410:2: ( rule__UnitsExpression__OperandAssignment_1_2 )
-            // InternalKerMLExpressions.g:4410:3: rule__UnitsExpression__OperandAssignment_1_2
+            // InternalKerMLExpressions.g:4537:2: ( rule__UnitsExpression__OperandAssignment_1_2 )
+            // InternalKerMLExpressions.g:4537:3: rule__UnitsExpression__OperandAssignment_1_2
             {
             pushFollow(FOLLOW_2);
             rule__UnitsExpression__OperandAssignment_1_2();
@@ -13874,14 +14366,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__UnitsExpression__Group_1__3"
-    // InternalKerMLExpressions.g:4418:1: rule__UnitsExpression__Group_1__3 : rule__UnitsExpression__Group_1__3__Impl ;
+    // InternalKerMLExpressions.g:4545:1: rule__UnitsExpression__Group_1__3 : rule__UnitsExpression__Group_1__3__Impl ;
     public final void rule__UnitsExpression__Group_1__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:4422:1: ( rule__UnitsExpression__Group_1__3__Impl )
-            // InternalKerMLExpressions.g:4423:2: rule__UnitsExpression__Group_1__3__Impl
+            // InternalKerMLExpressions.g:4549:1: ( rule__UnitsExpression__Group_1__3__Impl )
+            // InternalKerMLExpressions.g:4550:2: rule__UnitsExpression__Group_1__3__Impl
             {
             pushFollow(FOLLOW_2);
             rule__UnitsExpression__Group_1__3__Impl();
@@ -13907,20 +14399,20 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__UnitsExpression__Group_1__3__Impl"
-    // InternalKerMLExpressions.g:4429:1: rule__UnitsExpression__Group_1__3__Impl : ( ']' ) ;
+    // InternalKerMLExpressions.g:4556:1: rule__UnitsExpression__Group_1__3__Impl : ( ']' ) ;
     public final void rule__UnitsExpression__Group_1__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:4433:1: ( ( ']' ) )
-            // InternalKerMLExpressions.g:4434:1: ( ']' )
+            // InternalKerMLExpressions.g:4560:1: ( ( ']' ) )
+            // InternalKerMLExpressions.g:4561:1: ( ']' )
             {
-            // InternalKerMLExpressions.g:4434:1: ( ']' )
-            // InternalKerMLExpressions.g:4435:2: ']'
+            // InternalKerMLExpressions.g:4561:1: ( ']' )
+            // InternalKerMLExpressions.g:4562:2: ']'
             {
              before(grammarAccess.getUnitsExpressionAccess().getRightSquareBracketKeyword_1_3()); 
-            match(input,45,FOLLOW_2); 
+            match(input,53,FOLLOW_2); 
              after(grammarAccess.getUnitsExpressionAccess().getRightSquareBracketKeyword_1_3()); 
 
             }
@@ -13944,14 +14436,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__UnaryExpression__Group_0__0"
-    // InternalKerMLExpressions.g:4445:1: rule__UnaryExpression__Group_0__0 : rule__UnaryExpression__Group_0__0__Impl rule__UnaryExpression__Group_0__1 ;
+    // InternalKerMLExpressions.g:4572:1: rule__UnaryExpression__Group_0__0 : rule__UnaryExpression__Group_0__0__Impl rule__UnaryExpression__Group_0__1 ;
     public final void rule__UnaryExpression__Group_0__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:4449:1: ( rule__UnaryExpression__Group_0__0__Impl rule__UnaryExpression__Group_0__1 )
-            // InternalKerMLExpressions.g:4450:2: rule__UnaryExpression__Group_0__0__Impl rule__UnaryExpression__Group_0__1
+            // InternalKerMLExpressions.g:4576:1: ( rule__UnaryExpression__Group_0__0__Impl rule__UnaryExpression__Group_0__1 )
+            // InternalKerMLExpressions.g:4577:2: rule__UnaryExpression__Group_0__0__Impl rule__UnaryExpression__Group_0__1
             {
             pushFollow(FOLLOW_33);
             rule__UnaryExpression__Group_0__0__Impl();
@@ -13982,21 +14474,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__UnaryExpression__Group_0__0__Impl"
-    // InternalKerMLExpressions.g:4457:1: rule__UnaryExpression__Group_0__0__Impl : ( () ) ;
+    // InternalKerMLExpressions.g:4584:1: rule__UnaryExpression__Group_0__0__Impl : ( () ) ;
     public final void rule__UnaryExpression__Group_0__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:4461:1: ( ( () ) )
-            // InternalKerMLExpressions.g:4462:1: ( () )
+            // InternalKerMLExpressions.g:4588:1: ( ( () ) )
+            // InternalKerMLExpressions.g:4589:1: ( () )
             {
-            // InternalKerMLExpressions.g:4462:1: ( () )
-            // InternalKerMLExpressions.g:4463:2: ()
+            // InternalKerMLExpressions.g:4589:1: ( () )
+            // InternalKerMLExpressions.g:4590:2: ()
             {
              before(grammarAccess.getUnaryExpressionAccess().getOperatorExpressionAction_0_0()); 
-            // InternalKerMLExpressions.g:4464:2: ()
-            // InternalKerMLExpressions.g:4464:3: 
+            // InternalKerMLExpressions.g:4591:2: ()
+            // InternalKerMLExpressions.g:4591:3: 
             {
             }
 
@@ -14019,16 +14511,16 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__UnaryExpression__Group_0__1"
-    // InternalKerMLExpressions.g:4472:1: rule__UnaryExpression__Group_0__1 : rule__UnaryExpression__Group_0__1__Impl rule__UnaryExpression__Group_0__2 ;
+    // InternalKerMLExpressions.g:4599:1: rule__UnaryExpression__Group_0__1 : rule__UnaryExpression__Group_0__1__Impl rule__UnaryExpression__Group_0__2 ;
     public final void rule__UnaryExpression__Group_0__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:4476:1: ( rule__UnaryExpression__Group_0__1__Impl rule__UnaryExpression__Group_0__2 )
-            // InternalKerMLExpressions.g:4477:2: rule__UnaryExpression__Group_0__1__Impl rule__UnaryExpression__Group_0__2
+            // InternalKerMLExpressions.g:4603:1: ( rule__UnaryExpression__Group_0__1__Impl rule__UnaryExpression__Group_0__2 )
+            // InternalKerMLExpressions.g:4604:2: rule__UnaryExpression__Group_0__1__Impl rule__UnaryExpression__Group_0__2
             {
-            pushFollow(FOLLOW_4);
+            pushFollow(FOLLOW_6);
             rule__UnaryExpression__Group_0__1__Impl();
 
             state._fsp--;
@@ -14057,21 +14549,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__UnaryExpression__Group_0__1__Impl"
-    // InternalKerMLExpressions.g:4484:1: rule__UnaryExpression__Group_0__1__Impl : ( ( rule__UnaryExpression__OperatorAssignment_0_1 ) ) ;
+    // InternalKerMLExpressions.g:4611:1: rule__UnaryExpression__Group_0__1__Impl : ( ( rule__UnaryExpression__OperatorAssignment_0_1 ) ) ;
     public final void rule__UnaryExpression__Group_0__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:4488:1: ( ( ( rule__UnaryExpression__OperatorAssignment_0_1 ) ) )
-            // InternalKerMLExpressions.g:4489:1: ( ( rule__UnaryExpression__OperatorAssignment_0_1 ) )
+            // InternalKerMLExpressions.g:4615:1: ( ( ( rule__UnaryExpression__OperatorAssignment_0_1 ) ) )
+            // InternalKerMLExpressions.g:4616:1: ( ( rule__UnaryExpression__OperatorAssignment_0_1 ) )
             {
-            // InternalKerMLExpressions.g:4489:1: ( ( rule__UnaryExpression__OperatorAssignment_0_1 ) )
-            // InternalKerMLExpressions.g:4490:2: ( rule__UnaryExpression__OperatorAssignment_0_1 )
+            // InternalKerMLExpressions.g:4616:1: ( ( rule__UnaryExpression__OperatorAssignment_0_1 ) )
+            // InternalKerMLExpressions.g:4617:2: ( rule__UnaryExpression__OperatorAssignment_0_1 )
             {
              before(grammarAccess.getUnaryExpressionAccess().getOperatorAssignment_0_1()); 
-            // InternalKerMLExpressions.g:4491:2: ( rule__UnaryExpression__OperatorAssignment_0_1 )
-            // InternalKerMLExpressions.g:4491:3: rule__UnaryExpression__OperatorAssignment_0_1
+            // InternalKerMLExpressions.g:4618:2: ( rule__UnaryExpression__OperatorAssignment_0_1 )
+            // InternalKerMLExpressions.g:4618:3: rule__UnaryExpression__OperatorAssignment_0_1
             {
             pushFollow(FOLLOW_2);
             rule__UnaryExpression__OperatorAssignment_0_1();
@@ -14104,14 +14596,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__UnaryExpression__Group_0__2"
-    // InternalKerMLExpressions.g:4499:1: rule__UnaryExpression__Group_0__2 : rule__UnaryExpression__Group_0__2__Impl ;
+    // InternalKerMLExpressions.g:4626:1: rule__UnaryExpression__Group_0__2 : rule__UnaryExpression__Group_0__2__Impl ;
     public final void rule__UnaryExpression__Group_0__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:4503:1: ( rule__UnaryExpression__Group_0__2__Impl )
-            // InternalKerMLExpressions.g:4504:2: rule__UnaryExpression__Group_0__2__Impl
+            // InternalKerMLExpressions.g:4630:1: ( rule__UnaryExpression__Group_0__2__Impl )
+            // InternalKerMLExpressions.g:4631:2: rule__UnaryExpression__Group_0__2__Impl
             {
             pushFollow(FOLLOW_2);
             rule__UnaryExpression__Group_0__2__Impl();
@@ -14137,21 +14629,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__UnaryExpression__Group_0__2__Impl"
-    // InternalKerMLExpressions.g:4510:1: rule__UnaryExpression__Group_0__2__Impl : ( ( rule__UnaryExpression__OperandAssignment_0_2 ) ) ;
+    // InternalKerMLExpressions.g:4637:1: rule__UnaryExpression__Group_0__2__Impl : ( ( rule__UnaryExpression__OperandAssignment_0_2 ) ) ;
     public final void rule__UnaryExpression__Group_0__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:4514:1: ( ( ( rule__UnaryExpression__OperandAssignment_0_2 ) ) )
-            // InternalKerMLExpressions.g:4515:1: ( ( rule__UnaryExpression__OperandAssignment_0_2 ) )
+            // InternalKerMLExpressions.g:4641:1: ( ( ( rule__UnaryExpression__OperandAssignment_0_2 ) ) )
+            // InternalKerMLExpressions.g:4642:1: ( ( rule__UnaryExpression__OperandAssignment_0_2 ) )
             {
-            // InternalKerMLExpressions.g:4515:1: ( ( rule__UnaryExpression__OperandAssignment_0_2 ) )
-            // InternalKerMLExpressions.g:4516:2: ( rule__UnaryExpression__OperandAssignment_0_2 )
+            // InternalKerMLExpressions.g:4642:1: ( ( rule__UnaryExpression__OperandAssignment_0_2 ) )
+            // InternalKerMLExpressions.g:4643:2: ( rule__UnaryExpression__OperandAssignment_0_2 )
             {
              before(grammarAccess.getUnaryExpressionAccess().getOperandAssignment_0_2()); 
-            // InternalKerMLExpressions.g:4517:2: ( rule__UnaryExpression__OperandAssignment_0_2 )
-            // InternalKerMLExpressions.g:4517:3: rule__UnaryExpression__OperandAssignment_0_2
+            // InternalKerMLExpressions.g:4644:2: ( rule__UnaryExpression__OperandAssignment_0_2 )
+            // InternalKerMLExpressions.g:4644:3: rule__UnaryExpression__OperandAssignment_0_2
             {
             pushFollow(FOLLOW_2);
             rule__UnaryExpression__OperandAssignment_0_2();
@@ -14184,14 +14676,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__ExtentExpression__Group_0__0"
-    // InternalKerMLExpressions.g:4526:1: rule__ExtentExpression__Group_0__0 : rule__ExtentExpression__Group_0__0__Impl rule__ExtentExpression__Group_0__1 ;
+    // InternalKerMLExpressions.g:4653:1: rule__ExtentExpression__Group_0__0 : rule__ExtentExpression__Group_0__0__Impl rule__ExtentExpression__Group_0__1 ;
     public final void rule__ExtentExpression__Group_0__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:4530:1: ( rule__ExtentExpression__Group_0__0__Impl rule__ExtentExpression__Group_0__1 )
-            // InternalKerMLExpressions.g:4531:2: rule__ExtentExpression__Group_0__0__Impl rule__ExtentExpression__Group_0__1
+            // InternalKerMLExpressions.g:4657:1: ( rule__ExtentExpression__Group_0__0__Impl rule__ExtentExpression__Group_0__1 )
+            // InternalKerMLExpressions.g:4658:2: rule__ExtentExpression__Group_0__0__Impl rule__ExtentExpression__Group_0__1
             {
             pushFollow(FOLLOW_34);
             rule__ExtentExpression__Group_0__0__Impl();
@@ -14222,21 +14714,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__ExtentExpression__Group_0__0__Impl"
-    // InternalKerMLExpressions.g:4538:1: rule__ExtentExpression__Group_0__0__Impl : ( () ) ;
+    // InternalKerMLExpressions.g:4665:1: rule__ExtentExpression__Group_0__0__Impl : ( () ) ;
     public final void rule__ExtentExpression__Group_0__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:4542:1: ( ( () ) )
-            // InternalKerMLExpressions.g:4543:1: ( () )
+            // InternalKerMLExpressions.g:4669:1: ( ( () ) )
+            // InternalKerMLExpressions.g:4670:1: ( () )
             {
-            // InternalKerMLExpressions.g:4543:1: ( () )
-            // InternalKerMLExpressions.g:4544:2: ()
+            // InternalKerMLExpressions.g:4670:1: ( () )
+            // InternalKerMLExpressions.g:4671:2: ()
             {
              before(grammarAccess.getExtentExpressionAccess().getOperatorExpressionAction_0_0()); 
-            // InternalKerMLExpressions.g:4545:2: ()
-            // InternalKerMLExpressions.g:4545:3: 
+            // InternalKerMLExpressions.g:4672:2: ()
+            // InternalKerMLExpressions.g:4672:3: 
             {
             }
 
@@ -14259,14 +14751,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__ExtentExpression__Group_0__1"
-    // InternalKerMLExpressions.g:4553:1: rule__ExtentExpression__Group_0__1 : rule__ExtentExpression__Group_0__1__Impl rule__ExtentExpression__Group_0__2 ;
+    // InternalKerMLExpressions.g:4680:1: rule__ExtentExpression__Group_0__1 : rule__ExtentExpression__Group_0__1__Impl rule__ExtentExpression__Group_0__2 ;
     public final void rule__ExtentExpression__Group_0__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:4557:1: ( rule__ExtentExpression__Group_0__1__Impl rule__ExtentExpression__Group_0__2 )
-            // InternalKerMLExpressions.g:4558:2: rule__ExtentExpression__Group_0__1__Impl rule__ExtentExpression__Group_0__2
+            // InternalKerMLExpressions.g:4684:1: ( rule__ExtentExpression__Group_0__1__Impl rule__ExtentExpression__Group_0__2 )
+            // InternalKerMLExpressions.g:4685:2: rule__ExtentExpression__Group_0__1__Impl rule__ExtentExpression__Group_0__2
             {
             pushFollow(FOLLOW_21);
             rule__ExtentExpression__Group_0__1__Impl();
@@ -14297,21 +14789,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__ExtentExpression__Group_0__1__Impl"
-    // InternalKerMLExpressions.g:4565:1: rule__ExtentExpression__Group_0__1__Impl : ( ( rule__ExtentExpression__OperatorAssignment_0_1 ) ) ;
+    // InternalKerMLExpressions.g:4692:1: rule__ExtentExpression__Group_0__1__Impl : ( ( rule__ExtentExpression__OperatorAssignment_0_1 ) ) ;
     public final void rule__ExtentExpression__Group_0__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:4569:1: ( ( ( rule__ExtentExpression__OperatorAssignment_0_1 ) ) )
-            // InternalKerMLExpressions.g:4570:1: ( ( rule__ExtentExpression__OperatorAssignment_0_1 ) )
+            // InternalKerMLExpressions.g:4696:1: ( ( ( rule__ExtentExpression__OperatorAssignment_0_1 ) ) )
+            // InternalKerMLExpressions.g:4697:1: ( ( rule__ExtentExpression__OperatorAssignment_0_1 ) )
             {
-            // InternalKerMLExpressions.g:4570:1: ( ( rule__ExtentExpression__OperatorAssignment_0_1 ) )
-            // InternalKerMLExpressions.g:4571:2: ( rule__ExtentExpression__OperatorAssignment_0_1 )
+            // InternalKerMLExpressions.g:4697:1: ( ( rule__ExtentExpression__OperatorAssignment_0_1 ) )
+            // InternalKerMLExpressions.g:4698:2: ( rule__ExtentExpression__OperatorAssignment_0_1 )
             {
              before(grammarAccess.getExtentExpressionAccess().getOperatorAssignment_0_1()); 
-            // InternalKerMLExpressions.g:4572:2: ( rule__ExtentExpression__OperatorAssignment_0_1 )
-            // InternalKerMLExpressions.g:4572:3: rule__ExtentExpression__OperatorAssignment_0_1
+            // InternalKerMLExpressions.g:4699:2: ( rule__ExtentExpression__OperatorAssignment_0_1 )
+            // InternalKerMLExpressions.g:4699:3: rule__ExtentExpression__OperatorAssignment_0_1
             {
             pushFollow(FOLLOW_2);
             rule__ExtentExpression__OperatorAssignment_0_1();
@@ -14344,14 +14836,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__ExtentExpression__Group_0__2"
-    // InternalKerMLExpressions.g:4580:1: rule__ExtentExpression__Group_0__2 : rule__ExtentExpression__Group_0__2__Impl ;
+    // InternalKerMLExpressions.g:4707:1: rule__ExtentExpression__Group_0__2 : rule__ExtentExpression__Group_0__2__Impl ;
     public final void rule__ExtentExpression__Group_0__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:4584:1: ( rule__ExtentExpression__Group_0__2__Impl )
-            // InternalKerMLExpressions.g:4585:2: rule__ExtentExpression__Group_0__2__Impl
+            // InternalKerMLExpressions.g:4711:1: ( rule__ExtentExpression__Group_0__2__Impl )
+            // InternalKerMLExpressions.g:4712:2: rule__ExtentExpression__Group_0__2__Impl
             {
             pushFollow(FOLLOW_2);
             rule__ExtentExpression__Group_0__2__Impl();
@@ -14377,21 +14869,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__ExtentExpression__Group_0__2__Impl"
-    // InternalKerMLExpressions.g:4591:1: rule__ExtentExpression__Group_0__2__Impl : ( ( rule__ExtentExpression__OwnedRelationshipAssignment_0_2 ) ) ;
+    // InternalKerMLExpressions.g:4718:1: rule__ExtentExpression__Group_0__2__Impl : ( ( rule__ExtentExpression__OwnedRelationshipAssignment_0_2 ) ) ;
     public final void rule__ExtentExpression__Group_0__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:4595:1: ( ( ( rule__ExtentExpression__OwnedRelationshipAssignment_0_2 ) ) )
-            // InternalKerMLExpressions.g:4596:1: ( ( rule__ExtentExpression__OwnedRelationshipAssignment_0_2 ) )
+            // InternalKerMLExpressions.g:4722:1: ( ( ( rule__ExtentExpression__OwnedRelationshipAssignment_0_2 ) ) )
+            // InternalKerMLExpressions.g:4723:1: ( ( rule__ExtentExpression__OwnedRelationshipAssignment_0_2 ) )
             {
-            // InternalKerMLExpressions.g:4596:1: ( ( rule__ExtentExpression__OwnedRelationshipAssignment_0_2 ) )
-            // InternalKerMLExpressions.g:4597:2: ( rule__ExtentExpression__OwnedRelationshipAssignment_0_2 )
+            // InternalKerMLExpressions.g:4723:1: ( ( rule__ExtentExpression__OwnedRelationshipAssignment_0_2 ) )
+            // InternalKerMLExpressions.g:4724:2: ( rule__ExtentExpression__OwnedRelationshipAssignment_0_2 )
             {
              before(grammarAccess.getExtentExpressionAccess().getOwnedRelationshipAssignment_0_2()); 
-            // InternalKerMLExpressions.g:4598:2: ( rule__ExtentExpression__OwnedRelationshipAssignment_0_2 )
-            // InternalKerMLExpressions.g:4598:3: rule__ExtentExpression__OwnedRelationshipAssignment_0_2
+            // InternalKerMLExpressions.g:4725:2: ( rule__ExtentExpression__OwnedRelationshipAssignment_0_2 )
+            // InternalKerMLExpressions.g:4725:3: rule__ExtentExpression__OwnedRelationshipAssignment_0_2
             {
             pushFollow(FOLLOW_2);
             rule__ExtentExpression__OwnedRelationshipAssignment_0_2();
@@ -14424,14 +14916,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__PrimaryExpression__Group__0"
-    // InternalKerMLExpressions.g:4607:1: rule__PrimaryExpression__Group__0 : rule__PrimaryExpression__Group__0__Impl rule__PrimaryExpression__Group__1 ;
+    // InternalKerMLExpressions.g:4734:1: rule__PrimaryExpression__Group__0 : rule__PrimaryExpression__Group__0__Impl rule__PrimaryExpression__Group__1 ;
     public final void rule__PrimaryExpression__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:4611:1: ( rule__PrimaryExpression__Group__0__Impl rule__PrimaryExpression__Group__1 )
-            // InternalKerMLExpressions.g:4612:2: rule__PrimaryExpression__Group__0__Impl rule__PrimaryExpression__Group__1
+            // InternalKerMLExpressions.g:4738:1: ( rule__PrimaryExpression__Group__0__Impl rule__PrimaryExpression__Group__1 )
+            // InternalKerMLExpressions.g:4739:2: rule__PrimaryExpression__Group__0__Impl rule__PrimaryExpression__Group__1
             {
             pushFollow(FOLLOW_35);
             rule__PrimaryExpression__Group__0__Impl();
@@ -14462,17 +14954,17 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__PrimaryExpression__Group__0__Impl"
-    // InternalKerMLExpressions.g:4619:1: rule__PrimaryExpression__Group__0__Impl : ( ruleBaseExpression ) ;
+    // InternalKerMLExpressions.g:4746:1: rule__PrimaryExpression__Group__0__Impl : ( ruleBaseExpression ) ;
     public final void rule__PrimaryExpression__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:4623:1: ( ( ruleBaseExpression ) )
-            // InternalKerMLExpressions.g:4624:1: ( ruleBaseExpression )
+            // InternalKerMLExpressions.g:4750:1: ( ( ruleBaseExpression ) )
+            // InternalKerMLExpressions.g:4751:1: ( ruleBaseExpression )
             {
-            // InternalKerMLExpressions.g:4624:1: ( ruleBaseExpression )
-            // InternalKerMLExpressions.g:4625:2: ruleBaseExpression
+            // InternalKerMLExpressions.g:4751:1: ( ruleBaseExpression )
+            // InternalKerMLExpressions.g:4752:2: ruleBaseExpression
             {
              before(grammarAccess.getPrimaryExpressionAccess().getBaseExpressionParserRuleCall_0()); 
             pushFollow(FOLLOW_2);
@@ -14503,14 +14995,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__PrimaryExpression__Group__1"
-    // InternalKerMLExpressions.g:4634:1: rule__PrimaryExpression__Group__1 : rule__PrimaryExpression__Group__1__Impl ;
+    // InternalKerMLExpressions.g:4761:1: rule__PrimaryExpression__Group__1 : rule__PrimaryExpression__Group__1__Impl ;
     public final void rule__PrimaryExpression__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:4638:1: ( rule__PrimaryExpression__Group__1__Impl )
-            // InternalKerMLExpressions.g:4639:2: rule__PrimaryExpression__Group__1__Impl
+            // InternalKerMLExpressions.g:4765:1: ( rule__PrimaryExpression__Group__1__Impl )
+            // InternalKerMLExpressions.g:4766:2: rule__PrimaryExpression__Group__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__PrimaryExpression__Group__1__Impl();
@@ -14536,33 +15028,33 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__PrimaryExpression__Group__1__Impl"
-    // InternalKerMLExpressions.g:4645:1: rule__PrimaryExpression__Group__1__Impl : ( ( rule__PrimaryExpression__Alternatives_1 )* ) ;
+    // InternalKerMLExpressions.g:4772:1: rule__PrimaryExpression__Group__1__Impl : ( ( rule__PrimaryExpression__Alternatives_1 )* ) ;
     public final void rule__PrimaryExpression__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:4649:1: ( ( ( rule__PrimaryExpression__Alternatives_1 )* ) )
-            // InternalKerMLExpressions.g:4650:1: ( ( rule__PrimaryExpression__Alternatives_1 )* )
+            // InternalKerMLExpressions.g:4776:1: ( ( ( rule__PrimaryExpression__Alternatives_1 )* ) )
+            // InternalKerMLExpressions.g:4777:1: ( ( rule__PrimaryExpression__Alternatives_1 )* )
             {
-            // InternalKerMLExpressions.g:4650:1: ( ( rule__PrimaryExpression__Alternatives_1 )* )
-            // InternalKerMLExpressions.g:4651:2: ( rule__PrimaryExpression__Alternatives_1 )*
+            // InternalKerMLExpressions.g:4777:1: ( ( rule__PrimaryExpression__Alternatives_1 )* )
+            // InternalKerMLExpressions.g:4778:2: ( rule__PrimaryExpression__Alternatives_1 )*
             {
              before(grammarAccess.getPrimaryExpressionAccess().getAlternatives_1()); 
-            // InternalKerMLExpressions.g:4652:2: ( rule__PrimaryExpression__Alternatives_1 )*
-            loop36:
+            // InternalKerMLExpressions.g:4779:2: ( rule__PrimaryExpression__Alternatives_1 )*
+            loop40:
             do {
-                int alt36=2;
-                int LA36_0 = input.LA(1);
+                int alt40=2;
+                int LA40_0 = input.LA(1);
 
-                if ( ((LA36_0>=46 && LA36_0<=47)||LA36_0==59) ) {
-                    alt36=1;
+                if ( ((LA40_0>=54 && LA40_0<=55)||LA40_0==67) ) {
+                    alt40=1;
                 }
 
 
-                switch (alt36) {
+                switch (alt40) {
             	case 1 :
-            	    // InternalKerMLExpressions.g:4652:3: rule__PrimaryExpression__Alternatives_1
+            	    // InternalKerMLExpressions.g:4779:3: rule__PrimaryExpression__Alternatives_1
             	    {
             	    pushFollow(FOLLOW_36);
             	    rule__PrimaryExpression__Alternatives_1();
@@ -14574,7 +15066,7 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
             	    break;
 
             	default :
-            	    break loop36;
+            	    break loop40;
                 }
             } while (true);
 
@@ -14601,14 +15093,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__PrimaryExpression__Group_1_0__0"
-    // InternalKerMLExpressions.g:4661:1: rule__PrimaryExpression__Group_1_0__0 : rule__PrimaryExpression__Group_1_0__0__Impl rule__PrimaryExpression__Group_1_0__1 ;
+    // InternalKerMLExpressions.g:4788:1: rule__PrimaryExpression__Group_1_0__0 : rule__PrimaryExpression__Group_1_0__0__Impl rule__PrimaryExpression__Group_1_0__1 ;
     public final void rule__PrimaryExpression__Group_1_0__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:4665:1: ( rule__PrimaryExpression__Group_1_0__0__Impl rule__PrimaryExpression__Group_1_0__1 )
-            // InternalKerMLExpressions.g:4666:2: rule__PrimaryExpression__Group_1_0__0__Impl rule__PrimaryExpression__Group_1_0__1
+            // InternalKerMLExpressions.g:4792:1: ( rule__PrimaryExpression__Group_1_0__0__Impl rule__PrimaryExpression__Group_1_0__1 )
+            // InternalKerMLExpressions.g:4793:2: rule__PrimaryExpression__Group_1_0__0__Impl rule__PrimaryExpression__Group_1_0__1
             {
             pushFollow(FOLLOW_37);
             rule__PrimaryExpression__Group_1_0__0__Impl();
@@ -14639,21 +15131,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__PrimaryExpression__Group_1_0__0__Impl"
-    // InternalKerMLExpressions.g:4673:1: rule__PrimaryExpression__Group_1_0__0__Impl : ( () ) ;
+    // InternalKerMLExpressions.g:4800:1: rule__PrimaryExpression__Group_1_0__0__Impl : ( () ) ;
     public final void rule__PrimaryExpression__Group_1_0__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:4677:1: ( ( () ) )
-            // InternalKerMLExpressions.g:4678:1: ( () )
+            // InternalKerMLExpressions.g:4804:1: ( ( () ) )
+            // InternalKerMLExpressions.g:4805:1: ( () )
             {
-            // InternalKerMLExpressions.g:4678:1: ( () )
-            // InternalKerMLExpressions.g:4679:2: ()
+            // InternalKerMLExpressions.g:4805:1: ( () )
+            // InternalKerMLExpressions.g:4806:2: ()
             {
              before(grammarAccess.getPrimaryExpressionAccess().getOperatorExpressionOperandAction_1_0_0()); 
-            // InternalKerMLExpressions.g:4680:2: ()
-            // InternalKerMLExpressions.g:4680:3: 
+            // InternalKerMLExpressions.g:4807:2: ()
+            // InternalKerMLExpressions.g:4807:3: 
             {
             }
 
@@ -14676,14 +15168,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__PrimaryExpression__Group_1_0__1"
-    // InternalKerMLExpressions.g:4688:1: rule__PrimaryExpression__Group_1_0__1 : rule__PrimaryExpression__Group_1_0__1__Impl rule__PrimaryExpression__Group_1_0__2 ;
+    // InternalKerMLExpressions.g:4815:1: rule__PrimaryExpression__Group_1_0__1 : rule__PrimaryExpression__Group_1_0__1__Impl rule__PrimaryExpression__Group_1_0__2 ;
     public final void rule__PrimaryExpression__Group_1_0__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:4692:1: ( rule__PrimaryExpression__Group_1_0__1__Impl rule__PrimaryExpression__Group_1_0__2 )
-            // InternalKerMLExpressions.g:4693:2: rule__PrimaryExpression__Group_1_0__1__Impl rule__PrimaryExpression__Group_1_0__2
+            // InternalKerMLExpressions.g:4819:1: ( rule__PrimaryExpression__Group_1_0__1__Impl rule__PrimaryExpression__Group_1_0__2 )
+            // InternalKerMLExpressions.g:4820:2: rule__PrimaryExpression__Group_1_0__1__Impl rule__PrimaryExpression__Group_1_0__2
             {
             pushFollow(FOLLOW_4);
             rule__PrimaryExpression__Group_1_0__1__Impl();
@@ -14714,21 +15206,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__PrimaryExpression__Group_1_0__1__Impl"
-    // InternalKerMLExpressions.g:4700:1: rule__PrimaryExpression__Group_1_0__1__Impl : ( ( rule__PrimaryExpression__OperatorAssignment_1_0_1 ) ) ;
+    // InternalKerMLExpressions.g:4827:1: rule__PrimaryExpression__Group_1_0__1__Impl : ( ( rule__PrimaryExpression__OperatorAssignment_1_0_1 ) ) ;
     public final void rule__PrimaryExpression__Group_1_0__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:4704:1: ( ( ( rule__PrimaryExpression__OperatorAssignment_1_0_1 ) ) )
-            // InternalKerMLExpressions.g:4705:1: ( ( rule__PrimaryExpression__OperatorAssignment_1_0_1 ) )
+            // InternalKerMLExpressions.g:4831:1: ( ( ( rule__PrimaryExpression__OperatorAssignment_1_0_1 ) ) )
+            // InternalKerMLExpressions.g:4832:1: ( ( rule__PrimaryExpression__OperatorAssignment_1_0_1 ) )
             {
-            // InternalKerMLExpressions.g:4705:1: ( ( rule__PrimaryExpression__OperatorAssignment_1_0_1 ) )
-            // InternalKerMLExpressions.g:4706:2: ( rule__PrimaryExpression__OperatorAssignment_1_0_1 )
+            // InternalKerMLExpressions.g:4832:1: ( ( rule__PrimaryExpression__OperatorAssignment_1_0_1 ) )
+            // InternalKerMLExpressions.g:4833:2: ( rule__PrimaryExpression__OperatorAssignment_1_0_1 )
             {
              before(grammarAccess.getPrimaryExpressionAccess().getOperatorAssignment_1_0_1()); 
-            // InternalKerMLExpressions.g:4707:2: ( rule__PrimaryExpression__OperatorAssignment_1_0_1 )
-            // InternalKerMLExpressions.g:4707:3: rule__PrimaryExpression__OperatorAssignment_1_0_1
+            // InternalKerMLExpressions.g:4834:2: ( rule__PrimaryExpression__OperatorAssignment_1_0_1 )
+            // InternalKerMLExpressions.g:4834:3: rule__PrimaryExpression__OperatorAssignment_1_0_1
             {
             pushFollow(FOLLOW_2);
             rule__PrimaryExpression__OperatorAssignment_1_0_1();
@@ -14761,14 +15253,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__PrimaryExpression__Group_1_0__2"
-    // InternalKerMLExpressions.g:4715:1: rule__PrimaryExpression__Group_1_0__2 : rule__PrimaryExpression__Group_1_0__2__Impl rule__PrimaryExpression__Group_1_0__3 ;
+    // InternalKerMLExpressions.g:4842:1: rule__PrimaryExpression__Group_1_0__2 : rule__PrimaryExpression__Group_1_0__2__Impl rule__PrimaryExpression__Group_1_0__3 ;
     public final void rule__PrimaryExpression__Group_1_0__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:4719:1: ( rule__PrimaryExpression__Group_1_0__2__Impl rule__PrimaryExpression__Group_1_0__3 )
-            // InternalKerMLExpressions.g:4720:2: rule__PrimaryExpression__Group_1_0__2__Impl rule__PrimaryExpression__Group_1_0__3
+            // InternalKerMLExpressions.g:4846:1: ( rule__PrimaryExpression__Group_1_0__2__Impl rule__PrimaryExpression__Group_1_0__3 )
+            // InternalKerMLExpressions.g:4847:2: rule__PrimaryExpression__Group_1_0__2__Impl rule__PrimaryExpression__Group_1_0__3
             {
             pushFollow(FOLLOW_32);
             rule__PrimaryExpression__Group_1_0__2__Impl();
@@ -14799,21 +15291,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__PrimaryExpression__Group_1_0__2__Impl"
-    // InternalKerMLExpressions.g:4727:1: rule__PrimaryExpression__Group_1_0__2__Impl : ( ( rule__PrimaryExpression__OperandAssignment_1_0_2 ) ) ;
+    // InternalKerMLExpressions.g:4854:1: rule__PrimaryExpression__Group_1_0__2__Impl : ( ( rule__PrimaryExpression__OperandAssignment_1_0_2 ) ) ;
     public final void rule__PrimaryExpression__Group_1_0__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:4731:1: ( ( ( rule__PrimaryExpression__OperandAssignment_1_0_2 ) ) )
-            // InternalKerMLExpressions.g:4732:1: ( ( rule__PrimaryExpression__OperandAssignment_1_0_2 ) )
+            // InternalKerMLExpressions.g:4858:1: ( ( ( rule__PrimaryExpression__OperandAssignment_1_0_2 ) ) )
+            // InternalKerMLExpressions.g:4859:1: ( ( rule__PrimaryExpression__OperandAssignment_1_0_2 ) )
             {
-            // InternalKerMLExpressions.g:4732:1: ( ( rule__PrimaryExpression__OperandAssignment_1_0_2 ) )
-            // InternalKerMLExpressions.g:4733:2: ( rule__PrimaryExpression__OperandAssignment_1_0_2 )
+            // InternalKerMLExpressions.g:4859:1: ( ( rule__PrimaryExpression__OperandAssignment_1_0_2 ) )
+            // InternalKerMLExpressions.g:4860:2: ( rule__PrimaryExpression__OperandAssignment_1_0_2 )
             {
              before(grammarAccess.getPrimaryExpressionAccess().getOperandAssignment_1_0_2()); 
-            // InternalKerMLExpressions.g:4734:2: ( rule__PrimaryExpression__OperandAssignment_1_0_2 )
-            // InternalKerMLExpressions.g:4734:3: rule__PrimaryExpression__OperandAssignment_1_0_2
+            // InternalKerMLExpressions.g:4861:2: ( rule__PrimaryExpression__OperandAssignment_1_0_2 )
+            // InternalKerMLExpressions.g:4861:3: rule__PrimaryExpression__OperandAssignment_1_0_2
             {
             pushFollow(FOLLOW_2);
             rule__PrimaryExpression__OperandAssignment_1_0_2();
@@ -14846,14 +15338,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__PrimaryExpression__Group_1_0__3"
-    // InternalKerMLExpressions.g:4742:1: rule__PrimaryExpression__Group_1_0__3 : rule__PrimaryExpression__Group_1_0__3__Impl ;
+    // InternalKerMLExpressions.g:4869:1: rule__PrimaryExpression__Group_1_0__3 : rule__PrimaryExpression__Group_1_0__3__Impl ;
     public final void rule__PrimaryExpression__Group_1_0__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:4746:1: ( rule__PrimaryExpression__Group_1_0__3__Impl )
-            // InternalKerMLExpressions.g:4747:2: rule__PrimaryExpression__Group_1_0__3__Impl
+            // InternalKerMLExpressions.g:4873:1: ( rule__PrimaryExpression__Group_1_0__3__Impl )
+            // InternalKerMLExpressions.g:4874:2: rule__PrimaryExpression__Group_1_0__3__Impl
             {
             pushFollow(FOLLOW_2);
             rule__PrimaryExpression__Group_1_0__3__Impl();
@@ -14879,20 +15371,20 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__PrimaryExpression__Group_1_0__3__Impl"
-    // InternalKerMLExpressions.g:4753:1: rule__PrimaryExpression__Group_1_0__3__Impl : ( ']' ) ;
+    // InternalKerMLExpressions.g:4880:1: rule__PrimaryExpression__Group_1_0__3__Impl : ( ']' ) ;
     public final void rule__PrimaryExpression__Group_1_0__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:4757:1: ( ( ']' ) )
-            // InternalKerMLExpressions.g:4758:1: ( ']' )
+            // InternalKerMLExpressions.g:4884:1: ( ( ']' ) )
+            // InternalKerMLExpressions.g:4885:1: ( ']' )
             {
-            // InternalKerMLExpressions.g:4758:1: ( ']' )
-            // InternalKerMLExpressions.g:4759:2: ']'
+            // InternalKerMLExpressions.g:4885:1: ( ']' )
+            // InternalKerMLExpressions.g:4886:2: ']'
             {
              before(grammarAccess.getPrimaryExpressionAccess().getRightSquareBracketKeyword_1_0_3()); 
-            match(input,45,FOLLOW_2); 
+            match(input,53,FOLLOW_2); 
              after(grammarAccess.getPrimaryExpressionAccess().getRightSquareBracketKeyword_1_0_3()); 
 
             }
@@ -14916,14 +15408,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__PrimaryExpression__Group_1_1__0"
-    // InternalKerMLExpressions.g:4769:1: rule__PrimaryExpression__Group_1_1__0 : rule__PrimaryExpression__Group_1_1__0__Impl rule__PrimaryExpression__Group_1_1__1 ;
+    // InternalKerMLExpressions.g:4896:1: rule__PrimaryExpression__Group_1_1__0 : rule__PrimaryExpression__Group_1_1__0__Impl rule__PrimaryExpression__Group_1_1__1 ;
     public final void rule__PrimaryExpression__Group_1_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:4773:1: ( rule__PrimaryExpression__Group_1_1__0__Impl rule__PrimaryExpression__Group_1_1__1 )
-            // InternalKerMLExpressions.g:4774:2: rule__PrimaryExpression__Group_1_1__0__Impl rule__PrimaryExpression__Group_1_1__1
+            // InternalKerMLExpressions.g:4900:1: ( rule__PrimaryExpression__Group_1_1__0__Impl rule__PrimaryExpression__Group_1_1__1 )
+            // InternalKerMLExpressions.g:4901:2: rule__PrimaryExpression__Group_1_1__0__Impl rule__PrimaryExpression__Group_1_1__1
             {
             pushFollow(FOLLOW_38);
             rule__PrimaryExpression__Group_1_1__0__Impl();
@@ -14954,21 +15446,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__PrimaryExpression__Group_1_1__0__Impl"
-    // InternalKerMLExpressions.g:4781:1: rule__PrimaryExpression__Group_1_1__0__Impl : ( () ) ;
+    // InternalKerMLExpressions.g:4908:1: rule__PrimaryExpression__Group_1_1__0__Impl : ( () ) ;
     public final void rule__PrimaryExpression__Group_1_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:4785:1: ( ( () ) )
-            // InternalKerMLExpressions.g:4786:1: ( () )
+            // InternalKerMLExpressions.g:4912:1: ( ( () ) )
+            // InternalKerMLExpressions.g:4913:1: ( () )
             {
-            // InternalKerMLExpressions.g:4786:1: ( () )
-            // InternalKerMLExpressions.g:4787:2: ()
+            // InternalKerMLExpressions.g:4913:1: ( () )
+            // InternalKerMLExpressions.g:4914:2: ()
             {
              before(grammarAccess.getPrimaryExpressionAccess().getOperatorExpressionOperandAction_1_1_0()); 
-            // InternalKerMLExpressions.g:4788:2: ()
-            // InternalKerMLExpressions.g:4788:3: 
+            // InternalKerMLExpressions.g:4915:2: ()
+            // InternalKerMLExpressions.g:4915:3: 
             {
             }
 
@@ -14991,14 +15483,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__PrimaryExpression__Group_1_1__1"
-    // InternalKerMLExpressions.g:4796:1: rule__PrimaryExpression__Group_1_1__1 : rule__PrimaryExpression__Group_1_1__1__Impl rule__PrimaryExpression__Group_1_1__2 ;
+    // InternalKerMLExpressions.g:4923:1: rule__PrimaryExpression__Group_1_1__1 : rule__PrimaryExpression__Group_1_1__1__Impl rule__PrimaryExpression__Group_1_1__2 ;
     public final void rule__PrimaryExpression__Group_1_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:4800:1: ( rule__PrimaryExpression__Group_1_1__1__Impl rule__PrimaryExpression__Group_1_1__2 )
-            // InternalKerMLExpressions.g:4801:2: rule__PrimaryExpression__Group_1_1__1__Impl rule__PrimaryExpression__Group_1_1__2
+            // InternalKerMLExpressions.g:4927:1: ( rule__PrimaryExpression__Group_1_1__1__Impl rule__PrimaryExpression__Group_1_1__2 )
+            // InternalKerMLExpressions.g:4928:2: rule__PrimaryExpression__Group_1_1__1__Impl rule__PrimaryExpression__Group_1_1__2
             {
             pushFollow(FOLLOW_21);
             rule__PrimaryExpression__Group_1_1__1__Impl();
@@ -15029,20 +15521,20 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__PrimaryExpression__Group_1_1__1__Impl"
-    // InternalKerMLExpressions.g:4808:1: rule__PrimaryExpression__Group_1_1__1__Impl : ( '->' ) ;
+    // InternalKerMLExpressions.g:4935:1: rule__PrimaryExpression__Group_1_1__1__Impl : ( '->' ) ;
     public final void rule__PrimaryExpression__Group_1_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:4812:1: ( ( '->' ) )
-            // InternalKerMLExpressions.g:4813:1: ( '->' )
+            // InternalKerMLExpressions.g:4939:1: ( ( '->' ) )
+            // InternalKerMLExpressions.g:4940:1: ( '->' )
             {
-            // InternalKerMLExpressions.g:4813:1: ( '->' )
-            // InternalKerMLExpressions.g:4814:2: '->'
+            // InternalKerMLExpressions.g:4940:1: ( '->' )
+            // InternalKerMLExpressions.g:4941:2: '->'
             {
              before(grammarAccess.getPrimaryExpressionAccess().getHyphenMinusGreaterThanSignKeyword_1_1_1()); 
-            match(input,46,FOLLOW_2); 
+            match(input,54,FOLLOW_2); 
              after(grammarAccess.getPrimaryExpressionAccess().getHyphenMinusGreaterThanSignKeyword_1_1_1()); 
 
             }
@@ -15066,14 +15558,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__PrimaryExpression__Group_1_1__2"
-    // InternalKerMLExpressions.g:4823:1: rule__PrimaryExpression__Group_1_1__2 : rule__PrimaryExpression__Group_1_1__2__Impl rule__PrimaryExpression__Group_1_1__3 ;
+    // InternalKerMLExpressions.g:4950:1: rule__PrimaryExpression__Group_1_1__2 : rule__PrimaryExpression__Group_1_1__2__Impl rule__PrimaryExpression__Group_1_1__3 ;
     public final void rule__PrimaryExpression__Group_1_1__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:4827:1: ( rule__PrimaryExpression__Group_1_1__2__Impl rule__PrimaryExpression__Group_1_1__3 )
-            // InternalKerMLExpressions.g:4828:2: rule__PrimaryExpression__Group_1_1__2__Impl rule__PrimaryExpression__Group_1_1__3
+            // InternalKerMLExpressions.g:4954:1: ( rule__PrimaryExpression__Group_1_1__2__Impl rule__PrimaryExpression__Group_1_1__3 )
+            // InternalKerMLExpressions.g:4955:2: rule__PrimaryExpression__Group_1_1__2__Impl rule__PrimaryExpression__Group_1_1__3
             {
             pushFollow(FOLLOW_39);
             rule__PrimaryExpression__Group_1_1__2__Impl();
@@ -15104,21 +15596,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__PrimaryExpression__Group_1_1__2__Impl"
-    // InternalKerMLExpressions.g:4835:1: rule__PrimaryExpression__Group_1_1__2__Impl : ( ( rule__PrimaryExpression__OwnedRelationshipAssignment_1_1_2 ) ) ;
+    // InternalKerMLExpressions.g:4962:1: rule__PrimaryExpression__Group_1_1__2__Impl : ( ( rule__PrimaryExpression__OwnedRelationshipAssignment_1_1_2 ) ) ;
     public final void rule__PrimaryExpression__Group_1_1__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:4839:1: ( ( ( rule__PrimaryExpression__OwnedRelationshipAssignment_1_1_2 ) ) )
-            // InternalKerMLExpressions.g:4840:1: ( ( rule__PrimaryExpression__OwnedRelationshipAssignment_1_1_2 ) )
+            // InternalKerMLExpressions.g:4966:1: ( ( ( rule__PrimaryExpression__OwnedRelationshipAssignment_1_1_2 ) ) )
+            // InternalKerMLExpressions.g:4967:1: ( ( rule__PrimaryExpression__OwnedRelationshipAssignment_1_1_2 ) )
             {
-            // InternalKerMLExpressions.g:4840:1: ( ( rule__PrimaryExpression__OwnedRelationshipAssignment_1_1_2 ) )
-            // InternalKerMLExpressions.g:4841:2: ( rule__PrimaryExpression__OwnedRelationshipAssignment_1_1_2 )
+            // InternalKerMLExpressions.g:4967:1: ( ( rule__PrimaryExpression__OwnedRelationshipAssignment_1_1_2 ) )
+            // InternalKerMLExpressions.g:4968:2: ( rule__PrimaryExpression__OwnedRelationshipAssignment_1_1_2 )
             {
              before(grammarAccess.getPrimaryExpressionAccess().getOwnedRelationshipAssignment_1_1_2()); 
-            // InternalKerMLExpressions.g:4842:2: ( rule__PrimaryExpression__OwnedRelationshipAssignment_1_1_2 )
-            // InternalKerMLExpressions.g:4842:3: rule__PrimaryExpression__OwnedRelationshipAssignment_1_1_2
+            // InternalKerMLExpressions.g:4969:2: ( rule__PrimaryExpression__OwnedRelationshipAssignment_1_1_2 )
+            // InternalKerMLExpressions.g:4969:3: rule__PrimaryExpression__OwnedRelationshipAssignment_1_1_2
             {
             pushFollow(FOLLOW_2);
             rule__PrimaryExpression__OwnedRelationshipAssignment_1_1_2();
@@ -15151,14 +15643,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__PrimaryExpression__Group_1_1__3"
-    // InternalKerMLExpressions.g:4850:1: rule__PrimaryExpression__Group_1_1__3 : rule__PrimaryExpression__Group_1_1__3__Impl ;
+    // InternalKerMLExpressions.g:4977:1: rule__PrimaryExpression__Group_1_1__3 : rule__PrimaryExpression__Group_1_1__3__Impl ;
     public final void rule__PrimaryExpression__Group_1_1__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:4854:1: ( rule__PrimaryExpression__Group_1_1__3__Impl )
-            // InternalKerMLExpressions.g:4855:2: rule__PrimaryExpression__Group_1_1__3__Impl
+            // InternalKerMLExpressions.g:4981:1: ( rule__PrimaryExpression__Group_1_1__3__Impl )
+            // InternalKerMLExpressions.g:4982:2: rule__PrimaryExpression__Group_1_1__3__Impl
             {
             pushFollow(FOLLOW_2);
             rule__PrimaryExpression__Group_1_1__3__Impl();
@@ -15184,21 +15676,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__PrimaryExpression__Group_1_1__3__Impl"
-    // InternalKerMLExpressions.g:4861:1: rule__PrimaryExpression__Group_1_1__3__Impl : ( ( rule__PrimaryExpression__Alternatives_1_1_3 ) ) ;
+    // InternalKerMLExpressions.g:4988:1: rule__PrimaryExpression__Group_1_1__3__Impl : ( ( rule__PrimaryExpression__Alternatives_1_1_3 ) ) ;
     public final void rule__PrimaryExpression__Group_1_1__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:4865:1: ( ( ( rule__PrimaryExpression__Alternatives_1_1_3 ) ) )
-            // InternalKerMLExpressions.g:4866:1: ( ( rule__PrimaryExpression__Alternatives_1_1_3 ) )
+            // InternalKerMLExpressions.g:4992:1: ( ( ( rule__PrimaryExpression__Alternatives_1_1_3 ) ) )
+            // InternalKerMLExpressions.g:4993:1: ( ( rule__PrimaryExpression__Alternatives_1_1_3 ) )
             {
-            // InternalKerMLExpressions.g:4866:1: ( ( rule__PrimaryExpression__Alternatives_1_1_3 ) )
-            // InternalKerMLExpressions.g:4867:2: ( rule__PrimaryExpression__Alternatives_1_1_3 )
+            // InternalKerMLExpressions.g:4993:1: ( ( rule__PrimaryExpression__Alternatives_1_1_3 ) )
+            // InternalKerMLExpressions.g:4994:2: ( rule__PrimaryExpression__Alternatives_1_1_3 )
             {
              before(grammarAccess.getPrimaryExpressionAccess().getAlternatives_1_1_3()); 
-            // InternalKerMLExpressions.g:4868:2: ( rule__PrimaryExpression__Alternatives_1_1_3 )
-            // InternalKerMLExpressions.g:4868:3: rule__PrimaryExpression__Alternatives_1_1_3
+            // InternalKerMLExpressions.g:4995:2: ( rule__PrimaryExpression__Alternatives_1_1_3 )
+            // InternalKerMLExpressions.g:4995:3: rule__PrimaryExpression__Alternatives_1_1_3
             {
             pushFollow(FOLLOW_2);
             rule__PrimaryExpression__Alternatives_1_1_3();
@@ -15231,14 +15723,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__PrimaryExpression__Group_1_2__0"
-    // InternalKerMLExpressions.g:4877:1: rule__PrimaryExpression__Group_1_2__0 : rule__PrimaryExpression__Group_1_2__0__Impl rule__PrimaryExpression__Group_1_2__1 ;
+    // InternalKerMLExpressions.g:5004:1: rule__PrimaryExpression__Group_1_2__0 : rule__PrimaryExpression__Group_1_2__0__Impl rule__PrimaryExpression__Group_1_2__1 ;
     public final void rule__PrimaryExpression__Group_1_2__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:4881:1: ( rule__PrimaryExpression__Group_1_2__0__Impl rule__PrimaryExpression__Group_1_2__1 )
-            // InternalKerMLExpressions.g:4882:2: rule__PrimaryExpression__Group_1_2__0__Impl rule__PrimaryExpression__Group_1_2__1
+            // InternalKerMLExpressions.g:5008:1: ( rule__PrimaryExpression__Group_1_2__0__Impl rule__PrimaryExpression__Group_1_2__1 )
+            // InternalKerMLExpressions.g:5009:2: rule__PrimaryExpression__Group_1_2__0__Impl rule__PrimaryExpression__Group_1_2__1
             {
             pushFollow(FOLLOW_40);
             rule__PrimaryExpression__Group_1_2__0__Impl();
@@ -15269,21 +15761,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__PrimaryExpression__Group_1_2__0__Impl"
-    // InternalKerMLExpressions.g:4889:1: rule__PrimaryExpression__Group_1_2__0__Impl : ( () ) ;
+    // InternalKerMLExpressions.g:5016:1: rule__PrimaryExpression__Group_1_2__0__Impl : ( () ) ;
     public final void rule__PrimaryExpression__Group_1_2__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:4893:1: ( ( () ) )
-            // InternalKerMLExpressions.g:4894:1: ( () )
+            // InternalKerMLExpressions.g:5020:1: ( ( () ) )
+            // InternalKerMLExpressions.g:5021:1: ( () )
             {
-            // InternalKerMLExpressions.g:4894:1: ( () )
-            // InternalKerMLExpressions.g:4895:2: ()
+            // InternalKerMLExpressions.g:5021:1: ( () )
+            // InternalKerMLExpressions.g:5022:2: ()
             {
              before(grammarAccess.getPrimaryExpressionAccess().getPathStepExpressionOperandAction_1_2_0()); 
-            // InternalKerMLExpressions.g:4896:2: ()
-            // InternalKerMLExpressions.g:4896:3: 
+            // InternalKerMLExpressions.g:5023:2: ()
+            // InternalKerMLExpressions.g:5023:3: 
             {
             }
 
@@ -15306,14 +15798,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__PrimaryExpression__Group_1_2__1"
-    // InternalKerMLExpressions.g:4904:1: rule__PrimaryExpression__Group_1_2__1 : rule__PrimaryExpression__Group_1_2__1__Impl rule__PrimaryExpression__Group_1_2__2 ;
+    // InternalKerMLExpressions.g:5031:1: rule__PrimaryExpression__Group_1_2__1 : rule__PrimaryExpression__Group_1_2__1__Impl rule__PrimaryExpression__Group_1_2__2 ;
     public final void rule__PrimaryExpression__Group_1_2__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:4908:1: ( rule__PrimaryExpression__Group_1_2__1__Impl rule__PrimaryExpression__Group_1_2__2 )
-            // InternalKerMLExpressions.g:4909:2: rule__PrimaryExpression__Group_1_2__1__Impl rule__PrimaryExpression__Group_1_2__2
+            // InternalKerMLExpressions.g:5035:1: ( rule__PrimaryExpression__Group_1_2__1__Impl rule__PrimaryExpression__Group_1_2__2 )
+            // InternalKerMLExpressions.g:5036:2: rule__PrimaryExpression__Group_1_2__1__Impl rule__PrimaryExpression__Group_1_2__2
             {
             pushFollow(FOLLOW_21);
             rule__PrimaryExpression__Group_1_2__1__Impl();
@@ -15344,20 +15836,20 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__PrimaryExpression__Group_1_2__1__Impl"
-    // InternalKerMLExpressions.g:4916:1: rule__PrimaryExpression__Group_1_2__1__Impl : ( '.' ) ;
+    // InternalKerMLExpressions.g:5043:1: rule__PrimaryExpression__Group_1_2__1__Impl : ( '.' ) ;
     public final void rule__PrimaryExpression__Group_1_2__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:4920:1: ( ( '.' ) )
-            // InternalKerMLExpressions.g:4921:1: ( '.' )
+            // InternalKerMLExpressions.g:5047:1: ( ( '.' ) )
+            // InternalKerMLExpressions.g:5048:1: ( '.' )
             {
-            // InternalKerMLExpressions.g:4921:1: ( '.' )
-            // InternalKerMLExpressions.g:4922:2: '.'
+            // InternalKerMLExpressions.g:5048:1: ( '.' )
+            // InternalKerMLExpressions.g:5049:2: '.'
             {
              before(grammarAccess.getPrimaryExpressionAccess().getFullStopKeyword_1_2_1()); 
-            match(input,47,FOLLOW_2); 
+            match(input,55,FOLLOW_2); 
              after(grammarAccess.getPrimaryExpressionAccess().getFullStopKeyword_1_2_1()); 
 
             }
@@ -15381,14 +15873,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__PrimaryExpression__Group_1_2__2"
-    // InternalKerMLExpressions.g:4931:1: rule__PrimaryExpression__Group_1_2__2 : rule__PrimaryExpression__Group_1_2__2__Impl ;
+    // InternalKerMLExpressions.g:5058:1: rule__PrimaryExpression__Group_1_2__2 : rule__PrimaryExpression__Group_1_2__2__Impl ;
     public final void rule__PrimaryExpression__Group_1_2__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:4935:1: ( rule__PrimaryExpression__Group_1_2__2__Impl )
-            // InternalKerMLExpressions.g:4936:2: rule__PrimaryExpression__Group_1_2__2__Impl
+            // InternalKerMLExpressions.g:5062:1: ( rule__PrimaryExpression__Group_1_2__2__Impl )
+            // InternalKerMLExpressions.g:5063:2: rule__PrimaryExpression__Group_1_2__2__Impl
             {
             pushFollow(FOLLOW_2);
             rule__PrimaryExpression__Group_1_2__2__Impl();
@@ -15414,21 +15906,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__PrimaryExpression__Group_1_2__2__Impl"
-    // InternalKerMLExpressions.g:4942:1: rule__PrimaryExpression__Group_1_2__2__Impl : ( ( rule__PrimaryExpression__OperandAssignment_1_2_2 ) ) ;
+    // InternalKerMLExpressions.g:5069:1: rule__PrimaryExpression__Group_1_2__2__Impl : ( ( rule__PrimaryExpression__OperandAssignment_1_2_2 ) ) ;
     public final void rule__PrimaryExpression__Group_1_2__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:4946:1: ( ( ( rule__PrimaryExpression__OperandAssignment_1_2_2 ) ) )
-            // InternalKerMLExpressions.g:4947:1: ( ( rule__PrimaryExpression__OperandAssignment_1_2_2 ) )
+            // InternalKerMLExpressions.g:5073:1: ( ( ( rule__PrimaryExpression__OperandAssignment_1_2_2 ) ) )
+            // InternalKerMLExpressions.g:5074:1: ( ( rule__PrimaryExpression__OperandAssignment_1_2_2 ) )
             {
-            // InternalKerMLExpressions.g:4947:1: ( ( rule__PrimaryExpression__OperandAssignment_1_2_2 ) )
-            // InternalKerMLExpressions.g:4948:2: ( rule__PrimaryExpression__OperandAssignment_1_2_2 )
+            // InternalKerMLExpressions.g:5074:1: ( ( rule__PrimaryExpression__OperandAssignment_1_2_2 ) )
+            // InternalKerMLExpressions.g:5075:2: ( rule__PrimaryExpression__OperandAssignment_1_2_2 )
             {
              before(grammarAccess.getPrimaryExpressionAccess().getOperandAssignment_1_2_2()); 
-            // InternalKerMLExpressions.g:4949:2: ( rule__PrimaryExpression__OperandAssignment_1_2_2 )
-            // InternalKerMLExpressions.g:4949:3: rule__PrimaryExpression__OperandAssignment_1_2_2
+            // InternalKerMLExpressions.g:5076:2: ( rule__PrimaryExpression__OperandAssignment_1_2_2 )
+            // InternalKerMLExpressions.g:5076:3: rule__PrimaryExpression__OperandAssignment_1_2_2
             {
             pushFollow(FOLLOW_2);
             rule__PrimaryExpression__OperandAssignment_1_2_2();
@@ -15461,14 +15953,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__PrimaryExpression__Group_1_3__0"
-    // InternalKerMLExpressions.g:4958:1: rule__PrimaryExpression__Group_1_3__0 : rule__PrimaryExpression__Group_1_3__0__Impl rule__PrimaryExpression__Group_1_3__1 ;
+    // InternalKerMLExpressions.g:5085:1: rule__PrimaryExpression__Group_1_3__0 : rule__PrimaryExpression__Group_1_3__0__Impl rule__PrimaryExpression__Group_1_3__1 ;
     public final void rule__PrimaryExpression__Group_1_3__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:4962:1: ( rule__PrimaryExpression__Group_1_3__0__Impl rule__PrimaryExpression__Group_1_3__1 )
-            // InternalKerMLExpressions.g:4963:2: rule__PrimaryExpression__Group_1_3__0__Impl rule__PrimaryExpression__Group_1_3__1
+            // InternalKerMLExpressions.g:5089:1: ( rule__PrimaryExpression__Group_1_3__0__Impl rule__PrimaryExpression__Group_1_3__1 )
+            // InternalKerMLExpressions.g:5090:2: rule__PrimaryExpression__Group_1_3__0__Impl rule__PrimaryExpression__Group_1_3__1
             {
             pushFollow(FOLLOW_35);
             rule__PrimaryExpression__Group_1_3__0__Impl();
@@ -15499,21 +15991,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__PrimaryExpression__Group_1_3__0__Impl"
-    // InternalKerMLExpressions.g:4970:1: rule__PrimaryExpression__Group_1_3__0__Impl : ( () ) ;
+    // InternalKerMLExpressions.g:5097:1: rule__PrimaryExpression__Group_1_3__0__Impl : ( () ) ;
     public final void rule__PrimaryExpression__Group_1_3__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:4974:1: ( ( () ) )
-            // InternalKerMLExpressions.g:4975:1: ( () )
+            // InternalKerMLExpressions.g:5101:1: ( ( () ) )
+            // InternalKerMLExpressions.g:5102:1: ( () )
             {
-            // InternalKerMLExpressions.g:4975:1: ( () )
-            // InternalKerMLExpressions.g:4976:2: ()
+            // InternalKerMLExpressions.g:5102:1: ( () )
+            // InternalKerMLExpressions.g:5103:2: ()
             {
              before(grammarAccess.getPrimaryExpressionAccess().getPathSelectExpressionOperandAction_1_3_0()); 
-            // InternalKerMLExpressions.g:4977:2: ()
-            // InternalKerMLExpressions.g:4977:3: 
+            // InternalKerMLExpressions.g:5104:2: ()
+            // InternalKerMLExpressions.g:5104:3: 
             {
             }
 
@@ -15536,14 +16028,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__PrimaryExpression__Group_1_3__1"
-    // InternalKerMLExpressions.g:4985:1: rule__PrimaryExpression__Group_1_3__1 : rule__PrimaryExpression__Group_1_3__1__Impl rule__PrimaryExpression__Group_1_3__2 ;
+    // InternalKerMLExpressions.g:5112:1: rule__PrimaryExpression__Group_1_3__1 : rule__PrimaryExpression__Group_1_3__1__Impl rule__PrimaryExpression__Group_1_3__2 ;
     public final void rule__PrimaryExpression__Group_1_3__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:4989:1: ( rule__PrimaryExpression__Group_1_3__1__Impl rule__PrimaryExpression__Group_1_3__2 )
-            // InternalKerMLExpressions.g:4990:2: rule__PrimaryExpression__Group_1_3__1__Impl rule__PrimaryExpression__Group_1_3__2
+            // InternalKerMLExpressions.g:5116:1: ( rule__PrimaryExpression__Group_1_3__1__Impl rule__PrimaryExpression__Group_1_3__2 )
+            // InternalKerMLExpressions.g:5117:2: rule__PrimaryExpression__Group_1_3__1__Impl rule__PrimaryExpression__Group_1_3__2
             {
             pushFollow(FOLLOW_41);
             rule__PrimaryExpression__Group_1_3__1__Impl();
@@ -15574,20 +16066,20 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__PrimaryExpression__Group_1_3__1__Impl"
-    // InternalKerMLExpressions.g:4997:1: rule__PrimaryExpression__Group_1_3__1__Impl : ( '.' ) ;
+    // InternalKerMLExpressions.g:5124:1: rule__PrimaryExpression__Group_1_3__1__Impl : ( '.' ) ;
     public final void rule__PrimaryExpression__Group_1_3__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:5001:1: ( ( '.' ) )
-            // InternalKerMLExpressions.g:5002:1: ( '.' )
+            // InternalKerMLExpressions.g:5128:1: ( ( '.' ) )
+            // InternalKerMLExpressions.g:5129:1: ( '.' )
             {
-            // InternalKerMLExpressions.g:5002:1: ( '.' )
-            // InternalKerMLExpressions.g:5003:2: '.'
+            // InternalKerMLExpressions.g:5129:1: ( '.' )
+            // InternalKerMLExpressions.g:5130:2: '.'
             {
              before(grammarAccess.getPrimaryExpressionAccess().getFullStopKeyword_1_3_1()); 
-            match(input,47,FOLLOW_2); 
+            match(input,55,FOLLOW_2); 
              after(grammarAccess.getPrimaryExpressionAccess().getFullStopKeyword_1_3_1()); 
 
             }
@@ -15611,14 +16103,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__PrimaryExpression__Group_1_3__2"
-    // InternalKerMLExpressions.g:5012:1: rule__PrimaryExpression__Group_1_3__2 : rule__PrimaryExpression__Group_1_3__2__Impl ;
+    // InternalKerMLExpressions.g:5139:1: rule__PrimaryExpression__Group_1_3__2 : rule__PrimaryExpression__Group_1_3__2__Impl ;
     public final void rule__PrimaryExpression__Group_1_3__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:5016:1: ( rule__PrimaryExpression__Group_1_3__2__Impl )
-            // InternalKerMLExpressions.g:5017:2: rule__PrimaryExpression__Group_1_3__2__Impl
+            // InternalKerMLExpressions.g:5143:1: ( rule__PrimaryExpression__Group_1_3__2__Impl )
+            // InternalKerMLExpressions.g:5144:2: rule__PrimaryExpression__Group_1_3__2__Impl
             {
             pushFollow(FOLLOW_2);
             rule__PrimaryExpression__Group_1_3__2__Impl();
@@ -15644,21 +16136,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__PrimaryExpression__Group_1_3__2__Impl"
-    // InternalKerMLExpressions.g:5023:1: rule__PrimaryExpression__Group_1_3__2__Impl : ( ( rule__PrimaryExpression__OwnedRelationshipAssignment_1_3_2 ) ) ;
+    // InternalKerMLExpressions.g:5150:1: rule__PrimaryExpression__Group_1_3__2__Impl : ( ( rule__PrimaryExpression__OwnedRelationshipAssignment_1_3_2 ) ) ;
     public final void rule__PrimaryExpression__Group_1_3__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:5027:1: ( ( ( rule__PrimaryExpression__OwnedRelationshipAssignment_1_3_2 ) ) )
-            // InternalKerMLExpressions.g:5028:1: ( ( rule__PrimaryExpression__OwnedRelationshipAssignment_1_3_2 ) )
+            // InternalKerMLExpressions.g:5154:1: ( ( ( rule__PrimaryExpression__OwnedRelationshipAssignment_1_3_2 ) ) )
+            // InternalKerMLExpressions.g:5155:1: ( ( rule__PrimaryExpression__OwnedRelationshipAssignment_1_3_2 ) )
             {
-            // InternalKerMLExpressions.g:5028:1: ( ( rule__PrimaryExpression__OwnedRelationshipAssignment_1_3_2 ) )
-            // InternalKerMLExpressions.g:5029:2: ( rule__PrimaryExpression__OwnedRelationshipAssignment_1_3_2 )
+            // InternalKerMLExpressions.g:5155:1: ( ( rule__PrimaryExpression__OwnedRelationshipAssignment_1_3_2 ) )
+            // InternalKerMLExpressions.g:5156:2: ( rule__PrimaryExpression__OwnedRelationshipAssignment_1_3_2 )
             {
              before(grammarAccess.getPrimaryExpressionAccess().getOwnedRelationshipAssignment_1_3_2()); 
-            // InternalKerMLExpressions.g:5030:2: ( rule__PrimaryExpression__OwnedRelationshipAssignment_1_3_2 )
-            // InternalKerMLExpressions.g:5030:3: rule__PrimaryExpression__OwnedRelationshipAssignment_1_3_2
+            // InternalKerMLExpressions.g:5157:2: ( rule__PrimaryExpression__OwnedRelationshipAssignment_1_3_2 )
+            // InternalKerMLExpressions.g:5157:3: rule__PrimaryExpression__OwnedRelationshipAssignment_1_3_2
             {
             pushFollow(FOLLOW_2);
             rule__PrimaryExpression__OwnedRelationshipAssignment_1_3_2();
@@ -15691,14 +16183,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__BaseExpression__Group_5__0"
-    // InternalKerMLExpressions.g:5039:1: rule__BaseExpression__Group_5__0 : rule__BaseExpression__Group_5__0__Impl rule__BaseExpression__Group_5__1 ;
+    // InternalKerMLExpressions.g:5166:1: rule__BaseExpression__Group_5__0 : rule__BaseExpression__Group_5__0__Impl rule__BaseExpression__Group_5__1 ;
     public final void rule__BaseExpression__Group_5__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:5043:1: ( rule__BaseExpression__Group_5__0__Impl rule__BaseExpression__Group_5__1 )
-            // InternalKerMLExpressions.g:5044:2: rule__BaseExpression__Group_5__0__Impl rule__BaseExpression__Group_5__1
+            // InternalKerMLExpressions.g:5170:1: ( rule__BaseExpression__Group_5__0__Impl rule__BaseExpression__Group_5__1 )
+            // InternalKerMLExpressions.g:5171:2: rule__BaseExpression__Group_5__0__Impl rule__BaseExpression__Group_5__1
             {
             pushFollow(FOLLOW_4);
             rule__BaseExpression__Group_5__0__Impl();
@@ -15729,20 +16221,20 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__BaseExpression__Group_5__0__Impl"
-    // InternalKerMLExpressions.g:5051:1: rule__BaseExpression__Group_5__0__Impl : ( '(' ) ;
+    // InternalKerMLExpressions.g:5178:1: rule__BaseExpression__Group_5__0__Impl : ( '(' ) ;
     public final void rule__BaseExpression__Group_5__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:5055:1: ( ( '(' ) )
-            // InternalKerMLExpressions.g:5056:1: ( '(' )
+            // InternalKerMLExpressions.g:5182:1: ( ( '(' ) )
+            // InternalKerMLExpressions.g:5183:1: ( '(' )
             {
-            // InternalKerMLExpressions.g:5056:1: ( '(' )
-            // InternalKerMLExpressions.g:5057:2: '('
+            // InternalKerMLExpressions.g:5183:1: ( '(' )
+            // InternalKerMLExpressions.g:5184:2: '('
             {
              before(grammarAccess.getBaseExpressionAccess().getLeftParenthesisKeyword_5_0()); 
-            match(input,48,FOLLOW_2); 
+            match(input,56,FOLLOW_2); 
              after(grammarAccess.getBaseExpressionAccess().getLeftParenthesisKeyword_5_0()); 
 
             }
@@ -15766,14 +16258,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__BaseExpression__Group_5__1"
-    // InternalKerMLExpressions.g:5066:1: rule__BaseExpression__Group_5__1 : rule__BaseExpression__Group_5__1__Impl rule__BaseExpression__Group_5__2 ;
+    // InternalKerMLExpressions.g:5193:1: rule__BaseExpression__Group_5__1 : rule__BaseExpression__Group_5__1__Impl rule__BaseExpression__Group_5__2 ;
     public final void rule__BaseExpression__Group_5__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:5070:1: ( rule__BaseExpression__Group_5__1__Impl rule__BaseExpression__Group_5__2 )
-            // InternalKerMLExpressions.g:5071:2: rule__BaseExpression__Group_5__1__Impl rule__BaseExpression__Group_5__2
+            // InternalKerMLExpressions.g:5197:1: ( rule__BaseExpression__Group_5__1__Impl rule__BaseExpression__Group_5__2 )
+            // InternalKerMLExpressions.g:5198:2: rule__BaseExpression__Group_5__1__Impl rule__BaseExpression__Group_5__2
             {
             pushFollow(FOLLOW_42);
             rule__BaseExpression__Group_5__1__Impl();
@@ -15804,17 +16296,17 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__BaseExpression__Group_5__1__Impl"
-    // InternalKerMLExpressions.g:5078:1: rule__BaseExpression__Group_5__1__Impl : ( ruleSequenceExpression ) ;
+    // InternalKerMLExpressions.g:5205:1: rule__BaseExpression__Group_5__1__Impl : ( ruleSequenceExpression ) ;
     public final void rule__BaseExpression__Group_5__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:5082:1: ( ( ruleSequenceExpression ) )
-            // InternalKerMLExpressions.g:5083:1: ( ruleSequenceExpression )
+            // InternalKerMLExpressions.g:5209:1: ( ( ruleSequenceExpression ) )
+            // InternalKerMLExpressions.g:5210:1: ( ruleSequenceExpression )
             {
-            // InternalKerMLExpressions.g:5083:1: ( ruleSequenceExpression )
-            // InternalKerMLExpressions.g:5084:2: ruleSequenceExpression
+            // InternalKerMLExpressions.g:5210:1: ( ruleSequenceExpression )
+            // InternalKerMLExpressions.g:5211:2: ruleSequenceExpression
             {
              before(grammarAccess.getBaseExpressionAccess().getSequenceExpressionParserRuleCall_5_1()); 
             pushFollow(FOLLOW_2);
@@ -15845,14 +16337,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__BaseExpression__Group_5__2"
-    // InternalKerMLExpressions.g:5093:1: rule__BaseExpression__Group_5__2 : rule__BaseExpression__Group_5__2__Impl ;
+    // InternalKerMLExpressions.g:5220:1: rule__BaseExpression__Group_5__2 : rule__BaseExpression__Group_5__2__Impl ;
     public final void rule__BaseExpression__Group_5__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:5097:1: ( rule__BaseExpression__Group_5__2__Impl )
-            // InternalKerMLExpressions.g:5098:2: rule__BaseExpression__Group_5__2__Impl
+            // InternalKerMLExpressions.g:5224:1: ( rule__BaseExpression__Group_5__2__Impl )
+            // InternalKerMLExpressions.g:5225:2: rule__BaseExpression__Group_5__2__Impl
             {
             pushFollow(FOLLOW_2);
             rule__BaseExpression__Group_5__2__Impl();
@@ -15878,20 +16370,20 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__BaseExpression__Group_5__2__Impl"
-    // InternalKerMLExpressions.g:5104:1: rule__BaseExpression__Group_5__2__Impl : ( ')' ) ;
+    // InternalKerMLExpressions.g:5231:1: rule__BaseExpression__Group_5__2__Impl : ( ')' ) ;
     public final void rule__BaseExpression__Group_5__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:5108:1: ( ( ')' ) )
-            // InternalKerMLExpressions.g:5109:1: ( ')' )
+            // InternalKerMLExpressions.g:5235:1: ( ( ')' ) )
+            // InternalKerMLExpressions.g:5236:1: ( ')' )
             {
-            // InternalKerMLExpressions.g:5109:1: ( ')' )
-            // InternalKerMLExpressions.g:5110:2: ')'
+            // InternalKerMLExpressions.g:5236:1: ( ')' )
+            // InternalKerMLExpressions.g:5237:2: ')'
             {
              before(grammarAccess.getBaseExpressionAccess().getRightParenthesisKeyword_5_2()); 
-            match(input,49,FOLLOW_2); 
+            match(input,57,FOLLOW_2); 
              after(grammarAccess.getBaseExpressionAccess().getRightParenthesisKeyword_5_2()); 
 
             }
@@ -15915,14 +16407,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__ExpressionBody__Group__0"
-    // InternalKerMLExpressions.g:5120:1: rule__ExpressionBody__Group__0 : rule__ExpressionBody__Group__0__Impl rule__ExpressionBody__Group__1 ;
+    // InternalKerMLExpressions.g:5247:1: rule__ExpressionBody__Group__0 : rule__ExpressionBody__Group__0__Impl rule__ExpressionBody__Group__1 ;
     public final void rule__ExpressionBody__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:5124:1: ( rule__ExpressionBody__Group__0__Impl rule__ExpressionBody__Group__1 )
-            // InternalKerMLExpressions.g:5125:2: rule__ExpressionBody__Group__0__Impl rule__ExpressionBody__Group__1
+            // InternalKerMLExpressions.g:5251:1: ( rule__ExpressionBody__Group__0__Impl rule__ExpressionBody__Group__1 )
+            // InternalKerMLExpressions.g:5252:2: rule__ExpressionBody__Group__0__Impl rule__ExpressionBody__Group__1
             {
             pushFollow(FOLLOW_43);
             rule__ExpressionBody__Group__0__Impl();
@@ -15953,20 +16445,20 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__ExpressionBody__Group__0__Impl"
-    // InternalKerMLExpressions.g:5132:1: rule__ExpressionBody__Group__0__Impl : ( '{' ) ;
+    // InternalKerMLExpressions.g:5259:1: rule__ExpressionBody__Group__0__Impl : ( '{' ) ;
     public final void rule__ExpressionBody__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:5136:1: ( ( '{' ) )
-            // InternalKerMLExpressions.g:5137:1: ( '{' )
+            // InternalKerMLExpressions.g:5263:1: ( ( '{' ) )
+            // InternalKerMLExpressions.g:5264:1: ( '{' )
             {
-            // InternalKerMLExpressions.g:5137:1: ( '{' )
-            // InternalKerMLExpressions.g:5138:2: '{'
+            // InternalKerMLExpressions.g:5264:1: ( '{' )
+            // InternalKerMLExpressions.g:5265:2: '{'
             {
              before(grammarAccess.getExpressionBodyAccess().getLeftCurlyBracketKeyword_0()); 
-            match(input,50,FOLLOW_2); 
+            match(input,58,FOLLOW_2); 
              after(grammarAccess.getExpressionBodyAccess().getLeftCurlyBracketKeyword_0()); 
 
             }
@@ -15990,14 +16482,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__ExpressionBody__Group__1"
-    // InternalKerMLExpressions.g:5147:1: rule__ExpressionBody__Group__1 : rule__ExpressionBody__Group__1__Impl rule__ExpressionBody__Group__2 ;
+    // InternalKerMLExpressions.g:5274:1: rule__ExpressionBody__Group__1 : rule__ExpressionBody__Group__1__Impl rule__ExpressionBody__Group__2 ;
     public final void rule__ExpressionBody__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:5151:1: ( rule__ExpressionBody__Group__1__Impl rule__ExpressionBody__Group__2 )
-            // InternalKerMLExpressions.g:5152:2: rule__ExpressionBody__Group__1__Impl rule__ExpressionBody__Group__2
+            // InternalKerMLExpressions.g:5278:1: ( rule__ExpressionBody__Group__1__Impl rule__ExpressionBody__Group__2 )
+            // InternalKerMLExpressions.g:5279:2: rule__ExpressionBody__Group__1__Impl rule__ExpressionBody__Group__2
             {
             pushFollow(FOLLOW_43);
             rule__ExpressionBody__Group__1__Impl();
@@ -16028,33 +16520,33 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__ExpressionBody__Group__1__Impl"
-    // InternalKerMLExpressions.g:5159:1: rule__ExpressionBody__Group__1__Impl : ( ( rule__ExpressionBody__Group_1__0 )* ) ;
+    // InternalKerMLExpressions.g:5286:1: rule__ExpressionBody__Group__1__Impl : ( ( rule__ExpressionBody__Group_1__0 )* ) ;
     public final void rule__ExpressionBody__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:5163:1: ( ( ( rule__ExpressionBody__Group_1__0 )* ) )
-            // InternalKerMLExpressions.g:5164:1: ( ( rule__ExpressionBody__Group_1__0 )* )
+            // InternalKerMLExpressions.g:5290:1: ( ( ( rule__ExpressionBody__Group_1__0 )* ) )
+            // InternalKerMLExpressions.g:5291:1: ( ( rule__ExpressionBody__Group_1__0 )* )
             {
-            // InternalKerMLExpressions.g:5164:1: ( ( rule__ExpressionBody__Group_1__0 )* )
-            // InternalKerMLExpressions.g:5165:2: ( rule__ExpressionBody__Group_1__0 )*
+            // InternalKerMLExpressions.g:5291:1: ( ( rule__ExpressionBody__Group_1__0 )* )
+            // InternalKerMLExpressions.g:5292:2: ( rule__ExpressionBody__Group_1__0 )*
             {
              before(grammarAccess.getExpressionBodyAccess().getGroup_1()); 
-            // InternalKerMLExpressions.g:5166:2: ( rule__ExpressionBody__Group_1__0 )*
-            loop37:
+            // InternalKerMLExpressions.g:5293:2: ( rule__ExpressionBody__Group_1__0 )*
+            loop41:
             do {
-                int alt37=2;
-                int LA37_0 = input.LA(1);
+                int alt41=2;
+                int LA41_0 = input.LA(1);
 
-                if ( (LA37_0==53) ) {
-                    alt37=1;
+                if ( (LA41_0==61) ) {
+                    alt41=1;
                 }
 
 
-                switch (alt37) {
+                switch (alt41) {
             	case 1 :
-            	    // InternalKerMLExpressions.g:5166:3: rule__ExpressionBody__Group_1__0
+            	    // InternalKerMLExpressions.g:5293:3: rule__ExpressionBody__Group_1__0
             	    {
             	    pushFollow(FOLLOW_44);
             	    rule__ExpressionBody__Group_1__0();
@@ -16066,7 +16558,7 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
             	    break;
 
             	default :
-            	    break loop37;
+            	    break loop41;
                 }
             } while (true);
 
@@ -16093,14 +16585,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__ExpressionBody__Group__2"
-    // InternalKerMLExpressions.g:5174:1: rule__ExpressionBody__Group__2 : rule__ExpressionBody__Group__2__Impl rule__ExpressionBody__Group__3 ;
+    // InternalKerMLExpressions.g:5301:1: rule__ExpressionBody__Group__2 : rule__ExpressionBody__Group__2__Impl rule__ExpressionBody__Group__3 ;
     public final void rule__ExpressionBody__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:5178:1: ( rule__ExpressionBody__Group__2__Impl rule__ExpressionBody__Group__3 )
-            // InternalKerMLExpressions.g:5179:2: rule__ExpressionBody__Group__2__Impl rule__ExpressionBody__Group__3
+            // InternalKerMLExpressions.g:5305:1: ( rule__ExpressionBody__Group__2__Impl rule__ExpressionBody__Group__3 )
+            // InternalKerMLExpressions.g:5306:2: rule__ExpressionBody__Group__2__Impl rule__ExpressionBody__Group__3
             {
             pushFollow(FOLLOW_45);
             rule__ExpressionBody__Group__2__Impl();
@@ -16131,21 +16623,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__ExpressionBody__Group__2__Impl"
-    // InternalKerMLExpressions.g:5186:1: rule__ExpressionBody__Group__2__Impl : ( ( rule__ExpressionBody__OwnedRelationshipAssignment_2 ) ) ;
+    // InternalKerMLExpressions.g:5313:1: rule__ExpressionBody__Group__2__Impl : ( ( rule__ExpressionBody__OwnedRelationshipAssignment_2 ) ) ;
     public final void rule__ExpressionBody__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:5190:1: ( ( ( rule__ExpressionBody__OwnedRelationshipAssignment_2 ) ) )
-            // InternalKerMLExpressions.g:5191:1: ( ( rule__ExpressionBody__OwnedRelationshipAssignment_2 ) )
+            // InternalKerMLExpressions.g:5317:1: ( ( ( rule__ExpressionBody__OwnedRelationshipAssignment_2 ) ) )
+            // InternalKerMLExpressions.g:5318:1: ( ( rule__ExpressionBody__OwnedRelationshipAssignment_2 ) )
             {
-            // InternalKerMLExpressions.g:5191:1: ( ( rule__ExpressionBody__OwnedRelationshipAssignment_2 ) )
-            // InternalKerMLExpressions.g:5192:2: ( rule__ExpressionBody__OwnedRelationshipAssignment_2 )
+            // InternalKerMLExpressions.g:5318:1: ( ( rule__ExpressionBody__OwnedRelationshipAssignment_2 ) )
+            // InternalKerMLExpressions.g:5319:2: ( rule__ExpressionBody__OwnedRelationshipAssignment_2 )
             {
              before(grammarAccess.getExpressionBodyAccess().getOwnedRelationshipAssignment_2()); 
-            // InternalKerMLExpressions.g:5193:2: ( rule__ExpressionBody__OwnedRelationshipAssignment_2 )
-            // InternalKerMLExpressions.g:5193:3: rule__ExpressionBody__OwnedRelationshipAssignment_2
+            // InternalKerMLExpressions.g:5320:2: ( rule__ExpressionBody__OwnedRelationshipAssignment_2 )
+            // InternalKerMLExpressions.g:5320:3: rule__ExpressionBody__OwnedRelationshipAssignment_2
             {
             pushFollow(FOLLOW_2);
             rule__ExpressionBody__OwnedRelationshipAssignment_2();
@@ -16178,14 +16670,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__ExpressionBody__Group__3"
-    // InternalKerMLExpressions.g:5201:1: rule__ExpressionBody__Group__3 : rule__ExpressionBody__Group__3__Impl ;
+    // InternalKerMLExpressions.g:5328:1: rule__ExpressionBody__Group__3 : rule__ExpressionBody__Group__3__Impl ;
     public final void rule__ExpressionBody__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:5205:1: ( rule__ExpressionBody__Group__3__Impl )
-            // InternalKerMLExpressions.g:5206:2: rule__ExpressionBody__Group__3__Impl
+            // InternalKerMLExpressions.g:5332:1: ( rule__ExpressionBody__Group__3__Impl )
+            // InternalKerMLExpressions.g:5333:2: rule__ExpressionBody__Group__3__Impl
             {
             pushFollow(FOLLOW_2);
             rule__ExpressionBody__Group__3__Impl();
@@ -16211,20 +16703,20 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__ExpressionBody__Group__3__Impl"
-    // InternalKerMLExpressions.g:5212:1: rule__ExpressionBody__Group__3__Impl : ( '}' ) ;
+    // InternalKerMLExpressions.g:5339:1: rule__ExpressionBody__Group__3__Impl : ( '}' ) ;
     public final void rule__ExpressionBody__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:5216:1: ( ( '}' ) )
-            // InternalKerMLExpressions.g:5217:1: ( '}' )
+            // InternalKerMLExpressions.g:5343:1: ( ( '}' ) )
+            // InternalKerMLExpressions.g:5344:1: ( '}' )
             {
-            // InternalKerMLExpressions.g:5217:1: ( '}' )
-            // InternalKerMLExpressions.g:5218:2: '}'
+            // InternalKerMLExpressions.g:5344:1: ( '}' )
+            // InternalKerMLExpressions.g:5345:2: '}'
             {
              before(grammarAccess.getExpressionBodyAccess().getRightCurlyBracketKeyword_3()); 
-            match(input,51,FOLLOW_2); 
+            match(input,59,FOLLOW_2); 
              after(grammarAccess.getExpressionBodyAccess().getRightCurlyBracketKeyword_3()); 
 
             }
@@ -16248,14 +16740,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__ExpressionBody__Group_1__0"
-    // InternalKerMLExpressions.g:5228:1: rule__ExpressionBody__Group_1__0 : rule__ExpressionBody__Group_1__0__Impl rule__ExpressionBody__Group_1__1 ;
+    // InternalKerMLExpressions.g:5355:1: rule__ExpressionBody__Group_1__0 : rule__ExpressionBody__Group_1__0__Impl rule__ExpressionBody__Group_1__1 ;
     public final void rule__ExpressionBody__Group_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:5232:1: ( rule__ExpressionBody__Group_1__0__Impl rule__ExpressionBody__Group_1__1 )
-            // InternalKerMLExpressions.g:5233:2: rule__ExpressionBody__Group_1__0__Impl rule__ExpressionBody__Group_1__1
+            // InternalKerMLExpressions.g:5359:1: ( rule__ExpressionBody__Group_1__0__Impl rule__ExpressionBody__Group_1__1 )
+            // InternalKerMLExpressions.g:5360:2: rule__ExpressionBody__Group_1__0__Impl rule__ExpressionBody__Group_1__1
             {
             pushFollow(FOLLOW_46);
             rule__ExpressionBody__Group_1__0__Impl();
@@ -16286,21 +16778,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__ExpressionBody__Group_1__0__Impl"
-    // InternalKerMLExpressions.g:5240:1: rule__ExpressionBody__Group_1__0__Impl : ( ( rule__ExpressionBody__OwnedRelationshipAssignment_1_0 ) ) ;
+    // InternalKerMLExpressions.g:5367:1: rule__ExpressionBody__Group_1__0__Impl : ( ( rule__ExpressionBody__OwnedRelationshipAssignment_1_0 ) ) ;
     public final void rule__ExpressionBody__Group_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:5244:1: ( ( ( rule__ExpressionBody__OwnedRelationshipAssignment_1_0 ) ) )
-            // InternalKerMLExpressions.g:5245:1: ( ( rule__ExpressionBody__OwnedRelationshipAssignment_1_0 ) )
+            // InternalKerMLExpressions.g:5371:1: ( ( ( rule__ExpressionBody__OwnedRelationshipAssignment_1_0 ) ) )
+            // InternalKerMLExpressions.g:5372:1: ( ( rule__ExpressionBody__OwnedRelationshipAssignment_1_0 ) )
             {
-            // InternalKerMLExpressions.g:5245:1: ( ( rule__ExpressionBody__OwnedRelationshipAssignment_1_0 ) )
-            // InternalKerMLExpressions.g:5246:2: ( rule__ExpressionBody__OwnedRelationshipAssignment_1_0 )
+            // InternalKerMLExpressions.g:5372:1: ( ( rule__ExpressionBody__OwnedRelationshipAssignment_1_0 ) )
+            // InternalKerMLExpressions.g:5373:2: ( rule__ExpressionBody__OwnedRelationshipAssignment_1_0 )
             {
              before(grammarAccess.getExpressionBodyAccess().getOwnedRelationshipAssignment_1_0()); 
-            // InternalKerMLExpressions.g:5247:2: ( rule__ExpressionBody__OwnedRelationshipAssignment_1_0 )
-            // InternalKerMLExpressions.g:5247:3: rule__ExpressionBody__OwnedRelationshipAssignment_1_0
+            // InternalKerMLExpressions.g:5374:2: ( rule__ExpressionBody__OwnedRelationshipAssignment_1_0 )
+            // InternalKerMLExpressions.g:5374:3: rule__ExpressionBody__OwnedRelationshipAssignment_1_0
             {
             pushFollow(FOLLOW_2);
             rule__ExpressionBody__OwnedRelationshipAssignment_1_0();
@@ -16333,14 +16825,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__ExpressionBody__Group_1__1"
-    // InternalKerMLExpressions.g:5255:1: rule__ExpressionBody__Group_1__1 : rule__ExpressionBody__Group_1__1__Impl ;
+    // InternalKerMLExpressions.g:5382:1: rule__ExpressionBody__Group_1__1 : rule__ExpressionBody__Group_1__1__Impl ;
     public final void rule__ExpressionBody__Group_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:5259:1: ( rule__ExpressionBody__Group_1__1__Impl )
-            // InternalKerMLExpressions.g:5260:2: rule__ExpressionBody__Group_1__1__Impl
+            // InternalKerMLExpressions.g:5386:1: ( rule__ExpressionBody__Group_1__1__Impl )
+            // InternalKerMLExpressions.g:5387:2: rule__ExpressionBody__Group_1__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__ExpressionBody__Group_1__1__Impl();
@@ -16366,20 +16858,20 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__ExpressionBody__Group_1__1__Impl"
-    // InternalKerMLExpressions.g:5266:1: rule__ExpressionBody__Group_1__1__Impl : ( ';' ) ;
+    // InternalKerMLExpressions.g:5393:1: rule__ExpressionBody__Group_1__1__Impl : ( ';' ) ;
     public final void rule__ExpressionBody__Group_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:5270:1: ( ( ';' ) )
-            // InternalKerMLExpressions.g:5271:1: ( ';' )
+            // InternalKerMLExpressions.g:5397:1: ( ( ';' ) )
+            // InternalKerMLExpressions.g:5398:1: ( ';' )
             {
-            // InternalKerMLExpressions.g:5271:1: ( ';' )
-            // InternalKerMLExpressions.g:5272:2: ';'
+            // InternalKerMLExpressions.g:5398:1: ( ';' )
+            // InternalKerMLExpressions.g:5399:2: ';'
             {
              before(grammarAccess.getExpressionBodyAccess().getSemicolonKeyword_1_1()); 
-            match(input,52,FOLLOW_2); 
+            match(input,60,FOLLOW_2); 
              after(grammarAccess.getExpressionBodyAccess().getSemicolonKeyword_1_1()); 
 
             }
@@ -16403,14 +16895,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__BodyParameterMember__Group__0"
-    // InternalKerMLExpressions.g:5282:1: rule__BodyParameterMember__Group__0 : rule__BodyParameterMember__Group__0__Impl rule__BodyParameterMember__Group__1 ;
+    // InternalKerMLExpressions.g:5409:1: rule__BodyParameterMember__Group__0 : rule__BodyParameterMember__Group__0__Impl rule__BodyParameterMember__Group__1 ;
     public final void rule__BodyParameterMember__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:5286:1: ( rule__BodyParameterMember__Group__0__Impl rule__BodyParameterMember__Group__1 )
-            // InternalKerMLExpressions.g:5287:2: rule__BodyParameterMember__Group__0__Impl rule__BodyParameterMember__Group__1
+            // InternalKerMLExpressions.g:5413:1: ( rule__BodyParameterMember__Group__0__Impl rule__BodyParameterMember__Group__1 )
+            // InternalKerMLExpressions.g:5414:2: rule__BodyParameterMember__Group__0__Impl rule__BodyParameterMember__Group__1
             {
             pushFollow(FOLLOW_21);
             rule__BodyParameterMember__Group__0__Impl();
@@ -16441,20 +16933,20 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__BodyParameterMember__Group__0__Impl"
-    // InternalKerMLExpressions.g:5294:1: rule__BodyParameterMember__Group__0__Impl : ( 'in' ) ;
+    // InternalKerMLExpressions.g:5421:1: rule__BodyParameterMember__Group__0__Impl : ( 'in' ) ;
     public final void rule__BodyParameterMember__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:5298:1: ( ( 'in' ) )
-            // InternalKerMLExpressions.g:5299:1: ( 'in' )
+            // InternalKerMLExpressions.g:5425:1: ( ( 'in' ) )
+            // InternalKerMLExpressions.g:5426:1: ( 'in' )
             {
-            // InternalKerMLExpressions.g:5299:1: ( 'in' )
-            // InternalKerMLExpressions.g:5300:2: 'in'
+            // InternalKerMLExpressions.g:5426:1: ( 'in' )
+            // InternalKerMLExpressions.g:5427:2: 'in'
             {
              before(grammarAccess.getBodyParameterMemberAccess().getInKeyword_0()); 
-            match(input,53,FOLLOW_2); 
+            match(input,61,FOLLOW_2); 
              after(grammarAccess.getBodyParameterMemberAccess().getInKeyword_0()); 
 
             }
@@ -16478,14 +16970,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__BodyParameterMember__Group__1"
-    // InternalKerMLExpressions.g:5309:1: rule__BodyParameterMember__Group__1 : rule__BodyParameterMember__Group__1__Impl rule__BodyParameterMember__Group__2 ;
+    // InternalKerMLExpressions.g:5436:1: rule__BodyParameterMember__Group__1 : rule__BodyParameterMember__Group__1__Impl rule__BodyParameterMember__Group__2 ;
     public final void rule__BodyParameterMember__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:5313:1: ( rule__BodyParameterMember__Group__1__Impl rule__BodyParameterMember__Group__2 )
-            // InternalKerMLExpressions.g:5314:2: rule__BodyParameterMember__Group__1__Impl rule__BodyParameterMember__Group__2
+            // InternalKerMLExpressions.g:5440:1: ( rule__BodyParameterMember__Group__1__Impl rule__BodyParameterMember__Group__2 )
+            // InternalKerMLExpressions.g:5441:2: rule__BodyParameterMember__Group__1__Impl rule__BodyParameterMember__Group__2
             {
             pushFollow(FOLLOW_1);
             rule__BodyParameterMember__Group__1__Impl();
@@ -16516,21 +17008,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__BodyParameterMember__Group__1__Impl"
-    // InternalKerMLExpressions.g:5321:1: rule__BodyParameterMember__Group__1__Impl : ( ( rule__BodyParameterMember__MemberNameAssignment_1 ) ) ;
+    // InternalKerMLExpressions.g:5448:1: rule__BodyParameterMember__Group__1__Impl : ( ( rule__BodyParameterMember__MemberNameAssignment_1 ) ) ;
     public final void rule__BodyParameterMember__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:5325:1: ( ( ( rule__BodyParameterMember__MemberNameAssignment_1 ) ) )
-            // InternalKerMLExpressions.g:5326:1: ( ( rule__BodyParameterMember__MemberNameAssignment_1 ) )
+            // InternalKerMLExpressions.g:5452:1: ( ( ( rule__BodyParameterMember__MemberNameAssignment_1 ) ) )
+            // InternalKerMLExpressions.g:5453:1: ( ( rule__BodyParameterMember__MemberNameAssignment_1 ) )
             {
-            // InternalKerMLExpressions.g:5326:1: ( ( rule__BodyParameterMember__MemberNameAssignment_1 ) )
-            // InternalKerMLExpressions.g:5327:2: ( rule__BodyParameterMember__MemberNameAssignment_1 )
+            // InternalKerMLExpressions.g:5453:1: ( ( rule__BodyParameterMember__MemberNameAssignment_1 ) )
+            // InternalKerMLExpressions.g:5454:2: ( rule__BodyParameterMember__MemberNameAssignment_1 )
             {
              before(grammarAccess.getBodyParameterMemberAccess().getMemberNameAssignment_1()); 
-            // InternalKerMLExpressions.g:5328:2: ( rule__BodyParameterMember__MemberNameAssignment_1 )
-            // InternalKerMLExpressions.g:5328:3: rule__BodyParameterMember__MemberNameAssignment_1
+            // InternalKerMLExpressions.g:5455:2: ( rule__BodyParameterMember__MemberNameAssignment_1 )
+            // InternalKerMLExpressions.g:5455:3: rule__BodyParameterMember__MemberNameAssignment_1
             {
             pushFollow(FOLLOW_2);
             rule__BodyParameterMember__MemberNameAssignment_1();
@@ -16563,14 +17055,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__BodyParameterMember__Group__2"
-    // InternalKerMLExpressions.g:5336:1: rule__BodyParameterMember__Group__2 : rule__BodyParameterMember__Group__2__Impl ;
+    // InternalKerMLExpressions.g:5463:1: rule__BodyParameterMember__Group__2 : rule__BodyParameterMember__Group__2__Impl ;
     public final void rule__BodyParameterMember__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:5340:1: ( rule__BodyParameterMember__Group__2__Impl )
-            // InternalKerMLExpressions.g:5341:2: rule__BodyParameterMember__Group__2__Impl
+            // InternalKerMLExpressions.g:5467:1: ( rule__BodyParameterMember__Group__2__Impl )
+            // InternalKerMLExpressions.g:5468:2: rule__BodyParameterMember__Group__2__Impl
             {
             pushFollow(FOLLOW_2);
             rule__BodyParameterMember__Group__2__Impl();
@@ -16596,21 +17088,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__BodyParameterMember__Group__2__Impl"
-    // InternalKerMLExpressions.g:5347:1: rule__BodyParameterMember__Group__2__Impl : ( ( rule__BodyParameterMember__OwnedRelatedElementAssignment_2 ) ) ;
+    // InternalKerMLExpressions.g:5474:1: rule__BodyParameterMember__Group__2__Impl : ( ( rule__BodyParameterMember__OwnedRelatedElementAssignment_2 ) ) ;
     public final void rule__BodyParameterMember__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:5351:1: ( ( ( rule__BodyParameterMember__OwnedRelatedElementAssignment_2 ) ) )
-            // InternalKerMLExpressions.g:5352:1: ( ( rule__BodyParameterMember__OwnedRelatedElementAssignment_2 ) )
+            // InternalKerMLExpressions.g:5478:1: ( ( ( rule__BodyParameterMember__OwnedRelatedElementAssignment_2 ) ) )
+            // InternalKerMLExpressions.g:5479:1: ( ( rule__BodyParameterMember__OwnedRelatedElementAssignment_2 ) )
             {
-            // InternalKerMLExpressions.g:5352:1: ( ( rule__BodyParameterMember__OwnedRelatedElementAssignment_2 ) )
-            // InternalKerMLExpressions.g:5353:2: ( rule__BodyParameterMember__OwnedRelatedElementAssignment_2 )
+            // InternalKerMLExpressions.g:5479:1: ( ( rule__BodyParameterMember__OwnedRelatedElementAssignment_2 ) )
+            // InternalKerMLExpressions.g:5480:2: ( rule__BodyParameterMember__OwnedRelatedElementAssignment_2 )
             {
              before(grammarAccess.getBodyParameterMemberAccess().getOwnedRelatedElementAssignment_2()); 
-            // InternalKerMLExpressions.g:5354:2: ( rule__BodyParameterMember__OwnedRelatedElementAssignment_2 )
-            // InternalKerMLExpressions.g:5354:3: rule__BodyParameterMember__OwnedRelatedElementAssignment_2
+            // InternalKerMLExpressions.g:5481:2: ( rule__BodyParameterMember__OwnedRelatedElementAssignment_2 )
+            // InternalKerMLExpressions.g:5481:3: rule__BodyParameterMember__OwnedRelatedElementAssignment_2
             {
             pushFollow(FOLLOW_2);
             rule__BodyParameterMember__OwnedRelatedElementAssignment_2();
@@ -16643,14 +17135,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__SequenceExpression__Group__0"
-    // InternalKerMLExpressions.g:5363:1: rule__SequenceExpression__Group__0 : rule__SequenceExpression__Group__0__Impl rule__SequenceExpression__Group__1 ;
+    // InternalKerMLExpressions.g:5490:1: rule__SequenceExpression__Group__0 : rule__SequenceExpression__Group__0__Impl rule__SequenceExpression__Group__1 ;
     public final void rule__SequenceExpression__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:5367:1: ( rule__SequenceExpression__Group__0__Impl rule__SequenceExpression__Group__1 )
-            // InternalKerMLExpressions.g:5368:2: rule__SequenceExpression__Group__0__Impl rule__SequenceExpression__Group__1
+            // InternalKerMLExpressions.g:5494:1: ( rule__SequenceExpression__Group__0__Impl rule__SequenceExpression__Group__1 )
+            // InternalKerMLExpressions.g:5495:2: rule__SequenceExpression__Group__0__Impl rule__SequenceExpression__Group__1
             {
             pushFollow(FOLLOW_47);
             rule__SequenceExpression__Group__0__Impl();
@@ -16681,17 +17173,17 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__SequenceExpression__Group__0__Impl"
-    // InternalKerMLExpressions.g:5375:1: rule__SequenceExpression__Group__0__Impl : ( ruleOwnedExpression ) ;
+    // InternalKerMLExpressions.g:5502:1: rule__SequenceExpression__Group__0__Impl : ( ruleOwnedExpression ) ;
     public final void rule__SequenceExpression__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:5379:1: ( ( ruleOwnedExpression ) )
-            // InternalKerMLExpressions.g:5380:1: ( ruleOwnedExpression )
+            // InternalKerMLExpressions.g:5506:1: ( ( ruleOwnedExpression ) )
+            // InternalKerMLExpressions.g:5507:1: ( ruleOwnedExpression )
             {
-            // InternalKerMLExpressions.g:5380:1: ( ruleOwnedExpression )
-            // InternalKerMLExpressions.g:5381:2: ruleOwnedExpression
+            // InternalKerMLExpressions.g:5507:1: ( ruleOwnedExpression )
+            // InternalKerMLExpressions.g:5508:2: ruleOwnedExpression
             {
              before(grammarAccess.getSequenceExpressionAccess().getOwnedExpressionParserRuleCall_0()); 
             pushFollow(FOLLOW_2);
@@ -16722,14 +17214,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__SequenceExpression__Group__1"
-    // InternalKerMLExpressions.g:5390:1: rule__SequenceExpression__Group__1 : rule__SequenceExpression__Group__1__Impl ;
+    // InternalKerMLExpressions.g:5517:1: rule__SequenceExpression__Group__1 : rule__SequenceExpression__Group__1__Impl ;
     public final void rule__SequenceExpression__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:5394:1: ( rule__SequenceExpression__Group__1__Impl )
-            // InternalKerMLExpressions.g:5395:2: rule__SequenceExpression__Group__1__Impl
+            // InternalKerMLExpressions.g:5521:1: ( rule__SequenceExpression__Group__1__Impl )
+            // InternalKerMLExpressions.g:5522:2: rule__SequenceExpression__Group__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__SequenceExpression__Group__1__Impl();
@@ -16755,29 +17247,29 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__SequenceExpression__Group__1__Impl"
-    // InternalKerMLExpressions.g:5401:1: rule__SequenceExpression__Group__1__Impl : ( ( rule__SequenceExpression__Alternatives_1 )? ) ;
+    // InternalKerMLExpressions.g:5528:1: rule__SequenceExpression__Group__1__Impl : ( ( rule__SequenceExpression__Alternatives_1 )? ) ;
     public final void rule__SequenceExpression__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:5405:1: ( ( ( rule__SequenceExpression__Alternatives_1 )? ) )
-            // InternalKerMLExpressions.g:5406:1: ( ( rule__SequenceExpression__Alternatives_1 )? )
+            // InternalKerMLExpressions.g:5532:1: ( ( ( rule__SequenceExpression__Alternatives_1 )? ) )
+            // InternalKerMLExpressions.g:5533:1: ( ( rule__SequenceExpression__Alternatives_1 )? )
             {
-            // InternalKerMLExpressions.g:5406:1: ( ( rule__SequenceExpression__Alternatives_1 )? )
-            // InternalKerMLExpressions.g:5407:2: ( rule__SequenceExpression__Alternatives_1 )?
+            // InternalKerMLExpressions.g:5533:1: ( ( rule__SequenceExpression__Alternatives_1 )? )
+            // InternalKerMLExpressions.g:5534:2: ( rule__SequenceExpression__Alternatives_1 )?
             {
              before(grammarAccess.getSequenceExpressionAccess().getAlternatives_1()); 
-            // InternalKerMLExpressions.g:5408:2: ( rule__SequenceExpression__Alternatives_1 )?
-            int alt38=2;
-            int LA38_0 = input.LA(1);
+            // InternalKerMLExpressions.g:5535:2: ( rule__SequenceExpression__Alternatives_1 )?
+            int alt42=2;
+            int LA42_0 = input.LA(1);
 
-            if ( (LA38_0==40) ) {
-                alt38=1;
+            if ( (LA42_0==46) ) {
+                alt42=1;
             }
-            switch (alt38) {
+            switch (alt42) {
                 case 1 :
-                    // InternalKerMLExpressions.g:5408:3: rule__SequenceExpression__Alternatives_1
+                    // InternalKerMLExpressions.g:5535:3: rule__SequenceExpression__Alternatives_1
                     {
                     pushFollow(FOLLOW_2);
                     rule__SequenceExpression__Alternatives_1();
@@ -16813,14 +17305,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__SequenceExpression__Group_1_1__0"
-    // InternalKerMLExpressions.g:5417:1: rule__SequenceExpression__Group_1_1__0 : rule__SequenceExpression__Group_1_1__0__Impl rule__SequenceExpression__Group_1_1__1 ;
+    // InternalKerMLExpressions.g:5544:1: rule__SequenceExpression__Group_1_1__0 : rule__SequenceExpression__Group_1_1__0__Impl rule__SequenceExpression__Group_1_1__1 ;
     public final void rule__SequenceExpression__Group_1_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:5421:1: ( rule__SequenceExpression__Group_1_1__0__Impl rule__SequenceExpression__Group_1_1__1 )
-            // InternalKerMLExpressions.g:5422:2: rule__SequenceExpression__Group_1_1__0__Impl rule__SequenceExpression__Group_1_1__1
+            // InternalKerMLExpressions.g:5548:1: ( rule__SequenceExpression__Group_1_1__0__Impl rule__SequenceExpression__Group_1_1__1 )
+            // InternalKerMLExpressions.g:5549:2: rule__SequenceExpression__Group_1_1__0__Impl rule__SequenceExpression__Group_1_1__1
             {
             pushFollow(FOLLOW_47);
             rule__SequenceExpression__Group_1_1__0__Impl();
@@ -16851,21 +17343,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__SequenceExpression__Group_1_1__0__Impl"
-    // InternalKerMLExpressions.g:5429:1: rule__SequenceExpression__Group_1_1__0__Impl : ( () ) ;
+    // InternalKerMLExpressions.g:5556:1: rule__SequenceExpression__Group_1_1__0__Impl : ( () ) ;
     public final void rule__SequenceExpression__Group_1_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:5433:1: ( ( () ) )
-            // InternalKerMLExpressions.g:5434:1: ( () )
+            // InternalKerMLExpressions.g:5560:1: ( ( () ) )
+            // InternalKerMLExpressions.g:5561:1: ( () )
             {
-            // InternalKerMLExpressions.g:5434:1: ( () )
-            // InternalKerMLExpressions.g:5435:2: ()
+            // InternalKerMLExpressions.g:5561:1: ( () )
+            // InternalKerMLExpressions.g:5562:2: ()
             {
              before(grammarAccess.getSequenceExpressionAccess().getOperatorExpressionOperandAction_1_1_0()); 
-            // InternalKerMLExpressions.g:5436:2: ()
-            // InternalKerMLExpressions.g:5436:3: 
+            // InternalKerMLExpressions.g:5563:2: ()
+            // InternalKerMLExpressions.g:5563:3: 
             {
             }
 
@@ -16888,14 +17380,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__SequenceExpression__Group_1_1__1"
-    // InternalKerMLExpressions.g:5444:1: rule__SequenceExpression__Group_1_1__1 : rule__SequenceExpression__Group_1_1__1__Impl rule__SequenceExpression__Group_1_1__2 ;
+    // InternalKerMLExpressions.g:5571:1: rule__SequenceExpression__Group_1_1__1 : rule__SequenceExpression__Group_1_1__1__Impl rule__SequenceExpression__Group_1_1__2 ;
     public final void rule__SequenceExpression__Group_1_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:5448:1: ( rule__SequenceExpression__Group_1_1__1__Impl rule__SequenceExpression__Group_1_1__2 )
-            // InternalKerMLExpressions.g:5449:2: rule__SequenceExpression__Group_1_1__1__Impl rule__SequenceExpression__Group_1_1__2
+            // InternalKerMLExpressions.g:5575:1: ( rule__SequenceExpression__Group_1_1__1__Impl rule__SequenceExpression__Group_1_1__2 )
+            // InternalKerMLExpressions.g:5576:2: rule__SequenceExpression__Group_1_1__1__Impl rule__SequenceExpression__Group_1_1__2
             {
             pushFollow(FOLLOW_4);
             rule__SequenceExpression__Group_1_1__1__Impl();
@@ -16926,21 +17418,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__SequenceExpression__Group_1_1__1__Impl"
-    // InternalKerMLExpressions.g:5456:1: rule__SequenceExpression__Group_1_1__1__Impl : ( ( rule__SequenceExpression__OperatorAssignment_1_1_1 ) ) ;
+    // InternalKerMLExpressions.g:5583:1: rule__SequenceExpression__Group_1_1__1__Impl : ( ( rule__SequenceExpression__OperatorAssignment_1_1_1 ) ) ;
     public final void rule__SequenceExpression__Group_1_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:5460:1: ( ( ( rule__SequenceExpression__OperatorAssignment_1_1_1 ) ) )
-            // InternalKerMLExpressions.g:5461:1: ( ( rule__SequenceExpression__OperatorAssignment_1_1_1 ) )
+            // InternalKerMLExpressions.g:5587:1: ( ( ( rule__SequenceExpression__OperatorAssignment_1_1_1 ) ) )
+            // InternalKerMLExpressions.g:5588:1: ( ( rule__SequenceExpression__OperatorAssignment_1_1_1 ) )
             {
-            // InternalKerMLExpressions.g:5461:1: ( ( rule__SequenceExpression__OperatorAssignment_1_1_1 ) )
-            // InternalKerMLExpressions.g:5462:2: ( rule__SequenceExpression__OperatorAssignment_1_1_1 )
+            // InternalKerMLExpressions.g:5588:1: ( ( rule__SequenceExpression__OperatorAssignment_1_1_1 ) )
+            // InternalKerMLExpressions.g:5589:2: ( rule__SequenceExpression__OperatorAssignment_1_1_1 )
             {
              before(grammarAccess.getSequenceExpressionAccess().getOperatorAssignment_1_1_1()); 
-            // InternalKerMLExpressions.g:5463:2: ( rule__SequenceExpression__OperatorAssignment_1_1_1 )
-            // InternalKerMLExpressions.g:5463:3: rule__SequenceExpression__OperatorAssignment_1_1_1
+            // InternalKerMLExpressions.g:5590:2: ( rule__SequenceExpression__OperatorAssignment_1_1_1 )
+            // InternalKerMLExpressions.g:5590:3: rule__SequenceExpression__OperatorAssignment_1_1_1
             {
             pushFollow(FOLLOW_2);
             rule__SequenceExpression__OperatorAssignment_1_1_1();
@@ -16973,14 +17465,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__SequenceExpression__Group_1_1__2"
-    // InternalKerMLExpressions.g:5471:1: rule__SequenceExpression__Group_1_1__2 : rule__SequenceExpression__Group_1_1__2__Impl ;
+    // InternalKerMLExpressions.g:5598:1: rule__SequenceExpression__Group_1_1__2 : rule__SequenceExpression__Group_1_1__2__Impl ;
     public final void rule__SequenceExpression__Group_1_1__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:5475:1: ( rule__SequenceExpression__Group_1_1__2__Impl )
-            // InternalKerMLExpressions.g:5476:2: rule__SequenceExpression__Group_1_1__2__Impl
+            // InternalKerMLExpressions.g:5602:1: ( rule__SequenceExpression__Group_1_1__2__Impl )
+            // InternalKerMLExpressions.g:5603:2: rule__SequenceExpression__Group_1_1__2__Impl
             {
             pushFollow(FOLLOW_2);
             rule__SequenceExpression__Group_1_1__2__Impl();
@@ -17006,21 +17498,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__SequenceExpression__Group_1_1__2__Impl"
-    // InternalKerMLExpressions.g:5482:1: rule__SequenceExpression__Group_1_1__2__Impl : ( ( rule__SequenceExpression__OperandAssignment_1_1_2 ) ) ;
+    // InternalKerMLExpressions.g:5609:1: rule__SequenceExpression__Group_1_1__2__Impl : ( ( rule__SequenceExpression__OperandAssignment_1_1_2 ) ) ;
     public final void rule__SequenceExpression__Group_1_1__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:5486:1: ( ( ( rule__SequenceExpression__OperandAssignment_1_1_2 ) ) )
-            // InternalKerMLExpressions.g:5487:1: ( ( rule__SequenceExpression__OperandAssignment_1_1_2 ) )
+            // InternalKerMLExpressions.g:5613:1: ( ( ( rule__SequenceExpression__OperandAssignment_1_1_2 ) ) )
+            // InternalKerMLExpressions.g:5614:1: ( ( rule__SequenceExpression__OperandAssignment_1_1_2 ) )
             {
-            // InternalKerMLExpressions.g:5487:1: ( ( rule__SequenceExpression__OperandAssignment_1_1_2 ) )
-            // InternalKerMLExpressions.g:5488:2: ( rule__SequenceExpression__OperandAssignment_1_1_2 )
+            // InternalKerMLExpressions.g:5614:1: ( ( rule__SequenceExpression__OperandAssignment_1_1_2 ) )
+            // InternalKerMLExpressions.g:5615:2: ( rule__SequenceExpression__OperandAssignment_1_1_2 )
             {
              before(grammarAccess.getSequenceExpressionAccess().getOperandAssignment_1_1_2()); 
-            // InternalKerMLExpressions.g:5489:2: ( rule__SequenceExpression__OperandAssignment_1_1_2 )
-            // InternalKerMLExpressions.g:5489:3: rule__SequenceExpression__OperandAssignment_1_1_2
+            // InternalKerMLExpressions.g:5616:2: ( rule__SequenceExpression__OperandAssignment_1_1_2 )
+            // InternalKerMLExpressions.g:5616:3: rule__SequenceExpression__OperandAssignment_1_1_2
             {
             pushFollow(FOLLOW_2);
             rule__SequenceExpression__OperandAssignment_1_1_2();
@@ -17053,14 +17545,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__InvocationExpression__Group__0"
-    // InternalKerMLExpressions.g:5498:1: rule__InvocationExpression__Group__0 : rule__InvocationExpression__Group__0__Impl rule__InvocationExpression__Group__1 ;
+    // InternalKerMLExpressions.g:5625:1: rule__InvocationExpression__Group__0 : rule__InvocationExpression__Group__0__Impl rule__InvocationExpression__Group__1 ;
     public final void rule__InvocationExpression__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:5502:1: ( rule__InvocationExpression__Group__0__Impl rule__InvocationExpression__Group__1 )
-            // InternalKerMLExpressions.g:5503:2: rule__InvocationExpression__Group__0__Impl rule__InvocationExpression__Group__1
+            // InternalKerMLExpressions.g:5629:1: ( rule__InvocationExpression__Group__0__Impl rule__InvocationExpression__Group__1 )
+            // InternalKerMLExpressions.g:5630:2: rule__InvocationExpression__Group__0__Impl rule__InvocationExpression__Group__1
             {
             pushFollow(FOLLOW_39);
             rule__InvocationExpression__Group__0__Impl();
@@ -17091,21 +17583,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__InvocationExpression__Group__0__Impl"
-    // InternalKerMLExpressions.g:5510:1: rule__InvocationExpression__Group__0__Impl : ( ( rule__InvocationExpression__OwnedRelationshipAssignment_0 ) ) ;
+    // InternalKerMLExpressions.g:5637:1: rule__InvocationExpression__Group__0__Impl : ( ( rule__InvocationExpression__OwnedRelationshipAssignment_0 ) ) ;
     public final void rule__InvocationExpression__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:5514:1: ( ( ( rule__InvocationExpression__OwnedRelationshipAssignment_0 ) ) )
-            // InternalKerMLExpressions.g:5515:1: ( ( rule__InvocationExpression__OwnedRelationshipAssignment_0 ) )
+            // InternalKerMLExpressions.g:5641:1: ( ( ( rule__InvocationExpression__OwnedRelationshipAssignment_0 ) ) )
+            // InternalKerMLExpressions.g:5642:1: ( ( rule__InvocationExpression__OwnedRelationshipAssignment_0 ) )
             {
-            // InternalKerMLExpressions.g:5515:1: ( ( rule__InvocationExpression__OwnedRelationshipAssignment_0 ) )
-            // InternalKerMLExpressions.g:5516:2: ( rule__InvocationExpression__OwnedRelationshipAssignment_0 )
+            // InternalKerMLExpressions.g:5642:1: ( ( rule__InvocationExpression__OwnedRelationshipAssignment_0 ) )
+            // InternalKerMLExpressions.g:5643:2: ( rule__InvocationExpression__OwnedRelationshipAssignment_0 )
             {
              before(grammarAccess.getInvocationExpressionAccess().getOwnedRelationshipAssignment_0()); 
-            // InternalKerMLExpressions.g:5517:2: ( rule__InvocationExpression__OwnedRelationshipAssignment_0 )
-            // InternalKerMLExpressions.g:5517:3: rule__InvocationExpression__OwnedRelationshipAssignment_0
+            // InternalKerMLExpressions.g:5644:2: ( rule__InvocationExpression__OwnedRelationshipAssignment_0 )
+            // InternalKerMLExpressions.g:5644:3: rule__InvocationExpression__OwnedRelationshipAssignment_0
             {
             pushFollow(FOLLOW_2);
             rule__InvocationExpression__OwnedRelationshipAssignment_0();
@@ -17138,14 +17630,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__InvocationExpression__Group__1"
-    // InternalKerMLExpressions.g:5525:1: rule__InvocationExpression__Group__1 : rule__InvocationExpression__Group__1__Impl ;
+    // InternalKerMLExpressions.g:5652:1: rule__InvocationExpression__Group__1 : rule__InvocationExpression__Group__1__Impl ;
     public final void rule__InvocationExpression__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:5529:1: ( rule__InvocationExpression__Group__1__Impl )
-            // InternalKerMLExpressions.g:5530:2: rule__InvocationExpression__Group__1__Impl
+            // InternalKerMLExpressions.g:5656:1: ( rule__InvocationExpression__Group__1__Impl )
+            // InternalKerMLExpressions.g:5657:2: rule__InvocationExpression__Group__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__InvocationExpression__Group__1__Impl();
@@ -17171,17 +17663,17 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__InvocationExpression__Group__1__Impl"
-    // InternalKerMLExpressions.g:5536:1: rule__InvocationExpression__Group__1__Impl : ( ruleArgumentList ) ;
+    // InternalKerMLExpressions.g:5663:1: rule__InvocationExpression__Group__1__Impl : ( ruleArgumentList ) ;
     public final void rule__InvocationExpression__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:5540:1: ( ( ruleArgumentList ) )
-            // InternalKerMLExpressions.g:5541:1: ( ruleArgumentList )
+            // InternalKerMLExpressions.g:5667:1: ( ( ruleArgumentList ) )
+            // InternalKerMLExpressions.g:5668:1: ( ruleArgumentList )
             {
-            // InternalKerMLExpressions.g:5541:1: ( ruleArgumentList )
-            // InternalKerMLExpressions.g:5542:2: ruleArgumentList
+            // InternalKerMLExpressions.g:5668:1: ( ruleArgumentList )
+            // InternalKerMLExpressions.g:5669:2: ruleArgumentList
             {
              before(grammarAccess.getInvocationExpressionAccess().getArgumentListParserRuleCall_1()); 
             pushFollow(FOLLOW_2);
@@ -17212,14 +17704,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__ArgumentList__Group__0"
-    // InternalKerMLExpressions.g:5552:1: rule__ArgumentList__Group__0 : rule__ArgumentList__Group__0__Impl rule__ArgumentList__Group__1 ;
+    // InternalKerMLExpressions.g:5679:1: rule__ArgumentList__Group__0 : rule__ArgumentList__Group__0__Impl rule__ArgumentList__Group__1 ;
     public final void rule__ArgumentList__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:5556:1: ( rule__ArgumentList__Group__0__Impl rule__ArgumentList__Group__1 )
-            // InternalKerMLExpressions.g:5557:2: rule__ArgumentList__Group__0__Impl rule__ArgumentList__Group__1
+            // InternalKerMLExpressions.g:5683:1: ( rule__ArgumentList__Group__0__Impl rule__ArgumentList__Group__1 )
+            // InternalKerMLExpressions.g:5684:2: rule__ArgumentList__Group__0__Impl rule__ArgumentList__Group__1
             {
             pushFollow(FOLLOW_48);
             rule__ArgumentList__Group__0__Impl();
@@ -17250,20 +17742,20 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__ArgumentList__Group__0__Impl"
-    // InternalKerMLExpressions.g:5564:1: rule__ArgumentList__Group__0__Impl : ( '(' ) ;
+    // InternalKerMLExpressions.g:5691:1: rule__ArgumentList__Group__0__Impl : ( '(' ) ;
     public final void rule__ArgumentList__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:5568:1: ( ( '(' ) )
-            // InternalKerMLExpressions.g:5569:1: ( '(' )
+            // InternalKerMLExpressions.g:5695:1: ( ( '(' ) )
+            // InternalKerMLExpressions.g:5696:1: ( '(' )
             {
-            // InternalKerMLExpressions.g:5569:1: ( '(' )
-            // InternalKerMLExpressions.g:5570:2: '('
+            // InternalKerMLExpressions.g:5696:1: ( '(' )
+            // InternalKerMLExpressions.g:5697:2: '('
             {
              before(grammarAccess.getArgumentListAccess().getLeftParenthesisKeyword_0()); 
-            match(input,48,FOLLOW_2); 
+            match(input,56,FOLLOW_2); 
              after(grammarAccess.getArgumentListAccess().getLeftParenthesisKeyword_0()); 
 
             }
@@ -17287,14 +17779,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__ArgumentList__Group__1"
-    // InternalKerMLExpressions.g:5579:1: rule__ArgumentList__Group__1 : rule__ArgumentList__Group__1__Impl rule__ArgumentList__Group__2 ;
+    // InternalKerMLExpressions.g:5706:1: rule__ArgumentList__Group__1 : rule__ArgumentList__Group__1__Impl rule__ArgumentList__Group__2 ;
     public final void rule__ArgumentList__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:5583:1: ( rule__ArgumentList__Group__1__Impl rule__ArgumentList__Group__2 )
-            // InternalKerMLExpressions.g:5584:2: rule__ArgumentList__Group__1__Impl rule__ArgumentList__Group__2
+            // InternalKerMLExpressions.g:5710:1: ( rule__ArgumentList__Group__1__Impl rule__ArgumentList__Group__2 )
+            // InternalKerMLExpressions.g:5711:2: rule__ArgumentList__Group__1__Impl rule__ArgumentList__Group__2
             {
             pushFollow(FOLLOW_48);
             rule__ArgumentList__Group__1__Impl();
@@ -17325,29 +17817,29 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__ArgumentList__Group__1__Impl"
-    // InternalKerMLExpressions.g:5591:1: rule__ArgumentList__Group__1__Impl : ( ( rule__ArgumentList__Alternatives_1 )? ) ;
+    // InternalKerMLExpressions.g:5718:1: rule__ArgumentList__Group__1__Impl : ( ( rule__ArgumentList__Alternatives_1 )? ) ;
     public final void rule__ArgumentList__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:5595:1: ( ( ( rule__ArgumentList__Alternatives_1 )? ) )
-            // InternalKerMLExpressions.g:5596:1: ( ( rule__ArgumentList__Alternatives_1 )? )
+            // InternalKerMLExpressions.g:5722:1: ( ( ( rule__ArgumentList__Alternatives_1 )? ) )
+            // InternalKerMLExpressions.g:5723:1: ( ( rule__ArgumentList__Alternatives_1 )? )
             {
-            // InternalKerMLExpressions.g:5596:1: ( ( rule__ArgumentList__Alternatives_1 )? )
-            // InternalKerMLExpressions.g:5597:2: ( rule__ArgumentList__Alternatives_1 )?
+            // InternalKerMLExpressions.g:5723:1: ( ( rule__ArgumentList__Alternatives_1 )? )
+            // InternalKerMLExpressions.g:5724:2: ( rule__ArgumentList__Alternatives_1 )?
             {
              before(grammarAccess.getArgumentListAccess().getAlternatives_1()); 
-            // InternalKerMLExpressions.g:5598:2: ( rule__ArgumentList__Alternatives_1 )?
-            int alt39=2;
-            int LA39_0 = input.LA(1);
+            // InternalKerMLExpressions.g:5725:2: ( rule__ArgumentList__Alternatives_1 )?
+            int alt43=2;
+            int LA43_0 = input.LA(1);
 
-            if ( (LA39_0==EOF||(LA39_0>=RULE_EXP_VALUE && LA39_0<=RULE_STRING_VALUE)||(LA39_0>=24 && LA39_0<=28)||(LA39_0>=33 && LA39_0<=35)||(LA39_0>=38 && LA39_0<=39)||(LA39_0>=41 && LA39_0<=43)||(LA39_0>=47 && LA39_0<=48)||LA39_0==50||LA39_0==58) ) {
-                alt39=1;
+            if ( (LA43_0==EOF||(LA43_0>=RULE_EXP_VALUE && LA43_0<=RULE_STRING_VALUE)||(LA43_0>=27 && LA43_0<=31)||(LA43_0>=36 && LA43_0<=38)||(LA43_0>=43 && LA43_0<=45)||(LA43_0>=47 && LA43_0<=49)||LA43_0==51||(LA43_0>=55 && LA43_0<=56)||LA43_0==58||LA43_0==66) ) {
+                alt43=1;
             }
-            switch (alt39) {
+            switch (alt43) {
                 case 1 :
-                    // InternalKerMLExpressions.g:5598:3: rule__ArgumentList__Alternatives_1
+                    // InternalKerMLExpressions.g:5725:3: rule__ArgumentList__Alternatives_1
                     {
                     pushFollow(FOLLOW_2);
                     rule__ArgumentList__Alternatives_1();
@@ -17383,14 +17875,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__ArgumentList__Group__2"
-    // InternalKerMLExpressions.g:5606:1: rule__ArgumentList__Group__2 : rule__ArgumentList__Group__2__Impl ;
+    // InternalKerMLExpressions.g:5733:1: rule__ArgumentList__Group__2 : rule__ArgumentList__Group__2__Impl ;
     public final void rule__ArgumentList__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:5610:1: ( rule__ArgumentList__Group__2__Impl )
-            // InternalKerMLExpressions.g:5611:2: rule__ArgumentList__Group__2__Impl
+            // InternalKerMLExpressions.g:5737:1: ( rule__ArgumentList__Group__2__Impl )
+            // InternalKerMLExpressions.g:5738:2: rule__ArgumentList__Group__2__Impl
             {
             pushFollow(FOLLOW_2);
             rule__ArgumentList__Group__2__Impl();
@@ -17416,20 +17908,20 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__ArgumentList__Group__2__Impl"
-    // InternalKerMLExpressions.g:5617:1: rule__ArgumentList__Group__2__Impl : ( ')' ) ;
+    // InternalKerMLExpressions.g:5744:1: rule__ArgumentList__Group__2__Impl : ( ')' ) ;
     public final void rule__ArgumentList__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:5621:1: ( ( ')' ) )
-            // InternalKerMLExpressions.g:5622:1: ( ')' )
+            // InternalKerMLExpressions.g:5748:1: ( ( ')' ) )
+            // InternalKerMLExpressions.g:5749:1: ( ')' )
             {
-            // InternalKerMLExpressions.g:5622:1: ( ')' )
-            // InternalKerMLExpressions.g:5623:2: ')'
+            // InternalKerMLExpressions.g:5749:1: ( ')' )
+            // InternalKerMLExpressions.g:5750:2: ')'
             {
              before(grammarAccess.getArgumentListAccess().getRightParenthesisKeyword_2()); 
-            match(input,49,FOLLOW_2); 
+            match(input,57,FOLLOW_2); 
              after(grammarAccess.getArgumentListAccess().getRightParenthesisKeyword_2()); 
 
             }
@@ -17453,14 +17945,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__PositionalArgumentList__Group__0"
-    // InternalKerMLExpressions.g:5633:1: rule__PositionalArgumentList__Group__0 : rule__PositionalArgumentList__Group__0__Impl rule__PositionalArgumentList__Group__1 ;
+    // InternalKerMLExpressions.g:5760:1: rule__PositionalArgumentList__Group__0 : rule__PositionalArgumentList__Group__0__Impl rule__PositionalArgumentList__Group__1 ;
     public final void rule__PositionalArgumentList__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:5637:1: ( rule__PositionalArgumentList__Group__0__Impl rule__PositionalArgumentList__Group__1 )
-            // InternalKerMLExpressions.g:5638:2: rule__PositionalArgumentList__Group__0__Impl rule__PositionalArgumentList__Group__1
+            // InternalKerMLExpressions.g:5764:1: ( rule__PositionalArgumentList__Group__0__Impl rule__PositionalArgumentList__Group__1 )
+            // InternalKerMLExpressions.g:5765:2: rule__PositionalArgumentList__Group__0__Impl rule__PositionalArgumentList__Group__1
             {
             pushFollow(FOLLOW_47);
             rule__PositionalArgumentList__Group__0__Impl();
@@ -17491,21 +17983,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__PositionalArgumentList__Group__0__Impl"
-    // InternalKerMLExpressions.g:5645:1: rule__PositionalArgumentList__Group__0__Impl : ( ( rule__PositionalArgumentList__OwnedRelationshipAssignment_0 ) ) ;
+    // InternalKerMLExpressions.g:5772:1: rule__PositionalArgumentList__Group__0__Impl : ( ( rule__PositionalArgumentList__OwnedRelationshipAssignment_0 ) ) ;
     public final void rule__PositionalArgumentList__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:5649:1: ( ( ( rule__PositionalArgumentList__OwnedRelationshipAssignment_0 ) ) )
-            // InternalKerMLExpressions.g:5650:1: ( ( rule__PositionalArgumentList__OwnedRelationshipAssignment_0 ) )
+            // InternalKerMLExpressions.g:5776:1: ( ( ( rule__PositionalArgumentList__OwnedRelationshipAssignment_0 ) ) )
+            // InternalKerMLExpressions.g:5777:1: ( ( rule__PositionalArgumentList__OwnedRelationshipAssignment_0 ) )
             {
-            // InternalKerMLExpressions.g:5650:1: ( ( rule__PositionalArgumentList__OwnedRelationshipAssignment_0 ) )
-            // InternalKerMLExpressions.g:5651:2: ( rule__PositionalArgumentList__OwnedRelationshipAssignment_0 )
+            // InternalKerMLExpressions.g:5777:1: ( ( rule__PositionalArgumentList__OwnedRelationshipAssignment_0 ) )
+            // InternalKerMLExpressions.g:5778:2: ( rule__PositionalArgumentList__OwnedRelationshipAssignment_0 )
             {
              before(grammarAccess.getPositionalArgumentListAccess().getOwnedRelationshipAssignment_0()); 
-            // InternalKerMLExpressions.g:5652:2: ( rule__PositionalArgumentList__OwnedRelationshipAssignment_0 )
-            // InternalKerMLExpressions.g:5652:3: rule__PositionalArgumentList__OwnedRelationshipAssignment_0
+            // InternalKerMLExpressions.g:5779:2: ( rule__PositionalArgumentList__OwnedRelationshipAssignment_0 )
+            // InternalKerMLExpressions.g:5779:3: rule__PositionalArgumentList__OwnedRelationshipAssignment_0
             {
             pushFollow(FOLLOW_2);
             rule__PositionalArgumentList__OwnedRelationshipAssignment_0();
@@ -17538,14 +18030,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__PositionalArgumentList__Group__1"
-    // InternalKerMLExpressions.g:5660:1: rule__PositionalArgumentList__Group__1 : rule__PositionalArgumentList__Group__1__Impl ;
+    // InternalKerMLExpressions.g:5787:1: rule__PositionalArgumentList__Group__1 : rule__PositionalArgumentList__Group__1__Impl ;
     public final void rule__PositionalArgumentList__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:5664:1: ( rule__PositionalArgumentList__Group__1__Impl )
-            // InternalKerMLExpressions.g:5665:2: rule__PositionalArgumentList__Group__1__Impl
+            // InternalKerMLExpressions.g:5791:1: ( rule__PositionalArgumentList__Group__1__Impl )
+            // InternalKerMLExpressions.g:5792:2: rule__PositionalArgumentList__Group__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__PositionalArgumentList__Group__1__Impl();
@@ -17571,33 +18063,33 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__PositionalArgumentList__Group__1__Impl"
-    // InternalKerMLExpressions.g:5671:1: rule__PositionalArgumentList__Group__1__Impl : ( ( rule__PositionalArgumentList__Group_1__0 )* ) ;
+    // InternalKerMLExpressions.g:5798:1: rule__PositionalArgumentList__Group__1__Impl : ( ( rule__PositionalArgumentList__Group_1__0 )* ) ;
     public final void rule__PositionalArgumentList__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:5675:1: ( ( ( rule__PositionalArgumentList__Group_1__0 )* ) )
-            // InternalKerMLExpressions.g:5676:1: ( ( rule__PositionalArgumentList__Group_1__0 )* )
+            // InternalKerMLExpressions.g:5802:1: ( ( ( rule__PositionalArgumentList__Group_1__0 )* ) )
+            // InternalKerMLExpressions.g:5803:1: ( ( rule__PositionalArgumentList__Group_1__0 )* )
             {
-            // InternalKerMLExpressions.g:5676:1: ( ( rule__PositionalArgumentList__Group_1__0 )* )
-            // InternalKerMLExpressions.g:5677:2: ( rule__PositionalArgumentList__Group_1__0 )*
+            // InternalKerMLExpressions.g:5803:1: ( ( rule__PositionalArgumentList__Group_1__0 )* )
+            // InternalKerMLExpressions.g:5804:2: ( rule__PositionalArgumentList__Group_1__0 )*
             {
              before(grammarAccess.getPositionalArgumentListAccess().getGroup_1()); 
-            // InternalKerMLExpressions.g:5678:2: ( rule__PositionalArgumentList__Group_1__0 )*
-            loop40:
+            // InternalKerMLExpressions.g:5805:2: ( rule__PositionalArgumentList__Group_1__0 )*
+            loop44:
             do {
-                int alt40=2;
-                int LA40_0 = input.LA(1);
+                int alt44=2;
+                int LA44_0 = input.LA(1);
 
-                if ( (LA40_0==40) ) {
-                    alt40=1;
+                if ( (LA44_0==46) ) {
+                    alt44=1;
                 }
 
 
-                switch (alt40) {
+                switch (alt44) {
             	case 1 :
-            	    // InternalKerMLExpressions.g:5678:3: rule__PositionalArgumentList__Group_1__0
+            	    // InternalKerMLExpressions.g:5805:3: rule__PositionalArgumentList__Group_1__0
             	    {
             	    pushFollow(FOLLOW_49);
             	    rule__PositionalArgumentList__Group_1__0();
@@ -17609,7 +18101,7 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
             	    break;
 
             	default :
-            	    break loop40;
+            	    break loop44;
                 }
             } while (true);
 
@@ -17636,14 +18128,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__PositionalArgumentList__Group_1__0"
-    // InternalKerMLExpressions.g:5687:1: rule__PositionalArgumentList__Group_1__0 : rule__PositionalArgumentList__Group_1__0__Impl rule__PositionalArgumentList__Group_1__1 ;
+    // InternalKerMLExpressions.g:5814:1: rule__PositionalArgumentList__Group_1__0 : rule__PositionalArgumentList__Group_1__0__Impl rule__PositionalArgumentList__Group_1__1 ;
     public final void rule__PositionalArgumentList__Group_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:5691:1: ( rule__PositionalArgumentList__Group_1__0__Impl rule__PositionalArgumentList__Group_1__1 )
-            // InternalKerMLExpressions.g:5692:2: rule__PositionalArgumentList__Group_1__0__Impl rule__PositionalArgumentList__Group_1__1
+            // InternalKerMLExpressions.g:5818:1: ( rule__PositionalArgumentList__Group_1__0__Impl rule__PositionalArgumentList__Group_1__1 )
+            // InternalKerMLExpressions.g:5819:2: rule__PositionalArgumentList__Group_1__0__Impl rule__PositionalArgumentList__Group_1__1
             {
             pushFollow(FOLLOW_4);
             rule__PositionalArgumentList__Group_1__0__Impl();
@@ -17674,20 +18166,20 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__PositionalArgumentList__Group_1__0__Impl"
-    // InternalKerMLExpressions.g:5699:1: rule__PositionalArgumentList__Group_1__0__Impl : ( ',' ) ;
+    // InternalKerMLExpressions.g:5826:1: rule__PositionalArgumentList__Group_1__0__Impl : ( ',' ) ;
     public final void rule__PositionalArgumentList__Group_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:5703:1: ( ( ',' ) )
-            // InternalKerMLExpressions.g:5704:1: ( ',' )
+            // InternalKerMLExpressions.g:5830:1: ( ( ',' ) )
+            // InternalKerMLExpressions.g:5831:1: ( ',' )
             {
-            // InternalKerMLExpressions.g:5704:1: ( ',' )
-            // InternalKerMLExpressions.g:5705:2: ','
+            // InternalKerMLExpressions.g:5831:1: ( ',' )
+            // InternalKerMLExpressions.g:5832:2: ','
             {
              before(grammarAccess.getPositionalArgumentListAccess().getCommaKeyword_1_0()); 
-            match(input,40,FOLLOW_2); 
+            match(input,46,FOLLOW_2); 
              after(grammarAccess.getPositionalArgumentListAccess().getCommaKeyword_1_0()); 
 
             }
@@ -17711,14 +18203,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__PositionalArgumentList__Group_1__1"
-    // InternalKerMLExpressions.g:5714:1: rule__PositionalArgumentList__Group_1__1 : rule__PositionalArgumentList__Group_1__1__Impl ;
+    // InternalKerMLExpressions.g:5841:1: rule__PositionalArgumentList__Group_1__1 : rule__PositionalArgumentList__Group_1__1__Impl ;
     public final void rule__PositionalArgumentList__Group_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:5718:1: ( rule__PositionalArgumentList__Group_1__1__Impl )
-            // InternalKerMLExpressions.g:5719:2: rule__PositionalArgumentList__Group_1__1__Impl
+            // InternalKerMLExpressions.g:5845:1: ( rule__PositionalArgumentList__Group_1__1__Impl )
+            // InternalKerMLExpressions.g:5846:2: rule__PositionalArgumentList__Group_1__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__PositionalArgumentList__Group_1__1__Impl();
@@ -17744,21 +18236,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__PositionalArgumentList__Group_1__1__Impl"
-    // InternalKerMLExpressions.g:5725:1: rule__PositionalArgumentList__Group_1__1__Impl : ( ( rule__PositionalArgumentList__OwnedRelationshipAssignment_1_1 ) ) ;
+    // InternalKerMLExpressions.g:5852:1: rule__PositionalArgumentList__Group_1__1__Impl : ( ( rule__PositionalArgumentList__OwnedRelationshipAssignment_1_1 ) ) ;
     public final void rule__PositionalArgumentList__Group_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:5729:1: ( ( ( rule__PositionalArgumentList__OwnedRelationshipAssignment_1_1 ) ) )
-            // InternalKerMLExpressions.g:5730:1: ( ( rule__PositionalArgumentList__OwnedRelationshipAssignment_1_1 ) )
+            // InternalKerMLExpressions.g:5856:1: ( ( ( rule__PositionalArgumentList__OwnedRelationshipAssignment_1_1 ) ) )
+            // InternalKerMLExpressions.g:5857:1: ( ( rule__PositionalArgumentList__OwnedRelationshipAssignment_1_1 ) )
             {
-            // InternalKerMLExpressions.g:5730:1: ( ( rule__PositionalArgumentList__OwnedRelationshipAssignment_1_1 ) )
-            // InternalKerMLExpressions.g:5731:2: ( rule__PositionalArgumentList__OwnedRelationshipAssignment_1_1 )
+            // InternalKerMLExpressions.g:5857:1: ( ( rule__PositionalArgumentList__OwnedRelationshipAssignment_1_1 ) )
+            // InternalKerMLExpressions.g:5858:2: ( rule__PositionalArgumentList__OwnedRelationshipAssignment_1_1 )
             {
              before(grammarAccess.getPositionalArgumentListAccess().getOwnedRelationshipAssignment_1_1()); 
-            // InternalKerMLExpressions.g:5732:2: ( rule__PositionalArgumentList__OwnedRelationshipAssignment_1_1 )
-            // InternalKerMLExpressions.g:5732:3: rule__PositionalArgumentList__OwnedRelationshipAssignment_1_1
+            // InternalKerMLExpressions.g:5859:2: ( rule__PositionalArgumentList__OwnedRelationshipAssignment_1_1 )
+            // InternalKerMLExpressions.g:5859:3: rule__PositionalArgumentList__OwnedRelationshipAssignment_1_1
             {
             pushFollow(FOLLOW_2);
             rule__PositionalArgumentList__OwnedRelationshipAssignment_1_1();
@@ -17791,14 +18283,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__NamedArgumentList__Group__0"
-    // InternalKerMLExpressions.g:5741:1: rule__NamedArgumentList__Group__0 : rule__NamedArgumentList__Group__0__Impl rule__NamedArgumentList__Group__1 ;
+    // InternalKerMLExpressions.g:5868:1: rule__NamedArgumentList__Group__0 : rule__NamedArgumentList__Group__0__Impl rule__NamedArgumentList__Group__1 ;
     public final void rule__NamedArgumentList__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:5745:1: ( rule__NamedArgumentList__Group__0__Impl rule__NamedArgumentList__Group__1 )
-            // InternalKerMLExpressions.g:5746:2: rule__NamedArgumentList__Group__0__Impl rule__NamedArgumentList__Group__1
+            // InternalKerMLExpressions.g:5872:1: ( rule__NamedArgumentList__Group__0__Impl rule__NamedArgumentList__Group__1 )
+            // InternalKerMLExpressions.g:5873:2: rule__NamedArgumentList__Group__0__Impl rule__NamedArgumentList__Group__1
             {
             pushFollow(FOLLOW_47);
             rule__NamedArgumentList__Group__0__Impl();
@@ -17829,21 +18321,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__NamedArgumentList__Group__0__Impl"
-    // InternalKerMLExpressions.g:5753:1: rule__NamedArgumentList__Group__0__Impl : ( ( rule__NamedArgumentList__OwnedRelationshipAssignment_0 ) ) ;
+    // InternalKerMLExpressions.g:5880:1: rule__NamedArgumentList__Group__0__Impl : ( ( rule__NamedArgumentList__OwnedRelationshipAssignment_0 ) ) ;
     public final void rule__NamedArgumentList__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:5757:1: ( ( ( rule__NamedArgumentList__OwnedRelationshipAssignment_0 ) ) )
-            // InternalKerMLExpressions.g:5758:1: ( ( rule__NamedArgumentList__OwnedRelationshipAssignment_0 ) )
+            // InternalKerMLExpressions.g:5884:1: ( ( ( rule__NamedArgumentList__OwnedRelationshipAssignment_0 ) ) )
+            // InternalKerMLExpressions.g:5885:1: ( ( rule__NamedArgumentList__OwnedRelationshipAssignment_0 ) )
             {
-            // InternalKerMLExpressions.g:5758:1: ( ( rule__NamedArgumentList__OwnedRelationshipAssignment_0 ) )
-            // InternalKerMLExpressions.g:5759:2: ( rule__NamedArgumentList__OwnedRelationshipAssignment_0 )
+            // InternalKerMLExpressions.g:5885:1: ( ( rule__NamedArgumentList__OwnedRelationshipAssignment_0 ) )
+            // InternalKerMLExpressions.g:5886:2: ( rule__NamedArgumentList__OwnedRelationshipAssignment_0 )
             {
              before(grammarAccess.getNamedArgumentListAccess().getOwnedRelationshipAssignment_0()); 
-            // InternalKerMLExpressions.g:5760:2: ( rule__NamedArgumentList__OwnedRelationshipAssignment_0 )
-            // InternalKerMLExpressions.g:5760:3: rule__NamedArgumentList__OwnedRelationshipAssignment_0
+            // InternalKerMLExpressions.g:5887:2: ( rule__NamedArgumentList__OwnedRelationshipAssignment_0 )
+            // InternalKerMLExpressions.g:5887:3: rule__NamedArgumentList__OwnedRelationshipAssignment_0
             {
             pushFollow(FOLLOW_2);
             rule__NamedArgumentList__OwnedRelationshipAssignment_0();
@@ -17876,14 +18368,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__NamedArgumentList__Group__1"
-    // InternalKerMLExpressions.g:5768:1: rule__NamedArgumentList__Group__1 : rule__NamedArgumentList__Group__1__Impl ;
+    // InternalKerMLExpressions.g:5895:1: rule__NamedArgumentList__Group__1 : rule__NamedArgumentList__Group__1__Impl ;
     public final void rule__NamedArgumentList__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:5772:1: ( rule__NamedArgumentList__Group__1__Impl )
-            // InternalKerMLExpressions.g:5773:2: rule__NamedArgumentList__Group__1__Impl
+            // InternalKerMLExpressions.g:5899:1: ( rule__NamedArgumentList__Group__1__Impl )
+            // InternalKerMLExpressions.g:5900:2: rule__NamedArgumentList__Group__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__NamedArgumentList__Group__1__Impl();
@@ -17909,33 +18401,33 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__NamedArgumentList__Group__1__Impl"
-    // InternalKerMLExpressions.g:5779:1: rule__NamedArgumentList__Group__1__Impl : ( ( rule__NamedArgumentList__Group_1__0 )* ) ;
+    // InternalKerMLExpressions.g:5906:1: rule__NamedArgumentList__Group__1__Impl : ( ( rule__NamedArgumentList__Group_1__0 )* ) ;
     public final void rule__NamedArgumentList__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:5783:1: ( ( ( rule__NamedArgumentList__Group_1__0 )* ) )
-            // InternalKerMLExpressions.g:5784:1: ( ( rule__NamedArgumentList__Group_1__0 )* )
+            // InternalKerMLExpressions.g:5910:1: ( ( ( rule__NamedArgumentList__Group_1__0 )* ) )
+            // InternalKerMLExpressions.g:5911:1: ( ( rule__NamedArgumentList__Group_1__0 )* )
             {
-            // InternalKerMLExpressions.g:5784:1: ( ( rule__NamedArgumentList__Group_1__0 )* )
-            // InternalKerMLExpressions.g:5785:2: ( rule__NamedArgumentList__Group_1__0 )*
+            // InternalKerMLExpressions.g:5911:1: ( ( rule__NamedArgumentList__Group_1__0 )* )
+            // InternalKerMLExpressions.g:5912:2: ( rule__NamedArgumentList__Group_1__0 )*
             {
              before(grammarAccess.getNamedArgumentListAccess().getGroup_1()); 
-            // InternalKerMLExpressions.g:5786:2: ( rule__NamedArgumentList__Group_1__0 )*
-            loop41:
+            // InternalKerMLExpressions.g:5913:2: ( rule__NamedArgumentList__Group_1__0 )*
+            loop45:
             do {
-                int alt41=2;
-                int LA41_0 = input.LA(1);
+                int alt45=2;
+                int LA45_0 = input.LA(1);
 
-                if ( (LA41_0==40) ) {
-                    alt41=1;
+                if ( (LA45_0==46) ) {
+                    alt45=1;
                 }
 
 
-                switch (alt41) {
+                switch (alt45) {
             	case 1 :
-            	    // InternalKerMLExpressions.g:5786:3: rule__NamedArgumentList__Group_1__0
+            	    // InternalKerMLExpressions.g:5913:3: rule__NamedArgumentList__Group_1__0
             	    {
             	    pushFollow(FOLLOW_49);
             	    rule__NamedArgumentList__Group_1__0();
@@ -17947,7 +18439,7 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
             	    break;
 
             	default :
-            	    break loop41;
+            	    break loop45;
                 }
             } while (true);
 
@@ -17974,14 +18466,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__NamedArgumentList__Group_1__0"
-    // InternalKerMLExpressions.g:5795:1: rule__NamedArgumentList__Group_1__0 : rule__NamedArgumentList__Group_1__0__Impl rule__NamedArgumentList__Group_1__1 ;
+    // InternalKerMLExpressions.g:5922:1: rule__NamedArgumentList__Group_1__0 : rule__NamedArgumentList__Group_1__0__Impl rule__NamedArgumentList__Group_1__1 ;
     public final void rule__NamedArgumentList__Group_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:5799:1: ( rule__NamedArgumentList__Group_1__0__Impl rule__NamedArgumentList__Group_1__1 )
-            // InternalKerMLExpressions.g:5800:2: rule__NamedArgumentList__Group_1__0__Impl rule__NamedArgumentList__Group_1__1
+            // InternalKerMLExpressions.g:5926:1: ( rule__NamedArgumentList__Group_1__0__Impl rule__NamedArgumentList__Group_1__1 )
+            // InternalKerMLExpressions.g:5927:2: rule__NamedArgumentList__Group_1__0__Impl rule__NamedArgumentList__Group_1__1
             {
             pushFollow(FOLLOW_4);
             rule__NamedArgumentList__Group_1__0__Impl();
@@ -18012,20 +18504,20 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__NamedArgumentList__Group_1__0__Impl"
-    // InternalKerMLExpressions.g:5807:1: rule__NamedArgumentList__Group_1__0__Impl : ( ',' ) ;
+    // InternalKerMLExpressions.g:5934:1: rule__NamedArgumentList__Group_1__0__Impl : ( ',' ) ;
     public final void rule__NamedArgumentList__Group_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:5811:1: ( ( ',' ) )
-            // InternalKerMLExpressions.g:5812:1: ( ',' )
+            // InternalKerMLExpressions.g:5938:1: ( ( ',' ) )
+            // InternalKerMLExpressions.g:5939:1: ( ',' )
             {
-            // InternalKerMLExpressions.g:5812:1: ( ',' )
-            // InternalKerMLExpressions.g:5813:2: ','
+            // InternalKerMLExpressions.g:5939:1: ( ',' )
+            // InternalKerMLExpressions.g:5940:2: ','
             {
              before(grammarAccess.getNamedArgumentListAccess().getCommaKeyword_1_0()); 
-            match(input,40,FOLLOW_2); 
+            match(input,46,FOLLOW_2); 
              after(grammarAccess.getNamedArgumentListAccess().getCommaKeyword_1_0()); 
 
             }
@@ -18049,14 +18541,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__NamedArgumentList__Group_1__1"
-    // InternalKerMLExpressions.g:5822:1: rule__NamedArgumentList__Group_1__1 : rule__NamedArgumentList__Group_1__1__Impl ;
+    // InternalKerMLExpressions.g:5949:1: rule__NamedArgumentList__Group_1__1 : rule__NamedArgumentList__Group_1__1__Impl ;
     public final void rule__NamedArgumentList__Group_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:5826:1: ( rule__NamedArgumentList__Group_1__1__Impl )
-            // InternalKerMLExpressions.g:5827:2: rule__NamedArgumentList__Group_1__1__Impl
+            // InternalKerMLExpressions.g:5953:1: ( rule__NamedArgumentList__Group_1__1__Impl )
+            // InternalKerMLExpressions.g:5954:2: rule__NamedArgumentList__Group_1__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__NamedArgumentList__Group_1__1__Impl();
@@ -18082,21 +18574,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__NamedArgumentList__Group_1__1__Impl"
-    // InternalKerMLExpressions.g:5833:1: rule__NamedArgumentList__Group_1__1__Impl : ( ( rule__NamedArgumentList__OwnedRelationshipAssignment_1_1 ) ) ;
+    // InternalKerMLExpressions.g:5960:1: rule__NamedArgumentList__Group_1__1__Impl : ( ( rule__NamedArgumentList__OwnedRelationshipAssignment_1_1 ) ) ;
     public final void rule__NamedArgumentList__Group_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:5837:1: ( ( ( rule__NamedArgumentList__OwnedRelationshipAssignment_1_1 ) ) )
-            // InternalKerMLExpressions.g:5838:1: ( ( rule__NamedArgumentList__OwnedRelationshipAssignment_1_1 ) )
+            // InternalKerMLExpressions.g:5964:1: ( ( ( rule__NamedArgumentList__OwnedRelationshipAssignment_1_1 ) ) )
+            // InternalKerMLExpressions.g:5965:1: ( ( rule__NamedArgumentList__OwnedRelationshipAssignment_1_1 ) )
             {
-            // InternalKerMLExpressions.g:5838:1: ( ( rule__NamedArgumentList__OwnedRelationshipAssignment_1_1 ) )
-            // InternalKerMLExpressions.g:5839:2: ( rule__NamedArgumentList__OwnedRelationshipAssignment_1_1 )
+            // InternalKerMLExpressions.g:5965:1: ( ( rule__NamedArgumentList__OwnedRelationshipAssignment_1_1 ) )
+            // InternalKerMLExpressions.g:5966:2: ( rule__NamedArgumentList__OwnedRelationshipAssignment_1_1 )
             {
              before(grammarAccess.getNamedArgumentListAccess().getOwnedRelationshipAssignment_1_1()); 
-            // InternalKerMLExpressions.g:5840:2: ( rule__NamedArgumentList__OwnedRelationshipAssignment_1_1 )
-            // InternalKerMLExpressions.g:5840:3: rule__NamedArgumentList__OwnedRelationshipAssignment_1_1
+            // InternalKerMLExpressions.g:5967:2: ( rule__NamedArgumentList__OwnedRelationshipAssignment_1_1 )
+            // InternalKerMLExpressions.g:5967:3: rule__NamedArgumentList__OwnedRelationshipAssignment_1_1
             {
             pushFollow(FOLLOW_2);
             rule__NamedArgumentList__OwnedRelationshipAssignment_1_1();
@@ -18129,14 +18621,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__NamedExpressionMember__Group__0"
-    // InternalKerMLExpressions.g:5849:1: rule__NamedExpressionMember__Group__0 : rule__NamedExpressionMember__Group__0__Impl rule__NamedExpressionMember__Group__1 ;
+    // InternalKerMLExpressions.g:5976:1: rule__NamedExpressionMember__Group__0 : rule__NamedExpressionMember__Group__0__Impl rule__NamedExpressionMember__Group__1 ;
     public final void rule__NamedExpressionMember__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:5853:1: ( rule__NamedExpressionMember__Group__0__Impl rule__NamedExpressionMember__Group__1 )
-            // InternalKerMLExpressions.g:5854:2: rule__NamedExpressionMember__Group__0__Impl rule__NamedExpressionMember__Group__1
+            // InternalKerMLExpressions.g:5980:1: ( rule__NamedExpressionMember__Group__0__Impl rule__NamedExpressionMember__Group__1 )
+            // InternalKerMLExpressions.g:5981:2: rule__NamedExpressionMember__Group__0__Impl rule__NamedExpressionMember__Group__1
             {
             pushFollow(FOLLOW_50);
             rule__NamedExpressionMember__Group__0__Impl();
@@ -18167,21 +18659,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__NamedExpressionMember__Group__0__Impl"
-    // InternalKerMLExpressions.g:5861:1: rule__NamedExpressionMember__Group__0__Impl : ( ( rule__NamedExpressionMember__MemberNameAssignment_0 ) ) ;
+    // InternalKerMLExpressions.g:5988:1: rule__NamedExpressionMember__Group__0__Impl : ( ( rule__NamedExpressionMember__MemberNameAssignment_0 ) ) ;
     public final void rule__NamedExpressionMember__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:5865:1: ( ( ( rule__NamedExpressionMember__MemberNameAssignment_0 ) ) )
-            // InternalKerMLExpressions.g:5866:1: ( ( rule__NamedExpressionMember__MemberNameAssignment_0 ) )
+            // InternalKerMLExpressions.g:5992:1: ( ( ( rule__NamedExpressionMember__MemberNameAssignment_0 ) ) )
+            // InternalKerMLExpressions.g:5993:1: ( ( rule__NamedExpressionMember__MemberNameAssignment_0 ) )
             {
-            // InternalKerMLExpressions.g:5866:1: ( ( rule__NamedExpressionMember__MemberNameAssignment_0 ) )
-            // InternalKerMLExpressions.g:5867:2: ( rule__NamedExpressionMember__MemberNameAssignment_0 )
+            // InternalKerMLExpressions.g:5993:1: ( ( rule__NamedExpressionMember__MemberNameAssignment_0 ) )
+            // InternalKerMLExpressions.g:5994:2: ( rule__NamedExpressionMember__MemberNameAssignment_0 )
             {
              before(grammarAccess.getNamedExpressionMemberAccess().getMemberNameAssignment_0()); 
-            // InternalKerMLExpressions.g:5868:2: ( rule__NamedExpressionMember__MemberNameAssignment_0 )
-            // InternalKerMLExpressions.g:5868:3: rule__NamedExpressionMember__MemberNameAssignment_0
+            // InternalKerMLExpressions.g:5995:2: ( rule__NamedExpressionMember__MemberNameAssignment_0 )
+            // InternalKerMLExpressions.g:5995:3: rule__NamedExpressionMember__MemberNameAssignment_0
             {
             pushFollow(FOLLOW_2);
             rule__NamedExpressionMember__MemberNameAssignment_0();
@@ -18214,14 +18706,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__NamedExpressionMember__Group__1"
-    // InternalKerMLExpressions.g:5876:1: rule__NamedExpressionMember__Group__1 : rule__NamedExpressionMember__Group__1__Impl rule__NamedExpressionMember__Group__2 ;
+    // InternalKerMLExpressions.g:6003:1: rule__NamedExpressionMember__Group__1 : rule__NamedExpressionMember__Group__1__Impl rule__NamedExpressionMember__Group__2 ;
     public final void rule__NamedExpressionMember__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:5880:1: ( rule__NamedExpressionMember__Group__1__Impl rule__NamedExpressionMember__Group__2 )
-            // InternalKerMLExpressions.g:5881:2: rule__NamedExpressionMember__Group__1__Impl rule__NamedExpressionMember__Group__2
+            // InternalKerMLExpressions.g:6007:1: ( rule__NamedExpressionMember__Group__1__Impl rule__NamedExpressionMember__Group__2 )
+            // InternalKerMLExpressions.g:6008:2: rule__NamedExpressionMember__Group__1__Impl rule__NamedExpressionMember__Group__2
             {
             pushFollow(FOLLOW_4);
             rule__NamedExpressionMember__Group__1__Impl();
@@ -18252,20 +18744,20 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__NamedExpressionMember__Group__1__Impl"
-    // InternalKerMLExpressions.g:5888:1: rule__NamedExpressionMember__Group__1__Impl : ( '=>' ) ;
+    // InternalKerMLExpressions.g:6015:1: rule__NamedExpressionMember__Group__1__Impl : ( '=>' ) ;
     public final void rule__NamedExpressionMember__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:5892:1: ( ( '=>' ) )
-            // InternalKerMLExpressions.g:5893:1: ( '=>' )
+            // InternalKerMLExpressions.g:6019:1: ( ( '=>' ) )
+            // InternalKerMLExpressions.g:6020:1: ( '=>' )
             {
-            // InternalKerMLExpressions.g:5893:1: ( '=>' )
-            // InternalKerMLExpressions.g:5894:2: '=>'
+            // InternalKerMLExpressions.g:6020:1: ( '=>' )
+            // InternalKerMLExpressions.g:6021:2: '=>'
             {
              before(grammarAccess.getNamedExpressionMemberAccess().getEqualsSignGreaterThanSignKeyword_1()); 
-            match(input,54,FOLLOW_2); 
+            match(input,62,FOLLOW_2); 
              after(grammarAccess.getNamedExpressionMemberAccess().getEqualsSignGreaterThanSignKeyword_1()); 
 
             }
@@ -18289,14 +18781,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__NamedExpressionMember__Group__2"
-    // InternalKerMLExpressions.g:5903:1: rule__NamedExpressionMember__Group__2 : rule__NamedExpressionMember__Group__2__Impl ;
+    // InternalKerMLExpressions.g:6030:1: rule__NamedExpressionMember__Group__2 : rule__NamedExpressionMember__Group__2__Impl ;
     public final void rule__NamedExpressionMember__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:5907:1: ( rule__NamedExpressionMember__Group__2__Impl )
-            // InternalKerMLExpressions.g:5908:2: rule__NamedExpressionMember__Group__2__Impl
+            // InternalKerMLExpressions.g:6034:1: ( rule__NamedExpressionMember__Group__2__Impl )
+            // InternalKerMLExpressions.g:6035:2: rule__NamedExpressionMember__Group__2__Impl
             {
             pushFollow(FOLLOW_2);
             rule__NamedExpressionMember__Group__2__Impl();
@@ -18322,21 +18814,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__NamedExpressionMember__Group__2__Impl"
-    // InternalKerMLExpressions.g:5914:1: rule__NamedExpressionMember__Group__2__Impl : ( ( rule__NamedExpressionMember__OwnedRelatedElementAssignment_2 ) ) ;
+    // InternalKerMLExpressions.g:6041:1: rule__NamedExpressionMember__Group__2__Impl : ( ( rule__NamedExpressionMember__OwnedRelatedElementAssignment_2 ) ) ;
     public final void rule__NamedExpressionMember__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:5918:1: ( ( ( rule__NamedExpressionMember__OwnedRelatedElementAssignment_2 ) ) )
-            // InternalKerMLExpressions.g:5919:1: ( ( rule__NamedExpressionMember__OwnedRelatedElementAssignment_2 ) )
+            // InternalKerMLExpressions.g:6045:1: ( ( ( rule__NamedExpressionMember__OwnedRelatedElementAssignment_2 ) ) )
+            // InternalKerMLExpressions.g:6046:1: ( ( rule__NamedExpressionMember__OwnedRelatedElementAssignment_2 ) )
             {
-            // InternalKerMLExpressions.g:5919:1: ( ( rule__NamedExpressionMember__OwnedRelatedElementAssignment_2 ) )
-            // InternalKerMLExpressions.g:5920:2: ( rule__NamedExpressionMember__OwnedRelatedElementAssignment_2 )
+            // InternalKerMLExpressions.g:6046:1: ( ( rule__NamedExpressionMember__OwnedRelatedElementAssignment_2 ) )
+            // InternalKerMLExpressions.g:6047:2: ( rule__NamedExpressionMember__OwnedRelatedElementAssignment_2 )
             {
              before(grammarAccess.getNamedExpressionMemberAccess().getOwnedRelatedElementAssignment_2()); 
-            // InternalKerMLExpressions.g:5921:2: ( rule__NamedExpressionMember__OwnedRelatedElementAssignment_2 )
-            // InternalKerMLExpressions.g:5921:3: rule__NamedExpressionMember__OwnedRelatedElementAssignment_2
+            // InternalKerMLExpressions.g:6048:2: ( rule__NamedExpressionMember__OwnedRelatedElementAssignment_2 )
+            // InternalKerMLExpressions.g:6048:3: rule__NamedExpressionMember__OwnedRelatedElementAssignment_2
             {
             pushFollow(FOLLOW_2);
             rule__NamedExpressionMember__OwnedRelatedElementAssignment_2();
@@ -18369,14 +18861,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__NullExpression__Group__0"
-    // InternalKerMLExpressions.g:5930:1: rule__NullExpression__Group__0 : rule__NullExpression__Group__0__Impl rule__NullExpression__Group__1 ;
+    // InternalKerMLExpressions.g:6057:1: rule__NullExpression__Group__0 : rule__NullExpression__Group__0__Impl rule__NullExpression__Group__1 ;
     public final void rule__NullExpression__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:5934:1: ( rule__NullExpression__Group__0__Impl rule__NullExpression__Group__1 )
-            // InternalKerMLExpressions.g:5935:2: rule__NullExpression__Group__0__Impl rule__NullExpression__Group__1
+            // InternalKerMLExpressions.g:6061:1: ( rule__NullExpression__Group__0__Impl rule__NullExpression__Group__1 )
+            // InternalKerMLExpressions.g:6062:2: rule__NullExpression__Group__0__Impl rule__NullExpression__Group__1
             {
             pushFollow(FOLLOW_51);
             rule__NullExpression__Group__0__Impl();
@@ -18407,21 +18899,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__NullExpression__Group__0__Impl"
-    // InternalKerMLExpressions.g:5942:1: rule__NullExpression__Group__0__Impl : ( () ) ;
+    // InternalKerMLExpressions.g:6069:1: rule__NullExpression__Group__0__Impl : ( () ) ;
     public final void rule__NullExpression__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:5946:1: ( ( () ) )
-            // InternalKerMLExpressions.g:5947:1: ( () )
+            // InternalKerMLExpressions.g:6073:1: ( ( () ) )
+            // InternalKerMLExpressions.g:6074:1: ( () )
             {
-            // InternalKerMLExpressions.g:5947:1: ( () )
-            // InternalKerMLExpressions.g:5948:2: ()
+            // InternalKerMLExpressions.g:6074:1: ( () )
+            // InternalKerMLExpressions.g:6075:2: ()
             {
              before(grammarAccess.getNullExpressionAccess().getNullExpressionAction_0()); 
-            // InternalKerMLExpressions.g:5949:2: ()
-            // InternalKerMLExpressions.g:5949:3: 
+            // InternalKerMLExpressions.g:6076:2: ()
+            // InternalKerMLExpressions.g:6076:3: 
             {
             }
 
@@ -18444,14 +18936,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__NullExpression__Group__1"
-    // InternalKerMLExpressions.g:5957:1: rule__NullExpression__Group__1 : rule__NullExpression__Group__1__Impl ;
+    // InternalKerMLExpressions.g:6084:1: rule__NullExpression__Group__1 : rule__NullExpression__Group__1__Impl ;
     public final void rule__NullExpression__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:5961:1: ( rule__NullExpression__Group__1__Impl )
-            // InternalKerMLExpressions.g:5962:2: rule__NullExpression__Group__1__Impl
+            // InternalKerMLExpressions.g:6088:1: ( rule__NullExpression__Group__1__Impl )
+            // InternalKerMLExpressions.g:6089:2: rule__NullExpression__Group__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__NullExpression__Group__1__Impl();
@@ -18477,21 +18969,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__NullExpression__Group__1__Impl"
-    // InternalKerMLExpressions.g:5968:1: rule__NullExpression__Group__1__Impl : ( ( rule__NullExpression__Alternatives_1 ) ) ;
+    // InternalKerMLExpressions.g:6095:1: rule__NullExpression__Group__1__Impl : ( ( rule__NullExpression__Alternatives_1 ) ) ;
     public final void rule__NullExpression__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:5972:1: ( ( ( rule__NullExpression__Alternatives_1 ) ) )
-            // InternalKerMLExpressions.g:5973:1: ( ( rule__NullExpression__Alternatives_1 ) )
+            // InternalKerMLExpressions.g:6099:1: ( ( ( rule__NullExpression__Alternatives_1 ) ) )
+            // InternalKerMLExpressions.g:6100:1: ( ( rule__NullExpression__Alternatives_1 ) )
             {
-            // InternalKerMLExpressions.g:5973:1: ( ( rule__NullExpression__Alternatives_1 ) )
-            // InternalKerMLExpressions.g:5974:2: ( rule__NullExpression__Alternatives_1 )
+            // InternalKerMLExpressions.g:6100:1: ( ( rule__NullExpression__Alternatives_1 ) )
+            // InternalKerMLExpressions.g:6101:2: ( rule__NullExpression__Alternatives_1 )
             {
              before(grammarAccess.getNullExpressionAccess().getAlternatives_1()); 
-            // InternalKerMLExpressions.g:5975:2: ( rule__NullExpression__Alternatives_1 )
-            // InternalKerMLExpressions.g:5975:3: rule__NullExpression__Alternatives_1
+            // InternalKerMLExpressions.g:6102:2: ( rule__NullExpression__Alternatives_1 )
+            // InternalKerMLExpressions.g:6102:3: rule__NullExpression__Alternatives_1
             {
             pushFollow(FOLLOW_2);
             rule__NullExpression__Alternatives_1();
@@ -18524,14 +19016,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__NullExpression__Group_1_1__0"
-    // InternalKerMLExpressions.g:5984:1: rule__NullExpression__Group_1_1__0 : rule__NullExpression__Group_1_1__0__Impl rule__NullExpression__Group_1_1__1 ;
+    // InternalKerMLExpressions.g:6111:1: rule__NullExpression__Group_1_1__0 : rule__NullExpression__Group_1_1__0__Impl rule__NullExpression__Group_1_1__1 ;
     public final void rule__NullExpression__Group_1_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:5988:1: ( rule__NullExpression__Group_1_1__0__Impl rule__NullExpression__Group_1_1__1 )
-            // InternalKerMLExpressions.g:5989:2: rule__NullExpression__Group_1_1__0__Impl rule__NullExpression__Group_1_1__1
+            // InternalKerMLExpressions.g:6115:1: ( rule__NullExpression__Group_1_1__0__Impl rule__NullExpression__Group_1_1__1 )
+            // InternalKerMLExpressions.g:6116:2: rule__NullExpression__Group_1_1__0__Impl rule__NullExpression__Group_1_1__1
             {
             pushFollow(FOLLOW_42);
             rule__NullExpression__Group_1_1__0__Impl();
@@ -18562,20 +19054,20 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__NullExpression__Group_1_1__0__Impl"
-    // InternalKerMLExpressions.g:5996:1: rule__NullExpression__Group_1_1__0__Impl : ( '(' ) ;
+    // InternalKerMLExpressions.g:6123:1: rule__NullExpression__Group_1_1__0__Impl : ( '(' ) ;
     public final void rule__NullExpression__Group_1_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:6000:1: ( ( '(' ) )
-            // InternalKerMLExpressions.g:6001:1: ( '(' )
+            // InternalKerMLExpressions.g:6127:1: ( ( '(' ) )
+            // InternalKerMLExpressions.g:6128:1: ( '(' )
             {
-            // InternalKerMLExpressions.g:6001:1: ( '(' )
-            // InternalKerMLExpressions.g:6002:2: '('
+            // InternalKerMLExpressions.g:6128:1: ( '(' )
+            // InternalKerMLExpressions.g:6129:2: '('
             {
              before(grammarAccess.getNullExpressionAccess().getLeftParenthesisKeyword_1_1_0()); 
-            match(input,48,FOLLOW_2); 
+            match(input,56,FOLLOW_2); 
              after(grammarAccess.getNullExpressionAccess().getLeftParenthesisKeyword_1_1_0()); 
 
             }
@@ -18599,14 +19091,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__NullExpression__Group_1_1__1"
-    // InternalKerMLExpressions.g:6011:1: rule__NullExpression__Group_1_1__1 : rule__NullExpression__Group_1_1__1__Impl ;
+    // InternalKerMLExpressions.g:6138:1: rule__NullExpression__Group_1_1__1 : rule__NullExpression__Group_1_1__1__Impl ;
     public final void rule__NullExpression__Group_1_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:6015:1: ( rule__NullExpression__Group_1_1__1__Impl )
-            // InternalKerMLExpressions.g:6016:2: rule__NullExpression__Group_1_1__1__Impl
+            // InternalKerMLExpressions.g:6142:1: ( rule__NullExpression__Group_1_1__1__Impl )
+            // InternalKerMLExpressions.g:6143:2: rule__NullExpression__Group_1_1__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__NullExpression__Group_1_1__1__Impl();
@@ -18632,20 +19124,20 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__NullExpression__Group_1_1__1__Impl"
-    // InternalKerMLExpressions.g:6022:1: rule__NullExpression__Group_1_1__1__Impl : ( ')' ) ;
+    // InternalKerMLExpressions.g:6149:1: rule__NullExpression__Group_1_1__1__Impl : ( ')' ) ;
     public final void rule__NullExpression__Group_1_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:6026:1: ( ( ')' ) )
-            // InternalKerMLExpressions.g:6027:1: ( ')' )
+            // InternalKerMLExpressions.g:6153:1: ( ( ')' ) )
+            // InternalKerMLExpressions.g:6154:1: ( ')' )
             {
-            // InternalKerMLExpressions.g:6027:1: ( ')' )
-            // InternalKerMLExpressions.g:6028:2: ')'
+            // InternalKerMLExpressions.g:6154:1: ( ')' )
+            // InternalKerMLExpressions.g:6155:2: ')'
             {
              before(grammarAccess.getNullExpressionAccess().getRightParenthesisKeyword_1_1_1()); 
-            match(input,49,FOLLOW_2); 
+            match(input,57,FOLLOW_2); 
              after(grammarAccess.getNullExpressionAccess().getRightParenthesisKeyword_1_1_1()); 
 
             }
@@ -18669,14 +19161,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__RealValue__Group_0__0"
-    // InternalKerMLExpressions.g:6038:1: rule__RealValue__Group_0__0 : rule__RealValue__Group_0__0__Impl rule__RealValue__Group_0__1 ;
+    // InternalKerMLExpressions.g:6165:1: rule__RealValue__Group_0__0 : rule__RealValue__Group_0__0__Impl rule__RealValue__Group_0__1 ;
     public final void rule__RealValue__Group_0__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:6042:1: ( rule__RealValue__Group_0__0__Impl rule__RealValue__Group_0__1 )
-            // InternalKerMLExpressions.g:6043:2: rule__RealValue__Group_0__0__Impl rule__RealValue__Group_0__1
+            // InternalKerMLExpressions.g:6169:1: ( rule__RealValue__Group_0__0__Impl rule__RealValue__Group_0__1 )
+            // InternalKerMLExpressions.g:6170:2: rule__RealValue__Group_0__0__Impl rule__RealValue__Group_0__1
             {
             pushFollow(FOLLOW_52);
             rule__RealValue__Group_0__0__Impl();
@@ -18707,29 +19199,29 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__RealValue__Group_0__0__Impl"
-    // InternalKerMLExpressions.g:6050:1: rule__RealValue__Group_0__0__Impl : ( ( RULE_DECIMAL_VALUE )? ) ;
+    // InternalKerMLExpressions.g:6177:1: rule__RealValue__Group_0__0__Impl : ( ( RULE_DECIMAL_VALUE )? ) ;
     public final void rule__RealValue__Group_0__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:6054:1: ( ( ( RULE_DECIMAL_VALUE )? ) )
-            // InternalKerMLExpressions.g:6055:1: ( ( RULE_DECIMAL_VALUE )? )
+            // InternalKerMLExpressions.g:6181:1: ( ( ( RULE_DECIMAL_VALUE )? ) )
+            // InternalKerMLExpressions.g:6182:1: ( ( RULE_DECIMAL_VALUE )? )
             {
-            // InternalKerMLExpressions.g:6055:1: ( ( RULE_DECIMAL_VALUE )? )
-            // InternalKerMLExpressions.g:6056:2: ( RULE_DECIMAL_VALUE )?
+            // InternalKerMLExpressions.g:6182:1: ( ( RULE_DECIMAL_VALUE )? )
+            // InternalKerMLExpressions.g:6183:2: ( RULE_DECIMAL_VALUE )?
             {
              before(grammarAccess.getRealValueAccess().getDECIMAL_VALUETerminalRuleCall_0_0()); 
-            // InternalKerMLExpressions.g:6057:2: ( RULE_DECIMAL_VALUE )?
-            int alt42=2;
-            int LA42_0 = input.LA(1);
+            // InternalKerMLExpressions.g:6184:2: ( RULE_DECIMAL_VALUE )?
+            int alt46=2;
+            int LA46_0 = input.LA(1);
 
-            if ( (LA42_0==RULE_DECIMAL_VALUE) ) {
-                alt42=1;
+            if ( (LA46_0==RULE_DECIMAL_VALUE) ) {
+                alt46=1;
             }
-            switch (alt42) {
+            switch (alt46) {
                 case 1 :
-                    // InternalKerMLExpressions.g:6057:3: RULE_DECIMAL_VALUE
+                    // InternalKerMLExpressions.g:6184:3: RULE_DECIMAL_VALUE
                     {
                     match(input,RULE_DECIMAL_VALUE,FOLLOW_2); 
 
@@ -18761,14 +19253,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__RealValue__Group_0__1"
-    // InternalKerMLExpressions.g:6065:1: rule__RealValue__Group_0__1 : rule__RealValue__Group_0__1__Impl rule__RealValue__Group_0__2 ;
+    // InternalKerMLExpressions.g:6192:1: rule__RealValue__Group_0__1 : rule__RealValue__Group_0__1__Impl rule__RealValue__Group_0__2 ;
     public final void rule__RealValue__Group_0__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:6069:1: ( rule__RealValue__Group_0__1__Impl rule__RealValue__Group_0__2 )
-            // InternalKerMLExpressions.g:6070:2: rule__RealValue__Group_0__1__Impl rule__RealValue__Group_0__2
+            // InternalKerMLExpressions.g:6196:1: ( rule__RealValue__Group_0__1__Impl rule__RealValue__Group_0__2 )
+            // InternalKerMLExpressions.g:6197:2: rule__RealValue__Group_0__1__Impl rule__RealValue__Group_0__2
             {
             pushFollow(FOLLOW_53);
             rule__RealValue__Group_0__1__Impl();
@@ -18799,20 +19291,20 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__RealValue__Group_0__1__Impl"
-    // InternalKerMLExpressions.g:6077:1: rule__RealValue__Group_0__1__Impl : ( '.' ) ;
+    // InternalKerMLExpressions.g:6204:1: rule__RealValue__Group_0__1__Impl : ( '.' ) ;
     public final void rule__RealValue__Group_0__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:6081:1: ( ( '.' ) )
-            // InternalKerMLExpressions.g:6082:1: ( '.' )
+            // InternalKerMLExpressions.g:6208:1: ( ( '.' ) )
+            // InternalKerMLExpressions.g:6209:1: ( '.' )
             {
-            // InternalKerMLExpressions.g:6082:1: ( '.' )
-            // InternalKerMLExpressions.g:6083:2: '.'
+            // InternalKerMLExpressions.g:6209:1: ( '.' )
+            // InternalKerMLExpressions.g:6210:2: '.'
             {
              before(grammarAccess.getRealValueAccess().getFullStopKeyword_0_1()); 
-            match(input,47,FOLLOW_2); 
+            match(input,55,FOLLOW_2); 
              after(grammarAccess.getRealValueAccess().getFullStopKeyword_0_1()); 
 
             }
@@ -18836,14 +19328,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__RealValue__Group_0__2"
-    // InternalKerMLExpressions.g:6092:1: rule__RealValue__Group_0__2 : rule__RealValue__Group_0__2__Impl ;
+    // InternalKerMLExpressions.g:6219:1: rule__RealValue__Group_0__2 : rule__RealValue__Group_0__2__Impl ;
     public final void rule__RealValue__Group_0__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:6096:1: ( rule__RealValue__Group_0__2__Impl )
-            // InternalKerMLExpressions.g:6097:2: rule__RealValue__Group_0__2__Impl
+            // InternalKerMLExpressions.g:6223:1: ( rule__RealValue__Group_0__2__Impl )
+            // InternalKerMLExpressions.g:6224:2: rule__RealValue__Group_0__2__Impl
             {
             pushFollow(FOLLOW_2);
             rule__RealValue__Group_0__2__Impl();
@@ -18869,21 +19361,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__RealValue__Group_0__2__Impl"
-    // InternalKerMLExpressions.g:6103:1: rule__RealValue__Group_0__2__Impl : ( ( rule__RealValue__Alternatives_0_2 ) ) ;
+    // InternalKerMLExpressions.g:6230:1: rule__RealValue__Group_0__2__Impl : ( ( rule__RealValue__Alternatives_0_2 ) ) ;
     public final void rule__RealValue__Group_0__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:6107:1: ( ( ( rule__RealValue__Alternatives_0_2 ) ) )
-            // InternalKerMLExpressions.g:6108:1: ( ( rule__RealValue__Alternatives_0_2 ) )
+            // InternalKerMLExpressions.g:6234:1: ( ( ( rule__RealValue__Alternatives_0_2 ) ) )
+            // InternalKerMLExpressions.g:6235:1: ( ( rule__RealValue__Alternatives_0_2 ) )
             {
-            // InternalKerMLExpressions.g:6108:1: ( ( rule__RealValue__Alternatives_0_2 ) )
-            // InternalKerMLExpressions.g:6109:2: ( rule__RealValue__Alternatives_0_2 )
+            // InternalKerMLExpressions.g:6235:1: ( ( rule__RealValue__Alternatives_0_2 ) )
+            // InternalKerMLExpressions.g:6236:2: ( rule__RealValue__Alternatives_0_2 )
             {
              before(grammarAccess.getRealValueAccess().getAlternatives_0_2()); 
-            // InternalKerMLExpressions.g:6110:2: ( rule__RealValue__Alternatives_0_2 )
-            // InternalKerMLExpressions.g:6110:3: rule__RealValue__Alternatives_0_2
+            // InternalKerMLExpressions.g:6237:2: ( rule__RealValue__Alternatives_0_2 )
+            // InternalKerMLExpressions.g:6237:3: rule__RealValue__Alternatives_0_2
             {
             pushFollow(FOLLOW_2);
             rule__RealValue__Alternatives_0_2();
@@ -18916,14 +19408,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__LiteralUnbounded__Group__0"
-    // InternalKerMLExpressions.g:6119:1: rule__LiteralUnbounded__Group__0 : rule__LiteralUnbounded__Group__0__Impl rule__LiteralUnbounded__Group__1 ;
+    // InternalKerMLExpressions.g:6246:1: rule__LiteralUnbounded__Group__0 : rule__LiteralUnbounded__Group__0__Impl rule__LiteralUnbounded__Group__1 ;
     public final void rule__LiteralUnbounded__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:6123:1: ( rule__LiteralUnbounded__Group__0__Impl rule__LiteralUnbounded__Group__1 )
-            // InternalKerMLExpressions.g:6124:2: rule__LiteralUnbounded__Group__0__Impl rule__LiteralUnbounded__Group__1
+            // InternalKerMLExpressions.g:6250:1: ( rule__LiteralUnbounded__Group__0__Impl rule__LiteralUnbounded__Group__1 )
+            // InternalKerMLExpressions.g:6251:2: rule__LiteralUnbounded__Group__0__Impl rule__LiteralUnbounded__Group__1
             {
             pushFollow(FOLLOW_54);
             rule__LiteralUnbounded__Group__0__Impl();
@@ -18954,21 +19446,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__LiteralUnbounded__Group__0__Impl"
-    // InternalKerMLExpressions.g:6131:1: rule__LiteralUnbounded__Group__0__Impl : ( () ) ;
+    // InternalKerMLExpressions.g:6258:1: rule__LiteralUnbounded__Group__0__Impl : ( () ) ;
     public final void rule__LiteralUnbounded__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:6135:1: ( ( () ) )
-            // InternalKerMLExpressions.g:6136:1: ( () )
+            // InternalKerMLExpressions.g:6262:1: ( ( () ) )
+            // InternalKerMLExpressions.g:6263:1: ( () )
             {
-            // InternalKerMLExpressions.g:6136:1: ( () )
-            // InternalKerMLExpressions.g:6137:2: ()
+            // InternalKerMLExpressions.g:6263:1: ( () )
+            // InternalKerMLExpressions.g:6264:2: ()
             {
              before(grammarAccess.getLiteralUnboundedAccess().getLiteralUnboundedAction_0()); 
-            // InternalKerMLExpressions.g:6138:2: ()
-            // InternalKerMLExpressions.g:6138:3: 
+            // InternalKerMLExpressions.g:6265:2: ()
+            // InternalKerMLExpressions.g:6265:3: 
             {
             }
 
@@ -18991,14 +19483,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__LiteralUnbounded__Group__1"
-    // InternalKerMLExpressions.g:6146:1: rule__LiteralUnbounded__Group__1 : rule__LiteralUnbounded__Group__1__Impl ;
+    // InternalKerMLExpressions.g:6273:1: rule__LiteralUnbounded__Group__1 : rule__LiteralUnbounded__Group__1__Impl ;
     public final void rule__LiteralUnbounded__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:6150:1: ( rule__LiteralUnbounded__Group__1__Impl )
-            // InternalKerMLExpressions.g:6151:2: rule__LiteralUnbounded__Group__1__Impl
+            // InternalKerMLExpressions.g:6277:1: ( rule__LiteralUnbounded__Group__1__Impl )
+            // InternalKerMLExpressions.g:6278:2: rule__LiteralUnbounded__Group__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__LiteralUnbounded__Group__1__Impl();
@@ -19024,20 +19516,20 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__LiteralUnbounded__Group__1__Impl"
-    // InternalKerMLExpressions.g:6157:1: rule__LiteralUnbounded__Group__1__Impl : ( '*' ) ;
+    // InternalKerMLExpressions.g:6284:1: rule__LiteralUnbounded__Group__1__Impl : ( '*' ) ;
     public final void rule__LiteralUnbounded__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:6161:1: ( ( '*' ) )
-            // InternalKerMLExpressions.g:6162:1: ( '*' )
+            // InternalKerMLExpressions.g:6288:1: ( ( '*' ) )
+            // InternalKerMLExpressions.g:6289:1: ( '*' )
             {
-            // InternalKerMLExpressions.g:6162:1: ( '*' )
-            // InternalKerMLExpressions.g:6163:2: '*'
+            // InternalKerMLExpressions.g:6289:1: ( '*' )
+            // InternalKerMLExpressions.g:6290:2: '*'
             {
              before(grammarAccess.getLiteralUnboundedAccess().getAsteriskKeyword_1()); 
-            match(input,35,FOLLOW_2); 
+            match(input,38,FOLLOW_2); 
              after(grammarAccess.getLiteralUnboundedAccess().getAsteriskKeyword_1()); 
 
             }
@@ -19061,14 +19553,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__QualifiedName__Group__0"
-    // InternalKerMLExpressions.g:6173:1: rule__QualifiedName__Group__0 : rule__QualifiedName__Group__0__Impl rule__QualifiedName__Group__1 ;
+    // InternalKerMLExpressions.g:6300:1: rule__QualifiedName__Group__0 : rule__QualifiedName__Group__0__Impl rule__QualifiedName__Group__1 ;
     public final void rule__QualifiedName__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:6177:1: ( rule__QualifiedName__Group__0__Impl rule__QualifiedName__Group__1 )
-            // InternalKerMLExpressions.g:6178:2: rule__QualifiedName__Group__0__Impl rule__QualifiedName__Group__1
+            // InternalKerMLExpressions.g:6304:1: ( rule__QualifiedName__Group__0__Impl rule__QualifiedName__Group__1 )
+            // InternalKerMLExpressions.g:6305:2: rule__QualifiedName__Group__0__Impl rule__QualifiedName__Group__1
             {
             pushFollow(FOLLOW_55);
             rule__QualifiedName__Group__0__Impl();
@@ -19099,17 +19591,17 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__QualifiedName__Group__0__Impl"
-    // InternalKerMLExpressions.g:6185:1: rule__QualifiedName__Group__0__Impl : ( ruleName ) ;
+    // InternalKerMLExpressions.g:6312:1: rule__QualifiedName__Group__0__Impl : ( ruleName ) ;
     public final void rule__QualifiedName__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:6189:1: ( ( ruleName ) )
-            // InternalKerMLExpressions.g:6190:1: ( ruleName )
+            // InternalKerMLExpressions.g:6316:1: ( ( ruleName ) )
+            // InternalKerMLExpressions.g:6317:1: ( ruleName )
             {
-            // InternalKerMLExpressions.g:6190:1: ( ruleName )
-            // InternalKerMLExpressions.g:6191:2: ruleName
+            // InternalKerMLExpressions.g:6317:1: ( ruleName )
+            // InternalKerMLExpressions.g:6318:2: ruleName
             {
              before(grammarAccess.getQualifiedNameAccess().getNameParserRuleCall_0()); 
             pushFollow(FOLLOW_2);
@@ -19140,14 +19632,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__QualifiedName__Group__1"
-    // InternalKerMLExpressions.g:6200:1: rule__QualifiedName__Group__1 : rule__QualifiedName__Group__1__Impl ;
+    // InternalKerMLExpressions.g:6327:1: rule__QualifiedName__Group__1 : rule__QualifiedName__Group__1__Impl ;
     public final void rule__QualifiedName__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:6204:1: ( rule__QualifiedName__Group__1__Impl )
-            // InternalKerMLExpressions.g:6205:2: rule__QualifiedName__Group__1__Impl
+            // InternalKerMLExpressions.g:6331:1: ( rule__QualifiedName__Group__1__Impl )
+            // InternalKerMLExpressions.g:6332:2: rule__QualifiedName__Group__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__QualifiedName__Group__1__Impl();
@@ -19173,33 +19665,33 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__QualifiedName__Group__1__Impl"
-    // InternalKerMLExpressions.g:6211:1: rule__QualifiedName__Group__1__Impl : ( ( rule__QualifiedName__Group_1__0 )* ) ;
+    // InternalKerMLExpressions.g:6338:1: rule__QualifiedName__Group__1__Impl : ( ( rule__QualifiedName__Group_1__0 )* ) ;
     public final void rule__QualifiedName__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:6215:1: ( ( ( rule__QualifiedName__Group_1__0 )* ) )
-            // InternalKerMLExpressions.g:6216:1: ( ( rule__QualifiedName__Group_1__0 )* )
+            // InternalKerMLExpressions.g:6342:1: ( ( ( rule__QualifiedName__Group_1__0 )* ) )
+            // InternalKerMLExpressions.g:6343:1: ( ( rule__QualifiedName__Group_1__0 )* )
             {
-            // InternalKerMLExpressions.g:6216:1: ( ( rule__QualifiedName__Group_1__0 )* )
-            // InternalKerMLExpressions.g:6217:2: ( rule__QualifiedName__Group_1__0 )*
+            // InternalKerMLExpressions.g:6343:1: ( ( rule__QualifiedName__Group_1__0 )* )
+            // InternalKerMLExpressions.g:6344:2: ( rule__QualifiedName__Group_1__0 )*
             {
              before(grammarAccess.getQualifiedNameAccess().getGroup_1()); 
-            // InternalKerMLExpressions.g:6218:2: ( rule__QualifiedName__Group_1__0 )*
-            loop43:
+            // InternalKerMLExpressions.g:6345:2: ( rule__QualifiedName__Group_1__0 )*
+            loop47:
             do {
-                int alt43=2;
-                int LA43_0 = input.LA(1);
+                int alt47=2;
+                int LA47_0 = input.LA(1);
 
-                if ( (LA43_0==55) ) {
-                    alt43=1;
+                if ( (LA47_0==63) ) {
+                    alt47=1;
                 }
 
 
-                switch (alt43) {
+                switch (alt47) {
             	case 1 :
-            	    // InternalKerMLExpressions.g:6218:3: rule__QualifiedName__Group_1__0
+            	    // InternalKerMLExpressions.g:6345:3: rule__QualifiedName__Group_1__0
             	    {
             	    pushFollow(FOLLOW_56);
             	    rule__QualifiedName__Group_1__0();
@@ -19211,7 +19703,7 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
             	    break;
 
             	default :
-            	    break loop43;
+            	    break loop47;
                 }
             } while (true);
 
@@ -19238,14 +19730,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__QualifiedName__Group_1__0"
-    // InternalKerMLExpressions.g:6227:1: rule__QualifiedName__Group_1__0 : rule__QualifiedName__Group_1__0__Impl rule__QualifiedName__Group_1__1 ;
+    // InternalKerMLExpressions.g:6354:1: rule__QualifiedName__Group_1__0 : rule__QualifiedName__Group_1__0__Impl rule__QualifiedName__Group_1__1 ;
     public final void rule__QualifiedName__Group_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:6231:1: ( rule__QualifiedName__Group_1__0__Impl rule__QualifiedName__Group_1__1 )
-            // InternalKerMLExpressions.g:6232:2: rule__QualifiedName__Group_1__0__Impl rule__QualifiedName__Group_1__1
+            // InternalKerMLExpressions.g:6358:1: ( rule__QualifiedName__Group_1__0__Impl rule__QualifiedName__Group_1__1 )
+            // InternalKerMLExpressions.g:6359:2: rule__QualifiedName__Group_1__0__Impl rule__QualifiedName__Group_1__1
             {
             pushFollow(FOLLOW_21);
             rule__QualifiedName__Group_1__0__Impl();
@@ -19276,20 +19768,20 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__QualifiedName__Group_1__0__Impl"
-    // InternalKerMLExpressions.g:6239:1: rule__QualifiedName__Group_1__0__Impl : ( '::' ) ;
+    // InternalKerMLExpressions.g:6366:1: rule__QualifiedName__Group_1__0__Impl : ( '::' ) ;
     public final void rule__QualifiedName__Group_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:6243:1: ( ( '::' ) )
-            // InternalKerMLExpressions.g:6244:1: ( '::' )
+            // InternalKerMLExpressions.g:6370:1: ( ( '::' ) )
+            // InternalKerMLExpressions.g:6371:1: ( '::' )
             {
-            // InternalKerMLExpressions.g:6244:1: ( '::' )
-            // InternalKerMLExpressions.g:6245:2: '::'
+            // InternalKerMLExpressions.g:6371:1: ( '::' )
+            // InternalKerMLExpressions.g:6372:2: '::'
             {
              before(grammarAccess.getQualifiedNameAccess().getColonColonKeyword_1_0()); 
-            match(input,55,FOLLOW_2); 
+            match(input,63,FOLLOW_2); 
              after(grammarAccess.getQualifiedNameAccess().getColonColonKeyword_1_0()); 
 
             }
@@ -19313,14 +19805,14 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__QualifiedName__Group_1__1"
-    // InternalKerMLExpressions.g:6254:1: rule__QualifiedName__Group_1__1 : rule__QualifiedName__Group_1__1__Impl ;
+    // InternalKerMLExpressions.g:6381:1: rule__QualifiedName__Group_1__1 : rule__QualifiedName__Group_1__1__Impl ;
     public final void rule__QualifiedName__Group_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:6258:1: ( rule__QualifiedName__Group_1__1__Impl )
-            // InternalKerMLExpressions.g:6259:2: rule__QualifiedName__Group_1__1__Impl
+            // InternalKerMLExpressions.g:6385:1: ( rule__QualifiedName__Group_1__1__Impl )
+            // InternalKerMLExpressions.g:6386:2: rule__QualifiedName__Group_1__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__QualifiedName__Group_1__1__Impl();
@@ -19346,17 +19838,17 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__QualifiedName__Group_1__1__Impl"
-    // InternalKerMLExpressions.g:6265:1: rule__QualifiedName__Group_1__1__Impl : ( ruleName ) ;
+    // InternalKerMLExpressions.g:6392:1: rule__QualifiedName__Group_1__1__Impl : ( ruleName ) ;
     public final void rule__QualifiedName__Group_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:6269:1: ( ( ruleName ) )
-            // InternalKerMLExpressions.g:6270:1: ( ruleName )
+            // InternalKerMLExpressions.g:6396:1: ( ( ruleName ) )
+            // InternalKerMLExpressions.g:6397:1: ( ruleName )
             {
-            // InternalKerMLExpressions.g:6270:1: ( ruleName )
-            // InternalKerMLExpressions.g:6271:2: ruleName
+            // InternalKerMLExpressions.g:6397:1: ( ruleName )
+            // InternalKerMLExpressions.g:6398:2: ruleName
             {
              before(grammarAccess.getQualifiedNameAccess().getNameParserRuleCall_1_1()); 
             pushFollow(FOLLOW_2);
@@ -19387,17 +19879,17 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__OwnedExpressionMember__OwnedRelatedElementAssignment"
-    // InternalKerMLExpressions.g:6281:1: rule__OwnedExpressionMember__OwnedRelatedElementAssignment : ( ruleOwnedExpression ) ;
+    // InternalKerMLExpressions.g:6408:1: rule__OwnedExpressionMember__OwnedRelatedElementAssignment : ( ruleOwnedExpression ) ;
     public final void rule__OwnedExpressionMember__OwnedRelatedElementAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:6285:1: ( ( ruleOwnedExpression ) )
-            // InternalKerMLExpressions.g:6286:2: ( ruleOwnedExpression )
+            // InternalKerMLExpressions.g:6412:1: ( ( ruleOwnedExpression ) )
+            // InternalKerMLExpressions.g:6413:2: ( ruleOwnedExpression )
             {
-            // InternalKerMLExpressions.g:6286:2: ( ruleOwnedExpression )
-            // InternalKerMLExpressions.g:6287:3: ruleOwnedExpression
+            // InternalKerMLExpressions.g:6413:2: ( ruleOwnedExpression )
+            // InternalKerMLExpressions.g:6414:3: ruleOwnedExpression
             {
              before(grammarAccess.getOwnedExpressionMemberAccess().getOwnedRelatedElementOwnedExpressionParserRuleCall_0()); 
             pushFollow(FOLLOW_2);
@@ -19427,26 +19919,26 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
     // $ANTLR end "rule__OwnedExpressionMember__OwnedRelatedElementAssignment"
 
 
-    // $ANTLR start "rule__ConditionalExpression__OperatorAssignment_1_1"
-    // InternalKerMLExpressions.g:6296:1: rule__ConditionalExpression__OperatorAssignment_1_1 : ( ruleConditionalTestOperator ) ;
-    public final void rule__ConditionalExpression__OperatorAssignment_1_1() throws RecognitionException {
+    // $ANTLR start "rule__ConditionalExpression__OperatorAssignment_0_1_1"
+    // InternalKerMLExpressions.g:6423:1: rule__ConditionalExpression__OperatorAssignment_0_1_1 : ( ruleConditionalOperator ) ;
+    public final void rule__ConditionalExpression__OperatorAssignment_0_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:6300:1: ( ( ruleConditionalTestOperator ) )
-            // InternalKerMLExpressions.g:6301:2: ( ruleConditionalTestOperator )
+            // InternalKerMLExpressions.g:6427:1: ( ( ruleConditionalOperator ) )
+            // InternalKerMLExpressions.g:6428:2: ( ruleConditionalOperator )
             {
-            // InternalKerMLExpressions.g:6301:2: ( ruleConditionalTestOperator )
-            // InternalKerMLExpressions.g:6302:3: ruleConditionalTestOperator
+            // InternalKerMLExpressions.g:6428:2: ( ruleConditionalOperator )
+            // InternalKerMLExpressions.g:6429:3: ruleConditionalOperator
             {
-             before(grammarAccess.getConditionalExpressionAccess().getOperatorConditionalTestOperatorParserRuleCall_1_1_0()); 
+             before(grammarAccess.getConditionalExpressionAccess().getOperatorConditionalOperatorParserRuleCall_0_1_1_0()); 
             pushFollow(FOLLOW_2);
-            ruleConditionalTestOperator();
+            ruleConditionalOperator();
 
             state._fsp--;
 
-             after(grammarAccess.getConditionalExpressionAccess().getOperatorConditionalTestOperatorParserRuleCall_1_1_0()); 
+             after(grammarAccess.getConditionalExpressionAccess().getOperatorConditionalOperatorParserRuleCall_0_1_1_0()); 
 
             }
 
@@ -19465,29 +19957,111 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
         }
         return ;
     }
-    // $ANTLR end "rule__ConditionalExpression__OperatorAssignment_1_1"
+    // $ANTLR end "rule__ConditionalExpression__OperatorAssignment_0_1_1"
 
 
-    // $ANTLR start "rule__ConditionalExpression__OperandAssignment_1_2"
-    // InternalKerMLExpressions.g:6311:1: rule__ConditionalExpression__OperandAssignment_1_2 : ( ruleOwnedExpression ) ;
-    public final void rule__ConditionalExpression__OperandAssignment_1_2() throws RecognitionException {
+    // $ANTLR start "rule__ConditionalExpression__OperandAssignment_0_1_2"
+    // InternalKerMLExpressions.g:6438:1: rule__ConditionalExpression__OperandAssignment_0_1_2 : ( ruleOwnedExpression ) ;
+    public final void rule__ConditionalExpression__OperandAssignment_0_1_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:6315:1: ( ( ruleOwnedExpression ) )
-            // InternalKerMLExpressions.g:6316:2: ( ruleOwnedExpression )
+            // InternalKerMLExpressions.g:6442:1: ( ( ruleOwnedExpression ) )
+            // InternalKerMLExpressions.g:6443:2: ( ruleOwnedExpression )
             {
-            // InternalKerMLExpressions.g:6316:2: ( ruleOwnedExpression )
-            // InternalKerMLExpressions.g:6317:3: ruleOwnedExpression
+            // InternalKerMLExpressions.g:6443:2: ( ruleOwnedExpression )
+            // InternalKerMLExpressions.g:6444:3: ruleOwnedExpression
             {
-             before(grammarAccess.getConditionalExpressionAccess().getOperandOwnedExpressionParserRuleCall_1_2_0()); 
+             before(grammarAccess.getConditionalExpressionAccess().getOperandOwnedExpressionParserRuleCall_0_1_2_0()); 
             pushFollow(FOLLOW_2);
             ruleOwnedExpression();
 
             state._fsp--;
 
-             after(grammarAccess.getConditionalExpressionAccess().getOperandOwnedExpressionParserRuleCall_1_2_0()); 
+             after(grammarAccess.getConditionalExpressionAccess().getOperandOwnedExpressionParserRuleCall_0_1_2_0()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__ConditionalExpression__OperandAssignment_0_1_2"
+
+
+    // $ANTLR start "rule__ConditionalExpression__OperandAssignment_0_1_4"
+    // InternalKerMLExpressions.g:6453:1: rule__ConditionalExpression__OperandAssignment_0_1_4 : ( ruleConditionalExpression ) ;
+    public final void rule__ConditionalExpression__OperandAssignment_0_1_4() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalKerMLExpressions.g:6457:1: ( ( ruleConditionalExpression ) )
+            // InternalKerMLExpressions.g:6458:2: ( ruleConditionalExpression )
+            {
+            // InternalKerMLExpressions.g:6458:2: ( ruleConditionalExpression )
+            // InternalKerMLExpressions.g:6459:3: ruleConditionalExpression
+            {
+             before(grammarAccess.getConditionalExpressionAccess().getOperandConditionalExpressionParserRuleCall_0_1_4_0()); 
+            pushFollow(FOLLOW_2);
+            ruleConditionalExpression();
+
+            state._fsp--;
+
+             after(grammarAccess.getConditionalExpressionAccess().getOperandConditionalExpressionParserRuleCall_0_1_4_0()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__ConditionalExpression__OperandAssignment_0_1_4"
+
+
+    // $ANTLR start "rule__ConditionalExpression__OperandAssignment_1_2"
+    // InternalKerMLExpressions.g:6468:1: rule__ConditionalExpression__OperandAssignment_1_2 : ( ruleNullCoalescingExpression ) ;
+    public final void rule__ConditionalExpression__OperandAssignment_1_2() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalKerMLExpressions.g:6472:1: ( ( ruleNullCoalescingExpression ) )
+            // InternalKerMLExpressions.g:6473:2: ( ruleNullCoalescingExpression )
+            {
+            // InternalKerMLExpressions.g:6473:2: ( ruleNullCoalescingExpression )
+            // InternalKerMLExpressions.g:6474:3: ruleNullCoalescingExpression
+            {
+             before(grammarAccess.getConditionalExpressionAccess().getOperandNullCoalescingExpressionParserRuleCall_1_2_0()); 
+            pushFollow(FOLLOW_2);
+            ruleNullCoalescingExpression();
+
+            state._fsp--;
+
+             after(grammarAccess.getConditionalExpressionAccess().getOperandNullCoalescingExpressionParserRuleCall_1_2_0()); 
 
             }
 
@@ -19509,26 +20083,67 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
     // $ANTLR end "rule__ConditionalExpression__OperandAssignment_1_2"
 
 
+    // $ANTLR start "rule__ConditionalExpression__OperatorAssignment_1_3"
+    // InternalKerMLExpressions.g:6483:1: rule__ConditionalExpression__OperatorAssignment_1_3 : ( ruleConditionalOperator ) ;
+    public final void rule__ConditionalExpression__OperatorAssignment_1_3() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalKerMLExpressions.g:6487:1: ( ( ruleConditionalOperator ) )
+            // InternalKerMLExpressions.g:6488:2: ( ruleConditionalOperator )
+            {
+            // InternalKerMLExpressions.g:6488:2: ( ruleConditionalOperator )
+            // InternalKerMLExpressions.g:6489:3: ruleConditionalOperator
+            {
+             before(grammarAccess.getConditionalExpressionAccess().getOperatorConditionalOperatorParserRuleCall_1_3_0()); 
+            pushFollow(FOLLOW_2);
+            ruleConditionalOperator();
+
+            state._fsp--;
+
+             after(grammarAccess.getConditionalExpressionAccess().getOperatorConditionalOperatorParserRuleCall_1_3_0()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__ConditionalExpression__OperatorAssignment_1_3"
+
+
     // $ANTLR start "rule__ConditionalExpression__OperandAssignment_1_4"
-    // InternalKerMLExpressions.g:6326:1: rule__ConditionalExpression__OperandAssignment_1_4 : ( ruleConditionalExpression ) ;
+    // InternalKerMLExpressions.g:6498:1: rule__ConditionalExpression__OperandAssignment_1_4 : ( ruleOwnedExpression ) ;
     public final void rule__ConditionalExpression__OperandAssignment_1_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:6330:1: ( ( ruleConditionalExpression ) )
-            // InternalKerMLExpressions.g:6331:2: ( ruleConditionalExpression )
+            // InternalKerMLExpressions.g:6502:1: ( ( ruleOwnedExpression ) )
+            // InternalKerMLExpressions.g:6503:2: ( ruleOwnedExpression )
             {
-            // InternalKerMLExpressions.g:6331:2: ( ruleConditionalExpression )
-            // InternalKerMLExpressions.g:6332:3: ruleConditionalExpression
+            // InternalKerMLExpressions.g:6503:2: ( ruleOwnedExpression )
+            // InternalKerMLExpressions.g:6504:3: ruleOwnedExpression
             {
-             before(grammarAccess.getConditionalExpressionAccess().getOperandConditionalExpressionParserRuleCall_1_4_0()); 
+             before(grammarAccess.getConditionalExpressionAccess().getOperandOwnedExpressionParserRuleCall_1_4_0()); 
             pushFollow(FOLLOW_2);
-            ruleConditionalExpression();
+            ruleOwnedExpression();
 
             state._fsp--;
 
-             after(grammarAccess.getConditionalExpressionAccess().getOperandConditionalExpressionParserRuleCall_1_4_0()); 
+             after(grammarAccess.getConditionalExpressionAccess().getOperandOwnedExpressionParserRuleCall_1_4_0()); 
 
             }
 
@@ -19550,18 +20165,59 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
     // $ANTLR end "rule__ConditionalExpression__OperandAssignment_1_4"
 
 
+    // $ANTLR start "rule__ConditionalExpression__OperandAssignment_1_6"
+    // InternalKerMLExpressions.g:6513:1: rule__ConditionalExpression__OperandAssignment_1_6 : ( ruleConditionalExpression ) ;
+    public final void rule__ConditionalExpression__OperandAssignment_1_6() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalKerMLExpressions.g:6517:1: ( ( ruleConditionalExpression ) )
+            // InternalKerMLExpressions.g:6518:2: ( ruleConditionalExpression )
+            {
+            // InternalKerMLExpressions.g:6518:2: ( ruleConditionalExpression )
+            // InternalKerMLExpressions.g:6519:3: ruleConditionalExpression
+            {
+             before(grammarAccess.getConditionalExpressionAccess().getOperandConditionalExpressionParserRuleCall_1_6_0()); 
+            pushFollow(FOLLOW_2);
+            ruleConditionalExpression();
+
+            state._fsp--;
+
+             after(grammarAccess.getConditionalExpressionAccess().getOperandConditionalExpressionParserRuleCall_1_6_0()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__ConditionalExpression__OperandAssignment_1_6"
+
+
     // $ANTLR start "rule__NullCoalescingExpression__OperatorAssignment_1_1"
-    // InternalKerMLExpressions.g:6341:1: rule__NullCoalescingExpression__OperatorAssignment_1_1 : ( ruleNullCoalescingOperator ) ;
+    // InternalKerMLExpressions.g:6528:1: rule__NullCoalescingExpression__OperatorAssignment_1_1 : ( ruleNullCoalescingOperator ) ;
     public final void rule__NullCoalescingExpression__OperatorAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:6345:1: ( ( ruleNullCoalescingOperator ) )
-            // InternalKerMLExpressions.g:6346:2: ( ruleNullCoalescingOperator )
+            // InternalKerMLExpressions.g:6532:1: ( ( ruleNullCoalescingOperator ) )
+            // InternalKerMLExpressions.g:6533:2: ( ruleNullCoalescingOperator )
             {
-            // InternalKerMLExpressions.g:6346:2: ( ruleNullCoalescingOperator )
-            // InternalKerMLExpressions.g:6347:3: ruleNullCoalescingOperator
+            // InternalKerMLExpressions.g:6533:2: ( ruleNullCoalescingOperator )
+            // InternalKerMLExpressions.g:6534:3: ruleNullCoalescingOperator
             {
              before(grammarAccess.getNullCoalescingExpressionAccess().getOperatorNullCoalescingOperatorParserRuleCall_1_1_0()); 
             pushFollow(FOLLOW_2);
@@ -19592,25 +20248,25 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__NullCoalescingExpression__OperandAssignment_1_2"
-    // InternalKerMLExpressions.g:6356:1: rule__NullCoalescingExpression__OperandAssignment_1_2 : ( ruleConditionalOrExpression ) ;
+    // InternalKerMLExpressions.g:6543:1: rule__NullCoalescingExpression__OperandAssignment_1_2 : ( ruleImpliesExpression ) ;
     public final void rule__NullCoalescingExpression__OperandAssignment_1_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:6360:1: ( ( ruleConditionalOrExpression ) )
-            // InternalKerMLExpressions.g:6361:2: ( ruleConditionalOrExpression )
+            // InternalKerMLExpressions.g:6547:1: ( ( ruleImpliesExpression ) )
+            // InternalKerMLExpressions.g:6548:2: ( ruleImpliesExpression )
             {
-            // InternalKerMLExpressions.g:6361:2: ( ruleConditionalOrExpression )
-            // InternalKerMLExpressions.g:6362:3: ruleConditionalOrExpression
+            // InternalKerMLExpressions.g:6548:2: ( ruleImpliesExpression )
+            // InternalKerMLExpressions.g:6549:3: ruleImpliesExpression
             {
-             before(grammarAccess.getNullCoalescingExpressionAccess().getOperandConditionalOrExpressionParserRuleCall_1_2_0()); 
+             before(grammarAccess.getNullCoalescingExpressionAccess().getOperandImpliesExpressionParserRuleCall_1_2_0()); 
             pushFollow(FOLLOW_2);
-            ruleConditionalOrExpression();
+            ruleImpliesExpression();
 
             state._fsp--;
 
-             after(grammarAccess.getNullCoalescingExpressionAccess().getOperandConditionalOrExpressionParserRuleCall_1_2_0()); 
+             after(grammarAccess.getNullCoalescingExpressionAccess().getOperandImpliesExpressionParserRuleCall_1_2_0()); 
 
             }
 
@@ -19632,26 +20288,26 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
     // $ANTLR end "rule__NullCoalescingExpression__OperandAssignment_1_2"
 
 
-    // $ANTLR start "rule__ConditionalOrExpression__OperatorAssignment_1_1"
-    // InternalKerMLExpressions.g:6371:1: rule__ConditionalOrExpression__OperatorAssignment_1_1 : ( ruleConditionalOrOperator ) ;
-    public final void rule__ConditionalOrExpression__OperatorAssignment_1_1() throws RecognitionException {
+    // $ANTLR start "rule__ImpliesExpression__OperatorAssignment_1_1"
+    // InternalKerMLExpressions.g:6558:1: rule__ImpliesExpression__OperatorAssignment_1_1 : ( ruleImpliesOperator ) ;
+    public final void rule__ImpliesExpression__OperatorAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:6375:1: ( ( ruleConditionalOrOperator ) )
-            // InternalKerMLExpressions.g:6376:2: ( ruleConditionalOrOperator )
+            // InternalKerMLExpressions.g:6562:1: ( ( ruleImpliesOperator ) )
+            // InternalKerMLExpressions.g:6563:2: ( ruleImpliesOperator )
             {
-            // InternalKerMLExpressions.g:6376:2: ( ruleConditionalOrOperator )
-            // InternalKerMLExpressions.g:6377:3: ruleConditionalOrOperator
+            // InternalKerMLExpressions.g:6563:2: ( ruleImpliesOperator )
+            // InternalKerMLExpressions.g:6564:3: ruleImpliesOperator
             {
-             before(grammarAccess.getConditionalOrExpressionAccess().getOperatorConditionalOrOperatorParserRuleCall_1_1_0()); 
+             before(grammarAccess.getImpliesExpressionAccess().getOperatorImpliesOperatorParserRuleCall_1_1_0()); 
             pushFollow(FOLLOW_2);
-            ruleConditionalOrOperator();
+            ruleImpliesOperator();
 
             state._fsp--;
 
-             after(grammarAccess.getConditionalOrExpressionAccess().getOperatorConditionalOrOperatorParserRuleCall_1_1_0()); 
+             after(grammarAccess.getImpliesExpressionAccess().getOperatorImpliesOperatorParserRuleCall_1_1_0()); 
 
             }
 
@@ -19670,111 +20326,29 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
         }
         return ;
     }
-    // $ANTLR end "rule__ConditionalOrExpression__OperatorAssignment_1_1"
+    // $ANTLR end "rule__ImpliesExpression__OperatorAssignment_1_1"
 
 
-    // $ANTLR start "rule__ConditionalOrExpression__OperandAssignment_1_2"
-    // InternalKerMLExpressions.g:6386:1: rule__ConditionalOrExpression__OperandAssignment_1_2 : ( ruleConditionalAndExpression ) ;
-    public final void rule__ConditionalOrExpression__OperandAssignment_1_2() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-        	
-        try {
-            // InternalKerMLExpressions.g:6390:1: ( ( ruleConditionalAndExpression ) )
-            // InternalKerMLExpressions.g:6391:2: ( ruleConditionalAndExpression )
-            {
-            // InternalKerMLExpressions.g:6391:2: ( ruleConditionalAndExpression )
-            // InternalKerMLExpressions.g:6392:3: ruleConditionalAndExpression
-            {
-             before(grammarAccess.getConditionalOrExpressionAccess().getOperandConditionalAndExpressionParserRuleCall_1_2_0()); 
-            pushFollow(FOLLOW_2);
-            ruleConditionalAndExpression();
-
-            state._fsp--;
-
-             after(grammarAccess.getConditionalOrExpressionAccess().getOperandConditionalAndExpressionParserRuleCall_1_2_0()); 
-
-            }
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__ConditionalOrExpression__OperandAssignment_1_2"
-
-
-    // $ANTLR start "rule__ConditionalAndExpression__OperatorAssignment_1_1"
-    // InternalKerMLExpressions.g:6401:1: rule__ConditionalAndExpression__OperatorAssignment_1_1 : ( ruleConditionalAndOperator ) ;
-    public final void rule__ConditionalAndExpression__OperatorAssignment_1_1() throws RecognitionException {
+    // $ANTLR start "rule__ImpliesExpression__OperandAssignment_1_2"
+    // InternalKerMLExpressions.g:6573:1: rule__ImpliesExpression__OperandAssignment_1_2 : ( ruleOrExpression ) ;
+    public final void rule__ImpliesExpression__OperandAssignment_1_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:6405:1: ( ( ruleConditionalAndOperator ) )
-            // InternalKerMLExpressions.g:6406:2: ( ruleConditionalAndOperator )
+            // InternalKerMLExpressions.g:6577:1: ( ( ruleOrExpression ) )
+            // InternalKerMLExpressions.g:6578:2: ( ruleOrExpression )
             {
-            // InternalKerMLExpressions.g:6406:2: ( ruleConditionalAndOperator )
-            // InternalKerMLExpressions.g:6407:3: ruleConditionalAndOperator
+            // InternalKerMLExpressions.g:6578:2: ( ruleOrExpression )
+            // InternalKerMLExpressions.g:6579:3: ruleOrExpression
             {
-             before(grammarAccess.getConditionalAndExpressionAccess().getOperatorConditionalAndOperatorParserRuleCall_1_1_0()); 
-            pushFollow(FOLLOW_2);
-            ruleConditionalAndOperator();
-
-            state._fsp--;
-
-             after(grammarAccess.getConditionalAndExpressionAccess().getOperatorConditionalAndOperatorParserRuleCall_1_1_0()); 
-
-            }
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__ConditionalAndExpression__OperatorAssignment_1_1"
-
-
-    // $ANTLR start "rule__ConditionalAndExpression__OperandAssignment_1_2"
-    // InternalKerMLExpressions.g:6416:1: rule__ConditionalAndExpression__OperandAssignment_1_2 : ( ruleOrExpression ) ;
-    public final void rule__ConditionalAndExpression__OperandAssignment_1_2() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-        	
-        try {
-            // InternalKerMLExpressions.g:6420:1: ( ( ruleOrExpression ) )
-            // InternalKerMLExpressions.g:6421:2: ( ruleOrExpression )
-            {
-            // InternalKerMLExpressions.g:6421:2: ( ruleOrExpression )
-            // InternalKerMLExpressions.g:6422:3: ruleOrExpression
-            {
-             before(grammarAccess.getConditionalAndExpressionAccess().getOperandOrExpressionParserRuleCall_1_2_0()); 
+             before(grammarAccess.getImpliesExpressionAccess().getOperandOrExpressionParserRuleCall_1_2_0()); 
             pushFollow(FOLLOW_2);
             ruleOrExpression();
 
             state._fsp--;
 
-             after(grammarAccess.getConditionalAndExpressionAccess().getOperandOrExpressionParserRuleCall_1_2_0()); 
+             after(grammarAccess.getImpliesExpressionAccess().getOperandOrExpressionParserRuleCall_1_2_0()); 
 
             }
 
@@ -19793,21 +20367,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
         }
         return ;
     }
-    // $ANTLR end "rule__ConditionalAndExpression__OperandAssignment_1_2"
+    // $ANTLR end "rule__ImpliesExpression__OperandAssignment_1_2"
 
 
     // $ANTLR start "rule__OrExpression__OperatorAssignment_1_1"
-    // InternalKerMLExpressions.g:6431:1: rule__OrExpression__OperatorAssignment_1_1 : ( ruleOrOperator ) ;
+    // InternalKerMLExpressions.g:6588:1: rule__OrExpression__OperatorAssignment_1_1 : ( ruleOrOperator ) ;
     public final void rule__OrExpression__OperatorAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:6435:1: ( ( ruleOrOperator ) )
-            // InternalKerMLExpressions.g:6436:2: ( ruleOrOperator )
+            // InternalKerMLExpressions.g:6592:1: ( ( ruleOrOperator ) )
+            // InternalKerMLExpressions.g:6593:2: ( ruleOrOperator )
             {
-            // InternalKerMLExpressions.g:6436:2: ( ruleOrOperator )
-            // InternalKerMLExpressions.g:6437:3: ruleOrOperator
+            // InternalKerMLExpressions.g:6593:2: ( ruleOrOperator )
+            // InternalKerMLExpressions.g:6594:3: ruleOrOperator
             {
              before(grammarAccess.getOrExpressionAccess().getOperatorOrOperatorParserRuleCall_1_1_0()); 
             pushFollow(FOLLOW_2);
@@ -19838,17 +20412,17 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__OrExpression__OperandAssignment_1_2"
-    // InternalKerMLExpressions.g:6446:1: rule__OrExpression__OperandAssignment_1_2 : ( ruleXorExpression ) ;
+    // InternalKerMLExpressions.g:6603:1: rule__OrExpression__OperandAssignment_1_2 : ( ruleXorExpression ) ;
     public final void rule__OrExpression__OperandAssignment_1_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:6450:1: ( ( ruleXorExpression ) )
-            // InternalKerMLExpressions.g:6451:2: ( ruleXorExpression )
+            // InternalKerMLExpressions.g:6607:1: ( ( ruleXorExpression ) )
+            // InternalKerMLExpressions.g:6608:2: ( ruleXorExpression )
             {
-            // InternalKerMLExpressions.g:6451:2: ( ruleXorExpression )
-            // InternalKerMLExpressions.g:6452:3: ruleXorExpression
+            // InternalKerMLExpressions.g:6608:2: ( ruleXorExpression )
+            // InternalKerMLExpressions.g:6609:3: ruleXorExpression
             {
              before(grammarAccess.getOrExpressionAccess().getOperandXorExpressionParserRuleCall_1_2_0()); 
             pushFollow(FOLLOW_2);
@@ -19879,17 +20453,17 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__XorExpression__OperatorAssignment_1_1"
-    // InternalKerMLExpressions.g:6461:1: rule__XorExpression__OperatorAssignment_1_1 : ( ruleXorOperator ) ;
+    // InternalKerMLExpressions.g:6618:1: rule__XorExpression__OperatorAssignment_1_1 : ( ruleXorOperator ) ;
     public final void rule__XorExpression__OperatorAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:6465:1: ( ( ruleXorOperator ) )
-            // InternalKerMLExpressions.g:6466:2: ( ruleXorOperator )
+            // InternalKerMLExpressions.g:6622:1: ( ( ruleXorOperator ) )
+            // InternalKerMLExpressions.g:6623:2: ( ruleXorOperator )
             {
-            // InternalKerMLExpressions.g:6466:2: ( ruleXorOperator )
-            // InternalKerMLExpressions.g:6467:3: ruleXorOperator
+            // InternalKerMLExpressions.g:6623:2: ( ruleXorOperator )
+            // InternalKerMLExpressions.g:6624:3: ruleXorOperator
             {
              before(grammarAccess.getXorExpressionAccess().getOperatorXorOperatorParserRuleCall_1_1_0()); 
             pushFollow(FOLLOW_2);
@@ -19920,17 +20494,17 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__XorExpression__OperandAssignment_1_2"
-    // InternalKerMLExpressions.g:6476:1: rule__XorExpression__OperandAssignment_1_2 : ( ruleAndExpression ) ;
+    // InternalKerMLExpressions.g:6633:1: rule__XorExpression__OperandAssignment_1_2 : ( ruleAndExpression ) ;
     public final void rule__XorExpression__OperandAssignment_1_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:6480:1: ( ( ruleAndExpression ) )
-            // InternalKerMLExpressions.g:6481:2: ( ruleAndExpression )
+            // InternalKerMLExpressions.g:6637:1: ( ( ruleAndExpression ) )
+            // InternalKerMLExpressions.g:6638:2: ( ruleAndExpression )
             {
-            // InternalKerMLExpressions.g:6481:2: ( ruleAndExpression )
-            // InternalKerMLExpressions.g:6482:3: ruleAndExpression
+            // InternalKerMLExpressions.g:6638:2: ( ruleAndExpression )
+            // InternalKerMLExpressions.g:6639:3: ruleAndExpression
             {
              before(grammarAccess.getXorExpressionAccess().getOperandAndExpressionParserRuleCall_1_2_0()); 
             pushFollow(FOLLOW_2);
@@ -19961,17 +20535,17 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__AndExpression__OperatorAssignment_1_1"
-    // InternalKerMLExpressions.g:6491:1: rule__AndExpression__OperatorAssignment_1_1 : ( ruleAndOperator ) ;
+    // InternalKerMLExpressions.g:6648:1: rule__AndExpression__OperatorAssignment_1_1 : ( ruleAndOperator ) ;
     public final void rule__AndExpression__OperatorAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:6495:1: ( ( ruleAndOperator ) )
-            // InternalKerMLExpressions.g:6496:2: ( ruleAndOperator )
+            // InternalKerMLExpressions.g:6652:1: ( ( ruleAndOperator ) )
+            // InternalKerMLExpressions.g:6653:2: ( ruleAndOperator )
             {
-            // InternalKerMLExpressions.g:6496:2: ( ruleAndOperator )
-            // InternalKerMLExpressions.g:6497:3: ruleAndOperator
+            // InternalKerMLExpressions.g:6653:2: ( ruleAndOperator )
+            // InternalKerMLExpressions.g:6654:3: ruleAndOperator
             {
              before(grammarAccess.getAndExpressionAccess().getOperatorAndOperatorParserRuleCall_1_1_0()); 
             pushFollow(FOLLOW_2);
@@ -20002,17 +20576,17 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__AndExpression__OperandAssignment_1_2"
-    // InternalKerMLExpressions.g:6506:1: rule__AndExpression__OperandAssignment_1_2 : ( ruleEqualityExpression ) ;
+    // InternalKerMLExpressions.g:6663:1: rule__AndExpression__OperandAssignment_1_2 : ( ruleEqualityExpression ) ;
     public final void rule__AndExpression__OperandAssignment_1_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:6510:1: ( ( ruleEqualityExpression ) )
-            // InternalKerMLExpressions.g:6511:2: ( ruleEqualityExpression )
+            // InternalKerMLExpressions.g:6667:1: ( ( ruleEqualityExpression ) )
+            // InternalKerMLExpressions.g:6668:2: ( ruleEqualityExpression )
             {
-            // InternalKerMLExpressions.g:6511:2: ( ruleEqualityExpression )
-            // InternalKerMLExpressions.g:6512:3: ruleEqualityExpression
+            // InternalKerMLExpressions.g:6668:2: ( ruleEqualityExpression )
+            // InternalKerMLExpressions.g:6669:3: ruleEqualityExpression
             {
              before(grammarAccess.getAndExpressionAccess().getOperandEqualityExpressionParserRuleCall_1_2_0()); 
             pushFollow(FOLLOW_2);
@@ -20043,17 +20617,17 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__EqualityExpression__OperatorAssignment_1_1"
-    // InternalKerMLExpressions.g:6521:1: rule__EqualityExpression__OperatorAssignment_1_1 : ( ruleEqualityOperator ) ;
+    // InternalKerMLExpressions.g:6678:1: rule__EqualityExpression__OperatorAssignment_1_1 : ( ruleEqualityOperator ) ;
     public final void rule__EqualityExpression__OperatorAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:6525:1: ( ( ruleEqualityOperator ) )
-            // InternalKerMLExpressions.g:6526:2: ( ruleEqualityOperator )
+            // InternalKerMLExpressions.g:6682:1: ( ( ruleEqualityOperator ) )
+            // InternalKerMLExpressions.g:6683:2: ( ruleEqualityOperator )
             {
-            // InternalKerMLExpressions.g:6526:2: ( ruleEqualityOperator )
-            // InternalKerMLExpressions.g:6527:3: ruleEqualityOperator
+            // InternalKerMLExpressions.g:6683:2: ( ruleEqualityOperator )
+            // InternalKerMLExpressions.g:6684:3: ruleEqualityOperator
             {
              before(grammarAccess.getEqualityExpressionAccess().getOperatorEqualityOperatorParserRuleCall_1_1_0()); 
             pushFollow(FOLLOW_2);
@@ -20084,17 +20658,17 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__EqualityExpression__OperandAssignment_1_2"
-    // InternalKerMLExpressions.g:6536:1: rule__EqualityExpression__OperandAssignment_1_2 : ( ruleClassificationExpression ) ;
+    // InternalKerMLExpressions.g:6693:1: rule__EqualityExpression__OperandAssignment_1_2 : ( ruleClassificationExpression ) ;
     public final void rule__EqualityExpression__OperandAssignment_1_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:6540:1: ( ( ruleClassificationExpression ) )
-            // InternalKerMLExpressions.g:6541:2: ( ruleClassificationExpression )
+            // InternalKerMLExpressions.g:6697:1: ( ( ruleClassificationExpression ) )
+            // InternalKerMLExpressions.g:6698:2: ( ruleClassificationExpression )
             {
-            // InternalKerMLExpressions.g:6541:2: ( ruleClassificationExpression )
-            // InternalKerMLExpressions.g:6542:3: ruleClassificationExpression
+            // InternalKerMLExpressions.g:6698:2: ( ruleClassificationExpression )
+            // InternalKerMLExpressions.g:6699:3: ruleClassificationExpression
             {
              before(grammarAccess.getEqualityExpressionAccess().getOperandClassificationExpressionParserRuleCall_1_2_0()); 
             pushFollow(FOLLOW_2);
@@ -20125,17 +20699,17 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__ClassificationExpression__OperatorAssignment_0_1_1"
-    // InternalKerMLExpressions.g:6551:1: rule__ClassificationExpression__OperatorAssignment_0_1_1 : ( ruleClassificationOperator ) ;
+    // InternalKerMLExpressions.g:6708:1: rule__ClassificationExpression__OperatorAssignment_0_1_1 : ( ruleClassificationOperator ) ;
     public final void rule__ClassificationExpression__OperatorAssignment_0_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:6555:1: ( ( ruleClassificationOperator ) )
-            // InternalKerMLExpressions.g:6556:2: ( ruleClassificationOperator )
+            // InternalKerMLExpressions.g:6712:1: ( ( ruleClassificationOperator ) )
+            // InternalKerMLExpressions.g:6713:2: ( ruleClassificationOperator )
             {
-            // InternalKerMLExpressions.g:6556:2: ( ruleClassificationOperator )
-            // InternalKerMLExpressions.g:6557:3: ruleClassificationOperator
+            // InternalKerMLExpressions.g:6713:2: ( ruleClassificationOperator )
+            // InternalKerMLExpressions.g:6714:3: ruleClassificationOperator
             {
              before(grammarAccess.getClassificationExpressionAccess().getOperatorClassificationOperatorParserRuleCall_0_1_1_0()); 
             pushFollow(FOLLOW_2);
@@ -20166,17 +20740,17 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__ClassificationExpression__OwnedRelationshipAssignment_0_1_2"
-    // InternalKerMLExpressions.g:6566:1: rule__ClassificationExpression__OwnedRelationshipAssignment_0_1_2 : ( ruleTypeReferenceMember ) ;
+    // InternalKerMLExpressions.g:6723:1: rule__ClassificationExpression__OwnedRelationshipAssignment_0_1_2 : ( ruleTypeReferenceMember ) ;
     public final void rule__ClassificationExpression__OwnedRelationshipAssignment_0_1_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:6570:1: ( ( ruleTypeReferenceMember ) )
-            // InternalKerMLExpressions.g:6571:2: ( ruleTypeReferenceMember )
+            // InternalKerMLExpressions.g:6727:1: ( ( ruleTypeReferenceMember ) )
+            // InternalKerMLExpressions.g:6728:2: ( ruleTypeReferenceMember )
             {
-            // InternalKerMLExpressions.g:6571:2: ( ruleTypeReferenceMember )
-            // InternalKerMLExpressions.g:6572:3: ruleTypeReferenceMember
+            // InternalKerMLExpressions.g:6728:2: ( ruleTypeReferenceMember )
+            // InternalKerMLExpressions.g:6729:3: ruleTypeReferenceMember
             {
              before(grammarAccess.getClassificationExpressionAccess().getOwnedRelationshipTypeReferenceMemberParserRuleCall_0_1_2_0()); 
             pushFollow(FOLLOW_2);
@@ -20207,17 +20781,17 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__ClassificationExpression__OperandAssignment_1_1"
-    // InternalKerMLExpressions.g:6581:1: rule__ClassificationExpression__OperandAssignment_1_1 : ( ruleSelfReferenceExpression ) ;
+    // InternalKerMLExpressions.g:6738:1: rule__ClassificationExpression__OperandAssignment_1_1 : ( ruleSelfReferenceExpression ) ;
     public final void rule__ClassificationExpression__OperandAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:6585:1: ( ( ruleSelfReferenceExpression ) )
-            // InternalKerMLExpressions.g:6586:2: ( ruleSelfReferenceExpression )
+            // InternalKerMLExpressions.g:6742:1: ( ( ruleSelfReferenceExpression ) )
+            // InternalKerMLExpressions.g:6743:2: ( ruleSelfReferenceExpression )
             {
-            // InternalKerMLExpressions.g:6586:2: ( ruleSelfReferenceExpression )
-            // InternalKerMLExpressions.g:6587:3: ruleSelfReferenceExpression
+            // InternalKerMLExpressions.g:6743:2: ( ruleSelfReferenceExpression )
+            // InternalKerMLExpressions.g:6744:3: ruleSelfReferenceExpression
             {
              before(grammarAccess.getClassificationExpressionAccess().getOperandSelfReferenceExpressionParserRuleCall_1_1_0()); 
             pushFollow(FOLLOW_2);
@@ -20248,17 +20822,17 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__ClassificationExpression__OperatorAssignment_1_2"
-    // InternalKerMLExpressions.g:6596:1: rule__ClassificationExpression__OperatorAssignment_1_2 : ( ruleClassificationOperator ) ;
+    // InternalKerMLExpressions.g:6753:1: rule__ClassificationExpression__OperatorAssignment_1_2 : ( ruleClassificationOperator ) ;
     public final void rule__ClassificationExpression__OperatorAssignment_1_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:6600:1: ( ( ruleClassificationOperator ) )
-            // InternalKerMLExpressions.g:6601:2: ( ruleClassificationOperator )
+            // InternalKerMLExpressions.g:6757:1: ( ( ruleClassificationOperator ) )
+            // InternalKerMLExpressions.g:6758:2: ( ruleClassificationOperator )
             {
-            // InternalKerMLExpressions.g:6601:2: ( ruleClassificationOperator )
-            // InternalKerMLExpressions.g:6602:3: ruleClassificationOperator
+            // InternalKerMLExpressions.g:6758:2: ( ruleClassificationOperator )
+            // InternalKerMLExpressions.g:6759:3: ruleClassificationOperator
             {
              before(grammarAccess.getClassificationExpressionAccess().getOperatorClassificationOperatorParserRuleCall_1_2_0()); 
             pushFollow(FOLLOW_2);
@@ -20289,17 +20863,17 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__ClassificationExpression__OwnedRelationshipAssignment_1_3"
-    // InternalKerMLExpressions.g:6611:1: rule__ClassificationExpression__OwnedRelationshipAssignment_1_3 : ( ruleTypeReferenceMember ) ;
+    // InternalKerMLExpressions.g:6768:1: rule__ClassificationExpression__OwnedRelationshipAssignment_1_3 : ( ruleTypeReferenceMember ) ;
     public final void rule__ClassificationExpression__OwnedRelationshipAssignment_1_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:6615:1: ( ( ruleTypeReferenceMember ) )
-            // InternalKerMLExpressions.g:6616:2: ( ruleTypeReferenceMember )
+            // InternalKerMLExpressions.g:6772:1: ( ( ruleTypeReferenceMember ) )
+            // InternalKerMLExpressions.g:6773:2: ( ruleTypeReferenceMember )
             {
-            // InternalKerMLExpressions.g:6616:2: ( ruleTypeReferenceMember )
-            // InternalKerMLExpressions.g:6617:3: ruleTypeReferenceMember
+            // InternalKerMLExpressions.g:6773:2: ( ruleTypeReferenceMember )
+            // InternalKerMLExpressions.g:6774:3: ruleTypeReferenceMember
             {
              before(grammarAccess.getClassificationExpressionAccess().getOwnedRelationshipTypeReferenceMemberParserRuleCall_1_3_0()); 
             pushFollow(FOLLOW_2);
@@ -20330,17 +20904,17 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__TypeReferenceMember__OwnedRelatedElementAssignment"
-    // InternalKerMLExpressions.g:6626:1: rule__TypeReferenceMember__OwnedRelatedElementAssignment : ( ruleTypeReference ) ;
+    // InternalKerMLExpressions.g:6783:1: rule__TypeReferenceMember__OwnedRelatedElementAssignment : ( ruleTypeReference ) ;
     public final void rule__TypeReferenceMember__OwnedRelatedElementAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:6630:1: ( ( ruleTypeReference ) )
-            // InternalKerMLExpressions.g:6631:2: ( ruleTypeReference )
+            // InternalKerMLExpressions.g:6787:1: ( ( ruleTypeReference ) )
+            // InternalKerMLExpressions.g:6788:2: ( ruleTypeReference )
             {
-            // InternalKerMLExpressions.g:6631:2: ( ruleTypeReference )
-            // InternalKerMLExpressions.g:6632:3: ruleTypeReference
+            // InternalKerMLExpressions.g:6788:2: ( ruleTypeReference )
+            // InternalKerMLExpressions.g:6789:3: ruleTypeReference
             {
              before(grammarAccess.getTypeReferenceMemberAccess().getOwnedRelatedElementTypeReferenceParserRuleCall_0()); 
             pushFollow(FOLLOW_2);
@@ -20371,17 +20945,17 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__TypeReference__OwnedRelationshipAssignment"
-    // InternalKerMLExpressions.g:6641:1: rule__TypeReference__OwnedRelationshipAssignment : ( ruleOwnedFeatureTyping ) ;
+    // InternalKerMLExpressions.g:6798:1: rule__TypeReference__OwnedRelationshipAssignment : ( ruleOwnedFeatureTyping ) ;
     public final void rule__TypeReference__OwnedRelationshipAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:6645:1: ( ( ruleOwnedFeatureTyping ) )
-            // InternalKerMLExpressions.g:6646:2: ( ruleOwnedFeatureTyping )
+            // InternalKerMLExpressions.g:6802:1: ( ( ruleOwnedFeatureTyping ) )
+            // InternalKerMLExpressions.g:6803:2: ( ruleOwnedFeatureTyping )
             {
-            // InternalKerMLExpressions.g:6646:2: ( ruleOwnedFeatureTyping )
-            // InternalKerMLExpressions.g:6647:3: ruleOwnedFeatureTyping
+            // InternalKerMLExpressions.g:6803:2: ( ruleOwnedFeatureTyping )
+            // InternalKerMLExpressions.g:6804:3: ruleOwnedFeatureTyping
             {
              before(grammarAccess.getTypeReferenceAccess().getOwnedRelationshipOwnedFeatureTypingParserRuleCall_0()); 
             pushFollow(FOLLOW_2);
@@ -20412,21 +20986,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__OwnedFeatureTyping__TypeAssignment"
-    // InternalKerMLExpressions.g:6656:1: rule__OwnedFeatureTyping__TypeAssignment : ( ( ruleQualifiedName ) ) ;
+    // InternalKerMLExpressions.g:6813:1: rule__OwnedFeatureTyping__TypeAssignment : ( ( ruleQualifiedName ) ) ;
     public final void rule__OwnedFeatureTyping__TypeAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:6660:1: ( ( ( ruleQualifiedName ) ) )
-            // InternalKerMLExpressions.g:6661:2: ( ( ruleQualifiedName ) )
+            // InternalKerMLExpressions.g:6817:1: ( ( ( ruleQualifiedName ) ) )
+            // InternalKerMLExpressions.g:6818:2: ( ( ruleQualifiedName ) )
             {
-            // InternalKerMLExpressions.g:6661:2: ( ( ruleQualifiedName ) )
-            // InternalKerMLExpressions.g:6662:3: ( ruleQualifiedName )
+            // InternalKerMLExpressions.g:6818:2: ( ( ruleQualifiedName ) )
+            // InternalKerMLExpressions.g:6819:3: ( ruleQualifiedName )
             {
              before(grammarAccess.getOwnedFeatureTypingAccess().getTypeTypeCrossReference_0()); 
-            // InternalKerMLExpressions.g:6663:3: ( ruleQualifiedName )
-            // InternalKerMLExpressions.g:6664:4: ruleQualifiedName
+            // InternalKerMLExpressions.g:6820:3: ( ruleQualifiedName )
+            // InternalKerMLExpressions.g:6821:4: ruleQualifiedName
             {
              before(grammarAccess.getOwnedFeatureTypingAccess().getTypeTypeQualifiedNameParserRuleCall_0_1()); 
             pushFollow(FOLLOW_2);
@@ -20461,17 +21035,17 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__SelfReferenceExpression__OwnedRelationshipAssignment"
-    // InternalKerMLExpressions.g:6675:1: rule__SelfReferenceExpression__OwnedRelationshipAssignment : ( ruleSelfReferenceMember ) ;
+    // InternalKerMLExpressions.g:6832:1: rule__SelfReferenceExpression__OwnedRelationshipAssignment : ( ruleSelfReferenceMember ) ;
     public final void rule__SelfReferenceExpression__OwnedRelationshipAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:6679:1: ( ( ruleSelfReferenceMember ) )
-            // InternalKerMLExpressions.g:6680:2: ( ruleSelfReferenceMember )
+            // InternalKerMLExpressions.g:6836:1: ( ( ruleSelfReferenceMember ) )
+            // InternalKerMLExpressions.g:6837:2: ( ruleSelfReferenceMember )
             {
-            // InternalKerMLExpressions.g:6680:2: ( ruleSelfReferenceMember )
-            // InternalKerMLExpressions.g:6681:3: ruleSelfReferenceMember
+            // InternalKerMLExpressions.g:6837:2: ( ruleSelfReferenceMember )
+            // InternalKerMLExpressions.g:6838:3: ruleSelfReferenceMember
             {
              before(grammarAccess.getSelfReferenceExpressionAccess().getOwnedRelationshipSelfReferenceMemberParserRuleCall_0()); 
             pushFollow(FOLLOW_2);
@@ -20502,17 +21076,17 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__SelfReferenceMember__OwnedRelatedElementAssignment"
-    // InternalKerMLExpressions.g:6690:1: rule__SelfReferenceMember__OwnedRelatedElementAssignment : ( ruleEmptyFeature ) ;
+    // InternalKerMLExpressions.g:6847:1: rule__SelfReferenceMember__OwnedRelatedElementAssignment : ( ruleEmptyFeature ) ;
     public final void rule__SelfReferenceMember__OwnedRelatedElementAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:6694:1: ( ( ruleEmptyFeature ) )
-            // InternalKerMLExpressions.g:6695:2: ( ruleEmptyFeature )
+            // InternalKerMLExpressions.g:6851:1: ( ( ruleEmptyFeature ) )
+            // InternalKerMLExpressions.g:6852:2: ( ruleEmptyFeature )
             {
-            // InternalKerMLExpressions.g:6695:2: ( ruleEmptyFeature )
-            // InternalKerMLExpressions.g:6696:3: ruleEmptyFeature
+            // InternalKerMLExpressions.g:6852:2: ( ruleEmptyFeature )
+            // InternalKerMLExpressions.g:6853:3: ruleEmptyFeature
             {
              before(grammarAccess.getSelfReferenceMemberAccess().getOwnedRelatedElementEmptyFeatureParserRuleCall_0()); 
             pushFollow(FOLLOW_2);
@@ -20543,17 +21117,17 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__RelationalExpression__OperatorAssignment_1_1"
-    // InternalKerMLExpressions.g:6705:1: rule__RelationalExpression__OperatorAssignment_1_1 : ( ruleRelationalOperator ) ;
+    // InternalKerMLExpressions.g:6862:1: rule__RelationalExpression__OperatorAssignment_1_1 : ( ruleRelationalOperator ) ;
     public final void rule__RelationalExpression__OperatorAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:6709:1: ( ( ruleRelationalOperator ) )
-            // InternalKerMLExpressions.g:6710:2: ( ruleRelationalOperator )
+            // InternalKerMLExpressions.g:6866:1: ( ( ruleRelationalOperator ) )
+            // InternalKerMLExpressions.g:6867:2: ( ruleRelationalOperator )
             {
-            // InternalKerMLExpressions.g:6710:2: ( ruleRelationalOperator )
-            // InternalKerMLExpressions.g:6711:3: ruleRelationalOperator
+            // InternalKerMLExpressions.g:6867:2: ( ruleRelationalOperator )
+            // InternalKerMLExpressions.g:6868:3: ruleRelationalOperator
             {
              before(grammarAccess.getRelationalExpressionAccess().getOperatorRelationalOperatorParserRuleCall_1_1_0()); 
             pushFollow(FOLLOW_2);
@@ -20584,17 +21158,17 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__RelationalExpression__OperandAssignment_1_2"
-    // InternalKerMLExpressions.g:6720:1: rule__RelationalExpression__OperandAssignment_1_2 : ( ruleRangeExpression ) ;
+    // InternalKerMLExpressions.g:6877:1: rule__RelationalExpression__OperandAssignment_1_2 : ( ruleRangeExpression ) ;
     public final void rule__RelationalExpression__OperandAssignment_1_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:6724:1: ( ( ruleRangeExpression ) )
-            // InternalKerMLExpressions.g:6725:2: ( ruleRangeExpression )
+            // InternalKerMLExpressions.g:6881:1: ( ( ruleRangeExpression ) )
+            // InternalKerMLExpressions.g:6882:2: ( ruleRangeExpression )
             {
-            // InternalKerMLExpressions.g:6725:2: ( ruleRangeExpression )
-            // InternalKerMLExpressions.g:6726:3: ruleRangeExpression
+            // InternalKerMLExpressions.g:6882:2: ( ruleRangeExpression )
+            // InternalKerMLExpressions.g:6883:3: ruleRangeExpression
             {
              before(grammarAccess.getRelationalExpressionAccess().getOperandRangeExpressionParserRuleCall_1_2_0()); 
             pushFollow(FOLLOW_2);
@@ -20625,24 +21199,24 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__RangeExpression__OperatorAssignment_1_1"
-    // InternalKerMLExpressions.g:6735:1: rule__RangeExpression__OperatorAssignment_1_1 : ( ( '..' ) ) ;
+    // InternalKerMLExpressions.g:6892:1: rule__RangeExpression__OperatorAssignment_1_1 : ( ( '..' ) ) ;
     public final void rule__RangeExpression__OperatorAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:6739:1: ( ( ( '..' ) ) )
-            // InternalKerMLExpressions.g:6740:2: ( ( '..' ) )
+            // InternalKerMLExpressions.g:6896:1: ( ( ( '..' ) ) )
+            // InternalKerMLExpressions.g:6897:2: ( ( '..' ) )
             {
-            // InternalKerMLExpressions.g:6740:2: ( ( '..' ) )
-            // InternalKerMLExpressions.g:6741:3: ( '..' )
-            {
-             before(grammarAccess.getRangeExpressionAccess().getOperatorFullStopFullStopKeyword_1_1_0()); 
-            // InternalKerMLExpressions.g:6742:3: ( '..' )
-            // InternalKerMLExpressions.g:6743:4: '..'
+            // InternalKerMLExpressions.g:6897:2: ( ( '..' ) )
+            // InternalKerMLExpressions.g:6898:3: ( '..' )
             {
              before(grammarAccess.getRangeExpressionAccess().getOperatorFullStopFullStopKeyword_1_1_0()); 
-            match(input,56,FOLLOW_2); 
+            // InternalKerMLExpressions.g:6899:3: ( '..' )
+            // InternalKerMLExpressions.g:6900:4: '..'
+            {
+             before(grammarAccess.getRangeExpressionAccess().getOperatorFullStopFullStopKeyword_1_1_0()); 
+            match(input,64,FOLLOW_2); 
              after(grammarAccess.getRangeExpressionAccess().getOperatorFullStopFullStopKeyword_1_1_0()); 
 
             }
@@ -20670,17 +21244,17 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__RangeExpression__OperandAssignment_1_2"
-    // InternalKerMLExpressions.g:6754:1: rule__RangeExpression__OperandAssignment_1_2 : ( ruleAdditiveExpression ) ;
+    // InternalKerMLExpressions.g:6911:1: rule__RangeExpression__OperandAssignment_1_2 : ( ruleAdditiveExpression ) ;
     public final void rule__RangeExpression__OperandAssignment_1_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:6758:1: ( ( ruleAdditiveExpression ) )
-            // InternalKerMLExpressions.g:6759:2: ( ruleAdditiveExpression )
+            // InternalKerMLExpressions.g:6915:1: ( ( ruleAdditiveExpression ) )
+            // InternalKerMLExpressions.g:6916:2: ( ruleAdditiveExpression )
             {
-            // InternalKerMLExpressions.g:6759:2: ( ruleAdditiveExpression )
-            // InternalKerMLExpressions.g:6760:3: ruleAdditiveExpression
+            // InternalKerMLExpressions.g:6916:2: ( ruleAdditiveExpression )
+            // InternalKerMLExpressions.g:6917:3: ruleAdditiveExpression
             {
              before(grammarAccess.getRangeExpressionAccess().getOperandAdditiveExpressionParserRuleCall_1_2_0()); 
             pushFollow(FOLLOW_2);
@@ -20711,17 +21285,17 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__AdditiveExpression__OperatorAssignment_1_1"
-    // InternalKerMLExpressions.g:6769:1: rule__AdditiveExpression__OperatorAssignment_1_1 : ( ruleAdditiveOperator ) ;
+    // InternalKerMLExpressions.g:6926:1: rule__AdditiveExpression__OperatorAssignment_1_1 : ( ruleAdditiveOperator ) ;
     public final void rule__AdditiveExpression__OperatorAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:6773:1: ( ( ruleAdditiveOperator ) )
-            // InternalKerMLExpressions.g:6774:2: ( ruleAdditiveOperator )
+            // InternalKerMLExpressions.g:6930:1: ( ( ruleAdditiveOperator ) )
+            // InternalKerMLExpressions.g:6931:2: ( ruleAdditiveOperator )
             {
-            // InternalKerMLExpressions.g:6774:2: ( ruleAdditiveOperator )
-            // InternalKerMLExpressions.g:6775:3: ruleAdditiveOperator
+            // InternalKerMLExpressions.g:6931:2: ( ruleAdditiveOperator )
+            // InternalKerMLExpressions.g:6932:3: ruleAdditiveOperator
             {
              before(grammarAccess.getAdditiveExpressionAccess().getOperatorAdditiveOperatorParserRuleCall_1_1_0()); 
             pushFollow(FOLLOW_2);
@@ -20752,17 +21326,17 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__AdditiveExpression__OperandAssignment_1_2"
-    // InternalKerMLExpressions.g:6784:1: rule__AdditiveExpression__OperandAssignment_1_2 : ( ruleMultiplicativeExpression ) ;
+    // InternalKerMLExpressions.g:6941:1: rule__AdditiveExpression__OperandAssignment_1_2 : ( ruleMultiplicativeExpression ) ;
     public final void rule__AdditiveExpression__OperandAssignment_1_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:6788:1: ( ( ruleMultiplicativeExpression ) )
-            // InternalKerMLExpressions.g:6789:2: ( ruleMultiplicativeExpression )
+            // InternalKerMLExpressions.g:6945:1: ( ( ruleMultiplicativeExpression ) )
+            // InternalKerMLExpressions.g:6946:2: ( ruleMultiplicativeExpression )
             {
-            // InternalKerMLExpressions.g:6789:2: ( ruleMultiplicativeExpression )
-            // InternalKerMLExpressions.g:6790:3: ruleMultiplicativeExpression
+            // InternalKerMLExpressions.g:6946:2: ( ruleMultiplicativeExpression )
+            // InternalKerMLExpressions.g:6947:3: ruleMultiplicativeExpression
             {
              before(grammarAccess.getAdditiveExpressionAccess().getOperandMultiplicativeExpressionParserRuleCall_1_2_0()); 
             pushFollow(FOLLOW_2);
@@ -20793,17 +21367,17 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__MultiplicativeExpression__OperatorAssignment_1_1"
-    // InternalKerMLExpressions.g:6799:1: rule__MultiplicativeExpression__OperatorAssignment_1_1 : ( ruleMultiplicativeOperator ) ;
+    // InternalKerMLExpressions.g:6956:1: rule__MultiplicativeExpression__OperatorAssignment_1_1 : ( ruleMultiplicativeOperator ) ;
     public final void rule__MultiplicativeExpression__OperatorAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:6803:1: ( ( ruleMultiplicativeOperator ) )
-            // InternalKerMLExpressions.g:6804:2: ( ruleMultiplicativeOperator )
+            // InternalKerMLExpressions.g:6960:1: ( ( ruleMultiplicativeOperator ) )
+            // InternalKerMLExpressions.g:6961:2: ( ruleMultiplicativeOperator )
             {
-            // InternalKerMLExpressions.g:6804:2: ( ruleMultiplicativeOperator )
-            // InternalKerMLExpressions.g:6805:3: ruleMultiplicativeOperator
+            // InternalKerMLExpressions.g:6961:2: ( ruleMultiplicativeOperator )
+            // InternalKerMLExpressions.g:6962:3: ruleMultiplicativeOperator
             {
              before(grammarAccess.getMultiplicativeExpressionAccess().getOperatorMultiplicativeOperatorParserRuleCall_1_1_0()); 
             pushFollow(FOLLOW_2);
@@ -20834,17 +21408,17 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__MultiplicativeExpression__OperandAssignment_1_2"
-    // InternalKerMLExpressions.g:6814:1: rule__MultiplicativeExpression__OperandAssignment_1_2 : ( ruleExponentiationExpression ) ;
+    // InternalKerMLExpressions.g:6971:1: rule__MultiplicativeExpression__OperandAssignment_1_2 : ( ruleExponentiationExpression ) ;
     public final void rule__MultiplicativeExpression__OperandAssignment_1_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:6818:1: ( ( ruleExponentiationExpression ) )
-            // InternalKerMLExpressions.g:6819:2: ( ruleExponentiationExpression )
+            // InternalKerMLExpressions.g:6975:1: ( ( ruleExponentiationExpression ) )
+            // InternalKerMLExpressions.g:6976:2: ( ruleExponentiationExpression )
             {
-            // InternalKerMLExpressions.g:6819:2: ( ruleExponentiationExpression )
-            // InternalKerMLExpressions.g:6820:3: ruleExponentiationExpression
+            // InternalKerMLExpressions.g:6976:2: ( ruleExponentiationExpression )
+            // InternalKerMLExpressions.g:6977:3: ruleExponentiationExpression
             {
              before(grammarAccess.getMultiplicativeExpressionAccess().getOperandExponentiationExpressionParserRuleCall_1_2_0()); 
             pushFollow(FOLLOW_2);
@@ -20875,17 +21449,17 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__ExponentiationExpression__OperatorAssignment_1_1"
-    // InternalKerMLExpressions.g:6829:1: rule__ExponentiationExpression__OperatorAssignment_1_1 : ( ruleExponentiationOperator ) ;
+    // InternalKerMLExpressions.g:6986:1: rule__ExponentiationExpression__OperatorAssignment_1_1 : ( ruleExponentiationOperator ) ;
     public final void rule__ExponentiationExpression__OperatorAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:6833:1: ( ( ruleExponentiationOperator ) )
-            // InternalKerMLExpressions.g:6834:2: ( ruleExponentiationOperator )
+            // InternalKerMLExpressions.g:6990:1: ( ( ruleExponentiationOperator ) )
+            // InternalKerMLExpressions.g:6991:2: ( ruleExponentiationOperator )
             {
-            // InternalKerMLExpressions.g:6834:2: ( ruleExponentiationOperator )
-            // InternalKerMLExpressions.g:6835:3: ruleExponentiationOperator
+            // InternalKerMLExpressions.g:6991:2: ( ruleExponentiationOperator )
+            // InternalKerMLExpressions.g:6992:3: ruleExponentiationOperator
             {
              before(grammarAccess.getExponentiationExpressionAccess().getOperatorExponentiationOperatorParserRuleCall_1_1_0()); 
             pushFollow(FOLLOW_2);
@@ -20916,17 +21490,17 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__ExponentiationExpression__OperandAssignment_1_2"
-    // InternalKerMLExpressions.g:6844:1: rule__ExponentiationExpression__OperandAssignment_1_2 : ( ruleUnitsExpression ) ;
+    // InternalKerMLExpressions.g:7001:1: rule__ExponentiationExpression__OperandAssignment_1_2 : ( ruleUnitsExpression ) ;
     public final void rule__ExponentiationExpression__OperandAssignment_1_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:6848:1: ( ( ruleUnitsExpression ) )
-            // InternalKerMLExpressions.g:6849:2: ( ruleUnitsExpression )
+            // InternalKerMLExpressions.g:7005:1: ( ( ruleUnitsExpression ) )
+            // InternalKerMLExpressions.g:7006:2: ( ruleUnitsExpression )
             {
-            // InternalKerMLExpressions.g:6849:2: ( ruleUnitsExpression )
-            // InternalKerMLExpressions.g:6850:3: ruleUnitsExpression
+            // InternalKerMLExpressions.g:7006:2: ( ruleUnitsExpression )
+            // InternalKerMLExpressions.g:7007:3: ruleUnitsExpression
             {
              before(grammarAccess.getExponentiationExpressionAccess().getOperandUnitsExpressionParserRuleCall_1_2_0()); 
             pushFollow(FOLLOW_2);
@@ -20957,24 +21531,24 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__UnitsExpression__OperatorAssignment_1_1"
-    // InternalKerMLExpressions.g:6859:1: rule__UnitsExpression__OperatorAssignment_1_1 : ( ( '@[' ) ) ;
+    // InternalKerMLExpressions.g:7016:1: rule__UnitsExpression__OperatorAssignment_1_1 : ( ( '@[' ) ) ;
     public final void rule__UnitsExpression__OperatorAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:6863:1: ( ( ( '@[' ) ) )
-            // InternalKerMLExpressions.g:6864:2: ( ( '@[' ) )
+            // InternalKerMLExpressions.g:7020:1: ( ( ( '@[' ) ) )
+            // InternalKerMLExpressions.g:7021:2: ( ( '@[' ) )
             {
-            // InternalKerMLExpressions.g:6864:2: ( ( '@[' ) )
-            // InternalKerMLExpressions.g:6865:3: ( '@[' )
-            {
-             before(grammarAccess.getUnitsExpressionAccess().getOperatorCommercialAtLeftSquareBracketKeyword_1_1_0()); 
-            // InternalKerMLExpressions.g:6866:3: ( '@[' )
-            // InternalKerMLExpressions.g:6867:4: '@['
+            // InternalKerMLExpressions.g:7021:2: ( ( '@[' ) )
+            // InternalKerMLExpressions.g:7022:3: ( '@[' )
             {
              before(grammarAccess.getUnitsExpressionAccess().getOperatorCommercialAtLeftSquareBracketKeyword_1_1_0()); 
-            match(input,57,FOLLOW_2); 
+            // InternalKerMLExpressions.g:7023:3: ( '@[' )
+            // InternalKerMLExpressions.g:7024:4: '@['
+            {
+             before(grammarAccess.getUnitsExpressionAccess().getOperatorCommercialAtLeftSquareBracketKeyword_1_1_0()); 
+            match(input,65,FOLLOW_2); 
              after(grammarAccess.getUnitsExpressionAccess().getOperatorCommercialAtLeftSquareBracketKeyword_1_1_0()); 
 
             }
@@ -21002,17 +21576,17 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__UnitsExpression__OperandAssignment_1_2"
-    // InternalKerMLExpressions.g:6878:1: rule__UnitsExpression__OperandAssignment_1_2 : ( ruleOwnedExpression ) ;
+    // InternalKerMLExpressions.g:7035:1: rule__UnitsExpression__OperandAssignment_1_2 : ( ruleOwnedExpression ) ;
     public final void rule__UnitsExpression__OperandAssignment_1_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:6882:1: ( ( ruleOwnedExpression ) )
-            // InternalKerMLExpressions.g:6883:2: ( ruleOwnedExpression )
+            // InternalKerMLExpressions.g:7039:1: ( ( ruleOwnedExpression ) )
+            // InternalKerMLExpressions.g:7040:2: ( ruleOwnedExpression )
             {
-            // InternalKerMLExpressions.g:6883:2: ( ruleOwnedExpression )
-            // InternalKerMLExpressions.g:6884:3: ruleOwnedExpression
+            // InternalKerMLExpressions.g:7040:2: ( ruleOwnedExpression )
+            // InternalKerMLExpressions.g:7041:3: ruleOwnedExpression
             {
              before(grammarAccess.getUnitsExpressionAccess().getOperandOwnedExpressionParserRuleCall_1_2_0()); 
             pushFollow(FOLLOW_2);
@@ -21043,17 +21617,17 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__UnaryExpression__OperatorAssignment_0_1"
-    // InternalKerMLExpressions.g:6893:1: rule__UnaryExpression__OperatorAssignment_0_1 : ( ruleUnaryOperator ) ;
+    // InternalKerMLExpressions.g:7050:1: rule__UnaryExpression__OperatorAssignment_0_1 : ( ruleUnaryOperator ) ;
     public final void rule__UnaryExpression__OperatorAssignment_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:6897:1: ( ( ruleUnaryOperator ) )
-            // InternalKerMLExpressions.g:6898:2: ( ruleUnaryOperator )
+            // InternalKerMLExpressions.g:7054:1: ( ( ruleUnaryOperator ) )
+            // InternalKerMLExpressions.g:7055:2: ( ruleUnaryOperator )
             {
-            // InternalKerMLExpressions.g:6898:2: ( ruleUnaryOperator )
-            // InternalKerMLExpressions.g:6899:3: ruleUnaryOperator
+            // InternalKerMLExpressions.g:7055:2: ( ruleUnaryOperator )
+            // InternalKerMLExpressions.g:7056:3: ruleUnaryOperator
             {
              before(grammarAccess.getUnaryExpressionAccess().getOperatorUnaryOperatorParserRuleCall_0_1_0()); 
             pushFollow(FOLLOW_2);
@@ -21084,17 +21658,17 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__UnaryExpression__OperandAssignment_0_2"
-    // InternalKerMLExpressions.g:6908:1: rule__UnaryExpression__OperandAssignment_0_2 : ( ruleExtentExpression ) ;
+    // InternalKerMLExpressions.g:7065:1: rule__UnaryExpression__OperandAssignment_0_2 : ( ruleExtentExpression ) ;
     public final void rule__UnaryExpression__OperandAssignment_0_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:6912:1: ( ( ruleExtentExpression ) )
-            // InternalKerMLExpressions.g:6913:2: ( ruleExtentExpression )
+            // InternalKerMLExpressions.g:7069:1: ( ( ruleExtentExpression ) )
+            // InternalKerMLExpressions.g:7070:2: ( ruleExtentExpression )
             {
-            // InternalKerMLExpressions.g:6913:2: ( ruleExtentExpression )
-            // InternalKerMLExpressions.g:6914:3: ruleExtentExpression
+            // InternalKerMLExpressions.g:7070:2: ( ruleExtentExpression )
+            // InternalKerMLExpressions.g:7071:3: ruleExtentExpression
             {
              before(grammarAccess.getUnaryExpressionAccess().getOperandExtentExpressionParserRuleCall_0_2_0()); 
             pushFollow(FOLLOW_2);
@@ -21125,24 +21699,24 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__ExtentExpression__OperatorAssignment_0_1"
-    // InternalKerMLExpressions.g:6923:1: rule__ExtentExpression__OperatorAssignment_0_1 : ( ( 'all' ) ) ;
+    // InternalKerMLExpressions.g:7080:1: rule__ExtentExpression__OperatorAssignment_0_1 : ( ( 'all' ) ) ;
     public final void rule__ExtentExpression__OperatorAssignment_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:6927:1: ( ( ( 'all' ) ) )
-            // InternalKerMLExpressions.g:6928:2: ( ( 'all' ) )
+            // InternalKerMLExpressions.g:7084:1: ( ( ( 'all' ) ) )
+            // InternalKerMLExpressions.g:7085:2: ( ( 'all' ) )
             {
-            // InternalKerMLExpressions.g:6928:2: ( ( 'all' ) )
-            // InternalKerMLExpressions.g:6929:3: ( 'all' )
-            {
-             before(grammarAccess.getExtentExpressionAccess().getOperatorAllKeyword_0_1_0()); 
-            // InternalKerMLExpressions.g:6930:3: ( 'all' )
-            // InternalKerMLExpressions.g:6931:4: 'all'
+            // InternalKerMLExpressions.g:7085:2: ( ( 'all' ) )
+            // InternalKerMLExpressions.g:7086:3: ( 'all' )
             {
              before(grammarAccess.getExtentExpressionAccess().getOperatorAllKeyword_0_1_0()); 
-            match(input,58,FOLLOW_2); 
+            // InternalKerMLExpressions.g:7087:3: ( 'all' )
+            // InternalKerMLExpressions.g:7088:4: 'all'
+            {
+             before(grammarAccess.getExtentExpressionAccess().getOperatorAllKeyword_0_1_0()); 
+            match(input,66,FOLLOW_2); 
              after(grammarAccess.getExtentExpressionAccess().getOperatorAllKeyword_0_1_0()); 
 
             }
@@ -21170,17 +21744,17 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__ExtentExpression__OwnedRelationshipAssignment_0_2"
-    // InternalKerMLExpressions.g:6942:1: rule__ExtentExpression__OwnedRelationshipAssignment_0_2 : ( ruleTypeReferenceMember ) ;
+    // InternalKerMLExpressions.g:7099:1: rule__ExtentExpression__OwnedRelationshipAssignment_0_2 : ( ruleTypeReferenceMember ) ;
     public final void rule__ExtentExpression__OwnedRelationshipAssignment_0_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:6946:1: ( ( ruleTypeReferenceMember ) )
-            // InternalKerMLExpressions.g:6947:2: ( ruleTypeReferenceMember )
+            // InternalKerMLExpressions.g:7103:1: ( ( ruleTypeReferenceMember ) )
+            // InternalKerMLExpressions.g:7104:2: ( ruleTypeReferenceMember )
             {
-            // InternalKerMLExpressions.g:6947:2: ( ruleTypeReferenceMember )
-            // InternalKerMLExpressions.g:6948:3: ruleTypeReferenceMember
+            // InternalKerMLExpressions.g:7104:2: ( ruleTypeReferenceMember )
+            // InternalKerMLExpressions.g:7105:3: ruleTypeReferenceMember
             {
              before(grammarAccess.getExtentExpressionAccess().getOwnedRelationshipTypeReferenceMemberParserRuleCall_0_2_0()); 
             pushFollow(FOLLOW_2);
@@ -21211,24 +21785,24 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__PrimaryExpression__OperatorAssignment_1_0_1"
-    // InternalKerMLExpressions.g:6957:1: rule__PrimaryExpression__OperatorAssignment_1_0_1 : ( ( '[' ) ) ;
+    // InternalKerMLExpressions.g:7114:1: rule__PrimaryExpression__OperatorAssignment_1_0_1 : ( ( '[' ) ) ;
     public final void rule__PrimaryExpression__OperatorAssignment_1_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:6961:1: ( ( ( '[' ) ) )
-            // InternalKerMLExpressions.g:6962:2: ( ( '[' ) )
+            // InternalKerMLExpressions.g:7118:1: ( ( ( '[' ) ) )
+            // InternalKerMLExpressions.g:7119:2: ( ( '[' ) )
             {
-            // InternalKerMLExpressions.g:6962:2: ( ( '[' ) )
-            // InternalKerMLExpressions.g:6963:3: ( '[' )
-            {
-             before(grammarAccess.getPrimaryExpressionAccess().getOperatorLeftSquareBracketKeyword_1_0_1_0()); 
-            // InternalKerMLExpressions.g:6964:3: ( '[' )
-            // InternalKerMLExpressions.g:6965:4: '['
+            // InternalKerMLExpressions.g:7119:2: ( ( '[' ) )
+            // InternalKerMLExpressions.g:7120:3: ( '[' )
             {
              before(grammarAccess.getPrimaryExpressionAccess().getOperatorLeftSquareBracketKeyword_1_0_1_0()); 
-            match(input,59,FOLLOW_2); 
+            // InternalKerMLExpressions.g:7121:3: ( '[' )
+            // InternalKerMLExpressions.g:7122:4: '['
+            {
+             before(grammarAccess.getPrimaryExpressionAccess().getOperatorLeftSquareBracketKeyword_1_0_1_0()); 
+            match(input,67,FOLLOW_2); 
              after(grammarAccess.getPrimaryExpressionAccess().getOperatorLeftSquareBracketKeyword_1_0_1_0()); 
 
             }
@@ -21256,17 +21830,17 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__PrimaryExpression__OperandAssignment_1_0_2"
-    // InternalKerMLExpressions.g:6976:1: rule__PrimaryExpression__OperandAssignment_1_0_2 : ( ruleSequenceExpression ) ;
+    // InternalKerMLExpressions.g:7133:1: rule__PrimaryExpression__OperandAssignment_1_0_2 : ( ruleSequenceExpression ) ;
     public final void rule__PrimaryExpression__OperandAssignment_1_0_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:6980:1: ( ( ruleSequenceExpression ) )
-            // InternalKerMLExpressions.g:6981:2: ( ruleSequenceExpression )
+            // InternalKerMLExpressions.g:7137:1: ( ( ruleSequenceExpression ) )
+            // InternalKerMLExpressions.g:7138:2: ( ruleSequenceExpression )
             {
-            // InternalKerMLExpressions.g:6981:2: ( ruleSequenceExpression )
-            // InternalKerMLExpressions.g:6982:3: ruleSequenceExpression
+            // InternalKerMLExpressions.g:7138:2: ( ruleSequenceExpression )
+            // InternalKerMLExpressions.g:7139:3: ruleSequenceExpression
             {
              before(grammarAccess.getPrimaryExpressionAccess().getOperandSequenceExpressionParserRuleCall_1_0_2_0()); 
             pushFollow(FOLLOW_2);
@@ -21297,17 +21871,17 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__PrimaryExpression__OwnedRelationshipAssignment_1_1_2"
-    // InternalKerMLExpressions.g:6991:1: rule__PrimaryExpression__OwnedRelationshipAssignment_1_1_2 : ( ruleOwnedFeatureTyping ) ;
+    // InternalKerMLExpressions.g:7148:1: rule__PrimaryExpression__OwnedRelationshipAssignment_1_1_2 : ( ruleOwnedFeatureTyping ) ;
     public final void rule__PrimaryExpression__OwnedRelationshipAssignment_1_1_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:6995:1: ( ( ruleOwnedFeatureTyping ) )
-            // InternalKerMLExpressions.g:6996:2: ( ruleOwnedFeatureTyping )
+            // InternalKerMLExpressions.g:7152:1: ( ( ruleOwnedFeatureTyping ) )
+            // InternalKerMLExpressions.g:7153:2: ( ruleOwnedFeatureTyping )
             {
-            // InternalKerMLExpressions.g:6996:2: ( ruleOwnedFeatureTyping )
-            // InternalKerMLExpressions.g:6997:3: ruleOwnedFeatureTyping
+            // InternalKerMLExpressions.g:7153:2: ( ruleOwnedFeatureTyping )
+            // InternalKerMLExpressions.g:7154:3: ruleOwnedFeatureTyping
             {
              before(grammarAccess.getPrimaryExpressionAccess().getOwnedRelationshipOwnedFeatureTypingParserRuleCall_1_1_2_0()); 
             pushFollow(FOLLOW_2);
@@ -21338,17 +21912,17 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__PrimaryExpression__OwnedRelationshipAssignment_1_1_3_0"
-    // InternalKerMLExpressions.g:7006:1: rule__PrimaryExpression__OwnedRelationshipAssignment_1_1_3_0 : ( ruleExpressionBodyMember ) ;
+    // InternalKerMLExpressions.g:7163:1: rule__PrimaryExpression__OwnedRelationshipAssignment_1_1_3_0 : ( ruleExpressionBodyMember ) ;
     public final void rule__PrimaryExpression__OwnedRelationshipAssignment_1_1_3_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:7010:1: ( ( ruleExpressionBodyMember ) )
-            // InternalKerMLExpressions.g:7011:2: ( ruleExpressionBodyMember )
+            // InternalKerMLExpressions.g:7167:1: ( ( ruleExpressionBodyMember ) )
+            // InternalKerMLExpressions.g:7168:2: ( ruleExpressionBodyMember )
             {
-            // InternalKerMLExpressions.g:7011:2: ( ruleExpressionBodyMember )
-            // InternalKerMLExpressions.g:7012:3: ruleExpressionBodyMember
+            // InternalKerMLExpressions.g:7168:2: ( ruleExpressionBodyMember )
+            // InternalKerMLExpressions.g:7169:3: ruleExpressionBodyMember
             {
              before(grammarAccess.getPrimaryExpressionAccess().getOwnedRelationshipExpressionBodyMemberParserRuleCall_1_1_3_0_0()); 
             pushFollow(FOLLOW_2);
@@ -21379,17 +21953,17 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__PrimaryExpression__OwnedRelationshipAssignment_1_1_3_1"
-    // InternalKerMLExpressions.g:7021:1: rule__PrimaryExpression__OwnedRelationshipAssignment_1_1_3_1 : ( ruleFunctionReferenceMember ) ;
+    // InternalKerMLExpressions.g:7178:1: rule__PrimaryExpression__OwnedRelationshipAssignment_1_1_3_1 : ( ruleFunctionReferenceMember ) ;
     public final void rule__PrimaryExpression__OwnedRelationshipAssignment_1_1_3_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:7025:1: ( ( ruleFunctionReferenceMember ) )
-            // InternalKerMLExpressions.g:7026:2: ( ruleFunctionReferenceMember )
+            // InternalKerMLExpressions.g:7182:1: ( ( ruleFunctionReferenceMember ) )
+            // InternalKerMLExpressions.g:7183:2: ( ruleFunctionReferenceMember )
             {
-            // InternalKerMLExpressions.g:7026:2: ( ruleFunctionReferenceMember )
-            // InternalKerMLExpressions.g:7027:3: ruleFunctionReferenceMember
+            // InternalKerMLExpressions.g:7183:2: ( ruleFunctionReferenceMember )
+            // InternalKerMLExpressions.g:7184:3: ruleFunctionReferenceMember
             {
              before(grammarAccess.getPrimaryExpressionAccess().getOwnedRelationshipFunctionReferenceMemberParserRuleCall_1_1_3_1_0()); 
             pushFollow(FOLLOW_2);
@@ -21420,17 +21994,17 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__PrimaryExpression__OperandAssignment_1_2_2"
-    // InternalKerMLExpressions.g:7036:1: rule__PrimaryExpression__OperandAssignment_1_2_2 : ( ruleFeatureReferenceExpression ) ;
+    // InternalKerMLExpressions.g:7193:1: rule__PrimaryExpression__OperandAssignment_1_2_2 : ( ruleFeatureReferenceExpression ) ;
     public final void rule__PrimaryExpression__OperandAssignment_1_2_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:7040:1: ( ( ruleFeatureReferenceExpression ) )
-            // InternalKerMLExpressions.g:7041:2: ( ruleFeatureReferenceExpression )
+            // InternalKerMLExpressions.g:7197:1: ( ( ruleFeatureReferenceExpression ) )
+            // InternalKerMLExpressions.g:7198:2: ( ruleFeatureReferenceExpression )
             {
-            // InternalKerMLExpressions.g:7041:2: ( ruleFeatureReferenceExpression )
-            // InternalKerMLExpressions.g:7042:3: ruleFeatureReferenceExpression
+            // InternalKerMLExpressions.g:7198:2: ( ruleFeatureReferenceExpression )
+            // InternalKerMLExpressions.g:7199:3: ruleFeatureReferenceExpression
             {
              before(grammarAccess.getPrimaryExpressionAccess().getOperandFeatureReferenceExpressionParserRuleCall_1_2_2_0()); 
             pushFollow(FOLLOW_2);
@@ -21461,17 +22035,17 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__PrimaryExpression__OwnedRelationshipAssignment_1_3_2"
-    // InternalKerMLExpressions.g:7051:1: rule__PrimaryExpression__OwnedRelationshipAssignment_1_3_2 : ( ruleExpressionBodyMember ) ;
+    // InternalKerMLExpressions.g:7208:1: rule__PrimaryExpression__OwnedRelationshipAssignment_1_3_2 : ( ruleExpressionBodyMember ) ;
     public final void rule__PrimaryExpression__OwnedRelationshipAssignment_1_3_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:7055:1: ( ( ruleExpressionBodyMember ) )
-            // InternalKerMLExpressions.g:7056:2: ( ruleExpressionBodyMember )
+            // InternalKerMLExpressions.g:7212:1: ( ( ruleExpressionBodyMember ) )
+            // InternalKerMLExpressions.g:7213:2: ( ruleExpressionBodyMember )
             {
-            // InternalKerMLExpressions.g:7056:2: ( ruleExpressionBodyMember )
-            // InternalKerMLExpressions.g:7057:3: ruleExpressionBodyMember
+            // InternalKerMLExpressions.g:7213:2: ( ruleExpressionBodyMember )
+            // InternalKerMLExpressions.g:7214:3: ruleExpressionBodyMember
             {
              before(grammarAccess.getPrimaryExpressionAccess().getOwnedRelationshipExpressionBodyMemberParserRuleCall_1_3_2_0()); 
             pushFollow(FOLLOW_2);
@@ -21502,17 +22076,17 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__ExpressionBodyMember__OwnedRelatedElementAssignment"
-    // InternalKerMLExpressions.g:7066:1: rule__ExpressionBodyMember__OwnedRelatedElementAssignment : ( ruleExpressionBody ) ;
+    // InternalKerMLExpressions.g:7223:1: rule__ExpressionBodyMember__OwnedRelatedElementAssignment : ( ruleExpressionBody ) ;
     public final void rule__ExpressionBodyMember__OwnedRelatedElementAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:7070:1: ( ( ruleExpressionBody ) )
-            // InternalKerMLExpressions.g:7071:2: ( ruleExpressionBody )
+            // InternalKerMLExpressions.g:7227:1: ( ( ruleExpressionBody ) )
+            // InternalKerMLExpressions.g:7228:2: ( ruleExpressionBody )
             {
-            // InternalKerMLExpressions.g:7071:2: ( ruleExpressionBody )
-            // InternalKerMLExpressions.g:7072:3: ruleExpressionBody
+            // InternalKerMLExpressions.g:7228:2: ( ruleExpressionBody )
+            // InternalKerMLExpressions.g:7229:3: ruleExpressionBody
             {
              before(grammarAccess.getExpressionBodyMemberAccess().getOwnedRelatedElementExpressionBodyParserRuleCall_0()); 
             pushFollow(FOLLOW_2);
@@ -21543,17 +22117,17 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__FunctionReferenceMember__OwnedRelatedElementAssignment"
-    // InternalKerMLExpressions.g:7081:1: rule__FunctionReferenceMember__OwnedRelatedElementAssignment : ( ruleFunctionReference ) ;
+    // InternalKerMLExpressions.g:7238:1: rule__FunctionReferenceMember__OwnedRelatedElementAssignment : ( ruleFunctionReference ) ;
     public final void rule__FunctionReferenceMember__OwnedRelatedElementAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:7085:1: ( ( ruleFunctionReference ) )
-            // InternalKerMLExpressions.g:7086:2: ( ruleFunctionReference )
+            // InternalKerMLExpressions.g:7242:1: ( ( ruleFunctionReference ) )
+            // InternalKerMLExpressions.g:7243:2: ( ruleFunctionReference )
             {
-            // InternalKerMLExpressions.g:7086:2: ( ruleFunctionReference )
-            // InternalKerMLExpressions.g:7087:3: ruleFunctionReference
+            // InternalKerMLExpressions.g:7243:2: ( ruleFunctionReference )
+            // InternalKerMLExpressions.g:7244:3: ruleFunctionReference
             {
              before(grammarAccess.getFunctionReferenceMemberAccess().getOwnedRelatedElementFunctionReferenceParserRuleCall_0()); 
             pushFollow(FOLLOW_2);
@@ -21584,17 +22158,17 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__FunctionReference__OwnedRelationshipAssignment"
-    // InternalKerMLExpressions.g:7096:1: rule__FunctionReference__OwnedRelationshipAssignment : ( ruleOwnedFeatureTyping ) ;
+    // InternalKerMLExpressions.g:7253:1: rule__FunctionReference__OwnedRelationshipAssignment : ( ruleOwnedFeatureTyping ) ;
     public final void rule__FunctionReference__OwnedRelationshipAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:7100:1: ( ( ruleOwnedFeatureTyping ) )
-            // InternalKerMLExpressions.g:7101:2: ( ruleOwnedFeatureTyping )
+            // InternalKerMLExpressions.g:7257:1: ( ( ruleOwnedFeatureTyping ) )
+            // InternalKerMLExpressions.g:7258:2: ( ruleOwnedFeatureTyping )
             {
-            // InternalKerMLExpressions.g:7101:2: ( ruleOwnedFeatureTyping )
-            // InternalKerMLExpressions.g:7102:3: ruleOwnedFeatureTyping
+            // InternalKerMLExpressions.g:7258:2: ( ruleOwnedFeatureTyping )
+            // InternalKerMLExpressions.g:7259:3: ruleOwnedFeatureTyping
             {
              before(grammarAccess.getFunctionReferenceAccess().getOwnedRelationshipOwnedFeatureTypingParserRuleCall_0()); 
             pushFollow(FOLLOW_2);
@@ -21625,17 +22199,17 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__ExpressionBody__OwnedRelationshipAssignment_1_0"
-    // InternalKerMLExpressions.g:7111:1: rule__ExpressionBody__OwnedRelationshipAssignment_1_0 : ( ruleBodyParameterMember ) ;
+    // InternalKerMLExpressions.g:7268:1: rule__ExpressionBody__OwnedRelationshipAssignment_1_0 : ( ruleBodyParameterMember ) ;
     public final void rule__ExpressionBody__OwnedRelationshipAssignment_1_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:7115:1: ( ( ruleBodyParameterMember ) )
-            // InternalKerMLExpressions.g:7116:2: ( ruleBodyParameterMember )
+            // InternalKerMLExpressions.g:7272:1: ( ( ruleBodyParameterMember ) )
+            // InternalKerMLExpressions.g:7273:2: ( ruleBodyParameterMember )
             {
-            // InternalKerMLExpressions.g:7116:2: ( ruleBodyParameterMember )
-            // InternalKerMLExpressions.g:7117:3: ruleBodyParameterMember
+            // InternalKerMLExpressions.g:7273:2: ( ruleBodyParameterMember )
+            // InternalKerMLExpressions.g:7274:3: ruleBodyParameterMember
             {
              before(grammarAccess.getExpressionBodyAccess().getOwnedRelationshipBodyParameterMemberParserRuleCall_1_0_0()); 
             pushFollow(FOLLOW_2);
@@ -21666,17 +22240,17 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__ExpressionBody__OwnedRelationshipAssignment_2"
-    // InternalKerMLExpressions.g:7126:1: rule__ExpressionBody__OwnedRelationshipAssignment_2 : ( ruleResultExpressionMember ) ;
+    // InternalKerMLExpressions.g:7283:1: rule__ExpressionBody__OwnedRelationshipAssignment_2 : ( ruleResultExpressionMember ) ;
     public final void rule__ExpressionBody__OwnedRelationshipAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:7130:1: ( ( ruleResultExpressionMember ) )
-            // InternalKerMLExpressions.g:7131:2: ( ruleResultExpressionMember )
+            // InternalKerMLExpressions.g:7287:1: ( ( ruleResultExpressionMember ) )
+            // InternalKerMLExpressions.g:7288:2: ( ruleResultExpressionMember )
             {
-            // InternalKerMLExpressions.g:7131:2: ( ruleResultExpressionMember )
-            // InternalKerMLExpressions.g:7132:3: ruleResultExpressionMember
+            // InternalKerMLExpressions.g:7288:2: ( ruleResultExpressionMember )
+            // InternalKerMLExpressions.g:7289:3: ruleResultExpressionMember
             {
              before(grammarAccess.getExpressionBodyAccess().getOwnedRelationshipResultExpressionMemberParserRuleCall_2_0()); 
             pushFollow(FOLLOW_2);
@@ -21707,17 +22281,17 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__ResultExpressionMember__OwnedRelatedElementAssignment"
-    // InternalKerMLExpressions.g:7141:1: rule__ResultExpressionMember__OwnedRelatedElementAssignment : ( ruleOwnedExpression ) ;
+    // InternalKerMLExpressions.g:7298:1: rule__ResultExpressionMember__OwnedRelatedElementAssignment : ( ruleOwnedExpression ) ;
     public final void rule__ResultExpressionMember__OwnedRelatedElementAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:7145:1: ( ( ruleOwnedExpression ) )
-            // InternalKerMLExpressions.g:7146:2: ( ruleOwnedExpression )
+            // InternalKerMLExpressions.g:7302:1: ( ( ruleOwnedExpression ) )
+            // InternalKerMLExpressions.g:7303:2: ( ruleOwnedExpression )
             {
-            // InternalKerMLExpressions.g:7146:2: ( ruleOwnedExpression )
-            // InternalKerMLExpressions.g:7147:3: ruleOwnedExpression
+            // InternalKerMLExpressions.g:7303:2: ( ruleOwnedExpression )
+            // InternalKerMLExpressions.g:7304:3: ruleOwnedExpression
             {
              before(grammarAccess.getResultExpressionMemberAccess().getOwnedRelatedElementOwnedExpressionParserRuleCall_0()); 
             pushFollow(FOLLOW_2);
@@ -21748,17 +22322,17 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__BodyParameterMember__MemberNameAssignment_1"
-    // InternalKerMLExpressions.g:7156:1: rule__BodyParameterMember__MemberNameAssignment_1 : ( ruleName ) ;
+    // InternalKerMLExpressions.g:7313:1: rule__BodyParameterMember__MemberNameAssignment_1 : ( ruleName ) ;
     public final void rule__BodyParameterMember__MemberNameAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:7160:1: ( ( ruleName ) )
-            // InternalKerMLExpressions.g:7161:2: ( ruleName )
+            // InternalKerMLExpressions.g:7317:1: ( ( ruleName ) )
+            // InternalKerMLExpressions.g:7318:2: ( ruleName )
             {
-            // InternalKerMLExpressions.g:7161:2: ( ruleName )
-            // InternalKerMLExpressions.g:7162:3: ruleName
+            // InternalKerMLExpressions.g:7318:2: ( ruleName )
+            // InternalKerMLExpressions.g:7319:3: ruleName
             {
              before(grammarAccess.getBodyParameterMemberAccess().getMemberNameNameParserRuleCall_1_0()); 
             pushFollow(FOLLOW_2);
@@ -21789,17 +22363,17 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__BodyParameterMember__OwnedRelatedElementAssignment_2"
-    // InternalKerMLExpressions.g:7171:1: rule__BodyParameterMember__OwnedRelatedElementAssignment_2 : ( ruleBodyParameter ) ;
+    // InternalKerMLExpressions.g:7328:1: rule__BodyParameterMember__OwnedRelatedElementAssignment_2 : ( ruleBodyParameter ) ;
     public final void rule__BodyParameterMember__OwnedRelatedElementAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:7175:1: ( ( ruleBodyParameter ) )
-            // InternalKerMLExpressions.g:7176:2: ( ruleBodyParameter )
+            // InternalKerMLExpressions.g:7332:1: ( ( ruleBodyParameter ) )
+            // InternalKerMLExpressions.g:7333:2: ( ruleBodyParameter )
             {
-            // InternalKerMLExpressions.g:7176:2: ( ruleBodyParameter )
-            // InternalKerMLExpressions.g:7177:3: ruleBodyParameter
+            // InternalKerMLExpressions.g:7333:2: ( ruleBodyParameter )
+            // InternalKerMLExpressions.g:7334:3: ruleBodyParameter
             {
              before(grammarAccess.getBodyParameterMemberAccess().getOwnedRelatedElementBodyParameterParserRuleCall_2_0()); 
             pushFollow(FOLLOW_2);
@@ -21830,24 +22404,24 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__SequenceExpression__OperatorAssignment_1_1_1"
-    // InternalKerMLExpressions.g:7186:1: rule__SequenceExpression__OperatorAssignment_1_1_1 : ( ( ',' ) ) ;
+    // InternalKerMLExpressions.g:7343:1: rule__SequenceExpression__OperatorAssignment_1_1_1 : ( ( ',' ) ) ;
     public final void rule__SequenceExpression__OperatorAssignment_1_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:7190:1: ( ( ( ',' ) ) )
-            // InternalKerMLExpressions.g:7191:2: ( ( ',' ) )
+            // InternalKerMLExpressions.g:7347:1: ( ( ( ',' ) ) )
+            // InternalKerMLExpressions.g:7348:2: ( ( ',' ) )
             {
-            // InternalKerMLExpressions.g:7191:2: ( ( ',' ) )
-            // InternalKerMLExpressions.g:7192:3: ( ',' )
-            {
-             before(grammarAccess.getSequenceExpressionAccess().getOperatorCommaKeyword_1_1_1_0()); 
-            // InternalKerMLExpressions.g:7193:3: ( ',' )
-            // InternalKerMLExpressions.g:7194:4: ','
+            // InternalKerMLExpressions.g:7348:2: ( ( ',' ) )
+            // InternalKerMLExpressions.g:7349:3: ( ',' )
             {
              before(grammarAccess.getSequenceExpressionAccess().getOperatorCommaKeyword_1_1_1_0()); 
-            match(input,40,FOLLOW_2); 
+            // InternalKerMLExpressions.g:7350:3: ( ',' )
+            // InternalKerMLExpressions.g:7351:4: ','
+            {
+             before(grammarAccess.getSequenceExpressionAccess().getOperatorCommaKeyword_1_1_1_0()); 
+            match(input,46,FOLLOW_2); 
              after(grammarAccess.getSequenceExpressionAccess().getOperatorCommaKeyword_1_1_1_0()); 
 
             }
@@ -21875,17 +22449,17 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__SequenceExpression__OperandAssignment_1_1_2"
-    // InternalKerMLExpressions.g:7205:1: rule__SequenceExpression__OperandAssignment_1_1_2 : ( ruleSequenceExpression ) ;
+    // InternalKerMLExpressions.g:7362:1: rule__SequenceExpression__OperandAssignment_1_1_2 : ( ruleSequenceExpression ) ;
     public final void rule__SequenceExpression__OperandAssignment_1_1_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:7209:1: ( ( ruleSequenceExpression ) )
-            // InternalKerMLExpressions.g:7210:2: ( ruleSequenceExpression )
+            // InternalKerMLExpressions.g:7366:1: ( ( ruleSequenceExpression ) )
+            // InternalKerMLExpressions.g:7367:2: ( ruleSequenceExpression )
             {
-            // InternalKerMLExpressions.g:7210:2: ( ruleSequenceExpression )
-            // InternalKerMLExpressions.g:7211:3: ruleSequenceExpression
+            // InternalKerMLExpressions.g:7367:2: ( ruleSequenceExpression )
+            // InternalKerMLExpressions.g:7368:3: ruleSequenceExpression
             {
              before(grammarAccess.getSequenceExpressionAccess().getOperandSequenceExpressionParserRuleCall_1_1_2_0()); 
             pushFollow(FOLLOW_2);
@@ -21916,17 +22490,17 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__FeatureReferenceExpression__OwnedRelationshipAssignment"
-    // InternalKerMLExpressions.g:7220:1: rule__FeatureReferenceExpression__OwnedRelationshipAssignment : ( ruleFeatureReferenceMember ) ;
+    // InternalKerMLExpressions.g:7377:1: rule__FeatureReferenceExpression__OwnedRelationshipAssignment : ( ruleFeatureReferenceMember ) ;
     public final void rule__FeatureReferenceExpression__OwnedRelationshipAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:7224:1: ( ( ruleFeatureReferenceMember ) )
-            // InternalKerMLExpressions.g:7225:2: ( ruleFeatureReferenceMember )
+            // InternalKerMLExpressions.g:7381:1: ( ( ruleFeatureReferenceMember ) )
+            // InternalKerMLExpressions.g:7382:2: ( ruleFeatureReferenceMember )
             {
-            // InternalKerMLExpressions.g:7225:2: ( ruleFeatureReferenceMember )
-            // InternalKerMLExpressions.g:7226:3: ruleFeatureReferenceMember
+            // InternalKerMLExpressions.g:7382:2: ( ruleFeatureReferenceMember )
+            // InternalKerMLExpressions.g:7383:3: ruleFeatureReferenceMember
             {
              before(grammarAccess.getFeatureReferenceExpressionAccess().getOwnedRelationshipFeatureReferenceMemberParserRuleCall_0()); 
             pushFollow(FOLLOW_2);
@@ -21957,21 +22531,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__FeatureReferenceMember__MemberElementAssignment"
-    // InternalKerMLExpressions.g:7235:1: rule__FeatureReferenceMember__MemberElementAssignment : ( ( ruleQualifiedName ) ) ;
+    // InternalKerMLExpressions.g:7392:1: rule__FeatureReferenceMember__MemberElementAssignment : ( ( ruleQualifiedName ) ) ;
     public final void rule__FeatureReferenceMember__MemberElementAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:7239:1: ( ( ( ruleQualifiedName ) ) )
-            // InternalKerMLExpressions.g:7240:2: ( ( ruleQualifiedName ) )
+            // InternalKerMLExpressions.g:7396:1: ( ( ( ruleQualifiedName ) ) )
+            // InternalKerMLExpressions.g:7397:2: ( ( ruleQualifiedName ) )
             {
-            // InternalKerMLExpressions.g:7240:2: ( ( ruleQualifiedName ) )
-            // InternalKerMLExpressions.g:7241:3: ( ruleQualifiedName )
+            // InternalKerMLExpressions.g:7397:2: ( ( ruleQualifiedName ) )
+            // InternalKerMLExpressions.g:7398:3: ( ruleQualifiedName )
             {
              before(grammarAccess.getFeatureReferenceMemberAccess().getMemberElementFeatureCrossReference_0()); 
-            // InternalKerMLExpressions.g:7242:3: ( ruleQualifiedName )
-            // InternalKerMLExpressions.g:7243:4: ruleQualifiedName
+            // InternalKerMLExpressions.g:7399:3: ( ruleQualifiedName )
+            // InternalKerMLExpressions.g:7400:4: ruleQualifiedName
             {
              before(grammarAccess.getFeatureReferenceMemberAccess().getMemberElementFeatureQualifiedNameParserRuleCall_0_1()); 
             pushFollow(FOLLOW_2);
@@ -22006,17 +22580,17 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__InvocationExpression__OwnedRelationshipAssignment_0"
-    // InternalKerMLExpressions.g:7254:1: rule__InvocationExpression__OwnedRelationshipAssignment_0 : ( ruleOwnedFeatureTyping ) ;
+    // InternalKerMLExpressions.g:7411:1: rule__InvocationExpression__OwnedRelationshipAssignment_0 : ( ruleOwnedFeatureTyping ) ;
     public final void rule__InvocationExpression__OwnedRelationshipAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:7258:1: ( ( ruleOwnedFeatureTyping ) )
-            // InternalKerMLExpressions.g:7259:2: ( ruleOwnedFeatureTyping )
+            // InternalKerMLExpressions.g:7415:1: ( ( ruleOwnedFeatureTyping ) )
+            // InternalKerMLExpressions.g:7416:2: ( ruleOwnedFeatureTyping )
             {
-            // InternalKerMLExpressions.g:7259:2: ( ruleOwnedFeatureTyping )
-            // InternalKerMLExpressions.g:7260:3: ruleOwnedFeatureTyping
+            // InternalKerMLExpressions.g:7416:2: ( ruleOwnedFeatureTyping )
+            // InternalKerMLExpressions.g:7417:3: ruleOwnedFeatureTyping
             {
              before(grammarAccess.getInvocationExpressionAccess().getOwnedRelationshipOwnedFeatureTypingParserRuleCall_0_0()); 
             pushFollow(FOLLOW_2);
@@ -22047,17 +22621,17 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__PositionalArgumentList__OwnedRelationshipAssignment_0"
-    // InternalKerMLExpressions.g:7269:1: rule__PositionalArgumentList__OwnedRelationshipAssignment_0 : ( ruleOwnedExpressionMember ) ;
+    // InternalKerMLExpressions.g:7426:1: rule__PositionalArgumentList__OwnedRelationshipAssignment_0 : ( ruleOwnedExpressionMember ) ;
     public final void rule__PositionalArgumentList__OwnedRelationshipAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:7273:1: ( ( ruleOwnedExpressionMember ) )
-            // InternalKerMLExpressions.g:7274:2: ( ruleOwnedExpressionMember )
+            // InternalKerMLExpressions.g:7430:1: ( ( ruleOwnedExpressionMember ) )
+            // InternalKerMLExpressions.g:7431:2: ( ruleOwnedExpressionMember )
             {
-            // InternalKerMLExpressions.g:7274:2: ( ruleOwnedExpressionMember )
-            // InternalKerMLExpressions.g:7275:3: ruleOwnedExpressionMember
+            // InternalKerMLExpressions.g:7431:2: ( ruleOwnedExpressionMember )
+            // InternalKerMLExpressions.g:7432:3: ruleOwnedExpressionMember
             {
              before(grammarAccess.getPositionalArgumentListAccess().getOwnedRelationshipOwnedExpressionMemberParserRuleCall_0_0()); 
             pushFollow(FOLLOW_2);
@@ -22088,17 +22662,17 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__PositionalArgumentList__OwnedRelationshipAssignment_1_1"
-    // InternalKerMLExpressions.g:7284:1: rule__PositionalArgumentList__OwnedRelationshipAssignment_1_1 : ( ruleOwnedExpressionMember ) ;
+    // InternalKerMLExpressions.g:7441:1: rule__PositionalArgumentList__OwnedRelationshipAssignment_1_1 : ( ruleOwnedExpressionMember ) ;
     public final void rule__PositionalArgumentList__OwnedRelationshipAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:7288:1: ( ( ruleOwnedExpressionMember ) )
-            // InternalKerMLExpressions.g:7289:2: ( ruleOwnedExpressionMember )
+            // InternalKerMLExpressions.g:7445:1: ( ( ruleOwnedExpressionMember ) )
+            // InternalKerMLExpressions.g:7446:2: ( ruleOwnedExpressionMember )
             {
-            // InternalKerMLExpressions.g:7289:2: ( ruleOwnedExpressionMember )
-            // InternalKerMLExpressions.g:7290:3: ruleOwnedExpressionMember
+            // InternalKerMLExpressions.g:7446:2: ( ruleOwnedExpressionMember )
+            // InternalKerMLExpressions.g:7447:3: ruleOwnedExpressionMember
             {
              before(grammarAccess.getPositionalArgumentListAccess().getOwnedRelationshipOwnedExpressionMemberParserRuleCall_1_1_0()); 
             pushFollow(FOLLOW_2);
@@ -22129,17 +22703,17 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__NamedArgumentList__OwnedRelationshipAssignment_0"
-    // InternalKerMLExpressions.g:7299:1: rule__NamedArgumentList__OwnedRelationshipAssignment_0 : ( ruleNamedExpressionMember ) ;
+    // InternalKerMLExpressions.g:7456:1: rule__NamedArgumentList__OwnedRelationshipAssignment_0 : ( ruleNamedExpressionMember ) ;
     public final void rule__NamedArgumentList__OwnedRelationshipAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:7303:1: ( ( ruleNamedExpressionMember ) )
-            // InternalKerMLExpressions.g:7304:2: ( ruleNamedExpressionMember )
+            // InternalKerMLExpressions.g:7460:1: ( ( ruleNamedExpressionMember ) )
+            // InternalKerMLExpressions.g:7461:2: ( ruleNamedExpressionMember )
             {
-            // InternalKerMLExpressions.g:7304:2: ( ruleNamedExpressionMember )
-            // InternalKerMLExpressions.g:7305:3: ruleNamedExpressionMember
+            // InternalKerMLExpressions.g:7461:2: ( ruleNamedExpressionMember )
+            // InternalKerMLExpressions.g:7462:3: ruleNamedExpressionMember
             {
              before(grammarAccess.getNamedArgumentListAccess().getOwnedRelationshipNamedExpressionMemberParserRuleCall_0_0()); 
             pushFollow(FOLLOW_2);
@@ -22170,17 +22744,17 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__NamedArgumentList__OwnedRelationshipAssignment_1_1"
-    // InternalKerMLExpressions.g:7314:1: rule__NamedArgumentList__OwnedRelationshipAssignment_1_1 : ( ruleNamedExpressionMember ) ;
+    // InternalKerMLExpressions.g:7471:1: rule__NamedArgumentList__OwnedRelationshipAssignment_1_1 : ( ruleNamedExpressionMember ) ;
     public final void rule__NamedArgumentList__OwnedRelationshipAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:7318:1: ( ( ruleNamedExpressionMember ) )
-            // InternalKerMLExpressions.g:7319:2: ( ruleNamedExpressionMember )
+            // InternalKerMLExpressions.g:7475:1: ( ( ruleNamedExpressionMember ) )
+            // InternalKerMLExpressions.g:7476:2: ( ruleNamedExpressionMember )
             {
-            // InternalKerMLExpressions.g:7319:2: ( ruleNamedExpressionMember )
-            // InternalKerMLExpressions.g:7320:3: ruleNamedExpressionMember
+            // InternalKerMLExpressions.g:7476:2: ( ruleNamedExpressionMember )
+            // InternalKerMLExpressions.g:7477:3: ruleNamedExpressionMember
             {
              before(grammarAccess.getNamedArgumentListAccess().getOwnedRelationshipNamedExpressionMemberParserRuleCall_1_1_0()); 
             pushFollow(FOLLOW_2);
@@ -22211,17 +22785,17 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__NamedExpressionMember__MemberNameAssignment_0"
-    // InternalKerMLExpressions.g:7329:1: rule__NamedExpressionMember__MemberNameAssignment_0 : ( ruleName ) ;
+    // InternalKerMLExpressions.g:7486:1: rule__NamedExpressionMember__MemberNameAssignment_0 : ( ruleName ) ;
     public final void rule__NamedExpressionMember__MemberNameAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:7333:1: ( ( ruleName ) )
-            // InternalKerMLExpressions.g:7334:2: ( ruleName )
+            // InternalKerMLExpressions.g:7490:1: ( ( ruleName ) )
+            // InternalKerMLExpressions.g:7491:2: ( ruleName )
             {
-            // InternalKerMLExpressions.g:7334:2: ( ruleName )
-            // InternalKerMLExpressions.g:7335:3: ruleName
+            // InternalKerMLExpressions.g:7491:2: ( ruleName )
+            // InternalKerMLExpressions.g:7492:3: ruleName
             {
              before(grammarAccess.getNamedExpressionMemberAccess().getMemberNameNameParserRuleCall_0_0()); 
             pushFollow(FOLLOW_2);
@@ -22252,17 +22826,17 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__NamedExpressionMember__OwnedRelatedElementAssignment_2"
-    // InternalKerMLExpressions.g:7344:1: rule__NamedExpressionMember__OwnedRelatedElementAssignment_2 : ( ruleOwnedExpression ) ;
+    // InternalKerMLExpressions.g:7501:1: rule__NamedExpressionMember__OwnedRelatedElementAssignment_2 : ( ruleOwnedExpression ) ;
     public final void rule__NamedExpressionMember__OwnedRelatedElementAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:7348:1: ( ( ruleOwnedExpression ) )
-            // InternalKerMLExpressions.g:7349:2: ( ruleOwnedExpression )
+            // InternalKerMLExpressions.g:7505:1: ( ( ruleOwnedExpression ) )
+            // InternalKerMLExpressions.g:7506:2: ( ruleOwnedExpression )
             {
-            // InternalKerMLExpressions.g:7349:2: ( ruleOwnedExpression )
-            // InternalKerMLExpressions.g:7350:3: ruleOwnedExpression
+            // InternalKerMLExpressions.g:7506:2: ( ruleOwnedExpression )
+            // InternalKerMLExpressions.g:7507:3: ruleOwnedExpression
             {
              before(grammarAccess.getNamedExpressionMemberAccess().getOwnedRelatedElementOwnedExpressionParserRuleCall_2_0()); 
             pushFollow(FOLLOW_2);
@@ -22293,17 +22867,17 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__LiteralBoolean__ValueAssignment"
-    // InternalKerMLExpressions.g:7359:1: rule__LiteralBoolean__ValueAssignment : ( ruleBooleanValue ) ;
+    // InternalKerMLExpressions.g:7516:1: rule__LiteralBoolean__ValueAssignment : ( ruleBooleanValue ) ;
     public final void rule__LiteralBoolean__ValueAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:7363:1: ( ( ruleBooleanValue ) )
-            // InternalKerMLExpressions.g:7364:2: ( ruleBooleanValue )
+            // InternalKerMLExpressions.g:7520:1: ( ( ruleBooleanValue ) )
+            // InternalKerMLExpressions.g:7521:2: ( ruleBooleanValue )
             {
-            // InternalKerMLExpressions.g:7364:2: ( ruleBooleanValue )
-            // InternalKerMLExpressions.g:7365:3: ruleBooleanValue
+            // InternalKerMLExpressions.g:7521:2: ( ruleBooleanValue )
+            // InternalKerMLExpressions.g:7522:3: ruleBooleanValue
             {
              before(grammarAccess.getLiteralBooleanAccess().getValueBooleanValueParserRuleCall_0()); 
             pushFollow(FOLLOW_2);
@@ -22334,17 +22908,17 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__LiteralString__ValueAssignment"
-    // InternalKerMLExpressions.g:7374:1: rule__LiteralString__ValueAssignment : ( RULE_STRING_VALUE ) ;
+    // InternalKerMLExpressions.g:7531:1: rule__LiteralString__ValueAssignment : ( RULE_STRING_VALUE ) ;
     public final void rule__LiteralString__ValueAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:7378:1: ( ( RULE_STRING_VALUE ) )
-            // InternalKerMLExpressions.g:7379:2: ( RULE_STRING_VALUE )
+            // InternalKerMLExpressions.g:7535:1: ( ( RULE_STRING_VALUE ) )
+            // InternalKerMLExpressions.g:7536:2: ( RULE_STRING_VALUE )
             {
-            // InternalKerMLExpressions.g:7379:2: ( RULE_STRING_VALUE )
-            // InternalKerMLExpressions.g:7380:3: RULE_STRING_VALUE
+            // InternalKerMLExpressions.g:7536:2: ( RULE_STRING_VALUE )
+            // InternalKerMLExpressions.g:7537:3: RULE_STRING_VALUE
             {
              before(grammarAccess.getLiteralStringAccess().getValueSTRING_VALUETerminalRuleCall_0()); 
             match(input,RULE_STRING_VALUE,FOLLOW_2); 
@@ -22371,17 +22945,17 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__LiteralInteger__ValueAssignment"
-    // InternalKerMLExpressions.g:7389:1: rule__LiteralInteger__ValueAssignment : ( RULE_DECIMAL_VALUE ) ;
+    // InternalKerMLExpressions.g:7546:1: rule__LiteralInteger__ValueAssignment : ( RULE_DECIMAL_VALUE ) ;
     public final void rule__LiteralInteger__ValueAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:7393:1: ( ( RULE_DECIMAL_VALUE ) )
-            // InternalKerMLExpressions.g:7394:2: ( RULE_DECIMAL_VALUE )
+            // InternalKerMLExpressions.g:7550:1: ( ( RULE_DECIMAL_VALUE ) )
+            // InternalKerMLExpressions.g:7551:2: ( RULE_DECIMAL_VALUE )
             {
-            // InternalKerMLExpressions.g:7394:2: ( RULE_DECIMAL_VALUE )
-            // InternalKerMLExpressions.g:7395:3: RULE_DECIMAL_VALUE
+            // InternalKerMLExpressions.g:7551:2: ( RULE_DECIMAL_VALUE )
+            // InternalKerMLExpressions.g:7552:3: RULE_DECIMAL_VALUE
             {
              before(grammarAccess.getLiteralIntegerAccess().getValueDECIMAL_VALUETerminalRuleCall_0()); 
             match(input,RULE_DECIMAL_VALUE,FOLLOW_2); 
@@ -22408,17 +22982,17 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__LiteralReal__ValueAssignment"
-    // InternalKerMLExpressions.g:7404:1: rule__LiteralReal__ValueAssignment : ( ruleRealValue ) ;
+    // InternalKerMLExpressions.g:7561:1: rule__LiteralReal__ValueAssignment : ( ruleRealValue ) ;
     public final void rule__LiteralReal__ValueAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:7408:1: ( ( ruleRealValue ) )
-            // InternalKerMLExpressions.g:7409:2: ( ruleRealValue )
+            // InternalKerMLExpressions.g:7565:1: ( ( ruleRealValue ) )
+            // InternalKerMLExpressions.g:7566:2: ( ruleRealValue )
             {
-            // InternalKerMLExpressions.g:7409:2: ( ruleRealValue )
-            // InternalKerMLExpressions.g:7410:3: ruleRealValue
+            // InternalKerMLExpressions.g:7566:2: ( ruleRealValue )
+            // InternalKerMLExpressions.g:7567:3: ruleRealValue
             {
              before(grammarAccess.getLiteralRealAccess().getValueRealValueParserRuleCall_0()); 
             pushFollow(FOLLOW_2);
@@ -22450,27 +23024,27 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
     // Delegated rules
 
 
-    protected DFA12 dfa12 = new DFA12(this);
+    protected DFA17 dfa17 = new DFA17(this);
     static final String dfa_1s = "\15\uffff";
-    static final String dfa_2s = "\4\uffff\2\12\5\uffff\2\12";
+    static final String dfa_2s = "\4\uffff\2\11\5\uffff\2\11";
     static final String dfa_3s = "\1\4\1\uffff\1\4\1\uffff\2\16\2\uffff\1\6\2\uffff\2\16";
-    static final String dfa_4s = "\1\62\1\uffff\1\72\1\uffff\2\73\2\uffff\1\7\2\uffff\2\73";
-    static final String dfa_5s = "\1\uffff\1\1\1\uffff\1\2\2\uffff\1\5\1\6\1\uffff\1\4\1\3\2\uffff";
+    static final String dfa_4s = "\1\72\1\uffff\1\102\1\uffff\2\103\2\uffff\1\7\2\uffff\2\103";
+    static final String dfa_5s = "\1\uffff\1\1\1\uffff\1\2\2\uffff\1\5\1\6\1\uffff\1\3\1\4\2\uffff";
     static final String dfa_6s = "\15\uffff}>";
     static final String[] dfa_7s = {
-            "\2\3\1\4\1\5\1\3\32\uffff\1\3\5\uffff\1\1\2\3\3\uffff\1\3\1\2\1\uffff\1\6",
+            "\2\3\1\4\1\5\1\3\35\uffff\1\3\10\uffff\1\1\2\3\5\uffff\1\3\1\2\1\uffff\1\6",
             "",
-            "\5\7\17\uffff\5\7\4\uffff\3\7\2\uffff\2\7\1\uffff\3\7\3\uffff\2\7\1\1\1\7\7\uffff\1\7",
+            "\5\7\22\uffff\5\7\4\uffff\3\7\4\uffff\3\7\1\uffff\3\7\1\uffff\1\7\3\uffff\2\7\1\1\1\7\7\uffff\1\7",
             "",
-            "\30\12\2\uffff\1\12\3\uffff\4\12\1\11\1\12\1\uffff\1\12\3\uffff\1\10\2\12\1\uffff\1\12",
-            "\30\12\2\uffff\1\12\3\uffff\4\12\1\11\1\12\1\uffff\1\12\3\uffff\1\10\2\12\1\uffff\1\12",
+            "\35\11\3\uffff\1\11\3\uffff\1\11\1\uffff\4\11\1\12\1\11\1\uffff\1\11\3\uffff\1\10\2\11\1\uffff\1\11",
+            "\35\11\3\uffff\1\11\3\uffff\1\11\1\uffff\4\11\1\12\1\11\1\uffff\1\11\3\uffff\1\10\2\11\1\uffff\1\11",
             "",
             "",
             "\1\13\1\14",
             "",
             "",
-            "\30\12\2\uffff\1\12\3\uffff\4\12\1\11\1\12\1\uffff\1\12\3\uffff\1\10\2\12\1\uffff\1\12",
-            "\30\12\2\uffff\1\12\3\uffff\4\12\1\11\1\12\1\uffff\1\12\3\uffff\1\10\2\12\1\uffff\1\12"
+            "\35\11\3\uffff\1\11\3\uffff\1\11\1\uffff\4\11\1\12\1\11\1\uffff\1\11\3\uffff\1\10\2\11\1\uffff\1\11",
+            "\35\11\3\uffff\1\11\3\uffff\1\11\1\uffff\4\11\1\12\1\11\1\uffff\1\11\3\uffff\1\10\2\11\1\uffff\1\11"
     };
 
     static final short[] dfa_1 = DFA.unpackEncodedString(dfa_1s);
@@ -22481,11 +23055,11 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
     static final short[] dfa_6 = DFA.unpackEncodedString(dfa_6s);
     static final short[][] dfa_7 = unpackEncodedStringArray(dfa_7s);
 
-    class DFA12 extends DFA {
+    class DFA17 extends DFA {
 
-        public DFA12(BaseRecognizer recognizer) {
+        public DFA17(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
-            this.decisionNumber = 12;
+            this.decisionNumber = 17;
             this.eot = dfa_1;
             this.eof = dfa_2;
             this.min = dfa_3;
@@ -22495,7 +23069,7 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
             this.transition = dfa_7;
         }
         public String getDescription() {
-            return "2000:1: rule__BaseExpression__Alternatives : ( ( ruleNullExpression ) | ( ruleLiteralExpression ) | ( ruleFeatureReferenceExpression ) | ( ruleInvocationExpression ) | ( ruleExpressionBody ) | ( ( rule__BaseExpression__Group_5__0 ) ) );";
+            return "2073:1: rule__BaseExpression__Alternatives : ( ( ruleNullExpression ) | ( ruleLiteralExpression ) | ( ruleFeatureReferenceExpression ) | ( ruleInvocationExpression ) | ( ruleExpressionBody ) | ( ( rule__BaseExpression__Group_5__0 ) ) );";
         }
     }
  
@@ -22503,58 +23077,58 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
     public static final BitSet FOLLOW_1 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_2 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_3 = new BitSet(new long[]{0x0000000000004000L});
-    public static final BitSet FOLLOW_4 = new BitSet(new long[]{0x04058ECE000001F0L});
-    public static final BitSet FOLLOW_5 = new BitSet(new long[]{0x0000100000000000L});
-    public static final BitSet FOLLOW_6 = new BitSet(new long[]{0x0000000000008000L});
-    public static final BitSet FOLLOW_7 = new BitSet(new long[]{0x0000000000008002L});
-    public static final BitSet FOLLOW_8 = new BitSet(new long[]{0x0000000000010000L});
-    public static final BitSet FOLLOW_9 = new BitSet(new long[]{0x0000000000010002L});
-    public static final BitSet FOLLOW_10 = new BitSet(new long[]{0x0000000000020000L});
-    public static final BitSet FOLLOW_11 = new BitSet(new long[]{0x0000000000020002L});
-    public static final BitSet FOLLOW_12 = new BitSet(new long[]{0x0000000000040000L});
-    public static final BitSet FOLLOW_13 = new BitSet(new long[]{0x0000000000040002L});
-    public static final BitSet FOLLOW_14 = new BitSet(new long[]{0x0000000000080000L});
-    public static final BitSet FOLLOW_15 = new BitSet(new long[]{0x0000000000080002L});
-    public static final BitSet FOLLOW_16 = new BitSet(new long[]{0x0000000000100000L});
-    public static final BitSet FOLLOW_17 = new BitSet(new long[]{0x0000000000100002L});
-    public static final BitSet FOLLOW_18 = new BitSet(new long[]{0x0000000000C00000L});
-    public static final BitSet FOLLOW_19 = new BitSet(new long[]{0x0000000000C00002L});
-    public static final BitSet FOLLOW_20 = new BitSet(new long[]{0x000000001F000000L});
+    public static final BitSet FOLLOW_4 = new BitSet(new long[]{0x058BB870000001F0L,0x0000000000000004L});
+    public static final BitSet FOLLOW_5 = new BitSet(new long[]{0x0004000000000000L});
+    public static final BitSet FOLLOW_6 = new BitSet(new long[]{0x0583B870000001F0L,0x0000000000000004L});
+    public static final BitSet FOLLOW_7 = new BitSet(new long[]{0x0010000000000000L});
+    public static final BitSet FOLLOW_8 = new BitSet(new long[]{0x0000000000008000L});
+    public static final BitSet FOLLOW_9 = new BitSet(new long[]{0x0000000000008002L});
+    public static final BitSet FOLLOW_10 = new BitSet(new long[]{0x0000000000010000L});
+    public static final BitSet FOLLOW_11 = new BitSet(new long[]{0x0000000000010002L});
+    public static final BitSet FOLLOW_12 = new BitSet(new long[]{0x00000000000E0000L});
+    public static final BitSet FOLLOW_13 = new BitSet(new long[]{0x00000000000E0002L});
+    public static final BitSet FOLLOW_14 = new BitSet(new long[]{0x0000000000300000L});
+    public static final BitSet FOLLOW_15 = new BitSet(new long[]{0x0000000000300002L});
+    public static final BitSet FOLLOW_16 = new BitSet(new long[]{0x0000000001C00000L});
+    public static final BitSet FOLLOW_17 = new BitSet(new long[]{0x0000000001C00002L});
+    public static final BitSet FOLLOW_18 = new BitSet(new long[]{0x0000000006000000L});
+    public static final BitSet FOLLOW_19 = new BitSet(new long[]{0x0000000006000002L});
+    public static final BitSet FOLLOW_20 = new BitSet(new long[]{0x00000000F8000000L});
     public static final BitSet FOLLOW_21 = new BitSet(new long[]{0x00000000000000C0L});
-    public static final BitSet FOLLOW_22 = new BitSet(new long[]{0x00000001E0000000L});
-    public static final BitSet FOLLOW_23 = new BitSet(new long[]{0x00000001E0000002L});
-    public static final BitSet FOLLOW_24 = new BitSet(new long[]{0x0100000000000000L});
-    public static final BitSet FOLLOW_25 = new BitSet(new long[]{0x0000000600000000L});
-    public static final BitSet FOLLOW_26 = new BitSet(new long[]{0x0000000600000002L});
-    public static final BitSet FOLLOW_27 = new BitSet(new long[]{0x0000003800000000L});
-    public static final BitSet FOLLOW_28 = new BitSet(new long[]{0x0000003800000002L});
-    public static final BitSet FOLLOW_29 = new BitSet(new long[]{0x0000000000200000L});
-    public static final BitSet FOLLOW_30 = new BitSet(new long[]{0x0000000000200002L});
-    public static final BitSet FOLLOW_31 = new BitSet(new long[]{0x0200000000000000L});
-    public static final BitSet FOLLOW_32 = new BitSet(new long[]{0x0000200000000000L});
-    public static final BitSet FOLLOW_33 = new BitSet(new long[]{0x000000C600000000L});
-    public static final BitSet FOLLOW_34 = new BitSet(new long[]{0x0400000000000000L});
-    public static final BitSet FOLLOW_35 = new BitSet(new long[]{0x0800C00000000000L});
-    public static final BitSet FOLLOW_36 = new BitSet(new long[]{0x0800C00000000002L});
-    public static final BitSet FOLLOW_37 = new BitSet(new long[]{0x0800000000000000L});
-    public static final BitSet FOLLOW_38 = new BitSet(new long[]{0x0000400000000000L});
-    public static final BitSet FOLLOW_39 = new BitSet(new long[]{0x00050000000000C0L});
-    public static final BitSet FOLLOW_40 = new BitSet(new long[]{0x0000800000000000L});
-    public static final BitSet FOLLOW_41 = new BitSet(new long[]{0x0004000000000000L});
-    public static final BitSet FOLLOW_42 = new BitSet(new long[]{0x0002000000000000L});
-    public static final BitSet FOLLOW_43 = new BitSet(new long[]{0x04258ECE000001F0L});
-    public static final BitSet FOLLOW_44 = new BitSet(new long[]{0x0020000000000002L});
-    public static final BitSet FOLLOW_45 = new BitSet(new long[]{0x0008000000000000L});
-    public static final BitSet FOLLOW_46 = new BitSet(new long[]{0x0010000000000000L});
-    public static final BitSet FOLLOW_47 = new BitSet(new long[]{0x0000010000000000L});
-    public static final BitSet FOLLOW_48 = new BitSet(new long[]{0x04078ECE000001F0L});
-    public static final BitSet FOLLOW_49 = new BitSet(new long[]{0x0000010000000002L});
-    public static final BitSet FOLLOW_50 = new BitSet(new long[]{0x0040000000000000L});
-    public static final BitSet FOLLOW_51 = new BitSet(new long[]{0x0001020000000000L});
-    public static final BitSet FOLLOW_52 = new BitSet(new long[]{0x0000800000000020L});
+    public static final BitSet FOLLOW_22 = new BitSet(new long[]{0x0000000F00000000L});
+    public static final BitSet FOLLOW_23 = new BitSet(new long[]{0x0000000F00000002L});
+    public static final BitSet FOLLOW_24 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_25 = new BitSet(new long[]{0x0000003000000000L});
+    public static final BitSet FOLLOW_26 = new BitSet(new long[]{0x0000003000000002L});
+    public static final BitSet FOLLOW_27 = new BitSet(new long[]{0x000001C000000000L});
+    public static final BitSet FOLLOW_28 = new BitSet(new long[]{0x000001C000000002L});
+    public static final BitSet FOLLOW_29 = new BitSet(new long[]{0x0000060000000000L});
+    public static final BitSet FOLLOW_30 = new BitSet(new long[]{0x0000060000000002L});
+    public static final BitSet FOLLOW_31 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000002L});
+    public static final BitSet FOLLOW_32 = new BitSet(new long[]{0x0020000000000000L});
+    public static final BitSet FOLLOW_33 = new BitSet(new long[]{0x0000383000000000L});
+    public static final BitSet FOLLOW_34 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000004L});
+    public static final BitSet FOLLOW_35 = new BitSet(new long[]{0x00C0000000000000L,0x0000000000000008L});
+    public static final BitSet FOLLOW_36 = new BitSet(new long[]{0x00C0000000000002L,0x0000000000000008L});
+    public static final BitSet FOLLOW_37 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000008L});
+    public static final BitSet FOLLOW_38 = new BitSet(new long[]{0x0040000000000000L});
+    public static final BitSet FOLLOW_39 = new BitSet(new long[]{0x05000000000000C0L});
+    public static final BitSet FOLLOW_40 = new BitSet(new long[]{0x0080000000000000L});
+    public static final BitSet FOLLOW_41 = new BitSet(new long[]{0x0400000000000000L});
+    public static final BitSet FOLLOW_42 = new BitSet(new long[]{0x0200000000000000L});
+    public static final BitSet FOLLOW_43 = new BitSet(new long[]{0x258BB870000001F0L,0x0000000000000004L});
+    public static final BitSet FOLLOW_44 = new BitSet(new long[]{0x2000000000000002L});
+    public static final BitSet FOLLOW_45 = new BitSet(new long[]{0x0800000000000000L});
+    public static final BitSet FOLLOW_46 = new BitSet(new long[]{0x1000000000000000L});
+    public static final BitSet FOLLOW_47 = new BitSet(new long[]{0x0000400000000000L});
+    public static final BitSet FOLLOW_48 = new BitSet(new long[]{0x078BB870000001F0L,0x0000000000000004L});
+    public static final BitSet FOLLOW_49 = new BitSet(new long[]{0x0000400000000002L});
+    public static final BitSet FOLLOW_50 = new BitSet(new long[]{0x4000000000000000L});
+    public static final BitSet FOLLOW_51 = new BitSet(new long[]{0x0100800000000000L});
+    public static final BitSet FOLLOW_52 = new BitSet(new long[]{0x0080000000000020L});
     public static final BitSet FOLLOW_53 = new BitSet(new long[]{0x0000000000000030L});
-    public static final BitSet FOLLOW_54 = new BitSet(new long[]{0x00008C0800000130L});
-    public static final BitSet FOLLOW_55 = new BitSet(new long[]{0x0080000000000000L});
-    public static final BitSet FOLLOW_56 = new BitSet(new long[]{0x0080000000000002L});
+    public static final BitSet FOLLOW_54 = new BitSet(new long[]{0x0083004000000130L});
+    public static final BitSet FOLLOW_55 = new BitSet(new long[]{0x8000000000000000L});
+    public static final BitSet FOLLOW_56 = new BitSet(new long[]{0x8000000000000002L});
 
 }

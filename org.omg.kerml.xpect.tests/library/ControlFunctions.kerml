@@ -18,7 +18,21 @@ package ControlFunctions {
 		composite abstract expr secondValue[0..1] (): Boolean[1];
 	}
 	
-	abstract function '||'(firstValue: Boolean): Boolean {
+	function 'and'(firstValue: Boolean[1]): Boolean[1] {
+		composite abstract expr secondValue[0..1] (): Boolean[1];
+		firstValue && secondValue()
+	}
+	
+	abstract function '||'(firstValue: Boolean[1]): Boolean[1] {
+		composite abstract expr secondValue[0..1] (): Boolean[1];
+	}
+	
+	function 'or'(firstValue: Boolean[1]): Boolean[1] {
+		composite abstract expr secondValue[0..1] (): Boolean[1];
+		firstValue || secondValue()
+	}
+	
+	abstract function 'implies'(firstValue: Boolean[1]): Boolean[1] {
 		composite abstract expr secondValue[0..1] (): Boolean[1];
 	}
 	

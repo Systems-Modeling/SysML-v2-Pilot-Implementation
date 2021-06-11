@@ -31,12 +31,17 @@ public class KerMLExpressionsParser extends AbstractContentAssistParser {
 		}
 		
 		private static void init(ImmutableMap.Builder<AbstractElement, String> builder, KerMLExpressionsGrammarAccess grammarAccess) {
+			builder.put(grammarAccess.getConditionalExpressionAccess().getAlternatives(), "rule__ConditionalExpression__Alternatives");
+			builder.put(grammarAccess.getOrOperatorAccess().getAlternatives(), "rule__OrOperator__Alternatives");
+			builder.put(grammarAccess.getXorOperatorAccess().getAlternatives(), "rule__XorOperator__Alternatives");
+			builder.put(grammarAccess.getAndOperatorAccess().getAlternatives(), "rule__AndOperator__Alternatives");
 			builder.put(grammarAccess.getEqualityOperatorAccess().getAlternatives(), "rule__EqualityOperator__Alternatives");
 			builder.put(grammarAccess.getClassificationExpressionAccess().getAlternatives(), "rule__ClassificationExpression__Alternatives");
 			builder.put(grammarAccess.getClassificationOperatorAccess().getAlternatives(), "rule__ClassificationOperator__Alternatives");
 			builder.put(grammarAccess.getRelationalOperatorAccess().getAlternatives(), "rule__RelationalOperator__Alternatives");
 			builder.put(grammarAccess.getAdditiveOperatorAccess().getAlternatives(), "rule__AdditiveOperator__Alternatives");
 			builder.put(grammarAccess.getMultiplicativeOperatorAccess().getAlternatives(), "rule__MultiplicativeOperator__Alternatives");
+			builder.put(grammarAccess.getExponentiationOperatorAccess().getAlternatives(), "rule__ExponentiationOperator__Alternatives");
 			builder.put(grammarAccess.getUnaryExpressionAccess().getAlternatives(), "rule__UnaryExpression__Alternatives");
 			builder.put(grammarAccess.getUnaryOperatorAccess().getAlternatives(), "rule__UnaryOperator__Alternatives");
 			builder.put(grammarAccess.getExtentExpressionAccess().getAlternatives(), "rule__ExtentExpression__Alternatives");
@@ -52,14 +57,13 @@ public class KerMLExpressionsParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getRealValueAccess().getAlternatives_0_2(), "rule__RealValue__Alternatives_0_2");
 			builder.put(grammarAccess.getLiteralUnlimitedNaturalAccess().getAlternatives(), "rule__LiteralUnlimitedNatural__Alternatives");
 			builder.put(grammarAccess.getNameAccess().getAlternatives(), "rule__Name__Alternatives");
-			builder.put(grammarAccess.getConditionalExpressionAccess().getGroup(), "rule__ConditionalExpression__Group__0");
+			builder.put(grammarAccess.getConditionalExpressionAccess().getGroup_0(), "rule__ConditionalExpression__Group_0__0");
+			builder.put(grammarAccess.getConditionalExpressionAccess().getGroup_0_1(), "rule__ConditionalExpression__Group_0_1__0");
 			builder.put(grammarAccess.getConditionalExpressionAccess().getGroup_1(), "rule__ConditionalExpression__Group_1__0");
 			builder.put(grammarAccess.getNullCoalescingExpressionAccess().getGroup(), "rule__NullCoalescingExpression__Group__0");
 			builder.put(grammarAccess.getNullCoalescingExpressionAccess().getGroup_1(), "rule__NullCoalescingExpression__Group_1__0");
-			builder.put(grammarAccess.getConditionalOrExpressionAccess().getGroup(), "rule__ConditionalOrExpression__Group__0");
-			builder.put(grammarAccess.getConditionalOrExpressionAccess().getGroup_1(), "rule__ConditionalOrExpression__Group_1__0");
-			builder.put(grammarAccess.getConditionalAndExpressionAccess().getGroup(), "rule__ConditionalAndExpression__Group__0");
-			builder.put(grammarAccess.getConditionalAndExpressionAccess().getGroup_1(), "rule__ConditionalAndExpression__Group_1__0");
+			builder.put(grammarAccess.getImpliesExpressionAccess().getGroup(), "rule__ImpliesExpression__Group__0");
+			builder.put(grammarAccess.getImpliesExpressionAccess().getGroup_1(), "rule__ImpliesExpression__Group_1__0");
 			builder.put(grammarAccess.getOrExpressionAccess().getGroup(), "rule__OrExpression__Group__0");
 			builder.put(grammarAccess.getOrExpressionAccess().getGroup_1(), "rule__OrExpression__Group_1__0");
 			builder.put(grammarAccess.getXorExpressionAccess().getGroup(), "rule__XorExpression__Group__0");
@@ -110,15 +114,17 @@ public class KerMLExpressionsParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getQualifiedNameAccess().getGroup(), "rule__QualifiedName__Group__0");
 			builder.put(grammarAccess.getQualifiedNameAccess().getGroup_1(), "rule__QualifiedName__Group_1__0");
 			builder.put(grammarAccess.getOwnedExpressionMemberAccess().getOwnedRelatedElementAssignment(), "rule__OwnedExpressionMember__OwnedRelatedElementAssignment");
-			builder.put(grammarAccess.getConditionalExpressionAccess().getOperatorAssignment_1_1(), "rule__ConditionalExpression__OperatorAssignment_1_1");
+			builder.put(grammarAccess.getConditionalExpressionAccess().getOperatorAssignment_0_1_1(), "rule__ConditionalExpression__OperatorAssignment_0_1_1");
+			builder.put(grammarAccess.getConditionalExpressionAccess().getOperandAssignment_0_1_2(), "rule__ConditionalExpression__OperandAssignment_0_1_2");
+			builder.put(grammarAccess.getConditionalExpressionAccess().getOperandAssignment_0_1_4(), "rule__ConditionalExpression__OperandAssignment_0_1_4");
 			builder.put(grammarAccess.getConditionalExpressionAccess().getOperandAssignment_1_2(), "rule__ConditionalExpression__OperandAssignment_1_2");
+			builder.put(grammarAccess.getConditionalExpressionAccess().getOperatorAssignment_1_3(), "rule__ConditionalExpression__OperatorAssignment_1_3");
 			builder.put(grammarAccess.getConditionalExpressionAccess().getOperandAssignment_1_4(), "rule__ConditionalExpression__OperandAssignment_1_4");
+			builder.put(grammarAccess.getConditionalExpressionAccess().getOperandAssignment_1_6(), "rule__ConditionalExpression__OperandAssignment_1_6");
 			builder.put(grammarAccess.getNullCoalescingExpressionAccess().getOperatorAssignment_1_1(), "rule__NullCoalescingExpression__OperatorAssignment_1_1");
 			builder.put(grammarAccess.getNullCoalescingExpressionAccess().getOperandAssignment_1_2(), "rule__NullCoalescingExpression__OperandAssignment_1_2");
-			builder.put(grammarAccess.getConditionalOrExpressionAccess().getOperatorAssignment_1_1(), "rule__ConditionalOrExpression__OperatorAssignment_1_1");
-			builder.put(grammarAccess.getConditionalOrExpressionAccess().getOperandAssignment_1_2(), "rule__ConditionalOrExpression__OperandAssignment_1_2");
-			builder.put(grammarAccess.getConditionalAndExpressionAccess().getOperatorAssignment_1_1(), "rule__ConditionalAndExpression__OperatorAssignment_1_1");
-			builder.put(grammarAccess.getConditionalAndExpressionAccess().getOperandAssignment_1_2(), "rule__ConditionalAndExpression__OperandAssignment_1_2");
+			builder.put(grammarAccess.getImpliesExpressionAccess().getOperatorAssignment_1_1(), "rule__ImpliesExpression__OperatorAssignment_1_1");
+			builder.put(grammarAccess.getImpliesExpressionAccess().getOperandAssignment_1_2(), "rule__ImpliesExpression__OperandAssignment_1_2");
 			builder.put(grammarAccess.getOrExpressionAccess().getOperatorAssignment_1_1(), "rule__OrExpression__OperatorAssignment_1_1");
 			builder.put(grammarAccess.getOrExpressionAccess().getOperandAssignment_1_2(), "rule__OrExpression__OperandAssignment_1_2");
 			builder.put(grammarAccess.getXorExpressionAccess().getOperatorAssignment_1_1(), "rule__XorExpression__OperatorAssignment_1_1");

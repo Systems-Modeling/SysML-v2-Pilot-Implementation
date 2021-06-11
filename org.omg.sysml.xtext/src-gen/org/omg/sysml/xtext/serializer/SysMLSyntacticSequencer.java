@@ -1548,6 +1548,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) (ambiguity) '*' (rule start)
+	 *     (rule start) (ambiguity) 'if' operand+=NullCoalescingExpression
 	 *     (rule start) (ambiguity) '{' ownedRelationship+=ActionNodeMember
 	 *     (rule start) (ambiguity) '{' ownedRelationship+=BehaviorUsageMember
 	 *     (rule start) (ambiguity) '{' ownedRelationship+=EmptySuccessionMember
@@ -1586,6 +1587,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     '('+
 	 *
 	 * This ambiguous syntax occurs at:
+	 *     (rule start) (ambiguity) 'if' operand+=NullCoalescingExpression
 	 *     (rule start) (ambiguity) operand+=SelfReferenceExpression
 	 *     (rule start) (ambiguity) operator='all'
 	 *     (rule start) (ambiguity) operator=UnaryOperator
@@ -3813,13 +3815,12 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     operand+=AdditiveExpression (ambiguity) ')' (rule end)
 	 *     operand+=AndExpression (ambiguity) ')' (rule end)
 	 *     operand+=ClassificationExpression (ambiguity) ')' (rule end)
-	 *     operand+=ConditionalAndExpression (ambiguity) ')' (rule end)
 	 *     operand+=ConditionalExpression (ambiguity) ')' (rule end)
-	 *     operand+=ConditionalOrExpression (ambiguity) ')' (rule end)
 	 *     operand+=EqualityExpression (ambiguity) ')' (rule end)
 	 *     operand+=ExponentiationExpression (ambiguity) ')' (rule end)
 	 *     operand+=ExtentExpression (ambiguity) ')' (rule end)
 	 *     operand+=FeatureReferenceExpression (ambiguity) ')' (rule end)
+	 *     operand+=ImpliesExpression (ambiguity) ')' (rule end)
 	 *     operand+=MultiplicativeExpression (ambiguity) ')' (rule end)
 	 *     operand+=OrExpression (ambiguity) ')' (rule end)
 	 *     operand+=OwnedExpression ']' (ambiguity) ')' (rule end)

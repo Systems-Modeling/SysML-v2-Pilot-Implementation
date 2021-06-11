@@ -1329,10 +1329,10 @@ fragment ActionBodyItem returns SysML::Type :
 	| ( ownedRelationship += EmptySuccessionMember )?
 	  ownedRelationship += StructureUsageMember
 	| ownedRelationship += InitialNodeMember
-	  ( ownedRelationship += TargetSuccessionMember )*
-	| ( ownedRelationship += EmptySuccessionMember )?
+	  ( => ownedRelationship += TargetSuccessionMember )*
+	| ( ownedRelationship += EmptySuccessionMember )? 
 	  ownedRelationship += ( BehaviorUsageMember | ActionNodeMember )
-	  ( ownedRelationship += TargetSuccessionMember )*
+	  ( => ownedRelationship += TargetSuccessionMember )*
 	| ownedRelationship += GuardedSuccessionMember
 ;
 

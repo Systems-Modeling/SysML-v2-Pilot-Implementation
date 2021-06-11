@@ -66,6 +66,7 @@ public class KerMLExpressionsSyntacticSequencer extends AbstractSyntacticSequenc
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) (ambiguity) '*' (rule start)
+	 *     (rule start) (ambiguity) 'if' operand+=NullCoalescingExpression
 	 *     (rule start) (ambiguity) '{' ownedRelationship+=BodyParameterMember
 	 *     (rule start) (ambiguity) '{' ownedRelationship+=ResultExpressionMember
 	 *     (rule start) (ambiguity) ('null' | ('(' ')')) (rule start)
@@ -91,6 +92,7 @@ public class KerMLExpressionsSyntacticSequencer extends AbstractSyntacticSequenc
 	 *     '('+
 	 *
 	 * This ambiguous syntax occurs at:
+	 *     (rule start) (ambiguity) 'if' operand+=NullCoalescingExpression
 	 *     (rule start) (ambiguity) operand+=SelfReferenceExpression
 	 *     (rule start) (ambiguity) operator='all'
 	 *     (rule start) (ambiguity) operator=UnaryOperator
@@ -122,13 +124,12 @@ public class KerMLExpressionsSyntacticSequencer extends AbstractSyntacticSequenc
 	 *     operand+=AdditiveExpression (ambiguity) ')' (rule end)
 	 *     operand+=AndExpression (ambiguity) ')' (rule end)
 	 *     operand+=ClassificationExpression (ambiguity) ')' (rule end)
-	 *     operand+=ConditionalAndExpression (ambiguity) ')' (rule end)
 	 *     operand+=ConditionalExpression (ambiguity) ')' (rule end)
-	 *     operand+=ConditionalOrExpression (ambiguity) ')' (rule end)
 	 *     operand+=EqualityExpression (ambiguity) ')' (rule end)
 	 *     operand+=ExponentiationExpression (ambiguity) ')' (rule end)
 	 *     operand+=ExtentExpression (ambiguity) ')' (rule end)
 	 *     operand+=FeatureReferenceExpression (ambiguity) ')' (rule end)
+	 *     operand+=ImpliesExpression (ambiguity) ')' (rule end)
 	 *     operand+=MultiplicativeExpression (ambiguity) ')' (rule end)
 	 *     operand+=OrExpression (ambiguity) ')' (rule end)
 	 *     operand+=OwnedExpression ']' (ambiguity) ')' (rule end)

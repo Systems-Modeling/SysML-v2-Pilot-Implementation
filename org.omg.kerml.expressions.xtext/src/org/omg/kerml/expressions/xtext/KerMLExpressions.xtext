@@ -48,47 +48,38 @@ OwnedExpression returns SysML::Expression :
 // Conditional Test Expressions
 
 ConditionalExpression returns SysML::Expression :
-	NullCoalescingExpression ( {SysML::OperatorExpression.operand += current}
-		operator = ConditionalTestOperator operand += OwnedExpression ':' operand += ConditionalExpression
-	)?
+	  NullCoalescingExpression ( {SysML::OperatorExpression.operand += current}
+		  operator = ConditionalOperator operand += OwnedExpression ':' operand += ConditionalExpression
+	  )?
+	| {SysML::OperatorExpression} 'if' operand += NullCoalescingExpression 
+		  operator = ConditionalOperator operand += OwnedExpression 'else' operand += ConditionalExpression	
 ;
 
-ConditionalTestOperator: 
+ConditionalOperator :
 	'?'
 ;
 
 // Null Coalescing Expressions
 
 NullCoalescingExpression returns SysML::Expression :
-	ConditionalOrExpression ( {SysML::OperatorExpression.operand += current}
-		operator = NullCoalescingOperator operand += ConditionalOrExpression )*
+	ImpliesExpression ( {SysML::OperatorExpression.operand += current}
+		operator = NullCoalescingOperator operand += ImpliesExpression )*
 ;
 
 NullCoalescingOperator :
 	'??'
 ;
 
-// Conditional Logical Expressions
-
-ConditionalOrExpression returns SysML::Expression :
-	ConditionalAndExpression ( {SysML::OperatorExpression.operand += current}
-		operator = ConditionalOrOperator operand += ConditionalAndExpression )*
-;
-
-ConditionalOrOperator :
-	'||'
-;
-
-ConditionalAndExpression returns SysML::Expression :
-	OrExpression ( {SysML::OperatorExpression.operand += current}
-		operator = ConditionalAndOperator operand += OrExpression )*
-;
-
-ConditionalAndOperator :
-	'&&'
-;
-
 // Logical Expressions
+
+ImpliesExpression returns SysML::Expression :
+	OrExpression ( {SysML::OperatorExpression.operand += current}  
+		operator = ImpliesOperator operand += OrExpression )*
+;
+
+ImpliesOperator :
+	'implies'
+;
 
 OrExpression returns SysML::Expression :
 	XorExpression ( {SysML::OperatorExpression.operand += current}  
@@ -96,7 +87,7 @@ OrExpression returns SysML::Expression :
 ;
 
 OrOperator :
-	'|'
+	'|' | '||' | 'or'
 ;
 
 XorExpression returns SysML::Expression :
@@ -105,7 +96,7 @@ XorExpression returns SysML::Expression :
 ;
 
 XorOperator :
-	'^'
+	'^^' | 'xor'
 ;
 
 AndExpression returns SysML::Expression :
@@ -114,7 +105,7 @@ AndExpression returns SysML::Expression :
 ;
 
 AndOperator :
-	'&'
+	'&' | '&&' | 'and'
 ;
 
 // Equality Expressions
@@ -202,7 +193,7 @@ MultiplicativeExpression returns SysML::Expression :
 ;
 
 MultiplicativeOperator :
-	'*' | '/' | "%"
+	'*' | '/' | '%'
 ;
 
 ExponentiationExpression returns SysML::Expression :
@@ -211,7 +202,7 @@ ExponentiationExpression returns SysML::Expression :
 ;
 
 ExponentiationOperator :
-	'**'
+	'**' | '^'
 ;
 
 // Units Expressions (Deprecated)
@@ -229,7 +220,7 @@ UnaryExpression returns SysML::Expression:
 ;
 
 UnaryOperator :
-	'+' | '-' | '!' | '~'
+	'+' | '-' | '!' | '~' | 'not'
 ;
 
 // Extent Expressions

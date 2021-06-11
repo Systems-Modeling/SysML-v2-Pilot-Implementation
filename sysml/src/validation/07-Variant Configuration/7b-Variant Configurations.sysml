@@ -30,7 +30,7 @@ package '7b-Variant Configurations' {
 		part vehicle : Vehicle {
 			port fuelCmdPort;
 			
-			bind fuelCmdPort = engine::fuelCmdPort;
+			bind fuelCmdPort = engine.fuelCmdPort;
 			
 			part engine : Engine[1] {
 				port fuelCmdPort : FuelCmdPort;
@@ -124,9 +124,9 @@ package '7b-Variant Configurations' {
 			
 			assert constraint 'engine-wheel selection constraint' {
 				(engineChoice == engineChoice::'4cylEngine' & 
-					rearAxleAssembly::rearWheelChoice->forAll {in ref w; w == rearAxleAssembly::rearWheelChoice::narrowRimWheel}) ^
+					rearAxleAssembly.rearWheelChoice->forAll {in ref w; w == rearAxleAssembly::rearWheelChoice::narrowRimWheel}) ^
 				(engineChoice == engineChoice::'6cylEngine' & 
-					rearAxleAssembly::rearWheelChoice->forAll {in ref w; w == rearAxleAssembly::rearWheelChoice::wideRimWheel})
+					rearAxleAssembly.rearWheelChoice->forAll {in ref w; w == rearAxleAssembly::rearWheelChoice::wideRimWheel})
 			}
 			
 		}

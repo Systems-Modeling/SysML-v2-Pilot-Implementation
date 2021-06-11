@@ -10,8 +10,8 @@ package StateSpaceRepresentation {
     abstract calc def GetOutput(input: Input, stateSpace: StateSpace): Output;
     
     /** Events to be received. */
-    abstract attribute def StateSpaceEvent;
-    attribute def ZeroCrossingEvent :> StateSpaceEvent;
+    abstract action def StateSpaceEventDef;
+    action def ZeroCrossingEventDef :> StateSpaceEvent;
     
     /** Item for SSR connection */
     item def StateSpaceItem;
@@ -58,6 +58,9 @@ package StateSpaceRepresentation {
                 timeInterval = NextState::timeStep
             ) return resultState = result;  
         }
+
+        // ContinuousStateSpaceDynamics may cause zero crossing anomaly.
+        event occurrence zeroCrossingEvent[0..1] : ZeroCrossingEventDef;
     }  
 
     /** Computes difference of stateSpace by one timestep, that is x(k+1) - x(k),

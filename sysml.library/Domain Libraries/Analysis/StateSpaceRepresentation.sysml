@@ -12,7 +12,7 @@ package StateSpaceRepresentation {
 
     /** Events to be received. */
     abstract action def StateSpaceEventDef;
-    action def ZeroCrossingEventDef :> StateSpaceEvent;
+    action def ZeroCrossingEventDef :> StateSpaceEventDef;
 
     /** Item for SSR connection */
     item def StateSpaceItem;

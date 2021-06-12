@@ -67,8 +67,6 @@ package StateSpaceRepresentation {
     /** Computes difference of stateSpace by one timestep, that is x(k+1) - x(k),
          where k is the number of timesteps. */
     abstract calc def Difference(input: Input, stateSpace: StateSpace): StateSpace;
-    // TODO: Computes next stateSpace by adding the diff.  Vector addition should replace this.
-    //abstract calc def AddDiff(stateSpace: StateSpace, diff: StateSpace): StateSpace;
 
     /** DiscreteStateSpaceDynamics represents discrete behavior.
       * differences needs to return difference of the stateSpace for each timestep.  */
@@ -77,7 +75,7 @@ package StateSpaceRepresentation {
         calc :>> nextState: NextState(input: Input, stateSpace: StateSpace, timeStep: DurationValue) result: StateSpace {
             attribute diff: StateSpace = difference(input, stateSpace);
             //calc addDiff: AddDiff(stateSpace, diff) return result;
-            stateSpace + diff;
+            stateSpace + diff
         }
     }
 }

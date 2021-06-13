@@ -159,9 +159,9 @@ package Actions {
 	 * single guard, but no trigger or effects.
 	 */
 	action def DecisionTransition :> NonStateTransitionPerformance {
-		ref action trigger[0..0] redefines NonStateTransitionPerformance::trigger;
-		ref action guard[1] redefines NonStateTransitionPerformance::guard;
-		ref action effect[0..0] redefines NonStateTransitionPerformance::effect;
+		ref action :>> trigger[0..0];
+		ref action :>> guard[1];
+		ref action :>> effect[0..0];
 	}
 
 }

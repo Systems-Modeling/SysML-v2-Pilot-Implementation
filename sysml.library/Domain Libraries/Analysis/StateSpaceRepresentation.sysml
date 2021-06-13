@@ -32,7 +32,7 @@ package StateSpaceRepresentation {
     /** The definition of the time derivative of StateSpace, which means dx/dt, where x is StateSpace */
     abstract attribute def StateDerivative :> VectorQuantityValue {
         ref stateSpace: StateSpace;
-        constraint { stateSpace::order == order }
+        constraint { stateSpace.order == order }
     }
 
     /** Computes the time derivative of stateSpace, which corresponds dx/dt = f(u, x), where u is input and x is stateSpace. */
@@ -74,7 +74,6 @@ package StateSpaceRepresentation {
         abstract calc difference: Difference;
         calc :>> nextState: NextState(input: Input, stateSpace: StateSpace, timeStep: DurationValue) result: StateSpace {
             attribute diff: StateSpace = difference(input, stateSpace);
-            //calc addDiff: AddDiff(stateSpace, diff) return result;
             stateSpace + diff
         }
     }

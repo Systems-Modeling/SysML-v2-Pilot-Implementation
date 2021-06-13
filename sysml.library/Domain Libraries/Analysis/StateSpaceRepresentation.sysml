@@ -1,7 +1,7 @@
 package StateSpaceRepresentation {
     import ISQ::DurationValue;
     import Quantities::VectorQuantityValue;
-    import VectorFunctions::*;
+    import VectorCalculations::*;
 
     abstract attribute def StateSpace :> VectorQuantityValue;
     abstract attribute def Input :> VectorQuantityValue;

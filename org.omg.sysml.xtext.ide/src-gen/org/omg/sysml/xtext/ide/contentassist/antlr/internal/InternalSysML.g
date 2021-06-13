@@ -12669,6 +12669,27 @@ finally {
 	restoreStackSize(stackSize);
 }
 
+rule__ItemFlowFeature__OwnedRelationshipAlternatives_0
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	(
+		{ before(grammarAccess.getItemFlowFeatureAccess().getOwnedRelationshipOwnedRedefinitionParserRuleCall_0_0()); }
+		ruleOwnedRedefinition
+		{ after(grammarAccess.getItemFlowFeatureAccess().getOwnedRelationshipOwnedRedefinitionParserRuleCall_0_0()); }
+	)
+	|
+	(
+		{ before(grammarAccess.getItemFlowFeatureAccess().getOwnedRelationshipFeaturePathExpressionMemberParserRuleCall_0_1()); }
+		ruleFeaturePathExpressionMember
+		{ after(grammarAccess.getItemFlowFeatureAccess().getOwnedRelationshipFeaturePathExpressionMemberParserRuleCall_0_1()); }
+	)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
 rule__DefinitionPrefix__Alternatives
 	@init {
 		int stackSize = keepStackSize();
@@ -55545,9 +55566,9 @@ rule__ItemFlowFeature__OwnedRelationshipAssignment
 	}
 :
 	(
-		{ before(grammarAccess.getItemFlowFeatureAccess().getOwnedRelationshipOwnedRedefinitionParserRuleCall_0()); }
-		ruleOwnedRedefinition
-		{ after(grammarAccess.getItemFlowFeatureAccess().getOwnedRelationshipOwnedRedefinitionParserRuleCall_0()); }
+		{ before(grammarAccess.getItemFlowFeatureAccess().getOwnedRelationshipAlternatives_0()); }
+		(rule__ItemFlowFeature__OwnedRelationshipAlternatives_0)
+		{ after(grammarAccess.getItemFlowFeatureAccess().getOwnedRelationshipAlternatives_0()); }
 	)
 ;
 finally {

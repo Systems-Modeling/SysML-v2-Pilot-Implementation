@@ -1015,7 +1015,7 @@ ItemFlowFeatureMember returns SysML::FeatureMembership :
 ;
 
 ItemFlowFeature returns SysML::ItemFlowFeature :
-	ownedRelationship += OwnedRedefinition
+	ownedRelationship += ( OwnedRedefinition | FeaturePathExpressionMember )
 ;
 
 /* EXPRESSIONS */

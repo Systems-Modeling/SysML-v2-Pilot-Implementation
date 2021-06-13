@@ -8,6 +8,7 @@ XPECT_SETUP org.omg.sysml.xpect.tests.validation.valid.SysMLTests
 		File {from ="/library.kernel/Objects.kerml"}
 		File {from ="/library.kernel/Performances.kerml"}
 		File {from ="/library.kernel/BaseFunctions.kerml"}
+		File {from ="/library.kernel/ControlFunctions.kerml"}
 		File {from ="/library.kernel/ScalarValues.kerml"}
 		File {from ="/library.systems/Items.sysml"}
 		File {from ="/library.systems/Parts.sysml"}
@@ -24,6 +25,7 @@ XPECT_SETUP org.omg.sysml.xpect.tests.validation.valid.SysMLTests
 				File {from ="/library.kernel/Objects.kerml"}
 				File {from ="/library.kernel/Performances.kerml"}
 				File {from ="/library.kernel/BaseFunctions.kerml"}
+				File {from ="/library.kernel/ControlFunctions.kerml"}
 				File {from ="/library.kernel/ScalarValues.kerml"}
 				File {from ="/library.systems/Items.sysml"}
 				File {from ="/library.systems/Parts.sysml"}
@@ -58,9 +60,9 @@ package Example2 {
 				out ref fuelSupply redefines FuelTankAssembly::fuelTankPort::fuelSupply;
 			}
 			
-			bind fuelTankPort0::fuelSupply = pump::pumpOut;
-			bind fuelTankPort0::fuelReturn = tank::fuelIn;
-			bind fuelTankPort::fuelSupply = pump::pumpOut;
+			bind fuelTankPort0.fuelSupply = pump.pumpOut;
+			bind fuelTankPort0.fuelReturn = tank.fuelIn;
+			bind fuelTankPort.fuelSupply = pump.pumpOut;
 					
 			part pump : FuelPump {
 				out ref pumpOut : Fuel;

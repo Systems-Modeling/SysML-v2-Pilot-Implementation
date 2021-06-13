@@ -92,7 +92,7 @@ package KernelLibraryTest {
 	}
 	
 	calc ms: MassSum (
-		partMasses = (vehicle::eng::m, vehicle::trans::m))
+		partMasses = (vehicle.eng.m, vehicle.trans.m))
 	
 	totalMass = vehicle::m;
 		

@@ -11,6 +11,8 @@ XPECT_SETUP org.omg.sysml.xpect.tests.validation.valid.SysMLTests
 		File {from ="/library.kernel/TransitionPerformances.kerml"}
 		File {from ="/library.kernel/Transfers.kerml"}
 		File {from ="/library.kernel/ScalarValues.kerml"}
+		File {from ="/library.kernel/BaseFunctions.kerml"}
+		File {from ="/library.kernel/ControlFunctions.kerml"}
 		File {from ="/library.systems/Items.sysml"}
 		File {from ="/library.systems/Parts.sysml"}
 		File {from ="/library.systems/Ports.sysml"}
@@ -29,6 +31,8 @@ XPECT_SETUP org.omg.sysml.xpect.tests.validation.valid.SysMLTests
 				File {from ="/library.kernel/TransitionPerformances.kerml"}
 				File {from ="/library.kernel/Transfers.kerml"}
 				File {from ="/library.kernel/ScalarValues.kerml"}
+				File {from ="/library.kernel/BaseFunctions.kerml"}
+				File {from ="/library.kernel/ControlFunctions.kerml"}
 				File {from ="/library.systems/Items.sysml"}
 				File {from ="/library.systems/Parts.sysml"}
 				File {from ="/library.systems/Ports.sysml"}
@@ -48,15 +52,15 @@ package 'Activity Example-1' {
 	action def Shoot(in image: Image, out picture : Picture);	
 		
 	action def TakePicture(in scene : Scene, out picture : Picture) {
-		bind focus::scene = scene;
+		bind focus.scene = scene;
 		
 		action focus: Focus (in scene, out image);
 		
-		flow focus::image to shoot::image;
+		flow focus.image to shoot.image;
 		
 		action shoot: Shoot (in image, out picture);
 		
-		bind shoot::picture = picture;
+		bind shoot.picture = picture;
 	}
 	
 }

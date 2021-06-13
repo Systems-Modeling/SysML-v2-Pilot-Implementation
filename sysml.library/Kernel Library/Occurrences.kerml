@@ -68,7 +68,7 @@ package Occurrences {
 		 * (i.e., have no duration).
 		 */
 		portion feature all snapshots: Occurrence[1..*] subsets timeSlices;
-		inv { snapshots->forAll {in s:Occurrence; s::startShot == s::endShot} }
+		inv { snapshots->forAll {in s:Occurrence; s.startShot == s.endShot} }
 		inv { snapshots == union(startShot, union(middleShots, endShot)) }
 		
 		/**

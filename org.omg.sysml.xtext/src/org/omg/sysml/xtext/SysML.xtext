@@ -509,7 +509,7 @@ ItemFlowEndMember returns SysML::EndFeatureMembership :
 ;
 
 ItemFlowEnd returns SysML::ItemFlowEnd :
-	ownedRelationship += ItemFlowFeatureMember
+	  ownedRelationship += ItemFlowFeatureMember
 ;
 
 EmptyItemFlowEnd returns SysML::ItemFlowEnd :
@@ -521,7 +521,7 @@ ItemFlowFeatureMember returns SysML::FeatureMembership :
 ;
 
 ItemFlowFeature returns SysML::ItemFlowFeature :
-	ownedRelationship += OwnedRedefinition
+	ownedRelationship += ( OwnedRedefinition | FeaturePathExpressionMember )
 ;
 
 EmptyItemFlowEndMember returns SysML::EndFeatureMembership :

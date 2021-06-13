@@ -63,10 +63,7 @@ package Transfers {
 		/**
 		 * The output of the items from the sourceOutput.
 		 */
-		connector sourceOutputLink: SourceOutputLink[1..*] from source to item {
-			feature startShot: Occurrence redefines SourceOutputLink::startShot;
-			feature endShot: Occurrence redefines SourceOutputLink::endShot;
-		}
+		connector sourceOutputLink: SourceOutputLink[1..*] from source to item;
 		
 		/**
 		 * The link from the transfer source to the items it is inputing.
@@ -79,9 +76,7 @@ package Transfers {
 		/**
 		 * The input of the items to the targetInput.
 		 */
-		connector targetInputLink: TargetInputLink[1..*] from item to target {
-			feature startShot: Occurrence redefines TargetInputLink::startShot;
-		}
+		connector targetInputLink: TargetInputLink[1..*] from item to target;
 		
 		/**
 		 * The start of the transfer happens during the output of each of the items from the
@@ -93,20 +88,20 @@ package Transfers {
 		 * If isMove is true, then all items leave the source at the start
 		 * of the transfer.
 		 */	
-		private connector moving: HappensWhile[0..*] from sourceOutputLink::endShot[0..*] to startShot[0..1];
+		private connector moving: HappensWhile[0..*] from sourceOutputLink.endShot[0..*] to startShot[0..1];
 		private inv { !isMove | size(moving) == size(sourceOutputLink) }
 		
 		/**
 		 * If isPush is true, then the transfer begins when the items are available
 		 * at the source.
 		 */
-		private connector pushing: HappensWhile[0..*] from sourceOutputLink::startShot[0..*] to startShot[0..1];
+		private connector pushing: HappensWhile[0..*] from sourceOutputLink.startShot[0..*] to startShot[0..1];
 		private inv { !isPush | size(pushing) == size(sourceOutputLink) }
 		
 		/**
 		 * The input of each of the items to the target starts at the end of the transfer.
 		 */
-		private connector delivering: HappensWhile[1..*] from targetInputLink::startShot[1..*] to endShot[1];
+		private connector delivering: HappensWhile[1..*] from targetInputLink.startShot[1..*] to endShot[1];
 		
 		/**
 		 * If isInstant is true, then the start and end of the transfer happen at the same time.

@@ -2932,7 +2932,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final RuleCall cOwnedRelationshipItemFlowFeatureMemberParserRuleCall_0 = (RuleCall)cOwnedRelationshipAssignment.eContents().get(0);
 		
 		//ItemFlowEnd returns SysML::ItemFlowEnd :
-		//    ownedRelationship += ItemFlowFeatureMember
+		//      ownedRelationship += ItemFlowFeatureMember
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -2977,18 +2977,26 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	public class ItemFlowFeatureElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.ItemFlowFeature");
 		private final Assignment cOwnedRelationshipAssignment = (Assignment)rule.eContents().get(1);
-		private final RuleCall cOwnedRelationshipOwnedRedefinitionParserRuleCall_0 = (RuleCall)cOwnedRelationshipAssignment.eContents().get(0);
+		private final Alternatives cOwnedRelationshipAlternatives_0 = (Alternatives)cOwnedRelationshipAssignment.eContents().get(0);
+		private final RuleCall cOwnedRelationshipOwnedRedefinitionParserRuleCall_0_0 = (RuleCall)cOwnedRelationshipAlternatives_0.eContents().get(0);
+		private final RuleCall cOwnedRelationshipFeaturePathExpressionMemberParserRuleCall_0_1 = (RuleCall)cOwnedRelationshipAlternatives_0.eContents().get(1);
 		
 		//ItemFlowFeature returns SysML::ItemFlowFeature :
-		//    ownedRelationship += OwnedRedefinition
+		//    ownedRelationship += ( OwnedRedefinition | FeaturePathExpressionMember )
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//ownedRelationship += OwnedRedefinition
+		//ownedRelationship += ( OwnedRedefinition | FeaturePathExpressionMember )
 		public Assignment getOwnedRelationshipAssignment() { return cOwnedRelationshipAssignment; }
 		
+		//( OwnedRedefinition | FeaturePathExpressionMember )
+		public Alternatives getOwnedRelationshipAlternatives_0() { return cOwnedRelationshipAlternatives_0; }
+		
 		//OwnedRedefinition
-		public RuleCall getOwnedRelationshipOwnedRedefinitionParserRuleCall_0() { return cOwnedRelationshipOwnedRedefinitionParserRuleCall_0; }
+		public RuleCall getOwnedRelationshipOwnedRedefinitionParserRuleCall_0_0() { return cOwnedRelationshipOwnedRedefinitionParserRuleCall_0_0; }
+		
+		//FeaturePathExpressionMember
+		public RuleCall getOwnedRelationshipFeaturePathExpressionMemberParserRuleCall_0_1() { return cOwnedRelationshipFeaturePathExpressionMemberParserRuleCall_0_1; }
 	}
 	public class EmptyItemFlowEndMemberElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.EmptyItemFlowEndMember");
@@ -16616,7 +16624,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//ItemFlowEnd returns SysML::ItemFlowEnd :
-	//    ownedRelationship += ItemFlowFeatureMember
+	//      ownedRelationship += ItemFlowFeatureMember
 	//;
 	public ItemFlowEndElements getItemFlowEndAccess() {
 		return pItemFlowEnd;
@@ -16649,7 +16657,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//ItemFlowFeature returns SysML::ItemFlowFeature :
-	//    ownedRelationship += OwnedRedefinition
+	//    ownedRelationship += ( OwnedRedefinition | FeaturePathExpressionMember )
 	//;
 	public ItemFlowFeatureElements getItemFlowFeatureAccess() {
 		return pItemFlowFeature;

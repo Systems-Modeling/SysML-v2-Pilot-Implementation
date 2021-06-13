@@ -67,6 +67,7 @@ public class ExpressionUtil {
 		return expression.getOwnedMembership().stream().
 				filter(mem->!(mem instanceof ParameterMembership)).
 				map(Membership::getMemberElement).
+				filter(el->el != null).
 				findFirst().orElse(null);
 	}
 

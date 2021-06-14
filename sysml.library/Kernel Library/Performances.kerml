@@ -54,7 +54,7 @@ package Performances {
 	 * Evaluation is the most general class of functions that may be evaluated to compute
 	 * a result.
 	 */
-	abstract function Evaluation specializes Performance (): Anything[0..*];
+	abstract function Evaluation specializes Performance () result: Anything[0..*];
 	
 	/**
 	 * BooleanEvaluation is a specialization of Evaluation that is the most general class of

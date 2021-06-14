@@ -6,6 +6,7 @@
 package Occurrences {
 	private import Base::Anything;
 	private import Base::things;
+	private import Base::DataValue;
 	private import Links::*;
 	
 	/**
@@ -22,6 +23,7 @@ package Occurrences {
 		feature portionOfLife : Life[1] subsets portionOf;
 		
 		feature self : Occurrence[1] redefines Anything::self subsets timeSlices;
+		feature sameLifeOccurrences : Occurrence[1..*] subsets things;
 		
 		/**
 		 * Occurrences that end before this occurrence starts.
@@ -147,6 +149,28 @@ package Occurrences {
 	
 	abstract feature occurrences: Occurrence[0..*] subsets things;
 	
+	/**
+	 * SelfSameLifeLink is a binary association that is equivalent to SelfLink it the
+	 * linked things are DataValues, but asserts that the link things are portions of
+	 * the same Life if they are Occurrences. A SelfSameLink is not itself an Occurrence
+	 * (SelfSameLifeLink is disjoint with LinkObject).
+	 */
+	assoc all SelfSameLifeLink specializes BinaryLink {
+	 
+		end feature selfSameLife: Anything[1..*] redefines source;
+		end feature myselfSameLife: Anything[1..*] redefines target;
+
+	 	feature all sourceOccurrence : Occurrence [1..*] subsets selfSameLife redefines Occurrence::sameLifeOccurrences;
+	 	feature all targetOccurrence : Occurrence [1..*] subsets myselfSameLife;
+		binding sourceOccurrence.portionOfLife = targetOccurrence.portionOfLife;
+
+		feature all sourceDataValue : DataValue [0..1] subsets selfSameLife;
+		feature all targetDataValue : DataValue [0..1] subsets myselfSameLife;
+		binding sourceDataValue = targetDataValue;
+	}
+	
+	subclass SelfLink specializes SelfSameLifeLink;
+
 	/**
 	 * HappensLink is the base of the associations that assert temporal relationships 
 	 * between a sourceOccurrence and a targetOccurrence. Because HappensLinks assert 

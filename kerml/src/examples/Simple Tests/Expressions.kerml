@@ -12,11 +12,22 @@ package Expressions {
 	
 	b = x > y? x-y: y-x;
 	c = x->collect {in xx; xx + 1}; 
-	d = x->while({in q; q > 3}, {in r; r - 1})->reduce {in s; in t; s + t}->reduce '+';
+	d = x->reduce {in s; in t; s + t}->reduce '+';
 	
-	function w specializes while (initial) result {
-		expr condition redefines while::condition (v){v > 3}
-		expr body redefines while::body (u){u - 1}
+	behavior w specializes ControlPerformances::LoopPerformance (inout v: Integer)  {
+		in expr redefines whileTest {v > 3}
+		in step redefines body : Performances::Performance {
+			step decrement {
+				out v_decr : Integer = v - 1;			
+			}
+			succession decrement then update;
+			step update : FeatureAccessPerformances::FeatureWritePerformance {
+				inout replacementValues = decrement.v_decr;
+				feature redefines onOccurrence = w::self {
+					feature redefines accessedFeature redefines v;
+				}
+			}
+		}
 	}
 	
 	xx = x == 1 && y == 2? a:

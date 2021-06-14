@@ -486,9 +486,11 @@ SuccessionItemFlow returns SysML::SuccessionItemFlow :
 
 fragment ItemFlowDeclaration returns SysML::ItemFlow :
 	( FeatureDeclaration? 
-      ( 'of'  ownedRelationship += ItemFeatureMember )?
-      'from' 
-    )?
+      ( 'of'  ownedRelationship += ItemFeatureMember
+      | ownedRelationship += EmptyItemFeatureMember
+      ) 'from'
+    | ownedRelationship += EmptyItemFeatureMember
+    )
 	ownedRelationship += ItemFlowEndMember 'to' 
 	ownedRelationship += ItemFlowEndMember
 ;
@@ -504,12 +506,20 @@ ItemFeature returns SysML::ItemFeature :
 	  ( ownedRelationship += OwnedFeatureTyping )?
 ;
 
+EmptyItemFeature returns SysML::ItemFeature :
+	{SysML::ItemFeature}
+;
+
 ItemFlowEndMember returns SysML::EndFeatureMembership :
 	ownedRelatedElement += ItemFlowEnd // ownedMemberFeature = ItemFlowEnd
 ;
 
 ItemFlowEnd returns SysML::ItemFlowEnd :
-	  ownedRelationship += ItemFlowFeatureMember
+	ownedRelationship += ItemFlowFeatureMember
+;
+
+EmptyItemFeatureMember returns SysML::FeatureMembership :
+	ownedRelatedElement += EmptyItemFeature // ownedMemberFeature = EmptyItemFeature
 ;
 
 EmptyItemFlowEnd returns SysML::ItemFlowEnd :
@@ -663,6 +673,7 @@ SourceItemFlowMember returns SysML::Membership :
 
 SourceItemFlow returns SysML::ItemFlow :
 	( ItemFlowKeyword | {SysML::SuccessionItemFlow} SuccessionItemFlowKeyword ) 
+	ownedRelationship += EmptyItemFeatureMember 
 	'from' ownedRelationship += ItemFlowEndMember
 	ownedRelationship += EmptyItemFlowEndMember
 ;

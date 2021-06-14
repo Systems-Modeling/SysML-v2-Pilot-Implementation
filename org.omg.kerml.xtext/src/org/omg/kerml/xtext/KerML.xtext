@@ -983,10 +983,11 @@ SuccessionItemFlow returns SysML::SuccessionItemFlow :
 
 fragment ItemFlowDeclaration returns SysML::ItemFlow :
 	( FeatureDeclaration? 
-      ( 'of'  ownedRelationship += ItemFeatureMember )?
-     'from'
-    | isSufficient ?= 'all'
-    )?
+      ( 'of'  ownedRelationship += ItemFeatureMember
+      | ownedRelationship += EmptyItemFeatureMember
+      ) 'from'
+    | ( isSufficient ?= 'all' )? ownedRelationship += EmptyItemFeatureMember
+    )
 	ownedRelationship += ItemFlowEndMember 'to' 
 	ownedRelationship += ItemFlowEndMember
 ;
@@ -1000,6 +1001,14 @@ ItemFeature returns SysML::ItemFeature :
 	  ( ownedRelationship += MultiplicityMember )?
 	| ownedRelationship += MultiplicityMember
 	  ( ownedRelationship += OwnedFeatureTyping )?
+;
+
+EmptyItemFeatureMember returns SysML::FeatureMembership :
+	ownedRelatedElement += EmptyItemFeature // ownedMemberFeature = EmptyItemFeature
+;
+
+EmptyItemFeature returns SysML::ItemFeature :
+	{SysML::ItemFeature}
 ;
 
 ItemFlowEndMember returns SysML::EndFeatureMembership :

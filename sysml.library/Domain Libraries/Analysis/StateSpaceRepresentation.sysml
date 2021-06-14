@@ -7,7 +7,7 @@ package StateSpaceRepresentation {
     abstract attribute def Input :> VectorQuantityValue;
     abstract attribute def Output :> VectorQuantityValue;
 
-    abstract calc def NextState(input: Input, stateSpace: StateSpace, timeStep: DurationValue): StateSpace;
+    abstract calc def GetNextState(input: Input, stateSpace: StateSpace, timeStep: DurationValue): StateSpace;
     abstract calc def GetOutput(input: Input, stateSpace: StateSpace): Output;
 
     /** Events to be received. */
@@ -22,7 +22,7 @@ package StateSpaceRepresentation {
     abstract action def StateSpaceDynamics {
         in attribute input: Input;
 
-        abstract calc nextState: NextState;
+        abstract calc getNextState: GetNextState;
         abstract calc getOutput: GetOutput;
         attribute stateSpace: StateSpace;
 
@@ -36,12 +36,12 @@ package StateSpaceRepresentation {
     }
 
     /** Computes the time derivative of stateSpace, which corresponds dx/dt = f(u, x), where u is input and x is stateSpace. */
-    abstract calc def Derivative(input: Input, stateSpace: StateSpace): StateDerivative;
+    abstract calc def GetDerivative(input: Input, stateSpace: StateSpace): StateDerivative;
 
     /** Integrates stateSpace to compute the next stateSpace, which corresponds to x + int dx/dt dt.
      *  Its actual implementation should be given by a solver. */
     abstract calc def Integrate (
-        in derivative: Derivative,
+        in getDerivative: GetDerivative,
         in input: Input,
         in initialState: StateSpace,
         in timeInterval: DurationValue) return result: StateSpace;
@@ -49,14 +49,14 @@ package StateSpaceRepresentation {
     /** ContinuousStateSpaceDynamics represents continuous behavior.
         derivative needs to return a time derivative of stateSpace, i.e. dx/dt. */
     abstract action def ContinuousStateSpaceDynamics :> StateSpaceDynamics {
-        abstract calc derivative: Derivative;
-        calc :>> nextState: NextState(input: Input, stateSpace: StateSpace, timeStep: DurationValue) result: StateSpace {
+        abstract calc getDerivative: GetDerivative;
+        calc :>> getNextState: GetNextState(input: Input, stateSpace: StateSpace, timeStep: DurationValue) result: StateSpace {
             // We compute nextState by Integrate defined above by giving derivative calc.
             calc integrate: Integrate(
-                derivative = ContinuousStateSpaceDynamics::derivative,
-                input = NextState::input,
-                initialState = NextState::stateSpace,
-                timeInterval = NextState::timeStep
+                getDerivative = ContinuousStateSpaceDynamics::getDerivative,
+                input = GetNextState::input,
+                initialState = GetNextState::stateSpace,
+                timeInterval = GetNextState::timeStep
             ) return resultState = result;
         }
 
@@ -65,15 +65,15 @@ package StateSpaceRepresentation {
     }
 
     /** Computes difference of stateSpace by one timestep, that is x(k+1) - x(k),
-         where k is the number of timesteps. */
-    abstract calc def Difference(input: Input, stateSpace: StateSpace): StateSpace;
+         where k is the timestep number. */
+    abstract calc def GetDifference(input: Input, stateSpace: StateSpace): StateSpace;
 
     /** DiscreteStateSpaceDynamics represents discrete behavior.
       * differences needs to return difference of the stateSpace for each timestep.  */
     abstract action def DiscreteStateSpaceDynamics :> StateSpaceDynamics {
-        abstract calc difference: Difference;
-        calc :>> nextState: NextState(input: Input, stateSpace: StateSpace, timeStep: DurationValue) result: StateSpace {
-            attribute diff: StateSpace = difference(input, stateSpace);
+        abstract calc getDifference: GetDifference;
+        calc :>> getNextState: GetNextState(input: Input, stateSpace: StateSpace, timeStep: DurationValue) result: StateSpace {
+            attribute diff: StateSpace = getDifference(input, stateSpace);
             stateSpace + diff
         }
     }

@@ -60,8 +60,8 @@ package StateSpaceRepresentation {
             ) return resultState = result;
         }
 
-        // ContinuousStateSpaceDynamics may cause zero crossing anomaly.
-        event occurrence zeroCrossingEvent[0..1] : ZeroCrossingEventDef;
+        // ContinuousStateSpaceDynamics may cause zero crossings anomaly.
+        event occurrence zeroCrossingEvents[0..*] : ZeroCrossingEventDef;
     }
 
     /** Computes difference of stateSpace by one timestep, that is x(k+1) - x(k),

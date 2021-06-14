@@ -81,13 +81,16 @@ public abstract class ModelLevelFunction {
 		put(new ConditionalFunction());
 		put(new ConditionalAndFunction());
 		put(new ConditionalOrFunction());
+		put(new ConditionalImpliesFunction());
 		
 		put(new StringLengthFunction());
 		put(new StringSubstringFunction());
 	}
 	
 	protected static void put(ModelLevelFunction functionImpl) {
-		functionMap.put(functionImpl.getFunctionName(), functionImpl);
+		for (String name: functionImpl.getFunctionNames()) {
+			functionMap.put(name, functionImpl);
+		}
 	}
 	
 	public static Map<String, ModelLevelFunction> getFunctionMap() {
@@ -102,11 +105,25 @@ public abstract class ModelLevelFunction {
 			getFunctionMap().get(function.getQualifiedName());
 	}
 	
-	public abstract String getOperatorName();
 	abstract public String getPackageName();
-	public String getFunctionName() {
-		return getPackageName() + "::" + getOperatorName();
+
+	public String getOperatorName() {
+		return null;
 	}
+	
+	public String[] getOperatorNames() {
+		String op = getOperatorName();
+		return op == null? new String[] {}: new String[] {op};
+	}
+	
+	public String[] getFunctionNames() {
+		String[] names = getOperatorNames();
+		for (int i = 0; i < names.length; i++) {
+			names[i] = getPackageName() + "::" + names[i];
+		}
+		return names;
+	}
+	
 	public abstract EList<Element> invoke(InvocationExpression invocation, Element target);
 	
 	protected static Type getPrimitiveType(Element context, EClass eClass) {

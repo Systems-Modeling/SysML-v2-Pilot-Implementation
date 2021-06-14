@@ -24,11 +24,11 @@ import org.eclipse.emf.common.util.EList;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.InvocationExpression;
 
-public class ConditionalAndFunction extends ControlFunction {
+public class ConditionalImpliesFunction extends ControlFunction {
 
 	@Override
 	public String[] getOperatorNames() {
-		return new String[]{"'&&'", "and"};
+		return new String[]{"implies"};
 	}
 
 	@Override
@@ -36,7 +36,7 @@ public class ConditionalAndFunction extends ControlFunction {
 		Boolean firstValue = booleanValue(invocation, 0, target);
 		if (firstValue != null) {
 			if (!firstValue) {
-				return booleanResult(false);
+				return booleanResult(true);
 			} else {
 				Boolean secondValue = booleanValue(invocation, 1, target);
 				if (secondValue != null) {

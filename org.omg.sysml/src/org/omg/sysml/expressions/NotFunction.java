@@ -27,8 +27,8 @@ import org.omg.sysml.lang.sysml.Element;
 public class NotFunction extends BooleanFunction {
 
 	@Override
-	public String getOperatorName() {
-		return "'!'";
+	public String[] getOperatorNames() {
+		return new String[]{"'!'", "not"};
 	}
 	
 	@Override

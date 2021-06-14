@@ -27,8 +27,8 @@ import org.omg.sysml.lang.sysml.InvocationExpression;
 public class ConditionalOrFunction extends ControlFunction {
 
 	@Override
-	public String getOperatorName() {
-		return "'||'";
+	public String[] getOperatorNames() {
+		return new String[]{"'||'", "or"};
 	}
 
 	@Override

@@ -36,11 +36,6 @@ package ControlFunctions {
 		composite abstract expr secondValue[0..1] (): Boolean[1];
 	}
 	
-	abstract function while('initial': Anything[0..*]): Anything[0..*] {
-		composite abstract expr condition[1..*] (argument: Anything[0..*]): Boolean[1];
-		composite abstract expr body[0..*] (argument: Anything[0..*]): Anything[0..*];
-	}
-	
 	abstract function collect(collection: Anything[0..*]): Anything[0..*] {
 		composite abstract expr mapper[0..*] (argument: Anything[1]): Anything[0..*];
 	}

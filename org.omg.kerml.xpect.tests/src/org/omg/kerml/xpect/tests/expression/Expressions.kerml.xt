@@ -4,6 +4,7 @@ XPECT_SETUP org.omg.kerml.xpect.tests.expression.KerMLExpressionTest
 		ThisFile {}
 		File {from ="/library/Base.kerml"}
 		File {from ="/library/Links.kerml"}
+		File {from ="/library/Occurrences.kerml"}
 		File {from ="/library/Performances.kerml"}
 		File {from ="/library/ScalarValues.kerml"}
 		File {from ="/library/BaseFunctions.kerml"}
@@ -11,6 +12,8 @@ XPECT_SETUP org.omg.kerml.xpect.tests.expression.KerMLExpressionTest
 		File {from ="/library/ScalarFunctions.kerml"}
 		File {from ="/library/NumericalFunctions.kerml"}
 		File {from ="/library/ControlFunctions.kerml"}
+		File {from ="/library/FeatureAccessPerformances.kerml"}
+		File {from ="/library/ControlPerformances.kerml"}
 	}
 	Workspace {
 		JavaProject {
@@ -18,6 +21,7 @@ XPECT_SETUP org.omg.kerml.xpect.tests.expression.KerMLExpressionTest
 				ThisFile {}
 				File {from ="/library/Base.kerml"}
 				File {from ="/library/Links.kerml"}
+				File {from ="/library/Occurrences.kerml"}
 				File {from ="/library/Performances.kerml"}
 				File {from ="/library/ScalarValues.kerml"}
 				File {from ="/library/BaseFunctions.kerml"}
@@ -25,6 +29,8 @@ XPECT_SETUP org.omg.kerml.xpect.tests.expression.KerMLExpressionTest
 				File {from ="/library/ScalarFunctions.kerml"}
 				File {from ="/library/NumericalFunctions.kerml"}
 				File {from ="/library/ControlFunctions.kerml"}
+				File {from ="/library/FeatureAccessPerformances.kerml"}
+				File {from ="/library/ControlPerformances.kerml"}
 			}
 		}
 	}
@@ -46,11 +52,22 @@ package Expressions {
 	
 	b = x > y? x-y: y-x;
 	c = x->collect {in xx; xx + 1}; 
-	d = x->while({in q; q > 3}, {in r; r - 1})->reduce {in s; in t; s + t}->reduce '+';
+	d = x->reduce {in s; in t; s + t}->reduce '+';
 	
-	function w specializes while (initial) result {
-		expr condition redefines while::condition (v){v > 3}
-		expr body redefines while::body (u){u - 1}
+	behavior w specializes ControlPerformances::LoopPerformance (inout v: Integer)  {
+		in expr redefines whileTest {v > 3}
+		in step redefines body : Performances::Performance {
+			step decrement {
+				out v_decr : Integer = v - 1;			
+			}
+			succession decrement then update;
+			step update : FeatureAccessPerformances::FeatureWritePerformance {
+				inout replacementValues = decrement.v_decr;
+				feature redefines onOccurrence = w::self {
+					feature redefines accessedFeature redefines v;
+				}
+			}
+		}
 	}
 	
 	xx = x == 1 && y == 2? a:

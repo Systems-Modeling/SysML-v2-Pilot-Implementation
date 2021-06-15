@@ -14654,21 +14654,26 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Keyword cTimesliceTimesliceKeyword_1_0 = (Keyword)cTimesliceEnumLiteralDeclaration_1.eContents().get(0);
 		
 		//enum PortionKind returns SysML::PortionKind :
-		//    snapshot | timeslice
+		//    // Literal keywords identified explicitly so they can be found by syntax highlighting script
+		//    snapshot = 'snapshot' | timeslice = 'timeslice'
 		//;
 		public EnumRule getRule() { return rule; }
 		
-		//snapshot | timeslice
+		//// Literal keywords identified explicitly so they can be found by syntax highlighting script
+		//snapshot = 'snapshot' | timeslice = 'timeslice'
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
-		//snapshot
+		//// Literal keywords identified explicitly so they can be found by syntax highlighting script
+		//snapshot = 'snapshot'
 		public EnumLiteralDeclaration getSnapshotEnumLiteralDeclaration_0() { return cSnapshotEnumLiteralDeclaration_0; }
 		
+		//'snapshot'
 		public Keyword getSnapshotSnapshotKeyword_0_0() { return cSnapshotSnapshotKeyword_0_0; }
 		
-		//timeslice
+		//timeslice = 'timeslice'
 		public EnumLiteralDeclaration getTimesliceEnumLiteralDeclaration_1() { return cTimesliceEnumLiteralDeclaration_1; }
 		
+		//'timeslice'
 		public Keyword getTimesliceTimesliceKeyword_1_0() { return cTimesliceTimesliceKeyword_1_0; }
 	}
 	public class TriggerFeatureKindElements extends AbstractElementFinder.AbstractEnumRuleElementFinder {
@@ -17649,7 +17654,8 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//enum PortionKind returns SysML::PortionKind :
-	//    snapshot | timeslice
+	//    // Literal keywords identified explicitly so they can be found by syntax highlighting script
+	//    snapshot = 'snapshot' | timeslice = 'timeslice'
 	//;
 	public PortionKindElements getPortionKindAccess() {
 		return ePortionKind;

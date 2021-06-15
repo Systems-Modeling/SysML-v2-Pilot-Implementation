@@ -97,7 +97,7 @@ The files `mode.ts` and `kernel.js` are auto-generated from their respective tem
 - `./jupyter/kernel_template.js`
 
 For both templates the `$KEYWORDS` and `$DEF_KEYWORDS` placeholders get replaced with the lists of (def) keywords
-extracted from the `xtext` grammars. The additional data file `.jupyter/additional_def_keywords.txt` is used to manually
+extracted from the `xtext` grammars. The additional data file `./jupyter/additional_def_keywords.txt` is used to manually
 define a collection of definition keywords that should be included in the replacement of `$DEF_KEYWORDS`. See the
 comments inside that data file for instructions.
 

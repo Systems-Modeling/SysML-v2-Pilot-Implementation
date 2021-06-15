@@ -935,7 +935,8 @@ PortionUsage returns SysML::OccurrenceUsage :
 ;
 
 enum PortionKind returns SysML::PortionKind :
-	snapshot | timeslice
+	// Literal keywords identified explicitly so they can be found by syntax highlighting script
+	snapshot = 'snapshot' | timeslice = 'timeslice'
 ;
 
 PortioningFeatureMember returns SysML::FeatureMembership :

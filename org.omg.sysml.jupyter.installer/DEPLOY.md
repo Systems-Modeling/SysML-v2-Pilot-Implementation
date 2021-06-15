@@ -6,7 +6,7 @@ The following are the steps for an opinionated deployment of the SysML v2 Jupyte
 
 * Server running a Linux distribution, e.g. Ubuntu 20.04
 * [The Littlest JupyterHub](https://tljh.jupyter.org/en/latest/)
-* JDK 8
+* Java 11
 
 ## Steps
 
@@ -15,7 +15,7 @@ The following are the steps for an opinionated deployment of the SysML v2 Jupyte
 ```shell
 cd /path/to/SysML-v2-Pilot-Implementation/
 git checkout master && git fetch && git pull
-# verify Java 8
+# verify Java 11
 # java --version
 ./mvnw clean package
 ```

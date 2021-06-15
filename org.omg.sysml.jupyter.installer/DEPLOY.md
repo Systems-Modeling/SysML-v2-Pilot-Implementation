@@ -1,6 +1,6 @@
 # Deployment
 
-The following are the steps for an opinionated deployment of the SysML v2 Jupyter tooling in a multi-tenant JupyterHub environment to serve as a reference.
+The following are the steps for a reference deployment of the SysML v2 Jupyter tooling in a multi-tenant JupyterHub environment.
 
 ## Prerequisites
 

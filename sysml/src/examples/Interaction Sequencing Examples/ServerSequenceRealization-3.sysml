@@ -14,6 +14,16 @@ package ServerSequenceRealization_3 {
 			out ref deliver : Deliver;
 		}
 		
+		interface def PublicationInterface {
+			end source : ~PublicationPort;
+			end target : PublicationPort;
+		}
+		
+		interface def SubscriptionInterface {
+			end source : ~SubscriptionPort;
+			end target : SubscriptionPort;
+		}
+		
 		part producer_3[1] {
 			attribute someTopic : String;
 			private item somePublication;
@@ -26,12 +36,12 @@ package ServerSequenceRealization_3 {
 				action publish {
 					out ref request : Publish[1] = Publish(someTopic, somePublication);
 				}
-				stream publish_request from publish::request to publicationPort::publish;
+				stream publish_request from publish.request to publicationPort.publish;
 			}			
 		}
 		
-		interface publication_interface connect producer_3::publicationPort to server_3::publicationPort {
-			stream publish_request from publication_interface::source::publish to publication_interface::target::publish;
+		interface publication_interface : PublicationInterface connect producer_3.publicationPort to server_3.publicationPort {
+			stream publish_request from publication_interface.source.publish to publication_interface.target.publish;
 		}
 		
 		part server_3[1] {
@@ -44,8 +54,8 @@ package ServerSequenceRealization_3 {
 			}
 						
 			perform action serverBehavior {
-				stream subscribe_request from subscriptionPort::subscribe to subscribing::request;
-				stream publish_request from publicationPort::publish to publishing::request;
+				stream subscribe_request from subscriptionPort.subscribe to subscribing.request;
+				stream publish_request from publicationPort.publish to publishing.request;
 				
 				action subscribing {
 					in ref request : Subscribe[1];
@@ -70,13 +80,13 @@ package ServerSequenceRealization_3 {
 				}
 				then continuePublishing;
 				
-				stream deliver_response from delivering::response to subscriptionPort::deliver;
+				stream deliver_response from delivering.response to subscriptionPort.deliver;
 			}
 		}
 		
-		interface subscription_interface connect consumer_3::subscriptionPort to server_3::subscriptionPort {
-			stream subscribe_request from subscription_interface::source::subscribe to subscription_interface::target::subscribe;
-			stream deliver_response from subscription_interface::target::deliver to subscription_interface::source::deliver;
+		interface subscription_interface : SubscriptionInterface connect consumer_3.subscriptionPort to server_3.subscriptionPort {
+			stream subscribe_request from subscription_interface.source.subscribe to subscription_interface.target.subscribe;
+			stream deliver_response from subscription_interface.target.deliver to subscription_interface.source.deliver;
 		}
 		
 		part consumer_3[1] {
@@ -88,8 +98,8 @@ package ServerSequenceRealization_3 {
 			}
 			
 			perform action consumerBehavior {
-				stream subscribe_request from subscribe::request to subscriptionPort::subscribe;
-				stream deliver_response from subscriptionPort::deliver to delivery::response;
+				stream subscribe_request from subscribe.request to subscriptionPort.subscribe;
+				stream deliver_response from subscriptionPort.deliver to delivery.response;
 				action subscribe {
 					out ref request : Subscribe = Subscribe(myTopic);
 				}

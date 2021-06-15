@@ -50,8 +50,8 @@ package '3d-Function-based Behavior-item' {
 			
 			part pump : Pump {
 				perform action pumpFuel : PumpFuel (
-					in fuelIn = fuelInPort::fuel,
-					out fuelOut = fuelOutPort::fuel
+					in fuelIn = fuelInPort.fuel,
+					out fuelOut = fuelOutPort.fuel
 				);
 			}
 			

@@ -103,19 +103,10 @@ package '2a-Parts Interconnection' {
 	package Usages {
 	
 		part vehicle1_c1: VehicleA {
+						
+			bind fuelCmdPort = engine.fuelCmdPort;
 			
-			/**
-			 * Inherited ports are redefined to provide "local connection points".
-			 * ("::>>" is a shorthand for "redefines".)
-			 */
-			port fuelCmdPort :>> VehicleA::fuelCmdPort;
-			
-			bind fuelCmdPort = engine::fuelCmdPort;
-			
-			part engine: Engine {
-				port fuelCmdPort :>> Engine::fuelCmdPort;
-				port drivePwrPort :>> Engine::drivePwrPort;
-			}
+			part engine: Engine;
 			
 			/**
 			 * A usage of an interface definition connects two ports relative to 
@@ -138,7 +129,7 @@ package '2a-Parts Interconnection' {
 					 * The reference property from 'DriveshaftInterface' is redefined
 					 * in order to bind it to the appropriate part of 'vehicle1_c1'.
 					 */
-					ref :>> DriveshaftInterface::driveshaft = vehicle1_c1.driveshaft;
+					ref :>> driveshaft = vehicle1_c1.driveshaft;
 				}
 	
 			part rearAxleAssembly: RearAxleAssembly {

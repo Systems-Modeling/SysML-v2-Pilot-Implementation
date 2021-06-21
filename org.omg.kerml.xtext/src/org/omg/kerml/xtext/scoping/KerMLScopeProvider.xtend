@@ -150,9 +150,9 @@ class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 	def static Namespace featureRefNamespace(PathStepExpression qps) {
 		var ops = qps.operand
 		if (ops.size() >= 2) {
-			var op1 = ops.get(1)
-			if (op1 instanceof FeatureReferenceExpression) {
-				return op1.result
+			var op2 = ops.get(1)
+			if (op2 instanceof FeatureReferenceExpression) {
+				return op2.referent
 			}
 		}
 		return null;

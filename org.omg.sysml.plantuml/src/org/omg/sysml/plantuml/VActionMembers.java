@@ -25,17 +25,13 @@
 package org.omg.sysml.plantuml;
 
 import org.omg.sysml.lang.sysml.ActionUsage;
-import org.omg.sysml.lang.sysml.Connector;
 import org.omg.sysml.lang.sysml.DecisionNode;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureDirectionKind;
 import org.omg.sysml.lang.sysml.ForkNode;
-import org.omg.sysml.lang.sysml.ItemFlow;
-import org.omg.sysml.lang.sysml.ItemFlowFeature;
 import org.omg.sysml.lang.sysml.JoinNode;
 import org.omg.sysml.lang.sysml.MergeNode;
 import org.omg.sysml.lang.sysml.ParameterMembership;
-import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.Type;
 
 public class VActionMembers extends VBehavior {
@@ -77,23 +73,6 @@ public class VActionMembers extends VBehavior {
         return "";
     }
 
-
-    private Feature resolveItemFlowFeature(Feature f) {
-        if (!(f instanceof ItemFlowFeature)) return f;
-        ItemFlowFeature iff = (ItemFlowFeature) f;
-        for (Redefinition r: iff.getOwnedRedefinition()) {
-            Feature f2 = r.getRedefinedFeature();
-            if (f2 != null) return f2;
-        }
-        return f;
-    }
-
-    @Override
-    public String caseConnector(Connector c) {
-        addConnector(c);
-        return "";
-    }
-
     @Override
     public String caseDecisionNode(DecisionNode dn) {
         addNode(dn, "choice");
@@ -115,18 +94,6 @@ public class VActionMembers extends VBehavior {
     @Override
     public String caseForkNode(ForkNode fn) {
         addNode(fn, "fork");
-        return "";
-    }
-
-    @Override
-    public String caseItemFlow(ItemFlow itf) {
-    	for (Feature src: itf.getSourceOutputFeature()) {
-            Feature s = resolveItemFlowFeature(src);
-    		for (Feature tgt: itf.getTargetInputFeature()) {
-                Feature t = resolveItemFlowFeature(tgt);
-    			addPRelation(s, t, itf, "");
-    		}
-    	}
         return "";
     }
 

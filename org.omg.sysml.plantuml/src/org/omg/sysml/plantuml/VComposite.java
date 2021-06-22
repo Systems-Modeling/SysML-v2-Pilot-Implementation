@@ -24,8 +24,6 @@
 
 package org.omg.sysml.plantuml;
 
-import org.omg.sysml.lang.sysml.Connector;
-import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.MultiplicityRange;
 import org.omg.sysml.lang.sysml.PartDefinition;
@@ -94,12 +92,6 @@ public class VComposite extends VMixed {
     }
 
     @Override
-    public String caseConnector(Connector c) {
-        addConnector(c);
-        return "";
-    }
-
-    @Override
     public String casePortUsage(PortUsage pu) {
         String name = extractName(pu);
         if (name == null) return "";
@@ -141,12 +133,6 @@ public class VComposite extends VMixed {
     @Override
     public String caseMultiplicityRange(MultiplicityRange mr) {
         // Do not show MultiplicityRange
-        return "";
-    }
-
-    @Override
-    public String caseExpression(Expression e) {
-        // Do not show Expression
         return "";
     }
 

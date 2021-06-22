@@ -34,7 +34,6 @@ import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Multiplicity;
 import org.omg.sysml.lang.sysml.MultiplicityRange;
-import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.util.SysMLSwitch;
 
@@ -308,14 +307,6 @@ public abstract class Visitor extends SysMLSwitch<String> {
             }
             append(name);
         }
-    }
-
-    protected Element getEnd(Feature f) {
-        if (f == null) return null;
-        for (Subsetting ss: f.getOwnedSubsetting()) {
-            return ss.getSubsettedFeature();
-        }
-        return null;
     }
 
     private boolean outputPRelation(StringBuilder ss, PRelation pr) {

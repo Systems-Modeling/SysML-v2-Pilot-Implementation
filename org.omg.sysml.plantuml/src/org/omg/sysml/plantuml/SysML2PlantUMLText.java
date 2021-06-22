@@ -209,6 +209,8 @@ public class SysML2PlantUMLText {
         String ret = getStereotypeStyle(typ);
         if (ret == null) {
             ret = " <<(T,blue)" + individualPrefix(typ);
+        } else if (" ".equals(ret)) {
+            return ret;
         } else if (!ret.startsWith("<<")) {
             ret = "<<" + individualPrefix(typ) + ret;
         }

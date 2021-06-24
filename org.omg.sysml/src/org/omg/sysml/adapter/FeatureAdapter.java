@@ -234,6 +234,7 @@ public class FeatureAdapter extends TypeAdapter {
 		List<Feature> redefinedFeatures = new ArrayList<>();
 		redefinitions.stream().
 			map(r->r == skip? ((RedefinitionImpl)r).basicGetRedefinedFeature(): r.getRedefinedFeature()).
+			filter(f->f != null).
 			forEachOrdered(redefinedFeatures::add);
 		
 		TypeUtil.getImplicitGeneralTypesOnly(target, SysMLPackage.eINSTANCE.getRedefinition())

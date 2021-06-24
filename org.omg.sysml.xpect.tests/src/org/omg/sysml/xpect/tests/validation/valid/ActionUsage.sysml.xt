@@ -43,24 +43,22 @@ XPECT_SETUP org.omg.sysml.xpect.tests.validation.valid.SysMLTests
 END_SETUP 
 */
 // XPECT noErrors ---> ""
-package 'Activity Example-1' {
-	part def Scene;
-	part def Image;
-	part def Picture;
+package 'Action Example' {
+	part def P;
+	part def Q;
+	part def R;
 	
-	action def Focus(in scene : Scene, out image : Image);
-	action def Shoot(in image: Image, out picture : Picture);	
+	action def A(in p : P, out q : Q);
+	action def B(in q: Q, out r : R);	
 		
-	action def TakePicture(in scene : Scene, out picture : Picture) {
-		bind focus.scene = scene;
+	action def C(in p : P, out r : R) {
+		bind a.p = p;
 		
-		action focus: Focus (in scene, out image);
+		action a: A (in p, out q, out part x);
 		
-		flow focus.image to shoot.image;
+		flow a.q to b.q;
 		
-		action shoot: Shoot (in image, out picture);
-		
-		bind shoot.picture = picture;
+		action b: B (in q, out r = C::r, in x stream from a.x);
 	}
 	
 }

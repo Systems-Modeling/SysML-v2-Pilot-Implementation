@@ -71,8 +71,8 @@ public class ItemFlowAdapter extends ConnectorAdapter {
 
 	@Override
 	public void doTransform() {
-		super.doTransform();
 		transformConnectorEnd();
+		super.doTransform();
 	}
 	
 }

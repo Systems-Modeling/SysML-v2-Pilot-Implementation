@@ -54,7 +54,7 @@ package SI {
     attribute E: TrafficIntensityUnit = one { :>> longName = "erlang"; }
     attribute F: CapacitanceUnit = C/V { :>> longName = "farad"; }
     attribute Gy: AbsorbedDoseUnit = J/kg { :>> longName = "gray"; }
-    attribute H: PermeanceUnit = Wb/A { :>> longName = "henry"; }
+    attribute H: PermeanceUnit, InductanceUnit = Wb/A { :>> longName = "henry"; }
     attribute Hart: InformationContentUnit = one { :>> longName = "hartley"; }
     attribute Hz: FrequencyUnit = s**-1 { :>> longName = "hertz"; }
     attribute J: EnergyUnit = N*m { :>> longName = "joule"; }

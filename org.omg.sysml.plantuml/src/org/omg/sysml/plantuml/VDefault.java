@@ -134,10 +134,14 @@ public class VDefault extends VTraverser {
             if (ex instanceof FeatureReferenceExpression) {
                 FeatureReferenceExpression fre = (FeatureReferenceExpression) ex;
                 e = fre.getReferent();
-            } else if (ex instanceof PathStepExpression) {
+            }
+
+            /* Do not need to recurse because PathStepExpression put operand in a depth-first manner.
+            if (ex instanceof PathStepExpression) {
                 PathStepExpression psec = (PathStepExpression) ex;
                 return resolvePathStepExpression(psec, e);
             }
+            */
         }
         return e;
     }

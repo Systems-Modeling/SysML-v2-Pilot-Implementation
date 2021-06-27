@@ -40,7 +40,7 @@ public class OccurrenceUsageAdapter extends UsageAdapter {
 	protected void addOccurrenceTyping() {
 		OccurrenceUsage target = getTarget();
 		Type owningType = target.getOwningType();
-		if (target.getPortionKind() != null && target.getOwnedGeneralization().isEmpty()) {
+		if (target.getPortionKind() != null && target.getOwnedTyping().isEmpty()) {
 			if (owningType instanceof OccurrenceDefinition) {
 				addImplicitGeneralType(SysMLPackage.eINSTANCE.getFeatureTyping(), owningType);
 			} else if (owningType instanceof OccurrenceUsage) {

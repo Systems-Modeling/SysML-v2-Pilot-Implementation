@@ -489,4 +489,14 @@ public class SysML2PlantUMLText {
     Integer getId(Element e) {
         return idMap.getId(e);
     }
+
+    private boolean inherited;
+
+    void setInherited(boolean flag) {
+        this.inherited = flag;
+    }
+    
+    boolean isInherited() {
+        return inherited;
+    }
 }

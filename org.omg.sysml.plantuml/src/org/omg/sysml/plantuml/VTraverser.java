@@ -45,10 +45,6 @@ public abstract class VTraverser extends Visitor {
         return currentMembership;
     }
 
-    protected boolean isInherited() {
-        return currentMembership == null;
-    }
-    
     protected boolean checkVisited(Namespace n) {
     	boolean flag = visited.contains(n);
     	visited.add(n);
@@ -72,8 +68,10 @@ public abstract class VTraverser extends Visitor {
     protected String traverse0(Namespace n) {
         for (Membership m: n.getOwnedMembership()) {
             // if (visit(m) == null) return null;
+            setInherited(false);
             visit(m);
             for (Relationship r: m.getOwnedRelationship()) {
+                setInherited(false);
                 visit(r);
             }
         }
@@ -86,6 +84,7 @@ public abstract class VTraverser extends Visitor {
             Type gt = g.getGeneral();
             if (gt == null) continue;
             for (FeatureMembership fm: gt.getOwnedFeatureMembership()) {
+                setInherited(true);
                 visit(fm);
             }
         }
@@ -97,6 +96,7 @@ public abstract class VTraverser extends Visitor {
         vpath.enter(ns);
         traverse0(ns);
         for (Element e: vpath.rest()) {
+            setInherited(true);
             currentMembership = null;
             visit(e);
         }

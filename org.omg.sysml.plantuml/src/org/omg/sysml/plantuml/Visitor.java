@@ -135,6 +135,14 @@ public abstract class Visitor extends SysMLSwitch<String> {
         s2p.popIdMap(keep);
     }
 
+    protected void setInherited(boolean flag) {
+        s2p.setInherited(flag);
+    }
+    
+    protected boolean isInherited() {
+        return s2p.isInherited();
+    }
+
     protected String getRelStyle(Element rel) {
         return s2p.getRelStyle(rel);
     }

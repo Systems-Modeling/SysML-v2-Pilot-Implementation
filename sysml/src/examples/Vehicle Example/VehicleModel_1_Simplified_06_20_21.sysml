@@ -75,6 +75,15 @@ package sfriedenthal_VehicleModel_1_simplified{
                 port controlPort:ControlPort;
                 exhibit state controllerStates: ControllerStates;
             }
+            part def CruiseController:>Software {
+                port setSpeedPort:~SetSpeedPort;
+                port speedSensorPort:~SpeedSensorPort;
+                port cruiseControlPort:CruiseControlPort;
+                exhibit state cruiseControllerStates: CruiseControllerStates;
+            }
+            part def SpeedSensor{
+                port speedSensorPort:SpeedSensorPort;
+            }
             part def FuelTank{
                 attribute mass :> ISQ::mass;
                 // should use fuel volume instead of fuel mass and fuelCopacity instead of fuelMassMax
@@ -93,9 +102,9 @@ package sfriedenthal_VehicleModel_1_simplified{
                 attribute incline:Real;
                 attribute friction:Real;
             }
-            part def VehicleRoadContext{
-                attribute time:TimeValue;
-            }
+            //part def VehicleRoadContext{
+               // attribute time:TimeValue;
+            //}
             // Used for Specifying Context for Individuals
             // replace SpatialTemporalReference by GenericContext::Context
             //part def SpatialTemporalReference;
@@ -109,10 +118,12 @@ package sfriedenthal_VehicleModel_1_simplified{
             part def Sunroof;
             
             //create abstract physical element to support allocation def from logical to Physical
-            part def PhysicalComponent:>PhysicalElement;
+            // Parts::Part is a work around on both Physical Component and Logical Component until 2021-05 release
+            part def PhysicalComponent:>PhysicalElement, Parts::Part;
             //logical Components
-            part def LogicalComponent:>LogicalElement;
+            part def LogicalComponent:>LogicalElement, Parts::Part;
             part def VehicleLogical:>LogicalComponent;
+            
             part def ElectricalGenerator;
             part def TorqueGenerator;
             part def SteeringSubsystem;
@@ -145,11 +156,15 @@ package sfriedenthal_VehicleModel_1_simplified{
             port def WheelToRoadPort;
             port def VehicleToRoadPort;
             port def ControlPort;
+            port def CruiseControlPort;
+            port def SpeedSensorPort;
+            port def SetSpeedPort;
         }
         package ItemDefinitions{
             item def Fuel{
                 attribute fuelMass:>ISQ::mass;
             }
+            // should FuelCmd and PwrCmd be attributes vs items
             item def FuelCmd:>PwrCmd;
             item def PwrCmd{
                 attribute throttleLevel:Real;
@@ -169,6 +184,8 @@ package sfriedenthal_VehicleModel_1_simplified{
             // the following are work arounds until time events and change events are available
             attribute def 'at(vehicle::maintenanceTime)';
             attribute def 'when(temp>vehicle::Tmax)';
+            attribute def SensedSpeed:>Real;
+            attribute def SetSpeed:>Real;
         }
         package InterfaceDefinitions{
             interface def EngineToTransmissionInterface{
@@ -222,6 +239,7 @@ package sfriedenthal_VehicleModel_1_simplified{
         package StateDefinitions {
             state def VehicleStates;
             state def ControllerStates;  
+            state def CruiseControllerStates;
         }
         package RequirementDefinitions{
             requirement def MassRequirement{
@@ -262,7 +280,7 @@ package sfriedenthal_VehicleModel_1_simplified{
             import USCustomaryUnits::*;
             alias ISQ::TorqueValue as Torque;
             
-            //examples of enumberations
+            //examples of enumerations
             enum def Colors {black;grey;red;}
             enum def DiameterChoices:>ISQ::LengthValue{
                 enum = 60 [mm];
@@ -290,8 +308,7 @@ package sfriedenthal_VehicleModel_1_simplified{
         }
         package IndividualDefinitions{
             //individual def SpatialTemporalReference_1:>SpatialTemporalReference;
-            individual def Context_1:>GenericContext::Context;
-            individual def VehicleRoadContext_1:>VehicleRoadContext;
+            individual def VehicleRoadContext_1:>GenericContext::Context;
             individual def Vehicle_1:>Vehicle;
             individual def FrontAxleAssembly_1:>AxleAssembly;
             individual def FrontAxle_1:>FrontAxle;
@@ -322,6 +339,7 @@ package sfriedenthal_VehicleModel_1_simplified{
             //import USCustomaryUnits::*;
 
             part def Context {
+                attribute time:TimeValue;
                 attribute spatialCS: Cartesian3dSpatialCoordinateSystem[1] { :>> mRefs = (m, m, m); }
                 attribute velocityCS: Cartesian3dVelocityCoordinateSystem[1] = spatialCS/s { :>> isBound = false; }
                 attribute accelarationCS: Cartesian3dAccelerationCoordinateSystem[1] = velocityCS/s { :>> isBound = false; }
@@ -400,6 +418,7 @@ package sfriedenthal_VehicleModel_1_simplified{
                     port fuelCmdPort: FuelCmdPort redefines pwrCmdPort {
                         in item redefines fuelCmd;
                     }
+                    port setSpeedPort:~SetSpeedPort;
                     port vehicleToRoadPort redefines vehicleToRoadPort{
                         port wheelToRoadPort1:WheelToRoadPort;
                         port wheelToRoadPort2:WheelToRoadPort;
@@ -514,8 +533,10 @@ package sfriedenthal_VehicleModel_1_simplified{
                             exhibit States::controllerStates redefines controllerStates{
                                 ref controller = vehicleController;
                             }
+                            part cruiseController:CruiseController;
                         }
                     }
+                    part speedSensor:SpeedSensor;
                     // parts in bodyAssy and interioer are marked as safety or security features
                     part bodyAssy:BodyAssy{
                         part body:Body{
@@ -546,6 +567,9 @@ package sfriedenthal_VehicleModel_1_simplified{
                     //Do not need to redefine ports if :: is replaced with dot notation 
                     //connect vehicleSoftware::vehicleController::controlPort to engine::engineControlPort;
                     connect vehicleSoftware.vehicleController.controlPort to engine.engineControlPort;
+                    bind vehicle_b.setSpeedPort = vehicleSoftware.vehicleController.cruiseController.setSpeedPort;
+                    connect speedSensor.speedSensorPort to vehicleSoftware.vehicleController.cruiseController.speedSensorPort;
+                    connect vehicleSoftware.vehicleController.cruiseController.cruiseControlPort to engine.engineControlPort;
                     connect transmission::shaftPort_a to driveshaft::shaftPort_b; 
                     connect driveshaft::shaftPort_c to rearAxleAssembly::shaftPort_d;
                     bind rearAxleAssembly::rearWheel1::wheelToRoadPort=vehicleToRoadPort::wheelToRoadPort1;
@@ -684,6 +708,49 @@ package sfriedenthal_VehicleModel_1_simplified{
                             then off;
                     }
                 }  
+            }
+            package DiscreteInteractions{
+                occurrence def CruiseControl{
+                    part vehicle_b:>PartsTree::vehicle_b{
+                        port redefines setSpeedPort{
+                            event occurrence setSpeedReceived;
+                        }
+                        part redefines speedSensor{
+                            port redefines speedSensorPort{
+                                event occurrence sensedSpeedSent;
+                            }
+                        }
+                        part redefines vehicleSoftware{
+                            part redefines vehicleController{
+                                part redefines cruiseController{
+                                /* introduce loop operand with test when available so that
+                                 sensedSpeedSent continues at periodic intervals until cancelSpeedReceived */
+                                    port redefines setSpeedPort{
+                                        //analagous to gate: event occurrence bound but may not need this since the port is bound
+                                        event occurrence setSpeedReceived = vehicle_b.setSpeedPort.setSpeedReceived;
+                                    }
+                                    port redefines speedSensorPort{
+                                        event occurrence setSpeedReceived=setSpeedPort.setSpeedReceived;
+                                        then event occurrence sensedSpeedReceived;
+                                    }
+                                    port redefines cruiseControlPort{
+                                        event occurrence sensedSpeedReceived=speedSensorPort.sensedSpeedReceived;
+                                        then event occurrence fuelCmdSent;
+                                    }
+                                }
+                            }
+                        }
+                        part redefines engine{
+                            port redefines fuelCmdPort{
+                                event occurrence fuelCmdReceived;
+                            }
+                        }
+                        message sendSensedSpeed of SensedSpeed
+                            from speedSensor.speedSensorPort.sensedSpeedSent to vehicleSoftware.vehicleController.cruiseController.speedSensorPort.sensedSpeedReceived;
+                        message sendFuelCmd of FuelCmd
+                            from vehicleSoftware.vehicleController.cruiseController.cruiseControlPort.fuelCmdSent to engine.fuelCmdPort.fuelCmdReceived;
+                    }
+                }
             }
             package Requirements{
                 item marketSurvey;
@@ -831,8 +898,48 @@ package sfriedenthal_VehicleModel_1_simplified{
         }
     }
     package VehicleAnalysis{
-        // recursive import uses double asterist **
+        // recursive import uses double asterisk **
         import VehicleConfigurations::VehicleConfiguration_b::**;
+        package FuelEconomyAnalysisModel_ModelCenter{
+            // metadata library
+            import AnalysisTooling::*;
+            
+            // specify indviduals to record input and output values
+            individual def Vehicle_2:>Vehicle;
+            individual def Engine_2:>Engine;
+            //individual vehicle_b2:Vehicle_2{
+            individual vehicle_b2:Vehicle_2:>PartsTree::vehicle_b{
+                //attribute fuelEconomy:Real; 
+                attribute :>>avgFuelEconomy;
+                attribute distanceTraveled:LengthValue = 1000 [m];
+                individual engine_b2:Engine_2 redefines PartsTree::vehicle_b::engine {
+                    attribute :>> peakHorsePower = 200*745.7[W];
+                    attribute :>> fuelEfficiency = .4;                  
+                }
+            }
+           analysis fuelEconomyAnalysis  {
+                //return attribute calculatedFuelEconomy:KilometersPerLitre;
+                return attribute calculatedFuelEconomy:>distancePerVolume;               
+                subject v:>vehicle_b2;
+                
+                objective fuelEconomyAnalysisObjective {
+                    /* the objective of this analysis is to determine whether the vehicle design configuration can 
+                    satisfy the fuel economy requirements */
+                    require vehicleSpecification::vehicleFuelEconomyRequirements;
+                }
+                
+                action fuelConsumption {
+                    metadata ToolExecution {
+                        toolName = "ModelCenter";
+                        uri = "aserv://localhost/sysml2/vehicleModel/fuelConsumption";
+                    }
+                    in power:PowerValue=v.engine_b2.peakHorsePower                  { @ToolVariable { name = "pv"; } }
+                    in fuelEfficiency:Real=v.engine_b2.fuelEfficiency               { @ToolVariable { name = "fuelEff"; } }
+                    in distanceTraveled:LengthValue=v.distanceTraveled              { @ToolVariable { name = "distance"; } }
+                    out fuelEconomy:>distancePerVolume=v.avgFuelEconomy                { @ToolVariable { name = "fuelEconomy"; }}
+                }
+           }
+        }
         package FuelEconomyAnalysisModel{
             //import NonScalarValues::SampledFunctionValue;
             import Collections::SampledFunction;
@@ -929,12 +1036,15 @@ package sfriedenthal_VehicleModel_1_simplified{
         package ReliabilityAnalyis{
         }
         package VehicleTradeOffAnalysis{
-            // the following provides the rationale that ould be contained in the vehicle configuration with the selected engine
+            // Example: the following provides the rationale for selecting the engine4cyl. The rationale could be contained in the vehicle configuration with the selected engine
             part engine4cyl;
-            // the following should be the explained by relationship that refers to the rationale for selecting the engine4cyl
-            dependency from engine4cyl to EngineSelectionRationale;
-            comment EngineSelectionRationale about engineTradeOffAnalysis 
-            /*this is the rationale that refers to the engineTradeOffAnalysis*/
+            comment EngineSelectionRationale about engine4cyl
+            /*this rationale for selecting the engine4cyl refers to the engineTradeOffAnalysis. 
+            This could be accomplished by a hyperlink or an explanation relationship. The explanation relationship may be easier to navigate via a quer. 
+            This should also support relationsips to external sources of data using the external relationship service*/
+            
+            // the following should be the explanation relationship that relates the rationale to the trade-off analysis used to select the engine4cyl               
+            dependency from EngineSelectionRationale to engineTradeOffAnalysis;
             
             import TradeStudies::*;
             //objective function with criterion engine mass, engine power, and engine cost
@@ -1025,13 +1135,19 @@ package sfriedenthal_VehicleModel_1_simplified{
         }
     }
     package VehicleIndividuals{
-        //individual a:SpatialTemporalReference_1{
-        individual a:Context_1{
-            timeslice t0_t2:VehicleRoadContext_1{
-                snapshot start redefines start{:>>time=0;}
-                snapshot done redefines done {:>>time=2;}
+        // VehicleRoadContext_1 subclasses GenericContext::Context with spatial reference and time attribute
+        individual a:VehicleRoadContext_1{
+            //timeslice t0_t2:VehicleRoadContext_1{
+            timeslice t0_t2_a{
+                snapshot start redefines start{
+                    attribute t0:TimeValue=0;
+                }
+                snapshot done redefines done{
+                    attribute t2:TimeValue=2;
+                }
             }
-            snapshot t0:VehicleRoadContext_1{
+            //snapshot t0:VehicleRoadContext_1{
+            snapshot t0_a {             
                 attribute t0 redefines time=0;
                 snapshot t0_r:Road_1{
                     :>>Road::incline =0;
@@ -1049,7 +1165,7 @@ package sfriedenthal_VehicleModel_1_simplified{
                     }
                 }
             }
-            snapshot t1:VehicleRoadContext_1{
+            snapshot t1_a{
                 attribute t1 redefines time=1;
                 snapshot t1_r:Road_1{
                     :>>Road::incline =0;
@@ -1067,7 +1183,7 @@ package sfriedenthal_VehicleModel_1_simplified{
                     }
                 }
             }
-            snapshot t2:VehicleRoadContext_1{
+            snapshot t2_a{
                 attribute t2 redefines time=2;
                 snapshot t2_r:Road_1{
                     :>>Road::incline =0;
@@ -1133,6 +1249,7 @@ package sfriedenthal_VehicleModel_1_simplified{
                 perform transportPassenger::closeDoor_2;
             }
             part vehicle_b_1:>vehicle_b {
+                attribute :>> positionVector = (0,0,0) [spatialCS];
                 perform transportPassenger::providePower redefines providePower;
             }
         }
@@ -1170,8 +1287,8 @@ package sfriedenthal_VehicleModel_1_simplified{
                 variation part sunroof:Sunroof;
                 // selection constraint
                 assert constraint {
-                    (engine==engine::engine4Cyl & transmissionChoices==TransmissionChoices::transmissionManual) ^
-                    (engine==engine::engine6Cyl & transmissionChoices==TransmissionChoices::transmissionAutomatic)
+                    (engine==engine::engine4Cyl and transmissionChoices==TransmissionChoices::transmissionManual) xor
+                    (engine==engine::engine6Cyl and transmissionChoices==TransmissionChoices::transmissionAutomatic)
                 }
             }
         }
@@ -1237,5 +1354,4 @@ package sfriedenthal_VehicleModel_1_simplified{
         }
     }
 }
-
 

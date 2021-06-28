@@ -129,26 +129,10 @@ public class VDefault extends VTraverser {
         return true;
     }
 
-    private Element resolvePathStepExpression(PathStepExpression pse, Element e) {
-        for (Expression ex: pse.getOperand()) {
-            if (ex instanceof FeatureReferenceExpression) {
-                FeatureReferenceExpression fre = (FeatureReferenceExpression) ex;
-                e = fre.getReferent();
-            }
-
-            /* Do not need to recurse because PathStepExpression put operand in a depth-first manner.
-            if (ex instanceof PathStepExpression) {
-                PathStepExpression psec = (PathStepExpression) ex;
-                return resolvePathStepExpression(psec, e);
-            }
-            */
-        }
-        return e;
-    }
-
     protected Element resolveReference(Feature f) {
         if (f instanceof PathStepExpression) {
-            return resolvePathStepExpression((PathStepExpression) f, null);
+            // return resolvePathStepExpression((PathStepExpression) f, null);
+            return f;
         } else if (f instanceof FeatureReferenceExpression) {
             FeatureReferenceExpression fre = (FeatureReferenceExpression) f;
             return fre.getReferent();

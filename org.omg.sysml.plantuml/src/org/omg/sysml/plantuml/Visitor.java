@@ -108,6 +108,10 @@ public abstract class Visitor extends SysMLSwitch<String> {
         return sb.length();
     }
 
+    protected VPath getVPath() {
+        return s2p.getVPath();
+    }
+
     private Integer newId(Element e) {
         return s2p.newId(e);
     }
@@ -216,6 +220,16 @@ public abstract class Visitor extends SysMLSwitch<String> {
         close();
     }
 
+    private String compId(Element e) {
+        if (e == null) return "[*]";
+        Integer ii = getVPath().getId(e);
+        if (ii == null) {
+            if (!checkId(e)) return null;
+            ii = getId(e);
+        }
+        return 'E' + ii.toString();
+    }
+
     private void appendId(StringBuilder ss, Element e, boolean force) {
         if (e == null) {
             ss.append("[*]");
@@ -231,10 +245,6 @@ public abstract class Visitor extends SysMLSwitch<String> {
 
     protected void addIdStr(Element e, boolean force) {
         appendId(sb, e, force);
-    }
-
-    private void outputPRId(StringBuilder ss, Element e) {
-        appendId(ss, e, false);
     }
 
     private final List<PRelation> pRelations;
@@ -310,13 +320,17 @@ public abstract class Visitor extends SysMLSwitch<String> {
     }
 
     private boolean outputPRelation(StringBuilder ss, PRelation pr) {
-        if (!(((pr.src == null) || checkId(pr.src))
-              && ((pr.dest == null) || checkId(pr.dest)))) return false;
-        String relStr = getRelStyle(pr.rel);
-
-        if (relStr == null) return true;
         if ((pr.src == null) && (pr.dest == null)) return true;
-        outputPRId(ss, pr.src);
+
+        String srcId = compId(pr.src);
+        if (srcId == null) return false;
+        String destId = compId(pr.dest);
+        if (destId == null) return false;
+
+        String relStr = getRelStyle(pr.rel);
+        if (relStr == null) return true;
+        
+        ss.append(srcId);
 
         // addMultiplicityString(ss, pr.src);
                 
@@ -328,7 +342,7 @@ public abstract class Visitor extends SysMLSwitch<String> {
             addMultiplicityString(ss, pr.rel);
         }
 
-        outputPRId(ss, pr.dest);
+        ss.append(destId);
         ss.append(' ');
         addLink(ss, pr.rel, null);
 

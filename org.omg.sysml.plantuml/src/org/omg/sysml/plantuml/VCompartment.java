@@ -75,7 +75,9 @@ public class VCompartment extends VStructure {
     }
 
     private boolean recCurrentMembership(Element e, boolean force) {
-        return rec(getCurrentMembership(), e, force);
+        Membership ms = getCurrentMembership();
+        if (ms == null) return false;
+        return rec(ms, e, force);
     }
 
     protected static class FeatureEntry implements Comparable<FeatureEntry> {

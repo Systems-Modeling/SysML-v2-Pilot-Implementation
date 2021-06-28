@@ -370,6 +370,8 @@ public class SysML2PlantUMLText {
 
     public String sysML2PUML(List<? extends EObject> eObjs) {
         initStyle();
+        this.vpath = new VPath();
+        vpath.setSysML2PlantUMLText(this);
         Visitor v = initVisitor();
         v.setSysML2PlantUMLText(this);
         StringBuilder sb = new StringBuilder();
@@ -380,11 +382,24 @@ public class SysML2PlantUMLText {
 
         for (EObject eObj : eObjs) {
             if (eObj instanceof Element) {
-                v.visit((Element) eObj);
+                Element e = (Element) eObj;
+                vpath.visit(e);
+            }
+        }
+        for (EObject eObj : eObjs) {
+            if (eObj instanceof Element) {
+                Element e = (Element) eObj;
+                v.visit(e);
             }
         }
         sb.append(v.getString());
         return sb.toString();
+    }
+
+    private VPath vpath;
+
+    VPath getVPath() {
+        return vpath;
     }
     
     private int idCounter;
@@ -410,6 +425,9 @@ public class SysML2PlantUMLText {
         Integer newId(Element e) {
             Integer ii = idCounter++;
             idMap.put(e, ii);
+            if (vpath != null) {
+                vpath.setId(e, ii);
+            }
             return ii;
         }
 

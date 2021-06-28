@@ -36198,9 +36198,9 @@ rule__StateDefinition__Group__0__Impl
 	}
 :
 (
-	{ before(grammarAccess.getStateDefinitionAccess().getIsAbstractAssignment_0()); }
-	(rule__StateDefinition__IsAbstractAssignment_0)?
-	{ after(grammarAccess.getStateDefinitionAccess().getIsAbstractAssignment_0()); }
+	{ before(grammarAccess.getStateDefinitionAccess().getOccurrenceDefinitionPrefixParserRuleCall_0()); }
+	ruleOccurrenceDefinitionPrefix
+	{ after(grammarAccess.getStateDefinitionAccess().getOccurrenceDefinitionPrefixParserRuleCall_0()); }
 )
 ;
 finally {
@@ -57955,25 +57955,6 @@ rule__GuardedSuccession__OwnedRelationshipAssignment_5
 		{ before(grammarAccess.getGuardedSuccessionAccess().getOwnedRelationshipTransitionSuccessionMemberParserRuleCall_5_0()); }
 		ruleTransitionSuccessionMember
 		{ after(grammarAccess.getGuardedSuccessionAccess().getOwnedRelationshipTransitionSuccessionMemberParserRuleCall_5_0()); }
-	)
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-rule__StateDefinition__IsAbstractAssignment_0
-	@init {
-		int stackSize = keepStackSize();
-	}
-:
-	(
-		{ before(grammarAccess.getStateDefinitionAccess().getIsAbstractAbstractKeyword_0_0()); }
-		(
-			{ before(grammarAccess.getStateDefinitionAccess().getIsAbstractAbstractKeyword_0_0()); }
-			'abstract'
-			{ after(grammarAccess.getStateDefinitionAccess().getIsAbstractAbstractKeyword_0_0()); }
-		)
-		{ after(grammarAccess.getStateDefinitionAccess().getIsAbstractAbstractKeyword_0_0()); }
 	)
 ;
 finally {

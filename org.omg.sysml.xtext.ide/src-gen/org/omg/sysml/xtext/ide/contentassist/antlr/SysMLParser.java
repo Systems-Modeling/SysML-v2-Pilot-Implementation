@@ -917,7 +917,6 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getGuardedSuccessionAccess().getOwnedRelationshipAssignment_2(), "rule__GuardedSuccession__OwnedRelationshipAssignment_2");
 			builder.put(grammarAccess.getGuardedSuccessionAccess().getOwnedRelationshipAssignment_3(), "rule__GuardedSuccession__OwnedRelationshipAssignment_3");
 			builder.put(grammarAccess.getGuardedSuccessionAccess().getOwnedRelationshipAssignment_5(), "rule__GuardedSuccession__OwnedRelationshipAssignment_5");
-			builder.put(grammarAccess.getStateDefinitionAccess().getIsAbstractAssignment_0(), "rule__StateDefinition__IsAbstractAssignment_0");
 			builder.put(grammarAccess.getStateBodyPartAccess().getOwnedRelationshipAssignment_0_0(), "rule__StateBodyPart__OwnedRelationshipAssignment_0_0");
 			builder.put(grammarAccess.getStateBodyPartAccess().getOwnedRelationshipAssignment_0_1(), "rule__StateBodyPart__OwnedRelationshipAssignment_0_1");
 			builder.put(grammarAccess.getStateBodyPartAccess().getOwnedRelationshipAssignment_1(), "rule__StateBodyPart__OwnedRelationshipAssignment_1");

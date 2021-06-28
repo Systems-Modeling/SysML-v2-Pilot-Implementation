@@ -16232,20 +16232,17 @@ ruleStateDefinition returns [EObject current=null]
 	leaveRule();
 }:
 	(
-		(
-			(
-				lv_isAbstract_0_0='abstract'
-				{
-					newLeafNode(lv_isAbstract_0_0, grammarAccess.getStateDefinitionAccess().getIsAbstractAbstractKeyword_0_0());
-				}
-				{
-					if ($current==null) {
-						$current = createModelElement(grammarAccess.getStateDefinitionRule());
-					}
-					setWithLastConsumed($current, "isAbstract", lv_isAbstract_0_0 != null, "abstract");
-				}
-			)
-		)?
+		{
+			if ($current==null) {
+				$current = createModelElement(grammarAccess.getStateDefinitionRule());
+			}
+			newCompositeNode(grammarAccess.getStateDefinitionAccess().getOccurrenceDefinitionPrefixParserRuleCall_0());
+		}
+		this_OccurrenceDefinitionPrefix_0=ruleOccurrenceDefinitionPrefix[$current]
+		{
+			$current = $this_OccurrenceDefinitionPrefix_0.current;
+			afterParserOrEnumRuleCall();
+		}
 		{
 			newCompositeNode(grammarAccess.getStateDefinitionAccess().getStateDefKeywordParserRuleCall_1());
 		}

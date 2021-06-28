@@ -1574,7 +1574,7 @@ StateDefKeyword :
 ;
 
 StateDefinition returns SysML::StateDefinition :
-	( isAbstract ?= 'abstract')? StateDefKeyword ActionDeclaration StateBody
+	OccurrenceDefinitionPrefix StateDefKeyword ActionDeclaration StateBody
 ;
 
 fragment StateBody returns SysML::Type :

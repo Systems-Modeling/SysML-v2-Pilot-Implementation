@@ -28,10 +28,8 @@ import java.util.List;
 
 import org.omg.sysml.lang.sysml.AttributeUsage;
 import org.omg.sysml.lang.sysml.CalculationUsage;
-import org.omg.sysml.lang.sysml.Connector;
 import org.omg.sysml.lang.sysml.ConstraintUsage;
 import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Multiplicity;
@@ -80,16 +78,6 @@ public class VTree extends VStructure {
         if (membership == null) {
             addType(au);
         }
-        return "";
-    }
-
-    @Override
-    public String caseConnector(Connector c) {
-        return "";
-    }
-
-    @Override
-    public String caseExpression(Expression e) {
         return "";
     }
 

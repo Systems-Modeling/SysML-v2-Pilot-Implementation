@@ -29,9 +29,13 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.FeatureMembership;
+import org.omg.sysml.lang.sysml.Generalization;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.Relationship;
+import org.omg.sysml.lang.sysml.Type;
 
 public abstract class VTraverser extends Visitor {
     private Set<Namespace> visited;
@@ -40,7 +44,7 @@ public abstract class VTraverser extends Visitor {
     protected Membership getCurrentMembership() {
         return currentMembership;
     }
-    
+
     protected boolean checkVisited(Namespace n) {
     	boolean flag = visited.contains(n);
     	visited.add(n);
@@ -61,14 +65,42 @@ public abstract class VTraverser extends Visitor {
     }
 
 
-    public String traverse(Namespace n) {
+    protected String traverse0(Namespace n) {
         for (Membership m: n.getOwnedMembership()) {
             // if (visit(m) == null) return null;
+            setInherited(false);
             visit(m);
             for (Relationship r: m.getOwnedRelationship()) {
+                setInherited(false);
                 visit(r);
             }
         }
+        return getString();
+    }
+
+    public String traverseWithInherited(Type typ) {
+        traverse0(typ);
+        for (Generalization g: typ.getOwnedGeneralization()) {
+            Type gt = g.getGeneral();
+            if (gt == null) continue;
+            for (FeatureMembership fm: gt.getOwnedFeatureMembership()) {
+                setInherited(true);
+                visit(fm);
+            }
+        }
+        return getString();
+    }
+
+    public String traverse(Namespace ns) {
+        VPath vpath = getVPath();
+        vpath.enter(ns);
+        traverse0(ns);
+        for (Element e: vpath.rest()) {
+            setInherited(true);
+            currentMembership = null;
+            visit(e);
+        }
+        vpath.leave(ns);
         return getString();
     }
 

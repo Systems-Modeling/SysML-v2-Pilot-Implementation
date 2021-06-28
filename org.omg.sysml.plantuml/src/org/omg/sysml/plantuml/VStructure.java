@@ -124,6 +124,9 @@ public abstract class VStructure extends VDefault {
     }
 
     private void addFeatureTextInternal(Feature f, String name) {
+        if (isInherited()) {
+            append('^');
+        }
         append(name);
         addFeatureTypeText(": ", f);
         addFeatureMembershipText(f);

@@ -34,8 +34,16 @@ import org.omg.sysml.lang.sysml.Comment;
 import org.omg.sysml.lang.sysml.Connector;
 import org.omg.sysml.lang.sysml.Dependency;
 import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.FeatureMembership;
+import org.omg.sysml.lang.sysml.FeatureReferenceExpression;
 import org.omg.sysml.lang.sysml.Generalization;
+import org.omg.sysml.lang.sysml.ItemFlow;
+import org.omg.sysml.lang.sysml.ItemFlowFeature;
+import org.omg.sysml.lang.sysml.PathStepExpression;
+import org.omg.sysml.lang.sysml.Relationship;
+import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
 
@@ -50,6 +58,23 @@ public class VDefault extends VTraverser {
         } else {
             return typ.getName();
         }
+    }
+
+    protected Element getEnd(Feature f) {
+        if (f == null) return null;
+        for (Relationship rel: f.getOwnedRelationship()) {
+            for (Element tgt: rel.getTarget()) {
+                if (tgt instanceof Feature) {
+                    Element r = resolveReference((Feature) tgt);
+                    if (r != null) return r;
+                    return tgt;
+                }
+            }
+        }
+        for (Subsetting ss: f.getOwnedSubsetting()) {
+            return ss.getSubsettedFeature();
+        }
+        return null;
     }
 
     protected void addConnector(Connector c) {
@@ -102,6 +127,51 @@ public class VDefault extends VTraverser {
             addPUMLLine(typ, keyword, name, null);
         }
         return true;
+    }
+
+    protected Element resolveReference(Feature f) {
+        if (f instanceof PathStepExpression) {
+            // return resolvePathStepExpression((PathStepExpression) f, null);
+            return f;
+        } else if (f instanceof FeatureReferenceExpression) {
+            FeatureReferenceExpression fre = (FeatureReferenceExpression) f;
+            return fre.getReferent();
+        }
+        return null;
+    }
+
+    private Element resolveItemFlowFeature(Feature f) {
+        if (!(f instanceof ItemFlowFeature)) return f;
+        for (FeatureMembership fm: f.getOwnedFeatureMembership()) {
+            Feature f2 = fm.getMemberFeature();
+            Element r = resolveReference(f2);
+            if (r != null) return r;
+        }
+        return f;
+    }
+
+    @Override
+    public String caseExpression(Expression e) {
+        // Do not show Expression
+        return "";
+    }
+
+    @Override
+    public String caseConnector(Connector c) {
+        addConnector(c);
+        return "";
+    }
+
+    @Override
+    public String caseItemFlow(ItemFlow itf) {
+    	for (Feature src: itf.getSourceOutputFeature()) {
+            Element s = resolveItemFlowFeature(src);
+    		for (Feature tgt: itf.getTargetInputFeature()) {
+                Element t = resolveItemFlowFeature(tgt);
+    			addPRelation(s, t, itf, "");
+    		}
+    	}
+        return "";
     }
 
     @Override

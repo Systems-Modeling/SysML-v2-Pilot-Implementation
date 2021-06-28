@@ -34,7 +34,6 @@ import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Multiplicity;
 import org.omg.sysml.lang.sysml.MultiplicityRange;
-import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.util.SysMLSwitch;
 
@@ -109,6 +108,10 @@ public abstract class Visitor extends SysMLSwitch<String> {
         return sb.length();
     }
 
+    protected VPath getVPath() {
+        return s2p.getVPath();
+    }
+
     private Integer newId(Element e) {
         return s2p.newId(e);
     }
@@ -130,6 +133,14 @@ public abstract class Visitor extends SysMLSwitch<String> {
             flushPRelations();
         }
         s2p.popIdMap(keep);
+    }
+
+    protected void setInherited(boolean flag) {
+        s2p.setInherited(flag);
+    }
+    
+    protected boolean isInherited() {
+        return s2p.isInherited();
     }
 
     protected String getRelStyle(Element rel) {
@@ -217,6 +228,16 @@ public abstract class Visitor extends SysMLSwitch<String> {
         close();
     }
 
+    private String compId(Element e) {
+        if (e == null) return "[*]";
+        Integer ii = getVPath().getId(e);
+        if (ii == null) {
+            if (!checkId(e)) return null;
+            ii = getId(e);
+        }
+        return 'E' + ii.toString();
+    }
+
     private void appendId(StringBuilder ss, Element e, boolean force) {
         if (e == null) {
             ss.append("[*]");
@@ -232,10 +253,6 @@ public abstract class Visitor extends SysMLSwitch<String> {
 
     protected void addIdStr(Element e, boolean force) {
         appendId(sb, e, force);
-    }
-
-    private void outputPRId(StringBuilder ss, Element e) {
-        appendId(ss, e, false);
     }
 
     private final List<PRelation> pRelations;
@@ -310,22 +327,18 @@ public abstract class Visitor extends SysMLSwitch<String> {
         }
     }
 
-    protected Element getEnd(Feature f) {
-        if (f == null) return null;
-        for (Subsetting ss: f.getOwnedSubsetting()) {
-            return ss.getSubsettedFeature();
-        }
-        return null;
-    }
-
     private boolean outputPRelation(StringBuilder ss, PRelation pr) {
-        if (!(((pr.src == null) || checkId(pr.src))
-              && ((pr.dest == null) || checkId(pr.dest)))) return false;
-        String relStr = getRelStyle(pr.rel);
-
-        if (relStr == null) return true;
         if ((pr.src == null) && (pr.dest == null)) return true;
-        outputPRId(ss, pr.src);
+
+        String srcId = compId(pr.src);
+        if (srcId == null) return false;
+        String destId = compId(pr.dest);
+        if (destId == null) return false;
+
+        String relStr = getRelStyle(pr.rel);
+        if (relStr == null) return true;
+        
+        ss.append(srcId);
 
         // addMultiplicityString(ss, pr.src);
                 
@@ -337,7 +350,7 @@ public abstract class Visitor extends SysMLSwitch<String> {
             addMultiplicityString(ss, pr.rel);
         }
 
-        outputPRId(ss, pr.dest);
+        ss.append(destId);
         ss.append(' ');
         addLink(ss, pr.rel, null);
 

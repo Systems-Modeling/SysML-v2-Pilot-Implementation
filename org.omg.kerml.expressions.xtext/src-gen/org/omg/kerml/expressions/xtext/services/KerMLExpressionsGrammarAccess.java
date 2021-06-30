@@ -1951,7 +1951,7 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 		private final RuleCall cLiteralStringParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		private final RuleCall cLiteralIntegerParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
 		private final RuleCall cLiteralRealParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
-		private final RuleCall cLiteralUnboundedParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
+		private final RuleCall cLiteralInfinityParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
 		
 		///* Literal Expressions */
 		//LiteralExpression returns SysML::LiteralExpression :
@@ -1959,7 +1959,7 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 		//    | LiteralString
 		//    | LiteralInteger
 		//    | LiteralReal
-		//    | LiteralUnbounded
+		//    | LiteralInfinity
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -1967,7 +1967,7 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 		//| LiteralString
 		//| LiteralInteger
 		//| LiteralReal
-		//| LiteralUnbounded
+		//| LiteralInfinity
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//LiteralBoolean
@@ -1982,8 +1982,8 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 		//LiteralReal
 		public RuleCall getLiteralRealParserRuleCall_3() { return cLiteralRealParserRuleCall_3; }
 		
-		//LiteralUnbounded
-		public RuleCall getLiteralUnboundedParserRuleCall_4() { return cLiteralUnboundedParserRuleCall_4; }
+		//LiteralInfinity
+		public RuleCall getLiteralInfinityParserRuleCall_4() { return cLiteralInfinityParserRuleCall_4; }
 	}
 	public class LiteralBooleanElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.expressions.xtext.KerMLExpressions.LiteralBoolean");
@@ -2042,7 +2042,7 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 		private final Assignment cValueAssignment = (Assignment)rule.eContents().get(1);
 		private final RuleCall cValueDECIMAL_VALUETerminalRuleCall_0 = (RuleCall)cValueAssignment.eContents().get(0);
 		
-		//LiteralInteger returns SysML::LiteralInteger:
+		//LiteralInteger returns SysML::LiteralNatural:
 		//    value = DECIMAL_VALUE
 		//;
 		@Override public ParserRule getRule() { return rule; }
@@ -2058,7 +2058,7 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 		private final Assignment cValueAssignment = (Assignment)rule.eContents().get(1);
 		private final RuleCall cValueRealValueParserRuleCall_0 = (RuleCall)cValueAssignment.eContents().get(0);
 		
-		//LiteralReal returns SysML::LiteralReal:
+		//LiteralReal returns SysML::LiteralRational:
 		//    value = RealValue
 		//;
 		@Override public ParserRule getRule() { return rule; }
@@ -2109,45 +2109,25 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 		//EXP_VALUE
 		public RuleCall getEXP_VALUETerminalRuleCall_1() { return cEXP_VALUETerminalRuleCall_1; }
 	}
-	public class LiteralUnboundedElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.expressions.xtext.KerMLExpressions.LiteralUnbounded");
+	public class LiteralInfinityElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.expressions.xtext.KerMLExpressions.LiteralInfinity");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Action cLiteralUnboundedAction_0 = (Action)cGroup.eContents().get(0);
+		private final Action cLiteralInfinityAction_0 = (Action)cGroup.eContents().get(0);
 		private final Keyword cAsteriskKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		
-		//LiteralUnbounded returns SysML::LiteralUnbounded :
-		//    {SysML::LiteralUnbounded} '*'
+		//LiteralInfinity returns SysML::LiteralInfinity :
+		//    {SysML::LiteralInfinity} '*'
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{SysML::LiteralUnbounded} '*'
+		//{SysML::LiteralInfinity} '*'
 		public Group getGroup() { return cGroup; }
 		
-		//{SysML::LiteralUnbounded}
-		public Action getLiteralUnboundedAction_0() { return cLiteralUnboundedAction_0; }
+		//{SysML::LiteralInfinity}
+		public Action getLiteralInfinityAction_0() { return cLiteralInfinityAction_0; }
 		
 		//'*'
 		public Keyword getAsteriskKeyword_1() { return cAsteriskKeyword_1; }
-	}
-	public class LiteralUnlimitedNaturalElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.expressions.xtext.KerMLExpressions.LiteralUnlimitedNatural");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final RuleCall cLiteralIntegerParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
-		private final RuleCall cLiteralUnboundedParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
-		
-		//LiteralUnlimitedNatural returns SysML::LiteralExpression:
-		//    LiteralInteger | LiteralUnbounded
-		//;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//LiteralInteger | LiteralUnbounded
-		public Alternatives getAlternatives() { return cAlternatives; }
-		
-		//LiteralInteger
-		public RuleCall getLiteralIntegerParserRuleCall_0() { return cLiteralIntegerParserRuleCall_0; }
-		
-		//LiteralUnbounded
-		public RuleCall getLiteralUnboundedParserRuleCall_1() { return cLiteralUnboundedParserRuleCall_1; }
 	}
 	public class NameElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.expressions.xtext.KerMLExpressions.Name");
@@ -2157,7 +2137,8 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 		
 		///* NAMES */
 		//Name:
-		//    ID | UNRESTRICTED_NAME;
+		//    ID | UNRESTRICTED_NAME
+		//;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//ID | UNRESTRICTED_NAME
@@ -2169,32 +2150,45 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 		//UNRESTRICTED_NAME
 		public RuleCall getUNRESTRICTED_NAMETerminalRuleCall_1() { return cUNRESTRICTED_NAMETerminalRuleCall_1; }
 	}
-	public class QualifiedNameElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.expressions.xtext.KerMLExpressions.QualifiedName");
+	public class QualificationElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.expressions.xtext.KerMLExpressions.Qualification");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final RuleCall cNameParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
-		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final Keyword cColonColonKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
-		private final RuleCall cNameParserRuleCall_1_1 = (RuleCall)cGroup_1.eContents().get(1);
+		private final Keyword cColonColonKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		
-		//QualifiedName:
-		//    Name ('::' Name)*;
+		//Qualification :
+		//    ( Name '::' )+
+		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//Name ('::' Name)*
+		//( Name '::' )+
 		public Group getGroup() { return cGroup; }
 		
 		//Name
 		public RuleCall getNameParserRuleCall_0() { return cNameParserRuleCall_0; }
 		
-		//('::' Name)*
-		public Group getGroup_1() { return cGroup_1; }
-		
 		//'::'
-		public Keyword getColonColonKeyword_1_0() { return cColonColonKeyword_1_0; }
+		public Keyword getColonColonKeyword_1() { return cColonColonKeyword_1; }
+	}
+	public class QualifiedNameElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.expressions.xtext.KerMLExpressions.QualifiedName");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final RuleCall cQualificationParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
+		private final RuleCall cNameParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
+		
+		//QualifiedName:
+		//    Qualification? Name
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//Qualification? Name
+		public Group getGroup() { return cGroup; }
+		
+		//Qualification?
+		public RuleCall getQualificationParserRuleCall_0() { return cQualificationParserRuleCall_0; }
 		
 		//Name
-		public RuleCall getNameParserRuleCall_1_1() { return cNameParserRuleCall_1_1; }
+		public RuleCall getNameParserRuleCall_1() { return cNameParserRuleCall_1; }
 	}
 	
 	
@@ -2260,9 +2254,9 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 	private final LiteralIntegerElements pLiteralInteger;
 	private final LiteralRealElements pLiteralReal;
 	private final RealValueElements pRealValue;
-	private final LiteralUnboundedElements pLiteralUnbounded;
-	private final LiteralUnlimitedNaturalElements pLiteralUnlimitedNatural;
+	private final LiteralInfinityElements pLiteralInfinity;
 	private final NameElements pName;
+	private final QualificationElements pQualification;
 	private final QualifiedNameElements pQualifiedName;
 	private final TerminalRule tDECIMAL_VALUE;
 	private final TerminalRule tEXP_VALUE;
@@ -2342,9 +2336,9 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 		this.pLiteralInteger = new LiteralIntegerElements();
 		this.pLiteralReal = new LiteralRealElements();
 		this.pRealValue = new RealValueElements();
-		this.pLiteralUnbounded = new LiteralUnboundedElements();
-		this.pLiteralUnlimitedNatural = new LiteralUnlimitedNaturalElements();
+		this.pLiteralInfinity = new LiteralInfinityElements();
 		this.pName = new NameElements();
+		this.pQualification = new QualificationElements();
 		this.pQualifiedName = new QualifiedNameElements();
 		this.tDECIMAL_VALUE = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.expressions.xtext.KerMLExpressions.DECIMAL_VALUE");
 		this.tEXP_VALUE = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.expressions.xtext.KerMLExpressions.EXP_VALUE");
@@ -3060,7 +3054,7 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 	//    | LiteralString
 	//    | LiteralInteger
 	//    | LiteralReal
-	//    | LiteralUnbounded
+	//    | LiteralInfinity
 	//;
 	public LiteralExpressionElements getLiteralExpressionAccess() {
 		return pLiteralExpression;
@@ -3103,7 +3097,7 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 		return getLiteralStringAccess().getRule();
 	}
 	
-	//LiteralInteger returns SysML::LiteralInteger:
+	//LiteralInteger returns SysML::LiteralNatural:
 	//    value = DECIMAL_VALUE
 	//;
 	public LiteralIntegerElements getLiteralIntegerAccess() {
@@ -3114,7 +3108,7 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 		return getLiteralIntegerAccess().getRule();
 	}
 	
-	//LiteralReal returns SysML::LiteralReal:
+	//LiteralReal returns SysML::LiteralRational:
 	//    value = RealValue
 	//;
 	public LiteralRealElements getLiteralRealAccess() {
@@ -3136,31 +3130,21 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 		return getRealValueAccess().getRule();
 	}
 	
-	//LiteralUnbounded returns SysML::LiteralUnbounded :
-	//    {SysML::LiteralUnbounded} '*'
+	//LiteralInfinity returns SysML::LiteralInfinity :
+	//    {SysML::LiteralInfinity} '*'
 	//;
-	public LiteralUnboundedElements getLiteralUnboundedAccess() {
-		return pLiteralUnbounded;
+	public LiteralInfinityElements getLiteralInfinityAccess() {
+		return pLiteralInfinity;
 	}
 	
-	public ParserRule getLiteralUnboundedRule() {
-		return getLiteralUnboundedAccess().getRule();
-	}
-	
-	//LiteralUnlimitedNatural returns SysML::LiteralExpression:
-	//    LiteralInteger | LiteralUnbounded
-	//;
-	public LiteralUnlimitedNaturalElements getLiteralUnlimitedNaturalAccess() {
-		return pLiteralUnlimitedNatural;
-	}
-	
-	public ParserRule getLiteralUnlimitedNaturalRule() {
-		return getLiteralUnlimitedNaturalAccess().getRule();
+	public ParserRule getLiteralInfinityRule() {
+		return getLiteralInfinityAccess().getRule();
 	}
 	
 	///* NAMES */
 	//Name:
-	//    ID | UNRESTRICTED_NAME;
+	//    ID | UNRESTRICTED_NAME
+	//;
 	public NameElements getNameAccess() {
 		return pName;
 	}
@@ -3169,8 +3153,20 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 		return getNameAccess().getRule();
 	}
 	
+	//Qualification :
+	//    ( Name '::' )+
+	//;
+	public QualificationElements getQualificationAccess() {
+		return pQualification;
+	}
+	
+	public ParserRule getQualificationRule() {
+		return getQualificationAccess().getRule();
+	}
+	
 	//QualifiedName:
-	//    Name ('::' Name)*;
+	//    Qualification? Name
+	//;
 	public QualifiedNameElements getQualifiedNameAccess() {
 		return pQualifiedName;
 	}

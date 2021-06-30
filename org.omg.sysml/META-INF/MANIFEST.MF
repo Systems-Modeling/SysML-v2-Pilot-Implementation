@@ -3,6 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-Version: 0.13.1.qualifier
 Bundle-ClassPath: .,
  lib/sysml-v2-api-client-all.jar

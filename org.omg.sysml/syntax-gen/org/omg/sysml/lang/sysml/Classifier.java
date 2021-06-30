@@ -41,7 +41,6 @@ import org.eclipse.emf.common.util.EList;
  * <p>Classifiers that classify relationships (sequence length &gt; 1) must also classify the things at the end of those&nbsp;sequences (sequence length =1).&nbsp; Because of this, Classifiers specializing Features cannot classify anything (any sequences).</p>
  * 
  * ownedSuperclassing = ownedGeneralization->intersection(superclassing)
- * allSupertypes()->includes(Kernel Library::Anything)
  * multiplicity <> null implies multiplicity.featuringType->isEmpty()
  * <!-- end-model-doc -->
  *
@@ -49,7 +48,7 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.Classifier#getOwnedSuperclassing <em>Owned Superclassing</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Classifier#getOwnedSubclassification <em>Owned Subclassification</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getClassifier()
@@ -59,31 +58,27 @@ import org.eclipse.emf.common.util.EList;
 public interface Classifier extends Type {
 
 	/**
-	 * Returns the value of the '<em><b>Owned Superclassing</b></em>' reference list.
-	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Superclassing}.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Superclassing#getOwningClassifier <em>Owning Classifier</em>}'.
+	 * Returns the value of the '<em><b>Owned Subclassification</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Subclassification}.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Subclassification#getOwningClassifier <em>Owning Classifier</em>}'.
 	 * <p>
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Type#getOwnedGeneralization() <em>Owned Generalization</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Type#getOwnedSpecialization() <em>Owned Specialization</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Owned Superclassing</em>' reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>ownedGeneralizations</code> of this Classifier that are Superclassings, for which the Classifier is the <code>subclass</code>.</p>
+	 * <p>The <code>ownedSpecializations</code> of this Classifier that are Subclassifications, for which this Classifier is the <code>subclassifier</code>.</p>
 	 * 
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Owned Superclassing</em>' reference list.
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getClassifier_OwnedSuperclassing()
-	 * @see org.omg.sysml.lang.sysml.Superclassing#getOwningClassifier
+	 * @return the value of the '<em>Owned Subclassification</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getClassifier_OwnedSubclassification()
+	 * @see org.omg.sysml.lang.sysml.Subclassification#getOwningClassifier
 	 * @model opposite="owningClassifier" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="subsets"
 	 * @generated
 	 */
-	EList<Superclassing> getOwnedSuperclassing();
+	EList<Subclassification> getOwnedSubclassification();
 } // Classifier

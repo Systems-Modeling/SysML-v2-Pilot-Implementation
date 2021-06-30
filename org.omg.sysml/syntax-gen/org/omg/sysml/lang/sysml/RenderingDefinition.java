@@ -63,7 +63,7 @@ public interface RenderingDefinition extends PartDefinition {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Rendering</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getRenderingDefinition_Rendering()
-	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='featuringRenderingDefinition'"
 	 *        annotation="subsets"
 	 * @generated

@@ -34,11 +34,4 @@ public class InvariantAdapter extends BooleanExpressionAdapter {
 		return (Invariant)super.getTarget();
 	}
 	
-	@Override
-	public void doTransform() {
-		Invariant invariant = getTarget();
-		super.doTransform();
-		invariant.setAssertionConnector(computeAssertionConnector(invariant.getResult()));
-	}
-	
 }

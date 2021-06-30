@@ -42,7 +42,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  *
  * @generated
  */
-public class PortDefinitionImpl extends DefinitionImpl implements PortDefinition {
+public class PortDefinitionImpl extends OccurrenceDefinitionImpl implements PortDefinition {
 
 	/**
 	 * <!-- begin-user-doc -->

@@ -47,7 +47,7 @@ import org.omg.sysml.util.NonNotifyingEObjectEList;
  *
  * @generated
  */
-public class PortUsageImpl extends UsageImpl implements PortUsage {
+public class PortUsageImpl extends OccurrenceUsageImpl implements PortUsage {
 	
 	/**
 	 * <!-- begin-user-doc -->

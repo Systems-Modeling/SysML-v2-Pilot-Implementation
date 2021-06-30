@@ -109,6 +109,15 @@ public class StepImpl extends FeatureImpl implements Step {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isSetParameter() {
+		return !getParameter().isEmpty();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public EList<Type> getType() {
 		@SuppressWarnings("unchecked")
@@ -125,6 +134,24 @@ public class StepImpl extends FeatureImpl implements Step {
   		return false;
 	}
 	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Feature> getDirectedFeature() {
+		return getParameter();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetDirectedFeature() {
+  		return false;
+	}
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -190,10 +217,12 @@ public class StepImpl extends FeatureImpl implements Step {
 		switch (featureID) {
 			case SysMLPackage.STEP__TYPE:
 				return isSetType();
+			case SysMLPackage.STEP__DIRECTED_FEATURE:
+				return isSetDirectedFeature();
 			case SysMLPackage.STEP__BEHAVIOR:
 				return isSetBehavior();
 			case SysMLPackage.STEP__PARAMETER:
-				return !getParameter().isEmpty();
+				return isSetParameter();
 		}
 		return super.eIsSet(featureID);
 	}

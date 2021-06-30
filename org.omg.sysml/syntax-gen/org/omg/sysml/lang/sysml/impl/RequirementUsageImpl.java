@@ -32,7 +32,8 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.omg.sysml.lang.sysml.AddressedConcernMembership;
+import org.omg.sysml.lang.sysml.FramedConcernMembership;
+import org.omg.sysml.lang.sysml.PartUsage;
 import org.omg.sysml.lang.sysml.Comment;
 import org.omg.sysml.lang.sysml.ConcernUsage;
 import org.omg.sysml.lang.sysml.ConstraintUsage;
@@ -60,7 +61,9 @@ import org.omg.sysml.util.TypeUtil;
  *   <li>{@link org.omg.sysml.lang.sysml.impl.RequirementUsageImpl#getRequiredConstraint <em>Required Constraint</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.RequirementUsageImpl#getAssumedConstraint <em>Assumed Constraint</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.RequirementUsageImpl#getSubjectParameter <em>Subject Parameter</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.RequirementUsageImpl#getAddressedConcern <em>Addressed Concern</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.RequirementUsageImpl#getFramedConcern <em>Framed Concern</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.RequirementUsageImpl#getActorParameter <em>Actor Parameter</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.RequirementUsageImpl#getStakeholderParameter <em>Stakeholder Parameter</em>}</li>
  * </ul>
  *
  * @generated
@@ -182,6 +185,30 @@ public class RequirementUsageImpl extends ConstraintUsageImpl implements Require
 	 * @generated
 	 */
 	@Override
+	public EList<PartUsage> getActorParameter() {
+		// TODO: implement this method to return the 'Actor Parameter' reference list
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<PartUsage> getStakeholderParameter() {
+		// TODO: implement this method to return the 'Stakeholder Parameter' reference list
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public String getReqId() {
 		return reqId;
 	}
@@ -254,9 +281,9 @@ public class RequirementUsageImpl extends ConstraintUsageImpl implements Require
 	 * @generated NOT
 	 */
 	@Override
-	public EList<ConcernUsage> getAddressedConcern() {
-		EList<ConcernUsage> concerns = new NonNotifyingEObjectEList<>(ConcernUsage.class, this, SysMLPackage.REQUIREMENT_USAGE__ADDRESSED_CONCERN);
-		RequirementDefinitionImpl.getRequirementConstraints(this, AddressedConcernMembership.class, RequirementConstraintKind.REQUIREMENT).
+	public EList<ConcernUsage> getFramedConcern() {
+		EList<ConcernUsage> concerns = new NonNotifyingEObjectEList<>(ConcernUsage.class, this, SysMLPackage.REQUIREMENT_USAGE__FRAMED_CONCERN);
+		RequirementDefinitionImpl.getRequirementConstraints(this, FramedConcernMembership.class, RequirementConstraintKind.REQUIREMENT).
 			map(ConcernUsage.class::cast).forEachOrdered(concerns::add);
 		return concerns;
 	}
@@ -352,8 +379,12 @@ public class RequirementUsageImpl extends ConstraintUsageImpl implements Require
 			case SysMLPackage.REQUIREMENT_USAGE__SUBJECT_PARAMETER:
 				if (resolve) return getSubjectParameter();
 				return basicGetSubjectParameter();
-			case SysMLPackage.REQUIREMENT_USAGE__ADDRESSED_CONCERN:
-				return getAddressedConcern();
+			case SysMLPackage.REQUIREMENT_USAGE__FRAMED_CONCERN:
+				return getFramedConcern();
+			case SysMLPackage.REQUIREMENT_USAGE__ACTOR_PARAMETER:
+				return getActorParameter();
+			case SysMLPackage.REQUIREMENT_USAGE__STAKEHOLDER_PARAMETER:
+				return getStakeholderParameter();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -388,9 +419,17 @@ public class RequirementUsageImpl extends ConstraintUsageImpl implements Require
 			case SysMLPackage.REQUIREMENT_USAGE__SUBJECT_PARAMETER:
 				setSubjectParameter((Usage)newValue);
 				return;
-			case SysMLPackage.REQUIREMENT_USAGE__ADDRESSED_CONCERN:
-				getAddressedConcern().clear();
-				getAddressedConcern().addAll((Collection<? extends ConcernUsage>)newValue);
+			case SysMLPackage.REQUIREMENT_USAGE__FRAMED_CONCERN:
+				getFramedConcern().clear();
+				getFramedConcern().addAll((Collection<? extends ConcernUsage>)newValue);
+				return;
+			case SysMLPackage.REQUIREMENT_USAGE__ACTOR_PARAMETER:
+				getActorParameter().clear();
+				getActorParameter().addAll((Collection<? extends PartUsage>)newValue);
+				return;
+			case SysMLPackage.REQUIREMENT_USAGE__STAKEHOLDER_PARAMETER:
+				getStakeholderParameter().clear();
+				getStakeholderParameter().addAll((Collection<? extends PartUsage>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -422,8 +461,14 @@ public class RequirementUsageImpl extends ConstraintUsageImpl implements Require
 			case SysMLPackage.REQUIREMENT_USAGE__SUBJECT_PARAMETER:
 				setSubjectParameter((Usage)null);
 				return;
-			case SysMLPackage.REQUIREMENT_USAGE__ADDRESSED_CONCERN:
-				getAddressedConcern().clear();
+			case SysMLPackage.REQUIREMENT_USAGE__FRAMED_CONCERN:
+				getFramedConcern().clear();
+				return;
+			case SysMLPackage.REQUIREMENT_USAGE__ACTOR_PARAMETER:
+				getActorParameter().clear();
+				return;
+			case SysMLPackage.REQUIREMENT_USAGE__STAKEHOLDER_PARAMETER:
+				getStakeholderParameter().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -453,8 +498,12 @@ public class RequirementUsageImpl extends ConstraintUsageImpl implements Require
 				return !getAssumedConstraint().isEmpty();
 			case SysMLPackage.REQUIREMENT_USAGE__SUBJECT_PARAMETER:
 				return basicGetSubjectParameter() != null;
-			case SysMLPackage.REQUIREMENT_USAGE__ADDRESSED_CONCERN:
-				return !getAddressedConcern().isEmpty();
+			case SysMLPackage.REQUIREMENT_USAGE__FRAMED_CONCERN:
+				return !getFramedConcern().isEmpty();
+			case SysMLPackage.REQUIREMENT_USAGE__ACTOR_PARAMETER:
+				return !getActorParameter().isEmpty();
+			case SysMLPackage.REQUIREMENT_USAGE__STAKEHOLDER_PARAMETER:
+				return !getStakeholderParameter().isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

@@ -40,7 +40,7 @@ import org.omg.sysml.lang.sysml.ConstraintUsage;
 import org.omg.sysml.lang.sysml.Definition;
 import org.omg.sysml.lang.sysml.EnumerationUsage;
 import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.FeatureMembership;
+import org.omg.sysml.lang.sysml.FlowConnectionUsage;
 import org.omg.sysml.lang.sysml.InterfaceUsage;
 import org.omg.sysml.lang.sysml.ItemUsage;
 import org.omg.sysml.lang.sysml.OccurrenceUsage;
@@ -50,16 +50,17 @@ import org.omg.sysml.lang.sysml.CaseUsage;
 import org.omg.sysml.lang.sysml.Classifier;
 import org.omg.sysml.lang.sysml.ConcernUsage;
 import org.omg.sysml.lang.sysml.ConnectionUsage;
+import org.omg.sysml.lang.sysml.ConnectorAsUsage;
 import org.omg.sysml.lang.sysml.PortUsage;
 import org.omg.sysml.lang.sysml.ReferenceUsage;
 import org.omg.sysml.lang.sysml.RenderingUsage;
 import org.omg.sysml.lang.sysml.RequirementUsage;
-import org.omg.sysml.lang.sysml.StakeholderUsage;
 import org.omg.sysml.lang.sysml.StateUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.TransitionUsage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
+import org.omg.sysml.lang.sysml.UseCaseUsage;
 import org.omg.sysml.lang.sysml.VariantMembership;
 import org.omg.sysml.lang.sysml.VerificationCaseUsage;
 import org.omg.sysml.lang.sysml.ViewUsage;
@@ -85,7 +86,7 @@ import org.omg.sysml.util.UsageUtil;
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedRequirement <em>Nested Requirement</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedCalculation <em>Nested Calculation</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#isVariation <em>Is Variation</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getFlowFeature <em>Flow Feature</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getDirectedUsage <em>Directed Usage</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedCase <em>Nested Case</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedAnalysisCase <em>Nested Analysis Case</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getVariantMembership <em>Variant Membership</em>}</li>
@@ -104,9 +105,11 @@ import org.omg.sysml.util.UsageUtil;
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedEnumeration <em>Nested Enumeration</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedAllocation <em>Nested Allocation</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedConcern <em>Nested Concern</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedStakeholder <em>Nested Stakeholder</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedOccurrence <em>Nested Occurrence</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getDefinition <em>Definition</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedUseCase <em>Nested Use Case</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#isReference <em>Is Reference</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedFlow <em>Nested Flow</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getOwningDefinition <em>Owning Definition</em>}</li>
  * </ul>
  *
@@ -131,6 +134,15 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 	 * @ordered
 	 */
 	protected boolean isVariation = IS_VARIATION_EDEFAULT;
+	/**
+	 * The default value of the '{@link #isReference() <em>Is Reference</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isReference()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean IS_REFERENCE_EDEFAULT = false;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -311,13 +323,10 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 	 * @generated NOT
 	 */
 	@Override
-	public EList<Usage> getFlowFeature() {
-		EList<Usage> flows = new NonNotifyingEObjectEList<>(Usage.class, this, SysMLPackage.USAGE__FLOW_FEATURE);
-		getMembership().stream().
-			filter(membership->membership instanceof FeatureMembership && ((FeatureMembership)membership).getDirection() != null).
-			map(membership->((FeatureMembership)membership).getMemberFeature()).
-			filter(Usage.class::isInstance).
-			map(Usage.class::cast).
+	public EList<Usage> getDirectedUsage() {
+		EList<Usage> flows = new NonNotifyingEObjectEList<>(Usage.class, this, SysMLPackage.DEFINITION__DIRECTED_USAGE);
+		getUsage().stream().
+			filter(usage->usage.getDirection() != null).
 			forEachOrdered(flows::add);
 		return flows;
 	}
@@ -382,7 +391,7 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 	 * @generated NOT
 	 */
 	@Override
-	public EList<ConnectionUsage> getNestedConnection() {
+	public EList<ConnectorAsUsage> getNestedConnection() {
 		return new DerivedEObjectEList<>(ConnectionUsage.class, this, SysMLPackage.USAGE__NESTED_CONNECTION, new int[] {SysMLPackage.TYPE__OWNED_FEATURE});
 	}
 
@@ -502,16 +511,6 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 	 * @generated NOT
 	 */
 	@Override
-	public EList<StakeholderUsage> getNestedStakeholder() {
-		return new DerivedEObjectEList<>(StakeholderUsage.class, this, SysMLPackage.USAGE__NESTED_STAKEHOLDER, new int[] {SysMLPackage.TYPE__OWNED_FEATURE});
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	@Override
 	public EList<OccurrenceUsage> getNestedOccurrence() {
 		return new DerivedEObjectEList<>(OccurrenceUsage.class, this, SysMLPackage.USAGE__NESTED_OCCURRENCE, new int[] {SysMLPackage.TYPE__OWNED_FEATURE});
 	}
@@ -539,6 +538,54 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 	 */
 	public boolean isSetDefinition() {
 		return !getDefinition().isEmpty();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<UseCaseUsage> getNestedUseCase() {
+		// TODO: implement this method to return the 'Nested Use Case' reference list
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isReference() {
+		// TODO: implement this method to return the 'Is Reference' attribute
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setIsReference(boolean newIsReference) {
+		// TODO: implement this method to set the 'Is Reference' attribute
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<FlowConnectionUsage> getNestedFlow() {
+		// TODO: implement this method to return the 'Nested Flow' reference list
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
 	}
 
 	/**
@@ -615,8 +662,8 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 				return getNestedCalculation();
 			case SysMLPackage.USAGE__IS_VARIATION:
 				return isVariation();
-			case SysMLPackage.USAGE__FLOW_FEATURE:
-				return getFlowFeature();
+			case SysMLPackage.USAGE__DIRECTED_USAGE:
+				return getDirectedUsage();
 			case SysMLPackage.USAGE__NESTED_CASE:
 				return getNestedCase();
 			case SysMLPackage.USAGE__NESTED_ANALYSIS_CASE:
@@ -653,12 +700,16 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 				return getNestedAllocation();
 			case SysMLPackage.USAGE__NESTED_CONCERN:
 				return getNestedConcern();
-			case SysMLPackage.USAGE__NESTED_STAKEHOLDER:
-				return getNestedStakeholder();
 			case SysMLPackage.USAGE__NESTED_OCCURRENCE:
 				return getNestedOccurrence();
 			case SysMLPackage.USAGE__DEFINITION:
 				return getDefinition();
+			case SysMLPackage.USAGE__NESTED_USE_CASE:
+				return getNestedUseCase();
+			case SysMLPackage.USAGE__IS_REFERENCE:
+				return isReference();
+			case SysMLPackage.USAGE__NESTED_FLOW:
+				return getNestedFlow();
 			case SysMLPackage.USAGE__OWNING_DEFINITION:
 				if (resolve) return getOwningDefinition();
 				return basicGetOwningDefinition();
@@ -713,9 +764,9 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 			case SysMLPackage.USAGE__IS_VARIATION:
 				setIsVariation((Boolean)newValue);
 				return;
-			case SysMLPackage.USAGE__FLOW_FEATURE:
-				getFlowFeature().clear();
-				getFlowFeature().addAll((Collection<? extends Usage>)newValue);
+			case SysMLPackage.USAGE__DIRECTED_USAGE:
+				getDirectedUsage().clear();
+				getDirectedUsage().addAll((Collection<? extends Usage>)newValue);
 				return;
 			case SysMLPackage.USAGE__NESTED_CASE:
 				getNestedCase().clear();
@@ -743,7 +794,7 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 				return;
 			case SysMLPackage.USAGE__NESTED_CONNECTION:
 				getNestedConnection().clear();
-				getNestedConnection().addAll((Collection<? extends ConnectionUsage>)newValue);
+				getNestedConnection().addAll((Collection<? extends ConnectorAsUsage>)newValue);
 				return;
 			case SysMLPackage.USAGE__NESTED_ITEM:
 				getNestedItem().clear();
@@ -789,10 +840,6 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 				getNestedConcern().clear();
 				getNestedConcern().addAll((Collection<? extends ConcernUsage>)newValue);
 				return;
-			case SysMLPackage.USAGE__NESTED_STAKEHOLDER:
-				getNestedStakeholder().clear();
-				getNestedStakeholder().addAll((Collection<? extends StakeholderUsage>)newValue);
-				return;
 			case SysMLPackage.USAGE__NESTED_OCCURRENCE:
 				getNestedOccurrence().clear();
 				getNestedOccurrence().addAll((Collection<? extends OccurrenceUsage>)newValue);
@@ -800,6 +847,17 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 			case SysMLPackage.USAGE__DEFINITION:
 				getDefinition().clear();
 				getDefinition().addAll((Collection<? extends Classifier>)newValue);
+				return;
+			case SysMLPackage.USAGE__NESTED_USE_CASE:
+				getNestedUseCase().clear();
+				getNestedUseCase().addAll((Collection<? extends UseCaseUsage>)newValue);
+				return;
+			case SysMLPackage.USAGE__IS_REFERENCE:
+				setIsReference((Boolean)newValue);
+				return;
+			case SysMLPackage.USAGE__NESTED_FLOW:
+				getNestedFlow().clear();
+				getNestedFlow().addAll((Collection<? extends FlowConnectionUsage>)newValue);
 				return;
 			case SysMLPackage.USAGE__OWNING_DEFINITION:
 				setOwningDefinition((Definition)newValue);
@@ -846,8 +904,8 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 			case SysMLPackage.USAGE__IS_VARIATION:
 				setIsVariation(IS_VARIATION_EDEFAULT);
 				return;
-			case SysMLPackage.USAGE__FLOW_FEATURE:
-				getFlowFeature().clear();
+			case SysMLPackage.USAGE__DIRECTED_USAGE:
+				getDirectedUsage().clear();
 				return;
 			case SysMLPackage.USAGE__NESTED_CASE:
 				getNestedCase().clear();
@@ -903,14 +961,20 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 			case SysMLPackage.USAGE__NESTED_CONCERN:
 				getNestedConcern().clear();
 				return;
-			case SysMLPackage.USAGE__NESTED_STAKEHOLDER:
-				getNestedStakeholder().clear();
-				return;
 			case SysMLPackage.USAGE__NESTED_OCCURRENCE:
 				getNestedOccurrence().clear();
 				return;
 			case SysMLPackage.USAGE__DEFINITION:
 				getDefinition().clear();
+				return;
+			case SysMLPackage.USAGE__NESTED_USE_CASE:
+				getNestedUseCase().clear();
+				return;
+			case SysMLPackage.USAGE__IS_REFERENCE:
+				setIsReference(IS_REFERENCE_EDEFAULT);
+				return;
+			case SysMLPackage.USAGE__NESTED_FLOW:
+				getNestedFlow().clear();
 				return;
 			case SysMLPackage.USAGE__OWNING_DEFINITION:
 				setOwningDefinition((Definition)null);
@@ -949,8 +1013,8 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 				return !getNestedCalculation().isEmpty();
 			case SysMLPackage.USAGE__IS_VARIATION:
 				return isVariation != IS_VARIATION_EDEFAULT;
-			case SysMLPackage.USAGE__FLOW_FEATURE:
-				return !getFlowFeature().isEmpty();
+			case SysMLPackage.USAGE__DIRECTED_USAGE:
+				return !getDirectedUsage().isEmpty();
 			case SysMLPackage.USAGE__NESTED_CASE:
 				return !getNestedCase().isEmpty();
 			case SysMLPackage.USAGE__NESTED_ANALYSIS_CASE:
@@ -987,12 +1051,16 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 				return !getNestedAllocation().isEmpty();
 			case SysMLPackage.USAGE__NESTED_CONCERN:
 				return !getNestedConcern().isEmpty();
-			case SysMLPackage.USAGE__NESTED_STAKEHOLDER:
-				return !getNestedStakeholder().isEmpty();
 			case SysMLPackage.USAGE__NESTED_OCCURRENCE:
 				return !getNestedOccurrence().isEmpty();
 			case SysMLPackage.USAGE__DEFINITION:
 				return isSetDefinition();
+			case SysMLPackage.USAGE__NESTED_USE_CASE:
+				return !getNestedUseCase().isEmpty();
+			case SysMLPackage.USAGE__IS_REFERENCE:
+				return isReference() != IS_REFERENCE_EDEFAULT;
+			case SysMLPackage.USAGE__NESTED_FLOW:
+				return !getNestedFlow().isEmpty();
 			case SysMLPackage.USAGE__OWNING_DEFINITION:
 				return basicGetOwningDefinition() != null;
 		}

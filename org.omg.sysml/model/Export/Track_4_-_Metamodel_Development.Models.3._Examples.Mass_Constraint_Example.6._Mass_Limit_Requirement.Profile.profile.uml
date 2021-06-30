@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:MagicDrawProfile="http://www.omg.org/spec/UML/20131001/MagicDrawProfile" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http://www.omg.org/spec/UML/20131001/MagicDrawProfile UML_Standard_Profile.MagicDraw_Profile.profile.uml#_3FkSb9nYEeut38w4P0hxDQ">
+  <uml:Profile xmi:id="ab298c2c-20b7-445c-8f2f-feba18238368" name="Profile" visibility="public" URI="" metamodelReference="7b645c27-31ee-46eb-8c92-e12eebca1d3d">
+    <eAnnotations xmi:id="_3DM5h9nYEeut38w4P0hxDQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+      <contents xmi:type="ecore:EPackage" xmi:id="_3DM5iNnYEeut38w4P0hxDQ" name="Profile" nsURI="http:///schemas/Profile/_3AnfkNnYEeut38w4P0hxDQ/0" nsPrefix="Profile">
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_3DM5idnYEeut38w4P0hxDQ" name="RequirementDefinition">
+          <eAnnotations xmi:id="_3DM5itnYEeut38w4P0hxDQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="498d9c51-5a8f-4846-b57a-5f11364a2642"/>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_3DM5i9nYEeut38w4P0hxDQ" name="base_Element" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Element"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_3DM5jdnYEeut38w4P0hxDQ" name="RequirementUsage">
+          <eAnnotations xmi:id="_3DM5jtnYEeut38w4P0hxDQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="631a7e07-c8cb-40d4-a17b-0f8cdce6fbfd"/>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_3DM5j9nYEeut38w4P0hxDQ" name="base_Element" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Element"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+      </contents>
+    </eAnnotations>
+    <packageImport xmi:id="7b645c27-31ee-46eb-8c92-e12eebca1d3d">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_METAMODELS/UML.metamodel.uml#_0"/>
+    </packageImport>
+    <packageImport xmi:id="_0primitiveTypesProfile">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+    </packageImport>
+    <packageImport xmi:id="_0javaPrimitiveTypesProfile">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#_0"/>
+    </packageImport>
+    <packagedElement xmi:type="uml:Extension" xmi:id="c518b12a-f1aa-4f38-a693-f26f948e0353" name="" visibility="public" memberEnd="e4062f66-c243-4805-8bd0-3a3410579389 d82d426c-0809-46b0-867e-d1f19a32b53d" navigableOwnedEnd="d82d426c-0809-46b0-867e-d1f19a32b53d">
+      <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="d82d426c-0809-46b0-867e-d1f19a32b53d" name="extension_unnamed1" visibility="private" type="631a7e07-c8cb-40d4-a17b-0f8cdce6fbfd" aggregation="composite" association="c518b12a-f1aa-4f38-a693-f26f948e0353">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a2afa7c7-96aa-46b7-b495-bc4976ed7304" name="" visibility="public"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="7c8430b4-4ab7-4ba9-9a77-e956a978ac6e" name="" visibility="public" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Stereotype" xmi:id="498d9c51-5a8f-4846-b57a-5f11364a2642" name="RequirementDefinition" visibility="public">
+      <ownedAttribute xmi:id="0718f599-72e8-4091-9f18-139f1a8d1797" name="base_Element" visibility="private" association="38437376-d762-40ff-a944-17de8b6a834d">
+        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Element"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Stereotype" xmi:id="631a7e07-c8cb-40d4-a17b-0f8cdce6fbfd" name="RequirementUsage" visibility="public">
+      <ownedAttribute xmi:id="e4062f66-c243-4805-8bd0-3a3410579389" name="base_Element" visibility="private" association="c518b12a-f1aa-4f38-a693-f26f948e0353">
+        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Element"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Extension" xmi:id="38437376-d762-40ff-a944-17de8b6a834d" name="" visibility="public" memberEnd="0718f599-72e8-4091-9f18-139f1a8d1797 87b16a12-5894-4996-b49e-17754e5aac00" navigableOwnedEnd="87b16a12-5894-4996-b49e-17754e5aac00">
+      <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="87b16a12-5894-4996-b49e-17754e5aac00" name="extension_unnamed1" visibility="private" type="498d9c51-5a8f-4846-b57a-5f11364a2642" aggregation="composite" association="38437376-d762-40ff-a944-17de8b6a834d">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="1d6c51dd-c9c0-4fe2-b6e0-1c175426b795" name="" visibility="public"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="7f887cc6-90f6-4157-a770-10e1c477aa0c" name="" visibility="public" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <profileApplication xmi:id="9dbe6490-7d6b-4a35-9c77-f67fe9a7b7c8profileApplicationProfile">
+      <eAnnotations xmi:id="_3wfdUNnYEeut38w4P0hxDQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="UML_Standard_Profile.MagicDraw_Profile.profile.uml#_3FkSb9nYEeut38w4P0hxDQ"/>
+      </eAnnotations>
+      <appliedProfile href="UML_Standard_Profile.MagicDraw_Profile.profile.uml#9dbe6490-7d6b-4a35-9c77-f67fe9a7b7c8"/>
+    </profileApplication>
+  </uml:Profile>
+  <MagicDrawProfile:additionalPackageImport xmi:id="_3wfdUdnYEeut38w4P0hxDQ" base_Element="7b645c27-31ee-46eb-8c92-e12eebca1d3d" base_PackageImport="7b645c27-31ee-46eb-8c92-e12eebca1d3d"/>
+</xmi:XMI>

@@ -48,6 +48,9 @@ import org.omg.sysml.util.TypeUtil
 import org.omg.sysml.util.ElementUtil
 import org.omg.kerml.xtext.scoping.KerMLScopeProvider
 import org.omg.sysml.util.ExpressionUtil
+import org.omg.sysml.lang.sysml.Import
+import org.eclipse.emf.common.util.BasicEList
+import org.omg.sysml.lang.sysml.Namespace
 
 /**
  * This class contains custom validation rules. 
@@ -72,6 +75,8 @@ class KerMLValidator extends AbstractKerMLValidator {
 	public static val INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_2 = "Duplicate of inherited member name"
 	public static val INVALID_ELEMENT__ID_DISTINGUISHABILITY = "Invalid Element - ID distinguishability"
 	public static val INVALID_ELEMENT__ID_DISTINGUISHABILITY_MSG = "Duplicate of other ID or member name"
+	public static val INVALID_IMPORT__NAME_NOT_RESOLVED = "Invalid Import - Name not resolved"
+	public static val INVALID_IMPORT__NAME_NOT_RESOLVED_MSG = "Couldn't resolve reference to Element '{name}'."
 	public static val INVALID_ELEMENT_FILTER_MEMBERSHIP__NOT_MODEL_LEVEL = "Invalid ElementFilterMembership - Not model-level"
 	public static val INVALID_ELEMENT_FILTER_MEMBERSHIP__NOT_MODEL_LEVEL_MSG = "Must be model-level evaluable"
 	public static val INVALID_METADATA_FEATURE_VALUE__NOT_MODEL_LEVEL = "Invalid MetadataFeatureValue - Not model-level"
@@ -134,6 +139,15 @@ class KerMLValidator extends AbstractKerMLValidator {
 			}
 		}
 		
+	}
+	
+	@Check
+	def checkImport(Import imp) {
+		if (imp.importedMemberName !== null && !imp.importedNamespace.eIsProxy) {
+			if (imp.importedMembership(new BasicEList<Namespace>()).isEmpty) {
+				error(INVALID_IMPORT__NAME_NOT_RESOLVED_MSG.replace("{name}", imp.importedMemberName), imp, SysMLPackage.eINSTANCE.import_ImportedMemberName, INVALID_IMPORT__NAME_NOT_RESOLVED)
+			}
+		}
 	}
 	
 	@Check

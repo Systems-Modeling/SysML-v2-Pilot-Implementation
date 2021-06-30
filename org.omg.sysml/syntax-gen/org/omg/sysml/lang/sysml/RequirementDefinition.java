@@ -30,9 +30,9 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A RequirementDefinition is a ConstraintDefinition that defines a requirement as a constraint that is used in the context of a specification that a valid solution must satisfy.</p>
+ * <p>A RequirementDefinition is a ConstraintDefinition that defines a requirement as a constraint that is used in the context of a specification of a that a valid solution must satisfy. The specification is relative to a specified subject, possibly in collaboration with one or more external actors.</p>
  * 
- * <p>A RequirementDefinition must subclass, directly or indirectly, the base RequirementDefinition RequirementCheck from the Systems model library.</p>
+ * <p>A RequirementDefinition must subclass, directly or indirectly, the base RequirementDefinition <em>RequirementCheck</em> from the Systems model library.</p>
  * <!-- end-model-doc -->
  *
  * <p>
@@ -44,7 +44,9 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.omg.sysml.lang.sysml.RequirementDefinition#getAssumedConstraint <em>Assumed Constraint</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.RequirementDefinition#getRequiredConstraint <em>Required Constraint</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.RequirementDefinition#getSubjectParameter <em>Subject Parameter</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.RequirementDefinition#getAddressedConcern <em>Addressed Concern</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.RequirementDefinition#getFramedConcern <em>Framed Concern</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.RequirementDefinition#getActorParameter <em>Actor Parameter</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.RequirementDefinition#getStakeholderParameter <em>Stakeholder Parameter</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getRequirementDefinition()
@@ -59,7 +61,7 @@ public interface RequirementDefinition extends ConstraintDefinition {
 	 * </p>
 	 * <ul>
 	 *   <li>'{@link org.omg.sysml.lang.sysml.Behavior#getParameter() <em>Parameter</em>}'</li>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Type#getOwnedFeature() <em>Owned Feature</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Definition#getOwnedUsage() <em>Owned Usage</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -70,7 +72,7 @@ public interface RequirementDefinition extends ConstraintDefinition {
 	 * @see #setSubjectParameter(Usage)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getRequirementDefinition_SubjectParameter()
 	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='parameteredRequirementDefinition'"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='subjectOwningRequirementDefinition'"
 	 *        annotation="subsets"
 	 * @generated
 	 */
@@ -87,7 +89,7 @@ public interface RequirementDefinition extends ConstraintDefinition {
 	void setSubjectParameter(Usage value);
 
 	/**
-	 * Returns the value of the '<em><b>Addressed Concern</b></em>' reference list.
+	 * Returns the value of the '<em><b>Framed Concern</b></em>' reference list.
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.ConcernUsage}.
 	 * <p>
 	 * This feature subsets the following features:
@@ -98,16 +100,64 @@ public interface RequirementDefinition extends ConstraintDefinition {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Concerns addressed by this RequirementDefinition, derived as the <code>ownedConcerns</code> of all <code>AddressedConcernMemberships</code> of the RequirementDefinition.</p>
+	 * <p>The Concerns framed by this RequirementDefinition, derived as the <code>ownedConcerns</code> of all <code>FramedConcernMemberships</code> of the RequirementDefinition.</p>
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Addressed Concern</em>' reference list.
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getRequirementDefinition_AddressedConcern()
-	 * @model transient="true" volatile="true" derived="true" ordered="false"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='addressingRequirementDefinition'"
+	 * @return the value of the '<em>Framed Concern</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getRequirementDefinition_FramedConcern()
+	 * @model transient="true" volatile="true" derived="true"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='framingRequirementDefinition'"
 	 *        annotation="subsets"
 	 * @generated
 	 */
-	EList<ConcernUsage> getAddressedConcern();
+	EList<ConcernUsage> getFramedConcern();
+
+	/**
+	 * Returns the value of the '<em><b>Actor Parameter</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.PartUsage}.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Behavior#getParameter() <em>Parameter</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Definition#getOwnedPart() <em>Owned Part</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The <code>parameters</code> of this RequirementDefinition that are owned via ActorMemberships, which must subset, directly or indirectly, the PartUsage <em><code>actors</code></em> of the base RequirementDefinition <em>RequirementCheck</em> from the Systems model library.</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Actor Parameter</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getRequirementDefinition_ActorParameter()
+	 * @model transient="true" volatile="true" derived="true"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='actorOwningRequirementDefinition'"
+	 *        annotation="subsets"
+	 * @generated
+	 */
+	EList<PartUsage> getActorParameter();
+
+	/**
+	 * Returns the value of the '<em><b>Stakeholder Parameter</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.PartUsage}.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Definition#getOwnedPart() <em>Owned Part</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Behavior#getParameter() <em>Parameter</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The <code>parameters</code> of this RequirementDefinition that are owned via StakeholderMemberships, which must subset, directly or indirectly, the PartUsage <em><code>stakeholders</code></em> of the base RequirementDefinition <em>RequirementCheck</em> from the Systems model library.</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Stakeholder Parameter</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getRequirementDefinition_StakeholderParameter()
+	 * @model transient="true" volatile="true" derived="true"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='stakholderOwiningRequirementDefinition'"
+	 *        annotation="subsets"
+	 * @generated
+	 */
+	EList<PartUsage> getStakeholderParameter();
 
 	/**
 	 * Returns the value of the '<em><b>Req Id</b></em>' attribute.
@@ -184,7 +234,7 @@ public interface RequirementDefinition extends ConstraintDefinition {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Assumed Constraint</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getRequirementDefinition_AssumedConstraint()
-	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='assumingRequirementDefinition'"
 	 *        annotation="subsets"
 	 * @generated
@@ -211,7 +261,7 @@ public interface RequirementDefinition extends ConstraintDefinition {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Required Constraint</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getRequirementDefinition_RequiredConstraint()
-	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='requiringRequirementDefinition'"
 	 *        annotation="subsets"
 	 * @generated

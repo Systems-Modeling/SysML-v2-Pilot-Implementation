@@ -188,10 +188,6 @@ public class ImplicitGeneralizationMap {
 		put(SendActionUsageImpl.class, "base", "Actions::sendActions");
 		put(SendActionUsageImpl.class, "subaction", "Actions::Action::sendSubactions");
 		
-		put(StakeholderDefinitionImpl.class, "base", "Requirements::Stakeholder");
-		put(StakeholderUsageImpl.class, "base", "Requirements::stakeholders");
-		put(StakeholderUsageImpl.class, "concernedStakeholder", "Requirements::ConcernCheck::concernedStakeholder");
-		
 		put(StateDefinitionImpl.class, "base", "States::StateAction");
 		put(StateUsageImpl.class, "base", "States::stateActions");
 		put(StateUsageImpl.class, "subaction", "States::StateAction::substates");

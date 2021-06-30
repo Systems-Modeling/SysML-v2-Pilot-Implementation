@@ -1,0 +1,1123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:MagicDrawProfile="http://www.omg.org/spec/UML/20131001/MagicDrawProfile" xmlns:additional_stereotypes="http://www.magicdraw.com/spec/Customization/180/SysML" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:standard="http://www.eclipse.org/uml2/5.0.0/UML/Profile/Standard" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http://www.omg.org/spec/UML/20131001/MagicDrawProfile UML_Standard_Profile.MagicDraw_Profile.profile.uml#_3FkSb9nYEeut38w4P0hxDQ http://www.magicdraw.com/spec/Customization/180/SysML MD_Customization_for_SysML.additional_stereotypes.profile.uml#_3C8bmdnYEeut38w4P0hxDQ">
+  <uml:Model xmi:id="9bcded04-5ec3-4cc1-bbcf-575133f8c3ce" name="Model" visibility="public" URI="" viewpoint="">
+    <packageImport xmi:id="_0primitiveTypesModel">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+    </packageImport>
+    <packageImport xmi:id="_0javaPrimitiveTypesModel">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#_0"/>
+    </packageImport>
+    <packagedElement xmi:type="uml:Package" xmi:id="99bf82f8-50dd-4853-a8b5-929513ebb66f" name="QUDV" visibility="public" URI="http://www.omg.org/spec/SysML/20131201/QUDV">
+      <ownedComment xmi:id="91b788f4-e804-4185-a5bf-5c3ac9919484" annotatedElement="99bf82f8-50dd-4853-a8b5-929513ebb66f" body="OMG SysML 1.4 QUDV"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="fc2bd48d-7510-4820-9223-90572af482c2" name="DerivedUnit" visibility="public">
+        <ownedRule xmi:id="da4109d2-0134-4515-9886-07604527dd85" name="mustSpecifyQuantityKind" visibility="public">
+          <ownedComment xmi:id="d847f909-4bdf-4ae2-b901-1a0ffda5beec" annotatedElement="da4109d2-0134-4515-9886-07604527dd85" body="Since a DerivedUnit is defined as a product factor of one or more other Units, it must specify explicitly its QuantityKinds."/>
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="de2fbc2e-4a92-4891-ac11-a8b56aede64a" name="" visibility="public">
+            <language>OCL2.0</language>
+            <body>quantityKind &lt;> null and quantityKind->notEmpty()</body>
+          </specification>
+        </ownedRule>
+        <generalization xmi:id="6e623745-7e02-4d2a-ab6c-d5c878408aea" general="b17b831d-5cf8-4a77-89e2-bae47672cc83"/>
+        <ownedAttribute xmi:id="7312b640-04da-46e1-9426-30af994207c4" name="factor" visibility="public" type="08e79fbc-174c-4f89-86c2-61557a54bf8c" association="f5ace303-557e-45ad-9b9d-2b868bed0093">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="97009ab8-b6a0-4182-8300-2d368e966cde" name="" visibility="public" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="bc065867-4d2b-49e5-8fb9-76a96741b2a7" name="" visibility="public" value="*"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="106741c5-a188-4788-aa28-f881aa9b9ee9" name="hasReducedFactors" visibility="public" aggregation="composite">
+          <ownedComment xmi:id="623fbb94-ef5e-4836-af1f-4c38ae01acd4" annotatedElement="106741c5-a188-4788-aa28-f881aa9b9ee9" body="If true, the UnitFactors specifying the product of powers of other measurement units that define the DerivedUnit cannot be simplified. If false, the DerivedUnit is non-reduced; some UnitFactors can be simplified. A non-reduced DerivedUnit can have as a general unit other DerivedUnits defined in terms of simplified UnitFactors, possibly in reduced form."/>
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="cffc764a-fd19-4f8b-a76e-64b52fbbed43" name="" visibility="public" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="e65a7837-655e-4795-b194-d45456dacba9" name="" visibility="public" value="1"/>
+          <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="dacae5b4-4493-4593-90cd-479ffbb9ebf5" name="" visibility="public" value="true"/>
+        </ownedAttribute>
+        <ownedOperation xmi:id="5eafc9cd-8d05-4e72-a070-7179a49bccb9" name="dependsOnUnits" visibility="public" bodyCondition="cee715de-e17e-4d01-85b2-981c320114b5" isQuery="true">
+          <ownedComment xmi:id="56b855cd-34b2-4195-806b-c0ccde506b95" annotatedElement="5eafc9cd-8d05-4e72-a070-7179a49bccb9" body="A DerivedUnit transitively depends on its factors' Units and all of the Units that its factors' Units depend on."/>
+          <ownedRule xmi:id="cee715de-e17e-4d01-85b2-981c320114b5" name="body" visibility="public" constrainedElement="5eafc9cd-8d05-4e72-a070-7179a49bccb9">
+            <specification xmi:type="uml:OpaqueExpression" xmi:id="cc9bc8d8-07bc-4e55-921a-a9903b2fbfaa" name="" visibility="public">
+              <language>OCL2.0</language>
+              <body>factor.unit.dependsOnUnits()->flatten()->asSet()->union(factor.unit->flatten()->asSet())->asSet()</body>
+            </specification>
+          </ownedRule>
+          <ownedParameter xmi:id="7d3f02de-ef5f-4fe3-98b6-a0fa1b52ece5" name="result" visibility="public" type="b17b831d-5cf8-4a77-89e2-bae47672cc83" direction="return">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="851a1f04-c5c1-493e-b516-b037aa07bf9f" name="" visibility="public"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="3bea9746-d11e-4319-a4d3-d3e7dea4119e" name="" visibility="public" value="*"/>
+          </ownedParameter>
+        </ownedOperation>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="f5ace303-557e-45ad-9b9d-2b868bed0093" name="A_derivedUnit_factor" visibility="public" memberEnd="51b73adc-7835-4e13-b6f9-f099f75f1660 7312b640-04da-46e1-9426-30af994207c4">
+        <ownedEnd xmi:id="51b73adc-7835-4e13-b6f9-f099f75f1660" name="derivedUnit" visibility="public" type="fc2bd48d-7510-4820-9223-90572af482c2" association="f5ace303-557e-45ad-9b9d-2b868bed0093">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="ead3a97d-6f1e-43da-acff-cf4e37bd27fe" name="" visibility="public" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="fed48b4d-05c6-4f38-8002-c1ce569309ce" name="" visibility="public" value="1"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="19bec5a2-538a-4bd8-9f58-86937cd7ea17" name="SystemOfQuantities" visibility="public">
+        <ownedRule xmi:id="8854afb0-08b5-4633-aa37-4dfde830e0f9" name="allBaseQuantitiesAreQuantities" visibility="public">
+          <ownedComment xmi:id="5e71bc16-b348-48b7-9020-db42e808c1e5" annotatedElement="8854afb0-08b5-4633-aa37-4dfde830e0f9" body="The set of all QuantityKinds in a given SystemOfQuantities can be partitioned into two disjoint, covering subsets: the set of base QuantityKinds (typically chosen to be mutually independent) and all its complement, the set of derived QuantityKinds, each of which can be expressed in terms of the base QuantityKinds (See ISO 80000-1, 4.3)."/>
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="0852d4cf-41c3-4b8f-a23e-851ca32ad0fc" name="" visibility="public">
+            <language>OCL2.0</language>
+            <body>allQuantityKinds()->includesAll(allBaseQuantityKinds())</body>
+          </specification>
+        </ownedRule>
+        <ownedRule xmi:id="e0ce9621-73b9-4976-ac74-3537b0fc7141" name="singleProvenance" visibility="public">
+          <ownedComment xmi:id="d9090746-c720-475f-85ba-cfb87d909dbe" annotatedElement="e0ce9621-73b9-4976-ac74-3537b0fc7141" body="Every QuantityKind must be defined in only one SystemOfQuantities but it can be in the scope of several SystemOfQuantities. A given QuantityKind is in scope of a SystemOfQuantities either because it is defined or used in a SystemOfQuantities or because it is included from the scope of another SystemOfQuantities."/>
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="d90446f6-71e9-4826-a61a-3f1b9d6d5265" name="" visibility="public">
+            <language>OCL2.0</language>
+            <body>includedSystemOfQuantities->collect(allQuantityKinds())->intersection(quantityKind)->isEmpty()</body>
+          </specification>
+        </ownedRule>
+        <ownedRule xmi:id="562f837e-a760-4685-ba8c-44524aabef74" name="acyclicProvenance" visibility="public">
+          <ownedComment xmi:id="0f319a1a-ad6c-40c3-a9ef-d823755e7de8" annotatedElement="562f837e-a760-4685-ba8c-44524aabef74" body="For a QuantityKind to have a provenance to a single SystemOfQuantities, the use and includes relationships among SystemOfQuantities must be acyclic."/>
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="79fcb24c-87e3-4c59-a6f2-d14978591cef" name="" visibility="public">
+            <language>OCL2.0</language>
+            <body>allAccessibleSystemOfQuantities()->excludes(self)</body>
+          </specification>
+        </ownedRule>
+        <ownedRule xmi:id="2aa1ac69-1df7-4a77-ad8e-d356a7f748e9" name="includedSystemOfQuantities_transitivelyDisjoint_usedSystemOfQuantities" visibility="public">
+          <ownedComment xmi:id="9431ae86-0232-477f-920f-bd565cb03130" annotatedElement="2aa1ac69-1df7-4a77-ad8e-d356a7f748e9" body="For a QuantityKind to have a provenance to a single SystemOfQuantities, includedSystemsOfQuantities must be transitively disjoint with usedSystemsOfQuantities"/>
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="61c85c80-6e0d-4846-8793-36ec2f30dd22" name="" visibility="public">
+            <language>OCL2.0</language>
+            <body>allIncludedSystemOfQuantities()->intersection(self.oclAsSet()->closure(usedSystemOfQuantities))->isEmpty()</body>
+          </specification>
+        </ownedRule>
+        <ownedAttribute xmi:id="38d1fa47-e85d-4fdc-bc22-e666091bb92c" name="baseQuantityKind" visibility="public" type="0296425a-bbc7-42cf-8825-884877c30346" isOrdered="true" subsettedProperty="49de793f-8248-40b3-88f5-6c29ccb0fa6e" association="8f11284c-bcc1-45cc-bf5e-2c57d844e47a">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="c1c58115-0c33-4010-9b5f-7f5e83c8c38b" name="" visibility="public"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="246096d3-0d8c-434d-a9c9-444b52c1bfa2" name="" visibility="public" value="*"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="cc9aa027-af7c-41c5-a52e-9794c3ef05cb" name="dimension" visibility="public" type="096f6b28-2ca7-4760-82ae-ee89eae17bc1" isOrdered="true" isUnique="false" isReadOnly="true" isDerived="true" association="5a16d1bd-a816-435e-b293-d4cdcfd08c85">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="72427614-af12-4e52-a6d0-49b30155e73f" name="" visibility="public"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="50af7e0c-9bfd-4f53-b885-1155c6299539" name="" visibility="public" value="*"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="49de793f-8248-40b3-88f5-6c29ccb0fa6e" name="quantityKind" visibility="public" type="0296425a-bbc7-42cf-8825-884877c30346" isOrdered="true" association="a36f34b8-0777-4ac1-912b-d7cefe1c230f">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="7111c45b-b161-46ee-8d8e-704b6eaec4a0" name="" visibility="public"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="8c197dd1-199f-401c-9ad7-59a7e266548d" name="" visibility="public" value="*"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="a15815ab-141e-4e8e-9d59-920d46eb7344" name="name" visibility="public" aggregation="composite">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="395f6d41-1058-4594-9970-af37e4ee3885" name="" visibility="public" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="a6a97292-5230-46a7-844b-ba8d1f58fa71" name="" visibility="public" value="1"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="51d25efc-b51b-453d-b9d7-d4ef7f7db6e7" name="symbol" visibility="public" aggregation="composite">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="f00097e1-9fd3-4732-b22e-7b32c06b7fdc" name="" visibility="public"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="e1a7ea37-4595-4717-8a65-4aef8f2746b1" name="" visibility="public" value="1"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="0fd2caa6-32e8-4964-a714-a2dea3db2d8f" name="description" visibility="public" aggregation="composite">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="7c1ff55a-7855-4c00-867e-054d8a0b446b" name="" visibility="public"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="481c8e2d-1982-447f-8873-f6b4cfd57142" name="" visibility="public" value="1"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="d4aeee97-5667-49ea-9c81-270cdd21bd89" name="definitionURI" visibility="public" aggregation="composite">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="040af1ff-aa11-48dd-88b7-a1f3b3474085" name="" visibility="public"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="afe70b5f-37d2-414d-bcdf-eaed641fb179" name="" visibility="public" value="1"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="80e255db-ca0c-45ff-b94f-e6ff3db2ba2e" name="usedSystemOfQuantities" visibility="public" type="19bec5a2-538a-4bd8-9f58-86937cd7ea17" association="f2fa394d-6706-444c-a2cd-2a168a5b029e">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="84ac1247-b5f8-4089-8a13-f5e7135ddd66" name="" visibility="public"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="a1df6ae9-92a2-4b94-89fd-b67707e5285d" name="" visibility="public" value="*"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="51f65d1a-d345-4277-89f1-7e7883c598eb" name="includedSystemOfQuantities" visibility="public" type="19bec5a2-538a-4bd8-9f58-86937cd7ea17" association="812150bd-9e4a-4152-98f2-7092e94e65c6">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="c94e0a14-9819-459e-88d5-9104c169418b" name="" visibility="public"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="255a04f8-9adf-417e-b3c9-16bd61a076fe" name="" visibility="public" value="*"/>
+        </ownedAttribute>
+        <ownedOperation xmi:id="5fe5cd76-b588-41ca-925c-24bbe53dc60f" name="getDimension" visibility="public">
+          <ownedParameter xmi:id="e906f77c-761c-4b38-9407-667a9e9f3874" name="qk" visibility="public">
+            <type xmi:type="uml:Class" href="SysML.profile.uml#00f488c7-54a8-49c1-a2a8-5cf6127b3c40"/>
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="df06c207-3d67-4d31-bc91-9be0eda9d8ad" name="" visibility="public" value="1"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="98a6a44c-0bb4-4b5a-99c7-3267e70871a4" name="" visibility="public" value="1"/>
+          </ownedParameter>
+          <ownedParameter xmi:id="6e379bd2-b6aa-4218-be63-f9967c505ccd" name="result" visibility="public" type="096f6b28-2ca7-4760-82ae-ee89eae17bc1" direction="return">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="4804062d-5698-481f-bc62-f9207604ebe3" name="" visibility="public" value="1"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="b4ef47e8-9269-4ad6-a207-84c30f2c9871" name="" visibility="public" value="1"/>
+          </ownedParameter>
+        </ownedOperation>
+        <ownedOperation xmi:id="16d8e382-fd3f-4a17-9bc1-44b82e199de6" name="allAccessibleQuantityKinds" visibility="public" bodyCondition="a5c64502-2315-4b81-ba13-d2f183ec2bf8" isQuery="true">
+          <ownedComment xmi:id="0b8c0a22-4cd8-4cde-b774-d1efd6d51c8d" annotatedElement="16d8e382-fd3f-4a17-9bc1-44b82e199de6" body="The query accessibleQuantityKinds() gives all the QuantityKinds directly defined in the SystemOfQuantities or transitively in any included or used SystemOfQuantities."/>
+          <ownedRule xmi:id="a5c64502-2315-4b81-ba13-d2f183ec2bf8" name="body" visibility="public" constrainedElement="16d8e382-fd3f-4a17-9bc1-44b82e199de6">
+            <specification xmi:type="uml:OpaqueExpression" xmi:id="dcb0cf73-ed15-4210-8964-46091b0706e1" name="" visibility="public">
+              <language>OCL2.0</language>
+              <body>allAccessibleSystemOfQuantities()->collect(quantityKind)->flatten()->asSet()</body>
+            </specification>
+          </ownedRule>
+          <ownedParameter xmi:id="0d043832-0bbe-4e77-8e86-37dab65d27a0" name="result" visibility="public" type="0296425a-bbc7-42cf-8825-884877c30346" direction="return">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a4167b1c-21eb-4eb7-bf63-d1e2d5dc7396" name="" visibility="public"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="21598188-c741-4b2d-9533-47f76b25f87c" name="" visibility="public" value="*"/>
+          </ownedParameter>
+        </ownedOperation>
+        <ownedOperation xmi:id="d60b325e-a086-4536-afb9-48d6cbf41f7b" name="allAccessibleSystemOfQuantities" visibility="public" bodyCondition="f9c348d6-8fbe-4749-ba07-94788f093000" isQuery="true">
+          <ownedComment xmi:id="0d9840cb-7924-431d-82d9-881e7a7b2041" annotatedElement="d60b325e-a086-4536-afb9-48d6cbf41f7b" body="The query allAccessibleSystemOfQuantities() gives all the SystemOfQuantities directly or transitively included or used."/>
+          <ownedRule xmi:id="f9c348d6-8fbe-4749-ba07-94788f093000" name="body" visibility="public">
+            <specification xmi:type="uml:OpaqueExpression" xmi:id="47e0ed87-95be-45d9-b779-c875d895c93e" name="" visibility="public">
+              <language>OCL2.0</language>
+              <body>self->closure(includedSystemOfQuantities->union(usedSystemOfQuantities))->asSet()</body>
+            </specification>
+          </ownedRule>
+          <ownedParameter xmi:id="244ae703-86f7-4bf6-a352-33f01ee19a3f" name="result" visibility="public" type="19bec5a2-538a-4bd8-9f58-86937cd7ea17" direction="return">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="120d249f-a53d-4325-b906-9aadf8fd046b" name="" visibility="public"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="d8723576-951c-4d67-8d28-a35d008598ca" name="" visibility="public" value="*"/>
+          </ownedParameter>
+        </ownedOperation>
+        <ownedOperation xmi:id="944ef8a2-dc7a-4f57-b0e3-dd3603230435" name="allBaseQuantityKinds" visibility="public" bodyCondition="938e51a8-cb87-4922-b0b8-e40530b7dece" isQuery="true">
+          <ownedComment xmi:id="232f6656-ba8c-4638-af93-12b6a090be41" annotatedElement="944ef8a2-dc7a-4f57-b0e3-dd3603230435" body="The query allBaseQuantityKinds() gives all the QuantityKinds directly adopted or transitively adopted from any included SystemOfQuantities as base QuantityKinds."/>
+          <ownedRule xmi:id="938e51a8-cb87-4922-b0b8-e40530b7dece" name="body" visibility="public" constrainedElement="944ef8a2-dc7a-4f57-b0e3-dd3603230435">
+            <specification xmi:type="uml:OpaqueExpression" xmi:id="fdbd020f-711b-4616-b4f2-c29adbc992ae" name="" visibility="public">
+              <language>OCL2.0</language>
+              <body>allIncludedSystemOfQuantities()->collect(baseQuantityKind)->flatten()->asSet()->union(baseQuantityKind)->asSet()</body>
+            </specification>
+          </ownedRule>
+          <ownedParameter xmi:id="bbf81679-3ed4-4e57-a9c8-bc2c416dffb4" name="result" visibility="public" type="0296425a-bbc7-42cf-8825-884877c30346" direction="return">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="b9f05f1e-cad8-45cb-ae2b-cc594789b8e8" name="" visibility="public"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="4f3115dc-d7b9-40fc-b74e-c5db0b0e0094" name="" visibility="public" value="*"/>
+          </ownedParameter>
+        </ownedOperation>
+        <ownedOperation xmi:id="1db8144e-fc56-4264-aaed-9af4ed1360c1" name="allIncludedSystemOfQuantities" visibility="public" bodyCondition="f32839f3-3bfd-4e99-b606-501752ffb5eb" isQuery="true">
+          <ownedComment xmi:id="84251850-c9d3-4105-be00-0f88d0450952" annotatedElement="1db8144e-fc56-4264-aaed-9af4ed1360c1" body="The query allIncludedSystemOfQuantities() gives all the SystemOfQuantities directly or transitively included."/>
+          <ownedRule xmi:id="f32839f3-3bfd-4e99-b606-501752ffb5eb" name="body" visibility="public">
+            <specification xmi:type="uml:OpaqueExpression" xmi:id="92423138-dd18-454d-b1f5-27c5df2cb0a6" name="" visibility="public">
+              <language>OCL2.0</language>
+              <body>self->closure(includedSystemOfQuantities)->asSet()</body>
+            </specification>
+          </ownedRule>
+          <ownedParameter xmi:id="cf981cfb-e164-4cac-b8f9-065f46b82293" name="result" visibility="public" type="19bec5a2-538a-4bd8-9f58-86937cd7ea17" direction="return">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="b9cefda1-eb3b-4500-b245-dd0f7531cd9f" name="" visibility="public"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="08a93b50-0bb8-47fd-b52a-def8a4b95e50" name="" visibility="public" value="*"/>
+          </ownedParameter>
+        </ownedOperation>
+        <ownedOperation xmi:id="9f147c6b-2897-4336-a1b9-108f14b71a33" name="allQuantityKinds" visibility="public" bodyCondition="febe0feb-86c9-458f-9149-aba4ec1de74f" isQuery="true">
+          <ownedComment xmi:id="7f998ba8-1f8c-4159-9f9f-d5dead44e4eb" annotatedElement="9f147c6b-2897-4336-a1b9-108f14b71a33" body="The query allQuantityKinds() gives all the QuantityKinds in scope of a SystemOfQuantities; that is, each QuantityKind is either directly defined in the SystemOfQuantities, selectively used from another SystemOfQuantities or part of the scope of all the QuantityKinds included from another SystemOfQuantities."/>
+          <ownedRule xmi:id="febe0feb-86c9-458f-9149-aba4ec1de74f" name="body" visibility="public" constrainedElement="9f147c6b-2897-4336-a1b9-108f14b71a33">
+            <specification xmi:type="uml:OpaqueExpression" xmi:id="f45518d9-5a45-474c-94bf-4078f1a35110" name="" visibility="public">
+              <language>OCL2.0</language>
+              <body>allIncludedSystemOfQuantities()->collect(quantityKind)->flatten()->asSet()->union(quantityKind)->asSet()</body>
+            </specification>
+          </ownedRule>
+          <ownedParameter xmi:id="8c1b730a-263e-4cb9-911a-aa4e16550967" name="result" visibility="public" type="0296425a-bbc7-42cf-8825-884877c30346" direction="return">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="b9301274-41c3-45df-9644-69d787da5e81" name="" visibility="public"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="aca03a44-16c8-430e-a181-ac13e4648599" name="" visibility="public" value="*"/>
+          </ownedParameter>
+        </ownedOperation>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="8f11284c-bcc1-45cc-bf5e-2c57d844e47a" name="A_systemOfQuantities_baseQuantityKind" visibility="public" memberEnd="e4364ae7-94f3-4482-877c-0a4a71150dd6 38d1fa47-e85d-4fdc-bc22-e666091bb92c">
+        <generalization xmi:id="ffaadc4a-8943-436a-bd21-b54d4f9cb75f" general="a36f34b8-0777-4ac1-912b-d7cefe1c230f"/>
+        <ownedEnd xmi:id="e4364ae7-94f3-4482-877c-0a4a71150dd6" name="systemOfQuantities" visibility="public" type="19bec5a2-538a-4bd8-9f58-86937cd7ea17" subsettedProperty="05176d6b-112d-4191-be28-d80ed52e784e" association="8f11284c-bcc1-45cc-bf5e-2c57d844e47a">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="66876da2-4809-44b3-933d-580540327735" name="" visibility="public"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="a8664cb8-4183-41ff-b1d0-8606d6f5ac98" name="" visibility="public" value="1"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="a910edeb-d4cb-41e5-8ff8-7930c0946fbd" name="SystemOfUnits" visibility="public">
+        <ownedRule xmi:id="54a3616a-6185-4baa-b11c-487cc6840424" name="allBaseUnitsAreUnits" visibility="public">
+          <ownedComment xmi:id="660f35ac-2d7c-4e48-95ed-0dac0d3308b3" annotatedElement="54a3616a-6185-4baa-b11c-487cc6840424" body="The set of all Units in a given SystemOfUnits can be partitioned into two disjoint, covering subsets: the set of base Units (typically chosen to be mutually independent) and all its complement, the set of derived Units, each of which can be expressed in terms of the base Units (See ISO 80000-1, 6.4)."/>
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="1e4a695c-f77e-4071-8638-874adf87e5f8" name="" visibility="public">
+            <language>OCL2.0</language>
+            <body>allUnits()->includesAll(allBaseUnits())</body>
+          </specification>
+        </ownedRule>
+        <ownedRule xmi:id="537f7e20-612e-4a65-92c1-f78b23e957ba" name="singleProvenance" visibility="public">
+          <ownedComment xmi:id="74e8ca01-a64c-494e-8e81-4f89b494402d" annotatedElement="537f7e20-612e-4a65-92c1-f78b23e957ba" body="Every Unit must be defined in only one SystemOfUnits but it can be in the scope of several SystemOfUnits. A given Unit is in scope of a SystemOfUnits either because it is defined or used in a SystemOfUnits or because it is included from the scope of another SystemOfUnits."/>
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="fdde979d-bddd-429f-afc5-1ec5bbb7291b" name="" visibility="public">
+            <language>OCL2.0</language>
+            <body>includedSystemOfUnits->collect(allUnits())->intersection(unit)->isEmpty()</body>
+          </specification>
+        </ownedRule>
+        <ownedRule xmi:id="6699cc79-9b1c-4310-9f56-377f8add40e5" name="acyclicProvenance" visibility="public">
+          <ownedComment xmi:id="2d5a1922-ce31-41bc-a791-e08fd43ff46d" annotatedElement="6699cc79-9b1c-4310-9f56-377f8add40e5" body="For a Unit to have a provenance to a single SystemOfUnits, the use and includes relationships among SystemOfUnits must be acyclic."/>
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="fd77dd15-1c30-42e5-aa94-c16c115053b2" name="" visibility="public">
+            <language>OCL2.0</language>
+            <body>allAccessibleSystemOfUnits()->excludes(self)</body>
+          </specification>
+        </ownedRule>
+        <ownedRule xmi:id="1f9e5610-bf6d-4bf4-bd84-1d67ae8bec45" name="systemOfQuantitiesIncludesAllUnitsQuantityKinds" visibility="public">
+          <ownedComment xmi:id="ee7dd9bc-debc-44ea-8a42-4a364efd0a06" annotatedElement="1f9e5610-bf6d-4bf4-bd84-1d67ae8bec45" body="For a Unit to have a provenance to a single SystemOfUnits, includedSystemsOfUnits must be transitively disjoint with usedSystemsOfUnits."/>
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="97e5ddba-06fd-42c5-856a-1a52939f5505" name="" visibility="public">
+            <language>OCL2.0</language>
+            <body>let aqks : Set(QuantityKind) = getEffectiveSystemOfQuantities().allQuantityKinds() in
+        allUnits()->forAll(u | getKindOfQuantitiesForMeasurementUnit(u)->intersection(aqks)->notEmpty())</body>
+          </specification>
+        </ownedRule>
+        <ownedRule xmi:id="ec690ad6-d4c6-4ed8-9019-817c39078ca6" name="includedSystemOfUnits_transitivelyDisjoint_usedSystemOfUnits" visibility="public">
+          <ownedComment xmi:id="71d9efdd-7d21-4751-884a-1a79ee11acbc" annotatedElement="ec690ad6-d4c6-4ed8-9019-817c39078ca6" body="For a Unit to have a provenance to a single SystemOfUnits, all included systems of units must be transitively disjoint with all used systems of units."/>
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="68c4f9da-2769-4477-b9b2-0ce278c7e201" name="" visibility="public">
+            <language>OCL2.0</language>
+            <body>allIncludedSystemOfUnits()->intersection(self.oclAsSet()->closure(usedSystemOfUnits))->isEmpty()</body>
+          </specification>
+        </ownedRule>
+        <ownedRule xmi:id="36a28658-9045-44cb-abbd-b655bf054c01" name="SoU3_1" visibility="public">
+          <ownedComment xmi:id="ea79a2f1-89ff-4277-bf27-1ead77d0a609" annotatedElement="36a28658-9045-44cb-abbd-b655bf054c01" body="In a well-formed SystemOfUnits, all of the prefixes of PrefixedUnits are defined in the SystemOfUnits."/>
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="c3311124-8051-4f10-9a53-d8e7ca553844" name="" visibility="public">
+            <language>OCL2.0</language>
+            <body>allPrefixes()->includesAll(allUnits()->select(oclIsTypeOf(PrefixedUnit))->collect(oclAsType(PrefixedUnit).prefix))</body>
+          </specification>
+        </ownedRule>
+        <ownedRule xmi:id="e676df3f-b43e-4fa8-90b2-e4964b503ed7" name="SoU3_2" visibility="public">
+          <ownedComment xmi:id="8061868f-fd8f-428f-b45a-346681224dd5" annotatedElement="e676df3f-b43e-4fa8-90b2-e4964b503ed7" body="All the dependent Units of a SystemOfUnits must be in the scope of that SystemOfUnits."/>
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="9b04522a-95fe-4958-8182-b871d7bc5b6b" name="" visibility="public">
+            <language>OCL2.0</language>
+            <body>allUnits()->includesAll(allUnits()->collect(dependsOnUnits())->flatten()->asSet())</body>
+          </specification>
+        </ownedRule>
+        <ownedRule xmi:id="105d8b0c-46a6-4ec4-bfbc-199c9fc46b28" name="SoU3_3" visibility="public">
+          <ownedComment xmi:id="65c44031-ec1d-4e4e-8e2d-60bf039c9e8a" annotatedElement="105d8b0c-46a6-4ec4-bfbc-199c9fc46b28" body="All of the quantityKinds that are measurementUnits of Units in the SystemOfUnits are defined in the systemOfQuantities of that SystemOfUnits."/>
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="6ec6b98a-37db-4500-bffd-043c50de66b2" name="" visibility="public">
+            <language>OCL2.0</language>
+            <body>getEffectiveSystemOfQuantities() = null or let aqk : Set(QuantityKind) = getEffectiveSystemOfQuantities().allQuantityKinds() in allUnits()->forAll(u | aqk->includesAll(getKindOfQuantitiesForMeasurementUnit(u)))</body>
+          </specification>
+        </ownedRule>
+        <ownedAttribute xmi:id="5281799c-3908-45d4-8c97-7180d344b991" name="systemOfQuantities" visibility="public" type="19bec5a2-538a-4bd8-9f58-86937cd7ea17" association="dca1729d-4afb-4d90-94b3-3d1bad328019">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="39f243dd-569c-455f-8117-a854fc7b4ba4" name="" visibility="public"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="d8ab7059-d631-45d5-ad91-bd524974786b" name="" visibility="public" value="1"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="a7200d85-9bb0-4789-815e-42fe8726d078" name="unit" visibility="public" type="b17b831d-5cf8-4a77-89e2-bae47672cc83" isOrdered="true" association="208b7caf-b419-460c-9a4a-b45386180522">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="0807a487-572b-4c33-877c-8c1aeae915f3" name="" visibility="public"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="25d22e4e-bfcf-4765-a6c2-ed97f7e10394" name="" visibility="public" value="*"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="2520282e-0713-4f29-916a-2b1c39bee318" name="prefix" visibility="public" type="1d8c19e6-a578-417a-9b41-8f706c8575f2" isOrdered="true" association="9e784e6d-d003-4a3b-99c5-bf9737f39d03">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="2684dd66-1f51-4d4d-816d-347871547d95" name="" visibility="public"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="c71a988b-95ff-453b-9248-9449bd9826aa" name="" visibility="public" value="*"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="f3beed63-63e0-467e-a13b-29c0c0ce8bc4" name="baseUnit" visibility="public" type="b17b831d-5cf8-4a77-89e2-bae47672cc83" isOrdered="true" subsettedProperty="a7200d85-9bb0-4789-815e-42fe8726d078" association="b61d6bd8-1fd5-4111-a633-35d53841a79f">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="e2a57c89-e114-45a0-a1b1-7fbb35d1bc33" name="" visibility="public"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="64019ffc-806a-4fcc-b675-4c86b73def8c" name="" visibility="public" value="*"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="56f323a4-7b05-4052-82d0-6dc443056366" name="name" visibility="public" aggregation="composite">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="66c6b1ef-1cb9-48eb-8c14-7d02bc325573" name="" visibility="public" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="8843699b-9329-492f-ab9a-1d9cde662e75" name="" visibility="public" value="1"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="57d2571d-6f48-47c8-bdc7-61bb2a594db3" name="symbol" visibility="public" aggregation="composite">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="4b1cea6a-8036-4805-a496-4ac96b584c4d" name="" visibility="public"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="37d88d1a-11e1-4054-afb2-12655da700ce" name="" visibility="public" value="1"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="c0d79cf0-6952-489d-a969-d4263c8b0664" name="description" visibility="public" aggregation="composite">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="c05b9aee-b0f9-4b32-bf55-b3fc9404076d" name="" visibility="public"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="1757ff83-cb9e-486a-bf1b-9fc1705f7266" name="" visibility="public" value="1"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="6872b2ba-2828-4633-9859-50617cb43184" name="definitionURI" visibility="public" aggregation="composite">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="1d807edb-c472-4c70-9c76-498960f4468b" name="" visibility="public"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="7ca46bfe-efc8-408d-8928-d152a6c94983" name="" visibility="public" value="1"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="58c74149-a8df-4fb4-add9-478cef6cffee" name="usedSystemOfUnits" visibility="public" type="a910edeb-d4cb-41e5-8ff8-7930c0946fbd" association="f2d91624-5158-4e33-b5dd-319becefea1b">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="27060c9b-b928-4a93-9b57-8ac193717bf8" name="" visibility="public"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="1b6bf4ed-9c8b-406e-ac4a-9b740d0b177f" name="" visibility="public" value="*"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="dda06f2a-eecf-476d-9df2-4a76dda5989f" name="includedSystemOfUnits" visibility="public" type="a910edeb-d4cb-41e5-8ff8-7930c0946fbd" association="16b47162-45c8-4b8d-b58f-8526bfef0f1d">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="37965b78-2286-4d8a-93f1-f31025cd8d77" name="" visibility="public"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="a7e73abe-c763-4f79-a48b-084d6d5a4025" name="" visibility="public" value="*"/>
+        </ownedAttribute>
+        <ownedOperation xmi:id="b2e0f194-e1f1-4b1a-bbc2-37ba84d91ec3" name="isCoherent" visibility="public">
+          <ownedParameter xmi:id="9311423f-088f-4228-b791-6d988d9dfbb5" name="result" visibility="public" direction="return">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="13afb7f9-ae1a-42a5-954c-caf73c6a5f24" name="" visibility="public" value="1"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="d73558db-8321-4a02-be18-a29aa497276a" name="" visibility="public" value="1"/>
+          </ownedParameter>
+        </ownedOperation>
+        <ownedOperation xmi:id="74e94633-1ae7-4d2c-9de8-ec484ddb48be" name="isCoherent" visibility="public">
+          <ownedParameter xmi:id="82f980af-f455-4cc1-8cf4-6f1973714d3f" name="du" visibility="public" type="fc2bd48d-7510-4820-9223-90572af482c2">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="0b8b5c2d-78cc-4603-aa7a-763186d1649f" name="" visibility="public" value="1"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="ca20d1f6-d2c7-4769-bce9-58276cbe02b8" name="" visibility="public" value="1"/>
+          </ownedParameter>
+          <ownedParameter xmi:id="1a7bdb08-fd4a-43f8-9364-609b975a0f8a" name="result" visibility="public" direction="return">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="4bb5e30b-c395-42ea-9517-eaa83d9d7a61" name="" visibility="public" value="1"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="743ce981-8899-4293-8ea3-e061adf18da7" name="" visibility="public" value="1"/>
+          </ownedParameter>
+        </ownedOperation>
+        <ownedOperation xmi:id="73b71ef2-603f-4cd9-9cd6-7716d90e0e52" name="allAccessibleSystemOfUnits" visibility="public" bodyCondition="bc984914-2f82-4fb4-9edc-0b75fb5c841a" isQuery="true">
+          <ownedComment xmi:id="ae6ecf33-b18f-4421-8081-a7b6e0d404f1" annotatedElement="73b71ef2-603f-4cd9-9cd6-7716d90e0e52" body="The query allAccessibleSystemOfUnits() gives all the SystemOfUnits directly or transitively included or used."/>
+          <ownedRule xmi:id="bc984914-2f82-4fb4-9edc-0b75fb5c841a" name="body" visibility="public">
+            <specification xmi:type="uml:OpaqueExpression" xmi:id="7e7627dd-c2e0-4722-9163-3e3bc6139c46" name="" visibility="public">
+              <language>OCL2.0</language>
+              <body>self->closure(includedSystemOfUnits->union(usedSystemOfUnits))->asSet()</body>
+            </specification>
+          </ownedRule>
+          <ownedParameter xmi:id="3ed2c181-8f7f-4d42-80c1-94e8da00b8ca" name="result" visibility="public" type="a910edeb-d4cb-41e5-8ff8-7930c0946fbd" direction="return">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="f42798d8-7202-40cc-93eb-7a7266d1751e" name="" visibility="public"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="eb4b320e-414c-4a90-bc40-fad8d1fb0e00" name="" visibility="public" value="*"/>
+          </ownedParameter>
+        </ownedOperation>
+        <ownedOperation xmi:id="24d47992-fd6b-4f3a-b946-bc3d11b16e11" name="allAccessibleUnits" visibility="public" bodyCondition="e44db743-d3bd-470d-a506-c34495665072" isQuery="true">
+          <ownedComment xmi:id="2cde6130-980b-4d38-b26a-3fbe0de7b17e" annotatedElement="24d47992-fd6b-4f3a-b946-bc3d11b16e11" body="The query accessibleUnits() gives all the Units directly defined in a SystemOfUnits or transitively in any included or used SystemOfUnits."/>
+          <ownedRule xmi:id="e44db743-d3bd-470d-a506-c34495665072" name="body" visibility="public" constrainedElement="24d47992-fd6b-4f3a-b946-bc3d11b16e11">
+            <specification xmi:type="uml:OpaqueExpression" xmi:id="e4afc8ea-2cf1-4c2d-bbac-78b9667a8370" name="" visibility="public">
+              <language>OCL2.0</language>
+              <body>allAccessibleSystemOfUnits()->collect(unit)->flatten()->asSet()</body>
+            </specification>
+          </ownedRule>
+          <ownedParameter xmi:id="33d3741f-e3c7-44b5-aceb-754a0effb33e" name="result" visibility="public" type="b17b831d-5cf8-4a77-89e2-bae47672cc83" direction="return">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="3f0f7411-e156-47d8-9b73-ef24d331385e" name="" visibility="public"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="af0df06f-84b5-42e0-9394-b9b4523ad373" name="" visibility="public" value="*"/>
+          </ownedParameter>
+        </ownedOperation>
+        <ownedOperation xmi:id="a2b5c8df-21f5-4735-92f0-c9974772a41f" name="allBaseQuantityKinds" visibility="public" bodyCondition="59bc85df-4564-4781-8662-9ed1be1f13fc" isQuery="true">
+          <ownedComment xmi:id="676dcc4d-7d45-444a-a239-6d73473487e3" annotatedElement="a2b5c8df-21f5-4735-92f0-c9974772a41f" body="The query allBaseQuantityKinds() gives all the QuantityKinds directly adopted or transitively adopted from any included SystemOfQuantities as base QuantityKinds in the effective SystemOfQuantities associated to a SystemOfUnits."/>
+          <ownedRule xmi:id="59bc85df-4564-4781-8662-9ed1be1f13fc" name="result" visibility="public">
+            <specification xmi:type="uml:OpaqueExpression" xmi:id="16164b0f-6f34-4bd9-8308-4c368f627f40" name="" visibility="public">
+              <language>OCL2.0</language>
+              <body>getEffectiveSystemOfQuantities().allBaseQuantityKinds()->flatten()->asSet()</body>
+            </specification>
+          </ownedRule>
+          <ownedParameter xmi:id="45f7e3a8-4622-43f1-8e26-7e9307e74290" name="result" visibility="public" type="0296425a-bbc7-42cf-8825-884877c30346" direction="return">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="2bb92b9a-3173-4184-b3bc-b9e615d6b222" name="" visibility="public"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="92d29131-8816-438d-a0ba-6169416ae83a" name="" visibility="public" value="*"/>
+          </ownedParameter>
+        </ownedOperation>
+        <ownedOperation xmi:id="4a9ee9ad-04ca-4c1f-b9c4-1a52b3468422" name="allBaseUnits" visibility="public" bodyCondition="bc2b8380-c995-4d03-9b2e-3d557a852354" isQuery="true">
+          <ownedComment xmi:id="640595cc-8036-444c-9308-0bd86a709f72" annotatedElement="4a9ee9ad-04ca-4c1f-b9c4-1a52b3468422" body="The query allBaseUnits() gives all the Units directly adopted or transitively adopted from any included SystemOfUnits as base Units."/>
+          <ownedRule xmi:id="bc2b8380-c995-4d03-9b2e-3d557a852354" name="body" visibility="public" constrainedElement="4a9ee9ad-04ca-4c1f-b9c4-1a52b3468422">
+            <specification xmi:type="uml:OpaqueExpression" xmi:id="dcab706f-e9e9-40ed-9e27-4f621beed5f7" name="" visibility="public">
+              <language>OCL2.0</language>
+              <body>allIncludedSystemOfUnits()->collect(baseUnit)->flatten()->asSet()->union(baseUnit)->asSet()</body>
+            </specification>
+          </ownedRule>
+          <ownedParameter xmi:id="bf67a471-6c22-4048-9f06-0425e4f0ad3c" name="result" visibility="public" type="b17b831d-5cf8-4a77-89e2-bae47672cc83" direction="return">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="7f30507d-d646-44b2-b41b-252e567fd5bd" name="" visibility="public"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="a00361c8-0d05-4a9c-83c8-a7f1e77c5abf" name="" visibility="public" value="*"/>
+          </ownedParameter>
+        </ownedOperation>
+        <ownedOperation xmi:id="57283016-4cd2-4164-9a61-31d483d2ef0d" name="allIncludedSystemOfUnits" visibility="public" bodyCondition="e691d951-b8dd-46c0-9da4-5eef9d8eecd6" isQuery="true">
+          <ownedComment xmi:id="f519ad0f-2751-449a-b806-2f7e1d6d257b" annotatedElement="57283016-4cd2-4164-9a61-31d483d2ef0d" body="The query allIncludedSystemOfUnits() gives all the SystemOfUnits directly or transitively included."/>
+          <ownedRule xmi:id="e691d951-b8dd-46c0-9da4-5eef9d8eecd6" name="body" visibility="public">
+            <specification xmi:type="uml:OpaqueExpression" xmi:id="08a6c432-5b17-42a7-919a-126b19c7fe7f" name="" visibility="public">
+              <language>OCL2.0</language>
+              <body>self->closure(includedSystemOfUnits->union(usedSystemOfUnits))->asSet()</body>
+            </specification>
+          </ownedRule>
+          <ownedParameter xmi:id="5edb5669-eb42-40d3-a593-d5ce01b948f6" name="result" visibility="public" type="a910edeb-d4cb-41e5-8ff8-7930c0946fbd" direction="return">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="bf5f6ce8-ee89-4231-ab5e-cb4eada41a44" name="" visibility="public"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="65b494d3-65c7-4da9-91ab-b52fc69bcbc2" name="" visibility="public" value="*"/>
+          </ownedParameter>
+        </ownedOperation>
+        <ownedOperation xmi:id="a0320bac-0c7a-4244-9c9c-6e567ef49161" name="allMeasurementUnitsDefinedForSomeQuantityKind" visibility="public" bodyCondition="757af536-dacc-4601-bb78-128d41a14c1f" isQuery="true">
+          <ownedComment xmi:id="d24d0e6b-a6c2-4fc0-b5d2-112afe49ed25" annotatedElement="a0320bac-0c7a-4244-9c9c-6e567ef49161" body="The predicate allMeasurementUnitsDefinedForSomeQuantityKind() determines whether, in a SystemOfUnits, every Unit must be defined, by convention, as a multiplicable reference for at least one QuantityKind (see ISO 80000-1, 3.9)."/>
+          <ownedRule xmi:id="757af536-dacc-4601-bb78-128d41a14c1f" name="body" visibility="public">
+            <specification xmi:type="uml:OpaqueExpression" xmi:id="3dad2f08-de96-4ec6-b175-dcefeeb8f52f" name="" visibility="public">
+              <language>OCL2.0</language>
+              <body>allUnits()->forAll(quantityKind &lt;> null)</body>
+            </specification>
+          </ownedRule>
+          <ownedParameter xmi:id="e6538a36-deff-49e9-a184-6ced9cc4aab2" name="result" visibility="public" direction="return">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="ce4118cc-7765-453b-a33f-257f22311c2a" name="" visibility="public" value="1"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="d1a0a3d5-11a0-42e0-a856-328024967108" name="" visibility="public" value="1"/>
+          </ownedParameter>
+        </ownedOperation>
+        <ownedOperation xmi:id="ab3a8a82-96ca-49e7-ad68-a0201ce17392" name="allPrefixes" visibility="public" bodyCondition="379a5856-b782-4328-9d57-4a7c78b10483" isQuery="true">
+          <ownedComment xmi:id="51c0039b-6d2d-4755-8c45-85ad48b9eb09" annotatedElement="ab3a8a82-96ca-49e7-ad68-a0201ce17392" body="The query allPrefixes() gives all the Prefixes in scope of a SystemOfUnits; that is, each Prefix is either directly defined in the SystemOfUnits or in any accessible SystemOfUnits."/>
+          <ownedRule xmi:id="379a5856-b782-4328-9d57-4a7c78b10483" name="body" visibility="public">
+            <specification xmi:type="uml:OpaqueExpression" xmi:id="872181eb-b77a-4354-8d55-7857a81ab9b3" name="" visibility="public">
+              <language>OCL2.0</language>
+              <body>allAccessibleSystemOfUnits()->including(self)->collect(prefix)->flatten()->asSet()</body>
+            </specification>
+          </ownedRule>
+          <ownedParameter xmi:id="24722d19-c513-4250-a5eb-0c0db963d010" name="result" visibility="public" type="1d8c19e6-a578-417a-9b41-8f706c8575f2" direction="return">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="b65652d1-e13c-4ab2-bee8-ab25bba715a1" name="" visibility="public"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="520c8920-ee3b-4011-8d6a-bead4b9ee17f" name="" visibility="public" value="*"/>
+          </ownedParameter>
+        </ownedOperation>
+        <ownedOperation xmi:id="4e43d466-66a3-4e0c-be64-4381c38c942e" name="allUnits" visibility="public" bodyCondition="1f2a6516-d688-4c48-a12f-8d0929295485" isQuery="true">
+          <ownedComment xmi:id="6e9f5e18-62c1-4972-be73-e0f1216694b0" annotatedElement="4e43d466-66a3-4e0c-be64-4381c38c942e" body="The query allUnits() gives all the Units in scope of a SystemOfUnits; that is, each Unit is either directly defined in the SystemOfUnits, selectively used from another SystemOfUnits or part of the scope of all the Units included from another SystemOfUnits."/>
+          <ownedRule xmi:id="1f2a6516-d688-4c48-a12f-8d0929295485" name="body" visibility="public" constrainedElement="4e43d466-66a3-4e0c-be64-4381c38c942e">
+            <specification xmi:type="uml:OpaqueExpression" xmi:id="66c220a5-df08-476d-b2b8-de1b7ca3723c" name="" visibility="public">
+              <language>OCL2.0</language>
+              <body>allIncludedSystemOfUnits()->collect(unit)->flatten()->asSet()->union(unit)->asSet()</body>
+            </specification>
+          </ownedRule>
+          <ownedParameter xmi:id="c9156443-70f8-409d-9718-a513022910bd" name="result" visibility="public" type="b17b831d-5cf8-4a77-89e2-bae47672cc83" direction="return">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="64b06636-02f8-4132-9420-9e1c22a9665a" name="" visibility="public"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="3e489f45-cfb0-4a3b-9aea-b74474db8280" name="" visibility="public" value="*"/>
+          </ownedParameter>
+        </ownedOperation>
+        <ownedOperation xmi:id="b2ad01d6-2f7b-4aca-9137-bfe338f4cc36" name="getAdoptedBaseUnitForMeasurementUnit" visibility="public" bodyCondition="f92ee094-a573-4ffa-b613-77e1d724cb84" isQuery="true">
+          <ownedComment xmi:id="9499867e-9bda-498e-aae8-dc6b9d7ac944" annotatedElement="b2ad01d6-2f7b-4aca-9137-bfe338f4cc36" body="The query getAdoptedBaseUnitForMeasurementUnit() determines for a Unit u in scope of a SystemOfUnits the base Unit, if any, corresponding to u, which can be u itself if it is a baseUnit in that SystemOfUnits or its reference Unit if it is a base Unit and u is a PrefixUnit."/>
+          <ownedRule xmi:id="f92ee094-a573-4ffa-b613-77e1d724cb84" name="body" visibility="public">
+            <specification xmi:type="uml:OpaqueExpression" xmi:id="464110da-d857-472f-b6dd-b2e559d1369b" name="" visibility="public">
+              <language>OCL2.0</language>
+              <body>let abu : Set(Unit) = allBaseUnits() in
+    						if (abu->includes(u)) then u
+    						else if (u.oclIsKindOf(PrefixedUnit)) then abu->intersection(u.oclAsType(PrefixedUnit).referenceUnit->asSet())->any(true) else null endif
+    						endif</body>
+            </specification>
+          </ownedRule>
+          <ownedParameter xmi:id="698e571e-307f-4033-85cb-105b9f22ecb6" name="result" visibility="public" type="b17b831d-5cf8-4a77-89e2-bae47672cc83" direction="return">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="ce29c3b9-6c02-423f-8c92-5199573ba720" name="" visibility="public"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="e62e4666-fca4-4497-a051-a539ab8c5950" name="" visibility="public" value="1"/>
+          </ownedParameter>
+          <ownedParameter xmi:id="e47d4faf-540b-447d-b755-d509a815496e" name="u" visibility="public" type="b17b831d-5cf8-4a77-89e2-bae47672cc83">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="b80b7f26-5ba2-4a4f-ba6a-c62563f252f0" name="" visibility="public" value="1"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="1b6e70c8-e9f3-473a-ba67-94b23e90404f" name="" visibility="public" value="1"/>
+          </ownedParameter>
+        </ownedOperation>
+        <ownedOperation xmi:id="84a2e53e-8e0b-41ac-a4ff-c6697a747db6" name="getAdoptedQuantityKindForAdoptedBaseUnitOfMeasurementUnit" visibility="public" bodyCondition="7472d18c-2d1b-4675-82c2-b0dae0524687" isQuery="true" postcondition="c631298b-5bf7-4300-833b-e7500622e0d6" precondition="d40ee2dc-0610-407e-991a-98fb618c3d58">
+          <ownedComment xmi:id="b1f0b294-b18e-4b21-a1ed-6cde598e6449" annotatedElement="84a2e53e-8e0b-41ac-a4ff-c6697a747db6" body="The query getAdoptedQuantityKindForAdoptedBaseUnitOfMeasurementUnit() determines for a Unit u in scope of a SystemOfUnits the base QuantityKind, if any, corresponding to the base Unit of u."/>
+          <ownedRule xmi:id="d40ee2dc-0610-407e-991a-98fb618c3d58" name="baseUnitParameter" visibility="public">
+            <specification xmi:type="uml:OpaqueExpression" xmi:id="8fdf022b-0404-4ed7-8f03-e8b439f5e3fb" name="" visibility="public">
+              <language>OCL2.0</language>
+              <body>allBaseUnits()->includes(u)</body>
+            </specification>
+          </ownedRule>
+          <ownedRule xmi:id="c631298b-5bf7-4300-833b-e7500622e0d6" name="knownPrimaryQuantityKind" visibility="public" constrainedElement="84a2e53e-8e0b-41ac-a4ff-c6697a747db6">
+            <specification xmi:type="uml:OpaqueExpression" xmi:id="90746312-36b6-474e-9954-6a4136e29dea" name="" visibility="public">
+              <language>OCL2.0</language>
+              <body>getEffectiveSystemOfQuantities().allBaseQuantityKinds()->includesAll(result)</body>
+            </specification>
+          </ownedRule>
+          <ownedRule xmi:id="7472d18c-2d1b-4675-82c2-b0dae0524687" name="body" visibility="public" constrainedElement="84a2e53e-8e0b-41ac-a4ff-c6697a747db6">
+            <specification xmi:type="uml:OpaqueExpression" xmi:id="2e06347d-d2f3-46be-a5bc-785ff9bb7fa6" name="" visibility="public">
+              <language>OCL2.0</language>
+              <body>let bu : Unit = getAdoptedBaseUnitForMeasurementUnit(u) in
+						if (bu = null) then Set{}
+						else let qks : Set(QuantityKind) = getKindOfQuantitiesForMeasurementUnit(bu) in allBaseQuantityKinds()->intersection(qks)
+						endif</body>
+            </specification>
+          </ownedRule>
+          <ownedParameter xmi:id="c063f3e1-cbe6-42b9-bdcb-5b6cc1480f0d" name="result" visibility="public" type="0296425a-bbc7-42cf-8825-884877c30346" direction="return">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="0208f00f-21ff-4b02-bdc4-c251a9b0e5a6" name="" visibility="public"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="c00623c9-68f1-4127-a70f-3b57b13cf74c" name="" visibility="public" value="*"/>
+          </ownedParameter>
+          <ownedParameter xmi:id="d643c88e-b897-4837-94f1-f888bffc680f" name="u" visibility="public" type="b17b831d-5cf8-4a77-89e2-bae47672cc83">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="27bf5b27-fa7a-4205-beb7-292b8e192ca7" name="" visibility="public" value="1"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="ec2fbce9-03d5-402c-aa60-64d5b5bdd0f6" name="" visibility="public" value="1"/>
+          </ownedParameter>
+        </ownedOperation>
+        <ownedOperation xmi:id="c003dd70-25fb-4227-aca9-af148d721015" name="getEffectiveSystemOfQuantities" visibility="public" bodyCondition="63f90708-a6e9-4fc3-ba52-d66a9218bc9f" isQuery="true" precondition="0f84a06b-a63d-4b86-b9e4-160de2fe7cb6">
+          <ownedComment xmi:id="0537119f-84a5-4419-8006-79a19a7f505b" annotatedElement="c003dd70-25fb-4227-aca9-af148d721015" body="The query getEffectiveSystemOfQuantities() determines for a SystemOfUnits the SystemOfQuantities, if any, that it is directly or indirectly associated with via included SystemOfUnits."/>
+          <ownedRule xmi:id="0f84a06b-a63d-4b86-b9e4-160de2fe7cb6" name="atMostOneSystemOfQuantities" visibility="public" constrainedElement="c003dd70-25fb-4227-aca9-af148d721015">
+            <specification xmi:type="uml:OpaqueExpression" xmi:id="53c6a145-2b27-4a94-a53e-18952f259f74" name="" visibility="public">
+              <language>OCL2.0</language>
+              <body>systemOfQuantities = null implies includedSystemOfUnits->collect(getEffectiveSystemOfQuantities())->asSet()->size() &lt;= 1</body>
+            </specification>
+          </ownedRule>
+          <ownedRule xmi:id="63f90708-a6e9-4fc3-ba52-d66a9218bc9f" name="body" visibility="public" constrainedElement="c003dd70-25fb-4227-aca9-af148d721015">
+            <specification xmi:type="uml:OpaqueExpression" xmi:id="02b856e2-f31e-4de5-9219-2c47295aaf49" name="" visibility="public">
+              <language>OCL2.0</language>
+              <body>if systemOfQuantities = null then includedSystemOfUnits->collect(getEffectiveSystemOfQuantities())->flatten()->asSet()->any(true) else systemOfQuantities endif</body>
+            </specification>
+          </ownedRule>
+          <ownedParameter xmi:id="db11b7be-319d-48b7-9bfb-df9d006c42a2" name="result" visibility="public" type="19bec5a2-538a-4bd8-9f58-86937cd7ea17" direction="return">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="2ed56e84-1322-47e7-a2a3-9de0a2f67c4d" name="" visibility="public"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="50dbc26b-18fd-4d6f-bd8f-e241ad1a3e32" name="" visibility="public" value="1"/>
+          </ownedParameter>
+        </ownedOperation>
+        <ownedOperation xmi:id="9cd88ed6-61e6-4625-a76b-3caf81e65d27" name="getKindOfQuantitiesForMeasurementUnit" visibility="public" bodyCondition="a199f804-5efe-4f73-af1c-27acd1ff7065" isQuery="true">
+          <ownedComment xmi:id="ba8b0aba-9cfd-4aa0-9a98-7cdc92c4f8e9" annotatedElement="9cd88ed6-61e6-4625-a76b-3caf81e65d27" body="The query getKindOfQuantitiesForMeasurementUnit() determines for a Unit u in scope of a SystemOfUnits the set of QuantityKinds corresponding to u, if specified, or to the Units that u is defined in terms of, if any."/>
+          <ownedRule xmi:id="a199f804-5efe-4f73-af1c-27acd1ff7065" name="body" visibility="public">
+            <specification xmi:type="uml:OpaqueExpression" xmi:id="f1bac8e7-9aeb-407f-8b3f-d42d88bcc3d4" name="" visibility="public">
+              <language>OCL2.0</language>
+              <body>if (u.oclIsKindOf(SimpleUnit)) 
+						then 
+							u.quantityKind->collect(oclAsType(QuantityKind))->asSet()
+						else if (u.oclIsKindOf(DerivedUnit)) 
+							then let du : DerivedUnit = u.oclAsType(DerivedUnit) in 
+								if (du.quantityKind &lt;> null) then 
+									du.quantityKind->collect(oclAsType(QuantityKind))->asSet() 
+								else 
+									getKindOfQuantitiesForMeasurementUnit(du.factor->any(true).unit) 
+								endif
+							else if (u.oclIsKindOf(ConversionBasedUnit)) 
+								then let cu : ConversionBasedUnit = u.oclAsType(ConversionBasedUnit) in
+									if (cu.oclIsKindOf(PrefixedUnit)) 
+									then 
+										getKindOfQuantitiesForMeasurementUnit(cu.referenceUnit)
+									else 
+										if (cu.quantityKind &lt;> null) then 
+											cu.quantityKind->collect(oclAsType(QuantityKind))->asSet()
+										else 
+											getKindOfQuantitiesForMeasurementUnit(cu.referenceUnit)
+										endif
+									endif
+								else 
+									Set(QuantityKind){}
+								endif
+							endif
+						endif</body>
+            </specification>
+          </ownedRule>
+          <ownedParameter xmi:id="b7edba18-bb39-48ed-bd57-e5b3a317504b" name="result" visibility="public" type="0296425a-bbc7-42cf-8825-884877c30346" direction="return">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="85df24d2-038b-4dfc-8226-947c1b0dcd01" name="" visibility="public"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="7a1c2819-2076-4706-a6a8-fb8276085157" name="" visibility="public" value="*"/>
+          </ownedParameter>
+          <ownedParameter xmi:id="d2c163ec-9b5f-402a-b326-a729595865fa" name="u" visibility="public" type="b17b831d-5cf8-4a77-89e2-bae47672cc83">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="32192ce3-357e-4cf7-8904-5d2c3f2b1646" name="" visibility="public" value="1"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="4c02d3ef-eb7c-4592-8663-36b8ae9abbbb" name="" visibility="public" value="1"/>
+          </ownedParameter>
+        </ownedOperation>
+        <ownedOperation xmi:id="692ac4a5-df22-42b1-af2b-9d16fa6efea4" name="getUnit" visibility="public" bodyCondition="887af438-a6fd-467a-880d-0b3711059154">
+          <ownedRule xmi:id="887af438-a6fd-467a-880d-0b3711059154" name="body" visibility="public">
+            <specification xmi:type="uml:OpaqueExpression" xmi:id="4c1cdd15-3217-43fa-ae12-e23738a94c27" name="" visibility="public">
+              <language>OCL2.0</language>
+              <body>allUnits()->select(u | u.name = name)->any(true)</body>
+            </specification>
+          </ownedRule>
+          <ownedParameter xmi:id="6e334c6f-5995-4072-8fa7-c60ecf80cbe1" name="name" visibility="public">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="9d50231f-15a1-4b08-8b0f-bf708127bbd6" name="" visibility="public" value="1"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="4e7843c9-d6ef-43e1-9b19-bb7a9bea0a9b" name="" visibility="public" value="1"/>
+          </ownedParameter>
+          <ownedParameter xmi:id="dd2f229c-4f77-4443-b1f7-631c158aabc8" name="result" visibility="public" type="b17b831d-5cf8-4a77-89e2-bae47672cc83" direction="return">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="e20863fb-5303-48c5-bf6f-2236dddcf1a2" name="" visibility="public"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="5fdebffb-c486-43cc-b07b-4a6c935063d7" name="" visibility="public" value="1"/>
+          </ownedParameter>
+        </ownedOperation>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="208b7caf-b419-460c-9a4a-b45386180522" name="A_systemOfUnits_unit" visibility="public" memberEnd="3871e449-d14f-478e-9a38-bebc41dd70f1 a7200d85-9bb0-4789-815e-42fe8726d078">
+        <ownedEnd xmi:id="3871e449-d14f-478e-9a38-bebc41dd70f1" name="systemOfUnits" visibility="public" type="a910edeb-d4cb-41e5-8ff8-7930c0946fbd" association="208b7caf-b419-460c-9a4a-b45386180522">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="b91a518d-5768-46dd-beb8-07414fd77402" name="" visibility="public"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="5ad0852d-c9b8-4353-9d11-e7052cba6448" name="" visibility="public" value="1"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="b61d6bd8-1fd5-4111-a633-35d53841a79f" name="A_systemOfUnits_baseUnit" visibility="public" memberEnd="dc91a08a-73cf-4c7d-b8bd-b20212ba40eb f3beed63-63e0-467e-a13b-29c0c0ce8bc4">
+        <generalization xmi:id="d8228387-1ee5-4cc6-a19b-46f4ff537842" general="208b7caf-b419-460c-9a4a-b45386180522"/>
+        <ownedEnd xmi:id="dc91a08a-73cf-4c7d-b8bd-b20212ba40eb" name="systemOfUnits" visibility="public" type="a910edeb-d4cb-41e5-8ff8-7930c0946fbd" subsettedProperty="3871e449-d14f-478e-9a38-bebc41dd70f1" association="b61d6bd8-1fd5-4111-a633-35d53841a79f">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="fd5e2c29-93b8-4044-9dba-354d36b15c3e" name="" visibility="public"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="35ca3d4d-aa81-4062-9473-e161705a72ea" name="" visibility="public" value="1"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="dca1729d-4afb-4d90-94b3-3d1bad328019" name="A_systemOfUnits_systemOfQuantities" visibility="public" memberEnd="100a7953-d851-44e9-90be-2fe740e2da7d 5281799c-3908-45d4-8c97-7180d344b991">
+        <ownedEnd xmi:id="100a7953-d851-44e9-90be-2fe740e2da7d" name="systemOfUnits" visibility="public" type="a910edeb-d4cb-41e5-8ff8-7930c0946fbd" association="dca1729d-4afb-4d90-94b3-3d1bad328019">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="feb59268-2def-4567-b868-b7172c63eb37" name="" visibility="public"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="37328ef9-e1d7-4146-9a04-7807f6d9ba05" name="" visibility="public" value="*"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="9e784e6d-d003-4a3b-99c5-bf9737f39d03" name="A_systemOfUnits_prefix" visibility="public" memberEnd="491ffbb7-205d-446f-8c94-24236946e707 2520282e-0713-4f29-916a-2b1c39bee318">
+        <ownedEnd xmi:id="491ffbb7-205d-446f-8c94-24236946e707" name="systemOfUnits" visibility="public" type="a910edeb-d4cb-41e5-8ff8-7930c0946fbd" association="9e784e6d-d003-4a3b-99c5-bf9737f39d03">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a1254415-d720-4fb6-8a13-4215a4bb1dd1" name="" visibility="public"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="3adc89d2-d4bb-41e3-8441-d71576ee99a6" name="" visibility="public" value="1"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="a36f34b8-0777-4ac1-912b-d7cefe1c230f" name="A_systemOfQuantities_quantityKind" visibility="public" memberEnd="05176d6b-112d-4191-be28-d80ed52e784e 49de793f-8248-40b3-88f5-6c29ccb0fa6e">
+        <ownedEnd xmi:id="05176d6b-112d-4191-be28-d80ed52e784e" name="systemOfQuantities" visibility="public" type="19bec5a2-538a-4bd8-9f58-86937cd7ea17" association="a36f34b8-0777-4ac1-912b-d7cefe1c230f">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="56b67c84-43a9-443c-90df-24ac798a906a" name="" visibility="public"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="f99d5b9e-84f8-45cf-8572-6bb7ad7e288d" name="" visibility="public" value="1"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="5a16d1bd-a816-435e-b293-d4cdcfd08c85" name="A_systemOfQuantities_dimension" visibility="public" memberEnd="a84537a8-7b97-494b-9669-dacd7fea3d95 cc9aa027-af7c-41c5-a52e-9794c3ef05cb">
+        <ownedEnd xmi:id="a84537a8-7b97-494b-9669-dacd7fea3d95" name="systemOfQuantities" visibility="public" type="19bec5a2-538a-4bd8-9f58-86937cd7ea17" association="5a16d1bd-a816-435e-b293-d4cdcfd08c85">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="e22fea95-c57d-4b74-b086-05a3c995575a" name="" visibility="public" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="83799049-42a7-428a-a15b-3a77ccf469d2" name="" visibility="public" value="*"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="be43d92d-dbcc-4acb-8a23-0c143b1ba582" name="QuantityKindFactor" visibility="public">
+        <ownedAttribute xmi:id="8eb0b917-5347-4a52-8717-38408b633902" name="quantityKind" visibility="public" type="0296425a-bbc7-42cf-8825-884877c30346" association="1d707963-47ed-4042-a29b-2cf0c29fe94d">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="b12b6dad-0dbc-4449-b598-9cad584862b6" name="" visibility="public" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="d244dbbd-2ae4-4a8a-baf7-9b0280356234" name="" visibility="public" value="1"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="ff52fefb-fade-4369-9694-5d9e790b932b" name="exponent" visibility="public" type="a101d3bf-43ff-4193-85f0-6394110e420a" aggregation="composite">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="dcf73cbf-4ef1-405d-b0b3-70875d151ff4" name="" visibility="public" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="04498ec9-708c-4b55-94ae-5a16a1da10d9" name="" visibility="public" value="1"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="096f6b28-2ca7-4760-82ae-ee89eae17bc1" name="Dimension" visibility="public">
+        <ownedAttribute xmi:id="fe42996f-ebda-48b0-b66e-b9a56e0e6836" name="factor" visibility="public" type="be43d92d-dbcc-4acb-8a23-0c143b1ba582" isOrdered="true" association="e3cfd4f4-0643-423f-91ac-82e332f2d3c2">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="1eed95a9-236c-490c-9631-b8060e9ce997" name="" visibility="public"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="83a33c93-b4a6-4772-9261-10e99fb7bb2f" name="" visibility="public" value="*"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="e77a7780-9a4d-47e8-ac22-0b3b0161547e" name="symbolicExpression" visibility="public" aggregation="composite">
+          <ownedComment xmi:id="66493670-4ee3-487c-962d-9f35a2e7f1b4" annotatedElement="e77a7780-9a4d-47e8-ac22-0b3b0161547e" body="Symbolic expression of the quantity dimension's product of powers, in terms of symbols of the kinds of quantity that represent the base kinds of quantity and their exponents. In tool implementations, the symbolicExpression may automatically derived from the associated factor set."/>
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="ebe7d1f0-a5dd-4661-a821-6386e9565c8e" name="" visibility="public"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="5c53156a-d285-4e86-b2fc-eef031a0c8a9" name="" visibility="public" value="1"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="e3cfd4f4-0643-423f-91ac-82e332f2d3c2" name="A_dimension_factor" visibility="public" memberEnd="509d3170-3aa1-4bb1-a5b7-1cceefbf1f53 fe42996f-ebda-48b0-b66e-b9a56e0e6836">
+        <ownedEnd xmi:id="509d3170-3aa1-4bb1-a5b7-1cceefbf1f53" name="dimension" visibility="public" type="096f6b28-2ca7-4760-82ae-ee89eae17bc1" association="e3cfd4f4-0643-423f-91ac-82e332f2d3c2">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="55a8c271-58a9-46db-b5a5-3d180b79e7b5" name="" visibility="public" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="39479c5c-7f2a-4af9-986d-8bc560643519" name="" visibility="public" value="1"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="3500f1ef-a7ef-4bd0-8242-7136df0544da" name="DerivedQuantityKind" visibility="public">
+        <generalization xmi:id="1b33ee29-485b-4751-9a7b-b0baf4907a9f" general="0296425a-bbc7-42cf-8825-884877c30346"/>
+        <ownedAttribute xmi:id="4a036e22-8e34-4a18-a8d4-9fab2487506e" name="factor" visibility="public" type="be43d92d-dbcc-4acb-8a23-0c143b1ba582" association="10359948-231b-4672-82c5-9339b0ffa023">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a766c161-67c7-4183-816b-726b1ca5b1a6" name="" visibility="public" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="fe557c58-2a26-445d-94a3-bdb0be8773e3" name="" visibility="public" value="*"/>
+        </ownedAttribute>
+        <ownedOperation xmi:id="86694b79-7daf-472c-9778-fb29cfd3773f" name="dependsOnQuantityKinds" visibility="public" bodyCondition="919d131c-3c61-4598-a112-44c5e6452247" isQuery="true">
+          <ownedComment xmi:id="ddf295ba-6abe-46a8-8255-a9f8a09d5f64" annotatedElement="86694b79-7daf-472c-9778-fb29cfd3773f" body="A DerivedQuantityKind transitively depends on its factors' QuantityKinds and all of the QuantityKinds that its factors' QuantityKinds depend on."/>
+          <ownedRule xmi:id="919d131c-3c61-4598-a112-44c5e6452247" name="body" visibility="public" constrainedElement="86694b79-7daf-472c-9778-fb29cfd3773f">
+            <specification xmi:type="uml:OpaqueExpression" xmi:id="56f32eac-6f2c-4e9b-be48-7904473d5f7a" name="" visibility="public">
+              <language>OCL2.0</language>
+              <body>factor.quantityKind.dependsOnQuantityKinds()->flatten()->asSet()->union(factor.quantityKind->flatten()->asSet())->asSet()</body>
+            </specification>
+          </ownedRule>
+          <ownedParameter xmi:id="1281f991-c8ad-4e24-920f-597031bad080" name="result" visibility="public" type="0296425a-bbc7-42cf-8825-884877c30346" direction="return">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a900bcd8-4051-4aa2-92b0-5e469aa699d4" name="" visibility="public"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="4fb0013d-a773-4a2e-9752-a5b4b2ef4cae" name="" visibility="public" value="*"/>
+          </ownedParameter>
+        </ownedOperation>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="10359948-231b-4672-82c5-9339b0ffa023" name="A_derivedQuantityKind_factor" visibility="public" memberEnd="71e47829-a128-46c6-8e7c-3bd5325da5f0 4a036e22-8e34-4a18-a8d4-9fab2487506e">
+        <ownedEnd xmi:id="71e47829-a128-46c6-8e7c-3bd5325da5f0" name="derivedQuantityKind" visibility="public" type="3500f1ef-a7ef-4bd0-8242-7136df0544da" association="10359948-231b-4672-82c5-9339b0ffa023">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="0c117e8a-2636-4009-a28a-e45794dfcf16" name="" visibility="public" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="a48e9c85-629c-4974-beb1-e4de39029857" name="" visibility="public" value="1"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="1d707963-47ed-4042-a29b-2cf0c29fe94d" name="A_quantityKindFactor_quantityKind" visibility="public" memberEnd="3f341ad9-f880-40f1-bfae-828ef0cc6fe1 8eb0b917-5347-4a52-8717-38408b633902">
+        <ownedEnd xmi:id="3f341ad9-f880-40f1-bfae-828ef0cc6fe1" name="quantityKindFactor" visibility="public" type="be43d92d-dbcc-4acb-8a23-0c143b1ba582" association="1d707963-47ed-4042-a29b-2cf0c29fe94d">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="35421ebc-7ef2-4f6b-8e7f-a7a54a00b5e2" name="" visibility="public"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="ad1989aa-826f-45ee-86ab-a077e5264676" name="" visibility="public" value="*"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="e03198a6-d8b7-402b-a80c-0a36cd988d45" name="SimpleQuantityKind" visibility="public">
+        <generalization xmi:id="7fa468b1-0a3a-49e8-93ee-84bd9c2de6d8" general="0296425a-bbc7-42cf-8825-884877c30346"/>
+        <ownedOperation xmi:id="d9e8e264-9dc8-4e9d-83cd-93e8d59c86d5" name="dependsOnQuantityKinds" visibility="public" bodyCondition="bc3d196b-b03c-4bac-a006-fe9d1662765f" isQuery="true">
+          <ownedComment xmi:id="de7893a2-18f7-481e-8b7b-4a7b2be3d3c7" annotatedElement="d9e8e264-9dc8-4e9d-83cd-93e8d59c86d5" body="A SimpleQuantityKind does not depend on any other QuantityKind."/>
+          <ownedRule xmi:id="bc3d196b-b03c-4bac-a006-fe9d1662765f" name="body" visibility="public" constrainedElement="d9e8e264-9dc8-4e9d-83cd-93e8d59c86d5">
+            <specification xmi:type="uml:OpaqueExpression" xmi:id="9943eccf-8095-4d53-8082-d733a584ae75" name="" visibility="public">
+              <language>OCL2.0</language>
+              <body>Set(QuantityKind){}</body>
+            </specification>
+          </ownedRule>
+          <ownedParameter xmi:id="06bd1947-3ba0-40c0-8e03-5f5101f8edea" name="result" visibility="public" type="0296425a-bbc7-42cf-8825-884877c30346" direction="return">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="94d6989b-674d-4f2e-aad9-6e676580949c" name="" visibility="public"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="f29180c4-6e63-4687-9fb6-9c869fc281b2" name="" visibility="public" value="*"/>
+          </ownedParameter>
+        </ownedOperation>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="ddf65d73-bf53-4797-975a-a0de954f8e26" name="ConversionBasedUnit" visibility="public" isAbstract="true">
+        <generalization xmi:id="89418ab5-c1a6-40c8-8d8c-cf91b5c1fddf" general="b17b831d-5cf8-4a77-89e2-bae47672cc83"/>
+        <ownedAttribute xmi:id="491d8589-c275-4bb9-a13b-1f6ce364f917" name="referenceUnit" visibility="public" type="b17b831d-5cf8-4a77-89e2-bae47672cc83" association="b057ed1d-c229-4ec2-a2d5-50f07a5171b7">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="579f9358-8889-401e-a6e4-c2af4d3a1cab" name="" visibility="public" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="490a2d9c-54d3-4070-993e-95b24bfbb725" name="" visibility="public" value="1"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="1b71b70a-c068-4cf4-a463-6723114d733b" name="isInvertible" visibility="public" aggregation="composite">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="615d5755-49e6-45d8-b2a7-15ce4cfb579a" name="" visibility="public" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="eb562ade-1466-481f-a2fe-50ae13f4697d" name="" visibility="public" value="1"/>
+        </ownedAttribute>
+        <ownedOperation xmi:id="6d89f74c-9413-42b2-a838-ade9d575c8de" name="dependsOnUnits" visibility="public" bodyCondition="258d67a6-8119-410c-9fd1-068b22c8af36" isQuery="true">
+          <ownedComment xmi:id="544d7c8e-08ff-4d17-9df8-fe0c6d719e1b" annotatedElement="6d89f74c-9413-42b2-a838-ade9d575c8de" body="A ConversionBasedUnit transitively depends on its referenceUnit and all of the Units that its referenceUnit depends on."/>
+          <ownedRule xmi:id="258d67a6-8119-410c-9fd1-068b22c8af36" name="body" visibility="public" constrainedElement="6d89f74c-9413-42b2-a838-ade9d575c8de">
+            <specification xmi:type="uml:OpaqueExpression" xmi:id="4d8390fc-4a1e-452c-8b92-bb9a721a9900" name="" visibility="public">
+              <language>OCL2.0</language>
+              <body>referenceUnit.dependsOnUnits()->including(referenceUnit)->asSet()</body>
+            </specification>
+          </ownedRule>
+          <ownedParameter xmi:id="1c36473f-b51e-4877-8d05-2163be684a35" name="result" visibility="public" type="b17b831d-5cf8-4a77-89e2-bae47672cc83" direction="return">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="f438726b-6a00-4ee2-8d6b-9b5ee5558f67" name="" visibility="public"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="09129a20-4f52-4720-8804-67bb5667b09e" name="" visibility="public" value="*"/>
+          </ownedParameter>
+        </ownedOperation>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="b057ed1d-c229-4ec2-a2d5-50f07a5171b7" name="A_conversionBasedUnit_referenceUnit" visibility="public" memberEnd="1ac93f3c-837a-4f92-9240-afe99f1e256d 491d8589-c275-4bb9-a13b-1f6ce364f917">
+        <ownedEnd xmi:id="1ac93f3c-837a-4f92-9240-afe99f1e256d" name="conversionBasedUnit" visibility="public" type="ddf65d73-bf53-4797-975a-a0de954f8e26" association="b057ed1d-c229-4ec2-a2d5-50f07a5171b7">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="ec51fd5b-19d5-409a-88a3-301c0d1e76db" name="" visibility="public"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="fe3f25c9-ed5d-4c16-a1a2-02ce939093f1" name="" visibility="public" value="*"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="c272bf47-4f3c-47d4-849e-6564f5dd3738" name="AffineConversionUnit" visibility="public">
+        <ownedRule xmi:id="e1505d2c-cd6a-45d6-9d3e-5863ef0c2b98" name="invertible" visibility="public">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="15a88ddd-bcf5-420e-bfac-5e4ce6b9c5f9" name="" visibility="public">
+            <language>OCL2.0</language>
+            <body>isInvertible = true</body>
+          </specification>
+        </ownedRule>
+        <generalization xmi:id="d956ba8b-4883-4ccd-906c-e78ef10a8a4b" general="ddf65d73-bf53-4797-975a-a0de954f8e26"/>
+        <ownedAttribute xmi:id="63751d70-747f-42b0-9c4d-f2c95dfd5fa1" name="factor" visibility="public" aggregation="composite">
+          <type xmi:type="uml:PrimitiveType" href="SysML.profile.uml#84b12c2a-def7-4966-9b2f-3e06fa1149fb"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a15abf2d-70db-4559-b7cb-a6dc351334d5" name="" visibility="public" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="42083781-5599-4b26-a267-e756b3d1d7ab" name="" visibility="public" value="1"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="61c2c35a-54f4-440d-88ad-93ead901e046" name="offset" visibility="public" aggregation="composite">
+          <type xmi:type="uml:PrimitiveType" href="SysML.profile.uml#84b12c2a-def7-4966-9b2f-3e06fa1149fb"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="c9b37a7d-99ec-4f70-a4a7-c3fe83cc084d" name="" visibility="public" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="acb00117-e486-4bc8-a511-3aa26649d2dd" name="" visibility="public" value="1"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="85b4ee25-6f10-4610-aafe-9a65b77d1d94" name="GeneralConversionUnit" visibility="public">
+        <generalization xmi:id="b32d9264-3c09-4c33-91cc-1828986216e7" general="ddf65d73-bf53-4797-975a-a0de954f8e26"/>
+        <ownedAttribute xmi:id="16f1590d-476a-4aeb-a39c-2c4a6cb6dcc0" name="expression" visibility="public" aggregation="composite">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="e8dcb73e-bad1-4090-a185-ccc1b5dfe047" name="" visibility="public" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="36f6c840-7d78-45a9-808b-cff2e064d27c" name="" visibility="public" value="1"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="0b430eb6-8123-4bc3-98b9-c37aaab3ff25" name="expressionLanguageURI" visibility="public" aggregation="composite">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="bfeecad4-1482-4e8d-95b0-8d46f6454ae0" name="" visibility="public"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="72a6290c-3175-4828-9640-aeaed6869e0f" name="" visibility="public" value="1"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="479df929-8259-4c4f-8b0a-0701d1e240a6" name="PrefixedUnit" visibility="public">
+        <ownedRule xmi:id="df6bc10f-54b0-4de0-81c5-b452366fa0e6" name="PU1" visibility="public">
+          <ownedComment xmi:id="55556c03-0350-4654-a1d2-805ed8a7822f" annotatedElement="df6bc10f-54b0-4de0-81c5-b452366fa0e6" body="The referenceUnit shall not be a PrefixedUnit, i.e.,it is not  allowed to prefix an already prefixed measurement unit. In general the referenceUnit should be a SimpleUnit."/>
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="b2fc224c-ec34-4d73-96b5-e3fcc4a93cfb" name="" visibility="public">
+            <language>OCL2.0</language>
+            <body>not referenceUnit.oclIsTypeOf(PrefixedUnit)</body>
+          </specification>
+        </ownedRule>
+        <generalization xmi:id="a8730c8d-04e1-477c-8156-6609f2448582" general="ddf65d73-bf53-4797-975a-a0de954f8e26"/>
+        <ownedAttribute xmi:id="2de21e8b-7f82-4557-8353-d61f35b5ea89" name="prefix" visibility="public" type="1d8c19e6-a578-417a-9b41-8f706c8575f2" association="3215b338-5fbf-48ee-987b-961cb0a0e60a">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="c7dabb89-b5c6-4d03-a42f-4abc88b1ca04" name="" visibility="public" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="c4460e9f-3919-4cc3-8bcf-cea2ca7ef723" name="" visibility="public" value="1"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="99fecc9a-a10b-486c-81c1-680370ba0343" name="noQuantityKind" visibility="public" type="0296425a-bbc7-42cf-8825-884877c30346" redefinedProperty="aa69a661-bff8-4fd0-82a4-f87565cefa19" association="f9811b1b-c55d-4db5-b8f3-72863f245b29">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="d15eb5a5-ba57-4101-a295-b3076d1f44e3" name="" visibility="public"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="cf866983-019f-4158-a2fe-07eaa62fea54" name="" visibility="public"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="3215b338-5fbf-48ee-987b-961cb0a0e60a" name="A_prefixedUnit_prefix" visibility="public" memberEnd="579f77d1-00d3-4725-8e3d-4e6f8eeac436 2de21e8b-7f82-4557-8353-d61f35b5ea89">
+        <ownedEnd xmi:id="579f77d1-00d3-4725-8e3d-4e6f8eeac436" name="prefixedUnit" visibility="public" type="479df929-8259-4c4f-8b0a-0701d1e240a6" association="3215b338-5fbf-48ee-987b-961cb0a0e60a">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="402d4b1b-66e3-40b2-b1cd-dbc91ef474f7" name="" visibility="public"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="10d1eb13-3100-4e9f-bcb1-e45697250ba8" name="" visibility="public" value="*"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="1a4412ac-74a6-449f-9061-fc556deafaf3" name="LinearConversionUnit" visibility="public">
+        <ownedRule xmi:id="a19673b6-1dcd-42c6-b4f7-3231b4818177" name="invertible" visibility="public">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="8e66a588-d3b5-42d3-b1bd-8b9f4790dbd3" name="" visibility="public">
+            <language>OCL2.0</language>
+            <body>isInvertible = true</body>
+          </specification>
+        </ownedRule>
+        <generalization xmi:id="e18324b5-61fc-43b5-b674-7b0095979f83" general="ddf65d73-bf53-4797-975a-a0de954f8e26"/>
+        <ownedAttribute xmi:id="a67e78b1-c6a3-4c60-b195-fe5588c6376a" name="factor" visibility="public" aggregation="composite">
+          <type xmi:type="uml:PrimitiveType" href="SysML.profile.uml#84b12c2a-def7-4966-9b2f-3e06fa1149fb"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="02159a30-f33d-43b7-b797-3ba19c89ca2f" name="" visibility="public" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="724ec92f-4d2d-468a-8143-2951c3cac27f" name="" visibility="public" value="1"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="08e79fbc-174c-4f89-86c2-61557a54bf8c" name="UnitFactor" visibility="public">
+        <ownedAttribute xmi:id="93013b73-2942-4c77-93f8-0f990d4a429a" name="unit" visibility="public" type="b17b831d-5cf8-4a77-89e2-bae47672cc83" association="54326fbf-b5c4-4596-9a64-8497d6cbc0c5">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="f62cff9d-1ec0-49e1-a82e-9cb99c7e9115" name="" visibility="public" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="10aa15a3-0c74-43be-881b-585c121a353c" name="" visibility="public" value="1"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="b3f9c726-8893-4336-ac23-d3e8af02c8ae" name="exponent" visibility="public" type="a101d3bf-43ff-4193-85f0-6394110e420a" aggregation="composite">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="e99fe924-9a2d-4ab8-9153-7d2553495795" name="" visibility="public" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="10fc2c5f-3c04-41a9-856a-2b267f840c01" name="" visibility="public" value="1"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="54326fbf-b5c4-4596-9a64-8497d6cbc0c5" name="A_unitFactor_unit" visibility="public" memberEnd="748a7d87-ea0a-4458-8c99-bed52345d09f 93013b73-2942-4c77-93f8-0f990d4a429a">
+        <ownedEnd xmi:id="748a7d87-ea0a-4458-8c99-bed52345d09f" name="unitFactor" visibility="public" type="08e79fbc-174c-4f89-86c2-61557a54bf8c" association="54326fbf-b5c4-4596-9a64-8497d6cbc0c5">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="e838e4c8-6906-4cc6-885c-0e2fbd517254" name="" visibility="public"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="a6609974-1d8e-404d-9e95-d413b2d914bd" name="" visibility="public" value="*"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="e1755aad-fecd-4d4c-ba75-cb04b23ae7b1" name="SimpleUnit" visibility="public">
+        <generalization xmi:id="e3968107-e7e3-4641-af36-e02737a9f913" general="b17b831d-5cf8-4a77-89e2-bae47672cc83"/>
+        <ownedOperation xmi:id="7d6ac958-1c76-4574-a6e5-0e8cc566bfe8" name="dependsOnUnits" visibility="public" bodyCondition="967305c6-8a69-4f77-adb1-56f4442139e4" isQuery="true">
+          <ownedComment xmi:id="25f8e1b0-7d0f-4b45-b5f7-7023bba78ca1" annotatedElement="7d6ac958-1c76-4574-a6e5-0e8cc566bfe8" body="A SimpleUnit, by definition, does not depend on any other Unit."/>
+          <ownedRule xmi:id="967305c6-8a69-4f77-adb1-56f4442139e4" name="body" visibility="public" constrainedElement="7d6ac958-1c76-4574-a6e5-0e8cc566bfe8">
+            <specification xmi:type="uml:OpaqueExpression" xmi:id="7edcbc73-bef2-47c1-b529-67df1b73557d" name="" visibility="public">
+              <language>OCL2.0</language>
+              <body>Set(Unit){}</body>
+            </specification>
+          </ownedRule>
+          <ownedParameter xmi:id="cc07c27f-2bfd-42c7-a2f9-e5bdece3ded1" name="result" visibility="public" type="b17b831d-5cf8-4a77-89e2-bae47672cc83" direction="return">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="fa601b80-6265-4412-a2de-3236959e8470" name="" visibility="public"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="2f5bf9a1-81d2-4cb8-806d-96755ba7d03f" name="" visibility="public" value="*"/>
+          </ownedParameter>
+        </ownedOperation>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="1d8c19e6-a578-417a-9b41-8f706c8575f2" name="Prefix" visibility="public">
+        <ownedAttribute xmi:id="48d5a2d2-3b24-4f09-b94c-59f811bab234" name="name" visibility="public" aggregation="composite">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a78b5556-715d-4435-a035-1bd646fab894" name="" visibility="public"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="1299ffef-6f95-4e7d-ac47-12bc568a1152" name="" visibility="public" value="1"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="6fc1c9db-84e9-4c8f-8292-ec86af31aaf2" name="symbol" visibility="public" aggregation="composite">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="4176547d-f427-4c9b-95a0-aa06d32e05b9" name="" visibility="public" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="8be40fc4-d08a-4cdc-9c0a-c2d6640b3841" name="" visibility="public" value="1"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="37df5757-5f1f-42fd-84d5-ec34281b75d6" name="factor" visibility="public" type="a101d3bf-43ff-4193-85f0-6394110e420a" aggregation="composite">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="8bd02347-da99-4978-a437-095ce2b8ecd4" name="" visibility="public" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="bf200e98-0370-4e5e-8158-7b1fb33a9ea3" name="" visibility="public" value="1"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:DataType" xmi:id="a101d3bf-43ff-4193-85f0-6394110e420a" name="Rational" visibility="public">
+        <generalization xmi:id="32e2ae7c-ed86-4ebc-b1d7-5a681a9e758f">
+          <general xmi:type="uml:PrimitiveType" href="SysML.profile.uml#84b12c2a-def7-4966-9b2f-3e06fa1149fb"/>
+        </generalization>
+        <ownedAttribute xmi:id="170959a2-0361-4319-9226-45241f665358" name="numerator" visibility="public" aggregation="composite">
+          <type xmi:type="uml:PrimitiveType" href="SysML.profile.uml#98faed45-3ff6-4896-80bc-5a3cee8b3839"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="e2cc057b-d6dd-4ff7-997f-e1a7c90e16fe" name="" visibility="public" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="fea1a624-f943-4dc5-92b0-b5253c30a40b" name="" visibility="public" value="1"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="ddf860c7-9909-4eac-8ba1-d77c3b9be3e5" name="denominator" visibility="public" aggregation="composite">
+          <type xmi:type="uml:PrimitiveType" href="SysML.profile.uml#98faed45-3ff6-4896-80bc-5a3cee8b3839"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="25e23c0e-3eca-4e24-a183-0cfef01df420" name="" visibility="public" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="c10d2f77-16f5-43ca-b58a-66abd639f1ef" name="" visibility="public" value="1"/>
+        </ownedAttribute>
+        <ownedOperation xmi:id="0a4e9761-9340-4f62-9b4b-acc297bcaadf" name="plus" visibility="public">
+          <ownedParameter xmi:id="8f40a1a5-aa2b-4982-8be0-272aa26e7134" name="r" visibility="public" type="a101d3bf-43ff-4193-85f0-6394110e420a">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="9fcd224e-ed1b-4235-9b4b-423610f97692" name="" visibility="public" value="1"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="4ba74c1b-a016-4ccb-96c4-f23a866d0172" name="" visibility="public" value="1"/>
+          </ownedParameter>
+          <ownedParameter xmi:id="35d4bd44-94f7-4885-9f43-ddd469930ad2" name="result" visibility="public" type="a101d3bf-43ff-4193-85f0-6394110e420a" direction="return">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="ce818c4a-771c-460f-acb1-c3711f2852a0" name="" visibility="public" value="1"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="dc967629-793d-4a7a-ac4a-a197a4b1e0a5" name="" visibility="public" value="1"/>
+          </ownedParameter>
+        </ownedOperation>
+        <ownedOperation xmi:id="9dff92ce-aa6f-4988-9ccc-43be3a1ff489" name="equivalent" visibility="public">
+          <ownedParameter xmi:id="57cf81a9-71ed-4911-b93a-7233e85174f8" name="r" visibility="public" type="a101d3bf-43ff-4193-85f0-6394110e420a">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="e91d5842-6528-4b1c-b28d-d954b5b5a296" name="" visibility="public" value="1"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="89d5f5c7-eae9-41d9-9eb4-8e69dc87089e" name="" visibility="public" value="1"/>
+          </ownedParameter>
+          <ownedParameter xmi:id="3724a253-9a96-4237-8320-3487ebfebc68" name="result" visibility="public" direction="return">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="3b8e2534-747a-44bd-87da-241c36e5777a" name="" visibility="public" value="1"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="c99f5ee0-4cf2-4593-9a23-947ffe7009cd" name="" visibility="public" value="1"/>
+          </ownedParameter>
+        </ownedOperation>
+        <ownedOperation xmi:id="67a19b2d-e0ab-40bc-b892-4213e85d05d0" name="times" visibility="public">
+          <ownedParameter xmi:id="67bbd967-0f51-4f4c-97ec-f33d629f7e6b" name="r" visibility="public" type="a101d3bf-43ff-4193-85f0-6394110e420a">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="7f13e0a8-095c-4a25-83f1-02448c6f9682" name="" visibility="public" value="1"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="f890b68e-b336-4b1e-a83d-65ecc340cc59" name="" visibility="public" value="1"/>
+          </ownedParameter>
+          <ownedParameter xmi:id="43aac4e9-f5fc-4f87-93ba-caedb5ce070a" name="result" visibility="public" type="a101d3bf-43ff-4193-85f0-6394110e420a" direction="return">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="7df026ac-1602-47ab-a44b-76eb57e35388" name="" visibility="public" value="1"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="0e9ff9f5-0245-4d23-a193-010654d36cf7" name="" visibility="public" value="1"/>
+          </ownedParameter>
+        </ownedOperation>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Package" xmi:id="8ba106b7-7de6-4e76-b704-61822dbd7345" name="Deprecated" visibility="public" URI="">
+        <packagedElement xmi:type="uml:DataType" xmi:id="5d26feeb-54c7-431f-8d9b-b9f61e6db1e9" name="Quantity" visibility="public">
+          <ownedComment xmi:id="2da3b8f1-1da6-4ca2-960e-ee88fea96f4c" annotatedElement="5d26feeb-54c7-431f-8d9b-b9f61e6db1e9" body="&lt;html>&#xA;  &lt;head>&#xA;    &#xA;  &lt;/head>&#xA;  &lt;body>&#xA;    &lt;p>&#xA;      Quantity is an M1 class and it has the SysML 1.1 &amp;lt;&amp;lt;ValueType&amp;gt;&amp;gt; &#xA;      stereotype applied to it because this facilitates using this QUDV with &#xA;      SysML 1.1 tools such as MD 16.5.&lt;br>This QUDV proposal would imply &#xA;      deleting the &amp;lt;&amp;lt;ValueType&amp;gt;&amp;gt; stereotype.&lt;br>&lt;br>In this QUDV &#xA;      proposal, dimensions are derived according to an extensible dimensional &#xA;      analysis algorithm based on the SystemOfQuantities::baseQuantityKind &#xA;      subset of the SystemOfQuantities::quantityKind collection chosen as the &#xA;      base dimensions for that SystemOfQuantities.&lt;br>&lt;br>This means that &#xA;      instead of applying the &amp;lt;&amp;lt;ValueType&amp;gt;&amp;gt; stereotype and specifying a Unit &#xA;      and a Dimension for a given &amp;lt;&amp;lt;ValueType&amp;gt;&amp;gt;-stereotyped property type, an &#xA;      end-user can instead specialize the QUDV concept of Quantity, e.g., by &#xA;      redefining Quantity::quantityKind : QuantityKind with one that has a &#xA;      default value for a particular instance specification of a QuantityKind. &#xA;      The same specialization technique can be applied to Quantity::unit and &#xA;      to Quantity::value as well.&lt;br>&lt;br>The main benefit of this approach &#xA;      compared to &amp;lt;&amp;lt;ValueType&amp;gt;&amp;gt; stereotype approach is that QUDV is an M1 &#xA;      model library and as such is inherently extensible as an M1 model to &#xA;      support rich taxonomies of M1 Quantity concepts organized according to &#xA;      domain-specific criteria specializing and restricting allowed quantity &#xA;      kinds, units and even values.&lt;br>&#xA;    &lt;/p>&#xA;  &lt;/body>&#xA;&lt;/html>&#xA;"/>
+          <ownedAttribute xmi:id="6a6e463f-0d65-48ec-8c7a-4db440bdaf83" name="value" visibility="public">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="302c9241-ca63-42e5-ab5b-f6ee8f409812" name="" visibility="public"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="2e941c28-4e12-41d1-bb46-ae900e669187" name="" visibility="public" value="1"/>
+          </ownedAttribute>
+          <ownedAttribute xmi:id="0b714ed0-1cf5-4748-ac3c-fd855e3280ef" name="unit" visibility="public">
+            <type xmi:type="uml:Class" href="SysML.profile.uml#c03eb3d0-a476-4c15-89f1-6eda442a6010"/>
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="18a0c78b-68da-4b17-b7f1-2736b15309b0" name="" visibility="public"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="35009a9d-641a-4e3b-869e-c393c4b45864" name="" visibility="public" value="1"/>
+          </ownedAttribute>
+          <ownedAttribute xmi:id="d821d9c8-fea7-4c02-89c0-c69d58346389" name="quantityKind" visibility="public">
+            <type xmi:type="uml:Class" href="SysML.profile.uml#00f488c7-54a8-49c1-a2a8-5cf6127b3c40"/>
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="05677252-ce5e-4195-bc0b-2e45147ef130" name="" visibility="public"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="73dab691-0856-4afd-8392-6a2382a08ae5" name="" visibility="public" value="1"/>
+          </ownedAttribute>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Class" xmi:id="4c798cf5-1258-48bc-99f2-6e3912a2b515" name="DimensionFactor" visibility="public">
+          <ownedAttribute xmi:id="409274bd-8c85-46bf-94ae-9ba5a6581eef" name="exponent" visibility="public" type="a101d3bf-43ff-4193-85f0-6394110e420a" aggregation="composite"/>
+          <ownedAttribute xmi:id="19a8bab3-7bca-4c5b-9819-a959ede573c1" name="baseDimension" visibility="public">
+            <type xmi:type="uml:Class" href="SysML.profile.uml#00f488c7-54a8-49c1-a2a8-5cf6127b3c40"/>
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="1ceaa5a2-1867-411b-a5af-91ea90e95c20" name="" visibility="public" value="1"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="8778bff6-dd21-441a-9831-12287926ede9" name="" visibility="public" value="1"/>
+          </ownedAttribute>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Association" xmi:id="16a9f678-3cdc-4445-aaf1-99fb0d22b272" name="A_primaryQuantityKind_adoptedMeasurementUnit" visibility="public" memberEnd="ba6d7bb6-8544-49b8-9a83-cba18cf65da1 45697298-a6c7-4b3b-b238-52311a446a03">
+          <generalization xmi:id="c6cd26e0-c52f-4a8e-a15f-2994b21b23a6" general="4069d1ca-bed3-45c7-a442-f2596f50863d"/>
+          <ownedEnd xmi:id="45697298-a6c7-4b3b-b238-52311a446a03" name="adoptedMeasurementUnit" visibility="public" type="b17b831d-5cf8-4a77-89e2-bae47672cc83" subsettedProperty="5a726928-a5e7-4058-a6a1-75cfd397881d" association="16a9f678-3cdc-4445-aaf1-99fb0d22b272">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="dfa81778-3650-42fe-812d-6c854509d1a7" name="" visibility="public"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="952b1b99-31ca-4265-bc78-09db4f9009e5" name="" visibility="public" value="*"/>
+          </ownedEnd>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Class" xmi:id="6741633f-c792-46d6-9d59-d2fe1073f10c" name="SpecializedQuantityKind" visibility="public">
+          <generalization xmi:id="3cbad047-0428-493d-8ab4-a83eb8cdc80e">
+            <general xmi:type="uml:Class" href="SysML.profile.uml#00f488c7-54a8-49c1-a2a8-5cf6127b3c40"/>
+          </generalization>
+          <ownedAttribute xmi:id="85a68f6b-5dd6-43ad-8194-64d334d43c3f" name="general" visibility="public" association="4032debf-2698-4fe9-80a9-441721ae8297">
+            <type xmi:type="uml:Class" href="SysML.profile.uml#00f488c7-54a8-49c1-a2a8-5cf6127b3c40"/>
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="d4deed02-d76b-46d3-b2e2-ca98de34fd3b" name="" visibility="public" value="1"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="00777f7b-d6f5-4371-b234-d646786066ab" name="" visibility="public" value="1"/>
+          </ownedAttribute>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Association" xmi:id="4032debf-2698-4fe9-80a9-441721ae8297" name="A_specific_general" visibility="public" memberEnd="e5fa5d52-5284-448a-a727-919ba1019db6 85a68f6b-5dd6-43ad-8194-64d334d43c3f">
+          <ownedEnd xmi:id="e5fa5d52-5284-448a-a727-919ba1019db6" name="specific" visibility="public" type="6741633f-c792-46d6-9d59-d2fe1073f10c" association="4032debf-2698-4fe9-80a9-441721ae8297">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="3e42291f-bfef-40b9-a4e6-f218d8a6a920" name="" visibility="public"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="1a92e5dd-cbea-4990-b43c-ce537bfeb638" name="" visibility="public" value="*"/>
+          </ownedEnd>
+        </packagedElement>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="b17b831d-5cf8-4a77-89e2-bae47672cc83" name="Unit" visibility="public" isAbstract="true">
+        <ownedRule xmi:id="f42ff74e-fa04-45d8-9785-579e510a5d38" name="acyclic_unit_dependencies" visibility="public">
+          <ownedComment xmi:id="32fa0892-f837-4e8c-807c-a19e6a4a03bc" annotatedElement="f42ff74e-fa04-45d8-9785-579e510a5d38" body="A Unit cannot be defined in terms of itself. This follows from the requirement that, in a coherent SystemOfUnits, the Units of all derived QuantityKinds are expressed in terms of the base Units in accordance with the equations in the SystemOfQuantities (see ISO 80000-1, 6.4)."/>
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="19cf6eb2-c30b-448c-b130-218cf7081795" name="" visibility="public">
+            <language>OCL2.0</language>
+            <body>dependsOnUnits->excludes(self)</body>
+          </specification>
+        </ownedRule>
+        <generalization xmi:id="3d50b3dc-0b05-4fad-a38e-c5d2822ea238">
+          <general xmi:type="uml:Class" href="SysML.profile.uml#c03eb3d0-a476-4c15-89f1-6eda442a6010"/>
+        </generalization>
+        <ownedAttribute xmi:id="ba6d7bb6-8544-49b8-9a83-cba18cf65da1" name="primaryQuantityKind" visibility="public" type="0296425a-bbc7-42cf-8825-884877c30346" subsettedProperty="aa69a661-bff8-4fd0-82a4-f87565cefa19" association="16a9f678-3cdc-4445-aaf1-99fb0d22b272">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="42a19c8c-37b8-4ff6-b900-a619d5bf0944" name="" visibility="public"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="64f83caf-91f6-4c38-826a-e82697abfdf7" name="" visibility="public" value="1"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="aa69a661-bff8-4fd0-82a4-f87565cefa19" name="quantityKind" visibility="public" type="0296425a-bbc7-42cf-8825-884877c30346" association="4069d1ca-bed3-45c7-a442-f2596f50863d">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="acf94f39-386f-4d89-86ec-bb54ba42f3c1" name="" visibility="public" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="85bce88d-e9c5-4dc5-9e14-590604ca4b5d" name="" visibility="public" value="*"/>
+          <redefinedProperty href="SysML.profile.uml#7af679f4-ac15-4ef0-b34a-684074eebfbd"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="6026c0a1-c0a6-4d63-a09d-5444a9c1f743" name="general" visibility="public" type="b17b831d-5cf8-4a77-89e2-bae47672cc83" association="994f3e18-9172-4c08-a7c2-dd7e33bb566e">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="85060be1-4d79-42cf-9bcd-acb84958ce69" name="" visibility="public"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="d286858c-29b4-42fe-9447-4c6648c7a190" name="" visibility="public" value="*"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="54965c86-bb89-4d63-948f-ec59febb3cb5" name="isUnitCountOfEntities" visibility="public" aggregation="composite">
+          <ownedComment xmi:id="142839fd-ce58-403d-b394-8d342a1019b7" annotatedElement="54965c86-bb89-4d63-948f-ec59febb3cb5" body="If true, indicates that the measurement unit represents a number of entities (see ISO 80000-1, 3.10, Note 3)."/>
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+          <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="d8aa6160-b70e-48f2-a22b-da6b5d6e8f97" name="" visibility="public"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="c836c271-9a23-482d-88bb-02f46e255077" name="isUnitForQuantityOfDimensionOne" visibility="public" aggregation="composite">
+          <ownedComment xmi:id="59a4440d-ae30-47d6-9c5d-222acf914a16" annotatedElement="c836c271-9a23-482d-88bb-02f46e255077" body="If true, indicates that the corresponding QuantityKind has dimension one (see ISO 80000-1, 3.8)."/>
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+          <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="09902807-d69a-46e3-900a-b7922f21d7dc" name="" visibility="public"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="c70e21f5-3725-4669-8d1b-69dd237f4944" name="dependsOnUnits" visibility="public" type="b17b831d-5cf8-4a77-89e2-bae47672cc83" isReadOnly="true" isDerived="true">
+          <ownedComment xmi:id="a5536435-8bed-4b6e-be10-b6575a0fa59b" annotatedElement="c70e21f5-3725-4669-8d1b-69dd237f4944" body="The set of all Units that this Unit directly or indirectly depends on according to its definition."/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="bb4c81ef-f7f7-4dbc-8b2d-18d88b9dca80" name="" visibility="public"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="271734b3-7c46-4b6a-bad4-889efdf4b4a1" name="" visibility="public" value="*"/>
+        </ownedAttribute>
+        <ownedOperation xmi:id="8b8512a4-29cf-439c-8f5b-19d09c937487" name="dependsOnUnits" visibility="public">
+          <ownedComment xmi:id="a153cab7-681b-493f-9dc9-6b921020c3fc" annotatedElement="8b8512a4-29cf-439c-8f5b-19d09c937487" body="Abstract operation specified in ConversionBasedUnit, SimpleUnit and DerivedUnit to calculate the value of the derived property Unit:/dependsOnUnits."/>
+          <ownedParameter xmi:id="ad1c0f78-a82f-49ff-91eb-2b297dd27b48" name="result" visibility="public" type="b17b831d-5cf8-4a77-89e2-bae47672cc83" direction="return">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="274720bf-8e9b-4c9e-ad96-524435ca7f23" name="" visibility="public"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="b6fa0fec-20a5-43e6-b507-11379c952b28" name="" visibility="public" value="*"/>
+          </ownedParameter>
+        </ownedOperation>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="0296425a-bbc7-42cf-8825-884877c30346" name="QuantityKind" visibility="public" isAbstract="true">
+        <ownedRule xmi:id="5fe2a33f-c51e-4512-8aac-52570e8eef5b" name="acyclic_quantity_kind_dependencies" visibility="public">
+          <ownedComment xmi:id="ad0c02aa-5fa9-4388-8865-74c81ac6e9f6" annotatedElement="5fe2a33f-c51e-4512-8aac-52570e8eef5b" body="A QuantityKind cannot be defined in terms of itself. This follows from the quantity calculus used for expressing a derived QuantityKind in terms of base QuantityKinds chosen for a SystemOfQuantities by means of non-contradictory equations (See ISO 80000-1, 4.3)."/>
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="f351cdad-84f6-43dc-ab0c-f49cef2fe0b6" name="" visibility="public">
+            <language>OCL2.0</language>
+            <body>dependsOnQuantityKinds->excludes(self)</body>
+          </specification>
+        </ownedRule>
+        <generalization xmi:id="8584b9b0-ef28-48fe-a400-cedfc54e0d55">
+          <general xmi:type="uml:Class" href="SysML.profile.uml#00f488c7-54a8-49c1-a2a8-5cf6127b3c40"/>
+        </generalization>
+        <ownedAttribute xmi:id="f3aec7c4-05ca-4282-8338-3a4a1ad8ca9e" name="general" visibility="public" type="0296425a-bbc7-42cf-8825-884877c30346" association="041cefdd-29ef-4283-bf6d-dd9a2779844c">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="dc2c5bb7-6729-4472-9997-a9c67b14425c" name="" visibility="public"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="d18187dc-26d9-4408-a59b-4051af0186d2" name="" visibility="public" value="*"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="655edbc9-9692-48eb-9fb1-9421c883acbe" name="dependsOnQuantityKinds" visibility="public" type="0296425a-bbc7-42cf-8825-884877c30346" isReadOnly="true" isDerived="true">
+          <ownedComment xmi:id="3a09168d-0023-4e8b-ab62-0ab5c8063a85" annotatedElement="655edbc9-9692-48eb-9fb1-9421c883acbe" body="The set of all QuantityKinds that this QuantityKind directly or indirectly depends on according to its definition."/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="cceec151-4b69-40a2-84b2-ef2ca377dff4" name="" visibility="public"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="25981eac-0d54-4a38-aae8-57fcd83f3a91" name="" visibility="public" value="*"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="30d2b07d-30bf-41bb-8b3d-0e400c91c7ab" name="isNumberOfEntities" visibility="public" aggregation="composite">
+          <ownedComment xmi:id="d6c62086-42ef-40aa-974d-a5b336c8bc8e" annotatedElement="30d2b07d-30bf-41bb-8b3d-0e400c91c7ab" body="If true, indicates that the QuantityKind represents a number of entities (see ISO 80000-1, 3.8, Note 4)."/>
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+          <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="2a19bb19-8129-4dd6-9c7f-39b4b2e92b8a" name="" visibility="public"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="7fb0370e-3cc8-4032-aa9b-5df5c9939567" name="isQuantityOfDimensionOne" visibility="public" aggregation="composite">
+          <ownedComment xmi:id="6d8069b7-fe7a-4865-a882-e9e12df9762e" annotatedElement="7fb0370e-3cc8-4032-aa9b-5df5c9939567" body="If true, indicates that the QuantityKind has dimension one (see ISO 80000-1, 3.8)."/>
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+          <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="50356772-c655-43d2-bad3-d7237cab61dc" name="" visibility="public"/>
+        </ownedAttribute>
+        <ownedOperation xmi:id="019268ef-34f8-4917-ae1b-6a32fc3ba09f" name="dependsOnQuantityKinds" visibility="public">
+          <ownedComment xmi:id="23994f39-c821-490e-bc27-a99170dc297b" annotatedElement="019268ef-34f8-4917-ae1b-6a32fc3ba09f" body="Abstract operation specified in SpecializedQuantityKind, SimpleQuantityKind and DerivedQuantityKind to calculate the value of the derived property QuantityKind:/dependsOnQuantityKinds."/>
+          <ownedParameter xmi:id="4e30b232-4a4f-477f-959a-1b528446f9cb" name="result" visibility="public" type="0296425a-bbc7-42cf-8825-884877c30346" direction="return">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="55c51631-7a4f-4365-a45c-07f6ef05c029" name="" visibility="public"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="7ff5dd46-f2a9-4be6-8f9c-3ea7c5e0e1c4" name="" visibility="public" value="*"/>
+          </ownedParameter>
+        </ownedOperation>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="4069d1ca-bed3-45c7-a442-f2596f50863d" name="A_quantityKind_measurementUnit" visibility="public" memberEnd="aa69a661-bff8-4fd0-82a4-f87565cefa19 5a726928-a5e7-4058-a6a1-75cfd397881d">
+        <generalization xmi:id="8fd9b79d-cdf8-4a44-8bb0-7fdff5a227ae">
+          <general xmi:type="uml:Association" href="SysML.profile.uml#31c9a859-523e-4263-a8bf-202b4722b14e"/>
+        </generalization>
+        <ownedEnd xmi:id="5a726928-a5e7-4058-a6a1-75cfd397881d" name="measurementUnit" visibility="public" type="b17b831d-5cf8-4a77-89e2-bae47672cc83" association="4069d1ca-bed3-45c7-a442-f2596f50863d">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a91f2a97-3e43-45e5-99d9-42fe8a9ce5b4" name="" visibility="public"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="370e7cd6-b467-40cf-ac64-829a93d5f316" name="" visibility="public" value="*"/>
+          <redefinedProperty href="SysML.profile.uml#6bf2885b-fe8f-4e04-8f70-c2c5a9e70980"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="994f3e18-9172-4c08-a7c2-dd7e33bb566e" name="A_generalUnit_specificUnit" visibility="public" memberEnd="5c4dea13-a27a-42c0-bf3d-daa2501438c0 6026c0a1-c0a6-4d63-a09d-5444a9c1f743">
+        <ownedEnd xmi:id="5c4dea13-a27a-42c0-bf3d-daa2501438c0" name="specific" visibility="public" type="b17b831d-5cf8-4a77-89e2-bae47672cc83" association="994f3e18-9172-4c08-a7c2-dd7e33bb566e">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="ca9e602d-3af6-4ac9-a931-e4eb845d891e" name="" visibility="public"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="4185f016-5bd0-4c2c-afd1-088a78cdc8a7" name="" visibility="public" value="*"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="041cefdd-29ef-4283-bf6d-dd9a2779844c" name="A_generalQuantityKind_specificQuantityKind" visibility="public" memberEnd="f3aec7c4-05ca-4282-8338-3a4a1ad8ca9e f0f0ed86-4e8e-4428-8c57-bbd530b3ab2e">
+        <ownedEnd xmi:id="f0f0ed86-4e8e-4428-8c57-bbd530b3ab2e" name="specific" visibility="public" type="0296425a-bbc7-42cf-8825-884877c30346" association="041cefdd-29ef-4283-bf6d-dd9a2779844c">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="cdbeb566-c867-42d3-960e-aab7cddc2376" name="" visibility="public"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="c0a9a315-41a8-4bf7-a37c-a0d613686f14" name="" visibility="public" value="*"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="f2d91624-5158-4e33-b5dd-319becefea1b" name="A_usedSystemOfUnits_systemOfUnits" visibility="public" memberEnd="aa31b435-a7f1-453b-9d9e-4642d56bd523 58c74149-a8df-4fb4-add9-478cef6cffee">
+        <ownedEnd xmi:id="aa31b435-a7f1-453b-9d9e-4642d56bd523" name="systemOfUnits" visibility="public" type="a910edeb-d4cb-41e5-8ff8-7930c0946fbd" association="f2d91624-5158-4e33-b5dd-319becefea1b">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a57791d9-bb73-4103-bb0c-4bb6dc4f4317" name="" visibility="public"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="ed36ff4b-f240-4b1c-b9ba-c539e9ce619e" name="" visibility="public" value="*"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="16b47162-45c8-4b8d-b58f-8526bfef0f1d" name="A_includedSystemOfUnits_systemOfUnits" visibility="public" memberEnd="de6af86c-d2e4-4b8b-8fc6-1c2d6e7a11ad dda06f2a-eecf-476d-9df2-4a76dda5989f">
+        <ownedEnd xmi:id="de6af86c-d2e4-4b8b-8fc6-1c2d6e7a11ad" name="systemOfUnits" visibility="public" type="a910edeb-d4cb-41e5-8ff8-7930c0946fbd" association="16b47162-45c8-4b8d-b58f-8526bfef0f1d">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="d854c2d5-ca30-48d9-b7fc-c5f7aaad70bd" name="" visibility="public"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="d24cce7f-54f1-48ce-bce5-32e2741621ee" name="" visibility="public" value="*"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="f2fa394d-6706-444c-a2cd-2a168a5b029e" name="A_usedSystemOfQuantities_systemOfQuantities" visibility="public" memberEnd="9128f21a-f5f5-4291-81c7-b5fcd0a0692d 80e255db-ca0c-45ff-b94f-e6ff3db2ba2e">
+        <ownedEnd xmi:id="9128f21a-f5f5-4291-81c7-b5fcd0a0692d" name="systemOfQuantities" visibility="public" type="19bec5a2-538a-4bd8-9f58-86937cd7ea17" association="f2fa394d-6706-444c-a2cd-2a168a5b029e">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="6d9254b7-e28e-4ce5-90ff-b21385625722" name="" visibility="public"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="8f355d31-f9f6-4a3c-afbe-b4651beff0bd" name="" visibility="public" value="*"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="812150bd-9e4a-4152-98f2-7092e94e65c6" name="A_includedSystemOfQuantities_systemOfQuantities" visibility="public" memberEnd="b43aba4c-5bf0-4c71-8984-8ce7760cf45b 51f65d1a-d345-4277-89f1-7e7883c598eb">
+        <ownedEnd xmi:id="b43aba4c-5bf0-4c71-8984-8ce7760cf45b" name="systemOfQuantities" visibility="public" type="19bec5a2-538a-4bd8-9f58-86937cd7ea17" association="812150bd-9e4a-4152-98f2-7092e94e65c6"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="f9811b1b-c55d-4db5-b8f3-72863f245b29" name="A_noQuantityKind_prefixedUnit" visibility="public" memberEnd="99fecc9a-a10b-486c-81c1-680370ba0343 aa6bae66-b0e9-4f05-95eb-2526a3ff2a74">
+        <generalization xmi:id="1eca452a-bb07-4cc4-86e4-35fc8b4fa07d" general="4069d1ca-bed3-45c7-a442-f2596f50863d"/>
+        <ownedEnd xmi:id="aa6bae66-b0e9-4f05-95eb-2526a3ff2a74" name="prefixedUnit" visibility="public" type="479df929-8259-4c4f-8b0a-0701d1e240a6" redefinedProperty="5a726928-a5e7-4058-a6a1-75cfd397881d" association="f9811b1b-c55d-4db5-b8f3-72863f245b29">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="e1d5b635-fe82-4a2e-ad52-b4d36d8cc30f" name="" visibility="public"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="3ce73f76-5735-4439-88a2-e2b6cd6b2666" name="" visibility="public"/>
+        </ownedEnd>
+      </packagedElement>
+      <profileApplication xmi:id="6af8232f-f6d7-4d33-98d5-d4f3659bc783">
+        <appliedProfile href="SysML.profile.uml#71d9b9b7-5b7c-4c63-86f3-0e6664366b48"/>
+      </profileApplication>
+    </packagedElement>
+    <profileApplication xmi:id="6197a73b-a64d-4abb-a7ad-67fa05851460profileApplicationModel">
+      <eAnnotations xmi:id="_3doLstnYEeut38w4P0hxDQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="MD_Customization_for_SysML.additional_stereotypes.profile.uml#_3C8bmdnYEeut38w4P0hxDQ"/>
+      </eAnnotations>
+      <appliedProfile href="MD_Customization_for_SysML.additional_stereotypes.profile.uml#6197a73b-a64d-4abb-a7ad-67fa05851460"/>
+    </profileApplication>
+    <profileApplication xmi:id="_0profileApplicationModel">
+      <eAnnotations xmi:id="_3nstsdnYEeut38w4P0hxDQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/uml2/5.0.0/UML/Profile/Standard#/"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://UML_PROFILES/Standard.profile.uml#_0"/>
+    </profileApplication>
+    <profileApplication xmi:id="9dbe6490-7d6b-4a35-9c77-f67fe9a7b7c8profileApplicationModel">
+      <eAnnotations xmi:id="_3sGskdnYEeut38w4P0hxDQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="UML_Standard_Profile.MagicDraw_Profile.profile.uml#_3FkSb9nYEeut38w4P0hxDQ"/>
+      </eAnnotations>
+      <appliedProfile href="UML_Standard_Profile.MagicDraw_Profile.profile.uml#9dbe6490-7d6b-4a35-9c77-f67fe9a7b7c8"/>
+    </profileApplication>
+  </uml:Model>
+  <additional_stereotypes:ValueProperty xmi:id="_3dr2ENnYEeut38w4P0hxDQ" base_Element="409274bd-8c85-46bf-94ae-9ba5a6581eef" base_Property="409274bd-8c85-46bf-94ae-9ba5a6581eef"/>
+  <additional_stereotypes:ValueProperty xmi:id="_3dr2EdnYEeut38w4P0hxDQ" base_Element="37df5757-5f1f-42fd-84d5-ec34281b75d6" base_Property="37df5757-5f1f-42fd-84d5-ec34281b75d6"/>
+  <additional_stereotypes:ValueProperty xmi:id="_3dr2EtnYEeut38w4P0hxDQ" base_Element="b3f9c726-8893-4336-ac23-d3e8af02c8ae" base_Property="b3f9c726-8893-4336-ac23-d3e8af02c8ae"/>
+  <additional_stereotypes:ValueProperty xmi:id="_3dr2E9nYEeut38w4P0hxDQ" base_Element="a67e78b1-c6a3-4c60-b195-fe5588c6376a" base_Property="a67e78b1-c6a3-4c60-b195-fe5588c6376a"/>
+  <additional_stereotypes:ValueProperty xmi:id="_3dr2FNnYEeut38w4P0hxDQ" base_Element="61c2c35a-54f4-440d-88ad-93ead901e046" base_Property="61c2c35a-54f4-440d-88ad-93ead901e046"/>
+  <additional_stereotypes:ValueProperty xmi:id="_3dsdINnYEeut38w4P0hxDQ" base_Element="63751d70-747f-42b0-9c4d-f2c95dfd5fa1" base_Property="63751d70-747f-42b0-9c4d-f2c95dfd5fa1"/>
+  <additional_stereotypes:ValueProperty xmi:id="_3dsdIdnYEeut38w4P0hxDQ" base_Element="ff52fefb-fade-4369-9694-5d9e790b932b" base_Property="ff52fefb-fade-4369-9694-5d9e790b932b"/>
+  <additional_stereotypes:ReferenceProperty xmi:id="_3dtEMNnYEeut38w4P0hxDQ" base_Element="655edbc9-9692-48eb-9fb1-9421c883acbe" base_Property="655edbc9-9692-48eb-9fb1-9421c883acbe"/>
+  <additional_stereotypes:ReferenceProperty xmi:id="_3dtEMdnYEeut38w4P0hxDQ" base_Element="f3aec7c4-05ca-4282-8338-3a4a1ad8ca9e" base_Property="f3aec7c4-05ca-4282-8338-3a4a1ad8ca9e"/>
+  <additional_stereotypes:ReferenceProperty xmi:id="_3dtEMtnYEeut38w4P0hxDQ" base_Element="ba6d7bb6-8544-49b8-9a83-cba18cf65da1" base_Property="ba6d7bb6-8544-49b8-9a83-cba18cf65da1"/>
+  <additional_stereotypes:ReferenceProperty xmi:id="_3dtEM9nYEeut38w4P0hxDQ" base_Element="c70e21f5-3725-4669-8d1b-69dd237f4944" base_Property="c70e21f5-3725-4669-8d1b-69dd237f4944"/>
+  <additional_stereotypes:ReferenceProperty xmi:id="_3dtENNnYEeut38w4P0hxDQ" base_Element="6026c0a1-c0a6-4d63-a09d-5444a9c1f743" base_Property="6026c0a1-c0a6-4d63-a09d-5444a9c1f743"/>
+  <additional_stereotypes:ReferenceProperty xmi:id="_3dtENdnYEeut38w4P0hxDQ" base_Element="aa69a661-bff8-4fd0-82a4-f87565cefa19" base_Property="aa69a661-bff8-4fd0-82a4-f87565cefa19"/>
+  <additional_stereotypes:ReferenceProperty xmi:id="_3dtENtnYEeut38w4P0hxDQ" base_Element="85a68f6b-5dd6-43ad-8194-64d334d43c3f" base_Property="85a68f6b-5dd6-43ad-8194-64d334d43c3f"/>
+  <additional_stereotypes:ReferenceProperty xmi:id="_3dtrQNnYEeut38w4P0hxDQ" base_Element="19a8bab3-7bca-4c5b-9819-a959ede573c1" base_Property="19a8bab3-7bca-4c5b-9819-a959ede573c1"/>
+  <additional_stereotypes:ReferenceProperty xmi:id="_3dtrQdnYEeut38w4P0hxDQ" base_Element="93013b73-2942-4c77-93f8-0f990d4a429a" base_Property="93013b73-2942-4c77-93f8-0f990d4a429a"/>
+  <additional_stereotypes:ReferenceProperty xmi:id="_3dtrQtnYEeut38w4P0hxDQ" base_Element="99fecc9a-a10b-486c-81c1-680370ba0343" base_Property="99fecc9a-a10b-486c-81c1-680370ba0343"/>
+  <additional_stereotypes:ReferenceProperty xmi:id="_3dtrQ9nYEeut38w4P0hxDQ" base_Element="2de21e8b-7f82-4557-8353-d61f35b5ea89" base_Property="2de21e8b-7f82-4557-8353-d61f35b5ea89"/>
+  <additional_stereotypes:ReferenceProperty xmi:id="_3dtrRNnYEeut38w4P0hxDQ" base_Element="491d8589-c275-4bb9-a13b-1f6ce364f917" base_Property="491d8589-c275-4bb9-a13b-1f6ce364f917"/>
+  <additional_stereotypes:ReferenceProperty xmi:id="_3duSUNnYEeut38w4P0hxDQ" base_Element="4a036e22-8e34-4a18-a8d4-9fab2487506e" base_Property="4a036e22-8e34-4a18-a8d4-9fab2487506e"/>
+  <additional_stereotypes:ReferenceProperty xmi:id="_3duSUdnYEeut38w4P0hxDQ" base_Element="fe42996f-ebda-48b0-b66e-b9a56e0e6836" base_Property="fe42996f-ebda-48b0-b66e-b9a56e0e6836"/>
+  <additional_stereotypes:ReferenceProperty xmi:id="_3duSUtnYEeut38w4P0hxDQ" base_Element="8eb0b917-5347-4a52-8717-38408b633902" base_Property="8eb0b917-5347-4a52-8717-38408b633902"/>
+  <additional_stereotypes:ReferenceProperty xmi:id="_3duSU9nYEeut38w4P0hxDQ" base_Element="dda06f2a-eecf-476d-9df2-4a76dda5989f" base_Property="dda06f2a-eecf-476d-9df2-4a76dda5989f"/>
+  <additional_stereotypes:ReferenceProperty xmi:id="_3duSVNnYEeut38w4P0hxDQ" base_Element="58c74149-a8df-4fb4-add9-478cef6cffee" base_Property="58c74149-a8df-4fb4-add9-478cef6cffee"/>
+  <additional_stereotypes:ReferenceProperty xmi:id="_3du5YNnYEeut38w4P0hxDQ" base_Element="f3beed63-63e0-467e-a13b-29c0c0ce8bc4" base_Property="f3beed63-63e0-467e-a13b-29c0c0ce8bc4"/>
+  <additional_stereotypes:ReferenceProperty xmi:id="_3du5YdnYEeut38w4P0hxDQ" base_Element="2520282e-0713-4f29-916a-2b1c39bee318" base_Property="2520282e-0713-4f29-916a-2b1c39bee318"/>
+  <additional_stereotypes:ReferenceProperty xmi:id="_3du5YtnYEeut38w4P0hxDQ" base_Element="a7200d85-9bb0-4789-815e-42fe8726d078" base_Property="a7200d85-9bb0-4789-815e-42fe8726d078"/>
+  <additional_stereotypes:ReferenceProperty xmi:id="_3du5Y9nYEeut38w4P0hxDQ" base_Element="5281799c-3908-45d4-8c97-7180d344b991" base_Property="5281799c-3908-45d4-8c97-7180d344b991"/>
+  <additional_stereotypes:ReferenceProperty xmi:id="_3du5ZNnYEeut38w4P0hxDQ" base_Element="51f65d1a-d345-4277-89f1-7e7883c598eb" base_Property="51f65d1a-d345-4277-89f1-7e7883c598eb"/>
+  <additional_stereotypes:ReferenceProperty xmi:id="_3dvgcNnYEeut38w4P0hxDQ" base_Element="80e255db-ca0c-45ff-b94f-e6ff3db2ba2e" base_Property="80e255db-ca0c-45ff-b94f-e6ff3db2ba2e"/>
+  <additional_stereotypes:ReferenceProperty xmi:id="_3dvgcdnYEeut38w4P0hxDQ" base_Element="49de793f-8248-40b3-88f5-6c29ccb0fa6e" base_Property="49de793f-8248-40b3-88f5-6c29ccb0fa6e"/>
+  <additional_stereotypes:ReferenceProperty xmi:id="_3dvgctnYEeut38w4P0hxDQ" base_Element="cc9aa027-af7c-41c5-a52e-9794c3ef05cb" base_Property="cc9aa027-af7c-41c5-a52e-9794c3ef05cb"/>
+  <additional_stereotypes:ReferenceProperty xmi:id="_3dvgc9nYEeut38w4P0hxDQ" base_Element="38d1fa47-e85d-4fdc-bc22-e666091bb92c" base_Property="38d1fa47-e85d-4fdc-bc22-e666091bb92c"/>
+  <additional_stereotypes:ReferenceProperty xmi:id="_3dvgdNnYEeut38w4P0hxDQ" base_Element="7312b640-04da-46e1-9426-30af994207c4" base_Property="7312b640-04da-46e1-9426-30af994207c4"/>
+  <standard:ModelLibrary xmi:id="_3nvJ8NnYEeut38w4P0hxDQ" base_Package="99bf82f8-50dd-4853-a8b5-929513ebb66f"/>
+  <MagicDrawProfile:auxiliaryResource xmi:id="_3sK-ANnYEeut38w4P0hxDQ" base_Element="9bcded04-5ec3-4cc1-bbcf-575133f8c3ce"/>
+  <MagicDrawProfile:auxiliaryResource xmi:id="_3vuoUNnYEeut38w4P0hxDQ" base_Element="99bf82f8-50dd-4853-a8b5-929513ebb66f"/>
+  <MagicDrawProfile:deprecated xmi:id="_3wPltNnYEeut38w4P0hxDQ" deprecatedReason="SysML1.4, ballot6, issue 18692" base_Element="ba6d7bb6-8544-49b8-9a83-cba18cf65da1"/>
+  <MagicDrawProfile:deprecated xmi:id="_3wPltdnYEeut38w4P0hxDQ" deprecatedReason="SysML1.4, ballot6, issue18692" base_Element="6741633f-c792-46d6-9d59-d2fe1073f10c"/>
+  <MagicDrawProfile:deprecated xmi:id="_3wPlttnYEeut38w4P0hxDQ" deprecatedReason="SysML1.4, ballot6, issue 18692" base_Element="45697298-a6c7-4b3b-b238-52311a446a03"/>
+  <MagicDrawProfile:deprecated xmi:id="_3wPlt9nYEeut38w4P0hxDQ" deprecatedReason="SysML1.4, ballot6, issue 18692" base_Element="c6cd26e0-c52f-4a8e-a15f-2994b21b23a6"/>
+  <MagicDrawProfile:deprecated xmi:id="_3wPluNnYEeut38w4P0hxDQ" deprecatedReason="SysML1.4, ballot6, issue 18692" base_Element="16a9f678-3cdc-4445-aaf1-99fb0d22b272"/>
+  <MagicDrawProfile:deprecated xmi:id="_3wPludnYEeut38w4P0hxDQ" deprecatedReason="SysML 1.4, ballot 5, issue 18435" base_Element="48d5a2d2-3b24-4f09-b94c-59f811bab234"/>
+  <MagicDrawProfile:deprecated xmi:id="_3wQMwNnYEeut38w4P0hxDQ" deprecatedReason="SysML 1.4, ballot 5, issue 18435" base_Element="56f323a4-7b05-4052-82d0-6dc443056366"/>
+  <MagicDrawProfile:deprecated xmi:id="_3wQMwdnYEeut38w4P0hxDQ" deprecatedReason="SysML 1.4, ballot 5, issue 18435" base_Element="a15815ab-141e-4e8e-9d59-920d46eb7344"/>
+</xmi:XMI>

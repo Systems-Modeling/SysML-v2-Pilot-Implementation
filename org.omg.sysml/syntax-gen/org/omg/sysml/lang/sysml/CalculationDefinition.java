@@ -60,11 +60,11 @@ public interface CalculationDefinition extends ActionDefinition, Function {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The CalculationUsage that are <code>actions</code> in this CalculationDefinition.</p>
+	 * <p>The CalculationUsages that are <code>actions</code> in this CalculationDefinition.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Calculation</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getCalculationDefinition_Calculation()
-	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='featuringCalculationDefinition'"
 	 *        annotation="subsets"
 	 * @generated

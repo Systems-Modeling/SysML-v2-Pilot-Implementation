@@ -101,7 +101,7 @@ public interface ViewUsage extends PartUsage {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Satisfied Viewpoint</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getViewUsage_SatisfiedViewpoint()
-	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='viewpointSatisfyingView'"
 	 *        annotation="subsets"
 	 * @generated
@@ -118,7 +118,7 @@ public interface ViewUsage extends PartUsage {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Exposed Namespace</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getViewUsage_ExposedNamespace()
-	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='exposingView'"
 	 * @generated
 	 */
@@ -173,7 +173,7 @@ public interface ViewUsage extends PartUsage {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>View Condition</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getViewUsage_ViewCondition()
-	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='owningView'"
 	 *        annotation="subsets"
 	 * @generated
@@ -190,7 +190,7 @@ public interface ViewUsage extends PartUsage {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Viewed Element</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getViewUsage_ViewedElement()
-	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='viewer'"
 	 * @generated
 	 */

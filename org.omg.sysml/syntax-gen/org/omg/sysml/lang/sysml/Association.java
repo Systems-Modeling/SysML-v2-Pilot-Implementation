@@ -38,6 +38,7 @@ import org.eclipse.emf.common.util.EList;
  *         if numend = 2 then Kernel Library::BinaryLink
  *         else Kernel Library::Link)
  * oclIsKindOf(Structure) = oclIsKindOf(AssociationStructure)
+ * allSupertypes()->includes(Kernel Library::Link)
  * <!-- end-model-doc -->
  *
  * <p>

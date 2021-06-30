@@ -45,41 +45,44 @@ import org.eclipse.emf.common.util.EList;
  *     if isConjugated then 
  *         conjugator.originalType.input
  *     else 
- *         featureMembership->
- *             select(direction = out or direction = inout).
- *             memberFeature
+ *         feature->select(direction = out or direction = inout)
  *     endif
  * input = 
  *     if isConjugated then 
  *         conjugator.originalType.output
  *     else 
- *         featureMembership-> 
- *             select(direction = _'in' or direction = inout).
- *             memberFeature
+ *         feature->select(direction = _'in' or direction = inout)
  *     endif
  * inheritedMembership = inheritedMemberships(Set{})
+ * allSupertypes()->includes(Kernel Library::Anything)
+ * disjointTypes = disjoiningTypeDisjoining.disjoiningType
+ * directedFeature = feature->select(direction <> null)
+ * disjoinedTypes = disjoinedTypeDisjoining.typeDisjoined
  * <!-- end-model-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedGeneralization <em>Owned Generalization</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedFeatureMembership <em>Owned Feature Membership</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Type#getFeature <em>Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedFeature <em>Owned Feature</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedEndFeature <em>Owned End Feature</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Type#getFeature <em>Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getInput <em>Input</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getOutput <em>Output</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#isAbstract <em>Is Abstract</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getInheritedMembership <em>Inherited Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getEndFeature <em>End Feature</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedEndFeature <em>Owned End Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#isSufficient <em>Is Sufficient</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedConjugator <em>Owned Conjugator</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#isConjugated <em>Is Conjugated</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getFeatureMembership <em>Feature Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getInheritedFeature <em>Inherited Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getMultiplicity <em>Multiplicity</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Type#getDisjointType <em>Disjoint Type</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Type#getDisjoiningTypeDisjoining <em>Disjoining Type Disjoining</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Type#getDirectedFeature <em>Directed Feature</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedSpecialization <em>Owned Specialization</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getType()
@@ -87,35 +90,6 @@ import org.eclipse.emf.common.util.EList;
  * @generated
  */
 public interface Type extends Namespace {
-	/**
-	 * Returns the value of the '<em><b>Owned Generalization</b></em>' reference list.
-	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Generalization}.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Generalization#getOwningType <em>Owning Type</em>}'.
-	 * <p>
-	 * This feature subsets the following features:
-	 * </p>
-	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Element#getOwnedRelationship() <em>Owned Relationship</em>}'</li>
-	 * </ul>
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Owned Generalization</em>' reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * <p>The <code>ownedRelationships</code> of this Type, for which the Type is the <code>specific</code> Type.</p>
-	 * 
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Owned Generalization</em>' reference list.
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getType_OwnedGeneralization()
-	 * @see org.omg.sysml.lang.sysml.Generalization#getOwningType
-	 * @model opposite="owningType" transient="true" volatile="true" derived="true"
-	 *        annotation="subsets"
-	 * @generated
-	 */
-	EList<Generalization> getOwnedGeneralization();
-
 	/**
 	 * Returns the value of the '<em><b>Owned Feature Membership</b></em>' reference list.
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.FeatureMembership}.
@@ -156,7 +130,7 @@ public interface Type extends Namespace {
 	 *     FeatureDirectionKind::inout
 	 * else if input->includes(feature) then 
 	 *     FeatureDirectionKind::_'in'
-	 * else if input->includes(feature) then 
+	 * else if output->includes(feature) then 
 	 *     FeatureDirectionKind::out
 	 * else 
 	 *     null 
@@ -191,7 +165,6 @@ public interface Type extends Namespace {
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Type#getFeature() <em>Feature</em>}'</li>
 	 *   <li>'{@link org.omg.sysml.lang.sysml.Namespace#getOwnedMember() <em>Owned Member</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
@@ -248,7 +221,7 @@ public interface Type extends Namespace {
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Type#getFeature() <em>Feature</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Type#getDirectedFeature() <em>Directed Feature</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -276,7 +249,7 @@ public interface Type extends Namespace {
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Type#getFeature() <em>Feature</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Type#getDirectedFeature() <em>Directed Feature</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -565,6 +538,87 @@ public interface Type extends Namespace {
 	 * @generated
 	 */
 	void setMultiplicity(Multiplicity value);
+
+	/**
+	 * Returns the value of the '<em><b>Disjoint Type</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Type}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>A Type that is asserted to be disjoint with this Type by being the <code>disjoiningType</code> of a <code>disjoiningTypeDisjoining</code> of this Type. Sequences in the interpretation of a <code>disjointType</code> are not in the interpretation of their this Type.  For example, a Classifier for mammals is disjoint from a Classifier for minerals, and a Feature for people's parents is disjoint from a Feature for their children. </p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Disjoint Type</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getType_DisjointType()
+	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='disjoinedType'"
+	 * @generated
+	 */
+	EList<Type> getDisjointType();
+
+	/**
+	 * Returns the value of the '<em><b>Disjoining Type Disjoining</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Disjoining}.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Disjoining#getTypeDisjoined <em>Type Disjoined</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The Disjoinings for which this Type is the <code>typeDisjoined</code>.</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Disjoining Type Disjoining</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getType_DisjoiningTypeDisjoining()
+	 * @see org.omg.sysml.lang.sysml.Disjoining#getTypeDisjoined
+	 * @model opposite="typeDisjoined" required="true" ordered="false"
+	 * @generated
+	 */
+	EList<Disjoining> getDisjoiningTypeDisjoining();
+
+	/**
+	 * Returns the value of the '<em><b>Directed Feature</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Feature}.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Type#getFeature() <em>Feature</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The <code>features</code> of this Type that have a non-null <code>direction</code>.</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Directed Feature</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getType_DirectedFeature()
+	 * @model transient="true" volatile="true" derived="true"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='typeWithDirectedFeature'"
+	 *        annotation="subsets"
+	 * @generated
+	 */
+	EList<Feature> getDirectedFeature();
+
+	/**
+	 * Returns the value of the '<em><b>Owned Specialization</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Specialization}.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Specialization#getOwningType <em>Owning Type</em>}'.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Element#getOwnedRelationship() <em>Owned Relationship</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The <code>ownedRelationships</code> of this Type that are Specializations, for which the Type is the <code>specific</code> Type.</p>
+	 * 
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Owned Specialization</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getType_OwnedSpecialization()
+	 * @see org.omg.sysml.lang.sysml.Specialization#getOwningType
+	 * @model opposite="owningType" transient="true" volatile="true" derived="true"
+	 *        annotation="subsets"
+	 * @generated
+	 */
+	EList<Specialization> getOwnedSpecialization();
 
 	/**
 	 * <!-- begin-user-doc -->

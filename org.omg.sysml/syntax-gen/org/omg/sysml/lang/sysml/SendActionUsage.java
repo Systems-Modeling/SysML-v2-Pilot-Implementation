@@ -48,12 +48,6 @@ public interface SendActionUsage extends ActionUsage {
 
 	/**
 	 * Returns the value of the '<em><b>Receiver Argument</b></em>' reference.
-	 * <p>
-	 * This feature subsets the following features:
-	 * </p>
-	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Namespace#getOwnedMember() <em>Owned Member</em>}'</li>
-	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
@@ -64,7 +58,6 @@ public interface SendActionUsage extends ActionUsage {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getSendActionUsage_ReceiverArgument()
 	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='sendActionUsage'"
-	 *        annotation="subsets"
 	 * @generated
 	 */
 	Expression getReceiverArgument();
@@ -81,12 +74,6 @@ public interface SendActionUsage extends ActionUsage {
 
 	/**
 	 * Returns the value of the '<em><b>Items Argument</b></em>' reference.
-	 * <p>
-	 * This feature subsets the following features:
-	 * </p>
-	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Namespace#getOwnedMember() <em>Owned Member</em>}'</li>
-	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
@@ -97,7 +84,6 @@ public interface SendActionUsage extends ActionUsage {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getSendActionUsage_ItemsArgument()
 	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='sendingActionUsage'"
-	 *        annotation="subsets"
 	 * @generated
 	 */
 	Expression getItemsArgument();

@@ -84,18 +84,18 @@ public interface ViewpointUsage extends RequirementUsage {
 
 	/**
 	 * Returns the value of the '<em><b>Viewpoint Stakeholder</b></em>' reference list.
-	 * The list contents are of type {@link org.omg.sysml.lang.sysml.StakeholderUsage}.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.PartUsage}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The features that identify the stakeholders with concerns addressed by this ViewpointUsage, derived as the owned and inherited Stakeholders of the <code>addressedConcerns</code> of this ViewpointUsage.</p>
+	 * <p>The features that identify the stakeholders with concerns addressed by this ViewpointUsage, derived as the owned and inherited <code>stakeholderParameters</code> of the <code>framedConcerns</code> of this ViewpointUsage.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Viewpoint Stakeholder</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getViewpointUsage_ViewpointStakeholder()
-	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='viewpointForStakeholder'"
 	 * @generated
 	 */
-	EList<StakeholderUsage> getViewpointStakeholder();
+	EList<PartUsage> getViewpointStakeholder();
 
 } // ViewpointUsage

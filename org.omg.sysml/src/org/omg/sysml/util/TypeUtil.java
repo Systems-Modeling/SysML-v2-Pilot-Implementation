@@ -43,12 +43,11 @@ import org.omg.sysml.lang.sysml.Definition;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
-import org.omg.sysml.lang.sysml.Generalization;
+import org.omg.sysml.lang.sysml.Specialization;
 import org.omg.sysml.lang.sysml.ItemFeature;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.OccurrenceDefinition;
 import org.omg.sysml.lang.sysml.OccurrenceUsage;
-import org.omg.sysml.lang.sysml.ParameterMembership;
 import org.omg.sysml.lang.sysml.RequirementUsage;
 import org.omg.sysml.lang.sysml.SubjectMembership;
 import org.omg.sysml.lang.sysml.SysMLFactory;
@@ -81,10 +80,10 @@ public class TypeUtil {
 	
 	public static List<Type> getSupertypesOf(Type type, Element skip) {
 		List<Type> ownedGeneralEnds = new ArrayList<>(); 
-		type.getOwnedGeneralization()
+		type.getOwnedSpecialization()
 			.stream()
-			.filter(gen -> gen != skip)
-			.map(Generalization::getGeneral)
+			.filter(spec -> spec != skip)
+			.map(Specialization::getGeneral)
 			.forEachOrdered(ownedGeneralEnds::add);
 		ownedGeneralEnds.addAll(getImplicitGeneralTypesFor(type));
 		return ownedGeneralEnds;
@@ -116,7 +115,7 @@ public class TypeUtil {
 	// Features
 	
 	public static List<Feature> getPublicFeaturesOf(Type type) {
-		return type.publicMemberships(new BasicEList<>()).stream().
+		return type.visibleMemberships(new BasicEList<>(), false, false).stream().
 				filter(FeatureMembership.class::isInstance).
 				map(FeatureMembership.class::cast).
 				map(FeatureMembership::getMemberFeature).
@@ -179,7 +178,9 @@ public class TypeUtil {
 	}
 	
 	public static List<Feature> getOwnedParametersOf(Type type) {
-		return getOwnedFeaturesByMembershipIn(type, ParameterMembership.class).collect(Collectors.toList());
+		return type.getOwnedFeature().stream().
+				filter(FeatureUtil::isParameter).
+				collect(Collectors.toList());
 	}
 	
 	public static Feature getOwnedResultParameterOf(Type type) {
@@ -293,7 +294,7 @@ public class TypeUtil {
 	public static void insertImplicitGeneralizations(Type type) {
 		TypeAdapter adapter = getTypeAdapter(type);
 		adapter.forEachImplicitGeneralType((eClass, general)->{
-			Generalization newGeneralization = (Generalization)SysMLFactory.eINSTANCE.create(eClass);
+			Specialization newGeneralization = (Specialization)SysMLFactory.eINSTANCE.create(eClass);
 			newGeneralization.setGeneral(general);
 			newGeneralization.setSpecific(type);
 			type.getOwnedRelationship().add(newGeneralization);			

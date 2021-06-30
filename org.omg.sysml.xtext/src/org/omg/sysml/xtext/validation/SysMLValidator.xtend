@@ -32,8 +32,6 @@ import org.omg.sysml.lang.sysml.Subsetting
 import org.omg.sysml.lang.sysml.SysMLPackage
 import org.omg.sysml.lang.sysml.Redefinition
 import org.omg.sysml.lang.sysml.MultiplicityRange
-import org.omg.sysml.lang.sysml.LiteralInteger
-import org.omg.sysml.lang.sysml.LiteralUnbounded
 import org.omg.sysml.lang.sysml.Expression
 import org.omg.sysml.lang.sysml.Multiplicity
 import org.omg.sysml.lang.sysml.Connector
@@ -93,6 +91,8 @@ import org.omg.sysml.lang.sysml.OccurrenceUsage
 import org.omg.sysml.lang.sysml.OccurrenceDefinition
 import org.omg.sysml.lang.sysml.Structure
 import org.omg.sysml.lang.sysml.Step
+import org.omg.sysml.lang.sysml.LiteralInfinity
+import org.omg.sysml.lang.sysml.LiteralNatural
 
 /**
  * This class contains custom validation rules. 
@@ -371,7 +371,7 @@ class SysMLValidator extends KerMLValidator {
 	
 	@Check
 	def checkMultiplicityLowerBound(Multiplicity mult) {
-		if (mult instanceof MultiplicityRange && (mult as MultiplicityRange).getLowerBound() instanceof LiteralUnbounded) 
+		if (mult instanceof MultiplicityRange && (mult as MultiplicityRange).getLowerBound() instanceof LiteralInfinity) 
 			error("Multiplicity lower bound cannot be *", SysMLPackage.eINSTANCE.multiplicityRange_LowerBound, SysMLValidator.INVALID_MULTIPLICITY_ILLEGALLOWERBOUND);
 	}
 	
@@ -402,15 +402,15 @@ class SysMLValidator extends KerMLValidator {
 			
 			// Lower bound (only check if the Subsetting is a Redefinition): setting must be >= setted
 			if (sub instanceof Redefinition) {
-				if (setting_m_l instanceof LiteralInteger && setted_m_l instanceof LiteralInteger && (setting_m_l as LiteralInteger).value < (setted_m_l as LiteralInteger).value) {
+				if (setting_m_l instanceof LiteralNatural && setted_m_l instanceof LiteralNatural && (setting_m_l as LiteralNatural).getValue < (setted_m_l as LiteralNatural).getValue) {
 					warning("Redefining feature should not have smaller multiplicity lower bound", sub, 
 						SysMLPackage.eINSTANCE.redefinition_RedefiningFeature, SysMLValidator.INVALID_REDEFINITION_MULTIPLICITYCONFORMANCE)
 				}
 			}
 			
 			// Upper bound: setting must be <= setted
-			if (setting_m_u instanceof LiteralUnbounded && !(setted_m_u instanceof LiteralUnbounded) ||
-				setting_m_u instanceof LiteralInteger && setted_m_u instanceof LiteralInteger && (setting_m_u as LiteralInteger).value > (setted_m_u as LiteralInteger).value) {
+			if (setting_m_u instanceof LiteralInfinity && !(setted_m_u instanceof LiteralInfinity) ||
+				setting_m_u instanceof LiteralNatural && setted_m_u instanceof LiteralNatural && (setting_m_u as LiteralNatural).getValue > (setted_m_u as LiteralNatural).getValue) {
 				warning("Subsetting/redefining feature should not have larger multiplicity upper bound", sub, 
 						SysMLPackage.eINSTANCE.subsetting_SubsettingFeature, SysMLValidator.INVALID_SUBSETTING_MULTIPLICITYCONFORMANCE)
 			}
@@ -418,7 +418,7 @@ class SysMLValidator extends KerMLValidator {
 
 		// Uniqueness conformance
 		if (sub.subsettedFeature !== null && sub.subsettedFeature.unique && sub.subsettingFeature !== null && !sub.subsettingFeature.unique){
-			if (setting_m_u instanceof LiteralUnbounded || (setting_m_u as LiteralInteger).value > 1) {//less than or equal to 1 is ok
+			if (setting_m_u instanceof LiteralInfinity || (setting_m_u as LiteralNatural).getValue > 1) {//less than or equal to 1 is ok
 				warning("Subsetting/redefining feature should not be nonunique if subsetted/redefined feature is unique", sub, 
 						SysMLPackage.eINSTANCE.subsetting_SubsettingFeature, SysMLValidator.INVALID_SUBSETTING_UNIQUENESS_CONFORMANCE)
 			}

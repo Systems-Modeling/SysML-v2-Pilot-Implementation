@@ -22,8 +22,10 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.omg.sysml.lang.sysml.AssertConstraintUsage;
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.ConstraintUsage;
@@ -39,7 +41,7 @@ import org.omg.sysml.util.FeatureUtil;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.AssertConstraintUsageImpl#getAssertionConnector <em>Assertion Connector</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.AssertConstraintUsageImpl#isNegated <em>Is Negated</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.AssertConstraintUsageImpl#getAssertedConstraint <em>Asserted Constraint</em>}</li>
  * </ul>
  *
@@ -47,6 +49,24 @@ import org.omg.sysml.util.FeatureUtil;
  */
 public class AssertConstraintUsageImpl extends ConstraintUsageImpl implements AssertConstraintUsage {
 
+	/**
+	 * The default value of the '{@link #isNegated() <em>Is Negated</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isNegated()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean IS_NEGATED_EDEFAULT = false;
+	/**
+	 * The cached value of the '{@link #isNegated() <em>Is Negated</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isNegated()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean isNegated = IS_NEGATED_EDEFAULT;
 	/**
 	 * The cached value of the BindingConnector from the result of the
 	 * this ConstraintUsage to the result of a LiteralBoolean true.
@@ -78,9 +98,21 @@ public class AssertConstraintUsageImpl extends ConstraintUsageImpl implements As
 	 * @generated
 	 */
 	@Override
-	public BindingConnector getAssertionConnector() {
-		BindingConnector assertionConnector = basicGetAssertionConnector();
-		return assertionConnector != null && assertionConnector.eIsProxy() ? (BindingConnector)eResolveProxy((InternalEObject)assertionConnector) : assertionConnector;
+	public boolean isNegated() {
+		return isNegated;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setIsNegated(boolean newIsNegated) {
+		boolean oldIsNegated = isNegated;
+		isNegated = newIsNegated;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.ASSERT_CONSTRAINT_USAGE__IS_NEGATED, oldIsNegated, isNegated));
 	}
 
 	/**
@@ -90,16 +122,6 @@ public class AssertConstraintUsageImpl extends ConstraintUsageImpl implements As
 	 */
 	public BindingConnector basicGetAssertionConnector() {
 		return assertionConnector;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	@Override
-	public void setAssertionConnector(BindingConnector newAssertionConnector) {
-		assertionConnector = newAssertionConnector;
 	}
 
 	/**
@@ -140,9 +162,8 @@ public class AssertConstraintUsageImpl extends ConstraintUsageImpl implements As
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case SysMLPackage.ASSERT_CONSTRAINT_USAGE__ASSERTION_CONNECTOR:
-				if (resolve) return getAssertionConnector();
-				return basicGetAssertionConnector();
+			case SysMLPackage.ASSERT_CONSTRAINT_USAGE__IS_NEGATED:
+				return isNegated();
 			case SysMLPackage.ASSERT_CONSTRAINT_USAGE__ASSERTED_CONSTRAINT:
 				if (resolve) return getAssertedConstraint();
 				return basicGetAssertedConstraint();
@@ -158,8 +179,8 @@ public class AssertConstraintUsageImpl extends ConstraintUsageImpl implements As
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case SysMLPackage.ASSERT_CONSTRAINT_USAGE__ASSERTION_CONNECTOR:
-				setAssertionConnector((BindingConnector)newValue);
+			case SysMLPackage.ASSERT_CONSTRAINT_USAGE__IS_NEGATED:
+				setIsNegated((Boolean)newValue);
 				return;
 			case SysMLPackage.ASSERT_CONSTRAINT_USAGE__ASSERTED_CONSTRAINT:
 				setAssertedConstraint((ConstraintUsage)newValue);
@@ -176,8 +197,8 @@ public class AssertConstraintUsageImpl extends ConstraintUsageImpl implements As
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.ASSERT_CONSTRAINT_USAGE__ASSERTION_CONNECTOR:
-				setAssertionConnector((BindingConnector)null);
+			case SysMLPackage.ASSERT_CONSTRAINT_USAGE__IS_NEGATED:
+				setIsNegated(IS_NEGATED_EDEFAULT);
 				return;
 			case SysMLPackage.ASSERT_CONSTRAINT_USAGE__ASSERTED_CONSTRAINT:
 				setAssertedConstraint((ConstraintUsage)null);
@@ -194,8 +215,8 @@ public class AssertConstraintUsageImpl extends ConstraintUsageImpl implements As
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.ASSERT_CONSTRAINT_USAGE__ASSERTION_CONNECTOR:
-				return basicGetAssertionConnector() != null;
+			case SysMLPackage.ASSERT_CONSTRAINT_USAGE__IS_NEGATED:
+				return isNegated != IS_NEGATED_EDEFAULT;
 			case SysMLPackage.ASSERT_CONSTRAINT_USAGE__ASSERTED_CONSTRAINT:
 				return basicGetAssertedConstraint() != null;
 		}
@@ -211,7 +232,7 @@ public class AssertConstraintUsageImpl extends ConstraintUsageImpl implements As
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
 		if (baseClass == Invariant.class) {
 			switch (derivedFeatureID) {
-				case SysMLPackage.ASSERT_CONSTRAINT_USAGE__ASSERTION_CONNECTOR: return SysMLPackage.INVARIANT__ASSERTION_CONNECTOR;
+				case SysMLPackage.ASSERT_CONSTRAINT_USAGE__IS_NEGATED: return SysMLPackage.INVARIANT__IS_NEGATED;
 				default: return -1;
 			}
 		}
@@ -227,11 +248,27 @@ public class AssertConstraintUsageImpl extends ConstraintUsageImpl implements As
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
 		if (baseClass == Invariant.class) {
 			switch (baseFeatureID) {
-				case SysMLPackage.INVARIANT__ASSERTION_CONNECTOR: return SysMLPackage.ASSERT_CONSTRAINT_USAGE__ASSERTION_CONNECTOR;
+				case SysMLPackage.INVARIANT__IS_NEGATED: return SysMLPackage.ASSERT_CONSTRAINT_USAGE__IS_NEGATED;
 				default: return -1;
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuilder result = new StringBuilder(super.toString());
+		result.append(" (isNegated: ");
+		result.append(isNegated);
+		result.append(')');
+		return result.toString();
 	}
 
 } //AssertConstraintUsageImpl

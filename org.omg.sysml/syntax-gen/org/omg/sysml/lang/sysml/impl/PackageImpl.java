@@ -84,8 +84,8 @@ public class PackageImpl extends NamespaceImpl implements org.omg.sysml.lang.sys
 	}
 
 	@Override
-	public EList<Membership> getImportedMembership(Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean onlyPublic) {
-		EList<Membership> importedMemberships = super.getImportedMembership(excludedNamespaces, excludedTypes, onlyPublic);
+	public EList<Membership> getImportedMembership(Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean isIncludeAll) {
+		EList<Membership> importedMemberships = super.getImportedMembership(excludedNamespaces, excludedTypes, isIncludeAll);
 		importedMemberships.removeIf(membership->!includeAsMember(membership.getMemberElement()));
 		return importedMemberships;
 	}

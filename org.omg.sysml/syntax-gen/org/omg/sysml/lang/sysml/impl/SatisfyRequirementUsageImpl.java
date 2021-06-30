@@ -22,8 +22,10 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.omg.sysml.lang.sysml.AssertConstraintUsage;
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.ConstraintUsage;
@@ -43,7 +45,7 @@ import org.omg.sysml.util.UsageUtil;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.SatisfyRequirementUsageImpl#getAssertionConnector <em>Assertion Connector</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.SatisfyRequirementUsageImpl#isNegated <em>Is Negated</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.SatisfyRequirementUsageImpl#getSatisfiedRequirement <em>Satisfied Requirement</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.SatisfyRequirementUsageImpl#getSatisfyingFeature <em>Satisfying Feature</em>}</li>
  * </ul>
@@ -53,10 +55,23 @@ import org.omg.sysml.util.UsageUtil;
 public class SatisfyRequirementUsageImpl extends RequirementUsageImpl implements SatisfyRequirementUsage {
 
 	/**
-	 * The cached value of the BindingConnector from the result of the
-	 * this ConstraintUsage to the result of a LiteralBoolean true.
+	 * The default value of the '{@link #isNegated() <em>Is Negated</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isNegated()
+	 * @generated
+	 * @ordered
 	 */
-	protected BindingConnector assertionConnector = null;
+	protected static final boolean IS_NEGATED_EDEFAULT = false;
+	/**
+	 * The cached value of the '{@link #isNegated() <em>Is Negated</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isNegated()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean isNegated = IS_NEGATED_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -83,28 +98,21 @@ public class SatisfyRequirementUsageImpl extends RequirementUsageImpl implements
 	 * @generated
 	 */
 	@Override
-	public BindingConnector getAssertionConnector() {
-		BindingConnector assertionConnector = basicGetAssertionConnector();
-		return assertionConnector != null && assertionConnector.eIsProxy() ? (BindingConnector)eResolveProxy((InternalEObject)assertionConnector) : assertionConnector;
+	public boolean isNegated() {
+		return isNegated;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public BindingConnector basicGetAssertionConnector() {
-		return assertionConnector;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
-	public void setAssertionConnector(BindingConnector newAssertionConnector) {
-		assertionConnector = newAssertionConnector;
+	public void setIsNegated(boolean newIsNegated) {
+		boolean oldIsNegated = isNegated;
+		isNegated = newIsNegated;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.SATISFY_REQUIREMENT_USAGE__IS_NEGATED, oldIsNegated, isNegated));
 	}
 
 	/**
@@ -230,9 +238,8 @@ public class SatisfyRequirementUsageImpl extends RequirementUsageImpl implements
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case SysMLPackage.SATISFY_REQUIREMENT_USAGE__ASSERTION_CONNECTOR:
-				if (resolve) return getAssertionConnector();
-				return basicGetAssertionConnector();
+			case SysMLPackage.SATISFY_REQUIREMENT_USAGE__IS_NEGATED:
+				return isNegated();
 			case SysMLPackage.SATISFY_REQUIREMENT_USAGE__ASSERTED_CONSTRAINT:
 				if (resolve) return getAssertedConstraint();
 				return basicGetAssertedConstraint();
@@ -254,8 +261,8 @@ public class SatisfyRequirementUsageImpl extends RequirementUsageImpl implements
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case SysMLPackage.SATISFY_REQUIREMENT_USAGE__ASSERTION_CONNECTOR:
-				setAssertionConnector((BindingConnector)newValue);
+			case SysMLPackage.SATISFY_REQUIREMENT_USAGE__IS_NEGATED:
+				setIsNegated((Boolean)newValue);
 				return;
 			case SysMLPackage.SATISFY_REQUIREMENT_USAGE__ASSERTED_CONSTRAINT:
 				setAssertedConstraint((ConstraintUsage)newValue);
@@ -278,8 +285,8 @@ public class SatisfyRequirementUsageImpl extends RequirementUsageImpl implements
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.SATISFY_REQUIREMENT_USAGE__ASSERTION_CONNECTOR:
-				setAssertionConnector((BindingConnector)null);
+			case SysMLPackage.SATISFY_REQUIREMENT_USAGE__IS_NEGATED:
+				setIsNegated(IS_NEGATED_EDEFAULT);
 				return;
 			case SysMLPackage.SATISFY_REQUIREMENT_USAGE__ASSERTED_CONSTRAINT:
 				setAssertedConstraint((ConstraintUsage)null);
@@ -302,8 +309,8 @@ public class SatisfyRequirementUsageImpl extends RequirementUsageImpl implements
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.SATISFY_REQUIREMENT_USAGE__ASSERTION_CONNECTOR:
-				return basicGetAssertionConnector() != null;
+			case SysMLPackage.SATISFY_REQUIREMENT_USAGE__IS_NEGATED:
+				return isNegated != IS_NEGATED_EDEFAULT;
 			case SysMLPackage.SATISFY_REQUIREMENT_USAGE__ASSERTED_CONSTRAINT:
 				return isSetAssertedConstraint();
 			case SysMLPackage.SATISFY_REQUIREMENT_USAGE__SATISFIED_REQUIREMENT:
@@ -323,7 +330,7 @@ public class SatisfyRequirementUsageImpl extends RequirementUsageImpl implements
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
 		if (baseClass == Invariant.class) {
 			switch (derivedFeatureID) {
-				case SysMLPackage.SATISFY_REQUIREMENT_USAGE__ASSERTION_CONNECTOR: return SysMLPackage.INVARIANT__ASSERTION_CONNECTOR;
+				case SysMLPackage.SATISFY_REQUIREMENT_USAGE__IS_NEGATED: return SysMLPackage.INVARIANT__IS_NEGATED;
 				default: return -1;
 			}
 		}
@@ -345,7 +352,7 @@ public class SatisfyRequirementUsageImpl extends RequirementUsageImpl implements
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
 		if (baseClass == Invariant.class) {
 			switch (baseFeatureID) {
-				case SysMLPackage.INVARIANT__ASSERTION_CONNECTOR: return SysMLPackage.SATISFY_REQUIREMENT_USAGE__ASSERTION_CONNECTOR;
+				case SysMLPackage.INVARIANT__IS_NEGATED: return SysMLPackage.SATISFY_REQUIREMENT_USAGE__IS_NEGATED;
 				default: return -1;
 			}
 		}
@@ -356,6 +363,22 @@ public class SatisfyRequirementUsageImpl extends RequirementUsageImpl implements
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuilder result = new StringBuilder(super.toString());
+		result.append(" (isNegated: ");
+		result.append(isNegated);
+		result.append(')');
+		return result.toString();
 	}
 
 } //SatisfyRequirementUsageImpl

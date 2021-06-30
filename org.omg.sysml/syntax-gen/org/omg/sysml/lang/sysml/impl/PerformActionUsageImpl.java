@@ -26,7 +26,9 @@ import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.ActionUsage;
+import org.omg.sysml.lang.sysml.EventOccurrenceUsage;
 import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.OccurrenceUsage;
 import org.omg.sysml.lang.sysml.PerformActionUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.util.FeatureUtil;
@@ -105,9 +107,21 @@ public class PerformActionUsageImpl extends ActionUsageImpl implements PerformAc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isSetPerformedAction() {
+		return basicGetPerformedAction() != null;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case SysMLPackage.PERFORM_ACTION_USAGE__EVENT_OCCURRENCE:
+				if (resolve) return getEventOccurrence();
+				return basicGetEventOccurrence();
 			case SysMLPackage.PERFORM_ACTION_USAGE__PERFORMED_ACTION:
 				if (resolve) return getPerformedAction();
 				return basicGetPerformedAction();
@@ -123,6 +137,9 @@ public class PerformActionUsageImpl extends ActionUsageImpl implements PerformAc
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case SysMLPackage.PERFORM_ACTION_USAGE__EVENT_OCCURRENCE:
+				setEventOccurrence((OccurrenceUsage)newValue);
+				return;
 			case SysMLPackage.PERFORM_ACTION_USAGE__PERFORMED_ACTION:
 				setPerformedAction((ActionUsage)newValue);
 				return;
@@ -138,6 +155,9 @@ public class PerformActionUsageImpl extends ActionUsageImpl implements PerformAc
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case SysMLPackage.PERFORM_ACTION_USAGE__EVENT_OCCURRENCE:
+				setEventOccurrence((OccurrenceUsage)null);
+				return;
 			case SysMLPackage.PERFORM_ACTION_USAGE__PERFORMED_ACTION:
 				setPerformedAction((ActionUsage)null);
 				return;
@@ -153,10 +173,83 @@ public class PerformActionUsageImpl extends ActionUsageImpl implements PerformAc
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case SysMLPackage.PERFORM_ACTION_USAGE__EVENT_OCCURRENCE:
+				return isSetEventOccurrence();
 			case SysMLPackage.PERFORM_ACTION_USAGE__PERFORMED_ACTION:
-				return basicGetPerformedAction() != null;
+				return isSetPerformedAction();
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+		if (baseClass == EventOccurrenceUsage.class) {
+			switch (derivedFeatureID) {
+				case SysMLPackage.PERFORM_ACTION_USAGE__EVENT_OCCURRENCE: return SysMLPackage.EVENT_OCCURRENCE_USAGE__EVENT_OCCURRENCE;
+				default: return -1;
+			}
+		}
+		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+		if (baseClass == EventOccurrenceUsage.class) {
+			switch (baseFeatureID) {
+				case SysMLPackage.EVENT_OCCURRENCE_USAGE__EVENT_OCCURRENCE: return SysMLPackage.PERFORM_ACTION_USAGE__EVENT_OCCURRENCE;
+				default: return -1;
+			}
+		}
+		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public OccurrenceUsage getEventOccurrence() {
+		return getPerformedAction();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public OccurrenceUsage basicGetEventOccurrence() {
+		return basicGetPerformedAction();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setEventOccurrence(OccurrenceUsage newEventOccurrence) {
+		if (newEventOccurrence != null && !(newEventOccurrence instanceof ActionUsage)) {
+			throw new IllegalArgumentException("newEventOccurrence must be an instance of ActionUsage");
+		}
+		setPerformedAction((ActionUsage) newEventOccurrence);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetEventOccurrence() {
+  		return false;
 	}
 
 } //PerformActionUsageImpl

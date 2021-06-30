@@ -45,15 +45,18 @@ import org.omg.sysml.lang.sysml.TypeFeaturing;
 import org.omg.sysml.util.FeatureUtil;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
 import org.omg.sysml.util.TypeUtil;
-import org.omg.sysml.lang.sysml.EndFeatureMembership;
 import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.FeatureChaining;
 import org.omg.sysml.lang.sysml.FeatureDirectionKind;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.Membership;
+import org.omg.sysml.lang.sysml.ParameterMembership;
 import org.omg.sysml.lang.sysml.Conjugation;
+import org.omg.sysml.lang.sysml.EndFeatureMembership;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.Relationship;
+import org.omg.sysml.lang.sysml.ReturnParameterMembership;
 import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
@@ -66,19 +69,25 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * </p>
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getOwnedRelationship <em>Owned Relationship</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getOwnedTypeFeaturing <em>Owned Type Featuring</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getOwningFeatureMembership <em>Owning Feature Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getOwningType <em>Owning Type</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getEndOwningType <em>End Owning Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#isUnique <em>Is Unique</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#isOrdered <em>Is Ordered</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getType <em>Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getOwnedRedefinition <em>Owned Redefinition</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getOwnedSubsetting <em>Owned Subsetting</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getOwningFeatureMembership <em>Owning Feature Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#isComposite <em>Is Composite</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#isEnd <em>Is End</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#isPortion <em>Is Portion</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getEndOwningType <em>End Owning Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getOwnedTyping <em>Owned Typing</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getFeaturingType <em>Featuring Type</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getOwnedTypeFeaturing <em>Owned Type Featuring</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getChainingFeature <em>Chaining Feature</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getOwnedFeatureChaining <em>Owned Feature Chaining</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#isDerived <em>Is Derived</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#isReadOnly <em>Is Read Only</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#isEnd <em>Is End</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getDirection <em>Direction</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#isNonunique <em>Is Nonunique</em>}</li>
  * </ul>
  *
@@ -134,25 +143,6 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 * @ordered
 	 */
 	protected static final boolean IS_COMPOSITE_EDEFAULT = false;
-	/**
-	 * The default value of the '{@link #isEnd() <em>Is End</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isEnd()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final boolean IS_END_EDEFAULT = false;
-	/**
-	 * The default value of the '{@link #isNonunique() <em>Is Nonunique</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isNonunique()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final boolean IS_NONUNIQUE_EDEFAULT = false;
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -328,7 +318,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 */
 	@Override
 	public EList<Redefinition> getOwnedRedefinition() {
-		return new DerivedSubsetEObjectEList<>(Redefinition.class, this, SysMLPackage.FEATURE__OWNED_REDEFINITION, new int[] {SysMLPackage.FEATURE__OWNED_GENERALIZATION});
+		return new DerivedSubsetEObjectEList<>(Redefinition.class, this, SysMLPackage.FEATURE__OWNED_REDEFINITION, new int[] {SysMLPackage.FEATURE__OWNED_SPECIALIZATION});
 	}
 	
 	/**
@@ -337,7 +327,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 * @generated NOT
 	 */
 	public EList<Subsetting> getOwnedSubsetting() {
-		return new DerivedSubsetEObjectEList<>(Subsetting.class, this, SysMLPackage.FEATURE__OWNED_SUBSETTING, new int[] {SysMLPackage.FEATURE__OWNED_GENERALIZATION});
+		return new DerivedSubsetEObjectEList<>(Subsetting.class, this, SysMLPackage.FEATURE__OWNED_SUBSETTING, new int[] {SysMLPackage.FEATURE__OWNED_SPECIALIZATION});
 	}
 	
 	/**
@@ -347,7 +337,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 */
 	@Override
 	public EList<FeatureTyping> getOwnedTyping() {
-		return new DerivedSubsetEObjectEList<>(FeatureTyping.class, this, SysMLPackage.FEATURE__OWNED_TYPING, new int[] {SysMLPackage.FEATURE__OWNED_GENERALIZATION});
+		return new DerivedSubsetEObjectEList<>(FeatureTyping.class, this, SysMLPackage.FEATURE__OWNED_TYPING, new int[] {SysMLPackage.FEATURE__OWNED_SPECIALIZATION});
 	}
 	
 	/**
@@ -402,12 +392,135 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	}
 	
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isComposite() {
+		return isComposite;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setIsComposite(boolean newIsComposite) {
+		boolean oldIsComposite = isComposite;
+		isComposite = newIsComposite;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.FEATURE__IS_COMPOSITE, oldIsComposite, isComposite));
+	}
+
+	/**
 	 * Locally cached value for isComposite. This allows isComposite to be set directly
 	 * on a Feature, and then propagated back to the owningFeatureMembership, once this
 	 * is set.
 	 */
 	protected boolean isComposite = false;
 	
+	/**
+	 * The default value of the '{@link #isPortion() <em>Is Portion</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isPortion()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean IS_PORTION_EDEFAULT = false;
+	/**
+	 * The cached value of the '{@link #isPortion() <em>Is Portion</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isPortion()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean isPortion = IS_PORTION_EDEFAULT;
+	/**
+	 * The default value of the '{@link #isDerived() <em>Is Derived</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isDerived()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean IS_DERIVED_EDEFAULT = false;
+	/**
+	 * The cached value of the '{@link #isDerived() <em>Is Derived</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isDerived()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean isDerived = IS_DERIVED_EDEFAULT;
+	/**
+	 * The default value of the '{@link #isReadOnly() <em>Is Read Only</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isReadOnly()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean IS_READ_ONLY_EDEFAULT = false;
+	/**
+	 * The cached value of the '{@link #isReadOnly() <em>Is Read Only</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isReadOnly()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean isReadOnly = IS_READ_ONLY_EDEFAULT;
+	/**
+	 * The default value of the '{@link #isEnd() <em>Is End</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isEnd()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean IS_END_EDEFAULT = false;
+	/**
+	 * The cached value of the '{@link #isEnd() <em>Is End</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isEnd()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean isEnd = IS_END_EDEFAULT;
+	/**
+	 * The default value of the '{@link #getDirection() <em>Direction</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDirection()
+	 * @generated NOT
+	 * @ordered
+	 */
+	protected static final FeatureDirectionKind DIRECTION_EDEFAULT = null;
+	/**
+	 * The cached value of the '{@link #getDirection() <em>Direction</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDirection()
+	 * @generated
+	 * @ordered
+	 */
+	protected FeatureDirectionKind direction = DIRECTION_EDEFAULT;
+	/**
+	 * The default value of the '{@link #isNonunique() <em>Is Nonunique</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isNonunique()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean IS_NONUNIQUE_EDEFAULT = false;
+
 	public boolean basicIsComposite() {
 		return isComposite;
 	}
@@ -415,24 +528,24 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
-	public boolean isComposite() {
-		FeatureMembership featureMembership = this.getOwningFeatureMembership();
-		return featureMembership != null && featureMembership.isComposite();
+	@Override
+	public boolean isPortion() {
+		return isPortion;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
-	public void setIsComposite(boolean newIsComposite) {
-		isComposite = newIsComposite;
-		FeatureMembership featureMembership = this.getOwningFeatureMembership();
-		if (featureMembership != null) {
-			featureMembership.setIsComposite(newIsComposite);
-		}
+	@Override
+	public void setIsPortion(boolean newIsPortion) {
+		boolean oldIsPortion = isPortion;
+		isPortion = newIsPortion;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.FEATURE__IS_PORTION, oldIsPortion, isPortion));
 	}
 
 	/**
@@ -442,7 +555,20 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 */
 	@Override
 	public boolean isEnd() {
-		return getOwningFeatureMembership() instanceof EndFeatureMembership;
+		return isEnd || getOwningMembership() instanceof EndFeatureMembership;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setIsEnd(boolean newIsEnd) {
+		boolean oldIsEnd = isEnd;
+		isEnd = newIsEnd;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.FEATURE__IS_PORTION, oldIsEnd, isPortion));
 	}
 
 	/**
@@ -451,8 +577,29 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 * @generated NOT
 	 */
 	@Override
-	public void setIsEnd(boolean newIsEnd) {
-		throw new UnsupportedOperationException();
+	public FeatureDirectionKind getDirection() {
+		if (direction == null) {
+			Membership owningMembership = getOwningMembership();
+			if (owningMembership instanceof ReturnParameterMembership) {
+				direction = FeatureDirectionKind.OUT;
+			} else if (owningMembership instanceof ParameterMembership) {
+				direction = FeatureDirectionKind.IN;
+			}
+		}
+		return direction;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setDirection(FeatureDirectionKind newDirection) {
+		FeatureDirectionKind oldDirection = direction;
+		direction = newDirection == null ? DIRECTION_EDEFAULT : newDirection;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.FEATURE__DIRECTION, oldDirection, direction));
 	}
 
 	/**
@@ -541,6 +688,87 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 */
 	protected static final int[] OWNED_TYPE_FEATURING_ESUPERSETS = new int[] {SysMLPackage.FEATURE__OWNED_RELATIONSHIP};
 	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public EList<Feature> getChainingFeature() {
+		EList<Feature> chainingFeatures = new NonNotifyingEObjectEList<>(Feature.class, this, SysMLPackage.FEATURE__CHAINING_FEATURE);
+		getOwnedFeatureChaining().stream().
+			map(FeatureChaining::getChainingFeature).
+			filter(f->f != null).
+			forEachOrdered(chainingFeatures::add);
+		return chainingFeatures;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public EList<FeatureChaining> getOwnedFeatureChaining() {
+		return new DerivedSubsetEObjectEList<>(FeatureChaining.class, this, SysMLPackage.FEATURE__OWNED_FEATURE_CHAINING, new int[] {SysMLPackage.FEATURE__OWNED_RELATIONSHIP});
+	}
+
+	/**
+	 * The array of superset feature identifiers for the '{@link #getOwnedFeatureChaining() <em>Owned Feature Chaining</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedFeatureChaining()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int[] OWNED_FEATURE_CHAINING_ESUPERSETS = new int[] {SysMLPackage.FEATURE__OWNED_RELATIONSHIP};
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isDerived() {
+		return isDerived;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setIsDerived(boolean newIsDerived) {
+		boolean oldIsDerived = isDerived;
+		isDerived = newIsDerived;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.FEATURE__IS_DERIVED, oldIsDerived, isDerived));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isReadOnly() {
+		return isReadOnly;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setIsReadOnly(boolean newIsReadOnly) {
+		boolean oldIsReadOnly = isReadOnly;
+		isReadOnly = newIsReadOnly;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.FEATURE__IS_READ_ONLY, oldIsReadOnly, isReadOnly));
+	}
+
 	// Operations
 
 	/**
@@ -659,17 +887,9 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case SysMLPackage.FEATURE__OWNED_TYPE_FEATURING:
-				return getOwnedTypeFeaturing();
-			case SysMLPackage.FEATURE__OWNING_FEATURE_MEMBERSHIP:
-				if (resolve) return getOwningFeatureMembership();
-				return basicGetOwningFeatureMembership();
 			case SysMLPackage.FEATURE__OWNING_TYPE:
 				if (resolve) return getOwningType();
 				return basicGetOwningType();
-			case SysMLPackage.FEATURE__END_OWNING_TYPE:
-				if (resolve) return getEndOwningType();
-				return basicGetEndOwningType();
 			case SysMLPackage.FEATURE__IS_UNIQUE:
 				return isUnique();
 			case SysMLPackage.FEATURE__IS_ORDERED:
@@ -680,14 +900,34 @@ public class FeatureImpl extends TypeImpl implements Feature {
 				return getOwnedRedefinition();
 			case SysMLPackage.FEATURE__OWNED_SUBSETTING:
 				return getOwnedSubsetting();
+			case SysMLPackage.FEATURE__OWNING_FEATURE_MEMBERSHIP:
+				if (resolve) return getOwningFeatureMembership();
+				return basicGetOwningFeatureMembership();
 			case SysMLPackage.FEATURE__IS_COMPOSITE:
 				return isComposite();
-			case SysMLPackage.FEATURE__IS_END:
-				return isEnd();
+			case SysMLPackage.FEATURE__IS_PORTION:
+				return isPortion();
+			case SysMLPackage.FEATURE__END_OWNING_TYPE:
+				if (resolve) return getEndOwningType();
+				return basicGetEndOwningType();
 			case SysMLPackage.FEATURE__OWNED_TYPING:
 				return getOwnedTyping();
 			case SysMLPackage.FEATURE__FEATURING_TYPE:
 				return getFeaturingType();
+			case SysMLPackage.FEATURE__OWNED_TYPE_FEATURING:
+				return getOwnedTypeFeaturing();
+			case SysMLPackage.FEATURE__CHAINING_FEATURE:
+				return getChainingFeature();
+			case SysMLPackage.FEATURE__OWNED_FEATURE_CHAINING:
+				return getOwnedFeatureChaining();
+			case SysMLPackage.FEATURE__IS_DERIVED:
+				return isDerived();
+			case SysMLPackage.FEATURE__IS_READ_ONLY:
+				return isReadOnly();
+			case SysMLPackage.FEATURE__IS_END:
+				return isEnd();
+			case SysMLPackage.FEATURE__DIRECTION:
+				return getDirection();
 			case SysMLPackage.FEATURE__IS_NONUNIQUE:
 				return isNonunique();
 		}
@@ -703,18 +943,8 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case SysMLPackage.FEATURE__OWNED_TYPE_FEATURING:
-				getOwnedTypeFeaturing().clear();
-				getOwnedTypeFeaturing().addAll((Collection<? extends TypeFeaturing>)newValue);
-				return;
-			case SysMLPackage.FEATURE__OWNING_FEATURE_MEMBERSHIP:
-				setOwningFeatureMembership((FeatureMembership)newValue);
-				return;
 			case SysMLPackage.FEATURE__OWNING_TYPE:
 				setOwningType((Type)newValue);
-				return;
-			case SysMLPackage.FEATURE__END_OWNING_TYPE:
-				setEndOwningType((Type)newValue);
 				return;
 			case SysMLPackage.FEATURE__IS_UNIQUE:
 				setIsUnique((Boolean)newValue);
@@ -734,11 +964,17 @@ public class FeatureImpl extends TypeImpl implements Feature {
 				getOwnedSubsetting().clear();
 				getOwnedSubsetting().addAll((Collection<? extends Subsetting>)newValue);
 				return;
+			case SysMLPackage.FEATURE__OWNING_FEATURE_MEMBERSHIP:
+				setOwningFeatureMembership((FeatureMembership)newValue);
+				return;
 			case SysMLPackage.FEATURE__IS_COMPOSITE:
 				setIsComposite((Boolean)newValue);
 				return;
-			case SysMLPackage.FEATURE__IS_END:
-				setIsEnd((Boolean)newValue);
+			case SysMLPackage.FEATURE__IS_PORTION:
+				setIsPortion((Boolean)newValue);
+				return;
+			case SysMLPackage.FEATURE__END_OWNING_TYPE:
+				setEndOwningType((Type)newValue);
 				return;
 			case SysMLPackage.FEATURE__OWNED_TYPING:
 				getOwnedTyping().clear();
@@ -747,6 +983,30 @@ public class FeatureImpl extends TypeImpl implements Feature {
 			case SysMLPackage.FEATURE__FEATURING_TYPE:
 				getFeaturingType().clear();
 				getFeaturingType().addAll((Collection<? extends Type>)newValue);
+				return;
+			case SysMLPackage.FEATURE__OWNED_TYPE_FEATURING:
+				getOwnedTypeFeaturing().clear();
+				getOwnedTypeFeaturing().addAll((Collection<? extends TypeFeaturing>)newValue);
+				return;
+			case SysMLPackage.FEATURE__CHAINING_FEATURE:
+				getChainingFeature().clear();
+				getChainingFeature().addAll((Collection<? extends Feature>)newValue);
+				return;
+			case SysMLPackage.FEATURE__OWNED_FEATURE_CHAINING:
+				getOwnedFeatureChaining().clear();
+				getOwnedFeatureChaining().addAll((Collection<? extends FeatureChaining>)newValue);
+				return;
+			case SysMLPackage.FEATURE__IS_DERIVED:
+				setIsDerived((Boolean)newValue);
+				return;
+			case SysMLPackage.FEATURE__IS_READ_ONLY:
+				setIsReadOnly((Boolean)newValue);
+				return;
+			case SysMLPackage.FEATURE__IS_END:
+				setIsEnd((Boolean)newValue);
+				return;
+			case SysMLPackage.FEATURE__DIRECTION:
+				setDirection((FeatureDirectionKind)newValue);
 				return;
 			case SysMLPackage.FEATURE__IS_NONUNIQUE:
 				setIsNonunique((Boolean)newValue);
@@ -763,17 +1023,8 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.FEATURE__OWNED_TYPE_FEATURING:
-				getOwnedTypeFeaturing().clear();
-				return;
-			case SysMLPackage.FEATURE__OWNING_FEATURE_MEMBERSHIP:
-				setOwningFeatureMembership((FeatureMembership)null);
-				return;
 			case SysMLPackage.FEATURE__OWNING_TYPE:
 				setOwningType((Type)null);
-				return;
-			case SysMLPackage.FEATURE__END_OWNING_TYPE:
-				setEndOwningType((Type)null);
 				return;
 			case SysMLPackage.FEATURE__IS_UNIQUE:
 				setIsUnique(IS_UNIQUE_EDEFAULT);
@@ -790,17 +1041,44 @@ public class FeatureImpl extends TypeImpl implements Feature {
 			case SysMLPackage.FEATURE__OWNED_SUBSETTING:
 				getOwnedSubsetting().clear();
 				return;
+			case SysMLPackage.FEATURE__OWNING_FEATURE_MEMBERSHIP:
+				setOwningFeatureMembership((FeatureMembership)null);
+				return;
 			case SysMLPackage.FEATURE__IS_COMPOSITE:
 				setIsComposite(IS_COMPOSITE_EDEFAULT);
 				return;
-			case SysMLPackage.FEATURE__IS_END:
-				setIsEnd(IS_END_EDEFAULT);
+			case SysMLPackage.FEATURE__IS_PORTION:
+				setIsPortion(IS_PORTION_EDEFAULT);
+				return;
+			case SysMLPackage.FEATURE__END_OWNING_TYPE:
+				setEndOwningType((Type)null);
 				return;
 			case SysMLPackage.FEATURE__OWNED_TYPING:
 				getOwnedTyping().clear();
 				return;
 			case SysMLPackage.FEATURE__FEATURING_TYPE:
 				getFeaturingType().clear();
+				return;
+			case SysMLPackage.FEATURE__OWNED_TYPE_FEATURING:
+				getOwnedTypeFeaturing().clear();
+				return;
+			case SysMLPackage.FEATURE__CHAINING_FEATURE:
+				getChainingFeature().clear();
+				return;
+			case SysMLPackage.FEATURE__OWNED_FEATURE_CHAINING:
+				getOwnedFeatureChaining().clear();
+				return;
+			case SysMLPackage.FEATURE__IS_DERIVED:
+				setIsDerived(IS_DERIVED_EDEFAULT);
+				return;
+			case SysMLPackage.FEATURE__IS_READ_ONLY:
+				setIsReadOnly(IS_READ_ONLY_EDEFAULT);
+				return;
+			case SysMLPackage.FEATURE__IS_END:
+				setIsEnd(IS_END_EDEFAULT);
+				return;
+			case SysMLPackage.FEATURE__DIRECTION:
+				setDirection(DIRECTION_EDEFAULT);
 				return;
 			case SysMLPackage.FEATURE__IS_NONUNIQUE:
 				setIsNonunique(IS_NONUNIQUE_EDEFAULT);
@@ -819,14 +1097,8 @@ public class FeatureImpl extends TypeImpl implements Feature {
 		switch (featureID) {
 			case SysMLPackage.FEATURE__OWNED_RELATIONSHIP:
 				return ownedRelationship != null && !ownedRelationship.isEmpty();
-			case SysMLPackage.FEATURE__OWNED_TYPE_FEATURING:
-				return !getOwnedTypeFeaturing().isEmpty();
-			case SysMLPackage.FEATURE__OWNING_FEATURE_MEMBERSHIP:
-				return basicGetOwningFeatureMembership() != null;
 			case SysMLPackage.FEATURE__OWNING_TYPE:
 				return basicGetOwningType() != null;
-			case SysMLPackage.FEATURE__END_OWNING_TYPE:
-				return basicGetEndOwningType() != null;
 			case SysMLPackage.FEATURE__IS_UNIQUE:
 				return isUnique != IS_UNIQUE_EDEFAULT;
 			case SysMLPackage.FEATURE__IS_ORDERED:
@@ -837,14 +1109,32 @@ public class FeatureImpl extends TypeImpl implements Feature {
 				return !getOwnedRedefinition().isEmpty();
 			case SysMLPackage.FEATURE__OWNED_SUBSETTING:
 				return !getOwnedSubsetting().isEmpty();
+			case SysMLPackage.FEATURE__OWNING_FEATURE_MEMBERSHIP:
+				return basicGetOwningFeatureMembership() != null;
 			case SysMLPackage.FEATURE__IS_COMPOSITE:
-				return isComposite() != IS_COMPOSITE_EDEFAULT;
-			case SysMLPackage.FEATURE__IS_END:
-				return isEnd() != IS_END_EDEFAULT;
+				return isComposite != IS_COMPOSITE_EDEFAULT;
+			case SysMLPackage.FEATURE__IS_PORTION:
+				return isPortion != IS_PORTION_EDEFAULT;
+			case SysMLPackage.FEATURE__END_OWNING_TYPE:
+				return basicGetEndOwningType() != null;
 			case SysMLPackage.FEATURE__OWNED_TYPING:
 				return !getOwnedTyping().isEmpty();
 			case SysMLPackage.FEATURE__FEATURING_TYPE:
 				return !getFeaturingType().isEmpty();
+			case SysMLPackage.FEATURE__OWNED_TYPE_FEATURING:
+				return !getOwnedTypeFeaturing().isEmpty();
+			case SysMLPackage.FEATURE__CHAINING_FEATURE:
+				return !getChainingFeature().isEmpty();
+			case SysMLPackage.FEATURE__OWNED_FEATURE_CHAINING:
+				return !getOwnedFeatureChaining().isEmpty();
+			case SysMLPackage.FEATURE__IS_DERIVED:
+				return isDerived != IS_DERIVED_EDEFAULT;
+			case SysMLPackage.FEATURE__IS_READ_ONLY:
+				return isReadOnly != IS_READ_ONLY_EDEFAULT;
+			case SysMLPackage.FEATURE__IS_END:
+				return isEnd != IS_END_EDEFAULT;
+			case SysMLPackage.FEATURE__DIRECTION:
+				return direction != DIRECTION_EDEFAULT;
 			case SysMLPackage.FEATURE__IS_NONUNIQUE:
 				return isNonunique() != IS_NONUNIQUE_EDEFAULT;
 		}
@@ -887,6 +1177,18 @@ public class FeatureImpl extends TypeImpl implements Feature {
 		result.append(isUnique);
 		result.append(", isOrdered: ");
 		result.append(isOrdered);
+		result.append(", isComposite: ");
+		result.append(isComposite);
+		result.append(", isPortion: ");
+		result.append(isPortion);
+		result.append(", isDerived: ");
+		result.append(isDerived);
+		result.append(", isReadOnly: ");
+		result.append(isReadOnly);
+		result.append(", isEnd: ");
+		result.append(isEnd);
+		result.append(", direction: ");
+		result.append(direction);
 		result.append(')');
 		return result.toString();
 	}

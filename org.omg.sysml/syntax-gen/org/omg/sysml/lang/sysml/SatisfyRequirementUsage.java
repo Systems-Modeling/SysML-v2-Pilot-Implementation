@@ -29,7 +29,7 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A SatisfyRequirementUsage is an AssertConstraintUsage that asserts that a satisfied RequirementUsage is true for a specific satisfyingSubject. The satisfied RequirementUsage is related to the SatisfyRequirementUsage by a Subsetting relationship.</p>
+ * <p>A SatisfyRequirementUsage is an AssertConstraintUsage that asserts, by default, that a satisfied RequirementUsage is true for a specific <code>satisfyingSubject</code>, or, if <code>isNegated = true</code>, that the RequirementUsage is false. The satisfied RequirementUsage is related to the SatisfyRequirementUsage by a Subsetting relationship.</p>
  * <!-- end-model-doc -->
  *
  * <p>

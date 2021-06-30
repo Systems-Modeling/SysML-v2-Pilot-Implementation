@@ -31,8 +31,7 @@ package org.omg.sysml.lang.sysml;
  * <!-- begin-model-doc -->
  * <p>A PerformActionUsage is an ActionUsage that represents the performance of an ActionUsage. The ActionUsage to be performed (which may be the PerformActionUsage itself) is related to the PerformActionUsage by a Subsetting relationship.</p>
  * 
- * <p>If the PerformActionUsage is owned by a Part, then it also subsets the performedAction property of that Part (as defined in the library model for Part),
- * otherwise it subsets either <code>actions</code> or <code>subactions</code>, as required for a regular ActionUsage.</p>
+ * <p>If the PerformActionUsage is owned by a PartDefinition or PartUsage, then it also subsets the ActionUsage <em><code>Part::performedAction</code></em> from the Systems model library.</p>
  * <!-- end-model-doc -->
  *
  * <p>
@@ -46,10 +45,16 @@ package org.omg.sysml.lang.sysml;
  * @model
  * @generated
  */
-public interface PerformActionUsage extends ActionUsage {
+public interface PerformActionUsage extends ActionUsage, EventOccurrenceUsage {
 
 	/**
 	 * Returns the value of the '<em><b>Performed Action</b></em>' reference.
+	 * <p>
+	 * This feature redefines the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.EventOccurrenceUsage#getEventOccurrence() <em>Event Occurrence</em>}'</li>
+	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
@@ -59,7 +64,8 @@ public interface PerformActionUsage extends ActionUsage {
 	 * @see #setPerformedAction(ActionUsage)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getPerformActionUsage_PerformedAction()
 	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='actionPerformance'"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='performingAction'"
+	 *        annotation="redefines"
 	 * @generated
 	 */
 	ActionUsage getPerformedAction();

@@ -9,13 +9,9 @@ import org.omg.sysml.lang.sysml.Annotation
 import org.omg.sysml.lang.sysml.Conjugation
 import org.omg.sysml.lang.sysml.Element
 import org.omg.sysml.lang.sysml.FeatureMembership
-import org.omg.sysml.lang.sysml.Generalization
 import org.omg.sysml.lang.sysml.Import
 import org.omg.sysml.lang.sysml.LiteralBoolean
-import org.omg.sysml.lang.sysml.LiteralInteger
-import org.omg.sysml.lang.sysml.LiteralReal
 import org.omg.sysml.lang.sysml.LiteralString
-import org.omg.sysml.lang.sysml.LiteralUnbounded
 import org.omg.sysml.lang.sysml.Membership
 import org.omg.sysml.lang.sysml.NullExpression
 import org.omg.sysml.lang.sysml.OperatorExpression
@@ -41,6 +37,10 @@ import org.eclipse.xtext.ui.editor.outline.impl.DocumentRootNode
 import org.omg.sysml.util.ElementUtil
 import org.omg.sysml.util.TypeUtil
 import org.omg.sysml.util.FeatureUtil
+import org.omg.sysml.lang.sysml.LiteralRational
+import org.omg.sysml.lang.sysml.LiteralInfinity
+import org.omg.sysml.lang.sysml.Specialization
+import org.omg.sysml.lang.sysml.LiteralNatural
 
 /**
  * Customization of the default outline structure.
@@ -100,27 +100,6 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		membership.prefixText + ' ' + membership.nameText
 	}
 	
-	def String featurePrefixText(FeatureMembership membership) {
-		var text = membership.prefixText
-		if (membership.isComposite) {
-			text += ' composite'
-		}
-		if (membership.isPortion) {
-			text += ' portion'
-		}
-		if (membership.isPort) {
-			text += ' port'
-		}
-		if (membership.direction !== null) {
-			text += ' ' + membership.direction
-		}
-		text
-	}
-	
-	def String _text(FeatureMembership membership) {
-		membership.featurePrefixText + ' ' + membership.nameText
-	}
-	
 	def String _text(Import import_) {
 		var text = import_.metaclassText;
 		if (import_.visibility !== null) {
@@ -136,7 +115,15 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		if (imp.importedNamespace?.name !== null) {
 			text += ' ' + imp.importedNamespace.name
 		}
-		text + if (imp.isRecursive) "::**" else "::*"
+		if (imp.importedMemberName === null) {
+			text += "::*"
+		} else {
+			text += "::" + imp.importedMemberName
+		}
+		if (imp.isRecursive) {
+			text += "::**"
+		}
+		text
 	}
 	
 	def String _text(Type type) {
@@ -154,8 +141,35 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		text
 	}
 	
+	def String _text(Feature feature) {
+		var text = feature.eClass.name;
+		if (feature.direction !== null) {
+			text += ' ' + feature.direction
+		}
+		if (feature.isAbstract) {
+			text += ' abstract'
+		}
+		if (feature.isComposite) {
+			text += ' composite'
+		}
+		if (feature.isPortion) {
+			text += ' portion'
+		}
+		if (feature.isEnd) {
+			text += ' end'
+		}
+		if (feature.humanId !== null) {
+			text += ' id ' + feature.humanId
+		}
+		val name = feature.getEffectiveName
+		if (name !== null) {
+			text += ' ' + name;
+		}
+		text
+	}
+	
 	def String _text(Expression expression) {
-		var text = (expression as Type)._text
+		var text = (expression as Feature)._text
 		if (expression.isModelLevelEvaluable) {
 			text += " model-level"
 		}
@@ -170,15 +184,15 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		literal.metaclassText + ' ' + literal.value
 	}
 	
-	def String _text(LiteralInteger literal) {
-		literal.metaclassText + ' ' + literal.value
+	def String _text(LiteralNatural literal) {
+		literal.metaclassText + ' ' + literal.getValue
 	}
 	
-	def String _text(LiteralReal literal) {
-		literal.metaclassText + ' ' + literal.value
+	def String _text(LiteralRational literal) {
+		literal.metaclassText + ' ' + literal.getValue
 	}
 	
-	def String _text(LiteralUnbounded literal) {
+	def String _text(LiteralInfinity literal) {
 		literal.metaclassText + ' *'
 	}
 	
@@ -318,20 +332,20 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		}
 	}
 	
-	def boolean _isLeaf(Generalization generalization) {
-		generalization.general === null
+	def boolean _isLeaf(Specialization generalization) {
+		generalization.getGeneral === null
 	}
 	
-	def void _createChildren(IOutlineNode parentNode, Generalization generalization) {
-		if (generalization.specific !== null && generalization.specific !== generalization.eContainer) {
-			createNode(parentNode, generalization.specific, 
-				generalization.specific._image, generalization.specific._text, 
+	def void _createChildren(IOutlineNode parentNode, Specialization generalization) {
+		if (generalization.getSpecific !== null && generalization.getSpecific !== generalization.eContainer) {
+			createNode(parentNode, generalization.getSpecific, 
+				generalization.getSpecific._image, generalization.getSpecific._text, 
 				true
 			)			
 		}
-		if (generalization.general !== null) {
-			createNode(parentNode, generalization.general, 
-				generalization.general._image, generalization.general._text, 
+		if (generalization.getGeneral !== null) {
+			createNode(parentNode, generalization.getGeneral, 
+				generalization.getGeneral._image, generalization.getGeneral._text, 
 				true
 			)
 		}

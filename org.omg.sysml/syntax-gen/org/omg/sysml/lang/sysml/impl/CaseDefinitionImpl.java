@@ -22,11 +22,14 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
+import java.util.Collection;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.omg.sysml.lang.sysml.CaseDefinition;
 import org.omg.sysml.lang.sysml.ObjectiveMembership;
+import org.omg.sysml.lang.sysml.PartUsage;
 import org.omg.sysml.lang.sysml.RequirementUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Usage;
@@ -42,6 +45,7 @@ import org.omg.sysml.util.TypeUtil;
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.CaseDefinitionImpl#getObjectiveRequirement <em>Objective Requirement</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.CaseDefinitionImpl#getSubjectParameter <em>Subject Parameter</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.CaseDefinitionImpl#getActorParameter <em>Actor Parameter</em>}</li>
  * </ul>
  *
  * @generated
@@ -103,6 +107,18 @@ public class CaseDefinitionImpl extends CalculationDefinitionImpl implements Cas
 	 * @generated
 	 */
 	@Override
+	public EList<PartUsage> getActorParameter() {
+		// TODO: implement this method to return the 'Actor Parameter' reference list
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public RequirementUsage getObjectiveRequirement() {
 		RequirementUsage objectiveRequirement = basicGetObjectiveRequirement();
 		return objectiveRequirement != null && objectiveRequirement.eIsProxy() ? (RequirementUsage)eResolveProxy((InternalEObject)objectiveRequirement) : objectiveRequirement;
@@ -141,6 +157,8 @@ public class CaseDefinitionImpl extends CalculationDefinitionImpl implements Cas
 			case SysMLPackage.CASE_DEFINITION__SUBJECT_PARAMETER:
 				if (resolve) return getSubjectParameter();
 				return basicGetSubjectParameter();
+			case SysMLPackage.CASE_DEFINITION__ACTOR_PARAMETER:
+				return getActorParameter();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -150,6 +168,7 @@ public class CaseDefinitionImpl extends CalculationDefinitionImpl implements Cas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
@@ -158,6 +177,10 @@ public class CaseDefinitionImpl extends CalculationDefinitionImpl implements Cas
 				return;
 			case SysMLPackage.CASE_DEFINITION__SUBJECT_PARAMETER:
 				setSubjectParameter((Usage)newValue);
+				return;
+			case SysMLPackage.CASE_DEFINITION__ACTOR_PARAMETER:
+				getActorParameter().clear();
+				getActorParameter().addAll((Collection<? extends PartUsage>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -177,6 +200,9 @@ public class CaseDefinitionImpl extends CalculationDefinitionImpl implements Cas
 			case SysMLPackage.CASE_DEFINITION__SUBJECT_PARAMETER:
 				setSubjectParameter((Usage)null);
 				return;
+			case SysMLPackage.CASE_DEFINITION__ACTOR_PARAMETER:
+				getActorParameter().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -193,6 +219,8 @@ public class CaseDefinitionImpl extends CalculationDefinitionImpl implements Cas
 				return basicGetObjectiveRequirement() != null;
 			case SysMLPackage.CASE_DEFINITION__SUBJECT_PARAMETER:
 				return basicGetSubjectParameter() != null;
+			case SysMLPackage.CASE_DEFINITION__ACTOR_PARAMETER:
+				return !getActorParameter().isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

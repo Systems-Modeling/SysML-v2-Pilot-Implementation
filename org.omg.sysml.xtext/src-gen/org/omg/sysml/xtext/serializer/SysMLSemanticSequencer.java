@@ -17,7 +17,7 @@ import org.omg.kerml.expressions.xtext.serializer.KerMLExpressionsSemanticSequen
 import org.omg.sysml.lang.sysml.AcceptActionUsage;
 import org.omg.sysml.lang.sysml.ActionDefinition;
 import org.omg.sysml.lang.sysml.ActionUsage;
-import org.omg.sysml.lang.sysml.AddressedConcernMembership;
+import org.omg.sysml.lang.sysml.FramedConcernMembership;
 import org.omg.sysml.lang.sysml.AllocationDefinition;
 import org.omg.sysml.lang.sysml.AllocationUsage;
 import org.omg.sysml.lang.sysml.AnalysisCaseDefinition;
@@ -71,10 +71,10 @@ import org.omg.sysml.lang.sysml.ItemUsage;
 import org.omg.sysml.lang.sysml.JoinNode;
 import org.omg.sysml.lang.sysml.LifeClass;
 import org.omg.sysml.lang.sysml.LiteralBoolean;
-import org.omg.sysml.lang.sysml.LiteralInteger;
-import org.omg.sysml.lang.sysml.LiteralReal;
+import org.omg.sysml.lang.sysml.LiteralNatural;
+import org.omg.sysml.lang.sysml.LiteralRational;
 import org.omg.sysml.lang.sysml.LiteralString;
-import org.omg.sysml.lang.sysml.LiteralUnbounded;
+import org.omg.sysml.lang.sysml.LiteralInfinity;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.MergeNode;
 import org.omg.sysml.lang.sysml.MetadataFeature;
@@ -118,7 +118,7 @@ import org.omg.sysml.lang.sysml.SubjectMembership;
 import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.Succession;
 import org.omg.sysml.lang.sysml.SuccessionItemFlow;
-import org.omg.sysml.lang.sysml.Superclassing;
+import org.omg.sysml.lang.sysml.Subclassification;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.TargetEnd;
 import org.omg.sysml.lang.sysml.TextualRepresentation;
@@ -203,7 +203,7 @@ public class SysMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 				}
 				else break;
 			case SysMLPackage.ADDRESSED_CONCERN_MEMBERSHIP:
-				sequence_AddressedConcernMember_DefinitionMemberPrefix(context, (AddressedConcernMembership) semanticObject); 
+				sequence_AddressedConcernMember_DefinitionMemberPrefix(context, (FramedConcernMembership) semanticObject); 
 				return; 
 			case SysMLPackage.ALLOCATION_DEFINITION:
 				sequence_ConnectionBody_DefinitionPrefix_Identification_OccurrenceDefinitionPrefix_SuperclassingPart(context, (AllocationDefinition) semanticObject); 
@@ -971,16 +971,16 @@ public class SysMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 				}
 				else break;
 			case SysMLPackage.LITERAL_INTEGER:
-				sequence_LiteralInteger(context, (LiteralInteger) semanticObject); 
+				sequence_LiteralInteger(context, (LiteralNatural) semanticObject); 
 				return; 
 			case SysMLPackage.LITERAL_REAL:
-				sequence_LiteralReal(context, (LiteralReal) semanticObject); 
+				sequence_LiteralReal(context, (LiteralRational) semanticObject); 
 				return; 
 			case SysMLPackage.LITERAL_STRING:
 				sequence_LiteralString(context, (LiteralString) semanticObject); 
 				return; 
 			case SysMLPackage.LITERAL_UNBOUNDED:
-				sequence_LiteralUnbounded(context, (LiteralUnbounded) semanticObject); 
+				sequence_LiteralUnbounded(context, (LiteralInfinity) semanticObject); 
 				return; 
 			case SysMLPackage.MEMBERSHIP:
 				if (rule == grammarAccess.getConjugatedPortDefinitionMemberRule()) {
@@ -1541,7 +1541,7 @@ public class SysMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 				}
 				else break;
 			case SysMLPackage.SUPERCLASSING:
-				sequence_OwnedSuperclassing(context, (Superclassing) semanticObject); 
+				sequence_OwnedSuperclassing(context, (Subclassification) semanticObject); 
 				return; 
 			case SysMLPackage.TARGET_END:
 				sequence_EmptyTargetEnd(context, (TargetEnd) semanticObject); 
@@ -4688,7 +4688,7 @@ public class SysMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	 * Constraint:
 	 *     (ownedRelationship+=PrefixDocumentation* visibility=VisibilityIndicator? kind=AddressConcernKind ownedRelatedElement+=AddressedConcernUsage)
 	 */
-	protected void sequence_AddressedConcernMember_DefinitionMemberPrefix(ISerializationContext context, AddressedConcernMembership semanticObject) {
+	protected void sequence_AddressedConcernMember_DefinitionMemberPrefix(ISerializationContext context, FramedConcernMembership semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -9131,7 +9131,7 @@ public class SysMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	 * Constraint:
 	 *     superclass=[Classifier|QualifiedName]
 	 */
-	protected void sequence_OwnedSuperclassing(ISerializationContext context, Superclassing semanticObject) {
+	protected void sequence_OwnedSuperclassing(ISerializationContext context, Subclassification semanticObject) {
 		if (errorAcceptor != null) {
 			if (transientValues.isValueTransient(semanticObject, SysMLPackage.Literals.SUPERCLASSING__SUPERCLASS) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SysMLPackage.Literals.SUPERCLASSING__SUPERCLASS));

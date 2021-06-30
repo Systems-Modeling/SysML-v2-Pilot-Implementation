@@ -38,7 +38,6 @@ import org.omg.sysml.lang.sysml.FeatureReferenceExpression;
 import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.Function;
-import org.omg.sysml.lang.sysml.Generalization;
 import org.omg.sysml.lang.sysml.Import;
 import org.omg.sysml.lang.sysml.Interaction;
 import org.omg.sysml.lang.sysml.Invariant;
@@ -48,10 +47,10 @@ import org.omg.sysml.lang.sysml.ItemFlow;
 import org.omg.sysml.lang.sysml.ItemFlowEnd;
 import org.omg.sysml.lang.sysml.ItemFlowFeature;
 import org.omg.sysml.lang.sysml.LiteralBoolean;
-import org.omg.sysml.lang.sysml.LiteralInteger;
-import org.omg.sysml.lang.sysml.LiteralReal;
+import org.omg.sysml.lang.sysml.LiteralInfinity;
+import org.omg.sysml.lang.sysml.LiteralNatural;
+import org.omg.sysml.lang.sysml.LiteralRational;
 import org.omg.sysml.lang.sysml.LiteralString;
-import org.omg.sysml.lang.sysml.LiteralUnbounded;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.MetadataFeature;
 import org.omg.sysml.lang.sysml.MetadataFeatureValue;
@@ -67,12 +66,13 @@ import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.ResultExpressionMembership;
 import org.omg.sysml.lang.sysml.ReturnParameterMembership;
+import org.omg.sysml.lang.sysml.Specialization;
 import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.Structure;
+import org.omg.sysml.lang.sysml.Subclassification;
 import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.Succession;
 import org.omg.sysml.lang.sysml.SuccessionItemFlow;
-import org.omg.sysml.lang.sysml.Superclassing;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.TextualRepresentation;
 import org.omg.sysml.lang.sysml.Type;
@@ -135,12 +135,12 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 				sequence_Behavior_BehaviorBody_ClassifierConjugationPart_ClassifierDeclaration_Identification_ParameterList_SuperclassingPart(context, (Behavior) semanticObject); 
 				return; 
 			case SysMLPackage.BINDING_CONNECTOR:
-				sequence_BindingConnector_BindingConnectorDeclaration_FeatureConjugationPart_FeatureDeclaration_Identification_MultiplicityPart_Redefines_Redefinitions_Subsets_Subsettings_TypeBody_TypeFeaturingPart_TypedBy_Typings(context, (BindingConnector) semanticObject); 
+				sequence_BindingConnectorDeclaration_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_MultiplicityPart_Redefines_Redefinitions_Subsets_Subsettings_TypeBody_TypeFeaturingPart_TypedBy_Typings(context, (BindingConnector) semanticObject); 
 				return; 
 			case SysMLPackage.BOOLEAN_EXPRESSION:
 				if (rule == grammarAccess.getFeatureElementRule()
 						|| rule == grammarAccess.getBooleanExpressionRule()) {
-					sequence_BooleanExpression_EmptyReturnParameterPart_FeatureConjugationPart_FeatureDeclaration_FunctionBody_Identification_MultiplicityPart_Redefines_Redefinitions_ReturnParameterPart_StepParameterList_Subsets_Subsettings_TypeFeaturingPart_TypedBy_Typings_ValuePart(context, (BooleanExpression) semanticObject); 
+					sequence_EmptyReturnParameterPart_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_FunctionBody_Identification_MultiplicityPart_Redefines_Redefinitions_ReturnParameterPart_StepParameterList_Subsets_Subsettings_TypeFeaturingPart_TypedBy_Typings_ValuePart(context, (BooleanExpression) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getParameterRule()) {
@@ -193,7 +193,7 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 				}
 				else break;
 			case SysMLPackage.CONNECTOR:
-				sequence_BinaryConnectorDeclaration_Connector_FeatureConjugationPart_FeatureDeclaration_Identification_MultiplicityPart_NaryConnectorDeclaration_Redefines_Redefinitions_Subsets_Subsettings_TypeBody_TypeFeaturingPart_TypedBy_Typings(context, (Connector) semanticObject); 
+				sequence_BinaryConnectorDeclaration_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_MultiplicityPart_NaryConnectorDeclaration_Redefines_Redefinitions_Subsets_Subsettings_TypeBody_TypeFeaturingPart_TypedBy_Typings(context, (Connector) semanticObject); 
 				return; 
 			case SysMLPackage.DATA_TYPE:
 				sequence_ClassifierConjugationPart_ClassifierDeclaration_DataType_Identification_SuperclassingPart_TypeBody(context, (DataType) semanticObject); 
@@ -227,11 +227,6 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 					sequence_ConnectorEndMember(context, (EndFeatureMembership) semanticObject); 
 					return; 
 				}
-				else if (rule == grammarAccess.getFeatureTypeMemberRule()
-						|| rule == grammarAccess.getEndFeatureMemberRule()) {
-					sequence_EndFeatureMember_FeatureMemberFlags_TypeMemberPrefix(context, (EndFeatureMembership) semanticObject); 
-					return; 
-				}
 				else if (rule == grammarAccess.getItemFlowEndMemberRule()) {
 					sequence_ItemFlowEndMember(context, (EndFeatureMembership) semanticObject); 
 					return; 
@@ -240,7 +235,7 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 			case SysMLPackage.EXPRESSION:
 				if (rule == grammarAccess.getFeatureElementRule()
 						|| rule == grammarAccess.getExpressionRule()) {
-					sequence_EmptyReturnParameterPart_Expression_FeatureConjugationPart_FeatureDeclaration_FunctionBody_Identification_MultiplicityPart_Redefines_Redefinitions_ReturnParameterPart_StepParameterList_Subsets_Subsettings_TypeFeaturingPart_TypedBy_Typings_ValuePart(context, (Expression) semanticObject); 
+					sequence_EmptyReturnParameterPart_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_FunctionBody_Identification_MultiplicityPart_Redefines_Redefinitions_ReturnParameterPart_StepParameterList_Subsets_Subsettings_TypeFeaturingPart_TypedBy_Typings_ValuePart(context, (Expression) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getExpressionBodyRule()
@@ -312,15 +307,15 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 				}
 				else if (rule == grammarAccess.getFeatureElementRule()
 						|| rule == grammarAccess.getFeatureRule()) {
-					sequence_Feature_FeatureConjugationPart_FeatureDeclaration_Identification_MultiplicityPart_Redefines_Redefinitions_Subsets_Subsettings_TypeBody_TypeFeaturingPart_TypedBy_Typings_ValuePart(context, (Feature) semanticObject); 
+					sequence_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_MultiplicityPart_Redefines_Redefinitions_Subsets_Subsettings_TypeBody_TypeFeaturingPart_TypedBy_Typings_ValuePart(context, (Feature) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getParameterRule()) {
-					sequence_Identification_MultiplicityPart_ParameterDeclaration_Redefines_Subsets_TypedBy(context, (Feature) semanticObject); 
+					sequence_Identification_MultiplicityPart_Parameter_ParameterDeclaration_Redefines_Subsets_TypedBy(context, (Feature) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getStepParameterRule()) {
-					sequence_Identification_MultiplicityPart_ParameterDeclaration_Redefines_Subsets_TypedBy_ValuePart(context, (Feature) semanticObject); 
+					sequence_Identification_MultiplicityPart_Parameter_ParameterDeclaration_Redefines_Subsets_TypedBy_ValuePart(context, (Feature) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getTypeReferenceRule()) {
@@ -337,13 +332,8 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 					sequence_ExpressionBodyMember(context, (FeatureMembership) semanticObject); 
 					return; 
 				}
-				else if (rule == grammarAccess.getUndirectedFeatureMemberRule()) {
-					sequence_FeatureMemberFlags_TypeMemberPrefix_UndirectedFeaturePart(context, (FeatureMembership) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getFeatureTypeMemberRule()
-						|| rule == grammarAccess.getFeatureMemberRule()) {
-					sequence_FeatureMember_FeatureMemberFlags_TypeMemberPrefix_UndirectedFeaturePart(context, (FeatureMembership) semanticObject); 
+				else if (rule == grammarAccess.getFeatureMemberRule()) {
+					sequence_FeatureMember_MemberPrefix(context, (FeatureMembership) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getFeaturePathExpressionMemberRule()) {
@@ -454,17 +444,6 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 			case SysMLPackage.FUNCTION:
 				sequence_ClassifierConjugationPart_ClassifierDeclaration_EmptyReturnParameterPart_Function_FunctionBody_Identification_ParameterList_ReturnParameterPart_SuperclassingPart(context, (Function) semanticObject); 
 				return; 
-			case SysMLPackage.GENERALIZATION:
-				if (rule == grammarAccess.getNonFeatureElementRule()
-						|| rule == grammarAccess.getGeneralizationRule()) {
-					sequence_Generalization_Identification(context, (Generalization) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getOwnedGeneralizationRule()) {
-					sequence_OwnedGeneralization(context, (Generalization) semanticObject); 
-					return; 
-				}
-				else break;
 			case SysMLPackage.IMPORT:
 				if (rule == grammarAccess.getImportRule()) {
 					sequence_Import_ImportedFilterPackage_ImportedNamespace(context, (Import) semanticObject); 
@@ -479,7 +458,7 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 				sequence_BehaviorBody_ClassifierConjugationPart_ClassifierDeclaration_Identification_Interaction_ParameterList_SuperclassingPart(context, (Interaction) semanticObject); 
 				return; 
 			case SysMLPackage.INVARIANT:
-				sequence_EmptyReturnParameterPart_FeatureConjugationPart_FeatureDeclaration_FunctionBody_Identification_Invariant_InvariantPart_MultiplicityPart_Redefines_Redefinitions_ReturnParameterPart_StepParameterList_Subsets_Subsettings_TypeFeaturingPart_TypedBy_Typings_ValuePart(context, (Invariant) semanticObject); 
+				sequence_EmptyReturnParameterPart_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_FunctionBody_Identification_InvariantPart_MultiplicityPart_Redefines_Redefinitions_ReturnParameterPart_StepParameterList_Subsets_Subsettings_TypeFeaturingPart_TypedBy_Typings_ValuePart(context, (Invariant) semanticObject); 
 				return; 
 			case SysMLPackage.INVOCATION_EXPRESSION:
 				sequence_InvocationExpression_NamedArgumentList_PositionalArgumentList(context, (InvocationExpression) semanticObject); 
@@ -495,7 +474,7 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 				}
 				else break;
 			case SysMLPackage.ITEM_FLOW:
-				sequence_BehaviorBody_FeatureConjugationPart_FeatureDeclaration_Identification_ItemFlow_ItemFlowDeclaration_MultiplicityPart_Redefines_Redefinitions_Subsets_Subsettings_TypeFeaturingPart_TypedBy_Typings(context, (ItemFlow) semanticObject); 
+				sequence_BehaviorBody_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_ItemFlowDeclaration_MultiplicityPart_Redefines_Redefinitions_Subsets_Subsettings_TypeFeaturingPart_TypedBy_Typings(context, (ItemFlow) semanticObject); 
 				return; 
 			case SysMLPackage.ITEM_FLOW_END:
 				sequence_ItemFlowEnd(context, (ItemFlowEnd) semanticObject); 
@@ -553,25 +532,33 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 					return; 
 				}
 				else break;
-			case SysMLPackage.LITERAL_INTEGER:
-				sequence_LiteralInteger(context, (LiteralInteger) semanticObject); 
+			case SysMLPackage.LITERAL_INFINITY:
+				sequence_LiteralInfinity(context, (LiteralInfinity) semanticObject); 
 				return; 
-			case SysMLPackage.LITERAL_REAL:
-				sequence_LiteralReal(context, (LiteralReal) semanticObject); 
+			case SysMLPackage.LITERAL_NATURAL:
+				sequence_LiteralInteger(context, (LiteralNatural) semanticObject); 
+				return; 
+			case SysMLPackage.LITERAL_RATIONAL:
+				sequence_LiteralReal(context, (LiteralRational) semanticObject); 
 				return; 
 			case SysMLPackage.LITERAL_STRING:
 				sequence_LiteralString(context, (LiteralString) semanticObject); 
 				return; 
-			case SysMLPackage.LITERAL_UNBOUNDED:
-				sequence_LiteralUnbounded(context, (LiteralUnbounded) semanticObject); 
-				return; 
 			case SysMLPackage.MEMBERSHIP:
-				if (rule == grammarAccess.getNamespaceMemberRule()) {
-					sequence_FeatureNamespaceMember_NamespaceMember_NonFeatureNamespaceMember(context, (Membership) semanticObject); 
+				if (rule == grammarAccess.getAliasMemberRule()) {
+					sequence_AliasMember_MemberPrefix(context, (Membership) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getFeatureReferenceMemberRule()) {
 					sequence_FeatureReferenceMember(context, (Membership) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getNamespaceMemberRule()) {
+					sequence_MemberPrefix_NamespaceMember(context, (Membership) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getNonFeatureMemberRule()) {
+					sequence_MemberPrefix_NonFeatureMember(context, (Membership) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getMultiplicityExpressionMemberRule()) {
@@ -580,10 +567,6 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 				}
 				else if (rule == grammarAccess.getMultiplicityMemberRule()) {
 					sequence_MultiplicityMember(context, (Membership) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getNonFeatureTypeMemberRule()) {
-					sequence_NonFeatureNamespaceMember_TypeMemberPrefix(context, (Membership) semanticObject); 
 					return; 
 				}
 				else break;
@@ -627,10 +610,6 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 			case SysMLPackage.PARAMETER_MEMBERSHIP:
 				if (rule == grammarAccess.getBodyParameterMemberRule()) {
 					sequence_BodyParameterMember(context, (ParameterMembership) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getDirectedFeatureMemberRule()) {
-					sequence_DirectedFeatureMember_FeatureMemberFlags_TypeMemberPrefix_UndirectedFeaturePart(context, (ParameterMembership) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getParameterMemberRule()) {
@@ -725,7 +704,7 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 				}
 				else break;
 			case SysMLPackage.RESULT_EXPRESSION_MEMBERSHIP:
-				sequence_ResultExpressionMember_TypeMemberPrefix(context, (ResultExpressionMembership) semanticObject); 
+				sequence_MemberPrefix_ResultExpressionMember(context, (ResultExpressionMembership) semanticObject); 
 				return; 
 			case SysMLPackage.RETURN_PARAMETER_MEMBERSHIP:
 				if (rule == grammarAccess.getEmptyReturnParameterMemberRule()) {
@@ -741,10 +720,21 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 					return; 
 				}
 				else break;
+			case SysMLPackage.SPECIALIZATION:
+				if (rule == grammarAccess.getNonFeatureElementRule()
+						|| rule == grammarAccess.getSpecializationRule()) {
+					sequence_Identification_Specialization(context, (Specialization) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getOwnedSpecializationRule()) {
+					sequence_OwnedSpecialization(context, (Specialization) semanticObject); 
+					return; 
+				}
+				else break;
 			case SysMLPackage.STEP:
 				if (rule == grammarAccess.getFeatureElementRule()
 						|| rule == grammarAccess.getStepRule()) {
-					sequence_BehaviorBody_FeatureConjugationPart_FeatureDeclaration_Identification_MultiplicityPart_Redefines_Redefinitions_Step_StepParameterList_Subsets_Subsettings_TypeFeaturingPart_TypedBy_Typings_ValuePart(context, (Step) semanticObject); 
+					sequence_BehaviorBody_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_MultiplicityPart_Redefines_Redefinitions_StepParameterList_Subsets_Subsettings_TypeFeaturingPart_TypedBy_Typings_ValuePart(context, (Step) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getParameterRule()) {
@@ -759,6 +749,17 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 			case SysMLPackage.STRUCTURE:
 				sequence_ClassifierConjugationPart_ClassifierDeclaration_Identification_Structure_SuperclassingPart_TypeBody(context, (Structure) semanticObject); 
 				return; 
+			case SysMLPackage.SUBCLASSIFICATION:
+				if (rule == grammarAccess.getNonFeatureElementRule()
+						|| rule == grammarAccess.getSubclassificationRule()) {
+					sequence_Identification_Subclassification(context, (Subclassification) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getOwnedsubclassificationRule()) {
+					sequence_Ownedsubclassification(context, (Subclassification) semanticObject); 
+					return; 
+				}
+				else break;
 			case SysMLPackage.SUBSETTING:
 				if (rule == grammarAccess.getNonFeatureElementRule()
 						|| rule == grammarAccess.getSubsettingRule()) {
@@ -771,22 +772,11 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 				}
 				else break;
 			case SysMLPackage.SUCCESSION:
-				sequence_FeatureConjugationPart_FeatureDeclaration_Identification_MultiplicityPart_Redefines_Redefinitions_Subsets_Subsettings_Succession_SuccessionDeclaration_TypeBody_TypeFeaturingPart_TypedBy_Typings(context, (Succession) semanticObject); 
+				sequence_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_MultiplicityPart_Redefines_Redefinitions_Subsets_Subsettings_SuccessionDeclaration_TypeBody_TypeFeaturingPart_TypedBy_Typings(context, (Succession) semanticObject); 
 				return; 
 			case SysMLPackage.SUCCESSION_ITEM_FLOW:
-				sequence_BehaviorBody_FeatureConjugationPart_FeatureDeclaration_Identification_ItemFlowDeclaration_MultiplicityPart_Redefines_Redefinitions_Subsets_Subsettings_SuccessionItemFlow_TypeFeaturingPart_TypedBy_Typings(context, (SuccessionItemFlow) semanticObject); 
+				sequence_BehaviorBody_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_ItemFlowDeclaration_MultiplicityPart_Redefines_Redefinitions_Subsets_Subsettings_TypeFeaturingPart_TypedBy_Typings(context, (SuccessionItemFlow) semanticObject); 
 				return; 
-			case SysMLPackage.SUPERCLASSING:
-				if (rule == grammarAccess.getNonFeatureElementRule()
-						|| rule == grammarAccess.getSuperclassingRule()) {
-					sequence_Identification_Superclassing(context, (Superclassing) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getOwnedSuperclassingRule()) {
-					sequence_OwnedSuperclassing(context, (Superclassing) semanticObject); 
-					return; 
-				}
-				else break;
 			case SysMLPackage.TEXTUAL_REPRESENTATION:
 				if (rule == grammarAccess.getTextualRepresentationRule()
 						|| rule == grammarAccess.getNonFeatureElementRule()) {
@@ -816,6 +806,18 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 		if (errorAcceptor != null)
 			errorAcceptor.accept(diagnosticProvider.createInvalidContextOrTypeDiagnostic(semanticObject, context));
 	}
+	
+	/**
+	 * Contexts:
+	 *     AliasMember returns Membership
+	 *
+	 * Constraint:
+	 *     (ownedRelationship+=PrefixDocumentation* visibility=VisibilityIndicator? memberName=Name memberElement=[Element|QualifiedName])
+	 */
+	protected void sequence_AliasMember_MemberPrefix(ISerializationContext context, Membership semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
 	
 	/**
 	 * Contexts:
@@ -876,8 +878,14 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	 *         isSufficient?='all'? 
 	 *         ((humanId=Name name=Name?) | name=Name)? 
 	 *         ownedRelationship+=MultiplicityMember? 
-	 *         ((ownedRelationship+=OwnedSuperclassing ownedRelationship+=OwnedSuperclassing*) | ownedRelationship+=ClassifierConjugation)? 
-	 *         (ownedRelationship+=OwnedDocumentation | ownedRelationship+=NonFeatureTypeMember | ownedRelationship+=FeatureTypeMember | ownedRelationship+=Import)*
+	 *         ((ownedRelationship+=Ownedsubclassification ownedRelationship+=Ownedsubclassification*) | ownedRelationship+=ClassifierConjugation)? 
+	 *         (
+	 *             ownedRelationship+=OwnedDocumentation | 
+	 *             ownedRelationship+=NonFeatureMember | 
+	 *             ownedRelationship+=FeatureMember | 
+	 *             ownedRelationship+=AliasMember | 
+	 *             ownedRelationship+=Import
+	 *         )*
 	 *     )
 	 */
 	protected void sequence_AssociationStructure_ClassifierConjugationPart_ClassifierDeclaration_Identification_SuperclassingPart_TypeBody(ISerializationContext context, AssociationStructure semanticObject) {
@@ -896,8 +904,14 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	 *         isSufficient?='all'? 
 	 *         ((humanId=Name name=Name?) | name=Name)? 
 	 *         ownedRelationship+=MultiplicityMember? 
-	 *         ((ownedRelationship+=OwnedSuperclassing ownedRelationship+=OwnedSuperclassing*) | ownedRelationship+=ClassifierConjugation)? 
-	 *         (ownedRelationship+=OwnedDocumentation | ownedRelationship+=NonFeatureTypeMember | ownedRelationship+=FeatureTypeMember | ownedRelationship+=Import)*
+	 *         ((ownedRelationship+=Ownedsubclassification ownedRelationship+=Ownedsubclassification*) | ownedRelationship+=ClassifierConjugation)? 
+	 *         (
+	 *             ownedRelationship+=OwnedDocumentation | 
+	 *             ownedRelationship+=NonFeatureMember | 
+	 *             ownedRelationship+=FeatureMember | 
+	 *             ownedRelationship+=AliasMember | 
+	 *             ownedRelationship+=Import
+	 *         )*
 	 *     )
 	 */
 	protected void sequence_Association_ClassifierConjugationPart_ClassifierDeclaration_Identification_SuperclassingPart_TypeBody(ISerializationContext context, Association semanticObject) {
@@ -916,85 +930,12 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	 *         isSufficient?='all'? 
 	 *         ((humanId=Name name=Name?) | name=Name)? 
 	 *         ownedRelationship+=MultiplicityMember? 
-	 *         ((ownedRelationship+=OwnedSuperclassing ownedRelationship+=OwnedSuperclassing*) | ownedRelationship+=ClassifierConjugation)? 
+	 *         ((ownedRelationship+=Ownedsubclassification ownedRelationship+=Ownedsubclassification*) | ownedRelationship+=ClassifierConjugation)? 
 	 *         (ownedRelationship+=ParameterMember ownedRelationship+=ParameterMember*)? 
-	 *         (
-	 *             ownedRelationship+=OwnedDocumentation | 
-	 *             ownedRelationship+=NonFeatureTypeMember | 
-	 *             ownedRelationship+=UndirectedFeatureMember | 
-	 *             ownedRelationship+=DirectedFeatureMember | 
-	 *             ownedRelationship+=EndFeatureMember | 
-	 *             ownedRelationship+=Import
-	 *         )*
+	 *         (ownedRelationship+=OwnedDocumentation | ownedRelationship+=NonFeatureMember | ownedRelationship+=FeatureMember | ownedRelationship+=Import)*
 	 *     )
 	 */
 	protected void sequence_BehaviorBody_ClassifierConjugationPart_ClassifierDeclaration_Identification_Interaction_ParameterList_SuperclassingPart(ISerializationContext context, Interaction semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     FeatureElement returns SuccessionItemFlow
-	 *     SuccessionItemFlow returns SuccessionItemFlow
-	 *
-	 * Constraint:
-	 *     (
-	 *         isAbstract?='abstract'? 
-	 *         (
-	 *             (
-	 *                 (
-	 *                     (isSufficient?='all' ownedRelationship+=FeatureConjugation?) | 
-	 *                     (isSufficient?='all' ((humanId=Name name=Name?) | name=Name) ownedRelationship+=FeatureConjugation?)
-	 *                 ) 
-	 *                 (ownedRelationship+=OwnedTypeFeaturing ownedRelationship+=OwnedTypeFeaturing*)? 
-	 *                 (ownedRelationship+=ItemFeatureMember | ownedRelationship+=EmptyItemFeatureMember)
-	 *             ) | 
-	 *             (
-	 *                 (isSufficient?='all' | (isSufficient?='all' ((humanId=Name name=Name?) | name=Name)))? 
-	 *                 ownedRelationship+=MultiplicityMember 
-	 *                 ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?))? 
-	 *                 (ownedRelationship+=OwnedTypeFeaturing ownedRelationship+=OwnedTypeFeaturing*)? 
-	 *                 (ownedRelationship+=ItemFeatureMember | ownedRelationship+=EmptyItemFeatureMember)
-	 *             ) | 
-	 *             (
-	 *                 (
-	 *                     isSufficient?='all' | 
-	 *                     (isSufficient?='all' ((humanId=Name name=Name?) | name=Name)) | 
-	 *                     (
-	 *                         (isSufficient?='all' | (isSufficient?='all' ((humanId=Name name=Name?) | name=Name)))? 
-	 *                         ownedRelationship+=MultiplicityMember 
-	 *                         ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?))?
-	 *                     )
-	 *                 ) 
-	 *                 (
-	 *                     (
-	 *                         (ownedRelationship+=OwnedFeatureTyping ownedRelationship+=OwnedFeatureTyping*) | 
-	 *                         (ownedRelationship+=OwnedSubsetting ownedRelationship+=OwnedSubsetting*) | 
-	 *                         (ownedRelationship+=OwnedRedefinition ownedRelationship+=OwnedRedefinition*)
-	 *                     ) 
-	 *                     (ownedRelationship+=MultiplicityMember ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?))?)?
-	 *                 )+ 
-	 *                 (ownedRelationship+=OwnedTypeFeaturing ownedRelationship+=OwnedTypeFeaturing*)? 
-	 *                 (ownedRelationship+=ItemFeatureMember | ownedRelationship+=EmptyItemFeatureMember)
-	 *             ) | 
-	 *             ownedRelationship+=ItemFeatureMember | 
-	 *             ownedRelationship+=EmptyItemFeatureMember | 
-	 *             (isSufficient?='all'? ownedRelationship+=EmptyItemFeatureMember)
-	 *         ) 
-	 *         ownedRelationship+=ItemFlowEndMember 
-	 *         ownedRelationship+=ItemFlowEndMember 
-	 *         (
-	 *             ownedRelationship+=OwnedDocumentation | 
-	 *             ownedRelationship+=NonFeatureTypeMember | 
-	 *             ownedRelationship+=UndirectedFeatureMember | 
-	 *             ownedRelationship+=DirectedFeatureMember | 
-	 *             ownedRelationship+=EndFeatureMember | 
-	 *             ownedRelationship+=Import
-	 *         )*
-	 *     )
-	 */
-	protected void sequence_BehaviorBody_FeatureConjugationPart_FeatureDeclaration_Identification_ItemFlowDeclaration_MultiplicityPart_Redefines_Redefinitions_Subsets_Subsettings_SuccessionItemFlow_TypeFeaturingPart_TypedBy_Typings(ISerializationContext context, SuccessionItemFlow semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -1006,7 +947,10 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	 *
 	 * Constraint:
 	 *     (
+	 *         direction=FeatureDirection? 
 	 *         isAbstract?='abstract'? 
+	 *         (isComposite?='composite' | isPortion?='portion')? 
+	 *         isEnd?='end'? 
 	 *         (
 	 *             (
 	 *                 (
@@ -1050,17 +994,72 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	 *         ) 
 	 *         ownedRelationship+=ItemFlowEndMember 
 	 *         ownedRelationship+=ItemFlowEndMember 
-	 *         (
-	 *             ownedRelationship+=OwnedDocumentation | 
-	 *             ownedRelationship+=NonFeatureTypeMember | 
-	 *             ownedRelationship+=UndirectedFeatureMember | 
-	 *             ownedRelationship+=DirectedFeatureMember | 
-	 *             ownedRelationship+=EndFeatureMember | 
-	 *             ownedRelationship+=Import
-	 *         )*
+	 *         (ownedRelationship+=OwnedDocumentation | ownedRelationship+=NonFeatureMember | ownedRelationship+=FeatureMember | ownedRelationship+=Import)*
 	 *     )
 	 */
-	protected void sequence_BehaviorBody_FeatureConjugationPart_FeatureDeclaration_Identification_ItemFlow_ItemFlowDeclaration_MultiplicityPart_Redefines_Redefinitions_Subsets_Subsettings_TypeFeaturingPart_TypedBy_Typings(ISerializationContext context, ItemFlow semanticObject) {
+	protected void sequence_BehaviorBody_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_ItemFlowDeclaration_MultiplicityPart_Redefines_Redefinitions_Subsets_Subsettings_TypeFeaturingPart_TypedBy_Typings(ISerializationContext context, ItemFlow semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     FeatureElement returns SuccessionItemFlow
+	 *     SuccessionItemFlow returns SuccessionItemFlow
+	 *
+	 * Constraint:
+	 *     (
+	 *         direction=FeatureDirection? 
+	 *         isAbstract?='abstract'? 
+	 *         (isComposite?='composite' | isPortion?='portion')? 
+	 *         isEnd?='end'? 
+	 *         (
+	 *             (
+	 *                 (
+	 *                     (isSufficient?='all' ownedRelationship+=FeatureConjugation?) | 
+	 *                     (isSufficient?='all' ((humanId=Name name=Name?) | name=Name) ownedRelationship+=FeatureConjugation?)
+	 *                 ) 
+	 *                 (ownedRelationship+=OwnedTypeFeaturing ownedRelationship+=OwnedTypeFeaturing*)? 
+	 *                 (ownedRelationship+=ItemFeatureMember | ownedRelationship+=EmptyItemFeatureMember)
+	 *             ) | 
+	 *             (
+	 *                 (isSufficient?='all' | (isSufficient?='all' ((humanId=Name name=Name?) | name=Name)))? 
+	 *                 ownedRelationship+=MultiplicityMember 
+	 *                 ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?))? 
+	 *                 (ownedRelationship+=OwnedTypeFeaturing ownedRelationship+=OwnedTypeFeaturing*)? 
+	 *                 (ownedRelationship+=ItemFeatureMember | ownedRelationship+=EmptyItemFeatureMember)
+	 *             ) | 
+	 *             (
+	 *                 (
+	 *                     isSufficient?='all' | 
+	 *                     (isSufficient?='all' ((humanId=Name name=Name?) | name=Name)) | 
+	 *                     (
+	 *                         (isSufficient?='all' | (isSufficient?='all' ((humanId=Name name=Name?) | name=Name)))? 
+	 *                         ownedRelationship+=MultiplicityMember 
+	 *                         ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?))?
+	 *                     )
+	 *                 ) 
+	 *                 (
+	 *                     (
+	 *                         (ownedRelationship+=OwnedFeatureTyping ownedRelationship+=OwnedFeatureTyping*) | 
+	 *                         (ownedRelationship+=OwnedSubsetting ownedRelationship+=OwnedSubsetting*) | 
+	 *                         (ownedRelationship+=OwnedRedefinition ownedRelationship+=OwnedRedefinition*)
+	 *                     ) 
+	 *                     (ownedRelationship+=MultiplicityMember ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?))?)?
+	 *                 )+ 
+	 *                 (ownedRelationship+=OwnedTypeFeaturing ownedRelationship+=OwnedTypeFeaturing*)? 
+	 *                 (ownedRelationship+=ItemFeatureMember | ownedRelationship+=EmptyItemFeatureMember)
+	 *             ) | 
+	 *             ownedRelationship+=ItemFeatureMember | 
+	 *             ownedRelationship+=EmptyItemFeatureMember | 
+	 *             (isSufficient?='all'? ownedRelationship+=EmptyItemFeatureMember)
+	 *         ) 
+	 *         ownedRelationship+=ItemFlowEndMember 
+	 *         ownedRelationship+=ItemFlowEndMember 
+	 *         (ownedRelationship+=OwnedDocumentation | ownedRelationship+=NonFeatureMember | ownedRelationship+=FeatureMember | ownedRelationship+=Import)*
+	 *     )
+	 */
+	protected void sequence_BehaviorBody_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_ItemFlowDeclaration_MultiplicityPart_Redefines_Redefinitions_Subsets_Subsettings_TypeFeaturingPart_TypedBy_Typings(ISerializationContext context, SuccessionItemFlow semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -1072,7 +1071,10 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	 *
 	 * Constraint:
 	 *     (
+	 *         direction=FeatureDirection? 
 	 *         isAbstract?='abstract'? 
+	 *         (isComposite?='composite' | isPortion?='portion')? 
+	 *         isEnd?='end'? 
 	 *         (
 	 *             (isSufficient?='all' ownedRelationship+=FeatureConjugation? (ownedRelationship+=OwnedTypeFeaturing ownedRelationship+=OwnedTypeFeaturing*)?) | 
 	 *             (
@@ -1109,17 +1111,10 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	 *             )
 	 *         )? 
 	 *         (ownedRelationship+=FeatureValue | (ownedRelationship+=StepParameterMember ownedRelationship+=StepParameterMember*))? 
-	 *         (
-	 *             ownedRelationship+=OwnedDocumentation | 
-	 *             ownedRelationship+=NonFeatureTypeMember | 
-	 *             ownedRelationship+=UndirectedFeatureMember | 
-	 *             ownedRelationship+=DirectedFeatureMember | 
-	 *             ownedRelationship+=EndFeatureMember | 
-	 *             ownedRelationship+=Import
-	 *         )*
+	 *         (ownedRelationship+=OwnedDocumentation | ownedRelationship+=NonFeatureMember | ownedRelationship+=FeatureMember | ownedRelationship+=Import)*
 	 *     )
 	 */
-	protected void sequence_BehaviorBody_FeatureConjugationPart_FeatureDeclaration_Identification_MultiplicityPart_Redefines_Redefinitions_Step_StepParameterList_Subsets_Subsettings_TypeFeaturingPart_TypedBy_Typings_ValuePart(ISerializationContext context, Step semanticObject) {
+	protected void sequence_BehaviorBody_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_MultiplicityPart_Redefines_Redefinitions_StepParameterList_Subsets_Subsettings_TypeFeaturingPart_TypedBy_Typings_ValuePart(ISerializationContext context, Step semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -1135,16 +1130,9 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	 *         isSufficient?='all'? 
 	 *         ((humanId=Name name=Name?) | name=Name)? 
 	 *         ownedRelationship+=MultiplicityMember? 
-	 *         ((ownedRelationship+=OwnedSuperclassing ownedRelationship+=OwnedSuperclassing*) | ownedRelationship+=ClassifierConjugation)? 
+	 *         ((ownedRelationship+=Ownedsubclassification ownedRelationship+=Ownedsubclassification*) | ownedRelationship+=ClassifierConjugation)? 
 	 *         (ownedRelationship+=ParameterMember ownedRelationship+=ParameterMember*)? 
-	 *         (
-	 *             ownedRelationship+=OwnedDocumentation | 
-	 *             ownedRelationship+=NonFeatureTypeMember | 
-	 *             ownedRelationship+=UndirectedFeatureMember | 
-	 *             ownedRelationship+=DirectedFeatureMember | 
-	 *             ownedRelationship+=EndFeatureMember | 
-	 *             ownedRelationship+=Import
-	 *         )*
+	 *         (ownedRelationship+=OwnedDocumentation | ownedRelationship+=NonFeatureMember | ownedRelationship+=FeatureMember | ownedRelationship+=Import)*
 	 *     )
 	 */
 	protected void sequence_Behavior_BehaviorBody_ClassifierConjugationPart_ClassifierDeclaration_Identification_ParameterList_SuperclassingPart(ISerializationContext context, Behavior semanticObject) {
@@ -1159,7 +1147,10 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	 *
 	 * Constraint:
 	 *     (
+	 *         direction=FeatureDirection? 
 	 *         isAbstract?='abstract'? 
+	 *         (isComposite?='composite' | isPortion?='portion')? 
+	 *         isEnd?='end'? 
 	 *         (
 	 *             (
 	 *                 isSufficient?='all' 
@@ -1233,10 +1224,16 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	 *             (isSufficient?='all'? ownedRelationship+=ConnectorEndMember ownedRelationship+=ConnectorEndMember) | 
 	 *             (ownedRelationship+=ConnectorEndMember ownedRelationship+=ConnectorEndMember ownedRelationship+=ConnectorEndMember*)
 	 *         ) 
-	 *         (ownedRelationship+=OwnedDocumentation | ownedRelationship+=NonFeatureTypeMember | ownedRelationship+=FeatureTypeMember | ownedRelationship+=Import)*
+	 *         (
+	 *             ownedRelationship+=OwnedDocumentation | 
+	 *             ownedRelationship+=NonFeatureMember | 
+	 *             ownedRelationship+=FeatureMember | 
+	 *             ownedRelationship+=AliasMember | 
+	 *             ownedRelationship+=Import
+	 *         )*
 	 *     )
 	 */
-	protected void sequence_BinaryConnectorDeclaration_Connector_FeatureConjugationPart_FeatureDeclaration_Identification_MultiplicityPart_NaryConnectorDeclaration_Redefines_Redefinitions_Subsets_Subsettings_TypeBody_TypeFeaturingPart_TypedBy_Typings(ISerializationContext context, Connector semanticObject) {
+	protected void sequence_BinaryConnectorDeclaration_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_MultiplicityPart_NaryConnectorDeclaration_Redefines_Redefinitions_Subsets_Subsettings_TypeBody_TypeFeaturingPart_TypedBy_Typings(ISerializationContext context, Connector semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -1248,7 +1245,10 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	 *
 	 * Constraint:
 	 *     (
+	 *         direction=FeatureDirection? 
 	 *         isAbstract?='abstract'? 
+	 *         (isComposite?='composite' | isPortion?='portion')? 
+	 *         isEnd?='end'? 
 	 *         (
 	 *             (isSufficient?='all' ownedRelationship+=FeatureConjugation? (ownedRelationship+=OwnedTypeFeaturing ownedRelationship+=OwnedTypeFeaturing*)?) | 
 	 *             (
@@ -1287,76 +1287,16 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	 *         )? 
 	 *         ownedRelationship+=ConnectorEndMember 
 	 *         ownedRelationship+=ConnectorEndMember 
-	 *         (ownedRelationship+=OwnedDocumentation | ownedRelationship+=NonFeatureTypeMember | ownedRelationship+=FeatureTypeMember | ownedRelationship+=Import)*
-	 *     )
-	 */
-	protected void sequence_BindingConnector_BindingConnectorDeclaration_FeatureConjugationPart_FeatureDeclaration_Identification_MultiplicityPart_Redefines_Redefinitions_Subsets_Subsettings_TypeBody_TypeFeaturingPart_TypedBy_Typings(ISerializationContext context, BindingConnector semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     FeatureElement returns BooleanExpression
-	 *     BooleanExpression returns BooleanExpression
-	 *
-	 * Constraint:
-	 *     (
-	 *         isAbstract?='abstract'? 
-	 *         (
-	 *             (isSufficient?='all' ownedRelationship+=FeatureConjugation? (ownedRelationship+=OwnedTypeFeaturing ownedRelationship+=OwnedTypeFeaturing*)?) | 
-	 *             (
-	 *                 isSufficient?='all' 
-	 *                 ((humanId=Name name=Name?) | name=Name) 
-	 *                 ownedRelationship+=FeatureConjugation? 
-	 *                 (ownedRelationship+=OwnedTypeFeaturing ownedRelationship+=OwnedTypeFeaturing*)?
-	 *             ) | 
-	 *             (
-	 *                 (isSufficient?='all' | (isSufficient?='all' ((humanId=Name name=Name?) | name=Name)))? 
-	 *                 ownedRelationship+=MultiplicityMember 
-	 *                 ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?))? 
-	 *                 (ownedRelationship+=OwnedTypeFeaturing ownedRelationship+=OwnedTypeFeaturing*)?
-	 *             ) | 
-	 *             (
-	 *                 (
-	 *                     isSufficient?='all' | 
-	 *                     (isSufficient?='all' ((humanId=Name name=Name?) | name=Name)) | 
-	 *                     (
-	 *                         (isSufficient?='all' | (isSufficient?='all' ((humanId=Name name=Name?) | name=Name)))? 
-	 *                         ownedRelationship+=MultiplicityMember 
-	 *                         ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?))?
-	 *                     )
-	 *                 ) 
-	 *                 (
-	 *                     (
-	 *                         (ownedRelationship+=OwnedFeatureTyping ownedRelationship+=OwnedFeatureTyping*) | 
-	 *                         (ownedRelationship+=OwnedSubsetting ownedRelationship+=OwnedSubsetting*) | 
-	 *                         (ownedRelationship+=OwnedRedefinition ownedRelationship+=OwnedRedefinition*)
-	 *                     ) 
-	 *                     (ownedRelationship+=MultiplicityMember ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?))?)?
-	 *                 )+ 
-	 *                 (ownedRelationship+=OwnedTypeFeaturing ownedRelationship+=OwnedTypeFeaturing*)?
-	 *             )
-	 *         )? 
-	 *         (
-	 *             ownedRelationship+=FeatureValue | 
-	 *             (
-	 *                 (ownedRelationship+=StepParameterMember ownedRelationship+=StepParameterMember*)? 
-	 *                 (ownedRelationship+=ReturnParameterMember | ownedRelationship+=EmptyReturnParameterMember)
-	 *             )
-	 *         )? 
 	 *         (
 	 *             ownedRelationship+=OwnedDocumentation | 
-	 *             ownedRelationship+=NonFeatureTypeMember | 
-	 *             ownedRelationship+=UndirectedFeatureMember | 
-	 *             ownedRelationship+=DirectedFeatureMember | 
-	 *             ownedRelationship+=EndFeatureMember | 
+	 *             ownedRelationship+=NonFeatureMember | 
+	 *             ownedRelationship+=FeatureMember | 
+	 *             ownedRelationship+=AliasMember | 
 	 *             ownedRelationship+=Import
-	 *         )* 
-	 *         ownedRelationship+=ResultExpressionMember?
+	 *         )*
 	 *     )
 	 */
-	protected void sequence_BooleanExpression_EmptyReturnParameterPart_FeatureConjugationPart_FeatureDeclaration_FunctionBody_Identification_MultiplicityPart_Redefines_Redefinitions_ReturnParameterPart_StepParameterList_Subsets_Subsettings_TypeFeaturingPart_TypedBy_Typings_ValuePart(ISerializationContext context, BooleanExpression semanticObject) {
+	protected void sequence_BindingConnectorDeclaration_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_MultiplicityPart_Redefines_Redefinitions_Subsets_Subsettings_TypeBody_TypeFeaturingPart_TypedBy_Typings(ISerializationContext context, BindingConnector semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -1372,8 +1312,14 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	 *         isSufficient?='all'? 
 	 *         ((humanId=Name name=Name?) | name=Name)? 
 	 *         ownedRelationship+=MultiplicityMember? 
-	 *         ((ownedRelationship+=OwnedSuperclassing ownedRelationship+=OwnedSuperclassing*) | ownedRelationship+=ClassifierConjugation)? 
-	 *         (ownedRelationship+=OwnedDocumentation | ownedRelationship+=NonFeatureTypeMember | ownedRelationship+=FeatureTypeMember | ownedRelationship+=Import)*
+	 *         ((ownedRelationship+=Ownedsubclassification ownedRelationship+=Ownedsubclassification*) | ownedRelationship+=ClassifierConjugation)? 
+	 *         (
+	 *             ownedRelationship+=OwnedDocumentation | 
+	 *             ownedRelationship+=NonFeatureMember | 
+	 *             ownedRelationship+=FeatureMember | 
+	 *             ownedRelationship+=AliasMember | 
+	 *             ownedRelationship+=Import
+	 *         )*
 	 *     )
 	 */
 	protected void sequence_Class_ClassifierConjugationPart_ClassifierDeclaration_Identification_SuperclassingPart_TypeBody(ISerializationContext context, org.omg.sysml.lang.sysml.Class semanticObject) {
@@ -1392,8 +1338,14 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	 *         isSufficient?='all'? 
 	 *         ((humanId=Name name=Name?) | name=Name)? 
 	 *         ownedRelationship+=MultiplicityMember? 
-	 *         ((ownedRelationship+=OwnedSuperclassing ownedRelationship+=OwnedSuperclassing*) | ownedRelationship+=ClassifierConjugation)? 
-	 *         (ownedRelationship+=OwnedDocumentation | ownedRelationship+=NonFeatureTypeMember | ownedRelationship+=FeatureTypeMember | ownedRelationship+=Import)*
+	 *         ((ownedRelationship+=Ownedsubclassification ownedRelationship+=Ownedsubclassification*) | ownedRelationship+=ClassifierConjugation)? 
+	 *         (
+	 *             ownedRelationship+=OwnedDocumentation | 
+	 *             ownedRelationship+=NonFeatureMember | 
+	 *             ownedRelationship+=FeatureMember | 
+	 *             ownedRelationship+=AliasMember | 
+	 *             ownedRelationship+=Import
+	 *         )*
 	 *     )
 	 */
 	protected void sequence_ClassifierConjugationPart_ClassifierDeclaration_DataType_Identification_SuperclassingPart_TypeBody(ISerializationContext context, DataType semanticObject) {
@@ -1412,20 +1364,11 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	 *         isSufficient?='all'? 
 	 *         ((humanId=Name name=Name?) | name=Name)? 
 	 *         ownedRelationship+=MultiplicityMember? 
-	 *         ((ownedRelationship+=OwnedSuperclassing ownedRelationship+=OwnedSuperclassing*) | ownedRelationship+=ClassifierConjugation)? 
+	 *         ((ownedRelationship+=Ownedsubclassification ownedRelationship+=Ownedsubclassification*) | ownedRelationship+=ClassifierConjugation)? 
 	 *         (ownedRelationship+=ParameterMember ownedRelationship+=ParameterMember*)? 
 	 *         (ownedRelationship+=ReturnParameterMember | ownedRelationship+=EmptyReturnParameterMember) 
-	 *         ownedRelationship+=UndirectedFeatureMember? 
-	 *         (
-	 *             (
-	 *                 ownedRelationship+=OwnedDocumentation | 
-	 *                 ownedRelationship+=NonFeatureTypeMember | 
-	 *                 ownedRelationship+=DirectedFeatureMember | 
-	 *                 ownedRelationship+=EndFeatureMember | 
-	 *                 ownedRelationship+=Import
-	 *             )? 
-	 *             ownedRelationship+=UndirectedFeatureMember?
-	 *         )* 
+	 *         ownedRelationship+=OwnedDocumentation? 
+	 *         ((ownedRelationship+=NonFeatureMember | ownedRelationship+=FeatureMember | ownedRelationship+=Import)? ownedRelationship+=OwnedDocumentation?)* 
 	 *         ownedRelationship+=ResultExpressionMember?
 	 *     )
 	 */
@@ -1445,20 +1388,11 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	 *         isSufficient?='all'? 
 	 *         ((humanId=Name name=Name?) | name=Name)? 
 	 *         ownedRelationship+=MultiplicityMember? 
-	 *         ((ownedRelationship+=OwnedSuperclassing ownedRelationship+=OwnedSuperclassing*) | ownedRelationship+=ClassifierConjugation)? 
+	 *         ((ownedRelationship+=Ownedsubclassification ownedRelationship+=Ownedsubclassification*) | ownedRelationship+=ClassifierConjugation)? 
 	 *         (ownedRelationship+=ParameterMember ownedRelationship+=ParameterMember*)? 
 	 *         (ownedRelationship+=ReturnParameterMember | ownedRelationship+=EmptyReturnParameterMember) 
-	 *         ownedRelationship+=UndirectedFeatureMember? 
-	 *         (
-	 *             (
-	 *                 ownedRelationship+=OwnedDocumentation | 
-	 *                 ownedRelationship+=NonFeatureTypeMember | 
-	 *                 ownedRelationship+=DirectedFeatureMember | 
-	 *                 ownedRelationship+=EndFeatureMember | 
-	 *                 ownedRelationship+=Import
-	 *             )? 
-	 *             ownedRelationship+=UndirectedFeatureMember?
-	 *         )* 
+	 *         ownedRelationship+=OwnedDocumentation? 
+	 *         ((ownedRelationship+=NonFeatureMember | ownedRelationship+=FeatureMember | ownedRelationship+=Import)? ownedRelationship+=OwnedDocumentation?)* 
 	 *         ownedRelationship+=ResultExpressionMember?
 	 *     )
 	 */
@@ -1478,8 +1412,14 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	 *         isSufficient?='all'? 
 	 *         ((humanId=Name name=Name?) | name=Name)? 
 	 *         ownedRelationship+=MultiplicityMember? 
-	 *         ((ownedRelationship+=OwnedSuperclassing ownedRelationship+=OwnedSuperclassing*) | ownedRelationship+=ClassifierConjugation)? 
-	 *         (ownedRelationship+=OwnedDocumentation | ownedRelationship+=NonFeatureTypeMember | ownedRelationship+=FeatureTypeMember | ownedRelationship+=Import)*
+	 *         ((ownedRelationship+=Ownedsubclassification ownedRelationship+=Ownedsubclassification*) | ownedRelationship+=ClassifierConjugation)? 
+	 *         (
+	 *             ownedRelationship+=OwnedDocumentation | 
+	 *             ownedRelationship+=NonFeatureMember | 
+	 *             ownedRelationship+=FeatureMember | 
+	 *             ownedRelationship+=AliasMember | 
+	 *             ownedRelationship+=Import
+	 *         )*
 	 *     )
 	 */
 	protected void sequence_ClassifierConjugationPart_ClassifierDeclaration_Identification_Structure_SuperclassingPart_TypeBody(ISerializationContext context, Structure semanticObject) {
@@ -1516,8 +1456,14 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	 *         isSufficient?='all'? 
 	 *         ((humanId=Name name=Name?) | name=Name)? 
 	 *         ownedRelationship+=MultiplicityMember? 
-	 *         ((ownedRelationship+=OwnedSuperclassing ownedRelationship+=OwnedSuperclassing*) | ownedRelationship+=ClassifierConjugation)? 
-	 *         (ownedRelationship+=OwnedDocumentation | ownedRelationship+=NonFeatureTypeMember | ownedRelationship+=FeatureTypeMember | ownedRelationship+=Import)*
+	 *         ((ownedRelationship+=Ownedsubclassification ownedRelationship+=Ownedsubclassification*) | ownedRelationship+=ClassifierConjugation)? 
+	 *         (
+	 *             ownedRelationship+=OwnedDocumentation | 
+	 *             ownedRelationship+=NonFeatureMember | 
+	 *             ownedRelationship+=FeatureMember | 
+	 *             ownedRelationship+=AliasMember | 
+	 *             ownedRelationship+=Import
+	 *         )*
 	 *     )
 	 */
 	protected void sequence_Classifier_ClassifierConjugationPart_ClassifierDeclaration_Identification_SuperclassingPart_TypeBody(ISerializationContext context, Classifier semanticObject) {
@@ -1553,8 +1499,14 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	 *         isSufficient?='all'? 
 	 *         ((humanId=Name name=Name?) | name=Name)? 
 	 *         ownedRelationship+=MultiplicityMember? 
-	 *         ((ownedRelationship+=OwnedGeneralization ownedRelationship+=OwnedGeneralization*) | ownedRelationship+=OwnedConjugation)+ 
-	 *         (ownedRelationship+=OwnedDocumentation | ownedRelationship+=NonFeatureTypeMember | ownedRelationship+=FeatureTypeMember | ownedRelationship+=Import)*
+	 *         ((ownedRelationship+=OwnedSpecialization ownedRelationship+=OwnedSpecialization*) | ownedRelationship+=OwnedConjugation)+ 
+	 *         (
+	 *             ownedRelationship+=OwnedDocumentation | 
+	 *             ownedRelationship+=NonFeatureMember | 
+	 *             ownedRelationship+=FeatureMember | 
+	 *             ownedRelationship+=AliasMember | 
+	 *             ownedRelationship+=Import
+	 *         )*
 	 *     )
 	 */
 	protected void sequence_ConjugationPart_Identification_SpecializationPart_Type_TypeBody_TypeDeclaration(ISerializationContext context, Type semanticObject) {
@@ -1601,25 +1553,6 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	
 	/**
 	 * Contexts:
-	 *     DirectedFeatureMember returns ParameterMembership
-	 *
-	 * Constraint:
-	 *     (
-	 *         ownedRelationship+=PrefixDocumentation* 
-	 *         visibility=VisibilityIndicator? 
-	 *         direction=FeatureDirection 
-	 *         (isComposite?='composite' | isPortion?='portion')? 
-	 *         isPort?='port'? 
-	 *         (ownedRelatedElement+=FeatureElement | (memberName=Name? memberFeature=[Feature|QualifiedName]))
-	 *     )
-	 */
-	protected void sequence_DirectedFeatureMember_FeatureMemberFlags_TypeMemberPrefix_UndirectedFeaturePart(ISerializationContext context, ParameterMembership semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
 	 *     DocumentationComment returns Comment
 	 *
 	 * Constraint:
@@ -1635,7 +1568,7 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	 *     ElementFilterMember returns ElementFilterMembership
 	 *
 	 * Constraint:
-	 *     (ownedRelationship+=PrefixDocumentation* visibility=BasicVisibilityIndicator? ownedRelatedElement+=OwnedExpression)
+	 *     (ownedRelationship+=PrefixDocumentation* visibility=VisibilityIndicator? ownedRelatedElement+=OwnedExpression)
 	 */
 	protected void sequence_ElementFilterMember(ISerializationContext context, ElementFilterMembership semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1692,78 +1625,15 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	
 	/**
 	 * Contexts:
-	 *     FeatureElement returns Expression
-	 *     Expression returns Expression
-	 *
-	 * Constraint:
-	 *     (
-	 *         isAbstract?='abstract'? 
-	 *         (
-	 *             (isSufficient?='all' ownedRelationship+=FeatureConjugation? (ownedRelationship+=OwnedTypeFeaturing ownedRelationship+=OwnedTypeFeaturing*)?) | 
-	 *             (
-	 *                 isSufficient?='all' 
-	 *                 ((humanId=Name name=Name?) | name=Name) 
-	 *                 ownedRelationship+=FeatureConjugation? 
-	 *                 (ownedRelationship+=OwnedTypeFeaturing ownedRelationship+=OwnedTypeFeaturing*)?
-	 *             ) | 
-	 *             (
-	 *                 (isSufficient?='all' | (isSufficient?='all' ((humanId=Name name=Name?) | name=Name)))? 
-	 *                 ownedRelationship+=MultiplicityMember 
-	 *                 ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?))? 
-	 *                 (ownedRelationship+=OwnedTypeFeaturing ownedRelationship+=OwnedTypeFeaturing*)?
-	 *             ) | 
-	 *             (
-	 *                 (
-	 *                     isSufficient?='all' | 
-	 *                     (isSufficient?='all' ((humanId=Name name=Name?) | name=Name)) | 
-	 *                     (
-	 *                         (isSufficient?='all' | (isSufficient?='all' ((humanId=Name name=Name?) | name=Name)))? 
-	 *                         ownedRelationship+=MultiplicityMember 
-	 *                         ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?))?
-	 *                     )
-	 *                 ) 
-	 *                 (
-	 *                     (
-	 *                         (ownedRelationship+=OwnedFeatureTyping ownedRelationship+=OwnedFeatureTyping*) | 
-	 *                         (ownedRelationship+=OwnedSubsetting ownedRelationship+=OwnedSubsetting*) | 
-	 *                         (ownedRelationship+=OwnedRedefinition ownedRelationship+=OwnedRedefinition*)
-	 *                     ) 
-	 *                     (ownedRelationship+=MultiplicityMember ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?))?)?
-	 *                 )+ 
-	 *                 (ownedRelationship+=OwnedTypeFeaturing ownedRelationship+=OwnedTypeFeaturing*)?
-	 *             )
-	 *         )? 
-	 *         (
-	 *             ownedRelationship+=FeatureValue | 
-	 *             (
-	 *                 (ownedRelationship+=StepParameterMember ownedRelationship+=StepParameterMember*)? 
-	 *                 (ownedRelationship+=ReturnParameterMember | ownedRelationship+=EmptyReturnParameterMember)
-	 *             )
-	 *         )? 
-	 *         (
-	 *             ownedRelationship+=OwnedDocumentation | 
-	 *             ownedRelationship+=NonFeatureTypeMember | 
-	 *             ownedRelationship+=UndirectedFeatureMember | 
-	 *             ownedRelationship+=DirectedFeatureMember | 
-	 *             ownedRelationship+=EndFeatureMember | 
-	 *             ownedRelationship+=Import
-	 *         )* 
-	 *         ownedRelationship+=ResultExpressionMember?
-	 *     )
-	 */
-	protected void sequence_EmptyReturnParameterPart_Expression_FeatureConjugationPart_FeatureDeclaration_FunctionBody_Identification_MultiplicityPart_Redefines_Redefinitions_ReturnParameterPart_StepParameterList_Subsets_Subsettings_TypeFeaturingPart_TypedBy_Typings_ValuePart(ISerializationContext context, Expression semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
 	 *     FeatureElement returns Invariant
 	 *     Invariant returns Invariant
 	 *
 	 * Constraint:
 	 *     (
+	 *         direction=FeatureDirection? 
 	 *         isAbstract?='abstract'? 
+	 *         (isComposite?='composite' | isPortion?='portion')? 
+	 *         isEnd?='end'? 
 	 *         (
 	 *             (isSufficient?='all' ownedRelationship+=FeatureConjugation? (ownedRelationship+=OwnedTypeFeaturing ownedRelationship+=OwnedTypeFeaturing*)?) | 
 	 *             (
@@ -1807,37 +1677,135 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	 *             )
 	 *         )? 
 	 *         ownedRelationship+=TrueLiteralMember 
-	 *         (
-	 *             ownedRelationship+=OwnedDocumentation | 
-	 *             ownedRelationship+=NonFeatureTypeMember | 
-	 *             ownedRelationship+=UndirectedFeatureMember | 
-	 *             ownedRelationship+=DirectedFeatureMember | 
-	 *             ownedRelationship+=EndFeatureMember | 
-	 *             ownedRelationship+=Import
-	 *         )* 
+	 *         (ownedRelationship+=OwnedDocumentation | ownedRelationship+=NonFeatureMember | ownedRelationship+=FeatureMember | ownedRelationship+=Import)* 
 	 *         ownedRelationship+=ResultExpressionMember?
 	 *     )
 	 */
-	protected void sequence_EmptyReturnParameterPart_FeatureConjugationPart_FeatureDeclaration_FunctionBody_Identification_Invariant_InvariantPart_MultiplicityPart_Redefines_Redefinitions_ReturnParameterPart_StepParameterList_Subsets_Subsettings_TypeFeaturingPart_TypedBy_Typings_ValuePart(ISerializationContext context, Invariant semanticObject) {
+	protected void sequence_EmptyReturnParameterPart_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_FunctionBody_Identification_InvariantPart_MultiplicityPart_Redefines_Redefinitions_ReturnParameterPart_StepParameterList_Subsets_Subsettings_TypeFeaturingPart_TypedBy_Typings_ValuePart(ISerializationContext context, Invariant semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
 	 * Contexts:
-	 *     FeatureTypeMember returns EndFeatureMembership
-	 *     EndFeatureMember returns EndFeatureMembership
+	 *     FeatureElement returns BooleanExpression
+	 *     BooleanExpression returns BooleanExpression
 	 *
 	 * Constraint:
 	 *     (
-	 *         ownedRelationship+=PrefixDocumentation* 
-	 *         visibility=VisibilityIndicator? 
+	 *         direction=FeatureDirection? 
+	 *         isAbstract?='abstract'? 
 	 *         (isComposite?='composite' | isPortion?='portion')? 
-	 *         isPort?='port'? 
-	 *         ownedRelatedElement+=FeatureElement
+	 *         isEnd?='end'? 
+	 *         (
+	 *             (isSufficient?='all' ownedRelationship+=FeatureConjugation? (ownedRelationship+=OwnedTypeFeaturing ownedRelationship+=OwnedTypeFeaturing*)?) | 
+	 *             (
+	 *                 isSufficient?='all' 
+	 *                 ((humanId=Name name=Name?) | name=Name) 
+	 *                 ownedRelationship+=FeatureConjugation? 
+	 *                 (ownedRelationship+=OwnedTypeFeaturing ownedRelationship+=OwnedTypeFeaturing*)?
+	 *             ) | 
+	 *             (
+	 *                 (isSufficient?='all' | (isSufficient?='all' ((humanId=Name name=Name?) | name=Name)))? 
+	 *                 ownedRelationship+=MultiplicityMember 
+	 *                 ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?))? 
+	 *                 (ownedRelationship+=OwnedTypeFeaturing ownedRelationship+=OwnedTypeFeaturing*)?
+	 *             ) | 
+	 *             (
+	 *                 (
+	 *                     isSufficient?='all' | 
+	 *                     (isSufficient?='all' ((humanId=Name name=Name?) | name=Name)) | 
+	 *                     (
+	 *                         (isSufficient?='all' | (isSufficient?='all' ((humanId=Name name=Name?) | name=Name)))? 
+	 *                         ownedRelationship+=MultiplicityMember 
+	 *                         ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?))?
+	 *                     )
+	 *                 ) 
+	 *                 (
+	 *                     (
+	 *                         (ownedRelationship+=OwnedFeatureTyping ownedRelationship+=OwnedFeatureTyping*) | 
+	 *                         (ownedRelationship+=OwnedSubsetting ownedRelationship+=OwnedSubsetting*) | 
+	 *                         (ownedRelationship+=OwnedRedefinition ownedRelationship+=OwnedRedefinition*)
+	 *                     ) 
+	 *                     (ownedRelationship+=MultiplicityMember ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?))?)?
+	 *                 )+ 
+	 *                 (ownedRelationship+=OwnedTypeFeaturing ownedRelationship+=OwnedTypeFeaturing*)?
+	 *             )
+	 *         )? 
+	 *         (
+	 *             ownedRelationship+=FeatureValue | 
+	 *             (
+	 *                 (ownedRelationship+=StepParameterMember ownedRelationship+=StepParameterMember*)? 
+	 *                 (ownedRelationship+=ReturnParameterMember | ownedRelationship+=EmptyReturnParameterMember)
+	 *             )
+	 *         )? 
+	 *         (ownedRelationship+=OwnedDocumentation | ownedRelationship+=NonFeatureMember | ownedRelationship+=FeatureMember | ownedRelationship+=Import)* 
+	 *         ownedRelationship+=ResultExpressionMember?
 	 *     )
 	 */
-	protected void sequence_EndFeatureMember_FeatureMemberFlags_TypeMemberPrefix(ISerializationContext context, EndFeatureMembership semanticObject) {
+	protected void sequence_EmptyReturnParameterPart_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_FunctionBody_Identification_MultiplicityPart_Redefines_Redefinitions_ReturnParameterPart_StepParameterList_Subsets_Subsettings_TypeFeaturingPart_TypedBy_Typings_ValuePart(ISerializationContext context, BooleanExpression semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     FeatureElement returns Expression
+	 *     Expression returns Expression
+	 *
+	 * Constraint:
+	 *     (
+	 *         direction=FeatureDirection? 
+	 *         isAbstract?='abstract'? 
+	 *         (isComposite?='composite' | isPortion?='portion')? 
+	 *         isEnd?='end'? 
+	 *         (
+	 *             (isSufficient?='all' ownedRelationship+=FeatureConjugation? (ownedRelationship+=OwnedTypeFeaturing ownedRelationship+=OwnedTypeFeaturing*)?) | 
+	 *             (
+	 *                 isSufficient?='all' 
+	 *                 ((humanId=Name name=Name?) | name=Name) 
+	 *                 ownedRelationship+=FeatureConjugation? 
+	 *                 (ownedRelationship+=OwnedTypeFeaturing ownedRelationship+=OwnedTypeFeaturing*)?
+	 *             ) | 
+	 *             (
+	 *                 (isSufficient?='all' | (isSufficient?='all' ((humanId=Name name=Name?) | name=Name)))? 
+	 *                 ownedRelationship+=MultiplicityMember 
+	 *                 ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?))? 
+	 *                 (ownedRelationship+=OwnedTypeFeaturing ownedRelationship+=OwnedTypeFeaturing*)?
+	 *             ) | 
+	 *             (
+	 *                 (
+	 *                     isSufficient?='all' | 
+	 *                     (isSufficient?='all' ((humanId=Name name=Name?) | name=Name)) | 
+	 *                     (
+	 *                         (isSufficient?='all' | (isSufficient?='all' ((humanId=Name name=Name?) | name=Name)))? 
+	 *                         ownedRelationship+=MultiplicityMember 
+	 *                         ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?))?
+	 *                     )
+	 *                 ) 
+	 *                 (
+	 *                     (
+	 *                         (ownedRelationship+=OwnedFeatureTyping ownedRelationship+=OwnedFeatureTyping*) | 
+	 *                         (ownedRelationship+=OwnedSubsetting ownedRelationship+=OwnedSubsetting*) | 
+	 *                         (ownedRelationship+=OwnedRedefinition ownedRelationship+=OwnedRedefinition*)
+	 *                     ) 
+	 *                     (ownedRelationship+=MultiplicityMember ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?))?)?
+	 *                 )+ 
+	 *                 (ownedRelationship+=OwnedTypeFeaturing ownedRelationship+=OwnedTypeFeaturing*)?
+	 *             )
+	 *         )? 
+	 *         (
+	 *             ownedRelationship+=FeatureValue | 
+	 *             (
+	 *                 (ownedRelationship+=StepParameterMember ownedRelationship+=StepParameterMember*)? 
+	 *                 (ownedRelationship+=ReturnParameterMember | ownedRelationship+=EmptyReturnParameterMember)
+	 *             )
+	 *         )? 
+	 *         (ownedRelationship+=OwnedDocumentation | ownedRelationship+=NonFeatureMember | ownedRelationship+=FeatureMember | ownedRelationship+=Import)* 
+	 *         ownedRelationship+=ResultExpressionMember?
+	 *     )
+	 */
+	protected void sequence_EmptyReturnParameterPart_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_FunctionBody_Identification_MultiplicityPart_Redefines_Redefinitions_ReturnParameterPart_StepParameterList_Subsets_Subsettings_TypeFeaturingPart_TypedBy_Typings_ValuePart(ISerializationContext context, Expression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -1849,7 +1817,10 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	 *
 	 * Constraint:
 	 *     (
+	 *         direction=FeatureDirection? 
 	 *         isAbstract?='abstract'? 
+	 *         (isComposite?='composite' | isPortion?='portion')? 
+	 *         isEnd?='end'? 
 	 *         (
 	 *             (isSufficient?='all' ownedRelationship+=FeatureConjugation? (ownedRelationship+=OwnedTypeFeaturing ownedRelationship+=OwnedTypeFeaturing*)?) | 
 	 *             (
@@ -1888,10 +1859,77 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	 *         )? 
 	 *         ownedRelationship+=ConnectorEndMember 
 	 *         ownedRelationship+=ConnectorEndMember 
-	 *         (ownedRelationship+=OwnedDocumentation | ownedRelationship+=NonFeatureTypeMember | ownedRelationship+=FeatureTypeMember | ownedRelationship+=Import)*
+	 *         (
+	 *             ownedRelationship+=OwnedDocumentation | 
+	 *             ownedRelationship+=NonFeatureMember | 
+	 *             ownedRelationship+=FeatureMember | 
+	 *             ownedRelationship+=AliasMember | 
+	 *             ownedRelationship+=Import
+	 *         )*
 	 *     )
 	 */
-	protected void sequence_FeatureConjugationPart_FeatureDeclaration_Identification_MultiplicityPart_Redefines_Redefinitions_Subsets_Subsettings_Succession_SuccessionDeclaration_TypeBody_TypeFeaturingPart_TypedBy_Typings(ISerializationContext context, Succession semanticObject) {
+	protected void sequence_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_MultiplicityPart_Redefines_Redefinitions_Subsets_Subsettings_SuccessionDeclaration_TypeBody_TypeFeaturingPart_TypedBy_Typings(ISerializationContext context, Succession semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     FeatureElement returns Feature
+	 *     Feature returns Feature
+	 *
+	 * Constraint:
+	 *     (
+	 *         direction=FeatureDirection? 
+	 *         isAbstract?='abstract'? 
+	 *         (isComposite?='composite' | isPortion?='portion')? 
+	 *         isEnd?='end'? 
+	 *         (
+	 *             (isSufficient?='all' ownedRelationship+=FeatureConjugation? (ownedRelationship+=OwnedTypeFeaturing ownedRelationship+=OwnedTypeFeaturing*)?) | 
+	 *             (
+	 *                 isSufficient?='all' 
+	 *                 ((humanId=Name name=Name?) | name=Name) 
+	 *                 ownedRelationship+=FeatureConjugation? 
+	 *                 (ownedRelationship+=OwnedTypeFeaturing ownedRelationship+=OwnedTypeFeaturing*)?
+	 *             ) | 
+	 *             (
+	 *                 (isSufficient?='all' | (isSufficient?='all' ((humanId=Name name=Name?) | name=Name)))? 
+	 *                 ownedRelationship+=MultiplicityMember 
+	 *                 ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?))? 
+	 *                 (ownedRelationship+=OwnedTypeFeaturing ownedRelationship+=OwnedTypeFeaturing*)?
+	 *             ) | 
+	 *             (
+	 *                 (
+	 *                     isSufficient?='all' | 
+	 *                     (isSufficient?='all' ((humanId=Name name=Name?) | name=Name)) | 
+	 *                     (
+	 *                         (isSufficient?='all' | (isSufficient?='all' ((humanId=Name name=Name?) | name=Name)))? 
+	 *                         ownedRelationship+=MultiplicityMember 
+	 *                         ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?))?
+	 *                     )
+	 *                 ) 
+	 *                 (
+	 *                     (
+	 *                         (ownedRelationship+=OwnedFeatureTyping ownedRelationship+=OwnedFeatureTyping*) | 
+	 *                         (ownedRelationship+=OwnedSubsetting ownedRelationship+=OwnedSubsetting*) | 
+	 *                         (ownedRelationship+=OwnedRedefinition ownedRelationship+=OwnedRedefinition*)
+	 *                     ) 
+	 *                     (ownedRelationship+=MultiplicityMember ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?))?)?
+	 *                 )+ 
+	 *                 (ownedRelationship+=OwnedTypeFeaturing ownedRelationship+=OwnedTypeFeaturing*)?
+	 *             )
+	 *         )? 
+	 *         ownedRelationship+=FeatureValue? 
+	 *         (
+	 *             ownedRelationship+=OwnedDocumentation | 
+	 *             ownedRelationship+=NonFeatureMember | 
+	 *             ownedRelationship+=FeatureMember | 
+	 *             ownedRelationship+=AliasMember | 
+	 *             ownedRelationship+=Import
+	 *         )*
+	 *     )
+	 */
+	protected void sequence_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_MultiplicityPart_Redefines_Redefinitions_Subsets_Subsettings_TypeBody_TypeFeaturingPart_TypedBy_Typings_ValuePart(ISerializationContext context, Feature semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -1916,54 +1954,16 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	
 	/**
 	 * Contexts:
-	 *     UndirectedFeatureMember returns FeatureMembership
-	 *
-	 * Constraint:
-	 *     (
-	 *         ownedRelationship+=PrefixDocumentation* 
-	 *         visibility=VisibilityIndicator? 
-	 *         (isComposite?='composite' | isPortion?='portion')? 
-	 *         isPort?='port'? 
-	 *         (ownedRelatedElement+=FeatureElement | (memberName=Name? memberFeature=[Feature|QualifiedName]))
-	 *     )
-	 */
-	protected void sequence_FeatureMemberFlags_TypeMemberPrefix_UndirectedFeaturePart(ISerializationContext context, FeatureMembership semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     FeatureTypeMember returns FeatureMembership
 	 *     FeatureMember returns FeatureMembership
 	 *
 	 * Constraint:
 	 *     (
 	 *         ownedRelationship+=PrefixDocumentation* 
 	 *         visibility=VisibilityIndicator? 
-	 *         direction=FeatureDirection? 
-	 *         (isComposite?='composite' | isPortion?='portion')? 
-	 *         isPort?='port'? 
 	 *         (ownedRelatedElement+=FeatureElement | (memberName=Name? memberFeature=[Feature|QualifiedName]))
 	 *     )
 	 */
-	protected void sequence_FeatureMember_FeatureMemberFlags_TypeMemberPrefix_UndirectedFeaturePart(ISerializationContext context, FeatureMembership semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     NamespaceMember returns Membership
-	 *
-	 * Constraint:
-	 *     (
-	 *         ownedRelationship+=PrefixDocumentation* 
-	 *         visibility=BasicVisibilityIndicator? 
-	 *         (ownedRelatedElement+=NonFeatureElement | (memberElement=[Element|QualifiedName] memberName=Name?) | ownedRelatedElement+=FeatureElement)
-	 *     )
-	 */
-	protected void sequence_FeatureNamespaceMember_NamespaceMember_NonFeatureNamespaceMember(ISerializationContext context, Membership semanticObject) {
+	protected void sequence_FeatureMember_MemberPrefix(ISerializationContext context, FeatureMembership semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -2014,58 +2014,6 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	 *     ownedRelatedElement+=OwnedExpression
 	 */
 	protected void sequence_FeatureValue(ISerializationContext context, FeatureValue semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     FeatureElement returns Feature
-	 *     Feature returns Feature
-	 *
-	 * Constraint:
-	 *     (
-	 *         isAbstract?='abstract'? 
-	 *         (
-	 *             (isSufficient?='all' ownedRelationship+=FeatureConjugation? (ownedRelationship+=OwnedTypeFeaturing ownedRelationship+=OwnedTypeFeaturing*)?) | 
-	 *             (
-	 *                 isSufficient?='all' 
-	 *                 ((humanId=Name name=Name?) | name=Name) 
-	 *                 ownedRelationship+=FeatureConjugation? 
-	 *                 (ownedRelationship+=OwnedTypeFeaturing ownedRelationship+=OwnedTypeFeaturing*)?
-	 *             ) | 
-	 *             (
-	 *                 (isSufficient?='all' | (isSufficient?='all' ((humanId=Name name=Name?) | name=Name)))? 
-	 *                 ownedRelationship+=MultiplicityMember 
-	 *                 ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?))? 
-	 *                 (ownedRelationship+=OwnedTypeFeaturing ownedRelationship+=OwnedTypeFeaturing*)?
-	 *             ) | 
-	 *             (
-	 *                 (
-	 *                     isSufficient?='all' | 
-	 *                     (isSufficient?='all' ((humanId=Name name=Name?) | name=Name)) | 
-	 *                     (
-	 *                         (isSufficient?='all' | (isSufficient?='all' ((humanId=Name name=Name?) | name=Name)))? 
-	 *                         ownedRelationship+=MultiplicityMember 
-	 *                         ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?))?
-	 *                     )
-	 *                 ) 
-	 *                 (
-	 *                     (
-	 *                         (ownedRelationship+=OwnedFeatureTyping ownedRelationship+=OwnedFeatureTyping*) | 
-	 *                         (ownedRelationship+=OwnedSubsetting ownedRelationship+=OwnedSubsetting*) | 
-	 *                         (ownedRelationship+=OwnedRedefinition ownedRelationship+=OwnedRedefinition*)
-	 *                     ) 
-	 *                     (ownedRelationship+=MultiplicityMember ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?))?)?
-	 *                 )+ 
-	 *                 (ownedRelationship+=OwnedTypeFeaturing ownedRelationship+=OwnedTypeFeaturing*)?
-	 *             )
-	 *         )? 
-	 *         ownedRelationship+=FeatureValue? 
-	 *         (ownedRelationship+=OwnedDocumentation | ownedRelationship+=NonFeatureTypeMember | ownedRelationship+=FeatureTypeMember | ownedRelationship+=Import)*
-	 *     )
-	 */
-	protected void sequence_Feature_FeatureConjugationPart_FeatureDeclaration_Identification_MultiplicityPart_Redefines_Redefinitions_Subsets_Subsettings_TypeBody_TypeFeaturingPart_TypedBy_Typings_ValuePart(ISerializationContext context, Feature semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -2139,14 +2087,7 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	 *
 	 * Constraint:
 	 *     (
-	 *         (
-	 *             ownedRelationship+=OwnedDocumentation | 
-	 *             ownedRelationship+=NonFeatureTypeMember | 
-	 *             ownedRelationship+=UndirectedFeatureMember | 
-	 *             ownedRelationship+=DirectedFeatureMember | 
-	 *             ownedRelationship+=EndFeatureMember | 
-	 *             ownedRelationship+=Import
-	 *         )* 
+	 *         (ownedRelationship+=OwnedDocumentation | ownedRelationship+=NonFeatureMember | ownedRelationship+=FeatureMember | ownedRelationship+=Import)* 
 	 *         ownedRelationship+=ResultExpressionMember?
 	 *     )
 	 */
@@ -2157,110 +2098,11 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	
 	/**
 	 * Contexts:
-	 *     NonFeatureElement returns Generalization
-	 *     Generalization returns Generalization
-	 *
-	 * Constraint:
-	 *     (((humanId=Name name=Name?) | name=Name)? specific=[Type|QualifiedName] general=[Type|QualifiedName])
-	 */
-	protected void sequence_Generalization_Identification(ISerializationContext context, Generalization semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     Parameter returns Feature
-	 *
-	 * Constraint:
-	 *     (
-	 *         isSufficient?='all'? 
-	 *         (
-	 *             (
-	 *                 ((humanId=Name name=Name?) | name=Name) 
-	 *                 (ownedRelationship+=OwnedFeatureTyping | ownedRelationship+=OwnedSubsetting | ownedRelationship+=OwnedRedefinition)+
-	 *             ) | 
-	 *             (
-	 *                 (
-	 *                     (
-	 *                         (
-	 *                             (
-	 *                                 ((humanId=Name name=Name?) | name=Name) 
-	 *                                 (ownedRelationship+=OwnedFeatureTyping | ownedRelationship+=OwnedSubsetting | ownedRelationship+=OwnedRedefinition)+
-	 *                             ) | 
-	 *                             (ownedRelationship+=OwnedFeatureTyping | ownedRelationship+=OwnedSubsetting | ownedRelationship+=OwnedRedefinition)+
-	 *                         ) 
-	 *                         ownedRelationship+=MultiplicityMember 
-	 *                         ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?))?
-	 *                     ) | 
-	 *                     (ownedRelationship+=MultiplicityMember ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?))?)
-	 *                 ) 
-	 *                 (
-	 *                     (ownedRelationship+=OwnedFeatureTyping | ownedRelationship+=OwnedSubsetting | ownedRelationship+=OwnedRedefinition)+ 
-	 *                     ownedRelationship+=MultiplicityMember 
-	 *                     ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?))?
-	 *                 )* 
-	 *                 (ownedRelationship+=OwnedFeatureTyping | ownedRelationship+=OwnedSubsetting | ownedRelationship+=OwnedRedefinition)+
-	 *             ) | 
-	 *             (ownedRelationship+=OwnedFeatureTyping | ownedRelationship+=OwnedSubsetting | ownedRelationship+=OwnedRedefinition)+
-	 *         )?
-	 *     )
-	 */
-	protected void sequence_Identification_MultiplicityPart_ParameterDeclaration_Redefines_Subsets_TypedBy(ISerializationContext context, Feature semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     StepParameter returns Feature
-	 *
-	 * Constraint:
-	 *     (
-	 *         isSufficient?='all'? 
-	 *         (
-	 *             (
-	 *                 ((humanId=Name name=Name?) | name=Name) 
-	 *                 (ownedRelationship+=OwnedFeatureTyping | ownedRelationship+=OwnedSubsetting | ownedRelationship+=OwnedRedefinition)+
-	 *             ) | 
-	 *             (
-	 *                 (
-	 *                     (
-	 *                         (
-	 *                             (
-	 *                                 ((humanId=Name name=Name?) | name=Name) 
-	 *                                 (ownedRelationship+=OwnedFeatureTyping | ownedRelationship+=OwnedSubsetting | ownedRelationship+=OwnedRedefinition)+
-	 *                             ) | 
-	 *                             (ownedRelationship+=OwnedFeatureTyping | ownedRelationship+=OwnedSubsetting | ownedRelationship+=OwnedRedefinition)+
-	 *                         ) 
-	 *                         ownedRelationship+=MultiplicityMember 
-	 *                         ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?))?
-	 *                     ) | 
-	 *                     (ownedRelationship+=MultiplicityMember ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?))?)
-	 *                 ) 
-	 *                 (
-	 *                     (ownedRelationship+=OwnedFeatureTyping | ownedRelationship+=OwnedSubsetting | ownedRelationship+=OwnedRedefinition)+ 
-	 *                     ownedRelationship+=MultiplicityMember 
-	 *                     ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?))?
-	 *                 )* 
-	 *                 (ownedRelationship+=OwnedFeatureTyping | ownedRelationship+=OwnedSubsetting | ownedRelationship+=OwnedRedefinition)+
-	 *             ) | 
-	 *             (ownedRelationship+=OwnedFeatureTyping | ownedRelationship+=OwnedSubsetting | ownedRelationship+=OwnedRedefinition)+
-	 *         )? 
-	 *         ownedRelationship+=FeatureValue?
-	 *     )
-	 */
-	protected void sequence_Identification_MultiplicityPart_ParameterDeclaration_Redefines_Subsets_TypedBy_ValuePart(ISerializationContext context, Feature semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
 	 *     Parameter returns BooleanExpression
 	 *
 	 * Constraint:
 	 *     (
+	 *         direction=FeatureDirection? 
 	 *         isSufficient?='all'? 
 	 *         (
 	 *             (
@@ -2304,6 +2146,7 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	 *
 	 * Constraint:
 	 *     (
+	 *         direction=FeatureDirection? 
 	 *         isSufficient?='all'? 
 	 *         (
 	 *             (
@@ -2343,10 +2186,55 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	
 	/**
 	 * Contexts:
+	 *     Parameter returns Feature
+	 *
+	 * Constraint:
+	 *     (
+	 *         direction=FeatureDirection? 
+	 *         isSufficient?='all'? 
+	 *         (
+	 *             (
+	 *                 ((humanId=Name name=Name?) | name=Name) 
+	 *                 (ownedRelationship+=OwnedFeatureTyping | ownedRelationship+=OwnedSubsetting | ownedRelationship+=OwnedRedefinition)+
+	 *             ) | 
+	 *             (
+	 *                 (
+	 *                     (
+	 *                         (
+	 *                             (
+	 *                                 ((humanId=Name name=Name?) | name=Name) 
+	 *                                 (ownedRelationship+=OwnedFeatureTyping | ownedRelationship+=OwnedSubsetting | ownedRelationship+=OwnedRedefinition)+
+	 *                             ) | 
+	 *                             (ownedRelationship+=OwnedFeatureTyping | ownedRelationship+=OwnedSubsetting | ownedRelationship+=OwnedRedefinition)+
+	 *                         ) 
+	 *                         ownedRelationship+=MultiplicityMember 
+	 *                         ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?))?
+	 *                     ) | 
+	 *                     (ownedRelationship+=MultiplicityMember ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?))?)
+	 *                 ) 
+	 *                 (
+	 *                     (ownedRelationship+=OwnedFeatureTyping | ownedRelationship+=OwnedSubsetting | ownedRelationship+=OwnedRedefinition)+ 
+	 *                     ownedRelationship+=MultiplicityMember 
+	 *                     ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?))?
+	 *                 )* 
+	 *                 (ownedRelationship+=OwnedFeatureTyping | ownedRelationship+=OwnedSubsetting | ownedRelationship+=OwnedRedefinition)+
+	 *             ) | 
+	 *             (ownedRelationship+=OwnedFeatureTyping | ownedRelationship+=OwnedSubsetting | ownedRelationship+=OwnedRedefinition)+
+	 *         )?
+	 *     )
+	 */
+	protected void sequence_Identification_MultiplicityPart_Parameter_ParameterDeclaration_Redefines_Subsets_TypedBy(ISerializationContext context, Feature semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     Parameter returns Step
 	 *
 	 * Constraint:
 	 *     (
+	 *         direction=FeatureDirection? 
 	 *         isSufficient?='all'? 
 	 *         (
 	 *             (
@@ -2390,6 +2278,7 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	 *
 	 * Constraint:
 	 *     (
+	 *         direction=FeatureDirection? 
 	 *         isSufficient?='all'? 
 	 *         (
 	 *             (
@@ -2434,6 +2323,7 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	 *
 	 * Constraint:
 	 *     (
+	 *         direction=FeatureDirection? 
 	 *         isSufficient?='all'? 
 	 *         (
 	 *             (
@@ -2474,10 +2364,56 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	
 	/**
 	 * Contexts:
+	 *     StepParameter returns Feature
+	 *
+	 * Constraint:
+	 *     (
+	 *         direction=FeatureDirection? 
+	 *         isSufficient?='all'? 
+	 *         (
+	 *             (
+	 *                 ((humanId=Name name=Name?) | name=Name) 
+	 *                 (ownedRelationship+=OwnedFeatureTyping | ownedRelationship+=OwnedSubsetting | ownedRelationship+=OwnedRedefinition)+
+	 *             ) | 
+	 *             (
+	 *                 (
+	 *                     (
+	 *                         (
+	 *                             (
+	 *                                 ((humanId=Name name=Name?) | name=Name) 
+	 *                                 (ownedRelationship+=OwnedFeatureTyping | ownedRelationship+=OwnedSubsetting | ownedRelationship+=OwnedRedefinition)+
+	 *                             ) | 
+	 *                             (ownedRelationship+=OwnedFeatureTyping | ownedRelationship+=OwnedSubsetting | ownedRelationship+=OwnedRedefinition)+
+	 *                         ) 
+	 *                         ownedRelationship+=MultiplicityMember 
+	 *                         ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?))?
+	 *                     ) | 
+	 *                     (ownedRelationship+=MultiplicityMember ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?))?)
+	 *                 ) 
+	 *                 (
+	 *                     (ownedRelationship+=OwnedFeatureTyping | ownedRelationship+=OwnedSubsetting | ownedRelationship+=OwnedRedefinition)+ 
+	 *                     ownedRelationship+=MultiplicityMember 
+	 *                     ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?))?
+	 *                 )* 
+	 *                 (ownedRelationship+=OwnedFeatureTyping | ownedRelationship+=OwnedSubsetting | ownedRelationship+=OwnedRedefinition)+
+	 *             ) | 
+	 *             (ownedRelationship+=OwnedFeatureTyping | ownedRelationship+=OwnedSubsetting | ownedRelationship+=OwnedRedefinition)+
+	 *         )? 
+	 *         ownedRelationship+=FeatureValue?
+	 *     )
+	 */
+	protected void sequence_Identification_MultiplicityPart_Parameter_ParameterDeclaration_Redefines_Subsets_TypedBy_ValuePart(ISerializationContext context, Feature semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     StepParameter returns Step
 	 *
 	 * Constraint:
 	 *     (
+	 *         direction=FeatureDirection? 
 	 *         isSufficient?='all'? 
 	 *         (
 	 *             (
@@ -2524,7 +2460,7 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	 * Constraint:
 	 *     (
 	 *         ((humanId=Name name=Name?) | name=Name)? 
-	 *         (ownedRelationship+=OwnedDocumentation | ownedRelationship+=NamespaceMember | ownedRelationship+=Import)*
+	 *         (ownedRelationship+=OwnedDocumentation | ownedRelationship+=NamespaceMember | ownedRelationship+=AliasMember | ownedRelationship+=Import)*
 	 *     )
 	 */
 	protected void sequence_Identification_NamespaceBody(ISerializationContext context, Namespace semanticObject) {
@@ -2561,7 +2497,13 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	 * Constraint:
 	 *     (
 	 *         ((humanId=Name name=Name?) | name=Name)? 
-	 *         (ownedRelationship+=OwnedDocumentation | ownedRelationship+=NamespaceMember | ownedRelationship+=ElementFilterMember | ownedRelationship+=Import)*
+	 *         (
+	 *             ownedRelationship+=OwnedDocumentation | 
+	 *             ownedRelationship+=NamespaceMember | 
+	 *             ownedRelationship+=ElementFilterMember | 
+	 *             ownedRelationship+=AliasMember | 
+	 *             ownedRelationship+=Import
+	 *         )*
 	 *     )
 	 */
 	protected void sequence_Identification_PackageBody(ISerializationContext context, org.omg.sysml.lang.sysml.Package semanticObject) {
@@ -2617,6 +2559,32 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	
 	/**
 	 * Contexts:
+	 *     NonFeatureElement returns Specialization
+	 *     Specialization returns Specialization
+	 *
+	 * Constraint:
+	 *     (((humanId=Name name=Name?) | name=Name)? specific=[Type|QualifiedName] general=[Type|QualifiedName])
+	 */
+	protected void sequence_Identification_Specialization(ISerializationContext context, Specialization semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     NonFeatureElement returns Subclassification
+	 *     Subclassification returns Subclassification
+	 *
+	 * Constraint:
+	 *     (((humanId=Name name=Name?) | name=Name)? subclassifier=[Classifier|QualifiedName] superclassifier=[Classifier|QualifiedName])
+	 */
+	protected void sequence_Identification_Subclassification(ISerializationContext context, Subclassification semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     NonFeatureElement returns Subsetting
 	 *     Subsetting returns Subsetting
 	 *
@@ -2624,19 +2592,6 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	 *     (((humanId=Name name=Name?) | name=Name)? subsettingFeature=[Feature|QualifiedName] subsettedFeature=[Feature|QualifiedName])
 	 */
 	protected void sequence_Identification_Subsetting(ISerializationContext context, Subsetting semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     NonFeatureElement returns Superclassing
-	 *     Superclassing returns Superclassing
-	 *
-	 * Constraint:
-	 *     (((humanId=Name name=Name?) | name=Name)? subclass=[Classifier|QualifiedName] superclass=[Classifier|QualifiedName])
-	 */
-	protected void sequence_Identification_Superclassing(ISerializationContext context, Superclassing semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -2679,8 +2634,9 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	 * Constraint:
 	 *     (
 	 *         ownedRelationship+=PrefixDocumentation* 
-	 *         visibility=BasicVisibilityIndicator? 
-	 *         ((importedNamespace=[Namespace|QualifiedName] isRecursive?='**'?) | ownedRelatedElement+=FilterPackage)
+	 *         visibility=VisibilityIndicator? 
+	 *         isImportAll?='all'? 
+	 *         ((importedNamespace=[Namespace|Qualification]? importedMemberName=Name? isRecursive?='**'?) | ownedRelatedElement+=FilterPackage)?
 	 *     )
 	 */
 	protected void sequence_Import_ImportedFilterPackage_ImportedNamespace(ISerializationContext context, Import semanticObject) {
@@ -2693,7 +2649,7 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	 *     FilterPackageImport returns Import
 	 *
 	 * Constraint:
-	 *     (importedNamespace=[Namespace|QualifiedName] isRecursive?='**'?)
+	 *     (importedNamespace=[Namespace|Qualification]? importedMemberName=Name? isRecursive?='**'?)
 	 */
 	protected void sequence_ImportedNamespace(ISerializationContext context, Import semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -2771,6 +2727,46 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	 *     (ownedRelationship+=OwnedRedefinition | ownedRelationship+=FeaturePathExpressionMember)
 	 */
 	protected void sequence_ItemFlowFeature(ISerializationContext context, ItemFlowFeature semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     NamespaceMember returns Membership
+	 *
+	 * Constraint:
+	 *     (
+	 *         ownedRelationship+=PrefixDocumentation* 
+	 *         visibility=VisibilityIndicator? 
+	 *         (ownedRelatedElement+=NonFeatureElement | ownedRelatedElement+=FeatureElement)
+	 *     )
+	 */
+	protected void sequence_MemberPrefix_NamespaceMember(ISerializationContext context, Membership semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     NonFeatureMember returns Membership
+	 *
+	 * Constraint:
+	 *     (ownedRelationship+=PrefixDocumentation* visibility=VisibilityIndicator? ownedRelatedElement+=NonFeatureElement)
+	 */
+	protected void sequence_MemberPrefix_NonFeatureMember(ISerializationContext context, Membership semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     ResultExpressionMember returns ResultExpressionMembership
+	 *
+	 * Constraint:
+	 *     (ownedRelationship+=PrefixDocumentation* visibility=VisibilityIndicator? ownedRelatedElement+=OwnedExpression)
+	 */
+	protected void sequence_MemberPrefix_ResultExpressionMember(ISerializationContext context, ResultExpressionMembership semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -2870,25 +2866,9 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	 *     RootNamespace returns Namespace
 	 *
 	 * Constraint:
-	 *     (ownedRelationship+=OwnedDocumentation | ownedRelationship+=NamespaceMember | ownedRelationship+=Import)*
+	 *     (ownedRelationship+=OwnedDocumentation | ownedRelationship+=NamespaceMember | ownedRelationship+=AliasMember | ownedRelationship+=Import)*
 	 */
 	protected void sequence_NamespaceBodyElement_RootNamespace(ISerializationContext context, Namespace semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     NonFeatureTypeMember returns Membership
-	 *
-	 * Constraint:
-	 *     (
-	 *         ownedRelationship+=PrefixDocumentation* 
-	 *         visibility=VisibilityIndicator? 
-	 *         (ownedRelatedElement+=NonFeatureElement | (memberElement=[Element|QualifiedName] memberName=Name?))
-	 *     )
-	 */
-	protected void sequence_NonFeatureNamespaceMember_TypeMemberPrefix(ISerializationContext context, Membership semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -2975,24 +2955,6 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	
 	/**
 	 * Contexts:
-	 *     OwnedGeneralization returns Generalization
-	 *
-	 * Constraint:
-	 *     general=[Type|QualifiedName]
-	 */
-	protected void sequence_OwnedGeneralization(ISerializationContext context, Generalization semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, SysMLPackage.Literals.GENERALIZATION__GENERAL) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SysMLPackage.Literals.GENERALIZATION__GENERAL));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getOwnedGeneralizationAccess().getGeneralTypeQualifiedNameParserRuleCall_0_1(), semanticObject.eGet(SysMLPackage.Literals.GENERALIZATION__GENERAL, false));
-		feeder.finish();
-	}
-	
-	
-	/**
-	 * Contexts:
 	 *     OwnedRedefinition returns Redefinition
 	 *
 	 * Constraint:
@@ -3027,6 +2989,24 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	
 	/**
 	 * Contexts:
+	 *     OwnedSpecialization returns Specialization
+	 *
+	 * Constraint:
+	 *     general=[Type|QualifiedName]
+	 */
+	protected void sequence_OwnedSpecialization(ISerializationContext context, Specialization semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, SysMLPackage.Literals.SPECIALIZATION__GENERAL) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SysMLPackage.Literals.SPECIALIZATION__GENERAL));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getOwnedSpecializationAccess().getGeneralTypeQualifiedNameParserRuleCall_0_1(), semanticObject.eGet(SysMLPackage.Literals.SPECIALIZATION__GENERAL, false));
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     OwnedSubsetting returns Subsetting
 	 *
 	 * Constraint:
@@ -3039,24 +3019,6 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getOwnedSubsettingAccess().getSubsettedFeatureFeatureQualifiedNameParserRuleCall_0_1(), semanticObject.eGet(SysMLPackage.Literals.SUBSETTING__SUBSETTED_FEATURE, false));
-		feeder.finish();
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     OwnedSuperclassing returns Superclassing
-	 *
-	 * Constraint:
-	 *     superclass=[Classifier|QualifiedName]
-	 */
-	protected void sequence_OwnedSuperclassing(ISerializationContext context, Superclassing semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, SysMLPackage.Literals.SUPERCLASSING__SUPERCLASS) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SysMLPackage.Literals.SUPERCLASSING__SUPERCLASS));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getOwnedSuperclassingAccess().getSuperclassClassifierQualifiedNameParserRuleCall_0_1(), semanticObject.eGet(SysMLPackage.Literals.SUPERCLASSING__SUPERCLASS, false));
 		feeder.finish();
 	}
 	
@@ -3105,10 +3067,28 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	
 	/**
 	 * Contexts:
+	 *     Ownedsubclassification returns Subclassification
+	 *
+	 * Constraint:
+	 *     superclassifier=[Classifier|QualifiedName]
+	 */
+	protected void sequence_Ownedsubclassification(ISerializationContext context, Subclassification semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, SysMLPackage.Literals.SUBCLASSIFICATION__SUPERCLASSIFIER) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SysMLPackage.Literals.SUBCLASSIFICATION__SUPERCLASSIFIER));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getOwnedsubclassificationAccess().getSuperclassifierClassifierQualifiedNameParserRuleCall_0_1(), semanticObject.eGet(SysMLPackage.Literals.SUBCLASSIFICATION__SUPERCLASSIFIER, false));
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     ParameterMember returns ParameterMembership
 	 *
 	 * Constraint:
-	 *     (direction=FeatureDirection? ownedRelatedElement+=Parameter)
+	 *     ownedRelatedElement+=Parameter
 	 */
 	protected void sequence_ParameterMember(ISerializationContext context, ParameterMembership semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -3141,18 +3121,6 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	
 	/**
 	 * Contexts:
-	 *     ResultExpressionMember returns ResultExpressionMembership
-	 *
-	 * Constraint:
-	 *     (ownedRelationship+=PrefixDocumentation* visibility=VisibilityIndicator? ownedRelatedElement+=OwnedExpression)
-	 */
-	protected void sequence_ResultExpressionMember_TypeMemberPrefix(ISerializationContext context, ResultExpressionMembership semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
 	 *     ReturnParameterMember returns ReturnParameterMembership
 	 *
 	 * Constraint:
@@ -3168,7 +3136,7 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	 *     StepParameterMember returns ParameterMembership
 	 *
 	 * Constraint:
-	 *     (direction=FeatureDirection? ownedRelatedElement+=StepParameter)
+	 *     ownedRelatedElement+=StepParameter
 	 */
 	protected void sequence_StepParameterMember(ISerializationContext context, ParameterMembership semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

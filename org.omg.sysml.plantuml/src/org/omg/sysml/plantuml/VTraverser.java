@@ -31,7 +31,7 @@ import java.util.Set;
 
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.FeatureMembership;
-import org.omg.sysml.lang.sysml.Generalization;
+import org.omg.sysml.lang.sysml.Specialization;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.Relationship;
@@ -80,7 +80,7 @@ public abstract class VTraverser extends Visitor {
 
     public String traverseWithInherited(Type typ) {
         traverse0(typ);
-        for (Generalization g: typ.getOwnedGeneralization()) {
+        for (Specialization g: typ.getOwnedGeneralization()) {
             Type gt = g.getGeneral();
             if (gt == null) continue;
             for (FeatureMembership fm: gt.getOwnedFeatureMembership()) {

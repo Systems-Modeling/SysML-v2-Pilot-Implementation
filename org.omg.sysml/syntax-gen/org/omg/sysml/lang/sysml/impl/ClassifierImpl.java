@@ -27,7 +27,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.uml2.common.util.DerivedSubsetEObjectEList;
 import org.omg.sysml.lang.sysml.Classifier;
-import org.omg.sysml.lang.sysml.Superclassing;
+import org.omg.sysml.lang.sysml.Subclassification;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
@@ -38,7 +38,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.ClassifierImpl#getOwnedSuperclassing <em>Owned Superclassing</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ClassifierImpl#getOwnedSubclassification <em>Owned Subclassification</em>}</li>
  * </ul>
  *
  * @generated
@@ -69,8 +69,9 @@ public class ClassifierImpl extends TypeImpl implements Classifier {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public EList<Superclassing> getOwnedSuperclassing() {
-		return new DerivedSubsetEObjectEList<>(Superclassing.class, this, SysMLPackage.CLASSIFIER__OWNED_SUPERCLASSING, new int[] {SysMLPackage.TYPE__OWNED_GENERALIZATION});
+	@Override
+	public EList<Subclassification> getOwnedSubclassification() {
+		return new DerivedSubsetEObjectEList<>(Subclassification.class, this, SysMLPackage.CLASSIFIER__OWNED_SUBCLASSIFICATION, new int[] {SysMLPackage.TYPE__OWNED_SPECIALIZATION});
 	}
 
 	/**
@@ -81,8 +82,8 @@ public class ClassifierImpl extends TypeImpl implements Classifier {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case SysMLPackage.CLASSIFIER__OWNED_SUPERCLASSING:
-				return getOwnedSuperclassing();
+			case SysMLPackage.CLASSIFIER__OWNED_SUBCLASSIFICATION:
+				return getOwnedSubclassification();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -96,9 +97,9 @@ public class ClassifierImpl extends TypeImpl implements Classifier {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case SysMLPackage.CLASSIFIER__OWNED_SUPERCLASSING:
-				getOwnedSuperclassing().clear();
-				getOwnedSuperclassing().addAll((Collection<? extends Superclassing>)newValue);
+			case SysMLPackage.CLASSIFIER__OWNED_SUBCLASSIFICATION:
+				getOwnedSubclassification().clear();
+				getOwnedSubclassification().addAll((Collection<? extends Subclassification>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -112,8 +113,8 @@ public class ClassifierImpl extends TypeImpl implements Classifier {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.CLASSIFIER__OWNED_SUPERCLASSING:
-				getOwnedSuperclassing().clear();
+			case SysMLPackage.CLASSIFIER__OWNED_SUBCLASSIFICATION:
+				getOwnedSubclassification().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -127,8 +128,8 @@ public class ClassifierImpl extends TypeImpl implements Classifier {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.CLASSIFIER__OWNED_SUPERCLASSING:
-				return !getOwnedSuperclassing().isEmpty();
+			case SysMLPackage.CLASSIFIER__OWNED_SUBCLASSIFICATION:
+				return !getOwnedSubclassification().isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

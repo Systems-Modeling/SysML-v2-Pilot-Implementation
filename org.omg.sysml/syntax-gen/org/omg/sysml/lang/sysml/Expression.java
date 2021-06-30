@@ -104,7 +104,7 @@ public interface Expression extends Step {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The single parameter of this Expression whose <code>owningFeatureMembership</code> is a ReturnFeatureMembership. The result of an Expression must either be inherited from its <code>function</code> or (directly or indirectly) redefine the <code>result</code> parameter of its <code>function</code>.</p>
+	 * <p><p>The <code>result</code> parameter of the Expression, derived as the single <code>parameter</code> of the Expression with direction <code>out</code>. The result of an Expression must either be inherited from its <code>function</code> or (directly or indirectly) redefine the <code>result</code> parameter of its <code>function</code>.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Result</em>' reference.

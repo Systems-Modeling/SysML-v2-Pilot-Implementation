@@ -123,6 +123,15 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetParameter() {
+		return !getParameter().isEmpty();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	@Override
@@ -359,10 +368,12 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 		switch (featureID) {
 			case SysMLPackage.ITEM_FLOW__TYPE:
 				return isSetType();
+			case SysMLPackage.ITEM_FLOW__DIRECTED_FEATURE:
+				return isSetDirectedFeature();
 			case SysMLPackage.ITEM_FLOW__BEHAVIOR:
 				return isSetBehavior();
 			case SysMLPackage.ITEM_FLOW__PARAMETER:
-				return !getParameter().isEmpty();
+				return isSetParameter();
 			case SysMLPackage.ITEM_FLOW__CONNECTOR_END:
 				return isSetConnectorEnd();
 			case SysMLPackage.ITEM_FLOW__ITEM_TYPE:
@@ -433,6 +444,24 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 	 * @generated
 	 */
 	public boolean isSetType() {
+  		return false;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Feature> getDirectedFeature() {
+		return getParameter();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetDirectedFeature() {
   		return false;
 	}
 

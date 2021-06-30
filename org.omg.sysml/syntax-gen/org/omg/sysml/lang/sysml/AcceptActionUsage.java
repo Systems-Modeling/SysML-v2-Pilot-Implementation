@@ -47,12 +47,6 @@ public interface AcceptActionUsage extends ActionUsage {
 
 	/**
 	 * Returns the value of the '<em><b>Receiver Argument</b></em>' reference.
-	 * <p>
-	 * This feature subsets the following features:
-	 * </p>
-	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Namespace#getOwnedMember() <em>Owned Member</em>}'</li>
-	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
@@ -63,7 +57,6 @@ public interface AcceptActionUsage extends ActionUsage {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getAcceptActionUsage_ReceiverArgument()
 	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='accepActionUsage'"
-	 *        annotation="subsets"
 	 * @generated
 	 */
 	Expression getReceiverArgument();

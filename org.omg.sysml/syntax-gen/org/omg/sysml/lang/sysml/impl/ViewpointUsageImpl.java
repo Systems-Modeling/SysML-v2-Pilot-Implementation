@@ -27,8 +27,9 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
+import org.omg.sysml.lang.sysml.PartUsage;
 import org.omg.sysml.lang.sysml.RequirementDefinition;
-import org.omg.sysml.lang.sysml.StakeholderUsage;
+import org.omg.sysml.lang.sysml.StakeholderMembership;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.ViewpointDefinition;
 import org.omg.sysml.lang.sysml.ViewpointUsage;
@@ -115,12 +116,13 @@ public class ViewpointUsageImpl extends RequirementUsageImpl implements Viewpoin
 	 * @generated NOT
 	 */
 	@Override
-	public EList<StakeholderUsage> getViewpointStakeholder() {
-		EList<StakeholderUsage> stakeholders = new NonNotifyingEObjectEList<>(StakeholderUsage.class, this, SysMLPackage.VIEWPOINT_USAGE__VIEWPOINT_STAKEHOLDER);
-		getAddressedConcern().stream().
+	public EList<PartUsage> getViewpointStakeholder() {
+		EList<PartUsage> stakeholders = new NonNotifyingEObjectEList<>(PartUsage.class, this, SysMLPackage.VIEWPOINT_DEFINITION__VIEWPOINT_STAKEHOLDER);
+		getFramedConcern().stream().
 			flatMap(concern->concern.getFeature().stream()).
-			filter(StakeholderUsage.class::isInstance).
-			map(StakeholderUsage.class::cast).
+			filter(PartUsage.class::isInstance).
+			map(PartUsage.class::cast).
+			filter(usage->usage.getOwningMembership() instanceof StakeholderMembership).
 			forEachOrdered(stakeholders::add);
 		return stakeholders;
 	}
@@ -156,7 +158,7 @@ public class ViewpointUsageImpl extends RequirementUsageImpl implements Viewpoin
 				return;
 			case SysMLPackage.VIEWPOINT_USAGE__VIEWPOINT_STAKEHOLDER:
 				getViewpointStakeholder().clear();
-				getViewpointStakeholder().addAll((Collection<? extends StakeholderUsage>)newValue);
+				getViewpointStakeholder().addAll((Collection<? extends PartUsage>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

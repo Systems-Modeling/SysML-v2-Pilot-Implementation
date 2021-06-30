@@ -66,7 +66,7 @@ public interface ViewDefinition extends PartDefinition {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>View</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getViewDefinition_View()
-	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='featuringView'"
 	 *        annotation="subsets"
 	 * @generated
@@ -89,7 +89,7 @@ public interface ViewDefinition extends PartDefinition {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Satisfied Viewpoint</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getViewDefinition_SatisfiedViewpoint()
-	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='viewpointSatisfyingViewDefinition'"
 	 *        annotation="subsets"
 	 * @generated
@@ -145,7 +145,7 @@ public interface ViewDefinition extends PartDefinition {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>View Condition</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getViewDefinition_ViewCondition()
-	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='owningViewDefinition'"
 	 *        annotation="subsets"
 	 * @generated

@@ -1,0 +1,1560 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:MagicDrawProfile="http://www.omg.org/spec/UML/20131001/MagicDrawProfile" xmlns:ValidationProfile="http://UML_Standard_Profile/Validation_Profile/_11_5_f720368_1159529670215_231387_1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http://www.omg.org/spec/UML/20131001/MagicDrawProfile UML_Standard_Profile.MagicDraw_Profile.profile.uml#_3FkSb9nYEeut38w4P0hxDQ http://UML_Standard_Profile/Validation_Profile/_11_5_f720368_1159529670215_231387_1 UML_Standard_Profile.Validation_Profile.profile.uml#_3DE91dnYEeut38w4P0hxDQ">
+  <uml:Model xmi:id="ff70f9dd-144b-437a-b3b3-9e933647933d" name="Model" visibility="public" URI="" viewpoint="">
+    <packageImport xmi:id="_0primitiveTypesModel">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+    </packageImport>
+    <packageImport xmi:id="_0javaPrimitiveTypesModel">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#_0"/>
+    </packageImport>
+    <packagedElement xmi:type="uml:Package" xmi:id="c31e2422-bca5-40d1-aeaa-943b88ebb719" name="SysML constraints" visibility="public" URI="">
+      <ownedComment xmi:id="e7f91663-5431-4f64-9df8-a2d31605f08f" annotatedElement="c31e2422-bca5-40d1-aeaa-943b88ebb719" body="SysML constraints profile contains many important constraints of SysML elements, as defined in SysML 1.3 specifications."/>
+      <packagedElement xmi:type="uml:Package" xmi:id="2309e6e1-b58c-4f5a-ba93-ad1cf3b939af" name="SysML activeValSuite" visibility="public" URI="">
+        <ownedComment xmi:id="6f66441e-f060-4e2b-8361-79e37cd4998a" annotatedElement="2309e6e1-b58c-4f5a-ba93-ad1cf3b939af" body="Active validation suite for SysML project"/>
+        <packagedElement xmi:type="uml:Package" xmi:id="7248c4e1-b02d-4efc-acee-8f1cce7b721a" name="SysML_activeValSuite - Blocks" visibility="public" URI="">
+          <ownedComment xmi:id="8056b2a7-ace4-40c8-ac20-b8fa57d3fdb0" annotatedElement="7248c4e1-b02d-4efc-acee-8f1cce7b721a" body="Block active validation suite for SysML project"/>
+          <packagedElement xmi:type="uml:Package" xmi:id="90e512b9-72dd-4080-8823-bfe55f1b1cfa" name="ValueType" visibility="public" URI="">
+            <ownedRule xmi:id="f6e1ccd3-6dfb-4bfa-9da7-9c4175a13ea3" name="Invalid Matching Unit and QuantityKind" visibility="public">
+              <constrainedElement xmi:type="uml:Stereotype" href="SysML.profile.uml#6a8943e0-a039-4023-9965-e7231d46de38"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="45d7cd20-3e15-441b-8f6f-61cbe98658a8" name="" visibility="public">
+                <language>English</language>
+                <body></body>
+              </specification>
+            </ownedRule>
+            <ownedRule xmi:id="34fab436-becc-4688-a8f1-a8feb6930870" name="Missing Value Type stereotype(s)" visibility="public">
+              <constrainedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#DataType"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="9a2fa054-3395-449a-82aa-d5dfb7c33501" name="" visibility="public">
+                <language>English</language>
+                <body></body>
+              </specification>
+            </ownedRule>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Package" xmi:id="365e08a7-254e-46ab-824e-15495c6d6bb4" name="DistributedProperty" visibility="public" URI="">
+            <ownedRule xmi:id="ca4c5a2e-98b8-4c99-9ab0-3d64e965a3f5" name="Invalid owner of DistributedProperty" visibility="public">
+              <constrainedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Property"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="86dfbd98-76e7-4fc6-b269-d6371d81d26f" name="" visibility="public">
+                <language>Binary</language>
+                <body></body>
+              </specification>
+            </ownedRule>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Package" xmi:id="0db30120-6517-4382-bfc2-cc9dedac06ac" name="BindingConnector" visibility="public" URI="">
+            <ownedRule xmi:id="6e88ede0-bedf-4b29-8703-1789d0893b2e" name="Invalid ends type compatibility" visibility="public">
+              <constrainedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Connector"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="f7cfc814-822d-4726-8c38-8a0a7f9f639a" name="" visibility="public">
+                <language>Binary</language>
+                <body></body>
+              </specification>
+            </ownedRule>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Package" xmi:id="88010088-8deb-444d-938c-40f3565922e4" name="ValueProperty" visibility="public" URI="">
+            <ownedRule xmi:id="51d4f402-08ed-4ec7-b960-33ca19e65ad9" name="Invalid ValueProperty type" visibility="public">
+              <constrainedElement xmi:type="uml:Stereotype" href="MD_Customization_for_SysML.additional_stereotypes.profile.uml#ac9ed603-e892-44e8-995a-5955cac8791d"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="ab3da6fc-2d90-4fc5-a66d-4e963b1854dc" name="" visibility="public"/>
+            </ownedRule>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Package" xmi:id="2d195494-a753-4eee-916b-b6799f3dd98c" name="Block" visibility="public" URI="">
+            <ownedRule xmi:id="611bfa5a-2004-4928-8004-01182e6614f7" name="Missing Block stereotype(s)" visibility="public">
+              <constrainedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Class"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="285a48cc-f80a-497e-b909-1a3343807776" name="" visibility="public">
+                <language>English</language>
+                <body></body>
+              </specification>
+            </ownedRule>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Package" xmi:id="5b23f16f-f857-4e9c-a9d1-fdb9304ea780" name="Connector" visibility="public" URI="">
+            <ownedRule xmi:id="94b46586-978a-4da2-98e0-f2590a88c9d4" name="Invalid Connector" visibility="public">
+              <constrainedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Connector"/>
+              <constrainedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Property"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="249e2cb9-b253-4bd8-b226-979eda88d85a" name="" visibility="public">
+                <language>Binary</language>
+                <body></body>
+              </specification>
+            </ownedRule>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Package" xmi:id="555c397b-7478-433a-823e-dc9d3b0da082" name="ConnectorProperty" visibility="public" URI="">
+            <ownedRule xmi:id="387c59b2-b7da-460e-8703-e25b543b3cd2" name="ConnectorProperty" visibility="public">
+              <constrainedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Connector"/>
+              <constrainedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Property"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="44880cb9-a5c0-423c-8997-32100629c8a1" name="" visibility="public">
+                <language>Binary</language>
+                <body></body>
+              </specification>
+            </ownedRule>
+          </packagedElement>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Package" xmi:id="37ecd179-2a4c-44bd-8f3d-16b44befb14f" name="SysML_activeValSuite - Requirements" visibility="public" URI="">
+          <ownedComment xmi:id="f1767158-c40b-4ba5-880d-2fd7758d1386" annotatedElement="37ecd179-2a4c-44bd-8f3d-16b44befb14f" body="Requirement active validation suite for SysML project"/>
+          <packagedElement xmi:type="uml:Package" xmi:id="818af36c-f80a-4fff-b01f-4725631cf0b1" name="Requirement" visibility="public" URI="">
+            <ownedRule xmi:id="4b06b4bf-caca-43f4-a37e-88f362fe56a2" name="Missing requirement stereotype" visibility="public">
+              <constrainedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Classifier"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="a4f2deaf-a4dc-4edb-9e76-33acd40a335c" name="" visibility="public">
+                <language>Binary</language>
+                <body></body>
+              </specification>
+            </ownedRule>
+          </packagedElement>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Package" xmi:id="479fbd69-398f-4b12-b01b-88454e58d871" name="SysML_activeValSuite - Activities" visibility="public" URI="">
+          <ownedComment xmi:id="87006687-a77b-4904-9998-967040d50c49" annotatedElement="479fbd69-398f-4b12-b01b-88454e58d871" body="Activity active validation suite for SysML project"/>
+          <packagedElement xmi:type="uml:Package" xmi:id="c06706f5-0d2e-425a-aefc-8c08c65607f9" name="noBuffer" visibility="public" URI="">
+            <ownedRule xmi:id="addfc284-41cd-41ba-8bab-d16fec95fd1a" name="No Overwrite with noBuffer" visibility="public">
+              <constrainedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#ObjectNode"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="aaaed721-c822-4daf-8cdf-2a7d313f5ffd" name="" visibility="public">
+                <language>Binary</language>
+                <body></body>
+              </specification>
+            </ownedRule>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Package" xmi:id="cdf0c72f-f019-4ed8-a56d-d4439ed49f12" name="Discrete" visibility="public" URI="">
+            <ownedRule xmi:id="4fa4816a-02d0-4b52-bcf0-c1cd1fc56cd9" name="No discrete with continuous [ObjectNode]" visibility="public">
+              <constrainedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#ObjectNode"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="43c92452-ddc8-4cb0-a81a-e3965db35568" name="" visibility="public">
+                <language>Binary</language>
+                <body></body>
+              </specification>
+            </ownedRule>
+            <ownedRule xmi:id="bb5974f7-055a-43a7-8f8b-2b7fa19af4b3" name="No discrete with continuous [ActivityEdge]" visibility="public">
+              <constrainedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#ActivityEdge"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="ddaa2ed8-5d84-4fb3-bc77-fbfbc0681607" name="" visibility="public">
+                <language>Binary</language>
+                <body></body>
+              </specification>
+            </ownedRule>
+            <ownedRule xmi:id="5757f477-a6af-4e2c-9919-4d8a498e7a17" name="No discrete with continuous [Parameter]" visibility="public">
+              <constrainedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Parameter"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="ae355a7a-ce26-43ed-bc8b-efab7c70f452" name="" visibility="public">
+                <language>Binary</language>
+                <body></body>
+              </specification>
+            </ownedRule>
+          </packagedElement>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Package" xmi:id="bddfa794-367c-4481-bac4-29456c55f146" name="SysML_activeValSuite - Allocations" visibility="public" URI="">
+          <ownedComment xmi:id="3ffae6da-8221-4a0d-a8be-7e5b225c1250" annotatedElement="bddfa794-367c-4481-bac4-29456c55f146" body="Allocation active validation suite for SysML project"/>
+          <packagedElement xmi:type="uml:Package" xmi:id="115e6eb5-7bd5-45f9-bf2b-4e14f80f655f" name="AllocateActivityPartition" visibility="public" URI="">
+            <ownedRule xmi:id="b1ac663f-c9b0-4018-809c-dd32442df5e3" name="Missing allocation dependency" visibility="public">
+              <constrainedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Action"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="a85fc8bc-a7cd-45cb-aebe-ac5657604e06" name="" visibility="public"/>
+            </ownedRule>
+            <ownedRule xmi:id="0affd7a7-d696-44af-a5d3-b966c8c7d9c8" name="Invalid represented element of the activity partition" visibility="public">
+              <constrainedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#ActivityPartition"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="898a0fd1-2d1b-4a58-ba67-ad68c60c7289" name="" visibility="public"/>
+            </ownedRule>
+            <ownedRule xmi:id="f3189771-d6fc-440f-a778-63e28e1e2f10" name="Action Behavior is not allocated" visibility="public">
+              <constrainedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Action"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="cd8c733e-b2f4-4d0e-889b-edf07ee6b84f" name="" visibility="public"/>
+            </ownedRule>
+          </packagedElement>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Package" xmi:id="4eefa02a-6753-4c40-8551-94560aa31284" name="SysML_activeValSuite - Constraint Blocks" visibility="public" URI="">
+          <ownedComment xmi:id="bc7a8c4c-1e60-4088-a8ba-17ad8e94fa79" annotatedElement="4eefa02a-6753-4c40-8551-94560aa31284" body="Constraint Block active validation suite for SysML project"/>
+          <packagedElement xmi:type="uml:Package" xmi:id="006c2749-c466-41db-b9b6-a55c83d73c93" name="ConstraintBlock" visibility="public" URI="">
+            <ownedRule xmi:id="0d9c17ea-9508-4e7c-9e51-877cde79f58b" name="Invalid owned element of ConstraintBlock" visibility="public">
+              <constrainedElement xmi:type="uml:Stereotype" href="SysML.profile.uml#a461f55e-d256-4e20-8bab-3212acbc452a"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="1224b175-5da4-45de-a3cc-c396a2e62947" name="" visibility="public">
+                <language>Binary</language>
+                <body></body>
+              </specification>
+            </ownedRule>
+            <ownedRule xmi:id="43302cf0-7205-4c03-bcfa-30222d9ecf26" name="Invalid ConstraintParameter connector" visibility="public">
+              <constrainedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Port"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="e67b7b33-5c63-40be-855d-15a753fa924b" name="" visibility="public">
+                <language>Binary</language>
+                <body></body>
+              </specification>
+            </ownedRule>
+            <ownedRule xmi:id="46d11423-742b-4d6c-9211-2236f240f5db" name="Missing Constraint Block stereotype(s)" visibility="public">
+              <constrainedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Class"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="b152d7a8-364b-4791-b6b4-b29aa9360d88" name="" visibility="public">
+                <language>English</language>
+                <body></body>
+              </specification>
+            </ownedRule>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Package" xmi:id="f1790ddd-48ed-4d59-96ee-777ed9c33e04" name="ConstraintProperty" visibility="public" URI="">
+            <ownedRule xmi:id="c2131065-34f4-4cb0-83fa-ba10a41cf389" name="Inappropriate owner of Constraint Property" visibility="public">
+              <constrainedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Property"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="16bf3cb7-0ae8-4123-9695-5ad23e46ea67" name="" visibility="public"/>
+            </ownedRule>
+            <ownedRule xmi:id="1e3d4354-2f73-4e1a-ad0f-afd6ae0e965d" name="Inappropriate Block Property stereotype(s) for Block Property that is typed by ConstraintBlock" visibility="public">
+              <constrainedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Property"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="37e6e5fb-478c-410e-a28a-7b51c87247e2" name="" visibility="public"/>
+            </ownedRule>
+          </packagedElement>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Package" xmi:id="40a43e27-c634-4675-8601-4f5e2476cb8f" name="SysML_activeValSuite - Non-normative Extensions" visibility="public" URI="">
+          <ownedComment xmi:id="b835b043-bb6e-4aa6-a627-47b9231b33b2" annotatedElement="40a43e27-c634-4675-8601-4f5e2476cb8f" body="Non-normative extension active validation suite for SysML project"/>
+          <packagedElement xmi:type="uml:Package" xmi:id="178dc0f6-f7e7-48d5-adb8-76976ad9fbd9" name="RequirementDiagramExtensions" visibility="public" URI="">
+            <packagedElement xmi:type="uml:Package" xmi:id="4746f5ca-e7e5-4d41-809d-d6c72c60e78c" name="interfaceRequirement" visibility="public" URI="">
+              <ownedRule xmi:id="54f8a42a-93c6-4d37-a62f-2a250b22f94b" name="InterfaceRequirement satisfied by an invalid element" visibility="public">
+                <constrainedElement xmi:type="uml:Stereotype" href="SysML.profile.uml#eb350605-3356-41c3-b20b-f4f43d72d8f7"/>
+                <specification xmi:type="uml:OpaqueExpression" xmi:id="d770bf41-40ea-4522-bf09-87ddef6fa42f" name="" visibility="public">
+                  <language>Binary</language>
+                  <body></body>
+                </specification>
+              </ownedRule>
+            </packagedElement>
+            <packagedElement xmi:type="uml:Package" xmi:id="4046825a-0747-4514-ba0d-bdffbde8f5e0" name="functionalRequirement" visibility="public" URI="">
+              <ownedRule xmi:id="3206bdda-3ffb-4b9a-84f7-253c22005d57" name="FunctionalRequirement satisfied by an invalid element" visibility="public">
+                <constrainedElement xmi:type="uml:Stereotype" href="SysML.profile.uml#99ff7f6b-182a-4731-8b39-b2680cb9eabb"/>
+                <specification xmi:type="uml:OpaqueExpression" xmi:id="5b9150a7-0c82-4074-ad33-be4b0709fb32" name="" visibility="public">
+                  <language>Binary</language>
+                  <body></body>
+                </specification>
+              </ownedRule>
+            </packagedElement>
+            <packagedElement xmi:type="uml:Package" xmi:id="20117894-ca3d-4287-be4d-8a6ad9592a03" name="designConstraint" visibility="public" URI="">
+              <ownedRule xmi:id="26a93b67-39e5-4cb2-b2c6-bef0ab66db9d" name="DesignConstraint satisfied by an invalid element" visibility="public">
+                <constrainedElement xmi:type="uml:Stereotype" href="SysML.profile.uml#13e4212f-8ecc-4b28-b8b5-d3c1ddbb9417"/>
+                <specification xmi:type="uml:OpaqueExpression" xmi:id="24f05058-e7f9-472b-b758-e3308ff4020f" name="" visibility="public">
+                  <language>Binary</language>
+                  <body></body>
+                </specification>
+              </ownedRule>
+            </packagedElement>
+            <packagedElement xmi:type="uml:Package" xmi:id="d8b2cb43-dba0-444b-b6f7-dfb11296cd95" name="performanceRequirement" visibility="public" URI="">
+              <ownedRule xmi:id="4d4232be-594f-4d43-8c0d-7e08f7d786ee" name="PerformanceRequirement satisfied by an invalid element" visibility="public">
+                <constrainedElement xmi:type="uml:Stereotype" href="SysML.profile.uml#67788d20-6dd4-4284-bc32-c65c2914f664"/>
+                <specification xmi:type="uml:OpaqueExpression" xmi:id="686b1ab8-694c-45dc-af7c-86d5e468710d" name="" visibility="public">
+                  <language>Binary</language>
+                  <body></body>
+                </specification>
+              </ownedRule>
+            </packagedElement>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Package" xmi:id="0a441dd1-2204-4c5b-93ea-22024829a050" name="ActivityDiagramExtensions" visibility="public" URI="">
+            <packagedElement xmi:type="uml:Package" xmi:id="01c86692-59da-410a-8d74-3a0a039ee7f3" name="nonStreaming" visibility="public" URI="">
+              <ownedRule xmi:id="8c0f502a-04ef-49f5-b11b-dca7f6990a6b" name="Invalid streaming parameter" visibility="public">
+                <constrainedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Activity"/>
+                <specification xmi:type="uml:OpaqueExpression" xmi:id="704a9e39-2712-4d73-ac90-e539b49fb06a" name="" visibility="public">
+                  <language>Binary</language>
+                  <body></body>
+                </specification>
+              </ownedRule>
+            </packagedElement>
+            <packagedElement xmi:type="uml:Package" xmi:id="2aa159ff-f920-4b52-9c3a-21d9a22cfd58" name="Streaming" visibility="public" URI="">
+              <ownedRule xmi:id="898e1804-3d69-4146-b0de-fed9fb6b84db" name="No streaming with nonStreaming" visibility="public">
+                <constrainedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Activity"/>
+                <specification xmi:type="uml:OpaqueExpression" xmi:id="df01890c-3f0c-4c27-b1f4-d08730ca9e1f" name="" visibility="public">
+                  <language>Binary</language>
+                  <body></body>
+                </specification>
+              </ownedRule>
+              <ownedRule xmi:id="5bb52b8d-851c-4744-b581-8bbd588bdc3a" name="Missing streaming parameter" visibility="public">
+                <constrainedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Activity"/>
+                <specification xmi:type="uml:OpaqueExpression" xmi:id="ca3b0023-3f19-4e67-a55c-85d465900ac3" name="" visibility="public">
+                  <language>Binary</language>
+                  <body></body>
+                </specification>
+              </ownedRule>
+            </packagedElement>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Package" xmi:id="348d8e05-07bb-456f-82c2-e9e84ad4ad53" name="QUDV" visibility="public" URI="">
+            <ownedComment xmi:id="6fe217cf-7030-4ddc-8d39-95db30ee7218" annotatedElement="348d8e05-07bb-456f-82c2-e9e84ad4ad53" body=""/>
+            <ownedRule xmi:id="578824c5-43c6-43ee-a60f-e0a43902f4eb" name="Obsolete Unit for QUDV" visibility="public">
+              <constrainedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#DataType"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="e25c0331-613a-4145-8e1e-ea4ea027b652" name="" visibility="public"/>
+            </ownedRule>
+            <ownedRule xmi:id="064b54d2-a6e3-4d9c-9eba-b7106d19de42" name="Obsolete Quantity Kind for QUDV" visibility="public">
+              <constrainedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#DataType"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="4d566ca3-87b5-4d60-afd1-6a8d0a2bd6a0" name="" visibility="public"/>
+            </ownedRule>
+            <ownedRule xmi:id="b71a7faf-cc75-437c-8abd-dee4755d1390" name="Obsolete Unit used in Value Type for QUDV" visibility="public">
+              <constrainedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#DataType"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="4fcc6bec-deab-423c-a399-d1a120246454" name="" visibility="public"/>
+            </ownedRule>
+            <ownedRule xmi:id="843439e2-10f9-4a9b-a88f-f3d98da7a567" name="Obsolete Quantity Kind used in Value Type for QUDV" visibility="public">
+              <constrainedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#DataType"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="d086ddf7-5374-4054-a334-c5e1154f4c09" name="" visibility="public"/>
+            </ownedRule>
+            <ownedRule xmi:id="42c5ce55-1809-4a6b-98d6-71ea4a83255a" name="Obsolete Quantity Kind used in Unit for QUDV" visibility="public">
+              <constrainedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#InstanceSpecification"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="7efede23-3dd4-4e72-bde4-b42ad7e0c9b7" name="" visibility="public"/>
+            </ownedRule>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Package" xmi:id="879c5f45-0840-4c31-a2e0-1cb45cfb520b" name="Property" visibility="public" URI="">
+            <ownedRule xmi:id="5aa0828e-2f97-4cac-8a23-670ee93dffad" name="AdjunctProperty" visibility="public">
+              <constrainedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Property"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="cf1b8841-a577-4f47-b8b3-aff5d8534c9e" name="" visibility="public"/>
+            </ownedRule>
+            <ownedRule xmi:id="cfa2cfb3-0d19-4a47-871b-7f175bb1a74c" name="BoundReference" visibility="public">
+              <constrainedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Property"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="00a9ac8a-ef91-42ee-b469-b4e7f67e3a6d" name="" visibility="public"/>
+            </ownedRule>
+            <ownedRule xmi:id="660fdad7-a5a2-4c2d-9fcd-874d090d22c7" name="ClassifierBehavior" visibility="public">
+              <constrainedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Property"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="76715e90-620d-49ea-b664-1f17856ce856" name="" visibility="public"/>
+            </ownedRule>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Package" xmi:id="334cda48-23e6-46b3-af04-a4a4e10c2a30" name="Paramaters" visibility="public" URI="">
+            <ownedRule xmi:id="1d167248-bee4-4548-a150-f150be674c7d" name="Testcase Verdict" visibility="public">
+              <constrainedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Behavior"/>
+              <constrainedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Operation"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="338ae7cb-518f-4a7f-bce2-d0ed2205cb0c" name="" visibility="public"/>
+            </ownedRule>
+          </packagedElement>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Package" xmi:id="8c625e5c-1648-4dd3-bde7-35d0a4bbdb2b" name="SysML_activeValSuite - Ports and Flows" visibility="public" URI="">
+          <ownedComment xmi:id="ebc9e290-0a4a-455d-b0f0-66da8c30398d" annotatedElement="8c625e5c-1648-4dd3-bde7-35d0a4bbdb2b" body="Port and Flow active validation suite for SysML project"/>
+          <packagedElement xmi:type="uml:Package" xmi:id="5cf7cfae-374a-44ae-8c8e-174f0044c06c" name="FlowPort" visibility="public" URI="">
+            <ownedRule xmi:id="adfa031d-5ada-42c0-9d24-a78208e5936a" name="Deprecated FlowPort" visibility="public">
+              <constrainedElement xmi:type="uml:Stereotype" href="SysML.profile.uml#0e434b25-9665-4069-8015-f64ae1db4acf"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="5276085c-7a8e-4e3a-b363-027474220140" name="" visibility="public"/>
+            </ownedRule>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Package" xmi:id="d30a2a3a-3637-482c-a9c3-c0daa8a4ac88" name="FlowSpecification" visibility="public" URI="">
+            <ownedRule xmi:id="7ed8dc8c-0645-4980-858b-d8c60fd87a02" name="Deprecated FlowSpecification" visibility="public">
+              <constrainedElement xmi:type="uml:Stereotype" href="SysML.profile.uml#4263a7a3-0e32-4108-b872-cf500363ae24"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="ea4b0178-f2ad-4e82-a4b4-51d95b402a7f" name="" visibility="public"/>
+            </ownedRule>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Package" xmi:id="0bbbe2c3-e32d-4f4a-a81c-8edec22081e5" name="ItemFlow" visibility="public" URI="">
+            <ownedRule xmi:id="8b173d1e-9f56-4d0a-b606-0e6e4bc2bbf4" name="Invalid ItemProperty type" visibility="public">
+              <constrainedElement xmi:type="uml:Stereotype" href="SysML.profile.uml#229f4808-e1d8-4662-85b6-742853fc3b75"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="be406768-8f86-4ead-af67-adddc921c0c6" name="" visibility="public">
+                <language>Binary</language>
+                <body></body>
+              </specification>
+            </ownedRule>
+            <ownedRule xmi:id="5402fc47-7af3-4faf-ab54-dda1a280b9d2" name="Invalid ItemProperty" visibility="public">
+              <constrainedElement xmi:type="uml:Stereotype" href="SysML.profile.uml#229f4808-e1d8-4662-85b6-742853fc3b75"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="fcf3673c-a658-4f36-bc89-5d97061fe39c" name="" visibility="public">
+                <language>Binary</language>
+                <body></body>
+              </specification>
+            </ownedRule>
+            <ownedRule xmi:id="13c48bc4-6e3a-4ba2-9f4a-8ec2477f32f7" name="No ItemProperty allowed" visibility="public">
+              <constrainedElement xmi:type="uml:Stereotype" href="SysML.profile.uml#229f4808-e1d8-4662-85b6-742853fc3b75"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="5e032b4c-804a-466f-aa7a-0a4fd36a3db9" name="" visibility="public">
+                <language>Binary</language>
+                <body></body>
+              </specification>
+            </ownedRule>
+            <ownedRule xmi:id="f8d0b802-a0e1-439b-951f-d21c3a22ecc9" name="Invalid ConveyedClassifier with RelationEnds " visibility="public">
+              <constrainedElement xmi:type="uml:Stereotype" href="SysML.profile.uml#229f4808-e1d8-4662-85b6-742853fc3b75"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="ff5eb38e-a0bf-4743-b94c-948b99370a7c" name="" visibility="public"/>
+            </ownedRule>
+            <ownedRule xmi:id="9e757d05-6b33-49d5-bee0-65c5d0be3373" name="Incompatible ItemFlow name" visibility="public">
+              <constrainedElement xmi:type="uml:Stereotype" href="SysML.profile.uml#229f4808-e1d8-4662-85b6-742853fc3b75"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="b9db9c15-01e7-4da1-a0e6-e9348aa70225" name="" visibility="public"/>
+            </ownedRule>
+            <ownedRule xmi:id="31ef6620-7303-455a-a0c4-692d7992465d" name="The Source and Target of the realized Item Flow do not match the Roles of the Connector" visibility="public">
+              <constrainedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Connector"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="eeac8593-07af-471c-8609-b89a7f1eb3f6" name="" visibility="public"/>
+            </ownedRule>
+            <ownedRule xmi:id="f61801a1-a70c-4dd2-9cb5-fc8a82dd6dc5" name="Item Flow source and/or target elements do not match Lifeline representation" visibility="public">
+              <constrainedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Message"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="2c5bdeba-ab9f-460f-bc65-a3bf525d87c5" name="" visibility="public"/>
+            </ownedRule>
+            <ownedRule xmi:id="48921a55-933d-4c73-bd4b-286af07711d7" name="Incompatible ItemProperty" visibility="public">
+              <constrainedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Connector"/>
+              <constrainedElement xmi:type="uml:Stereotype" href="SysML.profile.uml#229f4808-e1d8-4662-85b6-742853fc3b75"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="05b7e188-5fb2-44a7-a2ff-9bc0121c7ccd" name="" visibility="public">
+                <language>English</language>
+              </specification>
+            </ownedRule>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Package" xmi:id="274b6b9f-c40d-4387-9eb2-00b8cc66cd0b" name="FlowProperty" visibility="public" URI="">
+            <ownedRule xmi:id="91e4f961-6e06-43bf-b4e8-18e61bf85842" name="Invalid FlowProperty type" visibility="public">
+              <constrainedElement xmi:type="uml:Stereotype" href="SysML.profile.uml#389d8dd1-a96b-4bba-b983-69de75fe0168"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="08746fcb-f5e8-4155-a5f4-77db98c181d0" name="" visibility="public">
+                <body></body>
+              </specification>
+            </ownedRule>
+            <ownedRule xmi:id="823e6f4d-37ef-454b-a53e-7a8dab9c2940" name="No FlowProperty direction" visibility="public">
+              <constrainedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Property"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="0aa26375-c8fe-4391-a8a0-3a0e59d49228" name="" visibility="public">
+                <language>Binary</language>
+                <body></body>
+              </specification>
+            </ownedRule>
+            <ownedRule xmi:id="6f5528b6-f2b5-4b60-8ca0-895230d7450d" name="Incompatible flow" visibility="public">
+              <constrainedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Connector"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="a8f8c1ae-2aa9-4dae-81d3-5ef993fdf07c" name="" visibility="public"/>
+            </ownedRule>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Package" xmi:id="f2094410-83d8-467d-9ee1-e818fa21b28e" name="ProxyPort" visibility="public" URI="">
+            <ownedRule xmi:id="6f76377b-3d28-4298-a3a5-3c4f2369c8bf" name="Proxy port cannot also be full port" visibility="public">
+              <constrainedElement xmi:type="uml:Stereotype" href="SysML.profile.uml#6de03ce5-f051-4cbb-a557-5b4d51e3e252"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="a6087632-7608-4d29-99d2-1d24675f6277" name="" visibility="public"/>
+            </ownedRule>
+            <ownedRule xmi:id="4aaf0727-263d-49cf-b7db-92e482f1e2ff" name="Invalid Type" visibility="public">
+              <constrainedElement xmi:type="uml:Stereotype" href="SysML.profile.uml#6de03ce5-f051-4cbb-a557-5b4d51e3e252"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="e99c2dbc-996f-4ec8-8258-eb3871512089" name="" visibility="public"/>
+            </ownedRule>
+            <ownedRule xmi:id="5bb64cef-855e-4aa8-a370-bdffdebeb8d4" name="Invalid ports owned by the type of a proxy port" visibility="public">
+              <constrainedElement xmi:type="uml:Stereotype" href="SysML.profile.uml#6de03ce5-f051-4cbb-a557-5b4d51e3e252"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="58815f8d-ecd5-4843-97ed-ac93f965e3a5" name="" visibility="public"/>
+            </ownedRule>
+            <ownedRule xmi:id="04bc53e4-6503-4241-9dc3-3c95dd6c3b6c" name="Confirm AutoWiring Connector" visibility="public">
+              <constrainedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Connector"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="d7290329-3838-4e59-98c7-74068840d76e" name="" visibility="public"/>
+            </ownedRule>
+            <ownedRule xmi:id="5eaef2d3-de6f-4c8f-a8e1-94dec0403211" name="Confirm AutoDelegation Connector" visibility="public">
+              <constrainedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Connector"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="98630df3-5f23-4eea-b2e3-1e9f3e8d9a0d" name="" visibility="public"/>
+            </ownedRule>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Package" xmi:id="1c45ad8f-eea5-4fff-bfa6-b77b94238f32" name="FullPort" visibility="public" URI="">
+            <ownedRule xmi:id="2c915346-23bc-4ec7-97d6-8353e424c919" name="Full port cannot also be proxy port" visibility="public">
+              <constrainedElement xmi:type="uml:Stereotype" href="SysML.profile.uml#e6b833ea-993c-4e61-8ade-fdc82616d32f"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="01338f38-9a83-4f1a-a23d-9d53fc247b34" name="" visibility="public"/>
+            </ownedRule>
+            <ownedRule xmi:id="7de3e97a-c9dd-4512-8d45-6f199ac02bda" name="Invalid binding connector for full port" visibility="public">
+              <constrainedElement xmi:type="uml:Stereotype" href="SysML.profile.uml#7bf3423c-e502-4305-beb7-a59bb989a4d9"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="2a0912c4-63a3-4296-802b-1d4c743bf24e" name="" visibility="public"/>
+            </ownedRule>
+            <ownedRule xmi:id="2540385b-10ab-4b8a-94ed-6854de07820c" name="Full port cannot be behavioral" visibility="public">
+              <constrainedElement xmi:type="uml:Stereotype" href="SysML.profile.uml#e6b833ea-993c-4e61-8ade-fdc82616d32f"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="24f44e7f-7794-4c94-9f3d-970d8c9dcae6" name="" visibility="public"/>
+            </ownedRule>
+            <ownedRule xmi:id="9a065919-39c0-4105-992a-429c8ab9bd2f" name="Full port cannot be conjugated" visibility="public">
+              <constrainedElement xmi:type="uml:Stereotype" href="SysML.profile.uml#e6b833ea-993c-4e61-8ade-fdc82616d32f"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="48d3ff0c-9ded-4115-b127-bc0f8e52e46d" name="" visibility="public"/>
+            </ownedRule>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Package" xmi:id="10a309e7-7d74-4cf4-994d-ef78f74c0d3f" name="AcceptChangeStructuralFeatureEventAction" visibility="public" URI="">
+            <ownedRule xmi:id="dd2057d2-6d6b-4c2c-9fb8-c08d4e446ce8" name="Invalid Trigger" visibility="public">
+              <constrainedElement xmi:type="uml:Stereotype" href="SysML.profile.uml#2ac38dcd-b6c2-4212-9105-c010e45e5edc"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="66b82b37-abdc-4df3-bced-613592b5242f" name="" visibility="public"/>
+            </ownedRule>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Package" xmi:id="f88bfe80-b1f9-47a3-9ba7-fee4b9efedbc" name="ChangeStructuralFeatureEvent" visibility="public" URI="">
+            <ownedRule xmi:id="fbcd22be-74b6-4378-9cb9-fb6333dbfd6a" name="Invalid Structural Feature" visibility="public">
+              <constrainedElement xmi:type="uml:Stereotype" href="SysML.profile.uml#6f008e38-cc60-4498-ba40-530ee9bf0ea1"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="ede22f41-8b44-4235-8d1d-0e82b2414bc3" name="" visibility="public"/>
+            </ownedRule>
+            <ownedRule xmi:id="c87e2fa6-a0c4-4309-b0d4-d1425637c242" name="Invalid Featuring Classifier of the Structural Feature" visibility="public">
+              <constrainedElement xmi:type="uml:Stereotype" href="SysML.profile.uml#6f008e38-cc60-4498-ba40-530ee9bf0ea1"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="aa5be9e4-29e0-42b5-908c-7f9d41d42c72" name="" visibility="public"/>
+            </ownedRule>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Package" xmi:id="fb1209a0-4e20-4cc1-815c-245b180bdfdd" name="InterfaceBlock" visibility="public" URI="">
+            <ownedRule xmi:id="300af20b-cae0-4fd4-ac83-0783a23daf66" name="Invalid Owned Behavior, General Classifiers, or Classifier Behavior" visibility="public">
+              <constrainedElement xmi:type="uml:Stereotype" href="SysML.profile.uml#7e41590c-6845-430b-86e2-f18ab439e6dd"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="dfc1fa3f-bd18-4e3e-8446-9d2132cea2fa" name="" visibility="public"/>
+            </ownedRule>
+            <ownedRule xmi:id="9556b359-cdb9-4631-b8cf-2580e744927e" name="Invalid type of ports" visibility="public">
+              <constrainedElement xmi:type="uml:Stereotype" href="SysML.profile.uml#7e41590c-6845-430b-86e2-f18ab439e6dd"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="839fa934-42e3-4439-9962-5d72087a3976" name="" visibility="public"/>
+            </ownedRule>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Package" xmi:id="9d44d8a2-6f27-44f1-873c-896a4705237c" name="DirectedFeature" visibility="public" URI="">
+            <ownedRule xmi:id="67545ab5-36ac-493a-bee0-365e9b3db224" name="Invalid Applied Stereotype, Subsetted, or Redefined" visibility="public">
+              <constrainedElement xmi:type="uml:Stereotype" href="SysML.profile.uml#32df73c0-aed3-4e2d-8936-12a2b1b39e57"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="b8f130f6-a11c-4f2a-92b1-0aafddd59cda" name="" visibility="public"/>
+            </ownedRule>
+            <ownedRule xmi:id="ab83d9a7-3327-4977-a740-a6db630feee8" name="Invalid Feature Direction" visibility="public">
+              <constrainedElement xmi:type="uml:Stereotype" href="SysML.profile.uml#32df73c0-aed3-4e2d-8936-12a2b1b39e57"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="4a5df9a9-8230-4615-bcf3-986562b568c7" name="" visibility="public"/>
+            </ownedRule>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Package" xmi:id="dbafeaba-707b-42da-a918-44206e29dcbe" name="InvocationOnNestedPortAction" visibility="public" URI="">
+            <ownedRule xmi:id="bc1218c0-0031-4b60-9fa5-73d61ec3ac1d" name="Invalid ports in the On Port" visibility="public">
+              <constrainedElement xmi:type="uml:Stereotype" href="SysML.profile.uml#b91de2ce-6b6f-4725-a44e-324dc455a043"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="409d4c26-54e0-442c-b473-42d4a4201f1e" name="" visibility="public"/>
+            </ownedRule>
+            <ownedRule xmi:id="939e6a7a-d449-4422-a40f-4d05ee903e22" name="Invalid first port in the On Nested Port" visibility="public">
+              <constrainedElement xmi:type="uml:Stereotype" href="SysML.profile.uml#b91de2ce-6b6f-4725-a44e-324dc455a043"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="cdabf6b5-023d-48a0-8145-bda9f8c3cd62" name="" visibility="public"/>
+            </ownedRule>
+            <ownedRule xmi:id="653fe054-52a1-49b9-a72c-035189f88b3a" name="Invalid types of ports in the On Nested Port" visibility="public">
+              <constrainedElement xmi:type="uml:Stereotype" href="SysML.profile.uml#b91de2ce-6b6f-4725-a44e-324dc455a043"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="fa539819-bb71-44e7-8c98-9323bc50eb4a" name="" visibility="public"/>
+            </ownedRule>
+            <ownedRule xmi:id="29b73c73-649a-463e-a516-bf3552bc1fbe" name="Invalid last port in the On Nested Port" visibility="public">
+              <constrainedElement xmi:type="uml:Stereotype" href="SysML.profile.uml#b91de2ce-6b6f-4725-a44e-324dc455a043"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="f53a9565-c0e6-4f3a-8474-bb68adedb36e" name="" visibility="public"/>
+            </ownedRule>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Package" xmi:id="3c3e081b-62df-4ef1-a854-b22b93a2c820" name="TriggerOnNestedPort" visibility="public" URI="">
+            <ownedRule xmi:id="96798c99-3128-4a77-b1da-138a7212d937" name="Invalid ports in the Port" visibility="public">
+              <constrainedElement xmi:type="uml:Stereotype" href="SysML.profile.uml#36ef2a2a-49be-4f83-8cc2-ba04362c4f18"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="894a1eb1-5d94-40b3-9612-46ae26de2ec5" name="" visibility="public"/>
+            </ownedRule>
+            <ownedRule xmi:id="20e96f8f-f0cf-4132-8a48-02b9ae1dcbe2" name="Invalid ports in the On Nested Port" visibility="public">
+              <constrainedElement xmi:type="uml:Stereotype" href="SysML.profile.uml#36ef2a2a-49be-4f83-8cc2-ba04362c4f18"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="69ce3a26-100c-4285-8c52-cbffe1afe2b1" name="" visibility="public"/>
+            </ownedRule>
+            <ownedRule xmi:id="91ea6206-71fa-43f5-8713-b1a27e88e812" name="Invalid first port in the On Nested Port" visibility="public">
+              <constrainedElement xmi:type="uml:Stereotype" href="SysML.profile.uml#36ef2a2a-49be-4f83-8cc2-ba04362c4f18"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="12cfafef-340d-465b-aa71-69677119e782" name="" visibility="public"/>
+            </ownedRule>
+            <ownedRule xmi:id="378e1e48-3f7b-429a-a486-43fd539d2dbc" name="Invalid type of ports in the On Nested Port" visibility="public">
+              <constrainedElement xmi:type="uml:Stereotype" href="SysML.profile.uml#36ef2a2a-49be-4f83-8cc2-ba04362c4f18"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="6d0f829c-ca05-4599-9d65-c15049baad6e" name="" visibility="public"/>
+            </ownedRule>
+            <ownedRule xmi:id="b4f80879-9564-4539-aa67-d975d1e03dee" name="Invalid last port in the On Nested Port" visibility="public">
+              <constrainedElement xmi:type="uml:Stereotype" href="SysML.profile.uml#36ef2a2a-49be-4f83-8cc2-ba04362c4f18"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="ec49ba24-4f5b-456a-b06a-efc8e1c7810f" name="" visibility="public"/>
+            </ownedRule>
+          </packagedElement>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Package" xmi:id="ecf9884a-cf95-42f0-8860-b4964f5ab816" name="SysML_activeValSuite - Contextual Relationships" visibility="public" URI="">
+          <ownedRule xmi:id="bb984bed-fcbb-4ca3-a3bc-5a7dc4b9f61c" name="Relationship and its Ends Differ in Context" visibility="public">
+            <constrainedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Element"/>
+            <specification xmi:type="uml:OpaqueExpression" xmi:id="e6c22b89-f20d-4457-a3c2-c4ec2ad13df5" name="" visibility="public">
+              <language>English</language>
+            </specification>
+          </ownedRule>
+        </packagedElement>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Package" xmi:id="816ebdeb-8c39-4507-8297-6997625f1745" name="SysML ValSuite" visibility="public" URI="">
+        <ownedComment xmi:id="868b37ab-16f6-4e33-a29b-5bce01c11886" annotatedElement="816ebdeb-8c39-4507-8297-6997625f1745" body="Validation suite for SysML project"/>
+        <packagedElement xmi:type="uml:Package" xmi:id="4b1a090d-5a4c-4d73-ae7e-0f06fca5a876" name="SysML ValSuite - Model Elements" visibility="public" URI="">
+          <ownedComment xmi:id="221452b7-0a64-48d4-8bf9-f401b7d70255" annotatedElement="4b1a090d-5a4c-4d73-ae7e-0f06fca5a876" body="Model Element validation suite for SysML project"/>
+          <packagedElement xmi:type="uml:Package" xmi:id="5ffd4eb9-0978-45f4-868e-3e8fb28cb310" name="Viewpoint" visibility="public" URI="">
+            <ownedRule xmi:id="aba7c748-aba6-4005-b146-d0587cbed120" name="Invalid Classifier of Instance Specification" visibility="public">
+              <constrainedElement xmi:type="uml:Stereotype" href="SysML.profile.uml#4b68a725-f152-4740-a942-f48d394a94b0"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="0fe1a613-681f-4e2d-b9d7-4bcb09712faf" name="" visibility="public">
+                <language>OCL2.0</language>
+                <body>encoded5FinstanceSpecificationOfClassifier->isEmpty()</body>
+              </specification>
+            </ownedRule>
+            <ownedRule xmi:id="fee093b7-fcc6-4f89-8702-a2cb039a7a42" name="Invalid owned attribute of ViewPoint" visibility="public">
+              <constrainedElement xmi:type="uml:Stereotype" href="SysML.profile.uml#4b68a725-f152-4740-a942-f48d394a94b0"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="3a3a3afc-96cf-490a-8cde-37ae862818fd" name="" visibility="public">
+                <language>OCL2.0</language>
+                <body>ownedAttribute->isEmpty()</body>
+              </specification>
+            </ownedRule>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Package" xmi:id="890cf025-6530-4974-bb54-9577f1040332" name="View" visibility="public" URI="">
+            <ownedRule xmi:id="c68312c6-793c-481b-96f8-e84f594dc635" name="Invalid owned element of View" visibility="public">
+              <constrainedElement xmi:type="uml:Stereotype" href="SysML.profile.uml#b0223a40-f5a5-4b70-9670-0ab82458c9a2"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="5c68f403-dc68-40d4-be1d-e10f258245e4" name="" visibility="public">
+                <language>OCL2.0</language>
+                <body>self.ownedElement->notEmpty() implies 
+self.ownedElement->forAll(pe|
+ pe.oclIsKindOf(UML2_Metamodel::ElementImport) or
+ pe.oclIsKindOf(UML2_Metamodel::PackageImport) or
+ pe.oclIsKindOf(UML2_Metamodel::Comment) or
+ pe.oclIsKindOf(UML2_Metamodel::Constraint) or
+ pe.oclIsKindOf(UML2_Metamodel::Relationship))</body>
+              </specification>
+            </ownedRule>
+          </packagedElement>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Package" xmi:id="ffd1b578-003d-4ede-9dca-553a1d19fabb" name="SysML ValSuite - Activities" visibility="public" URI="">
+          <ownedComment xmi:id="897d0d8a-521e-469f-b984-3771cc9934ad" annotatedElement="ffd1b578-003d-4ede-9dca-553a1d19fabb" body="Activity validation suite for SysML project"/>
+          <packagedElement xmi:type="uml:Package" xmi:id="794a201d-36f3-49a9-a7c7-bf6cffe4c95c" name="ControlValue" visibility="public" URI="">
+            <ownedRule xmi:id="1e042c0d-25d3-49e4-8699-f8b1c95b14bb" name="Invalid isControlType tag" visibility="public">
+              <constrainedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#ObjectNode"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="0ff729c0-dadd-4ba8-b5db-f83b40e1379c" name="" visibility="public">
+                <language>OCL2.0</language>
+                <body>(type.name='ControlValue' and not type.name.oclIsUndefined()) implies isControlType</body>
+              </specification>
+            </ownedRule>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Package" xmi:id="4232998c-98e8-46f8-8b91-0627f4f284ea" name="Rate" visibility="public" URI="">
+            <ownedRule xmi:id="9d3044ce-cb59-45d8-9a9b-efe7c1a5098c" name="Invalid isStream tag" visibility="public">
+              <constrainedElement xmi:type="uml:Stereotype" href="SysML.profile.uml#65803557-a0d4-46c9-948f-80d01f14bac2"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="cd6e552d-7283-464f-9bb4-0e2db67a92bc" name="" visibility="public">
+                <language>OCL2.0</language>
+                <body>self.oclIsKindOf(UML_Standard_Profile::UML2_Metamodel::Parameter) implies self.oclAsType(UML_Standard_Profile::UML2_Metamodel::Parameter).isStream</body>
+              </specification>
+            </ownedRule>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Package" xmi:id="385127ea-f3f4-45ab-8150-16ea15f92f05" name="ControlOperator" visibility="public" URI="">
+            <ownedRule xmi:id="a001d810-9e5d-43fc-ac32-0e09ff23b2ae" name="Invalid parameter type" visibility="public">
+              <constrainedElement xmi:type="uml:Stereotype" href="SysML.profile.uml#6774447f-e7bb-4278-a70e-8e6b4d583f04"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="0e242d7b-dad5-4425-9718-bd8cbaf575b1" name="" visibility="public">
+                <language>OCL2.0</language>
+                <body>(self.oclIsKindOf(UML_Standard_Profile::UML2_Metamodel::Behavior) and self.oclAsType(UML_Standard_Profile::UML2_Metamodel::Behavior).ownedParameter->exists(type.name='ControlValue' or type.oclIsUndefined())) or
+(self.oclIsKindOf(UML_Standard_Profile::UML2_Metamodel::Operation) and self.oclAsType(UML_Standard_Profile::UML2_Metamodel::Operation).ownedParameter->exists(type.name='ControlValue' or type.oclIsUndefined()))</body>
+              </specification>
+            </ownedRule>
+            <ownedRule xmi:id="d9d1e230-b8cb-4256-a427-cdfd610b9696" name="Missing ControlOperator stereotype" visibility="public">
+              <constrainedElement xmi:type="uml:Stereotype" href="SysML.profile.uml#6774447f-e7bb-4278-a70e-8e6b4d583f04"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="06f3c333-1490-4e5e-8aca-776533527376" name="" visibility="public">
+                <language>OCL2.0</language>
+                <body>(self.oclIsKindOf(UML_Standard_Profile::UML2_Metamodel::Operation) and self.oclAsType(UML_Standard_Profile::UML2_Metamodel::Operation).method->notEmpty()) implies self.oclAsType(UML_Standard_Profile::UML2_Metamodel::Operation).method->forAll(oclIsKindOf(SysML::Activities::ControlOperator))</body>
+              </specification>
+            </ownedRule>
+            <ownedRule xmi:id="1337f4da-1eda-489d-b8f1-f842377ba6b5" name="Invalid parameter type [Behavior]" visibility="public">
+              <constrainedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Behavior"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="03c46e60-7e0a-4937-b5f3-8a5b3b10be7f" name="" visibility="public">
+                <language>OCL2.0</language>
+                <body>self.oclIsTypeOf(SysML::Activities::ControlOperator) or
+self.ownedParameter->forAll(type.name&lt;>'ControlValue' or type.oclIsUndefined())</body>
+              </specification>
+            </ownedRule>
+            <ownedRule xmi:id="06014e6a-93f9-4ef7-aff1-b72378d647d5" name="Invalid parameter type [Operation]" visibility="public">
+              <constrainedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Operation"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="9d4b58dc-5e1f-426b-9802-55432e527126" name="" visibility="public">
+                <language>OCL2.0</language>
+                <body>self.oclIsTypeOf(SysML::Activities::ControlOperator) or
+self.ownedParameter->forAll(type.name&lt;>'ControlValue' or type.oclIsUndefined())</body>
+              </specification>
+            </ownedRule>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Package" xmi:id="a39d9a63-98bc-4017-9d1c-da97907ab484" name="Discrete" visibility="public" URI="">
+            <ownedRule xmi:id="f7385c26-e896-4e12-99bc-cf4aef3bf72f" name="No discrete with continuous [ObjectNode]" visibility="public">
+              <constrainedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#ObjectNode"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="ae7e3b79-e103-497b-89b4-3cbc92a598ee" name="" visibility="public">
+                <language>Binary</language>
+                <body>com.nomagic.magicdraw.sysml.validation.activity.ActivityConstraints.isValidContinousAndDiscrete</body>
+              </specification>
+            </ownedRule>
+            <ownedRule xmi:id="986de930-533d-48b9-88e4-a0704f4aa437" name="No discrete with continuous [ActivityEdge]" visibility="public">
+              <constrainedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#ActivityEdge"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="12630134-af5c-4a2b-bab1-360f4b387548" name="" visibility="public">
+                <language>Binary</language>
+                <body>com.nomagic.magicdraw.sysml.validation.activity.ActivityConstraints.isValidContinousAndDiscrete</body>
+              </specification>
+            </ownedRule>
+            <ownedRule xmi:id="fda250d8-99b7-4e96-a396-30da987cd469" name="No discrete with continuous [Parameter]" visibility="public">
+              <constrainedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Parameter"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="355f1bb3-3410-4755-baec-10c22ca6b9fd" name="" visibility="public">
+                <language>Binary</language>
+                <body>com.nomagic.magicdraw.sysml.validation.activity.ActivityConstraints.isValidContinousAndDiscrete</body>
+              </specification>
+            </ownedRule>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Package" xmi:id="71c259c2-9f59-4871-bdcc-719d3fa36fe5" name="Optional" visibility="public" URI="">
+            <ownedRule xmi:id="ac176e78-6bdf-4af9-87dc-71e3d7b441d5" name="Invalid Optional lower multiplicity" visibility="public">
+              <constrainedElement xmi:type="uml:Stereotype" href="SysML.profile.uml#5a1bd650-a3e5-4af4-ac8e-ddeeca967b47"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="3048c2b2-fd1a-4067-9ec6-75213e3b1de8" name="" visibility="public">
+                <language>OCL2.0</language>
+                <body>not lower.oclIsUndefined() and lower = 0</body>
+              </specification>
+            </ownedRule>
+            <ownedRule xmi:id="d53b0b42-79c4-45a6-9ea1-312568c5c5b3" name="Invalid No Optional lower multiplicity" visibility="public">
+              <constrainedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Parameter"/>
+              <constrainedElement xmi:type="uml:Stereotype" href="SysML.profile.uml#5a1bd650-a3e5-4af4-ac8e-ddeeca967b47"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="4aa324a0-7680-4a44-9143-7125f557848d" name="" visibility="public">
+                <language>OCL2.0</language>
+                <body>(appliedStereotypeInstance.oclIsUndefined() or (not appliedStereotypeInstance.classifier->exists(name='Optional'))) implies ((not lower.oclIsUndefined()) and lower > 0)</body>
+              </specification>
+            </ownedRule>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Package" xmi:id="f12406fa-9b8f-43fa-b0cc-a228fa9ab4ba" name="Probability" visibility="public" URI="">
+            <ownedRule xmi:id="8a4b5a1d-24b4-46f4-bf92-a1650eb6bf63" name="Invalid Activity Edge source" visibility="public">
+              <constrainedElement xmi:type="uml:Stereotype" href="SysML.profile.uml#749d841f-40de-4ce5-8215-93aaaee8bc38"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="b64b8d2d-6053-4f31-a875-6211cbd34607" name="" visibility="public">
+                <language>OCL2.0</language>
+                <body>self.oclIsKindOf(UML_Standard_Profile::UML2_Metamodel::ActivityEdge) implies self.oclAsType(UML_Standard_Profile::UML2_Metamodel::ActivityEdge).source.oclIsKindOf(UML_Standard_Profile::UML2_Metamodel::DecisionNode) or self.oclAsType(UML_Standard_Profile::UML2_Metamodel::ActivityEdge).source.oclIsKindOf(UML_Standard_Profile::UML2_Metamodel::ObjectNode) </body>
+              </specification>
+            </ownedRule>
+            <ownedRule xmi:id="fdb52f6b-3e42-4b5d-a728-dbf219204047" name="Missing Probability stereotype" visibility="public">
+              <constrainedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#ActivityEdge"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="fc864b22-94d9-4ed9-bd03-f5cbbe16c801" name="" visibility="public">
+                <language>OCL2.0</language>
+                <body>self.source.outgoing->exists(oclIsKindOf(SysML::Activities::Probability)) implies self.oclIsKindOf(SysML::Activities::Probability)</body>
+              </specification>
+            </ownedRule>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Package" xmi:id="f5b8b556-f67b-4bfe-b2ca-58a2ef762e54" name="noBuffer" visibility="public" URI="">
+            <ownedRule xmi:id="fcaa335f-425f-4d64-99b1-cba485a4ca99" name="No Overwrite with noBuffer" visibility="public">
+              <constrainedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#ObjectNode"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="10ebeb7e-b7d4-4176-9c98-7a6329c1bfa6" name="" visibility="public">
+                <language>Binary</language>
+                <body>com.nomagic.magicdraw.sysml.validation.activity.ActivityConstraints.isValidObjectNodeOverwriteAndNoBuffer</body>
+              </specification>
+            </ownedRule>
+          </packagedElement>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Package" xmi:id="f170e4c1-b856-490a-bc27-358d54bba85c" name="SysML ValSuite - Requirements" visibility="public" URI="">
+          <ownedComment xmi:id="e7c62a49-7423-464f-b905-07315f39f2fa" annotatedElement="f170e4c1-b856-490a-bc27-358d54bba85c" body="Requirement validation suite for SysML project"/>
+          <packagedElement xmi:type="uml:Package" xmi:id="11664016-6510-4eeb-82ca-39a04564ef5e" name="TestCase" visibility="public" URI="">
+            <ownedRule xmi:id="347f8c45-6266-426a-8edb-ca55fd8db2fe" name="Invalid return parameter type" visibility="public">
+              <constrainedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Behavior"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="8e503859-ab56-4d6d-9709-c23a11320327" name="" visibility="public">
+                <language>Binary</language>
+                <body>com.nomagic.requirements.validation.requirement.Requirement.isValidTestCase</body>
+              </specification>
+            </ownedRule>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Package" xmi:id="60083474-1858-4957-b81a-3fb2233d1b55" name="Copy" visibility="public" URI="">
+            <ownedRule xmi:id="3e1fa27d-65fe-4e2a-b5d5-2c5d7f8366cd" name="Invalid Slave Requirement text" visibility="public">
+              <constrainedElement xmi:type="uml:Stereotype" href="SysML.profile.uml#719f22b1-e3bd-4f64-8f5e-14ff674f0514"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="cca079a6-d16b-4b79-a004-a6918e6c1737" name="" visibility="public">
+                <language>Binary</language>
+                <body>com.nomagic.requirements.validation.requirement.Requirement.isValidClientReadOnlyCopySupplier</body>
+              </specification>
+            </ownedRule>
+            <ownedRule xmi:id="4dd6ee21-ff01-435d-8f1e-f8c99e35a303" name="Invalid Copy of requirement" visibility="public">
+              <constrainedElement xmi:type="uml:Stereotype" href="SysML.profile.uml#719f22b1-e3bd-4f64-8f5e-14ff674f0514"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="a36fa418-c019-4922-b094-921404ca42c1" name="" visibility="public">
+                <language>Binary</language>
+                <body>com.nomagic.requirements.validation.requirement.Requirement.hasSingleCopy</body>
+              </specification>
+            </ownedRule>
+            <ownedRule xmi:id="3cf596cb-fa1e-405d-a1c4-75d30b8a9251" name="Missing Recursive copy of sub-requirement" visibility="public">
+              <constrainedElement xmi:type="uml:Stereotype" href="SysML.profile.uml#719f22b1-e3bd-4f64-8f5e-14ff674f0514"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="2b47aff1-e856-4cb6-8342-6a5f6ce3c4a8" name="" visibility="public">
+                <language>Binary</language>
+                <body>com.nomagic.requirements.validation.requirement.Requirement.isValidCopyRequirement</body>
+              </specification>
+            </ownedRule>
+            <ownedRule xmi:id="fd0a45b7-0428-41a3-8f18-e9acd0b7def6" name="Recursive loop of Copy dependencies" visibility="public">
+              <constrainedElement xmi:type="uml:Stereotype" href="SysML.profile.uml#719f22b1-e3bd-4f64-8f5e-14ff674f0514"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="0f2a86e8-df63-4670-84e9-35b10032c13d" name="" visibility="public">
+                <language>Binary</language>
+                <body>com.nomagic.requirements.validation.requirement.Requirement.hasNoRecursiveCopy</body>
+              </specification>
+            </ownedRule>
+            <ownedRule xmi:id="fd1edea8-fab3-4093-9043-d8dce3933db2" name="Invalid stereotype(s) of client/supplier of Copy" visibility="public">
+              <constrainedElement xmi:type="uml:Stereotype" href="SysML.profile.uml#719f22b1-e3bd-4f64-8f5e-14ff674f0514"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="17b291ac-5f10-41e1-bfaf-00bbffab2635" name="" visibility="public">
+                <language>Binary</language>
+                <body>com.nomagic.requirements.validation.requirement.Requirement.isRequirementBetweenCopy</body>
+              </specification>
+            </ownedRule>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Package" xmi:id="7921ac16-d79b-445d-b967-87ccd837e6c8" name="DeriveReqt" visibility="public" URI="">
+            <ownedRule xmi:id="37d7eab2-3925-43c6-97d9-e971f558984e" name="Invalid source or target of DeriveReqt" visibility="public">
+              <constrainedElement xmi:type="uml:Stereotype" href="SysML.profile.uml#6c6326ba-1ec4-4767-a2cd-cb482ae44be3"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="d13b20fd-cc91-4a3e-99a0-18a1a8ca17ec" name="" visibility="public">
+                <language>OCL2.0</language>
+                <body>client->forAll(oclIsKindOf(SysML::Requirements::Requirement)) and supplier->forAll(oclIsKindOf(SysML::Requirements::Requirement))</body>
+              </specification>
+            </ownedRule>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Package" xmi:id="d75a0c0c-ff04-4e44-9b04-4c6804c64b3d" name="Requirement" visibility="public" URI="">
+            <ownedRule xmi:id="49c47822-0719-4b96-95ac-55c37bad6bc2" name="Invalid owned operation of Requirement" visibility="public">
+              <constrainedElement xmi:type="uml:Stereotype" href="SysML.profile.uml#fc8604cd-74a5-4ccc-97f7-2c46158e8717"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="2db07961-6f31-41a8-bfa6-c94b57c1f97a" name="" visibility="public">
+                <language>OCL2.0</language>
+                <body>ownedOperation->isEmpty()</body>
+              </specification>
+            </ownedRule>
+            <ownedRule xmi:id="9e0edbee-e102-4882-b88f-1c578471b5d2" name="Invalid owned attribute of Requirement" visibility="public">
+              <constrainedElement xmi:type="uml:Stereotype" href="SysML.profile.uml#fc8604cd-74a5-4ccc-97f7-2c46158e8717"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="c07eb3b2-539e-4e2a-9d39-d30ac5888e91" name="" visibility="public">
+                <language>OCL2.0</language>
+                <body>ownedAttribute->isEmpty()</body>
+              </specification>
+            </ownedRule>
+            <ownedRule xmi:id="9ad62bdd-9d62-432f-aa39-737a540bb391" name="Invalid generalization of Requirement" visibility="public">
+              <constrainedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Generalization"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="2abee25c-290e-46c7-8b44-4226ba2b0fae" name="" visibility="public">
+                <language>OCL2.0</language>
+                <body>(not general.oclIsKindOf(SysML::Requirements::Requirement)) and (not specific.oclIsKindOf(SysML::Requirements::Requirement))</body>
+              </specification>
+            </ownedRule>
+            <ownedRule xmi:id="c7cfa104-b7f2-4649-b47e-e6bacf33d04f" name="Missing requirement stereotype" visibility="public">
+              <constrainedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Classifier"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="249c7b01-fd21-45dd-b8c5-db4705469691" name="" visibility="public">
+                <language>Binary</language>
+                <body>com.nomagic.requirements.validation.requirement.Requirement.isValidNested</body>
+              </specification>
+            </ownedRule>
+          </packagedElement>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Package" xmi:id="a4ff5ec5-7e65-4b8e-9a14-59218dc572f2" name="SysML ValSuite - Allocations" visibility="public" URI="">
+          <ownedComment xmi:id="0cf6f34b-a6f8-4ade-8ebd-b088ce7ce154" annotatedElement="a4ff5ec5-7e65-4b8e-9a14-59218dc572f2" body="Allocation validation suite for SysML project"/>
+          <packagedElement xmi:type="uml:Package" xmi:id="92e55b62-fad7-42df-a6cf-d1c36b7dfd07" name="AllocateActivityPartition" visibility="public" URI="">
+            <ownedRule xmi:id="8a46f3aa-f336-4c9e-89a1-aa4f762920c5" name="Invalid represented element of the activity partition" visibility="public">
+              <constrainedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#ActivityPartition"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="cdf607f0-f0f0-490e-9b0f-ec10f9c51ac8" name="" visibility="public">
+                <language>Binary</language>
+                <body>com.nomagic.magicdraw.sysml.validation.allocation.ValidRepresentElementOfActivityPartition.isValidPartition</body>
+              </specification>
+            </ownedRule>
+            <ownedRule xmi:id="8089c854-87ab-4105-8a5e-d37bfc9137e0" name="Missing allocation dependency" visibility="public">
+              <constrainedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Action"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="0a56c773-60af-4be7-a18f-b5043cf06e02" name="" visibility="public">
+                <language>Binary</language>
+                <body>com.nomagic.magicdraw.sysml.validation.allocation.ValidAllocatedSupplier.isValidAction</body>
+              </specification>
+            </ownedRule>
+          </packagedElement>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Package" xmi:id="672fdbb1-a617-4078-b79a-53e2b8d0bcf9" name="SysML ValSuite - Non-normative Extensions" visibility="public" URI="">
+          <ownedComment xmi:id="b5d1f4a6-f541-4a83-8014-b2e3ebe44ebd" annotatedElement="672fdbb1-a617-4078-b79a-53e2b8d0bcf9" body="Non-normative Extension validation suite for SysML project"/>
+          <packagedElement xmi:type="uml:Package" xmi:id="8d185cb4-7d24-44dd-a0d4-760d8f3e1eab" name="RequirementDiagramExtensions" visibility="public" URI="">
+            <packagedElement xmi:type="uml:Package" xmi:id="e37d63c5-5b6f-465a-a5e4-d38e509b7743" name="designConstraint" visibility="public" URI="">
+              <ownedRule xmi:id="d9996d83-9b07-4af2-ba4b-db1bf4da8a01" name="DesignConstraint satisfied by an invalid element" visibility="public">
+                <constrainedElement xmi:type="uml:Stereotype" href="SysML.profile.uml#13e4212f-8ecc-4b28-b8b5-d3c1ddbb9417"/>
+                <specification xmi:type="uml:OpaqueExpression" xmi:id="ad67663f-e99b-42ce-be5a-d06332e625fe" name="" visibility="public">
+                  <language>Binary</language>
+                  <body>com.nomagic.magicdraw.sysml.validation.nonnormative.NonNormativeExtension.isValidDesignConstraint</body>
+                </specification>
+              </ownedRule>
+            </packagedElement>
+            <packagedElement xmi:type="uml:Package" xmi:id="2307f8e5-4229-4e54-b488-a473f369b575" name="interfaceRequirement" visibility="public" URI="">
+              <ownedRule xmi:id="b954d6c6-2d36-4d31-83f5-02ef472c07e7" name="InterfaceRequirement satisfied by an invalid element" visibility="public">
+                <constrainedElement xmi:type="uml:Stereotype" href="SysML.profile.uml#eb350605-3356-41c3-b20b-f4f43d72d8f7"/>
+                <specification xmi:type="uml:OpaqueExpression" xmi:id="4b0f8467-939b-4a84-9794-0266f73872df" name="" visibility="public">
+                  <language>Binary</language>
+                  <body>com.nomagic.magicdraw.sysml.validation.nonnormative.NonNormativeExtension.isValidInterfaceRequirement</body>
+                </specification>
+              </ownedRule>
+            </packagedElement>
+            <packagedElement xmi:type="uml:Package" xmi:id="86c5bf2f-aa1c-4e0c-bc6a-20a1099d0c70" name="functionalRequirement" visibility="public" URI="">
+              <ownedRule xmi:id="1d31389a-959f-4682-8b89-6c19c73c58da" name="FunctionalRequirement satisfied by an invalid element" visibility="public">
+                <constrainedElement xmi:type="uml:Stereotype" href="SysML.profile.uml#99ff7f6b-182a-4731-8b39-b2680cb9eabb"/>
+                <specification xmi:type="uml:OpaqueExpression" xmi:id="0282fe21-f09c-4e49-8e0c-8691196dceb4" name="" visibility="public">
+                  <language>Binary</language>
+                  <body>com.nomagic.magicdraw.sysml.validation.nonnormative.NonNormativeExtension.isValidFunctionalRequirement</body>
+                </specification>
+              </ownedRule>
+            </packagedElement>
+            <packagedElement xmi:type="uml:Package" xmi:id="9d867884-4cd5-4e57-a938-cbc3ddf429e4" name="performanceRequirement" visibility="public" URI="">
+              <ownedRule xmi:id="3a33276d-4b32-4b6f-9302-44730bafb464" name="PerformanceRequirement satisfied by an invalid element" visibility="public">
+                <constrainedElement xmi:type="uml:Stereotype" href="SysML.profile.uml#67788d20-6dd4-4284-bc32-c65c2914f664"/>
+                <specification xmi:type="uml:OpaqueExpression" xmi:id="145b5e0e-cca3-4058-94fc-68ac06cbdd2e" name="" visibility="public">
+                  <language>Binary</language>
+                  <body>com.nomagic.magicdraw.sysml.validation.nonnormative.NonNormativeExtension.isValidPerFormanceRequirement</body>
+                </specification>
+              </ownedRule>
+            </packagedElement>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Package" xmi:id="5795c9f2-8247-4113-80b4-0b0d15db3a6c" name="ActivityDiagramExtensions" visibility="public" URI="">
+            <packagedElement xmi:type="uml:Package" xmi:id="01b0a94b-9aea-40c4-9596-6ddf89e1f715" name="nonStreaming" visibility="public" URI="">
+              <ownedRule xmi:id="a9d7ab47-d069-4350-a48a-2a41d9bb8c30" name="Invalid streaming parameter" visibility="public">
+                <constrainedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Activity"/>
+                <specification xmi:type="uml:OpaqueExpression" xmi:id="08a81018-9bba-4afb-88f0-d23256dc5242" name="" visibility="public">
+                  <language>Binary</language>
+                  <body>com.nomagic.magicdraw.sysml.validation.nonnormative.NonNormativeExtension.isValidNonStreamingHasParameter</body>
+                </specification>
+              </ownedRule>
+            </packagedElement>
+            <packagedElement xmi:type="uml:Package" xmi:id="db10d82f-72ab-4eb9-b48e-bf0abe60c007" name="Streaming" visibility="public" URI="">
+              <ownedRule xmi:id="c229ee9a-6fb0-4cc0-971e-3b83e782b021" name="Missing streaming parameter" visibility="public">
+                <constrainedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Activity"/>
+                <specification xmi:type="uml:OpaqueExpression" xmi:id="a7da159a-fcf1-488d-b3fd-06607ac38145" name="" visibility="public">
+                  <language>Binary</language>
+                  <body>com.nomagic.magicdraw.sysml.validation.nonnormative.NonNormativeExtension.isValidStreamingHasParameter</body>
+                </specification>
+              </ownedRule>
+              <ownedRule xmi:id="7a499049-abc9-45f2-84d4-8eb89ba947bd" name="No streaming with nonStreaming" visibility="public">
+                <constrainedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Activity"/>
+                <specification xmi:type="uml:OpaqueExpression" xmi:id="4c850b70-142c-4ed2-9025-ee88fe26de81" name="" visibility="public">
+                  <language>Binary</language>
+                  <body>com.nomagic.magicdraw.sysml.validation.nonnormative.NonNormativeExtension.isValidStreamingAndNonStreaming</body>
+                </specification>
+              </ownedRule>
+            </packagedElement>
+          </packagedElement>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Package" xmi:id="da650103-5fad-4f70-ba31-5152ccbe8bdc" name="SysML ValSuite - Constraint Blocks" visibility="public" URI="">
+          <ownedComment xmi:id="7caa61b5-a6aa-42b8-b604-a5e0c02b53d1" annotatedElement="da650103-5fad-4f70-ba31-5152ccbe8bdc" body="Constraint Block validation suite for SysML project"/>
+          <packagedElement xmi:type="uml:Package" xmi:id="244f691d-46f5-45c8-a51a-1e18234ba05a" name="ConstraintBlock" visibility="public" URI="">
+            <ownedRule xmi:id="74dfe60c-2526-44d1-b924-cd5dae3a9d87" name="Invalid ConstraintParameter connector" visibility="public">
+              <constrainedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Port"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="c4467c97-0e81-42d4-8235-bcb1e5ef4199" name="" visibility="public">
+                <language>Binary</language>
+                <body>com.nomagic.magicdraw.sysml.validation.constraintblock.ConstraintBlock.isParameterHasBindingConnector</body>
+              </specification>
+            </ownedRule>
+            <ownedRule xmi:id="cbe3b058-2055-41b4-a15b-af12ff368b4d" name="Invalid owned element of ConstraintBlock" visibility="public">
+              <constrainedElement xmi:type="uml:Stereotype" href="SysML.profile.uml#a461f55e-d256-4e20-8bab-3212acbc452a"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="133c01db-df3b-44f6-92b9-d06f7529c0fc" name="" visibility="public">
+                <language>Binary</language>
+                <body>com.nomagic.magicdraw.sysml.validation.constraintblock.ConstraintBlock.isValidConstraintBlock</body>
+              </specification>
+            </ownedRule>
+            <ownedRule xmi:id="aa7e3362-f834-4f56-9695-ae07931fe80a" name="Missing Constraint Block stereotype(s)" visibility="public">
+              <constrainedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Class"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="b1ad8142-00b0-408c-8d8a-b28ffd7bfa0a" name="" visibility="public">
+                <language>Binary</language>
+                <body>com.nomagic.magicdraw.sysml.validation.block.BlockConstraint.validSpecializedConstraintBlockStereotype</body>
+              </specification>
+            </ownedRule>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Package" xmi:id="af2fd637-9977-4ace-a9db-ea28f8faca24" name="ConstraintProperty" visibility="public" URI="">
+            <ownedRule xmi:id="aa7d3292-cd10-434f-afe2-ad2d8bd781f6" name="Invalid owner of ConstraintProperty" visibility="public">
+              <constrainedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Property"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="1413c5c3-0dce-406f-a52a-d0566ba7a3ea" name="" visibility="public">
+                <language>Binary</language>
+                <body>com.nomagic.magicdraw.sysml.validation.constraintblock.ConstraintBlock.validConstraintPropertyOwner</body>
+              </specification>
+            </ownedRule>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Package" xmi:id="5887c11e-d0a7-4540-a665-b4e376afac9a" name="ConstraintParameter" visibility="public" URI="">
+            <ownedRule xmi:id="412ab69e-6742-4ea0-b74a-10cb2ce40e5a" name="Unused Constraint Parameter" visibility="public">
+              <constrainedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Port"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="3b62d690-5945-464d-8aa0-7a6e2c50b5fa" name="" visibility="public"/>
+            </ownedRule>
+          </packagedElement>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Package" xmi:id="1c57d077-37d2-463c-a22c-dab51a3e511a" name="SysML ValSuite - Blocks" visibility="public" URI="">
+          <ownedComment xmi:id="46d27f11-117e-4621-b44f-67fc7a272f81" annotatedElement="1c57d077-37d2-463c-a22c-dab51a3e511a" body="Block validation suite for SysML project"/>
+          <packagedElement xmi:type="uml:Package" xmi:id="0d726ab2-9a5d-44e3-b4a0-c9d832420164" name="ValueType" visibility="public" URI="">
+            <ownedRule xmi:id="62663fed-10c7-4c71-bc93-6d3ad1b9fba0" name="Invalid Matching Unit and QuantityKind" visibility="public">
+              <constrainedElement xmi:type="uml:Stereotype" href="SysML.profile.uml#6a8943e0-a039-4023-9965-e7231d46de38"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="0a4c6273-f968-4bb1-8a71-362f99cd36b0" name="" visibility="public">
+                <language>Binary</language>
+                <body>com.nomagic.magicdraw.sysml.validation.block.BlockConstraint.validValueTypeQuantityKind</body>
+              </specification>
+            </ownedRule>
+            <ownedRule xmi:id="2160610f-733a-4cb6-8c5e-daaea28e3ff9" name="Missing Value Type stereotype(s)" visibility="public">
+              <constrainedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#DataType"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="b428b284-939b-4b54-8e94-11822cbe8be8" name="" visibility="public">
+                <language>Binary</language>
+                <body>com.nomagic.magicdraw.sysml.validation.block.BlockConstraint.validSpecializedValueTypeStereotype</body>
+              </specification>
+            </ownedRule>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Package" xmi:id="08415d4d-8151-4a98-b195-6498febd73b1" name="DistributedProperty" visibility="public" URI="">
+            <ownedRule xmi:id="62ffa762-97a1-4b8c-ae84-81215c72b523" name="Invalid owner of DistributedProperty" visibility="public">
+              <constrainedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Property"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="b3cd4941-09a2-4ca1-9bd0-4e87b09d0d77" name="" visibility="public">
+                <language>Binary</language>
+                <body>com.nomagic.magicdraw.sysml.validation.block.BlockConstraint.validDistributedProperty</body>
+              </specification>
+            </ownedRule>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Package" xmi:id="8a272b7d-eaac-4485-bafb-078861d00579" name="BindingConnector" visibility="public" URI="">
+            <ownedRule xmi:id="3ec6b4ab-3778-41be-8ce4-5ea19ce98e82" name="Invalid ends type compatibility" visibility="public">
+              <constrainedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Connector"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="adcc61e1-1389-4de5-ab69-46e3c55ad98b" name="" visibility="public">
+                <language>Binary</language>
+                <body>com.nomagic.magicdraw.sysml.validation.block.BlockConstraint.isCompatibleBindingConnector</body>
+              </specification>
+            </ownedRule>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Package" xmi:id="c7fdba31-7e2a-47aa-93d9-0cfb6672fe1a" name="ShareProperty" visibility="public" URI="">
+            <ownedRule xmi:id="a56e8542-6f06-4072-becb-f8d916413e65" name="Invalid SharedProperty type" visibility="public">
+              <constrainedElement xmi:type="uml:Stereotype" href="MD_Customization_for_SysML.additional_stereotypes.profile.uml#9babe74f-9827-4d3e-9b1e-046da1f31546"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="e2032256-38b2-4bc8-8e62-37e3a43017d6" name="" visibility="public">
+                <language>OCL2.0</language>
+                <body>self.oclIsTypeOf(MD_Customization_for_SysML::additional_stereotypes::SharedProperty) and (not self.type.oclIsUndefined()) implies self.type.oclIsKindOf(SysML::Blocks::Block)</body>
+              </specification>
+            </ownedRule>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Package" xmi:id="1a57878e-13b6-4c7b-8876-4ccadc93d20c" name="PartProperty" visibility="public" URI="">
+            <ownedRule xmi:id="4db070fa-0862-4cbc-b2e3-788ae2569f3b" name="Invalid PartProperty type" visibility="public">
+              <constrainedElement xmi:type="uml:Stereotype" href="MD_Customization_for_SysML.additional_stereotypes.profile.uml#b9ffe685-b42e-4a9d-ab2d-60bf71d34d17"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="f30d7b18-48f1-4c6e-b67d-7771e89fbc61" name="" visibility="public">
+                <language>OCL2.0</language>
+                <body>self.oclIsTypeOf(MD_Customization_for_SysML::additional_stereotypes::PartProperty) and (not self.type.oclIsUndefined()) implies self.type.oclIsKindOf(SysML::Blocks::Block)</body>
+              </specification>
+            </ownedRule>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Package" xmi:id="f164d83b-39f1-493b-b0c8-a23eddd73a82" name="Block" visibility="public" URI="">
+            <ownedRule xmi:id="8d1dc220-7930-4961-8e63-103a4ac296c0" name="Encapsulation of the Block" visibility="public">
+              <constrainedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Connector"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="7c53d8e6-3dc9-47b4-a7b3-889823918235" name="" visibility="public">
+                <language>Binary</language>
+                <body>com.nomagic.magicdraw.sysml.validation.block.BlockConstraint.validBlockEncapsulated</body>
+              </specification>
+            </ownedRule>
+            <ownedRule xmi:id="ff9cb87d-77a8-4fe6-9ee3-8a9722a63604" name="Invalid Association ends name" visibility="public">
+              <constrainedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Property"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="891f89a2-d61c-4d2e-b4ca-6f79715247f9" name="" visibility="public">
+                <language>OCL2.0</language>
+                <body>type.oclIsKindOf(SysML::Blocks::Block) and (not self.owningAssociation.oclIsUndefined()) implies (name='')</body>
+              </specification>
+            </ownedRule>
+            <ownedRule xmi:id="ae553b86-95a7-4848-b28b-aca9bc50d2ec" name="Missing Block stereotype(s)" visibility="public">
+              <constrainedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Class"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="13e4b289-68cf-4e9b-87c8-9ed1a7d24619" name="" visibility="public">
+                <language>Binary</language>
+                <body>com.nomagic.magicdraw.sysml.validation.block.BlockConstraint.validSpecializedBlockStereotype</body>
+              </specification>
+            </ownedRule>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Package" xmi:id="776bf9e2-499a-4bac-b44c-c889f753a894" name="PropertySpecificType" visibility="public" URI="">
+            <ownedRule xmi:id="0242e34c-6819-403f-988a-55aa149778dd" name="Invalid Owner Type" visibility="public">
+              <constrainedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Property"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="42ee515b-5a0a-456d-b4f4-a29de2bd9382" name="" visibility="public">
+                <language>Binary</language>
+                <body>com.nomagic.magicdraw.sysml.validation.block.ValidOwnerType.isValidOwnerType</body>
+              </specification>
+            </ownedRule>
+            <ownedRule xmi:id="ef8f4c57-a8ca-414c-a8bd-f06857b2f6d8" name="Invalid PropertySpecificType Name" visibility="public">
+              <constrainedElement xmi:type="uml:Stereotype" href="SysML.profile.uml#6533eafc-8126-4bca-bacd-4b79c41c01c7"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="5c432812-77b6-4bee-93b7-17e7638a5fe8" name="" visibility="public">
+                <language>Binary</language>
+                <body>com.nomagic.magicdraw.sysml.validation.block.ValidPropertySpecificTypeName.isEmptyName</body>
+              </specification>
+            </ownedRule>
+            <ownedRule xmi:id="e5896550-2e7f-4f54-8f25-3936b09732ab" name="Invalid PropertySpecificType Owner" visibility="public">
+              <constrainedElement xmi:type="uml:Stereotype" href="SysML.profile.uml#6533eafc-8126-4bca-bacd-4b79c41c01c7"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="cdba69fb-14fd-460e-b0d2-6c0ea53c4fe9" name="" visibility="public">
+                <language>Binary</language>
+                <body>com.nomagic.magicdraw.sysml.validation.block.ValidPropertySpecificTypeOwner.isValidOwner</body>
+              </specification>
+            </ownedRule>
+            <ownedRule xmi:id="f69f1331-e496-4ae4-aac2-81e5c6822466" name="Invalid typed properties size" visibility="public">
+              <constrainedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Property"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="27faf184-d3aa-4c33-9eed-52cb6b53bac1" name="" visibility="public">
+                <language>Binary</language>
+                <body>com.nomagic.magicdraw.sysml.validation.block.ValidTypedPropertiesSize.isValidPropertiesSize</body>
+              </specification>
+            </ownedRule>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Package" xmi:id="90e7d13b-e732-4e9e-a8ec-cfd35597dbe4" name="ReferenceProperty" visibility="public" URI="">
+            <ownedRule xmi:id="57809b02-4bda-4e6d-ac7e-38ac32b9c09d" name="Invalid ReferenceProperty type" visibility="public">
+              <constrainedElement xmi:type="uml:Stereotype" href="MD_Customization_for_SysML.additional_stereotypes.profile.uml#c94dfa9f-4be8-43c9-9108-0f96a86de17c"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="5c1e2454-c3a9-4d69-bae0-e8662e05159b" name="" visibility="public">
+                <language>OCL2.0</language>
+                <body>self.oclIsTypeOf(MD_Customization_for_SysML::additional_stereotypes::ReferenceProperty) and (not self.type.oclIsUndefined()) implies self.type.oclIsKindOf(SysML::Blocks::Block)</body>
+              </specification>
+            </ownedRule>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Package" xmi:id="3c98adb4-c845-4d00-96c7-e140eae34354" name="ValueProperty" visibility="public" URI="">
+            <ownedRule xmi:id="ed89f815-5db8-4e43-b625-a026b1d5abe5" name="Invalid ValueProperty type" visibility="public">
+              <constrainedElement xmi:type="uml:Stereotype" href="MD_Customization_for_SysML.additional_stereotypes.profile.uml#ac9ed603-e892-44e8-995a-5955cac8791d"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="d2851aeb-152e-4389-ad57-4bf6e70ea096" name="" visibility="public">
+                <language>Binary</language>
+                <body>com.nomagic.magicdraw.sysml.validation.block.BlockConstraint.validValuePropertyType</body>
+              </specification>
+            </ownedRule>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Package" xmi:id="aa53cdc8-2999-456e-909a-db3149e737f3" name="ParticipantProperty" visibility="public" URI="">
+            <ownedRule xmi:id="55cd3a93-460c-4999-993e-b1539d9c71f1" name="Invalid Aggregation" visibility="public">
+              <constrainedElement xmi:type="uml:Stereotype" href="SysML.profile.uml#e13d2179-06c4-439b-90b2-31f7df19de1c"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="c1183e5c-707b-4aec-98a3-a3dbfa13e6fc" name="" visibility="public"/>
+            </ownedRule>
+            <ownedRule xmi:id="616c7acb-fee6-4387-9af0-a3668f1cda19" name="Invalid Owner" visibility="public">
+              <constrainedElement xmi:type="uml:Stereotype" href="SysML.profile.uml#e13d2179-06c4-439b-90b2-31f7df19de1c"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="1313fc49-a442-4347-9566-102684eefc67" name="" visibility="public">
+                <language>Binary</language>
+                <body>com.nomagic.magicdraw.sysml.validation.block.ValidParticipantProperty.isValidOwnerType</body>
+              </specification>
+            </ownedRule>
+          </packagedElement>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Package" xmi:id="8bc4078f-1efd-4e28-8674-c7fd2b1b350f" name="SysML ValSuite - Ports and Flows" visibility="public" URI="">
+          <ownedComment xmi:id="b4af67fc-99fb-4c79-80c8-4f3952abdd0e" annotatedElement="8bc4078f-1efd-4e28-8674-c7fd2b1b350f" body="Port and Flow validation suite for SysML project"/>
+          <packagedElement xmi:type="uml:Package" xmi:id="ade06bc4-e06c-49a3-a2f5-5532d7f071d0" name="ItemFlow" visibility="public" URI="">
+            <ownedRule xmi:id="e0d83035-6777-456d-9240-29a6da8eb8d2" name="Invalid ItemProperty type" visibility="public">
+              <constrainedElement xmi:type="uml:Stereotype" href="SysML.profile.uml#229f4808-e1d8-4662-85b6-742853fc3b75"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="7af8a115-df69-4e0a-8c2a-a2628a6e3052" name="" visibility="public">
+                <language>Binary</language>
+                <body>com.nomagic.magicdraw.sysml.validation.portandflow.PortAndFlow.isValidItemFlowPropertyType</body>
+              </specification>
+            </ownedRule>
+            <ownedRule xmi:id="a349fa8d-013f-4df5-a13d-6e94dd10a2fa" name="No ItemProperty allowed" visibility="public">
+              <constrainedElement xmi:type="uml:Stereotype" href="SysML.profile.uml#229f4808-e1d8-4662-85b6-742853fc3b75"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="f768afea-97e7-419e-bbf1-0c1b6fdcf845" name="" visibility="public">
+                <language>Binary</language>
+                <body>com.nomagic.magicdraw.sysml.validation.portandflow.PortAndFlow.isValidItemFlowHasItemPropertyWithoutRealizingConnector</body>
+              </specification>
+            </ownedRule>
+            <ownedRule xmi:id="202b8f2e-5d9d-4fd3-a46f-baecf511a864" name="Invalid ConveyedClassifier with RelationEnds " visibility="public">
+              <constrainedElement xmi:type="uml:Stereotype" href="SysML.profile.uml#229f4808-e1d8-4662-85b6-742853fc3b75"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="9ab1bde2-79ae-429f-a777-844d52db226e" name="" visibility="public">
+                <language>Binary</language>
+                <body>com.nomagic.magicdraw.sysml.validation.portandflow.ValidConveyedClassifierWithRelationEnds.isValidConveyedClassifierWithRelationEnds</body>
+              </specification>
+            </ownedRule>
+            <ownedRule xmi:id="88e4868b-b615-45f0-8e34-1df692d43232" name="Incompatible ItemFlow name" visibility="public">
+              <constrainedElement xmi:type="uml:Stereotype" href="SysML.profile.uml#229f4808-e1d8-4662-85b6-742853fc3b75"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="bd11d5bf-33bb-40c0-a104-2864327a1592" name="" visibility="public">
+                <language>Binary</language>
+                <body>com.nomagic.magicdraw.sysml.validation.portandflow.IncompatibleItemFlowName.isCompatibleItemFlowName</body>
+              </specification>
+            </ownedRule>
+            <ownedRule xmi:id="208203d4-4f4c-4012-b4e5-3ef5a1834639" name="Item Flow source and/or target elements do not match Swimlane representation" visibility="public">
+              <constrainedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#ActivityEdge"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="ae88402e-774d-4ea6-b259-16c548dbcc0d" name="" visibility="public">
+                <language>Binary</language>
+                <body></body>
+              </specification>
+            </ownedRule>
+            <ownedRule xmi:id="ddca6ea7-932e-44ae-b38d-c4e0d9c2a845" name="Incompatible ItemFlow direction" visibility="public">
+              <constrainedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Association"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="eec53d22-eb6e-42ab-8abb-23f5152d9d71" name="" visibility="public">
+                <language>Binary</language>
+                <body></body>
+              </specification>
+            </ownedRule>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Package" xmi:id="3bddbe22-9805-4431-9154-a9ec521b945c" name="FlowProperty" visibility="public" URI="">
+            <ownedRule xmi:id="c16826f3-8297-47f1-8d0b-d1b9601a4ea2" name="Invalid FlowProperty type" visibility="public">
+              <constrainedElement xmi:type="uml:Stereotype" href="SysML.profile.uml#389d8dd1-a96b-4bba-b983-69de75fe0168"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="f089b9a2-5b5d-43c1-8433-3e8bddc6322a" name="" visibility="public">
+                <language>Binary</language>
+                <body>com.nomagic.magicdraw.sysml.validation.portandflow.PortAndFlow.isValidFlowPropertyType</body>
+              </specification>
+            </ownedRule>
+            <ownedRule xmi:id="ce8f7a80-0920-4572-ba5f-a3fd67bbf9af" name="No FlowProperty direction" visibility="public">
+              <constrainedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Property"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="3bdad853-223f-4750-ab4f-7bc1a1ab3318" name="" visibility="public">
+                <language>Binary</language>
+                <body>com.nomagic.magicdraw.sysml.validation.portandflow.PortAndFlow.isValidDefaultFlowPropertyDirection</body>
+              </specification>
+            </ownedRule>
+            <ownedRule xmi:id="206226e9-e44b-41a8-a30e-a46bc4910de6" name="Incompatible flow directions" visibility="public">
+              <constrainedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Property"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="692c4677-1501-4ff2-8c85-87eb81b2bc91" name="" visibility="public"/>
+            </ownedRule>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Package" xmi:id="0beba764-1307-426f-9b0b-4d054fd72b75" name="FlowSpecification" visibility="public" URI="">
+            <ownedRule xmi:id="ec304d44-8ed7-4996-82c6-8722b0bc2658" name="FlowSpec should type FlowPort only" visibility="public">
+              <constrainedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Property"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="91d4d7fd-5766-4e69-a73f-196c235038e5" name="" visibility="public">
+                <language>Binary</language>
+                <body>com.nomagic.magicdraw.sysml.validation.portandflow.PortAndFlow.isValidFlowSpecificationType</body>
+              </specification>
+            </ownedRule>
+            <ownedRule xmi:id="db0c9c0e-a181-421c-a2d1-10041409998d" name="Invalid ownedAttribute of FlowSpecification" visibility="public">
+              <constrainedElement xmi:type="uml:Stereotype" href="SysML.profile.uml#4263a7a3-0e32-4108-b872-cf500363ae24"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="60c1109d-365a-426d-8ae7-f4abb2b51f1b" name="" visibility="public">
+                <language>OCL2.0</language>
+                <body>ownedOperation->isEmpty() and
+ownedReception->isEmpty() and
+(ownedAttribute->notEmpty() implies
+ownedAttribute->forAll(oclIsKindOf(FlowProperty)))</body>
+              </specification>
+            </ownedRule>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Package" xmi:id="8dfa2a0a-1e76-44c0-adc5-cae069065edc" name="FlowPort" visibility="public" URI="">
+            <ownedRule xmi:id="4618b817-a8c5-461c-b6f0-5a0bed8411b8" name="Atomic FlowPort direction required" visibility="public">
+              <constrainedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Port"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="8dbc52bf-da9f-4959-9fd3-f2022ac11fa8" name="" visibility="public">
+                <language>Binary</language>
+                <body>com.nomagic.magicdraw.sysml.validation.portandflow.PortAndFlow.isValidAtomicFlowPort</body>
+              </specification>
+            </ownedRule>
+            <ownedRule xmi:id="ed266f31-e330-4671-a6e1-6206a593681e" name="Invalid direction of nonatomic FlowPort" visibility="public">
+              <constrainedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Port"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="4f35c42e-3bde-4b26-971e-2a3c45f910d1" name="" visibility="public">
+                <language>Binary</language>
+                <body>com.nomagic.magicdraw.sysml.validation.portandflow.PortAndFlow.isValidFlowPortDirection</body>
+              </specification>
+            </ownedRule>
+            <ownedRule xmi:id="60133b7d-f389-45b5-9d56-9e7e2252863c" name="Invalid FlowPorts and matching flow properties" visibility="public">
+              <constrainedElement xmi:type="uml:Stereotype" href="SysML.profile.uml#0e434b25-9665-4069-8015-f64ae1db4acf"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="7f700c11-4217-49a7-82ca-fe51a6afd918" name="" visibility="public">
+                <language>Binary</language>
+                <body>com.nomagic.magicdraw.sysml.validation.portandflow.PortAndFlow.isValidFlowPortConstraintMatching</body>
+              </specification>
+            </ownedRule>
+            <ownedRule xmi:id="f85b4beb-c171-4226-966b-d293a2bb873a" name="No Atomic FlowPort direction" visibility="public">
+              <constrainedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Port"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="8b86e4a2-2a78-49f9-814d-190f53337a2a" name="" visibility="public">
+                <language>Binary</language>
+                <body>com.nomagic.magicdraw.sysml.validation.portandflow.PortAndFlow.isValidFlowPortDefaultDirection</body>
+              </specification>
+            </ownedRule>
+            <ownedRule xmi:id="58b14da7-d104-4c79-a536-fe42ddd46ea0" name="Invalid FlowPort owner" visibility="public">
+              <constrainedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Port"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="1a0a97e1-1519-45d3-b814-d998592b9a5a" name="" visibility="public">
+                <language>Binary</language>
+                <body>com.nomagic.magicdraw.sysml.validation.portandflow.PortAndFlow.isValidFlowPortOwner</body>
+              </specification>
+            </ownedRule>
+            <ownedRule xmi:id="5c405419-b15a-4748-baf2-c7fe29df8d60" name="Invalid FlowPort type" visibility="public">
+              <constrainedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Port"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="38f28933-63b2-449f-9236-1776d4162746" name="" visibility="public">
+                <language>Binary</language>
+                <body>com.nomagic.magicdraw.sysml.validation.portandflow.PortAndFlow.isValidType</body>
+              </specification>
+            </ownedRule>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Package" xmi:id="51a063a3-aa8c-4b85-b923-8d953cacfe28" name="AcceptChangeStructuralFeatureEventAction" visibility="public" URI="">
+            <ownedRule xmi:id="772133e2-8b9a-4c42-8cbf-3cffb988ce2b" name="Invalid Visibility of the Structural Feature" visibility="public">
+              <constrainedElement xmi:type="uml:Stereotype" href="SysML.profile.uml#2ac38dcd-b6c2-4212-9105-c010e45e5edc"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="a330822a-1e4c-4390-ac5d-8219e742a3ef" name="" visibility="public">
+                <language>Binary</language>
+                <body>com.nomagic.magicdraw.sysml.validation.portandflow.PortAndFlow.isValidAcceptChangeStructuralFeatureEventActionStructuralFeatureVisibility</body>
+              </specification>
+            </ownedRule>
+            <ownedRule xmi:id="59d11ab9-9f77-45fd-92bb-80014915e782" name="Invalid result pins" visibility="public">
+              <constrainedElement xmi:type="uml:Stereotype" href="SysML.profile.uml#2ac38dcd-b6c2-4212-9105-c010e45e5edc"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="f3d70ff4-252a-4cc6-a5c9-7d3243588420" name="" visibility="public">
+                <language>Binary</language>
+                <body>com.nomagic.magicdraw.sysml.validation.portandflow.PortAndFlow.isValidAcceptChangeStructuralFeatureEventActionPins</body>
+              </specification>
+            </ownedRule>
+            <ownedRule xmi:id="4aae9ecd-8cc3-494f-b030-c80d2f5067e8" name="Invalid Owner of the Structural Feature" visibility="public">
+              <constrainedElement xmi:type="uml:Stereotype" href="SysML.profile.uml#2ac38dcd-b6c2-4212-9105-c010e45e5edc"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="a4d4eedc-6c43-4082-8862-b66f161d6a57" name="" visibility="public">
+                <language>Binary</language>
+                <body>com.nomagic.magicdraw.sysml.validation.portandflow.PortAndFlow.isValidAcceptChangeStructuralFeatureEventActionStructuralFeature</body>
+              </specification>
+            </ownedRule>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Package" xmi:id="b4a650b1-738b-45bc-9158-63bfaf6b7798" name="InterfaceBlock" visibility="public" URI="">
+            <ownedRule xmi:id="50463c86-39ec-42eb-bd91-d419bd241a66" name="Invalid properties" visibility="public">
+              <constrainedElement xmi:type="uml:Stereotype" href="SysML.profile.uml#7e41590c-6845-430b-86e2-f18ab439e6dd"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="f6ba6985-1ca9-4023-a295-dc40205ea29a" name="" visibility="public">
+                <language>Binary</language>
+                <body>com.nomagic.magicdraw.sysml.validation.portandflow.PortAndFlow.isValidInterfaceBlockProperties</body>
+              </specification>
+            </ownedRule>
+            <ownedRule xmi:id="5b0c275d-e225-40a0-a751-034a78bd288b" name="Invalid interface block inheritance" visibility="public">
+              <constrainedElement xmi:type="uml:Stereotype" href="SysML.profile.uml#7e41590c-6845-430b-86e2-f18ab439e6dd"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="eb3a2ce0-9482-4efe-bddb-79386201be7f" name="" visibility="public">
+                <language>OCL2.0</language>
+                <body>self.generalization->forAll(i | i.general.oclIsKindOf(InterfaceBlock))</body>
+              </specification>
+            </ownedRule>
+          </packagedElement>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Package" xmi:id="3ec99bfe-5b27-4264-b846-2866d565abec" name="SysML ValSuite - Value Specifications" visibility="public" URI="">
+          <ownedComment xmi:id="96e2a3e2-3d73-4410-9b76-2a744fc00082" annotatedElement="3ec99bfe-5b27-4264-b846-2866d565abec" body="Activity validation suite for SysML project"/>
+          <packagedElement xmi:type="uml:Package" xmi:id="e4a203e6-d768-4bee-921b-77a3419717cb" name="ValueSpecificationType" visibility="public" URI="">
+            <ownedRule xmi:id="5933c504-ab12-4311-ac89-5da5ca4f4671" name="Value Specification Type" visibility="public">
+              <constrainedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#LiteralString"/>
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="1252987e-79ca-4389-9900-84b9bf382154" name="" visibility="public">
+                <language>OCL2.0</language>
+                <body></body>
+              </specification>
+            </ownedRule>
+          </packagedElement>
+        </packagedElement>
+      </packagedElement>
+    </packagedElement>
+    <profileApplication xmi:id="deb76790-5bc5-4b47-9b70-e3b20d4c2accprofileApplicationModel">
+      <eAnnotations xmi:id="_3brq9dnYEeut38w4P0hxDQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="UML_Standard_Profile.Validation_Profile.profile.uml#_3DE91dnYEeut38w4P0hxDQ"/>
+      </eAnnotations>
+      <appliedProfile href="UML_Standard_Profile.Validation_Profile.profile.uml#deb76790-5bc5-4b47-9b70-e3b20d4c2acc"/>
+    </profileApplication>
+    <profileApplication xmi:id="9dbe6490-7d6b-4a35-9c77-f67fe9a7b7c8profileApplicationModel">
+      <eAnnotations xmi:id="_3r-wwdnYEeut38w4P0hxDQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="UML_Standard_Profile.MagicDraw_Profile.profile.uml#_3FkSb9nYEeut38w4P0hxDQ"/>
+      </eAnnotations>
+      <appliedProfile href="UML_Standard_Profile.MagicDraw_Profile.profile.uml#9dbe6490-7d6b-4a35-9c77-f67fe9a7b7c8"/>
+    </profileApplication>
+  </uml:Model>
+  <ValidationProfile:validationSuite xmi:id="_3bs5ENnYEeut38w4P0hxDQ" base_Package="3ec99bfe-5b27-4264-b846-2866d565abec"/>
+  <ValidationProfile:validationSuite xmi:id="_3cAbENnYEeut38w4P0hxDQ" base_Package="8bc4078f-1efd-4e28-8674-c7fd2b1b350f"/>
+  <ValidationProfile:validationSuite xmi:id="_3cAbEdnYEeut38w4P0hxDQ" base_Package="1c57d077-37d2-463c-a22c-dab51a3e511a"/>
+  <ValidationProfile:validationSuite xmi:id="_3cAbEtnYEeut38w4P0hxDQ" base_Package="da650103-5fad-4f70-ba31-5152ccbe8bdc"/>
+  <ValidationProfile:validationSuite xmi:id="_3cAbE9nYEeut38w4P0hxDQ" base_Package="672fdbb1-a617-4078-b79a-53e2b8d0bcf9"/>
+  <ValidationProfile:validationSuite xmi:id="_3cAbFNnYEeut38w4P0hxDQ" base_Package="a4ff5ec5-7e65-4b8e-9a14-59218dc572f2"/>
+  <ValidationProfile:validationSuite xmi:id="_3cAbFdnYEeut38w4P0hxDQ" base_Package="4b1a090d-5a4c-4d73-ae7e-0f06fca5a876"/>
+  <ValidationProfile:validationSuite xmi:id="_3cAbFtnYEeut38w4P0hxDQ" base_Package="f170e4c1-b856-490a-bc27-358d54bba85c"/>
+  <ValidationProfile:validationSuite xmi:id="_3cAbF9nYEeut38w4P0hxDQ" base_Package="ffd1b578-003d-4ede-9dca-553a1d19fabb"/>
+  <ValidationProfile:validationSuite xmi:id="_3cAbGNnYEeut38w4P0hxDQ" base_Package="816ebdeb-8c39-4507-8297-6997625f1745"/>
+  <ValidationProfile:validationRule xmi:id="_3cCQQNnYEeut38w4P0hxDQ" base_Constraint="ddca6ea7-932e-44ae-b38d-c4e0d9c2a845" implementation="com.nomagic.magicdraw.sysml.validation.flow.ItemFlowIsTheSameDirectionAsRelationValidationRule" abbreviation="ItemFlowDirection" errorMessage="Directions of realizing relationship and realized ItemFlow do not match" severity="warning"/>
+  <ValidationProfile:validationRule xmi:id="_3cCQQdnYEeut38w4P0hxDQ" base_Constraint="5eaef2d3-de6f-4c8f-a8e1-94dec0403211" implementation="com.nomagic.magicdraw.sysml.validation.autowiring.SysMLAutoDelegationRuleImpl" abbreviation="Autodelegation" errorMessage="Confirm connection!" severity="warning"/>
+  <ValidationProfile:validationRule xmi:id="_3cCQQtnYEeut38w4P0hxDQ" base_Constraint="48921a55-933d-4c73-bd4b-286af07711d7" implementation="com.nomagic.magicdraw.sysml.validation.portandflow.ValidItemFlowPropertyWithConveyed" abbreviation="ItemProperty[5]" errorMessage="If an ItemFlow has an itemProperty, one of the classifiers of conveyed items must be the same as the type of the item property." severity="warning"/>
+  <ValidationProfile:validationRule xmi:id="_3cCQQ9nYEeut38w4P0hxDQ" base_Constraint="bb984bed-fcbb-4ca3-a3bc-5a7dc4b9f61c" implementation="com.nomagic.magicdraw.sysml.validation.contextualrelationships.RelationshipAndItsEndsDifferInContextValidationRuleImpl" abbreviation="DifferInContext" errorMessage="The context of the relationship does not match the context the connected property is displayed in"/>
+  <ValidationProfile:validationRule xmi:id="_3cQ5wdnYEeut38w4P0hxDQ" base_Constraint="5933c504-ab12-4311-ac89-5da5ca4f4671" implementation="com.nomagic.magicdraw.sysml.validation.ValidValueSpecificationType" abbreviation="ValueSpecificationType" errorMessage="Literal String instead of Literal Real is used for Value Specification." severity="warning"/>
+  <ValidationProfile:validationRule xmi:id="_3cQ5wtnYEeut38w4P0hxDQ" base_Constraint="208203d4-4f4c-4012-b4e5-3ef5a1834639" implementation="com.nomagic.magicdraw.sysml.validation.portandflow.DefaultSourceAndTargetDontMatchRolesValidationRuleImp" abbreviation="ItemFlow[8]" errorMessage="Item Flow realization is incorrect. Item Flow source and/or target elements do not match Swimlane representation."/>
+  <ValidationProfile:validationRule xmi:id="_3cRg0NnYEeut38w4P0hxDQ" base_Constraint="f61801a1-a70c-4dd2-9cb5-fc8a82dd6dc5" implementation="com.nomagic.magicdraw.sysml.validation.portandflow.SourceAndTargetDontMatchRolesOfTheLifelineValidationRuleImp" abbreviation="ItemFlow[9]" errorMessage="Item Flow realization is incorrect. Item Flow source and/or target elements do not match Lifeline representation."/>
+  <ValidationProfile:validationRule xmi:id="_3cRg0dnYEeut38w4P0hxDQ" base_Constraint="31ef6620-7303-455a-a0c4-692d7992465d" implementation="com.nomagic.magicdraw.sysml.validation.portandflow.SourceAndTargetDontMatchRolesOfTheConnectorValidationRuleImp" abbreviation="ItemFlow[7]" errorMessage="Item Flow realization is incorrect. Connector's Roles should match the Source and Target of the realized Item Flow."/>
+  <ValidationProfile:validationRule xmi:id="_3cRg0tnYEeut38w4P0hxDQ" base_Constraint="387c59b2-b7da-460e-8703-e25b543b3cd2" implementation="com.nomagic.magicdraw.sysml.validation.connectorproperty.ConnectorPropertyRuleImpl" abbreviation="ConnectorProperty" errorMessage="Connector Property is out of sync!" severity="warning"/>
+  <ValidationProfile:validationRule xmi:id="_3ch_g9nYEeut38w4P0hxDQ" base_Constraint="5b0c275d-e225-40a0-a751-034a78bd288b" abbreviation="InterfaceBlock[A]" errorMessage="Interface block should inherit from interface block only." severity="warning"/>
+  <ValidationProfile:validationRule xmi:id="_3cimkNnYEeut38w4P0hxDQ" base_Constraint="772133e2-8b9a-4c42-8cbf-3cffb988ce2b" abbreviation="AcceptChangeStructuralFeatureEventAction[4]" errorMessage="Visibility of the structural feature of the trigger event must allow access to the object performing the action." severity="info"/>
+  <ValidationProfile:validationRule xmi:id="_3cimkdnYEeut38w4P0hxDQ" base_Constraint="50463c86-39ec-42eb-bd91-d419bd241a66" abbreviation="InterfaceBlock[2]" errorMessage="Interface blocks cannot have part properties." severity="info"/>
+  <ValidationProfile:validationRule xmi:id="_3cimktnYEeut38w4P0hxDQ" base_Constraint="4aae9ecd-8cc3-494f-b030-c80d2f5067e8" abbreviation="AcceptChangeStructuralFeatureEventAction[3]" errorMessage="The structural feature of the trigger event must be owned by or inherited to the context of the behavior containing the action (the context of a behavior is its owning block, or itself if it is not owned by a block, see definition in the UML 2 SuperStructure Specification)." severity="info"/>
+  <ValidationProfile:validationRule xmi:id="_3cimk9nYEeut38w4P0hxDQ" base_Constraint="59d11ab9-9f77-45fd-92bb-80014915e782" abbreviation="AcceptChangeStructuralFeatureEventAction[2]" errorMessage="The action has two result pins with type and ordering the same as the type and ordering of the structural feature of the trigger event, and multiplicity compatible with the multiplicity of the structural feature." severity="info"/>
+  <ValidationProfile:validationRule xmi:id="_3cimlNnYEeut38w4P0hxDQ" base_Constraint="5c405419-b15a-4748-baf2-c7fe29df8d60" abbreviation="FlowPort[1]" errorMessage="A FlowPort must be typed by a FlowSpecification, Block, Signal, or ValueType." severity="warning"/>
+  <ValidationProfile:validationRule xmi:id="_3cjNoNnYEeut38w4P0hxDQ" base_Constraint="58b14da7-d104-4c79-a536-fe42ddd46ea0" abbreviation="FlowPort[B]" errorMessage="FlowPort can be only applied to port which is owned by Block or its sub-type." severity="warning"/>
+  <ValidationProfile:validationRule xmi:id="_3cjNodnYEeut38w4P0hxDQ" base_Constraint="4618b817-a8c5-461c-b6f0-5a0bed8411b8" abbreviation="FlowPort[2]" errorMessage="If the FlowPort is atomic (by its type), then isAtomic=True, the direction must be specified (has a value)." severity="warning"/>
+  <ValidationProfile:validationRule xmi:id="_3cjNotnYEeut38w4P0hxDQ" base_Constraint="f85b4beb-c171-4226-966b-d293a2bb873a" abbreviation="FlowPort[A]" errorMessage="According to [2], the default direction of atomic flow port should be set to ‘inout’ when create a new atomic flow port or type changing of non-atomic to atomic. " severity="warning"/>
+  <ValidationProfile:validationRule xmi:id="_3cjNo9nYEeut38w4P0hxDQ" base_Constraint="60133b7d-f389-45b5-9d56-9e7e2252863c" abbreviation="FlowPort[4]" errorMessage="A FlowPort can be connected (via connectors) to one or more flow ports that have matching flow properties. The matching of flow properties is done in the following steps:&#xA;1. Type Matching: The type being sent is the same type or a subtype of the type being received.&#xA;2. Direction Matching: If the connector connects two parts that are external to one another, then the direction of the flow properties must be opposite, or at least one of the ends should be inout. If the connector is internal to the owner of one of the flow ports, then the direction should be the same or at least one of the ends should be inout.&#xA;3. Name Matching: In case there is type and direction match to several flow properties at the other end, the property that has the same name at the other end is selected. If there is no such property, then the connection is ambiguous (ill-formed)." severity="warning"/>
+  <ValidationProfile:validationRule xmi:id="_3cjNpNnYEeut38w4P0hxDQ" base_Constraint="ed266f31-e330-4671-a6e1-6206a593681e" abbreviation="FlowPort[3]" errorMessage="If the FlowPort is nonatomic, and the FlowSpecification typing the port has flow properties with direction “in,” the FlowPort direction is “in” (or “out” if isConjugated=true). If the flow properties are all out, the FlowPort direction is out (or in if isConjugated=true). If flow properties are both in and out, the direction is inout." severity="warning"/>
+  <ValidationProfile:validationRule xmi:id="_3cj0sNnYEeut38w4P0hxDQ" base_Constraint="db0c9c0e-a181-421c-a2d1-10041409998d" abbreviation="FlowSpecification[1]" errorMessage="FlowSpecifications cannot own operations or receptions (they can only own FlowProperties)." severity="warning"/>
+  <ValidationProfile:validationRule xmi:id="_3cj0sdnYEeut38w4P0hxDQ" base_Constraint="ef8f4c57-a8ca-414c-a8bd-f06857b2f6d8" abbreviation="PropertySpecificType [2]" errorMessage="The name of a classifier to which a PropertySpecificType is applied must be missing (The &quot;name&quot; attribute of the NamedElement metaclass must be empty)." severity="info"/>
+  <ValidationProfile:validationRule xmi:id="_3cj0stnYEeut38w4P0hxDQ" base_Constraint="ec304d44-8ed7-4996-82c6-8722b0bc2658" abbreviation="FlowSpecification[A]" errorMessage="FlowSpecification can be used to specify type of flow port only." severity="warning"/>
+  <ValidationProfile:validationRule xmi:id="_3cj0s9nYEeut38w4P0hxDQ" base_Constraint="206226e9-e44b-41a8-a30e-a46bc4910de6" implementation="com.nomagic.magicdraw.sysml.validation.flow.SysMLFlowPassiveRuleImpl" abbreviation="Incompatible flow/direction" errorMessage="Incompatible flow/direction"/>
+  <ValidationProfile:validationRule xmi:id="_3cj0tNnYEeut38w4P0hxDQ" base_Constraint="ce8f7a80-0920-4572-ba5f-a3fd67bbf9af" abbreviation="FlowProperty[B]" errorMessage="The flow property must be specified the direction and the default value of the direction should be ‘inout’." severity="warning"/>
+  <ValidationProfile:validationRule xmi:id="_3ckbwNnYEeut38w4P0hxDQ" base_Constraint="c16826f3-8297-47f1-8d0b-d1b9601a4ea2" abbreviation="FlowProperty[1]" errorMessage="A FlowProperty is typed by a ValueType, Block, or Signal." severity="warning"/>
+  <ValidationProfile:validationRule xmi:id="_3ckbwdnYEeut38w4P0hxDQ" base_Constraint="88e4868b-b615-45f0-8e34-1df692d43232" abbreviation="ItemFlow[6]" errorMessage="If an ItemFlow has an itemProperty, its name should be the same as the name of the item flow." severity="info"/>
+  <ValidationProfile:validationRule xmi:id="_3ckbwtnYEeut38w4P0hxDQ" base_Constraint="202b8f2e-5d9d-4fd3-a46f-baecf511a864" abbreviation="ItemFlow[A]" errorMessage="The conveyed classifiers must be the same or subtype of classifier that type flow property of flow specification." severity="info"/>
+  <ValidationProfile:validationRule xmi:id="_3ckbw9nYEeut38w4P0hxDQ" base_Constraint="a349fa8d-013f-4df5-a13d-6e94dd10a2fa" abbreviation="ItemFlow[4]" errorMessage="Item property cannot have a value if the item flow is realized by an Association." severity="info"/>
+  <ValidationProfile:validationRule xmi:id="_3clC0NnYEeut38w4P0hxDQ" base_Constraint="e0d83035-6777-456d-9240-29a6da8eb8d2" abbreviation="ItemFlow[2]" errorMessage="An ItemFlow itemProperty must be typed by a ValueType, Block, or Signal." severity="warning"/>
+  <ValidationProfile:validationRule xmi:id="_3clC0dnYEeut38w4P0hxDQ" base_Constraint="616c7acb-fee6-4387-9af0-a3668f1cda19" abbreviation="ParticipantProperty[1]" errorMessage="ParticipantProperty may only be applied to properties of association classes stereotyped by Block." severity="warning"/>
+  <ValidationProfile:validationRule xmi:id="_3clC0tnYEeut38w4P0hxDQ" base_Constraint="55cd3a93-460c-4999-993e-b1539d9c71f1" implementation="com.nomagic.magicdraw.sysml.validation.block.ValidParticipantProperty" abbreviation="ParticipantProperty[3]" errorMessage="The aggregation of a property stereotyped by ParticipantProperty must be none." severity="warning"/>
+  <ValidationProfile:validationRule xmi:id="_3clC09nYEeut38w4P0hxDQ" base_Constraint="ed89f815-5db8-4e43-b625-a026b1d5abe5" abbreviation="ValueProperty[A]" errorMessage="The type of a value property must be a value type." severity="warning"/>
+  <ValidationProfile:validationRule xmi:id="_3clp4NnYEeut38w4P0hxDQ" base_Constraint="57809b02-4bda-4e6d-ac7e-38ac32b9c09d" abbreviation="ReferenceProperty[A]" errorMessage="The type of a reference property must be a block." severity="warning"/>
+  <ValidationProfile:validationRule xmi:id="_3clp4dnYEeut38w4P0hxDQ" base_Constraint="f69f1331-e496-4ae4-aac2-81e5c6822466" abbreviation="PropertySpecificType [1]" errorMessage="A classifier to which the PropertySpecificType stereotype is applied must be referenced as the type of one and only one property." severity="warning"/>
+  <ValidationProfile:validationRule xmi:id="_3clp4tnYEeut38w4P0hxDQ" base_Constraint="e5896550-2e7f-4f54-8f25-3936b09732ab" abbreviation="PropertySpecificType [A]" errorMessage="Classifiers with the PropertySpecificType stereotype are owned by the block which owns the property which has the property-specific type." severity="info"/>
+  <ValidationProfile:validationRule xmi:id="_3clp49nYEeut38w4P0hxDQ" base_Constraint="ae553b86-95a7-4848-b28b-aca9bc50d2ec" abbreviation="Block[8]" errorMessage="Any classifier which specializes a Block must also have the Block stereotype or one of its specializations applied." severity="info"/>
+  <ValidationProfile:validationRule xmi:id="_3cmQ8NnYEeut38w4P0hxDQ" base_Constraint="0242e34c-6819-403f-988a-55aa149778dd" abbreviation="PropertySpecificType [B]" errorMessage="Property which is typed by the PropertySpecificType should be owned by block or subtypes of block." severity="info"/>
+  <ValidationProfile:validationRule xmi:id="_3cmQ8dnYEeut38w4P0hxDQ" base_Constraint="8d1dc220-7930-4961-8e63-103a4ac296c0" abbreviation="Block[A]" errorMessage="If isEncapsulated of a block is true, then the block is treated as a black box: a part typed by this black box can only be connected via its ports or directly to its outer boundary. " severity="warning"/>
+  <ValidationProfile:validationRule xmi:id="_3cmQ8tnYEeut38w4P0hxDQ" base_Constraint="ff9cb87d-77a8-4fe6-9ee3-8a9722a63604" abbreviation="Block[3]" errorMessage="Property metaclass that is typed by a block and is owned by an Association may not have a name and may not be defined as a navigable owned end of the association." severity="warning"/>
+  <ValidationProfile:validationRule xmi:id="_3cmQ89nYEeut38w4P0hxDQ" base_Constraint="4db070fa-0862-4cbc-b2e3-788ae2569f3b" abbreviation="PartProperty[A]" errorMessage="The type of a part property must be a block." severity="warning"/>
+  <ValidationProfile:validationRule xmi:id="_3cm4ANnYEeut38w4P0hxDQ" base_Constraint="62ffa762-97a1-4b8c-ae84-81215c72b523" abbreviation="DistributedProperty[1]" errorMessage="The DistributedProperty stereotype (and its subtypes) may be applied only to properties of classifiers stereotyped by Block or ValueType." severity="warning"/>
+  <ValidationProfile:validationRule xmi:id="_3cm4AdnYEeut38w4P0hxDQ" base_Constraint="412ab69e-6742-4ea0-b74a-10cb2ce40e5a" implementation="com.nomagic.magicdraw.sysml.validation.constraintblock.ValidConstraintParameterUsage" abbreviation="ConstraintParameter[A]" errorMessage="This constraint parameter has not been used in constraint expression of its constraint block." severity="warning"/>
+  <ValidationProfile:validationRule xmi:id="_3cm4AtnYEeut38w4P0hxDQ" base_Constraint="a56e8542-6f06-4072-becb-f8d916413e65" abbreviation="SharedProperty[A]" errorMessage="The type of a shared property must be a block." severity="warning"/>
+  <ValidationProfile:validationRule xmi:id="_3cnfENnYEeut38w4P0hxDQ" base_Constraint="3ec6b4ab-3778-41be-8ce4-5ea19ce98e82" abbreviation="BindingConnector[1]" errorMessage="The two ends of a binding connector must have either the same type or types that are compatible so that equality of their values can be defined." severity="warning"/>
+  <ValidationProfile:validationRule xmi:id="_3cnfEdnYEeut38w4P0hxDQ" base_Constraint="2160610f-733a-4cb6-8c5e-daaea28e3ff9" abbreviation="ValueType[1]" errorMessage="Any classifier which specializes a ValueType must also have the ValueType stereotype applied" severity="warning"/>
+  <ValidationProfile:validationRule xmi:id="_3cnfEtnYEeut38w4P0hxDQ" base_Constraint="62663fed-10c7-4c71-bc93-6d3ad1b9fba0" abbreviation="ValueType[A]" errorMessage="If a value is present for the unit attribute, the quantity kind attribute must be equal to the quantity kind property of the referenced unit." severity="info"/>
+  <ValidationProfile:validationRule xmi:id="_3coGINnYEeut38w4P0hxDQ" base_Constraint="74dfe60c-2526-44d1-b924-cd5dae3a9d87" abbreviation="ConstraintBlock[A]" errorMessage="Binding connectors should be used to bind each parameter of the constraint block to a property in the surrounding context." severity="info"/>
+  <ValidationProfile:validationRule xmi:id="_3coGIdnYEeut38w4P0hxDQ" base_Constraint="aa7d3292-cd10-434f-afe2-ad2d8bd781f6" abbreviation="ConstraintProperty[1]" errorMessage="A property to which the ConstraintProperty stereotype is applied must be owned by a SysML Block." severity="warning"/>
+  <ValidationProfile:validationRule xmi:id="_3coGItnYEeut38w4P0hxDQ" base_Constraint="aa7e3362-f834-4f56-9695-ae07931fe80a" abbreviation="ConstraintBlock[2]" errorMessage="Any classifier which specializes a ConstraintBlock must also have the ConstraintBlock stereotype applied" severity="warning"/>
+  <ValidationProfile:validationRule xmi:id="_3coGI9nYEeut38w4P0hxDQ" base_Constraint="cbe3b058-2055-41b4-a15b-af12ff368b4d" abbreviation="ConstraintBlock[1]" errorMessage="A constraint block may not own any structural or behavioral elements beyond the properties that define its constraint parameters, constraint properties that hold internal usages of constraint blocks, binding connectors between its internally nested constraint parameters, constraint expressions that define an interpretation for the constraint block, and general-purpose model management and crosscutting elements" severity="warning"/>
+  <ValidationProfile:validationRule xmi:id="_3coGJNnYEeut38w4P0hxDQ" base_Constraint="c229ee9a-6fb0-4cc0-971e-3b83e782b021" abbreviation="streaming[1]" errorMessage="The activity has at least one streaming parameter." severity="warning"/>
+  <ValidationProfile:validationRule xmi:id="_3cotMNnYEeut38w4P0hxDQ" base_Constraint="7a499049-abc9-45f2-84d4-8eb89ba947bd" abbreviation="streaming[A]-nonStreaming[A]" errorMessage="The &lt;&lt;streaming>> and &lt;&lt;nonstreaming>> stereotypes cannot be applied to the same element at the same time." severity="warning"/>
+  <ValidationProfile:validationRule xmi:id="_3cotMdnYEeut38w4P0hxDQ" base_Constraint="a9d7ab47-d069-4350-a48a-2a41d9bb8c30" abbreviation="nonStreaming[1]" errorMessage="The activity has no streaming parameters." severity="warning"/>
+  <ValidationProfile:validationRule xmi:id="_3cotMtnYEeut38w4P0hxDQ" base_Constraint="3a33276d-4b32-4b6f-9302-44730bafb464" abbreviation="performanceRequirement[1]" errorMessage="satisfied by a value property" severity="warning"/>
+  <ValidationProfile:validationRule xmi:id="_3cotM9nYEeut38w4P0hxDQ" base_Constraint="1d31389a-959f-4682-8b89-6c19c73c58da" abbreviation="functionalRequirement[1]" errorMessage="satisfied by an operation or behavior" severity="warning"/>
+  <ValidationProfile:validationRule xmi:id="_3cotNNnYEeut38w4P0hxDQ" base_Constraint="b954d6c6-2d36-4d31-83f5-02ef472c07e7" abbreviation="interfaceRequirement[1]" errorMessage="satisfied by a port, connector, item flow, and/or constraint property" severity="warning"/>
+  <ValidationProfile:validationRule xmi:id="_3cpUQNnYEeut38w4P0hxDQ" base_Constraint="d9996d83-9b07-4af2-ba4b-db1bf4da8a01" abbreviation="designConstraint[1]" errorMessage="satisfied by a block or part" severity="warning"/>
+  <ValidationProfile:validationRule xmi:id="_3cpUQdnYEeut38w4P0hxDQ" base_Constraint="8089c854-87ab-4105-8a5e-d37bfc9137e0" abbreviation="AllocateActivityPartition [A]" errorMessage="An Action appearing in an AllocateActivityPartition will be the /client (from) end of an allocate dependency. The element that represents the AllocateActivityPartition will be the /supplier (to) end of the same allocate dependency." severity="info"/>
+  <ValidationProfile:validationRule xmi:id="_3cpUQtnYEeut38w4P0hxDQ" base_Constraint="8a46f3aa-f336-4c9e-89a1-aa4f762920c5" abbreviation="AllocateActivityPartition[B]" errorMessage="The represented element of the activity partition which are applied with «AllocateActivityPartition» stereotype, should be the Property" severity="info"/>
+  <ValidationProfile:validationRule xmi:id="_3cpUQ9nYEeut38w4P0hxDQ" base_Constraint="c7cfa104-b7f2-4649-b47e-e6bacf33d04f" abbreviation="Requirement[5]" errorMessage="A nested classifier of a class stereotyped by «requirement» must also be stereotyped by «requirement»." severity="warning"/>
+  <ValidationProfile:validationRule xmi:id="_3cpURNnYEeut38w4P0hxDQ" base_Constraint="9ad62bdd-9d62-432f-aa39-737a540bb391" abbreviation="Requirement[4]" errorMessage="Classes stereotyped by «requirement» may not participate in generalizations." severity="warning"/>
+  <ValidationProfile:validationRule xmi:id="_3cpURdnYEeut38w4P0hxDQ" base_Constraint="9e0edbee-e102-4882-b88f-1c578471b5d2" abbreviation="Requirement[2]" errorMessage="The property ownedAttribute must be empty." severity="warning"/>
+  <ValidationProfile:validationRule xmi:id="_3cp7UNnYEeut38w4P0hxDQ" base_Constraint="49c47822-0719-4b96-95ac-55c37bad6bc2" abbreviation="Requirement[1]" errorMessage="The property ownedOperation must be empty." severity="warning"/>
+  <ValidationProfile:validationRule xmi:id="_3cp7UdnYEeut38w4P0hxDQ" base_Constraint="37d7eab2-3925-43c6-97d9-e971f558984e" abbreviation="DeriveReqt[1] and DeriveReqt[2]" errorMessage="A DeriveReqt dependency may only be created between two classes that have the &quot;requirement&quot; stereotype, or a sub-type of the &quot;requirement&quot; stereotype applied." severity="warning"/>
+  <ValidationProfile:validationRule xmi:id="_3cp7UtnYEeut38w4P0hxDQ" base_Constraint="fd1edea8-fab3-4093-9043-d8dce3933db2" abbreviation="Copy[1]" errorMessage="A Copy dependency may only be created between two classes that have the “requirement” stereotype, or a subtype of the “requirement” stereotype applied." severity="warning"/>
+  <ValidationProfile:validationRule xmi:id="_3cp7U9nYEeut38w4P0hxDQ" base_Constraint="fd0a45b7-0428-41a3-8f18-e9acd0b7def6" abbreviation="Copy[B]" errorMessage="Copy dependencies should not from a cyclic graph." severity="warning"/>
+  <ValidationProfile:validationRule xmi:id="_3cp7VNnYEeut38w4P0hxDQ" base_Constraint="3cf596cb-fa1e-405d-a1c4-75d30b8a9251" abbreviation="Copy[C]" errorMessage="If the supplier requirement has sub requirements, copies of the sub requirements are made recursively in the context of the client requirement and Copy dependencies are created between each sub requirement and the associated copy." severity="info"/>
+  <ValidationProfile:validationRule xmi:id="_3cqiYNnYEeut38w4P0hxDQ" base_Constraint="4dd6ee21-ff01-435d-8f1e-f8c99e35a303" abbreviation="Copy[A]" errorMessage="A requirement can’t copy more than one requirement." severity="warning"/>
+  <ValidationProfile:validationRule xmi:id="_3cqiYdnYEeut38w4P0hxDQ" base_Constraint="fdb52f6b-3e42-4b5d-a728-dbf219204047" abbreviation="Probability[2]" errorMessage="When the «probability» stereotype is applied to an activity edge, then it must be applied to all edges coming out of the same source." severity="warning"/>
+  <ValidationProfile:validationRule xmi:id="_3cqiYtnYEeut38w4P0hxDQ" base_Constraint="347f8c45-6266-426a-8edb-ca55fd8db2fe" abbreviation="TestCase[1]" errorMessage="The type of return parameter of the stereotyped model element must be VerdictKind. (note this is consistent with the UML Testing Profile)." severity="warning"/>
+  <ValidationProfile:validationRule xmi:id="_3cqiY9nYEeut38w4P0hxDQ" base_Constraint="3e1fa27d-65fe-4e2a-b5d5-2c5d7f8366cd" abbreviation="Copy[2]" errorMessage="The text property of the client requirement is constrained to be a copy of the text property of the supplier requirement." severity="warning"/>
+  <ValidationProfile:validationRule xmi:id="_3cqiZNnYEeut38w4P0hxDQ" base_Constraint="fcaa335f-425f-4d64-99b1-cba485a4ca99" abbreviation="noBuffer[1]-Overwrite[1]" errorMessage="The «nobuffer» and «overwrite» stereotypes cannot be applied to the same element at the same time." severity="warning"/>
+  <ValidationProfile:validationRule xmi:id="_3cqiZdnYEeut38w4P0hxDQ" base_Constraint="8a4b5a1d-24b4-46f4-bf92-a1650eb6bf63" abbreviation="Probability[1]" errorMessage="The «probability» stereotype can only be applied to activity edges that have decision nodes or object nodes as sources." severity="warning"/>
+  <ValidationProfile:validationRule xmi:id="_3crJcNnYEeut38w4P0hxDQ" base_Constraint="d53b0b42-79c4-45a6-9ea1-312568c5c5b3" abbreviation="Optional[1]" errorMessage="A parameter without the «optional» stereotypes applied must have multiplicity.lower be greater than zero." severity="warning"/>
+  <ValidationProfile:validationRule xmi:id="_3crJcdnYEeut38w4P0hxDQ" base_Constraint="f7385c26-e896-4e12-99bc-cf4aef3bf72f" abbreviation="Discrete[1]" errorMessage="The «discrete» and «continuous» stereotypes cannot be applied to the same element at the same time." severity="warning"/>
+  <ValidationProfile:validationRule xmi:id="_3crJctnYEeut38w4P0hxDQ" base_Constraint="ac176e78-6bdf-4af9-87dc-71e3d7b441d5" abbreviation="Optional[1]" errorMessage="A parameter with the «optional» stereotypes applied must have multiplicity.lower equal to zero." severity="warning"/>
+  <ValidationProfile:validationRule xmi:id="_3crJc9nYEeut38w4P0hxDQ" base_Constraint="fda250d8-99b7-4e96-a396-30da987cd469" abbreviation="Discrete[1]" errorMessage="The «discrete» and «continuous» stereotypes cannot be applied to the same element at the same time." severity="warning"/>
+  <ValidationProfile:validationRule xmi:id="_3crJdNnYEeut38w4P0hxDQ" base_Constraint="986de930-533d-48b9-88e4-a0704f4aa437" abbreviation="Discrete[1]" errorMessage="The «discrete» and «continuous» stereotypes cannot be applied to the same element at the same time." severity="warning"/>
+  <ValidationProfile:validationRule xmi:id="_3crwgNnYEeut38w4P0hxDQ" base_Constraint="06014e6a-93f9-4ef7-aff1-b72378d647d5" abbreviation="ControlOperator[1]" errorMessage="If the stereotype «controlOperator» is not applied, operation may not have any parameter typed by ControlValue." severity="warning"/>
+  <ValidationProfile:validationRule xmi:id="_3crwgdnYEeut38w4P0hxDQ" base_Constraint="1337f4da-1eda-489d-b8f1-f842377ba6b5" abbreviation="ControlOperator[1]" errorMessage="If the stereotype «controlOperator» is not applied, the behavior may not have any parameter typed by ControlValue." severity="warning"/>
+  <ValidationProfile:validationRule xmi:id="_3crwgtnYEeut38w4P0hxDQ" base_Constraint="d9d1e230-b8cb-4256-a427-cdfd610b9696" abbreviation="ControlOperator[2]" errorMessage="A behavior must have the «controlOperator» stereotype applied if it is a method of an operation that has the «controlOperator» stereotype applied." severity="warning"/>
+  <ValidationProfile:validationRule xmi:id="_3crwg9nYEeut38w4P0hxDQ" base_Constraint="a001d810-9e5d-43fc-ac32-0e09ff23b2ae" abbreviation="ControlOperator[1]" errorMessage="When the «controlOperator» stereotype is applied, the behavior or operation must have at least one parameter typed by ControlValue. " severity="warning"/>
+  <ValidationProfile:validationRule xmi:id="_3csXkNnYEeut38w4P0hxDQ" base_Constraint="9d3044ce-cb59-45d8-9a9b-efe7c1a5098c" abbreviation="Rate[1]" errorMessage="When the «rate» stereotype is applied to a parameter, the parameter must be streaming." severity="warning"/>
+  <ValidationProfile:validationRule xmi:id="_3csXkdnYEeut38w4P0hxDQ" base_Constraint="1e042c0d-25d3-49e4-8699-f8b1c95b14bb" abbreviation="ControlValue[1]" errorMessage="UML4SysML::ObjectNode::isControlType is true for object nodes with type ControlValue." severity="warning"/>
+  <ValidationProfile:validationRule xmi:id="_3csXktnYEeut38w4P0hxDQ" base_Constraint="b4f80879-9564-4539-aa67-d975d1e03dee" implementation="com.nomagic.magicdraw.sysml.validation.portandflow.ValidTriggerOnNestedPortLastOnNestedPort" abbreviation="TriggerOnNestedPort[5]" errorMessage="The value of the port property of the stereotyped trigger must be contained in the type of the port at the last position of the onNestedPort list." severity="info"/>
+  <ValidationProfile:validationRule xmi:id="_3csXk9nYEeut38w4P0hxDQ" base_Constraint="c68312c6-793c-481b-96f8-e84f594dc635" abbreviation="View[1]" errorMessage="A view can only own element import, package import, comment, and constraint elements." severity="warning"/>
+  <ValidationProfile:validationRule xmi:id="_3csXlNnYEeut38w4P0hxDQ" base_Constraint="fee093b7-fcc6-4f89-8702-a2cb039a7a42" abbreviation="ViewPoint[3]" errorMessage="The property ownedAttribute must be empty." severity="warning"/>
+  <ValidationProfile:validationRule xmi:id="_3csXldnYEeut38w4P0hxDQ" base_Constraint="aba7c748-aba6-4005-b146-d0587cbed120" abbreviation="ViewPoint[1]" errorMessage="A viewpoint cannot be the classifier of an instance specification." severity="warning"/>
+  <ValidationProfile:validationRule xmi:id="_3cs-oNnYEeut38w4P0hxDQ" base_Constraint="9556b359-cdb9-4631-b8cf-2580e744927e" implementation="com.nomagic.magicdraw.sysml.validation.portandflow.ValidInterfaceBlockPortType" abbreviation="InterfaceBlock[3]" errorMessage="Ports owned by interface blocks can only be typed by interface blocks." severity="info"/>
+  <ValidationProfile:validationRule xmi:id="_3cs-odnYEeut38w4P0hxDQ" base_Constraint="29b73c73-649a-463e-a516-bf3552bc1fbe" implementation="com.nomagic.magicdraw.sysml.validation.portandflow.ValidInvocationOnNestedPortActionLastOnNestedPort" abbreviation="InvocationOnNestedPortAction[4]" errorMessage="Within the stereotyped invocation action, the onPort port of the invocation action must be contained in the type of the port at the last position of the onNestedPort list." severity="info"/>
+  <ValidationProfile:validationRule xmi:id="_3ctlsNnYEeut38w4P0hxDQ" base_Constraint="378e1e48-3f7b-429a-a486-43fd539d2dbc" implementation="com.nomagic.magicdraw.sysml.validation.portandflow.ValidTriggerOnNestedPortSuccessiveOnNestedPort" abbreviation="TriggerOnNestedPort[4]" errorMessage="The port at each successive position of the onNestedPort property, following the first position, must be contained in the block that types the port at the immediately preceding position." severity="info"/>
+  <ValidationProfile:validationRule xmi:id="_3ctlsdnYEeut38w4P0hxDQ" base_Constraint="91ea6206-71fa-43f5-8713-b1a27e88e812" implementation="com.nomagic.magicdraw.sysml.validation.portandflow.ValidTriggerOnNestedPortFirstOnNestedPort" abbreviation="TriggerOnNestedPort[3]" errorMessage="The port at the first position in the onNestedPort property must be owned by a block in which the trigger is used." severity="info"/>
+  <ValidationProfile:validationRule xmi:id="_3ctlstnYEeut38w4P0hxDQ" base_Constraint="20e96f8f-f0cf-4132-8a48-02b9ae1dcbe2" implementation="com.nomagic.magicdraw.sysml.validation.portandflow.ValidTriggerOnNestedPortOnNestedPortStereotype" abbreviation="TriggerOnNestedPort[2]" errorMessage="The values of the onNestedPort property must not be full ports." severity="info"/>
+  <ValidationProfile:validationRule xmi:id="_3ctls9nYEeut38w4P0hxDQ" base_Constraint="96798c99-3128-4a77-b1da-138a7212d937" implementation="com.nomagic.magicdraw.sysml.validation.portandflow.ValidTriggerOnNestedPortPort" abbreviation="TriggerOnNestedPort[1]" errorMessage="The port property of the stereotyped trigger must have exactly one value, and the value cannot be a full port." severity="info"/>
+  <ValidationProfile:validationRule xmi:id="_3ctltNnYEeut38w4P0hxDQ" base_Constraint="653fe054-52a1-49b9-a72c-035189f88b3a" implementation="com.nomagic.magicdraw.sysml.validation.portandflow.ValidInvocationOnNestedPortActionSuccessiveOnNestedPort" abbreviation="InvocationOnNestedPortAction[3]" errorMessage="The port at each successive position of the onNestedPort property, following the first position, must be contained in the block that types the port at the immediately preceding position." severity="info"/>
+  <ValidationProfile:validationRule xmi:id="_3cuMwNnYEeut38w4P0hxDQ" base_Constraint="bc1218c0-0031-4b60-9fa5-73d61ec3ac1d" implementation="com.nomagic.magicdraw.sysml.validation.portandflow.ValidInvocationOnNestedPortActionOnPort" abbreviation="InvocationOnNestedPortAction[1]" errorMessage="The onPort property of an invocation action must have a value when this stereotype is applied." severity="info"/>
+  <ValidationProfile:validationRule xmi:id="_3cuMwdnYEeut38w4P0hxDQ" base_Constraint="939e6a7a-d449-4422-a40f-4d05ee903e22" implementation="com.nomagic.magicdraw.sysml.validation.portandflow.ValidInvocationOnNestedPortActionFirstOnNestedPort" abbreviation="InvocationOnNestedPortAction[2]" errorMessage="The port at the first position in the onNestedPort property must be owned by the target object of the stereotyped action." severity="info"/>
+  <ValidationProfile:validationRule xmi:id="_3cuMwtnYEeut38w4P0hxDQ" base_Constraint="ab83d9a7-3327-4977-a740-a6db630feee8" implementation="com.nomagic.magicdraw.sysml.validation.portandflow.ValidDirectedFeatureOnOperation" abbreviation="DirectedFeature[2]" errorMessage="Operations that are not provided must not have or inherit methods." severity="info"/>
+  <ValidationProfile:validationRule xmi:id="_3cuMw9nYEeut38w4P0hxDQ" base_Constraint="67545ab5-36ac-493a-bee0-365e9b3db224" implementation="com.nomagic.magicdraw.sysml.validation.portandflow.ValidDirectedFeatureUnsuitableStereotype" abbreviation="DirectedFeature[1]" errorMessage="DirectedFeature can only be applied to behavioral features, or to properties that do not have FlowProperty applied, including on subsetted or redefined features." severity="info"/>
+  <ValidationProfile:validationRule xmi:id="_3cuMxNnYEeut38w4P0hxDQ" base_Constraint="c87e2fa6-a0c4-4309-b0d4-d1425637c242" implementation="com.nomagic.magicdraw.sysml.validation.portandflow.ValidChangeStructuralFeatureEventStructuralFeatureFeaturingClassifier" abbreviation="ChangeStructuralFeatureEvent[2]" errorMessage="The structural feature must have exactly one featuringClassifier." severity="info"/>
+  <ValidationProfile:validationRule xmi:id="_3cuMxdnYEeut38w4P0hxDQ" base_Constraint="300af20b-cae0-4fd4-ac83-0783a23daf66" implementation="com.nomagic.magicdraw.sysml.validation.portandflow.ValidInterfaceBlockBehavior" abbreviation="InterfaceBlock[1]" errorMessage="Interface blocks cannot own or inherit behaviors, have classifier behaviors, or methods for their behavioral features." severity="info"/>
+  <ValidationProfile:validationRule xmi:id="_3cuz0NnYEeut38w4P0hxDQ" base_Constraint="fbcd22be-74b6-4378-9cb9-fb6333dbfd6a" implementation="com.nomagic.magicdraw.sysml.validation.portandflow.ValidChangeStructuralFeatureEventStructuralFeatureIsStatic" abbreviation="ChangeStructuralFeatureEvent[1]" errorMessage="The structural feature must not be static." severity="info"/>
+  <ValidationProfile:validationRule xmi:id="_3cuz0dnYEeut38w4P0hxDQ" base_Constraint="dd2057d2-6d6b-4c2c-9fb8-c08d4e446ce8" implementation="com.nomagic.magicdraw.sysml.validation.portandflow.ValidAcceptChangeStructuralFeatureEventTrigger" abbreviation="AcceptChangeStructuralFeatureEventAction[1]" errorMessage="The action has exactly one trigger, the event of which must be a change structural feature event." severity="info"/>
+  <ValidationProfile:validationRule xmi:id="_3cuz0tnYEeut38w4P0hxDQ" base_Constraint="9a065919-39c0-4105-992a-429c8ab9bd2f" implementation="com.nomagic.magicdraw.sysml.validation.portandflow.NonConjugatedFullPortValidationRule" abbreviation="FullPort[4]" errorMessage="Full ports cannot be conjugated (isConjugated=false)." severity="info"/>
+  <ValidationProfile:validationRule xmi:id="_3cuz09nYEeut38w4P0hxDQ" base_Constraint="04bc53e4-6503-4241-9dc3-3c95dd6c3b6c" implementation="com.nomagic.magicdraw.sysml.validation.autowiring.SysMLAutoWiringRuleImpl" abbreviation="Autowiring" errorMessage="Confirm connection!" severity="warning"/>
+  <ValidationProfile:validationRule xmi:id="_3cva4NnYEeut38w4P0hxDQ" base_Constraint="2540385b-10ab-4b8a-94ed-6854de07820c" implementation="com.nomagic.magicdraw.sysml.validation.portandflow.NonBehavioralFullPortValidationRule" abbreviation="FullPort[3]" errorMessage="Full ports cannot be behavioral (isBehavior=false)." severity="info"/>
+  <ValidationProfile:validationRule xmi:id="_3cva4dnYEeut38w4P0hxDQ" base_Constraint="7de3e97a-c9dd-4512-8d45-6f199ac02bda" implementation="com.nomagic.magicdraw.sysml.validation.portandflow.BindingConnectorOfFullPortValidationRule" abbreviation="FullPort[2]" errorMessage="Binding connectors cannot link full ports to other composite properties of the block owning the port, except ports that are not full." severity="info"/>
+  <ValidationProfile:validationRule xmi:id="_3cva4tnYEeut38w4P0hxDQ" base_Constraint="2c915346-23bc-4ec7-97d6-8353e424c919" implementation="com.nomagic.magicdraw.sysml.validation.portandflow.ValidStereotypeForFullPortValidationRule" abbreviation="FullPort[1]" errorMessage="Full ports cannot also be proxy ports. This applies even if some of the stereotypes are on subsetted or redefined ports." severity="info"/>
+  <ValidationProfile:validationRule xmi:id="_3cva49nYEeut38w4P0hxDQ" base_Constraint="5bb64cef-855e-4aa8-a370-bdffdebeb8d4" implementation="com.nomagic.magicdraw.sysml.validation.portandflow.ValidProxyPortPortsOfType" abbreviation="ProxyPort[3]" errorMessage="Ports owned by the type of a proxy port must be proxy ports." severity="info"/>
+  <ValidationProfile:validationRule xmi:id="_3cva5NnYEeut38w4P0hxDQ" base_Constraint="6f76377b-3d28-4298-a3a5-3c4f2369c8bf" implementation="com.nomagic.magicdraw.sysml.validation.portandflow.ValidProxyPortStereotype" abbreviation="ProxyPort[1]" errorMessage="Proxy ports cannot also be full ports. This applies even if some of stereotypes are on subsetted or redefined ports." severity="info"/>
+  <ValidationProfile:validationRule xmi:id="_3cwB8NnYEeut38w4P0hxDQ" base_Constraint="6f5528b6-f2b5-4b60-8ca0-895230d7450d" implementation="com.nomagic.magicdraw.sysml.validation.flow.SysMLFlowRuleImpl" abbreviation="Incompatible flow" errorMessage="Incompatible flow"/>
+  <ValidationProfile:validationRule xmi:id="_3cwB8dnYEeut38w4P0hxDQ" base_Constraint="4aaf0727-263d-49cf-b7db-92e482f1e2ff" implementation="com.nomagic.magicdraw.sysml.validation.portandflow.ValidProxyPortType" abbreviation="ProxyPort[2]" errorMessage="Proxy ports can only be typed by interface blocks." severity="info"/>
+  <ValidationProfile:validationRule xmi:id="_3cwB8tnYEeut38w4P0hxDQ" base_Constraint="823e6f4d-37ef-454b-a53e-7a8dab9c2940" implementation="com.nomagic.magicdraw.sysml.validation.portandflow.ValidDefaultFlowPropertyDirection" abbreviation="FlowProperty[B]" errorMessage="The flow property must be specified the direction and the default value of the direction should be ‘inout’." severity="warning"/>
+  <ValidationProfile:validationRule xmi:id="_3cwB89nYEeut38w4P0hxDQ" base_Constraint="91e4f961-6e06-43bf-b4e8-18e61bf85842" implementation="com.nomagic.magicdraw.sysml.validation.portandflow.ValidFlowPropertyType" abbreviation="FlowProperty[1]" errorMessage="A FlowProperty is typed by a ValueType, Block, or Signal." severity="warning"/>
+  <ValidationProfile:validationRule xmi:id="_3cwB9NnYEeut38w4P0hxDQ" base_Constraint="9e757d05-6b33-49d5-bee0-65c5d0be3373" implementation="com.nomagic.magicdraw.sysml.validation.portandflow.IncompatibleItemFlowName" abbreviation="ItemFlow[6]" errorMessage="If an ItemFlow has an itemProperty, its name should be the same as the name of the item flow." severity="info"/>
+  <ValidationProfile:validationRule xmi:id="_3cwpANnYEeut38w4P0hxDQ" base_Constraint="8b173d1e-9f56-4d0a-b606-0e6e4bc2bbf4" implementation="com.nomagic.magicdraw.sysml.validation.portandflow.ValidItemFlowPropertyType" abbreviation="ItemFlow[2]" errorMessage="An ItemFlow itemProperty must be typed by a ValueType, Block, or Signal." severity="warning"/>
+  <ValidationProfile:validationRule xmi:id="_3cwpAdnYEeut38w4P0hxDQ" base_Constraint="f8d0b802-a0e1-439b-951f-d21c3a22ecc9" implementation="com.nomagic.magicdraw.sysml.validation.portandflow.ValidConveyedClassifierWithRelationEnds" abbreviation="ItemFlow[A]" errorMessage="The conveyed classifiers must be the same or subtype of classifier that type flow property of flow specification." severity="info"/>
+  <ValidationProfile:validationRule xmi:id="_3cwpAtnYEeut38w4P0hxDQ" base_Constraint="5402fc47-7af3-4faf-ab54-dda1a280b9d2" implementation="com.nomagic.magicdraw.sysml.validation.portandflow.ValidItemFlowPropertyOwningSourceAndTarget" abbreviation="ItemFlow[3]" errorMessage="ItemProperty is a property of the common (possibly indirect) owner of the source and the target." severity="warning"/>
+  <ValidationProfile:validationRule xmi:id="_3cwpA9nYEeut38w4P0hxDQ" base_Constraint="13c48bc4-6e3a-4ba2-9f4a-8ec2477f32f7" implementation="com.nomagic.magicdraw.sysml.validation.portandflow.ValidItemFlowHasItemPropertyWithoutRealizingConnector" abbreviation="ItemFlow[4]" errorMessage="Item property cannot have a value if the item flow is realized by an Association." severity="info"/>
+  <ValidationProfile:validationRule xmi:id="_3cwpBNnYEeut38w4P0hxDQ" base_Constraint="7ed8dc8c-0645-4980-858b-d8c60fd87a02" implementation="com.nomagic.magicdraw.sysml.validation.portandflow.DeprecatedFlowSpecificationValidationRule" abbreviation="FlowSpecification[B]" errorMessage="Flow specifications have been deprecated since SysML v1.3." severity="info"/>
+  <ValidationProfile:validationRule xmi:id="_3cwpBdnYEeut38w4P0hxDQ" base_Constraint="adfa031d-5ada-42c0-9d24-a78208e5936a" implementation="com.nomagic.magicdraw.sysml.validation.portandflow.DeprecatedFlowPortValidationRule" abbreviation="FlowPort[C]" errorMessage="Flow ports have been deprecated since SysML v1.3." severity="info"/>
+  <ValidationProfile:validationRule xmi:id="_3cxQENnYEeut38w4P0hxDQ" base_Constraint="660fdad7-a5a2-4c2d-9fcd-874d090d22c7" implementation="com.nomagic.magicdraw.sysml.validation.classifierbehavior.ClassifierBehaviorPropertyRuleImpl" abbreviation="CLASSIFIER_BEHAVIOR_SYNC" errorMessage="ClassifierBehavior is out of sync." severity="warning"/>
+  <ValidationProfile:validationRule xmi:id="_3cxQEdnYEeut38w4P0hxDQ" base_Constraint="1d167248-bee4-4548-a150-f150be674c7d" implementation="com.nomagic.magicdraw.sysml.validation.verdicttestcases.VerdictTestCasesRuleImpl" abbreviation="NoVerdict" errorMessage="Testcase must return a verdict." severity="warning"/>
+  <ValidationProfile:validationRule xmi:id="_3cxQEtnYEeut38w4P0hxDQ" base_Constraint="cfa2cfb3-0d19-4a47-871b-7f175bb1a74c" implementation="com.nomagic.magicdraw.sysml.validation.boundreference.BoundReferencePropertyRuleImpl" abbreviation="BOUND_SYNC" errorMessage="BoundReference is out of sync." severity="warning"/>
+  <ValidationProfile:validationRule xmi:id="_3cxQE9nYEeut38w4P0hxDQ" base_Constraint="5aa0828e-2f97-4cac-8a23-670ee93dffad" implementation="com.nomagic.magicdraw.sysml.validation.adjunctproperty.AdjunctPropertyRuleImpl" abbreviation="ADJUNCT_SYNC" errorMessage="AdjunctProperty is out of sync." severity="warning"/>
+  <ValidationProfile:validationRule xmi:id="_3cx3INnYEeut38w4P0hxDQ" base_Constraint="42c5ce55-1809-4a6b-98d6-71ea4a83255a" implementation="com.nomagic.magicdraw.sysml.validation.nonnormative.ValidUnitQuantityKind" abbreviation="QUDV[D]" errorMessage="The Quantity Kind defined in the Unit is obsolete in the context of QUDV." severity="info"/>
+  <ValidationProfile:validationRule xmi:id="_3cx3IdnYEeut38w4P0hxDQ" base_Constraint="843439e2-10f9-4a9b-a88f-f3d98da7a567" implementation="com.nomagic.magicdraw.sysml.validation.nonnormative.ValidValueTypeQuantityKind" abbreviation="QUDV[E]" errorMessage="The Quantity Kind defined in the ValueType is obsolete in the context of QUDV." severity="info"/>
+  <ValidationProfile:validationRule xmi:id="_3cx3ItnYEeut38w4P0hxDQ" base_Constraint="5bb52b8d-851c-4744-b581-8bbd588bdc3a" implementation="com.nomagic.magicdraw.sysml.validation.nonnormative.ValidActivityStreamingHasParameter" abbreviation="streaming[1]" errorMessage="The activity has at least one streaming parameter." severity="warning"/>
+  <ValidationProfile:validationRule xmi:id="_3cyeMNnYEeut38w4P0hxDQ" base_Constraint="b71a7faf-cc75-437c-8abd-dee4755d1390" implementation="com.nomagic.magicdraw.sysml.validation.nonnormative.ValidValueTypeUnit" abbreviation="QUDV[C]" errorMessage="The Unit defined in the ValueType is obsolete in the context of QUDV." severity="info"/>
+  <ValidationProfile:validationRule xmi:id="_3cyeMdnYEeut38w4P0hxDQ" base_Constraint="064b54d2-a6e3-4d9c-9eba-b7106d19de42" implementation="com.nomagic.magicdraw.sysml.validation.nonnormative.ValidQuantityKind" abbreviation="QUDV[B]" errorMessage="Each QUDV Quantity Kind's base classifier should be an Instance Specification, instead of a DataType." severity="info"/>
+  <ValidationProfile:validationRule xmi:id="_3cyeMtnYEeut38w4P0hxDQ" base_Constraint="578824c5-43c6-43ee-a60f-e0a43902f4eb" implementation="com.nomagic.magicdraw.sysml.validation.nonnormative.ValidUnit" abbreviation="QUDV[A]" errorMessage="Each QUDV Unit's base classifier should be an Instance Specification, instead of a DataType." severity="info"/>
+  <ValidationProfile:validationRule xmi:id="_3czFQNnYEeut38w4P0hxDQ" base_Constraint="8c0f502a-04ef-49f5-b11b-dca7f6990a6b" implementation="com.nomagic.magicdraw.sysml.validation.nonnormative.ValidActivityNonStreamingHasParameter" abbreviation="nonStreaming[1]" errorMessage="The activity has no streaming parameters." severity="warning"/>
+  <ValidationProfile:validationRule xmi:id="_3czFQdnYEeut38w4P0hxDQ" base_Constraint="898e1804-3d69-4146-b0de-fed9fb6b84db" implementation="com.nomagic.magicdraw.sysml.validation.nonnormative.ValidActivityStreamingAndNonStreamingStereotype" abbreviation="streaming[A]-nonStreaming[A]" errorMessage="The &lt;&lt;streaming>> and &lt;&lt;nonstreaming>> stereotypes cannot be applied to the same element at the same time." severity="warning"/>
+  <ValidationProfile:validationRule xmi:id="_3czFQtnYEeut38w4P0hxDQ" base_Constraint="1e3d4354-2f73-4e1a-ad0f-afd6ae0e965d" implementation="com.nomagic.magicdraw.sysml.validation.block.ValidPropertyTypedByConstraintBlock" abbreviation="ConstraintProperty[2]" errorMessage="The ConstraintProperty stereotype must be applied to any property of a SysML Block that is typed by a ConstraintBlock." severity="warning"/>
+  <ValidationProfile:validationRule xmi:id="_3czFQ9nYEeut38w4P0hxDQ" base_Constraint="4d4232be-594f-4d43-8c0d-7e08f7d786ee" implementation="com.nomagic.magicdraw.sysml.validation.nonnormative.ValidPerFormanceRequirement" abbreviation="performanceRequirement[1]" errorMessage="satisfied by a value property" severity="warning"/>
+  <ValidationProfile:validationRule xmi:id="_3czFRNnYEeut38w4P0hxDQ" base_Constraint="26a93b67-39e5-4cb2-b2c6-bef0ab66db9d" implementation="com.nomagic.magicdraw.sysml.validation.nonnormative.ValidDesignConstraint" abbreviation="designConstraint[1]" errorMessage="satisfied by a block or part" severity="warning"/>
+  <ValidationProfile:validationRule xmi:id="_3czsUNnYEeut38w4P0hxDQ" base_Constraint="3206bdda-3ffb-4b9a-84f7-253c22005d57" implementation="com.nomagic.magicdraw.sysml.validation.nonnormative.ValidFunctionalRequirement" abbreviation="functionalRequirement[1]" errorMessage="satisfied by an operation or behavior" severity="warning"/>
+  <ValidationProfile:validationRule xmi:id="_3czsUdnYEeut38w4P0hxDQ" base_Constraint="54f8a42a-93c6-4d37-a62f-2a250b22f94b" implementation="com.nomagic.magicdraw.sysml.validation.nonnormative.ValidInterfaceRequirement" abbreviation="interfaceRequirement[1]" errorMessage="satisfied by a port, connector, item flow, and/or constraint property" severity="warning"/>
+  <ValidationProfile:validationRule xmi:id="_3czsUtnYEeut38w4P0hxDQ" base_Constraint="c2131065-34f4-4cb0-83fa-ba10a41cf389" implementation="com.nomagic.magicdraw.sysml.validation.block.ValidConstraintPropertyOwner" abbreviation="ConstraintProperty[1]" errorMessage="A property to which the ConstraintProperty stereotype is applied must be owned by a SysML Block." severity="warning"/>
+  <ValidationProfile:validationRule xmi:id="_3czsU9nYEeut38w4P0hxDQ" base_Constraint="46d11423-742b-4d6c-9211-2236f240f5db" implementation="com.nomagic.magicdraw.sysml.validation.block.ValidSpecializedConstraintBlockStereotype" abbreviation="ConstraintBlock[2]" errorMessage="Any classifier which specializes a ConstraintBlock must also have the ConstraintBlock stereotype applied" severity="warning"/>
+  <ValidationProfile:validationRule xmi:id="_3c0TYNnYEeut38w4P0hxDQ" base_Constraint="43302cf0-7205-4c03-bcfa-30222d9ecf26" implementation="com.nomagic.magicdraw.sysml.validation.constraintblock.ValidParameterHasBindingConnector" abbreviation="ConstraintBlock[A]" errorMessage="Binding connectors should be used to bind each parameter of the constraint block to a property in the surrounding context." severity="info"/>
+  <ValidationProfile:validationRule xmi:id="_3c0TYdnYEeut38w4P0hxDQ" base_Constraint="0d9c17ea-9508-4e7c-9e51-877cde79f58b" implementation="com.nomagic.magicdraw.sysml.validation.constraintblock.ValidConstraintBlock" abbreviation="ConstraintBlock[1]" errorMessage="A constraint block may not own any structural or behavioral elements beyond the properties that define its constraint parameters, constraint properties that hold internal usages of constraint blocks, binding connectors between its internally nested constraint parameters, constraint expressions that define an interpretation for the constraint block, and general-purpose model management and crosscutting elements" severity="warning"/>
+  <ValidationProfile:validationRule xmi:id="_3c0TYtnYEeut38w4P0hxDQ" base_Constraint="f3189771-d6fc-440f-a778-63e28e1e2f10" implementation="com.nomagic.magicdraw.sysml.validation.allocation.NoAllocationValidationRuleImpl" abbreviation="ActionBehavior" errorMessage="Action/Behavior is not allocated!" severity="warning"/>
+  <ValidationProfile:validationRule xmi:id="_3c0TY9nYEeut38w4P0hxDQ" base_Constraint="0affd7a7-d696-44af-a5d3-b966c8c7d9c8" implementation="com.nomagic.magicdraw.sysml.validation.allocation.ValidRepresentElementOfActivityPartition" abbreviation="AllocateActivityPartition[B]" errorMessage="The represented element of the activity partition which are applied with «AllocateActivityPartition» stereotype, should be the Property" severity="info"/>
+  <ValidationProfile:validationRule xmi:id="_3c0TZNnYEeut38w4P0hxDQ" base_Constraint="b1ac663f-c9b0-4018-809c-dd32442df5e3" implementation="com.nomagic.magicdraw.sysml.validation.allocation.ValidAllocatedSupplier" abbreviation="AllocateActivityPartition [A]" errorMessage="An Action appearing in an AllocateActivityPartition will be the /client (from) end of an allocate dependency. The element that represents the AllocateActivityPartition will be the /supplier (to) end of the same allocate dependency." severity="info"/>
+  <ValidationProfile:validationRule xmi:id="_3c06cNnYEeut38w4P0hxDQ" base_Constraint="addfc284-41cd-41ba-8bab-d16fec95fd1a" implementation="com.nomagic.magicdraw.sysml.validation.activity.ValidObjectNodeOverwriteAndNoBufferStereotype" abbreviation="noBuffer[1]-Overwrite[1]" errorMessage="The «nobuffer» and «overwrite» stereotypes cannot be applied to the same element at the same time." severity="warning"/>
+  <ValidationProfile:validationRule xmi:id="_3c06cdnYEeut38w4P0hxDQ" base_Constraint="5757f477-a6af-4e2c-9919-4d8a498e7a17" implementation="com.nomagic.magicdraw.sysml.validation.activity.ValidParameterContinousAndDiscreteStereotype" abbreviation="Discrete[1]" errorMessage="The «discrete» and «continuous» stereotypes cannot be applied to the same element at the same time." severity="warning"/>
+  <ValidationProfile:validationRule xmi:id="_3c06ctnYEeut38w4P0hxDQ" base_Constraint="4fa4816a-02d0-4b52-bcf0-c1cd1fc56cd9" implementation="com.nomagic.magicdraw.sysml.validation.activity.ValidObjectNodeContinousAndDiscreteStereotype" abbreviation="Discrete[1]" errorMessage="The «discrete» and «continuous» stereotypes cannot be applied to the same element at the same time." severity="warning"/>
+  <ValidationProfile:validationRule xmi:id="_3c06c9nYEeut38w4P0hxDQ" base_Constraint="bb5974f7-055a-43a7-8f8b-2b7fa19af4b3" implementation="com.nomagic.magicdraw.sysml.validation.activity.ValidActivityEdgeContinousAndDiscreteStereotype" abbreviation="Discrete[1]" errorMessage="The «discrete» and «continuous» stereotypes cannot be applied to the same element at the same time." severity="warning"/>
+  <ValidationProfile:validationRule xmi:id="_3c06dNnYEeut38w4P0hxDQ" base_Constraint="4b06b4bf-caca-43f4-a37e-88f362fe56a2" implementation="com.nomagic.requirements.validation.requirement.ValidNested" abbreviation="Requirement[5]" errorMessage="A nested classifier of a class stereotyped by «requirement» must also be stereotyped by «requirement»." severity="warning"/>
+  <ValidationProfile:validationRule xmi:id="_3c1hgNnYEeut38w4P0hxDQ" base_Constraint="34fab436-becc-4688-a8f1-a8feb6930870" implementation="com.nomagic.magicdraw.sysml.validation.block.ValidSpecializedValueTypeStereotype" abbreviation="ValueType[1]" errorMessage="Any classifier which specializes a ValueType must also have the ValueType stereotype applied" severity="warning"/>
+  <ValidationProfile:validationRule xmi:id="_3c1hgdnYEeut38w4P0hxDQ" base_Constraint="94b46586-978a-4da2-98e0-f2590a88c9d4" implementation="com.nomagic.magicdraw.sysml.validation.rule.connector.ConnectorEndPathRuleImpl" abbreviation="InvConnector" errorMessage="Invalid Connector! Connector owner is wrong or Connector ends specified in the model are changed!"/>
+  <ValidationProfile:validationRule xmi:id="_3c1hgtnYEeut38w4P0hxDQ" base_Constraint="611bfa5a-2004-4928-8004-01182e6614f7" implementation="com.nomagic.magicdraw.sysml.validation.block.ValidSpecializedBlockStereotype" abbreviation="Block[8]" errorMessage="Any classifier which specializes a Block must also have the Block stereotype or one of its specializations applied." severity="info"/>
+  <ValidationProfile:validationRule xmi:id="_3c1hg9nYEeut38w4P0hxDQ" base_Constraint="51d4f402-08ed-4ec7-b960-33ca19e65ad9" implementation="com.nomagic.magicdraw.sysml.validation.block.ValidValuePropertyType" abbreviation="ValueProperty[A]" errorMessage="The type of a value property must be a value type." severity="warning"/>
+  <ValidationProfile:validationRule xmi:id="_3c2IkNnYEeut38w4P0hxDQ" base_Constraint="6e88ede0-bedf-4b29-8703-1789d0893b2e" implementation="com.nomagic.magicdraw.sysml.validation.block.ValidBlockCompatibleBindingConnectorStereotype" abbreviation="BindingConnector[1]" errorMessage="The two ends of a binding connector must have either the same type or types that are compatible so that equality of their values can be defined." severity="warning"/>
+  <ValidationProfile:validationRule xmi:id="_3c2IkdnYEeut38w4P0hxDQ" base_Constraint="ca4c5a2e-98b8-4c99-9ab0-3d64e965a3f5" implementation="com.nomagic.magicdraw.sysml.validation.block.ValidBlockDistributedProperty" abbreviation="DistributedProperty[1]" errorMessage="The DistributedProperty stereotype (and its subtypes) may be applied only to properties of classifiers stereotyped by Block or ValueType." severity="warning"/>
+  <ValidationProfile:validationRule xmi:id="_3c2IktnYEeut38w4P0hxDQ" base_Constraint="f6e1ccd3-6dfb-4bfa-9da7-9c4175a13ea3" implementation="com.nomagic.magicdraw.sysml.validation.block.ValidValueTypeQuantityKind" abbreviation="ValueType[A]" errorMessage="If a value is present for the unit attribute, the quantity kind attribute must be equal to the quantity kind property of the referenced unit." severity="info"/>
+  <ValidationProfile:activeValidationSuite xmi:id="_3dKRoNnYEeut38w4P0hxDQ" base_Package="ecf9884a-cf95-42f0-8860-b4964f5ab816"/>
+  <ValidationProfile:activeValidationSuite xmi:id="_3dK4sNnYEeut38w4P0hxDQ" base_Package="8c625e5c-1648-4dd3-bde7-35d0a4bbdb2b"/>
+  <ValidationProfile:activeValidationSuite xmi:id="_3dK4sdnYEeut38w4P0hxDQ" base_Package="40a43e27-c634-4675-8601-4f5e2476cb8f"/>
+  <ValidationProfile:activeValidationSuite xmi:id="_3dK4stnYEeut38w4P0hxDQ" base_Package="4eefa02a-6753-4c40-8551-94560aa31284"/>
+  <ValidationProfile:activeValidationSuite xmi:id="_3dK4s9nYEeut38w4P0hxDQ" base_Package="bddfa794-367c-4481-bac4-29456c55f146"/>
+  <ValidationProfile:activeValidationSuite xmi:id="_3dK4tNnYEeut38w4P0hxDQ" base_Package="37ecd179-2a4c-44bd-8f3d-16b44befb14f"/>
+  <ValidationProfile:activeValidationSuite xmi:id="_3dK4tdnYEeut38w4P0hxDQ" base_Package="479fbd69-398f-4b12-b01b-88454e58d871"/>
+  <ValidationProfile:activeValidationSuite xmi:id="_3dK4ttnYEeut38w4P0hxDQ" base_Package="7248c4e1-b02d-4efc-acee-8f1cce7b721a"/>
+  <MagicDrawProfile:auxiliaryResource xmi:id="_3r_X0NnYEeut38w4P0hxDQ" base_Element="ff70f9dd-144b-437a-b3b3-9e933647933d"/>
+  <MagicDrawProfile:auxiliaryResource xmi:id="_3vv2ctnYEeut38w4P0hxDQ" base_Element="c31e2422-bca5-40d1-aeaa-943b88ebb719"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v19ENnYEeut38w4P0hxDQ" base_Element="ddca6ea7-932e-44ae-b38d-c4e0d9c2a845"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v19EdnYEeut38w4P0hxDQ" base_Element="5eaef2d3-de6f-4c8f-a8e1-94dec0403211"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v19EtnYEeut38w4P0hxDQ" base_Element="bb984bed-fcbb-4ca3-a3bc-5a7dc4b9f61c"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v2kI9nYEeut38w4P0hxDQ" base_Element="5933c504-ab12-4311-ac89-5da5ca4f4671"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v2kJNnYEeut38w4P0hxDQ" base_Element="208203d4-4f4c-4012-b4e5-3ef5a1834639"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v2kJdnYEeut38w4P0hxDQ" base_Element="f61801a1-a70c-4dd2-9cb5-fc8a82dd6dc5"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v2kJtnYEeut38w4P0hxDQ" base_Element="31ef6620-7303-455a-a0c4-692d7992465d"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v3LMNnYEeut38w4P0hxDQ" base_Element="387c59b2-b7da-460e-8703-e25b543b3cd2"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v8qxtnYEeut38w4P0hxDQ" base_Element="5b0c275d-e225-40a0-a751-034a78bd288b"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v8qx9nYEeut38w4P0hxDQ" base_Element="772133e2-8b9a-4c42-8cbf-3cffb988ce2b"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v8qyNnYEeut38w4P0hxDQ" base_Element="50463c86-39ec-42eb-bd91-d419bd241a66"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v8qydnYEeut38w4P0hxDQ" base_Element="4aae9ecd-8cc3-494f-b030-c80d2f5067e8"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v8qytnYEeut38w4P0hxDQ" base_Element="59d11ab9-9f77-45fd-92bb-80014915e782"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v8qy9nYEeut38w4P0hxDQ" base_Element="5c405419-b15a-4748-baf2-c7fe29df8d60"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v8qzNnYEeut38w4P0hxDQ" base_Element="58b14da7-d104-4c79-a536-fe42ddd46ea0"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v8qzdnYEeut38w4P0hxDQ" base_Element="4618b817-a8c5-461c-b6f0-5a0bed8411b8"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v8qztnYEeut38w4P0hxDQ" base_Element="f85b4beb-c171-4226-966b-d293a2bb873a"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v8qz9nYEeut38w4P0hxDQ" base_Element="60133b7d-f389-45b5-9d56-9e7e2252863c"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v8q0NnYEeut38w4P0hxDQ" base_Element="ed266f31-e330-4671-a6e1-6206a593681e"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v8q0dnYEeut38w4P0hxDQ" base_Element="db0c9c0e-a181-421c-a2d1-10041409998d"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v8q0tnYEeut38w4P0hxDQ" base_Element="ec304d44-8ed7-4996-82c6-8722b0bc2658"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v8q09nYEeut38w4P0hxDQ" base_Element="206226e9-e44b-41a8-a30e-a46bc4910de6"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v8q1NnYEeut38w4P0hxDQ" base_Element="ce8f7a80-0920-4572-ba5f-a3fd67bbf9af"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v8q1dnYEeut38w4P0hxDQ" base_Element="c16826f3-8297-47f1-8d0b-d1b9601a4ea2"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v8q1tnYEeut38w4P0hxDQ" base_Element="88e4868b-b615-45f0-8e34-1df692d43232"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v8q19nYEeut38w4P0hxDQ" base_Element="202b8f2e-5d9d-4fd3-a46f-baecf511a864"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v8q2NnYEeut38w4P0hxDQ" base_Element="a349fa8d-013f-4df5-a13d-6e94dd10a2fa"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v9R0NnYEeut38w4P0hxDQ" base_Element="e0d83035-6777-456d-9240-29a6da8eb8d2"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v9R0dnYEeut38w4P0hxDQ" base_Element="ed89f815-5db8-4e43-b625-a026b1d5abe5"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v9R0tnYEeut38w4P0hxDQ" base_Element="57809b02-4bda-4e6d-ac7e-38ac32b9c09d"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v9R09nYEeut38w4P0hxDQ" base_Element="ae553b86-95a7-4848-b28b-aca9bc50d2ec"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v9R1NnYEeut38w4P0hxDQ" base_Element="8d1dc220-7930-4961-8e63-103a4ac296c0"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v9R1dnYEeut38w4P0hxDQ" base_Element="ff9cb87d-77a8-4fe6-9ee3-8a9722a63604"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v9R1tnYEeut38w4P0hxDQ" base_Element="4db070fa-0862-4cbc-b2e3-788ae2569f3b"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v9R19nYEeut38w4P0hxDQ" base_Element="62ffa762-97a1-4b8c-ae84-81215c72b523"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v9R2NnYEeut38w4P0hxDQ" base_Element="412ab69e-6742-4ea0-b74a-10cb2ce40e5a"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v9R2dnYEeut38w4P0hxDQ" base_Element="a56e8542-6f06-4072-becb-f8d916413e65"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v9R2tnYEeut38w4P0hxDQ" base_Element="3ec6b4ab-3778-41be-8ce4-5ea19ce98e82"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v9R29nYEeut38w4P0hxDQ" base_Element="2160610f-733a-4cb6-8c5e-daaea28e3ff9"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v9R3NnYEeut38w4P0hxDQ" base_Element="62663fed-10c7-4c71-bc93-6d3ad1b9fba0"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v9R3dnYEeut38w4P0hxDQ" base_Element="74dfe60c-2526-44d1-b924-cd5dae3a9d87"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v9R3tnYEeut38w4P0hxDQ" base_Element="aa7d3292-cd10-434f-afe2-ad2d8bd781f6"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v9R39nYEeut38w4P0hxDQ" base_Element="aa7e3362-f834-4f56-9695-ae07931fe80a"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v9R4NnYEeut38w4P0hxDQ" base_Element="cbe3b058-2055-41b4-a15b-af12ff368b4d"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v9R4dnYEeut38w4P0hxDQ" base_Element="c229ee9a-6fb0-4cc0-971e-3b83e782b021"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v9R4tnYEeut38w4P0hxDQ" base_Element="7a499049-abc9-45f2-84d4-8eb89ba947bd"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v9R49nYEeut38w4P0hxDQ" base_Element="a9d7ab47-d069-4350-a48a-2a41d9bb8c30"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v9R5NnYEeut38w4P0hxDQ" base_Element="3a33276d-4b32-4b6f-9302-44730bafb464"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v9R5dnYEeut38w4P0hxDQ" base_Element="1d31389a-959f-4682-8b89-6c19c73c58da"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v944NnYEeut38w4P0hxDQ" base_Element="b954d6c6-2d36-4d31-83f5-02ef472c07e7"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v944dnYEeut38w4P0hxDQ" base_Element="d9996d83-9b07-4af2-ba4b-db1bf4da8a01"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v944tnYEeut38w4P0hxDQ" base_Element="8089c854-87ab-4105-8a5e-d37bfc9137e0"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v9449nYEeut38w4P0hxDQ" base_Element="8a46f3aa-f336-4c9e-89a1-aa4f762920c5"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v945NnYEeut38w4P0hxDQ" base_Element="c7cfa104-b7f2-4649-b47e-e6bacf33d04f"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v945dnYEeut38w4P0hxDQ" base_Element="9ad62bdd-9d62-432f-aa39-737a540bb391"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v945tnYEeut38w4P0hxDQ" base_Element="9e0edbee-e102-4882-b88f-1c578471b5d2"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v9459nYEeut38w4P0hxDQ" base_Element="49c47822-0719-4b96-95ac-55c37bad6bc2"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v946NnYEeut38w4P0hxDQ" base_Element="37d7eab2-3925-43c6-97d9-e971f558984e"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v946dnYEeut38w4P0hxDQ" base_Element="fd1edea8-fab3-4093-9043-d8dce3933db2"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v946tnYEeut38w4P0hxDQ" base_Element="fd0a45b7-0428-41a3-8f18-e9acd0b7def6"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v9469nYEeut38w4P0hxDQ" base_Element="3cf596cb-fa1e-405d-a1c4-75d30b8a9251"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v947NnYEeut38w4P0hxDQ" base_Element="4dd6ee21-ff01-435d-8f1e-f8c99e35a303"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v-f8NnYEeut38w4P0hxDQ" base_Element="fdb52f6b-3e42-4b5d-a728-dbf219204047"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v-f8dnYEeut38w4P0hxDQ" base_Element="347f8c45-6266-426a-8edb-ca55fd8db2fe"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v-f8tnYEeut38w4P0hxDQ" base_Element="3e1fa27d-65fe-4e2a-b5d5-2c5d7f8366cd"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v-f89nYEeut38w4P0hxDQ" base_Element="fcaa335f-425f-4d64-99b1-cba485a4ca99"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v-f9NnYEeut38w4P0hxDQ" base_Element="8a4b5a1d-24b4-46f4-bf92-a1650eb6bf63"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v-f9dnYEeut38w4P0hxDQ" base_Element="d53b0b42-79c4-45a6-9ea1-312568c5c5b3"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v-f9tnYEeut38w4P0hxDQ" base_Element="f7385c26-e896-4e12-99bc-cf4aef3bf72f"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v-f99nYEeut38w4P0hxDQ" base_Element="ac176e78-6bdf-4af9-87dc-71e3d7b441d5"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v-f-NnYEeut38w4P0hxDQ" base_Element="fda250d8-99b7-4e96-a396-30da987cd469"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v_HANnYEeut38w4P0hxDQ" base_Element="986de930-533d-48b9-88e4-a0704f4aa437"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v_HAdnYEeut38w4P0hxDQ" base_Element="06014e6a-93f9-4ef7-aff1-b72378d647d5"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v_HAtnYEeut38w4P0hxDQ" base_Element="1337f4da-1eda-489d-b8f1-f842377ba6b5"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v_HA9nYEeut38w4P0hxDQ" base_Element="d9d1e230-b8cb-4256-a427-cdfd610b9696"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v_HBNnYEeut38w4P0hxDQ" base_Element="a001d810-9e5d-43fc-ac32-0e09ff23b2ae"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v_HBdnYEeut38w4P0hxDQ" base_Element="9d3044ce-cb59-45d8-9a9b-efe7c1a5098c"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v_HBtnYEeut38w4P0hxDQ" base_Element="1e042c0d-25d3-49e4-8699-f8b1c95b14bb"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v_HB9nYEeut38w4P0hxDQ" base_Element="b4f80879-9564-4539-aa67-d975d1e03dee"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v_HCNnYEeut38w4P0hxDQ" base_Element="c68312c6-793c-481b-96f8-e84f594dc635"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v_HCdnYEeut38w4P0hxDQ" base_Element="fee093b7-fcc6-4f89-8702-a2cb039a7a42"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v_HCtnYEeut38w4P0hxDQ" base_Element="aba7c748-aba6-4005-b146-d0587cbed120"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v_HC9nYEeut38w4P0hxDQ" base_Element="9556b359-cdb9-4631-b8cf-2580e744927e"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v_HDNnYEeut38w4P0hxDQ" base_Element="29b73c73-649a-463e-a516-bf3552bc1fbe"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v_HDdnYEeut38w4P0hxDQ" base_Element="378e1e48-3f7b-429a-a486-43fd539d2dbc"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v_HDtnYEeut38w4P0hxDQ" base_Element="91ea6206-71fa-43f5-8713-b1a27e88e812"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v_HD9nYEeut38w4P0hxDQ" base_Element="20e96f8f-f0cf-4132-8a48-02b9ae1dcbe2"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v_HENnYEeut38w4P0hxDQ" base_Element="96798c99-3128-4a77-b1da-138a7212d937"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v_HEdnYEeut38w4P0hxDQ" base_Element="653fe054-52a1-49b9-a72c-035189f88b3a"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v_HEtnYEeut38w4P0hxDQ" base_Element="bc1218c0-0031-4b60-9fa5-73d61ec3ac1d"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v_HE9nYEeut38w4P0hxDQ" base_Element="939e6a7a-d449-4422-a40f-4d05ee903e22"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v_HFNnYEeut38w4P0hxDQ" base_Element="ab83d9a7-3327-4977-a740-a6db630feee8"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v_HFdnYEeut38w4P0hxDQ" base_Element="67545ab5-36ac-493a-bee0-365e9b3db224"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v_HFtnYEeut38w4P0hxDQ" base_Element="c87e2fa6-a0c4-4309-b0d4-d1425637c242"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v_HF9nYEeut38w4P0hxDQ" base_Element="300af20b-cae0-4fd4-ac83-0783a23daf66"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v_uENnYEeut38w4P0hxDQ" base_Element="fbcd22be-74b6-4378-9cb9-fb6333dbfd6a"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v_uEdnYEeut38w4P0hxDQ" base_Element="dd2057d2-6d6b-4c2c-9fb8-c08d4e446ce8"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v_uEtnYEeut38w4P0hxDQ" base_Element="9a065919-39c0-4105-992a-429c8ab9bd2f"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v_uE9nYEeut38w4P0hxDQ" base_Element="04bc53e4-6503-4241-9dc3-3c95dd6c3b6c"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v_uFNnYEeut38w4P0hxDQ" base_Element="2540385b-10ab-4b8a-94ed-6854de07820c"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v_uFdnYEeut38w4P0hxDQ" base_Element="7de3e97a-c9dd-4512-8d45-6f199ac02bda"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v_uFtnYEeut38w4P0hxDQ" base_Element="2c915346-23bc-4ec7-97d6-8353e424c919"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v_uF9nYEeut38w4P0hxDQ" base_Element="5bb64cef-855e-4aa8-a370-bdffdebeb8d4"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v_uGNnYEeut38w4P0hxDQ" base_Element="6f76377b-3d28-4298-a3a5-3c4f2369c8bf"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v_uGdnYEeut38w4P0hxDQ" base_Element="6f5528b6-f2b5-4b60-8ca0-895230d7450d"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v_uGtnYEeut38w4P0hxDQ" base_Element="4aaf0727-263d-49cf-b7db-92e482f1e2ff"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v_uG9nYEeut38w4P0hxDQ" base_Element="823e6f4d-37ef-454b-a53e-7a8dab9c2940"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v_uHNnYEeut38w4P0hxDQ" base_Element="91e4f961-6e06-43bf-b4e8-18e61bf85842"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v_uHdnYEeut38w4P0hxDQ" base_Element="9e757d05-6b33-49d5-bee0-65c5d0be3373"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v_uHtnYEeut38w4P0hxDQ" base_Element="8b173d1e-9f56-4d0a-b606-0e6e4bc2bbf4"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v_uH9nYEeut38w4P0hxDQ" base_Element="f8d0b802-a0e1-439b-951f-d21c3a22ecc9"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v_uINnYEeut38w4P0hxDQ" base_Element="5402fc47-7af3-4faf-ab54-dda1a280b9d2"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v_uIdnYEeut38w4P0hxDQ" base_Element="13c48bc4-6e3a-4ba2-9f4a-8ec2477f32f7"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v_uItnYEeut38w4P0hxDQ" base_Element="7ed8dc8c-0645-4980-858b-d8c60fd87a02"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v_uI9nYEeut38w4P0hxDQ" base_Element="adfa031d-5ada-42c0-9d24-a78208e5936a"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v_uJNnYEeut38w4P0hxDQ" base_Element="660fdad7-a5a2-4c2d-9fcd-874d090d22c7"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v_uJdnYEeut38w4P0hxDQ" base_Element="1d167248-bee4-4548-a150-f150be674c7d"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v_uJtnYEeut38w4P0hxDQ" base_Element="cfa2cfb3-0d19-4a47-871b-7f175bb1a74c"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3v_uJ9nYEeut38w4P0hxDQ" base_Element="5aa0828e-2f97-4cac-8a23-670ee93dffad"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3wAVINnYEeut38w4P0hxDQ" base_Element="42c5ce55-1809-4a6b-98d6-71ea4a83255a"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3wAVIdnYEeut38w4P0hxDQ" base_Element="843439e2-10f9-4a9b-a88f-f3d98da7a567"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3wAVItnYEeut38w4P0hxDQ" base_Element="5bb52b8d-851c-4744-b581-8bbd588bdc3a"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3wAVI9nYEeut38w4P0hxDQ" base_Element="b71a7faf-cc75-437c-8abd-dee4755d1390"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3wAVJNnYEeut38w4P0hxDQ" base_Element="064b54d2-a6e3-4d9c-9eba-b7106d19de42"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3wAVJdnYEeut38w4P0hxDQ" base_Element="578824c5-43c6-43ee-a60f-e0a43902f4eb"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3wAVJtnYEeut38w4P0hxDQ" base_Element="8c0f502a-04ef-49f5-b11b-dca7f6990a6b"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3wAVJ9nYEeut38w4P0hxDQ" base_Element="898e1804-3d69-4146-b0de-fed9fb6b84db"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3wAVKNnYEeut38w4P0hxDQ" base_Element="1e3d4354-2f73-4e1a-ad0f-afd6ae0e965d"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3wAVKdnYEeut38w4P0hxDQ" base_Element="4d4232be-594f-4d43-8c0d-7e08f7d786ee"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3wAVKtnYEeut38w4P0hxDQ" base_Element="26a93b67-39e5-4cb2-b2c6-bef0ab66db9d"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3wAVK9nYEeut38w4P0hxDQ" base_Element="3206bdda-3ffb-4b9a-84f7-253c22005d57"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3wAVLNnYEeut38w4P0hxDQ" base_Element="54f8a42a-93c6-4d37-a62f-2a250b22f94b"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3wAVLdnYEeut38w4P0hxDQ" base_Element="c2131065-34f4-4cb0-83fa-ba10a41cf389"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3wAVLtnYEeut38w4P0hxDQ" base_Element="46d11423-742b-4d6c-9211-2236f240f5db"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3wAVL9nYEeut38w4P0hxDQ" base_Element="43302cf0-7205-4c03-bcfa-30222d9ecf26"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3wAVMNnYEeut38w4P0hxDQ" base_Element="0d9c17ea-9508-4e7c-9e51-877cde79f58b"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3wAVMdnYEeut38w4P0hxDQ" base_Element="0affd7a7-d696-44af-a5d3-b966c8c7d9c8"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3wAVMtnYEeut38w4P0hxDQ" base_Element="b1ac663f-c9b0-4018-809c-dd32442df5e3"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3wAVM9nYEeut38w4P0hxDQ" base_Element="addfc284-41cd-41ba-8bab-d16fec95fd1a"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3wAVNNnYEeut38w4P0hxDQ" base_Element="5757f477-a6af-4e2c-9919-4d8a498e7a17"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3wAVNdnYEeut38w4P0hxDQ" base_Element="4fa4816a-02d0-4b52-bcf0-c1cd1fc56cd9"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3wAVNtnYEeut38w4P0hxDQ" base_Element="bb5974f7-055a-43a7-8f8b-2b7fa19af4b3"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3wAVN9nYEeut38w4P0hxDQ" base_Element="4b06b4bf-caca-43f4-a37e-88f362fe56a2"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3wA8MNnYEeut38w4P0hxDQ" base_Element="34fab436-becc-4688-a8f1-a8feb6930870"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3wA8MdnYEeut38w4P0hxDQ" base_Element="94b46586-978a-4da2-98e0-f2590a88c9d4"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3wA8MtnYEeut38w4P0hxDQ" base_Element="611bfa5a-2004-4928-8004-01182e6614f7"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3wA8M9nYEeut38w4P0hxDQ" base_Element="51d4f402-08ed-4ec7-b960-33ca19e65ad9"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3wA8NNnYEeut38w4P0hxDQ" base_Element="6e88ede0-bedf-4b29-8703-1789d0893b2e"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3wA8NdnYEeut38w4P0hxDQ" base_Element="ca4c5a2e-98b8-4c99-9ab0-3d64e965a3f5"/>
+  <MagicDrawProfile:InvisibleStereotype xmi:id="_3wA8NtnYEeut38w4P0hxDQ" base_Element="f6e1ccd3-6dfb-4bfa-9da7-9c4175a13ea3"/>
+  <MagicDrawProfile:Info xmi:id="_3wJfFdnYEeut38w4P0hxDQ" base_Package="ecf9884a-cf95-42f0-8860-b4964f5ab816"/>
+  <MagicDrawProfile:Info xmi:id="_3wJfFtnYEeut38w4P0hxDQ" base_Package="3ec99bfe-5b27-4264-b846-2866d565abec" author="NoMagic"/>
+  <MagicDrawProfile:Info xmi:id="_3wKGJNnYEeut38w4P0hxDQ" base_Package="8bc4078f-1efd-4e28-8674-c7fd2b1b350f" author="NoMagic"/>
+  <MagicDrawProfile:Info xmi:id="_3wKGJdnYEeut38w4P0hxDQ" base_Package="1c57d077-37d2-463c-a22c-dab51a3e511a" author="NoMagic"/>
+  <MagicDrawProfile:Info xmi:id="_3wKGJtnYEeut38w4P0hxDQ" base_Package="da650103-5fad-4f70-ba31-5152ccbe8bdc" author="NoMagic"/>
+  <MagicDrawProfile:Info xmi:id="_3wKGJ9nYEeut38w4P0hxDQ" base_Package="672fdbb1-a617-4078-b79a-53e2b8d0bcf9" author="NoMagic"/>
+  <MagicDrawProfile:Info xmi:id="_3wKGKNnYEeut38w4P0hxDQ" base_Package="a4ff5ec5-7e65-4b8e-9a14-59218dc572f2" author="NoMagic"/>
+  <MagicDrawProfile:Info xmi:id="_3wKGKdnYEeut38w4P0hxDQ" base_Package="4b1a090d-5a4c-4d73-ae7e-0f06fca5a876" author="NoMagic"/>
+  <MagicDrawProfile:Info xmi:id="_3wKGKtnYEeut38w4P0hxDQ" base_Package="f170e4c1-b856-490a-bc27-358d54bba85c" author="NoMagic"/>
+  <MagicDrawProfile:Info xmi:id="_3wKGK9nYEeut38w4P0hxDQ" base_Package="ffd1b578-003d-4ede-9dca-553a1d19fabb" author="NoMagic"/>
+  <MagicDrawProfile:Info xmi:id="_3wKGLNnYEeut38w4P0hxDQ" base_Package="816ebdeb-8c39-4507-8297-6997625f1745" author="NoMagic"/>
+  <MagicDrawProfile:Info xmi:id="_3wKGLdnYEeut38w4P0hxDQ" base_Package="8c625e5c-1648-4dd3-bde7-35d0a4bbdb2b" author="NoMagic"/>
+  <MagicDrawProfile:Info xmi:id="_3wKtMNnYEeut38w4P0hxDQ" base_Package="40a43e27-c634-4675-8601-4f5e2476cb8f" author="NoMagic"/>
+  <MagicDrawProfile:Info xmi:id="_3wKtMdnYEeut38w4P0hxDQ" base_Package="4eefa02a-6753-4c40-8551-94560aa31284" author="NoMagic"/>
+  <MagicDrawProfile:Info xmi:id="_3wKtMtnYEeut38w4P0hxDQ" base_Package="bddfa794-367c-4481-bac4-29456c55f146" author="NoMagic"/>
+  <MagicDrawProfile:Info xmi:id="_3wKtM9nYEeut38w4P0hxDQ" base_Package="37ecd179-2a4c-44bd-8f3d-16b44befb14f" author="NoMagic"/>
+  <MagicDrawProfile:Info xmi:id="_3wKtNNnYEeut38w4P0hxDQ" base_Package="479fbd69-398f-4b12-b01b-88454e58d871" author="NoMagic"/>
+  <MagicDrawProfile:Info xmi:id="_3wKtNdnYEeut38w4P0hxDQ" base_Package="7248c4e1-b02d-4efc-acee-8f1cce7b721a" author="NoMagic"/>
+  <MagicDrawProfile:RequiresFeature xmi:id="_3wlj89nYEeut38w4P0hxDQ" base_Element="ecf9884a-cf95-42f0-8860-b4964f5ab816" requiredFeature="FEATURE_190_SP3_RelationshipAndItsEndsDifferInContextValidationRuleImpl"/>
+  <MagicDrawProfile:RequiresFeature xmi:id="_3wlj9dnYEeut38w4P0hxDQ" base_Element="5933c504-ab12-4311-ac89-5da5ca4f4671" requiredFeature="FEATURE_190_SP1_ValidValueSpecificationType"/>
+  <MagicDrawProfile:RequiresFeature xmi:id="_3wlj9tnYEeut38w4P0hxDQ" base_Element="208203d4-4f4c-4012-b4e5-3ef5a1834639" requiredFeature="FEATURE_190_SP2_DefaultSourceAndTargetDontMatchRolesValidationRuleImp"/>
+  <MagicDrawProfile:RequiresFeature xmi:id="_3wlj99nYEeut38w4P0hxDQ" base_Element="f61801a1-a70c-4dd2-9cb5-fc8a82dd6dc5" requiredFeature="FEATURE_190_SP2_SourceAndTargetDontMatchRolesOfTheLifelineValidationRuleImp"/>
+  <MagicDrawProfile:RequiresFeature xmi:id="_3wlj-NnYEeut38w4P0hxDQ" base_Element="31ef6620-7303-455a-a0c4-692d7992465d" requiredFeature="FEATURE_190_SP2_SourceAndTargetDontMatchRolesOfTheConnectorValidationRuleImp"/>
+</xmi:XMI>

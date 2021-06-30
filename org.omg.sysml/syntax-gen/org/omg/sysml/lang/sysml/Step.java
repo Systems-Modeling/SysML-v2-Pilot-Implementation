@@ -80,10 +80,10 @@ public interface Step extends Feature {
 	 * Returns the value of the '<em><b>Parameter</b></em>' reference list.
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Feature}.
 	 * <p>
-	 * This feature subsets the following features:
+	 * This feature redefines the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Type#getFeature() <em>Feature</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Type#getDirectedFeature() <em>Directed Feature</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -92,14 +92,14 @@ public interface Step extends Feature {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>features</code> of this Step whose <code>owningFeatureMemberships</code> are <code>ParameterMemberships</code>. Every <code>parameter</code> of a Step must either be inherited from a <code>behavior</code> of the Step or directly or indirectly redefine a parameter of a <code>behavior</code> of the Step.</p>
+	 * <p>The parameters of this Expression, which are all its <code>directedFeatures</code>, whose values are passed into and/or out of a performance of the Behavior.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Parameter</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getStep_Parameter()
 	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='parameteredStep'"
-	 *        annotation="subsets"
+	 *        annotation="redefines"
 	 * @generated
 	 */
 	EList<Feature> getParameter();

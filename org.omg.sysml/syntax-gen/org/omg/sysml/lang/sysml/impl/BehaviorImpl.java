@@ -89,6 +89,15 @@ public class BehaviorImpl extends ClassImpl implements Behavior {
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetParameter() {
+		return !getParameter().isEmpty();
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -147,12 +156,32 @@ public class BehaviorImpl extends ClassImpl implements Behavior {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case SysMLPackage.BEHAVIOR__DIRECTED_FEATURE:
+				return isSetDirectedFeature();
 			case SysMLPackage.BEHAVIOR__STEP:
 				return !getStep().isEmpty();
 			case SysMLPackage.BEHAVIOR__PARAMETER:
-				return !getParameter().isEmpty();
+				return isSetParameter();
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Feature> getDirectedFeature() {
+		return getParameter();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetDirectedFeature() {
+  		return false;
 	}
 
 } // BehaviorImpl

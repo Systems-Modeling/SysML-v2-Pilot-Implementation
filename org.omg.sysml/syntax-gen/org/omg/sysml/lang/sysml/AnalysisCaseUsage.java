@@ -65,7 +65,7 @@ public interface AnalysisCaseUsage extends CaseUsage {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Analysis Action</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getAnalysisCaseUsage_AnalysisAction()
-	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='featuringAnalysisCase'"
 	 *        annotation="subsets"
 	 * @generated

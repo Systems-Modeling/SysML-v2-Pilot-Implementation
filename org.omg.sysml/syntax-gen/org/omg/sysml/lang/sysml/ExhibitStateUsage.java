@@ -28,9 +28,9 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>An ExhibitStateUsage is a StateUsage that represents the exhibiting of a StateUsage. The StateUsage to be exhibited (which may be the ExhibitStateUsage itself) is related to the ExhibitStateUsage by a Subsetting Relationship.</p>
+ * <p>An ExhibitStateUsage is a StateUsage that represents the exhibiting of a StateUsage. The StateUsage to be exhibited (which may be the ExhibitStateUsage itself) is related to the ExhibitStateUsage by a Subsetting Relationship. An ExhibitStateUsage is also a PerformActionUsage, with its <code>exhibitedState</code> as the <code>performedAction</code>.</p>
  * 
- * <p>If the ExhibitStateUsage is owned by a Part, then it also subsets the <code>exhibitedStates</code> property of that Part (as defined in the library model for Part), otherwise it subsets either <code>states</code> or <code>substates</code>, as required for a regular StateUsage.</p>
+ * <p>If the ExhibitStateUsage is owned by a PartDefinition or PartUsage, then it also subsets the StateUsage <em><code>Part::exhibitedStates</code></em> from the Systems model library.</p>
  * 
  * <!-- end-model-doc -->
  *
@@ -45,9 +45,15 @@ package org.omg.sysml.lang.sysml;
  * @model
  * @generated
  */
-public interface ExhibitStateUsage extends StateUsage {
+public interface ExhibitStateUsage extends StateUsage, PerformActionUsage {
 	/**
 	 * Returns the value of the '<em><b>Exhibited State</b></em>' reference.
+	 * <p>
+	 * This feature redefines the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.PerformActionUsage#getPerformedAction() <em>Performed Action</em>}'</li>
+	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Exhibited State</em>' reference isn't clear,
@@ -61,7 +67,8 @@ public interface ExhibitStateUsage extends StateUsage {
 	 * @see #setExhibitedState(StateUsage)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getExhibitStateUsage_ExhibitedState()
 	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='stateExhibition'"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='exhibitingState'"
+	 *        annotation="redefines"
 	 * @generated
 	 */
 	StateUsage getExhibitedState();

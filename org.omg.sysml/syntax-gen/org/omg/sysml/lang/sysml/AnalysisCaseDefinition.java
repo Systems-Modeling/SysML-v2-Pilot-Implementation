@@ -64,7 +64,7 @@ public interface AnalysisCaseDefinition extends CaseDefinition {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Analysis Action</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getAnalysisCaseDefinition_AnalysisAction()
-	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='featuringAnalysisCaseDefinition'"
 	 *        annotation="subsets"
 	 * @generated

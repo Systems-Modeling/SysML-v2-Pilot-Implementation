@@ -81,10 +81,10 @@ public interface Behavior extends org.omg.sysml.lang.sysml.Class {
 	 * Returns the value of the '<em><b>Parameter</b></em>' reference list.
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Feature}.
 	 * <p>
-	 * This feature subsets the following features:
+	 * This feature redefines the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Type#getFeature() <em>Feature</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Type#getDirectedFeature() <em>Directed Feature</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -93,14 +93,14 @@ public interface Behavior extends org.omg.sysml.lang.sysml.Class {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>features</code> of this Behavior that are owned by the Behavior via ParameterMemberships. A <code>parameter</code> always has a <code>direction</code>, indicating whether the values of the <code>parameter</code> are passed into and/or out of a performance of the Behavior.</p>
+	 * <p>The parameters of this Behavior, which are all its <code>directedFeatures</code>, whose values are passed into and/or out of a performance of the Behavior.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Parameter</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getBehavior_Parameter()
 	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='parameteredBehavior'"
-	 *        annotation="subsets"
+	 *        annotation="redefines"
 	 * @generated
 	 */
 	EList<Feature> getParameter();

@@ -26,7 +26,7 @@ import java.util.stream.Stream;
 
 import org.omg.sysml.adapter.UsageAdapter;
 import org.omg.sysml.lang.sysml.ActionUsage;
-import org.omg.sysml.lang.sysml.AddressedConcernMembership;
+import org.omg.sysml.lang.sysml.FramedConcernMembership;
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.ConcernUsage;
 import org.omg.sysml.lang.sysml.ConstraintUsage;
@@ -159,7 +159,7 @@ public class UsageUtil {
 	}
 	
 	public static boolean isAddressedConcern(ConcernUsage concern) {
-		return concern.getOwningFeatureMembership() instanceof AddressedConcernMembership;
+		return concern.getOwningFeatureMembership() instanceof FramedConcernMembership;
 	}
 	
 	// Transitions

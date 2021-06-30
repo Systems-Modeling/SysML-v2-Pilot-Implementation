@@ -48,7 +48,7 @@ import org.omg.sysml.lang.sysml.ExhibitStateUsage;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureTyping;
-import org.omg.sysml.lang.sysml.Generalization;
+import org.omg.sysml.lang.sysml.Specialization;
 import org.omg.sysml.lang.sysml.ItemDefinition;
 import org.omg.sysml.lang.sysml.ItemFlow;
 import org.omg.sysml.lang.sysml.ItemUsage;
@@ -385,7 +385,7 @@ public class SysML2PlantUMLStyle {
 		}
 
 		@Override
-		public String caseGeneralization(Generalization object) {
+		public String caseGeneralization(Specialization object) {
             return " --|> ";
 		}
 

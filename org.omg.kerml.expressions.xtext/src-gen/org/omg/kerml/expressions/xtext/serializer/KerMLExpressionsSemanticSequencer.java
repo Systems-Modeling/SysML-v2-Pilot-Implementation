@@ -22,10 +22,10 @@ import org.omg.sysml.lang.sysml.FeatureReferenceExpression;
 import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.InvocationExpression;
 import org.omg.sysml.lang.sysml.LiteralBoolean;
-import org.omg.sysml.lang.sysml.LiteralInteger;
-import org.omg.sysml.lang.sysml.LiteralReal;
+import org.omg.sysml.lang.sysml.LiteralInfinity;
+import org.omg.sysml.lang.sysml.LiteralNatural;
+import org.omg.sysml.lang.sysml.LiteralRational;
 import org.omg.sysml.lang.sysml.LiteralString;
-import org.omg.sysml.lang.sysml.LiteralUnbounded;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.NullExpression;
 import org.omg.sysml.lang.sysml.OperatorExpression;
@@ -190,17 +190,17 @@ public class KerMLExpressionsSemanticSequencer extends AbstractDelegatingSemanti
 			case SysMLPackage.LITERAL_BOOLEAN:
 				sequence_LiteralBoolean(context, (LiteralBoolean) semanticObject); 
 				return; 
-			case SysMLPackage.LITERAL_INTEGER:
-				sequence_LiteralInteger(context, (LiteralInteger) semanticObject); 
+			case SysMLPackage.LITERAL_INFINITY:
+				sequence_LiteralInfinity(context, (LiteralInfinity) semanticObject); 
 				return; 
-			case SysMLPackage.LITERAL_REAL:
-				sequence_LiteralReal(context, (LiteralReal) semanticObject); 
+			case SysMLPackage.LITERAL_NATURAL:
+				sequence_LiteralInteger(context, (LiteralNatural) semanticObject); 
+				return; 
+			case SysMLPackage.LITERAL_RATIONAL:
+				sequence_LiteralReal(context, (LiteralRational) semanticObject); 
 				return; 
 			case SysMLPackage.LITERAL_STRING:
 				sequence_LiteralString(context, (LiteralString) semanticObject); 
-				return; 
-			case SysMLPackage.LITERAL_UNBOUNDED:
-				sequence_LiteralUnbounded(context, (LiteralUnbounded) semanticObject); 
 				return; 
 			case SysMLPackage.MEMBERSHIP:
 				sequence_FeatureReferenceMember(context, (Membership) semanticObject); 
@@ -610,56 +610,107 @@ public class KerMLExpressionsSemanticSequencer extends AbstractDelegatingSemanti
 	
 	/**
 	 * Contexts:
-	 *     OwnedExpression returns LiteralInteger
-	 *     ConditionalExpression returns LiteralInteger
-	 *     ConditionalExpression.OperatorExpression_0_1_0 returns LiteralInteger
-	 *     NullCoalescingExpression returns LiteralInteger
-	 *     NullCoalescingExpression.OperatorExpression_1_0 returns LiteralInteger
-	 *     ImpliesExpression returns LiteralInteger
-	 *     ImpliesExpression.OperatorExpression_1_0 returns LiteralInteger
-	 *     OrExpression returns LiteralInteger
-	 *     OrExpression.OperatorExpression_1_0 returns LiteralInteger
-	 *     XorExpression returns LiteralInteger
-	 *     XorExpression.OperatorExpression_1_0 returns LiteralInteger
-	 *     AndExpression returns LiteralInteger
-	 *     AndExpression.OperatorExpression_1_0 returns LiteralInteger
-	 *     EqualityExpression returns LiteralInteger
-	 *     EqualityExpression.OperatorExpression_1_0 returns LiteralInteger
-	 *     ClassificationExpression returns LiteralInteger
-	 *     ClassificationExpression.OperatorExpression_0_1_0 returns LiteralInteger
-	 *     RelationalExpression returns LiteralInteger
-	 *     RelationalExpression.OperatorExpression_1_0 returns LiteralInteger
-	 *     RangeExpression returns LiteralInteger
-	 *     RangeExpression.OperatorExpression_1_0 returns LiteralInteger
-	 *     AdditiveExpression returns LiteralInteger
-	 *     AdditiveExpression.OperatorExpression_1_0 returns LiteralInteger
-	 *     MultiplicativeExpression returns LiteralInteger
-	 *     MultiplicativeExpression.OperatorExpression_1_0 returns LiteralInteger
-	 *     ExponentiationExpression returns LiteralInteger
-	 *     ExponentiationExpression.OperatorExpression_1_0 returns LiteralInteger
-	 *     UnitsExpression returns LiteralInteger
-	 *     UnitsExpression.OperatorExpression_1_0 returns LiteralInteger
-	 *     UnaryExpression returns LiteralInteger
-	 *     ExtentExpression returns LiteralInteger
-	 *     PrimaryExpression returns LiteralInteger
-	 *     PrimaryExpression.OperatorExpression_1_0_0 returns LiteralInteger
-	 *     PrimaryExpression.OperatorExpression_1_1_0 returns LiteralInteger
-	 *     PrimaryExpression.PathStepExpression_1_2_0 returns LiteralInteger
-	 *     PrimaryExpression.PathSelectExpression_1_3_0 returns LiteralInteger
-	 *     BaseExpression returns LiteralInteger
-	 *     SequenceExpression returns LiteralInteger
-	 *     SequenceExpression.OperatorExpression_1_1_0 returns LiteralInteger
-	 *     LiteralExpression returns LiteralInteger
-	 *     LiteralInteger returns LiteralInteger
-	 *     LiteralUnlimitedNatural returns LiteralInteger
+	 *     OwnedExpression returns LiteralInfinity
+	 *     ConditionalExpression returns LiteralInfinity
+	 *     ConditionalExpression.OperatorExpression_0_1_0 returns LiteralInfinity
+	 *     NullCoalescingExpression returns LiteralInfinity
+	 *     NullCoalescingExpression.OperatorExpression_1_0 returns LiteralInfinity
+	 *     ImpliesExpression returns LiteralInfinity
+	 *     ImpliesExpression.OperatorExpression_1_0 returns LiteralInfinity
+	 *     OrExpression returns LiteralInfinity
+	 *     OrExpression.OperatorExpression_1_0 returns LiteralInfinity
+	 *     XorExpression returns LiteralInfinity
+	 *     XorExpression.OperatorExpression_1_0 returns LiteralInfinity
+	 *     AndExpression returns LiteralInfinity
+	 *     AndExpression.OperatorExpression_1_0 returns LiteralInfinity
+	 *     EqualityExpression returns LiteralInfinity
+	 *     EqualityExpression.OperatorExpression_1_0 returns LiteralInfinity
+	 *     ClassificationExpression returns LiteralInfinity
+	 *     ClassificationExpression.OperatorExpression_0_1_0 returns LiteralInfinity
+	 *     RelationalExpression returns LiteralInfinity
+	 *     RelationalExpression.OperatorExpression_1_0 returns LiteralInfinity
+	 *     RangeExpression returns LiteralInfinity
+	 *     RangeExpression.OperatorExpression_1_0 returns LiteralInfinity
+	 *     AdditiveExpression returns LiteralInfinity
+	 *     AdditiveExpression.OperatorExpression_1_0 returns LiteralInfinity
+	 *     MultiplicativeExpression returns LiteralInfinity
+	 *     MultiplicativeExpression.OperatorExpression_1_0 returns LiteralInfinity
+	 *     ExponentiationExpression returns LiteralInfinity
+	 *     ExponentiationExpression.OperatorExpression_1_0 returns LiteralInfinity
+	 *     UnitsExpression returns LiteralInfinity
+	 *     UnitsExpression.OperatorExpression_1_0 returns LiteralInfinity
+	 *     UnaryExpression returns LiteralInfinity
+	 *     ExtentExpression returns LiteralInfinity
+	 *     PrimaryExpression returns LiteralInfinity
+	 *     PrimaryExpression.OperatorExpression_1_0_0 returns LiteralInfinity
+	 *     PrimaryExpression.OperatorExpression_1_1_0 returns LiteralInfinity
+	 *     PrimaryExpression.PathStepExpression_1_2_0 returns LiteralInfinity
+	 *     PrimaryExpression.PathSelectExpression_1_3_0 returns LiteralInfinity
+	 *     BaseExpression returns LiteralInfinity
+	 *     SequenceExpression returns LiteralInfinity
+	 *     SequenceExpression.OperatorExpression_1_1_0 returns LiteralInfinity
+	 *     LiteralExpression returns LiteralInfinity
+	 *     LiteralInfinity returns LiteralInfinity
+	 *
+	 * Constraint:
+	 *     {LiteralInfinity}
+	 */
+	protected void sequence_LiteralInfinity(ISerializationContext context, LiteralInfinity semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     OwnedExpression returns LiteralNatural
+	 *     ConditionalExpression returns LiteralNatural
+	 *     ConditionalExpression.OperatorExpression_0_1_0 returns LiteralNatural
+	 *     NullCoalescingExpression returns LiteralNatural
+	 *     NullCoalescingExpression.OperatorExpression_1_0 returns LiteralNatural
+	 *     ImpliesExpression returns LiteralNatural
+	 *     ImpliesExpression.OperatorExpression_1_0 returns LiteralNatural
+	 *     OrExpression returns LiteralNatural
+	 *     OrExpression.OperatorExpression_1_0 returns LiteralNatural
+	 *     XorExpression returns LiteralNatural
+	 *     XorExpression.OperatorExpression_1_0 returns LiteralNatural
+	 *     AndExpression returns LiteralNatural
+	 *     AndExpression.OperatorExpression_1_0 returns LiteralNatural
+	 *     EqualityExpression returns LiteralNatural
+	 *     EqualityExpression.OperatorExpression_1_0 returns LiteralNatural
+	 *     ClassificationExpression returns LiteralNatural
+	 *     ClassificationExpression.OperatorExpression_0_1_0 returns LiteralNatural
+	 *     RelationalExpression returns LiteralNatural
+	 *     RelationalExpression.OperatorExpression_1_0 returns LiteralNatural
+	 *     RangeExpression returns LiteralNatural
+	 *     RangeExpression.OperatorExpression_1_0 returns LiteralNatural
+	 *     AdditiveExpression returns LiteralNatural
+	 *     AdditiveExpression.OperatorExpression_1_0 returns LiteralNatural
+	 *     MultiplicativeExpression returns LiteralNatural
+	 *     MultiplicativeExpression.OperatorExpression_1_0 returns LiteralNatural
+	 *     ExponentiationExpression returns LiteralNatural
+	 *     ExponentiationExpression.OperatorExpression_1_0 returns LiteralNatural
+	 *     UnitsExpression returns LiteralNatural
+	 *     UnitsExpression.OperatorExpression_1_0 returns LiteralNatural
+	 *     UnaryExpression returns LiteralNatural
+	 *     ExtentExpression returns LiteralNatural
+	 *     PrimaryExpression returns LiteralNatural
+	 *     PrimaryExpression.OperatorExpression_1_0_0 returns LiteralNatural
+	 *     PrimaryExpression.OperatorExpression_1_1_0 returns LiteralNatural
+	 *     PrimaryExpression.PathStepExpression_1_2_0 returns LiteralNatural
+	 *     PrimaryExpression.PathSelectExpression_1_3_0 returns LiteralNatural
+	 *     BaseExpression returns LiteralNatural
+	 *     SequenceExpression returns LiteralNatural
+	 *     SequenceExpression.OperatorExpression_1_1_0 returns LiteralNatural
+	 *     LiteralExpression returns LiteralNatural
+	 *     LiteralInteger returns LiteralNatural
 	 *
 	 * Constraint:
 	 *     value=DECIMAL_VALUE
 	 */
-	protected void sequence_LiteralInteger(ISerializationContext context, LiteralInteger semanticObject) {
+	protected void sequence_LiteralInteger(ISerializationContext context, LiteralNatural semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, SysMLPackage.Literals.LITERAL_INTEGER__VALUE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SysMLPackage.Literals.LITERAL_INTEGER__VALUE));
+			if (transientValues.isValueTransient(semanticObject, SysMLPackage.Literals.LITERAL_NATURAL__VALUE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SysMLPackage.Literals.LITERAL_NATURAL__VALUE));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getLiteralIntegerAccess().getValueDECIMAL_VALUETerminalRuleCall_0(), semanticObject.getValue());
@@ -669,55 +720,55 @@ public class KerMLExpressionsSemanticSequencer extends AbstractDelegatingSemanti
 	
 	/**
 	 * Contexts:
-	 *     OwnedExpression returns LiteralReal
-	 *     ConditionalExpression returns LiteralReal
-	 *     ConditionalExpression.OperatorExpression_0_1_0 returns LiteralReal
-	 *     NullCoalescingExpression returns LiteralReal
-	 *     NullCoalescingExpression.OperatorExpression_1_0 returns LiteralReal
-	 *     ImpliesExpression returns LiteralReal
-	 *     ImpliesExpression.OperatorExpression_1_0 returns LiteralReal
-	 *     OrExpression returns LiteralReal
-	 *     OrExpression.OperatorExpression_1_0 returns LiteralReal
-	 *     XorExpression returns LiteralReal
-	 *     XorExpression.OperatorExpression_1_0 returns LiteralReal
-	 *     AndExpression returns LiteralReal
-	 *     AndExpression.OperatorExpression_1_0 returns LiteralReal
-	 *     EqualityExpression returns LiteralReal
-	 *     EqualityExpression.OperatorExpression_1_0 returns LiteralReal
-	 *     ClassificationExpression returns LiteralReal
-	 *     ClassificationExpression.OperatorExpression_0_1_0 returns LiteralReal
-	 *     RelationalExpression returns LiteralReal
-	 *     RelationalExpression.OperatorExpression_1_0 returns LiteralReal
-	 *     RangeExpression returns LiteralReal
-	 *     RangeExpression.OperatorExpression_1_0 returns LiteralReal
-	 *     AdditiveExpression returns LiteralReal
-	 *     AdditiveExpression.OperatorExpression_1_0 returns LiteralReal
-	 *     MultiplicativeExpression returns LiteralReal
-	 *     MultiplicativeExpression.OperatorExpression_1_0 returns LiteralReal
-	 *     ExponentiationExpression returns LiteralReal
-	 *     ExponentiationExpression.OperatorExpression_1_0 returns LiteralReal
-	 *     UnitsExpression returns LiteralReal
-	 *     UnitsExpression.OperatorExpression_1_0 returns LiteralReal
-	 *     UnaryExpression returns LiteralReal
-	 *     ExtentExpression returns LiteralReal
-	 *     PrimaryExpression returns LiteralReal
-	 *     PrimaryExpression.OperatorExpression_1_0_0 returns LiteralReal
-	 *     PrimaryExpression.OperatorExpression_1_1_0 returns LiteralReal
-	 *     PrimaryExpression.PathStepExpression_1_2_0 returns LiteralReal
-	 *     PrimaryExpression.PathSelectExpression_1_3_0 returns LiteralReal
-	 *     BaseExpression returns LiteralReal
-	 *     SequenceExpression returns LiteralReal
-	 *     SequenceExpression.OperatorExpression_1_1_0 returns LiteralReal
-	 *     LiteralExpression returns LiteralReal
-	 *     LiteralReal returns LiteralReal
+	 *     OwnedExpression returns LiteralRational
+	 *     ConditionalExpression returns LiteralRational
+	 *     ConditionalExpression.OperatorExpression_0_1_0 returns LiteralRational
+	 *     NullCoalescingExpression returns LiteralRational
+	 *     NullCoalescingExpression.OperatorExpression_1_0 returns LiteralRational
+	 *     ImpliesExpression returns LiteralRational
+	 *     ImpliesExpression.OperatorExpression_1_0 returns LiteralRational
+	 *     OrExpression returns LiteralRational
+	 *     OrExpression.OperatorExpression_1_0 returns LiteralRational
+	 *     XorExpression returns LiteralRational
+	 *     XorExpression.OperatorExpression_1_0 returns LiteralRational
+	 *     AndExpression returns LiteralRational
+	 *     AndExpression.OperatorExpression_1_0 returns LiteralRational
+	 *     EqualityExpression returns LiteralRational
+	 *     EqualityExpression.OperatorExpression_1_0 returns LiteralRational
+	 *     ClassificationExpression returns LiteralRational
+	 *     ClassificationExpression.OperatorExpression_0_1_0 returns LiteralRational
+	 *     RelationalExpression returns LiteralRational
+	 *     RelationalExpression.OperatorExpression_1_0 returns LiteralRational
+	 *     RangeExpression returns LiteralRational
+	 *     RangeExpression.OperatorExpression_1_0 returns LiteralRational
+	 *     AdditiveExpression returns LiteralRational
+	 *     AdditiveExpression.OperatorExpression_1_0 returns LiteralRational
+	 *     MultiplicativeExpression returns LiteralRational
+	 *     MultiplicativeExpression.OperatorExpression_1_0 returns LiteralRational
+	 *     ExponentiationExpression returns LiteralRational
+	 *     ExponentiationExpression.OperatorExpression_1_0 returns LiteralRational
+	 *     UnitsExpression returns LiteralRational
+	 *     UnitsExpression.OperatorExpression_1_0 returns LiteralRational
+	 *     UnaryExpression returns LiteralRational
+	 *     ExtentExpression returns LiteralRational
+	 *     PrimaryExpression returns LiteralRational
+	 *     PrimaryExpression.OperatorExpression_1_0_0 returns LiteralRational
+	 *     PrimaryExpression.OperatorExpression_1_1_0 returns LiteralRational
+	 *     PrimaryExpression.PathStepExpression_1_2_0 returns LiteralRational
+	 *     PrimaryExpression.PathSelectExpression_1_3_0 returns LiteralRational
+	 *     BaseExpression returns LiteralRational
+	 *     SequenceExpression returns LiteralRational
+	 *     SequenceExpression.OperatorExpression_1_1_0 returns LiteralRational
+	 *     LiteralExpression returns LiteralRational
+	 *     LiteralReal returns LiteralRational
 	 *
 	 * Constraint:
 	 *     value=RealValue
 	 */
-	protected void sequence_LiteralReal(ISerializationContext context, LiteralReal semanticObject) {
+	protected void sequence_LiteralReal(ISerializationContext context, LiteralRational semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, SysMLPackage.Literals.LITERAL_REAL__VALUE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SysMLPackage.Literals.LITERAL_REAL__VALUE));
+			if (transientValues.isValueTransient(semanticObject, SysMLPackage.Literals.LITERAL_RATIONAL__VALUE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SysMLPackage.Literals.LITERAL_RATIONAL__VALUE));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getLiteralRealAccess().getValueRealValueParserRuleCall_0(), semanticObject.getValue());
@@ -780,59 +831,6 @@ public class KerMLExpressionsSemanticSequencer extends AbstractDelegatingSemanti
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getLiteralStringAccess().getValueSTRING_VALUETerminalRuleCall_0(), semanticObject.getValue());
 		feeder.finish();
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     OwnedExpression returns LiteralUnbounded
-	 *     ConditionalExpression returns LiteralUnbounded
-	 *     ConditionalExpression.OperatorExpression_0_1_0 returns LiteralUnbounded
-	 *     NullCoalescingExpression returns LiteralUnbounded
-	 *     NullCoalescingExpression.OperatorExpression_1_0 returns LiteralUnbounded
-	 *     ImpliesExpression returns LiteralUnbounded
-	 *     ImpliesExpression.OperatorExpression_1_0 returns LiteralUnbounded
-	 *     OrExpression returns LiteralUnbounded
-	 *     OrExpression.OperatorExpression_1_0 returns LiteralUnbounded
-	 *     XorExpression returns LiteralUnbounded
-	 *     XorExpression.OperatorExpression_1_0 returns LiteralUnbounded
-	 *     AndExpression returns LiteralUnbounded
-	 *     AndExpression.OperatorExpression_1_0 returns LiteralUnbounded
-	 *     EqualityExpression returns LiteralUnbounded
-	 *     EqualityExpression.OperatorExpression_1_0 returns LiteralUnbounded
-	 *     ClassificationExpression returns LiteralUnbounded
-	 *     ClassificationExpression.OperatorExpression_0_1_0 returns LiteralUnbounded
-	 *     RelationalExpression returns LiteralUnbounded
-	 *     RelationalExpression.OperatorExpression_1_0 returns LiteralUnbounded
-	 *     RangeExpression returns LiteralUnbounded
-	 *     RangeExpression.OperatorExpression_1_0 returns LiteralUnbounded
-	 *     AdditiveExpression returns LiteralUnbounded
-	 *     AdditiveExpression.OperatorExpression_1_0 returns LiteralUnbounded
-	 *     MultiplicativeExpression returns LiteralUnbounded
-	 *     MultiplicativeExpression.OperatorExpression_1_0 returns LiteralUnbounded
-	 *     ExponentiationExpression returns LiteralUnbounded
-	 *     ExponentiationExpression.OperatorExpression_1_0 returns LiteralUnbounded
-	 *     UnitsExpression returns LiteralUnbounded
-	 *     UnitsExpression.OperatorExpression_1_0 returns LiteralUnbounded
-	 *     UnaryExpression returns LiteralUnbounded
-	 *     ExtentExpression returns LiteralUnbounded
-	 *     PrimaryExpression returns LiteralUnbounded
-	 *     PrimaryExpression.OperatorExpression_1_0_0 returns LiteralUnbounded
-	 *     PrimaryExpression.OperatorExpression_1_1_0 returns LiteralUnbounded
-	 *     PrimaryExpression.PathStepExpression_1_2_0 returns LiteralUnbounded
-	 *     PrimaryExpression.PathSelectExpression_1_3_0 returns LiteralUnbounded
-	 *     BaseExpression returns LiteralUnbounded
-	 *     SequenceExpression returns LiteralUnbounded
-	 *     SequenceExpression.OperatorExpression_1_1_0 returns LiteralUnbounded
-	 *     LiteralExpression returns LiteralUnbounded
-	 *     LiteralUnbounded returns LiteralUnbounded
-	 *     LiteralUnlimitedNatural returns LiteralUnbounded
-	 *
-	 * Constraint:
-	 *     {LiteralUnbounded}
-	 */
-	protected void sequence_LiteralUnbounded(ISerializationContext context, LiteralUnbounded semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	

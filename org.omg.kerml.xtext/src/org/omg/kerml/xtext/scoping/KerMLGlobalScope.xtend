@@ -37,8 +37,11 @@ import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.scoping.impl.AbstractScope
 import org.omg.sysml.lang.sysml.Element
 import org.omg.sysml.lang.sysml.Namespace
+import org.omg.sysml.lang.sysml.SysMLFactory
+import org.omg.sysml.lang.sysml.util.ISysMLScope
+import java.util.Collections
 
-class KerMLGlobalScope extends AbstractScope {
+class KerMLGlobalScope extends AbstractScope implements ISysMLScope {
 
 	protected IScope outer;
 	protected Resource resource
@@ -110,6 +113,19 @@ class KerMLGlobalScope extends AbstractScope {
 			}
 		}
 		return if (filter === null) allElements else Iterables.filter(allElements, filter)
+	}
+	
+	override getMemberships(String name) {
+		val result = outer.getSingleElement(QualifiedName.create(name))
+		if (result === null) {
+			return null
+		}
+		else {
+			val membership = SysMLFactory.eINSTANCE.createMembership()
+			membership.setMemberElement(result.EObjectOrProxy as Element)
+			membership.setMemberName(name)
+			return Collections.singleton(membership)
+		}
 	}
 	
 }

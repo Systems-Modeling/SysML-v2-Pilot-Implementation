@@ -91,11 +91,11 @@ public class VDefault extends VTraverser {
         }
     }
 
-    protected void addGeneralizations(Type typ) {
-        for (Specialization g: typ.getOwnedGeneralization()) {
-            Type gt = g.getGeneral();
+    protected void addSpecializations(Type typ) {
+        for (Specialization s: typ.getOwnedSpecialization()) {
+            Type gt = s.getGeneral();
             if (gt == null || gt.getName() == null) continue;
-            addPRelation(typ, gt, g);
+            addPRelation(typ, gt, s);
         }
     }
 

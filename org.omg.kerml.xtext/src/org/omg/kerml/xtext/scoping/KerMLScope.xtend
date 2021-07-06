@@ -49,6 +49,7 @@ import org.omg.sysml.util.FeatureUtil
 import org.omg.sysml.lang.sysml.Import
 import org.omg.sysml.lang.sysml.Relationship
 import org.omg.sysml.lang.sysml.util.ISysMLScope
+import java.util.Collections
 
 class KerMLScope extends AbstractScope implements ISysMLScope {
 	
@@ -113,7 +114,7 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 		val result = resolveInScope(QualifiedName.create(name), true);
 		if (!result.isEmpty) memberships
 		else if (parent instanceof ISysMLScope && !isShadowing) (parent as ISysMLScope).getMemberships(name)
-		else newHashSet
+		else Collections.emptySet
 	}
 	
 	/**
@@ -421,16 +422,10 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 	
 	protected def boolean resolveForName(Membership mem, Element elm, String name, QualifiedName qn, Set<Namespace> visited, boolean includeImplicitGen) {
 		if (name !== null) {
-			var elementqn = qn.append(name)
-			
-			if (elementqn.checkQualifiedName(true) && elementqn.addQualifiedName(mem, elm)) {
+			var elementqn = qn.append(name)			
+			if (elementqn.checkQualifiedName(true) && 
+				elementqn.visitQualifiedName(mem, elm, newHashSet, visited, includeImplicitGen)) {
 				return true
-			}
-			
-			if (elm instanceof Namespace) {
-				if (elm.resolveIfUnvisited(elementqn, true, visited, newHashSet, false, includeImplicitGen)) {
-					return true
-				}
 			}
 		}	
 		return false

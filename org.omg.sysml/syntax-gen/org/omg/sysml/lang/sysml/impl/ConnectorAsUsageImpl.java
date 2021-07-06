@@ -30,6 +30,8 @@ import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.util.ConnectorUtil;
+import org.omg.sysml.util.NonNotifyingEObjectEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -189,13 +191,17 @@ public abstract class ConnectorAsUsageImpl extends UsageImpl implements Connecto
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public EList<Association> getAssociation() {
-		// TODO: implement this method to return the 'Association' reference list
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		EList<Association> associations = 
+				new NonNotifyingEObjectEList<>(Association.class, this, SysMLPackage.CONNECTOR__ASSOCIATION);
+		super.getType().stream().
+			filter(type->type instanceof Association).
+			map(type->(Association)type).
+			forEachOrdered(associations::add);
+		return associations;
 	}
 
 	/**
@@ -233,13 +239,13 @@ public abstract class ConnectorAsUsageImpl extends UsageImpl implements Connecto
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public EList<Feature> getConnectorEnd() {
-		// TODO: implement this method to return the 'Connector End' reference list
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		EList<Feature> connectorEnds = new NonNotifyingEObjectEList<>(Feature.class, this, SysMLPackage.CONNECTOR__CONNECTOR_END);
+		getOwnedFeature().stream().filter(f->f.isEnd()).forEachOrdered(connectorEnds::add);
+		return connectorEnds;
 	}
 
 	/**
@@ -268,21 +274,16 @@ public abstract class ConnectorAsUsageImpl extends UsageImpl implements Connecto
 	 * @generated
 	 */
 	public Feature basicGetSourceFeature() {
-		// TODO: implement this method to return the 'Source Feature' reference
-		// -> do not perform proxy resolution
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		return ConnectorUtil.getSourceFeatureOf(this);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public void setSourceFeature(Feature newSourceFeature) {
-		// TODO: implement this method to set the 'Source Feature' reference
-		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
 	}
 
@@ -298,13 +299,13 @@ public abstract class ConnectorAsUsageImpl extends UsageImpl implements Connecto
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public EList<Feature> getTargetFeature() {
-		// TODO: implement this method to return the 'Target Feature' reference list
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		EList<Feature> targetFeatures = new NonNotifyingEObjectEList<>(Feature.class, this, SysMLPackage.CONNECTOR__TARGET_FEATURE);
+		ConnectorUtil.addTargetFeatures(this, targetFeatures);
+		return targetFeatures;
 	}
 
 	/**

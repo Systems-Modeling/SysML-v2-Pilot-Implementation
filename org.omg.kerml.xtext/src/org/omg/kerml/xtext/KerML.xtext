@@ -371,8 +371,7 @@ fragment PackageBody returns SysML::Namespace :
 ;
 
 ElementFilterMember returns SysML::ElementFilterMembership :
-	( ownedRelationship += PrefixDocumentation )*
-    ( visibility = VisibilityIndicator )?
+	MemberPrefix
 	'filter' ownedRelatedElement += OwnedExpression ';' // condition = OwnedExpression ';'
 ;
 
@@ -479,7 +478,7 @@ fragment ClassifierConjugationPart returns SysML::Classifier :
 
 Subclassification returns SysML::Subclassification :
 	( 'specialization' Identification? )?
-    'subclassifer' subclassifier = [SysML::Classifier | QualifiedName]
+    'subclassifier' subclassifier = [SysML::Classifier | QualifiedName]
     ( ':>' | 'specializes') superclassifier = [SysML::Classifier | QualifiedName] ';'
 ;
 

@@ -26,18 +26,23 @@ import java.util.List;
 import java.util.stream.Stream;
 
 import org.omg.sysml.lang.sysml.Definition;
+import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.SubjectMembership;
 import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.lang.sysml.TransitionUsage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
+import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
 import org.omg.sysml.util.FeatureUtil;
 import org.omg.sysml.util.TypeUtil;
 import org.omg.sysml.util.UsageUtil;
 
 public class UsageAdapter extends FeatureAdapter {
+
+	public static final String TRANSITION_LINK_FEATURE = "TransitionPerformances::TransitionPerformance::transitionLink";
 
 	public UsageAdapter(Usage element) {
 		super(element);
@@ -87,6 +92,18 @@ public class UsageAdapter extends FeatureAdapter {
 	}
 	
 	// Computed Redefinitions
+	
+	@Override
+	protected void addRedefinitions(Element skip) {
+		Usage target = getTarget();
+		Type type = target.getOwningType();
+		if ((type instanceof TransitionUsage) && target == UsageUtil.getTransitionLinkFeatureOf((TransitionUsage)type)) {
+			addImplicitGeneralType(SysMLPackage.eINSTANCE.getRedefinition(), 
+					(Feature)SysMLLibraryUtil.getLibraryType(getTarget(), TRANSITION_LINK_FEATURE));
+		} else {
+			super.addRedefinitions(skip);
+		}
+	}
 	
 	/**
 	 * A subject Parameter always redefines a subject Parameter.

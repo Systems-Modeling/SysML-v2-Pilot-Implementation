@@ -127,7 +127,7 @@ package ISQCharacteristicNumbers {
     attribute def StrouhalNumberValue :> DimensionOneValue;
     attribute strouhalNumber: StrouhalNumberValue :> scalarQuantities;
 
-    alias strouhalNumber as thomsonNumber;
+    alias thomsonNumber for strouhalNumber;
 
     /**
      * source: item 11-4.9 drag coefficient
@@ -257,7 +257,7 @@ package ISQCharacteristicNumbers {
     attribute def BinghamNumberValue :> DimensionOneValue;
     attribute binghamNumber: BinghamNumberValue :> scalarQuantities;
 
-    alias binghamNumber as plasticityNumber;
+    alias plasticityNumber for binghamNumber;
 
     /**
      * source: item 11-4.18 Hedström number
@@ -301,7 +301,7 @@ package ISQCharacteristicNumbers {
     attribute def RossbyNumberValue :> DimensionOneValue;
     attribute rossbyNumber: RossbyNumberValue :> scalarQuantities;
 
-    alias rossbyNumber as kiebelNumber;
+    alias kiebelNumber for rossbyNumber;
 
     /**
      * source: item 11-4.21 Ekman number
@@ -345,7 +345,7 @@ package ISQCharacteristicNumbers {
     attribute def DarcyFrictionFactorValue :> DimensionOneValue;
     attribute darcyFrictionFactor: DarcyFrictionFactorValue :> scalarQuantities;
 
-    alias darcyFrictionFactor as moodyFrictionFactor;
+    alias moodyFrictionFactor for darcyFrictionFactor;
 
     /**
      * source: item 11-4.24 Fanning number
@@ -375,7 +375,7 @@ package ISQCharacteristicNumbers {
     attribute def GoertlerNumberValue :> DimensionOneValue;
     attribute goertlerNumber: GoertlerNumberValue :> scalarQuantities;
 
-    alias goertlerNumber as goertlerParameter;
+    alias goertlerParameter for goertlerNumber;
 
     /**
      * source: item 11-4.26 Hagen number
@@ -503,7 +503,7 @@ package ISQCharacteristicNumbers {
     attribute def StokesNumberForRotameterValue :> DimensionOneValue;
     attribute stokesNumberForRotameter: StokesNumberForRotameterValue :> scalarQuantities;
 
-    alias stokesNumber as powerCoefficient;
+    alias powerCoefficient for stokesNumber;
 
     /**
      * source: item 11-4.35 Stokes number
@@ -547,7 +547,7 @@ package ISQCharacteristicNumbers {
     attribute def LaplaceNumberValue :> DimensionOneValue;
     attribute laplaceNumber: LaplaceNumberValue :> scalarQuantities;
 
-    alias laplaceNumber as suratmanNumber;
+    alias suratmanNumber for laplaceNumber;
 
     /**
      * source: item 11-4.38 Blake number
@@ -731,9 +731,9 @@ package ISQCharacteristicNumbers {
     attribute def JFactorValue :> DimensionOneValue;
     attribute jFactor: JFactorValue :> scalarQuantities;
 
-    alias jFactor as heatTransferFactor;
+    alias heatTransferFactor for jFactor;
 
-    alias jFactor as colburnNumber;
+    alias colburnNumber for jFactor;
 
     /**
      * source: item 11-5.9 Bejan number
@@ -833,7 +833,7 @@ package ISQCharacteristicNumbers {
     attribute def EckertNumberValue :> DimensionOneValue;
     attribute eckertNumber: EckertNumberValue :> scalarQuantities;
 
-    alias eckertNumber as dulongNumber;
+    alias dulongNumber for eckertNumber;
 
     /**
      * source: item 11-5.16 Graetz number
@@ -933,7 +933,7 @@ package ISQCharacteristicNumbers {
     attribute def 'PécletNumberForMassTransferValue' :> DimensionOneValue;
     attribute 'pécletNumberForMassTransfer': 'PécletNumberForMassTransferValue' :> scalarQuantities;
 
-    alias 'pécletNumberForMassTransfer' as bodensteinNumberForMassTransfer;
+    alias bodensteinNumberForMassTransfer for 'pécletNumberForMassTransfer';
 
     /**
      * source: item 11-6.3 Grashof number
@@ -1005,7 +1005,7 @@ package ISQCharacteristicNumbers {
     attribute def MassTransferFactorValue :> DimensionOneValue;
     attribute massTransferFactor: MassTransferFactorValue :> scalarQuantities;
 
-    alias massTransferFactor as jFactorForMassTransfer;
+    alias jFactorForMassTransfer for massTransferFactor;
 
     /**
      * source: item 11-6.8 Atwood number
@@ -1063,7 +1063,7 @@ package ISQCharacteristicNumbers {
     attribute def BondNumberValue :> DimensionOneValue;
     attribute bondNumber: BondNumberValue :> scalarQuantities;
 
-    alias bondNumber as 'eötvösNumber';
+    alias 'eötvösNumber' for bondNumber;
 
     /**
      * source: item 11-6.12 Archimedes number
@@ -1261,7 +1261,7 @@ package ISQCharacteristicNumbers {
     attribute def CauchyNumberValue :> DimensionOneValue;
     attribute cauchyNumber: CauchyNumberValue :> scalarQuantities;
 
-    alias cauchyNumber as aeroelasticityParameter;
+    alias aeroelasticityParameter for cauchyNumber;
 
     /**
      * source: item 11-7.6 Hooke number
@@ -1389,9 +1389,9 @@ package ISQCharacteristicNumbers {
     attribute def 'AlfvénNumberValue' :> DimensionOneValue;
     attribute 'alfvénNumber': 'AlfvénNumberValue' :> scalarQuantities;
 
-    alias 'alfvénNumber' as machMagneticNumber;
+    alias machMagneticNumber for 'alfvénNumber';
 
-    alias 'alfvénNumber' as 'kármanNumber';
+    alias 'kármanNumber' for 'alfvénNumber';
 
     /**
      * source: item 11-8.5 Hartmann number
@@ -1421,7 +1421,7 @@ package ISQCharacteristicNumbers {
     attribute def CowlingNumberValue :> DimensionOneValue;
     attribute cowlingNumber: CowlingNumberValue :> scalarQuantities;
 
-    alias cowlingNumber as eulerMagneticNumber;
+    alias eulerMagneticNumber for cowlingNumber;
 
     /**
      * source: item 11-8.7 Stuart electrical number

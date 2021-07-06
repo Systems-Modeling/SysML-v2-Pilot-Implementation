@@ -443,9 +443,7 @@ public class KerMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getPackageBodyAccess().getOwnedRelationshipAssignment_1_1_2(), "rule__PackageBody__OwnedRelationshipAssignment_1_1_2");
 			builder.put(grammarAccess.getPackageBodyAccess().getOwnedRelationshipAssignment_1_1_3(), "rule__PackageBody__OwnedRelationshipAssignment_1_1_3");
 			builder.put(grammarAccess.getPackageBodyAccess().getOwnedRelationshipAssignment_1_1_4(), "rule__PackageBody__OwnedRelationshipAssignment_1_1_4");
-			builder.put(grammarAccess.getElementFilterMemberAccess().getOwnedRelationshipAssignment_0(), "rule__ElementFilterMember__OwnedRelationshipAssignment_0");
-			builder.put(grammarAccess.getElementFilterMemberAccess().getVisibilityAssignment_1(), "rule__ElementFilterMember__VisibilityAssignment_1");
-			builder.put(grammarAccess.getElementFilterMemberAccess().getOwnedRelatedElementAssignment_3(), "rule__ElementFilterMember__OwnedRelatedElementAssignment_3");
+			builder.put(grammarAccess.getElementFilterMemberAccess().getOwnedRelatedElementAssignment_2(), "rule__ElementFilterMember__OwnedRelatedElementAssignment_2");
 			builder.put(grammarAccess.getTypeAccess().getIsAbstractAssignment_0(), "rule__Type__IsAbstractAssignment_0");
 			builder.put(grammarAccess.getTypeDeclarationAccess().getIsSufficientAssignment_0(), "rule__TypeDeclaration__IsSufficientAssignment_0");
 			builder.put(grammarAccess.getTypeDeclarationAccess().getOwnedRelationshipAssignment_2(), "rule__TypeDeclaration__OwnedRelationshipAssignment_2");

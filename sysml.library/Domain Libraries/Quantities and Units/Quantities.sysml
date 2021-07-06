@@ -47,8 +47,8 @@ package Quantities {
     /*
      * Define generic aliases QuantityValue and quantities for the top level quantity attribute def and attribute.
      */
-	alias TensorQuantityValue as QuantityValue;
-	alias tensorQuantities as quantities;
+	alias QuantityValue for TensorQuantityValue;
+	alias quantities for tensorQuantities;
 	
 	/**
 	 * A SystemOfQuantities represents the essentials of [VIM] concept "system of quantities" (https://jcgm.bipm.org/vim/en/1.3.html), defined as a

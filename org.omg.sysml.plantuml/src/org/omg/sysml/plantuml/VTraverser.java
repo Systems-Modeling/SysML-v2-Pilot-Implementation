@@ -80,8 +80,8 @@ public abstract class VTraverser extends Visitor {
 
     public String traverseWithInherited(Type typ) {
         traverse0(typ);
-        for (Specialization g: typ.getOwnedGeneralization()) {
-            Type gt = g.getGeneral();
+        for (Specialization s: typ.getOwnedSpecialization()) {
+            Type gt = s.getGeneral();
             if (gt == null) continue;
             for (FeatureMembership fm: gt.getOwnedFeatureMembership()) {
                 setInherited(true);

@@ -28,7 +28,6 @@ import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.uml2.common.util.DerivedEObjectEList;
 import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.AllocationUsage;
@@ -125,15 +124,6 @@ public abstract class DefinitionImpl extends ClassifierImpl implements Definitio
 	 */
 	protected boolean isVariation = IS_VARIATION_EDEFAULT;
 	/**
-	 * The cached value of the '{@link #getOwnedFlow() <em>Owned Flow</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOwnedFlow()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<FlowConnectionUsage> ownedFlow;
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -206,15 +196,6 @@ public abstract class DefinitionImpl extends ClassifierImpl implements Definitio
 		return new DerivedEObjectEList<>(ConnectionUsage.class, this, SysMLPackage.DEFINITION__OWNED_CONNECTION, new int[] {SysMLPackage.TYPE__OWNED_FEATURE});
 	}
 
-	/**
-	 * The array of subset feature identifiers for the '{@link #getOwnedConnection() <em>Owned Connection</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOwnedConnection()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final int[] OWNED_CONNECTION_ESUBSETS = new int[] {SysMLPackage.DEFINITION__OWNED_FLOW};
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -338,13 +319,11 @@ public abstract class DefinitionImpl extends ClassifierImpl implements Definitio
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public EList<UseCaseUsage> getOwnedUseCase() {
-		// TODO: implement this method to return the 'Owned Use Case' reference list
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		return new DerivedEObjectEList<>(UseCaseUsage.class, this, SysMLPackage.DEFINITION__OWNED_USE_CASE, new int[] {SysMLPackage.TYPE__OWNED_FEATURE});
 	}
 
 	/**
@@ -354,10 +333,7 @@ public abstract class DefinitionImpl extends ClassifierImpl implements Definitio
 	 */
 	@Override
 	public EList<FlowConnectionUsage> getOwnedFlow() {
-		if (ownedFlow == null) {
-			ownedFlow = new EObjectResolvingEList<FlowConnectionUsage>(FlowConnectionUsage.class, this, SysMLPackage.DEFINITION__OWNED_FLOW);
-		}
-		return ownedFlow;
+		return new DerivedEObjectEList<>(FlowConnectionUsage.class, this, SysMLPackage.DEFINITION__OWNED_FLOW, new int[] {SysMLPackage.TYPE__OWNED_FEATURE});
 	}
 
 	/**
@@ -890,7 +866,7 @@ public abstract class DefinitionImpl extends ClassifierImpl implements Definitio
 			case SysMLPackage.DEFINITION__OWNED_USE_CASE:
 				return !getOwnedUseCase().isEmpty();
 			case SysMLPackage.DEFINITION__OWNED_FLOW:
-				return ownedFlow != null && !ownedFlow.isEmpty();
+				return !getOwnedFlow().isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

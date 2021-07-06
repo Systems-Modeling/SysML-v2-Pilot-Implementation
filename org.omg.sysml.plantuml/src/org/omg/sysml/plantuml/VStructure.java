@@ -206,7 +206,7 @@ public abstract class VStructure extends VDefault {
 
     protected boolean addType(Type typ, String name, String keyword) {
         addPUMLLine(typ, keyword, name);
-        addGeneralizations(typ);
+        addSpecializations(typ);
         return true;
     }
 

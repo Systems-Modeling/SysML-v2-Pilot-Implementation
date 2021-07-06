@@ -1,3 +1,4 @@
+package Features {
 classifier A;
 classifier B;
 
@@ -24,10 +25,10 @@ feature child subsets person;
 classifier Fuel;
 
 classifier Tanks {
-    port feature fuelInPort {
+    feature fuelInPort {
         in feature fuelFlow : Fuel;
     }
-    port feature fuelOutPort ~ fuelInPort;
+    feature fuelOutPort ~ fuelInPort;
 }
 
 feature parent[2] : Person;
@@ -36,8 +37,8 @@ feature mother : Person[1] :> parent;
 generalization t1 typing f typed by B;
 generalization t2 typing g : A;
 
-generalization Sub subset parent subsets person;
-generalization subset mother subsets parent;
+specialization Sub subset parent subsets person;
+specialization subset mother subsets parent;
 
 classifier LegalRecord {
 	feature guardian[0..1] = null;
@@ -53,7 +54,8 @@ classifier Vehicle :> RegisteredAsset {
 
 feature legalIdentification;
 
-generalization Redef redefinition LegalRecord::guardian redefines parent;
-generalization redefinition Vehicle::vin redefines RegisteredAsset::identifier;
+specialization Redef redefinition LegalRecord::guardian redefines parent;
+specialization redefinition Vehicle::vin redefines RegisteredAsset::identifier;
 
 redefinition Vehicle::vin redefines legalIdentification; 
+}

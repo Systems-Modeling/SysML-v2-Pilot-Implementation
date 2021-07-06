@@ -3,6 +3,7 @@
  * SysML language.
  */
 package States {
+	private import Occurrences::Occurrence;
 	private import Actions::Action;
 	private import Actions::AcceptAction;
 	private import Actions::actions;
@@ -40,13 +41,18 @@ package States {
 	 * A TransitionAction is a StateTransitionPerformance whose transitionLinkSource is an Action.
 	 * It is the base type of all TransitionUsages.
 	 */
-	action def TransitionAction :> Action, StateTransitionPerformance {
-		ref action transitionLinkSource: Action :>> StateTransitionPerformance::transitionLinkSource;
-		action effect: Action :>> StateTransitionPerformance::effect;		
-		action accepter: AcceptAction {
-			ref incomingTransfersToSelf :>> AcceptAction::incomingTransfer;
-		}
-		bind trigger = accepter::incomingTransfersToSelf;
+	action def TransitionAction :> Action, StateTransitionPerformance (
+		in action transitionLinkSource[1],
+		out ref triggerPayload[0..*], 
+		in receiver: Occurrence[1]
+	) {
+			
+		action effect: Action :>> StateTransitionPerformance::effect;
+			
+		action accepter: AcceptAction[0..1];
+		bind trigger = accepter.incomingTransfer;
+		bind triggerPayload = accepter.items;
+		bind receiver = accepter.receiver;
 	}
 	
 	/**

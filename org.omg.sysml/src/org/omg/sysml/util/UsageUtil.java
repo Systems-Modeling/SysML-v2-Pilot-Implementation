@@ -36,6 +36,7 @@ import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.ObjectiveMembership;
+import org.omg.sysml.lang.sysml.ParameterMembership;
 import org.omg.sysml.lang.sysml.RenderingUsage;
 import org.omg.sysml.lang.sysml.RequirementConstraintKind;
 import org.omg.sysml.lang.sysml.RequirementConstraintMembership;
@@ -169,6 +170,13 @@ public class UsageUtil {
 				filter(mem->(mem instanceof TransitionFeatureMembership) && ((TransitionFeatureMembership)mem).getKind() == kind).
 				map(mem->mem.getMemberFeature()).
 				filter(f->f != null);
+	}
+	
+	public static Feature getTransitionLinkFeatureOf(TransitionUsage transition) {
+		return transition.getOwnedFeatureMembership().stream().
+				filter(m->!(m instanceof TransitionFeatureMembership || m instanceof ParameterMembership)).
+				map(FeatureMembership::getMemberFeature).
+				findFirst().orElse(null);
 	}
 	
 	// Views

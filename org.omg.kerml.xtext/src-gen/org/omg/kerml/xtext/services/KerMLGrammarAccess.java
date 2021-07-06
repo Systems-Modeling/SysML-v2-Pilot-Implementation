@@ -2238,50 +2238,36 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	public class ElementFilterMemberElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.ElementFilterMember");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cOwnedRelationshipAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cOwnedRelationshipPrefixDocumentationParserRuleCall_0_0 = (RuleCall)cOwnedRelationshipAssignment_0.eContents().get(0);
-		private final Assignment cVisibilityAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cVisibilityVisibilityIndicatorEnumRuleCall_1_0 = (RuleCall)cVisibilityAssignment_1.eContents().get(0);
-		private final Keyword cFilterKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Assignment cOwnedRelatedElementAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cOwnedRelatedElementOwnedExpressionParserRuleCall_3_0 = (RuleCall)cOwnedRelatedElementAssignment_3.eContents().get(0);
-		private final Keyword cSemicolonKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final RuleCall cMemberPrefixParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
+		private final Keyword cFilterKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cOwnedRelatedElementAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cOwnedRelatedElementOwnedExpressionParserRuleCall_2_0 = (RuleCall)cOwnedRelatedElementAssignment_2.eContents().get(0);
+		private final Keyword cSemicolonKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		//ElementFilterMember returns SysML::ElementFilterMembership :
-		//    ( ownedRelationship += PrefixDocumentation )*
-		//    ( visibility = VisibilityIndicator )?
+		//    MemberPrefix
 		//    'filter' ownedRelatedElement += OwnedExpression ';' // condition = OwnedExpression ';'
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//( ownedRelationship += PrefixDocumentation )*
-		//( visibility = VisibilityIndicator )?
+		//MemberPrefix
 		//'filter' ownedRelatedElement += OwnedExpression ';'
 		public Group getGroup() { return cGroup; }
 		
-		//( ownedRelationship += PrefixDocumentation )*
-		public Assignment getOwnedRelationshipAssignment_0() { return cOwnedRelationshipAssignment_0; }
-		
-		//PrefixDocumentation
-		public RuleCall getOwnedRelationshipPrefixDocumentationParserRuleCall_0_0() { return cOwnedRelationshipPrefixDocumentationParserRuleCall_0_0; }
-		
-		//( visibility = VisibilityIndicator )?
-		public Assignment getVisibilityAssignment_1() { return cVisibilityAssignment_1; }
-		
-		//VisibilityIndicator
-		public RuleCall getVisibilityVisibilityIndicatorEnumRuleCall_1_0() { return cVisibilityVisibilityIndicatorEnumRuleCall_1_0; }
+		//MemberPrefix
+		public RuleCall getMemberPrefixParserRuleCall_0() { return cMemberPrefixParserRuleCall_0; }
 		
 		//'filter'
-		public Keyword getFilterKeyword_2() { return cFilterKeyword_2; }
+		public Keyword getFilterKeyword_1() { return cFilterKeyword_1; }
 		
 		//ownedRelatedElement += OwnedExpression
-		public Assignment getOwnedRelatedElementAssignment_3() { return cOwnedRelatedElementAssignment_3; }
+		public Assignment getOwnedRelatedElementAssignment_2() { return cOwnedRelatedElementAssignment_2; }
 		
 		//OwnedExpression
-		public RuleCall getOwnedRelatedElementOwnedExpressionParserRuleCall_3_0() { return cOwnedRelatedElementOwnedExpressionParserRuleCall_3_0; }
+		public RuleCall getOwnedRelatedElementOwnedExpressionParserRuleCall_2_0() { return cOwnedRelatedElementOwnedExpressionParserRuleCall_2_0; }
 		
 		//';'
-		public Keyword getSemicolonKeyword_4() { return cSemicolonKeyword_4; }
+		public Keyword getSemicolonKeyword_3() { return cSemicolonKeyword_3; }
 	}
 	public class TypeElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.Type");
@@ -3010,7 +2996,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Group cGroup_0 = (Group)cGroup.eContents().get(0);
 		private final Keyword cSpecializationKeyword_0_0 = (Keyword)cGroup_0.eContents().get(0);
 		private final RuleCall cIdentificationParserRuleCall_0_1 = (RuleCall)cGroup_0.eContents().get(1);
-		private final Keyword cSubclassiferKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Keyword cSubclassifierKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cSubclassifierAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final CrossReference cSubclassifierClassifierCrossReference_2_0 = (CrossReference)cSubclassifierAssignment_2.eContents().get(0);
 		private final RuleCall cSubclassifierClassifierQualifiedNameParserRuleCall_2_0_1 = (RuleCall)cSubclassifierClassifierCrossReference_2_0.eContents().get(1);
@@ -3025,13 +3011,13 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		///* Superclassing */
 		//Subclassification returns SysML::Subclassification :
 		//    ( 'specialization' Identification? )?
-		//    'subclassifer' subclassifier = [SysML::Classifier | QualifiedName]
+		//    'subclassifier' subclassifier = [SysML::Classifier | QualifiedName]
 		//    ( ':>' | 'specializes') superclassifier = [SysML::Classifier | QualifiedName] ';'
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//( 'specialization' Identification? )?
-		//'subclassifer' subclassifier = [SysML::Classifier | QualifiedName]
+		//'subclassifier' subclassifier = [SysML::Classifier | QualifiedName]
 		//( ':>' | 'specializes') superclassifier = [SysML::Classifier | QualifiedName] ';'
 		public Group getGroup() { return cGroup; }
 		
@@ -3044,8 +3030,8 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//Identification?
 		public RuleCall getIdentificationParserRuleCall_0_1() { return cIdentificationParserRuleCall_0_1; }
 		
-		//'subclassifer'
-		public Keyword getSubclassiferKeyword_1() { return cSubclassiferKeyword_1; }
+		//'subclassifier'
+		public Keyword getSubclassifierKeyword_1() { return cSubclassifierKeyword_1; }
 		
 		//subclassifier = [SysML::Classifier | QualifiedName]
 		public Assignment getSubclassifierAssignment_2() { return cSubclassifierAssignment_2; }
@@ -7623,8 +7609,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//ElementFilterMember returns SysML::ElementFilterMembership :
-	//    ( ownedRelationship += PrefixDocumentation )*
-	//    ( visibility = VisibilityIndicator )?
+	//    MemberPrefix
 	//    'filter' ownedRelatedElement += OwnedExpression ';' // condition = OwnedExpression ';'
 	//;
 	public ElementFilterMemberElements getElementFilterMemberAccess() {
@@ -7842,7 +7827,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	///* Superclassing */
 	//Subclassification returns SysML::Subclassification :
 	//    ( 'specialization' Identification? )?
-	//    'subclassifer' subclassifier = [SysML::Classifier | QualifiedName]
+	//    'subclassifier' subclassifier = [SysML::Classifier | QualifiedName]
 	//    ( ':>' | 'specializes') superclassifier = [SysML::Classifier | QualifiedName] ';'
 	//;
 	public SubclassificationElements getSubclassificationAccess() {

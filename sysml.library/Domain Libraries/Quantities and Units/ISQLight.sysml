@@ -187,9 +187,9 @@ package ISQLight {
     }
     attribute radiantFlux: RadiantFluxValue :> scalarQuantities;
 
-    alias RadiantFluxUnit as RadiantPowerUnit;
-    alias RadiantFluxValue as RadiantPowerValue;
-    alias radiantFlux as radiantPower;
+    alias RadiantPowerUnit for RadiantFluxUnit;
+    alias RadiantPowerValue for RadiantFluxValue;
+    alias radiantPower for radiantFlux;
 
     /**
      * source: item 7-4.2 spectral radiant flux, spectral radiant power
@@ -215,9 +215,9 @@ package ISQLight {
     }
     attribute spectralRadiantFlux: SpectralRadiantFluxValue :> scalarQuantities;
 
-    alias SpectralRadiantFluxUnit as SpectralRadiantPowerUnit;
-    alias SpectralRadiantFluxValue as SpectralRadiantPowerValue;
-    alias spectralRadiantFlux as spectralRadiantPower;
+    alias SpectralRadiantPowerUnit for SpectralRadiantFluxUnit;
+    alias SpectralRadiantPowerValue for SpectralRadiantFluxValue;
+    alias spectralRadiantPower for spectralRadiantFlux;
 
     /**
      * source: item 7-5.1 radiant intensity
@@ -384,9 +384,9 @@ package ISQLight {
     }
     attribute radiantExitance: RadiantExitanceValue :> scalarQuantities;
 
-    alias RadiantExitanceUnit as RadiantEmittanceUnit;
-    alias RadiantExitanceValue as RadiantEmittanceValue;
-    alias radiantExitance as radiantEmittance;
+    alias RadiantEmittanceUnit for RadiantExitanceUnit;
+    alias RadiantEmittanceValue for RadiantExitanceValue;
+    alias radiantEmittance for radiantExitance;
 
     /**
      * source: item 7-8.2 spectral radiant exitance
@@ -610,9 +610,9 @@ package ISQLight {
     }
     attribute luminousEnergy: LuminousEnergyValue :> scalarQuantities;
 
-    alias LuminousEnergyUnit as QuantityOfLightUnit;
-    alias LuminousEnergyValue as QuantityOfLightValue;
-    alias luminousEnergy as quantityOfLight;
+    alias QuantityOfLightUnit for LuminousEnergyUnit;
+    alias QuantityOfLightValue for LuminousEnergyValue;
+    alias quantityOfLight for luminousEnergy;
 
     /**
      * source: item 7-13 luminous flux
@@ -746,13 +746,13 @@ package ISQLight {
     }
     attribute luminousExposure: LuminousExposureValue :> scalarQuantities;
 
-    alias LuminousExposureUnit as QuantityOfIlluminationUnit;
-    alias LuminousExposureValue as QuantityOfIlluminationValue;
-    alias luminousExposure as quantityOfIllumination;
+    alias QuantityOfIlluminationUnit for LuminousExposureUnit;
+    alias QuantityOfIlluminationValue for LuminousExposureValue;
+    alias quantityOfIllumination for luminousExposure;
 
-    alias LuminousExposureUnit as LightExposureUnit;
-    alias LuminousExposureValue as LightExposureValue;
-    alias luminousExposure as lightExposure;
+    alias LightExposureUnit for LuminousExposureUnit;
+    alias LightExposureValue for LuminousExposureValue;
+    alias lightExposure for luminousExposure;
 
     /**
      * source: item 7-19.1 photon number, number of photons
@@ -768,7 +768,7 @@ package ISQLight {
     attribute def PhotonNumberValue :> DimensionOneValue;
     attribute photonNumber: PhotonNumberValue :> scalarQuantities;
 
-    alias photonNumber as numberOfPhotons;
+    alias numberOfPhotons for photonNumber;
 
     /**
      * source: item 7-19.2 photon energy
@@ -1172,11 +1172,11 @@ package ISQLight {
     attribute def TransmittanceOpticalDensityValue :> DimensionOneValue;
     attribute transmittanceOpticalDensity: TransmittanceOpticalDensityValue :> scalarQuantities;
 
-    alias transmittanceOpticalDensity as opticalDensity;
+    alias opticalDensity for transmittanceOpticalDensity;
 
-    alias transmittanceOpticalDensity as transmittanceDensity;
+    alias transmittanceDensity for transmittanceOpticalDensity;
 
-    alias transmittanceOpticalDensity as decadicAbsorbance;
+    alias decadicAbsorbance for transmittanceOpticalDensity;
 
     /**
      * source: item 7-32.2 Napierian absorbance
@@ -1256,9 +1256,9 @@ package ISQLight {
     }
     attribute linearAttenuationCoefficient: LinearAttenuationCoefficientValue :> scalarQuantities;
 
-    alias LinearAttenuationCoefficientUnit as LinearExtinctionCoefficientUnit;
-    alias LinearAttenuationCoefficientValue as LinearExtinctionCoefficientValue;
-    alias linearAttenuationCoefficient as linearExtinctionCoefficient;
+    alias LinearExtinctionCoefficientUnit for LinearAttenuationCoefficientUnit;
+    alias LinearExtinctionCoefficientValue for LinearAttenuationCoefficientValue;
+    alias linearExtinctionCoefficient for linearAttenuationCoefficient;
 
     /**
      * source: item 7-35.2 linear absorption coefficient

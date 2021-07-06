@@ -278,7 +278,7 @@ package sfriedenthal_VehicleModel_1_simplified{
             import ISQ::*;
             import SI::*;
             import USCustomaryUnits::*;
-            alias ISQ::TorqueValue as Torque;
+            alias Torque for ISQ::TorqueValue;
             
             //examples of enumerations
             enum def Colors {black;grey;red;}
@@ -1322,9 +1322,9 @@ package sfriedenthal_VehicleModel_1_simplified{
             viewpoint def StructureViewpoint{
                 frame concern sb:SystemBreakdown;
             }
-            stakeholder def SystemsEngineer;
+            part def SystemsEngineer;
             concern def SystemBreakdown {
-                affect stakeholder se:SystemsEngineer;
+                stakeholder se:SystemsEngineer;
             }
         }
         package ViewDefinitions{

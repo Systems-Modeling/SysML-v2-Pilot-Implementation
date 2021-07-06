@@ -30,6 +30,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.BasicInternalEList;
+import org.eclipse.uml2.common.util.DerivedEObjectEList;
 import org.omg.sysml.lang.sysml.Association;
 import org.omg.sysml.lang.sysml.AssociationStructure;
 import org.omg.sysml.lang.sysml.Classifier;
@@ -94,10 +95,10 @@ public class ConnectionUsageImpl extends ConnectorAsUsageImpl implements Connect
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getPortionKind()
-	 * @generated
+	 * @generated NOT
 	 * @ordered
 	 */
-	protected static final PortionKind PORTION_KIND_EDEFAULT = PortionKind.TIMESLICE;
+	protected static final PortionKind PORTION_KIND_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getPortionKind() <em>Portion Kind</em>}' attribute.
@@ -131,13 +132,17 @@ public class ConnectionUsageImpl extends ConnectorAsUsageImpl implements Connect
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public EList<org.omg.sysml.lang.sysml.Class> getOccurrenceDefinition() {
-		// TODO: implement this method to return the 'Occurrence Definition' reference list
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		EList<org.omg.sysml.lang.sysml.Class> definitions =
+				new NonNotifyingEObjectEList<>(org.omg.sysml.lang.sysml.Class.class, this, SysMLPackage.CONNECTION_USAGE__OCCURRENCE_DEFINITION);
+		super.getDefinition().stream().
+			filter(org.omg.sysml.lang.sysml.Class.class::isInstance).
+			map(org.omg.sysml.lang.sysml.Class.class::cast).
+			forEachOrdered(definitions::add);
+		return definitions;
 	}
 
 	/**
@@ -163,24 +168,22 @@ public class ConnectionUsageImpl extends ConnectorAsUsageImpl implements Connect
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public PortioningFeature basicGetPortioningFeature() {
-		// TODO: implement this method to return the 'Portioning Feature' reference
-		// -> do not perform proxy resolution
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		return getOwnedFeature().stream().
+				filter(PortioningFeature.class::isInstance).
+				map(PortioningFeature.class::cast).
+				findFirst().orElse(null);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public void setPortioningFeature(PortioningFeature newPortioningFeature) {
-		// TODO: implement this method to set the 'Portioning Feature' reference
-		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
 	}
 
@@ -198,24 +201,23 @@ public class ConnectionUsageImpl extends ConnectorAsUsageImpl implements Connect
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public OccurrenceDefinition basicGetIndividualDefinition() {
-		// TODO: implement this method to return the 'Individual Definition' reference
-		// -> do not perform proxy resolution
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		return getOccurrenceDefinition().stream().
+				filter(OccurrenceDefinition.class::isInstance).
+				map(OccurrenceDefinition.class::cast).
+				filter(OccurrenceDefinition::isIndividual).
+				findFirst().orElse(null);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public void setIndividualDefinition(OccurrenceDefinition newIndividualDefinition) {
-		// TODO: implement this method to set the 'Individual Definition' reference
-		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
 	}
 
@@ -268,13 +270,11 @@ public class ConnectionUsageImpl extends ConnectorAsUsageImpl implements Connect
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public EList<Structure> getItemDefinition() {
-		// TODO: implement this method to return the 'Item Definition' reference list
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		return new DerivedEObjectEList<>(Structure.class, this, SysMLPackage.CONNECTION_USAGE__ITEM_DEFINITION, new int[] {SysMLPackage.CONNECTION_USAGE__OCCURRENCE_DEFINITION});
 	}
 
 	/**
@@ -289,13 +289,11 @@ public class ConnectionUsageImpl extends ConnectorAsUsageImpl implements Connect
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public EList<PartDefinition> getPartDefinition() {
-		// TODO: implement this method to return the 'Part Definition' reference list
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		return new DerivedEObjectEList<>(PartDefinition.class, this, SysMLPackage.CONNECTION_USAGE__PART_DEFINITION, new int[] {SysMLPackage.CONNECTION_USAGE__OCCURRENCE_DEFINITION});
 	}
 
 	/**

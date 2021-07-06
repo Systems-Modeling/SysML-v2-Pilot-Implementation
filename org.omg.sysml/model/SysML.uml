@@ -4571,7 +4571,7 @@ else
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="c6c995c1-f112-4c4e-9398-fa0cbcd4b605" name="" visibility="public"/>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="d27810ed-e9df-4dce-ab07-24421d28b9d1" name="" visibility="public" value="*"/>
     </ownedAttribute>
-    <ownedAttribute xmi:id="47f6f3e6-0483-4d15-80ff-fe0fb2c6718d" name="ownedFlow" visibility="public" type="fd085776-81b3-4a29-b1f9-a414d1a6556c" subsettedProperty="0f491f54-f387-4e6e-99bc-e6b15106a0d2" association="5b76a2e2-1f5a-46e0-b692-b667c625c23f">
+    <ownedAttribute xmi:id="47f6f3e6-0483-4d15-80ff-fe0fb2c6718d" name="ownedFlow" visibility="public" type="fd085776-81b3-4a29-b1f9-a414d1a6556c" isDerived="true" subsettedProperty="0f491f54-f387-4e6e-99bc-e6b15106a0d2" association="5b76a2e2-1f5a-46e0-b692-b667c625c23f">
       <ownedComment xmi:id="334f335a-14f0-402d-845a-5fa534bef0c0" annotatedElement="47f6f3e6-0483-4d15-80ff-fe0fb2c6718d">
         <body>&lt;p>The FlowConnectionUsages that are &lt;code>ownedUsages&lt;/code> of this Definition.&lt;/p></body>
       </ownedComment>

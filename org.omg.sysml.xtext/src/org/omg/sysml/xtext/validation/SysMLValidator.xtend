@@ -210,23 +210,23 @@ class SysMLValidator extends KerMLValidator {
 	}
 	@Check //All types must be Classes. 
 	def checkOccurreceUsageTypes(OccurrenceUsage ou){
-		if (!(ou instanceof ItemUsage || ou instanceof Step))	
+		if (!(ou instanceof ItemUsage || ou instanceof PortUsage || ou instanceof Step))	
 			checkAllTypes(ou, org.omg.sysml.lang.sysml.Class, SysMLValidator.INVALID_OCCURRENCEUSAGE_MSG, SysMLPackage.eINSTANCE.occurrenceUsage_OccurrenceDefinition, SysMLValidator.INVALID_OCCURRENCEUSAGE)
 	}
-	@Check //All types must be Structures. 
+	@Check //All types must be Structures but not PortDefinitions. 
 	def checkItemUsageTypes(ItemUsage iu){
 		if (!(iu instanceof PartUsage))	
-			checkAllTypes(iu, Structure, SysMLValidator.INVALID_ITEMUSAGE_MSG, SysMLPackage.eINSTANCE.itemUsage_ItemDefinition, SysMLValidator.INVALID_ITEMUSAGE)
+			checkAllTypes(iu, Structure, PortDefinition, SysMLValidator.INVALID_ITEMUSAGE_MSG, SysMLPackage.eINSTANCE.itemUsage_ItemDefinition, SysMLValidator.INVALID_ITEMUSAGE)
 	}
-	@Check //All types must be Structures, at least one must be a PartDefinition. 
+	@Check //All types must be Structures, at least one must be a PartDefinition, but no PartDefinitions. 
 	def checkPartUsageTypes(PartUsage pu){
 		if (!(pu instanceof PortUsage || pu instanceof ConnectionUsage))
-			if (checkAllTypes(pu, Structure, SysMLValidator.INVALID_PARTUSAGE_MSG, SysMLPackage.eINSTANCE.itemUsage_ItemDefinition, SysMLValidator.INVALID_PARTUSAGE))
+			if (checkAllTypes(pu, Structure, PortDefinition, SysMLValidator.INVALID_PARTUSAGE_MSG, SysMLPackage.eINSTANCE.itemUsage_ItemDefinition, SysMLValidator.INVALID_PARTUSAGE))
 				checkAtLeastOneType(pu, PartDefinition, SysMLValidator.INVALID_PARTUSAGE_MSG, SysMLPackage.eINSTANCE.partUsage_PartDefinition, SysMLValidator.INVALID_PARTUSAGE)
 	}
 	@Check //All types must be Behaviors
 	def checkActionUsageTypes(ActionUsage usg){
-		if (!(usg instanceof StateUsage|| usg instanceof CalculationUsage) )
+		if (!(usg instanceof StateUsage || usg instanceof CalculationUsage) )
 			checkAllTypes(usg, Behavior, SysMLValidator.INVALID_ACTIONUSAGE_MSG, SysMLPackage.eINSTANCE.actionUsage_ActionDefinition, SysMLValidator.INVALID_ACTIONUSAGE)
 	}	
 	@Check //Must have exactly one type, which is a Predicate.
@@ -348,6 +348,13 @@ class SysMLValidator extends KerMLValidator {
 	
 	protected def boolean checkAllTypes(Feature f, Class<?> requiredType, String msg, EStructuralFeature ref, String eId){
 		val check = (f as FeatureImpl).allTypes.forall[u| requiredType.isInstance(u)]
+		if (!check)
+			error (msg, ref, eId)
+		return check;
+	}
+	
+	protected def boolean checkAllTypes(Feature f, Class<?> requiredType, Class<?> prohibitedType, String msg, EStructuralFeature ref, String eId){
+		val check = (f as FeatureImpl).allTypes.forall[u|  requiredType.isInstance(u) && !prohibitedType.isInstance(u)]
 		if (!check)
 			error (msg, ref, eId)
 		return check;

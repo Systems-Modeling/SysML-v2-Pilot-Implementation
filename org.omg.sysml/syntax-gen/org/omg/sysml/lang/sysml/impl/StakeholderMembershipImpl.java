@@ -4,7 +4,7 @@ package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
+import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.PartUsage;
 import org.omg.sysml.lang.sysml.StakeholderMembership;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -56,24 +56,20 @@ public class StakeholderMembershipImpl extends ParameterMembershipImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public PartUsage basicGetOwnedStakeholderParameter() {
-		// TODO: implement this method to return the 'Owned Stakeholder Parameter' reference
-		// -> do not perform proxy resolution
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		Feature ownedMemberParameter = super.basicGetOwnedMemberParameter();
+		return ownedMemberParameter instanceof PartUsage? (PartUsage)ownedMemberParameter: null;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public void setOwnedStakeholderParameter(PartUsage newOwnedStakeholderParameter) {
-		// TODO: implement this method to set the 'Owned Stakeholder Parameter' reference
-		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
 	}
 

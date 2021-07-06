@@ -521,6 +521,36 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 	 * @generated NOT
 	 */
 	@Override
+	public EList<FlowConnectionUsage> getNestedFlow() {
+		return new DerivedEObjectEList<>(FlowConnectionUsage.class, this, SysMLPackage.USAGE__NESTED_FLOW, new int[] {SysMLPackage.TYPE__OWNED_FEATURE});
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public EList<ActionUsage> getNestedAction() {
+		return new DerivedEObjectEList<>(ActionUsage.class, this, SysMLPackage.USAGE__NESTED_ACTION, new int[] {SysMLPackage.TYPE__OWNED_FEATURE});
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<UseCaseUsage> getNestedUseCase() {
+		return new DerivedEObjectEList<>(UseCaseUsage.class, this, SysMLPackage.USAGE__NESTED_USE_CASE, new int[] {SysMLPackage.TYPE__OWNED_FEATURE});
+	}
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
 	public EList<Classifier> getDefinition() {
 		EList<Classifier> definitions =
 				new NonNotifyingEObjectEList<>(Classifier.class, this, SysMLPackage.USAGE__DEFINITION);
@@ -540,52 +570,19 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 		return !getDefinition().isEmpty();
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EList<UseCaseUsage> getNestedUseCase() {
-		// TODO: implement this method to return the 'Nested Use Case' reference list
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
-	}
+	private Boolean isReference = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public boolean isReference() {
-		// TODO: implement this method to return the 'Is Reference' attribute
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setIsReference(boolean newIsReference) {
-		// TODO: implement this method to set the 'Is Reference' attribute
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EList<FlowConnectionUsage> getNestedFlow() {
-		// TODO: implement this method to return the 'Nested Flow' reference list
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		if (isReference == null) {
+			isReference = getDirection() != null || isEnd();
+		}
+		return isReference;
 	}
 
 	/**
@@ -594,10 +591,10 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 	 * @generated NOT
 	 */
 	@Override
-	public EList<ActionUsage> getNestedAction() {
-		return new DerivedEObjectEList<>(ActionUsage.class, this, SysMLPackage.USAGE__NESTED_ACTION, new int[] {SysMLPackage.TYPE__OWNED_FEATURE});
+	public void setIsReference(boolean newIsReference) {
+		isReference = newIsReference;
 	}
-
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -608,11 +605,36 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 		return new DerivedEObjectEList<VariantMembership>(VariantMembership.class, this, SysMLPackage.ACTION_USAGE__VARIANT_MEMBERSHIP, new int[] {SysMLPackage.ELEMENT__OWNED_RELATIONSHIP});
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Type> getType() {
+		@SuppressWarnings("unchecked")
+		EList<Type> definition = (EList<Type>)((EList<?>)getDefinition());
+		return definition;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetType() {
+  		return false;
+	}
+
 	// Additional overrides
 	
 	@Override
 	public boolean isAbstract() {
 		return isVariation() || super.isAbstract();
+	}
+
+	@Override
+	public boolean isComposite() {
+		return !isReference();
 	}
 
 	@Override
@@ -1081,26 +1103,6 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 		result.append(isVariation);
 		result.append(')');
 		return result.toString();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<Type> getType() {
-		@SuppressWarnings("unchecked")
-		EList<Type> definition = (EList<Type>)((EList<?>)getDefinition());
-		return definition;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetType() {
-  		return false;
 	}
 
 } //UsageImpl

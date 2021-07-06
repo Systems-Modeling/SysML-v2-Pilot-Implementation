@@ -67,7 +67,9 @@ public class FeatureUtil {
 	// Utility
 	
 	public static boolean isParameter(Feature feature) {
-		return feature.getDirection() != null;
+		Type owningType = feature.getOwningType();
+		return ( owningType instanceof Behavior || owningType instanceof Step ) && 
+			   feature.getDirection() != null;
 	}
 
 	public static boolean isResultParameter(Feature feature) {

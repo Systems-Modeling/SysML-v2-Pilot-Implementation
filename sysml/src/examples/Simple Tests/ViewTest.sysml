@@ -1,16 +1,14 @@
 package ViewTest {
 	package P;
 	
-	stakeholder def S;
-	
-	stakeholder s : S;
+	part def S;
 	
 	concern def C {
-		affect s;
+		stakeholder s : S;
 	}
 	
 	concern c : C {
-		affect stakeholder s1;
+		stakeholder s1;
 	}
 	
 	viewpoint def VP {

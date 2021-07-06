@@ -1054,7 +1054,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     'specialization'?
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) (ambiguity) 'subclassifer' subclassifier=[Classifier|QualifiedName]
+	 *     (rule start) (ambiguity) 'subclassifier' subclassifier=[Classifier|QualifiedName]
 	 */
 	protected void emit_Subclassification_SpecializationKeyword_0_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);

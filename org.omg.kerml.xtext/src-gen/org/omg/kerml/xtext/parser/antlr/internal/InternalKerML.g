@@ -3560,54 +3560,27 @@ ruleElementFilterMember returns [EObject current=null]
 	leaveRule();
 }:
 	(
-		(
-			(
-				{
-					newCompositeNode(grammarAccess.getElementFilterMemberAccess().getOwnedRelationshipPrefixDocumentationParserRuleCall_0_0());
-				}
-				lv_ownedRelationship_0_0=rulePrefixDocumentation
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getElementFilterMemberRule());
-					}
-					add(
-						$current,
-						"ownedRelationship",
-						lv_ownedRelationship_0_0,
-						"org.omg.kerml.xtext.KerML.PrefixDocumentation");
-					afterParserOrEnumRuleCall();
-				}
-			)
-		)*
-		(
-			(
-				{
-					newCompositeNode(grammarAccess.getElementFilterMemberAccess().getVisibilityVisibilityIndicatorEnumRuleCall_1_0());
-				}
-				lv_visibility_1_0=ruleVisibilityIndicator
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getElementFilterMemberRule());
-					}
-					set(
-						$current,
-						"visibility",
-						lv_visibility_1_0,
-						"org.omg.kerml.xtext.KerML.VisibilityIndicator");
-					afterParserOrEnumRuleCall();
-				}
-			)
-		)?
-		otherlv_2='filter'
 		{
-			newLeafNode(otherlv_2, grammarAccess.getElementFilterMemberAccess().getFilterKeyword_2());
+			if ($current==null) {
+				$current = createModelElement(grammarAccess.getElementFilterMemberRule());
+			}
+			newCompositeNode(grammarAccess.getElementFilterMemberAccess().getMemberPrefixParserRuleCall_0());
+		}
+		this_MemberPrefix_0=ruleMemberPrefix[$current]
+		{
+			$current = $this_MemberPrefix_0.current;
+			afterParserOrEnumRuleCall();
+		}
+		otherlv_1='filter'
+		{
+			newLeafNode(otherlv_1, grammarAccess.getElementFilterMemberAccess().getFilterKeyword_1());
 		}
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getElementFilterMemberAccess().getOwnedRelatedElementOwnedExpressionParserRuleCall_3_0());
+					newCompositeNode(grammarAccess.getElementFilterMemberAccess().getOwnedRelatedElementOwnedExpressionParserRuleCall_2_0());
 				}
-				lv_ownedRelatedElement_3_0=ruleOwnedExpression
+				lv_ownedRelatedElement_2_0=ruleOwnedExpression
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getElementFilterMemberRule());
@@ -3615,15 +3588,15 @@ ruleElementFilterMember returns [EObject current=null]
 					add(
 						$current,
 						"ownedRelatedElement",
-						lv_ownedRelatedElement_3_0,
+						lv_ownedRelatedElement_2_0,
 						"org.omg.kerml.expressions.xtext.KerMLExpressions.OwnedExpression");
 					afterParserOrEnumRuleCall();
 				}
 			)
 		)
-		otherlv_4=';'
+		otherlv_3=';'
 		{
-			newLeafNode(otherlv_4, grammarAccess.getElementFilterMemberAccess().getSemicolonKeyword_4());
+			newLeafNode(otherlv_3, grammarAccess.getElementFilterMemberAccess().getSemicolonKeyword_3());
 		}
 	)
 ;
@@ -4730,9 +4703,9 @@ ruleSubclassification returns [EObject current=null]
 				}
 			)?
 		)?
-		otherlv_2='subclassifer'
+		otherlv_2='subclassifier'
 		{
-			newLeafNode(otherlv_2, grammarAccess.getSubclassificationAccess().getSubclassiferKeyword_1());
+			newLeafNode(otherlv_2, grammarAccess.getSubclassificationAccess().getSubclassifierKeyword_1());
 		}
 		(
 			(

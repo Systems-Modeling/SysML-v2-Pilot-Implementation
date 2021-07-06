@@ -1546,7 +1546,8 @@
       <eAnnotations source="subsets" references="#//Definition/ownedCase"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedFlow" ordered="false"
-        upperBound="-1" eType="#//FlowConnectionUsage">
+        upperBound="-1" eType="#//FlowConnectionUsage" volatile="true" transient="true"
+        derived="true">
       <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName">
         <details key="body" value="flowOwningDefinition"/>
       </eAnnotations>

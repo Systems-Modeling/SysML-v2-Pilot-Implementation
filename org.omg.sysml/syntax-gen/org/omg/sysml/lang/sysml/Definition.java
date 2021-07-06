@@ -528,7 +528,7 @@ public interface Definition extends Classifier {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Flow</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_OwnedFlow()
-	 * @model ordered="false"
+	 * @model transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='flowOwningDefinition'"
 	 *        annotation="subsets"
 	 * @generated

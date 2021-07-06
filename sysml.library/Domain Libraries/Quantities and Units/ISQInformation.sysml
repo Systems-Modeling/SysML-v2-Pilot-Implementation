@@ -77,9 +77,9 @@ package ISQInformation {
     }
     attribute trafficCarriedIntensity: TrafficCarriedIntensityValue :> scalarQuantities;
 
-    alias TrafficCarriedIntensityUnit as TrafficLoadUnit;
-    alias TrafficCarriedIntensityValue as TrafficLoadValue;
-    alias trafficCarriedIntensity as trafficLoad;
+    alias TrafficLoadUnit for TrafficCarriedIntensityUnit;
+    alias TrafficLoadValue for TrafficCarriedIntensityValue;
+    alias trafficLoad for trafficCarriedIntensity;
 
     /**
      * source: item 13-4 mean queue length
@@ -145,9 +145,9 @@ package ISQInformation {
     }
     attribute callIntensity: CallIntensityValue :> scalarQuantities;
 
-    alias CallIntensityUnit as CallingRateUnit;
-    alias CallIntensityValue as CallingRateValue;
-    alias callIntensity as callingRate;
+    alias CallingRateUnit for CallIntensityUnit;
+    alias CallingRateValue for CallIntensityValue;
+    alias callingRate for callIntensity;
 
     /**
      * source: item 13-8 completed call intensity
@@ -190,9 +190,9 @@ package ISQInformation {
     }
     attribute storageCapacity: StorageCapacityValue :> scalarQuantities;
 
-    alias StorageCapacityUnit as StorageSizeUnit;
-    alias StorageCapacityValue as StorageSizeValue;
-    alias storageCapacity as storageSize;
+    alias StorageSizeUnit for StorageCapacityUnit;
+    alias StorageSizeValue for StorageCapacityValue;
+    alias storageSize for storageCapacity;
 
     /**
      * source: item 13-10 equivalent binary storage capacity
@@ -270,9 +270,9 @@ package ISQInformation {
     }
     attribute binaryDigitRate: BinaryDigitRateValue :> scalarQuantities;
 
-    alias BinaryDigitRateUnit as BitRateUnit;
-    alias BinaryDigitRateValue as BitRateValue;
-    alias binaryDigitRate as bitRate;
+    alias BitRateUnit for BinaryDigitRateUnit;
+    alias BitRateValue for BinaryDigitRateValue;
+    alias bitRate for binaryDigitRate;
 
     /**
      * source: item 13-14 period of binary digits, bit period
@@ -287,7 +287,7 @@ package ISQInformation {
      */
     attribute periodOfBinaryDigits: DurationValue :> scalarQuantities;
 
-    alias periodOfBinaryDigits as bitPeriod;
+    alias bitPeriod for periodOfBinaryDigits;
 
     /**
      * source: item 13-15 equivalent binary digit rate, equivalent bit rate
@@ -312,9 +312,9 @@ binary transfer rate". See IEC 60050-704, item 704-17-05.
     }
     attribute equivalentBinaryDigitRate: EquivalentBinaryDigitRateValue :> scalarQuantities;
 
-    alias EquivalentBinaryDigitRateUnit as EquivalentBitRateUnit;
-    alias EquivalentBinaryDigitRateValue as EquivalentBitRateValue;
-    alias equivalentBinaryDigitRate as equivalentBitRate;
+    alias EquivalentBitRateUnit for EquivalentBinaryDigitRateUnit;
+    alias EquivalentBitRateValue for EquivalentBinaryDigitRateValue;
+    alias equivalentBitRate for equivalentBinaryDigitRate;
 
     /**
      * source: item 13-16 modulation rate, line digit rate
@@ -338,9 +338,9 @@ binary transfer rate". See IEC 60050-704, item 704-17-05.
     }
     attribute modulationRate: ModulationRateValue :> scalarQuantities;
 
-    alias ModulationRateUnit as LineDigitRateUnit;
-    alias ModulationRateValue as LineDigitRateValue;
-    alias modulationRate as lineDigitRate;
+    alias LineDigitRateUnit for ModulationRateUnit;
+    alias LineDigitRateValue for ModulationRateValue;
+    alias lineDigitRate for modulationRate;
 
     /**
      * source: item 13-17 quantizing distortion rate
@@ -421,7 +421,7 @@ binary transfer rate". See IEC 60050-704, item 704-17-05.
      */
     attribute clockFrequency: FrequencyValue :> scalarQuantities;
 
-    alias clockFrequency as clockRate;
+    alias clockRate for clockFrequency;
 
     /**
      * source: item 13-23 decision content
@@ -598,13 +598,13 @@ binary transfer rate". See IEC 60050-704, item 704-17-05.
     }
     attribute conditionalEntropy: ConditionalEntropyValue :> scalarQuantities;
 
-    alias ConditionalEntropyUnit as MeanConditionalInformationContentUnit;
-    alias ConditionalEntropyValue as MeanConditionalInformationContentValue;
-    alias conditionalEntropy as meanConditionalInformationContent;
+    alias MeanConditionalInformationContentUnit for ConditionalEntropyUnit;
+    alias MeanConditionalInformationContentValue for ConditionalEntropyValue;
+    alias meanConditionalInformationContent for conditionalEntropy;
 
-    alias ConditionalEntropyUnit as AverageConditionalInformationContentUnit;
-    alias ConditionalEntropyValue as AverageConditionalInformationContentValue;
-    alias conditionalEntropy as averageConditionalInformationContent;
+    alias AverageConditionalInformationContentUnit for ConditionalEntropyUnit;
+    alias AverageConditionalInformationContentValue for ConditionalEntropyValue;
+    alias averageConditionalInformationContent for conditionalEntropy;
 
     /**
      * source: item 13-33 equivocation
@@ -783,9 +783,9 @@ binary transfer rate". See IEC 60050-704, item 704-17-05.
     }
     attribute channelCapacityPerCharacter: ChannelCapacityPerCharacterValue :> scalarQuantities;
 
-    alias ChannelCapacityPerCharacterUnit as ChannelCapacityUnit;
-    alias ChannelCapacityPerCharacterValue as ChannelCapacityValue;
-    alias channelCapacityPerCharacter as channelCapacity;
+    alias ChannelCapacityUnit for ChannelCapacityPerCharacterUnit;
+    alias ChannelCapacityValue for ChannelCapacityPerCharacterValue;
+    alias channelCapacity for channelCapacityPerCharacter;
 
     /**
      * source: item 13-42 channel time capacity

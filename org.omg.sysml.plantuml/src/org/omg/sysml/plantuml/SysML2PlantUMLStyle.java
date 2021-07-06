@@ -294,7 +294,8 @@ public class SysML2PlantUMLStyle {
 
 		@Override
         public String caseFeatureMembership(FeatureMembership fm) {
-			return fm.isComposite() ? " *-- ": " o-- ";
+			Feature feature = fm.getMemberFeature();
+			return feature != null && feature.isComposite() ? " *-- ": " o-- ";
         }
 
 		@Override
@@ -385,7 +386,7 @@ public class SysML2PlantUMLStyle {
 		}
 
 		@Override
-		public String caseGeneralization(Specialization object) {
+		public String caseSpecialization(Specialization object) {
             return " --|> ";
 		}
 

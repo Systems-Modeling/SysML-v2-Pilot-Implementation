@@ -343,7 +343,7 @@ package ISQCondensedMatter {
      */
     attribute angularWavenumber: RepetencyValue :> scalarQuantities;
 
-    alias angularWavenumber as angularRepetency;
+    alias angularRepetency for angularWavenumber;
 
     /**
      * source: item 12-9.2 Fermi angular wavenumber, Fermi angular repetency
@@ -358,7 +358,7 @@ package ISQCondensedMatter {
      */
     attribute fermiAngularWavenumber: RepetencyValue :> scalarQuantities;
 
-    alias fermiAngularWavenumber as fermiAngularRepetency;
+    alias fermiAngularRepetency for fermiAngularWavenumber;
 
     /**
      * source: item 12-9.3 Debye angular wavenumber, Debye angular repetency
@@ -373,7 +373,7 @@ package ISQCondensedMatter {
      */
     attribute debyeAngularWavenumber: RepetencyValue :> scalarQuantities;
 
-    alias debyeAngularWavenumber as debyeAngularRepetency;
+    alias debyeAngularRepetency for debyeAngularWavenumber;
 
     /**
      * source: item 12-10 Debye angular frequency

@@ -21,17 +21,18 @@
 
 package org.omg.sysml.adapter;
 
+import java.util.List;
+
 import org.eclipse.emf.common.util.EList;
 import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.Succession;
 import org.omg.sysml.lang.sysml.SysMLFactory;
-import org.omg.sysml.lang.sysml.TransitionFeatureMembership;
 import org.omg.sysml.lang.sysml.TransitionUsage;
 import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
 import org.omg.sysml.util.ElementUtil;
 import org.omg.sysml.util.TypeUtil;
+import org.omg.sysml.util.UsageUtil;
 
 public class TransitionUsageAdapter extends ActionUsageAdapter {
 
@@ -71,18 +72,22 @@ public class TransitionUsageAdapter extends ActionUsageAdapter {
 	
 	protected Feature computeReferenceConnector() {
 		TransitionUsage transition = getTarget();
-		Feature transitionLinkFeature = transition.getOwnedFeatureMembership().stream().
-				filter(m->!(m instanceof TransitionFeatureMembership)).
-				map(FeatureMembership::getMemberFeature).
-				findFirst().orElse(null);
+		Feature transitionLinkFeature = UsageUtil.getTransitionLinkFeatureOf(transition);
 		if (transitionLinkFeature == null) {
-			transitionLinkFeature = SysMLFactory.eINSTANCE.createFeature();
-			TypeUtil.addOwnedFeatureTo(transition, transitionLinkFeature);
+			transitionLinkFeature = SysMLFactory.eINSTANCE.createReferenceUsage();
+			TypeUtil.addOwnedFeatureTo(transition, transitionLinkFeature);			
 			Succession succession = transition.getSuccession();
 			ElementUtil.transform(succession);
-			addBindingConnector(succession, transitionLinkFeature);
+			addBindingConnector(succession, transitionLinkFeature);			
+			List<Feature> parameters = TypeUtil.getOwnedParametersOf(transition);
+			if (!parameters.isEmpty()) {
+				Feature source = succession.getSourceFeature();
+				if (source != null) {
+					addBindingConnector(source, parameters.get(0));
+				}
+			}
 		}
-		updateTransitionLinkRedefinition(transitionLinkFeature);
+//		updateTransitionLinkRedefinition(transitionLinkFeature);
 		return transitionLinkFeature;
 	}
 	

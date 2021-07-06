@@ -1,6 +1,6 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2019 Model Driven Solutions, Inc.
+ * Copyright (c) 2019, 2021 Model Driven Solutions, Inc.
  * Copyright (c) 2019 California Institute of Technology/Jet Propulsion Laboratory
  *    
  * This program is free software: you can redistribute it and/or modify
@@ -20,7 +20,7 @@
  * 
  * Contributors:
  *  Ed Seidewitz, MDS
- *  Miyako Wilson, Georgia Tech
+ *  Miyako Wilson, JPL (Georgia Tech)
  * 
  *****************************************************************************/
 package org.omg.kerml.xtext.scoping
@@ -37,7 +37,6 @@ import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.scoping.impl.AbstractScope
 import org.omg.sysml.lang.sysml.Element
 import org.omg.sysml.lang.sysml.Namespace
-import org.omg.sysml.lang.sysml.SysMLFactory
 import org.omg.sysml.lang.sysml.util.ISysMLScope
 import java.util.Collections
 
@@ -118,13 +117,11 @@ class KerMLGlobalScope extends AbstractScope implements ISysMLScope {
 	override getMemberships(String name) {
 		val result = outer.getSingleElement(QualifiedName.create(name))
 		if (result === null) {
-			return null
+			return Collections.emptySet
 		}
 		else {
-			val membership = SysMLFactory.eINSTANCE.createMembership()
-			membership.setMemberElement(result.EObjectOrProxy as Element)
-			membership.setMemberName(name)
-			return Collections.singleton(membership)
+			val elm = EcoreUtil.resolve(result.EObjectOrProxy, resource) as Element
+			return Collections.singleton(elm.owningMembership)
 		}
 	}
 	

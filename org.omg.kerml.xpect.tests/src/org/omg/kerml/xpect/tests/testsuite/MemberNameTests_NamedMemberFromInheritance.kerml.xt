@@ -16,7 +16,7 @@ END_SETUP
 package test{
 	class A{
 		class a {}
-		alias a as aa;
+		alias aa for a;
 	}
 //* XPECT scope at A ---
 	   	A, A.a, A.aa, B, B.a, B.aa,
@@ -29,6 +29,6 @@ package test{
 --- */
 //		XPECT linkedName at aa --> test.A.a
 		feature b: aa;
-		alias b as b_alias;
+		alias b_alias for b;
 	}
 }

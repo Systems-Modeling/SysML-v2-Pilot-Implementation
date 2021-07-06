@@ -16,7 +16,7 @@ END_SETUP
 // XPECT noErrors --> ""
 package Test {
  	package Test2 {
-		import VP::VP2::A_Id;
+		import VP::VP2::B;
 		class A;
 		//* XPECT scope at A_Id ---
 		 A,  Test2.A, Test.Test2.A,

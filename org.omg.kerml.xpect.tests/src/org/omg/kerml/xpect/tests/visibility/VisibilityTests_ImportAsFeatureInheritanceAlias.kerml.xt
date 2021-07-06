@@ -17,7 +17,7 @@ END_SETUP
 
 // XPECT noErrors ---> " "
 package Classes {
-	import VisibilityPackage::c_Public as aliass;
+	alias aliass for VisibilityPackage::c_Public;
 	//XPECT linkedName at aliass --> VisibilityPackage.c_Public
 	/* XPECT scope at  aliass ---
 	  	 Classes.Try, Classes.Try.c_public, Classes.aliass,	Classes.aliass.c_public, 

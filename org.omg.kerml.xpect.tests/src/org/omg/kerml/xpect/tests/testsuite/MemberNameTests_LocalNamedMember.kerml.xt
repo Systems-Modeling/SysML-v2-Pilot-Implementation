@@ -16,8 +16,8 @@ END_SETUP
 //XPECT noErrors ---> ""
 package test{
 	class id 'A_Id' A {}
-	alias A as A_alias;
-	alias A_Id as A_Id_alias;
+	alias A_alias for A;
+	alias A_Id_alias for A_Id;
 	
 	// besides "A_alias", we can reference...
 	//* XPECT scope at A_alias ---

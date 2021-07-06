@@ -17,7 +17,7 @@ END_SETUP
 
 package Classes {
 	// XPECT errors ---> "Couldn't resolve reference to Element 'VisibilityPackage::c_Public::c_private'." at "VisibilityPackage::c_Public::c_private"
-	import VisibilityPackage::c_Public::c_private as aliass;
+	alias aliass for VisibilityPackage::c_Public::c_private;
 	class Try{
 		// XPECT errors ---> "Couldn't resolve reference to Type 'aliass'." at "aliass"
 		feature feature1 : aliass;

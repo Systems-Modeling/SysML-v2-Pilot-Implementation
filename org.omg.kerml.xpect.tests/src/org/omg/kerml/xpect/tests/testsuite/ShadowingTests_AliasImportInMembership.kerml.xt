@@ -1,9 +1,10 @@
 //* 
-XPECT_SETUP org.omg.kerml.xpect.tests.imports.global.KerMLImportGlobalTest
+XPECT_SETUP org.omg.kerml.xpect.tests.testsuite.KerMLXTextTest
 	ResourceSet {
 		ThisFile {}
 		File {from ="/library/Base.kerml"}
 		File {from ="/src/DependencyPackageAlias1.kerml"}
+		File {from ="/src/DependencyPackageAlias2.kerml"}
 	}
 	Workspace {
 		JavaProject {
@@ -11,42 +12,26 @@ XPECT_SETUP org.omg.kerml.xpect.tests.imports.global.KerMLImportGlobalTest
 				ThisFile {}
 				File {from ="/library/Base.kerml"}
 				File {from ="/src/DependencyPackageAlias1.kerml"}
+				File {from ="/src/DependencyPackageAlias2.kerml"}
 			}
 		}
 	}
 END_SETUP 
 */
-//
 // XPECT noErrors ---> ""
-package test{
+package Test1{
 	//* XPECT scope at PackageAlias1::A_alias ---
-	    test, PackageAlias1,
-		A_alias, A_alias.a, A_alias.a_alias,  test.A_alias, test.A_alias.a, test.A_alias.a_alias,   
+	    A_alias, A_alias.a, A_alias.a_alias,  Test1.A_alias, Test1.A_alias.a, Test1.A_alias.a_alias,
+	    PackageAlias1, PackageAlias2, Test1,
 	   	PackageAlias1.A, PackageAlias1.A.a, PackageAlias1.A.a_alias,
 	   	PackageAlias1.AA, PackageAlias1.AA.aa, PackageAlias1.AA.aa_alias,
 	   	PackageAlias1.A_alias, PackageAlias1.A_alias.a, PackageAlias1.A_alias.a_alias,
     	PackageAlias1.AA_alias, PackageAlias1.AA_alias.aa, PackageAlias1.AA_alias.aa_alias, 
+    	PackageAlias2.A, PackageAlias2.A.a, PackageAlias2.A.a_alias,
+	   	PackageAlias2.AA, PackageAlias2.AA.aa, PackageAlias2.AA.aa_alias,
+	   	PackageAlias2.A_alias, PackageAlias2.A_alias.a, PackageAlias2.A_alias.a_alias,
+    	PackageAlias2.AA_alias, PackageAlias2.AA_alias.aa, PackageAlias2.AA_alias.aa_alias,
+    	PackageAlias2.B, PackageAlias2.B.a, PackageAlias2.B.a_alias, PackageAlias2.B.b,  
  --- */
 	import PackageAlias1::A_alias;
 }
-//*
-package PackageAlias1{
-	class A_alias is A;
-	class A{
-		class a{}
-		class a_alias is a;
-	}
-	class AA_alias is AA;
-	class AA{
-		class aa{}
-		class aa_alias is aa;
-	}
-}
-*/
-//*
-Note:
-having 
-    A, A.a, A.a_alias,  test.A, test.A.a, test.A.a_alias,
-instead of
-   	A_alias, A_alias.a, A_alias.a_alias,  test.A_alias, test.A_alias.a, test.A_alias.a_alias,   
- */

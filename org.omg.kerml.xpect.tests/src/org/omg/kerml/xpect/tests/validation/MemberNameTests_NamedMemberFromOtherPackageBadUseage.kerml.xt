@@ -16,7 +16,7 @@ END_SETUP
 package test{
 	package P{
 		class A {}
-		alias A as A_alias;
+		alias A_alias for A;
 	}
 	// XPECT errors --> "Couldn't resolve reference to Type 'P1::A_alias'." at "P1::A_alias"
 	feature a: P1::A_alias;

@@ -25,7 +25,7 @@ package 'Redefinition Example' {
 	part wheel1 redefines wheel;
 	
 	part def B {
-		alias Vehicle::eng as eng1;
+		alias eng1 for Vehicle::eng;
 	}
 
 	part def Vehicle specializes B {

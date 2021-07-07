@@ -43,7 +43,7 @@ package PartTest {
 	
 	private port def C {
 		private in ref y: B;
-		alias y as z;
+		alias z for y;
 	}
 	
 	port def D;

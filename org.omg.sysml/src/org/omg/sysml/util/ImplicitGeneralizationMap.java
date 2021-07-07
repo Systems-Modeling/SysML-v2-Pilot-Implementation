@@ -145,13 +145,13 @@ public class ImplicitGeneralizationMap {
 		put(ConstraintDefinitionImpl.class, "base", "Constraints::ConstraintCheck");
 		put(ConstraintUsageImpl.class, "base", "Constraints::constraintChecks");
 		
-		put(DecisionNodeImpl.class, "base", "Actions::Action::decisions");
+		put(DecisionNodeImpl.class, "subaction", "Actions::Action::decisions");
 		
 		put(EventOccurrenceUsageImpl.class, "suboccurrence", "Occurrences::Occurrence::suboccurrences");
 
 		put(ExhibitStateUsageImpl.class, "enactedPerformance", "Parts::Part::exhibitedStates");
 		
-		put(ForkNodeImpl.class, "base", "Actions::Action::fork");
+		put(ForkNodeImpl.class, "subaction", "Actions::Action::forks");
 		
 		put(InterfaceDefinitionImpl.class, "binary", "Interfaces::Interface");
 		put(InterfaceUsageImpl.class, "binary", "Interfaces::interfaces");
@@ -159,11 +159,11 @@ public class ImplicitGeneralizationMap {
 		put(ItemDefinitionImpl.class, "base", "Items::Item");
 		put(ItemUsageImpl.class, "base", "Items::items");
 		
-		put(JoinNodeImpl.class, "base", "Actions::Action::joins");
+		put(JoinNodeImpl.class, "subaction", "Actions::Action::joins");
 		
 		put(LifeClassImpl.class, "base", "Occurrences::Life");
 		
-		put(MergeNodeImpl.class, "base", "Actions::Action::merges");
+		put(MergeNodeImpl.class, "subaction", "Actions::Action::merges");
 		
 		put(OccurrenceDefinitionImpl.class, "base", "Occurrences::Occurrence");
 		put(OccurrenceUsageImpl.class, "base", "Occurrences::occurrences");
@@ -192,7 +192,9 @@ public class ImplicitGeneralizationMap {
 		put(StateUsageImpl.class, "base", "States::stateActions");
 		put(StateUsageImpl.class, "subaction", "States::StateAction::substates");
 		
-		put(TransitionUsageImpl.class, "base", "States::transitionActions");
+		put(TransitionUsageImpl.class, "base", "Actions::transitionActions");
+		put(TransitionUsageImpl.class, "actionTransition", "Actions::Action::transitions");
+		put(TransitionUsageImpl.class, "stateTransition", "States::StateAction::stateTransitions");
 		
 		put(VerificationCaseDefinitionImpl.class, "base", "VerificationCases::VerificationCase");
 		put(VerificationCaseUsageImpl.class, "base", "VerificationCases::verificationCases");

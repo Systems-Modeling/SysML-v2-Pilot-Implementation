@@ -36,7 +36,7 @@ import org.omg.sysml.util.TypeUtil;
 public class ActionUsageAdapter extends OccurrenceUsageAdapter {
 	
 	public static final String STATE_BASE = "States::StateAction";
-	public static final String TRANSITION_BASE = "States::TransitionAction";
+	public static final String TRANSITION_BASE = "Actions::TransitionAction";
 	public static final String[] TRANSITION_REDEFINED_FEATURES = {"accepter", "guard", "effect"};
 	
 	public ActionUsageAdapter(ActionUsage element) {

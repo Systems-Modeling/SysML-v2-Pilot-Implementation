@@ -4,11 +4,13 @@
  */
 package States {
 	private import Occurrences::Occurrence;
-	private import Actions::Action;
-	private import Actions::AcceptAction;
-	private import Actions::actions;
 	private import StatePerformances::StatePerformance;
 	private import StatePerformances::StateTransitionPerformance;
+	private import Actions::Action;
+	private import Actions::TransitionAction;
+	private import Actions::transitionActions;
+	private import Actions::AcceptAction;
+	private import Actions::actions;
 	
 	/**
 	 * A StateAction is a kind of Action that is also a StatePerformance. It is the base type for all
@@ -26,8 +28,8 @@ package States {
 		
 		/**
 		 * The subperformances of this StateAction that are Actions, other than the entry and exit Actions. 
-		 * These <code>subactions</code> all take place in the "middle" of the StatePerformance, that is, 
-		 * after the entry Action and before the exit Action. 
+		 * These subactions all take place in the "middle" of the StatePerformance, that is, after the 
+		 * entry Action and before the exit Action. 
 		 */
 		action :>> subactions :> middle;
 		
@@ -35,22 +37,24 @@ package States {
 		 * The subactions of this state that are states.
 		 */
 		abstract state substates: StateAction[0..*] :> stateActions, subactions;
+		
+		/**
+		 * The transitions of this state that are state transitions.
+		 */
+		abstract action stateTransitions: StateTransitionAction[0..*] :> transitions;
 	}
 	
 	/**
-	 * A TransitionAction is a StateTransitionPerformance whose transitionLinkSource is an Action.
-	 * It is the base type of all TransitionUsages.
+	 * A StateTransitionAction is a TransitionAction and a StateTransitionPerformance whose transitionLinkSource 
+	 * is a State. It is the base type of TransitionUsages used transitions in state models.
 	 */
-	action def TransitionAction :> Action, StateTransitionPerformance (
-		in action transitionLinkSource[1],
-		out ref triggerPayload[0..*], 
-		in receiver: Occurrence[1]
-	) {
+	action def StateTransitionAction :> TransitionAction, StateTransitionPerformance {
+		in transitionLinkSource[1]: StateAction :>> 
+			TransitionAction::transitionLinkSource, StateTransitionPerformance::transitionLinkSource;
 			
-		action effect: Action :>> StateTransitionPerformance::effect;
-			
-		action accepter: AcceptAction[0..1];
-		bind trigger = accepter.incomingTransfer;
+		out triggerPayload[0..*];
+		in receiver : Occurrence[1];
+		
 		bind triggerPayload = accepter.items;
 		bind receiver = accepter.receiver;
 	}
@@ -60,8 +64,4 @@ package States {
 	 */
 	abstract state stateActions: StateAction[0..*] nonunique :> actions;
 	
-	/**
-	 * transitionActions is the base feature for all TransitionUsages.
-	 */
-	abstract action transitionActions: TransitionAction[0..*] nonunique :> actions;
 }

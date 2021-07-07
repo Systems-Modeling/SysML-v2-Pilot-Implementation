@@ -23,13 +23,15 @@ package org.omg.sysml.adapter;
 
 import java.util.List;
 
-import org.eclipse.emf.common.util.EList;
+import org.omg.sysml.lang.sysml.ActionDefinition;
+import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.Redefinition;
+import org.omg.sysml.lang.sysml.StateDefinition;
+import org.omg.sysml.lang.sysml.StateUsage;
 import org.omg.sysml.lang.sysml.Succession;
 import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.TransitionUsage;
-import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
+import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.util.ElementUtil;
 import org.omg.sysml.util.TypeUtil;
 import org.omg.sysml.util.UsageUtil;
@@ -51,26 +53,28 @@ public class TransitionUsageAdapter extends ActionUsageAdapter {
 	
 	@Override
 	protected String getDefaultSupertype() {
-		return getDefaultSupertype("base");
+		return isStateTransition()? getDefaultSupertype("stateTransition"):
+			   isActionTransition()? getDefaultSupertype("actionTransition"):
+			   getDefaultSupertype("base");
+	}
+	
+	protected boolean isActionTransition() {
+		TransitionUsage target = getTarget();
+		Type owningType = target.getOwningType();
+		return target.isComposite() && 
+			   (target instanceof ActionDefinition || owningType instanceof ActionUsage);
+	}	
+	
+	protected boolean isStateTransition() {
+		TransitionUsage target = getTarget();
+		Type owningType = target.getOwningType();
+		return target.isComposite() &&
+			   (owningType instanceof StateDefinition || owningType instanceof StateUsage);
 	}
 	
 	// Transformation
 	
-	protected void updateTransitionLinkRedefinition(Feature transitionLinkFeature) {
-		// the Redefinition computation part of the general implicit typing mechanism.
-		Redefinition redefinition;
-		EList<Redefinition> redefinitions = transitionLinkFeature.getOwnedRedefinition();
-		if (redefinitions.isEmpty()) {
-			redefinition = SysMLFactory.eINSTANCE.createRedefinition();
-			redefinition.setRedefiningFeature(transitionLinkFeature);
-			transitionLinkFeature.getOwnedRelationship().add(redefinition);
-		} else {
-			redefinition = redefinitions.get(0);
-		}
-		redefinition.setRedefinedFeature((Feature)SysMLLibraryUtil.getLibraryType(getTarget(), TRANSITION_LINK_FEATURE));
-	}
-	
-	protected Feature computeReferenceConnector() {
+	protected Feature computeTransitionLinkConnectors() {
 		TransitionUsage transition = getTarget();
 		Feature transitionLinkFeature = UsageUtil.getTransitionLinkFeatureOf(transition);
 		if (transitionLinkFeature == null) {
@@ -87,14 +91,13 @@ public class TransitionUsageAdapter extends ActionUsageAdapter {
 				}
 			}
 		}
-//		updateTransitionLinkRedefinition(transitionLinkFeature);
 		return transitionLinkFeature;
 	}
 	
 	@Override
 	public void doTransform() {
 		// Note: Needs to come first, before clearing and recomputation of inheritance cache.
-		computeReferenceConnector();		
+		computeTransitionLinkConnectors();		
 		super.doTransform();
 	}
 	

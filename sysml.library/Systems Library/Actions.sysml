@@ -9,6 +9,7 @@ package Actions {
 	private import Transfers::TransferBefore;
 	private import ControlPerformances::MergePerformance;
 	private import ControlPerformances::DecisionPerformance;
+	private import TransitionPerformances::TransitionPerformance;
 	private import TransitionPerformances::NonStateTransitionPerformance;
 	
 	/**
@@ -67,7 +68,12 @@ package Actions {
 		/**
 		 * The controls of this Action that are ForkActions.
 		 */
-		abstract action forks: ForkAction :> controls;		
+		abstract action forks: ForkAction :> controls;
+		
+		/**
+		 * The subactions of this Action that are TransitionActions. 
+		 */
+		abstract action transitions: TransitionAction[0..*] :> subactions, transitionActions;
 	}
 	
 	/**
@@ -155,13 +161,31 @@ package Actions {
 	action def ForkAction :> ControlAction;
 	
 	/**
-	 * A DecisionTransitionPerformance is a NonStateTransitionPerformance that has a
-	 * single guard, but no trigger or effects.
+	 * A TransitionAction is a TransitionPerformance whose transitionLinkSource is an Action.
+	 * It is the base type of all TransitionUsages.
 	 */
-	action def DecisionTransition :> NonStateTransitionPerformance {
-		ref action :>> trigger[0..0];
+	abstract action def TransitionAction :> Action, TransitionPerformance {
+		in transitionLinkSource : Action :>> TransitionPerformance::transitionLinkSource;
+
+		action accepter: AcceptAction[0..1];
+		bind trigger = accepter.incomingTransfer;
+		
+		action effect: Action :>> TransitionPerformance::effect;		
+	}
+	
+	/**
+	 * A DecisionTransitionAction is a TransitionAction and NonStateTransitionPerformance that has a 
+	 * single guard, but no trigger or effects. It is the base type of TransitionUsages used as 
+	 * conditional successions in action models.
+	 */
+	action def DecisionTransitionAction :> TransitionAction, NonStateTransitionPerformance {
+		ref action :>> accepter[0..0];
 		ref action :>> guard[1];
 		ref action :>> effect[0..0];
 	}
 
+	/**
+	 * transitionActions is the base feature for all TransitionUsages.
+	 */
+	abstract action transitionActions: TransitionAction[0..*] nonunique :> actions;
 }

@@ -52,5 +52,12 @@ public class ReferenceUsageImpl extends UsageImpl implements ReferenceUsage {
 	protected EClass eStaticClass() {
 		return SysMLPackage.Literals.REFERENCE_USAGE;
 	}
+	
+	// Additional overrides
+	
+	@Override
+	public boolean isReference() {
+		return true;
+	}
 
 } //ReferenceUsageImpl

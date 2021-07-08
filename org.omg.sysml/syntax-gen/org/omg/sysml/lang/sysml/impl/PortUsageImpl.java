@@ -207,6 +207,15 @@ public class PortUsageImpl extends OccurrenceUsageImpl implements PortUsage {
   		return false;
 	}
 
+	// Additional overrides	
+	
+	@Override
+	public boolean isReference() {
+		return true;
+	}
+	
+	//
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

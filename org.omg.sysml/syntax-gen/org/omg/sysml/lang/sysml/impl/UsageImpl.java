@@ -143,13 +143,15 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 	 * @ordered
 	 */
 	protected static final boolean IS_REFERENCE_EDEFAULT = false;
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	protected UsageImpl() {
 		super();
+		isComposite = !IS_REFERENCE_EDEFAULT;
 	}
 
 	/**
@@ -569,9 +571,7 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 	public boolean isSetDefinition() {
 		return !getDefinition().isEmpty();
 	}
-
-	private Boolean isReference = null;
-
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -579,10 +579,7 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 	 */
 	@Override
 	public boolean isReference() {
-		if (isReference == null) {
-			isReference = getDirection() != null || isEnd();
-		}
-		return isReference;
+		return UsageUtil.isReference(this, isComposite);
 	}
 
 	/**
@@ -592,7 +589,7 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 	 */
 	@Override
 	public void setIsReference(boolean newIsReference) {
-		isReference = newIsReference;
+		setIsComposite(!newIsReference);
 	}
 	
 	/**

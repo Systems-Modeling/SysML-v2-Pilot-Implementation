@@ -127,6 +127,15 @@ public abstract class ConnectorAsUsageImpl extends UsageImpl implements Connecto
 		return (Element)eInternalContainer();
 	}
 
+	// Additional overrides	
+	
+	@Override
+	public boolean isReference() {
+		return true;
+	}
+	
+	//
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

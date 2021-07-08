@@ -64,6 +64,12 @@ public class UsageUtil {
 		return (UsageAdapter)ElementUtil.getElementAdapter(usage);
 	}
 	
+	// References
+	
+	public static boolean isReference(Usage usage, boolean isComposite) {
+		return usage.getOwningFeatureMembership() == null || usage.getDirection() != null || usage.isEnd() || !isComposite;
+	}
+	
 	// Variants
 	
 	public static boolean isVariant(Usage usage) {

@@ -232,7 +232,7 @@ public class OccurrenceUsageImpl extends UsageImpl implements OccurrenceUsage {
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.OCCURRENCE_USAGE__PORTION_KIND, oldPortionKind, portionKind));
 	}
-
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

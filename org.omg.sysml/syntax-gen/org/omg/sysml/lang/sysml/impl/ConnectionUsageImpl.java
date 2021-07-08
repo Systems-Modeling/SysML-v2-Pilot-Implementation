@@ -47,6 +47,7 @@ import org.omg.sysml.lang.sysml.Structure;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.util.ConnectorUtil;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
+import org.omg.sysml.util.UsageUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -406,6 +407,15 @@ public class ConnectionUsageImpl extends ConnectorAsUsageImpl implements Connect
 		ConnectorUtil.getPath(path, getOwningNamespace(), relatedFeature);
 		return path;
 	}
+	
+	// Additional overrides
+
+	@Override
+	public boolean isReference() {
+		return UsageUtil.isReference(this, isComposite);
+	}
+	
+	//
 
 	/**
 	 * <!-- begin-user-doc -->

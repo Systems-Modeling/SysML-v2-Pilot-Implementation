@@ -213,15 +213,15 @@ class SysMLValidator extends KerMLValidator {
 		if (!(ou instanceof ItemUsage || ou instanceof PortUsage || ou instanceof Step))	
 			checkAllTypes(ou, org.omg.sysml.lang.sysml.Class, SysMLValidator.INVALID_OCCURRENCEUSAGE_MSG, SysMLPackage.eINSTANCE.occurrenceUsage_OccurrenceDefinition, SysMLValidator.INVALID_OCCURRENCEUSAGE)
 	}
-	@Check //All types must be Structures but not PortDefinitions. 
+	@Check //All types must be Structures. 
 	def checkItemUsageTypes(ItemUsage iu){
-		if (!(iu instanceof PartUsage))	
-			checkAllTypes(iu, Structure, PortDefinition, SysMLValidator.INVALID_ITEMUSAGE_MSG, SysMLPackage.eINSTANCE.itemUsage_ItemDefinition, SysMLValidator.INVALID_ITEMUSAGE)
+		if (!(iu instanceof PartUsage || iu instanceof PortUsage))	
+			checkAllTypes(iu, Structure, SysMLValidator.INVALID_ITEMUSAGE_MSG, SysMLPackage.eINSTANCE.itemUsage_ItemDefinition, SysMLValidator.INVALID_ITEMUSAGE)
 	}
-	@Check //All types must be Structures, at least one must be a PartDefinition, but no PartDefinitions. 
+	@Check //All types must be Structures, at least one must be a PartDefinition. 
 	def checkPartUsageTypes(PartUsage pu){
-		if (!(pu instanceof PortUsage || pu instanceof ConnectionUsage))
-			if (checkAllTypes(pu, Structure, PortDefinition, SysMLValidator.INVALID_PARTUSAGE_MSG, SysMLPackage.eINSTANCE.itemUsage_ItemDefinition, SysMLValidator.INVALID_PARTUSAGE))
+		if (!(pu instanceof ConnectionUsage))
+			if (checkAllTypes(pu, Structure, SysMLValidator.INVALID_PARTUSAGE_MSG, SysMLPackage.eINSTANCE.itemUsage_ItemDefinition, SysMLValidator.INVALID_PARTUSAGE))
 				checkAtLeastOneType(pu, PartDefinition, SysMLValidator.INVALID_PARTUSAGE_MSG, SysMLPackage.eINSTANCE.partUsage_PartDefinition, SysMLValidator.INVALID_PARTUSAGE)
 	}
 	@Check //All types must be Behaviors
@@ -348,13 +348,6 @@ class SysMLValidator extends KerMLValidator {
 	
 	protected def boolean checkAllTypes(Feature f, Class<?> requiredType, String msg, EStructuralFeature ref, String eId){
 		val check = (f as FeatureImpl).allTypes.forall[u| requiredType.isInstance(u)]
-		if (!check)
-			error (msg, ref, eId)
-		return check;
-	}
-	
-	protected def boolean checkAllTypes(Feature f, Class<?> requiredType, Class<?> prohibitedType, String msg, EStructuralFeature ref, String eId){
-		val check = (f as FeatureImpl).allTypes.forall[u|  requiredType.isInstance(u) && !prohibitedType.isInstance(u)]
 		if (!check)
 			error (msg, ref, eId)
 		return check;

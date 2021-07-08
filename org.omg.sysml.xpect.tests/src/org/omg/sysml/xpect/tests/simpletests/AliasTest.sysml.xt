@@ -3,8 +3,13 @@ XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLTests
 	ResourceSet {
 		ThisFile {}
 		File {from ="/library.kernel/Base.kerml"}
+		File {from ="/library.kernel/Links.kerml"}
        	File {from ="/library.kernel/Occurrences.kerml"}
        	File {from ="/library.kernel/Objects.kerml"}
+       	File {from ="/library.kernel/Performances.kerml"}
+		File {from ="/library.kernel/ScalarValues.kerml"}
+       	File {from ="/library.kernel/BaseFunctions.kerml"}
+       	File {from ="/library.kernel/ControlFunctions.kerml"}
  		File {from ="/library.systems/Items.sysml"}
  		File {from ="/library.systems/Parts.sysml"}
  		File {from ="/library.systems/Ports.sysml"}
@@ -15,8 +20,13 @@ XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLTests
 			SrcFolder {
 				ThisFile {}
 				File {from ="/library.kernel/Base.kerml"}
+				File {from ="/library.kernel/Links.kerml"}
 		       	File {from ="/library.kernel/Occurrences.kerml"}
 		       	File {from ="/library.kernel/Objects.kerml"}
+		       	File {from ="/library.kernel/Performances.kerml"}
+		       	File {from ="/library.kernel/ScalarValues.kerml"}
+		       	File {from ="/library.kernel/BaseFunctions.kerml"}
+       			File {from ="/library.kernel/ControlFunctions.kerml"}
 				File {from ="/library.systems/Items.sysml"}
 				File {from ="/library.systems/Parts.sysml"}
  				File {from ="/library.systems/Ports.sysml"}

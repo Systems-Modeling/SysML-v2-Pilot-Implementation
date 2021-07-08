@@ -6375,7 +6375,7 @@ endif</body>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="86aab2c6-7b8e-4e9e-bbe6-a6861a84c23e" name="" visibility="public" value="1"/>
     </ownedEnd>
   </packagedElement>
-  <packagedElement xmi:type="uml:Class" xmi:id="b4fec5b2-6e4c-41da-b27b-6173fd2687ec" name="LiteralNatural" visibility="public">
+  <packagedElement xmi:type="uml:Class" xmi:id="b4fec5b2-6e4c-41da-b27b-6173fd2687ec" name="LiteralInteger" visibility="public">
     <ownedComment xmi:id="2f96ff5e-d542-4a6e-8983-6f43bd84fd52" annotatedElement="b4fec5b2-6e4c-41da-b27b-6173fd2687ec">
       <body>&lt;p>A LiteralInteger is a LiteralExpression that provides an Integer value as a result. It must have an owned &lt;code>result&lt;/code> parameter whose type is &lt;em>Integer&lt;/em>.&lt;/p>
 </body>

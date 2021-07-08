@@ -8,7 +8,7 @@ import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import org.omg.sysml.lang.sysml.LiteralNatural;
+import org.omg.sysml.lang.sysml.LiteralInteger;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
@@ -19,12 +19,12 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.LiteralNaturalImpl#getValue <em>Value</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.LiteralIntegerImpl#getValue <em>Value</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class LiteralNaturalImpl extends LiteralExpressionImpl implements LiteralNatural {
+public class LiteralIntegerImpl extends LiteralExpressionImpl implements LiteralInteger {
 	/**
 	 * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -50,7 +50,7 @@ public class LiteralNaturalImpl extends LiteralExpressionImpl implements Literal
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected LiteralNaturalImpl() {
+	protected LiteralIntegerImpl() {
 		super();
 	}
 
@@ -61,7 +61,7 @@ public class LiteralNaturalImpl extends LiteralExpressionImpl implements Literal
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return SysMLPackage.Literals.LITERAL_NATURAL;
+		return SysMLPackage.Literals.LITERAL_INTEGER;
 	}
 
 	/**
@@ -84,7 +84,7 @@ public class LiteralNaturalImpl extends LiteralExpressionImpl implements Literal
 		int oldValue = value;
 		value = newValue;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.LITERAL_NATURAL__VALUE, oldValue, value));
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.LITERAL_INTEGER__VALUE, oldValue, value));
 	}
 
 	/**
@@ -95,7 +95,7 @@ public class LiteralNaturalImpl extends LiteralExpressionImpl implements Literal
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case SysMLPackage.LITERAL_NATURAL__VALUE:
+			case SysMLPackage.LITERAL_INTEGER__VALUE:
 				return getValue();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -109,7 +109,7 @@ public class LiteralNaturalImpl extends LiteralExpressionImpl implements Literal
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case SysMLPackage.LITERAL_NATURAL__VALUE:
+			case SysMLPackage.LITERAL_INTEGER__VALUE:
 				setValue((Integer)newValue);
 				return;
 		}
@@ -124,7 +124,7 @@ public class LiteralNaturalImpl extends LiteralExpressionImpl implements Literal
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.LITERAL_NATURAL__VALUE:
+			case SysMLPackage.LITERAL_INTEGER__VALUE:
 				setValue(VALUE_EDEFAULT);
 				return;
 		}
@@ -139,7 +139,7 @@ public class LiteralNaturalImpl extends LiteralExpressionImpl implements Literal
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.LITERAL_NATURAL__VALUE:
+			case SysMLPackage.LITERAL_INTEGER__VALUE:
 				return value != VALUE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);

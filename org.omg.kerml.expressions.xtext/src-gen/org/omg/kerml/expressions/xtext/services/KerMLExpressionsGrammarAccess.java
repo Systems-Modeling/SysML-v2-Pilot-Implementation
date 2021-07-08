@@ -2042,7 +2042,7 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 		private final Assignment cValueAssignment = (Assignment)rule.eContents().get(1);
 		private final RuleCall cValueDECIMAL_VALUETerminalRuleCall_0 = (RuleCall)cValueAssignment.eContents().get(0);
 		
-		//LiteralInteger returns SysML::LiteralNatural:
+		//LiteralInteger returns SysML::LiteralInteger:
 		//    value = DECIMAL_VALUE
 		//;
 		@Override public ParserRule getRule() { return rule; }
@@ -3097,7 +3097,7 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 		return getLiteralStringAccess().getRule();
 	}
 	
-	//LiteralInteger returns SysML::LiteralNatural:
+	//LiteralInteger returns SysML::LiteralInteger:
 	//    value = DECIMAL_VALUE
 	//;
 	public LiteralIntegerElements getLiteralIntegerAccess() {

@@ -205,7 +205,7 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 			case SysMLPackage.SUCCESSION_FLOW_CONNECTION_USAGE: return createSuccessionFlowConnectionUsage();
 			case SysMLPackage.SUCCESSION_ITEM_FLOW: return createSuccessionItemFlow();
 			case SysMLPackage.SUCCESSION_AS_USAGE: return createSuccessionAsUsage();
-			case SysMLPackage.LITERAL_NATURAL: return createLiteralNatural();
+			case SysMLPackage.LITERAL_INTEGER: return createLiteralInteger();
 			case SysMLPackage.LITERAL_EXPRESSION: return createLiteralExpression();
 			case SysMLPackage.LITERAL_RATIONAL: return createLiteralRational();
 			case SysMLPackage.NULL_EXPRESSION: return createNullExpression();
@@ -1952,9 +1952,9 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	 * @generated
 	 */
 	@Override
-	public LiteralNatural createLiteralNatural() {
-		LiteralNaturalImpl literalNatural = new LiteralNaturalImpl();
-		return literalNatural;
+	public LiteralInteger createLiteralInteger() {
+		LiteralIntegerImpl literalInteger = new LiteralIntegerImpl();
+		return literalInteger;
 	}
 
 	/**

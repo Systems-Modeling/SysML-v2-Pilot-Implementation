@@ -623,8 +623,8 @@ public class SysMLAdapterFactory extends AdapterFactoryImpl {
 				return createSuccessionAsUsageAdapter();
 			}
 			@Override
-			public Adapter caseLiteralNatural(LiteralNatural object) {
-				return createLiteralNaturalAdapter();
+			public Adapter caseLiteralInteger(LiteralInteger object) {
+				return createLiteralIntegerAdapter();
 			}
 			@Override
 			public Adapter caseLiteralExpression(LiteralExpression object) {
@@ -2927,16 +2927,16 @@ public class SysMLAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.omg.sysml.lang.sysml.LiteralNatural <em>Literal Natural</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.omg.sysml.lang.sysml.LiteralInteger <em>Literal Integer</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.omg.sysml.lang.sysml.LiteralNatural
+	 * @see org.omg.sysml.lang.sysml.LiteralInteger
 	 * @generated
 	 */
-	public Adapter createLiteralNaturalAdapter() {
+	public Adapter createLiteralIntegerAdapter() {
 		return null;
 	}
 

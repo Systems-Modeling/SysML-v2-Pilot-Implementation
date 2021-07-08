@@ -1809,16 +1809,16 @@ public class SysMLSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SysMLPackage.LITERAL_NATURAL: {
-				LiteralNatural literalNatural = (LiteralNatural)theEObject;
-				T result = caseLiteralNatural(literalNatural);
-				if (result == null) result = caseLiteralExpression(literalNatural);
-				if (result == null) result = caseExpression(literalNatural);
-				if (result == null) result = caseStep(literalNatural);
-				if (result == null) result = caseFeature(literalNatural);
-				if (result == null) result = caseType(literalNatural);
-				if (result == null) result = caseNamespace(literalNatural);
-				if (result == null) result = caseElement(literalNatural);
+			case SysMLPackage.LITERAL_INTEGER: {
+				LiteralInteger literalInteger = (LiteralInteger)theEObject;
+				T result = caseLiteralInteger(literalInteger);
+				if (result == null) result = caseLiteralExpression(literalInteger);
+				if (result == null) result = caseExpression(literalInteger);
+				if (result == null) result = caseStep(literalInteger);
+				if (result == null) result = caseFeature(literalInteger);
+				if (result == null) result = caseType(literalInteger);
+				if (result == null) result = caseNamespace(literalInteger);
+				if (result == null) result = caseElement(literalInteger);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -4444,17 +4444,17 @@ public class SysMLSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Literal Natural</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Literal Integer</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Literal Natural</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Literal Integer</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseLiteralNatural(LiteralNatural object) {
+	public T caseLiteralInteger(LiteralInteger object) {
 		return null;
 	}
 

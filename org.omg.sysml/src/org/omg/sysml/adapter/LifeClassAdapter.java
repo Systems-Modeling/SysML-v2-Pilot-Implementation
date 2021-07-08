@@ -24,7 +24,7 @@ package org.omg.sysml.adapter;
 import org.eclipse.emf.common.util.EList;
 import org.omg.sysml.lang.sysml.Classifier;
 import org.omg.sysml.lang.sysml.LifeClass;
-import org.omg.sysml.lang.sysml.LiteralNatural;
+import org.omg.sysml.lang.sysml.LiteralInteger;
 import org.omg.sysml.lang.sysml.Multiplicity;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.Subclassification;
@@ -71,11 +71,11 @@ public class LifeClassAdapter extends ClassAdapter {
 	protected Multiplicity createSingletonMultiplicity() {
 		Multiplicity multiplicity = SysMLFactory.eINSTANCE.createMultiplicityRange();
 		
-		LiteralNatural bound = SysMLFactory.eINSTANCE.createLiteralNatural();
+		LiteralInteger bound = SysMLFactory.eINSTANCE.createLiteralInteger();
 		bound.setValue(0);
 		TypeUtil.addOwnedFeatureTo(multiplicity, bound);
 		
-		bound = SysMLFactory.eINSTANCE.createLiteralNatural();
+		bound = SysMLFactory.eINSTANCE.createLiteralInteger();
 		bound.setValue(1);
 		TypeUtil.addOwnedFeatureTo(multiplicity, bound);
 		

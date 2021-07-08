@@ -8891,16 +8891,6 @@ public interface SysMLPackage extends EPackage {
 	int LITERAL_INFINITY = 145;
 
 	/**
-	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.impl.LiteralNaturalImpl <em>Literal Natural</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.omg.sysml.lang.sysml.impl.LiteralNaturalImpl
-	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getLiteralNatural()
-	 * @generated
-	 */
-	int LITERAL_NATURAL = 134;
-
-	/**
 	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.impl.LiteralRationalImpl <em>Literal Rational</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -103557,13 +103547,23 @@ public interface SysMLPackage extends EPackage {
 	int LITERAL_EXPRESSION_OPERATION_COUNT = EXPRESSION_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.impl.LiteralIntegerImpl <em>Literal Integer</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.omg.sysml.lang.sysml.impl.LiteralIntegerImpl
+	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getLiteralInteger()
+	 * @generated
+	 */
+	int LITERAL_INTEGER = 134;
+
+	/**
 	 * The feature id for the '<em><b>Owning Membership</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_NATURAL__OWNING_MEMBERSHIP = LITERAL_EXPRESSION__OWNING_MEMBERSHIP;
+	int LITERAL_INTEGER__OWNING_MEMBERSHIP = LITERAL_EXPRESSION__OWNING_MEMBERSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Owning Namespace</b></em>' reference.
@@ -103572,7 +103572,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_NATURAL__OWNING_NAMESPACE = LITERAL_EXPRESSION__OWNING_NAMESPACE;
+	int LITERAL_INTEGER__OWNING_NAMESPACE = LITERAL_EXPRESSION__OWNING_NAMESPACE;
 
 	/**
 	 * The feature id for the '<em><b>Owning Relationship</b></em>' container reference.
@@ -103581,7 +103581,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_NATURAL__OWNING_RELATIONSHIP = LITERAL_EXPRESSION__OWNING_RELATIONSHIP;
+	int LITERAL_INTEGER__OWNING_RELATIONSHIP = LITERAL_EXPRESSION__OWNING_RELATIONSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
@@ -103590,7 +103590,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_NATURAL__IDENTIFIER = LITERAL_EXPRESSION__IDENTIFIER;
+	int LITERAL_INTEGER__IDENTIFIER = LITERAL_EXPRESSION__IDENTIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -103599,7 +103599,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_NATURAL__NAME = LITERAL_EXPRESSION__NAME;
+	int LITERAL_INTEGER__NAME = LITERAL_EXPRESSION__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Owned Relationship</b></em>' containment reference list.
@@ -103608,7 +103608,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_NATURAL__OWNED_RELATIONSHIP = LITERAL_EXPRESSION__OWNED_RELATIONSHIP;
+	int LITERAL_INTEGER__OWNED_RELATIONSHIP = LITERAL_EXPRESSION__OWNED_RELATIONSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -103617,7 +103617,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_NATURAL__OWNER = LITERAL_EXPRESSION__OWNER;
+	int LITERAL_INTEGER__OWNER = LITERAL_EXPRESSION__OWNER;
 
 	/**
 	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
@@ -103626,7 +103626,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_NATURAL__OWNED_ELEMENT = LITERAL_EXPRESSION__OWNED_ELEMENT;
+	int LITERAL_INTEGER__OWNED_ELEMENT = LITERAL_EXPRESSION__OWNED_ELEMENT;
 
 	/**
 	 * The feature id for the '<em><b>Documentation</b></em>' reference list.
@@ -103635,7 +103635,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_NATURAL__DOCUMENTATION = LITERAL_EXPRESSION__DOCUMENTATION;
+	int LITERAL_INTEGER__DOCUMENTATION = LITERAL_EXPRESSION__DOCUMENTATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Annotation</b></em>' reference list.
@@ -103644,7 +103644,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_NATURAL__OWNED_ANNOTATION = LITERAL_EXPRESSION__OWNED_ANNOTATION;
+	int LITERAL_INTEGER__OWNED_ANNOTATION = LITERAL_EXPRESSION__OWNED_ANNOTATION;
 
 	/**
 	 * The feature id for the '<em><b>Documentation Comment</b></em>' reference list.
@@ -103653,7 +103653,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_NATURAL__DOCUMENTATION_COMMENT = LITERAL_EXPRESSION__DOCUMENTATION_COMMENT;
+	int LITERAL_INTEGER__DOCUMENTATION_COMMENT = LITERAL_EXPRESSION__DOCUMENTATION_COMMENT;
 
 	/**
 	 * The feature id for the '<em><b>Owned Textual Representation</b></em>' reference list.
@@ -103662,7 +103662,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_NATURAL__OWNED_TEXTUAL_REPRESENTATION = LITERAL_EXPRESSION__OWNED_TEXTUAL_REPRESENTATION;
+	int LITERAL_INTEGER__OWNED_TEXTUAL_REPRESENTATION = LITERAL_EXPRESSION__OWNED_TEXTUAL_REPRESENTATION;
 
 	/**
 	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
@@ -103671,7 +103671,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_NATURAL__QUALIFIED_NAME = LITERAL_EXPRESSION__QUALIFIED_NAME;
+	int LITERAL_INTEGER__QUALIFIED_NAME = LITERAL_EXPRESSION__QUALIFIED_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Effective Name</b></em>' attribute.
@@ -103680,7 +103680,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_NATURAL__EFFECTIVE_NAME = LITERAL_EXPRESSION__EFFECTIVE_NAME;
+	int LITERAL_INTEGER__EFFECTIVE_NAME = LITERAL_EXPRESSION__EFFECTIVE_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Alias Id</b></em>' attribute list.
@@ -103689,7 +103689,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_NATURAL__ALIAS_ID = LITERAL_EXPRESSION__ALIAS_ID;
+	int LITERAL_INTEGER__ALIAS_ID = LITERAL_EXPRESSION__ALIAS_ID;
 
 	/**
 	 * The feature id for the '<em><b>Human Id</b></em>' attribute.
@@ -103698,7 +103698,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_NATURAL__HUMAN_ID = LITERAL_EXPRESSION__HUMAN_ID;
+	int LITERAL_INTEGER__HUMAN_ID = LITERAL_EXPRESSION__HUMAN_ID;
 
 	/**
 	 * The feature id for the '<em><b>Membership</b></em>' reference list.
@@ -103707,7 +103707,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_NATURAL__MEMBERSHIP = LITERAL_EXPRESSION__MEMBERSHIP;
+	int LITERAL_INTEGER__MEMBERSHIP = LITERAL_EXPRESSION__MEMBERSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
@@ -103716,7 +103716,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_NATURAL__OWNED_IMPORT = LITERAL_EXPRESSION__OWNED_IMPORT;
+	int LITERAL_INTEGER__OWNED_IMPORT = LITERAL_EXPRESSION__OWNED_IMPORT;
 
 	/**
 	 * The feature id for the '<em><b>Member</b></em>' reference list.
@@ -103725,7 +103725,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_NATURAL__MEMBER = LITERAL_EXPRESSION__MEMBER;
+	int LITERAL_INTEGER__MEMBER = LITERAL_EXPRESSION__MEMBER;
 
 	/**
 	 * The feature id for the '<em><b>Owned Member</b></em>' reference list.
@@ -103734,7 +103734,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_NATURAL__OWNED_MEMBER = LITERAL_EXPRESSION__OWNED_MEMBER;
+	int LITERAL_INTEGER__OWNED_MEMBER = LITERAL_EXPRESSION__OWNED_MEMBER;
 
 	/**
 	 * The feature id for the '<em><b>Imported Membership</b></em>' reference list.
@@ -103743,7 +103743,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_NATURAL__IMPORTED_MEMBERSHIP = LITERAL_EXPRESSION__IMPORTED_MEMBERSHIP;
+	int LITERAL_INTEGER__IMPORTED_MEMBERSHIP = LITERAL_EXPRESSION__IMPORTED_MEMBERSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Membership</b></em>' reference list.
@@ -103752,7 +103752,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_NATURAL__OWNED_MEMBERSHIP = LITERAL_EXPRESSION__OWNED_MEMBERSHIP;
+	int LITERAL_INTEGER__OWNED_MEMBERSHIP = LITERAL_EXPRESSION__OWNED_MEMBERSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
@@ -103761,7 +103761,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_NATURAL__OWNED_FEATURE_MEMBERSHIP = LITERAL_EXPRESSION__OWNED_FEATURE_MEMBERSHIP;
+	int LITERAL_INTEGER__OWNED_FEATURE_MEMBERSHIP = LITERAL_EXPRESSION__OWNED_FEATURE_MEMBERSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature</b></em>' reference list.
@@ -103770,7 +103770,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_NATURAL__OWNED_FEATURE = LITERAL_EXPRESSION__OWNED_FEATURE;
+	int LITERAL_INTEGER__OWNED_FEATURE = LITERAL_EXPRESSION__OWNED_FEATURE;
 
 	/**
 	 * The feature id for the '<em><b>Owned End Feature</b></em>' reference list.
@@ -103779,7 +103779,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_NATURAL__OWNED_END_FEATURE = LITERAL_EXPRESSION__OWNED_END_FEATURE;
+	int LITERAL_INTEGER__OWNED_END_FEATURE = LITERAL_EXPRESSION__OWNED_END_FEATURE;
 
 	/**
 	 * The feature id for the '<em><b>Feature</b></em>' reference list.
@@ -103788,7 +103788,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_NATURAL__FEATURE = LITERAL_EXPRESSION__FEATURE;
+	int LITERAL_INTEGER__FEATURE = LITERAL_EXPRESSION__FEATURE;
 
 	/**
 	 * The feature id for the '<em><b>Input</b></em>' reference list.
@@ -103797,7 +103797,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_NATURAL__INPUT = LITERAL_EXPRESSION__INPUT;
+	int LITERAL_INTEGER__INPUT = LITERAL_EXPRESSION__INPUT;
 
 	/**
 	 * The feature id for the '<em><b>Output</b></em>' reference list.
@@ -103806,7 +103806,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_NATURAL__OUTPUT = LITERAL_EXPRESSION__OUTPUT;
+	int LITERAL_INTEGER__OUTPUT = LITERAL_EXPRESSION__OUTPUT;
 
 	/**
 	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
@@ -103815,7 +103815,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_NATURAL__IS_ABSTRACT = LITERAL_EXPRESSION__IS_ABSTRACT;
+	int LITERAL_INTEGER__IS_ABSTRACT = LITERAL_EXPRESSION__IS_ABSTRACT;
 
 	/**
 	 * The feature id for the '<em><b>Inherited Membership</b></em>' reference list.
@@ -103824,7 +103824,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_NATURAL__INHERITED_MEMBERSHIP = LITERAL_EXPRESSION__INHERITED_MEMBERSHIP;
+	int LITERAL_INTEGER__INHERITED_MEMBERSHIP = LITERAL_EXPRESSION__INHERITED_MEMBERSHIP;
 
 	/**
 	 * The feature id for the '<em><b>End Feature</b></em>' reference list.
@@ -103833,7 +103833,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_NATURAL__END_FEATURE = LITERAL_EXPRESSION__END_FEATURE;
+	int LITERAL_INTEGER__END_FEATURE = LITERAL_EXPRESSION__END_FEATURE;
 
 	/**
 	 * The feature id for the '<em><b>Is Sufficient</b></em>' attribute.
@@ -103842,7 +103842,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_NATURAL__IS_SUFFICIENT = LITERAL_EXPRESSION__IS_SUFFICIENT;
+	int LITERAL_INTEGER__IS_SUFFICIENT = LITERAL_EXPRESSION__IS_SUFFICIENT;
 
 	/**
 	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
@@ -103851,7 +103851,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_NATURAL__OWNED_CONJUGATOR = LITERAL_EXPRESSION__OWNED_CONJUGATOR;
+	int LITERAL_INTEGER__OWNED_CONJUGATOR = LITERAL_EXPRESSION__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Is Conjugated</b></em>' attribute.
@@ -103860,7 +103860,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_NATURAL__IS_CONJUGATED = LITERAL_EXPRESSION__IS_CONJUGATED;
+	int LITERAL_INTEGER__IS_CONJUGATED = LITERAL_EXPRESSION__IS_CONJUGATED;
 
 	/**
 	 * The feature id for the '<em><b>Feature Membership</b></em>' reference list.
@@ -103869,7 +103869,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_NATURAL__FEATURE_MEMBERSHIP = LITERAL_EXPRESSION__FEATURE_MEMBERSHIP;
+	int LITERAL_INTEGER__FEATURE_MEMBERSHIP = LITERAL_EXPRESSION__FEATURE_MEMBERSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Inherited Feature</b></em>' reference list.
@@ -103878,7 +103878,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_NATURAL__INHERITED_FEATURE = LITERAL_EXPRESSION__INHERITED_FEATURE;
+	int LITERAL_INTEGER__INHERITED_FEATURE = LITERAL_EXPRESSION__INHERITED_FEATURE;
 
 	/**
 	 * The feature id for the '<em><b>Multiplicity</b></em>' reference.
@@ -103887,7 +103887,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_NATURAL__MULTIPLICITY = LITERAL_EXPRESSION__MULTIPLICITY;
+	int LITERAL_INTEGER__MULTIPLICITY = LITERAL_EXPRESSION__MULTIPLICITY;
 
 	/**
 	 * The feature id for the '<em><b>Disjoint Type</b></em>' reference list.
@@ -103896,7 +103896,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_NATURAL__DISJOINT_TYPE = LITERAL_EXPRESSION__DISJOINT_TYPE;
+	int LITERAL_INTEGER__DISJOINT_TYPE = LITERAL_EXPRESSION__DISJOINT_TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Disjoining Type Disjoining</b></em>' reference list.
@@ -103905,7 +103905,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_NATURAL__DISJOINING_TYPE_DISJOINING = LITERAL_EXPRESSION__DISJOINING_TYPE_DISJOINING;
+	int LITERAL_INTEGER__DISJOINING_TYPE_DISJOINING = LITERAL_EXPRESSION__DISJOINING_TYPE_DISJOINING;
 
 	/**
 	 * The feature id for the '<em><b>Directed Feature</b></em>' reference list.
@@ -103914,7 +103914,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_NATURAL__DIRECTED_FEATURE = LITERAL_EXPRESSION__DIRECTED_FEATURE;
+	int LITERAL_INTEGER__DIRECTED_FEATURE = LITERAL_EXPRESSION__DIRECTED_FEATURE;
 
 	/**
 	 * The feature id for the '<em><b>Owned Specialization</b></em>' reference list.
@@ -103923,7 +103923,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_NATURAL__OWNED_SPECIALIZATION = LITERAL_EXPRESSION__OWNED_SPECIALIZATION;
+	int LITERAL_INTEGER__OWNED_SPECIALIZATION = LITERAL_EXPRESSION__OWNED_SPECIALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owning Type</b></em>' reference.
@@ -103932,7 +103932,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_NATURAL__OWNING_TYPE = LITERAL_EXPRESSION__OWNING_TYPE;
+	int LITERAL_INTEGER__OWNING_TYPE = LITERAL_EXPRESSION__OWNING_TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Is Unique</b></em>' attribute.
@@ -103941,7 +103941,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_NATURAL__IS_UNIQUE = LITERAL_EXPRESSION__IS_UNIQUE;
+	int LITERAL_INTEGER__IS_UNIQUE = LITERAL_EXPRESSION__IS_UNIQUE;
 
 	/**
 	 * The feature id for the '<em><b>Is Ordered</b></em>' attribute.
@@ -103950,7 +103950,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_NATURAL__IS_ORDERED = LITERAL_EXPRESSION__IS_ORDERED;
+	int LITERAL_INTEGER__IS_ORDERED = LITERAL_EXPRESSION__IS_ORDERED;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference list.
@@ -103959,7 +103959,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_NATURAL__TYPE = LITERAL_EXPRESSION__TYPE;
+	int LITERAL_INTEGER__TYPE = LITERAL_EXPRESSION__TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
@@ -103968,7 +103968,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_NATURAL__OWNED_REDEFINITION = LITERAL_EXPRESSION__OWNED_REDEFINITION;
+	int LITERAL_INTEGER__OWNED_REDEFINITION = LITERAL_EXPRESSION__OWNED_REDEFINITION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
@@ -103977,7 +103977,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_NATURAL__OWNED_SUBSETTING = LITERAL_EXPRESSION__OWNED_SUBSETTING;
+	int LITERAL_INTEGER__OWNED_SUBSETTING = LITERAL_EXPRESSION__OWNED_SUBSETTING;
 
 	/**
 	 * The feature id for the '<em><b>Owning Feature Membership</b></em>' reference.
@@ -103986,7 +103986,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_NATURAL__OWNING_FEATURE_MEMBERSHIP = LITERAL_EXPRESSION__OWNING_FEATURE_MEMBERSHIP;
+	int LITERAL_INTEGER__OWNING_FEATURE_MEMBERSHIP = LITERAL_EXPRESSION__OWNING_FEATURE_MEMBERSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
@@ -103995,7 +103995,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_NATURAL__IS_COMPOSITE = LITERAL_EXPRESSION__IS_COMPOSITE;
+	int LITERAL_INTEGER__IS_COMPOSITE = LITERAL_EXPRESSION__IS_COMPOSITE;
 
 	/**
 	 * The feature id for the '<em><b>Is Portion</b></em>' attribute.
@@ -104004,7 +104004,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_NATURAL__IS_PORTION = LITERAL_EXPRESSION__IS_PORTION;
+	int LITERAL_INTEGER__IS_PORTION = LITERAL_EXPRESSION__IS_PORTION;
 
 	/**
 	 * The feature id for the '<em><b>End Owning Type</b></em>' reference.
@@ -104013,7 +104013,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_NATURAL__END_OWNING_TYPE = LITERAL_EXPRESSION__END_OWNING_TYPE;
+	int LITERAL_INTEGER__END_OWNING_TYPE = LITERAL_EXPRESSION__END_OWNING_TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
@@ -104022,7 +104022,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_NATURAL__OWNED_TYPING = LITERAL_EXPRESSION__OWNED_TYPING;
+	int LITERAL_INTEGER__OWNED_TYPING = LITERAL_EXPRESSION__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Featuring Type</b></em>' reference list.
@@ -104031,7 +104031,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_NATURAL__FEATURING_TYPE = LITERAL_EXPRESSION__FEATURING_TYPE;
+	int LITERAL_INTEGER__FEATURING_TYPE = LITERAL_EXPRESSION__FEATURING_TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Owned Type Featuring</b></em>' reference list.
@@ -104040,7 +104040,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_NATURAL__OWNED_TYPE_FEATURING = LITERAL_EXPRESSION__OWNED_TYPE_FEATURING;
+	int LITERAL_INTEGER__OWNED_TYPE_FEATURING = LITERAL_EXPRESSION__OWNED_TYPE_FEATURING;
 
 	/**
 	 * The feature id for the '<em><b>Chaining Feature</b></em>' reference list.
@@ -104049,7 +104049,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_NATURAL__CHAINING_FEATURE = LITERAL_EXPRESSION__CHAINING_FEATURE;
+	int LITERAL_INTEGER__CHAINING_FEATURE = LITERAL_EXPRESSION__CHAINING_FEATURE;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Chaining</b></em>' reference list.
@@ -104058,7 +104058,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_NATURAL__OWNED_FEATURE_CHAINING = LITERAL_EXPRESSION__OWNED_FEATURE_CHAINING;
+	int LITERAL_INTEGER__OWNED_FEATURE_CHAINING = LITERAL_EXPRESSION__OWNED_FEATURE_CHAINING;
 
 	/**
 	 * The feature id for the '<em><b>Is Derived</b></em>' attribute.
@@ -104067,7 +104067,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_NATURAL__IS_DERIVED = LITERAL_EXPRESSION__IS_DERIVED;
+	int LITERAL_INTEGER__IS_DERIVED = LITERAL_EXPRESSION__IS_DERIVED;
 
 	/**
 	 * The feature id for the '<em><b>Is Read Only</b></em>' attribute.
@@ -104076,7 +104076,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_NATURAL__IS_READ_ONLY = LITERAL_EXPRESSION__IS_READ_ONLY;
+	int LITERAL_INTEGER__IS_READ_ONLY = LITERAL_EXPRESSION__IS_READ_ONLY;
 
 	/**
 	 * The feature id for the '<em><b>Is End</b></em>' attribute.
@@ -104085,7 +104085,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_NATURAL__IS_END = LITERAL_EXPRESSION__IS_END;
+	int LITERAL_INTEGER__IS_END = LITERAL_EXPRESSION__IS_END;
 
 	/**
 	 * The feature id for the '<em><b>Direction</b></em>' attribute.
@@ -104094,7 +104094,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_NATURAL__DIRECTION = LITERAL_EXPRESSION__DIRECTION;
+	int LITERAL_INTEGER__DIRECTION = LITERAL_EXPRESSION__DIRECTION;
 
 	/**
 	 * The feature id for the '<em><b>Is Nonunique</b></em>' attribute.
@@ -104103,7 +104103,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_NATURAL__IS_NONUNIQUE = LITERAL_EXPRESSION__IS_NONUNIQUE;
+	int LITERAL_INTEGER__IS_NONUNIQUE = LITERAL_EXPRESSION__IS_NONUNIQUE;
 
 	/**
 	 * The feature id for the '<em><b>Behavior</b></em>' reference list.
@@ -104112,7 +104112,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_NATURAL__BEHAVIOR = LITERAL_EXPRESSION__BEHAVIOR;
+	int LITERAL_INTEGER__BEHAVIOR = LITERAL_EXPRESSION__BEHAVIOR;
 
 	/**
 	 * The feature id for the '<em><b>Parameter</b></em>' reference list.
@@ -104121,7 +104121,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_NATURAL__PARAMETER = LITERAL_EXPRESSION__PARAMETER;
+	int LITERAL_INTEGER__PARAMETER = LITERAL_EXPRESSION__PARAMETER;
 
 	/**
 	 * The feature id for the '<em><b>Function</b></em>' reference.
@@ -104130,7 +104130,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_NATURAL__FUNCTION = LITERAL_EXPRESSION__FUNCTION;
+	int LITERAL_INTEGER__FUNCTION = LITERAL_EXPRESSION__FUNCTION;
 
 	/**
 	 * The feature id for the '<em><b>Result</b></em>' reference.
@@ -104139,7 +104139,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_NATURAL__RESULT = LITERAL_EXPRESSION__RESULT;
+	int LITERAL_INTEGER__RESULT = LITERAL_EXPRESSION__RESULT;
 
 	/**
 	 * The feature id for the '<em><b>Is Model Level Evaluable</b></em>' attribute.
@@ -104148,7 +104148,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_NATURAL__IS_MODEL_LEVEL_EVALUABLE = LITERAL_EXPRESSION__IS_MODEL_LEVEL_EVALUABLE;
+	int LITERAL_INTEGER__IS_MODEL_LEVEL_EVALUABLE = LITERAL_EXPRESSION__IS_MODEL_LEVEL_EVALUABLE;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -104157,16 +104157,16 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_NATURAL__VALUE = LITERAL_EXPRESSION_FEATURE_COUNT + 0;
+	int LITERAL_INTEGER__VALUE = LITERAL_EXPRESSION_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the '<em>Literal Natural</em>' class.
+	 * The number of structural features of the '<em>Literal Integer</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_NATURAL_FEATURE_COUNT = LITERAL_EXPRESSION_FEATURE_COUNT + 1;
+	int LITERAL_INTEGER_FEATURE_COUNT = LITERAL_EXPRESSION_FEATURE_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>Escaped Name</em>' operation.
@@ -104175,7 +104175,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_NATURAL___ESCAPED_NAME = LITERAL_EXPRESSION___ESCAPED_NAME;
+	int LITERAL_INTEGER___ESCAPED_NAME = LITERAL_EXPRESSION___ESCAPED_NAME;
 
 	/**
 	 * The operation id for the '<em>Effective Name</em>' operation.
@@ -104184,7 +104184,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_NATURAL___EFFECTIVE_NAME = LITERAL_EXPRESSION___EFFECTIVE_NAME;
+	int LITERAL_INTEGER___EFFECTIVE_NAME = LITERAL_EXPRESSION___EFFECTIVE_NAME;
 
 	/**
 	 * The operation id for the '<em>Names Of</em>' operation.
@@ -104193,7 +104193,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_NATURAL___NAMES_OF__ELEMENT = LITERAL_EXPRESSION___NAMES_OF__ELEMENT;
+	int LITERAL_INTEGER___NAMES_OF__ELEMENT = LITERAL_EXPRESSION___NAMES_OF__ELEMENT;
 
 	/**
 	 * The operation id for the '<em>Visibility Of</em>' operation.
@@ -104202,7 +104202,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_NATURAL___VISIBILITY_OF__MEMBERSHIP = LITERAL_EXPRESSION___VISIBILITY_OF__MEMBERSHIP;
+	int LITERAL_INTEGER___VISIBILITY_OF__MEMBERSHIP = LITERAL_EXPRESSION___VISIBILITY_OF__MEMBERSHIP;
 
 	/**
 	 * The operation id for the '<em>Visible Memberships</em>' operation.
@@ -104211,7 +104211,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_NATURAL___VISIBLE_MEMBERSHIPS__ELIST_BOOLEAN_BOOLEAN = LITERAL_EXPRESSION___VISIBLE_MEMBERSHIPS__ELIST_BOOLEAN_BOOLEAN;
+	int LITERAL_INTEGER___VISIBLE_MEMBERSHIPS__ELIST_BOOLEAN_BOOLEAN = LITERAL_EXPRESSION___VISIBLE_MEMBERSHIPS__ELIST_BOOLEAN_BOOLEAN;
 
 	/**
 	 * The operation id for the '<em>Imported Memberships</em>' operation.
@@ -104220,7 +104220,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_NATURAL___IMPORTED_MEMBERSHIPS__ELIST = LITERAL_EXPRESSION___IMPORTED_MEMBERSHIPS__ELIST;
+	int LITERAL_INTEGER___IMPORTED_MEMBERSHIPS__ELIST = LITERAL_EXPRESSION___IMPORTED_MEMBERSHIPS__ELIST;
 
 	/**
 	 * The operation id for the '<em>Inherited Memberships</em>' operation.
@@ -104229,7 +104229,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_NATURAL___INHERITED_MEMBERSHIPS__ELIST = LITERAL_EXPRESSION___INHERITED_MEMBERSHIPS__ELIST;
+	int LITERAL_INTEGER___INHERITED_MEMBERSHIPS__ELIST = LITERAL_EXPRESSION___INHERITED_MEMBERSHIPS__ELIST;
 
 	/**
 	 * The operation id for the '<em>Direction Of</em>' operation.
@@ -104238,7 +104238,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_NATURAL___DIRECTION_OF__FEATURE = LITERAL_EXPRESSION___DIRECTION_OF__FEATURE;
+	int LITERAL_INTEGER___DIRECTION_OF__FEATURE = LITERAL_EXPRESSION___DIRECTION_OF__FEATURE;
 
 	/**
 	 * The operation id for the '<em>All Supertypes</em>' operation.
@@ -104247,7 +104247,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_NATURAL___ALL_SUPERTYPES = LITERAL_EXPRESSION___ALL_SUPERTYPES;
+	int LITERAL_INTEGER___ALL_SUPERTYPES = LITERAL_EXPRESSION___ALL_SUPERTYPES;
 
 	/**
 	 * The operation id for the '<em>Direction For</em>' operation.
@@ -104256,7 +104256,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_NATURAL___DIRECTION_FOR__TYPE = LITERAL_EXPRESSION___DIRECTION_FOR__TYPE;
+	int LITERAL_INTEGER___DIRECTION_FOR__TYPE = LITERAL_EXPRESSION___DIRECTION_FOR__TYPE;
 
 	/**
 	 * The operation id for the '<em>Is Featured Within</em>' operation.
@@ -104265,7 +104265,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_NATURAL___IS_FEATURED_WITHIN__TYPE = LITERAL_EXPRESSION___IS_FEATURED_WITHIN__TYPE;
+	int LITERAL_INTEGER___IS_FEATURED_WITHIN__TYPE = LITERAL_EXPRESSION___IS_FEATURED_WITHIN__TYPE;
 
 	/**
 	 * The operation id for the '<em>Naming Feature</em>' operation.
@@ -104274,7 +104274,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_NATURAL___NAMING_FEATURE = LITERAL_EXPRESSION___NAMING_FEATURE;
+	int LITERAL_INTEGER___NAMING_FEATURE = LITERAL_EXPRESSION___NAMING_FEATURE;
 
 	/**
 	 * The operation id for the '<em>First Redefined Feature</em>' operation.
@@ -104283,7 +104283,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_NATURAL___FIRST_REDEFINED_FEATURE = LITERAL_EXPRESSION___FIRST_REDEFINED_FEATURE;
+	int LITERAL_INTEGER___FIRST_REDEFINED_FEATURE = LITERAL_EXPRESSION___FIRST_REDEFINED_FEATURE;
 
 	/**
 	 * The operation id for the '<em>First Subsetted Feature</em>' operation.
@@ -104292,7 +104292,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_NATURAL___FIRST_SUBSETTED_FEATURE = LITERAL_EXPRESSION___FIRST_SUBSETTED_FEATURE;
+	int LITERAL_INTEGER___FIRST_SUBSETTED_FEATURE = LITERAL_EXPRESSION___FIRST_SUBSETTED_FEATURE;
 
 	/**
 	 * The operation id for the '<em>Evaluate</em>' operation.
@@ -104301,16 +104301,16 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_NATURAL___EVALUATE__ELEMENT = LITERAL_EXPRESSION___EVALUATE__ELEMENT;
+	int LITERAL_INTEGER___EVALUATE__ELEMENT = LITERAL_EXPRESSION___EVALUATE__ELEMENT;
 
 	/**
-	 * The number of operations of the '<em>Literal Natural</em>' class.
+	 * The number of operations of the '<em>Literal Integer</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_NATURAL_OPERATION_COUNT = LITERAL_EXPRESSION_OPERATION_COUNT + 0;
+	int LITERAL_INTEGER_OPERATION_COUNT = LITERAL_EXPRESSION_OPERATION_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Owning Membership</b></em>' reference.
@@ -124303,25 +124303,25 @@ public interface SysMLPackage extends EPackage {
 	EClass getSuccessionAsUsage();
 
 	/**
-	 * Returns the meta object for class '{@link org.omg.sysml.lang.sysml.LiteralNatural <em>Literal Natural</em>}'.
+	 * Returns the meta object for class '{@link org.omg.sysml.lang.sysml.LiteralInteger <em>Literal Integer</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Literal Natural</em>'.
-	 * @see org.omg.sysml.lang.sysml.LiteralNatural
+	 * @return the meta object for class '<em>Literal Integer</em>'.
+	 * @see org.omg.sysml.lang.sysml.LiteralInteger
 	 * @generated
 	 */
-	EClass getLiteralNatural();
+	EClass getLiteralInteger();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.omg.sysml.lang.sysml.LiteralNatural#getValue <em>Value</em>}'.
+	 * Returns the meta object for the attribute '{@link org.omg.sysml.lang.sysml.LiteralInteger#getValue <em>Value</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Value</em>'.
-	 * @see org.omg.sysml.lang.sysml.LiteralNatural#getValue()
-	 * @see #getLiteralNatural()
+	 * @see org.omg.sysml.lang.sysml.LiteralInteger#getValue()
+	 * @see #getLiteralInteger()
 	 * @generated
 	 */
-	EAttribute getLiteralNatural_Value();
+	EAttribute getLiteralInteger_Value();
 
 	/**
 	 * Returns the meta object for class '{@link org.omg.sysml.lang.sysml.NullExpression <em>Null Expression</em>}'.
@@ -129166,14 +129166,14 @@ public interface SysMLPackage extends EPackage {
 		EClass SUCCESSION_AS_USAGE = eINSTANCE.getSuccessionAsUsage();
 
 		/**
-		 * The meta object literal for the '{@link org.omg.sysml.lang.sysml.impl.LiteralNaturalImpl <em>Literal Natural</em>}' class.
+		 * The meta object literal for the '{@link org.omg.sysml.lang.sysml.impl.LiteralIntegerImpl <em>Literal Integer</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.omg.sysml.lang.sysml.impl.LiteralNaturalImpl
-		 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getLiteralNatural()
+		 * @see org.omg.sysml.lang.sysml.impl.LiteralIntegerImpl
+		 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getLiteralInteger()
 		 * @generated
 		 */
-		EClass LITERAL_NATURAL = eINSTANCE.getLiteralNatural();
+		EClass LITERAL_INTEGER = eINSTANCE.getLiteralInteger();
 
 		/**
 		 * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
@@ -129181,7 +129181,7 @@ public interface SysMLPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute LITERAL_NATURAL__VALUE = eINSTANCE.getLiteralNatural_Value();
+		EAttribute LITERAL_INTEGER__VALUE = eINSTANCE.getLiteralInteger_Value();
 
 		/**
 		 * The meta object literal for the '{@link org.omg.sysml.lang.sysml.impl.NullExpressionImpl <em>Null Expression</em>}' class.

@@ -92,7 +92,7 @@ import org.omg.sysml.lang.sysml.OccurrenceDefinition
 import org.omg.sysml.lang.sysml.Structure
 import org.omg.sysml.lang.sysml.Step
 import org.omg.sysml.lang.sysml.LiteralInfinity
-import org.omg.sysml.lang.sysml.LiteralNatural
+import org.omg.sysml.lang.sysml.LiteralInteger
 
 /**
  * This class contains custom validation rules. 
@@ -402,7 +402,7 @@ class SysMLValidator extends KerMLValidator {
 			
 			// Lower bound (only check if the Subsetting is a Redefinition): setting must be >= setted
 			if (sub instanceof Redefinition) {
-				if (setting_m_l instanceof LiteralNatural && setted_m_l instanceof LiteralNatural && (setting_m_l as LiteralNatural).getValue < (setted_m_l as LiteralNatural).getValue) {
+				if (setting_m_l instanceof LiteralInteger && setted_m_l instanceof LiteralInteger && (setting_m_l as LiteralInteger).getValue < (setted_m_l as LiteralInteger).getValue) {
 					warning("Redefining feature should not have smaller multiplicity lower bound", sub, 
 						SysMLPackage.eINSTANCE.redefinition_RedefiningFeature, SysMLValidator.INVALID_REDEFINITION_MULTIPLICITYCONFORMANCE)
 				}
@@ -410,7 +410,7 @@ class SysMLValidator extends KerMLValidator {
 			
 			// Upper bound: setting must be <= setted
 			if (setting_m_u instanceof LiteralInfinity && !(setted_m_u instanceof LiteralInfinity) ||
-				setting_m_u instanceof LiteralNatural && setted_m_u instanceof LiteralNatural && (setting_m_u as LiteralNatural).getValue > (setted_m_u as LiteralNatural).getValue) {
+				setting_m_u instanceof LiteralInteger && setted_m_u instanceof LiteralInteger && (setting_m_u as LiteralInteger).getValue > (setted_m_u as LiteralInteger).getValue) {
 				warning("Subsetting/redefining feature should not have larger multiplicity upper bound", sub, 
 						SysMLPackage.eINSTANCE.subsetting_SubsettingFeature, SysMLValidator.INVALID_SUBSETTING_MULTIPLICITYCONFORMANCE)
 			}
@@ -418,7 +418,7 @@ class SysMLValidator extends KerMLValidator {
 
 		// Uniqueness conformance
 		if (sub.subsettedFeature !== null && sub.subsettedFeature.unique && sub.subsettingFeature !== null && !sub.subsettingFeature.unique){
-			if (setting_m_u instanceof LiteralInfinity || (setting_m_u as LiteralNatural).getValue > 1) {//less than or equal to 1 is ok
+			if (setting_m_u instanceof LiteralInfinity || (setting_m_u as LiteralInteger).getValue > 1) {//less than or equal to 1 is ok
 				warning("Subsetting/redefining feature should not be nonunique if subsetted/redefined feature is unique", sub, 
 						SysMLPackage.eINSTANCE.subsetting_SubsettingFeature, SysMLValidator.INVALID_SUBSETTING_UNIQUENESS_CONFORMANCE)
 			}

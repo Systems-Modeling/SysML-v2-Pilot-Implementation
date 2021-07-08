@@ -1401,13 +1401,13 @@ public interface SysMLFactory extends EFactory {
 	SuccessionAsUsage createSuccessionAsUsage();
 
 	/**
-	 * Returns a new object of class '<em>Literal Natural</em>'.
+	 * Returns a new object of class '<em>Literal Integer</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Literal Natural</em>'.
+	 * @return a new object of class '<em>Literal Integer</em>'.
 	 * @generated
 	 */
-	LiteralNatural createLiteralNatural();
+	LiteralInteger createLiteralInteger();
 
 	/**
 	 * Returns a new object of class '<em>Null Expression</em>'.

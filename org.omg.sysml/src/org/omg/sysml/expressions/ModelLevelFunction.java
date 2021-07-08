@@ -32,7 +32,7 @@ import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.InvocationExpression;
 import org.omg.sysml.lang.sysml.LiteralBoolean;
-import org.omg.sysml.lang.sysml.LiteralNatural;
+import org.omg.sysml.lang.sysml.LiteralInteger;
 import org.omg.sysml.lang.sysml.LiteralRational;
 import org.omg.sysml.lang.sysml.LiteralString;
 import org.omg.sysml.lang.sysml.LiteralInfinity;
@@ -132,7 +132,7 @@ public abstract class ModelLevelFunction {
 					(Type)SysMLLibraryUtil.getLibraryElement(context, "ScalarValues::Boolean"):
 			eClass == SysMLPackage.eINSTANCE.getLiteralString()? 
 					(Type)SysMLLibraryUtil.getLibraryElement(context, "ScalarValues::String"):
-			eClass == SysMLPackage.eINSTANCE.getLiteralNatural()? 
+			eClass == SysMLPackage.eINSTANCE.getLiteralInteger()? 
 					(Type)SysMLLibraryUtil.getLibraryElement(context, "ScalarValues::Integer"):
 			eClass == SysMLPackage.eINSTANCE.getLiteralRational()? 
 					(Type)SysMLLibraryUtil.getLibraryElement(context, "ScalarValues::Rational"):
@@ -167,7 +167,7 @@ public abstract class ModelLevelFunction {
 
 	protected static Integer integerValue(InvocationExpression invocation, int i, Element target) {
 		Element argument = argumentValue(invocation, i, target);
-		return argument instanceof LiteralNatural? ((LiteralNatural)argument).getValue(): null;
+		return argument instanceof LiteralInteger? ((LiteralInteger)argument).getValue(): null;
 	}
 
 	protected static Double realValue(InvocationExpression invocation, int i, Element target) {
@@ -201,9 +201,8 @@ public abstract class ModelLevelFunction {
 		return singletonList(literal);
 	}
 
-	// TODO: Restore LiteralInteger?
 	protected static EList<Element> integerResult(int value) {
-		LiteralNatural literal = SysMLFactory.eINSTANCE.createLiteralNatural();
+		LiteralInteger literal = SysMLFactory.eINSTANCE.createLiteralInteger();
 		literal.setValue(value);
 		return singletonList(literal);
 	}
@@ -217,7 +216,7 @@ public abstract class ModelLevelFunction {
 	protected static Object valueOf(Element element) {
 		return element instanceof LiteralBoolean? Boolean.valueOf(((LiteralBoolean)element).isValue()):
 			   element instanceof LiteralString? ((LiteralString)element).getValue():
-			   element instanceof LiteralNatural? Integer.valueOf(((LiteralNatural)element).getValue()):
+			   element instanceof LiteralInteger? Integer.valueOf(((LiteralInteger)element).getValue()):
 			   element instanceof LiteralRational? Double.valueOf(((LiteralRational)element).getValue()):
 			   element instanceof LiteralInfinity? null:
 			   element;

@@ -9692,7 +9692,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		return getLiteralStringAccess().getRule();
 	}
 	
-	//LiteralInteger returns SysML::LiteralNatural:
+	//LiteralInteger returns SysML::LiteralInteger:
 	//    value = DECIMAL_VALUE
 	//;
 	public KerMLExpressionsGrammarAccess.LiteralIntegerElements getLiteralIntegerAccess() {

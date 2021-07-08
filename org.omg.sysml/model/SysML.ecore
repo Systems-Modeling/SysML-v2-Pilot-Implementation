@@ -4092,7 +4092,7 @@
       <details key="documentation" value="&lt;p>A SuccessionAsUsage is both a ConnectorAsUsage and a Succession.&lt;p>"/>
     </eAnnotations>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="LiteralNatural" eSuperTypes="#//LiteralExpression">
+  <eClassifiers xsi:type="ecore:EClass" name="LiteralInteger" eSuperTypes="#//LiteralExpression">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="&lt;p>A LiteralInteger is a LiteralExpression that provides an Integer value as a result. It must have an owned &lt;code>result&lt;/code> parameter whose type is &lt;em>Integer&lt;/em>.&lt;/p>&#xA;&#xA;&lt;p>An Expression that provides an Integer value as a result.&lt;/p>&#xA;&#xA;&lt;p>A LiteralInteger must be typed by a specialization of Evaluation with no input parameters and a single Integer value as its result.&lt;/p>"/>
     </eAnnotations>

@@ -35,7 +35,7 @@ import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.LiteralBoolean;
-import org.omg.sysml.lang.sysml.LiteralNatural;
+import org.omg.sysml.lang.sysml.LiteralInteger;
 import org.omg.sysml.lang.sysml.LiteralRational;
 import org.omg.sysml.lang.sysml.LiteralString;
 import org.omg.sysml.lang.sysml.Namespace;
@@ -94,8 +94,8 @@ public class ModelLevelEvaluationTest extends SysMLInteractiveTest {
 	
 	protected int evaluateIntegerValue(SysMLInteractive instance, Element target, String text) {
 		Element result = evaluateSingleValue(instance, target, text);
-		assertTrue(result instanceof LiteralNatural);
-		return ((LiteralNatural)result).getValue();
+		assertTrue(result instanceof LiteralInteger);
+		return ((LiteralInteger)result).getValue();
 	}
 	
 	protected double evaluateRealValue(SysMLInteractive instance, Element target, String text) {

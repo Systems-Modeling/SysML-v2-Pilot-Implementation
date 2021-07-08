@@ -1140,7 +1140,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass literalNaturalEClass = null;
+	private EClass literalIntegerEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -6791,8 +6791,8 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * @generated
 	 */
 	@Override
-	public EClass getLiteralNatural() {
-		return literalNaturalEClass;
+	public EClass getLiteralInteger() {
+		return literalIntegerEClass;
 	}
 
 	/**
@@ -6801,8 +6801,8 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * @generated
 	 */
 	@Override
-	public EAttribute getLiteralNatural_Value() {
-		return (EAttribute)literalNaturalEClass.getEStructuralFeatures().get(0);
+	public EAttribute getLiteralInteger_Value() {
+		return (EAttribute)literalIntegerEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -7565,8 +7565,8 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 
 		successionAsUsageEClass = createEClass(SUCCESSION_AS_USAGE);
 
-		literalNaturalEClass = createEClass(LITERAL_NATURAL);
-		createEAttribute(literalNaturalEClass, LITERAL_NATURAL__VALUE);
+		literalIntegerEClass = createEClass(LITERAL_INTEGER);
+		createEAttribute(literalIntegerEClass, LITERAL_INTEGER__VALUE);
 
 		literalExpressionEClass = createEClass(LITERAL_EXPRESSION);
 
@@ -7841,7 +7841,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		successionItemFlowEClass.getESuperTypes().add(this.getSuccession());
 		successionAsUsageEClass.getESuperTypes().add(this.getConnectorAsUsage());
 		successionAsUsageEClass.getESuperTypes().add(this.getSuccession());
-		literalNaturalEClass.getESuperTypes().add(this.getLiteralExpression());
+		literalIntegerEClass.getESuperTypes().add(this.getLiteralExpression());
 		literalExpressionEClass.getESuperTypes().add(this.getExpression());
 		literalRationalEClass.getESuperTypes().add(this.getLiteralExpression());
 		nullExpressionEClass.getESuperTypes().add(this.getExpression());
@@ -8541,8 +8541,8 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 
 		initEClass(successionAsUsageEClass, SuccessionAsUsage.class, "SuccessionAsUsage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(literalNaturalEClass, LiteralNatural.class, "LiteralNatural", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getLiteralNatural_Value(), theTypesPackage.getInteger(), "value", null, 1, 1, LiteralNatural.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEClass(literalIntegerEClass, LiteralInteger.class, "LiteralInteger", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getLiteralInteger_Value(), theTypesPackage.getInteger(), "value", null, 1, 1, LiteralInteger.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(literalExpressionEClass, LiteralExpression.class, "LiteralExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

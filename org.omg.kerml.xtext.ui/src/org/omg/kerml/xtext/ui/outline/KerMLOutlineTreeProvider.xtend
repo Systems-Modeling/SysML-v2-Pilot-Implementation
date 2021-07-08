@@ -40,7 +40,7 @@ import org.omg.sysml.util.FeatureUtil
 import org.omg.sysml.lang.sysml.LiteralRational
 import org.omg.sysml.lang.sysml.LiteralInfinity
 import org.omg.sysml.lang.sysml.Specialization
-import org.omg.sysml.lang.sysml.LiteralNatural
+import org.omg.sysml.lang.sysml.LiteralInteger
 
 /**
  * Customization of the default outline structure.
@@ -184,7 +184,7 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		literal.metaclassText + ' ' + literal.value
 	}
 	
-	def String _text(LiteralNatural literal) {
+	def String _text(LiteralInteger literal) {
 		literal.metaclassText + ' ' + literal.getValue
 	}
 	

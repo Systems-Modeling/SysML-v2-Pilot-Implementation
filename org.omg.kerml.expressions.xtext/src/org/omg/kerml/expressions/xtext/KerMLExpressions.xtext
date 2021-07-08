@@ -365,7 +365,7 @@ LiteralString returns SysML::LiteralString :
 	value = STRING_VALUE
 ;
 
-LiteralInteger returns SysML::LiteralNatural:
+LiteralInteger returns SysML::LiteralInteger:
 	value = DECIMAL_VALUE
 ;
 

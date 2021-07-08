@@ -43,6 +43,6 @@ package AliasTest {
     }
 
 
-    connect p1::po1 to p2::pdest;
-	connect p1::po1 to p2::pd1;
+    connect p1.po1 to p2.pdest;
+	connect p1.po1 to p2.pd1;
 }

@@ -468,8 +468,8 @@ public class ImportImpl extends RelationshipImpl implements Import {
 	 */
 	@Override
 	public EList<Membership> importedMembership(EList<Namespace> excluded) {
-		return this.importMembership(new BasicInternalEList<Membership>(Membership.class), null,
-				excluded, new HashSet<Type>());
+		return this.importMembership(new BasicInternalEList<>(Membership.class), null,
+				excluded, new HashSet<>());
 	}
 
 	// Note: The excludedType parameter is needed in case the imported Namespace
@@ -493,7 +493,7 @@ public class ImportImpl extends RelationshipImpl implements Import {
 			Collection<Type> excludedTypes, boolean isRecursive) {
 		Collection<Membership> namespaceMembership = importedMemberName == null? 
 				((NamespaceImpl) importedNamespace).getVisibleMembership(excludedNamespaces, excludedTypes, isImportAll):
-				SysMLScopeUtil.getMembershipsFor(this, SysMLPackage.eINSTANCE.getImport_ImportOwningNamespace(), importedMemberName);
+				SysMLScopeUtil.getMembershipsFor(this, SysMLPackage.eINSTANCE.getImport_ImportOwningNamespace(), importedMemberName, isImportAll);
 		importedMembership.addAll(namespaceMembership);
 		if (nonpublicMembership != null && !VisibilityKind.PUBLIC.equals(this.getVisibility())) {
 			nonpublicMembership.addAll(namespaceMembership);

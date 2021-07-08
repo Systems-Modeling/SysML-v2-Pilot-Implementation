@@ -30,5 +30,5 @@ import org.eclipse.xtext.scoping.IScope;
 import org.omg.sysml.lang.sysml.Membership;
 
 public interface ISysMLScope extends IScope {
-	Set<Membership> getMemberships(String name);
+	Set<Membership> getMemberships(String name, boolean includeAll);
 }

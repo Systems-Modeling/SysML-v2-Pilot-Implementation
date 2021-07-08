@@ -114,7 +114,7 @@ class KerMLGlobalScope extends AbstractScope implements ISysMLScope {
 		return if (filter === null) allElements else Iterables.filter(allElements, filter)
 	}
 	
-	override getMemberships(String name) {
+	override getMemberships(String name, boolean includeAll) {
 		val result = outer.getSingleElement(QualifiedName.create(name))
 		if (result === null) {
 			return Collections.emptySet

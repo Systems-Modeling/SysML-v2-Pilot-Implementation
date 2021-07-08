@@ -49,8 +49,8 @@ class SysMLScopeUtil {
 		return getScopeProvider(resource).getScope(context, reference) as ISysMLScope
 	}
 	
-	def static Collection<Membership> getMembershipsFor(EObject context, EReference reference, String name) {
-		return getScopeFor(context.eResource(), context, reference).getMemberships(name)
+	def static Collection<Membership> getMembershipsFor(EObject context, EReference reference, String name, boolean includeAll) {
+		return getScopeFor(context.eResource(), context, reference).getMemberships(name, includeAll)
 	}
 	
 }

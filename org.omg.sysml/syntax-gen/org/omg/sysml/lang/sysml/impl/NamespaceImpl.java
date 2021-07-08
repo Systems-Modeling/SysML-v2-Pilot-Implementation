@@ -263,9 +263,15 @@ public class NamespaceImpl extends ElementImpl implements Namespace {
 
 	// Note: The excludedTypes parameter is need when this operation is overridden in class Type.
 	public EList<Membership> getVisibleMembership(Collection<org.omg.sysml.lang.sysml.Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean includeAll) {
-		EList<Membership> publicMembership = includeAll? getOwnedMembership(): getVisibleOwnedMembership(VisibilityKind.PUBLIC);
-		publicMembership.addAll(this.getImportedMembership(excludedNamespaces, excludedTypes, includeAll));
-		return publicMembership;
+		EList<Membership> visibleMembership;
+		if (includeAll) {
+			visibleMembership = new BasicInternalEList<Membership>(Membership.class);
+			visibleMembership.addAll(getOwnedMembership());
+		} else {
+			visibleMembership = getVisibleOwnedMembership(VisibilityKind.PUBLIC);
+		}
+		visibleMembership.addAll(this.getImportedMembership(excludedNamespaces, excludedTypes, includeAll));
+		return visibleMembership;
 	}
 
 	public EList<Membership> getVisibleOwnedMembership(VisibilityKind visibility) {
@@ -275,15 +281,15 @@ public class NamespaceImpl extends ElementImpl implements Namespace {
 		return publicMembership;
 	}
 
-	public EList<Membership> getImportedMembership(Collection<org.omg.sysml.lang.sysml.Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean isIncludeAll) {
+	public EList<Membership> getImportedMembership(Collection<org.omg.sysml.lang.sysml.Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean includeAll) {
 		EList<Membership> importedMembership = new NonNotifyingEObjectEList<>(Membership.class, this, SysMLPackage.NAMESPACE__IMPORTED_MEMBERSHIP);
-		Collection<Membership> nonpublicMembership = isIncludeAll? null: new HashSet<Membership>();
+		Collection<Membership> nonpublicMembership = includeAll? null: new HashSet<Membership>();
 		for (Import _import: this.getOwnedImport()) {
 			if (!excludedNamespaces.contains(_import.getImportOwningNamespace())) {
 				((ImportImpl)_import).importMembership(importedMembership, nonpublicMembership, excludedNamespaces, excludedTypes);
 			}
 		}
-		if (!isIncludeAll) {
+		if (!includeAll) {
 			importedMembership.removeAll(nonpublicMembership);
 		}
 		return importedMembership;

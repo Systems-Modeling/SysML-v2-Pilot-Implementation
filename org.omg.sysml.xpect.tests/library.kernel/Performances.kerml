@@ -5,6 +5,7 @@ package Performances {
 	private import Base::Anything;
 	private import Base::things;
 	private import Occurrences::Occurrence;
+	private import Occurrences::occurrences;
 	private import Objects::Object;
 	private import Objects::BinaryLinkObject;
 	
@@ -92,7 +93,7 @@ package Performances {
 	/**
 	 * performances is the most general feature for performances of behaviors.
 	 */
-	abstract step performances: Performance[0..*] nonunique subsets things;
+	abstract step performances: Performance[0..*] nonunique subsets occurrences;
 	
 	/**
 	 * evaluations is a specialization of performances for evaluations of functions.

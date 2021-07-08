@@ -5,6 +5,8 @@
 package Items {
 	private import Objects::Object;
 	private import Objects::objects;
+	private import Parts::Part;
+	private import Parts::parts;
 	private import Constraints::ConstraintCheck;
 	
 	/**
@@ -16,6 +18,16 @@ package Items {
 		
 		item start: Item :>> startShot;
 		item done: Item :>> endShot;
+		
+		/**
+		 * The Items that are composite subitems of this Item.
+		 */
+		abstract item subitems: Item[0..*];
+		
+		/**
+		 * The subitems of this Item that are Parts.
+		 */
+		abstract part subparts: Part[0..*] :> subitems, parts;
 		
 		/**
 		 * Constraints that are asserted by this item.

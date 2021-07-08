@@ -43,13 +43,13 @@ public class ActionUsageAdapter extends OccurrenceUsageAdapter {
 		super(element);
 	}
 	
-	// Implicit Generalization
-	
 	@Override
 	public ActionUsage getTarget() {
 		return (ActionUsage)super.getTarget();
 	}
 
+	// Implicit Generalization
+	
 	@Override
 	protected String getDefaultSupertype() {
 		return isSubaction()? 

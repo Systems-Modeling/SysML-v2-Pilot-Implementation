@@ -158,6 +158,7 @@ public class ImplicitGeneralizationMap {
 		
 		put(ItemDefinitionImpl.class, "base", "Items::Item");
 		put(ItemUsageImpl.class, "base", "Items::items");
+		put(ItemUsageImpl.class, "subitem", "Items::Item::subitems");
 		
 		put(JoinNodeImpl.class, "subaction", "Actions::Action::joins");
 		
@@ -170,10 +171,12 @@ public class ImplicitGeneralizationMap {
 		
 		put(PartDefinitionImpl.class, "base", "Parts::Part");
 		put(PartUsageImpl.class, "base", "Parts::parts");
+		put(PartUsageImpl.class, "subitem", "Items::Item::subparts");
 		
 		put(PortDefinitionImpl.class, "base", "Ports::Port");
 		put(PortUsageImpl.class, "base", "Ports::ports");
-		put(PortUsageImpl.class, "port", "Parts::Part::ports");
+		put(PortUsageImpl.class, "portOnPart", "Parts::Part::portsOnPart");
+		put(PortUsageImpl.class, "subport", "Ports::Port::subports");
 		
 		put(PerformActionUsageImpl.class, "enactedPerformance", "Parts::Part::performedActions");
 		

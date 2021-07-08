@@ -45,10 +45,7 @@ package pkg {
 		item anaction: anAction;
 		// XPECT errors --> "An item must be typed by item definitions." at "item aportdef: APortDef;"
 		item aportdef: APortDef;
-		/* XPECT errors ---
-		 	"An item must be typed by item definitions." at "item aport: ABlock::aPort;"
-		 	"Features must have at least one type" at "item aport: ABlock::aPort;"
-		--- */
+		// XPECT errors ---> "An item must be typed by item definitions." at "item aport: ABlock::aPort;"
 		item aport: ABlock::aPort;
 		/* XPECT errors ---
 		 "An item must be typed by item definitions." at "item apart: ABlock::aPart;"

@@ -147,7 +147,7 @@ package Occurrences {
 		binding portionOf = self;
 	}
 	
-	abstract feature occurrences: Occurrence[0..*] subsets things;
+	abstract feature occurrences: Occurrence[0..*] nonunique subsets things;
 	
 	/**
 	 * SelfSameLifeLink is a binary association that is equivalent to SelfLink it the

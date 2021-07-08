@@ -4098,44 +4098,66 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	public class ValuePartElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.ValuePart");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cEqualsSignKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cOwnedRelationshipAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cOwnedRelationshipFeatureValueParserRuleCall_1_0 = (RuleCall)cOwnedRelationshipAssignment_1.eContents().get(0);
+		private final Assignment cOwnedRelationshipAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cOwnedRelationshipFeatureValueParserRuleCall_0 = (RuleCall)cOwnedRelationshipAssignment.eContents().get(0);
 		
 		///* FEATURE VALUES */
 		//fragment ValuePart returns SysML::Feature :
-		//    '=' ownedRelationship += FeatureValue
+		//    ownedRelationship += FeatureValue
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'=' ownedRelationship += FeatureValue
-		public Group getGroup() { return cGroup; }
-		
-		//'='
-		public Keyword getEqualsSignKeyword_0() { return cEqualsSignKeyword_0; }
-		
 		//ownedRelationship += FeatureValue
-		public Assignment getOwnedRelationshipAssignment_1() { return cOwnedRelationshipAssignment_1; }
+		public Assignment getOwnedRelationshipAssignment() { return cOwnedRelationshipAssignment; }
 		
 		//FeatureValue
-		public RuleCall getOwnedRelationshipFeatureValueParserRuleCall_1_0() { return cOwnedRelationshipFeatureValueParserRuleCall_1_0; }
+		public RuleCall getOwnedRelationshipFeatureValueParserRuleCall_0() { return cOwnedRelationshipFeatureValueParserRuleCall_0; }
 	}
 	public class FeatureValueElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.FeatureValue");
-		private final Assignment cOwnedRelatedElementAssignment = (Assignment)rule.eContents().get(1);
-		private final RuleCall cOwnedRelatedElementOwnedExpressionParserRuleCall_0 = (RuleCall)cOwnedRelatedElementAssignment.eContents().get(0);
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Alternatives cAlternatives_0 = (Alternatives)cGroup.eContents().get(0);
+		private final Keyword cEqualsSignKeyword_0_0 = (Keyword)cAlternatives_0.eContents().get(0);
+		private final Group cGroup_0_1 = (Group)cAlternatives_0.eContents().get(1);
+		private final Assignment cIsDefaultAssignment_0_1_0 = (Assignment)cGroup_0_1.eContents().get(0);
+		private final Keyword cIsDefaultDefaultKeyword_0_1_0_0 = (Keyword)cIsDefaultAssignment_0_1_0.eContents().get(0);
+		private final Keyword cEqualsSignKeyword_0_1_1 = (Keyword)cGroup_0_1.eContents().get(1);
+		private final Assignment cOwnedRelatedElementAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cOwnedRelatedElementOwnedExpressionParserRuleCall_1_0 = (RuleCall)cOwnedRelatedElementAssignment_1.eContents().get(0);
 		
 		//FeatureValue returns SysML::FeatureValue :
+		//    ( '=' | isDefault ?= 'default' '='? )
 		//    ownedRelatedElement += OwnedExpression // value = OwnedExpression
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
+		//( '=' | isDefault ?= 'default' '='? )
 		//ownedRelatedElement += OwnedExpression
-		public Assignment getOwnedRelatedElementAssignment() { return cOwnedRelatedElementAssignment; }
+		public Group getGroup() { return cGroup; }
+		
+		//( '=' | isDefault ?= 'default' '='? )
+		public Alternatives getAlternatives_0() { return cAlternatives_0; }
+		
+		//'='
+		public Keyword getEqualsSignKeyword_0_0() { return cEqualsSignKeyword_0_0; }
+		
+		//isDefault ?= 'default' '='?
+		public Group getGroup_0_1() { return cGroup_0_1; }
+		
+		//isDefault ?= 'default'
+		public Assignment getIsDefaultAssignment_0_1_0() { return cIsDefaultAssignment_0_1_0; }
+		
+		//'default'
+		public Keyword getIsDefaultDefaultKeyword_0_1_0_0() { return cIsDefaultDefaultKeyword_0_1_0_0; }
+		
+		//'='?
+		public Keyword getEqualsSignKeyword_0_1_1() { return cEqualsSignKeyword_0_1_1; }
+		
+		//ownedRelatedElement += OwnedExpression
+		public Assignment getOwnedRelatedElementAssignment_1() { return cOwnedRelatedElementAssignment_1; }
 		
 		//OwnedExpression
-		public RuleCall getOwnedRelatedElementOwnedExpressionParserRuleCall_0() { return cOwnedRelatedElementOwnedExpressionParserRuleCall_0; }
+		public RuleCall getOwnedRelatedElementOwnedExpressionParserRuleCall_1_0() { return cOwnedRelatedElementOwnedExpressionParserRuleCall_1_0; }
 	}
 	public class MultiplicityElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.Multiplicity");
@@ -8158,7 +8180,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	
 	///* FEATURE VALUES */
 	//fragment ValuePart returns SysML::Feature :
-	//    '=' ownedRelationship += FeatureValue
+	//    ownedRelationship += FeatureValue
 	//;
 	public ValuePartElements getValuePartAccess() {
 		return pValuePart;
@@ -8169,6 +8191,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//FeatureValue returns SysML::FeatureValue :
+	//    ( '=' | isDefault ?= 'default' '='? )
 	//    ownedRelatedElement += OwnedExpression // value = OwnedExpression
 	//;
 	public FeatureValueElements getFeatureValueAccess() {

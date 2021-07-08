@@ -629,10 +629,11 @@ FeatureConjugation returns SysML::Conjugation :
 /* FEATURE VALUES */
 
 fragment ValuePart returns SysML::Feature :
-	'=' ownedRelationship += FeatureValue
+	ownedRelationship += FeatureValue
 ;
 
 FeatureValue returns SysML::FeatureValue :
+	( '=' | isDefault ?= 'default' '='? )
 	ownedRelatedElement += OwnedExpression // value = OwnedExpression
 ;
 

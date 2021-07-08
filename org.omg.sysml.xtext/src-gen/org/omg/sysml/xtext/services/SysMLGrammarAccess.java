@@ -3780,27 +3780,19 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	public class ValuePartElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.ValuePart");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cEqualsSignKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cOwnedRelationshipAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cOwnedRelationshipFeatureValueParserRuleCall_1_0 = (RuleCall)cOwnedRelationshipAssignment_1.eContents().get(0);
+		private final Assignment cOwnedRelationshipAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cOwnedRelationshipFeatureValueParserRuleCall_0 = (RuleCall)cOwnedRelationshipAssignment.eContents().get(0);
 		
 		//fragment ValuePart returns SysML::Feature :
-		//      '=' ownedRelationship += FeatureValue
+		//    ownedRelationship += FeatureValue
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'=' ownedRelationship += FeatureValue
-		public Group getGroup() { return cGroup; }
-		
-		//'='
-		public Keyword getEqualsSignKeyword_0() { return cEqualsSignKeyword_0; }
-		
 		//ownedRelationship += FeatureValue
-		public Assignment getOwnedRelationshipAssignment_1() { return cOwnedRelationshipAssignment_1; }
+		public Assignment getOwnedRelationshipAssignment() { return cOwnedRelationshipAssignment; }
 		
 		//FeatureValue
-		public RuleCall getOwnedRelationshipFeatureValueParserRuleCall_1_0() { return cOwnedRelationshipFeatureValueParserRuleCall_1_0; }
+		public RuleCall getOwnedRelationshipFeatureValueParserRuleCall_0() { return cOwnedRelationshipFeatureValueParserRuleCall_0; }
 	}
 	public class ValueOrFlowPartElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.ValueOrFlowPart");
@@ -3828,19 +3820,49 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	public class FeatureValueElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.FeatureValue");
-		private final Assignment cOwnedRelatedElementAssignment = (Assignment)rule.eContents().get(1);
-		private final RuleCall cOwnedRelatedElementOwnedExpressionParserRuleCall_0 = (RuleCall)cOwnedRelatedElementAssignment.eContents().get(0);
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Alternatives cAlternatives_0 = (Alternatives)cGroup.eContents().get(0);
+		private final Keyword cEqualsSignKeyword_0_0 = (Keyword)cAlternatives_0.eContents().get(0);
+		private final Group cGroup_0_1 = (Group)cAlternatives_0.eContents().get(1);
+		private final Assignment cIsDefaultAssignment_0_1_0 = (Assignment)cGroup_0_1.eContents().get(0);
+		private final Keyword cIsDefaultDefaultKeyword_0_1_0_0 = (Keyword)cIsDefaultAssignment_0_1_0.eContents().get(0);
+		private final Keyword cEqualsSignKeyword_0_1_1 = (Keyword)cGroup_0_1.eContents().get(1);
+		private final Assignment cOwnedRelatedElementAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cOwnedRelatedElementOwnedExpressionParserRuleCall_1_0 = (RuleCall)cOwnedRelatedElementAssignment_1.eContents().get(0);
 		
 		//FeatureValue returns SysML::FeatureValue :
+		//    ( '=' | isDefault ?= 'default' '='? )
 		//    ownedRelatedElement += OwnedExpression // value = OwnedExpression
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
+		//( '=' | isDefault ?= 'default' '='? )
 		//ownedRelatedElement += OwnedExpression
-		public Assignment getOwnedRelatedElementAssignment() { return cOwnedRelatedElementAssignment; }
+		public Group getGroup() { return cGroup; }
+		
+		//( '=' | isDefault ?= 'default' '='? )
+		public Alternatives getAlternatives_0() { return cAlternatives_0; }
+		
+		//'='
+		public Keyword getEqualsSignKeyword_0_0() { return cEqualsSignKeyword_0_0; }
+		
+		//isDefault ?= 'default' '='?
+		public Group getGroup_0_1() { return cGroup_0_1; }
+		
+		//isDefault ?= 'default'
+		public Assignment getIsDefaultAssignment_0_1_0() { return cIsDefaultAssignment_0_1_0; }
+		
+		//'default'
+		public Keyword getIsDefaultDefaultKeyword_0_1_0_0() { return cIsDefaultDefaultKeyword_0_1_0_0; }
+		
+		//'='?
+		public Keyword getEqualsSignKeyword_0_1_1() { return cEqualsSignKeyword_0_1_1; }
+		
+		//ownedRelatedElement += OwnedExpression
+		public Assignment getOwnedRelatedElementAssignment_1() { return cOwnedRelatedElementAssignment_1; }
 		
 		//OwnedExpression
-		public RuleCall getOwnedRelatedElementOwnedExpressionParserRuleCall_0() { return cOwnedRelatedElementOwnedExpressionParserRuleCall_0; }
+		public RuleCall getOwnedRelatedElementOwnedExpressionParserRuleCall_1_0() { return cOwnedRelatedElementOwnedExpressionParserRuleCall_1_0; }
 	}
 	public class SourceItemFlowMemberElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.SourceItemFlowMember");
@@ -7785,24 +7807,40 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Action cReferenceUsageAction_0 = (Action)cGroup.eContents().get(0);
 		private final Assignment cOwnedRelationshipAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cOwnedRelationshipFeatureValueParserRuleCall_1_0 = (RuleCall)cOwnedRelationshipAssignment_1.eContents().get(0);
+		private final RuleCall cOwnedRelationshipFeatureBindingParserRuleCall_1_0 = (RuleCall)cOwnedRelationshipAssignment_1.eContents().get(0);
 		
 		//NodeParameter returns SysML::Usage :
-		//    {SysML::ReferenceUsage} ownedRelationship += FeatureValue
+		//    {SysML::ReferenceUsage} ownedRelationship += FeatureBinding
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{SysML::ReferenceUsage} ownedRelationship += FeatureValue
+		//{SysML::ReferenceUsage} ownedRelationship += FeatureBinding
 		public Group getGroup() { return cGroup; }
 		
 		//{SysML::ReferenceUsage}
 		public Action getReferenceUsageAction_0() { return cReferenceUsageAction_0; }
 		
-		//ownedRelationship += FeatureValue
+		//ownedRelationship += FeatureBinding
 		public Assignment getOwnedRelationshipAssignment_1() { return cOwnedRelationshipAssignment_1; }
 		
-		//FeatureValue
-		public RuleCall getOwnedRelationshipFeatureValueParserRuleCall_1_0() { return cOwnedRelationshipFeatureValueParserRuleCall_1_0; }
+		//FeatureBinding
+		public RuleCall getOwnedRelationshipFeatureBindingParserRuleCall_1_0() { return cOwnedRelationshipFeatureBindingParserRuleCall_1_0; }
+	}
+	public class FeatureBindingElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.FeatureBinding");
+		private final Assignment cOwnedRelatedElementAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cOwnedRelatedElementOwnedExpressionParserRuleCall_0 = (RuleCall)cOwnedRelatedElementAssignment.eContents().get(0);
+		
+		//FeatureBinding returns SysML::FeatureValue :
+		//    ownedRelatedElement += OwnedExpression // value = ownedExpression
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//ownedRelatedElement += OwnedExpression
+		public Assignment getOwnedRelatedElementAssignment() { return cOwnedRelatedElementAssignment; }
+		
+		//OwnedExpression
+		public RuleCall getOwnedRelatedElementOwnedExpressionParserRuleCall_0() { return cOwnedRelatedElementOwnedExpressionParserRuleCall_0; }
 	}
 	public class ControlNodeElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.ControlNode");
@@ -12382,6 +12420,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	private final SendNodeDeclarationElements pSendNodeDeclaration;
 	private final NodeParameterMemberElements pNodeParameterMember;
 	private final NodeParameterElements pNodeParameter;
+	private final FeatureBindingElements pFeatureBinding;
 	private final ControlNodeElements pControlNode;
 	private final MergeNodeElements pMergeNode;
 	private final DecisionNodeElements pDecisionNode;
@@ -12775,6 +12814,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		this.pSendNodeDeclaration = new SendNodeDeclarationElements();
 		this.pNodeParameterMember = new NodeParameterMemberElements();
 		this.pNodeParameter = new NodeParameterElements();
+		this.pFeatureBinding = new FeatureBindingElements();
 		this.pControlNode = new ControlNodeElements();
 		this.pMergeNode = new MergeNodeElements();
 		this.pDecisionNode = new DecisionNodeElements();
@@ -14306,7 +14346,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//fragment ValuePart returns SysML::Feature :
-	//      '=' ownedRelationship += FeatureValue
+	//    ownedRelationship += FeatureValue
 	//;
 	public ValuePartElements getValuePartAccess() {
 		return pValuePart;
@@ -14328,6 +14368,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//FeatureValue returns SysML::FeatureValue :
+	//    ( '=' | isDefault ?= 'default' '='? )
 	//    ownedRelatedElement += OwnedExpression // value = OwnedExpression
 	//;
 	public FeatureValueElements getFeatureValueAccess() {
@@ -15844,7 +15885,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//NodeParameter returns SysML::Usage :
-	//    {SysML::ReferenceUsage} ownedRelationship += FeatureValue
+	//    {SysML::ReferenceUsage} ownedRelationship += FeatureBinding
 	//;
 	public NodeParameterElements getNodeParameterAccess() {
 		return pNodeParameter;
@@ -15852,6 +15893,17 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	
 	public ParserRule getNodeParameterRule() {
 		return getNodeParameterAccess().getRule();
+	}
+	
+	//FeatureBinding returns SysML::FeatureValue :
+	//    ownedRelatedElement += OwnedExpression // value = ownedExpression
+	//;
+	public FeatureBindingElements getFeatureBindingAccess() {
+		return pFeatureBinding;
+	}
+	
+	public ParserRule getFeatureBindingRule() {
+		return getFeatureBindingAccess().getRule();
 	}
 	
 	//ControlNode returns SysML::ControlNode :

@@ -39,6 +39,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	protected AbstractElementAlias match_EffectBehaviorUsage___LeftCurlyBracketKeyword_1_1_0_RightCurlyBracketKeyword_1_1_2__q;
 	protected AbstractElementAlias match_EnumeratedValue_EnumerationUsageKeywordParserRuleCall_0_q;
 	protected AbstractElementAlias match_EnumerationBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__;
+	protected AbstractElementAlias match_FeatureValue_EqualsSignKeyword_0_1_1_q;
 	protected AbstractElementAlias match_GuardedSuccession_FirstKeyword_1_1_q;
 	protected AbstractElementAlias match_InterfaceUsageDeclaration_ConnectorKeywordParserRuleCall_0_1_0_q;
 	protected AbstractElementAlias match_MetadataFeature_FeatureKeyword_0_q;
@@ -78,6 +79,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 		match_EffectBehaviorUsage___LeftCurlyBracketKeyword_1_1_0_RightCurlyBracketKeyword_1_1_2__q = new GroupAlias(false, true, new TokenAlias(false, false, grammarAccess.getEffectBehaviorUsageAccess().getLeftCurlyBracketKeyword_1_1_0()), new TokenAlias(false, false, grammarAccess.getEffectBehaviorUsageAccess().getRightCurlyBracketKeyword_1_1_2()));
 		match_EnumeratedValue_EnumerationUsageKeywordParserRuleCall_0_q = new TokenAlias(false, true, grammarAccess.getEnumeratedValueAccess().getEnumerationUsageKeywordParserRuleCall_0());
 		match_EnumerationBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getEnumerationBodyAccess().getLeftCurlyBracketKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getEnumerationBodyAccess().getRightCurlyBracketKeyword_1_2())), new TokenAlias(false, false, grammarAccess.getEnumerationBodyAccess().getSemicolonKeyword_0()));
+		match_FeatureValue_EqualsSignKeyword_0_1_1_q = new TokenAlias(false, true, grammarAccess.getFeatureValueAccess().getEqualsSignKeyword_0_1_1());
 		match_GuardedSuccession_FirstKeyword_1_1_q = new TokenAlias(false, true, grammarAccess.getGuardedSuccessionAccess().getFirstKeyword_1_1());
 		match_InterfaceUsageDeclaration_ConnectorKeywordParserRuleCall_0_1_0_q = new TokenAlias(false, true, grammarAccess.getInterfaceUsageDeclarationAccess().getConnectorKeywordParserRuleCall_0_1_0());
 		match_MetadataFeature_FeatureKeyword_0_q = new TokenAlias(false, true, grammarAccess.getMetadataFeatureAccess().getFeatureKeyword_0());
@@ -858,6 +860,8 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 				emit_EnumeratedValue_EnumerationUsageKeywordParserRuleCall_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_EnumerationBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__.equals(syntax))
 				emit_EnumerationBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_FeatureValue_EqualsSignKeyword_0_1_1_q.equals(syntax))
+				emit_FeatureValue_EqualsSignKeyword_0_1_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_GuardedSuccession_FirstKeyword_1_1_q.equals(syntax))
 				emit_GuardedSuccession_FirstKeyword_1_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_InterfaceUsageDeclaration_ConnectorKeywordParserRuleCall_0_1_0_q.equals(syntax))
@@ -1428,7 +1432,6 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     EnumerationUsageKeyword?
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) (ambiguity) '=' ownedRelationship+=FeatureValue
 	 *     (rule start) (ambiguity) 'id' humanId=Name
 	 *     (rule start) (ambiguity) '{' ownedRelationship+=AliasMember
 	 *     (rule start) (ambiguity) '{' ownedRelationship+=DefinitionMember
@@ -1443,6 +1446,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) RedefinesKeyword ownedRelationship+=OwnedRedefinition
 	 *     (rule start) (ambiguity) SubsetsKeyword ownedRelationship+=OwnedSubsetting
 	 *     (rule start) (ambiguity) name=Name
+	 *     (rule start) (ambiguity) ownedRelationship+=FeatureValue
 	 *     (rule start) (ambiguity) ownedRelationship+=MultiplicityMember
 	 *     (rule start) (ambiguity) ownedRelationship+=SourceItemFlowMember
 	 */
@@ -1461,6 +1465,17 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     ownedRelationship+=OwnedSubclassification (ambiguity) (rule end)
 	 */
 	protected void emit_EnumerationBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Ambiguous syntax:
+	 *     '='?
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     isDefault?='default' (ambiguity) ownedRelatedElement+=OwnedExpression
+	 */
+	protected void emit_FeatureValue_EqualsSignKeyword_0_1_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
@@ -1553,12 +1568,12 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     ReferenceUsageKeyword?
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) (ambiguity) '=' ownedRelationship+=FeatureValue
 	 *     (rule start) (ambiguity) 'id' humanId=Name
 	 *     (rule start) (ambiguity) DefinedByKeyword ownedRelationship+=FeatureTyping
 	 *     (rule start) (ambiguity) RedefinesKeyword ownedRelationship+=OwnedRedefinition
 	 *     (rule start) (ambiguity) SubsetsKeyword ownedRelationship+=OwnedSubsetting
 	 *     (rule start) (ambiguity) name=Name
+	 *     (rule start) (ambiguity) ownedRelationship+=FeatureValue
 	 *     (rule start) (ambiguity) ownedRelationship+=MultiplicityMember
 	 *     (rule start) (ambiguity) ownedRelationship+=SourceItemFlowMember
 	 *     direction=FeatureDirection (ambiguity) 'id' humanId=Name

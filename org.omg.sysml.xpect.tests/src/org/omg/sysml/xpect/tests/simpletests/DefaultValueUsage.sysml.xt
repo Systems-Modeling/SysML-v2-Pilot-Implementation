@@ -1,0 +1,52 @@
+//* 
+XPECT_SETUP org.omg.sysml.xpect.tests.validation.valid.SysMLTests
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library.kernel/Base.kerml"}
+		File {from ="/library.kernel/Occurrences.kerml"}
+		File {from ="/library.kernel/Objects.kerml"}
+		File {from ="/library.kernel/Performances.kerml"}
+		File {from ="/library.kernel/BaseFunctions.kerml"}
+		File {from ="/library.kernel/ScalarValues.kerml"}
+		File {from ="/library.systems/Items.sysml"}
+		File {from ="/library.systems/Parts.sysml"}
+		File {from ="/library.systems/Ports.sysml"}
+		File {from ="/library.systems/Attributes.sysml"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library.kernel/Base.kerml"}
+		       	File {from ="/library.kernel/Occurrences.kerml"}
+				File {from ="/library.kernel/Objects.kerml"}
+				File {from ="/library.kernel/Performances.kerml"}
+				File {from ="/library.kernel/BaseFunctions.kerml"}
+				File {from ="/library.kernel/ScalarValues.kerml"}
+				File {from ="/library.systems/Items.sysml"}
+				File {from ="/library.systems/Parts.sysml"}
+				File {from ="/library.systems/Ports.sysml"}
+				File {from ="/library.systems/Attributes.sysml"}
+			}
+		}
+	}
+END_SETUP 
+*/
+package DefaultValueTest {
+	
+	part def V {
+		attribute m default = 10;
+		attribute n = 20;
+	}
+	
+	part v1 : V {
+		attribute :>> m = 20;
+	}
+	
+	part def W :> V {
+		attribute :>> m default = n;
+	}
+	
+	part v2 = W();
+	
+}

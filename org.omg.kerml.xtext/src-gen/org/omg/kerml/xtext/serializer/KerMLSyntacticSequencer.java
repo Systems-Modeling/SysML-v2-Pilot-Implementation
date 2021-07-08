@@ -42,6 +42,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	protected AbstractElementAlias match_FeatureMember_FeatureKeyword_1_1_0_q;
 	protected AbstractElementAlias match_FeatureTyping_ColonKeyword_3_0_or___TypedKeyword_3_1_0_ByKeyword_3_1_1__;
 	protected AbstractElementAlias match_FeatureTyping_GeneralizationKeyword_0_0_q;
+	protected AbstractElementAlias match_FeatureValue_EqualsSignKeyword_0_1_1_q;
 	protected AbstractElementAlias match_Feature_FeatureKeyword_1_0_0_q;
 	protected AbstractElementAlias match_FunctionBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_3__;
 	protected AbstractElementAlias match_MetadataFeature_FeatureKeyword_0_q;
@@ -98,6 +99,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 		match_FeatureMember_FeatureKeyword_1_1_0_q = new TokenAlias(false, true, grammarAccess.getFeatureMemberAccess().getFeatureKeyword_1_1_0());
 		match_FeatureTyping_ColonKeyword_3_0_or___TypedKeyword_3_1_0_ByKeyword_3_1_1__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getFeatureTypingAccess().getTypedKeyword_3_1_0()), new TokenAlias(false, false, grammarAccess.getFeatureTypingAccess().getByKeyword_3_1_1())), new TokenAlias(false, false, grammarAccess.getFeatureTypingAccess().getColonKeyword_3_0()));
 		match_FeatureTyping_GeneralizationKeyword_0_0_q = new TokenAlias(false, true, grammarAccess.getFeatureTypingAccess().getGeneralizationKeyword_0_0());
+		match_FeatureValue_EqualsSignKeyword_0_1_1_q = new TokenAlias(false, true, grammarAccess.getFeatureValueAccess().getEqualsSignKeyword_0_1_1());
 		match_Feature_FeatureKeyword_1_0_0_q = new TokenAlias(false, true, grammarAccess.getFeatureAccess().getFeatureKeyword_1_0_0());
 		match_FunctionBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_3__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getFunctionBodyAccess().getLeftCurlyBracketKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getFunctionBodyAccess().getRightCurlyBracketKeyword_1_3())), new TokenAlias(false, false, grammarAccess.getFunctionBodyAccess().getSemicolonKeyword_0()));
 		match_MetadataFeature_FeatureKeyword_0_q = new TokenAlias(false, true, grammarAccess.getMetadataFeatureAccess().getFeatureKeyword_0());
@@ -184,6 +186,8 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 				emit_FeatureTyping_ColonKeyword_3_0_or___TypedKeyword_3_1_0_ByKeyword_3_1_1__(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_FeatureTyping_GeneralizationKeyword_0_0_q.equals(syntax))
 				emit_FeatureTyping_GeneralizationKeyword_0_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_FeatureValue_EqualsSignKeyword_0_1_1_q.equals(syntax))
+				emit_FeatureValue_EqualsSignKeyword_0_1_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_Feature_FeatureKeyword_1_0_0_q.equals(syntax))
 				emit_Feature_FeatureKeyword_1_0_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_FunctionBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_3__.equals(syntax))
@@ -635,6 +639,17 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) 'typing' typedFeature=[Feature|QualifiedName]
 	 */
 	protected void emit_FeatureTyping_GeneralizationKeyword_0_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Ambiguous syntax:
+	 *     '='?
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     isDefault?='default' (ambiguity) ownedRelatedElement+=OwnedExpression
+	 */
+	protected void emit_FeatureValue_EqualsSignKeyword_0_1_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	

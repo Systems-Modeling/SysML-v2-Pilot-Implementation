@@ -660,7 +660,7 @@ fragment UsageBody returns SysML::Usage :
 ;
 
 fragment ValuePart returns SysML::Feature :
-	  '=' ownedRelationship += FeatureValue
+	ownedRelationship += FeatureValue
 ;
 
 fragment ValueOrFlowPart returns SysML::Feature :
@@ -668,6 +668,7 @@ fragment ValueOrFlowPart returns SysML::Feature :
 ;
 
 FeatureValue returns SysML::FeatureValue :
+	( '=' | isDefault ?= 'default' '='? )
 	ownedRelatedElement += OwnedExpression // value = OwnedExpression
 ;
 
@@ -1335,7 +1336,11 @@ NodeParameterMember returns SysML::ParameterMembership :
 ;
 
 NodeParameter returns SysML::Usage :
-	{SysML::ReferenceUsage} ownedRelationship += FeatureValue
+	{SysML::ReferenceUsage} ownedRelationship += FeatureBinding
+;
+
+FeatureBinding returns SysML::FeatureValue :
+	ownedRelatedElement += OwnedExpression // value = ownedExpression
 ;
 
 ControlNode returns SysML::ControlNode :

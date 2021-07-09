@@ -49597,7 +49597,7 @@ public interface SysMLPackage extends EPackage {
 	int INTERFACE_USAGE__CONNECTION_DEFINITION = CONNECTION_USAGE__CONNECTION_DEFINITION;
 
 	/**
-	 * The feature id for the '<em><b>Interface Definition</b></em>' reference.
+	 * The feature id for the '<em><b>Interface Definition</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -122757,10 +122757,10 @@ public interface SysMLPackage extends EPackage {
 	EClass getInterfaceUsage();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.omg.sysml.lang.sysml.InterfaceUsage#getInterfaceDefinition <em>Interface Definition</em>}'.
+	 * Returns the meta object for the reference list '{@link org.omg.sysml.lang.sysml.InterfaceUsage#getInterfaceDefinition <em>Interface Definition</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Interface Definition</em>'.
+	 * @return the meta object for the reference list '<em>Interface Definition</em>'.
 	 * @see org.omg.sysml.lang.sysml.InterfaceUsage#getInterfaceDefinition()
 	 * @see #getInterfaceUsage()
 	 * @generated
@@ -128044,7 +128044,7 @@ public interface SysMLPackage extends EPackage {
 		EClass INTERFACE_USAGE = eINSTANCE.getInterfaceUsage();
 
 		/**
-		 * The meta object literal for the '<em><b>Interface Definition</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Interface Definition</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

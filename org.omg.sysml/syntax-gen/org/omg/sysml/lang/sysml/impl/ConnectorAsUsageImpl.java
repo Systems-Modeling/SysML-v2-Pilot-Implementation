@@ -312,7 +312,7 @@ public abstract class ConnectorAsUsageImpl extends UsageImpl implements Connecto
 	 */
 	@Override
 	public EList<Feature> getTargetFeature() {
-		EList<Feature> targetFeatures = new NonNotifyingEObjectEList<>(Feature.class, this, SysMLPackage.CONNECTOR__TARGET_FEATURE);
+		EList<Feature> targetFeatures = new NonNotifyingEObjectEList<>(Feature.class, this, SysMLPackage.CONNECTOR_AS_USAGE__TARGET_FEATURE);
 		ConnectorUtil.addTargetFeatures(this, targetFeatures);
 		return targetFeatures;
 	}

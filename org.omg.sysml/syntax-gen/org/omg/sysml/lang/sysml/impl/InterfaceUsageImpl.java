@@ -22,18 +22,14 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
+import java.util.Collection;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.UniqueEList;
-
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.uml2.common.util.UnionEObjectEList;
-
-import org.omg.sysml.lang.sysml.Association;
 import org.omg.sysml.lang.sysml.AssociationStructure;
 import org.omg.sysml.lang.sysml.InterfaceUsage;
 import org.omg.sysml.lang.sysml.InterfaceDefinition;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.util.NonNotifyingEObjectEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -75,11 +71,56 @@ public class InterfaceUsageImpl extends ConnectionUsageImpl implements Interface
 	 * @generated
 	 */
 	@Override
+	public EList<AssociationStructure> getConnectionDefinition() {
+		@SuppressWarnings("unchecked")
+		EList<AssociationStructure> interfaceDefinition = (EList<AssociationStructure>)((EList<?>)getInterfaceDefinition());
+		return interfaceDefinition;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetConnectionDefinition() {
+  		return false;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public EList<InterfaceDefinition> getInterfaceDefinition() {
+		EList<InterfaceDefinition> interfaceDefinitions = 
+				new NonNotifyingEObjectEList<>(InterfaceDefinition.class, this, SysMLPackage.INTERFACE_USAGE__INTERFACE_DEFINITION);
+		super.getConnectionDefinition().stream().
+			filter(InterfaceDefinition.class::isInstance).
+			map(InterfaceDefinition.class::cast).
+			forEachOrdered(interfaceDefinitions::add);
+		return interfaceDefinitions;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetInterfaceDefinition() {
+		return !getInterfaceDefinition().isEmpty();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case SysMLPackage.INTERFACE_USAGE__INTERFACE_DEFINITION:
-				if (resolve) return getInterfaceDefinition();
-				return basicGetInterfaceDefinition();
+				return getInterfaceDefinition();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -89,11 +130,13 @@ public class InterfaceUsageImpl extends ConnectionUsageImpl implements Interface
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case SysMLPackage.INTERFACE_USAGE__INTERFACE_DEFINITION:
-				setInterfaceDefinition((InterfaceDefinition)newValue);
+				getInterfaceDefinition().clear();
+				getInterfaceDefinition().addAll((Collection<? extends InterfaceDefinition>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -108,7 +151,7 @@ public class InterfaceUsageImpl extends ConnectionUsageImpl implements Interface
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case SysMLPackage.INTERFACE_USAGE__INTERFACE_DEFINITION:
-				setInterfaceDefinition((InterfaceDefinition)null);
+				getInterfaceDefinition().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -128,75 +171,6 @@ public class InterfaceUsageImpl extends ConnectionUsageImpl implements Interface
 				return isSetInterfaceDefinition();
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EList<AssociationStructure> getConnectionDefinition() {
-		EList<AssociationStructure> connectionDefinition = new UniqueEList<AssociationStructure>();
-		InterfaceDefinition interfaceDefinition = getInterfaceDefinition();
-		if (interfaceDefinition != null) {
-			connectionDefinition.add(interfaceDefinition);
-		}
-		return new UnionEObjectEList<AssociationStructure>(this, SysMLPackage.Literals.CONNECTION_USAGE__CONNECTION_DEFINITION, connectionDefinition.size(), connectionDefinition.toArray());
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetConnectionDefinition() {
-  		return false;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public InterfaceDefinition getInterfaceDefinition() {
-		InterfaceDefinition interfaceDefinition = basicGetInterfaceDefinition();
-		return interfaceDefinition != null && interfaceDefinition.eIsProxy() ? (InterfaceDefinition)eResolveProxy((InternalEObject)interfaceDefinition) : interfaceDefinition;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public InterfaceDefinition basicGetInterfaceDefinition() {
-		EList<Association> associations = super.getAssociation();
-		if (associations.isEmpty()) {
-			return null;
-		} else {
-			Association association = associations.get(0);
-			return association instanceof InterfaceDefinition? (InterfaceDefinition)association: null;
-		}
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	@Override
-	public void setInterfaceDefinition(InterfaceDefinition newInterfaceDefinition) {
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetInterfaceDefinition() {
-		return basicGetInterfaceDefinition() != null;
 	}
 
 } //ConnectionImpl

@@ -319,17 +319,13 @@ public class ConnectionUsageImpl extends ConnectorAsUsageImpl implements Connect
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public EList<Association> getAssociation() {
-		EList<Association> associations = 
-				new NonNotifyingEObjectEList<>(Association.class, this, SysMLPackage.CONNECTOR__ASSOCIATION);
-		super.getType().stream().
-			filter(type->type instanceof Association).
-			map(type->(Association)type).
-			forEachOrdered(associations::add);
-		return associations;
+		@SuppressWarnings("unchecked")
+		EList<Association> connectionDefinition = (EList<Association>)((EList<?>)getConnectionDefinition());
+		return connectionDefinition;
 	}
 
 	/**
@@ -348,13 +344,7 @@ public class ConnectionUsageImpl extends ConnectorAsUsageImpl implements Connect
 	 */
 	@Override
 	public EList<AssociationStructure> getConnectionDefinition() {
-		EList<AssociationStructure> associations = 
-				new NonNotifyingEObjectEList<>(AssociationStructure.class, this, SysMLPackage.CONNECTION_USAGE__CONNECTION_DEFINITION);
-		super.getType().stream().
-			filter(AssociationStructure.class::isInstance).
-			map(AssociationStructure.class::cast).
-			forEachOrdered(associations::add);
-		return associations;
+		return new DerivedEObjectEList<>(AssociationStructure.class, this, SysMLPackage.CONNECTION_USAGE__CONNECTION_DEFINITION, new int[] {SysMLPackage.CONNECTION_USAGE__OCCURRENCE_DEFINITION});
 	}
 
 	/**
@@ -369,10 +359,21 @@ public class ConnectionUsageImpl extends ConnectorAsUsageImpl implements Connect
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
-	public Feature basicGetSourceFeature() {
-		return ConnectorUtil.getSourceFeatureOf(this);
+	public EList<Classifier> getDefinition() {
+		@SuppressWarnings("unchecked")
+		EList<Classifier> occurrenceDefinition = (EList<Classifier>)((EList<?>)getOccurrenceDefinition());
+		return occurrenceDefinition;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetDefinition() {
+  		return false;
 	}
 
 	/**
@@ -636,26 +637,6 @@ public class ConnectionUsageImpl extends ConnectorAsUsageImpl implements Connect
 		result.append(portionKind);
 		result.append(')');
 		return result.toString();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<Classifier> getDefinition() {
-		@SuppressWarnings("unchecked")
-		EList<Classifier> occurrenceDefinition = (EList<Classifier>)((EList<?>)getOccurrenceDefinition());
-		return occurrenceDefinition;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetDefinition() {
-  		return false;
 	}
 
 } //ConnectUsageImpl

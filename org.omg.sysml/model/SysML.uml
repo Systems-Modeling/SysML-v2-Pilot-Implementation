@@ -2622,7 +2622,7 @@ else owningNamespace.nameOf(self) endif</body>
         <body>&lt;p>The InterfaceDefinition that is the single type of this InterfaceUsage.&lt;/p></body>
       </ownedComment>
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="416a3172-9665-44b6-8d7d-13736daa911a" name="" visibility="public" value="1"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="22d36040-14da-4f65-ac4d-fdf5e2c70ee5" name="" visibility="public" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="22d36040-14da-4f65-ac4d-fdf5e2c70ee5" name="" visibility="public" value="*"/>
     </ownedAttribute>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="7dedd46e-2ffd-46bf-8dca-d8c894902dca" name="InterfaceDefinition" visibility="public">

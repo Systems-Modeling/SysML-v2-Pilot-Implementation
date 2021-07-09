@@ -41,6 +41,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	protected AbstractElementAlias match_EnumerationBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__;
 	protected AbstractElementAlias match_FeatureValue_EqualsSignKeyword_0_1_1_q;
 	protected AbstractElementAlias match_GuardedSuccession_FirstKeyword_1_1_q;
+	protected AbstractElementAlias match_InterfaceBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__;
 	protected AbstractElementAlias match_InterfaceUsageDeclaration_ConnectorKeywordParserRuleCall_0_1_0_q;
 	protected AbstractElementAlias match_MetadataFeature_FeatureKeyword_0_q;
 	protected AbstractElementAlias match_MetadataFeature___ColonGreaterThanSignGreaterThanSignKeyword_1_0_or_RedefinesKeyword_1_1__q;
@@ -48,7 +49,6 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	protected AbstractElementAlias match_PackageBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__;
 	protected AbstractElementAlias match_Parameter_ReferenceUsageKeywordParserRuleCall_0_2_1_0_q;
 	protected AbstractElementAlias match_PrefixDocumentationComment_DocKeyword_0_0_q;
-	protected AbstractElementAlias match_ReferenceUsage_ReferenceUsageKeywordParserRuleCall_1_0_0_q;
 	protected AbstractElementAlias match_RequirementBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__;
 	protected AbstractElementAlias match_ReturnParameterMember_ReturnKeyword_0_q;
 	protected AbstractElementAlias match_SequenceExpression_CommaKeyword_1_0_q;
@@ -81,6 +81,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 		match_EnumerationBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getEnumerationBodyAccess().getLeftCurlyBracketKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getEnumerationBodyAccess().getRightCurlyBracketKeyword_1_2())), new TokenAlias(false, false, grammarAccess.getEnumerationBodyAccess().getSemicolonKeyword_0()));
 		match_FeatureValue_EqualsSignKeyword_0_1_1_q = new TokenAlias(false, true, grammarAccess.getFeatureValueAccess().getEqualsSignKeyword_0_1_1());
 		match_GuardedSuccession_FirstKeyword_1_1_q = new TokenAlias(false, true, grammarAccess.getGuardedSuccessionAccess().getFirstKeyword_1_1());
+		match_InterfaceBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getInterfaceBodyAccess().getLeftCurlyBracketKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getInterfaceBodyAccess().getRightCurlyBracketKeyword_1_2())), new TokenAlias(false, false, grammarAccess.getInterfaceBodyAccess().getSemicolonKeyword_0()));
 		match_InterfaceUsageDeclaration_ConnectorKeywordParserRuleCall_0_1_0_q = new TokenAlias(false, true, grammarAccess.getInterfaceUsageDeclarationAccess().getConnectorKeywordParserRuleCall_0_1_0());
 		match_MetadataFeature_FeatureKeyword_0_q = new TokenAlias(false, true, grammarAccess.getMetadataFeatureAccess().getFeatureKeyword_0());
 		match_MetadataFeature___ColonGreaterThanSignGreaterThanSignKeyword_1_0_or_RedefinesKeyword_1_1__q = new AlternativeAlias(false, true, new TokenAlias(false, false, grammarAccess.getMetadataFeatureAccess().getColonGreaterThanSignGreaterThanSignKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getMetadataFeatureAccess().getRedefinesKeyword_1_1()));
@@ -88,7 +89,6 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 		match_PackageBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getPackageBodyAccess().getLeftCurlyBracketKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getPackageBodyAccess().getRightCurlyBracketKeyword_1_2())), new TokenAlias(false, false, grammarAccess.getPackageBodyAccess().getSemicolonKeyword_0()));
 		match_Parameter_ReferenceUsageKeywordParserRuleCall_0_2_1_0_q = new TokenAlias(false, true, grammarAccess.getParameterAccess().getReferenceUsageKeywordParserRuleCall_0_2_1_0());
 		match_PrefixDocumentationComment_DocKeyword_0_0_q = new TokenAlias(false, true, grammarAccess.getPrefixDocumentationCommentAccess().getDocKeyword_0_0());
-		match_ReferenceUsage_ReferenceUsageKeywordParserRuleCall_1_0_0_q = new TokenAlias(false, true, grammarAccess.getReferenceUsageAccess().getReferenceUsageKeywordParserRuleCall_1_0_0());
 		match_RequirementBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getRequirementBodyAccess().getLeftCurlyBracketKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getRequirementBodyAccess().getRightCurlyBracketKeyword_1_2())), new TokenAlias(false, false, grammarAccess.getRequirementBodyAccess().getSemicolonKeyword_0()));
 		match_ReturnParameterMember_ReturnKeyword_0_q = new TokenAlias(false, true, grammarAccess.getReturnParameterMemberAccess().getReturnKeyword_0());
 		match_SequenceExpression_CommaKeyword_1_0_q = new TokenAlias(false, true, grammarAccess.getSequenceExpressionAccess().getCommaKeyword_1_0());
@@ -864,6 +864,8 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 				emit_FeatureValue_EqualsSignKeyword_0_1_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_GuardedSuccession_FirstKeyword_1_1_q.equals(syntax))
 				emit_GuardedSuccession_FirstKeyword_1_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_InterfaceBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__.equals(syntax))
+				emit_InterfaceBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_InterfaceUsageDeclaration_ConnectorKeywordParserRuleCall_0_1_0_q.equals(syntax))
 				emit_InterfaceUsageDeclaration_ConnectorKeywordParserRuleCall_0_1_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_MetadataFeature_FeatureKeyword_0_q.equals(syntax))
@@ -878,8 +880,6 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 				emit_Parameter_ReferenceUsageKeywordParserRuleCall_0_2_1_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_PrefixDocumentationComment_DocKeyword_0_0_q.equals(syntax))
 				emit_PrefixDocumentationComment_DocKeyword_0_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_ReferenceUsage_ReferenceUsageKeywordParserRuleCall_1_0_0_q.equals(syntax))
-				emit_ReferenceUsage_ReferenceUsageKeywordParserRuleCall_1_0_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_RequirementBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__.equals(syntax))
 				emit_RequirementBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_ReturnParameterMember_ReturnKeyword_0_q.equals(syntax))
@@ -1243,8 +1243,6 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) ConnectionUsageKeyword (ambiguity) (rule start)
 	 *     (rule start) EnumerationUsageKeyword (ambiguity) (rule start)
 	 *     (rule start) EnumerationUsageKeyword? (ambiguity) (rule start)
-	 *     (rule start) InterfaceDefKeyword (ambiguity) (rule start)
-	 *     (rule start) InterfaceUsageKeyword (ambiguity) (rule start)
 	 *     (rule start) ItemDefKeyword (ambiguity) (rule start)
 	 *     (rule start) ItemUsageKeyword (ambiguity) (rule start)
 	 *     (rule start) OccurrenceDefKeyword (ambiguity) (rule start)
@@ -1262,7 +1260,6 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     direction=FeatureDirection AttributeUsageKeyword (ambiguity) (rule end)
 	 *     direction=FeatureDirection ConnectionUsageKeyword (ambiguity) (rule end)
 	 *     direction=FeatureDirection EnumerationUsageKeyword (ambiguity) (rule end)
-	 *     direction=FeatureDirection InterfaceUsageKeyword (ambiguity) (rule end)
 	 *     direction=FeatureDirection ItemUsageKeyword (ambiguity) (rule end)
 	 *     direction=FeatureDirection OccurrenceUsageKeyword (ambiguity) (rule end)
 	 *     direction=FeatureDirection PartUsageKeyword (ambiguity) (rule end)
@@ -1280,8 +1277,6 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isAbstract?='abstract' ConnectionDefKeyword (ambiguity) (rule end)
 	 *     isAbstract?='abstract' ConnectionUsageKeyword (ambiguity) (rule end)
 	 *     isAbstract?='abstract' EnumerationUsageKeyword (ambiguity) (rule end)
-	 *     isAbstract?='abstract' InterfaceDefKeyword (ambiguity) (rule end)
-	 *     isAbstract?='abstract' InterfaceUsageKeyword (ambiguity) (rule end)
 	 *     isAbstract?='abstract' ItemDefKeyword (ambiguity) (rule end)
 	 *     isAbstract?='abstract' ItemUsageKeyword (ambiguity) (rule end)
 	 *     isAbstract?='abstract' OccurrenceDefKeyword (ambiguity) (rule end)
@@ -1296,11 +1291,11 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isAbstract?='abstract' RenderingUsageKeyword (ambiguity) (rule end)
 	 *     isAbstract?=MessageKeyword (ambiguity) (rule end)
 	 *     isEnd?='end' 'event' OccurrenceUsageKeyword (ambiguity) (rule end)
+	 *     isEnd?='end' (ambiguity) (rule end)
 	 *     isEnd?='end' AllocationUsageKeyword (ambiguity) (rule end)
 	 *     isEnd?='end' AttributeUsageKeyword (ambiguity) (rule end)
 	 *     isEnd?='end' ConnectionUsageKeyword (ambiguity) (rule end)
 	 *     isEnd?='end' EnumerationUsageKeyword (ambiguity) (rule end)
-	 *     isEnd?='end' InterfaceUsageKeyword (ambiguity) (rule end)
 	 *     isEnd?='end' ItemUsageKeyword (ambiguity) (rule end)
 	 *     isEnd?='end' OccurrenceUsageKeyword (ambiguity) (rule end)
 	 *     isEnd?='end' PartUsageKeyword (ambiguity) (rule end)
@@ -1313,7 +1308,6 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isIndividual?='individual' (ambiguity) (rule end)
 	 *     isIndividual?='individual' AllocationUsageKeyword (ambiguity) (rule end)
 	 *     isIndividual?='individual' ConnectionUsageKeyword (ambiguity) (rule end)
-	 *     isIndividual?='individual' InterfaceUsageKeyword (ambiguity) (rule end)
 	 *     isIndividual?='individual' ItemUsageKeyword (ambiguity) (rule end)
 	 *     isIndividual?='individual' OccurrenceUsageKeyword (ambiguity) (rule end)
 	 *     isIndividual?='individual' PartUsageKeyword (ambiguity) (rule end)
@@ -1326,7 +1320,6 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isReference?='ref' AttributeUsageKeyword (ambiguity) (rule end)
 	 *     isReference?='ref' ConnectionUsageKeyword (ambiguity) (rule end)
 	 *     isReference?='ref' EnumerationUsageKeyword (ambiguity) (rule end)
-	 *     isReference?='ref' InterfaceUsageKeyword (ambiguity) (rule end)
 	 *     isReference?='ref' ItemUsageKeyword (ambiguity) (rule end)
 	 *     isReference?='ref' OccurrenceUsageKeyword (ambiguity) (rule end)
 	 *     isReference?='ref' PartUsageKeyword (ambiguity) (rule end)
@@ -1340,8 +1333,6 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isVariation?='variation' ConnectionDefKeyword (ambiguity) (rule end)
 	 *     isVariation?='variation' ConnectionUsageKeyword (ambiguity) (rule end)
 	 *     isVariation?='variation' EnumerationUsageKeyword (ambiguity) (rule end)
-	 *     isVariation?='variation' InterfaceDefKeyword (ambiguity) (rule end)
-	 *     isVariation?='variation' InterfaceUsageKeyword (ambiguity) (rule end)
 	 *     isVariation?='variation' ItemDefKeyword (ambiguity) (rule end)
 	 *     isVariation?='variation' ItemUsageKeyword (ambiguity) (rule end)
 	 *     isVariation?='variation' OccurrenceDefKeyword (ambiguity) (rule end)
@@ -1365,7 +1356,6 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     ownedRelationship+=ItemFlowEndMember (ambiguity) (rule end)
 	 *     ownedRelationship+=LifeClassMembership AllocationDefKeyword (ambiguity) (rule end)
 	 *     ownedRelationship+=LifeClassMembership ConnectionDefKeyword (ambiguity) (rule end)
-	 *     ownedRelationship+=LifeClassMembership InterfaceDefKeyword (ambiguity) (rule end)
 	 *     ownedRelationship+=LifeClassMembership ItemDefKeyword (ambiguity) (rule end)
 	 *     ownedRelationship+=LifeClassMembership OccurrenceDefKeyword (ambiguity) (rule end)
 	 *     ownedRelationship+=LifeClassMembership OccurrenceDefKeyword (ambiguity) ownedRelationship+=LifeClassMembership
@@ -1381,7 +1371,6 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     ownedRelationship+=PortioningFeatureMember (ambiguity) (rule end)
 	 *     ownedRelationship+=PortioningFeatureMember AllocationUsageKeyword (ambiguity) (rule end)
 	 *     ownedRelationship+=PortioningFeatureMember ConnectionUsageKeyword (ambiguity) (rule end)
-	 *     ownedRelationship+=PortioningFeatureMember InterfaceUsageKeyword (ambiguity) (rule end)
 	 *     ownedRelationship+=PortioningFeatureMember ItemUsageKeyword (ambiguity) (rule end)
 	 *     ownedRelationship+=PortioningFeatureMember OccurrenceUsageKeyword (ambiguity) (rule end)
 	 *     ownedRelationship+=PortioningFeatureMember PartUsageKeyword (ambiguity) (rule end)
@@ -1492,25 +1481,58 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	
 	/**
 	 * Ambiguous syntax:
+	 *     ';' | ('{' '}')
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     (rule start) InterfaceDefKeyword (ambiguity) (rule start)
+	 *     (rule start) InterfaceUsageKeyword (ambiguity) (rule start)
+	 *     direction=FeatureDirection InterfaceUsageKeyword (ambiguity) (rule end)
+	 *     humanId=Name (ambiguity) (rule end)
+	 *     isAbstract?='abstract' InterfaceDefKeyword (ambiguity) (rule end)
+	 *     isAbstract?='abstract' InterfaceUsageKeyword (ambiguity) (rule end)
+	 *     isEnd?='end' InterfaceUsageKeyword (ambiguity) (rule end)
+	 *     isIndividual?='individual' InterfaceUsageKeyword (ambiguity) (rule end)
+	 *     isNonunique?='nonunique' (ambiguity) (rule end)
+	 *     isOrdered?='ordered' (ambiguity) (rule end)
+	 *     isReference?='ref' InterfaceUsageKeyword (ambiguity) (rule end)
+	 *     isVariation?='variation' InterfaceDefKeyword (ambiguity) (rule end)
+	 *     isVariation?='variation' InterfaceUsageKeyword (ambiguity) (rule end)
+	 *     name=Name (ambiguity) (rule end)
+	 *     ownedRelationship+=FeatureTyping (ambiguity) (rule end)
+	 *     ownedRelationship+=InterfaceEndMember ')' (ambiguity) (rule end)
+	 *     ownedRelationship+=InterfaceEndMember (ambiguity) (rule end)
+	 *     ownedRelationship+=LifeClassMembership InterfaceDefKeyword (ambiguity) (rule end)
+	 *     ownedRelationship+=MultiplicityMember (ambiguity) (rule end)
+	 *     ownedRelationship+=OwnedRedefinition (ambiguity) (rule end)
+	 *     ownedRelationship+=OwnedSubclassification (ambiguity) (rule end)
+	 *     ownedRelationship+=OwnedSubsetting (ambiguity) (rule end)
+	 *     ownedRelationship+=PortioningFeatureMember InterfaceUsageKeyword (ambiguity) (rule end)
+	 */
+	protected void emit_InterfaceBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Ambiguous syntax:
 	 *     ConnectorKeyword?
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) InterfaceUsageKeyword (ambiguity) '(' ownedRelationship+=ConnectorEndMember
-	 *     (rule start) InterfaceUsageKeyword (ambiguity) ownedRelationship+=ConnectorEndMember
-	 *     direction=FeatureDirection InterfaceUsageKeyword (ambiguity) '(' ownedRelationship+=ConnectorEndMember
-	 *     direction=FeatureDirection InterfaceUsageKeyword (ambiguity) ownedRelationship+=ConnectorEndMember
-	 *     isAbstract?='abstract' InterfaceUsageKeyword (ambiguity) '(' ownedRelationship+=ConnectorEndMember
-	 *     isAbstract?='abstract' InterfaceUsageKeyword (ambiguity) ownedRelationship+=ConnectorEndMember
-	 *     isEnd?='end' InterfaceUsageKeyword (ambiguity) '(' ownedRelationship+=ConnectorEndMember
-	 *     isEnd?='end' InterfaceUsageKeyword (ambiguity) ownedRelationship+=ConnectorEndMember
-	 *     isIndividual?='individual' InterfaceUsageKeyword (ambiguity) '(' ownedRelationship+=ConnectorEndMember
-	 *     isIndividual?='individual' InterfaceUsageKeyword (ambiguity) ownedRelationship+=ConnectorEndMember
-	 *     isReference?='ref' InterfaceUsageKeyword (ambiguity) '(' ownedRelationship+=ConnectorEndMember
-	 *     isReference?='ref' InterfaceUsageKeyword (ambiguity) ownedRelationship+=ConnectorEndMember
-	 *     isVariation?='variation' InterfaceUsageKeyword (ambiguity) '(' ownedRelationship+=ConnectorEndMember
-	 *     isVariation?='variation' InterfaceUsageKeyword (ambiguity) ownedRelationship+=ConnectorEndMember
-	 *     ownedRelationship+=PortioningFeatureMember InterfaceUsageKeyword (ambiguity) '(' ownedRelationship+=ConnectorEndMember
-	 *     ownedRelationship+=PortioningFeatureMember InterfaceUsageKeyword (ambiguity) ownedRelationship+=ConnectorEndMember
+	 *     (rule start) InterfaceUsageKeyword (ambiguity) '(' ownedRelationship+=InterfaceEndMember
+	 *     (rule start) InterfaceUsageKeyword (ambiguity) ownedRelationship+=InterfaceEndMember
+	 *     direction=FeatureDirection InterfaceUsageKeyword (ambiguity) '(' ownedRelationship+=InterfaceEndMember
+	 *     direction=FeatureDirection InterfaceUsageKeyword (ambiguity) ownedRelationship+=InterfaceEndMember
+	 *     isAbstract?='abstract' InterfaceUsageKeyword (ambiguity) '(' ownedRelationship+=InterfaceEndMember
+	 *     isAbstract?='abstract' InterfaceUsageKeyword (ambiguity) ownedRelationship+=InterfaceEndMember
+	 *     isEnd?='end' InterfaceUsageKeyword (ambiguity) '(' ownedRelationship+=InterfaceEndMember
+	 *     isEnd?='end' InterfaceUsageKeyword (ambiguity) ownedRelationship+=InterfaceEndMember
+	 *     isIndividual?='individual' InterfaceUsageKeyword (ambiguity) '(' ownedRelationship+=InterfaceEndMember
+	 *     isIndividual?='individual' InterfaceUsageKeyword (ambiguity) ownedRelationship+=InterfaceEndMember
+	 *     isReference?='ref' InterfaceUsageKeyword (ambiguity) '(' ownedRelationship+=InterfaceEndMember
+	 *     isReference?='ref' InterfaceUsageKeyword (ambiguity) ownedRelationship+=InterfaceEndMember
+	 *     isVariation?='variation' InterfaceUsageKeyword (ambiguity) '(' ownedRelationship+=InterfaceEndMember
+	 *     isVariation?='variation' InterfaceUsageKeyword (ambiguity) ownedRelationship+=InterfaceEndMember
+	 *     ownedRelationship+=PortioningFeatureMember InterfaceUsageKeyword (ambiguity) '(' ownedRelationship+=InterfaceEndMember
+	 *     ownedRelationship+=PortioningFeatureMember InterfaceUsageKeyword (ambiguity) ownedRelationship+=InterfaceEndMember
 	 */
 	protected void emit_InterfaceUsageDeclaration_ConnectorKeywordParserRuleCall_0_1_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -1595,46 +1617,6 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) body=DOCUMENTATION_COMMENT
 	 */
 	protected void emit_PrefixDocumentationComment_DocKeyword_0_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
-	/**
-	 * Ambiguous syntax:
-	 *     ReferenceUsageKeyword?
-	 *
-	 * This ambiguous syntax occurs at:
-	 *     (rule start) (ambiguity) 'id' humanId=Name
-	 *     (rule start) (ambiguity) DefinedByKeyword ownedRelationship+=FeatureTyping
-	 *     (rule start) (ambiguity) RedefinesKeyword ownedRelationship+=OwnedRedefinition
-	 *     (rule start) (ambiguity) SubsetsKeyword ownedRelationship+=OwnedSubsetting
-	 *     (rule start) (ambiguity) name=Name
-	 *     (rule start) (ambiguity) ownedRelationship+=MultiplicityMember
-	 *     direction=FeatureDirection (ambiguity) 'id' humanId=Name
-	 *     direction=FeatureDirection (ambiguity) DefinedByKeyword ownedRelationship+=FeatureTyping
-	 *     direction=FeatureDirection (ambiguity) RedefinesKeyword ownedRelationship+=OwnedRedefinition
-	 *     direction=FeatureDirection (ambiguity) SubsetsKeyword ownedRelationship+=OwnedSubsetting
-	 *     direction=FeatureDirection (ambiguity) name=Name
-	 *     direction=FeatureDirection (ambiguity) ownedRelationship+=MultiplicityMember
-	 *     isAbstract?='abstract' (ambiguity) 'id' humanId=Name
-	 *     isAbstract?='abstract' (ambiguity) DefinedByKeyword ownedRelationship+=FeatureTyping
-	 *     isAbstract?='abstract' (ambiguity) RedefinesKeyword ownedRelationship+=OwnedRedefinition
-	 *     isAbstract?='abstract' (ambiguity) SubsetsKeyword ownedRelationship+=OwnedSubsetting
-	 *     isAbstract?='abstract' (ambiguity) name=Name
-	 *     isAbstract?='abstract' (ambiguity) ownedRelationship+=MultiplicityMember
-	 *     isEnd?='end' (ambiguity) 'id' humanId=Name
-	 *     isEnd?='end' (ambiguity) DefinedByKeyword ownedRelationship+=FeatureTyping
-	 *     isEnd?='end' (ambiguity) RedefinesKeyword ownedRelationship+=OwnedRedefinition
-	 *     isEnd?='end' (ambiguity) SubsetsKeyword ownedRelationship+=OwnedSubsetting
-	 *     isEnd?='end' (ambiguity) name=Name
-	 *     isEnd?='end' (ambiguity) ownedRelationship+=MultiplicityMember
-	 *     isVariation?='variation' (ambiguity) 'id' humanId=Name
-	 *     isVariation?='variation' (ambiguity) DefinedByKeyword ownedRelationship+=FeatureTyping
-	 *     isVariation?='variation' (ambiguity) RedefinesKeyword ownedRelationship+=OwnedRedefinition
-	 *     isVariation?='variation' (ambiguity) SubsetsKeyword ownedRelationship+=OwnedSubsetting
-	 *     isVariation?='variation' (ambiguity) name=Name
-	 *     isVariation?='variation' (ambiguity) ownedRelationship+=MultiplicityMember
-	 */
-	protected void emit_ReferenceUsage_ReferenceUsageKeywordParserRuleCall_1_0_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	

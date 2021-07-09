@@ -132,7 +132,11 @@ class SysMLValidator extends KerMLValidator {
 	public static val INVALID_CONNECTIONUSAGE = 'Invalid ConnectionUsage - invalid type'
 	public static val INVALID_CONNECTIONUSAGE_MSG = 'A connection must be typed by connection definitions.'
 	public static val INVALID_INTERFACEUSAGE = 'Invalid InterfaceUsage - invalid type'
-	public static val INVALID_INTERFACEUSAGE_MSG = 'An interface must be typed by one interface definition.'
+	public static val INVALID_INTERFACEUSAGE_MSG = 'An interface must be typed by interface definitions.'
+	public static val INVALID_INTERFACEDEFINITION_END = 'Invalid InterfaceDefinition - invalid end'
+	public static val INVALID_INTERFACEDEFINITION_END_MSG = 'An interface definition end must be a port.'
+	public static val INVALID_INTERFACEUSAGE_END = 'Invalid InterfaceUsage - invalid end'
+	public static val INVALID_INTERFACEUSAGE_END_MSG = 'An interface end must be a port.'
 	public static val INVALID_ALLOCATIONUSAGE = 'Invalid AllocationUsage - invalid type'
 	public static val INVALID_ALLOCATIONUSAGE_MSG = 'An allocation must be typed by allocation definitions.'
 	public static val INVALID_PORTUSAGE = 'Invalid PortUsage - invalid type'
@@ -205,7 +209,7 @@ class SysMLValidator extends KerMLValidator {
 		}
 	}
 	@Check // Must have exactly one type, which is an EnumerationDefinition
-	def checkEnumerationUsage(EnumerationUsage usg){
+	def checkEnumerationUsageTypes(EnumerationUsage usg){
 		checkOneType(usg, EnumerationDefinition, INVALID_ENUMERATIONUSAGE_MSG, SysMLPackage.eINSTANCE.enumerationUsage_EnumerationDefinition, INVALID_ENUMERATIONUSAGE)
 	}
 	@Check //All types must be Classes. 
@@ -262,9 +266,9 @@ class SysMLValidator extends KerMLValidator {
 		if (!(usg instanceof InterfaceUsage || usg instanceof AllocationUsage))	
 			checkAllTypes(usg, Association, SysMLValidator.INVALID_CONNECTIONUSAGE_MSG, SysMLPackage.eINSTANCE.connector_Association, SysMLValidator.INVALID_CONNECTIONUSAGE)
 	}
-	@Check //Must have exactly one type, which is an InterfaceDefinitions.
+	@Check //All types must be InterfaceDefinitions.
 	def checkInterfaceUsageTypes(InterfaceUsage usg){
-		checkOneType(usg, InterfaceDefinition, SysMLValidator.INVALID_INTERFACEUSAGE_MSG, SysMLPackage.eINSTANCE.interfaceUsage_InterfaceDefinition, SysMLValidator.INVALID_INTERFACEUSAGE)
+		checkAllTypes(usg, InterfaceDefinition, SysMLValidator.INVALID_INTERFACEUSAGE_MSG, SysMLPackage.eINSTANCE.interfaceUsage_InterfaceDefinition, SysMLValidator.INVALID_INTERFACEUSAGE)
 	}
 	@Check //All types must be AllocationDefinitions.
 	def checkAllocationUsageTypes(AllocationUsage usg){
@@ -302,6 +306,24 @@ class SysMLValidator extends KerMLValidator {
 	@Check //Must have at most one rendering.
 	def checkViewUsageRender(ViewUsage viewUsg){
 		checkAtMostOneElement(viewUsg.ownedFeature.filter[f|f instanceof RenderingUsage], INVALID_VIEWUSAGE_RENDER_MSG, INVALID_VIEWUSAGE_RENDER)
+	}
+	
+	@Check //Ends must be ports
+	def checkInterfaceDefinitionEnds(InterfaceDefinition usg) {
+		for (end: usg.ownedFeature.filter[isEnd]) {
+			if (!(end instanceof PortUsage)) {
+				error(INVALID_INTERFACEDEFINITION_END_MSG, end, null, INVALID_INTERFACEDEFINITION_END)
+			}
+		}
+	}
+	
+	@Check //Ends must be ports
+	def checkInterfaceUsageEnds(InterfaceUsage usg) {
+		for (end: usg.ownedFeature.filter[isEnd]) {
+			if (!(end instanceof PortUsage)) {
+				error(INVALID_INTERFACEUSAGE_END_MSG, end, null, INVALID_INTERFACEUSAGE_END)
+			}
+		}
 	}
 	
 	@Check //Must have at most one subject membership.

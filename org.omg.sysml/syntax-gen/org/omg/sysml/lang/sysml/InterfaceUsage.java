@@ -22,6 +22,8 @@
  */
 package org.omg.sysml.lang.sysml;
 
+import org.eclipse.emf.common.util.EList;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -47,7 +49,8 @@ package org.omg.sysml.lang.sysml;
  */
 public interface InterfaceUsage extends ConnectionUsage {
 	/**
-	 * Returns the value of the '<em><b>Interface Definition</b></em>' reference.
+	 * Returns the value of the '<em><b>Interface Definition</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.InterfaceDefinition}.
 	 * <p>
 	 * This feature redefines the following features:
 	 * </p>
@@ -63,24 +66,13 @@ public interface InterfaceUsage extends ConnectionUsage {
 	 * <!-- begin-model-doc -->
 	 * <p>The InterfaceDefinition that is the single type of this InterfaceUsage.</p>
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Interface Definition</em>' reference.
-	 * @see #setInterfaceDefinition(InterfaceDefinition)
+	 * @return the value of the '<em>Interface Definition</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getInterfaceUsage_InterfaceDefinition()
 	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='definedInterface'"
 	 *        annotation="redefines"
 	 * @generated
 	 */
-	InterfaceDefinition getInterfaceDefinition();
-
-	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.InterfaceUsage#getInterfaceDefinition <em>Interface Definition</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Interface Definition</em>' reference.
-	 * @see #getInterfaceDefinition()
-	 * @generated
-	 */
-	void setInterfaceDefinition(InterfaceDefinition value);
+	EList<InterfaceDefinition> getInterfaceDefinition();
 
 } // Connection

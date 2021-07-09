@@ -3,7 +3,7 @@ Automatic-Module-Name: org.omg.sysml.xtext
 Bundle-ManifestVersion: 2
 Bundle-Name: org.omg.sysml.xtext
 Bundle-Vendor: SysML v2 Submission Team
-Bundle-Version: 0.13.1.qualifier
+Bundle-Version: 0.14.0.qualifier
 Bundle-SymbolicName: org.omg.sysml.xtext; singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.xtext,

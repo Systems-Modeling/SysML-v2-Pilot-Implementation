@@ -34,6 +34,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.omg.sysml.lang.sysml.FramedConcernMembership;
 import org.omg.sysml.lang.sysml.PartUsage;
+import org.omg.sysml.lang.sysml.ActorMembership;
 import org.omg.sysml.lang.sysml.Comment;
 import org.omg.sysml.lang.sysml.ConcernUsage;
 import org.omg.sysml.lang.sysml.ConstraintUsage;
@@ -41,6 +42,7 @@ import org.omg.sysml.lang.sysml.Predicate;
 import org.omg.sysml.lang.sysml.RequirementConstraintKind;
 import org.omg.sysml.lang.sysml.RequirementDefinition;
 import org.omg.sysml.lang.sysml.RequirementUsage;
+import org.omg.sysml.lang.sysml.StakeholderMembership;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Usage;
 import org.omg.sysml.util.ElementUtil;
@@ -182,25 +184,25 @@ public class RequirementUsageImpl extends ConstraintUsageImpl implements Require
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public EList<PartUsage> getActorParameter() {
-		// TODO: implement this method to return the 'Actor Parameter' reference list
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		EList<PartUsage> actorParameters = new NonNotifyingEObjectEList<>(PartUsage.class, this, SysMLPackage.REQUIREMENT_USAGE__ACTOR_PARAMETER);
+		TypeUtil.addOwnedFeaturesByMembership(this, ActorMembership.class, PartUsage.class, actorParameters);
+		return actorParameters;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public EList<PartUsage> getStakeholderParameter() {
-		// TODO: implement this method to return the 'Stakeholder Parameter' reference list
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		EList<PartUsage> stakeholderParameters = new NonNotifyingEObjectEList<>(PartUsage.class, this, SysMLPackage.REQUIREMENT_USAGE__STAKEHOLDER_PARAMETER);
+		TypeUtil.addOwnedFeaturesByMembership(this, StakeholderMembership.class, PartUsage.class, stakeholderParameters);
+		return stakeholderParameters;
 	}
 
 	/**

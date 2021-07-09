@@ -57,25 +57,21 @@ public class ActorMembershipImpl extends ParameterMembershipImpl implements Acto
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public PartUsage basicGetOwnedActorParameter() {
-		// TODO: implement this method to return the 'Owned Actor Parameter' reference
-		// -> do not perform proxy resolution
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		Feature ownedActorParameter = super.getOwnedMemberFeature();
+		return ownedActorParameter instanceof PartUsage? (PartUsage)ownedActorParameter: null;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public void setOwnedActorParameter(PartUsage newOwnedActorParameter) {
-		// TODO: implement this method to set the 'Owned Actor Parameter' reference
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		super.setOwnedMemberParameter(newOwnedActorParameter);
 	}
 
 	/**

@@ -239,6 +239,11 @@ public class TypeUtil {
 				filter(f->f != null);
 	}
 
+	public static <M extends Membership, E extends Element> void addOwnedFeaturesByMembership(Type type, 
+			Class<M> kind, Class<E> elementKind, List<E> list) {
+		getOwnedFeaturesByMembershipIn(type, kind).map(elementKind::cast).forEachOrdered(list::add);
+	}
+
 	public static <T extends Membership> Feature getOwnedFeatureByMembershipIn(Type type, Class<T> kind) {
 		return getOwnedFeaturesByMembershipIn(type, kind).findFirst().orElse(null);
 	}

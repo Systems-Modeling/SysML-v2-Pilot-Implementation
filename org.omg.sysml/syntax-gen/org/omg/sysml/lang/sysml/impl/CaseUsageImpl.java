@@ -26,7 +26,7 @@ import java.util.Collection;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
+import org.omg.sysml.lang.sysml.ActorMembership;
 import org.omg.sysml.lang.sysml.CaseDefinition;
 import org.omg.sysml.lang.sysml.CaseUsage;
 import org.omg.sysml.lang.sysml.Function;
@@ -35,6 +35,7 @@ import org.omg.sysml.lang.sysml.PartUsage;
 import org.omg.sysml.lang.sysml.RequirementUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Usage;
+import org.omg.sysml.util.NonNotifyingEObjectEList;
 import org.omg.sysml.util.TypeUtil;
 
 /**
@@ -137,13 +138,13 @@ public class CaseUsageImpl extends CalculationUsageImpl implements CaseUsage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public EList<PartUsage> getActorParameter() {
-		// TODO: implement this method to return the 'Actor Parameter' reference list
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		EList<PartUsage> actorParameters = new NonNotifyingEObjectEList<>(PartUsage.class, this, SysMLPackage.CASE_USAGE__ACTOR_PARAMETER);
+		TypeUtil.addOwnedFeaturesByMembership(this, ActorMembership.class, PartUsage.class, actorParameters);
+		return actorParameters;
 	}
 
 	/**

@@ -11,6 +11,7 @@ import org.omg.sysml.lang.sysml.IncludeUseCaseUsage;
 import org.omg.sysml.lang.sysml.OccurrenceUsage;
 import org.omg.sysml.lang.sysml.PerformActionUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.lang.sysml.UseCaseUsage;
 
 /**
  * <!-- begin-user-doc -->
@@ -20,7 +21,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.IncludeUseCaseUsageImpl#getPerformedAction <em>Performed Action</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.IncludeUseCaseUsageImpl#getUseCaseIncluded <em>Use Case Included</em>}</li>
  * </ul>
  *
  * @generated
@@ -51,9 +52,9 @@ public class IncludeUseCaseUsageImpl extends UseCaseUsageImpl implements Include
 	 * @generated
 	 */
 	@Override
-	public ActionUsage getPerformedAction() {
-		ActionUsage performedAction = basicGetPerformedAction();
-		return performedAction != null && performedAction.eIsProxy() ? (ActionUsage)eResolveProxy((InternalEObject)performedAction) : performedAction;
+	public UseCaseUsage getUseCaseIncluded() {
+		UseCaseUsage useCaseIncluded = basicGetUseCaseIncluded();
+		return useCaseIncluded != null && useCaseIncluded.eIsProxy() ? (UseCaseUsage)eResolveProxy((InternalEObject)useCaseIncluded) : useCaseIncluded;
 	}
 
 	/**
@@ -61,8 +62,8 @@ public class IncludeUseCaseUsageImpl extends UseCaseUsageImpl implements Include
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ActionUsage basicGetPerformedAction() {
-		// TODO: implement this method to return the 'Performed Action' reference
+	public UseCaseUsage basicGetUseCaseIncluded() {
+		// TODO: implement this method to return the 'Use Case Included' reference
 		// -> do not perform proxy resolution
 		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
@@ -74,8 +75,8 @@ public class IncludeUseCaseUsageImpl extends UseCaseUsageImpl implements Include
 	 * @generated
 	 */
 	@Override
-	public void setPerformedAction(ActionUsage newPerformedAction) {
-		// TODO: implement this method to set the 'Performed Action' reference
+	public void setUseCaseIncluded(UseCaseUsage newUseCaseIncluded) {
+		// TODO: implement this method to set the 'Use Case Included' reference
 		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
 	}
@@ -85,8 +86,49 @@ public class IncludeUseCaseUsageImpl extends UseCaseUsageImpl implements Include
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isSetUseCaseIncluded() {
+		return basicGetUseCaseIncluded() != null;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ActionUsage getPerformedAction() {
+		return getUseCaseIncluded();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ActionUsage basicGetPerformedAction() {
+		return basicGetUseCaseIncluded();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setPerformedAction(ActionUsage newPerformedAction) {
+		if (newPerformedAction != null && !(newPerformedAction instanceof UseCaseUsage)) {
+			throw new IllegalArgumentException("newPerformedAction must be an instance of UseCaseUsage");
+		}
+		setUseCaseIncluded((UseCaseUsage) newPerformedAction);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public boolean isSetPerformedAction() {
-		return basicGetPerformedAction() != null;
+  		return false;
 	}
 
 	/**
@@ -103,6 +145,9 @@ public class IncludeUseCaseUsageImpl extends UseCaseUsageImpl implements Include
 			case SysMLPackage.INCLUDE_USE_CASE_USAGE__PERFORMED_ACTION:
 				if (resolve) return getPerformedAction();
 				return basicGetPerformedAction();
+			case SysMLPackage.INCLUDE_USE_CASE_USAGE__USE_CASE_INCLUDED:
+				if (resolve) return getUseCaseIncluded();
+				return basicGetUseCaseIncluded();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -120,6 +165,9 @@ public class IncludeUseCaseUsageImpl extends UseCaseUsageImpl implements Include
 				return;
 			case SysMLPackage.INCLUDE_USE_CASE_USAGE__PERFORMED_ACTION:
 				setPerformedAction((ActionUsage)newValue);
+				return;
+			case SysMLPackage.INCLUDE_USE_CASE_USAGE__USE_CASE_INCLUDED:
+				setUseCaseIncluded((UseCaseUsage)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -139,6 +187,9 @@ public class IncludeUseCaseUsageImpl extends UseCaseUsageImpl implements Include
 			case SysMLPackage.INCLUDE_USE_CASE_USAGE__PERFORMED_ACTION:
 				setPerformedAction((ActionUsage)null);
 				return;
+			case SysMLPackage.INCLUDE_USE_CASE_USAGE__USE_CASE_INCLUDED:
+				setUseCaseIncluded((UseCaseUsage)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -155,6 +206,8 @@ public class IncludeUseCaseUsageImpl extends UseCaseUsageImpl implements Include
 				return isSetEventOccurrence();
 			case SysMLPackage.INCLUDE_USE_CASE_USAGE__PERFORMED_ACTION:
 				return isSetPerformedAction();
+			case SysMLPackage.INCLUDE_USE_CASE_USAGE__USE_CASE_INCLUDED:
+				return isSetUseCaseIncluded();
 		}
 		return super.eIsSet(featureID);
 	}

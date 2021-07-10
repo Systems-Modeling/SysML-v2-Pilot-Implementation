@@ -3318,7 +3318,7 @@ general ->
     </ownedComment>
     <generalization xmi:id="35fcf0e9-fc0a-4237-99ef-a1c9d40e72df" general="0b38b835-cf24-4e57-8181-eb89afa4f4c4"/>
     <generalization xmi:id="e7271071-c3eb-4605-abf0-b1d2af632bdb" general="3fc01c7e-9269-4bfe-8cb6-1a6bca5e2980"/>
-    <ownedAttribute xmi:id="f61a4f5d-0ff2-40b3-a33e-2b9116c30b85" name="includedUseCase" visibility="public" type="3fc01c7e-9269-4bfe-8cb6-1a6bca5e2980" isDerived="true" redefinedProperty="a5fa4b84-c430-4318-bb02-174edd37e882" association="5dec02ea-52ee-4ce8-ac50-cb8067500b1b">
+    <ownedAttribute xmi:id="f61a4f5d-0ff2-40b3-a33e-2b9116c30b85" name="useCaseIncluded" visibility="public" type="3fc01c7e-9269-4bfe-8cb6-1a6bca5e2980" isDerived="true" redefinedProperty="a5fa4b84-c430-4318-bb02-174edd37e882" association="5dec02ea-52ee-4ce8-ac50-cb8067500b1b">
       <ownedComment xmi:id="5e58b72f-92e8-463b-a486-909b6221e0d2" annotatedElement="f61a4f5d-0ff2-40b3-a33e-2b9116c30b85">
         <body>&lt;p>The UseCaseUsage to be included by this IncludeUseCaseUsage. It is the &lt;code>subsettedFeature&lt;/cpde> of the first owned Subsetting Relationship of the IncludeUseCaseUsage.&lt;/p></body>
       </ownedComment>

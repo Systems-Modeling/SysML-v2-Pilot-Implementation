@@ -80912,13 +80912,22 @@ public interface SysMLPackage extends EPackage {
 	int INCLUDE_USE_CASE_USAGE__PERFORMED_ACTION = USE_CASE_USAGE_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Use Case Included</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INCLUDE_USE_CASE_USAGE__USE_CASE_INCLUDED = USE_CASE_USAGE_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Include Use Case Usage</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INCLUDE_USE_CASE_USAGE_FEATURE_COUNT = USE_CASE_USAGE_FEATURE_COUNT + 2;
+	int INCLUDE_USE_CASE_USAGE_FEATURE_COUNT = USE_CASE_USAGE_FEATURE_COUNT + 3;
 
 	/**
 	 * The operation id for the '<em>Escaped Name</em>' operation.
@@ -122091,6 +122100,17 @@ public interface SysMLPackage extends EPackage {
 	EClass getIncludeUseCaseUsage();
 
 	/**
+	 * Returns the meta object for the reference '{@link org.omg.sysml.lang.sysml.IncludeUseCaseUsage#getUseCaseIncluded <em>Use Case Included</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Use Case Included</em>'.
+	 * @see org.omg.sysml.lang.sysml.IncludeUseCaseUsage#getUseCaseIncluded()
+	 * @see #getIncludeUseCaseUsage()
+	 * @generated
+	 */
+	EReference getIncludeUseCaseUsage_UseCaseIncluded();
+
+	/**
 	 * Returns the meta object for class '{@link org.omg.sysml.lang.sysml.BooleanExpression <em>Boolean Expression</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -127484,6 +127504,14 @@ public interface SysMLPackage extends EPackage {
 		 * @generated
 		 */
 		EClass INCLUDE_USE_CASE_USAGE = eINSTANCE.getIncludeUseCaseUsage();
+
+		/**
+		 * The meta object literal for the '<em><b>Use Case Included</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference INCLUDE_USE_CASE_USAGE__USE_CASE_INCLUDED = eINSTANCE.getIncludeUseCaseUsage_UseCaseIncluded();
 
 		/**
 		 * The meta object literal for the '{@link org.omg.sysml.lang.sysml.impl.BooleanExpressionImpl <em>Boolean Expression</em>}' class.

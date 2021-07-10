@@ -218,7 +218,7 @@ query SysML::Type::implicitSuperclass(): SysML::Type {
 }
 
 query SysML::Type::superclasses(): Sequence(SysML::Type) {
-	var superclasses := self.ownedGeneralization.general;
+	var superclasses := self.ownedSpecialization.general;
 	var implicitSuperclass := self.implicitSuperclass();
 	if implicitSuperclass <> null then {
 		superclasses += implicitSuperclass;
@@ -247,7 +247,7 @@ mapping SysML::Type::toClass(): OWL::Class
 	inherits SysML::Namespace::toEntityBase {
 	log('Mapping Class ' + valueOf(self.name()) + ' to Class ' + valueOf(entityIRI));
 	
-	self.ownedGeneralization->map toSubClassOf();
+	self.ownedSpecialization->map toSubClassOf();
 	var implicitSuperclass := self.implicitSuperclass();
 	if implicitSuperclass <> null then {
 		new SubClassOf(
@@ -379,7 +379,7 @@ helper SysML::Feature::mapToObjectPropertyExpression(): OWL::ObjectPropertyExpre
 
 // Generalization
 
-mapping SysML::Generalization::toSubClassOf(): OWL::SubClassOf {
+mapping SysML::Specialization::toSubClassOf(): OWL::SubClassOf {
     log('Mapping Generalization');
 	subClassExpression := self.container().oclAsType(SysML::Type).mapToClassExpression();
 	superClassExpression := self.general.mapToClassExpression();

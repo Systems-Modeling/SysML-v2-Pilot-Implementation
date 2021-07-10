@@ -3664,6 +3664,16 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="&lt;p>An IncludeUseCaseUsage is a UseCaseUsage that represents the inclusion of a UseCaseUsage by a UseCaseDefinition or UseCaseUsage. The UseCaseUsage to be included (which may be the IncludeUseCaseUsage itself) is related to the &lt;code>includedUseCase&lt;/code> by a Subsetting Relationship. An IncludeUseCaseUsage is also a PerformActionUsage, with its &lt;code>includedUseCase&lt;/code> as the &lt;code>performedAction&lt;/code>.&lt;/p>&#xA;&#xA;&lt;p>If the IncludeUseCaseUsage is owned by a UseCaseDefinition or UseCaseUsage, then it also subsets the UseCaseUsage &lt;em>&lt;code>UseCase::includedUseCases&lt;/code>&lt;/em> from the Systems model library.&lt;/p>&#xA;"/>
     </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="useCaseIncluded" ordered="false"
+        lowerBound="1" eType="#//UseCaseUsage" volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName">
+        <details key="body" value="useCaseInclusion"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="&lt;p>The UseCaseUsage to be included by this IncludeUseCaseUsage. It is the &lt;code>subsettedFeature&lt;/cpde> of the first owned Subsetting Relationship of the IncludeUseCaseUsage.&lt;/p>"/>
+      </eAnnotations>
+      <eAnnotations source="redefines" references="#//PerformActionUsage/performedAction"/>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="RequirementVerificationMembership" eSuperTypes="#//RequirementConstraintMembership">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">

@@ -416,7 +416,7 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 		var found = false
 		if (ns !== null && !ns.eIsProxy && !visited.contains(ns)) {
 			visited.add(ns)
-			found = ns.resolve(qn, checkIfAdded, false, newHashSet, visited, redefined, includeImplicitGen, includeAll)
+			found = ns.resolve(qn, checkIfAdded, false, newHashSet, visited, redefined, !isRecursive && includeImplicitGen, includeAll)
 			if (!found && isRecursive) {
 				found = resolveRecursive(ns, qn, visited, includeAll)
 			}

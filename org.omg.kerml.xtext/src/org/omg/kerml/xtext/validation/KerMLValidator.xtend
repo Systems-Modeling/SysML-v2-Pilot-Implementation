@@ -49,8 +49,9 @@ import org.omg.sysml.util.ElementUtil
 import org.omg.kerml.xtext.scoping.KerMLScopeProvider
 import org.omg.sysml.util.ExpressionUtil
 import org.omg.sysml.lang.sysml.Import
-import org.eclipse.emf.common.util.BasicEList
-import org.omg.sysml.lang.sysml.Namespace
+import com.google.inject.Inject
+import org.eclipse.xtext.scoping.IScopeProvider
+import org.omg.sysml.lang.sysml.util.ISysMLScope
 
 /**
  * This class contains custom validation rules. 
@@ -83,6 +84,9 @@ class KerMLValidator extends AbstractKerMLValidator {
 	public static val INVALID_METADATA_FEATURE_VALUE__NOT_MODEL_LEVEL_MSG = "Must be model-level evaluable"
 	public static val INVALID_FEATURE_REFERENCE_EXPRESSION__INVALID_FEATURE = "Invalid FeatureReferenceExpression - Invalid feature"
 	public static val INVALID_FEATURE_REFERENCE_EXPRESSION__INVALID_FEATURE_MSG = "Must be a valid feature"
+	
+	@Inject
+	IScopeProvider scopeProvider
 		
 	@Check
 	def checkElement(Element elm) {
@@ -144,7 +148,8 @@ class KerMLValidator extends AbstractKerMLValidator {
 	@Check
 	def checkImport(Import imp) {
 		if (imp.importedMemberName !== null && !imp.importedNamespace.eIsProxy) {
-			if (imp.importedMembership(new BasicEList<Namespace>()).isEmpty) {
+			val scope = scopeProvider.getScope(imp, SysMLPackage.eINSTANCE.import_ImportOwningNamespace) as ISysMLScope
+			if (scope.getMemberships(imp.importedMemberName, imp.importAll).isEmpty) {
 				error(INVALID_IMPORT__NAME_NOT_RESOLVED_MSG.replace("{name}", imp.importedMemberName), imp, SysMLPackage.eINSTANCE.import_ImportedMemberName, INVALID_IMPORT__NAME_NOT_RESOLVED)
 			}
 		}

@@ -22,14 +22,14 @@ package Test1{
 	//XPECT linkedName at A::B --> Test1.A.B
 	//* XPECT scope at A::B ---
 	   	   A.B.B, Test1.A.B.B, A.B.B.b, A.B.B.b.b, Test1.A.B.B.b, Test1.A.B.B.b.b,
-	       A.B.b, A.B.b.B.b, A.B.b.b, A.b, 
+	       A.B.b, A.B.b.B.b, A.B.b.b, A.b, Test1.A.b,
 	   	   A.B.b.B, Test1.A.B.b.B,
-		   A, A.B, Test1.A, Test1.A.B, Test1.A.B.b, Test1.A.B.b.B.b, Test1.A.B.b.b, Test1.A.b, OuterPackage.B.b,
+		   A, A.B, Test1.A, Test1.A.B, Test1.A.B.b, Test1.A.B.b.B.b, Test1.A.B.b.b, OuterPackage.B.b,
 		   OuterPackage.A, OuterPackage.A.a1, OuterPackage.B, OuterPackage.B.b.a1,
-		   	   	   A.B.B.self,  Test1.A.B.B.self,  A.B.B.b.self,  A.B.B.b.b.self,  Test1.A.B.B.b.self,  Test1.A.B.B.b.b.self, 
-	       A.B.b.self,  A.B.b.B.b.self,  A.B.b.b.self,  A.b.self,  
-	   	   A.B.b.B.self,  Test1.A.B.b.B.self, 
-		   A.self,  A.B.self,  Test1.A.self,  Test1.A.B.self,  Test1.A.B.b.self,  Test1.A.B.b.B.b.self,  Test1.A.B.b.b.self,  Test1.A.b.self,  OuterPackage.B.b.self, 
+		   A.B.B.self,  Test1.A.B.B.self,  A.B.B.b.self, Test1.A.B.B.b.self,
+	       A.B.b.self,  
+	   	   A.B.b.B.self, Test1.A.B.b.B.self, 
+		   A.self, Test1.A.self, A.B.self, Test1.A.B.self, Test1.A.B.b.self, OuterPackage.B.b.self, 
 		   OuterPackage.A.self,  OuterPackage.A.a1.self,  OuterPackage.B.self,  OuterPackage.B.b.a1.self, 
 	--- */
 	feature A : A::B {
@@ -42,11 +42,11 @@ package Test1{
 			   	A, A.B, A.B.b, A.b, B, B.b, 
 			   	Test1.A, Test1.A.B, Test1.A.B.b, Test1.A.b, b,
 			   	OuterPackage.A, OuterPackage.A.a1, OuterPackage.B,OuterPackage.B.b, OuterPackage.B.b.a1,
-							    A.B.B.self,  A.B.B.b.self,  A.B.B.b.b.self,  Test1.A.B.B.self,  Test1.A.B.B.b.self,  Test1.A.B.B.b.b.self, 
-			    b.b.self,  b.B.self,  b.B.b.self, 
-			    A.B.b.B.self,  A.B.b.B.b.self,  A.B.b.b.self,  B.b.b.self,  Test1.A.B.b.B.self,  Test1.A.B.b.B.b.self,  Test1.A.B.b.b.self,  
-			   	A.self,  A.B.self,  A.B.b.self,  A.b.self,  B.self,  B.b.self,  
-			   	Test1.A.self,  Test1.A.B.self,  Test1.A.B.b.self,  Test1.A.b.self,  b.self, 
+				A.B.B.self,  A.B.B.b.self,  Test1.A.B.B.self,  Test1.A.B.B.b.self,
+			    b.B.self, 
+			    A.B.b.B.self,  Test1.A.B.b.B.self,
+			   	A.self,  A.B.self,  A.B.b.self,  B.self,  B.b.self,  
+			   	Test1.A.self,  Test1.A.B.self,  Test1.A.B.b.self, b.self, 
 			   	OuterPackage.A.self,  OuterPackage.A.a1.self,  OuterPackage.B.self, OuterPackage.B.b.self,  OuterPackage.B.b.a1.self, self
 			--- */
 			feature b : B; //added this line to see the scope of B

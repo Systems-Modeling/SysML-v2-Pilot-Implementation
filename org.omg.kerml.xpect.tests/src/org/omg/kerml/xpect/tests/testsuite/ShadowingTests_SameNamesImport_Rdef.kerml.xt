@@ -24,10 +24,7 @@ package test{
 	import SamePackage::container::*;
 	feature something1 redefines A{}
 	//pass junit test
-	//* XPECT errors at A ---
-	   "Couldn't resolve reference to Feature 'B'." at "B"
-	   "Features must have at least one type" at "feature something2 redefines B{}"
-	   --- */
+	// XPECT errors at A --> "Couldn't resolve reference to Feature 'B'." at "B"
 	feature something2 redefines B{}
 }
 

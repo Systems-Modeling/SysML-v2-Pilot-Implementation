@@ -22,9 +22,6 @@ package test{
 	feature A{
 		feature a2{}
 	}
-	//* XPECT errors --- 
-	"Couldn't resolve reference to Feature 'A::a1'." at "A::a1"
-	"Features must have at least one type" at "feature B redefines A::a1 {}"
-	--- */
+	// XPECT errors --> "Couldn't resolve reference to Feature 'A::a1'." at "A::a1"
 	feature B redefines A::a1 {} 
 }

@@ -39,15 +39,12 @@ package pkg {
 	occurrence def A {
 		// XPECT errors --> "An occurrence must be typed by occurrence definitions." at "occurrence areal: Real;"
 		occurrence areal: Real;
-		/* XPECT errors ---
-		 "An occurrence must be typed by occurrence definitions." at "occurrence avalue :> aValue;"
-		 "Features must have at least one type" at "occurrence avalue :> aValue;"
-		--- */
+		// XPECT errors --> "An occurrence must be typed by occurrence definitions." at "occurrence avalue :> aValue;"
 		occurrence avalue:> aValue;
-		// XPECT errors --> "An occurrence must be typed by occurrence definitions." at "occurrence twoTypes: ABlock, Real;"
-		occurrence twoTypes: ABlock, Real;
+		// XPECT errors --> "An occurrence must be typed by occurrence definitions." at "occurrence twoTypes: PartDef, Real;"
+		occurrence twoTypes: PartDef, Real;
 	}
 	attribute aValue: Real;
-	part def ABlock;
-	part aPart: ABlock;	
+	part def PartDef;
+	part aPart: PartDef;	
 }

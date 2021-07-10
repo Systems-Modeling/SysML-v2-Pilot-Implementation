@@ -24,9 +24,6 @@ END_SETUP
 package test{
 	import SamePackage::container;
 	feature something1 redefines container::A{}
-	//* XPECT errors ---
-	"Couldn't resolve reference to Feature 'container::B'." at "container::B"
-	"Features must have at least one type" at "feature something2 redefines container::B{}"
-	--- */
+	// XPECT errors --> "Couldn't resolve reference to Feature 'container::B'." at "container::B"
 	feature something2 redefines container::B{}
 }

@@ -2,6 +2,7 @@ package FeatureAccessPerformances {
 	private import Base::Anything;
 	private import Base::things;
 	private import Occurrences::Occurrence;
+	private import Occurrences::HappensWhile;
 	private import Occurrences::SelfSameLifeLink;
 	private import Performances::Performance;
 	private import Performances::Evaluation;
@@ -38,11 +39,11 @@ package FeatureAccessPerformances {
 
 		/**
 		 * Requires some time slice of onOccurrence to start when this performance
-		 * ends (first binding), with particular feature values (second binding).
+		 * ends (this connector), with particular feature values (following connector).
 		 * The feature is specified by restricting the onOccurrence::accessedFeature 
 		 * on usages of this behavior.
 		 */
-	  	 binding onOccurrence.startingAt.startShot = endShot;
+	  	 connector :HappensWhile from onOccurrence.startingAt.startShot to endShot;
 	  	 connector :SelfSameLifeLink from onOccurrence.startingAt.accessedFeature to values;
 	}
 

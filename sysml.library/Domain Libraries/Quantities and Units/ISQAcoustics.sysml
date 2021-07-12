@@ -139,7 +139,7 @@ package ISQAcoustics {
      */
     attribute volumeVelocity: SpeedValue :> scalarQuantities;
 
-    alias volumeVelocity as volumeFlowRate;
+    alias volumeFlowRate for volumeVelocity;
 
     /**
      * source: item 8-7 sound energy density

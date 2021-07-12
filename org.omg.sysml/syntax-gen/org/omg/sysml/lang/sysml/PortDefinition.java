@@ -44,7 +44,7 @@ package org.omg.sysml.lang.sysml;
  * @model
  * @generated
  */
-public interface PortDefinition extends Definition {
+public interface PortDefinition extends OccurrenceDefinition, Structure {
 
 	/**
 	 * Returns the value of the '<em><b>Conjugated Port Definition</b></em>' reference.

@@ -39,7 +39,6 @@ import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureDirectionKind;
 import org.omg.sysml.lang.sysml.FeatureValue;
-import org.omg.sysml.lang.sysml.ParameterMembership;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.ReturnParameterMembership;
 import org.omg.sysml.lang.sysml.Step;
@@ -68,7 +67,9 @@ public class FeatureUtil {
 	// Utility
 	
 	public static boolean isParameter(Feature feature) {
-		return feature.getOwningMembership() instanceof ParameterMembership;
+		Type owningType = feature.getOwningType();
+		return ( owningType instanceof Behavior || owningType instanceof Step ) && 
+			   feature.getDirection() != null;
 	}
 
 	public static boolean isResultParameter(Feature feature) {

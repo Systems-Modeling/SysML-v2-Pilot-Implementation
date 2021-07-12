@@ -37,7 +37,7 @@ package ISQAtomicNuclear {
      */
     attribute atomicNumber: CountValue :> scalarQuantities;
 
-    alias atomicNumber as protonNumber;
+    alias protonNumber for atomicNumber;
 
     /**
      * source: item 10-1.2 neutron number
@@ -65,7 +65,7 @@ package ISQAtomicNuclear {
      */
     attribute nucleonNumber: CountValue :> scalarQuantities;
 
-    alias nucleonNumber as massNumber;
+    alias massNumber for nucleonNumber;
 
     /**
      * source: item 10-2 rest mass, proper mass
@@ -80,7 +80,7 @@ package ISQAtomicNuclear {
      */
     attribute restMass: MassValue :> scalarQuantities;
 
-    alias restMass as properMass;
+    alias properMass for restMass;
 
     /**
      * source: item 10-3 rest energy
@@ -161,7 +161,7 @@ package ISQAtomicNuclear {
     attribute def ChargeNumberValue :> DimensionOneValue;
     attribute chargeNumber: ChargeNumberValue :> scalarQuantities;
 
-    alias chargeNumber as ionizationNumber;
+    alias ionizationNumber for chargeNumber;
 
     /**
      * source: item 10-6 Bohr radius
@@ -421,13 +421,13 @@ package ISQAtomicNuclear {
     }
     attribute gyromagneticRatio: GyromagneticRatioValue :> scalarQuantities;
 
-    alias GyromagneticRatioUnit as MagnetogyricRatioUnit;
-    alias GyromagneticRatioValue as MagnetogyricRatioValue;
-    alias gyromagneticRatio as magnetogyricRatio;
+    alias MagnetogyricRatioUnit for GyromagneticRatioUnit;
+    alias MagnetogyricRatioValue for GyromagneticRatioValue;
+    alias magnetogyricRatio for gyromagneticRatio;
 
-    alias GyromagneticRatioUnit as GyromagneticCoefficientUnit;
-    alias GyromagneticRatioValue as GyromagneticCoefficientValue;
-    alias gyromagneticRatio as gyromagneticCoefficient;
+    alias GyromagneticCoefficientUnit for GyromagneticRatioUnit;
+    alias GyromagneticCoefficientValue for GyromagneticRatioValue;
+    alias gyromagneticCoefficient for gyromagneticRatio;
 
     /**
      * source: item 10-12.2 gyromagnetic ratio of the electron, magnetogyric ratio of the electron, gyromagnetic coefficient of the electron
@@ -453,13 +453,13 @@ package ISQAtomicNuclear {
     }
     attribute gyromagneticRatioOfTheElectron: GyromagneticRatioOfTheElectronValue :> scalarQuantities;
 
-    alias GyromagneticRatioOfTheElectronUnit as MagnetogyricRatioOfTheElectronUnit;
-    alias GyromagneticRatioOfTheElectronValue as MagnetogyricRatioOfTheElectronValue;
-    alias gyromagneticRatioOfTheElectron as magnetogyricRatioOfTheElectron;
+    alias MagnetogyricRatioOfTheElectronUnit for GyromagneticRatioOfTheElectronUnit;
+    alias MagnetogyricRatioOfTheElectronValue for GyromagneticRatioOfTheElectronValue;
+    alias magnetogyricRatioOfTheElectron for gyromagneticRatioOfTheElectron;
 
-    alias GyromagneticRatioOfTheElectronUnit as GyromagneticCoefficientOfTheElectronUnit;
-    alias GyromagneticRatioOfTheElectronValue as GyromagneticCoefficientOfTheElectronValue;
-    alias gyromagneticRatioOfTheElectron as gyromagneticCoefficientOfTheElectron;
+    alias GyromagneticCoefficientOfTheElectronUnit for GyromagneticRatioOfTheElectronUnit;
+    alias GyromagneticCoefficientOfTheElectronValue for GyromagneticRatioOfTheElectronValue;
+    alias gyromagneticCoefficientOfTheElectron for gyromagneticRatioOfTheElectron;
 
     /**
      * source: item 10-13.1 quantum number
@@ -580,7 +580,7 @@ package ISQAtomicNuclear {
     attribute def LandeFactorValue :> DimensionOneValue;
     attribute landeFactor: LandeFactorValue :> scalarQuantities;
 
-    alias landeFactor as gFactorOfAtom;
+    alias gFactorOfAtom for landeFactor;
 
     /**
      * source: item 10-14.2 g factor of nucleus or nuclear particle
@@ -670,7 +670,7 @@ package ISQAtomicNuclear {
      */
     attribute gyroradius: LengthValue :> scalarQuantities;
 
-    alias gyroradius as larmorRadius;
+    alias larmorRadius for gyroradius;
 
     /**
      * source: item 10-18 nuclear quadrupole moment
@@ -837,9 +837,9 @@ package ISQAtomicNuclear {
     }
     attribute decayConstant: DecayConstantValue :> scalarQuantities;
 
-    alias DecayConstantUnit as DisintegrationConstantUnit;
-    alias DecayConstantValue as DisintegrationConstantValue;
-    alias decayConstant as disintegrationConstant;
+    alias DisintegrationConstantUnit for DecayConstantUnit;
+    alias DisintegrationConstantValue for DecayConstantValue;
+    alias disintegrationConstant for decayConstant;
 
     /**
      * source: item 10-25 mean duration of life, mean life time
@@ -854,7 +854,7 @@ package ISQAtomicNuclear {
      */
     attribute meanDurationOfLife: DurationValue :> scalarQuantities;
 
-    alias meanDurationOfLife as meanLifeTime;
+    alias meanLifeTime for meanDurationOfLife;
 
     /**
      * source: item 10-26 level width
@@ -914,9 +914,9 @@ package ISQAtomicNuclear {
     }
     attribute specificActivity: SpecificActivityValue :> scalarQuantities;
 
-    alias SpecificActivityUnit as MassicActivityUnit;
-    alias SpecificActivityValue as MassicActivityValue;
-    alias specificActivity as massicActivity;
+    alias MassicActivityUnit for SpecificActivityUnit;
+    alias MassicActivityValue for SpecificActivityValue;
+    alias massicActivity for specificActivity;
 
     /**
      * source: item 10-29 activity density, volumic activity, activity concentration
@@ -941,13 +941,13 @@ package ISQAtomicNuclear {
     }
     attribute activityDensity: ActivityDensityValue :> scalarQuantities;
 
-    alias ActivityDensityUnit as VolumicActivityUnit;
-    alias ActivityDensityValue as VolumicActivityValue;
-    alias activityDensity as volumicActivity;
+    alias VolumicActivityUnit for ActivityDensityUnit;
+    alias VolumicActivityValue for ActivityDensityValue;
+    alias volumicActivity for activityDensity;
 
-    alias ActivityDensityUnit as ActivityConcentrationUnit;
-    alias ActivityDensityValue as ActivityConcentrationValue;
-    alias activityDensity as activityConcentration;
+    alias ActivityConcentrationUnit for ActivityDensityUnit;
+    alias ActivityConcentrationValue for ActivityDensityValue;
+    alias activityConcentration for activityDensity;
 
     /**
      * source: item 10-30 surface-activity density
@@ -1202,9 +1202,9 @@ package ISQAtomicNuclear {
     }
     attribute volumicCrossSection: VolumicCrossSectionValue :> scalarQuantities;
 
-    alias VolumicCrossSectionUnit as MacroscopicCrossSectionUnit;
-    alias VolumicCrossSectionValue as MacroscopicCrossSectionValue;
-    alias volumicCrossSection as macroscopicCrossSection;
+    alias MacroscopicCrossSectionUnit for VolumicCrossSectionUnit;
+    alias MacroscopicCrossSectionValue for VolumicCrossSectionValue;
+    alias macroscopicCrossSection for volumicCrossSection;
 
     /**
      * source: item 10-42.2 volumic total cross section, macroscopic total cross section
@@ -1228,9 +1228,9 @@ package ISQAtomicNuclear {
     }
     attribute volumicTotalCrossSection: VolumicTotalCrossSectionValue :> scalarQuantities;
 
-    alias VolumicTotalCrossSectionUnit as MacroscopicTotalCrossSectionUnit;
-    alias VolumicTotalCrossSectionValue as MacroscopicTotalCrossSectionValue;
-    alias volumicTotalCrossSection as macroscopicTotalCrossSection;
+    alias MacroscopicTotalCrossSectionUnit for VolumicTotalCrossSectionUnit;
+    alias MacroscopicTotalCrossSectionValue for VolumicTotalCrossSectionValue;
+    alias macroscopicTotalCrossSection for volumicTotalCrossSection;
 
     /**
      * source: item 10-43 particle fluence
@@ -1512,9 +1512,9 @@ package ISQAtomicNuclear {
     }
     attribute totalLinearStoppingPower: TotalLinearStoppingPowerValue :> scalarQuantities;
 
-    alias TotalLinearStoppingPowerUnit as LinearStoppingPowerUnit;
-    alias TotalLinearStoppingPowerValue as LinearStoppingPowerValue;
-    alias totalLinearStoppingPower as linearStoppingPower;
+    alias LinearStoppingPowerUnit for TotalLinearStoppingPowerUnit;
+    alias LinearStoppingPowerValue for TotalLinearStoppingPowerValue;
+    alias linearStoppingPower for totalLinearStoppingPower;
 
     /**
      * source: item 10-55 total mass stopping power, mass stopping power
@@ -1539,9 +1539,9 @@ package ISQAtomicNuclear {
     }
     attribute totalMassStoppingPower: TotalMassStoppingPowerValue :> scalarQuantities;
 
-    alias TotalMassStoppingPowerUnit as MassStoppingPowerUnit;
-    alias TotalMassStoppingPowerValue as MassStoppingPowerValue;
-    alias totalMassStoppingPower as massStoppingPower;
+    alias MassStoppingPowerUnit for TotalMassStoppingPowerUnit;
+    alias MassStoppingPowerValue for TotalMassStoppingPowerValue;
+    alias massStoppingPower for totalMassStoppingPower;
 
     /**
      * source: item 10-56 mean linear range
@@ -1707,9 +1707,9 @@ package ISQAtomicNuclear {
     }
     attribute ionNumberDensity: IonNumberDensityValue :> scalarQuantities;
 
-    alias IonNumberDensityUnit as IonDensityUnit;
-    alias IonNumberDensityValue as IonDensityValue;
-    alias ionNumberDensity as ionDensity;
+    alias IonDensityUnit for IonNumberDensityUnit;
+    alias IonDensityValue for IonNumberDensityValue;
+    alias ionDensity for ionNumberDensity;
 
     /**
      * source: item 10-63 Recombination coefficient
@@ -1750,9 +1750,9 @@ package ISQAtomicNuclear {
      * Refer to declaration for DiffusionCoefficient in ISQChemistryMolecular item 9-39 DiffusionCoefficient.
      */
 
-    alias DiffusionCoefficientUnit as DiffusionCoefficientForParticleNumberDensityUnit;
-    alias DiffusionCoefficientValue as DiffusionCoefficientForParticleNumberDensityValue;
-    alias diffusionCoefficient as diffusionCoefficientForParticleNumberDensity;
+    alias DiffusionCoefficientForParticleNumberDensityUnit for DiffusionCoefficientUnit;
+    alias DiffusionCoefficientForParticleNumberDensityValue for DiffusionCoefficientValue;
+    alias diffusionCoefficientForParticleNumberDensity for diffusionCoefficient;
 
     /**
      * source: item 10-65 diffusion coefficient for fluence rate

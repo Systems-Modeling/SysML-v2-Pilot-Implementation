@@ -218,7 +218,7 @@ public class SysMLInteractive extends SysMLUtil {
 					filter(r->!inputResources.contains(r)).
 					flatMap(r->r.getContents().stream()).
 					filter(Namespace.class::isInstance).
-					flatMap(n->((Namespace)n).publicMemberships(new BasicEList<>()).stream()).
+					flatMap(n->((Namespace)n).visibleMemberships(new BasicEList<>(), false, false).stream()).
 					collect(Collectors.toList());
 			return SysMLInteractiveUtil.formatMembershipList(globalMemberships);
 		} catch (Exception e) {
@@ -234,7 +234,7 @@ public class SysMLInteractive extends SysMLUtil {
 		if (result.hasErrors()) {
 			return result.toString();
 		} else {
-			List<Membership> memberships = ((Namespace)result.getRootElement()).publicMemberships(new BasicEList<>());
+			List<Membership> memberships = ((Namespace)result.getRootElement()).visibleMemberships(new BasicEList<>(), false, false);
 			this.removeResource();
 			return SysMLInteractiveUtil.formatMembershipList(memberships);
 		}

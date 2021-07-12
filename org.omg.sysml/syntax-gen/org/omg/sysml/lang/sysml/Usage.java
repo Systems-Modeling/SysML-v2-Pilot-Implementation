@@ -39,6 +39,7 @@ import org.eclipse.emf.common.util.EList;
  * variantMembership = ownedMembership->selectByKind(VariantMembership)
  * not isVariation implies variantMembership->isEmpty()
  * isVariation implies variantMembership = ownedMembership
+ * isReference = not isComposite
  * <!-- end-model-doc -->
  *
  * <p>
@@ -55,7 +56,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedRequirement <em>Nested Requirement</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedCalculation <em>Nested Calculation</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#isVariation <em>Is Variation</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Usage#getFlowFeature <em>Flow Feature</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Usage#getDirectedUsage <em>Directed Usage</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedCase <em>Nested Case</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedAnalysisCase <em>Nested Analysis Case</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getVariantMembership <em>Variant Membership</em>}</li>
@@ -74,9 +75,11 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedEnumeration <em>Nested Enumeration</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedAllocation <em>Nested Allocation</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedConcern <em>Nested Concern</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedStakeholder <em>Nested Stakeholder</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedOccurrence <em>Nested Occurrence</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getDefinition <em>Definition</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedUseCase <em>Nested Use Case</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Usage#isReference <em>Is Reference</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedFlow <em>Nested Flow</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getOwningDefinition <em>Owning Definition</em>}</li>
  * </ul>
  *
@@ -108,7 +111,7 @@ public interface Usage extends Feature {
 	 * @return the value of the '<em>Nested Usage</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedUsage()
 	 * @see org.omg.sysml.lang.sysml.Usage#getOwningUsage
-	 * @model opposite="owningUsage" transient="true" volatile="true" derived="true" ordered="false"
+	 * @model opposite="owningUsage" transient="true" volatile="true" derived="true"
 	 *        annotation="subsets"
 	 * @generated
 	 */
@@ -239,7 +242,7 @@ public interface Usage extends Feature {
 	 * @return the value of the '<em>Nested Port</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedPort()
 	 * @see org.omg.sysml.lang.sysml.PortUsage#getPortOwningUsage
-	 * @model opposite="portOwningUsage" transient="true" volatile="true" derived="true" ordered="false"
+	 * @model opposite="portOwningUsage" transient="true" volatile="true" derived="true"
 	 *        annotation="subsets"
 	 * @generated
 	 */
@@ -265,7 +268,7 @@ public interface Usage extends Feature {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Nested State</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedState()
-	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='stateOwningUsage'"
 	 *        annotation="subsets"
 	 * @generated
@@ -292,7 +295,7 @@ public interface Usage extends Feature {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Nested Constraint</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedConstraint()
-	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='constraintOwningUsage'"
 	 *        annotation="subsets"
 	 * @generated
@@ -346,7 +349,7 @@ public interface Usage extends Feature {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Nested Requirement</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedRequirement()
-	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='requirementOwningUsage'"
 	 *        annotation="subsets"
 	 * @generated
@@ -369,7 +372,7 @@ public interface Usage extends Feature {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Nested Calculation</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedCalculation()
-	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='calculationOwningUsage'"
 	 *        annotation="subsets"
 	 * @generated
@@ -402,28 +405,29 @@ public interface Usage extends Feature {
 	void setIsVariation(boolean value);
 
 	/**
-	 * Returns the value of the '<em><b>Flow Feature</b></em>' reference list.
+	 * Returns the value of the '<em><b>Directed Usage</b></em>' reference list.
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Usage}.
 	 * <p>
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
 	 *   <li>'{@link org.omg.sysml.lang.sysml.Usage#getUsage() <em>Usage</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Type#getDirectedFeature() <em>Directed Feature</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>usages</code> of this Usage that have a non-null <code>direction</code>.</p>
+	 * <p>The <code>usages</code> of this Usage that are <code>directedFeatures</code>.</p>
 	 * 
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Flow Feature</em>' reference list.
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_FlowFeature()
-	 * @model transient="true" volatile="true" derived="true" ordered="false"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='usageWithFlow'"
+	 * @return the value of the '<em>Directed Usage</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_DirectedUsage()
+	 * @model transient="true" volatile="true" derived="true"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body=' /usageWithDirectedUsage'"
 	 *        annotation="subsets"
 	 * @generated
 	 */
-	EList<Usage> getFlowFeature();
+	EList<Usage> getDirectedUsage();
 
 	/**
 	 * Returns the value of the '<em><b>Nested Case</b></em>' reference list.
@@ -441,8 +445,8 @@ public interface Usage extends Feature {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Nested Case</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedCase()
-	 * @model transient="true" volatile="true" derived="true" ordered="false"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body=' /caseOwningUsage'"
+	 * @model transient="true" volatile="true" derived="true"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='caseOwningUsage'"
 	 *        annotation="subsets"
 	 * @generated
 	 */
@@ -487,7 +491,7 @@ public interface Usage extends Feature {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Nested Analysis Case</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedAnalysisCase()
-	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='analysisCaseOwningUsage'"
 	 *        annotation="subsets"
 	 * @generated
@@ -510,7 +514,7 @@ public interface Usage extends Feature {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Usage</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_Usage()
-	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='featuringUsage'"
 	 *        annotation="subsets"
 	 * @generated
@@ -534,7 +538,7 @@ public interface Usage extends Feature {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Nested Reference</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedReference()
-	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='referenceOwningUsage'"
 	 *        annotation="subsets"
 	 * @generated
@@ -543,7 +547,7 @@ public interface Usage extends Feature {
 
 	/**
 	 * Returns the value of the '<em><b>Nested Connection</b></em>' reference list.
-	 * The list contents are of type {@link org.omg.sysml.lang.sysml.ConnectionUsage}.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.ConnectorAsUsage}.
 	 * <p>
 	 * This feature subsets the following features:
 	 * </p>
@@ -553,16 +557,16 @@ public interface Usage extends Feature {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The ConnectionUsages that are <code>nestedUsages</code> of this Usage.</p>
+	 * <p>The ConnectorAsUsages that are <code>nestedUsages</code> of this Usage. Note that this list includes BindingConnectorAsUsages and SuccessionAsUsages, even though these are ConnectorAsUsages but not ConnectionUsages.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Nested Connection</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedConnection()
-	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='connectionOwningUsage'"
 	 *        annotation="subsets"
 	 * @generated
 	 */
-	EList<ConnectionUsage> getNestedConnection();
+	EList<ConnectorAsUsage> getNestedConnection();
 
 	/**
 	 * Returns the value of the '<em><b>Nested Item</b></em>' reference list.
@@ -580,7 +584,7 @@ public interface Usage extends Feature {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Nested Item</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedItem()
-	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='itemOwningUsage'"
 	 *        annotation="subsets"
 	 * @generated
@@ -603,7 +607,7 @@ public interface Usage extends Feature {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Nested Part</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedPart()
-	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='partOwningUsage'"
 	 *        annotation="subsets"
 	 * @generated
@@ -626,7 +630,7 @@ public interface Usage extends Feature {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Nested Interface</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedInterface()
-	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='interfaceOwningUsage'"
 	 *        annotation="subsets"
 	 * @generated
@@ -649,7 +653,7 @@ public interface Usage extends Feature {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Nested Attribute</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedAttribute()
-	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='attributeOwningUsage'"
 	 *        annotation="subsets"
 	 * @generated
@@ -672,7 +676,7 @@ public interface Usage extends Feature {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Nested View</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedView()
-	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='viewOwningUsage'"
 	 *        annotation="subsets"
 	 * @generated
@@ -695,7 +699,7 @@ public interface Usage extends Feature {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Nested Viewpoint</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedViewpoint()
-	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='viewpointOwningUsage'"
 	 *        annotation="subsets"
 	 * @generated
@@ -718,7 +722,7 @@ public interface Usage extends Feature {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Nested Rendering</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedRendering()
-	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='renderingOwningUsage'"
 	 *        annotation="subsets"
 	 * @generated
@@ -741,7 +745,7 @@ public interface Usage extends Feature {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Nested Verification Case</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedVerificationCase()
-	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='verificationCaseOwningUsage'"
 	 *        annotation="subsets"
 	 * @generated
@@ -764,7 +768,7 @@ public interface Usage extends Feature {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Nested Enumeration</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedEnumeration()
-	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='enumerationOwningUsage'"
 	 *        annotation="subsets"
 	 * @generated
@@ -787,7 +791,7 @@ public interface Usage extends Feature {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Nested Allocation</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedAllocation()
-	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='allocationOwningUsage'"
 	 *        annotation="subsets"
 	 * @generated
@@ -818,29 +822,6 @@ public interface Usage extends Feature {
 	EList<ConcernUsage> getNestedConcern();
 
 	/**
-	 * Returns the value of the '<em><b>Nested Stakeholder</b></em>' reference list.
-	 * The list contents are of type {@link org.omg.sysml.lang.sysml.StakeholderUsage}.
-	 * <p>
-	 * This feature subsets the following features:
-	 * </p>
-	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Usage#getNestedPart() <em>Nested Part</em>}'</li>
-	 * </ul>
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * <p>The StakeholderUsages that are <code>nestedUsages</code> of this Usage.</p>
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Nested Stakeholder</em>' reference list.
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedStakeholder()
-	 * @model transient="true" volatile="true" derived="true" ordered="false"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='stakeholderOwningUsage'"
-	 *        annotation="subsets"
-	 * @generated
-	 */
-	EList<StakeholderUsage> getNestedStakeholder();
-
-	/**
 	 * Returns the value of the '<em><b>Nested Occurrence</b></em>' reference list.
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.OccurrenceUsage}.
 	 * <p>
@@ -856,7 +837,7 @@ public interface Usage extends Feature {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Nested Occurrence</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedOccurrence()
-	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='occurrenceOwningUsage'"
 	 *        annotation="subsets"
 	 * @generated
@@ -887,6 +868,77 @@ public interface Usage extends Feature {
 	EList<Classifier> getDefinition();
 
 	/**
+	 * Returns the value of the '<em><b>Nested Use Case</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.UseCaseUsage}.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Usage#getNestedCase() <em>Nested Case</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The UseCaseUsages that are <code>ownedUsages</code> of this Usage.</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Nested Use Case</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedUseCase()
+	 * @model transient="true" volatile="true" derived="true"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='useCaseOwningUsage'"
+	 *        annotation="subsets"
+	 * @generated
+	 */
+	EList<UseCaseUsage> getNestedUseCase();
+
+	/**
+	 * Returns the value of the '<em><b>Is Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Whether this Usage is a reference Usage, derived as the negation of <code>isComposite</code>.<p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Is Reference</em>' attribute.
+	 * @see #setIsReference(boolean)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_IsReference()
+	 * @model dataType="org.omg.sysml.lang.types.Boolean" required="true" transient="true" volatile="true" derived="true" ordered="false"
+	 * @generated
+	 */
+	boolean isReference();
+
+	/**
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Usage#isReference <em>Is Reference</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Is Reference</em>' attribute.
+	 * @see #isReference()
+	 * @generated
+	 */
+	void setIsReference(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Nested Flow</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.FlowConnectionUsage}.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Usage#getNestedConnection() <em>Nested Connection</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The FlowConnectionUsages that are <code>nestedUsages</code> of this Usage.</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Nested Flow</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedFlow()
+	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='flowOwningUsage'"
+	 *        annotation="subsets"
+	 * @generated
+	 */
+	EList<FlowConnectionUsage> getNestedFlow();
+
+	/**
 	 * Returns the value of the '<em><b>Nested Action</b></em>' reference list.
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.ActionUsage}.
 	 * <p>
@@ -906,7 +958,7 @@ public interface Usage extends Feature {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Nested Action</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedAction()
-	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='actionOwningUsage'"
 	 *        annotation="subsets"
 	 * @generated

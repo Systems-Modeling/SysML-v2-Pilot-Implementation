@@ -25,29 +25,29 @@ package org.omg.sysml.lang.sysml.impl;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
-
-import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.BasicInternalEList;
-import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
-import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.ecore.util.InternalEList;
-import org.eclipse.uml2.common.util.UnionEObjectEList;
+import org.eclipse.uml2.common.util.DerivedEObjectEList;
 import org.omg.sysml.lang.sysml.Association;
 import org.omg.sysml.lang.sysml.AssociationStructure;
+import org.omg.sysml.lang.sysml.Classifier;
 import org.omg.sysml.lang.sysml.ConnectionUsage;
-import org.omg.sysml.lang.sysml.Connector;
-import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.Relationship;
+import org.omg.sysml.lang.sysml.ItemUsage;
+import org.omg.sysml.lang.sysml.OccurrenceDefinition;
+import org.omg.sysml.lang.sysml.OccurrenceUsage;
+import org.omg.sysml.lang.sysml.PartDefinition;
+import org.omg.sysml.lang.sysml.PartUsage;
+import org.omg.sysml.lang.sysml.PortionKind;
+import org.omg.sysml.lang.sysml.PortioningFeature;
+import org.omg.sysml.lang.sysml.Structure;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.util.ConnectorUtil;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
+import org.omg.sysml.util.UsageUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -57,49 +57,60 @@ import org.omg.sysml.util.NonNotifyingEObjectEList;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectionUsageImpl#getOwningRelatedElement <em>Owning Related Element</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectionUsageImpl#getOwnedRelatedElement <em>Owned Related Element</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectionUsageImpl#getRelatedFeature <em>Related Feature</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectionUsageImpl#isDirected <em>Is Directed</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectionUsageImpl#getConnectorEnd <em>Connector End</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectionUsageImpl#getSourceFeature <em>Source Feature</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectionUsageImpl#getTargetFeature <em>Target Feature</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectionUsageImpl#getOccurrenceDefinition <em>Occurrence Definition</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectionUsageImpl#getPortioningFeature <em>Portioning Feature</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectionUsageImpl#getIndividualDefinition <em>Individual Definition</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectionUsageImpl#isIndividual <em>Is Individual</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectionUsageImpl#getPortionKind <em>Portion Kind</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectionUsageImpl#getItemDefinition <em>Item Definition</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectionUsageImpl#getPartDefinition <em>Part Definition</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectionUsageImpl#getConnectionDefinition <em>Connection Definition</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class ConnectionUsageImpl extends PartUsageImpl implements ConnectionUsage {
+public class ConnectionUsageImpl extends ConnectorAsUsageImpl implements ConnectionUsage {
 
 	/**
-	 * The cached value of the '{@link #getOwnedRelatedElement() <em>Owned Related Element</em>}' containment reference list.
+	 * The default value of the '{@link #isIndividual() <em>Is Individual</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getOwnedRelatedElement()
+	 * @see #isIndividual()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Element> ownedRelatedElement;
+	protected static final boolean IS_INDIVIDUAL_EDEFAULT = false;
 
 	/**
-	 * The default value of the '{@link #isDirected() <em>Is Directed</em>}' attribute.
+	 * The cached value of the '{@link #isIndividual() <em>Is Individual</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isDirected()
+	 * @see #isIndividual()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final boolean IS_DIRECTED_EDEFAULT = false;
+	protected boolean isIndividual = IS_INDIVIDUAL_EDEFAULT;
+
 	/**
-	 * The cached value of the '{@link #isDirected() <em>Is Directed</em>}' attribute.
+	 * The default value of the '{@link #getPortionKind() <em>Portion Kind</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isDirected()
+	 * @see #getPortionKind()
+	 * @generated NOT
+	 * @ordered
+	 */
+	protected static final PortionKind PORTION_KIND_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getPortionKind() <em>Portion Kind</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPortionKind()
 	 * @generated
 	 * @ordered
 	 */
-	protected boolean isDirected = IS_DIRECTED_EDEFAULT;
-	
+	protected PortionKind portionKind = PORTION_KIND_EDEFAULT;
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -122,13 +133,17 @@ public class ConnectionUsageImpl extends PartUsageImpl implements ConnectionUsag
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
-	public EList<Element> getTarget() {
-		@SuppressWarnings("unchecked")
-		EList<Element> targetFeature = (EList<Element>)((EList<?>)getTargetFeature());
-		return targetFeature;
+	public EList<org.omg.sysml.lang.sysml.Class> getOccurrenceDefinition() {
+		EList<org.omg.sysml.lang.sysml.Class> definitions =
+				new NonNotifyingEObjectEList<>(org.omg.sysml.lang.sysml.Class.class, this, SysMLPackage.CONNECTION_USAGE__OCCURRENCE_DEFINITION);
+		super.getDefinition().stream().
+			filter(org.omg.sysml.lang.sysml.Class.class::isInstance).
+			map(org.omg.sysml.lang.sysml.Class.class::cast).
+			forEachOrdered(definitions::add);
+		return definitions;
 	}
 
 	/**
@@ -136,32 +151,8 @@ public class ConnectionUsageImpl extends PartUsageImpl implements ConnectionUsag
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isSetTarget() {
-  		return false;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EList<Element> getSource() {
-		EList<Element> source = new UniqueEList<Element>();
-		Feature sourceFeature = getSourceFeature();
-		if (sourceFeature != null) {
-			source.add(sourceFeature);
-		}
-		return new UnionEObjectEList<Element>(this, SysMLPackage.Literals.RELATIONSHIP__SOURCE, source.size(), source.toArray());
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetSource() {
-  		return false;
+	public boolean isSetOccurrenceDefinition() {
+		return !getOccurrenceDefinition().isEmpty();
 	}
 
 	/**
@@ -170,19 +161,31 @@ public class ConnectionUsageImpl extends PartUsageImpl implements ConnectionUsag
 	 * @generated
 	 */
 	@Override
-	public Element getOwningRelatedElement() {
-		if (eContainerFeatureID() != SysMLPackage.CONNECTION_USAGE__OWNING_RELATED_ELEMENT) return null;
-		return (Element)eInternalContainer();
+	public PortioningFeature getPortioningFeature() {
+		PortioningFeature portioningFeature = basicGetPortioningFeature();
+		return portioningFeature != null && portioningFeature.eIsProxy() ? (PortioningFeature)eResolveProxy((InternalEObject)portioningFeature) : portioningFeature;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
-	public NotificationChain basicSetOwningRelatedElement(Element newOwningRelatedElement, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newOwningRelatedElement, SysMLPackage.CONNECTION_USAGE__OWNING_RELATED_ELEMENT, msgs);
-		return msgs;
+	public PortioningFeature basicGetPortioningFeature() {
+		return getOwnedFeature().stream().
+				filter(PortioningFeature.class::isInstance).
+				map(PortioningFeature.class::cast).
+				findFirst().orElse(null);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public void setPortioningFeature(PortioningFeature newPortioningFeature) {
+		throw new UnsupportedOperationException();
 	}
 
 	/**
@@ -191,20 +194,32 @@ public class ConnectionUsageImpl extends PartUsageImpl implements ConnectionUsag
 	 * @generated
 	 */
 	@Override
-	public void setOwningRelatedElement(Element newOwningRelatedElement) {
-		if (newOwningRelatedElement != eInternalContainer() || (eContainerFeatureID() != SysMLPackage.CONNECTION_USAGE__OWNING_RELATED_ELEMENT && newOwningRelatedElement != null)) {
-			if (EcoreUtil.isAncestor(this, newOwningRelatedElement))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
-			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
-				msgs = eBasicRemoveFromContainer(msgs);
-			if (newOwningRelatedElement != null)
-				msgs = ((InternalEObject)newOwningRelatedElement).eInverseAdd(this, SysMLPackage.ELEMENT__OWNED_RELATIONSHIP, Element.class, msgs);
-			msgs = basicSetOwningRelatedElement(newOwningRelatedElement, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.CONNECTION_USAGE__OWNING_RELATED_ELEMENT, newOwningRelatedElement, newOwningRelatedElement));
+	public OccurrenceDefinition getIndividualDefinition() {
+		OccurrenceDefinition individualDefinition = basicGetIndividualDefinition();
+		return individualDefinition != null && individualDefinition.eIsProxy() ? (OccurrenceDefinition)eResolveProxy((InternalEObject)individualDefinition) : individualDefinition;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public OccurrenceDefinition basicGetIndividualDefinition() {
+		return getOccurrenceDefinition().stream().
+				filter(OccurrenceDefinition.class::isInstance).
+				map(OccurrenceDefinition.class::cast).
+				filter(OccurrenceDefinition::isIndividual).
+				findFirst().orElse(null);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public void setIndividualDefinition(OccurrenceDefinition newIndividualDefinition) {
+		throw new UnsupportedOperationException();
 	}
 
 	/**
@@ -213,11 +228,73 @@ public class ConnectionUsageImpl extends PartUsageImpl implements ConnectionUsag
 	 * @generated
 	 */
 	@Override
-	public EList<Element> getOwnedRelatedElement() {
-		if (ownedRelatedElement == null) {
-			ownedRelatedElement = new EObjectContainmentWithInverseEList<Element>(Element.class, this, SysMLPackage.CONNECTION_USAGE__OWNED_RELATED_ELEMENT, SysMLPackage.ELEMENT__OWNING_RELATIONSHIP);
-		}
-		return ownedRelatedElement;
+	public boolean isIndividual() {
+		return isIndividual;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setIsIndividual(boolean newIsIndividual) {
+		boolean oldIsIndividual = isIndividual;
+		isIndividual = newIsIndividual;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.CONNECTION_USAGE__IS_INDIVIDUAL, oldIsIndividual, isIndividual));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public PortionKind getPortionKind() {
+		return portionKind;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setPortionKind(PortionKind newPortionKind) {
+		PortionKind oldPortionKind = portionKind;
+		portionKind = newPortionKind == null ? PORTION_KIND_EDEFAULT : newPortionKind;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.CONNECTION_USAGE__PORTION_KIND, oldPortionKind, portionKind));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public EList<Structure> getItemDefinition() {
+		return new DerivedEObjectEList<>(Structure.class, this, SysMLPackage.CONNECTION_USAGE__ITEM_DEFINITION, new int[] {SysMLPackage.CONNECTION_USAGE__OCCURRENCE_DEFINITION});
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetItemDefinition() {
+		return !getItemDefinition().isEmpty();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public EList<PartDefinition> getPartDefinition() {
+		return new DerivedEObjectEList<>(PartDefinition.class, this, SysMLPackage.CONNECTION_USAGE__PART_DEFINITION, new int[] {SysMLPackage.CONNECTION_USAGE__OCCURRENCE_DEFINITION});
 	}
 
 	/**
@@ -240,38 +317,15 @@ public class ConnectionUsageImpl extends PartUsageImpl implements ConnectionUsag
 	}
 
 	/**
-	 * The array of subset feature identifiers for the '{@link #getRelatedFeature() <em>Related Feature</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getRelatedFeature()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final int[] RELATED_FEATURE_ESUBSETS = new int[] {SysMLPackage.CONNECTION_USAGE__SOURCE_FEATURE, SysMLPackage.CONNECTION_USAGE__TARGET_FEATURE};
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 */
-	public boolean isSetRelatedFeature() {
-		return !getRelatedFeature().isEmpty();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
 	 */
 	@Override
 	public EList<Association> getAssociation() {
-		EList<Association> associations = 
-				new NonNotifyingEObjectEList<>(Association.class, this, SysMLPackage.CONNECTOR__ASSOCIATION);
-		super.getType().stream().
-			filter(type->type instanceof Association).
-			map(type->(Association)type).
-			forEachOrdered(associations::add);
-		return associations;
+		@SuppressWarnings("unchecked")
+		EList<Association> connectionDefinition = (EList<Association>)((EList<?>)getConnectionDefinition());
+		return connectionDefinition;
 	}
 
 	/**
@@ -290,13 +344,7 @@ public class ConnectionUsageImpl extends PartUsageImpl implements ConnectionUsag
 	 */
 	@Override
 	public EList<AssociationStructure> getConnectionDefinition() {
-		EList<AssociationStructure> associations = 
-				new NonNotifyingEObjectEList<>(AssociationStructure.class, this, SysMLPackage.CONNECTION_USAGE__CONNECTION_DEFINITION);
-		super.getType().stream().
-			filter(AssociationStructure.class::isInstance).
-			map(AssociationStructure.class::cast).
-			forEachOrdered(associations::add);
-		return associations;
+		return new DerivedEObjectEList<>(AssociationStructure.class, this, SysMLPackage.CONNECTION_USAGE__CONNECTION_DEFINITION, new int[] {SysMLPackage.CONNECTION_USAGE__OCCURRENCE_DEFINITION});
 	}
 
 	/**
@@ -313,9 +361,10 @@ public class ConnectionUsageImpl extends PartUsageImpl implements ConnectionUsag
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public boolean isDirected() {
-		return isDirected;
+	public EList<Classifier> getDefinition() {
+		@SuppressWarnings("unchecked")
+		EList<Classifier> occurrenceDefinition = (EList<Classifier>)((EList<?>)getOccurrenceDefinition());
+		return occurrenceDefinition;
 	}
 
 	/**
@@ -323,51 +372,8 @@ public class ConnectionUsageImpl extends PartUsageImpl implements ConnectionUsag
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public void setIsDirected(boolean newIsDirected) {
-		boolean oldIsDirected = isDirected;
-		isDirected = newIsDirected;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.CONNECTION_USAGE__IS_DIRECTED, oldIsDirected, isDirected));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	@Override
-	public EList<Feature> getConnectorEnd() {
-		return new ConnectorImpl.DerivedConnectorEndList(this);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetConnectorEnd() {
-		return !getConnectorEnd().isEmpty();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Feature getSourceFeature() {
-		Feature sourceFeature = basicGetSourceFeature();
-		return sourceFeature != null && sourceFeature.eIsProxy() ? (Feature)eResolveProxy((InternalEObject)sourceFeature) : sourceFeature;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public Feature basicGetSourceFeature() {
-		return ConnectorUtil.getSourceFeatureOf(this);
+	public boolean isSetDefinition() {
+  		return false;
 	}
 
 	/**
@@ -378,15 +384,6 @@ public class ConnectionUsageImpl extends PartUsageImpl implements ConnectionUsag
 	@Override
 	public void setSourceFeature(Feature newSourceFeature) {
 		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetSourceFeature() {
-		return basicGetSourceFeature() != null;
 	}
 
 	/**
@@ -404,15 +401,6 @@ public class ConnectionUsageImpl extends PartUsageImpl implements ConnectionUsag
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetTargetFeature() {
-		return !getTargetFeature().isEmpty();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	public EList<Feature> path(Feature relatedFeature) {
@@ -420,125 +408,15 @@ public class ConnectionUsageImpl extends PartUsageImpl implements ConnectionUsag
 		ConnectorUtil.getPath(path, getOwningNamespace(), relatedFeature);
 		return path;
 	}
+	
+	// Additional overrides
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<Element> getRelatedElement() {
-		@SuppressWarnings("unchecked")
-		EList<Element> relatedFeature = (EList<Element>)((EList<?>)getRelatedFeature());
-		return relatedFeature;
-	}
-
-	/**
-	 * The array of subset feature identifiers for the '{@link #getRelatedElement() <em>Related Element</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getRelatedElement()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final int[] RELATED_ELEMENT_ESUBSETS = new int[] {SysMLPackage.CONNECTION_USAGE__TARGET, SysMLPackage.CONNECTION_USAGE__SOURCE, SysMLPackage.CONNECTION_USAGE__OWNING_RELATED_ELEMENT, SysMLPackage.CONNECTION_USAGE__OWNED_RELATED_ELEMENT};
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetRelatedElement() {
-  		return false;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
-	public EList<Type> getType() {
-		@SuppressWarnings("unchecked")
-		EList<Type> definition = (EList<Type>)((EList<?>)getDefinition());
-		return definition;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetType() {
-  		return false;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EList<Feature> getEndFeature() {
-		return getConnectorEnd();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetEndFeature() {
-  		return false;
+	public boolean isReference() {
+		return UsageUtil.isReference(this, isComposite);
 	}
 	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case SysMLPackage.CONNECTION_USAGE__OWNING_RELATED_ELEMENT:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetOwningRelatedElement((Element)otherEnd, msgs);
-			case SysMLPackage.CONNECTION_USAGE__OWNED_RELATED_ELEMENT:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedRelatedElement()).basicAdd(otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case SysMLPackage.CONNECTION_USAGE__OWNING_RELATED_ELEMENT:
-				return basicSetOwningRelatedElement(null, msgs);
-			case SysMLPackage.CONNECTION_USAGE__OWNED_RELATED_ELEMENT:
-				return ((InternalEList<?>)getOwnedRelatedElement()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID()) {
-			case SysMLPackage.CONNECTION_USAGE__OWNING_RELATED_ELEMENT:
-				return eInternalContainer().eInverseRemove(this, SysMLPackage.ELEMENT__OWNED_RELATIONSHIP, Element.class, msgs);
-		}
-		return super.eBasicRemoveFromContainerFeature(msgs);
-	}
+	//
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -548,29 +426,22 @@ public class ConnectionUsageImpl extends PartUsageImpl implements ConnectionUsag
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case SysMLPackage.CONNECTION_USAGE__RELATED_ELEMENT:
-				return getRelatedElement();
-			case SysMLPackage.CONNECTION_USAGE__TARGET:
-				return getTarget();
-			case SysMLPackage.CONNECTION_USAGE__SOURCE:
-				return getSource();
-			case SysMLPackage.CONNECTION_USAGE__OWNING_RELATED_ELEMENT:
-				return getOwningRelatedElement();
-			case SysMLPackage.CONNECTION_USAGE__OWNED_RELATED_ELEMENT:
-				return getOwnedRelatedElement();
-			case SysMLPackage.CONNECTION_USAGE__RELATED_FEATURE:
-				return getRelatedFeature();
-			case SysMLPackage.CONNECTION_USAGE__ASSOCIATION:
-				return getAssociation();
-			case SysMLPackage.CONNECTION_USAGE__IS_DIRECTED:
-				return isDirected();
-			case SysMLPackage.CONNECTION_USAGE__CONNECTOR_END:
-				return getConnectorEnd();
-			case SysMLPackage.CONNECTION_USAGE__SOURCE_FEATURE:
-				if (resolve) return getSourceFeature();
-				return basicGetSourceFeature();
-			case SysMLPackage.CONNECTION_USAGE__TARGET_FEATURE:
-				return getTargetFeature();
+			case SysMLPackage.CONNECTION_USAGE__OCCURRENCE_DEFINITION:
+				return getOccurrenceDefinition();
+			case SysMLPackage.CONNECTION_USAGE__PORTIONING_FEATURE:
+				if (resolve) return getPortioningFeature();
+				return basicGetPortioningFeature();
+			case SysMLPackage.CONNECTION_USAGE__INDIVIDUAL_DEFINITION:
+				if (resolve) return getIndividualDefinition();
+				return basicGetIndividualDefinition();
+			case SysMLPackage.CONNECTION_USAGE__IS_INDIVIDUAL:
+				return isIndividual();
+			case SysMLPackage.CONNECTION_USAGE__PORTION_KIND:
+				return getPortionKind();
+			case SysMLPackage.CONNECTION_USAGE__ITEM_DEFINITION:
+				return getItemDefinition();
+			case SysMLPackage.CONNECTION_USAGE__PART_DEFINITION:
+				return getPartDefinition();
 			case SysMLPackage.CONNECTION_USAGE__CONNECTION_DEFINITION:
 				return getConnectionDefinition();
 		}
@@ -586,38 +457,29 @@ public class ConnectionUsageImpl extends PartUsageImpl implements ConnectionUsag
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case SysMLPackage.CONNECTION_USAGE__TARGET:
-				getTarget().clear();
-				getTarget().addAll((Collection<? extends Element>)newValue);
+			case SysMLPackage.CONNECTION_USAGE__OCCURRENCE_DEFINITION:
+				getOccurrenceDefinition().clear();
+				getOccurrenceDefinition().addAll((Collection<? extends org.omg.sysml.lang.sysml.Class>)newValue);
 				return;
-			case SysMLPackage.CONNECTION_USAGE__SOURCE:
-				getSource().clear();
-				getSource().addAll((Collection<? extends Element>)newValue);
+			case SysMLPackage.CONNECTION_USAGE__PORTIONING_FEATURE:
+				setPortioningFeature((PortioningFeature)newValue);
 				return;
-			case SysMLPackage.CONNECTION_USAGE__OWNING_RELATED_ELEMENT:
-				setOwningRelatedElement((Element)newValue);
+			case SysMLPackage.CONNECTION_USAGE__INDIVIDUAL_DEFINITION:
+				setIndividualDefinition((OccurrenceDefinition)newValue);
 				return;
-			case SysMLPackage.CONNECTION_USAGE__OWNED_RELATED_ELEMENT:
-				getOwnedRelatedElement().clear();
-				getOwnedRelatedElement().addAll((Collection<? extends Element>)newValue);
+			case SysMLPackage.CONNECTION_USAGE__IS_INDIVIDUAL:
+				setIsIndividual((Boolean)newValue);
 				return;
-			case SysMLPackage.CONNECTION_USAGE__ASSOCIATION:
-				getAssociation().clear();
-				getAssociation().addAll((Collection<? extends Association>)newValue);
+			case SysMLPackage.CONNECTION_USAGE__PORTION_KIND:
+				setPortionKind((PortionKind)newValue);
 				return;
-			case SysMLPackage.CONNECTION_USAGE__IS_DIRECTED:
-				setIsDirected((Boolean)newValue);
+			case SysMLPackage.CONNECTION_USAGE__ITEM_DEFINITION:
+				getItemDefinition().clear();
+				getItemDefinition().addAll((Collection<? extends Structure>)newValue);
 				return;
-			case SysMLPackage.CONNECTION_USAGE__CONNECTOR_END:
-				getConnectorEnd().clear();
-				getConnectorEnd().addAll((Collection<? extends Feature>)newValue);
-				return;
-			case SysMLPackage.CONNECTION_USAGE__SOURCE_FEATURE:
-				setSourceFeature((Feature)newValue);
-				return;
-			case SysMLPackage.CONNECTION_USAGE__TARGET_FEATURE:
-				getTargetFeature().clear();
-				getTargetFeature().addAll((Collection<? extends Feature>)newValue);
+			case SysMLPackage.CONNECTION_USAGE__PART_DEFINITION:
+				getPartDefinition().clear();
+				getPartDefinition().addAll((Collection<? extends PartDefinition>)newValue);
 				return;
 			case SysMLPackage.CONNECTION_USAGE__CONNECTION_DEFINITION:
 				getConnectionDefinition().clear();
@@ -635,32 +497,26 @@ public class ConnectionUsageImpl extends PartUsageImpl implements ConnectionUsag
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.CONNECTION_USAGE__TARGET:
-				getTarget().clear();
+			case SysMLPackage.CONNECTION_USAGE__OCCURRENCE_DEFINITION:
+				getOccurrenceDefinition().clear();
 				return;
-			case SysMLPackage.CONNECTION_USAGE__SOURCE:
-				getSource().clear();
+			case SysMLPackage.CONNECTION_USAGE__PORTIONING_FEATURE:
+				setPortioningFeature((PortioningFeature)null);
 				return;
-			case SysMLPackage.CONNECTION_USAGE__OWNING_RELATED_ELEMENT:
-				setOwningRelatedElement((Element)null);
+			case SysMLPackage.CONNECTION_USAGE__INDIVIDUAL_DEFINITION:
+				setIndividualDefinition((OccurrenceDefinition)null);
 				return;
-			case SysMLPackage.CONNECTION_USAGE__OWNED_RELATED_ELEMENT:
-				getOwnedRelatedElement().clear();
+			case SysMLPackage.CONNECTION_USAGE__IS_INDIVIDUAL:
+				setIsIndividual(IS_INDIVIDUAL_EDEFAULT);
 				return;
-			case SysMLPackage.CONNECTION_USAGE__ASSOCIATION:
-				getAssociation().clear();
+			case SysMLPackage.CONNECTION_USAGE__PORTION_KIND:
+				setPortionKind(PORTION_KIND_EDEFAULT);
 				return;
-			case SysMLPackage.CONNECTION_USAGE__IS_DIRECTED:
-				setIsDirected(IS_DIRECTED_EDEFAULT);
+			case SysMLPackage.CONNECTION_USAGE__ITEM_DEFINITION:
+				getItemDefinition().clear();
 				return;
-			case SysMLPackage.CONNECTION_USAGE__CONNECTOR_END:
-				getConnectorEnd().clear();
-				return;
-			case SysMLPackage.CONNECTION_USAGE__SOURCE_FEATURE:
-				setSourceFeature((Feature)null);
-				return;
-			case SysMLPackage.CONNECTION_USAGE__TARGET_FEATURE:
-				getTargetFeature().clear();
+			case SysMLPackage.CONNECTION_USAGE__PART_DEFINITION:
+				getPartDefinition().clear();
 				return;
 			case SysMLPackage.CONNECTION_USAGE__CONNECTION_DEFINITION:
 				getConnectionDefinition().clear();
@@ -677,32 +533,24 @@ public class ConnectionUsageImpl extends PartUsageImpl implements ConnectionUsag
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.CONNECTION_USAGE__RELATED_ELEMENT:
-				return isSetRelatedElement();
-			case SysMLPackage.CONNECTION_USAGE__TARGET:
-				return isSetTarget();
-			case SysMLPackage.CONNECTION_USAGE__SOURCE:
-				return isSetSource();
-			case SysMLPackage.CONNECTION_USAGE__OWNING_RELATED_ELEMENT:
-				return getOwningRelatedElement() != null;
-			case SysMLPackage.CONNECTION_USAGE__OWNED_RELATED_ELEMENT:
-				return ownedRelatedElement != null && !ownedRelatedElement.isEmpty();
-			case SysMLPackage.CONNECTION_USAGE__RELATED_FEATURE:
-				return isSetRelatedFeature();
-			case SysMLPackage.CONNECTION_USAGE__TYPE:
-				return isSetType();
-			case SysMLPackage.CONNECTION_USAGE__END_FEATURE:
-				return isSetEndFeature();
+			case SysMLPackage.CONNECTION_USAGE__DEFINITION:
+				return isSetDefinition();
+			case SysMLPackage.CONNECTION_USAGE__OCCURRENCE_DEFINITION:
+				return isSetOccurrenceDefinition();
+			case SysMLPackage.CONNECTION_USAGE__PORTIONING_FEATURE:
+				return basicGetPortioningFeature() != null;
+			case SysMLPackage.CONNECTION_USAGE__INDIVIDUAL_DEFINITION:
+				return basicGetIndividualDefinition() != null;
+			case SysMLPackage.CONNECTION_USAGE__IS_INDIVIDUAL:
+				return isIndividual != IS_INDIVIDUAL_EDEFAULT;
+			case SysMLPackage.CONNECTION_USAGE__PORTION_KIND:
+				return portionKind != PORTION_KIND_EDEFAULT;
+			case SysMLPackage.CONNECTION_USAGE__ITEM_DEFINITION:
+				return isSetItemDefinition();
+			case SysMLPackage.CONNECTION_USAGE__PART_DEFINITION:
+				return !getPartDefinition().isEmpty();
 			case SysMLPackage.CONNECTION_USAGE__ASSOCIATION:
 				return isSetAssociation();
-			case SysMLPackage.CONNECTION_USAGE__IS_DIRECTED:
-				return isDirected != IS_DIRECTED_EDEFAULT;
-			case SysMLPackage.CONNECTION_USAGE__CONNECTOR_END:
-				return isSetConnectorEnd();
-			case SysMLPackage.CONNECTION_USAGE__SOURCE_FEATURE:
-				return isSetSourceFeature();
-			case SysMLPackage.CONNECTION_USAGE__TARGET_FEATURE:
-				return isSetTargetFeature();
 			case SysMLPackage.CONNECTION_USAGE__CONNECTION_DEFINITION:
 				return isSetConnectionDefinition();
 		}
@@ -716,24 +564,25 @@ public class ConnectionUsageImpl extends PartUsageImpl implements ConnectionUsag
 	 */
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-		if (baseClass == Relationship.class) {
+		if (baseClass == OccurrenceUsage.class) {
 			switch (derivedFeatureID) {
-				case SysMLPackage.CONNECTION_USAGE__RELATED_ELEMENT: return SysMLPackage.RELATIONSHIP__RELATED_ELEMENT;
-				case SysMLPackage.CONNECTION_USAGE__TARGET: return SysMLPackage.RELATIONSHIP__TARGET;
-				case SysMLPackage.CONNECTION_USAGE__SOURCE: return SysMLPackage.RELATIONSHIP__SOURCE;
-				case SysMLPackage.CONNECTION_USAGE__OWNING_RELATED_ELEMENT: return SysMLPackage.RELATIONSHIP__OWNING_RELATED_ELEMENT;
-				case SysMLPackage.CONNECTION_USAGE__OWNED_RELATED_ELEMENT: return SysMLPackage.RELATIONSHIP__OWNED_RELATED_ELEMENT;
+				case SysMLPackage.CONNECTION_USAGE__OCCURRENCE_DEFINITION: return SysMLPackage.OCCURRENCE_USAGE__OCCURRENCE_DEFINITION;
+				case SysMLPackage.CONNECTION_USAGE__PORTIONING_FEATURE: return SysMLPackage.OCCURRENCE_USAGE__PORTIONING_FEATURE;
+				case SysMLPackage.CONNECTION_USAGE__INDIVIDUAL_DEFINITION: return SysMLPackage.OCCURRENCE_USAGE__INDIVIDUAL_DEFINITION;
+				case SysMLPackage.CONNECTION_USAGE__IS_INDIVIDUAL: return SysMLPackage.OCCURRENCE_USAGE__IS_INDIVIDUAL;
+				case SysMLPackage.CONNECTION_USAGE__PORTION_KIND: return SysMLPackage.OCCURRENCE_USAGE__PORTION_KIND;
 				default: return -1;
 			}
 		}
-		if (baseClass == Connector.class) {
+		if (baseClass == ItemUsage.class) {
 			switch (derivedFeatureID) {
-				case SysMLPackage.CONNECTION_USAGE__RELATED_FEATURE: return SysMLPackage.CONNECTOR__RELATED_FEATURE;
-				case SysMLPackage.CONNECTION_USAGE__ASSOCIATION: return SysMLPackage.CONNECTOR__ASSOCIATION;
-				case SysMLPackage.CONNECTION_USAGE__IS_DIRECTED: return SysMLPackage.CONNECTOR__IS_DIRECTED;
-				case SysMLPackage.CONNECTION_USAGE__CONNECTOR_END: return SysMLPackage.CONNECTOR__CONNECTOR_END;
-				case SysMLPackage.CONNECTION_USAGE__SOURCE_FEATURE: return SysMLPackage.CONNECTOR__SOURCE_FEATURE;
-				case SysMLPackage.CONNECTION_USAGE__TARGET_FEATURE: return SysMLPackage.CONNECTOR__TARGET_FEATURE;
+				case SysMLPackage.CONNECTION_USAGE__ITEM_DEFINITION: return SysMLPackage.ITEM_USAGE__ITEM_DEFINITION;
+				default: return -1;
+			}
+		}
+		if (baseClass == PartUsage.class) {
+			switch (derivedFeatureID) {
+				case SysMLPackage.CONNECTION_USAGE__PART_DEFINITION: return SysMLPackage.PART_USAGE__PART_DEFINITION;
 				default: return -1;
 			}
 		}
@@ -747,24 +596,25 @@ public class ConnectionUsageImpl extends PartUsageImpl implements ConnectionUsag
 	 */
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-		if (baseClass == Relationship.class) {
+		if (baseClass == OccurrenceUsage.class) {
 			switch (baseFeatureID) {
-				case SysMLPackage.RELATIONSHIP__RELATED_ELEMENT: return SysMLPackage.CONNECTION_USAGE__RELATED_ELEMENT;
-				case SysMLPackage.RELATIONSHIP__TARGET: return SysMLPackage.CONNECTION_USAGE__TARGET;
-				case SysMLPackage.RELATIONSHIP__SOURCE: return SysMLPackage.CONNECTION_USAGE__SOURCE;
-				case SysMLPackage.RELATIONSHIP__OWNING_RELATED_ELEMENT: return SysMLPackage.CONNECTION_USAGE__OWNING_RELATED_ELEMENT;
-				case SysMLPackage.RELATIONSHIP__OWNED_RELATED_ELEMENT: return SysMLPackage.CONNECTION_USAGE__OWNED_RELATED_ELEMENT;
+				case SysMLPackage.OCCURRENCE_USAGE__OCCURRENCE_DEFINITION: return SysMLPackage.CONNECTION_USAGE__OCCURRENCE_DEFINITION;
+				case SysMLPackage.OCCURRENCE_USAGE__PORTIONING_FEATURE: return SysMLPackage.CONNECTION_USAGE__PORTIONING_FEATURE;
+				case SysMLPackage.OCCURRENCE_USAGE__INDIVIDUAL_DEFINITION: return SysMLPackage.CONNECTION_USAGE__INDIVIDUAL_DEFINITION;
+				case SysMLPackage.OCCURRENCE_USAGE__IS_INDIVIDUAL: return SysMLPackage.CONNECTION_USAGE__IS_INDIVIDUAL;
+				case SysMLPackage.OCCURRENCE_USAGE__PORTION_KIND: return SysMLPackage.CONNECTION_USAGE__PORTION_KIND;
 				default: return -1;
 			}
 		}
-		if (baseClass == Connector.class) {
+		if (baseClass == ItemUsage.class) {
 			switch (baseFeatureID) {
-				case SysMLPackage.CONNECTOR__RELATED_FEATURE: return SysMLPackage.CONNECTION_USAGE__RELATED_FEATURE;
-				case SysMLPackage.CONNECTOR__ASSOCIATION: return SysMLPackage.CONNECTION_USAGE__ASSOCIATION;
-				case SysMLPackage.CONNECTOR__IS_DIRECTED: return SysMLPackage.CONNECTION_USAGE__IS_DIRECTED;
-				case SysMLPackage.CONNECTOR__CONNECTOR_END: return SysMLPackage.CONNECTION_USAGE__CONNECTOR_END;
-				case SysMLPackage.CONNECTOR__SOURCE_FEATURE: return SysMLPackage.CONNECTION_USAGE__SOURCE_FEATURE;
-				case SysMLPackage.CONNECTOR__TARGET_FEATURE: return SysMLPackage.CONNECTION_USAGE__TARGET_FEATURE;
+				case SysMLPackage.ITEM_USAGE__ITEM_DEFINITION: return SysMLPackage.CONNECTION_USAGE__ITEM_DEFINITION;
+				default: return -1;
+			}
+		}
+		if (baseClass == PartUsage.class) {
+			switch (baseFeatureID) {
+				case SysMLPackage.PART_USAGE__PART_DEFINITION: return SysMLPackage.CONNECTION_USAGE__PART_DEFINITION;
 				default: return -1;
 			}
 		}
@@ -781,8 +631,10 @@ public class ConnectionUsageImpl extends PartUsageImpl implements ConnectionUsag
 		if (eIsProxy()) return super.toString();
 
 		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (isDirected: ");
-		result.append(isDirected);
+		result.append(" (isIndividual: ");
+		result.append(isIndividual);
+		result.append(", portionKind: ");
+		result.append(portionKind);
 		result.append(')');
 		return result.toString();
 	}

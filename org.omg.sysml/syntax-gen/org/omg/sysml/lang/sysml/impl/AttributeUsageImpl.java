@@ -110,6 +110,15 @@ public class AttributeUsageImpl extends UsageImpl implements AttributeUsage {
   		return false;
 	}
 
+	// Additional overrides
+	
+	@Override
+	public boolean isReference() {
+		return true;
+	}
+	
+	//
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

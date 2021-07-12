@@ -35,9 +35,9 @@ package ISQThermodynamics {
      * base unit ThermodynamicTemperatureUnit and quantity type ThermodynamicTemperatureValue.
      */
 
-    alias ThermodynamicTemperatureUnit as TemperatureUnit;
-    alias ThermodynamicTemperatureValue as TemperatureValue;
-    alias thermodynamicTemperature as temperature;
+    alias TemperatureUnit for ThermodynamicTemperatureUnit;
+    alias TemperatureValue for ThermodynamicTemperatureValue;
+    alias temperature for thermodynamicTemperature;
 
     /**
      * source: item 5-2 Celsius temperature
@@ -213,7 +213,7 @@ package ISQThermodynamics {
      */
     attribute heat: EnergyValue :> scalarQuantities;
 
-    alias heat as amountOfHeat;
+    alias amountOfHeat for heat;
 
     /**
      * source: item 5-6.2 latent heat
@@ -372,9 +372,9 @@ package ISQThermodynamics {
     }
     attribute thermalInsulance: ThermalInsulanceValue :> scalarQuantities;
 
-    alias ThermalInsulanceUnit as CoefficientOfThermalInsulanceUnit;
-    alias ThermalInsulanceValue as CoefficientOfThermalInsulanceValue;
-    alias thermalInsulance as coefficientOfThermalInsulance;
+    alias CoefficientOfThermalInsulanceUnit for ThermalInsulanceUnit;
+    alias CoefficientOfThermalInsulanceValue for ThermalInsulanceValue;
+    alias coefficientOfThermalInsulance for thermalInsulance;
 
     /**
      * source: item 5-12 thermal resistance
@@ -598,7 +598,7 @@ package ISQThermodynamics {
     attribute def IsentropicExponentValue :> DimensionOneValue;
     attribute isentropicExponent: IsentropicExponentValue :> scalarQuantities;
 
-    alias isentropicExponent as isentropicExpansionFactor;
+    alias isentropicExpansionFactor for isentropicExponent;
 
     /**
      * source: item 5-18 entropy
@@ -686,7 +686,7 @@ package ISQThermodynamics {
      */
     attribute internalEnergy: EnergyValue :> scalarQuantities;
 
-    alias internalEnergy as thermodynamicEnergy;
+    alias thermodynamicEnergy for internalEnergy;
 
     /**
      * source: item 5-20.3 enthalpy
@@ -714,7 +714,7 @@ package ISQThermodynamics {
      */
     attribute helmholtzEnergy: EnergyValue :> scalarQuantities;
 
-    alias helmholtzEnergy as helmholtzFunction;
+    alias helmholtzFunction for helmholtzEnergy;
 
     /**
      * source: item 5-20.5 Gibbs energy, Gibbs function
@@ -729,7 +729,7 @@ package ISQThermodynamics {
      */
     attribute gibbsEnergy: EnergyValue :> scalarQuantities;
 
-    alias gibbsEnergy as gibbsFunction;
+    alias gibbsFunction for gibbsEnergy;
 
     /**
      * source: item 5-21.1 specific energy
@@ -767,7 +767,7 @@ package ISQThermodynamics {
      */
     attribute specificInternalEnergy: SpecificEnergyValue :> scalarQuantities;
 
-    alias specificInternalEnergy as specificThermodynamicEnergy;
+    alias specificThermodynamicEnergy for specificInternalEnergy;
 
     /**
      * source: item 5-21.3 specific enthalpy
@@ -805,7 +805,7 @@ package ISQThermodynamics {
      */
     attribute specificHelmholtzEnergy: SpecificEnergyValue :> scalarQuantities;
 
-    alias specificHelmholtzEnergy as specificHelmholtzFunction;
+    alias specificHelmholtzFunction for specificHelmholtzEnergy;
 
     /**
      * source: item 5-21.5 specific Gibbs energy, specific Gibbs function
@@ -820,7 +820,7 @@ package ISQThermodynamics {
      */
     attribute specificGibbsEnergy: SpecificEnergyValue :> scalarQuantities;
 
-    alias specificGibbsEnergy as specificGibbsFunction;
+    alias specificGibbsFunction for specificGibbsEnergy;
 
     /**
      * source: item 5-22 Massieu function

@@ -34,7 +34,7 @@ package UnitsAndScales {
 		attribute order :>> rank;
 		attribute mRefs: ScalarMeasurementReference[1..*] :>> elements;
 	}
-	alias TensorMeasurementReference as MeasurementReference;
+	alias MeasurementReference for TensorMeasurementReference;
 	
 	/**
 	 * A VectorMeasurementReference is a specialization of TensorMeasurementReference for vector quantities that are 

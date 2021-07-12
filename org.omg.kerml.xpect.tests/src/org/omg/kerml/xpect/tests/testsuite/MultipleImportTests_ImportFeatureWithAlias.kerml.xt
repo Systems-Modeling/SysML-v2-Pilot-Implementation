@@ -18,7 +18,7 @@ END_SETUP
 */
 // XPECT noErrors --> ""
 package test{
-	import OuterPackage::B::b as bb;
+	alias bb for OuterPackage::B::b;
 	class D{
 		//XPECT linkedName at bb --> OuterPackage.B.b	
 		feature try is bb;

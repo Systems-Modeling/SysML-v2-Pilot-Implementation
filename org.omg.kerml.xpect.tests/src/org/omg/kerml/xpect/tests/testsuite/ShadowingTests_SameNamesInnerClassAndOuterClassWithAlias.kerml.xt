@@ -15,7 +15,7 @@ END_SETUP
 
 // XPECT noErrors --> ""
 package test{
-	alias A1 as A;
+	alias A for A1;
 	class A1{
 		class A{
 			//XPECT linkedName at A --> test.A1.A

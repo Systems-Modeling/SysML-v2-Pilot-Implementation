@@ -267,9 +267,6 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 		Element ownedMemberElement = basicGetOwnedMemberElement();
 		if (!isNameSet && ownedMemberElement != null) {
 			memberName = ((ElementImpl)ownedMemberElement).basicGetName();
-		} else if (memberName == null && memberElement != null) {
-			// Note: User getter to ensure proxy resolution.
-			memberName = getMemberElementGen().getName();
 		}
 		return memberName;
 	}

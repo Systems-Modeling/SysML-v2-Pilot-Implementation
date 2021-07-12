@@ -36,7 +36,6 @@ import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureDirectionKind;
-import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
@@ -158,11 +157,11 @@ public class ExpressionImpl extends StepImpl implements Expression {
 	public EList<Feature> getInput() {
 		// Only owned inputs
 		EList<Feature> inputs = new BasicInternalEList<Feature>(Feature.class);
-		// Note: Using directionOf causes in infinite recursion.
-		getOwnedFeatureMembership().stream().
-			filter(mem->FeatureDirectionKind.IN == mem.getDirection() || 
-				FeatureDirectionKind.INOUT == mem.getDirection()).
-			map(FeatureMembership::getMemberFeature).
+		// Note: Using directionOf causes an infinite recursion.
+		getOwnedFeature().stream().
+			filter(feature->
+				FeatureDirectionKind.IN == feature.getDirection() || 
+				FeatureDirectionKind.INOUT == feature.getDirection()).
 			forEachOrdered(inputs::add);
 		return inputs;
 	}
@@ -171,11 +170,11 @@ public class ExpressionImpl extends StepImpl implements Expression {
 	public EList<Feature> getOutput() {
 		// Only owned outputs
 		EList<Feature> outputs = new BasicInternalEList<Feature>(Feature.class);
-		// Note: Using directionOf causes in infinite recursion.
-		getOwnedFeatureMembership().stream().
-			filter(mem->FeatureDirectionKind.OUT == mem.getDirection() || 
-				FeatureDirectionKind.INOUT == mem.getDirection()).
-			map(FeatureMembership::getMemberFeature).
+		// Note: Using directionOf causes an infinite recursion.
+		getOwnedFeature().stream().
+		filter(feature->
+			FeatureDirectionKind.OUT == feature.getDirection() || 
+			FeatureDirectionKind.INOUT == feature.getDirection()).
 			forEachOrdered(outputs::add);
 		return outputs;
 	}

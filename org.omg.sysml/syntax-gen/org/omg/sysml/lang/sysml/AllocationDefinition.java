@@ -43,7 +43,7 @@ public interface AllocationDefinition extends ConnectionDefinition {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Allocation</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getAllocationDefinition_Allocation()
-	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='featuringAllocationDefinition'"
 	 *        annotation="subsets"
 	 * @generated

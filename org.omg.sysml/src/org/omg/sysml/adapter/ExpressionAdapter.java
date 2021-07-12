@@ -102,16 +102,16 @@ public class ExpressionAdapter extends StepAdapter {
 		if (parameter == null) {
 			return null;
 		} else {
-			Expression expression = getTarget();
 			Feature feature = SysMLFactory.eINSTANCE.createFeature();
+			feature.setDirection(parameter.getDirection());
+			
 			FeatureMembership membership = SysMLFactory.eINSTANCE.createParameterMembership();
 			membership.setOwnedMemberFeature(feature);
 			membership.setMemberName("$" + parameter.getName());
+			
+			Expression expression = getTarget();
 			expression.getOwnedRelationship().add(membership);
-			FeatureMembership parameterMembership = parameter.getOwningFeatureMembership();
-			if (parameterMembership != null) {
-				membership.setDirection(parameterMembership.getDirection());
-			}			
+			
 			return feature;
 		}
 	}

@@ -22,10 +22,7 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
-import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
-import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expose;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
@@ -55,15 +52,12 @@ public class ExposeImpl extends ImportImpl implements Expose {
 	protected EClass eStaticClass() {
 		return SysMLPackage.Literals.EXPOSE;
 	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
+	
+	// Additional overrides
+	
 	@Override
-	public EList<Element> getTarget() {
-		return super.getTarget();
+	public boolean isImportAll() {
+		return true;
 	}
 
 } //ExposeImpl

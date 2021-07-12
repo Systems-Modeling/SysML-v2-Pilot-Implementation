@@ -29,7 +29,7 @@ import org.eclipse.emf.common.util.EList;
  * '<em><b>Function</b></em>'. <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A Function is a Behavior that has an output parameter specifically identified as its <code>result</code>. It represents the performance of a calculation that produces the values of its <code>result</code> parameter. This calculation may be decomposed into Expressions that are the <code>steps</code> of the Function.</p>
+ * <p>A Function is a Behavior that has a single <code>out</code> <code>parameter</code> that is identified as its <code>result</code>. Any other <code>parameters</code> of a Function than the <code>result</code> must have direction <code>in</code>. A Function represents the performance of a calculation that produces the values of its <code>result</code> parameter. This calculation may be decomposed into Expressions that are <code>steps</code> of the Function.</p>
  * 
  * <!-- end-model-doc -->
  *
@@ -94,7 +94,7 @@ public interface Function extends Behavior {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The distinguished <code>result</code> parameter of the Function, derived as the <code>parameter</code> related to the Function by a ReturnParameterMembership.</p>
+	 * <p>The <code>result</code> parameter of the Function, derived as the single <code>parameter</code> of the Function with direction <code>out</code>.</p>
 	 * 
 	 * <p>The object or value that is the result of evaluating the Function.</p>
 	 * <!-- end-model-doc -->

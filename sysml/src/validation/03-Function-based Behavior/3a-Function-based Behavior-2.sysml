@@ -3,7 +3,7 @@ package '3a-Function-based Behavior-2' {
 	import Usages::*;
 
 	package Definitions {
-		import ISQ::TorqueValue as Torque;
+		alias Torque for ISQ::TorqueValue;
 		
 		// VALUE TYPES
 		

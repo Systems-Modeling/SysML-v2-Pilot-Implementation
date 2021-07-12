@@ -65,7 +65,7 @@ public interface ActionUsage extends OccurrenceUsage, Step {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Action Definition</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getActionUsage_ActionDefinition()
-	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
+	 * @model required="true" transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='definedAction'"
 	 *        annotation="redefines"
 	 * @generated

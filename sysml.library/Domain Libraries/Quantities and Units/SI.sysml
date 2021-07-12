@@ -284,7 +284,7 @@ package SI {
     attribute 'Wb/m': MagneticVectorPotentialUnit = Wb/m { :>> longName = "weber per metre"; }
     attribute 'Ω⋅m': ResistivityUnit = 'Ω'*m { :>> longName = "ohm metre"; }
 
-    alias 'm⋅s⁻²' as 'm/s²';
+    alias 'm/s²' for 'm⋅s⁻²';
 
     /*
      * Prefixed units
@@ -336,5 +336,5 @@ package SI {
         // Such CoordinateTransformation can be used instead of the celsiusToKelvinScaleMapping
         attribute zeroShift : CoordinateTransformation { :>> source = K; :>> target = self; :>> origin = 27316/100 [K]; }
     }
-    alias '°C_scale' as '°C';
+    alias '°C' for '°C_scale';
 }

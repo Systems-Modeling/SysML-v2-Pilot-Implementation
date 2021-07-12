@@ -29,7 +29,7 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>An Invariant is a BooleanExpression that is asserted to be true. This assertion is made by the Invariant having a BindingConnector as an <code>ownedFeature</code> that binds the <code>result</code> of the Invariant to the <code>result</code> of a LiteralBoolean with value <em>true</em>.</p>
+ * <p>An Invariant is a BooleanExpression that is asserted to have a specific Boolean result value. If <code>isNegated = false</code>, then the Invariant must subset, directly or indirectly, the BooleanExpression <em>trueEvaluations</em> from the Kernel library, meaning that the result is asserted to be true. If <code>isNegated = true</code>, then the Invariant must subset, directly or indirectly, the BooleanExpression <em>falseEvaluations</em> from the Kernel library, meaning that the result is asserted to be false.</p>
  * 
  * <!-- end-model-doc -->
  *
@@ -37,7 +37,7 @@ package org.omg.sysml.lang.sysml;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.Invariant#getAssertionConnector <em>Assertion Connector</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Invariant#isNegated <em>Is Negated</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getInvariant()
@@ -47,36 +47,28 @@ package org.omg.sysml.lang.sysml;
 public interface Invariant extends BooleanExpression {
 
 	/**
-	 * Returns the value of the '<em><b>Assertion Connector</b></em>' reference.
-	 * <p>
-	 * This feature subsets the following features:
-	 * </p>
-	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Type#getOwnedFeature() <em>Owned Feature</em>}'</li>
-	 * </ul>
+	 * Returns the value of the '<em><b>Is Negated</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>An <code>ownedFeature</code> of the Invariant that is a BindingConnector between the <code>result</code> of the Invariant and the <code>result</code> of a LiteralBoolean with value <em>true</em>.</p>
-	 * 
+	 * <p>Whether this Invariant is asserted to be false rather than true.</p>
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Assertion Connector</em>' reference.
-	 * @see #setAssertionConnector(BindingConnector)
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getInvariant_AssertionConnector()
-	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='invariant'"
-	 *        annotation="subsets"
+	 * @return the value of the '<em>Is Negated</em>' attribute.
+	 * @see #setIsNegated(boolean)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getInvariant_IsNegated()
+	 * @model default="false" dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false"
 	 * @generated
 	 */
-	BindingConnector getAssertionConnector();
+	boolean isNegated();
 
 	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Invariant#getAssertionConnector <em>Assertion Connector</em>}' reference.
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Invariant#isNegated <em>Is Negated</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Assertion Connector</em>' reference.
-	 * @see #getAssertionConnector()
+	 * @param value the new value of the '<em>Is Negated</em>' attribute.
+	 * @see #isNegated()
 	 * @generated
 	 */
-	void setAssertionConnector(BindingConnector value);
+	void setIsNegated(boolean value);
 } // Invariant

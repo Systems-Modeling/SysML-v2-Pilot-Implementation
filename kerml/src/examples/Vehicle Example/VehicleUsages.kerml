@@ -49,7 +49,7 @@ package VehicleUsages {
 				composite hub: VehicleDefinitions::WheelHubIF;
 			}
 			composite rightFrontWheel subsets vehicle_C1::frontAxleAssembly::frontWheel = vehicle_C1::frontAxleAssembly::frontWheel[2] {
-				port hub: VehicleDefinitions::WheelHubIF;
+				feature hub: VehicleDefinitions::WheelHubIF;
 			}
 			
 			composite frontAxle redefines vehicle_C1::frontAxleAssembly::frontAxle {
@@ -66,15 +66,15 @@ package VehicleUsages {
 		
 		composite rearAxleAssembly redefines vehicle_C1::rearAxleAssembly {
 			composite leftRearWheel subsets vehicle_C1::rearAxleAssembly::rearWheel = vehicle_C1::rearAxleAssembly::rearWheel[1] {
-				port hub: WheelHubIF;
+				feature hub: WheelHubIF;
 			}
 			composite rightRearWheel subsets vehicle_C1::rearAxleAssembly::rearWheel = vehicle_C1::rearAxleAssembly::rearWheel[2] {
-				port hub: WheelHubIF;
+				feature hub: WheelHubIF;
 			}
 
 			composite rearAxle redefines vehicle_C1::rearAxleAssembly::rearAxle {
-				port leftMountingPoint: AxleMountIF;
-				port rightMountingPoint: AxleMountIF;
+				feature leftMountingPoint: AxleMountIF;
+				feature rightMountingPoint: AxleMountIF;
 			}
 			
 			connector leftRearMount: Mounting from 
@@ -85,15 +85,15 @@ package VehicleUsages {
 		}		
 	}
 	
-	/** Further specialized configuration with a connector to a deeply-nested port. **/
+	/** Further specialized configuration with a connector to a deeply-nested feature. **/
 	feature vehicle_C3 redefines vehicle_C2 {
 		composite transmission: Transmission {
-			out port drive: DriveIF;
+			out feature drive: DriveIF;
 		}
 		
 		composite rearAxleAssembly redefines vehicle_C2::rearAxleAssembly {
 			composite rearAxle redefines vehicle_C2::rearAxleAssembly::rearAxle {
-				in port drive: DriveIF;
+				in feature drive: DriveIF;
 			}
 		}
 		

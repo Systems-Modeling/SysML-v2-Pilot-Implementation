@@ -22,6 +22,8 @@
  */
 package org.omg.sysml.lang.sysml;
 
+import org.eclipse.emf.common.util.EList;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -29,9 +31,9 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A CaseDefinition is a CalculationDefinition for a process, often involving collecting evidence or data, relative to a subject, producing a result that meets an objective.</p>
+ * <p>A CaseDefinition is a CalculationDefinition for a process, often involving collecting evidence or data, relative to a subject, possibly involving the collaboration of one or more other actors, producing a result that meets an objective.</p>
  * 
- * <p>A CaseDefinition must subclass, directly or indirectly, the base CaseDefinition Case from the Systems model library.</p>
+ * <p>A CaseDefinition must subclass, directly or indirectly, the base CaseDefinition <em>Case</em> from the Systems model library.</p>
  * <!-- end-model-doc -->
  *
  * <p>
@@ -40,6 +42,7 @@ package org.omg.sysml.lang.sysml;
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.CaseDefinition#getObjectiveRequirement <em>Objective Requirement</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.CaseDefinition#getSubjectParameter <em>Subject Parameter</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.CaseDefinition#getActorParameter <em>Actor Parameter</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getCaseDefinition()
@@ -54,7 +57,7 @@ public interface CaseDefinition extends CalculationDefinition {
 	 * </p>
 	 * <ul>
 	 *   <li>'{@link org.omg.sysml.lang.sysml.Behavior#getParameter() <em>Parameter</em>}'</li>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Type#getOwnedFeature() <em>Owned Feature</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Definition#getOwnedUsage() <em>Owned Usage</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -82,12 +85,36 @@ public interface CaseDefinition extends CalculationDefinition {
 	void setSubjectParameter(Usage value);
 
 	/**
+	 * Returns the value of the '<em><b>Actor Parameter</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.PartUsage}.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Definition#getOwnedPart() <em>Owned Part</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Behavior#getParameter() <em>Parameter</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The <code>parameters</code> of this CaseDefinition that are owned via ActorMemberships, which must subset, directly or indirectly, the PartUsage <em><code>actors</code></em> of the base CaseDefinition <em>Case</em> from the Systems model library.</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Actor Parameter</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getCaseDefinition_ActorParameter()
+	 * @model transient="true" volatile="true" derived="true"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='actorOwningCaseDefinition'"
+	 *        annotation="subsets"
+	 * @generated
+	 */
+	EList<PartUsage> getActorParameter();
+
+	/**
 	 * Returns the value of the '<em><b>Objective Requirement</b></em>' reference.
 	 * <p>
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Type#getOwnedFeature() <em>Owned Feature</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Definition#getOwnedRequirement() <em>Owned Requirement</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -97,7 +124,7 @@ public interface CaseDefinition extends CalculationDefinition {
 	 * @return the value of the '<em>Objective Requirement</em>' reference.
 	 * @see #setObjectiveRequirement(RequirementUsage)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getCaseDefinition_ObjectiveRequirement()
-	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='objectiveOwningCaseDefinition'"
 	 *        annotation="subsets"
 	 * @generated

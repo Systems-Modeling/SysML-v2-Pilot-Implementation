@@ -84,6 +84,15 @@ public class ActionUsageImpl extends OccurrenceUsageImpl implements ActionUsage 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetParameter() {
+		return !getParameter().isEmpty();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	@Override
@@ -123,6 +132,24 @@ public class ActionUsageImpl extends OccurrenceUsageImpl implements ActionUsage 
 	 * @generated
 	 */
 	public boolean isSetType() {
+  		return false;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Feature> getDirectedFeature() {
+		return getParameter();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetDirectedFeature() {
   		return false;
 	}
 
@@ -238,10 +265,12 @@ public class ActionUsageImpl extends OccurrenceUsageImpl implements ActionUsage 
 		switch (featureID) {
 			case SysMLPackage.ACTION_USAGE__TYPE:
 				return isSetType();
+			case SysMLPackage.ACTION_USAGE__DIRECTED_FEATURE:
+				return isSetDirectedFeature();
 			case SysMLPackage.ACTION_USAGE__BEHAVIOR:
 				return isSetBehavior();
 			case SysMLPackage.ACTION_USAGE__PARAMETER:
-				return !getParameter().isEmpty();
+				return isSetParameter();
 			case SysMLPackage.ACTION_USAGE__OCCURRENCE_DEFINITION:
 				return isSetOccurrenceDefinition();
 			case SysMLPackage.ACTION_USAGE__ACTION_DEFINITION:

@@ -1,10 +1,10 @@
 package PackageAlias1{
-	alias A as A_alias;
+	alias A_alias for A;
 	feature A{
 		feature a{}
 		feature a_alias is a;
 	}
-	alias AA as AA_alias;
+	alias AA_alias for AA;
 	feature AA{
 		feature aa{}
 		feature aa_alias is aa;

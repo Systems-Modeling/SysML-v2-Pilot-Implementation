@@ -17,13 +17,8 @@ END_SETUP
 //
 // XPECT noErrors ---> ""
 package test{
-	// PackageAlias1 is visible both from the import and at global scope.
-	//* XPECT scope at PackageAlias1 ---
-	   	PackageAlias1, PackageAlias1.A, PackageAlias1.A.a, PackageAlias1.A.a_alias,
-	   	PackageAlias1.AA, PackageAlias1.AA.aa, PackageAlias1.AA.aa_alias,
-	   	PackageAlias1.A_alias, PackageAlias1.A_alias.a, PackageAlias1.A_alias.a_alias,
-    	PackageAlias1.AA_alias, PackageAlias1.AA_alias.aa, PackageAlias1.AA_alias.aa_alias,
-    	
+ 	import PackageAlias1;
+	//* XPECT scope at PackageAlias1::A::a ---
 	   	PackageAlias1, PackageAlias1.A, PackageAlias1.A.a, PackageAlias1.A.a_alias,
 	   	PackageAlias1.AA, PackageAlias1.AA.aa, PackageAlias1.AA.aa_alias,
 	   	PackageAlias1.A_alias, PackageAlias1.A_alias.a, PackageAlias1.A_alias.a_alias,
@@ -35,20 +30,19 @@ package test{
 	   	test.PackageAlias1.A_alias, test.PackageAlias1.A_alias.a, test.PackageAlias1.A_alias.a_alias,
     	test.PackageAlias1.AA_alias, test.PackageAlias1.AA_alias.aa, test.PackageAlias1.AA_alias.aa_alias,
  --- */
- 	import PackageAlias1;
+ 	import PackageAlias1::A::a::*;
 }
 //*
 package PackageAlias1{
-	class A_alias is A;
+	alias A_alias for A;
 	class A{
 		class a{}
-		class a_alias is a;
+			alias a_alias for a;
 	}
-	class AA_alias is AA;
+	alias AA_alias for AA;
 	class AA{
 		class aa{}
-		class aa_alias is aa;
+		alias aa_alias for aa;
 	}
-}
-*/
+}*/
 

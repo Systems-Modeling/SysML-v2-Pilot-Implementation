@@ -70,7 +70,7 @@ package ServerSequenceRealization_3 {
 				}
 				
 				then decide;
-					if publishing::topic == subscribing.topic then delivering;
+					if publishing.topic == subscribing.topic then delivering;
 					else continuePublishing;
 					
 				then action delivering {

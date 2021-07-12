@@ -36,7 +36,6 @@ import org.eclipse.emf.ecore.EReference
 import org.eclipse.xtext.EcoreUtil2
 import org.eclipse.xtext.scoping.IScope
 import org.omg.sysml.lang.sysml.Element
-import org.omg.sysml.lang.sysml.Generalization
 import org.omg.sysml.lang.sysml.Membership
 import org.omg.sysml.lang.sysml.SysMLPackage
 import org.omg.sysml.lang.sysml.Import
@@ -51,6 +50,7 @@ import org.omg.sysml.lang.sysml.FeatureReferenceExpression
 import org.omg.sysml.lang.sysml.PathStepExpression
 import org.omg.sysml.lang.sysml.InvocationExpression
 import org.omg.sysml.util.ElementUtil
+import org.omg.sysml.lang.sysml.Specialization
 
 class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 
@@ -93,18 +93,24 @@ class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 			    }
 		    }
 			subsettingFeature.scope_owningNamespace(context, reference)
-		} else if (context instanceof Generalization)
+		} else if (context instanceof Specialization)
 			(context.eContainer as Element).scope_owningNamespace(context, reference)
 		else if (context instanceof Membership) {
 	    	context.scope_relativeNamespace(context.membershipOwningNamespace, context, reference)
 		} else if (context instanceof Import)
-			context.scope_Namespace(context.importOwningNamespace, context, reference, true)
+			if (reference === SysMLPackage.eINSTANCE.import_ImportOwningNamespace) scope_import(context)
+			else context.scope_Namespace(context.importOwningNamespace, context, reference, true)
 		else if (context instanceof Namespace) 
 			context.scopeFor(reference, null, true, true, false, null)
 		else if (context instanceof Element)
 			context.scope_owningNamespace(context, reference)
 		else
 			super.getScope(context, reference)
+	}
+	
+	def scope_import(Import imp) {
+		val ns = imp.importedNamespace
+		ns.scopeFor(SysMLPackage.eINSTANCE.import_ImportedNamespace, imp, ns == imp.importOwningNamespace, false, false, null)
 	}
 	
 	def static Namespace getParentNamespace(Element element) {

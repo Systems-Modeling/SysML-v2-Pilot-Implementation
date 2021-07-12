@@ -38,7 +38,7 @@ import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureReferenceExpression;
-import org.omg.sysml.lang.sysml.Generalization;
+import org.omg.sysml.lang.sysml.Specialization;
 import org.omg.sysml.lang.sysml.ItemFlow;
 import org.omg.sysml.lang.sysml.ItemFlowFeature;
 import org.omg.sysml.lang.sysml.PathStepExpression;
@@ -91,11 +91,11 @@ public class VDefault extends VTraverser {
         }
     }
 
-    protected void addGeneralizations(Type typ) {
-        for (Generalization g: typ.getOwnedGeneralization()) {
-            Type gt = g.getGeneral();
+    protected void addSpecializations(Type typ) {
+        for (Specialization s: typ.getOwnedSpecialization()) {
+            Type gt = s.getGeneral();
             if (gt == null || gt.getName() == null) continue;
-            addPRelation(typ, gt, g);
+            addPRelation(typ, gt, s);
         }
     }
 

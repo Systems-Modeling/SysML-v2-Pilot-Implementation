@@ -27,7 +27,7 @@ import org.omg.sysml.lang.sysml.LifeClass;
 import org.omg.sysml.lang.sysml.LiteralInteger;
 import org.omg.sysml.lang.sysml.Multiplicity;
 import org.omg.sysml.lang.sysml.Namespace;
-import org.omg.sysml.lang.sysml.Superclassing;
+import org.omg.sysml.lang.sysml.Subclassification;
 import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.util.TypeUtil;
 
@@ -47,15 +47,15 @@ public class LifeClassAdapter extends ClassAdapter {
 	public void addSuperclassing() {
 		LifeClass lifeClass = getTarget();
 		Namespace owner = lifeClass.getOwningNamespace();
-		EList<Superclassing> superclassings = lifeClass.getOwnedSuperclassing();
+		EList<Subclassification> superclassings = lifeClass.getOwnedSubclassification();
 		if (owner instanceof Classifier) {
 			if (superclassings.isEmpty()) {
-				Superclassing superclassing = SysMLFactory.eINSTANCE.createSuperclassing();
-				superclassing.setSuperclass((Classifier)owner);
-				superclassing.setSubclass(lifeClass);
+				Subclassification superclassing = SysMLFactory.eINSTANCE.createSubclassification();
+				superclassing.setSuperclassifier((Classifier)owner);
+				superclassing.setSubclassifier(lifeClass);
 				lifeClass.getOwnedRelationship().add(superclassing);
 			} else {
-				superclassings.get(0).setSuperclass((Classifier)owner);
+				superclassings.get(0).setSuperclassifier((Classifier)owner);
 			}
 		}
 	}

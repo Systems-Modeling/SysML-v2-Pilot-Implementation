@@ -33,8 +33,13 @@ import org.omg.sysml.util.ElementUtil
 
 class KerMLQualifiedNameConverter implements IQualifiedNameConverter {
 	
-	override toQualifiedName(String qualifiedNameAsText) {
-		Preconditions.checkArgument(qualifiedNameAsText !== null, "Qualified name cannot be null")
+	override toQualifiedName(String qualifiedNameText) {
+		Preconditions.checkArgument(qualifiedNameText !== null, "Qualified name cannot be null")
+
+		val qualifiedNameAsText =
+			if (qualifiedNameText.endsWith("::")) qualifiedNameText.substring(0, qualifiedNameText.length - 2)
+			else qualifiedNameText
+			
 		Preconditions.checkArgument(!qualifiedNameAsText.empty, "Qualified name cannot be empty")
 
 		val segments = newArrayList		

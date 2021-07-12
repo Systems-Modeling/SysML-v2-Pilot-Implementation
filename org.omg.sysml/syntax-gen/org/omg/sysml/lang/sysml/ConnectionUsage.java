@@ -31,7 +31,7 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A ConnectionUsage is a Connector that is also a Usage. Nominally, if its type is a ConnectionDefinition, then a ConnectionUsage is a Usage of that ConnectionDefinition, representing a connection between parts of a system. However, other kinds of kernel AssociationStructures are also allowed, to permit use of Associations from the Kernel Library (such as the default BinaryLink).</p>
+ * <p>A ConnectionUsage is a ConnectorAsUsage that is also a PartUsage. Nominally, if its type is a ConnectionDefinition, then a ConnectionUsage is a Usage of that ConnectionDefinition, representing a connection between parts of a system. However, other kinds of kernel AssociationStructures are also allowed, to permit use of AssociationStructures from the Kernel Library (such as the default BinaryLinkObject).</p>
  * 
  * <p>A ConnectionUsage must subset the base ConnectionUsage <code>connections</code> from the Systems model library.</p>
  * <!-- end-model-doc -->
@@ -47,7 +47,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface ConnectionUsage extends PartUsage, Connector {
+public interface ConnectionUsage extends ConnectorAsUsage, PartUsage {
 
 	/**
 	 * Returns the value of the '<em><b>Connection Definition</b></em>' reference list.
@@ -61,11 +61,11 @@ public interface ConnectionUsage extends PartUsage, Connector {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Associations that are the types of this ConnectionUsage. Nominally, these are ConnectionDefinitions, but other kinds of Kernel Associations are also allowed, to permit use of Associations from the Kernel Library.</p>
+	 * <p>The AssociationStructures that are the types of this ConnectionUsage. Nominally, these are ConnectionDefinitions, but other kinds of Kernel AssociationStructures are also allowed, to permit use of AssociationStructures from the Kernel Library.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Connection Definition</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getConnectionUsage_ConnectionDefinition()
-	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
+	 * @model required="true" transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='definedConnection'"
 	 *        annotation="redefines"
 	 * @generated

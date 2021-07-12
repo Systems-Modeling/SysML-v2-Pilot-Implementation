@@ -23,10 +23,12 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import java.util.Collection;
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.StateSubactionKind;
@@ -46,11 +48,31 @@ import org.omg.sysml.util.NonNotifyingEObjectEList;
  *   <li>{@link org.omg.sysml.lang.sysml.impl.StateUsageImpl#getEntryAction <em>Entry Action</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.StateUsageImpl#getDoAction <em>Do Action</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.StateUsageImpl#getExitAction <em>Exit Action</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.StateUsageImpl#isParallel <em>Is Parallel</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class StateUsageImpl extends ActionUsageImpl implements StateUsage {
+
+	/**
+	 * The default value of the '{@link #isParallel() <em>Is Parallel</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isParallel()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean IS_PARALLEL_EDEFAULT = false;
+	/**
+	 * The cached value of the '{@link #isParallel() <em>Is Parallel</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isParallel()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean isParallel = IS_PARALLEL_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -191,6 +213,29 @@ public class StateUsageImpl extends ActionUsageImpl implements StateUsage {
 	 * @generated
 	 */
 	@Override
+	public boolean isParallel() {
+		return isParallel;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setIsParallel(boolean newIsParallel) {
+		boolean oldIsParallel = isParallel;
+		isParallel = newIsParallel;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.STATE_USAGE__IS_PARALLEL, oldIsParallel, isParallel));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EList<Behavior> getBehavior() {
 		return getActionDefinition();
 	}
@@ -223,6 +268,8 @@ public class StateUsageImpl extends ActionUsageImpl implements StateUsage {
 			case SysMLPackage.STATE_USAGE__EXIT_ACTION:
 				if (resolve) return getExitAction();
 				return basicGetExitAction();
+			case SysMLPackage.STATE_USAGE__IS_PARALLEL:
+				return isParallel();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -249,6 +296,9 @@ public class StateUsageImpl extends ActionUsageImpl implements StateUsage {
 			case SysMLPackage.STATE_USAGE__EXIT_ACTION:
 				setExitAction((ActionUsage)newValue);
 				return;
+			case SysMLPackage.STATE_USAGE__IS_PARALLEL:
+				setIsParallel((Boolean)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -273,6 +323,9 @@ public class StateUsageImpl extends ActionUsageImpl implements StateUsage {
 			case SysMLPackage.STATE_USAGE__EXIT_ACTION:
 				setExitAction((ActionUsage)null);
 				return;
+			case SysMLPackage.STATE_USAGE__IS_PARALLEL:
+				setIsParallel(IS_PARALLEL_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -295,8 +348,26 @@ public class StateUsageImpl extends ActionUsageImpl implements StateUsage {
 				return basicGetDoAction() != null;
 			case SysMLPackage.STATE_USAGE__EXIT_ACTION:
 				return basicGetExitAction() != null;
+			case SysMLPackage.STATE_USAGE__IS_PARALLEL:
+				return isParallel != IS_PARALLEL_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuilder result = new StringBuilder(super.toString());
+		result.append(" (isParallel: ");
+		result.append(isParallel);
+		result.append(')');
+		return result.toString();
 	}
 
 } //StateUsageImpl

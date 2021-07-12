@@ -100,6 +100,15 @@ public class ActionDefinitionImpl extends OccurrenceDefinitionImpl implements Ac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetParameter() {
+		return !getParameter().isEmpty();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	@Override
@@ -181,10 +190,12 @@ public class ActionDefinitionImpl extends OccurrenceDefinitionImpl implements Ac
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case SysMLPackage.ACTION_DEFINITION__DIRECTED_FEATURE:
+				return isSetDirectedFeature();
 			case SysMLPackage.ACTION_DEFINITION__STEP:
 				return !getStep().isEmpty();
 			case SysMLPackage.ACTION_DEFINITION__PARAMETER:
-				return !getParameter().isEmpty();
+				return isSetParameter();
 			case SysMLPackage.ACTION_DEFINITION__ACTION:
 				return !getAction().isEmpty();
 		}
@@ -223,6 +234,24 @@ public class ActionDefinitionImpl extends OccurrenceDefinitionImpl implements Ac
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Feature> getDirectedFeature() {
+		return getParameter();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetDirectedFeature() {
+  		return false;
 	}
 
 } //ActivityImpl

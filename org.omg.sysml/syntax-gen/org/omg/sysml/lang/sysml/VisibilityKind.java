@@ -59,7 +59,8 @@ public enum VisibilityKind implements Enumerator {
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>An intermediate level of visibility between <code>public</code> and <code>private</code>. By default, it is equivalent to <code>private</code> for the purposes normal access to and import of elements from a Namespace. However, other Relationships may be specified to include Memberships with <code>protected</code> visibility in the list of <code>memberships</code> for a Namespace (e.g., Generalization).</p>
+	 * <p>An intermediate level of visibility between <code>public</code> and <code>private</code>. By default, it is equivalent to <code>private</code> for the purposes of normal access to and import of Elements from a Namespace. However, other Relationships may be specified to include Memberships with <code>protected</code> visibility in the list of <code>memberships</code> for a Namespace (e.g., Generalization).</p>
+	 * 
 	 * <!-- end-model-doc -->
 	 * @see #PROTECTED_VALUE
 	 * @generated
@@ -105,7 +106,8 @@ public enum VisibilityKind implements Enumerator {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>An intermediate level of visibility between <code>public</code> and <code>private</code>. By default, it is equivalent to <code>private</code> for the purposes normal access to and import of elements from a Namespace. However, other Relationships may be specified to include Memberships with <code>protected</code> visibility in the list of <code>memberships</code> for a Namespace (e.g., Generalization).</p>
+	 * <p>An intermediate level of visibility between <code>public</code> and <code>private</code>. By default, it is equivalent to <code>private</code> for the purposes of normal access to and import of Elements from a Namespace. However, other Relationships may be specified to include Memberships with <code>protected</code> visibility in the list of <code>memberships</code> for a Namespace (e.g., Generalization).</p>
+	 * 
 	 * <!-- end-model-doc -->
 	 * @see #PROTECTED
 	 * @model name="protected"

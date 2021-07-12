@@ -17,7 +17,7 @@ import org.omg.sysml.util.FeatureUtil;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.EventOccurrenceUsageImpl#getOccurringEvent <em>Occurring Event</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.EventOccurrenceUsageImpl#getEventOccurrence <em>Event Occurrence</em>}</li>
  * </ul>
  *
  * @generated
@@ -48,9 +48,9 @@ public class EventOccurrenceUsageImpl extends OccurrenceUsageImpl implements Eve
 	 * @generated
 	 */
 	@Override
-	public OccurrenceUsage getOccurringEvent() {
-		OccurrenceUsage occurringEvent = basicGetOccurringEvent();
-		return occurringEvent != null && occurringEvent.eIsProxy() ? (OccurrenceUsage)eResolveProxy((InternalEObject)occurringEvent) : occurringEvent;
+	public OccurrenceUsage getEventOccurrence() {
+		OccurrenceUsage eventOccurrence = basicGetEventOccurrence();
+		return eventOccurrence != null && eventOccurrence.eIsProxy() ? (OccurrenceUsage)eResolveProxy((InternalEObject)eventOccurrence) : eventOccurrence;
 	}
 
 	/**
@@ -58,7 +58,7 @@ public class EventOccurrenceUsageImpl extends OccurrenceUsageImpl implements Eve
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public OccurrenceUsage basicGetOccurringEvent() {
+	public OccurrenceUsage basicGetEventOccurrence() {
 		return FeatureUtil.getReferencedFeatureOf(this, OccurrenceUsage.class);
 	}
 
@@ -68,7 +68,7 @@ public class EventOccurrenceUsageImpl extends OccurrenceUsageImpl implements Eve
 	 * @generated NOT
 	 */
 	@Override
-	public void setOccurringEvent(OccurrenceUsage newOccurringEvent) {
+	public void setEventOccurrence(OccurrenceUsage newEventOccurrence) {
 		throw new UnsupportedOperationException();
 	}
 
@@ -80,9 +80,9 @@ public class EventOccurrenceUsageImpl extends OccurrenceUsageImpl implements Eve
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case SysMLPackage.EVENT_OCCURRENCE_USAGE__OCCURRING_EVENT:
-				if (resolve) return getOccurringEvent();
-				return basicGetOccurringEvent();
+			case SysMLPackage.EVENT_OCCURRENCE_USAGE__EVENT_OCCURRENCE:
+				if (resolve) return getEventOccurrence();
+				return basicGetEventOccurrence();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -95,8 +95,8 @@ public class EventOccurrenceUsageImpl extends OccurrenceUsageImpl implements Eve
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case SysMLPackage.EVENT_OCCURRENCE_USAGE__OCCURRING_EVENT:
-				setOccurringEvent((OccurrenceUsage)newValue);
+			case SysMLPackage.EVENT_OCCURRENCE_USAGE__EVENT_OCCURRENCE:
+				setEventOccurrence((OccurrenceUsage)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -110,8 +110,8 @@ public class EventOccurrenceUsageImpl extends OccurrenceUsageImpl implements Eve
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.EVENT_OCCURRENCE_USAGE__OCCURRING_EVENT:
-				setOccurringEvent((OccurrenceUsage)null);
+			case SysMLPackage.EVENT_OCCURRENCE_USAGE__EVENT_OCCURRENCE:
+				setEventOccurrence((OccurrenceUsage)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -125,8 +125,8 @@ public class EventOccurrenceUsageImpl extends OccurrenceUsageImpl implements Eve
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.EVENT_OCCURRENCE_USAGE__OCCURRING_EVENT:
-				return basicGetOccurringEvent() != null;
+			case SysMLPackage.EVENT_OCCURRENCE_USAGE__EVENT_OCCURRENCE:
+				return basicGetEventOccurrence() != null;
 		}
 		return super.eIsSet(featureID);
 	}

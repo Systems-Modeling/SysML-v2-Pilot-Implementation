@@ -48,6 +48,10 @@ import org.omg.sysml.util.TypeUtil
 import org.omg.sysml.util.ElementUtil
 import org.omg.kerml.xtext.scoping.KerMLScopeProvider
 import org.omg.sysml.util.ExpressionUtil
+import org.omg.sysml.lang.sysml.Import
+import com.google.inject.Inject
+import org.eclipse.xtext.scoping.IScopeProvider
+import org.omg.sysml.lang.sysml.util.ISysMLScope
 
 /**
  * This class contains custom validation rules. 
@@ -72,12 +76,17 @@ class KerMLValidator extends AbstractKerMLValidator {
 	public static val INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_2 = "Duplicate of inherited member name"
 	public static val INVALID_ELEMENT__ID_DISTINGUISHABILITY = "Invalid Element - ID distinguishability"
 	public static val INVALID_ELEMENT__ID_DISTINGUISHABILITY_MSG = "Duplicate of other ID or member name"
+	public static val INVALID_IMPORT__NAME_NOT_RESOLVED = "Invalid Import - Name not resolved"
+	public static val INVALID_IMPORT__NAME_NOT_RESOLVED_MSG = "Couldn't resolve reference to Element '{name}'."
 	public static val INVALID_ELEMENT_FILTER_MEMBERSHIP__NOT_MODEL_LEVEL = "Invalid ElementFilterMembership - Not model-level"
 	public static val INVALID_ELEMENT_FILTER_MEMBERSHIP__NOT_MODEL_LEVEL_MSG = "Must be model-level evaluable"
 	public static val INVALID_METADATA_FEATURE_VALUE__NOT_MODEL_LEVEL = "Invalid MetadataFeatureValue - Not model-level"
 	public static val INVALID_METADATA_FEATURE_VALUE__NOT_MODEL_LEVEL_MSG = "Must be model-level evaluable"
 	public static val INVALID_FEATURE_REFERENCE_EXPRESSION__INVALID_FEATURE = "Invalid FeatureReferenceExpression - Invalid feature"
 	public static val INVALID_FEATURE_REFERENCE_EXPRESSION__INVALID_FEATURE_MSG = "Must be a valid feature"
+	
+	@Inject
+	IScopeProvider scopeProvider
 		
 	@Check
 	def checkElement(Element elm) {
@@ -134,6 +143,16 @@ class KerMLValidator extends AbstractKerMLValidator {
 			}
 		}
 		
+	}
+	
+	@Check
+	def checkImport(Import imp) {
+		if (imp.importedMemberName !== null && !imp.importedNamespace.eIsProxy) {
+			val scope = scopeProvider.getScope(imp, SysMLPackage.eINSTANCE.import_ImportOwningNamespace) as ISysMLScope
+			if (scope.getMemberships(imp.importedMemberName, imp.importAll).isEmpty) {
+				error(INVALID_IMPORT__NAME_NOT_RESOLVED_MSG.replace("{name}", imp.importedMemberName), imp, SysMLPackage.eINSTANCE.import_ImportedMemberName, INVALID_IMPORT__NAME_NOT_RESOLVED)
+			}
+		}
 	}
 	
 	@Check

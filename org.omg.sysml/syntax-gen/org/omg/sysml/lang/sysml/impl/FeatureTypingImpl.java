@@ -47,7 +47,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  *
  * @generated
  */
-public class FeatureTypingImpl extends GeneralizationImpl implements FeatureTyping {
+public class FeatureTypingImpl extends SpecializationImpl implements FeatureTyping {
 	/**
 	 * The cached value of the '{@link #getTypedFeature() <em>Typed Feature</em>}' reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->

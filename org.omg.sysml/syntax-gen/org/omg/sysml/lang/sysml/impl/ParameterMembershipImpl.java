@@ -27,7 +27,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.FeatureDirectionKind;
 import org.omg.sysml.lang.sysml.ParameterMembership;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
@@ -203,14 +202,6 @@ public class ParameterMembershipImpl extends FeatureMembershipImpl implements Pa
 	 */
 	public boolean isSetMemberFeature() {
   		return false;
-	}
-
-	@Override
-	public FeatureDirectionKind getDirection() {
-		if (direction == null) {
-			direction = FeatureDirectionKind.IN;
-		}
-		return direction;
 	}
 
 	/**

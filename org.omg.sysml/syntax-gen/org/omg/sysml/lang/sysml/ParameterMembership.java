@@ -27,7 +27,7 @@ package org.omg.sysml.lang.sysml;
  * '<em><b>Parameter Membership</b></em>'. <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A ParameterMembership is a FeatureMembership that identifies its <code>memberFeature</code> as a parameter, which is always owned. The default <code>direction</code> for a ParameterMembership is <code>in</code>  (unless it is a ReturnParameterMembership). A ParameterMembership must be owned by a Behavior or a Step.</p>
+ * <p>A ParameterMembership is a FeatureMembership that identifies its <code>memberFeature</code> as a parameter, which is always owned, and must have a <code>direction</code>. A ParameterMembership must be owned by a Behavior or a Step.</p>
  * <!-- end-model-doc -->
  *
  * <p>

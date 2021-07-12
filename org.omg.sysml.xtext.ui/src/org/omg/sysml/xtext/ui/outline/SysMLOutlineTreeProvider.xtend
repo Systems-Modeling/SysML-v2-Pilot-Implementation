@@ -21,11 +21,11 @@ import org.omg.sysml.util.TypeUtil
 class SysMLOutlineTreeProvider extends KerMLOutlineTreeProvider {
 	
 	def String _text(StateSubactionMembership membership) {
-		 membership.featurePrefixText + " " + membership.kind + " " + membership.nameText
+		 membership.prefixText + " " + membership.kind + " " + membership.nameText
 	}
 	
 	def String _text(RequirementConstraintMembership membership) {
-		membership.featurePrefixText + " " + membership.kind + " " + membership.nameText
+		membership.prefixText + " " + membership.kind + " " + membership.nameText
 	}
 	
 	override String _text(Type type) {

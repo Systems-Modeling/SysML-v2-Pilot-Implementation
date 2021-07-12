@@ -38,7 +38,7 @@ package USCustomaryUnits {
     /*
      * Definition of an alias for 'mi/h' ("mile per hour")
      */
-    alias 'mi/h' as mph;
+    alias mph for 'mi/h';
 
 	/*
 	 * degree Fahrenheit unit for relative temperature (i.e. temperature difference) quantities
@@ -67,5 +67,5 @@ package USCustomaryUnits {
 		attribute :>> scaleValueDefinitions = temperatureWaterAtFreezingPointInF;
 		attribute :>> scaleValueMapping = fahrenheitToCelsiusScaleMapping;
 	}
-	alias '°F_scale' as '°F';
+	alias '°F' for '°F_scale';
 }

@@ -52,8 +52,8 @@ import org.omg.sysml.lang.sysml.TypeFeaturing;
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeFeaturingImpl#getFeatureOfType <em>Feature Of Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeFeaturingImpl#getOwningRelatedElement <em>Owning Related Element</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeFeaturingImpl#getFeaturingType <em>Featuring Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeFeaturingImpl#getOwningFeatureOfType <em>Owning Feature Of Type</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeFeaturingImpl#getFeaturingType <em>Featuring Type</em>}</li>
  * </ul>
  *
  * @generated
@@ -296,12 +296,12 @@ public class TypeFeaturingImpl extends RelationshipImpl implements TypeFeaturing
 			case SysMLPackage.TYPE_FEATURING__FEATURE_OF_TYPE:
 				if (resolve) return getFeatureOfType();
 				return basicGetFeatureOfType();
-			case SysMLPackage.TYPE_FEATURING__FEATURING_TYPE:
-				if (resolve) return getFeaturingType();
-				return basicGetFeaturingType();
 			case SysMLPackage.TYPE_FEATURING__OWNING_FEATURE_OF_TYPE:
 				if (resolve) return getOwningFeatureOfType();
 				return basicGetOwningFeatureOfType();
+			case SysMLPackage.TYPE_FEATURING__FEATURING_TYPE:
+				if (resolve) return getFeaturingType();
+				return basicGetFeaturingType();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -317,11 +317,11 @@ public class TypeFeaturingImpl extends RelationshipImpl implements TypeFeaturing
 			case SysMLPackage.TYPE_FEATURING__FEATURE_OF_TYPE:
 				setFeatureOfType((Feature)newValue);
 				return;
-			case SysMLPackage.TYPE_FEATURING__FEATURING_TYPE:
-				setFeaturingType((Type)newValue);
-				return;
 			case SysMLPackage.TYPE_FEATURING__OWNING_FEATURE_OF_TYPE:
 				setOwningFeatureOfType((Feature)newValue);
+				return;
+			case SysMLPackage.TYPE_FEATURING__FEATURING_TYPE:
+				setFeaturingType((Type)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -338,11 +338,11 @@ public class TypeFeaturingImpl extends RelationshipImpl implements TypeFeaturing
 			case SysMLPackage.TYPE_FEATURING__FEATURE_OF_TYPE:
 				setFeatureOfType((Feature)null);
 				return;
-			case SysMLPackage.TYPE_FEATURING__FEATURING_TYPE:
-				setFeaturingType((Type)null);
-				return;
 			case SysMLPackage.TYPE_FEATURING__OWNING_FEATURE_OF_TYPE:
 				setOwningFeatureOfType((Feature)null);
+				return;
+			case SysMLPackage.TYPE_FEATURING__FEATURING_TYPE:
+				setFeaturingType((Type)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -364,10 +364,10 @@ public class TypeFeaturingImpl extends RelationshipImpl implements TypeFeaturing
 				return isSetSource();
 			case SysMLPackage.TYPE_FEATURING__TARGET:
 				return isSetTarget();
-			case SysMLPackage.TYPE_FEATURING__FEATURING_TYPE:
-				return isSetFeaturingType();
 			case SysMLPackage.TYPE_FEATURING__OWNING_FEATURE_OF_TYPE:
 				return basicGetOwningFeatureOfType() != null;
+			case SysMLPackage.TYPE_FEATURING__FEATURING_TYPE:
+				return isSetFeaturingType();
 		}
 		return super.eIsSet(featureID);
 	}

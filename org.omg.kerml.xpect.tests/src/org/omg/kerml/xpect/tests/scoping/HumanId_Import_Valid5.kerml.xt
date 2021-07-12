@@ -39,7 +39,7 @@ package Test {
 			public class id 'VVP_Id' VVP {
 				public class id 'VVVP_Id' VVVP{
 					public class id 'VVVVP_Id' VVVVP;
-					alias VVVVP_Id as VVVVP_Id_alias;
+					alias VVVVP_Id_alias for VVVVP_Id;
 				}
 			}
 		}

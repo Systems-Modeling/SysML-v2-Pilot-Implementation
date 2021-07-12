@@ -48,7 +48,7 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedUsage <em>Owned Usage</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedPort <em>Owned Port</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Definition#getFlowFeature <em>Flow Feature</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Definition#getDirectedUsage <em>Directed Usage</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Definition#getUsage <em>Usage</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedState <em>Owned State</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedConstraint <em>Owned Constraint</em>}</li>
@@ -74,8 +74,9 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedEnumeration <em>Owned Enumeration</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedAllocation <em>Owned Allocation</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedConcern <em>Owned Concern</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedStakeholder <em>Owned Stakeholder</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedOccurrence <em>Owned Occurrence</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedUseCase <em>Owned Use Case</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedFlow <em>Owned Flow</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition()
@@ -103,7 +104,7 @@ public interface Definition extends Classifier {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Port</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_OwnedPort()
-	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='portOwningDefinition'"
 	 *        annotation="subsets"
 	 * @generated
@@ -111,28 +112,29 @@ public interface Definition extends Classifier {
 	EList<PortUsage> getOwnedPort();
 
 	/**
-	 * Returns the value of the '<em><b>Flow Feature</b></em>' reference list.
+	 * Returns the value of the '<em><b>Directed Usage</b></em>' reference list.
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Usage}.
 	 * <p>
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
 	 *   <li>'{@link org.omg.sysml.lang.sysml.Definition#getUsage() <em>Usage</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Type#getDirectedFeature() <em>Directed Feature</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>usages</code> of this Definition that have a non-null <code>direction</code>.</p>
+	 * <p>The <code>usages</code> of this Definition that are <code>directedFeatures</code>.</p>
 	 * 
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Flow Feature</em>' reference list.
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_FlowFeature()
-	 * @model transient="true" volatile="true" derived="true" ordered="false"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='definitionWithFlow'"
+	 * @return the value of the '<em>Directed Usage</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_DirectedUsage()
+	 * @model transient="true" volatile="true" derived="true"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='definitionWithDirectedUsage'"
 	 *        annotation="subsets"
 	 * @generated
 	 */
-	EList<Usage> getFlowFeature();
+	EList<Usage> getDirectedUsage();
 
 	/**
 	 * Returns the value of the '<em><b>Usage</b></em>' reference list.
@@ -150,7 +152,7 @@ public interface Definition extends Classifier {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Usage</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_Usage()
-	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='featuringDefinition'"
 	 *        annotation="subsets"
 	 * @generated
@@ -177,7 +179,7 @@ public interface Definition extends Classifier {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Action</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_OwnedAction()
-	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='actionOwningDefinition'"
 	 *        annotation="subsets"
 	 * @generated
@@ -186,7 +188,7 @@ public interface Definition extends Classifier {
 
 	/**
 	 * Returns the value of the '<em><b>Owned Connection</b></em>' reference list.
-	 * The list contents are of type {@link org.omg.sysml.lang.sysml.ConnectionUsage}.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.ConnectorAsUsage}.
 	 * <p>
 	 * This feature subsets the following features:
 	 * </p>
@@ -196,16 +198,16 @@ public interface Definition extends Classifier {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The ConnectionUsages that are <code>ownedUsages</code> of this Definition.</p>
+	 * <p>The ConnectorAsUsages that are <code>ownedUsages</code> of this Definition. Note that this list includes BindingConnectorAsUsages and SuccessionAsUsages, even though these are ConnectorAsUsages but not ConnectionUsages.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Connection</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_OwnedConnection()
-	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='connectionOwningDefinition'"
 	 *        annotation="subsets"
 	 * @generated
 	 */
-	EList<ConnectionUsage> getOwnedConnection();
+	EList<ConnectorAsUsage> getOwnedConnection();
 
 	/**
 	 * Returns the value of the '<em><b>Owned Item</b></em>' reference list.
@@ -227,7 +229,7 @@ public interface Definition extends Classifier {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Item</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_OwnedItem()
-	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='itemOwningDefinition'"
 	 *        annotation="subsets"
 	 * @generated
@@ -250,7 +252,7 @@ public interface Definition extends Classifier {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Part</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_OwnedPart()
-	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='partOwningDefinition'"
 	 *        annotation="subsets"
 	 * @generated
@@ -273,7 +275,7 @@ public interface Definition extends Classifier {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Interface</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_OwnedInterface()
-	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='interfaceOwningDefinition'"
 	 *        annotation="subsets"
 	 * @generated
@@ -296,7 +298,7 @@ public interface Definition extends Classifier {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Attribute</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_OwnedAttribute()
-	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='attributeOwningDefinition'"
 	 *        annotation="subsets"
 	 * @generated
@@ -319,7 +321,7 @@ public interface Definition extends Classifier {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned View</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_OwnedView()
-	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='viewOwningDefinition'"
 	 *        annotation="subsets"
 	 * @generated
@@ -342,7 +344,7 @@ public interface Definition extends Classifier {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Viewpoint</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_OwnedViewpoint()
-	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='viewpointOwningDefinition'"
 	 *        annotation="subsets"
 	 * @generated
@@ -365,7 +367,7 @@ public interface Definition extends Classifier {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Rendering</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_OwnedRendering()
-	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='redenderingOwningDefinition'"
 	 *        annotation="subsets"
 	 * @generated
@@ -388,7 +390,7 @@ public interface Definition extends Classifier {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Verification Case</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_OwnedVerificationCase()
-	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='verificationCaseOwningDefinition'"
 	 *        annotation="subsets"
 	 * @generated
@@ -411,7 +413,7 @@ public interface Definition extends Classifier {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Enumeration</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_OwnedEnumeration()
-	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='enumerationOwningDefinition'"
 	 *        annotation="subsets"
 	 * @generated
@@ -434,7 +436,7 @@ public interface Definition extends Classifier {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Allocation</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_OwnedAllocation()
-	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='allocationOwningDefinition'"
 	 *        annotation="subsets"
 	 * @generated
@@ -465,29 +467,6 @@ public interface Definition extends Classifier {
 	EList<ConcernUsage> getOwnedConcern();
 
 	/**
-	 * Returns the value of the '<em><b>Owned Stakeholder</b></em>' reference list.
-	 * The list contents are of type {@link org.omg.sysml.lang.sysml.StakeholderUsage}.
-	 * <p>
-	 * This feature subsets the following features:
-	 * </p>
-	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Definition#getOwnedPart() <em>Owned Part</em>}'</li>
-	 * </ul>
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * <p>The StakeholderUsages that are <code>ownedUsages</code> of this Definition.</p>
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Owned Stakeholder</em>' reference list.
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_OwnedStakeholder()
-	 * @model transient="true" volatile="true" derived="true" ordered="false"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='stakeholderOwningDefinition'"
-	 *        annotation="subsets"
-	 * @generated
-	 */
-	EList<StakeholderUsage> getOwnedStakeholder();
-
-	/**
 	 * Returns the value of the '<em><b>Owned Occurrence</b></em>' reference list.
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.OccurrenceUsage}.
 	 * <p>
@@ -503,12 +482,58 @@ public interface Definition extends Classifier {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Occurrence</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_OwnedOccurrence()
-	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='occurrenceOwningDefinition'"
 	 *        annotation="subsets"
 	 * @generated
 	 */
 	EList<OccurrenceUsage> getOwnedOccurrence();
+
+	/**
+	 * Returns the value of the '<em><b>Owned Use Case</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.UseCaseUsage}.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Definition#getOwnedCase() <em>Owned Case</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The UseCaseUsages that are <code>ownedUsages</code> of this Definition.</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Owned Use Case</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_OwnedUseCase()
+	 * @model transient="true" volatile="true" derived="true"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='useCaseOwningDefinition'"
+	 *        annotation="subsets"
+	 * @generated
+	 */
+	EList<UseCaseUsage> getOwnedUseCase();
+
+	/**
+	 * Returns the value of the '<em><b>Owned Flow</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.FlowConnectionUsage}.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Definition#getOwnedConnection() <em>Owned Connection</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The FlowConnectionUsages that are <code>ownedUsages</code> of this Definition.</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Owned Flow</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_OwnedFlow()
+	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='flowOwningDefinition'"
+	 *        annotation="subsets"
+	 * @generated
+	 */
+	EList<FlowConnectionUsage> getOwnedFlow();
 
 	/**
 	 * Returns the value of the '<em><b>Variant Membership</b></em>' reference list.
@@ -557,7 +582,7 @@ public interface Definition extends Classifier {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned State</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_OwnedState()
-	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='stateOwningDefinition'"
 	 *        annotation="subsets"
 	 * @generated
@@ -584,7 +609,7 @@ public interface Definition extends Classifier {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Constraint</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_OwnedConstraint()
-	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='constraintOwningDefinition'"
 	 *        annotation="subsets"
 	 * @generated
@@ -638,7 +663,7 @@ public interface Definition extends Classifier {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Requirement</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_OwnedRequirement()
-	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='requirementOwningDefinition'"
 	 *        annotation="subsets"
 	 * @generated
@@ -661,7 +686,7 @@ public interface Definition extends Classifier {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Calculation</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_OwnedCalculation()
-	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='calculationOwningDefinition'"
 	 *        annotation="subsets"
 	 * @generated
@@ -709,7 +734,7 @@ public interface Definition extends Classifier {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Analysis Case</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_OwnedAnalysisCase()
-	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='analysisCaseOwningDefinition'"
 	 *        annotation="subsets"
 	 * @generated
@@ -732,7 +757,7 @@ public interface Definition extends Classifier {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Case</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_OwnedCase()
-	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='caseOwningDefinition'"
 	 *        annotation="subsets"
 	 * @generated
@@ -755,7 +780,7 @@ public interface Definition extends Classifier {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Reference</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_OwnedReference()
-	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='referenceOwningDefinition'"
 	 *        annotation="subsets"
 	 * @generated
@@ -785,7 +810,7 @@ public interface Definition extends Classifier {
 	 * @return the value of the '<em>Owned Usage</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_OwnedUsage()
 	 * @see org.omg.sysml.lang.sysml.Usage#getOwningDefinition
-	 * @model opposite="owningDefinition" transient="true" volatile="true" derived="true" ordered="false"
+	 * @model opposite="owningDefinition" transient="true" volatile="true" derived="true"
 	 *        annotation="subsets"
 	 * @generated
 	 */

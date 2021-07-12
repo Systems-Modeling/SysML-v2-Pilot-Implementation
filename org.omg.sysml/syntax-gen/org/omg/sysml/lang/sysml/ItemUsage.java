@@ -63,7 +63,7 @@ public interface ItemUsage extends OccurrenceUsage {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Item Definition</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getItemUsage_ItemDefinition()
-	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
+	 * @model required="true" transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='definedItem'"
 	 *        annotation="redefines"
 	 * @generated

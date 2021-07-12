@@ -60,11 +60,4 @@ public class SatisfyRequirementUsageAdapter extends RequirementUsageAdapter {
 		}
 	}
 
-	@Override
-	public void doTransform() {
-		SatisfyRequirementUsage usage = getTarget();
-		super.doTransform();
-		usage.setAssertionConnector(computeAssertionConnector(usage.getResult()));
-	}
-
 }

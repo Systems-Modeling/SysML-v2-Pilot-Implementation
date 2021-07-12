@@ -17,7 +17,7 @@ END_SETUP
 
 // XPECT noErrors ---> ""
 package test{
-	import OuterPackage::A as aliass;
+	alias aliass for OuterPackage::A;
 	//XPECT linkedName at aliass --> OuterPackage.A
 	class C {
 			//* XPECT scope at aliass---

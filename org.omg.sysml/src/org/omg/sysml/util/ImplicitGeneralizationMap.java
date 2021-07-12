@@ -145,35 +145,38 @@ public class ImplicitGeneralizationMap {
 		put(ConstraintDefinitionImpl.class, "base", "Constraints::ConstraintCheck");
 		put(ConstraintUsageImpl.class, "base", "Constraints::constraintChecks");
 		
-		put(DecisionNodeImpl.class, "base", "Actions::Action::decisions");
+		put(DecisionNodeImpl.class, "subaction", "Actions::Action::decisions");
 		
 		put(EventOccurrenceUsageImpl.class, "suboccurrence", "Occurrences::Occurrence::suboccurrences");
 
 		put(ExhibitStateUsageImpl.class, "enactedPerformance", "Parts::Part::exhibitedStates");
 		
-		put(ForkNodeImpl.class, "base", "Actions::Action::fork");
+		put(ForkNodeImpl.class, "subaction", "Actions::Action::forks");
 		
 		put(InterfaceDefinitionImpl.class, "binary", "Interfaces::Interface");
 		put(InterfaceUsageImpl.class, "binary", "Interfaces::interfaces");
 		
 		put(ItemDefinitionImpl.class, "base", "Items::Item");
 		put(ItemUsageImpl.class, "base", "Items::items");
+		put(ItemUsageImpl.class, "subitem", "Items::Item::subitems");
 		
-		put(JoinNodeImpl.class, "base", "Actions::Action::joins");
+		put(JoinNodeImpl.class, "subaction", "Actions::Action::joins");
 		
 		put(LifeClassImpl.class, "base", "Occurrences::Life");
 		
-		put(MergeNodeImpl.class, "base", "Actions::Action::merges");
+		put(MergeNodeImpl.class, "subaction", "Actions::Action::merges");
 		
 		put(OccurrenceDefinitionImpl.class, "base", "Occurrences::Occurrence");
 		put(OccurrenceUsageImpl.class, "base", "Occurrences::occurrences");
 		
 		put(PartDefinitionImpl.class, "base", "Parts::Part");
 		put(PartUsageImpl.class, "base", "Parts::parts");
+		put(PartUsageImpl.class, "subitem", "Items::Item::subparts");
 		
 		put(PortDefinitionImpl.class, "base", "Ports::Port");
 		put(PortUsageImpl.class, "base", "Ports::ports");
-		put(PortUsageImpl.class, "port", "Parts::Part::ports");
+		put(PortUsageImpl.class, "portOnPart", "Parts::Part::portsOnPart");
+		put(PortUsageImpl.class, "subport", "Ports::Port::subports");
 		
 		put(PerformActionUsageImpl.class, "enactedPerformance", "Parts::Part::performedActions");
 		
@@ -188,15 +191,13 @@ public class ImplicitGeneralizationMap {
 		put(SendActionUsageImpl.class, "base", "Actions::sendActions");
 		put(SendActionUsageImpl.class, "subaction", "Actions::Action::sendSubactions");
 		
-		put(StakeholderDefinitionImpl.class, "base", "Requirements::Stakeholder");
-		put(StakeholderUsageImpl.class, "base", "Requirements::stakeholders");
-		put(StakeholderUsageImpl.class, "concernedStakeholder", "Requirements::ConcernCheck::concernedStakeholder");
-		
 		put(StateDefinitionImpl.class, "base", "States::StateAction");
 		put(StateUsageImpl.class, "base", "States::stateActions");
 		put(StateUsageImpl.class, "subaction", "States::StateAction::substates");
 		
-		put(TransitionUsageImpl.class, "base", "States::transitionActions");
+		put(TransitionUsageImpl.class, "base", "Actions::transitionActions");
+		put(TransitionUsageImpl.class, "actionTransition", "Actions::Action::transitions");
+		put(TransitionUsageImpl.class, "stateTransition", "States::StateAction::stateTransitions");
 		
 		put(VerificationCaseDefinitionImpl.class, "base", "VerificationCases::VerificationCase");
 		put(VerificationCaseUsageImpl.class, "base", "VerificationCases::verificationCases");

@@ -338,6 +338,7 @@ NamedExpressionMember returns SysML::FeatureMembership :
 ;
 
 // Null Expressions
+
 NullExpression returns SysML::NullExpression :
 	{SysML::NullExpression} ( 'null' | '(' ')' )
 ;
@@ -349,7 +350,7 @@ LiteralExpression returns SysML::LiteralExpression :
 	| LiteralString 
 	| LiteralInteger
 	| LiteralReal 
-	| LiteralUnbounded
+	| LiteralInfinity
 ;
 
 LiteralBoolean returns SysML::LiteralBoolean :
@@ -368,7 +369,7 @@ LiteralInteger returns SysML::LiteralInteger:
 	value = DECIMAL_VALUE
 ;
 
-LiteralReal returns SysML::LiteralReal:
+LiteralReal returns SysML::LiteralRational:
 	value = RealValue
 ;
 
@@ -376,23 +377,26 @@ RealValue returns Ecore::EDouble:
 	DECIMAL_VALUE? '.' ( DECIMAL_VALUE | EXP_VALUE ) | EXP_VALUE
 ;
 
-LiteralUnbounded returns SysML::LiteralUnbounded :
-	{SysML::LiteralUnbounded} '*'
+LiteralInfinity returns SysML::LiteralInfinity :
+	{SysML::LiteralInfinity} '*'
 ;
-
-LiteralUnlimitedNatural returns SysML::LiteralExpression:
-	LiteralInteger | LiteralUnbounded
-;
-
 
 /* NAMES */
+
 Name:
-	ID | UNRESTRICTED_NAME;
+	ID | UNRESTRICTED_NAME
+;
+
+Qualification :
+	( Name '::' )+
+;
 
 QualifiedName:
-	Name ('::' Name)*;
+	Qualification? Name
+;
 	
 /* TERMINALS */
+
 terminal DECIMAL_VALUE returns Ecore::EInt:
 	'0'..'9' ('0'..'9')*;
 

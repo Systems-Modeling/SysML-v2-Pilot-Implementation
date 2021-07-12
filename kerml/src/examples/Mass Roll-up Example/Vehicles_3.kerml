@@ -6,23 +6,23 @@ package Vehicles_3 {
 		feature serialNumber: String;
 		feature m redefines MassedThing::mass;
 		
-		composite subparts is carParts;	
+		feature subparts is carParts;	
 	}
 	
-	feature carParts: CarPart[0..*] redefines massedThings;
+	composite feature carParts: CarPart[0..*] redefines massedThings;
 	
 	feature vehicle subsets carParts {	
 		feature vin redefines serialNumber;
 		
-		composite is engine;
-		composite is transmission;
+		feature is engine;
+		feature is transmission;
 	}
 	
-	feature engine subsets carParts {
+	composite feature engine subsets carParts {
 		//...
 	}
 	
-	feature transmission subsets carParts {
+	composite feature transmission subsets carParts {
 		//...
 	}
 

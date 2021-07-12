@@ -32,9 +32,12 @@ import org.eclipse.emf.common.util.EList;
  * <!-- begin-model-doc -->
  * <p>A StateDefinition is the Definition of the Behavior of a system or part of a system in a certain state condition.</p>
  * 
- * <p>A State Definition must subclass, directly or indirectly, the base StateDefinition StateAction from the Systems model library.</p>
+ * <p>A State Definition must subclass, directly or indirectly, the base StateDefinition <em>StateAction</em> from the Systems model library.</p>
  * 
- * <p>A StateDefinition may be related to up to three of its <cpde>ownedFeatures</cpde> by StateBehaviorMembership Relationships, all of different <code>kinds</code>, corresponding to the entry, do and exit actions of the StateDefinition.</p>
+ * <p>A StateDefinition may be related to up to three of its <code>ownedFeatures</code> by StateBehaviorMembership Relationships, all of different <code>kinds</code>, corresponding to the entry, do and exit actions of the StateDefinition.</p>
+ * ownedGeneralization.general->
+ *     selectByKind(StateDefinition).isParallel->
+ *     forAll(p | p = isParallel)
  * <!-- end-model-doc -->
  *
  * <p>
@@ -45,6 +48,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.omg.sysml.lang.sysml.StateDefinition#getEntryAction <em>Entry Action</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.StateDefinition#getDoAction <em>Do Action</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.StateDefinition#getExitAction <em>Exit Action</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.StateDefinition#isParallel <em>Is Parallel</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getStateDefinition()
@@ -72,7 +76,7 @@ public interface StateDefinition extends ActionDefinition {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>State</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getStateDefinition_State()
-	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='featuringStateDefinition'"
 	 *        annotation="subsets"
 	 * @generated
@@ -156,5 +160,31 @@ public interface StateDefinition extends ActionDefinition {
 	 * @generated
 	 */
 	void setExitAction(ActionUsage value);
+
+	/**
+	 * Returns the value of the '<em><b>Is Parallel</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Whether the <code>ownedStates</code> of this StateDefinition are to all be performed in parallel. If true, none of the <code>ownedStates<code> may have any incoming or outgoing transitions. If false, every <code>ownedState</code> must have at least one incoming transition.</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Is Parallel</em>' attribute.
+	 * @see #setIsParallel(boolean)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getStateDefinition_IsParallel()
+	 * @model default="false" dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false"
+	 * @generated
+	 */
+	boolean isParallel();
+
+	/**
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.StateDefinition#isParallel <em>Is Parallel</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Is Parallel</em>' attribute.
+	 * @see #isParallel()
+	 * @generated
+	 */
+	void setIsParallel(boolean value);
 
 } // StateDefinition

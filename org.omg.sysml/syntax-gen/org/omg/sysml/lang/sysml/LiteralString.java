@@ -27,7 +27,7 @@ package org.omg.sysml.lang.sysml;
  * String</b></em>'. <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>An Expression that provides a String value as a result. A LiteralString must have an owned <code>result</code> parameter whose type is <em>String</em>.</p>
+ * <p>A&nbsp;LiteralString&nbsp; is&nbsp;a LiteralExpression that provides a String value as a result. It must have an owned <code>result</code> parameter whose type is <em>String</em>.</p>
  * 
  * <p>An Expression that provides a String value as a result.</p>
  * 

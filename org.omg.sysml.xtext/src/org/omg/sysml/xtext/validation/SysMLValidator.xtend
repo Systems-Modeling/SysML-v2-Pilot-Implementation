@@ -32,8 +32,6 @@ import org.omg.sysml.lang.sysml.Subsetting
 import org.omg.sysml.lang.sysml.SysMLPackage
 import org.omg.sysml.lang.sysml.Redefinition
 import org.omg.sysml.lang.sysml.MultiplicityRange
-import org.omg.sysml.lang.sysml.LiteralInteger
-import org.omg.sysml.lang.sysml.LiteralUnbounded
 import org.omg.sysml.lang.sysml.Expression
 import org.omg.sysml.lang.sysml.Multiplicity
 import org.omg.sysml.lang.sysml.Connector
@@ -93,6 +91,8 @@ import org.omg.sysml.lang.sysml.OccurrenceUsage
 import org.omg.sysml.lang.sysml.OccurrenceDefinition
 import org.omg.sysml.lang.sysml.Structure
 import org.omg.sysml.lang.sysml.Step
+import org.omg.sysml.lang.sysml.LiteralInfinity
+import org.omg.sysml.lang.sysml.LiteralInteger
 
 /**
  * This class contains custom validation rules. 
@@ -132,7 +132,11 @@ class SysMLValidator extends KerMLValidator {
 	public static val INVALID_CONNECTIONUSAGE = 'Invalid ConnectionUsage - invalid type'
 	public static val INVALID_CONNECTIONUSAGE_MSG = 'A connection must be typed by connection definitions.'
 	public static val INVALID_INTERFACEUSAGE = 'Invalid InterfaceUsage - invalid type'
-	public static val INVALID_INTERFACEUSAGE_MSG = 'An interface must be typed by one interface definition.'
+	public static val INVALID_INTERFACEUSAGE_MSG = 'An interface must be typed by interface definitions.'
+	public static val INVALID_INTERFACEDEFINITION_END = 'Invalid InterfaceDefinition - invalid end'
+	public static val INVALID_INTERFACEDEFINITION_END_MSG = 'An interface definition end must be a port.'
+	public static val INVALID_INTERFACEUSAGE_END = 'Invalid InterfaceUsage - invalid end'
+	public static val INVALID_INTERFACEUSAGE_END_MSG = 'An interface end must be a port.'
 	public static val INVALID_ALLOCATIONUSAGE = 'Invalid AllocationUsage - invalid type'
 	public static val INVALID_ALLOCATIONUSAGE_MSG = 'An allocation must be typed by allocation definitions.'
 	public static val INVALID_PORTUSAGE = 'Invalid PortUsage - invalid type'
@@ -205,28 +209,28 @@ class SysMLValidator extends KerMLValidator {
 		}
 	}
 	@Check // Must have exactly one type, which is an EnumerationDefinition
-	def checkEnumerationUsage(EnumerationUsage usg){
+	def checkEnumerationUsageTypes(EnumerationUsage usg){
 		checkOneType(usg, EnumerationDefinition, INVALID_ENUMERATIONUSAGE_MSG, SysMLPackage.eINSTANCE.enumerationUsage_EnumerationDefinition, INVALID_ENUMERATIONUSAGE)
 	}
 	@Check //All types must be Classes. 
 	def checkOccurreceUsageTypes(OccurrenceUsage ou){
-		if (!(ou instanceof ItemUsage || ou instanceof Step))	
+		if (!(ou instanceof ItemUsage || ou instanceof PortUsage || ou instanceof Step))	
 			checkAllTypes(ou, org.omg.sysml.lang.sysml.Class, SysMLValidator.INVALID_OCCURRENCEUSAGE_MSG, SysMLPackage.eINSTANCE.occurrenceUsage_OccurrenceDefinition, SysMLValidator.INVALID_OCCURRENCEUSAGE)
 	}
 	@Check //All types must be Structures. 
 	def checkItemUsageTypes(ItemUsage iu){
-		if (!(iu instanceof PartUsage))	
+		if (!(iu instanceof PartUsage || iu instanceof PortUsage))	
 			checkAllTypes(iu, Structure, SysMLValidator.INVALID_ITEMUSAGE_MSG, SysMLPackage.eINSTANCE.itemUsage_ItemDefinition, SysMLValidator.INVALID_ITEMUSAGE)
 	}
 	@Check //All types must be Structures, at least one must be a PartDefinition. 
 	def checkPartUsageTypes(PartUsage pu){
-		if (!(pu instanceof PortUsage || pu instanceof ConnectionUsage))
+		if (!(pu instanceof ConnectionUsage))
 			if (checkAllTypes(pu, Structure, SysMLValidator.INVALID_PARTUSAGE_MSG, SysMLPackage.eINSTANCE.itemUsage_ItemDefinition, SysMLValidator.INVALID_PARTUSAGE))
 				checkAtLeastOneType(pu, PartDefinition, SysMLValidator.INVALID_PARTUSAGE_MSG, SysMLPackage.eINSTANCE.partUsage_PartDefinition, SysMLValidator.INVALID_PARTUSAGE)
 	}
 	@Check //All types must be Behaviors
 	def checkActionUsageTypes(ActionUsage usg){
-		if (!(usg instanceof StateUsage|| usg instanceof CalculationUsage) )
+		if (!(usg instanceof StateUsage || usg instanceof CalculationUsage) )
 			checkAllTypes(usg, Behavior, SysMLValidator.INVALID_ACTIONUSAGE_MSG, SysMLPackage.eINSTANCE.actionUsage_ActionDefinition, SysMLValidator.INVALID_ACTIONUSAGE)
 	}	
 	@Check //Must have exactly one type, which is a Predicate.
@@ -262,9 +266,9 @@ class SysMLValidator extends KerMLValidator {
 		if (!(usg instanceof InterfaceUsage || usg instanceof AllocationUsage))	
 			checkAllTypes(usg, Association, SysMLValidator.INVALID_CONNECTIONUSAGE_MSG, SysMLPackage.eINSTANCE.connector_Association, SysMLValidator.INVALID_CONNECTIONUSAGE)
 	}
-	@Check //Must have exactly one type, which is an InterfaceDefinitions.
+	@Check //All types must be InterfaceDefinitions.
 	def checkInterfaceUsageTypes(InterfaceUsage usg){
-		checkOneType(usg, InterfaceDefinition, SysMLValidator.INVALID_INTERFACEUSAGE_MSG, SysMLPackage.eINSTANCE.interfaceUsage_InterfaceDefinition, SysMLValidator.INVALID_INTERFACEUSAGE)
+		checkAllTypes(usg, InterfaceDefinition, SysMLValidator.INVALID_INTERFACEUSAGE_MSG, SysMLPackage.eINSTANCE.interfaceUsage_InterfaceDefinition, SysMLValidator.INVALID_INTERFACEUSAGE)
 	}
 	@Check //All types must be AllocationDefinitions.
 	def checkAllocationUsageTypes(AllocationUsage usg){
@@ -302,6 +306,24 @@ class SysMLValidator extends KerMLValidator {
 	@Check //Must have at most one rendering.
 	def checkViewUsageRender(ViewUsage viewUsg){
 		checkAtMostOneElement(viewUsg.ownedFeature.filter[f|f instanceof RenderingUsage], INVALID_VIEWUSAGE_RENDER_MSG, INVALID_VIEWUSAGE_RENDER)
+	}
+	
+	@Check //Ends must be ports
+	def checkInterfaceDefinitionEnds(InterfaceDefinition usg) {
+		for (end: usg.ownedFeature.filter[isEnd]) {
+			if (!(end instanceof PortUsage)) {
+				error(INVALID_INTERFACEDEFINITION_END_MSG, end, null, INVALID_INTERFACEDEFINITION_END)
+			}
+		}
+	}
+	
+	@Check //Ends must be ports
+	def checkInterfaceUsageEnds(InterfaceUsage usg) {
+		for (end: usg.ownedFeature.filter[isEnd]) {
+			if (!(end instanceof PortUsage)) {
+				error(INVALID_INTERFACEUSAGE_END_MSG, end, null, INVALID_INTERFACEUSAGE_END)
+			}
+		}
 	}
 	
 	@Check //Must have at most one subject membership.
@@ -371,7 +393,7 @@ class SysMLValidator extends KerMLValidator {
 	
 	@Check
 	def checkMultiplicityLowerBound(Multiplicity mult) {
-		if (mult instanceof MultiplicityRange && (mult as MultiplicityRange).getLowerBound() instanceof LiteralUnbounded) 
+		if (mult instanceof MultiplicityRange && (mult as MultiplicityRange).getLowerBound() instanceof LiteralInfinity) 
 			error("Multiplicity lower bound cannot be *", SysMLPackage.eINSTANCE.multiplicityRange_LowerBound, SysMLValidator.INVALID_MULTIPLICITY_ILLEGALLOWERBOUND);
 	}
 	
@@ -402,15 +424,15 @@ class SysMLValidator extends KerMLValidator {
 			
 			// Lower bound (only check if the Subsetting is a Redefinition): setting must be >= setted
 			if (sub instanceof Redefinition) {
-				if (setting_m_l instanceof LiteralInteger && setted_m_l instanceof LiteralInteger && (setting_m_l as LiteralInteger).value < (setted_m_l as LiteralInteger).value) {
+				if (setting_m_l instanceof LiteralInteger && setted_m_l instanceof LiteralInteger && (setting_m_l as LiteralInteger).getValue < (setted_m_l as LiteralInteger).getValue) {
 					warning("Redefining feature should not have smaller multiplicity lower bound", sub, 
 						SysMLPackage.eINSTANCE.redefinition_RedefiningFeature, SysMLValidator.INVALID_REDEFINITION_MULTIPLICITYCONFORMANCE)
 				}
 			}
 			
 			// Upper bound: setting must be <= setted
-			if (setting_m_u instanceof LiteralUnbounded && !(setted_m_u instanceof LiteralUnbounded) ||
-				setting_m_u instanceof LiteralInteger && setted_m_u instanceof LiteralInteger && (setting_m_u as LiteralInteger).value > (setted_m_u as LiteralInteger).value) {
+			if (setting_m_u instanceof LiteralInfinity && !(setted_m_u instanceof LiteralInfinity) ||
+				setting_m_u instanceof LiteralInteger && setted_m_u instanceof LiteralInteger && (setting_m_u as LiteralInteger).getValue > (setted_m_u as LiteralInteger).getValue) {
 				warning("Subsetting/redefining feature should not have larger multiplicity upper bound", sub, 
 						SysMLPackage.eINSTANCE.subsetting_SubsettingFeature, SysMLValidator.INVALID_SUBSETTING_MULTIPLICITYCONFORMANCE)
 			}
@@ -418,7 +440,7 @@ class SysMLValidator extends KerMLValidator {
 
 		// Uniqueness conformance
 		if (sub.subsettedFeature !== null && sub.subsettedFeature.unique && sub.subsettingFeature !== null && !sub.subsettingFeature.unique){
-			if (setting_m_u instanceof LiteralUnbounded || (setting_m_u as LiteralInteger).value > 1) {//less than or equal to 1 is ok
+			if (setting_m_u instanceof LiteralInfinity || (setting_m_u as LiteralInteger).getValue > 1) {//less than or equal to 1 is ok
 				warning("Subsetting/redefining feature should not be nonunique if subsetted/redefined feature is unique", sub, 
 						SysMLPackage.eINSTANCE.subsetting_SubsettingFeature, SysMLValidator.INVALID_SUBSETTING_UNIQUENESS_CONFORMANCE)
 			}

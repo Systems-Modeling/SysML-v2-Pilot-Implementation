@@ -27,7 +27,7 @@ package org.omg.sysml.lang.sysml;
  * Typing</b></em>'. <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>FeatureTyping is Generalization in which the <code>specific</code> Type is a Feature. This means the set of sequences of the (specific) <code>typedFeature</code> is a subset of the set of&nbsp;sequences of the (general) <code>type</code>. In the simplest case, the <code>type</code>&nbsp;is a Classifier, whereupon the <code>typedFeature</code>&nbsp;subset has sequences ending in things&nbsp;(in the modeled universe) in single-length sequences of the Classifier.</p>
+ * <p>FeatureTyping is Specialization in which the <code>specific</code> Type is a Feature. This means the set of instances of the (specific) <code>typedFeature</code> is a subset of the set of instances of the (general) <code>type</code>. In the simplest case, the <code>type</code> is a Classifier, whereupon the <code>typedFeature</code> subset has instances interpreted as sequences ending in things (in the modeled universe) that are instances of the Classifier.</p>
  * 
  * <!-- end-model-doc -->
  *
@@ -44,14 +44,14 @@ package org.omg.sysml.lang.sysml;
  * @model
  * @generated
  */
-public interface FeatureTyping extends Generalization {
+public interface FeatureTyping extends Specialization {
 	/**
 	 * Returns the value of the '<em><b>Type</b></em>' reference.
 	 * <p>
 	 * This feature redefines the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Generalization#getGeneral() <em>General</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Specialization#getGeneral() <em>General</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -95,7 +95,7 @@ public interface FeatureTyping extends Generalization {
 	 * This feature redefines the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Generalization#getOwningType() <em>Owning Type</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Specialization#getOwningType() <em>Owning Type</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -129,7 +129,7 @@ public interface FeatureTyping extends Generalization {
 	 * This feature redefines the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Generalization#getSpecific() <em>Specific</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Specialization#getSpecific() <em>Specific</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>

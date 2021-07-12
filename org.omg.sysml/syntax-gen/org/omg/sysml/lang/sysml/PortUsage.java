@@ -48,7 +48,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface PortUsage extends Usage {
+public interface PortUsage extends OccurrenceUsage {
 	/**
 	 * Returns the value of the '<em><b>Port Definition</b></em>' reference list.
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.PortDefinition}.
@@ -69,7 +69,7 @@ public interface PortUsage extends Usage {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Port Definition</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getPortUsage_PortDefinition()
-	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
+	 * @model required="true" transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='definedPort'"
 	 *        annotation="redefines"
 	 * @generated

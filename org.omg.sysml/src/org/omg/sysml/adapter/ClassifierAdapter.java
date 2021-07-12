@@ -38,7 +38,7 @@ public class ClassifierAdapter extends TypeAdapter {
 
 	@Override
 	protected EClass getGeneralizationEClass() {
-		return SysMLPackage.eINSTANCE.getSuperclassing();
+		return SysMLPackage.eINSTANCE.getSubclassification();
 	}
 	
 }

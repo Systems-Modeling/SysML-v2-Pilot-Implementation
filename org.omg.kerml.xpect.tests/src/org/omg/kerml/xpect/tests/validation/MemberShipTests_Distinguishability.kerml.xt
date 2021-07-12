@@ -26,7 +26,7 @@ package test{
 	    --- */
 	package A{
 		class A {}
-		alias A as A_alias;
+		alias A_alias for A;
 	}
 	//* XPECT warnings ---
 		"Duplicate owned member name" at "A"

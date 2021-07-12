@@ -33,9 +33,9 @@ import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.InvocationExpression;
 import org.omg.sysml.lang.sysml.LiteralBoolean;
 import org.omg.sysml.lang.sysml.LiteralInteger;
-import org.omg.sysml.lang.sysml.LiteralReal;
+import org.omg.sysml.lang.sysml.LiteralRational;
 import org.omg.sysml.lang.sysml.LiteralString;
-import org.omg.sysml.lang.sysml.LiteralUnbounded;
+import org.omg.sysml.lang.sysml.LiteralInfinity;
 import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
@@ -134,10 +134,10 @@ public abstract class ModelLevelFunction {
 					(Type)SysMLLibraryUtil.getLibraryElement(context, "ScalarValues::String"):
 			eClass == SysMLPackage.eINSTANCE.getLiteralInteger()? 
 					(Type)SysMLLibraryUtil.getLibraryElement(context, "ScalarValues::Integer"):
-			eClass == SysMLPackage.eINSTANCE.getLiteralReal()? 
-					(Type)SysMLLibraryUtil.getLibraryElement(context, "ScalarValues::Real"):
-			eClass == SysMLPackage.eINSTANCE.getLiteralUnbounded()? 
-					(Type)SysMLLibraryUtil.getLibraryElement(context, "ScalarValues::UnlimitedNatural"):
+			eClass == SysMLPackage.eINSTANCE.getLiteralRational()? 
+					(Type)SysMLLibraryUtil.getLibraryElement(context, "ScalarValues::Rational"):
+			eClass == SysMLPackage.eINSTANCE.getLiteralInfinity()? 
+					(Type)SysMLLibraryUtil.getLibraryElement(context, "ScalarValues::Positive"):
 			null;
 	}
 	
@@ -172,7 +172,7 @@ public abstract class ModelLevelFunction {
 
 	protected static Double realValue(InvocationExpression invocation, int i, Element target) {
 		Element argument = argumentValue(invocation, i, target);
-		return argument instanceof LiteralReal? ((LiteralReal)argument).getValue(): null;
+		return argument instanceof LiteralRational? ((LiteralRational)argument).getValue(): null;
 	}
 	
 	protected static EList<Element> nullList() {
@@ -208,7 +208,7 @@ public abstract class ModelLevelFunction {
 	}
 
 	protected static EList<Element> realResult(double value) {
-		LiteralReal literal = SysMLFactory.eINSTANCE.createLiteralReal();
+		LiteralRational literal = SysMLFactory.eINSTANCE.createLiteralRational();
 		literal.setValue(value);
 		return singletonList(literal);
 	}
@@ -217,8 +217,8 @@ public abstract class ModelLevelFunction {
 		return element instanceof LiteralBoolean? Boolean.valueOf(((LiteralBoolean)element).isValue()):
 			   element instanceof LiteralString? ((LiteralString)element).getValue():
 			   element instanceof LiteralInteger? Integer.valueOf(((LiteralInteger)element).getValue()):
-			   element instanceof LiteralReal? Double.valueOf(((LiteralReal)element).getValue()):
-			   element instanceof LiteralUnbounded? null:
+			   element instanceof LiteralRational? Double.valueOf(((LiteralRational)element).getValue()):
+			   element instanceof LiteralInfinity? null:
 			   element;
 	}
 	

@@ -22,7 +22,8 @@ package Import_Private {
 		private import P1::*;
 	}
 	//* XPECT scope at P1::A ---
-	   x, y, y1, z, P1.A, P3.B, B, Import_Private.x, Import_Private.y, Import_Private.y1, Import_Private.z, Import_Private.P1.A, Import_Private.P3.B
+	   x, y, y1, z, P1.A, P3.B, B, Import_Private.x, Import_Private.y, Import_Private.y1, Import_Private.z, Import_Private.P1.A, Import_Private.P3.B,
+	   P4.A, P4.z1, Import_Private.P4.A, Import_Private.P4.z1
 	--- */
 	x: P1::A;
 	
@@ -45,4 +46,11 @@ package Import_Private {
 	// XPECT linkedName at B --> Import_Private.P3.B
 	z: B;
 	
+	package P4 {
+		import all P2::*;
+		
+		// This should not fail because "import all" overrides private import.
+		// XPECT linkedName at A --> Import_Private.P1.A
+		z1: A;
+	}
 }

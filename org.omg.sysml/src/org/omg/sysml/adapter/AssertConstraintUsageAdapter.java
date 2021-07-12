@@ -41,11 +41,4 @@ public class AssertConstraintUsageAdapter extends ConstraintUsageAdapter {
 				super.getDefaultSupertype();
 	}
 	
-	@Override
-	public void doTransform() {
-		AssertConstraintUsage usage = getTarget();
-		super.doTransform();
-		usage.setAssertionConnector(computeAssertionConnector(usage.getResult()));
-	}
-	
 }

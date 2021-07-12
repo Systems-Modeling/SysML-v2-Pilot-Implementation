@@ -69,7 +69,7 @@ public interface InterfaceDefinition extends ConnectionDefinition {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Interface End</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getInterfaceDefinition_InterfaceEnd()
-	 * @model lower="2" transient="true" volatile="true" derived="true" ordered="false"
+	 * @model lower="2" transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='interfaceDefinitionWithEnd'"
 	 *        annotation="redefines"
 	 * @generated

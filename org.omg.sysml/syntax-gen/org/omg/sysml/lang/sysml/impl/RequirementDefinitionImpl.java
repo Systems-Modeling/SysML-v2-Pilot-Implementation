@@ -33,13 +33,16 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.omg.sysml.lang.sysml.AddressedConcernMembership;
+import org.omg.sysml.lang.sysml.FramedConcernMembership;
+import org.omg.sysml.lang.sysml.PartUsage;
+import org.omg.sysml.lang.sysml.ActorMembership;
 import org.omg.sysml.lang.sysml.Comment;
 import org.omg.sysml.lang.sysml.ConcernUsage;
 import org.omg.sysml.lang.sysml.ConstraintUsage;
 import org.omg.sysml.lang.sysml.RequirementConstraintKind;
 import org.omg.sysml.lang.sysml.RequirementConstraintMembership;
 import org.omg.sysml.lang.sysml.RequirementDefinition;
+import org.omg.sysml.lang.sysml.StakeholderMembership;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
@@ -60,7 +63,9 @@ import org.omg.sysml.util.TypeUtil;
  *   <li>{@link org.omg.sysml.lang.sysml.impl.RequirementDefinitionImpl#getAssumedConstraint <em>Assumed Constraint</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.RequirementDefinitionImpl#getRequiredConstraint <em>Required Constraint</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.RequirementDefinitionImpl#getSubjectParameter <em>Subject Parameter</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.RequirementDefinitionImpl#getAddressedConcern <em>Addressed Concern</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.RequirementDefinitionImpl#getFramedConcern <em>Framed Concern</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.RequirementDefinitionImpl#getActorParameter <em>Actor Parameter</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.RequirementDefinitionImpl#getStakeholderParameter <em>Stakeholder Parameter</em>}</li>
  * </ul>
  *
  * @generated
@@ -134,6 +139,30 @@ public class RequirementDefinitionImpl extends ConstraintDefinitionImpl implemen
 	@Override
 	public void setSubjectParameter(Usage newSubjectParameter) {
 		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public EList<PartUsage> getActorParameter() {
+		EList<PartUsage> actorParameters = new NonNotifyingEObjectEList<>(PartUsage.class, this, SysMLPackage.REQUIREMENT_DEFINITION__ACTOR_PARAMETER);
+		TypeUtil.addOwnedFeaturesByMembership(this, ActorMembership.class, PartUsage.class, actorParameters);
+		return actorParameters;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public EList<PartUsage> getStakeholderParameter() {
+		EList<PartUsage> stakeholderParameters = new NonNotifyingEObjectEList<>(PartUsage.class, this, SysMLPackage.REQUIREMENT_DEFINITION__STAKEHOLDER_PARAMETER);
+		TypeUtil.addOwnedFeaturesByMembership(this, StakeholderMembership.class, PartUsage.class, stakeholderParameters);
+		return stakeholderParameters;
 	}
 
 	/**
@@ -226,11 +255,39 @@ public class RequirementDefinitionImpl extends ConstraintDefinitionImpl implemen
 	 * @generated NOT
 	 */
 	@Override
-	public EList<ConcernUsage> getAddressedConcern() {
-		EList<ConcernUsage> concerns = new NonNotifyingEObjectEList<>(ConcernUsage.class, this, SysMLPackage.REQUIREMENT_DEFINITION__ADDRESSED_CONCERN);
-		getRequirementConstraints(this, AddressedConcernMembership.class, RequirementConstraintKind.REQUIREMENT).
+	public EList<ConcernUsage> getFramedConcern() {
+		EList<ConcernUsage> concerns = new NonNotifyingEObjectEList<>(ConcernUsage.class, this, SysMLPackage.REQUIREMENT_DEFINITION__FRAMED_CONCERN);
+		getRequirementConstraints(this, FramedConcernMembership.class, RequirementConstraintKind.REQUIREMENT).
 			map(ConcernUsage.class::cast).forEachOrdered(concerns::add);
 		return concerns;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String getHumanId() {
+		return getReqId();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setHumanId(String newHumanId) {
+		setReqId(newHumanId);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetHumanId() {
+  		return false;
 	}
 
 	/**
@@ -252,8 +309,12 @@ public class RequirementDefinitionImpl extends ConstraintDefinitionImpl implemen
 			case SysMLPackage.REQUIREMENT_DEFINITION__SUBJECT_PARAMETER:
 				if (resolve) return getSubjectParameter();
 				return basicGetSubjectParameter();
-			case SysMLPackage.REQUIREMENT_DEFINITION__ADDRESSED_CONCERN:
-				return getAddressedConcern();
+			case SysMLPackage.REQUIREMENT_DEFINITION__FRAMED_CONCERN:
+				return getFramedConcern();
+			case SysMLPackage.REQUIREMENT_DEFINITION__ACTOR_PARAMETER:
+				return getActorParameter();
+			case SysMLPackage.REQUIREMENT_DEFINITION__STAKEHOLDER_PARAMETER:
+				return getStakeholderParameter();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -285,9 +346,17 @@ public class RequirementDefinitionImpl extends ConstraintDefinitionImpl implemen
 			case SysMLPackage.REQUIREMENT_DEFINITION__SUBJECT_PARAMETER:
 				setSubjectParameter((Usage)newValue);
 				return;
-			case SysMLPackage.REQUIREMENT_DEFINITION__ADDRESSED_CONCERN:
-				getAddressedConcern().clear();
-				getAddressedConcern().addAll((Collection<? extends ConcernUsage>)newValue);
+			case SysMLPackage.REQUIREMENT_DEFINITION__FRAMED_CONCERN:
+				getFramedConcern().clear();
+				getFramedConcern().addAll((Collection<? extends ConcernUsage>)newValue);
+				return;
+			case SysMLPackage.REQUIREMENT_DEFINITION__ACTOR_PARAMETER:
+				getActorParameter().clear();
+				getActorParameter().addAll((Collection<? extends PartUsage>)newValue);
+				return;
+			case SysMLPackage.REQUIREMENT_DEFINITION__STAKEHOLDER_PARAMETER:
+				getStakeholderParameter().clear();
+				getStakeholderParameter().addAll((Collection<? extends PartUsage>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -316,8 +385,14 @@ public class RequirementDefinitionImpl extends ConstraintDefinitionImpl implemen
 			case SysMLPackage.REQUIREMENT_DEFINITION__SUBJECT_PARAMETER:
 				setSubjectParameter((Usage)null);
 				return;
-			case SysMLPackage.REQUIREMENT_DEFINITION__ADDRESSED_CONCERN:
-				getAddressedConcern().clear();
+			case SysMLPackage.REQUIREMENT_DEFINITION__FRAMED_CONCERN:
+				getFramedConcern().clear();
+				return;
+			case SysMLPackage.REQUIREMENT_DEFINITION__ACTOR_PARAMETER:
+				getActorParameter().clear();
+				return;
+			case SysMLPackage.REQUIREMENT_DEFINITION__STAKEHOLDER_PARAMETER:
+				getStakeholderParameter().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -343,8 +418,12 @@ public class RequirementDefinitionImpl extends ConstraintDefinitionImpl implemen
 				return !getRequiredConstraint().isEmpty();
 			case SysMLPackage.REQUIREMENT_DEFINITION__SUBJECT_PARAMETER:
 				return basicGetSubjectParameter() != null;
-			case SysMLPackage.REQUIREMENT_DEFINITION__ADDRESSED_CONCERN:
-				return !getAddressedConcern().isEmpty();
+			case SysMLPackage.REQUIREMENT_DEFINITION__FRAMED_CONCERN:
+				return !getFramedConcern().isEmpty();
+			case SysMLPackage.REQUIREMENT_DEFINITION__ACTOR_PARAMETER:
+				return !getActorParameter().isEmpty();
+			case SysMLPackage.REQUIREMENT_DEFINITION__STAKEHOLDER_PARAMETER:
+				return !getStakeholderParameter().isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -363,34 +442,6 @@ public class RequirementDefinitionImpl extends ConstraintDefinitionImpl implemen
 		result.append(reqId);
 		result.append(')');
 		return result.toString();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String getHumanId() {
-		return getReqId();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setHumanId(String newHumanId) {
-		setReqId(newHumanId);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetHumanId() {
-  		return false;
 	}
 
 } //RequirementDefinitionImpl

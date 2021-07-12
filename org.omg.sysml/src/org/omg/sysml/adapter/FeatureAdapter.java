@@ -408,7 +408,7 @@ public class FeatureAdapter extends TypeAdapter {
 	protected void computeValueConnector() {
 		Feature feature = getTarget();
 		FeatureValue valuation = FeatureUtil.getValuationFor(feature);
-		if (valuation != null) {
+		if (valuation != null && !valuation.isDefault()) {
 			Expression value = valuation.getValue();
 			valueConnector = value == null? null: addValueBinding(value);
 		}

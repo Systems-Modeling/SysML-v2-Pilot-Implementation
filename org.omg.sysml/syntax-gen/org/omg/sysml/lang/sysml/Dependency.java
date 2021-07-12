@@ -64,7 +64,7 @@ public interface Dependency extends Relationship {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Client</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDependency_Client()
-	 * @model required="true" ordered="false"
+	 * @model required="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='clientDependency'"
 	 *        annotation="redefines"
 	 * @generated
@@ -87,7 +87,7 @@ public interface Dependency extends Relationship {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Supplier</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDependency_Supplier()
-	 * @model required="true" ordered="false"
+	 * @model required="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='supplierDependency'"
 	 *        annotation="redefines"
 	 * @generated

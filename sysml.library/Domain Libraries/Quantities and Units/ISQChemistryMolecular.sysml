@@ -49,9 +49,9 @@ package ISQChemistryMolecular {
      * base unit AmountOfSubstanceUnit and quantity type AmountOfSubstanceValue.
      */
 
-    alias AmountOfSubstanceUnit as NumberOfMolesUnit;
-    alias AmountOfSubstanceValue as NumberOfMolesValue;
-    alias amountOfSubstance as numberOfMoles;
+    alias NumberOfMolesUnit for AmountOfSubstanceUnit;
+    alias NumberOfMolesValue for AmountOfSubstanceValue;
+    alias numberOfMoles for amountOfSubstance;
 
     /**
      * source: item 9-3 relative atomic mass
@@ -442,7 +442,7 @@ package ISQChemistryMolecular {
      */
     attribute latentHeatOfPhaseTransition: EnergyValue :> scalarQuantities;
 
-    alias latentHeatOfPhaseTransition as enthalpyOfPhaseTransition;
+    alias enthalpyOfPhaseTransition for latentHeatOfPhaseTransition;
 
     /**
      * source: item 9-17 chemical potential
@@ -598,7 +598,7 @@ package ISQChemistryMolecular {
     attribute def ActivityOfSoluteValue :> DimensionOneValue;
     attribute activityOfSolute: ActivityOfSoluteValue :> scalarQuantities;
 
-    alias activityOfSolute as relativeActivityOfSolute;
+    alias relativeActivityOfSolute for activityOfSolute;
 
     /**
      * source: item 9-25 activity coefficient
@@ -642,7 +642,7 @@ package ISQChemistryMolecular {
     attribute def ActivityOfSolventValue :> DimensionOneValue;
     attribute activityOfSolvent: ActivityOfSolventValue :> scalarQuantities;
 
-    alias activityOfSolvent as relativeActivityOfSolvent;
+    alias relativeActivityOfSolvent for activityOfSolvent;
 
     /**
      * source: item 9-27.2 osmotic factor of solvent, osmotic coefficient of solvent A
@@ -658,7 +658,7 @@ package ISQChemistryMolecular {
     attribute def OsmoticFactorOfSolventValue :> DimensionOneValue;
     attribute osmoticFactorOfSolvent: OsmoticFactorOfSolventValue :> scalarQuantities;
 
-    alias osmoticFactorOfSolvent as osmoticCoefficientOfSolventA;
+    alias osmoticCoefficientOfSolventA for osmoticFactorOfSolvent;
 
     /**
      * source: item 9-27.3 standard absolute activity of solvent
@@ -764,7 +764,7 @@ package ISQChemistryMolecular {
     attribute def StandardEquilibriumConstantValue :> DimensionOneValue;
     attribute standardEquilibriumConstant: StandardEquilibriumConstantValue :> scalarQuantities;
 
-    alias standardEquilibriumConstant as thermodynamicEquilibriumConstant;
+    alias thermodynamicEquilibriumConstant for standardEquilibriumConstant;
 
     /**
      * source: item 9-33 equilibrium constant on pressure basis
@@ -854,7 +854,7 @@ package ISQChemistryMolecular {
     attribute def GrandCanonicalPartitionFunctionValue :> DimensionOneValue;
     attribute grandCanonicalPartitionFunction: GrandCanonicalPartitionFunctionValue :> scalarQuantities;
 
-    alias grandCanonicalPartitionFunction as grandPartitionFunction;
+    alias grandPartitionFunction for grandCanonicalPartitionFunction;
 
     /**
      * source: item 9-35.4 molecular partition function, partition function of a molecule
@@ -870,7 +870,7 @@ package ISQChemistryMolecular {
     attribute def MolecularPartitionFunctionValue :> DimensionOneValue;
     attribute molecularPartitionFunction: MolecularPartitionFunctionValue :> scalarQuantities;
 
-    alias molecularPartitionFunction as partitionFunctionOfAMolecule;
+    alias partitionFunctionOfAMolecule for molecularPartitionFunction;
 
     /**
      * source: item 9-36.1 statistical weight of subsystem
@@ -899,7 +899,7 @@ package ISQChemistryMolecular {
     attribute def DegeneracyValue :> DimensionOneValue;
     attribute degeneracy: DegeneracyValue :> scalarQuantities;
 
-    alias degeneracy as multiplicity;
+    alias multiplicity for degeneracy;
 
     /**
      * source: item 9-37.1 molar gas constant
@@ -1067,7 +1067,7 @@ package ISQChemistryMolecular {
     attribute def DegreeOfDissociationValue :> DimensionOneValue;
     attribute degreeOfDissociation: DegreeOfDissociationValue :> scalarQuantities;
 
-    alias degreeOfDissociation as dissociationFraction;
+    alias dissociationFraction for degreeOfDissociation;
 
     /**
      * source: item 9-44 electrolytic conductivity
@@ -1133,7 +1133,7 @@ package ISQChemistryMolecular {
     attribute def TransportNumberOfTheIonBValue :> DimensionOneValue;
     attribute transportNumberOfTheIonB: TransportNumberOfTheIonBValue :> scalarQuantities;
 
-    alias transportNumberOfTheIonB as currentFractionOfTheIonB;
+    alias currentFractionOfTheIonB for transportNumberOfTheIonB;
 
     /**
      * source: item 9-47 angle of optical rotation

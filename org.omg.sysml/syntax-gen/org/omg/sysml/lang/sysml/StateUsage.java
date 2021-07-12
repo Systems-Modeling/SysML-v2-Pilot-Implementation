@@ -32,10 +32,17 @@ import org.eclipse.emf.common.util.EList;
  * <!-- begin-model-doc -->
  * <p>A StateUsage is an ActionUsage that is nominally the Usage of a StateDefinition. However, other kinds of kernel Behaviors are also allowed as types, to permit use of Behaviors from the Kernel Library.</p>
  * 
- * <p>A StateUsage (other than an ExhibitStateUsage owned by a Part) must subset, directly or indirectly, either the base StateUsage <code>stateActions</code> from the Systems model library, if it is not a composite feature, or the StateUsage <code>substates</code> inherited from its owner, if it is a composite feature.</p>
+ * <p>A StateUsage (other than an ExhibitStateUsage owned by a PartDefinition or PartUsage) must subset, directly or indirectly, either the base StateUsage <em><code>stateActions</code></em> from the Systems model library, if it is not a composite feature, or the StateUsage <em><code>substates</code></em> inherited from its owner, if it is a composite feature.</p>
  * 
  * <p>A <code>StateUsage</code> may be related to up to three of its <code>ownedFeatures</code> by StateBehaviorMembership Relationships, all of different <code>kinds</code>, corresponding to the entry, do and exit actions of the StateUsage.</code></p>
  * 
+ * let general : Sequence(Type) = ownedGeneralization.general in
+ * general ->
+ *     selectByKind(StateDefinition).isParallel->
+ *     forAll(p | p = isParallel) and
+ * general ->
+ *     selectByKind(StateUsage).isParallel->
+ *     forAll(p | p = isParallel)
  * <!-- end-model-doc -->
  *
  * <p>
@@ -46,6 +53,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.omg.sysml.lang.sysml.StateUsage#getEntryAction <em>Entry Action</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.StateUsage#getDoAction <em>Do Action</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.StateUsage#getExitAction <em>Exit Action</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.StateUsage#isParallel <em>Is Parallel</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getStateUsage()
@@ -73,7 +81,7 @@ public interface StateUsage extends ActionUsage {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>State Definition</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getStateUsage_StateDefinition()
-	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
+	 * @model required="true" transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='definedState'"
 	 *        annotation="redefines"
 	 * @generated
@@ -157,5 +165,32 @@ public interface StateUsage extends ActionUsage {
 	 * @generated
 	 */
 	void setExitAction(ActionUsage value);
+
+	/**
+	 * Returns the value of the '<em><b>Is Parallel</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * 
+	 * <p>Whether the <code>nestedStates</code> of this StateDefinition are to all be performed in parallel. If true, none of the <code>nestedStates<code> may have any incoming or outgoing transitions. If false, every <code>nestedState</code> must have at least one incoming transition.</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Is Parallel</em>' attribute.
+	 * @see #setIsParallel(boolean)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getStateUsage_IsParallel()
+	 * @model default="false" dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false"
+	 * @generated
+	 */
+	boolean isParallel();
+
+	/**
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.StateUsage#isParallel <em>Is Parallel</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Is Parallel</em>' attribute.
+	 * @see #isParallel()
+	 * @generated
+	 */
+	void setIsParallel(boolean value);
 
 } // StateUsage

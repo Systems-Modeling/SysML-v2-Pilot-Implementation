@@ -45,7 +45,7 @@ package ISQSpaceTime {
      */
     attribute width: LengthValue :> scalarQuantities;
 
-    alias width as breadth;
+    alias breadth for width;
 
     /**
      * source: item 3-1.3 height, depth, altitude
@@ -60,9 +60,9 @@ package ISQSpaceTime {
      */
     attribute height: LengthValue :> scalarQuantities;
 
-    alias height as depth;
+    alias depth for height;
 
-    alias height as altitude;
+    alias altitude for height;
 
     /**
      * source: item 3-1.4 thickness
@@ -116,7 +116,7 @@ package ISQSpaceTime {
      */
     attribute pathLength: LengthValue :> scalarQuantities;
 
-    alias pathLength as arcLength;
+    alias arcLength for pathLength;
 
     /**
      * source: item 3-1.8 distance
@@ -280,9 +280,9 @@ package ISQSpaceTime {
     }
     attribute angularMeasure: AngularMeasureValue :> scalarQuantities;
 
-    alias AngularMeasureUnit as PlaneAngleUnit;
-    alias AngularMeasureValue as PlaneAngleValue;
-    alias angularMeasure as planeAngle;
+    alias PlaneAngleUnit for AngularMeasureUnit;
+    alias PlaneAngleValue for AngularMeasureValue;
+    alias planeAngle for angularMeasure;
 
     /**
      * source: item 3-6 rotational displacement, angular displacement
@@ -297,7 +297,7 @@ package ISQSpaceTime {
      */
     attribute rotationalDisplacement: AngularMeasureValue :> scalarQuantities;
 
-    alias rotationalDisplacement as angularDisplacement;
+    alias angularDisplacement for rotationalDisplacement;
 
     /**
      * source: item 3-7 phase angle
@@ -348,9 +348,9 @@ package ISQSpaceTime {
      * base unit DurationUnit and quantity type DurationValue.
      */
 
-    alias DurationUnit as TimeUnit;
-    alias DurationValue as TimeValue;
-    alias duration as time;
+    alias TimeUnit for DurationUnit;
+    alias TimeValue for DurationValue;
+    alias time for duration;
 
     /**
      * source: item 3-10.1 velocity
@@ -559,7 +559,7 @@ package ISQSpaceTime {
      */
     attribute periodDuration: DurationValue :> scalarQuantities;
 
-    alias periodDuration as period;
+    alias period for periodDuration;
 
     /**
      * source: item 3-15 time constant
@@ -679,9 +679,9 @@ package ISQSpaceTime {
     }
     attribute repetency: RepetencyValue :> scalarQuantities;
 
-    alias RepetencyUnit as WavenumberUnit;
-    alias RepetencyValue as WavenumberValue;
-    alias repetency as wavenumber;
+    alias WavenumberUnit for RepetencyUnit;
+    alias WavenumberValue for RepetencyValue;
+    alias wavenumber for repetency;
 
     /**
      * source: item 3-21 wave vector
@@ -731,9 +731,9 @@ package ISQSpaceTime {
     }
     attribute angularRepetency: AngularRepetencyValue :> scalarQuantities;
 
-    alias AngularRepetencyUnit as AngularWavenumberUnit;
-    alias AngularRepetencyValue as AngularWavenumberValue;
-    alias angularRepetency as angularWavenumber;
+    alias AngularWavenumberUnit for AngularRepetencyUnit;
+    alias AngularWavenumberValue for AngularRepetencyValue;
+    alias angularWavenumber for angularRepetency;
 
     /**
      * source: item 3-23.1 phase velocity, phase speed
@@ -758,9 +758,9 @@ package ISQSpaceTime {
     }
     attribute phaseVelocity: PhaseVelocityValue :> scalarQuantities;
 
-    alias PhaseVelocityUnit as PhaseSpeedUnit;
-    alias PhaseVelocityValue as PhaseSpeedValue;
-    alias phaseVelocity as phaseSpeed;
+    alias PhaseSpeedUnit for PhaseVelocityUnit;
+    alias PhaseSpeedValue for PhaseVelocityValue;
+    alias phaseSpeed for phaseVelocity;
 
     /**
      * source: item 3-23.2 group velocity, group speed
@@ -775,7 +775,7 @@ package ISQSpaceTime {
      */
     attribute groupVelocity: SpeedValue :> scalarQuantities;
 
-    alias groupVelocity as groupSpeed;
+    alias groupSpeed for groupVelocity;
 
     /**
      * source: item 3-24 damping coefficient
@@ -835,9 +835,9 @@ package ISQSpaceTime {
     }
     attribute attenuation: AttenuationValue :> scalarQuantities;
 
-    alias AttenuationUnit as ExtinctionUnit;
-    alias AttenuationValue as ExtinctionValue;
-    alias attenuation as extinction;
+    alias ExtinctionUnit for AttenuationUnit;
+    alias ExtinctionValue for AttenuationValue;
+    alias extinction for attenuation;
 
     /**
      * source: item 3-26.2 phase coefficient

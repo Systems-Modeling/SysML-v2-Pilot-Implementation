@@ -91,6 +91,15 @@ public class InteractionImpl extends AssociationImpl implements Interaction {
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetParameter() {
+		return !getParameter().isEmpty();
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -149,10 +158,12 @@ public class InteractionImpl extends AssociationImpl implements Interaction {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case SysMLPackage.INTERACTION__DIRECTED_FEATURE:
+				return isSetDirectedFeature();
 			case SysMLPackage.INTERACTION__STEP:
 				return !getStep().isEmpty();
 			case SysMLPackage.INTERACTION__PARAMETER:
-				return !getParameter().isEmpty();
+				return isSetParameter();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -197,6 +208,24 @@ public class InteractionImpl extends AssociationImpl implements Interaction {
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Feature> getDirectedFeature() {
+		return getParameter();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetDirectedFeature() {
+  		return false;
 	}
 
 } // InteractionImpl

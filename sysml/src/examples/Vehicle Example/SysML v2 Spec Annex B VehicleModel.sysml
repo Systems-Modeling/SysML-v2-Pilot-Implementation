@@ -197,7 +197,7 @@ package VehicleModel {
             import ScalarFunctions::*;
             import ISQ::*;
             import SI::*;
-            alias ISQ::TorqueValue as Torque;
+            alias Torque for ISQ::TorqueValue;
             //quantity used in analysis
             attribute def DistancePerVolumeValue :> Quantities::QuantityValue;
         }

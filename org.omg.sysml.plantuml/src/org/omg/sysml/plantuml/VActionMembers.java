@@ -50,9 +50,9 @@ public class VActionMembers extends VBehavior {
     }
 
     public String caseParameterMembership(ParameterMembership pm) {
-        FeatureDirectionKind fdk = pm.getDirection();
         Feature p = pm.getMemberParameter();
-        switch (fdk) {
+        FeatureDirectionKind fdk = p.getDirection();
+       switch (fdk) {
         case IN:
             addNode(p, "portin");
             break;

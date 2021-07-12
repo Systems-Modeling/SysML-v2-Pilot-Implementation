@@ -32,7 +32,7 @@ import org.omg.sysml.lang.sysml.Type;
 public class VStateMachine extends VDefault {
     private void addState(Type typ, boolean withStyle) {
         addRecLine(typ, withStyle);
-        addGeneralizations(typ);
+        addSpecializations(typ);
         VStateMembers v = new VStateMembers(this);
         v.startStateUsage(typ);
         append("\n");

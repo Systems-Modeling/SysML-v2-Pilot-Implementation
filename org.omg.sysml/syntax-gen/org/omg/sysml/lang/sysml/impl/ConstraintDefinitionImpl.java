@@ -99,6 +99,15 @@ public class ConstraintDefinitionImpl extends OccurrenceDefinitionImpl implement
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetParameter() {
+		return !getParameter().isEmpty();
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated NOT // derived
@@ -277,10 +286,12 @@ public class ConstraintDefinitionImpl extends OccurrenceDefinitionImpl implement
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case SysMLPackage.CONSTRAINT_DEFINITION__DIRECTED_FEATURE:
+				return isSetDirectedFeature();
 			case SysMLPackage.CONSTRAINT_DEFINITION__STEP:
 				return isSetStep();
 			case SysMLPackage.CONSTRAINT_DEFINITION__PARAMETER:
-				return !getParameter().isEmpty();
+				return isSetParameter();
 			case SysMLPackage.CONSTRAINT_DEFINITION__EXPRESSION:
 				return isSetExpression();
 			case SysMLPackage.CONSTRAINT_DEFINITION__RESULT:
@@ -349,6 +360,24 @@ public class ConstraintDefinitionImpl extends OccurrenceDefinitionImpl implement
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Feature> getDirectedFeature() {
+		return getParameter();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetDirectedFeature() {
+  		return false;
 	}
 
 } //ConstraintDefinitionImpl

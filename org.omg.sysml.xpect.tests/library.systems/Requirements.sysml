@@ -10,7 +10,7 @@ package Requirements {
 	private import Parts::parts;
 	private import Actions::Action;
 	private import Interfaces::Interface;
-	private import Attributes::AttributeValue as AttributeValue; // "Alias" needed because of alias reimport bug.
+	private import Attributes::AttributeValue;
 	
 	/**
 	 * RequirementConstraintCheck is the base ConstraintCheck for RequirementCheck, defining the
@@ -31,7 +31,7 @@ package Requirements {
 		/**
 		 * If all the assumptions are true, then all the required constraints must hold.
 		 */
-		!allTrue(assumptions()) | allTrue(constraints())
+		allTrue(assumptions()) implies allTrue(constraints())
 	}
 	
 	/**
@@ -116,11 +116,7 @@ package Requirements {
 		/**
 		 * The stakeholders interested in the concern being checked.
 		 */
-		ref stakeholder concernedStakeholders : Stakeholder :> stakeholders;
-	}
-	
-	stakeholder def Stakeholder :> Part {
-		ref stakeholder self: Stakeholder :>> Part::self;
+		stakeholder concernedStakeholders;
 	}
 	
 	/**
@@ -132,10 +128,5 @@ package Requirements {
 	 * concernChecks is the base feature of all ConcernUsages.
 	 */
 	abstract concern concernChecks: ConcernCheck[0..*] nonunique :> requirementChecks;
-	
-	/**
-	 * stakeholders is the base feature of all Stakeholders.
-	 */
-	abstract stakeholder stakeholders: Stakeholder[0..*] nonunique :> parts;
 	
 }

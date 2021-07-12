@@ -15,8 +15,8 @@ package PartTest {
 	
 	private port def C {
 		private in ref y: A, B;
-		import y as z1;
-		alias y as z2;
+		alias z1 for y;
+		alias z2 for y;
 	}
 	
 }

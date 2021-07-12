@@ -37,7 +37,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.Generalization;
+import org.omg.sysml.lang.sysml.Specialization;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.ResultExpressionMembership;
 import org.omg.sysml.lang.sysml.ReturnParameterMembership;
@@ -157,7 +157,7 @@ public class TypeAdapter extends NamespaceAdapter {
 	
 	@SuppressWarnings("unchecked")
 	public void addDefaultGeneralType(EClass generalizationEClass, String... superTypeNames) {
-		Class<? extends Generalization> kind = (Class<? extends Generalization>)generalizationEClass.getInstanceClass();
+		Class<? extends Specialization> kind = (Class<? extends Specialization>)generalizationEClass.getInstanceClass();
 		Type type = getTarget();
 		if (getImplicitGeneralTypes(generalizationEClass).isEmpty() &&
 				hasNoOwnedGeneralizations(type, kind)) {
@@ -173,7 +173,7 @@ public class TypeAdapter extends NamespaceAdapter {
 	protected static boolean hasNoOwnedGeneralizations(Type type, Class<?> kind) {
 		return type.getOwnedRelationship().stream().
 				filter(kind::isInstance).
-				map(Generalization.class::cast).
+				map(Specialization.class::cast).
 				noneMatch(gen->gen.getSpecific() == type);
 	}
 
@@ -219,7 +219,7 @@ public class TypeAdapter extends NamespaceAdapter {
 	}
 	
 	protected EClass getGeneralizationEClass() {
-		return SysMLPackage.eINSTANCE.getGeneralization();
+		return SysMLPackage.eINSTANCE.getSpecialization();
 	}
 	
 	protected String getDefaultSupertype() {

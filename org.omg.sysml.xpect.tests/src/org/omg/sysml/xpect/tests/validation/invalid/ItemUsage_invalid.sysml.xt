@@ -37,35 +37,29 @@ END_SETUP
 package pkg {
 	import ScalarValues::*;
 	item def A {
-		// XPECT errors --> "An item must be typed by item definitions." at "item areal: Real;"
-		item areal: Real;
-		// XPECT errors --> "An item must be typed by item definitions." at "item avalue: aValue;"
-		item avalue: aValue;
-		// XPECT errors --> "An item must be typed by item definitions." at "item anaction: anAction;"
-		item anaction: anAction;
-		/* XPECT errors ---	
-		 	"An item must be typed by item definitions." at "item aportdef: APortDef;"
-		 	"Features must have at least one type" at "item aportdef: APortDef;"
-		--- */ 
-		item aportdef: APortDef;
+		// XPECT errors --> "An item must be typed by item definitions." at "item i1: Real;"
+		item i1: Real;
+		// XPECT errors --> "An item must be typed by item definitions." at "item i2: att;"
+		item i2: att;
+		// XPECT errors --> "An item must be typed by item definitions." at "item i3: act;"
+		item i3: act;
+		// XPECT errors --> "An item must be typed by item definitions." at "item i4: AttDef;"
+		item i4: AttDef;
+		// XPECT errors ---> "An item must be typed by item definitions." at "item i5: PartDef::aPort;"
+		item i5: PartDef::aPort;
 		/* XPECT errors ---
-		 	"An item must be typed by item definitions." at "item aport: ABlock::aPort;"
-		 	"Features must have at least one type" at "item aport: ABlock::aPort;"
+		 "An item must be typed by item definitions." at "item i6: PartDef::aPart;"
+		 "Features must have at least one type" at "item i6: PartDef::aPart;"
 		--- */
-		item aport: ABlock::aPort;
-		/* XPECT errors ---
-		 "An item must be typed by item definitions." at "item apart: ABlock::aPart;"
-		 "Features must have at least one type" at "item apart: ABlock::aPart;"
-		--- */
-		item apart: ABlock::aPart;
-		// XPECT errors --> "An item must be typed by item definitions." at "item twoTypes: ABlock, APortDef;"
-		item twoTypes: ABlock, APortDef;
+		item i6: PartDef::aPart;
+		// XPECT errors --> "An item must be typed by item definitions." at "item i7: PartDef, AttDef;"
+		item i7: PartDef, AttDef;
 	}
-	attribute aValue: Real;
-	part def ABlock {
-		port aPort: APortDef;
-		part aPart: ABlock;
+	attribute def AttDef;
+	attribute att: AttDef;
+	part def PartDef {
+		port aPort;
+		part aPart;
 	}
-	action anAction;
-	port def APortDef;
+	action act;
 }

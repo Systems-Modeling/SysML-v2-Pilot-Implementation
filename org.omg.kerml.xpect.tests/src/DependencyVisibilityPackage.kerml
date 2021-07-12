@@ -12,18 +12,18 @@ package VisibilityPackage {
 			
 			public class c_Public_alias{
 				public class c_public{}
-				private alias c_public as alias_private; 
-				protected alias c_public as alias_protected;
-				public alias c_public as alias_public;
+				private alias alias_private for c_public; 
+				protected alias alias_protected for c_public;
+				public alias alias_public for c_public;
 				protected class c_protected{}
-				protected alias c_protected as alias_protected_is_c_protected;
+				protected alias alias_protected_is_c_protected for c_protected;
 			}
 			
 			private class c_Private_alias{
 				public class c_public{}
-				private alias c_public as alias_private; 
-				protected alias c_public as alias_protected;
-				public alias c_public as alias_public;
+				private alias alias_private for c_public; 
+				protected alias alias_protected for c_public;
+				public alias alias_public for c_public;
 			}
 			
 			public class c_clazz{

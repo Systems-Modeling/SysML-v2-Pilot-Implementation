@@ -58,9 +58,9 @@ package ISQMechanics {
     }
     attribute massDensity: MassDensityValue :> scalarQuantities;
 
-    alias MassDensityUnit as DensityUnit;
-    alias MassDensityValue as DensityValue;
-    alias massDensity as density;
+    alias DensityUnit for MassDensityUnit;
+    alias DensityValue for MassDensityValue;
+    alias density for massDensity;
 
     /**
      * source: item 4-3 specific volume
@@ -99,7 +99,7 @@ package ISQMechanics {
     attribute def RelativeMassDensityValue :> DimensionOneValue;
     attribute relativeMassDensity: RelativeMassDensityValue :> scalarQuantities;
 
-    alias relativeMassDensity as relativeDensity;
+    alias relativeDensity for relativeMassDensity;
 
     /**
      * source: item 4-5 surface mass density, surface density
@@ -124,9 +124,9 @@ package ISQMechanics {
     }
     attribute surfaceMassDensity: SurfaceMassDensityValue :> scalarQuantities;
 
-    alias SurfaceMassDensityUnit as SurfaceDensityUnit;
-    alias SurfaceMassDensityValue as SurfaceDensityValue;
-    alias surfaceMassDensity as surfaceDensity;
+    alias SurfaceDensityUnit for SurfaceMassDensityUnit;
+    alias SurfaceDensityValue for SurfaceMassDensityValue;
+    alias surfaceDensity for surfaceMassDensity;
 
     /**
      * source: item 4-6 linear mass density, linear density
@@ -151,9 +151,9 @@ package ISQMechanics {
     }
     attribute linearMassDensity: LinearMassDensityValue :> scalarQuantities;
 
-    alias LinearMassDensityUnit as LinearDensityUnit;
-    alias LinearMassDensityValue as LinearDensityValue;
-    alias linearMassDensity as linearDensity;
+    alias LinearDensityUnit for LinearMassDensityUnit;
+    alias LinearDensityValue for LinearMassDensityValue;
+    alias linearDensity for linearMassDensity;
 
     /**
      * source: item 4-7 moment of inertia (magnitude)
@@ -340,7 +340,7 @@ package ISQMechanics {
     }
     attribute staticFrictionForceVector: Cartesian3dStaticFrictionForceVector :> vectorQuantities;
 
-    alias staticFrictionForceVector as staticFrictionVector;
+    alias staticFrictionVector for staticFrictionForceVector;
 
     /**
      * source: item 4-9.4 kinetic friction force, dynamic friction force
@@ -361,7 +361,7 @@ package ISQMechanics {
     }
     attribute kineticFrictionForceVector: Cartesian3dKineticFrictionForceVector :> vectorQuantities;
 
-    alias kineticFrictionForceVector as dynamicFrictionForceVector;
+    alias dynamicFrictionForceVector for kineticFrictionForceVector;
 
     /**
      * source: item 4-9.5 rolling resistance, rolling drag, rolling friction force
@@ -382,9 +382,9 @@ package ISQMechanics {
     }
     attribute rollingResistanceVector: Cartesian3dRollingResistanceVector :> vectorQuantities;
 
-    alias rollingResistanceVector as rollingDragVector;
+    alias rollingDragVector for rollingResistanceVector;
 
-    alias rollingResistanceVector as rollingFrictionForceVector;
+    alias rollingFrictionForceVector for rollingResistanceVector;
 
     /**
      * source: item 4-9.6 drag force
@@ -885,9 +885,9 @@ package ISQMechanics {
     }
     attribute modulusOfElasticity: ModulusOfElasticityValue :> scalarQuantities;
 
-    alias ModulusOfElasticityUnit as YoungModulusUnit;
-    alias ModulusOfElasticityValue as YoungModulusValue;
-    alias modulusOfElasticity as youngModulus;
+    alias YoungModulusUnit for ModulusOfElasticityUnit;
+    alias YoungModulusValue for ModulusOfElasticityValue;
+    alias youngModulus for modulusOfElasticity;
 
     /**
      * source: item 4-19.2 modulus of rigidity, shear modulus
@@ -913,9 +913,9 @@ package ISQMechanics {
     }
     attribute modulusOfRigidity: ModulusOfRigidityValue :> scalarQuantities;
 
-    alias ModulusOfRigidityUnit as ShearModulusUnit;
-    alias ModulusOfRigidityValue as ShearModulusValue;
-    alias modulusOfRigidity as shearModulus;
+    alias ShearModulusUnit for ModulusOfRigidityUnit;
+    alias ShearModulusValue for ModulusOfRigidityValue;
+    alias shearModulus for modulusOfRigidity;
 
     /**
      * source: item 4-19.3 modulus of compression, bulk modulus
@@ -941,9 +941,9 @@ package ISQMechanics {
     }
     attribute modulusOfCompression: ModulusOfCompressionValue :> scalarQuantities;
 
-    alias ModulusOfCompressionUnit as BulkModulusUnit;
-    alias ModulusOfCompressionValue as BulkModulusValue;
-    alias modulusOfCompression as bulkModulus;
+    alias BulkModulusUnit for ModulusOfCompressionUnit;
+    alias BulkModulusValue for ModulusOfCompressionValue;
+    alias bulkModulus for modulusOfCompression;
 
     /**
      * source: item 4-20 compressibility
@@ -1049,9 +1049,9 @@ package ISQMechanics {
     attribute def StaticFrictionCoefficientValue :> DimensionOneValue;
     attribute staticFrictionCoefficient: StaticFrictionCoefficientValue :> scalarQuantities;
 
-    alias staticFrictionCoefficient as staticFrictionFactor;
+    alias staticFrictionFactor for staticFrictionCoefficient;
 
-    alias staticFrictionCoefficient as coefficientOfStaticFriction;
+    alias coefficientOfStaticFriction for staticFrictionCoefficient;
 
     /**
      * source: item 4-23.2 kinetic friction factor, dynamic friction factor
@@ -1067,7 +1067,7 @@ package ISQMechanics {
     attribute def KineticFrictionFactorValue :> DimensionOneValue;
     attribute kineticFrictionFactor: KineticFrictionFactorValue :> scalarQuantities;
 
-    alias kineticFrictionFactor as dynamicFrictionFactor;
+    alias dynamicFrictionFactor for kineticFrictionFactor;
 
     /**
      * source: item 4-23.3 rolling resistance factor
@@ -1097,7 +1097,7 @@ package ISQMechanics {
     attribute def DragCoefficientValue :> DimensionOneValue;
     attribute dragCoefficient: DragCoefficientValue :> scalarQuantities;
 
-    alias dragCoefficient as dragFactor;
+    alias dragFactor for dragCoefficient;
 
     /**
      * source: item 4-24 dynamic viscosity, viscosity
@@ -1123,9 +1123,9 @@ package ISQMechanics {
     }
     attribute dynamicViscosity: DynamicViscosityValue :> scalarQuantities;
 
-    alias DynamicViscosityUnit as ViscosityUnit;
-    alias DynamicViscosityValue as ViscosityValue;
-    alias dynamicViscosity as viscosity;
+    alias ViscosityUnit for DynamicViscosityUnit;
+    alias ViscosityValue for DynamicViscosityValue;
+    alias viscosity for dynamicViscosity;
 
     /**
      * source: item 4-25 kinematic viscosity
@@ -1262,7 +1262,7 @@ package ISQMechanics {
      */
     attribute mechanicalWork: EnergyValue :> scalarQuantities;
 
-    alias mechanicalWork as work;
+    alias work for mechanicalWork;
 
     /**
      * source: item 4-29 mechanical efficiency

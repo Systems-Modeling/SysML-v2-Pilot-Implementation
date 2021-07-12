@@ -21,7 +21,7 @@ END_SETUP
 package test{
 	import PackageAlias1::*;
 	class A{}
-	alias A as A_alias;
+	alias A_alias for A;
 	//XPECT linkedName at  A_alias --> test.A
 	//* XPECT scope at  A_alias ---
  		   test_A, test.test_A,

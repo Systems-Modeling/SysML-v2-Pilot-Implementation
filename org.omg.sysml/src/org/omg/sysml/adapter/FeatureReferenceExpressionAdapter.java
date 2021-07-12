@@ -50,7 +50,7 @@ public class FeatureReferenceExpressionAdapter extends ExpressionAdapter {
 		FeatureReferenceExpression expression = getTarget();
 		Feature result = expression.getResult();
 		Element referent = ExpressionUtil.getReferentFor(expression);
-		if (referent instanceof Feature) {
+		if (result != null && referent instanceof Feature) {
 			TypeUtil.addImplicitGeneralTypeTo(result,
 					SysMLPackage.eINSTANCE.getSubsetting(), (Feature)referent);
 		}

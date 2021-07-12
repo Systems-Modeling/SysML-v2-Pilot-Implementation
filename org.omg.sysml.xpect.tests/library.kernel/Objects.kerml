@@ -6,6 +6,7 @@ package Objects {
 	private import Base::things;
 	private import Links::*;
 	private import Occurrences::Occurrence;
+	private import Occurrences::occurrences;
 	private import Performances::Performance;
 	private import Performances::performances;
 	
@@ -41,9 +42,9 @@ package Objects {
 	}
 	
 	/**
-	 * objects is a specialization of things restricted to type Object.
+	 * objects is a specialization of occurrences restricted to type Object.
 	 */
-	abstract feature objects: Object[0..*] nonunique subsets things;
+	abstract feature objects: Object[0..*] nonunique subsets occurrences;
 	
 	/**
 	 * linkObjects is a specializations of links and objects restricted to type LinkObjects. 

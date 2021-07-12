@@ -20,7 +20,7 @@ package testt {
 	feature A{
 		feature a{}
 	}
-	alias A as B;
+	alias B for A;
 	//XPECT linkedName at B::a --> testt.A.a
 	//* XPECT scope at B::a ---
    		A, A.a, B, B.a, C,

@@ -112,6 +112,15 @@ public class ConstraintUsageImpl extends OccurrenceUsageImpl implements Constrai
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isSetParameter() {
+		return !getParameter().isEmpty();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Predicate getConstraintDefinition() {
 		Predicate constraintDefinition = basicGetConstraintDefinition();
@@ -175,6 +184,24 @@ public class ConstraintUsageImpl extends OccurrenceUsageImpl implements Constrai
 	 * @generated
 	 */
 	public boolean isSetType() {
+  		return false;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Feature> getDirectedFeature() {
+		return getParameter();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetDirectedFeature() {
   		return false;
 	}
 
@@ -450,10 +477,12 @@ public class ConstraintUsageImpl extends OccurrenceUsageImpl implements Constrai
 		switch (featureID) {
 			case SysMLPackage.CONSTRAINT_USAGE__TYPE:
 				return isSetType();
+			case SysMLPackage.CONSTRAINT_USAGE__DIRECTED_FEATURE:
+				return isSetDirectedFeature();
 			case SysMLPackage.CONSTRAINT_USAGE__BEHAVIOR:
 				return isSetBehavior();
 			case SysMLPackage.CONSTRAINT_USAGE__PARAMETER:
-				return !getParameter().isEmpty();
+				return isSetParameter();
 			case SysMLPackage.CONSTRAINT_USAGE__FUNCTION:
 				return isSetFunction();
 			case SysMLPackage.CONSTRAINT_USAGE__RESULT:

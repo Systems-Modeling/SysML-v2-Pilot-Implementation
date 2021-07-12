@@ -17,7 +17,8 @@ public class ElementAdapterFactory {
 	}
 	
 	protected static Optional<ElementAdapter> getExistingAdapter(Element target) {
-		return target.eAdapters()
+		return target == null? Optional.empty():
+			   target.eAdapters()
 				.stream()
 				.filter(ElementAdapter.class::isInstance)
 				.map(ElementAdapter.class::cast)
@@ -25,9 +26,12 @@ public class ElementAdapterFactory {
 	}
 	
 	protected static ElementAdapter createAdapter(Element element) {
-		ElementAdapter adapter = SWITCH.doSwitch(element);
-		if (adapter != null) {
-			element.eAdapters().add(adapter);
+		ElementAdapter adapter = null;
+		if (element != null) {
+			adapter = SWITCH.doSwitch(element);
+			if (adapter != null) {
+				element.eAdapters().add(adapter);
+			}
 		}
 		return adapter;
 	}
@@ -319,11 +323,6 @@ public class ElementAdapterFactory {
 		@Override
 		public ElementAdapter caseSourceEnd(SourceEnd element) {
 			return new SourceEndAdapter(element);
-		}
-		
-		@Override
-		public ElementAdapter caseStakeholderUsage(StakeholderUsage element) {
-			return new StakeholderUsageAdapter(element);
 		}
 		
 		@Override

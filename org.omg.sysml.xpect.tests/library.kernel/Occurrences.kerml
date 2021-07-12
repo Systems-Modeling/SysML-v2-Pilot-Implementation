@@ -147,7 +147,7 @@ package Occurrences {
 		binding portionOf = self;
 	}
 	
-	abstract feature occurrences: Occurrence[0..*] subsets things;
+	abstract feature occurrences: Occurrence[0..*] nonunique subsets things;
 	
 	/**
 	 * SelfSameLifeLink is a binary association that is equivalent to SelfLink it the
@@ -169,7 +169,7 @@ package Occurrences {
 		binding sourceDataValue = targetDataValue;
 	}
 	
-	subclass SelfLink specializes SelfSameLifeLink;
+	subclassifier SelfLink specializes SelfSameLifeLink; 
 
 	/**
 	 * HappensLink is the base of the associations that assert temporal relationships 
@@ -226,7 +226,7 @@ package Occurrences {
 	 */
 	assoc PortionOf specializes HappensDuring { 
 		end feature portionOf: Occurrence[0..1] redefines Occurrence::portionOf, HappensDuring::longerOccurrence;
-		end portion feature 'portion': Occurrence[1..*] redefines Occurrence::portions, HappensDuring::shorterOccurrence; 
+		portion end feature 'portion': Occurrence[1..*] redefines Occurrence::portions, HappensDuring::shorterOccurrence; 
 	}
 	
 	/**
@@ -234,7 +234,7 @@ package Occurrences {
 	 */
 	assoc TimeSliceOf specializes PortionOf {
 		end feature timeSliceOf: Occurrence[1..*] redefines Occurrence::timeSliceOf, PortionOf::portionOf;
-		end portion feature timeSlice: Occurrence[1..*] redefines Occurrence::timeSlices, PortionOf::'portion';
+		portion end feature timeSlice: Occurrence[1..*] redefines Occurrence::timeSlices, PortionOf::'portion';
 	}
 	
 	/**
@@ -242,7 +242,7 @@ package Occurrences {
 	 */
 	assoc SnapshotOf specializes TimeSliceOf {
 		end feature snapshotOf: Occurrence[0..*] redefines Occurrence::snapshotOf, TimeSliceOf::timeSliceOf;
-		end portion feature snapshot: Occurrence[1..*] redefines Occurrence::snapshots, TimeSliceOf::timeSlice;
+		portion end feature snapshot: Occurrence[1..*] redefines Occurrence::snapshots, TimeSliceOf::timeSlice;
 	}
 	
 	/**

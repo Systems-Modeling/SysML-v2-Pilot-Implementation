@@ -19,8 +19,8 @@ END_SETUP
 
 // XPECT noErrors ---> ""
 package Classes {
-	import VisibilityPackage::c_Public::c_public as aliass;
-	import VisibilityPackage::c_Public as Aliass;
+	alias aliass for VisibilityPackage::c_Public::c_public;
+	alias Aliass for VisibilityPackage::c_Public;
 	feature Try{
 		//scope are the same for at aliass and at Aliass
 		//* XPECT scope at aliass ---

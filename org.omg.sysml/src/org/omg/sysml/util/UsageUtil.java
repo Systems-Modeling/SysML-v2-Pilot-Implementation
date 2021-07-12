@@ -26,7 +26,7 @@ import java.util.stream.Stream;
 
 import org.omg.sysml.adapter.UsageAdapter;
 import org.omg.sysml.lang.sysml.ActionUsage;
-import org.omg.sysml.lang.sysml.AddressedConcernMembership;
+import org.omg.sysml.lang.sysml.FramedConcernMembership;
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.ConcernUsage;
 import org.omg.sysml.lang.sysml.ConstraintUsage;
@@ -36,6 +36,7 @@ import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.ObjectiveMembership;
+import org.omg.sysml.lang.sysml.ParameterMembership;
 import org.omg.sysml.lang.sysml.RenderingUsage;
 import org.omg.sysml.lang.sysml.RequirementConstraintKind;
 import org.omg.sysml.lang.sysml.RequirementConstraintMembership;
@@ -61,6 +62,12 @@ public class UsageUtil {
 
 	protected static UsageAdapter getUsageAdapter(Usage usage) {
 		return (UsageAdapter)ElementUtil.getElementAdapter(usage);
+	}
+	
+	// References
+	
+	public static boolean isReference(Usage usage, boolean isComposite) {
+		return usage.getOwningFeatureMembership() == null || usage.getDirection() != null || usage.isEnd() || !isComposite;
 	}
 	
 	// Variants
@@ -159,7 +166,7 @@ public class UsageUtil {
 	}
 	
 	public static boolean isAddressedConcern(ConcernUsage concern) {
-		return concern.getOwningFeatureMembership() instanceof AddressedConcernMembership;
+		return concern.getOwningFeatureMembership() instanceof FramedConcernMembership;
 	}
 	
 	// Transitions
@@ -169,6 +176,13 @@ public class UsageUtil {
 				filter(mem->(mem instanceof TransitionFeatureMembership) && ((TransitionFeatureMembership)mem).getKind() == kind).
 				map(mem->mem.getMemberFeature()).
 				filter(f->f != null);
+	}
+	
+	public static Feature getTransitionLinkFeatureOf(TransitionUsage transition) {
+		return transition.getOwnedFeatureMembership().stream().
+				filter(m->!(m instanceof TransitionFeatureMembership || m instanceof ParameterMembership)).
+				map(FeatureMembership::getMemberFeature).
+				findFirst().orElse(null);
 	}
 	
 	// Views

@@ -11,7 +11,8 @@ package org.omg.sysml.lang.sysml;
  * <!-- begin-model-doc -->
  * <p>A ConcernUsage is a Usage of a ConcernDefinition.</p>
  * 
- * <p>A ConcernUsage must subset, directly or indirectly, the base ConcernUsage <code>concernChecks</code> from the Systems model library. The <code>ownedStakeholder</code> features of the ConcernUsage shall all subset the <code>ConcernCheck::concernedStakeholders</code> feature. If the ConcernUsage is an <code>ownedFeature</code> of a StakeholderDefinition or StakeholderUsage, then the ConcernUsage shall have an <code>ownedStakeholder</code> feature that is bound to the <code>self</code> feature of its owner.</p>
+ * <p>A ConcernUsage must subset, directly or indirectly, the base ConcernUsage <em><code>concernChecks</code></em> from the Systems model library. The <code>ownedStakeholder</code> features of the ConcernUsage shall all subset the <em><code>ConcernCheck::concernedStakeholders</code> </em>feature. If the ConcernUsage is an <code>ownedFeature</code> of a StakeholderDefinition or StakeholderUsage, then the ConcernUsage shall have an <code>ownedStakeholder</code> feature that is bound to the <em><code>self</code></em> feature of its owner.</p>
+ * 
  * <!-- end-model-doc -->
  *
  * <p>

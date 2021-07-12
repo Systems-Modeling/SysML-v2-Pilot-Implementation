@@ -21,7 +21,9 @@
 
 package org.omg.sysml.adapter;
 
+import org.omg.sysml.lang.sysml.ItemDefinition;
 import org.omg.sysml.lang.sysml.ItemUsage;
+import org.omg.sysml.lang.sysml.Type;
 
 public class ItemUsageAdapter extends OccurrenceUsageAdapter {
 
@@ -33,4 +35,20 @@ public class ItemUsageAdapter extends OccurrenceUsageAdapter {
 		return (ItemUsage)super.getTarget();
 	}
 
+	// Implicit Generalization
+	
+	@Override
+	protected String getDefaultSupertype() {
+		return isSubitem()? 
+					getDefaultSupertype("subitem"):
+					getDefaultSupertype("base");
+	}
+	
+	public boolean isSubitem() {
+		ItemUsage target = getTarget();
+		Type owningType = target.getOwningType();
+		return target.isComposite() && 
+			   (owningType instanceof ItemDefinition || owningType instanceof ItemUsage);
+	}
+	
 }

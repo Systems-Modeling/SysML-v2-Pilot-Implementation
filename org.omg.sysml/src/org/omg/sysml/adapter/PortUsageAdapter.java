@@ -23,6 +23,7 @@ package org.omg.sysml.adapter;
 
 import org.omg.sysml.lang.sysml.PartDefinition;
 import org.omg.sysml.lang.sysml.PartUsage;
+import org.omg.sysml.lang.sysml.PortDefinition;
 import org.omg.sysml.lang.sysml.PortUsage;
 import org.omg.sysml.lang.sysml.Type;
 
@@ -38,10 +39,21 @@ public class PortUsageAdapter extends UsageAdapter {
 
 	@Override
 	protected String getDefaultSupertype() {
+		return isPortOnPart()?
+					getDefaultSupertype("portOnPart"):
+			   isSubport()?
+					getDefaultSupertype("subport"):
+					getDefaultSupertype("base");
+	}
+	
+	public boolean isPortOnPart() {
 		Type owningType = getTarget().getOwningType();
-		return owningType instanceof PartDefinition || owningType instanceof PartUsage?
-				getDefaultSupertype("port"):
-				getDefaultSupertype("base");
+		return owningType instanceof PartDefinition || owningType instanceof PartUsage;		
+	}
+	
+	public boolean isSubport() {
+		Type owningType = getTarget().getOwningType();
+		return owningType instanceof PortDefinition || owningType instanceof PortUsage;
 	}
 	
 }

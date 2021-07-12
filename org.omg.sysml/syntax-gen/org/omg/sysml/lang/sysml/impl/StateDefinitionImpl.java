@@ -23,10 +23,12 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import java.util.Collection;
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.uml2.common.util.DerivedEObjectEList;
 import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.Feature;
@@ -52,11 +54,31 @@ import org.omg.sysml.util.TypeUtil;
  *   <li>{@link org.omg.sysml.lang.sysml.impl.StateDefinitionImpl#getEntryAction <em>Entry Action</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.StateDefinitionImpl#getDoAction <em>Do Action</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.StateDefinitionImpl#getExitAction <em>Exit Action</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.StateDefinitionImpl#isParallel <em>Is Parallel</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class StateDefinitionImpl extends ActionDefinitionImpl implements StateDefinition {
+
+	/**
+	 * The default value of the '{@link #isParallel() <em>Is Parallel</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isParallel()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean IS_PARALLEL_EDEFAULT = false;
+	/**
+	 * The cached value of the '{@link #isParallel() <em>Is Parallel</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isParallel()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean isParallel = IS_PARALLEL_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -215,6 +237,29 @@ public class StateDefinitionImpl extends ActionDefinitionImpl implements StateDe
 	 * @generated
 	 */
 	@Override
+	public boolean isParallel() {
+		return isParallel;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setIsParallel(boolean newIsParallel) {
+		boolean oldIsParallel = isParallel;
+		isParallel = newIsParallel;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.STATE_DEFINITION__IS_PARALLEL, oldIsParallel, isParallel));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case SysMLPackage.STATE_DEFINITION__STATE:
@@ -228,6 +273,8 @@ public class StateDefinitionImpl extends ActionDefinitionImpl implements StateDe
 			case SysMLPackage.STATE_DEFINITION__EXIT_ACTION:
 				if (resolve) return getExitAction();
 				return basicGetExitAction();
+			case SysMLPackage.STATE_DEFINITION__IS_PARALLEL:
+				return isParallel();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -254,6 +301,9 @@ public class StateDefinitionImpl extends ActionDefinitionImpl implements StateDe
 			case SysMLPackage.STATE_DEFINITION__EXIT_ACTION:
 				setExitAction((ActionUsage)newValue);
 				return;
+			case SysMLPackage.STATE_DEFINITION__IS_PARALLEL:
+				setIsParallel((Boolean)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -278,6 +328,9 @@ public class StateDefinitionImpl extends ActionDefinitionImpl implements StateDe
 			case SysMLPackage.STATE_DEFINITION__EXIT_ACTION:
 				setExitAction((ActionUsage)null);
 				return;
+			case SysMLPackage.STATE_DEFINITION__IS_PARALLEL:
+				setIsParallel(IS_PARALLEL_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -298,8 +351,26 @@ public class StateDefinitionImpl extends ActionDefinitionImpl implements StateDe
 				return basicGetDoAction() != null;
 			case SysMLPackage.STATE_DEFINITION__EXIT_ACTION:
 				return basicGetExitAction() != null;
+			case SysMLPackage.STATE_DEFINITION__IS_PARALLEL:
+				return isParallel != IS_PARALLEL_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuilder result = new StringBuilder(super.toString());
+		result.append(" (isParallel: ");
+		result.append(isParallel);
+		result.append(')');
+		return result.toString();
 	}
 
 } //StateDefinitionImpl

@@ -17,7 +17,7 @@ package FeatureAccessPerformances {
 		/**
 		 * Occurrence with values for the referenced feature in specializations of this behavior.
 		 */
-		in abstract feature onOccurrence: Occurrence [1];
+		in abstract feature onOccurrence : Occurrence [1];
 		 
 		/**
 		 * Values of the referenced feature, as specified in specializations of this behavior.
@@ -28,13 +28,14 @@ package FeatureAccessPerformances {
 	/**
 	 * A FeatureAccessPerformance is a FeatureReferencingPerformance where the result values
 	 * are all the values of a feature of onOccurrence at the time the Performance ends. The
-	 * feature is specified by restricting things in specializations or usages.
+	 * feature is specified by restricting accessedFeature in specializations or usages.
 	 */
     abstract behavior FeatureAccessPerformance specializes FeatureReferencingPerformance {
      	
 		in abstract feature onOccurrence : Occurrence {
-			abstract feature accessedFeature;
-			feature startingAt : Occurrence [1] subsets timeSlices, onOccurrence;
+			abstract feature startingAt : Occurrence [1] subsets timeSlices {
+				abstract feature accessedFeature : Anything [*] nonunique;
+			}
 		}
 
 		/**
@@ -52,14 +53,14 @@ package FeatureAccessPerformances {
 	 * its result the values of a feature on an occurrence at the time its evaluation ends.
 	 */
 	abstract function FeatureReadEvaluation specializes FeatureAccessPerformance, Evaluation 
-		(OnOccurrence: Occurrence[1]) 
-		resultValues : Anything[*] nonunique redefines result redefines values;
+		(onOccurrence: Occurrence [1]) 
+		resultValues : Anything [*] nonunique redefines result redefines values;
 
 	/**
 	 * A FeatureWritePerformance is a FeatureAccessPerformance that assigns the values of a 
 	 * feature on an occurrence to the given replacementValues at time its performance ends.
 	 */
-	abstract function FeatureWritePerformance specializes FeatureAccessPerformance {
+	abstract behavior FeatureWritePerformance specializes FeatureAccessPerformance {
 		 inout feature replacementValues : Anything redefines values [*] nonunique;
 	}
 }

@@ -32,12 +32,21 @@ XPECT_SETUP org.omg.sysml.xpect.tests.validation.valid.SysMLTests
 END_SETUP 
 */
 // XPECT noErrors ---> ""
-package 'Blocks Example' {
-	part def Vehicle {
-		part eng : Engine;
-		ref driver : Person; 
-		part driver2; //typed by Block (named Part)
+package PartUsage {
+	part def A {
+		part b : B;
+		ref c : C; 
+		part d : D;
+		part e; //typed by library part def Part
+		part f :> i; // also typed by part def Part
 	}
-	part def Engine;	
-	part def Person;
+	part def B;	
+	part def C;
+	
+	item def I;
+	part def D :> I { // also specializes library part def Part
+		port p :> portsOnPart;
+	}
+	
+	item i : I;
 }

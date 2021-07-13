@@ -155,12 +155,9 @@ public class TypeAdapter extends NamespaceAdapter {
 		return implicitGeneralTypes.getOrDefault(eClass, Collections.emptyList()).contains(general);
 	}
 	
-	@SuppressWarnings("unchecked")
 	public void addDefaultGeneralType(EClass generalizationEClass, String... superTypeNames) {
-		Class<? extends Specialization> kind = (Class<? extends Specialization>)generalizationEClass.getInstanceClass();
 		Type type = getTarget();
-		if (getImplicitGeneralTypes(generalizationEClass).isEmpty() &&
-				hasNoOwnedGeneralizations(type, kind)) {
+		if (getImplicitGeneralTypes(generalizationEClass).isEmpty()) {
 			Type general = getLibraryType(superTypeNames);
 			if (general != null && general != type) {
 				List<Type> generalizations = new ArrayList<>();
@@ -170,11 +167,11 @@ public class TypeAdapter extends NamespaceAdapter {
 		}
 	}
 	
-	protected static boolean hasNoOwnedGeneralizations(Type type, Class<?> kind) {
+	protected static boolean hasNoConformingGeneralizations(Type type, Class<?> kind, Type defaultGeneral) {
 		return type.getOwnedRelationship().stream().
 				filter(kind::isInstance).
 				map(Specialization.class::cast).
-				noneMatch(gen->gen.getSpecific() == type);
+				noneMatch(spec->spec.getSpecific() == type && TypeUtil.conforms(defaultGeneral, spec.getGeneral()));
 	}
 
 	public void addImplicitGeneralType(EClass eClass, Type general) {
@@ -201,6 +198,23 @@ public class TypeAdapter extends NamespaceAdapter {
 	
 	public void addImplicitMemberBindingConnector(BindingConnector connector) {
 		implicitMemberBindingConnectors.add(connector);
+	}
+	
+	public void removeUnnecessaryImplicitGeneralTypes() {
+		Type target = getTarget();
+		for (Object eClass: implicitGeneralTypes.keySet().toArray()) {
+			List<Type> generals = implicitGeneralTypes.get(eClass);
+			for (Object general: generals.toArray()) {
+				if (target.getOwnedSpecialization().stream().
+						anyMatch(spec->spec.getSpecific() == target && TypeUtil.conforms(spec.getGeneral(), (Type)general))) {
+					generals.remove(general);
+					if (generals.isEmpty()) {
+						implicitGeneralTypes.remove(eClass);
+					}
+				}
+			}
+		}
+		
 	}
 	
 	// Implicit Generalization Computation
@@ -291,6 +305,7 @@ public class TypeAdapter extends NamespaceAdapter {
 	public void doTransform() {
 		super.doTransform();
 		computeImplicitGeneralTypes();
+		removeUnnecessaryImplicitGeneralTypes();
 	}
 	
 }

@@ -51,6 +51,7 @@ import org.omg.sysml.lang.sysml.FeatureDirectionKind;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.Membership;
+import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.ParameterMembership;
 import org.omg.sysml.lang.sysml.Conjugation;
 import org.omg.sysml.lang.sysml.EndFeatureMembership;
@@ -182,9 +183,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	
 	protected void getTypes(List<Type> types, Set<Feature> visitedFeatures) {
 		visitedFeatures.add(this);
-		types.addAll(getFeatureTypes());
-		
-		
+		types.addAll(getFeatureTypes());		
 		Conjugation conjugator = getOwnedConjugator();
 		if (conjugator != null) {
 			Type originalType = conjugator.getOriginalType();
@@ -205,6 +204,10 @@ public class FeatureImpl extends TypeImpl implements Feature {
 				filter(type->type != null).
 				collect(Collectors.toList());
 		types.addAll(TypeUtil.getImplicitGeneralTypesFor(this, SysMLPackage.eINSTANCE.getFeatureTyping()));
+		Feature lastChainingFeature = FeatureUtil.getLastChainingFeatureOf(this);
+		if (lastChainingFeature != null) {
+			types.addAll(((FeatureImpl)lastChainingFeature).getAllTypes());
+		}
 		return types;
 	}
 	
@@ -357,6 +360,10 @@ public class FeatureImpl extends TypeImpl implements Feature {
 			featuringTypes.add(getOwningType());
 		}
 		FeatureUtil.forEachImplicitFeaturingTypeOf(this, featuringTypes::add);
+		Feature firstChainingFeature = FeatureUtil.getFirstChainingFeatureOf(this);
+		if (firstChainingFeature != null) {
+			featuringTypes.addAll(firstChainingFeature.getFeaturingType());
+		}
 		return featuringTypes;
 	}
 	
@@ -848,6 +855,20 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	public Feature firstRedefinedFeature() {
 		return FeatureUtil.getRedefinedFeaturesWithComputedOf(this, null).stream().
 				findFirst().orElse(null);
+	}
+	
+	// Additional overrides
+	
+	@Override
+	protected void addInheritedMemberships(EList<Membership> inheritedMemberships, Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean includeProtected) {
+		super.addInheritedMemberships(inheritedMemberships, excludedNamespaces, excludedTypes, includeProtected);
+		EList<FeatureChaining> featureChainings = getOwnedFeatureChaining();
+		if (!featureChainings.isEmpty()) {
+			Feature chainingFeature = featureChainings.get(featureChainings.size()-1).getChainingFeature();
+			if (chainingFeature != null && !excludedTypes.contains(chainingFeature)) {
+				inheritedMemberships.addAll(((TypeImpl)chainingFeature).getNonPrivateMembership(excludedNamespaces, excludedTypes, includeProtected));
+			}
+		}
 	}
 
 	/**

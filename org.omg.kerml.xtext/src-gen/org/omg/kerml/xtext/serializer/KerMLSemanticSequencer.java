@@ -33,6 +33,7 @@ import org.omg.sysml.lang.sysml.ElementFilterMembership;
 import org.omg.sysml.lang.sysml.EndFeatureMembership;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.FeatureChaining;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureReferenceExpression;
 import org.omg.sysml.lang.sysml.FeatureTyping;
@@ -305,6 +306,14 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 					sequence_ConnectorEnd(context, (Feature) semanticObject); 
 					return; 
 				}
+				else if (rule == grammarAccess.getFeatureChainPrefixRule()) {
+					sequence_FeatureChainPrefix(context, (Feature) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getFeatureChainRule()) {
+					sequence_FeatureChain(context, (Feature) semanticObject); 
+					return; 
+				}
 				else if (rule == grammarAccess.getFeatureElementRule()
 						|| rule == grammarAccess.getFeatureRule()) {
 					sequence_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_MultiplicityPart_Redefines_Redefinitions_Subsets_Subsettings_TypeBody_TypeFeaturingPart_TypedBy_Typings_ValuePart(context, (Feature) semanticObject); 
@@ -323,6 +332,9 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 					return; 
 				}
 				else break;
+			case SysMLPackage.FEATURE_CHAINING:
+				sequence_OwnedFeatureChaining(context, (FeatureChaining) semanticObject); 
+				return; 
 			case SysMLPackage.FEATURE_MEMBERSHIP:
 				if (rule == grammarAccess.getEmptyItemFeatureMemberRule()) {
 					sequence_EmptyItemFeatureMember(context, (FeatureMembership) semanticObject); 
@@ -330,14 +342,6 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 				}
 				else if (rule == grammarAccess.getExpressionBodyMemberRule()) {
 					sequence_ExpressionBodyMember(context, (FeatureMembership) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getFeatureMemberRule()) {
-					sequence_FeatureMember_MemberPrefix(context, (FeatureMembership) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getFeaturePathExpressionMemberRule()) {
-					sequence_FeaturePathExpressionMember(context, (FeatureMembership) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getFunctionReferenceMemberRule()) {
@@ -350,6 +354,18 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 				}
 				else if (rule == grammarAccess.getItemFlowFeatureMemberRule()) {
 					sequence_ItemFlowFeatureMember(context, (FeatureMembership) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getOwnedFeatureMemberRule()) {
+					sequence_MemberPrefix_OwnedFeatureMember(context, (FeatureMembership) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getFeatureMemberRule()) {
+					sequence_MemberPrefix_OwnedFeatureMember_UnownedFeatureMember(context, (FeatureMembership) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getUnownedFeatureMemberRule()) {
+					sequence_MemberPrefix_UnownedFeatureMember(context, (FeatureMembership) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getMetadataFeatureMemberRule()) {
@@ -374,8 +390,7 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 				}
 				else break;
 			case SysMLPackage.FEATURE_REFERENCE_EXPRESSION:
-				if (action == grammarAccess.getFeaturePathExpressionAccess().getPathStepExpressionOperandAction_1_0()
-						|| rule == grammarAccess.getOwnedExpressionRule()
+				if (rule == grammarAccess.getOwnedExpressionRule()
 						|| rule == grammarAccess.getConditionalExpressionRule()
 						|| action == grammarAccess.getConditionalExpressionAccess().getOperatorExpressionOperandAction_0_1_0()
 						|| rule == grammarAccess.getNullCoalescingExpressionRule()
@@ -549,6 +564,14 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 					sequence_AliasMember_MemberPrefix(context, (Membership) semanticObject); 
 					return; 
 				}
+				else if (rule == grammarAccess.getFeatureMemberRule()) {
+					sequence_ChainFeatureMember_MemberPrefix(context, (Membership) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getChainFeatureMemberRule()) {
+					sequence_ChainFeatureMember_MemberPrefix(context, (Membership) semanticObject); 
+					return; 
+				}
 				else if (rule == grammarAccess.getFeatureReferenceMemberRule()) {
 					sequence_FeatureReferenceMember(context, (Membership) semanticObject); 
 					return; 
@@ -625,54 +648,8 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 				sequence_PrimaryExpression(context, (PathSelectExpression) semanticObject); 
 				return; 
 			case SysMLPackage.PATH_STEP_EXPRESSION:
-				if (rule == grammarAccess.getFeaturePathExpressionRule()
-						|| action == grammarAccess.getFeaturePathExpressionAccess().getPathStepExpressionOperandAction_1_0()) {
-					sequence_FeaturePathExpression(context, (PathStepExpression) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getOwnedExpressionRule()
-						|| rule == grammarAccess.getConditionalExpressionRule()
-						|| action == grammarAccess.getConditionalExpressionAccess().getOperatorExpressionOperandAction_0_1_0()
-						|| rule == grammarAccess.getNullCoalescingExpressionRule()
-						|| action == grammarAccess.getNullCoalescingExpressionAccess().getOperatorExpressionOperandAction_1_0()
-						|| rule == grammarAccess.getImpliesExpressionRule()
-						|| action == grammarAccess.getImpliesExpressionAccess().getOperatorExpressionOperandAction_1_0()
-						|| rule == grammarAccess.getOrExpressionRule()
-						|| action == grammarAccess.getOrExpressionAccess().getOperatorExpressionOperandAction_1_0()
-						|| rule == grammarAccess.getXorExpressionRule()
-						|| action == grammarAccess.getXorExpressionAccess().getOperatorExpressionOperandAction_1_0()
-						|| rule == grammarAccess.getAndExpressionRule()
-						|| action == grammarAccess.getAndExpressionAccess().getOperatorExpressionOperandAction_1_0()
-						|| rule == grammarAccess.getEqualityExpressionRule()
-						|| action == grammarAccess.getEqualityExpressionAccess().getOperatorExpressionOperandAction_1_0()
-						|| rule == grammarAccess.getClassificationExpressionRule()
-						|| action == grammarAccess.getClassificationExpressionAccess().getOperatorExpressionOperandAction_0_1_0()
-						|| rule == grammarAccess.getRelationalExpressionRule()
-						|| action == grammarAccess.getRelationalExpressionAccess().getOperatorExpressionOperandAction_1_0()
-						|| rule == grammarAccess.getRangeExpressionRule()
-						|| action == grammarAccess.getRangeExpressionAccess().getOperatorExpressionOperandAction_1_0()
-						|| rule == grammarAccess.getAdditiveExpressionRule()
-						|| action == grammarAccess.getAdditiveExpressionAccess().getOperatorExpressionOperandAction_1_0()
-						|| rule == grammarAccess.getMultiplicativeExpressionRule()
-						|| action == grammarAccess.getMultiplicativeExpressionAccess().getOperatorExpressionOperandAction_1_0()
-						|| rule == grammarAccess.getExponentiationExpressionRule()
-						|| action == grammarAccess.getExponentiationExpressionAccess().getOperatorExpressionOperandAction_1_0()
-						|| rule == grammarAccess.getUnitsExpressionRule()
-						|| action == grammarAccess.getUnitsExpressionAccess().getOperatorExpressionOperandAction_1_0()
-						|| rule == grammarAccess.getUnaryExpressionRule()
-						|| rule == grammarAccess.getExtentExpressionRule()
-						|| rule == grammarAccess.getPrimaryExpressionRule()
-						|| action == grammarAccess.getPrimaryExpressionAccess().getOperatorExpressionOperandAction_1_0_0()
-						|| action == grammarAccess.getPrimaryExpressionAccess().getOperatorExpressionOperandAction_1_1_0()
-						|| action == grammarAccess.getPrimaryExpressionAccess().getPathStepExpressionOperandAction_1_2_0()
-						|| action == grammarAccess.getPrimaryExpressionAccess().getPathSelectExpressionOperandAction_1_3_0()
-						|| rule == grammarAccess.getBaseExpressionRule()
-						|| rule == grammarAccess.getSequenceExpressionRule()
-						|| action == grammarAccess.getSequenceExpressionAccess().getOperatorExpressionOperandAction_1_1_0()) {
-					sequence_PrimaryExpression(context, (PathStepExpression) semanticObject); 
-					return; 
-				}
-				else break;
+				sequence_PrimaryExpression(context, (PathStepExpression) semanticObject); 
+				return; 
 			case SysMLPackage.PREDICATE:
 				sequence_ClassifierConjugationPart_ClassifierDeclaration_EmptyReturnParameterPart_FunctionBody_Identification_ParameterList_Predicate_ReturnParameterPart_SuperclassingPart(context, (Predicate) semanticObject); 
 				return; 
@@ -680,6 +657,10 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 				if (rule == grammarAccess.getNonFeatureElementRule()
 						|| rule == grammarAccess.getRedefinitionRule()) {
 					sequence_Identification_Redefinition(context, (Redefinition) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getItemFlowRedefinitionRule()) {
+					sequence_ItemFlowRedefinition(context, (Redefinition) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getOwnedRedefinitionRule()) {
@@ -764,6 +745,10 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 				if (rule == grammarAccess.getNonFeatureElementRule()
 						|| rule == grammarAccess.getSubsettingRule()) {
 					sequence_Identification_Subsetting(context, (Subsetting) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getItemFlowEndSubsettingRule()) {
+					sequence_ItemFlowEndSubsetting(context, (Subsetting) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getOwnedSubsettingRule()) {
@@ -1304,6 +1289,30 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	
 	/**
 	 * Contexts:
+	 *     FeatureMember returns Membership
+	 *
+	 * Constraint:
+	 *     (ownedRelationship+=PrefixDocumentation? visibility=VisibilityIndicator? memberName=Name? ownedRelatedElement+=FeatureChain)
+	 */
+	protected void sequence_ChainFeatureMember_MemberPrefix(ISerializationContext context, Membership semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	// This method is commented out because it has the same signature as another method in this class.
+	// This is probably a bug in Xtext's serializer, please report it here: 
+	// https://bugs.eclipse.org/bugs/enter_bug.cgi?product=TMF
+	//
+	// Contexts:
+	//     ChainFeatureMember returns Membership
+	//
+	// Constraint:
+	//     (ownedRelationship+=PrefixDocumentation* visibility=VisibilityIndicator? memberName=Name? ownedRelatedElement+=FeatureChain)
+	//
+	// protected void sequence_ChainFeatureMember_MemberPrefix(ISerializationContext context, Membership semanticObject) { }
+	
+	/**
+	 * Contexts:
 	 *     NonFeatureElement returns Class
 	 *     Class returns Class
 	 *
@@ -1545,7 +1554,7 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	 *     ConnectorEnd returns Feature
 	 *
 	 * Constraint:
-	 *     ((ownedRelationship+=OwnedSubsetting | ownedRelationship+=FeaturePathExpressionMember) ownedRelationship+=MultiplicityMember?)
+	 *     (ownedRelationship+=OwnedSubsetting ownedRelationship+=MultiplicityMember?)
 	 */
 	protected void sequence_ConnectorEnd(ISerializationContext context, Feature semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1815,6 +1824,30 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	
 	/**
 	 * Contexts:
+	 *     FeatureChainPrefix returns Feature
+	 *
+	 * Constraint:
+	 *     (ownedRelationship+=OwnedFeatureChaining+ ownedRelationship+=OwnedFeatureChaining)
+	 */
+	protected void sequence_FeatureChainPrefix(ISerializationContext context, Feature semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     FeatureChain returns Feature
+	 *
+	 * Constraint:
+	 *     (ownedRelationship+=OwnedFeatureChaining ownedRelationship+=OwnedFeatureChaining+)
+	 */
+	protected void sequence_FeatureChain(ISerializationContext context, Feature semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     FeatureElement returns Succession
 	 *     Succession returns Succession
 	 *
@@ -1952,47 +1985,6 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getFeatureConjugationAccess().getOriginalTypeFeatureQualifiedNameParserRuleCall_0_1(), semanticObject.eGet(SysMLPackage.Literals.CONJUGATION__ORIGINAL_TYPE, false));
 		feeder.finish();
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     FeatureMember returns FeatureMembership
-	 *
-	 * Constraint:
-	 *     (
-	 *         ownedRelationship+=PrefixDocumentation* 
-	 *         visibility=VisibilityIndicator? 
-	 *         (ownedRelatedElement+=FeatureElement | (memberName=Name? memberFeature=[Feature|QualifiedName]))
-	 *     )
-	 */
-	protected void sequence_FeatureMember_MemberPrefix(ISerializationContext context, FeatureMembership semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     FeaturePathExpressionMember returns FeatureMembership
-	 *
-	 * Constraint:
-	 *     ownedRelatedElement+=FeaturePathExpression
-	 */
-	protected void sequence_FeaturePathExpressionMember(ISerializationContext context, FeatureMembership semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     FeaturePathExpression returns PathStepExpression
-	 *     FeaturePathExpression.PathStepExpression_1_0 returns PathStepExpression
-	 *
-	 * Constraint:
-	 *     (operand+=FeaturePathExpression_PathStepExpression_1_0 operand+=FeatureReferenceExpression)
-	 */
-	protected void sequence_FeaturePathExpression(ISerializationContext context, PathStepExpression semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -2700,10 +2692,22 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	
 	/**
 	 * Contexts:
+	 *     ItemFlowEndSubsetting returns Subsetting
+	 *
+	 * Constraint:
+	 *     (subsettedFeature=[Feature|QualifiedName] | ownedRelatedElement+=FeatureChainPrefix)
+	 */
+	protected void sequence_ItemFlowEndSubsetting(ISerializationContext context, Subsetting semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     ItemFlowEnd returns ItemFlowEnd
 	 *
 	 * Constraint:
-	 *     ownedRelationship+=ItemFlowFeatureMember
+	 *     (ownedRelationship+=ItemFlowEndSubsetting? ownedRelationship+=ItemFlowFeatureMember)
 	 */
 	protected void sequence_ItemFlowEnd(ISerializationContext context, ItemFlowEnd semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -2727,10 +2731,28 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	 *     ItemFlowFeature returns ItemFlowFeature
 	 *
 	 * Constraint:
-	 *     (ownedRelationship+=OwnedRedefinition | ownedRelationship+=FeaturePathExpressionMember)
+	 *     ownedRelationship+=ItemFlowRedefinition
 	 */
 	protected void sequence_ItemFlowFeature(ISerializationContext context, ItemFlowFeature semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     ItemFlowRedefinition returns Redefinition
+	 *
+	 * Constraint:
+	 *     redefinedFeature=[Feature|QualifiedName]
+	 */
+	protected void sequence_ItemFlowRedefinition(ISerializationContext context, Redefinition semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, SysMLPackage.Literals.REDEFINITION__REDEFINED_FEATURE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SysMLPackage.Literals.REDEFINITION__REDEFINED_FEATURE));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getItemFlowRedefinitionAccess().getRedefinedFeatureFeatureQualifiedNameParserRuleCall_0_1(), semanticObject.eGet(SysMLPackage.Literals.REDEFINITION__REDEFINED_FEATURE, false));
+		feeder.finish();
 	}
 	
 	
@@ -2764,12 +2786,52 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	
 	/**
 	 * Contexts:
+	 *     OwnedFeatureMember returns FeatureMembership
+	 *
+	 * Constraint:
+	 *     (ownedRelationship+=PrefixDocumentation* visibility=VisibilityIndicator? ownedRelatedElement+=FeatureElement)
+	 */
+	protected void sequence_MemberPrefix_OwnedFeatureMember(ISerializationContext context, FeatureMembership semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     FeatureMember returns FeatureMembership
+	 *
+	 * Constraint:
+	 *     (
+	 *         ownedRelationship+=PrefixDocumentation* 
+	 *         visibility=VisibilityIndicator? 
+	 *         (ownedRelatedElement+=FeatureElement | (memberName=Name? memberFeature=[Feature|QualifiedName]))
+	 *     )
+	 */
+	protected void sequence_MemberPrefix_OwnedFeatureMember_UnownedFeatureMember(ISerializationContext context, FeatureMembership semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     ResultExpressionMember returns ResultExpressionMembership
 	 *
 	 * Constraint:
 	 *     (ownedRelationship+=PrefixDocumentation* visibility=VisibilityIndicator? ownedRelatedElement+=OwnedExpression)
 	 */
 	protected void sequence_MemberPrefix_ResultExpressionMember(ISerializationContext context, ResultExpressionMembership semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     UnownedFeatureMember returns FeatureMembership
+	 *
+	 * Constraint:
+	 *     (ownedRelationship+=PrefixDocumentation* visibility=VisibilityIndicator? memberName=Name? memberFeature=[Feature|QualifiedName])
+	 */
+	protected void sequence_MemberPrefix_UnownedFeatureMember(ISerializationContext context, FeatureMembership semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -2940,6 +3002,24 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	
 	/**
 	 * Contexts:
+	 *     OwnedFeatureChaining returns FeatureChaining
+	 *
+	 * Constraint:
+	 *     chainingFeature=[Feature|QualifiedName]
+	 */
+	protected void sequence_OwnedFeatureChaining(ISerializationContext context, FeatureChaining semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, SysMLPackage.Literals.FEATURE_CHAINING__CHAINING_FEATURE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SysMLPackage.Literals.FEATURE_CHAINING__CHAINING_FEATURE));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getOwnedFeatureChainingAccess().getChainingFeatureFeatureQualifiedNameParserRuleCall_0_1(), semanticObject.eGet(SysMLPackage.Literals.FEATURE_CHAINING__CHAINING_FEATURE, false));
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     OwnedFeatureTyping returns FeatureTyping
 	 *
 	 * Constraint:
@@ -2961,16 +3041,10 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	 *     OwnedRedefinition returns Redefinition
 	 *
 	 * Constraint:
-	 *     redefinedFeature=[Feature|QualifiedName]
+	 *     (redefinedFeature=[Feature|QualifiedName] | ownedRelatedElement+=FeatureChain)
 	 */
 	protected void sequence_OwnedRedefinition(ISerializationContext context, Redefinition semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, SysMLPackage.Literals.REDEFINITION__REDEFINED_FEATURE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SysMLPackage.Literals.REDEFINITION__REDEFINED_FEATURE));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getOwnedRedefinitionAccess().getRedefinedFeatureFeatureQualifiedNameParserRuleCall_0_1(), semanticObject.eGet(SysMLPackage.Literals.REDEFINITION__REDEFINED_FEATURE, false));
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -3013,16 +3087,10 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	 *     OwnedSubsetting returns Subsetting
 	 *
 	 * Constraint:
-	 *     subsettedFeature=[Feature|QualifiedName]
+	 *     (subsettedFeature=[Feature|QualifiedName] | ownedRelatedElement+=FeatureChain)
 	 */
 	protected void sequence_OwnedSubsetting(ISerializationContext context, Subsetting semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, SysMLPackage.Literals.SUBSETTING__SUBSETTED_FEATURE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SysMLPackage.Literals.SUBSETTING__SUBSETTED_FEATURE));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getOwnedSubsettingAccess().getSubsettedFeatureFeatureQualifiedNameParserRuleCall_0_1(), semanticObject.eGet(SysMLPackage.Literals.SUBSETTING__SUBSETTED_FEATURE, false));
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	

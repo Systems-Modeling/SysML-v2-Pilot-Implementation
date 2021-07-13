@@ -23,6 +23,7 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
@@ -83,13 +84,17 @@ public class SubsettingImpl extends SpecializationImpl implements Subsetting {
 	protected EClass eStaticClass() {
 		return SysMLPackage.Literals.SUBSETTING;
 	}
+	
+	@Override
+	public Feature getSubsettedFeature() {
+		return subsettedFeature == null? basicGetSubsettedFeature(): getSubsettedFeatureGen();
+	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public Feature getSubsettedFeature() {
+	public Feature getSubsettedFeatureGen() {
 		if (subsettedFeature != null && subsettedFeature.eIsProxy()) {
 			InternalEObject oldSubsettedFeature = (InternalEObject)subsettedFeature;
 			subsettedFeature = (Feature)eResolveProxy(oldSubsettedFeature);
@@ -103,9 +108,15 @@ public class SubsettingImpl extends SpecializationImpl implements Subsetting {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public Feature basicGetSubsettedFeature() {
+		if (subsettedFeature == null) {
+			EList<Element> ownedRelatedElements = getOwnedRelatedElement();
+			if (!ownedRelatedElements.isEmpty()) {
+				subsettedFeature = (Feature)ownedRelatedElements.get(0);
+			}
+		}
 		return subsettedFeature;
 	}
 
@@ -123,10 +134,10 @@ public class SubsettingImpl extends SpecializationImpl implements Subsetting {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean isSetSubsettedFeature() {
-		return subsettedFeature != null;
+		return basicGetSubsettedFeature() != null;
 	}
 
 	public Feature getSubsettingFeature() {

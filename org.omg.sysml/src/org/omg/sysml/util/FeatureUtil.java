@@ -37,6 +37,7 @@ import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.FeatureChaining;
 import org.omg.sysml.lang.sysml.FeatureDirectionKind;
 import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.Redefinition;
@@ -218,6 +219,18 @@ public class FeatureUtil {
 				feature.getOwnedRelationship().add(featuring);
 			}
 		});
+	}
+	
+	// Feature Chaining
+	
+	public static Feature getFirstChainingFeatureOf(Feature feature) {
+		EList<FeatureChaining> featureChainings = feature.getOwnedFeatureChaining();
+		return featureChainings.isEmpty()? null: featureChainings.get(0).getChainingFeature();
+	}
+
+	public static Feature getLastChainingFeatureOf(Feature feature) {
+		EList<FeatureChaining> featureChainings = feature.getOwnedFeatureChaining();
+		return featureChainings.isEmpty()? null: featureChainings.get(featureChainings.size()-1).getChainingFeature();
 	}
 
 	// Steps

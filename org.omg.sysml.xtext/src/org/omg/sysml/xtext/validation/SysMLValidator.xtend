@@ -450,9 +450,14 @@ class SysMLValidator extends KerMLValidator {
 		// NOTE: Revised to use featuringTypes instead of owning types, but error messages not changed, because, for SysML user modeling
 		// owning types are still what matters.
 		if (sub instanceof Redefinition) {
-			val subsettingFeaturingTypes = sub.subsettingFeature?.featuringType
-			val subsettedFeaturingTypes = sub.subsettedFeature?.featuringType
-			if (subsettingFeaturingTypes !== null && subsettedFeaturingTypes !== null) {
+			val subsettingFeature = sub.subsettingFeature
+			var subsettedFeature = sub.subsettedFeature
+			if (!subsettedFeature.ownedFeatureChaining.isEmpty) {
+				subsettedFeature = subsettedFeature.ownedFeatureChaining.last.chainingFeature
+			}
+			if (subsettingFeature !== null && subsettedFeature !== null) {
+				val subsettingFeaturingTypes = sub.subsettingFeature.featuringType
+				val subsettedFeaturingTypes = sub.subsettedFeature.featuringType
 				if (subsettedFeaturingTypes.containsAll(subsettingFeaturingTypes) && 
 					subsettedFeaturingTypes.size == subsettingFeaturingTypes.size){
 					if (subsettingFeaturingTypes.isEmpty) {

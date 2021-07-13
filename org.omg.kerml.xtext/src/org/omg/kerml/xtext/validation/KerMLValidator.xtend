@@ -210,9 +210,9 @@ class KerMLValidator extends AbstractKerMLValidator {
 		// (or have no featuring types and are thus implicitly inherited from Anything).
 		val cOwner = c.owner
 		if (cOwner instanceof Type) {
-			ElementUtil.clearCachesOf(cOwner) // Force recomputation of inherited memberships.
-			val ownerFeatures = cOwner.inheritedFeature
-			relatedFeatures.removeIf[f|f.featuringType.empty || ownerFeatures.contains(f)]
+			relatedFeatures.removeIf[
+				featuringType.empty || featuringType.exists[t|cOwner.conformsTo(t)]
+			]
 		}
 		
 		val featuringTypes = c.featuringType

@@ -97,19 +97,23 @@ public class TypeUtil {
 	protected static boolean conforms(Type subtype, Type supertype, Set<Type> visited) {
 		if (subtype == supertype) {
 			return true;
-		} else if (subtype == null) {
-			return false;
-		} else {
+		} else if (subtype != null) {
 			visited.add(subtype);
 			if (subtype.isConjugated()) {
 				Type originalType = subtype.getOwnedConjugator().getOriginalType();
 				return !visited.contains(originalType) && conforms(originalType, supertype);
-			} else {
-				return getSupertypesOf(subtype).stream().
+			} else if (getSupertypesOf(subtype).stream().
 					anyMatch(type->!visited.contains(type) && 
-							conforms(type, supertype, visited));
+							conforms(type, supertype, visited))) {
+				return true;
+			} else if (subtype instanceof Feature) {
+				Feature lastChainingFeature = FeatureUtil.getLastChainingFeatureOf((Feature)subtype);
+				if (lastChainingFeature != null && !visited.contains(lastChainingFeature)) {
+					return conforms(lastChainingFeature, supertype, visited);
+				}
 			}
 		}
+		return false;
 	}
 	
 	// Features

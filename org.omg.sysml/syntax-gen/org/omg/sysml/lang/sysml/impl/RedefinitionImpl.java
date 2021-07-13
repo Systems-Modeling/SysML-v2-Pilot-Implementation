@@ -23,7 +23,7 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
@@ -141,12 +141,16 @@ public class RedefinitionImpl extends SubsettingImpl implements Redefinition {
 		return basicGetRedefiningFeature() != null;
 	}
 
+	@Override
+	public Feature getRedefinedFeature() {
+		return redefinedFeature == null? basicGetRedefinedFeature(): getRedefinedFeatureGen();
+	}
+
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public Feature getRedefinedFeature() {
+	public Feature getRedefinedFeatureGen() {
 		if (redefinedFeature != null && redefinedFeature.eIsProxy()) {
 			InternalEObject oldRedefinedFeature = (InternalEObject)redefinedFeature;
 			redefinedFeature = (Feature)eResolveProxy(oldRedefinedFeature);
@@ -160,9 +164,15 @@ public class RedefinitionImpl extends SubsettingImpl implements Redefinition {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public Feature basicGetRedefinedFeature() {
+		if (redefinedFeature == null) {
+			EList<Element> ownedRelatedElements = getOwnedRelatedElement();
+			if (!ownedRelatedElements.isEmpty()) {
+				redefinedFeature = (Feature)ownedRelatedElements.get(0);
+			}
+		}
 		return redefinedFeature;
 	}
 
@@ -180,10 +190,10 @@ public class RedefinitionImpl extends SubsettingImpl implements Redefinition {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean isSetRedefinedFeature() {
-		return redefinedFeature != null;
+		return basicGetRedefinedFeature() != null;
 	}
 
 	/**

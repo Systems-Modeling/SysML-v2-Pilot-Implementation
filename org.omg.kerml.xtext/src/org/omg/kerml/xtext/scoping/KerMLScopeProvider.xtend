@@ -51,6 +51,7 @@ import org.omg.sysml.lang.sysml.PathStepExpression
 import org.omg.sysml.lang.sysml.InvocationExpression
 import org.omg.sysml.util.ElementUtil
 import org.omg.sysml.lang.sysml.Specialization
+import org.omg.sysml.lang.sysml.FeatureChaining
 
 class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 
@@ -95,9 +96,11 @@ class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 			subsettingFeature.scope_owningNamespace(context, reference)
 		} else if (context instanceof Specialization)
 			(context.eContainer as Element).scope_owningNamespace(context, reference)
-		else if (context instanceof Membership) {
+		else if (context instanceof FeatureChaining)
+			context.scope_featureChaining(reference)
+		else if (context instanceof Membership)
 	    	context.scope_relativeNamespace(context.membershipOwningNamespace, context, reference)
-		} else if (context instanceof Import)
+		else if (context instanceof Import)
 			if (reference === SysMLPackage.eINSTANCE.import_ImportOwningNamespace) scope_import(context)
 			else context.scope_Namespace(context.importOwningNamespace, context, reference, true)
 		else if (context instanceof Namespace) 
@@ -111,6 +114,16 @@ class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 	def scope_import(Import imp) {
 		val ns = imp.importedNamespace
 		ns.scopeFor(SysMLPackage.eINSTANCE.import_ImportedNamespace, imp, ns == imp.importOwningNamespace, false, false, null)
+	}
+	
+	def scope_featureChaining(FeatureChaining ch, EReference reference) {
+		val featureChained = ch.featureChained
+		val ownedFeatureChainings = featureChained.ownedFeatureChaining
+		val i = ownedFeatureChainings.indexOf(ch)
+		if (i <= 0) 
+			featureChained.scope_nonExpressionNamespace(ch, reference)
+		else
+			ch.scope_Namespace(ownedFeatureChainings.get(i-1).chainingFeature, ch, reference, false)
 	}
 	
 	def static Namespace getParentNamespace(Element element) {

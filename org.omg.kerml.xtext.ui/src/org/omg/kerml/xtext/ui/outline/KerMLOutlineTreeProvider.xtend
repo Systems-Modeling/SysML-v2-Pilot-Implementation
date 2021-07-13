@@ -41,6 +41,7 @@ import org.omg.sysml.lang.sysml.LiteralRational
 import org.omg.sysml.lang.sysml.LiteralInfinity
 import org.omg.sysml.lang.sysml.Specialization
 import org.omg.sysml.lang.sysml.LiteralInteger
+import org.omg.sysml.lang.sysml.FeatureChaining
 
 /**
  * Customization of the default outline structure.
@@ -329,6 +330,20 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 				featuring.featuringType._image, featuring.featuringType._text, 
 				true
 			)
+		}
+	}
+	
+	def boolean _isLeaf(FeatureChaining chaining) {
+		chaining.chainingFeature === null
+	}
+	
+	def void _createChildren(IOutlineNode parentNode, FeatureChaining chaining) {
+		if (chaining.chainingFeature !== null) {
+			createNode(parentNode, chaining.chainingFeature, 
+				chaining.chainingFeature._image, chaining.chainingFeature._text, 
+				true
+			)
+			
 		}
 	}
 	

@@ -419,11 +419,29 @@ NonFeatureMember returns SysML::Membership :
 
 /* Feature Membership */
 
-FeatureMember returns SysML::FeatureMembership :
-	MemberPrefix 
-	( ownedRelatedElement += FeatureElement // ownedMemberFeature = FeatureElement
-	| 'feature'? ( memberName = Name )? 'is' memberFeature = [SysML::Feature|QualifiedName] ';'
-	)
+FeatureMember returns SysML::Membership :
+	OwnedFeatureMember | UnownedFeatureMember | ChainFeatureMember
+;
+
+OwnedFeatureMember returns SysML::FeatureMembership :
+	MemberPrefix ownedRelatedElement += FeatureElement // ownedMemberFeature = FeatureElement
+;
+
+UnownedFeatureMember returns SysML::FeatureMembership :
+	MemberPrefix 'feature'? ( memberName = Name )? 'is' memberFeature = [SysML::Feature|QualifiedName] ';'
+;
+
+ChainFeatureMember returns SysML::Membership :
+	MemberPrefix 'feature'? ( memberName = Name )? 'is' ownedRelatedElement += FeatureChain ';' // ownedMemberFeature = Feature ';'
+;
+
+FeatureChain returns SysML::Feature :
+	ownedRelationship += OwnedFeatureChaining
+	( '.' ownedRelationship += OwnedFeatureChaining )+
+;
+
+OwnedFeatureChaining returns SysML::FeatureChaining :
+	chainingFeature = [SysML::Feature | QualifiedName]
 ;
 
 /* Specialization */
@@ -601,7 +619,8 @@ Subsetting returns SysML::Subsetting :
 ;
 
 OwnedSubsetting returns SysML::Subsetting:
-	subsettedFeature = [SysML::Feature|QualifiedName]
+	  subsettedFeature = [SysML::Feature | QualifiedName]
+	| ownedRelatedElement += FeatureChain
 ;
 
 /* Redefinition */
@@ -613,7 +632,8 @@ Redefinition returns SysML::Redefinition :
 ;
 
 OwnedRedefinition returns SysML::Redefinition:
-	redefinedFeature = [SysML::Feature | QualifiedName] 
+	  redefinedFeature = [SysML::Feature | QualifiedName]
+	| ownedRelatedElement += FeatureChain 
 ;
 
 /* Feature Conjugation */
@@ -716,18 +736,8 @@ ConnectorEndMember returns SysML::EndFeatureMembership :
 ;
 
 ConnectorEnd returns SysML::Feature :
-	ownedRelationship += ( OwnedSubsetting | FeaturePathExpressionMember )
+	ownedRelationship += OwnedSubsetting
 	( ownedRelationship += MultiplicityMember )?
-;
-
-FeaturePathExpressionMember returns SysML::FeatureMembership :
-	ownedRelatedElement += FeaturePathExpression
-;
-
-FeaturePathExpression returns SysML::Expression :
-	FeatureReferenceExpression 
-	( {SysML::PathStepExpression.operand += current}
-	  '.' operand += FeatureReferenceExpression )+
 ;
 
 /* Binding Connectors */
@@ -992,7 +1002,18 @@ ItemFlowEndMember returns SysML::EndFeatureMembership :
 ;
 
 ItemFlowEnd returns SysML::ItemFlowEnd :
+	( ownedRelationship += ItemFlowEndSubsetting )?
 	ownedRelationship += ItemFlowFeatureMember
+;
+
+ItemFlowEndSubsetting returns SysML::Subsetting :
+	  subsettedFeature = [SysML::Feature | QualifiedName] '.'
+	| ownedRelatedElement += FeatureChainPrefix
+;
+
+FeatureChainPrefix returns SysML::Feature :
+	( ownedRelationship += OwnedFeatureChaining '.' )+
+	ownedRelationship += OwnedFeatureChaining '.'
 ;
 
 ItemFlowFeatureMember returns SysML::FeatureMembership :
@@ -1000,7 +1021,11 @@ ItemFlowFeatureMember returns SysML::FeatureMembership :
 ;
 
 ItemFlowFeature returns SysML::ItemFlowFeature :
-	ownedRelationship += ( OwnedRedefinition | FeaturePathExpressionMember )
+	ownedRelationship += ItemFlowRedefinition
+;
+
+ItemFlowRedefinition returns SysML::Redefinition :
+	redefinedFeature = [SysML::Feature|QualifiedName]
 ;
 
 /* EXPRESSIONS */

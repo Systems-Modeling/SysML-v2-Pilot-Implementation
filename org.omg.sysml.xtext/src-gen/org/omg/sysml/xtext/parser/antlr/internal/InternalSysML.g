@@ -5380,45 +5380,9 @@ ruleEmptyItemFlowFeature returns [EObject current=null]
 	leaveRule();
 }:
 	(
-		(
-			{
-				newCompositeNode(grammarAccess.getEmptyItemFlowFeatureAccess().getOwnedRelationshipEmptyRedefinitionParserRuleCall_0());
-			}
-			lv_ownedRelationship_0_0=ruleEmptyRedefinition
-			{
-				if ($current==null) {
-					$current = createModelElementForParent(grammarAccess.getEmptyItemFlowFeatureRule());
-				}
-				add(
-					$current,
-					"ownedRelationship",
-					lv_ownedRelationship_0_0,
-					"org.omg.sysml.xtext.SysML.EmptyRedefinition");
-				afterParserOrEnumRuleCall();
-			}
-		)
-	)
-;
-
-// Entry rule entryRuleEmptyRedefinition
-entryRuleEmptyRedefinition returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getEmptyRedefinitionRule()); }
-	iv_ruleEmptyRedefinition=ruleEmptyRedefinition
-	{ $current=$iv_ruleEmptyRedefinition.current; }
-	EOF;
-
-// Rule EmptyRedefinition
-ruleEmptyRedefinition returns [EObject current=null]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
 		{
 			$current = forceCreateModelElement(
-				grammarAccess.getEmptyRedefinitionAccess().getRedefinitionAction(),
+				grammarAccess.getEmptyItemFlowFeatureAccess().getItemFlowFeatureAction(),
 				$current);
 		}
 	)

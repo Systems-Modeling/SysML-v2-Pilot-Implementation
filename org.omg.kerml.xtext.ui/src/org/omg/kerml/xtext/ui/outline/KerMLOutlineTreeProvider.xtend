@@ -351,18 +351,14 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		generalization.getGeneral === null
 	}
 	
-	def void _createChildren(IOutlineNode parentNode, Specialization generalization) {
-		if (generalization.getSpecific !== null && generalization.getSpecific !== generalization.eContainer) {
-			createNode(parentNode, generalization.getSpecific, 
-				generalization.getSpecific._image, generalization.getSpecific._text, 
-				true
-			)			
+	def void _createChildren(IOutlineNode parentNode, Specialization specialization) {
+		val specific = specialization.specific
+		if (specific !== null && specific !== specialization.eContainer) {
+			createNode(parentNode, specific, specific._image, specific._text, true)			
 		}
-		if (generalization.getGeneral !== null) {
-			createNode(parentNode, generalization.getGeneral, 
-				generalization.getGeneral._image, generalization.getGeneral._text, 
-				true
-			)
+		val general = specialization.general
+		if (general !== null) {
+			createNode(parentNode, general, general._image, general._text, true)
 		}
 	}
 	
@@ -390,16 +386,18 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	}
 
 	def void _createChildren(IOutlineNode parentNode, Subsetting subsetting) {
-		if (subsetting.subsettingFeature !== null && subsetting.subsettingFeature !== subsetting.eContainer) {
-			createNode(parentNode, subsetting.subsettingFeature, 
-				subsetting.subsettingFeature._image, subsetting.subsettingFeature._text, 
+		val subsettingFeature = subsetting.subsettingFeature
+		if (subsettingFeature !== null && subsettingFeature !== subsetting.eContainer) {
+			createNode(parentNode, subsettingFeature, 
+				subsettingFeature._image, subsettingFeature._text, 
 				true
 			)			
 		}
-		if (subsetting.subsettedFeature !== null) {
-			createNode(parentNode, subsetting.subsettedFeature, 
-				_image(subsetting.subsettedFeature), subsetting.subsettedFeature._text, 
-				true
+		val subsettedFeature = subsetting.subsettedFeature
+		if (subsettedFeature !== null) {
+			createNode(parentNode, subsettedFeature, 
+				subsettedFeature._image, subsettedFeature._text, 
+				subsettedFeature.owningRelationship != subsetting
 			)
 		}
 	}

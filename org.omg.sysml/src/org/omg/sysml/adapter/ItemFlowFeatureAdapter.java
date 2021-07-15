@@ -28,7 +28,6 @@ import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.ItemFlowEnd;
 import org.omg.sysml.lang.sysml.ItemFlowFeature;
-import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 
 public class ItemFlowFeatureAdapter extends FeatureAdapter {
@@ -46,9 +45,7 @@ public class ItemFlowFeatureAdapter extends FeatureAdapter {
 
 	@Override
 	public void addComputedRedefinitions(Element skip) {
-		if (!isImplicitGeneralizationDeclaredFor(SysMLPackage.eINSTANCE.getRedefinition())) {
-			addRedefinitions(skip);
-		}
+		addRedefinitions(skip);
 	}
 
 	@Override
@@ -71,9 +68,4 @@ public class ItemFlowFeatureAdapter extends FeatureAdapter {
 		return 0;
 	}
 	
-	@Override
-	public void doTransform() {
-		super.doTransform();
-	}
-
 }

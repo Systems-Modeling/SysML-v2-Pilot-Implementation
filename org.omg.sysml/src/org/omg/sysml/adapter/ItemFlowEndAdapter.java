@@ -30,9 +30,9 @@ import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.ItemFlow;
 import org.omg.sysml.lang.sysml.ItemFlowEnd;
-import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.util.FeatureUtil;
 
 public class ItemFlowEndAdapter extends FeatureAdapter {
 
@@ -78,9 +78,7 @@ public class ItemFlowEndAdapter extends FeatureAdapter {
 		if (target.getOwnedSubsetting().isEmpty()) {
 			EList<Feature> features = getTarget().getOwnedFeature();
 			if (!features.isEmpty()) {
-				Feature feature = features.get(0);
-				feature.getOwnedRedefinition().stream().findFirst().
-				map(Redefinition::getRedefinedFeature).
+				FeatureUtil.getRedefinedFeaturesOf(features.get(0)).stream().findFirst().
 				filter(f->f != null).
 				map(Feature::getOwningType).
 				filter(Feature.class::isInstance).

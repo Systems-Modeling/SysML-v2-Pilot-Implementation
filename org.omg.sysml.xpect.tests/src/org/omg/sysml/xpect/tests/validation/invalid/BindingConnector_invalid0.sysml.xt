@@ -52,7 +52,7 @@ package 'Control - Camera' {
 		);
 		
 		action shoot : Shoot (
-			in image flow from focus::image, 
+			in image flow from focus.image, 
 			out picture = takePicture::picture
 		);
 	}

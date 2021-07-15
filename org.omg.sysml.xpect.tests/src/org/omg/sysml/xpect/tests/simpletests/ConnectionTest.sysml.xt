@@ -46,6 +46,6 @@ package ConnectionTest {
 			part :>> x;
 		}
 	
-		connect p1::x to y;
+		connect p1.x to y;
 	}
 }

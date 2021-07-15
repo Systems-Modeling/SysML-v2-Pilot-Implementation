@@ -685,7 +685,6 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getItemFlowRedefinitionAccess().getRedefinedFeatureAssignment(), "rule__ItemFlowRedefinition__RedefinedFeatureAssignment");
 			builder.put(grammarAccess.getEmptyItemFlowEndMemberAccess().getOwnedRelatedElementAssignment(), "rule__EmptyItemFlowEndMember__OwnedRelatedElementAssignment");
 			builder.put(grammarAccess.getEmptyItemFlowFeatureMemberAccess().getOwnedRelatedElementAssignment(), "rule__EmptyItemFlowFeatureMember__OwnedRelatedElementAssignment");
-			builder.put(grammarAccess.getEmptyItemFlowFeatureAccess().getOwnedRelationshipAssignment(), "rule__EmptyItemFlowFeature__OwnedRelationshipAssignment");
 			builder.put(grammarAccess.getDependencyAccess().getClientAssignment_2(), "rule__Dependency__ClientAssignment_2");
 			builder.put(grammarAccess.getDependencyAccess().getClientAssignment_3_1(), "rule__Dependency__ClientAssignment_3_1");
 			builder.put(grammarAccess.getDependencyAccess().getSupplierAssignment_5(), "rule__Dependency__SupplierAssignment_5");

@@ -32,6 +32,7 @@ XPECT_SETUP org.omg.sysml.xpect.tests.validation.valid.SysMLTests
 	}
 END_SETUP 
 */
+// XPECT noErrors --> ""
 package DefaultValueTest {
 	
 	part def V {

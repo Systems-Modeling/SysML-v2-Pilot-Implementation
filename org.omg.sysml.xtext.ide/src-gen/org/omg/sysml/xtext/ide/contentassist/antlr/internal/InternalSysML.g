@@ -2074,34 +2074,9 @@ ruleEmptyItemFlowFeature
 	}
 	:
 	(
-		{ before(grammarAccess.getEmptyItemFlowFeatureAccess().getOwnedRelationshipAssignment()); }
-		(rule__EmptyItemFlowFeature__OwnedRelationshipAssignment)
-		{ after(grammarAccess.getEmptyItemFlowFeatureAccess().getOwnedRelationshipAssignment()); }
-	)
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-// Entry rule entryRuleEmptyRedefinition
-entryRuleEmptyRedefinition
-:
-{ before(grammarAccess.getEmptyRedefinitionRule()); }
-	 ruleEmptyRedefinition
-{ after(grammarAccess.getEmptyRedefinitionRule()); } 
-	 EOF 
-;
-
-// Rule EmptyRedefinition
-ruleEmptyRedefinition 
-	@init {
-		int stackSize = keepStackSize();
-	}
-	:
-	(
-		{ before(grammarAccess.getEmptyRedefinitionAccess().getRedefinitionAction()); }
+		{ before(grammarAccess.getEmptyItemFlowFeatureAccess().getItemFlowFeatureAction()); }
 		()
-		{ after(grammarAccess.getEmptyRedefinitionAccess().getRedefinitionAction()); }
+		{ after(grammarAccess.getEmptyItemFlowFeatureAccess().getItemFlowFeatureAction()); }
 	)
 ;
 finally {
@@ -47077,21 +47052,6 @@ rule__EmptyItemFlowFeatureMember__OwnedRelatedElementAssignment
 		{ before(grammarAccess.getEmptyItemFlowFeatureMemberAccess().getOwnedRelatedElementEmptyItemFlowFeatureParserRuleCall_0()); }
 		ruleEmptyItemFlowFeature
 		{ after(grammarAccess.getEmptyItemFlowFeatureMemberAccess().getOwnedRelatedElementEmptyItemFlowFeatureParserRuleCall_0()); }
-	)
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-rule__EmptyItemFlowFeature__OwnedRelationshipAssignment
-	@init {
-		int stackSize = keepStackSize();
-	}
-:
-	(
-		{ before(grammarAccess.getEmptyItemFlowFeatureAccess().getOwnedRelationshipEmptyRedefinitionParserRuleCall_0()); }
-		ruleEmptyRedefinition
-		{ after(grammarAccess.getEmptyItemFlowFeatureAccess().getOwnedRelationshipEmptyRedefinitionParserRuleCall_0()); }
 	)
 ;
 finally {

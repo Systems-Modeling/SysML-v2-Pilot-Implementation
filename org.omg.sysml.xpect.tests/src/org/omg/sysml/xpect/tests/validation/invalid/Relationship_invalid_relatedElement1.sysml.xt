@@ -39,11 +39,13 @@ package 'Streaming Example' {
 		part def C {
 			in ref myIn;
 		}
-		// XPECT errors --> "Relationships must have at least two related elements" at "stream XXX from B::myOut to C::myIn;"
-		//* XPECT warnings --- 
-			"Owner of redefining feature should be a specialization of owner of redefined feature" at "B::myOut"
-			"Owner of redefining feature should be a specialization of owner of redefined feature" at "C::myIn"
-		--- */
+		//* XPECT errors ---
+			"Cannot identify item flow end (use dot notation)" at "B::myOut"
+			"Cannot identify item flow end (use dot notation)" at "C::myIn"
+			"Must be an accessible feature (use dot notation for nesting)" at "B::myOut"
+			"Must be an accessible feature (use dot notation for nesting)" at "C::myIn"
+			"Relationships must have at least two related elements" at "stream XXX from B::myOut to C::myIn;"
+		    --- */
 		stream XXX from B::myOut to C::myIn;	
 	} 
 }

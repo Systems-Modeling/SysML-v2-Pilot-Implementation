@@ -15,10 +15,13 @@ package RequirementTest {
 	requirement def R1 {
 		require constraint c1 :>> c;
 	}
-	part p;
 	part q {
+		part p;
 		requirement r : R;
-		satisfy r by p; 
+		satisfy r {
+			subject = p; 
+			bind subj = p;
+		}  
 	}
 	
 }

@@ -1,7 +1,7 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2018 IncQuery Labs Ltd.
- * Copyright (c) 2018-2020 Model Driven Solutions, Inc.
+ * Copyright (c) 2018-2021 Model Driven Solutions, Inc.
  * Copyright (c) 2020 California Institute of Technology/Jet Propulsion Laboratory
  *    
  * This program is free software: you can redistribute it and/or modify
@@ -52,6 +52,9 @@ import org.omg.sysml.lang.sysml.Import
 import com.google.inject.Inject
 import org.eclipse.xtext.scoping.IScopeProvider
 import org.omg.sysml.lang.sysml.util.ISysMLScope
+import org.eclipse.emf.ecore.EClass
+import org.omg.sysml.lang.sysml.ItemFlow
+import org.omg.sysml.util.FeatureUtil
 
 /**
  * This class contains custom validation rules. 
@@ -60,12 +63,16 @@ import org.omg.sysml.lang.sysml.util.ISysMLScope
  */
 class KerMLValidator extends AbstractKerMLValidator {
 
-	public static val INVALID_CONNECTOR_END__CONTEXT = 'Invalid Connector - Connector context'
-	public static val INVALID_CONNECTOR_END__CONTEXT_MSG = "Connected features should have a common context"
+	public static val INVALID_CONNECTOR_END__CONTEXT = 'Invalid Connector end - Context'
+	public static val INVALID_CONNECTOR_END__CONTEXT_MSG = "Should be an accessible feature (use dot notation for nesting)"
 	public static val INVALID_BINDINGCONNECTOR__ARGUMENT_TYPE = 'Invalid BindingConnector - Argument type conformance'
 	public static val INVALID_BINDINGCONNECTOR__ARGUMENT_TYPE_MSG = "Output feature must conform to input feature"
 	public static val INVALID_BINDINGCONNECTOR__BINDING_TYPE = 'Invalid BindingConnector - Binding type conformance'
 	public static val INVALID_BINDINGCONNECTOR__BINDING_TYPE_MSG = "Bound features should have conforming types"
+	public static val INVALID_ITEMFLOW__INVALID_END = 'Invalid ItemFlow end - No subsetting'
+	public static val INVALID_ITEMFLOW__INVALID_END_MSG = "Cannot identify item flow end (use dot notation)"
+	public static val INVALID_ITEMFLOW__IMPLICIT_END = 'Invalid ItemFlow end - Implicit subsetting'
+	public static val INVALID_ITEMFLOW__IMPLICIT_END_MSG = "Flow ends should use dot notation"
 	public static val INVALID_FEATURE__NO_TYPE = 'Invalid Feature - Mandatory typing'
 	public static val INVALID_FEATURE__NO_TYPE_MSG = "Features must have at least one type"
 	public static val INVALID_RELATIONSHIP__RELATED_ELEMENTS = 'Invalid Relationship - Related element minimum validation'
@@ -204,23 +211,27 @@ class KerMLValidator extends AbstractKerMLValidator {
 	 
 	@Check
 	def checkConnector(Connector c){		
-		var relatedFeatures = c.relatedFeature
+		doCheckConnector(c, c, null)
+	}
+	
+	private def doCheckConnector(Connector c, Type location, EClass kind) {
+		val cFeaturingTypes = c.featuringType
 		
-		// Allow related features that are inherited by the owner of the connector
-		// (or have no featuring types and are thus implicitly inherited from Anything).
-		val cOwner = c.owner
-		if (cOwner instanceof Type) {
-			relatedFeatures.removeIf[
-				featuringType.empty || featuringType.exists[t|cOwner.conformsTo(t)]
-			]
+		if (kind == SysMLPackage.Literals.FEATURE_MEMBERSHIP) {
+			cFeaturingTypes.add(location);
 		}
-		
-		val featuringTypes = c.featuringType
-		for (relatedFeature: relatedFeatures) {
-			if (!(featuringTypes.isEmpty? relatedFeature.isFeaturedWithin(null):
-				featuringTypes.exists[featuringType | relatedFeature.isFeaturedWithin(featuringType)])) {
-				warning(INVALID_CONNECTOR_END__CONTEXT_MSG, c, SysMLPackage.eINSTANCE.connector_ConnectorEnd, INVALID_CONNECTOR_END__CONTEXT)
-				return
+
+		val relatedFeatures = c.relatedFeature				
+		val connectorEnds = c.connectorEnd
+		for (var i = 0; i < relatedFeatures.size; i++) {
+			val relatedFeature = relatedFeatures.get(i)
+			if (!(relatedFeature.featuringType.empty || 
+				cFeaturingTypes.isEmpty? relatedFeature.isFeaturedWithin(null):
+				cFeaturingTypes.exists[featuringType |
+					relatedFeature.featuringType.exists[f | featuringType.conformsTo(f)]])) {
+				warning(INVALID_CONNECTOR_END__CONTEXT_MSG, 
+					if (location === c && i < connectorEnds.size) connectorEnds.get(i) else location, 
+					null, INVALID_CONNECTOR_END__CONTEXT)
 			}
 		}
 	}
@@ -262,7 +273,24 @@ class KerMLValidator extends AbstractKerMLValidator {
 	
 	@Check
 	def checkImplicitBindingConnectors(Type type) {
-		TypeUtil.forEachImplicitBindingConnectorOf(type, [connector, kind | connector.doCheckBindingConnector(type)])
+		TypeUtil.forEachImplicitBindingConnectorOf(type, [connector, kind | 
+			// connector.doCheckConnector(type, kind) 
+			connector.doCheckBindingConnector(type)
+		])
+	}
+	
+	@Check 
+	def checkItemFlow(ItemFlow flow) {
+		for (flowEnd: flow.itemFlowEnd) {
+			if (FeatureUtil.getSubsettedNotRedefinedFeaturesOf(flowEnd).isEmpty) {
+				error(INVALID_ITEMFLOW__INVALID_END_MSG, flowEnd, null, INVALID_ITEMFLOW__INVALID_END)
+			} else if (flowEnd.ownedSubsetting.isEmpty) {
+				val features = flowEnd.ownedFeature
+				if (!features.isEmpty && !features.get(0).ownedRedefinition.isEmpty) {
+					warning(INVALID_ITEMFLOW__IMPLICIT_END_MSG, flowEnd, null, INVALID_ITEMFLOW__IMPLICIT_END)
+				}
+			}
+		}
 	}
 	
 	//return related subtypes

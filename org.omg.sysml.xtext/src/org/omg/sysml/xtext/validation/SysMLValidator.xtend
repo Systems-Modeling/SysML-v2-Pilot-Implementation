@@ -93,6 +93,7 @@ import org.omg.sysml.lang.sysml.Structure
 import org.omg.sysml.lang.sysml.Step
 import org.omg.sysml.lang.sysml.LiteralInfinity
 import org.omg.sysml.lang.sysml.LiteralInteger
+import org.omg.sysml.lang.sysml.ItemFlowFeature
 
 /**
  * This class contains custom validation rules. 
@@ -469,8 +470,13 @@ class SysMLValidator extends KerMLValidator {
 					}
 				}
 				else if (!subsettedFeaturingTypes.forall[t | subsettingFeaturingTypes.exists[conformsTo(t)]]){
-					warning("Owner of redefining feature should be a specialization of owner of redefined feature", sub, 
-					SysMLPackage.eINSTANCE.redefinition_RedefinedFeature, SysMLValidator.INVALID_REDEFINITION_OWNINGTYPECONFORMANCE)
+					if (subsettingFeature instanceof ItemFlowFeature) {
+						error("Must be an accessible feature (use dot notation for nesting)", sub, 
+						SysMLPackage.eINSTANCE.redefinition_RedefinedFeature, SysMLValidator.INVALID_REDEFINITION_OWNINGTYPECONFORMANCE)
+					} else {
+						warning("Owner of redefining feature should be a specialization of owner of redefined feature", sub, 
+						SysMLPackage.eINSTANCE.redefinition_RedefinedFeature, SysMLValidator.INVALID_REDEFINITION_OWNINGTYPECONFORMANCE)
+					}
 				}
 			}
 		}

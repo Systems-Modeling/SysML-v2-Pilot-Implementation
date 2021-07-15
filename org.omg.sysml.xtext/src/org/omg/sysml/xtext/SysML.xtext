@@ -570,11 +570,7 @@ EmptyItemFlowFeatureMember returns SysML::FeatureMembership :
 ;
 
 EmptyItemFlowFeature returns SysML::ItemFlowFeature :
-	ownedRelationship += EmptyRedefinition
-;
-
-EmptyRedefinition returns SysML::Redefinition :
-	{SysML::Redefinition}
+	{SysML::ItemFlowFeature}
 ;
 
 /* DEPENDENCIES */

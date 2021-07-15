@@ -3292,31 +3292,15 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	public class EmptyItemFlowFeatureElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.EmptyItemFlowFeature");
-		private final Assignment cOwnedRelationshipAssignment = (Assignment)rule.eContents().get(1);
-		private final RuleCall cOwnedRelationshipEmptyRedefinitionParserRuleCall_0 = (RuleCall)cOwnedRelationshipAssignment.eContents().get(0);
+		private final Action cItemFlowFeatureAction = (Action)rule.eContents().get(1);
 		
 		//EmptyItemFlowFeature returns SysML::ItemFlowFeature :
-		//    ownedRelationship += EmptyRedefinition
+		//    {SysML::ItemFlowFeature}
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//ownedRelationship += EmptyRedefinition
-		public Assignment getOwnedRelationshipAssignment() { return cOwnedRelationshipAssignment; }
-		
-		//EmptyRedefinition
-		public RuleCall getOwnedRelationshipEmptyRedefinitionParserRuleCall_0() { return cOwnedRelationshipEmptyRedefinitionParserRuleCall_0; }
-	}
-	public class EmptyRedefinitionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.EmptyRedefinition");
-		private final Action cRedefinitionAction = (Action)rule.eContents().get(1);
-		
-		//EmptyRedefinition returns SysML::Redefinition :
-		//    {SysML::Redefinition}
-		//;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//{SysML::Redefinition}
-		public Action getRedefinitionAction() { return cRedefinitionAction; }
+		//{SysML::ItemFlowFeature}
+		public Action getItemFlowFeatureAction() { return cItemFlowFeatureAction; }
 	}
 	public class DependencyElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.Dependency");
@@ -12881,7 +12865,6 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	private final EmptyItemFlowEndMemberElements pEmptyItemFlowEndMember;
 	private final EmptyItemFlowFeatureMemberElements pEmptyItemFlowFeatureMember;
 	private final EmptyItemFlowFeatureElements pEmptyItemFlowFeature;
-	private final EmptyRedefinitionElements pEmptyRedefinition;
 	private final DependencyElements pDependency;
 	private final DefinitionPrefixElements pDefinitionPrefix;
 	private final DefinitionElements pDefinition;
@@ -13291,7 +13274,6 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		this.pEmptyItemFlowEndMember = new EmptyItemFlowEndMemberElements();
 		this.pEmptyItemFlowFeatureMember = new EmptyItemFlowFeatureMemberElements();
 		this.pEmptyItemFlowFeature = new EmptyItemFlowFeatureElements();
-		this.pEmptyRedefinition = new EmptyRedefinitionElements();
 		this.pDependency = new DependencyElements();
 		this.pDefinitionPrefix = new DefinitionPrefixElements();
 		this.pDefinition = new DefinitionElements();
@@ -14772,7 +14754,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//EmptyItemFlowFeature returns SysML::ItemFlowFeature :
-	//    ownedRelationship += EmptyRedefinition
+	//    {SysML::ItemFlowFeature}
 	//;
 	public EmptyItemFlowFeatureElements getEmptyItemFlowFeatureAccess() {
 		return pEmptyItemFlowFeature;
@@ -14780,17 +14762,6 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	
 	public ParserRule getEmptyItemFlowFeatureRule() {
 		return getEmptyItemFlowFeatureAccess().getRule();
-	}
-	
-	//EmptyRedefinition returns SysML::Redefinition :
-	//    {SysML::Redefinition}
-	//;
-	public EmptyRedefinitionElements getEmptyRedefinitionAccess() {
-		return pEmptyRedefinition;
-	}
-	
-	public ParserRule getEmptyRedefinitionRule() {
-		return getEmptyRedefinitionAccess().getRule();
 	}
 	
 	///* DEPENDENCIES */

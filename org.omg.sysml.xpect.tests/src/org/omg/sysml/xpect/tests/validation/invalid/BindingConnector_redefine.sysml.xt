@@ -65,12 +65,12 @@ package BindingConnectorExample {
 		}
 			
 		//redefines - redefines
-		bind b0::p0::myDefIn = b1::p1::myDefIn;
-		bind b1::p1::myDefIn = b0::p0::myDefIn;  
-		bind b0::p0::myDefIn = b1::p1::myDefOut;
-		bind b0::p0::myDefOut = b1::p1::myDefIn;
-		bind b0::p0::myDefOut = b1::p1::myDefOut;
-		bind b1::p1::myDefOut = b0::p0::myDefOut;
+		bind b0.p0.myDefIn = b1.p1.myDefIn;
+		bind b1.p1.myDefIn = b0.p0.myDefIn;  
+		bind b0.p0.myDefIn = b1.p1.myDefOut;
+		bind b0.p0.myDefOut = b1.p1.myDefIn;
+		bind b0.p0.myDefOut = b1.p1.myDefOut;
+		bind b1.p1.myDefOut = b0.p0.myDefOut;
 		
 		
 		part b2: B1 {
@@ -80,13 +80,13 @@ package BindingConnectorExample {
 			}
 		}
 		//redefines - local
-		bind b0::p0::myDefIn = b2::p2::myIn;
-		bind b2::p2::myIn = b0::p0::myDefIn;
-		// TBD errors --> "Output feature must conform to input feature" at "b0::p0::myDefIn = b2::p2::myOut;"
-		bind b0::p0::myDefIn = b2::p2::myOut; //OutTypes[Part,Object] InTypes [A, Part, Object] 
-		bind b0::p0::myDefOut = b2::p2::myIn; //OutTypes[A, Part, Object] InTypes [Part, Object]
-		bind b0::p0::myDefOut = b2::p2::myOut;
-		bind b2::p2::myOut = b0::p0::myDefOut;
+		bind b0.p0.myDefIn = b2.p2.myIn;
+		bind b2.p2.myIn = b0.p0.myDefIn;
+		// TBD errors --> "Output feature must conform to input feature" at "b0.p0.myDefIn = b2.p2.myOut;"
+		bind b0.p0.myDefIn = b2.p2.myOut; //OutTypes[Part,Object] InTypes [A, Part, Object] 
+		bind b0.p0.myDefOut = b2.p2.myIn; //OutTypes[A, Part, Object] InTypes [Part, Object]
+		bind b0.p0.myDefOut = b2.p2.myOut;
+		bind b2.p2.myOut = b0.p0.myDefOut;
 		
 		
 		part b3 : B1;
@@ -99,16 +99,25 @@ package BindingConnectorExample {
 				in ref myIn redefines B1::p1::myDefIn;
 			}
 		}
-		// XPECT warnings --> "Connected features should have a common context" at "bind b0::p0::myDefIn = b3::p1::myDefIn;"
-		bind b0::p0::myDefIn = b3::p1::myDefIn;
-		// XPECT warnings --> "Connected features should have a common context" at "bind b0::p0::myDefIn = b4::p1::myDefIn;"
-		bind b0::p0::myDefIn = b4::p1::myDefIn;
-		// XPECT warnings --> "Connected features should have a common context" at "bind b4::p1::myDefIn = b0::p0::myDefIn;"
-		bind b4::p1::myDefIn = b0::p0::myDefIn;
-		bind b0::p0::myDefIn = b5::p1::myDefIn;
-		bind b5::p1::myDefIn = b0::p0::myDefIn;
-		bind b0::p0::myDefIn = b5::p1::myIn;
-		bind b5::p1::myIn = b0::p0::myDefIn;
+		//* XPECT warnings --- 
+		    "Should be an accessible feature (use dot notation for nesting)" at "B0::p0.myDefIn"
+		    "Should be an accessible feature (use dot notation for nesting)" at "B0::p0.myDefIn"
+		    --- */
+		bind B0::p0.myDefIn = B0::p0.myDefIn;
+		//* XPECT warnings --- 
+		    "Should be an accessible feature (use dot notation for nesting)" at "b0::p0.myDefIn" 
+		    "Should be an accessible feature (use dot notation for nesting)" at "b4::p1.myDefIn"
+		    --- */
+		bind b0::p0.myDefIn = b4::p1.myDefIn;
+		//* XPECT warnings --- 
+		    "Should be an accessible feature (use dot notation for nesting)" at "b4::p1.myDefIn"
+		    "Should be an accessible feature (use dot notation for nesting)" at "b0::p0.myDefIn"
+		    --- */
+		bind b4::p1.myDefIn = b0::p0.myDefIn;
+		bind b0.p0.myDefIn = b5.p1.myDefIn;
+		bind b5.p1.myDefIn = b0.p0.myDefIn;
+		bind b0.p0.myDefIn = b5.p1.myIn;
+		bind b5.p1.myIn = b0.p0.myDefIn;
 		
 
 	} 

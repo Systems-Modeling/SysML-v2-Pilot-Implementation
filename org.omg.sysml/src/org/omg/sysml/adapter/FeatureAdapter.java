@@ -358,12 +358,6 @@ public class FeatureAdapter extends TypeAdapter {
 	
 	// Transformation
 	
-	protected BindingConnector valueConnector;
-	
-	public BindingConnector getValueConnector() {
-		return valueConnector;
-	}
-	
 	protected void addFeaturingTypeIfNecessary(Type featuringType) {
 		Feature feature = getTarget();
 		if (featuringType != null && feature.getOwningType() == null && 
@@ -410,7 +404,9 @@ public class FeatureAdapter extends TypeAdapter {
 		FeatureValue valuation = FeatureUtil.getValuationFor(feature);
 		if (valuation != null && !valuation.isDefault()) {
 			Expression value = valuation.getValue();
-			valueConnector = value == null? null: addValueBinding(value);
+			if (value != null) {
+				addValueBinding(value);
+			}
 		}
 	}
 	

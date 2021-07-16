@@ -115,8 +115,8 @@ package VehicleModel {
             attribute def ReturnToNormal;
             // The following are work arounds until time events and
             // change events are available
-            attribute def 'at(vehicle::maintenanceTime)';
-            attribute def 'when(temp>vehicle::Tmax)';
+            attribute def 'at(vehicle.maintenanceTime)';
+            attribute def 'when(temp>vehicle.Tmax)';
         }
         package InterfaceDefinitions {
             interface def EngineToTransmissionInterface {
@@ -321,11 +321,11 @@ package VehicleModel {
                                 port rightAxleToWheelPort: AxlePort;
                             }
                         }
-                        bind shaftPort_d = differential::shaftPort_d;
-                        connect differential::leftDiffPort
-                        to rearAxle::leftHalfAxle::leftAxleToDiffPort;
-                        connect differential::rightDiffPort
-                        to rearAxle::rightHalfAxle::rightAxleToDiffPort;
+                        bind shaftPort_d = differential.shaftPort_d;
+                        connect differential.leftDiffPort
+                        to rearAxle.leftHalfAxle.leftAxleToDiffPort;
+                        connect differential.rightDiffPort
+                        to rearAxle.rightHalfAxle.rightAxleToDiffPort;
                     }
                     part engine: Engine {
                         attribute mass :> ISQ::mass = 200 [kg];
@@ -359,22 +359,22 @@ package VehicleModel {
                             }
                         }
                     }
-                    bind engine::fuelCmdPort = fuelCmdPort;
+                    bind engine.fuelCmdPort = fuelCmdPort;
                     interface engineToTransmissionInterface: EngineToTransmissionInterface
-                    connect engine::drivePwrPort to transmission::clutchPort {
+                    connect engine.drivePwrPort to transmission.clutchPort {
                         ref action generateToAmplify :> ActionTree::providePower::generateToAmplify;
                     }
-                    connect transmission::shaftPort_a to driveshaft::shaftPort_b;
-                    connect driveshaft::shaftPort_c to rearAxleAssembly::shaftPort_d;
-                    bind rearAxleAssembly::rearWheel1::wheelToRoadPort = vehicleToRoadPort::wheelToRoadPort1;
-                    bind rearAxleAssembly::rearWheel2::wheelToRoadPort = vehicleToRoadPort::wheelToRoadPort2;
+                    connect transmission.shaftPort_a to driveshaft.shaftPort_b;
+                    connect driveshaft.shaftPort_c to rearAxleAssembly.shaftPort_d;
+                    bind rearAxleAssembly.rearWheel1.wheelToRoadPort = vehicleToRoadPort.wheelToRoadPort1;
+                    bind rearAxleAssembly.rearWheel2.wheelToRoadPort = vehicleToRoadPort.wheelToRoadPort2;
                 }
             }
             package ActionTree {
                 action providePower: ProvidePower {
                     in item redefines fuelCmd;
                     out wheelToRoadTorque redefines wheelToRoadTorque[2] =
-                        distributeTorque::wheelToRoadTorque;
+                        distributeTorque.wheelToRoadTorque;
                     // No successions (control flows) between these actions, because the
                     // flows between them are continuous streams.
                     action generateTorque: GenerateTorque {
@@ -394,12 +394,12 @@ package VehicleModel {
                         in driveshaftTorque redefines driveshaftTorque;
                         out wheelToRoadTorque redefines wheelToRoadTorque[2];
                     }
-                    stream generateToAmplify from generateTorque::engineTorque
-                    to amplifyTorque::engineTorque;
-                    stream amplifyTorque::transmissionTorque
-                    to transferTorque::transmissionTorque;
-                    stream transferTorque::driveshaftTorque
-                    to distributeTorque::driveshaftTorque;
+                    stream generateToAmplify from generateTorque.engineTorque
+                    to amplifyTorque.engineTorque;
+                    stream amplifyTorque.transmissionTorque
+                    to transferTorque.transmissionTorque;
+                    stream transferTorque.driveshaftTorque
+                    to distributeTorque.driveshaftTorque;
                 }
                 action performSelfTest: PerformSelfTest;
                 action applyParkingBrake: ApplyParkingBrake;
@@ -414,17 +414,17 @@ package VehicleModel {
                         state off;
                         state starting;
                         state on {
-                            entry vehicle::performSelfTest;
-                            // was vehicle::providePower;
+                            entry vehicle.performSelfTest;
+                            // was vehicle.providePower;
                             do ActionTree::providePower;
-							exit vehicle::applyParkingBrake;
-							constraint {vehicle::electricalPower <= 500}
+							exit vehicle.applyParkingBrake;
+							constraint {vehicle.electricalPower <= 500}
 						}
 						transition initial then off;
 						transition 'off-starting'
 							first off
 							accept VehicleStartSignal
-							if vehicle::brakePedalDepressed
+							if vehicle.brakePedalDepressed
 							do send StartSignal()to controller
 							then starting;
 
@@ -439,18 +439,18 @@ package VehicleModel {
 					}
 					state healthStates {
 						entry action initial;
-						do vehicle::senseTemperature(out temp);
+						do vehicle.senseTemperature(out temp);
 						state normal;
 						state maintenance;
 						state degraded;
 						transition initial then normal;
 						transition 'normal-maintenance'
 							first normal
-							accept 'at(vehicle::maintenanceTime)'
+							accept 'at(vehicle.maintenanceTime)'
 							then maintenance;
 						transition 'normal-degraded'
 							first normal
-							accept 'when(temp>vehicle::Tmax)'
+							accept 'when(temp>vehicle.Tmax)'
 							do send OverTemp()to controller
 							then degraded;
 						transition 'maintenance-normal'
@@ -532,7 +532,7 @@ package VehicleModel {
 						requirement torqueGeneration: TorqueGenerationRequirement;
 						requirement drivePowerInterface: DrivePowerInterfaceRequirement;
 					}
-					satisfy engineSpecification::torqueGeneration by vehicle_b::engine;
+					satisfy engineSpecification::torqueGeneration by vehicle_b.engine;
 				}
 			}
 		}

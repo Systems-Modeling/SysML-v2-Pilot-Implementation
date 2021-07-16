@@ -70,15 +70,15 @@ package AHFNorway {
 			:>> portno = 6565;
 			
 			// Defining the method to correspond to GiveItems
-			action def REST_giveItems :> GiveItems (in itms:String, out ack:Boolean)
+			action def REST_giveItems :> GiveItems (in apisc:APIS_MQTT, in itms:String, out ack:Boolean)
 			 { /* Forward itms and return an ack */
 			 	first start;
 			 	then send Return_AllItems(itms) to apisc;
 			 	success = true;
 			 	bind ack = success;
 			 }
-			private action rest_giveItems:REST_giveItems :> ServiceMethod();
-			bind tellu::giveItems = rest_giveItems; // binding the functionality to the method
+			private action rest_giveItems:REST_giveItems :> ServiceMethod(apisc);
+			bind tellu.giveItems = rest_giveItems; // binding the functionality to the method
 			
 			// initialize the asynchronous communication with MQTT
 			state MQTTPublish {
@@ -137,8 +137,8 @@ package AHFNorway {
  				then Idle;
  				
  				state Idle;
- 					accept Return_AllItems // going through getTopic::retall
- 					do send getTopic::retall to giveTopic // forwarding it through giveTopic::retall
+ 					accept Return_AllItems // going through getTopic.retall
+ 					do send getTopic.retall to giveTopic // forwarding it through giveTopic.retall
  				then Idle;
  			} 			
  		}
@@ -147,15 +147,15 @@ package AHFNorway {
  			port :>> serviceDiscovery;
  		}
  		
- 		connect apisp::apisc to MQTTServer::getTopic; 
- 		connect MQTTServer::giveTopic to apisc::apisp; 
+ 		connect apisp.apisc to MQTTServer.getTopic; 
+ 		connect MQTTServer.giveTopic to apisc.apisp; 
 		
- 		connect telluc::apisp to apisp::tellu; 
+ 		connect telluc.apisp to apisp.tellu; 
  		
  		// Then we need to connect the application systems to the mandatory systems
- 		connect apisp::serviceDiscovery to service_registry::serviceDiscovery;
- 		connect telluc::serviceDiscovery to service_registry::serviceDiscovery;
- 		connect apisc::serviceDiscovery to service_registry::serviceDiscovery;
+ 		connect apisp.serviceDiscovery to service_registry.serviceDiscovery;
+ 		connect telluc.serviceDiscovery to service_registry.serviceDiscovery;
+ 		connect apisc.serviceDiscovery to service_registry.serviceDiscovery;
  		
  		// Same procedure for the other mandatory services
 		

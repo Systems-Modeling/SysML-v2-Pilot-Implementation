@@ -62,7 +62,7 @@ package USCustomaryUnits {
 		}
 		private attribute fahrenheitToCelsiusScaleMapping: ScaleValueMapping {
 			:>> mappedScaleValue = temperatureWaterAtFreezingPointInF; 
-			:>> referenceScaleValue = '°C_scale'::temperatureWaterAtFreezingPointInC;
+			:>> referenceScaleValue = '°C_scale'.temperatureWaterAtFreezingPointInC;
 		}
 		attribute :>> scaleValueDefinitions = temperatureWaterAtFreezingPointInF;
 		attribute :>> scaleValueMapping = fahrenheitToCelsiusScaleMapping;

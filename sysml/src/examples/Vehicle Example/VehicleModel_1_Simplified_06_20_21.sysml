@@ -199,7 +199,7 @@ package sfriedenthal_VehicleModel_1_simplified{
                 end fuelInPort : ~FuelPort {
                     in item :>> fuel;
                 }
-                stream fuelOutPort::fuel to fuelInPort::fuel;
+                stream fuelOutPort.fuel to fuelInPort.fuel;
             }
         }
         package AllocationDefinitions{
@@ -365,11 +365,11 @@ package sfriedenthal_VehicleModel_1_simplified{
         import VehicleConfigurations::VehicleConfiguration_b::PartsTree::**;
         allocation vehicleLogicalToPhysicalAllocation:AllocationDefinitions::LogicalToPhysical
             allocate vehicleLogical to vehicle_b{
-                allocate vehicleLogical::torqueGenerator to vehicle_b::engine{
-                    allocate vehicleLogical::torqueGenerator::generateTorque to vehicle_b::engine::generateTorque;
+                allocate vehicleLogical.torqueGenerator to vehicle_b.engine{
+                    allocate vehicleLogical.torqueGenerator.generateTorque to vehicle_b.engine.generateTorque;
                 }
-                allocate vehicleLogical::electricalGenerator to vehicle_b::engine{
-                    allocate vehicleLogical::electricalGenerator::generateElectricity to vehicle_b::engine::alternator::generateElectricity;
+                allocate vehicleLogical.electricalGenerator to vehicle_b.engine{
+                    allocate vehicleLogical.electricalGenerator.generateElectricity to vehicle_b.engine.alternator.generateElectricity;
                 }
             }
     }
@@ -477,11 +477,11 @@ package sfriedenthal_VehicleModel_1_simplified{
                             }
                         }
                         
-                        bind shaftPort_d=differential::shaftPort_d;
-                        connect differential::leftDiffPort to rearAxle::leftHalfAxle::leftAxleToDiffPort;
-                        connect differential::rightDiffPort to rearAxle::rightHalfAxle::rightAxleToDiffPort;
-                        connect rearAxle::leftHalfAxle::leftAxleToWheelPort to rearWheel1::wheelToAxlePort;
-                        connect rearAxle::rightHalfAxle::rightAxleToWheelPort to rearWheel2::wheelToAxlePort;
+                        bind shaftPort_d=differential.shaftPort_d;
+                        connect differential.leftDiffPort to rearAxle.leftHalfAxle.leftAxleToDiffPort;
+                        connect differential.rightDiffPort to rearAxle.rightHalfAxle.rightAxleToDiffPort;
+                        connect rearAxle.leftHalfAxle.leftAxleToWheelPort to rearWheel1.wheelToAxlePort;
+                        connect rearAxle.rightHalfAxle.rightAxleToWheelPort to rearWheel2.wheelToAxlePort;
                     }
                     part engine:Engine{
                         attribute :>> mass;
@@ -551,18 +551,18 @@ package sfriedenthal_VehicleModel_1_simplified{
                         part frontSeat[2];
                         part driverAirBag {@Safety{isMandatory = false;}}
                     }
-                    bind engine::fuelCmdPort=fuelCmdPort;
+                    bind engine.fuelCmdPort=fuelCmdPort;
                     
                     //connect engine::drivePwrPort to transmission::clutchPort; 
                     /** the following interface replaces the above connection. Would like to reference the stream (obj flow)*/
                     interface engineToTransmissionInterface:EngineToTransmissionInterface
-                        connect engine::drivePwrPort to transmission::clutchPort{
+                        connect engine.drivePwrPort to transmission.clutchPort{
                             ref generateToAmplify :> ActionTree::providePower::generateToAmplify;
                         }
                     
                     //connect fuelTank::fuelOutPort to engine::fuelInPort;
                     interface fuelInterface:FuelInterface
-                        connect fuelTank::fuelOutPort to engine::fuelInPort;
+                        connect fuelTank.fuelOutPort to engine.fuelInPort;
                     
                     //Do not need to redefine ports if :: is replaced with dot notation 
                     //connect vehicleSoftware::vehicleController::controlPort to engine::engineControlPort;
@@ -570,10 +570,10 @@ package sfriedenthal_VehicleModel_1_simplified{
                     bind vehicle_b.setSpeedPort = vehicleSoftware.vehicleController.cruiseController.setSpeedPort;
                     connect speedSensor.speedSensorPort to vehicleSoftware.vehicleController.cruiseController.speedSensorPort;
                     connect vehicleSoftware.vehicleController.cruiseController.cruiseControlPort to engine.engineControlPort;
-                    connect transmission::shaftPort_a to driveshaft::shaftPort_b; 
-                    connect driveshaft::shaftPort_c to rearAxleAssembly::shaftPort_d;
-                    bind rearAxleAssembly::rearWheel1::wheelToRoadPort=vehicleToRoadPort::wheelToRoadPort1;
-                    bind rearAxleAssembly::rearWheel2::wheelToRoadPort=vehicleToRoadPort::wheelToRoadPort2;
+                    connect transmission.shaftPort_a to driveshaft.shaftPort_b; 
+                    connect driveshaft.shaftPort_c to rearAxleAssembly.shaftPort_d;
+                    bind rearAxleAssembly.rearWheel1.wheelToRoadPort=vehicleToRoadPort.wheelToRoadPort1;
+                    bind rearAxleAssembly.rearWheel2.wheelToRoadPort=vehicleToRoadPort.wheelToRoadPort2;
                     
                     // assert the vehicle features (e.g, mass, reliability) satisfy the requirements
                     satisfy Requirements::vehicleSpecification by vehicle_b{
@@ -607,10 +607,10 @@ package sfriedenthal_VehicleModel_1_simplified{
                         out wheelToRoadTorque redefines wheelToRoadTorque [2];
                     }
 
-                    stream generateToAmplify from generateTorque::engineTorque to amplifyTorque::engineTorque;
-                    //stream from generateTorque::engineTorque to amplifyTorque::engineTorque;
-                    stream amplifyTorque::transmissionTorque to transferTorque::transmissionTorque;
-                    stream transferTorque::driveshaftTorque to distributeTorque::driveshaftTorque;
+                    stream generateToAmplify from generateTorque.engineTorque to amplifyTorque.engineTorque;
+                    //stream from generateTorque.engineTorque to amplifyTorque.engineTorque;
+                    stream amplifyTorque.transmissionTorque to transferTorque.transmissionTorque;
+                    stream transferTorque.driveshaftTorque to distributeTorque.driveshaftTorque;
                 }
                 action performSelfTest: PerformSelfTest;
                 action applyParkingBrake: ApplyParkingBrake;
@@ -838,10 +838,10 @@ package sfriedenthal_VehicleModel_1_simplified{
                         part frontSeat[2];
                         part driverAirBag {@Safety{isMandatory = false;}}
                     }
-                    bind engine::fuelCmdPort=fuelCmdPort;
-                    connect fuelTank::fuelOutPort to engine::fuelInPort;
-                    connect engine::drivePwrPort to transmission::clutchPort;
-                    connect transmission::shaftPort_a to driveshaft::shaftPort_b; 
+                    bind engine.fuelCmdPort=fuelCmdPort;
+                    connect fuelTank.fuelOutPort to engine.fuelInPort;
+                    connect engine.drivePwrPort to transmission.clutchPort;
+                    connect transmission.shaftPort_a to driveshaft.shaftPort_b; 
                 }
                 part def FuelTank_B:>FuelTank;
                 part def FrontAxleAssy_B:>AxleAssembly{

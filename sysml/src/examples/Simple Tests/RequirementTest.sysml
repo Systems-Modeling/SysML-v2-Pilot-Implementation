@@ -20,8 +20,8 @@ package RequirementTest {
 		requirement r : R;
 		satisfy r {
 			subject = p; 
-			bind subj = p;
 		}  
+		bind r.subj = p;
 	}
 	
 }

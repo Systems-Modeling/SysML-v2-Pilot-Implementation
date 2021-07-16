@@ -1,7 +1,7 @@
 package DefaultValueTest {
 	
 	part def V {
-		attribute m default = 10;
+		attribute m default 10;
 		attribute n = 20;
 	}
 	
@@ -10,7 +10,7 @@ package DefaultValueTest {
 	}
 	
 	part def W :> V {
-		attribute :>> m default = n;
+		attribute :>> m default n;
 	}
 	
 	part v2 = W();

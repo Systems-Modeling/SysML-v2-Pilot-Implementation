@@ -84,10 +84,10 @@ package 'Turbojet Stage Analysis' {
 	        part 'Inlet Gas' : 'Thermodynamics Structure'::'Moving Ideal Gas Parcel' {
 	        	// Explicit binding notation
 	        	calc 'Solve for Pressure1' : 'Ideal Gas Law' (rho, R_bar, T) p;
-	        	bind 'Density' = 'Solve for Pressure1'::rho;
-	        	bind 'Specific Gas Constant' = 'Solve for Pressure1'::R_bar;
-	        	bind 'Static Temperature' = 'Solve for Pressure1'::T;
-	        	bind 'Static Pressure' = 'Solve for Pressure1'::p;	        	
+	        	bind 'Density' = 'Solve for Pressure1'.rho;
+	        	bind 'Specific Gas Constant' = 'Solve for Pressure1'.R_bar;
+	        	bind 'Static Temperature' = 'Solve for Pressure1'.T;
+	        	bind 'Static Pressure' = 'Solve for Pressure1'.p;	        	
 	        	
 	        	// Shorthand parameter binding notation (also using optional "in" and "return")
 	            calc 'Solve for Pressure2' : 'Ideal Gas Law'(

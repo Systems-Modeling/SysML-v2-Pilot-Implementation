@@ -120,7 +120,7 @@ package Occurrences {
 			end feature redefines source;
 			end feature redefines target;
 		}
-		binding incomingTransfersToSelf::target = self;
+		binding incomingTransfersToSelf.target = self;
 
 		/**
 		 * The outgoing transfers sent from this occurrence. 
@@ -137,7 +137,7 @@ package Occurrences {
 			end feature redefines source;
 			end feature redefines target;
 		}
-		binding outgoingTransfersFromSelf::source = self;
+		binding outgoingTransfersFromSelf.source = self;
 	}
 	
 	abstract class all Life specializes Occurrence {

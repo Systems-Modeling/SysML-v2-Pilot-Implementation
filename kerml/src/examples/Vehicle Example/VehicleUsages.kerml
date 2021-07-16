@@ -58,10 +58,10 @@ package VehicleUsages {
 			}
 		
 			connector leftFrontMount: Mounting from 
-				frontAxle::leftMountingPoint to leftFrontWheel::hub;
+				frontAxle.leftMountingPoint to leftFrontWheel.hub;
 				
 			connector rightFrontMount: Mounting from 
-				frontAxle::rightMountingPoint to rightFrontWheel::hub;
+				frontAxle.rightMountingPoint to rightFrontWheel.hub;
 		}
 		
 		composite rearAxleAssembly redefines vehicle_C1::rearAxleAssembly {
@@ -78,10 +78,10 @@ package VehicleUsages {
 			}
 			
 			connector leftRearMount: Mounting from 
-				rearAxle::leftMountingPoint to leftRearWheel::hub;
+				rearAxle.leftMountingPoint to leftRearWheel.hub;
 				
 			connector rightRearMount: Mounting from 
-				rearAxle::rightMountingPoint to rightRearWheel::hub;
+				rearAxle.rightMountingPoint to rightRearWheel.hub;
 		}		
 	}
 	
@@ -98,6 +98,6 @@ package VehicleUsages {
 		}
 		
 		connector driveShaft from 
-			transmission::drive to rearAxleAssembly::rearAxle::drive;			
+			transmission.drive to rearAxleAssembly.rearAxle.drive;			
 	}
 }

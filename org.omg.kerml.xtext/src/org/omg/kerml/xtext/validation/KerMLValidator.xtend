@@ -55,6 +55,7 @@ import com.google.inject.Inject
 import org.eclipse.xtext.scoping.IScopeProvider
 import org.omg.sysml.lang.sysml.util.ISysMLScope
 import org.eclipse.emf.ecore.EClass
+import org.omg.sysml.lang.sysml.FeatureChaining
 
 /**
  * This class contains custom validation rules. 
@@ -89,6 +90,8 @@ class KerMLValidator extends AbstractKerMLValidator {
 	public static val INVALID_ELEMENT_FILTER_MEMBERSHIP__NOT_MODEL_LEVEL_MSG = "Must be model-level evaluable"
 	public static val INVALID_METADATA_FEATURE_VALUE__NOT_MODEL_LEVEL = "Invalid MetadataFeatureValue - Not model-level"
 	public static val INVALID_METADATA_FEATURE_VALUE__NOT_MODEL_LEVEL_MSG = "Must be model-level evaluable"
+	public static val INVALID_FEATURE_CHAINING__INVALID_FEATURE = "Invalid FeatureChaining - Invalid feature"
+	public static val INVALID_FEATURE_CHAINING__INVALID_FEATURE_MSG = "Must be a valid feature"
 	public static val INVALID_FEATURE_REFERENCE_EXPRESSION__INVALID_FEATURE = "Invalid FeatureReferenceExpression - Invalid feature"
 	public static val INVALID_FEATURE_REFERENCE_EXPRESSION__INVALID_FEATURE_MSG = "Must be a valid feature"
 	
@@ -183,6 +186,18 @@ class KerMLValidator extends AbstractKerMLValidator {
 		val types = f.type;
 		if (types !== null && types.isEmpty)
 			error(INVALID_FEATURE__NO_TYPE_MSG, f, SysMLPackage.eINSTANCE.feature_Type, INVALID_FEATURE__NO_TYPE)
+	}
+	
+	@Check
+	def checkFeatureChaining(FeatureChaining fc) {
+		val featureChainings = fc.featureChained.ownedFeatureChaining;
+		val i = featureChainings.indexOf(fc);
+		if (i > 0) {
+			val prev = featureChainings.get(i-1).chainingFeature;
+			if (!fc.chainingFeature.featuringType.forall[t2 | prev.conformsTo(t2)]) {
+				error(INVALID_FEATURE_CHAINING__INVALID_FEATURE_MSG, fc, SysMLPackage.eINSTANCE.featureChaining_ChainingFeature, INVALID_FEATURE_CHAINING__INVALID_FEATURE)
+			}
+		}
 	}
 	
 	@Check

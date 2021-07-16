@@ -39,11 +39,26 @@ import org.omg.sysml.lang.sysml.LiteralInteger;
 import org.omg.sysml.lang.sysml.LiteralRational;
 import org.omg.sysml.lang.sysml.LiteralString;
 import org.omg.sysml.lang.sysml.Namespace;
+import org.omg.sysml.lang.sysml.OperatorExpression;
 import org.omg.sysml.lang.sysml.ResultExpressionMembership;
 import org.omg.sysml.util.ExpressionUtil;
 import org.omg.sysml.util.TypeUtil;
 
 public class ModelLevelEvaluationTest extends SysMLInteractiveTest {
+	
+	protected Expression checkFilterExpression(SysMLInteractive instance, String text) {
+		List<Element> members = eval(instance, "package test { filter (" + text + ") == null; }");
+		assertFalse("'" + text +"': No members", members.isEmpty());
+		Element member = members.get(0);
+		assertTrue("'" + text + "': No package", member instanceof org.omg.sysml.lang.sysml.Package);
+		List<Expression> filterConditions = ((org.omg.sysml.lang.sysml.Package)member).getFilterCondition();
+		assertFalse("'" + text + "': No filter conditions", filterConditions.isEmpty());
+		Expression filterCondition = filterConditions.get(0);
+		assertTrue("'" + text + "': Not operator expression", filterCondition instanceof OperatorExpression);
+		List<Expression> operands = ((OperatorExpression)filterCondition).getOperand();
+		assertFalse("'" + text + "': No operands", operands.isEmpty());
+		return operands.get(0);
+	}
 	
 	protected Expression checkExpression(SysMLInteractive instance, String text) {
 		List<Element> members = eval(instance, "calc test { " + text + " }");
@@ -57,7 +72,7 @@ public class ModelLevelEvaluationTest extends SysMLInteractiveTest {
 	}
 	
 	protected Expression checkExpressionIsModelLevelEvaluable(SysMLInteractive instance, String text) {
-		Expression expression = checkExpression(instance, text);
+		Expression expression = checkFilterExpression(instance, text);
 		assertTrue("'" + text + "' is not model-level evaluable", expression.isModelLevelEvaluable());
 		return expression;
 	}
@@ -182,7 +197,8 @@ public class ModelLevelEvaluationTest extends SysMLInteractiveTest {
 
 	@Test
 	public void testNonModelLevelEvaluability() throws Exception {
-		checkExpressionNotModelLevelEvaluable(null, "calc f(x); f(3 + 4)");
+		eval("calc def f(x);");
+		checkExpressionNotModelLevelEvaluable(null, "f(3 + 4)");
 	}
 	
 	@Test
@@ -282,7 +298,7 @@ public class ModelLevelEvaluationTest extends SysMLInteractiveTest {
 		        "attribute x {@Annotation;}");
 		
 		AnnotatingFeature feature = checkAnnotatingFeature(instance, "Annotation", "x");
-		assertEquals(feature, evaluateSingleValue(instance, feature, "self"));		
+		assertEquals(feature, evaluateSingleValue(instance, feature, "Base::Anything::self"));		
 	}
 	
 	@Test

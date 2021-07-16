@@ -44,17 +44,17 @@ import org.omg.sysml.lang.sysml.LiteralExpression
 import org.omg.sysml.lang.sysml.NullExpression
 import org.omg.sysml.lang.sysml.ElementFilterMembership
 import org.omg.sysml.lang.sysml.MetadataFeatureValue
+import org.omg.sysml.lang.sysml.ItemFlow
 import org.omg.sysml.util.TypeUtil
 import org.omg.sysml.util.ElementUtil
-import org.omg.kerml.xtext.scoping.KerMLScopeProvider
 import org.omg.sysml.util.ExpressionUtil
+import org.omg.sysml.util.FeatureUtil
+import org.omg.sysml.util.NamespaceUtil
 import org.omg.sysml.lang.sysml.Import
 import com.google.inject.Inject
 import org.eclipse.xtext.scoping.IScopeProvider
 import org.omg.sysml.lang.sysml.util.ISysMLScope
 import org.eclipse.emf.ecore.EClass
-import org.omg.sysml.lang.sysml.ItemFlow
-import org.omg.sysml.util.FeatureUtil
 
 /**
  * This class contains custom validation rules. 
@@ -188,7 +188,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 	@Check
 	def checkFeatureReferenceExpression(FeatureReferenceExpression e) {
 		val feature = ExpressionUtil.getReferentFor(e)
-		val rel = KerMLScopeProvider.relativeNamespace(e)
+		val rel = NamespaceUtil.getRelativeNamespaceFor(e)
 		if (feature !== null &&
 			(!(feature instanceof Feature) || 
 				rel instanceof Type &&
@@ -226,9 +226,9 @@ class KerMLValidator extends AbstractKerMLValidator {
 		for (var i = 0; i < relatedFeatures.size; i++) {
 			val relatedFeature = relatedFeatures.get(i)
 			if (!(relatedFeature.featuringType.empty || 
-				cFeaturingTypes.isEmpty? relatedFeature.isFeaturedWithin(null):
 				cFeaturingTypes.exists[featuringType |
-					relatedFeature.featuringType.exists[f | featuringType.conformsTo(f)]])) {
+					relatedFeature.featuringType.exists[f | featuringType.conformsTo(f)]] ||
+				location instanceof FeatureReferenceExpression && relatedFeature.getOwningType() == location)) {
 				warning(INVALID_CONNECTOR_END__CONTEXT_MSG, 
 					if (location === c && i < connectorEnds.size) connectorEnds.get(i) else location, 
 					null, INVALID_CONNECTOR_END__CONTEXT)
@@ -274,7 +274,9 @@ class KerMLValidator extends AbstractKerMLValidator {
 	@Check
 	def checkImplicitBindingConnectors(Type type) {
 		TypeUtil.forEachImplicitBindingConnectorOf(type, [connector, kind | 
-			// connector.doCheckConnector(type, kind) 
+			if (type instanceof FeatureReferenceExpression) {
+				connector.doCheckConnector(type, kind) 
+			}
 			connector.doCheckBindingConnector(type)
 		])
 	}

@@ -25,10 +25,15 @@ import java.util.function.Supplier;
 import java.util.stream.Stream;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.xtext.EcoreUtil2;
 import org.omg.sysml.adapter.NamespaceAdapter;
 import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.Expression;
+import org.omg.sysml.lang.sysml.FeatureReferenceExpression;
+import org.omg.sysml.lang.sysml.InvocationExpression;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
+import org.omg.sysml.lang.sysml.PathStepExpression;
 import org.omg.sysml.lang.sysml.SysMLFactory;
 
 public class NamespaceUtil {
@@ -63,6 +68,58 @@ public class NamespaceUtil {
 		NamespaceAdapter adapter = (NamespaceAdapter)ElementUtil.getElementAdapter(namespace);
 		EList<Membership> membership = adapter.getImportedMembership();
 		return membership == null? adapter.setImportedMembership(supplier.get()): membership;
+	}
+	
+	public static Namespace getParentNamespaceOf(Element element) {
+		return element == null? null:
+			EcoreUtil2.getContainerOfType(element.eContainer(), Namespace.class);
+	}
+	
+	public static Namespace getNonExpressionNamespaceFor(Element element) {
+		if (element == null) {
+			return null;
+		} else {
+			Namespace namespace = getParentNamespaceOf(element);
+			while (namespace instanceof InvocationExpression || 
+				   namespace instanceof FeatureReferenceExpression
+			) {
+				namespace = getParentNamespaceOf(namespace);
+			}
+			return namespace;
+		}
+	}
+	
+	private static Namespace getFeatureRefNamespaceFor(PathStepExpression pathStep) {
+		EList<Expression> ops = pathStep.getOperand();
+		if (ops.size() >= 2) {
+			Expression op2 = ops.get(1);
+			if (op2 instanceof FeatureReferenceExpression) {
+				return ((FeatureReferenceExpression)op2).getReferent();
+			}
+		}
+		return null;
+	}
+
+	public static Namespace getRelativeNamespaceFor(Namespace ns) {
+		Namespace rel = null;
+		if (ns instanceof FeatureReferenceExpression) {
+			Element oe = ns.getOwner();
+			if (oe instanceof PathStepExpression) {
+				EList<Expression> ops = ((PathStepExpression)oe).getOperand();
+				if (ops.size() >= 2) {
+					Expression op1 = ops.get(0);
+					if (op1 != ns) {
+						if (op1 instanceof PathStepExpression) {
+							rel = getFeatureRefNamespaceFor((PathStepExpression)op1);
+						} else {
+							ElementUtil.transform(op1);
+							rel = op1.getResult();
+						}
+					}
+				}
+			}
+		}
+		return rel;
 	}
 	
 }

@@ -7,6 +7,7 @@ XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLTests
        	File {from ="/library.kernel/Occurrences.kerml"}
        	File {from ="/library.kernel/Objects.kerml"}
 		File {from ="/library.kernel/BaseFunctions.kerml"}
+		File {from ="/library.kernel/ControlFunctions.kerml"}
 		File {from ="/library.kernel/Performances.kerml"}
 		File {from ="/library.kernel/ControlPerformances.kerml"}
 		File {from ="/library.kernel/TransitionPerformances.kerml"}
@@ -31,6 +32,7 @@ XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLTests
 		       	File {from ="/library.kernel/Occurrences.kerml"}
 		       	File {from ="/library.kernel/Objects.kerml"}
 				File {from ="/library.kernel/BaseFunctions.kerml"}
+				File {from ="/library.kernel/ControlFunctions.kerml"}
 				File {from ="/library.kernel/Performances.kerml"}
 				File {from ="/library.kernel/ControlPerformances.kerml"}
 				File {from ="/library.kernel/TransitionPerformances.kerml"}
@@ -69,7 +71,7 @@ package AnalysisTest {
 			subject = result;
 		}
 		
-		return ref result = v::m;
+		return ref result = v.m;
 	}
 	
 	analysis def AnalysisPlan {

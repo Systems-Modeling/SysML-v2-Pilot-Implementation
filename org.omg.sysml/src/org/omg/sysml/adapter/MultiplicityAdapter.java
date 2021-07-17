@@ -24,6 +24,7 @@ package org.omg.sysml.adapter;
 import java.util.Collections;
 import java.util.List;
 
+import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Multiplicity;
 import org.omg.sysml.lang.sysml.Type;
 
@@ -44,7 +45,7 @@ public class MultiplicityAdapter extends FeatureAdapter {
 	}
 	
 	@Override
-	protected List<Multiplicity> getRelevantFeatures(Type type) {
+	protected List<Multiplicity> getRelevantFeatures(Type type, Element skip) {
 		return Collections.emptyList();
 	}
 	

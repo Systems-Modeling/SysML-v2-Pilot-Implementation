@@ -222,7 +222,9 @@ public class FeatureUtil {
 		EList<FeatureChaining> featureChainings = feature.getOwnedFeatureChaining();
 		return featureChainings.isEmpty()? null: featureChainings.get(featureChainings.size()-1).getChainingFeature();
 	}
-
+	
+	
+	
 	// Steps
 	
 	public static boolean isPerformanceFeature(Feature step) {

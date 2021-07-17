@@ -49,7 +49,7 @@ public class ItemFlowFeatureAdapter extends FeatureAdapter {
 	}
 
 	@Override
-	protected List<? extends Feature> getRelevantFeatures(Type type) {
+	protected List<? extends Feature> getRelevantFeatures(Type type, Element skip) {
 		return type instanceof ItemFlowEnd? type.getOwnedFeature():
 				Collections.singletonList((Feature)getLibraryType(ITEM_FLOW_INPUT_OUTPUT_FEATURES[getEndIndex()]));
 	}

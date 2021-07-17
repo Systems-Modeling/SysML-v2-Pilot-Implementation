@@ -107,7 +107,7 @@ public class InvocationExpressionAdapter extends ExpressionAdapter {
 		Expression target = getTarget();
 		Type type = getExpressionType();
 		int m = type == null ? 0 : 
-			(int)TypeUtil.getAllParametersOf(target).stream().
+			(int)TypeUtil.getAllParametersOf(target, null).stream().
 				filter(FeatureUtil::isInputParameter).count();
 		List<Feature> features = target.getOwnedFeature();
 		int n = features.size();

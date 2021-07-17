@@ -60,7 +60,7 @@ package VehicleModel {
                 }
                 attribute fuelMassMax :> ISQ::mass;
                 assert constraint {
-                    fuel::fuelMass <= fuelMassMax
+                    fuel.fuelMass <= fuelMassMax
                 }
             }
             part def Road {
@@ -218,13 +218,13 @@ package VehicleModel {
             package PartsTree {
                 part vehicle_a: Vehicle {
                     attribute mass redefines Vehicle::mass =
-                        dryMass + cargoMass + fuelTank::fuel::fuelMass;
+                        dryMass + cargoMass + fuelTank.fuel.fuelMass;
                     attribute dryMass redefines Vehicle::dryMass = sum(partMasses);
                     attribute redefines Vehicle::cargoMass = 0;
                     attribute partMasses = (
-                        fuelTank::mass,
-                        frontAxleAssembly::mass,
-                        rearAxleAssembly::mass
+                        fuelTank.mass,
+                        frontAxleAssembly.mass,
+                        rearAxleAssembly.mass
                     );
                     part fuelTank: FuelTank {
                         attribute redefines mass = 75 [kg];
@@ -253,16 +253,16 @@ package VehicleModel {
             package PartsTree {
                 part vehicle_b: Vehicle {
                     attribute mass redefines Vehicle::mass =
-                        dryMass + cargoMass + fuelTank::fuel::fuelMass;
+                        dryMass + cargoMass + fuelTank.fuel.fuelMass;
                     attribute dryMass redefines Vehicle::dryMass = sum(partMasses);
                     attribute redefines Vehicle::cargoMass = 0;
                     attribute partMasses = (
-                        fuelTank::mass,
-                        frontAxleAssembly::mass,
-                        rearAxleAssembly::mass,
-                        engine::mass,
-                        transmission::mass,
-                        driveshaft::mass
+                        fuelTank.mass,
+                        frontAxleAssembly.mass,
+                        rearAxleAssembly.mass,
+                        engine.mass,
+                        transmission.mass,
+                        driveshaft.mass
                     );
                     port redefines fuelCmdPort {
                         in item redefines fuelCmd;
@@ -502,7 +502,7 @@ package VehicleModel {
 							 * to the required mass.*/
 							/* Assume total mass includes a full tank of gas*/
 							attribute redefines massRequired = 2000;
-							attribute redefines massActual = vehicle::mass;
+							attribute redefines massActual = vehicle.mass;
 						}
 						requirement id '2' vehicleFuelEconomyRequirements {
 							doc /* fuel economy requirements group */
@@ -572,8 +572,8 @@ package VehicleModel {
 				require vehicleSpecification::vehicleFuelEconomyRequirements;
 			}
 			action straightLineDynamics {
-				in power: PowerValue = vehicle_b::engine::peakHorsePower;
-				in mass: MassValue = vehicle_b::mass;
+				in power: PowerValue = vehicle_b.engine.peakHorsePower;
+				in mass: MassValue = vehicle_b.mass;
 				in delta_t: TimeValue;
 				in x_in: LengthValue;
 				in v_in: SpeedValue;

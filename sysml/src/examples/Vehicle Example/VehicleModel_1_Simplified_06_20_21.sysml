@@ -91,7 +91,7 @@ package sfriedenthal_VehicleModel_1_simplified{
                     attribute :>> fuelMass;
                 }
                 attribute fuelMassMax:>ISQ::mass;
-                assert constraint {fuel::fuelMass<=fuelMassMax}
+                assert constraint {fuel.fuelMass<=fuelMassMax}
                 port fuelOutPort:FuelPort;
             }
             part def BodyAssy;
@@ -182,8 +182,8 @@ package sfriedenthal_VehicleModel_1_simplified{
             attribute def OverTemp;
             attribute def ReturnToNormal;
             // the following are work arounds until time events and change events are available
-            attribute def 'at(vehicle::maintenanceTime)';
-            attribute def 'when(temp>vehicle::Tmax)';
+            attribute def 'at(vehicle.maintenanceTime)';
+            attribute def 'when(temp>vehicle.Tmax)';
             attribute def SensedSpeed:>Real;
             attribute def SetSpeed:>Real;
         }
@@ -377,11 +377,11 @@ package sfriedenthal_VehicleModel_1_simplified{
         package VehicleConfiguration_a{
             package PartsTree{
                 part vehicle_a:Vehicle{
-                    attribute mass redefines Vehicle::mass=dryMass+cargoMass+fuelTank::fuel::fuelMass;
+                    attribute mass redefines Vehicle::mass=dryMass+cargoMass+fuelTank.fuel.fuelMass;
                     attribute dryMass redefines Vehicle::dryMass=sum(partMasses);
                     attribute redefines Vehicle::cargoMass=0;
                     attribute partMasses [*] nonunique :>ISQ::mass;
-                    //attribute partMasses={fuelTank::mass,frontAxleAssembly::mass,rearAxleAssembly::mass};
+                    //attribute partMasses={fuelTank.mass,frontAxleAssembly.mass,rearAxleAssembly.mass};
                     part fuelTank:FuelTank{
                         attribute redefines mass=75[kg];
                         ref item redefines fuel{
@@ -410,10 +410,10 @@ package sfriedenthal_VehicleModel_1_simplified{
         package VehicleConfiguration_b{
             package PartsTree{
                 part vehicle_b : Vehicle{
-                    attribute mass redefines mass=dryMass+cargoMass+fuelTank::fuel::fuelMass;
+                    attribute mass redefines mass=dryMass+cargoMass+fuelTank.fuel.fuelMass;
                     attribute dryMass redefines dryMass=sum(partMasses);
                     attribute redefines cargoMass=0;
-                    attribute partMasses=(fuelTank::mass,frontAxleAssembly::mass,rearAxleAssembly::mass,engine::mass,transmission::mass,driveshaft::mass);
+                    attribute partMasses=(fuelTank.mass,frontAxleAssembly.mass,rearAxleAssembly.mass,engine.mass,transmission.mass,driveshaft.mass);
                     attribute avgFuelEconomy :> distancePerVolume;
                     port fuelCmdPort: FuelCmdPort redefines pwrCmdPort {
                         in item redefines fuelCmd;
@@ -504,13 +504,13 @@ package sfriedenthal_VehicleModel_1_simplified{
                         part alternator{
                             action generateElectricity;
                         }
-                        satisfy Requirements::engineSpecification by vehicle_b::engine{
+                        satisfy Requirements::engineSpecification by vehicle_b.engine{
                             //subject engine1 = vehicle_b::engine;
                             requirement torqueGenerationRequirement :>> torqueGenerationRequirement{
-                                subject generateTorque redefines generateTorque = vehicle_b::engine::generateTorque;
+                                subject generateTorque redefines generateTorque = vehicle_b.engine.generateTorque;
                             }
                             requirement drivePowerOuputRequirement :>> drivePowerOutputRequirement{
-                                port torqueOutPort redefines torqueOutPort=vehicle_b::engine::drivePwrPort;
+                                port torqueOutPort redefines torqueOutPort=vehicle_b.engine.drivePwrPort;
                             }
                         } 
                     }
@@ -578,7 +578,7 @@ package sfriedenthal_VehicleModel_1_simplified{
                     // assert the vehicle features (e.g, mass, reliability) satisfy the requirements
                     satisfy Requirements::vehicleSpecification by vehicle_b{
                         requirement vehicleMassRequirement:>>vehicleMassRequirement{
-                            attribute redefines massActual=vehicle_b::mass;
+                            attribute redefines massActual=vehicle_b.mass;
                         }
                     }
                 }
@@ -586,7 +586,7 @@ package sfriedenthal_VehicleModel_1_simplified{
             package ActionTree{
                 action providePower:ProvidePower{
                     in item fuelCmd:FuelCmd redefines pwrCmd;
-                    out wheelToRoadTorque redefines wheelToRoadTorque [2] = distributeTorque::wheelToRoadTorque;
+                    out wheelToRoadTorque redefines wheelToRoadTorque [2] = distributeTorque.wheelToRoadTorque;
                     // No successions (control flows) between these actions, because the
                     // flows between them are continuous streams.
                     action generateTorque:GenerateTorque {
@@ -633,7 +633,7 @@ package sfriedenthal_VehicleModel_1_simplified{
                             // was vehicle::providePower;
                             do vehicle::providePower;
                             exit vehicle::applyParkingBrake;
-                            constraint {vehicle::electricalPower<=500[W]}
+                            constraint {vehicle.electricalPower<=500[W]}
                         }
 
                         transition initial then off;
@@ -641,7 +641,7 @@ package sfriedenthal_VehicleModel_1_simplified{
                         transition 'off-starting'
                             first off
                             accept VehicleStartSignal
-                            if vehicle::brakePedalDepressed
+                            if vehicle.brakePedalDepressed
                             do send StartSignal() to controller
                             then starting;
 
@@ -669,12 +669,12 @@ package sfriedenthal_VehicleModel_1_simplified{
 
                         transition 'normal-maintenance'
                             first normal
-                            accept 'at(vehicle::maintenanceTime)'
+                            accept 'at(vehicle.maintenanceTime)'
                             then maintenance;
 
                         transition 'normal-degraded'
                             first normal
-                            accept 'when(temp>vehicle::Tmax)' 
+                            accept 'when(temp>vehicle.Tmax)' 
                             do send OverTemp() to controller
                             then degraded;
 
@@ -762,7 +762,7 @@ package sfriedenthal_VehicleModel_1_simplified{
                         doc /* The total mass of a vehicle shall be less than or equal to the required mass. */
                         /* Assume total mass includes a full tank of gas*/
                         attribute redefines massRequired=2000 [kg];
-                        attribute redefines massActual = vehicle::mass;
+                        attribute redefines massActual = vehicle.mass;
                     }
                     requirement id '2' vehicleFuelEconomyRequirements{
                         doc /* fuel economy requirements group */
@@ -781,7 +781,7 @@ package sfriedenthal_VehicleModel_1_simplified{
                 requirement engineSpecification {
                     subject engine1:Engine;
                     requirement torqueGenerationRequirement : TorqueGenerationRequirement{
-                        subject generateTorque = engine1::generateTorque;
+                        subject generateTorque = engine1.generateTorque;
                     }
 
                     requirement drivePowerOutputRequirement : DrivePowerOutputRequirement{
@@ -984,7 +984,7 @@ package sfriedenthal_VehicleModel_1_simplified{
             calc def TraveledDistance(scenario: Scenario) distance:> length;
             calc def IdlingFuelConsumptionPerTime(engine: Engine) f_a : Real {
                 attribute idlingFuelConsumptionPerDisplacement: Real = 0.5;
-                engine::displacement * idlingFuelConsumptionPerDisplacement
+                engine.displacement * idlingFuelConsumptionPerDisplacement
             }
 
             attribute specificGravityOfGasoline: Real = 0.76;
@@ -1023,9 +1023,9 @@ package sfriedenthal_VehicleModel_1_simplified{
                 
                 attribute distance = TraveledDistance(scenario);
                 attribute tpd_avg = AverageTravelTimePerDistance(scenario);
-                attribute bsfc = ComputeBSFC(vehicle_b::engine);
-                attribute f_a = BestFuelConsumptionPerDistance(vehicle_b::mass, bsfc, tpd_avg, distance);
-                attribute f_b = IdlingFuelConsumptionPerTime(vehicle_b::engine);
+                attribute bsfc = ComputeBSFC(vehicle_b.engine);
+                attribute f_a = BestFuelConsumptionPerDistance(vehicle_b.mass, bsfc, tpd_avg, distance);
+                attribute f_b = IdlingFuelConsumptionPerTime(vehicle_b.engine);
 
                 //return attribute calculatedFuelEconomy:KilometersPerLitre=FuelConsumption(f_a, f_b, tpd_avg) ;
                 return attribute calculatedFuelEconomy:>distancePerVolume=FuelConsumption(f_a, f_b, tpd_avg);
@@ -1088,11 +1088,11 @@ package sfriedenthal_VehicleModel_1_simplified{
                 // Use the following if the evaluation function is different for each alternative
                 calc :> objectiveFunction{
                     in part vehicle:>vehicle_b_engine4cyl;
-                    return attribute eval:Real=EngineEvaluation_4cyl (vehicle::engine::mass, vehicle::engine::peakHorsePower, vehicle::engine::fuelEfficiency, vehicle::engine::cost); 
+                    return attribute eval:Real=EngineEvaluation_4cyl (vehicle.engine.mass, vehicle.engine.peakHorsePower, vehicle.engine.fuelEfficiency, vehicle.engine.cost); 
                 }
                 calc :> objectiveFunction{
                     in part vehicle:>vehicle_b_engine6cyl;
-                    return attribute eval:Real=EngineEvaluation_6cyl (vehicle::engine::mass, vehicle::engine::peakHorsePower, vehicle::engine::fuelEfficiency, vehicle::engine::cost); 
+                    return attribute eval:Real=EngineEvaluation_6cyl (vehicle.engine.mass, vehicle.engine.peakHorsePower, vehicle.engine.fuelEfficiency, vehicle.engine.cost); 
                 }                                                  
                 return part selectedVehicle:>vehicle_b;
             }
@@ -1114,7 +1114,7 @@ package sfriedenthal_VehicleModel_1_simplified{
                 subject = vehicle_b;
                 objective {
                     verify vehicleSpecification::vehicleMassRequirement{
-                        redefines massActual=weighVehicle::massMeasured;
+                        redefines massActual=weighVehicle.massMeasured;
                     }
                 }
                 action weighVehicle (

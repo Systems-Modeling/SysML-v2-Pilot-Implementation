@@ -146,7 +146,7 @@ package '5-State-based Behavior-1a' {
 				transition 'normal-degraded'
 					first normal
 					accept 'when(temp>vehicle.Tmax)' // Should be a change event trigger.
-					do send 'Over Temp'() to vehicle1_c1::vehicleController 
+					do send 'Over Temp'() to vehicle1_c1.vehicleController 
 					then degraded;
 				
 				state maintenance;

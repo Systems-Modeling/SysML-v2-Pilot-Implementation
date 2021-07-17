@@ -21,12 +21,10 @@
 
 package org.omg.sysml.util;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
 import org.omg.sysml.lang.sysml.Connector;
-import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.Namespace;
@@ -98,31 +96,19 @@ public class ConnectorUtil {
 	// Context Type
 	
 	public static Type getContextTypeFor(Connector connector) {
-		return getContextTypeFor(connector, connector.getOwner());
-	}
-
-	public static Type getContextTypeFor(Connector connector, Element owner) {
-		if (!(owner instanceof Type)) {
-			return null;
-		}
-		
-		List<Feature> relatedFeatures = connector.getRelatedFeature();
-		List<Type> cFeaturingTypes = new ArrayList<>();
-		cFeaturingTypes.add((Type)owner);
-		if (owner instanceof Feature) {
-			cFeaturingTypes.addAll(FeatureUtil.getAllFeaturingTypesOf((Feature)owner));
-		}
-		
-		List<Type> commonFeaturingTypes = new ArrayList<>();
-		commonFeaturingTypes.addAll(cFeaturingTypes);
-		for (Feature relatedFeature: relatedFeatures) {
+		List<Type> commonFeaturingTypes = null;
+		for (Feature relatedFeature: connector.getRelatedFeature()) {
 			List<Type> featuringTypes = FeatureUtil.getAllFeaturingTypesOf(relatedFeature);
-			if (!(featuringTypes.isEmpty())) {
+			if (commonFeaturingTypes == null) {
+				commonFeaturingTypes = featuringTypes;
+			} else {
 				commonFeaturingTypes.removeIf(t->
-					featuringTypes.stream().noneMatch(f->TypeUtil.conforms(t, f)));
+					featuringTypes.stream().noneMatch(f->
+						TypeUtil.conforms(f, t) || TypeUtil.conforms(t, f)));
 			}
 		}
-		return commonFeaturingTypes.isEmpty()? null: commonFeaturingTypes.get(0);
+		return commonFeaturingTypes == null || commonFeaturingTypes.isEmpty()? 
+				null: commonFeaturingTypes.get(0);
 	}
 
 }

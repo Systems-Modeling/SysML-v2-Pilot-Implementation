@@ -46,7 +46,7 @@ package CollectionFunctions {
 		private feature n : Natural[1] = arr.rank;
 		
 		// Assumes row-major ordering for elements.
-		private function index(arr: Array[1], i : Natural, indexes : Positive[1..n]) {
+		private function index(arr: Array[1], i : Natural, indexes : Positive[1..*]) {
 			i <= 1? indexes[1]: arr.dimensions[i] * (index(arr, i-1, indexes) - 1) + indexes[i]
 		}
 		

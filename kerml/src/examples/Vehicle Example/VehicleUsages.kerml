@@ -43,7 +43,7 @@ package VehicleUsages {
 	}
 	
 	/** Specialized configuration with part-specific ports. **/
-	feature vehicle_C2 redefines vehicle_C1 {
+	feature vehicle_C2 subsets vehicle_C1 {
 		composite frontAxleAssembly redefines vehicle_C1::frontAxleAssembly {
 			composite leftFrontWheel subsets vehicle_C1::frontAxleAssembly::frontWheel = vehicle_C1::frontAxleAssembly::frontWheel[1] {
 				composite hub: VehicleDefinitions::WheelHubIF;
@@ -86,7 +86,7 @@ package VehicleUsages {
 	}
 	
 	/** Further specialized configuration with a connector to a deeply-nested feature. **/
-	feature vehicle_C3 redefines vehicle_C2 {
+	feature vehicle_C3 subsets vehicle_C2 {
 		composite transmission: Transmission {
 			out feature drive: DriveIF;
 		}

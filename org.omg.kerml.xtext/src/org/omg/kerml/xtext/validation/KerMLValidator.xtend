@@ -56,6 +56,13 @@ import org.eclipse.xtext.scoping.IScopeProvider
 import org.omg.sysml.lang.sysml.util.ISysMLScope
 import org.eclipse.emf.ecore.EClass
 import org.omg.sysml.lang.sysml.FeatureChaining
+import org.omg.sysml.lang.sysml.Expression
+import org.omg.sysml.lang.sysml.Subsetting
+import org.omg.sysml.lang.sysml.MultiplicityRange
+import org.omg.sysml.lang.sysml.Redefinition
+import org.omg.sysml.lang.sysml.LiteralInfinity
+import org.omg.sysml.lang.sysml.LiteralInteger
+import org.omg.sysml.lang.sysml.ItemFlowFeature
 
 /**
  * This class contains custom validation rules. 
@@ -64,6 +71,13 @@ import org.omg.sysml.lang.sysml.FeatureChaining
  */
 class KerMLValidator extends AbstractKerMLValidator {
 
+	public static val INVALID_MULTIPLICITY_ILLEGALLOWERBOUND = 'Invalid Multiplicity - Illegal lower bound'
+	public static val INVALID_SUBSETTING_OWNINGTYPECONFORMANCE = 'Invalid Subsetting - OwningType conformance'
+	public static val INVALID_REDEFINITION_OWNINGTYPECONFORMANCE = 'Invalid Redefinition - OwningType conformance'
+	public static val INVALID_SUBSETTING_MULTIPLICITYCONFORMANCE = 'Invalid Subsetting - Multiplicity conformance'
+	public static val INVALID_REDEFINITION_MULTIPLICITYCONFORMANCE = 'Invalid Redefinition - Multiplicity conformance'
+	public static val INVALID_SUBSETTING_UNIQUENESS_CONFORMANCE = 'Invalid Subsetting - Uniqueness conformance'
+	
 	public static val INVALID_CONNECTOR_END__CONTEXT = 'Invalid Connector end - Context'
 	public static val INVALID_CONNECTOR_END__CONTEXT_MSG = "Should be an accessible feature (use dot notation for nesting)"
 	public static val INVALID_BINDINGCONNECTOR__ARGUMENT_TYPE = 'Invalid BindingConnector - Argument type conformance'
@@ -310,6 +324,92 @@ class KerMLValidator extends AbstractKerMLValidator {
 		}
 	}
 	
+	@Check
+	def checkSubsettingConformance(Subsetting sub) { 
+		
+		var subsettingOwningType = sub.subsettingFeature?.owningType
+		var subsettedOwningType = sub.subsettedFeature?.owningType
+		
+		// Due to how connector is implemented, no validation is performed if the owner is a Connector.
+		if ( subsettingOwningType instanceof Connector || subsettedOwningType instanceof Connector ) 
+			return;
+
+		// Multiplicity conformance
+		
+		var setted_m = sub.subsettedFeature?.multiplicity
+		var setting_m = sub.subsettingFeature?.multiplicity
+		var Expression setting_m_l = null;
+		var Expression setting_m_u = null;
+		
+		// Only check multiplicity conformance if the subsettingFeature owns its multiplicity element, 
+		// and the subsettingFeature and subsettedFeature either both are, or both are not, end Features.
+		if (setted_m instanceof MultiplicityRange && setting_m instanceof MultiplicityRange && setting_m.owningNamespace === sub.subsettingFeature &&
+			sub.subsettingFeature.isEnd() == sub.subsettedFeature.isEnd()) {
+			var setted_m_l = (setted_m as MultiplicityRange)?.lowerBound
+			var setted_m_u = (setted_m as MultiplicityRange)?.upperBound
+			
+			setting_m_l = (setting_m as MultiplicityRange)?.lowerBound
+			setting_m_u = (setting_m as MultiplicityRange)?.upperBound
+			
+			// Lower bound (only check if the Subsetting is a Redefinition): setting must be >= setted
+			if (sub instanceof Redefinition) {
+				if (setting_m_l instanceof LiteralInteger && setted_m_l instanceof LiteralInteger && (setting_m_l as LiteralInteger).getValue < (setted_m_l as LiteralInteger).getValue) {
+					warning("Redefining feature should not have smaller multiplicity lower bound", sub, 
+						SysMLPackage.eINSTANCE.redefinition_RedefiningFeature, INVALID_REDEFINITION_MULTIPLICITYCONFORMANCE)
+				}
+			}
+			
+			// Upper bound: setting must be <= setted
+			if (setting_m_u instanceof LiteralInfinity && !(setted_m_u instanceof LiteralInfinity) ||
+				setting_m_u instanceof LiteralInteger && setted_m_u instanceof LiteralInteger && (setting_m_u as LiteralInteger).getValue > (setted_m_u as LiteralInteger).getValue) {
+				warning("Subsetting/redefining feature should not have larger multiplicity upper bound", sub, 
+						SysMLPackage.eINSTANCE.subsetting_SubsettingFeature, INVALID_SUBSETTING_MULTIPLICITYCONFORMANCE)
+			}
+		}
+
+		// Uniqueness conformance
+		if (sub.subsettedFeature !== null && sub.subsettedFeature.unique && sub.subsettingFeature !== null && !sub.subsettingFeature.unique){
+			if (setting_m_u instanceof LiteralInfinity || (setting_m_u as LiteralInteger).getValue > 1) {//less than or equal to 1 is ok
+				warning("Subsetting/redefining feature should not be nonunique if subsetted/redefined feature is unique", sub, 
+						SysMLPackage.eINSTANCE.subsetting_SubsettingFeature, INVALID_SUBSETTING_UNIQUENESS_CONFORMANCE)
+			}
+		}
+					
+		// Featuring type conformance
+		val subsettingFeature = sub.subsettingFeature
+		var subsettedFeature = sub.subsettedFeature
+		if (!subsettedFeature.ownedFeatureChaining.isEmpty) {
+			subsettedFeature = subsettedFeature.ownedFeatureChaining.last.chainingFeature
+		}
+		if (subsettingFeature !== null && subsettedFeature !== null) {
+			val subsettingFeaturingTypes = sub.subsettingFeature.featuringType
+			val subsettedFeaturingTypes = sub.subsettedFeature.featuringType
+			if (sub instanceof Redefinition && sub.subsettedFeature.owningRelationship != sub &&
+				subsettedFeaturingTypes.containsAll(subsettingFeaturingTypes) && 
+				subsettedFeaturingTypes.size == subsettingFeaturingTypes.size){
+				if (subsettingFeaturingTypes.isEmpty) {
+					warning("A package-level feature should not be redefined", sub, 
+						SysMLPackage.eINSTANCE.redefinition_RedefinedFeature, INVALID_REDEFINITION_OWNINGTYPECONFORMANCE)
+				} else {
+					warning("Owner of redefining feature should not be the same as owner of redefined feature", sub, 
+						SysMLPackage.eINSTANCE.redefinition_RedefinedFeature, INVALID_REDEFINITION_OWNINGTYPECONFORMANCE)
+				}
+			}
+			else if (!subsettedFeaturingTypes.isEmpty() && 
+					!subsettedFeaturingTypes.forall[t | 
+						subsettingFeaturingTypes.exists[ f | 
+							f.conformsTo(t) || f instanceof Feature && (f as Feature).isFeaturedWithin(t)]]) {
+				if (subsettingFeature instanceof ItemFlowFeature) {
+					error("Must be an accessible feature (use dot notation for nesting)", sub, 
+					SysMLPackage.eINSTANCE.subsetting_SubsettedFeature, INVALID_SUBSETTING_OWNINGTYPECONFORMANCE)
+				} else {
+					warning("Must be an accessible feature (use dot notation for nesting)", sub, 
+					SysMLPackage.eINSTANCE.subsetting_SubsettedFeature, INVALID_SUBSETTING_OWNINGTYPECONFORMANCE)
+				}
+			}
+		}
+	}
+
 	//return related subtypes
 	protected def Iterable<Type> conformsFrom(Type supertype, List<Type> subtypes) 
 	{

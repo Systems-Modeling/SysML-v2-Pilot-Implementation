@@ -187,7 +187,7 @@ package 'Vehicle Analysis Demo' {
 					vehicle.driveTrainEfficiency == 0.4
 				}
 				
-				require fuelEconomyRequirement {
+				require fuelEconomyRequirement { 
 					:>> actualFuelEconomy = calculatedFuelEconomy;
 				}
 			}

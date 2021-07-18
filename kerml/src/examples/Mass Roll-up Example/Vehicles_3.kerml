@@ -9,7 +9,7 @@ package Vehicles_3 {
 		feature subparts is carParts;	
 	}
 	
-	composite feature carParts: CarPart[0..*] redefines massedThings;
+	composite feature carParts: CarPart[0..*] subsets massedThings;
 	
 	feature vehicle subsets carParts {	
 		feature vin redefines serialNumber;

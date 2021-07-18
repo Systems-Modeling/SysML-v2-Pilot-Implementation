@@ -22,9 +22,8 @@ END_SETUP
 //Current implemention import from the first src package(A).
 package test{
 	import SamePackage::container::*;
-	feature something1 redefines A{}
-	//pass junit test
-	// XPECT errors at A --> "Couldn't resolve reference to Feature 'B'." at "B"
-	feature something2 redefines B{}
+	alias something1 for A;
+	// XPECT errors at A --> "Couldn't resolve reference to Element 'B'." at "B"
+	alias something2 for B;
 }
 

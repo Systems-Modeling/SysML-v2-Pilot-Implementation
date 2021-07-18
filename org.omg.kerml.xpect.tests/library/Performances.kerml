@@ -28,34 +28,34 @@ package Performances {
 		/**
 		 * Suboccurrences of this performance that are also performances.
 		 */
-		step subperformances: Performance[0..*] nonunique subsets performances, suboccurrences;
+		step subperformances: Performance[0..*] subsets performances, suboccurrences;
 		
 		/**
 		 * Subperformances of this performance that are evaluations.
 		 */
-		expr subevaluations: Evaluation[0..*] nonunique subsets evaluations, subperformances;
+		expr subevaluations: Evaluation[0..*] subsets evaluations, subperformances;
 		
 		/**
 		 * Subevaluations of this performance that are boolean evaluations.
 		 */
-		expr subBooleanEvaluations: BooleanEvaluation[0..*] nonunique subsets booleanEvaluations, subevaluations;
+		expr subBooleanEvaluations: BooleanEvaluation[0..*] subsets booleanEvaluations, subevaluations;
 		
 		/**
 		 * Subperformances of this performance that are transfers.
 		 */
-		step subtransfers: Transfers::Transfer[0..*] nonunique subsets Transfers::transfers, subperformances;
+		step subtransfers: Transfers::Transfer[0..*] subsets Transfers::transfers, subperformances;
 		
 		/**
 		 * Subtransfers of this performance that are transfers-before.
 		 */
-		step subtransfersBefore: Transfers::TransferBefore[0..*] nonunique subsets Transfers::transfersBefore, subtransfers;
+		step subtransfersBefore: Transfers::TransferBefore[0..*] subsets Transfers::transfersBefore, subtransfers;
 	}
 	
 	/**
 	 * Evaluation is the most general class of functions that may be evaluated to compute
 	 * a result.
 	 */
-	abstract function Evaluation specializes Performance () result: Anything[0..*];
+	abstract function Evaluation specializes Performance () result: Anything[0..*] nonunique;
 	
 	/**
 	 * BooleanEvaluation is a specialization of Evaluation that is the most general class of
@@ -78,16 +78,16 @@ package Performances {
 	 * involvedObject.
 	 */
 	assoc Involves specializes BinaryLinkObject {
-		end feature involvingPerformance: Performance[0..*] redefines Object::involvingPerformances, BinaryLinkObject::source;
-		end feature involvedObject: Object[0..*] redefines Performance::involvedObjects, BinaryLinkObject::target;
+		end feature involvingPerformance: Performance[0..*] redefines involvedObject.involvingPerformances, source;
+		end feature involvedObject: Object[0..*] redefines involvingPerformance.involvedObjects, target;
 	}
 	
 	/**
 	 * Performance asserts that the performer enacts the behavior carried out by the performance.
 	 */
 	 assoc Performs specializes Involves {
-	 	end feature performer: Object[0..*] redefines Involves::involvedObject, Performance::performers;
-	 	end feature performance: Performance[0..*] redefines Involves::involvingPerformance subsets Object::enactedPerformances;
+	 	end feature performerObject: Object[0..*] redefines involvedObject, performance.performers;
+	 	end feature performance: Performance[0..*] redefines involvingPerformance subsets performerObject.enactedPerformances;
 	 }
 	
 	/**

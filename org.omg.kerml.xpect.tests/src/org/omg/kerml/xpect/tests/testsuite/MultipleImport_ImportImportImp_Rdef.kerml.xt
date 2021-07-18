@@ -45,7 +45,7 @@ package test{
 	   											 OuterPackage2.B.self,  OuterPackage2.B.b.self,  OuterPackage2.B.b.a1.self,  
 		   										 OuterPackage2.C.self,  OuterPackage2.C.b.self,  OuterPackage2.C.b.a1.self,  OuterPackage2.C.c.self, 
 	--- */
-	feature Test redefines C {
+	feature Test subsets C {
 		//XPECT linkedName at b --> OuterPackage.B.b
 		//* XPECT scope at b ---
 		   B.b.a1, C.b.a1, test.B.b.a1, test.C.b.a1,

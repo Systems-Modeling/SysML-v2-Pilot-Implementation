@@ -40,7 +40,7 @@ package test{
  		   test.test_alias.self,  test.test_alias.a.self,   
  		   PackageAlias1.A.self,  PackageAlias1.A.a.self,  PackageAlias1.A.a_alias.self,  PackageAlias1.AA.self,  PackageAlias1.AA.aa.self,  PackageAlias1.AA.aa_alias.self, 
 		   --- */
-	feature test_a redefines A{} //rename test_A to test_a because xpect linking and scoping throw RuntimeError
+	feature test_a subsets A{} //rename test_A to test_a because xpect linking and scoping throw RuntimeError
 	
 	//XPECT linkedName at A_alias --> PackageAlias1.A
 	//* XPECT scope at A_alias ---
@@ -61,5 +61,5 @@ package test{
  		   test.test_alias.self,  test.test_alias.a.self,   
  		   PackageAlias1.A.self,  PackageAlias1.A.a.self,  PackageAlias1.A.a_alias.self,  PackageAlias1.AA.self,  PackageAlias1.AA.aa.self,  PackageAlias1.AA.aa_alias.self, 
  		   --- */
-	feature test_alias redefines A_alias{}
+	feature test_alias subsets A_alias{}
 }

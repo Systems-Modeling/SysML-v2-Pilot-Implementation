@@ -21,7 +21,7 @@ END_SETUP
 //xpect link and scope tests ommitted because same as SimpleImportTestsFromOtherFile.import2
 package test {
 	import OuterPackage::*;
-	feature Try redefines B{
+	feature Try subsets B{
 		feature try redefines b redefines B::b;
 	}
 }

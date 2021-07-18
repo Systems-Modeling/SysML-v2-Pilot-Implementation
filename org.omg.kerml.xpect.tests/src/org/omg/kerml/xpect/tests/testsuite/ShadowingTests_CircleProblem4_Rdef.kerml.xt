@@ -19,8 +19,8 @@ END_SETUP
 
 // XPECT noErrors ---> ""
 package Test1{
-	//XPECT linkedName at A::B --> Test1.A.B
-	//* XPECT scope at A::B ---
+	//XPECT linkedName at B --> Test1.A.B
+	//* XPECT scope at A.B ---
 	   	   A.B.B, Test1.A.B.B, A.B.B.b, A.B.B.b.b, Test1.A.B.B.b, Test1.A.B.B.b.b,
 	       A.B.b, A.B.b.B.b, A.B.b.b, A.b, 
 	   	   A.B.b.B, Test1.A.B.b.B,
@@ -31,8 +31,9 @@ package Test1{
 	   	   A.B.b.B.self,  Test1.A.B.b.B.self, 
 		   A.self,  A.B.self,  Test1.A.self,  Test1.A.B.self,  Test1.A.B.b.self,       OuterPackage.B.b.self, 
 		   OuterPackage.A.self,  OuterPackage.A.a1.self,  OuterPackage.B.self,  OuterPackage.B.b.a1.self, 
+		   B, B.B, B.B.b, B.B.b.b, B.B.b.self, B.B.self, B.b, B.b.B, B.b.B.b, B.b.B.self, B.b.b, B.b.self, B.self, b, self,
 	--- */
-	feature A redefines A::B {
+	feature A subsets A.B {
 		feature B {
 			import A::*;
 			//* XPECT scope at B ---

@@ -21,8 +21,10 @@
 
 package org.omg.sysml.adapter;
 
+import org.omg.sysml.lang.sysml.ActionDefinition;
+import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.AssertConstraintUsage;
-
+import org.omg.sysml.lang.sysml.Type;
 
 public class AssertConstraintUsageAdapter extends ConstraintUsageAdapter {
 
@@ -36,9 +38,15 @@ public class AssertConstraintUsageAdapter extends ConstraintUsageAdapter {
 	
 	@Override
 	protected String getDefaultSupertype() {
-		return isEnactedPerformance()?
-				getDefaultSupertype("enactedPerformance"):
-				super.getDefaultSupertype();
+		return getTarget().isNegated()?
+				getDefaultSupertype("negated"):
+				getDefaultSupertype("base");						
+	}
+	
+	@Override
+	public boolean isSubperformance() {
+		Type owningType = getTarget().getOwningType();
+		return owningType instanceof ActionDefinition || owningType instanceof ActionUsage;
 	}
 	
 }

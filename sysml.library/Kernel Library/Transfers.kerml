@@ -56,7 +56,7 @@ package Transfers {
 		/**
 		 * The output of the items from the sourceOutput.
 		 */
-		connector sourceOutputLink: BinaryLinkObject[1..*] from Transfer::source.sourceOutput to item[1..*];
+		connector sourceOutputLink: BinaryLinkObject[1..*] from Transfer::source.sourceOutput[1] to item[1..*];
 		
 		/**
 		 * The input of the items to the targetInput.

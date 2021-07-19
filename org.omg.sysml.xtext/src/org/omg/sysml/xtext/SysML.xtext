@@ -1779,23 +1779,11 @@ ConstraintUsage returns SysML::ConstraintUsage :
 ;
 
 AssertConstraintUsage returns SysML::AssertConstraintUsage :
-	OccurrenceUsagePrefix 'assert'
+	OccurrenceUsagePrefix 'assert' ( isNegated ?= 'not' )?
     ( ownedRelationship += OwnedSubsetting FeatureSpecializationPart?
     | ConstraintUsageKeyword UsageDeclaration? 
     )
-    CalculationUsageParameterPart? InvariantPart CalculationBody
-;
-
-fragment InvariantPart returns SysML::Invariant :
-	ownedRelationship += TrueLiteralMember
-;
-
-TrueLiteralMember returns SysML::FeatureMembership :
-	ownedRelatedElement += TrueLiteralExpression // ownedMemberFeature = TrueLiteralExpression
-;
-
-TrueLiteralExpression returns SysML::LiteralBoolean :
-	{SysML::LiteralBoolean}
+    CalculationUsageParameterPart? CalculationBody
 ;
 
 /* REQUIREMENTS */
@@ -1875,13 +1863,13 @@ RequirementUsage returns SysML::RequirementUsage :
 ;
 
 SatisfyRequirementUsage returns SysML::SatisfyRequirementUsage :
-	OccurrenceUsagePrefix 'satisfy'
+	OccurrenceUsagePrefix ( isNegated ?= 'not' )? 'satisfy' 
 	( ownedRelationship += OwnedSubsetting FeatureSpecializationPart?
     | RequirementUsageKeyword UsageDeclaration? 
     )
     ( ValuePart | ActionUsageParameterList )?
     ( 'by' ownedRelationship += SatisfactionConnectorMember )?
-    InvariantPart RequirementBody
+    RequirementBody
 ;
 
 SatisfactionConnectorMember returns SysML::Membership :

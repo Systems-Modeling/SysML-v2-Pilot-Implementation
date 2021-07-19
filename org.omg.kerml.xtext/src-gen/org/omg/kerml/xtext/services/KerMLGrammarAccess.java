@@ -5961,19 +5961,22 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final RuleCall cFeaturePrefixParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
 		private final Keyword cInvKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final RuleCall cExpressionDeclarationParserRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
-		private final RuleCall cInvariantPartParserRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
+		private final Alternatives cAlternatives_2 = (Alternatives)cGroup.eContents().get(2);
+		private final Keyword cTrueKeyword_2_0 = (Keyword)cAlternatives_2.eContents().get(0);
+		private final Assignment cIsNegatedAssignment_2_1 = (Assignment)cAlternatives_2.eContents().get(1);
+		private final Keyword cIsNegatedFalseKeyword_2_1_0 = (Keyword)cIsNegatedAssignment_2_1.eContents().get(0);
+		private final RuleCall cExpressionDeclarationParserRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
 		private final RuleCall cFunctionBodyParserRuleCall_4 = (RuleCall)cGroup.eContents().get(4);
 		
 		///* Invariants */
 		//Invariant returns SysML::Invariant :
-		//    FeaturePrefix 'inv'
-		//    ExpressionDeclaration InvariantPart FunctionBody
+		//    FeaturePrefix 'inv' ( 'true' | isNegated ?= 'false' )?
+		//    ExpressionDeclaration FunctionBody
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//FeaturePrefix 'inv'
-		//ExpressionDeclaration InvariantPart FunctionBody
+		//FeaturePrefix 'inv' ( 'true' | isNegated ?= 'false' )?
+		//ExpressionDeclaration FunctionBody
 		public Group getGroup() { return cGroup; }
 		
 		//FeaturePrefix
@@ -5982,58 +5985,23 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//'inv'
 		public Keyword getInvKeyword_1() { return cInvKeyword_1; }
 		
-		//ExpressionDeclaration
-		public RuleCall getExpressionDeclarationParserRuleCall_2() { return cExpressionDeclarationParserRuleCall_2; }
+		//( 'true' | isNegated ?= 'false' )?
+		public Alternatives getAlternatives_2() { return cAlternatives_2; }
 		
-		//InvariantPart
-		public RuleCall getInvariantPartParserRuleCall_3() { return cInvariantPartParserRuleCall_3; }
+		//'true'
+		public Keyword getTrueKeyword_2_0() { return cTrueKeyword_2_0; }
+		
+		//isNegated ?= 'false'
+		public Assignment getIsNegatedAssignment_2_1() { return cIsNegatedAssignment_2_1; }
+		
+		//'false'
+		public Keyword getIsNegatedFalseKeyword_2_1_0() { return cIsNegatedFalseKeyword_2_1_0; }
+		
+		//ExpressionDeclaration
+		public RuleCall getExpressionDeclarationParserRuleCall_3() { return cExpressionDeclarationParserRuleCall_3; }
 		
 		//FunctionBody
 		public RuleCall getFunctionBodyParserRuleCall_4() { return cFunctionBodyParserRuleCall_4; }
-	}
-	public class InvariantPartElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.InvariantPart");
-		private final Assignment cOwnedRelationshipAssignment = (Assignment)rule.eContents().get(1);
-		private final RuleCall cOwnedRelationshipTrueLiteralMemberParserRuleCall_0 = (RuleCall)cOwnedRelationshipAssignment.eContents().get(0);
-		
-		//fragment InvariantPart returns SysML::Invariant :
-		//    ownedRelationship += TrueLiteralMember
-		//;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//ownedRelationship += TrueLiteralMember
-		public Assignment getOwnedRelationshipAssignment() { return cOwnedRelationshipAssignment; }
-		
-		//TrueLiteralMember
-		public RuleCall getOwnedRelationshipTrueLiteralMemberParserRuleCall_0() { return cOwnedRelationshipTrueLiteralMemberParserRuleCall_0; }
-	}
-	public class TrueLiteralMemberElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.TrueLiteralMember");
-		private final Assignment cOwnedRelatedElementAssignment = (Assignment)rule.eContents().get(1);
-		private final RuleCall cOwnedRelatedElementTrueLiteralExpressionParserRuleCall_0 = (RuleCall)cOwnedRelatedElementAssignment.eContents().get(0);
-		
-		//TrueLiteralMember returns SysML::FeatureMembership :
-		//    ownedRelatedElement += TrueLiteralExpression // ownedMemberFeature = TrueLiteralExpression
-		//;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//ownedRelatedElement += TrueLiteralExpression
-		public Assignment getOwnedRelatedElementAssignment() { return cOwnedRelatedElementAssignment; }
-		
-		//TrueLiteralExpression
-		public RuleCall getOwnedRelatedElementTrueLiteralExpressionParserRuleCall_0() { return cOwnedRelatedElementTrueLiteralExpressionParserRuleCall_0; }
-	}
-	public class TrueLiteralExpressionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.TrueLiteralExpression");
-		private final Action cLiteralBooleanAction = (Action)rule.eContents().get(1);
-		
-		//TrueLiteralExpression returns SysML::LiteralBoolean :
-		//    {SysML::LiteralBoolean}
-		//;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//{SysML::LiteralBoolean}
-		public Action getLiteralBooleanAction() { return cLiteralBooleanAction; }
 	}
 	public class InteractionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.Interaction");
@@ -6700,9 +6668,6 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	private final PredicateDeclarationElements pPredicateDeclaration;
 	private final BooleanExpressionElements pBooleanExpression;
 	private final InvariantElements pInvariant;
-	private final InvariantPartElements pInvariantPart;
-	private final TrueLiteralMemberElements pTrueLiteralMember;
-	private final TrueLiteralExpressionElements pTrueLiteralExpression;
 	private final InteractionElements pInteraction;
 	private final ItemFlowElements pItemFlow;
 	private final SuccessionItemFlowElements pSuccessionItemFlow;
@@ -6876,9 +6841,6 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		this.pPredicateDeclaration = new PredicateDeclarationElements();
 		this.pBooleanExpression = new BooleanExpressionElements();
 		this.pInvariant = new InvariantElements();
-		this.pInvariantPart = new InvariantPartElements();
-		this.pTrueLiteralMember = new TrueLiteralMemberElements();
-		this.pTrueLiteralExpression = new TrueLiteralExpressionElements();
 		this.pInteraction = new InteractionElements();
 		this.pItemFlow = new ItemFlowElements();
 		this.pSuccessionItemFlow = new SuccessionItemFlowElements();
@@ -8802,8 +8764,8 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	
 	///* Invariants */
 	//Invariant returns SysML::Invariant :
-	//    FeaturePrefix 'inv'
-	//    ExpressionDeclaration InvariantPart FunctionBody
+	//    FeaturePrefix 'inv' ( 'true' | isNegated ?= 'false' )?
+	//    ExpressionDeclaration FunctionBody
 	//;
 	public InvariantElements getInvariantAccess() {
 		return pInvariant;
@@ -8811,39 +8773,6 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	
 	public ParserRule getInvariantRule() {
 		return getInvariantAccess().getRule();
-	}
-	
-	//fragment InvariantPart returns SysML::Invariant :
-	//    ownedRelationship += TrueLiteralMember
-	//;
-	public InvariantPartElements getInvariantPartAccess() {
-		return pInvariantPart;
-	}
-	
-	public ParserRule getInvariantPartRule() {
-		return getInvariantPartAccess().getRule();
-	}
-	
-	//TrueLiteralMember returns SysML::FeatureMembership :
-	//    ownedRelatedElement += TrueLiteralExpression // ownedMemberFeature = TrueLiteralExpression
-	//;
-	public TrueLiteralMemberElements getTrueLiteralMemberAccess() {
-		return pTrueLiteralMember;
-	}
-	
-	public ParserRule getTrueLiteralMemberRule() {
-		return getTrueLiteralMemberAccess().getRule();
-	}
-	
-	//TrueLiteralExpression returns SysML::LiteralBoolean :
-	//    {SysML::LiteralBoolean}
-	//;
-	public TrueLiteralExpressionElements getTrueLiteralExpressionAccess() {
-		return pTrueLiteralExpression;
-	}
-	
-	public ParserRule getTrueLiteralExpressionRule() {
-		return getTrueLiteralExpressionAccess().getRule();
 	}
 	
 	///* INTERACTIONS */

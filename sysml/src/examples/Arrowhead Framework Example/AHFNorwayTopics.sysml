@@ -65,7 +65,7 @@ package AHFNorway {
 			// Call apisp::APIS_HTTP::giveItems(in allitems: String = "All the items", out ackback:Boolean);
 			
 			state TellUbehavior{
-				entry send Call(apisp.APIS_HTTP.giveItems, "All the items") to apisp.APIS_HTTP.cll;
+				entry send Call(apisp.APIS_HTTP.giveItems, "All the items") to apisp.APIS_HTTP;
 				then Wait;
 				state Wait;
 					accept rs:Result
@@ -86,17 +86,19 @@ package AHFNorway {
 			attribute x:Boolean;
 			
 			// Defining the method to correspond to GiveItems
-			action def REST_giveItems :> GiveItems (in apisc:APIS_DD, in itms:String, out ack:Boolean)
-			 { /* Forward itms and return an ack */
+			action def REST_giveItems :> GiveItems (in itms:String, out ack:Boolean, in apisc:APIS_DD)
+			 {  /* Forward itms and return an ack */
 			 	first start;
-			 	then send Return_AllItems(itms) to apisc.APIS_MQTT.retall;
+			 	then send Return_AllItems(itms) to apisc.APIS_MQTT;
 			 	success = true;
 			 	bind ack = success;
 			 }
-			action rest_giveItems:REST_giveItems :> ServiceMethod(apisc);
+			action rest_giveItems:REST_giveItems :> ServiceMethod {
+				in :>> apisc = APISProducer::apisc;
+			}
 			
 			state APISPbehavior{
-				entry send Publish("Return_AllItems") to apisc.APIS_MQTT.retall;
+				entry send Publish("Return_AllItems") to apisc.APIS_MQTT;
 				then WaitOnData;
 				// initialize the asynchronous communication with MQTT
 				state WaitOnData;
@@ -104,7 +106,7 @@ package AHFNorway {
 					do action {
 						first start;
 						then action rest_giveItems(in itms=cl.payload,out ack=x);
-						then send Result(x) to tellu.APIS_HTTP.retrn;
+						then send Result(x) to tellu.APIS_HTTP;
 					}
 				then done;
 				
@@ -120,7 +122,7 @@ package AHFNorway {
 			
 			// Now sending signal to the remote behavior through the port functionality
 			state MQTT_APISP {
-				entry send Subscribe("Return_AllItems") to apisp.APIS_MQTT.subscr; 
+				entry send Subscribe("Return_AllItems") to apisp.APIS_MQTT; 
 				then Idle;		
 				state Idle;
 					accept Return_AllItems for apisp.APIS_MQTT.retall
@@ -154,7 +156,7 @@ package AHFNorway {
  				
  				state Idle;
  					accept retrnall:Return_AllItems for getTopic.APIS_MQTT.retall
- 					do send retrnall to giveTopic.APIS_MQTT.retall
+ 					do send retrnall to giveTopic.APIS_MQTT
  				then Idle;
  			} 			
  		}

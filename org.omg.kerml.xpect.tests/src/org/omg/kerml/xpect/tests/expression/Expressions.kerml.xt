@@ -63,8 +63,10 @@ package Expressions {
 			succession decrement then update;
 			step update : FeatureAccessPerformances::FeatureWritePerformance {
 				inout redefines replacementValues = decrement.v_decr;
-				in redefines onOccurrence = w::self {
-					feature redefines accessedFeature redefines v;
+				in redefines onOccurrence : w = w::self {
+					feature redefines startingAt {
+						feature redefines accessedFeature redefines v;
+					}
 				}
 			}
 		}

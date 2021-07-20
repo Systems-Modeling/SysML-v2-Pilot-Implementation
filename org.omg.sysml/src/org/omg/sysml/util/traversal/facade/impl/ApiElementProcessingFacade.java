@@ -1,6 +1,6 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2019-2020 Model Driven Solutions, Inc.
+ * Copyright (c) 2019-2021 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -63,6 +63,7 @@ public class ApiElementProcessingFacade implements ElementProcessingFacade {
 	public static final String DEFAULT_BASE_PATH = "http://sysml2-dev.intercax.com:9000";
 	
 	private static final int ELEMENTS_PER_DOT = 100;
+	private static final int DOTS_PER_LINE = 50;
 	
 	private final ApiClient apiClient = new ApiClient();
 	private final ProjectApi projectApi = new ProjectApi(apiClient);
@@ -73,6 +74,7 @@ public class ApiElementProcessingFacade implements ElementProcessingFacade {
 	
 	private boolean isVerbose = false;
 	private int elementCount = 0;
+	private int dotCount = "Processing".length();
 	
 	private final List<ElementVersion> changeSet = new ArrayList<>();
 
@@ -153,7 +155,7 @@ public class ApiElementProcessingFacade implements ElementProcessingFacade {
 	 * @return	the UUID of the project saved in the repository
 	 */
 	public String getProjectId() {
-		return this.project.getId().toString();
+		return this.project.getAtId().toString();
 	}
 	
 	/**
@@ -236,7 +238,7 @@ public class ApiElementProcessingFacade implements ElementProcessingFacade {
 			}
 		}
 		return new ElementVersion().data(apiElement).
-				identity(new ElementIdentity().id(UUID.fromString(element.getIdentifier())));
+				identity(new ElementIdentity().atId(UUID.fromString(element.getIdentifier())));
 	}
 	
 	/**
@@ -276,6 +278,11 @@ public class ApiElementProcessingFacade implements ElementProcessingFacade {
 			if (elementCount == ELEMENTS_PER_DOT) {
 				System.out.print(".");
 				elementCount = 0;
+				dotCount++;
+				if (dotCount == DOTS_PER_LINE) {
+					System.out.println();
+					dotCount = 0;
+				}
 			}
 			elementCount++;
 		}
@@ -306,8 +313,8 @@ public class ApiElementProcessingFacade implements ElementProcessingFacade {
 //			System.out.println(new org.omg.sysml.JSON().serialize(commit));
 			int n = changeSet.size();
 			System.out.print("\nPosting Commit (" + n + " element" + (n == 1? ")...": "s)..."));
-			commit = this.commitApi.postCommitByProject(this.project.getId(), commit, null);
-			System.out.println(commit.getId());
+			commit = this.commitApi.postCommitByProject(this.project.getAtId(), commit, null);
+			System.out.println(commit.getAtId());
 		} catch (ApiException e) {
 			System.out.println("\nError: " + e.getCode() + " " + e.getMessage());
 		}

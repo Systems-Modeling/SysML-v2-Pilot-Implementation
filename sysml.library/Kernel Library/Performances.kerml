@@ -8,47 +8,44 @@ package Performances {
 	private import Occurrences::occurrences;
 	private import Objects::Object;
 	private import Objects::BinaryLinkObject;
+	private import Transfers::transfers;
+	private import Transfers::transfersBefore;
 	
 	/**
-	 * Performance is the most general class of behavioral occurrences that may be performed over time.
+	 * Performance is the most general class of behavioral Occurrences that may be performed over time.
 	 */
 	abstract behavior Performance specializes Occurrence () {
 		feature self: Performance redefines Occurrence::self;
 		
 		/**
-		 * Objects that are involved in this performance.
+		 * Objects that are involved in this Performance.
 		 */
 		feature involvedObjects: Object[0..*];
 		
 		/**
-		 * Objects that enact this performance.
+		 * Objects that enact this Performance.
 		 */
 		feature performers: Object[0..*] subsets involvedObjects;
 		
 		/**
-		 * Suboccurrences of this performance that are also performances.
+		 * suboccurrences of this Performance that are also Performances.
 		 */
 		step subperformances: Performance[0..*] subsets performances, suboccurrences;
 		
 		/**
-		 * Subperformances of this performance that are evaluations.
+		 * subperformances of this Performance that are Evaluations.
 		 */
 		expr subevaluations: Evaluation[0..*] subsets evaluations, subperformances;
 		
 		/**
-		 * Subevaluations of this performance that are boolean evaluations.
+		 * subperformances of this performance that are transfers.
 		 */
-		expr subBooleanEvaluations: BooleanEvaluation[0..*] subsets booleanEvaluations, subevaluations;
+		step subtransfers: Transfers::Transfer[0..*] subsets transfers, subperformances;
 		
 		/**
-		 * Subperformances of this performance that are transfers.
-		 */
-		step subtransfers: Transfers::Transfer[0..*] subsets Transfers::transfers, subperformances;
-		
-		/**
-		 * Subtransfers of this performance that are transfers-before.
-		 */
-		step subtransfersBefore: Transfers::TransferBefore[0..*] subsets Transfers::transfersBefore, subtransfers;
+		 * subtransfers of this performance that are transfers-before.
+		 */	
+		step subtransfersBefore: Transfers::TransferBefore[0..*] subsets transfersBefore, subtransfers;
 	}
 	
 	/**
@@ -59,22 +56,22 @@ package Performances {
 	
 	/**
 	 * BooleanEvaluation is a specialization of Evaluation that is the most general class of
-	 * predicates that may be evaluated to produce a Boolean truth value.
+	 * Predicates that may be evaluated to produce a Boolean truth value.
 	 */
 	abstract predicate BooleanEvaluation specializes Evaluation (): ScalarValues::Boolean[1];
 	
 	/**
-	 * LiteralEvaluation is a specialization of Evaluation for the case of literal expressions.
+	 * LiteralEvaluation is a specialization of Evaluation for the case of LiteralExpressions.
 	 */				
 	abstract function LiteralEvaluation specializes Evaluation (): ScalarValues::ScalarValue[1];
 	
 	/**
-	 * NullEvaluation is a specialization of Evaluation for the case of null expressions.
+	 * NullEvaluation is a specialization of Evaluation for the case of NullExpressions.
 	 */
 	function NullEvaluation specializes Evaluation (): Anything[0..0];
 
 	/** 
-	 * Involves asserts that the behavior carried out by the involvingPerformance involves the
+	 * Involves asserts that the Behavior carried out by the involvingPerformance involves the
 	 * involvedObject.
 	 */
 	assoc Involves specializes BinaryLinkObject {
@@ -83,7 +80,7 @@ package Performances {
 	}
 	
 	/**
-	 * Performance asserts that the performer enacts the behavior carried out by the performance.
+	 * Performance asserts that the performer enacts the Behavior carried out by the performance.
 	 */
 	 assoc Performs specializes Involves {
 	 	end feature performerObject: Object[0..*] redefines involvedObject subsets performance.performers;
@@ -91,19 +88,35 @@ package Performances {
 	 }
 	
 	/**
-	 * performances is the most general feature for performances of behaviors.
+	 * performances is the most general feature for performances of Behaviors.
 	 */
 	abstract step performances: Performance[0..*] nonunique subsets occurrences;
 	
 	/**
-	 * evaluations is a specialization of performances for evaluations of functions.
+	 * evaluations is a specialization of performances for evaluations of Functions.
 	 */
 	abstract expr evaluations: Evaluation[0..*] nonunique subsets performances;
 	
 	/**
-	 * booleanEvaluations is a specialization of evaluations for restricted to type BooleanEvaluation.
+	 * booleanEvaluations is a specialization of evaluations restricted to type BooleanEvaluation.
 	 */
 	abstract expr booleanEvaluations: BooleanEvaluation[0..*] nonunique subsets evaluations;
+	
+	/**
+	 * trueEvaluations is a subset of booleanEvaluations that result in true. It is the most general
+	 * feature of invariants that are not negated. 
+	 */
+	abstract expr trueEvaluations :> booleanEvaluations {
+		true
+	}
+	
+	/**
+	 * falseEvaluations is a subset of booleanEvaluations that result in true. It is the most general
+	 * feature of invariants that are negated.
+	 */
+	abstract expr falseEvaluations :> booleanEvaluations {
+		false
+	}
 	
 	/**
 	 * literalEvaluations is a specialization of evaluations restricted to type LiteralEvaluation.

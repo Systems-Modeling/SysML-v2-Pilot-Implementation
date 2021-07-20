@@ -103,6 +103,7 @@ public class KerMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getFunctionBodyAccess().getAlternatives_1_1(), "rule__FunctionBody__Alternatives_1_1");
 			builder.put(grammarAccess.getExpressionDeclarationAccess().getAlternatives_1(), "rule__ExpressionDeclaration__Alternatives_1");
 			builder.put(grammarAccess.getExpressionDeclarationAccess().getAlternatives_1_1_1(), "rule__ExpressionDeclaration__Alternatives_1_1_1");
+			builder.put(grammarAccess.getInvariantAccess().getAlternatives_2(), "rule__Invariant__Alternatives_2");
 			builder.put(grammarAccess.getItemFlowDeclarationAccess().getAlternatives_0(), "rule__ItemFlowDeclaration__Alternatives_0");
 			builder.put(grammarAccess.getItemFlowDeclarationAccess().getAlternatives_0_0_1(), "rule__ItemFlowDeclaration__Alternatives_0_0_1");
 			builder.put(grammarAccess.getItemFeatureAccess().getAlternatives(), "rule__ItemFeature__Alternatives");
@@ -580,8 +581,7 @@ public class KerMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getFunctionBodyAccess().getOwnedRelationshipAssignment_1_2(), "rule__FunctionBody__OwnedRelationshipAssignment_1_2");
 			builder.put(grammarAccess.getResultExpressionMemberAccess().getOwnedRelatedElementAssignment_1(), "rule__ResultExpressionMember__OwnedRelatedElementAssignment_1");
 			builder.put(grammarAccess.getPredicateAccess().getIsAbstractAssignment_0(), "rule__Predicate__IsAbstractAssignment_0");
-			builder.put(grammarAccess.getInvariantPartAccess().getOwnedRelationshipAssignment(), "rule__InvariantPart__OwnedRelationshipAssignment");
-			builder.put(grammarAccess.getTrueLiteralMemberAccess().getOwnedRelatedElementAssignment(), "rule__TrueLiteralMember__OwnedRelatedElementAssignment");
+			builder.put(grammarAccess.getInvariantAccess().getIsNegatedAssignment_2_1(), "rule__Invariant__IsNegatedAssignment_2_1");
 			builder.put(grammarAccess.getInteractionAccess().getIsAbstractAssignment_0(), "rule__Interaction__IsAbstractAssignment_0");
 			builder.put(grammarAccess.getItemFlowDeclarationAccess().getOwnedRelationshipAssignment_0_0_1_0_1(), "rule__ItemFlowDeclaration__OwnedRelationshipAssignment_0_0_1_0_1");
 			builder.put(grammarAccess.getItemFlowDeclarationAccess().getOwnedRelationshipAssignment_0_0_1_1(), "rule__ItemFlowDeclaration__OwnedRelationshipAssignment_0_0_1_1");

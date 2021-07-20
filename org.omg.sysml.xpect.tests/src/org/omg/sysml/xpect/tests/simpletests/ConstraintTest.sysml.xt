@@ -165,4 +165,6 @@ package ConstraintTest {
 		assert constraint { mass == engine.mass + frontAxleAssembly.mass + rearAxleAssembly.mass }
 	}
 	
+	constraint massLimitation (mass : MassValue, massLimit : MassValue) { mass < massLimit }
+	assert not massLimitation (mass = vehicle3.mass, massLimit = vehicle4.mass);
 }

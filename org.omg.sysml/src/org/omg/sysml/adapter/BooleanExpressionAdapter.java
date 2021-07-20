@@ -33,5 +33,5 @@ public class BooleanExpressionAdapter extends ExpressionAdapter {
 	public BooleanExpression getTarget() {
 		return (BooleanExpression)super.getTarget();
 	}
-
+	
 }

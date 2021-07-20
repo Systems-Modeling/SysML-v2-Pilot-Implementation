@@ -7260,63 +7260,17 @@ ruleNaryConnectorDeclaration[EObject in_current]  returns [EObject current=in_cu
 				afterParserOrEnumRuleCall();
 			}
 		)?
-		otherlv_1='('
-		{
-			newLeafNode(otherlv_1, grammarAccess.getNaryConnectorDeclarationAccess().getLeftParenthesisKeyword_1());
-		}
 		(
-			(
-				{
-					newCompositeNode(grammarAccess.getNaryConnectorDeclarationAccess().getOwnedRelationshipConnectorEndMemberParserRuleCall_2_0());
-				}
-				lv_ownedRelationship_2_0=ruleConnectorEndMember
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getNaryConnectorDeclarationRule());
-					}
-					add(
-						$current,
-						"ownedRelationship",
-						lv_ownedRelationship_2_0,
-						"org.omg.kerml.xtext.KerML.ConnectorEndMember");
-					afterParserOrEnumRuleCall();
-				}
-			)
-		)
-		otherlv_3=','
-		{
-			newLeafNode(otherlv_3, grammarAccess.getNaryConnectorDeclarationAccess().getCommaKeyword_3());
-		}
-		(
-			(
-				{
-					newCompositeNode(grammarAccess.getNaryConnectorDeclarationAccess().getOwnedRelationshipConnectorEndMemberParserRuleCall_4_0());
-				}
-				lv_ownedRelationship_4_0=ruleConnectorEndMember
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getNaryConnectorDeclarationRule());
-					}
-					add(
-						$current,
-						"ownedRelationship",
-						lv_ownedRelationship_4_0,
-						"org.omg.kerml.xtext.KerML.ConnectorEndMember");
-					afterParserOrEnumRuleCall();
-				}
-			)
-		)
-		(
-			otherlv_5=','
+			otherlv_1='('
 			{
-				newLeafNode(otherlv_5, grammarAccess.getNaryConnectorDeclarationAccess().getCommaKeyword_5_0());
+				newLeafNode(otherlv_1, grammarAccess.getNaryConnectorDeclarationAccess().getLeftParenthesisKeyword_1_0());
 			}
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getNaryConnectorDeclarationAccess().getOwnedRelationshipConnectorEndMemberParserRuleCall_5_1_0());
+						newCompositeNode(grammarAccess.getNaryConnectorDeclarationAccess().getOwnedRelationshipConnectorEndMemberParserRuleCall_1_1_0());
 					}
-					lv_ownedRelationship_6_0=ruleConnectorEndMember
+					lv_ownedRelationship_2_0=ruleConnectorEndMember
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getNaryConnectorDeclarationRule());
@@ -7324,17 +7278,65 @@ ruleNaryConnectorDeclaration[EObject in_current]  returns [EObject current=in_cu
 						add(
 							$current,
 							"ownedRelationship",
-							lv_ownedRelationship_6_0,
+							lv_ownedRelationship_2_0,
 							"org.omg.kerml.xtext.KerML.ConnectorEndMember");
 						afterParserOrEnumRuleCall();
 					}
 				)
 			)
-		)*
-		otherlv_7=')'
-		{
-			newLeafNode(otherlv_7, grammarAccess.getNaryConnectorDeclarationAccess().getRightParenthesisKeyword_6());
-		}
+			otherlv_3=','
+			{
+				newLeafNode(otherlv_3, grammarAccess.getNaryConnectorDeclarationAccess().getCommaKeyword_1_2());
+			}
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getNaryConnectorDeclarationAccess().getOwnedRelationshipConnectorEndMemberParserRuleCall_1_3_0());
+					}
+					lv_ownedRelationship_4_0=ruleConnectorEndMember
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getNaryConnectorDeclarationRule());
+						}
+						add(
+							$current,
+							"ownedRelationship",
+							lv_ownedRelationship_4_0,
+							"org.omg.kerml.xtext.KerML.ConnectorEndMember");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+			(
+				otherlv_5=','
+				{
+					newLeafNode(otherlv_5, grammarAccess.getNaryConnectorDeclarationAccess().getCommaKeyword_1_4_0());
+				}
+				(
+					(
+						{
+							newCompositeNode(grammarAccess.getNaryConnectorDeclarationAccess().getOwnedRelationshipConnectorEndMemberParserRuleCall_1_4_1_0());
+						}
+						lv_ownedRelationship_6_0=ruleConnectorEndMember
+						{
+							if ($current==null) {
+								$current = createModelElementForParent(grammarAccess.getNaryConnectorDeclarationRule());
+							}
+							add(
+								$current,
+								"ownedRelationship",
+								lv_ownedRelationship_6_0,
+								"org.omg.kerml.xtext.KerML.ConnectorEndMember");
+							afterParserOrEnumRuleCall();
+						}
+					)
+				)
+			)*
+			otherlv_7=')'
+			{
+				newLeafNode(otherlv_7, grammarAccess.getNaryConnectorDeclarationAccess().getRightParenthesisKeyword_1_5());
+			}
+		)?
 	)
 ;
 

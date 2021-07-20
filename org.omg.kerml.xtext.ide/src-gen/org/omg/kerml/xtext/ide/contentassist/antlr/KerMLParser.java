@@ -260,7 +260,8 @@ public class KerMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getBinaryConnectorDeclarationAccess().getGroup_0_0(), "rule__BinaryConnectorDeclaration__Group_0_0__0");
 			builder.put(grammarAccess.getBinaryConnectorDeclarationAccess().getGroup_0_1(), "rule__BinaryConnectorDeclaration__Group_0_1__0");
 			builder.put(grammarAccess.getNaryConnectorDeclarationAccess().getGroup(), "rule__NaryConnectorDeclaration__Group__0");
-			builder.put(grammarAccess.getNaryConnectorDeclarationAccess().getGroup_5(), "rule__NaryConnectorDeclaration__Group_5__0");
+			builder.put(grammarAccess.getNaryConnectorDeclarationAccess().getGroup_1(), "rule__NaryConnectorDeclaration__Group_1__0");
+			builder.put(grammarAccess.getNaryConnectorDeclarationAccess().getGroup_1_4(), "rule__NaryConnectorDeclaration__Group_1_4__0");
 			builder.put(grammarAccess.getConnectorEndMemberAccess().getGroup(), "rule__ConnectorEndMember__Group__0");
 			builder.put(grammarAccess.getConnectorEndMemberAccess().getGroup_0(), "rule__ConnectorEndMember__Group_0__0");
 			builder.put(grammarAccess.getConnectorEndAccess().getGroup(), "rule__ConnectorEnd__Group__0");
@@ -538,9 +539,9 @@ public class KerMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getBinaryConnectorDeclarationAccess().getIsSufficientAssignment_0_1_0(), "rule__BinaryConnectorDeclaration__IsSufficientAssignment_0_1_0");
 			builder.put(grammarAccess.getBinaryConnectorDeclarationAccess().getOwnedRelationshipAssignment_1(), "rule__BinaryConnectorDeclaration__OwnedRelationshipAssignment_1");
 			builder.put(grammarAccess.getBinaryConnectorDeclarationAccess().getOwnedRelationshipAssignment_3(), "rule__BinaryConnectorDeclaration__OwnedRelationshipAssignment_3");
-			builder.put(grammarAccess.getNaryConnectorDeclarationAccess().getOwnedRelationshipAssignment_2(), "rule__NaryConnectorDeclaration__OwnedRelationshipAssignment_2");
-			builder.put(grammarAccess.getNaryConnectorDeclarationAccess().getOwnedRelationshipAssignment_4(), "rule__NaryConnectorDeclaration__OwnedRelationshipAssignment_4");
-			builder.put(grammarAccess.getNaryConnectorDeclarationAccess().getOwnedRelationshipAssignment_5_1(), "rule__NaryConnectorDeclaration__OwnedRelationshipAssignment_5_1");
+			builder.put(grammarAccess.getNaryConnectorDeclarationAccess().getOwnedRelationshipAssignment_1_1(), "rule__NaryConnectorDeclaration__OwnedRelationshipAssignment_1_1");
+			builder.put(grammarAccess.getNaryConnectorDeclarationAccess().getOwnedRelationshipAssignment_1_3(), "rule__NaryConnectorDeclaration__OwnedRelationshipAssignment_1_3");
+			builder.put(grammarAccess.getNaryConnectorDeclarationAccess().getOwnedRelationshipAssignment_1_4_1(), "rule__NaryConnectorDeclaration__OwnedRelationshipAssignment_1_4_1");
 			builder.put(grammarAccess.getConnectorEndMemberAccess().getMemberNameAssignment_0_0(), "rule__ConnectorEndMember__MemberNameAssignment_0_0");
 			builder.put(grammarAccess.getConnectorEndMemberAccess().getOwnedRelatedElementAssignment_1(), "rule__ConnectorEndMember__OwnedRelatedElementAssignment_1");
 			builder.put(grammarAccess.getConnectorEndAccess().getOwnedRelationshipAssignment_0(), "rule__ConnectorEnd__OwnedRelationshipAssignment_0");

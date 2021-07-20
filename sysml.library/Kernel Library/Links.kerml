@@ -28,7 +28,7 @@ package Links {
 	 * to be the same.
 	 */
 	assoc SelfLink specializes BinaryLink {
-		end feature thisThing: Anything[1] redefines source subsets sameThing redefines sameThing.self;
+		end feature thisThing: Anything[1] redefines source subsets sameThing, sameThing.self;
 		end feature sameThing: Anything[1] redefines target subsets thisThing;
 	}
 		

@@ -397,7 +397,7 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		if (subsettedFeature !== null) {
 			createNode(parentNode, subsettedFeature, 
 				subsettedFeature._image, subsettedFeature._text, 
-				subsettedFeature.owningRelationship != subsetting
+				true
 			)
 		}
 	}

@@ -78,15 +78,15 @@ package Performances {
 	 * involvedObject.
 	 */
 	assoc Involves specializes BinaryLinkObject {
-		end feature involvingPerformance: Performance[0..*] redefines involvedObject.involvingPerformances, source;
-		end feature involvedObject: Object[0..*] redefines involvingPerformance.involvedObjects, target;
+		end feature involvingPerformance: Performance[0..*] redefines source subsets involvedObject.involvingPerformances;
+		end feature involvedObject: Object[0..*] redefines target subsets involvingPerformance.involvedObjects;
 	}
 	
 	/**
 	 * Performance asserts that the performer enacts the behavior carried out by the performance.
 	 */
 	 assoc Performs specializes Involves {
-	 	end feature performerObject: Object[0..*] redefines involvedObject, performance.performers;
+	 	end feature performerObject: Object[0..*] redefines involvedObject subsets performance.performers;
 	 	end feature performance: Performance[0..*] redefines involvingPerformance subsets performerObject.enactedPerformances;
 	 }
 	

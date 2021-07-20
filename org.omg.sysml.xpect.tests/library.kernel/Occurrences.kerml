@@ -22,7 +22,7 @@ package Occurrences {
 		
 		feature portionOfLife : Life[1] subsets portionOf;
 		
-		feature self : Occurrence[1] redefines Anything::self subsets timeSlices;
+		feature self : Occurrence[1] redefines Anything::self subsets timeSlices, sameLifeOccurrences;
 		feature sameLifeOccurrences : Occurrence[1..*] subsets things;
 		
 		/**

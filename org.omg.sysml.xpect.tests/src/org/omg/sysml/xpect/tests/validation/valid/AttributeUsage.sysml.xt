@@ -40,7 +40,7 @@ package 'Blocks Example' {
 		attribute status : VehicleStatus;
 		attribute b : Boolean;
 		attribute s : String;
-		attribute un: UnlimitedNatural;
+		attribute p: Positive;
 		attribute n: Natural;
 		attribute r: Rational;
 		attribute re: Real;	

@@ -9338,26 +9338,36 @@ ruleInvariant returns [EObject current=null]
 		{
 			newLeafNode(otherlv_1, grammarAccess.getInvariantAccess().getInvKeyword_1());
 		}
+		(
+			otherlv_2='true'
+			{
+				newLeafNode(otherlv_2, grammarAccess.getInvariantAccess().getTrueKeyword_2_0());
+			}
+			    |
+			(
+				(
+					lv_isNegated_3_0='false'
+					{
+						newLeafNode(lv_isNegated_3_0, grammarAccess.getInvariantAccess().getIsNegatedFalseKeyword_2_1_0());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getInvariantRule());
+						}
+						setWithLastConsumed($current, "isNegated", lv_isNegated_3_0 != null, "false");
+					}
+				)
+			)
+		)?
 		{
 			if ($current==null) {
 				$current = createModelElement(grammarAccess.getInvariantRule());
 			}
-			newCompositeNode(grammarAccess.getInvariantAccess().getExpressionDeclarationParserRuleCall_2());
+			newCompositeNode(grammarAccess.getInvariantAccess().getExpressionDeclarationParserRuleCall_3());
 		}
-		this_ExpressionDeclaration_2=ruleExpressionDeclaration[$current]
+		this_ExpressionDeclaration_4=ruleExpressionDeclaration[$current]
 		{
-			$current = $this_ExpressionDeclaration_2.current;
-			afterParserOrEnumRuleCall();
-		}
-		{
-			if ($current==null) {
-				$current = createModelElement(grammarAccess.getInvariantRule());
-			}
-			newCompositeNode(grammarAccess.getInvariantAccess().getInvariantPartParserRuleCall_3());
-		}
-		this_InvariantPart_3=ruleInvariantPart[$current]
-		{
-			$current = $this_InvariantPart_3.current;
+			$current = $this_ExpressionDeclaration_4.current;
 			afterParserOrEnumRuleCall();
 		}
 		{
@@ -9366,100 +9376,10 @@ ruleInvariant returns [EObject current=null]
 			}
 			newCompositeNode(grammarAccess.getInvariantAccess().getFunctionBodyParserRuleCall_4());
 		}
-		this_FunctionBody_4=ruleFunctionBody[$current]
+		this_FunctionBody_5=ruleFunctionBody[$current]
 		{
-			$current = $this_FunctionBody_4.current;
+			$current = $this_FunctionBody_5.current;
 			afterParserOrEnumRuleCall();
-		}
-	)
-;
-
-
-// Rule InvariantPart
-ruleInvariantPart[EObject in_current]  returns [EObject current=in_current]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
-		(
-			{
-				newCompositeNode(grammarAccess.getInvariantPartAccess().getOwnedRelationshipTrueLiteralMemberParserRuleCall_0());
-			}
-			lv_ownedRelationship_0_0=ruleTrueLiteralMember
-			{
-				if ($current==null) {
-					$current = createModelElementForParent(grammarAccess.getInvariantPartRule());
-				}
-				add(
-					$current,
-					"ownedRelationship",
-					lv_ownedRelationship_0_0,
-					"org.omg.kerml.xtext.KerML.TrueLiteralMember");
-				afterParserOrEnumRuleCall();
-			}
-		)
-	)
-;
-
-// Entry rule entryRuleTrueLiteralMember
-entryRuleTrueLiteralMember returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getTrueLiteralMemberRule()); }
-	iv_ruleTrueLiteralMember=ruleTrueLiteralMember
-	{ $current=$iv_ruleTrueLiteralMember.current; }
-	EOF;
-
-// Rule TrueLiteralMember
-ruleTrueLiteralMember returns [EObject current=null]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
-		(
-			{
-				newCompositeNode(grammarAccess.getTrueLiteralMemberAccess().getOwnedRelatedElementTrueLiteralExpressionParserRuleCall_0());
-			}
-			lv_ownedRelatedElement_0_0=ruleTrueLiteralExpression
-			{
-				if ($current==null) {
-					$current = createModelElementForParent(grammarAccess.getTrueLiteralMemberRule());
-				}
-				add(
-					$current,
-					"ownedRelatedElement",
-					lv_ownedRelatedElement_0_0,
-					"org.omg.kerml.xtext.KerML.TrueLiteralExpression");
-				afterParserOrEnumRuleCall();
-			}
-		)
-	)
-;
-
-// Entry rule entryRuleTrueLiteralExpression
-entryRuleTrueLiteralExpression returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getTrueLiteralExpressionRule()); }
-	iv_ruleTrueLiteralExpression=ruleTrueLiteralExpression
-	{ $current=$iv_ruleTrueLiteralExpression.current; }
-	EOF;
-
-// Rule TrueLiteralExpression
-ruleTrueLiteralExpression returns [EObject current=null]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
-		{
-			$current = forceCreateModelElement(
-				grammarAccess.getTrueLiteralExpressionAccess().getLiteralBooleanAction(),
-				$current);
 		}
 	)
 ;

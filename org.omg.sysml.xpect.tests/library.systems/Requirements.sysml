@@ -6,6 +6,8 @@ package Requirements {
 	private import ScalarValues::String;
 	private import ControlFunctions::allTrue;
 	private import Constraints::constraintChecks;
+	private import Constraints::assertedConstraintChecks;
+	private import Constraints::negatedConstraintChecks;
 	private import Parts::Part;
 	private import Parts::parts;
 	private import Actions::Action;
@@ -123,6 +125,16 @@ package Requirements {
 	 * requirementChecks is the base feature of all requirement usages.
 	 */
 	abstract requirement requirementChecks: RequirementCheck[0..*] nonunique :> constraintChecks;
+	
+	/**
+	 * satisfiedRequirementChecks is the subset of requirementChecks for Requirements asserted to be satisfied.
+	 */
+	abstract requirement satisfiedRequirementChecks :> requirementChecks, assertedConstraintChecks;
+
+	/**
+	 * notSatisfiedRequirementChecks is the subset of requirementChecks for Requirements asserted to be not satisfied.
+	 */
+	abstract requirement notSatisfiedRequirementChecks: RequirementCheck[0..*] :> requirementChecks, negatedConstraintChecks;
 	
 	/**
 	 * concernChecks is the base feature of all ConcernUsages.

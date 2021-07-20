@@ -18165,12 +18165,26 @@ ruleAssertConstraintUsage returns [EObject current=null]
 		}
 		(
 			(
+				lv_isNegated_2_0='not'
+				{
+					newLeafNode(lv_isNegated_2_0, grammarAccess.getAssertConstraintUsageAccess().getIsNegatedNotKeyword_2_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getAssertConstraintUsageRule());
+					}
+					setWithLastConsumed($current, "isNegated", lv_isNegated_2_0 != null, "not");
+				}
+			)
+		)?
+		(
+			(
 				(
 					(
 						{
-							newCompositeNode(grammarAccess.getAssertConstraintUsageAccess().getOwnedRelationshipOwnedSubsettingParserRuleCall_2_0_0_0());
+							newCompositeNode(grammarAccess.getAssertConstraintUsageAccess().getOwnedRelationshipOwnedSubsettingParserRuleCall_3_0_0_0());
 						}
-						lv_ownedRelationship_2_0=ruleOwnedSubsetting
+						lv_ownedRelationship_3_0=ruleOwnedSubsetting
 						{
 							if ($current==null) {
 								$current = createModelElementForParent(grammarAccess.getAssertConstraintUsageRule());
@@ -18178,7 +18192,7 @@ ruleAssertConstraintUsage returns [EObject current=null]
 							add(
 								$current,
 								"ownedRelationship",
-								lv_ownedRelationship_2_0,
+								lv_ownedRelationship_3_0,
 								"org.omg.sysml.xtext.SysML.OwnedSubsetting");
 							afterParserOrEnumRuleCall();
 						}
@@ -18189,11 +18203,11 @@ ruleAssertConstraintUsage returns [EObject current=null]
 						if ($current==null) {
 							$current = createModelElement(grammarAccess.getAssertConstraintUsageRule());
 						}
-						newCompositeNode(grammarAccess.getAssertConstraintUsageAccess().getFeatureSpecializationPartParserRuleCall_2_0_1());
+						newCompositeNode(grammarAccess.getAssertConstraintUsageAccess().getFeatureSpecializationPartParserRuleCall_3_0_1());
 					}
-					this_FeatureSpecializationPart_3=ruleFeatureSpecializationPart[$current]
+					this_FeatureSpecializationPart_4=ruleFeatureSpecializationPart[$current]
 					{
-						$current = $this_FeatureSpecializationPart_3.current;
+						$current = $this_FeatureSpecializationPart_4.current;
 						afterParserOrEnumRuleCall();
 					}
 				)?
@@ -18201,7 +18215,7 @@ ruleAssertConstraintUsage returns [EObject current=null]
 			    |
 			(
 				{
-					newCompositeNode(grammarAccess.getAssertConstraintUsageAccess().getConstraintUsageKeywordParserRuleCall_2_1_0());
+					newCompositeNode(grammarAccess.getAssertConstraintUsageAccess().getConstraintUsageKeywordParserRuleCall_3_1_0());
 				}
 				ruleConstraintUsageKeyword
 				{
@@ -18212,11 +18226,11 @@ ruleAssertConstraintUsage returns [EObject current=null]
 						if ($current==null) {
 							$current = createModelElement(grammarAccess.getAssertConstraintUsageRule());
 						}
-						newCompositeNode(grammarAccess.getAssertConstraintUsageAccess().getUsageDeclarationParserRuleCall_2_1_1());
+						newCompositeNode(grammarAccess.getAssertConstraintUsageAccess().getUsageDeclarationParserRuleCall_3_1_1());
 					}
-					this_UsageDeclaration_5=ruleUsageDeclaration[$current]
+					this_UsageDeclaration_6=ruleUsageDeclaration[$current]
 					{
-						$current = $this_UsageDeclaration_5.current;
+						$current = $this_UsageDeclaration_6.current;
 						afterParserOrEnumRuleCall();
 					}
 				)?
@@ -18227,25 +18241,14 @@ ruleAssertConstraintUsage returns [EObject current=null]
 				if ($current==null) {
 					$current = createModelElement(grammarAccess.getAssertConstraintUsageRule());
 				}
-				newCompositeNode(grammarAccess.getAssertConstraintUsageAccess().getCalculationUsageParameterPartParserRuleCall_3());
+				newCompositeNode(grammarAccess.getAssertConstraintUsageAccess().getCalculationUsageParameterPartParserRuleCall_4());
 			}
-			this_CalculationUsageParameterPart_6=ruleCalculationUsageParameterPart[$current]
+			this_CalculationUsageParameterPart_7=ruleCalculationUsageParameterPart[$current]
 			{
-				$current = $this_CalculationUsageParameterPart_6.current;
+				$current = $this_CalculationUsageParameterPart_7.current;
 				afterParserOrEnumRuleCall();
 			}
 		)?
-		{
-			if ($current==null) {
-				$current = createModelElement(grammarAccess.getAssertConstraintUsageRule());
-			}
-			newCompositeNode(grammarAccess.getAssertConstraintUsageAccess().getInvariantPartParserRuleCall_4());
-		}
-		this_InvariantPart_7=ruleInvariantPart[$current]
-		{
-			$current = $this_InvariantPart_7.current;
-			afterParserOrEnumRuleCall();
-		}
 		{
 			if ($current==null) {
 				$current = createModelElement(grammarAccess.getAssertConstraintUsageRule());
@@ -18256,96 +18259,6 @@ ruleAssertConstraintUsage returns [EObject current=null]
 		{
 			$current = $this_CalculationBody_8.current;
 			afterParserOrEnumRuleCall();
-		}
-	)
-;
-
-
-// Rule InvariantPart
-ruleInvariantPart[EObject in_current]  returns [EObject current=in_current]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
-		(
-			{
-				newCompositeNode(grammarAccess.getInvariantPartAccess().getOwnedRelationshipTrueLiteralMemberParserRuleCall_0());
-			}
-			lv_ownedRelationship_0_0=ruleTrueLiteralMember
-			{
-				if ($current==null) {
-					$current = createModelElementForParent(grammarAccess.getInvariantPartRule());
-				}
-				add(
-					$current,
-					"ownedRelationship",
-					lv_ownedRelationship_0_0,
-					"org.omg.sysml.xtext.SysML.TrueLiteralMember");
-				afterParserOrEnumRuleCall();
-			}
-		)
-	)
-;
-
-// Entry rule entryRuleTrueLiteralMember
-entryRuleTrueLiteralMember returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getTrueLiteralMemberRule()); }
-	iv_ruleTrueLiteralMember=ruleTrueLiteralMember
-	{ $current=$iv_ruleTrueLiteralMember.current; }
-	EOF;
-
-// Rule TrueLiteralMember
-ruleTrueLiteralMember returns [EObject current=null]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
-		(
-			{
-				newCompositeNode(grammarAccess.getTrueLiteralMemberAccess().getOwnedRelatedElementTrueLiteralExpressionParserRuleCall_0());
-			}
-			lv_ownedRelatedElement_0_0=ruleTrueLiteralExpression
-			{
-				if ($current==null) {
-					$current = createModelElementForParent(grammarAccess.getTrueLiteralMemberRule());
-				}
-				add(
-					$current,
-					"ownedRelatedElement",
-					lv_ownedRelatedElement_0_0,
-					"org.omg.sysml.xtext.SysML.TrueLiteralExpression");
-				afterParserOrEnumRuleCall();
-			}
-		)
-	)
-;
-
-// Entry rule entryRuleTrueLiteralExpression
-entryRuleTrueLiteralExpression returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getTrueLiteralExpressionRule()); }
-	iv_ruleTrueLiteralExpression=ruleTrueLiteralExpression
-	{ $current=$iv_ruleTrueLiteralExpression.current; }
-	EOF;
-
-// Rule TrueLiteralExpression
-ruleTrueLiteralExpression returns [EObject current=null]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
-		{
-			$current = forceCreateModelElement(
-				grammarAccess.getTrueLiteralExpressionAccess().getLiteralBooleanAction(),
-				$current);
 		}
 	)
 ;
@@ -19158,18 +19071,32 @@ ruleSatisfyRequirementUsage returns [EObject current=null]
 			$current = $this_OccurrenceUsagePrefix_0.current;
 			afterParserOrEnumRuleCall();
 		}
-		otherlv_1='satisfy'
+		(
+			(
+				lv_isNegated_1_0='not'
+				{
+					newLeafNode(lv_isNegated_1_0, grammarAccess.getSatisfyRequirementUsageAccess().getIsNegatedNotKeyword_1_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getSatisfyRequirementUsageRule());
+					}
+					setWithLastConsumed($current, "isNegated", lv_isNegated_1_0 != null, "not");
+				}
+			)
+		)?
+		otherlv_2='satisfy'
 		{
-			newLeafNode(otherlv_1, grammarAccess.getSatisfyRequirementUsageAccess().getSatisfyKeyword_1());
+			newLeafNode(otherlv_2, grammarAccess.getSatisfyRequirementUsageAccess().getSatisfyKeyword_2());
 		}
 		(
 			(
 				(
 					(
 						{
-							newCompositeNode(grammarAccess.getSatisfyRequirementUsageAccess().getOwnedRelationshipOwnedSubsettingParserRuleCall_2_0_0_0());
+							newCompositeNode(grammarAccess.getSatisfyRequirementUsageAccess().getOwnedRelationshipOwnedSubsettingParserRuleCall_3_0_0_0());
 						}
-						lv_ownedRelationship_2_0=ruleOwnedSubsetting
+						lv_ownedRelationship_3_0=ruleOwnedSubsetting
 						{
 							if ($current==null) {
 								$current = createModelElementForParent(grammarAccess.getSatisfyRequirementUsageRule());
@@ -19177,7 +19104,7 @@ ruleSatisfyRequirementUsage returns [EObject current=null]
 							add(
 								$current,
 								"ownedRelationship",
-								lv_ownedRelationship_2_0,
+								lv_ownedRelationship_3_0,
 								"org.omg.sysml.xtext.SysML.OwnedSubsetting");
 							afterParserOrEnumRuleCall();
 						}
@@ -19188,11 +19115,11 @@ ruleSatisfyRequirementUsage returns [EObject current=null]
 						if ($current==null) {
 							$current = createModelElement(grammarAccess.getSatisfyRequirementUsageRule());
 						}
-						newCompositeNode(grammarAccess.getSatisfyRequirementUsageAccess().getFeatureSpecializationPartParserRuleCall_2_0_1());
+						newCompositeNode(grammarAccess.getSatisfyRequirementUsageAccess().getFeatureSpecializationPartParserRuleCall_3_0_1());
 					}
-					this_FeatureSpecializationPart_3=ruleFeatureSpecializationPart[$current]
+					this_FeatureSpecializationPart_4=ruleFeatureSpecializationPart[$current]
 					{
-						$current = $this_FeatureSpecializationPart_3.current;
+						$current = $this_FeatureSpecializationPart_4.current;
 						afterParserOrEnumRuleCall();
 					}
 				)?
@@ -19200,7 +19127,7 @@ ruleSatisfyRequirementUsage returns [EObject current=null]
 			    |
 			(
 				{
-					newCompositeNode(grammarAccess.getSatisfyRequirementUsageAccess().getRequirementUsageKeywordParserRuleCall_2_1_0());
+					newCompositeNode(grammarAccess.getSatisfyRequirementUsageAccess().getRequirementUsageKeywordParserRuleCall_3_1_0());
 				}
 				ruleRequirementUsageKeyword
 				{
@@ -19211,11 +19138,11 @@ ruleSatisfyRequirementUsage returns [EObject current=null]
 						if ($current==null) {
 							$current = createModelElement(grammarAccess.getSatisfyRequirementUsageRule());
 						}
-						newCompositeNode(grammarAccess.getSatisfyRequirementUsageAccess().getUsageDeclarationParserRuleCall_2_1_1());
+						newCompositeNode(grammarAccess.getSatisfyRequirementUsageAccess().getUsageDeclarationParserRuleCall_3_1_1());
 					}
-					this_UsageDeclaration_5=ruleUsageDeclaration[$current]
+					this_UsageDeclaration_6=ruleUsageDeclaration[$current]
 					{
-						$current = $this_UsageDeclaration_5.current;
+						$current = $this_UsageDeclaration_6.current;
 						afterParserOrEnumRuleCall();
 					}
 				)?
@@ -19226,11 +19153,11 @@ ruleSatisfyRequirementUsage returns [EObject current=null]
 				if ($current==null) {
 					$current = createModelElement(grammarAccess.getSatisfyRequirementUsageRule());
 				}
-				newCompositeNode(grammarAccess.getSatisfyRequirementUsageAccess().getValuePartParserRuleCall_3_0());
+				newCompositeNode(grammarAccess.getSatisfyRequirementUsageAccess().getValuePartParserRuleCall_4_0());
 			}
-			this_ValuePart_6=ruleValuePart[$current]
+			this_ValuePart_7=ruleValuePart[$current]
 			{
-				$current = $this_ValuePart_6.current;
+				$current = $this_ValuePart_7.current;
 				afterParserOrEnumRuleCall();
 			}
 			    |
@@ -19238,25 +19165,25 @@ ruleSatisfyRequirementUsage returns [EObject current=null]
 				if ($current==null) {
 					$current = createModelElement(grammarAccess.getSatisfyRequirementUsageRule());
 				}
-				newCompositeNode(grammarAccess.getSatisfyRequirementUsageAccess().getActionUsageParameterListParserRuleCall_3_1());
+				newCompositeNode(grammarAccess.getSatisfyRequirementUsageAccess().getActionUsageParameterListParserRuleCall_4_1());
 			}
-			this_ActionUsageParameterList_7=ruleActionUsageParameterList[$current]
+			this_ActionUsageParameterList_8=ruleActionUsageParameterList[$current]
 			{
-				$current = $this_ActionUsageParameterList_7.current;
+				$current = $this_ActionUsageParameterList_8.current;
 				afterParserOrEnumRuleCall();
 			}
 		)?
 		(
-			otherlv_8='by'
+			otherlv_9='by'
 			{
-				newLeafNode(otherlv_8, grammarAccess.getSatisfyRequirementUsageAccess().getByKeyword_4_0());
+				newLeafNode(otherlv_9, grammarAccess.getSatisfyRequirementUsageAccess().getByKeyword_5_0());
 			}
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getSatisfyRequirementUsageAccess().getOwnedRelationshipSatisfactionConnectorMemberParserRuleCall_4_1_0());
+						newCompositeNode(grammarAccess.getSatisfyRequirementUsageAccess().getOwnedRelationshipSatisfactionConnectorMemberParserRuleCall_5_1_0());
 					}
-					lv_ownedRelationship_9_0=ruleSatisfactionConnectorMember
+					lv_ownedRelationship_10_0=ruleSatisfactionConnectorMember
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getSatisfyRequirementUsageRule());
@@ -19264,24 +19191,13 @@ ruleSatisfyRequirementUsage returns [EObject current=null]
 						add(
 							$current,
 							"ownedRelationship",
-							lv_ownedRelationship_9_0,
+							lv_ownedRelationship_10_0,
 							"org.omg.sysml.xtext.SysML.SatisfactionConnectorMember");
 						afterParserOrEnumRuleCall();
 					}
 				)
 			)
 		)?
-		{
-			if ($current==null) {
-				$current = createModelElement(grammarAccess.getSatisfyRequirementUsageRule());
-			}
-			newCompositeNode(grammarAccess.getSatisfyRequirementUsageAccess().getInvariantPartParserRuleCall_5());
-		}
-		this_InvariantPart_10=ruleInvariantPart[$current]
-		{
-			$current = $this_InvariantPart_10.current;
-			afterParserOrEnumRuleCall();
-		}
 		{
 			if ($current==null) {
 				$current = createModelElement(grammarAccess.getSatisfyRequirementUsageRule());

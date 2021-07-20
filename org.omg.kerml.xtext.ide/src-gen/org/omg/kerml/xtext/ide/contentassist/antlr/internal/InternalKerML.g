@@ -3237,73 +3237,6 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-
-// Rule InvariantPart
-ruleInvariantPart 
-	@init {
-		int stackSize = keepStackSize();
-	}
-	:
-	(
-		{ before(grammarAccess.getInvariantPartAccess().getOwnedRelationshipAssignment()); }
-		(rule__InvariantPart__OwnedRelationshipAssignment)
-		{ after(grammarAccess.getInvariantPartAccess().getOwnedRelationshipAssignment()); }
-	)
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-// Entry rule entryRuleTrueLiteralMember
-entryRuleTrueLiteralMember
-:
-{ before(grammarAccess.getTrueLiteralMemberRule()); }
-	 ruleTrueLiteralMember
-{ after(grammarAccess.getTrueLiteralMemberRule()); } 
-	 EOF 
-;
-
-// Rule TrueLiteralMember
-ruleTrueLiteralMember 
-	@init {
-		int stackSize = keepStackSize();
-	}
-	:
-	(
-		{ before(grammarAccess.getTrueLiteralMemberAccess().getOwnedRelatedElementAssignment()); }
-		(rule__TrueLiteralMember__OwnedRelatedElementAssignment)
-		{ after(grammarAccess.getTrueLiteralMemberAccess().getOwnedRelatedElementAssignment()); }
-	)
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-// Entry rule entryRuleTrueLiteralExpression
-entryRuleTrueLiteralExpression
-:
-{ before(grammarAccess.getTrueLiteralExpressionRule()); }
-	 ruleTrueLiteralExpression
-{ after(grammarAccess.getTrueLiteralExpressionRule()); } 
-	 EOF 
-;
-
-// Rule TrueLiteralExpression
-ruleTrueLiteralExpression 
-	@init {
-		int stackSize = keepStackSize();
-	}
-	:
-	(
-		{ before(grammarAccess.getTrueLiteralExpressionAccess().getLiteralBooleanAction()); }
-		()
-		{ after(grammarAccess.getTrueLiteralExpressionAccess().getLiteralBooleanAction()); }
-	)
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
 // Entry rule entryRuleInteraction
 entryRuleInteraction
 :
@@ -7005,6 +6938,27 @@ rule__ExpressionDeclaration__Alternatives_1_1_1
 		{ before(grammarAccess.getExpressionDeclarationAccess().getEmptyReturnParameterPartParserRuleCall_1_1_1_1()); }
 		ruleEmptyReturnParameterPart
 		{ after(grammarAccess.getExpressionDeclarationAccess().getEmptyReturnParameterPartParserRuleCall_1_1_1_1()); }
+	)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__Invariant__Alternatives_2
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	(
+		{ before(grammarAccess.getInvariantAccess().getTrueKeyword_2_0()); }
+		'true'
+		{ after(grammarAccess.getInvariantAccess().getTrueKeyword_2_0()); }
+	)
+	|
+	(
+		{ before(grammarAccess.getInvariantAccess().getIsNegatedAssignment_2_1()); }
+		(rule__Invariant__IsNegatedAssignment_2_1)
+		{ after(grammarAccess.getInvariantAccess().getIsNegatedAssignment_2_1()); }
 	)
 ;
 finally {
@@ -21164,9 +21118,9 @@ rule__Invariant__Group__2__Impl
 	}
 :
 (
-	{ before(grammarAccess.getInvariantAccess().getExpressionDeclarationParserRuleCall_2()); }
-	ruleExpressionDeclaration
-	{ after(grammarAccess.getInvariantAccess().getExpressionDeclarationParserRuleCall_2()); }
+	{ before(grammarAccess.getInvariantAccess().getAlternatives_2()); }
+	(rule__Invariant__Alternatives_2)?
+	{ after(grammarAccess.getInvariantAccess().getAlternatives_2()); }
 )
 ;
 finally {
@@ -21191,9 +21145,9 @@ rule__Invariant__Group__3__Impl
 	}
 :
 (
-	{ before(grammarAccess.getInvariantAccess().getInvariantPartParserRuleCall_3()); }
-	ruleInvariantPart
-	{ after(grammarAccess.getInvariantAccess().getInvariantPartParserRuleCall_3()); }
+	{ before(grammarAccess.getInvariantAccess().getExpressionDeclarationParserRuleCall_3()); }
+	ruleExpressionDeclaration
+	{ after(grammarAccess.getInvariantAccess().getExpressionDeclarationParserRuleCall_3()); }
 )
 ;
 finally {
@@ -29172,30 +29126,19 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__InvariantPart__OwnedRelationshipAssignment
+rule__Invariant__IsNegatedAssignment_2_1
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
 	(
-		{ before(grammarAccess.getInvariantPartAccess().getOwnedRelationshipTrueLiteralMemberParserRuleCall_0()); }
-		ruleTrueLiteralMember
-		{ after(grammarAccess.getInvariantPartAccess().getOwnedRelationshipTrueLiteralMemberParserRuleCall_0()); }
-	)
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-rule__TrueLiteralMember__OwnedRelatedElementAssignment
-	@init {
-		int stackSize = keepStackSize();
-	}
-:
-	(
-		{ before(grammarAccess.getTrueLiteralMemberAccess().getOwnedRelatedElementTrueLiteralExpressionParserRuleCall_0()); }
-		ruleTrueLiteralExpression
-		{ after(grammarAccess.getTrueLiteralMemberAccess().getOwnedRelatedElementTrueLiteralExpressionParserRuleCall_0()); }
+		{ before(grammarAccess.getInvariantAccess().getIsNegatedFalseKeyword_2_1_0()); }
+		(
+			{ before(grammarAccess.getInvariantAccess().getIsNegatedFalseKeyword_2_1_0()); }
+			'false'
+			{ after(grammarAccess.getInvariantAccess().getIsNegatedFalseKeyword_2_1_0()); }
+		)
+		{ after(grammarAccess.getInvariantAccess().getIsNegatedFalseKeyword_2_1_0()); }
 	)
 ;
 finally {

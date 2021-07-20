@@ -90,9 +90,14 @@ public class ConstraintUsageAdapter extends OccurrenceUsageAdapter {
 			addRequirementSubsetting();
 		}
 		super.computeImplicitGeneralTypes();
+		if (isSubperformance()) {
+			addSubsetting(getDefaultSupertype("subperformance"));
+		}
+		if (isEnactedPerformance()) {
+			addSubsetting(getDefaultSupertype("enactedPerformance"));
+		}
 	}
 	
-	// Used in subclasses
 	public boolean isEnactedPerformance() {
 		Type owningType = getTarget().getOwningType();
 		return owningType instanceof ItemDefinition || owningType instanceof ItemUsage;

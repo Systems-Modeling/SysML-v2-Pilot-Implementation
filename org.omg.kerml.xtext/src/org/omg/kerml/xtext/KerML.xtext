@@ -921,20 +921,8 @@ BooleanExpression returns SysML::BooleanExpression :
 /* Invariants */
 
 Invariant returns SysML::Invariant :
-	FeaturePrefix 'inv' 
-	ExpressionDeclaration InvariantPart FunctionBody
-;
-
-fragment InvariantPart returns SysML::Invariant :
-	ownedRelationship += TrueLiteralMember
-;
-
-TrueLiteralMember returns SysML::FeatureMembership :
-	ownedRelatedElement += TrueLiteralExpression // ownedMemberFeature = TrueLiteralExpression
-;
-
-TrueLiteralExpression returns SysML::LiteralBoolean :
-	{SysML::LiteralBoolean}
+	FeaturePrefix 'inv' ( 'true' | isNegated ?= 'false' )?
+	ExpressionDeclaration FunctionBody
 ;
 
 /* INTERACTIONS */

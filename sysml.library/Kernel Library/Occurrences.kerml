@@ -178,7 +178,7 @@ package Occurrences {
 	 * Therefore HappensLink is disjoint with LinkObject, that is, no HappensLink can 
 	 * also be a LinkObject.
 	 */
-	assoc HappensLink {
+	assoc HappensLink specializes BinaryLink {
 		end feature sourceOccurrence: Occurrence[0..*];
 		end feature targetOccurrence: Occurrence[0..*];
 	}
@@ -226,7 +226,7 @@ package Occurrences {
 	 */
 	assoc PortionOf specializes HappensDuring { 
 		end feature portionedOccurrence: Occurrence[1..*] redefines longerOccurrence subsets portionOccurrence.portionOf;
-		portion end feature portionOccurrence: Occurrence[1..*] redefines shorterOccurrence subsets portionedOccurrence.portions; 
+		end feature portionOccurrence: Occurrence[1..*] redefines shorterOccurrence subsets portionedOccurrence.portions; 
 	}
 	
 	/**
@@ -234,7 +234,7 @@ package Occurrences {
 	 */
 	assoc TimeSliceOf specializes PortionOf {
 		end feature timeSlicedOccurrence: Occurrence[1..*] redefines portionedOccurrence subsets timeSliceOccurrence.timeSliceOf;
-		portion end feature timeSliceOccurrence: Occurrence[1..*] redefines portionOccurrence subsets timeSlicedOccurrence.timeSlices;
+		end feature timeSliceOccurrence: Occurrence[1..*] redefines portionOccurrence subsets timeSlicedOccurrence.timeSlices;
 	}
 	
 	/**
@@ -242,7 +242,7 @@ package Occurrences {
 	 */
 	assoc SnapshotOf specializes TimeSliceOf {
 		end feature snapshottedOccurrence: Occurrence[1..*] redefines timeSlicedOccurrence subsets snapshotOcccurrence.snapshotOf;
-		portion end feature snapshotOcccurrence: Occurrence[1..*] redefines timeSliceOccurrence subsets snapshottedOccurrence.snapshots;
+		end feature snapshotOcccurrence: Occurrence[1..*] redefines timeSliceOccurrence subsets snapshottedOccurrence.snapshots;
 	}
 	
 	/**

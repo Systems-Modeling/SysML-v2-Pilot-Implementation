@@ -1892,16 +1892,25 @@ SatisfyRequirementUsage returns SysML::SatisfyRequirementUsage :
     | RequirementUsageKeyword UsageDeclaration? 
     )
     ( ValuePart | ActionUsageParameterList )?
-    ( 'by' ownedRelationship += SatisfactionConnectorMember )?
+    ( 'by' ownedRelationship += SatisfactionSubjectMember )?
     InvariantPart RequirementBody
 ;
 
-SatisfactionConnectorMember returns SysML::Membership :
-	ownedRelatedElement += SatisfactionConnector // ownedMemberElement = SatisfactionConnector
+SatisfactionSubjectMember returns SysML::SubjectMembership :
+	ownedRelatedElement += SatisfactionParameter // ownedMemberParameter = SatisfactionParameter
 ;
 
-SatisfactionConnector returns SysML::BindingConnector :
-	ownedRelationship += EmptySourceEndMember ownedRelationship += ConnectorEndMember
+SatisfactionParameter returns SysML::ReferenceUsage :
+	ownedRelationship += SatisfactionFeatureValue
+;
+
+SatisfactionFeatureValue returns SysML::FeatureValue :
+	ownedRelatedElement += SatisfactionReferenceExpression // value = SatisfactionFeature
+;
+
+SatisfactionReferenceExpression returns SysML::Expression :
+	  FeatureReferenceExpression 
+	  ( '.' {SysML::PathStepExpression.operand += current} operand += FeatureReferenceExpression )*
 ;
 
 /* CONCERNS */

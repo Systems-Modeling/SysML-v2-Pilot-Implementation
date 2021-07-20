@@ -27,12 +27,12 @@ import java.util.stream.Stream;
 import org.omg.sysml.adapter.UsageAdapter;
 import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.FramedConcernMembership;
-import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.ConcernUsage;
 import org.omg.sysml.lang.sysml.ConstraintUsage;
 import org.omg.sysml.lang.sysml.Definition;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
+import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.ObjectiveMembership;
@@ -101,10 +101,9 @@ public class UsageUtil {
 		return getUsageAdapter(usage).hasRelevantSubjectParameter();
 	}
 
-	public static BindingConnector getSatisfyingFeatureConnectorOf(SatisfyRequirementUsage usage) {
-		return (BindingConnector)usage.getOwnedFeature().stream().
-				filter(BindingConnector.class::isInstance).
-				findFirst().orElse(null);	
+	public static FeatureValue getSatisfyingFeatureValueOf(SatisfyRequirementUsage usage) {
+		Feature subject = usage.getSubjectParameter();
+		return subject == null? null:  FeatureUtil.getValuationFor(subject);
 	}
 	
 	// Send and Accept Actions

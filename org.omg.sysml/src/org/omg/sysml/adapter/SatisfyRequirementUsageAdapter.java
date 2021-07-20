@@ -51,7 +51,7 @@ public class SatisfyRequirementUsageAdapter extends RequirementUsageAdapter {
 		SatisfyRequirementUsage target = getTarget();
 		Type owningType = target.getOwningType();
 		if ((owningType instanceof ViewDefinition || owningType instanceof ViewUsage) &&
-				UsageUtil.getSatisfyingFeatureConnectorOf(target) == null) {
+				UsageUtil.getSatisfyingFeatureValueOf(target) == null) {
 			RequirementUsage satisfiedRequirement = target.getSatisfiedRequirement();
 			if (satisfiedRequirement instanceof ViewpointUsage) {
 				addSubsetting(ImplicitGeneralizationMap.getDefaultSupertypeFor(

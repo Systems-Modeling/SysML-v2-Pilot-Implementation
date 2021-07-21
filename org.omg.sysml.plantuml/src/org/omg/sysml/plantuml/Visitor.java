@@ -357,6 +357,7 @@ public abstract class Visitor extends SysMLSwitch<String> {
         String desc = pr.getDescription();
         if (!((desc == null) || (desc.isEmpty()))) {
             ss.append(": ");
+            desc = desc.replace("\r", "").replace("\n", "\\n");
             ss.append(desc);
         }
         ss.append('\n');

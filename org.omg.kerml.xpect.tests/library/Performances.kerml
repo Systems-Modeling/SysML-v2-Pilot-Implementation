@@ -30,29 +30,29 @@ package Performances {
 		/**
 		 * suboccurrences of this Performance that are also Performances.
 		 */
-		step subperformances: Performance[0..*] nonunique subsets performances, suboccurrences;
+		step subperformances: Performance[0..*] subsets performances, suboccurrences;
 		
 		/**
 		 * subperformances of this Performance that are Evaluations.
 		 */
-		expr subevaluations: Evaluation[0..*] nonunique subsets evaluations, subperformances;
+		expr subevaluations: Evaluation[0..*] subsets evaluations, subperformances;
 		
 		/**
 		 * subperformances of this performance that are transfers.
 		 */
-		step subtransfers: Transfers::Transfer[0..*] nonunique subsets transfers, subperformances;
+		step subtransfers: Transfers::Transfer[0..*] subsets transfers, subperformances;
 		
 		/**
 		 * subtransfers of this performance that are transfers-before.
-		 */
-		step subtransfersBefore: Transfers::TransferBefore[0..*] nonunique subsets transfersBefore, subtransfers;
+		 */	
+		step subtransfersBefore: Transfers::TransferBefore[0..*] subsets transfersBefore, subtransfers;
 	}
 	
 	/**
 	 * Evaluation is the most general class of functions that may be evaluated to compute
 	 * a result.
 	 */
-	abstract function Evaluation specializes Performance () result: Anything[0..*];
+	abstract function Evaluation specializes Performance () result: Anything[0..*] nonunique;
 	
 	/**
 	 * BooleanEvaluation is a specialization of Evaluation that is the most general class of
@@ -75,16 +75,16 @@ package Performances {
 	 * involvedObject.
 	 */
 	assoc Involves specializes BinaryLinkObject {
-		end feature involvingPerformance: Performance[0..*] redefines Object::involvingPerformances, BinaryLinkObject::source;
-		end feature involvedObject: Object[0..*] redefines Performance::involvedObjects, BinaryLinkObject::target;
+		end feature involvingPerformance: Performance[0..*] redefines source subsets involvedObject.involvingPerformances;
+		end feature involvedObject: Object[0..*] redefines target subsets involvingPerformance.involvedObjects;
 	}
 	
 	/**
 	 * Performance asserts that the performer enacts the Behavior carried out by the performance.
 	 */
 	 assoc Performs specializes Involves {
-	 	end feature performer: Object[0..*] redefines Involves::involvedObject, Performance::performers;
-	 	end feature performance: Performance[0..*] redefines Involves::involvingPerformance subsets Object::enactedPerformances;
+	 	end feature performerObject: Object[0..*] redefines involvedObject subsets performance.performers;
+	 	end feature performance: Performance[0..*] redefines involvingPerformance subsets performerObject.enactedPerformances;
 	 }
 	
 	/**

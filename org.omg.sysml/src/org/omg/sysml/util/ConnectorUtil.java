@@ -25,10 +25,8 @@ import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
 import org.omg.sysml.lang.sysml.Connector;
-import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
-import org.omg.sysml.lang.sysml.FeatureReferenceExpression;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLFactory;
@@ -96,30 +94,17 @@ public class ConnectorUtil {
 	}
 
 	// Context Type
-
+	
 	public static Type getContextTypeFor(Connector connector) {
-		Element owner = connector.getOwner();
-		List<Feature> relatedFeatures = connector.getRelatedFeature();
-		
-		// TODO: Handle inherited features more properly when determining context type.
-		if (owner instanceof Type) {
-			List<Feature> ownerInheritedFeatures = ((Type)owner).getInheritedFeature();
-			relatedFeatures.removeAll(ownerInheritedFeatures);
-			if (relatedFeatures.isEmpty()) {
-				return (Type)owner;
-			}
-		}
-		
 		List<Type> commonFeaturingTypes = null;
-		for (Feature relatedFeature: relatedFeatures) {
-			if (!(FeatureUtil.isResultParameter(relatedFeature) && 
-					relatedFeature.getOwningType() instanceof FeatureReferenceExpression)) {
-				List<Type> featuringTypes = FeatureUtil.getAllFeaturingTypesOf(relatedFeature);
-				if (commonFeaturingTypes == null) {
-					commonFeaturingTypes = featuringTypes;
-				} else {
-					commonFeaturingTypes.retainAll(featuringTypes);
-				}
+		for (Feature relatedFeature: connector.getRelatedFeature()) {
+			List<Type> featuringTypes = FeatureUtil.getAllFeaturingTypesOf(relatedFeature);
+			if (commonFeaturingTypes == null) {
+				commonFeaturingTypes = featuringTypes;
+			} else {
+				commonFeaturingTypes.removeIf(t->
+					featuringTypes.stream().noneMatch(f->
+						TypeUtil.conforms(f, t) || TypeUtil.conforms(t, f)));
 			}
 		}
 		return commonFeaturingTypes == null || commonFeaturingTypes.isEmpty()? 

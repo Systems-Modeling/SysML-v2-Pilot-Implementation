@@ -61,18 +61,5 @@ package test{
  		     
  		   	PackageAlias2.B.self,  PackageAlias2.B.a.self,  PackageAlias2.B.b.self,   PackageAlias2.B.a_alias.self, 	   			
  	--- */
-	feature test_A redefines A_alias{}
+	feature test_A subsets A_alias{}
 }
-//*
-The following are still missing: 	    
- 		    PackageAlias1.A.a_alias,
-			PackageAlias1.A_alias.a,
-			PackageAlias1.A_alias.a_alias,
-			PackageAlias1.AA_alias,
-			PackageAlias1.AA.aa_alias,
-			PackageAlias1.AA_alias.aa,
-			PackageAlias1.AA_alias.aa_alias,
-			PackageAlias1.A_alias,
- 		   	PackageAlias2.B.a_alias,
- 		   	PackageAlias2.B.b,
- */

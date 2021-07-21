@@ -1672,7 +1672,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     ownedRelationship+=PortioningFeatureMember 'satisfy' RequirementUsageKeyword (ambiguity) (rule end)
 	 *     ownedRelationship+=PortioningFeatureMember RequirementUsageKeyword (ambiguity) (rule end)
 	 *     ownedRelationship+=PortioningFeatureMember ViewpointUsageKeyword (ambiguity) (rule end)
-	 *     ownedRelationship+=SatisfactionConnectorMember (ambiguity) (rule end)
+	 *     ownedRelationship+=SatisfactionSubjectMember (ambiguity) (rule end)
 	 */
 	protected void emit_RequirementBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);

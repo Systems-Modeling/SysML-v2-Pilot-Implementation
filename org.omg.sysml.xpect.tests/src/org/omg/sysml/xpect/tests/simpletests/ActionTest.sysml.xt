@@ -47,6 +47,6 @@ package ActionTest {
 		
 		action b(in y = x);
 		
-		bind x = b::y;
+		bind x = b.y;
 	}
 }

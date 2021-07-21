@@ -22,7 +22,7 @@ package Import_Filtered {
 	import P1::*;
 	
 	package P1 {
-		datatype D{
+		feature f {
             feature a;
         }
 		
@@ -30,6 +30,6 @@ package Import_Filtered {
 	
 	package P2 {
 		import P1::*[false];
-		feature x :> D::a;		
+		feature x :> f.a;		
 	}
 }

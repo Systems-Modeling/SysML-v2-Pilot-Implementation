@@ -83,14 +83,14 @@ public class ExpressionAdapter extends StepAdapter {
 	// Computed Redefinition
 
 	@Override
-	protected List<? extends Feature> getRelevantFeatures(Type type) {
+	protected List<? extends Feature> getRelevantFeatures(Type type, Element skip) {
 		Expression target = getTarget();
 		Type owningType = target.getOwningType();
 		return ExpressionUtil.isTransitionGuard(target)?
 					type == owningType? Collections.singletonList(target):
 					Collections.singletonList((Feature)getLibraryType(EXPRESSION_GUARD_FEATURE)):
 			   owningType instanceof FeatureValue? Collections.emptyList():
-			   super.getRelevantFeatures(type);
+			   super.getRelevantFeatures(type, skip);
 	}
 	
 	@Override

@@ -377,11 +377,22 @@ OwnedFeatureTyping returns SysML::FeatureTyping :
 ;
 
 OwnedSubsetting returns SysML::Subsetting:
-	subsettedFeature = [SysML::Feature|QualifiedName]
+	  subsettedFeature = [SysML::Feature|QualifiedName]
+	| ownedRelatedElement += FeatureChain
 ;
 
 OwnedRedefinition returns SysML::Redefinition:
-	redefinedFeature = [SysML::Feature | QualifiedName] 
+	  redefinedFeature = [SysML::Feature | QualifiedName]
+	| ownedRelatedElement += FeatureChain
+;
+
+FeatureChain returns SysML::Feature :
+	ownedRelationship += OwnedFeatureChaining
+	( '.' ownedRelationship += OwnedFeatureChaining )+
+;
+
+OwnedFeatureChaining returns SysML::FeatureChaining :
+	chainingFeature = [SysML::Feature | QualifiedName]
 ;
 
 /* Multiplicity */
@@ -409,18 +420,8 @@ ConnectorEndMember returns SysML::EndFeatureMembership :
 ;
 
 ConnectorEnd returns SysML::Feature :
-	ownedRelationship += ( OwnedSubsetting | FeaturePathExpressionMember )
+	ownedRelationship += OwnedSubsetting
 	( ownedRelationship += MultiplicityMember )?
-;
-
-FeaturePathExpressionMember returns SysML::FeatureMembership :
-	ownedRelatedElement += FeaturePathExpression
-;
-
-FeaturePathExpression returns SysML::Expression :
-	FeatureReferenceExpression 
-	( {SysML::PathStepExpression.operand += current}
-	  '.' operand += FeatureReferenceExpression )+
 ;
 
 /* Binding Connectors */
@@ -526,7 +527,18 @@ ItemFlowEndMember returns SysML::EndFeatureMembership :
 ;
 
 ItemFlowEnd returns SysML::ItemFlowEnd :
+	( ownedRelationship += ItemFlowEndSubsetting )?
 	ownedRelationship += ItemFlowFeatureMember
+;
+
+ItemFlowEndSubsetting returns SysML::Subsetting :
+	  subsettedFeature = [SysML::Feature | QualifiedName] '.'
+	| ownedRelatedElement += FeatureChainPrefix
+;
+
+FeatureChainPrefix returns SysML::Feature :
+	( ownedRelationship += OwnedFeatureChaining '.' )+
+	ownedRelationship += OwnedFeatureChaining '.'
 ;
 
 EmptyItemFeatureMember returns SysML::FeatureMembership :
@@ -542,7 +554,11 @@ ItemFlowFeatureMember returns SysML::FeatureMembership :
 ;
 
 ItemFlowFeature returns SysML::ItemFlowFeature :
-	ownedRelationship += ( OwnedRedefinition | FeaturePathExpressionMember )
+	ownedRelationship += ItemFlowRedefinition
+;
+
+ItemFlowRedefinition returns SysML::Redefinition :
+	redefinedFeature = [SysML::Feature|QualifiedName]
 ;
 
 EmptyItemFlowEndMember returns SysML::EndFeatureMembership :
@@ -554,11 +570,7 @@ EmptyItemFlowFeatureMember returns SysML::FeatureMembership :
 ;
 
 EmptyItemFlowFeature returns SysML::ItemFlowFeature :
-	ownedRelationship += EmptyRedefinition
-;
-
-EmptyRedefinition returns SysML::Redefinition :
-	{SysML::Redefinition}
+	{SysML::ItemFlowFeature}
 ;
 
 /* DEPENDENCIES */
@@ -1176,7 +1188,7 @@ InterfaceEndMember returns SysML::EndFeatureMembership :
 ;
 
 InterfaceEnd returns SysML::PortUsage :
-	ownedRelationship += ( OwnedSubsetting | FeaturePathExpressionMember )
+	ownedRelationship += OwnedSubsetting
 	( ownedRelationship += MultiplicityMember )?
 ;
 
@@ -1868,16 +1880,25 @@ SatisfyRequirementUsage returns SysML::SatisfyRequirementUsage :
     | RequirementUsageKeyword UsageDeclaration? 
     )
     ( ValuePart | ActionUsageParameterList )?
-    ( 'by' ownedRelationship += SatisfactionConnectorMember )?
-    RequirementBody
+    ( 'by' ownedRelationship += SatisfactionSubjectMember )?
+     RequirementBody
 ;
 
-SatisfactionConnectorMember returns SysML::Membership :
-	ownedRelatedElement += SatisfactionConnector // ownedMemberElement = SatisfactionConnector
+SatisfactionSubjectMember returns SysML::SubjectMembership :
+	ownedRelatedElement += SatisfactionParameter // ownedMemberParameter = SatisfactionParameter
 ;
 
-SatisfactionConnector returns SysML::BindingConnector :
-	ownedRelationship += EmptySourceEndMember ownedRelationship += ConnectorEndMember
+SatisfactionParameter returns SysML::ReferenceUsage :
+	ownedRelationship += SatisfactionFeatureValue
+;
+
+SatisfactionFeatureValue returns SysML::FeatureValue :
+	ownedRelatedElement += SatisfactionReferenceExpression // value = SatisfactionFeature
+;
+
+SatisfactionReferenceExpression returns SysML::Expression :
+	  FeatureReferenceExpression 
+	  ( '.' {SysML::PathStepExpression.operand += current} operand += FeatureReferenceExpression )*
 ;
 
 /* CONCERNS */

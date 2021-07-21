@@ -20,7 +20,7 @@ package '15_13-Discretely Sampled Function Value' {
         attribute :>> scaleValueDefinitions = (referenceInstantOfTime);
     }
 	
-	attribute def MissionElapsedTimeScale :> IntervalScale {
+	attribute def MissionElapsedTimeScale :> IntervalScale, DurationUnit {
     	:>> longName = "mission elapsed time starting at launch";
 		:>> unit = s;
 		attribute launchTimeStamp: ScaleValueDefinition {
@@ -30,7 +30,7 @@ package '15_13-Discretely Sampled Function Value' {
         attribute :>> scaleValueDefinitions = (launchTimeStamp);
         private attribute launchTimestampMapping: ScaleValueMapping {
             :>> mappedScaleValue = launchTimeStamp;
-            :>> referenceScaleValue = UTC::referenceInstantOfTime;        	
+            :>> referenceScaleValue = UTC.referenceInstantOfTime;        	
         }
         attribute :>> scaleValueMapping = launchTimestampMapping;
         

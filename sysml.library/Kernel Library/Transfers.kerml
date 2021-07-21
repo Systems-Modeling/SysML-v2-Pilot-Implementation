@@ -5,6 +5,7 @@ package Transfers {
 	private import Base::Anything;
 	private import Occurrences::*;
 	private import Links::*;
+	private import Objects::BinaryLinkObject;
 	private import Performances::Performance;
 	private import Performances::performances;
 	private import ScalarValues::Boolean;
@@ -53,30 +54,20 @@ package Transfers {
 		feature item: Anything[1..*];
 		
 		/**
-		 * The link from the transfer source to the items it is outputing.
-		 */
-		assoc struct SourceOutputLink {
-			end feature source: Occurrence[1];
-			end feature target: Occurrence[1..*] redefines target, Transfer::source::sourceOutput;
-		}
-		
-		/**
 		 * The output of the items from the sourceOutput.
 		 */
-		connector sourceOutputLink: SourceOutputLink[1..*] from source to item;
-		
-		/**
-		 * The link from the transfer source to the items it is inputing.
-		 */
-		assoc struct TargetInputLink {
-			end feature source: Occurrence[1..*] redefines source, Transfer::target::targetInput;
-			end feature target: Occurrence[1];
+		connector sourceOutputLink: BinaryLinkObject[1..*] {
+			end transferSource subsets source[1];
+			end transferPayload subsets item[1..*] subsets transferSource.sourceOutput;
 		}
 		
 		/**
 		 * The input of the items to the targetInput.
 		 */
-		connector targetInputLink: TargetInputLink[1..*] from item to target;
+		connector targetInputLink: BinaryLinkObject[1..*] {
+			end transferTarget subsets target[1];
+			end transferPayload subsets item[1..*] subsets transferTarget.targetInput;
+		}
 		
 		/**
 		 * The start of the transfer happens during the output of each of the items from the

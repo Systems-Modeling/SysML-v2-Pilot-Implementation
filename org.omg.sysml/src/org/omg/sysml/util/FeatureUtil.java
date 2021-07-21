@@ -34,9 +34,9 @@ import java.util.stream.Collectors;
 import org.eclipse.emf.common.util.EList;
 import org.omg.sysml.adapter.FeatureAdapter;
 import org.omg.sysml.lang.sysml.Behavior;
-import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.FeatureChaining;
 import org.omg.sysml.lang.sysml.FeatureDirectionKind;
 import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.Redefinition;
@@ -158,10 +158,6 @@ public class FeatureUtil {
 				findFirst().orElse(null);
 	}
 
-	public static BindingConnector getValueConnectorFor(Feature feature) {
-		return getFeatureAdapter(feature).getValueConnector();
-	}
-
 	// Featuring Types
 	
 	/**
@@ -174,16 +170,11 @@ public class FeatureUtil {
 		while (!features.isEmpty()) {
 			List<Feature> nextFeatures = new ArrayList<>();
 			for (Feature feature: features) {
-				List<Type> featuringTypes = feature.getFeaturingType();
-				if (featuringTypes.isEmpty()) {
-					allFeaturingTypes.add(null);
-				} else {
-					for (Type featuringType: featuringTypes) {
-						if (!allFeaturingTypes.contains(featuringType)) {
-							allFeaturingTypes.add(featuringType);
-							if (featuringType instanceof Feature) {
-								nextFeatures.add((Feature)featuringType);
-							}
+				for (Type featuringType: feature.getFeaturingType()) {
+					if (!allFeaturingTypes.contains(featuringType)) {
+						allFeaturingTypes.add(featuringType);
+						if (featuringType instanceof Feature) {
+							nextFeatures.add((Feature)featuringType);
 						}
 					}
 				}
@@ -219,7 +210,21 @@ public class FeatureUtil {
 			}
 		});
 	}
+	
+	// Feature Chaining
+	
+	public static Feature getFirstChainingFeatureOf(Feature feature) {
+		EList<FeatureChaining> featureChainings = feature.getOwnedFeatureChaining();
+		return featureChainings.isEmpty()? null: featureChainings.get(0).getChainingFeature();
+	}
 
+	public static Feature getLastChainingFeatureOf(Feature feature) {
+		EList<FeatureChaining> featureChainings = feature.getOwnedFeatureChaining();
+		return featureChainings.isEmpty()? null: featureChainings.get(featureChainings.size()-1).getChainingFeature();
+	}
+	
+	
+	
 	// Steps
 	
 	public static boolean isPerformanceFeature(Feature step) {

@@ -22,20 +22,24 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
+import java.util.List;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.omg.sysml.lang.sysml.AssertConstraintUsage;
-import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.ConstraintUsage;
+import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.FeatureReferenceExpression;
+import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.Invariant;
+import org.omg.sysml.lang.sysml.PathStepExpression;
 import org.omg.sysml.lang.sysml.RequirementUsage;
 import org.omg.sysml.lang.sysml.SatisfyRequirementUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.util.FeatureUtil;
-import org.omg.sysml.util.UsageUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -171,9 +175,20 @@ public class SatisfyRequirementUsageImpl extends RequirementUsageImpl implements
 	 * @generated NOT
 	 */
 	public Feature basicGetSatisfyingFeature() {
-		BindingConnector connector = UsageUtil.getSatisfyingFeatureConnectorOf(this);
-		return connector == null? null: 
-			connector.getRelatedFeature().stream().skip(1).findFirst().orElse(null);
+		FeatureValue featureValue = FeatureUtil.getValuationFor(this);
+		if (featureValue != null) {
+			Expression value = featureValue.getValue();
+			if (value instanceof PathStepExpression) {
+				List<Expression> operands = ((PathStepExpression)value).getOperand();
+				if (operands.size() > 1) {
+					value = operands.get(1);
+				}
+			}
+			if (value instanceof FeatureReferenceExpression) {
+				return ((FeatureReferenceExpression)value).getReferent();
+			}
+		}
+		return null;
 	}
 
 	/**

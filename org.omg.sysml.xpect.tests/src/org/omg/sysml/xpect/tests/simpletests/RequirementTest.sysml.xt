@@ -76,5 +76,5 @@ package RequirementTest {
 	}
 
 	requirement r1 : R1;
-	not satisfy r1 by q;
+	not satisfy r1 by q;	
 }

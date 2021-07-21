@@ -109,13 +109,13 @@ public class UsageAdapter extends FeatureAdapter {
 	 * A subject Parameter always redefines a subject Parameter.
 	 */
 	@Override
-	public List<? extends Feature> getParameterRelevantFeatures(Type type) {
+	public List<? extends Feature> getParameterRelevantFeatures(Type type, Element skip) {
 		if (UsageUtil.isSubjectParameter(getTarget())) {
 			Feature typeSubject = TypeUtil.getSubjectParameterOf(type);
 			return typeSubject == null? Collections.emptyList(): 
 				Collections.singletonList(typeSubject);
 		}
-		return super.getParameterRelevantFeatures(type);
+		return super.getParameterRelevantFeatures(type, skip);
 	}
 	
 	@Override

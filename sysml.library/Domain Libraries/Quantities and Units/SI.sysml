@@ -328,7 +328,7 @@ package SI {
             num => 1/100, description => "temperature in degree Celsius of pure water at the triple point"
         );
         private attribute celsiusToKelvinScaleMapping: ScaleValueMapping = ScaleValueMapping(
-            mappedScaleValue => temperatureWaterAtTriplePointInC, referenceScaleValue => K::temperatureOfWaterAtTriplePointInK
+            mappedScaleValue => temperatureWaterAtTriplePointInC, referenceScaleValue => K.temperatureOfWaterAtTriplePointInK
         );
         attribute :>> scaleValueDefinitions = (temperatureWaterAtTriplePointInC, temperatureWaterAtFreezingPointInC);
         attribute :>> scaleValueMapping = celsiusToKelvinScaleMapping;

@@ -1,7 +1,7 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2018 IncQuery Labs Ltd.
- * Copyright (c) 2018-2020 Model Driven Solutions, Inc.
+ * Copyright (c) 2018-2021 Model Driven Solutions, Inc.
  * Copyright (c) 2020 California Institute of Technology/Jet Propulsion Laboratory
  *    
  * This program is free software: you can redistribute it and/or modify
@@ -44,14 +44,25 @@ import org.omg.sysml.lang.sysml.LiteralExpression
 import org.omg.sysml.lang.sysml.NullExpression
 import org.omg.sysml.lang.sysml.ElementFilterMembership
 import org.omg.sysml.lang.sysml.MetadataFeatureValue
+import org.omg.sysml.lang.sysml.ItemFlow
 import org.omg.sysml.util.TypeUtil
 import org.omg.sysml.util.ElementUtil
-import org.omg.kerml.xtext.scoping.KerMLScopeProvider
 import org.omg.sysml.util.ExpressionUtil
+import org.omg.sysml.util.FeatureUtil
+import org.omg.sysml.util.NamespaceUtil
 import org.omg.sysml.lang.sysml.Import
 import com.google.inject.Inject
 import org.eclipse.xtext.scoping.IScopeProvider
 import org.omg.sysml.lang.sysml.util.ISysMLScope
+import org.eclipse.emf.ecore.EClass
+import org.omg.sysml.lang.sysml.FeatureChaining
+import org.omg.sysml.lang.sysml.Expression
+import org.omg.sysml.lang.sysml.Subsetting
+import org.omg.sysml.lang.sysml.MultiplicityRange
+import org.omg.sysml.lang.sysml.Redefinition
+import org.omg.sysml.lang.sysml.LiteralInfinity
+import org.omg.sysml.lang.sysml.LiteralInteger
+import org.omg.sysml.lang.sysml.ItemFlowFeature
 
 /**
  * This class contains custom validation rules. 
@@ -60,12 +71,23 @@ import org.omg.sysml.lang.sysml.util.ISysMLScope
  */
 class KerMLValidator extends AbstractKerMLValidator {
 
-	public static val INVALID_CONNECTOR_END__CONTEXT = 'Invalid Connector - Connector context'
-	public static val INVALID_CONNECTOR_END__CONTEXT_MSG = "Connected features should have a common context"
+	public static val INVALID_MULTIPLICITY_ILLEGALLOWERBOUND = 'Invalid Multiplicity - Illegal lower bound'
+	public static val INVALID_SUBSETTING_OWNINGTYPECONFORMANCE = 'Invalid Subsetting - OwningType conformance'
+	public static val INVALID_REDEFINITION_OWNINGTYPECONFORMANCE = 'Invalid Redefinition - OwningType conformance'
+	public static val INVALID_SUBSETTING_MULTIPLICITYCONFORMANCE = 'Invalid Subsetting - Multiplicity conformance'
+	public static val INVALID_REDEFINITION_MULTIPLICITYCONFORMANCE = 'Invalid Redefinition - Multiplicity conformance'
+	public static val INVALID_SUBSETTING_UNIQUENESS_CONFORMANCE = 'Invalid Subsetting - Uniqueness conformance'
+	
+	public static val INVALID_CONNECTOR_END__CONTEXT = 'Invalid Connector end - Context'
+	public static val INVALID_CONNECTOR_END__CONTEXT_MSG = "Should be an accessible feature (use dot notation for nesting)"
 	public static val INVALID_BINDINGCONNECTOR__ARGUMENT_TYPE = 'Invalid BindingConnector - Argument type conformance'
 	public static val INVALID_BINDINGCONNECTOR__ARGUMENT_TYPE_MSG = "Output feature must conform to input feature"
 	public static val INVALID_BINDINGCONNECTOR__BINDING_TYPE = 'Invalid BindingConnector - Binding type conformance'
 	public static val INVALID_BINDINGCONNECTOR__BINDING_TYPE_MSG = "Bound features should have conforming types"
+	public static val INVALID_ITEMFLOW__INVALID_END = 'Invalid ItemFlow end - No subsetting'
+	public static val INVALID_ITEMFLOW__INVALID_END_MSG = "Cannot identify item flow end (use dot notation)"
+	public static val INVALID_ITEMFLOW__IMPLICIT_END = 'Invalid ItemFlow end - Implicit subsetting'
+	public static val INVALID_ITEMFLOW__IMPLICIT_END_MSG = "Flow ends should use dot notation"
 	public static val INVALID_FEATURE__NO_TYPE = 'Invalid Feature - Mandatory typing'
 	public static val INVALID_FEATURE__NO_TYPE_MSG = "Features must have at least one type"
 	public static val INVALID_RELATIONSHIP__RELATED_ELEMENTS = 'Invalid Relationship - Related element minimum validation'
@@ -82,6 +104,8 @@ class KerMLValidator extends AbstractKerMLValidator {
 	public static val INVALID_ELEMENT_FILTER_MEMBERSHIP__NOT_MODEL_LEVEL_MSG = "Must be model-level evaluable"
 	public static val INVALID_METADATA_FEATURE_VALUE__NOT_MODEL_LEVEL = "Invalid MetadataFeatureValue - Not model-level"
 	public static val INVALID_METADATA_FEATURE_VALUE__NOT_MODEL_LEVEL_MSG = "Must be model-level evaluable"
+	public static val INVALID_FEATURE_CHAINING__INVALID_FEATURE = "Invalid FeatureChaining - Invalid feature"
+	public static val INVALID_FEATURE_CHAINING__INVALID_FEATURE_MSG = "Must be a valid feature"
 	public static val INVALID_FEATURE_REFERENCE_EXPRESSION__INVALID_FEATURE = "Invalid FeatureReferenceExpression - Invalid feature"
 	public static val INVALID_FEATURE_REFERENCE_EXPRESSION__INVALID_FEATURE_MSG = "Must be a valid feature"
 	
@@ -179,9 +203,21 @@ class KerMLValidator extends AbstractKerMLValidator {
 	}
 	
 	@Check
+	def checkFeatureChaining(FeatureChaining fc) {
+		val featureChainings = fc.featureChained.ownedFeatureChaining;
+		val i = featureChainings.indexOf(fc);
+		if (i > 0) {
+			val prev = featureChainings.get(i-1).chainingFeature;
+			if (!fc.chainingFeature.featuringType.forall[t2 | prev.conformsTo(t2)]) {
+				error(INVALID_FEATURE_CHAINING__INVALID_FEATURE_MSG, fc, SysMLPackage.eINSTANCE.featureChaining_ChainingFeature, INVALID_FEATURE_CHAINING__INVALID_FEATURE)
+			}
+		}
+	}
+	
+	@Check
 	def checkFeatureReferenceExpression(FeatureReferenceExpression e) {
 		val feature = ExpressionUtil.getReferentFor(e)
-		val rel = KerMLScopeProvider.relativeNamespace(e)
+		val rel = NamespaceUtil.getRelativeNamespaceFor(e)
 		if (feature !== null &&
 			(!(feature instanceof Feature) || 
 				rel instanceof Type &&
@@ -204,23 +240,27 @@ class KerMLValidator extends AbstractKerMLValidator {
 	 
 	@Check
 	def checkConnector(Connector c){		
-		var relatedFeatures = c.relatedFeature
+		doCheckConnector(c, c, null)
+	}
+	
+	private def doCheckConnector(Connector c, Type location, EClass kind) {
+		val cFeaturingTypes = c.featuringType
 		
-		// Allow related features that are inherited by the owner of the connector
-		// (or have no featuring types and are thus implicitly inherited from Anything).
-		val cOwner = c.owner
-		if (cOwner instanceof Type) {
-			ElementUtil.clearCachesOf(cOwner) // Force recomputation of inherited memberships.
-			val ownerFeatures = cOwner.inheritedFeature
-			relatedFeatures.removeIf[f|f.featuringType.empty || ownerFeatures.contains(f)]
+		if (kind == SysMLPackage.Literals.FEATURE_MEMBERSHIP) {
+			cFeaturingTypes.add(location);
 		}
-		
-		val featuringTypes = c.featuringType
-		for (relatedFeature: relatedFeatures) {
-			if (!(featuringTypes.isEmpty? relatedFeature.isFeaturedWithin(null):
-				featuringTypes.exists[featuringType | relatedFeature.isFeaturedWithin(featuringType)])) {
-				warning(INVALID_CONNECTOR_END__CONTEXT_MSG, c, SysMLPackage.eINSTANCE.connector_ConnectorEnd, INVALID_CONNECTOR_END__CONTEXT)
-				return
+
+		val relatedFeatures = c.relatedFeature				
+		val connectorEnds = c.connectorEnd
+		for (var i = 0; i < relatedFeatures.size; i++) {
+			val relatedFeature = relatedFeatures.get(i)
+			if (!(relatedFeature.featuringType.empty || 
+				cFeaturingTypes.exists[featuringType |
+					relatedFeature.featuringType.exists[f | featuringType.conformsTo(f)]] ||
+				location instanceof FeatureReferenceExpression && relatedFeature.getOwningType() == location)) {
+				warning(INVALID_CONNECTOR_END__CONTEXT_MSG, 
+					if (location === c && i < connectorEnds.size) connectorEnds.get(i) else location, 
+					null, INVALID_CONNECTOR_END__CONTEXT)
 			}
 		}
 	}
@@ -262,9 +302,114 @@ class KerMLValidator extends AbstractKerMLValidator {
 	
 	@Check
 	def checkImplicitBindingConnectors(Type type) {
-		TypeUtil.forEachImplicitBindingConnectorOf(type, [connector, kind | connector.doCheckBindingConnector(type)])
+		TypeUtil.forEachImplicitBindingConnectorOf(type, [connector, kind | 
+			if (type instanceof FeatureReferenceExpression) {
+				connector.doCheckConnector(type, kind) 
+			}
+			connector.doCheckBindingConnector(type)
+		])
 	}
 	
+	@Check 
+	def checkItemFlow(ItemFlow flow) {
+		for (flowEnd: flow.itemFlowEnd) {
+			if (FeatureUtil.getSubsettedNotRedefinedFeaturesOf(flowEnd).isEmpty) {
+				error(INVALID_ITEMFLOW__INVALID_END_MSG, flowEnd, null, INVALID_ITEMFLOW__INVALID_END)
+			} else if (flowEnd.ownedSubsetting.isEmpty) {
+				val features = flowEnd.ownedFeature
+				if (!features.isEmpty && !features.get(0).ownedRedefinition.isEmpty) {
+					warning(INVALID_ITEMFLOW__IMPLICIT_END_MSG, flowEnd, null, INVALID_ITEMFLOW__IMPLICIT_END)
+				}
+			}
+		}
+	}
+	
+	@Check
+	def checkSubsettingConformance(Subsetting sub) { 
+		
+		var subsettingOwningType = sub.subsettingFeature?.owningType
+		var subsettedOwningType = sub.subsettedFeature?.owningType
+		
+		// Due to how connector is implemented, no validation is performed if the owner is a Connector.
+		if ( subsettingOwningType instanceof Connector || subsettedOwningType instanceof Connector ) 
+			return;
+
+		// Multiplicity conformance
+		
+		var setted_m = sub.subsettedFeature?.multiplicity
+		var setting_m = sub.subsettingFeature?.multiplicity
+		var Expression setting_m_l = null;
+		var Expression setting_m_u = null;
+		
+		// Only check multiplicity conformance if the subsettingFeature owns its multiplicity element, 
+		// and the subsettingFeature and subsettedFeature either both are, or both are not, end Features.
+		if (setted_m instanceof MultiplicityRange && setting_m instanceof MultiplicityRange && setting_m.owningNamespace === sub.subsettingFeature &&
+			sub.subsettingFeature.isEnd() == sub.subsettedFeature.isEnd()) {
+			var setted_m_l = (setted_m as MultiplicityRange)?.lowerBound
+			var setted_m_u = (setted_m as MultiplicityRange)?.upperBound
+			
+			setting_m_l = (setting_m as MultiplicityRange)?.lowerBound
+			setting_m_u = (setting_m as MultiplicityRange)?.upperBound
+			
+			// Lower bound (only check if the Subsetting is a Redefinition): setting must be >= setted
+			if (sub instanceof Redefinition) {
+				if (setting_m_l instanceof LiteralInteger && setted_m_l instanceof LiteralInteger && (setting_m_l as LiteralInteger).getValue < (setted_m_l as LiteralInteger).getValue) {
+					warning("Redefining feature should not have smaller multiplicity lower bound", sub, 
+						SysMLPackage.eINSTANCE.redefinition_RedefiningFeature, INVALID_REDEFINITION_MULTIPLICITYCONFORMANCE)
+				}
+			}
+			
+			// Upper bound: setting must be <= setted
+			if (setting_m_u instanceof LiteralInfinity && !(setted_m_u instanceof LiteralInfinity) ||
+				setting_m_u instanceof LiteralInteger && setted_m_u instanceof LiteralInteger && (setting_m_u as LiteralInteger).getValue > (setted_m_u as LiteralInteger).getValue) {
+				warning("Subsetting/redefining feature should not have larger multiplicity upper bound", sub, 
+						SysMLPackage.eINSTANCE.subsetting_SubsettingFeature, INVALID_SUBSETTING_MULTIPLICITYCONFORMANCE)
+			}
+		}
+
+		// Uniqueness conformance
+		if (sub.subsettedFeature !== null && sub.subsettedFeature.unique && sub.subsettingFeature !== null && !sub.subsettingFeature.unique){
+			if (setting_m_u instanceof LiteralInfinity || (setting_m_u as LiteralInteger).getValue > 1) {//less than or equal to 1 is ok
+				warning("Subsetting/redefining feature should not be nonunique if subsetted/redefined feature is unique", sub, 
+						SysMLPackage.eINSTANCE.subsetting_SubsettingFeature, INVALID_SUBSETTING_UNIQUENESS_CONFORMANCE)
+			}
+		}
+					
+		// Featuring type conformance
+		val subsettingFeature = sub.subsettingFeature
+		var subsettedFeature = sub.subsettedFeature
+		if (!subsettedFeature.ownedFeatureChaining.isEmpty) {
+			subsettedFeature = subsettedFeature.ownedFeatureChaining.last.chainingFeature
+		}
+		if (subsettingFeature !== null && subsettedFeature !== null) {
+			val subsettingFeaturingTypes = sub.subsettingFeature.featuringType
+			val subsettedFeaturingTypes = sub.subsettedFeature.featuringType
+			if (sub instanceof Redefinition && sub.subsettedFeature.owningRelationship != sub &&
+				subsettedFeaturingTypes.containsAll(subsettingFeaturingTypes) && 
+				subsettedFeaturingTypes.size == subsettingFeaturingTypes.size){
+				if (subsettingFeaturingTypes.isEmpty) {
+					warning("A package-level feature should not be redefined", sub, 
+						SysMLPackage.eINSTANCE.redefinition_RedefinedFeature, INVALID_REDEFINITION_OWNINGTYPECONFORMANCE)
+				} else {
+					warning("Owner of redefining feature should not be the same as owner of redefined feature", sub, 
+						SysMLPackage.eINSTANCE.redefinition_RedefinedFeature, INVALID_REDEFINITION_OWNINGTYPECONFORMANCE)
+				}
+			}
+			else if (!subsettedFeaturingTypes.isEmpty() && 
+					!subsettedFeaturingTypes.forall[t | 
+						subsettingFeaturingTypes.exists[ f | 
+							f.conformsTo(t) || f instanceof Feature && (f as Feature).isFeaturedWithin(t)]]) {
+				if (subsettingFeature instanceof ItemFlowFeature) {
+					error("Must be an accessible feature (use dot notation for nesting)", sub, 
+					SysMLPackage.eINSTANCE.subsetting_SubsettedFeature, INVALID_SUBSETTING_OWNINGTYPECONFORMANCE)
+				} else {
+					warning("Must be an accessible feature (use dot notation for nesting)", sub, 
+					SysMLPackage.eINSTANCE.subsetting_SubsettedFeature, INVALID_SUBSETTING_OWNINGTYPECONFORMANCE)
+				}
+			}
+		}
+	}
+
 	//return related subtypes
 	protected def Iterable<Type> conformsFrom(Type supertype, List<Type> subtypes) 
 	{

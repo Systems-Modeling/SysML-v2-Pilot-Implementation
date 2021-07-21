@@ -36,10 +36,7 @@ package Objects {
 	 * BinaryLinkObject is the most general binary association structure, being both a 
 	 * BinaryLink and a LinkObject.
 	 */
-	assoc struct BinaryLinkObject specializes BinaryLink, LinkObject {
-		end feature source: Anything[0..*] nonunique subsets BinaryLink::source;
-	    end feature target: Anything[0..*] nonunique subsets BinaryLink::target;
-	}
+	assoc struct BinaryLinkObject specializes BinaryLink, LinkObject;
 	
 	/**
 	 * objects is a specialization of occurrences restricted to type Object.

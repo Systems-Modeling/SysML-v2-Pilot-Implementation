@@ -24,10 +24,8 @@ package test{
 		feature a: A;
 	}
 	class B{
-		//The order of error and the messages(filename) are different between Junit and Junit Plugin-in Test.
 		//* XPECT errors ---
 		"Couldn't resolve reference to Type 'test'." at "test"
-		"Relationships must have at least two related elements" at "A::"
 		"no viable alternative at input '..'" at ".."
 		"no viable alternative at input 'A'" at "A"
 		--- */

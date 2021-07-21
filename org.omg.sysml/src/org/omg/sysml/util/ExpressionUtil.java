@@ -121,5 +121,15 @@ public class ExpressionUtil {
 		String metaclassName = element.eClass().getName();
 		return SysMLLibraryUtil.getLibraryType(element, "KerML::" + metaclassName, "SysML::" + metaclassName);
 	}
+	
+	public static Expression getRootExpressionFor(Expression expression) {
+		Expression root = expression;
+		Type type = root.getOwningType();
+		while (type instanceof InvocationExpression) {
+			root = (Expression)type;
+			type = root.getOwningType();
+		}
+		return root;
+	}
 
 }

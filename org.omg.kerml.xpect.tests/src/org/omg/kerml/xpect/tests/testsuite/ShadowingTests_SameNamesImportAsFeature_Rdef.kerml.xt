@@ -23,7 +23,7 @@ END_SETUP
 //XPECT noErrors --> ""
 package test{
 	import SamePackage::container;
-	feature something1 redefines container::A{}
-	// XPECT errors --> "Couldn't resolve reference to Feature 'container::B'." at "container::B"
-	feature something2 redefines container::B{}
+	feature something1 subsets container.A{}
+	// XPECT errors --> "Couldn't resolve reference to Feature 'B'." at "B"
+	feature something2 subsets container.B{}
 }

@@ -47,6 +47,7 @@ import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
 import org.omg.sysml.util.ConnectorUtil;
 import org.omg.sysml.util.ElementUtil;
+import org.omg.sysml.util.FeatureUtil;
 import org.omg.sysml.util.ImplicitGeneralizationMap;
 import org.omg.sysml.util.TypeUtil;
 
@@ -272,11 +273,16 @@ public class TypeAdapter extends NamespaceAdapter {
 	}
 	
 	public BindingConnector addBindingConnector(Feature source, Feature target) {
+		Type type = getTarget();
 		BindingConnector connector = TypeUtil.createBindingConnector(source, target);
-		if (ConnectorUtil.getContextTypeFor(connector) == getTarget()) {
+		Type contextType = ConnectorUtil.getContextTypeFor(connector);
+		if (contextType == type) {
 			addImplicitFeatureBindingConnector(connector);
 		} else {
 			addImplicitMemberBindingConnector(connector);
+			if (contextType != null) {
+				FeatureUtil.addFeaturingTypesTo(connector, Collections.singleton(contextType));
+			}
 		}
 		return connector;
 	}

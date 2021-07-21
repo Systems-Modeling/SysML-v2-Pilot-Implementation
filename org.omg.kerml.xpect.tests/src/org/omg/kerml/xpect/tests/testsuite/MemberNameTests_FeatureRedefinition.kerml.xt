@@ -27,8 +27,7 @@ package testt {
    		testt.A, testt.A.a, testt.B, testt.B.a, testt.C,
 		A.self,  A.a.self,  B.self,  B.a.self,  C.self, 
    		testt.A.self,  testt.A.a.self,  testt.B.self,  testt.B.a.self,  testt.C.self, 
-		   		
+		testt
 	--- */
-	feature C redefines B::a;
+	alias C for B::a;
 }
-//	   	Base.BinaryLink.linkage, Base.BinaryLink.participant,		Base.BinaryLink.sourceEnd, Base.BinaryLink.sourceParticipant, Base.BinaryLink.targetEnd,		Base.BinaryLink.targetParticipant, Base.Link.participant, Base.SelfLink.myself, Base.SelfLink.self,		Base.SelfLink.sourceParticipant, Base.SelfLink.targetParticipant, Base.behaviorOccurrences, Base.binaryLinks,		Base.functionEvaluations, Base.links, Base.literalEvaluations, Base.nullEvaluations, Base.objects,		Base.selfLinks, Base.things, Base.values

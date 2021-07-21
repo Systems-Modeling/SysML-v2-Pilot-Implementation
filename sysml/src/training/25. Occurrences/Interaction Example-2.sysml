@@ -8,22 +8,22 @@ package 'Interaction Example-2' {
 	occurrence def CruiseControlInteraction {
 		
 		ref part driver : Driver {
-			event setSpeedMessage::source;
+			event setSpeedMessage.source;
 		}
 		
 		ref part vehicle : Vehicle {
 			part cruiseController : CruiseController {
-				event setSpeedMessage::target;		
-				then event sensedSpeedMessage::target;		
-				then event fuelCommandMessage::source;
+				event setSpeedMessage.target;		
+				then event sensedSpeedMessage.target;		
+				then event fuelCommandMessage.source;
 			}
 			
 			part speedometer : Speedometer {
-				event sensedSpeedMessage::source;
+				event sensedSpeedMessage.source;
 			}
 			
 			part engine : Engine {
-				event fuelCommandMessage::target;
+				event fuelCommandMessage.target;
 			}
 		}
 		

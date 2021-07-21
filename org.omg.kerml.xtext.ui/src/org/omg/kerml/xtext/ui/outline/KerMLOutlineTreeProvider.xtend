@@ -41,6 +41,7 @@ import org.omg.sysml.lang.sysml.LiteralRational
 import org.omg.sysml.lang.sysml.LiteralInfinity
 import org.omg.sysml.lang.sysml.Specialization
 import org.omg.sysml.lang.sysml.LiteralInteger
+import org.omg.sysml.lang.sysml.FeatureChaining
 
 /**
  * Customization of the default outline structure.
@@ -332,22 +333,32 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		}
 	}
 	
+	def boolean _isLeaf(FeatureChaining chaining) {
+		chaining.chainingFeature === null
+	}
+	
+	def void _createChildren(IOutlineNode parentNode, FeatureChaining chaining) {
+		if (chaining.chainingFeature !== null) {
+			createNode(parentNode, chaining.chainingFeature, 
+				chaining.chainingFeature._image, chaining.chainingFeature._text, 
+				true
+			)
+			
+		}
+	}
+	
 	def boolean _isLeaf(Specialization generalization) {
 		generalization.getGeneral === null
 	}
 	
-	def void _createChildren(IOutlineNode parentNode, Specialization generalization) {
-		if (generalization.getSpecific !== null && generalization.getSpecific !== generalization.eContainer) {
-			createNode(parentNode, generalization.getSpecific, 
-				generalization.getSpecific._image, generalization.getSpecific._text, 
-				true
-			)			
+	def void _createChildren(IOutlineNode parentNode, Specialization specialization) {
+		val specific = specialization.specific
+		if (specific !== null && specific !== specialization.eContainer) {
+			createNode(parentNode, specific, specific._image, specific._text, true)			
 		}
-		if (generalization.getGeneral !== null) {
-			createNode(parentNode, generalization.getGeneral, 
-				generalization.getGeneral._image, generalization.getGeneral._text, 
-				true
-			)
+		val general = specialization.general
+		if (general !== null) {
+			createNode(parentNode, general, general._image, general._text, true)
 		}
 	}
 	
@@ -375,16 +386,18 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	}
 
 	def void _createChildren(IOutlineNode parentNode, Subsetting subsetting) {
-		if (subsetting.subsettingFeature !== null && subsetting.subsettingFeature !== subsetting.eContainer) {
-			createNode(parentNode, subsetting.subsettingFeature, 
-				subsetting.subsettingFeature._image, subsetting.subsettingFeature._text, 
+		val subsettingFeature = subsetting.subsettingFeature
+		if (subsettingFeature !== null && subsettingFeature !== subsetting.eContainer) {
+			createNode(parentNode, subsettingFeature, 
+				subsettingFeature._image, subsettingFeature._text, 
 				true
 			)			
 		}
-		if (subsetting.subsettedFeature !== null) {
-			createNode(parentNode, subsetting.subsettedFeature, 
-				_image(subsetting.subsettedFeature), subsetting.subsettedFeature._text, 
-				true
+		val subsettedFeature = subsetting.subsettedFeature
+		if (subsettedFeature !== null) {
+			createNode(parentNode, subsettedFeature, 
+				subsettedFeature._image, subsettedFeature._text, 
+				subsettedFeature.ownedFeatureChaining.empty
 			)
 		}
 	}

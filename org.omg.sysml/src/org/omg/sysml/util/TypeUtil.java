@@ -42,6 +42,7 @@ import org.omg.sysml.lang.sysml.CaseUsage;
 import org.omg.sysml.lang.sysml.Definition;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.FeatureChaining;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.Specialization;
 import org.omg.sysml.lang.sysml.ItemFeature;
@@ -79,16 +80,39 @@ public class TypeUtil {
 	}
 	
 	public static List<Type> getSupertypesOf(Type type, Element skip) {
-		List<Type> ownedGeneralEnds = new ArrayList<>(); 
+		List<Type> supertypes = new ArrayList<>();
 		type.getOwnedSpecialization()
 			.stream()
 			.filter(spec -> spec != skip)
 			.map(Specialization::getGeneral)
-			.forEachOrdered(ownedGeneralEnds::add);
-		ownedGeneralEnds.addAll(getImplicitGeneralTypesFor(type));
-		return ownedGeneralEnds;
+			.forEachOrdered(supertypes::add);
+		supertypes.addAll(getImplicitGeneralTypesFor(type));
+		return supertypes;
 	}
 	
+	public static List<Type> getGeneralTypesOf(Type type) {
+		return getGeneralTypesOf(type, null);
+	}
+
+	/**
+	 * Get the immediate general types of the given type. If the type is a chained Feature,
+	 * then its last chaining Feature is included, for the purposes of inheritance.
+	 */
+	public static List<Type> getGeneralTypesOf(Type type, Element skip) {
+		List<Type> generalTypes = getSupertypesOf(type);
+		if (type instanceof Feature) {
+			EList<FeatureChaining> featureChainings = ((Feature)type).getOwnedFeatureChaining();
+			if (!featureChainings.isEmpty() && !featureChainings.contains(skip)) {
+				FeatureChaining lastFeatureChaining = featureChainings.get(featureChainings.size()-1);
+				Feature lastChainingFeature = lastFeatureChaining.getChainingFeature();
+				if (lastChainingFeature != null) {
+					generalTypes.add(lastChainingFeature);
+				}
+			}
+		}
+		return generalTypes;
+	}
+
 	public static boolean conforms(Type subtype, Type supertype) {
 		return conforms(subtype, supertype, new HashSet<>());
 	}
@@ -97,18 +121,18 @@ public class TypeUtil {
 	protected static boolean conforms(Type subtype, Type supertype, Set<Type> visited) {
 		if (subtype == supertype) {
 			return true;
-		} else if (subtype == null) {
-			return false;
-		} else {
+		} else if (subtype != null) {
 			visited.add(subtype);
 			if (subtype.isConjugated()) {
 				Type originalType = subtype.getOwnedConjugator().getOriginalType();
 				return !visited.contains(originalType) && conforms(originalType, supertype);
 			} else {
-				return getSupertypesOf(subtype).stream().
-					anyMatch(type->!visited.contains(type) && 
-							conforms(type, supertype, visited));
+				return getGeneralTypesOf(subtype).stream().
+						anyMatch(type->!visited.contains(type) && 
+								conforms(type, supertype, visited));
 			}
+		} else {
+			return false;
 		}
 	}
 	
@@ -148,18 +172,22 @@ public class TypeUtil {
 	}
 	
 	public static List<Feature> getAllParametersOf(Type type) {
-		return getAllParametersOf(type, new HashSet<>());
+		return getAllParametersOf(type, null);
 	}
 	
-	private static List<Feature> getAllParametersOf(Type type, Set<Type> visited) {
+	public static List<Feature> getAllParametersOf(Type type, Element skip) {
+		return getAllParametersOf(type, new HashSet<>(), skip);
+	}
+	
+	private static List<Feature> getAllParametersOf(Type type, Set<Type> visited, Element skip) {
 		visited.add(type);
 		List<Feature> parameters = getOwnedParametersOf(type);
 		parameters.removeIf(FeatureUtil::isResultParameter);
 		int n = parameters.size();
 		Feature resultParameter = getOwnedResultParameterOf(type);
-		for (Type general: TypeUtil.getSupertypesOf(type)) {
+		for (Type general: TypeUtil.getGeneralTypesOf(type, skip)) {
 			if (general != null && !visited.contains(general)) {
-				List<Feature> inheritedParameters = getAllParametersOf(general, visited);
+				List<Feature> inheritedParameters = getAllParametersOf(general, visited, skip);
 				if (resultParameter == null) {
 					resultParameter = inheritedParameters.stream().
 							filter(FeatureUtil::isResultParameter).

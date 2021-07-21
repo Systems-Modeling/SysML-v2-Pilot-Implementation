@@ -1,0 +1,65 @@
+//*
+XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLTests
+	ResourceSet {
+		ThisFile {} 
+		File {from ="/library.systems/Items.sysml"}
+		File {from ="/library.systems/Parts.sysml"}
+		File {from ="/library.systems/Connections.sysml"}
+		File {from ="/library.kernel/Base.kerml"}
+		File {from ="/library.kernel/BaseFunctions.kerml"}
+		File {from ="/library.kernel/ControlFunctions.kerml"}
+		File {from ="/library.kernel/Links.kerml"}
+		File {from ="/library.kernel/Objects.kerml"}
+		File {from ="/library.kernel/Occurrences.kerml"}
+		File {from ="/library.kernel/Performances.kerml"}
+		File {from ="/library.kernel/Transfers.kerml"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {} 
+				File {from ="/library.systems/Items.sysml"}
+				File {from ="/library.systems/Parts.sysml"}
+				File {from ="/library.systems/Connections.sysml"}
+				File {from ="/library.kernel/Base.kerml"}
+				File {from ="/library.kernel/BaseFunctions.kerml"}
+				File {from ="/library.kernel/ControlFunctions.kerml"}
+				File {from ="/library.kernel/Links.kerml"}
+				File {from ="/library.kernel/Objects.kerml"}
+				File {from ="/library.kernel/Occurrences.kerml"}
+				File {from ="/library.kernel/Performances.kerml"}
+				File {from ="/library.kernel/Transfers.kerml"}
+			}
+		}
+	}
+END_SETUP
+*/
+package Q {
+  part def F {
+  	part a : A;
+  }
+  
+  part f : F;
+  
+  part def A {
+    // XPECT warnings --> "Should be an accessible feature (use dot notation for nesting)" at "f::a"
+    part g = f::a;
+  }
+  
+  part def B {
+  	part f : F;
+  	part a : A;
+  }
+  
+  part def C {
+  	part b : B;
+  
+	part c subsets b.f {
+	  	part aa subsets a;
+	}
+	
+    // XPECT warnings --> "Should be an accessible feature (use dot notation for nesting)" at "c::aa"
+	connect b.f.a to c::aa;
+  }
+	
+}

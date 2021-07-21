@@ -34,30 +34,51 @@ import java.util.Set;
 
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
+import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.FeatureChaining;
 import org.omg.sysml.lang.sysml.FeatureReferenceExpression;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.PathStepExpression;
+import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.Type;
 
 public class VPath extends VTraverser {
     private class PathContext {
+        private final PathStepExpression pse;
+
+        private final Feature f;
+        private final int index;
+
+
         private PathContext next;
         private PathContext prev;
 
-        public boolean isMatching() {
+        private boolean isTerminal() {
+            if (f != null) {
+                return f.getOwnedFeatureChaining().size() <= index;
+            } else {
+                return pse == null;
+            }
+        }
+
+        private boolean isMatching() {
             return prev != null;
         }
 
         public PathContext getNext() {
             if (next != null) return next;
-            if (prev == null) {
-                this.next = new PathContext(this, pse);
+            if (f != null) {
+                this.next = new PathContext(this, f, index + 1);
             } else {
-                Type typ = pse.getOwningType();
-                if (typ instanceof PathStepExpression) {
-                    this.next = new PathContext(this, (PathStepExpression) typ);
+                if (prev == null) {
+                    this.next = new PathContext(this, pse);
                 } else {
-                    this.next = new PathContext(this, null);
+                    Type typ = pse.getOwningType();
+                    if (typ instanceof PathStepExpression) {
+                        this.next = new PathContext(this, (PathStepExpression) typ);
+                    } else {
+                        this.next = new PathContext(this, null);
+                    }
                 }
             }
             return this.next;
@@ -70,27 +91,43 @@ public class VPath extends VTraverser {
         private PathContext(PathContext prev, PathStepExpression pse) {
             this.prev = prev;
             this.pse = pse;
+            this.f = null;
+            this.index = 0;
         }
 
         public PathContext(PathStepExpression pse) {
-            this.pse = pse;
+            this(null, pse);
+        }
+
+        private PathContext(PathContext prev, Feature f, int index) {
+            this.prev = prev;
+            this.pse = null;
+            this.f = f;
+            this.index = index;
+        }
+
+        public PathContext(Feature f) {
+            this(null, f, 0);
         }
         
         private boolean isSet;
 
         public void setId(Element e, Integer id) {
-            if (pse == null) return;
+            if (isTerminal()) return;
             if (!isMatching()) return;
             if (match(e)) {
-                pathIdMap.put(pse, id);
+                if (f != null) {
+                    pathIdMap.put(f, id);
+                } else {
+                    pathIdMap.put(pse, id);
+                }
                 isSet = true;
             }
         }
 
-        private PathStepExpression pse;
         private int unmatched;
 
-        public Expression getTargetExp() {
+        private Expression getTargetExp() {
             List<Expression> ops = pse.getOperand();
             if (ops.size() < 2) return null;
             if (isMatching()) {
@@ -101,20 +138,25 @@ public class VPath extends VTraverser {
         }
 
         private Element getTarget() {
-            Expression ex = getTargetExp();
-            if (!(ex instanceof FeatureReferenceExpression)) return null;
-            FeatureReferenceExpression fre = (FeatureReferenceExpression) ex;
-            return fre.getReferent();
+            if (f != null) {
+                FeatureChaining fc = f.getOwnedFeatureChaining().get(index);
+                return fc.getChainingFeature();
+            } else {
+                Expression ex = getTargetExp();
+                if (!(ex instanceof FeatureReferenceExpression)) return null;
+                FeatureReferenceExpression fre = (FeatureReferenceExpression) ex;
+                return fre.getReferent();
+            }
         }
 
         public boolean match(Element e) {
-            if (pse == null) return false;
+            if (isTerminal()) return false;
             Element et = getTarget();
             return e.equals(et);
         }
 
         public Element requiredElement() {
-            if (pse == null) return null;
+            if (isTerminal()) return null;
             if (!isMatching()) return null;
             if (isSet) return null;
             if (unmatched > 0) return null;
@@ -166,26 +208,41 @@ public class VPath extends VTraverser {
             pc.setId(e, id);
         }
 
-        private PathStepExpression head(PathStepExpression pse) {
-            for (;;) {
-                List<Expression> ops = pse.getOperand();
-                if (ops.isEmpty()) return pse;
-                Expression ex = ops.get(0);
-                if (ex instanceof PathStepExpression) {
-                    pse = (PathStepExpression) ex;
-                } else {
-                    return pse;
-                }
-            }
-        }
-
-        RefPathContext(PathStepExpression pse) {
-            this.pc = new PathContext(head(pse));
+        RefPathContext(PathContext pc) {
+            this.pc = pc;
         }
     }
 
-    private final Map<PathStepExpression, Integer> pathIdMap = new HashMap<PathStepExpression, Integer>();
+    private final Map<Feature, Integer> pathIdMap = new HashMap<Feature, Integer>();
     private List<RefPathContext> current = new ArrayList<RefPathContext>();
+
+    private void addContext(Feature f) {
+        for (Subsetting ss: f.getOwnedSubsetting()) {
+            Feature sf = ss.getSubsettedFeature();
+            List<FeatureChaining> fcs = sf.getOwnedFeatureChaining();
+            if (fcs.isEmpty()) continue;
+            current.add(new RefPathContext(new PathContext(sf)));
+        }
+    }
+
+    private static PathStepExpression head(PathStepExpression pse) {
+        for (;;) {
+            List<Expression> ops = pse.getOperand();
+            if (ops.isEmpty()) return pse;
+            Expression ex = ops.get(0);
+            if (ex instanceof PathStepExpression) {
+                pse = (PathStepExpression) ex;
+            } else {
+                return pse;
+            }
+        }
+    }
+
+    private void addContext(PathStepExpression pse) {
+        pse = head(pse);
+        if (pse == null) return;
+        current.add(new RefPathContext(new PathContext(pse)));
+    }
 
     public void setId(Element e, Integer id) {
         for (RefPathContext c: current) {
@@ -221,9 +278,9 @@ public class VPath extends VTraverser {
     }
 
     public Integer getId(Element e) {
-        if (!(e instanceof PathStepExpression)) return null;
-        PathStepExpression pse = (PathStepExpression) e;
-        return pathIdMap.get(pse);
+        if (!(e instanceof Feature)) return null;
+        Feature f = (Feature) e;
+        return pathIdMap.get(f);
     }
 
     VPath() {
@@ -235,8 +292,14 @@ public class VPath extends VTraverser {
     }
 
     @Override
+    public String caseFeature(Feature f) {
+        addContext(f);
+        return null;
+    }
+
+    @Override
     public String casePathStepExpression(PathStepExpression pse) {
-        current.add(new RefPathContext(pse));
+        addContext(pse);
         return "";
     }
 }

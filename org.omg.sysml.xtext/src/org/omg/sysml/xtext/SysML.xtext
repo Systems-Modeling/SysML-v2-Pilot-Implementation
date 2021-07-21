@@ -318,11 +318,11 @@ fragment FeatureSpecializationPart returns SysML::Feature :
 ;
 
 fragment MultiplicityPart returns SysML::Feature :
-	ownedRelationship += MultiplicityMember 
-	// NOTE: Can't use "&" here because of use of predication elsewhere.
-	( isOrdered ?= 'ordered' isNonunique ?= 'nonunique'?
-	| isNonunique ?= 'nonunique' isOrdered ?= 'ordered'?
-	)?
+	  ownedRelationship += OwnedMultiplicity 
+	| ( ownedRelationship += OwnedMultiplicity )?
+	  ( isOrdered ?= 'ordered' isNonunique ?= 'nonunique'?
+	  | isNonunique ?= 'nonunique' isOrdered ?= 'ordered'?
+	  )
 ;
 
 fragment FeatureSpecialization returns SysML::Feature :
@@ -397,11 +397,11 @@ OwnedFeatureChaining returns SysML::FeatureChaining :
 
 /* Multiplicity */
 
-MultiplicityMember returns SysML::Membership :
-	ownedRelatedElement += Multiplicity // ownedMemberElement = Multiplicity
+OwnedMultiplicity returns SysML::Membership :
+	ownedRelatedElement += MultiplicityRange // ownedMemberElement = Multiplicity
 ;
 
-Multiplicity returns SysML::MultiplicityRange :
+MultiplicityRange returns SysML::MultiplicityRange :
 	// TODO: Allow general expressions for bounds. (Causes LL parsing issues.)
 	'[' ownedRelationship += MultiplicityExpressionMember
 	      ( '..' ownedRelationship += MultiplicityExpressionMember )? ']'
@@ -421,7 +421,7 @@ ConnectorEndMember returns SysML::EndFeatureMembership :
 
 ConnectorEnd returns SysML::Feature :
 	ownedRelationship += OwnedSubsetting
-	( ownedRelationship += MultiplicityMember )?
+	( ownedRelationship += OwnedMultiplicity )?
 ;
 
 /* Binding Connectors */
@@ -513,8 +513,8 @@ ItemFeatureMember returns SysML::FeatureMembership :
 
 ItemFeature returns SysML::ItemFeature :
 	  ownedRelationship += OwnedFeatureTyping 
-	  ( ownedRelationship += MultiplicityMember )?
-	| ownedRelationship += MultiplicityMember
+	  ( ownedRelationship += OwnedMultiplicity )?
+	| ownedRelationship += OwnedMultiplicity
 	  ( ownedRelationship += OwnedFeatureTyping )?
 ;
 
@@ -942,7 +942,7 @@ MultiplicitySourceEndMember returns SysML::EndFeatureMembership :
 ;
 
 MultiplicitySourceEnd returns SysML::Feature :
-	{SysML::SourceEnd} ( ownedRelationship += MultiplicityMember )?
+	{SysML::SourceEnd} ( ownedRelationship += OwnedMultiplicity )?
 ;
 
 EmptyTargetEndMember returns SysML::EndFeatureMembership :
@@ -1189,7 +1189,7 @@ InterfaceEndMember returns SysML::EndFeatureMembership :
 
 InterfaceEnd returns SysML::PortUsage :
 	ownedRelationship += OwnedSubsetting
-	( ownedRelationship += MultiplicityMember )?
+	( ownedRelationship += OwnedMultiplicity )?
 ;
 
 /* ALLOCATIONS */
@@ -1396,7 +1396,7 @@ ItemParameterMember returns SysML::ParameterMembership :
 
 ItemParameter returns SysML::ReferenceUsage :
 	  Identification? ItemParameterSpecializationPart
-    | ownedRelationship += OwnedFeatureTyping ( ownedRelationship += MultiplicityMember )?
+    | ownedRelationship += OwnedFeatureTyping ( ownedRelationship += OwnedMultiplicity )?
 ;
 
 fragment ItemParameterSpecializationPart returns SysML::Feature :

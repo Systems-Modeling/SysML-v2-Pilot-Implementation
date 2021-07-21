@@ -39,10 +39,6 @@ package '1a-Parts Tree Simplified' {
 	
 	part rearAxleAssembly {			
 		part rearWheel: Wheel[2];
-		// XPECT warnings --> "Subsetting/redefining feature should not be nonunique if subsetted/redefined feature is unique" at "rearWheel"
-		part rearWheel_1: Wheel[2] nonunique subsets rearWheel;
-		//subsetting - uniquness conformance is valid if subsetting multiplicity upperBound is less then or equal to 1
-		part rearWheel_2[0..1] nonunique subsets rearWheel;
 		// XPECT warnings --> "Bound features should have conforming types" at "rearWheel+1"
 		ref x = rearWheel+1;
 	}

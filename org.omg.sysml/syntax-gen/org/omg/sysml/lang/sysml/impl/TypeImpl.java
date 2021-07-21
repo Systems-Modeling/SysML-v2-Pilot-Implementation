@@ -468,7 +468,8 @@ public class TypeImpl extends NamespaceImpl implements Type {
 	}
 	
 	protected Multiplicity getMultiplicity(Set<Type> visited) {
-		Multiplicity multiplicity = (Multiplicity)getOwnedElement().stream().
+		Multiplicity multiplicity = (Multiplicity)getOwnedMembership().stream().
+				map(Membership::getMemberElement).
 				filter(Multiplicity.class::isInstance).
 				findFirst().orElse(null);
 		if (multiplicity == null) {

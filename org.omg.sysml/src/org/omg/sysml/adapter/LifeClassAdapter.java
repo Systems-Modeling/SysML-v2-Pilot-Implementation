@@ -21,17 +21,15 @@
 
 package org.omg.sysml.adapter;
 
-import org.eclipse.emf.common.util.EList;
 import org.omg.sysml.lang.sysml.Classifier;
 import org.omg.sysml.lang.sysml.LifeClass;
-import org.omg.sysml.lang.sysml.LiteralInteger;
-import org.omg.sysml.lang.sysml.Multiplicity;
 import org.omg.sysml.lang.sysml.Namespace;
-import org.omg.sysml.lang.sysml.Subclassification;
-import org.omg.sysml.lang.sysml.SysMLFactory;
+import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.util.TypeUtil;
 
 public class LifeClassAdapter extends ClassAdapter {
+
+	public static final String MULTIPLICITY_ZERO_OR_ONE = "Base::zeroOrOne";
 
 	public LifeClassAdapter(LifeClass element) {
 		super(element);
@@ -44,44 +42,18 @@ public class LifeClassAdapter extends ClassAdapter {
 	
 	// Transformation
 
-	public void addSuperclassing() {
+	protected void addSuperclassing() {
 		LifeClass lifeClass = getTarget();
 		Namespace owner = lifeClass.getOwningNamespace();
-		EList<Subclassification> superclassings = lifeClass.getOwnedSubclassification();
 		if (owner instanceof Classifier) {
-			if (superclassings.isEmpty()) {
-				Subclassification superclassing = SysMLFactory.eINSTANCE.createSubclassification();
-				superclassing.setSuperclassifier((Classifier)owner);
-				superclassing.setSubclassifier(lifeClass);
-				lifeClass.getOwnedRelationship().add(superclassing);
-			} else {
-				superclassings.get(0).setSuperclassifier((Classifier)owner);
-			}
+			addImplicitGeneralType(SysMLPackage.eINSTANCE.getSubclassification(), (Classifier)owner);
 		}
 	}
 	
-	public void addMultiplicity() {
-		LifeClass lifeClass = getTarget();
-		Multiplicity multiplicity = lifeClass.getMultiplicity();
-		if (multiplicity == null || multiplicity.getOwningType() != this) {
-			TypeUtil.addOwnedFeatureTo(lifeClass, createSingletonMultiplicity());
-		}
+	protected void addMultiplicity() {
+		TypeUtil.addMultiplicityTo(getTarget(), MULTIPLICITY_ZERO_OR_ONE);
 	}
 	
-	protected Multiplicity createSingletonMultiplicity() {
-		Multiplicity multiplicity = SysMLFactory.eINSTANCE.createMultiplicityRange();
-		
-		LiteralInteger bound = SysMLFactory.eINSTANCE.createLiteralInteger();
-		bound.setValue(0);
-		TypeUtil.addOwnedFeatureTo(multiplicity, bound);
-		
-		bound = SysMLFactory.eINSTANCE.createLiteralInteger();
-		bound.setValue(1);
-		TypeUtil.addOwnedFeatureTo(multiplicity, bound);
-		
-		return multiplicity;
-	}
-
 	@Override
 	public void doTransform() {
 		super.doTransform();

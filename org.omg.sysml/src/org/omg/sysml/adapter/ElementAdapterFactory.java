@@ -76,6 +76,11 @@ public class ElementAdapterFactory {
 		}
 		
 		@Override
+		public ElementAdapter caseAttributeUsage(AttributeUsage element) {
+			return new AttributeUsageAdapter(element);
+		}
+		
+		@Override
 		public ElementAdapter caseBehavior(Behavior element) {
 			return new BehaviorAdapter(element);
 		}

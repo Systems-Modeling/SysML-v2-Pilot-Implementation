@@ -21,38 +21,22 @@
 
 package org.omg.sysml.adapter;
 
-import org.omg.sysml.lang.sysml.ConnectionUsage;
-import org.omg.sysml.util.ConnectorUtil;
+import org.omg.sysml.lang.sysml.AttributeUsage;
 
-public class ConnectionUsageAdapter extends PartUsageAdapter {
-
-	public ConnectionUsageAdapter(ConnectionUsage element) {
+public class AttributeUsageAdapter extends UsageAdapter {
+	
+	public AttributeUsageAdapter(AttributeUsage element) {
 		super(element);
 	}
 	
-	@Override
-	public ConnectionUsage getTarget() {
-		return (ConnectionUsage)super.getTarget();
+	public AttributeUsage getTarget() {
+		return (AttributeUsage)super.getTarget();
 	}
 
 	@Override
-	protected String getDefaultSupertype() {
-		return getTarget().getConnectorEnd().size() > 2? 
-				getDefaultSupertype("base"):
-				getDefaultSupertype("binary");
-	}
-	
-	@Override
-	protected void addDefaultMultiplicity() {
-		
-	}
-	
-	@Override
 	public void doTransform() {
-		ConnectionUsage target = getTarget();
 		super.doTransform();
-		addFeaturingTypeIfNecessary(ConnectorUtil.getContextTypeFor(target));
-		ConnectorAdapter.addEndSubsetting(target);
+		addDefaultMultiplicity();
 	}
 	
 }

@@ -47,6 +47,7 @@ import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.Specialization;
 import org.omg.sysml.lang.sysml.ItemFeature;
 import org.omg.sysml.lang.sysml.Membership;
+import org.omg.sysml.lang.sysml.Multiplicity;
 import org.omg.sysml.lang.sysml.OccurrenceDefinition;
 import org.omg.sysml.lang.sysml.OccurrenceUsage;
 import org.omg.sysml.lang.sysml.RequirementUsage;
@@ -55,6 +56,7 @@ import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
+import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
 
 public class TypeUtil {
 	
@@ -133,6 +135,24 @@ public class TypeUtil {
 			}
 		} else {
 			return false;
+		}
+	}
+	
+	// Multiplicity
+	
+	public static void addMultiplicityTo(Type type, String multiplicityName) {
+		EList<Membership> ownedMemberships = type.getOwnedMembership();
+		if (!ownedMemberships.stream().
+				map(Membership::getMemberElement).
+				anyMatch(Multiplicity.class::isInstance)) {
+			Membership membership = ownedMemberships.stream().
+					filter(m->m.getMemberElement() == null).
+					findFirst().orElse(null);
+			if (membership == null) {
+				membership = SysMLFactory.eINSTANCE.createMembership();
+				type.getOwnedRelationship().add(membership);
+			}
+			membership.setMemberElement(SysMLLibraryUtil.getLibraryElement(type, multiplicityName));
 		}
 	}
 	

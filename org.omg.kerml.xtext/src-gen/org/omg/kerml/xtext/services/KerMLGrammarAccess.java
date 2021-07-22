@@ -4319,14 +4319,58 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	public class MultiplicityElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.Multiplicity");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cMultiplicitySubsetParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cMultiplicityRangeParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		
+		///* MULTIPLICITIES */
+		//Multiplicity returns SysML::Multiplicity :
+		//    MultiplicitySubset | MultiplicityRange
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//MultiplicitySubset | MultiplicityRange
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//MultiplicitySubset
+		public RuleCall getMultiplicitySubsetParserRuleCall_0() { return cMultiplicitySubsetParserRuleCall_0; }
+		
+		//MultiplicityRange
+		public RuleCall getMultiplicityRangeParserRuleCall_1() { return cMultiplicityRangeParserRuleCall_1; }
+	}
+	public class MultiplicitySubsetElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.MultiplicitySubset");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cMultiplicityKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final RuleCall cIdentificationParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
+		private final RuleCall cSubsetsParserRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
+		
+		//MultiplicitySubset returns SysML::Multiplicity :
+		//    'multiplicity' Identification? Subsets
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'multiplicity' Identification? Subsets
+		public Group getGroup() { return cGroup; }
+		
+		//'multiplicity'
+		public Keyword getMultiplicityKeyword_0() { return cMultiplicityKeyword_0; }
+		
+		//Identification?
+		public RuleCall getIdentificationParserRuleCall_1() { return cIdentificationParserRuleCall_1; }
+		
+		//Subsets
+		public RuleCall getSubsetsParserRuleCall_2() { return cSubsetsParserRuleCall_2; }
+	}
+	public class MultiplicityRangeElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.MultiplicityRange");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cMultiplicityKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final RuleCall cIdentificationParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
 		private final RuleCall cMultiplicityBoundsParserRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
 		private final Keyword cSemicolonKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
-		///* MULTIPLICITIES */
-		//Multiplicity returns SysML::MultiplicityRange :
+		//MultiplicityRange returns SysML::MultiplicityRange :
 		//    'multiplicity' Identification? MultiplicityBounds ';'
 		//;
 		@Override public ParserRule getRule() { return rule; }
@@ -4349,24 +4393,24 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	public class OwnedMultiplicityElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.OwnedMultiplicity");
 		private final Assignment cOwnedRelatedElementAssignment = (Assignment)rule.eContents().get(1);
-		private final RuleCall cOwnedRelatedElementMultiplicityRangeParserRuleCall_0 = (RuleCall)cOwnedRelatedElementAssignment.eContents().get(0);
+		private final RuleCall cOwnedRelatedElementOwnedMultiplicityRangeParserRuleCall_0 = (RuleCall)cOwnedRelatedElementAssignment.eContents().get(0);
 		
 		//OwnedMultiplicity returns SysML::Membership :
-		//    ownedRelatedElement += MultiplicityRange // ownedMemberElement = Multiplicity
+		//    ownedRelatedElement += OwnedMultiplicityRange // ownedMemberElement = Multiplicity
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//ownedRelatedElement += MultiplicityRange
+		//ownedRelatedElement += OwnedMultiplicityRange
 		public Assignment getOwnedRelatedElementAssignment() { return cOwnedRelatedElementAssignment; }
 		
-		//MultiplicityRange
-		public RuleCall getOwnedRelatedElementMultiplicityRangeParserRuleCall_0() { return cOwnedRelatedElementMultiplicityRangeParserRuleCall_0; }
+		//OwnedMultiplicityRange
+		public RuleCall getOwnedRelatedElementOwnedMultiplicityRangeParserRuleCall_0() { return cOwnedRelatedElementOwnedMultiplicityRangeParserRuleCall_0; }
 	}
-	public class MultiplicityRangeElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.MultiplicityRange");
+	public class OwnedMultiplicityRangeElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.OwnedMultiplicityRange");
 		private final RuleCall cMultiplicityBoundsParserRuleCall = (RuleCall)rule.eContents().get(1);
 		
-		//MultiplicityRange returns SysML::MultiplicityRange :
+		//OwnedMultiplicityRange returns SysML::MultiplicityRange :
 		//    MultiplicityBounds
 		//;
 		@Override public ParserRule getRule() { return rule; }
@@ -6892,8 +6936,10 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	private final ValuePartElements pValuePart;
 	private final FeatureValueElements pFeatureValue;
 	private final MultiplicityElements pMultiplicity;
-	private final OwnedMultiplicityElements pOwnedMultiplicity;
+	private final MultiplicitySubsetElements pMultiplicitySubset;
 	private final MultiplicityRangeElements pMultiplicityRange;
+	private final OwnedMultiplicityElements pOwnedMultiplicity;
+	private final OwnedMultiplicityRangeElements pOwnedMultiplicityRange;
 	private final MultiplicityBoundsElements pMultiplicityBounds;
 	private final MultiplicityExpressionMemberElements pMultiplicityExpressionMember;
 	private final DataTypeElements pDataType;
@@ -7073,8 +7119,10 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		this.pValuePart = new ValuePartElements();
 		this.pFeatureValue = new FeatureValueElements();
 		this.pMultiplicity = new MultiplicityElements();
-		this.pOwnedMultiplicity = new OwnedMultiplicityElements();
+		this.pMultiplicitySubset = new MultiplicitySubsetElements();
 		this.pMultiplicityRange = new MultiplicityRangeElements();
+		this.pOwnedMultiplicity = new OwnedMultiplicityElements();
+		this.pOwnedMultiplicityRange = new OwnedMultiplicityRangeElements();
 		this.pMultiplicityBounds = new MultiplicityBoundsElements();
 		this.pMultiplicityExpressionMember = new MultiplicityExpressionMemberElements();
 		this.pDataType = new DataTypeElements();
@@ -8494,8 +8542,8 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	///* MULTIPLICITIES */
-	//Multiplicity returns SysML::MultiplicityRange :
-	//    'multiplicity' Identification? MultiplicityBounds ';'
+	//Multiplicity returns SysML::Multiplicity :
+	//    MultiplicitySubset | MultiplicityRange
 	//;
 	public MultiplicityElements getMultiplicityAccess() {
 		return pMultiplicity;
@@ -8505,8 +8553,30 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		return getMultiplicityAccess().getRule();
 	}
 	
+	//MultiplicitySubset returns SysML::Multiplicity :
+	//    'multiplicity' Identification? Subsets
+	//;
+	public MultiplicitySubsetElements getMultiplicitySubsetAccess() {
+		return pMultiplicitySubset;
+	}
+	
+	public ParserRule getMultiplicitySubsetRule() {
+		return getMultiplicitySubsetAccess().getRule();
+	}
+	
+	//MultiplicityRange returns SysML::MultiplicityRange :
+	//    'multiplicity' Identification? MultiplicityBounds ';'
+	//;
+	public MultiplicityRangeElements getMultiplicityRangeAccess() {
+		return pMultiplicityRange;
+	}
+	
+	public ParserRule getMultiplicityRangeRule() {
+		return getMultiplicityRangeAccess().getRule();
+	}
+	
 	//OwnedMultiplicity returns SysML::Membership :
-	//    ownedRelatedElement += MultiplicityRange // ownedMemberElement = Multiplicity
+	//    ownedRelatedElement += OwnedMultiplicityRange // ownedMemberElement = Multiplicity
 	//;
 	public OwnedMultiplicityElements getOwnedMultiplicityAccess() {
 		return pOwnedMultiplicity;
@@ -8516,15 +8586,15 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		return getOwnedMultiplicityAccess().getRule();
 	}
 	
-	//MultiplicityRange returns SysML::MultiplicityRange :
+	//OwnedMultiplicityRange returns SysML::MultiplicityRange :
 	//    MultiplicityBounds
 	//;
-	public MultiplicityRangeElements getMultiplicityRangeAccess() {
-		return pMultiplicityRange;
+	public OwnedMultiplicityRangeElements getOwnedMultiplicityRangeAccess() {
+		return pOwnedMultiplicityRange;
 	}
 	
-	public ParserRule getMultiplicityRangeRule() {
-		return getMultiplicityRangeAccess().getRule();
+	public ParserRule getOwnedMultiplicityRangeRule() {
+		return getOwnedMultiplicityRangeAccess().getRule();
 	}
 	
 	//fragment MultiplicityBounds returns SysML::MultiplicityRange :

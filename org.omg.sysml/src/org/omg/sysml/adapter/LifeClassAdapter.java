@@ -29,8 +29,6 @@ import org.omg.sysml.util.TypeUtil;
 
 public class LifeClassAdapter extends ClassAdapter {
 
-	public static final String MULTIPLICITY_ZERO_OR_ONE = "Base::zeroOrOne";
-
 	public LifeClassAdapter(LifeClass element) {
 		super(element);
 	}
@@ -51,7 +49,7 @@ public class LifeClassAdapter extends ClassAdapter {
 	}
 	
 	protected void addMultiplicity() {
-		TypeUtil.addMultiplicityTo(getTarget(), MULTIPLICITY_ZERO_OR_ONE);
+		TypeUtil.addMultiplicityTo(getTarget());
 	}
 	
 	@Override

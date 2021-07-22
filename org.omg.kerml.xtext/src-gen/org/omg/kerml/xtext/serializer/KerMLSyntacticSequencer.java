@@ -1249,6 +1249,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) 'feature'? (ambiguity) ownedRelationship+=OwnedSubsetting
 	 *     (rule start) 'flow' (ambiguity) ownedRelationship+=OwnedSubsetting
 	 *     (rule start) 'inv' 'true'? (ambiguity) ownedRelationship+=OwnedSubsetting
+	 *     (rule start) 'multiplicity' (ambiguity) ownedRelationship+=OwnedSubsetting
 	 *     (rule start) 'step' (ambiguity) ownedRelationship+=OwnedSubsetting
 	 *     (rule start) 'stream' (ambiguity) ownedRelationship+=OwnedSubsetting
 	 *     (rule start) 'succession' (ambiguity) ownedRelationship+=OwnedSubsetting

@@ -656,15 +656,23 @@ FeatureValue returns SysML::FeatureValue :
 
 /* MULTIPLICITIES */
 
-Multiplicity returns SysML::MultiplicityRange :
+Multiplicity returns SysML::Multiplicity :
+	MultiplicitySubset | MultiplicityRange
+;
+
+MultiplicitySubset returns SysML::Multiplicity :
+	'multiplicity' Identification? Subsets
+;
+
+MultiplicityRange returns SysML::MultiplicityRange :
 	'multiplicity' Identification? MultiplicityBounds ';'
 ;
 
 OwnedMultiplicity returns SysML::Membership :
-	ownedRelatedElement += MultiplicityRange // ownedMemberElement = Multiplicity
+	ownedRelatedElement += OwnedMultiplicityRange // ownedMemberElement = Multiplicity
 ;
 
-MultiplicityRange returns SysML::MultiplicityRange :
+OwnedMultiplicityRange returns SysML::MultiplicityRange :
 	MultiplicityBounds
 ;
 

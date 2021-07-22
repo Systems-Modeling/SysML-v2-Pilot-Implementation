@@ -55,6 +55,7 @@ import org.omg.sysml.lang.sysml.LiteralString;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.MetadataFeature;
 import org.omg.sysml.lang.sysml.MetadataFeatureValue;
+import org.omg.sysml.lang.sysml.Multiplicity;
 import org.omg.sysml.lang.sysml.MultiplicityRange;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.NullExpression;
@@ -545,13 +546,17 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 			case SysMLPackage.METADATA_FEATURE_VALUE:
 				sequence_MetadataFeatureValue(context, (MetadataFeatureValue) semanticObject); 
 				return; 
+			case SysMLPackage.MULTIPLICITY:
+				sequence_Identification_Subsets(context, (Multiplicity) semanticObject); 
+				return; 
 			case SysMLPackage.MULTIPLICITY_RANGE:
 				if (rule == grammarAccess.getNonFeatureElementRule()
-						|| rule == grammarAccess.getMultiplicityRule()) {
+						|| rule == grammarAccess.getMultiplicityRule()
+						|| rule == grammarAccess.getMultiplicityRangeRule()) {
 					sequence_Identification_MultiplicityBounds(context, (MultiplicityRange) semanticObject); 
 					return; 
 				}
-				else if (rule == grammarAccess.getMultiplicityRangeRule()) {
+				else if (rule == grammarAccess.getOwnedMultiplicityRangeRule()) {
 					sequence_MultiplicityBounds(context, (MultiplicityRange) semanticObject); 
 					return; 
 				}
@@ -1140,8 +1145,8 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	 *             )
 	 *         )? 
 	 *         (ownedRelationship+=FeatureValue | (ownedRelationship+=StepParameterMember ownedRelationship+=StepParameterMember*))? 
-	 *         ownedRelationship+=OwnedDocumentation? 
-	 *         ((ownedRelationship+=NonFeatureMember | ownedRelationship+=FeatureMember | ownedRelationship+=Import)? ownedRelationship+=OwnedDocumentation?)*
+	 *         ownedRelationship+=FeatureMember? 
+	 *         ((ownedRelationship+=OwnedDocumentation | ownedRelationship+=NonFeatureMember | ownedRelationship+=Import)? ownedRelationship+=FeatureMember?)*
 	 *     )
 	 */
 	protected void sequence_BehaviorBody_FeatureConjugationPart_FeatureDeclaration_FeaturePrefix_Identification_MultiplicityPart_Redefines_Redefinitions_StepParameterList_Subsets_Subsettings_TypeFeaturingPart_TypedBy_Typings_ValuePart(ISerializationContext context, Step semanticObject) {
@@ -1219,13 +1224,13 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	 *                     (
 	 *                         (ownedRelationship+=OwnedTypeFeaturing ownedRelationship+=OwnedTypeFeaturing*)? 
 	 *                         (ownedRelationship+=ConnectorEndMember ownedRelationship+=ConnectorEndMember ownedRelationship+=ConnectorEndMember*)? 
-	 *                         ownedRelationship+=FeatureMember?
+	 *                         ownedRelationship+=NonFeatureMember?
 	 *                     ) | 
 	 *                     (
 	 *                         (ownedRelationship+=OwnedTypeFeaturing ownedRelationship+=OwnedTypeFeaturing*)? 
 	 *                         ownedRelationship+=ConnectorEndMember 
 	 *                         ownedRelationship+=ConnectorEndMember 
-	 *                         ownedRelationship+=FeatureMember?
+	 *                         ownedRelationship+=NonFeatureMember?
 	 *                     ) | 
 	 *                     (
 	 *                         (
@@ -1237,13 +1242,13 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	 *                             (
 	 *                                 (ownedRelationship+=OwnedTypeFeaturing ownedRelationship+=OwnedTypeFeaturing*)? 
 	 *                                 (ownedRelationship+=ConnectorEndMember ownedRelationship+=ConnectorEndMember ownedRelationship+=ConnectorEndMember*)? 
-	 *                                 ownedRelationship+=FeatureMember?
+	 *                                 ownedRelationship+=NonFeatureMember?
 	 *                             ) | 
 	 *                             (
 	 *                                 (ownedRelationship+=OwnedTypeFeaturing ownedRelationship+=OwnedTypeFeaturing*)? 
 	 *                                 ownedRelationship+=ConnectorEndMember 
 	 *                                 ownedRelationship+=ConnectorEndMember 
-	 *                                 ownedRelationship+=FeatureMember?
+	 *                                 ownedRelationship+=NonFeatureMember?
 	 *                             )
 	 *                         )
 	 *                     )
@@ -1252,13 +1257,13 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	 *             (
 	 *                 (isSufficient?='all' ownedRelationship+=FeatureConjugation? (ownedRelationship+=OwnedTypeFeaturing ownedRelationship+=OwnedTypeFeaturing*)?)? 
 	 *                 (ownedRelationship+=ConnectorEndMember ownedRelationship+=ConnectorEndMember ownedRelationship+=ConnectorEndMember*)? 
-	 *                 ownedRelationship+=FeatureMember?
+	 *                 ownedRelationship+=NonFeatureMember?
 	 *             ) | 
 	 *             (
 	 *                 (isSufficient?='all' ownedRelationship+=FeatureConjugation? (ownedRelationship+=OwnedTypeFeaturing ownedRelationship+=OwnedTypeFeaturing*)?)? 
 	 *                 ownedRelationship+=ConnectorEndMember 
 	 *                 ownedRelationship+=ConnectorEndMember 
-	 *                 ownedRelationship+=FeatureMember?
+	 *                 ownedRelationship+=NonFeatureMember?
 	 *             ) | 
 	 *             (
 	 *                 isSufficient?='all' 
@@ -1268,14 +1273,14 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	 *                         ownedRelationship+=FeatureConjugation? 
 	 *                         (ownedRelationship+=OwnedTypeFeaturing ownedRelationship+=OwnedTypeFeaturing*)? 
 	 *                         (ownedRelationship+=ConnectorEndMember ownedRelationship+=ConnectorEndMember ownedRelationship+=ConnectorEndMember*)? 
-	 *                         ownedRelationship+=FeatureMember?
+	 *                         ownedRelationship+=NonFeatureMember?
 	 *                     ) | 
 	 *                     (
 	 *                         ownedRelationship+=FeatureConjugation? 
 	 *                         (ownedRelationship+=OwnedTypeFeaturing ownedRelationship+=OwnedTypeFeaturing*)? 
 	 *                         ownedRelationship+=ConnectorEndMember 
 	 *                         ownedRelationship+=ConnectorEndMember 
-	 *                         ownedRelationship+=FeatureMember?
+	 *                         ownedRelationship+=NonFeatureMember?
 	 *                     )
 	 *                 )
 	 *             ) | 
@@ -1290,21 +1295,21 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	 *                     (
 	 *                         (ownedRelationship+=OwnedTypeFeaturing ownedRelationship+=OwnedTypeFeaturing*)? 
 	 *                         (ownedRelationship+=ConnectorEndMember ownedRelationship+=ConnectorEndMember ownedRelationship+=ConnectorEndMember*)? 
-	 *                         ownedRelationship+=FeatureMember?
+	 *                         ownedRelationship+=NonFeatureMember?
 	 *                     ) | 
 	 *                     (
 	 *                         (ownedRelationship+=OwnedTypeFeaturing ownedRelationship+=OwnedTypeFeaturing*)? 
 	 *                         ownedRelationship+=ConnectorEndMember 
 	 *                         ownedRelationship+=ConnectorEndMember 
-	 *                         ownedRelationship+=FeatureMember?
+	 *                         ownedRelationship+=NonFeatureMember?
 	 *                     )
 	 *                 )
 	 *             ) | 
-	 *             (isSufficient?='all'? ownedRelationship+=ConnectorEndMember ownedRelationship+=ConnectorEndMember ownedRelationship+=FeatureMember?)
+	 *             (isSufficient?='all'? ownedRelationship+=ConnectorEndMember ownedRelationship+=ConnectorEndMember ownedRelationship+=NonFeatureMember?)
 	 *         ) 
 	 *         (
-	 *             (ownedRelationship+=OwnedDocumentation | ownedRelationship+=NonFeatureMember | ownedRelationship+=AliasMember | ownedRelationship+=Import)? 
-	 *             ownedRelationship+=FeatureMember?
+	 *             (ownedRelationship+=OwnedDocumentation | ownedRelationship+=FeatureMember | ownedRelationship+=AliasMember | ownedRelationship+=Import)? 
+	 *             ownedRelationship+=NonFeatureMember?
 	 *         )*
 	 *     )
 	 */
@@ -1483,8 +1488,8 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	 *         ((ownedRelationship+=Ownedsubclassification ownedRelationship+=Ownedsubclassification*) | ownedRelationship+=ClassifierConjugation)? 
 	 *         (ownedRelationship+=ParameterMember ownedRelationship+=ParameterMember*)? 
 	 *         (ownedRelationship+=ReturnParameterMember | ownedRelationship+=EmptyReturnParameterMember) 
-	 *         ownedRelationship+=FeatureMember? 
-	 *         ((ownedRelationship+=OwnedDocumentation | ownedRelationship+=NonFeatureMember | ownedRelationship+=Import)? ownedRelationship+=FeatureMember?)* 
+	 *         ownedRelationship+=NonFeatureMember? 
+	 *         ((ownedRelationship+=OwnedDocumentation | ownedRelationship+=FeatureMember | ownedRelationship+=Import)? ownedRelationship+=NonFeatureMember?)* 
 	 *         ownedRelationship+=ResultExpressionMember?
 	 *     )
 	 */
@@ -1507,8 +1512,8 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	 *         ((ownedRelationship+=Ownedsubclassification ownedRelationship+=Ownedsubclassification*) | ownedRelationship+=ClassifierConjugation)? 
 	 *         (ownedRelationship+=ParameterMember ownedRelationship+=ParameterMember*)? 
 	 *         (ownedRelationship+=ReturnParameterMember | ownedRelationship+=EmptyReturnParameterMember) 
-	 *         ownedRelationship+=FeatureMember? 
-	 *         ((ownedRelationship+=OwnedDocumentation | ownedRelationship+=NonFeatureMember | ownedRelationship+=Import)? ownedRelationship+=FeatureMember?)* 
+	 *         ownedRelationship+=NonFeatureMember? 
+	 *         ((ownedRelationship+=OwnedDocumentation | ownedRelationship+=FeatureMember | ownedRelationship+=Import)? ownedRelationship+=NonFeatureMember?)* 
 	 *         ownedRelationship+=ResultExpressionMember?
 	 *     )
 	 */
@@ -1821,8 +1826,8 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	 *                 (ownedRelationship+=ReturnParameterMember | ownedRelationship+=EmptyReturnParameterMember)
 	 *             )
 	 *         )? 
-	 *         ownedRelationship+=FeatureMember? 
-	 *         ((ownedRelationship+=OwnedDocumentation | ownedRelationship+=NonFeatureMember | ownedRelationship+=Import)? ownedRelationship+=FeatureMember?)* 
+	 *         ownedRelationship+=NonFeatureMember? 
+	 *         ((ownedRelationship+=OwnedDocumentation | ownedRelationship+=FeatureMember | ownedRelationship+=Import)? ownedRelationship+=NonFeatureMember?)* 
 	 *         ownedRelationship+=ResultExpressionMember?
 	 *     )
 	 */
@@ -1912,8 +1917,8 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	 *                 (ownedRelationship+=ReturnParameterMember | ownedRelationship+=EmptyReturnParameterMember)
 	 *             )
 	 *         )? 
-	 *         ownedRelationship+=FeatureMember? 
-	 *         ((ownedRelationship+=OwnedDocumentation | ownedRelationship+=NonFeatureMember | ownedRelationship+=Import)? ownedRelationship+=FeatureMember?)* 
+	 *         ownedRelationship+=NonFeatureMember? 
+	 *         ((ownedRelationship+=OwnedDocumentation | ownedRelationship+=FeatureMember | ownedRelationship+=Import)? ownedRelationship+=NonFeatureMember?)* 
 	 *         ownedRelationship+=ResultExpressionMember?
 	 *     )
 	 */
@@ -2003,8 +2008,8 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	 *                 (ownedRelationship+=ReturnParameterMember | ownedRelationship+=EmptyReturnParameterMember)
 	 *             )
 	 *         )? 
-	 *         ownedRelationship+=FeatureMember? 
-	 *         ((ownedRelationship+=OwnedDocumentation | ownedRelationship+=NonFeatureMember | ownedRelationship+=Import)? ownedRelationship+=FeatureMember?)* 
+	 *         ownedRelationship+=NonFeatureMember? 
+	 *         ((ownedRelationship+=OwnedDocumentation | ownedRelationship+=FeatureMember | ownedRelationship+=Import)? ownedRelationship+=NonFeatureMember?)* 
 	 *         ownedRelationship+=ResultExpressionMember?
 	 *     )
 	 */
@@ -2342,6 +2347,7 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	 * Contexts:
 	 *     NonFeatureElement returns MultiplicityRange
 	 *     Multiplicity returns MultiplicityRange
+	 *     MultiplicityRange returns MultiplicityRange
 	 *
 	 * Constraint:
 	 *     (((humanId=Name name=Name?) | name=Name)? ownedRelationship+=MultiplicityExpressionMember ownedRelationship+=MultiplicityExpressionMember?)
@@ -2880,6 +2886,20 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	
 	/**
 	 * Contexts:
+	 *     NonFeatureElement returns Multiplicity
+	 *     Multiplicity returns Multiplicity
+	 *     MultiplicitySubset returns Multiplicity
+	 *
+	 * Constraint:
+	 *     (((humanId=Name name=Name?) | name=Name)? ownedRelationship+=OwnedSubsetting)
+	 */
+	protected void sequence_Identification_Subsets(ISerializationContext context, Multiplicity semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     NonFeatureElement returns Subsetting
 	 *     Subsetting returns Subsetting
 	 *
@@ -3192,7 +3212,7 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	
 	/**
 	 * Contexts:
-	 *     MultiplicityRange returns MultiplicityRange
+	 *     OwnedMultiplicityRange returns MultiplicityRange
 	 *
 	 * Constraint:
 	 *     (ownedRelationship+=MultiplicityExpressionMember ownedRelationship+=MultiplicityExpressionMember?)
@@ -3329,7 +3349,7 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	 *     OwnedMultiplicity returns Membership
 	 *
 	 * Constraint:
-	 *     ownedRelatedElement+=MultiplicityRange
+	 *     ownedRelatedElement+=OwnedMultiplicityRange
 	 */
 	protected void sequence_OwnedMultiplicity(ISerializationContext context, Membership semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

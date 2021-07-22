@@ -6633,16 +6633,52 @@ ruleMultiplicity returns [EObject current=null]
 	leaveRule();
 }:
 	(
+		{
+			newCompositeNode(grammarAccess.getMultiplicityAccess().getMultiplicitySubsetParserRuleCall_0());
+		}
+		this_MultiplicitySubset_0=ruleMultiplicitySubset
+		{
+			$current = $this_MultiplicitySubset_0.current;
+			afterParserOrEnumRuleCall();
+		}
+		    |
+		{
+			newCompositeNode(grammarAccess.getMultiplicityAccess().getMultiplicityRangeParserRuleCall_1());
+		}
+		this_MultiplicityRange_1=ruleMultiplicityRange
+		{
+			$current = $this_MultiplicityRange_1.current;
+			afterParserOrEnumRuleCall();
+		}
+	)
+;
+
+// Entry rule entryRuleMultiplicitySubset
+entryRuleMultiplicitySubset returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getMultiplicitySubsetRule()); }
+	iv_ruleMultiplicitySubset=ruleMultiplicitySubset
+	{ $current=$iv_ruleMultiplicitySubset.current; }
+	EOF;
+
+// Rule MultiplicitySubset
+ruleMultiplicitySubset returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
 		otherlv_0='multiplicity'
 		{
-			newLeafNode(otherlv_0, grammarAccess.getMultiplicityAccess().getMultiplicityKeyword_0());
+			newLeafNode(otherlv_0, grammarAccess.getMultiplicitySubsetAccess().getMultiplicityKeyword_0());
 		}
 		(
 			{
 				if ($current==null) {
-					$current = createModelElement(grammarAccess.getMultiplicityRule());
+					$current = createModelElement(grammarAccess.getMultiplicitySubsetRule());
 				}
-				newCompositeNode(grammarAccess.getMultiplicityAccess().getIdentificationParserRuleCall_1());
+				newCompositeNode(grammarAccess.getMultiplicitySubsetAccess().getIdentificationParserRuleCall_1());
 			}
 			this_Identification_1=ruleIdentification[$current]
 			{
@@ -6652,9 +6688,56 @@ ruleMultiplicity returns [EObject current=null]
 		)?
 		{
 			if ($current==null) {
-				$current = createModelElement(grammarAccess.getMultiplicityRule());
+				$current = createModelElement(grammarAccess.getMultiplicitySubsetRule());
 			}
-			newCompositeNode(grammarAccess.getMultiplicityAccess().getMultiplicityBoundsParserRuleCall_2());
+			newCompositeNode(grammarAccess.getMultiplicitySubsetAccess().getSubsetsParserRuleCall_2());
+		}
+		this_Subsets_2=ruleSubsets[$current]
+		{
+			$current = $this_Subsets_2.current;
+			afterParserOrEnumRuleCall();
+		}
+	)
+;
+
+// Entry rule entryRuleMultiplicityRange
+entryRuleMultiplicityRange returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getMultiplicityRangeRule()); }
+	iv_ruleMultiplicityRange=ruleMultiplicityRange
+	{ $current=$iv_ruleMultiplicityRange.current; }
+	EOF;
+
+// Rule MultiplicityRange
+ruleMultiplicityRange returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		otherlv_0='multiplicity'
+		{
+			newLeafNode(otherlv_0, grammarAccess.getMultiplicityRangeAccess().getMultiplicityKeyword_0());
+		}
+		(
+			{
+				if ($current==null) {
+					$current = createModelElement(grammarAccess.getMultiplicityRangeRule());
+				}
+				newCompositeNode(grammarAccess.getMultiplicityRangeAccess().getIdentificationParserRuleCall_1());
+			}
+			this_Identification_1=ruleIdentification[$current]
+			{
+				$current = $this_Identification_1.current;
+				afterParserOrEnumRuleCall();
+			}
+		)?
+		{
+			if ($current==null) {
+				$current = createModelElement(grammarAccess.getMultiplicityRangeRule());
+			}
+			newCompositeNode(grammarAccess.getMultiplicityRangeAccess().getMultiplicityBoundsParserRuleCall_2());
 		}
 		this_MultiplicityBounds_2=ruleMultiplicityBounds[$current]
 		{
@@ -6663,7 +6746,7 @@ ruleMultiplicity returns [EObject current=null]
 		}
 		otherlv_3=';'
 		{
-			newLeafNode(otherlv_3, grammarAccess.getMultiplicityAccess().getSemicolonKeyword_3());
+			newLeafNode(otherlv_3, grammarAccess.getMultiplicityRangeAccess().getSemicolonKeyword_3());
 		}
 	)
 ;
@@ -6686,9 +6769,9 @@ ruleOwnedMultiplicity returns [EObject current=null]
 	(
 		(
 			{
-				newCompositeNode(grammarAccess.getOwnedMultiplicityAccess().getOwnedRelatedElementMultiplicityRangeParserRuleCall_0());
+				newCompositeNode(grammarAccess.getOwnedMultiplicityAccess().getOwnedRelatedElementOwnedMultiplicityRangeParserRuleCall_0());
 			}
-			lv_ownedRelatedElement_0_0=ruleMultiplicityRange
+			lv_ownedRelatedElement_0_0=ruleOwnedMultiplicityRange
 			{
 				if ($current==null) {
 					$current = createModelElementForParent(grammarAccess.getOwnedMultiplicityRule());
@@ -6697,22 +6780,22 @@ ruleOwnedMultiplicity returns [EObject current=null]
 					$current,
 					"ownedRelatedElement",
 					lv_ownedRelatedElement_0_0,
-					"org.omg.kerml.xtext.KerML.MultiplicityRange");
+					"org.omg.kerml.xtext.KerML.OwnedMultiplicityRange");
 				afterParserOrEnumRuleCall();
 			}
 		)
 	)
 ;
 
-// Entry rule entryRuleMultiplicityRange
-entryRuleMultiplicityRange returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getMultiplicityRangeRule()); }
-	iv_ruleMultiplicityRange=ruleMultiplicityRange
-	{ $current=$iv_ruleMultiplicityRange.current; }
+// Entry rule entryRuleOwnedMultiplicityRange
+entryRuleOwnedMultiplicityRange returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getOwnedMultiplicityRangeRule()); }
+	iv_ruleOwnedMultiplicityRange=ruleOwnedMultiplicityRange
+	{ $current=$iv_ruleOwnedMultiplicityRange.current; }
 	EOF;
 
-// Rule MultiplicityRange
-ruleMultiplicityRange returns [EObject current=null]
+// Rule OwnedMultiplicityRange
+ruleOwnedMultiplicityRange returns [EObject current=null]
 @init {
 	enterRule();
 }
@@ -6721,9 +6804,9 @@ ruleMultiplicityRange returns [EObject current=null]
 }:
 	{
 		if ($current==null) {
-			$current = createModelElement(grammarAccess.getMultiplicityRangeRule());
+			$current = createModelElement(grammarAccess.getOwnedMultiplicityRangeRule());
 		}
-		newCompositeNode(grammarAccess.getMultiplicityRangeAccess().getMultiplicityBoundsParserRuleCall());
+		newCompositeNode(grammarAccess.getOwnedMultiplicityRangeAccess().getMultiplicityBoundsParserRuleCall());
 	}
 	this_MultiplicityBounds_0=ruleMultiplicityBounds[$current]
 	{

@@ -56,7 +56,6 @@ import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
-import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
 
 public class TypeUtil {
 	
@@ -140,19 +139,15 @@ public class TypeUtil {
 	
 	// Multiplicity
 	
-	public static void addMultiplicityTo(Type type, String multiplicityName) {
+	public static void addMultiplicityTo(Type type) {
 		EList<Membership> ownedMemberships = type.getOwnedMembership();
 		if (!ownedMemberships.stream().
 				map(Membership::getMemberElement).
 				anyMatch(Multiplicity.class::isInstance)) {
-			Membership membership = ownedMemberships.stream().
-					filter(m->m.getMemberElement() == null).
-					findFirst().orElse(null);
-			if (membership == null) {
-				membership = SysMLFactory.eINSTANCE.createMembership();
-				type.getOwnedRelationship().add(membership);
-			}
-			membership.setMemberElement(SysMLLibraryUtil.getLibraryElement(type, multiplicityName));
+			Multiplicity multiplicity = SysMLFactory.eINSTANCE.createMultiplicity();
+			Membership membership = SysMLFactory.eINSTANCE.createMembership();
+			membership.setOwnedMemberElement(multiplicity);
+			type.getOwnedRelationship().add(membership);
 		}
 	}
 	

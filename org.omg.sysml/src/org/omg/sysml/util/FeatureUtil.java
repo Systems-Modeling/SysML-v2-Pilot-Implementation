@@ -223,7 +223,13 @@ public class FeatureUtil {
 		return featureChainings.isEmpty()? null: featureChainings.get(featureChainings.size()-1).getChainingFeature();
 	}
 	
-	
+	/**
+	 * Get either the given Feature, if it is not chained, or else its last chaining Feature.
+	 */
+	public static Feature getBasicFeatureOf(Feature feature) {
+		EList<FeatureChaining> featureChainings = feature.getOwnedFeatureChaining();
+		return featureChainings.isEmpty()? feature: featureChainings.get(featureChainings.size()-1).getChainingFeature();
+	}
 	
 	// Steps
 	

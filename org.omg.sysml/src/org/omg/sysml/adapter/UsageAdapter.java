@@ -44,7 +44,6 @@ import org.omg.sysml.util.UsageUtil;
 public class UsageAdapter extends FeatureAdapter {
 
 	public static final String TRANSITION_LINK_FEATURE = "TransitionPerformances::TransitionPerformance::transitionLink";
-	public static final String MULTIPLICITY_EXACTLY_ONE = "Base::exactlyOne";
 
 	public UsageAdapter(Usage element) {
 		super(element);
@@ -133,9 +132,9 @@ public class UsageAdapter extends FeatureAdapter {
 			target.getOwnedSubsetting().stream().
 				map(Subsetting::getSubsettedFeature).
 				filter(f->f != null).
-				map(Feature::getOwningType).
-				noneMatch(t->t != null)) {
-			TypeUtil.addMultiplicityTo(target, MULTIPLICITY_EXACTLY_ONE);
+				map(FeatureUtil::getBasicFeatureOf).
+				noneMatch(f->f.getOwningType() != null)) {
+			TypeUtil.addMultiplicityTo(target);
 		}
 	}
 	

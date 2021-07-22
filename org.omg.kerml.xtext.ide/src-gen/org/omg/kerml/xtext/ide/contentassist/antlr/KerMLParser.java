@@ -86,6 +86,7 @@ public class KerMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getOwnedRedefinitionAccess().getAlternatives(), "rule__OwnedRedefinition__Alternatives");
 			builder.put(grammarAccess.getFeatureConjugationPartAccess().getAlternatives_0(), "rule__FeatureConjugationPart__Alternatives_0");
 			builder.put(grammarAccess.getFeatureValueAccess().getAlternatives_0(), "rule__FeatureValue__Alternatives_0");
+			builder.put(grammarAccess.getMultiplicityAccess().getAlternatives(), "rule__Multiplicity__Alternatives");
 			builder.put(grammarAccess.getMultiplicityExpressionMemberAccess().getOwnedRelatedElementAlternatives_0(), "rule__MultiplicityExpressionMember__OwnedRelatedElementAlternatives_0");
 			builder.put(grammarAccess.getConnectorDeclarationAccess().getAlternatives(), "rule__ConnectorDeclaration__Alternatives");
 			builder.put(grammarAccess.getBinaryConnectorDeclarationAccess().getAlternatives_0(), "rule__BinaryConnectorDeclaration__Alternatives_0");
@@ -250,7 +251,8 @@ public class KerMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getFeatureConjugationPartAccess().getGroup(), "rule__FeatureConjugationPart__Group__0");
 			builder.put(grammarAccess.getFeatureValueAccess().getGroup(), "rule__FeatureValue__Group__0");
 			builder.put(grammarAccess.getFeatureValueAccess().getGroup_0_1(), "rule__FeatureValue__Group_0_1__0");
-			builder.put(grammarAccess.getMultiplicityAccess().getGroup(), "rule__Multiplicity__Group__0");
+			builder.put(grammarAccess.getMultiplicitySubsetAccess().getGroup(), "rule__MultiplicitySubset__Group__0");
+			builder.put(grammarAccess.getMultiplicityRangeAccess().getGroup(), "rule__MultiplicityRange__Group__0");
 			builder.put(grammarAccess.getMultiplicityBoundsAccess().getGroup(), "rule__MultiplicityBounds__Group__0");
 			builder.put(grammarAccess.getMultiplicityBoundsAccess().getGroup_2(), "rule__MultiplicityBounds__Group_2__0");
 			builder.put(grammarAccess.getDataTypeAccess().getGroup(), "rule__DataType__Group__0");

@@ -19,7 +19,7 @@ package '15_19a-Materials with Properties' {
     	attribute :>> mRef: TensileStrengthUnit;
     }
     
-    attribute 'N/mm²': TensileStrengthUnit = N / mm**2 {
+    attribute 'N/mm²': TensileStrengthUnit = N / mm^2 {
     	:>> longName = "newton per square millimetre";
     }
 

@@ -31,7 +31,7 @@ package Features {
 	    feature fuelOutPort ~ fuelInPort;
 	}
 	
-	feature parent[2] : Person;
+	feature parent[1..2] : Person;
 	feature mother : Person[1] :> parent;
 	
 	generalization t1 typing f typed by B;
@@ -41,21 +41,21 @@ package Features {
 	specialization subset mother subsets parent;
 	
 	classifier LegalRecord {
-		feature guardian[0..1] = null;
+		feature guardian[1];
 	}
 	
 	classifier RegisteredAsset {
-		feature identifier[1];
+		feature identifier[0..1];
 	}
 	
 	classifier Vehicle :> RegisteredAsset {
-		feature vin;	
+		feature vin[1];	
 	}
 	
 	feature legalIdentification;
 	
 	specialization Redef redefinition LegalRecord::guardian redefines parent;
-	specialization redefinition Vehicle::vin redefines RegisteredAsset::identifier;
+	specialization redefinition Vehicle::vin redefines RegisteredAsset::identifier; 
 	
 	redefinition Vehicle::vin redefines legalIdentification; 
 }

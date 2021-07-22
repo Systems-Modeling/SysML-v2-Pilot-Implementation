@@ -29,6 +29,7 @@ package org.omg.sysml.plantuml;
 import java.util.List;
 
 import org.omg.sysml.lang.sysml.AnnotatingElement;
+import org.omg.sysml.lang.sysml.AnnotatingFeature;
 import org.omg.sysml.lang.sysml.Annotation;
 import org.omg.sysml.lang.sysml.Comment;
 import org.omg.sysml.lang.sysml.Connector;
@@ -38,11 +39,11 @@ import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureReferenceExpression;
-import org.omg.sysml.lang.sysml.Specialization;
 import org.omg.sysml.lang.sysml.ItemFlow;
 import org.omg.sysml.lang.sysml.ItemFlowFeature;
 import org.omg.sysml.lang.sysml.PathStepExpression;
 import org.omg.sysml.lang.sysml.Relationship;
+import org.omg.sysml.lang.sysml.Specialization;
 import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
@@ -181,7 +182,18 @@ public class VDefault extends VTraverser {
             Comment c = (Comment) ae;
             VComment v = new VComment(this);
             v.addComment(c, a.getAnnotatedElement());
+        } else if (ae instanceof AnnotatingFeature) {
+            AnnotatingFeature af = (AnnotatingFeature) ae;
+            VMetadata v = new VMetadata(this);
+            v.addAnnotatingFeature(af, a.getAnnotatedElement());
         }
+        return "";
+    }
+
+    @Override
+    public String caseAnnotatingFeature(AnnotatingFeature af) {
+        VMetadata v = new VMetadata(this);
+        v.addAnnotatingFeature(af);
         return "";
     }
 

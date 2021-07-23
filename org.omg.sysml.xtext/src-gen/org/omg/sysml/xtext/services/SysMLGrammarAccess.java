@@ -8886,14 +8886,16 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final RuleCall cOccurrenceDefinitionPrefixParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
 		private final RuleCall cStateDefKeywordParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
 		private final RuleCall cActionDeclarationParserRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
-		private final RuleCall cStateBodyParserRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
+		private final RuleCall cStateDefBodyParserRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
 		
 		//StateDefinition returns SysML::StateDefinition :
-		//    OccurrenceDefinitionPrefix StateDefKeyword ActionDeclaration StateBody
+		//    OccurrenceDefinitionPrefix
+		//    StateDefKeyword ActionDeclaration StateDefBody
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//OccurrenceDefinitionPrefix StateDefKeyword ActionDeclaration StateBody
+		//OccurrenceDefinitionPrefix
+		//StateDefKeyword ActionDeclaration StateDefBody
 		public Group getGroup() { return cGroup; }
 		
 		//OccurrenceDefinitionPrefix
@@ -8905,40 +8907,48 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//ActionDeclaration
 		public RuleCall getActionDeclarationParserRuleCall_2() { return cActionDeclarationParserRuleCall_2; }
 		
-		//StateBody
-		public RuleCall getStateBodyParserRuleCall_3() { return cStateBodyParserRuleCall_3; }
+		//StateDefBody
+		public RuleCall getStateDefBodyParserRuleCall_3() { return cStateDefBodyParserRuleCall_3; }
 	}
-	public class StateBodyElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.StateBody");
+	public class StateDefBodyElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.StateDefBody");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final Keyword cSemicolonKeyword_0 = (Keyword)cAlternatives.eContents().get(0);
 		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
-		private final Keyword cLeftCurlyBracketKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
-		private final RuleCall cStateBodyPartParserRuleCall_1_1 = (RuleCall)cGroup_1.eContents().get(1);
-		private final Keyword cRightCurlyBracketKeyword_1_2 = (Keyword)cGroup_1.eContents().get(2);
+		private final Assignment cIsParallelAssignment_1_0 = (Assignment)cGroup_1.eContents().get(0);
+		private final Keyword cIsParallelParallelKeyword_1_0_0 = (Keyword)cIsParallelAssignment_1_0.eContents().get(0);
+		private final Keyword cLeftCurlyBracketKeyword_1_1 = (Keyword)cGroup_1.eContents().get(1);
+		private final RuleCall cStateBodyPartParserRuleCall_1_2 = (RuleCall)cGroup_1.eContents().get(2);
+		private final Keyword cRightCurlyBracketKeyword_1_3 = (Keyword)cGroup_1.eContents().get(3);
 		
-		//fragment StateBody returns SysML::Type :
-		//    ';' | '{' StateBodyPart '}'
+		//fragment StateDefBody returns SysML::StateDefinition :
+		//    ';' | ( isParallel ?= 'parallel' )? '{' StateBodyPart '}'
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//';' | '{' StateBodyPart '}'
+		//';' | ( isParallel ?= 'parallel' )? '{' StateBodyPart '}'
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//';'
 		public Keyword getSemicolonKeyword_0() { return cSemicolonKeyword_0; }
 		
-		//'{' StateBodyPart '}'
+		//( isParallel ?= 'parallel' )? '{' StateBodyPart '}'
 		public Group getGroup_1() { return cGroup_1; }
 		
+		//( isParallel ?= 'parallel' )?
+		public Assignment getIsParallelAssignment_1_0() { return cIsParallelAssignment_1_0; }
+		
+		//'parallel'
+		public Keyword getIsParallelParallelKeyword_1_0_0() { return cIsParallelParallelKeyword_1_0_0; }
+		
 		//'{'
-		public Keyword getLeftCurlyBracketKeyword_1_0() { return cLeftCurlyBracketKeyword_1_0; }
+		public Keyword getLeftCurlyBracketKeyword_1_1() { return cLeftCurlyBracketKeyword_1_1; }
 		
 		//StateBodyPart
-		public RuleCall getStateBodyPartParserRuleCall_1_1() { return cStateBodyPartParserRuleCall_1_1; }
+		public RuleCall getStateBodyPartParserRuleCall_1_2() { return cStateBodyPartParserRuleCall_1_2; }
 		
 		//'}'
-		public Keyword getRightCurlyBracketKeyword_1_2() { return cRightCurlyBracketKeyword_1_2; }
+		public Keyword getRightCurlyBracketKeyword_1_3() { return cRightCurlyBracketKeyword_1_3; }
 	}
 	public class StateBodyPartElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.StateBodyPart");
@@ -9504,14 +9514,14 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final RuleCall cOccurrenceUsagePrefixParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
 		private final RuleCall cStateUsageKeywordParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
 		private final RuleCall cActionUsageDeclarationParserRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
-		private final RuleCall cStateBodyParserRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
+		private final RuleCall cStateUsageBodyParserRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
 		
 		//StateUsage returns SysML::StateUsage :
-		//    OccurrenceUsagePrefix StateUsageKeyword ActionUsageDeclaration StateBody
+		//    OccurrenceUsagePrefix StateUsageKeyword ActionUsageDeclaration StateUsageBody
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//OccurrenceUsagePrefix StateUsageKeyword ActionUsageDeclaration StateBody
+		//OccurrenceUsagePrefix StateUsageKeyword ActionUsageDeclaration StateUsageBody
 		public Group getGroup() { return cGroup; }
 		
 		//OccurrenceUsagePrefix
@@ -9523,8 +9533,48 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//ActionUsageDeclaration
 		public RuleCall getActionUsageDeclarationParserRuleCall_2() { return cActionUsageDeclarationParserRuleCall_2; }
 		
-		//StateBody
-		public RuleCall getStateBodyParserRuleCall_3() { return cStateBodyParserRuleCall_3; }
+		//StateUsageBody
+		public RuleCall getStateUsageBodyParserRuleCall_3() { return cStateUsageBodyParserRuleCall_3; }
+	}
+	public class StateUsageBodyElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.StateUsageBody");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final Keyword cSemicolonKeyword_0 = (Keyword)cAlternatives.eContents().get(0);
+		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
+		private final Assignment cIsParallelAssignment_1_0 = (Assignment)cGroup_1.eContents().get(0);
+		private final Keyword cIsParallelParallelKeyword_1_0_0 = (Keyword)cIsParallelAssignment_1_0.eContents().get(0);
+		private final Keyword cLeftCurlyBracketKeyword_1_1 = (Keyword)cGroup_1.eContents().get(1);
+		private final RuleCall cStateBodyPartParserRuleCall_1_2 = (RuleCall)cGroup_1.eContents().get(2);
+		private final Keyword cRightCurlyBracketKeyword_1_3 = (Keyword)cGroup_1.eContents().get(3);
+		
+		//fragment StateUsageBody returns SysML::StateUsage :
+		//    ';' | ( isParallel ?= 'parallel' )? '{' StateBodyPart '}'
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//';' | ( isParallel ?= 'parallel' )? '{' StateBodyPart '}'
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//';'
+		public Keyword getSemicolonKeyword_0() { return cSemicolonKeyword_0; }
+		
+		//( isParallel ?= 'parallel' )? '{' StateBodyPart '}'
+		public Group getGroup_1() { return cGroup_1; }
+		
+		//( isParallel ?= 'parallel' )?
+		public Assignment getIsParallelAssignment_1_0() { return cIsParallelAssignment_1_0; }
+		
+		//'parallel'
+		public Keyword getIsParallelParallelKeyword_1_0_0() { return cIsParallelParallelKeyword_1_0_0; }
+		
+		//'{'
+		public Keyword getLeftCurlyBracketKeyword_1_1() { return cLeftCurlyBracketKeyword_1_1; }
+		
+		//StateBodyPart
+		public RuleCall getStateBodyPartParserRuleCall_1_2() { return cStateBodyPartParserRuleCall_1_2; }
+		
+		//'}'
+		public Keyword getRightCurlyBracketKeyword_1_3() { return cRightCurlyBracketKeyword_1_3; }
 	}
 	public class ExhibitStateUsageElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.ExhibitStateUsage");
@@ -9542,14 +9592,14 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Alternatives cAlternatives_3 = (Alternatives)cGroup.eContents().get(3);
 		private final RuleCall cValuePartParserRuleCall_3_0 = (RuleCall)cAlternatives_3.eContents().get(0);
 		private final RuleCall cActionUsageParameterListParserRuleCall_3_1 = (RuleCall)cAlternatives_3.eContents().get(1);
-		private final RuleCall cStateBodyParserRuleCall_4 = (RuleCall)cGroup.eContents().get(4);
+		private final RuleCall cStateUsageBodyParserRuleCall_4 = (RuleCall)cGroup.eContents().get(4);
 		
 		//ExhibitStateUsage returns SysML::ExhibitStateUsage :
 		//    OccurrenceUsagePrefix 'exhibit'
 		//    ( ownedRelationship += OwnedSubsetting FeatureSpecializationPart?
 		//    | StateUsageKeyword UsageDeclaration?
 		//    )
-		//    ( ValuePart | ActionUsageParameterList )? StateBody
+		//    ( ValuePart | ActionUsageParameterList )? StateUsageBody
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -9557,7 +9607,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//( ownedRelationship += OwnedSubsetting FeatureSpecializationPart?
 		//| StateUsageKeyword UsageDeclaration?
 		//)
-		//( ValuePart | ActionUsageParameterList )? StateBody
+		//( ValuePart | ActionUsageParameterList )? StateUsageBody
 		public Group getGroup() { return cGroup; }
 		
 		//OccurrenceUsagePrefix
@@ -9601,8 +9651,8 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//ActionUsageParameterList
 		public RuleCall getActionUsageParameterListParserRuleCall_3_1() { return cActionUsageParameterListParserRuleCall_3_1; }
 		
-		//StateBody
-		public RuleCall getStateBodyParserRuleCall_4() { return cStateBodyParserRuleCall_4; }
+		//StateUsageBody
+		public RuleCall getStateUsageBodyParserRuleCall_4() { return cStateUsageBodyParserRuleCall_4; }
 	}
 	public class TransitionUsageKeywordElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.TransitionUsageKeyword");
@@ -13061,7 +13111,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	private final StateKeywordElements pStateKeyword;
 	private final StateDefKeywordElements pStateDefKeyword;
 	private final StateDefinitionElements pStateDefinition;
-	private final StateBodyElements pStateBody;
+	private final StateDefBodyElements pStateDefBody;
 	private final StateBodyPartElements pStateBodyPart;
 	private final StateDefBodyItemElements pStateDefBodyItem;
 	private final EntryActionMemberElements pEntryActionMember;
@@ -13078,6 +13128,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	private final TargetTransitionUsageMemberElements pTargetTransitionUsageMember;
 	private final StateUsageKeywordElements pStateUsageKeyword;
 	private final StateUsageElements pStateUsage;
+	private final StateUsageBodyElements pStateUsageBody;
 	private final ExhibitStateUsageElements pExhibitStateUsage;
 	private final TransitionUsageKeywordElements pTransitionUsageKeyword;
 	private final TransitionUsageElements pTransitionUsage;
@@ -13469,7 +13520,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		this.pStateKeyword = new StateKeywordElements();
 		this.pStateDefKeyword = new StateDefKeywordElements();
 		this.pStateDefinition = new StateDefinitionElements();
-		this.pStateBody = new StateBodyElements();
+		this.pStateDefBody = new StateDefBodyElements();
 		this.pStateBodyPart = new StateBodyPartElements();
 		this.pStateDefBodyItem = new StateDefBodyItemElements();
 		this.pEntryActionMember = new EntryActionMemberElements();
@@ -13486,6 +13537,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		this.pTargetTransitionUsageMember = new TargetTransitionUsageMemberElements();
 		this.pStateUsageKeyword = new StateUsageKeywordElements();
 		this.pStateUsage = new StateUsageElements();
+		this.pStateUsageBody = new StateUsageBodyElements();
 		this.pExhibitStateUsage = new ExhibitStateUsageElements();
 		this.pTransitionUsageKeyword = new TransitionUsageKeywordElements();
 		this.pTransitionUsage = new TransitionUsageElements();
@@ -16900,7 +16952,8 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//StateDefinition returns SysML::StateDefinition :
-	//    OccurrenceDefinitionPrefix StateDefKeyword ActionDeclaration StateBody
+	//    OccurrenceDefinitionPrefix
+	//    StateDefKeyword ActionDeclaration StateDefBody
 	//;
 	public StateDefinitionElements getStateDefinitionAccess() {
 		return pStateDefinition;
@@ -16910,15 +16963,15 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		return getStateDefinitionAccess().getRule();
 	}
 	
-	//fragment StateBody returns SysML::Type :
-	//    ';' | '{' StateBodyPart '}'
+	//fragment StateDefBody returns SysML::StateDefinition :
+	//    ';' | ( isParallel ?= 'parallel' )? '{' StateBodyPart '}'
 	//;
-	public StateBodyElements getStateBodyAccess() {
-		return pStateBody;
+	public StateDefBodyElements getStateDefBodyAccess() {
+		return pStateDefBody;
 	}
 	
-	public ParserRule getStateBodyRule() {
-		return getStateBodyAccess().getRule();
+	public ParserRule getStateDefBodyRule() {
+		return getStateDefBodyAccess().getRule();
 	}
 	
 	//fragment StateBodyPart returns SysML::Type :
@@ -17110,7 +17163,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//StateUsage returns SysML::StateUsage :
-	//    OccurrenceUsagePrefix StateUsageKeyword ActionUsageDeclaration StateBody
+	//    OccurrenceUsagePrefix StateUsageKeyword ActionUsageDeclaration StateUsageBody
 	//;
 	public StateUsageElements getStateUsageAccess() {
 		return pStateUsage;
@@ -17120,12 +17173,23 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		return getStateUsageAccess().getRule();
 	}
 	
+	//fragment StateUsageBody returns SysML::StateUsage :
+	//    ';' | ( isParallel ?= 'parallel' )? '{' StateBodyPart '}'
+	//;
+	public StateUsageBodyElements getStateUsageBodyAccess() {
+		return pStateUsageBody;
+	}
+	
+	public ParserRule getStateUsageBodyRule() {
+		return getStateUsageBodyAccess().getRule();
+	}
+	
 	//ExhibitStateUsage returns SysML::ExhibitStateUsage :
 	//    OccurrenceUsagePrefix 'exhibit'
 	//    ( ownedRelationship += OwnedSubsetting FeatureSpecializationPart?
 	//    | StateUsageKeyword UsageDeclaration?
 	//    )
-	//    ( ValuePart | ActionUsageParameterList )? StateBody
+	//    ( ValuePart | ActionUsageParameterList )? StateUsageBody
 	//;
 	public ExhibitStateUsageElements getExhibitStateUsageAccess() {
 		return pExhibitStateUsage;

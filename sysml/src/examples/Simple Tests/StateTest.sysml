@@ -31,6 +31,11 @@ package StateTest {
 			accept s : Sig
 			if true
 			do send s to p
-			then S1;		
+			then S1;	
+	}
+	
+	state s parallel {
+		state s1;
+		state s2;
 	}
 }

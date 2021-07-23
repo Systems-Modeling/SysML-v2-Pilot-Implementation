@@ -107,11 +107,12 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getItemParameterSpecializationPartAccess().getAlternatives(), "rule__ItemParameterSpecializationPart__Alternatives");
 			builder.put(grammarAccess.getControlNodeAccess().getAlternatives(), "rule__ControlNode__Alternatives");
 			builder.put(grammarAccess.getActionTargetSuccessionAccess().getAlternatives(), "rule__ActionTargetSuccession__Alternatives");
-			builder.put(grammarAccess.getStateBodyAccess().getAlternatives(), "rule__StateBody__Alternatives");
+			builder.put(grammarAccess.getStateDefBodyAccess().getAlternatives(), "rule__StateDefBody__Alternatives");
 			builder.put(grammarAccess.getStateDefBodyItemAccess().getAlternatives(), "rule__StateDefBodyItem__Alternatives");
 			builder.put(grammarAccess.getEntryTransitionMemberAccess().getAlternatives_1(), "rule__EntryTransitionMember__Alternatives_1");
 			builder.put(grammarAccess.getStateActionUsageAccess().getAlternatives(), "rule__StateActionUsage__Alternatives");
 			builder.put(grammarAccess.getPerformedActionUsageAccess().getAlternatives(), "rule__PerformedActionUsage__Alternatives");
+			builder.put(grammarAccess.getStateUsageBodyAccess().getAlternatives(), "rule__StateUsageBody__Alternatives");
 			builder.put(grammarAccess.getExhibitStateUsageAccess().getAlternatives_2(), "rule__ExhibitStateUsage__Alternatives_2");
 			builder.put(grammarAccess.getExhibitStateUsageAccess().getAlternatives_3(), "rule__ExhibitStateUsage__Alternatives_3");
 			builder.put(grammarAccess.getEffectBehaviorUsageAccess().getAlternatives(), "rule__EffectBehaviorUsage__Alternatives");
@@ -407,7 +408,7 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getGuardedSuccessionAccess().getGroup_1(), "rule__GuardedSuccession__Group_1__0");
 			builder.put(grammarAccess.getStateDefKeywordAccess().getGroup(), "rule__StateDefKeyword__Group__0");
 			builder.put(grammarAccess.getStateDefinitionAccess().getGroup(), "rule__StateDefinition__Group__0");
-			builder.put(grammarAccess.getStateBodyAccess().getGroup_1(), "rule__StateBody__Group_1__0");
+			builder.put(grammarAccess.getStateDefBodyAccess().getGroup_1(), "rule__StateDefBody__Group_1__0");
 			builder.put(grammarAccess.getStateBodyPartAccess().getGroup(), "rule__StateBodyPart__Group__0");
 			builder.put(grammarAccess.getStateBodyPartAccess().getGroup_0(), "rule__StateBodyPart__Group_0__0");
 			builder.put(grammarAccess.getStateDefBodyItemAccess().getGroup_5(), "rule__StateDefBodyItem__Group_5__0");
@@ -425,6 +426,7 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getTransitionUsageMemberAccess().getGroup(), "rule__TransitionUsageMember__Group__0");
 			builder.put(grammarAccess.getTargetTransitionUsageMemberAccess().getGroup(), "rule__TargetTransitionUsageMember__Group__0");
 			builder.put(grammarAccess.getStateUsageAccess().getGroup(), "rule__StateUsage__Group__0");
+			builder.put(grammarAccess.getStateUsageBodyAccess().getGroup_1(), "rule__StateUsageBody__Group_1__0");
 			builder.put(grammarAccess.getExhibitStateUsageAccess().getGroup(), "rule__ExhibitStateUsage__Group__0");
 			builder.put(grammarAccess.getExhibitStateUsageAccess().getGroup_2_0(), "rule__ExhibitStateUsage__Group_2_0__0");
 			builder.put(grammarAccess.getExhibitStateUsageAccess().getGroup_2_1(), "rule__ExhibitStateUsage__Group_2_1__0");
@@ -844,6 +846,7 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getGuardedSuccessionAccess().getOwnedRelationshipAssignment_3(), "rule__GuardedSuccession__OwnedRelationshipAssignment_3");
 			builder.put(grammarAccess.getGuardedSuccessionAccess().getOwnedRelationshipAssignment_4(), "rule__GuardedSuccession__OwnedRelationshipAssignment_4");
 			builder.put(grammarAccess.getGuardedSuccessionAccess().getOwnedRelationshipAssignment_6(), "rule__GuardedSuccession__OwnedRelationshipAssignment_6");
+			builder.put(grammarAccess.getStateDefBodyAccess().getIsParallelAssignment_1_0(), "rule__StateDefBody__IsParallelAssignment_1_0");
 			builder.put(grammarAccess.getStateBodyPartAccess().getOwnedRelationshipAssignment_0_0(), "rule__StateBodyPart__OwnedRelationshipAssignment_0_0");
 			builder.put(grammarAccess.getStateBodyPartAccess().getOwnedRelationshipAssignment_0_1(), "rule__StateBodyPart__OwnedRelationshipAssignment_0_1");
 			builder.put(grammarAccess.getStateBodyPartAccess().getOwnedRelationshipAssignment_1(), "rule__StateBodyPart__OwnedRelationshipAssignment_1");
@@ -869,6 +872,7 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getEntryTransitionMemberAccess().getOwnedRelatedElementAssignment_1_1_1(), "rule__EntryTransitionMember__OwnedRelatedElementAssignment_1_1_1");
 			builder.put(grammarAccess.getTransitionUsageMemberAccess().getOwnedRelatedElementAssignment_1(), "rule__TransitionUsageMember__OwnedRelatedElementAssignment_1");
 			builder.put(grammarAccess.getTargetTransitionUsageMemberAccess().getOwnedRelatedElementAssignment_1(), "rule__TargetTransitionUsageMember__OwnedRelatedElementAssignment_1");
+			builder.put(grammarAccess.getStateUsageBodyAccess().getIsParallelAssignment_1_0(), "rule__StateUsageBody__IsParallelAssignment_1_0");
 			builder.put(grammarAccess.getExhibitStateUsageAccess().getOwnedRelationshipAssignment_2_0_0(), "rule__ExhibitStateUsage__OwnedRelationshipAssignment_2_0_0");
 			builder.put(grammarAccess.getTransitionUsageAccess().getOwnedRelationshipAssignment_2(), "rule__TransitionUsage__OwnedRelationshipAssignment_2");
 			builder.put(grammarAccess.getTransitionUsageAccess().getOwnedRelationshipAssignment_3(), "rule__TransitionUsage__OwnedRelationshipAssignment_3");

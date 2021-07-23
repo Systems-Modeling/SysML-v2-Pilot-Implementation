@@ -1499,11 +1499,12 @@ StateDefKeyword :
 ;
 
 StateDefinition returns SysML::StateDefinition :
-	OccurrenceDefinitionPrefix StateDefKeyword ActionDeclaration StateBody
+	OccurrenceDefinitionPrefix
+	StateDefKeyword ActionDeclaration StateDefBody
 ;
 
-fragment StateBody returns SysML::Type :
-	';' | '{' StateBodyPart '}'
+fragment StateDefBody returns SysML::StateDefinition :
+	';' | ( isParallel ?= 'parallel' )? '{' StateBodyPart '}'
 ;
 
 fragment StateBodyPart returns SysML::Type :
@@ -1592,7 +1593,11 @@ StateUsageKeyword :
 ;
 
 StateUsage returns SysML::StateUsage :
-	OccurrenceUsagePrefix StateUsageKeyword ActionUsageDeclaration StateBody
+	OccurrenceUsagePrefix StateUsageKeyword ActionUsageDeclaration StateUsageBody
+;
+
+fragment StateUsageBody returns SysML::StateUsage :
+	';' | ( isParallel ?= 'parallel' )? '{' StateBodyPart '}'
 ;
 
 ExhibitStateUsage returns SysML::ExhibitStateUsage :
@@ -1600,7 +1605,7 @@ ExhibitStateUsage returns SysML::ExhibitStateUsage :
     ( ownedRelationship += OwnedSubsetting FeatureSpecializationPart?
     | StateUsageKeyword UsageDeclaration?
     )
-    ( ValuePart | ActionUsageParameterList )? StateBody
+    ( ValuePart | ActionUsageParameterList )? StateUsageBody
 ;
 
 /* Transition Usages */

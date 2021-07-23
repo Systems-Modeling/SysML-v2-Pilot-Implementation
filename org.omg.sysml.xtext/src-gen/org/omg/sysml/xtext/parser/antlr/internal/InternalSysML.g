@@ -15335,19 +15335,19 @@ ruleStateDefinition returns [EObject current=null]
 			if ($current==null) {
 				$current = createModelElement(grammarAccess.getStateDefinitionRule());
 			}
-			newCompositeNode(grammarAccess.getStateDefinitionAccess().getStateBodyParserRuleCall_3());
+			newCompositeNode(grammarAccess.getStateDefinitionAccess().getStateDefBodyParserRuleCall_3());
 		}
-		this_StateBody_3=ruleStateBody[$current]
+		this_StateDefBody_3=ruleStateDefBody[$current]
 		{
-			$current = $this_StateBody_3.current;
+			$current = $this_StateDefBody_3.current;
 			afterParserOrEnumRuleCall();
 		}
 	)
 ;
 
 
-// Rule StateBody
-ruleStateBody[EObject in_current]  returns [EObject current=in_current]
+// Rule StateDefBody
+ruleStateDefBody[EObject in_current]  returns [EObject current=in_current]
 @init {
 	enterRule();
 }
@@ -15357,28 +15357,42 @@ ruleStateBody[EObject in_current]  returns [EObject current=in_current]
 	(
 		otherlv_0=';'
 		{
-			newLeafNode(otherlv_0, grammarAccess.getStateBodyAccess().getSemicolonKeyword_0());
+			newLeafNode(otherlv_0, grammarAccess.getStateDefBodyAccess().getSemicolonKeyword_0());
 		}
 		    |
 		(
-			otherlv_1='{'
+			(
+				(
+					lv_isParallel_1_0='parallel'
+					{
+						newLeafNode(lv_isParallel_1_0, grammarAccess.getStateDefBodyAccess().getIsParallelParallelKeyword_1_0_0());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getStateDefBodyRule());
+						}
+						setWithLastConsumed($current, "isParallel", lv_isParallel_1_0 != null, "parallel");
+					}
+				)
+			)?
+			otherlv_2='{'
 			{
-				newLeafNode(otherlv_1, grammarAccess.getStateBodyAccess().getLeftCurlyBracketKeyword_1_0());
+				newLeafNode(otherlv_2, grammarAccess.getStateDefBodyAccess().getLeftCurlyBracketKeyword_1_1());
 			}
 			{
 				if ($current==null) {
-					$current = createModelElement(grammarAccess.getStateBodyRule());
+					$current = createModelElement(grammarAccess.getStateDefBodyRule());
 				}
-				newCompositeNode(grammarAccess.getStateBodyAccess().getStateBodyPartParserRuleCall_1_1());
+				newCompositeNode(grammarAccess.getStateDefBodyAccess().getStateBodyPartParserRuleCall_1_2());
 			}
-			this_StateBodyPart_2=ruleStateBodyPart[$current]
+			this_StateBodyPart_3=ruleStateBodyPart[$current]
 			{
-				$current = $this_StateBodyPart_2.current;
+				$current = $this_StateBodyPart_3.current;
 				afterParserOrEnumRuleCall();
 			}
-			otherlv_3='}'
+			otherlv_4='}'
 			{
-				newLeafNode(otherlv_3, grammarAccess.getStateBodyAccess().getRightCurlyBracketKeyword_1_2());
+				newLeafNode(otherlv_4, grammarAccess.getStateDefBodyAccess().getRightCurlyBracketKeyword_1_3());
 			}
 		)
 	)
@@ -16415,13 +16429,66 @@ ruleStateUsage returns [EObject current=null]
 			if ($current==null) {
 				$current = createModelElement(grammarAccess.getStateUsageRule());
 			}
-			newCompositeNode(grammarAccess.getStateUsageAccess().getStateBodyParserRuleCall_3());
+			newCompositeNode(grammarAccess.getStateUsageAccess().getStateUsageBodyParserRuleCall_3());
 		}
-		this_StateBody_3=ruleStateBody[$current]
+		this_StateUsageBody_3=ruleStateUsageBody[$current]
 		{
-			$current = $this_StateBody_3.current;
+			$current = $this_StateUsageBody_3.current;
 			afterParserOrEnumRuleCall();
 		}
+	)
+;
+
+
+// Rule StateUsageBody
+ruleStateUsageBody[EObject in_current]  returns [EObject current=in_current]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		otherlv_0=';'
+		{
+			newLeafNode(otherlv_0, grammarAccess.getStateUsageBodyAccess().getSemicolonKeyword_0());
+		}
+		    |
+		(
+			(
+				(
+					lv_isParallel_1_0='parallel'
+					{
+						newLeafNode(lv_isParallel_1_0, grammarAccess.getStateUsageBodyAccess().getIsParallelParallelKeyword_1_0_0());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getStateUsageBodyRule());
+						}
+						setWithLastConsumed($current, "isParallel", lv_isParallel_1_0 != null, "parallel");
+					}
+				)
+			)?
+			otherlv_2='{'
+			{
+				newLeafNode(otherlv_2, grammarAccess.getStateUsageBodyAccess().getLeftCurlyBracketKeyword_1_1());
+			}
+			{
+				if ($current==null) {
+					$current = createModelElement(grammarAccess.getStateUsageBodyRule());
+				}
+				newCompositeNode(grammarAccess.getStateUsageBodyAccess().getStateBodyPartParserRuleCall_1_2());
+			}
+			this_StateBodyPart_3=ruleStateBodyPart[$current]
+			{
+				$current = $this_StateBodyPart_3.current;
+				afterParserOrEnumRuleCall();
+			}
+			otherlv_4='}'
+			{
+				newLeafNode(otherlv_4, grammarAccess.getStateUsageBodyAccess().getRightCurlyBracketKeyword_1_3());
+			}
+		)
 	)
 ;
 
@@ -16544,11 +16611,11 @@ ruleExhibitStateUsage returns [EObject current=null]
 			if ($current==null) {
 				$current = createModelElement(grammarAccess.getExhibitStateUsageRule());
 			}
-			newCompositeNode(grammarAccess.getExhibitStateUsageAccess().getStateBodyParserRuleCall_4());
+			newCompositeNode(grammarAccess.getExhibitStateUsageAccess().getStateUsageBodyParserRuleCall_4());
 		}
-		this_StateBody_8=ruleStateBody[$current]
+		this_StateUsageBody_8=ruleStateUsageBody[$current]
 		{
-			$current = $this_StateBody_8.current;
+			$current = $this_StateUsageBody_8.current;
 			afterParserOrEnumRuleCall();
 		}
 	)

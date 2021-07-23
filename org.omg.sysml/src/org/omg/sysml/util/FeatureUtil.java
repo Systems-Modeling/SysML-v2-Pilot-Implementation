@@ -23,6 +23,7 @@ package org.omg.sysml.util;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -39,6 +40,9 @@ import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureChaining;
 import org.omg.sysml.lang.sysml.FeatureDirectionKind;
 import org.omg.sysml.lang.sysml.FeatureValue;
+import org.omg.sysml.lang.sysml.Membership;
+import org.omg.sysml.lang.sysml.Multiplicity;
+import org.omg.sysml.lang.sysml.MultiplicityRange;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.ReturnParameterMembership;
 import org.omg.sysml.lang.sysml.Step;
@@ -236,6 +240,40 @@ public class FeatureUtil {
 	public static boolean isPerformanceFeature(Feature step) {
 		Type owningType = step.getOwningType();
 		return owningType instanceof Behavior || owningType instanceof Step;
+	}
+	
+	// Multiplicity
+
+	public static MultiplicityRange getMultiplicityRangeOf(Multiplicity multiplicity) {
+		return getMultiplicityRangeOf(multiplicity, new HashSet<>());
+	}
+	
+	private static MultiplicityRange getMultiplicityRangeOf(Multiplicity multiplicity, Set<Multiplicity> visited) {
+		if (multiplicity instanceof MultiplicityRange) {
+			return (MultiplicityRange) multiplicity;
+		} else if (multiplicity != null) {
+			List<Feature> subsettedFeatures = FeatureUtil.getSubsettedFeaturesOf(multiplicity);
+			if (!subsettedFeatures.isEmpty()) {
+				Feature multSubsetted = subsettedFeatures.get(0);
+				if (multSubsetted instanceof Multiplicity && !visited.contains(multiplicity)) {
+					visited.add(multiplicity);
+					return getMultiplicityRangeOf((Multiplicity)multSubsetted, visited);
+				}
+			}
+		}
+		return null;
+	}
+	
+	public static void addMultiplicityTo(Type type) {
+		EList<Membership> ownedMemberships = type.getOwnedMembership();
+		if (!ownedMemberships.stream().
+				map(Membership::getMemberElement).
+				anyMatch(Multiplicity.class::isInstance)) {
+			Multiplicity multiplicity = SysMLFactory.eINSTANCE.createMultiplicity();
+			Membership membership = SysMLFactory.eINSTANCE.createMembership();
+			membership.setOwnedMemberElement(multiplicity);
+			type.getOwnedRelationship().add(membership);
+		}
 	}
 	
 }

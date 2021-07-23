@@ -63,7 +63,6 @@ import org.omg.sysml.lang.sysml.LiteralInfinity
 import org.omg.sysml.lang.sysml.LiteralInteger
 import org.omg.sysml.lang.sysml.ItemFlowFeature
 import org.omg.sysml.lang.sysml.Multiplicity
-import java.util.Set
 
 /**
  * This class contains custom validation rules. 
@@ -349,8 +348,8 @@ class KerMLValidator extends AbstractKerMLValidator {
 
 		// Multiplicity conformance
 		
-		var setted_m = subsettedFeature?.multiplicity.multiplicityRange
-		var setting_m = subsettingFeature?.multiplicity.multiplicityRange
+		var setted_m = FeatureUtil.getMultiplicityRangeOf(subsettedFeature?.multiplicity)
+		var setting_m = FeatureUtil.getMultiplicityRangeOf(subsettingFeature?.multiplicity)
 		
 		// Only check multiplicity conformance if the subsettedFeature and subsettingFeature multiplicity elements are not the same, 
 		// and the subsettingFeature and subsettedFeature either both are, or both are not, end Features.
@@ -421,25 +420,6 @@ class KerMLValidator extends AbstractKerMLValidator {
 				}
 			}
 		}
-	}
-	
-	protected def MultiplicityRange multiplicityRange(Multiplicity multiplicity) {
-		multiplicityRange(multiplicity, newHashSet)
-	}
-	
-	protected def MultiplicityRange multiplicityRange(Multiplicity multiplicity, Set<Multiplicity> visited) {
-		if (multiplicity instanceof MultiplicityRange) {
-			return multiplicity
-		} else if (multiplicity !== null) {
-			val subsettedFeatures = FeatureUtil.getSubsettedFeaturesOf(multiplicity);
-			if (!subsettedFeatures.empty) {
-				val multSubsetted = subsettedFeatures.get(0)
-				if (multSubsetted instanceof Multiplicity && !visited.contains(multiplicity)) {
-					return (multSubsetted as Multiplicity).multiplicityRange(visited)
-				}
-			}
-		}
-		return null;
 	}
 	
 	//return related subtypes

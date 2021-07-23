@@ -47,7 +47,6 @@ import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.Specialization;
 import org.omg.sysml.lang.sysml.ItemFeature;
 import org.omg.sysml.lang.sysml.Membership;
-import org.omg.sysml.lang.sysml.Multiplicity;
 import org.omg.sysml.lang.sysml.OccurrenceDefinition;
 import org.omg.sysml.lang.sysml.OccurrenceUsage;
 import org.omg.sysml.lang.sysml.RequirementUsage;
@@ -134,20 +133,6 @@ public class TypeUtil {
 			}
 		} else {
 			return false;
-		}
-	}
-	
-	// Multiplicity
-	
-	public static void addMultiplicityTo(Type type) {
-		EList<Membership> ownedMemberships = type.getOwnedMembership();
-		if (!ownedMemberships.stream().
-				map(Membership::getMemberElement).
-				anyMatch(Multiplicity.class::isInstance)) {
-			Multiplicity multiplicity = SysMLFactory.eINSTANCE.createMultiplicity();
-			Membership membership = SysMLFactory.eINSTANCE.createMembership();
-			membership.setOwnedMemberElement(multiplicity);
-			type.getOwnedRelationship().add(membership);
 		}
 	}
 	

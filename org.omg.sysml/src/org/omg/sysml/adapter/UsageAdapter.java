@@ -134,7 +134,7 @@ public class UsageAdapter extends FeatureAdapter {
 				filter(f->f != null).
 				map(FeatureUtil::getBasicFeatureOf).
 				noneMatch(f->f.getOwningType() != null)) {
-			TypeUtil.addMultiplicityTo(target);
+			FeatureUtil.addMultiplicityTo(target);
 		}
 	}
 	

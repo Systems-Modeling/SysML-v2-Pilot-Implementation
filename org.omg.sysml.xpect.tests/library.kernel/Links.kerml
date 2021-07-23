@@ -16,7 +16,7 @@ package Links {
 	 * BinaryLink is the most general binary association between exactly two things, 
 	 * nominally directed from source to target.
 	 */
-	assoc BinaryLink specializes Link {
+	assoc all BinaryLink specializes Link {
 	    feature participant: Anything[2] nonunique ordered redefines Link::participant;
 		
 		end feature source: Anything[0..*] nonunique subsets participant;
@@ -27,8 +27,8 @@ package Links {
 	 * SelfLink is a binary association in which the things at the two ends are asserted
 	 * to be the same.
 	 */
-	assoc SelfLink specializes BinaryLink {
-		end feature thisThing: Anything[1] redefines source subsets sameThing redefines sameThing.self;
+	assoc all SelfLink specializes BinaryLink {
+		end feature thisThing: Anything[1] redefines source subsets sameThing, sameThing.self;
 		end feature sameThing: Anything[1] redefines target subsets thisThing;
 	}
 		

@@ -56,12 +56,18 @@ package Transfers {
 		/**
 		 * The output of the items from the sourceOutput.
 		 */
-		connector sourceOutputLink: BinaryLinkObject[1..*] from Transfer::source.sourceOutput to item[1..*];
+		connector sourceOutputLink: BinaryLinkObject[1..*] {
+			end transferSource subsets source[1];
+			end transferPayload subsets item[1..*] subsets transferSource.sourceOutput;
+		}
 		
 		/**
 		 * The input of the items to the targetInput.
 		 */
-		connector targetInputLink: BinaryLinkObject[1..*] from item[1..*] to Transfer::target.targetInput[1];
+		connector targetInputLink: BinaryLinkObject[1..*] {
+			end transferTarget subsets target[1];
+			end transferPayload subsets item[1..*] subsets transferTarget.targetInput;
+		}
 		
 		/**
 		 * The start of the transfer happens during the output of each of the items from the

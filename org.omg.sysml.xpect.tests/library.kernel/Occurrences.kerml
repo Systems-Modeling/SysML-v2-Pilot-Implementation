@@ -161,7 +161,7 @@ package Occurrences {
 		end feature selfSameLife: Anything[1..*] redefines target;
 
 	 	feature all sourceOccurrence : Occurrence [1..*] subsets myselfSameLife;
-	 	feature all targetOccurrence : Occurrence [1..*] subsets selfSameLife redefines sourceOccurrence.sameLifeOccurrences;
+	 	feature all targetOccurrence : Occurrence [1..*] subsets selfSameLife, sourceOccurrence.sameLifeOccurrences;
 		binding sourceOccurrence.portionOfLife = targetOccurrence.portionOfLife;
 
 		feature all sourceDataValue : DataValue [0..1] subsets myselfSameLife;
@@ -178,7 +178,7 @@ package Occurrences {
 	 * Therefore HappensLink is disjoint with LinkObject, that is, no HappensLink can 
 	 * also be a LinkObject.
 	 */
-	assoc HappensLink {
+	assoc HappensLink specializes BinaryLink {
 		end feature sourceOccurrence: Occurrence[0..*];
 		end feature targetOccurrence: Occurrence[0..*];
 	}
@@ -191,7 +191,7 @@ package Occurrences {
 	 *  occurrence happens during itself.
 	 */
 	assoc HappensDuring specializes HappensLink {
-		end feature shorterOccurrence: Occurrence[1..*] redefines longerOccurrence.suboccurrences, sourceOccurrence;
+		end feature shorterOccurrence: Occurrence[1..*] redefines sourceOccurrence subsets longerOccurrence.suboccurrences;
 		end feature longerOccurrence: Occurrence[1..*] redefines targetOccurrence;
 	}
 	
@@ -215,8 +215,8 @@ package Occurrences {
 	 * snapshot of the laterOccurrence. Note that this means no occurrence happens before itself.
 	 */
 	assoc HappensBefore specializes HappensLink {
-		end feature earlierOccurrence: Occurrence[0..*] redefines laterOccurrence.predecessors, BinaryLink::source;
-		end feature laterOccurrence: Occurrence[0..*] redefines earlierOccurrence.successors, BinaryLink::target;
+		end feature earlierOccurrence: Occurrence[0..*] redefines BinaryLink::source subsets laterOccurrence.predecessors;
+		end feature laterOccurrence: Occurrence[0..*] redefines BinaryLink::target subsets earlierOccurrence.successors;
 		
 		inv { earlierOccurrence != laterOccurrence }
 	}
@@ -225,24 +225,24 @@ package Occurrences {
 	 * PortionOf asserts one occurrence is a portion of another, including at least itself. 
 	 */
 	assoc PortionOf specializes HappensDuring { 
-		end feature portionedOccurrence: Occurrence[1..*] redefines portionOccurrence.portionOf, longerOccurrence;
-		portion end feature portionOccurrence: Occurrence[1..*] redefines portionedOccurrence.portions, shorterOccurrence; 
+		end feature portionedOccurrence: Occurrence[1..*] redefines longerOccurrence subsets portionOccurrence.portionOf;
+		end feature portionOccurrence: Occurrence[1..*] redefines shorterOccurrence subsets portionedOccurrence.portions; 
 	}
 	
 	/**
 	 * TimeSliceOf asserts once occurrence is a time slice of another, including at least itself.
 	 */
 	assoc TimeSliceOf specializes PortionOf {
-		end feature timeSlicedOccurrence: Occurrence[1..*] redefines timeSliceOccurrence.timeSliceOf, portionedOccurrence;
-		portion end feature timeSliceOccurrence: Occurrence[1..*] redefines timeSlicedOccurrence.timeSlices, portionOccurrence;
+		end feature timeSlicedOccurrence: Occurrence[1..*] redefines portionedOccurrence subsets timeSliceOccurrence.timeSliceOf;
+		end feature timeSliceOccurrence: Occurrence[1..*] redefines portionOccurrence subsets timeSlicedOccurrence.timeSlices;
 	}
 	
 	/**
 	 * SnapshotsOf asserts once occurrence is a snapshot of another.
 	 */
 	assoc SnapshotOf specializes TimeSliceOf {
-		end feature snapshottedOccurrence: Occurrence[1..*] redefines snapshotOcccurrence.snapshotOf, timeSlicedOccurrence;
-		portion end feature snapshotOcccurrence: Occurrence[1..*] redefines snapshottedOccurrence.snapshots, timeSliceOccurrence;
+		end feature snapshottedOccurrence: Occurrence[1..*] redefines timeSlicedOccurrence subsets snapshotOcccurrence.snapshotOf;
+		end feature snapshotOcccurrence: Occurrence[1..*] redefines timeSliceOccurrence subsets snapshottedOccurrence.snapshots;
 	}
 	
 	/**

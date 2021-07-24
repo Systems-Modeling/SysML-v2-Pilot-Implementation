@@ -44,7 +44,10 @@ import org.omg.sysml.lang.sysml.RequirementDefinition;
 import org.omg.sysml.lang.sysml.RequirementUsage;
 import org.omg.sysml.lang.sysml.RequirementVerificationMembership;
 import org.omg.sysml.lang.sysml.SatisfyRequirementUsage;
+import org.omg.sysml.lang.sysml.StateDefinition;
+import org.omg.sysml.lang.sysml.StateUsage;
 import org.omg.sysml.lang.sysml.SubjectMembership;
+import org.omg.sysml.lang.sysml.Succession;
 import org.omg.sysml.lang.sysml.TransitionFeatureKind;
 import org.omg.sysml.lang.sysml.TransitionFeatureMembership;
 import org.omg.sysml.lang.sysml.TransitionUsage;
@@ -168,7 +171,67 @@ public class UsageUtil {
 		return concern.getOwningFeatureMembership() instanceof FramedConcernMembership;
 	}
 	
+	// States
+	
+	public static boolean isParallelState(Type type) {
+		return type instanceof StateDefinition && ((StateDefinition)type).isParallel() ||
+			   type instanceof StateUsage && ((StateUsage)type).isParallel();
+	}
+	
+	public static boolean isNonParallelState(Type type) {
+		return type instanceof StateDefinition && !((StateDefinition)type).isParallel() ||
+			   type instanceof StateUsage && !((StateUsage)type).isParallel();
+	}
+	
+	public static ActionUsage getEntryActionOf(Type type) {
+		return type instanceof StateDefinition? ((StateDefinition)type).getEntryAction():
+			   type instanceof StateUsage? ((StateUsage)type).getEntryAction():
+			   null;
+	}
+	
+	public static boolean hasInitialTransition(Type type) {
+		Feature entryAction = getEntryActionOf(type);
+		return entryAction != null &&
+			   type.getOwnedFeature().stream().
+				map(f->f instanceof Succession? 
+						((Succession)f).getSourceFeature(): 
+					   f instanceof TransitionUsage? 
+						((TransitionUsage)f).getSource(): null).
+				anyMatch(source->source == entryAction);
+	}
+	
+	public static boolean hasIncomingTransitions(StateUsage state) {
+		return hasIncomingTransitions(state, state.getOwningType());
+	}
+	
+	private static boolean hasIncomingTransitions(StateUsage state, Type container) {
+		return container instanceof StateDefinition &&
+						hasIncomingTransitionsIn(container, state) ||
+			   container instanceof StateUsage &&
+					   	(hasIncomingTransitionsIn(container, state) ||
+					     hasIncomingTransitions(state, ((StateUsage)container).getOwningType()));
+
+	}
+	
+	private static boolean hasIncomingTransitionsIn(Type container, StateUsage state) {
+		return container.getOwnedFeature().stream().
+				map(UsageUtil::getTransitionTargetOf).
+				anyMatch(target->target == state);
+	}
+	
 	// Transitions
+	
+	public static Feature getTransitionSourceOf(Feature transition) {
+		return transition instanceof TransitionUsage? ((TransitionUsage)transition).getSource():
+			   transition instanceof Succession? ((Succession)transition).getSourceFeature():
+			   null;
+	}
+	
+	public static Feature getTransitionTargetOf(Feature transition) {
+		return transition instanceof TransitionUsage? ((TransitionUsage)transition).getTarget():
+			   transition instanceof Succession? ((Succession)transition).getTargetFeature().stream().findFirst().orElse(null):
+			   null;
+	}
 	
 	public static Stream<Feature> getTransitionFeaturesOf(TransitionUsage usage, TransitionFeatureKind kind) {
 		return usage.getOwnedFeatureMembership().stream().

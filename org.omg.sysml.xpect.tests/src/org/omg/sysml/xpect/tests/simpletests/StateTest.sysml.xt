@@ -13,6 +13,7 @@ XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLTests
         File {from ="/library.kernel/Transfers.kerml"}
         File {from ="/library.kernel/ScalarValues.kerml"}
         File {from ="/library.kernel/BaseFunctions.kerml"}
+        File {from ="/library.kernel/ControlFunctions.kerml"}
 		File {from ="/library.systems/Items.sysml"}
 		File {from ="/library.systems/Parts.sysml"}
 		File {from ="/library.systems/Ports.sysml"}
@@ -34,6 +35,7 @@ XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLTests
 		        File {from ="/library.kernel/Transfers.kerml"}
 		        File {from ="/library.kernel/ScalarValues.kerml"}
 		        File {from ="/library.kernel/BaseFunctions.kerml"}
+		        File {from ="/library.kernel/ControlFunctions.kerml"}
 				File {from ="/library.systems/Items.sysml"}
 				File {from ="/library.systems/Parts.sysml"}
 				File {from ="/library.systems/Ports.sysml"}
@@ -66,7 +68,7 @@ package StateTest {
 			then S2;
 		
 		state S2 {
-			do send Sig(T::s::x) to p;
+			do send Sig(T.s.x) to p;
 		}
 		accept Exit then done;
 		
@@ -76,5 +78,10 @@ package StateTest {
 			if true
 			do send s to p
 			then S1;		
+	}
+	
+	state s parallel {
+		state s1;
+		state s2;
 	}
 }

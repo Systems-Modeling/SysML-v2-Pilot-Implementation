@@ -84,6 +84,9 @@ import org.omg.sysml.lang.sysml.ViewpointDefinition
 import org.omg.sysml.lang.sysml.ViewpointUsage
 import org.omg.sysml.lang.sysml.impl.FeatureImpl
 import org.omg.sysml.util.UsageUtil
+import org.omg.sysml.lang.sysml.TransitionUsage
+import org.omg.sysml.lang.sysml.Succession
+import org.omg.sysml.lang.sysml.StateDefinition
 
 /**
  * This class contains custom validation rules. 
@@ -131,6 +134,14 @@ class SysMLValidator extends KerMLValidator {
 	public static val INVALID_ACTIONUSAGE_MSG = 'An action must be typed by action definitions.'
 	public static val INVALID_STATEUSAGE = 'Invalid StateUsage - invalid type'
 	public static val INVALID_STATEUSAGE_MSG = 'A state must be typed by state definitions.'
+	public static val INVALID_STATEUSAGE_TRANSITIONS = 'Invalid StateUsage - no incoming transition'
+	public static val INVALID_STATEUSAGE_TRANSITIONS_MSG = 'Must have an incoming transition.'
+	public static val INVALID_STATEUSAGE_INITIAL = 'Invalid StateUsage - no initial transition'
+	public static val INVALID_STATEUSAGE_INITIAL_MSG = 'Must have an initial transition from entry.'
+	public static val INVALID_STATEDEFINITION_INITIAL = 'Invalid StateDefinition - no initial transition'
+	public static val INVALID_STATEDEFINITION_INITIAL_MSG = 'Must have an initial transition from entry.'
+	public static val INVALID_TRANSITIONUSAGE = 'Invalid TransitionUsage - in parallel state'
+	public static val INVALID_TRANSITIONUSAGE_MSG = 'A parallel state cannot have successions or transitions.'
 	public static val INVALID_CALCULATIONUSAGE = 'Invalid CalculationUsage - invalid type'
 	public static val INVALID_CALCULATIONUSAGE_MSG = 'A calculation must be typed by one calculation definition.'
 	public static val INVALID_CASEUSAGE = 'Invalid CaseUsage - invalid type'
@@ -267,7 +278,7 @@ class SysMLValidator extends KerMLValidator {
 		checkOneType(usg, RequirementDefinition, SysMLValidator.INVALID_REQUIREMENTUSAGE_MSG, SysMLPackage.eINSTANCE.requirementUsage_RequirementDefinition, SysMLValidator.INVALID_REQUIREMENTUSAGE)
 	}
 	@Check //All types must be Behaviors.
-	def checkStateDefinitionTypes(StateUsage usg){
+	def checkStateUsageTypes(StateUsage usg){
 		checkAllTypes(usg, Behavior, SysMLValidator.INVALID_STATEUSAGE_MSG, SysMLPackage.eINSTANCE.stateUsage_StateDefinition, SysMLValidator.INVALID_STATEUSAGE)
 	}
 	@Check //Must have exactly one type, which is a ViewDefinition.
@@ -328,7 +339,41 @@ class SysMLValidator extends KerMLValidator {
 	@Check // Must be owned by objective of verification case.
 	def checkRequirementVerificationMembership(RequirementVerificationMembership mem) {
 		if (!UsageUtil.isLegalVerification(mem)) {
-			error(INVALID_REQUIREMENTVERIFICATIONMEMBERSHIP_MSG, null, SysMLValidator.INVALID_REQUIREMENTVERIFICATIONMEMBERSHIP)
+			error(INVALID_REQUIREMENTVERIFICATIONMEMBERSHIP_MSG, null, INVALID_REQUIREMENTVERIFICATIONMEMBERSHIP)
+		}
+	}
+	
+	@Check
+	def checkStateDefinition(StateDefinition defn) {
+		if (!defn.isAbstract && !defn.isParallel && !defn.ownedState.isEmpty && !UsageUtil.hasInitialTransition(defn)) {
+			error(INVALID_STATEDEFINITION_INITIAL_MSG, defn, null, INVALID_STATEDEFINITION_INITIAL)
+		}
+	}
+	
+	@Check
+	def checkStateUsage(StateUsage usg) {
+		val owningType = usg.owningType
+		if (owningType !== null && !owningType.isAbstract && usg.isComposite && 
+			UsageUtil.isNonParallelState(owningType) && !UsageUtil.hasIncomingTransitions(usg)
+		) {
+			error(INVALID_STATEUSAGE_TRANSITIONS_MSG, usg, null, INVALID_STATEUSAGE_TRANSITIONS)
+		}
+		if (!usg.isAbstract && !usg.isParallel && !usg.nestedState.isEmpty && !UsageUtil.hasInitialTransition(usg)) {
+			error(INVALID_STATEUSAGE_INITIAL_MSG, usg, null, INVALID_STATEUSAGE_INITIAL)
+		}
+	}
+	
+	@Check
+	def checkSuccession(Succession usg) {
+		if (UsageUtil.isParallelState(usg.owningType)) {
+			error(INVALID_TRANSITIONUSAGE_MSG, usg, null, INVALID_TRANSITIONUSAGE)
+		}
+	}
+	
+	@Check
+	def checkTransitionUsage(TransitionUsage usg) {
+		if (UsageUtil.isParallelState(usg.owningType)) {
+			error(INVALID_TRANSITIONUSAGE_MSG, usg, null, INVALID_TRANSITIONUSAGE)
 		}
 	}
 	

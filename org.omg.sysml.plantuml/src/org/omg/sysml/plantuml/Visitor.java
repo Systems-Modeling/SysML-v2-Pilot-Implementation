@@ -34,6 +34,7 @@ import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Multiplicity;
 import org.omg.sysml.lang.sysml.MultiplicityRange;
+import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.util.SysMLSwitch;
 
@@ -232,7 +233,15 @@ public abstract class Visitor extends SysMLSwitch<String> {
         if (e == null) return "[*]";
         Integer ii = getVPath().getId(e);
         if (ii == null) {
-            if (!checkId(e)) return null;
+            if (!checkId(e)) {
+                if (e instanceof Subsetting) {
+                    Subsetting ss = (Subsetting) e;
+                    e = ss.getSubsettedFeature();
+                    if (!checkId(e)) return null;
+                } else {
+                	return null;
+                }
+            }
             ii = getId(e);
         }
         return 'E' + ii.toString();
@@ -357,6 +366,7 @@ public abstract class Visitor extends SysMLSwitch<String> {
         String desc = pr.getDescription();
         if (!((desc == null) || (desc.isEmpty()))) {
             ss.append(": ");
+            desc = desc.replace("\r", "").replace("\n", "\\n");
             ss.append(desc);
         }
         ss.append('\n');

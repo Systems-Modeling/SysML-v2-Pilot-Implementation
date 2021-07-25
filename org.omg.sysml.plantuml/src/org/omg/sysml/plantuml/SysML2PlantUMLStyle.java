@@ -35,6 +35,7 @@ import java.util.Map;
 import org.omg.sysml.lang.sysml.AcceptActionUsage;
 import org.omg.sysml.lang.sysml.AnalysisCaseDefinition;
 import org.omg.sysml.lang.sysml.AnalysisCaseUsage;
+import org.omg.sysml.lang.sysml.AnnotatingFeature;
 import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Class;
@@ -48,7 +49,6 @@ import org.omg.sysml.lang.sysml.ExhibitStateUsage;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureTyping;
-import org.omg.sysml.lang.sysml.Specialization;
 import org.omg.sysml.lang.sysml.ItemDefinition;
 import org.omg.sysml.lang.sysml.ItemFlow;
 import org.omg.sysml.lang.sysml.ItemUsage;
@@ -64,6 +64,7 @@ import org.omg.sysml.lang.sysml.ReferenceUsage;
 import org.omg.sysml.lang.sysml.RequirementConstraintMembership;
 import org.omg.sysml.lang.sysml.SatisfyRequirementUsage;
 import org.omg.sysml.lang.sysml.SendActionUsage;
+import org.omg.sysml.lang.sysml.Specialization;
 import org.omg.sysml.lang.sysml.SubjectMembership;
 import org.omg.sysml.lang.sysml.Succession;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -319,8 +320,13 @@ public class SysML2PlantUMLStyle {
 		}
 
 		@Override
-		public String caseComment(Comment object) {
+		public String caseComment(Comment c) {
             return " .. ";
+		}
+
+		@Override
+		public String caseAnnotatingFeature(AnnotatingFeature af) {
+            return " ..@ ";
 		}
 
 		@Override

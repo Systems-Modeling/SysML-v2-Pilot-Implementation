@@ -44,16 +44,23 @@ import org.omg.sysml.lang.sysml.Type;
 
 public class VPath extends VTraverser {
     private class PathContext {
+        private static final int SS_START_INDEX = -1;
+        private static final int SS_END_INDEX = -2;
+
         private final PathStepExpression pse;
 
         private final Feature f;
         private final int index;
 
+        private final Type typ;
+        private final Subsetting ss;
 
         private PathContext next;
         private PathContext prev;
 
         private boolean isTerminal() {
+            if (index == SS_END_INDEX) return true;
+            if (index == SS_START_INDEX) return false;
             if (f != null) {
                 return f.getOwnedFeatureChaining().size() <= index;
             } else {
@@ -68,16 +75,24 @@ public class VPath extends VTraverser {
         public PathContext getNext() {
             if (next != null) return next;
             if (f != null) {
-                this.next = new PathContext(this, f, index + 1);
+                if (index == SS_START_INDEX) {
+                    if (typ == null) {
+                        this.next = new PathContext(this, null, f, SS_END_INDEX, null, ss);
+                    } else {
+                        this.next = new PathContext(this, ss, null);
+                    }
+                } else {
+                    this.next = new PathContext(this, f, index + 1);
+                }
             } else {
                 if (prev == null) {
-                    this.next = new PathContext(this, pse);
+                    this.next = new PathContext(this, pse, null, 0, null, ss);
                 } else {
                     Type typ = pse.getOwningType();
                     if (typ instanceof PathStepExpression) {
-                        this.next = new PathContext(this, (PathStepExpression) typ);
+                        this.next = new PathContext(this, (PathStepExpression) typ, null, 0, null, ss);
                     } else {
-                        this.next = new PathContext(this, null);
+                        this.next = new PathContext(this, null, null, 0, null, ss);
                     }
                 }
             }
@@ -88,26 +103,33 @@ public class VPath extends VTraverser {
             return prev;
         }
 
-        private PathContext(PathContext prev, PathStepExpression pse) {
+        private PathContext(PathContext prev, PathStepExpression pse, Feature f, int index, Type typ, Subsetting ss) {
             this.prev = prev;
             this.pse = pse;
-            this.f = null;
-            this.index = 0;
+            this.f = f;
+            this.index = index;
+            this.typ = typ;
+            this.ss = ss;
         }
 
         public PathContext(PathStepExpression pse) {
-            this(null, pse);
+            this(null, pse, null, 0, null, null);
         }
 
         private PathContext(PathContext prev, Feature f, int index) {
-            this.prev = prev;
-            this.pse = null;
-            this.f = f;
-            this.index = index;
+            this(prev, null, f, index, null, null);
+        }
+
+        private PathContext(PathContext prev, Subsetting ss, Type typ) {
+            this(prev, null, ss.getSubsettedFeature(), SS_START_INDEX, typ, ss);
         }
 
         public PathContext(Feature f) {
-            this(null, f, 0);
+            this(null, null, f, 0, null, null);
+        }
+        
+        public PathContext(Subsetting ss, Type typ) {
+            this(null, ss, typ);
         }
         
         private boolean isSet;
@@ -116,7 +138,9 @@ public class VPath extends VTraverser {
             if (isTerminal()) return;
             if (!isMatching()) return;
             if (match(e)) {
-                if (f != null) {
+                if (ss != null) {
+                    pathIdMap.put(ss, id);
+                } else if (f != null) {
                     pathIdMap.put(f, id);
                 } else {
                     pathIdMap.put(pse, id);
@@ -138,7 +162,13 @@ public class VPath extends VTraverser {
         }
 
         private Element getTarget() {
-            if (f != null) {
+            if (ss != null) {
+                if (typ == null) {
+                    return f;
+                } else {
+                    return typ;
+                }
+            } else if (f != null) {
                 FeatureChaining fc = f.getOwnedFeatureChaining().get(index);
                 return fc.getChainingFeature();
             } else {
@@ -213,15 +243,31 @@ public class VPath extends VTraverser {
         }
     }
 
-    private final Map<Feature, Integer> pathIdMap = new HashMap<Feature, Integer>();
+    private final Map<Element, Integer> pathIdMap = new HashMap<Element, Integer>();
     private List<RefPathContext> current = new ArrayList<RefPathContext>();
+
+    private Type typeOfInheriting(Type owningType, Feature f) {
+        if (owningType == null) return null;
+        if (owningType.getInheritedFeature().contains(f)) return owningType;
+        if (owningType instanceof Feature) {
+            Feature owningFeature = (Feature) owningType;
+            return typeOfInheriting(owningFeature.getOwningType(), f);
+        }
+        return null;
+    }
 
     private void addContext(Feature f) {
         for (Subsetting ss: f.getOwnedSubsetting()) {
             Feature sf = ss.getSubsettedFeature();
             List<FeatureChaining> fcs = sf.getOwnedFeatureChaining();
-            if (fcs.isEmpty()) continue;
-            current.add(new RefPathContext(new PathContext(sf)));
+            if (fcs.isEmpty()) {
+                Type typ = typeOfInheriting(f.getOwningType(), sf);
+                if (typ != null) {
+                    current.add(new RefPathContext(new PathContext(ss, typ)));
+                }
+            } else {
+                current.add(new RefPathContext(new PathContext(sf)));
+            }
         }
     }
 
@@ -278,9 +324,7 @@ public class VPath extends VTraverser {
     }
 
     public Integer getId(Element e) {
-        if (!(e instanceof Feature)) return null;
-        Feature f = (Feature) e;
-        return pathIdMap.get(f);
+        return pathIdMap.get(e);
     }
 
     VPath() {

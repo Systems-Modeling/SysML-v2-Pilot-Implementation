@@ -135,8 +135,10 @@ public class VPath extends VTraverser {
         private boolean isSet;
 
         public void setId(Element e, Integer id) {
+            if (isSet) return;
             if (isTerminal()) return;
             if (!isMatching()) return;
+            if (unmatched != 0) return;
             if (match(e)) {
                 if (ss != null) {
                     pathIdMap.put(ss, id);

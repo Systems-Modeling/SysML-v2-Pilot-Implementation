@@ -33,7 +33,6 @@ import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
-import org.omg.sysml.lang.sysml.FeatureReferenceExpression;
 import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.ReferenceUsage;
@@ -107,9 +106,9 @@ public abstract class VBehavior extends VDefault {
             if (m instanceof FeatureValue) {
                 FeatureValue fv = (FeatureValue) m;
                 Expression e = fv.getValue();
-                if (e instanceof FeatureReferenceExpression) {
-                    FeatureReferenceExpression fre = (FeatureReferenceExpression) e;
-                    addPRelation(au, fre.getReferent(), au, send ? "<<send to>>" : "<<receive for>>");
+                Element r = resolveReference(e);
+                if (r != null) {
+                    addPRelation(au, r, au, send ? "<<send to>>" : "<<receive for>>");
                     continue;
                 }
             }

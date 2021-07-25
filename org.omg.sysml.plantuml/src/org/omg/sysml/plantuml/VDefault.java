@@ -36,13 +36,11 @@ import org.omg.sysml.lang.sysml.Dependency;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureReferenceExpression;
-import org.omg.sysml.lang.sysml.Specialization;
 import org.omg.sysml.lang.sysml.ItemFlow;
-import org.omg.sysml.lang.sysml.ItemFlowFeature;
 import org.omg.sysml.lang.sysml.PathStepExpression;
 import org.omg.sysml.lang.sysml.Relationship;
+import org.omg.sysml.lang.sysml.Specialization;
 import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
@@ -67,7 +65,7 @@ public class VDefault extends VTraverser {
                 if (tgt instanceof Feature) {
                     Element r = resolveReference((Feature) tgt);
                     if (r != null) return r;
-                    return tgt;
+                    return rel;
                 }
             }
         }
@@ -86,7 +84,7 @@ public class VDefault extends VTraverser {
             for (int i = 1; i < size; i++) {
                 Element end2 = getEnd(ends.get(i));
                 if (end2 == null) continue;
-                addPRelation(end2, end1, c);
+                addPRelation(end1, end2, c);
             }
         }
     }
@@ -136,18 +134,10 @@ public class VDefault extends VTraverser {
         } else if (f instanceof FeatureReferenceExpression) {
             FeatureReferenceExpression fre = (FeatureReferenceExpression) f;
             return fre.getReferent();
+        } else if (!f.getOwnedFeatureChaining().isEmpty()) {
+            return f;
         }
         return null;
-    }
-
-    private Element resolveItemFlowFeature(Feature f) {
-        if (!(f instanceof ItemFlowFeature)) return f;
-        for (FeatureMembership fm: f.getOwnedFeatureMembership()) {
-            Feature f2 = fm.getMemberFeature();
-            Element r = resolveReference(f2);
-            if (r != null) return r;
-        }
-        return f;
     }
 
     @Override
@@ -164,13 +154,7 @@ public class VDefault extends VTraverser {
 
     @Override
     public String caseItemFlow(ItemFlow itf) {
-    	for (Feature src: itf.getSourceOutputFeature()) {
-            Element s = resolveItemFlowFeature(src);
-    		for (Feature tgt: itf.getTargetInputFeature()) {
-                Element t = resolveItemFlowFeature(tgt);
-    			addPRelation(s, t, itf, "");
-    		}
-    	}
+        addConnector(itf);
         return "";
     }
 

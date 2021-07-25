@@ -1618,8 +1618,8 @@ TransitionUsage returns SysML::TransitionUsage :
 	TransitionUsageKeyword ( UsageDeclaration? 'first' )? 
 	ownedRelationship += TransitionSourceMember
 	ownedRelationship += EmptyParameterMember
-	( ownedRelationship += TriggerActionMember
-	  AcceptParameterPart )?
+	( ownedRelationship += EmptyParameterMember 
+	  ownedRelationship += TriggerActionMember )?
 	( ownedRelationship += GuardExpressionMember )?
 	( ownedRelationship += EffectBehaviorMember )?
 	'then' ownedRelationship += TransitionSuccessionMember
@@ -1627,7 +1627,8 @@ TransitionUsage returns SysML::TransitionUsage :
 
 TargetTransitionUsage returns SysML::TransitionUsage :
 	ownedRelationship += EmptyParameterMember
-	( 'accept' AcceptParameterPart )?
+	( ownedRelationship += EmptyParameterMember 
+	  ownedRelationship += TriggerActionMember )?
 	( ownedRelationship += GuardExpressionMember )?
 	( ownedRelationship += EffectBehaviorMember )?
 	'then' ownedRelationship += TransitionSuccessionMember
@@ -1646,7 +1647,7 @@ enum TriggerFeatureKind returns SysML::TransitionFeatureKind :
 ;
 
 TriggerAction returns SysML::AcceptActionUsage :
-	{SysML::AcceptActionUsage}
+	AcceptParameterPart
 ;
 
 GuardExpressionMember returns SysML::TransitionFeatureMembership :

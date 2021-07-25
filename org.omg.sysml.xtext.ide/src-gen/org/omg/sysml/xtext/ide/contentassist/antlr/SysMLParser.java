@@ -877,10 +877,13 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getTransitionUsageAccess().getOwnedRelationshipAssignment_2(), "rule__TransitionUsage__OwnedRelationshipAssignment_2");
 			builder.put(grammarAccess.getTransitionUsageAccess().getOwnedRelationshipAssignment_3(), "rule__TransitionUsage__OwnedRelationshipAssignment_3");
 			builder.put(grammarAccess.getTransitionUsageAccess().getOwnedRelationshipAssignment_4_0(), "rule__TransitionUsage__OwnedRelationshipAssignment_4_0");
+			builder.put(grammarAccess.getTransitionUsageAccess().getOwnedRelationshipAssignment_4_1(), "rule__TransitionUsage__OwnedRelationshipAssignment_4_1");
 			builder.put(grammarAccess.getTransitionUsageAccess().getOwnedRelationshipAssignment_5(), "rule__TransitionUsage__OwnedRelationshipAssignment_5");
 			builder.put(grammarAccess.getTransitionUsageAccess().getOwnedRelationshipAssignment_6(), "rule__TransitionUsage__OwnedRelationshipAssignment_6");
 			builder.put(grammarAccess.getTransitionUsageAccess().getOwnedRelationshipAssignment_8(), "rule__TransitionUsage__OwnedRelationshipAssignment_8");
 			builder.put(grammarAccess.getTargetTransitionUsageAccess().getOwnedRelationshipAssignment_0(), "rule__TargetTransitionUsage__OwnedRelationshipAssignment_0");
+			builder.put(grammarAccess.getTargetTransitionUsageAccess().getOwnedRelationshipAssignment_1_0(), "rule__TargetTransitionUsage__OwnedRelationshipAssignment_1_0");
+			builder.put(grammarAccess.getTargetTransitionUsageAccess().getOwnedRelationshipAssignment_1_1(), "rule__TargetTransitionUsage__OwnedRelationshipAssignment_1_1");
 			builder.put(grammarAccess.getTargetTransitionUsageAccess().getOwnedRelationshipAssignment_2(), "rule__TargetTransitionUsage__OwnedRelationshipAssignment_2");
 			builder.put(grammarAccess.getTargetTransitionUsageAccess().getOwnedRelationshipAssignment_3(), "rule__TargetTransitionUsage__OwnedRelationshipAssignment_3");
 			builder.put(grammarAccess.getTargetTransitionUsageAccess().getOwnedRelationshipAssignment_5(), "rule__TargetTransitionUsage__OwnedRelationshipAssignment_5");

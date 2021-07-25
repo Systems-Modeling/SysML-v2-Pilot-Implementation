@@ -9680,8 +9680,9 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final RuleCall cOwnedRelationshipEmptyParameterMemberParserRuleCall_3_0 = (RuleCall)cOwnedRelationshipAssignment_3.eContents().get(0);
 		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
 		private final Assignment cOwnedRelationshipAssignment_4_0 = (Assignment)cGroup_4.eContents().get(0);
-		private final RuleCall cOwnedRelationshipTriggerActionMemberParserRuleCall_4_0_0 = (RuleCall)cOwnedRelationshipAssignment_4_0.eContents().get(0);
-		private final RuleCall cAcceptParameterPartParserRuleCall_4_1 = (RuleCall)cGroup_4.eContents().get(1);
+		private final RuleCall cOwnedRelationshipEmptyParameterMemberParserRuleCall_4_0_0 = (RuleCall)cOwnedRelationshipAssignment_4_0.eContents().get(0);
+		private final Assignment cOwnedRelationshipAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
+		private final RuleCall cOwnedRelationshipTriggerActionMemberParserRuleCall_4_1_0 = (RuleCall)cOwnedRelationshipAssignment_4_1.eContents().get(0);
 		private final Assignment cOwnedRelationshipAssignment_5 = (Assignment)cGroup.eContents().get(5);
 		private final RuleCall cOwnedRelationshipGuardExpressionMemberParserRuleCall_5_0 = (RuleCall)cOwnedRelationshipAssignment_5.eContents().get(0);
 		private final Assignment cOwnedRelationshipAssignment_6 = (Assignment)cGroup.eContents().get(6);
@@ -9694,8 +9695,8 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//    TransitionUsageKeyword ( UsageDeclaration? 'first' )?
 		//    ownedRelationship += TransitionSourceMember
 		//    ownedRelationship += EmptyParameterMember
-		//    ( ownedRelationship += TriggerActionMember
-		//      AcceptParameterPart )?
+		//    ( ownedRelationship += EmptyParameterMember
+		//      ownedRelationship += TriggerActionMember )?
 		//    ( ownedRelationship += GuardExpressionMember )?
 		//    ( ownedRelationship += EffectBehaviorMember )?
 		//    'then' ownedRelationship += TransitionSuccessionMember
@@ -9705,8 +9706,8 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//TransitionUsageKeyword ( UsageDeclaration? 'first' )?
 		//ownedRelationship += TransitionSourceMember
 		//ownedRelationship += EmptyParameterMember
-		//( ownedRelationship += TriggerActionMember
-		//  AcceptParameterPart )?
+		//( ownedRelationship += EmptyParameterMember
+		//  ownedRelationship += TriggerActionMember )?
 		//( ownedRelationship += GuardExpressionMember )?
 		//( ownedRelationship += EffectBehaviorMember )?
 		//'then' ownedRelationship += TransitionSuccessionMember
@@ -9736,18 +9737,21 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//EmptyParameterMember
 		public RuleCall getOwnedRelationshipEmptyParameterMemberParserRuleCall_3_0() { return cOwnedRelationshipEmptyParameterMemberParserRuleCall_3_0; }
 		
-		//( ownedRelationship += TriggerActionMember
-		//  AcceptParameterPart )?
+		//( ownedRelationship += EmptyParameterMember
+		//  ownedRelationship += TriggerActionMember )?
 		public Group getGroup_4() { return cGroup_4; }
 		
-		//ownedRelationship += TriggerActionMember
+		//ownedRelationship += EmptyParameterMember
 		public Assignment getOwnedRelationshipAssignment_4_0() { return cOwnedRelationshipAssignment_4_0; }
 		
-		//TriggerActionMember
-		public RuleCall getOwnedRelationshipTriggerActionMemberParserRuleCall_4_0_0() { return cOwnedRelationshipTriggerActionMemberParserRuleCall_4_0_0; }
+		//EmptyParameterMember
+		public RuleCall getOwnedRelationshipEmptyParameterMemberParserRuleCall_4_0_0() { return cOwnedRelationshipEmptyParameterMemberParserRuleCall_4_0_0; }
 		
-		//AcceptParameterPart
-		public RuleCall getAcceptParameterPartParserRuleCall_4_1() { return cAcceptParameterPartParserRuleCall_4_1; }
+		//ownedRelationship += TriggerActionMember
+		public Assignment getOwnedRelationshipAssignment_4_1() { return cOwnedRelationshipAssignment_4_1; }
+		
+		//TriggerActionMember
+		public RuleCall getOwnedRelationshipTriggerActionMemberParserRuleCall_4_1_0() { return cOwnedRelationshipTriggerActionMemberParserRuleCall_4_1_0; }
 		
 		//( ownedRelationship += GuardExpressionMember )?
 		public Assignment getOwnedRelationshipAssignment_5() { return cOwnedRelationshipAssignment_5; }
@@ -9776,8 +9780,10 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Assignment cOwnedRelationshipAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cOwnedRelationshipEmptyParameterMemberParserRuleCall_0_0 = (RuleCall)cOwnedRelationshipAssignment_0.eContents().get(0);
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final Keyword cAcceptKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
-		private final RuleCall cAcceptParameterPartParserRuleCall_1_1 = (RuleCall)cGroup_1.eContents().get(1);
+		private final Assignment cOwnedRelationshipAssignment_1_0 = (Assignment)cGroup_1.eContents().get(0);
+		private final RuleCall cOwnedRelationshipEmptyParameterMemberParserRuleCall_1_0_0 = (RuleCall)cOwnedRelationshipAssignment_1_0.eContents().get(0);
+		private final Assignment cOwnedRelationshipAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final RuleCall cOwnedRelationshipTriggerActionMemberParserRuleCall_1_1_0 = (RuleCall)cOwnedRelationshipAssignment_1_1.eContents().get(0);
 		private final Assignment cOwnedRelationshipAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cOwnedRelationshipGuardExpressionMemberParserRuleCall_2_0 = (RuleCall)cOwnedRelationshipAssignment_2.eContents().get(0);
 		private final Assignment cOwnedRelationshipAssignment_3 = (Assignment)cGroup.eContents().get(3);
@@ -9788,7 +9794,8 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		
 		//TargetTransitionUsage returns SysML::TransitionUsage :
 		//    ownedRelationship += EmptyParameterMember
-		//    ( 'accept' AcceptParameterPart )?
+		//    ( ownedRelationship += EmptyParameterMember
+		//      ownedRelationship += TriggerActionMember )?
 		//    ( ownedRelationship += GuardExpressionMember )?
 		//    ( ownedRelationship += EffectBehaviorMember )?
 		//    'then' ownedRelationship += TransitionSuccessionMember
@@ -9796,7 +9803,8 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		@Override public ParserRule getRule() { return rule; }
 		
 		//ownedRelationship += EmptyParameterMember
-		//( 'accept' AcceptParameterPart )?
+		//( ownedRelationship += EmptyParameterMember
+		//  ownedRelationship += TriggerActionMember )?
 		//( ownedRelationship += GuardExpressionMember )?
 		//( ownedRelationship += EffectBehaviorMember )?
 		//'then' ownedRelationship += TransitionSuccessionMember
@@ -9808,14 +9816,21 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//EmptyParameterMember
 		public RuleCall getOwnedRelationshipEmptyParameterMemberParserRuleCall_0_0() { return cOwnedRelationshipEmptyParameterMemberParserRuleCall_0_0; }
 		
-		//( 'accept' AcceptParameterPart )?
+		//( ownedRelationship += EmptyParameterMember
+		//  ownedRelationship += TriggerActionMember )?
 		public Group getGroup_1() { return cGroup_1; }
 		
-		//'accept'
-		public Keyword getAcceptKeyword_1_0() { return cAcceptKeyword_1_0; }
+		//ownedRelationship += EmptyParameterMember
+		public Assignment getOwnedRelationshipAssignment_1_0() { return cOwnedRelationshipAssignment_1_0; }
 		
-		//AcceptParameterPart
-		public RuleCall getAcceptParameterPartParserRuleCall_1_1() { return cAcceptParameterPartParserRuleCall_1_1; }
+		//EmptyParameterMember
+		public RuleCall getOwnedRelationshipEmptyParameterMemberParserRuleCall_1_0_0() { return cOwnedRelationshipEmptyParameterMemberParserRuleCall_1_0_0; }
+		
+		//ownedRelationship += TriggerActionMember
+		public Assignment getOwnedRelationshipAssignment_1_1() { return cOwnedRelationshipAssignment_1_1; }
+		
+		//TriggerActionMember
+		public RuleCall getOwnedRelationshipTriggerActionMemberParserRuleCall_1_1_0() { return cOwnedRelationshipTriggerActionMemberParserRuleCall_1_1_0; }
 		
 		//( ownedRelationship += GuardExpressionMember )?
 		public Assignment getOwnedRelationshipAssignment_2() { return cOwnedRelationshipAssignment_2; }
@@ -9888,15 +9903,15 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	public class TriggerActionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.TriggerAction");
-		private final Action cAcceptActionUsageAction = (Action)rule.eContents().get(1);
+		private final RuleCall cAcceptParameterPartParserRuleCall = (RuleCall)rule.eContents().get(1);
 		
 		//TriggerAction returns SysML::AcceptActionUsage :
-		//    {SysML::AcceptActionUsage}
+		//    AcceptParameterPart
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{SysML::AcceptActionUsage}
-		public Action getAcceptActionUsageAction() { return cAcceptActionUsageAction; }
+		//AcceptParameterPart
+		public RuleCall getAcceptParameterPartParserRuleCall() { return cAcceptParameterPartParserRuleCall; }
 	}
 	public class GuardExpressionMemberElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.GuardExpressionMember");
@@ -17215,8 +17230,8 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	//    TransitionUsageKeyword ( UsageDeclaration? 'first' )?
 	//    ownedRelationship += TransitionSourceMember
 	//    ownedRelationship += EmptyParameterMember
-	//    ( ownedRelationship += TriggerActionMember
-	//      AcceptParameterPart )?
+	//    ( ownedRelationship += EmptyParameterMember
+	//      ownedRelationship += TriggerActionMember )?
 	//    ( ownedRelationship += GuardExpressionMember )?
 	//    ( ownedRelationship += EffectBehaviorMember )?
 	//    'then' ownedRelationship += TransitionSuccessionMember
@@ -17231,7 +17246,8 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	
 	//TargetTransitionUsage returns SysML::TransitionUsage :
 	//    ownedRelationship += EmptyParameterMember
-	//    ( 'accept' AcceptParameterPart )?
+	//    ( ownedRelationship += EmptyParameterMember
+	//      ownedRelationship += TriggerActionMember )?
 	//    ( ownedRelationship += GuardExpressionMember )?
 	//    ( ownedRelationship += EffectBehaviorMember )?
 	//    'then' ownedRelationship += TransitionSuccessionMember
@@ -17278,7 +17294,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//TriggerAction returns SysML::AcceptActionUsage :
-	//    {SysML::AcceptActionUsage}
+	//    AcceptParameterPart
 	//;
 	public TriggerActionElements getTriggerActionAccess() {
 		return pTriggerAction;

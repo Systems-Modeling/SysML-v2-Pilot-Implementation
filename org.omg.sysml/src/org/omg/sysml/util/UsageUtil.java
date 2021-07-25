@@ -25,6 +25,7 @@ import java.util.List;
 import java.util.stream.Stream;
 
 import org.omg.sysml.adapter.UsageAdapter;
+import org.omg.sysml.lang.sysml.AcceptActionUsage;
 import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.FramedConcernMembership;
 import org.omg.sysml.lang.sysml.ConcernUsage;
@@ -238,6 +239,20 @@ public class UsageUtil {
 				filter(mem->(mem instanceof TransitionFeatureMembership) && ((TransitionFeatureMembership)mem).getKind() == kind).
 				map(mem->mem.getMemberFeature()).
 				filter(f->f != null);
+	}
+	
+	public static Feature getPayloadParameterOf(TransitionUsage transition) {
+		return TypeUtil.getFeaturesByMembershipIn(transition, ParameterMembership.class).skip(1).findFirst().orElse(null);
+	}
+	
+	public static Feature getAccepterPayloadParameterOf(TransitionUsage transition) {
+		List<AcceptActionUsage> triggers = transition.getTriggerAction();
+		if (triggers.isEmpty()) {
+			return null;
+		} else {
+			AcceptActionUsage accepter = triggers.get(0);
+			return TypeUtil.getOwnedParametersOf(accepter).stream().findFirst().orElse(null);
+		}
 	}
 	
 	public static Feature getTransitionLinkFeatureOf(TransitionUsage transition) {

@@ -16727,9 +16727,9 @@ ruleTransitionUsage returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getTransitionUsageAccess().getOwnedRelationshipTriggerActionMemberParserRuleCall_4_0_0());
+						newCompositeNode(grammarAccess.getTransitionUsageAccess().getOwnedRelationshipEmptyParameterMemberParserRuleCall_4_0_0());
 					}
-					lv_ownedRelationship_5_0=ruleTriggerActionMember
+					lv_ownedRelationship_5_0=ruleEmptyParameterMember
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getTransitionUsageRule());
@@ -16738,22 +16738,30 @@ ruleTransitionUsage returns [EObject current=null]
 							$current,
 							"ownedRelationship",
 							lv_ownedRelationship_5_0,
+							"org.omg.sysml.xtext.SysML.EmptyParameterMember");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getTransitionUsageAccess().getOwnedRelationshipTriggerActionMemberParserRuleCall_4_1_0());
+					}
+					lv_ownedRelationship_6_0=ruleTriggerActionMember
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getTransitionUsageRule());
+						}
+						add(
+							$current,
+							"ownedRelationship",
+							lv_ownedRelationship_6_0,
 							"org.omg.sysml.xtext.SysML.TriggerActionMember");
 						afterParserOrEnumRuleCall();
 					}
 				)
 			)
-			{
-				if ($current==null) {
-					$current = createModelElement(grammarAccess.getTransitionUsageRule());
-				}
-				newCompositeNode(grammarAccess.getTransitionUsageAccess().getAcceptParameterPartParserRuleCall_4_1());
-			}
-			this_AcceptParameterPart_6=ruleAcceptParameterPart[$current]
-			{
-				$current = $this_AcceptParameterPart_6.current;
-				afterParserOrEnumRuleCall();
-			}
 		)?
 		(
 			(
@@ -16855,21 +16863,44 @@ ruleTargetTransitionUsage returns [EObject current=null]
 			)
 		)
 		(
-			otherlv_1='accept'
-			{
-				newLeafNode(otherlv_1, grammarAccess.getTargetTransitionUsageAccess().getAcceptKeyword_1_0());
-			}
-			{
-				if ($current==null) {
-					$current = createModelElement(grammarAccess.getTargetTransitionUsageRule());
-				}
-				newCompositeNode(grammarAccess.getTargetTransitionUsageAccess().getAcceptParameterPartParserRuleCall_1_1());
-			}
-			this_AcceptParameterPart_2=ruleAcceptParameterPart[$current]
-			{
-				$current = $this_AcceptParameterPart_2.current;
-				afterParserOrEnumRuleCall();
-			}
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getTargetTransitionUsageAccess().getOwnedRelationshipEmptyParameterMemberParserRuleCall_1_0_0());
+					}
+					lv_ownedRelationship_1_0=ruleEmptyParameterMember
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getTargetTransitionUsageRule());
+						}
+						add(
+							$current,
+							"ownedRelationship",
+							lv_ownedRelationship_1_0,
+							"org.omg.sysml.xtext.SysML.EmptyParameterMember");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getTargetTransitionUsageAccess().getOwnedRelationshipTriggerActionMemberParserRuleCall_1_1_0());
+					}
+					lv_ownedRelationship_2_0=ruleTriggerActionMember
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getTargetTransitionUsageRule());
+						}
+						add(
+							$current,
+							"ownedRelationship",
+							lv_ownedRelationship_2_0,
+							"org.omg.sysml.xtext.SysML.TriggerActionMember");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
 		)?
 		(
 			(
@@ -17040,13 +17071,17 @@ ruleTriggerAction returns [EObject current=null]
 @after {
 	leaveRule();
 }:
-	(
-		{
-			$current = forceCreateModelElement(
-				grammarAccess.getTriggerActionAccess().getAcceptActionUsageAction(),
-				$current);
+	{
+		if ($current==null) {
+			$current = createModelElement(grammarAccess.getTriggerActionRule());
 		}
-	)
+		newCompositeNode(grammarAccess.getTriggerActionAccess().getAcceptParameterPartParserRuleCall());
+	}
+	this_AcceptParameterPart_0=ruleAcceptParameterPart[$current]
+	{
+		$current = $this_AcceptParameterPart_0.current;
+		afterParserOrEnumRuleCall();
+	}
 ;
 
 // Entry rule entryRuleGuardExpressionMember

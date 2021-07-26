@@ -5,43 +5,37 @@ package '15_13-Discretely Sampled Function Value' {
 	import ISQ::*;
 	import SI::*;
 	import UnitsAndScales::*;
+	import Time::*;
 
-    /*
-     * Coordinated Universal Time scale (UTC)
-     * TODO: Create a vector quantity that captures all ISO 8601 components: year, month, day, hour, minute, second
-     */
-    attribute UTC: IntervalScale {
-    	:>> longName = "Coordinated Universal Time scale (UTC) as specified in Rec. ITU-R TF.460-6";
-        :>> unit = s;
-        attribute referenceInstantOfTime: DefinitionalQuantityValue {
-            :>> num = 0;
-            :>> definition = "Approximate agreement with International Atomic Time (TAI) on 1958-01-01";
-        }
-        attribute :>> definitionalQuantityValues = (referenceInstantOfTime);
-    }
-
-	attribute def MissionElapsedTimeScale :> IntervalScale {
+	attribute def MissionElapsedTimeScale :> TimeScale {
     	:>> longName = "mission elapsed time starting at launch";
 		:>> unit = s;
-		attribute launchTimeStamp: DefinitionalQuantityValue {
+		attribute :>> definitionalEpoch {
 			:>> num = 0;
-			:>> definition = "zero instant of time at launch";
+			:>> definition = "time instant zero at launch";
 		}
-        attribute :>> definitionalQuantityValues = (launchTimeStamp);
-        private attribute launchTimestampMapping: QuantityValueMapping {
-            :>> mappedQuantityValue = launchTimeStamp;
-            :>> referenceQuantityValue = UTC::referenceInstantOfTime;
-        }
-        attribute :>> quantityValueMapping = launchTimestampMapping;
-
-        // TODO: Add proper ISO 8601 attribute def in Time.sysml. Temporarily represented by String in ISO 8601 format.
-        attribute zeroReferenceTimestamp: String;
+		attribute definitionalEpochInUTC : Iso8601DateTime;
+		
+		// Map the definitional epoch (t = 0) of this scale to a reference epoch expressed in UTC
+		// This modeled as a 1D coordinate transformation (translation only)
+		attribute :>> placement : CoordinateTransformation {
+			:>> source = UTC;
+			:>> target = self;
+			:>> origin = definitionalEpochInUTC;
+		}
     }
 
-	// Define mission elapsed time scale
-	attribute mets: MissionElapsedTimeScale { :>> zeroReferenceTimestamp = "2020-08-23T22:42:32.924534Z"; }
+	/** 
+	 * Define mission elapsed time scale starting at given UTC date time (in microsecond resolution)
+	 */
+	attribute mets: MissionElapsedTimeScale { 
+		:>> definitionalEpochInUTC { :>> val = "2020-08-23T22:42:32.924534Z";}		
+	}
 
-	attribute def MissionElapsedTimeValue :> TimeValue { :>> mRef = mets; }
+	/**
+	 * Define scalar quantity value type for mission elapsed time
+	 */
+	attribute def MissionElapsedTimeValue :> TimeInstantValue { :>> mRef = mets; }
 
 	/*
 	 * Define Cartesian 3D coordinate systems for position and velocity

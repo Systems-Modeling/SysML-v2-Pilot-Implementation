@@ -406,7 +406,7 @@ package VehicleModel {
                 action senseTemperature: SenseTemperature;
             }
             package States {
-                state vehicleStates: VehicleStates {
+                state vehicleStates: VehicleStates parallel {
                     ref vehicle: Vehicle;
                     ref controller: VehicleController;
                     state operatingStates {
@@ -463,7 +463,7 @@ package VehicleModel {
 							then normal;
 					}
 				}
-				state controllerStates: ControllerStates {
+				state controllerStates: ControllerStates parallel {
 					state operatingStates {
 						entry action initial;
 						state off;

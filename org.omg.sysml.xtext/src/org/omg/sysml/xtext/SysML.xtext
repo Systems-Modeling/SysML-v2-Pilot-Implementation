@@ -1499,26 +1499,21 @@ StateDefKeyword :
 ;
 
 StateDefinition returns SysML::StateDefinition :
-	OccurrenceDefinitionPrefix StateDefKeyword ActionDeclaration StateBody
+	OccurrenceDefinitionPrefix
+	StateDefKeyword ActionDeclaration StateDefBody
 ;
 
-fragment StateBody returns SysML::Type :
-	';' | '{' StateBodyPart '}'
+fragment StateDefBody returns SysML::StateDefinition :
+	';' | ( isParallel ?= 'parallel' )? '{' StateBodyPart '}'
 ;
 
 fragment StateBodyPart returns SysML::Type :
-	( ownedRelationship += EntryActionMember
-	  ( ownedRelationship += EntryTransitionMember )*
-	)?
-	( ownedRelationship += DoActionMember )?
-	( ownedRelationship += ExitActionMember )?
-	
 	// Note: Using a syntactic predicate here seems to avoid a possible infinite loop
 	// while incrementally parsing.
-	=> StateDefBodyItem*
+	=> StateBodyItem*
 ;
 
-fragment StateDefBodyItem returns SysML::Type :
+fragment StateBodyItem returns SysML::Type :
 	  ownedRelationship += OwnedDocumentation
 	| ownedRelationship += Import
 	| ownedRelationship += DefinitionMember 
@@ -1530,6 +1525,10 @@ fragment StateDefBodyItem returns SysML::Type :
 	  ownedRelationship += BehaviorUsageMember
 	  ( ownedRelationship += TargetTransitionUsageMember )*
 	| ownedRelationship += TransitionUsageMember
+	| ownedRelationship += EntryActionMember
+	  ( ownedRelationship += EntryTransitionMember )*
+	| ownedRelationship += DoActionMember
+	| ownedRelationship += ExitActionMember	
 ;
 
 EntryActionMember returns SysML::StateSubactionMembership :
@@ -1592,7 +1591,11 @@ StateUsageKeyword :
 ;
 
 StateUsage returns SysML::StateUsage :
-	OccurrenceUsagePrefix StateUsageKeyword ActionUsageDeclaration StateBody
+	OccurrenceUsagePrefix StateUsageKeyword ActionUsageDeclaration StateUsageBody
+;
+
+fragment StateUsageBody returns SysML::StateUsage :
+	';' | ( isParallel ?= 'parallel' )? '{' StateBodyPart '}'
 ;
 
 ExhibitStateUsage returns SysML::ExhibitStateUsage :
@@ -1600,7 +1603,7 @@ ExhibitStateUsage returns SysML::ExhibitStateUsage :
     ( ownedRelationship += OwnedSubsetting FeatureSpecializationPart?
     | StateUsageKeyword UsageDeclaration?
     )
-    ( ValuePart | ActionUsageParameterList )? StateBody
+    ( ValuePart | ActionUsageParameterList )? StateUsageBody
 ;
 
 /* Transition Usages */
@@ -1613,8 +1616,8 @@ TransitionUsage returns SysML::TransitionUsage :
 	TransitionUsageKeyword ( UsageDeclaration? 'first' )? 
 	ownedRelationship += TransitionSourceMember
 	ownedRelationship += EmptyParameterMember
-	( ownedRelationship += TriggerActionMember
-	  AcceptParameterPart )?
+	( ownedRelationship += EmptyParameterMember 
+	  ownedRelationship += TriggerActionMember )?
 	( ownedRelationship += GuardExpressionMember )?
 	( ownedRelationship += EffectBehaviorMember )?
 	'then' ownedRelationship += TransitionSuccessionMember
@@ -1622,9 +1625,18 @@ TransitionUsage returns SysML::TransitionUsage :
 
 TargetTransitionUsage returns SysML::TransitionUsage :
 	ownedRelationship += EmptyParameterMember
-	( 'accept' AcceptParameterPart )?
-	( ownedRelationship += GuardExpressionMember )?
-	( ownedRelationship += EffectBehaviorMember )?
+	( TransitionUsageKeyword
+	  ( ownedRelationship += EmptyParameterMember 
+	    ownedRelationship += TriggerActionMember )?
+	  ( ownedRelationship += GuardExpressionMember )?
+	  ( ownedRelationship += EffectBehaviorMember )?
+	| ownedRelationship += EmptyParameterMember 
+	  ownedRelationship += TriggerActionMember
+	  ( ownedRelationship += GuardExpressionMember )?
+	  ( ownedRelationship += EffectBehaviorMember )?
+	| ownedRelationship += GuardExpressionMember
+	  ( ownedRelationship += EffectBehaviorMember )?
+	)?
 	'then' ownedRelationship += TransitionSuccessionMember
 ;
 
@@ -1641,7 +1653,7 @@ enum TriggerFeatureKind returns SysML::TransitionFeatureKind :
 ;
 
 TriggerAction returns SysML::AcceptActionUsage :
-	{SysML::AcceptActionUsage}
+	AcceptParameterPart
 ;
 
 GuardExpressionMember returns SysML::TransitionFeatureMembership :

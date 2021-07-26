@@ -111,9 +111,7 @@ public class VDefault extends VTraverser {
         addPUMLLine(typ, keyword, name, styleString(typ));
     }
 
-    protected boolean addRecLine(Type typ, boolean withStyle) {
-    	String name = getName(typ);
-    	if (name == null) return false;
+    protected boolean addRecLine(String name, Type typ, boolean withStyle) {
         String keyword;
         if (typ instanceof Usage) {
             keyword = "rec usage ";
@@ -126,6 +124,12 @@ public class VDefault extends VTraverser {
             addPUMLLine(typ, keyword, name, null);
         }
         return true;
+    }
+
+    protected boolean addRecLine(Type typ, boolean withStyle) {
+    	String name = getName(typ);
+    	if (name == null) return false;
+        return addRecLine(name, typ, withStyle);
     }
 
     protected Element resolveReference(Feature f) {

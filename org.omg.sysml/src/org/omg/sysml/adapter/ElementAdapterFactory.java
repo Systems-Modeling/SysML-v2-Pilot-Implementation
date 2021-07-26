@@ -301,6 +301,11 @@ public class ElementAdapterFactory {
 		}
 		
 		@Override
+		public ElementAdapter caseReferenceUsage(ReferenceUsage element) {
+			return new ReferenceUsageAdapter(element);
+		}
+		
+		@Override
 		public ElementAdapter caseRenderingUsage(RenderingUsage element) {
 			return new RenderingUsageAdapter(element);
 		}

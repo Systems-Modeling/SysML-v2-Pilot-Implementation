@@ -53,6 +53,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	protected AbstractElementAlias match_ReturnParameterMember_ReturnKeyword_0_q;
 	protected AbstractElementAlias match_SequenceExpression_CommaKeyword_1_0_q;
 	protected AbstractElementAlias match_SuccessionDeclaration_FirstKeyword_0_1_q;
+	protected AbstractElementAlias match_TargetTransitionUsage_TransitionUsageKeywordParserRuleCall_1_0_0_q;
 	protected AbstractElementAlias match_TextualRepresentation_RepKeyword_0_0_0_or_RepKeyword_0_1_0_0;
 	protected AbstractElementAlias match_TextualRepresentation_RepKeyword_0_1_0_0_q;
 	protected AbstractElementAlias match_TransitionUsage_FirstKeyword_1_1_q;
@@ -93,6 +94,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 		match_ReturnParameterMember_ReturnKeyword_0_q = new TokenAlias(false, true, grammarAccess.getReturnParameterMemberAccess().getReturnKeyword_0());
 		match_SequenceExpression_CommaKeyword_1_0_q = new TokenAlias(false, true, grammarAccess.getSequenceExpressionAccess().getCommaKeyword_1_0());
 		match_SuccessionDeclaration_FirstKeyword_0_1_q = new TokenAlias(false, true, grammarAccess.getSuccessionDeclarationAccess().getFirstKeyword_0_1());
+		match_TargetTransitionUsage_TransitionUsageKeywordParserRuleCall_1_0_0_q = new TokenAlias(false, true, grammarAccess.getTargetTransitionUsageAccess().getTransitionUsageKeywordParserRuleCall_1_0_0());
 		match_TextualRepresentation_RepKeyword_0_0_0_or_RepKeyword_0_1_0_0 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getTextualRepresentationAccess().getRepKeyword_0_0_0()), new TokenAlias(false, false, grammarAccess.getTextualRepresentationAccess().getRepKeyword_0_1_0_0()));
 		match_TextualRepresentation_RepKeyword_0_1_0_0_q = new TokenAlias(false, true, grammarAccess.getTextualRepresentationAccess().getRepKeyword_0_1_0_0());
 		match_TransitionUsage_FirstKeyword_1_1_q = new TokenAlias(false, true, grammarAccess.getTransitionUsageAccess().getFirstKeyword_1_1());
@@ -888,6 +890,8 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 				emit_SequenceExpression_CommaKeyword_1_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_SuccessionDeclaration_FirstKeyword_0_1_q.equals(syntax))
 				emit_SuccessionDeclaration_FirstKeyword_0_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_TargetTransitionUsage_TransitionUsageKeywordParserRuleCall_1_0_0_q.equals(syntax))
+				emit_TargetTransitionUsage_TransitionUsageKeywordParserRuleCall_1_0_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_TextualRepresentation_RepKeyword_0_0_0_or_RepKeyword_0_1_0_0.equals(syntax))
 				emit_TextualRepresentation_RepKeyword_0_0_0_or_RepKeyword_0_1_0_0(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_TextualRepresentation_RepKeyword_0_1_0_0_q.equals(syntax))
@@ -1736,6 +1740,17 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isAbstract?='abstract' SuccessionKeyword (ambiguity) ownedRelationship+=ConnectorEndMember
 	 */
 	protected void emit_SuccessionDeclaration_FirstKeyword_0_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Ambiguous syntax:
+	 *     TransitionUsageKeyword?
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     ownedRelationship+=EmptyParameterMember (ambiguity) 'then' ownedRelationship+=TransitionSuccessionMember
+	 */
+	protected void emit_TargetTransitionUsage_TransitionUsageKeywordParserRuleCall_1_0_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	

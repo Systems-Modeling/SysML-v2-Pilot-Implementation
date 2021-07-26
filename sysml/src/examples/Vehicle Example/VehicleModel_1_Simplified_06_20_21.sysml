@@ -619,7 +619,7 @@ package sfriedenthal_VehicleModel_1_simplified{
             package States{
                 //the following uses a single concept of event for signal, change, and time event
                 //the time event will be replaced by when eventname
-                state vehicleStates: VehicleStates {
+                state vehicleStates: VehicleStates parallel {
                     ref vehicle : Vehicle;
                     ref controller : VehicleController;
 
@@ -689,7 +689,7 @@ package sfriedenthal_VehicleModel_1_simplified{
                             then normal;
                     }
             }
-                state controllerStates: ControllerStates {
+                state controllerStates: ControllerStates parallel {
                     //ref controller : VehicleController;
                     state operatingStates {
                         entry action initial; 

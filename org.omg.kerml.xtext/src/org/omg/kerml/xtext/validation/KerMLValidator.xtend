@@ -56,13 +56,13 @@ import org.eclipse.xtext.scoping.IScopeProvider
 import org.omg.sysml.lang.sysml.util.ISysMLScope
 import org.eclipse.emf.ecore.EClass
 import org.omg.sysml.lang.sysml.FeatureChaining
-import org.omg.sysml.lang.sysml.Expression
 import org.omg.sysml.lang.sysml.Subsetting
 import org.omg.sysml.lang.sysml.MultiplicityRange
 import org.omg.sysml.lang.sysml.Redefinition
 import org.omg.sysml.lang.sysml.LiteralInfinity
 import org.omg.sysml.lang.sysml.LiteralInteger
 import org.omg.sysml.lang.sysml.ItemFlowFeature
+import org.omg.sysml.lang.sysml.Multiplicity
 
 /**
  * This class contains custom validation rules. 
@@ -108,6 +108,8 @@ class KerMLValidator extends AbstractKerMLValidator {
 	public static val INVALID_FEATURE_CHAINING__INVALID_FEATURE_MSG = "Must be a valid feature"
 	public static val INVALID_FEATURE_REFERENCE_EXPRESSION__INVALID_FEATURE = "Invalid FeatureReferenceExpression - Invalid feature"
 	public static val INVALID_FEATURE_REFERENCE_EXPRESSION__INVALID_FEATURE_MSG = "Must be a valid feature"
+	public static val INVALID_TYPE_MULTIPLICITY__TOO_MANY = "Invalid Type - Too many multiplicities"
+	public static val INVALID_TYPE_MULTIPLICITY__TOO_MANY_MSG = "Only one multiplicity is allowed"
 	
 	@Inject
 	IScopeProvider scopeProvider
@@ -229,6 +231,16 @@ class KerMLValidator extends AbstractKerMLValidator {
 	}
 	
 	@Check
+	def checkTypeMultiplicity(Type t) {
+		var multiplicityMemberships = t.ownedMembership.filter[memberElement instanceof Multiplicity];
+		if (multiplicityMemberships.size > 1) {
+			for (var i = 1; i < multiplicityMemberships.size; i++) {
+				error(INVALID_TYPE_MULTIPLICITY__TOO_MANY_MSG, multiplicityMemberships.get(i), SysMLPackage.eINSTANCE.membership_MemberElement, INVALID_TYPE_MULTIPLICITY__TOO_MANY);			
+			}
+		}
+	}
+	
+	@Check
 	def checkRelationship(Relationship r){
 		// Allow abstract associations and connectors to have less than two ends.
 		if (!(r instanceof Type && (r as Type).isAbstract)) {
@@ -327,33 +339,40 @@ class KerMLValidator extends AbstractKerMLValidator {
 	@Check
 	def checkSubsettingConformance(Subsetting sub) { 
 		
-		var subsettingOwningType = sub.subsettingFeature?.owningType
-		var subsettedOwningType = sub.subsettedFeature?.owningType
-		
 		// Due to how connector is implemented, no validation is performed if the owner is a Connector.
-		if ( subsettingOwningType instanceof Connector || subsettedOwningType instanceof Connector ) 
+		if ( sub.subsettingFeature.owningType instanceof Connector || sub.subsettedFeature.owningType instanceof Connector ) 
 			return;
+
+		val subsettingFeature = sub.subsettingFeature
+		val subsettedFeature = sub.subsettedFeature
 
 		// Multiplicity conformance
 		
-		var setted_m = sub.subsettedFeature?.multiplicity
-		var setting_m = sub.subsettingFeature?.multiplicity
-		var Expression setting_m_l = null;
-		var Expression setting_m_u = null;
+		var setted_m = FeatureUtil.getMultiplicityRangeOf(subsettedFeature?.multiplicity)
+		var setting_m = FeatureUtil.getMultiplicityRangeOf(subsettingFeature?.multiplicity)
 		
-		// Only check multiplicity conformance if the subsettingFeature owns its multiplicity element, 
+		// Only check multiplicity conformance if the subsettedFeature and subsettingFeature multiplicity elements are not the same, 
 		// and the subsettingFeature and subsettedFeature either both are, or both are not, end Features.
-		if (setted_m instanceof MultiplicityRange && setting_m instanceof MultiplicityRange && setting_m.owningNamespace === sub.subsettingFeature &&
-			sub.subsettingFeature.isEnd() == sub.subsettedFeature.isEnd()) {
-			var setted_m_l = (setted_m as MultiplicityRange)?.lowerBound
-			var setted_m_u = (setted_m as MultiplicityRange)?.upperBound
+		if (setted_m !== null && setting_m !== null && setted_m !== setting_m &&
+			subsettingFeature.isEnd() == subsettedFeature.isEnd()) {
+			var setted_m_l = setted_m.lowerBound
+			val setted_m_u = setted_m.upperBound
 			
-			setting_m_l = (setting_m as MultiplicityRange)?.lowerBound
-			setting_m_u = (setting_m as MultiplicityRange)?.upperBound
+			if (setted_m_l === null) {
+				setted_m_l = setted_m_u
+			}
+			
+			var setting_m_l = (setting_m as MultiplicityRange).lowerBound
+			val setting_m_u = (setting_m as MultiplicityRange).upperBound
+			
+			if (setting_m_l === null) {
+				setting_m_l = setting_m_u
+			}
 			
 			// Lower bound (only check if the Subsetting is a Redefinition): setting must be >= setted
 			if (sub instanceof Redefinition) {
-				if (setting_m_l instanceof LiteralInteger && setted_m_l instanceof LiteralInteger && (setting_m_l as LiteralInteger).getValue < (setted_m_l as LiteralInteger).getValue) {
+				if (setting_m_l instanceof LiteralInteger && setted_m_l instanceof LiteralInteger && (setting_m_l as LiteralInteger).getValue < (setted_m_l as LiteralInteger).getValue ||
+					setting_m_l instanceof LiteralInfinity && setted_m_l instanceof LiteralInteger && 0 < (setted_m_l as LiteralInteger).getValue) {
 					warning("Redefining feature should not have smaller multiplicity lower bound", sub, 
 						SysMLPackage.eINSTANCE.redefinition_RedefiningFeature, INVALID_REDEFINITION_MULTIPLICITYCONFORMANCE)
 				}
@@ -368,23 +387,16 @@ class KerMLValidator extends AbstractKerMLValidator {
 		}
 
 		// Uniqueness conformance
-		if (sub.subsettedFeature !== null && sub.subsettedFeature.unique && sub.subsettingFeature !== null && !sub.subsettingFeature.unique){
-			if (setting_m_u instanceof LiteralInfinity || (setting_m_u as LiteralInteger).getValue > 1) {//less than or equal to 1 is ok
-				warning("Subsetting/redefining feature should not be nonunique if subsetted/redefined feature is unique", sub, 
-						SysMLPackage.eINSTANCE.subsetting_SubsettingFeature, INVALID_SUBSETTING_UNIQUENESS_CONFORMANCE)
-			}
+		if (subsettedFeature !== null && subsettedFeature.unique && subsettingFeature !== null && !subsettingFeature.unique){
+			warning("Subsetting/redefining feature should not be nonunique if subsetted/redefined feature is unique", sub, 
+					SysMLPackage.eINSTANCE.subsetting_SubsettingFeature, INVALID_SUBSETTING_UNIQUENESS_CONFORMANCE)
 		}
 					
 		// Featuring type conformance
-		val subsettingFeature = sub.subsettingFeature
-		var subsettedFeature = sub.subsettedFeature
-		if (!subsettedFeature.ownedFeatureChaining.isEmpty) {
-			subsettedFeature = subsettedFeature.ownedFeatureChaining.last.chainingFeature
-		}
 		if (subsettingFeature !== null && subsettedFeature !== null) {
-			val subsettingFeaturingTypes = sub.subsettingFeature.featuringType
-			val subsettedFeaturingTypes = sub.subsettedFeature.featuringType
-			if (sub instanceof Redefinition && sub.subsettedFeature.owningRelationship != sub &&
+			val subsettingFeaturingTypes = subsettingFeature.featuringType
+			val subsettedFeaturingTypes = subsettedFeature.featuringType
+			if (sub instanceof Redefinition && subsettedFeature.owningRelationship != sub &&
 				subsettedFeaturingTypes.containsAll(subsettingFeaturingTypes) && 
 				subsettedFeaturingTypes.size == subsettingFeaturingTypes.size){
 				if (subsettingFeaturingTypes.isEmpty) {
@@ -409,7 +421,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 			}
 		}
 	}
-
+	
 	//return related subtypes
 	protected def Iterable<Type> conformsFrom(Type supertype, List<Type> subtypes) 
 	{

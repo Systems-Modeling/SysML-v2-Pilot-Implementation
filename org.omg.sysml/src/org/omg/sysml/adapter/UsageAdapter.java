@@ -30,6 +30,7 @@ import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.SubjectMembership;
+import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.TransitionUsage;
@@ -124,6 +125,18 @@ public class UsageAdapter extends FeatureAdapter {
 	}
 	
 	// Transformation
+	
+	protected void addDefaultMultiplicity() {
+		Usage target = getTarget();
+		if (target.getOwningType() != null &&
+			target.getOwnedSubsetting().stream().
+				map(Subsetting::getSubsettedFeature).
+				filter(f->f != null).
+				map(FeatureUtil::getBasicFeatureOf).
+				noneMatch(f->f.getOwningType() != null)) {
+			FeatureUtil.addMultiplicityTo(target);
+		}
+	}
 	
 	/**
 	 * Return the relevant subject parameter to which a Usage should be bound.

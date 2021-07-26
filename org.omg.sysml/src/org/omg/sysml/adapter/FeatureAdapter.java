@@ -271,9 +271,8 @@ public class FeatureAdapter extends TypeAdapter {
 	 */
 	protected void addRedefinitions(Element skip) {
 		Feature target = getTarget();
-		Namespace owner = target.getOwningNamespace();
-		if (owner instanceof Type) {
-			Type type = target.getOwningType();
+		Type type = target.getOwningType();
+		if (type != null) {
 			int i = getRelevantFeatures(type, skip).indexOf(target);
 			if (i >= 0) {
 				for (Type general: getGeneralTypes(type, skip)) {

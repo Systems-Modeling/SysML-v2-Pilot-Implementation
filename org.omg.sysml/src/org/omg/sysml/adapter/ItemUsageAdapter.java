@@ -26,7 +26,7 @@ import org.omg.sysml.lang.sysml.ItemUsage;
 import org.omg.sysml.lang.sysml.Type;
 
 public class ItemUsageAdapter extends OccurrenceUsageAdapter {
-
+	
 	public ItemUsageAdapter(ItemUsage element) {
 		super(element);
 	}
@@ -49,6 +49,12 @@ public class ItemUsageAdapter extends OccurrenceUsageAdapter {
 		Type owningType = target.getOwningType();
 		return target.isComposite() && 
 			   (owningType instanceof ItemDefinition || owningType instanceof ItemUsage);
+	}
+	
+	@Override
+	public void doTransform() {
+		super.doTransform();
+		addDefaultMultiplicity();
 	}
 	
 }

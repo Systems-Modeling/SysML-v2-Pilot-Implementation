@@ -86,6 +86,11 @@ public class ImplicitGeneralizationMap {
 		put(LiteralExpressionImpl.class, "base", "Performances::literalEvaluations");
 		
 		put(MultiplicityImpl.class, "base", "Base::naturals");
+		put(MultiplicityImpl.class, "feature", "Base::exactlyOne");
+		put(MultiplicityImpl.class, "classifier", "Base::zeroOrOne");
+
+		put(MultiplicityRangeImpl.class, "feature", "Base::naturals");
+		put(MultiplicityRangeImpl.class, "classifier", "Base::naturals");
 		
 		put(NullExpressionImpl.class, "base", "Performances::nullEvaluations");
 		

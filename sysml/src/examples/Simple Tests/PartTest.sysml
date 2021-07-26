@@ -5,6 +5,8 @@ package PartTest {
 	public part def A {
 		part id '1' b: B;
 		protected port c: C;
+		attribute x[0..2];
+		attribute y :> x;
 	}
 	
 	abstract part def id xx B {

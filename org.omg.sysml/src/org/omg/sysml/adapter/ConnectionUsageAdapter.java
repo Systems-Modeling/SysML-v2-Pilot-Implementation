@@ -43,6 +43,11 @@ public class ConnectionUsageAdapter extends PartUsageAdapter {
 	}
 	
 	@Override
+	protected void addDefaultMultiplicity() {
+		
+	}
+	
+	@Override
 	public void doTransform() {
 		ConnectionUsage target = getTarget();
 		super.doTransform();

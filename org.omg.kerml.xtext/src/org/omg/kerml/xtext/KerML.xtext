@@ -315,6 +315,7 @@ NonFeatureElement returns SysML::Element :
 	| AnnotatingFeature
 	| Namespace
 	| Package 
+	| Multiplicity
 	| Type
 	| Classifier 
 	| Class
@@ -386,7 +387,7 @@ Type returns SysML::Type :
 
 fragment TypeDeclaration returns SysML::Type : 
     ( isSufficient ?= 'all' )? Identification?
-    ( ownedRelationship += MultiplicityMember )? 
+    ( ownedRelationship += OwnedMultiplicity )? 
     ( SpecializationPart | ConjugationPart )+
 ;
 
@@ -397,10 +398,6 @@ fragment SpecializationPart returns SysML::Type :
 
 fragment ConjugationPart returns SysML::Type :
 	( '~' | 'conjugates' ) ownedRelationship += OwnedConjugation
-;
-
-MultiplicityMember returns SysML::Membership :
-	ownedRelatedElement += Multiplicity // ownedMemberElement = Multiplicity
 ;
 
 fragment TypeBody returns SysML::Type :
@@ -479,7 +476,7 @@ Classifier returns SysML::Classifier :
 
 fragment ClassifierDeclaration returns SysML::Classifier :	
     (isSufficient ?= 'all' )? Identification?
-	( ownedRelationship += MultiplicityMember )?
+	( ownedRelationship += OwnedMultiplicity )?
 	( SuperclassingPart | ClassifierConjugationPart )?
 ;
 
@@ -550,11 +547,11 @@ fragment FeatureSpecializationPart returns SysML::Feature :
 ;
 
 fragment MultiplicityPart returns SysML::Feature :
-	ownedRelationship += MultiplicityMember 
-	// NOTE: Can't use "&" here because of use of predication elsewhere.
-	( isOrdered ?= 'ordered' isNonunique ?= 'nonunique'?
-	| isNonunique ?= 'nonunique' isOrdered ?= 'ordered'?
-	)?
+	  ownedRelationship += OwnedMultiplicity 
+	| ( ownedRelationship += OwnedMultiplicity )?
+	  ( isOrdered ?= 'ordered' isNonunique ?= 'nonunique'?
+	  | isNonunique ?= 'nonunique' isOrdered ?= 'ordered'?
+	  )
 ;
 
 fragment FeatureSpecialization returns SysML::Feature :
@@ -659,7 +656,27 @@ FeatureValue returns SysML::FeatureValue :
 
 /* MULTIPLICITIES */
 
-Multiplicity returns SysML::MultiplicityRange :
+Multiplicity returns SysML::Multiplicity :
+	MultiplicitySubset | MultiplicityRange
+;
+
+MultiplicitySubset returns SysML::Multiplicity :
+	'multiplicity' Identification? Subsets
+;
+
+MultiplicityRange returns SysML::MultiplicityRange :
+	'multiplicity' Identification? MultiplicityBounds ';'
+;
+
+OwnedMultiplicity returns SysML::Membership :
+	ownedRelatedElement += OwnedMultiplicityRange // ownedMemberElement = Multiplicity
+;
+
+OwnedMultiplicityRange returns SysML::MultiplicityRange :
+	MultiplicityBounds
+;
+
+fragment MultiplicityBounds returns SysML::MultiplicityRange :
 	// TODO: Allow general expressions for bounds. (Causes LL parsing issues.)
 	'[' ownedRelationship += MultiplicityExpressionMember
 	      ( '..' ownedRelationship += MultiplicityExpressionMember )? ']'
@@ -738,7 +755,7 @@ ConnectorEndMember returns SysML::EndFeatureMembership :
 
 ConnectorEnd returns SysML::Feature :
 	ownedRelationship += OwnedSubsetting
-	( ownedRelationship += MultiplicityMember )?
+	( ownedRelationship += OwnedMultiplicity )?
 ;
 
 /* Binding Connectors */
@@ -973,8 +990,8 @@ ItemFeatureMember returns SysML::FeatureMembership :
 
 ItemFeature returns SysML::ItemFeature :
 	  ownedRelationship += OwnedFeatureTyping 
-	  ( ownedRelationship += MultiplicityMember )?
-	| ownedRelationship += MultiplicityMember
+	  ( ownedRelationship += OwnedMultiplicity )?
+	| ownedRelationship += OwnedMultiplicity
 	  ( ownedRelationship += OwnedFeatureTyping )?
 ;
 

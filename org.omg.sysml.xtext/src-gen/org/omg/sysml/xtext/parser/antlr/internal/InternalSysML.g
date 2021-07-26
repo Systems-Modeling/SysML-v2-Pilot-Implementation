@@ -2868,9 +2868,9 @@ ruleMultiplicityPart[EObject in_current]  returns [EObject current=in_current]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getMultiplicityPartAccess().getOwnedRelationshipMultiplicityMemberParserRuleCall_0_0());
+					newCompositeNode(grammarAccess.getMultiplicityPartAccess().getOwnedRelationshipOwnedMultiplicityParserRuleCall_0_0());
 				}
-				lv_ownedRelationship_0_0=ruleMultiplicityMember
+				lv_ownedRelationship_0_0=ruleOwnedMultiplicity
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getMultiplicityPartRule());
@@ -2879,74 +2879,96 @@ ruleMultiplicityPart[EObject in_current]  returns [EObject current=in_current]
 						$current,
 						"ownedRelationship",
 						lv_ownedRelationship_0_0,
-						"org.omg.sysml.xtext.SysML.MultiplicityMember");
+						"org.omg.sysml.xtext.SysML.OwnedMultiplicity");
 					afterParserOrEnumRuleCall();
 				}
 			)
 		)
+		    |
 		(
 			(
 				(
-					(
-						lv_isOrdered_1_0='ordered'
-						{
-							newLeafNode(lv_isOrdered_1_0, grammarAccess.getMultiplicityPartAccess().getIsOrderedOrderedKeyword_1_0_0_0());
+					{
+						newCompositeNode(grammarAccess.getMultiplicityPartAccess().getOwnedRelationshipOwnedMultiplicityParserRuleCall_1_0_0());
+					}
+					lv_ownedRelationship_1_0=ruleOwnedMultiplicity
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getMultiplicityPartRule());
 						}
-						{
-							if ($current==null) {
-								$current = createModelElement(grammarAccess.getMultiplicityPartRule());
-							}
-							setWithLastConsumed($current, "isOrdered", lv_isOrdered_1_0 != null, "ordered");
-						}
-					)
+						add(
+							$current,
+							"ownedRelationship",
+							lv_ownedRelationship_1_0,
+							"org.omg.sysml.xtext.SysML.OwnedMultiplicity");
+						afterParserOrEnumRuleCall();
+					}
 				)
-				(
-					(
-						lv_isNonunique_2_0='nonunique'
-						{
-							newLeafNode(lv_isNonunique_2_0, grammarAccess.getMultiplicityPartAccess().getIsNonuniqueNonuniqueKeyword_1_0_1_0());
-						}
-						{
-							if ($current==null) {
-								$current = createModelElement(grammarAccess.getMultiplicityPartRule());
-							}
-							setWithLastConsumed($current, "isNonunique", lv_isNonunique_2_0 != null, "nonunique");
-						}
-					)
-				)?
-			)
-			    |
+			)?
 			(
 				(
 					(
-						lv_isNonunique_3_0='nonunique'
-						{
-							newLeafNode(lv_isNonunique_3_0, grammarAccess.getMultiplicityPartAccess().getIsNonuniqueNonuniqueKeyword_1_1_0_0());
-						}
-						{
-							if ($current==null) {
-								$current = createModelElement(grammarAccess.getMultiplicityPartRule());
+						(
+							lv_isOrdered_2_0='ordered'
+							{
+								newLeafNode(lv_isOrdered_2_0, grammarAccess.getMultiplicityPartAccess().getIsOrderedOrderedKeyword_1_1_0_0_0());
 							}
-							setWithLastConsumed($current, "isNonunique", lv_isNonunique_3_0 != null, "nonunique");
-						}
+							{
+								if ($current==null) {
+									$current = createModelElement(grammarAccess.getMultiplicityPartRule());
+								}
+								setWithLastConsumed($current, "isOrdered", lv_isOrdered_2_0 != null, "ordered");
+							}
+						)
 					)
+					(
+						(
+							lv_isNonunique_3_0='nonunique'
+							{
+								newLeafNode(lv_isNonunique_3_0, grammarAccess.getMultiplicityPartAccess().getIsNonuniqueNonuniqueKeyword_1_1_0_1_0());
+							}
+							{
+								if ($current==null) {
+									$current = createModelElement(grammarAccess.getMultiplicityPartRule());
+								}
+								setWithLastConsumed($current, "isNonunique", lv_isNonunique_3_0 != null, "nonunique");
+							}
+						)
+					)?
 				)
+				    |
 				(
 					(
-						lv_isOrdered_4_0='ordered'
-						{
-							newLeafNode(lv_isOrdered_4_0, grammarAccess.getMultiplicityPartAccess().getIsOrderedOrderedKeyword_1_1_1_0());
-						}
-						{
-							if ($current==null) {
-								$current = createModelElement(grammarAccess.getMultiplicityPartRule());
+						(
+							lv_isNonunique_4_0='nonunique'
+							{
+								newLeafNode(lv_isNonunique_4_0, grammarAccess.getMultiplicityPartAccess().getIsNonuniqueNonuniqueKeyword_1_1_1_0_0());
 							}
-							setWithLastConsumed($current, "isOrdered", lv_isOrdered_4_0 != null, "ordered");
-						}
+							{
+								if ($current==null) {
+									$current = createModelElement(grammarAccess.getMultiplicityPartRule());
+								}
+								setWithLastConsumed($current, "isNonunique", lv_isNonunique_4_0 != null, "nonunique");
+							}
+						)
 					)
-				)?
+					(
+						(
+							lv_isOrdered_5_0='ordered'
+							{
+								newLeafNode(lv_isOrdered_5_0, grammarAccess.getMultiplicityPartAccess().getIsOrderedOrderedKeyword_1_1_1_1_0());
+							}
+							{
+								if ($current==null) {
+									$current = createModelElement(grammarAccess.getMultiplicityPartRule());
+								}
+								setWithLastConsumed($current, "isOrdered", lv_isOrdered_5_0 != null, "ordered");
+							}
+						)
+					)?
+				)
 			)
-		)?
+		)
 	)
 ;
 
@@ -3634,15 +3656,15 @@ ruleOwnedFeatureChaining returns [EObject current=null]
 	)
 ;
 
-// Entry rule entryRuleMultiplicityMember
-entryRuleMultiplicityMember returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getMultiplicityMemberRule()); }
-	iv_ruleMultiplicityMember=ruleMultiplicityMember
-	{ $current=$iv_ruleMultiplicityMember.current; }
+// Entry rule entryRuleOwnedMultiplicity
+entryRuleOwnedMultiplicity returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getOwnedMultiplicityRule()); }
+	iv_ruleOwnedMultiplicity=ruleOwnedMultiplicity
+	{ $current=$iv_ruleOwnedMultiplicity.current; }
 	EOF;
 
-// Rule MultiplicityMember
-ruleMultiplicityMember returns [EObject current=null]
+// Rule OwnedMultiplicity
+ruleOwnedMultiplicity returns [EObject current=null]
 @init {
 	enterRule();
 }
@@ -3652,33 +3674,33 @@ ruleMultiplicityMember returns [EObject current=null]
 	(
 		(
 			{
-				newCompositeNode(grammarAccess.getMultiplicityMemberAccess().getOwnedRelatedElementMultiplicityParserRuleCall_0());
+				newCompositeNode(grammarAccess.getOwnedMultiplicityAccess().getOwnedRelatedElementMultiplicityRangeParserRuleCall_0());
 			}
-			lv_ownedRelatedElement_0_0=ruleMultiplicity
+			lv_ownedRelatedElement_0_0=ruleMultiplicityRange
 			{
 				if ($current==null) {
-					$current = createModelElementForParent(grammarAccess.getMultiplicityMemberRule());
+					$current = createModelElementForParent(grammarAccess.getOwnedMultiplicityRule());
 				}
 				add(
 					$current,
 					"ownedRelatedElement",
 					lv_ownedRelatedElement_0_0,
-					"org.omg.sysml.xtext.SysML.Multiplicity");
+					"org.omg.sysml.xtext.SysML.MultiplicityRange");
 				afterParserOrEnumRuleCall();
 			}
 		)
 	)
 ;
 
-// Entry rule entryRuleMultiplicity
-entryRuleMultiplicity returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getMultiplicityRule()); }
-	iv_ruleMultiplicity=ruleMultiplicity
-	{ $current=$iv_ruleMultiplicity.current; }
+// Entry rule entryRuleMultiplicityRange
+entryRuleMultiplicityRange returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getMultiplicityRangeRule()); }
+	iv_ruleMultiplicityRange=ruleMultiplicityRange
+	{ $current=$iv_ruleMultiplicityRange.current; }
 	EOF;
 
-// Rule Multiplicity
-ruleMultiplicity returns [EObject current=null]
+// Rule MultiplicityRange
+ruleMultiplicityRange returns [EObject current=null]
 @init {
 	enterRule();
 }
@@ -3688,17 +3710,17 @@ ruleMultiplicity returns [EObject current=null]
 	(
 		otherlv_0='['
 		{
-			newLeafNode(otherlv_0, grammarAccess.getMultiplicityAccess().getLeftSquareBracketKeyword_0());
+			newLeafNode(otherlv_0, grammarAccess.getMultiplicityRangeAccess().getLeftSquareBracketKeyword_0());
 		}
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getMultiplicityAccess().getOwnedRelationshipMultiplicityExpressionMemberParserRuleCall_1_0());
+					newCompositeNode(grammarAccess.getMultiplicityRangeAccess().getOwnedRelationshipMultiplicityExpressionMemberParserRuleCall_1_0());
 				}
 				lv_ownedRelationship_1_0=ruleMultiplicityExpressionMember
 				{
 					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getMultiplicityRule());
+						$current = createModelElementForParent(grammarAccess.getMultiplicityRangeRule());
 					}
 					add(
 						$current,
@@ -3712,17 +3734,17 @@ ruleMultiplicity returns [EObject current=null]
 		(
 			otherlv_2='..'
 			{
-				newLeafNode(otherlv_2, grammarAccess.getMultiplicityAccess().getFullStopFullStopKeyword_2_0());
+				newLeafNode(otherlv_2, grammarAccess.getMultiplicityRangeAccess().getFullStopFullStopKeyword_2_0());
 			}
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getMultiplicityAccess().getOwnedRelationshipMultiplicityExpressionMemberParserRuleCall_2_1_0());
+						newCompositeNode(grammarAccess.getMultiplicityRangeAccess().getOwnedRelationshipMultiplicityExpressionMemberParserRuleCall_2_1_0());
 					}
 					lv_ownedRelationship_3_0=ruleMultiplicityExpressionMember
 					{
 						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getMultiplicityRule());
+							$current = createModelElementForParent(grammarAccess.getMultiplicityRangeRule());
 						}
 						add(
 							$current,
@@ -3736,7 +3758,7 @@ ruleMultiplicity returns [EObject current=null]
 		)?
 		otherlv_4=']'
 		{
-			newLeafNode(otherlv_4, grammarAccess.getMultiplicityAccess().getRightSquareBracketKeyword_3());
+			newLeafNode(otherlv_4, grammarAccess.getMultiplicityRangeAccess().getRightSquareBracketKeyword_3());
 		}
 	)
 ;
@@ -3896,9 +3918,9 @@ ruleConnectorEnd returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getConnectorEndAccess().getOwnedRelationshipMultiplicityMemberParserRuleCall_1_0());
+					newCompositeNode(grammarAccess.getConnectorEndAccess().getOwnedRelationshipOwnedMultiplicityParserRuleCall_1_0());
 				}
-				lv_ownedRelationship_1_0=ruleMultiplicityMember
+				lv_ownedRelationship_1_0=ruleOwnedMultiplicity
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getConnectorEndRule());
@@ -3907,7 +3929,7 @@ ruleConnectorEnd returns [EObject current=null]
 						$current,
 						"ownedRelationship",
 						lv_ownedRelationship_1_0,
-						"org.omg.sysml.xtext.SysML.MultiplicityMember");
+						"org.omg.sysml.xtext.SysML.OwnedMultiplicity");
 					afterParserOrEnumRuleCall();
 				}
 			)
@@ -4809,9 +4831,9 @@ ruleItemFeature returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getItemFeatureAccess().getOwnedRelationshipMultiplicityMemberParserRuleCall_0_1_0());
+						newCompositeNode(grammarAccess.getItemFeatureAccess().getOwnedRelationshipOwnedMultiplicityParserRuleCall_0_1_0());
 					}
-					lv_ownedRelationship_1_0=ruleMultiplicityMember
+					lv_ownedRelationship_1_0=ruleOwnedMultiplicity
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getItemFeatureRule());
@@ -4820,7 +4842,7 @@ ruleItemFeature returns [EObject current=null]
 							$current,
 							"ownedRelationship",
 							lv_ownedRelationship_1_0,
-							"org.omg.sysml.xtext.SysML.MultiplicityMember");
+							"org.omg.sysml.xtext.SysML.OwnedMultiplicity");
 						afterParserOrEnumRuleCall();
 					}
 				)
@@ -4831,9 +4853,9 @@ ruleItemFeature returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getItemFeatureAccess().getOwnedRelationshipMultiplicityMemberParserRuleCall_1_0_0());
+						newCompositeNode(grammarAccess.getItemFeatureAccess().getOwnedRelationshipOwnedMultiplicityParserRuleCall_1_0_0());
 					}
-					lv_ownedRelationship_2_0=ruleMultiplicityMember
+					lv_ownedRelationship_2_0=ruleOwnedMultiplicity
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getItemFeatureRule());
@@ -4842,7 +4864,7 @@ ruleItemFeature returns [EObject current=null]
 							$current,
 							"ownedRelationship",
 							lv_ownedRelationship_2_0,
-							"org.omg.sysml.xtext.SysML.MultiplicityMember");
+							"org.omg.sysml.xtext.SysML.OwnedMultiplicity");
 						afterParserOrEnumRuleCall();
 					}
 				)
@@ -8872,9 +8894,9 @@ ruleMultiplicitySourceEnd returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getMultiplicitySourceEndAccess().getOwnedRelationshipMultiplicityMemberParserRuleCall_1_0());
+					newCompositeNode(grammarAccess.getMultiplicitySourceEndAccess().getOwnedRelationshipOwnedMultiplicityParserRuleCall_1_0());
 				}
-				lv_ownedRelationship_1_0=ruleMultiplicityMember
+				lv_ownedRelationship_1_0=ruleOwnedMultiplicity
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getMultiplicitySourceEndRule());
@@ -8883,7 +8905,7 @@ ruleMultiplicitySourceEnd returns [EObject current=null]
 						$current,
 						"ownedRelationship",
 						lv_ownedRelationship_1_0,
-						"org.omg.sysml.xtext.SysML.MultiplicityMember");
+						"org.omg.sysml.xtext.SysML.OwnedMultiplicity");
 					afterParserOrEnumRuleCall();
 				}
 			)
@@ -11258,9 +11280,9 @@ ruleInterfaceEnd returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getInterfaceEndAccess().getOwnedRelationshipMultiplicityMemberParserRuleCall_1_0());
+					newCompositeNode(grammarAccess.getInterfaceEndAccess().getOwnedRelationshipOwnedMultiplicityParserRuleCall_1_0());
 				}
-				lv_ownedRelationship_1_0=ruleMultiplicityMember
+				lv_ownedRelationship_1_0=ruleOwnedMultiplicity
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getInterfaceEndRule());
@@ -11269,7 +11291,7 @@ ruleInterfaceEnd returns [EObject current=null]
 						$current,
 						"ownedRelationship",
 						lv_ownedRelationship_1_0,
-						"org.omg.sysml.xtext.SysML.MultiplicityMember");
+						"org.omg.sysml.xtext.SysML.OwnedMultiplicity");
 					afterParserOrEnumRuleCall();
 				}
 			)
@@ -14131,9 +14153,9 @@ ruleItemParameter returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getItemParameterAccess().getOwnedRelationshipMultiplicityMemberParserRuleCall_1_1_0());
+						newCompositeNode(grammarAccess.getItemParameterAccess().getOwnedRelationshipOwnedMultiplicityParserRuleCall_1_1_0());
 					}
-					lv_ownedRelationship_3_0=ruleMultiplicityMember
+					lv_ownedRelationship_3_0=ruleOwnedMultiplicity
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getItemParameterRule());
@@ -14142,7 +14164,7 @@ ruleItemParameter returns [EObject current=null]
 							$current,
 							"ownedRelationship",
 							lv_ownedRelationship_3_0,
-							"org.omg.sysml.xtext.SysML.MultiplicityMember");
+							"org.omg.sysml.xtext.SysML.OwnedMultiplicity");
 						afterParserOrEnumRuleCall();
 					}
 				)

@@ -30,7 +30,7 @@ package ISQBase {
         attribute :>> num: Real;
         attribute :>> mRef: LengthUnit[1];
     }
-    attribute length: LengthValue :> scalarQuantities;
+    attribute length: LengthValue [*] nonunique :> scalarQuantities;
 
     /**
      * General spatial coordinate system
@@ -62,7 +62,7 @@ package ISQBase {
         attribute :>> num: Real;
         attribute :>> mRef: DurationUnit[1];
     }
-    attribute duration: DurationValue :> scalarQuantities;
+    attribute duration: DurationValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 4-1 mass
@@ -84,7 +84,7 @@ package ISQBase {
         attribute :>> num: Real;
         attribute :>> mRef: MassUnit[1];
     }
-    attribute mass: MassValue :> scalarQuantities;
+    attribute mass: MassValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 5-1 thermodynamic temperature, temperature
@@ -106,7 +106,7 @@ package ISQBase {
         attribute :>> num: Real;
         attribute :>> mRef: ThermodynamicTemperatureUnit[1];
     }
-    attribute thermodynamicTemperature: ThermodynamicTemperatureValue :> scalarQuantities;
+    attribute thermodynamicTemperature: ThermodynamicTemperatureValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 6-1 electric current
@@ -128,7 +128,7 @@ package ISQBase {
         attribute :>> num: Real;
         attribute :>> mRef: ElectricCurrentUnit[1];
     }
-    attribute electricCurrent: ElectricCurrentValue :> scalarQuantities;
+    attribute electricCurrent: ElectricCurrentValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 7-14 luminous intensity
@@ -150,7 +150,7 @@ package ISQBase {
         attribute :>> num: Real;
         attribute :>> mRef: LuminousIntensityUnit[1];
     }
-    attribute luminousIntensity: LuminousIntensityValue :> scalarQuantities;
+    attribute luminousIntensity: LuminousIntensityValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 9-2 amount of substance, number of moles
@@ -172,7 +172,7 @@ package ISQBase {
         attribute :>> num: Real;
         attribute :>> mRef: AmountOfSubstanceUnit[1];
     }
-    attribute amountOfSubstance: AmountOfSubstanceValue :> scalarQuantities;
+    attribute amountOfSubstance: AmountOfSubstanceValue [*] nonunique :> scalarQuantities;
 
     /**
      * Declaration of the International System of Quantities (ISQ), 

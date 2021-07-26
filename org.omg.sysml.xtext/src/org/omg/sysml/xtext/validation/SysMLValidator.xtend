@@ -87,6 +87,8 @@ import org.omg.sysml.util.UsageUtil
 import org.omg.sysml.lang.sysml.TransitionUsage
 import org.omg.sysml.lang.sysml.Succession
 import org.omg.sysml.lang.sysml.StateDefinition
+import org.omg.sysml.lang.sysml.Type
+import org.omg.sysml.lang.sysml.StateSubactionKind
 
 /**
  * This class contains custom validation rules. 
@@ -140,6 +142,12 @@ class SysMLValidator extends KerMLValidator {
 	public static val INVALID_STATEUSAGE_INITIAL_MSG = 'Must have an initial transition from entry.'
 	public static val INVALID_STATEDEFINITION_INITIAL = 'Invalid StateDefinition - no initial transition'
 	public static val INVALID_STATEDEFINITION_INITIAL_MSG = 'Must have an initial transition from entry.'
+	public static val INVALID_STATE_SUBACTION_MEMBERSHIP_ENTRY = 'Invalid StateSubactionMembership - invalid entry'
+	public static val INVALID_STATE_SUBACTION_MEMBERSHIP_ENTRY_MSG = 'A state may have at most one entry action.'
+	public static val INVALID_STATE_SUBACTION_MEMBERSHIP_DO = 'Invalid StateSubactionMembership - invalid do'
+	public static val INVALID_STATE_SUBACTION_MEMBERSHIP_DO_MSG = 'A state may have at most one do action.'
+	public static val INVALID_STATE_SUBACTION_MEMBERSHIP_EXIT = 'Invalid StateSubactionMembership - invalid exit'
+	public static val INVALID_STATE_SUBACTION_MEMBERSHIP_EXIT_MSG = 'A state may have at most one exit action.'
 	public static val INVALID_TRANSITIONUSAGE = 'Invalid TransitionUsage - in parallel state'
 	public static val INVALID_TRANSITIONUSAGE_MSG = 'A parallel state cannot have successions or transitions.'
 	public static val INVALID_CALCULATIONUSAGE = 'Invalid CalculationUsage - invalid type'
@@ -348,6 +356,7 @@ class SysMLValidator extends KerMLValidator {
 		if (!defn.isAbstract && !defn.isParallel && !defn.ownedState.isEmpty && !UsageUtil.hasInitialTransition(defn)) {
 			error(INVALID_STATEDEFINITION_INITIAL_MSG, defn, null, INVALID_STATEDEFINITION_INITIAL)
 		}
+		checkStateSubactions(defn);
 	}
 	
 	@Check
@@ -361,6 +370,7 @@ class SysMLValidator extends KerMLValidator {
 		if (!usg.isAbstract && !usg.isParallel && !usg.nestedState.isEmpty && !UsageUtil.hasInitialTransition(usg)) {
 			error(INVALID_STATEUSAGE_INITIAL_MSG, usg, null, INVALID_STATEUSAGE_INITIAL)
 		}
+		checkStateSubactions(usg)
 	}
 	
 	@Check
@@ -368,6 +378,12 @@ class SysMLValidator extends KerMLValidator {
 		if (UsageUtil.isParallelState(usg.owningType)) {
 			error(INVALID_TRANSITIONUSAGE_MSG, usg, null, INVALID_TRANSITIONUSAGE)
 		}
+	}
+	
+	protected def checkStateSubactions(Type type) {
+		checkAtMostOneElement(UsageUtil.getStateSubactionMembershipsOf(type, StateSubactionKind.ENTRY), INVALID_STATE_SUBACTION_MEMBERSHIP_ENTRY_MSG, INVALID_STATE_SUBACTION_MEMBERSHIP_ENTRY);
+		checkAtMostOneElement(UsageUtil.getStateSubactionMembershipsOf(type, StateSubactionKind.DO), INVALID_STATE_SUBACTION_MEMBERSHIP_DO_MSG, INVALID_STATE_SUBACTION_MEMBERSHIP_DO);
+		checkAtMostOneElement(UsageUtil.getStateSubactionMembershipsOf(type, StateSubactionKind.EXIT), INVALID_STATE_SUBACTION_MEMBERSHIP_EXIT_MSG, INVALID_STATE_SUBACTION_MEMBERSHIP_EXIT);
 	}
 	
 	@Check

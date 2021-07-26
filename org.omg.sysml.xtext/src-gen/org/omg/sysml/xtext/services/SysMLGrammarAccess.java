@@ -8952,73 +8952,19 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	public class StateBodyPartElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.StateBodyPart");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Group cGroup_0 = (Group)cGroup.eContents().get(0);
-		private final Assignment cOwnedRelationshipAssignment_0_0 = (Assignment)cGroup_0.eContents().get(0);
-		private final RuleCall cOwnedRelationshipEntryActionMemberParserRuleCall_0_0_0 = (RuleCall)cOwnedRelationshipAssignment_0_0.eContents().get(0);
-		private final Assignment cOwnedRelationshipAssignment_0_1 = (Assignment)cGroup_0.eContents().get(1);
-		private final RuleCall cOwnedRelationshipEntryTransitionMemberParserRuleCall_0_1_0 = (RuleCall)cOwnedRelationshipAssignment_0_1.eContents().get(0);
-		private final Assignment cOwnedRelationshipAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cOwnedRelationshipDoActionMemberParserRuleCall_1_0 = (RuleCall)cOwnedRelationshipAssignment_1.eContents().get(0);
-		private final Assignment cOwnedRelationshipAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cOwnedRelationshipExitActionMemberParserRuleCall_2_0 = (RuleCall)cOwnedRelationshipAssignment_2.eContents().get(0);
-		private final RuleCall cStateDefBodyItemParserRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
+		private final RuleCall cStateDefBodyItemParserRuleCall = (RuleCall)rule.eContents().get(1);
 		
 		//fragment StateBodyPart returns SysML::Type :
-		//    ( ownedRelationship += EntryActionMember
-		//      ( ownedRelationship += EntryTransitionMember )*
-		//    )?
-		//    ( ownedRelationship += DoActionMember )?
-		//    ( ownedRelationship += ExitActionMember )?
 		//    // Note: Using a syntactic predicate here seems to avoid a possible infinite loop
 		//    // while incrementally parsing.
 		//    => StateDefBodyItem*
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//( ownedRelationship += EntryActionMember
-		//  ( ownedRelationship += EntryTransitionMember )*
-		//)?
-		//( ownedRelationship += DoActionMember )?
-		//( ownedRelationship += ExitActionMember )?
 		//// Note: Using a syntactic predicate here seems to avoid a possible infinite loop
 		//// while incrementally parsing.
 		//=> StateDefBodyItem*
-		public Group getGroup() { return cGroup; }
-		
-		//( ownedRelationship += EntryActionMember
-		//  ( ownedRelationship += EntryTransitionMember )*
-		//)?
-		public Group getGroup_0() { return cGroup_0; }
-		
-		//ownedRelationship += EntryActionMember
-		public Assignment getOwnedRelationshipAssignment_0_0() { return cOwnedRelationshipAssignment_0_0; }
-		
-		//EntryActionMember
-		public RuleCall getOwnedRelationshipEntryActionMemberParserRuleCall_0_0_0() { return cOwnedRelationshipEntryActionMemberParserRuleCall_0_0_0; }
-		
-		//( ownedRelationship += EntryTransitionMember )*
-		public Assignment getOwnedRelationshipAssignment_0_1() { return cOwnedRelationshipAssignment_0_1; }
-		
-		//EntryTransitionMember
-		public RuleCall getOwnedRelationshipEntryTransitionMemberParserRuleCall_0_1_0() { return cOwnedRelationshipEntryTransitionMemberParserRuleCall_0_1_0; }
-		
-		//( ownedRelationship += DoActionMember )?
-		public Assignment getOwnedRelationshipAssignment_1() { return cOwnedRelationshipAssignment_1; }
-		
-		//DoActionMember
-		public RuleCall getOwnedRelationshipDoActionMemberParserRuleCall_1_0() { return cOwnedRelationshipDoActionMemberParserRuleCall_1_0; }
-		
-		//( ownedRelationship += ExitActionMember )?
-		public Assignment getOwnedRelationshipAssignment_2() { return cOwnedRelationshipAssignment_2; }
-		
-		//ExitActionMember
-		public RuleCall getOwnedRelationshipExitActionMemberParserRuleCall_2_0() { return cOwnedRelationshipExitActionMemberParserRuleCall_2_0; }
-		
-		//// Note: Using a syntactic predicate here seems to avoid a possible infinite loop
-		//// while incrementally parsing.
-		//=> StateDefBodyItem*
-		public RuleCall getStateDefBodyItemParserRuleCall_3() { return cStateDefBodyItemParserRuleCall_3; }
+		public RuleCall getStateDefBodyItemParserRuleCall() { return cStateDefBodyItemParserRuleCall; }
 	}
 	public class StateDefBodyItemElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.StateDefBodyItem");
@@ -9047,6 +8993,15 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final RuleCall cOwnedRelationshipTargetTransitionUsageMemberParserRuleCall_6_2_0 = (RuleCall)cOwnedRelationshipAssignment_6_2.eContents().get(0);
 		private final Assignment cOwnedRelationshipAssignment_7 = (Assignment)cAlternatives.eContents().get(7);
 		private final RuleCall cOwnedRelationshipTransitionUsageMemberParserRuleCall_7_0 = (RuleCall)cOwnedRelationshipAssignment_7.eContents().get(0);
+		private final Group cGroup_8 = (Group)cAlternatives.eContents().get(8);
+		private final Assignment cOwnedRelationshipAssignment_8_0 = (Assignment)cGroup_8.eContents().get(0);
+		private final RuleCall cOwnedRelationshipEntryActionMemberParserRuleCall_8_0_0 = (RuleCall)cOwnedRelationshipAssignment_8_0.eContents().get(0);
+		private final Assignment cOwnedRelationshipAssignment_8_1 = (Assignment)cGroup_8.eContents().get(1);
+		private final RuleCall cOwnedRelationshipEntryTransitionMemberParserRuleCall_8_1_0 = (RuleCall)cOwnedRelationshipAssignment_8_1.eContents().get(0);
+		private final Assignment cOwnedRelationshipAssignment_9 = (Assignment)cAlternatives.eContents().get(9);
+		private final RuleCall cOwnedRelationshipDoActionMemberParserRuleCall_9_0 = (RuleCall)cOwnedRelationshipAssignment_9.eContents().get(0);
+		private final Assignment cOwnedRelationshipAssignment_10 = (Assignment)cAlternatives.eContents().get(10);
+		private final RuleCall cOwnedRelationshipExitActionMemberParserRuleCall_10_0 = (RuleCall)cOwnedRelationshipAssignment_10.eContents().get(0);
 		
 		//fragment StateDefBodyItem returns SysML::Type :
 		//      ownedRelationship += OwnedDocumentation
@@ -9060,6 +9015,10 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//      ownedRelationship += BehaviorUsageMember
 		//      ( ownedRelationship += TargetTransitionUsageMember )*
 		//    | ownedRelationship += TransitionUsageMember
+		//    | ownedRelationship += EntryActionMember
+		//      ( ownedRelationship += EntryTransitionMember )*
+		//    | ownedRelationship += DoActionMember
+		//    | ownedRelationship += ExitActionMember
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -9074,6 +9033,10 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//  ownedRelationship += BehaviorUsageMember
 		//  ( ownedRelationship += TargetTransitionUsageMember )*
 		//| ownedRelationship += TransitionUsageMember
+		//| ownedRelationship += EntryActionMember
+		//  ( ownedRelationship += EntryTransitionMember )*
+		//| ownedRelationship += DoActionMember
+		//| ownedRelationship += ExitActionMember
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//ownedRelationship += OwnedDocumentation
@@ -9150,6 +9113,34 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		
 		//TransitionUsageMember
 		public RuleCall getOwnedRelationshipTransitionUsageMemberParserRuleCall_7_0() { return cOwnedRelationshipTransitionUsageMemberParserRuleCall_7_0; }
+		
+		//ownedRelationship += EntryActionMember
+		//     ( ownedRelationship += EntryTransitionMember )*
+		public Group getGroup_8() { return cGroup_8; }
+		
+		//ownedRelationship += EntryActionMember
+		public Assignment getOwnedRelationshipAssignment_8_0() { return cOwnedRelationshipAssignment_8_0; }
+		
+		//EntryActionMember
+		public RuleCall getOwnedRelationshipEntryActionMemberParserRuleCall_8_0_0() { return cOwnedRelationshipEntryActionMemberParserRuleCall_8_0_0; }
+		
+		//( ownedRelationship += EntryTransitionMember )*
+		public Assignment getOwnedRelationshipAssignment_8_1() { return cOwnedRelationshipAssignment_8_1; }
+		
+		//EntryTransitionMember
+		public RuleCall getOwnedRelationshipEntryTransitionMemberParserRuleCall_8_1_0() { return cOwnedRelationshipEntryTransitionMemberParserRuleCall_8_1_0; }
+		
+		//ownedRelationship += DoActionMember
+		public Assignment getOwnedRelationshipAssignment_9() { return cOwnedRelationshipAssignment_9; }
+		
+		//DoActionMember
+		public RuleCall getOwnedRelationshipDoActionMemberParserRuleCall_9_0() { return cOwnedRelationshipDoActionMemberParserRuleCall_9_0; }
+		
+		//ownedRelationship += ExitActionMember
+		public Assignment getOwnedRelationshipAssignment_10() { return cOwnedRelationshipAssignment_10; }
+		
+		//ExitActionMember
+		public RuleCall getOwnedRelationshipExitActionMemberParserRuleCall_10_0() { return cOwnedRelationshipExitActionMemberParserRuleCall_10_0; }
 	}
 	public class EntryActionMemberElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.EntryActionMember");
@@ -9779,34 +9770,67 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cOwnedRelationshipAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cOwnedRelationshipEmptyParameterMemberParserRuleCall_0_0 = (RuleCall)cOwnedRelationshipAssignment_0.eContents().get(0);
-		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final Assignment cOwnedRelationshipAssignment_1_0 = (Assignment)cGroup_1.eContents().get(0);
-		private final RuleCall cOwnedRelationshipEmptyParameterMemberParserRuleCall_1_0_0 = (RuleCall)cOwnedRelationshipAssignment_1_0.eContents().get(0);
-		private final Assignment cOwnedRelationshipAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
-		private final RuleCall cOwnedRelationshipTriggerActionMemberParserRuleCall_1_1_0 = (RuleCall)cOwnedRelationshipAssignment_1_1.eContents().get(0);
-		private final Assignment cOwnedRelationshipAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cOwnedRelationshipGuardExpressionMemberParserRuleCall_2_0 = (RuleCall)cOwnedRelationshipAssignment_2.eContents().get(0);
+		private final Alternatives cAlternatives_1 = (Alternatives)cGroup.eContents().get(1);
+		private final Group cGroup_1_0 = (Group)cAlternatives_1.eContents().get(0);
+		private final RuleCall cTransitionUsageKeywordParserRuleCall_1_0_0 = (RuleCall)cGroup_1_0.eContents().get(0);
+		private final Group cGroup_1_0_1 = (Group)cGroup_1_0.eContents().get(1);
+		private final Assignment cOwnedRelationshipAssignment_1_0_1_0 = (Assignment)cGroup_1_0_1.eContents().get(0);
+		private final RuleCall cOwnedRelationshipEmptyParameterMemberParserRuleCall_1_0_1_0_0 = (RuleCall)cOwnedRelationshipAssignment_1_0_1_0.eContents().get(0);
+		private final Assignment cOwnedRelationshipAssignment_1_0_1_1 = (Assignment)cGroup_1_0_1.eContents().get(1);
+		private final RuleCall cOwnedRelationshipTriggerActionMemberParserRuleCall_1_0_1_1_0 = (RuleCall)cOwnedRelationshipAssignment_1_0_1_1.eContents().get(0);
+		private final Assignment cOwnedRelationshipAssignment_1_0_2 = (Assignment)cGroup_1_0.eContents().get(2);
+		private final RuleCall cOwnedRelationshipGuardExpressionMemberParserRuleCall_1_0_2_0 = (RuleCall)cOwnedRelationshipAssignment_1_0_2.eContents().get(0);
+		private final Assignment cOwnedRelationshipAssignment_1_0_3 = (Assignment)cGroup_1_0.eContents().get(3);
+		private final RuleCall cOwnedRelationshipEffectBehaviorMemberParserRuleCall_1_0_3_0 = (RuleCall)cOwnedRelationshipAssignment_1_0_3.eContents().get(0);
+		private final Group cGroup_1_1 = (Group)cAlternatives_1.eContents().get(1);
+		private final Assignment cOwnedRelationshipAssignment_1_1_0 = (Assignment)cGroup_1_1.eContents().get(0);
+		private final RuleCall cOwnedRelationshipEmptyParameterMemberParserRuleCall_1_1_0_0 = (RuleCall)cOwnedRelationshipAssignment_1_1_0.eContents().get(0);
+		private final Assignment cOwnedRelationshipAssignment_1_1_1 = (Assignment)cGroup_1_1.eContents().get(1);
+		private final RuleCall cOwnedRelationshipTriggerActionMemberParserRuleCall_1_1_1_0 = (RuleCall)cOwnedRelationshipAssignment_1_1_1.eContents().get(0);
+		private final Assignment cOwnedRelationshipAssignment_1_1_2 = (Assignment)cGroup_1_1.eContents().get(2);
+		private final RuleCall cOwnedRelationshipGuardExpressionMemberParserRuleCall_1_1_2_0 = (RuleCall)cOwnedRelationshipAssignment_1_1_2.eContents().get(0);
+		private final Assignment cOwnedRelationshipAssignment_1_1_3 = (Assignment)cGroup_1_1.eContents().get(3);
+		private final RuleCall cOwnedRelationshipEffectBehaviorMemberParserRuleCall_1_1_3_0 = (RuleCall)cOwnedRelationshipAssignment_1_1_3.eContents().get(0);
+		private final Group cGroup_1_2 = (Group)cAlternatives_1.eContents().get(2);
+		private final Assignment cOwnedRelationshipAssignment_1_2_0 = (Assignment)cGroup_1_2.eContents().get(0);
+		private final RuleCall cOwnedRelationshipGuardExpressionMemberParserRuleCall_1_2_0_0 = (RuleCall)cOwnedRelationshipAssignment_1_2_0.eContents().get(0);
+		private final Assignment cOwnedRelationshipAssignment_1_2_1 = (Assignment)cGroup_1_2.eContents().get(1);
+		private final RuleCall cOwnedRelationshipEffectBehaviorMemberParserRuleCall_1_2_1_0 = (RuleCall)cOwnedRelationshipAssignment_1_2_1.eContents().get(0);
+		private final Keyword cThenKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Assignment cOwnedRelationshipAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cOwnedRelationshipEffectBehaviorMemberParserRuleCall_3_0 = (RuleCall)cOwnedRelationshipAssignment_3.eContents().get(0);
-		private final Keyword cThenKeyword_4 = (Keyword)cGroup.eContents().get(4);
-		private final Assignment cOwnedRelationshipAssignment_5 = (Assignment)cGroup.eContents().get(5);
-		private final RuleCall cOwnedRelationshipTransitionSuccessionMemberParserRuleCall_5_0 = (RuleCall)cOwnedRelationshipAssignment_5.eContents().get(0);
+		private final RuleCall cOwnedRelationshipTransitionSuccessionMemberParserRuleCall_3_0 = (RuleCall)cOwnedRelationshipAssignment_3.eContents().get(0);
 		
 		//TargetTransitionUsage returns SysML::TransitionUsage :
 		//    ownedRelationship += EmptyParameterMember
-		//    ( ownedRelationship += EmptyParameterMember
-		//      ownedRelationship += TriggerActionMember )?
-		//    ( ownedRelationship += GuardExpressionMember )?
-		//    ( ownedRelationship += EffectBehaviorMember )?
+		//    ( TransitionUsageKeyword
+		//      ( ownedRelationship += EmptyParameterMember
+		//        ownedRelationship += TriggerActionMember )?
+		//      ( ownedRelationship += GuardExpressionMember )?
+		//      ( ownedRelationship += EffectBehaviorMember )?
+		//    | ownedRelationship += EmptyParameterMember
+		//      ownedRelationship += TriggerActionMember
+		//      ( ownedRelationship += GuardExpressionMember )?
+		//      ( ownedRelationship += EffectBehaviorMember )?
+		//    | ownedRelationship += GuardExpressionMember
+		//      ( ownedRelationship += EffectBehaviorMember )?
+		//    )?
 		//    'then' ownedRelationship += TransitionSuccessionMember
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//ownedRelationship += EmptyParameterMember
-		//( ownedRelationship += EmptyParameterMember
-		//  ownedRelationship += TriggerActionMember )?
-		//( ownedRelationship += GuardExpressionMember )?
-		//( ownedRelationship += EffectBehaviorMember )?
+		//( TransitionUsageKeyword
+		//  ( ownedRelationship += EmptyParameterMember
+		//    ownedRelationship += TriggerActionMember )?
+		//  ( ownedRelationship += GuardExpressionMember )?
+		//  ( ownedRelationship += EffectBehaviorMember )?
+		//| ownedRelationship += EmptyParameterMember
+		//  ownedRelationship += TriggerActionMember
+		//  ( ownedRelationship += GuardExpressionMember )?
+		//  ( ownedRelationship += EffectBehaviorMember )?
+		//| ownedRelationship += GuardExpressionMember
+		//  ( ownedRelationship += EffectBehaviorMember )?
+		//)?
 		//'then' ownedRelationship += TransitionSuccessionMember
 		public Group getGroup() { return cGroup; }
 		
@@ -9816,42 +9840,112 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//EmptyParameterMember
 		public RuleCall getOwnedRelationshipEmptyParameterMemberParserRuleCall_0_0() { return cOwnedRelationshipEmptyParameterMemberParserRuleCall_0_0; }
 		
+		//( TransitionUsageKeyword
+		//  ( ownedRelationship += EmptyParameterMember
+		//    ownedRelationship += TriggerActionMember )?
+		//  ( ownedRelationship += GuardExpressionMember )?
+		//  ( ownedRelationship += EffectBehaviorMember )?
+		//| ownedRelationship += EmptyParameterMember
+		//  ownedRelationship += TriggerActionMember
+		//  ( ownedRelationship += GuardExpressionMember )?
+		//  ( ownedRelationship += EffectBehaviorMember )?
+		//| ownedRelationship += GuardExpressionMember
+		//  ( ownedRelationship += EffectBehaviorMember )?
+		//)?
+		public Alternatives getAlternatives_1() { return cAlternatives_1; }
+		
+		//TransitionUsageKeyword
+		//     ( ownedRelationship += EmptyParameterMember
+		//       ownedRelationship += TriggerActionMember )?
+		//     ( ownedRelationship += GuardExpressionMember )?
+		//     ( ownedRelationship += EffectBehaviorMember )?
+		public Group getGroup_1_0() { return cGroup_1_0; }
+		
+		//TransitionUsageKeyword
+		public RuleCall getTransitionUsageKeywordParserRuleCall_1_0_0() { return cTransitionUsageKeywordParserRuleCall_1_0_0; }
+		
 		//( ownedRelationship += EmptyParameterMember
 		//  ownedRelationship += TriggerActionMember )?
-		public Group getGroup_1() { return cGroup_1; }
+		public Group getGroup_1_0_1() { return cGroup_1_0_1; }
 		
 		//ownedRelationship += EmptyParameterMember
-		public Assignment getOwnedRelationshipAssignment_1_0() { return cOwnedRelationshipAssignment_1_0; }
+		public Assignment getOwnedRelationshipAssignment_1_0_1_0() { return cOwnedRelationshipAssignment_1_0_1_0; }
 		
 		//EmptyParameterMember
-		public RuleCall getOwnedRelationshipEmptyParameterMemberParserRuleCall_1_0_0() { return cOwnedRelationshipEmptyParameterMemberParserRuleCall_1_0_0; }
+		public RuleCall getOwnedRelationshipEmptyParameterMemberParserRuleCall_1_0_1_0_0() { return cOwnedRelationshipEmptyParameterMemberParserRuleCall_1_0_1_0_0; }
 		
 		//ownedRelationship += TriggerActionMember
-		public Assignment getOwnedRelationshipAssignment_1_1() { return cOwnedRelationshipAssignment_1_1; }
+		public Assignment getOwnedRelationshipAssignment_1_0_1_1() { return cOwnedRelationshipAssignment_1_0_1_1; }
 		
 		//TriggerActionMember
-		public RuleCall getOwnedRelationshipTriggerActionMemberParserRuleCall_1_1_0() { return cOwnedRelationshipTriggerActionMemberParserRuleCall_1_1_0; }
+		public RuleCall getOwnedRelationshipTriggerActionMemberParserRuleCall_1_0_1_1_0() { return cOwnedRelationshipTriggerActionMemberParserRuleCall_1_0_1_1_0; }
 		
 		//( ownedRelationship += GuardExpressionMember )?
-		public Assignment getOwnedRelationshipAssignment_2() { return cOwnedRelationshipAssignment_2; }
+		public Assignment getOwnedRelationshipAssignment_1_0_2() { return cOwnedRelationshipAssignment_1_0_2; }
 		
 		//GuardExpressionMember
-		public RuleCall getOwnedRelationshipGuardExpressionMemberParserRuleCall_2_0() { return cOwnedRelationshipGuardExpressionMemberParserRuleCall_2_0; }
+		public RuleCall getOwnedRelationshipGuardExpressionMemberParserRuleCall_1_0_2_0() { return cOwnedRelationshipGuardExpressionMemberParserRuleCall_1_0_2_0; }
 		
 		//( ownedRelationship += EffectBehaviorMember )?
-		public Assignment getOwnedRelationshipAssignment_3() { return cOwnedRelationshipAssignment_3; }
+		public Assignment getOwnedRelationshipAssignment_1_0_3() { return cOwnedRelationshipAssignment_1_0_3; }
 		
 		//EffectBehaviorMember
-		public RuleCall getOwnedRelationshipEffectBehaviorMemberParserRuleCall_3_0() { return cOwnedRelationshipEffectBehaviorMemberParserRuleCall_3_0; }
+		public RuleCall getOwnedRelationshipEffectBehaviorMemberParserRuleCall_1_0_3_0() { return cOwnedRelationshipEffectBehaviorMemberParserRuleCall_1_0_3_0; }
+		
+		//ownedRelationship += EmptyParameterMember
+		//     ownedRelationship += TriggerActionMember
+		//     ( ownedRelationship += GuardExpressionMember )?
+		//     ( ownedRelationship += EffectBehaviorMember )?
+		public Group getGroup_1_1() { return cGroup_1_1; }
+		
+		//ownedRelationship += EmptyParameterMember
+		public Assignment getOwnedRelationshipAssignment_1_1_0() { return cOwnedRelationshipAssignment_1_1_0; }
+		
+		//EmptyParameterMember
+		public RuleCall getOwnedRelationshipEmptyParameterMemberParserRuleCall_1_1_0_0() { return cOwnedRelationshipEmptyParameterMemberParserRuleCall_1_1_0_0; }
+		
+		//ownedRelationship += TriggerActionMember
+		public Assignment getOwnedRelationshipAssignment_1_1_1() { return cOwnedRelationshipAssignment_1_1_1; }
+		
+		//TriggerActionMember
+		public RuleCall getOwnedRelationshipTriggerActionMemberParserRuleCall_1_1_1_0() { return cOwnedRelationshipTriggerActionMemberParserRuleCall_1_1_1_0; }
+		
+		//( ownedRelationship += GuardExpressionMember )?
+		public Assignment getOwnedRelationshipAssignment_1_1_2() { return cOwnedRelationshipAssignment_1_1_2; }
+		
+		//GuardExpressionMember
+		public RuleCall getOwnedRelationshipGuardExpressionMemberParserRuleCall_1_1_2_0() { return cOwnedRelationshipGuardExpressionMemberParserRuleCall_1_1_2_0; }
+		
+		//( ownedRelationship += EffectBehaviorMember )?
+		public Assignment getOwnedRelationshipAssignment_1_1_3() { return cOwnedRelationshipAssignment_1_1_3; }
+		
+		//EffectBehaviorMember
+		public RuleCall getOwnedRelationshipEffectBehaviorMemberParserRuleCall_1_1_3_0() { return cOwnedRelationshipEffectBehaviorMemberParserRuleCall_1_1_3_0; }
+		
+		//ownedRelationship += GuardExpressionMember
+		//     ( ownedRelationship += EffectBehaviorMember )?
+		public Group getGroup_1_2() { return cGroup_1_2; }
+		
+		//ownedRelationship += GuardExpressionMember
+		public Assignment getOwnedRelationshipAssignment_1_2_0() { return cOwnedRelationshipAssignment_1_2_0; }
+		
+		//GuardExpressionMember
+		public RuleCall getOwnedRelationshipGuardExpressionMemberParserRuleCall_1_2_0_0() { return cOwnedRelationshipGuardExpressionMemberParserRuleCall_1_2_0_0; }
+		
+		//( ownedRelationship += EffectBehaviorMember )?
+		public Assignment getOwnedRelationshipAssignment_1_2_1() { return cOwnedRelationshipAssignment_1_2_1; }
+		
+		//EffectBehaviorMember
+		public RuleCall getOwnedRelationshipEffectBehaviorMemberParserRuleCall_1_2_1_0() { return cOwnedRelationshipEffectBehaviorMemberParserRuleCall_1_2_1_0; }
 		
 		//'then'
-		public Keyword getThenKeyword_4() { return cThenKeyword_4; }
+		public Keyword getThenKeyword_2() { return cThenKeyword_2; }
 		
 		//ownedRelationship += TransitionSuccessionMember
-		public Assignment getOwnedRelationshipAssignment_5() { return cOwnedRelationshipAssignment_5; }
+		public Assignment getOwnedRelationshipAssignment_3() { return cOwnedRelationshipAssignment_3; }
 		
 		//TransitionSuccessionMember
-		public RuleCall getOwnedRelationshipTransitionSuccessionMemberParserRuleCall_5_0() { return cOwnedRelationshipTransitionSuccessionMemberParserRuleCall_5_0; }
+		public RuleCall getOwnedRelationshipTransitionSuccessionMemberParserRuleCall_3_0() { return cOwnedRelationshipTransitionSuccessionMemberParserRuleCall_3_0; }
 	}
 	public class TransitionSourceMemberElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.TransitionSourceMember");
@@ -16990,11 +17084,6 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//fragment StateBodyPart returns SysML::Type :
-	//    ( ownedRelationship += EntryActionMember
-	//      ( ownedRelationship += EntryTransitionMember )*
-	//    )?
-	//    ( ownedRelationship += DoActionMember )?
-	//    ( ownedRelationship += ExitActionMember )?
 	//    // Note: Using a syntactic predicate here seems to avoid a possible infinite loop
 	//    // while incrementally parsing.
 	//    => StateDefBodyItem*
@@ -17019,6 +17108,10 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	//      ownedRelationship += BehaviorUsageMember
 	//      ( ownedRelationship += TargetTransitionUsageMember )*
 	//    | ownedRelationship += TransitionUsageMember
+	//    | ownedRelationship += EntryActionMember
+	//      ( ownedRelationship += EntryTransitionMember )*
+	//    | ownedRelationship += DoActionMember
+	//    | ownedRelationship += ExitActionMember
 	//;
 	public StateDefBodyItemElements getStateDefBodyItemAccess() {
 		return pStateDefBodyItem;
@@ -17246,10 +17339,18 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	
 	//TargetTransitionUsage returns SysML::TransitionUsage :
 	//    ownedRelationship += EmptyParameterMember
-	//    ( ownedRelationship += EmptyParameterMember
-	//      ownedRelationship += TriggerActionMember )?
-	//    ( ownedRelationship += GuardExpressionMember )?
-	//    ( ownedRelationship += EffectBehaviorMember )?
+	//    ( TransitionUsageKeyword
+	//      ( ownedRelationship += EmptyParameterMember
+	//        ownedRelationship += TriggerActionMember )?
+	//      ( ownedRelationship += GuardExpressionMember )?
+	//      ( ownedRelationship += EffectBehaviorMember )?
+	//    | ownedRelationship += EmptyParameterMember
+	//      ownedRelationship += TriggerActionMember
+	//      ( ownedRelationship += GuardExpressionMember )?
+	//      ( ownedRelationship += EffectBehaviorMember )?
+	//    | ownedRelationship += GuardExpressionMember
+	//      ( ownedRelationship += EffectBehaviorMember )?
+	//    )?
 	//    'then' ownedRelationship += TransitionSuccessionMember
 	//;
 	public TargetTransitionUsageElements getTargetTransitionUsageAccess() {

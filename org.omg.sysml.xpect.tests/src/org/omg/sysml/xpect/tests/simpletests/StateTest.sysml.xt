@@ -58,9 +58,8 @@ package StateTest {
 	action act;
 	
 	state def S {
-		entry action A; then S1;
 		do action B;
-		exit act;
+		entry action A; then S1;
 		
 		state S1;
 			accept s : Sig
@@ -77,7 +76,9 @@ package StateTest {
 			accept s : Sig
 			if true
 			do send s to p
-			then S1;		
+			then S1;
+				
+		exit act;
 	}
 	
 	state s parallel {

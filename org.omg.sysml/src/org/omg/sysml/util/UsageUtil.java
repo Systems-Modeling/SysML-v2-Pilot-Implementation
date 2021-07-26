@@ -22,6 +22,7 @@
 package org.omg.sysml.util;
 
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.omg.sysml.adapter.UsageAdapter;
@@ -46,6 +47,8 @@ import org.omg.sysml.lang.sysml.RequirementUsage;
 import org.omg.sysml.lang.sysml.RequirementVerificationMembership;
 import org.omg.sysml.lang.sysml.SatisfyRequirementUsage;
 import org.omg.sysml.lang.sysml.StateDefinition;
+import org.omg.sysml.lang.sysml.StateSubactionKind;
+import org.omg.sysml.lang.sysml.StateSubactionMembership;
 import org.omg.sysml.lang.sysml.StateUsage;
 import org.omg.sysml.lang.sysml.SubjectMembership;
 import org.omg.sysml.lang.sysml.Succession;
@@ -188,6 +191,15 @@ public class UsageUtil {
 		return type instanceof StateDefinition? ((StateDefinition)type).getEntryAction():
 			   type instanceof StateUsage? ((StateUsage)type).getEntryAction():
 			   null;
+	}
+	
+	public static List<StateSubactionMembership> getStateSubactionMembershipsOf(Type type, StateSubactionKind kind) {
+		return type.getFeatureMembership().stream().
+				filter(StateSubactionMembership.class::isInstance).
+				map(StateSubactionMembership.class::cast).
+				filter(m->m.getKind() == kind).
+				collect(Collectors.toList());
+				
 	}
 	
 	public static boolean hasInitialTransition(Type type) {

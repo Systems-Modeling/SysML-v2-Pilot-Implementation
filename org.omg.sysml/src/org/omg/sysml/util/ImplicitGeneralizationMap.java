@@ -164,6 +164,8 @@ public class ImplicitGeneralizationMap {
 		put(ForkNodeImpl.class, "subaction", "Actions::Action::forks");
 		
 		put(IncludeUseCaseUsageImpl.class, "includedUseCase", "UseCases::UseCase::includedUseCases");
+		put(IncludeUseCaseUsageImpl.class, "enactedPerformance", "Parts::Part::performedActions");
+		
 
 		put(InterfaceDefinitionImpl.class, "binary", "Interfaces::Interface");
 		put(InterfaceUsageImpl.class, "binary", "Interfaces::interfaces");
@@ -219,7 +221,7 @@ public class ImplicitGeneralizationMap {
 		
 		put(UseCaseDefinitionImpl.class, "base", "UseCases::UseCase");
 		put(UseCaseUsageImpl.class, "base", "UseCases::useCases");
-		put(UseCaseUsageImpl.class, "subaction", "UseCases::UseCase::subUseCases");
+		put(UseCaseUsageImpl.class, "subUseCase", "UseCases::UseCase::subUseCases");
 		
 		put(VerificationCaseDefinitionImpl.class, "base", "VerificationCases::VerificationCase");
 		put(VerificationCaseUsageImpl.class, "base", "VerificationCases::verificationCases");

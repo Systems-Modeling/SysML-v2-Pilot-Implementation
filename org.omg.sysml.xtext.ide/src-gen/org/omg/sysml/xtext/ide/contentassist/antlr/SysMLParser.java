@@ -131,8 +131,6 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getCaseBodyAccess().getAlternatives(), "rule__CaseBody__Alternatives");
 			builder.put(grammarAccess.getCaseBodyItemAccess().getAlternatives(), "rule__CaseBodyItem__Alternatives");
 			builder.put(grammarAccess.getRequirementVerificationUsageAccess().getAlternatives(), "rule__RequirementVerificationUsage__Alternatives");
-			builder.put(grammarAccess.getUseCaseBodyAccess().getAlternatives(), "rule__UseCaseBody__Alternatives");
-			builder.put(grammarAccess.getUseCaseBodyItemAccess().getAlternatives(), "rule__UseCaseBodyItem__Alternatives");
 			builder.put(grammarAccess.getIncludeUseCaseUsageAccess().getAlternatives_2(), "rule__IncludeUseCaseUsage__Alternatives_2");
 			builder.put(grammarAccess.getIncludeUseCaseUsageAccess().getAlternatives_3(), "rule__IncludeUseCaseUsage__Alternatives_3");
 			builder.put(grammarAccess.getViewDefinitionBodyAccess().getAlternatives(), "rule__ViewDefinitionBody__Alternatives");
@@ -510,8 +508,6 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getUseCaseDefKeywordAccess().getGroup(), "rule__UseCaseDefKeyword__Group__0");
 			builder.put(grammarAccess.getUseCaseDefinitionAccess().getGroup(), "rule__UseCaseDefinition__Group__0");
 			builder.put(grammarAccess.getUseCaseUsageAccess().getGroup(), "rule__UseCaseUsage__Group__0");
-			builder.put(grammarAccess.getUseCaseBodyAccess().getGroup_1(), "rule__UseCaseBody__Group_1__0");
-			builder.put(grammarAccess.getUseCaseBodyItemAccess().getGroup_1(), "rule__UseCaseBodyItem__Group_1__0");
 			builder.put(grammarAccess.getIncludeUseCaseUsageMemberAccess().getGroup(), "rule__IncludeUseCaseUsageMember__Group__0");
 			builder.put(grammarAccess.getIncludeUseCaseUsageAccess().getGroup(), "rule__IncludeUseCaseUsage__Group__0");
 			builder.put(grammarAccess.getIncludeUseCaseUsageAccess().getGroup_2_0(), "rule__IncludeUseCaseUsage__Group_2_0__0");
@@ -962,9 +958,6 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getRequirementVerificationMemberAccess().getKindAssignment_1(), "rule__RequirementVerificationMember__KindAssignment_1");
 			builder.put(grammarAccess.getRequirementVerificationMemberAccess().getOwnedRelatedElementAssignment_2(), "rule__RequirementVerificationMember__OwnedRelatedElementAssignment_2");
 			builder.put(grammarAccess.getRequirementVerificationUsageAccess().getOwnedRelationshipAssignment_0_0(), "rule__RequirementVerificationUsage__OwnedRelationshipAssignment_0_0");
-			builder.put(grammarAccess.getUseCaseBodyItemAccess().getOwnedRelationshipAssignment_1_0(), "rule__UseCaseBodyItem__OwnedRelationshipAssignment_1_0");
-			builder.put(grammarAccess.getUseCaseBodyItemAccess().getOwnedRelationshipAssignment_1_1(), "rule__UseCaseBodyItem__OwnedRelationshipAssignment_1_1");
-			builder.put(grammarAccess.getUseCaseBodyItemAccess().getOwnedRelationshipAssignment_1_2(), "rule__UseCaseBodyItem__OwnedRelationshipAssignment_1_2");
 			builder.put(grammarAccess.getIncludeUseCaseUsageMemberAccess().getOwnedRelatedElementAssignment_1(), "rule__IncludeUseCaseUsageMember__OwnedRelatedElementAssignment_1");
 			builder.put(grammarAccess.getIncludeUseCaseUsageAccess().getOwnedRelationshipAssignment_2_0_0(), "rule__IncludeUseCaseUsage__OwnedRelationshipAssignment_2_0_0");
 			builder.put(grammarAccess.getViewDefinitionBodyItemAccess().getOwnedRelationshipAssignment_1(), "rule__ViewDefinitionBodyItem__OwnedRelationshipAssignment_1");

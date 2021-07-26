@@ -728,9 +728,6 @@ public abstract class AbstractSysMLProposalProvider extends KerMLExpressionsProp
 	public void completeRequirementVerificationUsage_OwnedRelationship(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		completeRuleCall(((RuleCall)assignment.getTerminal()), context, acceptor);
 	}
-	public void completeUseCaseBodyItem_OwnedRelationship(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		completeRuleCall(((RuleCall)assignment.getTerminal()), context, acceptor);
-	}
 	public void completeIncludeUseCaseUsageMember_OwnedRelatedElement(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		completeRuleCall(((RuleCall)assignment.getTerminal()), context, acceptor);
 	}
@@ -1891,12 +1888,6 @@ public abstract class AbstractSysMLProposalProvider extends KerMLExpressionsProp
 		// subclasses may override
 	}
 	public void complete_UseCaseUsage(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		// subclasses may override
-	}
-	public void complete_UseCaseBody(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		// subclasses may override
-	}
-	public void complete_UseCaseBodyItem(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		// subclasses may override
 	}
 	public void complete_IncludeUseCaseUsageMember(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {

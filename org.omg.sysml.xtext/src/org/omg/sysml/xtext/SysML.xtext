@@ -770,6 +770,7 @@ BehaviorUsageElement returns SysML::Usage :
 	| ViewpointUsage
 	| PerformActionUsage
 	| ExhibitStateUsage
+	| IncludeUseCaseUsage
 	| AssertConstraintUsage
 	| SatisfyRequirementUsage
 ;
@@ -2084,23 +2085,11 @@ UseCaseUsageKeyword :
 ;
 
 UseCaseDefinition returns SysML::UseCaseDefinition :
-	OccurrenceDefinitionPrefix UseCaseDefKeyword CalculationDeclaration UseCaseBody
+	OccurrenceDefinitionPrefix UseCaseDefKeyword CalculationDeclaration CaseBody
 ;
 
 UseCaseUsage returns SysML::UseCaseUsage :
-	OccurrenceUsagePrefix UseCaseUsageKeyword CalculationUsageDeclaration UseCaseBody
-;
-
-fragment UseCaseBody returns SysML::Type :
-	    ';' 
-	  | '{' => UseCaseBodyItem* '}' 
-;
-
-fragment UseCaseBodyItem returns SysML::Type :
-	  CaseBodyItem
-	| ( ownedRelationship += EmptySuccessionMember )? 
-	  ownedRelationship += IncludeUseCaseUsageMember 
-	  ( => ownedRelationship += TargetSuccessionMember )*
+	OccurrenceUsagePrefix UseCaseUsageKeyword CalculationUsageDeclaration CaseBody
 ;
 
 IncludeUseCaseUsageMember returns SysML::FeatureMembership :
@@ -2112,7 +2101,7 @@ IncludeUseCaseUsage returns SysML::IncludeUseCaseUsage :
    	( ownedRelationship += OwnedSubsetting FeatureSpecializationPart?
    	| UseCaseUsageKeyword UsageDeclaration? )
     ( ValuePart | ActionUsageParameterList )?
-	UseCaseBody
+	CaseBody
 ;
 
 /* VIEWS */

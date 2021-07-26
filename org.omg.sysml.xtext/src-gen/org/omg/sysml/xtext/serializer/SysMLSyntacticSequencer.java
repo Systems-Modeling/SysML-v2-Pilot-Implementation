@@ -56,7 +56,6 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	protected AbstractElementAlias match_TextualRepresentation_RepKeyword_0_0_0_or_RepKeyword_0_1_0_0;
 	protected AbstractElementAlias match_TextualRepresentation_RepKeyword_0_1_0_0_q;
 	protected AbstractElementAlias match_TransitionUsage_FirstKeyword_1_1_q;
-	protected AbstractElementAlias match_UseCaseBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__;
 	protected AbstractElementAlias match_ViewBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__;
 	protected AbstractElementAlias match_ViewDefinitionBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__;
 	
@@ -97,7 +96,6 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 		match_TextualRepresentation_RepKeyword_0_0_0_or_RepKeyword_0_1_0_0 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getTextualRepresentationAccess().getRepKeyword_0_0_0()), new TokenAlias(false, false, grammarAccess.getTextualRepresentationAccess().getRepKeyword_0_1_0_0()));
 		match_TextualRepresentation_RepKeyword_0_1_0_0_q = new TokenAlias(false, true, grammarAccess.getTextualRepresentationAccess().getRepKeyword_0_1_0_0());
 		match_TransitionUsage_FirstKeyword_1_1_q = new TokenAlias(false, true, grammarAccess.getTransitionUsageAccess().getFirstKeyword_1_1());
-		match_UseCaseBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getUseCaseBodyAccess().getLeftCurlyBracketKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getUseCaseBodyAccess().getRightCurlyBracketKeyword_1_2())), new TokenAlias(false, false, grammarAccess.getUseCaseBodyAccess().getSemicolonKeyword_0()));
 		match_ViewBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getViewBodyAccess().getLeftCurlyBracketKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getViewBodyAccess().getRightCurlyBracketKeyword_1_2())), new TokenAlias(false, false, grammarAccess.getViewBodyAccess().getSemicolonKeyword_0()));
 		match_ViewDefinitionBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getViewDefinitionBodyAccess().getLeftCurlyBracketKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getViewDefinitionBodyAccess().getRightCurlyBracketKeyword_1_2())), new TokenAlias(false, false, grammarAccess.getViewDefinitionBodyAccess().getSemicolonKeyword_0()));
 	}
@@ -922,8 +920,6 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 				emit_TextualRepresentation_RepKeyword_0_1_0_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_TransitionUsage_FirstKeyword_1_1_q.equals(syntax))
 				emit_TransitionUsage_FirstKeyword_1_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_UseCaseBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__.equals(syntax))
-				emit_UseCaseBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_ViewBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__.equals(syntax))
 				emit_ViewBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_ViewDefinitionBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__.equals(syntax))
@@ -1157,37 +1153,54 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     ';' | ('{' '}')
 	 *
 	 * This ambiguous syntax occurs at:
+	 *     (rule start) 'include' UseCaseUsageKeyword (ambiguity) (rule start)
 	 *     (rule start) AnalysisCaseDefKeyword (ambiguity) (rule start)
 	 *     (rule start) AnalysisCaseUsageKeyword (ambiguity) (rule start)
 	 *     (rule start) CaseDefKeyword (ambiguity) (rule start)
 	 *     (rule start) CaseUsageKeyword (ambiguity) (rule start)
+	 *     (rule start) UseCaseDefKeyword (ambiguity) (rule start)
+	 *     (rule start) UseCaseUsageKeyword (ambiguity) (rule start)
 	 *     (rule start) VerificationCaseDefKeyword (ambiguity) (rule start)
 	 *     (rule start) VerificationCaseUsageKeyword (ambiguity) (rule start)
+	 *     direction=FeatureDirection 'include' UseCaseUsageKeyword (ambiguity) (rule end)
 	 *     direction=FeatureDirection AnalysisCaseUsageKeyword (ambiguity) (rule end)
 	 *     direction=FeatureDirection CaseUsageKeyword (ambiguity) (rule end)
+	 *     direction=FeatureDirection UseCaseUsageKeyword (ambiguity) (rule end)
 	 *     direction=FeatureDirection VerificationCaseUsageKeyword (ambiguity) (rule end)
 	 *     humanId=Name (ambiguity) (rule end)
+	 *     isAbstract?='abstract' 'include' UseCaseUsageKeyword (ambiguity) (rule end)
 	 *     isAbstract?='abstract' AnalysisCaseDefKeyword (ambiguity) (rule end)
 	 *     isAbstract?='abstract' AnalysisCaseUsageKeyword (ambiguity) (rule end)
 	 *     isAbstract?='abstract' CaseDefKeyword (ambiguity) (rule end)
 	 *     isAbstract?='abstract' CaseUsageKeyword (ambiguity) (rule end)
+	 *     isAbstract?='abstract' UseCaseDefKeyword (ambiguity) (rule end)
+	 *     isAbstract?='abstract' UseCaseUsageKeyword (ambiguity) (rule end)
 	 *     isAbstract?='abstract' VerificationCaseDefKeyword (ambiguity) (rule end)
 	 *     isAbstract?='abstract' VerificationCaseUsageKeyword (ambiguity) (rule end)
+	 *     isEnd?='end' 'include' UseCaseUsageKeyword (ambiguity) (rule end)
 	 *     isEnd?='end' AnalysisCaseUsageKeyword (ambiguity) (rule end)
 	 *     isEnd?='end' CaseUsageKeyword (ambiguity) (rule end)
+	 *     isEnd?='end' UseCaseUsageKeyword (ambiguity) (rule end)
 	 *     isEnd?='end' VerificationCaseUsageKeyword (ambiguity) (rule end)
+	 *     isIndividual?='individual' 'include' UseCaseUsageKeyword (ambiguity) (rule end)
 	 *     isIndividual?='individual' AnalysisCaseUsageKeyword (ambiguity) (rule end)
 	 *     isIndividual?='individual' CaseUsageKeyword (ambiguity) (rule end)
+	 *     isIndividual?='individual' UseCaseUsageKeyword (ambiguity) (rule end)
 	 *     isIndividual?='individual' VerificationCaseUsageKeyword (ambiguity) (rule end)
 	 *     isNonunique?='nonunique' (ambiguity) (rule end)
 	 *     isOrdered?='ordered' (ambiguity) (rule end)
+	 *     isReference?='ref' 'include' UseCaseUsageKeyword (ambiguity) (rule end)
 	 *     isReference?='ref' AnalysisCaseUsageKeyword (ambiguity) (rule end)
 	 *     isReference?='ref' CaseUsageKeyword (ambiguity) (rule end)
+	 *     isReference?='ref' UseCaseUsageKeyword (ambiguity) (rule end)
 	 *     isReference?='ref' VerificationCaseUsageKeyword (ambiguity) (rule end)
+	 *     isVariation?='variation' 'include' UseCaseUsageKeyword (ambiguity) (rule end)
 	 *     isVariation?='variation' AnalysisCaseDefKeyword (ambiguity) (rule end)
 	 *     isVariation?='variation' AnalysisCaseUsageKeyword (ambiguity) (rule end)
 	 *     isVariation?='variation' CaseDefKeyword (ambiguity) (rule end)
 	 *     isVariation?='variation' CaseUsageKeyword (ambiguity) (rule end)
+	 *     isVariation?='variation' UseCaseDefKeyword (ambiguity) (rule end)
+	 *     isVariation?='variation' UseCaseUsageKeyword (ambiguity) (rule end)
 	 *     isVariation?='variation' VerificationCaseDefKeyword (ambiguity) (rule end)
 	 *     isVariation?='variation' VerificationCaseUsageKeyword (ambiguity) (rule end)
 	 *     name=Name (ambiguity) (rule end)
@@ -1197,14 +1210,17 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     ownedRelationship+=FeatureValue (ambiguity) (rule end)
 	 *     ownedRelationship+=LifeClassMembership AnalysisCaseDefKeyword (ambiguity) (rule end)
 	 *     ownedRelationship+=LifeClassMembership CaseDefKeyword (ambiguity) (rule end)
+	 *     ownedRelationship+=LifeClassMembership UseCaseDefKeyword (ambiguity) (rule end)
 	 *     ownedRelationship+=LifeClassMembership VerificationCaseDefKeyword (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedMultiplicity (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedRedefinition (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedSubclassification (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedSubsetting (ambiguity) (rule end)
 	 *     ownedRelationship+=ParameterMember ')' (ambiguity) (rule end)
+	 *     ownedRelationship+=PortioningFeatureMember 'include' UseCaseUsageKeyword (ambiguity) (rule end)
 	 *     ownedRelationship+=PortioningFeatureMember AnalysisCaseUsageKeyword (ambiguity) (rule end)
 	 *     ownedRelationship+=PortioningFeatureMember CaseUsageKeyword (ambiguity) (rule end)
+	 *     ownedRelationship+=PortioningFeatureMember UseCaseUsageKeyword (ambiguity) (rule end)
 	 *     ownedRelationship+=PortioningFeatureMember VerificationCaseUsageKeyword (ambiguity) (rule end)
 	 *     ownedRelationship+=ReturnParameterMember (ambiguity) (rule end)
 	 */
@@ -1790,50 +1806,6 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) TransitionUsageKeyword (ambiguity) ownedRelationship+=TransitionSourceMember
 	 */
 	protected void emit_TransitionUsage_FirstKeyword_1_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
-	/**
-	 * Ambiguous syntax:
-	 *     ';' | ('{' '}')
-	 *
-	 * This ambiguous syntax occurs at:
-	 *     (rule start) 'include' UseCaseUsageKeyword (ambiguity) (rule start)
-	 *     (rule start) UseCaseDefKeyword (ambiguity) (rule start)
-	 *     (rule start) UseCaseUsageKeyword (ambiguity) (rule start)
-	 *     direction=FeatureDirection 'include' UseCaseUsageKeyword (ambiguity) (rule end)
-	 *     direction=FeatureDirection UseCaseUsageKeyword (ambiguity) (rule end)
-	 *     humanId=Name (ambiguity) (rule end)
-	 *     isAbstract?='abstract' 'include' UseCaseUsageKeyword (ambiguity) (rule end)
-	 *     isAbstract?='abstract' UseCaseDefKeyword (ambiguity) (rule end)
-	 *     isAbstract?='abstract' UseCaseUsageKeyword (ambiguity) (rule end)
-	 *     isEnd?='end' 'include' UseCaseUsageKeyword (ambiguity) (rule end)
-	 *     isEnd?='end' UseCaseUsageKeyword (ambiguity) (rule end)
-	 *     isIndividual?='individual' 'include' UseCaseUsageKeyword (ambiguity) (rule end)
-	 *     isIndividual?='individual' UseCaseUsageKeyword (ambiguity) (rule end)
-	 *     isNonunique?='nonunique' (ambiguity) (rule end)
-	 *     isOrdered?='ordered' (ambiguity) (rule end)
-	 *     isReference?='ref' 'include' UseCaseUsageKeyword (ambiguity) (rule end)
-	 *     isReference?='ref' UseCaseUsageKeyword (ambiguity) (rule end)
-	 *     isVariation?='variation' 'include' UseCaseUsageKeyword (ambiguity) (rule end)
-	 *     isVariation?='variation' UseCaseDefKeyword (ambiguity) (rule end)
-	 *     isVariation?='variation' UseCaseUsageKeyword (ambiguity) (rule end)
-	 *     name=Name (ambiguity) (rule end)
-	 *     ownedRelationship+=ActionUsageParameterMember ')' (ambiguity) (rule end)
-	 *     ownedRelationship+=CalculationReturnParameterMember (ambiguity) (rule end)
-	 *     ownedRelationship+=FeatureTyping (ambiguity) (rule end)
-	 *     ownedRelationship+=FeatureValue (ambiguity) (rule end)
-	 *     ownedRelationship+=LifeClassMembership UseCaseDefKeyword (ambiguity) (rule end)
-	 *     ownedRelationship+=OwnedMultiplicity (ambiguity) (rule end)
-	 *     ownedRelationship+=OwnedRedefinition (ambiguity) (rule end)
-	 *     ownedRelationship+=OwnedSubclassification (ambiguity) (rule end)
-	 *     ownedRelationship+=OwnedSubsetting (ambiguity) (rule end)
-	 *     ownedRelationship+=ParameterMember ')' (ambiguity) (rule end)
-	 *     ownedRelationship+=PortioningFeatureMember 'include' UseCaseUsageKeyword (ambiguity) (rule end)
-	 *     ownedRelationship+=PortioningFeatureMember UseCaseUsageKeyword (ambiguity) (rule end)
-	 *     ownedRelationship+=ReturnParameterMember (ambiguity) (rule end)
-	 */
-	protected void emit_UseCaseBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	

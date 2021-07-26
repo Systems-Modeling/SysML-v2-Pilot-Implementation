@@ -76,6 +76,11 @@ public class ElementAdapterFactory {
 		}
 		
 		@Override
+		public ElementAdapter caseAttributeUsage(AttributeUsage element) {
+			return new AttributeUsageAdapter(element);
+		}
+		
+		@Override
 		public ElementAdapter caseBehavior(Behavior element) {
 			return new BehaviorAdapter(element);
 		}
@@ -293,6 +298,11 @@ public class ElementAdapterFactory {
 		@Override
 		public ElementAdapter casePortioningFeature(PortioningFeature element) {
 			return new PortioningFeatureAdapter(element);
+		}
+		
+		@Override
+		public ElementAdapter caseReferenceUsage(ReferenceUsage element) {
+			return new ReferenceUsageAdapter(element);
 		}
 		
 		@Override

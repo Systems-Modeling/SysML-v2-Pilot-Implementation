@@ -13,6 +13,7 @@ Import-Package: com.google.inject;version="1.3.0",
  org.eclipse.emf.ecore.util,
  org.omg.sysml.lang.sysml,
  org.omg.sysml.lang.sysml.impl,
- org.omg.sysml.lang.sysml.util
+ org.omg.sysml.lang.sysml.util,
+ org.omg.sysml.util
 Bundle-ActivationPolicy: lazy
 Bundle-Vendor: SysML v2 Submission Team

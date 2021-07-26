@@ -29,7 +29,7 @@ package test{
 	   test.A.self,  test.A.a.self,  test.A.aa.self,  test.AA.self,  test.AA.a.self,  test.AA.aa.self,  test.B.self,  test.B.b.self,  test.B.b_alias.self, 
 		--- */
 	//XPECT linkedName at AA --> test.A
-	feature B redefines AA{
+	feature B subsets AA{
 		//* XPECT scope at aa ---
 			   A, A.a, A.aa, AA, AA.a, AA.aa, B, B.b, B.b_alias, a, aa, 
 			   test.A, test.A.a, test.A.aa, test.AA, test.AA.a, test.AA.aa, test.B, test.B.b, test.B.b_alias,

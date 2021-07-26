@@ -66,7 +66,7 @@ public class PortioningFeatureAdapter extends FeatureAdapter {
 	}
 	
 	@Override
-	protected List<? extends Feature> getRelevantFeatures(Type type) {
+	protected List<? extends Feature> getRelevantFeatures(Type type, Element skip) {
 		PortioningFeature target = getTarget();
 		return Collections.singletonList(type == target.getOwner()? target:
 			   (Feature)getLibraryType(

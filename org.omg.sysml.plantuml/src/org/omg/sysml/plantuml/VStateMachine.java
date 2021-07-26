@@ -30,8 +30,12 @@ import org.omg.sysml.lang.sysml.StateUsage;
 import org.omg.sysml.lang.sysml.Type;
 
 public class VStateMachine extends VDefault {
-    private void addState(Type typ, boolean withStyle) {
-        addRecLine(typ, withStyle);
+    private void addState(Type typ, boolean isParallel, boolean withStyle) {
+        String name = getName(typ);
+        if (isParallel) {
+            name = name + "\\n" + "<b>parallel</b>";
+        }
+        addRecLine(name, typ, withStyle);
         addSpecializations(typ);
         VStateMembers v = new VStateMembers(this);
         v.startStateUsage(typ);
@@ -40,20 +44,20 @@ public class VStateMachine extends VDefault {
 
     @Override
     public String caseStateUsage(StateUsage su) {
-        addState(su, false);
+        addState(su, su.isParallel(), false);
         return getString();
     }
     
     @Override
     public String caseExhibitStateUsage(ExhibitStateUsage esu) {
-        addState(esu, true);
+        addState(esu, esu.isParallel(), true);
         return getString();
     }
     
 
     @Override
     public String caseStateDefinition(StateDefinition sd) {
-        addState(sd, true);
+        addState(sd, sd.isParallel(), true);
         return getString();
     }
     

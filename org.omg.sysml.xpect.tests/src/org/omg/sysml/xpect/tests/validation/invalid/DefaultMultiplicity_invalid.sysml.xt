@@ -1,0 +1,92 @@
+//*
+XPECT_SETUP org.omg.sysml.xpect.tests.validation.invalid.SysMLTests
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library.kernel/Base.kerml"}
+		File {from ="/library.kernel/Occurrences.kerml"}
+		File {from ="/library.kernel/Objects.kerml"}
+		File {from ="/library.kernel/Performances.kerml"}
+		File {from ="/library.kernel/ControlPerformances.kerml"}
+		File {from ="/library.kernel/TransitionPerformances.kerml"}
+		File {from ="/library.kernel/ScalarValues.kerml"}
+		File {from ="/library.systems/Items.sysml"}
+		File {from ="/library.systems/Parts.sysml"}
+		File {from ="/library.systems/Ports.sysml"}
+		File {from ="/library.systems/Actions.sysml"}
+		File {from ="/library.systems/States.sysml"}
+		File {from ="/library.systems/Connections.sysml"}
+		File {from ="/library.systems/Attributes.sysml"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library.kernel/Base.kerml"}
+				File {from ="/library.kernel/Occurrences.kerml"}
+				File {from ="/library.kernel/Objects.kerml"}
+				File {from ="/library.kernel/Performances.kerml"}
+				File {from ="/library.kernel/ControlPerformances.kerml"}
+				File {from ="/library.kernel/TransitionPerformances.kerml"}
+				File {from ="/library.kernel/ScalarValues.kerml"}
+				File {from ="/library.systems/Items.sysml"}
+				File {from ="/library.systems/Parts.sysml"}
+				File {from ="/library.systems/Ports.sysml"}
+				File {from ="/library.systems/Actions.sysml"}
+				File {from ="/library.systems/States.sysml"}
+				File {from ="/library.systems/Connections.sysml"}
+				File {from ="/library.systems/Attributes.sysml"}
+			}
+		}
+	}
+END_SETUP 
+*/
+package DefaultMultiplicity {
+
+	attribute a1;
+	item i1;
+	part p1;
+	port t1;
+	
+	part def P {
+		// These kinds of usages have default multiplicity of [1..1].
+		attribute a2 :> a1;
+		item i2 :> i1;
+		part p2 :> p1;
+		port t2 :> t1;
+		
+		// XPECT warnings ---> "Subsetting/redefining feature should not have larger multiplicity upper bound" at "a2"
+		attribute a3[*] :> a2;
+		// XPECT warnings ---> "Subsetting/redefining feature should not have larger multiplicity upper bound" at "i2"
+		item i3[*] :> i2;
+		// XPECT warnings ---> "Subsetting/redefining feature should not have larger multiplicity upper bound" at "p2"
+		part p3[*] :> p2;
+		// XPECT warnings ---> "Subsetting/redefining feature should not have larger multiplicity upper bound" at "t2"
+		port t3[*] :> t2;
+		
+		attribute a4;
+		item i4;
+		part p4;
+		port t4;
+		
+		// XPECT warnings ---> "Subsetting/redefining feature should not have larger multiplicity upper bound" at "a4"
+		attribute a5[*] :> a4;
+		// XPECT warnings ---> "Subsetting/redefining feature should not have larger multiplicity upper bound" at "i4"
+		item i5[*] :> i4;
+		// XPECT warnings ---> "Subsetting/redefining feature should not have larger multiplicity upper bound" at "p4"
+		part p5[*] :> p4;
+		// XPECT warnings ---> "Subsetting/redefining feature should not have larger multiplicity upper bound" at "t4"
+		port t5[*] :> t4;		
+	}
+	
+	part def Q {
+		// These kinds of usages do not have default multiplicity.
+		action n1;
+		state s1;
+		connection c1 connect n1 to s1;
+		
+		action n2[*] :> n1;
+		state s2[*] :> s1;
+		connection c2[*] :> c1 connect n2 to s2;
+	}
+	
+}

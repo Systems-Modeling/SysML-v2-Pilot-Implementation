@@ -135,7 +135,7 @@ package ISQInformation {
      * remarks: See IEC 60050-715, item 715-03-13.
      */
     attribute def CallIntensityUnit :> DerivedUnit {
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = -1; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = durationPF; }
     }
 
@@ -161,7 +161,7 @@ package ISQInformation {
      * remarks: For a definition of the complete call attempt, see IEC 60050-715, item 715-03-11.
      */
     attribute def CompletedCallIntensityUnit :> DerivedUnit {
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = -1; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = durationPF; }
     }
 
@@ -225,7 +225,7 @@ package ISQInformation {
      * remarks: The symbol `ν` is the Greek letter nu. A subscript referring to a specified data element can be added to the symbol. EXAMPLES: digit rate, `r_d` or `ν_d` (see IEC 60050-702 and 60050-704, items 702-05-23 and 704-16-06); transfer rate for octets (or bytes), `r_o`, `r_B`, `ν_o`, or `ν_B`; binary digit rate or bit rate (item 13-13).
      */
     attribute def TransferRateUnit :> DerivedUnit {
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = -1; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = durationPF; }
     }
 
@@ -260,7 +260,7 @@ package ISQInformation {
      * remarks: In English, the systematic name would be "transfer rate for binary digits". See IEC 60050-704, item 704-16-07. The bit per second may be combined with prefixes, for example megabit per second, symbol Mbit/s.
      */
     attribute def BinaryDigitRateUnit :> DerivedUnit {
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = -1; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = durationPF; }
     }
 
@@ -302,7 +302,7 @@ package ISQInformation {
 binary transfer rate". See IEC 60050-704, item 704-17-05.
      */
     attribute def EquivalentBinaryDigitRateUnit :> DerivedUnit {
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = -1; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = durationPF; }
     }
 
@@ -328,7 +328,7 @@ binary transfer rate". See IEC 60050-704, item 704-17-05.
      * remarks: The term “modulation rate” is used in conventional telegraphy and data transmission. In isochronous digital transmission, the term "line digit rate" is generally used. See IEC 60050-704, item 704-17-03. Baud is a special name for the second to the power minus one for this quantity. The baud may be combined with prefixes, for example kilobaud, symbol kBd, megabaud, symbol MBd.
      */
     attribute def ModulationRateUnit :> DerivedUnit {
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = -1; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = durationPF; }
     }
 
@@ -713,7 +713,7 @@ binary transfer rate". See IEC 60050-704, item 704-17-05.
      * remarks: See ISO/IEC 2382-16, item 16.04.10.
      */
     attribute def AverageInformationRateUnit :> DerivedUnit {
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = -1; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = durationPF; }
     }
 
@@ -754,7 +754,7 @@ binary transfer rate". See IEC 60050-704, item 704-17-05.
      * remarks: See ISO/IEC 2382-16, item 16.04.12.
      */
     attribute def AverageTransinformationRateUnit :> DerivedUnit {
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = -1; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = durationPF; }
     }
 
@@ -799,7 +799,7 @@ binary transfer rate". See IEC 60050-704, item 704-17-05.
      * remarks: See ISO/IEC 2382-16, item 16.04.13. Note for SysML ISQ: Alias "channel capacity", that was present in IEC 80000-12:2008, has been removed as it duplicates the alias of channel capacity per character (item 13-41).
      */
     attribute def ChannelTimeCapacityUnit :> DerivedUnit {
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = -1; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = durationPF; }
     }
 

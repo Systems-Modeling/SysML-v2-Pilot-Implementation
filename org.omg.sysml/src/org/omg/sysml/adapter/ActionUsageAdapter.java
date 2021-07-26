@@ -26,6 +26,7 @@ import java.util.List;
 
 import org.omg.sysml.lang.sysml.ActionDefinition;
 import org.omg.sysml.lang.sysml.ActionUsage;
+import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.StateSubactionMembership;
@@ -70,10 +71,10 @@ public class ActionUsageAdapter extends OccurrenceUsageAdapter {
 	}	
 	
 	@Override
-	protected List<? extends Feature> getRelevantFeatures(Type type) {
+	protected List<? extends Feature> getRelevantFeatures(Type type, Element skip) {
 		ActionUsage target = getTarget();
 		String redefinedFeature = getRedefinedFeature(target);
-		return redefinedFeature == null? super.getRelevantFeatures(type):
+		return redefinedFeature == null? super.getRelevantFeatures(type, skip):
 			   type == target.getOwningType()? Collections.singletonList(target):
 			   Collections.singletonList((Feature)getLibraryType(redefinedFeature));
 	}

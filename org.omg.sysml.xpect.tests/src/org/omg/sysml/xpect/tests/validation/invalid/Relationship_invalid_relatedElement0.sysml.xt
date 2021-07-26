@@ -47,13 +47,13 @@ package BindingConnectorExample {
 			}
 		}
 		//* XPECT errors --- 
-		"Relationships must have at least two related elements" at "bind b0::p0::myIn to"
+		"Relationships must have at least two related elements" at "bind b0.p0.myIn to"
 		"mismatched input 'to' expecting '='" at "to"
-		"no viable alternative at input '::'" at "::"
-		"no viable alternative at input '::'" at "::"
+		"no viable alternative at input '.'" at "."
+		"no viable alternative at input '.'" at "."
 		"no viable alternative at input 'b0'" at "b0"
 		--- */
 		// XPECT warnings ---> "Duplicate owned member name" at "b0"
-		bind b0::p0::myIn to b0::p1::myOut;	
+		bind b0.p0.myIn to b0.p1.myOut;	
 	} 
 }

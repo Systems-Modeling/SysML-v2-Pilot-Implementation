@@ -42,8 +42,8 @@ package ServerSequenceRealization_2 {
 				transition delivering
 					first waitForPublication
 					accept pub : Publish for publicationPort
-					if pub.topic == subscribing::sub.topic
-					do send Deliver(pub.publication) to subscribing::sub.subscriber
+					if pub.topic == subscribing.sub.topic
+					do send Deliver(pub.publication) to subscribing.sub.subscriber
 					then waitForPublication;
 			}
 		}
@@ -67,7 +67,7 @@ package ServerSequenceRealization_2 {
 	
 	part realization_2 : PubSubSequence {
 		part :>> producer :> producer_2 {
-			event occurrence :>> publish_source_event = producerBehavior::publish;
+			event occurrence :>> publish_source_event = producerBehavior.publish;
 		}
 
 		part :>> server :> server_2 {

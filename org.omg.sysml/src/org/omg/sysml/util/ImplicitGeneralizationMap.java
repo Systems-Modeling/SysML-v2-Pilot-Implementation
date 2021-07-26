@@ -55,7 +55,6 @@ public class ImplicitGeneralizationMap {
 		put(BindingConnectorImpl.class, "binary", "Links::selfLinks");
 		
 		put(BooleanExpressionImpl.class, "base", "Performances::booleanEvaluations");
-		put(BooleanExpressionImpl.class, "subperformance", "Performances::booleanEvaluations");
 		
 		put(ClassImpl.class, "base", "Occurrences::Occurrence");
 		
@@ -78,12 +77,20 @@ public class ImplicitGeneralizationMap {
 		
 		put(FunctionImpl.class, "base", "Performances::Evaluation");
 		
+		put(InvariantImpl.class, "base", "Performances::trueEvaluations");
+		put(InvariantImpl.class, "negated", "Performances::falseEvaluations");
+		
 		put(ItemFlowImpl.class, "base", "Transfers::transfers");
 		put(ItemFlowImpl.class, "subperformance", "Performances::Performance::subtransfers");
 		
 		put(LiteralExpressionImpl.class, "base", "Performances::literalEvaluations");
 		
 		put(MultiplicityImpl.class, "base", "Base::naturals");
+		put(MultiplicityImpl.class, "feature", "Base::exactlyOne");
+		put(MultiplicityImpl.class, "classifier", "Base::zeroOrOne");
+
+		put(MultiplicityRangeImpl.class, "feature", "Base::naturals");
+		put(MultiplicityRangeImpl.class, "classifier", "Base::naturals");
 		
 		put(NullExpressionImpl.class, "base", "Performances::nullEvaluations");
 		
@@ -121,7 +128,8 @@ public class ImplicitGeneralizationMap {
 		put(AnalysisCaseUsageImpl.class, "base", "AnalysisCases::analysisCases");
 		put(AnalysisCaseUsageImpl.class, "subaction", "AnalysisCases::AnalysisCase::subAnalysisCases");
 		
-		put(AssertConstraintUsageImpl.class, "enactedPerformance", "Items::Item::assertedConstraints");
+		put(AssertConstraintUsageImpl.class, "base", "Constraints::assertedConstraintChecks");
+		put(AssertConstraintUsageImpl.class, "negated", "Constraints::negatedConstraintChecks");
 		
 		put(AttributeDefinitionImpl.class, "base", "Base::DataValue");
 		put(AttributeUsageImpl.class, "base", "Base::dataValues");
@@ -144,6 +152,8 @@ public class ImplicitGeneralizationMap {
 		
 		put(ConstraintDefinitionImpl.class, "base", "Constraints::ConstraintCheck");
 		put(ConstraintUsageImpl.class, "base", "Constraints::constraintChecks");
+		put(ConstraintUsageImpl.class, "subperformance", "Performances::Performance::subevaluations");
+		put(ConstraintUsageImpl.class, "enactedPerformance", "Items::Item::checkedConstraints");
 		
 		put(DecisionNodeImpl.class, "subaction", "Actions::Action::decisions");
 		
@@ -187,6 +197,9 @@ public class ImplicitGeneralizationMap {
 		put(RequirementDefinitionImpl.class, "base", "Requirements::RequirementCheck");
 		put(RequirementUsageImpl.class, "base", "Requirements::requirementChecks");
 		put(RequirementUsageImpl.class, "subrequirement", "Requirements::RequirementCheck::subrequirements");
+		
+		put(SatisfyRequirementUsageImpl.class, "base", "Requirements::satisfiedRequirementChecks");
+		put(SatisfyRequirementUsageImpl.class, "negated", "Requirements::notSatisfiedRequirementChecks");
 		
 		put(SendActionUsageImpl.class, "base", "Actions::sendActions");
 		put(SendActionUsageImpl.class, "subaction", "Actions::Action::sendSubactions");

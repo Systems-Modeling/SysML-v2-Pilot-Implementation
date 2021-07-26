@@ -56,4 +56,10 @@ public class PortUsageAdapter extends UsageAdapter {
 		return owningType instanceof PortDefinition || owningType instanceof PortUsage;
 	}
 	
+	@Override
+	public void doTransform() {
+		super.doTransform();
+		addDefaultMultiplicity();
+	}
+	
 }

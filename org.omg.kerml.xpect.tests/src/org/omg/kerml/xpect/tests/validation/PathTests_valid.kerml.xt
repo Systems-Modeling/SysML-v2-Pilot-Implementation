@@ -39,16 +39,13 @@ package P {
     	feature m : Real;
     }
     
-    feature v1 : V {
-    	feature :>> n;
-    	feature :>> m;
-    }
+    feature v1 : V;
     
     feature v2 :> v1;
     
     feature v1_n : Integer = v1.n;
     feature v1_m : Real = v1.m;
-    feature v2_m : Real = v2.m;
+    feature v2_m : Real = v1.n + v2.m;
     
     feature v_4 : V = (v1, v2).{in v : V; v.n == 4};
     feature vv[*] : V = (all V).{in v : V; v.m > 100};

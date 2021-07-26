@@ -341,6 +341,13 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 					}
 				}
 			}
+			if (ns instanceof Feature) {
+				val chainingFeature = FeatureUtil.getLastChainingFeatureOf(ns)
+				if (chainingFeature !== null && 
+					chainingFeature.resolveIfUnvisited(qn, false, visited, newRedefined, false, true, false)) {
+					return true;
+				}
+			}
 		}
 		return false
 	}

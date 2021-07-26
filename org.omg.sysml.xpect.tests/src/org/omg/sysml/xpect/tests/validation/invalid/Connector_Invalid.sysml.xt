@@ -38,13 +38,16 @@ package P {
 		part y {
 			part z;
 		}
-		// XPECT warnings --> "Connected features should have a common context" at "connect A::x to y::z;"
+		//* XPECT warnings ---
+		    "Should be an accessible feature (use dot notation for nesting)" at "A::x"
+		    "Should be an accessible feature (use dot notation for nesting)" at "y::z"
+		    --- */
 		connect A::x to y::z;
 	}
 	part b {
 		part y : A;
 		part z;
-		// XPECT warnings --> "Connected features should have a common context" at "connect y::x to z;"
+		// XPECT warnings --> "Should be an accessible feature (use dot notation for nesting)" at "y::x"
 		connect y::x to z;
 	}
 }

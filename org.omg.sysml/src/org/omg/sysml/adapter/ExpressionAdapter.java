@@ -68,23 +68,29 @@ public class ExpressionAdapter extends StepAdapter {
 	// Implicit Generalization
 	
 	@Override
+	public void computeImplicitGeneralTypes() {
+		super.computeImplicitGeneralTypes();
+		if (isSubperformance()) {
+			addDefaultGeneralType(getGeneralizationEClass(), getDefaultSupertype("subperformance"));
+		}
+	}
+
+	@Override
 	protected String getDefaultSupertype() {
-		return isSubperformance()?
-				getDefaultSupertype("subperformance"):
-				getDefaultSupertype("base");
+		return getDefaultSupertype("base");
 	}
 	
 	// Computed Redefinition
 
 	@Override
-	protected List<? extends Feature> getRelevantFeatures(Type type) {
+	protected List<? extends Feature> getRelevantFeatures(Type type, Element skip) {
 		Expression target = getTarget();
 		Type owningType = target.getOwningType();
 		return ExpressionUtil.isTransitionGuard(target)?
 					type == owningType? Collections.singletonList(target):
 					Collections.singletonList((Feature)getLibraryType(EXPRESSION_GUARD_FEATURE)):
 			   owningType instanceof FeatureValue? Collections.emptyList():
-			   super.getRelevantFeatures(type);
+			   super.getRelevantFeatures(type, skip);
 	}
 	
 	@Override
@@ -107,7 +113,6 @@ public class ExpressionAdapter extends StepAdapter {
 			
 			FeatureMembership membership = SysMLFactory.eINSTANCE.createParameterMembership();
 			membership.setOwnedMemberFeature(feature);
-			membership.setMemberName("$" + parameter.getName());
 			
 			Expression expression = getTarget();
 			expression.getOwnedRelationship().add(membership);
@@ -130,7 +135,6 @@ public class ExpressionAdapter extends StepAdapter {
 			Feature parameter = SysMLFactory.eINSTANCE.createFeature();
 			ParameterMembership membership = SysMLFactory.eINSTANCE.createReturnParameterMembership();
 			membership.setOwnedMemberParameter(parameter);
-			membership.setMemberName("$result");
 			expression.getOwnedRelationship().add(membership);
 		}		
 	}

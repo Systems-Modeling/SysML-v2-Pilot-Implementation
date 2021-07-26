@@ -162,7 +162,7 @@ package UnitsAndScales {
 	 */
 	attribute def ConversionByPrefix :> UnitConversion {
 		attribute prefix: UnitPrefix[1];
-		attribute conversionFactor redefines UnitConversion::conversionFactor = prefix::conversionFactor;
+		attribute conversionFactor redefines UnitConversion::conversionFactor = prefix.conversionFactor;		
 	}
 
 	/**

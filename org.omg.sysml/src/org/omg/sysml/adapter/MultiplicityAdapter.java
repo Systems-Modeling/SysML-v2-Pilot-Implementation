@@ -24,6 +24,9 @@ package org.omg.sysml.adapter;
 import java.util.Collections;
 import java.util.List;
 
+import org.omg.sysml.lang.sysml.Classifier;
+import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Multiplicity;
 import org.omg.sysml.lang.sysml.Type;
 
@@ -40,11 +43,16 @@ public class MultiplicityAdapter extends FeatureAdapter {
 
 	@Override
 	protected String getDefaultSupertype() {
-		return getDefaultSupertype("base");
+		Element owner = getTarget().getOwner();
+		return owner instanceof Classifier?
+					getDefaultSupertype("classifier"):
+			   owner instanceof Feature?
+					getDefaultSupertype("feature"):
+					getDefaultSupertype("base");
 	}
 	
 	@Override
-	protected List<Multiplicity> getRelevantFeatures(Type type) {
+	protected List<Multiplicity> getRelevantFeatures(Type type, Element skip) {
 		return Collections.emptyList();
 	}
 	

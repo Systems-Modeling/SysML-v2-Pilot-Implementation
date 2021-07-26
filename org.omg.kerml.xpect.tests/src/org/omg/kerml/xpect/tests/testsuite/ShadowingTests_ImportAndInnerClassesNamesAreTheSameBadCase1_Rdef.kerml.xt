@@ -23,5 +23,5 @@ package test{
 		feature a2{}
 	}
 	// XPECT errors --> "Couldn't resolve reference to Feature 'A::a1'." at "A::a1"
-	feature B redefines A::a1 {} 
+	feature B subsets A::a1 {} 
 }

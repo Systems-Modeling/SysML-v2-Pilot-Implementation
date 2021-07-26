@@ -47,6 +47,7 @@ import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
 import org.omg.sysml.util.ConnectorUtil;
 import org.omg.sysml.util.ElementUtil;
+import org.omg.sysml.util.FeatureUtil;
 import org.omg.sysml.util.ImplicitGeneralizationMap;
 import org.omg.sysml.util.TypeUtil;
 
@@ -155,18 +156,6 @@ public class TypeAdapter extends NamespaceAdapter {
 		return implicitGeneralTypes.getOrDefault(eClass, Collections.emptyList()).contains(general);
 	}
 	
-	public void addDefaultGeneralType(EClass generalizationEClass, String... superTypeNames) {
-		Type type = getTarget();
-		if (getImplicitGeneralTypes(generalizationEClass).isEmpty()) {
-			Type general = getLibraryType(superTypeNames);
-			if (general != null && general != type) {
-				List<Type> generalizations = new ArrayList<>();
-				generalizations.add(general);
-				implicitGeneralTypes.put(generalizationEClass, generalizations);
-			}
-		}
-	}
-	
 	protected static boolean hasNoConformingGeneralizations(Type type, Class<?> kind, Type defaultGeneral) {
 		return type.getOwnedRelationship().stream().
 				filter(kind::isInstance).
@@ -174,8 +163,12 @@ public class TypeAdapter extends NamespaceAdapter {
 				noneMatch(spec->spec.getSpecific() == type && TypeUtil.conforms(defaultGeneral, spec.getGeneral()));
 	}
 
+	public void addDefaultGeneralType(EClass generalizationEClass, String... superTypeNames) {
+		addImplicitGeneralType(generalizationEClass, getLibraryType(superTypeNames));
+	}
+	
 	public void addImplicitGeneralType(EClass eClass, Type general) {
-		if (general != null && !isImplicitGeneralizationFor(eClass, general)) {
+		if (general != null && general != getTarget() && !isImplicitGeneralizationFor(eClass, general)) {
 			implicitGeneralTypes.computeIfAbsent(eClass, e -> new ArrayList<>()).add(general);
 		}
 	}
@@ -202,13 +195,19 @@ public class TypeAdapter extends NamespaceAdapter {
 	
 	public void removeUnnecessaryImplicitGeneralTypes() {
 		Type target = getTarget();
+		List<Type> explicitGenerals = target.getOwnedSpecialization().stream().
+				filter(spec->spec.getSpecific() == target).
+				map(Specialization::getGeneral).
+				collect(Collectors.toList());
 		for (Object eClass: implicitGeneralTypes.keySet().toArray()) {
-			List<Type> generals = implicitGeneralTypes.get(eClass);
-			for (Object general: generals.toArray()) {
-				if (target.getOwnedSpecialization().stream().
-						anyMatch(spec->spec.getSpecific() == target && TypeUtil.conforms(spec.getGeneral(), (Type)general))) {
-					generals.remove(general);
-					if (generals.isEmpty()) {
+			List<Type> implicitGenerals = implicitGeneralTypes.get(eClass);
+			for (Object general: implicitGenerals.toArray()) {
+				Stream<Type> generals = Stream.concat(
+						implicitGenerals.stream().filter(type->type != general), 
+						explicitGenerals.stream());
+				if (generals.anyMatch(type->TypeUtil.conforms(type, (Type)general))) {
+					implicitGenerals.remove(general);
+					if (implicitGenerals.isEmpty()) {
 						implicitGeneralTypes.remove(eClass);
 					}
 				}
@@ -240,13 +239,8 @@ public class TypeAdapter extends NamespaceAdapter {
 		return getDefaultSupertype("base");
 	}
 	
-	private String defaultSupertype = null;
-	
 	protected String getDefaultSupertype(String kind) {
-		if (defaultSupertype == null) {
-			defaultSupertype = ImplicitGeneralizationMap.getDefaultSupertypeFor(getTarget().getClass(), kind);
-		}
-		return defaultSupertype;
+		return ImplicitGeneralizationMap.getDefaultSupertypeFor(getTarget().getClass(), kind);
 	}
 	
 	public Type getLibraryType(String... defaultNames) {
@@ -279,11 +273,16 @@ public class TypeAdapter extends NamespaceAdapter {
 	}
 	
 	public BindingConnector addBindingConnector(Feature source, Feature target) {
+		Type type = getTarget();
 		BindingConnector connector = TypeUtil.createBindingConnector(source, target);
-		if (ConnectorUtil.getContextTypeFor(connector) == getTarget()) {
+		Type contextType = ConnectorUtil.getContextTypeFor(connector);
+		if (contextType == type) {
 			addImplicitFeatureBindingConnector(connector);
 		} else {
 			addImplicitMemberBindingConnector(connector);
+			if (contextType != null) {
+				FeatureUtil.addFeaturingTypesTo(connector, Collections.singleton(contextType));
+			}
 		}
 		return connector;
 	}

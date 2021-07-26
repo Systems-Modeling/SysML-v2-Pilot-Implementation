@@ -38,7 +38,7 @@ package test{
 	--- */
 		feature c2 redefines b {}
 	}
-	feature D subsets C::c2{
+	feature D subsets C.c2{
 		//XPECT linkedName at aa --> test.A.a.aa
 		//* XPECT scope at aa ---
  		A, A.a, A.a.aa, B, B.b, B.b.aa, 

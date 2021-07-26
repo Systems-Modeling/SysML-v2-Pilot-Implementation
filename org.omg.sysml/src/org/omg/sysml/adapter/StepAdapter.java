@@ -53,10 +53,6 @@ public class StepAdapter extends FeatureAdapter {
 				"base");
 	}
 	
-	public boolean isSubperformance() {
-		return getTarget().isComposite() && super.isSubperformance();
-	}
-	
 	public boolean isEnactedPerformance() {
 		Type owningType = getTarget().getOwningType();
 		return owningType instanceof Structure ||

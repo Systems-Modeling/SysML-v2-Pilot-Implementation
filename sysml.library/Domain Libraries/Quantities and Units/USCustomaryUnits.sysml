@@ -63,6 +63,7 @@ package USCustomaryUnits {
 		private attribute fahrenheitToCelsiusScaleMapping: QuantityValueMapping {
 			:>> mappedQuantityValue = temperatureWaterAtFreezingPointInF;
 			:>> referenceQuantityValue = '°C_scale'::temperatureWaterAtFreezingPointInC;
+
 		}
 		attribute :>> definitionalQuantityValues = temperatureWaterAtFreezingPointInF;
 		attribute :>> quantityValueMapping = fahrenheitToCelsiusScaleMapping;

@@ -18,7 +18,10 @@ package RequirementTest {
 	part p;
 	part q {
 		requirement r : R;
-		satisfy r by p; 
+		satisfy r by p;
 	}
+	
+	requirement r1 : R1;
+	not satisfy r1 by q;
 	
 }

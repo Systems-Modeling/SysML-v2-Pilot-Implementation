@@ -315,6 +315,7 @@ NonFeatureElement returns SysML::Element :
 	| AnnotatingFeature
 	| Namespace
 	| Package 
+	| Multiplicity
 	| Type
 	| Classifier 
 	| Class
@@ -386,7 +387,7 @@ Type returns SysML::Type :
 
 fragment TypeDeclaration returns SysML::Type : 
     ( isSufficient ?= 'all' )? Identification?
-    ( ownedRelationship += MultiplicityMember )? 
+    ( ownedRelationship += OwnedMultiplicity )? 
     ( SpecializationPart | ConjugationPart )+
 ;
 
@@ -397,10 +398,6 @@ fragment SpecializationPart returns SysML::Type :
 
 fragment ConjugationPart returns SysML::Type :
 	( '~' | 'conjugates' ) ownedRelationship += OwnedConjugation
-;
-
-MultiplicityMember returns SysML::Membership :
-	ownedRelatedElement += Multiplicity // ownedMemberElement = Multiplicity
 ;
 
 fragment TypeBody returns SysML::Type :
@@ -419,11 +416,29 @@ NonFeatureMember returns SysML::Membership :
 
 /* Feature Membership */
 
-FeatureMember returns SysML::FeatureMembership :
-	MemberPrefix 
-	( ownedRelatedElement += FeatureElement // ownedMemberFeature = FeatureElement
-	| 'feature'? ( memberName = Name )? 'is' memberFeature = [SysML::Feature|QualifiedName] ';'
-	)
+FeatureMember returns SysML::Membership :
+	OwnedFeatureMember | UnownedFeatureMember | ChainFeatureMember
+;
+
+OwnedFeatureMember returns SysML::FeatureMembership :
+	MemberPrefix ownedRelatedElement += FeatureElement // ownedMemberFeature = FeatureElement
+;
+
+UnownedFeatureMember returns SysML::FeatureMembership :
+	MemberPrefix 'feature'? ( memberName = Name )? 'is' memberFeature = [SysML::Feature|QualifiedName] ';'
+;
+
+ChainFeatureMember returns SysML::Membership :
+	MemberPrefix 'feature'? ( memberName = Name )? 'is' ownedRelatedElement += FeatureChain ';' // ownedMemberFeature = Feature ';'
+;
+
+FeatureChain returns SysML::Feature :
+	ownedRelationship += OwnedFeatureChaining
+	( '.' ownedRelationship += OwnedFeatureChaining )+
+;
+
+OwnedFeatureChaining returns SysML::FeatureChaining :
+	chainingFeature = [SysML::Feature | QualifiedName]
 ;
 
 /* Specialization */
@@ -461,7 +476,7 @@ Classifier returns SysML::Classifier :
 
 fragment ClassifierDeclaration returns SysML::Classifier :	
     (isSufficient ?= 'all' )? Identification?
-	( ownedRelationship += MultiplicityMember )?
+	( ownedRelationship += OwnedMultiplicity )?
 	( SuperclassingPart | ClassifierConjugationPart )?
 ;
 
@@ -532,11 +547,11 @@ fragment FeatureSpecializationPart returns SysML::Feature :
 ;
 
 fragment MultiplicityPart returns SysML::Feature :
-	ownedRelationship += MultiplicityMember 
-	// NOTE: Can't use "&" here because of use of predication elsewhere.
-	( isOrdered ?= 'ordered' isNonunique ?= 'nonunique'?
-	| isNonunique ?= 'nonunique' isOrdered ?= 'ordered'?
-	)?
+	  ownedRelationship += OwnedMultiplicity 
+	| ( ownedRelationship += OwnedMultiplicity )?
+	  ( isOrdered ?= 'ordered' isNonunique ?= 'nonunique'?
+	  | isNonunique ?= 'nonunique' isOrdered ?= 'ordered'?
+	  )
 ;
 
 fragment FeatureSpecialization returns SysML::Feature :
@@ -601,7 +616,8 @@ Subsetting returns SysML::Subsetting :
 ;
 
 OwnedSubsetting returns SysML::Subsetting:
-	subsettedFeature = [SysML::Feature|QualifiedName]
+	  subsettedFeature = [SysML::Feature | QualifiedName]
+	| ownedRelatedElement += FeatureChain
 ;
 
 /* Redefinition */
@@ -613,7 +629,8 @@ Redefinition returns SysML::Redefinition :
 ;
 
 OwnedRedefinition returns SysML::Redefinition:
-	redefinedFeature = [SysML::Feature | QualifiedName] 
+	  redefinedFeature = [SysML::Feature | QualifiedName]
+	| ownedRelatedElement += FeatureChain 
 ;
 
 /* Feature Conjugation */
@@ -639,7 +656,27 @@ FeatureValue returns SysML::FeatureValue :
 
 /* MULTIPLICITIES */
 
-Multiplicity returns SysML::MultiplicityRange :
+Multiplicity returns SysML::Multiplicity :
+	MultiplicitySubset | MultiplicityRange
+;
+
+MultiplicitySubset returns SysML::Multiplicity :
+	'multiplicity' Identification? Subsets
+;
+
+MultiplicityRange returns SysML::MultiplicityRange :
+	'multiplicity' Identification? MultiplicityBounds ';'
+;
+
+OwnedMultiplicity returns SysML::Membership :
+	ownedRelatedElement += OwnedMultiplicityRange // ownedMemberElement = Multiplicity
+;
+
+OwnedMultiplicityRange returns SysML::MultiplicityRange :
+	MultiplicityBounds
+;
+
+fragment MultiplicityBounds returns SysML::MultiplicityRange :
 	// TODO: Allow general expressions for bounds. (Causes LL parsing issues.)
 	'[' ownedRelationship += MultiplicityExpressionMember
 	      ( '..' ownedRelationship += MultiplicityExpressionMember )? ']'
@@ -706,9 +743,10 @@ fragment BinaryConnectorDeclaration returns SysML::Connector :
 
 fragment NaryConnectorDeclaration returns SysML::Connector :
 	FeatureDeclaration?
-	'(' ownedRelationship += ConnectorEndMember ',' 
-	    ownedRelationship += ConnectorEndMember
-	    ( ',' ownedRelationship += ConnectorEndMember )* ')'
+	( '(' ownedRelationship += ConnectorEndMember ',' 
+	      ownedRelationship += ConnectorEndMember
+	      ( ',' ownedRelationship += ConnectorEndMember )* 
+	  ')' )?
 ;
 
 ConnectorEndMember returns SysML::EndFeatureMembership :
@@ -716,18 +754,8 @@ ConnectorEndMember returns SysML::EndFeatureMembership :
 ;
 
 ConnectorEnd returns SysML::Feature :
-	ownedRelationship += ( OwnedSubsetting | FeaturePathExpressionMember )
-	( ownedRelationship += MultiplicityMember )?
-;
-
-FeaturePathExpressionMember returns SysML::FeatureMembership :
-	ownedRelatedElement += FeaturePathExpression
-;
-
-FeaturePathExpression returns SysML::Expression :
-	FeatureReferenceExpression 
-	( {SysML::PathStepExpression.operand += current}
-	  '.' operand += FeatureReferenceExpression )+
+	ownedRelationship += OwnedSubsetting
+	( ownedRelationship += OwnedMultiplicity )?
 ;
 
 /* Binding Connectors */
@@ -921,20 +949,8 @@ BooleanExpression returns SysML::BooleanExpression :
 /* Invariants */
 
 Invariant returns SysML::Invariant :
-	FeaturePrefix 'inv' 
-	ExpressionDeclaration InvariantPart FunctionBody
-;
-
-fragment InvariantPart returns SysML::Invariant :
-	ownedRelationship += TrueLiteralMember
-;
-
-TrueLiteralMember returns SysML::FeatureMembership :
-	ownedRelatedElement += TrueLiteralExpression // ownedMemberFeature = TrueLiteralExpression
-;
-
-TrueLiteralExpression returns SysML::LiteralBoolean :
-	{SysML::LiteralBoolean}
+	FeaturePrefix 'inv' ( 'true' | isNegated ?= 'false' )?
+	ExpressionDeclaration FunctionBody
 ;
 
 /* INTERACTIONS */
@@ -974,8 +990,8 @@ ItemFeatureMember returns SysML::FeatureMembership :
 
 ItemFeature returns SysML::ItemFeature :
 	  ownedRelationship += OwnedFeatureTyping 
-	  ( ownedRelationship += MultiplicityMember )?
-	| ownedRelationship += MultiplicityMember
+	  ( ownedRelationship += OwnedMultiplicity )?
+	| ownedRelationship += OwnedMultiplicity
 	  ( ownedRelationship += OwnedFeatureTyping )?
 ;
 
@@ -992,7 +1008,18 @@ ItemFlowEndMember returns SysML::EndFeatureMembership :
 ;
 
 ItemFlowEnd returns SysML::ItemFlowEnd :
+	( ownedRelationship += ItemFlowEndSubsetting )?
 	ownedRelationship += ItemFlowFeatureMember
+;
+
+ItemFlowEndSubsetting returns SysML::Subsetting :
+	  subsettedFeature = [SysML::Feature | QualifiedName] '.'
+	| ownedRelatedElement += FeatureChainPrefix
+;
+
+FeatureChainPrefix returns SysML::Feature :
+	( ownedRelationship += OwnedFeatureChaining '.' )+
+	ownedRelationship += OwnedFeatureChaining '.'
 ;
 
 ItemFlowFeatureMember returns SysML::FeatureMembership :
@@ -1000,7 +1027,11 @@ ItemFlowFeatureMember returns SysML::FeatureMembership :
 ;
 
 ItemFlowFeature returns SysML::ItemFlowFeature :
-	ownedRelationship += ( OwnedRedefinition | FeaturePathExpressionMember )
+	ownedRelationship += ItemFlowRedefinition
+;
+
+ItemFlowRedefinition returns SysML::Redefinition :
+	redefinedFeature = [SysML::Feature|QualifiedName]
 ;
 
 /* EXPRESSIONS */

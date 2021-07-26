@@ -79,8 +79,8 @@ package ISQChemistryMolecular {
      * remarks: None.
      */
     attribute def MolarMassUnit :> DerivedUnit {
-        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq::M; :>> exponent = 1; }
-        private attribute amountOfSubstancePF: QuantityPowerFactor[1] { :>> quantity = isq::N; :>> exponent = -1; }
+        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq.M; :>> exponent = 1; }
+        private attribute amountOfSubstancePF: QuantityPowerFactor[1] { :>> quantity = isq.N; :>> exponent = -1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (massPF, amountOfSubstancePF); }
     }
 
@@ -102,8 +102,8 @@ package ISQChemistryMolecular {
      * remarks: None.
      */
     attribute def MolarVolumeUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = 3; }
-        private attribute amountOfSubstancePF: QuantityPowerFactor[1] { :>> quantity = isq::N; :>> exponent = -1; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = 3; }
+        private attribute amountOfSubstancePF: QuantityPowerFactor[1] { :>> quantity = isq.N; :>> exponent = -1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, amountOfSubstancePF); }
     }
 
@@ -125,10 +125,10 @@ package ISQChemistryMolecular {
      * remarks: Molar quantities are normally only used with reference to pure substances.
      */
     attribute def MolarInternalEnergyUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = 2; }
-        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq::M; :>> exponent = 1; }
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = -2; }
-        private attribute amountOfSubstancePF: QuantityPowerFactor[1] { :>> quantity = isq::N; :>> exponent = -1; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = 2; }
+        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq.M; :>> exponent = 1; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -2; }
+        private attribute amountOfSubstancePF: QuantityPowerFactor[1] { :>> quantity = isq.N; :>> exponent = -1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF, durationPF, amountOfSubstancePF); }
     }
 
@@ -150,10 +150,10 @@ package ISQChemistryMolecular {
      * remarks: Molar quantities are normally only used with reference to pure substances.
      */
     attribute def MolarEnthalpyUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = 2; }
-        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq::M; :>> exponent = 1; }
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = -2; }
-        private attribute amountOfSubstancePF: QuantityPowerFactor[1] { :>> quantity = isq::N; :>> exponent = -1; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = 2; }
+        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq.M; :>> exponent = 1; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -2; }
+        private attribute amountOfSubstancePF: QuantityPowerFactor[1] { :>> quantity = isq.N; :>> exponent = -1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF, durationPF, amountOfSubstancePF); }
     }
 
@@ -175,10 +175,10 @@ package ISQChemistryMolecular {
      * remarks: Molar quantities are normally only used with reference to pure substances.
      */
     attribute def MolarHelmholtzEnergyUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = 2; }
-        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq::M; :>> exponent = 1; }
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = -2; }
-        private attribute amountOfSubstancePF: QuantityPowerFactor[1] { :>> quantity = isq::N; :>> exponent = -1; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = 2; }
+        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq.M; :>> exponent = 1; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -2; }
+        private attribute amountOfSubstancePF: QuantityPowerFactor[1] { :>> quantity = isq.N; :>> exponent = -1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF, durationPF, amountOfSubstancePF); }
     }
 
@@ -200,10 +200,10 @@ package ISQChemistryMolecular {
      * remarks: Molar quantities are normally only used with reference to pure substances.
      */
     attribute def MolarGibbsEnergyUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = 2; }
-        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq::M; :>> exponent = 1; }
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = -2; }
-        private attribute amountOfSubstancePF: QuantityPowerFactor[1] { :>> quantity = isq::N; :>> exponent = -1; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = 2; }
+        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq.M; :>> exponent = 1; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -2; }
+        private attribute amountOfSubstancePF: QuantityPowerFactor[1] { :>> quantity = isq.N; :>> exponent = -1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF, durationPF, amountOfSubstancePF); }
     }
 
@@ -225,11 +225,11 @@ package ISQChemistryMolecular {
      * remarks: Conditions (constant pressure or volume etc.) must be specified.
      */
     attribute def MolarHeatCapacityUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = 2; }
-        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq::M; :>> exponent = 1; }
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = -2; }
-        private attribute thermodynamicTemperaturePF: QuantityPowerFactor[1] { :>> quantity = isq::'Θ'; :>> exponent = -1; }
-        private attribute amountOfSubstancePF: QuantityPowerFactor[1] { :>> quantity = isq::N; :>> exponent = -1; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = 2; }
+        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq.M; :>> exponent = 1; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -2; }
+        private attribute thermodynamicTemperaturePF: QuantityPowerFactor[1] { :>> quantity = isq.'Θ'; :>> exponent = -1; }
+        private attribute amountOfSubstancePF: QuantityPowerFactor[1] { :>> quantity = isq.N; :>> exponent = -1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF, durationPF, thermodynamicTemperaturePF, amountOfSubstancePF); }
     }
 
@@ -251,11 +251,11 @@ package ISQChemistryMolecular {
      * remarks: Conditions (constant pressure or volume etc.) must be specified.
      */
     attribute def MolarEntropyUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = 2; }
-        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq::M; :>> exponent = 1; }
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = -2; }
-        private attribute thermodynamicTemperaturePF: QuantityPowerFactor[1] { :>> quantity = isq::'Θ'; :>> exponent = -1; }
-        private attribute amountOfSubstancePF: QuantityPowerFactor[1] { :>> quantity = isq::N; :>> exponent = -1; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = 2; }
+        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq.M; :>> exponent = 1; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -2; }
+        private attribute thermodynamicTemperaturePF: QuantityPowerFactor[1] { :>> quantity = isq.'Θ'; :>> exponent = -1; }
+        private attribute amountOfSubstancePF: QuantityPowerFactor[1] { :>> quantity = isq.N; :>> exponent = -1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF, durationPF, thermodynamicTemperaturePF, amountOfSubstancePF); }
     }
 
@@ -277,7 +277,7 @@ package ISQChemistryMolecular {
      * remarks: The term "number density" is also used.
      */
     attribute def ParticleConcentrationUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = -3; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = -3; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = lengthPF; }
     }
 
@@ -312,8 +312,8 @@ package ISQChemistryMolecular {
      * remarks: Decided by the 16th CGPM (1979), both "l" and "L" are allowed for the symbols for the litre.
      */
     attribute def MassConcentrationUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = -3; }
-        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq::M; :>> exponent = 1; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = -3; }
+        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq.M; :>> exponent = 1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF); }
     }
 
@@ -349,8 +349,8 @@ package ISQChemistryMolecular {
      * remarks: In chemistry, the name "amount-of-substance concentration" is generally abbreviated to the single word "concentration", it being assumed that the adjective "amount-of-substance" is intended. For this reason, however, the word "mass" should never be omitted from the name "mass concentration" in item 9-10. Decided by the 16th CGPM (1979), both "l" and "L" are allowed for the symbols for the litre.
      */
     attribute def AmountOfSubstanceConcentrationUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = -3; }
-        private attribute amountOfSubstancePF: QuantityPowerFactor[1] { :>> quantity = isq::N; :>> exponent = 1; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = -3; }
+        private attribute amountOfSubstancePF: QuantityPowerFactor[1] { :>> quantity = isq.N; :>> exponent = 1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, amountOfSubstancePF); }
     }
 
@@ -418,8 +418,8 @@ package ISQChemistryMolecular {
      * remarks: The alternative symbol `m_B` should be avoided in situations where it might be mistaken for the mass of substance B. However, the symbol `m_B` is much more commonly used than the symbol `b_B` for molality, despite the possible confusion with mass.
      */
     attribute def MolalityUnit :> DerivedUnit {
-        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq::M; :>> exponent = -1; }
-        private attribute amountOfSubstancePF: QuantityPowerFactor[1] { :>> quantity = isq::N; :>> exponent = 1; }
+        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq.M; :>> exponent = -1; }
+        private attribute amountOfSubstancePF: QuantityPowerFactor[1] { :>> quantity = isq.N; :>> exponent = 1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (massPF, amountOfSubstancePF); }
     }
 
@@ -456,10 +456,10 @@ package ISQChemistryMolecular {
      * remarks: For a pure substance, where `G_m` is the molar Gibbs energy. In a mixture, `μ_B` is the partial molar Gibbs energy. In condensed matter physics, the chemical potential of electrons is energy.
      */
     attribute def ChemicalPotentialUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = 2; }
-        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq::M; :>> exponent = 1; }
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = -2; }
-        private attribute amountOfSubstancePF: QuantityPowerFactor[1] { :>> quantity = isq::N; :>> exponent = -1; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = 2; }
+        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq.M; :>> exponent = 1; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -2; }
+        private attribute amountOfSubstancePF: QuantityPowerFactor[1] { :>> quantity = isq.N; :>> exponent = -1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF, durationPF, amountOfSubstancePF); }
     }
 
@@ -495,9 +495,9 @@ package ISQChemistryMolecular {
      * remarks: None.
      */
     attribute def PartialPressureUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = -1; }
-        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq::M; :>> exponent = 1; }
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = -2; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = -1; }
+        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq.M; :>> exponent = 1; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -2; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF, durationPF); }
     }
 
@@ -519,9 +519,9 @@ package ISQChemistryMolecular {
      * remarks: `tilde(p)_X = λ_X * lim_(p->0) (p_X/λ_X)` where `p` is total pressure (ISO 80000-4). The IUPAC preferred symbol for fugacity is `f`.
      */
     attribute def FugacityUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = -1; }
-        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq::M; :>> exponent = 1; }
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = -2; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = -1; }
+        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq.M; :>> exponent = 1; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -2; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF, durationPF); }
     }
 
@@ -543,10 +543,10 @@ package ISQChemistryMolecular {
      * remarks: `μ_B^! = RT ln(λ^!)` where `μ_B^!` is a function of temperature `T` at the standard pressure `p = p^!` The standard chemical potential depends on the choice of standard state, which must be specified. In a liquid or solid solution, the standard state is referenced to the ideal dilute behaviour of the solute (substance B).
      */
     attribute def StandardChemicalPotentialUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = 2; }
-        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq::M; :>> exponent = 1; }
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = -2; }
-        private attribute amountOfSubstancePF: QuantityPowerFactor[1] { :>> quantity = isq::N; :>> exponent = -1; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = 2; }
+        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq.M; :>> exponent = 1; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -2; }
+        private attribute amountOfSubstancePF: QuantityPowerFactor[1] { :>> quantity = isq.N; :>> exponent = -1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF, durationPF, amountOfSubstancePF); }
     }
 
@@ -686,9 +686,9 @@ package ISQChemistryMolecular {
      * remarks: None.
      */
     attribute def OsmoticPressureUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = -1; }
-        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq::M; :>> exponent = 1; }
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = -2; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = -1; }
+        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq.M; :>> exponent = 1; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -2; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF, durationPF); }
     }
 
@@ -724,10 +724,10 @@ package ISQChemistryMolecular {
      * remarks: The affinity of a reaction is a measure of the "driving force" of the reaction. When it is positive, the reaction goes spontaneously from reactants to products, and when it is negative, the reaction goes in the opposite direction. Another way to write the definition is: `A = ((del G)/(del ksi))_(p,T)` where `G` is Gibbs energy (ISO 80000-5) and `ξ` is the extent of the reaction (item 9-31). Note that `v_B` is negative for reactants and positive for products.
      */
     attribute def AffinityOfAChemicalReactionUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = 2; }
-        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq::M; :>> exponent = 1; }
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = -2; }
-        private attribute amountOfSubstancePF: QuantityPowerFactor[1] { :>> quantity = isq::N; :>> exponent = -1; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = 2; }
+        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq.M; :>> exponent = 1; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -2; }
+        private attribute amountOfSubstancePF: QuantityPowerFactor[1] { :>> quantity = isq.N; :>> exponent = -1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF, durationPF, amountOfSubstancePF); }
     }
 
@@ -778,9 +778,9 @@ package ISQChemistryMolecular {
      * remarks: None.
      */
     attribute def EquilibriumConstantOnPressureBasisUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = -1; }
-        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq::M; :>> exponent = 1; }
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = -2; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = -1; }
+        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq.M; :>> exponent = 1; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -2; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF, durationPF); }
     }
 
@@ -802,8 +802,8 @@ package ISQChemistryMolecular {
      * remarks: None.
      */
     attribute def EquilibriumConstantOnConcentrationBasisUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = -3; }
-        private attribute amountOfSubstancePF: QuantityPowerFactor[1] { :>> quantity = isq::N; :>> exponent = 1; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = -3; }
+        private attribute amountOfSubstancePF: QuantityPowerFactor[1] { :>> quantity = isq.N; :>> exponent = 1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, amountOfSubstancePF); }
     }
 
@@ -913,11 +913,11 @@ package ISQChemistryMolecular {
      * remarks: For an ideal gas, `pV_m` = `RT`
      */
     attribute def MolarGasConstantUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = 2; }
-        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq::M; :>> exponent = 1; }
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = -2; }
-        private attribute thermodynamicTemperaturePF: QuantityPowerFactor[1] { :>> quantity = isq::'Θ'; :>> exponent = -1; }
-        private attribute amountOfSubstancePF: QuantityPowerFactor[1] { :>> quantity = isq::N; :>> exponent = -1; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = 2; }
+        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq.M; :>> exponent = 1; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -2; }
+        private attribute thermodynamicTemperaturePF: QuantityPowerFactor[1] { :>> quantity = isq.'Θ'; :>> exponent = -1; }
+        private attribute amountOfSubstancePF: QuantityPowerFactor[1] { :>> quantity = isq.N; :>> exponent = -1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF, durationPF, thermodynamicTemperaturePF, amountOfSubstancePF); }
     }
 
@@ -968,8 +968,8 @@ package ISQChemistryMolecular {
      * remarks: None.
      */
     attribute def DiffusionCoefficientUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = 2; }
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = -1; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = 2; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, durationPF); }
     }
 
@@ -1019,8 +1019,8 @@ package ISQChemistryMolecular {
      * remarks: None.
      */
     attribute def ThermalDiffusionCoefficientUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = 2; }
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = -1; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = 2; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, durationPF); }
     }
 
@@ -1042,8 +1042,8 @@ package ISQChemistryMolecular {
      * remarks: None.
      */
     attribute def IonicStrengthUnit :> DerivedUnit {
-        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq::M; :>> exponent = -1; }
-        private attribute amountOfSubstancePF: QuantityPowerFactor[1] { :>> quantity = isq::N; :>> exponent = 1; }
+        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq.M; :>> exponent = -1; }
+        private attribute amountOfSubstancePF: QuantityPowerFactor[1] { :>> quantity = isq.N; :>> exponent = 1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (massPF, amountOfSubstancePF); }
     }
 
@@ -1081,10 +1081,10 @@ package ISQChemistryMolecular {
      * remarks: For anisotropic media, `κ` is a tensor. In IEC 80000-6 the symbols `σ`, `γ` are used.
      */
     attribute def ElectrolyticConductivityUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = -3; }
-        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq::M; :>> exponent = -1; }
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = 3; }
-        private attribute electricCurrentPF: QuantityPowerFactor[1] { :>> quantity = isq::I; :>> exponent = 2; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = -3; }
+        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq.M; :>> exponent = -1; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = 3; }
+        private attribute electricCurrentPF: QuantityPowerFactor[1] { :>> quantity = isq.I; :>> exponent = 2; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF, durationPF, electricCurrentPF); }
     }
 
@@ -1106,10 +1106,10 @@ package ISQChemistryMolecular {
      * remarks: None.
      */
     attribute def MolarConductivityUnit :> DerivedUnit {
-        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq::M; :>> exponent = -1; }
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = 3; }
-        private attribute electricCurrentPF: QuantityPowerFactor[1] { :>> quantity = isq::I; :>> exponent = 2; }
-        private attribute amountOfSubstancePF: QuantityPowerFactor[1] { :>> quantity = isq::N; :>> exponent = -1; }
+        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq.M; :>> exponent = -1; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = 3; }
+        private attribute electricCurrentPF: QuantityPowerFactor[1] { :>> quantity = isq.I; :>> exponent = 2; }
+        private attribute amountOfSubstancePF: QuantityPowerFactor[1] { :>> quantity = isq.N; :>> exponent = -1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (massPF, durationPF, electricCurrentPF, amountOfSubstancePF); }
     }
 
@@ -1160,8 +1160,8 @@ package ISQChemistryMolecular {
      * remarks: None.
      */
     attribute def MolarOpticalRotatoryPowerUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = 2; }
-        private attribute amountOfSubstancePF: QuantityPowerFactor[1] { :>> quantity = isq::N; :>> exponent = -1; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = 2; }
+        private attribute amountOfSubstancePF: QuantityPowerFactor[1] { :>> quantity = isq.N; :>> exponent = -1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, amountOfSubstancePF); }
     }
 
@@ -1183,8 +1183,8 @@ package ISQChemistryMolecular {
      * remarks: None.
      */
     attribute def SpecificOpticalRotatoryPowerUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = 2; }
-        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq::M; :>> exponent = -1; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = 2; }
+        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq.M; :>> exponent = -1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF); }
     }
 

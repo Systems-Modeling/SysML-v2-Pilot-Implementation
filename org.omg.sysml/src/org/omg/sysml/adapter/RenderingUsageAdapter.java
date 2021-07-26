@@ -24,6 +24,7 @@ package org.omg.sysml.adapter;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.RenderingDefinition;
 import org.omg.sysml.lang.sysml.RenderingUsage;
@@ -56,10 +57,10 @@ public class RenderingUsageAdapter extends PartUsageAdapter {
 	}
 	
 	@Override
-	protected List<? extends Feature> getRelevantFeatures(Type type) {
+	protected List<? extends Feature> getRelevantFeatures(Type type, Element skip) {
 		RenderingUsage target = getTarget();
 		return !FeatureUtil.isParameter(target) && !target.isEnd() && isRender(target)? getRenderFeatures(type):
-			   super.getRelevantFeatures(type);
+			   super.getRelevantFeatures(type, skip);
 	}
 	
 	protected List<? extends Feature> getRenderFeatures(Type type) {

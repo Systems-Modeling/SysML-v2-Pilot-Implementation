@@ -271,13 +271,12 @@ public class FeatureAdapter extends TypeAdapter {
 	 */
 	protected void addRedefinitions(Element skip) {
 		Feature target = getTarget();
-		Namespace owner = target.getOwningNamespace();
-		if (owner instanceof Type) {
-			Type type = target.getOwningType();
-			int i = getRelevantFeatures(type).indexOf(target);
+		Type type = target.getOwningType();
+		if (type != null) {
+			int i = getRelevantFeatures(type, skip).indexOf(target);
 			if (i >= 0) {
 				for (Type general: getGeneralTypes(type, skip)) {
-					List<? extends Feature> features = getRelevantFeatures(general);
+					List<? extends Feature> features = getRelevantFeatures(general, skip);
 					if (i < features.size()) {
 						Feature redefinedFeature = features.get(i);
 						if (redefinedFeature != null && redefinedFeature != target) {
@@ -296,7 +295,7 @@ public class FeatureAdapter extends TypeAdapter {
 	 */
 	protected List<Type> getGeneralTypes(Type type, Element skip) {
 		List<Type> generalTypes = new ArrayList<>();
-		for (Type generalType: TypeUtil.getSupertypesOf(type, skip)) {
+		for (Type generalType: TypeUtil.getGeneralTypesOf(type, skip)) {
 			if (!generalTypes.contains(generalType)) {
 				generalTypes.add(generalType);
 			}
@@ -309,10 +308,10 @@ public class FeatureAdapter extends TypeAdapter {
 	 * If this is an end Feature, return the end Features of the Type,
 	 * otherwise return the relevant features of the type.
 	 */
-	protected List<? extends Feature> getRelevantFeatures(Type type) {
+	protected List<? extends Feature> getRelevantFeatures(Type type, Element skip) {
 		Feature target = getTarget();
 		return target.isEnd()? TypeUtil.getAllEndFeaturesOf(type):
-			   FeatureUtil.isParameter(target)? getParameterRelevantFeatures(type):
+			   FeatureUtil.isParameter(target)? getParameterRelevantFeatures(type, skip):
 			   type != null? TypeUtil.getRelevantFeaturesOf(type):
 			   Collections.emptyList();
 	}
@@ -322,7 +321,7 @@ public class FeatureAdapter extends TypeAdapter {
 	 * Parameter always redefining the result Parameter of a general Function or
 	 * Expression.
 	 */
-	public List<? extends Feature> getParameterRelevantFeatures(Type type) {
+	public List<? extends Feature> getParameterRelevantFeatures(Type type, Element skip) {
 		if (type != null) {
 			if (FeatureUtil.isResultParameter(getTarget())) {
 				Feature resultParameter = TypeUtil.getResultParameterOf(type);
@@ -330,20 +329,20 @@ public class FeatureAdapter extends TypeAdapter {
 					return Collections.singletonList(resultParameter);
 				}
 			} else {
-				return getRelevantParameters(type);
+				return getRelevantParameters(type, skip);
 			}
 		}
 		return Collections.emptyList();
 	}
 	
-	protected List<Feature> getRelevantParameters(Type type) {
+	protected List<Feature> getRelevantParameters(Type type, Element skip) {
 		Type owningType = getTarget().getOwningType();
 		return type == owningType? filterIgnoredParameters(TypeUtil.getOwnedParametersOf(type)): 
 			   owningType instanceof InvocationExpression && 
 			        type == ExpressionUtil.getExpressionTypeOf((InvocationExpression)owningType) &&
 			   		!(type instanceof Function || type instanceof Expression)? 
 			   				ExpressionUtil.getTypeFeaturesOf((InvocationExpression)owningType):
-			   filterIgnoredParameters(TypeUtil.getAllParametersOf(type));
+			   filterIgnoredParameters(TypeUtil.getAllParametersOf(type, skip));
 	}
 	
 	protected List<Feature> filterIgnoredParameters(List<Feature> parameters) {
@@ -357,12 +356,6 @@ public class FeatureAdapter extends TypeAdapter {
 	}
 	
 	// Transformation
-	
-	protected BindingConnector valueConnector;
-	
-	public BindingConnector getValueConnector() {
-		return valueConnector;
-	}
 	
 	protected void addFeaturingTypeIfNecessary(Type featuringType) {
 		Feature feature = getTarget();
@@ -410,7 +403,9 @@ public class FeatureAdapter extends TypeAdapter {
 		FeatureValue valuation = FeatureUtil.getValuationFor(feature);
 		if (valuation != null && !valuation.isDefault()) {
 			Expression value = valuation.getValue();
-			valueConnector = value == null? null: addValueBinding(value);
+			if (value != null) {
+				addValueBinding(value);
+			}
 		}
 	}
 	

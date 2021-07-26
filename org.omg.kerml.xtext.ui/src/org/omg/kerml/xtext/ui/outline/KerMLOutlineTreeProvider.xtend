@@ -41,6 +41,7 @@ import org.omg.sysml.lang.sysml.LiteralRational
 import org.omg.sysml.lang.sysml.LiteralInfinity
 import org.omg.sysml.lang.sysml.Specialization
 import org.omg.sysml.lang.sysml.LiteralInteger
+import org.omg.sysml.lang.sysml.FeatureChaining
 
 /**
  * Customization of the default outline structure.
@@ -52,9 +53,9 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	def String metaclassText(Element element) {
 		element.eClass.name
 	}
-
-	def String _text(Element element) {
-		var text = element.metaclassText;
+	
+	def String idText(Element element) {
+		var text = ""
 		if (element.humanId !== null) {
 			text += ' id ' + element.humanId
 		}
@@ -62,7 +63,11 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		if (name !== null) {
 			text += ' ' + name;
 		}
-		text 
+		text
+	}
+
+	def String _text(Element element) {
+		element.metaclassText + element.idText
 	}
 	
 	def String _text(Namespace namespace) {
@@ -77,7 +82,7 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	}
 	
 	def String prefixText(Membership membership) {
-		var text = membership.metaclassText;
+		var text = membership.metaclassText
 		if (membership.ownedMemberElement !== null) {
 			text += ' owns'
 		}
@@ -101,7 +106,7 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	}
 	
 	def String _text(Import import_) {
-		var text = import_.metaclassText;
+		var text = import_.metaclassText
 		if (import_.visibility !== null) {
 			text += ' ' + import_.visibility._text
 		}
@@ -126,23 +131,23 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		text
 	}
 	
-	def String _text(Type type) {
-		var text = type.eClass.name;
+	def String typePrefixText(Type type) {
+		var text = type.metaclassText
 		if (type.isAbstract) {
 			text += ' abstract'
 		}
 		if (type.humanId !== null) {
 			text += ' id ' + type.humanId
 		}
-		val name = type.getEffectiveName
-		if (name !== null) {
-			text += ' ' + name;
-		}
 		text
 	}
 	
-	def String _text(Feature feature) {
-		var text = feature.eClass.name;
+	def String _text(Type type) {
+		type.typePrefixText + type.idText
+	}
+	
+	def String featurePrefixText(Feature feature) {
+		var text = feature.metaclassText
 		if (feature.direction !== null) {
 			text += ' ' + feature.direction
 		}
@@ -158,14 +163,11 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		if (feature.isEnd) {
 			text += ' end'
 		}
-		if (feature.humanId !== null) {
-			text += ' id ' + feature.humanId
-		}
-		val name = feature.getEffectiveName
-		if (name !== null) {
-			text += ' ' + name;
-		}
 		text
+	}
+	
+	def String _text(Feature feature) {
+		feature.featurePrefixText + feature.idText
 	}
 	
 	def String _text(Expression expression) {
@@ -332,22 +334,32 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		}
 	}
 	
+	def boolean _isLeaf(FeatureChaining chaining) {
+		chaining.chainingFeature === null
+	}
+	
+	def void _createChildren(IOutlineNode parentNode, FeatureChaining chaining) {
+		if (chaining.chainingFeature !== null) {
+			createNode(parentNode, chaining.chainingFeature, 
+				chaining.chainingFeature._image, chaining.chainingFeature._text, 
+				true
+			)
+			
+		}
+	}
+	
 	def boolean _isLeaf(Specialization generalization) {
 		generalization.getGeneral === null
 	}
 	
-	def void _createChildren(IOutlineNode parentNode, Specialization generalization) {
-		if (generalization.getSpecific !== null && generalization.getSpecific !== generalization.eContainer) {
-			createNode(parentNode, generalization.getSpecific, 
-				generalization.getSpecific._image, generalization.getSpecific._text, 
-				true
-			)			
+	def void _createChildren(IOutlineNode parentNode, Specialization specialization) {
+		val specific = specialization.specific
+		if (specific !== null && specific !== specialization.eContainer) {
+			createNode(parentNode, specific, specific._image, specific._text, true)			
 		}
-		if (generalization.getGeneral !== null) {
-			createNode(parentNode, generalization.getGeneral, 
-				generalization.getGeneral._image, generalization.getGeneral._text, 
-				true
-			)
+		val general = specialization.general
+		if (general !== null) {
+			createNode(parentNode, general, general._image, general._text, true)
 		}
 	}
 	
@@ -375,16 +387,18 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	}
 
 	def void _createChildren(IOutlineNode parentNode, Subsetting subsetting) {
-		if (subsetting.subsettingFeature !== null && subsetting.subsettingFeature !== subsetting.eContainer) {
-			createNode(parentNode, subsetting.subsettingFeature, 
-				subsetting.subsettingFeature._image, subsetting.subsettingFeature._text, 
+		val subsettingFeature = subsetting.subsettingFeature
+		if (subsettingFeature !== null && subsettingFeature !== subsetting.eContainer) {
+			createNode(parentNode, subsettingFeature, 
+				subsettingFeature._image, subsettingFeature._text, 
 				true
 			)			
 		}
-		if (subsetting.subsettedFeature !== null) {
-			createNode(parentNode, subsetting.subsettedFeature, 
-				_image(subsetting.subsettedFeature), subsetting.subsettedFeature._text, 
-				true
+		val subsettedFeature = subsetting.subsettedFeature
+		if (subsettedFeature !== null) {
+			createNode(parentNode, subsettedFeature, 
+				subsettedFeature._image, subsettedFeature._text, 
+				subsettedFeature.ownedFeatureChaining.empty
 			)
 		}
 	}

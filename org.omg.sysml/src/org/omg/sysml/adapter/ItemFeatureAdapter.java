@@ -24,6 +24,7 @@ package org.omg.sysml.adapter;
 import java.util.Collections;
 import java.util.List;
 
+import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.ItemFeature;
 import org.omg.sysml.lang.sysml.Type;
@@ -43,7 +44,7 @@ public class ItemFeatureAdapter extends FeatureAdapter {
 	}
 
 	@Override
-	protected List<? extends Feature> getRelevantFeatures(Type type) {
+	protected List<? extends Feature> getRelevantFeatures(Type type, Element skip) {
 		return type == getTarget().getOwner()? TypeUtil.getRelevantFeaturesOf(type):
 				Collections.singletonList((Feature)getLibraryType(ITEM_FLOW_ITEM_FEATURE));
 	}

@@ -7,8 +7,8 @@ package 'Vehicle Analysis Demo' {
 	    import USCustomaryUnits::*;
 	    
 	    attribute def DistancePerVolumeUnit :> DerivedUnit {
-	    	private attribute distancePF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = 1; }
-	        private attribute volumePF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = -3; }
+	    	private attribute distancePF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = 1; }
+	        private attribute volumePF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = -3; }
 	        attribute :>> quantityDimension { :>> quantityPowerFactors = (distancePF, volumePF); }
 	    }
 
@@ -67,7 +67,7 @@ package 'Vehicle Analysis Demo' {
 	            }
 	        }
 	
-	        bind fuelInPort::fuel = fuelTank::fuelInPort::fuel;
+	        bind fuelInPort.fuel = fuelTank.fuelInPort.fuel;
 	
 	        part wheel : Wheel[4] {
 	            :>> diameter = wheelDiameter;
@@ -183,11 +183,11 @@ package 'Vehicle Analysis Demo' {
 				 */
 				
 				assume constraint {
-					vehicle::wheelDiameter == 33 ['in'] &
-					vehicle::driveTrainEfficiency == 0.4
+					vehicle.wheelDiameter == 33 ['in'] &
+					vehicle.driveTrainEfficiency == 0.4
 				}
 				
-				require fuelEconomyRequirement {
+				require fuelEconomyRequirement { 
 					:>> actualFuelEconomy = calculatedFuelEconomy;
 				}
 			}
@@ -224,8 +224,8 @@ package 'Vehicle Analysis Demo' {
 			}
 
 		    action fuelConsumptionAnalysis(
-		        in power : PowerValue[*] = dynamicsAnalysis::power,
-		        in acceleration : AccelerationValue[*] = dynamicsAnalysis::acceleration,
+		        in power : PowerValue[*] = dynamicsAnalysis.power,
+		        in acceleration : AccelerationValue[*] = dynamicsAnalysis.acceleration,
 		        out fuelEconomy : DistancePerVolumeValue = calculatedFuelEconomy ) {
 		        /*
 		         * Solve the engine equations to determine how much fuel is
@@ -250,9 +250,9 @@ package 'Vehicle Analysis Demo' {
 	             * 25 miles per gallon for the nominal city driving scenarios.
 	             */
 	
-	            :>> actualFuelEconomy = vehicle::fuelEconomy_city;
+	            :>> actualFuelEconomy = vehicle.fuelEconomy_city;
 	
-	            assume constraint { vehicle::cargoMass == 1000 [lb] }
+	            assume constraint { vehicle.cargoMass == 1000 [lb] }
 	        }
 	
 	        requirement vehicleFuelEconomyRequirement_highway :> highwayFuelEconomyRequirement {
@@ -260,9 +260,9 @@ package 'Vehicle Analysis Demo' {
 	             * 30 miles per gallon for the nominal highway driving scenarios.
 	             */
 	
-	            :>> actualFuelEconomy = vehicle::fuelEconomy_highway;
+	            :>> actualFuelEconomy = vehicle.fuelEconomy_highway;
 	
-	            assume constraint { vehicle::cargoMass == 1000 [lb] }
+	            assume constraint { vehicle.cargoMass == 1000 [lb] }
 	        }
 	
 	    }
@@ -283,8 +283,8 @@ package 'Vehicle Analysis Demo' {
 	    }
 	
 	    part vehicle_c1_analysized :> vehicle_c1 {
-	        attribute :>> fuelEconomy_city = cityFuelEconomyAnalysis::calculatedFuelEconomy;
-	        attribute :>> fuelEconomy_highway = highwayFuelEconomyAnalysis::calculatedFuelEconomy;
+	        attribute :>> fuelEconomy_city = cityFuelEconomyAnalysis.calculatedFuelEconomy;
+	        attribute :>> fuelEconomy_highway = highwayFuelEconomyAnalysis.calculatedFuelEconomy;
 	    }
 	
 	    satisfy vehicleFuelEconomyRequirementsGroup by vehicle_c1_analysized;

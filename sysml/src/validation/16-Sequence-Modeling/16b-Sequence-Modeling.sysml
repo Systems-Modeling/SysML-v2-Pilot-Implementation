@@ -20,23 +20,23 @@ package '16b-Sequence-Modeling' {
 
 	occurrence def PubSubSequence {
 		part producer[1] {
-			event publish_message::source;
+			event publish_message.source;
 		}
 		
 		message publish_message of Publish[1];
 		
 		part server[1] {
-			event subscribe_message::target;
-			then event publish_message::target;
-			then event deliver_message::source;
+			event subscribe_message.target;
+			then event publish_message.target;
+			then event deliver_message.source;
 		}
 		
 		message subscribe_message of Subscribe[1];
 		message deliver_message of Deliver[1];
 		
 		part consumer[1] {
-			event subscribe_message::source;
-			then event subscribe_message::target;
+			event subscribe_message.source;
+			then event subscribe_message.target;
 		}
 	}
 }

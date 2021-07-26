@@ -12,6 +12,8 @@ import org.eclipse.xtext.ui.editor.outline.IOutlineNode
 import org.omg.sysml.lang.sysml.SysMLPackage
 import org.omg.sysml.lang.sysml.RequirementUsage
 import org.omg.sysml.util.TypeUtil
+import org.omg.sysml.lang.sysml.StateUsage
+import org.omg.sysml.lang.sysml.StateDefinition
 
 /**
  * Customization of the default outline structure.
@@ -28,22 +30,28 @@ class SysMLOutlineTreeProvider extends KerMLOutlineTreeProvider {
 		membership.prefixText + " " + membership.kind + " " + membership.nameText
 	}
 	
-	override String _text(Type type) {
-		var text = type.eClass.name;
-		if (type.isAbstract) {
-			text += ' abstract'
-		}
+	override String typePrefixText(Type type) {
+		var text = super.typePrefixText(type)
 		if (TypeUtil.isIndividual(type)) {
 			text += ' individual'
 		}
-		if (type.humanId !== null) {
-			text += ' id ' + type.humanId
-		}
-		val name = type.getEffectiveName
-		if (name !== null) {
-			text += ' ' + name;
-		}
 		text
+	}
+	
+	def String _text(StateUsage state) {
+		var text = state.typePrefixText
+		if (state.isParallel) {
+			text += ' parallel'
+		}
+		text + state.idText
+	}
+	
+	def String _text(StateDefinition state) {
+		var text = state.typePrefixText
+		if (state.isParallel) {
+			text += ' parallel'
+		}
+		text + state.idText
 	}
 	
 	def boolean _isLeaf(RequirementDefinition requirementDef) {

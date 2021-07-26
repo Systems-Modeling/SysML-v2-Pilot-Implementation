@@ -468,7 +468,8 @@ public class TypeImpl extends NamespaceImpl implements Type {
 	}
 	
 	protected Multiplicity getMultiplicity(Set<Type> visited) {
-		Multiplicity multiplicity = (Multiplicity)getOwnedElement().stream().
+		Multiplicity multiplicity = (Multiplicity)getOwnedMembership().stream().
+				map(Membership::getMemberElement).
 				filter(Multiplicity.class::isInstance).
 				findFirst().orElse(null);
 		if (multiplicity == null) {
@@ -569,6 +570,12 @@ public class TypeImpl extends NamespaceImpl implements Type {
 
 	public EList<Membership> getInheritedMembership(Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean includeProtected) {
 		EList<Membership> inheritedMemberships = new BasicInternalEList<Membership>(Membership.class);
+		addInheritedMemberships(inheritedMemberships, excludedNamespaces, excludedTypes, includeProtected);
+		removeRedefinedFeatures(inheritedMemberships);
+		return inheritedMemberships;
+	}
+	
+	protected void addInheritedMemberships(EList<Membership> inheritedMemberships, Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean includeProtected) {
 		excludedTypes.add(this);
 		Conjugation conjugator = this.getOwnedConjugator();
 		if (conjugator != null) {
@@ -582,8 +589,6 @@ public class TypeImpl extends NamespaceImpl implements Type {
 				inheritedMemberships.addAll(((TypeImpl)general).getNonPrivateMembership(excludedNamespaces, excludedTypes, includeProtected));
 			}
 		}
-		removeRedefinedFeatures(inheritedMemberships);
-		return inheritedMemberships;
 	}
 	
 	protected void removeRedefinedFeatures(Collection<Membership> memberships) {

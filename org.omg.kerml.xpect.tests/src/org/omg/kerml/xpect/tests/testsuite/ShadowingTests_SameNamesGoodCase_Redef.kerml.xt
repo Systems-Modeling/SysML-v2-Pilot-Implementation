@@ -20,7 +20,7 @@ package test{
 	feature A{
 		feature a1{}
 	}
-	feature B redefines A{
+	feature B subsets A{
 		feature A{
 			feature a2{}
 		}

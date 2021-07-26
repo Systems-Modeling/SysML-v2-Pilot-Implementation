@@ -21,10 +21,15 @@
 
 package org.omg.sysml.adapter;
 
+import org.eclipse.emf.common.util.EList;
 import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.ElementFilterMembership;
+import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureReferenceExpression;
+import org.omg.sysml.lang.sysml.PathStepExpression;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.util.ExpressionUtil;
 import org.omg.sysml.util.TypeUtil;
 
@@ -41,9 +46,27 @@ public class FeatureReferenceExpressionAdapter extends ExpressionAdapter {
 	
 	// Transformation
 	
+	protected boolean isInFilterExpression() {
+		Expression root = ExpressionUtil.getRootExpressionFor(getTarget());
+		return root.getOwningMembership() instanceof ElementFilterMembership;
+	}
+	
+	protected boolean isPathStepOperand() {
+		Type owningType = getTarget().getOwningType();
+		if (owningType instanceof PathStepExpression) {
+			EList<Expression> operands = ((PathStepExpression)owningType).getOperand();
+			if (operands.size() > 1 && operands.get(1) == target) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	protected void addReferenceConnector() {
-		FeatureReferenceExpression expression = getTarget();
-		addBindingConnector(expression.getReferent(), expression.getResult());
+		if (!(isInFilterExpression() || isPathStepOperand())) {
+			FeatureReferenceExpression target = getTarget();
+			addBindingConnector(target.getReferent(), target.getResult());
+		}
 	}
 
 	protected void addResultSubsetting() {

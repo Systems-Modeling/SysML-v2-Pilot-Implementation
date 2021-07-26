@@ -25,74 +25,70 @@
  *****************************************************************************/
 package org.omg.sysml.xtext.validation
 
-
+import org.eclipse.emf.ecore.EReference
+import org.eclipse.emf.ecore.EStructuralFeature
 import org.eclipse.xtext.validation.Check
 import org.omg.kerml.xtext.validation.KerMLValidator
-import org.omg.sysml.lang.sysml.Subsetting
-import org.omg.sysml.lang.sysml.SysMLPackage
-import org.omg.sysml.lang.sysml.Redefinition
-import org.omg.sysml.lang.sysml.MultiplicityRange
-import org.omg.sysml.lang.sysml.Expression
-import org.omg.sysml.lang.sysml.Multiplicity
-import org.omg.sysml.lang.sysml.Connector
 import org.omg.sysml.lang.sysml.ActionUsage
-import org.omg.sysml.lang.sysml.Behavior
-import org.omg.sysml.lang.sysml.impl.FeatureImpl
-import org.omg.sysml.lang.sysml.ConstraintUsage
-import org.omg.sysml.lang.sysml.ConnectionUsage
-import org.omg.sysml.lang.sysml.Feature
-import org.eclipse.emf.ecore.EReference
-import org.omg.sysml.lang.sysml.Predicate
-import org.omg.sysml.lang.sysml.Association
-import org.eclipse.emf.ecore.EStructuralFeature
-import org.omg.sysml.lang.sysml.InterfaceUsage
-import org.omg.sysml.lang.sysml.InterfaceDefinition
-import org.omg.sysml.lang.sysml.PortDefinition
-import org.omg.sysml.lang.sysml.RequirementDefinition
-import org.omg.sysml.lang.sysml.RequirementUsage
-import org.omg.sysml.lang.sysml.PortUsage
-import org.omg.sysml.lang.sysml.StateUsage
-import org.omg.sysml.lang.sysml.DataType
-import org.omg.sysml.lang.sysml.Function
-import org.omg.sysml.lang.sysml.PartUsage
-import org.omg.sysml.lang.sysml.CalculationUsage
-import org.omg.sysml.lang.sysml.AttributeUsage
-import org.omg.sysml.lang.sysml.ItemUsage
-import org.omg.sysml.lang.sysml.PartDefinition
-import org.omg.sysml.lang.sysml.Usage
-import org.omg.sysml.lang.sysml.Definition
-import org.omg.sysml.lang.sysml.VariantMembership
-import org.omg.sysml.lang.sysml.CaseUsage
-import org.omg.sysml.lang.sysml.CaseDefinition
-import org.omg.sysml.lang.sysml.AnalysisCaseUsage
+import org.omg.sysml.lang.sysml.AllocationDefinition
+import org.omg.sysml.lang.sysml.AllocationUsage
 import org.omg.sysml.lang.sysml.AnalysisCaseDefinition
-import org.omg.sysml.lang.sysml.ParameterMembership
-import org.omg.sysml.lang.sysml.VerificationCaseUsage
-import org.omg.sysml.lang.sysml.VerificationCaseDefinition
-import org.omg.sysml.lang.sysml.ViewUsage
-import org.omg.sysml.lang.sysml.ViewDefinition
-import org.omg.sysml.lang.sysml.ViewpointUsage
-import org.omg.sysml.lang.sysml.ViewpointDefinition
-import org.omg.sysml.lang.sysml.RenderingUsage
-import org.omg.sysml.lang.sysml.RenderingDefinition
+import org.omg.sysml.lang.sysml.AnalysisCaseUsage
+import org.omg.sysml.lang.sysml.Association
+import org.omg.sysml.lang.sysml.AttributeUsage
+import org.omg.sysml.lang.sysml.Behavior
+import org.omg.sysml.lang.sysml.CalculationUsage
+import org.omg.sysml.lang.sysml.CaseDefinition
+import org.omg.sysml.lang.sysml.CaseUsage
+import org.omg.sysml.lang.sysml.ConnectionUsage
+import org.omg.sysml.lang.sysml.ConstraintUsage
+import org.omg.sysml.lang.sysml.DataType
+import org.omg.sysml.lang.sysml.Definition
 import org.omg.sysml.lang.sysml.Element
-import org.omg.sysml.lang.sysml.SubjectMembership
-import org.omg.sysml.lang.sysml.ObjectiveMembership
-import org.omg.sysml.lang.sysml.ReturnParameterMembership
-import org.omg.sysml.lang.sysml.FeatureMembership
-import org.omg.sysml.lang.sysml.RequirementVerificationMembership
-import org.omg.sysml.lang.sysml.Namespace
 import org.omg.sysml.lang.sysml.EnumerationDefinition
 import org.omg.sysml.lang.sysml.EnumerationUsage
-import org.omg.sysml.lang.sysml.AllocationUsage
-import org.omg.sysml.lang.sysml.AllocationDefinition
-import org.omg.sysml.util.UsageUtil
-import org.omg.sysml.lang.sysml.OccurrenceUsage
+import org.omg.sysml.lang.sysml.Feature
+import org.omg.sysml.lang.sysml.FeatureMembership
+import org.omg.sysml.lang.sysml.Function
+import org.omg.sysml.lang.sysml.InterfaceDefinition
+import org.omg.sysml.lang.sysml.InterfaceUsage
+import org.omg.sysml.lang.sysml.ItemUsage
+import org.omg.sysml.lang.sysml.Namespace
+import org.omg.sysml.lang.sysml.ObjectiveMembership
 import org.omg.sysml.lang.sysml.OccurrenceDefinition
-import org.omg.sysml.lang.sysml.Structure
+import org.omg.sysml.lang.sysml.OccurrenceUsage
+import org.omg.sysml.lang.sysml.ParameterMembership
+import org.omg.sysml.lang.sysml.PartDefinition
+import org.omg.sysml.lang.sysml.PartUsage
+import org.omg.sysml.lang.sysml.PortDefinition
+import org.omg.sysml.lang.sysml.PortUsage
+import org.omg.sysml.lang.sysml.Predicate
+import org.omg.sysml.lang.sysml.RenderingDefinition
+import org.omg.sysml.lang.sysml.RenderingUsage
+import org.omg.sysml.lang.sysml.RequirementDefinition
+import org.omg.sysml.lang.sysml.RequirementUsage
+import org.omg.sysml.lang.sysml.RequirementVerificationMembership
+import org.omg.sysml.lang.sysml.ReturnParameterMembership
+import org.omg.sysml.lang.sysml.StateUsage
 import org.omg.sysml.lang.sysml.Step
-import org.omg.sysml.lang.sysml.LiteralInfinity
-import org.omg.sysml.lang.sysml.LiteralInteger
+import org.omg.sysml.lang.sysml.Structure
+import org.omg.sysml.lang.sysml.SubjectMembership
+import org.omg.sysml.lang.sysml.SysMLPackage
+import org.omg.sysml.lang.sysml.Usage
+import org.omg.sysml.lang.sysml.VariantMembership
+import org.omg.sysml.lang.sysml.VerificationCaseDefinition
+import org.omg.sysml.lang.sysml.VerificationCaseUsage
+import org.omg.sysml.lang.sysml.ViewDefinition
+import org.omg.sysml.lang.sysml.ViewUsage
+import org.omg.sysml.lang.sysml.ViewpointDefinition
+import org.omg.sysml.lang.sysml.ViewpointUsage
+import org.omg.sysml.lang.sysml.impl.FeatureImpl
+import org.omg.sysml.util.UsageUtil
+import org.omg.sysml.lang.sysml.TransitionUsage
+import org.omg.sysml.lang.sysml.Succession
+import org.omg.sysml.lang.sysml.StateDefinition
+import org.omg.sysml.lang.sysml.Type
+import org.omg.sysml.lang.sysml.StateSubactionKind
 
 /**
  * This class contains custom validation rules. 
@@ -100,13 +96,6 @@ import org.omg.sysml.lang.sysml.LiteralInteger
  * See https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#validation
  */
 class SysMLValidator extends KerMLValidator {
-	
-	public static val INVALID_MULTIPLICITY_ILLEGALLOWERBOUND = 'Invalid Multiplicity - Illegal lower bound'
-	public static val INVALID_SUBSETTING_OWNINGTYPECONFORMANCE = 'Invalid Subsetting - OwningType conformance'
-	public static val INVALID_REDEFINITION_OWNINGTYPECONFORMANCE = 'Invalid Redefinition - OwningType conformance'
-	public static val INVALID_SUBSETTING_MULTIPLICITYCONFORMANCE = 'Invalid Subsetting - Multiplicity conformance'
-	public static val INVALID_REDEFINITION_MULTIPLICITYCONFORMANCE = 'Invalid Redefinition - Multiplicity conformance'
-	public static val INVALID_SUBSETTING_UNIQUENESS_CONFORMANCE = 'Invalid Subsetting - Uniqueness conformance'
 	
 	public static val INVALID_USAGE_VARIANT = 'Invalid Usage - invalid variant'
 	public static val INVALID_USAGE_VARIANT_MSG = 'A variant must be an owned member of a variation.'
@@ -147,6 +136,20 @@ class SysMLValidator extends KerMLValidator {
 	public static val INVALID_ACTIONUSAGE_MSG = 'An action must be typed by action definitions.'
 	public static val INVALID_STATEUSAGE = 'Invalid StateUsage - invalid type'
 	public static val INVALID_STATEUSAGE_MSG = 'A state must be typed by state definitions.'
+	public static val INVALID_STATEUSAGE_TRANSITIONS = 'Invalid StateUsage - no incoming transition'
+	public static val INVALID_STATEUSAGE_TRANSITIONS_MSG = 'Must have an incoming transition.'
+	public static val INVALID_STATEUSAGE_INITIAL = 'Invalid StateUsage - no initial transition'
+	public static val INVALID_STATEUSAGE_INITIAL_MSG = 'Must have an initial transition from entry.'
+	public static val INVALID_STATEDEFINITION_INITIAL = 'Invalid StateDefinition - no initial transition'
+	public static val INVALID_STATEDEFINITION_INITIAL_MSG = 'Must have an initial transition from entry.'
+	public static val INVALID_STATE_SUBACTION_MEMBERSHIP_ENTRY = 'Invalid StateSubactionMembership - invalid entry'
+	public static val INVALID_STATE_SUBACTION_MEMBERSHIP_ENTRY_MSG = 'A state may have at most one entry action.'
+	public static val INVALID_STATE_SUBACTION_MEMBERSHIP_DO = 'Invalid StateSubactionMembership - invalid do'
+	public static val INVALID_STATE_SUBACTION_MEMBERSHIP_DO_MSG = 'A state may have at most one do action.'
+	public static val INVALID_STATE_SUBACTION_MEMBERSHIP_EXIT = 'Invalid StateSubactionMembership - invalid exit'
+	public static val INVALID_STATE_SUBACTION_MEMBERSHIP_EXIT_MSG = 'A state may have at most one exit action.'
+	public static val INVALID_TRANSITIONUSAGE = 'Invalid TransitionUsage - in parallel state'
+	public static val INVALID_TRANSITIONUSAGE_MSG = 'A parallel state cannot have successions or transitions.'
 	public static val INVALID_CALCULATIONUSAGE = 'Invalid CalculationUsage - invalid type'
 	public static val INVALID_CALCULATIONUSAGE_MSG = 'A calculation must be typed by one calculation definition.'
 	public static val INVALID_CASEUSAGE = 'Invalid CaseUsage - invalid type'
@@ -184,11 +187,11 @@ class SysMLValidator extends KerMLValidator {
 		if (owningMembership instanceof VariantMembership) {
 			// A variant Usage must be owned by a variation
 			if (!owningNamespace.isVariation) {
-				error(org.omg.sysml.xtext.validation.SysMLValidator.INVALID_USAGE_VARIANT_MSG, SysMLPackage.eINSTANCE.element_OwningMembership, org.omg.sysml.xtext.validation.SysMLValidator.INVALID_USAGE_VARIANT)				
+				error(SysMLValidator.INVALID_USAGE_VARIANT_MSG, SysMLPackage.eINSTANCE.element_OwningMembership, SysMLValidator.INVALID_USAGE_VARIANT)				
 			}
 		// A variation must not own non-variant Usages (except for parameters)
 		} else if (owningNamespace.isVariation && !(owningMembership instanceof ParameterMembership)) {
-				error(INVALID_USAGE_VARIATION_MSG, SysMLPackage.eINSTANCE.element_OwningMembership, org.omg.sysml.xtext.validation.SysMLValidator.INVALID_USAGE_VARIATION)							
+				error(INVALID_USAGE_VARIATION_MSG, SysMLPackage.eINSTANCE.element_OwningMembership, SysMLValidator.INVALID_USAGE_VARIATION)							
 		}
 	}
 	
@@ -283,7 +286,7 @@ class SysMLValidator extends KerMLValidator {
 		checkOneType(usg, RequirementDefinition, SysMLValidator.INVALID_REQUIREMENTUSAGE_MSG, SysMLPackage.eINSTANCE.requirementUsage_RequirementDefinition, SysMLValidator.INVALID_REQUIREMENTUSAGE)
 	}
 	@Check //All types must be Behaviors.
-	def checkStateDefinitionTypes(StateUsage usg){
+	def checkStateUsageTypes(StateUsage usg){
 		checkAllTypes(usg, Behavior, SysMLValidator.INVALID_STATEUSAGE_MSG, SysMLPackage.eINSTANCE.stateUsage_StateDefinition, SysMLValidator.INVALID_STATEUSAGE)
 	}
 	@Check //Must have exactly one type, which is a ViewDefinition.
@@ -344,7 +347,49 @@ class SysMLValidator extends KerMLValidator {
 	@Check // Must be owned by objective of verification case.
 	def checkRequirementVerificationMembership(RequirementVerificationMembership mem) {
 		if (!UsageUtil.isLegalVerification(mem)) {
-			error(INVALID_REQUIREMENTVERIFICATIONMEMBERSHIP_MSG, null, org.omg.sysml.xtext.validation.SysMLValidator.INVALID_REQUIREMENTVERIFICATIONMEMBERSHIP)
+			error(INVALID_REQUIREMENTVERIFICATIONMEMBERSHIP_MSG, null, INVALID_REQUIREMENTVERIFICATIONMEMBERSHIP)
+		}
+	}
+	
+	@Check
+	def checkStateDefinition(StateDefinition defn) {
+		if (!defn.isAbstract && !defn.isParallel && !defn.ownedState.isEmpty && !UsageUtil.hasInitialTransition(defn)) {
+			error(INVALID_STATEDEFINITION_INITIAL_MSG, defn, null, INVALID_STATEDEFINITION_INITIAL)
+		}
+		checkStateSubactions(defn);
+	}
+	
+	@Check
+	def checkStateUsage(StateUsage usg) {
+		val owningType = usg.owningType
+		if (owningType !== null && !owningType.isAbstract && usg.isComposite && 
+			UsageUtil.isNonParallelState(owningType) && !UsageUtil.hasIncomingTransitions(usg)
+		) {
+			error(INVALID_STATEUSAGE_TRANSITIONS_MSG, usg, null, INVALID_STATEUSAGE_TRANSITIONS)
+		}
+		if (!usg.isAbstract && !usg.isParallel && !usg.nestedState.isEmpty && !UsageUtil.hasInitialTransition(usg)) {
+			error(INVALID_STATEUSAGE_INITIAL_MSG, usg, null, INVALID_STATEUSAGE_INITIAL)
+		}
+		checkStateSubactions(usg)
+	}
+	
+	@Check
+	def checkSuccession(Succession usg) {
+		if (UsageUtil.isParallelState(usg.owningType)) {
+			error(INVALID_TRANSITIONUSAGE_MSG, usg, null, INVALID_TRANSITIONUSAGE)
+		}
+	}
+	
+	protected def checkStateSubactions(Type type) {
+		checkAtMostOneElement(UsageUtil.getStateSubactionMembershipsOf(type, StateSubactionKind.ENTRY), INVALID_STATE_SUBACTION_MEMBERSHIP_ENTRY_MSG, INVALID_STATE_SUBACTION_MEMBERSHIP_ENTRY);
+		checkAtMostOneElement(UsageUtil.getStateSubactionMembershipsOf(type, StateSubactionKind.DO), INVALID_STATE_SUBACTION_MEMBERSHIP_DO_MSG, INVALID_STATE_SUBACTION_MEMBERSHIP_DO);
+		checkAtMostOneElement(UsageUtil.getStateSubactionMembershipsOf(type, StateSubactionKind.EXIT), INVALID_STATE_SUBACTION_MEMBERSHIP_EXIT_MSG, INVALID_STATE_SUBACTION_MEMBERSHIP_EXIT);
+	}
+	
+	@Check
+	def checkTransitionUsage(TransitionUsage usg) {
+		if (UsageUtil.isParallelState(usg.owningType)) {
+			error(INVALID_TRANSITIONUSAGE_MSG, usg, null, INVALID_TRANSITIONUSAGE)
 		}
 	}
 	
@@ -390,86 +435,5 @@ class SysMLValidator extends KerMLValidator {
 			error (msg, ref, eId)
 		return check
 	}
-	
-	@Check
-	def checkMultiplicityLowerBound(Multiplicity mult) {
-		if (mult instanceof MultiplicityRange && (mult as MultiplicityRange).getLowerBound() instanceof LiteralInfinity) 
-			error("Multiplicity lower bound cannot be *", SysMLPackage.eINSTANCE.multiplicityRange_LowerBound, SysMLValidator.INVALID_MULTIPLICITY_ILLEGALLOWERBOUND);
-	}
-	
-	@Check
-	def checkSubsettingConformance(Subsetting sub) { 
-		
-		var subsettingOwningType = sub.subsettingFeature?.owningType
-		var subsettedOwningType = sub.subsettedFeature?.owningType
-		
-		// Due to how connector is implemented, no validation is performed if the owner is a Connector.
-		if ( subsettingOwningType instanceof Connector || subsettedOwningType instanceof Connector ) 
-			return;
-
-		// Multiplicity conformance
-		
-		var setted_m = sub.subsettedFeature?.multiplicity
-		var setting_m = sub.subsettingFeature?.multiplicity
-		var Expression setting_m_l = null;
-		var Expression setting_m_u = null;
-		
-		// Only check multiplicity conformance if the subsettingFeature owns its multiplicity element.
-		if (setted_m instanceof MultiplicityRange && setting_m instanceof MultiplicityRange && setting_m.owningNamespace === sub.subsettingFeature) {
-			var setted_m_l = (setted_m as MultiplicityRange)?.lowerBound
-			var setted_m_u = (setted_m as MultiplicityRange)?.upperBound
-			
-			setting_m_l = (setting_m as MultiplicityRange)?.lowerBound
-			setting_m_u = (setting_m as MultiplicityRange)?.upperBound
-			
-			// Lower bound (only check if the Subsetting is a Redefinition): setting must be >= setted
-			if (sub instanceof Redefinition) {
-				if (setting_m_l instanceof LiteralInteger && setted_m_l instanceof LiteralInteger && (setting_m_l as LiteralInteger).getValue < (setted_m_l as LiteralInteger).getValue) {
-					warning("Redefining feature should not have smaller multiplicity lower bound", sub, 
-						SysMLPackage.eINSTANCE.redefinition_RedefiningFeature, SysMLValidator.INVALID_REDEFINITION_MULTIPLICITYCONFORMANCE)
-				}
-			}
-			
-			// Upper bound: setting must be <= setted
-			if (setting_m_u instanceof LiteralInfinity && !(setted_m_u instanceof LiteralInfinity) ||
-				setting_m_u instanceof LiteralInteger && setted_m_u instanceof LiteralInteger && (setting_m_u as LiteralInteger).getValue > (setted_m_u as LiteralInteger).getValue) {
-				warning("Subsetting/redefining feature should not have larger multiplicity upper bound", sub, 
-						SysMLPackage.eINSTANCE.subsetting_SubsettingFeature, SysMLValidator.INVALID_SUBSETTING_MULTIPLICITYCONFORMANCE)
-			}
-		}
-
-		// Uniqueness conformance
-		if (sub.subsettedFeature !== null && sub.subsettedFeature.unique && sub.subsettingFeature !== null && !sub.subsettingFeature.unique){
-			if (setting_m_u instanceof LiteralInfinity || (setting_m_u as LiteralInteger).getValue > 1) {//less than or equal to 1 is ok
-				warning("Subsetting/redefining feature should not be nonunique if subsetted/redefined feature is unique", sub, 
-						SysMLPackage.eINSTANCE.subsetting_SubsettingFeature, SysMLValidator.INVALID_SUBSETTING_UNIQUENESS_CONFORMANCE)
-			}
-		}
-					
-		// Owning type conformance (only check for Redefinition)
-		// NOTE: Revised to use featuringTypes instead of owning types, but error messages not changed, because, for SysML user modeling
-		// owning types are still what matters.
-		if (sub instanceof Redefinition) {
-			val subsettingFeaturingTypes = sub.subsettingFeature?.featuringType
-			val subsettedFeaturingTypes = sub.subsettedFeature?.featuringType
-			if (subsettingFeaturingTypes !== null && subsettedFeaturingTypes !== null) {
-				if (subsettedFeaturingTypes.containsAll(subsettingFeaturingTypes) && 
-					subsettedFeaturingTypes.size == subsettingFeaturingTypes.size){
-					if (subsettingFeaturingTypes.isEmpty) {
-						warning("A package-level feature should not be redefined", sub, 
-							SysMLPackage.eINSTANCE.redefinition_RedefinedFeature, SysMLValidator.INVALID_REDEFINITION_OWNINGTYPECONFORMANCE)
-					} else {
-						warning("Owner of redefining feature should not be the same as owner of redefined feature", sub, 
-							SysMLPackage.eINSTANCE.redefinition_RedefinedFeature, SysMLValidator.INVALID_REDEFINITION_OWNINGTYPECONFORMANCE)
-					}
-				}
-				else if (!subsettedFeaturingTypes.forall[t | subsettingFeaturingTypes.exists[conformsTo(t)]]){
-					warning("Owner of redefining feature should be a specialization of owner of redefined feature", sub, 
-					SysMLPackage.eINSTANCE.redefinition_RedefinedFeature, SysMLValidator.INVALID_REDEFINITION_OWNINGTYPECONFORMANCE)
-				}
-			}
-		}
-	}
-	
 	
 }

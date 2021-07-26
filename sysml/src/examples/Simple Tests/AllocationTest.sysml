@@ -29,5 +29,5 @@ package AllocationTest {
 		physical => p
 	);
 
-	allocate l::component to p::assembly::element;
+	allocate l.component to p.assembly.element;
 }

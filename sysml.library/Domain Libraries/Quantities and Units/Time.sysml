@@ -21,7 +21,7 @@ package Time {
 	/**
 	 * Generic time scale to express a time instant, including a textual definition of the meaning of zero time instant value
 	 * 
-	 * Attribute definitionalEpoch specifies the 
+	 * Attribute definitionalEpoch captures the specification of the time instant with value zero, also known as the (reference) epoch.
 	 */
     attribute def TimeScale :> IntervalScale {
 		attribute :>> unit: DurationUnit[1];

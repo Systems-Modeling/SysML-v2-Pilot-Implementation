@@ -7,10 +7,11 @@ import java.util.Collection;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
-
+import org.omg.sysml.lang.sysml.IncludeUseCaseUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.UseCaseDefinition;
 import org.omg.sysml.lang.sysml.UseCaseUsage;
+import org.omg.sysml.util.NonNotifyingEObjectEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -48,13 +49,17 @@ public class UseCaseDefinitionImpl extends CaseDefinitionImpl implements UseCase
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public EList<UseCaseUsage> getIncludedUseCase() {
-		// TODO: implement this method to return the 'Included Use Case' reference list
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		EList<UseCaseUsage> includedUseCases = new NonNotifyingEObjectEList<>(UseCaseUsage.class, this, SysMLPackage.USE_CASE_DEFINITION__INCLUDED_USE_CASE);
+		getOwnedFeature().stream().
+			filter(IncludeUseCaseUsage.class::isInstance).
+			map(IncludeUseCaseUsage.class::cast).
+			map(IncludeUseCaseUsage::getUseCaseIncluded).
+			forEachOrdered(includedUseCases::add);
+		return includedUseCases;
 	}
 
 	/**

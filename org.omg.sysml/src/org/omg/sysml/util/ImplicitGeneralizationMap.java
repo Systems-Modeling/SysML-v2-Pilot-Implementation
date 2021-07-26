@@ -140,7 +140,7 @@ public class ImplicitGeneralizationMap {
 		
 		put(CaseDefinitionImpl.class, "base", "Cases::Case");
 		put(CaseUsageImpl.class, "base", "Cases::cases");
-		put(CaseUsageImpl.class, "subaction", "AnalysisCases::AnalysisCase::subcases");
+		put(CaseUsageImpl.class, "subaction", "Cases::Case::subcases");
 		
 		put(ConcernDefinitionImpl.class, "base", "Requirements::ConcernCheck");
 		put(ConcernUsageImpl.class, "base", "Requirements::concernChecks");
@@ -163,6 +163,8 @@ public class ImplicitGeneralizationMap {
 		
 		put(ForkNodeImpl.class, "subaction", "Actions::Action::forks");
 		
+		put(IncludeUseCaseUsageImpl.class, "includedUseCase", "UseCases::UseCase::includedUseCases");
+
 		put(InterfaceDefinitionImpl.class, "binary", "Interfaces::Interface");
 		put(InterfaceUsageImpl.class, "binary", "Interfaces::interfaces");
 		
@@ -182,6 +184,9 @@ public class ImplicitGeneralizationMap {
 		put(PartDefinitionImpl.class, "base", "Parts::Part");
 		put(PartUsageImpl.class, "base", "Parts::parts");
 		put(PartUsageImpl.class, "subitem", "Items::Item::subparts");
+		put(PartUsageImpl.class, "requirementActor", "Requirements::RequirementCheck::actors");
+		put(PartUsageImpl.class, "requirementStakeholder", "Requirements::RequirementCheck::stakeholders");
+		put(PartUsageImpl.class, "caseActor", "Cases::Case::actors");
 		
 		put(PortDefinitionImpl.class, "base", "Ports::Port");
 		put(PortUsageImpl.class, "base", "Ports::ports");
@@ -211,6 +216,10 @@ public class ImplicitGeneralizationMap {
 		put(TransitionUsageImpl.class, "base", "Actions::transitionActions");
 		put(TransitionUsageImpl.class, "actionTransition", "Actions::Action::transitions");
 		put(TransitionUsageImpl.class, "stateTransition", "States::StateAction::stateTransitions");
+		
+		put(UseCaseDefinitionImpl.class, "base", "UseCases::UseCase");
+		put(UseCaseUsageImpl.class, "base", "UseCases::useCases");
+		put(UseCaseUsageImpl.class, "subaction", "UseCases::UseCase::subUseCases");
 		
 		put(VerificationCaseDefinitionImpl.class, "base", "VerificationCases::VerificationCase");
 		put(VerificationCaseUsageImpl.class, "base", "VerificationCases::verificationCases");

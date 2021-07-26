@@ -196,6 +196,11 @@ public class ElementAdapterFactory {
 		}
 		
 		@Override
+		public ElementAdapter caseIncludeUseCaseUsage(IncludeUseCaseUsage element) {
+			return new IncludeUseCaseUsageAdapter(element);
+		}
+		
+		@Override
 		public ElementAdapter caseInvariant(Invariant element) {
 			return new InvariantAdapter(element);
 		}
@@ -383,6 +388,11 @@ public class ElementAdapterFactory {
 		@Override
 		public ElementAdapter caseUsage(Usage element) {
 			return new UsageAdapter(element);
+		}
+		
+		@Override
+		public ElementAdapter caseUseCaseUsage(UseCaseUsage element) {
+			return new UseCaseUsageAdapter(element);
 		}
 		
 		@Override

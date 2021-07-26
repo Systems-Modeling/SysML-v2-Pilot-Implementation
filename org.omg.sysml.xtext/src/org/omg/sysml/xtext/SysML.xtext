@@ -250,6 +250,7 @@ DefinitionElement returns SysML::Element :
 	| CaseDefinition
 	| AnalysisCaseDefinition
 	| VerificationCaseDefinition
+	| UseCaseDefinition
 	| ViewDefinition
 	| ViewpointDefinition
 	| RenderingDefinition
@@ -281,6 +282,7 @@ UsageElement returns SysML::Usage :
 	| CaseUsage
 	| AnalysisCaseUsage
 	| VerificationCaseUsage
+	| UseCaseUsage
 	| ViewUsage
 	| ViewpointUsage
 	| RenderingUsage
@@ -764,6 +766,7 @@ BehaviorUsageElement returns SysML::Usage :
 	| CaseUsage
 	| AnalysisCaseUsage
 	| VerificationCaseUsage
+	| UseCaseUsage
 	| ViewpointUsage
 	| PerformActionUsage
 	| ExhibitStateUsage
@@ -1836,6 +1839,8 @@ fragment RequirementBodyItem returns SysML::Type :
 	| ownedRelationship += RequirementConstraintMember
 	| ownedRelationship += FramedConcernMember
 	| ownedRelationship += RequirementVerificationMember
+	| ownedRelationship += ActorMember
+	| ownedRelationship += StakeholderMember
 ;
 
 SubjectMember returns SysML::SubjectMembership :
@@ -1874,6 +1879,24 @@ FramedConcernUsage returns SysML::ConcernUsage :
       ownedRelationship += OwnedSubsetting FeatureSpecialization* 
       CalculationUsageParameterPart? RequirementBody
     | ConcernUsageKeyword CalculationUsageDeclaration CalculationBody
+;
+
+ActorMember returns SysML::ActorMembership :
+	MemberPrefix
+	ownedRelatedElement += ActorUsage // ownedStakeholderParameter = ActorUsage
+;
+
+ActorUsage returns SysML::PartUsage :
+      'actor' Usage
+;
+
+StakeholderMember returns SysML::StakeholderMembership :
+	MemberPrefix
+	ownedRelatedElement += StakeholderUsage // ownedStakeholderParameter = StakeholderUsage
+;
+
+StakeholderUsage returns SysML::PartUsage :
+      'stakeholder' Usage
 ;
 
 /* Requirement Usages */
@@ -1926,35 +1949,16 @@ ConcernDefKeyword :
 ;
 
 ConcernDefinition returns SysML::ConcernDefinition :
-	OccurrenceDefinitionPrefix ConcernDefKeyword ConstraintDeclaration ConcernBody  
+	OccurrenceDefinitionPrefix ConcernDefKeyword ConstraintDeclaration RequirementBody  
 ;
 
-fragment ConcernBody returns SysML::Type :
-	  ';' | '{' => ConcernBodyItem* '}'
-;
-
-fragment ConcernBodyItem returns SysML::Type :
-	  RequirementBodyItem
-	| ownedRelationship += AffectedStakeholderMember
-;
-
-AffectedStakeholderMember returns SysML::StakeholderMembership :
-	MemberPrefix
-	ownedRelatedElement += StakeholderUsage // ownedStakeholderParameter = StakeholderUsage
-;
-
-StakeholderUsage returns SysML::PartUsage :
-      'stakeholder' Usage
-;
-
-/* Concern Usages */
 
 ConcernUsageKeyword :
 	ConcernKeyword
 ;
 
 ConcernUsage returns SysML::ConcernUsage :
-	OccurrenceUsagePrefix ConcernUsageKeyword CalculationUsageDeclaration ConcernBody
+	OccurrenceUsagePrefix ConcernUsageKeyword CalculationUsageDeclaration RequirementBody
 ;
 
 /* CASES */
@@ -1983,6 +1987,7 @@ fragment CaseBody returns SysML::Type :
 fragment CaseBodyItem returns SysML::Type :
 	  CalculationBodyItem
 	| ownedRelationship += SubjectMember 
+	| ownedRelationship += ActorMember
 	| ownedRelationship += ObjectiveMember
 	
 ;
@@ -2062,6 +2067,52 @@ RequirementVerificationUsage returns SysML::RequirementUsage :
       ownedRelationship += OwnedSubsetting FeatureSpecialization* 
       CalculationUsageParameterPart? RequirementBody
     | 'requirement' CalculationUsageDeclaration RequirementBody
+;
+
+/* USE CASES */
+
+UseCaseKeyword :
+	'use' 'case'
+;
+
+UseCaseDefKeyword :
+	UseCaseKeyword 'def'
+;
+
+UseCaseUsageKeyword :
+	UseCaseKeyword
+;
+
+UseCaseDefinition returns SysML::UseCaseDefinition :
+	OccurrenceDefinitionPrefix UseCaseDefKeyword CalculationDeclaration UseCaseBody
+;
+
+UseCaseUsage returns SysML::UseCaseUsage :
+	OccurrenceUsagePrefix UseCaseUsageKeyword CalculationUsageDeclaration UseCaseBody
+;
+
+fragment UseCaseBody returns SysML::Type :
+	    ';' 
+	  | '{' => UseCaseBodyItem* '}' 
+;
+
+fragment UseCaseBodyItem returns SysML::Type :
+	  CaseBodyItem
+	| ( ownedRelationship += EmptySuccessionMember )? 
+	  ownedRelationship += IncludeUseCaseUsageMember 
+	  ( => ownedRelationship += TargetSuccessionMember )*
+;
+
+IncludeUseCaseUsageMember returns SysML::FeatureMembership :
+	MemberPrefix ownedRelatedElement += IncludeUseCaseUsage // ownedMemberFeature = IncludeUseCaseUsage
+;
+
+IncludeUseCaseUsage returns SysML::IncludeUseCaseUsage :
+	OccurrenceUsagePrefix 'include' 
+   	( ownedRelationship += OwnedSubsetting FeatureSpecializationPart?
+   	| UseCaseUsageKeyword UsageDeclaration? )
+    ( ValuePart | ActionUsageParameterList )?
+	UseCaseBody
 ;
 
 /* VIEWS */

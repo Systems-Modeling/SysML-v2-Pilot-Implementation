@@ -21,7 +21,13 @@
 
 package org.omg.sysml.adapter;
 
+import org.omg.sysml.lang.sysml.CaseDefinition;
+import org.omg.sysml.lang.sysml.CaseUsage;
 import org.omg.sysml.lang.sysml.PartUsage;
+import org.omg.sysml.lang.sysml.RequirementDefinition;
+import org.omg.sysml.lang.sysml.RequirementUsage;
+import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.util.UsageUtil;
 
 public class PartUsageAdapter extends ItemUsageAdapter {
 
@@ -32,5 +38,45 @@ public class PartUsageAdapter extends ItemUsageAdapter {
 	public PartUsage getTarget() {
 		return (PartUsage)super.getTarget();
 	}
+	
+	@Override
+	protected String getDefaultSupertype() {
+		return isRequirementActor()? getDefaultSupertype("requirementActor"):
+			   isRequirementStakeholder()? getDefaultSupertype("requirementStakeholder"):
+			   isCaseActor()? getDefaultSupertype("caseActor"):
+			   super.getDefaultSupertype();
+	}
+	
+	protected boolean isRequirementActor() {
+		PartUsage target = getTarget();
+		Type owningType = target.getOwningType();
+		return UsageUtil.isActorParameter(target) &&
+			   ( owningType instanceof RequirementDefinition ||
+				 owningType instanceof RequirementUsage);
+	}
 
+	protected boolean isRequirementStakeholder() {
+		PartUsage target = getTarget();
+		Type owningType = target.getOwningType();
+		return UsageUtil.isStakeholderParameter(target) &&
+			   ( owningType instanceof RequirementDefinition ||
+				 owningType instanceof RequirementUsage);
+	}
+
+	protected boolean isCaseActor() {
+		PartUsage target = getTarget();
+		Type owningType = target.getOwningType();
+		return UsageUtil.isActorParameter(target) &&
+			   ( owningType instanceof CaseDefinition ||
+				 owningType instanceof CaseUsage);
+	}
+
+	@Override
+	public boolean isIgnoredParameter() {
+		PartUsage target = getTarget();
+		return super.isIgnoredParameter() || 
+				UsageUtil.isActorParameter(target) ||
+				UsageUtil.isStakeholderParameter(target);
+	}
+	
 }

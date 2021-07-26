@@ -50,6 +50,20 @@ package Requirements {
 		 */
 		subject subj : Anything[1];
 		
+		/**
+		 * The Parts that fill the role of actors for this RequirementCheck.
+		 * (Note: This is not itself an actor parameter, because specific actor
+		 * parameters will be added for specific RequirementChecks.)
+		 */
+		ref part actors : Part[0..*];
+		
+		/**
+		 * The Parts that represent stakeholders interested in the concern being checked.
+		 * (Note: This is not itself a stakeholder parameter, because specific stakeholder
+		 * parameters will be added for specific RequirementChecks.)
+		 */
+		ref part stakeholders : Part[0..*];
+
 		/* 
 		 * Note: assumptions and constraints are redefined here solely to simplify the
 		 * resolution of their qualified names as library elements.
@@ -115,10 +129,6 @@ package Requirements {
 	concern def ConcernCheck :> RequirementCheck {
 		ref concern thisConcern: ConcernCheck :>> RequirementCheck::thisRequirement;
 		
-		/**
-		 * The stakeholders interested in the concern being checked.
-		 */
-		stakeholder concernedStakeholders;
 	}
 	
 	/**

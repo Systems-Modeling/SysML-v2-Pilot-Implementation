@@ -12,6 +12,7 @@ import org.omg.sysml.lang.sysml.OccurrenceUsage;
 import org.omg.sysml.lang.sysml.PerformActionUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.UseCaseUsage;
+import org.omg.sysml.util.FeatureUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -60,24 +61,19 @@ public class IncludeUseCaseUsageImpl extends UseCaseUsageImpl implements Include
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public UseCaseUsage basicGetUseCaseIncluded() {
-		// TODO: implement this method to return the 'Use Case Included' reference
-		// -> do not perform proxy resolution
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		return FeatureUtil.getReferencedFeatureOf(this, UseCaseUsage.class);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public void setUseCaseIncluded(UseCaseUsage newUseCaseIncluded) {
-		// TODO: implement this method to set the 'Use Case Included' reference
-		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
 	}
 

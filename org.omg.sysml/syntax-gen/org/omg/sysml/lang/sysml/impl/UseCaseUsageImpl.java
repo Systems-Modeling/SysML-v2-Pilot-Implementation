@@ -10,9 +10,11 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.omg.sysml.lang.sysml.CaseDefinition;
+import org.omg.sysml.lang.sysml.IncludeUseCaseUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.UseCaseDefinition;
 import org.omg.sysml.lang.sysml.UseCaseUsage;
+import org.omg.sysml.util.NonNotifyingEObjectEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -62,24 +64,20 @@ public class UseCaseUsageImpl extends CaseUsageImpl implements UseCaseUsage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public UseCaseDefinition basicGetUseCaseDefinition() {
-		// TODO: implement this method to return the 'Use Case Definition' reference
-		// -> do not perform proxy resolution
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		CaseDefinition definition = super.basicGetCaseDefinition();
+		return definition instanceof UseCaseDefinition? (UseCaseDefinition)definition: null;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public void setUseCaseDefinition(UseCaseDefinition newUseCaseDefinition) {
-		// TODO: implement this method to set the 'Use Case Definition' reference
-		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
 	}
 
@@ -95,13 +93,17 @@ public class UseCaseUsageImpl extends CaseUsageImpl implements UseCaseUsage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public EList<UseCaseUsage> getIncludedUseCase() {
-		// TODO: implement this method to return the 'Included Use Case' reference list
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		EList<UseCaseUsage> includedUseCases = new NonNotifyingEObjectEList<>(UseCaseUsage.class, this, SysMLPackage.USE_CASE_USAGE__INCLUDED_USE_CASE);
+		getOwnedFeature().stream().
+			filter(IncludeUseCaseUsage.class::isInstance).
+			map(IncludeUseCaseUsage.class::cast).
+			map(IncludeUseCaseUsage::getUseCaseIncluded).
+			forEachOrdered(includedUseCases::add);
+		return includedUseCases;
 	}
 
 	/**

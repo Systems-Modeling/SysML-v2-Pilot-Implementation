@@ -60,7 +60,7 @@ public class ActorMembershipImpl extends ParameterMembershipImpl implements Acto
 	 * @generated NOT
 	 */
 	public PartUsage basicGetOwnedActorParameter() {
-		Feature ownedActorParameter = super.getOwnedMemberFeature();
+		Feature ownedActorParameter = super.basicGetOwnedMemberParameter();
 		return ownedActorParameter instanceof PartUsage? (PartUsage)ownedActorParameter: null;
 	}
 

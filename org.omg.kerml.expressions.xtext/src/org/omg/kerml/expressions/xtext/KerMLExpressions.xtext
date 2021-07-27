@@ -78,7 +78,7 @@ ImpliesExpression returns SysML::Expression :
 ;
 
 ImpliesOperator :
-	'implies'
+	'=>' | 'implies'
 ;
 
 OrExpression returns SysML::Expression :

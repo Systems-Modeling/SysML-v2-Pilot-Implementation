@@ -285,15 +285,23 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 	}
 	public class ImpliesOperatorElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.expressions.xtext.KerMLExpressions.ImpliesOperator");
-		private final Keyword cImpliesKeyword = (Keyword)rule.eContents().get(1);
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final Keyword cEqualsSignGreaterThanSignKeyword_0 = (Keyword)cAlternatives.eContents().get(0);
+		private final Keyword cImpliesKeyword_1 = (Keyword)cAlternatives.eContents().get(1);
 		
 		//ImpliesOperator :
-		//    'implies'
+		//    '=>' | 'implies'
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
+		//'=>' | 'implies'
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//'=>'
+		public Keyword getEqualsSignGreaterThanSignKeyword_0() { return cEqualsSignGreaterThanSignKeyword_0; }
+		
 		//'implies'
-		public Keyword getImpliesKeyword() { return cImpliesKeyword; }
+		public Keyword getImpliesKeyword_1() { return cImpliesKeyword_1; }
 	}
 	public class OrExpressionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.expressions.xtext.KerMLExpressions.OrExpression");
@@ -2464,7 +2472,7 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 	}
 	
 	//ImpliesOperator :
-	//    'implies'
+	//    '=>' | 'implies'
 	//;
 	public ImpliesOperatorElements getImpliesOperatorAccess() {
 		return pImpliesOperator;

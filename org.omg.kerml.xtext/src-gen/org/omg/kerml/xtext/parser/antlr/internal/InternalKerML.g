@@ -11031,11 +11031,19 @@ ruleImpliesOperator returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRul
 @after {
 	leaveRule();
 }:
-	kw='implies'
-	{
-		$current.merge(kw);
-		newLeafNode(kw, grammarAccess.getImpliesOperatorAccess().getImpliesKeyword());
-	}
+	(
+		kw='=>'
+		{
+			$current.merge(kw);
+			newLeafNode(kw, grammarAccess.getImpliesOperatorAccess().getEqualsSignGreaterThanSignKeyword_0());
+		}
+		    |
+		kw='implies'
+		{
+			$current.merge(kw);
+			newLeafNode(kw, grammarAccess.getImpliesOperatorAccess().getImpliesKeyword_1());
+		}
+	)
 ;
 
 // Entry rule entryRuleOrExpression

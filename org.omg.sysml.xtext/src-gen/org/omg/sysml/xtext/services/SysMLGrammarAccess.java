@@ -19087,7 +19087,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//ImpliesOperator :
-	//    'implies'
+	//    '=>' | 'implies'
 	//;
 	public KerMLExpressionsGrammarAccess.ImpliesOperatorElements getImpliesOperatorAccess() {
 		return gaKerMLExpressions.getImpliesOperatorAccess();

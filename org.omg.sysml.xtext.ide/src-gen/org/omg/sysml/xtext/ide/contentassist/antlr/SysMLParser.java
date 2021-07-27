@@ -139,6 +139,7 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getViewBodyItemAccess().getAlternatives(), "rule__ViewBodyItem__Alternatives");
 			builder.put(grammarAccess.getExposeAccess().getAlternatives_3(), "rule__Expose__Alternatives_3");
 			builder.put(grammarAccess.getConditionalExpressionAccess().getAlternatives(), "rule__ConditionalExpression__Alternatives");
+			builder.put(grammarAccess.getImpliesOperatorAccess().getAlternatives(), "rule__ImpliesOperator__Alternatives");
 			builder.put(grammarAccess.getOrOperatorAccess().getAlternatives(), "rule__OrOperator__Alternatives");
 			builder.put(grammarAccess.getXorOperatorAccess().getAlternatives(), "rule__XorOperator__Alternatives");
 			builder.put(grammarAccess.getAndOperatorAccess().getAlternatives(), "rule__AndOperator__Alternatives");

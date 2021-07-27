@@ -9382,7 +9382,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//ImpliesOperator :
-	//    'implies'
+	//    '=>' | 'implies'
 	//;
 	public KerMLExpressionsGrammarAccess.ImpliesOperatorElements getImpliesOperatorAccess() {
 		return gaKerMLExpressions.getImpliesOperatorAccess();

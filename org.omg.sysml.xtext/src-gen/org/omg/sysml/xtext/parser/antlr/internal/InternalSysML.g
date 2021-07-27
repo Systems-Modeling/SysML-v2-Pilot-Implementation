@@ -14039,9 +14039,9 @@ ruleAcceptParameterPart[EObject in_current]  returns [EObject current=in_current
 		)
 		(
 			(
-				otherlv_1='for'
+				otherlv_1='via'
 				{
-					newLeafNode(otherlv_1, grammarAccess.getAcceptParameterPartAccess().getForKeyword_1_0_0());
+					newLeafNode(otherlv_1, grammarAccess.getAcceptParameterPartAccess().getViaKeyword_1_0_0());
 				}
 				(
 					(

@@ -31445,9 +31445,9 @@ rule__AcceptParameterPart__Group_1_0__0__Impl
 	}
 :
 (
-	{ before(grammarAccess.getAcceptParameterPartAccess().getForKeyword_1_0_0()); }
-	'for'
-	{ after(grammarAccess.getAcceptParameterPartAccess().getForKeyword_1_0_0()); }
+	{ before(grammarAccess.getAcceptParameterPartAccess().getViaKeyword_1_0_0()); }
+	'via'
+	{ after(grammarAccess.getAcceptParameterPartAccess().getViaKeyword_1_0_0()); }
 )
 ;
 finally {

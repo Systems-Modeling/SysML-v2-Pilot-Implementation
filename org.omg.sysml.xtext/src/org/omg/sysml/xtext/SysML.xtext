@@ -1389,7 +1389,7 @@ fragment AcceptNodeDeclaration returns SysML::ActionUsage :
 
 fragment AcceptParameterPart returns SysML::ActionUsage :
 	ownedRelationship += ItemParameterMember
-	( 'for' ownedRelationship += NodeParameterMember 
+	( 'via' ownedRelationship += NodeParameterMember 
 	| ownedRelationship += EmptyParameterMember
 	)
 ;

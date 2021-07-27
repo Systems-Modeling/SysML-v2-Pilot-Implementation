@@ -35,13 +35,13 @@ package ServerSequenceRealization_2 {
 				state waitForSubscription;
 				transition subscribing
 					first waitForSubscription
-					accept sub : Subscribe for subscriptionPort
+					accept sub : Subscribe via subscriptionPort
 					then waitForPublication;
 					
 				state waitForPublication;
 				transition delivering
 					first waitForPublication
-					accept pub : Publish for publicationPort
+					accept pub : Publish via publicationPort
 					if pub.topic == subscribing.sub.topic
 					do send Deliver(pub.publication) to subscribing.sub.subscriber
 					then waitForPublication;
@@ -59,7 +59,7 @@ package ServerSequenceRealization_2 {
 			
 			perform action consumerBehavior {
 				action subscribe send Subscribe(myTopic, consumer_2) to server_2;
-				then action delivery accept Deliver for consumer_2;
+				then action delivery accept Deliver via consumer_2;
 			}
 		}
 		

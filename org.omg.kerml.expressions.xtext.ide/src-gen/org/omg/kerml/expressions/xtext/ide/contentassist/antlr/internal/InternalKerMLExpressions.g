@@ -6050,9 +6050,9 @@ rule__NamedExpressionMember__Group__1__Impl
 	}
 :
 (
-	{ before(grammarAccess.getNamedExpressionMemberAccess().getEqualsSignGreaterThanSignKeyword_1()); }
-	'=>'
-	{ after(grammarAccess.getNamedExpressionMemberAccess().getEqualsSignGreaterThanSignKeyword_1()); }
+	{ before(grammarAccess.getNamedExpressionMemberAccess().getEqualsSignKeyword_1()); }
+	'='
+	{ after(grammarAccess.getNamedExpressionMemberAccess().getEqualsSignKeyword_1()); }
 )
 ;
 finally {

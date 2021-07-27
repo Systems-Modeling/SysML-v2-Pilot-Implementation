@@ -3115,9 +3115,9 @@ ruleNamedExpressionMember returns [EObject current=null]
 				}
 			)
 		)
-		otherlv_1='=>'
+		otherlv_1='='
 		{
-			newLeafNode(otherlv_1, grammarAccess.getNamedExpressionMemberAccess().getEqualsSignGreaterThanSignKeyword_1());
+			newLeafNode(otherlv_1, grammarAccess.getNamedExpressionMemberAccess().getEqualsSignKeyword_1());
 		}
 		(
 			(

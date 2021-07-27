@@ -28685,7 +28685,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
                 if ( (LA99_2==EOF||(LA99_2>=14 && LA99_2<=17)||LA99_2==20||LA99_2==24||(LA99_2>=33 && LA99_2<=56)||LA99_2==59||LA99_2==86||LA99_2==92||LA99_2==106||(LA99_2>=112 && LA99_2<=113)||LA99_2==131||LA99_2==140) ) {
                     alt99=1;
                 }
-                else if ( (LA99_2==114) ) {
+                else if ( (LA99_2==31) ) {
                     alt99=2;
                 }
                 else {
@@ -28704,7 +28704,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
                 if ( (LA99_3==EOF||(LA99_3>=14 && LA99_3<=17)||LA99_3==20||LA99_3==24||(LA99_3>=33 && LA99_3<=56)||LA99_3==59||LA99_3==86||LA99_3==92||LA99_3==106||(LA99_3>=112 && LA99_3<=113)||LA99_3==131||LA99_3==140) ) {
                     alt99=1;
                 }
-                else if ( (LA99_3==114) ) {
+                else if ( (LA99_3==31) ) {
                     alt99=2;
                 }
                 else {
@@ -88482,7 +88482,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:26399:1: ( rule__NamedExpressionMember__Group__0__Impl rule__NamedExpressionMember__Group__1 )
             // InternalKerML.g:26400:2: rule__NamedExpressionMember__Group__0__Impl rule__NamedExpressionMember__Group__1
             {
-            pushFollow(FOLLOW_93);
+            pushFollow(FOLLOW_34);
             rule__NamedExpressionMember__Group__0__Impl();
 
             state._fsp--;
@@ -88600,24 +88600,24 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__NamedExpressionMember__Group__1__Impl"
-    // InternalKerML.g:26434:1: rule__NamedExpressionMember__Group__1__Impl : ( '=>' ) ;
+    // InternalKerML.g:26434:1: rule__NamedExpressionMember__Group__1__Impl : ( '=' ) ;
     public final void rule__NamedExpressionMember__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerML.g:26438:1: ( ( '=>' ) )
-            // InternalKerML.g:26439:1: ( '=>' )
+            // InternalKerML.g:26438:1: ( ( '=' ) )
+            // InternalKerML.g:26439:1: ( '=' )
             {
-            // InternalKerML.g:26439:1: ( '=>' )
-            // InternalKerML.g:26440:2: '=>'
+            // InternalKerML.g:26439:1: ( '=' )
+            // InternalKerML.g:26440:2: '='
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getNamedExpressionMemberAccess().getEqualsSignGreaterThanSignKeyword_1()); 
+               before(grammarAccess.getNamedExpressionMemberAccess().getEqualsSignKeyword_1()); 
             }
-            match(input,114,FOLLOW_2); if (state.failed) return ;
+            match(input,31,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getNamedExpressionMemberAccess().getEqualsSignGreaterThanSignKeyword_1()); 
+               after(grammarAccess.getNamedExpressionMemberAccess().getEqualsSignKeyword_1()); 
             }
 
             }

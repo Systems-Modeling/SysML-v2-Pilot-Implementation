@@ -72908,7 +72908,7 @@ public class InternalSysMLParser extends AbstractInternalAntlrParser {
                     if ( (LA361_2==17||LA361_2==21||(LA361_2>=36 && LA361_2<=38)||(LA361_2>=48 && LA361_2<=50)||LA361_2==54||(LA361_2>=84 && LA361_2<=85)||(LA361_2>=128 && LA361_2<=153)||LA361_2==155) ) {
                         alt361=1;
                     }
-                    else if ( (LA361_2==51) ) {
+                    else if ( (LA361_2==29) ) {
                         alt361=2;
                     }
                     }
@@ -72920,7 +72920,7 @@ public class InternalSysMLParser extends AbstractInternalAntlrParser {
                     if ( (LA361_3==17||LA361_3==21||(LA361_3>=36 && LA361_3<=38)||(LA361_3>=48 && LA361_3<=50)||LA361_3==54||(LA361_3>=84 && LA361_3<=85)||(LA361_3>=128 && LA361_3<=153)||LA361_3==155) ) {
                         alt361=1;
                     }
-                    else if ( (LA361_3==51) ) {
+                    else if ( (LA361_3==29) ) {
                         alt361=2;
                     }
                     }
@@ -73342,7 +73342,7 @@ public class InternalSysMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleNamedExpressionMember"
-    // InternalSysML.g:25457:1: ruleNamedExpressionMember returns [EObject current=null] : ( ( (lv_memberName_0_0= ruleName ) ) otherlv_1= '=>' ( (lv_ownedRelatedElement_2_0= ruleOwnedExpression ) ) ) ;
+    // InternalSysML.g:25457:1: ruleNamedExpressionMember returns [EObject current=null] : ( ( (lv_memberName_0_0= ruleName ) ) otherlv_1= '=' ( (lv_ownedRelatedElement_2_0= ruleOwnedExpression ) ) ) ;
     public final EObject ruleNamedExpressionMember() throws RecognitionException {
         EObject current = null;
 
@@ -73356,11 +73356,11 @@ public class InternalSysMLParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalSysML.g:25463:2: ( ( ( (lv_memberName_0_0= ruleName ) ) otherlv_1= '=>' ( (lv_ownedRelatedElement_2_0= ruleOwnedExpression ) ) ) )
-            // InternalSysML.g:25464:2: ( ( (lv_memberName_0_0= ruleName ) ) otherlv_1= '=>' ( (lv_ownedRelatedElement_2_0= ruleOwnedExpression ) ) )
+            // InternalSysML.g:25463:2: ( ( ( (lv_memberName_0_0= ruleName ) ) otherlv_1= '=' ( (lv_ownedRelatedElement_2_0= ruleOwnedExpression ) ) ) )
+            // InternalSysML.g:25464:2: ( ( (lv_memberName_0_0= ruleName ) ) otherlv_1= '=' ( (lv_ownedRelatedElement_2_0= ruleOwnedExpression ) ) )
             {
-            // InternalSysML.g:25464:2: ( ( (lv_memberName_0_0= ruleName ) ) otherlv_1= '=>' ( (lv_ownedRelatedElement_2_0= ruleOwnedExpression ) ) )
-            // InternalSysML.g:25465:3: ( (lv_memberName_0_0= ruleName ) ) otherlv_1= '=>' ( (lv_ownedRelatedElement_2_0= ruleOwnedExpression ) )
+            // InternalSysML.g:25464:2: ( ( (lv_memberName_0_0= ruleName ) ) otherlv_1= '=' ( (lv_ownedRelatedElement_2_0= ruleOwnedExpression ) ) )
+            // InternalSysML.g:25465:3: ( (lv_memberName_0_0= ruleName ) ) otherlv_1= '=' ( (lv_ownedRelatedElement_2_0= ruleOwnedExpression ) )
             {
             // InternalSysML.g:25465:3: ( (lv_memberName_0_0= ruleName ) )
             // InternalSysML.g:25466:4: (lv_memberName_0_0= ruleName )
@@ -73373,7 +73373,7 @@ public class InternalSysMLParser extends AbstractInternalAntlrParser {
               					newCompositeNode(grammarAccess.getNamedExpressionMemberAccess().getMemberNameNameParserRuleCall_0_0());
               				
             }
-            pushFollow(FOLLOW_53);
+            pushFollow(FOLLOW_22);
             lv_memberName_0_0=ruleName();
 
             state._fsp--;
@@ -73397,10 +73397,10 @@ public class InternalSysMLParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_1=(Token)match(input,51,FOLLOW_23); if (state.failed) return current;
+            otherlv_1=(Token)match(input,29,FOLLOW_23); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
-              			newLeafNode(otherlv_1, grammarAccess.getNamedExpressionMemberAccess().getEqualsSignGreaterThanSignKeyword_1());
+              			newLeafNode(otherlv_1, grammarAccess.getNamedExpressionMemberAccess().getEqualsSignKeyword_1());
               		
             }
             // InternalSysML.g:25488:3: ( (lv_ownedRelatedElement_2_0= ruleOwnedExpression ) )

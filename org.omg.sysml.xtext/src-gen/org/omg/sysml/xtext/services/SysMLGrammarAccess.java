@@ -19613,7 +19613,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//NamedExpressionMember returns SysML::FeatureMembership :
-	//    memberName = Name '=>' ownedRelatedElement += OwnedExpression // ownedMemberFeature = OwnedExpression
+	//    memberName = Name '=' ownedRelatedElement += OwnedExpression // ownedMemberFeature = OwnedExpression
 	//;
 	public KerMLExpressionsGrammarAccess.NamedExpressionMemberElements getNamedExpressionMemberAccess() {
 		return gaKerMLExpressions.getNamedExpressionMemberAccess();

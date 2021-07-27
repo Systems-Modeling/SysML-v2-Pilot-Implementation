@@ -1101,11 +1101,10 @@ public class InternalKerMLExpressionsLexer extends Lexer {
         try {
             int _type = T__63;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalKerMLExpressions.g:60:7: ( '=>' )
-            // InternalKerMLExpressions.g:60:9: '=>'
+            // InternalKerMLExpressions.g:60:7: ( '=' )
+            // InternalKerMLExpressions.g:60:9: '='
             {
-            match("=>"); 
-
+            match('='); 
 
             }
 
@@ -2332,13 +2331,13 @@ public class InternalKerMLExpressionsLexer extends Lexer {
 
     protected DFA14 dfa14 = new DFA14(this);
     static final String DFA14_eotS =
-        "\1\uffff\1\51\2\44\1\60\1\62\1\44\1\65\1\44\1\70\1\44\1\uffff\1\77\1\44\1\102\1\104\1\106\1\110\1\uffff\1\112\1\114\1\117\3\uffff\1\44\7\uffff\2\44\1\125\6\uffff\1\127\1\44\1\132\2\44\4\uffff\1\135\2\uffff\1\44\2\uffff\1\44\1\140\1\44\4\uffff\1\44\15\uffff\1\146\1\uffff\4\44\1\125\3\uffff\2\44\1\uffff\2\44\1\uffff\1\157\1\160\1\uffff\1\161\1\44\2\uffff\1\146\1\uffff\1\167\6\44\1\176\3\uffff\1\44\2\146\1\uffff\1\146\1\uffff\1\u0082\1\u0083\4\44\1\uffff\1\44\1\u0081\3\uffff\1\u0089\2\44\1\u008c\1\44\1\uffff\1\u008e\1\44\1\uffff\1\u0090\1\uffff\1\44\1\uffff\1\44\1\u0093\1\uffff";
+        "\1\uffff\1\51\2\44\1\60\1\62\1\44\1\65\1\44\1\70\1\44\1\75\1\77\1\44\1\102\1\104\1\106\1\110\1\uffff\1\112\1\114\1\117\3\uffff\1\44\7\uffff\2\44\1\125\6\uffff\1\127\1\44\1\132\2\44\4\uffff\1\135\2\uffff\1\44\2\uffff\1\44\1\140\1\44\4\uffff\1\44\15\uffff\1\146\1\uffff\4\44\1\125\3\uffff\2\44\1\uffff\2\44\1\uffff\1\157\1\160\1\uffff\1\161\1\44\2\uffff\1\146\1\uffff\1\167\6\44\1\176\3\uffff\1\44\2\146\1\uffff\1\146\1\uffff\1\u0082\1\u0083\4\44\1\uffff\1\44\1\u0081\3\uffff\1\u0089\2\44\1\u008c\1\44\1\uffff\1\u008e\1\44\1\uffff\1\u0090\1\uffff\1\44\1\uffff\1\44\1\u0093\1\uffff";
     static final String DFA14_eofS =
         "\u0094\uffff";
     static final String DFA14_minS =
         "\1\11\1\72\1\146\1\154\1\77\1\174\1\162\1\136\1\157\1\46\1\154\2\75\1\141\1\133\2\75\1\56\1\uffff\1\76\2\52\3\uffff\1\157\7\uffff\1\162\1\141\1\60\6\uffff\1\60\1\160\1\60\1\164\1\163\4\uffff\1\60\2\uffff\1\162\2\uffff\1\144\1\60\1\154\4\uffff\1\163\14\uffff\1\0\1\52\1\uffff\1\164\1\154\1\165\1\154\1\60\3\uffff\1\154\1\164\1\uffff\1\171\1\145\1\uffff\2\60\1\uffff\1\60\1\164\2\uffff\1\0\1\uffff\1\60\1\154\1\145\1\163\1\151\1\141\1\160\1\60\3\uffff\1\171\4\0\1\uffff\2\60\2\145\1\156\1\145\1\uffff\1\160\1\0\3\uffff\1\60\1\163\1\143\1\60\1\145\1\uffff\1\60\1\145\1\uffff\1\60\1\uffff\1\157\1\uffff\1\146\1\60\1\uffff";
     static final String DFA14_maxS =
-        "\1\176\1\72\1\163\1\154\1\77\1\174\1\162\1\136\1\157\1\46\1\163\1\76\1\75\1\141\1\133\2\75\1\56\1\uffff\1\76\1\52\1\57\3\uffff\1\165\7\uffff\1\162\1\141\1\145\6\uffff\1\172\1\160\1\172\1\164\1\163\4\uffff\1\172\2\uffff\1\162\2\uffff\1\144\1\172\1\154\4\uffff\1\163\14\uffff\1\uffff\1\52\1\uffff\1\164\1\154\1\165\1\154\1\145\3\uffff\1\154\1\164\1\uffff\1\171\1\145\1\uffff\2\172\1\uffff\1\172\1\164\2\uffff\1\uffff\1\uffff\1\172\1\154\1\145\1\163\1\151\1\141\1\160\1\172\3\uffff\1\171\4\uffff\1\uffff\2\172\2\145\1\156\1\145\1\uffff\1\160\1\uffff\3\uffff\1\172\1\163\1\143\1\172\1\145\1\uffff\1\172\1\145\1\uffff\1\172\1\uffff\1\157\1\uffff\1\146\1\172\1\uffff";
+        "\1\176\1\72\1\163\1\154\1\77\1\174\1\162\1\136\1\157\1\46\1\163\2\75\1\141\1\133\2\75\1\56\1\uffff\1\76\1\52\1\57\3\uffff\1\165\7\uffff\1\162\1\141\1\145\6\uffff\1\172\1\160\1\172\1\164\1\163\4\uffff\1\172\2\uffff\1\162\2\uffff\1\144\1\172\1\154\4\uffff\1\163\14\uffff\1\uffff\1\52\1\uffff\1\164\1\154\1\165\1\154\1\145\3\uffff\1\154\1\164\1\uffff\1\171\1\145\1\uffff\2\172\1\uffff\1\172\1\164\2\uffff\1\uffff\1\uffff\1\172\1\154\1\145\1\163\1\151\1\141\1\160\1\172\3\uffff\1\171\4\uffff\1\uffff\2\172\2\145\1\156\1\145\1\uffff\1\160\1\uffff\3\uffff\1\172\1\163\1\143\1\172\1\145\1\uffff\1\172\1\145\1\uffff\1\172\1\uffff\1\157\1\uffff\1\146\1\172\1\uffff";
     static final String DFA14_acceptS =
         "\22\uffff\1\33\3\uffff\1\37\1\43\1\45\1\uffff\1\50\1\53\1\54\1\55\1\56\1\57\1\61\3\uffff\1\71\1\72\1\73\1\100\1\66\1\1\5\uffff\1\5\1\4\1\10\1\7\1\uffff\1\12\1\41\1\uffff\1\15\1\14\3\uffff\1\17\1\62\1\20\1\44\1\uffff\1\42\1\24\1\30\1\26\1\31\1\27\1\32\1\52\1\51\1\34\1\40\1\35\2\uffff\1\36\5\uffff\1\67\1\70\1\2\2\uffff\1\60\2\uffff\1\11\2\uffff\1\25\2\uffff\1\74\1\75\1\uffff\1\77\10\uffff\1\13\1\16\1\47\5\uffff\1\46\6\uffff\1\3\2\uffff\1\76\1\63\1\64\5\uffff\1\65\2\uffff\1\23\1\uffff\1\6\1\uffff\1\22\2\uffff\1\21";
     static final String DFA14_specialS =
@@ -2355,7 +2354,7 @@ public class InternalKerMLExpressionsLexer extends Lexer {
             "\1\66",
             "\1\67",
             "\1\73\1\uffff\1\71\4\uffff\1\72",
-            "\1\74\1\75",
+            "\1\74",
             "\1\76",
             "\1\100",
             "\1\101",

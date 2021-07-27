@@ -22,7 +22,7 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalKerMLExpressionsParser extends AbstractInternalContentAssistParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_EXP_VALUE", "RULE_DECIMAL_VALUE", "RULE_ID", "RULE_UNRESTRICTED_NAME", "RULE_STRING_VALUE", "RULE_REGULAR_COMMENT", "RULE_DOCUMENTATION_COMMENT", "RULE_ML_NOTE", "RULE_SL_NOTE", "RULE_WS", "'?'", "'??'", "'implies'", "'|'", "'||'", "'or'", "'^^'", "'xor'", "'&'", "'&&'", "'and'", "'=='", "'!='", "'instanceof'", "'hastype'", "'istype'", "'@'", "'as'", "'<'", "'>'", "'<='", "'>='", "'+'", "'-'", "'*'", "'/'", "'%'", "'**'", "'^'", "'!'", "'~'", "'not'", "','", "'null'", "'true'", "'false'", "':'", "'if'", "'else'", "']'", "'->'", "'.'", "'('", "')'", "'{'", "'}'", "';'", "'in'", "'=>'", "'::'", "'..'", "'@['", "'all'", "'['"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_EXP_VALUE", "RULE_DECIMAL_VALUE", "RULE_ID", "RULE_UNRESTRICTED_NAME", "RULE_STRING_VALUE", "RULE_REGULAR_COMMENT", "RULE_DOCUMENTATION_COMMENT", "RULE_ML_NOTE", "RULE_SL_NOTE", "RULE_WS", "'?'", "'??'", "'implies'", "'|'", "'||'", "'or'", "'^^'", "'xor'", "'&'", "'&&'", "'and'", "'=='", "'!='", "'instanceof'", "'hastype'", "'istype'", "'@'", "'as'", "'<'", "'>'", "'<='", "'>='", "'+'", "'-'", "'*'", "'/'", "'%'", "'**'", "'^'", "'!'", "'~'", "'not'", "','", "'null'", "'true'", "'false'", "':'", "'if'", "'else'", "']'", "'->'", "'.'", "'('", "')'", "'{'", "'}'", "';'", "'in'", "'='", "'::'", "'..'", "'@['", "'all'", "'['"
     };
     public static final int T__50=50;
     public static final int RULE_SL_NOTE=12;
@@ -18879,21 +18879,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__NamedExpressionMember__Group__1__Impl"
-    // InternalKerMLExpressions.g:6047:1: rule__NamedExpressionMember__Group__1__Impl : ( '=>' ) ;
+    // InternalKerMLExpressions.g:6047:1: rule__NamedExpressionMember__Group__1__Impl : ( '=' ) ;
     public final void rule__NamedExpressionMember__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:6051:1: ( ( '=>' ) )
-            // InternalKerMLExpressions.g:6052:1: ( '=>' )
+            // InternalKerMLExpressions.g:6051:1: ( ( '=' ) )
+            // InternalKerMLExpressions.g:6052:1: ( '=' )
             {
-            // InternalKerMLExpressions.g:6052:1: ( '=>' )
-            // InternalKerMLExpressions.g:6053:2: '=>'
+            // InternalKerMLExpressions.g:6052:1: ( '=' )
+            // InternalKerMLExpressions.g:6053:2: '='
             {
-             before(grammarAccess.getNamedExpressionMemberAccess().getEqualsSignGreaterThanSignKeyword_1()); 
+             before(grammarAccess.getNamedExpressionMemberAccess().getEqualsSignKeyword_1()); 
             match(input,62,FOLLOW_2); 
-             after(grammarAccess.getNamedExpressionMemberAccess().getEqualsSignGreaterThanSignKeyword_1()); 
+             after(grammarAccess.getNamedExpressionMemberAccess().getEqualsSignKeyword_1()); 
 
             }
 

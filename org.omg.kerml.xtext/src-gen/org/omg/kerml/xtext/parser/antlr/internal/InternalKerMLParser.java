@@ -38731,7 +38731,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
                     if ( (LA248_2==22||LA248_2==32||(LA248_2>=42 && LA248_2<=44)||LA248_2==55||(LA248_2>=76 && LA248_2<=77)||(LA248_2>=83 && LA248_2<=84)||(LA248_2>=104 && LA248_2<=130)||LA248_2==133) ) {
                         alt248=1;
                     }
-                    else if ( (LA248_2==85) ) {
+                    else if ( (LA248_2==36) ) {
                         alt248=2;
                     }
                     }
@@ -38740,7 +38740,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
                     {
                     int LA248_3 = input.LA(2);
 
-                    if ( (LA248_3==85) ) {
+                    if ( (LA248_3==36) ) {
                         alt248=2;
                     }
                     else if ( (LA248_3==22||LA248_3==32||(LA248_3>=42 && LA248_3<=44)||LA248_3==55||(LA248_3>=76 && LA248_3<=77)||(LA248_3>=83 && LA248_3<=84)||(LA248_3>=104 && LA248_3<=130)||LA248_3==133) ) {
@@ -39165,7 +39165,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleNamedExpressionMember"
-    // InternalKerML.g:13489:1: ruleNamedExpressionMember returns [EObject current=null] : ( ( (lv_memberName_0_0= ruleName ) ) otherlv_1= '=>' ( (lv_ownedRelatedElement_2_0= ruleOwnedExpression ) ) ) ;
+    // InternalKerML.g:13489:1: ruleNamedExpressionMember returns [EObject current=null] : ( ( (lv_memberName_0_0= ruleName ) ) otherlv_1= '=' ( (lv_ownedRelatedElement_2_0= ruleOwnedExpression ) ) ) ;
     public final EObject ruleNamedExpressionMember() throws RecognitionException {
         EObject current = null;
 
@@ -39179,11 +39179,11 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalKerML.g:13495:2: ( ( ( (lv_memberName_0_0= ruleName ) ) otherlv_1= '=>' ( (lv_ownedRelatedElement_2_0= ruleOwnedExpression ) ) ) )
-            // InternalKerML.g:13496:2: ( ( (lv_memberName_0_0= ruleName ) ) otherlv_1= '=>' ( (lv_ownedRelatedElement_2_0= ruleOwnedExpression ) ) )
+            // InternalKerML.g:13495:2: ( ( ( (lv_memberName_0_0= ruleName ) ) otherlv_1= '=' ( (lv_ownedRelatedElement_2_0= ruleOwnedExpression ) ) ) )
+            // InternalKerML.g:13496:2: ( ( (lv_memberName_0_0= ruleName ) ) otherlv_1= '=' ( (lv_ownedRelatedElement_2_0= ruleOwnedExpression ) ) )
             {
-            // InternalKerML.g:13496:2: ( ( (lv_memberName_0_0= ruleName ) ) otherlv_1= '=>' ( (lv_ownedRelatedElement_2_0= ruleOwnedExpression ) ) )
-            // InternalKerML.g:13497:3: ( (lv_memberName_0_0= ruleName ) ) otherlv_1= '=>' ( (lv_ownedRelatedElement_2_0= ruleOwnedExpression ) )
+            // InternalKerML.g:13496:2: ( ( (lv_memberName_0_0= ruleName ) ) otherlv_1= '=' ( (lv_ownedRelatedElement_2_0= ruleOwnedExpression ) ) )
+            // InternalKerML.g:13497:3: ( (lv_memberName_0_0= ruleName ) ) otherlv_1= '=' ( (lv_ownedRelatedElement_2_0= ruleOwnedExpression ) )
             {
             // InternalKerML.g:13497:3: ( (lv_memberName_0_0= ruleName ) )
             // InternalKerML.g:13498:4: (lv_memberName_0_0= ruleName )
@@ -39196,7 +39196,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
               					newCompositeNode(grammarAccess.getNamedExpressionMemberAccess().getMemberNameNameParserRuleCall_0_0());
               				
             }
-            pushFollow(FOLLOW_111);
+            pushFollow(FOLLOW_32);
             lv_memberName_0_0=ruleName();
 
             state._fsp--;
@@ -39220,10 +39220,10 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_1=(Token)match(input,85,FOLLOW_33); if (state.failed) return current;
+            otherlv_1=(Token)match(input,36,FOLLOW_33); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
-              			newLeafNode(otherlv_1, grammarAccess.getNamedExpressionMemberAccess().getEqualsSignGreaterThanSignKeyword_1());
+              			newLeafNode(otherlv_1, grammarAccess.getNamedExpressionMemberAccess().getEqualsSignKeyword_1());
               		
             }
             // InternalKerML.g:13520:3: ( (lv_ownedRelatedElement_2_0= ruleOwnedExpression ) )

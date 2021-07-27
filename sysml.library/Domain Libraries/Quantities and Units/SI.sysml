@@ -88,8 +88,8 @@ package SI {
     attribute var: PowerUnit { :>> longName = "var"; :>> unitConversion: ConversionByConvention { :>> referenceUnit = V*A; :>> conversionFactor = 1.0; } }
     attribute 'Å': LengthUnit { :>> longName = "ångström"; :>> unitConversion: ConversionByConvention { :>> referenceUnit = m; :>> conversionFactor = 1.0e-10; } }
 
-    attribute L: VolumeUnit = VolumeUnit(longName => "litre", unitConversion => ConversionByConvention(referenceUnit => 'm³', conversionFactor => 1.0e-3));
-    attribute mL: VolumeUnit = VolumeUnit(longName => "millilitre", unitConversion => ConversionByPrefix(prefix => milli, referenceUnit => L));
+    attribute L: VolumeUnit = VolumeUnit(longName = "litre", unitConversion = ConversionByConvention(referenceUnit = 'm³', conversionFactor = 1.0e-3));
+    attribute mL: VolumeUnit = VolumeUnit(longName = "millilitre", unitConversion = ConversionByPrefix(prefix = milli, referenceUnit = L));
 
     /*
      * Derived units used in parts 3 to 12 of ISO/IEC 80000
@@ -290,18 +290,18 @@ package SI {
      * Prefixed units
      */
     attribute nm: LengthUnit { :>> longName = "nanometre"; :>> unitConversion: ConversionByPrefix { :>> prefix = nano; :>> referenceUnit = m; } }
-    attribute mm: LengthUnit = LengthUnit(longName => "millimetre", unitConversion => ConversionByPrefix(prefix => milli, referenceUnit => m));
-    attribute km: LengthUnit = LengthUnit(longName => "kilometre", unitConversion => ConversionByPrefix(prefix => kilo, referenceUnit => m));
-    attribute mN: ForceUnit = ForceUnit(longName => "millinewton", unitConversion => ConversionByPrefix(prefix => milli, referenceUnit => N));
-    attribute kJ: EnergyUnit = EnergyUnit(longName => "kilojoule", unitConversion => ConversionByPrefix(prefix => kilo, referenceUnit => J));
-    attribute MJ: EnergyUnit = EnergyUnit(longName => "megajoule", unitConversion => ConversionByPrefix(prefix => mega, referenceUnit => J));
-    attribute GJ: EnergyUnit = EnergyUnit(longName => "gigajoule", unitConversion => ConversionByPrefix(prefix => giga, referenceUnit => J));
+    attribute mm: LengthUnit = LengthUnit(longName = "millimetre", unitConversion = ConversionByPrefix(prefix = milli, referenceUnit = m));
+    attribute km: LengthUnit = LengthUnit(longName = "kilometre", unitConversion = ConversionByPrefix(prefix = kilo, referenceUnit = m));
+    attribute mN: ForceUnit = ForceUnit(longName = "millinewton", unitConversion = ConversionByPrefix(prefix = milli, referenceUnit = N));
+    attribute kJ: EnergyUnit = EnergyUnit(longName = "kilojoule", unitConversion = ConversionByPrefix(prefix = kilo, referenceUnit = J));
+    attribute MJ: EnergyUnit = EnergyUnit(longName = "megajoule", unitConversion = ConversionByPrefix(prefix = mega, referenceUnit = J));
+    attribute GJ: EnergyUnit = EnergyUnit(longName = "gigajoule", unitConversion = ConversionByPrefix(prefix = giga, referenceUnit = J));
 
     /*
      * Non-standard conversion based units that are accepted in SI
      */
-    attribute min: TimeUnit = TimeUnit(longName => "minute", unitConversion => ConversionByConvention(referenceUnit => s, conversionFactor => 60));
-    attribute h: TimeUnit = TimeUnit(longName => "hour", unitConversion => ConversionByConvention(referenceUnit => min, conversionFactor => 60));
+    attribute min: TimeUnit = TimeUnit(longName = "minute", unitConversion = ConversionByConvention(referenceUnit = s, conversionFactor = 60));
+    attribute h: TimeUnit = TimeUnit(longName = "hour", unitConversion = ConversionByConvention(referenceUnit = min, conversionFactor = 60));
     attribute 'km/h': SpeedUnit = km / h { :>> longName = "kilometre per hour";}
 
     /*
@@ -309,7 +309,7 @@ package SI {
      */
     attribute '°C_unit': TemperatureUnit {
     	attribute :>> longName = "degree celsius (unit)";
-    	attribute :>> unitConversion = ConversionByConvention(referenceUnit => K, conversionFactor => 1);
+    	attribute :>> unitConversion = ConversionByConvention(referenceUnit = K, conversionFactor = 1);
    	}
 
     /*
@@ -322,13 +322,13 @@ package SI {
         attribute :>> unit = '°C_unit';
         attribute :>> isBound = true;
         attribute temperatureWaterAtFreezingPointInC: ScaleValueDefinition = ScaleValueDefinition(
-            num => 0, description => "temperature in degree Celsius of pure water at freezing point"
+            num = 0, description = "temperature in degree Celsius of pure water at freezing point"
         );
         private attribute temperatureWaterAtTriplePointInC: ScaleValueDefinition = ScaleValueDefinition(
-            num => 1/100, description => "temperature in degree Celsius of pure water at the triple point"
+            num = 1/100, description = "temperature in degree Celsius of pure water at the triple point"
         );
         private attribute celsiusToKelvinScaleMapping: ScaleValueMapping = ScaleValueMapping(
-            mappedScaleValue => temperatureWaterAtTriplePointInC, referenceScaleValue => K.temperatureOfWaterAtTriplePointInK
+            mappedScaleValue = temperatureWaterAtTriplePointInC, referenceScaleValue = K.temperatureOfWaterAtTriplePointInK
         );
         attribute :>> scaleValueDefinitions = (temperatureWaterAtTriplePointInC, temperatureWaterAtFreezingPointInC);
         attribute :>> scaleValueMapping = celsiusToKelvinScaleMapping;

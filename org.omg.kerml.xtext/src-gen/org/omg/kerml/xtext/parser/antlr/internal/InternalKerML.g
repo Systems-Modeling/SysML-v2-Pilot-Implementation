@@ -8006,11 +8006,11 @@ ruleBehavior returns [EObject current=null]
 			if ($current==null) {
 				$current = createModelElement(grammarAccess.getBehaviorRule());
 			}
-			newCompositeNode(grammarAccess.getBehaviorAccess().getBehaviorBodyParserRuleCall_3());
+			newCompositeNode(grammarAccess.getBehaviorAccess().getTypeBodyParserRuleCall_3());
 		}
-		this_BehaviorBody_3=ruleBehaviorBody[$current]
+		this_TypeBody_3=ruleTypeBody[$current]
 		{
-			$current = $this_BehaviorBody_3.current;
+			$current = $this_TypeBody_3.current;
 			afterParserOrEnumRuleCall();
 		}
 	)
@@ -8542,115 +8542,6 @@ ruleParameterSpecialization[EObject in_current]  returns [EObject current=in_cur
 	)
 ;
 
-
-// Rule BehaviorBody
-ruleBehaviorBody[EObject in_current]  returns [EObject current=in_current]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
-		otherlv_0=';'
-		{
-			newLeafNode(otherlv_0, grammarAccess.getBehaviorBodyAccess().getSemicolonKeyword_0());
-		}
-		    |
-		(
-			otherlv_1='{'
-			{
-				newLeafNode(otherlv_1, grammarAccess.getBehaviorBodyAccess().getLeftCurlyBracketKeyword_1_0());
-			}
-			(
-				(
-					(
-						{
-							newCompositeNode(grammarAccess.getBehaviorBodyAccess().getOwnedRelationshipOwnedDocumentationParserRuleCall_1_1_0_0());
-						}
-						lv_ownedRelationship_2_0=ruleOwnedDocumentation
-						{
-							if ($current==null) {
-								$current = createModelElementForParent(grammarAccess.getBehaviorBodyRule());
-							}
-							add(
-								$current,
-								"ownedRelationship",
-								lv_ownedRelationship_2_0,
-								"org.omg.kerml.xtext.KerML.OwnedDocumentation");
-							afterParserOrEnumRuleCall();
-						}
-					)
-				)
-				    |
-				(
-					(
-						{
-							newCompositeNode(grammarAccess.getBehaviorBodyAccess().getOwnedRelationshipNonFeatureMemberParserRuleCall_1_1_1_0());
-						}
-						lv_ownedRelationship_3_0=ruleNonFeatureMember
-						{
-							if ($current==null) {
-								$current = createModelElementForParent(grammarAccess.getBehaviorBodyRule());
-							}
-							add(
-								$current,
-								"ownedRelationship",
-								lv_ownedRelationship_3_0,
-								"org.omg.kerml.xtext.KerML.NonFeatureMember");
-							afterParserOrEnumRuleCall();
-						}
-					)
-				)
-				    |
-				(
-					(
-						{
-							newCompositeNode(grammarAccess.getBehaviorBodyAccess().getOwnedRelationshipFeatureMemberParserRuleCall_1_1_2_0());
-						}
-						lv_ownedRelationship_4_0=ruleFeatureMember
-						{
-							if ($current==null) {
-								$current = createModelElementForParent(grammarAccess.getBehaviorBodyRule());
-							}
-							add(
-								$current,
-								"ownedRelationship",
-								lv_ownedRelationship_4_0,
-								"org.omg.kerml.xtext.KerML.FeatureMember");
-							afterParserOrEnumRuleCall();
-						}
-					)
-				)
-				    |
-				(
-					(
-						{
-							newCompositeNode(grammarAccess.getBehaviorBodyAccess().getOwnedRelationshipImportParserRuleCall_1_1_3_0());
-						}
-						lv_ownedRelationship_5_0=ruleImport
-						{
-							if ($current==null) {
-								$current = createModelElementForParent(grammarAccess.getBehaviorBodyRule());
-							}
-							add(
-								$current,
-								"ownedRelationship",
-								lv_ownedRelationship_5_0,
-								"org.omg.kerml.xtext.KerML.Import");
-							afterParserOrEnumRuleCall();
-						}
-					)
-				)
-			)*
-			otherlv_6='}'
-			{
-				newLeafNode(otherlv_6, grammarAccess.getBehaviorBodyAccess().getRightCurlyBracketKeyword_1_2());
-			}
-		)
-	)
-;
-
 // Entry rule entryRuleStep
 entryRuleStep returns [EObject current=null]:
 	{ newCompositeNode(grammarAccess.getStepRule()); }
@@ -8697,11 +8588,11 @@ ruleStep returns [EObject current=null]
 			if ($current==null) {
 				$current = createModelElement(grammarAccess.getStepRule());
 			}
-			newCompositeNode(grammarAccess.getStepAccess().getBehaviorBodyParserRuleCall_3());
+			newCompositeNode(grammarAccess.getStepAccess().getTypeBodyParserRuleCall_3());
 		}
-		this_BehaviorBody_3=ruleBehaviorBody[$current]
+		this_TypeBody_3=ruleTypeBody[$current]
 		{
-			$current = $this_BehaviorBody_3.current;
+			$current = $this_TypeBody_3.current;
 			afterParserOrEnumRuleCall();
 		}
 	)
@@ -9298,9 +9189,9 @@ ruleFunctionBody[EObject in_current]  returns [EObject current=in_current]
 				(
 					(
 						{
-							newCompositeNode(grammarAccess.getFunctionBodyAccess().getOwnedRelationshipImportParserRuleCall_1_1_3_0());
+							newCompositeNode(grammarAccess.getFunctionBodyAccess().getOwnedRelationshipAliasMemberParserRuleCall_1_1_3_0());
 						}
-						lv_ownedRelationship_5_0=ruleImport
+						lv_ownedRelationship_5_0=ruleAliasMember
 						{
 							if ($current==null) {
 								$current = createModelElementForParent(grammarAccess.getFunctionBodyRule());
@@ -9309,6 +9200,26 @@ ruleFunctionBody[EObject in_current]  returns [EObject current=in_current]
 								$current,
 								"ownedRelationship",
 								lv_ownedRelationship_5_0,
+								"org.omg.kerml.xtext.KerML.AliasMember");
+							afterParserOrEnumRuleCall();
+						}
+					)
+				)
+				    |
+				(
+					(
+						{
+							newCompositeNode(grammarAccess.getFunctionBodyAccess().getOwnedRelationshipImportParserRuleCall_1_1_4_0());
+						}
+						lv_ownedRelationship_6_0=ruleImport
+						{
+							if ($current==null) {
+								$current = createModelElementForParent(grammarAccess.getFunctionBodyRule());
+							}
+							add(
+								$current,
+								"ownedRelationship",
+								lv_ownedRelationship_6_0,
 								"org.omg.kerml.xtext.KerML.Import");
 							afterParserOrEnumRuleCall();
 						}
@@ -9320,7 +9231,7 @@ ruleFunctionBody[EObject in_current]  returns [EObject current=in_current]
 					{
 						newCompositeNode(grammarAccess.getFunctionBodyAccess().getOwnedRelationshipResultExpressionMemberParserRuleCall_1_2_0());
 					}
-					lv_ownedRelationship_6_0=ruleResultExpressionMember
+					lv_ownedRelationship_7_0=ruleResultExpressionMember
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getFunctionBodyRule());
@@ -9328,15 +9239,15 @@ ruleFunctionBody[EObject in_current]  returns [EObject current=in_current]
 						add(
 							$current,
 							"ownedRelationship",
-							lv_ownedRelationship_6_0,
+							lv_ownedRelationship_7_0,
 							"org.omg.kerml.xtext.KerML.ResultExpressionMember");
 						afterParserOrEnumRuleCall();
 					}
 				)
 			)?
-			otherlv_7='}'
+			otherlv_8='}'
 			{
-				newLeafNode(otherlv_7, grammarAccess.getFunctionBodyAccess().getRightCurlyBracketKeyword_1_3());
+				newLeafNode(otherlv_8, grammarAccess.getFunctionBodyAccess().getRightCurlyBracketKeyword_1_3());
 			}
 		)
 	)
@@ -9801,11 +9712,11 @@ ruleInteraction returns [EObject current=null]
 			if ($current==null) {
 				$current = createModelElement(grammarAccess.getInteractionRule());
 			}
-			newCompositeNode(grammarAccess.getInteractionAccess().getBehaviorBodyParserRuleCall_3());
+			newCompositeNode(grammarAccess.getInteractionAccess().getTypeBodyParserRuleCall_3());
 		}
-		this_BehaviorBody_3=ruleBehaviorBody[$current]
+		this_TypeBody_3=ruleTypeBody[$current]
 		{
-			$current = $this_BehaviorBody_3.current;
+			$current = $this_TypeBody_3.current;
 			afterParserOrEnumRuleCall();
 		}
 	)
@@ -9857,11 +9768,11 @@ ruleItemFlow returns [EObject current=null]
 			if ($current==null) {
 				$current = createModelElement(grammarAccess.getItemFlowRule());
 			}
-			newCompositeNode(grammarAccess.getItemFlowAccess().getBehaviorBodyParserRuleCall_3());
+			newCompositeNode(grammarAccess.getItemFlowAccess().getTypeBodyParserRuleCall_3());
 		}
-		this_BehaviorBody_3=ruleBehaviorBody[$current]
+		this_TypeBody_3=ruleTypeBody[$current]
 		{
-			$current = $this_BehaviorBody_3.current;
+			$current = $this_TypeBody_3.current;
 			afterParserOrEnumRuleCall();
 		}
 	)
@@ -9913,11 +9824,11 @@ ruleSuccessionItemFlow returns [EObject current=null]
 			if ($current==null) {
 				$current = createModelElement(grammarAccess.getSuccessionItemFlowRule());
 			}
-			newCompositeNode(grammarAccess.getSuccessionItemFlowAccess().getBehaviorBodyParserRuleCall_3());
+			newCompositeNode(grammarAccess.getSuccessionItemFlowAccess().getTypeBodyParserRuleCall_3());
 		}
-		this_BehaviorBody_3=ruleBehaviorBody[$current]
+		this_TypeBody_3=ruleTypeBody[$current]
 		{
-			$current = $this_BehaviorBody_3.current;
+			$current = $this_TypeBody_3.current;
 			afterParserOrEnumRuleCall();
 		}
 	)

@@ -96,8 +96,6 @@ public class KerMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getParameterDeclarationAccess().getAlternatives_1(), "rule__ParameterDeclaration__Alternatives_1");
 			builder.put(grammarAccess.getParameterSpecializationPartAccess().getAlternatives(), "rule__ParameterSpecializationPart__Alternatives");
 			builder.put(grammarAccess.getParameterSpecializationAccess().getAlternatives(), "rule__ParameterSpecialization__Alternatives");
-			builder.put(grammarAccess.getBehaviorBodyAccess().getAlternatives(), "rule__BehaviorBody__Alternatives");
-			builder.put(grammarAccess.getBehaviorBodyAccess().getAlternatives_1_1(), "rule__BehaviorBody__Alternatives_1_1");
 			builder.put(grammarAccess.getStepDeclarationAccess().getAlternatives_1(), "rule__StepDeclaration__Alternatives_1");
 			builder.put(grammarAccess.getParameterPartAccess().getAlternatives(), "rule__ParameterPart__Alternatives");
 			builder.put(grammarAccess.getParameterPartAccess().getAlternatives_0_1(), "rule__ParameterPart__Alternatives_0_1");
@@ -291,7 +289,6 @@ public class KerMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getParameterDeclarationAccess().getGroup_1_0(), "rule__ParameterDeclaration__Group_1_0__0");
 			builder.put(grammarAccess.getParameterSpecializationPartAccess().getGroup_0(), "rule__ParameterSpecializationPart__Group_0__0");
 			builder.put(grammarAccess.getParameterSpecializationPartAccess().getGroup_1(), "rule__ParameterSpecializationPart__Group_1__0");
-			builder.put(grammarAccess.getBehaviorBodyAccess().getGroup_1(), "rule__BehaviorBody__Group_1__0");
 			builder.put(grammarAccess.getStepAccess().getGroup(), "rule__Step__Group__0");
 			builder.put(grammarAccess.getStepDeclarationAccess().getGroup(), "rule__StepDeclaration__Group__0");
 			builder.put(grammarAccess.getStepParameterListAccess().getGroup(), "rule__StepParameterList__Group__0");
@@ -567,10 +564,6 @@ public class KerMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getParameterAccess().getDirectionAssignment_2_1(), "rule__Parameter__DirectionAssignment_2_1");
 			builder.put(grammarAccess.getParameterAccess().getDirectionAssignment_3_1(), "rule__Parameter__DirectionAssignment_3_1");
 			builder.put(grammarAccess.getParameterDeclarationAccess().getIsSufficientAssignment_0(), "rule__ParameterDeclaration__IsSufficientAssignment_0");
-			builder.put(grammarAccess.getBehaviorBodyAccess().getOwnedRelationshipAssignment_1_1_0(), "rule__BehaviorBody__OwnedRelationshipAssignment_1_1_0");
-			builder.put(grammarAccess.getBehaviorBodyAccess().getOwnedRelationshipAssignment_1_1_1(), "rule__BehaviorBody__OwnedRelationshipAssignment_1_1_1");
-			builder.put(grammarAccess.getBehaviorBodyAccess().getOwnedRelationshipAssignment_1_1_2(), "rule__BehaviorBody__OwnedRelationshipAssignment_1_1_2");
-			builder.put(grammarAccess.getBehaviorBodyAccess().getOwnedRelationshipAssignment_1_1_3(), "rule__BehaviorBody__OwnedRelationshipAssignment_1_1_3");
 			builder.put(grammarAccess.getStepParameterListAccess().getOwnedRelationshipAssignment_1_0(), "rule__StepParameterList__OwnedRelationshipAssignment_1_0");
 			builder.put(grammarAccess.getStepParameterListAccess().getOwnedRelationshipAssignment_1_1_1(), "rule__StepParameterList__OwnedRelationshipAssignment_1_1_1");
 			builder.put(grammarAccess.getStepParameterMemberAccess().getOwnedRelatedElementAssignment(), "rule__StepParameterMember__OwnedRelatedElementAssignment");
@@ -583,6 +576,7 @@ public class KerMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getFunctionBodyAccess().getOwnedRelationshipAssignment_1_1_1(), "rule__FunctionBody__OwnedRelationshipAssignment_1_1_1");
 			builder.put(grammarAccess.getFunctionBodyAccess().getOwnedRelationshipAssignment_1_1_2(), "rule__FunctionBody__OwnedRelationshipAssignment_1_1_2");
 			builder.put(grammarAccess.getFunctionBodyAccess().getOwnedRelationshipAssignment_1_1_3(), "rule__FunctionBody__OwnedRelationshipAssignment_1_1_3");
+			builder.put(grammarAccess.getFunctionBodyAccess().getOwnedRelationshipAssignment_1_1_4(), "rule__FunctionBody__OwnedRelationshipAssignment_1_1_4");
 			builder.put(grammarAccess.getFunctionBodyAccess().getOwnedRelationshipAssignment_1_2(), "rule__FunctionBody__OwnedRelationshipAssignment_1_2");
 			builder.put(grammarAccess.getResultExpressionMemberAccess().getOwnedRelatedElementAssignment_1(), "rule__ResultExpressionMember__OwnedRelatedElementAssignment_1");
 			builder.put(grammarAccess.getPredicateAccess().getIsAbstractAssignment_0(), "rule__Predicate__IsAbstractAssignment_0");

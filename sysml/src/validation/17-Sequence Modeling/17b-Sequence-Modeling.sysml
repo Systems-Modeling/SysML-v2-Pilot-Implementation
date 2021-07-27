@@ -1,4 +1,4 @@
-package '16b-Sequence-Modeling' {
+package '17b-Sequence-Modeling' {
 	import ScalarValues::*;
 	import PayloadDefinitions::*;
 

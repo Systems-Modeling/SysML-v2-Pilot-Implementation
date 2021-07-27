@@ -25,8 +25,6 @@ import org.omg.sysml.lang.sysml.CaseDefinition;
 import org.omg.sysml.lang.sysml.CaseUsage;
 import org.omg.sysml.lang.sysml.IncludeUseCaseUsage;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.lang.sysml.UseCaseDefinition;
-import org.omg.sysml.lang.sysml.UseCaseUsage;
 
 public class IncludeUseCaseUsageAdapter extends UseCaseUsageAdapter {
 
@@ -40,17 +38,13 @@ public class IncludeUseCaseUsageAdapter extends UseCaseUsageAdapter {
 	}
 	
 	@Override
-	protected String getDefaultSupertype() {
-		return isIncludedUsecase()? getDefaultSupertype("includedUseCase"):
-			   isEnactedPerformance()? getDefaultSupertype("enactedPerformance"):
-			   super.getDefaultSupertype();
+	public void addDefaultGeneralType() {
+		super.addDefaultGeneralType();
+		if (isEnactedPerformance()) {
+			addDefaultGeneralType("enactedPerformance");
+		}
 	}
-	
-	public boolean isIncludedUsecase() {		
-		Type owningType = getTarget().getOwningType();
-		return owningType instanceof UseCaseDefinition || owningType instanceof UseCaseUsage;
-	}
-	
+		
 	@Override
 	public boolean hasRelevantSubjectParameter() {
 		Type owningType = getTarget().getOwningType();

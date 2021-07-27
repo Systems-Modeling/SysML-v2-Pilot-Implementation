@@ -35,10 +35,11 @@ public class ExhibitStateUsageAdapter extends StateUsageAdapter {
 	}
 
 	@Override
-	protected String getDefaultSupertype() {
-		return isEnactedPerformance()? 
-				getDefaultSupertype("enactedPerformance"):
-				super.getDefaultSupertype();
+	public void addDefaultGeneralType() {
+		super.addDefaultGeneralType();
+		if (isEnactedPerformance()) {
+			addDefaultGeneralType("enactedPerformance");
+		}
 	}
-	
+		
 }

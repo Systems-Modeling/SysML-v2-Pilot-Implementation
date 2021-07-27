@@ -118,6 +118,7 @@ public class ImplicitGeneralizationMap {
 		put(ActionDefinitionImpl.class, "base", "Actions::Action");		
 		put(ActionUsageImpl.class, "base", "Actions::actions");
 		put(ActionUsageImpl.class, "subaction", "Actions::Action::subactions");
+		put(ActionUsageImpl.class, "enactedPerformance", "Parts::Part::performedActions");
 		
 		put(AllocationDefinitionImpl.class, "base", "Links::Link");
 		put(AllocationDefinitionImpl.class, "binary", "Allocations::Allocation");
@@ -126,7 +127,7 @@ public class ImplicitGeneralizationMap {
 		
 		put(AnalysisCaseDefinitionImpl.class, "base", "AnalysisCases::AnalysisCase");
 		put(AnalysisCaseUsageImpl.class, "base", "AnalysisCases::analysisCases");
-		put(AnalysisCaseUsageImpl.class, "subaction", "AnalysisCases::AnalysisCase::subAnalysisCases");
+		put(AnalysisCaseUsageImpl.class, "subAnalysisCase", "AnalysisCases::AnalysisCase::subAnalysisCases");
 		
 		put(AssertConstraintUsageImpl.class, "base", "Constraints::assertedConstraintChecks");
 		put(AssertConstraintUsageImpl.class, "negated", "Constraints::negatedConstraintChecks");
@@ -136,11 +137,11 @@ public class ImplicitGeneralizationMap {
 		
 		put(CalculationDefinitionImpl.class, "base", "Calculations::Calculation");
 		put(CalculationUsageImpl.class, "base", "Calculations::calculations");
-		put(CalculationUsageImpl.class, "subaction", "Calculations::Calculation::subcalculations");
+		put(CalculationUsageImpl.class, "subcalculation", "Calculations::Calculation::subcalculations");
 		
 		put(CaseDefinitionImpl.class, "base", "Cases::Case");
 		put(CaseUsageImpl.class, "base", "Cases::cases");
-		put(CaseUsageImpl.class, "subaction", "Cases::Case::subcases");
+		put(CaseUsageImpl.class, "subcase", "Cases::Case::subcases");
 		
 		put(ConcernDefinitionImpl.class, "base", "Requirements::ConcernCheck");
 		put(ConcernUsageImpl.class, "base", "Requirements::concernChecks");
@@ -163,10 +164,9 @@ public class ImplicitGeneralizationMap {
 		
 		put(ForkNodeImpl.class, "subaction", "Actions::Action::forks");
 		
-		put(IncludeUseCaseUsageImpl.class, "includedUseCase", "UseCases::UseCase::includedUseCases");
+		put(IncludeUseCaseUsageImpl.class, "subUseCase", "UseCases::UseCase::includedUseCases");
 		put(IncludeUseCaseUsageImpl.class, "enactedPerformance", "Parts::Part::performedActions");
 		
-
 		put(InterfaceDefinitionImpl.class, "binary", "Interfaces::Interface");
 		put(InterfaceUsageImpl.class, "binary", "Interfaces::interfaces");
 		
@@ -195,8 +195,6 @@ public class ImplicitGeneralizationMap {
 		put(PortUsageImpl.class, "portOnPart", "Parts::Part::portsOnPart");
 		put(PortUsageImpl.class, "subport", "Ports::Port::subports");
 		
-		put(PerformActionUsageImpl.class, "enactedPerformance", "Parts::Part::performedActions");
-		
 		put(RenderingDefinitionImpl.class, "base", "Views::Rendering");
 		put(RenderingUsageImpl.class, "base", "Views::renderings");
 		put(RenderingUsageImpl.class, "subrendering", "Views::Rendering::subrenderings");
@@ -213,7 +211,7 @@ public class ImplicitGeneralizationMap {
 		
 		put(StateDefinitionImpl.class, "base", "States::StateAction");
 		put(StateUsageImpl.class, "base", "States::stateActions");
-		put(StateUsageImpl.class, "subaction", "States::StateAction::substates");
+		put(StateUsageImpl.class, "substate", "States::StateAction::substates");
 		
 		put(TransitionUsageImpl.class, "base", "Actions::transitionActions");
 		put(TransitionUsageImpl.class, "actionTransition", "Actions::Action::transitions");
@@ -225,7 +223,7 @@ public class ImplicitGeneralizationMap {
 		
 		put(VerificationCaseDefinitionImpl.class, "base", "VerificationCases::VerificationCase");
 		put(VerificationCaseUsageImpl.class, "base", "VerificationCases::verificationCases");
-		put(VerificationCaseUsageImpl.class, "subaction", "VerificationCases::VerificationCase::subVerificationCases");
+		put(VerificationCaseUsageImpl.class, "subVerificationCase", "VerificationCases::VerificationCase::subVerificationCases");
 		
 		put(ViewDefinitionImpl.class, "base", "Views::View");
 		put(ViewUsageImpl.class, "base", "Views::views");

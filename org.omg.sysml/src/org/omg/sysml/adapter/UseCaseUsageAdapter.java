@@ -21,12 +21,24 @@
 
 package org.omg.sysml.adapter;
 
+import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.lang.sysml.UseCaseDefinition;
 import org.omg.sysml.lang.sysml.UseCaseUsage;
 
 public class UseCaseUsageAdapter extends CaseUsageAdapter {
 
 	public UseCaseUsageAdapter(UseCaseUsage element) {
 		super(element);
+	}
+	
+	@Override
+	protected String getSubactionType() {
+		return isSubUseCase()? "subUseCase": super.getSubactionType();	
+	}
+		
+	public boolean isSubUseCase() {		
+		Type owningType = getTarget().getOwningType();
+		return owningType instanceof UseCaseDefinition || owningType instanceof UseCaseUsage;
 	}
 	
 	@Override

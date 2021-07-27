@@ -37,7 +37,11 @@ public class StateUsageAdapter extends ActionUsageAdapter {
 	}
 
 	@Override
-	public boolean isSubaction() {
+	protected String getSubactionType() {
+		return isSubstate()? "substate": super.getSubactionType();	
+	}
+		
+	public boolean isSubstate() {
 		Type owningType = getTarget().getOwningType();
 		return owningType instanceof StateDefinition || owningType instanceof StateUsage;
 	}

@@ -37,7 +37,11 @@ public class AnalysisCaseUsageAdapter extends CaseUsageAdapter {
 	}
 	
 	@Override
-	public boolean isSubaction() {
+	protected String getSubactionType() {
+		return isSubAnalysisCase()? "subAnalysisCase": super.getSubactionType();	
+	}
+		
+	public boolean isSubAnalysisCase() {
 		Type owningType = getTarget().getOwningType();
 		return owningType instanceof AnalysisCaseDefinition || owningType instanceof AnalysisCaseUsage;
 	}

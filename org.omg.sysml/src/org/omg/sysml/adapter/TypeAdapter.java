@@ -163,10 +163,6 @@ public class TypeAdapter extends NamespaceAdapter {
 				noneMatch(spec->spec.getSpecific() == type && TypeUtil.conforms(defaultGeneral, spec.getGeneral()));
 	}
 
-	public void addDefaultGeneralType(EClass generalizationEClass, String... superTypeNames) {
-		addImplicitGeneralType(generalizationEClass, getLibraryType(superTypeNames));
-	}
-	
 	public void addImplicitGeneralType(EClass eClass, Type general) {
 		if (general != null && general != getTarget() && !isImplicitGeneralizationFor(eClass, general)) {
 			implicitGeneralTypes.computeIfAbsent(eClass, e -> new ArrayList<>()).add(general);
@@ -229,6 +225,14 @@ public class TypeAdapter extends NamespaceAdapter {
 	
 	public void addDefaultGeneralType() {
 		addDefaultGeneralType(getGeneralizationEClass(), getDefaultSupertype());
+	}
+	
+	public void addDefaultGeneralType(String kind) {
+		addDefaultGeneralType(getGeneralizationEClass(), getDefaultSupertype(kind));
+	}
+	
+	public void addDefaultGeneralType(EClass generalizationEClass, String... superTypeNames) {
+		addImplicitGeneralType(generalizationEClass, getLibraryType(superTypeNames));
 	}
 	
 	protected EClass getGeneralizationEClass() {

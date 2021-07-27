@@ -35,10 +35,11 @@ public class PerformActionUsageAdapter extends ActionUsageAdapter {
 	}
 	
 	@Override
-	protected String getDefaultSupertype() {
-		return isEnactedPerformance()? 
-				getDefaultSupertype("enactedPerformance"):
-				super.getDefaultSupertype();
+	public void addDefaultGeneralType() {
+		super.addDefaultGeneralType();
+		if (isEnactedPerformance()) {
+			addDefaultGeneralType("enactedPerformance");
+		}
 	}
-	
+		
 }

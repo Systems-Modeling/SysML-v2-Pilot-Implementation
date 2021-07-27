@@ -89,6 +89,8 @@ import org.omg.sysml.lang.sysml.Succession
 import org.omg.sysml.lang.sysml.StateDefinition
 import org.omg.sysml.lang.sysml.Type
 import org.omg.sysml.lang.sysml.StateSubactionKind
+import org.omg.sysml.lang.sysml.UseCaseUsage
+import org.omg.sysml.lang.sysml.UseCaseDefinition
 
 /**
  * This class contains custom validation rules. 
@@ -158,6 +160,8 @@ class SysMLValidator extends KerMLValidator {
 	public static val INVALID_ANALYSISCASEUSAGE_MSG = 'An analysis case must be typed by one analysis case definition.'
 	public static val INVALID_VERIFICATIONCASEUSAGE = 'Invalid VerificationCaseUsage - invalid type'
 	public static val INVALID_VERIFICATIONCASEUSAGE_MSG = 'A verification case must be typed by one verification case definition.'
+	public static val INVALID_USECASEUSAGE = 'Invalid UseCaseUsage - invalid type'
+	public static val INVALID_USECASEUSAGE_MSG = 'A use case must be typed by one use case definition.'
 	public static val INVALID_VIEWUSAGE = 'Invalid ViewUsage - invalid type'
 	public static val INVALID_VIEWUSAGE_MSG = 'A view must be typed by one view definition.'
 	public static val INVALID_VIEWPOINTUSAGE = 'Invalid ViewpointUsage - invalid type'
@@ -248,7 +252,7 @@ class SysMLValidator extends KerMLValidator {
 	}
 	@Check //Must have exactly one type, which is a CaseDefinition.
 	def checkCaseUsageTypes(CaseUsage usg){
-		if (!(usg instanceof AnalysisCaseUsage || usg instanceof VerificationCaseUsage))
+		if (!(usg instanceof AnalysisCaseUsage || usg instanceof VerificationCaseUsage || usg instanceof UseCaseUsage))
 			checkOneType(usg, CaseDefinition, SysMLValidator.INVALID_CASEUSAGE_MSG, SysMLPackage.eINSTANCE.caseUsage_CaseDefinition, SysMLValidator.INVALID_CASEUSAGE)
 	}
 	@Check //Must have exactly one type, which is an AnalysisCaseDefinition.
@@ -258,6 +262,10 @@ class SysMLValidator extends KerMLValidator {
 	@Check //Must have exactly one type, which is a VerificationCaseDefinition.
 	def checkVerificationCaseUsageTypes(VerificationCaseUsage usg){
 		checkOneType(usg, VerificationCaseDefinition, SysMLValidator.INVALID_VERIFICATIONCASEUSAGE_MSG, SysMLPackage.eINSTANCE.verificationCaseUsage_VerificationCaseDefinition, SysMLValidator.INVALID_VERIFICATIONCASEUSAGE)
+	}
+	@Check //Must have exactly one type, which is a UseCaseDefinition.
+	def checkUseCaseUsageTypes(UseCaseUsage usg){
+		checkOneType(usg, UseCaseDefinition, SysMLValidator.INVALID_USECASEUSAGE_MSG, SysMLPackage.eINSTANCE.useCaseUsage_UseCaseDefinition, SysMLValidator.INVALID_USECASEUSAGE)
 	}
 	@Check //Must have one occurrenceDefinition that is an individual.
 	def checkIndividualUsageTypes(OccurrenceUsage usg){

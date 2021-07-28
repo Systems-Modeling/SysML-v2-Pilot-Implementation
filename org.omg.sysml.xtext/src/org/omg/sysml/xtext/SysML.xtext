@@ -1911,7 +1911,7 @@ RequirementUsage returns SysML::RequirementUsage :
 ;
 
 SatisfyRequirementUsage returns SysML::SatisfyRequirementUsage :
-	OccurrenceUsagePrefix ( isNegated ?= 'not' )? 'satisfy' 
+	OccurrenceUsagePrefix 'assert'? ( isNegated ?= 'not' )? 'satisfy' 
 	( ownedRelationship += OwnedSubsetting FeatureSpecializationPart?
     | RequirementUsageKeyword UsageDeclaration? 
     )

@@ -126,8 +126,8 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getRequirementBodyItemAccess().getAlternatives(), "rule__RequirementBodyItem__Alternatives");
 			builder.put(grammarAccess.getRequirementConstraintUsageAccess().getAlternatives(), "rule__RequirementConstraintUsage__Alternatives");
 			builder.put(grammarAccess.getFramedConcernUsageAccess().getAlternatives(), "rule__FramedConcernUsage__Alternatives");
-			builder.put(grammarAccess.getSatisfyRequirementUsageAccess().getAlternatives_3(), "rule__SatisfyRequirementUsage__Alternatives_3");
 			builder.put(grammarAccess.getSatisfyRequirementUsageAccess().getAlternatives_4(), "rule__SatisfyRequirementUsage__Alternatives_4");
+			builder.put(grammarAccess.getSatisfyRequirementUsageAccess().getAlternatives_5(), "rule__SatisfyRequirementUsage__Alternatives_5");
 			builder.put(grammarAccess.getCaseBodyAccess().getAlternatives(), "rule__CaseBody__Alternatives");
 			builder.put(grammarAccess.getCaseBodyItemAccess().getAlternatives(), "rule__CaseBodyItem__Alternatives");
 			builder.put(grammarAccess.getRequirementVerificationUsageAccess().getAlternatives(), "rule__RequirementVerificationUsage__Alternatives");
@@ -482,9 +482,9 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getStakeholderUsageAccess().getGroup(), "rule__StakeholderUsage__Group__0");
 			builder.put(grammarAccess.getRequirementUsageAccess().getGroup(), "rule__RequirementUsage__Group__0");
 			builder.put(grammarAccess.getSatisfyRequirementUsageAccess().getGroup(), "rule__SatisfyRequirementUsage__Group__0");
-			builder.put(grammarAccess.getSatisfyRequirementUsageAccess().getGroup_3_0(), "rule__SatisfyRequirementUsage__Group_3_0__0");
-			builder.put(grammarAccess.getSatisfyRequirementUsageAccess().getGroup_3_1(), "rule__SatisfyRequirementUsage__Group_3_1__0");
-			builder.put(grammarAccess.getSatisfyRequirementUsageAccess().getGroup_5(), "rule__SatisfyRequirementUsage__Group_5__0");
+			builder.put(grammarAccess.getSatisfyRequirementUsageAccess().getGroup_4_0(), "rule__SatisfyRequirementUsage__Group_4_0__0");
+			builder.put(grammarAccess.getSatisfyRequirementUsageAccess().getGroup_4_1(), "rule__SatisfyRequirementUsage__Group_4_1__0");
+			builder.put(grammarAccess.getSatisfyRequirementUsageAccess().getGroup_6(), "rule__SatisfyRequirementUsage__Group_6__0");
 			builder.put(grammarAccess.getSatisfactionReferenceExpressionAccess().getGroup(), "rule__SatisfactionReferenceExpression__Group__0");
 			builder.put(grammarAccess.getSatisfactionReferenceExpressionAccess().getGroup_1(), "rule__SatisfactionReferenceExpression__Group_1__0");
 			builder.put(grammarAccess.getConcernDefKeywordAccess().getGroup(), "rule__ConcernDefKeyword__Group__0");
@@ -944,9 +944,9 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getFramedConcernUsageAccess().getOwnedRelationshipAssignment_0_0(), "rule__FramedConcernUsage__OwnedRelationshipAssignment_0_0");
 			builder.put(grammarAccess.getActorMemberAccess().getOwnedRelatedElementAssignment_1(), "rule__ActorMember__OwnedRelatedElementAssignment_1");
 			builder.put(grammarAccess.getStakeholderMemberAccess().getOwnedRelatedElementAssignment_1(), "rule__StakeholderMember__OwnedRelatedElementAssignment_1");
-			builder.put(grammarAccess.getSatisfyRequirementUsageAccess().getIsNegatedAssignment_1(), "rule__SatisfyRequirementUsage__IsNegatedAssignment_1");
-			builder.put(grammarAccess.getSatisfyRequirementUsageAccess().getOwnedRelationshipAssignment_3_0_0(), "rule__SatisfyRequirementUsage__OwnedRelationshipAssignment_3_0_0");
-			builder.put(grammarAccess.getSatisfyRequirementUsageAccess().getOwnedRelationshipAssignment_5_1(), "rule__SatisfyRequirementUsage__OwnedRelationshipAssignment_5_1");
+			builder.put(grammarAccess.getSatisfyRequirementUsageAccess().getIsNegatedAssignment_2(), "rule__SatisfyRequirementUsage__IsNegatedAssignment_2");
+			builder.put(grammarAccess.getSatisfyRequirementUsageAccess().getOwnedRelationshipAssignment_4_0_0(), "rule__SatisfyRequirementUsage__OwnedRelationshipAssignment_4_0_0");
+			builder.put(grammarAccess.getSatisfyRequirementUsageAccess().getOwnedRelationshipAssignment_6_1(), "rule__SatisfyRequirementUsage__OwnedRelationshipAssignment_6_1");
 			builder.put(grammarAccess.getSatisfactionSubjectMemberAccess().getOwnedRelatedElementAssignment(), "rule__SatisfactionSubjectMember__OwnedRelatedElementAssignment");
 			builder.put(grammarAccess.getSatisfactionParameterAccess().getOwnedRelationshipAssignment(), "rule__SatisfactionParameter__OwnedRelationshipAssignment");
 			builder.put(grammarAccess.getSatisfactionFeatureValueAccess().getOwnedRelatedElementAssignment(), "rule__SatisfactionFeatureValue__OwnedRelatedElementAssignment");

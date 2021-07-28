@@ -37,7 +37,7 @@ package '15_13-Discretely Sampled Function Value' {
 	 */
 	attribute def MissionElapsedTimeValue :> TimeInstantValue { :>> mRef = mets; }
 
-	/*
+	/**
 	 * Define Cartesian 3D coordinate systems for position and velocity
 	 * Create a velocity coordinate system from the spatial coordinate system through division by second
 	 */
@@ -57,7 +57,7 @@ package '15_13-Discretely Sampled Function Value' {
 		attribute :>> samples: AscentSample[*] ordered;
 	}
 
-	/* Example ascent profile */
+	/** Example ascent profile */
 	attribute ascentProfile1: AscentProfile {
 		attribute sample1: AscentSample { :>> domainValue = 0.0 [mets]; :>> rangeValue = pv1;
 			attribute pv1: PositionAndVelocity {:>> position = (0, 0, 0) [spatialCS]; :>> velocity = (0, 0, 0) [velocityCS]; } }

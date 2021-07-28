@@ -52,10 +52,10 @@ package States {
 		in transitionLinkSource[1]: StateAction :>> 
 			TransitionAction::transitionLinkSource, StateTransitionPerformance::transitionLinkSource;
 			
-		out triggerPayload[0..*];
+		out payload[0..*];
 		in receiver : Occurrence[1];
 		
-		bind triggerPayload = accepter.items;
+		bind payload = accepter.payload;
 		bind receiver = accepter.receiver;
 	}
 	

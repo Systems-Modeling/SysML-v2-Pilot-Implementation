@@ -39,7 +39,11 @@ public class CalculationUsageAdapter extends ActionUsageAdapter {
 	}
 	
 	@Override
-	public boolean isSubaction() {
+	protected String getSubactionType() {
+		return isSubcalculation()? "subcalculation": super.getSubactionType();	
+	}		
+		
+	public boolean isSubcalculation() {
 		Type owningType = getTarget().getOwningType();
 		return owningType instanceof CalculationDefinition || owningType instanceof CalculationUsage;
 	}

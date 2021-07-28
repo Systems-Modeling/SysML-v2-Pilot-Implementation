@@ -37,7 +37,11 @@ public class VerificationCaseUsageAdapter extends CaseUsageAdapter {
 	}
 	
 	@Override
-	public boolean isSubaction() {
+	protected String getSubactionType() {
+		return isSubVerificationCase()? "subVerificationCase": super.getSubactionType();	
+	}
+		
+	public boolean isSubVerificationCase() {
 		Type owningType = getTarget().getOwningType();
 		return owningType instanceof VerificationCaseDefinition || owningType instanceof VerificationCaseUsage;
 	}

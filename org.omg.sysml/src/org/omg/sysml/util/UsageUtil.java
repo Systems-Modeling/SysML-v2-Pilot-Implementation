@@ -28,6 +28,7 @@ import java.util.stream.Stream;
 import org.omg.sysml.adapter.UsageAdapter;
 import org.omg.sysml.lang.sysml.AcceptActionUsage;
 import org.omg.sysml.lang.sysml.ActionUsage;
+import org.omg.sysml.lang.sysml.ActorMembership;
 import org.omg.sysml.lang.sysml.FramedConcernMembership;
 import org.omg.sysml.lang.sysml.ConcernUsage;
 import org.omg.sysml.lang.sysml.ConstraintUsage;
@@ -46,6 +47,7 @@ import org.omg.sysml.lang.sysml.RequirementDefinition;
 import org.omg.sysml.lang.sysml.RequirementUsage;
 import org.omg.sysml.lang.sysml.RequirementVerificationMembership;
 import org.omg.sysml.lang.sysml.SatisfyRequirementUsage;
+import org.omg.sysml.lang.sysml.StakeholderMembership;
 import org.omg.sysml.lang.sysml.StateDefinition;
 import org.omg.sysml.lang.sysml.StateSubactionKind;
 import org.omg.sysml.lang.sysml.StateSubactionMembership;
@@ -112,6 +114,18 @@ public class UsageUtil {
 		Feature subject = usage.getSubjectParameter();
 		return subject == null? null:  FeatureUtil.getValuationFor(subject);
 	}
+	
+	// Actors
+	
+	public static boolean isActorParameter(Usage usage) {
+		return usage.getOwningFeatureMembership() instanceof ActorMembership;
+	}
+
+	// Stakeholders
+	
+	public static boolean isStakeholderParameter(Usage usage) {
+		return usage.getOwningFeatureMembership() instanceof StakeholderMembership;
+	}	
 	
 	// Send and Accept Actions
 	

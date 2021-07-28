@@ -53,7 +53,11 @@ public class CaseUsageAdapter extends CalculationUsageAdapter {
 	// Implicit Generalization
 	
 	@Override
-	public boolean isSubaction() {
+	protected String getSubactionType() {
+		return isSubcase()? "subcase": super.getSubactionType();	
+	}
+		
+	public boolean isSubcase() {
 		Type owningType = getTarget().getOwningType();
 		return owningType instanceof CaseDefinition || owningType instanceof CaseUsage;
 	}

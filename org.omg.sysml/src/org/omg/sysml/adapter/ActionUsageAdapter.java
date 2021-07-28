@@ -29,6 +29,8 @@ import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
+import org.omg.sysml.lang.sysml.PartDefinition;
+import org.omg.sysml.lang.sysml.PartUsage;
 import org.omg.sysml.lang.sysml.StateSubactionMembership;
 import org.omg.sysml.lang.sysml.TransitionFeatureMembership;
 import org.omg.sysml.lang.sysml.Type;
@@ -52,15 +54,27 @@ public class ActionUsageAdapter extends OccurrenceUsageAdapter {
 	// Implicit Generalization
 	
 	@Override
-	protected String getDefaultSupertype() {
-		return isSubaction()? 
-					getDefaultSupertype("subaction"):
-					getDefaultSupertype("base");
+	public void addDefaultGeneralType() {
+		super.addDefaultGeneralType();
+		String subactionType = getSubactionType();
+		if (subactionType != null) {
+			addDefaultGeneralType(subactionType);
+		}
 	}
 	
+	protected String getSubactionType() {
+		return isSubaction()? "subaction": null;	
+	}
+		
 	public boolean isSubaction() {
 		Type owningType = getTarget().getOwningType();
 		return owningType instanceof ActionDefinition || owningType instanceof ActionUsage;
+	}	
+	
+	// Used in subclasses.
+	public boolean isEnactedPerformance() {		
+		Type owningType = getTarget().getOwningType();
+		return owningType instanceof PartDefinition || owningType instanceof PartUsage;
 	}
 	
 	// Computed Redefinition

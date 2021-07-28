@@ -22,9 +22,6 @@
 package org.omg.sysml.adapter;
 
 import org.omg.sysml.lang.sysml.ExhibitStateUsage;
-import org.omg.sysml.lang.sysml.PartDefinition;
-import org.omg.sysml.lang.sysml.PartUsage;
-import org.omg.sysml.lang.sysml.Type;
 
 public class ExhibitStateUsageAdapter extends StateUsageAdapter {
 
@@ -41,21 +38,8 @@ public class ExhibitStateUsageAdapter extends StateUsageAdapter {
 	public void addDefaultGeneralType() {
 		super.addDefaultGeneralType();
 		if (isEnactedPerformance()) {
-			addImplicitGeneralType(getGeneralizationEClass(), 
-					getLibraryType(getDefaultSupertype("enactedPerformance")));;
+			addDefaultGeneralType("enactedPerformance");
 		}
 	}
-
-	@Override
-	protected String getDefaultSupertype() {
-		return isEnactedPerformance()? 
-				getDefaultSupertype("enactedPerformance"):
-				super.getDefaultSupertype();
-	}
-	
-	public boolean isEnactedPerformance() {		
-		Type owningType = getTarget().getOwningType();
-		return owningType instanceof PartDefinition || owningType instanceof PartUsage;
-	}
-	
+		
 }

@@ -8,6 +8,11 @@ package org.omg.sysml.lang.sysml;
  * A representation of the model object '<em><b>End Feature Membership</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * <p>EndFeatureMembership is a FeatureMembership that requires its <code>memberFeature</code> be owned and have <code>isEnd = true</code>.</p>
+ * ownedMemberFeature.isEnd
+ * <!-- end-model-doc -->
+ *
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getEndFeatureMembership()
  * @model

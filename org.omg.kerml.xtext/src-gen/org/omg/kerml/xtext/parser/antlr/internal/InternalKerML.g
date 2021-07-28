@@ -3217,29 +3217,38 @@ ruleNonFeatureElement returns [EObject current=null]
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getNonFeatureElementAccess().getSubsettingParserRuleCall_23());
+			newCompositeNode(grammarAccess.getNonFeatureElementAccess().getDisjoiningParserRuleCall_23());
 		}
-		this_Subsetting_23=ruleSubsetting
+		this_Disjoining_23=ruleDisjoining
 		{
-			$current = $this_Subsetting_23.current;
+			$current = $this_Disjoining_23.current;
 			afterParserOrEnumRuleCall();
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getNonFeatureElementAccess().getRedefinitionParserRuleCall_24());
+			newCompositeNode(grammarAccess.getNonFeatureElementAccess().getSubsettingParserRuleCall_24());
 		}
-		this_Redefinition_24=ruleRedefinition
+		this_Subsetting_24=ruleSubsetting
 		{
-			$current = $this_Redefinition_24.current;
+			$current = $this_Subsetting_24.current;
 			afterParserOrEnumRuleCall();
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getNonFeatureElementAccess().getTypeFeaturingParserRuleCall_25());
+			newCompositeNode(grammarAccess.getNonFeatureElementAccess().getRedefinitionParserRuleCall_25());
 		}
-		this_TypeFeaturing_25=ruleTypeFeaturing
+		this_Redefinition_25=ruleRedefinition
 		{
-			$current = $this_TypeFeaturing_25.current;
+			$current = $this_Redefinition_25.current;
+			afterParserOrEnumRuleCall();
+		}
+		    |
+		{
+			newCompositeNode(grammarAccess.getNonFeatureElementAccess().getTypeFeaturingParserRuleCall_26());
+		}
+		this_TypeFeaturing_26=ruleTypeFeaturing
+		{
+			$current = $this_TypeFeaturing_26.current;
 			afterParserOrEnumRuleCall();
 		}
 	)
@@ -3750,6 +3759,19 @@ ruleTypeDeclaration[EObject in_current]  returns [EObject current=in_current]
 				afterParserOrEnumRuleCall();
 			}
 		)+
+		(
+			{
+				if ($current==null) {
+					$current = createModelElement(grammarAccess.getTypeDeclarationRule());
+				}
+				newCompositeNode(grammarAccess.getTypeDeclarationAccess().getDisjoiningPartParserRuleCall_4());
+			}
+			this_DisjoiningPart_5=ruleDisjoiningPart[$current]
+			{
+				$current = $this_DisjoiningPart_5.current;
+				afterParserOrEnumRuleCall();
+			}
+		)?
 	)
 ;
 
@@ -3861,6 +3883,71 @@ ruleConjugationPart[EObject in_current]  returns [EObject current=in_current]
 				}
 			)
 		)
+	)
+;
+
+
+// Rule DisjoiningPart
+ruleDisjoiningPart[EObject in_current]  returns [EObject current=in_current]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		otherlv_0='disjoint'
+		{
+			newLeafNode(otherlv_0, grammarAccess.getDisjoiningPartAccess().getDisjointKeyword_0());
+		}
+		otherlv_1='from'
+		{
+			newLeafNode(otherlv_1, grammarAccess.getDisjoiningPartAccess().getFromKeyword_1());
+		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getDisjoiningPartAccess().getOwnedRelationshipOwnedDisjoiningParserRuleCall_2_0());
+				}
+				lv_ownedRelationship_2_0=ruleOwnedDisjoining
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getDisjoiningPartRule());
+					}
+					add(
+						$current,
+						"ownedRelationship",
+						lv_ownedRelationship_2_0,
+						"org.omg.kerml.xtext.KerML.OwnedDisjoining");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		(
+			otherlv_3=','
+			{
+				newLeafNode(otherlv_3, grammarAccess.getDisjoiningPartAccess().getCommaKeyword_3_0());
+			}
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getDisjoiningPartAccess().getOwnedRelationshipOwnedDisjoiningParserRuleCall_3_1_0());
+					}
+					lv_ownedRelationship_4_0=ruleOwnedDisjoining
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getDisjoiningPartRule());
+						}
+						add(
+							$current,
+							"ownedRelationship",
+							lv_ownedRelationship_4_0,
+							"org.omg.kerml.xtext.KerML.OwnedDisjoining");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+		)*
 	)
 ;
 
@@ -4531,26 +4618,28 @@ ruleConjugation returns [EObject current=null]
 	leaveRule();
 }:
 	(
-		otherlv_0='conjugation'
-		{
-			newLeafNode(otherlv_0, grammarAccess.getConjugationAccess().getConjugationKeyword_0());
-		}
 		(
+			otherlv_0='conjugation'
 			{
-				if ($current==null) {
-					$current = createModelElement(grammarAccess.getConjugationRule());
+				newLeafNode(otherlv_0, grammarAccess.getConjugationAccess().getConjugationKeyword_0_0());
+			}
+			(
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getConjugationRule());
+					}
+					newCompositeNode(grammarAccess.getConjugationAccess().getIdentificationParserRuleCall_0_1());
 				}
-				newCompositeNode(grammarAccess.getConjugationAccess().getIdentificationParserRuleCall_1());
-			}
-			this_Identification_1=ruleIdentification[$current]
-			{
-				$current = $this_Identification_1.current;
-				afterParserOrEnumRuleCall();
-			}
+				this_Identification_1=ruleIdentification[$current]
+				{
+					$current = $this_Identification_1.current;
+					afterParserOrEnumRuleCall();
+				}
+			)?
 		)?
-		otherlv_2='type'
+		otherlv_2='conjugate'
 		{
-			newLeafNode(otherlv_2, grammarAccess.getConjugationAccess().getTypeKeyword_2());
+			newLeafNode(otherlv_2, grammarAccess.getConjugationAccess().getConjugateKeyword_1());
 		}
 		(
 			(
@@ -4560,7 +4649,7 @@ ruleConjugation returns [EObject current=null]
 					}
 				}
 				{
-					newCompositeNode(grammarAccess.getConjugationAccess().getConjugatedTypeTypeCrossReference_3_0());
+					newCompositeNode(grammarAccess.getConjugationAccess().getConjugatedTypeTypeCrossReference_2_0());
 				}
 				ruleQualifiedName
 				{
@@ -4571,12 +4660,12 @@ ruleConjugation returns [EObject current=null]
 		(
 			otherlv_4='~'
 			{
-				newLeafNode(otherlv_4, grammarAccess.getConjugationAccess().getTildeKeyword_4_0());
+				newLeafNode(otherlv_4, grammarAccess.getConjugationAccess().getTildeKeyword_3_0());
 			}
 			    |
 			otherlv_5='conjugates'
 			{
-				newLeafNode(otherlv_5, grammarAccess.getConjugationAccess().getConjugatesKeyword_4_1());
+				newLeafNode(otherlv_5, grammarAccess.getConjugationAccess().getConjugatesKeyword_3_1());
 			}
 		)
 		(
@@ -4587,7 +4676,7 @@ ruleConjugation returns [EObject current=null]
 					}
 				}
 				{
-					newCompositeNode(grammarAccess.getConjugationAccess().getOriginalTypeTypeCrossReference_5_0());
+					newCompositeNode(grammarAccess.getConjugationAccess().getOriginalTypeTypeCrossReference_4_0());
 				}
 				ruleQualifiedName
 				{
@@ -4597,7 +4686,7 @@ ruleConjugation returns [EObject current=null]
 		)
 		otherlv_7=';'
 		{
-			newLeafNode(otherlv_7, grammarAccess.getConjugationAccess().getSemicolonKeyword_6());
+			newLeafNode(otherlv_7, grammarAccess.getConjugationAccess().getSemicolonKeyword_5());
 		}
 	)
 ;
@@ -4626,6 +4715,121 @@ ruleOwnedConjugation returns [EObject current=null]
 			}
 			{
 				newCompositeNode(grammarAccess.getOwnedConjugationAccess().getOriginalTypeTypeCrossReference_0());
+			}
+			ruleQualifiedName
+			{
+				afterParserOrEnumRuleCall();
+			}
+		)
+	)
+;
+
+// Entry rule entryRuleDisjoining
+entryRuleDisjoining returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getDisjoiningRule()); }
+	iv_ruleDisjoining=ruleDisjoining
+	{ $current=$iv_ruleDisjoining.current; }
+	EOF;
+
+// Rule Disjoining
+ruleDisjoining returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			otherlv_0='disjoining'
+			{
+				newLeafNode(otherlv_0, grammarAccess.getDisjoiningAccess().getDisjoiningKeyword_0_0());
+			}
+			(
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getDisjoiningRule());
+					}
+					newCompositeNode(grammarAccess.getDisjoiningAccess().getIdentificationParserRuleCall_0_1());
+				}
+				this_Identification_1=ruleIdentification[$current]
+				{
+					$current = $this_Identification_1.current;
+					afterParserOrEnumRuleCall();
+				}
+			)?
+		)?
+		otherlv_2='disjoint'
+		{
+			newLeafNode(otherlv_2, grammarAccess.getDisjoiningAccess().getDisjointKeyword_1());
+		}
+		(
+			(
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getDisjoiningRule());
+					}
+				}
+				{
+					newCompositeNode(grammarAccess.getDisjoiningAccess().getTypeDisjoinedTypeCrossReference_2_0());
+				}
+				ruleQualifiedName
+				{
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		otherlv_4='from'
+		{
+			newLeafNode(otherlv_4, grammarAccess.getDisjoiningAccess().getFromKeyword_3());
+		}
+		(
+			(
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getDisjoiningRule());
+					}
+				}
+				{
+					newCompositeNode(grammarAccess.getDisjoiningAccess().getDisjoiningTypeTypeCrossReference_4_0());
+				}
+				ruleQualifiedName
+				{
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		otherlv_6=';'
+		{
+			newLeafNode(otherlv_6, grammarAccess.getDisjoiningAccess().getSemicolonKeyword_5());
+		}
+	)
+;
+
+// Entry rule entryRuleOwnedDisjoining
+entryRuleOwnedDisjoining returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getOwnedDisjoiningRule()); }
+	iv_ruleOwnedDisjoining=ruleOwnedDisjoining
+	{ $current=$iv_ruleOwnedDisjoining.current; }
+	EOF;
+
+// Rule OwnedDisjoining
+ruleOwnedDisjoining returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			{
+				if ($current==null) {
+					$current = createModelElement(grammarAccess.getOwnedDisjoiningRule());
+				}
+			}
+			{
+				newCompositeNode(grammarAccess.getOwnedDisjoiningAccess().getDisjoiningTypeTypeCrossReference_0());
 			}
 			ruleQualifiedName
 			{
@@ -4772,6 +4976,19 @@ ruleClassifierDeclaration[EObject in_current]  returns [EObject current=in_curre
 			this_ClassifierConjugationPart_4=ruleClassifierConjugationPart[$current]
 			{
 				$current = $this_ClassifierConjugationPart_4.current;
+				afterParserOrEnumRuleCall();
+			}
+		)?
+		(
+			{
+				if ($current==null) {
+					$current = createModelElement(grammarAccess.getClassifierDeclarationRule());
+				}
+				newCompositeNode(grammarAccess.getClassifierDeclarationAccess().getDisjoiningPartParserRuleCall_4());
+			}
+			this_DisjoiningPart_5=ruleDisjoiningPart[$current]
+			{
+				$current = $this_DisjoiningPart_5.current;
 				afterParserOrEnumRuleCall();
 			}
 		)?
@@ -5308,11 +5525,24 @@ ruleFeatureDeclaration[EObject in_current]  returns [EObject current=in_current]
 				if ($current==null) {
 					$current = createModelElement(grammarAccess.getFeatureDeclarationRule());
 				}
-				newCompositeNode(grammarAccess.getFeatureDeclarationAccess().getTypeFeaturingPartParserRuleCall_2());
+				newCompositeNode(grammarAccess.getFeatureDeclarationAccess().getDisjoiningPartParserRuleCall_2());
 			}
-			this_TypeFeaturingPart_6=ruleTypeFeaturingPart[$current]
+			this_DisjoiningPart_6=ruleDisjoiningPart[$current]
 			{
-				$current = $this_TypeFeaturingPart_6.current;
+				$current = $this_DisjoiningPart_6.current;
+				afterParserOrEnumRuleCall();
+			}
+		)?
+		(
+			{
+				if ($current==null) {
+					$current = createModelElement(grammarAccess.getFeatureDeclarationRule());
+				}
+				newCompositeNode(grammarAccess.getFeatureDeclarationAccess().getTypeFeaturingPartParserRuleCall_3());
+			}
+			this_TypeFeaturingPart_7=ruleTypeFeaturingPart[$current]
+			{
+				$current = $this_TypeFeaturingPart_7.current;
 				afterParserOrEnumRuleCall();
 			}
 		)?

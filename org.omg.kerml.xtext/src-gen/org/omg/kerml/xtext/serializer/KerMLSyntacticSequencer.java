@@ -36,7 +36,9 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	protected AbstractElementAlias match_Comment_CommentKeyword_0_0_0_or_CommentKeyword_0_1_0_0;
 	protected AbstractElementAlias match_Comment_CommentKeyword_0_1_0_0_q;
 	protected AbstractElementAlias match_ConjugationPart_ConjugatesKeyword_0_1_or_TildeKeyword_0_0;
-	protected AbstractElementAlias match_Conjugation_ConjugatesKeyword_4_1_or_TildeKeyword_4_0;
+	protected AbstractElementAlias match_Conjugation_ConjugatesKeyword_3_1_or_TildeKeyword_3_0;
+	protected AbstractElementAlias match_Conjugation_ConjugationKeyword_0_0_q;
+	protected AbstractElementAlias match_Disjoining_DisjoiningKeyword_0_0_q;
 	protected AbstractElementAlias match_ElementBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__;
 	protected AbstractElementAlias match_FeatureConjugationPart_ConjugatesKeyword_0_1_or_TildeKeyword_0_0;
 	protected AbstractElementAlias match_FeatureTyping_ColonKeyword_3_0_or___TypedKeyword_3_1_0_ByKeyword_3_1_1__;
@@ -94,7 +96,9 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 		match_Comment_CommentKeyword_0_0_0_or_CommentKeyword_0_1_0_0 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getCommentAccess().getCommentKeyword_0_0_0()), new TokenAlias(false, false, grammarAccess.getCommentAccess().getCommentKeyword_0_1_0_0()));
 		match_Comment_CommentKeyword_0_1_0_0_q = new TokenAlias(false, true, grammarAccess.getCommentAccess().getCommentKeyword_0_1_0_0());
 		match_ConjugationPart_ConjugatesKeyword_0_1_or_TildeKeyword_0_0 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getConjugationPartAccess().getConjugatesKeyword_0_1()), new TokenAlias(false, false, grammarAccess.getConjugationPartAccess().getTildeKeyword_0_0()));
-		match_Conjugation_ConjugatesKeyword_4_1_or_TildeKeyword_4_0 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getConjugationAccess().getConjugatesKeyword_4_1()), new TokenAlias(false, false, grammarAccess.getConjugationAccess().getTildeKeyword_4_0()));
+		match_Conjugation_ConjugatesKeyword_3_1_or_TildeKeyword_3_0 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getConjugationAccess().getConjugatesKeyword_3_1()), new TokenAlias(false, false, grammarAccess.getConjugationAccess().getTildeKeyword_3_0()));
+		match_Conjugation_ConjugationKeyword_0_0_q = new TokenAlias(false, true, grammarAccess.getConjugationAccess().getConjugationKeyword_0_0());
+		match_Disjoining_DisjoiningKeyword_0_0_q = new TokenAlias(false, true, grammarAccess.getDisjoiningAccess().getDisjoiningKeyword_0_0());
 		match_ElementBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getElementBodyAccess().getLeftCurlyBracketKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getElementBodyAccess().getRightCurlyBracketKeyword_1_2())), new TokenAlias(false, false, grammarAccess.getElementBodyAccess().getSemicolonKeyword_0()));
 		match_FeatureConjugationPart_ConjugatesKeyword_0_1_or_TildeKeyword_0_0 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getFeatureConjugationPartAccess().getConjugatesKeyword_0_1()), new TokenAlias(false, false, grammarAccess.getFeatureConjugationPartAccess().getTildeKeyword_0_0()));
 		match_FeatureTyping_ColonKeyword_3_0_or___TypedKeyword_3_1_0_ByKeyword_3_1_1__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getFeatureTypingAccess().getTypedKeyword_3_1_0()), new TokenAlias(false, false, grammarAccess.getFeatureTypingAccess().getByKeyword_3_1_1())), new TokenAlias(false, false, grammarAccess.getFeatureTypingAccess().getColonKeyword_3_0()));
@@ -176,8 +180,12 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 				emit_Comment_CommentKeyword_0_1_0_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_ConjugationPart_ConjugatesKeyword_0_1_or_TildeKeyword_0_0.equals(syntax))
 				emit_ConjugationPart_ConjugatesKeyword_0_1_or_TildeKeyword_0_0(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_Conjugation_ConjugatesKeyword_4_1_or_TildeKeyword_4_0.equals(syntax))
-				emit_Conjugation_ConjugatesKeyword_4_1_or_TildeKeyword_4_0(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_Conjugation_ConjugatesKeyword_3_1_or_TildeKeyword_3_0.equals(syntax))
+				emit_Conjugation_ConjugatesKeyword_3_1_or_TildeKeyword_3_0(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_Conjugation_ConjugationKeyword_0_0_q.equals(syntax))
+				emit_Conjugation_ConjugationKeyword_0_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_Disjoining_DisjoiningKeyword_0_0_q.equals(syntax))
+				emit_Disjoining_DisjoiningKeyword_0_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_ElementBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__.equals(syntax))
 				emit_ElementBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_FeatureConjugationPart_ConjugatesKeyword_0_1_or_TildeKeyword_0_0.equals(syntax))
@@ -498,7 +506,29 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 * This ambiguous syntax occurs at:
 	 *     conjugatedType=[Type|QualifiedName] (ambiguity) originalType=[Type|QualifiedName]
 	 */
-	protected void emit_Conjugation_ConjugatesKeyword_4_1_or_TildeKeyword_4_0(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_Conjugation_ConjugatesKeyword_3_1_or_TildeKeyword_3_0(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Ambiguous syntax:
+	 *     'conjugation'?
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     (rule start) (ambiguity) 'conjugate' conjugatedType=[Type|QualifiedName]
+	 */
+	protected void emit_Conjugation_ConjugationKeyword_0_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Ambiguous syntax:
+	 *     'disjoining'?
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     (rule start) (ambiguity) 'disjoint' typeDisjoined=[Type|QualifiedName]
+	 */
+	protected void emit_Disjoining_DisjoiningKeyword_0_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
@@ -725,6 +755,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     ownedRelationship+=EmptyReturnParameterMember (ambiguity) (rule end)
 	 *     ownedRelationship+=FeatureConjugation (ambiguity) (rule end)
 	 *     ownedRelationship+=FeatureValue (ambiguity) (rule end)
+	 *     ownedRelationship+=OwnedDisjoining (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedFeatureTyping (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedMultiplicity (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedRedefinition (ambiguity) (rule end)
@@ -1441,6 +1472,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     ownedRelationship+=FeatureValue (ambiguity) (rule end)
 	 *     ownedRelationship+=ItemFlowEndMember (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedConjugation (ambiguity) (rule end)
+	 *     ownedRelationship+=OwnedDisjoining (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedFeatureTyping (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedMultiplicity (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedRedefinition (ambiguity) (rule end)

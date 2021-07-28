@@ -331,6 +331,7 @@ NonFeatureElement returns SysML::Element :
 	| Conjugation
 	| FeatureTyping
 	| Subclassification
+	| Disjoining
 	| Subsetting
 	| Redefinition
 	| TypeFeaturing
@@ -389,6 +390,7 @@ fragment TypeDeclaration returns SysML::Type :
     ( isSufficient ?= 'all' )? Identification?
     ( ownedRelationship += OwnedMultiplicity )? 
     ( SpecializationPart | ConjugationPart )+
+    DisjoiningPart?
 ;
 
 fragment SpecializationPart returns SysML::Type :
@@ -398,6 +400,11 @@ fragment SpecializationPart returns SysML::Type :
 
 fragment ConjugationPart returns SysML::Type :
 	( '~' | 'conjugates' ) ownedRelationship += OwnedConjugation
+;
+
+fragment DisjoiningPart returns SysML::Type :
+	'disjoint' 'from' ownedRelationship += OwnedDisjoining
+	( ',' ownedRelationship += OwnedDisjoining )* 
 ;
 
 fragment TypeBody returns SysML::Type :
@@ -456,13 +463,25 @@ OwnedSpecialization returns SysML::Specialization :
 /* Conjugation */
 
 Conjugation returns SysML::Conjugation :
-	'conjugation' Identification? 
-    'type' conjugatedType = [SysML::Type | QualifiedName] 
+	( 'conjugation' Identification? )?
+    'conjugate' conjugatedType = [SysML::Type | QualifiedName] 
     ( '~' | 'conjugates') originalType = [SysML::Type | QualifiedName] ';'
 ;
 
 OwnedConjugation returns SysML::Conjugation :
 	originalType = [SysML::Type | QualifiedName]
+;
+
+/* Disjoining */
+
+Disjoining returns SysML::Disjoining :
+	( 'disjoining' Identification? )?
+	'disjoint' typeDisjoined = [SysML::Type | QualifiedName] 
+	'from' disjoiningType = [SysML::Type | QualifiedName] ';'
+;
+
+OwnedDisjoining returns SysML::Disjoining :
+	disjoiningType = [SysML::Type | QualifiedName]
 ;
 
 /* CLASSIFIERS */
@@ -478,6 +497,7 @@ fragment ClassifierDeclaration returns SysML::Classifier :
     (isSufficient ?= 'all' )? Identification?
 	( ownedRelationship += OwnedMultiplicity )?
 	( SuperclassingPart | ClassifierConjugationPart )?
+	DisjoiningPart?
 ;
 
 fragment SuperclassingPart returns SysML::Classifier :
@@ -533,7 +553,9 @@ fragment FeatureDeclaration returns SysML::Feature :
 	( Identification ( FeatureSpecializationPart | FeatureConjugationPart )?
 	| FeatureSpecializationPart
 	| FeatureConjugationPart
-	) TypeFeaturingPart?
+	)
+	DisjoiningPart?
+	TypeFeaturingPart?
 ;
 
 fragment TypeFeaturingPart returns SysML::Feature :

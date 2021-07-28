@@ -63,7 +63,7 @@ public class KerMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getTypeBodyAccess().getAlternatives_1_1(), "rule__TypeBody__Alternatives_1_1");
 			builder.put(grammarAccess.getFeatureMemberAccess().getAlternatives(), "rule__FeatureMember__Alternatives");
 			builder.put(grammarAccess.getSpecializationAccess().getAlternatives_3(), "rule__Specialization__Alternatives_3");
-			builder.put(grammarAccess.getConjugationAccess().getAlternatives_4(), "rule__Conjugation__Alternatives_4");
+			builder.put(grammarAccess.getConjugationAccess().getAlternatives_3(), "rule__Conjugation__Alternatives_3");
 			builder.put(grammarAccess.getClassifierDeclarationAccess().getAlternatives_3(), "rule__ClassifierDeclaration__Alternatives_3");
 			builder.put(grammarAccess.getSuperclassingPartAccess().getAlternatives_0(), "rule__SuperclassingPart__Alternatives_0");
 			builder.put(grammarAccess.getClassifierConjugationPartAccess().getAlternatives_0(), "rule__ClassifierConjugationPart__Alternatives_0");
@@ -199,6 +199,8 @@ public class KerMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getSpecializationPartAccess().getGroup(), "rule__SpecializationPart__Group__0");
 			builder.put(grammarAccess.getSpecializationPartAccess().getGroup_2(), "rule__SpecializationPart__Group_2__0");
 			builder.put(grammarAccess.getConjugationPartAccess().getGroup(), "rule__ConjugationPart__Group__0");
+			builder.put(grammarAccess.getDisjoiningPartAccess().getGroup(), "rule__DisjoiningPart__Group__0");
+			builder.put(grammarAccess.getDisjoiningPartAccess().getGroup_3(), "rule__DisjoiningPart__Group_3__0");
 			builder.put(grammarAccess.getTypeBodyAccess().getGroup_1(), "rule__TypeBody__Group_1__0");
 			builder.put(grammarAccess.getNonFeatureMemberAccess().getGroup(), "rule__NonFeatureMember__Group__0");
 			builder.put(grammarAccess.getOwnedFeatureMemberAccess().getGroup(), "rule__OwnedFeatureMember__Group__0");
@@ -209,6 +211,9 @@ public class KerMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getSpecializationAccess().getGroup(), "rule__Specialization__Group__0");
 			builder.put(grammarAccess.getSpecializationAccess().getGroup_0(), "rule__Specialization__Group_0__0");
 			builder.put(grammarAccess.getConjugationAccess().getGroup(), "rule__Conjugation__Group__0");
+			builder.put(grammarAccess.getConjugationAccess().getGroup_0(), "rule__Conjugation__Group_0__0");
+			builder.put(grammarAccess.getDisjoiningAccess().getGroup(), "rule__Disjoining__Group__0");
+			builder.put(grammarAccess.getDisjoiningAccess().getGroup_0(), "rule__Disjoining__Group_0__0");
 			builder.put(grammarAccess.getClassifierAccess().getGroup(), "rule__Classifier__Group__0");
 			builder.put(grammarAccess.getClassifierDeclarationAccess().getGroup(), "rule__ClassifierDeclaration__Group__0");
 			builder.put(grammarAccess.getSuperclassingPartAccess().getGroup(), "rule__SuperclassingPart__Group__0");
@@ -462,6 +467,8 @@ public class KerMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getSpecializationPartAccess().getOwnedRelationshipAssignment_1(), "rule__SpecializationPart__OwnedRelationshipAssignment_1");
 			builder.put(grammarAccess.getSpecializationPartAccess().getOwnedRelationshipAssignment_2_1(), "rule__SpecializationPart__OwnedRelationshipAssignment_2_1");
 			builder.put(grammarAccess.getConjugationPartAccess().getOwnedRelationshipAssignment_1(), "rule__ConjugationPart__OwnedRelationshipAssignment_1");
+			builder.put(grammarAccess.getDisjoiningPartAccess().getOwnedRelationshipAssignment_2(), "rule__DisjoiningPart__OwnedRelationshipAssignment_2");
+			builder.put(grammarAccess.getDisjoiningPartAccess().getOwnedRelationshipAssignment_3_1(), "rule__DisjoiningPart__OwnedRelationshipAssignment_3_1");
 			builder.put(grammarAccess.getTypeBodyAccess().getOwnedRelationshipAssignment_1_1_0(), "rule__TypeBody__OwnedRelationshipAssignment_1_1_0");
 			builder.put(grammarAccess.getTypeBodyAccess().getOwnedRelationshipAssignment_1_1_1(), "rule__TypeBody__OwnedRelationshipAssignment_1_1_1");
 			builder.put(grammarAccess.getTypeBodyAccess().getOwnedRelationshipAssignment_1_1_2(), "rule__TypeBody__OwnedRelationshipAssignment_1_1_2");
@@ -479,9 +486,12 @@ public class KerMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getSpecializationAccess().getSpecificAssignment_2(), "rule__Specialization__SpecificAssignment_2");
 			builder.put(grammarAccess.getSpecializationAccess().getGeneralAssignment_4(), "rule__Specialization__GeneralAssignment_4");
 			builder.put(grammarAccess.getOwnedSpecializationAccess().getGeneralAssignment(), "rule__OwnedSpecialization__GeneralAssignment");
-			builder.put(grammarAccess.getConjugationAccess().getConjugatedTypeAssignment_3(), "rule__Conjugation__ConjugatedTypeAssignment_3");
-			builder.put(grammarAccess.getConjugationAccess().getOriginalTypeAssignment_5(), "rule__Conjugation__OriginalTypeAssignment_5");
+			builder.put(grammarAccess.getConjugationAccess().getConjugatedTypeAssignment_2(), "rule__Conjugation__ConjugatedTypeAssignment_2");
+			builder.put(grammarAccess.getConjugationAccess().getOriginalTypeAssignment_4(), "rule__Conjugation__OriginalTypeAssignment_4");
 			builder.put(grammarAccess.getOwnedConjugationAccess().getOriginalTypeAssignment(), "rule__OwnedConjugation__OriginalTypeAssignment");
+			builder.put(grammarAccess.getDisjoiningAccess().getTypeDisjoinedAssignment_2(), "rule__Disjoining__TypeDisjoinedAssignment_2");
+			builder.put(grammarAccess.getDisjoiningAccess().getDisjoiningTypeAssignment_4(), "rule__Disjoining__DisjoiningTypeAssignment_4");
+			builder.put(grammarAccess.getOwnedDisjoiningAccess().getDisjoiningTypeAssignment(), "rule__OwnedDisjoining__DisjoiningTypeAssignment");
 			builder.put(grammarAccess.getClassifierAccess().getIsAbstractAssignment_0(), "rule__Classifier__IsAbstractAssignment_0");
 			builder.put(grammarAccess.getClassifierDeclarationAccess().getIsSufficientAssignment_0(), "rule__ClassifierDeclaration__IsSufficientAssignment_0");
 			builder.put(grammarAccess.getClassifierDeclarationAccess().getOwnedRelationshipAssignment_2(), "rule__ClassifierDeclaration__OwnedRelationshipAssignment_2");

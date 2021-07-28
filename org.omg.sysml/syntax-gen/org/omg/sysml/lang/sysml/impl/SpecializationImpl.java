@@ -142,6 +142,7 @@ public class SpecializationImpl extends RelationshipImpl implements Specializati
 		return general != null;
 	}
 	
+	@Override
 	public Type getSpecific() {
 		return specific == null? basicGetSpecific(): getSpecificGen();
 	}

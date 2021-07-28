@@ -69,7 +69,6 @@ import org.omg.sysml.util.NonNotifyingEObjectEList;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getOwnedUsage <em>Owned Usage</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getOwnedPort <em>Owned Port</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getDirectedUsage <em>Directed Usage</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getUsage <em>Usage</em>}</li>
@@ -100,6 +99,7 @@ import org.omg.sysml.util.NonNotifyingEObjectEList;
  *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getOwnedOccurrence <em>Owned Occurrence</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getOwnedUseCase <em>Owned Use Case</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getOwnedFlow <em>Owned Flow</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getOwnedUsage <em>Owned Usage</em>}</li>
  * </ul>
  *
  * @generated
@@ -329,7 +329,7 @@ public abstract class DefinitionImpl extends ClassifierImpl implements Definitio
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public EList<FlowConnectionUsage> getOwnedFlow() {
@@ -490,8 +490,6 @@ public abstract class DefinitionImpl extends ClassifierImpl implements Definitio
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case SysMLPackage.DEFINITION__OWNED_USAGE:
-				return getOwnedUsage();
 			case SysMLPackage.DEFINITION__OWNED_PORT:
 				return getOwnedPort();
 			case SysMLPackage.DEFINITION__DIRECTED_USAGE:
@@ -552,6 +550,8 @@ public abstract class DefinitionImpl extends ClassifierImpl implements Definitio
 				return getOwnedUseCase();
 			case SysMLPackage.DEFINITION__OWNED_FLOW:
 				return getOwnedFlow();
+			case SysMLPackage.DEFINITION__OWNED_USAGE:
+				return getOwnedUsage();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -565,10 +565,6 @@ public abstract class DefinitionImpl extends ClassifierImpl implements Definitio
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case SysMLPackage.DEFINITION__OWNED_USAGE:
-				getOwnedUsage().clear();
-				getOwnedUsage().addAll((Collection<? extends Usage>)newValue);
-				return;
 			case SysMLPackage.DEFINITION__OWNED_PORT:
 				getOwnedPort().clear();
 				getOwnedPort().addAll((Collection<? extends PortUsage>)newValue);
@@ -688,6 +684,10 @@ public abstract class DefinitionImpl extends ClassifierImpl implements Definitio
 				getOwnedFlow().clear();
 				getOwnedFlow().addAll((Collection<? extends FlowConnectionUsage>)newValue);
 				return;
+			case SysMLPackage.DEFINITION__OWNED_USAGE:
+				getOwnedUsage().clear();
+				getOwnedUsage().addAll((Collection<? extends Usage>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -700,9 +700,6 @@ public abstract class DefinitionImpl extends ClassifierImpl implements Definitio
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.DEFINITION__OWNED_USAGE:
-				getOwnedUsage().clear();
-				return;
 			case SysMLPackage.DEFINITION__OWNED_PORT:
 				getOwnedPort().clear();
 				return;
@@ -793,6 +790,9 @@ public abstract class DefinitionImpl extends ClassifierImpl implements Definitio
 			case SysMLPackage.DEFINITION__OWNED_FLOW:
 				getOwnedFlow().clear();
 				return;
+			case SysMLPackage.DEFINITION__OWNED_USAGE:
+				getOwnedUsage().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -805,8 +805,6 @@ public abstract class DefinitionImpl extends ClassifierImpl implements Definitio
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.DEFINITION__OWNED_USAGE:
-				return !getOwnedUsage().isEmpty();
 			case SysMLPackage.DEFINITION__OWNED_PORT:
 				return !getOwnedPort().isEmpty();
 			case SysMLPackage.DEFINITION__DIRECTED_USAGE:
@@ -867,6 +865,8 @@ public abstract class DefinitionImpl extends ClassifierImpl implements Definitio
 				return !getOwnedUseCase().isEmpty();
 			case SysMLPackage.DEFINITION__OWNED_FLOW:
 				return !getOwnedFlow().isEmpty();
+			case SysMLPackage.DEFINITION__OWNED_USAGE:
+				return !getOwnedUsage().isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

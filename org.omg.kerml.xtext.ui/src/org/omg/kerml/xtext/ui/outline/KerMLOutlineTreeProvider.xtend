@@ -42,6 +42,7 @@ import org.omg.sysml.lang.sysml.LiteralInfinity
 import org.omg.sysml.lang.sysml.Specialization
 import org.omg.sysml.lang.sysml.LiteralInteger
 import org.omg.sysml.lang.sysml.FeatureChaining
+import org.omg.sysml.lang.sysml.Disjoining
 
 /**
  * Customization of the default outline structure.
@@ -419,6 +420,21 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 				_image(conjugation.originalType), conjugation.originalType._text, 
 				true
 			)
+		}
+	}
+	
+	def boolean _isLeaf(Disjoining disjoining) {
+		disjoining.disjoiningType === null
+	}
+	
+	def void _createChildren(IOutlineNode parentNode, Disjoining disjoining) {
+		val typeDisjoined = disjoining.typeDisjoined
+		if (typeDisjoined !== null && typeDisjoined !== disjoining.eContainer) {
+			createNode(parentNode, typeDisjoined, typeDisjoined._image, typeDisjoined._text, true)			
+		}
+		val disjoiningType = disjoining.disjoiningType
+		if (disjoiningType !== null) {
+			createNode(parentNode, disjoiningType, disjoiningType._image, disjoiningType._text, true)
 		}
 	}
 	

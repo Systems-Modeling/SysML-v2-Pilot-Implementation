@@ -55,9 +55,8 @@ import org.eclipse.emf.common.util.EList;
  *     endif
  * inheritedMembership = inheritedMemberships(Set{})
  * allSupertypes()->includes(Kernel Library::Anything)
- * disjointTypes = disjoiningTypeDisjoining.disjoiningType
+ * disjointTypes = ownedDisjoining.disjoiningType
  * directedFeature = feature->select(direction <> null)
- * disjoinedTypes = disjoinedTypeDisjoining.typeDisjoined
  * <!-- end-model-doc -->
  *
  * <p>
@@ -80,8 +79,8 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getInheritedFeature <em>Inherited Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getMultiplicity <em>Multiplicity</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getDisjointType <em>Disjoint Type</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Type#getDisjoiningTypeDisjoining <em>Disjoining Type Disjoining</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getDirectedFeature <em>Directed Feature</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedDisjoining <em>Owned Disjoining</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedSpecialization <em>Owned Specialization</em>}</li>
  * </ul>
  *
@@ -545,7 +544,7 @@ public interface Type extends Namespace {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>A Type that is asserted to be disjoint with this Type by being the <code>disjoiningType</code> of a <code>disjoiningTypeDisjoining</code> of this Type. Sequences in the interpretation of a <code>disjointType</code> are not in the interpretation of their this Type.  For example, a Classifier for mammals is disjoint from a Classifier for minerals, and a Feature for people's parents is disjoint from a Feature for their children. </p>
+	 * <p>A Type that is asserted to be disjoint with this Type by being the <code>disjoiningType</code> of an <code>ownedDisjoining</code> of this Type. 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Disjoint Type</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getType_DisjointType()
@@ -554,23 +553,6 @@ public interface Type extends Namespace {
 	 * @generated
 	 */
 	EList<Type> getDisjointType();
-
-	/**
-	 * Returns the value of the '<em><b>Disjoining Type Disjoining</b></em>' reference list.
-	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Disjoining}.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Disjoining#getTypeDisjoined <em>Type Disjoined</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * <p>The Disjoinings for which this Type is the <code>typeDisjoined</code>.</p>
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Disjoining Type Disjoining</em>' reference list.
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getType_DisjoiningTypeDisjoining()
-	 * @see org.omg.sysml.lang.sysml.Disjoining#getTypeDisjoined
-	 * @model opposite="typeDisjoined" required="true" ordered="false"
-	 * @generated
-	 */
-	EList<Disjoining> getDisjoiningTypeDisjoining();
 
 	/**
 	 * Returns the value of the '<em><b>Directed Feature</b></em>' reference list.
@@ -594,6 +576,30 @@ public interface Type extends Namespace {
 	 * @generated
 	 */
 	EList<Feature> getDirectedFeature();
+
+	/**
+	 * Returns the value of the '<em><b>Owned Disjoining</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Disjoining}.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Disjoining#getOwningType <em>Owning Type</em>}'.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Element#getOwnedRelationship() <em>Owned Relationship</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The <code>ownedRelationships</code> of this Type that are Disjoinings, for which the Type is the <code>typeDisjoined</code> Type.</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Owned Disjoining</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getType_OwnedDisjoining()
+	 * @see org.omg.sysml.lang.sysml.Disjoining#getOwningType
+	 * @model opposite="owningType" transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="subsets"
+	 * @generated
+	 */
+	EList<Disjoining> getOwnedDisjoining();
 
 	/**
 	 * Returns the value of the '<em><b>Owned Specialization</b></em>' reference list.

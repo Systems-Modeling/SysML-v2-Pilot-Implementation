@@ -40,7 +40,6 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.BasicInternalEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
-import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.uml2.common.util.DerivedEObjectEList;
 import org.eclipse.uml2.common.util.DerivedUnionEObjectEList;
 import org.omg.sysml.lang.sysml.Conjugation;
@@ -87,8 +86,8 @@ import org.omg.sysml.util.TypeUtil;
  *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeImpl#getInheritedFeature <em>Inherited Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeImpl#getMultiplicity <em>Multiplicity</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeImpl#getDisjointType <em>Disjoint Type</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeImpl#getDisjoiningTypeDisjoining <em>Disjoining Type Disjoining</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeImpl#getDirectedFeature <em>Directed Feature</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeImpl#getOwnedDisjoining <em>Owned Disjoining</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeImpl#getOwnedSpecialization <em>Owned Specialization</em>}</li>
  * </ul>
  *
@@ -146,16 +145,6 @@ public class TypeImpl extends NamespaceImpl implements Type {
 	 */
 	protected static final boolean IS_CONJUGATED_EDEFAULT = false;
 	
-	/**
-	 * The cached value of the '{@link #getDisjoiningTypeDisjoining() <em>Disjoining Type Disjoining</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDisjoiningTypeDisjoining()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Disjoining> disjoiningTypeDisjoining;
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -503,24 +492,11 @@ public class TypeImpl extends NamespaceImpl implements Type {
 	@Override
 	public EList<Type> getDisjointType() {
 		EList<Type> disjointTypes = new NonNotifyingEObjectEList<>(Type.class, this, SysMLPackage.TYPE__DISJOINT_TYPE);
-		getDisjoiningTypeDisjoining().stream().
+		getOwnedDisjoining().stream().
 			map(Disjoining::getDisjoiningType).
 			filter(t->t != null).
 			forEachOrdered(disjointTypes::add);
 		return disjointTypes;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EList<Disjoining> getDisjoiningTypeDisjoining() {
-		if (disjoiningTypeDisjoining == null) {
-			disjoiningTypeDisjoining = new EObjectWithInverseResolvingEList<Disjoining>(Disjoining.class, this, SysMLPackage.TYPE__DISJOINING_TYPE_DISJOINING, SysMLPackage.DISJOINING__TYPE_DISJOINED);
-		}
-		return disjoiningTypeDisjoining;
 	}
 
 	/**
@@ -536,6 +512,32 @@ public class TypeImpl extends NamespaceImpl implements Type {
 			forEachOrdered(directedFeatures::add);
 		return directedFeatures;
 	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public EList<Disjoining> getOwnedDisjoining() {
+		EList<Disjoining> disjoinings = new NonNotifyingEObjectEList<>(Disjoining.class, this, SysMLPackage.TYPE__OWNED_DISJOINING);
+		getOwnedRelationship().stream().
+			filter(Disjoining.class::isInstance).
+			map(Disjoining.class::cast).
+			filter(gen->gen.getTypeDisjoined() == this).
+			forEachOrdered(disjoinings::add);
+		return disjoinings;
+	}
+
+	/**
+	 * The array of superset feature identifiers for the '{@link #getOwnedDisjoining() <em>Owned Disjoining</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedDisjoining()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int[] OWNED_DISJOINING_ESUPERSETS = new int[] {SysMLPackage.TYPE__OWNED_RELATIONSHIP};
 
 	/**
 	 * The array of superset feature identifiers for the '{@link #getOwnedSpecialization() <em>Owned Specialization</em>}' reference list.
@@ -695,8 +697,6 @@ public class TypeImpl extends NamespaceImpl implements Type {
 		switch (featureID) {
 			case SysMLPackage.TYPE__OWNED_RELATIONSHIP:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedRelationship()).basicAdd(otherEnd, msgs);
-			case SysMLPackage.TYPE__DISJOINING_TYPE_DISJOINING:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getDisjoiningTypeDisjoining()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -711,8 +711,6 @@ public class TypeImpl extends NamespaceImpl implements Type {
 		switch (featureID) {
 			case SysMLPackage.TYPE__OWNED_RELATIONSHIP:
 				return ((InternalEList<?>)getOwnedRelationship()).basicRemove(otherEnd, msgs);
-			case SysMLPackage.TYPE__DISJOINING_TYPE_DISJOINING:
-				return ((InternalEList<?>)getDisjoiningTypeDisjoining()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -759,10 +757,10 @@ public class TypeImpl extends NamespaceImpl implements Type {
 				return basicGetMultiplicity();
 			case SysMLPackage.TYPE__DISJOINT_TYPE:
 				return getDisjointType();
-			case SysMLPackage.TYPE__DISJOINING_TYPE_DISJOINING:
-				return getDisjoiningTypeDisjoining();
 			case SysMLPackage.TYPE__DIRECTED_FEATURE:
 				return getDirectedFeature();
+			case SysMLPackage.TYPE__OWNED_DISJOINING:
+				return getOwnedDisjoining();
 			case SysMLPackage.TYPE__OWNED_SPECIALIZATION:
 				return getOwnedSpecialization();
 		}
@@ -837,13 +835,13 @@ public class TypeImpl extends NamespaceImpl implements Type {
 				getDisjointType().clear();
 				getDisjointType().addAll((Collection<? extends Type>)newValue);
 				return;
-			case SysMLPackage.TYPE__DISJOINING_TYPE_DISJOINING:
-				getDisjoiningTypeDisjoining().clear();
-				getDisjoiningTypeDisjoining().addAll((Collection<? extends Disjoining>)newValue);
-				return;
 			case SysMLPackage.TYPE__DIRECTED_FEATURE:
 				getDirectedFeature().clear();
 				getDirectedFeature().addAll((Collection<? extends Feature>)newValue);
+				return;
+			case SysMLPackage.TYPE__OWNED_DISJOINING:
+				getOwnedDisjoining().clear();
+				getOwnedDisjoining().addAll((Collection<? extends Disjoining>)newValue);
 				return;
 			case SysMLPackage.TYPE__OWNED_SPECIALIZATION:
 				getOwnedSpecialization().clear();
@@ -909,11 +907,11 @@ public class TypeImpl extends NamespaceImpl implements Type {
 			case SysMLPackage.TYPE__DISJOINT_TYPE:
 				getDisjointType().clear();
 				return;
-			case SysMLPackage.TYPE__DISJOINING_TYPE_DISJOINING:
-				getDisjoiningTypeDisjoining().clear();
-				return;
 			case SysMLPackage.TYPE__DIRECTED_FEATURE:
 				getDirectedFeature().clear();
+				return;
+			case SysMLPackage.TYPE__OWNED_DISJOINING:
+				getOwnedDisjoining().clear();
 				return;
 			case SysMLPackage.TYPE__OWNED_SPECIALIZATION:
 				getOwnedSpecialization().clear();
@@ -966,10 +964,10 @@ public class TypeImpl extends NamespaceImpl implements Type {
 				return basicGetMultiplicity() != null;
 			case SysMLPackage.TYPE__DISJOINT_TYPE:
 				return !getDisjointType().isEmpty();
-			case SysMLPackage.TYPE__DISJOINING_TYPE_DISJOINING:
-				return disjoiningTypeDisjoining != null && !disjoiningTypeDisjoining.isEmpty();
 			case SysMLPackage.TYPE__DIRECTED_FEATURE:
 				return !getDirectedFeature().isEmpty();
+			case SysMLPackage.TYPE__OWNED_DISJOINING:
+				return !getOwnedDisjoining().isEmpty();
 			case SysMLPackage.TYPE__OWNED_SPECIALIZATION:
 				return !getOwnedSpecialization().isEmpty();
 		}

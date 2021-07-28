@@ -280,7 +280,7 @@ public abstract class ConnectorAsUsageImpl extends UsageImpl implements Connecto
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public Feature basicGetSourceFeature() {
 		return ConnectorUtil.getSourceFeatureOf(this);

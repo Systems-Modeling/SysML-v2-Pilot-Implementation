@@ -256,10 +256,21 @@ fragment MemberPrefix returns SysML::Membership :
 ;
 
 NamespaceMember returns SysML::Membership : 
-	MemberPrefix 
-	( ownedRelatedElement += NonFeatureElement // ownedMemberElement = NonFeatureElement
-	| ownedRelatedElement += FeatureElement // ownedMemberElement = NonFeatureElement
-	) 
+	  NonFeatureMember
+	| NamespaceFeatureMember
+	| ChainFeatureMember
+;
+
+NonFeatureMember returns SysML::Membership : 
+	MemberPrefix ownedRelatedElement += NonFeatureElement // ownedMemberElement = NonFeatureElement
+;
+
+NamespaceFeatureMember returns SysML::Membership :
+	MemberPrefix ownedRelatedElement += FeatureElement // ownedMemberElement = NonFeatureElement
+;
+
+ChainFeatureMember returns SysML::Membership :
+	MemberPrefix 'feature'? ( memberName = Name )? 'is' ownedRelatedElement += FeatureChain ';' // ownedMemberFeature = Feature ';'
 ;
 
 AliasMember returns SysML::Membership :
@@ -417,14 +428,14 @@ fragment TypeBody returns SysML::Type :
 	)* '}'
 ;
 
-NonFeatureMember returns SysML::Membership : 
-	MemberPrefix ownedRelatedElement += NonFeatureElement // ownedMemberElement = NonFeatureElement
-;
-
 /* Feature Membership */
 
 FeatureMember returns SysML::Membership :
-	OwnedFeatureMember | UnownedFeatureMember | ChainFeatureMember
+	TypeFeatureMember | OwnedFeatureMember | UnownedFeatureMember | ChainFeatureMember
+;
+
+TypeFeatureMember returns SysML::Membership :
+	MemberPrefix 'member' ownedRelatedElement += FeatureElement
 ;
 
 OwnedFeatureMember returns SysML::FeatureMembership :
@@ -435,9 +446,7 @@ UnownedFeatureMember returns SysML::FeatureMembership :
 	MemberPrefix 'feature'? ( memberName = Name )? 'is' memberFeature = [SysML::Feature|QualifiedName] ';'
 ;
 
-ChainFeatureMember returns SysML::Membership :
-	MemberPrefix 'feature'? ( memberName = Name )? 'is' ownedRelatedElement += FeatureChain ';' // ownedMemberFeature = Feature ';'
-;
+/* Feature Chaining */
 
 FeatureChain returns SysML::Feature :
 	ownedRelationship += OwnedFeatureChaining

@@ -83,7 +83,17 @@ public class ImplicitGeneralizationMap {
 		put(ItemFlowImpl.class, "base", "Transfers::transfers");
 		put(ItemFlowImpl.class, "subperformance", "Performances::Performance::subtransfers");
 		
+		put(LiteralBooleanImpl.class, "base", "Performances::literalBooleanEvaluations");
+		
 		put(LiteralExpressionImpl.class, "base", "Performances::literalEvaluations");
+		
+		put(LiteralInfinityImpl.class, "base", "Performances::literalIntegerEvaluations");
+		
+		put(LiteralIntegerImpl.class, "base", "Performances::literalIntegerEvaluations");
+		
+		put(LiteralRationalImpl.class, "base", "Performances::literalRationalEvaluations");
+		
+		put(LiteralStringImpl.class, "base", "Performances::literalStringEvaluations");
 		
 		put(MultiplicityImpl.class, "base", "Base::naturals");
 		put(MultiplicityImpl.class, "feature", "Base::exactlyOne");

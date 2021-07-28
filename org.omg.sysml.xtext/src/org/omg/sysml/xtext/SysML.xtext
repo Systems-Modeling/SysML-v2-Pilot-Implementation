@@ -418,7 +418,7 @@ MultiplicityExpressionMember returns SysML::Membership :
 /* Connectors */
 
 ConnectorEndMember returns SysML::EndFeatureMembership :
-	( memberName = Name '=>' )? ownedRelatedElement += ConnectorEnd // ownedMemberFeature = ConnectorEnd
+	( memberName = Name ':>' )? ownedRelatedElement += ConnectorEnd // ownedMemberFeature = ConnectorEnd
 ;
 
 ConnectorEnd returns SysML::Feature :
@@ -1188,7 +1188,7 @@ fragment NaryInterfacePart returns SysML::Connector :
 ;
 
 InterfaceEndMember returns SysML::EndFeatureMembership :
-	( memberName = Name '=>' )? ownedRelatedElement += InterfaceEnd // ownedMemberFeature = InterfaceEnd
+	( memberName = Name ':>' )? ownedRelatedElement += InterfaceEnd // ownedMemberFeature = InterfaceEnd
 ;
 
 InterfaceEnd returns SysML::PortUsage :

@@ -45,7 +45,7 @@ package P {
 				part d : D[5];
 			}
 		}
-		connect a[0..1] to cd => b.c.d[1];
+		connect a[0..1] to cd :> b.c.d[1];
 	}
 }
 

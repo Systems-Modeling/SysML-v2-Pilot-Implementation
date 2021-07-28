@@ -19058,9 +19058,9 @@ rule__ConnectorEndMember__Group_0__1__Impl
 	}
 :
 (
-	{ before(grammarAccess.getConnectorEndMemberAccess().getEqualsSignGreaterThanSignKeyword_0_1()); }
-	'=>'
-	{ after(grammarAccess.getConnectorEndMemberAccess().getEqualsSignGreaterThanSignKeyword_0_1()); }
+	{ before(grammarAccess.getConnectorEndMemberAccess().getColonGreaterThanSignKeyword_0_1()); }
+	':>'
+	{ after(grammarAccess.getConnectorEndMemberAccess().getColonGreaterThanSignKeyword_0_1()); }
 )
 ;
 finally {
@@ -27057,9 +27057,9 @@ rule__InterfaceEndMember__Group_0__1__Impl
 	}
 :
 (
-	{ before(grammarAccess.getInterfaceEndMemberAccess().getEqualsSignGreaterThanSignKeyword_0_1()); }
-	'=>'
-	{ after(grammarAccess.getInterfaceEndMemberAccess().getEqualsSignGreaterThanSignKeyword_0_1()); }
+	{ before(grammarAccess.getInterfaceEndMemberAccess().getColonGreaterThanSignKeyword_0_1()); }
+	':>'
+	{ after(grammarAccess.getInterfaceEndMemberAccess().getColonGreaterThanSignKeyword_0_1()); }
 )
 ;
 finally {

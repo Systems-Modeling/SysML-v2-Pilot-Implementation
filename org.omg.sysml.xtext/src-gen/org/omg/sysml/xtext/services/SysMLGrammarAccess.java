@@ -2411,21 +2411,21 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Group cGroup_0 = (Group)cGroup.eContents().get(0);
 		private final Assignment cMemberNameAssignment_0_0 = (Assignment)cGroup_0.eContents().get(0);
 		private final RuleCall cMemberNameNameParserRuleCall_0_0_0 = (RuleCall)cMemberNameAssignment_0_0.eContents().get(0);
-		private final Keyword cEqualsSignGreaterThanSignKeyword_0_1 = (Keyword)cGroup_0.eContents().get(1);
+		private final Keyword cColonGreaterThanSignKeyword_0_1 = (Keyword)cGroup_0.eContents().get(1);
 		private final Assignment cOwnedRelatedElementAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cOwnedRelatedElementConnectorEndParserRuleCall_1_0 = (RuleCall)cOwnedRelatedElementAssignment_1.eContents().get(0);
 		
 		///* CONNECTORS */
 		///* Connectors */
 		//ConnectorEndMember returns SysML::EndFeatureMembership :
-		//    ( memberName = Name '=>' )? ownedRelatedElement += ConnectorEnd // ownedMemberFeature = ConnectorEnd
+		//    ( memberName = Name ':>' )? ownedRelatedElement += ConnectorEnd // ownedMemberFeature = ConnectorEnd
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//( memberName = Name '=>' )? ownedRelatedElement += ConnectorEnd
+		//( memberName = Name ':>' )? ownedRelatedElement += ConnectorEnd
 		public Group getGroup() { return cGroup; }
 		
-		//( memberName = Name '=>' )?
+		//( memberName = Name ':>' )?
 		public Group getGroup_0() { return cGroup_0; }
 		
 		//memberName = Name
@@ -2434,8 +2434,8 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//Name
 		public RuleCall getMemberNameNameParserRuleCall_0_0_0() { return cMemberNameNameParserRuleCall_0_0_0; }
 		
-		//'=>'
-		public Keyword getEqualsSignGreaterThanSignKeyword_0_1() { return cEqualsSignGreaterThanSignKeyword_0_1; }
+		//':>'
+		public Keyword getColonGreaterThanSignKeyword_0_1() { return cColonGreaterThanSignKeyword_0_1; }
 		
 		//ownedRelatedElement += ConnectorEnd
 		public Assignment getOwnedRelatedElementAssignment_1() { return cOwnedRelatedElementAssignment_1; }
@@ -6622,19 +6622,19 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Group cGroup_0 = (Group)cGroup.eContents().get(0);
 		private final Assignment cMemberNameAssignment_0_0 = (Assignment)cGroup_0.eContents().get(0);
 		private final RuleCall cMemberNameNameParserRuleCall_0_0_0 = (RuleCall)cMemberNameAssignment_0_0.eContents().get(0);
-		private final Keyword cEqualsSignGreaterThanSignKeyword_0_1 = (Keyword)cGroup_0.eContents().get(1);
+		private final Keyword cColonGreaterThanSignKeyword_0_1 = (Keyword)cGroup_0.eContents().get(1);
 		private final Assignment cOwnedRelatedElementAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cOwnedRelatedElementInterfaceEndParserRuleCall_1_0 = (RuleCall)cOwnedRelatedElementAssignment_1.eContents().get(0);
 		
 		//InterfaceEndMember returns SysML::EndFeatureMembership :
-		//    ( memberName = Name '=>' )? ownedRelatedElement += InterfaceEnd // ownedMemberFeature = InterfaceEnd
+		//    ( memberName = Name ':>' )? ownedRelatedElement += InterfaceEnd // ownedMemberFeature = InterfaceEnd
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//( memberName = Name '=>' )? ownedRelatedElement += InterfaceEnd
+		//( memberName = Name ':>' )? ownedRelatedElement += InterfaceEnd
 		public Group getGroup() { return cGroup; }
 		
-		//( memberName = Name '=>' )?
+		//( memberName = Name ':>' )?
 		public Group getGroup_0() { return cGroup_0; }
 		
 		//memberName = Name
@@ -6643,8 +6643,8 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//Name
 		public RuleCall getMemberNameNameParserRuleCall_0_0_0() { return cMemberNameNameParserRuleCall_0_0_0; }
 		
-		//'=>'
-		public Keyword getEqualsSignGreaterThanSignKeyword_0_1() { return cEqualsSignGreaterThanSignKeyword_0_1; }
+		//':>'
+		public Keyword getColonGreaterThanSignKeyword_0_1() { return cColonGreaterThanSignKeyword_0_1; }
 		
 		//ownedRelatedElement += InterfaceEnd
 		public Assignment getOwnedRelatedElementAssignment_1() { return cOwnedRelatedElementAssignment_1; }
@@ -14841,7 +14841,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	///* CONNECTORS */
 	///* Connectors */
 	//ConnectorEndMember returns SysML::EndFeatureMembership :
-	//    ( memberName = Name '=>' )? ownedRelatedElement += ConnectorEnd // ownedMemberFeature = ConnectorEnd
+	//    ( memberName = Name ':>' )? ownedRelatedElement += ConnectorEnd // ownedMemberFeature = ConnectorEnd
 	//;
 	public ConnectorEndMemberElements getConnectorEndMemberAccess() {
 		return pConnectorEndMember;
@@ -16614,7 +16614,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//InterfaceEndMember returns SysML::EndFeatureMembership :
-	//    ( memberName = Name '=>' )? ownedRelatedElement += InterfaceEnd // ownedMemberFeature = InterfaceEnd
+	//    ( memberName = Name ':>' )? ownedRelatedElement += InterfaceEnd // ownedMemberFeature = InterfaceEnd
 	//;
 	public InterfaceEndMemberElements getInterfaceEndMemberAccess() {
 		return pInterfaceEndMember;

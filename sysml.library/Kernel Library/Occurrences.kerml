@@ -204,8 +204,8 @@ package Occurrences {
 		end feature thatOccurrence: Occurrence[1..*] redefines longerOccurrence;
 		
 		connector :HappensDuring 
-			from shorterOccurrence => thatOccurrence 
-			to longerOccurrence => thisOccurrence;
+			from shorterOccurrence :> thatOccurrence 
+			to longerOccurrence :> thisOccurrence;
 	}
 	
 	/**

@@ -132,21 +132,21 @@ package ServerSequenceRealization_3 {
 		}
 		
 		stream :>> publish_message from producer.producerBehavior.publish.request to server.serverBehavior.publishing.request {
-//			perform producer.producerBehavior.publish_request;
-//			perform publication_interface.publish_request;
-//			perform server.serverBehavior.publish_request;
+			perform producer.producerBehavior.publish;
+			perform publication_interface.publish_request;
+			perform server.serverBehavior.publishing;
 		}
 		
 		stream :>> subscribe_message from consumer.consumerBehavior.subscribe.request to server.serverBehavior.subscribing.request {
-//			perform consumer.consumerBehavior.subscribe_request;
-//			perform subscription_interface.subscribe_request;
-//			perform server.serverBehavior.subscribe_request;
+			perform consumer.consumerBehavior.subscribe;
+			perform subscription_interface.subscribe_request;
+			perform server.serverBehavior.subscribing;
 		}
 		
 		stream :>> deliver_message from server.serverBehavior.delivering.response to consumer.consumerBehavior.delivery.response {
-//			perform server::serverBehavior::deliver_response;
-//			perform subscription_interface::deliver_response;
-//			perform consumer::consumerBehavior::deliver_response;
+			perform server.serverBehavior.delivering;
+			perform subscription_interface.deliver_response;
+			perform consumer.consumerBehavior.delivery;
 		}
 	}
 }

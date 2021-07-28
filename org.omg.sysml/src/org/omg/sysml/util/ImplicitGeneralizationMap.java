@@ -157,9 +157,10 @@ public class ImplicitGeneralizationMap {
 		put(ConcernUsageImpl.class, "base", "Requirements::concernChecks");
 		put(ConcernUsageImpl.class, "subrequirement", "Requirements::RequirementCheck::concerns");
 		
-		put(ConnectionDefinitionImpl.class, "binary", "Connections::Connection");
-		put(ConnectionUsageImpl.class, "base", "Links::links");
-		put(ConnectionUsageImpl.class, "binary", "Connections::connections");
+		put(ConnectionDefinitionImpl.class, "base", "Connections::Connection");
+		put(ConnectionDefinitionImpl.class, "binary", "Connections::BinaryConnection");
+		put(ConnectionUsageImpl.class, "base", "Connections::connections");
+		put(ConnectionUsageImpl.class, "binary", "Connections::binaryConnections");
 		
 		put(ConstraintDefinitionImpl.class, "base", "Constraints::ConstraintCheck");
 		put(ConstraintUsageImpl.class, "base", "Constraints::constraintChecks");
@@ -177,8 +178,10 @@ public class ImplicitGeneralizationMap {
 		put(IncludeUseCaseUsageImpl.class, "subUseCase", "UseCases::UseCase::includedUseCases");
 		put(IncludeUseCaseUsageImpl.class, "enactedPerformance", "Parts::Part::performedActions");
 		
-		put(InterfaceDefinitionImpl.class, "binary", "Interfaces::Interface");
-		put(InterfaceUsageImpl.class, "binary", "Interfaces::interfaces");
+		put(InterfaceDefinitionImpl.class, "base", "Interfaces::Interface");
+		put(InterfaceDefinitionImpl.class, "binary", "Interfaces::BinaryInterface");
+		put(InterfaceUsageImpl.class, "base", "Interfaces::interfaces");
+		put(InterfaceUsageImpl.class, "binary", "Interfaces::binaryInterfaces");
 		
 		put(ItemDefinitionImpl.class, "base", "Items::Item");
 		put(ItemUsageImpl.class, "base", "Items::items");

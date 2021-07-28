@@ -7878,9 +7878,9 @@ ruleConnectorEndMember returns [EObject current=null]
 					}
 				)
 			)
-			otherlv_1='=>'
+			otherlv_1=':>'
 			{
-				newLeafNode(otherlv_1, grammarAccess.getConnectorEndMemberAccess().getEqualsSignGreaterThanSignKeyword_0_1());
+				newLeafNode(otherlv_1, grammarAccess.getConnectorEndMemberAccess().getColonGreaterThanSignKeyword_0_1());
 			}
 		)?
 		(

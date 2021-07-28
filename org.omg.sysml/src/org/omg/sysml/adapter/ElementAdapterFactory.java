@@ -191,6 +191,11 @@ public class ElementAdapterFactory {
 		}
 		
 		@Override
+		public ElementAdapter caseFlowConnectionUsage(FlowConnectionUsage element) {
+			return new FlowConnectionUsageAdapter(element);
+		}
+		
+		@Override
 		public ElementAdapter caseFunction(Function element) {
 			return new FunctionAdapter(element);
 		}
@@ -363,11 +368,6 @@ public class ElementAdapterFactory {
 		@Override
 		public ElementAdapter caseSuccession(Succession element) {
 			return new SuccessionAdapter(element);
-		}
-		
-		@Override
-		public ElementAdapter caseSuccessionItemFlow(SuccessionItemFlow element) {
-			return new SuccessionItemFlowAdapter(element);
 		}
 		
 		@Override

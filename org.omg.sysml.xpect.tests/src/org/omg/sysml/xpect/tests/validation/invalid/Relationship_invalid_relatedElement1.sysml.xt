@@ -1,5 +1,4 @@
-//*
-XPECT_SETUP org.omg.sysml.xpect.tests.validation.invalid.SysMLTests
+//* XPECT_SETUP org.omg.sysml.xpect.tests.validation.invalid.SysMLTests
 	ResourceSet {
 		ThisFile {}
 		File {from ="/library.kernel/Base.kerml"}
@@ -11,6 +10,7 @@ XPECT_SETUP org.omg.sysml.xpect.tests.validation.invalid.SysMLTests
 		File {from ="/library.systems/Items.sysml"}
 		File {from ="/library.systems/Parts.sysml"}
 		File {from ="/library.systems/Ports.sysml"}
+		File {from ="/library.systems/Connections.sysml"}
 	}
 	Workspace {
 		JavaProject {
@@ -25,6 +25,7 @@ XPECT_SETUP org.omg.sysml.xpect.tests.validation.invalid.SysMLTests
 				File {from ="/library.systems/Items.sysml"}
 				File {from ="/library.systems/Parts.sysml"}
 				File {from ="/library.systems/Ports.sysml"}
+				File {from ="/library.systems/Connections.sysml"}
 			}
 		}
 	}

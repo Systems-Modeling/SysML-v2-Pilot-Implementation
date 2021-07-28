@@ -145,6 +145,9 @@ public class ImplicitGeneralizationMap {
 		put(AttributeDefinitionImpl.class, "base", "Base::DataValue");
 		put(AttributeUsageImpl.class, "base", "Base::dataValues");
 		
+		put(BindingConnectorAsUsageImpl.class, "base", "Links::links");
+		put(BindingConnectorAsUsageImpl.class, "binary", "Links::selfLinks");
+		
 		put(CalculationDefinitionImpl.class, "base", "Calculations::Calculation");
 		put(CalculationUsageImpl.class, "base", "Calculations::calculations");
 		put(CalculationUsageImpl.class, "subcalculation", "Calculations::Calculation::subcalculations");
@@ -172,6 +175,9 @@ public class ImplicitGeneralizationMap {
 		put(EventOccurrenceUsageImpl.class, "suboccurrence", "Occurrences::Occurrence::suboccurrences");
 
 		put(ExhibitStateUsageImpl.class, "enactedPerformance", "Parts::Part::exhibitedStates");
+		
+		put(FlowConnectionUsageImpl.class, "base", "Transfers::transfers");
+		put(FlowConnectionUsageImpl.class, "subperformance", "Performances::Performance::subtransfers");
 		
 		put(ForkNodeImpl.class, "subaction", "Actions::Action::forks");
 		
@@ -226,6 +232,12 @@ public class ImplicitGeneralizationMap {
 		put(StateUsageImpl.class, "base", "States::stateActions");
 		put(StateUsageImpl.class, "substate", "States::StateAction::substates");
 		
+		put(SuccessionAsUsageImpl.class, "base", "Links::links");
+		put(SuccessionAsUsageImpl.class, "binary", "Occurrences::happensBeforeLinks");
+		
+		put(SuccessionFlowConnectionUsageImpl.class, "base", "Transfers::transfersBefore");
+		put(SuccessionFlowConnectionUsageImpl.class, "subperformance", "Performances::Performance::subtransfersBefore");
+
 		put(TransitionUsageImpl.class, "base", "Actions::transitionActions");
 		put(TransitionUsageImpl.class, "actionTransition", "Actions::Action::transitions");
 		put(TransitionUsageImpl.class, "stateTransition", "States::StateAction::stateTransitions");

@@ -19,7 +19,6 @@ import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 
-import org.eclipse.uml2.common.util.DerivedUnionEObjectEList;
 import org.eclipse.uml2.common.util.UnionEObjectEList;
 
 import org.omg.sysml.lang.sysml.Association;
@@ -171,11 +170,11 @@ public abstract class ConnectorAsUsageImpl extends UsageImpl implements Connecto
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public EList<Feature> getRelatedFeature() {
-		return new DerivedUnionEObjectEList<Feature>(Feature.class, this, SysMLPackage.CONNECTOR_AS_USAGE__RELATED_FEATURE, RELATED_FEATURE_ESUBSETS);
+		return ConnectorUtil.getRelatedFeaturesOf(this);
 	}
 
 	/**

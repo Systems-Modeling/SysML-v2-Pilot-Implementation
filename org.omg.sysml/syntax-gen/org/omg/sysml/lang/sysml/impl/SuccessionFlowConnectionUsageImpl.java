@@ -8,7 +8,7 @@ import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
+import org.eclipse.emf.ecore.util.BasicInternalEList;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.Succession;
@@ -66,49 +66,40 @@ public class SuccessionFlowConnectionUsageImpl extends FlowConnectionUsageImpl i
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public Step basicGetTransitionStep() {
-		// TODO: implement this method to return the 'Transition Step' reference
-		// -> do not perform proxy resolution
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		return null;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public void setTransitionStep(Step newTransitionStep) {
-		// TODO: implement this method to set the 'Transition Step' reference
-		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public EList<Step> getTriggerStep() {
-		// TODO: implement this method to return the 'Trigger Step' reference list
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		return new BasicInternalEList<>(Step.class);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public EList<Step> getEffectStep() {
-		// TODO: implement this method to return the 'Effect Step' reference list
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		return new BasicInternalEList<>(Step.class);
 	}
 
 	/**
@@ -118,9 +109,7 @@ public class SuccessionFlowConnectionUsageImpl extends FlowConnectionUsageImpl i
 	 */
 	@Override
 	public EList<Expression> getGuardExpression() {
-		// TODO: implement this method to return the 'Guard Expression' reference list
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		return new BasicInternalEList<>(Expression.class);
 	}
 
 	/**

@@ -3,11 +3,13 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import java.util.Collection;
+import java.util.Optional;
 
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
-
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.uml2.common.util.DerivedEObjectEList;
 import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.Classifier;
 import org.omg.sysml.lang.sysml.Feature;
@@ -19,6 +21,8 @@ import org.omg.sysml.lang.sysml.ItemFlowFeature;
 import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.util.NonNotifyingEObjectEList;
+import org.omg.sysml.util.TypeUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -63,13 +67,16 @@ public class FlowConnectionUsageImpl extends ConnectionUsageImpl implements Flow
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public EList<Behavior> getBehavior() {
-		// TODO: implement this method to return the 'Behavior' reference list
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		EList<Behavior> behaviors = new NonNotifyingEObjectEList<>(Behavior.class, this, SysMLPackage.FLOW_CONNECTION_USAGE__BEHAVIOR);
+		super.getType().stream().
+			filter(type->type instanceof Behavior).
+			map(type->(Behavior)type).
+			forEachOrdered(behaviors::add);
+		return behaviors;
 	}
 
 	/**
@@ -84,13 +91,13 @@ public class FlowConnectionUsageImpl extends ConnectionUsageImpl implements Flow
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public EList<Feature> getParameter() {
-		// TODO: implement this method to return the 'Parameter' reference list
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		EList<Feature> parameters = new NonNotifyingEObjectEList<>(Feature.class, this, SysMLPackage.FLOW_CONNECTION_USAGE__PARAMETER);
+		parameters.addAll(TypeUtil.getAllParametersOf(this));
+		return parameters;
 	}
 
 	/**
@@ -105,39 +112,49 @@ public class FlowConnectionUsageImpl extends ConnectionUsageImpl implements Flow
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public EList<Classifier> getItemType() {
-		// TODO: implement this method to return the 'Item Type' reference list
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		EList<Classifier> itemType = new NonNotifyingEObjectEList<>(Classifier.class, this, SysMLPackage.FLOW_CONNECTION_USAGE__ITEM_TYPE);
+		getItemFeature().get(0).getType();
+		getItemFeature().stream().
+			flatMap(f->f.getType().stream()).
+			filter(t->t instanceof Classifier).
+			map(t->(Classifier)t).
+			forEachOrdered(itemType::add);
+		return itemType;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public EList<Feature> getTargetInputFeature() {
-		// TODO: implement this method to return the 'Target Input Feature' reference list
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		EList<Feature> targetInputFeature = new EObjectResolvingEList<Feature>(Feature.class, this, SysMLPackage.FLOW_CONNECTION_USAGE__TARGET_INPUT_FEATURE);
+		getInputOutputFeature(1).ifPresent(targetInputFeature::add);
+		return targetInputFeature;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public EList<Feature> getSourceOutputFeature() {
-		// TODO: implement this method to return the 'Source Output Feature' reference list
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		EList<Feature> sourceOutputFeature = new NonNotifyingEObjectEList<>(Feature.class, this, SysMLPackage.FLOW_CONNECTION_USAGE__SOURCE_OUTPUT_FEATURE);
+		getInputOutputFeature(0).ifPresent(sourceOutputFeature::add);
+		return sourceOutputFeature;
 	}
 
+	public Optional<Feature> getInputOutputFeature(int i) {
+		EList<ItemFlowFeature> features = getItemFlowFeature();
+		return features.size() <= i? Optional.empty(): Optional.of(features.get(i));
+	}
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -145,9 +162,13 @@ public class FlowConnectionUsageImpl extends ConnectionUsageImpl implements Flow
 	 */
 	@Override
 	public EList<ItemFlowEnd> getItemFlowEnd() {
-		// TODO: implement this method to return the 'Item Flow End' reference list
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		EList<ItemFlowEnd> itemFlows = 
+				new NonNotifyingEObjectEList<>(ItemFlowEnd.class, this, SysMLPackage.FLOW_CONNECTION_USAGE__ITEM_FLOW_END);
+		getConnectorEnd().stream().
+			filter(end->end instanceof ItemFlowEnd).
+			map(end->(ItemFlowEnd)end).
+			forEachOrdered(itemFlows::add);
+		return itemFlows;
 	}
 
 	/**
@@ -162,25 +183,38 @@ public class FlowConnectionUsageImpl extends ConnectionUsageImpl implements Flow
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public EList<ItemFeature> getItemFeature() {
-		// TODO: implement this method to return the 'Item Feature' reference list
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		return new DerivedEObjectEList<ItemFeature>(
+				ItemFeature.class, this, SysMLPackage.FLOW_CONNECTION_USAGE__ITEM_FEATURE, 
+				new int[]{SysMLPackage.TYPE__OWNED_FEATURE});
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public EList<ItemFlowFeature> getItemFlowFeature() {
-		// TODO: implement this method to return the 'Item Flow Feature' reference list
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		EList<ItemFlowFeature> itemFlowFeatures = 
+				new EObjectResolvingEList<ItemFlowFeature>(ItemFlowFeature.class, this, SysMLPackage.FLOW_CONNECTION_USAGE__ITEM_FLOW_FEATURE);
+		getItemFlowEnd().stream().
+			map(end->(ItemFlowFeature)end.getOwnedFeature().get(0)).
+			forEachOrdered(itemFlowFeatures::add);
+		return itemFlowFeatures;
+	}
+	
+	// Additional overrides
+	
+	@Override
+	public boolean isAbstract() {
+		if (getRelatedFeature().size() < 2) {
+			isAbstract = true;
+		}
+		return super.isAbstract();
 	}
 
 	/**
@@ -423,12 +457,10 @@ public class FlowConnectionUsageImpl extends ConnectionUsageImpl implements Flow
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public EList<Feature> getConnectorEnd() {
-		@SuppressWarnings("unchecked")
-		EList<Feature> itemFlowEnd = (EList<Feature>)((EList<?>)getItemFlowEnd());
-		return itemFlowEnd;
+		return super.getConnectorEnd();
 	}
 
 	/**

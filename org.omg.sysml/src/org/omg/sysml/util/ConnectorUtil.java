@@ -24,10 +24,12 @@ package org.omg.sysml.util;
 import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.util.BasicInternalEList;
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Connector;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
+import org.omg.sysml.lang.sysml.ItemFlow;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLFactory;
@@ -72,8 +74,37 @@ public class ConnectorUtil {
 		connector.getOwnedRelationship().add(membership);
 		return endFeature;
 	}
+	
+	public static void transformConnectorEndsOf(ItemFlow flow) {
+		Namespace owner = flow.getOwningNamespace();
+		if (owner instanceof Feature) {
+			EList<Feature> ends = flow.getConnectorEnd();
+			if (ends.size() >= 2) {
+				EList<Feature> endFeatures = ends.get(1).getOwnedFeature();
+				if (!endFeatures.isEmpty()) {
+					Feature flowEndFeature = endFeatures.get(0);
+					if (flowEndFeature.getOwnedRedefinition().isEmpty()) {
+						TypeUtil.addImplicitGeneralTypeTo(flowEndFeature, SysMLPackage.eINSTANCE.getRedefinition(), (Feature)owner);
+					}
+				}
+			}
+		}
+	}
 
 	// Related Features
+	
+	public static EList<Feature> getRelatedFeaturesOf(Connector connector) {
+		EList<Feature> relatedFeatures = new BasicInternalEList<Feature>(Feature.class);
+		for (Object end: connector.getConnectorEnd().toArray()) {
+			if (end != null) {
+				Feature subsettedFeature = ((Feature)end).firstSubsettedFeature();
+				if (subsettedFeature != null) {
+					relatedFeatures.add(subsettedFeature);
+				}
+			}
+		}
+		return relatedFeatures;
+	}
 	
 	public static void setRelatedFeatureOf(Connector connector, int index, Feature relatedFeature) {
 		EList<Feature> connectorEnds = connector.getConnectorEnd();

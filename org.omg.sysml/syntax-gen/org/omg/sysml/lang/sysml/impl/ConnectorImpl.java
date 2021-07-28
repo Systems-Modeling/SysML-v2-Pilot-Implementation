@@ -31,7 +31,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.BasicInternalEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -284,16 +283,7 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	 * @generated NOT
 	 */
 	public EList<Feature> getRelatedFeature() {
-		EList<Feature> relatedFeatures = new BasicInternalEList<Feature>(Feature.class);
-		for (Object end: getConnectorEnd().toArray()) {
-			if (end != null) {
-				Feature subsettedFeature = ((Feature)end).firstSubsettedFeature();
-				if (subsettedFeature != null) {
-					relatedFeatures.add(subsettedFeature);
-				}
-			}
-		}
-		return relatedFeatures;
+		return ConnectorUtil.getRelatedFeaturesOf(this);
 	}
 	
 	/**
@@ -452,17 +442,6 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	 */
 	public boolean isSetTargetFeature() {
 		return !getTargetFeature().isEmpty();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public EList<Feature> path(Feature relatedFeature) {
-		EList<Feature> path = new BasicInternalEList<Feature>(Feature.class);
-		ConnectorUtil.getPath(path, getOwningNamespace(), relatedFeature);
-		return path;
 	}
 
 	/**

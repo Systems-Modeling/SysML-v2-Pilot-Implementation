@@ -75,7 +75,6 @@ public class SuccessionItemFlowImpl extends ItemFlowImpl implements SuccessionIt
 	@Override
 	public EList<Step> getTriggerStep() {
 		return new BasicInternalEList<Step>(Step.class);
-
 	}
 
 	/**

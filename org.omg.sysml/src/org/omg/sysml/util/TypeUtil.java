@@ -337,13 +337,6 @@ public class TypeUtil {
 
 	// Implicit binding connectors
 
-	public static BindingConnector createBindingConnector(Feature source, Feature target) {
-		BindingConnector connector = SysMLFactory.eINSTANCE.createBindingConnector();
-		ConnectorUtil.addConnectorEndTo(connector, source);
-		ConnectorUtil.addConnectorEndTo(connector, target);
-		return connector;
-	}
-
 	public static void forEachImplicitBindingConnectorOf(Type type, BiConsumer<BindingConnector, EClass> consumer) {
 		getTypeAdapter(type).forEachImplicitBindingConnector(consumer);
 	}

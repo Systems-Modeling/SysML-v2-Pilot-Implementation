@@ -24,19 +24,40 @@ package org.omg.sysml.util;
 import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
+import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Connector;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLFactory;
+import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
 
 public class ConnectorUtil {
 	
 	private ConnectorUtil() {
 	}
 	
+	
+	// Creation
+	
+	public static BindingConnector createBindingConnector(Feature source, Feature target) {
+		BindingConnector connector = SysMLFactory.eINSTANCE.createBindingConnector();
+		addConnectorEndTo(connector, source);
+		addConnectorEndTo(connector, target);
+		return connector;
+	}
+
+	public static void transformBindingConnector(BindingConnector connector, Type owner) {
+		TypeUtil.addImplicitGeneralTypeTo(connector, SysMLPackage.eINSTANCE.getSubsetting(), 
+				SysMLLibraryUtil.getLibraryType(owner, ImplicitGeneralizationMap.getDefaultSupertypeFor(connector.getClass(), "binary")));
+		for (Feature end: connector.getConnectorEnd()) {
+			ElementUtil.transform(end);
+		}
+	}
+
 	// Connector ends
 	
 	public static Feature addConnectorEndTo(Connector connector, Feature relatedFeature) {

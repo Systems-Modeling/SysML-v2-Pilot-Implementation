@@ -7195,17 +7195,17 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final RuleCall cMemberPrefixParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
 		private final Keyword cFirstKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cMemberFeatureAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final CrossReference cMemberFeatureFeatureCrossReference_2_0 = (CrossReference)cMemberFeatureAssignment_2.eContents().get(0);
-		private final RuleCall cMemberFeatureFeatureQualifiedNameParserRuleCall_2_0_1 = (RuleCall)cMemberFeatureFeatureCrossReference_2_0.eContents().get(1);
+		private final Assignment cMemberElementAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final CrossReference cMemberElementFeatureCrossReference_2_0 = (CrossReference)cMemberElementAssignment_2.eContents().get(0);
+		private final RuleCall cMemberElementFeatureQualifiedNameParserRuleCall_2_0_1 = (RuleCall)cMemberElementFeatureCrossReference_2_0.eContents().get(1);
 		private final Keyword cSemicolonKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
-		//InitialNodeMember returns SysML::FeatureMembership :
-		//    MemberPrefix 'first' memberFeature = [SysML::Feature|QualifiedName] ';'
+		//InitialNodeMember returns SysML::Membership :
+		//    MemberPrefix 'first' memberElement = [SysML::Feature|QualifiedName] ';'
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//MemberPrefix 'first' memberFeature = [SysML::Feature|QualifiedName] ';'
+		//MemberPrefix 'first' memberElement = [SysML::Feature|QualifiedName] ';'
 		public Group getGroup() { return cGroup; }
 		
 		//MemberPrefix
@@ -7214,14 +7214,14 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//'first'
 		public Keyword getFirstKeyword_1() { return cFirstKeyword_1; }
 		
-		//memberFeature = [SysML::Feature|QualifiedName]
-		public Assignment getMemberFeatureAssignment_2() { return cMemberFeatureAssignment_2; }
+		//memberElement = [SysML::Feature|QualifiedName]
+		public Assignment getMemberElementAssignment_2() { return cMemberElementAssignment_2; }
 		
 		//[SysML::Feature|QualifiedName]
-		public CrossReference getMemberFeatureFeatureCrossReference_2_0() { return cMemberFeatureFeatureCrossReference_2_0; }
+		public CrossReference getMemberElementFeatureCrossReference_2_0() { return cMemberElementFeatureCrossReference_2_0; }
 		
 		//QualifiedName
-		public RuleCall getMemberFeatureFeatureQualifiedNameParserRuleCall_2_0_1() { return cMemberFeatureFeatureQualifiedNameParserRuleCall_2_0_1; }
+		public RuleCall getMemberElementFeatureQualifiedNameParserRuleCall_2_0_1() { return cMemberElementFeatureQualifiedNameParserRuleCall_2_0_1; }
 		
 		//';'
 		public Keyword getSemicolonKeyword_3() { return cSemicolonKeyword_3; }
@@ -16827,8 +16827,8 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		return getActionBodyItemAccess().getRule();
 	}
 	
-	//InitialNodeMember returns SysML::FeatureMembership :
-	//    MemberPrefix 'first' memberFeature = [SysML::Feature|QualifiedName] ';'
+	//InitialNodeMember returns SysML::Membership :
+	//    MemberPrefix 'first' memberElement = [SysML::Feature|QualifiedName] ';'
 	//;
 	public InitialNodeMemberElements getInitialNodeMemberAccess() {
 		return pInitialNodeMember;

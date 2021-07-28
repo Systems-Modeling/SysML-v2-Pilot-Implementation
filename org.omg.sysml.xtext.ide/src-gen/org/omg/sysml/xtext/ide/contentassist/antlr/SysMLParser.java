@@ -808,7 +808,7 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getActionBodyItemAccess().getOwnedRelationshipAssignment_7_1(), "rule__ActionBodyItem__OwnedRelationshipAssignment_7_1");
 			builder.put(grammarAccess.getActionBodyItemAccess().getOwnedRelationshipAssignment_7_2(), "rule__ActionBodyItem__OwnedRelationshipAssignment_7_2");
 			builder.put(grammarAccess.getActionBodyItemAccess().getOwnedRelationshipAssignment_8(), "rule__ActionBodyItem__OwnedRelationshipAssignment_8");
-			builder.put(grammarAccess.getInitialNodeMemberAccess().getMemberFeatureAssignment_2(), "rule__InitialNodeMember__MemberFeatureAssignment_2");
+			builder.put(grammarAccess.getInitialNodeMemberAccess().getMemberElementAssignment_2(), "rule__InitialNodeMember__MemberElementAssignment_2");
 			builder.put(grammarAccess.getActionNodeMemberAccess().getOwnedRelatedElementAssignment_1(), "rule__ActionNodeMember__OwnedRelatedElementAssignment_1");
 			builder.put(grammarAccess.getTargetSuccessionMemberAccess().getOwnedRelatedElementAssignment_1(), "rule__TargetSuccessionMember__OwnedRelatedElementAssignment_1");
 			builder.put(grammarAccess.getGuardedSuccessionMemberAccess().getOwnedRelatedElementAssignment_0(), "rule__GuardedSuccessionMember__OwnedRelatedElementAssignment_0");

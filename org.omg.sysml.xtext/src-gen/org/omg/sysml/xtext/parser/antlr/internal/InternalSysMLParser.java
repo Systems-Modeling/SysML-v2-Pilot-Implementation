@@ -35309,7 +35309,7 @@ public class InternalSysMLParser extends AbstractInternalAntlrParser {
             }
             if ( state.backtracking==0 ) {
 
-              					newCompositeNode(grammarAccess.getInitialNodeMemberAccess().getMemberFeatureFeatureCrossReference_2_0());
+              					newCompositeNode(grammarAccess.getInitialNodeMemberAccess().getMemberElementFeatureCrossReference_2_0());
               				
             }
             pushFollow(FOLLOW_24);

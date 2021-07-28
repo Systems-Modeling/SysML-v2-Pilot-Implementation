@@ -1283,8 +1283,8 @@ fragment ActionBodyItem returns SysML::Type :
 	| ownedRelationship += GuardedSuccessionMember
 ;
 
-InitialNodeMember returns SysML::FeatureMembership :
-	MemberPrefix 'first' memberFeature = [SysML::Feature|QualifiedName] ';'
+InitialNodeMember returns SysML::Membership :
+	MemberPrefix 'first' memberElement = [SysML::Feature|QualifiedName] ';'
 	
 ;
 

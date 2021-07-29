@@ -8,6 +8,7 @@ package IntegerFunctions {
 	function '*' specializes NumericalFunctions::'*' (x: Integer[1], y: Integer[1]): Integer[1];
 	function '/' specializes NumericalFunctions::'/' (x: Integer[1], y: Integer[1]): Rational;
 	function '**' specializes NumericalFunctions::'**' (x: Integer[1], y: Natural): Integer[1];
+	function '^' specializes NumericalFunctions::'^' (x: Integer[1], y: Natural): Integer[1];
 	function '%' specializes NumericalFunctions::'%' (x: Integer[1], y: Integer[1]): Integer[1];
 	
 	function '<' specializes NumericalFunctions::'<' (x: Integer[1], y: Integer[1]): Boolean[1];

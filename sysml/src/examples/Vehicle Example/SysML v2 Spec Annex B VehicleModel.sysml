@@ -560,7 +560,7 @@ package VehicleModel {
 	package FuelEconomyAnalysisModel {
 		import VehicleConfigurations::VehicleConfiguration_b::PartsTree::*;
 		import VehicleConfigurations::VehicleConfiguration_b::Requirements::*;
-		import Collections::SampledFunction;
+		import SampledFunctions::SampledFunction;
 		attribute def NominalScenario :> SampledFunction;
 		analysis fuelEconomyAnalysis {
 			return attribute calculatedFuelEconomy: DistancePerVolumeValue;

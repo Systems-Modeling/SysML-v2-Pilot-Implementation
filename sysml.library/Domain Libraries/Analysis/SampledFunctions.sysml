@@ -46,44 +46,37 @@ package SampledFunctions {
 		in calc calculation (x);
 		in attribute domainValues [0..*];
 		return sampling = SampledFunction (
-			samples = domainValues->collect {in x; SamplePair(x, calculation(x))}
+			samples = domainValues->collect { in x; SamplePair(x, calculation(x)) }
 		);
 	}
 	
-	/* Interpolate returns an interpolated range value from a given SampledFunction for a given domain value.
+	/**
+	 * An Interpolate calculation returns an interpolated range value from a given SampledFunction for a given domain value.
 	 * If the input domain value is outside the bounds of the domainValues of the SampleFunction, null is returned.
-	 * An Interpolation function can be provided, which is used for interpolation between two samples of the
-	 * SampledFunction. The default is liner interpolation.
 	 */
-	calc def Interpolate {
-		in fn : SampledFunction;
+	calc def Interpolate (attribute fn : SampledFunction, attribute value) attribute result;
+		
+	/** 
+	 * interpolateLinear is an Interpolate calculation assuming a linear functional form between SamplePairs.
+	 */
+	calc interpolateLinear : Interpolate {
+		in attribute fn : SampledFunction;
 		in attribute value;
-		in calc interpolation : Interpolation default linearInterpolation;
 		
 		private attribute domainValues = Domain(fn);
 		private attribute index : Positive[0..1] =
-			(1..domainValues->size())->select {in i : Positive; domainValues[i] <= value }[1];
+			(1..size(domainValues))->select { in i : Positive; domainValues[i] <= value }[1];
+			
+		private calc def Linear 
+			(attribute lowerSample : SamplePair, attribute upperSample : SamplePair, attribute value) {
+			private attribute f = (value - lowerSample.domainValue) / (lowerSample.domainValue - upperSample.domainValue);
+			return result = upperSample.rangeValue + f * (lowerSample.rangeValue - upperSample.rangeValue);				
+		}
 		
 		return result [0..1] =
-			if index == null or index == domainValues->size()? null
-			else if fn.samples[index] < fn.samples[index+1]? interpolation(fn.samples[index], fn.samples[index+1], value)
-			else interpolation(fn.samples[index+1], fn.samples[index], value);
-	}
-	
-	/**
-	 * An Interpolation calculates an interpolated range value between two SamplePairs given an input domain value.
-	 * The domainValue of the lowerSample must be strictly less than the domainValue of the upperSample.
-	 */
-	abstract calc def Interpolation 
-		(attribute lowerSample : SamplePair, attribute upperSample : SamplePair, attribute value) 
-		attribute result;
-	
-	/**
-	 * linearInterpolation is an Interpolation assuming a linear functional form between the given SamplePairs.
-	 */
-	calc linearInterpolation : Interpolation {
-		private attribute f = (value - lowerSample.domainValue) / (lowerSample.domainValue - upperSample.domainValue);
-		return result = upperSample.rangeValue + f * (lowerSample.rangeValue - upperSample.rangeValue);
+			if index == null or index == size(domainValues)? null
+			else if domainValues[index] < domainValues[index+1]? Linear(fn.samples[index], fn.samples[index+1], value)
+			else Linear(fn.samples[index+1], fn.samples[index], value);
 	}
 	
 }

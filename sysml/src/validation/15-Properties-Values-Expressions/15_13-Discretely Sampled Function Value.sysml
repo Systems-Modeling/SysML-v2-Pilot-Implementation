@@ -1,6 +1,6 @@
 package '15_13-Discretely Sampled Function Value' {
-	import Collections::SampledFunction;
-	import Collections::SamplePair;
+	import SampledFunctions::SampledFunction;
+	import SampledFunctions::SamplePair;
 	import Collections::Array;
 	import ISQ::*;
 	import SI::*;

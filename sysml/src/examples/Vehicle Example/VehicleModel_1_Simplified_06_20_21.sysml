@@ -943,7 +943,7 @@ package sfriedenthal_VehicleModel_1_simplified{
         }
         package FuelEconomyAnalysisModel{
             //import NonScalarValues::SampledFunctionValue;
-            import Collections::SampledFunction;
+            import SampledFunctions::SampledFunction;
               
             /*
             This analysis model was provided by Hisashi Miyashita on January 27, 2021

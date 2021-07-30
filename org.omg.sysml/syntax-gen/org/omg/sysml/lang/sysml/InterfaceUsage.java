@@ -64,7 +64,7 @@ public interface InterfaceUsage extends ConnectionUsage {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The InterfaceDefinition that is the single type of this InterfaceUsage.</p>
+	 * <p>The InterfaceDefinitions that type this InterfaceUsage.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Interface Definition</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getInterfaceUsage_InterfaceDefinition()

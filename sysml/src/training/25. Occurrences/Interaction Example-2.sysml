@@ -27,8 +27,8 @@ package 'Interaction Example-2' {
 			}
 		}
 		
-		message setSpeedMessage of SetSpeed;			
-		then message sensedSpeedMessage of SensedSpeed;			
+		message setSpeedMessage of SetSpeed;	
+		then message sensedSpeedMessage of SensedSpeed;
 		message fuelCommandMessage of FuelCommand;
 	}
 }

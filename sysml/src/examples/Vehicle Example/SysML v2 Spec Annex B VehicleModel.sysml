@@ -200,6 +200,7 @@ package VehicleModel {
             alias Torque for ISQ::TorqueValue;
             //quantity used in analysis
             attribute def DistancePerVolumeValue :> Quantities::QuantityValue;
+            attribute hp = 745.7 * W;
         }
         package IndividualDefinitions {
             individual def SpatialTemporalReference_1 :> SpatialTemporalReference;
@@ -220,7 +221,7 @@ package VehicleModel {
                     attribute mass redefines Vehicle::mass =
                         dryMass + cargoMass + fuelTank.fuel.fuelMass;
                     attribute dryMass redefines Vehicle::dryMass = sum(partMasses);
-                    attribute redefines Vehicle::cargoMass = 0;
+                    attribute redefines Vehicle::cargoMass = 0 [kg];
                     attribute partMasses = (
                         fuelTank.mass,
                         frontAxleAssembly.mass,
@@ -255,7 +256,7 @@ package VehicleModel {
                     attribute mass redefines Vehicle::mass =
                         dryMass + cargoMass + fuelTank.fuel.fuelMass;
                     attribute dryMass redefines Vehicle::dryMass = sum(partMasses);
-                    attribute redefines Vehicle::cargoMass = 0;
+                    attribute redefines Vehicle::cargoMass = 0 [kg];
                     attribute partMasses = (
                         fuelTank.mass,
                         frontAxleAssembly.mass,
@@ -283,7 +284,7 @@ package VehicleModel {
                         ref item redefines fuel {
                             attribute redefines fuelMass = 60 [kg];
                         }
-                        attribute redefines fuelMassMax = 60;
+                        attribute redefines fuelMassMax = 60 [kg];
                     }
                     part frontAxleAssembly: AxleAssembly {
                         attribute mass :> ISQ::mass = 800 [kg];
@@ -329,7 +330,7 @@ package VehicleModel {
                     }
                     part engine: Engine {
                         attribute mass :> ISQ::mass = 200 [kg];
-                        attribute peakHorsePower: PowerValue = 200;
+                        attribute peakHorsePower: PowerValue = 200 [hp];
                         port fuelCmdPort: FuelCmdPort {
                             in item redefines fuelCmd;
                         }
@@ -501,7 +502,7 @@ package VehicleModel {
 							doc /* The total mass of a vehicle shall be less than or equal
 							 * to the required mass.*/
 							/* Assume total mass includes a full tank of gas*/
-							attribute redefines massRequired = 2000;
+							attribute redefines massRequired = 2000 [kg];
 							attribute redefines massActual = vehicle.mass;
 						}
 						requirement id '2' vehicleFuelEconomyRequirements {

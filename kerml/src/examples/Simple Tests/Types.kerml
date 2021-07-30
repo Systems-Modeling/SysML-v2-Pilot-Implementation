@@ -22,8 +22,8 @@ package Types {
 	}
 	type Conjugate1 specializes Base::Anything;
 	type Conjugate2 specializes Base::Anything;
-	conjugation c1 type Conjugate1 conjugates Original; 
-	conjugation c2 type Conjugate2 ~ Original; 
+	conjugation c1 conjugate Conjugate1 conjugates Original; 
+	conjugation c2 conjugate Conjugate2 ~ Original; 
 	
 	type Conjugate3 conjugates Original;
 	type Conjugate4 ~ Conjugate1;

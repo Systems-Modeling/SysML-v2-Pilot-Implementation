@@ -256,10 +256,21 @@ fragment MemberPrefix returns SysML::Membership :
 ;
 
 NamespaceMember returns SysML::Membership : 
-	MemberPrefix 
-	( ownedRelatedElement += NonFeatureElement // ownedMemberElement = NonFeatureElement
-	| ownedRelatedElement += FeatureElement // ownedMemberElement = NonFeatureElement
-	) 
+	  NonFeatureMember
+	| NamespaceFeatureMember
+	| ChainFeatureMember
+;
+
+NonFeatureMember returns SysML::Membership : 
+	MemberPrefix ownedRelatedElement += NonFeatureElement // ownedMemberElement = NonFeatureElement
+;
+
+NamespaceFeatureMember returns SysML::Membership :
+	MemberPrefix ownedRelatedElement += FeatureElement // ownedMemberElement = NonFeatureElement
+;
+
+ChainFeatureMember returns SysML::Membership :
+	MemberPrefix 'feature'? ( memberName = Name )? 'is' ownedRelatedElement += FeatureChain ';' // ownedMemberFeature = Feature ';'
 ;
 
 AliasMember returns SysML::Membership :
@@ -331,6 +342,7 @@ NonFeatureElement returns SysML::Element :
 	| Conjugation
 	| FeatureTyping
 	| Subclassification
+	| Disjoining
 	| Subsetting
 	| Redefinition
 	| TypeFeaturing
@@ -389,6 +401,7 @@ fragment TypeDeclaration returns SysML::Type :
     ( isSufficient ?= 'all' )? Identification?
     ( ownedRelationship += OwnedMultiplicity )? 
     ( SpecializationPart | ConjugationPart )+
+    DisjoiningPart?
 ;
 
 fragment SpecializationPart returns SysML::Type :
@@ -398,6 +411,11 @@ fragment SpecializationPart returns SysML::Type :
 
 fragment ConjugationPart returns SysML::Type :
 	( '~' | 'conjugates' ) ownedRelationship += OwnedConjugation
+;
+
+fragment DisjoiningPart returns SysML::Type :
+	'disjoint' 'from' ownedRelationship += OwnedDisjoining
+	( ',' ownedRelationship += OwnedDisjoining )* 
 ;
 
 fragment TypeBody returns SysML::Type :
@@ -410,14 +428,14 @@ fragment TypeBody returns SysML::Type :
 	)* '}'
 ;
 
-NonFeatureMember returns SysML::Membership : 
-	MemberPrefix ownedRelatedElement += NonFeatureElement // ownedMemberElement = NonFeatureElement
-;
-
 /* Feature Membership */
 
 FeatureMember returns SysML::Membership :
-	OwnedFeatureMember | UnownedFeatureMember | ChainFeatureMember
+	TypeFeatureMember | OwnedFeatureMember | UnownedFeatureMember | ChainFeatureMember
+;
+
+TypeFeatureMember returns SysML::Membership :
+	MemberPrefix 'member' ownedRelatedElement += FeatureElement
 ;
 
 OwnedFeatureMember returns SysML::FeatureMembership :
@@ -428,9 +446,7 @@ UnownedFeatureMember returns SysML::FeatureMembership :
 	MemberPrefix 'feature'? ( memberName = Name )? 'is' memberFeature = [SysML::Feature|QualifiedName] ';'
 ;
 
-ChainFeatureMember returns SysML::Membership :
-	MemberPrefix 'feature'? ( memberName = Name )? 'is' ownedRelatedElement += FeatureChain ';' // ownedMemberFeature = Feature ';'
-;
+/* Feature Chaining */
 
 FeatureChain returns SysML::Feature :
 	ownedRelationship += OwnedFeatureChaining
@@ -456,13 +472,25 @@ OwnedSpecialization returns SysML::Specialization :
 /* Conjugation */
 
 Conjugation returns SysML::Conjugation :
-	'conjugation' Identification? 
-    'type' conjugatedType = [SysML::Type | QualifiedName] 
+	( 'conjugation' Identification? )?
+    'conjugate' conjugatedType = [SysML::Type | QualifiedName] 
     ( '~' | 'conjugates') originalType = [SysML::Type | QualifiedName] ';'
 ;
 
 OwnedConjugation returns SysML::Conjugation :
 	originalType = [SysML::Type | QualifiedName]
+;
+
+/* Disjoining */
+
+Disjoining returns SysML::Disjoining :
+	( 'disjoining' Identification? )?
+	'disjoint' typeDisjoined = [SysML::Type | QualifiedName] 
+	'from' disjoiningType = [SysML::Type | QualifiedName] ';'
+;
+
+OwnedDisjoining returns SysML::Disjoining :
+	disjoiningType = [SysML::Type | QualifiedName]
 ;
 
 /* CLASSIFIERS */
@@ -478,6 +506,7 @@ fragment ClassifierDeclaration returns SysML::Classifier :
     (isSufficient ?= 'all' )? Identification?
 	( ownedRelationship += OwnedMultiplicity )?
 	( SuperclassingPart | ClassifierConjugationPart )?
+	DisjoiningPart?
 ;
 
 fragment SuperclassingPart returns SysML::Classifier :
@@ -533,7 +562,9 @@ fragment FeatureDeclaration returns SysML::Feature :
 	( Identification ( FeatureSpecializationPart | FeatureConjugationPart )?
 	| FeatureSpecializationPart
 	| FeatureConjugationPart
-	) TypeFeaturingPart?
+	)
+	DisjoiningPart?
+	TypeFeaturingPart?
 ;
 
 fragment TypeFeaturingPart returns SysML::Feature :
@@ -750,7 +781,7 @@ fragment NaryConnectorDeclaration returns SysML::Connector :
 ;
 
 ConnectorEndMember returns SysML::EndFeatureMembership :
-	( memberName = Name '=>' )? ownedRelatedElement += ConnectorEnd // ownedMemberFeature = ConnectorEnd
+	( memberName = Name ':>' )? ownedRelatedElement += ConnectorEnd // ownedMemberFeature = ConnectorEnd
 ;
 
 ConnectorEnd returns SysML::Feature :
@@ -790,7 +821,7 @@ fragment SuccessionDeclaration returns SysML::Succession :
 
 Behavior returns SysML::Behavior :
 	( isAbstract ?= 'abstract')? 'behavior' 
-	BehaviorDeclaration BehaviorBody
+	BehaviorDeclaration TypeBody
 ;
 
 fragment BehaviorDeclaration returns SysML::Behavior :
@@ -829,20 +860,11 @@ fragment ParameterSpecialization returns SysML::Feature :
 	TypedBy | Subsets | Redefines
 ;
 
-fragment BehaviorBody returns SysML::Type :
-	';' | 
-	'{' ( ownedRelationship += OwnedDocumentation
-		| ownedRelationship += NonFeatureMember 
-		| ownedRelationship += FeatureMember 
-		| ownedRelationship += Import
-	)* '}'
-;
-
 /* Steps */
 
 Step returns SysML::Step :
 	FeaturePrefix 'step' 
-	StepDeclaration BehaviorBody
+	StepDeclaration TypeBody
 ;
 
 fragment StepDeclaration returns SysML::Step :
@@ -905,6 +927,7 @@ fragment FunctionBody returns SysML::Type :
 	| '{' ( ownedRelationship += OwnedDocumentation
 		  | ownedRelationship += NonFeatureMember 
 		  | ownedRelationship += FeatureMember 
+		  | ownedRelationship += AliasMember
 		  | ownedRelationship += Import
 		  )* 
 		  ( ownedRelationship += ResultExpressionMember )? 
@@ -959,18 +982,18 @@ Invariant returns SysML::Invariant :
 
 Interaction returns SysML::Interaction :
 	( isAbstract ?= 'abstract' )? 'interaction' 
-	BehaviorDeclaration BehaviorBody
+	BehaviorDeclaration TypeBody
 ;
 
 /* Item Flows */
 
 ItemFlow returns SysML::ItemFlow :
 	FeaturePrefix 'stream' 
-	ItemFlowDeclaration BehaviorBody
+	ItemFlowDeclaration TypeBody
 ;
 
 SuccessionItemFlow returns SysML::SuccessionItemFlow :
-	FeaturePrefix 'flow' ItemFlowDeclaration BehaviorBody
+	FeaturePrefix 'flow' ItemFlowDeclaration TypeBody
 ;
 
 fragment ItemFlowDeclaration returns SysML::ItemFlow :

@@ -521,11 +521,19 @@ ruleImpliesOperator returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRul
 @after {
 	leaveRule();
 }:
-	kw='implies'
-	{
-		$current.merge(kw);
-		newLeafNode(kw, grammarAccess.getImpliesOperatorAccess().getImpliesKeyword());
-	}
+	(
+		kw='=>'
+		{
+			$current.merge(kw);
+			newLeafNode(kw, grammarAccess.getImpliesOperatorAccess().getEqualsSignGreaterThanSignKeyword_0());
+		}
+		    |
+		kw='implies'
+		{
+			$current.merge(kw);
+			newLeafNode(kw, grammarAccess.getImpliesOperatorAccess().getImpliesKeyword_1());
+		}
+	)
 ;
 
 // Entry rule entryRuleOrExpression
@@ -3115,9 +3123,9 @@ ruleNamedExpressionMember returns [EObject current=null]
 				}
 			)
 		)
-		otherlv_1='=>'
+		otherlv_1='='
 		{
-			newLeafNode(otherlv_1, grammarAccess.getNamedExpressionMemberAccess().getEqualsSignGreaterThanSignKeyword_1());
+			newLeafNode(otherlv_1, grammarAccess.getNamedExpressionMemberAccess().getEqualsSignKeyword_1());
 		}
 		(
 			(

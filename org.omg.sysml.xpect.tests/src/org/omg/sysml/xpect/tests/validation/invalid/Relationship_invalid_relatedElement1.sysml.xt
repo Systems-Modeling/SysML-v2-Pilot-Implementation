@@ -1,5 +1,4 @@
-//*
-XPECT_SETUP org.omg.sysml.xpect.tests.validation.invalid.SysMLTests
+//* XPECT_SETUP org.omg.sysml.xpect.tests.validation.invalid.SysMLTests
 	ResourceSet {
 		ThisFile {}
 		File {from ="/library.kernel/Base.kerml"}
@@ -11,6 +10,7 @@ XPECT_SETUP org.omg.sysml.xpect.tests.validation.invalid.SysMLTests
 		File {from ="/library.systems/Items.sysml"}
 		File {from ="/library.systems/Parts.sysml"}
 		File {from ="/library.systems/Ports.sysml"}
+		File {from ="/library.systems/Connections.sysml"}
 	}
 	Workspace {
 		JavaProject {
@@ -25,6 +25,7 @@ XPECT_SETUP org.omg.sysml.xpect.tests.validation.invalid.SysMLTests
 				File {from ="/library.systems/Items.sysml"}
 				File {from ="/library.systems/Parts.sysml"}
 				File {from ="/library.systems/Ports.sysml"}
+				File {from ="/library.systems/Connections.sysml"}
 			}
 		}
 	}
@@ -44,7 +45,6 @@ package 'Streaming Example' {
 			"Cannot identify item flow end (use dot notation)" at "C::myIn"
 			"Must be an accessible feature (use dot notation for nesting)" at "B::myOut"
 			"Must be an accessible feature (use dot notation for nesting)" at "C::myIn"
-			"Relationships must have at least two related elements" at "stream XXX from B::myOut to C::myIn;"
 		    --- */
 		stream XXX from B::myOut to C::myIn;	
 	} 

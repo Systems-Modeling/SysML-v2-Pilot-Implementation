@@ -8,12 +8,16 @@ import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
+import org.omg.sysml.lang.sysml.AcceptActionUsage;
+import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.Expression;
+import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.Succession;
 import org.omg.sysml.lang.sysml.SuccessionAsUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.lang.sysml.TransitionUsage;
+import org.omg.sysml.util.NonNotifyingEObjectEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -65,61 +69,70 @@ public class SuccessionAsUsageImpl extends ConnectorAsUsageImpl implements Succe
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public Step basicGetTransitionStep() {
-		// TODO: implement this method to return the 'Transition Step' reference
-		// -> do not perform proxy resolution
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		Namespace owner = getOwningNamespace();
+		return owner instanceof TransitionUsage?
+				(Step)owner: null;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public void setTransitionStep(Step newTransitionStep) {
-		// TODO: implement this method to set the 'Transition Step' reference
-		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public EList<Step> getTriggerStep() {
-		// TODO: implement this method to return the 'Trigger Step' reference list
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		EList<Step> triggerSteps = new NonNotifyingEObjectEList<>(Step.class, this, SysMLPackage.SUCCESSION_AS_USAGE__TRIGGER_STEP);
+		Step transitionStep = getTransitionStep();
+		if (transitionStep instanceof TransitionUsage) {
+			EList<AcceptActionUsage> triggers = ((TransitionUsageImpl)transitionStep).getTriggerAction();
+			triggerSteps.addAll(triggers);
+		}
+		return triggerSteps;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public EList<Step> getEffectStep() {
-		// TODO: implement this method to return the 'Effect Step' reference list
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		EList<Step> effectSteps = new NonNotifyingEObjectEList<>(Step.class, this, SysMLPackage.SUCCESSION_AS_USAGE__EFFECT_STEP);
+		Step transitionStep = getTransitionStep();
+		if (transitionStep instanceof TransitionUsage) {
+			EList<ActionUsage> effects = ((TransitionUsageImpl)transitionStep).getEffectAction();
+			effectSteps.addAll(effects);
+		}
+		return effectSteps;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public EList<Expression> getGuardExpression() {
-		// TODO: implement this method to return the 'Guard Expression' reference list
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		EList<Expression> guardExpressions = new NonNotifyingEObjectEList<>(Expression.class, this, SysMLPackage.SUCCESSION__GUARD_EXPRESSION);
+		Step transitionStep = getTransitionStep();
+		if (transitionStep instanceof TransitionUsage) {
+			EList<Expression> guards = ((TransitionUsageImpl)transitionStep).getGuardExpression();
+			guardExpressions.addAll(guards);
+		}
+		return guardExpressions;
 	}
 
 	/**

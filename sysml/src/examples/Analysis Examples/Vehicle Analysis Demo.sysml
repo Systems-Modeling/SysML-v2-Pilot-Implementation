@@ -210,14 +210,14 @@ package 'Vehicle Analysis Demo' {
 						private nextSample : NominalScenario::TimeStateRecord = 
 							sc.samples[i+1];
 						StraightLineDynamicsEquations (
-							p => power[i],
-							m => vehicle.mass,
-							dt => nextSample.t - thisSample.t,
-							x_i => thisSample.s.position,
-							v_i => thisSample.s.velocity,
-							x_f => nextSample.s.position,
-							v_f => nextSample.s.velocity,
-							a => acceleration[i]                    
+							p = power[i],
+							m = vehicle.mass,
+							dt = nextSample.t - thisSample.t,
+							x_i = thisSample.s.position,
+							v_i = thisSample.s.velocity,
+							x_f = nextSample.s.position,
+							v_f = nextSample.s.velocity,
+							a = acceleration[i]                    
 						)
 					}
 				}

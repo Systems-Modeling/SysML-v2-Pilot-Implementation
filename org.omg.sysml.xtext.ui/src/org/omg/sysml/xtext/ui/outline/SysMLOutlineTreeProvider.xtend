@@ -39,11 +39,11 @@ class SysMLOutlineTreeProvider extends KerMLOutlineTreeProvider {
 	}
 	
 	def String _text(StateUsage state) {
-		var text = state.typePrefixText
+		var text = state.featurePrefixText
 		if (state.isParallel) {
 			text += ' parallel'
 		}
-		text + state.idText
+		text + state.featureIdText
 	}
 	
 	def String _text(StateDefinition state) {

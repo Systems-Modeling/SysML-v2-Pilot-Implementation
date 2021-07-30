@@ -304,6 +304,7 @@ package sfriedenthal_VehicleModel_1_simplified{
             kpl : DerivedUnit = km / L;
             rpm : DerivedUnit = 1 / min;
             kW : DerivedUnit = kilo * W;
+            hp : DerivedUnit = 745.7 * W;
             //
         }
         package IndividualDefinitions{
@@ -379,7 +380,7 @@ package sfriedenthal_VehicleModel_1_simplified{
                 part vehicle_a:Vehicle{
                     attribute mass redefines Vehicle::mass=dryMass+cargoMass+fuelTank.fuel.fuelMass;
                     attribute dryMass redefines Vehicle::dryMass=sum(partMasses);
-                    attribute redefines Vehicle::cargoMass=0;
+                    attribute redefines Vehicle::cargoMass=0 [kg];
                     attribute partMasses [*] nonunique :>ISQ::mass;
                     //attribute partMasses={fuelTank.mass,frontAxleAssembly.mass,rearAxleAssembly.mass};
                     part fuelTank:FuelTank{
@@ -412,7 +413,7 @@ package sfriedenthal_VehicleModel_1_simplified{
                 part vehicle_b : Vehicle{
                     attribute mass redefines mass=dryMass+cargoMass+fuelTank.fuel.fuelMass;
                     attribute dryMass redefines dryMass=sum(partMasses);
-                    attribute redefines cargoMass=0;
+                    attribute redefines cargoMass=0 [kg];
                     attribute partMasses=(fuelTank.mass,frontAxleAssembly.mass,rearAxleAssembly.mass,engine.mass,transmission.mass,driveshaft.mass);
                     attribute avgFuelEconomy :> distancePerVolume;
                     port fuelCmdPort: FuelCmdPort redefines pwrCmdPort {
@@ -435,7 +436,7 @@ package sfriedenthal_VehicleModel_1_simplified{
                         ref item redefines fuel{
                             attribute redefines fuelMass=60[kg];
                         }
-                        attribute redefines fuelMassMax=60;
+                        attribute redefines fuelMassMax=60 [kg];
                         port fuelOutPort redefines fuelOutPort{
                             out item redefines fuel;
                         }
@@ -1058,7 +1059,7 @@ package sfriedenthal_VehicleModel_1_simplified{
                     part engine redefines engine{
                         part cylinders :>> cylinders [4];
                         attribute mass redefines mass=180 [kg];
-                        attribute peakHorsePower redefines peakHorsePower = 180;
+                        attribute peakHorsePower redefines peakHorsePower = 180[hp];
                         attribute fuelEfficiency redefines fuelEfficiency=.6;
                         attribute cost redefines cost = 1000;                     
                     }
@@ -1066,8 +1067,8 @@ package sfriedenthal_VehicleModel_1_simplified{
                 part vehicle_b_engine6cyl:>vehicleAlternatives{   
                     part engine redefines engine{  
                         part cylinders redefines cylinders [6];
-                        attribute mass redefines mass=220;
-                        attribute peakHorsePower redefines peakHorsePower = 220;
+                        attribute mass redefines mass=220[kg];
+                        attribute peakHorsePower redefines peakHorsePower = 220[hp];
                         attribute fuelEfficiency redefines fuelEfficiency=.5;
                         attribute cost redefines cost = 1500;
                     }
@@ -1140,23 +1141,23 @@ package sfriedenthal_VehicleModel_1_simplified{
             //timeslice t0_t2:VehicleRoadContext_1{
             timeslice t0_t2_a{
                 snapshot start redefines start{
-                    attribute t0:TimeValue=0;
+                    attribute t0:TimeValue=0[s];
                 }
                 snapshot done redefines done{
-                    attribute t2:TimeValue=2;
+                    attribute t2:TimeValue=2[s];
                 }
             }
             //snapshot t0:VehicleRoadContext_1{
             snapshot t0_a {             
-                attribute t0 redefines time=0;
+                attribute t0 redefines time=0[s];
                 snapshot t0_r:Road_1{
                     :>>Road::incline =0;
                     :>>Road::friction=.1;
                 }
                 snapshot t0_v:Vehicle_1{
-                    :>>Vehicle::position=0;
-                    :>>Vehicle::velocity=0;
-                    :>>Vehicle::acceleration=1.96;
+                    :>>Vehicle::position=0[m];
+                    :>>Vehicle::velocity=0[m/s];
+                    :>>Vehicle::acceleration=1.96[m/s^2];
                     // .2 g where 1 g = 9.8 meters/sec^2
                     // how do you represent state=on;
                     snapshot t0_fa:FrontAxleAssembly_1{
@@ -1166,15 +1167,15 @@ package sfriedenthal_VehicleModel_1_simplified{
                 }
             }
             snapshot t1_a{
-                attribute t1 redefines time=1;
+                attribute t1 redefines time=1[s];
                 snapshot t1_r:Road_1{
                     :>>Road::incline =0;
                     :>>Road::friction=.1;
                 }
                 snapshot t1_v:Vehicle_1{
-                    :>>Vehicle::position=.98;
-                    :>>Vehicle::velocity=1.96;
-                    :>>Vehicle::acceleration=1.96;
+                    :>>Vehicle::position=.98[m];
+                    :>>Vehicle::velocity=1.96[m/s];
+                    :>>Vehicle::acceleration=1.96[m/s^2];
                     // .2 g where 1 g = 9.8 meters/sec^2
                     // how do you represent state=on;
                     snapshot t1_fa:FrontAxleAssembly_1{
@@ -1184,15 +1185,15 @@ package sfriedenthal_VehicleModel_1_simplified{
                 }
             }
             snapshot t2_a{
-                attribute t2 redefines time=2;
+                attribute t2 redefines time=2[s];
                 snapshot t2_r:Road_1{
                     :>>Road::incline =0;
                     :>>Road::friction=.1;
                 }
                 snapshot t2_v:Vehicle_1{
-                    :>>Vehicle::position=3.92;
-                    :>>Vehicle::velocity=3.92;
-                    :>>Vehicle::acceleration=1.96;
+                    :>>Vehicle::position=3.92[m];
+                    :>>Vehicle::velocity=3.92[m/s];
+                    :>>Vehicle::acceleration=1.96[m/s^2];
                     // .2 g where 1 g = 9.8 meters/sec^2
                     // how do you represent state=on;
                     snapshot t2_fa:FrontAxleAssembly_1{

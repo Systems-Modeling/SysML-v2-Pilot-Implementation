@@ -562,7 +562,10 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 */
 	@Override
 	public boolean isEnd() {
-		return isEnd || getOwningMembership() instanceof EndFeatureMembership;
+		if (getOwningMembership() instanceof EndFeatureMembership) {
+			isEnd = true;
+		}
+		return isEnd;
 	}
 
 	/**
@@ -575,7 +578,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 		boolean oldIsEnd = isEnd;
 		isEnd = newIsEnd;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.FEATURE__IS_PORTION, oldIsEnd, isPortion));
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.FEATURE__IS_END, oldIsEnd, isEnd));
 	}
 
 	/**

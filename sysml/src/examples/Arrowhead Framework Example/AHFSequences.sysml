@@ -44,13 +44,13 @@ package AHFNorwaySequences {
 			from apsp.return_getItems_ack to tlc.return_getItems;
 		}
 		
-		interface APIS_transfer_interface : Interfaces::Interface connect (
-			tlu => telluc.apisp.APIS_HTTP, // port reference
-		    apsph => apisp.tellu.APIS_HTTP, 
-			apspm => apisp.apisc.APIS_MQTT,
-			apsc => apisc.apisp.APIS_MQTT,
-			mqget => MQTTServer.getTopic,
-			mqgive => MQTTServer.giveTopic) {
+		interface APIS_transfer_interface connect ( 
+			tlu :> telluc.apisp.APIS_HTTP, // port reference
+		    apsph :> apisp.tellu.APIS_HTTP, 
+			apspm :> apisp.apisc.APIS_MQTT,
+			apsc :> apisc.apisp.APIS_MQTT,
+			mqget :> MQTTServer.getTopic,
+			mqgive :> MQTTServer.giveTopic) {
 			
 			message publish_returnallitems of Publish
 			from apspm to mqget;

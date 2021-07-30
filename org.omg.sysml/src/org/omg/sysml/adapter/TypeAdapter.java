@@ -278,7 +278,8 @@ public class TypeAdapter extends NamespaceAdapter {
 	
 	public BindingConnector addBindingConnector(Feature source, Feature target) {
 		Type type = getTarget();
-		BindingConnector connector = TypeUtil.createBindingConnector(source, target);
+		BindingConnector connector = ConnectorUtil.createBindingConnector(source, target);
+		ConnectorUtil.transformBindingConnector(connector, getTarget());
 		Type contextType = ConnectorUtil.getContextTypeFor(connector);
 		if (contextType == type) {
 			addImplicitFeatureBindingConnector(connector);

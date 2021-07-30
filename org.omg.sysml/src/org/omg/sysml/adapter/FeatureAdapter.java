@@ -51,6 +51,7 @@ import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.impl.RedefinitionImpl;
+import org.omg.sysml.util.ConnectorUtil;
 import org.omg.sysml.util.ElementUtil;
 import org.omg.sysml.util.ExpressionUtil;
 import org.omg.sysml.util.FeatureUtil;
@@ -377,7 +378,8 @@ public class FeatureAdapter extends TypeAdapter {
 	}
 	
 	protected BindingConnector addBindingConnector(Collection<Type> featuringTypes, Feature source, Feature target) {
-		BindingConnector connector = TypeUtil.createBindingConnector(source, target);
+		BindingConnector connector = ConnectorUtil.createBindingConnector(source, target);
+		ConnectorUtil.transformBindingConnector(connector, getTarget());
 		addImplicitMemberBindingConnector(connector);
 		FeatureUtil.addFeaturingTypesTo(connector, featuringTypes);
 		return connector;

@@ -267,15 +267,16 @@ UsageElement returns SysML::Usage :
 	| ItemUsage
 	| PartUsage
 	| PortUsage
+	| BindingConnector
+	| Succession
 	| ConnectionUsage
-	| AssertConstraintUsage
-	| Connector
 	| InterfaceUsage
 	| AllocationUsage
 	| ActionUsage
 	| CalculationUsage
 	| StateUsage
 	| ConstraintUsage
+	| AssertConstraintUsage
 	| RequirementUsage
 	| ConcernUsage
 	| SatisfyRequirementUsage
@@ -418,7 +419,7 @@ MultiplicityExpressionMember returns SysML::Membership :
 /* Connectors */
 
 ConnectorEndMember returns SysML::EndFeatureMembership :
-	( memberName = Name '=>' )? ownedRelatedElement += ConnectorEnd // ownedMemberFeature = ConnectorEnd
+	( memberName = Name ':>' )? ownedRelatedElement += ConnectorEnd // ownedMemberFeature = ConnectorEnd
 ;
 
 ConnectorEnd returns SysML::Feature :
@@ -432,12 +433,12 @@ BindingKeyword :
 	'bind'
 ;
 
-BindingConnector returns SysML::BindingConnector :
-	( isAbstract ?= 'abstract' )? BindingKeyword 
+BindingConnector returns SysML::BindingConnectorAsUsage :
+	UsagePrefix BindingKeyword 
 	BindingConnectorDeclaration DefinitionBody	
 ;
 
-fragment BindingConnectorDeclaration returns SysML::BindingConnector :
+fragment BindingConnectorDeclaration returns SysML::BindingConnectorAsUsage :
 	( FeatureDeclaration 'as' )?
 	ownedRelationship += ConnectorEndMember '=' 
 	ownedRelationship += ConnectorEndMember
@@ -449,130 +450,14 @@ SuccessionKeyword :
 	'succession'
 ;
 
-Succession returns SysML::Succession :
-	( isAbstract ?= 'abstract' )? SuccessionKeyword SuccessionDeclaration DefinitionBody
+Succession returns SysML::SuccessionAsUsage :
+	UsagePrefix SuccessionKeyword SuccessionDeclaration DefinitionBody
 ;
 
-fragment SuccessionDeclaration returns SysML::Succession :
+fragment SuccessionDeclaration returns SysML::SuccessionAsUsage :
 	( FeatureDeclaration? 'first' )?
 	ownedRelationship += ConnectorEndMember 'then' 
 	ownedRelationship += ConnectorEndMember
-;
-
-/* INTERACTIONS */
-
-/* Messages */
-
-MessageKeyword :
-	'message'
-;
-
-Message returns SysML::ItemFlow :
-	isAbstract ?= MessageKeyword
-	MessageDeclaration DefinitionBody
-;
-
-fragment MessageDeclaration returns SysML::ItemFlow :
-	FeatureDeclaration? 
-    ( 'of'  ownedRelationship += ItemFeatureMember )?
-    ( 'from' BinaryConnectorPart | ValuePart )?  
-;
-
-/* Item Flows */
-
-ItemFlowKeyword :
-	'stream'
-;
-
-ItemFlow returns SysML::ItemFlow :
-	( isAbstract ?= 'abstract' )? ItemFlowKeyword 
-	ItemFlowDeclaration DefinitionBody
-;
-
-SuccessionItemFlowKeyword :
-	'flow'
-;
-
-SuccessionItemFlow returns SysML::SuccessionItemFlow :
-	( isAbstract ?= 'abstract' )? SuccessionItemFlowKeyword 
-	ItemFlowDeclaration DefinitionBody
-;
-
-fragment ItemFlowDeclaration returns SysML::ItemFlow :
-	( FeatureDeclaration? 
-      ( 'of'  ownedRelationship += ItemFeatureMember
-      | ownedRelationship += EmptyItemFeatureMember
-      ) 'from'
-    | ownedRelationship += EmptyItemFeatureMember
-    )
-	ownedRelationship += ItemFlowEndMember 'to' 
-	ownedRelationship += ItemFlowEndMember
-;
-
-ItemFeatureMember returns SysML::FeatureMembership :
-	( memberName = Name DefinedByKeyword )? ownedRelatedElement += ItemFeature // ownedMemberFeature = ItemFeature
-;
-
-ItemFeature returns SysML::ItemFeature :
-	  ownedRelationship += OwnedFeatureTyping 
-	  ( ownedRelationship += OwnedMultiplicity )?
-	| ownedRelationship += OwnedMultiplicity
-	  ( ownedRelationship += OwnedFeatureTyping )?
-;
-
-EmptyItemFeature returns SysML::ItemFeature :
-	{SysML::ItemFeature}
-;
-
-ItemFlowEndMember returns SysML::EndFeatureMembership :
-	ownedRelatedElement += ItemFlowEnd // ownedMemberFeature = ItemFlowEnd
-;
-
-ItemFlowEnd returns SysML::ItemFlowEnd :
-	( ownedRelationship += ItemFlowEndSubsetting )?
-	ownedRelationship += ItemFlowFeatureMember
-;
-
-ItemFlowEndSubsetting returns SysML::Subsetting :
-	  subsettedFeature = [SysML::Feature | QualifiedName] '.'
-	| ownedRelatedElement += FeatureChainPrefix
-;
-
-FeatureChainPrefix returns SysML::Feature :
-	( ownedRelationship += OwnedFeatureChaining '.' )+
-	ownedRelationship += OwnedFeatureChaining '.'
-;
-
-EmptyItemFeatureMember returns SysML::FeatureMembership :
-	ownedRelatedElement += EmptyItemFeature // ownedMemberFeature = EmptyItemFeature
-;
-
-EmptyItemFlowEnd returns SysML::ItemFlowEnd :
-	ownedRelationship += EmptyItemFlowFeatureMember
-;
-
-ItemFlowFeatureMember returns SysML::FeatureMembership :
-	ownedRelatedElement += ItemFlowFeature // ownedMemberFeature = ItemFlowFeature
-;
-
-ItemFlowFeature returns SysML::ItemFlowFeature :
-	ownedRelationship += ItemFlowRedefinition
-;
-
-ItemFlowRedefinition returns SysML::Redefinition :
-	redefinedFeature = [SysML::Feature|QualifiedName]
-;
-
-EmptyItemFlowEndMember returns SysML::EndFeatureMembership :
-	ownedRelatedElement += EmptyItemFlowEnd // ownedMemberFeature = EmptyItemFlowEnd
-;
-
-EmptyItemFlowFeatureMember returns SysML::FeatureMembership :
-	ownedRelatedElement += EmptyItemFlowFeature // ownedMemberFeature = EmptyItemFlowFeature
-;
-
-EmptyItemFlowFeature returns SysML::ItemFlowFeature :
-	{SysML::ItemFlowFeature}
 ;
 
 /* DEPENDENCIES */
@@ -691,8 +576,10 @@ SourceItemFlowMember returns SysML::Membership :
 	ownedRelatedElement += SourceItemFlow // ownedMemberElement = SourceItemFlow
 ;
 
-SourceItemFlow returns SysML::ItemFlow :
-	( ItemFlowKeyword | {SysML::SuccessionItemFlow} SuccessionItemFlowKeyword ) 
+SourceItemFlow returns SysML::FlowConnectionUsage :
+	( FlowConnectionKeyword 
+	| {SysML::SuccessionFlowConnectionUsage} SuccessionFlowConnectionKeyword
+	) 
 	ownedRelationship += EmptyItemFeatureMember 
 	'from' ownedRelationship += ItemFlowEndMember
 	ownedRelationship += EmptyItemFlowEndMember
@@ -724,7 +611,7 @@ VariantReference returns SysML::ReferenceUsage :
 
 /* Body Elements */
 
-NonOccurrenceUsageElement returns SysML::Feature :
+NonOccurrenceUsageElement returns SysML::Usage :
 	  DefaultReferenceUsage
 	| ReferenceUsage
 	| AttributeUsage
@@ -733,11 +620,11 @@ NonOccurrenceUsageElement returns SysML::Feature :
 	| Succession
 ;
 
-OccurrenceUsageElement returns SysML::Feature :
+OccurrenceUsageElement returns SysML::Usage :
 	StructureUsageElement | BehaviorUsageElement
 ;
 
-StructureUsageElement returns SysML::Feature :
+StructureUsageElement returns SysML::Usage :
 	  OccurrenceUsage
 	| IndividualUsage
 	| PortionUsage
@@ -748,12 +635,11 @@ StructureUsageElement returns SysML::Feature :
 	| RenderingUsage
 	| PortUsage
 	| ConnectionUsage
-	| Connector
 	| InterfaceUsage
 	| AllocationUsage
 	| Message
-	| ItemFlow
-	| SuccessionItemFlow
+	| FlowConnectionUsage
+	| SuccessionFlowConnectionUsage
 ;
 
 BehaviorUsageElement returns SysML::Usage :
@@ -779,16 +665,23 @@ VariantUsageElement returns SysML::Usage :
 	  VariantReference
 	| ReferenceUsage
 	| AttributeUsage
+	| BindingConnector
+	| Succession
 	| OccurrenceUsage
 	| IndividualUsage
 	| PortionUsage
+	| EventOccurrenceUsage
 	| ItemUsage
 	| PartUsage
+	| ViewUsage
+	| RenderingUsage
 	| PortUsage
 	| ConnectionUsage
-	| Connector
 	| InterfaceUsage
 	| AllocationUsage
+	| Message
+	| FlowConnectionUsage
+	| SuccessionFlowConnectionUsage
 	| BehaviorUsageElement
 ;
 
@@ -936,7 +829,7 @@ EmptySuccessionMember returns SysML::FeatureMembership :
 	ownedRelatedElement += EmptySuccession // ownedMemberFeature = EmptySuccession
 ;
 
-EmptySuccession returns SysML::Succession :
+EmptySuccession returns SysML::SuccessionAsUsage :
 	'then' ownedRelationship += MultiplicitySourceEndMember 
 	ownedRelationship += EmptyTargetEndMember
 ;
@@ -1060,12 +953,10 @@ ConnectionDefinition returns SysML::ConnectionDefinition :
 	OccurrenceDefinitionPrefix ConnectionDefKeyword Definition
 ;
 
+/* Connection Usages */
+
 ConnectorKeyword :
 	'connect'
-;
-
-Connector returns SysML::ConnectionUsage :
-	OccurrenceUsagePrefix ConnectorKeyword ConnectorPart UsageBody
 ;
 
 ConnectionUsageKeyword :
@@ -1073,8 +964,11 @@ ConnectionUsageKeyword :
 ;
 
 ConnectionUsage returns SysML::ConnectionUsage :
-	OccurrenceUsagePrefix ConnectionUsageKeyword UsageDeclaration? 
-	( ConnectorKeyword ConnectorPart )? UsageBody
+	OccurrenceUsagePrefix 
+	( ConnectionUsageKeyword UsageDeclaration? 
+	  ( ConnectorKeyword ConnectorPart )? 
+	| ConnectorKeyword ConnectorPart
+	) UsageBody
 ;
 
 fragment ConnectorPart returns SysML::ConnectionUsage :
@@ -1098,6 +992,123 @@ EmptySourceEndMember returns SysML::EndFeatureMembership :
 
 EmptySourceEnd returns SysML::Feature :
 	{SysML::SourceEnd}
+;
+
+/* INTERACTIONS */
+
+/* Messages */
+
+MessageKeyword :
+	'message'
+;
+
+Message returns SysML::FlowConnectionUsage :
+	OccurrenceUsagePrefix MessageKeyword MessageDeclaration DefinitionBody
+;
+
+fragment MessageDeclaration returns SysML::FlowConnectionUsage :
+	FeatureDeclaration? 
+    ( 'of'  ownedRelationship += ItemFeatureMember )?
+    ( 'from' BinaryConnectorPart | ValuePart )?  
+;
+
+/* Flow Connection Usages */
+
+FlowConnectionKeyword :
+	'stream'
+;
+
+FlowConnectionUsage returns SysML::FlowConnectionUsage :
+	OccurrenceUsagePrefix FlowConnectionKeyword 
+	FlowConnectionDeclaration DefinitionBody
+;
+
+SuccessionFlowConnectionKeyword :
+	'flow'
+;
+
+SuccessionFlowConnectionUsage returns SysML::SuccessionFlowConnectionUsage :
+	OccurrenceUsagePrefix SuccessionFlowConnectionKeyword 
+	FlowConnectionDeclaration DefinitionBody
+;
+
+fragment FlowConnectionDeclaration returns SysML::FlowConnectionUsage :
+	( FeatureDeclaration? 
+      ( 'of'  ownedRelationship += ItemFeatureMember
+      | ownedRelationship += EmptyItemFeatureMember
+      ) 'from'
+    | ownedRelationship += EmptyItemFeatureMember
+    )
+	ownedRelationship += ItemFlowEndMember 'to' 
+	ownedRelationship += ItemFlowEndMember
+;
+
+/* Item Flow Members */
+
+ItemFeatureMember returns SysML::FeatureMembership :
+	( memberName = Name DefinedByKeyword )? ownedRelatedElement += ItemFeature // ownedMemberFeature = ItemFeature
+;
+
+ItemFeature returns SysML::ItemFeature :
+	  ownedRelationship += OwnedFeatureTyping 
+	  ( ownedRelationship += OwnedMultiplicity )?
+	| ownedRelationship += OwnedMultiplicity
+	  ( ownedRelationship += OwnedFeatureTyping )?
+;
+
+EmptyItemFeature returns SysML::ItemFeature :
+	{SysML::ItemFeature}
+;
+
+ItemFlowEndMember returns SysML::EndFeatureMembership :
+	ownedRelatedElement += ItemFlowEnd // ownedMemberFeature = ItemFlowEnd
+;
+
+ItemFlowEnd returns SysML::ItemFlowEnd :
+	( ownedRelationship += ItemFlowEndSubsetting )?
+	ownedRelationship += ItemFlowFeatureMember
+;
+
+ItemFlowEndSubsetting returns SysML::Subsetting :
+	  subsettedFeature = [SysML::Feature | QualifiedName] '.'
+	| ownedRelatedElement += FeatureChainPrefix
+;
+
+FeatureChainPrefix returns SysML::Feature :
+	( ownedRelationship += OwnedFeatureChaining '.' )+
+	ownedRelationship += OwnedFeatureChaining '.'
+;
+
+EmptyItemFeatureMember returns SysML::FeatureMembership :
+	ownedRelatedElement += EmptyItemFeature // ownedMemberFeature = EmptyItemFeature
+;
+
+EmptyItemFlowEnd returns SysML::ItemFlowEnd :
+	ownedRelationship += EmptyItemFlowFeatureMember
+;
+
+ItemFlowFeatureMember returns SysML::FeatureMembership :
+	ownedRelatedElement += ItemFlowFeature // ownedMemberFeature = ItemFlowFeature
+;
+
+ItemFlowFeature returns SysML::ItemFlowFeature :
+	ownedRelationship += ItemFlowRedefinition
+;
+
+ItemFlowRedefinition returns SysML::Redefinition :
+	redefinedFeature = [SysML::Feature|QualifiedName]
+;
+
+EmptyItemFlowEndMember returns SysML::EndFeatureMembership :
+	ownedRelatedElement += EmptyItemFlowEnd // ownedMemberFeature = EmptyItemFlowEnd
+;
+
+EmptyItemFlowFeatureMember returns SysML::FeatureMembership :
+	ownedRelatedElement += EmptyItemFlowFeature // ownedMemberFeature = EmptyItemFlowFeature
+;
+
+EmptyItemFlowFeature returns SysML::ItemFlowFeature :
+	{SysML::ItemFlowFeature}
 ;
 
 /* INTERFACES */
@@ -1188,7 +1199,7 @@ fragment NaryInterfacePart returns SysML::Connector :
 ;
 
 InterfaceEndMember returns SysML::EndFeatureMembership :
-	( memberName = Name '=>' )? ownedRelatedElement += InterfaceEnd // ownedMemberFeature = InterfaceEnd
+	( memberName = Name ':>' )? ownedRelatedElement += InterfaceEnd // ownedMemberFeature = InterfaceEnd
 ;
 
 InterfaceEnd returns SysML::PortUsage :
@@ -1283,8 +1294,8 @@ fragment ActionBodyItem returns SysML::Type :
 	| ownedRelationship += GuardedSuccessionMember
 ;
 
-InitialNodeMember returns SysML::FeatureMembership :
-	MemberPrefix 'first' memberFeature = [SysML::Feature|QualifiedName] ';'
+InitialNodeMember returns SysML::Membership :
+	MemberPrefix 'first' memberElement = [SysML::Feature|QualifiedName] ';'
 	
 ;
 
@@ -1389,7 +1400,7 @@ fragment AcceptNodeDeclaration returns SysML::ActionUsage :
 
 fragment AcceptParameterPart returns SysML::ActionUsage :
 	ownedRelationship += ItemParameterMember
-	( 'for' ownedRelationship += NodeParameterMember 
+	( 'via' ownedRelationship += NodeParameterMember 
 	| ownedRelationship += EmptyParameterMember
 	)
 ;
@@ -1466,7 +1477,7 @@ ActionTargetSuccession returns SysML::Feature :
 	TargetSuccession | GuardedTargetSuccession | DefaultTargetSuccession
 ;
 
-TargetSuccession returns SysML::Succession :
+TargetSuccession returns SysML::SuccessionAsUsage :
 	'then' ownedRelationship += MultiplicitySourceEndMember 
 	ownedRelationship += ConnectorEndMember
 ;
@@ -1684,7 +1695,7 @@ TransitionSuccessionMember returns SysML::Membership :
 	ownedRelatedElement += TransitionSuccession // ownedMemberElement = TransitionSuccession
 ;
 
-TransitionSuccession returns SysML::Succession :
+TransitionSuccession returns SysML::SuccessionAsUsage :
 	ownedRelationship += EmptySourceEndMember 
 	ownedRelationship += ConnectorEndMember
 ;
@@ -1911,7 +1922,7 @@ RequirementUsage returns SysML::RequirementUsage :
 ;
 
 SatisfyRequirementUsage returns SysML::SatisfyRequirementUsage :
-	OccurrenceUsagePrefix ( isNegated ?= 'not' )? 'satisfy' 
+	OccurrenceUsagePrefix 'assert'? ( isNegated ?= 'not' )? 'satisfy' 
 	( ownedRelationship += OwnedSubsetting FeatureSpecializationPart?
     | RequirementUsageKeyword UsageDeclaration? 
     )

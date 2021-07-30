@@ -83,7 +83,17 @@ public class ImplicitGeneralizationMap {
 		put(ItemFlowImpl.class, "base", "Transfers::transfers");
 		put(ItemFlowImpl.class, "subperformance", "Performances::Performance::subtransfers");
 		
+		put(LiteralBooleanImpl.class, "base", "Performances::literalBooleanEvaluations");
+		
 		put(LiteralExpressionImpl.class, "base", "Performances::literalEvaluations");
+		
+		put(LiteralInfinityImpl.class, "base", "Performances::literalIntegerEvaluations");
+		
+		put(LiteralIntegerImpl.class, "base", "Performances::literalIntegerEvaluations");
+		
+		put(LiteralRationalImpl.class, "base", "Performances::literalRationalEvaluations");
+		
+		put(LiteralStringImpl.class, "base", "Performances::literalStringEvaluations");
 		
 		put(MultiplicityImpl.class, "base", "Base::naturals");
 		put(MultiplicityImpl.class, "feature", "Base::exactlyOne");
@@ -135,6 +145,9 @@ public class ImplicitGeneralizationMap {
 		put(AttributeDefinitionImpl.class, "base", "Base::DataValue");
 		put(AttributeUsageImpl.class, "base", "Base::dataValues");
 		
+		put(BindingConnectorAsUsageImpl.class, "base", "Links::links");
+		put(BindingConnectorAsUsageImpl.class, "binary", "Links::selfLinks");
+		
 		put(CalculationDefinitionImpl.class, "base", "Calculations::Calculation");
 		put(CalculationUsageImpl.class, "base", "Calculations::calculations");
 		put(CalculationUsageImpl.class, "subcalculation", "Calculations::Calculation::subcalculations");
@@ -147,9 +160,10 @@ public class ImplicitGeneralizationMap {
 		put(ConcernUsageImpl.class, "base", "Requirements::concernChecks");
 		put(ConcernUsageImpl.class, "subrequirement", "Requirements::RequirementCheck::concerns");
 		
-		put(ConnectionDefinitionImpl.class, "binary", "Connections::Connection");
-		put(ConnectionUsageImpl.class, "base", "Links::links");
-		put(ConnectionUsageImpl.class, "binary", "Connections::connections");
+		put(ConnectionDefinitionImpl.class, "base", "Connections::Connection");
+		put(ConnectionDefinitionImpl.class, "binary", "Connections::BinaryConnection");
+		put(ConnectionUsageImpl.class, "base", "Connections::connections");
+		put(ConnectionUsageImpl.class, "binary", "Connections::binaryConnections");
 		
 		put(ConstraintDefinitionImpl.class, "base", "Constraints::ConstraintCheck");
 		put(ConstraintUsageImpl.class, "base", "Constraints::constraintChecks");
@@ -162,13 +176,18 @@ public class ImplicitGeneralizationMap {
 
 		put(ExhibitStateUsageImpl.class, "enactedPerformance", "Parts::Part::exhibitedStates");
 		
+		put(FlowConnectionUsageImpl.class, "base", "Transfers::transfers");
+		put(FlowConnectionUsageImpl.class, "subperformance", "Performances::Performance::subtransfers");
+		
 		put(ForkNodeImpl.class, "subaction", "Actions::Action::forks");
 		
 		put(IncludeUseCaseUsageImpl.class, "subUseCase", "UseCases::UseCase::includedUseCases");
 		put(IncludeUseCaseUsageImpl.class, "enactedPerformance", "Parts::Part::performedActions");
 		
-		put(InterfaceDefinitionImpl.class, "binary", "Interfaces::Interface");
-		put(InterfaceUsageImpl.class, "binary", "Interfaces::interfaces");
+		put(InterfaceDefinitionImpl.class, "base", "Interfaces::Interface");
+		put(InterfaceDefinitionImpl.class, "binary", "Interfaces::BinaryInterface");
+		put(InterfaceUsageImpl.class, "base", "Interfaces::interfaces");
+		put(InterfaceUsageImpl.class, "binary", "Interfaces::binaryInterfaces");
 		
 		put(ItemDefinitionImpl.class, "base", "Items::Item");
 		put(ItemUsageImpl.class, "base", "Items::items");
@@ -213,6 +232,12 @@ public class ImplicitGeneralizationMap {
 		put(StateUsageImpl.class, "base", "States::stateActions");
 		put(StateUsageImpl.class, "substate", "States::StateAction::substates");
 		
+		put(SuccessionAsUsageImpl.class, "base", "Links::links");
+		put(SuccessionAsUsageImpl.class, "binary", "Occurrences::happensBeforeLinks");
+		
+		put(SuccessionFlowConnectionUsageImpl.class, "base", "Transfers::transfersBefore");
+		put(SuccessionFlowConnectionUsageImpl.class, "subperformance", "Performances::Performance::subtransfersBefore");
+
 		put(TransitionUsageImpl.class, "base", "Actions::transitionActions");
 		put(TransitionUsageImpl.class, "actionTransition", "Actions::Action::transitions");
 		put(TransitionUsageImpl.class, "stateTransition", "States::StateAction::stateTransitions");

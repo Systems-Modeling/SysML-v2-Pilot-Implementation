@@ -8,7 +8,7 @@ package '15_13-Discretely Sampled Function Value' {
 	import Time::*;
 
 	attribute def MissionElapsedTimeScale :> TimeScale {
-    :>> longName = "mission elapsed time starting at launch";
+    	:>> longName = "mission elapsed time starting at launch";
 		:>> unit = s;
 		attribute :>> definitionalEpoch {
 			:>> num = 0;

@@ -1401,15 +1401,6 @@ public interface SysMLFactory extends EFactory {
 	SuccessionAsUsage createSuccessionAsUsage();
 
 	/**
-	 * Returns a new object of class '<em>Literal Integer</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Literal Integer</em>'.
-	 * @generated
-	 */
-	LiteralInteger createLiteralInteger();
-
-	/**
 	 * Returns a new object of class '<em>Null Expression</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1426,6 +1417,15 @@ public interface SysMLFactory extends EFactory {
 	 * @generated
 	 */
 	FeatureReferenceExpression createFeatureReferenceExpression();
+
+	/**
+	 * Returns a new object of class '<em>Literal Integer</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Literal Integer</em>'.
+	 * @generated
+	 */
+	LiteralInteger createLiteralInteger();
 
 	/**
 	 * Returns the package supported by this factory.

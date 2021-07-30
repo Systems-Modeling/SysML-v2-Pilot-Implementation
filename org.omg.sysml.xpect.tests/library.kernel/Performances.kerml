@@ -10,6 +10,7 @@ package Performances {
 	private import Objects::BinaryLinkObject;
 	private import Transfers::transfers;
 	private import Transfers::transfersBefore;
+	private import ScalarValues::*;
 	
 	/**
 	 * Performance is the most general class of behavioral Occurrences that may be performed over time.
@@ -58,12 +59,34 @@ package Performances {
 	 * BooleanEvaluation is a specialization of Evaluation that is the most general class of
 	 * Predicates that may be evaluated to produce a Boolean truth value.
 	 */
-	abstract predicate BooleanEvaluation specializes Evaluation (): ScalarValues::Boolean[1];
+	abstract predicate BooleanEvaluation specializes Evaluation (): Boolean[1];
 	
 	/**
 	 * LiteralEvaluation is a specialization of Evaluation for the case of LiteralExpressions.
 	 */				
-	abstract function LiteralEvaluation specializes Evaluation (): ScalarValues::ScalarValue[1];
+	abstract function LiteralEvaluation specializes Evaluation (): ScalarValue[1];
+	
+	/**
+	 * LiteralBooleanEvaluation is a specialization of LiteralEvaluation for the case of LiteralBooleans.
+	 * It is also a predicate and thus a specialization of BooleanEvaluation. 
+	 */
+	abstract predicate LiteralBooleanEvaluation specializes LiteralEvaluation, BooleanEvaluation (): Boolean[1];
+
+	/**
+	 * LiteralIntegerEvaluation is a specialization of LiteralEvaluation for the case of LiteralIntegers.
+	 */
+	abstract function LiteralIntegerEvaluation specializes LiteralEvaluation (): Integer[1];
+
+	/**
+	 * LiteralRationalEvaluation is a specialization of LiteralEvaluation for the case of LiteralRationals.
+	 * (Note: Return type is Real to allow easy type conformance of LiteralRationals when a Real result is expected.)
+	 */
+	abstract function LiteralRationalEvaluation specializes LiteralEvaluation (): Real[1];
+	
+	/**
+	 * LiteralStringEvaluation is a specialization of LiteralEvaluation for the case of LiteralStrings.
+	 */
+	abstract function LiteralStringEvaluation specializes LiteralEvaluation (): String[1];
 	
 	/**
 	 * NullEvaluation is a specialization of Evaluation for the case of NullExpressions.
@@ -122,6 +145,27 @@ package Performances {
 	 * literalEvaluations is a specialization of evaluations restricted to type LiteralEvaluation.
 	 */
 	abstract expr literalEvaluations: LiteralEvaluation[0..*] nonunique subsets evaluations;
+	
+	/**
+	 * literalBooleanEvaluations is a specialization of literalEvaluations and booleanEvaluations restricted 
+	 * to type LiteralBooleanEvaluation.
+	 */
+	abstract expr literalBooleanEvaluations: LiteralBooleanEvaluation[0..*] nonunique subsets literalEvaluations, booleanEvaluations;
+	
+	/**
+	 * literalEvaluations is a specialization of evaluations restricted to type LiteralEvaluation.
+	 */
+	abstract expr literalIntegerEvaluations: LiteralIntegerEvaluation[0..*] nonunique subsets literalEvaluations;
+	
+	/**
+	 * literalRationalEvaluations is a specialization of literalEvaluations restricted to type LiteralRationalEvaluation.
+	 */
+	abstract expr literalRationalEvaluations: LiteralRationalEvaluation[0..*] nonunique subsets literalEvaluations;
+	
+	/**
+	 * literalStringEvaluations is a specialization of literalEvaluations restricted to type LiteralStringEvaluation.
+	 */
+	abstract expr literalStringEvaluations: LiteralStringEvaluation[0..*] nonunique subsets literalEvaluations;
 	
 	/**
 	 * nullEvaluations is a specialization of evaluations restricted to type NullEvaluation.

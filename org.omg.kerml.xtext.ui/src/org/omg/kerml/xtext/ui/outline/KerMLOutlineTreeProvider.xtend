@@ -42,6 +42,7 @@ import org.omg.sysml.lang.sysml.LiteralInfinity
 import org.omg.sysml.lang.sysml.Specialization
 import org.omg.sysml.lang.sysml.LiteralInteger
 import org.omg.sysml.lang.sysml.FeatureChaining
+import org.omg.sysml.lang.sysml.Disjoining
 
 /**
  * Customization of the default outline structure.
@@ -166,8 +167,22 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		text
 	}
 	
+	def String featureIdText(Feature feature) {
+		var idText = feature.idText
+		if (idText == "" && !feature.ownedFeatureChaining.empty) {
+			for (chainingFeature: feature.chainingFeature) {
+				if (idText == "") {
+					idText = chainingFeature.idText
+				} else {
+					idText += "." + chainingFeature.idText
+				}
+			}
+		}
+		idText
+	}
+	
 	def String _text(Feature feature) {
-		feature.featurePrefixText + feature.idText
+		feature.featurePrefixText + feature.featureIdText
 	}
 	
 	def String _text(Expression expression) {
@@ -214,14 +229,14 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	def createRelatedElements(IOutlineNode parentNode, Relationship relationship) {
 		for (source: relationship.source) {
 			createNode(parentNode, source, 
-				_image(source), 'from ' + source._text, 
-				true
+				_image(source), 'from ' + textDispatcher.invoke(source), 
+				!(source instanceof Feature) || (source as Feature).ownedFeatureChaining.empty
 			)
 		}
 		for (target: relationship.target) {
 			createNode(parentNode, target, 
-				_image(target), 'to ' + target._text, 
-				true
+				_image(target), 'to ' + textDispatcher.invoke(target), 
+				!(target instanceof Feature) || (target as Feature).ownedFeatureChaining.empty
 			)
 		}
 	}
@@ -419,6 +434,21 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 				_image(conjugation.originalType), conjugation.originalType._text, 
 				true
 			)
+		}
+	}
+	
+	def boolean _isLeaf(Disjoining disjoining) {
+		disjoining.disjoiningType === null
+	}
+	
+	def void _createChildren(IOutlineNode parentNode, Disjoining disjoining) {
+		val typeDisjoined = disjoining.typeDisjoined
+		if (typeDisjoined !== null && typeDisjoined !== disjoining.eContainer) {
+			createNode(parentNode, typeDisjoined, typeDisjoined._image, typeDisjoined._text, true)			
+		}
+		val disjoiningType = disjoining.disjoiningType
+		if (disjoiningType !== null) {
+			createNode(parentNode, disjoiningType, disjoiningType._image, disjoiningType._text, true)
 		}
 	}
 	

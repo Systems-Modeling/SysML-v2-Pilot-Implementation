@@ -78,7 +78,7 @@ ImpliesExpression returns SysML::Expression :
 ;
 
 ImpliesOperator :
-	'implies'
+	'=>' | 'implies'
 ;
 
 OrExpression returns SysML::Expression :
@@ -334,7 +334,7 @@ fragment NamedArgumentList returns SysML::Expression :
 ;
 
 NamedExpressionMember returns SysML::FeatureMembership :
-	memberName = Name '=>' ownedRelatedElement += OwnedExpression // ownedMemberFeature = OwnedExpression
+	memberName = Name '=' ownedRelatedElement += OwnedExpression // ownedMemberFeature = OwnedExpression
 ;
 
 // Null Expressions

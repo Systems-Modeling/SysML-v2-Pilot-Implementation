@@ -11,14 +11,17 @@ package org.omg.sysml.lang.sysml;
  * <!-- begin-model-doc -->
  * <p>A Disjoining is a Relationships that asserts that the interpretations of the <code>typeDisjoined</code> and the <code>disjoiningType</code> are disjoint.</p>
  * 
+ * <p>Sequences in the interpretation of the <code>disjoiningType</code> are not in the interpretation of the <code>typeDisjoinged</type>.  For example, a Classifier for mammals is disjoint from a Classifier for minerals, and a Feature for people's parents is disjoint from a Feature for their children. </p>
+ * 
  * <!-- end-model-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.Disjoining#getDisjoiningType <em>Disjoining Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Disjoining#getTypeDisjoined <em>Type Disjoined</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Disjoining#getDisjoiningType <em>Disjoining Type</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Disjoining#getOwningType <em>Owning Type</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getDisjoining()
@@ -60,8 +63,43 @@ public interface Disjoining extends Relationship {
 	void setDisjoiningType(Type value);
 
 	/**
+	 * Returns the value of the '<em><b>Owning Type</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Type#getOwnedDisjoining <em>Owned Disjoining</em>}'.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Disjoining#getTypeDisjoined() <em>Type Disjoined</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Relationship#getOwningRelatedElement() <em>Owning Related Element</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Owning Type</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Owning Type</em>' reference.
+	 * @see #setOwningType(Type)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDisjoining_OwningType()
+	 * @see org.omg.sysml.lang.sysml.Type#getOwnedDisjoining
+	 * @model opposite="ownedDisjoining" transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="subsets"
+	 * @generated
+	 */
+	Type getOwningType();
+
+	/**
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Disjoining#getOwningType <em>Owning Type</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Owning Type</em>' reference.
+	 * @see #getOwningType()
+	 * @generated
+	 */
+	void setOwningType(Type value);
+
+	/**
 	 * Returns the value of the '<em><b>Type Disjoined</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Type#getDisjoiningTypeDisjoining <em>Disjoining Type Disjoining</em>}'.
 	 * <p>
 	 * This feature redefines the following features:
 	 * </p>
@@ -76,8 +114,8 @@ public interface Disjoining extends Relationship {
 	 * @return the value of the '<em>Type Disjoined</em>' reference.
 	 * @see #setTypeDisjoined(Type)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDisjoining_TypeDisjoined()
-	 * @see org.omg.sysml.lang.sysml.Type#getDisjoiningTypeDisjoining
-	 * @model opposite="disjoiningTypeDisjoining" required="true" ordered="false"
+	 * @model required="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='disjoiningTypeDisjoining'"
 	 *        annotation="redefines"
 	 * @generated
 	 */

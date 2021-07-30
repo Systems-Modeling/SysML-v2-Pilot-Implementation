@@ -240,9 +240,9 @@ ruleImpliesOperator
 	}
 	:
 	(
-		{ before(grammarAccess.getImpliesOperatorAccess().getImpliesKeyword()); }
-		'implies'
-		{ after(grammarAccess.getImpliesOperatorAccess().getImpliesKeyword()); }
+		{ before(grammarAccess.getImpliesOperatorAccess().getAlternatives()); }
+		(rule__ImpliesOperator__Alternatives)
+		{ after(grammarAccess.getImpliesOperatorAccess().getAlternatives()); }
 	)
 ;
 finally {
@@ -1697,6 +1697,27 @@ rule__ConditionalExpression__Alternatives
 		{ before(grammarAccess.getConditionalExpressionAccess().getGroup_1()); }
 		(rule__ConditionalExpression__Group_1__0)
 		{ after(grammarAccess.getConditionalExpressionAccess().getGroup_1()); }
+	)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__ImpliesOperator__Alternatives
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	(
+		{ before(grammarAccess.getImpliesOperatorAccess().getEqualsSignGreaterThanSignKeyword_0()); }
+		'=>'
+		{ after(grammarAccess.getImpliesOperatorAccess().getEqualsSignGreaterThanSignKeyword_0()); }
+	)
+	|
+	(
+		{ before(grammarAccess.getImpliesOperatorAccess().getImpliesKeyword_1()); }
+		'implies'
+		{ after(grammarAccess.getImpliesOperatorAccess().getImpliesKeyword_1()); }
 	)
 ;
 finally {
@@ -6050,9 +6071,9 @@ rule__NamedExpressionMember__Group__1__Impl
 	}
 :
 (
-	{ before(grammarAccess.getNamedExpressionMemberAccess().getEqualsSignGreaterThanSignKeyword_1()); }
-	'=>'
-	{ after(grammarAccess.getNamedExpressionMemberAccess().getEqualsSignGreaterThanSignKeyword_1()); }
+	{ before(grammarAccess.getNamedExpressionMemberAccess().getEqualsSignKeyword_1()); }
+	'='
+	{ after(grammarAccess.getNamedExpressionMemberAccess().getEqualsSignKeyword_1()); }
 )
 ;
 finally {

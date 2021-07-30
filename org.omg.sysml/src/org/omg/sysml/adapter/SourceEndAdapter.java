@@ -22,10 +22,13 @@
 package org.omg.sysml.adapter;
 
 import org.eclipse.emf.common.util.EList;
+import org.omg.sysml.lang.sysml.ActionDefinition;
+import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Connector;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.ItemFlow;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.SatisfyRequirementUsage;
@@ -80,6 +83,8 @@ public class SourceEndAdapter extends FeatureAdapter {
 				if (!(membership instanceof TransitionFeatureMembership)) {
 					Element previousElement = memberships.get(i).getMemberElement();
 					if (previousElement instanceof Feature &&
+						(!(owner instanceof ActionDefinition || owner instanceof ActionUsage) && 
+						 previousElement instanceof ItemFlow) ||
 						!(FeatureUtil.isParameter((Feature)previousElement) || 
 						  previousElement instanceof Connector || 
 						  previousElement instanceof TransitionUsage)) {

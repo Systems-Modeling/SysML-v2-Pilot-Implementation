@@ -23,11 +23,9 @@ package org.omg.sysml.adapter;
 
 import java.util.List;
 
-import org.eclipse.emf.common.util.EList;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.ItemFlow;
-import org.omg.sysml.lang.sysml.Namespace;
-import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.util.ConnectorUtil;
 import org.omg.sysml.util.TypeUtil;
 
 public class ItemFlowAdapter extends ConnectorAdapter {
@@ -53,26 +51,9 @@ public class ItemFlowAdapter extends ConnectorAdapter {
 		return TypeUtil.getItemFeaturesOf(getTarget());
 	}
 	
-	public void transformConnectorEnd() {
-		ItemFlow flow = getTarget();
-		Namespace owner = flow.getOwningNamespace();
-		if (owner instanceof Feature) {
-			EList<Feature> ends = flow.getConnectorEnd();
-			if (ends.size() >= 2) {
-				EList<Feature> endFeatures = ends.get(1).getOwnedFeature();
-				if (!endFeatures.isEmpty()) {
-					Feature flowEndFeature = endFeatures.get(0);
-					if (flowEndFeature.getOwnedRedefinition().isEmpty()) {
-						TypeUtil.addImplicitGeneralTypeTo(flowEndFeature, SysMLPackage.eINSTANCE.getRedefinition(), (Feature)owner);
-					}
-				}
-			}
-		}
-	}
-
 	@Override
 	public void doTransform() {
-		transformConnectorEnd();
+		ConnectorUtil.transformConnectorEndsOf(getTarget());
 		super.doTransform();
 	}
 	

@@ -21,24 +21,40 @@
 
 package org.omg.sysml.adapter;
 
-import org.omg.sysml.lang.sysml.SuccessionItemFlow;
+import java.util.List;
 
-public class SuccessionItemFlowAdapter extends ItemFlowAdapter {
+import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.FlowConnectionUsage;
+import org.omg.sysml.util.ConnectorUtil;
+import org.omg.sysml.util.TypeUtil;
 
-	public SuccessionItemFlowAdapter(SuccessionItemFlow feature) {
+public class FlowConnectionUsageAdapter extends ConnectionUsageAdapter {
+
+	public FlowConnectionUsageAdapter(FlowConnectionUsage feature) {
 		super(feature);
 	}
 	
 	@Override
-	public SuccessionItemFlow getTarget() {
-		return (SuccessionItemFlow)super.getTarget();
+	public FlowConnectionUsage getTarget() {
+		return (FlowConnectionUsage)super.getTarget();
 	}
-
+	
 	@Override
 	protected String getDefaultSupertype() {
-		return isSubperformance() ? 
-				getDefaultSupertype("subperformance"): 
+		return isSubperformance()? 
+				getDefaultSupertype("subperformance"):
 				getDefaultSupertype("base");
+	}
+	
+	@Override
+	public List<? extends Feature> getRelevantFeatures() {
+		return TypeUtil.getItemFeaturesOf(getTarget());
+	}
+	
+	@Override
+	public void doTransform() {
+		ConnectorUtil.transformConnectorEndsOf(getTarget());
+		super.doTransform();
 	}
 	
 }

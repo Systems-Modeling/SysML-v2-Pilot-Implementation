@@ -327,7 +327,7 @@ package SI {
             :>> num = 1/100; :>> definition = "temperature in degree Celsius of pure water at the triple point";
         }
         private attribute celsiusToKelvinScaleMapping: QuantityValueMapping {
-            :>> mappedQuantityValue = temperatureWaterAtTriplePointInC; :>> referenceQuantityValue = K::temperatureOfWaterAtTriplePointInK;
+            :>> mappedQuantityValue = temperatureWaterAtTriplePointInC; :>> referenceQuantityValue = K.temperatureOfWaterAtTriplePointInK;
         }
         attribute :>> definitionalQuantityValues = (temperatureWaterAtTriplePointInC, temperatureWaterAtFreezingPointInC);
         attribute :>> quantityValueMapping = celsiusToKelvinScaleMapping;

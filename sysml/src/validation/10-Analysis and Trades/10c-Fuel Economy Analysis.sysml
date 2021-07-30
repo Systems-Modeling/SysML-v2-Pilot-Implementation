@@ -6,7 +6,7 @@ package '10c-Fuel Economy Analysis' {
 	import USCustomaryUnits::*;
 	
 	attribute distancePerVolume : QuantityValue = length / volume;	
-	attribute gallon : MeasurementUnit = 231.0 * 'in' ** 3;
+	attribute gallon : MeasurementUnit = 231.0 * 'in'^3;
 	
 	package FuelEconomyRequirementsModel {
 		

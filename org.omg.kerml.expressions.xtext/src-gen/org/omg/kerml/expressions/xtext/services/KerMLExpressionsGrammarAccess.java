@@ -653,34 +653,30 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 	public class ClassificationOperatorElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.expressions.xtext.KerMLExpressions.ClassificationOperator");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final Keyword cInstanceofKeyword_0 = (Keyword)cAlternatives.eContents().get(0);
-		private final Keyword cHastypeKeyword_1 = (Keyword)cAlternatives.eContents().get(1);
-		private final Keyword cIstypeKeyword_2 = (Keyword)cAlternatives.eContents().get(2);
-		private final Keyword cCommercialAtKeyword_3 = (Keyword)cAlternatives.eContents().get(3);
-		private final Keyword cAsKeyword_4 = (Keyword)cAlternatives.eContents().get(4);
+		private final Keyword cHastypeKeyword_0 = (Keyword)cAlternatives.eContents().get(0);
+		private final Keyword cIstypeKeyword_1 = (Keyword)cAlternatives.eContents().get(1);
+		private final Keyword cCommercialAtKeyword_2 = (Keyword)cAlternatives.eContents().get(2);
+		private final Keyword cAsKeyword_3 = (Keyword)cAlternatives.eContents().get(3);
 		
 		//ClassificationOperator :
-		//    'instanceof' | 'hastype' | 'istype' | '@' | 'as'
+		//    'hastype' | 'istype' | '@' | 'as'
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'instanceof' | 'hastype' | 'istype' | '@' | 'as'
+		//'hastype' | 'istype' | '@' | 'as'
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
-		//'instanceof'
-		public Keyword getInstanceofKeyword_0() { return cInstanceofKeyword_0; }
-		
 		//'hastype'
-		public Keyword getHastypeKeyword_1() { return cHastypeKeyword_1; }
+		public Keyword getHastypeKeyword_0() { return cHastypeKeyword_0; }
 		
 		//'istype'
-		public Keyword getIstypeKeyword_2() { return cIstypeKeyword_2; }
+		public Keyword getIstypeKeyword_1() { return cIstypeKeyword_1; }
 		
 		//'@'
-		public Keyword getCommercialAtKeyword_3() { return cCommercialAtKeyword_3; }
+		public Keyword getCommercialAtKeyword_2() { return cCommercialAtKeyword_2; }
 		
 		//'as'
-		public Keyword getAsKeyword_4() { return cAsKeyword_4; }
+		public Keyword getAsKeyword_3() { return cAsKeyword_3; }
 	}
 	public class TypeReferenceMemberElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.expressions.xtext.KerMLExpressions.TypeReferenceMember");
@@ -1029,29 +1025,29 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 	public class ExponentiationExpressionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.expressions.xtext.KerMLExpressions.ExponentiationExpression");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final RuleCall cUnitsExpressionParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
+		private final RuleCall cUnaryExpressionParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
 		private final Action cOperatorExpressionOperandAction_1_0 = (Action)cGroup_1.eContents().get(0);
 		private final Assignment cOperatorAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
 		private final RuleCall cOperatorExponentiationOperatorParserRuleCall_1_1_0 = (RuleCall)cOperatorAssignment_1_1.eContents().get(0);
 		private final Assignment cOperandAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
-		private final RuleCall cOperandUnitsExpressionParserRuleCall_1_2_0 = (RuleCall)cOperandAssignment_1_2.eContents().get(0);
+		private final RuleCall cOperandUnaryExpressionParserRuleCall_1_2_0 = (RuleCall)cOperandAssignment_1_2.eContents().get(0);
 		
 		//ExponentiationExpression returns SysML::Expression :
-		//    UnitsExpression ( {SysML::OperatorExpression.operand += current}
-		//        operator = ExponentiationOperator operand += UnitsExpression )*
+		//    UnaryExpression ( {SysML::OperatorExpression.operand += current}
+		//        operator = ExponentiationOperator operand += UnaryExpression )*
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//UnitsExpression ( {SysML::OperatorExpression.operand += current}
-		//    operator = ExponentiationOperator operand += UnitsExpression )*
+		//UnaryExpression ( {SysML::OperatorExpression.operand += current}
+		//    operator = ExponentiationOperator operand += UnaryExpression )*
 		public Group getGroup() { return cGroup; }
 		
-		//UnitsExpression
-		public RuleCall getUnitsExpressionParserRuleCall_0() { return cUnitsExpressionParserRuleCall_0; }
+		//UnaryExpression
+		public RuleCall getUnaryExpressionParserRuleCall_0() { return cUnaryExpressionParserRuleCall_0; }
 		
 		//( {SysML::OperatorExpression.operand += current}
-		//       operator = ExponentiationOperator operand += UnitsExpression )*
+		//       operator = ExponentiationOperator operand += UnaryExpression )*
 		public Group getGroup_1() { return cGroup_1; }
 		
 		//{SysML::OperatorExpression.operand += current}
@@ -1063,11 +1059,11 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 		//ExponentiationOperator
 		public RuleCall getOperatorExponentiationOperatorParserRuleCall_1_1_0() { return cOperatorExponentiationOperatorParserRuleCall_1_1_0; }
 		
-		//operand += UnitsExpression
+		//operand += UnaryExpression
 		public Assignment getOperandAssignment_1_2() { return cOperandAssignment_1_2; }
 		
-		//UnitsExpression
-		public RuleCall getOperandUnitsExpressionParserRuleCall_1_2_0() { return cOperandUnitsExpressionParserRuleCall_1_2_0; }
+		//UnaryExpression
+		public RuleCall getOperandUnaryExpressionParserRuleCall_1_2_0() { return cOperandUnaryExpressionParserRuleCall_1_2_0; }
 	}
 	public class ExponentiationOperatorElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.expressions.xtext.KerMLExpressions.ExponentiationOperator");
@@ -1088,54 +1084,6 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 		
 		//'^'
 		public Keyword getCircumflexAccentKeyword_1() { return cCircumflexAccentKeyword_1; }
-	}
-	public class UnitsExpressionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.expressions.xtext.KerMLExpressions.UnitsExpression");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final RuleCall cUnaryExpressionParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
-		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final Action cOperatorExpressionOperandAction_1_0 = (Action)cGroup_1.eContents().get(0);
-		private final Assignment cOperatorAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
-		private final Keyword cOperatorCommercialAtLeftSquareBracketKeyword_1_1_0 = (Keyword)cOperatorAssignment_1_1.eContents().get(0);
-		private final Assignment cOperandAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
-		private final RuleCall cOperandOwnedExpressionParserRuleCall_1_2_0 = (RuleCall)cOperandAssignment_1_2.eContents().get(0);
-		private final Keyword cRightSquareBracketKeyword_1_3 = (Keyword)cGroup_1.eContents().get(3);
-		
-		//// Units Expressions (Deprecated)
-		//UnitsExpression returns SysML::Expression :
-		//    UnaryExpression ( {SysML::OperatorExpression.operand += current}
-		//        operator = '@[' operand += OwnedExpression ']' )?
-		//;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//UnaryExpression ( {SysML::OperatorExpression.operand += current}
-		//    operator = '@[' operand += OwnedExpression ']' )?
-		public Group getGroup() { return cGroup; }
-		
-		//UnaryExpression
-		public RuleCall getUnaryExpressionParserRuleCall_0() { return cUnaryExpressionParserRuleCall_0; }
-		
-		//( {SysML::OperatorExpression.operand += current}
-		//       operator = '@[' operand += OwnedExpression ']' )?
-		public Group getGroup_1() { return cGroup_1; }
-		
-		//{SysML::OperatorExpression.operand += current}
-		public Action getOperatorExpressionOperandAction_1_0() { return cOperatorExpressionOperandAction_1_0; }
-		
-		//operator = '@['
-		public Assignment getOperatorAssignment_1_1() { return cOperatorAssignment_1_1; }
-		
-		//'@['
-		public Keyword getOperatorCommercialAtLeftSquareBracketKeyword_1_1_0() { return cOperatorCommercialAtLeftSquareBracketKeyword_1_1_0; }
-		
-		//operand += OwnedExpression
-		public Assignment getOperandAssignment_1_2() { return cOperandAssignment_1_2; }
-		
-		//OwnedExpression
-		public RuleCall getOperandOwnedExpressionParserRuleCall_1_2_0() { return cOperandOwnedExpressionParserRuleCall_1_2_0; }
-		
-		//']'
-		public Keyword getRightSquareBracketKeyword_1_3() { return cRightSquareBracketKeyword_1_3; }
 	}
 	public class UnaryExpressionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.expressions.xtext.KerMLExpressions.UnaryExpression");
@@ -2233,7 +2181,6 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 	private final MultiplicativeOperatorElements pMultiplicativeOperator;
 	private final ExponentiationExpressionElements pExponentiationExpression;
 	private final ExponentiationOperatorElements pExponentiationOperator;
-	private final UnitsExpressionElements pUnitsExpression;
 	private final UnaryExpressionElements pUnaryExpression;
 	private final UnaryOperatorElements pUnaryOperator;
 	private final ExtentExpressionElements pExtentExpression;
@@ -2315,7 +2262,6 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 		this.pMultiplicativeOperator = new MultiplicativeOperatorElements();
 		this.pExponentiationExpression = new ExponentiationExpressionElements();
 		this.pExponentiationOperator = new ExponentiationOperatorElements();
-		this.pUnitsExpression = new UnitsExpressionElements();
 		this.pUnaryExpression = new UnaryExpressionElements();
 		this.pUnaryOperator = new UnaryOperatorElements();
 		this.pExtentExpression = new ExtentExpressionElements();
@@ -2591,7 +2537,7 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 	}
 	
 	//ClassificationOperator :
-	//    'instanceof' | 'hastype' | 'istype' | '@' | 'as'
+	//    'hastype' | 'istype' | '@' | 'as'
 	//;
 	public ClassificationOperatorElements getClassificationOperatorAccess() {
 		return pClassificationOperator;
@@ -2753,8 +2699,8 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 	}
 	
 	//ExponentiationExpression returns SysML::Expression :
-	//    UnitsExpression ( {SysML::OperatorExpression.operand += current}
-	//        operator = ExponentiationOperator operand += UnitsExpression )*
+	//    UnaryExpression ( {SysML::OperatorExpression.operand += current}
+	//        operator = ExponentiationOperator operand += UnaryExpression )*
 	//;
 	public ExponentiationExpressionElements getExponentiationExpressionAccess() {
 		return pExponentiationExpression;
@@ -2773,19 +2719,6 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 	
 	public ParserRule getExponentiationOperatorRule() {
 		return getExponentiationOperatorAccess().getRule();
-	}
-	
-	//// Units Expressions (Deprecated)
-	//UnitsExpression returns SysML::Expression :
-	//    UnaryExpression ( {SysML::OperatorExpression.operand += current}
-	//        operator = '@[' operand += OwnedExpression ']' )?
-	//;
-	public UnitsExpressionElements getUnitsExpressionAccess() {
-		return pUnitsExpression;
-	}
-	
-	public ParserRule getUnitsExpressionRule() {
-		return getUnitsExpressionAccess().getRule();
 	}
 	
 	//// Unary Expressions

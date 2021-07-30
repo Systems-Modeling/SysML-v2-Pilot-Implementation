@@ -41,7 +41,7 @@ package ISQAcoustics {
         attribute :>> num: Real;
         attribute :>> mRef: LogarithmicFrequencyRangeUnit[1];
     }
-    attribute logarithmicFrequencyRange: LogarithmicFrequencyRangeValue :> scalarQuantities;
+    attribute logarithmicFrequencyRange: LogarithmicFrequencyRangeValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 8-2.1 static pressure
@@ -54,7 +54,7 @@ package ISQAcoustics {
      * definition: pressure (ISO 80000-4) in a medium when no sound wave is present
      * remarks: This definition applies to a medium with zero flow.
      */
-    attribute staticPressure: PressureValue :> scalarQuantities;
+    attribute staticPressure: PressureValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 8-2.2 sound pressure
@@ -67,7 +67,7 @@ package ISQAcoustics {
      * definition: difference between instantaneous total pressure and static pressure (item 8-2.1)
      * remarks: None.
      */
-    attribute soundPressure: PressureValue :> scalarQuantities;
+    attribute soundPressure: PressureValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 8-3 sound particle displacement
@@ -137,7 +137,7 @@ package ISQAcoustics {
      * definition: surface integral of the normal component of the sound particle velocity (item 8-4) over a defined surface
      * remarks: None.
      */
-    attribute volumeVelocity: SpeedValue :> scalarQuantities;
+    attribute volumeVelocity: SpeedValue [*] nonunique :> scalarQuantities;
 
     alias volumeFlowRate for volumeVelocity;
 
@@ -163,7 +163,7 @@ package ISQAcoustics {
         attribute :>> num: Real;
         attribute :>> mRef: SoundEnergyDensityUnit[1];
     }
-    attribute soundEnergyDensity: SoundEnergyDensityValue :> scalarQuantities;
+    attribute soundEnergyDensity: SoundEnergyDensityValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 8-8 sound energy
@@ -176,7 +176,7 @@ package ISQAcoustics {
      * definition: integral of sound energy density (item 8-7) over a specified volume
      * remarks: The sound energy in region `R` can be expressed by: `Q = oint_R w(x) d^3x`, where `d^3x` is an element of volume.
      */
-    attribute soundEnergy: EnergyValue :> scalarQuantities;
+    attribute soundEnergy: EnergyValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 8-9 sound power
@@ -189,7 +189,7 @@ package ISQAcoustics {
      * definition: integral over a surface of the product of sound pressure, `p` (item 8-2.2), and the component `u_n` of the particle velocity (item 8-4) in the direction normal to the surface, at a point on the surface
      * remarks: This definition holds for waves in the volume of homogenous fluids or gases. This definition can become inapplicable in situations with a high mean fluid flow. Sound power is for example used to indicate the rate at which energy is radiated by a sound source. Sound power is an oscillatory quantity that can be positive or negative. A positive sound power indicates that the sound power is radiated out of the surface. A negative sound power indicates that the sound power is absorbed into the surface.
      */
-    attribute soundPower: PowerValue :> scalarQuantities;
+    attribute soundPower: PowerValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 8-10 sound intensity (magnitude)
@@ -212,7 +212,7 @@ package ISQAcoustics {
         attribute :>> num: Real;
         attribute :>> mRef: SoundIntensityUnit[1];
     }
-    attribute soundIntensity: SoundIntensityValue :> scalarQuantities;
+    attribute soundIntensity: SoundIntensityValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 8-10 sound intensity (vector)
@@ -262,7 +262,7 @@ package ISQAcoustics {
         attribute :>> num: Real;
         attribute :>> mRef: SoundExposureUnit[1];
     }
-    attribute soundExposure: SoundExposureValue :> scalarQuantities;
+    attribute soundExposure: SoundExposureValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 8-12 characteristic impedance of a medium for longitudinal waves
@@ -286,7 +286,7 @@ package ISQAcoustics {
         attribute :>> num: Real;
         attribute :>> mRef: CharacteristicImpedanceOfAMediumForLongitudinalWavesUnit[1];
     }
-    attribute characteristicImpedanceOfAMediumForLongitudinalWaves: CharacteristicImpedanceOfAMediumForLongitudinalWavesValue :> scalarQuantities;
+    attribute characteristicImpedanceOfAMediumForLongitudinalWaves: CharacteristicImpedanceOfAMediumForLongitudinalWavesValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 8-13 acoustic impedance
@@ -310,7 +310,7 @@ package ISQAcoustics {
         attribute :>> num: Real;
         attribute :>> mRef: AcousticImpedanceUnit[1];
     }
-    attribute acousticImpedance: AcousticImpedanceValue :> scalarQuantities;
+    attribute acousticImpedance: AcousticImpedanceValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 8-14 sound pressure level
@@ -329,7 +329,7 @@ package ISQAcoustics {
         attribute :>> num: Real;
         attribute :>> mRef: SoundPressureLevelUnit[1];
     }
-    attribute soundPressureLevel: SoundPressureLevelValue :> scalarQuantities;
+    attribute soundPressureLevel: SoundPressureLevelValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 8-15 sound power level
@@ -348,7 +348,7 @@ package ISQAcoustics {
         attribute :>> num: Real;
         attribute :>> mRef: SoundPowerLevelUnit[1];
     }
-    attribute soundPowerLevel: SoundPowerLevelValue :> scalarQuantities;
+    attribute soundPowerLevel: SoundPowerLevelValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 8-16 sound exposure level
@@ -367,7 +367,7 @@ package ISQAcoustics {
         attribute :>> num: Real;
         attribute :>> mRef: SoundExposureLevelUnit[1];
     }
-    attribute soundExposureLevel: SoundExposureLevelValue :> scalarQuantities;
+    attribute soundExposureLevel: SoundExposureLevelValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 8-17 reverberation time
@@ -380,6 +380,6 @@ package ISQAcoustics {
      * definition: time duration (ISO 80000-3) required for the space-averaged sound energy density (item 8-7) to decrease to `10^(−6)` of its initial value (i.e. for its level to decrease by `60 "[dB]"`) after the source emission has stopped
      * remarks: The reverberation time can be evaluated based on a dynamic range smaller than `60 "[dB]"` and extrapolated to a decay time of `60 "[dB]"`. It is then labelled accordingly `T_n`, where `n` is the dynamic range in `"[dB]"`. See also ISO 3382-1.
      */
-    attribute reverberationTime: DurationValue :> scalarQuantities;
+    attribute reverberationTime: DurationValue [*] nonunique :> scalarQuantities;
 
 }

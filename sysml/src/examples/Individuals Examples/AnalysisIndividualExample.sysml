@@ -43,8 +43,8 @@ package AnalysisIndividualExample {
 	package FuelEconomyAnalysisModel {
 	    import VehicleModel::*;
 	    import SequenceFunctions::size;
-	    import Collections::SampledFunction;
-	    import Collections::SamplePair;
+	    import SampledFunctions::SampledFunction;
+	    import SampledFunctions::SamplePair;
 	    import ControlFunctions::forAll;
 	    
 	    action def FuelConsumption(

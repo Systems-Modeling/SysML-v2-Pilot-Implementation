@@ -8,6 +8,7 @@ package RealFunctions {
 	function '*' specializes NumericalFunctions::'*' (x: Real[1], y: Real[1]): Real[1];
 	function '/' specializes NumericalFunctions::'/' (x: Real[1], y: Real[1]): Real[1];
 	function '**' specializes NumericalFunctions::'**' (x: Real[1], y: Real[1]): Real[1];
+	function '^' specializes NumericalFunctions::'^' (x: Real[1], y: Real[1]): Real[1];
 	
 	function '<' specializes NumericalFunctions::'<' (x: Real[1], y: Real[1]): Boolean[1];
 	function '>' specializes NumericalFunctions::'>' (x: Real[1], y: Real[1]): Boolean[1];

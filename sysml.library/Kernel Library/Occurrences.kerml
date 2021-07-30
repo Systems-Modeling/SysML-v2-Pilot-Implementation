@@ -160,13 +160,13 @@ package Occurrences {
 		end feature myselfSameLife: Anything[1..*] redefines source;
 		end feature selfSameLife: Anything[1..*] redefines target;
 
-	 	feature all sourceOccurrence : Occurrence [1..*] subsets myselfSameLife;
-	 	feature all targetOccurrence : Occurrence [1..*] subsets selfSameLife, sourceOccurrence.sameLifeOccurrences;
-		binding sourceOccurrence.portionOfLife = targetOccurrence.portionOfLife;
+	 	feature all sourceOccurrence : Occurrence [0..1] subsets myselfSameLife;
+	 	feature all targetOccurrence : Occurrence [0..1] subsets selfSameLife, sourceOccurrence.sameLifeOccurrences;
+		binding oSelf of sourceOccurrence.portionOfLife = targetOccurrence.portionOfLife;
 
 		feature all sourceDataValue : DataValue [0..1] subsets myselfSameLife;
 		feature all targetDataValue : DataValue [0..1] subsets selfSameLife;
-		binding sourceDataValue = targetDataValue;
+		binding dSelf of sourceDataValue = targetDataValue;
 	}
 	
 	subclassifier SelfLink specializes SelfSameLifeLink; 

@@ -357,8 +357,6 @@ public class KerMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getMultiplicativeExpressionAccess().getGroup_1(), "rule__MultiplicativeExpression__Group_1__0");
 			builder.put(grammarAccess.getExponentiationExpressionAccess().getGroup(), "rule__ExponentiationExpression__Group__0");
 			builder.put(grammarAccess.getExponentiationExpressionAccess().getGroup_1(), "rule__ExponentiationExpression__Group_1__0");
-			builder.put(grammarAccess.getUnitsExpressionAccess().getGroup(), "rule__UnitsExpression__Group__0");
-			builder.put(grammarAccess.getUnitsExpressionAccess().getGroup_1(), "rule__UnitsExpression__Group_1__0");
 			builder.put(grammarAccess.getUnaryExpressionAccess().getGroup_0(), "rule__UnaryExpression__Group_0__0");
 			builder.put(grammarAccess.getExtentExpressionAccess().getGroup_0(), "rule__ExtentExpression__Group_0__0");
 			builder.put(grammarAccess.getPrimaryExpressionAccess().getGroup(), "rule__PrimaryExpression__Group__0");
@@ -656,8 +654,6 @@ public class KerMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getMultiplicativeExpressionAccess().getOperandAssignment_1_2(), "rule__MultiplicativeExpression__OperandAssignment_1_2");
 			builder.put(grammarAccess.getExponentiationExpressionAccess().getOperatorAssignment_1_1(), "rule__ExponentiationExpression__OperatorAssignment_1_1");
 			builder.put(grammarAccess.getExponentiationExpressionAccess().getOperandAssignment_1_2(), "rule__ExponentiationExpression__OperandAssignment_1_2");
-			builder.put(grammarAccess.getUnitsExpressionAccess().getOperatorAssignment_1_1(), "rule__UnitsExpression__OperatorAssignment_1_1");
-			builder.put(grammarAccess.getUnitsExpressionAccess().getOperandAssignment_1_2(), "rule__UnitsExpression__OperandAssignment_1_2");
 			builder.put(grammarAccess.getUnaryExpressionAccess().getOperatorAssignment_0_1(), "rule__UnaryExpression__OperatorAssignment_0_1");
 			builder.put(grammarAccess.getUnaryExpressionAccess().getOperandAssignment_0_2(), "rule__UnaryExpression__OperandAssignment_0_2");
 			builder.put(grammarAccess.getExtentExpressionAccess().getOperatorAssignment_0_1(), "rule__ExtentExpression__OperatorAssignment_0_1");

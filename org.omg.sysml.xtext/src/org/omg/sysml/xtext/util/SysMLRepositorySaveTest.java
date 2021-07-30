@@ -51,8 +51,9 @@ public class SysMLRepositorySaveTest extends SysMLRepositorySaveUtil {
 		"15-Properties-Values-Expressions/15_05-Unification of Expression and Constraint Definition.sysml",
 		"15-Properties-Values-Expressions/15_10-Primitive Data Types.sysml",
 		"15-Properties-Values-Expressions/15_19-Materials with Properties.sysml",
-		"16-Sequence-Modeling/16a-Sequence-Modeling.sysml",
-		"16-Sequence-Modeling/16b-Sequence-Modeling.sysml",
+		"17-Sequence Modeling/17a-Sequence-Modeling.sysml",
+		"17-Sequence Modeling/17b-Sequence-Modeling.sysml",
+		"18-Use Case/18-Use Case.sysml"
 	};
 	
 	protected String testFilePath;

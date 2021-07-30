@@ -83,11 +83,11 @@ public class SourceEndAdapter extends FeatureAdapter {
 				if (!(membership instanceof TransitionFeatureMembership)) {
 					Element previousElement = memberships.get(i).getMemberElement();
 					if (previousElement instanceof Feature &&
-						(!(owner instanceof ActionDefinition || owner instanceof ActionUsage) && 
-						 previousElement instanceof ItemFlow) ||
-						!(FeatureUtil.isParameter((Feature)previousElement) || 
-						  previousElement instanceof Connector || 
-						  previousElement instanceof TransitionUsage)) {
+						!FeatureUtil.isParameter((Feature)previousElement) &&
+						!(previousElement instanceof TransitionUsage) &&
+						(!(previousElement instanceof Connector) ||
+						 !(owner instanceof ActionDefinition || owner instanceof ActionUsage) && 
+						 previousElement instanceof ItemFlow)) {
 						return (Feature)previousElement;
 					}
 				}

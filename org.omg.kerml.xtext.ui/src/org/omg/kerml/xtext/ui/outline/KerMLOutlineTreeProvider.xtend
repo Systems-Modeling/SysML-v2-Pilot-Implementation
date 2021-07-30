@@ -55,6 +55,7 @@ import org.omg.sysml.lang.sysml.NamespaceImport
 class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	
 	def String metaclassText(Element element) {
+		ElementUtil.transform(element);
 		var text = element?.eClass.name
 		if (element.isLibraryElement) {
 			text += ' lib'

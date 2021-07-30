@@ -32,8 +32,13 @@ package ControlFunctions {
 		firstValue || secondValue()
 	}
 	
-	abstract function 'implies'(firstValue: Boolean[1]): Boolean[1] {
+	abstract function '=>'(firstValue: Boolean[1]): Boolean[1] {
 		abstract composite expr secondValue[0..1] (): Boolean[1];
+	}
+	
+	function 'implies'(firstValue: Boolean[1]): Boolean[1] {
+		abstract composite expr secondValue[0..1] (): Boolean[1];
+		firstValue => secondValue()
 	}
 	
 	abstract function collect(collection: Anything[0..*] ordered nonunique): Anything[0..*] ordered nonunique {

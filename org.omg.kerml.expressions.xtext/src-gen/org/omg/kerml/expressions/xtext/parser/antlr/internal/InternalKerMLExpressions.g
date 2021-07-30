@@ -1123,34 +1123,28 @@ ruleClassificationOperator returns [AntlrDatatypeRuleToken current=new AntlrData
 	leaveRule();
 }:
 	(
-		kw='instanceof'
-		{
-			$current.merge(kw);
-			newLeafNode(kw, grammarAccess.getClassificationOperatorAccess().getInstanceofKeyword_0());
-		}
-		    |
 		kw='hastype'
 		{
 			$current.merge(kw);
-			newLeafNode(kw, grammarAccess.getClassificationOperatorAccess().getHastypeKeyword_1());
+			newLeafNode(kw, grammarAccess.getClassificationOperatorAccess().getHastypeKeyword_0());
 		}
 		    |
 		kw='istype'
 		{
 			$current.merge(kw);
-			newLeafNode(kw, grammarAccess.getClassificationOperatorAccess().getIstypeKeyword_2());
+			newLeafNode(kw, grammarAccess.getClassificationOperatorAccess().getIstypeKeyword_1());
 		}
 		    |
 		kw='@'
 		{
 			$current.merge(kw);
-			newLeafNode(kw, grammarAccess.getClassificationOperatorAccess().getCommercialAtKeyword_3());
+			newLeafNode(kw, grammarAccess.getClassificationOperatorAccess().getCommercialAtKeyword_2());
 		}
 		    |
 		kw='as'
 		{
 			$current.merge(kw);
-			newLeafNode(kw, grammarAccess.getClassificationOperatorAccess().getAsKeyword_4());
+			newLeafNode(kw, grammarAccess.getClassificationOperatorAccess().getAsKeyword_3());
 		}
 	)
 ;
@@ -1772,11 +1766,11 @@ ruleExponentiationExpression returns [EObject current=null]
 }:
 	(
 		{
-			newCompositeNode(grammarAccess.getExponentiationExpressionAccess().getUnitsExpressionParserRuleCall_0());
+			newCompositeNode(grammarAccess.getExponentiationExpressionAccess().getUnaryExpressionParserRuleCall_0());
 		}
-		this_UnitsExpression_0=ruleUnitsExpression
+		this_UnaryExpression_0=ruleUnaryExpression
 		{
-			$current = $this_UnitsExpression_0.current;
+			$current = $this_UnaryExpression_0.current;
 			afterParserOrEnumRuleCall();
 		}
 		(
@@ -1809,9 +1803,9 @@ ruleExponentiationExpression returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getExponentiationExpressionAccess().getOperandUnitsExpressionParserRuleCall_1_2_0());
+						newCompositeNode(grammarAccess.getExponentiationExpressionAccess().getOperandUnaryExpressionParserRuleCall_1_2_0());
 					}
-					lv_operand_3_0=ruleUnitsExpression
+					lv_operand_3_0=ruleUnaryExpression
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getExponentiationExpressionRule());
@@ -1820,7 +1814,7 @@ ruleExponentiationExpression returns [EObject current=null]
 							$current,
 							"operand",
 							lv_operand_3_0,
-							"org.omg.kerml.expressions.xtext.KerMLExpressions.UnitsExpression");
+							"org.omg.kerml.expressions.xtext.KerMLExpressions.UnaryExpression");
 						afterParserOrEnumRuleCall();
 					}
 				)
@@ -1856,79 +1850,6 @@ ruleExponentiationOperator returns [AntlrDatatypeRuleToken current=new AntlrData
 			$current.merge(kw);
 			newLeafNode(kw, grammarAccess.getExponentiationOperatorAccess().getCircumflexAccentKeyword_1());
 		}
-	)
-;
-
-// Entry rule entryRuleUnitsExpression
-entryRuleUnitsExpression returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getUnitsExpressionRule()); }
-	iv_ruleUnitsExpression=ruleUnitsExpression
-	{ $current=$iv_ruleUnitsExpression.current; }
-	EOF;
-
-// Rule UnitsExpression
-ruleUnitsExpression returns [EObject current=null]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
-		{
-			newCompositeNode(grammarAccess.getUnitsExpressionAccess().getUnaryExpressionParserRuleCall_0());
-		}
-		this_UnaryExpression_0=ruleUnaryExpression
-		{
-			$current = $this_UnaryExpression_0.current;
-			afterParserOrEnumRuleCall();
-		}
-		(
-			(
-				{
-					$current = forceCreateModelElementAndAdd(
-						grammarAccess.getUnitsExpressionAccess().getOperatorExpressionOperandAction_1_0(),
-						$current);
-				}
-			)
-			(
-				(
-					lv_operator_2_0='@['
-					{
-						newLeafNode(lv_operator_2_0, grammarAccess.getUnitsExpressionAccess().getOperatorCommercialAtLeftSquareBracketKeyword_1_1_0());
-					}
-					{
-						if ($current==null) {
-							$current = createModelElement(grammarAccess.getUnitsExpressionRule());
-						}
-						setWithLastConsumed($current, "operator", lv_operator_2_0, "@[");
-					}
-				)
-			)
-			(
-				(
-					{
-						newCompositeNode(grammarAccess.getUnitsExpressionAccess().getOperandOwnedExpressionParserRuleCall_1_2_0());
-					}
-					lv_operand_3_0=ruleOwnedExpression
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getUnitsExpressionRule());
-						}
-						add(
-							$current,
-							"operand",
-							lv_operand_3_0,
-							"org.omg.kerml.expressions.xtext.KerMLExpressions.OwnedExpression");
-						afterParserOrEnumRuleCall();
-					}
-				)
-			)
-			otherlv_4=']'
-			{
-				newLeafNode(otherlv_4, grammarAccess.getUnitsExpressionAccess().getRightSquareBracketKeyword_1_3());
-			}
-		)?
 	)
 ;
 

@@ -12,6 +12,7 @@ package RationalFunctions {
 	function '*' specializes NumericalFunctions::'*' (x: Rational[1], y: Rational[1]): Rational[1];
 	function '/' specializes NumericalFunctions::'/' (x: Rational[1], y: Rational[1]): Rational[1];
 	function '**' specializes NumericalFunctions::'**' (x: Rational[1], y: Rational[1]): Rational[1];
+	function '^' specializes NumericalFunctions::'^' (x: Rational[1], y: Rational[1]): Rational[1];
 	
 	function '<' specializes NumericalFunctions::'<' (x: Rational[1], y: Rational[1]): Boolean[1];
 	function '>' specializes NumericalFunctions::'>' (x: Rational[1], y: Rational[1]): Boolean[1];

@@ -35,18 +35,18 @@ package Transfers {
 		 * If isMove is true, then all items leave the source at the start
 		 * of the transfer.
 		 */
-		feature isMove: Boolean = notEmpty(moving);
+		feature isMove: Boolean[1] = notEmpty(moving);
 		
 		/**
 		 * If isPush is true, then the transfer begins when the items are available
 		 * at the source.
 		 */
-		feature isPush: Boolean = notEmpty(pushing);
+		feature isPush: Boolean[1] = notEmpty(pushing);
 		
 		/**
 		 * If isInstance is true, then the transfer is instantaneous.
 		 */
-		feature isInstant: Boolean = notEmpty(instant);
+		feature isInstant: Boolean[1] = notEmpty(instant);
 		
 		/**
 		 * The items that are transferred.
@@ -97,7 +97,7 @@ package Transfers {
 		/**
 		 * If isInstant is true, then the start and end of the transfer happen at the same time.
 		 */
-		private binding instant[0..1] of startShot[1] = endShot[1];
+		private binding instant[0..1] of startShot[0..1] = endShot[0..1];
 	}
 	 
 	/**

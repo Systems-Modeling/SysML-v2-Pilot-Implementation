@@ -56,7 +56,7 @@ package ISQMechanics {
         attribute :>> num: Real;
         attribute :>> mRef: MassDensityUnit[1];
     }
-    attribute massDensity: MassDensityValue :> scalarQuantities;
+    attribute massDensity: MassDensityValue [*] nonunique :> scalarQuantities;
 
     alias DensityUnit for MassDensityUnit;
     alias DensityValue for MassDensityValue;
@@ -83,7 +83,7 @@ package ISQMechanics {
         attribute :>> num: Real;
         attribute :>> mRef: SpecificVolumeUnit[1];
     }
-    attribute specificVolume: SpecificVolumeValue :> scalarQuantities;
+    attribute specificVolume: SpecificVolumeValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 4-4 relative mass density, relative density
@@ -97,7 +97,7 @@ package ISQMechanics {
      * remarks: Conditions and material should be specified for the reference substance.
      */
     attribute def RelativeMassDensityValue :> DimensionOneValue;
-    attribute relativeMassDensity: RelativeMassDensityValue :> scalarQuantities;
+    attribute relativeMassDensity: RelativeMassDensityValue [*] nonunique :> scalarQuantities;
 
     alias relativeDensity for relativeMassDensity;
 
@@ -122,7 +122,7 @@ package ISQMechanics {
         attribute :>> num: Real;
         attribute :>> mRef: SurfaceMassDensityUnit[1];
     }
-    attribute surfaceMassDensity: SurfaceMassDensityValue :> scalarQuantities;
+    attribute surfaceMassDensity: SurfaceMassDensityValue [*] nonunique :> scalarQuantities;
 
     alias SurfaceDensityUnit for SurfaceMassDensityUnit;
     alias SurfaceDensityValue for SurfaceMassDensityValue;
@@ -149,7 +149,7 @@ package ISQMechanics {
         attribute :>> num: Real;
         attribute :>> mRef: LinearMassDensityUnit[1];
     }
-    attribute linearMassDensity: LinearMassDensityValue :> scalarQuantities;
+    attribute linearMassDensity: LinearMassDensityValue [*] nonunique :> scalarQuantities;
 
     alias LinearDensityUnit for LinearMassDensityUnit;
     alias LinearDensityValue for LinearMassDensityValue;
@@ -176,7 +176,7 @@ package ISQMechanics {
         attribute :>> num: Real;
         attribute :>> mRef: MomentOfInertiaUnit[1];
     }
-    attribute momentOfInertia: MomentOfInertiaValue :> scalarQuantities;
+    attribute momentOfInertia: MomentOfInertiaValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 4-7 moment of inertia (tensor)
@@ -224,7 +224,7 @@ package ISQMechanics {
         attribute :>> num: Real;
         attribute :>> mRef: MomentumUnit[1];
     }
-    attribute momentum: MomentumValue :> scalarQuantities;
+    attribute momentum: MomentumValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 4-8 momentum (vector)
@@ -274,7 +274,7 @@ package ISQMechanics {
         attribute :>> num: Real;
         attribute :>> mRef: ForceUnit[1];
     }
-    attribute force: ForceValue :> scalarQuantities;
+    attribute force: ForceValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 4-9.1 force (vector)
@@ -427,7 +427,7 @@ package ISQMechanics {
         attribute :>> num: Real;
         attribute :>> mRef: ImpulseUnit[1];
     }
-    attribute impulse: ImpulseValue :> scalarQuantities;
+    attribute impulse: ImpulseValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 4-10 impulse (vector)
@@ -477,7 +477,7 @@ package ISQMechanics {
         attribute :>> num: Real;
         attribute :>> mRef: AngularMomentumUnit[1];
     }
-    attribute angularMomentum: AngularMomentumValue :> scalarQuantities;
+    attribute angularMomentum: AngularMomentumValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 4-11 angular momentum (vector)
@@ -527,7 +527,7 @@ package ISQMechanics {
         attribute :>> num: Real;
         attribute :>> mRef: MomentOfForceUnit[1];
     }
-    attribute momentOfForce: MomentOfForceValue :> scalarQuantities;
+    attribute momentOfForce: MomentOfForceValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 4-12.1 moment of force (vector)
@@ -577,7 +577,7 @@ package ISQMechanics {
         attribute :>> num: Real;
         attribute :>> mRef: TorqueUnit[1];
     }
-    attribute torque: TorqueValue :> scalarQuantities;
+    attribute torque: TorqueValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 4-13 angular impulse (magnitude)
@@ -601,7 +601,7 @@ package ISQMechanics {
         attribute :>> num: Real;
         attribute :>> mRef: AngularImpulseUnit[1];
     }
-    attribute angularImpulse: AngularImpulseValue :> scalarQuantities;
+    attribute angularImpulse: AngularImpulseValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 4-13 angular impulse (vector)
@@ -651,7 +651,7 @@ package ISQMechanics {
         attribute :>> num: Real;
         attribute :>> mRef: PressureUnit[1];
     }
-    attribute pressure: PressureValue :> scalarQuantities;
+    attribute pressure: PressureValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 4-14.2 gauge pressure
@@ -664,7 +664,7 @@ package ISQMechanics {
      * definition: pressure `p` (item 4-14.1) decremented by ambient pressure `p_amb` : `p_e = p - p_amb`
      * remarks: Often, `p_amb` is chosen as a standard pressure. Gauge pressure is positive or negative.
      */
-    attribute gaugePressure: PressureValue :> scalarQuantities;
+    attribute gaugePressure: PressureValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 4-15 stress (magnitude)
@@ -688,7 +688,7 @@ package ISQMechanics {
         attribute :>> num: Real;
         attribute :>> mRef: StressUnit[1];
     }
-    attribute stress: StressValue :> scalarQuantities;
+    attribute stress: StressValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 4-15 stress (tensor)
@@ -736,7 +736,7 @@ package ISQMechanics {
         attribute :>> num: Real;
         attribute :>> mRef: NormalStressUnit[1];
     }
-    attribute normalStress: NormalStressValue :> scalarQuantities;
+    attribute normalStress: NormalStressValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 4-16.2 shear stress
@@ -760,7 +760,7 @@ package ISQMechanics {
         attribute :>> num: Real;
         attribute :>> mRef: ShearStressUnit[1];
     }
-    attribute shearStress: ShearStressValue :> scalarQuantities;
+    attribute shearStress: ShearStressValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 4-17.1 strain (magnitude)
@@ -779,7 +779,7 @@ package ISQMechanics {
         attribute :>> num: Real;
         attribute :>> mRef: StrainUnit[1];
     }
-    attribute strain: StrainValue :> scalarQuantities;
+    attribute strain: StrainValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 4-17.1 strain (tensor)
@@ -817,7 +817,7 @@ package ISQMechanics {
      * remarks: None.
      */
     attribute def RelativeLinearStrainValue :> DimensionOneValue;
-    attribute relativeLinearStrain: RelativeLinearStrainValue :> scalarQuantities;
+    attribute relativeLinearStrain: RelativeLinearStrainValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 4-17.3 shear strain
@@ -831,7 +831,7 @@ package ISQMechanics {
      * remarks: None.
      */
     attribute def ShearStrainValue :> DimensionOneValue;
-    attribute shearStrain: ShearStrainValue :> scalarQuantities;
+    attribute shearStrain: ShearStrainValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 4-17.4 relative volume strain
@@ -845,7 +845,7 @@ package ISQMechanics {
      * remarks: None.
      */
     attribute def RelativeVolumeStrainValue :> DimensionOneValue;
-    attribute relativeVolumeStrain: RelativeVolumeStrainValue :> scalarQuantities;
+    attribute relativeVolumeStrain: RelativeVolumeStrainValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 4-18 Poisson number
@@ -859,7 +859,7 @@ package ISQMechanics {
      * remarks: None.
      */
     attribute def PoissonNumberValue :> DimensionOneValue;
-    attribute poissonNumber: PoissonNumberValue :> scalarQuantities;
+    attribute poissonNumber: PoissonNumberValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 4-19.1 modulus of elasticity, Young modulus
@@ -883,7 +883,7 @@ package ISQMechanics {
         attribute :>> num: Real;
         attribute :>> mRef: ModulusOfElasticityUnit[1];
     }
-    attribute modulusOfElasticity: ModulusOfElasticityValue :> scalarQuantities;
+    attribute modulusOfElasticity: ModulusOfElasticityValue [*] nonunique :> scalarQuantities;
 
     alias YoungModulusUnit for ModulusOfElasticityUnit;
     alias YoungModulusValue for ModulusOfElasticityValue;
@@ -911,7 +911,7 @@ package ISQMechanics {
         attribute :>> num: Real;
         attribute :>> mRef: ModulusOfRigidityUnit[1];
     }
-    attribute modulusOfRigidity: ModulusOfRigidityValue :> scalarQuantities;
+    attribute modulusOfRigidity: ModulusOfRigidityValue [*] nonunique :> scalarQuantities;
 
     alias ShearModulusUnit for ModulusOfRigidityUnit;
     alias ShearModulusValue for ModulusOfRigidityValue;
@@ -939,7 +939,7 @@ package ISQMechanics {
         attribute :>> num: Real;
         attribute :>> mRef: ModulusOfCompressionUnit[1];
     }
-    attribute modulusOfCompression: ModulusOfCompressionValue :> scalarQuantities;
+    attribute modulusOfCompression: ModulusOfCompressionValue [*] nonunique :> scalarQuantities;
 
     alias BulkModulusUnit for ModulusOfCompressionUnit;
     alias BulkModulusValue for ModulusOfCompressionValue;
@@ -967,7 +967,7 @@ package ISQMechanics {
         attribute :>> num: Real;
         attribute :>> mRef: CompressibilityUnit[1];
     }
-    attribute compressibility: CompressibilityValue :> scalarQuantities;
+    attribute compressibility: CompressibilityValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 4-21.1 second axial moment of area
@@ -989,7 +989,7 @@ package ISQMechanics {
         attribute :>> num: Real;
         attribute :>> mRef: SecondAxialMomentOfAreaUnit[1];
     }
-    attribute secondAxialMomentOfArea: SecondAxialMomentOfAreaValue :> scalarQuantities;
+    attribute secondAxialMomentOfArea: SecondAxialMomentOfAreaValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 4-21.2 second polar moment of area
@@ -1011,7 +1011,7 @@ package ISQMechanics {
         attribute :>> num: Real;
         attribute :>> mRef: SecondPolarMomentOfAreaUnit[1];
     }
-    attribute secondPolarMomentOfArea: SecondPolarMomentOfAreaValue :> scalarQuantities;
+    attribute secondPolarMomentOfArea: SecondPolarMomentOfAreaValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 4-22 section modulus
@@ -1033,7 +1033,7 @@ package ISQMechanics {
         attribute :>> num: Real;
         attribute :>> mRef: SectionModulusUnit[1];
     }
-    attribute sectionModulus: SectionModulusValue :> scalarQuantities;
+    attribute sectionModulus: SectionModulusValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 4-23.1 static friction coefficient, static friction factor, coefficient of static friction
@@ -1047,7 +1047,7 @@ package ISQMechanics {
      * remarks: When it is not necessary to distinguish between dynamic friction factor and static friction factor, the name friction factor may be used for both.
      */
     attribute def StaticFrictionCoefficientValue :> DimensionOneValue;
-    attribute staticFrictionCoefficient: StaticFrictionCoefficientValue :> scalarQuantities;
+    attribute staticFrictionCoefficient: StaticFrictionCoefficientValue [*] nonunique :> scalarQuantities;
 
     alias staticFrictionFactor for staticFrictionCoefficient;
 
@@ -1065,7 +1065,7 @@ package ISQMechanics {
      * remarks: When it is not necessary to distinguish between dynamic friction factor and static friction factor, the name friction factor may be used for both. The dynamic friction factor `µ` is independent in first approximation of the contact surface.
      */
     attribute def KineticFrictionFactorValue :> DimensionOneValue;
-    attribute kineticFrictionFactor: KineticFrictionFactorValue :> scalarQuantities;
+    attribute kineticFrictionFactor: KineticFrictionFactorValue [*] nonunique :> scalarQuantities;
 
     alias dynamicFrictionFactor for kineticFrictionFactor;
 
@@ -1081,7 +1081,7 @@ package ISQMechanics {
      * remarks: Also known as rolling resistance coefficient, RRC.
      */
     attribute def RollingResistanceFactorValue :> DimensionOneValue;
-    attribute rollingResistanceFactor: RollingResistanceFactorValue :> scalarQuantities;
+    attribute rollingResistanceFactor: RollingResistanceFactorValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 4-23.4 drag coefficient, drag factor
@@ -1095,7 +1095,7 @@ package ISQMechanics {
      * remarks: None.
      */
     attribute def DragCoefficientValue :> DimensionOneValue;
-    attribute dragCoefficient: DragCoefficientValue :> scalarQuantities;
+    attribute dragCoefficient: DragCoefficientValue [*] nonunique :> scalarQuantities;
 
     alias dragFactor for dragCoefficient;
 
@@ -1121,7 +1121,7 @@ package ISQMechanics {
         attribute :>> num: Real;
         attribute :>> mRef: DynamicViscosityUnit[1];
     }
-    attribute dynamicViscosity: DynamicViscosityValue :> scalarQuantities;
+    attribute dynamicViscosity: DynamicViscosityValue [*] nonunique :> scalarQuantities;
 
     alias ViscosityUnit for DynamicViscosityUnit;
     alias ViscosityValue for DynamicViscosityValue;
@@ -1148,7 +1148,7 @@ package ISQMechanics {
         attribute :>> num: Real;
         attribute :>> mRef: KinematicViscosityUnit[1];
     }
-    attribute kinematicViscosity: KinematicViscosityValue :> scalarQuantities;
+    attribute kinematicViscosity: KinematicViscosityValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 4-26 surface tension
@@ -1171,7 +1171,7 @@ package ISQMechanics {
         attribute :>> num: Real;
         attribute :>> mRef: SurfaceTensionUnit[1];
     }
-    attribute surfaceTension: SurfaceTensionValue :> scalarQuantities;
+    attribute surfaceTension: SurfaceTensionValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 4-27.1 power
@@ -1195,7 +1195,7 @@ package ISQMechanics {
         attribute :>> num: Real;
         attribute :>> mRef: PowerUnit[1];
     }
-    attribute power: PowerValue :> scalarQuantities;
+    attribute power: PowerValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 4-27 mechanical power
@@ -1208,7 +1208,7 @@ package ISQMechanics {
      * definition: scalar product of force `vec(F)` (item 4-9.1) acting to a body and its velocity `vec(v)` (ISO 80000-3): `P = vec(F) * vec(v)`
      * remarks: None.
      */
-    attribute mechanicalPower: PowerValue :> scalarQuantities;
+    attribute mechanicalPower: PowerValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 4-28.1 potential energy
@@ -1221,7 +1221,7 @@ package ISQMechanics {
      * definition: for conservative force `vec(F)`, scalar additive quantity obeying condition `vec(F) = - nabla F`, if it exists
      * remarks: For the definition of energy, see ISO 80000-5. A force is conservative when the force field is irrotational, i.e. `rot(F) = 0` , or `vec(F)` is perpendicular to the speed of the body to ensure `vec(F) * d vec(r) = 0` .
      */
-    attribute potentialEnergy: EnergyValue :> scalarQuantities;
+    attribute potentialEnergy: EnergyValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 4-28.2 kinetic energy
@@ -1234,7 +1234,7 @@ package ISQMechanics {
      * definition: scalar (ISO 80000-2) quantity characterizing a moving body expressed by: `T = 1/2 m v^2` where `m` is mass (item 4-1) of the body and `v` is its speed (ISO 80000-3)
      * remarks: For the definition of energy, see ISO 80000-5.
      */
-    attribute kineticEnergy: EnergyValue :> scalarQuantities;
+    attribute kineticEnergy: EnergyValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 4-28.3 mechanical energy
@@ -1247,7 +1247,7 @@ package ISQMechanics {
      * definition: sum of kinetic energy `T` (item 4-28.2) and potential energy `V` (item 4-28.1): `E = T+V`
      * remarks: The symbols `E` and `W` are also used for other kinds of energy. This definition is understood in a classical way and it does not include thermal motion.
      */
-    attribute mechanicalEnergy: EnergyValue :> scalarQuantities;
+    attribute mechanicalEnergy: EnergyValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 4-28.4 mechanical work, work
@@ -1260,7 +1260,7 @@ package ISQMechanics {
      * definition: process quantity describing the total action of a force `vec(F)` (item 4-9.1) along a continuous curve `Γ` in three-dimensional space with infinitesimal displacement (ISO 80000-3) `dvec(r)`, as a line integral of their scalar product: `A = int_Γ vec(F) * d vec(r)`
      * remarks: The definition covers the case `A = - int_Γ p*dV` where `Γ` is a curve in the phase space and implies that work generally depends upon `Γ`, and that type of process must be defined (e.g. isentropic or isothermic).
      */
-    attribute mechanicalWork: EnergyValue :> scalarQuantities;
+    attribute mechanicalWork: EnergyValue [*] nonunique :> scalarQuantities;
 
     alias work for mechanicalWork;
 
@@ -1276,7 +1276,7 @@ package ISQMechanics {
      * remarks: The system must be specified. This quantity is often expressed by the unit percent, symbol %.
      */
     attribute def MechanicalEfficiencyValue :> DimensionOneValue;
-    attribute mechanicalEfficiency: MechanicalEfficiencyValue :> scalarQuantities;
+    attribute mechanicalEfficiency: MechanicalEfficiencyValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 4-30.1 mass flow (magnitude)
@@ -1300,7 +1300,7 @@ package ISQMechanics {
         attribute :>> num: Real;
         attribute :>> mRef: MassFlowUnit[1];
     }
-    attribute massFlow: MassFlowValue :> scalarQuantities;
+    attribute massFlow: MassFlowValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 4-30.1 mass flow (vector)
@@ -1349,7 +1349,7 @@ package ISQMechanics {
         attribute :>> num: Real;
         attribute :>> mRef: MassFlowRateUnit[1];
     }
-    attribute massFlowRate: MassFlowRateValue :> scalarQuantities;
+    attribute massFlowRate: MassFlowRateValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 4-30.3 mass change rate
@@ -1372,7 +1372,7 @@ package ISQMechanics {
         attribute :>> num: Real;
         attribute :>> mRef: MassChangeRateUnit[1];
     }
-    attribute massChangeRate: MassChangeRateValue :> scalarQuantities;
+    attribute massChangeRate: MassChangeRateValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 4-31 volume flow rate
@@ -1395,7 +1395,7 @@ package ISQMechanics {
         attribute :>> num: Real;
         attribute :>> mRef: VolumeFlowRateUnit[1];
     }
-    attribute volumeFlowRate: VolumeFlowRateValue :> scalarQuantities;
+    attribute volumeFlowRate: VolumeFlowRateValue [*] nonunique :> scalarQuantities;
 
     /**
      * source: item 4-32 action quantity
@@ -1419,6 +1419,6 @@ package ISQMechanics {
         attribute :>> num: Real;
         attribute :>> mRef: ActionQuantityUnit[1];
     }
-    attribute actionQuantity: ActionQuantityValue :> scalarQuantities;
+    attribute actionQuantity: ActionQuantityValue [*] nonunique :> scalarQuantities;
 
 }

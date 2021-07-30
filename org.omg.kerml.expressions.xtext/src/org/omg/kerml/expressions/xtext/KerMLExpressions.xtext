@@ -130,7 +130,7 @@ ClassificationExpression returns SysML::Expression :
 ;
 
 ClassificationOperator :
-	'instanceof' | 'hastype' | 'istype' | '@' | 'as'
+	'hastype' | 'istype' | '@' | 'as'
 ;
 
 TypeReferenceMember returns SysML::FeatureMembership :
@@ -197,19 +197,12 @@ MultiplicativeOperator :
 ;
 
 ExponentiationExpression returns SysML::Expression :
-	UnitsExpression ( {SysML::OperatorExpression.operand += current}  
-		operator = ExponentiationOperator operand += UnitsExpression )*		
+	UnaryExpression ( {SysML::OperatorExpression.operand += current}  
+		operator = ExponentiationOperator operand += UnaryExpression )*		
 ;
 
 ExponentiationOperator :
 	'**' | '^'
-;
-
-// Units Expressions (Deprecated)
-
-UnitsExpression returns SysML::Expression :
-	UnaryExpression ( {SysML::OperatorExpression.operand += current} 
-		operator = '@[' operand += OwnedExpression ']' )?		
 ;
 
 // Unary Expressions
@@ -229,7 +222,6 @@ ExtentExpression returns SysML::Expression :
 	  {SysML::OperatorExpression} operator = 'all' ownedRelationship += TypeReferenceMember
 	| PrimaryExpression
 ;
-
 
 /* Primary Expressions */
 

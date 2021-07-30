@@ -9777,7 +9777,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//ClassificationOperator :
-	//    'instanceof' | 'hastype' | 'istype' | '@' | 'as'
+	//    'hastype' | 'istype' | '@' | 'as'
 	//;
 	public KerMLExpressionsGrammarAccess.ClassificationOperatorElements getClassificationOperatorAccess() {
 		return gaKerMLExpressions.getClassificationOperatorAccess();
@@ -9928,8 +9928,8 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//ExponentiationExpression returns SysML::Expression :
-	//    UnitsExpression ( {SysML::OperatorExpression.operand += current}
-	//        operator = ExponentiationOperator operand += UnitsExpression )*
+	//    UnaryExpression ( {SysML::OperatorExpression.operand += current}
+	//        operator = ExponentiationOperator operand += UnaryExpression )*
 	//;
 	public KerMLExpressionsGrammarAccess.ExponentiationExpressionElements getExponentiationExpressionAccess() {
 		return gaKerMLExpressions.getExponentiationExpressionAccess();
@@ -9948,19 +9948,6 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	
 	public ParserRule getExponentiationOperatorRule() {
 		return getExponentiationOperatorAccess().getRule();
-	}
-	
-	//// Units Expressions (Deprecated)
-	//UnitsExpression returns SysML::Expression :
-	//    UnaryExpression ( {SysML::OperatorExpression.operand += current}
-	//        operator = '@[' operand += OwnedExpression ']' )?
-	//;
-	public KerMLExpressionsGrammarAccess.UnitsExpressionElements getUnitsExpressionAccess() {
-		return gaKerMLExpressions.getUnitsExpressionAccess();
-	}
-	
-	public ParserRule getUnitsExpressionRule() {
-		return getUnitsExpressionAccess().getRule();
 	}
 	
 	//// Unary Expressions

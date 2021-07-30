@@ -139,11 +139,11 @@ class SysMLValidator extends KerMLValidator {
 	public static val INVALID_STATEUSAGE = 'Invalid StateUsage - invalid type'
 	public static val INVALID_STATEUSAGE_MSG = 'A state must be typed by state definitions.'
 	public static val INVALID_STATEUSAGE_TRANSITIONS = 'Invalid StateUsage - no incoming transition'
-	public static val INVALID_STATEUSAGE_TRANSITIONS_MSG = 'Must have an incoming transition.'
+	public static val INVALID_STATEUSAGE_TRANSITIONS_MSG = 'Should have an incoming transition.'
 	public static val INVALID_STATEUSAGE_INITIAL = 'Invalid StateUsage - no initial transition'
-	public static val INVALID_STATEUSAGE_INITIAL_MSG = 'Must have an initial transition from entry.'
+	public static val INVALID_STATEUSAGE_INITIAL_MSG = 'Should have an initial transition from entry.'
 	public static val INVALID_STATEDEFINITION_INITIAL = 'Invalid StateDefinition - no initial transition'
-	public static val INVALID_STATEDEFINITION_INITIAL_MSG = 'Must have an initial transition from entry.'
+	public static val INVALID_STATEDEFINITION_INITIAL_MSG = 'Should have an initial transition from entry.'
 	public static val INVALID_STATE_SUBACTION_MEMBERSHIP_ENTRY = 'Invalid StateSubactionMembership - invalid entry'
 	public static val INVALID_STATE_SUBACTION_MEMBERSHIP_ENTRY_MSG = 'A state may have at most one entry action.'
 	public static val INVALID_STATE_SUBACTION_MEMBERSHIP_DO = 'Invalid StateSubactionMembership - invalid do'
@@ -362,7 +362,7 @@ class SysMLValidator extends KerMLValidator {
 	@Check
 	def checkStateDefinition(StateDefinition defn) {
 		if (!defn.isAbstract && !defn.isParallel && !defn.ownedState.isEmpty && !UsageUtil.hasInitialTransition(defn)) {
-			error(INVALID_STATEDEFINITION_INITIAL_MSG, defn, null, INVALID_STATEDEFINITION_INITIAL)
+			warning(INVALID_STATEDEFINITION_INITIAL_MSG, defn, null, INVALID_STATEDEFINITION_INITIAL)
 		}
 		checkStateSubactions(defn);
 	}
@@ -373,10 +373,10 @@ class SysMLValidator extends KerMLValidator {
 		if (owningType !== null && !owningType.isAbstract && usg.isComposite && 
 			UsageUtil.isNonParallelState(owningType) && !UsageUtil.hasIncomingTransitions(usg)
 		) {
-			error(INVALID_STATEUSAGE_TRANSITIONS_MSG, usg, null, INVALID_STATEUSAGE_TRANSITIONS)
+			warning(INVALID_STATEUSAGE_TRANSITIONS_MSG, usg, null, INVALID_STATEUSAGE_TRANSITIONS)
 		}
 		if (!usg.isAbstract && !usg.isParallel && !usg.nestedState.isEmpty && !UsageUtil.hasInitialTransition(usg)) {
-			error(INVALID_STATEUSAGE_INITIAL_MSG, usg, null, INVALID_STATEUSAGE_INITIAL)
+			warning(INVALID_STATEUSAGE_INITIAL_MSG, usg, null, INVALID_STATEUSAGE_INITIAL)
 		}
 		checkStateSubactions(usg)
 	}

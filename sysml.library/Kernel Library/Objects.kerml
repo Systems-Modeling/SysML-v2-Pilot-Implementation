@@ -8,6 +8,7 @@ package Objects {
 	private import Occurrences::Occurrence;
 	private import Occurrences::occurrences;
 	private import Occurrences::HappensLink;
+	private import Occurrences::SelfSameLifeLink;
 	private import Performances::Performance;
 	private import Performances::performances;
 	
@@ -31,7 +32,7 @@ package Objects {
 	/**
 	 * LinkObject is the most general association structure, being both a Link and an Object.
 	 */
-	abstract assoc struct LinkObject specializes Link, Object disjoint from SelfLink, HappensLink; 
+	abstract assoc struct LinkObject specializes Link, Object disjoint from SelfLink, SelfSameLifeLink, HappensLink; 
 	
 	/**
 	 * BinaryLinkObject is the most general binary association structure, being both a 

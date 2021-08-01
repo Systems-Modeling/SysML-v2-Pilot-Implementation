@@ -34,6 +34,7 @@ import org.omg.sysml.lang.sysml.Succession;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.TransitionFeatureKind;
 import org.omg.sysml.lang.sysml.TransitionUsage;
+import org.omg.sysml.util.FeatureUtil;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
 import org.omg.sysml.util.UsageUtil;
 
@@ -97,7 +98,7 @@ public class TransitionUsageImpl extends ActionUsageImpl implements TransitionUs
 		if (relatedFeatures.isEmpty()) {
 			return null;
 		} else {
-			Feature source = relatedFeatures.get(0);
+			Feature source = FeatureUtil.getBasicFeatureOf(relatedFeatures.get(0));
 			return source instanceof ActionUsage? (ActionUsage)source: null;
 		}
 	}
@@ -133,7 +134,7 @@ public class TransitionUsageImpl extends ActionUsageImpl implements TransitionUs
 		if (relatedFeatures.size() < 2) {
 			return null;
 		} else {
-			Feature target = relatedFeatures.get(1);
+			Feature target = FeatureUtil.getBasicFeatureOf(relatedFeatures.get(1));
 			return target instanceof ActionUsage? (ActionUsage)target: null;
 		}
 	}

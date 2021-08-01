@@ -249,15 +249,18 @@ public class UsageUtil {
 	// Transitions
 	
 	public static Feature getTransitionSourceOf(Feature transition) {
-		return transition instanceof TransitionUsage? ((TransitionUsage)transition).getSource():
+		Feature source= transition instanceof TransitionUsage? ((TransitionUsage)transition).getSource():
 			   transition instanceof Succession? ((Succession)transition).getSourceFeature():
 			   null;
+		return FeatureUtil.getBasicFeatureOf(source);
 	}
 	
 	public static Feature getTransitionTargetOf(Feature transition) {
-		return transition instanceof TransitionUsage? ((TransitionUsage)transition).getTarget():
-			   transition instanceof Succession? ((Succession)transition).getTargetFeature().stream().findFirst().orElse(null):
-			   null;
+		Feature target =
+			transition instanceof TransitionUsage? ((TransitionUsage)transition).getTarget():
+			transition instanceof Succession? ((Succession)transition).getTargetFeature().stream().findFirst().orElse(null):
+			null;
+		return FeatureUtil.getBasicFeatureOf(target);
 	}
 	
 	public static Stream<Feature> getTransitionFeaturesOf(TransitionUsage usage, TransitionFeatureKind kind) {

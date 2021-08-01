@@ -361,9 +361,6 @@ class SysMLValidator extends KerMLValidator {
 	
 	@Check
 	def checkStateDefinition(StateDefinition defn) {
-		if (!defn.isAbstract && !defn.isParallel && !defn.ownedState.isEmpty && !UsageUtil.hasInitialTransition(defn)) {
-			warning(INVALID_STATEDEFINITION_INITIAL_MSG, defn, null, INVALID_STATEDEFINITION_INITIAL)
-		}
 		checkStateSubactions(defn);
 	}
 	
@@ -375,10 +372,13 @@ class SysMLValidator extends KerMLValidator {
 		) {
 			warning(INVALID_STATEUSAGE_TRANSITIONS_MSG, usg, null, INVALID_STATEUSAGE_TRANSITIONS)
 		}
-		if (!usg.isAbstract && !usg.isParallel && !usg.nestedState.isEmpty && !UsageUtil.hasInitialTransition(usg)) {
-			warning(INVALID_STATEUSAGE_INITIAL_MSG, usg, null, INVALID_STATEUSAGE_INITIAL)
-		}
 		checkStateSubactions(usg)
+	}
+	
+	protected def checkStateSubactions(Type type) {
+		checkAtMostOneElement(UsageUtil.getStateSubactionMembershipsOf(type, StateSubactionKind.ENTRY), INVALID_STATE_SUBACTION_MEMBERSHIP_ENTRY_MSG, INVALID_STATE_SUBACTION_MEMBERSHIP_ENTRY);
+		checkAtMostOneElement(UsageUtil.getStateSubactionMembershipsOf(type, StateSubactionKind.DO), INVALID_STATE_SUBACTION_MEMBERSHIP_DO_MSG, INVALID_STATE_SUBACTION_MEMBERSHIP_DO);
+		checkAtMostOneElement(UsageUtil.getStateSubactionMembershipsOf(type, StateSubactionKind.EXIT), INVALID_STATE_SUBACTION_MEMBERSHIP_EXIT_MSG, INVALID_STATE_SUBACTION_MEMBERSHIP_EXIT);
 	}
 	
 	@Check
@@ -386,12 +386,6 @@ class SysMLValidator extends KerMLValidator {
 		if (UsageUtil.isParallelState(usg.owningType)) {
 			error(INVALID_TRANSITIONUSAGE_MSG, usg, null, INVALID_TRANSITIONUSAGE)
 		}
-	}
-	
-	protected def checkStateSubactions(Type type) {
-		checkAtMostOneElement(UsageUtil.getStateSubactionMembershipsOf(type, StateSubactionKind.ENTRY), INVALID_STATE_SUBACTION_MEMBERSHIP_ENTRY_MSG, INVALID_STATE_SUBACTION_MEMBERSHIP_ENTRY);
-		checkAtMostOneElement(UsageUtil.getStateSubactionMembershipsOf(type, StateSubactionKind.DO), INVALID_STATE_SUBACTION_MEMBERSHIP_DO_MSG, INVALID_STATE_SUBACTION_MEMBERSHIP_DO);
-		checkAtMostOneElement(UsageUtil.getStateSubactionMembershipsOf(type, StateSubactionKind.EXIT), INVALID_STATE_SUBACTION_MEMBERSHIP_EXIT_MSG, INVALID_STATE_SUBACTION_MEMBERSHIP_EXIT);
 	}
 	
 	@Check

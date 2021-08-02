@@ -125,6 +125,7 @@ public class FeatureUtil {
 		return feature.getOwnedSubsetting().stream().
 				filter(sub->!(sub instanceof Redefinition)).
 				map(Subsetting::getSubsettedFeature).
+				map(FeatureUtil::getBasicFeatureOf).
 				filter(kind::isInstance).
 				map(kind::cast).
 				findFirst().orElse(feature);

@@ -366,12 +366,12 @@ class SysMLValidator extends KerMLValidator {
 	
 	@Check
 	def checkStateUsage(StateUsage usg) {
-		val owningType = usg.owningType
-		if (owningType !== null && !owningType.isAbstract && usg.isComposite && 
-			UsageUtil.isNonParallelState(owningType) && !UsageUtil.hasIncomingTransitions(usg)
-		) {
-			warning(INVALID_STATEUSAGE_TRANSITIONS_MSG, usg, null, INVALID_STATEUSAGE_TRANSITIONS)
-		}
+//		val owningType = usg.owningType
+//		if (owningType !== null && !owningType.isAbstract && usg.isComposite && 
+//			UsageUtil.isNonParallelState(owningType) && !UsageUtil.hasIncomingTransitions(usg)
+//		) {
+//			warning(INVALID_STATEUSAGE_TRANSITIONS_MSG, usg, null, INVALID_STATEUSAGE_TRANSITIONS)
+//		}
 		checkStateSubactions(usg)
 	}
 	

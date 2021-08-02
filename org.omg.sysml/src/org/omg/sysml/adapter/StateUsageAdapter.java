@@ -24,6 +24,7 @@ package org.omg.sysml.adapter;
 import org.omg.sysml.lang.sysml.StateDefinition;
 import org.omg.sysml.lang.sysml.StateUsage;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.util.UsageUtil;
 
 public class StateUsageAdapter extends ActionUsageAdapter {
 
@@ -38,7 +39,14 @@ public class StateUsageAdapter extends ActionUsageAdapter {
 
 	@Override
 	protected String getSubactionType() {
-		return isSubstate()? "substate": super.getSubactionType();	
+		return isExclusiveState()? "exclusiveState":
+			   isSubstate()? "substate": 
+			   super.getSubactionType();	
+	}
+	
+	public boolean isExclusiveState() {
+		Type owningType = getTarget().getOwningType();
+		return !UsageUtil.isParallelState(owningType);
 	}
 		
 	public boolean isSubstate() {

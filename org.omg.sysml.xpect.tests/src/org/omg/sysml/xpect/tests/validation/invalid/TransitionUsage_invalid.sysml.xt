@@ -48,11 +48,9 @@ package TransitionUsage_invalid {
 		then S2_2;
 		state S2_2;
 	}
-	
+
 	state def S3 {
-		entry; then S3_1;
 		state S3_1;
-		// XPECT warnings ---> "Should have an incoming transition." at "state S3_2;"
 		state S3_2;
 	}
 	
@@ -64,17 +62,13 @@ package TransitionUsage_invalid {
 		then s2_2;
 		state s2_2;
 	}
-	
+
 	state s3 {
-		entry; then s3_1;
 		state s3_1;
-		// XPECT warnings ---> "Should have an incoming transition." at "state s3_2 {			state s3_2_1;			state s3_2_2;		}"
 		state s3_2 {
 			state s3_2_1;
 			state s3_2_2;
 		}
-		transition first s3_1 then s3_2.s3_2_1;
-		succession first s3_2 then s3_2.s3_2_2;
 	}
 	
 }

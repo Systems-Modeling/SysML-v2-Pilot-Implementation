@@ -231,6 +231,7 @@ public class ImplicitGeneralizationMap {
 		put(StateDefinitionImpl.class, "base", "States::StateAction");
 		put(StateUsageImpl.class, "base", "States::stateActions");
 		put(StateUsageImpl.class, "substate", "States::StateAction::substates");
+		put(StateUsageImpl.class, "exclusiveState", "States::StateAction::exclusiveStates");
 		
 		put(SuccessionAsUsageImpl.class, "base", "Links::links");
 		put(SuccessionAsUsageImpl.class, "binary", "Occurrences::happensBeforeLinks");

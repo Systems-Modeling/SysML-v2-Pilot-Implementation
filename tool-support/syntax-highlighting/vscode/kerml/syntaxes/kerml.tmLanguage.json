@@ -18,8 +18,8 @@
   "repository": {
     "keywords": {
       "patterns": [
-        { "match": "\\b(about|abstract|alias|all|and|as|assoc|behavior|binding|bool|by|class|classifier|comment|composite|conjugates|conjugation|connector|datatype|doc|element|else|end|expr|false|feature|featured|featuring|filter|first|flow|from|function|generalization|hastype|id|if|implies|import|in|inout|instanceof|interaction|inv|is|istype|language|metadata|namespace|nonunique|not|null|of|or|ordered|out|package|port|portion|predicate|private|protected|public|redefines|redefinition|relationship|rep|specializes|step|stream|struct|subclass|subset|subsets|subtype|succession|then|to|true|type|typed|typing|xor)\\b", "name": "keyword.other.kerml" },
-        { "match": "(%|&|&&|\\?|\\?\\?|@\\[|\\^|\\^\\^|\\||\\|\\|)", "name": "keyword.operator.logical.kerml" },
+        { "match": "\\b(about|abstract|alias|all|and|as|assoc|behavior|binding|bool|by|class|classifier|comment|composite|conjugate|conjugates|conjugation|connector|datatype|default|disjoining|disjoint|doc|element|else|end|expr|false|feature|featured|featuring|filter|first|flow|for|from|function|generalization|hastype|id|if|implies|import|in|inout|interaction|inv|is|istype|language|member|metadata|multiplicity|namespace|nonunique|not|null|of|or|ordered|out|package|portion|predicate|private|protected|public|redefines|redefinition|relationship|rep|specialization|specializes|step|stream|struct|subclassifier|subset|subsets|subtype|succession|then|to|true|type|typed|typing|xor)\\b", "name": "keyword.other.kerml" },
+        { "match": "(%|&|&&|\\?|\\?\\?|\\^|\\^\\^|\\||\\|\\|)", "name": "keyword.operator.logical.kerml" },
         { "match": "(!|!=|\\<|\\<=|=|==|\\>|\\>=)", "name": "keyword.operator.comparison.kerml" },
         { "match": "(\\*|\\*\\*|\\+|\\-|/)", "name": "keyword.operator.arithmetic.kerml" },
         { "match": "(\\-\\>|\\.\\.|:|::|:\\>|:\\>\\>|=\\>|@|~)", "name": "keyword.operator.other.kerml" }

@@ -117,7 +117,7 @@ public class UsageAdapter extends FeatureAdapter {
 				map(Subsetting::getSubsettedFeature).
 				filter(f->f != null).
 				map(FeatureUtil::getBasicFeatureOf).
-				noneMatch(f->f.getOwningType() != null)) {
+				noneMatch(f->f != null && f.getOwningType() != null)) {
 			FeatureUtil.addMultiplicityTo(target);
 		}
 	}

@@ -10007,23 +10007,37 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	public class TransitionSourceMemberElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.TransitionSourceMember");
-		private final Assignment cMemberElementAssignment = (Assignment)rule.eContents().get(1);
-		private final CrossReference cMemberElementFeatureCrossReference_0 = (CrossReference)cMemberElementAssignment.eContents().get(0);
-		private final RuleCall cMemberElementFeatureQualifiedNameParserRuleCall_0_1 = (RuleCall)cMemberElementFeatureCrossReference_0.eContents().get(1);
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final Assignment cMemberElementAssignment_0 = (Assignment)cAlternatives.eContents().get(0);
+		private final CrossReference cMemberElementFeatureCrossReference_0_0 = (CrossReference)cMemberElementAssignment_0.eContents().get(0);
+		private final RuleCall cMemberElementFeatureQualifiedNameParserRuleCall_0_0_1 = (RuleCall)cMemberElementFeatureCrossReference_0_0.eContents().get(1);
+		private final Assignment cOwnedRelatedElementAssignment_1 = (Assignment)cAlternatives.eContents().get(1);
+		private final RuleCall cOwnedRelatedElementFeatureChainParserRuleCall_1_0 = (RuleCall)cOwnedRelatedElementAssignment_1.eContents().get(0);
 		
 		//TransitionSourceMember returns SysML::Membership :
-		//    memberElement = [SysML::Feature|QualifiedName]
+		//      memberElement = [SysML::Feature|QualifiedName]
+		//    | ownedRelatedElement += FeatureChain
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
+		//  memberElement = [SysML::Feature|QualifiedName]
+		//| ownedRelatedElement += FeatureChain
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
 		//memberElement = [SysML::Feature|QualifiedName]
-		public Assignment getMemberElementAssignment() { return cMemberElementAssignment; }
+		public Assignment getMemberElementAssignment_0() { return cMemberElementAssignment_0; }
 		
 		//[SysML::Feature|QualifiedName]
-		public CrossReference getMemberElementFeatureCrossReference_0() { return cMemberElementFeatureCrossReference_0; }
+		public CrossReference getMemberElementFeatureCrossReference_0_0() { return cMemberElementFeatureCrossReference_0_0; }
 		
 		//QualifiedName
-		public RuleCall getMemberElementFeatureQualifiedNameParserRuleCall_0_1() { return cMemberElementFeatureQualifiedNameParserRuleCall_0_1; }
+		public RuleCall getMemberElementFeatureQualifiedNameParserRuleCall_0_0_1() { return cMemberElementFeatureQualifiedNameParserRuleCall_0_0_1; }
+		
+		//ownedRelatedElement += FeatureChain
+		public Assignment getOwnedRelatedElementAssignment_1() { return cOwnedRelatedElementAssignment_1; }
+		
+		//FeatureChain
+		public RuleCall getOwnedRelatedElementFeatureChainParserRuleCall_1_0() { return cOwnedRelatedElementFeatureChainParserRuleCall_1_0; }
 	}
 	public class TriggerActionMemberElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.TriggerActionMember");
@@ -17669,7 +17683,8 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//TransitionSourceMember returns SysML::Membership :
-	//    memberElement = [SysML::Feature|QualifiedName]
+	//      memberElement = [SysML::Feature|QualifiedName]
+	//    | ownedRelatedElement += FeatureChain
 	//;
 	public TransitionSourceMemberElements getTransitionSourceMemberAccess() {
 		return pTransitionSourceMember;

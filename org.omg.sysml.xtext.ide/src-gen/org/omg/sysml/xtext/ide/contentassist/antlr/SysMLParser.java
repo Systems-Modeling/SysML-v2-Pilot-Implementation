@@ -117,6 +117,7 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getExhibitStateUsageAccess().getAlternatives_2(), "rule__ExhibitStateUsage__Alternatives_2");
 			builder.put(grammarAccess.getExhibitStateUsageAccess().getAlternatives_3(), "rule__ExhibitStateUsage__Alternatives_3");
 			builder.put(grammarAccess.getTargetTransitionUsageAccess().getAlternatives_1(), "rule__TargetTransitionUsage__Alternatives_1");
+			builder.put(grammarAccess.getTransitionSourceMemberAccess().getAlternatives(), "rule__TransitionSourceMember__Alternatives");
 			builder.put(grammarAccess.getEffectBehaviorUsageAccess().getAlternatives(), "rule__EffectBehaviorUsage__Alternatives");
 			builder.put(grammarAccess.getCalculationDefinitionAccess().getAlternatives_3(), "rule__CalculationDefinition__Alternatives_3");
 			builder.put(grammarAccess.getCalculationBodyAccess().getAlternatives(), "rule__CalculationBody__Alternatives");
@@ -901,7 +902,8 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getTargetTransitionUsageAccess().getOwnedRelationshipAssignment_1_2_0(), "rule__TargetTransitionUsage__OwnedRelationshipAssignment_1_2_0");
 			builder.put(grammarAccess.getTargetTransitionUsageAccess().getOwnedRelationshipAssignment_1_2_1(), "rule__TargetTransitionUsage__OwnedRelationshipAssignment_1_2_1");
 			builder.put(grammarAccess.getTargetTransitionUsageAccess().getOwnedRelationshipAssignment_3(), "rule__TargetTransitionUsage__OwnedRelationshipAssignment_3");
-			builder.put(grammarAccess.getTransitionSourceMemberAccess().getMemberElementAssignment(), "rule__TransitionSourceMember__MemberElementAssignment");
+			builder.put(grammarAccess.getTransitionSourceMemberAccess().getMemberElementAssignment_0(), "rule__TransitionSourceMember__MemberElementAssignment_0");
+			builder.put(grammarAccess.getTransitionSourceMemberAccess().getOwnedRelatedElementAssignment_1(), "rule__TransitionSourceMember__OwnedRelatedElementAssignment_1");
 			builder.put(grammarAccess.getTriggerActionMemberAccess().getKindAssignment_0(), "rule__TriggerActionMember__KindAssignment_0");
 			builder.put(grammarAccess.getTriggerActionMemberAccess().getOwnedRelatedElementAssignment_1(), "rule__TriggerActionMember__OwnedRelatedElementAssignment_1");
 			builder.put(grammarAccess.getGuardExpressionMemberAccess().getKindAssignment_0(), "rule__GuardExpressionMember__KindAssignment_0");

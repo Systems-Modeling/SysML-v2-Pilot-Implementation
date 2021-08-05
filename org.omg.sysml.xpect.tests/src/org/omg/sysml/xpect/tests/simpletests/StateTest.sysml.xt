@@ -68,11 +68,18 @@ package StateTest {
 		
 		state S2 {
 			do send Sig(T.s.x) to p;
+			state S3;
 		}
 		accept Exit then done;
 		
+		transition
+			first S1
+			accept s : Sig via p
+			do action D
+			then S2.S3;
+		
 		transition T
-			first S2
+			first S2.S3
 			accept s : Sig
 			if true
 			do send s to p

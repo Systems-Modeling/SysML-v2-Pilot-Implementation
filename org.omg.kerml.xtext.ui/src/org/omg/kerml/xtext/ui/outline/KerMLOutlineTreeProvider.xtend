@@ -392,7 +392,7 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		if (redefinition.redefinedFeature !== null) {
 			createNode(parentNode, redefinition.redefinedFeature, 
 				redefinition.redefinedFeature._image, redefinition.redefinedFeature._text, 
-				true
+				redefinition.redefinedFeature.ownedFeatureChaining.empty
 			)
 		}
 	}
@@ -482,8 +482,8 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 			// Traversal does not know about the new node, children have to be created here
 			if (generalType !== null) {
 				createNode(implicitNode, generalType, 
-					generalType._image, generalType._text, 
-					true
+					generalType._image, textDispatcher.invoke(generalType).toString(), 
+					!(generalType instanceof Feature) || (generalType as Feature).ownedFeatureChaining.isEmpty
 				)
 			}
 		])

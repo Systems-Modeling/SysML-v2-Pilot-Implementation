@@ -1656,7 +1656,8 @@ TargetTransitionUsage returns SysML::TransitionUsage :
 ;
 
 TransitionSourceMember returns SysML::Membership :
-	memberElement = [SysML::Feature|QualifiedName]
+	  memberElement = [SysML::Feature|QualifiedName]
+	| ownedRelatedElement += FeatureChain
 ;
 
 TriggerActionMember returns SysML::TransitionFeatureMembership :

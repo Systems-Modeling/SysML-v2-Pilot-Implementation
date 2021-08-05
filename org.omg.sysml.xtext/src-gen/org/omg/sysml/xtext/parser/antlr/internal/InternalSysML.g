@@ -17167,18 +17167,40 @@ ruleTransitionSourceMember returns [EObject current=null]
 }:
 	(
 		(
-			{
-				if ($current==null) {
-					$current = createModelElement(grammarAccess.getTransitionSourceMemberRule());
+			(
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getTransitionSourceMemberRule());
+					}
 				}
-			}
-			{
-				newCompositeNode(grammarAccess.getTransitionSourceMemberAccess().getMemberElementFeatureCrossReference_0());
-			}
-			ruleQualifiedName
-			{
-				afterParserOrEnumRuleCall();
-			}
+				{
+					newCompositeNode(grammarAccess.getTransitionSourceMemberAccess().getMemberElementFeatureCrossReference_0_0());
+				}
+				ruleQualifiedName
+				{
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		    |
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getTransitionSourceMemberAccess().getOwnedRelatedElementFeatureChainParserRuleCall_1_0());
+				}
+				lv_ownedRelatedElement_1_0=ruleFeatureChain
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getTransitionSourceMemberRule());
+					}
+					add(
+						$current,
+						"ownedRelatedElement",
+						lv_ownedRelatedElement_1_0,
+						"org.omg.sysml.xtext.SysML.FeatureChain");
+					afterParserOrEnumRuleCall();
+				}
+			)
 		)
 	)
 ;

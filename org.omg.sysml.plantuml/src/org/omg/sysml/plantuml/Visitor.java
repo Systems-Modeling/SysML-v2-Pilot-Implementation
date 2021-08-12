@@ -373,7 +373,7 @@ public abstract class Visitor extends SysMLSwitch<String> {
         return true;
     }
 
-    protected void outputPRelations(List<PRelation> prs) {
+    protected void outputPRelations(List<?extends PRelation> prs) {
     	if (prs == null) return;
         for (PRelation pr: prs) {
             outputPRelation(sb, pr);

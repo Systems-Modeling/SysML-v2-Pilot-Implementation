@@ -238,6 +238,7 @@ public class VSequence extends VDefault {
         messages.add(new Message(p1, p2, fcu, fcu.getEffectiveName()));
     }
 
+    @Override
     protected String getString() {
         Collections.sort(messages);
         outputPRelations(messages);

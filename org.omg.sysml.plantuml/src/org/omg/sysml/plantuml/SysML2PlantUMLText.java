@@ -42,7 +42,6 @@ import org.omg.sysml.lang.sysml.OccurrenceUsage;
 import org.omg.sysml.lang.sysml.PortDefinition;
 import org.omg.sysml.lang.sysml.PortionKind;
 import org.omg.sysml.lang.sysml.StateUsage;
-import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
 import org.omg.sysml.plantuml.SysML2PlantUMLStyle.StyleSwitch;
@@ -160,11 +159,6 @@ public class SysML2PlantUMLText {
     private static Pattern patMetaclassName = Pattern.compile("^((Enum)(?>eration)|(\\p{L}+?))(Definition|Usage)$");
     public static String getStereotypeName(Type typ) {
         EClass eCls = typ.eClass();
-        if (SysMLPackage.Literals.OCCURRENCE_USAGE.equals(eCls)) {
-            return "";
-        } else if (SysMLPackage.Literals.OCCURRENCE_DEFINITION.equals(eCls)) {
-            return "";
-        }
         String str = eCls.getName();
         if (str == null) return "";
         if (str.isEmpty()) return str;

@@ -46,6 +46,7 @@ import org.omg.sysml.lang.sysml.ConnectionUsage;
 import org.omg.sysml.lang.sysml.Connector;
 import org.omg.sysml.lang.sysml.Definition;
 import org.omg.sysml.lang.sysml.Dependency;
+import org.omg.sysml.lang.sysml.EventOccurrenceUsage;
 import org.omg.sysml.lang.sysml.ExhibitStateUsage;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
@@ -459,6 +460,11 @@ public class SysML2PlantUMLStyle {
 		@Override
 		public String caseAnalysisCaseDefinition(AnalysisCaseDefinition acd) {
             return " analysis def>> ";
+		}
+
+		@Override
+		public String caseEventOccurrenceUsage(EventOccurrenceUsage eou) {
+            return " event occurrence>> ";
 		}
     }
 

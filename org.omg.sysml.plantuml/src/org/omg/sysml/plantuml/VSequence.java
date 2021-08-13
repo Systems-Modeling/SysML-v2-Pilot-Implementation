@@ -31,6 +31,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.omg.sysml.lang.sysml.AnnotatingFeature;
+import org.omg.sysml.lang.sysml.Annotation;
+import org.omg.sysml.lang.sysml.Comment;
 import org.omg.sysml.lang.sysml.Connector;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.EventOccurrenceUsage;
@@ -433,18 +436,31 @@ public class VSequence extends VDefault {
         return "";
     }
 
+    private boolean isInBox = false;
+
     @Override
     public String caseOccurrenceDefinition(OccurrenceDefinition od) {
+        if (isInBox) return null; // "box" cannot be nested.
         String name = od.getEffectiveName();
         if (name != null) {
+            isInBox = true;
             append("box ");
             quote(name);
             append('\n');
         }
         traverse(od);
         append("end box\n");
+        isInBox = false;
         return "";
     }
+
+    /* Tentatively disable comments and annotations in sequence diagrams. */
+    @Override
+    public String caseAnnotation(Annotation a) { return ""; }
+    @Override
+    public String caseAnnotatingFeature(AnnotatingFeature af) { return ""; }
+    @Override
+    public String caseComment(Comment c) { return ""; }
 
     public VSequence() {
         setShowsMultiplicity(false);

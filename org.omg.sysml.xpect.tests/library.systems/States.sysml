@@ -11,6 +11,8 @@ package States {
 	private import Actions::transitionActions;
 	private import Actions::AcceptAction;
 	private import Actions::actions;
+	private import SequenceFunctions::notEmpty;
+	private import SequenceFunctions::size;
 	
 	/**
 	 * A StateAction is a kind of Action that is also a StatePerformance. It is the base type for all
@@ -39,9 +41,21 @@ package States {
 		abstract state substates: StateAction[0..*] :> stateActions, subactions;
 		
 		/**
+		 * The substates of this state that are mutually exclusive, that is, whose performances do not
+		 * overlap in time.
+		 */
+		 abstract state exclusiveStates: StateAction[0..*] :> substates;
+		
+		/**
 		 * The transitions of this state that are state transitions.
 		 */
 		abstract action stateTransitions: StateTransitionAction[0..*] :> transitions;
+		
+		/**
+		 * Exclusive states cannot overlap, so it must be possible to strictly sequence them in time.
+		 */
+		succession stateSequencing first exclusiveStates[0..1] then exclusiveStates[0..1];
+		assert constraint {notEmpty(exclusiveStates) implies size(stateSequencing) == size(exclusiveStates) - 1}
 	}
 	
 	/**

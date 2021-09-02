@@ -266,11 +266,11 @@ NonFeatureMember returns SysML::Membership :
 ;
 
 NamespaceFeatureMember returns SysML::Membership :
-	MemberPrefix ownedRelatedElement += FeatureElement // ownedMemberElement = NonFeatureElement
+	MemberPrefix ownedRelatedElement += FeatureElement // ownedMemberElement = FeatureElement
 ;
 
 ChainFeatureMember returns SysML::Membership :
-	MemberPrefix 'feature'? ( memberName = Name )? 'is' ownedRelatedElement += FeatureChain ';' // ownedMemberFeature = Feature ';'
+	MemberPrefix 'feature'? ( memberName = Name )? 'is' ownedRelatedElement += FeatureChain ';' // ownedMemberElement = Feature ';'
 ;
 
 AliasMember returns SysML::Membership :
@@ -435,7 +435,7 @@ FeatureMember returns SysML::Membership :
 ;
 
 TypeFeatureMember returns SysML::Membership :
-	MemberPrefix 'member' ownedRelatedElement += FeatureElement
+	MemberPrefix 'member' ownedRelatedElement += FeatureElement // ownedMemberElement = FeatureElement
 ;
 
 OwnedFeatureMember returns SysML::FeatureMembership :
@@ -518,7 +518,7 @@ fragment ClassifierConjugationPart returns SysML::Classifier :
 	( '~' | 'conjugates' ) ownedRelationship += ClassifierConjugation
 ;
 
-/* Superclassing */
+/* Subclassification */
 
 Subclassification returns SysML::Subclassification :
 	( 'specialization' Identification? )?
@@ -628,7 +628,7 @@ OwnedTypeFeaturing returns SysML::TypeFeaturing :
 /* Feature Typing */
 
 FeatureTyping returns SysML::FeatureTyping :
-	( 'generalization' Identification? )?
+	( 'specialization' Identification? )?
     'typing' typedFeature = [SysML::Feature | QualifiedName]
     (':' | 'typed' 'by') type = [SysML::Feature | QualifiedName] ';'
 ;
@@ -700,7 +700,7 @@ MultiplicityRange returns SysML::MultiplicityRange :
 ;
 
 OwnedMultiplicity returns SysML::Membership :
-	ownedRelatedElement += OwnedMultiplicityRange // ownedMemberElement = Multiplicity
+	ownedRelatedElement += OwnedMultiplicityRange // ownedMemberElement = OwnedMultiplicityRange
 ;
 
 OwnedMultiplicityRange returns SysML::MultiplicityRange :

@@ -1614,7 +1614,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final RuleCall cOwnedRelatedElementFeatureElementParserRuleCall_1_0 = (RuleCall)cOwnedRelatedElementAssignment_1.eContents().get(0);
 		
 		//NamespaceFeatureMember returns SysML::Membership :
-		//    MemberPrefix ownedRelatedElement += FeatureElement // ownedMemberElement = NonFeatureElement
+		//    MemberPrefix ownedRelatedElement += FeatureElement // ownedMemberElement = FeatureElement
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -1643,7 +1643,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Keyword cSemicolonKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		
 		//ChainFeatureMember returns SysML::Membership :
-		//    MemberPrefix 'feature'? ( memberName = Name )? 'is' ownedRelatedElement += FeatureChain ';' // ownedMemberFeature = Feature ';'
+		//    MemberPrefix 'feature'? ( memberName = Name )? 'is' ownedRelatedElement += FeatureChain ';' // ownedMemberElement = Feature ';'
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -2707,7 +2707,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final RuleCall cOwnedRelatedElementFeatureElementParserRuleCall_2_0 = (RuleCall)cOwnedRelatedElementAssignment_2.eContents().get(0);
 		
 		//TypeFeatureMember returns SysML::Membership :
-		//    MemberPrefix 'member' ownedRelatedElement += FeatureElement
+		//    MemberPrefix 'member' ownedRelatedElement += FeatureElement // ownedMemberElement = FeatureElement
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -3318,7 +3318,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final RuleCall cSuperclassifierClassifierQualifiedNameParserRuleCall_4_0_1 = (RuleCall)cSuperclassifierClassifierCrossReference_4_0.eContents().get(1);
 		private final Keyword cSemicolonKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		
-		///* Superclassing */
+		///* Subclassification */
 		//Subclassification returns SysML::Subclassification :
 		//    ( 'specialization' Identification? )?
 		//    'subclassifier' subclassifier = [SysML::Classifier | QualifiedName]
@@ -4091,7 +4091,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.FeatureTyping");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Group cGroup_0 = (Group)cGroup.eContents().get(0);
-		private final Keyword cGeneralizationKeyword_0_0 = (Keyword)cGroup_0.eContents().get(0);
+		private final Keyword cSpecializationKeyword_0_0 = (Keyword)cGroup_0.eContents().get(0);
 		private final RuleCall cIdentificationParserRuleCall_0_1 = (RuleCall)cGroup_0.eContents().get(1);
 		private final Keyword cTypingKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cTypedFeatureAssignment_2 = (Assignment)cGroup.eContents().get(2);
@@ -4109,22 +4109,22 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		
 		///* Feature Typing */
 		//FeatureTyping returns SysML::FeatureTyping :
-		//    ( 'generalization' Identification? )?
+		//    ( 'specialization' Identification? )?
 		//    'typing' typedFeature = [SysML::Feature | QualifiedName]
 		//    (':' | 'typed' 'by') type = [SysML::Feature | QualifiedName] ';'
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//( 'generalization' Identification? )?
+		//( 'specialization' Identification? )?
 		//'typing' typedFeature = [SysML::Feature | QualifiedName]
 		//(':' | 'typed' 'by') type = [SysML::Feature | QualifiedName] ';'
 		public Group getGroup() { return cGroup; }
 		
-		//( 'generalization' Identification? )?
+		//( 'specialization' Identification? )?
 		public Group getGroup_0() { return cGroup_0; }
 		
-		//'generalization'
-		public Keyword getGeneralizationKeyword_0_0() { return cGeneralizationKeyword_0_0; }
+		//'specialization'
+		public Keyword getSpecializationKeyword_0_0() { return cSpecializationKeyword_0_0; }
 		
 		//Identification?
 		public RuleCall getIdentificationParserRuleCall_0_1() { return cIdentificationParserRuleCall_0_1; }
@@ -4598,7 +4598,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final RuleCall cOwnedRelatedElementOwnedMultiplicityRangeParserRuleCall_0 = (RuleCall)cOwnedRelatedElementAssignment.eContents().get(0);
 		
 		//OwnedMultiplicity returns SysML::Membership :
-		//    ownedRelatedElement += OwnedMultiplicityRange // ownedMemberElement = Multiplicity
+		//    ownedRelatedElement += OwnedMultiplicityRange // ownedMemberElement = OwnedMultiplicityRange
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -7871,7 +7871,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//NamespaceFeatureMember returns SysML::Membership :
-	//    MemberPrefix ownedRelatedElement += FeatureElement // ownedMemberElement = NonFeatureElement
+	//    MemberPrefix ownedRelatedElement += FeatureElement // ownedMemberElement = FeatureElement
 	//;
 	public NamespaceFeatureMemberElements getNamespaceFeatureMemberAccess() {
 		return pNamespaceFeatureMember;
@@ -7882,7 +7882,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//ChainFeatureMember returns SysML::Membership :
-	//    MemberPrefix 'feature'? ( memberName = Name )? 'is' ownedRelatedElement += FeatureChain ';' // ownedMemberFeature = Feature ';'
+	//    MemberPrefix 'feature'? ( memberName = Name )? 'is' ownedRelatedElement += FeatureChain ';' // ownedMemberElement = Feature ';'
 	//;
 	public ChainFeatureMemberElements getChainFeatureMemberAccess() {
 		return pChainFeatureMember;
@@ -8203,7 +8203,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//TypeFeatureMember returns SysML::Membership :
-	//    MemberPrefix 'member' ownedRelatedElement += FeatureElement
+	//    MemberPrefix 'member' ownedRelatedElement += FeatureElement // ownedMemberElement = FeatureElement
 	//;
 	public TypeFeatureMemberElements getTypeFeatureMemberAccess() {
 		return pTypeFeatureMember;
@@ -8385,7 +8385,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		return getClassifierConjugationPartAccess().getRule();
 	}
 	
-	///* Superclassing */
+	///* Subclassification */
 	//Subclassification returns SysML::Subclassification :
 	//    ( 'specialization' Identification? )?
 	//    'subclassifier' subclassifier = [SysML::Classifier | QualifiedName]
@@ -8622,7 +8622,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	
 	///* Feature Typing */
 	//FeatureTyping returns SysML::FeatureTyping :
-	//    ( 'generalization' Identification? )?
+	//    ( 'specialization' Identification? )?
 	//    'typing' typedFeature = [SysML::Feature | QualifiedName]
 	//    (':' | 'typed' 'by') type = [SysML::Feature | QualifiedName] ';'
 	//;
@@ -8780,7 +8780,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//OwnedMultiplicity returns SysML::Membership :
-	//    ownedRelatedElement += OwnedMultiplicityRange // ownedMemberElement = Multiplicity
+	//    ownedRelatedElement += OwnedMultiplicityRange // ownedMemberElement = OwnedMultiplicityRange
 	//;
 	public OwnedMultiplicityElements getOwnedMultiplicityAccess() {
 		return pOwnedMultiplicity;

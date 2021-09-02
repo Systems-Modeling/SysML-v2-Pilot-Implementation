@@ -1039,6 +1039,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) '*' (rule start)
 	 *     (rule start) (ambiguity) 'if' operand+=NullCoalescingExpression
 	 *     (rule start) (ambiguity) '{' ownedRelationship+=ActionNodeMember
+	 *     (rule start) (ambiguity) '{' ownedRelationship+=AliasMember
 	 *     (rule start) (ambiguity) '{' ownedRelationship+=BehaviorUsageMember
 	 *     (rule start) (ambiguity) '{' ownedRelationship+=DefinitionMember
 	 *     (rule start) (ambiguity) '{' ownedRelationship+=EmptySuccessionMember

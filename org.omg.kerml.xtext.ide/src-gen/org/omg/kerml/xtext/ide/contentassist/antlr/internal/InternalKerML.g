@@ -17006,9 +17006,9 @@ rule__FeatureTyping__Group_0__0__Impl
 	}
 :
 (
-	{ before(grammarAccess.getFeatureTypingAccess().getGeneralizationKeyword_0_0()); }
-	'generalization'
-	{ after(grammarAccess.getFeatureTypingAccess().getGeneralizationKeyword_0_0()); }
+	{ before(grammarAccess.getFeatureTypingAccess().getSpecializationKeyword_0_0()); }
+	'specialization'
+	{ after(grammarAccess.getFeatureTypingAccess().getSpecializationKeyword_0_0()); }
 )
 ;
 finally {

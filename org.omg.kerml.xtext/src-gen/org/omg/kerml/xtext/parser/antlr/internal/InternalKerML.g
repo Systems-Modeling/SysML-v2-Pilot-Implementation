@@ -6360,9 +6360,9 @@ ruleFeatureTyping returns [EObject current=null]
 }:
 	(
 		(
-			otherlv_0='generalization'
+			otherlv_0='specialization'
 			{
-				newLeafNode(otherlv_0, grammarAccess.getFeatureTypingAccess().getGeneralizationKeyword_0_0());
+				newLeafNode(otherlv_0, grammarAccess.getFeatureTypingAccess().getSpecializationKeyword_0_0());
 			}
 			(
 				{

@@ -22,6 +22,7 @@
 package org.omg.sysml.util;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -166,9 +167,10 @@ public class TypeUtil {
 	}
 	
 	public static List<Feature> getOwnedEndFeaturesOf(Type type) {
-		return type.getOwnedFeature().stream().
-				filter(Feature::isEnd).
-				collect(Collectors.toList());
+		return type == null? Collections.emptyList():
+			   	type.getOwnedFeature().stream().
+			   		filter(Feature::isEnd).
+			   		collect(Collectors.toList());
 	}
 	
 	public static List<Feature> getAllParametersOf(Type type) {

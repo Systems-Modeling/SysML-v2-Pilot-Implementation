@@ -116,6 +116,54 @@ public class PerformActionUsageImpl extends ActionUsageImpl implements PerformAc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public OccurrenceUsage getEventOccurrence() {
+		return getPerformedAction();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public OccurrenceUsage basicGetEventOccurrence() {
+		return basicGetPerformedAction();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setEventOccurrence(OccurrenceUsage newEventOccurrence) {
+		if (newEventOccurrence != null && !(newEventOccurrence instanceof ActionUsage)) {
+			throw new IllegalArgumentException("newEventOccurrence must be an instance of ActionUsage");
+		}
+		setPerformedAction((ActionUsage) newEventOccurrence);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetEventOccurrence() {
+  		return false;
+	}
+
+	// Additional overrides
+	
+	@Override
+	public boolean isReference() {
+		return true;
+	}
+	
+	//
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -211,45 +259,6 @@ public class PerformActionUsageImpl extends ActionUsageImpl implements PerformAc
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public OccurrenceUsage getEventOccurrence() {
-		return getPerformedAction();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public OccurrenceUsage basicGetEventOccurrence() {
-		return basicGetPerformedAction();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setEventOccurrence(OccurrenceUsage newEventOccurrence) {
-		if (newEventOccurrence != null && !(newEventOccurrence instanceof ActionUsage)) {
-			throw new IllegalArgumentException("newEventOccurrence must be an instance of ActionUsage");
-		}
-		setPerformedAction((ActionUsage) newEventOccurrence);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetEventOccurrence() {
-  		return false;
 	}
 
 } //PerformActionUsageImpl

@@ -23,7 +23,7 @@ package org.omg.sysml.adapter;
 
 import org.omg.sysml.lang.sysml.ConnectionDefinition;
 
-public class ConnectionDefinitionAdapter extends AssociationAdapter {
+public class ConnectionDefinitionAdapter extends PartDefinitionAdapter {
 
 	public ConnectionDefinitionAdapter(ConnectionDefinition element) {
 		super(element);
@@ -32,6 +32,13 @@ public class ConnectionDefinitionAdapter extends AssociationAdapter {
 	@Override
 	public ConnectionDefinition getTarget() {
 		return (ConnectionDefinition)super.getTarget();
+	}
+
+	@Override
+	protected String getDefaultSupertype() {
+		return getTarget().getOwnedEndFeature().size() != 2 ? 
+				getDefaultSupertype("base") :
+				getDefaultSupertype("binary");
 	}
 
 }

@@ -37,7 +37,7 @@ public class ConnectionUsageAdapter extends PartUsageAdapter {
 
 	@Override
 	protected String getDefaultSupertype() {
-		return getTarget().getConnectorEnd().size() > 2? 
+		return getTarget().getConnectorEnd().size() != 2? 
 				getDefaultSupertype("base"):
 				getDefaultSupertype("binary");
 	}

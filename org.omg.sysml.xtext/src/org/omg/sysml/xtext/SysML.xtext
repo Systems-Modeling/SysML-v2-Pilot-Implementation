@@ -1156,11 +1156,11 @@ InterfaceNonOccurrenceUsageElement returns SysML::Feature :
 ;
 
 InterfaceOccurrenceUsageMember returns SysML::FeatureMembership :
-	MemberPrefix ownedRelatedElement += InterfaceOccurrenceUsageElement // ownedMemberFeature = OccurrenceUsageElement
+	MemberPrefix ownedRelatedElement += InterfaceOccurrenceUsageElement // ownedMemberFeature = InterfaceOccurrenceUsageElement
 ;
 
 InterfaceOccurrenceUsageElement returns SysML::Feature :
-	  DefaultInterfaceEnd | StructureUsageElement | BehaviorUsageElement
+	DefaultInterfaceEnd | StructureUsageElement | BehaviorUsageElement
 ;
 
 DefaultInterfaceEnd returns SysML::PortUsage :
@@ -1281,6 +1281,7 @@ fragment ActionBody returns SysML::Type :
 fragment ActionBodyItem returns SysML::Type :
 	  ownedRelationship += OwnedDocumentation
 	| ownedRelationship += Import
+	| ownedRelationship += AliasMember
 	| ownedRelationship += DefinitionMember 
 	| ownedRelationship += VariantUsageMember
 	| ownedRelationship += NonOccurrenceUsageMember
@@ -1329,7 +1330,7 @@ Parameter returns SysML::Usage :
     | {SysML::ConcernUsage} ( direction = FeatureDirection )? ConcernUsageKeyword ParameterDeclaration?
     | {SysML::AnalysisCaseUsage} ( direction = FeatureDirection )? AnalysisCaseUsageKeyword ParameterDeclaration?
     | {SysML::VerificationCaseUsage} ( direction = FeatureDirection )? VerificationCaseUsageKeyword ParameterDeclaration?
-//    | {SysML::UseCaseUsage} ( direction = FeatureDirection )? UseCaseUsageKeyword ParameterDeclaration?
+    | {SysML::UseCaseUsage} ( direction = FeatureDirection )? UseCaseUsageKeyword ParameterDeclaration?
     | {SysML::ViewpointUsage} ( direction = FeatureDirection )? ViewpointUsageKeyword ParameterDeclaration?
 ;
 
@@ -1531,6 +1532,7 @@ fragment StateBodyPart returns SysML::Type :
 fragment StateBodyItem returns SysML::Type :
 	  ownedRelationship += OwnedDocumentation
 	| ownedRelationship += Import
+	| ownedRelationship += AliasMember
 	| ownedRelationship += DefinitionMember 
 	| ownedRelationship += VariantUsageMember
 	| ownedRelationship += NonOccurrenceUsageMember

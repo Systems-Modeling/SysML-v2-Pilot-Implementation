@@ -34,13 +34,9 @@ public class AssociationAdapter extends ClassifierAdapter {
 		return (Association)super.getTarget();
 	}
 
-	/**
-	 * If the Association has no Superclassings, then create one whose superclass is
-	 * the appropriate default library class.
-	 */
 	@Override
 	protected String getDefaultSupertype() {
-		return getTarget().getOwnedEndFeature().size() > 2 ? 
+		return getTarget().getOwnedEndFeature().size() != 2 ? 
 				getDefaultSupertype("base") :
 				getDefaultSupertype("binary");
 	}

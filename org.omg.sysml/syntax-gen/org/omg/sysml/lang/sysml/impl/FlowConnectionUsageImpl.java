@@ -117,7 +117,6 @@ public class FlowConnectionUsageImpl extends ConnectionUsageImpl implements Flow
 	@Override
 	public EList<Classifier> getItemType() {
 		EList<Classifier> itemType = new NonNotifyingEObjectEList<>(Classifier.class, this, SysMLPackage.FLOW_CONNECTION_USAGE__ITEM_TYPE);
-		getItemFeature().get(0).getType();
 		getItemFeature().stream().
 			flatMap(f->f.getType().stream()).
 			filter(t->t instanceof Classifier).

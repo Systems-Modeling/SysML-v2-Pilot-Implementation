@@ -1,6 +1,7 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2019, 2020 Model Driven Solutions, Inc.
+ * Copyright (c) 2021 Twingineer LLC
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -19,6 +20,7 @@
  * 
  * Contributors:
  *  Ed Seidewitz
+ *  Ivan Gomes
  * 
  *****************************************************************************/
 package org.omg.kerml.xtext.util;
@@ -29,7 +31,7 @@ import java.util.Date;
 
 import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
 import org.omg.sysml.util.ElementUtil;
-import org.omg.sysml.util.traversal.facade.impl.ApiElementProcessingFacade;
+import org.omg.sysml.util.traversal.facade.impl.ApiCommitProcessingFacade;
 
 /**
  * This is a utility for traversing a SysML model graph and saving each Element that is 
@@ -46,7 +48,7 @@ public class KerMLRepositorySaveUtil extends KerMLTraversalUtil {
 	 */
 	private String projectId;
 	
-	private String basePath = ApiElementProcessingFacade.DEFAULT_BASE_PATH;
+	private String basePath = ApiCommitProcessingFacade.DEFAULT_BASE_PATH;
 	private String libraryPath = null;
 	private boolean isAddImplicitGeneralizations = false;
 	private String projectName;
@@ -165,7 +167,7 @@ public class KerMLRepositorySaveUtil extends KerMLTraversalUtil {
 		}
 		this.projectName += " " + new Date();
 		
-		ApiElementProcessingFacade processingFacade = new ApiElementProcessingFacade(this.projectName, this.getBasePath());	
+		ApiCommitProcessingFacade processingFacade = new ApiCommitProcessingFacade(this.projectName, this.getBasePath());	
 		processingFacade.setTraversal(this.initialize(processingFacade));
 		processingFacade.setIsVerbose(this.isVerbose);
 		this.projectId = processingFacade.getProjectId();
@@ -177,7 +179,7 @@ public class KerMLRepositorySaveUtil extends KerMLTraversalUtil {
 	@Override
 	public void process() {
 		super.process();
-		((ApiElementProcessingFacade)this.traversal.getFacade()).commit();
+		((ApiCommitProcessingFacade)this.traversal.getFacade()).commit();
 	}
 	
 	/**

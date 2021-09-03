@@ -1,6 +1,7 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2021 Twingineer LLC
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -19,6 +20,7 @@
  *  
  * Contributors:
  *  Ed Seidewitz, MDS
+ *  Ivan Gomes
  *  
  *******************************************************************************/
 
@@ -38,8 +40,11 @@ public class SysMLInteractiveHelp {
 			+ "The last two forms may be optionally followed by a filter expression in square brackets.\n";
 
 	private static final String SHOW_HELP_STRING =
-			  "Usage: %show <NAME>\n\n"
-			+ "Print the abstract syntax tree rooted in <NAME>. <NAME> must be fully qualified.\n";
+			  "Usage: %show <NAME> [--style=<STYLE>]\n\n"
+			+ "Print the abstract syntax tree rooted in <NAME>. <NAME> must be fully qualified.\n\n"
+			+ "<STYLE> is also case insensitive. The possible style names are:\n"
+    	    + "   TREE\t\tHierarchically indented representation with only identifying information\n"
+    	    + "   JSON\t\tFull JSON export of the tree equivalent to running %export magic but presented interactively\n";
 
 	private static final String PUBLISH_HELP_STRING =
 			  "Usage: %publish <NAME>\n\n"

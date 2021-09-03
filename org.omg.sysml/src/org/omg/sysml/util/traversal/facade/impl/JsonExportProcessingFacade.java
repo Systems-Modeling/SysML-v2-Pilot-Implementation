@@ -1,6 +1,7 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2019-2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2021 Twingineer LLC
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -19,99 +20,54 @@
  * 
  * Contributors:
  *  Ed Seidewitz
+ *  Ivan Gomes
  * 
  *****************************************************************************/
 package org.omg.sysml.util.traversal.facade.impl;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
-import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.omg.sysml.ApiClient;
-import org.omg.sysml.ApiException;
-import org.omg.sysml.api.CommitApi;
-import org.omg.sysml.api.ProjectApi;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
-import org.omg.sysml.model.Commit;
 import org.omg.sysml.model.ElementIdentity;
 import org.omg.sysml.model.ElementVersion;
 import org.omg.sysml.model.Identified;
 import org.omg.sysml.util.traversal.Traversal;
 import org.omg.sysml.util.traversal.facade.ElementProcessingFacade;
 
-import okhttp3.OkHttpClient;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonElement;
 
 /**
- * This is an element-processing facade that uses the SysML v2 REST API to write Elements to a repository.
- * A change set of ElementVersions is constructed during traversal of the model. Once the traversal is
- * completed, this change set can be committed to the repository.
+ * This is an element-processing facade that uses the SysML v2 REST API client to export Elements to JSON.
+ * A list of ElementVersions is constructed during traversal of the model. Once the traversal is
+ * completed, this change set can be exported to JSON.
  * 
  * @author Ed Seidewitz
+ * @author Ivan Gomes
  *
  */
-public class ApiElementProcessingFacade implements ElementProcessingFacade {
+public class JsonExportProcessingFacade implements ElementProcessingFacade {
 
-	/**
-	 * The default base path for accessing the REST end point.
-	 */
-	public static final String DEFAULT_BASE_PATH = "http://sysml2-dev.intercax.com:9000";
-	
 	private static final int ELEMENTS_PER_DOT = 100;
 	private static final int DOTS_PER_LINE = 50;
-	
-	private final ApiClient apiClient = new ApiClient();
-	private final ProjectApi projectApi = new ProjectApi(apiClient);
-	private final CommitApi commitApi = new CommitApi(apiClient);
 
-	private final org.omg.sysml.model.Project project;
 	private Traversal traversal;
+	private Gson gson;
 	
 	private boolean isVerbose = false;
 	private int elementCount = 0;
 	private int dotCount = "Processing".length();
 	
-	private final List<ElementVersion> changeSet = new ArrayList<>();
-
-	/**
-	 * Create a facade for processing the Elements of a project with the given name. A project with that name
-	 * is created in the repository, and subsequently processed Elements are added to that project.
-	 * 
-	 * @param 	projectName			the name of the project for which Elements are being saved
-	 * @param	basePath			the base path to be used to access the REST end point.
-	 */
-	public ApiElementProcessingFacade(String projectName, String basePath) {
-		this.apiClient.setBasePath(basePath);		
-		this.apiClient.setHttpClient(
-			new OkHttpClient.Builder().
-				connectTimeout(1, TimeUnit.HOURS).
-				readTimeout(1, TimeUnit.HOURS).
-				writeTimeout(1, TimeUnit.HOURS).
-				build());
-		
-		org.omg.sysml.model.Project project = new org.omg.sysml.model.Project();
-		project.setName(projectName);
-		try {
-			this.project = projectApi.postProject(project);
-		} catch (ApiException e) {
-			throw new RuntimeException(e.getCode() + " " + e.getMessage());
-		}
-	}
-	
-	/**
-	 * Create a facade for processing the Elements of a model with the given name using the default base path.
-	 * 
-	 * @param 	projectName			the name of the project for which Elements are being saved
-	 * @throws 	ApiException
-	 */
-	public ApiElementProcessingFacade(String projectName) throws ApiException {
-		this(projectName, DEFAULT_BASE_PATH);
-	}
+	private final List<ElementVersion> versions = new ArrayList<>();
 	
 	/**
 	 * Set the source SysML model traversal.
@@ -148,23 +104,14 @@ public class ApiElementProcessingFacade implements ElementProcessingFacade {
 	public boolean isVerbose() {
 		return this.isVerbose;
 	}
-	
-	/**
-	 * Get a string representation of the UUID of the project as it is saved in the repository.
-	 * 
-	 * @return	the UUID of the project saved in the repository
-	 */
-	public String getProjectId() {
-		return this.project.getAtId().toString();
-	}
-	
+
 	/**
 	 * Return the change set of ElementVersions to be committed.
 	 * 
 	 * @return	the change set of ElementsVersions to be committed. 
 	 */
-	protected List<ElementVersion> getChangeSet() {
-		return this.changeSet;
+	List<ElementVersion> getVersions() {
+		return Collections.unmodifiableList(this.versions);
 	}
 	
 	/**
@@ -172,8 +119,8 @@ public class ApiElementProcessingFacade implements ElementProcessingFacade {
 	 * 
 	 * @param 	elementVersion	the ElementVersion to be added to the change set
 	 */
-	protected void addToChangeSet(ElementVersion elementVersion) {
-		this.changeSet.add(elementVersion);
+	protected void addVersion(ElementVersion elementVersion) {
+		this.versions.add(elementVersion);
 	}
 	
 	/**
@@ -272,9 +219,6 @@ public class ApiElementProcessingFacade implements ElementProcessingFacade {
 		if (this.isVerbose()) {
 			System.out.println("Processing " + descriptionOf(element));
 		} else {
-			if (elementCount == 0) {
-				System.out.print("Processing");
-			}
 			if (elementCount == ELEMENTS_PER_DOT) {
 				System.out.print(".");
 				elementCount = 0;
@@ -299,24 +243,20 @@ public class ApiElementProcessingFacade implements ElementProcessingFacade {
 	 */
 	@Override
 	public void postProcess(Element element) {
-		this.addToChangeSet(this.createElementVersion(element));
+		this.addVersion(this.createElementVersion(element));
 	}
-
-	/**
-	 * Create and post a commit to save to the repository the ElementVersions in the 
-	 * constructed change set.
-	 */
-	public void commit() {
-		try {
-			List<ElementVersion> changeSet = this.getChangeSet();
-			Commit commit = new Commit().change(changeSet);
-//			System.out.println(new org.omg.sysml.JSON().serialize(commit));
-			int n = changeSet.size();
-			System.out.print("\nPosting Commit (" + n + " element" + (n == 1? ")...": "s)..."));
-			commit = this.commitApi.postCommitByProject(this.project.getAtId(), commit, null);
-			System.out.println(commit.getAtId());
-		} catch (ApiException e) {
-			System.out.println("\nError: " + e.getCode() + " " + e.getMessage());
+	
+	public String toJson() {
+		if (gson == null) {
+			gson = new GsonBuilder().setPrettyPrinting().create();
 		}
+		return gson.toJson(versions);
+	}
+	
+	public JsonElement toJsonTree() {
+		if (gson == null) {
+			gson = new GsonBuilder().setPrettyPrinting().create();
+		}
+		return gson.toJsonTree(versions);
 	}
 }

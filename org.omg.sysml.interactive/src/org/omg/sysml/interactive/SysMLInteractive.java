@@ -2,6 +2,7 @@
  * SysML 2 Pilot Implementation
  * Copyright (c) 2019-2021 Model Driven Solutions, Inc.
  * Copyright (c) 2020 Mgnite Inc.
+ * Copyright (c) 2021 Twingineer LLC
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -22,6 +23,7 @@
  *  Ed Seidewitz, MDS
  *  Hisashi Miyashita, Mgnite
  *  Zoltan Ujhelyi, MDS
+ *  Ivan Gomes
  * 
  *****************************************************************************/
 package org.omg.sysml.interactive;
@@ -65,7 +67,8 @@ import org.omg.sysml.plantuml.SysML2PlantUMLLinkProvider;
 import org.omg.sysml.plantuml.SysML2PlantUMLSvc;
 import org.omg.sysml.util.SysMLUtil;
 import org.omg.sysml.util.traversal.Traversal;
-import org.omg.sysml.util.traversal.facade.impl.ApiElementProcessingFacade;
+import org.omg.sysml.util.traversal.facade.impl.ApiCommitProcessingFacade;
+import org.omg.sysml.util.traversal.facade.impl.JsonExportProcessingFacade;
 import org.omg.sysml.xtext.SysMLStandaloneSetup;
 
 import com.google.common.base.Predicates;
@@ -87,7 +90,7 @@ public class SysMLInteractive extends SysMLUtil {
 	protected static Injector injector;
 	protected static SysMLInteractive instance = null;
 		
-	protected String apiBasePath = ApiElementProcessingFacade.DEFAULT_BASE_PATH;
+	protected String apiBasePath = ApiCommitProcessingFacade.DEFAULT_BASE_PATH;
 	
 	protected int counter = 1;
 	protected XtextResource resource;
@@ -253,24 +256,33 @@ public class SysMLInteractive extends SysMLUtil {
 				list(query, Collections.emptyList());
 	}
 	
-	public String show(String name, List<String> help) {
+	public Object show(String name, List<String> styles, List<String> help) {
 		this.counter++;
 		if (Strings.isNullOrEmpty(name)) {
 			return help.isEmpty()? "": SysMLInteractiveHelp.getShowHelp();
 		}
 		try {
 			Element element = this.resolve(name);
-			return element == null? "ERROR:Couldn't resolve reference to Element '" + name + "'\n":
-					SysMLInteractiveUtil.formatTree(element);
+			if (element == null) {
+				return "ERROR:Couldn't resolve reference to Element '" + name + "'\n";
+			}
+			else if (matchStyle(styles, "JSON")) {
+				JsonExportProcessingFacade processingFacade = this.getJsonExportProcessingFacade();
+				processingFacade.getTraversal().visit(element);
+				return processingFacade.toJsonTree();
+			}
+			else {
+				return SysMLInteractiveUtil.formatTree(element);
+			}
 		} catch (Exception e) {
 			return SysMLInteractiveUtil.formatException(e);
 		}
 	}
 	
-	protected String show(String name) {
-		return "-h".equals(name)? 
-				show(null, Collections.singletonList("true")):
-				show(name, Collections.emptyList());
+	public String show(String name) {
+		return (String) ("-h".equals(name)? 
+				show(null, Collections.emptyList(), Collections.singletonList("true")):
+				show(name, Collections.emptyList(), Collections.emptyList()));
 	}
 	
 	public String publish(String name, List<String> help) {
@@ -286,7 +298,7 @@ public class SysMLInteractive extends SysMLUtil {
 				return "ERROR:'" + name + "' is a library element\n";
 			} else {
 				String modelName = element.getName() + " " + new Date();
-				ApiElementProcessingFacade processingFacade = this.getProcessingFacade(modelName);
+				ApiCommitProcessingFacade processingFacade = this.getApiCommitProcessingFacade(modelName);
 				processingFacade.getTraversal().visit(element);
 				processingFacade.commit();
 				System.out.println();
@@ -303,9 +315,15 @@ public class SysMLInteractive extends SysMLUtil {
 				publish(name, Collections.emptyList());
 	}
 	
-	protected ApiElementProcessingFacade getProcessingFacade(String modelName) {
+	protected ApiCommitProcessingFacade getApiCommitProcessingFacade(String modelName) {
 		System.out.println("API base path: " + this.apiBasePath);
-		ApiElementProcessingFacade processingFacade = new ApiElementProcessingFacade(modelName, this.apiBasePath);	
+		ApiCommitProcessingFacade processingFacade = new ApiCommitProcessingFacade(modelName, this.apiBasePath);	
+		processingFacade.setTraversal(new Traversal(processingFacade));
+		return processingFacade;
+	}
+	
+	protected JsonExportProcessingFacade getJsonExportProcessingFacade() {
+		JsonExportProcessingFacade processingFacade = new JsonExportProcessingFacade();	
 		processingFacade.setTraversal(new Traversal(processingFacade));
 		return processingFacade;
 	}
@@ -399,6 +417,11 @@ public class SysMLInteractive extends SysMLUtil {
         return styles.stream()
             .filter(x -> !x.toUpperCase().equals(name))
             .collect(Collectors.toList());
+    }
+	
+    private static boolean matchStyle(List<String> styles, String name) {
+        return styles.stream()
+            .anyMatch(x -> x.toUpperCase().equals(name));
     }
 
     private class LinkProvider implements SysML2PlantUMLLinkProvider {

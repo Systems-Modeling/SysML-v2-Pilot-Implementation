@@ -1,6 +1,7 @@
 /*
  * SysML 2 Pilot Implementation
- * Copyright (C) 2020  California Institute of Technology ("Caltech")
+ * Copyright (c) 2020 California Institute of Technology ("Caltech")
+ * Copyright (c) 2021 Twingineer LLC
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -19,6 +20,8 @@
 
 package org.omg.sysml.jupyter.kernel.magic;
 
+import com.google.gson.JsonElement;
+import io.github.spencerpark.jupyter.kernel.display.DisplayData;
 import io.github.spencerpark.jupyter.kernel.magic.registry.LineMagic;
 import io.github.spencerpark.jupyter.kernel.magic.registry.MagicsArgs;
 import org.omg.sysml.jupyter.kernel.ISysML;
@@ -29,15 +32,26 @@ import java.util.Map;
 public class Show {
     private static final MagicsArgs SHOW_ARGS = MagicsArgs.builder().onlyKnownKeywords().onlyKnownFlags()
     		.optional("element")
+    		.keyword("style")
             .flag("help", 'h', "true")
     		.build();
 
     @LineMagic
-    public static String show(List<String> args) {
+    public static DisplayData show(List<String> args) {
         Map<String, List<String>> vals = SHOW_ARGS.parse(args);
         List<String> elements = vals.get("element");
         String element = elements.isEmpty()? null:elements.get(0);
+        List<String> styles = vals.get("style");
         List<String> help = vals.get("help");
-        return ISysML.getKernelInstance().getInteractive().show(element, help);
+        
+        Object output = ISysML.getKernelInstance().getInteractive().show(element, styles, help);
+        DisplayData dd = new DisplayData();
+        if (output instanceof JsonElement) {
+        	dd.putData("application/json", output);
+        }
+        else {
+        	dd.putText(output.toString());
+        }
+        return dd;
     }
 }

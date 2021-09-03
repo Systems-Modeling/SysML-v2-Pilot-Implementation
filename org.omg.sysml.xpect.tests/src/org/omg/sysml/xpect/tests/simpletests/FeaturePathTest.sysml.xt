@@ -2,6 +2,7 @@
 XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLTests
 	ResourceSet {
 		ThisFile {} 
+		File {from ="/library.systems/Attributes.sysml"}
 		File {from ="/library.systems/Items.sysml"}
 		File {from ="/library.systems/Parts.sysml"}
 		File {from ="/library.systems/Connections.sysml"}
@@ -17,6 +18,7 @@ XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLTests
 		JavaProject {
 			SrcFolder {
 				ThisFile {} 
+				File {from ="/library.systems/Attributes.sysml"}
 				File {from ="/library.systems/Items.sysml"}
 				File {from ="/library.systems/Parts.sysml"}
 				File {from ="/library.systems/Connections.sysml"}
@@ -52,5 +54,16 @@ package Q {
   part b : B {
   	connect f.a to a.g;
   	bind f.a = a.g;
+  }
+  
+  part e1 {
+  	attribute x : E;
+  	// Ensure that "e1" resolves correctly.
+  	bind e1.x = E::e2;
+  }
+  
+  enum def E {
+  	enum e1;
+  	enum e2;
   }
 }

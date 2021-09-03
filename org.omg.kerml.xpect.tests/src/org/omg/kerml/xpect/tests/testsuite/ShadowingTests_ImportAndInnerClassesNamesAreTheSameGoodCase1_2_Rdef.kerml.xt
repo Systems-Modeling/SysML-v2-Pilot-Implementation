@@ -30,7 +30,6 @@ package test{
   OuterPackage.B.b.self, 
 		   A.self,  A.a2.self,  B.self,  OuterPackage.B.b.a1.self, 
 		   OuterPackage.A.self, 		   OuterPackage.A.a1.self,  OuterPackage.B.self,  test.A.self,  test.A.a2.self,  test.B.self, 
-		   self,		   
 		--- */
 	feature B subsets OuterPackage::A.a1 {} 
 }

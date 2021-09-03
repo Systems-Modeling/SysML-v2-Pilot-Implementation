@@ -36,7 +36,7 @@ public class VMetadata extends Visitor {
     public VMetadata(Visitor v) {
     	super(v, true);
 	}
-
+    
     private final String metadataTitle = "«metadata»";
     private void addAnnotatingFeatureInternal(AnnotatingFeature af) {
         if (checkId(af)) return;
@@ -84,7 +84,7 @@ public class VMetadata extends Visitor {
             }
         }
         if (sb.length() > 0) {
-            append("--\n");
+        	append("--\n");
             append(sb.toString());
         }
         append("end note\n");

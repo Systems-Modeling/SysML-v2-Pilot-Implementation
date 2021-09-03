@@ -93,7 +93,7 @@ public class VComposite extends VMixed {
 
     @Override
     public String casePortUsage(PortUsage pu) {
-        String name = extractName(pu);
+        String name = extractTitleName(pu);
         if (name == null) return "";
 
         VComposite vc = new VComposite(this);

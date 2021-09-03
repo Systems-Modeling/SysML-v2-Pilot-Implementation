@@ -184,7 +184,7 @@ public class VSequence extends VDefault {
 
     private void addParticipant(Type participant) {
         if (checkId(participant)) return;
-        addPUMLLine(participant, "participant ", getName(participant));
+        addPUMLLine(participant, "participant ", getNameAnyway(participant, true));
         append('\n');
     }
 
@@ -233,7 +233,7 @@ public class VSequence extends VDefault {
             return ret;
         }
     }
-    private List<Message> messages = new ArrayList<Message>();
+    private final List<Message> messages;
 
     private void addMessage(Pair p1, Pair p2, FlowConnectionUsage fcu) {
         addParticipant(p1.participant);
@@ -436,21 +436,25 @@ public class VSequence extends VDefault {
         return "";
     }
 
-    private boolean isInBox = false;
+    private final boolean isInBox;
 
+        
     @Override
     public String caseOccurrenceDefinition(OccurrenceDefinition od) {
-        if (isInBox) return null; // "box" cannot be nested.
+        if (isInBox) return null;
+        VSequence vseq = new VSequence(this);
+        vseq.traverse(od);
+        if (vseq.isEmpty()) return "";
         String name = od.getEffectiveName();
         if (name != null) {
-            isInBox = true;
             append("box ");
             quote(name);
             append('\n');
+            vseq.flush();
+            append("end box\n");
+        } else {
+            vseq.flush();
         }
-        traverse(od);
-        append("end box\n");
-        isInBox = false;
         return "";
     }
 
@@ -462,7 +466,15 @@ public class VSequence extends VDefault {
     @Override
     public String caseComment(Comment c) { return ""; }
 
+    private VSequence(VSequence vseq) {
+    	super(vseq);
+        this.isInBox = true;
+        this.messages = vseq.messages;
+    }
+
     public VSequence() {
         setShowsMultiplicity(false);
+        this.isInBox = false;
+        this.messages = new ArrayList<Message>();
     }
 }

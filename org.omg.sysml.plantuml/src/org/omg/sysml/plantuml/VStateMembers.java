@@ -63,8 +63,11 @@ public class VStateMembers extends VBehavior {
                 Feature f = ss.getSubsettedFeature();
                 if (f instanceof ActionUsage) {
                     if (!(ss instanceof Redefinition)) {
-                        sb.append(f.getName());
-                        sb.append(' ');
+                        String name2 = getName(f);
+                        if (name2 != null) {
+                            sb.append(name2);
+                            sb.append(' ');
+                        }
                     }
                 }
             }
@@ -115,16 +118,14 @@ public class VStateMembers extends VBehavior {
     public String startStateUsage(Type typ) {
         traverse(typ);
         if (descriptions != null) {
-            String name = getName(typ);
-            if (name != null) {
-                int size = descriptions.size();
-                for (int i = 0; i < size; i++) {
-                    append("desc ");
-                    addNameWithId(typ, name, false);
-                    append(" : ");
-                    append(descriptions.get(i));
-                    append('\n');
-                }
+            String name = getNameAnyway(typ, true);
+            int size = descriptions.size();
+            for (int i = 0; i < size; i++) {
+                append("desc ");
+                addNameWithId(typ, name, false);
+                append(" : ");
+                append(descriptions.get(i));
+                append('\n');
             }
         }
         outputEntryExitTransitions();

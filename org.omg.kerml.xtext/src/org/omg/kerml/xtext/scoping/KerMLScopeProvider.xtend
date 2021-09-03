@@ -112,12 +112,15 @@ class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 	}
 	
 	def scope_featureChaining(FeatureChaining ch, EReference reference) {
-		val featureChained = ch.featureChained
+		var featureChained = ch.featureChained
 		val ownedFeatureChainings = featureChained.ownedFeatureChaining
 		val i = ownedFeatureChainings.indexOf(ch)
-		if (i <= 0) 
+		if (i <= 0) {
+			if (featureChained.owningRelationship instanceof Subsetting) {
+				featureChained = (featureChained.owningRelationship as Subsetting).subsettingFeature
+			}
 			featureChained.scope_nonExpressionNamespace(ch, reference)
-		else
+		} else
 			ch.scope_Namespace(ownedFeatureChainings.get(i-1).chainingFeature, ch, reference, false)
 	}
 	

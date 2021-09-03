@@ -35,6 +35,9 @@ class PRelation {
     public String getDescription() {
         return description;
     }
+    protected void setDescription(String desc) {
+    	this.description = desc;
+    }
 
     public PRelation(Element src, Element dest, Element rel, String description) {
         this.src = src;

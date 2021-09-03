@@ -75,7 +75,7 @@ public abstract class VTraverser extends Visitor {
                 visit(r);
             }
         }
-        return getString();
+        return "";
     }
 
     public String traverseWithInherited(Type typ) {
@@ -88,7 +88,7 @@ public abstract class VTraverser extends Visitor {
                 visit(fm);
             }
         }
-        return getString();
+        return "";
     }
 
     public String traverse(Namespace ns) {
@@ -101,7 +101,7 @@ public abstract class VTraverser extends Visitor {
             visit(e);
         }
         vpath.leave(ns);
-        return getString();
+        return "";
     }
 
     protected String visitMembership(Membership m) {

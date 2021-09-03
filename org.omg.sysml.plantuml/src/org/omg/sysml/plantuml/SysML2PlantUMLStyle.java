@@ -33,6 +33,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.omg.sysml.lang.sysml.AcceptActionUsage;
+import org.omg.sysml.lang.sysml.AllocationUsage;
 import org.omg.sysml.lang.sysml.AnalysisCaseDefinition;
 import org.omg.sysml.lang.sysml.AnalysisCaseUsage;
 import org.omg.sysml.lang.sysml.AnnotatingFeature;
@@ -45,10 +46,12 @@ import org.omg.sysml.lang.sysml.ConnectionUsage;
 import org.omg.sysml.lang.sysml.Connector;
 import org.omg.sysml.lang.sysml.Definition;
 import org.omg.sysml.lang.sysml.Dependency;
+import org.omg.sysml.lang.sysml.EventOccurrenceUsage;
 import org.omg.sysml.lang.sysml.ExhibitStateUsage;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureTyping;
+import org.omg.sysml.lang.sysml.FlowConnectionUsage;
 import org.omg.sysml.lang.sysml.ItemDefinition;
 import org.omg.sysml.lang.sysml.ItemFlow;
 import org.omg.sysml.lang.sysml.ItemUsage;
@@ -360,6 +363,16 @@ public class SysML2PlantUMLStyle {
 		}
 
 		@Override
+		public String caseFlowConnectionUsage(FlowConnectionUsage fcu) {
+            return " --> ";
+		}
+
+		@Override
+		public String caseAllocationUsage(AllocationUsage au) {
+            return " --> ";
+		}
+
+		@Override
 		public String caseSendActionUsage(SendActionUsage sau) {
             // Send a message to object
             return " ..>> ";
@@ -447,6 +460,11 @@ public class SysML2PlantUMLStyle {
 		@Override
 		public String caseAnalysisCaseDefinition(AnalysisCaseDefinition acd) {
             return " analysis def>> ";
+		}
+
+		@Override
+		public String caseEventOccurrenceUsage(EventOccurrenceUsage eou) {
+            return " event occurrence>> ";
 		}
     }
 

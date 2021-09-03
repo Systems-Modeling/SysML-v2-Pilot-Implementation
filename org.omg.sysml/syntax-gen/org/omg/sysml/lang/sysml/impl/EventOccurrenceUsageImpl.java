@@ -72,6 +72,15 @@ public class EventOccurrenceUsageImpl extends OccurrenceUsageImpl implements Eve
 		throw new UnsupportedOperationException();
 	}
 
+	// Additional overrides
+	
+	@Override
+	public boolean isReference() {
+		return true;
+	}
+
+	//
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

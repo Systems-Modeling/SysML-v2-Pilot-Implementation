@@ -117,6 +117,93 @@ public class ExhibitStateUsageImpl extends StateUsageImpl implements ExhibitStat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public OccurrenceUsage getEventOccurrence() {
+		return getPerformedAction();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public OccurrenceUsage basicGetEventOccurrence() {
+		return basicGetPerformedAction();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setEventOccurrence(OccurrenceUsage newEventOccurrence) {
+		if (newEventOccurrence != null && !(newEventOccurrence instanceof ActionUsage)) {
+			throw new IllegalArgumentException("newEventOccurrence must be an instance of ActionUsage");
+		}
+		setPerformedAction((ActionUsage) newEventOccurrence);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetEventOccurrence() {
+  		return false;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ActionUsage getPerformedAction() {
+		return getExhibitedState();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ActionUsage basicGetPerformedAction() {
+		return basicGetExhibitedState();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setPerformedAction(ActionUsage newPerformedAction) {
+		if (newPerformedAction != null && !(newPerformedAction instanceof StateUsage)) {
+			throw new IllegalArgumentException("newPerformedAction must be an instance of StateUsage");
+		}
+		setExhibitedState((StateUsage) newPerformedAction);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetPerformedAction() {
+  		return false;
+	}
+
+	// Additional overrides
+	
+	@Override
+	public boolean isReference() {
+		return true;
+	}
+	
+	//
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -235,84 +322,6 @@ public class ExhibitStateUsageImpl extends StateUsageImpl implements ExhibitStat
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public OccurrenceUsage getEventOccurrence() {
-		return getPerformedAction();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public OccurrenceUsage basicGetEventOccurrence() {
-		return basicGetPerformedAction();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setEventOccurrence(OccurrenceUsage newEventOccurrence) {
-		if (newEventOccurrence != null && !(newEventOccurrence instanceof ActionUsage)) {
-			throw new IllegalArgumentException("newEventOccurrence must be an instance of ActionUsage");
-		}
-		setPerformedAction((ActionUsage) newEventOccurrence);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetEventOccurrence() {
-  		return false;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ActionUsage getPerformedAction() {
-		return getExhibitedState();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ActionUsage basicGetPerformedAction() {
-		return basicGetExhibitedState();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setPerformedAction(ActionUsage newPerformedAction) {
-		if (newPerformedAction != null && !(newPerformedAction instanceof StateUsage)) {
-			throw new IllegalArgumentException("newPerformedAction must be an instance of StateUsage");
-		}
-		setExhibitedState((StateUsage) newPerformedAction);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetPerformedAction() {
-  		return false;
 	}
 
 } //ExhibitStateUsageImpl

@@ -54,6 +54,7 @@ public class SysMLInteractiveHelp {
     	    + "   INTERCONNECTION\tShow an interconnection view, like an Internal Block Diagram (IBD)\n"
     	    + "   STATE\t\tShow state machines\n"
     	    + "   ACTION\t\tShow actions like an activity diagram\n"
+    	    + "   SEQUENCE\t\tShow events and messages in a sequence diagram\n"
     	    + "   MIXED\t\tShow multiple views\n\n"
     	    + "<STYLE> is also case insensitive. Multiple --style options are allowed.  The possible style names are:\n"
     	    + "   DEFAULT\t\tStandard B&W format\n"

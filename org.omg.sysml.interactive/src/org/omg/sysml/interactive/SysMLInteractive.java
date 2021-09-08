@@ -67,8 +67,8 @@ import org.omg.sysml.plantuml.SysML2PlantUMLLinkProvider;
 import org.omg.sysml.plantuml.SysML2PlantUMLSvc;
 import org.omg.sysml.util.SysMLUtil;
 import org.omg.sysml.util.traversal.Traversal;
-import org.omg.sysml.util.traversal.facade.impl.ApiCommitProcessingFacade;
-import org.omg.sysml.util.traversal.facade.impl.JsonExportProcessingFacade;
+import org.omg.sysml.util.traversal.facade.impl.ApiElementProcessingFacade;
+import org.omg.sysml.util.traversal.facade.impl.JsonElementProcessingFacade;
 import org.omg.sysml.xtext.SysMLStandaloneSetup;
 
 import com.google.common.base.Predicates;
@@ -90,7 +90,7 @@ public class SysMLInteractive extends SysMLUtil {
 	protected static Injector injector;
 	protected static SysMLInteractive instance = null;
 		
-	protected String apiBasePath = ApiCommitProcessingFacade.DEFAULT_BASE_PATH;
+	protected String apiBasePath = ApiElementProcessingFacade.DEFAULT_BASE_PATH;
 	
 	protected int counter = 1;
 	protected XtextResource resource;
@@ -267,7 +267,7 @@ public class SysMLInteractive extends SysMLUtil {
 				return "ERROR:Couldn't resolve reference to Element '" + name + "'\n";
 			}
 			else if (matchStyle(styles, "JSON")) {
-				JsonExportProcessingFacade processingFacade = this.getJsonExportProcessingFacade();
+				JsonElementProcessingFacade processingFacade = this.getJsonElementProcessingFacade();
 				processingFacade.getTraversal().visit(element);
 				return processingFacade.toJsonTree();
 			}
@@ -298,7 +298,7 @@ public class SysMLInteractive extends SysMLUtil {
 				return "ERROR:'" + name + "' is a library element\n";
 			} else {
 				String modelName = element.getName() + " " + new Date();
-				ApiCommitProcessingFacade processingFacade = this.getApiCommitProcessingFacade(modelName);
+				ApiElementProcessingFacade processingFacade = this.getApiElementProcessingFacade(modelName);
 				processingFacade.getTraversal().visit(element);
 				processingFacade.commit();
 				System.out.println();
@@ -315,15 +315,15 @@ public class SysMLInteractive extends SysMLUtil {
 				publish(name, Collections.emptyList());
 	}
 	
-	protected ApiCommitProcessingFacade getApiCommitProcessingFacade(String modelName) {
+	protected ApiElementProcessingFacade getApiElementProcessingFacade(String modelName) {
 		System.out.println("API base path: " + this.apiBasePath);
-		ApiCommitProcessingFacade processingFacade = new ApiCommitProcessingFacade(modelName, this.apiBasePath);	
+		ApiElementProcessingFacade processingFacade = new ApiElementProcessingFacade(modelName, this.apiBasePath);	
 		processingFacade.setTraversal(new Traversal(processingFacade));
 		return processingFacade;
 	}
 	
-	protected JsonExportProcessingFacade getJsonExportProcessingFacade() {
-		JsonExportProcessingFacade processingFacade = new JsonExportProcessingFacade();	
+	protected JsonElementProcessingFacade getJsonElementProcessingFacade() {
+		JsonElementProcessingFacade processingFacade = new JsonElementProcessingFacade();	
 		processingFacade.setTraversal(new Traversal(processingFacade));
 		return processingFacade;
 	}

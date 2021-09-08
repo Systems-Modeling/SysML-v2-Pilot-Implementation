@@ -55,7 +55,7 @@ import com.google.gson.JsonElement;
  * @author Ivan Gomes
  *
  */
-public class JsonExportProcessingFacade implements ElementProcessingFacade {
+public class JsonElementProcessingFacade implements ElementProcessingFacade {
 
 	private static final int ELEMENTS_PER_DOT = 100;
 	private static final int DOTS_PER_LINE = 50;
@@ -63,9 +63,9 @@ public class JsonExportProcessingFacade implements ElementProcessingFacade {
 	private Traversal traversal;
 	private Gson gson;
 	
-	private boolean isVerbose = false;
-	private int elementCount = 0;
-	private int dotCount = "Processing".length();
+	protected boolean isVerbose = false;
+	protected int elementCount = 0;
+	protected int dotCount = 0;
 	
 	private final List<ElementVersion> versions = new ArrayList<>();
 	

@@ -9,7 +9,8 @@ Require-Bundle: org.eclipse.emf.ecore,
  org.eclipse.xtext,
  org.omg.sysml;bundle-version="0.2.0",
  org.omg.kerml.xtext;bundle-version="0.2.0",
- org.omg.sysml.xtext;bundle-version="0.2.0"
+ org.omg.sysml.xtext;bundle-version="0.2.0",
+ com.google.gson;bundle-version="2.8.6"
 Import-Package: org.omg.sysml.plantuml
 Bundle-Vendor: SysML v2 Submission Team
 Automatic-Module-Name: org.omg.sysml.interactive

@@ -31,7 +31,7 @@ import java.util.Date;
 
 import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
 import org.omg.sysml.util.ElementUtil;
-import org.omg.sysml.util.traversal.facade.impl.ApiCommitProcessingFacade;
+import org.omg.sysml.util.traversal.facade.impl.ApiElementProcessingFacade;
 
 /**
  * This is a utility for traversing a SysML model graph and saving each Element that is 
@@ -42,13 +42,7 @@ import org.omg.sysml.util.traversal.facade.impl.ApiCommitProcessingFacade;
  */
 public class KerMLRepositorySaveUtil extends KerMLTraversalUtil {
 	
-	/**
-	 * A string representation of the UUID of the Project in the repository to which Elements and
-	 * Relationships are being saved.
-	 */
-	private String projectId;
-	
-	private String basePath = ApiCommitProcessingFacade.DEFAULT_BASE_PATH;
+	private String basePath = ApiElementProcessingFacade.DEFAULT_BASE_PATH;
 	private String libraryPath = null;
 	private boolean isAddImplicitGeneralizations = false;
 	private String projectName;
@@ -59,13 +53,13 @@ public class KerMLRepositorySaveUtil extends KerMLTraversalUtil {
 	}
 	
 	/**
-	 * Return the identifier for the repository Project to which Elements and Relationships are being
-	 * saved.
+	 * Return the identifier for the repository Project to which Elements and Relationships were
+	 * saved. (Available after processing.)
 	 * 
 	 * @return	A string representation of the UUID of the Project in the repository
 	 */
 	public String getProjectId() {
-		return this.projectId;
+		return ((ApiElementProcessingFacade)this.traversal.getFacade()).getProjectId();
 	}
 	
 	/**
@@ -167,10 +161,9 @@ public class KerMLRepositorySaveUtil extends KerMLTraversalUtil {
 		}
 		this.projectName += " " + new Date();
 		
-		ApiCommitProcessingFacade processingFacade = new ApiCommitProcessingFacade(this.projectName, this.getBasePath());	
+		ApiElementProcessingFacade processingFacade = new ApiElementProcessingFacade(this.projectName, this.getBasePath());	
 		processingFacade.setTraversal(this.initialize(processingFacade));
 		processingFacade.setIsVerbose(this.isVerbose);
-		this.projectId = processingFacade.getProjectId();
 	}
 	
 	/**
@@ -179,7 +172,7 @@ public class KerMLRepositorySaveUtil extends KerMLTraversalUtil {
 	@Override
 	public void process() {
 		super.process();
-		((ApiCommitProcessingFacade)this.traversal.getFacade()).commit();
+		((ApiElementProcessingFacade)this.traversal.getFacade()).commit();
 	}
 	
 	/**
@@ -202,10 +195,11 @@ public class KerMLRepositorySaveUtil extends KerMLTraversalUtil {
 			ElementUtil.transformAll(this.resourceSet, this.isAddImplicitGeneralizations);
 			
 			System.out.println("\nBase path is " + this.getBasePath());
-			System.out.println("Saving to Project (" + this.getProjectName() + ") " + this.getProjectId());
-			System.out.println("");
+			System.out.println();
 			
 			this.process();
+			System.out.println("Saved to Project (" + this.getProjectName() + ") " + this.getProjectId());
+			System.out.println();
 		}
 	}
 

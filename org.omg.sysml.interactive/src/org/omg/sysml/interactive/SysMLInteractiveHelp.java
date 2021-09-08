@@ -40,11 +40,11 @@ public class SysMLInteractiveHelp {
 			+ "The last two forms may be optionally followed by a filter expression in square brackets.\n";
 
 	private static final String SHOW_HELP_STRING =
-			  "Usage: %show <NAME> [--style=<STYLE>]\n\n"
+			  "Usage: %show [--style=<STYLE>] <NAME>\n\n"
 			+ "Print the abstract syntax tree rooted in <NAME>. <NAME> must be fully qualified.\n\n"
 			+ "<STYLE> is also case insensitive. The possible style names are:\n"
     	    + "   TREE\t\tHierarchically indented representation with only identifying information\n"
-    	    + "   JSON\t\tFull JSON export of the tree equivalent to running %export magic but presented interactively\n";
+    	    + "   JSON\t\tFull JSON representation of the tree, equivalent to %export but presented interactively\n";
 
 	private static final String PUBLISH_HELP_STRING =
 			  "Usage: %publish <NAME>\n\n"

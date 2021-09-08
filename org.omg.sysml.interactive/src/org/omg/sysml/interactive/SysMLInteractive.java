@@ -271,8 +271,10 @@ public class SysMLInteractive extends SysMLUtil {
 				processingFacade.getTraversal().visit(element);
 				return processingFacade.toJsonTree();
 			}
-			else {
+			else if (styles.isEmpty() || matchStyle(styles, "TREE")){
 				return SysMLInteractiveUtil.formatTree(element);
+			} else {
+				return "ERROR:Invalid style. Possible styles: TREE and JSON";
 			}
 		} catch (Exception e) {
 			return SysMLInteractiveUtil.formatException(e);
@@ -280,6 +282,14 @@ public class SysMLInteractive extends SysMLUtil {
 	}
 	
 	public String show(String name) {
+		if (name.startsWith("--style=")) {
+			int i = name.indexOf(" ");
+			if (i > 0) {
+				String style = name.substring("--style=".length(), i).toUpperCase();
+				name = name.substring(i).trim();
+				return show(name, Collections.singletonList(style), Collections.emptyList()).toString() + "\n";
+			}
+		}
 		return (String) ("-h".equals(name)? 
 				show(null, Collections.emptyList(), Collections.singletonList("true")):
 				show(name, Collections.emptyList(), Collections.emptyList()));

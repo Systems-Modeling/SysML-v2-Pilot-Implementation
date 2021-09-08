@@ -70,7 +70,7 @@ public class VSequence extends VDefault {
      new StyleSwitch(new StyleRelSwitch() {
 		@Override
 		public String caseConnector(Connector c) {
-            return " -> ";
+            return " ->> ";
 		}
     },
       new StyleStereotypeSwitch() {

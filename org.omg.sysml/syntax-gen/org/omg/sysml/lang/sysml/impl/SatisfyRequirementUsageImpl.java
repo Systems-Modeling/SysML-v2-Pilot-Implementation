@@ -175,17 +175,20 @@ public class SatisfyRequirementUsageImpl extends RequirementUsageImpl implements
 	 * @generated NOT
 	 */
 	public Feature basicGetSatisfyingFeature() {
-		FeatureValue featureValue = FeatureUtil.getValuationFor(this);
-		if (featureValue != null) {
-			Expression value = featureValue.getValue();
-			if (value instanceof PathStepExpression) {
-				List<Expression> operands = ((PathStepExpression)value).getOperand();
-				if (operands.size() > 1) {
-					value = operands.get(1);
+		Feature subjectParameter = this.getSubjectParameter();
+		if (subjectParameter != null) {
+			FeatureValue featureValue = FeatureUtil.getValuationFor(subjectParameter);
+			if (featureValue != null) {
+				Expression value = featureValue.getValue();
+				if (value instanceof PathStepExpression) {
+					List<Expression> operands = ((PathStepExpression)value).getOperand();
+					if (operands.size() > 1) {
+						value = operands.get(1);
+					}
 				}
-			}
-			if (value instanceof FeatureReferenceExpression) {
-				return ((FeatureReferenceExpression)value).getReferent();
+				if (value instanceof FeatureReferenceExpression) {
+					return ((FeatureReferenceExpression)value).getReferent();
+				}
 			}
 		}
 		return null;

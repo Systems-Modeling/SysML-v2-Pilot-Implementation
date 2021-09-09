@@ -232,7 +232,7 @@ public abstract class VStructure extends VDefault {
         RequirementUsage ru = sru.getSatisfiedRequirement();
         Feature target = sru.getSatisfyingFeature();
         if ((ru != null) && (target != null)) {
-            addPRelation(ru, target, sru, "<<satisfy>>");
+            addPRelation(target, ru, sru, "<<satisfy>>");
         }
         return "";
     }

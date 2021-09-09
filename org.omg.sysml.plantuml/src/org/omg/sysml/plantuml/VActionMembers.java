@@ -37,10 +37,7 @@ import org.omg.sysml.lang.sysml.Type;
 public class VActionMembers extends VBehavior {
 
     private void addNode(Feature f, String type) {
-        String name = f.getName();
-        if (name == null) {
-            name = "noname";
-        }
+        String name = getNameAnyway(f, true);
         append(type);
         append(' ');
         addNameWithId(f, name, true);

@@ -39,6 +39,7 @@ import org.omg.sysml.lang.sysml.LifeClass;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.PortioningFeature;
 import org.omg.sysml.lang.sysml.Redefinition;
+import org.omg.sysml.lang.sysml.RequirementUsage;
 import org.omg.sysml.lang.sysml.ResultExpressionMembership;
 import org.omg.sysml.lang.sysml.SatisfyRequirementUsage;
 import org.omg.sysml.lang.sysml.Type;
@@ -160,16 +161,11 @@ public abstract class VStructure extends VDefault {
     }
 
 
-    protected String extractName(Element e) {
-        if (!(e instanceof Feature)) {
-            return e.getName();
-        }
+    protected String extractTitleName(Element e) {
+        String name = getNameAnyway(e, true);
+        if (!(e instanceof Feature)) return name;
+
         Feature f = (Feature) e;
-        String name = getFeatureName(f);
-        if (name == null) {
-        	// It should not happen but need to give some name for processing
-        	name = "<s>noname</s>";
-        }
         List<FeatureTyping> tt = f.getOwnedTyping();
         if (tt.isEmpty()) return name;
         StringBuilder sb = new StringBuilder();
@@ -199,7 +195,7 @@ public abstract class VStructure extends VDefault {
     }
 
     protected boolean addType(Type typ, String keyword) {
-        String name = extractName(typ);
+        String name = extractTitleName(typ);
         if (name == null) return false;
         return addType(typ, name, keyword);
     }
@@ -233,9 +229,11 @@ public abstract class VStructure extends VDefault {
 
     @Override
     public String caseSatisfyRequirementUsage(SatisfyRequirementUsage sru) {
-        addPRelation(sru.getSatisfiedRequirement(),
-                     sru.getSatisfyingFeature(),
-                     sru, "<<satisfy>>");
+        RequirementUsage ru = sru.getSatisfiedRequirement();
+        Feature target = sru.getSatisfyingFeature();
+        if ((ru != null) && (target != null)) {
+            addPRelation(target, ru, sru, "<<satisfy>>");
+        }
         return "";
     }
     

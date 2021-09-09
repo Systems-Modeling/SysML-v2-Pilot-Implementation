@@ -51,11 +51,21 @@ public class VDefault extends VTraverser {
         return f.getEffectiveName();
     }
 
-    protected static String getName(Type typ) {
-        if (typ instanceof Feature) {
-            return getFeatureName((Feature) typ);
+    protected static String getName(Element e) {
+        if (e instanceof Feature) {
+            return getFeatureName((Feature) e);
         } else {
-            return typ.getName();
+            return e.getName();
+        }
+    }
+
+    protected static String getNameAnyway(Element e, boolean creole) {
+        String ret = getName(e);
+        if (ret != null) return ret;
+        if (creole) {
+            return "<s>noname</s>";
+        } else {
+            return "noname";
         }
     }
 
@@ -127,8 +137,7 @@ public class VDefault extends VTraverser {
     }
 
     protected boolean addRecLine(Type typ, boolean withStyle) {
-    	String name = getName(typ);
-    	if (name == null) return false;
+    	String name = getNameAnyway(typ, true);
         return addRecLine(name, typ, withStyle);
     }
 

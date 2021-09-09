@@ -98,7 +98,7 @@ public class VTree extends VStructure {
 
         String name = vm.getName();
         if (name == null) {
-        	name = extractName(u);
+        	name = extractTitleName(u);
         }
         if (name == null) {
         	name = "variant";
@@ -206,7 +206,7 @@ public class VTree extends VStructure {
 
     private void addReq(String keyword, Type typ, String reqId) {
     	if (checkVisited(typ)) return;
-        String name = extractName(typ);
+        String name = extractTitleName(typ);
         if (name == null) return;
         if (reqId != null) {
             name = " [<b>" + reqId + "</b>] " + name;

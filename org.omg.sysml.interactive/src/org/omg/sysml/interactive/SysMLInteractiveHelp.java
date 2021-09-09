@@ -54,6 +54,7 @@ public class SysMLInteractiveHelp {
     	    + "   INTERCONNECTION\tShow an interconnection view, like an Internal Block Diagram (IBD)\n"
     	    + "   STATE\t\tShow state machines\n"
     	    + "   ACTION\t\tShow actions like an activity diagram\n"
+    	    + "   SEQUENCE\t\tShow events and messages in a sequence diagram\n"
     	    + "   MIXED\t\tShow multiple views\n\n"
     	    + "<STYLE> is also case insensitive. Multiple --style options are allowed.  The possible style names are:\n"
     	    + "   DEFAULT\t\tStandard B&W format\n"
@@ -64,7 +65,10 @@ public class SysMLInteractiveHelp {
     	    + "   LR\t\t\tLeft-to-Right orientation\n"
     	    + "   POLYLINE\t\tPolyline style\n"
     	    + "   ORTHOLINE\t\tOrthogonal line style\n"
-    	    + "   COMPTREE\t\tShow tree structures in compartments\n";
+    	    + "   COMPTREE\t\tShow tree structures in compartments\n\n"
+    	    + "Example:\n"
+    	    + "\t%viz --view Tree --style LR --style ortholine Pkg1::PartDef Pkg1::Pkg2::partUsage\n"
+    	    + "should visualize Pkg1::PartDef and Pkg1::Pkg2::partUsage with a tree view ordered in the left-to-right direction with orthogonal lines.\n";
 
     private static final String VIEW_HELP_STRING =
     	      "Usage: %view [--render=<RENDERING>] [--style=<STYLE>...] <NAME>\n\n"

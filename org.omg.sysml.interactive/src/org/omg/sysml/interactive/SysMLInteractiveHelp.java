@@ -65,7 +65,10 @@ public class SysMLInteractiveHelp {
     	    + "   LR\t\t\tLeft-to-Right orientation\n"
     	    + "   POLYLINE\t\tPolyline style\n"
     	    + "   ORTHOLINE\t\tOrthogonal line style\n"
-    	    + "   COMPTREE\t\tShow tree structures in compartments\n";
+    	    + "   COMPTREE\t\tShow tree structures in compartments\n\n"
+    	    + "Example:\n"
+    	    + "  %viz --view Tree --style LR --style ortholine Pkg1::PartDef Pkg1::Pkg2::partUsage\n"
+    	    + "should visualize Pkg1::PartDef and Pkg1::Pkg2::partUsage with a tree view ordered in the left-to-right direction with orthogonal lines.\n";
 
     private static final String VIEW_HELP_STRING =
     	      "Usage: %view [--render=<RENDERING>] [--style=<STYLE>...] <NAME>\n\n"

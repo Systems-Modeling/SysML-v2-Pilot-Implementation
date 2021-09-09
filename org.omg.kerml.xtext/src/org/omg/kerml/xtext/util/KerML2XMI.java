@@ -101,15 +101,17 @@ public class KerML2XMI extends SysMLUtil {
 	 * library resources. Note that, at the end of this method, all content has been removed from
 	 * the originally read resources.
 	 * 
+	 * @param	isAddImplicitElements	whether to add implicit elements to the output
+	 * 
 	 * @throws 	IOException
 	 */
-	public void write(boolean isAddImplicitGeneralizations) throws IOException {
+	public void write(boolean isAddImplicitElements) throws IOException {
 		println("Resolving proxies...");
 		EcoreUtil.resolveAll(this.resourceSet);
 		
 		println("Transforming" + 
-				(isAddImplicitGeneralizations? " (adding implicit generalizations)... ": "..."));
-		ElementUtil.transformAll(this.resourceSet, isAddImplicitGeneralizations);
+				(isAddImplicitElements? " (adding implicit elements)... ": "..."));
+		ElementUtil.transformAll(this.resourceSet, isAddImplicitElements);
 		
 		Set<Resource> outputResources = new HashSet<Resource>();
  		for (Object object: this.resourceSet.getResources().toArray()) {
@@ -173,9 +175,9 @@ public class KerML2XMI extends SysMLUtil {
 	 * 
 	 * <p>where:
 	 * 
-	 * <li>-g                     specifies that implicit generalizations should be generated (the default is not to)</li>
+	 * <li>-g                     specifies that implicit elements should be generated (the default is not to)</li>
 	 * <li>input-path             is a path for reading input resources</li>
-	 * <li>library-paths          are paths for reading library resources, relative to the library-base-path (if one is given)</li>
+	 * <li>library-paths          are paths for reading library resources</li>
 	 */
 	public static void main(String[] args) {
 		new KerML2XMI().run(args);

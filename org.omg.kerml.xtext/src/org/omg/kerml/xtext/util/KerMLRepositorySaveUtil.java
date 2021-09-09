@@ -44,7 +44,7 @@ public class KerMLRepositorySaveUtil extends KerMLTraversalUtil {
 	
 	private String basePath = ApiElementProcessingFacade.DEFAULT_BASE_PATH;
 	private String libraryPath = null;
-	private boolean isAddImplicitGeneralizations = false;
+	private boolean isAddImplicitElements = false;
 	private String projectName;
 	
 	public KerMLRepositorySaveUtil() {
@@ -95,7 +95,7 @@ public class KerMLRepositorySaveUtil extends KerMLTraversalUtil {
 	 * <ul>
 	 * <li> Set the base path if the "-b" option is present.</li>
 	 * <li> Set the library path if the "-l" option is present.</li>
-	 * <li> Set flag to add implicit generalizations if the "-g" option is present.</li>
+	 * <li> Set flag to add implicit elements if the "-g" option is present.</li>
 	 * <li> Set flag for verbose mode if the "-v" option is present.</li>
 	 * <li> Return the list of arguments with any options removed and the
 	 *      library path (if any) prepended to all arguments other than the
@@ -120,7 +120,7 @@ public class KerMLRepositorySaveUtil extends KerMLTraversalUtil {
 						libraryPath += "/";
 					}
 				} else if ("-g".equals(args[i])) {
-					this.isAddImplicitGeneralizations = true;
+					this.isAddImplicitElements = true;
 				} else if ("-v".equals(args[i])) {
 					this.isVerbose = true;
 				}
@@ -191,8 +191,8 @@ public class KerMLRepositorySaveUtil extends KerMLTraversalUtil {
 			this.read(args);
 			
 			System.out.println("Transforming" + 
-					(this.isAddImplicitGeneralizations? " (adding implicit generalizations)... ": "..."));
-			ElementUtil.transformAll(this.resourceSet, this.isAddImplicitGeneralizations);
+					(this.isAddImplicitElements? " (adding implicit generalizations)... ": "..."));
+			ElementUtil.transformAll(this.resourceSet, this.isAddImplicitElements);
 			
 			System.out.println("\nBase path is " + this.getBasePath());
 			System.out.println();
@@ -217,7 +217,7 @@ public class KerMLRepositorySaveUtil extends KerMLTraversalUtil {
 	 * <ul>
 	 * <li>-b base-path-url       gives the URL for the base path to be used for the API endpoint (if none is given, the default is used)</li>
 	 * <li>-l library-base-path   gives the base path to used for reading model library resources</li>
-	 * <li>-g                     specifies that implicit generalizations should be generated (the default is not to)</li>
+	 * <li>-g                     specifies that implicit elements should be generated (the default is not to)</li>
 	 * <li>-v                     specifies verbose mode (the default is non-verbose)</li>
 	 * <li>input-path             is a path for reading input resources</li>
 	 * <li>library-paths          are paths for reading library resources, relative to the library-base-path (if one is given)</li>

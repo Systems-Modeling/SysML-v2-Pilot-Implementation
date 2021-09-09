@@ -43,7 +43,8 @@ public class KerML2JSON extends KerMLTraversalUtil {
 	public static final String JSON_EXTENSION = "json";
 	
 	private String libraryPath = null;
-	private boolean isAddImplicitGeneralizations = false;
+	private boolean isAddDerivedElements = false;
+	private boolean isAddImplicitElements = false;
 	private String outputPath = null;
 	
 	public KerML2JSON() {
@@ -73,7 +74,7 @@ public class KerML2JSON extends KerMLTraversalUtil {
 	 * Process the command line arguments:
 	 * <ul>
 	 * <li> Set the library path if the "-l" option is present.</li>
-	 * <li> Set flag to add implicit generalizations if the "-g" option is present.</li>
+	 * <li> Set flag to add implicit elements if the "-g" option is present.</li>
 	 * <li> Set flag for verbose mode if the "-v" option is present.</li>
 	 * <li> Return the list of arguments with any options removed.</li>
 	 * </ul>
@@ -85,15 +86,17 @@ public class KerML2JSON extends KerMLTraversalUtil {
 		int n = args.length;
 		if (n > 0) {
 			int i = 0;
-			while(("-l".equals(args[i]) || "-g".equals(args[i]) || "-v".equals(args[i])) && 
+			while(("-l".equals(args[i]) || "-d".equals(args[i]) || "-g".equals(args[i]) || "-v".equals(args[i])) && 
 					i + 1 < n) {
 				if ("-l".equals(args[i])) {
 					this.libraryPath = args[++i];
 					if (!libraryPath.endsWith("/")) {
 						libraryPath += "/";
 					}
+				} else if ("-d".equals(args[i])) {
+					this.isAddDerivedElements = true;
 				} else if ("-g".equals(args[i])) {
-					this.isAddImplicitGeneralizations = true;
+					this.isAddImplicitElements = true;
 				} else if ("-v".equals(args[i])) {
 					this.isVerbose = true;
 				}
@@ -137,6 +140,7 @@ public class KerML2JSON extends KerMLTraversalUtil {
 
 		JsonElementProcessingFacade processingFacade = new JsonElementProcessingFacade();	
 		processingFacade.setTraversal(this.initialize(processingFacade));
+		processingFacade.setIsIncludeDerived(this.isAddDerivedElements);
 		processingFacade.setIsVerbose(this.isVerbose);
 	}
 	
@@ -168,8 +172,8 @@ public class KerML2JSON extends KerMLTraversalUtil {
 			this.read(args);
 			
 			System.out.println("Transforming" + 
-					(this.isAddImplicitGeneralizations? " (adding implicit generalizations)... ": "..."));
-			ElementUtil.transformAll(this.resourceSet, this.isAddImplicitGeneralizations);
+					(this.isAddImplicitElements? " (adding implicit elements)... ": "..."));
+			ElementUtil.transformAll(this.resourceSet, this.isAddImplicitElements);
 			
 			System.out.print("Processing");
 			this.process();
@@ -190,13 +194,14 @@ public class KerML2JSON extends KerMLTraversalUtil {
 	 * 
 	 * <p>Usage:
 	 * 
-	 * <p>KerML2JSON [-l library-base-path] [-g] [-v] input-path [library-path library-path...]
+	 * <p>KerML2JSON [-l library-base-path] [-d] [-g] [-v] input-path [library-path library-path...]
 	 * 
 	 * <p>where:
 	 * 
 	 * <ul>
 	 * <li>-l library-base-path   gives the base path to used for reading model library resources</li>
-	 * <li>-g                     specifies that implicit generalizations should be generated (the default is not to)</li>
+	 * <li>-d                     specifies that derived attributes should be included (the default is not to)</li>
+	 * <li>-g                     specifies that implicit elements should be generated (the default is not to)</li>
 	 * <li>-v                     specifies verbose mode (the default is non-verbose)</li>
 	 * <li>input-path             is a path for reading input resources</li>
 	 * <li>library-paths          are paths for reading library resources, relative to the library-base-path (if one is given)</li>

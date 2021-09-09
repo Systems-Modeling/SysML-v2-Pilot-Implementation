@@ -63,6 +63,7 @@ public class JsonElementProcessingFacade implements ElementProcessingFacade {
 	private Traversal traversal;
 	private Gson gson;
 	
+	protected boolean isIncludeDerived = false;
 	protected boolean isVerbose = false;
 	protected int elementCount = 0;
 	protected int dotCount = 0;
@@ -104,20 +105,39 @@ public class JsonElementProcessingFacade implements ElementProcessingFacade {
 	public boolean isVerbose() {
 		return this.isVerbose;
 	}
+	
+	/**
+	 * Set whether derived features are processed.
+	 * 
+	 * @param	isincludeDerived	whether derived features are processed
+	 */
+	public void setIsIncludeDerived(boolean isIncludeDerived) {
+		this.isIncludeDerived = isIncludeDerived;
+	}
+	
+	/**
+	 * Return whether derived features are being processed.
+	 * 
+	 * @return whether derived features are being processed
+	 */
+	public boolean isIncludeDerived() {
+		return this.isIncludeDerived;
+	}
 
 	/**
-	 * Return the change set of ElementVersions to be committed.
+	 * Return the collection of ElementVersions that have been created from
+	 * processed model Elements.
 	 * 
-	 * @return	the change set of ElementsVersions to be committed. 
+	 * @return	the collection of ElementVersions that have been created 
 	 */
 	List<ElementVersion> getVersions() {
 		return Collections.unmodifiableList(this.versions);
 	}
 	
 	/**
-	 * Add an ElementVersion to the change set.
+	 * Add an ElementVersion to the collection.
 	 * 
-	 * @param 	elementVersion	the ElementVersion to be added to the change set
+	 * @param 	elementVersion	the ElementVersion to be added to the collection
 	 */
 	protected void addVersion(ElementVersion elementVersion) {
 		this.versions.add(elementVersion);
@@ -158,9 +178,10 @@ public class JsonElementProcessingFacade implements ElementProcessingFacade {
 	}
 
 	/**
-	 * Create an ElementVersion for the given model Element including the values of all its attributes 
-	 * (unless it is a library model element, in which case only its non-referential attribute values 
-	 * are included). The ID for the ElementVersion uses the identifier from the model Element.
+	 * Create an ElementVersion for the given model Element including the values of all its non-derived  
+	 * attributes (unless it is a library model element, in which case only its non-referential attribute values 
+	 * are included). If isIncludeDerived is true, also include derived attributes. The ID for the ElementVersion 
+	 * uses the identifier from the model Element.
 	 * 
 	 * @param 	element				the source model Element as it is represented in Ecore
 	 * @return	an ElementVersion with the API representation of the given Element as its data
@@ -173,7 +194,8 @@ public class JsonElementProcessingFacade implements ElementProcessingFacade {
 		boolean isLibraryElement = SysMLLibraryUtil.isModelLibrary(element.eResource());
 		for (EStructuralFeature feature: eClass.getEAllStructuralFeatures()) {
 			String name = feature.getName();
-			if (name == null || !(name.endsWith("_comp") || apiElement.containsKey(name))) {
+			if ((this.isIncludeDerived() || !feature.isDerived()) && 
+					( name == null || !(name.endsWith("_comp") || apiElement.containsKey(name)))) {
 				Object value = element.eGet(feature);
 				if (feature instanceof EReference) {
 					value = isLibraryElement? null:
@@ -181,7 +203,7 @@ public class JsonElementProcessingFacade implements ElementProcessingFacade {
 								getIdentified((List<Element>)value):
 								getIdentified((Element)value);
 				}
-				apiElement.put(feature.getName(), value);
+				apiElement.put(name, value);
 			}
 		}
 		return new ElementVersion().data(apiElement).

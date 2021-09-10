@@ -61,7 +61,6 @@ public class JsonElementProcessingFacade implements ElementProcessingFacade {
 	private static final int DOTS_PER_LINE = 50;
 
 	private Traversal traversal;
-	private Gson gson;
 	
 	protected boolean isIncludeDerived = false;
 	protected boolean isVerbose = false;
@@ -69,6 +68,7 @@ public class JsonElementProcessingFacade implements ElementProcessingFacade {
 	protected int dotCount = 0;
 	
 	private final List<ElementVersion> versions = new ArrayList<>();
+	private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 	
 	/**
 	 * Set the source SysML model traversal.
@@ -269,16 +269,10 @@ public class JsonElementProcessingFacade implements ElementProcessingFacade {
 	}
 	
 	public String toJson() {
-		if (gson == null) {
-			gson = new GsonBuilder().setPrettyPrinting().create();
-		}
 		return gson.toJson(versions);
 	}
 	
 	public JsonElement toJsonTree() {
-		if (gson == null) {
-			gson = new GsonBuilder().setPrettyPrinting().create();
-		}
 		return gson.toJsonTree(versions);
 	}
 }

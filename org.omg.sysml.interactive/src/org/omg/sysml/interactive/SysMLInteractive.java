@@ -280,6 +280,24 @@ public class SysMLInteractive extends SysMLUtil {
 			return SysMLInteractiveUtil.formatException(e);
 		}
 	}
+
+	public Object export(String name, List<String> help) {
+		this.counter++;
+		if (Strings.isNullOrEmpty(name)) {
+			return help.isEmpty()? "": SysMLInteractiveHelp.getExportHelp();
+		}
+		try {
+			Element element = this.resolve(name);
+			if (element == null) {
+				return "ERROR:Couldn't resolve reference to Element '" + name + "'\n";
+			}
+			JsonElementProcessingFacade processingFacade = this.getJsonElementProcessingFacade();
+			processingFacade.getTraversal().visit(element);
+			return processingFacade.toJsonTree();
+		} catch (Exception e) {
+			return SysMLInteractiveUtil.formatException(e);
+		}
+	}
 	
 	public String show(String name) {
 		if (name.startsWith("--style=")) {

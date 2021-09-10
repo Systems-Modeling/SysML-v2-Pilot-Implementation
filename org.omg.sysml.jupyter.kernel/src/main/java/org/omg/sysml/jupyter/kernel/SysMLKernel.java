@@ -27,12 +27,7 @@ import io.github.spencerpark.jupyter.kernel.magic.LineMagicParseContext;
 import io.github.spencerpark.jupyter.kernel.magic.registry.Magics;
 import org.omg.sysml.interactive.SysMLInteractive;
 import org.omg.sysml.interactive.SysMLInteractiveResult;
-import org.omg.sysml.jupyter.kernel.magic.Listing;
-import org.omg.sysml.jupyter.kernel.magic.MyMagicParser;
-import org.omg.sysml.jupyter.kernel.magic.Publish;
-import org.omg.sysml.jupyter.kernel.magic.Show;
-import org.omg.sysml.jupyter.kernel.magic.View;
-import org.omg.sysml.jupyter.kernel.magic.Viz;
+import org.omg.sysml.jupyter.kernel.magic.*;
 
 import java.io.File;
 import java.nio.file.Files;
@@ -69,6 +64,7 @@ public class SysMLKernel extends BaseKernel {
         this.magics.registerMagics(Publish.class);
         this.magics.registerMagics(Viz.class);
         this.magics.registerMagics(View.class);
+        this.magics.registerMagics(Export.class);
 
         this.magicParser = new MyMagicParser();
     }

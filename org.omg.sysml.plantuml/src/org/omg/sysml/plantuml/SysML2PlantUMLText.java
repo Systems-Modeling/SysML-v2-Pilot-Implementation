@@ -156,6 +156,11 @@ public class SysML2PlantUMLText {
         return styleDefaultSwitch.styleStereotypeSwitch.doSwitch(e);
     }
 
+    private static Pattern patCamelBoundary = Pattern.compile("(?<=[A-Z])(?=[A-Z][a-z])|(?<=[^A-Z])(?=[A-Z])|(?<=[A-Za-z])(?=[^A-Za-z])");
+    private static String convertCamelName(String cName) {
+        return patCamelBoundary.matcher(cName).replaceAll(" ").toLowerCase();
+    }
+
     private static Pattern patMetaclassName = Pattern.compile("^((Enum)(?>eration)|(\\p{L}+?))(Definition|Usage)$");
     public static String getStereotypeName(Type typ) {
         EClass eCls = typ.eClass();
@@ -173,7 +178,7 @@ public class SysML2PlantUMLText {
             }
         }
 
-        return Character.toLowerCase(str.charAt(0)) + str.substring(1);
+        return convertCamelName(str);
     }
 
     private String individualPrefix(Type typ) {

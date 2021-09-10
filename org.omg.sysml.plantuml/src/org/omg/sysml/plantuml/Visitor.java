@@ -157,6 +157,10 @@ public abstract class Visitor extends SysMLSwitch<String> {
         return s2p.styleValue(option);
     }
 
+    protected boolean styleBooleanValue(String option) {
+        return s2p.styleValue(option) != null;
+    }
+
     protected String getText(EObject eObj) {
         return s2p.getText(eObj);
     }
@@ -393,16 +397,23 @@ public abstract class Visitor extends SysMLSwitch<String> {
     }
 
     protected Visitor(Visitor parent, boolean independent) {
-        this.prev = parent;
-        this.contexts = null;
         this.sb = new StringBuilder();
-        if (independent) {
-            parent.addContext(this);
+        if (parent == null) {
+            this.prev = null;
+            this.contexts = new ArrayList<Visitor>();
+            this.pRelations = new ArrayList<PRelation>();
+            this.pRelationsSB = new StringBuilder();
+        } else {
+            this.prev = parent;
+            this.contexts = null;
+            if (independent) {
+                parent.addContext(this);
+            }
+            this.pRelations = parent.pRelations;
+            this.pRelationsSB = parent.pRelationsSB;
+            this.s2p = parent.s2p;
+            this.showsMultiplicity = parent.showsMultiplicity;
         }
-        this.pRelations = parent.pRelations;
-        this.pRelationsSB = parent.pRelationsSB;
-        this.s2p = parent.s2p;
-        this.showsMultiplicity = parent.showsMultiplicity;
     }
 
     protected Visitor(Visitor parent) {
@@ -410,11 +421,7 @@ public abstract class Visitor extends SysMLSwitch<String> {
     }
 
     protected Visitor() {
-        this.prev = null;
-        this.sb = new StringBuilder();
-        this.contexts = new ArrayList<Visitor>();
-        this.pRelations = new ArrayList<PRelation>();
-        this.pRelationsSB = new StringBuilder();
+        this(null, false);
     }
 
     public String visit(Element e) {

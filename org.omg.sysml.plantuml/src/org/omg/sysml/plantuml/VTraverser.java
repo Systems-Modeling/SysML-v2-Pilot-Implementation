@@ -30,12 +30,13 @@ import java.util.List;
 import java.util.Set;
 
 import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.lang.sysml.FeatureMembership;
-import org.omg.sysml.lang.sysml.Specialization;
+import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
+import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
 
 public abstract class VTraverser extends Visitor {
     private Set<Namespace> visited;
@@ -78,27 +79,61 @@ public abstract class VTraverser extends Visitor {
         return "";
     }
 
-    public String traverseWithInherited(Type typ) {
-        traverse0(typ);
-        for (Specialization s: typ.getOwnedSpecialization()) {
-            Type gt = s.getGeneral();
-            if (gt == null) continue;
-            for (FeatureMembership fm: gt.getOwnedFeatureMembership()) {
-                setInherited(true);
-                visit(fm);
+    private boolean markRedefining(Element e, Set<Element> covered) {
+        if (covered.contains(e)) return true;
+        if (!(e instanceof Feature)) return false;
+        Feature f = (Feature) e;
+        for (Redefinition r: f.getOwnedRedefinition()) {
+            Feature rf = r.getRedefinedFeature();
+            covered.add(rf);
+        }
+        return false;
+    }
+
+    private static boolean isModelLibrary(Element e) {
+        return SysMLLibraryUtil.isModelLibrary(e.eResource());
+    }
+
+    private String traverseWithInherited(Type typ) {
+        Set<Element> covered = new HashSet<Element>();
+        for (Membership ms: typ.getOwnedMembership()) {
+            Element e = ms.getMemberElement();
+            markRedefining(e, covered);
+            setInherited(false);
+            visit(ms);
+            for (Relationship r: ms.getOwnedRelationship()) {
+                setInherited(false);
+                visit(r);
             }
         }
+        for (Membership ms: typ.getInheritedMembership()) {
+            Element e = ms.getMemberElement();
+            if (isModelLibrary(e)) continue;
+            if (e instanceof Namespace) {
+                if (checkVisited((Namespace) e)) continue;
+            }
+            if (markRedefining(e, covered)) continue;
+            setInherited(true);
+            visit(ms);
+        }
+        setInherited(false);
+
         return "";
     }
 
     public String traverse(Namespace ns) {
         VPath vpath = getVPath();
         vpath.enter(ns);
-        traverse0(ns);
-        for (Element e: vpath.rest()) {
-            setInherited(true);
-            currentMembership = null;
-            visit(e);
+        if (showInherited() && (ns instanceof Type)) {
+            traverseWithInherited((Type) ns);
+        } else {
+            traverse0(ns);
+            for (Element e: vpath.rest()) {
+                setInherited(true);
+                currentMembership = null;
+                visit(e);
+            }
+            setInherited(false);
         }
         vpath.leave(ns);
         return "";
@@ -122,6 +157,15 @@ public abstract class VTraverser extends Visitor {
         return traverse(n);
     }
 
+    private boolean initedShowInherited = false;
+    private boolean showInherited;
+    private final boolean showInherited() {
+        if (initedShowInherited) return showInherited;
+        this.showInherited = styleBooleanValue("showInherited");
+        this.initedShowInherited = true;
+        return showInherited;
+    }
+
     private static Set<Namespace> initVisited(Visitor prev) {
         if (prev instanceof VTraverser) {
             VTraverser vtprev = (VTraverser) prev;
@@ -136,12 +180,10 @@ public abstract class VTraverser extends Visitor {
     }
     
     protected VTraverser(Visitor prev) {
-    	super(prev);
-        this.visited = initVisited(prev);
+    	this(prev, false);
     }
     
     protected VTraverser() {
-    	super();
-        this.visited = initVisited(null);
+        this(null, false);
     }
 }

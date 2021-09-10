@@ -108,7 +108,7 @@ public abstract class VTraverser extends Visitor {
         }
         for (Membership ms: typ.getInheritedMembership()) {
             Element e = ms.getMemberElement();
-            if (isModelLibrary(e)) continue;
+            if (!showLib() && isModelLibrary(e)) continue;
             if (e instanceof Namespace) {
                 if (checkVisited((Namespace) e)) continue;
             }
@@ -157,13 +157,25 @@ public abstract class VTraverser extends Visitor {
         return traverse(n);
     }
 
-    private boolean initedShowInherited = false;
+    private boolean inited = false;
     private boolean showInherited;
-    private final boolean showInherited() {
-        if (initedShowInherited) return showInherited;
+    private boolean showLib;
+
+    private void init() {
+        if (inited) return;
         this.showInherited = styleBooleanValue("showInherited");
-        this.initedShowInherited = true;
+        this.showLib = styleBooleanValue("showLib");
+        this.inited = true;
+    }
+    
+    private boolean showInherited() {
+        init();
         return showInherited;
+    }
+
+    private boolean showLib() {
+        init();
+        return showLib;
     }
 
     private static Set<Namespace> initVisited(Visitor prev) {

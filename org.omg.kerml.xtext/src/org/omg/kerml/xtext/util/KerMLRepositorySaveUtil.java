@@ -30,7 +30,6 @@ import java.util.Arrays;
 import java.util.Date;
 
 import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
-import org.omg.sysml.util.ElementUtil;
 import org.omg.sysml.util.traversal.facade.impl.ApiElementProcessingFacade;
 
 /**
@@ -192,7 +191,7 @@ public class KerMLRepositorySaveUtil extends KerMLTraversalUtil {
 			
 			System.out.println("Transforming" + 
 					(this.isAddImplicitElements? " (adding implicit generalizations)... ": "..."));
-			ElementUtil.transformAll(this.resourceSet, this.isAddImplicitElements);
+			this.transformAll(this.isAddImplicitElements);
 			
 			System.out.println("\nBase path is " + this.getBasePath());
 			System.out.println();

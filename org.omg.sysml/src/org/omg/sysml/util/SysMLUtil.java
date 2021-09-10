@@ -35,6 +35,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.xtext.resource.IResourceDescription.Manager;
 import org.eclipse.xtext.resource.IResourceServiceProvider;
 import org.eclipse.xtext.resource.impl.ResourceDescriptionsData;
@@ -252,6 +253,28 @@ public abstract class SysMLUtil {
 				this.readAll(paths[i], false);
 			}
 			this.readAll(paths[0], true);
+		}
+	}
+	
+	/**
+	 * Transform elements in all resources. If isAddImplicitElements is true, then also generate
+	 * implicit elements in input resources.
+	 * 
+	 * @param	isAddImplicitElements	whether to add implicit elements to input resources
+	 */
+	public void transformAll(boolean isAddImplicitElements) {
+		for (Resource resource: this.resourceSet.getResources()) {
+			ElementUtil.transformAll(resource, 
+					isAddImplicitElements && this.isInputResource(resource));
+		}
+	}
+	
+	/**
+	 * Resolve proxies in all input resources.
+	 */
+	public void resolveAllInputResources() {
+		for (Resource resource: this.inputResources) {
+			EcoreUtil.resolveAll(resource);
 		}
 	}
 	

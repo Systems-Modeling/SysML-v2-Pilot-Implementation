@@ -32,12 +32,10 @@ import java.util.Set;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 import org.omg.kerml.xtext.KerMLStandaloneSetup;
 import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.util.ElementUtil;
 import org.omg.sysml.util.SysMLUtil;
 
 /**
@@ -106,12 +104,12 @@ public class KerML2XMI extends SysMLUtil {
 	 * @throws 	IOException
 	 */
 	public void write(boolean isAddImplicitElements) throws IOException {
-		println("Resolving proxies...");
-		EcoreUtil.resolveAll(this.resourceSet);
-		
-		println("Transforming" + 
+		System.out.println("Transforming" + 
 				(isAddImplicitElements? " (adding implicit elements)... ": "..."));
-		ElementUtil.transformAll(this.resourceSet, isAddImplicitElements);
+		this.transformAll(isAddImplicitElements);
+		
+		System.out.println("Resolving proxies...");
+		this.resolveAllInputResources();
 		
 		Set<Resource> outputResources = new HashSet<Resource>();
  		for (Object object: this.resourceSet.getResources().toArray()) {

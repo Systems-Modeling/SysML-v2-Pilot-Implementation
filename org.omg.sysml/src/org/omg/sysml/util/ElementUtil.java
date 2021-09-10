@@ -30,6 +30,7 @@ import java.util.stream.Collectors;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.xtext.resource.DerivedStateAwareResource;
 import org.omg.sysml.adapter.ElementAdapter;
 import org.omg.sysml.adapter.ElementAdapterFactory;
 import org.omg.sysml.lang.sysml.AnnotatingFeature;
@@ -200,6 +201,9 @@ public class ElementUtil {
 	}
 
 	public static void transformAll(Resource resource, boolean addImplicitElements) {
+		// Turn off derived state computation. Resource will be fully initialized
+		// when this is done.
+		((DerivedStateAwareResource)resource).setFullyInitialized(true);
 		for (EObject object: resource.getContents()) {
 			if (object instanceof Element) {
 				transformAll((Element)object, addImplicitElements);

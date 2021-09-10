@@ -27,8 +27,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Arrays;
+
 import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
-import org.omg.sysml.util.ElementUtil;
 import org.omg.sysml.util.traversal.facade.impl.JsonElementProcessingFacade;
 
 /**
@@ -173,9 +173,11 @@ public class KerML2JSON extends KerMLTraversalUtil {
 			
 			System.out.println("Transforming" + 
 					(this.isAddImplicitElements? " (adding implicit elements)... ": "..."));
-			ElementUtil.transformAll(this.resourceSet, this.isAddImplicitElements);
+			this.transformAll(this.isAddImplicitElements);
 			
-			System.out.print("Processing");
+			if (!this.isVerbose()) {
+				System.out.print("Processing");
+			}
 			this.process();
 			System.out.println();
 			

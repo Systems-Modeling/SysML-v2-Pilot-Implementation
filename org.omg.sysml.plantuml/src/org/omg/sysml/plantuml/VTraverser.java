@@ -109,9 +109,6 @@ public abstract class VTraverser extends Visitor {
         for (Membership ms: typ.getInheritedMembership()) {
             Element e = ms.getMemberElement();
             if (!showLib() && isModelLibrary(e)) continue;
-            if (e instanceof Namespace) {
-                if (checkVisited((Namespace) e)) continue;
-            }
             if (markRedefining(e, covered)) continue;
             setInherited(true);
             visit(ms);

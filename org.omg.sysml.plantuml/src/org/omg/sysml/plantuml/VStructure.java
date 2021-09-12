@@ -167,6 +167,12 @@ public abstract class VStructure extends VDefault {
 
     protected String extractTitleName(Element e) {
         String name = getNameAnyway(e, true);
+        if (e instanceof Type) {
+            Type typ = (Type) e;
+            if (typ.isAbstract()) {
+                name = "<i>" + name + "</i>";
+            }
+        }
         if (!(e instanceof Feature)) return name;
 
         Feature f = (Feature) e;

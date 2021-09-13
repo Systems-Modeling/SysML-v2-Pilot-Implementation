@@ -15,24 +15,24 @@
             <includes>
                 <include>README*</include>
                 <include>LICENSE*</include>
-                <include>install*</include>
+                <include>install.py</include>
+            </includes>
+        </fileSet>
+        <fileSet>
+            <directory>${project.basedir}/target/classes</directory>
+            <outputDirectory>/</outputDirectory>
+            <includes>
+                <include>install.bat</include>
+                <include>install.sh</include>
+            </includes>
+            <fileMode>0755</fileMode>
+        </fileSet>
+        <fileSet>
+            <directory>${project.basedir}/target/generated-docs</directory>
+            <outputDirectory>/</outputDirectory>
+            <includes>
+                <include>README.pdf</include>
             </includes>
         </fileSet>
     </fileSets>
-    <dependencySets>
-        <dependencySet>
-            <outputDirectory>${artifact.artifactId}</outputDirectory>
-            <includes>
-                <include>*</include>
-            </includes>
-            <useTransitiveDependencies>false</useTransitiveDependencies>
-            <unpack>true</unpack>
-            <unpackOptions>
-                <excludes>
-                    <exclude>**/sysml.library/**</exclude>
-                </excludes>
-            </unpackOptions>
-            <useProjectArtifact>false</useProjectArtifact>
-        </dependencySet>
-    </dependencySets>
 </assembly>

@@ -1,6 +1,5 @@
 /*
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020 California Institute of Technology ("Caltech")
  * Copyright (c) 2021 Twingineer LLC
  *
  * This program is free software: you can redistribute it and/or modify
@@ -20,34 +19,43 @@
 
 package org.omg.sysml.jupyter.kernel.magic;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 import io.github.spencerpark.jupyter.kernel.display.DisplayData;
 import io.github.spencerpark.jupyter.kernel.magic.registry.LineMagic;
 import io.github.spencerpark.jupyter.kernel.magic.registry.MagicsArgs;
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.omg.sysml.jupyter.kernel.ISysML;
 
+import java.util.Base64;
 import java.util.List;
 import java.util.Map;
 
-public class Show {
-    private static final MagicsArgs SHOW_ARGS = MagicsArgs.builder().onlyKnownKeywords().onlyKnownFlags()
+public class Export {
+    private static final MagicsArgs EXPORT_ARGS = MagicsArgs.builder().onlyKnownKeywords().onlyKnownFlags()
     		.optional("element")
-    		.keyword("style")
             .flag("help", 'h', "true")
     		.build();
+    private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
 
     @LineMagic
-    public static DisplayData show(List<String> args) {
-        Map<String, List<String>> vals = SHOW_ARGS.parse(args);
+    public static DisplayData export(List<String> args) {
+        Map<String, List<String>> vals = EXPORT_ARGS.parse(args);
         List<String> elements = vals.get("element");
         String element = elements.isEmpty()? null:elements.get(0);
-        List<String> styles = vals.get("style");
         List<String> help = vals.get("help");
         
-        Object output = ISysML.getKernelInstance().getInteractive().show(element, styles, help);
+        Object output = ISysML.getKernelInstance().getInteractive().export(element, help);
         DisplayData dd = new DisplayData();
         if (output instanceof JsonElement) {
-        	dd.putData("application/json", output);
+        	StringBuilder builder = new StringBuilder();
+            builder.append("<p><a download=\"");
+            builder.append(StringEscapeUtils.escapeHtml4(element));
+            builder.append(".json\" href=\"data:application/json;base64,");
+            builder.append(Base64.getEncoder().encodeToString(GSON.toJson((JsonElement) output).getBytes()));
+            builder.append("\">Download</a>");
+        	dd.putHTML(builder.toString());
         }
         else {
         	dd.putText(output.toString());

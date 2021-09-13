@@ -1,6 +1,7 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2021 Twingineer LLC
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -19,6 +20,7 @@
  *  
  * Contributors:
  *  Ed Seidewitz, MDS
+ *  Ivan Gomes
  *  
  *******************************************************************************/
 
@@ -38,8 +40,11 @@ public class SysMLInteractiveHelp {
 			+ "The last two forms may be optionally followed by a filter expression in square brackets.\n";
 
 	private static final String SHOW_HELP_STRING =
-			  "Usage: %show <NAME>\n\n"
-			+ "Print the abstract syntax tree rooted in <NAME>. <NAME> must be fully qualified.\n";
+			  "Usage: %show [--style=<STYLE>] <NAME>\n\n"
+			+ "Print the abstract syntax tree rooted in <NAME>. <NAME> must be fully qualified.\n\n"
+			+ "<STYLE> is also case insensitive. The possible style names are:\n"
+    	    + "   TREE\t\tHierarchically indented representation with only identifying information\n"
+    	    + "   JSON\t\tComplete JSON representation of the tree\n";
 
 	private static final String PUBLISH_HELP_STRING =
 			  "Usage: %publish <NAME>\n\n"
@@ -92,6 +97,12 @@ public class SysMLInteractiveHelp {
     	    + "   ORTHOLINE\t\tOrthogonal line style\n"
     	    + "   COMPTREE\t\tShow tree structures in compartments\n";
     
+
+	private static final String EXPORT_HELP_STRING =
+			  "Usage: %export <NAME>\n\n"
+			+ "Save a file containing the complete JSON representation of the abstract syntax tree rooted in <NAME>.\n"
+		    + "<NAME> must be fully qualified.\n";
+    
     public static String getListHelp() {
     	return LIST_HELP_STRING;
     }
@@ -110,6 +121,10 @@ public class SysMLInteractiveHelp {
     
     public static String getViewHelp() {
     	return VIEW_HELP_STRING;
+    }
+    
+    public static String getExportHelp() {
+    	return EXPORT_HELP_STRING;
     }
 	
 }

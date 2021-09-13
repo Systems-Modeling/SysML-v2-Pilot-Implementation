@@ -52,16 +52,20 @@ public class Viz {
 
         switch (vr.kind) {
         case EXCEPTION:
-            dd.putText(vr.formatException());
-            break;
+        	dd.putText(vr.formatException());
+        	break;
         case PLANTUML:
-            dd.putText(vr.getPlantUML());
-            break;
+        	dd.putText(vr.getPlantUML());
+        	break;
         case SVG:
-            dd.putSVG(vr.getSVG());
-            break;
+        	dd.putSVG(vr.getSVG());
+        	break;
         case TEXT:
-            dd.putText(vr.getText());
+        	dd.putText(vr.getText());
+        	break;
+        case EMPTY:
+        	dd.putText("");
+        	break;
         }
         return dd;
     }

@@ -61,6 +61,7 @@ public class VizResult {
     public String formatException() {
         return this.exception == null? "":
         	   this.exception instanceof VizException? this.exception.getMessage():
+        	   this.exception instanceof IllegalArgumentException? "ERROR:" + this.exception.getMessage():
         	   SysMLInteractiveUtil.formatException(exception);
     }
 

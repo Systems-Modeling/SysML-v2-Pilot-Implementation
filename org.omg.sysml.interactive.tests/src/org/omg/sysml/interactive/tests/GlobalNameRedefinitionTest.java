@@ -1,6 +1,7 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
+ * Copyright 2021 Twingineer LLC
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -20,6 +21,7 @@
  * Contributors:
  *  Zoltan Ujhelyi
  *  Ed Seidewitz
+ *  Ivan Gomes
  * 
  *****************************************************************************/
 package org.omg.sysml.interactive.tests;
@@ -47,7 +49,7 @@ public class GlobalNameRedefinitionTest extends SysMLInteractiveTest {
 		System.out.println(result2);
 		String id2 = result2.getRootElement().getOwnedElement().get(0).getIdentifier();
 		
-		System.out.println(instance.show("y", null));
+		System.out.println(instance.show("y"));
 		String resolvedIdentifier = instance.resolve("y").getIdentifier();
 		
 		assertNotEquals(id1, id2);
@@ -71,7 +73,7 @@ public class GlobalNameRedefinitionTest extends SysMLInteractiveTest {
 		System.out.println(result2);
 		String id2 = result2.getRootElement().getOwnedElement().get(0).getIdentifier();
 		
-		System.out.println(instance.show("y", null));
+		System.out.println(instance.show("y"));
 		String resolvedIdentifier = instance.resolve("y").getIdentifier();
 		
 		assertNotEquals(id1, id2);
@@ -90,10 +92,10 @@ public class GlobalNameRedefinitionTest extends SysMLInteractiveTest {
 		System.out.println(result2);
 		String id2 = result2.getRootElement().getOwnedElement().get(0).getIdentifier();
 		
-		System.out.println(instance.show("y", null));
+		System.out.println(instance.show("y"));
 		Element resolvedElement1 = instance.resolve("y");
 		
-		System.out.println(instance.show("Y", null));
+		System.out.println(instance.show("Y"));
 		Element resolvedElement2 = instance.resolve("Y");
 		
 		assertNotNull(resolvedElement1);

@@ -32,12 +32,10 @@ import java.util.Set;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 import org.omg.kerml.xtext.KerMLStandaloneSetup;
 import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.util.ElementUtil;
 import org.omg.sysml.util.SysMLUtil;
 
 /**
@@ -101,15 +99,17 @@ public class KerML2XMI extends SysMLUtil {
 	 * library resources. Note that, at the end of this method, all content has been removed from
 	 * the originally read resources.
 	 * 
+	 * @param	isAddImplicitElements	whether to add implicit elements to the output
+	 * 
 	 * @throws 	IOException
 	 */
-	public void write(boolean isAddImplicitGeneralizations) throws IOException {
-		println("Resolving proxies...");
-		EcoreUtil.resolveAll(this.resourceSet);
+	public void write(boolean isAddImplicitElements) throws IOException {
+		System.out.println("Transforming" + 
+				(isAddImplicitElements? " (adding implicit elements)... ": "..."));
+		this.transformAll(isAddImplicitElements);
 		
-		println("Transforming" + 
-				(isAddImplicitGeneralizations? " (adding implicit generalizations)... ": "..."));
-		ElementUtil.transformAll(this.resourceSet, isAddImplicitGeneralizations);
+		System.out.println("Resolving proxies...");
+		this.resolveAllInputResources();
 		
 		Set<Resource> outputResources = new HashSet<Resource>();
  		for (Object object: this.resourceSet.getResources().toArray()) {
@@ -173,9 +173,9 @@ public class KerML2XMI extends SysMLUtil {
 	 * 
 	 * <p>where:
 	 * 
-	 * <li>-g                     specifies that implicit generalizations should be generated (the default is not to)</li>
+	 * <li>-g                     specifies that implicit elements should be generated (the default is not to)</li>
 	 * <li>input-path             is a path for reading input resources</li>
-	 * <li>library-paths          are paths for reading library resources, relative to the library-base-path (if one is given)</li>
+	 * <li>library-paths          are paths for reading library resources</li>
 	 */
 	public static void main(String[] args) {
 		new KerML2XMI().run(args);

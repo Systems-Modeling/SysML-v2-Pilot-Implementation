@@ -1,15 +1,15 @@
-package Vehicles {
+package 'Car Mass Rollup Example 1' {
 	import ScalarValues::*;
-	import MassRollup::*;
+	import MassRollup1::*;
 	
 	part def CarPart :> MassedThing {			
 		attribute serialNumber: String;
 	}
 	
 	part car: CarPart :> compositeThing {	
-		attribute vin redefines serialNumber;
+		attribute vin :>> serialNumber;
 		
-		part carParts: CarPart[*] redefines subcomponents;
+		part carParts: CarPart[*] :>> subcomponents;
 		
 		part engine :> simpleThing, carParts {
 			//...
@@ -22,15 +22,15 @@ package Vehicles {
 
 	// Example usage
 	
+	import SI::kg;
 	part c :> car {
-		import SI::*;
-		redefines mass = 1000[kg];
-		part redefines engine {
-			redefines mass = 100[kg];
+		attribute :>> simpleMass = 1000[kg];
+		part :>> engine {
+			attribute :>> simpleMass = 100[kg];
 		}
 		
 		part redefines transmission {
-			redefines mass = 50[kg];
+			attribute :>> simpleMass = 50[kg];
 		}	
 	}
 	

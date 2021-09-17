@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: org.omg.kerml.owl.ide
 Bundle-Vendor: My Company
-Bundle-Version: 0.14.1.qualifier
+Bundle-Version: 0.15.0.qualifier
 Bundle-SymbolicName: org.omg.kerml.owl.ide;singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.omg.kerml.owl,

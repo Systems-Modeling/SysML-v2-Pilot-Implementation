@@ -238,10 +238,9 @@ public class FeatureAdapter extends TypeAdapter {
 			filter(f->f != null).
 			forEachOrdered(redefinedFeatures::add);
 		
-		TypeUtil.getImplicitGeneralTypesOnly(target, SysMLPackage.eINSTANCE.getRedefinition())
-				.stream().
-				map(Feature.class::cast).
-				forEachOrdered(redefinedFeatures::add);
+		getImplicitGeneralTypesOnly(SysMLPackage.eINSTANCE.getRedefinition()).stream().
+			map(Feature.class::cast).
+			forEachOrdered(redefinedFeatures::add);
 		
 		return redefinedFeatures; 
 	}

@@ -20,7 +20,7 @@
 
 @echo off
 
-set /A SYSML_VERSION="${project.version}"
+set /A SYSML_VERSION="${project.version.unqualified}"
 
 echo --- Step 1: Testing Conda installation ---
 where conda

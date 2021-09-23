@@ -21,7 +21,7 @@
 
 set -e
 
-SYSML_VERSION="${project.version}"
+SYSML_VERSION="${project.version.unqualified}"
 
 echo "--- Step 1: Testing Conda installation ---"
 command -v conda || (echo "Conda is not installed. Please install Conda and re-run." && return 1)

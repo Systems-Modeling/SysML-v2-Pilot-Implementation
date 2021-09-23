@@ -19,12 +19,13 @@
             </includes>
         </fileSet>
         <fileSet>
-            <directory>${project.basedir}/target/classes</directory>
+            <directory>${project.basedir}</directory>
             <outputDirectory>/</outputDirectory>
             <includes>
                 <include>install.bat</include>
                 <include>install.sh</include>
             </includes>
+            <filtered>true</filtered>
             <fileMode>0755</fileMode>
         </fileSet>
         <fileSet>

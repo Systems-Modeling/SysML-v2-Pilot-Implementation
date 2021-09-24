@@ -9,23 +9,6 @@
   </parent>
   <artifactId>org.omg.sysml.jupyter.installer</artifactId>
 
-  <dependencies>
-    <dependency>
-      <groupId>org.omg.sysml</groupId>
-      <artifactId>jupyter-sysml-kernel</artifactId>
-      <type>zip</type>
-      <version>${project.version}</version>
-      <scope>runtime</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.omg.sysml</groupId>
-      <artifactId>jupyterlab-sysml</artifactId>
-      <type>tgz</type>
-      <version>${project.version}</version>
-      <scope>runtime</scope>
-    </dependency>
-  </dependencies>
-
   <build>
     <plugins>
       <!-- disable Maven's default-compile -->
@@ -49,6 +32,29 @@
           <execution>
             <id>default-jar</id>
             <phase>none</phase>
+          </execution>
+        </executions>
+      </plugin>
+      <!-- remove qualifier, e.g. "-SNAPSHOT" from version -->
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>build-helper-maven-plugin</artifactId>
+        <version>${build-helper-maven-plugin.version}</version>
+        <executions>
+          <execution>
+            <id>regex-property</id>
+            <phase>package</phase>
+            <goals>
+              <goal>regex-property</goal>
+            </goals>
+            <configuration>
+              <name>project.version.unqualified</name>
+              <value>${project.version}</value>
+              <!-- https://semver.org/#is-there-a-suggested-regular-expression-regex-to-check-a-semver-string -->
+              <regex>^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$</regex>
+              <replacement>$1.$2.$3</replacement>
+              <failIfNoMatch>true</failIfNoMatch>
+            </configuration>
           </execution>
         </executions>
       </plugin>

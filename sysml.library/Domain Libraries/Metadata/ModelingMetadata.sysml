@@ -1,5 +1,5 @@
 /**
- * This package contains definitions of metadata generally useful for annnotating models.
+ * This package contains definitions of metadata generally useful for annotating models.
  */
 package ModelingMetadata {
 	private import Base::Anything;
@@ -30,7 +30,7 @@ package ModelingMetadata {
 	}
 	
 	/**
-	 * StatusInfo is used to annotate a model element with status information
+	 * StatusInfo is used to annotate a model element with status information.
 	 */
 	attribute def StatusInfo {
 		/**

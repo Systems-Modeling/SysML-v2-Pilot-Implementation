@@ -1,3 +1,6 @@
+/**
+ * This package defines metadata for annotating model elements with assessments of risk.
+ */
 package RiskMetadata {
 	import ScalarValues::Real;
 	
@@ -6,7 +9,7 @@ package RiskMetadata {
 	 */
 	attribute def Level :> Real {
 		private attribute level : Level :>> self;
-		assert constraint { level >= 0.0 && level <= 1.0 }
+		assert constraint { level >= 0.0 and level <= 1.0 }
 	}
 	
 	/**

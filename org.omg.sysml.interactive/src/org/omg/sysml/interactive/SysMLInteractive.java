@@ -346,12 +346,14 @@ public class SysMLInteractive extends SysMLUtil {
 	protected ApiElementProcessingFacade getApiElementProcessingFacade(String modelName) {
 		System.out.println("API base path: " + this.apiBasePath);
 		ApiElementProcessingFacade processingFacade = new ApiElementProcessingFacade(modelName, this.apiBasePath);	
+		processingFacade.setIsIncludeDerived(true);
 		processingFacade.setTraversal(new Traversal(processingFacade));
 		return processingFacade;
 	}
 	
 	protected JsonElementProcessingFacade getJsonElementProcessingFacade() {
 		JsonElementProcessingFacade processingFacade = new JsonElementProcessingFacade();	
+		processingFacade.setIsIncludeDerived(true);
 		processingFacade.setTraversal(new Traversal(processingFacade));
 		return processingFacade;
 	}

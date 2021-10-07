@@ -70,7 +70,6 @@ public class VCompartment extends VStructure {
     private final boolean compartmentMost;
 
     protected boolean rec(Membership m, Element e, boolean force) {
-        if (compartmentMost) return false;
         VTree subtree = parent.subtree(m, e, force);
         if (subtree == null) return false;
         subtrees.add(subtree);
@@ -219,13 +218,11 @@ public class VCompartment extends VStructure {
     protected FeatureEntry addFeature(Feature f,
                                       String alias,
                                       String prefix,
-                                      boolean nocheck,
                                       boolean norec,
                                       FeatureEntry parent) {
         Membership ms = getCurrentMembership();
         if (ms instanceof ReturnParameterMembership) return null; // To filter "result" parameter out.
 
-        if (!nocheck && getFeatureName(f) == null) return null;
         if (!norec && (alias == null) && (prefix == null)) {
             if (recCurrentMembership(f, false)) return null;
         }
@@ -238,17 +235,16 @@ public class VCompartment extends VStructure {
         return fe;
     }
 
-    protected void addFeature(Feature f,
-                              String alias,
-                              String prefix,
-                              boolean nocheck,
-                              boolean norec) {
-        addFeature(f, alias, prefix, nocheck, norec, null);
+    protected FeatureEntry addFeature(Feature f,
+                                      String alias,
+                                      String prefix,
+                                      boolean norec) {
+        return addFeature(f, alias, prefix, norec, null);
     }
 
-    protected void addFeature(Feature f,
-                              String alias) {
-        addFeature(f, alias, null, false, false);
+    protected FeatureEntry addFeature(Feature f,
+                                      String alias) {
+        return addFeature(f, alias, null, compartmentMost);
     }
 
 
@@ -272,8 +268,7 @@ public class VCompartment extends VStructure {
 
     @Override
     public String casePartUsage(PartUsage pu) {
-        recCurrentMembership(pu, true);
-        return "";
+        return recCurrent(pu, true);
     }
 
     private class CompTree {
@@ -288,7 +283,7 @@ public class VCompartment extends VStructure {
                     // Do not show it
                 } else if (e instanceof Feature) {
                 	Feature f2 = (Feature) e;
-                    FeatureEntry fe = addFeature(f2, m.getMemberName(), null, false, true, parent);
+                    FeatureEntry fe = addFeature(f2, m.getMemberName(), null, true, parent);
                     CompTree ct = new CompTree(fe);
                     ct.process(f2);
                 } else {
@@ -306,7 +301,7 @@ public class VCompartment extends VStructure {
         boolean compartmentTree = styleValue("compartmentTree") != null;
 
         if (!(compartmentMost || compartmentTree)) return null;
-        FeatureEntry fe = addFeature(f, null, null, false, true, null);
+        FeatureEntry fe = addFeature(f, null, null, true);
         if (compartmentTree) {
             CompTree ct = new CompTree(fe);
             ct.process(f);
@@ -321,7 +316,7 @@ public class VCompartment extends VStructure {
 
     @Override
     public String caseTransitionUsage(TransitionUsage tu) {
-        addFeature(tu, null, null, false, true);
+        addFeature(tu, null, null, true);
         return "";
     }
 
@@ -368,7 +363,7 @@ public class VCompartment extends VStructure {
             Element e = vm.getMemberElement();
             if (e instanceof EnumerationUsage) {
                 EnumerationUsage eu = (EnumerationUsage) e;
-            	addFeature(eu, null, null, true, true, null);
+            	addFeature(eu, null, null, true);
                 return "";
             }
         }
@@ -452,6 +447,16 @@ public class VCompartment extends VStructure {
                     addFeatureText(fe.f, fe.isInherited);
                 }
                 append('\n');
+            } else if (fe.f instanceof Expression) {
+                String name = getFeatureName(fe.f);
+                if (name != null) {
+                    append(name);
+                }
+                String text = getText(fe.f);
+                if (text == null) continue;
+                append(" { ");
+                appendText(text, true);
+                append(" }\n");
             } else if (getFeatureName(fe.f) == null) {
                 addAnonymouseFeatureText(fe.f);
                 append('\n');

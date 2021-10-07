@@ -57,6 +57,7 @@ import org.omg.sysml.lang.sysml.ReturnParameterMembership;
 import org.omg.sysml.lang.sysml.StateDefinition;
 import org.omg.sysml.lang.sysml.StateUsage;
 import org.omg.sysml.lang.sysml.SubjectMembership;
+import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.TransitionUsage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
@@ -419,6 +420,48 @@ public class VCompartment extends VStructure {
         append("</i>");
     }
 
+    private void addEnd(Feature f) {
+        Element e = getEnd(f);
+        if (e == null) return;
+        // We should construct proper text from end but for the time being, we use just the text as it is.
+        /*
+        if (e instanceof Subsetting) {
+            Subsetting ss = (Subsetting) e;
+            e = ss.getSubsettedFeature();
+        }*/
+        append(getText(e));
+    }
+
+    private void addConnectorText(Connector c, boolean isInherited) {
+        addFeatureText(c, isInherited);
+        List<Feature> ends = c.getConnectorEnd();
+        if (ends.size() == 2) {
+            Feature f1 = ends.get(0);
+            Feature f2 = ends.get(1);
+            addEnd(f1);
+            if (c instanceof BindingConnector) {
+                append(" = ");
+            } else {
+                append(" to ");
+            }
+            addEnd(f2);
+        } else {
+            boolean delim = false;
+            for (Feature end: ends) {
+                if (delim) {
+                    if (c instanceof BindingConnector) {
+                        append(" = ");
+                    } else {
+                        append(", ");
+                    }
+                } else {
+                    delim = true;
+                }
+                addEnd(end);
+            }
+        }
+    }
+
     private void addFeatures(List<FeatureEntry> es, int level) {
         Collections.sort(es);
         final int size = es.size();
@@ -446,6 +489,9 @@ public class VCompartment extends VStructure {
                 } else {
                     addFeatureText(fe.f, fe.isInherited);
                 }
+                append('\n');
+            } else if (fe.f instanceof Connector) {
+                addConnectorText((Connector) fe.f, fe.isInherited);
                 append('\n');
             } else if (fe.f instanceof Expression) {
                 String name = getFeatureName(fe.f);

@@ -161,7 +161,7 @@ public class SysML2PlantUMLText {
         return patCamelBoundary.matcher(cName).replaceAll(" ").toLowerCase();
     }
 
-    private static Pattern patMetaclassName = Pattern.compile("^((Enum)(?>eration)|(\\p{L}+?))(Definition|Usage)$");
+    private static Pattern patMetaclassName = Pattern.compile("^((Enum)(?>eration)|(\\p{L}+?))(Definition|Usage|AsUsage)$");
     public static String getStereotypeName(Type typ) {
         EClass eCls = typ.eClass();
         String str = eCls.getName();

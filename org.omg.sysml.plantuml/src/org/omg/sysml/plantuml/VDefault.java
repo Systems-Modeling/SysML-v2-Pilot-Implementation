@@ -61,12 +61,20 @@ public class VDefault extends VTraverser {
 
     protected static String getNameAnyway(Element e, boolean creole) {
         String ret = getName(e);
-        if (ret != null) return ret;
-        if (creole) {
-            return "<s>noname</s>";
-        } else {
-            return "noname";
+        if (ret == null) {
+            if (creole) {
+                ret = "<s>noname</s>";
+            } else {
+                ret = "noname";
+            }
         }
+        if (e instanceof Type) {
+            Type typ = (Type) e;
+            if (typ.isAbstract()) {
+                ret = "<i>" + ret + "</i>";
+            }
+        }
+        return ret;
     }
 
     protected Element getEnd(Feature f) {

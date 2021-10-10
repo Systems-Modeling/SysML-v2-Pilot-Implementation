@@ -340,7 +340,7 @@ public class VSequence extends VDefault {
                     if (!e1.equals(e2)) return false;
                 }
             } else {
-                if (!inheriting.equals(inheriting)) return false;
+                if (!inheriting.equals(fc.inheriting)) return false;
                 int len = chains.length;
                 if (len != fc.chains.length) return false;
                 for (int i = 0; i < len; i++) {

@@ -30,7 +30,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import org.eclipse.emf.ecore.EClass;
 import org.omg.sysml.lang.sysml.ActionDefinition;
 import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.AnalysisCaseUsage;
@@ -43,6 +42,7 @@ import org.omg.sysml.lang.sysml.EnumerationDefinition;
 import org.omg.sysml.lang.sysml.EnumerationUsage;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.FeatureDirectionKind;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.ItemFlow;
@@ -53,10 +53,10 @@ import org.omg.sysml.lang.sysml.PartUsage;
 import org.omg.sysml.lang.sysml.PortUsage;
 import org.omg.sysml.lang.sysml.ReferenceUsage;
 import org.omg.sysml.lang.sysml.RequirementUsage;
+import org.omg.sysml.lang.sysml.ReturnParameterMembership;
 import org.omg.sysml.lang.sysml.StateDefinition;
 import org.omg.sysml.lang.sysml.StateUsage;
 import org.omg.sysml.lang.sysml.SubjectMembership;
-import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.TransitionUsage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
@@ -66,6 +66,8 @@ public class VCompartment extends VStructure {
     private List<VTree> subtrees = new ArrayList<VTree>();
 
     private VTree parent;
+
+    private final boolean compartmentMost;
 
     protected boolean rec(Membership m, Element e, boolean force) {
         VTree subtree = parent.subtree(m, e, force);
@@ -80,10 +82,60 @@ public class VCompartment extends VStructure {
         return rec(ms, e, force);
     }
 
+    private String recCurrent(Element e, boolean force) {
+        if (compartmentMost) return null;
+        if (recCurrentMembership(e, force)) return "";
+        return null;
+    }
+
     protected static class FeatureEntry implements Comparable<FeatureEntry> {
         public final Feature f;
         public final String alias;
         public final String prefix;
+        public final boolean isInherited;
+
+        public String getParameterPrefix() {
+            FeatureDirectionKind fdk = f.getDirection();
+            if (fdk == null) return "";
+            switch (fdk) {
+            case IN:
+                return "<b>in</b> ";
+            case OUT:
+                return "<b>out</b> ";
+            case INOUT:
+                return "<b>inout</b> ";
+            }
+            return null; // MUST NOT happen.
+        }
+
+        public boolean isParameter() {
+            return f.getDirection() != null;
+        }
+
+        public String getTitle() {
+            if (isParameter()) {
+                return "parameters";
+            }
+            String s = SysML2PlantUMLText.getStereotypeName(f);
+            if (s.endsWith("s")) {
+                return s + "es";
+            } else {
+                return s + "s";
+            }
+        }
+
+        private static int featureParameterCompare(Feature f1, Feature f2) {
+            FeatureDirectionKind fdk1 = f1.getDirection();
+            FeatureDirectionKind fdk2 = f2.getDirection();
+            if (fdk1 == null) {
+                if (fdk2 == null) return 0;
+                return 1;
+            }
+            if (fdk2 == null) return -1;
+            if (fdk1.ordinal() < fdk2.ordinal()) return -1;
+            if (fdk1.ordinal() > fdk2.ordinal()) return 1;
+            return 0;
+        }
 
         private static int featureMetaclassCompare(Feature f1, Feature f2) {
             if (f1 instanceof AttributeUsage) {
@@ -124,7 +176,9 @@ public class VCompartment extends VStructure {
         }
 
         private static int featureCompare(Feature f1, Feature f2) {
-            int v = featureMetaclassCompare(f1, f2);
+            int v = featureParameterCompare(f1, f2);
+            if (v != 0) return v;
+            v = featureMetaclassCompare(f1, f2);
             if (v != 0) return v;
             // The order or EnumerationUsage needs to be stable.
             if (f1 instanceof EnumerationUsage) return 0;
@@ -150,10 +204,11 @@ public class VCompartment extends VStructure {
             children.add(fe);
         }
 
-        public FeatureEntry(Feature f, String alias, String prefix) {
+        public FeatureEntry(Feature f, String alias, String prefix, boolean isInherited) {
             this.f = f;
             this.alias = alias;
             this.prefix = prefix;
+            this.isInherited = isInherited;
             this.children = null;
         }
     }
@@ -163,14 +218,15 @@ public class VCompartment extends VStructure {
     protected FeatureEntry addFeature(Feature f,
                                       String alias,
                                       String prefix,
-                                      boolean nocheck,
                                       boolean norec,
                                       FeatureEntry parent) {
-        if (!nocheck && getFeatureName(f) == null) return null;
+        Membership ms = getCurrentMembership();
+        if (ms instanceof ReturnParameterMembership) return null; // To filter "result" parameter out.
+
         if (!norec && (alias == null) && (prefix == null)) {
             if (recCurrentMembership(f, false)) return null;
         }
-        FeatureEntry fe = new FeatureEntry(f, alias, prefix);
+        FeatureEntry fe = new FeatureEntry(f, alias, prefix, isInherited());
         if (parent == null) {
             featureEntries.add(fe);
         } else {
@@ -179,17 +235,16 @@ public class VCompartment extends VStructure {
         return fe;
     }
 
-    protected void addFeature(Feature f,
-                              String alias,
-                              String prefix,
-                              boolean nocheck,
-                              boolean norec) {
-        addFeature(f, alias, prefix, nocheck, norec, null);
+    protected FeatureEntry addFeature(Feature f,
+                                      String alias,
+                                      String prefix,
+                                      boolean norec) {
+        return addFeature(f, alias, prefix, norec, null);
     }
 
-    protected void addFeature(Feature f,
-                              String alias) {
-        addFeature(f, alias, null, false, false);
+    protected FeatureEntry addFeature(Feature f,
+                                      String alias) {
+        return addFeature(f, alias, null, compartmentMost);
     }
 
 
@@ -213,8 +268,7 @@ public class VCompartment extends VStructure {
 
     @Override
     public String casePartUsage(PartUsage pu) {
-        recCurrentMembership(pu, true);
-        return "";
+        return recCurrent(pu, true);
     }
 
     private class CompTree {
@@ -229,7 +283,7 @@ public class VCompartment extends VStructure {
                     // Do not show it
                 } else if (e instanceof Feature) {
                 	Feature f2 = (Feature) e;
-                    FeatureEntry fe = addFeature(f2, m.getMemberName(), null, false, true, parent);
+                    FeatureEntry fe = addFeature(f2, m.getMemberName(), null, true, parent);
                     CompTree ct = new CompTree(fe);
                     ct.process(f2);
                 } else {
@@ -244,10 +298,14 @@ public class VCompartment extends VStructure {
     }
 
     protected String tree(Feature f) {
-        if (styleValue("compartmentTree") == null) return null; 
-        FeatureEntry fe = addFeature(f, null, null, false, true, null);
-        CompTree ct = new CompTree(fe);
-        ct.process(f);
+        boolean compartmentTree = styleValue("compartmentTree") != null;
+
+        if (!(compartmentMost || compartmentTree)) return null;
+        FeatureEntry fe = addFeature(f, null, null, true);
+        if (compartmentTree) {
+            CompTree ct = new CompTree(fe);
+            ct.process(f);
+        }
         return "";
     }
 
@@ -258,38 +316,33 @@ public class VCompartment extends VStructure {
 
     @Override
     public String caseTransitionUsage(TransitionUsage tu) {
-        addFeature(tu, null, null, false, true);
+        addFeature(tu, null, null, true);
         return "";
     }
 
     @Override
     public String caseReferenceUsage(ReferenceUsage ru) {
-        recCurrentMembership(ru, false);
-        return "";
+        return recCurrent(ru, false);
     }
 
     @Override
     public String caseRequirementUsage(RequirementUsage ru) {
-        recCurrentMembership(ru, true);
-        return "";
+        return recCurrent(ru, true);
     }
 
     @Override
     public String caseOccurrenceUsage(OccurrenceUsage ou) {
-        recCurrentMembership(ou, true);
-        return "";
+        return recCurrent(ou, true);
     }
 
     @Override
     public String caseAnalysisCaseUsage(AnalysisCaseUsage au) {
-        recCurrentMembership(au, true);
-        return "";
+        return recCurrent(au, true);
     }
 
     @Override
     public String caseDefinition(Definition d) {
-        recCurrentMembership(d, true);
-        return "";
+        return recCurrent(d, true);
     }
 
     @Override
@@ -310,7 +363,7 @@ public class VCompartment extends VStructure {
             Element e = vm.getMemberElement();
             if (e instanceof EnumerationUsage) {
                 EnumerationUsage eu = (EnumerationUsage) e;
-            	addFeature(eu, null, null, true, true, null);
+            	addFeature(eu, null, null, true);
                 return "";
             }
         }
@@ -351,28 +404,13 @@ public class VCompartment extends VStructure {
         return "";
     }
 
-    private static String getTitle(Feature f) {
-        String s = SysML2PlantUMLText.getStereotypeName(f);
-        if (s.endsWith("s")) {
-            return s + "es";
-        } else {
-            return s + "s";
-        }
-    }
-
-    private EClass addTitle(EClass prev, FeatureEntry fe, boolean isClassic) {
-        EClass ec1 = fe.f.eClass();
-        if (ec1.equals(prev)) return prev;
-        if (ec1.equals(SysMLPackage.Literals.ATTRIBUTE_USAGE)) {
-            if (isClassic) {
-                append("-- attributes --\n");
-            }
-        } else {
-            append("-- ");
-            append(getTitle(fe.f));
-            append(" --\n");
-        }
-        return ec1;
+    private String addTitle(String prev, FeatureEntry fe) {
+        String title = fe.getTitle();
+        if (title.equals(prev)) return prev;
+        append("-- ");
+        append(title);
+        append(" --\n");
+        return title;
     }
 
     private void appendTextOfEnum(Element e) {
@@ -381,21 +419,65 @@ public class VCompartment extends VStructure {
         append("</i>");
     }
 
+    private void addEnd(Feature f) {
+        Element e = getEnd(f);
+        if (e == null) return;
+        // We should construct proper text from end but for the time being, we use just the text as it is.
+        /*
+        if (e instanceof Subsetting) {
+            Subsetting ss = (Subsetting) e;
+            e = ss.getSubsettedFeature();
+        }*/
+        append(getText(e));
+    }
+
+    private void addConnectorText(Connector c, boolean isInherited) {
+        addFeatureText(c, isInherited);
+        List<Feature> ends = c.getConnectorEnd();
+        if (ends.size() == 2) {
+            Feature f1 = ends.get(0);
+            Feature f2 = ends.get(1);
+            addEnd(f1);
+            if (c instanceof BindingConnector) {
+                append(" = ");
+            } else {
+                append(" to ");
+            }
+            addEnd(f2);
+        } else {
+            boolean delim = false;
+            for (Feature end: ends) {
+                if (delim) {
+                    if (c instanceof BindingConnector) {
+                        append(" = ");
+                    } else {
+                        append(", ");
+                    }
+                } else {
+                    delim = true;
+                }
+                addEnd(end);
+            }
+        }
+    }
+
     private void addFeatures(List<FeatureEntry> es, int level) {
         Collections.sort(es);
-        final boolean isClassic = styleValue("classic") != null;
-        
         final int size = es.size();
-        EClass ec0 = null;
+        String title = null;
         for (int i = 0; i < size; i++) {
             FeatureEntry fe = es.get(i);
             if (level == 0) {
-                ec0 = addTitle(ec0, fe, isClassic);
+                title = addTitle(title, fe);
             } else {
                 for (int j = 0; j < level; j++) {
                     append("|_");
                 }
                 append(' ');
+            }
+            append(fe.getParameterPrefix());
+            if (fe.isInherited) {
+                append('^');
             }
             if (fe.prefix != null) {
                 append(fe.prefix);
@@ -404,13 +486,26 @@ public class VCompartment extends VStructure {
                 if (getFeatureName(fe.f) == null) {
                     appendTextOfEnum(fe.f);
                 } else {
-                    addFeatureText(fe.f);
+                    addFeatureText(fe.f, fe.isInherited);
                 }
                 append('\n');
+            } else if (fe.f instanceof Connector) {
+                addConnectorText((Connector) fe.f, fe.isInherited);
+                append('\n');
+            } else if (fe.f instanceof Expression) {
+                String name = getFeatureName(fe.f);
+                if (name != null) {
+                    append(name);
+                }
+                String text = getText(fe.f);
+                if (text == null) continue;
+                append(" { ");
+                appendText(text, true);
+                append(" }\n");
             } else if (getFeatureName(fe.f) == null) {
                 addAnonymouseFeatureText(fe.f);
                 append('\n');
-            } else if (addFeatureText(fe.f)) {
+            } else if (addFeatureText(fe.f, false)) {
                 boolean first = true;
                 for (int j = i + 1; j < size; j++) {
                     FeatureEntry fe2 = es.get(j);
@@ -450,8 +545,14 @@ public class VCompartment extends VStructure {
 
     public VCompartment(Visitor prev) {
         super(prev);
+        this.compartmentMost = styleValue("compartmentMost") != null;
     }
 
+
+    @Override
+    public String caseExpression(Expression e) {
+        return null;
+    }
 
     private boolean mixedMode = false;
 
@@ -462,28 +563,24 @@ public class VCompartment extends VStructure {
     @Override
     public String caseStateDefinition(StateDefinition sd) {
         if (!mixedMode) return null;
-        recCurrentMembership(sd, true);
-        return "";
+        return recCurrent(sd, true);
     }
 
     @Override
     public String caseStateUsage(StateUsage su) {
         if (!mixedMode) return null;
-        recCurrentMembership(su, true);
-        return "";
+        return recCurrent(su, true);
     }
 
     @Override
     public String caseActionDefinition(ActionDefinition ad) {
         if (!mixedMode) return null;
-        recCurrentMembership(ad, true);
-        return "";
+        return recCurrent(ad, true);
     }
 
     @Override
     public String caseActionUsage(ActionUsage au) {
         if (!mixedMode) return null;
-        recCurrentMembership(au, true);
-        return "";
+        return recCurrent(au, true);
     }
 }

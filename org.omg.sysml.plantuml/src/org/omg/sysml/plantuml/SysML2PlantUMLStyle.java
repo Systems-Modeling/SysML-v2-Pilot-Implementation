@@ -167,6 +167,9 @@ public class SysML2PlantUMLStyle {
         add("LR", null, "left to right direction\n");
         add("POLYLINE", null, "skinparam linetype polyline\n");
         add("ORTHOLINE", null, "skinparam linetype ortho\n");
+        add("SHOWLIB", "Show elements of the standard libraries", " ", "showLib", "true");
+        add("SHOWINHERITED", "Show inherited members", " ", "showInherited", "true");
+        add("COMPMOST", "Show as many memberships in a compartment as possible", " ", "compartmentMost", "true");
         add("COMPTREE", "Show nested ports in a compartment", " ", "compartmentTree", "true");
     }
 

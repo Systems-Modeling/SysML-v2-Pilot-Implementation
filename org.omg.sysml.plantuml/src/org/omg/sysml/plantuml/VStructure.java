@@ -124,8 +124,8 @@ public abstract class VStructure extends VDefault {
         return true;
     }
 
-    private void addFeatureTextInternal(Feature f, String name) {
-        if (isInherited()) {
+    private void addFeatureTextInternal(Feature f, String name, boolean isInherited) {
+        if (isInherited) {
             append('^');
         }
         append(name);
@@ -133,7 +133,7 @@ public abstract class VStructure extends VDefault {
         addFeatureMembershipText(f);
     }
     
-    protected boolean addFeatureText(Feature f) {
+    protected boolean addFeatureText(Feature f, boolean isInherited) {
         String name = getFeatureName(f);
         if (name == null) return false;
 
@@ -141,18 +141,22 @@ public abstract class VStructure extends VDefault {
             String rt = redefinedFeatureText(f);
             if (rt != null) {
                 append("<&bar-trig> ");
-                addFeatureTextInternal(f, name);
+                addFeatureTextInternal(f, name, isInherited);
                 append(" <s>");
                 append(rt);
                 append("</s>");
             } else {
-                addFeatureTextInternal(f, name);
+                addFeatureTextInternal(f, name, isInherited);
             }
         } else {
-            addFeatureTextInternal(f, name);
+            addFeatureTextInternal(f, name, isInherited);
             addRedefinedFeatureText(f);
         }
         return true;
+    }
+
+    protected boolean addFeatureText(Feature f) {
+        return addFeatureText(f, isInherited());
     }
 
     protected void addAnonymouseFeatureText(Feature f) {

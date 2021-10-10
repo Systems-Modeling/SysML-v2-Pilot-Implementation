@@ -208,7 +208,7 @@ public class UsageUtil {
 	}
 	
 	public static List<StateSubactionMembership> getStateSubactionMembershipsOf(Type type, StateSubactionKind kind) {
-		return type.getFeatureMembership().stream().
+		return type.getOwnedFeatureMembership().stream().
 				filter(StateSubactionMembership.class::isInstance).
 				map(StateSubactionMembership.class::cast).
 				filter(m->m.getKind() == kind).

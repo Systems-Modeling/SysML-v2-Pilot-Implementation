@@ -4866,31 +4866,23 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	public class PartDefKeywordElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.PartDefKeyword");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
-		private final RuleCall cPartKeywordParserRuleCall_0_0 = (RuleCall)cGroup_0.eContents().get(0);
-		private final Keyword cDefKeyword_0_1 = (Keyword)cGroup_0.eContents().get(1);
-		private final Keyword cBlockKeyword_1 = (Keyword)cAlternatives.eContents().get(1);
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final RuleCall cPartKeywordParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
+		private final Keyword cDefKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		
 		//PartDefKeyword :
-		//    PartKeyword 'def' | 'block'
+		//    PartKeyword 'def'
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//PartKeyword 'def' | 'block'
-		public Alternatives getAlternatives() { return cAlternatives; }
-		
 		//PartKeyword 'def'
-		public Group getGroup_0() { return cGroup_0; }
+		public Group getGroup() { return cGroup; }
 		
 		//PartKeyword
-		public RuleCall getPartKeywordParserRuleCall_0_0() { return cPartKeywordParserRuleCall_0_0; }
+		public RuleCall getPartKeywordParserRuleCall_0() { return cPartKeywordParserRuleCall_0; }
 		
 		//'def'
-		public Keyword getDefKeyword_0_1() { return cDefKeyword_0_1; }
-		
-		//'block'
-		public Keyword getBlockKeyword_1() { return cBlockKeyword_1; }
+		public Keyword getDefKeyword_1() { return cDefKeyword_1; }
 	}
 	public class PartUsageKeywordElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.PartUsageKeyword");
@@ -5145,39 +5137,23 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	public class ConnectionDefKeywordElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.ConnectionDefKeyword");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
-		private final RuleCall cConnectionKeywordParserRuleCall_0_0 = (RuleCall)cGroup_0.eContents().get(0);
-		private final Keyword cDefKeyword_0_1 = (Keyword)cGroup_0.eContents().get(1);
-		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
-		private final Keyword cAssocKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
-		private final Keyword cBlockKeyword_1_1 = (Keyword)cGroup_1.eContents().get(1);
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final RuleCall cConnectionKeywordParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
+		private final Keyword cDefKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		
 		//ConnectionDefKeyword :
-		//    ConnectionKeyword 'def' | 'assoc' 'block'
+		//    ConnectionKeyword 'def'
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//ConnectionKeyword 'def' | 'assoc' 'block'
-		public Alternatives getAlternatives() { return cAlternatives; }
-		
 		//ConnectionKeyword 'def'
-		public Group getGroup_0() { return cGroup_0; }
+		public Group getGroup() { return cGroup; }
 		
 		//ConnectionKeyword
-		public RuleCall getConnectionKeywordParserRuleCall_0_0() { return cConnectionKeywordParserRuleCall_0_0; }
+		public RuleCall getConnectionKeywordParserRuleCall_0() { return cConnectionKeywordParserRuleCall_0; }
 		
 		//'def'
-		public Keyword getDefKeyword_0_1() { return cDefKeyword_0_1; }
-		
-		//'assoc' 'block'
-		public Group getGroup_1() { return cGroup_1; }
-		
-		//'assoc'
-		public Keyword getAssocKeyword_1_0() { return cAssocKeyword_1_0; }
-		
-		//'block'
-		public Keyword getBlockKeyword_1_1() { return cBlockKeyword_1_1; }
+		public Keyword getDefKeyword_1() { return cDefKeyword_1; }
 	}
 	public class ConnectionDefinitionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.ConnectionDefinition");
@@ -15962,7 +15938,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//PartDefKeyword :
-	//    PartKeyword 'def' | 'block'
+	//    PartKeyword 'def'
 	//;
 	public PartDefKeywordElements getPartDefKeywordAccess() {
 		return pPartDefKeyword;
@@ -16122,7 +16098,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//ConnectionDefKeyword :
-	//    ConnectionKeyword 'def' | 'assoc' 'block'
+	//    ConnectionKeyword 'def'
 	//;
 	public ConnectionDefKeywordElements getConnectionDefKeywordAccess() {
 		return pConnectionDefKeyword;

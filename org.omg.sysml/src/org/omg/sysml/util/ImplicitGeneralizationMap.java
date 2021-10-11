@@ -176,7 +176,7 @@ public class ImplicitGeneralizationMap {
 
 		put(ExhibitStateUsageImpl.class, "enactedPerformance", "Parts::Part::exhibitedStates");
 		
-		put(FlowConnectionUsageImpl.class, "base", "Transfers::transfers");
+		put(FlowConnectionUsageImpl.class, "base", "Connections::flowConnections");
 		put(FlowConnectionUsageImpl.class, "subperformance", "Performances::Performance::subtransfers");
 		
 		put(ForkNodeImpl.class, "subaction", "Actions::Action::forks");
@@ -236,7 +236,7 @@ public class ImplicitGeneralizationMap {
 		put(SuccessionAsUsageImpl.class, "base", "Links::links");
 		put(SuccessionAsUsageImpl.class, "binary", "Occurrences::happensBeforeLinks");
 		
-		put(SuccessionFlowConnectionUsageImpl.class, "base", "Transfers::transfersBefore");
+		put(SuccessionFlowConnectionUsageImpl.class, "base", "Connections::successionFlowConnections");
 		put(SuccessionFlowConnectionUsageImpl.class, "subperformance", "Performances::Performance::subtransfersBefore");
 
 		put(TransitionUsageImpl.class, "base", "Actions::transitionActions");

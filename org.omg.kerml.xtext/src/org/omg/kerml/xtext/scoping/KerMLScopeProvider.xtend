@@ -47,6 +47,7 @@ import org.omg.sysml.lang.sysml.Redefinition
 import org.omg.sysml.lang.sysml.Specialization
 import org.omg.sysml.lang.sysml.FeatureChaining
 import org.omg.sysml.util.NamespaceUtil
+import org.omg.sysml.util.FeatureUtil
 
 class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 
@@ -83,7 +84,8 @@ class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 		    if (!(context instanceof Redefinition)) {
 			    var owningType = subsettingFeature?.owningType
 				if (owningType instanceof Connector) {
-			    	if (owningType.connectorEnd.contains(subsettingFeature)) {
+			    	if (owningType.connectorEnd.contains(subsettingFeature) &&
+			    		FeatureUtil.getFirstOwnedSubsettingOf(subsettingFeature).orElse(null) === context) {
 			    		return owningType.scope_owningNamespace(context, reference)
 			    	}
 			    }

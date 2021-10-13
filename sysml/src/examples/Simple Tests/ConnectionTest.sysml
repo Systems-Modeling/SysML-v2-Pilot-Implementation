@@ -18,6 +18,7 @@ package ConnectionTest {
 	}
 
 	abstract connection def C {
+		part p;
 		end end1;
 		end end2;
 		end end3;
@@ -29,4 +30,10 @@ package ConnectionTest {
 	part d4;
 	
 	connection bus : C connect (d1, d2, d3, d4);
+	
+	connection {
+		part q;
+		end end1 :> d1 :> q;
+		end end2 :> d2;
+	}
 }

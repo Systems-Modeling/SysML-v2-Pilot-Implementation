@@ -74,6 +74,7 @@ public class ImplicitGeneralizationMap {
 		put(FeatureImpl.class, "dataValue", "Base::dataValues");
 		put(FeatureImpl.class, "occurrence", "Occurrences::occurrences");
 		put(FeatureImpl.class, "object", "Objects::objects");
+		put(FeatureImpl.class, "participant", "Links::Link::participant");
 		
 		put(FunctionImpl.class, "base", "Performances::Evaluation");
 		
@@ -130,9 +131,9 @@ public class ImplicitGeneralizationMap {
 		put(ActionUsageImpl.class, "subaction", "Actions::Action::subactions");
 		put(ActionUsageImpl.class, "enactedPerformance", "Parts::Part::performedActions");
 		
-		put(AllocationDefinitionImpl.class, "base", "Links::Link");
+		put(AllocationDefinitionImpl.class, "base", "Allocations::Allocation");
 		put(AllocationDefinitionImpl.class, "binary", "Allocations::Allocation");
-		put(AllocationUsageImpl.class, "base", "Links::links");
+		put(AllocationUsageImpl.class, "base", "Allocations::allocations");
 		put(AllocationUsageImpl.class, "binary", "Allocations::allocations");
 		
 		put(AnalysisCaseDefinitionImpl.class, "base", "AnalysisCases::AnalysisCase");

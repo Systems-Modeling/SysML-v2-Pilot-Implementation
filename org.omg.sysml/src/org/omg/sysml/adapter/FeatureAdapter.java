@@ -34,7 +34,9 @@ import java.util.stream.Stream;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.omg.sysml.lang.sysml.Association;
 import org.omg.sysml.lang.sysml.BindingConnector;
+import org.omg.sysml.lang.sysml.Connector;
 import org.omg.sysml.lang.sysml.DataType;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
@@ -130,6 +132,21 @@ public class FeatureAdapter extends TypeAdapter {
 	
 	protected boolean isSubperformance() {
 		return FeatureUtil.isPerformanceFeature(getTarget());
+	}
+	
+	protected boolean isAssociationEnd() {
+		Feature target = getTarget();
+		Type endOwningType = target.getEndOwningType();
+		return endOwningType instanceof Association || endOwningType instanceof Connector; 
+	}
+	
+	@Override
+	public void addDefaultGeneralType() {
+		super.addDefaultGeneralType();
+		if (isAssociationEnd() && 
+				!isImplicitGeneralizationDeclaredFor(SysMLPackage.eINSTANCE.getRedefinition())) {
+			addDefaultGeneralType("participant");
+		}
 	}
 	
 	@Override

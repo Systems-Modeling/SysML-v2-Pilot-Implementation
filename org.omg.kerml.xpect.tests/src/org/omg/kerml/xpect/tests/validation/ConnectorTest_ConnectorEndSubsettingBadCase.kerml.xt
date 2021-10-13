@@ -1,0 +1,30 @@
+//* 
+XPECT_SETUP org.omg.kerml.xpect.tests.validation.KerMLValidationTest
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library/Base.kerml"}
+		File {from ="/library/Links.kerml"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library/Base.kerml"}
+				File {from ="/library/Links.kerml"}
+			}
+		}
+	}
+END_SETUP 
+*/
+
+package test{
+	feature x;
+	feature y;
+	
+	connector c {
+		feature f;
+		end a :> x :> f;
+		//XPECT errors --> "Couldn't resolve reference to Feature 'f'." at "f"
+		end b :> f;
+	}
+}

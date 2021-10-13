@@ -401,7 +401,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	
 	/**
 	 * ConnectionDefKeyword :
-	 * 	ConnectionKeyword 'def' | 'assoc' 'block' 
+	 * 	ConnectionKeyword 'def' 
 	 * ;
 	 */
 	protected String getConnectionDefKeywordToken(EObject semanticObject, RuleCall ruleCall, INode node) {
@@ -577,7 +577,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	
 	/**
 	 * PartDefKeyword :
-	 * 	PartKeyword 'def' | 'block'
+	 * 	PartKeyword 'def'
 	 * ;
 	 */
 	protected String getPartDefKeywordToken(EObject semanticObject, RuleCall ruleCall, INode node) {

@@ -8124,28 +8124,20 @@ rulePartDefKeyword returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRule
 	leaveRule();
 }:
 	(
-		(
-			{
-				newCompositeNode(grammarAccess.getPartDefKeywordAccess().getPartKeywordParserRuleCall_0_0());
-			}
-			this_PartKeyword_0=rulePartKeyword
-			{
-				$current.merge(this_PartKeyword_0);
-			}
-			{
-				afterParserOrEnumRuleCall();
-			}
-			kw='def'
-			{
-				$current.merge(kw);
-				newLeafNode(kw, grammarAccess.getPartDefKeywordAccess().getDefKeyword_0_1());
-			}
-		)
-		    |
-		kw='block'
+		{
+			newCompositeNode(grammarAccess.getPartDefKeywordAccess().getPartKeywordParserRuleCall_0());
+		}
+		this_PartKeyword_0=rulePartKeyword
+		{
+			$current.merge(this_PartKeyword_0);
+		}
+		{
+			afterParserOrEnumRuleCall();
+		}
+		kw='def'
 		{
 			$current.merge(kw);
-			newLeafNode(kw, grammarAccess.getPartDefKeywordAccess().getBlockKeyword_1());
+			newLeafNode(kw, grammarAccess.getPartDefKeywordAccess().getDefKeyword_1());
 		}
 	)
 ;
@@ -8646,36 +8638,21 @@ ruleConnectionDefKeyword returns [AntlrDatatypeRuleToken current=new AntlrDataty
 	leaveRule();
 }:
 	(
-		(
-			{
-				newCompositeNode(grammarAccess.getConnectionDefKeywordAccess().getConnectionKeywordParserRuleCall_0_0());
-			}
-			this_ConnectionKeyword_0=ruleConnectionKeyword
-			{
-				$current.merge(this_ConnectionKeyword_0);
-			}
-			{
-				afterParserOrEnumRuleCall();
-			}
-			kw='def'
-			{
-				$current.merge(kw);
-				newLeafNode(kw, grammarAccess.getConnectionDefKeywordAccess().getDefKeyword_0_1());
-			}
-		)
-		    |
-		(
-			kw='assoc'
-			{
-				$current.merge(kw);
-				newLeafNode(kw, grammarAccess.getConnectionDefKeywordAccess().getAssocKeyword_1_0());
-			}
-			kw='block'
-			{
-				$current.merge(kw);
-				newLeafNode(kw, grammarAccess.getConnectionDefKeywordAccess().getBlockKeyword_1_1());
-			}
-		)
+		{
+			newCompositeNode(grammarAccess.getConnectionDefKeywordAccess().getConnectionKeywordParserRuleCall_0());
+		}
+		this_ConnectionKeyword_0=ruleConnectionKeyword
+		{
+			$current.merge(this_ConnectionKeyword_0);
+		}
+		{
+			afterParserOrEnumRuleCall();
+		}
+		kw='def'
+		{
+			$current.merge(kw);
+			newLeafNode(kw, grammarAccess.getConnectionDefKeywordAccess().getDefKeyword_1());
+		}
 	)
 ;
 

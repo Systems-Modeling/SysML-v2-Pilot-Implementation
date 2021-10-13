@@ -40,10 +40,16 @@ public class FlowConnectionUsageAdapter extends ConnectionUsageAdapter {
 	}
 	
 	@Override
+	public void addDefaultGeneralType() {
+		super.addDefaultGeneralType();
+		if (isSubperformance()) {
+			addDefaultGeneralType("subperformance");
+		}
+	}
+	
+	@Override
 	protected String getDefaultSupertype() {
-		return isSubperformance()? 
-				getDefaultSupertype("subperformance"):
-				getDefaultSupertype("base");
+		return getDefaultSupertype("base");
 	}
 	
 	@Override

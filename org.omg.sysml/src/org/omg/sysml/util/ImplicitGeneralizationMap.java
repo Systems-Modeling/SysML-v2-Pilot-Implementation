@@ -74,6 +74,7 @@ public class ImplicitGeneralizationMap {
 		put(FeatureImpl.class, "dataValue", "Base::dataValues");
 		put(FeatureImpl.class, "occurrence", "Occurrences::occurrences");
 		put(FeatureImpl.class, "object", "Objects::objects");
+		put(FeatureImpl.class, "participant", "Links::Link::participant");
 		
 		put(FunctionImpl.class, "base", "Performances::Evaluation");
 		
@@ -130,9 +131,9 @@ public class ImplicitGeneralizationMap {
 		put(ActionUsageImpl.class, "subaction", "Actions::Action::subactions");
 		put(ActionUsageImpl.class, "enactedPerformance", "Parts::Part::performedActions");
 		
-		put(AllocationDefinitionImpl.class, "base", "Links::Link");
+		put(AllocationDefinitionImpl.class, "base", "Allocations::Allocation");
 		put(AllocationDefinitionImpl.class, "binary", "Allocations::Allocation");
-		put(AllocationUsageImpl.class, "base", "Links::links");
+		put(AllocationUsageImpl.class, "base", "Allocations::allocations");
 		put(AllocationUsageImpl.class, "binary", "Allocations::allocations");
 		
 		put(AnalysisCaseDefinitionImpl.class, "base", "AnalysisCases::AnalysisCase");
@@ -176,7 +177,7 @@ public class ImplicitGeneralizationMap {
 
 		put(ExhibitStateUsageImpl.class, "enactedPerformance", "Parts::Part::exhibitedStates");
 		
-		put(FlowConnectionUsageImpl.class, "base", "Transfers::transfers");
+		put(FlowConnectionUsageImpl.class, "base", "Connections::flowConnections");
 		put(FlowConnectionUsageImpl.class, "subperformance", "Performances::Performance::subtransfers");
 		
 		put(ForkNodeImpl.class, "subaction", "Actions::Action::forks");
@@ -236,7 +237,7 @@ public class ImplicitGeneralizationMap {
 		put(SuccessionAsUsageImpl.class, "base", "Links::links");
 		put(SuccessionAsUsageImpl.class, "binary", "Occurrences::happensBeforeLinks");
 		
-		put(SuccessionFlowConnectionUsageImpl.class, "base", "Transfers::transfersBefore");
+		put(SuccessionFlowConnectionUsageImpl.class, "base", "Connections::successionFlowConnections");
 		put(SuccessionFlowConnectionUsageImpl.class, "subperformance", "Performances::Performance::subtransfersBefore");
 
 		put(TransitionUsageImpl.class, "base", "Actions::transitionActions");

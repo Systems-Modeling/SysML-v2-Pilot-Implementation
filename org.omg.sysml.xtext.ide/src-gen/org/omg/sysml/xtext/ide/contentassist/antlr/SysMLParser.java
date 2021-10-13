@@ -73,8 +73,6 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getVariantUsageElementAccess().getAlternatives(), "rule__VariantUsageElement__Alternatives");
 			builder.put(grammarAccess.getEnumerationBodyAccess().getAlternatives(), "rule__EnumerationBody__Alternatives");
 			builder.put(grammarAccess.getEventOccurrenceUsageAccess().getAlternatives_2(), "rule__EventOccurrenceUsage__Alternatives_2");
-			builder.put(grammarAccess.getPartDefKeywordAccess().getAlternatives(), "rule__PartDefKeyword__Alternatives");
-			builder.put(grammarAccess.getConnectionDefKeywordAccess().getAlternatives(), "rule__ConnectionDefKeyword__Alternatives");
 			builder.put(grammarAccess.getConnectionUsageAccess().getAlternatives_1(), "rule__ConnectionUsage__Alternatives_1");
 			builder.put(grammarAccess.getConnectorPartAccess().getAlternatives(), "rule__ConnectorPart__Alternatives");
 			builder.put(grammarAccess.getMessageDeclarationAccess().getAlternatives_2(), "rule__MessageDeclaration__Alternatives_2");
@@ -288,15 +286,14 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getItemDefKeywordAccess().getGroup(), "rule__ItemDefKeyword__Group__0");
 			builder.put(grammarAccess.getItemDefinitionAccess().getGroup(), "rule__ItemDefinition__Group__0");
 			builder.put(grammarAccess.getItemUsageAccess().getGroup(), "rule__ItemUsage__Group__0");
-			builder.put(grammarAccess.getPartDefKeywordAccess().getGroup_0(), "rule__PartDefKeyword__Group_0__0");
+			builder.put(grammarAccess.getPartDefKeywordAccess().getGroup(), "rule__PartDefKeyword__Group__0");
 			builder.put(grammarAccess.getPartDefinitionAccess().getGroup(), "rule__PartDefinition__Group__0");
 			builder.put(grammarAccess.getPartUsageAccess().getGroup(), "rule__PartUsage__Group__0");
 			builder.put(grammarAccess.getPortDefKeywordAccess().getGroup(), "rule__PortDefKeyword__Group__0");
 			builder.put(grammarAccess.getPortDefinitionAccess().getGroup(), "rule__PortDefinition__Group__0");
 			builder.put(grammarAccess.getConjugatedPortTypingAccess().getGroup(), "rule__ConjugatedPortTyping__Group__0");
 			builder.put(grammarAccess.getPortUsageAccess().getGroup(), "rule__PortUsage__Group__0");
-			builder.put(grammarAccess.getConnectionDefKeywordAccess().getGroup_0(), "rule__ConnectionDefKeyword__Group_0__0");
-			builder.put(grammarAccess.getConnectionDefKeywordAccess().getGroup_1(), "rule__ConnectionDefKeyword__Group_1__0");
+			builder.put(grammarAccess.getConnectionDefKeywordAccess().getGroup(), "rule__ConnectionDefKeyword__Group__0");
 			builder.put(grammarAccess.getConnectionDefinitionAccess().getGroup(), "rule__ConnectionDefinition__Group__0");
 			builder.put(grammarAccess.getConnectionUsageAccess().getGroup(), "rule__ConnectionUsage__Group__0");
 			builder.put(grammarAccess.getConnectionUsageAccess().getGroup_1_0(), "rule__ConnectionUsage__Group_1_0__0");

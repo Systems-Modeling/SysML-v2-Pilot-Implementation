@@ -879,7 +879,7 @@ PartKeyword :
 ;
 
 PartDefKeyword :
-	PartKeyword 'def' | 'block'
+	PartKeyword 'def'
 ;
 
 PartUsageKeyword :
@@ -946,7 +946,7 @@ ConnectionKeyword :
 ;
 
 ConnectionDefKeyword :
-	ConnectionKeyword 'def' | 'assoc' 'block' 
+	ConnectionKeyword 'def' 
 ;
 
 ConnectionDefinition returns SysML::ConnectionDefinition :

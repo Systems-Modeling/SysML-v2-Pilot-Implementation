@@ -262,18 +262,22 @@ public class FeatureAdapter extends TypeAdapter {
 		return redefinedFeatures; 
 	}
 	
-	private boolean isComputeRedefinitions = true;
+	protected boolean isComputeRedefinitions = true;
 	
 	public void forceComputeRedefinitions() {
-		isComputeRedefinitions = true;
+		isComputeRedefinitions = isAddImplicitGeneralTypes;
+	}
+	
+	public boolean isComputeRedefinitions() {
+		EList<Redefinition> ownedRedefinitions = getTarget().getOwnedRedefinition();
+		return isComputeRedefinitions && ownedRedefinitions.isEmpty();
 	}
 	
 	/**
 	 * If this Feature has no Redefinitions, compute relevant Redefinitions, as appropriate.
 	 */
 	public void addComputedRedefinitions(Element skip) {
-		EList<Redefinition> ownedRedefinitions = getTarget().getOwnedRedefinition();
-		if (isComputeRedefinitions && ownedRedefinitions.isEmpty()) {
+		if (isComputeRedefinitions()) {
 			removeImplicitGeneralType(SysMLPackage.eINSTANCE.getRedefinition());
 			addRedefinitions(skip);
 			isComputeRedefinitions = false;

@@ -1,0 +1,35 @@
+//* 
+XPECT_SETUP org.omg.kerml.xpect.tests.validation.KerMLValidationTest
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library/Base.kerml"}
+		File {from ="/library/Links.kerml"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library/Base.kerml"}
+				File {from ="/library/Links.kerml"}
+			}
+		}
+	}
+END_SETUP 
+*/
+
+package test{
+	feature x;
+	feature y;
+	assoc A {
+		end end1;
+		end end2;
+		
+		feature f {
+			feature z;
+		}
+		
+		connector from end1 to f.z;
+	}
+	
+	connector c:A from x to y;
+}

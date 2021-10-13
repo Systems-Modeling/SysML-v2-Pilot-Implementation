@@ -79,6 +79,16 @@ public class ActionUsageAdapter extends OccurrenceUsageAdapter {
 	
 	// Computed Redefinition
 	
+	/**
+	 *  For state and transition actions, always add implicit redefinition.
+	 */
+	@Override
+	public boolean isComputeRedefinitions() {
+		String redefinedFeature = getRedefinedFeature(getTarget());
+		return redefinedFeature != null? isComputeRedefinitions:
+				super.isComputeRedefinitions();
+	}
+	
 	@Override
 	public List<? extends Feature> getRelevantFeatures() {
 		return TypeUtil.getItemFeaturesOf(getTarget());

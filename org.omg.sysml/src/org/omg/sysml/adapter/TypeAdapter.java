@@ -81,6 +81,8 @@ public class TypeAdapter extends NamespaceAdapter {
 	
 	// Implicit Elements
 	
+	protected boolean isAddImplicitGeneralTypes = true;
+	
 	/**
 	 * Contains the required ends for implicit generalizations like implicit
 	 * superclassing, subsetting, featuretyping and redefinitions for future access.
@@ -164,7 +166,7 @@ public class TypeAdapter extends NamespaceAdapter {
 	}
 
 	public void addImplicitGeneralType(EClass eClass, Type general) {
-		if (general != null && general != getTarget() && !isImplicitGeneralizationFor(eClass, general)) {
+		if (isAddImplicitGeneralTypes && general != null && general != getTarget() && !isImplicitGeneralizationFor(eClass, general)) {
 			implicitGeneralTypes.computeIfAbsent(eClass, e -> new ArrayList<>()).add(general);
 		}
 	}
@@ -196,20 +198,24 @@ public class TypeAdapter extends NamespaceAdapter {
 				map(Specialization::getGeneral).
 				collect(Collectors.toList());
 		for (Object eClass: implicitGeneralTypes.keySet().toArray()) {
-			List<Type> implicitGenerals = implicitGeneralTypes.get(eClass);
-			for (Object general: implicitGenerals.toArray()) {
-				Stream<Type> generals = Stream.concat(
-						implicitGenerals.stream().filter(type->type != general), 
-						explicitGenerals.stream());
-				if (generals.anyMatch(type->TypeUtil.conforms(type, (Type)general))) {
-					implicitGenerals.remove(general);
-					if (implicitGenerals.isEmpty()) {
-						implicitGeneralTypes.remove(eClass);
+			if (eClass != SysMLPackage.eINSTANCE.getRedefinition()) {
+				List<Type> implicitGenerals = implicitGeneralTypes.get(eClass);
+				for (Object general: implicitGenerals.toArray()) {
+					Stream<Type> generals = Stream.concat(
+							implicitGenerals.stream().filter(type->type != general), 
+							explicitGenerals.stream());
+					if (generals.anyMatch(type->TypeUtil.conforms(type, (Type)general))) {
+						implicitGenerals.remove(general);
+						if (implicitGenerals.isEmpty()) {
+							implicitGeneralTypes.remove(eClass);
+						}
 					}
 				}
 			}
 		}
 		
+		// Disallow adding more implicit general types once unnecessary ones have been removed.
+		isAddImplicitGeneralTypes = false;
 	}
 	
 	// Implicit Generalization Computation

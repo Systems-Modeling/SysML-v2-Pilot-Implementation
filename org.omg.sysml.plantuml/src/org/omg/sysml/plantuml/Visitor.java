@@ -34,6 +34,7 @@ import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Multiplicity;
 import org.omg.sysml.lang.sysml.MultiplicityRange;
+import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.util.SysMLSwitch;
@@ -320,23 +321,71 @@ public abstract class Visitor extends SysMLSwitch<String> {
         }
     }
 
-    protected void addFeatureTypeText(String prefix, Feature f) {
-        List<FeatureTyping> ts = f.getOwnedTyping();
-        if (ts.isEmpty()) return;
+    protected static String getFeatureName(Feature f) {
+        return f.getEffectiveName();
+    }
+
+    protected static String getNameWithNamespace(Feature f) {
+        String name = getFeatureName(f);
+        if (name == null) return null;
+        org.omg.sysml.lang.sysml.Namespace pkg = f.getOwningNamespace();
+        if (pkg == null) {
+            return name;
+        } else {
+            return pkg.getName() + "::" + name;
+        }
+    }
+
+    protected static boolean appendSubsettingFeature(StringBuilder sb, String prefix, Feature f) {
+        List<Subsetting> ss = f.getOwnedSubsetting();
+        if (ss.isEmpty()) return false;
         boolean added = false;
-        for (FeatureTyping ft: ts) {
+        for (Subsetting s: ss) {
+            if (s == null) continue;
+            if (s instanceof Redefinition) continue;
+            Feature sf = s.getSubsettedFeature();
+            if (sf == null) continue;
+            String name = getNameWithNamespace(sf);
+            if (name == null) continue;
+            if (added) {
+                sb.append(", ");
+            } else {
+                sb.append(prefix);
+                added = true;
+            }
+            sb.append(name);
+        }
+        return added;
+    }
+
+    protected static boolean appendFeatureType(StringBuilder sb, String prefix, Feature f) {
+        List<FeatureTyping> tt = f.getOwnedTyping();
+        if (tt.isEmpty()) return false;
+        boolean added = false;
+        for (FeatureTyping ft: tt) {
+            if (ft == null) continue;
             Type typ = ft.getType();
             if (typ == null) continue;
-            String name = typ.getName();
-            if (name == null) continue;
-            if (!added) {
-                append(prefix);
-                added = true;
+            String typeName = typ.getName();
+            if (typeName == null) continue;
+            if (added) {
+                sb.append(", ");
             } else {
-                append(", ");
+                sb.append(prefix);
+                added = true;
             }
-            append(name);
+            sb.append(typeName);
         }
+        return added;
+    }
+
+    protected void addFeatureTypeText(String prefix, Feature f) {
+        appendFeatureType(sb, prefix, f);
+    }
+
+    protected void addFeatureTypeAndSubsettedText(Feature f) {
+        appendFeatureType(sb, ": ", f);
+        appendSubsettingFeature(sb, ":> ", f);
     }
 
     private boolean outputPRelation(StringBuilder ss, PRelation pr) {

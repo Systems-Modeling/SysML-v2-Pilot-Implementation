@@ -42,6 +42,7 @@ import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.RequirementUsage;
 import org.omg.sysml.lang.sysml.ResultExpressionMembership;
 import org.omg.sysml.lang.sysml.SatisfyRequirementUsage;
+import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.Type;
 
 public abstract class VStructure extends VDefault {
@@ -103,15 +104,7 @@ public abstract class VStructure extends VDefault {
     private String redefinedFeatureText(Feature f) {
         Feature rf = getRedefinedFeature(f);
         if (rf == null) return null;
-        String name = getFeatureName(rf);
-        if (name == null) return null;
-
-        org.omg.sysml.lang.sysml.Namespace pkg = rf.getOwningNamespace();
-        if (pkg == null) {
-            return name;
-        } else {
-            return pkg.getName() + "::" + name;
-        }
+        return getNameWithNamespace(rf);
     }
 
     private boolean addRedefinedFeatureText(Feature f) {
@@ -129,7 +122,7 @@ public abstract class VStructure extends VDefault {
             append('^');
         }
         append(name);
-        addFeatureTypeText(": ", f);
+        addFeatureTypeAndSubsettedText(f);
         addFeatureMembershipText(f);
     }
     
@@ -160,32 +153,20 @@ public abstract class VStructure extends VDefault {
     }
 
     protected void addAnonymouseFeatureText(Feature f) {
-        addFeatureTypeText(": ", f);
+        addFeatureTypeAndSubsettedText(f);
         addFeatureMembershipText(f);
     }
-
 
     protected String extractTitleName(Element e) {
         String name = getNameAnyway(e, true);
         if (!(e instanceof Feature)) return name;
 
         Feature f = (Feature) e;
-        List<FeatureTyping> tt = f.getOwnedTyping();
-        if (tt.isEmpty()) return name;
         StringBuilder sb = new StringBuilder();
-        for (FeatureTyping ft: tt) {
-            if (sb.length() > 0) {
-                sb.append(", ");
-            }
-            if (ft == null) continue;
-            Type typ = ft.getType();
-            if (typ == null) continue;
-            String typeName = typ.getName();
-            if (typeName == null) continue;
-            sb.append(typeName);
-        }
-        if (sb.length() == 0) return name;
-        sb.insert(0, ": ");
+        boolean added = appendFeatureType(sb, ": ", f);
+        sb.append(' ');
+        added = appendSubsettingFeature(sb, ":> ", f) || added;
+        if (!added) return name;
         sb.insert(0, name);
         /*
         if (f instanceof Usage) {

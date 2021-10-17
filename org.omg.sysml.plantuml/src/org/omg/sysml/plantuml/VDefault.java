@@ -47,10 +47,6 @@ import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
 
 public class VDefault extends VTraverser {
-    protected static String getFeatureName(Feature f) {
-        return f.getEffectiveName();
-    }
-
     protected static String getName(Element e) {
         if (e instanceof Feature) {
             return getFeatureName((Feature) e);

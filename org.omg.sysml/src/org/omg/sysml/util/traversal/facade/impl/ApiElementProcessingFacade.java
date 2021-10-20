@@ -34,12 +34,12 @@ import org.omg.sysml.api.CommitApi;
 import org.omg.sysml.api.ProjectApi;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.model.Commit;
-import org.omg.sysml.model.ElementVersion;
+import org.omg.sysml.model.DataVersion;
 import okhttp3.OkHttpClient;
 
 /**
  * This is an element-processing facade that uses the SysML v2 REST API to write Elements to a repository.
- * A change set of ElementVersions is constructed during traversal of the model. Once the traversal is
+ * A change set of DataVersions is constructed during traversal of the model. Once the traversal is
  * completed, this change set can be committed to the repository.
  * 
  * @author Ed Seidewitz
@@ -121,7 +121,7 @@ public class ApiElementProcessingFacade extends JsonElementProcessingFacade {
 		try {
 			this.project = projectApi.postProject(this.project);
 			
-			List<ElementVersion> changes = this.getVersions();
+			List<DataVersion> changes = this.getVersions();
 			Commit commit = new Commit().change(changes);
 //			System.out.println(new org.omg.sysml.JSON().serialize(commit));
 			

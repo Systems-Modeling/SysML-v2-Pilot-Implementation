@@ -36,8 +36,8 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
-import org.omg.sysml.model.ElementIdentity;
-import org.omg.sysml.model.ElementVersion;
+import org.omg.sysml.model.DataIdentity;
+import org.omg.sysml.model.DataVersion;
 import org.omg.sysml.model.Identified;
 import org.omg.sysml.util.traversal.Traversal;
 import org.omg.sysml.util.traversal.facade.ElementProcessingFacade;
@@ -48,7 +48,7 @@ import com.google.gson.JsonElement;
 
 /**
  * This is an element-processing facade that uses the SysML v2 REST API client to export Elements to JSON.
- * A list of ElementVersions is constructed during traversal of the model. Once the traversal is
+ * A list of DataVersions is constructed during traversal of the model. Once the traversal is
  * completed, this change set can be exported to JSON.
  * 
  * @author Ed Seidewitz
@@ -67,7 +67,7 @@ public class JsonElementProcessingFacade implements ElementProcessingFacade {
 	protected int elementCount = 0;
 	protected int dotCount = 0;
 	
-	private final List<ElementVersion> versions = new ArrayList<>();
+	private final List<DataVersion> versions = new ArrayList<>();
 	private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 	
 	/**
@@ -125,21 +125,21 @@ public class JsonElementProcessingFacade implements ElementProcessingFacade {
 	}
 
 	/**
-	 * Return the collection of ElementVersions that have been created from
+	 * Return the collection of DataVersions that have been created from
 	 * processed model Elements.
 	 * 
-	 * @return	the collection of ElementVersions that have been created 
+	 * @return	the collection of DataVersions that have been created 
 	 */
-	List<ElementVersion> getVersions() {
+	List<DataVersion> getVersions() {
 		return Collections.unmodifiableList(this.versions);
 	}
 	
 	/**
-	 * Add an ElementVersion to the collection.
+	 * Add a DataVersion to the collection.
 	 * 
-	 * @param 	elementVersion	the ElementVersion to be added to the collection
+	 * @param 	elementVersion	the DataVersion to be added to the collection
 	 */
-	protected void addVersion(ElementVersion elementVersion) {
+	protected void addVersion(DataVersion elementVersion) {
 		this.versions.add(elementVersion);
 	}
 	
@@ -178,17 +178,17 @@ public class JsonElementProcessingFacade implements ElementProcessingFacade {
 	}
 
 	/**
-	 * Create an ElementVersion for the given model Element including the values of all its non-derived  
+	 * Create a DataVersion for the given model Element including the values of all its non-derived  
 	 * attributes (unless it is a library model element, in which case only its non-referential attribute values 
-	 * are included). If isIncludeDerived is true, also include derived attributes. The ID for the ElementVersion 
+	 * are included). If isIncludeDerived is true, also include derived attributes. The ID for the DataVersion 
 	 * uses the identifier from the model Element.
 	 * 
 	 * @param 	element				the source model Element as it is represented in Ecore
-	 * @return	an ElementVersion with the API representation of the given Element as its data
+	 * @return	a DataVersion with the API representation of the given Element as its data
 	 */
 	@SuppressWarnings("unchecked")
-	protected org.omg.sysml.model.ElementVersion createElementVersion(Element element) {
-		org.omg.sysml.model.Element apiElement = new org.omg.sysml.model.Element();
+	protected org.omg.sysml.model.DataVersion createElementVersion(Element element) {
+		org.omg.sysml.model.Data apiElement = new org.omg.sysml.model.Data();
 		EClass eClass = element.eClass();
 		apiElement.put("@type", eClass.getName());
 		boolean isLibraryElement = SysMLLibraryUtil.isModelLibrary(element.eResource());
@@ -206,8 +206,8 @@ public class JsonElementProcessingFacade implements ElementProcessingFacade {
 				apiElement.put(name, value);
 			}
 		}
-		return new ElementVersion().data(apiElement).
-				identity(new ElementIdentity().atId(UUID.fromString(element.getIdentifier())));
+		return new DataVersion().payload(apiElement).
+				identity(new DataIdentity().atId(UUID.fromString(element.getIdentifier())));
 	}
 	
 	/**
@@ -256,7 +256,7 @@ public class JsonElementProcessingFacade implements ElementProcessingFacade {
 	}
 	
 	/**
-	 * Post-process the given Element by creating an ElementVersion for it and adding that
+	 * Post-process the given Element by creating a DataVersion for it and adding that
 	 * to the change set being constructed. This is done as a post-processing step so that
 	 * derived references to library model Elements not included in the change set can be
 	 * excluded.

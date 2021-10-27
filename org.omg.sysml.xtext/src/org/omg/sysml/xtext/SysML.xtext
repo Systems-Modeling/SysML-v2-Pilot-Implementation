@@ -414,52 +414,6 @@ MultiplicityExpressionMember returns SysML::Membership :
 	ownedRelatedElement += ( LiteralExpression | FeatureReferenceExpression ) // ownedMemberElement = ( LiteralExpression | FeatureReferenceExpression )
 ;
 
-/* CONNECTORS */
-
-/* Connectors */
-
-ConnectorEndMember returns SysML::EndFeatureMembership :
-	( memberName = Name ':>' )? ownedRelatedElement += ConnectorEnd // ownedMemberFeature = ConnectorEnd
-;
-
-ConnectorEnd returns SysML::Feature :
-	ownedRelationship += OwnedSubsetting
-	( ownedRelationship += OwnedMultiplicity )?
-;
-
-/* Binding Connectors */
-
-BindingKeyword :
-	'bind'
-;
-
-BindingConnector returns SysML::BindingConnectorAsUsage :
-	UsagePrefix BindingKeyword 
-	BindingConnectorDeclaration DefinitionBody	
-;
-
-fragment BindingConnectorDeclaration returns SysML::BindingConnectorAsUsage :
-	( FeatureDeclaration 'as' )?
-	ownedRelationship += ConnectorEndMember '=' 
-	ownedRelationship += ConnectorEndMember
-;
-
-/* Successions */
-
-SuccessionKeyword :
-	'succession'
-;
-
-Succession returns SysML::SuccessionAsUsage :
-	UsagePrefix SuccessionKeyword SuccessionDeclaration DefinitionBody
-;
-
-fragment SuccessionDeclaration returns SysML::SuccessionAsUsage :
-	( FeatureDeclaration? 'first' )?
-	ownedRelationship += ConnectorEndMember 'then' 
-	ownedRelationship += ConnectorEndMember
-;
-
 /* DEPENDENCIES */
 
 Dependency returns SysML::Dependency :
@@ -939,6 +893,43 @@ PortUsage returns SysML::PortUsage :
 
 /* CONNECTIONS */
 
+/* Connectors */
+
+ConnectorEndMember returns SysML::EndFeatureMembership :
+	( memberName = Name ':>' )? ownedRelatedElement += ConnectorEnd // ownedMemberFeature = ConnectorEnd
+;
+
+ConnectorEnd returns SysML::Feature :
+	ownedRelationship += OwnedSubsetting
+	( ownedRelationship += OwnedMultiplicity )?
+;
+
+/* Binding Connectors */
+
+BindingKeyword :
+	'binding'
+;
+
+BindingConnector returns SysML::BindingConnectorAsUsage :
+	UsagePrefix ( BindingKeyword UsageDeclaration? )?
+	'bind' ownedRelationship += ConnectorEndMember 
+	'=' ownedRelationship += ConnectorEndMember 
+	DefinitionBody	
+;
+
+/* Successions */
+
+SuccessionKeyword:
+	'succession'
+;
+
+Succession returns SysML::SuccessionAsUsage :
+	UsagePrefix ( SuccessionKeyword UsageDeclaration? )? 
+	'first' ownedRelationship += ConnectorEndMember 
+	'then' ownedRelationship += ConnectorEndMember 
+	DefinitionBody
+;
+
 /* Connection Definitions */
 
 ConnectionKeyword :
@@ -963,7 +954,7 @@ ConnectionUsageKeyword :
 	ConnectionKeyword
 ;
 
-ConnectionUsage returns SysML::ConnectionUsage :
+ConnectionUsage returns SysML::ConnectionUsage :	 
 	OccurrenceUsagePrefix 
 	( ConnectionUsageKeyword UsageDeclaration? 
 	  ( ConnectorKeyword ConnectorPart )? 
@@ -1495,7 +1486,7 @@ DefaultTargetSuccession returns SysML::TransitionUsage :
 ;
 
 GuardedSuccession returns SysML::TransitionUsage :
-	SuccessionKeyword ( UsageDeclaration? 'first' )? 
+	( SuccessionKeyword UsageDeclaration )? 'first'
 	ownedRelationship += TransitionSourceMember 
 	ownedRelationship += EmptyParameterMember
 	ownedRelationship += GuardExpressionMember

@@ -581,7 +581,7 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getQualificationAccess().getGroup(), "rule__Qualification__Group__0");
 			builder.put(grammarAccess.getQualifiedNameAccess().getGroup(), "rule__QualifiedName__Group__0");
 			builder.put(grammarAccess.getIdentificationAccess().getHumanIdAssignment_0_1(), "rule__Identification__HumanIdAssignment_0_1");
-			builder.put(grammarAccess.getIdentificationAccess().getNameAssignment_0_2(), "rule__Identification__NameAssignment_0_2");
+			builder.put(grammarAccess.getIdentificationAccess().getNameAssignment_0_3(), "rule__Identification__NameAssignment_0_3");
 			builder.put(grammarAccess.getIdentificationAccess().getNameAssignment_1(), "rule__Identification__NameAssignment_1");
 			builder.put(grammarAccess.getCommentAccess().getOwnedRelationshipAssignment_0_0_3(), "rule__Comment__OwnedRelationshipAssignment_0_0_3");
 			builder.put(grammarAccess.getCommentAccess().getOwnedRelationshipAssignment_0_0_4_1(), "rule__Comment__OwnedRelationshipAssignment_0_0_4_1");

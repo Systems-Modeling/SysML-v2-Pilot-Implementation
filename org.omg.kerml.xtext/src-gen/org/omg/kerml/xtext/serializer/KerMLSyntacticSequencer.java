@@ -285,7 +285,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     ':' | ('typed' 'by')
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     humanId=Name (ambiguity) ownedRelationship+=MetadataTyping
+	 *     humanId=Name '>' (ambiguity) ownedRelationship+=MetadataTyping
 	 *     name=Name (ambiguity) ownedRelationship+=MetadataTyping
 	 */
 	protected void emit_AnnotatingFeatureDeclaration_ColonKeyword_0_1_0_or___TypedKeyword_0_1_1_0_ByKeyword_0_1_1_1__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
@@ -297,7 +297,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     '@' | 'metadata'
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) (ambiguity) 'id' humanId=Name
+	 *     (rule start) (ambiguity) '<' humanId=Name
 	 *     (rule start) (ambiguity) name=Name
 	 *     (rule start) (ambiguity) ownedRelationship+=MetadataTyping
 	 */
@@ -439,7 +439,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) 'interaction' (ambiguity) ownedRelationship+=ClassifierConjugation
 	 *     (rule start) 'predicate' (ambiguity) ownedRelationship+=ClassifierConjugation
 	 *     (rule start) 'struct' (ambiguity) ownedRelationship+=ClassifierConjugation
-	 *     humanId=Name (ambiguity) ownedRelationship+=ClassifierConjugation
+	 *     humanId=Name '>' (ambiguity) ownedRelationship+=ClassifierConjugation
 	 *     isAbstract?='abstract' 'assoc' 'struct' (ambiguity) ownedRelationship+=ClassifierConjugation
 	 *     isAbstract?='abstract' 'assoc' (ambiguity) ownedRelationship+=ClassifierConjugation
 	 *     isAbstract?='abstract' 'behavior' (ambiguity) ownedRelationship+=ClassifierConjugation
@@ -463,7 +463,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     'comment' | 'comment'
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) (ambiguity) 'id' humanId=Name
+	 *     (rule start) (ambiguity) '<' humanId=Name
 	 *     (rule start) (ambiguity) name=Name
 	 */
 	protected void emit_Comment_CommentKeyword_0_0_0_or_CommentKeyword_0_1_0_0(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
@@ -487,7 +487,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) 'type' (ambiguity) ownedRelationship+=OwnedConjugation
-	 *     humanId=Name (ambiguity) ownedRelationship+=OwnedConjugation
+	 *     humanId=Name '>' (ambiguity) ownedRelationship+=OwnedConjugation
 	 *     isAbstract?='abstract' 'type' (ambiguity) ownedRelationship+=OwnedConjugation
 	 *     isSufficient?='all' (ambiguity) ownedRelationship+=OwnedConjugation
 	 *     name=Name (ambiguity) ownedRelationship+=OwnedConjugation
@@ -538,6 +538,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) 'element' (ambiguity) (rule start)
+	 *     humanId=Name '>' (ambiguity) (rule end)
 	 *     humanId=Name (ambiguity) (rule end)
 	 *     name=Name (ambiguity) (rule end)
 	 */
@@ -570,7 +571,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     direction=FeatureDirection 'step' (ambiguity) ownedRelationship+=FeatureConjugation
 	 *     direction=FeatureDirection 'stream' (ambiguity) ownedRelationship+=FeatureConjugation
 	 *     direction=FeatureDirection 'succession' (ambiguity) ownedRelationship+=FeatureConjugation
-	 *     humanId=Name (ambiguity) ownedRelationship+=FeatureConjugation
+	 *     humanId=Name '>' (ambiguity) ownedRelationship+=FeatureConjugation
 	 *     isAbstract?='abstract' 'binding' (ambiguity) ownedRelationship+=FeatureConjugation
 	 *     isAbstract?='abstract' 'bool' (ambiguity) ownedRelationship+=FeatureConjugation
 	 *     isAbstract?='abstract' 'connector' (ambiguity) ownedRelationship+=FeatureConjugation
@@ -657,7 +658,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     'feature'?
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) (ambiguity) 'id' humanId=Name
+	 *     (rule start) (ambiguity) '<' humanId=Name
 	 *     (rule start) (ambiguity) (':' | ('typed' 'by')) ownedRelationship+=OwnedFeatureTyping
 	 *     (rule start) (ambiguity) (':>' | 'subsets') ownedRelationship+=OwnedSubsetting
 	 *     (rule start) (ambiguity) (':>>' | 'redefines') ownedRelationship+=OwnedRedefinition
@@ -667,7 +668,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) isSufficient?='all'
 	 *     (rule start) (ambiguity) name=Name
 	 *     (rule start) (ambiguity) ownedRelationship+=OwnedMultiplicity
-	 *     direction=FeatureDirection (ambiguity) 'id' humanId=Name
+	 *     direction=FeatureDirection (ambiguity) '<' humanId=Name
 	 *     direction=FeatureDirection (ambiguity) (':' | ('typed' 'by')) ownedRelationship+=OwnedFeatureTyping
 	 *     direction=FeatureDirection (ambiguity) (':>' | 'subsets') ownedRelationship+=OwnedSubsetting
 	 *     direction=FeatureDirection (ambiguity) (':>>' | 'redefines') ownedRelationship+=OwnedRedefinition
@@ -677,7 +678,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     direction=FeatureDirection (ambiguity) isSufficient?='all'
 	 *     direction=FeatureDirection (ambiguity) name=Name
 	 *     direction=FeatureDirection (ambiguity) ownedRelationship+=OwnedMultiplicity
-	 *     isAbstract?='abstract' (ambiguity) 'id' humanId=Name
+	 *     isAbstract?='abstract' (ambiguity) '<' humanId=Name
 	 *     isAbstract?='abstract' (ambiguity) (':' | ('typed' 'by')) ownedRelationship+=OwnedFeatureTyping
 	 *     isAbstract?='abstract' (ambiguity) (':>' | 'subsets') ownedRelationship+=OwnedSubsetting
 	 *     isAbstract?='abstract' (ambiguity) (':>>' | 'redefines') ownedRelationship+=OwnedRedefinition
@@ -687,7 +688,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isAbstract?='abstract' (ambiguity) isSufficient?='all'
 	 *     isAbstract?='abstract' (ambiguity) name=Name
 	 *     isAbstract?='abstract' (ambiguity) ownedRelationship+=OwnedMultiplicity
-	 *     isComposite?='composite' (ambiguity) 'id' humanId=Name
+	 *     isComposite?='composite' (ambiguity) '<' humanId=Name
 	 *     isComposite?='composite' (ambiguity) (':' | ('typed' 'by')) ownedRelationship+=OwnedFeatureTyping
 	 *     isComposite?='composite' (ambiguity) (':>' | 'subsets') ownedRelationship+=OwnedSubsetting
 	 *     isComposite?='composite' (ambiguity) (':>>' | 'redefines') ownedRelationship+=OwnedRedefinition
@@ -697,7 +698,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isComposite?='composite' (ambiguity) isSufficient?='all'
 	 *     isComposite?='composite' (ambiguity) name=Name
 	 *     isComposite?='composite' (ambiguity) ownedRelationship+=OwnedMultiplicity
-	 *     isEnd?='end' (ambiguity) 'id' humanId=Name
+	 *     isEnd?='end' (ambiguity) '<' humanId=Name
 	 *     isEnd?='end' (ambiguity) (':' | ('typed' 'by')) ownedRelationship+=OwnedFeatureTyping
 	 *     isEnd?='end' (ambiguity) (':>' | 'subsets') ownedRelationship+=OwnedSubsetting
 	 *     isEnd?='end' (ambiguity) (':>>' | 'redefines') ownedRelationship+=OwnedRedefinition
@@ -707,7 +708,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isEnd?='end' (ambiguity) isSufficient?='all'
 	 *     isEnd?='end' (ambiguity) name=Name
 	 *     isEnd?='end' (ambiguity) ownedRelationship+=OwnedMultiplicity
-	 *     isPortion?='portion' (ambiguity) 'id' humanId=Name
+	 *     isPortion?='portion' (ambiguity) '<' humanId=Name
 	 *     isPortion?='portion' (ambiguity) (':' | ('typed' 'by')) ownedRelationship+=OwnedFeatureTyping
 	 *     isPortion?='portion' (ambiguity) (':>' | 'subsets') ownedRelationship+=OwnedSubsetting
 	 *     isPortion?='portion' (ambiguity) (':>>' | 'redefines') ownedRelationship+=OwnedRedefinition
@@ -735,7 +736,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     direction=FeatureDirection 'bool' (ambiguity) (rule end)
 	 *     direction=FeatureDirection 'expr' (ambiguity) (rule end)
 	 *     direction=FeatureDirection 'inv' 'true'? (ambiguity) (rule end)
-	 *     humanId=Name (ambiguity) (rule end)
+	 *     humanId=Name '>' (ambiguity) (rule end)
 	 *     isAbstract?='abstract' 'bool' (ambiguity) (rule end)
 	 *     isAbstract?='abstract' 'expr' (ambiguity) (rule end)
 	 *     isAbstract?='abstract' 'inv' 'true'? (ambiguity) (rule end)
@@ -775,7 +776,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) 'inv' (ambiguity) '(' ')' ownedRelationship+=EmptyReturnParameterMember
 	 *     (rule start) 'inv' (ambiguity) '(' ')' ownedRelationship+=ReturnParameterMember
 	 *     (rule start) 'inv' (ambiguity) '(' ownedRelationship+=StepParameterMember
-	 *     (rule start) 'inv' (ambiguity) 'id' humanId=Name
+	 *     (rule start) 'inv' (ambiguity) '<' humanId=Name
 	 *     (rule start) 'inv' (ambiguity) '{' ownedRelationship+=AliasMember
 	 *     (rule start) 'inv' (ambiguity) '{' ownedRelationship+=FeatureMember
 	 *     (rule start) 'inv' (ambiguity) '{' ownedRelationship+=Import
@@ -796,7 +797,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     direction=FeatureDirection 'inv' (ambiguity) '(' ')' ownedRelationship+=EmptyReturnParameterMember
 	 *     direction=FeatureDirection 'inv' (ambiguity) '(' ')' ownedRelationship+=ReturnParameterMember
 	 *     direction=FeatureDirection 'inv' (ambiguity) '(' ownedRelationship+=StepParameterMember
-	 *     direction=FeatureDirection 'inv' (ambiguity) 'id' humanId=Name
+	 *     direction=FeatureDirection 'inv' (ambiguity) '<' humanId=Name
 	 *     direction=FeatureDirection 'inv' (ambiguity) '{' ownedRelationship+=AliasMember
 	 *     direction=FeatureDirection 'inv' (ambiguity) '{' ownedRelationship+=FeatureMember
 	 *     direction=FeatureDirection 'inv' (ambiguity) '{' ownedRelationship+=Import
@@ -817,7 +818,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isAbstract?='abstract' 'inv' (ambiguity) '(' ')' ownedRelationship+=EmptyReturnParameterMember
 	 *     isAbstract?='abstract' 'inv' (ambiguity) '(' ')' ownedRelationship+=ReturnParameterMember
 	 *     isAbstract?='abstract' 'inv' (ambiguity) '(' ownedRelationship+=StepParameterMember
-	 *     isAbstract?='abstract' 'inv' (ambiguity) 'id' humanId=Name
+	 *     isAbstract?='abstract' 'inv' (ambiguity) '<' humanId=Name
 	 *     isAbstract?='abstract' 'inv' (ambiguity) '{' ownedRelationship+=AliasMember
 	 *     isAbstract?='abstract' 'inv' (ambiguity) '{' ownedRelationship+=FeatureMember
 	 *     isAbstract?='abstract' 'inv' (ambiguity) '{' ownedRelationship+=Import
@@ -838,7 +839,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isComposite?='composite' 'inv' (ambiguity) '(' ')' ownedRelationship+=EmptyReturnParameterMember
 	 *     isComposite?='composite' 'inv' (ambiguity) '(' ')' ownedRelationship+=ReturnParameterMember
 	 *     isComposite?='composite' 'inv' (ambiguity) '(' ownedRelationship+=StepParameterMember
-	 *     isComposite?='composite' 'inv' (ambiguity) 'id' humanId=Name
+	 *     isComposite?='composite' 'inv' (ambiguity) '<' humanId=Name
 	 *     isComposite?='composite' 'inv' (ambiguity) '{' ownedRelationship+=AliasMember
 	 *     isComposite?='composite' 'inv' (ambiguity) '{' ownedRelationship+=FeatureMember
 	 *     isComposite?='composite' 'inv' (ambiguity) '{' ownedRelationship+=Import
@@ -859,7 +860,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isEnd?='end' 'inv' (ambiguity) '(' ')' ownedRelationship+=EmptyReturnParameterMember
 	 *     isEnd?='end' 'inv' (ambiguity) '(' ')' ownedRelationship+=ReturnParameterMember
 	 *     isEnd?='end' 'inv' (ambiguity) '(' ownedRelationship+=StepParameterMember
-	 *     isEnd?='end' 'inv' (ambiguity) 'id' humanId=Name
+	 *     isEnd?='end' 'inv' (ambiguity) '<' humanId=Name
 	 *     isEnd?='end' 'inv' (ambiguity) '{' ownedRelationship+=AliasMember
 	 *     isEnd?='end' 'inv' (ambiguity) '{' ownedRelationship+=FeatureMember
 	 *     isEnd?='end' 'inv' (ambiguity) '{' ownedRelationship+=Import
@@ -880,7 +881,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isPortion?='portion' 'inv' (ambiguity) '(' ')' ownedRelationship+=EmptyReturnParameterMember
 	 *     isPortion?='portion' 'inv' (ambiguity) '(' ')' ownedRelationship+=ReturnParameterMember
 	 *     isPortion?='portion' 'inv' (ambiguity) '(' ownedRelationship+=StepParameterMember
-	 *     isPortion?='portion' 'inv' (ambiguity) 'id' humanId=Name
+	 *     isPortion?='portion' 'inv' (ambiguity) '<' humanId=Name
 	 *     isPortion?='portion' 'inv' (ambiguity) '{' ownedRelationship+=AliasMember
 	 *     isPortion?='portion' 'inv' (ambiguity) '{' ownedRelationship+=FeatureMember
 	 *     isPortion?='portion' 'inv' (ambiguity) '{' ownedRelationship+=Import
@@ -931,7 +932,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) 'namespace' (ambiguity) (rule start)
-	 *     humanId=Name (ambiguity) (rule end)
+	 *     humanId=Name '>' (ambiguity) (rule end)
 	 *     name=Name (ambiguity) (rule end)
 	 */
 	protected void emit_NamespaceBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
@@ -978,7 +979,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) 'package' (ambiguity) (rule start)
-	 *     humanId=Name (ambiguity) (rule end)
+	 *     humanId=Name '>' (ambiguity) (rule end)
 	 *     name=Name (ambiguity) (rule end)
 	 */
 	protected void emit_PackageBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
@@ -990,7 +991,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     'feature'?
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) (ambiguity) 'id' humanId=Name
+	 *     (rule start) (ambiguity) '<' humanId=Name
 	 *     (rule start) (ambiguity) (':' | ('typed' 'by')) ownedRelationship+=OwnedFeatureTyping
 	 *     (rule start) (ambiguity) (':>' | 'subsets') ownedRelationship+=OwnedSubsetting
 	 *     (rule start) (ambiguity) (':>>' | 'redefines') ownedRelationship+=OwnedRedefinition
@@ -999,7 +1000,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) isSufficient?='all'
 	 *     (rule start) (ambiguity) name=Name
 	 *     (rule start) (ambiguity) ownedRelationship+=OwnedMultiplicity
-	 *     direction=FeatureDirection (ambiguity) 'id' humanId=Name
+	 *     direction=FeatureDirection (ambiguity) '<' humanId=Name
 	 *     direction=FeatureDirection (ambiguity) (':' | ('typed' 'by')) ownedRelationship+=OwnedFeatureTyping
 	 *     direction=FeatureDirection (ambiguity) (':>' | 'subsets') ownedRelationship+=OwnedSubsetting
 	 *     direction=FeatureDirection (ambiguity) (':>>' | 'redefines') ownedRelationship+=OwnedRedefinition
@@ -1049,7 +1050,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     direction=FeatureDirection 'step' (ambiguity) ownedRelationship+=OwnedRedefinition
 	 *     direction=FeatureDirection 'stream' (ambiguity) ownedRelationship+=OwnedRedefinition
 	 *     direction=FeatureDirection 'succession' (ambiguity) ownedRelationship+=OwnedRedefinition
-	 *     humanId=Name (ambiguity) ownedRelationship+=OwnedRedefinition
+	 *     humanId=Name '>' (ambiguity) ownedRelationship+=OwnedRedefinition
 	 *     isAbstract?='abstract' 'binding' (ambiguity) ownedRelationship+=OwnedRedefinition
 	 *     isAbstract?='abstract' 'bool' (ambiguity) ownedRelationship+=OwnedRedefinition
 	 *     isAbstract?='abstract' 'connector' (ambiguity) ownedRelationship+=OwnedRedefinition
@@ -1177,7 +1178,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) 'type' (ambiguity) ownedRelationship+=OwnedSpecialization
-	 *     humanId=Name (ambiguity) ownedRelationship+=OwnedSpecialization
+	 *     humanId=Name '>' (ambiguity) ownedRelationship+=OwnedSpecialization
 	 *     isAbstract?='abstract' 'type' (ambiguity) ownedRelationship+=OwnedSpecialization
 	 *     isSufficient?='all' (ambiguity) ownedRelationship+=OwnedSpecialization
 	 *     name=Name (ambiguity) ownedRelationship+=OwnedSpecialization
@@ -1259,7 +1260,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     direction=FeatureDirection 'step' (ambiguity) ownedRelationship+=OwnedSubsetting
 	 *     direction=FeatureDirection 'stream' (ambiguity) ownedRelationship+=OwnedSubsetting
 	 *     direction=FeatureDirection 'succession' (ambiguity) ownedRelationship+=OwnedSubsetting
-	 *     humanId=Name (ambiguity) ownedRelationship+=OwnedSubsetting
+	 *     humanId=Name '>' (ambiguity) ownedRelationship+=OwnedSubsetting
 	 *     isAbstract?='abstract' 'binding' (ambiguity) ownedRelationship+=OwnedSubsetting
 	 *     isAbstract?='abstract' 'bool' (ambiguity) ownedRelationship+=OwnedSubsetting
 	 *     isAbstract?='abstract' 'connector' (ambiguity) ownedRelationship+=OwnedSubsetting
@@ -1378,7 +1379,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) 'interaction' (ambiguity) ownedRelationship+=Ownedsubclassification
 	 *     (rule start) 'predicate' (ambiguity) ownedRelationship+=Ownedsubclassification
 	 *     (rule start) 'struct' (ambiguity) ownedRelationship+=Ownedsubclassification
-	 *     humanId=Name (ambiguity) ownedRelationship+=Ownedsubclassification
+	 *     humanId=Name '>' (ambiguity) ownedRelationship+=Ownedsubclassification
 	 *     isAbstract?='abstract' 'assoc' 'struct' (ambiguity) ownedRelationship+=Ownedsubclassification
 	 *     isAbstract?='abstract' 'assoc' (ambiguity) ownedRelationship+=Ownedsubclassification
 	 *     isAbstract?='abstract' 'behavior' (ambiguity) ownedRelationship+=Ownedsubclassification
@@ -1402,7 +1403,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     'rep' | 'rep'
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) (ambiguity) 'id' humanId=Name
+	 *     (rule start) (ambiguity) '<' humanId=Name
 	 *     (rule start) (ambiguity) name=Name
 	 */
 	protected void emit_TextualRepresentation_RepKeyword_0_0_0_or_RepKeyword_0_1_0_0(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
@@ -1439,7 +1440,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     direction=FeatureDirection 'connector' (ambiguity) (rule end)
 	 *     direction=FeatureDirection 'feature' (ambiguity) (rule end)
 	 *     direction=FeatureDirection 'step' (ambiguity) (rule end)
-	 *     humanId=Name (ambiguity) (rule end)
+	 *     humanId=Name '>' (ambiguity) (rule end)
 	 *     isAbstract?='abstract' 'assoc' 'struct' (ambiguity) (rule end)
 	 *     isAbstract?='abstract' 'assoc' (ambiguity) (rule end)
 	 *     isAbstract?='abstract' 'behavior' (ambiguity) (rule end)
@@ -1522,7 +1523,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     direction=FeatureDirection 'step' (ambiguity) ownedRelationship+=OwnedFeatureTyping
 	 *     direction=FeatureDirection 'stream' (ambiguity) ownedRelationship+=OwnedFeatureTyping
 	 *     direction=FeatureDirection 'succession' (ambiguity) ownedRelationship+=OwnedFeatureTyping
-	 *     humanId=Name (ambiguity) ownedRelationship+=OwnedFeatureTyping
+	 *     humanId=Name '>' (ambiguity) ownedRelationship+=OwnedFeatureTyping
 	 *     isAbstract?='abstract' 'binding' (ambiguity) ownedRelationship+=OwnedFeatureTyping
 	 *     isAbstract?='abstract' 'bool' (ambiguity) ownedRelationship+=OwnedFeatureTyping
 	 *     isAbstract?='abstract' 'connector' (ambiguity) ownedRelationship+=OwnedFeatureTyping

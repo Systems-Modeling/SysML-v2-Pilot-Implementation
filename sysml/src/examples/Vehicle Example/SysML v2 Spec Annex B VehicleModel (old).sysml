@@ -499,23 +499,23 @@ package VehicleModel {
 					part redefines vehicle_b;
 					requirement vehicleSpecification {
 						subject vehicle: Vehicle;
-						requirement id '1' vehicleMassRequirement: MassRequirement {
+						requirement <'1'> vehicleMassRequirement: MassRequirement {
 							doc /* The total mass of a vehicle shall be less than or equal
 							 * to the required mass.*/
 							/* Assume total mass includes a full tank of gas*/
 							attribute redefines massRequired = 2000 [kg];
 							attribute redefines massActual = vehicle.mass;
 						}
-						requirement id '2' vehicleFuelEconomyRequirements {
+						requirement <'2'> vehicleFuelEconomyRequirements {
 							doc /* fuel economy requirements group */
 							attribute assumedCargoMass :> ISQ::mass;
-							requirement id '2_1' cityFuelEconomyRequirement: FuelEconomyRequirement {
+							requirement <'2_1'> cityFuelEconomyRequirement: FuelEconomyRequirement {
 								redefines requiredFuelEconomy = 25 [km/L];
 								assume constraint {
 									assumedCargoMass >= 500 [kg]
 								}
 							}
-							requirement id ' 2_2' highwayFuelEconomyRequirement: FuelEconomyRequirement {
+							requirement <'2_2'> highwayFuelEconomyRequirement: FuelEconomyRequirement {
 								redefines requiredFuelEconomy = 30 [km/L];
 								attribute assumedCargoMass :> ISQ::mass;
 								assume constraint {

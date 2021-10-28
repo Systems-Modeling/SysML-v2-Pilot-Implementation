@@ -51,31 +51,32 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.Identification");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
-		private final Keyword cIdKeyword_0_0 = (Keyword)cGroup_0.eContents().get(0);
+		private final Keyword cLessThanSignKeyword_0_0 = (Keyword)cGroup_0.eContents().get(0);
 		private final Assignment cHumanIdAssignment_0_1 = (Assignment)cGroup_0.eContents().get(1);
 		private final RuleCall cHumanIdNameParserRuleCall_0_1_0 = (RuleCall)cHumanIdAssignment_0_1.eContents().get(0);
-		private final Assignment cNameAssignment_0_2 = (Assignment)cGroup_0.eContents().get(2);
-		private final RuleCall cNameNameParserRuleCall_0_2_0 = (RuleCall)cNameAssignment_0_2.eContents().get(0);
+		private final Keyword cGreaterThanSignKeyword_0_2 = (Keyword)cGroup_0.eContents().get(2);
+		private final Assignment cNameAssignment_0_3 = (Assignment)cGroup_0.eContents().get(3);
+		private final RuleCall cNameNameParserRuleCall_0_3_0 = (RuleCall)cNameAssignment_0_3.eContents().get(0);
 		private final Assignment cNameAssignment_1 = (Assignment)cAlternatives.eContents().get(1);
 		private final RuleCall cNameNameParserRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
 		
 		///* ELEMENTS */
 		///* Elements */
 		//fragment Identification returns SysML::Element :
-		//      'id' humanId = Name ( name = Name )?
+		//      '<' humanId = Name '>' ( name = Name )?
 		//    | name = Name
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//  'id' humanId = Name ( name = Name )?
+		//  '<' humanId = Name '>' ( name = Name )?
 		//| name = Name
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
-		//'id' humanId = Name ( name = Name )?
+		//'<' humanId = Name '>' ( name = Name )?
 		public Group getGroup_0() { return cGroup_0; }
 		
-		//'id'
-		public Keyword getIdKeyword_0_0() { return cIdKeyword_0_0; }
+		//'<'
+		public Keyword getLessThanSignKeyword_0_0() { return cLessThanSignKeyword_0_0; }
 		
 		//humanId = Name
 		public Assignment getHumanIdAssignment_0_1() { return cHumanIdAssignment_0_1; }
@@ -83,11 +84,14 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//Name
 		public RuleCall getHumanIdNameParserRuleCall_0_1_0() { return cHumanIdNameParserRuleCall_0_1_0; }
 		
+		//'>'
+		public Keyword getGreaterThanSignKeyword_0_2() { return cGreaterThanSignKeyword_0_2; }
+		
 		//( name = Name )?
-		public Assignment getNameAssignment_0_2() { return cNameAssignment_0_2; }
+		public Assignment getNameAssignment_0_3() { return cNameAssignment_0_3; }
 		
 		//Name
-		public RuleCall getNameNameParserRuleCall_0_2_0() { return cNameNameParserRuleCall_0_2_0; }
+		public RuleCall getNameNameParserRuleCall_0_3_0() { return cNameNameParserRuleCall_0_3_0; }
 		
 		//name = Name
 		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
@@ -710,34 +714,38 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cDocKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final Keyword cIdKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
+		private final Keyword cLessThanSignKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
 		private final Assignment cHumanIdAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
 		private final RuleCall cHumanIdNameParserRuleCall_1_1_0 = (RuleCall)cHumanIdAssignment_1_1.eContents().get(0);
+		private final Keyword cGreaterThanSignKeyword_1_2 = (Keyword)cGroup_1.eContents().get(2);
 		private final Assignment cBodyAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cBodyREGULAR_COMMENTTerminalRuleCall_2_0 = (RuleCall)cBodyAssignment_2.eContents().get(0);
 		
 		//DocumentationComment returns SysML::Comment :
-		//    'doc' ( 'id' humanId = Name )? body = REGULAR_COMMENT
+		//    'doc' ( '<' humanId = Name '>' )? body = REGULAR_COMMENT
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'doc' ( 'id' humanId = Name )? body = REGULAR_COMMENT
+		//'doc' ( '<' humanId = Name '>' )? body = REGULAR_COMMENT
 		public Group getGroup() { return cGroup; }
 		
 		//'doc'
 		public Keyword getDocKeyword_0() { return cDocKeyword_0; }
 		
-		//( 'id' humanId = Name )?
+		//( '<' humanId = Name '>' )?
 		public Group getGroup_1() { return cGroup_1; }
 		
-		//'id'
-		public Keyword getIdKeyword_1_0() { return cIdKeyword_1_0; }
+		//'<'
+		public Keyword getLessThanSignKeyword_1_0() { return cLessThanSignKeyword_1_0; }
 		
 		//humanId = Name
 		public Assignment getHumanIdAssignment_1_1() { return cHumanIdAssignment_1_1; }
 		
 		//Name
 		public RuleCall getHumanIdNameParserRuleCall_1_1_0() { return cHumanIdNameParserRuleCall_1_1_0; }
+		
+		//'>'
+		public Keyword getGreaterThanSignKeyword_1_2() { return cGreaterThanSignKeyword_1_2; }
 		
 		//body = REGULAR_COMMENT
 		public Assignment getBodyAssignment_2() { return cBodyAssignment_2; }
@@ -767,37 +775,41 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Group cGroup_0 = (Group)cGroup.eContents().get(0);
 		private final Keyword cDocKeyword_0_0 = (Keyword)cGroup_0.eContents().get(0);
 		private final Group cGroup_0_1 = (Group)cGroup_0.eContents().get(1);
-		private final Keyword cIdKeyword_0_1_0 = (Keyword)cGroup_0_1.eContents().get(0);
+		private final Keyword cLessThanSignKeyword_0_1_0 = (Keyword)cGroup_0_1.eContents().get(0);
 		private final Assignment cHumanIdAssignment_0_1_1 = (Assignment)cGroup_0_1.eContents().get(1);
 		private final RuleCall cHumanIdNameParserRuleCall_0_1_1_0 = (RuleCall)cHumanIdAssignment_0_1_1.eContents().get(0);
+		private final Keyword cGreaterThanSignKeyword_0_1_2 = (Keyword)cGroup_0_1.eContents().get(2);
 		private final Assignment cBodyAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cBodyDOCUMENTATION_COMMENTTerminalRuleCall_1_0 = (RuleCall)cBodyAssignment_1.eContents().get(0);
 		
 		//PrefixDocumentationComment returns SysML::Comment :
-		//    ( 'doc' ( 'id' humanId = Name )? )? body = DOCUMENTATION_COMMENT
+		//    ( 'doc' ( '<' humanId = Name '>' )? )? body = DOCUMENTATION_COMMENT
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//( 'doc' ( 'id' humanId = Name )? )? body = DOCUMENTATION_COMMENT
+		//( 'doc' ( '<' humanId = Name '>' )? )? body = DOCUMENTATION_COMMENT
 		public Group getGroup() { return cGroup; }
 		
-		//( 'doc' ( 'id' humanId = Name )? )?
+		//( 'doc' ( '<' humanId = Name '>' )? )?
 		public Group getGroup_0() { return cGroup_0; }
 		
 		//'doc'
 		public Keyword getDocKeyword_0_0() { return cDocKeyword_0_0; }
 		
-		//( 'id' humanId = Name )?
+		//( '<' humanId = Name '>' )?
 		public Group getGroup_0_1() { return cGroup_0_1; }
 		
-		//'id'
-		public Keyword getIdKeyword_0_1_0() { return cIdKeyword_0_1_0; }
+		//'<'
+		public Keyword getLessThanSignKeyword_0_1_0() { return cLessThanSignKeyword_0_1_0; }
 		
 		//humanId = Name
 		public Assignment getHumanIdAssignment_0_1_1() { return cHumanIdAssignment_0_1_1; }
 		
 		//Name
 		public RuleCall getHumanIdNameParserRuleCall_0_1_1_0() { return cHumanIdNameParserRuleCall_0_1_1_0; }
+		
+		//'>'
+		public Keyword getGreaterThanSignKeyword_0_1_2() { return cGreaterThanSignKeyword_0_1_2; }
 		
 		//body = DOCUMENTATION_COMMENT
 		public Assignment getBodyAssignment_1() { return cBodyAssignment_1; }
@@ -7370,7 +7382,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	///* ELEMENTS */
 	///* Elements */
 	//fragment Identification returns SysML::Element :
-	//      'id' humanId = Name ( name = Name )?
+	//      '<' humanId = Name '>' ( name = Name )?
 	//    | name = Name
 	//;
 	public IdentificationElements getIdentificationAccess() {
@@ -7599,7 +7611,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//DocumentationComment returns SysML::Comment :
-	//    'doc' ( 'id' humanId = Name )? body = REGULAR_COMMENT
+	//    'doc' ( '<' humanId = Name '>' )? body = REGULAR_COMMENT
 	//;
 	public DocumentationCommentElements getDocumentationCommentAccess() {
 		return pDocumentationComment;
@@ -7621,7 +7633,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//PrefixDocumentationComment returns SysML::Comment :
-	//    ( 'doc' ( 'id' humanId = Name )? )? body = DOCUMENTATION_COMMENT
+	//    ( 'doc' ( '<' humanId = Name '>' )? )? body = DOCUMENTATION_COMMENT
 	//;
 	public PrefixDocumentationCommentElements getPrefixDocumentationCommentAccess() {
 		return pPrefixDocumentationComment;

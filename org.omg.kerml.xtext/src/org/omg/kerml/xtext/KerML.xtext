@@ -44,7 +44,7 @@ RootNamespace returns SysML::Namespace :
 /* Elements */
 
 fragment Identification returns SysML::Element :
-	  'id' humanId = Name ( name = Name )?
+	  '<' humanId = Name '>' ( name = Name )?
 	| name = Name
 ;
 
@@ -144,7 +144,7 @@ OwnedDocumentation returns SysML::Documentation :
 ;
 
 DocumentationComment returns SysML::Comment :
-	'doc' ( 'id' humanId = Name )? body = REGULAR_COMMENT
+	'doc' ( '<' humanId = Name '>' )? body = REGULAR_COMMENT
 ;
 
 PrefixDocumentation returns SysML::Annotation :
@@ -152,7 +152,7 @@ PrefixDocumentation returns SysML::Annotation :
 ;
 
 PrefixDocumentationComment returns SysML::Comment :
-	( 'doc' ( 'id' humanId = Name )? )? body = DOCUMENTATION_COMMENT
+	( 'doc' ( '<' humanId = Name '>' )? )? body = DOCUMENTATION_COMMENT
 ;
 
 /* Textual Representation */

@@ -10064,9 +10064,9 @@ ruleItemFlow returns [EObject current=null]
 			$current = $this_FeaturePrefix_0.current;
 			afterParserOrEnumRuleCall();
 		}
-		otherlv_1='stream'
+		otherlv_1='flow'
 		{
-			newLeafNode(otherlv_1, grammarAccess.getItemFlowAccess().getStreamKeyword_1());
+			newLeafNode(otherlv_1, grammarAccess.getItemFlowAccess().getFlowKeyword_1());
 		}
 		{
 			if ($current==null) {
@@ -10120,30 +10120,34 @@ ruleSuccessionItemFlow returns [EObject current=null]
 			$current = $this_FeaturePrefix_0.current;
 			afterParserOrEnumRuleCall();
 		}
-		otherlv_1='flow'
+		otherlv_1='succession'
 		{
-			newLeafNode(otherlv_1, grammarAccess.getSuccessionItemFlowAccess().getFlowKeyword_1());
+			newLeafNode(otherlv_1, grammarAccess.getSuccessionItemFlowAccess().getSuccessionKeyword_1());
+		}
+		otherlv_2='flow'
+		{
+			newLeafNode(otherlv_2, grammarAccess.getSuccessionItemFlowAccess().getFlowKeyword_2());
 		}
 		{
 			if ($current==null) {
 				$current = createModelElement(grammarAccess.getSuccessionItemFlowRule());
 			}
-			newCompositeNode(grammarAccess.getSuccessionItemFlowAccess().getItemFlowDeclarationParserRuleCall_2());
+			newCompositeNode(grammarAccess.getSuccessionItemFlowAccess().getItemFlowDeclarationParserRuleCall_3());
 		}
-		this_ItemFlowDeclaration_2=ruleItemFlowDeclaration[$current]
+		this_ItemFlowDeclaration_3=ruleItemFlowDeclaration[$current]
 		{
-			$current = $this_ItemFlowDeclaration_2.current;
+			$current = $this_ItemFlowDeclaration_3.current;
 			afterParserOrEnumRuleCall();
 		}
 		{
 			if ($current==null) {
 				$current = createModelElement(grammarAccess.getSuccessionItemFlowRule());
 			}
-			newCompositeNode(grammarAccess.getSuccessionItemFlowAccess().getTypeBodyParserRuleCall_3());
+			newCompositeNode(grammarAccess.getSuccessionItemFlowAccess().getTypeBodyParserRuleCall_4());
 		}
-		this_TypeBody_3=ruleTypeBody[$current]
+		this_TypeBody_4=ruleTypeBody[$current]
 		{
-			$current = $this_TypeBody_3.current;
+			$current = $this_TypeBody_4.current;
 			afterParserOrEnumRuleCall();
 		}
 	)

@@ -5391,7 +5391,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.MessageKeyword");
 		private final Keyword cMessageKeyword = (Keyword)rule.eContents().get(1);
 		
-		///* INTERACTIONS */
+		///* FLOW CONNECTIONS */
 		///* Messages */
 		//MessageKeyword :
 		//    'message'
@@ -5487,16 +5487,16 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	public class FlowConnectionKeywordElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.FlowConnectionKeyword");
-		private final Keyword cStreamKeyword = (Keyword)rule.eContents().get(1);
+		private final Keyword cFlowKeyword = (Keyword)rule.eContents().get(1);
 		
 		///* Flow Connection Usages */
 		//FlowConnectionKeyword :
-		//    'stream'
+		//    'flow'
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'stream'
-		public Keyword getStreamKeyword() { return cStreamKeyword; }
+		//'flow'
+		public Keyword getFlowKeyword() { return cFlowKeyword; }
 	}
 	public class FlowConnectionUsageElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.FlowConnectionUsage");
@@ -5530,15 +5530,23 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	public class SuccessionFlowConnectionKeywordElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.SuccessionFlowConnectionKeyword");
-		private final Keyword cFlowKeyword = (Keyword)rule.eContents().get(1);
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final RuleCall cSuccessionKeywordParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
+		private final RuleCall cFlowConnectionKeywordParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
 		
 		//SuccessionFlowConnectionKeyword :
-		//    'flow'
+		//    SuccessionKeyword FlowConnectionKeyword
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'flow'
-		public Keyword getFlowKeyword() { return cFlowKeyword; }
+		//SuccessionKeyword FlowConnectionKeyword
+		public Group getGroup() { return cGroup; }
+		
+		//SuccessionKeyword
+		public RuleCall getSuccessionKeywordParserRuleCall_0() { return cSuccessionKeywordParserRuleCall_0; }
+		
+		//FlowConnectionKeyword
+		public RuleCall getFlowConnectionKeywordParserRuleCall_1() { return cFlowConnectionKeywordParserRuleCall_1; }
 	}
 	public class SuccessionFlowConnectionUsageElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.SuccessionFlowConnectionUsage");
@@ -16158,7 +16166,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		return getEmptySourceEndAccess().getRule();
 	}
 	
-	///* INTERACTIONS */
+	///* FLOW CONNECTIONS */
 	///* Messages */
 	//MessageKeyword :
 	//    'message'
@@ -16197,7 +16205,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	
 	///* Flow Connection Usages */
 	//FlowConnectionKeyword :
-	//    'stream'
+	//    'flow'
 	//;
 	public FlowConnectionKeywordElements getFlowConnectionKeywordAccess() {
 		return pFlowConnectionKeyword;
@@ -16220,7 +16228,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//SuccessionFlowConnectionKeyword :
-	//    'flow'
+	//    SuccessionKeyword FlowConnectionKeyword
 	//;
 	public SuccessionFlowConnectionKeywordElements getSuccessionFlowConnectionKeywordAccess() {
 		return pSuccessionFlowConnectionKeyword;

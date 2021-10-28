@@ -489,13 +489,13 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	
 	/**
 	 * FlowConnectionKeyword :
-	 * 	'stream'
+	 * 	'flow'
 	 * ;
 	 */
 	protected String getFlowConnectionKeywordToken(EObject semanticObject, RuleCall ruleCall, INode node) {
 		if (node != null)
 			return getTokenText(node);
-		return "stream";
+		return "flow";
 	}
 	
 	/**
@@ -731,13 +731,13 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	
 	/**
 	 * SuccessionFlowConnectionKeyword :
-	 * 	'flow'
+	 * 	SuccessionKeyword FlowConnectionKeyword
 	 * ;
 	 */
 	protected String getSuccessionFlowConnectionKeywordToken(EObject semanticObject, RuleCall ruleCall, INode node) {
 		if (node != null)
 			return getTokenText(node);
-		return "flow";
+		return "succession flow";
 	}
 	
 	/**

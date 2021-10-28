@@ -9230,10 +9230,10 @@ ruleFlowConnectionKeyword returns [AntlrDatatypeRuleToken current=new AntlrDatat
 @after {
 	leaveRule();
 }:
-	kw='stream'
+	kw='flow'
 	{
 		$current.merge(kw);
-		newLeafNode(kw, grammarAccess.getFlowConnectionKeywordAccess().getStreamKeyword());
+		newLeafNode(kw, grammarAccess.getFlowConnectionKeywordAccess().getFlowKeyword());
 	}
 ;
 
@@ -9311,11 +9311,28 @@ ruleSuccessionFlowConnectionKeyword returns [AntlrDatatypeRuleToken current=new 
 @after {
 	leaveRule();
 }:
-	kw='flow'
-	{
-		$current.merge(kw);
-		newLeafNode(kw, grammarAccess.getSuccessionFlowConnectionKeywordAccess().getFlowKeyword());
-	}
+	(
+		{
+			newCompositeNode(grammarAccess.getSuccessionFlowConnectionKeywordAccess().getSuccessionKeywordParserRuleCall_0());
+		}
+		this_SuccessionKeyword_0=ruleSuccessionKeyword
+		{
+			$current.merge(this_SuccessionKeyword_0);
+		}
+		{
+			afterParserOrEnumRuleCall();
+		}
+		{
+			newCompositeNode(grammarAccess.getSuccessionFlowConnectionKeywordAccess().getFlowConnectionKeywordParserRuleCall_1());
+		}
+		this_FlowConnectionKeyword_1=ruleFlowConnectionKeyword
+		{
+			$current.merge(this_FlowConnectionKeyword_1);
+		}
+		{
+			afterParserOrEnumRuleCall();
+		}
+	)
 ;
 
 // Entry rule entryRuleSuccessionFlowConnectionUsage

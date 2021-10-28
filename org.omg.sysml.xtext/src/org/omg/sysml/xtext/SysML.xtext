@@ -985,7 +985,7 @@ EmptySourceEnd returns SysML::Feature :
 	{SysML::SourceEnd}
 ;
 
-/* INTERACTIONS */
+/* FLOW CONNECTIONS */
 
 /* Messages */
 
@@ -1006,7 +1006,7 @@ fragment MessageDeclaration returns SysML::FlowConnectionUsage :
 /* Flow Connection Usages */
 
 FlowConnectionKeyword :
-	'stream'
+	'flow'
 ;
 
 FlowConnectionUsage returns SysML::FlowConnectionUsage :
@@ -1015,7 +1015,7 @@ FlowConnectionUsage returns SysML::FlowConnectionUsage :
 ;
 
 SuccessionFlowConnectionKeyword :
-	'flow'
+	SuccessionKeyword FlowConnectionKeyword
 ;
 
 SuccessionFlowConnectionUsage returns SysML::SuccessionFlowConnectionUsage :

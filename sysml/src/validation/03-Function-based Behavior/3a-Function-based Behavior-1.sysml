@@ -57,12 +57,12 @@ package '3a-Function-based Behavior-1' {
 			);
 			
 			/**
-			 * A stream is a connection between two actions that moves items from
+			 * A flow is a connection between two actions that streams items from
 			 * an output parameter of one action to an input parameter of the other.
 			 * Note that streaming is a property of the connection, not the
 			 * actions or their parameters.
 			 */
-			stream 'generate torque'.engineTorque 
+			flow 'generate torque'.engineTorque 
 			    to 'amplify torque'.engineTorque;
 			
 			action 'amplify torque': 'Amplify Torque'(
@@ -70,7 +70,7 @@ package '3a-Function-based Behavior-1' {
 				out transmissionTorque: Torque
 			);
 			
-			stream 'amplify torque'.transmissionTorque 
+			flow 'amplify torque'.transmissionTorque 
 			    to 'transfer torque'.transmissionTorque;
 			
 			action 'transfer torque': 'Transfer Torque'(
@@ -78,7 +78,7 @@ package '3a-Function-based Behavior-1' {
 				out driveshaftTorque: Torque
 			);
 			
-			stream 'transfer torque'.driveshaftTorque 
+			flow 'transfer torque'.driveshaftTorque 
 			    to 'distribute torque'.driveshaftTorque;
 			
 			action 'distribute torque': 'Distribute Torque'(

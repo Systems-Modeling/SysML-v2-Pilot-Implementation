@@ -46,17 +46,17 @@ package '3a-Function-based Behavior-2' {
 			 * There is also a shorthand for streaming into an input parameter.
 			 */
 			action 'amplify torque': 'Amplify Torque' {
-				in engineTorque stream from 'generate torque'.engineTorque; 
+				in engineTorque flow from 'generate torque'.engineTorque; 
 				out transmissionTorque;
 			}
 			
 			action 'transfer torque': 'Transfer Torque' {
-				in transmissionTorque stream from 'amplify torque'.transmissionTorque; 
+				in transmissionTorque flow from 'amplify torque'.transmissionTorque; 
 				out driveshaftTorque;
 			}
 						
 			action 'distribute torque': 'Distribute Torque' {
-				in driveshaftTorque stream from 'transfer torque'.driveshaftTorque; 
+				in driveshaftTorque flow from 'transfer torque'.driveshaftTorque; 
 				out wheelTorque1 = 'distribute torque'::wheelTorque1;
 				out wheelTorque2 = 'distribute torque'::wheelTorque2;
 			}

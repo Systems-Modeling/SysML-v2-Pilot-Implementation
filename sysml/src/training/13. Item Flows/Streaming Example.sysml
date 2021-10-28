@@ -12,11 +12,11 @@ package 'Streaming Example' {
 		part tankAssy : FuelTankAssembly;
 		part eng : Engine;
 		
-		stream of Fuel
+		flow of Fuel
 		  from tankAssy.fuelTankPort.fuelSupply
 			to eng.engineFuelPort.fuelSupply;
 			
-		stream of Fuel
+		flow of Fuel
 		  from eng.engineFuelPort.fuelReturn
 			to tankAssy.fuelTankPort.fuelReturn;
 	} 

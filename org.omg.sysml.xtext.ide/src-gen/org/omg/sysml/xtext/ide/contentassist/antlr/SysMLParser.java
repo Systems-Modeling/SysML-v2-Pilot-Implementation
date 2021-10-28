@@ -305,6 +305,7 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getMessageDeclarationAccess().getGroup_1(), "rule__MessageDeclaration__Group_1__0");
 			builder.put(grammarAccess.getMessageDeclarationAccess().getGroup_2_0(), "rule__MessageDeclaration__Group_2_0__0");
 			builder.put(grammarAccess.getFlowConnectionUsageAccess().getGroup(), "rule__FlowConnectionUsage__Group__0");
+			builder.put(grammarAccess.getSuccessionFlowConnectionKeywordAccess().getGroup(), "rule__SuccessionFlowConnectionKeyword__Group__0");
 			builder.put(grammarAccess.getSuccessionFlowConnectionUsageAccess().getGroup(), "rule__SuccessionFlowConnectionUsage__Group__0");
 			builder.put(grammarAccess.getFlowConnectionDeclarationAccess().getGroup(), "rule__FlowConnectionDeclaration__Group__0");
 			builder.put(grammarAccess.getFlowConnectionDeclarationAccess().getGroup_0_0(), "rule__FlowConnectionDeclaration__Group_0_0__0");

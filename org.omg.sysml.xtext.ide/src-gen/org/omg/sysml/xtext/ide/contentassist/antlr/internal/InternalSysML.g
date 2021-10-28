@@ -3846,9 +3846,9 @@ ruleFlowConnectionKeyword
 	}
 	:
 	(
-		{ before(grammarAccess.getFlowConnectionKeywordAccess().getStreamKeyword()); }
-		'stream'
-		{ after(grammarAccess.getFlowConnectionKeywordAccess().getStreamKeyword()); }
+		{ before(grammarAccess.getFlowConnectionKeywordAccess().getFlowKeyword()); }
+		'flow'
+		{ after(grammarAccess.getFlowConnectionKeywordAccess().getFlowKeyword()); }
 	)
 ;
 finally {
@@ -3896,9 +3896,9 @@ ruleSuccessionFlowConnectionKeyword
 	}
 	:
 	(
-		{ before(grammarAccess.getSuccessionFlowConnectionKeywordAccess().getFlowKeyword()); }
-		'flow'
-		{ after(grammarAccess.getSuccessionFlowConnectionKeywordAccess().getFlowKeyword()); }
+		{ before(grammarAccess.getSuccessionFlowConnectionKeywordAccess().getGroup()); }
+		(rule__SuccessionFlowConnectionKeyword__Group__0)
+		{ after(grammarAccess.getSuccessionFlowConnectionKeywordAccess().getGroup()); }
 	)
 ;
 finally {
@@ -24971,6 +24971,60 @@ rule__FlowConnectionUsage__Group__3__Impl
 	{ before(grammarAccess.getFlowConnectionUsageAccess().getDefinitionBodyParserRuleCall_3()); }
 	ruleDefinitionBody
 	{ after(grammarAccess.getFlowConnectionUsageAccess().getDefinitionBodyParserRuleCall_3()); }
+)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+
+rule__SuccessionFlowConnectionKeyword__Group__0
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	rule__SuccessionFlowConnectionKeyword__Group__0__Impl
+	rule__SuccessionFlowConnectionKeyword__Group__1
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__SuccessionFlowConnectionKeyword__Group__0__Impl
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+(
+	{ before(grammarAccess.getSuccessionFlowConnectionKeywordAccess().getSuccessionKeywordParserRuleCall_0()); }
+	ruleSuccessionKeyword
+	{ after(grammarAccess.getSuccessionFlowConnectionKeywordAccess().getSuccessionKeywordParserRuleCall_0()); }
+)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__SuccessionFlowConnectionKeyword__Group__1
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	rule__SuccessionFlowConnectionKeyword__Group__1__Impl
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__SuccessionFlowConnectionKeyword__Group__1__Impl
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+(
+	{ before(grammarAccess.getSuccessionFlowConnectionKeywordAccess().getFlowConnectionKeywordParserRuleCall_1()); }
+	ruleFlowConnectionKeyword
+	{ after(grammarAccess.getSuccessionFlowConnectionKeywordAccess().getFlowConnectionKeywordParserRuleCall_1()); }
 )
 ;
 finally {

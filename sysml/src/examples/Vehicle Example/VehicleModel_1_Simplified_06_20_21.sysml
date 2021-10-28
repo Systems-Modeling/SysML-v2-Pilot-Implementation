@@ -199,7 +199,7 @@ package sfriedenthal_VehicleModel_1_simplified{
                 end fuelInPort : ~FuelPort {
                     in item :>> fuel;
                 }
-                stream fuelOutPort.fuel to fuelInPort.fuel;
+                flow fuelOutPort.fuel to fuelInPort.fuel;
             }
         }
         package AllocationDefinitions{
@@ -555,7 +555,7 @@ package sfriedenthal_VehicleModel_1_simplified{
                     bind engine.fuelCmdPort=fuelCmdPort;
                     
                     //connect engine::drivePwrPort to transmission::clutchPort; 
-                    /** the following interface replaces the above connection. Would like to reference the stream (obj flow)*/
+                    /** the following interface replaces the above connection. Would like to reference the flow (obj flow)*/
                     interface engineToTransmissionInterface:EngineToTransmissionInterface
                         connect engine.drivePwrPort to transmission.clutchPort{
                             ref generateToAmplify :> ActionTree::providePower::generateToAmplify;
@@ -599,7 +599,7 @@ package sfriedenthal_VehicleModel_1_simplified{
                         out transmissionTorque redefines transmissionTorque;
                     }
                     action transferTorque:TransferTorque {
-                        // This is a shorthand for the stream commented out below.
+                        // This is a shorthand for the flow commented out below.
                         in transmissionTorque redefines transmissionTorque;
                         out driveshaftTorque redefines driveshaftTorque;
                     }
@@ -608,10 +608,10 @@ package sfriedenthal_VehicleModel_1_simplified{
                         out wheelToRoadTorque redefines wheelToRoadTorque [2];
                     }
 
-                    stream generateToAmplify from generateTorque.engineTorque to amplifyTorque.engineTorque;
-                    //stream from generateTorque.engineTorque to amplifyTorque.engineTorque;
-                    stream amplifyTorque.transmissionTorque to transferTorque.transmissionTorque;
-                    stream transferTorque.driveshaftTorque to distributeTorque.driveshaftTorque;
+                    flow generateToAmplify from generateTorque.engineTorque to amplifyTorque.engineTorque;
+                    //flow from generateTorque.engineTorque to amplifyTorque.engineTorque;
+                    flow amplifyTorque.transmissionTorque to transferTorque.transmissionTorque;
+                    flow transferTorque.driveshaftTorque to distributeTorque.driveshaftTorque;
                 }
                 action performSelfTest: PerformSelfTest;
                 action applyParkingBrake: ApplyParkingBrake;

@@ -58,9 +58,9 @@ package 'Action Example' {
 		
 		action a: A (in p, out q, out part x);
 		
-		flow a.q to b.q;
+		succession flow a.q to b.q;
 		
-		action b: B (in q, out r = C::r, in x stream from a.x);
+		action b: B (in q, out r = C::r, in x flow from a.x);
 	}
 	
 }

@@ -17,7 +17,7 @@ END_SETUP
 package Test {
 	class A {
 		// Non-member owned element
-		doc id B /* */
+		doc <B> /* */
 	}
 	 
 	comment C about A::B /* */

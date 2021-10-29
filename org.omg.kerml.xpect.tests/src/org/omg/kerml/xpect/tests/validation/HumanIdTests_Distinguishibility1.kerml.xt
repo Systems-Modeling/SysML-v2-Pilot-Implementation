@@ -16,8 +16,8 @@ END_SETUP
 package Test {
 	 //ids are the same
 	 //XPECT warnings --> "Duplicate of other ID or member name" at "one"
-	 class id one two;
+	 class <one> two;
 	 //XPECT warnings --> "Duplicate of other ID or member name" at "one"
-	 class id one three;
+	 class <one> three;
 }
 

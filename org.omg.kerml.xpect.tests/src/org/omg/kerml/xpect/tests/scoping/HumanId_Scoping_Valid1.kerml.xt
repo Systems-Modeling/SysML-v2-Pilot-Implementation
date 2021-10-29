@@ -15,8 +15,8 @@ END_SETUP
 
 // XPECT noErrors --> ""
 package Test {
-	 class id '1' A {
-	 	class id '11A' AA;
+	 class <'1'> A {
+	 	class <'11A'> AA;
 	 }
 
 	//* XPECT scope at 1 ---
@@ -33,10 +33,10 @@ package Test {
    		C.AAA, Test.C.AAA, 
    		C.33A, Test.C.33A
    	--- */
-	 class id 'two' B specializes '1';
+	 class <'two'> B specializes '1';
 	 
-	 class id '3' C specializes 'two'{
-	 	class id '33A' AAA;
+	 class <'3'> C specializes 'two'{
+	 	class <'33A'> AAA;
 	 }
 }
 

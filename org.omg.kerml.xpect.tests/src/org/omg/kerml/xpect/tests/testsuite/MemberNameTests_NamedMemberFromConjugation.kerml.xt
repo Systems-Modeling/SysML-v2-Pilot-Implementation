@@ -17,8 +17,8 @@ END_SETUP
 
 // XPECT noErrors --> ""
 package test{
-	class id 'A_Id' A {
-		in feature id 'f_Id' f;
+	class <'A_Id'> A {
+		in feature <'f_Id'> f;
 	}
 	
 	//* XPECT scope at A ---

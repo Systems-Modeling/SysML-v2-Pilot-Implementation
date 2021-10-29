@@ -35,10 +35,10 @@ package Test {
 	}
 	
 	package Test2 {
-		public class id 'VP_Id' VP {	
-			public class id 'VVP_Id' VVP {
-				public class id 'VVVP_Id' VVVP{
-					public class id 'VVVVP_Id' VVVVP;
+		public class <'VP_Id'> VP {	
+			public class <'VVP_Id'> VVP {
+				public class <'VVVP_Id'> VVVP{
+					public class <'VVVVP_Id'> VVVVP;
 					alias VVVVP_Id_alias for VVVVP_Id;
 				}
 			}

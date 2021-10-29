@@ -15,7 +15,7 @@ END_SETUP
 
 //XPECT noErrors ---> ""
 package test{
-	class id 'A_Id' A {}
+	class <'A_Id'> A {}
 	//XPECT linkedName at A --> test.A
 	//* XPECT scope at test::A ---
 	   	A, B, C, test.A, test.B, test.C, A_Id, test.A_Id

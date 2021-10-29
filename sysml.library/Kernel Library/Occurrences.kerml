@@ -36,7 +36,7 @@ package Occurrences {
 		feature successors: Occurrence[0..*] subsets occurrences;
 		
 	  	/**
-	   	 * Occurrences that end just before this occcurrence starts, with no
+	   	 * Occurrences that end just before this occurrence starts, with no
 	     * possibility of other occurrences happening in the time between them.
 	     */
 		feature immediatePredecessors: Occurrence[0..*] subsets predecessors;

@@ -1459,192 +1459,24 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	public class UsageElementElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.UsageElement");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final RuleCall cDefaultReferenceUsageParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
-		private final RuleCall cReferenceUsageParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
-		private final RuleCall cAttributeUsageParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
-		private final RuleCall cEnumerationUsageParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
-		private final RuleCall cOccurrenceUsageParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
-		private final RuleCall cIndividualUsageParserRuleCall_5 = (RuleCall)cAlternatives.eContents().get(5);
-		private final RuleCall cPortionUsageParserRuleCall_6 = (RuleCall)cAlternatives.eContents().get(6);
-		private final RuleCall cItemUsageParserRuleCall_7 = (RuleCall)cAlternatives.eContents().get(7);
-		private final RuleCall cPartUsageParserRuleCall_8 = (RuleCall)cAlternatives.eContents().get(8);
-		private final RuleCall cPortUsageParserRuleCall_9 = (RuleCall)cAlternatives.eContents().get(9);
-		private final RuleCall cBindingConnectorParserRuleCall_10 = (RuleCall)cAlternatives.eContents().get(10);
-		private final RuleCall cSuccessionParserRuleCall_11 = (RuleCall)cAlternatives.eContents().get(11);
-		private final RuleCall cConnectionUsageParserRuleCall_12 = (RuleCall)cAlternatives.eContents().get(12);
-		private final RuleCall cInterfaceUsageParserRuleCall_13 = (RuleCall)cAlternatives.eContents().get(13);
-		private final RuleCall cAllocationUsageParserRuleCall_14 = (RuleCall)cAlternatives.eContents().get(14);
-		private final RuleCall cActionUsageParserRuleCall_15 = (RuleCall)cAlternatives.eContents().get(15);
-		private final RuleCall cCalculationUsageParserRuleCall_16 = (RuleCall)cAlternatives.eContents().get(16);
-		private final RuleCall cStateUsageParserRuleCall_17 = (RuleCall)cAlternatives.eContents().get(17);
-		private final RuleCall cConstraintUsageParserRuleCall_18 = (RuleCall)cAlternatives.eContents().get(18);
-		private final RuleCall cAssertConstraintUsageParserRuleCall_19 = (RuleCall)cAlternatives.eContents().get(19);
-		private final RuleCall cRequirementUsageParserRuleCall_20 = (RuleCall)cAlternatives.eContents().get(20);
-		private final RuleCall cConcernUsageParserRuleCall_21 = (RuleCall)cAlternatives.eContents().get(21);
-		private final RuleCall cSatisfyRequirementUsageParserRuleCall_22 = (RuleCall)cAlternatives.eContents().get(22);
-		private final RuleCall cCaseUsageParserRuleCall_23 = (RuleCall)cAlternatives.eContents().get(23);
-		private final RuleCall cAnalysisCaseUsageParserRuleCall_24 = (RuleCall)cAlternatives.eContents().get(24);
-		private final RuleCall cVerificationCaseUsageParserRuleCall_25 = (RuleCall)cAlternatives.eContents().get(25);
-		private final RuleCall cUseCaseUsageParserRuleCall_26 = (RuleCall)cAlternatives.eContents().get(26);
-		private final RuleCall cViewUsageParserRuleCall_27 = (RuleCall)cAlternatives.eContents().get(27);
-		private final RuleCall cViewpointUsageParserRuleCall_28 = (RuleCall)cAlternatives.eContents().get(28);
-		private final RuleCall cRenderingUsageParserRuleCall_29 = (RuleCall)cAlternatives.eContents().get(29);
+		private final RuleCall cNonOccurrenceUsageElementParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cOccurrenceUsageElementParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
 		//UsageElement returns SysML::Usage :
-		//      DefaultReferenceUsage
-		//    | ReferenceUsage
-		//    | AttributeUsage
-		//    | EnumerationUsage
-		//    | OccurrenceUsage
-		//    | IndividualUsage
-		//    | PortionUsage
-		//    | ItemUsage
-		//    | PartUsage
-		//    | PortUsage
-		//    | BindingConnector
-		//    | Succession
-		//    | ConnectionUsage
-		//    | InterfaceUsage
-		//    | AllocationUsage
-		//    | ActionUsage
-		//    | CalculationUsage
-		//    | StateUsage
-		//    | ConstraintUsage
-		//    | AssertConstraintUsage
-		//    | RequirementUsage
-		//    | ConcernUsage
-		//    | SatisfyRequirementUsage
-		//    | CaseUsage
-		//    | AnalysisCaseUsage
-		//    | VerificationCaseUsage
-		//    | UseCaseUsage
-		//    | ViewUsage
-		//    | ViewpointUsage
-		//    | RenderingUsage
+		//      NonOccurrenceUsageElement
+		//    | OccurrenceUsageElement
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//  DefaultReferenceUsage
-		//| ReferenceUsage
-		//| AttributeUsage
-		//| EnumerationUsage
-		//| OccurrenceUsage
-		//| IndividualUsage
-		//| PortionUsage
-		//| ItemUsage
-		//| PartUsage
-		//| PortUsage
-		//| BindingConnector
-		//| Succession
-		//| ConnectionUsage
-		//| InterfaceUsage
-		//| AllocationUsage
-		//| ActionUsage
-		//| CalculationUsage
-		//| StateUsage
-		//| ConstraintUsage
-		//| AssertConstraintUsage
-		//| RequirementUsage
-		//| ConcernUsage
-		//| SatisfyRequirementUsage
-		//| CaseUsage
-		//| AnalysisCaseUsage
-		//| VerificationCaseUsage
-		//| UseCaseUsage
-		//| ViewUsage
-		//| ViewpointUsage
-		//| RenderingUsage
+		//  NonOccurrenceUsageElement
+		//| OccurrenceUsageElement
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
-		//DefaultReferenceUsage
-		public RuleCall getDefaultReferenceUsageParserRuleCall_0() { return cDefaultReferenceUsageParserRuleCall_0; }
+		//NonOccurrenceUsageElement
+		public RuleCall getNonOccurrenceUsageElementParserRuleCall_0() { return cNonOccurrenceUsageElementParserRuleCall_0; }
 		
-		//ReferenceUsage
-		public RuleCall getReferenceUsageParserRuleCall_1() { return cReferenceUsageParserRuleCall_1; }
-		
-		//AttributeUsage
-		public RuleCall getAttributeUsageParserRuleCall_2() { return cAttributeUsageParserRuleCall_2; }
-		
-		//EnumerationUsage
-		public RuleCall getEnumerationUsageParserRuleCall_3() { return cEnumerationUsageParserRuleCall_3; }
-		
-		//OccurrenceUsage
-		public RuleCall getOccurrenceUsageParserRuleCall_4() { return cOccurrenceUsageParserRuleCall_4; }
-		
-		//IndividualUsage
-		public RuleCall getIndividualUsageParserRuleCall_5() { return cIndividualUsageParserRuleCall_5; }
-		
-		//PortionUsage
-		public RuleCall getPortionUsageParserRuleCall_6() { return cPortionUsageParserRuleCall_6; }
-		
-		//ItemUsage
-		public RuleCall getItemUsageParserRuleCall_7() { return cItemUsageParserRuleCall_7; }
-		
-		//PartUsage
-		public RuleCall getPartUsageParserRuleCall_8() { return cPartUsageParserRuleCall_8; }
-		
-		//PortUsage
-		public RuleCall getPortUsageParserRuleCall_9() { return cPortUsageParserRuleCall_9; }
-		
-		//BindingConnector
-		public RuleCall getBindingConnectorParserRuleCall_10() { return cBindingConnectorParserRuleCall_10; }
-		
-		//Succession
-		public RuleCall getSuccessionParserRuleCall_11() { return cSuccessionParserRuleCall_11; }
-		
-		//ConnectionUsage
-		public RuleCall getConnectionUsageParserRuleCall_12() { return cConnectionUsageParserRuleCall_12; }
-		
-		//InterfaceUsage
-		public RuleCall getInterfaceUsageParserRuleCall_13() { return cInterfaceUsageParserRuleCall_13; }
-		
-		//AllocationUsage
-		public RuleCall getAllocationUsageParserRuleCall_14() { return cAllocationUsageParserRuleCall_14; }
-		
-		//ActionUsage
-		public RuleCall getActionUsageParserRuleCall_15() { return cActionUsageParserRuleCall_15; }
-		
-		//CalculationUsage
-		public RuleCall getCalculationUsageParserRuleCall_16() { return cCalculationUsageParserRuleCall_16; }
-		
-		//StateUsage
-		public RuleCall getStateUsageParserRuleCall_17() { return cStateUsageParserRuleCall_17; }
-		
-		//ConstraintUsage
-		public RuleCall getConstraintUsageParserRuleCall_18() { return cConstraintUsageParserRuleCall_18; }
-		
-		//AssertConstraintUsage
-		public RuleCall getAssertConstraintUsageParserRuleCall_19() { return cAssertConstraintUsageParserRuleCall_19; }
-		
-		//RequirementUsage
-		public RuleCall getRequirementUsageParserRuleCall_20() { return cRequirementUsageParserRuleCall_20; }
-		
-		//ConcernUsage
-		public RuleCall getConcernUsageParserRuleCall_21() { return cConcernUsageParserRuleCall_21; }
-		
-		//SatisfyRequirementUsage
-		public RuleCall getSatisfyRequirementUsageParserRuleCall_22() { return cSatisfyRequirementUsageParserRuleCall_22; }
-		
-		//CaseUsage
-		public RuleCall getCaseUsageParserRuleCall_23() { return cCaseUsageParserRuleCall_23; }
-		
-		//AnalysisCaseUsage
-		public RuleCall getAnalysisCaseUsageParserRuleCall_24() { return cAnalysisCaseUsageParserRuleCall_24; }
-		
-		//VerificationCaseUsage
-		public RuleCall getVerificationCaseUsageParserRuleCall_25() { return cVerificationCaseUsageParserRuleCall_25; }
-		
-		//UseCaseUsage
-		public RuleCall getUseCaseUsageParserRuleCall_26() { return cUseCaseUsageParserRuleCall_26; }
-		
-		//ViewUsage
-		public RuleCall getViewUsageParserRuleCall_27() { return cViewUsageParserRuleCall_27; }
-		
-		//ViewpointUsage
-		public RuleCall getViewpointUsageParserRuleCall_28() { return cViewpointUsageParserRuleCall_28; }
-		
-		//RenderingUsage
-		public RuleCall getRenderingUsageParserRuleCall_29() { return cRenderingUsageParserRuleCall_29; }
+		//OccurrenceUsageElement
+		public RuleCall getOccurrenceUsageElementParserRuleCall_1() { return cOccurrenceUsageElementParserRuleCall_1; }
 	}
 	public class SubclassificationPartElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.SubclassificationPart");
@@ -14549,36 +14381,8 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//UsageElement returns SysML::Usage :
-	//      DefaultReferenceUsage
-	//    | ReferenceUsage
-	//    | AttributeUsage
-	//    | EnumerationUsage
-	//    | OccurrenceUsage
-	//    | IndividualUsage
-	//    | PortionUsage
-	//    | ItemUsage
-	//    | PartUsage
-	//    | PortUsage
-	//    | BindingConnector
-	//    | Succession
-	//    | ConnectionUsage
-	//    | InterfaceUsage
-	//    | AllocationUsage
-	//    | ActionUsage
-	//    | CalculationUsage
-	//    | StateUsage
-	//    | ConstraintUsage
-	//    | AssertConstraintUsage
-	//    | RequirementUsage
-	//    | ConcernUsage
-	//    | SatisfyRequirementUsage
-	//    | CaseUsage
-	//    | AnalysisCaseUsage
-	//    | VerificationCaseUsage
-	//    | UseCaseUsage
-	//    | ViewUsage
-	//    | ViewpointUsage
-	//    | RenderingUsage
+	//      NonOccurrenceUsageElement
+	//    | OccurrenceUsageElement
 	//;
 	public UsageElementElements getUsageElementAccess() {
 		return pUsageElement;

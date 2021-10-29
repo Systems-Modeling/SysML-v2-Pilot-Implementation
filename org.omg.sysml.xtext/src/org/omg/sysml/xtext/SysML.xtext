@@ -257,36 +257,8 @@ DefinitionElement returns SysML::Element :
 ;
 	
 UsageElement returns SysML::Usage :
-	  DefaultReferenceUsage
-	| ReferenceUsage
-	| AttributeUsage
-	| EnumerationUsage
-	| OccurrenceUsage
-	| IndividualUsage
-	| PortionUsage
-	| ItemUsage
-	| PartUsage
-	| PortUsage
-	| BindingConnector
-	| Succession
-	| ConnectionUsage
-	| InterfaceUsage
-	| AllocationUsage
-	| ActionUsage
-	| CalculationUsage
-	| StateUsage
-	| ConstraintUsage
-	| AssertConstraintUsage
-	| RequirementUsage
-	| ConcernUsage
-	| SatisfyRequirementUsage
-	| CaseUsage
-	| AnalysisCaseUsage
-	| VerificationCaseUsage
-	| UseCaseUsage
-	| ViewUsage
-	| ViewpointUsage
-	| RenderingUsage
+	  NonOccurrenceUsageElement 
+	| OccurrenceUsageElement
 ;
 
 /* CLASSIFIERS */

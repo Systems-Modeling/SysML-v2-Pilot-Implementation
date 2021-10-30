@@ -363,7 +363,7 @@ package VehicleModel {
                     bind engine.fuelCmdPort = fuelCmdPort;
                     interface engineToTransmissionInterface: EngineToTransmissionInterface
                     connect engine.drivePwrPort to transmission.clutchPort {
-                        ref stream generateToAmplify :> ActionTree::providePower.generateToAmplify
+                        ref flow generateToAmplify :> ActionTree::providePower.generateToAmplify
                         	from p1.engineTorque to p2.engineTorque;
                     }
                     connect transmission.shaftPort_a to driveshaft.shaftPort_b;
@@ -388,7 +388,7 @@ package VehicleModel {
                         out transmissionTorque redefines transmissionTorque;
                     }
                     action transferTorque: TransferTorque {
-                        // This is a shorthand for the stream commented out below.
+                        // This is a shorthand for the flow commented out below.
                         in transmissionTorque redefines transmissionTorque;
                         out driveshaftTorque redefines driveshaftTorque;
                     }
@@ -396,11 +396,11 @@ package VehicleModel {
                         in driveshaftTorque redefines driveshaftTorque;
                         out wheelToRoadTorque redefines wheelToRoadTorque[2];
                     }
-                    stream generateToAmplify from generateTorque.engineTorque
+                    flow generateToAmplify from generateTorque.engineTorque
                     to amplifyTorque.engineTorque;
-                    stream amplifyTorque.transmissionTorque
+                    flow amplifyTorque.transmissionTorque
                     to transferTorque.transmissionTorque;
-                    stream transferTorque.driveshaftTorque
+                    flow transferTorque.driveshaftTorque
                     to distributeTorque.driveshaftTorque;
                 }
                 action performSelfTest: PerformSelfTest;

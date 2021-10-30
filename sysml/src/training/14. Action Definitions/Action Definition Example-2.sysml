@@ -16,7 +16,7 @@ package 'Action Definition Example-1' {
 		}
 		
 		action shoot: Shoot {
-			in item image flow from focus.image;
+			in item image succession flow from focus.image;
 			out item picture = TakePicture::picture;
 		}
 	}

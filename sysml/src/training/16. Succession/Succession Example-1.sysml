@@ -16,7 +16,7 @@ package 'Succession Example-1' {
 			out item image;
 		}
 		
-		succession focus then shoot;
+		first focus then shoot;
 		
 		action shoot : Shoot {
 			in item image flow from focus.image; 

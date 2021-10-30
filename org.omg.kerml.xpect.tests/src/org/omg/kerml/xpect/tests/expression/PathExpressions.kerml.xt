@@ -69,5 +69,5 @@ package P {
     feature b2 : B;
     
     // Testing deeply nested item flow connection.
-    stream b1.a to b2.b.c.d;
+    flow b1.a to b2.b.c.d;
 }

@@ -558,7 +558,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) 'flow' (ambiguity) ownedRelationship+=FeatureConjugation
 	 *     (rule start) 'inv' 'true'? (ambiguity) ownedRelationship+=FeatureConjugation
 	 *     (rule start) 'step' (ambiguity) ownedRelationship+=FeatureConjugation
-	 *     (rule start) 'stream' (ambiguity) ownedRelationship+=FeatureConjugation
+	 *     (rule start) 'succession' 'flow' (ambiguity) ownedRelationship+=FeatureConjugation
 	 *     (rule start) 'succession' (ambiguity) ownedRelationship+=FeatureConjugation
 	 *     direction=FeatureDirection 'binding' (ambiguity) ownedRelationship+=FeatureConjugation
 	 *     direction=FeatureDirection 'bool' (ambiguity) ownedRelationship+=FeatureConjugation
@@ -568,7 +568,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     direction=FeatureDirection 'flow' (ambiguity) ownedRelationship+=FeatureConjugation
 	 *     direction=FeatureDirection 'inv' 'true'? (ambiguity) ownedRelationship+=FeatureConjugation
 	 *     direction=FeatureDirection 'step' (ambiguity) ownedRelationship+=FeatureConjugation
-	 *     direction=FeatureDirection 'stream' (ambiguity) ownedRelationship+=FeatureConjugation
+	 *     direction=FeatureDirection 'succession' 'flow' (ambiguity) ownedRelationship+=FeatureConjugation
 	 *     direction=FeatureDirection 'succession' (ambiguity) ownedRelationship+=FeatureConjugation
 	 *     humanId=Name (ambiguity) ownedRelationship+=FeatureConjugation
 	 *     isAbstract?='abstract' 'binding' (ambiguity) ownedRelationship+=FeatureConjugation
@@ -579,7 +579,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isAbstract?='abstract' 'flow' (ambiguity) ownedRelationship+=FeatureConjugation
 	 *     isAbstract?='abstract' 'inv' 'true'? (ambiguity) ownedRelationship+=FeatureConjugation
 	 *     isAbstract?='abstract' 'step' (ambiguity) ownedRelationship+=FeatureConjugation
-	 *     isAbstract?='abstract' 'stream' (ambiguity) ownedRelationship+=FeatureConjugation
+	 *     isAbstract?='abstract' 'succession' 'flow' (ambiguity) ownedRelationship+=FeatureConjugation
 	 *     isAbstract?='abstract' 'succession' (ambiguity) ownedRelationship+=FeatureConjugation
 	 *     isComposite?='composite' 'binding' (ambiguity) ownedRelationship+=FeatureConjugation
 	 *     isComposite?='composite' 'bool' (ambiguity) ownedRelationship+=FeatureConjugation
@@ -589,7 +589,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isComposite?='composite' 'flow' (ambiguity) ownedRelationship+=FeatureConjugation
 	 *     isComposite?='composite' 'inv' 'true'? (ambiguity) ownedRelationship+=FeatureConjugation
 	 *     isComposite?='composite' 'step' (ambiguity) ownedRelationship+=FeatureConjugation
-	 *     isComposite?='composite' 'stream' (ambiguity) ownedRelationship+=FeatureConjugation
+	 *     isComposite?='composite' 'succession' 'flow' (ambiguity) ownedRelationship+=FeatureConjugation
 	 *     isComposite?='composite' 'succession' (ambiguity) ownedRelationship+=FeatureConjugation
 	 *     isEnd?='end' 'binding' (ambiguity) ownedRelationship+=FeatureConjugation
 	 *     isEnd?='end' 'bool' (ambiguity) ownedRelationship+=FeatureConjugation
@@ -599,7 +599,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isEnd?='end' 'flow' (ambiguity) ownedRelationship+=FeatureConjugation
 	 *     isEnd?='end' 'inv' 'true'? (ambiguity) ownedRelationship+=FeatureConjugation
 	 *     isEnd?='end' 'step' (ambiguity) ownedRelationship+=FeatureConjugation
-	 *     isEnd?='end' 'stream' (ambiguity) ownedRelationship+=FeatureConjugation
+	 *     isEnd?='end' 'succession' 'flow' (ambiguity) ownedRelationship+=FeatureConjugation
 	 *     isEnd?='end' 'succession' (ambiguity) ownedRelationship+=FeatureConjugation
 	 *     isNegated?='false' (ambiguity) ownedRelationship+=FeatureConjugation
 	 *     isPortion?='portion' 'binding' (ambiguity) ownedRelationship+=FeatureConjugation
@@ -610,7 +610,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isPortion?='portion' 'flow' (ambiguity) ownedRelationship+=FeatureConjugation
 	 *     isPortion?='portion' 'inv' 'true'? (ambiguity) ownedRelationship+=FeatureConjugation
 	 *     isPortion?='portion' 'step' (ambiguity) ownedRelationship+=FeatureConjugation
-	 *     isPortion?='portion' 'stream' (ambiguity) ownedRelationship+=FeatureConjugation
+	 *     isPortion?='portion' 'succession' 'flow' (ambiguity) ownedRelationship+=FeatureConjugation
 	 *     isPortion?='portion' 'succession' (ambiguity) ownedRelationship+=FeatureConjugation
 	 *     isSufficient?='all' (ambiguity) ownedRelationship+=FeatureConjugation
 	 *     name=Name (ambiguity) ownedRelationship+=FeatureConjugation
@@ -1037,7 +1037,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) 'flow' (ambiguity) ownedRelationship+=OwnedRedefinition
 	 *     (rule start) 'inv' 'true'? (ambiguity) ownedRelationship+=OwnedRedefinition
 	 *     (rule start) 'step' (ambiguity) ownedRelationship+=OwnedRedefinition
-	 *     (rule start) 'stream' (ambiguity) ownedRelationship+=OwnedRedefinition
+	 *     (rule start) 'succession' 'flow' (ambiguity) ownedRelationship+=OwnedRedefinition
 	 *     (rule start) 'succession' (ambiguity) ownedRelationship+=OwnedRedefinition
 	 *     direction=FeatureDirection 'binding' (ambiguity) ownedRelationship+=OwnedRedefinition
 	 *     direction=FeatureDirection 'bool' (ambiguity) ownedRelationship+=OwnedRedefinition
@@ -1047,7 +1047,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     direction=FeatureDirection 'flow' (ambiguity) ownedRelationship+=OwnedRedefinition
 	 *     direction=FeatureDirection 'inv' 'true'? (ambiguity) ownedRelationship+=OwnedRedefinition
 	 *     direction=FeatureDirection 'step' (ambiguity) ownedRelationship+=OwnedRedefinition
-	 *     direction=FeatureDirection 'stream' (ambiguity) ownedRelationship+=OwnedRedefinition
+	 *     direction=FeatureDirection 'succession' 'flow' (ambiguity) ownedRelationship+=OwnedRedefinition
 	 *     direction=FeatureDirection 'succession' (ambiguity) ownedRelationship+=OwnedRedefinition
 	 *     humanId=Name (ambiguity) ownedRelationship+=OwnedRedefinition
 	 *     isAbstract?='abstract' 'binding' (ambiguity) ownedRelationship+=OwnedRedefinition
@@ -1058,7 +1058,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isAbstract?='abstract' 'flow' (ambiguity) ownedRelationship+=OwnedRedefinition
 	 *     isAbstract?='abstract' 'inv' 'true'? (ambiguity) ownedRelationship+=OwnedRedefinition
 	 *     isAbstract?='abstract' 'step' (ambiguity) ownedRelationship+=OwnedRedefinition
-	 *     isAbstract?='abstract' 'stream' (ambiguity) ownedRelationship+=OwnedRedefinition
+	 *     isAbstract?='abstract' 'succession' 'flow' (ambiguity) ownedRelationship+=OwnedRedefinition
 	 *     isAbstract?='abstract' 'succession' (ambiguity) ownedRelationship+=OwnedRedefinition
 	 *     isComposite?='composite' 'binding' (ambiguity) ownedRelationship+=OwnedRedefinition
 	 *     isComposite?='composite' 'bool' (ambiguity) ownedRelationship+=OwnedRedefinition
@@ -1068,7 +1068,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isComposite?='composite' 'flow' (ambiguity) ownedRelationship+=OwnedRedefinition
 	 *     isComposite?='composite' 'inv' 'true'? (ambiguity) ownedRelationship+=OwnedRedefinition
 	 *     isComposite?='composite' 'step' (ambiguity) ownedRelationship+=OwnedRedefinition
-	 *     isComposite?='composite' 'stream' (ambiguity) ownedRelationship+=OwnedRedefinition
+	 *     isComposite?='composite' 'succession' 'flow' (ambiguity) ownedRelationship+=OwnedRedefinition
 	 *     isComposite?='composite' 'succession' (ambiguity) ownedRelationship+=OwnedRedefinition
 	 *     isEnd?='end' 'binding' (ambiguity) ownedRelationship+=OwnedRedefinition
 	 *     isEnd?='end' 'bool' (ambiguity) ownedRelationship+=OwnedRedefinition
@@ -1078,7 +1078,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isEnd?='end' 'flow' (ambiguity) ownedRelationship+=OwnedRedefinition
 	 *     isEnd?='end' 'inv' 'true'? (ambiguity) ownedRelationship+=OwnedRedefinition
 	 *     isEnd?='end' 'step' (ambiguity) ownedRelationship+=OwnedRedefinition
-	 *     isEnd?='end' 'stream' (ambiguity) ownedRelationship+=OwnedRedefinition
+	 *     isEnd?='end' 'succession' 'flow' (ambiguity) ownedRelationship+=OwnedRedefinition
 	 *     isEnd?='end' 'succession' (ambiguity) ownedRelationship+=OwnedRedefinition
 	 *     isNegated?='false' (ambiguity) ownedRelationship+=OwnedRedefinition
 	 *     isNonunique?='nonunique' (ambiguity) ownedRelationship+=OwnedRedefinition
@@ -1091,7 +1091,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isPortion?='portion' 'flow' (ambiguity) ownedRelationship+=OwnedRedefinition
 	 *     isPortion?='portion' 'inv' 'true'? (ambiguity) ownedRelationship+=OwnedRedefinition
 	 *     isPortion?='portion' 'step' (ambiguity) ownedRelationship+=OwnedRedefinition
-	 *     isPortion?='portion' 'stream' (ambiguity) ownedRelationship+=OwnedRedefinition
+	 *     isPortion?='portion' 'succession' 'flow' (ambiguity) ownedRelationship+=OwnedRedefinition
 	 *     isPortion?='portion' 'succession' (ambiguity) ownedRelationship+=OwnedRedefinition
 	 *     isSufficient?='all' (ambiguity) ownedRelationship+=OwnedRedefinition
 	 *     name=Name (ambiguity) ownedRelationship+=OwnedRedefinition
@@ -1247,7 +1247,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) 'inv' 'true'? (ambiguity) ownedRelationship+=OwnedSubsetting
 	 *     (rule start) 'multiplicity' (ambiguity) ownedRelationship+=OwnedSubsetting
 	 *     (rule start) 'step' (ambiguity) ownedRelationship+=OwnedSubsetting
-	 *     (rule start) 'stream' (ambiguity) ownedRelationship+=OwnedSubsetting
+	 *     (rule start) 'succession' 'flow' (ambiguity) ownedRelationship+=OwnedSubsetting
 	 *     (rule start) 'succession' (ambiguity) ownedRelationship+=OwnedSubsetting
 	 *     direction=FeatureDirection 'binding' (ambiguity) ownedRelationship+=OwnedSubsetting
 	 *     direction=FeatureDirection 'bool' (ambiguity) ownedRelationship+=OwnedSubsetting
@@ -1257,7 +1257,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     direction=FeatureDirection 'flow' (ambiguity) ownedRelationship+=OwnedSubsetting
 	 *     direction=FeatureDirection 'inv' 'true'? (ambiguity) ownedRelationship+=OwnedSubsetting
 	 *     direction=FeatureDirection 'step' (ambiguity) ownedRelationship+=OwnedSubsetting
-	 *     direction=FeatureDirection 'stream' (ambiguity) ownedRelationship+=OwnedSubsetting
+	 *     direction=FeatureDirection 'succession' 'flow' (ambiguity) ownedRelationship+=OwnedSubsetting
 	 *     direction=FeatureDirection 'succession' (ambiguity) ownedRelationship+=OwnedSubsetting
 	 *     humanId=Name (ambiguity) ownedRelationship+=OwnedSubsetting
 	 *     isAbstract?='abstract' 'binding' (ambiguity) ownedRelationship+=OwnedSubsetting
@@ -1268,7 +1268,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isAbstract?='abstract' 'flow' (ambiguity) ownedRelationship+=OwnedSubsetting
 	 *     isAbstract?='abstract' 'inv' 'true'? (ambiguity) ownedRelationship+=OwnedSubsetting
 	 *     isAbstract?='abstract' 'step' (ambiguity) ownedRelationship+=OwnedSubsetting
-	 *     isAbstract?='abstract' 'stream' (ambiguity) ownedRelationship+=OwnedSubsetting
+	 *     isAbstract?='abstract' 'succession' 'flow' (ambiguity) ownedRelationship+=OwnedSubsetting
 	 *     isAbstract?='abstract' 'succession' (ambiguity) ownedRelationship+=OwnedSubsetting
 	 *     isComposite?='composite' 'binding' (ambiguity) ownedRelationship+=OwnedSubsetting
 	 *     isComposite?='composite' 'bool' (ambiguity) ownedRelationship+=OwnedSubsetting
@@ -1278,7 +1278,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isComposite?='composite' 'flow' (ambiguity) ownedRelationship+=OwnedSubsetting
 	 *     isComposite?='composite' 'inv' 'true'? (ambiguity) ownedRelationship+=OwnedSubsetting
 	 *     isComposite?='composite' 'step' (ambiguity) ownedRelationship+=OwnedSubsetting
-	 *     isComposite?='composite' 'stream' (ambiguity) ownedRelationship+=OwnedSubsetting
+	 *     isComposite?='composite' 'succession' 'flow' (ambiguity) ownedRelationship+=OwnedSubsetting
 	 *     isComposite?='composite' 'succession' (ambiguity) ownedRelationship+=OwnedSubsetting
 	 *     isEnd?='end' 'binding' (ambiguity) ownedRelationship+=OwnedSubsetting
 	 *     isEnd?='end' 'bool' (ambiguity) ownedRelationship+=OwnedSubsetting
@@ -1288,7 +1288,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isEnd?='end' 'flow' (ambiguity) ownedRelationship+=OwnedSubsetting
 	 *     isEnd?='end' 'inv' 'true'? (ambiguity) ownedRelationship+=OwnedSubsetting
 	 *     isEnd?='end' 'step' (ambiguity) ownedRelationship+=OwnedSubsetting
-	 *     isEnd?='end' 'stream' (ambiguity) ownedRelationship+=OwnedSubsetting
+	 *     isEnd?='end' 'succession' 'flow' (ambiguity) ownedRelationship+=OwnedSubsetting
 	 *     isEnd?='end' 'succession' (ambiguity) ownedRelationship+=OwnedSubsetting
 	 *     isNegated?='false' (ambiguity) ownedRelationship+=OwnedSubsetting
 	 *     isNonunique?='nonunique' (ambiguity) ownedRelationship+=OwnedSubsetting
@@ -1301,7 +1301,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isPortion?='portion' 'flow' (ambiguity) ownedRelationship+=OwnedSubsetting
 	 *     isPortion?='portion' 'inv' 'true'? (ambiguity) ownedRelationship+=OwnedSubsetting
 	 *     isPortion?='portion' 'step' (ambiguity) ownedRelationship+=OwnedSubsetting
-	 *     isPortion?='portion' 'stream' (ambiguity) ownedRelationship+=OwnedSubsetting
+	 *     isPortion?='portion' 'succession' 'flow' (ambiguity) ownedRelationship+=OwnedSubsetting
 	 *     isPortion?='portion' 'succession' (ambiguity) ownedRelationship+=OwnedSubsetting
 	 *     isSufficient?='all' (ambiguity) ownedRelationship+=OwnedSubsetting
 	 *     name=Name (ambiguity) ownedRelationship+=OwnedSubsetting
@@ -1510,7 +1510,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) 'flow' (ambiguity) ownedRelationship+=OwnedFeatureTyping
 	 *     (rule start) 'inv' 'true'? (ambiguity) ownedRelationship+=OwnedFeatureTyping
 	 *     (rule start) 'step' (ambiguity) ownedRelationship+=OwnedFeatureTyping
-	 *     (rule start) 'stream' (ambiguity) ownedRelationship+=OwnedFeatureTyping
+	 *     (rule start) 'succession' 'flow' (ambiguity) ownedRelationship+=OwnedFeatureTyping
 	 *     (rule start) 'succession' (ambiguity) ownedRelationship+=OwnedFeatureTyping
 	 *     direction=FeatureDirection 'binding' (ambiguity) ownedRelationship+=OwnedFeatureTyping
 	 *     direction=FeatureDirection 'bool' (ambiguity) ownedRelationship+=OwnedFeatureTyping
@@ -1520,7 +1520,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     direction=FeatureDirection 'flow' (ambiguity) ownedRelationship+=OwnedFeatureTyping
 	 *     direction=FeatureDirection 'inv' 'true'? (ambiguity) ownedRelationship+=OwnedFeatureTyping
 	 *     direction=FeatureDirection 'step' (ambiguity) ownedRelationship+=OwnedFeatureTyping
-	 *     direction=FeatureDirection 'stream' (ambiguity) ownedRelationship+=OwnedFeatureTyping
+	 *     direction=FeatureDirection 'succession' 'flow' (ambiguity) ownedRelationship+=OwnedFeatureTyping
 	 *     direction=FeatureDirection 'succession' (ambiguity) ownedRelationship+=OwnedFeatureTyping
 	 *     humanId=Name (ambiguity) ownedRelationship+=OwnedFeatureTyping
 	 *     isAbstract?='abstract' 'binding' (ambiguity) ownedRelationship+=OwnedFeatureTyping
@@ -1531,7 +1531,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isAbstract?='abstract' 'flow' (ambiguity) ownedRelationship+=OwnedFeatureTyping
 	 *     isAbstract?='abstract' 'inv' 'true'? (ambiguity) ownedRelationship+=OwnedFeatureTyping
 	 *     isAbstract?='abstract' 'step' (ambiguity) ownedRelationship+=OwnedFeatureTyping
-	 *     isAbstract?='abstract' 'stream' (ambiguity) ownedRelationship+=OwnedFeatureTyping
+	 *     isAbstract?='abstract' 'succession' 'flow' (ambiguity) ownedRelationship+=OwnedFeatureTyping
 	 *     isAbstract?='abstract' 'succession' (ambiguity) ownedRelationship+=OwnedFeatureTyping
 	 *     isComposite?='composite' 'binding' (ambiguity) ownedRelationship+=OwnedFeatureTyping
 	 *     isComposite?='composite' 'bool' (ambiguity) ownedRelationship+=OwnedFeatureTyping
@@ -1541,7 +1541,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isComposite?='composite' 'flow' (ambiguity) ownedRelationship+=OwnedFeatureTyping
 	 *     isComposite?='composite' 'inv' 'true'? (ambiguity) ownedRelationship+=OwnedFeatureTyping
 	 *     isComposite?='composite' 'step' (ambiguity) ownedRelationship+=OwnedFeatureTyping
-	 *     isComposite?='composite' 'stream' (ambiguity) ownedRelationship+=OwnedFeatureTyping
+	 *     isComposite?='composite' 'succession' 'flow' (ambiguity) ownedRelationship+=OwnedFeatureTyping
 	 *     isComposite?='composite' 'succession' (ambiguity) ownedRelationship+=OwnedFeatureTyping
 	 *     isEnd?='end' 'binding' (ambiguity) ownedRelationship+=OwnedFeatureTyping
 	 *     isEnd?='end' 'bool' (ambiguity) ownedRelationship+=OwnedFeatureTyping
@@ -1551,7 +1551,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isEnd?='end' 'flow' (ambiguity) ownedRelationship+=OwnedFeatureTyping
 	 *     isEnd?='end' 'inv' 'true'? (ambiguity) ownedRelationship+=OwnedFeatureTyping
 	 *     isEnd?='end' 'step' (ambiguity) ownedRelationship+=OwnedFeatureTyping
-	 *     isEnd?='end' 'stream' (ambiguity) ownedRelationship+=OwnedFeatureTyping
+	 *     isEnd?='end' 'succession' 'flow' (ambiguity) ownedRelationship+=OwnedFeatureTyping
 	 *     isEnd?='end' 'succession' (ambiguity) ownedRelationship+=OwnedFeatureTyping
 	 *     isNegated?='false' (ambiguity) ownedRelationship+=OwnedFeatureTyping
 	 *     isNonunique?='nonunique' (ambiguity) ownedRelationship+=OwnedFeatureTyping
@@ -1564,7 +1564,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isPortion?='portion' 'flow' (ambiguity) ownedRelationship+=OwnedFeatureTyping
 	 *     isPortion?='portion' 'inv' 'true'? (ambiguity) ownedRelationship+=OwnedFeatureTyping
 	 *     isPortion?='portion' 'step' (ambiguity) ownedRelationship+=OwnedFeatureTyping
-	 *     isPortion?='portion' 'stream' (ambiguity) ownedRelationship+=OwnedFeatureTyping
+	 *     isPortion?='portion' 'succession' 'flow' (ambiguity) ownedRelationship+=OwnedFeatureTyping
 	 *     isPortion?='portion' 'succession' (ambiguity) ownedRelationship+=OwnedFeatureTyping
 	 *     isSufficient?='all' (ambiguity) ownedRelationship+=OwnedFeatureTyping
 	 *     name=Name (ambiguity) ownedRelationship+=OwnedFeatureTyping

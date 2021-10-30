@@ -18,7 +18,7 @@ package 'Conditional Succession Example-1' {
 			out item image;
 		}
 				
-		succession focus 
+		first focus 
 			if focus.image.isWellFocused then shoot;
 		
 		action shoot : Shoot {

@@ -988,12 +988,12 @@ Interaction returns SysML::Interaction :
 /* Item Flows */
 
 ItemFlow returns SysML::ItemFlow :
-	FeaturePrefix 'stream' 
+	FeaturePrefix 'flow' 
 	ItemFlowDeclaration TypeBody
 ;
 
 SuccessionItemFlow returns SysML::SuccessionItemFlow :
-	FeaturePrefix 'flow' ItemFlowDeclaration TypeBody
+	FeaturePrefix 'succession' 'flow' ItemFlowDeclaration TypeBody
 ;
 
 fragment ItemFlowDeclaration returns SysML::ItemFlow :

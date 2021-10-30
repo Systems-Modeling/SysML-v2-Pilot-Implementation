@@ -7,8 +7,8 @@ package 'Streaming Interface Example' {
 		end supplierPort : FuelOutPort;
 		end consumerPort : FuelInPort;
 		
-		stream supplierPort.fuelSupply to consumerPort.fuelSupply;			
-		stream consumerPort.fuelReturn to supplierPort.fuelReturn;
+		flow supplierPort.fuelSupply to consumerPort.fuelSupply;			
+		flow consumerPort.fuelReturn to supplierPort.fuelReturn;
 	}
 	
 	part vehicle : Vehicle {	

@@ -39,9 +39,12 @@ Workflow {
 		    referencedResource = "${genModel}"
 
 		    parserGenerator = {
-//		    	options = {
-//		    		backtrack = true
-//		    	}
+//				options = {
+//					classSplitting = true
+//					casesPerSpecialStateSwitch = "200"
+//					fieldsPerClass = "200"
+//					methodsPerClass = "200"
+//				}
 		    }
 		    
 			serializer = {

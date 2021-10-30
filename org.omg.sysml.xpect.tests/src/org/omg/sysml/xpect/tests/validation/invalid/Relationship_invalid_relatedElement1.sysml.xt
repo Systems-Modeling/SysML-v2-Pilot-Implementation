@@ -46,6 +46,6 @@ package 'Streaming Example' {
 			"Must be an accessible feature (use dot notation for nesting)" at "B::myOut"
 			"Must be an accessible feature (use dot notation for nesting)" at "C::myIn"
 		    --- */
-		stream XXX from B::myOut to C::myIn;	
+		flow XXX from B::myOut to C::myIn;	
 	} 
 }

@@ -22575,9 +22575,9 @@ rule__ItemFlow__Group__1__Impl
 	}
 :
 (
-	{ before(grammarAccess.getItemFlowAccess().getStreamKeyword_1()); }
-	'stream'
-	{ after(grammarAccess.getItemFlowAccess().getStreamKeyword_1()); }
+	{ before(grammarAccess.getItemFlowAccess().getFlowKeyword_1()); }
+	'flow'
+	{ after(grammarAccess.getItemFlowAccess().getFlowKeyword_1()); }
 )
 ;
 finally {
@@ -22683,9 +22683,9 @@ rule__SuccessionItemFlow__Group__1__Impl
 	}
 :
 (
-	{ before(grammarAccess.getSuccessionItemFlowAccess().getFlowKeyword_1()); }
-	'flow'
-	{ after(grammarAccess.getSuccessionItemFlowAccess().getFlowKeyword_1()); }
+	{ before(grammarAccess.getSuccessionItemFlowAccess().getSuccessionKeyword_1()); }
+	'succession'
+	{ after(grammarAccess.getSuccessionItemFlowAccess().getSuccessionKeyword_1()); }
 )
 ;
 finally {
@@ -22710,9 +22710,9 @@ rule__SuccessionItemFlow__Group__2__Impl
 	}
 :
 (
-	{ before(grammarAccess.getSuccessionItemFlowAccess().getItemFlowDeclarationParserRuleCall_2()); }
-	ruleItemFlowDeclaration
-	{ after(grammarAccess.getSuccessionItemFlowAccess().getItemFlowDeclarationParserRuleCall_2()); }
+	{ before(grammarAccess.getSuccessionItemFlowAccess().getFlowKeyword_2()); }
+	'flow'
+	{ after(grammarAccess.getSuccessionItemFlowAccess().getFlowKeyword_2()); }
 )
 ;
 finally {
@@ -22725,6 +22725,7 @@ rule__SuccessionItemFlow__Group__3
 	}
 :
 	rule__SuccessionItemFlow__Group__3__Impl
+	rule__SuccessionItemFlow__Group__4
 ;
 finally {
 	restoreStackSize(stackSize);
@@ -22736,9 +22737,35 @@ rule__SuccessionItemFlow__Group__3__Impl
 	}
 :
 (
-	{ before(grammarAccess.getSuccessionItemFlowAccess().getTypeBodyParserRuleCall_3()); }
+	{ before(grammarAccess.getSuccessionItemFlowAccess().getItemFlowDeclarationParserRuleCall_3()); }
+	ruleItemFlowDeclaration
+	{ after(grammarAccess.getSuccessionItemFlowAccess().getItemFlowDeclarationParserRuleCall_3()); }
+)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__SuccessionItemFlow__Group__4
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	rule__SuccessionItemFlow__Group__4__Impl
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__SuccessionItemFlow__Group__4__Impl
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+(
+	{ before(grammarAccess.getSuccessionItemFlowAccess().getTypeBodyParserRuleCall_4()); }
 	ruleTypeBody
-	{ after(grammarAccess.getSuccessionItemFlowAccess().getTypeBodyParserRuleCall_3()); }
+	{ after(grammarAccess.getSuccessionItemFlowAccess().getTypeBodyParserRuleCall_4()); }
 )
 ;
 finally {

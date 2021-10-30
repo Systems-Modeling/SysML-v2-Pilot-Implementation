@@ -6377,47 +6377,19 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.ItemFlow");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final RuleCall cFeaturePrefixParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
-		private final Keyword cStreamKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Keyword cFlowKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final RuleCall cItemFlowDeclarationParserRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
 		private final RuleCall cTypeBodyParserRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
 		
 		///* Item Flows */
 		//ItemFlow returns SysML::ItemFlow :
-		//    FeaturePrefix 'stream'
+		//    FeaturePrefix 'flow'
 		//    ItemFlowDeclaration TypeBody
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//FeaturePrefix 'stream'
+		//FeaturePrefix 'flow'
 		//ItemFlowDeclaration TypeBody
-		public Group getGroup() { return cGroup; }
-		
-		//FeaturePrefix
-		public RuleCall getFeaturePrefixParserRuleCall_0() { return cFeaturePrefixParserRuleCall_0; }
-		
-		//'stream'
-		public Keyword getStreamKeyword_1() { return cStreamKeyword_1; }
-		
-		//ItemFlowDeclaration
-		public RuleCall getItemFlowDeclarationParserRuleCall_2() { return cItemFlowDeclarationParserRuleCall_2; }
-		
-		//TypeBody
-		public RuleCall getTypeBodyParserRuleCall_3() { return cTypeBodyParserRuleCall_3; }
-	}
-	public class SuccessionItemFlowElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.SuccessionItemFlow");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final RuleCall cFeaturePrefixParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
-		private final Keyword cFlowKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final RuleCall cItemFlowDeclarationParserRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
-		private final RuleCall cTypeBodyParserRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
-		
-		//SuccessionItemFlow returns SysML::SuccessionItemFlow :
-		//    FeaturePrefix 'flow' ItemFlowDeclaration TypeBody
-		//;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//FeaturePrefix 'flow' ItemFlowDeclaration TypeBody
 		public Group getGroup() { return cGroup; }
 		
 		//FeaturePrefix
@@ -6431,6 +6403,38 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		
 		//TypeBody
 		public RuleCall getTypeBodyParserRuleCall_3() { return cTypeBodyParserRuleCall_3; }
+	}
+	public class SuccessionItemFlowElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.SuccessionItemFlow");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final RuleCall cFeaturePrefixParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
+		private final Keyword cSuccessionKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Keyword cFlowKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final RuleCall cItemFlowDeclarationParserRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
+		private final RuleCall cTypeBodyParserRuleCall_4 = (RuleCall)cGroup.eContents().get(4);
+		
+		//SuccessionItemFlow returns SysML::SuccessionItemFlow :
+		//    FeaturePrefix 'succession' 'flow' ItemFlowDeclaration TypeBody
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//FeaturePrefix 'succession' 'flow' ItemFlowDeclaration TypeBody
+		public Group getGroup() { return cGroup; }
+		
+		//FeaturePrefix
+		public RuleCall getFeaturePrefixParserRuleCall_0() { return cFeaturePrefixParserRuleCall_0; }
+		
+		//'succession'
+		public Keyword getSuccessionKeyword_1() { return cSuccessionKeyword_1; }
+		
+		//'flow'
+		public Keyword getFlowKeyword_2() { return cFlowKeyword_2; }
+		
+		//ItemFlowDeclaration
+		public RuleCall getItemFlowDeclarationParserRuleCall_3() { return cItemFlowDeclarationParserRuleCall_3; }
+		
+		//TypeBody
+		public RuleCall getTypeBodyParserRuleCall_4() { return cTypeBodyParserRuleCall_4; }
 	}
 	public class ItemFlowDeclarationElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.ItemFlowDeclaration");
@@ -9389,7 +9393,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	
 	///* Item Flows */
 	//ItemFlow returns SysML::ItemFlow :
-	//    FeaturePrefix 'stream'
+	//    FeaturePrefix 'flow'
 	//    ItemFlowDeclaration TypeBody
 	//;
 	public ItemFlowElements getItemFlowAccess() {
@@ -9401,7 +9405,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//SuccessionItemFlow returns SysML::SuccessionItemFlow :
-	//    FeaturePrefix 'flow' ItemFlowDeclaration TypeBody
+	//    FeaturePrefix 'succession' 'flow' ItemFlowDeclaration TypeBody
 	//;
 	public SuccessionItemFlowElements getSuccessionItemFlowAccess() {
 		return pSuccessionItemFlow;

@@ -11,7 +11,7 @@ package 'Action Definition Example-1' {
 		
 		action focus: Focus (in scene, out image);
 		
-		flow focus.image to shoot.image;
+		succession flow from focus.image to shoot.image;
 		
 		action shoot: Shoot (in image, out picture);
 		

@@ -57,18 +57,18 @@ package 'Requirement Definitions' {
 	}
 	constraint def Rdef;
 	constraint c: Rdef;
-	requirement def id '1' R1def;
-	requirement def id '11' R11def;
-	requirement def id '2' R2def  :> Rdef;
+	requirement def <'1'> R1def;
+	requirement def <'11'> R11def;
+	requirement def <'2'> R2def  :> Rdef;
 	
-	//XPECT errors --> "A requirement must be typed by one requirement definition." at "requirement id '1.0' r10 : R1def, R11def;"
-	requirement id '1.0' r10 : R1def, R11def;
+	//XPECT errors --> "A requirement must be typed by one requirement definition." at "requirement <'1.0'> r10 : R1def, R11def;"
+	requirement <'1.0'> r10 : R1def, R11def;
 	/* XPECT errors ---
-		"A requirement  must be typed by one requirement definition." at "requirement id '1.1' r11 : Rdef;"
+		"A requirement  must be typed by one requirement definition." at "requirement <'1.1'> r11 : Rdef;"
 	--- */
-	requirement id '1.1' r11 : Rdef;
-	//XPECT errors --> "A requirement must be typed by one requirement definition." at "requirement id '1.2' r12 : R1def, R2def;"
-	requirement id '1.2' r12 : R1def, R2def;
+	requirement <'1.1'> r11 : Rdef;
+	//XPECT errors --> "A requirement must be typed by one requirement definition." at "requirement <'1.2'> r12 : R1def, R2def;"
+	requirement <'1.2'> r12 : R1def, R2def;
 	//*XPECT errors ---
 		"A requirement must be typed by one requirement definition." at "requirement r13 : A;"
 	---*/

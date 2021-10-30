@@ -111,9 +111,9 @@ ruleIdentification[EObject in_current]  returns [EObject current=in_current]
 }:
 	(
 		(
-			otherlv_0='id'
+			otherlv_0='<'
 			{
-				newLeafNode(otherlv_0, grammarAccess.getIdentificationAccess().getIdKeyword_0_0());
+				newLeafNode(otherlv_0, grammarAccess.getIdentificationAccess().getLessThanSignKeyword_0_0());
 			}
 			(
 				(
@@ -134,12 +134,16 @@ ruleIdentification[EObject in_current]  returns [EObject current=in_current]
 					}
 				)
 			)
+			otherlv_2='>'
+			{
+				newLeafNode(otherlv_2, grammarAccess.getIdentificationAccess().getGreaterThanSignKeyword_0_2());
+			}
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getIdentificationAccess().getNameNameParserRuleCall_0_2_0());
+						newCompositeNode(grammarAccess.getIdentificationAccess().getNameNameParserRuleCall_0_3_0());
 					}
-					lv_name_2_0=ruleName
+					lv_name_3_0=ruleName
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getIdentificationRule());
@@ -147,7 +151,7 @@ ruleIdentification[EObject in_current]  returns [EObject current=in_current]
 						set(
 							$current,
 							"name",
-							lv_name_2_0,
+							lv_name_3_0,
 							"org.omg.kerml.expressions.xtext.KerMLExpressions.Name");
 						afterParserOrEnumRuleCall();
 					}
@@ -160,7 +164,7 @@ ruleIdentification[EObject in_current]  returns [EObject current=in_current]
 				{
 					newCompositeNode(grammarAccess.getIdentificationAccess().getNameNameParserRuleCall_1_0());
 				}
-				lv_name_3_0=ruleName
+				lv_name_4_0=ruleName
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getIdentificationRule());
@@ -168,7 +172,7 @@ ruleIdentification[EObject in_current]  returns [EObject current=in_current]
 					set(
 						$current,
 						"name",
-						lv_name_3_0,
+						lv_name_4_0,
 						"org.omg.kerml.expressions.xtext.KerMLExpressions.Name");
 					afterParserOrEnumRuleCall();
 				}
@@ -1169,9 +1173,9 @@ ruleDocumentationComment returns [EObject current=null]
 			newLeafNode(otherlv_0, grammarAccess.getDocumentationCommentAccess().getDocKeyword_0());
 		}
 		(
-			otherlv_1='id'
+			otherlv_1='<'
 			{
-				newLeafNode(otherlv_1, grammarAccess.getDocumentationCommentAccess().getIdKeyword_1_0());
+				newLeafNode(otherlv_1, grammarAccess.getDocumentationCommentAccess().getLessThanSignKeyword_1_0());
 			}
 			(
 				(
@@ -1192,12 +1196,16 @@ ruleDocumentationComment returns [EObject current=null]
 					}
 				)
 			)
+			otherlv_3='>'
+			{
+				newLeafNode(otherlv_3, grammarAccess.getDocumentationCommentAccess().getGreaterThanSignKeyword_1_2());
+			}
 		)?
 		(
 			(
-				lv_body_3_0=RULE_REGULAR_COMMENT
+				lv_body_4_0=RULE_REGULAR_COMMENT
 				{
-					newLeafNode(lv_body_3_0, grammarAccess.getDocumentationCommentAccess().getBodyREGULAR_COMMENTTerminalRuleCall_2_0());
+					newLeafNode(lv_body_4_0, grammarAccess.getDocumentationCommentAccess().getBodyREGULAR_COMMENTTerminalRuleCall_2_0());
 				}
 				{
 					if ($current==null) {
@@ -1206,7 +1214,7 @@ ruleDocumentationComment returns [EObject current=null]
 					setWithLastConsumed(
 						$current,
 						"body",
-						lv_body_3_0,
+						lv_body_4_0,
 						"org.omg.kerml.expressions.xtext.KerMLExpressions.REGULAR_COMMENT");
 				}
 			)
@@ -1272,9 +1280,9 @@ rulePrefixDocumentationComment returns [EObject current=null]
 				newLeafNode(otherlv_0, grammarAccess.getPrefixDocumentationCommentAccess().getDocKeyword_0_0());
 			}
 			(
-				otherlv_1='id'
+				otherlv_1='<'
 				{
-					newLeafNode(otherlv_1, grammarAccess.getPrefixDocumentationCommentAccess().getIdKeyword_0_1_0());
+					newLeafNode(otherlv_1, grammarAccess.getPrefixDocumentationCommentAccess().getLessThanSignKeyword_0_1_0());
 				}
 				(
 					(
@@ -1295,13 +1303,17 @@ rulePrefixDocumentationComment returns [EObject current=null]
 						}
 					)
 				)
+				otherlv_3='>'
+				{
+					newLeafNode(otherlv_3, grammarAccess.getPrefixDocumentationCommentAccess().getGreaterThanSignKeyword_0_1_2());
+				}
 			)?
 		)?
 		(
 			(
-				lv_body_3_0=RULE_DOCUMENTATION_COMMENT
+				lv_body_4_0=RULE_DOCUMENTATION_COMMENT
 				{
-					newLeafNode(lv_body_3_0, grammarAccess.getPrefixDocumentationCommentAccess().getBodyDOCUMENTATION_COMMENTTerminalRuleCall_1_0());
+					newLeafNode(lv_body_4_0, grammarAccess.getPrefixDocumentationCommentAccess().getBodyDOCUMENTATION_COMMENTTerminalRuleCall_1_0());
 				}
 				{
 					if ($current==null) {
@@ -1310,7 +1322,7 @@ rulePrefixDocumentationComment returns [EObject current=null]
 					setWithLastConsumed(
 						$current,
 						"body",
-						lv_body_3_0,
+						lv_body_4_0,
 						"org.omg.kerml.expressions.xtext.KerMLExpressions.DOCUMENTATION_COMMENT");
 				}
 			)

@@ -14,7 +14,7 @@ END_SETUP
 */
 //XPECT noErrors ---> ""
 package test {
-	private class id 's_Id' something{}
+	private class <'s_Id'> something{}
 	private alias k for something;
 	private alias kk for s_Id;
 	class hello {

@@ -32,7 +32,7 @@ package Test {
 	}
 	package VP {
 		package VP2 {
-			public class id 'A_Id' B;
+			public class <'A_Id'> B;
 		}
 	}
 	

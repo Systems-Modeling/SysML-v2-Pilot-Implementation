@@ -14,19 +14,19 @@ END_SETUP
 */
 //XPECT noErrors ---> ""
 package test{
-	class id 'A_Id' A{
-		class id 'a_Id' a {
-			class id 'aa_Id' aa{}		
+	class <'A_Id'> A{
+		class <'a_Id'> a {
+			class <'aa_Id'> aa{}		
 		}
 	}
-	class id 'B_Id' B specializes A{
-		class id 'b_Id' b specializes a {}
+	class <'B_Id'> B specializes A{
+		class <'b_Id'> b specializes a {}
 	}
-	class id 'C_Id' C specializes B{
-		class id 'c1_Id' c1 specializes a {}
-		class id 'c2_Id'c2 specializes b {}
+	class <'C_Id'> C specializes B{
+		class <'c1_Id'> c1 specializes a {}
+		class <'c2_Id'> c2 specializes b {}
 	}
-	class id 'D_Id' D specializes C::a {
+	class <'D_Id'> D specializes C::a {
 		//XPECT linkedName at aa_Id --> test.A.a.aa
 		//* XPECT scope at aa_Id ---
  		A, A_Id, A.a, A.a_Id, A_Id.a, A_Id.a_Id, A.a.aa, A.a.aa_Id, A.a_Id.aa, A.a_Id.aa_Id,
@@ -66,10 +66,10 @@ package test{
 		test.C_Id.c2.aa, test.C_Id.c2.aa_Id, test.C_Id.c2_Id.aa, test.C_Id.c2_Id.aa_Id,
 		test.D, test.D_Id, test.D.aa, test.D.aa_Id, test.D_Id.aa, test.D_Id.aa_Id, test.D.d, test.D.d_Id, test.D_Id.d, test.D_Id.d_Id
 	--- */
-		class id 'd_Id' d specializes aa_Id {}
-		class id 'dd_Id' dd specializes test::D_Id::aa_Id;
-		class id 'ddd_Id' ddd specializes test::D::aa_Id; 
-		class id 'dddd_Id' dddd specializes test::D_Id::aa;
+		class <'d_Id'> d specializes aa_Id {}
+		class <'dd_Id'> dd specializes test::D_Id::aa_Id;
+		class <'ddd_Id'> ddd specializes test::D::aa_Id; 
+		class <'dddd_Id'> dddd specializes test::D_Id::aa;
 		 
 		
 	}

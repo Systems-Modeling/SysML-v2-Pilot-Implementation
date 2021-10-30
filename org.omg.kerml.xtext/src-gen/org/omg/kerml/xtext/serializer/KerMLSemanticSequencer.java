@@ -1222,10 +1222,10 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	 *         (ownedRelationship+=OwnedDisjoining ownedRelationship+=OwnedDisjoining*)? 
 	 *         (ownedRelationship+=ParameterMember ownedRelationship+=ParameterMember*)? 
 	 *         (ownedRelationship+=ReturnParameterMember | ownedRelationship+=EmptyReturnParameterMember) 
-	 *         ownedRelationship+=AliasMember? 
+	 *         ownedRelationship+=Import? 
 	 *         (
-	 *             (ownedRelationship+=OwnedDocumentation | ownedRelationship+=NonFeatureMember | ownedRelationship+=FeatureMember | ownedRelationship+=Import)? 
-	 *             ownedRelationship+=AliasMember?
+	 *             (ownedRelationship+=OwnedDocumentation | ownedRelationship+=NonFeatureMember | ownedRelationship+=FeatureMember | ownedRelationship+=AliasMember)? 
+	 *             ownedRelationship+=Import?
 	 *         )* 
 	 *         ownedRelationship+=ResultExpressionMember?
 	 *     )
@@ -1250,10 +1250,10 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	 *         (ownedRelationship+=OwnedDisjoining ownedRelationship+=OwnedDisjoining*)? 
 	 *         (ownedRelationship+=ParameterMember ownedRelationship+=ParameterMember*)? 
 	 *         (ownedRelationship+=ReturnParameterMember | ownedRelationship+=EmptyReturnParameterMember) 
-	 *         ownedRelationship+=AliasMember? 
+	 *         ownedRelationship+=Import? 
 	 *         (
-	 *             (ownedRelationship+=OwnedDocumentation | ownedRelationship+=NonFeatureMember | ownedRelationship+=FeatureMember | ownedRelationship+=Import)? 
-	 *             ownedRelationship+=AliasMember?
+	 *             (ownedRelationship+=OwnedDocumentation | ownedRelationship+=NonFeatureMember | ownedRelationship+=FeatureMember | ownedRelationship+=AliasMember)? 
+	 *             ownedRelationship+=Import?
 	 *         )* 
 	 *         ownedRelationship+=ResultExpressionMember?
 	 *     )

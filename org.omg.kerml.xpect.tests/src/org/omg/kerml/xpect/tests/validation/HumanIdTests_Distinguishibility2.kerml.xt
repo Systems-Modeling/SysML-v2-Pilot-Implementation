@@ -16,7 +16,7 @@ END_SETUP
 package Test {
 	 //name and id are the same
 	 //XPECT warnings --> "Duplicate of owned member ID" at "two"
-	 class id one two;
+	 class <one> two;
 	  //XPECT warnings --> "Duplicate of other ID or member name" at "two"
-	 class id two three;
+	 class <two> three;
 }

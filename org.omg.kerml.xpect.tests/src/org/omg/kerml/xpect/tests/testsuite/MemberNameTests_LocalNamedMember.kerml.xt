@@ -15,7 +15,7 @@ END_SETUP
 
 //XPECT noErrors ---> ""
 package test{
-	class id 'A_Id' A {}
+	class <'A_Id'> A {}
 	alias A_alias for A;
 	alias A_Id_alias for A_Id;
 	

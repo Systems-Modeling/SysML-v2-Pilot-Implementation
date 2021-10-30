@@ -209,7 +209,7 @@ public class VTree extends VStructure {
         String name = extractTitleName(typ);
         if (name == null) return;
         if (reqId != null) {
-            name = " [<b>" + reqId + "</b>] " + name;
+            name = " <b>~<" + reqId + "></b> " + name;
         }
         addType(typ, name, keyword);
         process(new VRequirement(this), typ);

@@ -461,6 +461,8 @@ enum FeatureDirection returns SysML::FeatureDirectionKind:
 fragment RefPrefix returns SysML::Usage :
 	( direction = FeatureDirection )?
 	( isAbstract ?= 'abstract' | isVariation ?= 'variation')?
+	( isReadOnly ?= 'readonly' )?
+	( isDerived ?= 'derived' )?
 	( isEnd ?= 'end' )?	
 ;
 

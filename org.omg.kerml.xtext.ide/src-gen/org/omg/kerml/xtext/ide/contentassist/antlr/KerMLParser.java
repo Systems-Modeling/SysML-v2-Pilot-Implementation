@@ -505,7 +505,9 @@ public class KerMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getFeaturePrefixAccess().getIsAbstractAssignment_1(), "rule__FeaturePrefix__IsAbstractAssignment_1");
 			builder.put(grammarAccess.getFeaturePrefixAccess().getIsCompositeAssignment_2_0(), "rule__FeaturePrefix__IsCompositeAssignment_2_0");
 			builder.put(grammarAccess.getFeaturePrefixAccess().getIsPortionAssignment_2_1(), "rule__FeaturePrefix__IsPortionAssignment_2_1");
-			builder.put(grammarAccess.getFeaturePrefixAccess().getIsEndAssignment_3(), "rule__FeaturePrefix__IsEndAssignment_3");
+			builder.put(grammarAccess.getFeaturePrefixAccess().getIsReadOnlyAssignment_3(), "rule__FeaturePrefix__IsReadOnlyAssignment_3");
+			builder.put(grammarAccess.getFeaturePrefixAccess().getIsDerivedAssignment_4(), "rule__FeaturePrefix__IsDerivedAssignment_4");
+			builder.put(grammarAccess.getFeaturePrefixAccess().getIsEndAssignment_5(), "rule__FeaturePrefix__IsEndAssignment_5");
 			builder.put(grammarAccess.getFeatureDeclarationAccess().getIsSufficientAssignment_0(), "rule__FeatureDeclaration__IsSufficientAssignment_0");
 			builder.put(grammarAccess.getTypeFeaturingPartAccess().getOwnedRelationshipAssignment_2(), "rule__TypeFeaturingPart__OwnedRelationshipAssignment_2");
 			builder.put(grammarAccess.getTypeFeaturingPartAccess().getOwnedRelationshipAssignment_3_1(), "rule__TypeFeaturingPart__OwnedRelationshipAssignment_3_1");

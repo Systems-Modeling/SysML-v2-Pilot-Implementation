@@ -3438,8 +3438,12 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Keyword cIsCompositeCompositeKeyword_2_0_0 = (Keyword)cIsCompositeAssignment_2_0.eContents().get(0);
 		private final Assignment cIsPortionAssignment_2_1 = (Assignment)cAlternatives_2.eContents().get(1);
 		private final Keyword cIsPortionPortionKeyword_2_1_0 = (Keyword)cIsPortionAssignment_2_1.eContents().get(0);
-		private final Assignment cIsEndAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final Keyword cIsEndEndKeyword_3_0 = (Keyword)cIsEndAssignment_3.eContents().get(0);
+		private final Assignment cIsReadOnlyAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final Keyword cIsReadOnlyReadonlyKeyword_3_0 = (Keyword)cIsReadOnlyAssignment_3.eContents().get(0);
+		private final Assignment cIsDerivedAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final Keyword cIsDerivedDerivedKeyword_4_0 = (Keyword)cIsDerivedAssignment_4.eContents().get(0);
+		private final Assignment cIsEndAssignment_5 = (Assignment)cGroup.eContents().get(5);
+		private final Keyword cIsEndEndKeyword_5_0 = (Keyword)cIsEndAssignment_5.eContents().get(0);
 		
 		///* FEATURES */
 		///* Features */
@@ -3447,6 +3451,8 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//    ( direction = FeatureDirection )?
 		//    ( isAbstract ?= 'abstract' )?
 		//    ( isComposite ?= 'composite' | isPortion ?= 'portion' )?
+		//    ( isReadOnly ?= 'readonly' )?
+		//    ( isDerived ?= 'derived' )?
 		//    ( isEnd ?= 'end' )?
 		//;
 		@Override public ParserRule getRule() { return rule; }
@@ -3454,6 +3460,8 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//( direction = FeatureDirection )?
 		//( isAbstract ?= 'abstract' )?
 		//( isComposite ?= 'composite' | isPortion ?= 'portion' )?
+		//( isReadOnly ?= 'readonly' )?
+		//( isDerived ?= 'derived' )?
 		//( isEnd ?= 'end' )?
 		public Group getGroup() { return cGroup; }
 		
@@ -3484,11 +3492,23 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//'portion'
 		public Keyword getIsPortionPortionKeyword_2_1_0() { return cIsPortionPortionKeyword_2_1_0; }
 		
+		//( isReadOnly ?= 'readonly' )?
+		public Assignment getIsReadOnlyAssignment_3() { return cIsReadOnlyAssignment_3; }
+		
+		//'readonly'
+		public Keyword getIsReadOnlyReadonlyKeyword_3_0() { return cIsReadOnlyReadonlyKeyword_3_0; }
+		
+		//( isDerived ?= 'derived' )?
+		public Assignment getIsDerivedAssignment_4() { return cIsDerivedAssignment_4; }
+		
+		//'derived'
+		public Keyword getIsDerivedDerivedKeyword_4_0() { return cIsDerivedDerivedKeyword_4_0; }
+		
 		//( isEnd ?= 'end' )?
-		public Assignment getIsEndAssignment_3() { return cIsEndAssignment_3; }
+		public Assignment getIsEndAssignment_5() { return cIsEndAssignment_5; }
 		
 		//'end'
-		public Keyword getIsEndEndKeyword_3_0() { return cIsEndEndKeyword_3_0; }
+		public Keyword getIsEndEndKeyword_5_0() { return cIsEndEndKeyword_5_0; }
 	}
 	public class FeatureElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.Feature");
@@ -8444,6 +8464,8 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	//    ( direction = FeatureDirection )?
 	//    ( isAbstract ?= 'abstract' )?
 	//    ( isComposite ?= 'composite' | isPortion ?= 'portion' )?
+	//    ( isReadOnly ?= 'readonly' )?
+	//    ( isDerived ?= 'derived' )?
 	//    ( isEnd ?= 'end' )?
 	//;
 	public FeaturePrefixElements getFeaturePrefixAccess() {

@@ -242,9 +242,9 @@ package Occurrences {
   		end feature redefines earlierOccurrence: Occurrence[0..*] subsets laterOccurrence.immediatePredecessors;
 		end feature redefines laterOccurrence: Occurrence[0..*] subsets earlierOccurrence.immediateSuccessors;
 
-  		private feature all betweenOccurrence: Occurrence[0..*];
-  		private succession earlierOccurrence[1] then betweenOccurrence[0];
-		private succession betweenOccurrence[0] then laterOccurrence[1];
+  		private feature all betweenOccurrence: Occurrence[0];
+  		private succession earlierOccurrence[1] then betweenOccurrence[0..*];
+		private succession betweenOccurrence[0..*] then laterOccurrence[1];
 	}
 
 	/**

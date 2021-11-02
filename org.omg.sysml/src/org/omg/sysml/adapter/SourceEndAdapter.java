@@ -50,11 +50,6 @@ public class SourceEndAdapter extends FeatureAdapter {
 	}
 	
 	@Override
-	public void computeImplicitGeneralTypes() {
-		addDefaultGeneralType();
-	}
-
-	@Override
 	public void addDefaultGeneralType() {
 		Type type = getTarget().getOwningType();
 		if (type instanceof Feature) {

@@ -32,20 +32,20 @@ package PartTest {
 	public part def A {
 		part <'1'> b: B;
 		protected port c: C;
+		readonly attribute x;
+		derived ref attribute y :> x;
 	}
 	
 	abstract part def <xx> B {
 		public abstract part a: A;
 		port x: ~C;
-		port y: C, D;
 		package P { }
 	}
 	
 	private port def C {
-		private in ref y: B;
-		alias z for y;
+		private in ref y: A, B;
+		alias z1 for y;
+		alias z2 for y;
 	}
-	
-	port def D;
 	
 }

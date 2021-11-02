@@ -5434,15 +5434,43 @@ ruleFeaturePrefix[EObject in_current]  returns [EObject current=in_current]
 		)?
 		(
 			(
-				lv_isEnd_4_0='end'
+				lv_isReadOnly_4_0='readonly'
 				{
-					newLeafNode(lv_isEnd_4_0, grammarAccess.getFeaturePrefixAccess().getIsEndEndKeyword_3_0());
+					newLeafNode(lv_isReadOnly_4_0, grammarAccess.getFeaturePrefixAccess().getIsReadOnlyReadonlyKeyword_3_0());
 				}
 				{
 					if ($current==null) {
 						$current = createModelElement(grammarAccess.getFeaturePrefixRule());
 					}
-					setWithLastConsumed($current, "isEnd", lv_isEnd_4_0 != null, "end");
+					setWithLastConsumed($current, "isReadOnly", lv_isReadOnly_4_0 != null, "readonly");
+				}
+			)
+		)?
+		(
+			(
+				lv_isDerived_5_0='derived'
+				{
+					newLeafNode(lv_isDerived_5_0, grammarAccess.getFeaturePrefixAccess().getIsDerivedDerivedKeyword_4_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getFeaturePrefixRule());
+					}
+					setWithLastConsumed($current, "isDerived", lv_isDerived_5_0 != null, "derived");
+				}
+			)
+		)?
+		(
+			(
+				lv_isEnd_6_0='end'
+				{
+					newLeafNode(lv_isEnd_6_0, grammarAccess.getFeaturePrefixAccess().getIsEndEndKeyword_5_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getFeaturePrefixRule());
+					}
+					setWithLastConsumed($current, "isEnd", lv_isEnd_6_0 != null, "end");
 				}
 			)
 		)?

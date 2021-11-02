@@ -544,6 +544,8 @@ fragment FeaturePrefix returns SysML::Feature :
 	( direction = FeatureDirection )?
 	( isAbstract ?= 'abstract' )?
 	( isComposite ?= 'composite' | isPortion ?= 'portion' )? 
+	( isReadOnly ?= 'readonly' )?
+	( isDerived ?= 'derived' )?
 	( isEnd ?= 'end' )?
 ;
 

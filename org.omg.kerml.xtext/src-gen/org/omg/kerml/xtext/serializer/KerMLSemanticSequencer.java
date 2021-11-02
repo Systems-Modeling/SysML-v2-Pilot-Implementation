@@ -922,6 +922,8 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	 *         direction=FeatureDirection? 
 	 *         isAbstract?='abstract'? 
 	 *         (isComposite?='composite' | isPortion?='portion')? 
+	 *         isReadOnly?='readonly'? 
+	 *         isDerived?='derived'? 
 	 *         isEnd?='end'? 
 	 *         (
 	 *             (
@@ -1022,6 +1024,8 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	 *         direction=FeatureDirection? 
 	 *         isAbstract?='abstract'? 
 	 *         (isComposite?='composite' | isPortion?='portion')? 
+	 *         isReadOnly?='readonly'? 
+	 *         isDerived?='derived'? 
 	 *         isEnd?='end'? 
 	 *         (
 	 *             (
@@ -1454,6 +1458,8 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	 *         direction=FeatureDirection? 
 	 *         isAbstract?='abstract'? 
 	 *         (isComposite?='composite' | isPortion?='portion')? 
+	 *         isReadOnly?='readonly'? 
+	 *         isDerived?='derived'? 
 	 *         isEnd?='end'? 
 	 *         isNegated?='false'? 
 	 *         (
@@ -1557,6 +1563,8 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	 *         direction=FeatureDirection? 
 	 *         isAbstract?='abstract'? 
 	 *         (isComposite?='composite' | isPortion?='portion')? 
+	 *         isReadOnly?='readonly'? 
+	 *         isDerived?='derived'? 
 	 *         isEnd?='end'? 
 	 *         (
 	 *             (
@@ -1659,6 +1667,8 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	 *         direction=FeatureDirection? 
 	 *         isAbstract?='abstract'? 
 	 *         (isComposite?='composite' | isPortion?='portion')? 
+	 *         isReadOnly?='readonly'? 
+	 *         isDerived?='derived'? 
 	 *         isEnd?='end'? 
 	 *         (
 	 *             (
@@ -1761,6 +1771,8 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	 *         direction=FeatureDirection? 
 	 *         isAbstract?='abstract'? 
 	 *         (isComposite?='composite' | isPortion?='portion')? 
+	 *         isReadOnly?='readonly'? 
+	 *         isDerived?='derived'? 
 	 *         isEnd?='end'? 
 	 *         (
 	 *             (
@@ -1864,6 +1876,8 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	 *         direction=FeatureDirection? 
 	 *         isAbstract?='abstract'? 
 	 *         (isComposite?='composite' | isPortion?='portion')? 
+	 *         isReadOnly?='readonly'? 
+	 *         isDerived?='derived'? 
 	 *         isEnd?='end'? 
 	 *         (
 	 *             (
@@ -1967,6 +1981,8 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	 *         direction=FeatureDirection? 
 	 *         isAbstract?='abstract'? 
 	 *         (isComposite?='composite' | isPortion?='portion')? 
+	 *         isReadOnly?='readonly'? 
+	 *         isDerived?='derived'? 
 	 *         isEnd?='end'? 
 	 *         (
 	 *             (
@@ -2062,6 +2078,8 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	 *         direction=FeatureDirection? 
 	 *         isAbstract?='abstract'? 
 	 *         (isComposite?='composite' | isPortion?='portion')? 
+	 *         isReadOnly?='readonly'? 
+	 *         isDerived?='derived'? 
 	 *         isEnd?='end'? 
 	 *         (
 	 *             (
@@ -2159,6 +2177,8 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	 *         direction=FeatureDirection? 
 	 *         isAbstract?='abstract'? 
 	 *         (isComposite?='composite' | isPortion?='portion')? 
+	 *         isReadOnly?='readonly'? 
+	 *         isDerived?='derived'? 
 	 *         isEnd?='end'? 
 	 *         (
 	 *             (

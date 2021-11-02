@@ -2721,18 +2721,26 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Keyword cIsAbstractAbstractKeyword_1_0_0 = (Keyword)cIsAbstractAssignment_1_0.eContents().get(0);
 		private final Assignment cIsVariationAssignment_1_1 = (Assignment)cAlternatives_1.eContents().get(1);
 		private final Keyword cIsVariationVariationKeyword_1_1_0 = (Keyword)cIsVariationAssignment_1_1.eContents().get(0);
-		private final Assignment cIsEndAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final Keyword cIsEndEndKeyword_2_0 = (Keyword)cIsEndAssignment_2.eContents().get(0);
+		private final Assignment cIsReadOnlyAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final Keyword cIsReadOnlyReadonlyKeyword_2_0 = (Keyword)cIsReadOnlyAssignment_2.eContents().get(0);
+		private final Assignment cIsDerivedAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final Keyword cIsDerivedDerivedKeyword_3_0 = (Keyword)cIsDerivedAssignment_3.eContents().get(0);
+		private final Assignment cIsEndAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final Keyword cIsEndEndKeyword_4_0 = (Keyword)cIsEndAssignment_4.eContents().get(0);
 		
 		//fragment RefPrefix returns SysML::Usage :
 		//    ( direction = FeatureDirection )?
 		//    ( isAbstract ?= 'abstract' | isVariation ?= 'variation')?
+		//    ( isReadOnly ?= 'readonly' )?
+		//    ( isDerived ?= 'derived' )?
 		//    ( isEnd ?= 'end' )?
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//( direction = FeatureDirection )?
 		//( isAbstract ?= 'abstract' | isVariation ?= 'variation')?
+		//( isReadOnly ?= 'readonly' )?
+		//( isDerived ?= 'derived' )?
 		//( isEnd ?= 'end' )?
 		public Group getGroup() { return cGroup; }
 		
@@ -2757,11 +2765,23 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//'variation'
 		public Keyword getIsVariationVariationKeyword_1_1_0() { return cIsVariationVariationKeyword_1_1_0; }
 		
+		//( isReadOnly ?= 'readonly' )?
+		public Assignment getIsReadOnlyAssignment_2() { return cIsReadOnlyAssignment_2; }
+		
+		//'readonly'
+		public Keyword getIsReadOnlyReadonlyKeyword_2_0() { return cIsReadOnlyReadonlyKeyword_2_0; }
+		
+		//( isDerived ?= 'derived' )?
+		public Assignment getIsDerivedAssignment_3() { return cIsDerivedAssignment_3; }
+		
+		//'derived'
+		public Keyword getIsDerivedDerivedKeyword_3_0() { return cIsDerivedDerivedKeyword_3_0; }
+		
 		//( isEnd ?= 'end' )?
-		public Assignment getIsEndAssignment_2() { return cIsEndAssignment_2; }
+		public Assignment getIsEndAssignment_4() { return cIsEndAssignment_4; }
 		
 		//'end'
-		public Keyword getIsEndEndKeyword_2_0() { return cIsEndEndKeyword_2_0; }
+		public Keyword getIsEndEndKeyword_4_0() { return cIsEndEndKeyword_4_0; }
 	}
 	public class UsagePrefixElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.UsagePrefix");
@@ -14860,6 +14880,8 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	//fragment RefPrefix returns SysML::Usage :
 	//    ( direction = FeatureDirection )?
 	//    ( isAbstract ?= 'abstract' | isVariation ?= 'variation')?
+	//    ( isReadOnly ?= 'readonly' )?
+	//    ( isDerived ?= 'derived' )?
 	//    ( isEnd ?= 'end' )?
 	//;
 	public RefPrefixElements getRefPrefixAccess() {

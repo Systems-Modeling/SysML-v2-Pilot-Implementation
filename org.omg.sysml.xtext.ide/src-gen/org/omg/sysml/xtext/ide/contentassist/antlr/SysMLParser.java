@@ -685,7 +685,9 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getRefPrefixAccess().getDirectionAssignment_0(), "rule__RefPrefix__DirectionAssignment_0");
 			builder.put(grammarAccess.getRefPrefixAccess().getIsAbstractAssignment_1_0(), "rule__RefPrefix__IsAbstractAssignment_1_0");
 			builder.put(grammarAccess.getRefPrefixAccess().getIsVariationAssignment_1_1(), "rule__RefPrefix__IsVariationAssignment_1_1");
-			builder.put(grammarAccess.getRefPrefixAccess().getIsEndAssignment_2(), "rule__RefPrefix__IsEndAssignment_2");
+			builder.put(grammarAccess.getRefPrefixAccess().getIsReadOnlyAssignment_2(), "rule__RefPrefix__IsReadOnlyAssignment_2");
+			builder.put(grammarAccess.getRefPrefixAccess().getIsDerivedAssignment_3(), "rule__RefPrefix__IsDerivedAssignment_3");
+			builder.put(grammarAccess.getRefPrefixAccess().getIsEndAssignment_4(), "rule__RefPrefix__IsEndAssignment_4");
 			builder.put(grammarAccess.getUsagePrefixAccess().getIsReferenceAssignment_1(), "rule__UsagePrefix__IsReferenceAssignment_1");
 			builder.put(grammarAccess.getValuePartAccess().getOwnedRelationshipAssignment(), "rule__ValuePart__OwnedRelationshipAssignment");
 			builder.put(grammarAccess.getValueOrFlowPartAccess().getOwnedRelationshipAssignment_1(), "rule__ValueOrFlowPart__OwnedRelationshipAssignment_1");

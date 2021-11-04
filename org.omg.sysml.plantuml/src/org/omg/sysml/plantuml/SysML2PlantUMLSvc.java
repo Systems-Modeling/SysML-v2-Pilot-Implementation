@@ -82,7 +82,7 @@ public class SysML2PlantUMLSvc {
         }
     }
 
-    public String getPlantUMLCode(List<EObject> eObjs, List<String> styles) {
+    public String getPlantUMLCode(List<?extends EObject> eObjs, List<String> styles) {
         if (eObjs.isEmpty()) return null;
         // Setup Visualization Mode with the first item.
         s2Text.setupVisualizationEObjects(eObjs.get(0));
@@ -96,7 +96,7 @@ public class SysML2PlantUMLSvc {
         return sb.toString();
     }
     
-    public String getSVG(List<EObject> eObjs, List<String> styles) throws IOException {
+    public String getSVG(List<?extends EObject> eObjs, List<String> styles) throws IOException {
         String pcode = getPlantUMLCode(eObjs, styles);
 
         final FileFormatOption ffo = new FileFormatOption(FileFormat.SVG);

@@ -33,6 +33,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.omg.sysml.lang.sysml.AcceptActionUsage;
+import org.omg.sysml.lang.sysml.ActorMembership;
 import org.omg.sysml.lang.sysml.AllocationUsage;
 import org.omg.sysml.lang.sysml.AnalysisCaseDefinition;
 import org.omg.sysml.lang.sysml.AnalysisCaseUsage;
@@ -52,6 +53,7 @@ import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.FlowConnectionUsage;
+import org.omg.sysml.lang.sysml.IncludeUseCaseUsage;
 import org.omg.sysml.lang.sysml.ItemDefinition;
 import org.omg.sysml.lang.sysml.ItemFlow;
 import org.omg.sysml.lang.sysml.ItemUsage;
@@ -298,6 +300,11 @@ public class SysML2PlantUMLStyle {
             }
         }
 
+        @Override
+        public String caseActorMembership(ActorMembership m) {
+            return " -- ";
+        }
+
 
 		@Override
         public String caseFeatureMembership(FeatureMembership fm) {
@@ -438,6 +445,11 @@ public class SysML2PlantUMLStyle {
 		@Override
 		public String caseExhibitStateUsage(ExhibitStateUsage esu) {
             return "<<exhibit state>> ";
+		}
+
+        @Override
+        public String caseIncludeUseCaseUsage(IncludeUseCaseUsage iucu) {
+            return " include use case>> ";
 		}
 
 		@Override

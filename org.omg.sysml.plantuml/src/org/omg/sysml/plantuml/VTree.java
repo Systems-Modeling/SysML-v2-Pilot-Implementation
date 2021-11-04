@@ -145,11 +145,15 @@ public class VTree extends VStructure {
 
     private boolean hasItems = false;
 
-    protected void process(VCompartment v, Type typ) {
+    protected List<VTree> processCompartment(VCompartment v, Type typ) {
         List<VTree> subtrees = v.process(this, typ);
-        if (v.isEmpty() && subtrees.isEmpty()) {
+        if  (v.isEmpty() && subtrees.isEmpty()) return null;
+        return subtrees;
+    }
+
+    protected void processSubtrees(VCompartment v, List<VTree> subtrees) {
+        if (subtrees == null) {
             v.closeBlock();
-            return;
         } else {
             hasItems = true;
             v.closeBlock();
@@ -157,6 +161,11 @@ public class VTree extends VStructure {
                 vt.flush();
             }
         }
+    }
+
+    protected void process(VCompartment v, Type typ) {
+        List<VTree> subtrees = processCompartment(v, typ);
+        processSubtrees(v, subtrees);
     }
 
     /* VCompartment uses */

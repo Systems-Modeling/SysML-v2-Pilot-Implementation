@@ -194,6 +194,10 @@ public class VUseCase extends VTree {
     	super(vt);
     }
 
+    public VUseCase(VMixed vt) {
+        super(vt);
+    }
+
     public VUseCase() {
         super();
     }

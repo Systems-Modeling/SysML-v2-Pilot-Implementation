@@ -26,10 +26,13 @@ package org.omg.sysml.plantuml;
 
 import org.omg.sysml.lang.sysml.ActionDefinition;
 import org.omg.sysml.lang.sysml.ActionUsage;
+import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.StateDefinition;
 import org.omg.sysml.lang.sysml.StateUsage;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.lang.sysml.UseCaseDefinition;
+import org.omg.sysml.lang.sysml.UseCaseUsage;
 
 public class VMixed extends VTree {
     private static final SysML2PlantUMLStyle style
@@ -49,6 +52,13 @@ public class VMixed extends VTree {
     @Override
     protected VTree newVTree(Membership membership) {
         return new VMixed(this, membership);
+    }
+
+    private String process(Visitor v, Element e) {
+        v.visit(e);
+        addRel(e, e, null);
+        v.flush();
+        return "";
     }
 
     /***************************************************
@@ -80,20 +90,30 @@ public class VMixed extends VTree {
     @Override
     public String caseStateUsage(StateUsage su) {
         VStateMachine vs = new VStateMachine(this);
-        vs.visit(su);
-        addRel(su, su, null);
-        vs.flush();
-        return "";
+        return process(vs, su);
     }
     
     @Override
     public String caseStateDefinition(StateDefinition sd) {
         VStateMachine vs = new VStateMachine(this);
-        vs.visit(sd);
-        addRel(sd, sd, null);
-        vs.flush();
-        return "";
+        return process(vs, sd);
     }
+
+    /***************************************************
+     * Delegation Methods for VUseCase
+     ***************************************************/
+    @Override
+    public String caseUseCaseUsage(UseCaseUsage ucu) {
+        VUseCase vu = new VUseCase(this);
+        return process(vu, ucu);
+    }
+
+    @Override
+    public String caseUseCaseDefinition(UseCaseDefinition ucd) {
+        VUseCase vu = new VUseCase(this);
+        return process(vu, ucd);
+    }
+
 
     private VMixed(VTree vt, Membership membership) {
         super(vt, membership);

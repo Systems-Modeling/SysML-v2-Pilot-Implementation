@@ -70,6 +70,7 @@ import org.omg.sysml.lang.sysml.RequirementConstraintMembership;
 import org.omg.sysml.lang.sysml.SatisfyRequirementUsage;
 import org.omg.sysml.lang.sysml.SendActionUsage;
 import org.omg.sysml.lang.sysml.Specialization;
+import org.omg.sysml.lang.sysml.StakeholderMembership;
 import org.omg.sysml.lang.sysml.SubjectMembership;
 import org.omg.sysml.lang.sysml.Succession;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -305,6 +306,10 @@ public class SysML2PlantUMLStyle {
             return " -- ";
         }
 
+        @Override
+        public String caseStakeholderMembership(StakeholderMembership m) {
+            return " -- ";
+        }
 
 		@Override
         public String caseFeatureMembership(FeatureMembership fm) {
@@ -379,7 +384,7 @@ public class SysML2PlantUMLStyle {
 
 		@Override
 		public String caseAllocationUsage(AllocationUsage au) {
-            return " --> ";
+            return " -[thickness=5,dotted]-> ";
 		}
 
 		@Override

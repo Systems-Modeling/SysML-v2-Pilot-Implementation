@@ -25,16 +25,15 @@
 package org.omg.sysml.plantuml;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import org.omg.sysml.lang.sysml.ActorMembership;
-import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.ObjectiveMembership;
+import org.omg.sysml.lang.sysml.ParameterMembership;
 import org.omg.sysml.lang.sysml.RequirementUsage;
-import org.omg.sysml.lang.sysml.Subsetting;
+import org.omg.sysml.lang.sysml.StakeholderMembership;
 import org.omg.sysml.lang.sysml.Succession;
 import org.omg.sysml.lang.sysml.TransitionUsage;
 import org.omg.sysml.lang.sysml.Type;
@@ -48,8 +47,8 @@ public class VUseCase extends VTree {
     private static final SysML2PlantUMLStyle style
     = new SysML2PlantUMLStyle
     ("VUseCase",
-      null,
-     "skinparam ranksep 8\n",
+     null,
+     "",
      new StyleSwitch(new StyleRelSwitch() {
 		@Override
 		public String caseSuccession(Succession s) {
@@ -71,10 +70,12 @@ public class VUseCase extends VTree {
         return new VUseCase(this, membership);
     }
 
-    private String addActorStyle(Type typ, String name) {
+    private String addActorLikeStyle(Type typ, String name) {
         Membership ms = typ.getOwningMembership();
         if (ms instanceof ActorMembership) {
             return "<size:30><&person></size> " + name;
+        } else if (ms instanceof StakeholderMembership) {
+            return "<size:30><&people></size> " + name;
         } else {
             return name;
         }
@@ -91,25 +92,6 @@ public class VUseCase extends VTree {
         super.flush();
     }
     
-    private static String getUseCaseName(Feature f, Set<Feature> visited) {
-        if (visited.contains(f)) return null;
-        visited.add(f);
-        String name = f.getEffectiveName();
-        if (name != null) return name;
-        for (Subsetting ss: f.getOwnedSubsetting()) {
-            Feature sf = ss.getSubsettedFeature();
-            name = getUseCaseName(sf, visited);
-            if (name != null) return name;
-        }
-        return null;
-    }
-
-    private static String getUseCaseName(Feature f) {
-        String name = f.getEffectiveName();
-        if (name != null) return name;
-        return getUseCaseName(f, new HashSet<>());
-    }
-
     private String addUseCase(String name, Type typ) {
         addRecLine(name, typ, true);
         addSpecializations(typ);
@@ -121,7 +103,7 @@ public class VUseCase extends VTree {
     }
 
     private String addUseCaseUsage(UseCaseUsage ucu) {
-        String name = getUseCaseName(ucu);
+        String name = ucu.getEffectiveName();
         if (name == null) {
             name = getNameAnyway(ucu, true);
         }
@@ -148,7 +130,21 @@ public class VUseCase extends VTree {
             }
             processSubtrees(vr, subtrees);
         }
+        addSpecializations(ru);
         return "";
+    }
+
+    private void addMembershipPRelation(Membership ms) {
+        Element owner = ms.getMembershipOwningNamespace();
+        Element tgt = ms.getMemberElement();
+        if (owner == null || tgt == null) return;
+        addPRelation(owner, tgt, ms);
+    }
+
+    @Override
+    public String caseParameterMembership(ParameterMembership pm) {
+        addMembershipPRelation(pm);
+        return null;
     }
 
     private void addType(Type typ) {
@@ -159,7 +155,7 @@ public class VUseCase extends VTree {
         } else {
             keyword = "comp def ";
         }
-        String name = addActorStyle(typ, extractTitleName(typ));
+        String name = addActorLikeStyle(typ, extractTitleName(typ));
         addType(typ, name, keyword);
         process(new VCompartment(this), typ);
     }

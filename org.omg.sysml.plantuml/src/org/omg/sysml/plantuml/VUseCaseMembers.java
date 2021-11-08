@@ -27,7 +27,6 @@ package org.omg.sysml.plantuml;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.omg.sysml.lang.sysml.ActorMembership;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.IncludeUseCaseUsage;
@@ -108,17 +107,6 @@ public class VUseCaseMembers extends VBehavior {
             addPRelation(sm.getMembershipOwningNamespace(), typ, sm, "<<subject>>");
         }
         return "";
-    }
-
-    @Override
-    public String caseActorMembership(ActorMembership am) {
-        Element owner = am.getMembershipOwningNamespace();
-        Element actor = am.getMemberElement();
-        if (owner == null || actor == null) return null;
-        
-        addPRelation(owner, actor, am);
-
-        return null;
     }
 
     VUseCaseMembers(VUseCase vt) {

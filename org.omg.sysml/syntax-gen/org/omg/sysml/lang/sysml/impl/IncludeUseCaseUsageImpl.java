@@ -7,6 +7,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.EventOccurrenceUsage;
+import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.IncludeUseCaseUsage;
 import org.omg.sysml.lang.sysml.OccurrenceUsage;
 import org.omg.sysml.lang.sysml.PerformActionUsage;
@@ -167,6 +168,11 @@ public class IncludeUseCaseUsageImpl extends UseCaseUsageImpl implements Include
 	}
 
 	// Additional overrides
+	
+	@Override
+	public Feature namingFeature() {
+		return getUseCaseIncluded();
+	}
 	
 	@Override
 	public boolean isReference() {

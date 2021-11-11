@@ -2,11 +2,7 @@
 # Used by xtext_grammar_converter.py to generate Jupyter mode.ts source
 # Format: one line per keyword, and comment lines start with # or //
 # Keywords included for backwards compatibility
-activity
-block
-link
-type
-value
+#
 # Keywords without corresponding definition declarations
 metadata
 objective
@@ -14,11 +10,12 @@ ref
 snapshot
 subject
 timeslice
+binding
+succession
 transition
+#
 # Keywords that do not fall into the definition/usage pattern
 comment
 doc
 package
 rep
-# Keyword to specify a 'human ID'
-id

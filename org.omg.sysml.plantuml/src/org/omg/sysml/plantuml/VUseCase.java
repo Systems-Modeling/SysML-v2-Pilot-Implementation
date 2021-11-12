@@ -24,7 +24,6 @@
 
 package org.omg.sysml.plantuml;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.omg.sysml.lang.sysml.ActorMembership;
@@ -81,17 +80,6 @@ public class VUseCase extends VTree {
         }
     }
 
-    private List<VTree> subtrees = new ArrayList<VTree>();
-
-    @Override
-    protected void flush() {
-        for (VTree vt: subtrees) {
-            vt.flush();
-        }
-        subtrees.clear();
-        super.flush();
-    }
-    
     private String addUseCase(String name, Type typ) {
         addRecLine(name, typ, true);
         addSpecializations(typ);
@@ -178,7 +166,6 @@ public class VUseCase extends VTree {
 
     @Override
     protected String getString() {
-        flush();
         return super.getString();
     }
 

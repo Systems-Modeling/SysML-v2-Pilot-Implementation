@@ -1,4 +1,4 @@
-package 'Action Definition Example-1' {
+package 'Action Shorthand Example' {
 	item def Scene;
 	item def Image;
 	item def Picture;
@@ -15,8 +15,8 @@ package 'Action Definition Example-1' {
 			out item image;
 		}
 		
-		action shoot: Shoot {
-			in item image succession flow from focus.image;
+		then action shoot: Shoot {
+			in item image flow from focus.image;
 			out item picture = TakePicture::picture;
 		}
 	}

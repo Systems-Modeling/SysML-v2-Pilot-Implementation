@@ -53,13 +53,10 @@ public class VTree extends VStructure {
 
     private Membership membership;
 
-    protected void addRel(Membership ms, Element typ, Element rel, String text) {
-        addPRelation(ms.getMembershipOwningNamespace(), typ, rel, text);
-    }
-
     protected void addRel(Element typ, Element rel, String text) {
         if (membership == null) return;
-        addRel(membership, typ, rel, text);
+        Element tgt = membership.getMembershipOwningNamespace();
+        addPRelation(tgt, typ, rel, text);
     }
     
     protected void addRel(Element typ, String text) {

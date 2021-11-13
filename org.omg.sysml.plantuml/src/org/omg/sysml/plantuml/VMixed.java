@@ -26,13 +26,13 @@ package org.omg.sysml.plantuml;
 
 import org.omg.sysml.lang.sysml.ActionDefinition;
 import org.omg.sysml.lang.sysml.ActionUsage;
+import org.omg.sysml.lang.sysml.CaseDefinition;
+import org.omg.sysml.lang.sysml.CaseUsage;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.StateDefinition;
 import org.omg.sysml.lang.sysml.StateUsage;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.lang.sysml.UseCaseDefinition;
-import org.omg.sysml.lang.sysml.UseCaseUsage;
 
 public class VMixed extends VTree {
     private static final SysML2PlantUMLStyle style
@@ -100,17 +100,17 @@ public class VMixed extends VTree {
     }
 
     /***************************************************
-     * Delegation Methods for VUseCase
+     * Delegation Methods for VCase
      ***************************************************/
     @Override
-    public String caseUseCaseUsage(UseCaseUsage ucu) {
-        VUseCase vu = new VUseCase(this);
+    public String caseCaseUsage(CaseUsage ucu) {
+        VCase vu = new VCase(this);
         return process(vu, ucu);
     }
 
     @Override
-    public String caseUseCaseDefinition(UseCaseDefinition ucd) {
-        VUseCase vu = new VUseCase(this);
+    public String caseCaseDefinition(CaseDefinition ucd) {
+        VCase vu = new VCase(this);
         return process(vu, ucd);
     }
 

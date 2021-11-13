@@ -53,9 +53,13 @@ public class VTree extends VStructure {
 
     private Membership membership;
 
+    protected void addRel(Membership ms, Element typ, Element rel, String text) {
+        addPRelation(ms.getMembershipOwningNamespace(), typ, rel, text);
+    }
+
     protected void addRel(Element typ, Element rel, String text) {
         if (membership == null) return;
-        addPRelation(membership.getMembershipOwningNamespace(), typ, rel, text);
+        addRel(membership, typ, rel, text);
     }
     
     protected void addRel(Element typ, String text) {
@@ -242,7 +246,7 @@ public class VTree extends VStructure {
         return new VTree(this, membership);
     }
 
-    protected VTree(VTree vt, Membership membership) {
+    protected VTree(Visitor vt, Membership membership) {
         super(vt);
         this.membership = membership;
     }

@@ -77,6 +77,8 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.TransitionUsage;
 import org.omg.sysml.lang.sysml.Usage;
 import org.omg.sysml.lang.sysml.VariantMembership;
+import org.omg.sysml.lang.sysml.VerificationCaseDefinition;
+import org.omg.sysml.lang.sysml.VerificationCaseUsage;
 import org.omg.sysml.lang.sysml.util.SysMLSwitch;
 
 public class SysML2PlantUMLStyle {
@@ -480,6 +482,16 @@ public class SysML2PlantUMLStyle {
 		@Override
 		public String caseAnalysisCaseDefinition(AnalysisCaseDefinition acd) {
             return " analysis def>> ";
+		}
+
+		@Override
+		public String caseVerificationCaseUsage(VerificationCaseUsage acu) {
+            return " verification>> ";
+		}
+
+		@Override
+		public String caseVerificationCaseDefinition(VerificationCaseDefinition acd) {
+            return " verification def>> ";
 		}
 
 		@Override

@@ -29,6 +29,7 @@ package org.omg.sysml.plantuml;
 import java.util.List;
 import java.util.regex.Pattern;
 
+import org.omg.sysml.lang.sysml.ActorMembership;
 import org.omg.sysml.lang.sysml.ConjugatedPortDefinition;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
@@ -41,6 +42,7 @@ import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.RequirementUsage;
 import org.omg.sysml.lang.sysml.ResultExpressionMembership;
 import org.omg.sysml.lang.sysml.SatisfyRequirementUsage;
+import org.omg.sysml.lang.sysml.StakeholderMembership;
 import org.omg.sysml.lang.sysml.Type;
 
 public abstract class VStructure extends VDefault {
@@ -155,6 +157,15 @@ public abstract class VStructure extends VDefault {
         addFeatureMembershipText(f);
     }
 
+    private void insertActorLikeStyle(StringBuilder sb, Type typ) {
+        Membership ms = typ.getOwningMembership();
+        if (ms instanceof ActorMembership) {
+            sb.insert(0, "<size:30><&person></size> ");
+        } else if (ms instanceof StakeholderMembership) {
+            sb.insert(0, "<size:30><&people></size> ");
+        }
+    }
+
     protected String extractTitleName(Element e) {
         String name = getNameAnyway(e, true);
         if (!(e instanceof Feature)) return name;
@@ -164,7 +175,6 @@ public abstract class VStructure extends VDefault {
         boolean added = appendFeatureType(sb, ": ", f);
         sb.append(' ');
         added = appendSubsettingFeature(sb, ":> ", f) || added;
-        if (!added) return name;
         sb.insert(0, name);
         /*
         if (f instanceof Usage) {
@@ -174,6 +184,7 @@ public abstract class VStructure extends VDefault {
             }
         }
         */
+        insertActorLikeStyle(sb, f);
         return sb.toString();
     }
 

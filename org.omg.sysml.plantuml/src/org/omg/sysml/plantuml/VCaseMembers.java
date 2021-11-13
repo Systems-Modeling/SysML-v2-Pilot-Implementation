@@ -27,33 +27,31 @@ package org.omg.sysml.plantuml;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.omg.sysml.lang.sysml.CaseDefinition;
+import org.omg.sysml.lang.sysml.CaseUsage;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.FeatureTyping;
-import org.omg.sysml.lang.sysml.IncludeUseCaseUsage;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.ObjectiveMembership;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.SubjectMembership;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
-import org.omg.sysml.lang.sysml.UseCaseDefinition;
-import org.omg.sysml.lang.sysml.UseCaseUsage;
 
-public class VUseCaseMembers extends VBehavior {
-    private List<VUseCase> queue = new ArrayList<>();
+public class VCaseMembers extends VBehavior {
+    private List<VCase> queue = new ArrayList<>();
     
-    public void processUseCase(Type typ) {
+    public void processCase(Type typ) {
         traverse(typ);
         outputEntryExitTransitions();
         closeBlock();
-        for (VUseCase v: queue) {
+        for (VCase v: queue) {
             v.flush();
         }
         flush();
     }
 
-    private void rec(Element e, boolean inside) {
-        VUseCase v = new VUseCase(this);
+    private void rec(VCase v, Element e, boolean inside) {
         v.visit(e);
         if (inside) {
             v.flush();
@@ -61,41 +59,44 @@ public class VUseCaseMembers extends VBehavior {
             queue.add(v);
         }
     }
+
+    private void recMembership(Membership ms, boolean inside) {
+        rec(new VCase(this, ms), ms, inside);
+    }
+
+    private void recElement(Element e, boolean inside) {
+        rec(new VCase(this), e, inside);
+    }
     
-    private String addUseCase(Type typ) {
-        rec(typ, true);
+    private String addCase(Type typ) {
+        recElement(typ, true);
         return "";
     }
 
     @Override
-    public String caseUseCaseUsage(UseCaseUsage ucu) {
-        return addUseCase(ucu);
+    public String caseCaseUsage(CaseUsage ucu) {
+        return addCase(ucu);
     }
 
     @Override
-    public String caseUseCaseDefinition(UseCaseDefinition ucd) {
-        return addUseCase(ucd);
-    }
-
-    @Override
-    public String caseIncludeUseCaseUsage(IncludeUseCaseUsage iucu) {
-        return addUseCase(iucu);
+    public String caseCaseDefinition(CaseDefinition ucd) {
+        return addCase(ucd);
     }
 
     @Override
     public String caseMembership(Membership m) {
         Element e = m.getMemberElement();
-        if ((e instanceof UseCaseUsage)
+        if ((e instanceof CaseUsage)
             || (e instanceof Relationship)) {
             return super.caseMembership(m);
         }
-        rec(m, false);
+        recMembership(m, false);
         return "";
     }
 
     @Override
     public String caseObjectiveMembership(ObjectiveMembership om) {
-        rec(om, true);
+        recMembership(om, true);
         return "";
     }
 
@@ -109,7 +110,7 @@ public class VUseCaseMembers extends VBehavior {
         return "";
     }
 
-    VUseCaseMembers(VUseCase vt) {
+    VCaseMembers(VCase vt) {
     	super(vt);
     }
 }

@@ -26,26 +26,21 @@ package org.omg.sysml.plantuml;
 
 import java.util.List;
 
-import org.omg.sysml.lang.sysml.ActorMembership;
-import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.CaseDefinition;
+import org.omg.sysml.lang.sysml.CaseUsage;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.ObjectiveMembership;
-import org.omg.sysml.lang.sysml.ParameterMembership;
 import org.omg.sysml.lang.sysml.RequirementUsage;
-import org.omg.sysml.lang.sysml.StakeholderMembership;
 import org.omg.sysml.lang.sysml.Succession;
 import org.omg.sysml.lang.sysml.TransitionUsage;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.lang.sysml.Usage;
-import org.omg.sysml.lang.sysml.UseCaseDefinition;
-import org.omg.sysml.lang.sysml.UseCaseUsage;
 import org.omg.sysml.plantuml.SysML2PlantUMLStyle.StyleRelSwitch;
 import org.omg.sysml.plantuml.SysML2PlantUMLStyle.StyleSwitch;
 
-public class VUseCase extends VTree {
+public class VCase extends VTree {
     private static final SysML2PlantUMLStyle style
     = new SysML2PlantUMLStyle
-    ("VUseCase",
+    ("VCase",
      null,
      "",
      new StyleSwitch(new StyleRelSwitch() {
@@ -66,41 +61,18 @@ public class VUseCase extends VTree {
 
     @Override
     protected VTree newVTree(Membership membership) {
-        return new VUseCase(this, membership);
+        return new VCase(this, membership);
     }
 
-    private String addActorLikeStyle(Type typ, String name) {
-        Membership ms = typ.getOwningMembership();
-        if (ms instanceof ActorMembership) {
-            return "<size:30><&person></size> " + name;
-        } else if (ms instanceof StakeholderMembership) {
-            return "<size:30><&people></size> " + name;
-        } else {
-            return name;
-        }
-    }
-
-    private String addUseCase(String name, Type typ) {
+    private String addCase(Type typ) {
+        String name = getNameAnyway(typ, true);
         addRecLine(name, typ, true);
         addSpecializations(typ);
 
-        VUseCaseMembers v = new VUseCaseMembers(this);
-        v.processUseCase(typ);
+        VCaseMembers v = new VCaseMembers(this);
+        v.processCase(typ);
 
         return "";
-    }
-
-    private String addUseCaseUsage(UseCaseUsage ucu) {
-        String name = ucu.getEffectiveName();
-        if (name == null) {
-            name = getNameAnyway(ucu, true);
-        }
-        return addUseCase(name, ucu);
-    }
-
-    private String addUseCaseDefinition(UseCaseDefinition ucd) {
-        String name = getNameAnyway(ucd, true);
-        return addUseCase(name, ucd);
     }
 
     @Override
@@ -122,66 +94,29 @@ public class VUseCase extends VTree {
         return "";
     }
 
-    private void addMembershipPRelation(Membership ms) {
-        Element owner = ms.getMembershipOwningNamespace();
-        Element tgt = ms.getMemberElement();
-        if (owner == null || tgt == null) return;
-        addPRelation(owner, tgt, ms);
+    @Override
+    public String caseCaseUsage(CaseUsage ucu) {
+        return addCase(ucu);
     }
 
     @Override
-    public String caseParameterMembership(ParameterMembership pm) {
-        addMembershipPRelation(pm);
-        return null;
+    public String caseCaseDefinition(CaseDefinition ucd) {
+        return addCase(ucd);
     }
 
-    private void addType(Type typ) {
-    	if (checkVisited(typ)) return;
-        String keyword;
-        if (typ instanceof Usage) {
-            keyword = "comp usage ";
-        } else {
-            keyword = "comp def ";
-        }
-        String name = addActorLikeStyle(typ, extractTitleName(typ));
-        addType(typ, name, keyword);
-        process(new VCompartment(this), typ);
-    }
-
-    @Override 
-    public String caseType(Type typ) {
-        addType(typ);
-        return "";
-    }
-
-    @Override
-    public String caseUseCaseUsage(UseCaseUsage ucu) {
-        return addUseCaseUsage(ucu);
-    }
-
-    @Override
-    public String caseUseCaseDefinition(UseCaseDefinition ucd) {
-        return addUseCaseDefinition(ucd);
-    }
-
-    @Override
-    protected String getString() {
-        return super.getString();
-    }
-
-    private VUseCase(VUseCase vt, Membership membership) {
+    VCase(Visitor vt, Membership membership) {
         super(vt, membership);
     }
 
-    VUseCase(VUseCaseMembers vt) {
+    VCase(VCaseMembers vt) {
     	super(vt);
     }
 
-    public VUseCase(VMixed vt) {
+    public VCase(VMixed vt) {
         super(vt);
     }
 
-    public VUseCase() {
+    public VCase() {
         super();
     }
 }

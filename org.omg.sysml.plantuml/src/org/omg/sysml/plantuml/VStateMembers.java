@@ -133,7 +133,7 @@ public class VStateMembers extends VBehavior {
         return "";
     }
 
-    VStateMembers(Visitor v) {
+    VStateMembers(VStateMachine v) {
         super(v);
     }
 }

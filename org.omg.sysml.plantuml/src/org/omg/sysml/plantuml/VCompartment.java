@@ -32,6 +32,7 @@ import java.util.List;
 
 import org.omg.sysml.lang.sysml.ActionDefinition;
 import org.omg.sysml.lang.sysml.ActionUsage;
+import org.omg.sysml.lang.sysml.ActorMembership;
 import org.omg.sysml.lang.sysml.AnalysisCaseUsage;
 import org.omg.sysml.lang.sysml.AttributeUsage;
 import org.omg.sysml.lang.sysml.BindingConnector;
@@ -54,6 +55,7 @@ import org.omg.sysml.lang.sysml.PortUsage;
 import org.omg.sysml.lang.sysml.ReferenceUsage;
 import org.omg.sysml.lang.sysml.RequirementUsage;
 import org.omg.sysml.lang.sysml.ReturnParameterMembership;
+import org.omg.sysml.lang.sysml.StakeholderMembership;
 import org.omg.sysml.lang.sysml.StateDefinition;
 import org.omg.sysml.lang.sysml.StateUsage;
 import org.omg.sysml.lang.sysml.SubjectMembership;
@@ -374,6 +376,18 @@ public class VCompartment extends VStructure {
     @Override
     public String caseObjectiveMembership(ObjectiveMembership om) {
         rec(om, om, true);
+        return "";
+    }
+
+    @Override
+    public String caseActorMembership(ActorMembership am) {
+        rec(am, am, false);
+        return "";
+    }
+
+    @Override
+    public String caseStakeholderMembership(StakeholderMembership sm) {
+        rec(sm, sm, false);
         return "";
     }
 

@@ -33,6 +33,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.omg.sysml.lang.sysml.AcceptActionUsage;
+import org.omg.sysml.lang.sysml.ActorMembership;
 import org.omg.sysml.lang.sysml.AllocationUsage;
 import org.omg.sysml.lang.sysml.AnalysisCaseDefinition;
 import org.omg.sysml.lang.sysml.AnalysisCaseUsage;
@@ -52,6 +53,7 @@ import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.FlowConnectionUsage;
+import org.omg.sysml.lang.sysml.IncludeUseCaseUsage;
 import org.omg.sysml.lang.sysml.ItemDefinition;
 import org.omg.sysml.lang.sysml.ItemFlow;
 import org.omg.sysml.lang.sysml.ItemUsage;
@@ -68,12 +70,15 @@ import org.omg.sysml.lang.sysml.RequirementConstraintMembership;
 import org.omg.sysml.lang.sysml.SatisfyRequirementUsage;
 import org.omg.sysml.lang.sysml.SendActionUsage;
 import org.omg.sysml.lang.sysml.Specialization;
+import org.omg.sysml.lang.sysml.StakeholderMembership;
 import org.omg.sysml.lang.sysml.SubjectMembership;
 import org.omg.sysml.lang.sysml.Succession;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.TransitionUsage;
 import org.omg.sysml.lang.sysml.Usage;
 import org.omg.sysml.lang.sysml.VariantMembership;
+import org.omg.sysml.lang.sysml.VerificationCaseDefinition;
+import org.omg.sysml.lang.sysml.VerificationCaseUsage;
 import org.omg.sysml.lang.sysml.util.SysMLSwitch;
 
 public class SysML2PlantUMLStyle {
@@ -298,6 +303,15 @@ public class SysML2PlantUMLStyle {
             }
         }
 
+        @Override
+        public String caseActorMembership(ActorMembership m) {
+            return " -- ";
+        }
+
+        @Override
+        public String caseStakeholderMembership(StakeholderMembership m) {
+            return " -- ";
+        }
 
 		@Override
         public String caseFeatureMembership(FeatureMembership fm) {
@@ -372,7 +386,7 @@ public class SysML2PlantUMLStyle {
 
 		@Override
 		public String caseAllocationUsage(AllocationUsage au) {
-            return " --> ";
+            return " -[thickness=5,dotted]-> ";
 		}
 
 		@Override
@@ -440,6 +454,11 @@ public class SysML2PlantUMLStyle {
             return "<<exhibit state>> ";
 		}
 
+        @Override
+        public String caseIncludeUseCaseUsage(IncludeUseCaseUsage iucu) {
+            return " include use case>> ";
+		}
+
 		@Override
 		public String casePerformActionUsage(PerformActionUsage pau) {
             return " perform action>> ";
@@ -463,6 +482,16 @@ public class SysML2PlantUMLStyle {
 		@Override
 		public String caseAnalysisCaseDefinition(AnalysisCaseDefinition acd) {
             return " analysis def>> ";
+		}
+
+		@Override
+		public String caseVerificationCaseUsage(VerificationCaseUsage acu) {
+            return " verification>> ";
+		}
+
+		@Override
+		public String caseVerificationCaseDefinition(VerificationCaseDefinition acd) {
+            return " verification def>> ";
 		}
 
 		@Override

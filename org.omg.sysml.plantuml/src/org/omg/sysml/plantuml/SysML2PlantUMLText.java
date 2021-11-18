@@ -35,6 +35,8 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.omg.sysml.lang.sysml.ActionDefinition;
 import org.omg.sysml.lang.sysml.ActionUsage;
+import org.omg.sysml.lang.sysml.CaseDefinition;
+import org.omg.sysml.lang.sysml.CaseUsage;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.ItemDefinition;
 import org.omg.sysml.lang.sysml.OccurrenceDefinition;
@@ -56,6 +58,7 @@ public class SysML2PlantUMLText {
         Interconnection,
         Action,
         Sequence,
+        Case,
         MIXED;
     }
 
@@ -274,6 +277,8 @@ public class SysML2PlantUMLText {
 			return new VAction();
         case Sequence:
         	return new VSequence();
+        case Case:
+            return new VCase();
         case MIXED:
         	return new VMixed();
 		default:
@@ -295,7 +300,10 @@ public class SysML2PlantUMLText {
     }
 
     private MODE getMode(EObject eObj) {
-        if (eObj instanceof StateUsage) {
+        if ((eObj instanceof CaseUsage)
+            || (eObj instanceof CaseDefinition)) {
+            return MODE.Case; 
+        } else if (eObj instanceof StateUsage) {
             return MODE.State;
         } else if (eObj instanceof ActionUsage) {
             return MODE.Action;

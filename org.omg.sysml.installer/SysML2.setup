@@ -44,7 +44,7 @@
     <requirement
         name="org.eclipse.m2e.feature.feature.group"/>
     <repository
-        url="http://download.eclipse.org/releases/2021-03/"/>
+        url="http://download.eclipse.org/releases/2021-09/"/>
     <repository
         url="https://ci.eclipse.org/xpect/job/Xpect/job/master/lastBuild/artifact/org.eclipse.xpect.releng/p2-repository/target/repository"/>
     <repository

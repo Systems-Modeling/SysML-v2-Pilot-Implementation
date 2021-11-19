@@ -7,7 +7,7 @@
     <revision>0.17.0-SNAPSHOT</revision>
     <tycho-version>2.3.0</tycho-version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <eclipse-repository>https://download.eclipse.org/releases/2021-03</eclipse-repository>
+    <eclipse-repository>https://download.eclipse.org/releases/2021-09</eclipse-repository>
     <plantuml-repository>https://github.com/himi/p2-update-puml-sysmlv2/raw/main/updates</plantuml-repository>
     <xpect-repository>
       https://ci.eclipse.org/xpect/job/Xpect/job/master/lastBuild/artifact/org.eclipse.xpect.releng/p2-repository/target/repository

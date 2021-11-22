@@ -9,9 +9,7 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A Disjoining is a Relationships that asserts that the interpretations of the <code>typeDisjoined</code> and the <code>disjoiningType</code> are disjoint.</p>
- * 
- * <p>Sequences in the interpretation of the <code>disjoiningType</code> are not in the interpretation of the <code>typeDisjoinged</type>.  For example, a Classifier for mammals is disjoint from a Classifier for minerals, and a Feature for people's parents is disjoint from a Feature for their children. </p>
+ * <p>A Disjoining is a Relationship between Types asserted to have interpretations that are not shared (disjoint) between them, identified as <code>typeDisjoined</code> and <code>disjoiningType</code>. For example, a Classifier for mammals is disjoint from a Classifier for minerals, and a Feature for people&#39;s parents is disjoint from a Feature for their children. </code></p>
  * 
  * <!-- end-model-doc -->
  *
@@ -40,7 +38,7 @@ public interface Disjoining extends Relationship {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Type that is asserted to be disjoint with the <code>typeDisjoined</code>. Sequences in the interpretation of <code>disjoiningType</code>  are not in the interpretation of <code>typeDisjoined</code>.<p>
+	 * <p>Type asserted to be disjoint with the <code>typeDisjoined</code>.<p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Disjoining Type</em>' reference.
 	 * @see #setDisjoiningType(Type)
@@ -78,6 +76,9 @@ public interface Disjoining extends Relationship {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>A <code>typeDisjoined</code> that is also an <code>owningRelatedElement</code>.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owning Type</em>' reference.
 	 * @see #setOwningType(Type)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDisjoining_OwningType()
@@ -109,7 +110,7 @@ public interface Disjoining extends Relationship {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Type that is asserted to be disjoint with the <code>disjoiningType</code>. Sequences in the interpretation of <code>typeDisjoined</code> are not in the interpretation of <code>disjoiningType</code>.<p>
+	 * <p>Type asserted to be disjoint with the <code>disjoiningType</code>.<p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Type Disjoined</em>' reference.
 	 * @see #setTypeDisjoined(Type)

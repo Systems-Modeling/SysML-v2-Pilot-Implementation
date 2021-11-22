@@ -237,7 +237,7 @@ public interface Usage extends Feature {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The PortUsages that are <code>ownedUsages</cpde> of this Usage.</p>
+	 * <p>The PortUsages that are <code>nestedUsages</code> of this Usage.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Nested Port</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedPort()
@@ -264,7 +264,8 @@ public interface Usage extends Feature {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The StateUsages that are <tt>ownedUsages</tt> of this Usage.</p>
+	 * <p>The StateUsages that are <code>nestedUsages</code> of this Usage.</p>
+	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Nested State</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedState()
@@ -291,7 +292,8 @@ public interface Usage extends Feature {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The ConstraintUsages that are <code>ownedUsages</code> of this Usage.</p>
+	 * <p>The ConstraintUsages that are <code>nestedUsages</code> of this Usage.</p>
+	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Nested Constraint</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedConstraint()
@@ -318,7 +320,8 @@ public interface Usage extends Feature {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The TransitionUsages that are <tt>ownedUsages</tt> of this Usage.</p>
+	 * <p>The TransitionUsages that are <code>nestedUsages</code> of this Usage.</p>
+	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Nested Transition</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedTransition()
@@ -345,7 +348,8 @@ public interface Usage extends Feature {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The RequirementUsages that are <code>ownedUsages</code> of this Usage.</p>
+	 * <p>The RequirementUsages that are <code>nestedUsages</code> of this Usage.</p>
+	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Nested Requirement</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedRequirement()
@@ -368,7 +372,8 @@ public interface Usage extends Feature {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The CalculationUsage that are <code>ownedUsages</code> of this Usage.</p>
+	 * <p>The CalculationUsage that are <code>nestedUsages</code> of this Usage.</p>
+	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Nested Calculation</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedCalculation()
@@ -441,7 +446,8 @@ public interface Usage extends Feature {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The CaseUsages that are <code>ownedUsages</code> of this Usage.</p>
+	 * <p>The CaseUsages that are <code>nestedUsages</code> of this Usage.</p>
+	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Nested Case</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedCase()
@@ -487,7 +493,8 @@ public interface Usage extends Feature {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The AnalysisCaseUsages that are <code>ownedUsages</code> of this Usage.</p>
+	 * <p>The AnalysisCaseUsages that are <code>nestedUsages</code> of this Usage.</p>
+	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Nested Analysis Case</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedAnalysisCase()
@@ -536,6 +543,10 @@ public interface Usage extends Feature {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The ReferenceUsages that are <code>nestedUsages</code> of this Usage.</p>
+	 * 
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Nested Reference</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedReference()
 	 * @model transient="true" volatile="true" derived="true"
@@ -626,7 +637,7 @@ public interface Usage extends Feature {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The InterfaceUsages that are <code>ownedUsages</code> of this Usage.</p>
+	 * <p>The InterfaceUsages that are <code>nestedUsages</code> of this Usage.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Nested Interface</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedInterface()
@@ -649,7 +660,8 @@ public interface Usage extends Feature {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The AttributeUsages that are <code>ownedUsages</code> of this Usage.</p>
+	 * <p>The AttributeUsages that are <code>nestedUsages</code> of this Usage.</p>
+	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Nested Attribute</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedAttribute()
@@ -672,7 +684,8 @@ public interface Usage extends Feature {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>nestedUsages</code> of this Usage that are ViewUsages.</p>
+	 * <p>The ViewUsages that are <code>nestedUsages</code> of this Usage.</p>
+	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Nested View</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedView()
@@ -695,7 +708,8 @@ public interface Usage extends Feature {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>nestedUsages</p> of this Usage that are ViewpointUsages.</p>
+	 * <p>The ViewpointUsages of this Usage that are <code>nestedUsages</code>.</p>
+	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Nested Viewpoint</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedViewpoint()
@@ -718,7 +732,8 @@ public interface Usage extends Feature {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>nestedUsages</p> of this Usage that are RenderingUsages.</p>
+	 * <p>The RenderingUsages that are <code>nestedUsages</code> of this Usage.</p>
+	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Nested Rendering</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedRendering()
@@ -741,7 +756,8 @@ public interface Usage extends Feature {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>nestedUsages</code> of this Usage that are VerifactionCaseUsages</p>
+	 * <p>The VerificationCaseUsages that are <code>nestedUsages</code> of this Usage.</p>
+	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Nested Verification Case</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedVerificationCase()
@@ -810,7 +826,8 @@ public interface Usage extends Feature {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The ConcernUsages that are <code>ownedUsages</code> of this Usage.</p>
+	 * <p>The ConcernUsages that are <code>nestedUsages</code> of this Usage.</p>
+	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Nested Concern</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedConcern()
@@ -879,7 +896,8 @@ public interface Usage extends Feature {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The UseCaseUsages that are <code>ownedUsages</code> of this Usage.</p>
+	 * <p>The UseCaseUsages that are <code>nestedUsages</code> of this Usage.</p>
+	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Nested Use Case</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedUseCase()
@@ -954,7 +972,8 @@ public interface Usage extends Feature {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The ActionUsages that are <tt>ownedUsages</tt> of this Usage.</p>
+	 * <p>The ActionUsages that are <code>nestedUsages</code> of this Usage.</p>
+	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Nested Action</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedAction()

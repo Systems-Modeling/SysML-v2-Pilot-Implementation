@@ -65,8 +65,8 @@ import org.omg.sysml.util.NonNotifyingEObjectEList;
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getOwnedRelationship <em>Owned Relationship</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getAliasId <em>Alias Id</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getOwningMembership <em>Owning Membership</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getOwningNamespace <em>Owning Namespace</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getIdentifier <em>Identifier</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getOwningNamespace <em>Owning Namespace</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getOwner <em>Owner</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getOwnedElement <em>Owned Element</em>}</li>
@@ -684,11 +684,11 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 			case SysMLPackage.ELEMENT__OWNING_MEMBERSHIP:
 				if (resolve) return getOwningMembership();
 				return basicGetOwningMembership();
+			case SysMLPackage.ELEMENT__IDENTIFIER:
+				return getIdentifier();
 			case SysMLPackage.ELEMENT__OWNING_NAMESPACE:
 				if (resolve) return getOwningNamespace();
 				return basicGetOwningNamespace();
-			case SysMLPackage.ELEMENT__IDENTIFIER:
-				return getIdentifier();
 			case SysMLPackage.ELEMENT__NAME:
 				return getName();
 			case SysMLPackage.ELEMENT__OWNER:
@@ -737,11 +737,11 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 			case SysMLPackage.ELEMENT__OWNING_MEMBERSHIP:
 				setOwningMembership((Membership)newValue);
 				return;
-			case SysMLPackage.ELEMENT__OWNING_NAMESPACE:
-				setOwningNamespace((Namespace)newValue);
-				return;
 			case SysMLPackage.ELEMENT__IDENTIFIER:
 				setIdentifier((String)newValue);
+				return;
+			case SysMLPackage.ELEMENT__OWNING_NAMESPACE:
+				setOwningNamespace((Namespace)newValue);
 				return;
 			case SysMLPackage.ELEMENT__NAME:
 				setName((String)newValue);
@@ -802,11 +802,11 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 			case SysMLPackage.ELEMENT__OWNING_MEMBERSHIP:
 				setOwningMembership((Membership)null);
 				return;
-			case SysMLPackage.ELEMENT__OWNING_NAMESPACE:
-				setOwningNamespace((Namespace)null);
-				return;
 			case SysMLPackage.ELEMENT__IDENTIFIER:
 				setIdentifier(IDENTIFIER_EDEFAULT);
+				return;
+			case SysMLPackage.ELEMENT__OWNING_NAMESPACE:
+				setOwningNamespace((Namespace)null);
 				return;
 			case SysMLPackage.ELEMENT__NAME:
 				setName(NAME_EDEFAULT);
@@ -858,10 +858,10 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 				return aliasId != null && !aliasId.isEmpty();
 			case SysMLPackage.ELEMENT__OWNING_MEMBERSHIP:
 				return basicGetOwningMembership() != null;
-			case SysMLPackage.ELEMENT__OWNING_NAMESPACE:
-				return basicGetOwningNamespace() != null;
 			case SysMLPackage.ELEMENT__IDENTIFIER:
 				return IDENTIFIER_EDEFAULT == null ? identifier != null : !IDENTIFIER_EDEFAULT.equals(identifier);
+			case SysMLPackage.ELEMENT__OWNING_NAMESPACE:
+				return basicGetOwningNamespace() != null;
 			case SysMLPackage.ELEMENT__NAME:
 				return NAME_EDEFAULT == null ? getName() != null : !NAME_EDEFAULT.equals(getName());
 			case SysMLPackage.ELEMENT__OWNER:

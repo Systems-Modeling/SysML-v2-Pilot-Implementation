@@ -172,8 +172,8 @@ public interface StateUsage extends ActionUsage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
+	 * <p>Whether the <code>nestedStates</code> of this StateDefinition are to all be performed in parallel. If true, none of the <code>nestedStates</code> may have any incoming or outgoing <code><code>transitions. </code></code>If false, only one <code>nestedState</code> may be performed at a time.</p>
 	 * 
-	 * <p>Whether the <code>nestedStates</code> of this StateDefinition are to all be performed in parallel. If true, none of the <code>nestedStates<code> may have any incoming or outgoing transitions. If false, every <code>nestedState</code> must have at least one incoming transition.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Is Parallel</em>' attribute.
 	 * @see #setIsParallel(boolean)

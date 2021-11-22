@@ -10,7 +10,6 @@ package org.omg.sysml.lang.sysml;
  *
  * <!-- begin-model-doc -->
  * <p>FeatureChaining is a Relationship that makes its target Feature one of the <code>chainingFeatures</code> of its owning Feature.</p>
- * featureChained = Feature->allInstances()->select(chainingFeatureChainings>includes(self))
  * <!-- end-model-doc -->
  *
  * <p>
@@ -37,7 +36,7 @@ public interface FeatureChaining extends Relationship {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Feature whose values are partly the determining values of <code>featureChained</code>, as described in <code>Feature::chainingFeature</code>.</p>
+	 * <p>The Feature whose values partly determine values of <code>featureChained</code>, as described in <code>Feature::chainingFeature</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Chaining Feature</em>' reference.
 	 * @see #setChainingFeature(Feature)
@@ -66,8 +65,8 @@ public interface FeatureChaining extends Relationship {
 	 * This feature redefines the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Relationship#getOwningRelatedElement() <em>Owning Related Element</em>}'</li>
 	 *   <li>'{@link org.omg.sysml.lang.sysml.Relationship#getSource() <em>Source</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Relationship#getOwningRelatedElement() <em>Owning Related Element</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

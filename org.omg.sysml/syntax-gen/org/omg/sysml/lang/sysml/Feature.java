@@ -49,8 +49,9 @@ import org.eclipse.emf.common.util.EList;
  * allSupertypes()->includes(KernelLibrary::things)
  * chainingFeatures->excludes(self)
  * ownedFeatureChaining = ownedRelationship->selectByKind(FeatureChaining)
- * chainingfeatureChainings->notEmpty() implies (owningFeatureMembership <> null implies owningFeatureMembership.isDerived)
  * chainingFeature = ownedFeatureChaining.chainingFeature
+ * chainingfeatureChainings->notEmpty() implies (owningFeatureMembership <> null implies owningFeatureMembership.isDerived)
+ * chainingFeatures->size() <> 1
  * <!-- end-model-doc -->
  *
  * <p>
@@ -114,7 +115,7 @@ public interface Feature extends Type {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Features that are chained together to determine the values of this Feature, derived from the <code>chainingFeatures</code> of the <code>chainingFeatureChainings</code> of this Feature, in the same order.</p>
+	 * <p>The Features that are chained together to determine the values of this Feature, derived from the <code>chainingFeatures</code> of the <code>ownedFeatureChainings</code> of this Feature, in the same order. The values of a Feature with chainingFeatures are the same as values of the last Feature in the chain, which can be found by starting with the values of the first Feature (for each instance of the original Feature's domain), then on each of those to the values of the second Feature in chainingFeatures, and so on, to values of the last Feature. The Features related to a Feature by a FeatureChaining are identified as its chainingFeatures.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Chaining Feature</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_ChainingFeature()
@@ -137,7 +138,7 @@ public interface Feature extends Type {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>ownedRelationships</owned> that are <code>FeatureChainings</code>, for which this Feature is the <code>owningFeature</code>.</p>
+	 * <p>The FeatureChainings that are among the <code>ownedRelationships</owned> of this Feature (identify their <code>featureChained</code> also as an <code>owningRelatedElement</code>).</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Feature Chaining</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_OwnedFeatureChaining()
@@ -312,7 +313,7 @@ public interface Feature extends Type {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Types that restrict the values of this Feature, such that the values must by instances of all the types. The types of a Feature are derived from its <code>ownedFeatureTypings</code> and the <code>types</code> of its <code>ownedSubsettings</code>.</p>
+	 * <p>Types that restrict the values of this Feature, such that the values must be instances of all the types. The types of a Feature are derived from its <code>ownedFeatureTypings</code> and the <code>types</code> of its <code>ownedSubsettings</code>.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Type</em>' reference list.

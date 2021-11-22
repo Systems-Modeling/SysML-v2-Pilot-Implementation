@@ -91,7 +91,8 @@ public interface Package extends Namespace {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Model-level evaluate the given <code>condition</code> Expression with the given <code>element</code> as its target. If the result is a LiteralBoolean, return its <code>value</code>. Otherwise return <em>false</em>.</p>
+	 * <p>Model-level evaluate the given <code>condition</code> Expression with the given <code>element</code> as its target. If the result is a LiteralBoolean, return its <code>value</code>. Otherwise return <code>false</code>.</p>
+	 * 
 	 * let results: Sequence(Element) = condition.evaluate(element) in
 	 *     result->size() = 1 and
 	 *     results->at(1).oclIsKindOf(LiteralBoolean) and 

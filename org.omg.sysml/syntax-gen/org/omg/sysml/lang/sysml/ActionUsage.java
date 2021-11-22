@@ -61,7 +61,8 @@ public interface ActionUsage extends OccurrenceUsage, Step {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Behaviors that are the types of this ActionUsage. Nominally, these would be ActionDefinitions, but other kings of Kernel Behaviors are also allowed, to permit use of Behaviors from the Kernel Library.</p>
+	 * <p>The Behaviors that are the types of this ActionUsage. Nominally, these would be ActionDefinitions, but other kinds of Kernel Behaviors are also allowed, to permit use of Behaviors from the Kernel Library.</p>
+	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Action Definition</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getActionUsage_ActionDefinition()

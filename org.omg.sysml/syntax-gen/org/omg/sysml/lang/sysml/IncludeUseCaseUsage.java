@@ -39,7 +39,8 @@ public interface IncludeUseCaseUsage extends UseCaseUsage, PerformActionUsage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The UseCaseUsage to be included by this IncludeUseCaseUsage. It is the <code>subsettedFeature</cpde> of the first owned Subsetting Relationship of the IncludeUseCaseUsage.</p>
+	 * <p>The UseCaseUsage to be included by this IncludeUseCaseUsage. It is the <code>subsettedFeature</code> of the first owned Subsetting Relationship of the IncludeUseCaseUsage.</p>
+	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Use Case Included</em>' reference.
 	 * @see #setUseCaseIncluded(UseCaseUsage)

@@ -229,9 +229,16 @@ public class DisjoiningImpl extends RelationshipImpl implements Disjoining {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public Type basicGetTypeDisjoined() {
+		if (typeDisjoined == null) {
+			Element owner = getOwningRelatedElement();
+			if (owner instanceof Type) {
+				typeDisjoined = (Type)owner;
+			}
+			
+		}
 		return typeDisjoined;
 	}
 

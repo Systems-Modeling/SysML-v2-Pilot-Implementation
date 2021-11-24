@@ -1080,18 +1080,18 @@ package sfriedenthal_VehicleModel_1_simplified{
                 
                 // Use the following if the evaluation function is the same for each alternative
                 /*
-                calc :>> objectiveFunction {
+                calc :>> evaluationFunction {
                     in part vehicle:>vehicle_b;
                     return attribute eval:Real=EngineEvaluation (vehicle::engine::mass, vehicle::engine::peakHorsePower, vehicle::engine::fuelEfficiency, vehicle::engine::cost);               
                 }
                 */
                 
                 // Use the following if the evaluation function is different for each alternative
-                calc :> objectiveFunction{
+                calc :> evaluationFunction{
                     in part vehicle:>vehicle_b_engine4cyl;
                     return attribute eval:Real=EngineEvaluation_4cyl (vehicle.engine.mass, vehicle.engine.peakHorsePower, vehicle.engine.fuelEfficiency, vehicle.engine.cost); 
                 }
-                calc :> objectiveFunction{
+                calc :> evaluationFunction{
                     in part vehicle:>vehicle_b_engine6cyl;
                     return attribute eval:Real=EngineEvaluation_6cyl (vehicle.engine.mass, vehicle.engine.peakHorsePower, vehicle.engine.fuelEfficiency, vehicle.engine.cost); 
                 }                                                  

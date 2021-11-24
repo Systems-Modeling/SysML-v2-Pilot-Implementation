@@ -73,7 +73,7 @@ package '10b-Trade-off Among Alternative Configurations' {
 			subject : Engine[1..*] = all engineChoice;
 			objective : MaximizeObjective;
 
-			calc :>> objectiveFunction {
+			calc :>> evaluationFunction {
 				in part engine :>> alternative : Engine;
 				
 				calc powerRollup (engine) return power:>ISQ::power;

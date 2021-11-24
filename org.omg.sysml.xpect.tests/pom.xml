@@ -27,6 +27,7 @@
 						<include>**/AllSysMLXpectTests.java</include>
 					</includes>
 					<testSourceDirectory>src</testSourceDirectory>
+                                        <argLine>-Dfile.encoding=UTF-8</argLine>
 				</configuration>
 				<executions>
 					<execution>

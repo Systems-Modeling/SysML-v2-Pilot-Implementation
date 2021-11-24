@@ -19,7 +19,7 @@ The project provides a configuration file for the https://wiki.eclipse.org/Eclip
 +
 image:installer-advanced.png[switch to advanced mode]
 
-4. In the product list, select "Eclipse Modeling Tools" with Product Version: 2021-03.
+4. In the product list, select "Eclipse Modeling Tools" with Product Version: 2021-09.
 
 5. In the Projects window, to the right of the text box, click the "+" to the add the Sysml2 project as user project. In the dialog, choose Catalog: Github Projects and browse the file system to select the setup file from the local git repository.
    * e.g. `file:/C:/git/sysml/SysML-v2-Pilot-Implementation/org.omg.sysml.installer/SysML2.setup`
@@ -42,12 +42,12 @@ image:oomph-projects.png[oomph projects]
 
 ==== Manual installation
 
-1. Install Eclipse 2021-03 (4.19) and Xtext.
+1. Install Eclipse 2021-09 (4.21) and Xtext.
    * Install the “Eclipse Modeling Tools” package.
-      * https://www.eclipse.org/downloads/packages/release/2021-03/r/eclipse-modeling-tools
+      * https://www.eclipse.org/downloads/packages/release/2021-09/r/eclipse-modeling-tools
       
    * To install Xtext, select Help > Install New Software, use the update site URL given below, and install “Xtext Complete SDK” (under General Purpose Tools).
-      * http://download.eclipse.org/releases/2021-03
+      * http://download.eclipse.org/releases/2021-09
 
    * (Optional) For PlantUML visualization, you need to install PlantUML-Eclipse with SysMLv2 extensions from
      the update site of `https://github.com/himi/p2-update-puml-sysmlv2/raw/main/updates` with Help > Install New Software.
@@ -67,9 +67,9 @@ image:oomph-projects.png[oomph projects]
 **Note:** 
 
    * https://gradle.org/[Gradle] is used to build project `org.omg.sysml.jupyter`.
-   * https://maven.apache.org/[Maven] is used to build the SysML Interactive JAR file that is used by `org.omg.sysml.jupyter`. 
-        * To build the JAR, invoke `mvn clean package` from the base `SysML-v2-Pilot-Implementation` directory. The JAR is packaged in the `org.omg.sysml.interactive/target` directory (which is not saved to the repository).
-        * If you have https://www.eclipse.org/m2e/[M2Eclipse] installed (with the Tycho Project Configurators connector), it can also be built using the launch configuration in `SysML-v2-Pilot-Implementation/launch`.
+   * https://maven.apache.org/[Maven] is used to perform a coordinated build of all projects (including packaging the SysML Interactive JAR file that is used by `org.omg.sysml.jupyter`). 
+        * To build the repository, invoke `mvn clean package` from the base `SysML-v2-Pilot-Implementation` directory.
+        * If you have https://www.eclipse.org/m2e/[M2Eclipse] installed (with the Tycho Project Configurators connector), it can also launch a Maven build in Eclipse using the launch configuration in `SysML-v2-Pilot-Implementation/launch`.
 
 === Prototype SysML Implementation
 

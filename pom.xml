@@ -5,9 +5,9 @@
 
   <properties>
     <revision>0.17.0-SNAPSHOT</revision>
-    <tycho-version>2.3.0</tycho-version>
+    <tycho-version>2.5.0</tycho-version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <eclipse-repository>https://download.eclipse.org/releases/2021-03</eclipse-repository>
+    <eclipse-repository>https://download.eclipse.org/releases/2021-09</eclipse-repository>
     <plantuml-repository>https://github.com/himi/p2-update-puml-sysmlv2/raw/main/updates</plantuml-repository>
     <xpect-repository>
       https://ci.eclipse.org/xpect/job/Xpect/job/master/lastBuild/artifact/org.eclipse.xpect.releng/p2-repository/target/repository
@@ -26,7 +26,7 @@
     <yarn.version>1.22.5</yarn.version>
     <maven.compiler.target>11</maven.compiler.target>
     <maven.compiler.source>11</maven.compiler.source>
-    <xtext.version>2.22.0</xtext.version>
+    <xtext.version>2.25.0</xtext.version>
     <junit.version>3.0.0-M5</junit.version>
     <asciidoctor.maven.plugin.version>2.1.0</asciidoctor.maven.plugin.version>
     <asciidoctorj.pdf.version>1.6.0</asciidoctorj.pdf.version>

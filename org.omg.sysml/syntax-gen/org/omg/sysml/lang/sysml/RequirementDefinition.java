@@ -118,8 +118,8 @@ public interface RequirementDefinition extends ConstraintDefinition {
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Behavior#getParameter() <em>Parameter</em>}'</li>
 	 *   <li>'{@link org.omg.sysml.lang.sysml.Definition#getOwnedPart() <em>Owned Part</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Behavior#getParameter() <em>Parameter</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -205,7 +205,8 @@ public interface RequirementDefinition extends ConstraintDefinition {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>An optional textual statement of the requirement represented by this RequirementDefinition, derived as the <code>bodies<code> of the <code>documentaryComments</code> of the RequirementDefinition.</p>
+	 * <p>An optional textual statement of the requirement represented by this RequirementDefinition, derived as the <code>bodies</code> of the <code>documentaryComments</code> of the RequirementDefinition.</p>
+	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Text</em>' attribute list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getRequirementDefinition_Text()

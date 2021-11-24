@@ -4,7 +4,7 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 
   <properties>
-    <revision>0.17.0-SNAPSHOT</revision>
+    <revision>0.18.0-SNAPSHOT</revision>
     <tycho-version>2.5.0</tycho-version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <eclipse-repository>https://download.eclipse.org/releases/2021-09</eclipse-repository>

@@ -229,7 +229,7 @@ public class DisjoiningImpl extends RelationshipImpl implements Disjoining {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public Type basicGetTypeDisjoined() {
 		if (typeDisjoined == null) {

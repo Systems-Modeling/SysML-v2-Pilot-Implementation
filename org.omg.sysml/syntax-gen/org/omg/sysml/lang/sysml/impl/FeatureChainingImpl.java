@@ -217,10 +217,10 @@ public class FeatureChainingImpl extends RelationshipImpl implements FeatureChai
 		switch (featureID) {
 			case SysMLPackage.FEATURE_CHAINING__TARGET:
 				return isSetTarget();
-			case SysMLPackage.FEATURE_CHAINING__OWNING_RELATED_ELEMENT:
-				return isSetOwningRelatedElement();
 			case SysMLPackage.FEATURE_CHAINING__SOURCE:
 				return isSetSource();
+			case SysMLPackage.FEATURE_CHAINING__OWNING_RELATED_ELEMENT:
+				return isSetOwningRelatedElement();
 			case SysMLPackage.FEATURE_CHAINING__CHAINING_FEATURE:
 				return isSetChainingFeature();
 			case SysMLPackage.FEATURE_CHAINING__FEATURE_CHAINED:

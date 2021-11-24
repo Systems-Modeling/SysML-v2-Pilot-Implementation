@@ -605,7 +605,8 @@ public interface Definition extends Classifier {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The ConstraintUsages that are <code>ownedUsages</cpde> of this Definition.</p>
+	 * <p>The ConstraintUsages that are <code>ownedUsages</code> of this Definition.</p>
+	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Constraint</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_OwnedConstraint()

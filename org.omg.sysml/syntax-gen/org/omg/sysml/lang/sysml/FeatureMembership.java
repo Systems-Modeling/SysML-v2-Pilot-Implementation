@@ -63,7 +63,8 @@ public interface FeatureMembership extends Membership, TypeFeaturing {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Feature that this FeatureMembership relates to its <code>owningType, making it a <code>feature</code> of the <code>owningType<code>.</p>
+	 * <p>The Feature that this FeatureMembership relates to its <code>owningType</code>, making it a <code>ownedFeature</code> of the <code>owningType</code>.</p>
+	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Member Feature</em>' reference.
 	 * @see #setMemberFeature(Feature)

@@ -29,11 +29,11 @@ import org.eclipse.emf.common.util.EList;
  * '<em><b>Import</b></em>'. <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>An Import is a Relationship between an <code>importOwningNamespace</code> in which one or more of the visible Memberships of the <code>importedNamespace</code> become <code>importedMemberships<code> of the <code>importOwningNamespace</code>. If <code>isImportAll = false</code> (the default), then only public Memberships are considered "visible". If <code>isImportAll = true</code>, then all Memberships are considered "visible", regardless of their declared <code>visibility</code>.</p>
+ * <p>An Import is a Relationship between an <code>importOwningNamespace</code> in which one or more of the visible Memberships of the <code>importedNamespace</code> become <code>importedMemberships</code> of the <code><code>importOwningNamespace</code></code>. If <code><code>isImportAll = false</code></code> (the default), then only public Memberships are considered &quot;visible&quot;. If <code>isImportAll = true</code>, then all Memberships are considered &quot;visible&quot;, regardless of their declared <code>visibility</code>.</p>
  * 
  * <p>If no <code>importedMemberName</code> is given, then all visible Memberships are imported from the <code>importedNamespace</code>. If <code>isRecursive = true</code>, then visible Memberships are also recursively imported from all visible <code>ownedMembers</code> of the Namespace that are also Namespaces.</p>
  * 
- * <p>If a <code> importedMemberName</code> is given, then the Membership whose <code>effectiveMemberName</code> is that name is imported from the <code>importedNamespace</code>, if it is visible. If <code>isRecursive = true</code> and the imported <code>memberElement</code> is a Namespace, then visible Memberships are also recursively imported from that Namespace and its owned sub-Namespaces.</p>
+ * <p>If an <code><code> importedMemberName</code></code> is given, then the Membership whose <code><code>effectiveMemberName</code> </code>is that name is imported from the <code><code>importedNamespace</code></code>, if it is visible. If <code><code>isRecursive = true</code></code> and the imported <code><code>memberElement</code></code> is a Namespace, then visible Memberships are also recursively imported from that Namespace and its owned sub-Namespaces.</p>
  * 
  * <!-- end-model-doc -->
  *
@@ -183,6 +183,10 @@ public interface Import extends Relationship {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Whether to import memberships without regard to declared visibility.</p>
+	 * 
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Is Import All</em>' attribute.
 	 * @see #setIsImportAll(boolean)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getImport_IsImportAll()
@@ -219,7 +223,7 @@ public interface Import extends Relationship {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Namespace into which <code>members</cpde> are imported by this Import, which must be the <code>owningRelatedElement</code> of the Import.</p>
+	 * <p>The Namespace into which <code>members</code> are imported by this Import, which must be the <code>owningRelatedElement</code> of the Import.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Import Owning Namespace</em>' reference.

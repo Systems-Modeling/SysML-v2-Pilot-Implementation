@@ -30,7 +30,7 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>An Association is a Relationship and a Class to enable classification of links between things (in the universe). The co-domains&nbsp;of the <code>associationEnd</code> Features are one of the <code>relatedTypes</code>, as co-domain and participants (linked things) of an Association identify each other.</p>
+ * <p>An Association is a Relationship and a Classifier to enable classification of links between things (in the universe). The co-domains (<code>types</code>) of the <code>associationEnd</code> Features are the <code>relatedTypes</code>, as co-domain and participants (linked things) of an Association identify each other.</p>
  * 
  * relatedTypes = associationEnd.type
  * let numend : Natural = associationEnd->size() in
@@ -170,7 +170,7 @@ public interface Association extends Classifier, Relationship {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>features</code> of the Association that that identifying the things that can be related by it. An Association must have at least two <code>associationEnds</code>. When it has exactly two, the Association is called a <em>binary</em> Association.</p>
+	 * <p>The <code>features</code> of the Association that identifying the things that can be related by it. An Association must have at least two <code>associationEnds</code>. When it has exactly two, the Association is called a <em>binary</em> Association.</p>
 	 * 
 	 * <p>The ends of the Association determine which elements are eligible to be related by instances of the Association.</p>
 	 * 

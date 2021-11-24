@@ -167,7 +167,8 @@ public interface StateDefinition extends ActionDefinition {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Whether the <code>ownedStates</code> of this StateDefinition are to all be performed in parallel. If true, none of the <code>ownedStates<code> may have any incoming or outgoing transitions. If false, every <code>ownedState</code> must have at least one incoming transition.</p>
+	 * <p>Whether the <code>ownedStates</code> of this StateDefinition are to all be performed in parallel. If true, none of the <code>ownedStates</code> may have any incoming or outgoing <code><code>transitions. </code></code>If false, only one <code>ownedState</code> may be performed at a time.</p>
+	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Is Parallel</em>' attribute.
 	 * @see #setIsParallel(boolean)

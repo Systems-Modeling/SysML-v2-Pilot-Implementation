@@ -140,7 +140,7 @@ public interface Conjugation extends Relationship {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>conjugatingType</code> of this Type that is also its <code>owningRelatedElement</code>.</p>
+	 * <p>The <code>conjugatedType</code> of this Type that is also its <code>owningRelatedElement</code>.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owning Type</em>' reference.

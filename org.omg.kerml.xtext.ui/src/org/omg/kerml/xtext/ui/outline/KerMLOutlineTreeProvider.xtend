@@ -15,9 +15,7 @@ import org.omg.sysml.lang.sysml.LiteralString
 import org.omg.sysml.lang.sysml.Membership
 import org.omg.sysml.lang.sysml.NullExpression
 import org.omg.sysml.lang.sysml.OperatorExpression
-import org.omg.sysml.lang.sysml.Redefinition
 import org.omg.sysml.lang.sysml.Relationship
-import org.omg.sysml.lang.sysml.Subsetting
 import org.omg.sysml.lang.sysml.Type
 import org.omg.sysml.lang.sysml.VisibilityKind
 import org.omg.sysml.lang.sysml.Comment
@@ -144,7 +142,8 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	}
 	
 	def String _text(Type type) {
-		type.typePrefixText + type.idText
+		if (type instanceof Feature) (type as Feature)._text
+		else type.typePrefixText + type.idText
 	}
 	
 	def String featurePrefixText(Feature feature) {
@@ -180,7 +179,11 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 				if (idText == "") {
 					idText = chainingFeature.idText
 				} else {
-					idText += "." + chainingFeature.idText
+					var nextId = chainingFeature.idText
+					if (!nextId.isEmpty) {
+						nextId = nextId.substring(1);
+					}
+					idText += "." + nextId
 				}
 			}
 		}
@@ -369,58 +372,20 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		}
 	}
 	
-	def boolean _isLeaf(Specialization generalization) {
-		generalization.getGeneral === null
+	def boolean _isLeaf(Specialization specialization) {
+		specialization.getGeneral === null
 	}
 	
 	def void _createChildren(IOutlineNode parentNode, Specialization specialization) {
 		val specific = specialization.specific
 		if (specific !== null && specific !== specialization.eContainer) {
-			createNode(parentNode, specific, specific._image, specific._text, true)			
+			createNode(parentNode, specific, specific._image, specific._text,  
+				!(specific instanceof Feature) || (specific as Feature).ownedFeatureChaining.empty)		
 		}
 		val general = specialization.general
 		if (general !== null) {
-			createNode(parentNode, general, general._image, general._text, true)
-		}
-	}
-	
-	def boolean _isLeaf(Redefinition redefinition) {
-		redefinition.redefinedFeature === null
-	}
-
-	def void _createChildren(IOutlineNode parentNode, Redefinition redefinition) {
-		if (redefinition.redefiningFeature !== null && redefinition.redefiningFeature !== redefinition.eContainer) {
-			createNode(parentNode, redefinition.redefiningFeature, 
-				redefinition.redefiningFeature._image, redefinition.redefiningFeature._text, 
-				true
-			)			
-		}
-		if (redefinition.redefinedFeature !== null) {
-			createNode(parentNode, redefinition.redefinedFeature, 
-				redefinition.redefinedFeature._image, redefinition.redefinedFeature._text, 
-				redefinition.redefinedFeature.ownedFeatureChaining.empty
-			)
-		}
-	}
-
-	def boolean _isLeaf(Subsetting subset) {
-		subset.subsettedFeature === null
-	}
-
-	def void _createChildren(IOutlineNode parentNode, Subsetting subsetting) {
-		val subsettingFeature = subsetting.subsettingFeature
-		if (subsettingFeature !== null && subsettingFeature !== subsetting.eContainer) {
-			createNode(parentNode, subsettingFeature, 
-				subsettingFeature._image, subsettingFeature._text, 
-				true
-			)			
-		}
-		val subsettedFeature = subsetting.subsettedFeature
-		if (subsettedFeature !== null) {
-			createNode(parentNode, subsettedFeature, 
-				subsettedFeature._image, subsettedFeature._text, 
-				subsettedFeature.ownedFeatureChaining.empty
-			)
+			createNode(parentNode, general, general._image, general._text, 
+				!(general instanceof Feature) || (general as Feature).ownedFeatureChaining.empty)
 		}
 	}
 	

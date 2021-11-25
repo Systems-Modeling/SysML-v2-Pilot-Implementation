@@ -34,6 +34,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.uml2.common.util.UnionEObjectEList;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Specialization;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
@@ -93,13 +94,17 @@ public class SpecializationImpl extends RelationshipImpl implements Specializati
 		return SysMLPackage.Literals.SPECIALIZATION;
 	}
 
+	@Override
+	public Type getGeneral() {
+		return general == null? basicGetGeneral(): getGeneralGen();
+	}
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public Type getGeneral() {
+	public Type getGeneralGen() {
 		if (general != null && general.eIsProxy()) {
 			InternalEObject oldGeneral = (InternalEObject)general;
 			general = (Type)eResolveProxy(oldGeneral);
@@ -114,9 +119,15 @@ public class SpecializationImpl extends RelationshipImpl implements Specializati
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public Type basicGetGeneral() {
+		if (general == null) {
+			EList<Element> ownedRelatedElements = getOwnedRelatedElement();
+			if (!ownedRelatedElements.isEmpty()) {
+				general = (Feature)ownedRelatedElements.get(0);
+			}
+		}
 		return general;
 	}
 

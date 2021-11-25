@@ -6,6 +6,7 @@
                 File {from ="/library/Occurrences.kerml"}
                 File {from ="/library/Objects.kerml"}
                 File {from ="/library/Performances.kerml"}
+                File {from ="/library/Transfers.kerml"}
                 File {from ="/library/ScalarValues.kerml"}
                 File {from ="/library/BaseFunctions.kerml"}
                 File {from ="/library/DataFunctions.kerml"}
@@ -20,6 +21,7 @@
                                 File {from ="/library/Occurrences.kerml"}
                  				File {from ="/library/Objects.kerml"}
                 				File {from ="/library/Performances.kerml"}
+                				File {from ="/library/Transfers.kerml"}
                                 File {from ="/library/ScalarValues.kerml"}
                                 File {from ="/library/BaseFunctions.kerml"}
                                 File {from ="/library/DataFunctions.kerml"}
@@ -49,5 +51,45 @@ package P {
     
     feature v_4 : V = (v1, v2).{in v : V; v.n == 4};
     feature vv[*] : V = (all V).{in v : V; v.m > 100};
+   
+	classifier F {
+		feature a;
+	}
+	  
+	feature f : F;
+	  
+	classifier A {
+		feature g = f.a;
+	}
+	  
+	classifier B {
+	  	feature f : F;
+	  	feature a : A;
+	}
+	  
+	feature b : B {
+	  	connector f.a to a.g;
+	  	binding f.a = a.g;
+	}
+	  
+	feature g subsets f.a;
+	subset g subsets b.f.a;
+	  
+	subtype g specializes f.a;
+	
+    behavior BB {
+    	out feature a : Integer;
+    	step b {
+    		step c {
+    			feature d : Integer;
+    		}
+    	}
+    }
+    
+    feature b1 : BB;
+    feature b2 : BB;
 
+    // Testing deeply nested item flow connection.
+    flow b1.a to b2.b.c.d;
+    
 }

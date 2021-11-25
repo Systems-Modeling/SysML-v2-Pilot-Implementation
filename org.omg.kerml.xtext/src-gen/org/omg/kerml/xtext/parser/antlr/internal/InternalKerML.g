@@ -2715,7 +2715,7 @@ ruleChainFeatureMember returns [EObject current=null]
 						$current,
 						"ownedRelatedElement",
 						lv_ownedRelatedElement_4_0,
-						"org.omg.kerml.xtext.KerML.FeatureChain");
+						"org.omg.kerml.expressions.xtext.KerMLExpressions.FeatureChain");
 					afterParserOrEnumRuleCall();
 				}
 			)
@@ -4481,102 +4481,6 @@ ruleUnownedFeatureMember returns [EObject current=null]
 	)
 ;
 
-// Entry rule entryRuleFeatureChain
-entryRuleFeatureChain returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getFeatureChainRule()); }
-	iv_ruleFeatureChain=ruleFeatureChain
-	{ $current=$iv_ruleFeatureChain.current; }
-	EOF;
-
-// Rule FeatureChain
-ruleFeatureChain returns [EObject current=null]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
-		(
-			(
-				{
-					newCompositeNode(grammarAccess.getFeatureChainAccess().getOwnedRelationshipOwnedFeatureChainingParserRuleCall_0_0());
-				}
-				lv_ownedRelationship_0_0=ruleOwnedFeatureChaining
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getFeatureChainRule());
-					}
-					add(
-						$current,
-						"ownedRelationship",
-						lv_ownedRelationship_0_0,
-						"org.omg.kerml.xtext.KerML.OwnedFeatureChaining");
-					afterParserOrEnumRuleCall();
-				}
-			)
-		)
-		(
-			otherlv_1='.'
-			{
-				newLeafNode(otherlv_1, grammarAccess.getFeatureChainAccess().getFullStopKeyword_1_0());
-			}
-			(
-				(
-					{
-						newCompositeNode(grammarAccess.getFeatureChainAccess().getOwnedRelationshipOwnedFeatureChainingParserRuleCall_1_1_0());
-					}
-					lv_ownedRelationship_2_0=ruleOwnedFeatureChaining
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getFeatureChainRule());
-						}
-						add(
-							$current,
-							"ownedRelationship",
-							lv_ownedRelationship_2_0,
-							"org.omg.kerml.xtext.KerML.OwnedFeatureChaining");
-						afterParserOrEnumRuleCall();
-					}
-				)
-			)
-		)+
-	)
-;
-
-// Entry rule entryRuleOwnedFeatureChaining
-entryRuleOwnedFeatureChaining returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getOwnedFeatureChainingRule()); }
-	iv_ruleOwnedFeatureChaining=ruleOwnedFeatureChaining
-	{ $current=$iv_ruleOwnedFeatureChaining.current; }
-	EOF;
-
-// Rule OwnedFeatureChaining
-ruleOwnedFeatureChaining returns [EObject current=null]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
-		(
-			{
-				if ($current==null) {
-					$current = createModelElement(grammarAccess.getOwnedFeatureChainingRule());
-				}
-			}
-			{
-				newCompositeNode(grammarAccess.getOwnedFeatureChainingAccess().getChainingFeatureFeatureCrossReference_0());
-			}
-			ruleQualifiedName
-			{
-				afterParserOrEnumRuleCall();
-			}
-		)
-	)
-;
-
 // Entry rule entryRuleSpecialization
 entryRuleSpecialization returns [EObject current=null]:
 	{ newCompositeNode(grammarAccess.getSpecializationRule()); }
@@ -4643,22 +4547,17 @@ ruleSpecialization returns [EObject current=null]
 				newLeafNode(otherlv_5, grammarAccess.getSpecializationAccess().getSpecializesKeyword_3_1());
 			}
 		)
-		(
-			(
-				{
-					if ($current==null) {
-						$current = createModelElement(grammarAccess.getSpecializationRule());
-					}
-				}
-				{
-					newCompositeNode(grammarAccess.getSpecializationAccess().getGeneralTypeCrossReference_4_0());
-				}
-				ruleQualifiedName
-				{
-					afterParserOrEnumRuleCall();
-				}
-			)
-		)
+		{
+			if ($current==null) {
+				$current = createModelElement(grammarAccess.getSpecializationRule());
+			}
+			newCompositeNode(grammarAccess.getSpecializationAccess().getGeneralTypeParserRuleCall_4());
+		}
+		this_GeneralType_6=ruleGeneralType[$current]
+		{
+			$current = $this_GeneralType_6.current;
+			afterParserOrEnumRuleCall();
+		}
 		otherlv_7=';'
 		{
 			newLeafNode(otherlv_7, grammarAccess.getSpecializationAccess().getSemicolonKeyword_5());
@@ -4681,20 +4580,64 @@ ruleOwnedSpecialization returns [EObject current=null]
 @after {
 	leaveRule();
 }:
+	{
+		if ($current==null) {
+			$current = createModelElement(grammarAccess.getOwnedSpecializationRule());
+		}
+		newCompositeNode(grammarAccess.getOwnedSpecializationAccess().getGeneralTypeParserRuleCall());
+	}
+	this_GeneralType_0=ruleGeneralType[$current]
+	{
+		$current = $this_GeneralType_0.current;
+		afterParserOrEnumRuleCall();
+	}
+;
+
+
+// Rule GeneralType
+ruleGeneralType[EObject in_current]  returns [EObject current=in_current]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
 	(
 		(
-			{
-				if ($current==null) {
-					$current = createModelElement(grammarAccess.getOwnedSpecializationRule());
+			(
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getGeneralTypeRule());
+					}
 				}
-			}
-			{
-				newCompositeNode(grammarAccess.getOwnedSpecializationAccess().getGeneralTypeCrossReference_0());
-			}
-			ruleQualifiedName
-			{
-				afterParserOrEnumRuleCall();
-			}
+				{
+					newCompositeNode(grammarAccess.getGeneralTypeAccess().getGeneralTypeCrossReference_0_0());
+				}
+				ruleQualifiedName
+				{
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		    |
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getGeneralTypeAccess().getOwnedRelatedElementFeatureChainParserRuleCall_1_0());
+				}
+				lv_ownedRelatedElement_1_0=ruleFeatureChain
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getGeneralTypeRule());
+					}
+					add(
+						$current,
+						"ownedRelatedElement",
+						lv_ownedRelatedElement_1_0,
+						"org.omg.kerml.expressions.xtext.KerMLExpressions.FeatureChain");
+					afterParserOrEnumRuleCall();
+				}
+			)
 		)
 	)
 ;
@@ -6455,22 +6398,17 @@ ruleFeatureTyping returns [EObject current=null]
 				}
 			)
 		)
-		(
-			(
-				{
-					if ($current==null) {
-						$current = createModelElement(grammarAccess.getFeatureTypingRule());
-					}
-				}
-				{
-					newCompositeNode(grammarAccess.getFeatureTypingAccess().getTypeFeatureCrossReference_4_0());
-				}
-				ruleQualifiedName
-				{
-					afterParserOrEnumRuleCall();
-				}
-			)
-		)
+		{
+			if ($current==null) {
+				$current = createModelElement(grammarAccess.getFeatureTypingRule());
+			}
+			newCompositeNode(grammarAccess.getFeatureTypingAccess().getFeatureTypeParserRuleCall_4());
+		}
+		this_FeatureType_7=ruleFeatureType[$current]
+		{
+			$current = $this_FeatureType_7.current;
+			afterParserOrEnumRuleCall();
+		}
 		otherlv_8=';'
 		{
 			newLeafNode(otherlv_8, grammarAccess.getFeatureTypingAccess().getSemicolonKeyword_5());
@@ -6493,20 +6431,64 @@ ruleOwnedFeatureTyping returns [EObject current=null]
 @after {
 	leaveRule();
 }:
+	{
+		if ($current==null) {
+			$current = createModelElement(grammarAccess.getOwnedFeatureTypingRule());
+		}
+		newCompositeNode(grammarAccess.getOwnedFeatureTypingAccess().getFeatureTypeParserRuleCall());
+	}
+	this_FeatureType_0=ruleFeatureType[$current]
+	{
+		$current = $this_FeatureType_0.current;
+		afterParserOrEnumRuleCall();
+	}
+;
+
+
+// Rule FeatureType
+ruleFeatureType[EObject in_current]  returns [EObject current=in_current]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
 	(
 		(
-			{
-				if ($current==null) {
-					$current = createModelElement(grammarAccess.getOwnedFeatureTypingRule());
+			(
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getFeatureTypeRule());
+					}
 				}
-			}
-			{
-				newCompositeNode(grammarAccess.getOwnedFeatureTypingAccess().getTypeTypeCrossReference_0());
-			}
-			ruleQualifiedName
-			{
-				afterParserOrEnumRuleCall();
-			}
+				{
+					newCompositeNode(grammarAccess.getFeatureTypeAccess().getTypeTypeCrossReference_0_0());
+				}
+				ruleQualifiedName
+				{
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		    |
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getFeatureTypeAccess().getOwnedRelatedElementFeatureChainParserRuleCall_1_0());
+				}
+				lv_ownedRelatedElement_1_0=ruleFeatureChain
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getFeatureTypeRule());
+					}
+					add(
+						$current,
+						"ownedRelatedElement",
+						lv_ownedRelatedElement_1_0,
+						"org.omg.kerml.expressions.xtext.KerMLExpressions.FeatureChain");
+					afterParserOrEnumRuleCall();
+				}
+			)
 		)
 	)
 ;
@@ -6577,22 +6559,17 @@ ruleSubsetting returns [EObject current=null]
 				newLeafNode(otherlv_5, grammarAccess.getSubsettingAccess().getSubsetsKeyword_3_1());
 			}
 		)
-		(
-			(
-				{
-					if ($current==null) {
-						$current = createModelElement(grammarAccess.getSubsettingRule());
-					}
-				}
-				{
-					newCompositeNode(grammarAccess.getSubsettingAccess().getSubsettedFeatureFeatureCrossReference_4_0());
-				}
-				ruleQualifiedName
-				{
-					afterParserOrEnumRuleCall();
-				}
-			)
-		)
+		{
+			if ($current==null) {
+				$current = createModelElement(grammarAccess.getSubsettingRule());
+			}
+			newCompositeNode(grammarAccess.getSubsettingAccess().getSubsettedFeatureParserRuleCall_4());
+		}
+		this_SubsettedFeature_6=ruleSubsettedFeature[$current]
+		{
+			$current = $this_SubsettedFeature_6.current;
+			afterParserOrEnumRuleCall();
+		}
 		otherlv_7=';'
 		{
 			newLeafNode(otherlv_7, grammarAccess.getSubsettingAccess().getSemicolonKeyword_5());
@@ -6615,16 +6592,38 @@ ruleOwnedSubsetting returns [EObject current=null]
 @after {
 	leaveRule();
 }:
+	{
+		if ($current==null) {
+			$current = createModelElement(grammarAccess.getOwnedSubsettingRule());
+		}
+		newCompositeNode(grammarAccess.getOwnedSubsettingAccess().getSubsettedFeatureParserRuleCall());
+	}
+	this_SubsettedFeature_0=ruleSubsettedFeature[$current]
+	{
+		$current = $this_SubsettedFeature_0.current;
+		afterParserOrEnumRuleCall();
+	}
+;
+
+
+// Rule SubsettedFeature
+ruleSubsettedFeature[EObject in_current]  returns [EObject current=in_current]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
 	(
 		(
 			(
 				{
 					if ($current==null) {
-						$current = createModelElement(grammarAccess.getOwnedSubsettingRule());
+						$current = createModelElement(grammarAccess.getSubsettedFeatureRule());
 					}
 				}
 				{
-					newCompositeNode(grammarAccess.getOwnedSubsettingAccess().getSubsettedFeatureFeatureCrossReference_0_0());
+					newCompositeNode(grammarAccess.getSubsettedFeatureAccess().getSubsettedFeatureFeatureCrossReference_0_0());
 				}
 				ruleQualifiedName
 				{
@@ -6636,18 +6635,18 @@ ruleOwnedSubsetting returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getOwnedSubsettingAccess().getOwnedRelatedElementFeatureChainParserRuleCall_1_0());
+					newCompositeNode(grammarAccess.getSubsettedFeatureAccess().getOwnedRelatedElementFeatureChainParserRuleCall_1_0());
 				}
 				lv_ownedRelatedElement_1_0=ruleFeatureChain
 				{
 					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getOwnedSubsettingRule());
+						$current = createModelElementForParent(grammarAccess.getSubsettedFeatureRule());
 					}
 					add(
 						$current,
 						"ownedRelatedElement",
 						lv_ownedRelatedElement_1_0,
-						"org.omg.kerml.xtext.KerML.FeatureChain");
+						"org.omg.kerml.expressions.xtext.KerMLExpressions.FeatureChain");
 					afterParserOrEnumRuleCall();
 				}
 			)
@@ -6721,22 +6720,17 @@ ruleRedefinition returns [EObject current=null]
 				newLeafNode(otherlv_5, grammarAccess.getRedefinitionAccess().getRedefinesKeyword_3_1());
 			}
 		)
-		(
-			(
-				{
-					if ($current==null) {
-						$current = createModelElement(grammarAccess.getRedefinitionRule());
-					}
-				}
-				{
-					newCompositeNode(grammarAccess.getRedefinitionAccess().getRedefinedFeatureFeatureCrossReference_4_0());
-				}
-				ruleQualifiedName
-				{
-					afterParserOrEnumRuleCall();
-				}
-			)
-		)
+		{
+			if ($current==null) {
+				$current = createModelElement(grammarAccess.getRedefinitionRule());
+			}
+			newCompositeNode(grammarAccess.getRedefinitionAccess().getRedefinedFeatureParserRuleCall_4());
+		}
+		this_RedefinedFeature_6=ruleRedefinedFeature[$current]
+		{
+			$current = $this_RedefinedFeature_6.current;
+			afterParserOrEnumRuleCall();
+		}
 		otherlv_7=';'
 		{
 			newLeafNode(otherlv_7, grammarAccess.getRedefinitionAccess().getSemicolonKeyword_5());
@@ -6759,16 +6753,38 @@ ruleOwnedRedefinition returns [EObject current=null]
 @after {
 	leaveRule();
 }:
+	{
+		if ($current==null) {
+			$current = createModelElement(grammarAccess.getOwnedRedefinitionRule());
+		}
+		newCompositeNode(grammarAccess.getOwnedRedefinitionAccess().getRedefinedFeatureParserRuleCall());
+	}
+	this_RedefinedFeature_0=ruleRedefinedFeature[$current]
+	{
+		$current = $this_RedefinedFeature_0.current;
+		afterParserOrEnumRuleCall();
+	}
+;
+
+
+// Rule RedefinedFeature
+ruleRedefinedFeature[EObject in_current]  returns [EObject current=in_current]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
 	(
 		(
 			(
 				{
 					if ($current==null) {
-						$current = createModelElement(grammarAccess.getOwnedRedefinitionRule());
+						$current = createModelElement(grammarAccess.getRedefinedFeatureRule());
 					}
 				}
 				{
-					newCompositeNode(grammarAccess.getOwnedRedefinitionAccess().getRedefinedFeatureFeatureCrossReference_0_0());
+					newCompositeNode(grammarAccess.getRedefinedFeatureAccess().getRedefinedFeatureFeatureCrossReference_0_0());
 				}
 				ruleQualifiedName
 				{
@@ -6780,18 +6796,18 @@ ruleOwnedRedefinition returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getOwnedRedefinitionAccess().getOwnedRelatedElementFeatureChainParserRuleCall_1_0());
+					newCompositeNode(grammarAccess.getRedefinedFeatureAccess().getOwnedRelatedElementFeatureChainParserRuleCall_1_0());
 				}
 				lv_ownedRelatedElement_1_0=ruleFeatureChain
 				{
 					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getOwnedRedefinitionRule());
+						$current = createModelElementForParent(grammarAccess.getRedefinedFeatureRule());
 					}
 					add(
 						$current,
 						"ownedRelatedElement",
 						lv_ownedRelatedElement_1_0,
-						"org.omg.kerml.xtext.KerML.FeatureChain");
+						"org.omg.kerml.expressions.xtext.KerMLExpressions.FeatureChain");
 					afterParserOrEnumRuleCall();
 				}
 			)
@@ -10760,7 +10776,7 @@ ruleFeatureChainPrefix returns [EObject current=null]
 							$current,
 							"ownedRelationship",
 							lv_ownedRelationship_0_0,
-							"org.omg.kerml.xtext.KerML.OwnedFeatureChaining");
+							"org.omg.kerml.expressions.xtext.KerMLExpressions.OwnedFeatureChaining");
 						afterParserOrEnumRuleCall();
 					}
 				)
@@ -10784,7 +10800,7 @@ ruleFeatureChainPrefix returns [EObject current=null]
 						$current,
 						"ownedRelationship",
 						lv_ownedRelationship_2_0,
-						"org.omg.kerml.xtext.KerML.OwnedFeatureChaining");
+						"org.omg.kerml.expressions.xtext.KerMLExpressions.OwnedFeatureChaining");
 					afterParserOrEnumRuleCall();
 				}
 			)
@@ -12072,9 +12088,9 @@ ruleTypeReference returns [EObject current=null]
 	(
 		(
 			{
-				newCompositeNode(grammarAccess.getTypeReferenceAccess().getOwnedRelationshipOwnedFeatureTypingParserRuleCall_0());
+				newCompositeNode(grammarAccess.getTypeReferenceAccess().getOwnedRelationshipReferenceTypingParserRuleCall_0());
 			}
-			lv_ownedRelationship_0_0=ruleOwnedFeatureTyping
+			lv_ownedRelationship_0_0=ruleReferenceTyping
 			{
 				if ($current==null) {
 					$current = createModelElementForParent(grammarAccess.getTypeReferenceRule());
@@ -12083,7 +12099,40 @@ ruleTypeReference returns [EObject current=null]
 					$current,
 					"ownedRelationship",
 					lv_ownedRelationship_0_0,
-					"org.omg.kerml.xtext.KerML.OwnedFeatureTyping");
+					"org.omg.kerml.expressions.xtext.KerMLExpressions.ReferenceTyping");
+				afterParserOrEnumRuleCall();
+			}
+		)
+	)
+;
+
+// Entry rule entryRuleReferenceTyping
+entryRuleReferenceTyping returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getReferenceTypingRule()); }
+	iv_ruleReferenceTyping=ruleReferenceTyping
+	{ $current=$iv_ruleReferenceTyping.current; }
+	EOF;
+
+// Rule ReferenceTyping
+ruleReferenceTyping returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			{
+				if ($current==null) {
+					$current = createModelElement(grammarAccess.getReferenceTypingRule());
+				}
+			}
+			{
+				newCompositeNode(grammarAccess.getReferenceTypingAccess().getTypeTypeCrossReference_0());
+			}
+			ruleQualifiedName
+			{
 				afterParserOrEnumRuleCall();
 			}
 		)
@@ -12969,9 +13018,9 @@ rulePrimaryExpression returns [EObject current=null]
 				(
 					(
 						{
-							newCompositeNode(grammarAccess.getPrimaryExpressionAccess().getOwnedRelationshipOwnedFeatureTypingParserRuleCall_1_1_2_0());
+							newCompositeNode(grammarAccess.getPrimaryExpressionAccess().getOwnedRelationshipReferenceTypingParserRuleCall_1_1_2_0());
 						}
-						lv_ownedRelationship_7_0=ruleOwnedFeatureTyping
+						lv_ownedRelationship_7_0=ruleReferenceTyping
 						{
 							if ($current==null) {
 								$current = createModelElementForParent(grammarAccess.getPrimaryExpressionRule());
@@ -12980,7 +13029,7 @@ rulePrimaryExpression returns [EObject current=null]
 								$current,
 								"ownedRelationship",
 								lv_ownedRelationship_7_0,
-								"org.omg.kerml.xtext.KerML.OwnedFeatureTyping");
+								"org.omg.kerml.expressions.xtext.KerMLExpressions.ReferenceTyping");
 							afterParserOrEnumRuleCall();
 						}
 					)
@@ -13199,9 +13248,9 @@ ruleFunctionReference returns [EObject current=null]
 	(
 		(
 			{
-				newCompositeNode(grammarAccess.getFunctionReferenceAccess().getOwnedRelationshipOwnedFeatureTypingParserRuleCall_0());
+				newCompositeNode(grammarAccess.getFunctionReferenceAccess().getOwnedRelationshipReferenceTypingParserRuleCall_0());
 			}
-			lv_ownedRelationship_0_0=ruleOwnedFeatureTyping
+			lv_ownedRelationship_0_0=ruleReferenceTyping
 			{
 				if ($current==null) {
 					$current = createModelElementForParent(grammarAccess.getFunctionReferenceRule());
@@ -13210,7 +13259,7 @@ ruleFunctionReference returns [EObject current=null]
 					$current,
 					"ownedRelationship",
 					lv_ownedRelationship_0_0,
-					"org.omg.kerml.xtext.KerML.OwnedFeatureTyping");
+					"org.omg.kerml.expressions.xtext.KerMLExpressions.ReferenceTyping");
 				afterParserOrEnumRuleCall();
 			}
 		)
@@ -13514,6 +13563,102 @@ ruleInvocationExpression returns [EObject current=null]
 			$current = $this_ArgumentList_1.current;
 			afterParserOrEnumRuleCall();
 		}
+	)
+;
+
+// Entry rule entryRuleFeatureChain
+entryRuleFeatureChain returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getFeatureChainRule()); }
+	iv_ruleFeatureChain=ruleFeatureChain
+	{ $current=$iv_ruleFeatureChain.current; }
+	EOF;
+
+// Rule FeatureChain
+ruleFeatureChain returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getFeatureChainAccess().getOwnedRelationshipOwnedFeatureChainingParserRuleCall_0_0());
+				}
+				lv_ownedRelationship_0_0=ruleOwnedFeatureChaining
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getFeatureChainRule());
+					}
+					add(
+						$current,
+						"ownedRelationship",
+						lv_ownedRelationship_0_0,
+						"org.omg.kerml.expressions.xtext.KerMLExpressions.OwnedFeatureChaining");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		(
+			otherlv_1='.'
+			{
+				newLeafNode(otherlv_1, grammarAccess.getFeatureChainAccess().getFullStopKeyword_1_0());
+			}
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getFeatureChainAccess().getOwnedRelationshipOwnedFeatureChainingParserRuleCall_1_1_0());
+					}
+					lv_ownedRelationship_2_0=ruleOwnedFeatureChaining
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getFeatureChainRule());
+						}
+						add(
+							$current,
+							"ownedRelationship",
+							lv_ownedRelationship_2_0,
+							"org.omg.kerml.expressions.xtext.KerMLExpressions.OwnedFeatureChaining");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+		)+
+	)
+;
+
+// Entry rule entryRuleOwnedFeatureChaining
+entryRuleOwnedFeatureChaining returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getOwnedFeatureChainingRule()); }
+	iv_ruleOwnedFeatureChaining=ruleOwnedFeatureChaining
+	{ $current=$iv_ruleOwnedFeatureChaining.current; }
+	EOF;
+
+// Rule OwnedFeatureChaining
+ruleOwnedFeatureChaining returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			{
+				if ($current==null) {
+					$current = createModelElement(grammarAccess.getOwnedFeatureChainingRule());
+				}
+			}
+			{
+				newCompositeNode(grammarAccess.getOwnedFeatureChainingAccess().getChainingFeatureFeatureCrossReference_0());
+			}
+			ruleQualifiedName
+			{
+				afterParserOrEnumRuleCall();
+			}
+		)
 	)
 ;
 

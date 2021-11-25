@@ -23,6 +23,7 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
@@ -84,12 +85,16 @@ public class FeatureTypingImpl extends SpecializationImpl implements FeatureTypi
 		return SysMLPackage.Literals.FEATURE_TYPING;
 	}
 
+	@Override
+	public Type getType() {
+		return type == null? basicGetType(): getTypeGen();
+	}
+
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public Type getType() {
+	public Type getTypeGen() {
 		if (type != null && type.eIsProxy()) {
 			InternalEObject oldType = (InternalEObject)type;
 			type = (Type)eResolveProxy(oldType);
@@ -103,9 +108,15 @@ public class FeatureTypingImpl extends SpecializationImpl implements FeatureTypi
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public Type basicGetType() {
+		if (type == null) {
+			EList<Element> ownedRelatedElements = getOwnedRelatedElement();
+			if (!ownedRelatedElements.isEmpty()) {
+				type = (Feature)ownedRelatedElements.get(0);
+			}
+		}
 		return type;
 	}
 

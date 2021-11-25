@@ -52,9 +52,10 @@ public class InvocationExpressionAdapter extends ExpressionAdapter {
 
 	@Override
 	public Type getExpressionType() {
-		return getTarget().getOwnedTyping().stream().
+		Type type = getTarget().getOwnedTyping().stream().
 				map(FeatureTyping::getType).filter(Predicates.notNull()).findFirst().
 				orElseGet(()->getFirstImplicitGeneralType(SysMLPackage.Literals.FEATURE_TYPING));
+		return type instanceof Feature? FeatureUtil.getBasicFeatureOf((Feature)type): type;
 	}
 	
 	@Override

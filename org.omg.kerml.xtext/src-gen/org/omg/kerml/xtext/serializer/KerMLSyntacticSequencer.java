@@ -324,7 +324,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) operator='all'
 	 *     (rule start) (ambiguity) operator=UnaryOperator
 	 *     (rule start) (ambiguity) ownedRelationship+=FeatureReferenceMember
-	 *     (rule start) (ambiguity) ownedRelationship+=OwnedFeatureTyping
+	 *     (rule start) (ambiguity) ownedRelationship+=InvocationTyping
 	 *     (rule start) (ambiguity) value=BooleanValue
 	 *     (rule start) (ambiguity) value=DECIMAL_VALUE
 	 *     (rule start) (ambiguity) value=RealValue

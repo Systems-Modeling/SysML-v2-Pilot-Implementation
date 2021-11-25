@@ -361,15 +361,6 @@ OwnedRedefinition returns SysML::Redefinition:
 	| ownedRelatedElement += FeatureChain
 ;
 
-FeatureChain returns SysML::Feature :
-	ownedRelationship += OwnedFeatureChaining
-	( '.' ownedRelationship += OwnedFeatureChaining )+
-;
-
-OwnedFeatureChaining returns SysML::FeatureChaining :
-	chainingFeature = [SysML::Feature | QualifiedName]
-;
-
 /* Multiplicity */
 
 OwnedMultiplicity returns SysML::Membership :

@@ -17,6 +17,7 @@ import org.eclipse.xtext.serializer.sequencer.ITransientValueService.ValueTransi
 import org.omg.kerml.expressions.xtext.services.KerMLExpressionsGrammarAccess;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.FeatureChaining;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureReferenceExpression;
 import org.omg.sysml.lang.sysml.FeatureTyping;
@@ -103,11 +104,18 @@ public class KerMLExpressionsSemanticSequencer extends AbstractDelegatingSemanti
 					sequence_BodyParameter_EmptyFeature(context, (Feature) semanticObject); 
 					return; 
 				}
+				else if (rule == grammarAccess.getFeatureChainRule()) {
+					sequence_FeatureChain(context, (Feature) semanticObject); 
+					return; 
+				}
 				else if (rule == grammarAccess.getTypeReferenceRule()) {
 					sequence_TypeReference(context, (Feature) semanticObject); 
 					return; 
 				}
 				else break;
+			case SysMLPackage.FEATURE_CHAINING:
+				sequence_OwnedFeatureChaining(context, (FeatureChaining) semanticObject); 
+				return; 
 			case SysMLPackage.FEATURE_MEMBERSHIP:
 				if (rule == grammarAccess.getExpressionBodyMemberRule()) {
 					sequence_ExpressionBodyMember(context, (FeatureMembership) semanticObject); 
@@ -178,8 +186,15 @@ public class KerMLExpressionsSemanticSequencer extends AbstractDelegatingSemanti
 				}
 				else break;
 			case SysMLPackage.FEATURE_TYPING:
-				sequence_OwnedFeatureTyping(context, (FeatureTyping) semanticObject); 
-				return; 
+				if (rule == grammarAccess.getInvocationTypingRule()) {
+					sequence_InvocationTyping(context, (FeatureTyping) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getOwnedFeatureTypingRule()) {
+					sequence_OwnedFeatureTyping(context, (FeatureTyping) semanticObject); 
+					return; 
+				}
+				else break;
 			case SysMLPackage.INVOCATION_EXPRESSION:
 				sequence_InvocationExpression_NamedArgumentList_PositionalArgumentList(context, (InvocationExpression) semanticObject); 
 				return; 
@@ -393,6 +408,18 @@ public class KerMLExpressionsSemanticSequencer extends AbstractDelegatingSemanti
 	
 	/**
 	 * Contexts:
+	 *     FeatureChain returns Feature
+	 *
+	 * Constraint:
+	 *     (ownedRelationship+=OwnedFeatureChaining ownedRelationship+=OwnedFeatureChaining+)
+	 */
+	protected void sequence_FeatureChain(ISerializationContext context, Feature semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     OwnedExpression returns FeatureReferenceExpression
 	 *     ConditionalExpression returns FeatureReferenceExpression
 	 *     ConditionalExpression.OperatorExpression_0_1_0 returns FeatureReferenceExpression
@@ -525,7 +552,7 @@ public class KerMLExpressionsSemanticSequencer extends AbstractDelegatingSemanti
 	 *
 	 * Constraint:
 	 *     (
-	 *         ownedRelationship+=OwnedFeatureTyping 
+	 *         ownedRelationship+=InvocationTyping 
 	 *         (
 	 *             (ownedRelationship+=OwnedExpressionMember ownedRelationship+=OwnedExpressionMember*) | 
 	 *             (ownedRelationship+=NamedExpressionMember ownedRelationship+=NamedExpressionMember*)
@@ -533,6 +560,18 @@ public class KerMLExpressionsSemanticSequencer extends AbstractDelegatingSemanti
 	 *     )
 	 */
 	protected void sequence_InvocationExpression_NamedArgumentList_PositionalArgumentList(ISerializationContext context, InvocationExpression semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     InvocationTyping returns FeatureTyping
+	 *
+	 * Constraint:
+	 *     (type=[Type|QualifiedName] | ownedRelatedElement+=FeatureChain)
+	 */
+	protected void sequence_InvocationTyping(ISerializationContext context, FeatureTyping semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -881,6 +920,24 @@ public class KerMLExpressionsSemanticSequencer extends AbstractDelegatingSemanti
 	 */
 	protected void sequence_OwnedExpressionMember(ISerializationContext context, FeatureMembership semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     OwnedFeatureChaining returns FeatureChaining
+	 *
+	 * Constraint:
+	 *     chainingFeature=[Feature|QualifiedName]
+	 */
+	protected void sequence_OwnedFeatureChaining(ISerializationContext context, FeatureChaining semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, SysMLPackage.Literals.FEATURE_CHAINING__CHAINING_FEATURE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SysMLPackage.Literals.FEATURE_CHAINING__CHAINING_FEATURE));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getOwnedFeatureChainingAccess().getChainingFeatureFeatureQualifiedNameParserRuleCall_0_1(), semanticObject.eGet(SysMLPackage.Literals.FEATURE_CHAINING__CHAINING_FEATURE, false));
+		feeder.finish();
 	}
 	
 	

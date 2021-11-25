@@ -47,4 +47,10 @@ package Expressions {
 	}
 	
 	expr totalMass: TotalMass (mass, sub);
+	
+	feature f {
+		expr s(x) : Boolean;
+	}
+	
+	bb : Boolean = f.s(1);
 }

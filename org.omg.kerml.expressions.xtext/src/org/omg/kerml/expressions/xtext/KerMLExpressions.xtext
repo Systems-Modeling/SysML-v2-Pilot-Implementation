@@ -143,7 +143,7 @@ TypeReference returns SysML::Feature :
 ;
 
 OwnedFeatureTyping returns SysML::FeatureTyping :
-	type = [SysML::Type | QualifiedName]
+	  type = [SysML::Type | QualifiedName]
 ;
 
 SelfReferenceExpression returns SysML::FeatureReferenceExpression :
@@ -308,7 +308,22 @@ FeatureReferenceMember returns SysML::Membership :
 // Invocation Expressions
 
 InvocationExpression returns SysML::InvocationExpression :
-	ownedRelationship += OwnedFeatureTyping ArgumentList
+	ownedRelationship += InvocationTyping ArgumentList
+;
+
+InvocationTyping returns SysML::FeatureTyping :
+	  type = [SysML::Type | QualifiedName]
+	| ownedRelatedElement += FeatureChain
+;
+
+FeatureChain returns SysML::Feature :
+	ownedRelationship += OwnedFeatureChaining
+	( '.' ownedRelationship += OwnedFeatureChaining )+
+;
+
+OwnedFeatureChaining returns SysML::FeatureChaining :
+	chainingFeature = [SysML::Feature | QualifiedName]
+	
 ;
 
 fragment ArgumentList returns SysML::Expression :

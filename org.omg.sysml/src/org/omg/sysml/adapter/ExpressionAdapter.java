@@ -53,10 +53,12 @@ public class ExpressionAdapter extends StepAdapter {
 	
 	// Utility
 	
+	// May be overridden in subclasses
 	public Type getExpressionType() {
 		return getTarget().getFunction();
 	}		
 	
+	// May be overridden in subclasses
 	public List<Feature> getTypeParameters() {
 		Type type = getExpressionType();
 		return type == null? Collections.emptyList():

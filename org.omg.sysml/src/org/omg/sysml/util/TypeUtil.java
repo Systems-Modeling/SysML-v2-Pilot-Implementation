@@ -208,6 +208,9 @@ public class TypeUtil {
 	}
 	
 	public static List<Feature> getOwnedParametersOf(Type type) {
+		if (type instanceof Feature) {
+			type = FeatureUtil.getBasicFeatureOf((Feature)type);
+		}
 		return type.getOwnedFeature().stream().
 				filter(FeatureUtil::isParameter).
 				collect(Collectors.toList());

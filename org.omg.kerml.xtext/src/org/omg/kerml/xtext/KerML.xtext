@@ -446,17 +446,6 @@ UnownedFeatureMember returns SysML::FeatureMembership :
 	MemberPrefix 'feature'? ( memberName = Name )? 'is' memberFeature = [SysML::Feature|QualifiedName] ';'
 ;
 
-/* Feature Chaining */
-
-FeatureChain returns SysML::Feature :
-	ownedRelationship += OwnedFeatureChaining
-	( '.' ownedRelationship += OwnedFeatureChaining )+
-;
-
-OwnedFeatureChaining returns SysML::FeatureChaining :
-	chainingFeature = [SysML::Feature | QualifiedName]
-;
-
 /* Specialization */
 
 Specialization returns SysML::Specialization :
@@ -632,7 +621,7 @@ OwnedTypeFeaturing returns SysML::TypeFeaturing :
 FeatureTyping returns SysML::FeatureTyping :
 	( 'specialization' Identification? )?
     'typing' typedFeature = [SysML::Feature | QualifiedName]
-    (':' | 'typed' 'by') type = [SysML::Feature | QualifiedName] ';'
+    (':' | 'typed' 'by') type = [SysML::Type | QualifiedName] ';'
 ;
 
 @Override

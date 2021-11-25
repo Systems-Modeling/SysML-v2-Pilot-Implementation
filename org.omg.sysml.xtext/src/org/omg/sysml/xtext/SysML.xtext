@@ -346,10 +346,7 @@ FeatureTyping returns SysML::FeatureTyping :
 	OwnedFeatureTyping | ConjugatedPortTyping
 ;
 
-@Override
-OwnedFeatureTyping returns SysML::FeatureTyping :
-	type = [SysML::Type | QualifiedName]
-;
+// OwnedFeatureTyping inherited from Expression syntax.
 
 OwnedSubsetting returns SysML::Subsetting:
 	  subsettedFeature = [SysML::Feature|QualifiedName]

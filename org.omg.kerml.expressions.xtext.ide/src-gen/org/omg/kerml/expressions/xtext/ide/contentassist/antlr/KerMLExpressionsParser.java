@@ -50,7 +50,7 @@ public class KerMLExpressionsParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getPrimaryExpressionAccess().getAlternatives_1_1_3(), "rule__PrimaryExpression__Alternatives_1_1_3");
 			builder.put(grammarAccess.getBaseExpressionAccess().getAlternatives(), "rule__BaseExpression__Alternatives");
 			builder.put(grammarAccess.getSequenceExpressionAccess().getAlternatives_1(), "rule__SequenceExpression__Alternatives_1");
-			builder.put(grammarAccess.getInvocationTypingAccess().getAlternatives(), "rule__InvocationTyping__Alternatives");
+			builder.put(grammarAccess.getOwnedFeatureTypingAccess().getAlternatives(), "rule__OwnedFeatureTyping__Alternatives");
 			builder.put(grammarAccess.getArgumentListAccess().getAlternatives_1(), "rule__ArgumentList__Alternatives_1");
 			builder.put(grammarAccess.getNullExpressionAccess().getAlternatives_1(), "rule__NullExpression__Alternatives_1");
 			builder.put(grammarAccess.getLiteralExpressionAccess().getAlternatives(), "rule__LiteralExpression__Alternatives");
@@ -141,7 +141,7 @@ public class KerMLExpressionsParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getClassificationExpressionAccess().getOwnedRelationshipAssignment_1_3(), "rule__ClassificationExpression__OwnedRelationshipAssignment_1_3");
 			builder.put(grammarAccess.getTypeReferenceMemberAccess().getOwnedRelatedElementAssignment(), "rule__TypeReferenceMember__OwnedRelatedElementAssignment");
 			builder.put(grammarAccess.getTypeReferenceAccess().getOwnedRelationshipAssignment(), "rule__TypeReference__OwnedRelationshipAssignment");
-			builder.put(grammarAccess.getOwnedFeatureTypingAccess().getTypeAssignment(), "rule__OwnedFeatureTyping__TypeAssignment");
+			builder.put(grammarAccess.getReferenceTypingAccess().getTypeAssignment(), "rule__ReferenceTyping__TypeAssignment");
 			builder.put(grammarAccess.getSelfReferenceExpressionAccess().getOwnedRelationshipAssignment(), "rule__SelfReferenceExpression__OwnedRelationshipAssignment");
 			builder.put(grammarAccess.getSelfReferenceMemberAccess().getOwnedRelatedElementAssignment(), "rule__SelfReferenceMember__OwnedRelatedElementAssignment");
 			builder.put(grammarAccess.getRelationalExpressionAccess().getOperatorAssignment_1_1(), "rule__RelationalExpression__OperatorAssignment_1_1");
@@ -178,8 +178,8 @@ public class KerMLExpressionsParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getFeatureReferenceExpressionAccess().getOwnedRelationshipAssignment(), "rule__FeatureReferenceExpression__OwnedRelationshipAssignment");
 			builder.put(grammarAccess.getFeatureReferenceMemberAccess().getMemberElementAssignment(), "rule__FeatureReferenceMember__MemberElementAssignment");
 			builder.put(grammarAccess.getInvocationExpressionAccess().getOwnedRelationshipAssignment_0(), "rule__InvocationExpression__OwnedRelationshipAssignment_0");
-			builder.put(grammarAccess.getInvocationTypingAccess().getTypeAssignment_0(), "rule__InvocationTyping__TypeAssignment_0");
-			builder.put(grammarAccess.getInvocationTypingAccess().getOwnedRelatedElementAssignment_1(), "rule__InvocationTyping__OwnedRelatedElementAssignment_1");
+			builder.put(grammarAccess.getOwnedFeatureTypingAccess().getTypeAssignment_0(), "rule__OwnedFeatureTyping__TypeAssignment_0");
+			builder.put(grammarAccess.getOwnedFeatureTypingAccess().getOwnedRelatedElementAssignment_1(), "rule__OwnedFeatureTyping__OwnedRelatedElementAssignment_1");
 			builder.put(grammarAccess.getFeatureChainAccess().getOwnedRelationshipAssignment_0(), "rule__FeatureChain__OwnedRelationshipAssignment_0");
 			builder.put(grammarAccess.getFeatureChainAccess().getOwnedRelationshipAssignment_1_1(), "rule__FeatureChain__OwnedRelationshipAssignment_1_1");
 			builder.put(grammarAccess.getOwnedFeatureChainingAccess().getChainingFeatureAssignment(), "rule__OwnedFeatureChaining__ChainingFeatureAssignment");

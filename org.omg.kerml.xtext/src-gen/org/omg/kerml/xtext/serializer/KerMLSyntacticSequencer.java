@@ -324,7 +324,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) operator='all'
 	 *     (rule start) (ambiguity) operator=UnaryOperator
 	 *     (rule start) (ambiguity) ownedRelationship+=FeatureReferenceMember
-	 *     (rule start) (ambiguity) ownedRelationship+=InvocationTyping
+	 *     (rule start) (ambiguity) ownedRelationship+=OwnedFeatureTyping
 	 *     (rule start) (ambiguity) value=BooleanValue
 	 *     (rule start) (ambiguity) value=DECIMAL_VALUE
 	 *     (rule start) (ambiguity) value=RealValue
@@ -649,7 +649,8 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     ':' | ('typed' 'by')
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     typedFeature=[Feature|QualifiedName] (ambiguity) type=[Feature|QualifiedName]
+	 *     typedFeature=[Feature|QualifiedName] (ambiguity) ownedRelatedElement+=FeatureChain
+	 *     typedFeature=[Feature|QualifiedName] (ambiguity) type=[Type|QualifiedName]
 	 */
 	protected void emit_FeatureTyping_ColonKeyword_3_0_or___TypedKeyword_3_1_0_ByKeyword_3_1_1__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -1222,6 +1223,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     ':>>' | 'redefines'
 	 *
 	 * This ambiguous syntax occurs at:
+	 *     redefiningFeature=[Feature|QualifiedName] (ambiguity) ownedRelatedElement+=FeatureChain
 	 *     redefiningFeature=[Feature|QualifiedName] (ambiguity) redefinedFeature=[Feature|QualifiedName]
 	 */
 	protected void emit_Redefinition_ColonGreaterThanSignGreaterThanSignKeyword_3_0_or_RedefinesKeyword_3_1(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
@@ -1277,7 +1279,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     ownedRelationship+=FunctionReferenceMember (ambiguity) ')' (rule end)
 	 *     ownedRelationship+=NamedExpressionMember ')' (ambiguity) ')' (rule end)
 	 *     ownedRelationship+=OwnedExpressionMember ')' (ambiguity) ')' (rule end)
-	 *     ownedRelationship+=OwnedFeatureTyping '(' ')' (ambiguity) ')' (rule end)
+	 *     ownedRelationship+=ReferenceTyping '(' ')' (ambiguity) ')' (rule end)
 	 *     ownedRelationship+=TypeReferenceMember (ambiguity) ')' (rule end)
 	 */
 	protected void emit_SequenceExpression_CommaKeyword_1_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
@@ -1308,6 +1310,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     specific=[Type|QualifiedName] (ambiguity) general=[Type|QualifiedName]
+	 *     specific=[Type|QualifiedName] (ambiguity) ownedRelatedElement+=FeatureChain
 	 */
 	protected void emit_Specialization_ColonGreaterThanSignKeyword_3_0_or_SpecializesKeyword_3_1(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -1452,6 +1455,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     ':>' | 'subsets'
 	 *
 	 * This ambiguous syntax occurs at:
+	 *     subsettingFeature=[Feature|QualifiedName] (ambiguity) ownedRelatedElement+=FeatureChain
 	 *     subsettingFeature=[Feature|QualifiedName] (ambiguity) subsettedFeature=[Feature|QualifiedName]
 	 */
 	protected void emit_Subsetting_ColonGreaterThanSignKeyword_3_0_or_SubsetsKeyword_3_1(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {

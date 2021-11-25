@@ -1638,20 +1638,20 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
     // $ANTLR end "ruleTypeReference"
 
 
-    // $ANTLR start "entryRuleOwnedFeatureTyping"
-    // InternalKerMLExpressions.g:553:1: entryRuleOwnedFeatureTyping : ruleOwnedFeatureTyping EOF ;
-    public final void entryRuleOwnedFeatureTyping() throws RecognitionException {
+    // $ANTLR start "entryRuleReferenceTyping"
+    // InternalKerMLExpressions.g:553:1: entryRuleReferenceTyping : ruleReferenceTyping EOF ;
+    public final void entryRuleReferenceTyping() throws RecognitionException {
         try {
-            // InternalKerMLExpressions.g:554:1: ( ruleOwnedFeatureTyping EOF )
-            // InternalKerMLExpressions.g:555:1: ruleOwnedFeatureTyping EOF
+            // InternalKerMLExpressions.g:554:1: ( ruleReferenceTyping EOF )
+            // InternalKerMLExpressions.g:555:1: ruleReferenceTyping EOF
             {
-             before(grammarAccess.getOwnedFeatureTypingRule()); 
+             before(grammarAccess.getReferenceTypingRule()); 
             pushFollow(FOLLOW_1);
-            ruleOwnedFeatureTyping();
+            ruleReferenceTyping();
 
             state._fsp--;
 
-             after(grammarAccess.getOwnedFeatureTypingRule()); 
+             after(grammarAccess.getReferenceTypingRule()); 
             match(input,EOF,FOLLOW_2); 
 
             }
@@ -1665,35 +1665,35 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
         }
         return ;
     }
-    // $ANTLR end "entryRuleOwnedFeatureTyping"
+    // $ANTLR end "entryRuleReferenceTyping"
 
 
-    // $ANTLR start "ruleOwnedFeatureTyping"
-    // InternalKerMLExpressions.g:562:1: ruleOwnedFeatureTyping : ( ( rule__OwnedFeatureTyping__TypeAssignment ) ) ;
-    public final void ruleOwnedFeatureTyping() throws RecognitionException {
+    // $ANTLR start "ruleReferenceTyping"
+    // InternalKerMLExpressions.g:562:1: ruleReferenceTyping : ( ( rule__ReferenceTyping__TypeAssignment ) ) ;
+    public final void ruleReferenceTyping() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:566:2: ( ( ( rule__OwnedFeatureTyping__TypeAssignment ) ) )
-            // InternalKerMLExpressions.g:567:2: ( ( rule__OwnedFeatureTyping__TypeAssignment ) )
+            // InternalKerMLExpressions.g:566:2: ( ( ( rule__ReferenceTyping__TypeAssignment ) ) )
+            // InternalKerMLExpressions.g:567:2: ( ( rule__ReferenceTyping__TypeAssignment ) )
             {
-            // InternalKerMLExpressions.g:567:2: ( ( rule__OwnedFeatureTyping__TypeAssignment ) )
-            // InternalKerMLExpressions.g:568:3: ( rule__OwnedFeatureTyping__TypeAssignment )
+            // InternalKerMLExpressions.g:567:2: ( ( rule__ReferenceTyping__TypeAssignment ) )
+            // InternalKerMLExpressions.g:568:3: ( rule__ReferenceTyping__TypeAssignment )
             {
-             before(grammarAccess.getOwnedFeatureTypingAccess().getTypeAssignment()); 
-            // InternalKerMLExpressions.g:569:3: ( rule__OwnedFeatureTyping__TypeAssignment )
-            // InternalKerMLExpressions.g:569:4: rule__OwnedFeatureTyping__TypeAssignment
+             before(grammarAccess.getReferenceTypingAccess().getTypeAssignment()); 
+            // InternalKerMLExpressions.g:569:3: ( rule__ReferenceTyping__TypeAssignment )
+            // InternalKerMLExpressions.g:569:4: rule__ReferenceTyping__TypeAssignment
             {
             pushFollow(FOLLOW_2);
-            rule__OwnedFeatureTyping__TypeAssignment();
+            rule__ReferenceTyping__TypeAssignment();
 
             state._fsp--;
 
 
             }
 
-             after(grammarAccess.getOwnedFeatureTypingAccess().getTypeAssignment()); 
+             after(grammarAccess.getReferenceTypingAccess().getTypeAssignment()); 
 
             }
 
@@ -1712,7 +1712,7 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
         }
         return ;
     }
-    // $ANTLR end "ruleOwnedFeatureTyping"
+    // $ANTLR end "ruleReferenceTyping"
 
 
     // $ANTLR start "entryRuleSelfReferenceExpression"
@@ -3851,20 +3851,20 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
     // $ANTLR end "ruleInvocationExpression"
 
 
-    // $ANTLR start "entryRuleInvocationTyping"
-    // InternalKerMLExpressions.g:1278:1: entryRuleInvocationTyping : ruleInvocationTyping EOF ;
-    public final void entryRuleInvocationTyping() throws RecognitionException {
+    // $ANTLR start "entryRuleOwnedFeatureTyping"
+    // InternalKerMLExpressions.g:1278:1: entryRuleOwnedFeatureTyping : ruleOwnedFeatureTyping EOF ;
+    public final void entryRuleOwnedFeatureTyping() throws RecognitionException {
         try {
-            // InternalKerMLExpressions.g:1279:1: ( ruleInvocationTyping EOF )
-            // InternalKerMLExpressions.g:1280:1: ruleInvocationTyping EOF
+            // InternalKerMLExpressions.g:1279:1: ( ruleOwnedFeatureTyping EOF )
+            // InternalKerMLExpressions.g:1280:1: ruleOwnedFeatureTyping EOF
             {
-             before(grammarAccess.getInvocationTypingRule()); 
+             before(grammarAccess.getOwnedFeatureTypingRule()); 
             pushFollow(FOLLOW_1);
-            ruleInvocationTyping();
+            ruleOwnedFeatureTyping();
 
             state._fsp--;
 
-             after(grammarAccess.getInvocationTypingRule()); 
+             after(grammarAccess.getOwnedFeatureTypingRule()); 
             match(input,EOF,FOLLOW_2); 
 
             }
@@ -3878,35 +3878,35 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
         }
         return ;
     }
-    // $ANTLR end "entryRuleInvocationTyping"
+    // $ANTLR end "entryRuleOwnedFeatureTyping"
 
 
-    // $ANTLR start "ruleInvocationTyping"
-    // InternalKerMLExpressions.g:1287:1: ruleInvocationTyping : ( ( rule__InvocationTyping__Alternatives ) ) ;
-    public final void ruleInvocationTyping() throws RecognitionException {
+    // $ANTLR start "ruleOwnedFeatureTyping"
+    // InternalKerMLExpressions.g:1287:1: ruleOwnedFeatureTyping : ( ( rule__OwnedFeatureTyping__Alternatives ) ) ;
+    public final void ruleOwnedFeatureTyping() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:1291:2: ( ( ( rule__InvocationTyping__Alternatives ) ) )
-            // InternalKerMLExpressions.g:1292:2: ( ( rule__InvocationTyping__Alternatives ) )
+            // InternalKerMLExpressions.g:1291:2: ( ( ( rule__OwnedFeatureTyping__Alternatives ) ) )
+            // InternalKerMLExpressions.g:1292:2: ( ( rule__OwnedFeatureTyping__Alternatives ) )
             {
-            // InternalKerMLExpressions.g:1292:2: ( ( rule__InvocationTyping__Alternatives ) )
-            // InternalKerMLExpressions.g:1293:3: ( rule__InvocationTyping__Alternatives )
+            // InternalKerMLExpressions.g:1292:2: ( ( rule__OwnedFeatureTyping__Alternatives ) )
+            // InternalKerMLExpressions.g:1293:3: ( rule__OwnedFeatureTyping__Alternatives )
             {
-             before(grammarAccess.getInvocationTypingAccess().getAlternatives()); 
-            // InternalKerMLExpressions.g:1294:3: ( rule__InvocationTyping__Alternatives )
-            // InternalKerMLExpressions.g:1294:4: rule__InvocationTyping__Alternatives
+             before(grammarAccess.getOwnedFeatureTypingAccess().getAlternatives()); 
+            // InternalKerMLExpressions.g:1294:3: ( rule__OwnedFeatureTyping__Alternatives )
+            // InternalKerMLExpressions.g:1294:4: rule__OwnedFeatureTyping__Alternatives
             {
             pushFollow(FOLLOW_2);
-            rule__InvocationTyping__Alternatives();
+            rule__OwnedFeatureTyping__Alternatives();
 
             state._fsp--;
 
 
             }
 
-             after(grammarAccess.getInvocationTypingAccess().getAlternatives()); 
+             after(grammarAccess.getOwnedFeatureTypingAccess().getAlternatives()); 
 
             }
 
@@ -3925,7 +3925,7 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
         }
         return ;
     }
-    // $ANTLR end "ruleInvocationTyping"
+    // $ANTLR end "ruleOwnedFeatureTyping"
 
 
     // $ANTLR start "entryRuleFeatureChain"
@@ -7161,36 +7161,36 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
     // $ANTLR end "rule__SequenceExpression__Alternatives_1"
 
 
-    // $ANTLR start "rule__InvocationTyping__Alternatives"
-    // InternalKerMLExpressions.g:2236:1: rule__InvocationTyping__Alternatives : ( ( ( rule__InvocationTyping__TypeAssignment_0 ) ) | ( ( rule__InvocationTyping__OwnedRelatedElementAssignment_1 ) ) );
-    public final void rule__InvocationTyping__Alternatives() throws RecognitionException {
+    // $ANTLR start "rule__OwnedFeatureTyping__Alternatives"
+    // InternalKerMLExpressions.g:2236:1: rule__OwnedFeatureTyping__Alternatives : ( ( ( rule__OwnedFeatureTyping__TypeAssignment_0 ) ) | ( ( rule__OwnedFeatureTyping__OwnedRelatedElementAssignment_1 ) ) );
+    public final void rule__OwnedFeatureTyping__Alternatives() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:2240:1: ( ( ( rule__InvocationTyping__TypeAssignment_0 ) ) | ( ( rule__InvocationTyping__OwnedRelatedElementAssignment_1 ) ) )
+            // InternalKerMLExpressions.g:2240:1: ( ( ( rule__OwnedFeatureTyping__TypeAssignment_0 ) ) | ( ( rule__OwnedFeatureTyping__OwnedRelatedElementAssignment_1 ) ) )
             int alt21=2;
             alt21 = dfa21.predict(input);
             switch (alt21) {
                 case 1 :
-                    // InternalKerMLExpressions.g:2241:2: ( ( rule__InvocationTyping__TypeAssignment_0 ) )
+                    // InternalKerMLExpressions.g:2241:2: ( ( rule__OwnedFeatureTyping__TypeAssignment_0 ) )
                     {
-                    // InternalKerMLExpressions.g:2241:2: ( ( rule__InvocationTyping__TypeAssignment_0 ) )
-                    // InternalKerMLExpressions.g:2242:3: ( rule__InvocationTyping__TypeAssignment_0 )
+                    // InternalKerMLExpressions.g:2241:2: ( ( rule__OwnedFeatureTyping__TypeAssignment_0 ) )
+                    // InternalKerMLExpressions.g:2242:3: ( rule__OwnedFeatureTyping__TypeAssignment_0 )
                     {
-                     before(grammarAccess.getInvocationTypingAccess().getTypeAssignment_0()); 
-                    // InternalKerMLExpressions.g:2243:3: ( rule__InvocationTyping__TypeAssignment_0 )
-                    // InternalKerMLExpressions.g:2243:4: rule__InvocationTyping__TypeAssignment_0
+                     before(grammarAccess.getOwnedFeatureTypingAccess().getTypeAssignment_0()); 
+                    // InternalKerMLExpressions.g:2243:3: ( rule__OwnedFeatureTyping__TypeAssignment_0 )
+                    // InternalKerMLExpressions.g:2243:4: rule__OwnedFeatureTyping__TypeAssignment_0
                     {
                     pushFollow(FOLLOW_2);
-                    rule__InvocationTyping__TypeAssignment_0();
+                    rule__OwnedFeatureTyping__TypeAssignment_0();
 
                     state._fsp--;
 
 
                     }
 
-                     after(grammarAccess.getInvocationTypingAccess().getTypeAssignment_0()); 
+                     after(grammarAccess.getOwnedFeatureTypingAccess().getTypeAssignment_0()); 
 
                     }
 
@@ -7198,24 +7198,24 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
                     }
                     break;
                 case 2 :
-                    // InternalKerMLExpressions.g:2247:2: ( ( rule__InvocationTyping__OwnedRelatedElementAssignment_1 ) )
+                    // InternalKerMLExpressions.g:2247:2: ( ( rule__OwnedFeatureTyping__OwnedRelatedElementAssignment_1 ) )
                     {
-                    // InternalKerMLExpressions.g:2247:2: ( ( rule__InvocationTyping__OwnedRelatedElementAssignment_1 ) )
-                    // InternalKerMLExpressions.g:2248:3: ( rule__InvocationTyping__OwnedRelatedElementAssignment_1 )
+                    // InternalKerMLExpressions.g:2247:2: ( ( rule__OwnedFeatureTyping__OwnedRelatedElementAssignment_1 ) )
+                    // InternalKerMLExpressions.g:2248:3: ( rule__OwnedFeatureTyping__OwnedRelatedElementAssignment_1 )
                     {
-                     before(grammarAccess.getInvocationTypingAccess().getOwnedRelatedElementAssignment_1()); 
-                    // InternalKerMLExpressions.g:2249:3: ( rule__InvocationTyping__OwnedRelatedElementAssignment_1 )
-                    // InternalKerMLExpressions.g:2249:4: rule__InvocationTyping__OwnedRelatedElementAssignment_1
+                     before(grammarAccess.getOwnedFeatureTypingAccess().getOwnedRelatedElementAssignment_1()); 
+                    // InternalKerMLExpressions.g:2249:3: ( rule__OwnedFeatureTyping__OwnedRelatedElementAssignment_1 )
+                    // InternalKerMLExpressions.g:2249:4: rule__OwnedFeatureTyping__OwnedRelatedElementAssignment_1
                     {
                     pushFollow(FOLLOW_2);
-                    rule__InvocationTyping__OwnedRelatedElementAssignment_1();
+                    rule__OwnedFeatureTyping__OwnedRelatedElementAssignment_1();
 
                     state._fsp--;
 
 
                     }
 
-                     after(grammarAccess.getInvocationTypingAccess().getOwnedRelatedElementAssignment_1()); 
+                     after(grammarAccess.getOwnedFeatureTypingAccess().getOwnedRelatedElementAssignment_1()); 
 
                     }
 
@@ -7236,7 +7236,7 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
         }
         return ;
     }
-    // $ANTLR end "rule__InvocationTyping__Alternatives"
+    // $ANTLR end "rule__OwnedFeatureTyping__Alternatives"
 
 
     // $ANTLR start "rule__ArgumentList__Alternatives_1"
@@ -21253,25 +21253,25 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__TypeReference__OwnedRelationshipAssignment"
-    // InternalKerMLExpressions.g:6869:1: rule__TypeReference__OwnedRelationshipAssignment : ( ruleOwnedFeatureTyping ) ;
+    // InternalKerMLExpressions.g:6869:1: rule__TypeReference__OwnedRelationshipAssignment : ( ruleReferenceTyping ) ;
     public final void rule__TypeReference__OwnedRelationshipAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:6873:1: ( ( ruleOwnedFeatureTyping ) )
-            // InternalKerMLExpressions.g:6874:2: ( ruleOwnedFeatureTyping )
+            // InternalKerMLExpressions.g:6873:1: ( ( ruleReferenceTyping ) )
+            // InternalKerMLExpressions.g:6874:2: ( ruleReferenceTyping )
             {
-            // InternalKerMLExpressions.g:6874:2: ( ruleOwnedFeatureTyping )
-            // InternalKerMLExpressions.g:6875:3: ruleOwnedFeatureTyping
+            // InternalKerMLExpressions.g:6874:2: ( ruleReferenceTyping )
+            // InternalKerMLExpressions.g:6875:3: ruleReferenceTyping
             {
-             before(grammarAccess.getTypeReferenceAccess().getOwnedRelationshipOwnedFeatureTypingParserRuleCall_0()); 
+             before(grammarAccess.getTypeReferenceAccess().getOwnedRelationshipReferenceTypingParserRuleCall_0()); 
             pushFollow(FOLLOW_2);
-            ruleOwnedFeatureTyping();
+            ruleReferenceTyping();
 
             state._fsp--;
 
-             after(grammarAccess.getTypeReferenceAccess().getOwnedRelationshipOwnedFeatureTypingParserRuleCall_0()); 
+             after(grammarAccess.getTypeReferenceAccess().getOwnedRelationshipReferenceTypingParserRuleCall_0()); 
 
             }
 
@@ -21293,9 +21293,9 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
     // $ANTLR end "rule__TypeReference__OwnedRelationshipAssignment"
 
 
-    // $ANTLR start "rule__OwnedFeatureTyping__TypeAssignment"
-    // InternalKerMLExpressions.g:6884:1: rule__OwnedFeatureTyping__TypeAssignment : ( ( ruleQualifiedName ) ) ;
-    public final void rule__OwnedFeatureTyping__TypeAssignment() throws RecognitionException {
+    // $ANTLR start "rule__ReferenceTyping__TypeAssignment"
+    // InternalKerMLExpressions.g:6884:1: rule__ReferenceTyping__TypeAssignment : ( ( ruleQualifiedName ) ) ;
+    public final void rule__ReferenceTyping__TypeAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -21306,21 +21306,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
             // InternalKerMLExpressions.g:6889:2: ( ( ruleQualifiedName ) )
             // InternalKerMLExpressions.g:6890:3: ( ruleQualifiedName )
             {
-             before(grammarAccess.getOwnedFeatureTypingAccess().getTypeTypeCrossReference_0()); 
+             before(grammarAccess.getReferenceTypingAccess().getTypeTypeCrossReference_0()); 
             // InternalKerMLExpressions.g:6891:3: ( ruleQualifiedName )
             // InternalKerMLExpressions.g:6892:4: ruleQualifiedName
             {
-             before(grammarAccess.getOwnedFeatureTypingAccess().getTypeTypeQualifiedNameParserRuleCall_0_1()); 
+             before(grammarAccess.getReferenceTypingAccess().getTypeTypeQualifiedNameParserRuleCall_0_1()); 
             pushFollow(FOLLOW_2);
             ruleQualifiedName();
 
             state._fsp--;
 
-             after(grammarAccess.getOwnedFeatureTypingAccess().getTypeTypeQualifiedNameParserRuleCall_0_1()); 
+             after(grammarAccess.getReferenceTypingAccess().getTypeTypeQualifiedNameParserRuleCall_0_1()); 
 
             }
 
-             after(grammarAccess.getOwnedFeatureTypingAccess().getTypeTypeCrossReference_0()); 
+             after(grammarAccess.getReferenceTypingAccess().getTypeTypeCrossReference_0()); 
 
             }
 
@@ -21339,7 +21339,7 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
         }
         return ;
     }
-    // $ANTLR end "rule__OwnedFeatureTyping__TypeAssignment"
+    // $ANTLR end "rule__ReferenceTyping__TypeAssignment"
 
 
     // $ANTLR start "rule__SelfReferenceExpression__OwnedRelationshipAssignment"
@@ -22093,25 +22093,25 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__PrimaryExpression__OwnedRelationshipAssignment_1_1_2"
-    // InternalKerMLExpressions.g:7185:1: rule__PrimaryExpression__OwnedRelationshipAssignment_1_1_2 : ( ruleOwnedFeatureTyping ) ;
+    // InternalKerMLExpressions.g:7185:1: rule__PrimaryExpression__OwnedRelationshipAssignment_1_1_2 : ( ruleReferenceTyping ) ;
     public final void rule__PrimaryExpression__OwnedRelationshipAssignment_1_1_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:7189:1: ( ( ruleOwnedFeatureTyping ) )
-            // InternalKerMLExpressions.g:7190:2: ( ruleOwnedFeatureTyping )
+            // InternalKerMLExpressions.g:7189:1: ( ( ruleReferenceTyping ) )
+            // InternalKerMLExpressions.g:7190:2: ( ruleReferenceTyping )
             {
-            // InternalKerMLExpressions.g:7190:2: ( ruleOwnedFeatureTyping )
-            // InternalKerMLExpressions.g:7191:3: ruleOwnedFeatureTyping
+            // InternalKerMLExpressions.g:7190:2: ( ruleReferenceTyping )
+            // InternalKerMLExpressions.g:7191:3: ruleReferenceTyping
             {
-             before(grammarAccess.getPrimaryExpressionAccess().getOwnedRelationshipOwnedFeatureTypingParserRuleCall_1_1_2_0()); 
+             before(grammarAccess.getPrimaryExpressionAccess().getOwnedRelationshipReferenceTypingParserRuleCall_1_1_2_0()); 
             pushFollow(FOLLOW_2);
-            ruleOwnedFeatureTyping();
+            ruleReferenceTyping();
 
             state._fsp--;
 
-             after(grammarAccess.getPrimaryExpressionAccess().getOwnedRelationshipOwnedFeatureTypingParserRuleCall_1_1_2_0()); 
+             after(grammarAccess.getPrimaryExpressionAccess().getOwnedRelationshipReferenceTypingParserRuleCall_1_1_2_0()); 
 
             }
 
@@ -22380,25 +22380,25 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__FunctionReference__OwnedRelationshipAssignment"
-    // InternalKerMLExpressions.g:7290:1: rule__FunctionReference__OwnedRelationshipAssignment : ( ruleOwnedFeatureTyping ) ;
+    // InternalKerMLExpressions.g:7290:1: rule__FunctionReference__OwnedRelationshipAssignment : ( ruleReferenceTyping ) ;
     public final void rule__FunctionReference__OwnedRelationshipAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:7294:1: ( ( ruleOwnedFeatureTyping ) )
-            // InternalKerMLExpressions.g:7295:2: ( ruleOwnedFeatureTyping )
+            // InternalKerMLExpressions.g:7294:1: ( ( ruleReferenceTyping ) )
+            // InternalKerMLExpressions.g:7295:2: ( ruleReferenceTyping )
             {
-            // InternalKerMLExpressions.g:7295:2: ( ruleOwnedFeatureTyping )
-            // InternalKerMLExpressions.g:7296:3: ruleOwnedFeatureTyping
+            // InternalKerMLExpressions.g:7295:2: ( ruleReferenceTyping )
+            // InternalKerMLExpressions.g:7296:3: ruleReferenceTyping
             {
-             before(grammarAccess.getFunctionReferenceAccess().getOwnedRelationshipOwnedFeatureTypingParserRuleCall_0()); 
+             before(grammarAccess.getFunctionReferenceAccess().getOwnedRelationshipReferenceTypingParserRuleCall_0()); 
             pushFollow(FOLLOW_2);
-            ruleOwnedFeatureTyping();
+            ruleReferenceTyping();
 
             state._fsp--;
 
-             after(grammarAccess.getFunctionReferenceAccess().getOwnedRelationshipOwnedFeatureTypingParserRuleCall_0()); 
+             after(grammarAccess.getFunctionReferenceAccess().getOwnedRelationshipReferenceTypingParserRuleCall_0()); 
 
             }
 
@@ -22802,25 +22802,25 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__InvocationExpression__OwnedRelationshipAssignment_0"
-    // InternalKerMLExpressions.g:7448:1: rule__InvocationExpression__OwnedRelationshipAssignment_0 : ( ruleInvocationTyping ) ;
+    // InternalKerMLExpressions.g:7448:1: rule__InvocationExpression__OwnedRelationshipAssignment_0 : ( ruleOwnedFeatureTyping ) ;
     public final void rule__InvocationExpression__OwnedRelationshipAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerMLExpressions.g:7452:1: ( ( ruleInvocationTyping ) )
-            // InternalKerMLExpressions.g:7453:2: ( ruleInvocationTyping )
+            // InternalKerMLExpressions.g:7452:1: ( ( ruleOwnedFeatureTyping ) )
+            // InternalKerMLExpressions.g:7453:2: ( ruleOwnedFeatureTyping )
             {
-            // InternalKerMLExpressions.g:7453:2: ( ruleInvocationTyping )
-            // InternalKerMLExpressions.g:7454:3: ruleInvocationTyping
+            // InternalKerMLExpressions.g:7453:2: ( ruleOwnedFeatureTyping )
+            // InternalKerMLExpressions.g:7454:3: ruleOwnedFeatureTyping
             {
-             before(grammarAccess.getInvocationExpressionAccess().getOwnedRelationshipInvocationTypingParserRuleCall_0_0()); 
+             before(grammarAccess.getInvocationExpressionAccess().getOwnedRelationshipOwnedFeatureTypingParserRuleCall_0_0()); 
             pushFollow(FOLLOW_2);
-            ruleInvocationTyping();
+            ruleOwnedFeatureTyping();
 
             state._fsp--;
 
-             after(grammarAccess.getInvocationExpressionAccess().getOwnedRelationshipInvocationTypingParserRuleCall_0_0()); 
+             after(grammarAccess.getInvocationExpressionAccess().getOwnedRelationshipOwnedFeatureTypingParserRuleCall_0_0()); 
 
             }
 
@@ -22842,9 +22842,9 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
     // $ANTLR end "rule__InvocationExpression__OwnedRelationshipAssignment_0"
 
 
-    // $ANTLR start "rule__InvocationTyping__TypeAssignment_0"
-    // InternalKerMLExpressions.g:7463:1: rule__InvocationTyping__TypeAssignment_0 : ( ( ruleQualifiedName ) ) ;
-    public final void rule__InvocationTyping__TypeAssignment_0() throws RecognitionException {
+    // $ANTLR start "rule__OwnedFeatureTyping__TypeAssignment_0"
+    // InternalKerMLExpressions.g:7463:1: rule__OwnedFeatureTyping__TypeAssignment_0 : ( ( ruleQualifiedName ) ) ;
+    public final void rule__OwnedFeatureTyping__TypeAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -22855,21 +22855,21 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
             // InternalKerMLExpressions.g:7468:2: ( ( ruleQualifiedName ) )
             // InternalKerMLExpressions.g:7469:3: ( ruleQualifiedName )
             {
-             before(grammarAccess.getInvocationTypingAccess().getTypeTypeCrossReference_0_0()); 
+             before(grammarAccess.getOwnedFeatureTypingAccess().getTypeTypeCrossReference_0_0()); 
             // InternalKerMLExpressions.g:7470:3: ( ruleQualifiedName )
             // InternalKerMLExpressions.g:7471:4: ruleQualifiedName
             {
-             before(grammarAccess.getInvocationTypingAccess().getTypeTypeQualifiedNameParserRuleCall_0_0_1()); 
+             before(grammarAccess.getOwnedFeatureTypingAccess().getTypeTypeQualifiedNameParserRuleCall_0_0_1()); 
             pushFollow(FOLLOW_2);
             ruleQualifiedName();
 
             state._fsp--;
 
-             after(grammarAccess.getInvocationTypingAccess().getTypeTypeQualifiedNameParserRuleCall_0_0_1()); 
+             after(grammarAccess.getOwnedFeatureTypingAccess().getTypeTypeQualifiedNameParserRuleCall_0_0_1()); 
 
             }
 
-             after(grammarAccess.getInvocationTypingAccess().getTypeTypeCrossReference_0_0()); 
+             after(grammarAccess.getOwnedFeatureTypingAccess().getTypeTypeCrossReference_0_0()); 
 
             }
 
@@ -22888,12 +22888,12 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
         }
         return ;
     }
-    // $ANTLR end "rule__InvocationTyping__TypeAssignment_0"
+    // $ANTLR end "rule__OwnedFeatureTyping__TypeAssignment_0"
 
 
-    // $ANTLR start "rule__InvocationTyping__OwnedRelatedElementAssignment_1"
-    // InternalKerMLExpressions.g:7482:1: rule__InvocationTyping__OwnedRelatedElementAssignment_1 : ( ruleFeatureChain ) ;
-    public final void rule__InvocationTyping__OwnedRelatedElementAssignment_1() throws RecognitionException {
+    // $ANTLR start "rule__OwnedFeatureTyping__OwnedRelatedElementAssignment_1"
+    // InternalKerMLExpressions.g:7482:1: rule__OwnedFeatureTyping__OwnedRelatedElementAssignment_1 : ( ruleFeatureChain ) ;
+    public final void rule__OwnedFeatureTyping__OwnedRelatedElementAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -22904,13 +22904,13 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
             // InternalKerMLExpressions.g:7487:2: ( ruleFeatureChain )
             // InternalKerMLExpressions.g:7488:3: ruleFeatureChain
             {
-             before(grammarAccess.getInvocationTypingAccess().getOwnedRelatedElementFeatureChainParserRuleCall_1_0()); 
+             before(grammarAccess.getOwnedFeatureTypingAccess().getOwnedRelatedElementFeatureChainParserRuleCall_1_0()); 
             pushFollow(FOLLOW_2);
             ruleFeatureChain();
 
             state._fsp--;
 
-             after(grammarAccess.getInvocationTypingAccess().getOwnedRelatedElementFeatureChainParserRuleCall_1_0()); 
+             after(grammarAccess.getOwnedFeatureTypingAccess().getOwnedRelatedElementFeatureChainParserRuleCall_1_0()); 
 
             }
 
@@ -22929,7 +22929,7 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
         }
         return ;
     }
-    // $ANTLR end "rule__InvocationTyping__OwnedRelatedElementAssignment_1"
+    // $ANTLR end "rule__OwnedFeatureTyping__OwnedRelatedElementAssignment_1"
 
 
     // $ANTLR start "rule__FeatureChain__OwnedRelationshipAssignment_0"
@@ -23571,7 +23571,7 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
             this.transition = dfa_14;
         }
         public String getDescription() {
-            return "2236:1: rule__InvocationTyping__Alternatives : ( ( ( rule__InvocationTyping__TypeAssignment_0 ) ) | ( ( rule__InvocationTyping__OwnedRelatedElementAssignment_1 ) ) );";
+            return "2236:1: rule__OwnedFeatureTyping__Alternatives : ( ( ( rule__OwnedFeatureTyping__TypeAssignment_0 ) ) | ( ( rule__OwnedFeatureTyping__OwnedRelatedElementAssignment_1 ) ) );";
         }
     }
  

@@ -139,10 +139,10 @@ TypeReferenceMember returns SysML::FeatureMembership :
 ;
 
 TypeReference returns SysML::Feature :
-	ownedRelationship += OwnedFeatureTyping
+	ownedRelationship += ReferenceTyping
 ;
 
-OwnedFeatureTyping returns SysML::FeatureTyping :
+ReferenceTyping returns SysML::FeatureTyping :
 	  type = [SysML::Type | QualifiedName]
 ;
 
@@ -230,7 +230,7 @@ PrimaryExpression returns SysML::Expression :
 	( {SysML::OperatorExpression.operand += current} 
 	  operator = '[' operand += SequenceExpression ']'
 	| {SysML::OperatorExpression.operand += current} '->' 
-	  ownedRelationship += OwnedFeatureTyping 
+	  ownedRelationship += ReferenceTyping 
 	  ( ownedRelationship += ExpressionBodyMember 
 	  | ownedRelationship += FunctionReferenceMember 
 	  | ArgumentList
@@ -251,7 +251,7 @@ FunctionReferenceMember returns SysML::FeatureMembership :
 ;
 
 FunctionReference returns SysML::Expression :
-	ownedRelationship += OwnedFeatureTyping
+	ownedRelationship += ReferenceTyping
 ;
 
 /* Base Expressions */
@@ -308,10 +308,10 @@ FeatureReferenceMember returns SysML::Membership :
 // Invocation Expressions
 
 InvocationExpression returns SysML::InvocationExpression :
-	ownedRelationship += InvocationTyping ArgumentList
+	ownedRelationship += OwnedFeatureTyping ArgumentList
 ;
 
-InvocationTyping returns SysML::FeatureTyping :
+OwnedFeatureTyping returns SysML::FeatureTyping :
 	  type = [SysML::Type | QualifiedName]
 	| ownedRelatedElement += FeatureChain
 ;

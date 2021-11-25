@@ -451,11 +451,16 @@ UnownedFeatureMember returns SysML::FeatureMembership :
 Specialization returns SysML::Specialization :
     ( 'specialization' Identification? )?
     'subtype' specific = [SysML::Type | QualifiedName]
-    ( ':>' | 'specializes') general = [SysML::Type | QualifiedName] ';'
+    ( ':>' | 'specializes') GeneralType ';'
 ;
 
 OwnedSpecialization returns SysML::Specialization :
-    general = [SysML::Type | QualifiedName]
+    GeneralType
+;
+
+fragment GeneralType returns SysML::Specialization :
+	  general = [SysML::Type | QualifiedName]
+	| ownedRelatedElement += FeatureChain
 ;
 
 /* Conjugation */
@@ -621,12 +626,17 @@ OwnedTypeFeaturing returns SysML::TypeFeaturing :
 FeatureTyping returns SysML::FeatureTyping :
 	( 'specialization' Identification? )?
     'typing' typedFeature = [SysML::Feature | QualifiedName]
-    (':' | 'typed' 'by') type = [SysML::Type | QualifiedName] ';'
+    (':' | 'typed' 'by') FeatureType ';'
 ;
 
 @Override
 OwnedFeatureTyping returns SysML::FeatureTyping :
-	type = [SysML::Type | QualifiedName]
+	FeatureType
+;
+
+fragment FeatureType returns SysML::FeatureTyping :
+	  type = [SysML::Type | QualifiedName]
+	| ownedRelatedElement += FeatureChain
 ;
 
 /* Subsetting */
@@ -634,10 +644,14 @@ OwnedFeatureTyping returns SysML::FeatureTyping :
 Subsetting returns SysML::Subsetting :
 	( 'specialization' Identification? )?
     'subset' subsettingFeature = [SysML::Feature | QualifiedName]
-    ( ':>' | 'subsets' ) subsettedFeature = [SysML::Feature | QualifiedName] ';'
+    ( ':>' | 'subsets' ) SubsettedFeature ';'
 ;
 
 OwnedSubsetting returns SysML::Subsetting:
+	SubsettedFeature
+;
+
+fragment SubsettedFeature returns SysML::Subsetting :
 	  subsettedFeature = [SysML::Feature | QualifiedName]
 	| ownedRelatedElement += FeatureChain
 ;
@@ -647,10 +661,14 @@ OwnedSubsetting returns SysML::Subsetting:
 Redefinition returns SysML::Redefinition :
 	( 'specialization' Identification? )?
     'redefinition' redefiningFeature = [SysML::Feature | QualifiedName]
-    ( ':>>' | 'redefines' ) redefinedFeature = [SysML::Feature | QualifiedName] ';'
+    ( ':>>' | 'redefines' ) RedefinedFeature ';'
 ;
 
 OwnedRedefinition returns SysML::Redefinition:
+	RedefinedFeature
+;
+
+fragment RedefinedFeature returns SysML::Redefinition :
 	  redefinedFeature = [SysML::Feature | QualifiedName]
 	| ownedRelatedElement += FeatureChain 
 ;

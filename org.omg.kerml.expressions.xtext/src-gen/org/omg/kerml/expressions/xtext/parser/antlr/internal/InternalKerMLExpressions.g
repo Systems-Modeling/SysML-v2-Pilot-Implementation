@@ -1203,9 +1203,9 @@ ruleTypeReference returns [EObject current=null]
 	(
 		(
 			{
-				newCompositeNode(grammarAccess.getTypeReferenceAccess().getOwnedRelationshipOwnedFeatureTypingParserRuleCall_0());
+				newCompositeNode(grammarAccess.getTypeReferenceAccess().getOwnedRelationshipReferenceTypingParserRuleCall_0());
 			}
-			lv_ownedRelationship_0_0=ruleOwnedFeatureTyping
+			lv_ownedRelationship_0_0=ruleReferenceTyping
 			{
 				if ($current==null) {
 					$current = createModelElementForParent(grammarAccess.getTypeReferenceRule());
@@ -1214,22 +1214,22 @@ ruleTypeReference returns [EObject current=null]
 					$current,
 					"ownedRelationship",
 					lv_ownedRelationship_0_0,
-					"org.omg.kerml.expressions.xtext.KerMLExpressions.OwnedFeatureTyping");
+					"org.omg.kerml.expressions.xtext.KerMLExpressions.ReferenceTyping");
 				afterParserOrEnumRuleCall();
 			}
 		)
 	)
 ;
 
-// Entry rule entryRuleOwnedFeatureTyping
-entryRuleOwnedFeatureTyping returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getOwnedFeatureTypingRule()); }
-	iv_ruleOwnedFeatureTyping=ruleOwnedFeatureTyping
-	{ $current=$iv_ruleOwnedFeatureTyping.current; }
+// Entry rule entryRuleReferenceTyping
+entryRuleReferenceTyping returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getReferenceTypingRule()); }
+	iv_ruleReferenceTyping=ruleReferenceTyping
+	{ $current=$iv_ruleReferenceTyping.current; }
 	EOF;
 
-// Rule OwnedFeatureTyping
-ruleOwnedFeatureTyping returns [EObject current=null]
+// Rule ReferenceTyping
+ruleReferenceTyping returns [EObject current=null]
 @init {
 	enterRule();
 }
@@ -1240,11 +1240,11 @@ ruleOwnedFeatureTyping returns [EObject current=null]
 		(
 			{
 				if ($current==null) {
-					$current = createModelElement(grammarAccess.getOwnedFeatureTypingRule());
+					$current = createModelElement(grammarAccess.getReferenceTypingRule());
 				}
 			}
 			{
-				newCompositeNode(grammarAccess.getOwnedFeatureTypingAccess().getTypeTypeCrossReference_0());
+				newCompositeNode(grammarAccess.getReferenceTypingAccess().getTypeTypeCrossReference_0());
 			}
 			ruleQualifiedName
 			{
@@ -2133,9 +2133,9 @@ rulePrimaryExpression returns [EObject current=null]
 				(
 					(
 						{
-							newCompositeNode(grammarAccess.getPrimaryExpressionAccess().getOwnedRelationshipOwnedFeatureTypingParserRuleCall_1_1_2_0());
+							newCompositeNode(grammarAccess.getPrimaryExpressionAccess().getOwnedRelationshipReferenceTypingParserRuleCall_1_1_2_0());
 						}
-						lv_ownedRelationship_7_0=ruleOwnedFeatureTyping
+						lv_ownedRelationship_7_0=ruleReferenceTyping
 						{
 							if ($current==null) {
 								$current = createModelElementForParent(grammarAccess.getPrimaryExpressionRule());
@@ -2144,7 +2144,7 @@ rulePrimaryExpression returns [EObject current=null]
 								$current,
 								"ownedRelationship",
 								lv_ownedRelationship_7_0,
-								"org.omg.kerml.expressions.xtext.KerMLExpressions.OwnedFeatureTyping");
+								"org.omg.kerml.expressions.xtext.KerMLExpressions.ReferenceTyping");
 							afterParserOrEnumRuleCall();
 						}
 					)
@@ -2363,9 +2363,9 @@ ruleFunctionReference returns [EObject current=null]
 	(
 		(
 			{
-				newCompositeNode(grammarAccess.getFunctionReferenceAccess().getOwnedRelationshipOwnedFeatureTypingParserRuleCall_0());
+				newCompositeNode(grammarAccess.getFunctionReferenceAccess().getOwnedRelationshipReferenceTypingParserRuleCall_0());
 			}
-			lv_ownedRelationship_0_0=ruleOwnedFeatureTyping
+			lv_ownedRelationship_0_0=ruleReferenceTyping
 			{
 				if ($current==null) {
 					$current = createModelElementForParent(grammarAccess.getFunctionReferenceRule());
@@ -2374,7 +2374,7 @@ ruleFunctionReference returns [EObject current=null]
 					$current,
 					"ownedRelationship",
 					lv_ownedRelationship_0_0,
-					"org.omg.kerml.expressions.xtext.KerMLExpressions.OwnedFeatureTyping");
+					"org.omg.kerml.expressions.xtext.KerMLExpressions.ReferenceTyping");
 				afterParserOrEnumRuleCall();
 			}
 		)
@@ -2819,9 +2819,9 @@ ruleInvocationExpression returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getInvocationExpressionAccess().getOwnedRelationshipInvocationTypingParserRuleCall_0_0());
+					newCompositeNode(grammarAccess.getInvocationExpressionAccess().getOwnedRelationshipOwnedFeatureTypingParserRuleCall_0_0());
 				}
-				lv_ownedRelationship_0_0=ruleInvocationTyping
+				lv_ownedRelationship_0_0=ruleOwnedFeatureTyping
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getInvocationExpressionRule());
@@ -2830,7 +2830,7 @@ ruleInvocationExpression returns [EObject current=null]
 						$current,
 						"ownedRelationship",
 						lv_ownedRelationship_0_0,
-						"org.omg.kerml.expressions.xtext.KerMLExpressions.InvocationTyping");
+						"org.omg.kerml.expressions.xtext.KerMLExpressions.OwnedFeatureTyping");
 					afterParserOrEnumRuleCall();
 				}
 			)
@@ -2849,15 +2849,15 @@ ruleInvocationExpression returns [EObject current=null]
 	)
 ;
 
-// Entry rule entryRuleInvocationTyping
-entryRuleInvocationTyping returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getInvocationTypingRule()); }
-	iv_ruleInvocationTyping=ruleInvocationTyping
-	{ $current=$iv_ruleInvocationTyping.current; }
+// Entry rule entryRuleOwnedFeatureTyping
+entryRuleOwnedFeatureTyping returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getOwnedFeatureTypingRule()); }
+	iv_ruleOwnedFeatureTyping=ruleOwnedFeatureTyping
+	{ $current=$iv_ruleOwnedFeatureTyping.current; }
 	EOF;
 
-// Rule InvocationTyping
-ruleInvocationTyping returns [EObject current=null]
+// Rule OwnedFeatureTyping
+ruleOwnedFeatureTyping returns [EObject current=null]
 @init {
 	enterRule();
 }
@@ -2869,11 +2869,11 @@ ruleInvocationTyping returns [EObject current=null]
 			(
 				{
 					if ($current==null) {
-						$current = createModelElement(grammarAccess.getInvocationTypingRule());
+						$current = createModelElement(grammarAccess.getOwnedFeatureTypingRule());
 					}
 				}
 				{
-					newCompositeNode(grammarAccess.getInvocationTypingAccess().getTypeTypeCrossReference_0_0());
+					newCompositeNode(grammarAccess.getOwnedFeatureTypingAccess().getTypeTypeCrossReference_0_0());
 				}
 				ruleQualifiedName
 				{
@@ -2885,12 +2885,12 @@ ruleInvocationTyping returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getInvocationTypingAccess().getOwnedRelatedElementFeatureChainParserRuleCall_1_0());
+					newCompositeNode(grammarAccess.getOwnedFeatureTypingAccess().getOwnedRelatedElementFeatureChainParserRuleCall_1_0());
 				}
 				lv_ownedRelatedElement_1_0=ruleFeatureChain
 				{
 					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getInvocationTypingRule());
+						$current = createModelElementForParent(grammarAccess.getOwnedFeatureTypingRule());
 					}
 					add(
 						$current,

@@ -25,8 +25,8 @@ package test{
 	}
 	class B{
 		//* XPECT errors ---
-		"Couldn't resolve reference to Type 'test'." at "test"
-		"no viable alternative at input '..'" at ".."
+        "Relationships must have at least two related elements" at ""
+		"no viable alternative at input '..'" at "test"
 		"no viable alternative at input 'A'" at "A"
 		--- */
 		feature b: test..A::a;

@@ -6,7 +6,6 @@
                 File {from ="/library/Occurrences.kerml"}
                 File {from ="/library/Objects.kerml"}
                 File {from ="/library/Performances.kerml"}
-                File {from ="/library/Transfers.kerml"}
                 File {from ="/library/ScalarValues.kerml"}
                 File {from ="/library/BaseFunctions.kerml"}
                 File {from ="/library/DataFunctions.kerml"}
@@ -21,7 +20,6 @@
                                 File {from ="/library/Occurrences.kerml"}
                  				File {from ="/library/Objects.kerml"}
                 				File {from ="/library/Performances.kerml"}
-                				File {from ="/library/Transfers.kerml"}
                                 File {from ="/library/ScalarValues.kerml"}
                                 File {from ="/library/BaseFunctions.kerml"}
                                 File {from ="/library/DataFunctions.kerml"}
@@ -55,19 +53,4 @@ package P {
     feature v2_m : Integer = V;
     
     binding v1.n = v2.n;
-    
-    behavior B {
-    	out feature a : Integer;
-    	step b {
-    		step c {
-    			feature d : Integer;
-    		}
-    	}
-    }
-    
-    feature b1 : B;
-    feature b2 : B;
-    
-    // Testing deeply nested item flow connection.
-    flow b1.a to b2.b.c.d;
 }

@@ -14,6 +14,10 @@ XPECT_SETUP org.omg.sysml.xpect.tests.validation.valid.SysMLTests
 		File {from ="/library.systems/Parts.sysml"}
 		File {from ="/library.systems/Ports.sysml"}
 		File {from ="/library.systems/Actions.sysml"}
+		File {from ="/library.systems/Calculations.sysml"}
+		File {from ="/library.systems/Cases.sysml"}
+		File {from ="/library.systems/Constraints.sysml"}
+		File {from ="/library.systems/Requirements.sysml"}
 	}
 	Workspace {
 		JavaProject {
@@ -31,6 +35,10 @@ XPECT_SETUP org.omg.sysml.xpect.tests.validation.valid.SysMLTests
 				File {from ="/library.systems/Parts.sysml"}
 				File {from ="/library.systems/Ports.sysml"}
 				File {from ="/library.systems/Actions.sysml"}
+				File {from ="/library.systems/Calculations.sysml"}
+				File {from ="/library.systems/Cases.sysml"}
+				File {from ="/library.systems/Constraints.sysml"}
+				File {from ="/library.systems/Requirements.sysml"}
 			}
 		}
 	}
@@ -78,4 +86,14 @@ package VariabilityModel {
         	variant action f2;
         }       
     }
+    
+	variation case caseChoices {
+    	variant case c1;
+    	variant case c2;
+    }
+
+    variation requirement r {
+    	variant requirement r1;
+    }
+
 }

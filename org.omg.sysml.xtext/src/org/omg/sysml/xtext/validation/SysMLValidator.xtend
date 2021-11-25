@@ -194,7 +194,7 @@ class SysMLValidator extends KerMLValidator {
 				error(SysMLValidator.INVALID_USAGE_VARIANT_MSG, SysMLPackage.eINSTANCE.element_OwningMembership, SysMLValidator.INVALID_USAGE_VARIANT)				
 			}
 		// A variation must not own non-variant Usages (except for parameters)
-		} else if (owningNamespace.isVariation && !(owningMembership instanceof ParameterMembership)) {
+		} else if (owningNamespace.isVariation && !(owningMembership instanceof ParameterMembership) && !(owningMembership instanceof ObjectiveMembership)) {
 				error(INVALID_USAGE_VARIATION_MSG, SysMLPackage.eINSTANCE.element_OwningMembership, SysMLValidator.INVALID_USAGE_VARIATION)							
 		}
 	}

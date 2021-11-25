@@ -10,6 +10,14 @@ XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLTests
  		File {from ="/library.systems/Items.sysml"}
  		File {from ="/library.systems/Parts.sysml"}
  		File {from ="/library.systems/Ports.sysml"}
+		File {from ="/library.systems/Actions.sysml"}
+		File {from ="/library.systems/Calculations.sysml"}
+		File {from ="/library.systems/Cases.sysml"}
+		File {from ="/library.systems/UseCases.sysml"}
+		File {from ="/library.systems/AnalysisCases.sysml"}
+		File {from ="/library.systems/VerificationCases.sysml"}
+		File {from ="/library.systems/Constraints.sysml"}
+		File {from ="/library.systems/Requirements.sysml"}
 	}
 	Workspace {
 		JavaProject {
@@ -23,6 +31,15 @@ XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLTests
 				File {from ="/library.systems/Items.sysml"}
 				File {from ="/library.systems/Parts.sysml"}
  				File {from ="/library.systems/Ports.sysml"}
+				File {from ="/library.systems/Actions.sysml"}
+				File {from ="/library.systems/Calculations.sysml"}
+				File {from ="/library.systems/Cases.sysml"}
+				File {from ="/library.systems/UseCases.sysml"}
+				File {from ="/library.systems/AnalysisCases.sysml"}
+				File {from ="/library.systems/VerificationCases.sysml"}
+				File {from ="/library.systems/UseCases.sysml"}
+				File {from ="/library.systems/Constraints.sysml"}
+				File {from ="/library.systems/Requirements.sysml"}
 			}
 		}
 	}
@@ -50,4 +67,23 @@ package VariabilityTest {
 	}
 	
 	part y : P = v::q;
+	
+	variation action def A {
+		variant action a1;
+		variant action a2;
+	}
+	
+	variation case uc1 {
+    	variant use case uc11;
+    	variant use case uc12;
+    }
+
+    variation analysis a1;
+    
+    variation verification v1;
+    
+    variation requirement r {
+    	variant requirement r1;
+    }
+	
 }

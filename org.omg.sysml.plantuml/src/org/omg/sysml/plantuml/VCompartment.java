@@ -324,7 +324,8 @@ public class VCompartment extends VStructure {
 
     @Override
     public String caseReferenceUsage(ReferenceUsage ru) {
-        return recCurrent(ru, false);
+        // ReferenceUsage should be processed by the parent VTree.
+    	return null;
     }
 
     @Override

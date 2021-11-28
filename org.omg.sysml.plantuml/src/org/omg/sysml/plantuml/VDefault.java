@@ -39,6 +39,7 @@ import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureReferenceExpression;
 import org.omg.sysml.lang.sysml.ItemFlow;
+import org.omg.sysml.lang.sysml.ItemFlowEnd;
 import org.omg.sysml.lang.sysml.PathStepExpression;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.Specialization;
@@ -75,6 +76,7 @@ public class VDefault extends VTraverser {
 
     protected Element getEnd(Feature f) {
         if (f == null) return null;
+        if (f instanceof ItemFlowEnd) return f;
         for (Relationship rel: f.getOwnedRelationship()) {
             for (Element tgt: rel.getTarget()) {
                 if (tgt instanceof Feature) {

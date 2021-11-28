@@ -52,28 +52,91 @@ import java.util.Collections
 
 class KerMLScope extends AbstractScope implements ISysMLScope {
 	
-	protected Namespace ns		
-	protected EClass referenceType	
-	protected KerMLScopeProvider scopeProvider
-	protected boolean isInsideScope //false if initialized from KerMLGlobalScope
-	protected boolean isFirstScope
-	protected boolean isRedefinition	
-	protected Element skip = null
-	protected Element element
-	protected Type scopingType
+	/*
+	 * The following fields are fixed on construction.
+	 */
 	
-	protected QualifiedName targetqn;
-	protected Map<Element, Set<QualifiedName>> elements
-	protected Set<Membership> memberships
-	protected Set<QualifiedName> visitedqns
-	protected boolean findFirst = false;
-	protected boolean isShadowing = false;
-	protected Set<org.omg.sysml.lang.sysml.Package> importingPackages = new HashSet()
+	/**
+	 * The namespace whose scope is represented by this KerMLScope.
+	 */
+	protected val Namespace ns
+	
+	/**
+	 * The metatype of the elements to be included in the scope.
+	 */
+	protected val EClass referenceType	
+	
+	/**
+	 * The KerMLScopeProvider that created this KerMLScope.
+	 */
+	protected val KerMLScopeProvider scopeProvider
+	
+	/**
+	 * False if this scope was initialized from KerMLGlobalScope.
+	 */
+	protected val boolean isInsideScope
+	
+	/**
+	 * Whether this is the most deeply nested (first) scope in chain of nested scopes.
+	 */
+	protected val boolean isFirstScope
+	
+	/**
+	 * Whether this is the scope for the target of a Redefinition.
+	 */
+	protected val boolean isRedefinition
+	
+	/**
+	 * An Element to be skipped during searching in this scope.
+	 */
+	protected val Element skip
+	
+	/**
+	 * The context Element for this scope.
+	 */
+	protected val Element element
+	
+	/**
+	 * The set of Packages traversed in an import chain during a resolution search.
+	 * (Should be empty again at the end of each search.)
+	 */
+	protected val Set<org.omg.sysml.lang.sysml.Package> importingPackages = new HashSet()
 
-	new(IScope parent, Namespace ns, EClass referenceType, KerMLScopeProvider scopeProvider, boolean isFirstScope, boolean isRedefinition, Element element, Element skip) {
-		this(parent, ns, referenceType, scopeProvider, true, isFirstScope, isRedefinition, element, skip)
-	}
+	/* 
+	 * The following fields are reset for each resolution search.
+	 */
+	 
+	/**
+	 * The QualifiedName being resolved. If null, then return all Elements in the scope.
+	 */
+	protected QualifiedName targetqn;
 	
+	/**
+	 * A map of Elements to the QualifiedNames found for them in the scope.
+	 */
+	protected Map<Element, Set<QualifiedName>> elements
+	
+	/**
+	 * The Memberships from which the Elements in this scope where found.
+	 */
+	protected Set<Membership> memberships
+	
+	/**
+	 * The QualifiedNames that have already been seen during a resolution search.
+	 */
+	protected Set<QualifiedName> visitedqns
+	
+	/**
+	 * If targetqn != null, then whether only the first Element found for the targetqn
+	 * should be returned, or all matching Elements should be returned.
+	 */
+	protected boolean findFirst = false;
+	
+	/**
+	 * Whether a shadowing name has been found during the current resolution search.
+	 */
+	protected boolean isShadowing = false;
+
 	new(IScope parent, Namespace ns, EClass referenceType, KerMLScopeProvider scopeProvider, boolean isInsideScope, boolean isFirstScope, boolean isRedefinition, Element element, Element skip) {
 		super(parent, false)
 		this.ns = ns
@@ -82,9 +145,8 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 		this.isInsideScope = isInsideScope
 		this.isFirstScope = isFirstScope
 		this.isRedefinition = isRedefinition
-		this.skip = skip
 		this.element = element
-		this.scopingType = if (element?.owner instanceof Type) element.owner as Type else null
+		this.skip = skip
 	}
 	
 	/**
@@ -142,19 +204,19 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 		}
 		if (ns instanceof Type && isRedefinition)
 			// For a redefinition within a type, start resolution search with inherited members.
-			ns.gen(QualifiedName.create(), newHashSet, null, true)
+			ns.gen(QualifiedName.create(), newHashSet, null, true, true)
 		else
-			ns.resolve(QualifiedName.create(), false, isInsideScope, newHashSet, newHashSet, newHashSet, true, includeAll)
+			ns.resolve(QualifiedName.create(), newHashSet, newHashSet, newHashSet, false, isInsideScope, true, true, includeAll)
 		if (targetqn !== null && skip !== null) {
 			scopeProvider.removeVisited(skip)
 		}
 	}
 	
-	protected def boolean resolve(Namespace ns, QualifiedName qn, boolean checkIfAdded, boolean isInsideScope, Set<Namespace> ownedVisited, Set<Namespace> visited, Set<Element> redefined, 
-		boolean includeImplicitGen, boolean includeAll) {
-		ns.owned(qn, checkIfAdded, isInsideScope, ownedVisited, visited, redefined, includeImplicitGen, includeAll) ||
-		ns.gen(qn, visited, redefined, includeImplicitGen) ||
-		ns.imp(qn, isInsideScope, visited, includeImplicitGen, includeAll)
+	protected def boolean resolve(Namespace ns, QualifiedName qn, Set<Namespace> ownedVisited, Set<Namespace> visited, Set<Element> redefined, 
+		boolean checkIfAdded, boolean isInsideScope, boolean isInheriting, boolean includeImplicitGen, boolean includeAll) {
+		ns.owned(qn, ownedVisited, visited, redefined, checkIfAdded, isInsideScope, isInheriting, includeImplicitGen, includeAll) ||
+		ns.gen(qn, visited, redefined, isInheriting, includeImplicitGen) ||
+		ns.imp(qn, visited, isInsideScope, includeImplicitGen, includeAll)
 	}
 	
 	protected def boolean addName(QualifiedName qn, Relationship rel, Element el) {
@@ -178,8 +240,8 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 		importingPackages.forall[includeAsMember(el)]
 	}
 	
-	protected def boolean owned(Namespace ns, QualifiedName qn, boolean checkIfAdded, boolean isInsideScope, Set<Namespace> ownedvisited, Set<Namespace> visited, Set<Element> redefined, 
-		boolean includeImplicitGen, boolean includeAll) {		
+	protected def boolean owned(Namespace ns, QualifiedName qn, Set<Namespace> ownedvisited, Set<Namespace> visited, Set<Element> redefined, 
+		boolean checkIfAdded, boolean isInsideScope, boolean isInheriting, boolean includeImplicitGen, boolean includeAll) {		
 		if (!ownedvisited.contains(ns)) {
 			if (targetqn === null) {
 				ownedvisited.add(ns)		
@@ -206,8 +268,7 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 						if (elementName !== null) {
 							val elementqn = qn.append(elementName)
 							if ((includeAll || isInsideScope || r.visibility == VisibilityKind.PUBLIC || 
-							     r.visibility == VisibilityKind.PROTECTED && scopingType !== null && 
-							     scopingType.isInheritedProtected(ns)) &&
+							     r.visibility == VisibilityKind.PROTECTED && isInheriting) &&
 							     checkQualifiedName(elementqn, checkIfAdded)) {
 							    // Delay proxy resolution of memberElement for as long as possible (if not caused by getting memberName).
 							    // This can prevent the proxy from being spuriously marked as unresolvable during an earlier phase of the search. 
@@ -279,7 +340,7 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 		if (targetqn != elementqn) {
 			if (memberElement instanceof Namespace) {
 				isShadowing = true;
- 				if (memberElement.resolve(elementqn, false, false, ownedVisited, visited, newHashSet, includeImplicitGen, includeAll)) {
+ 				if (memberElement.resolve(elementqn, ownedVisited, visited, newHashSet, false, false, false, includeImplicitGen, includeAll)) {
  					return true;
  				}
 			}
@@ -287,27 +348,12 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 		false
 	}
 	
-	protected def boolean isInheritedProtected(Type general, Element protectedOwningNamespace) {
-		isInheritedProtected(general, protectedOwningNamespace, newHashSet)
-	}
-	
-	protected def boolean isInheritedProtected(Type general, Element protectedOwningNamespace, Set<Type> visited){
-		visited.add(general);
-		for(Type g: TypeUtil.getSupertypesOf(general)) {
-			if (!visited.contains(g) && (g == protectedOwningNamespace || 
-				 g.isInheritedProtected(protectedOwningNamespace, visited))) {
-				return true
-			}
-		}
-		return false; 
-	}
-	
-	protected def boolean gen(Namespace ns, QualifiedName qn, Set<Namespace> visited, Set<Element> redefined, boolean includeImplicit) {
+	protected def boolean gen(Namespace ns, QualifiedName qn, Set<Namespace> visited, Set<Element> redefined, boolean isInheriting, boolean includeImplicit) {
 		if (ns instanceof Type) {
 			val conjugator = ns.ownedConjugator
 			if (conjugator !== null && !scopeProvider.visited.contains(conjugator)) {
 				scopeProvider.addVisited(conjugator)
-				val found = conjugator.originalType.resolveIfUnvisited(qn, false, visited, newHashSet, false, includeImplicit, false)
+				val found = conjugator.originalType.resolveIfUnvisited(qn, false, visited, newHashSet, false, false, includeImplicit, false)
 				scopeProvider.removeVisited(conjugator)
 				if (found) {
 					return true
@@ -323,7 +369,7 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 					// NOTE: Exclude the generalization e to avoid possible circular name resolution
 					// when resolving a proxy for e.general.
 					scopeProvider.addVisited(e)
-					val found = e.general.resolveIfUnvisited(qn, false, visited, newRedefined, false, includeImplicit, false)
+					val found = e.general.resolveIfUnvisited(qn, false, visited, newRedefined, isInheriting, false, includeImplicit, false)
 					scopeProvider.removeVisited(e)
 					if (found) {
 						return true
@@ -335,7 +381,7 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 				var implicitTypes = TypeUtil.getImplicitGeneralTypesFor(ns);
 				scopeProvider.removeVisited(ns)
 				for (type : implicitTypes) {
-					val found = type.resolveIfUnvisited(qn, false, visited, newRedefined, false, true, false)
+					val found = type.resolveIfUnvisited(qn, false, visited, newRedefined, isInheriting, false, true, false)
 					if (found) {
 						return true
 					}
@@ -344,7 +390,7 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 			if (ns instanceof Feature) {
 				val chainingFeature = FeatureUtil.getLastChainingFeatureOf(ns)
 				if (chainingFeature !== null && 
-					chainingFeature.resolveIfUnvisited(qn, false, visited, newRedefined, false, true, false)) {
+					chainingFeature.resolveIfUnvisited(qn, false, visited, newRedefined, isInheriting, false, true, false)) {
 					return true;
 				}
 			}
@@ -357,7 +403,7 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 			flatMap[feature|FeatureUtil.getRedefinedFeaturesWithComputedOf(feature, skip)].toSet
 	}
 	
-	protected def boolean imp(Namespace ns, QualifiedName qn, boolean isInsideScope, Set<Namespace> visited, boolean includeImplicitGen, boolean includeAll) {
+	protected def boolean imp(Namespace ns, QualifiedName qn, Set<Namespace> visited, boolean isInsideScope, boolean includeImplicitGen, boolean includeAll) {
 		for (e: ns.ownedImport) {
 			if (!scopeProvider.visited.contains(e)) {
 				if (includeAll || isInsideScope || e.visibility == VisibilityKind.PUBLIC) {
@@ -382,7 +428,7 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 	protected def boolean resolveImport(Import imp, QualifiedName qn, Set<Namespace> visited, boolean includeImplicitGen) {
 		val name = imp.importedMemberName
 		if (name === null) {
-			return imp.importedNamespace.resolveIfUnvisited(qn, true, visited, newHashSet, imp.isRecursive, includeImplicitGen, imp.isImportAll)
+			return imp.importedNamespace.resolveIfUnvisited(qn, true, visited, newHashSet, false, imp.isRecursive, includeImplicitGen, imp.isImportAll)
 		} else {
 			// Find the memberships corresponding to the importedMemberName.
 			val importScope = scopeProvider.scope_import(imp)
@@ -400,7 +446,7 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 								
 				// If recursive, check recursively.
 				if (elm instanceof Namespace && imp.isRecursive) {
-					return (elm as Namespace).resolveIfUnvisited(qn, true, visited, newHashSet, true, false, imp.isImportAll)
+					return (elm as Namespace).resolveIfUnvisited(qn, true, visited, newHashSet, false, true, false, imp.isImportAll)
 				}
 			}
 				
@@ -408,7 +454,8 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 		}			
 	}
 	
-	protected def boolean resolveForName(Membership mem, Element elm, String name, QualifiedName qn, Set<Namespace> visited, boolean includeImplicitGen, boolean includeAll) {
+	protected def boolean resolveForName(Membership mem, Element elm, String name, QualifiedName qn, Set<Namespace> visited, 
+		boolean includeImplicitGen, boolean includeAll) {
 		if (name !== null) {
 			var elementqn = qn.append(name)			
 			if (elementqn.checkQualifiedName(true) && 
@@ -419,11 +466,12 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 		return false
 	}
 	
-	protected def boolean resolveIfUnvisited(Namespace ns, QualifiedName qn, boolean checkIfAdded, Set<Namespace> visited, Set<Element> redefined, boolean isRecursive, boolean includeImplicitGen, boolean includeAll) {
+	protected def boolean resolveIfUnvisited(Namespace ns, QualifiedName qn, boolean checkIfAdded, Set<Namespace> visited, Set<Element> redefined, 
+		boolean isInheriting, boolean isRecursive, boolean includeImplicitGen, boolean includeAll) {
 		var found = false
 		if (ns !== null && !ns.eIsProxy && !visited.contains(ns)) {
 			visited.add(ns)
-			found = ns.resolve(qn, checkIfAdded, false, newHashSet, visited, redefined, !isRecursive && includeImplicitGen, includeAll)
+			found = ns.resolve(qn, newHashSet, visited, redefined, checkIfAdded, false, isInheriting, !isRecursive && includeImplicitGen, includeAll)
 			if (!found && isRecursive) {
 				found = resolveRecursive(ns, qn, visited, includeAll)
 			}
@@ -438,7 +486,7 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 				if (r.visibility == VisibilityKind.PUBLIC) {
 					val memberElement = r.ownedMemberElement
 					if (memberElement instanceof Namespace) {
-						if (memberElement.resolveIfUnvisited(qn, false, visited, newHashSet, true, false, includeAll))
+						if (memberElement.resolveIfUnvisited(qn, false, visited, newHashSet, false, true, false, includeAll))
 							return true
 					}
 				}					

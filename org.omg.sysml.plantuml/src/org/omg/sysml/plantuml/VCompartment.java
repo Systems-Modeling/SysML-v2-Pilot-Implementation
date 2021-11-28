@@ -476,6 +476,9 @@ public class VCompartment extends VStructure {
                 ItemFlow itf = (ItemFlow) c;
                 String desc = itemFlowDesc(itf);
                 if (desc != null) {
+                    if (hasPrefix) {
+                        append(' ');
+                    }
                     append("of ");
                     append(desc);
                     hasPrefix = true;

@@ -392,6 +392,7 @@ public class VPath extends VTraverser {
     }
 
     private String addContext(Feature f) {
+        if (!f.isEnd()) return null;
         PC pc = makePC(f, false);
         if (pc == null) {
             return null;

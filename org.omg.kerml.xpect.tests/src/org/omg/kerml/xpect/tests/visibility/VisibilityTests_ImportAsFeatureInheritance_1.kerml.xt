@@ -20,9 +20,15 @@ package Classes {
 	import VisibilityPackage::c_Public;
 	class Try specializes c_Public {
 		feature f1: c_protected;
+		
+ 		// The following do not resolve because qualified names currently require public visibility.
+ 		// XPECT errors --> "Couldn't resolve reference to Type 'Try::c_protected'." at "Try::c_protected" 		
 		feature f2: Try::c_protected;
+ 		// XPECT errors --> "Couldn't resolve reference to Type 'Classes::Try::c_protected'." at "Classes::Try::c_protected" 		
 		feature f3: Classes::Try::c_protected;
+ 		// XPECT errors --> "Couldn't resolve reference to Type 'c_Public::c_protected'." at "c_Public::c_protected" 		
 		feature f4: c_Public::c_protected;
+ 		// XPECT errors --> "Couldn't resolve reference to Type 'Classes::c_Public::c_protected'." at "Classes::c_Public::c_protected" 		
 		feature f5: Classes::c_Public::c_protected;
 	}
 }

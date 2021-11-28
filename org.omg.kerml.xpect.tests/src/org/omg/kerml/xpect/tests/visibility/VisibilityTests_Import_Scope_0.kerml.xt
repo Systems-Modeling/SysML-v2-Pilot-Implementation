@@ -37,8 +37,6 @@ package Test3{
 	class A specializes c_clazz{
 		//XPECT linkedName at c_Public --> VisibilityPackage.c_clazz.c_Public
 		//* XPECT scope at c_Public ---
-		    Test3.c_clazz.c_Protect, Test3.c_clazz.c_Protect.c_publicc,
-	   		c_clazz.c_Protect, c_clazz.c_Protect.c_publicc,
 		    AA, AA.c_publicc, c_Public.c_publicc,  
 		    A, A.AA, A.AA.c_publicc, A.c_Public, A.c_Public.c_publicc,
 		    B, B.c_public, Test3.B, Test3.B.c_public,
@@ -52,9 +50,13 @@ package Test3{
 			c_Public,  
 			c_Public_alias, c_Public_alias.alias_public, c_Public_alias.c_public, 
 			c_clazz, c_clazz.c_Public, c_clazz.c_Public.c_publicc,
-			c_Protect, A.c_Protect, Test3.A.c_Protect,
-			c_Protect.c_publicc, A.c_Protect.c_publicc, Test3.A.c_Protect.c_publicc		
+			c_Protect,
+			c_Protect.c_publicc,
 		--- */
+		// The following are not visible, because qualified names currently require public visibility:
+		//  A.c_Protect, A.c_Protect.c_publicc, 
+		//  Test3.A.c_Protect, Test3.A.c_Protect.c_publicc, Test3.c_clazz.c_Protect, Test3.c_clazz.c_Protect.c_publicc, 
+		//  c_clazz.c_Protect, c_clazz.c_Protect.c_publicc
 		//
 		class AA specializes c_Public{}
 	}
@@ -62,7 +64,6 @@ package Test3{
 	
 	class B specializes c_Public{
 		//* XPECT scope at c_public ---
-		   	Test3.B.c_protected, Test3.c_Public.c_protected, c_Public.c_protected,
 		    BB,  c_Public.c_public, c_public,
 		    A, A.AA, A.AA.c_publicc, A.c_Public, A.c_Public.c_publicc,
 		    B, B.c_public, Test3.B, Test3.B.c_public,
@@ -76,8 +77,10 @@ package Test3{
 			c_Public,  
 			c_Public_alias, c_Public_alias.alias_public, c_Public_alias.c_public, 
 			c_clazz, c_clazz.c_Public, c_clazz.c_Public.c_publicc,
-			c_protected, B.c_protected
+			c_protected
 		--- */
+		// The following are not visible, because qualified names currently require public visibility:
+		//  B.c_protected, Test3.B.c_protected, Test3.c_Public.c_protected, c_Public.c_protected
 		class BB specializes c_public{}
 		
 	}

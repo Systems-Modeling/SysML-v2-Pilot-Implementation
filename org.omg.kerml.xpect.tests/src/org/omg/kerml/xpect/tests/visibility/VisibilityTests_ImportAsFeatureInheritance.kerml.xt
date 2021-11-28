@@ -29,7 +29,7 @@ package Classes {
 	class Try specializes c_Public {
 		//XPECT linkedName at c_public --> VisibilityPackage.c_Public.c_public
 		/* XPECT scope at c_public ---
-		  c_protected, Try.c_protected, Classes.Try.c_protected, c_Public.c_protected, Classes.c_Public.c_protected,  
+		  c_protected, 
 		  c_public,  
 	      feature4, Try.feature4, Classes.Try.feature4, 
 	      Try, Try.c_public, Classes.Try, Classes.Try.c_public,
@@ -37,7 +37,10 @@ package Classes {
 	      VisibilityPackage.c_Public_alias.alias_public, 
 	  	  VisibilityPackage.c_Public, VisibilityPackage.c_Public.c_public, VisibilityPackage.c_Public_alias, VisibilityPackage.c_Public_alias.c_public,
 	      VisibilityPackage.c_clazz, VisibilityPackage.c_clazz.c_Public,  VisibilityPackage.c_clazz.c_Public.c_publicc
-	--- */
+		--- */
+		// The following are not visible because qualified names currently require public visibility:
+		//  Classes.Try.c_protected, Classes.c_Public.c_protected, 
+		//  Try.c_protected, c_Public.c_protected
 		feature feature4 : c_public;
 	}
 }

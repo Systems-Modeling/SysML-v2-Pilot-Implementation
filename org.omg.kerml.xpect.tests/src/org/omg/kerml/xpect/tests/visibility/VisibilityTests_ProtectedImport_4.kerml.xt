@@ -19,6 +19,8 @@ END_SETUP
 package Test3{
 	import VisibilityPackage::*;
 	class A specializes c_clazz{
+		// This does not resolve because qualified names currently require public visbility.
+		// XPECT errors --> "Couldn't resolve reference to Classifier 'Test3::A::c_Protect'." at "Test3::A::c_Protect"
  		class EE specializes Test3::A::c_Protect{}
 	}
  	//special case when full qualifiedname within the specialization.

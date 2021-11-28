@@ -46,6 +46,7 @@ import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureDirectionKind;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureTyping;
+import org.omg.sysml.lang.sysml.FlowConnectionUsage;
 import org.omg.sysml.lang.sysml.ItemFlow;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.ObjectiveMembership;
@@ -59,10 +60,13 @@ import org.omg.sysml.lang.sysml.StakeholderMembership;
 import org.omg.sysml.lang.sysml.StateDefinition;
 import org.omg.sysml.lang.sysml.StateUsage;
 import org.omg.sysml.lang.sysml.SubjectMembership;
+import org.omg.sysml.lang.sysml.Succession;
+import org.omg.sysml.lang.sysml.SuccessionFlowConnectionUsage;
 import org.omg.sysml.lang.sysml.TransitionUsage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
 import org.omg.sysml.lang.sysml.VariantMembership;
+import org.omg.sysml.lang.sysml.util.SysMLSwitch;
 
 public class VCompartment extends VStructure {
     private List<VTree> subtrees = new ArrayList<VTree>();
@@ -114,11 +118,26 @@ public class VCompartment extends VStructure {
             return f.getDirection() != null;
         }
 
+        private static class ToTitle extends SysMLSwitch<String> {
+            public String caseBindingConnector(BindingConnector bc) {
+                return "bindings";
+            }
+            public String caseFlowConnectionUsage(FlowConnectionUsage fcu) {
+                return "flows";
+            }
+            public String caseSuccessionFlowConnectionUsage(SuccessionFlowConnectionUsage sfcu) {
+                return "succession flows";
+            }
+        }
+        private static ToTitle toTitle = new ToTitle();
+
         public String getTitle() {
             if (isParameter()) {
                 return "parameters";
             }
-            String s = SysML2PlantUMLText.getStereotypeName(f);
+            String s = toTitle.doSwitch(f);
+            if (s != null) return s;
+            s = SysML2PlantUMLText.getStereotypeName(f);
             if (s.endsWith("s")) {
                 return s + "es";
             } else {
@@ -447,14 +466,37 @@ public class VCompartment extends VStructure {
     }
 
     private void addConnectorText(Connector c, boolean isInherited) {
-        addFeatureText(c, isInherited);
+        boolean hasPrefix = false;
+        hasPrefix = addFeatureText(c, isInherited);
         List<Feature> ends = c.getConnectorEnd();
         if (ends.size() == 2) {
             Feature f1 = ends.get(0);
             Feature f2 = ends.get(1);
+            if (c instanceof ItemFlow) {
+                ItemFlow itf = (ItemFlow) c;
+                String desc = itemFlowDesc(itf);
+                if (desc != null) {
+                    append("of ");
+                    append(desc);
+                    hasPrefix = true;
+                }
+            }
+            if (hasPrefix) {
+                if (c instanceof BindingConnector) {
+                    append(" bind ");
+                } else if (c instanceof ItemFlow) {
+                    append(" from ");
+                } else if (c instanceof Succession) {
+                    append(" first ");
+                } else {
+                    append(" connect ");
+                }
+            }
             addEnd(f1);
             if (c instanceof BindingConnector) {
                 append(" = ");
+            } else if (c instanceof Succession) {
+                append(" then ");
             } else {
                 append(" to ");
             }

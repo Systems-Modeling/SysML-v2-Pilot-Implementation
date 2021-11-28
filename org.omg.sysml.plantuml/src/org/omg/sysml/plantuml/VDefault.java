@@ -92,7 +92,7 @@ public class VDefault extends VTraverser {
         return null;
     }
 
-    protected void addConnector(Connector c) {
+    private void addConnector(Connector c, String desc) {
         List<Feature> ends = c.getConnectorEnd();
         int size = ends.size();
         if (size >= 2) {
@@ -101,9 +101,28 @@ public class VDefault extends VTraverser {
             for (int i = 1; i < size; i++) {
                 Element end2 = getEnd(ends.get(i));
                 if (end2 == null) continue;
-                addPRelation(end1, end2, c);
+                addPRelation(end1, end2, c, desc);
             }
         }
+    }
+
+    protected String itemFlowDesc(ItemFlow itf) {
+        StringBuilder sb = null;
+        for (Feature f: itf.getItemFeature()) {
+            if (sb == null) {
+                sb = new StringBuilder();
+            } else {
+                sb.append(", ");
+            }
+            /* Always "item" feature name is set.  So we may not add item feature's name. */
+            String name = getFeatureName(f);
+            if (name != null) {
+                sb.append(name);
+            }
+            appendFeatureType(sb, ": ", f);
+        }
+        if (sb == null || sb.length() == 0) return null;
+        return sb.toString();        
     }
 
     protected void addSpecializations(Type typ) {
@@ -168,13 +187,14 @@ public class VDefault extends VTraverser {
 
     @Override
     public String caseConnector(Connector c) {
-        addConnector(c);
+        addConnector(c, null);
         return "";
     }
 
     @Override
     public String caseItemFlow(ItemFlow itf) {
-        addConnector(itf);
+        String desc = itemFlowDesc(itf);
+        addConnector(itf, desc);
         return "";
     }
 

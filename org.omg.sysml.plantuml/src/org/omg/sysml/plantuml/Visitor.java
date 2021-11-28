@@ -379,8 +379,8 @@ public abstract class Visitor extends SysMLSwitch<String> {
         return added;
     }
 
-    protected void addFeatureTypeText(String prefix, Feature f) {
-        appendFeatureType(sb, prefix, f);
+    protected boolean addFeatureTypeText(String prefix, Feature f) {
+        return appendFeatureType(sb, prefix, f);
     }
 
     protected void addFeatureTypeAndSubsettedText(Feature f) {

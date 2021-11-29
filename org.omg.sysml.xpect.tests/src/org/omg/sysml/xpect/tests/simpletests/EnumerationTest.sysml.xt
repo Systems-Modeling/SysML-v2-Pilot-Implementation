@@ -46,8 +46,8 @@ package EnumerationTest {
 	}
 	
 	enum color : ColorKind;
-	attribute color1 : ColorKind = ColorKind::blue;
-	attribute color2 : ColorKind = blue;
+	enum color1 = ColorKind::blue;	// Implicitly typed by ColorKind.
+	attribute color2 : ColorKind = color1;
 	
 	enum def E1 { a; b; c; }
 	enum def E2;

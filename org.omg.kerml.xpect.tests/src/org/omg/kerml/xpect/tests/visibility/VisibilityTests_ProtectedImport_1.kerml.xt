@@ -22,8 +22,13 @@ package Test3{
 	import VisibilityPackage::*;
 	class A specializes c_clazz{
  		class AA specializes c_Protect::c_publicc{}
+ 		
+ 		// A::alias_protected does not resolve because qualified names currently require public visibility.
+ 		// XPECT errors --> "Couldn't resolve reference to Classifier 'A::c_Protect::c_publicc'." at "A::c_Protect::c_publicc" 		
  		class BB specializes A::c_Protect::c_publicc{}
- 		class CC specializes Test3::A::c_Protect::c_publicc{}
+ 		// XPECT errors --> "Couldn't resolve reference to Classifier 'Test3::A::c_Protect::c_publicc'." at "Test3::A::c_Protect::c_publicc" 		
+  		class CC specializes Test3::A::c_Protect::c_publicc{}
+ 		
  		feature ff: c_Protect subsets gg;
  		protected feature gg;
 	}

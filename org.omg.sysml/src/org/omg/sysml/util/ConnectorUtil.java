@@ -62,6 +62,12 @@ public class ConnectorUtil {
 
 	// Connector ends
 	
+	public static boolean isConnectorEndSubsettingOf(Connector connector, Subsetting subsetting) {
+		Feature feature = subsetting.getSubsettingFeature();
+    	return connector.getConnectorEnd().contains(feature) &&
+	    	   FeatureUtil.getFirstOwnedSubsettingOf(feature).orElse(null) == subsetting;
+	}
+	
 	public static Feature addConnectorEndTo(Connector connector, Feature relatedFeature) {
 		Feature endFeature = SysMLFactory.eINSTANCE.createFeature();
 		Subsetting subsetting = SysMLFactory.eINSTANCE.createSubsetting();

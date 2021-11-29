@@ -30,7 +30,7 @@ package EnumerationTest {
 	 * resolved in the scope of the feature being declared, which inherits
 	 * the members of its type.
 	 */
-	attribute color2 : ColorKind = blue;
+	attribute color2 : ColorKind = ColorKind::blue;
 	
 	/**
 	 * The "enum" keyword is optional for EnumerationUsages used to define the

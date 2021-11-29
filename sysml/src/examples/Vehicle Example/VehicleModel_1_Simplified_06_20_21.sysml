@@ -541,7 +541,7 @@ package sfriedenthal_VehicleModel_1_simplified{
                     // parts in bodyAssy and interioer are marked as safety or security features
                     part bodyAssy:BodyAssy{
                         part body:Body{
-                            attribute :>> color = red;  
+                            attribute :>> color = Colors::red;
                         }
                         part bumper {@Safety{isMandatory = true;}}
                         part keylessEntry {@Security;}
@@ -1122,7 +1122,7 @@ package sfriedenthal_VehicleModel_1_simplified{
                     out massMeasured:>ISQ::mass);
                 //return :>> verdict = PassIf(vehicleSpecification::vehicleMassRequirement(vehicle_b));
                 // the following statement is not intended to be part of the model, but just confirm VerdictKind
-                return :>> verdict:VerdictKind = pass;
+                return :>> verdict:VerdictKind = VerdictKind::pass;
             }
         }
         package VerificationSystem{

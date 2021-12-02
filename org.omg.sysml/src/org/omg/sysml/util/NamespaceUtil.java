@@ -27,6 +27,7 @@ import java.util.stream.Stream;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.xtext.EcoreUtil2;
 import org.omg.sysml.adapter.NamespaceAdapter;
+import org.omg.sysml.lang.sysml.AssignmentActionUsage;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.FeatureReferenceExpression;
@@ -92,37 +93,41 @@ public class NamespaceUtil {
 		}
 	}
 	
-	private static Namespace getFeatureRefNamespaceFor(PathStepExpression pathStep) {
-		EList<Expression> ops = pathStep.getOperand();
-		if (ops.size() >= 2) {
-			Expression op2 = ops.get(1);
-			if (op2 instanceof FeatureReferenceExpression) {
-				return ((FeatureReferenceExpression)op2).getReferent();
+	private static Namespace getResultNamespaceFor(Expression expression) {
+		if (expression instanceof PathStepExpression) {
+			EList<Expression> ops = ((PathStepExpression)expression).getOperand();
+			if (ops.size() >= 2) {
+				Expression op2 = ops.get(1);
+				if (op2 instanceof FeatureReferenceExpression) {
+					return ((FeatureReferenceExpression)op2).getReferent();
+				}
 			}
+			return null;
+		} else {
+			ElementUtil.transform(expression);
+			return expression.getResult();
 		}
-		return null;
 	}
 
 	public static Namespace getRelativeNamespaceFor(Namespace ns) {
-		Namespace rel = null;
-		if (ns instanceof FeatureReferenceExpression) {
+		if (ns instanceof AssignmentActionUsage) {
+			Expression target = ((AssignmentActionUsage) ns).getTargetArgument();
+			if (target != null) {
+				return getResultNamespaceFor(target);		
+			}
+		} else if (ns instanceof FeatureReferenceExpression) {
 			Element oe = ns.getOwner();
 			if (oe instanceof PathStepExpression) {
 				EList<Expression> ops = ((PathStepExpression)oe).getOperand();
 				if (ops.size() >= 2) {
 					Expression op1 = ops.get(0);
 					if (op1 != ns) {
-						if (op1 instanceof PathStepExpression) {
-							rel = getFeatureRefNamespaceFor((PathStepExpression)op1);
-						} else {
-							ElementUtil.transform(op1);
-							rel = op1.getResult();
-						}
+						return getResultNamespaceFor(op1);
 					}
 				}
 			}
 		}
-		return rel;
+		return null;
 	}
 	
 }

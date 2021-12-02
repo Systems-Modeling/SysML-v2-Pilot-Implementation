@@ -36,102 +36,53 @@ import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureChaining;
+import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureReferenceExpression;
+import org.omg.sysml.lang.sysml.ItemFlowEnd;
+import org.omg.sysml.lang.sysml.ItemFlowFeature;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.PathStepExpression;
+import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.Type;
 
 public class VPath extends VTraverser {
-    private class PathContext {
-        private static final int SS_START_INDEX = -1;
-        private static final int SS_END_INDEX = -2;
+	// PC (PathContext) management. 
+    private abstract class PC {
+        private final Element idTarget;
+        private PC next;
+        private final PC prev;
 
-        private final PathStepExpression pse;
-
-        private final Feature f;
-        private final int index;
-
-        private final Type typ;
-        private final Subsetting ss;
-
-        private PathContext next;
-        private PathContext prev;
-
-        private boolean isTerminal() {
-            if (index == SS_END_INDEX) return true;
-            if (index == SS_START_INDEX) return false;
-            if (f != null) {
-                return f.getOwnedFeatureChaining().size() <= index;
-            } else {
-                return pse == null;
-            }
+        protected boolean isTerminal() {
+            return false;
         }
 
-        private boolean isMatching() {
+        protected boolean isMatching() {
             return prev != null;
         }
 
-        public PathContext getNext() {
+        protected abstract PC getNext();
+
+        private PC getNextI() {
             if (next != null) return next;
-            if (f != null) {
-                if (index == SS_START_INDEX) {
-                    if (typ == null) {
-                        this.next = new PathContext(this, null, f, SS_END_INDEX, null, ss);
-                    } else {
-                        this.next = new PathContext(this, ss, null);
-                    }
-                } else {
-                    this.next = new PathContext(this, f, index + 1);
-                }
-            } else {
-                if (prev == null) {
-                    this.next = new PathContext(this, pse, null, 0, null, ss);
-                } else {
-                    Type typ = pse.getOwningType();
-                    if (typ instanceof PathStepExpression) {
-                        this.next = new PathContext(this, (PathStepExpression) typ, null, 0, null, ss);
-                    } else {
-                        this.next = new PathContext(this, null, null, 0, null, ss);
-                    }
-                }
-            }
+            this.next = getNext();
             return this.next;
         }
 
-        public PathContext getPrev() {
+        protected PC getPrev() {
             return prev;
         }
 
-        private PathContext(PathContext prev, PathStepExpression pse, Feature f, int index, Type typ, Subsetting ss) {
+        protected PC(PC prev) {
             this.prev = prev;
-            this.pse = pse;
-            this.f = f;
-            this.index = index;
-            this.typ = typ;
-            this.ss = ss;
+            this.idTarget = prev.idTarget;
         }
 
-        public PathContext(PathStepExpression pse) {
-            this(null, pse, null, 0, null, null);
+        protected PC(Element idTarget) {
+            this.prev = null;
+            this.idTarget = idTarget;
         }
 
-        private PathContext(PathContext prev, Feature f, int index) {
-            this(prev, null, f, index, null, null);
-        }
-
-        private PathContext(PathContext prev, Subsetting ss, Type typ) {
-            this(prev, null, ss.getSubsettedFeature(), SS_START_INDEX, typ, ss);
-        }
-
-        public PathContext(Feature f) {
-            this(null, null, f, 0, null, null);
-        }
-        
-        public PathContext(Subsetting ss, Type typ) {
-            this(null, ss, typ);
-        }
-        
         private boolean isSet;
 
         public void setId(Element e, Integer id) {
@@ -140,48 +91,16 @@ public class VPath extends VTraverser {
             if (!isMatching()) return;
             if (unmatched != 0) return;
             if (match(e)) {
-                if (ss != null) {
-                    pathIdMap.put(ss, id);
-                } else if (f != null) {
-                    pathIdMap.put(f, id);
-                } else {
-                    pathIdMap.put(pse, id);
-                }
+                pathIdMap.put(idTarget, id);
                 isSet = true;
             }
         }
 
         private int unmatched;
 
-        private Expression getTargetExp() {
-            List<Expression> ops = pse.getOperand();
-            if (ops.size() < 2) return null;
-            if (isMatching()) {
-                return ops.get(1);
-            } else {
-                return ops.get(0);
-            }
-        }
+        protected abstract Element getTarget();
 
-        private Element getTarget() {
-            if (ss != null) {
-                if (typ == null) {
-                    return f;
-                } else {
-                    return typ;
-                }
-            } else if (f != null) {
-                FeatureChaining fc = f.getOwnedFeatureChaining().get(index);
-                return fc.getChainingFeature();
-            } else {
-                Expression ex = getTargetExp();
-                if (!(ex instanceof FeatureReferenceExpression)) return null;
-                FeatureReferenceExpression fre = (FeatureReferenceExpression) ex;
-                return fre.getReferent();
-            }
-        }
-
-        public boolean match(Element e) {
+        private boolean match(Element e) {
             if (isTerminal()) return false;
             Element et = getTarget();
             return e.equals(et);
@@ -195,10 +114,10 @@ public class VPath extends VTraverser {
             return getTarget();
         }
 
-        public PathContext enter(Element e) {
+        public PC enter(Element e) {
             if (unmatched == 0) {
                 if (match(e)) {
-                    return getNext();
+                    return getNextI();
                 }
             }
             if (isMatching()) {
@@ -207,7 +126,7 @@ public class VPath extends VTraverser {
             return this;
         }
 
-        public PathContext leave() {
+        public PC leave() {
         	if (!isMatching()) return this;
             if (unmatched == 0) {
                 return getPrev();
@@ -216,12 +135,201 @@ public class VPath extends VTraverser {
             }
             return this;
         }
+    }
+    
+    private class PCPathStepExpression extends PC {
+        private final PathStepExpression pse;
 
-        
+        private Expression getTargetExp() {
+            List<Expression> ops = pse.getOperand();
+            if (ops.size() < 2) return null;
+            if (isMatching()) {
+                return ops.get(1);
+            } else {
+                return ops.get(0);
+            }
+        }
+
+        @Override
+        protected Element getTarget() {
+            Expression ex = getTargetExp();
+            if (!(ex instanceof FeatureReferenceExpression)) return null;
+            FeatureReferenceExpression fre = (FeatureReferenceExpression) ex;
+            return fre.getReferent();
+        }
+
+        @Override
+        protected PC getNext() {
+            if (getPrev() == null) {
+                return new PCPathStepExpression(this, pse);
+            } else {
+                Type typ = pse.getOwningType();
+                if (typ instanceof PathStepExpression) {
+                    return new PCPathStepExpression(this, (PathStepExpression) typ);
+                } else {
+                    return new PCTerminal(this);
+                }
+            }
+        }
+
+        private PCPathStepExpression(PCPathStepExpression prev, PathStepExpression pse) {
+            super(prev);
+            this.pse = pse;
+        }
+
+        public PCPathStepExpression(PathStepExpression target, PathStepExpression head) {
+            super(target);
+            this.pse = head;
+        }
     }
 
-    private class RefPathContext {
-        private PathContext pc;
+    private class PCFeatureChain extends PC {
+        private final List<FeatureChaining> fcs;
+        private final int index;
+
+        @Override
+        protected Element getTarget() {
+            FeatureChaining fc = fcs.get(index);
+            return fc.getChainingFeature();
+        }
+
+        @Override
+        protected PC getNext() {
+            if (fcs.size() <= index + 1) return new PCTerminal(this);
+            return new PCFeatureChain(this);
+        }
+
+        private PCFeatureChain(PCFeatureChain prev) {
+            super(prev);
+            this.fcs = prev.fcs;
+            this.index = prev.index + 1;
+        }
+
+        public PCFeatureChain(Feature f) {
+            super(f);
+            this.fcs = f.getOwnedFeatureChaining();
+            this.index = 0;
+        }
+    }
+
+    private class PCTerminal extends PC {
+        @Override
+        protected boolean isTerminal() {
+            return true;
+        }
+        @Override
+        protected Element getTarget() {
+            return null;
+        }
+        @Override
+        protected PC getNext() {
+            return null;
+        }
+        public PCTerminal(PC prev) {
+            super(prev);
+        }
+    }
+
+    private class PCInherited extends PC {
+        private final Type typ;
+        private final Subsetting ss;
+
+        @Override
+        protected Element getTarget() {
+            if (typ == null) {
+                return ss.getSubsettedFeature();
+            } else {
+                return typ;
+            }
+        }
+        @Override
+        protected PC getNext() {
+            if (typ != null) {
+                return new PCInherited(this);
+            } else {
+                return new PCTerminal(this);
+            }
+        }
+
+        private PCInherited(PCInherited prev) {
+            super(prev);
+            this.typ = null;
+            this.ss = prev.ss;
+        }
+
+        public PCInherited(Subsetting ss, Type typ) {
+            super(ss);
+            this.typ = typ;
+            this.ss = ss;
+        }
+    }
+
+
+    /*
+      ife : ItemFlowEnd :> baseTarget (e.g. action) {
+           // ReferenceUsage
+           iff : ItemFlowFeature :>> ioTarget: ReferenceUsage;
+      }
+    */
+    private static Feature getIOTarget(ItemFlowEnd ife) {
+        for (FeatureMembership fm: ife.getOwnedFeatureMembership()) {
+            Feature f = fm.getMemberFeature();
+            if (f instanceof ItemFlowFeature) {
+                for (Redefinition rd: f.getOwnedRedefinition()) {
+                    return rd.getRedefinedFeature();
+                }
+            }
+        }
+        return null;
+    }
+    
+    public PCItemFlowEnd createPCItemFlowEnd(ItemFlowEnd ife) {
+        Feature ioTarget = getIOTarget(ife);
+        PC basePC = makePC(ife, true);
+        if (basePC == null) return null;
+        return new PCItemFlowEnd(ife, basePC, ioTarget);
+    }
+
+    private class PCItemFlowEnd extends PC {
+        private final Feature ioTarget;
+        private final PC basePC;
+
+        public PCItemFlowEnd(ItemFlowEnd ife, PC basePC, Feature ioTarget) {
+            super(ife);
+            this.basePC = basePC;
+            this.ioTarget = ioTarget;
+        }
+
+        private PCItemFlowEnd(PCItemFlowEnd prev, PC basePC) {
+            super(prev);
+            this.basePC = basePC;
+            this.ioTarget = prev.ioTarget;
+        }
+
+        @Override
+        protected Element getTarget() {
+            if (basePC == null) return ioTarget;
+            return basePC.getTarget();
+        }
+
+        @Override
+        protected PC getNext() {
+            if (basePC == null) return new PCTerminal(this);
+            PC ret = basePC.getNext();
+            if (!ret.isTerminal()) {
+                return new PCItemFlowEnd(this, ret);
+            }
+            if (ioTarget == null) {
+                return new PCTerminal(this);
+            } else {
+                return new PCItemFlowEnd(this, null);
+            }
+        }
+    }
+
+
+    private class RefPC {
+        private PC pc;
 
         public void enter(Element e) {
             pc = pc.enter(e);
@@ -240,16 +348,17 @@ public class VPath extends VTraverser {
             pc.setId(e, id);
         }
 
-        RefPathContext(PathContext pc) {
+        RefPC(PC pc) {
             this.pc = pc;
         }
     }
 
     private final Map<Element, Integer> pathIdMap = new HashMap<Element, Integer>();
-    private List<RefPathContext> current = new ArrayList<RefPathContext>();
+    private List<RefPC> current = new ArrayList<RefPC>();
 
-    private Type typeOfInheriting(Type owningType, Feature f) {
+    private static Type typeOfInheriting(Type owningType, Feature f) {
         if (owningType == null) return null;
+        if (owningType.getOwnedFeature().contains(f)) return owningType;
         if (owningType.getInheritedFeature().contains(f)) return owningType;
         if (owningType instanceof Feature) {
             Feature owningFeature = (Feature) owningType;
@@ -258,19 +367,46 @@ public class VPath extends VTraverser {
         return null;
     }
 
-    private void addContext(Feature f) {
+    private PC makePC(Feature f, boolean force) {
         for (Subsetting ss: f.getOwnedSubsetting()) {
             Feature sf = ss.getSubsettedFeature();
             List<FeatureChaining> fcs = sf.getOwnedFeatureChaining();
             if (fcs.isEmpty()) {
                 Type typ = typeOfInheriting(f.getOwningType(), sf);
+                if (force) {
+                    return new PCInherited(ss, typ);
+                }
                 if (typ != null) {
-                    current.add(new RefPathContext(new PathContext(ss, typ)));
+                    return new PCInherited(ss, typ);
                 }
             } else {
-                current.add(new RefPathContext(new PathContext(sf)));
+                return new PCFeatureChain(sf);
             }
         }
+        return null;
+    }
+    
+
+    private void addContext(PC pc) {
+        current.add(new RefPC(pc));
+    }
+
+    private String addContext(Feature f) {
+        if (!f.isEnd()) return null;
+        PC pc = makePC(f, false);
+        if (pc == null) {
+            return null;
+        } else {
+            addContext(pc);
+            return "";
+        }
+    }
+
+    private String addContext(ItemFlowEnd ife) {
+        PC pc = createPCItemFlowEnd(ife);
+        if (pc == null) return null;
+        addContext(pc);
+        return "";
     }
 
     private static PathStepExpression head(PathStepExpression pse) {
@@ -286,27 +422,28 @@ public class VPath extends VTraverser {
         }
     }
 
-    private void addContext(PathStepExpression pse) {
-        pse = head(pse);
-        if (pse == null) return;
-        current.add(new RefPathContext(new PathContext(pse)));
+    private String addContext(PathStepExpression pse) {
+        PathStepExpression head = head(pse);
+        if (head == null) return null;
+        addContext(new PCPathStepExpression(pse, head));
+        return "";
     }
 
     public void setId(Element e, Integer id) {
-        for (RefPathContext c: current) {
+        for (RefPC c: current) {
             c.setId(e, id);
         }
     }
 
     public void enter(Namespace ns) {
-        for (RefPathContext c: current) {
+        for (RefPC c: current) {
             c.enter(ns);
         }
     }
 
     public Collection<Element> rest() {
         Set<Element> ret = new HashSet<Element>(current.size());
-        for (RefPathContext c: current) {
+        for (RefPC c: current) {
             Element e = c.requiredElement();
             if (e != null) ret.add(e);
         }
@@ -315,10 +452,10 @@ public class VPath extends VTraverser {
 
     public void leave(Namespace ns) {
         int size = current.size();
-        RefPathContext[] cs = new RefPathContext[size];
+        RefPC[] cs = new RefPC[size];
         cs = current.toArray(cs);
         
-        for (RefPathContext c: cs) {
+        for (RefPC c: cs) {
             if (!c.leave()) {
                 current.remove(c);
             }
@@ -339,13 +476,16 @@ public class VPath extends VTraverser {
 
     @Override
     public String caseFeature(Feature f) {
-        addContext(f);
-        return null;
+        return addContext(f);
     }
 
     @Override
     public String casePathStepExpression(PathStepExpression pse) {
-        addContext(pse);
-        return "";
+        return addContext(pse);
+    }
+
+    @Override
+    public String caseItemFlowEnd(ItemFlowEnd ife) {
+        return addContext(ife);
     }
 }

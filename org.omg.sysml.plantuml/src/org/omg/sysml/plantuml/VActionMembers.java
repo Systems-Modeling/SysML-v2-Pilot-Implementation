@@ -31,7 +31,6 @@ import org.omg.sysml.lang.sysml.FeatureDirectionKind;
 import org.omg.sysml.lang.sysml.ForkNode;
 import org.omg.sysml.lang.sysml.JoinNode;
 import org.omg.sysml.lang.sysml.MergeNode;
-import org.omg.sysml.lang.sysml.ParameterMembership;
 import org.omg.sysml.lang.sysml.Type;
 
 public class VActionMembers extends VBehavior {
@@ -46,19 +45,21 @@ public class VActionMembers extends VBehavior {
         append('\n');
     }
 
-    public String caseParameterMembership(ParameterMembership pm) {
-        Feature p = pm.getMemberParameter();
-        FeatureDirectionKind fdk = p.getDirection();
-       switch (fdk) {
+    public String caseFeature(Feature f) {
+        FeatureDirectionKind fdk = f.getDirection();
+        if (fdk == null) return null;
+        switch (fdk) {
         case IN:
-            addNode(p, "portin");
+            addNode(f, "portin");
             break;
         case OUT:
-            addNode(p, "portout");
+            addNode(f, "portout");
+            break;
+        case INOUT:
+            addNode(f, "port");
             break;
         default:
-            addNode(p, "port");
-            break;
+            return null;
         }
         return "";
     }

@@ -39,6 +39,7 @@ import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureReferenceExpression;
 import org.omg.sysml.lang.sysml.ItemFlow;
+import org.omg.sysml.lang.sysml.ItemFlowEnd;
 import org.omg.sysml.lang.sysml.PathStepExpression;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.Specialization;
@@ -75,6 +76,7 @@ public class VDefault extends VTraverser {
 
     protected Element getEnd(Feature f) {
         if (f == null) return null;
+        if (f instanceof ItemFlowEnd) return f;
         for (Relationship rel: f.getOwnedRelationship()) {
             for (Element tgt: rel.getTarget()) {
                 if (tgt instanceof Feature) {
@@ -90,7 +92,7 @@ public class VDefault extends VTraverser {
         return null;
     }
 
-    protected void addConnector(Connector c) {
+    private void addConnector(Connector c, String desc) {
         List<Feature> ends = c.getConnectorEnd();
         int size = ends.size();
         if (size >= 2) {
@@ -99,9 +101,29 @@ public class VDefault extends VTraverser {
             for (int i = 1; i < size; i++) {
                 Element end2 = getEnd(ends.get(i));
                 if (end2 == null) continue;
-                addPRelation(end1, end2, c);
+                addPRelation(end1, end2, c, desc);
             }
         }
+    }
+
+    protected String itemFlowDesc(ItemFlow itf) {
+        StringBuilder sb = null;
+        for (Feature f: itf.getItemFeature()) {
+            if (sb == null) {
+                sb = new StringBuilder();
+            } else {
+                sb.append(", ");
+            }
+            /* We do not use the effective name because it always get "item" for it.
+               Use getName() intead. */
+            String name = f.getName();
+            if (name != null) {
+                sb.append(name);
+            }
+            appendFeatureType(sb, ": ", f);
+        }
+        if (sb == null || sb.length() == 0) return null;
+        return sb.toString();        
     }
 
     protected void addSpecializations(Type typ) {
@@ -166,13 +188,14 @@ public class VDefault extends VTraverser {
 
     @Override
     public String caseConnector(Connector c) {
-        addConnector(c);
+        addConnector(c, null);
         return "";
     }
 
     @Override
     public String caseItemFlow(ItemFlow itf) {
-        addConnector(itf);
+        String desc = itemFlowDesc(itf);
+        addConnector(itf, desc);
         return "";
     }
 

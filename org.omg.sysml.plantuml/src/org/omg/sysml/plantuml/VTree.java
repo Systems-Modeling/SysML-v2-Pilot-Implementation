@@ -54,6 +54,7 @@ public class VTree extends VStructure {
     private Membership membership;
 
     protected void addRel(Element typ, Element rel, String text) {
+        hasItems = true;
         if (membership == null) return;
         Element tgt = membership.getMembershipOwningNamespace();
         addPRelation(tgt, typ, rel, text);

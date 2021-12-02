@@ -43,11 +43,10 @@ import org.omg.sysml.lang.sysml.Conjugation
 import org.omg.sysml.lang.sysml.Connector
 import org.omg.sysml.lang.sysml.Subsetting
 import org.omg.sysml.lang.sysml.Namespace
-import org.omg.sysml.lang.sysml.Redefinition
 import org.omg.sysml.lang.sysml.Specialization
 import org.omg.sysml.lang.sysml.FeatureChaining
 import org.omg.sysml.util.NamespaceUtil
-import org.omg.sysml.util.FeatureUtil
+import org.omg.sysml.util.ConnectorUtil
 
 class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 
@@ -81,14 +80,11 @@ class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 				return context.owningMembership.scope_owningNamespace(context, reference)
 			}
 		    var subsettingFeature = context.subsettingFeature
-		    if (!(context instanceof Redefinition)) {
-			    var owningType = subsettingFeature?.owningType
-				if (owningType instanceof Connector) {
-			    	if (owningType.connectorEnd.contains(subsettingFeature) &&
-			    		FeatureUtil.getFirstOwnedSubsettingOf(subsettingFeature).orElse(null) === context) {
-			    		return owningType.scope_owningNamespace(context, reference)
-			    	}
-			    }
+		    var owningType = subsettingFeature?.owningType
+			if (owningType instanceof Connector) {
+		    	if (ConnectorUtil.isConnectorEndSubsettingOf(owningType, context)) {
+		    		return owningType.scope_owningNamespace(context, reference)
+		    	}
 		    }
 			subsettingFeature.scope_owningNamespace(context, reference)
 		} else if (context instanceof Specialization)
@@ -118,8 +114,15 @@ class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 		val ownedFeatureChainings = featureChained.ownedFeatureChaining
 		val i = ownedFeatureChainings.indexOf(ch)
 		if (i <= 0) {
-			if (featureChained.owningRelationship instanceof Subsetting) {
-				featureChained = (featureChained.owningRelationship as Subsetting).subsettingFeature
+			val owningRelationship = featureChained.owningRelationship
+			if (owningRelationship instanceof Subsetting) {
+				featureChained = owningRelationship.subsettingFeature
+				var owningType = featureChained?.owningType
+				if (owningType instanceof Connector) {
+					if (ConnectorUtil.isConnectorEndSubsettingOf(owningType, owningRelationship)) {
+			    		featureChained = owningType
+			    	}
+			    }
 			}
 			featureChained.scope_nonExpressionNamespace(ch, reference)
 		} else

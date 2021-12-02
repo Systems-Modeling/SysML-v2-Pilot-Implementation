@@ -3920,7 +3920,7 @@ association-&amp;gt;is=OrSpecializationOf(TransferBefore) }&lt;/p></body>
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="68d3b799-3b11-4032-b669-adb6653c333f" name="" visibility="public" value="1"/>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="b97f635f-94de-4c25-9704-fe937add579a" name="" visibility="public" value="1"/>
     </ownedAttribute>
-    <ownedAttribute xmi:id="e527b56c-1106-4170-a052-a1689359b92d" name="valueExpression" visibility="public" type="b32c4dd3-88a2-4418-b414-e75ceb0bb432" association="166f37b5-4c99-4de1-ba27-081e67c41037">
+    <ownedAttribute xmi:id="e527b56c-1106-4170-a052-a1689359b92d" name="valueExpression" visibility="public" type="b32c4dd3-88a2-4418-b414-e75ceb0bb432" isDerived="true" association="166f37b5-4c99-4de1-ba27-081e67c41037">
       <ownedComment xmi:id="454da15f-3a2c-475a-aed1-e73e53891c44" annotatedElement="e527b56c-1106-4170-a052-a1689359b92d">
         <body>&lt;p>The Expression whose result is to be assigned to the &lt;code>referent&lt;/code> Feature. Derived as the FeatureValue of the redefined &lt;em>&lt;code>values&lt;/code>parameter of the AssignmentActionUsage.&lt;/p></body>
       </ownedComment>

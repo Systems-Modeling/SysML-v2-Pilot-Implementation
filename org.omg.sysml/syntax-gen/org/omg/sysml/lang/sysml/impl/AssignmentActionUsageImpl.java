@@ -2,13 +2,8 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
-import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.omg.sysml.lang.sysml.AssignmentActionUsage;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
@@ -30,16 +25,6 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * @generated
  */
 public class AssignmentActionUsageImpl extends ActionUsageImpl implements AssignmentActionUsage {
-	/**
-	 * The cached value of the '{@link #getValueExpression() <em>Value Expression</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getValueExpression()
-	 * @generated
-	 * @ordered
-	 */
-	protected Expression valueExpression;
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -101,15 +86,8 @@ public class AssignmentActionUsageImpl extends ActionUsageImpl implements Assign
 	 */
 	@Override
 	public Expression getValueExpression() {
-		if (valueExpression != null && valueExpression.eIsProxy()) {
-			InternalEObject oldValueExpression = (InternalEObject)valueExpression;
-			valueExpression = (Expression)eResolveProxy(oldValueExpression);
-			if (valueExpression != oldValueExpression) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SysMLPackage.ASSIGNMENT_ACTION_USAGE__VALUE_EXPRESSION, oldValueExpression, valueExpression));
-			}
-		}
-		return valueExpression;
+		Expression valueExpression = basicGetValueExpression();
+		return valueExpression != null && valueExpression.eIsProxy() ? (Expression)eResolveProxy((InternalEObject)valueExpression) : valueExpression;
 	}
 
 	/**
@@ -118,7 +96,10 @@ public class AssignmentActionUsageImpl extends ActionUsageImpl implements Assign
 	 * @generated
 	 */
 	public Expression basicGetValueExpression() {
-		return valueExpression;
+		// TODO: implement this method to return the 'Value Expression' reference
+		// -> do not perform proxy resolution
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
 	}
 
 	/**
@@ -128,10 +109,9 @@ public class AssignmentActionUsageImpl extends ActionUsageImpl implements Assign
 	 */
 	@Override
 	public void setValueExpression(Expression newValueExpression) {
-		Expression oldValueExpression = valueExpression;
-		valueExpression = newValueExpression;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.ASSIGNMENT_ACTION_USAGE__VALUE_EXPRESSION, oldValueExpression, valueExpression));
+		// TODO: implement this method to set the 'Value Expression' reference
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
 	}
 
 	/**
@@ -243,7 +223,7 @@ public class AssignmentActionUsageImpl extends ActionUsageImpl implements Assign
 			case SysMLPackage.ASSIGNMENT_ACTION_USAGE__TARGET_ARGUMENT:
 				return basicGetTargetArgument() != null;
 			case SysMLPackage.ASSIGNMENT_ACTION_USAGE__VALUE_EXPRESSION:
-				return valueExpression != null;
+				return basicGetValueExpression() != null;
 			case SysMLPackage.ASSIGNMENT_ACTION_USAGE__REFERENT:
 				return basicGetReferent() != null;
 		}

@@ -4166,7 +4166,7 @@
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="valueExpression" ordered="false"
-        lowerBound="1" eType="#//Expression">
+        lowerBound="1" eType="#//Expression" volatile="true" transient="true" derived="true">
       <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName">
         <details key="body" value="assigningAction"/>
       </eAnnotations>

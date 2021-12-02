@@ -498,7 +498,8 @@ public class VCompartment extends VStructure {
             addEnd(f1);
             if (c instanceof BindingConnector) {
                 append(" = ");
-            } else if (c instanceof Succession) {
+            } else if ((c instanceof Succession)
+                       && !(c instanceof SuccessionItemFlow)) {
                 append(" then ");
             } else {
                 append(" to ");

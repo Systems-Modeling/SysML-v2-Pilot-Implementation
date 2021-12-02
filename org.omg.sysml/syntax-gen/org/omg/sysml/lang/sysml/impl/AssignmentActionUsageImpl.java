@@ -2,12 +2,17 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
+import java.util.List;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.AssignmentActionUsage;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.util.FeatureUtil;
+import org.omg.sysml.util.TypeUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -58,24 +63,20 @@ public class AssignmentActionUsageImpl extends ActionUsageImpl implements Assign
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public Expression basicGetTargetArgument() {
-		// TODO: implement this method to return the 'Target Argument' reference
-		// -> do not perform proxy resolution
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		List<Feature> parameters = TypeUtil.getOwnedParametersOf(this);
+		return parameters.isEmpty()? null: FeatureUtil.getValueExpressionFor(parameters.get(0));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public void setTargetArgument(Expression newTargetArgument) {
-		// TODO: implement this method to set the 'Target Argument' reference
-		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
 	}
 
@@ -93,24 +94,20 @@ public class AssignmentActionUsageImpl extends ActionUsageImpl implements Assign
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public Expression basicGetValueExpression() {
-		// TODO: implement this method to return the 'Value Expression' reference
-		// -> do not perform proxy resolution
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		List<Feature> parameters = TypeUtil.getOwnedParametersOf(this);
+		return parameters.size() < 2? null: FeatureUtil.getValueExpressionFor(parameters.get(1));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public void setValueExpression(Expression newValueExpression) {
-		// TODO: implement this method to set the 'Value Expression' reference
-		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
 	}
 
@@ -128,24 +125,22 @@ public class AssignmentActionUsageImpl extends ActionUsageImpl implements Assign
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public Feature basicGetReferent() {
-		// TODO: implement this method to return the 'Referent' reference
-		// -> do not perform proxy resolution
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		return (Feature) getOwnedMembership().stream().
+				map(Membership::getMemberElement).
+				filter(e->e instanceof Feature && !FeatureUtil.isParameter((Feature)e)).
+				findFirst().orElse(null);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public void setReferent(Feature newReferent) {
-		// TODO: implement this method to set the 'Referent' reference
-		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
 	}
 

@@ -27,7 +27,6 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.AcceptActionUsage;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.util.FeatureUtil;
 import org.omg.sysml.util.UsageUtil;
@@ -84,13 +83,7 @@ public class AcceptActionUsageImpl extends ActionUsageImpl implements AcceptActi
 	 */
 	public Expression basicGetReceiverArgument() {
 		Feature receiverParameter = UsageUtil.getReceiverParameterOf(this);
-		if (receiverParameter != null) {
-			FeatureValue valuation = FeatureUtil.getValuationFor(receiverParameter);
-			if (valuation != null) {
-				return valuation.getValue();
-			}
-		}
-		return null;
+		return receiverParameter == null? null: FeatureUtil.getValueExpressionFor(receiverParameter);
 	}
 	
 	/**

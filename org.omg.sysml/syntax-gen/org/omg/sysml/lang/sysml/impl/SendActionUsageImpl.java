@@ -22,19 +22,15 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
-import java.util.List;
-
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.SendActionUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.util.FeatureUtil;
-import org.omg.sysml.util.TypeUtil;
 import org.omg.sysml.util.UsageUtil;
 
 /**
@@ -95,14 +91,8 @@ public class SendActionUsageImpl extends ActionUsageImpl implements SendActionUs
 	 * @generated NOT
 	 */
 	public Expression basicGetReceiverArgument() {
-		List<Feature> parameters = TypeUtil.getOwnedParametersOf(this);
-		if (parameters.size() > 1) {
-			FeatureValue valuation = FeatureUtil.getValuationFor(parameters.get(1));
-			if (valuation != null) {
-				return valuation.getValue();
-			}
-		}
-		return null;
+		Feature receiverParameter = UsageUtil.getReceiverParameterOf(this);
+		return receiverParameter == null? null: FeatureUtil.getValueExpressionFor(receiverParameter);
 	}
 
 	/**
@@ -133,13 +123,7 @@ public class SendActionUsageImpl extends ActionUsageImpl implements SendActionUs
 	 */
 	public Expression basicGetItemsArgument() {
 		Feature itemsParameter = UsageUtil.getItemsParameterOf(this);
-		if (itemsParameter != null) {
-			FeatureValue valuation = FeatureUtil.getValuationFor(itemsParameter);
-			if (valuation != null) {
-				return valuation.getValue();
-			}
-		}
-		return null;
+		return itemsParameter == null? null: FeatureUtil.getValueExpressionFor(itemsParameter);
 	}
 
 	/**

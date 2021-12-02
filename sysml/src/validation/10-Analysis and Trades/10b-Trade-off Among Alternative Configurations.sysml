@@ -50,7 +50,7 @@ package '10b-Trade-off Among Alternative Configurations' {
 		}
 		
 		part vehicle : Vehicle {
-			part engine[1] :> engineChoice = '6cylEngine' {
+			part engine[1] :> engineChoice = engineChoice::'6cylEngine' {
 				assert constraint engineSelectionRational { 
 					doc /* Selected the best engine based on the 'engineTradeStudy'. */
 					engine == Analysis::engineTradeStudy.selectedAlternative

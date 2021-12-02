@@ -30,6 +30,7 @@ import org.omg.sysml.adapter.NamespaceAdapter;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.FeatureReferenceExpression;
+import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.InvocationExpression;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
@@ -80,10 +81,12 @@ public class NamespaceUtil {
 			return null;
 		} else {
 			Namespace namespace = getParentNamespaceOf(element);
-			while (namespace instanceof InvocationExpression || 
+			while (element instanceof FeatureValue || 
+				   namespace instanceof InvocationExpression || 
 				   namespace instanceof FeatureReferenceExpression
 			) {
-				namespace = getParentNamespaceOf(namespace);
+				element = namespace.getOwningMembership();
+				namespace = getParentNamespaceOf(element);
 			}
 			return namespace;
 		}

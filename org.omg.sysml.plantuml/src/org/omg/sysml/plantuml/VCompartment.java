@@ -62,6 +62,7 @@ import org.omg.sysml.lang.sysml.StateUsage;
 import org.omg.sysml.lang.sysml.SubjectMembership;
 import org.omg.sysml.lang.sysml.Succession;
 import org.omg.sysml.lang.sysml.SuccessionFlowConnectionUsage;
+import org.omg.sysml.lang.sysml.SuccessionItemFlow;
 import org.omg.sysml.lang.sysml.TransitionUsage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
@@ -498,7 +499,8 @@ public class VCompartment extends VStructure {
             addEnd(f1);
             if (c instanceof BindingConnector) {
                 append(" = ");
-            } else if (c instanceof Succession) {
+            } else if ((c instanceof Succession)
+                       && !(c instanceof SuccessionItemFlow)) {
                 append(" then ");
             } else {
                 append(" to ");

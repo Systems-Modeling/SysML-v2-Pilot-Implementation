@@ -20,7 +20,11 @@ package Test3{
 	import VisibilityPackage::*;
 	class A specializes c_Public_alias{
  		class AA specializes alias_protected{}
+ 		
+ 		// A::alias_protected does not resolve because qualified names currently require public visibility.
+ 		// XPECT errors --> "Couldn't resolve reference to Classifier 'A::alias_protected'." at "A::alias_protected" 		
  		class BB specializes A::alias_protected{}
+ 		// XPECT errors --> "Couldn't resolve reference to Classifier 'Test3::A::alias_protected'." at "Test3::A::alias_protected" 		
  		class CC specializes Test3::A::alias_protected{}
 	}
 }

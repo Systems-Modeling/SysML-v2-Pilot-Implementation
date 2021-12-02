@@ -114,8 +114,9 @@ public class VDefault extends VTraverser {
             } else {
                 sb.append(", ");
             }
-            /* Always "item" feature name is set.  So we may not add item feature's name. */
-            String name = getFeatureName(f);
+            /* We do not use the effective name because it always get "item" for it.
+               Use getName() intead. */
+            String name = f.getName();
             if (name != null) {
                 sb.append(name);
             }

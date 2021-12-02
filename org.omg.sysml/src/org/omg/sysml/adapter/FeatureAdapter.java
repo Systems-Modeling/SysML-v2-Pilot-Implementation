@@ -408,7 +408,11 @@ public class FeatureAdapter extends TypeAdapter {
 	protected BindingConnector addValueBinding(Expression sourceExpression) {
 		Feature target = getTarget();
 		ElementUtil.transform(sourceExpression);
-		return addBindingConnector(target.getFeaturingType(), sourceExpression.getResult(), target);
+		Feature result = sourceExpression.getResult();
+		if (target.getOwnedSpecialization().isEmpty()) {
+			addImplicitGeneralType(SysMLPackage.eINSTANCE.getSubsetting(), result);
+		}
+		return addBindingConnector(target.getFeaturingType(), result, target);
 	}
 		
 	public BindingConnector computeAssertionConnector(Feature result) {
@@ -433,9 +437,9 @@ public class FeatureAdapter extends TypeAdapter {
 	
 	@Override
 	public void doTransform() {
+		computeValueConnector();
 		forceComputeRedefinitions();
 		super.doTransform();
-		computeValueConnector();
 	}
 
 }

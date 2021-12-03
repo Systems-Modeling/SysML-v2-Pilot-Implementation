@@ -143,6 +143,9 @@ public class ImplicitGeneralizationMap {
 		put(AssertConstraintUsageImpl.class, "base", "Constraints::assertedConstraintChecks");
 		put(AssertConstraintUsageImpl.class, "negated", "Constraints::negatedConstraintChecks");
 		
+		put(AssignmentActionUsageImpl.class, "base", "Actions::assignmentActions");
+		put(AssignmentActionUsageImpl.class, "subaction", "Actions::Action::assignments");
+		
 		put(AttributeDefinitionImpl.class, "base", "Base::DataValue");
 		put(AttributeUsageImpl.class, "base", "Base::dataValues");
 		

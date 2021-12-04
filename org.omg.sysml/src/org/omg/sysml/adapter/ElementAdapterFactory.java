@@ -71,6 +71,11 @@ public class ElementAdapterFactory {
 		}
 		
 		@Override
+		public ElementAdapter caseAssignmentActionUsage(AssignmentActionUsage element) {
+			return new AssignmentActionUsageAdapter(element);
+		}
+		
+		@Override
 		public ElementAdapter caseAssociation(Association element) {
 			return new AssociationAdapter(element);
 		}

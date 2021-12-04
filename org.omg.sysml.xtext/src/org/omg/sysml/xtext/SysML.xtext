@@ -1400,9 +1400,7 @@ AssignmentNode returns SysML::AssignmentActionUsage :
 
 fragment AssignmentNodeDeclaration returns SysML::ActionUsage :
 	( 'action' UsageDeclaration )? 'assign' 
-	( ownedRelationship += AssignmentTargetMember '.' 
-	| ownedRelationship += EmptyParameterMember
-	)
+	ownedRelationship += AssignmentTargetMember
 	ownedRelationship += FeatureReferenceMember ':=' 
 	ownedRelationship += NodeParameterMember
 ;
@@ -1411,8 +1409,21 @@ AssignmentTargetMember returns SysML::ParameterMembership :
 	ownedRelatedElement += TargetParameter // ownedMemberParameter = TargetParameter
 ;
 
-TargetParameter returns SysML::Usage :
-	{SysML::ReferenceUsage} ownedRelationship += TargetBinding
+TargetParameter returns SysML::ReferenceUsage :
+	( ownedRelationship += TargetBinding '.' )?
+	ownedRelationship += TargetFeatureMember
+;
+
+TargetFeatureMember returns SysML::FeatureMembership :
+	ownedRelatedElement += TargetFeature // ownedMemberFeature = TargetFeature
+;
+
+TargetFeature returns SysML::ReferenceUsage :
+	ownedRelationship += TargetAccessedFeatureMember
+;
+
+TargetAccessedFeatureMember returns SysML::FeatureMembership :
+	ownedRelatedElement += EmptyUsage // ownedMemberFeature = EmptyUsage
 ;
 
 TargetBinding returns SysML::FeatureValue :
@@ -1443,10 +1454,10 @@ ForkNode returns SysML::ForkNode :
 ;
 
 EmptyParameterMember returns SysML::ParameterMembership :
-	ownedRelatedElement += EmptyParameter // ownedMemberParameter = EmptyParameter
+	ownedRelatedElement += EmptyUsage // ownedMemberParameter = EmptyParameter
 ;
 
-EmptyParameter returns SysML::Usage :
+EmptyUsage returns SysML::Usage :
 	{SysML::ReferenceUsage}
 ;
 
@@ -1786,7 +1797,7 @@ fragment EmptyReturnParameterPart returns SysML::Type :
 ;
 
 EmptyReturnParameterMember returns SysML::ReturnParameterMembership :
-	ownedRelatedElement += EmptyParameter // ownedMemberParameter = EmptyParameter
+	ownedRelatedElement += EmptyUsage // ownedMemberParameter = EmptyParameter
 ;
 
 /* Constraint Usages */

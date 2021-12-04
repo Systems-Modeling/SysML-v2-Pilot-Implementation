@@ -145,6 +145,8 @@ public class ImplicitGeneralizationMap {
 		
 		put(AssignmentActionUsageImpl.class, "base", "Actions::assignmentActions");
 		put(AssignmentActionUsageImpl.class, "subaction", "Actions::Action::assignments");
+		put(AssignmentActionUsageImpl.class, "startingAt", "FeatureAccessPerformances::FeatureAccessPerformance::onOccurrence::startingAt");
+		put(AssignmentActionUsageImpl.class, "accessedFeature", "FeatureAccessPerformances::FeatureAccessPerformance::onOccurrence::startingAt::accessedFeature");
 		
 		put(AttributeDefinitionImpl.class, "base", "Base::DataValue");
 		put(AttributeUsageImpl.class, "base", "Base::dataValues");

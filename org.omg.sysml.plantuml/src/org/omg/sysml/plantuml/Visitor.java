@@ -30,6 +30,7 @@ import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.FeatureChaining;
 import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Multiplicity;
@@ -323,6 +324,25 @@ public abstract class Visitor extends SysMLSwitch<String> {
 
     protected static String getFeatureName(Feature f) {
         return f.getEffectiveName();
+    }
+
+    protected static String getFeatureChainName(Feature f) {
+        String name = f.getEffectiveName();
+        if (name != null) return name;
+        for (Subsetting ss: f.getOwnedSubsetting()) {
+            Feature sf = ss.getSubsettedFeature();
+            List<FeatureChaining> fcs = sf.getOwnedFeatureChaining();
+            if (fcs.isEmpty()) continue;
+            StringBuilder sb = new StringBuilder();
+            for (FeatureChaining fc : fcs) {
+                if (sb.length() > 0) {
+                    sb.append('.');
+                }
+                sb.append(fc.getChainingFeature().getEffectiveName());
+            }
+            return sb.toString();
+        }
+        return null;
     }
 
     protected static String getNameWithNamespace(Feature f) {

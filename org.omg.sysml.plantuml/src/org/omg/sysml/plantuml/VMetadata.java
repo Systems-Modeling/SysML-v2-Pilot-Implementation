@@ -38,6 +38,7 @@ public class VMetadata extends Visitor {
 	}
     
     private final String metadataTitle = "«metadata»";
+
     private void addAnnotatingFeatureInternal(AnnotatingFeature af) {
         if (checkId(af)) return;
         append("note as ");
@@ -48,11 +49,16 @@ public class VMetadata extends Visitor {
         StringBuilder sb = new StringBuilder();
         for (MetadataFeature mf: af.getOwnedMetadata()) {
             int sLen = sb.length();
-            sb.append(mf.getEffectiveName());
-            MetadataFeatureValue mfv = mf.getMetadataFeatureValue();
-            if (mfv == null) continue;
-            sb.append(" = ");
-            sb.append(getText(mfv.getMetadataValue()));
+            String name = getFeatureChainName(mf);
+            if (name == null) {
+                sb.append(getText(mf));
+            } else {
+                sb.append(name);
+                MetadataFeatureValue mfv = mf.getMetadataFeatureValue();
+                if (mfv == null) continue;
+                sb.append(" = ");
+                sb.append(getText(mfv.getMetadataValue()));
+            }
             int eLen = sb.length();
             int width = eLen - sLen;
             if (width > maxWidth) {

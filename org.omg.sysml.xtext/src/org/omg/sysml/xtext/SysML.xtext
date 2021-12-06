@@ -475,17 +475,41 @@ fragment UsageBody returns SysML::Usage :
 	DefinitionBody
 ;
 
-fragment ValuePart returns SysML::Feature :
-	ownedRelationship += FeatureValue
-;
-
 fragment ValueOrFlowPart returns SysML::Feature :
 	ValuePart | ownedRelationship += SourceItemFlowMember
 ;
 
+fragment ValuePart returns SysML::Feature :
+	  ownedRelationship += FeatureValue
+	| ownedRelationship += FeatureValueExpression
+	  ownedRelationship += EmptyAssignmentActionMember
+;
+
 FeatureValue returns SysML::FeatureValue :
-	( '=' | isDefault ?= 'default' '='? )
+	( '=' | isDefault ?= 'default' ( '=' | isInitial ?= ':=' )? )
 	ownedRelatedElement += OwnedExpression // value = OwnedExpression
+;
+
+FeatureValueExpression returns SysML::FeatureValue :
+	isInitial ?= ':='
+	ownedRelatedElement += OwnedExpression // value = OwnedExpression
+;
+
+EmptyAssignmentActionMember returns SysML::Membership :
+	ownedRelatedElement += EmptyAssignmentAction // ownedMemberElement = EmptyAssignmentAction
+;
+
+EmptyAssignmentAction returns SysML::AssignmentActionUsage :
+	ownedRelationship += EmptyTargetMember
+	ownedRelationship += EmptyParameterMember
+;
+
+EmptyTargetMember returns SysML::ParameterMembership :
+	ownedRelatedElement += EmptyTargetParameter // ownedMemberParameter = TargetParameter
+;
+
+EmptyTargetParameter returns SysML::ReferenceUsage :
+	ownedRelationship += TargetFeatureMember
 ;
 
 SourceItemFlowMember returns SysML::Membership :

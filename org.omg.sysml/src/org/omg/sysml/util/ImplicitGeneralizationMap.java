@@ -75,6 +75,8 @@ public class ImplicitGeneralizationMap {
 		put(FeatureImpl.class, "occurrence", "Occurrences::occurrences");
 		put(FeatureImpl.class, "object", "Objects::objects");
 		put(FeatureImpl.class, "participant", "Links::Link::participant");
+		put(FeatureImpl.class, "startingAt", "FeatureAccessPerformances::FeatureAccessPerformance::onOccurrence::startingAt");
+		put(FeatureImpl.class, "accessedFeature", "FeatureAccessPerformances::FeatureAccessPerformance::onOccurrence::startingAt::accessedFeature");
 		
 		put(FunctionImpl.class, "base", "Performances::Evaluation");
 		
@@ -111,6 +113,7 @@ public class ImplicitGeneralizationMap {
 		put(StepImpl.class, "subperformance", "Performances::Performance::subperformances");
 		put(StepImpl.class, "enactedPerformance", "Objects::Object::enactedPerformances");
 		put(StepImpl.class, "incomingTransfer", "Occurrences::Occurrence::incomingTransfers");
+		put(StepImpl.class, "featureWrite", "FeatureAccessPerformances::FeatureWritePerformance");
 		
 		put(StructureImpl.class, "base", "Objects::Object");
 		
@@ -145,8 +148,7 @@ public class ImplicitGeneralizationMap {
 		
 		put(AssignmentActionUsageImpl.class, "base", "Actions::assignmentActions");
 		put(AssignmentActionUsageImpl.class, "subaction", "Actions::Action::assignments");
-		put(AssignmentActionUsageImpl.class, "startingAt", "FeatureAccessPerformances::FeatureAccessPerformance::onOccurrence::startingAt");
-		put(AssignmentActionUsageImpl.class, "accessedFeature", "FeatureAccessPerformances::FeatureAccessPerformance::onOccurrence::startingAt::accessedFeature");
+		put(AssignmentActionUsageImpl.class, "featureWrite", "Actions::AssignmentAction");
 		
 		put(AttributeDefinitionImpl.class, "base", "Base::DataValue");
 		put(AttributeUsageImpl.class, "base", "Base::dataValues");

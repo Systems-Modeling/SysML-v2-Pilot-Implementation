@@ -1,0 +1,84 @@
+//*
+XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLTests
+	ResourceSet {
+		ThisFile {} 
+ 		File {from ="/library.kernel/Base.kerml"}
+ 		File {from ="/library.kernel/Links.kerml"}
+       	File {from ="/library.kernel/Occurrences.kerml"}
+       	File {from ="/library.kernel/Objects.kerml"}
+		File {from ="/library.kernel/BaseFunctions.kerml"}
+		File {from ="/library.kernel/Performances.kerml"}
+		File {from ="/library.kernel/ControlPerformances.kerml"}
+		File {from ="/library.kernel/TransitionPerformances.kerml"}
+		File {from ="/library.kernel/FeatureAccessPerformances.kerml"}
+		File {from ="/library.kernel/DataFunctions.kerml"}
+		File {from ="/library.kernel/ControlFunctions.kerml"}
+		File {from ="/library.kernel/ScalarValues.kerml"}
+		File {from ="/library.systems/Items.sysml"}
+ 		File {from ="/library.systems/Parts.sysml"}
+		File {from ="/library.systems/Actions.sysml"}
+		File {from ="/library.systems/States.sysml"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {} 
+		 		File {from ="/library.kernel/Base.kerml"}
+		 		File {from ="/library.kernel/Links.kerml"}
+		       	File {from ="/library.kernel/Occurrences.kerml"}
+		       	File {from ="/library.kernel/Objects.kerml"}
+				File {from ="/library.kernel/BaseFunctions.kerml"}
+				File {from ="/library.kernel/Performances.kerml"}
+				File {from ="/library.kernel/ControlPerformances.kerml"}
+				File {from ="/library.kernel/TransitionPerformances.kerml"}
+				File {from ="/library.kernel/FeatureAccessPerformances.kerml"}
+				File {from ="/library.kernel/DataFunctions.kerml"}
+				File {from ="/library.kernel/ControlFunctions.kerml"}
+				File {from ="/library.kernel/ScalarValues.kerml"}
+				File {from ="/library.systems/Items.sysml"}
+		 		File {from ="/library.systems/Parts.sysml"}
+				File {from ="/library.systems/Actions.sysml"}
+				File {from ="/library.systems/States.sysml"}
+			}
+		}
+	}
+END_SETUP
+*/
+// XPECT noErrors ---> ""
+package AssignmentTest {
+	part def Counter {
+		attribute count : ScalarValues::Integer := 0;
+		
+		action incr() {
+			assign count := count + 1;
+		}
+		
+		action decr() {
+			assign count := count - 1;
+		}
+	}
+	
+	attribute def Incr;
+	attribute def Decr;
+	
+	state def Counting {
+		part counter : Counter;
+		entry assign counter.count := 0;
+		
+		then state wait;
+		accept Incr
+			then increment;
+		accept Decr
+			then decrement;
+		
+		state increment {
+			do assign counter.count := counter.count + 1;
+		}
+		then wait;
+		
+		state decrement {
+			do assign counter.count := counter.count - 1;
+		}
+		then wait;
+	}
+}

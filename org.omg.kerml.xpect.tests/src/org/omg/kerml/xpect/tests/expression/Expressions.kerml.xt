@@ -92,5 +92,9 @@ package Expressions {
 		expr s(x) : Boolean;
 	}
 	
-	bb : Boolean = f.s(1);	
+	bb : Boolean = f.s(1);
+	
+	class C {
+		count := 0;
+	}
 }

@@ -43,7 +43,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	protected AbstractElementAlias match_FeatureConjugationPart_ConjugatesKeyword_0_1_or_TildeKeyword_0_0;
 	protected AbstractElementAlias match_FeatureTyping_ColonKeyword_3_0_or___TypedKeyword_3_1_0_ByKeyword_3_1_1__;
 	protected AbstractElementAlias match_FeatureTyping_SpecializationKeyword_0_0_q;
-	protected AbstractElementAlias match_FeatureValue_EqualsSignKeyword_0_1_1_q;
+	protected AbstractElementAlias match_FeatureValue_EqualsSignKeyword_0_1_1_0_q;
 	protected AbstractElementAlias match_Feature_FeatureKeyword_1_0_0_q;
 	protected AbstractElementAlias match_FunctionBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_3__;
 	protected AbstractElementAlias match_Invariant_TrueKeyword_2_0_q;
@@ -103,7 +103,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 		match_FeatureConjugationPart_ConjugatesKeyword_0_1_or_TildeKeyword_0_0 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getFeatureConjugationPartAccess().getConjugatesKeyword_0_1()), new TokenAlias(false, false, grammarAccess.getFeatureConjugationPartAccess().getTildeKeyword_0_0()));
 		match_FeatureTyping_ColonKeyword_3_0_or___TypedKeyword_3_1_0_ByKeyword_3_1_1__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getFeatureTypingAccess().getTypedKeyword_3_1_0()), new TokenAlias(false, false, grammarAccess.getFeatureTypingAccess().getByKeyword_3_1_1())), new TokenAlias(false, false, grammarAccess.getFeatureTypingAccess().getColonKeyword_3_0()));
 		match_FeatureTyping_SpecializationKeyword_0_0_q = new TokenAlias(false, true, grammarAccess.getFeatureTypingAccess().getSpecializationKeyword_0_0());
-		match_FeatureValue_EqualsSignKeyword_0_1_1_q = new TokenAlias(false, true, grammarAccess.getFeatureValueAccess().getEqualsSignKeyword_0_1_1());
+		match_FeatureValue_EqualsSignKeyword_0_1_1_0_q = new TokenAlias(false, true, grammarAccess.getFeatureValueAccess().getEqualsSignKeyword_0_1_1_0());
 		match_Feature_FeatureKeyword_1_0_0_q = new TokenAlias(false, true, grammarAccess.getFeatureAccess().getFeatureKeyword_1_0_0());
 		match_FunctionBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_3__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getFunctionBodyAccess().getLeftCurlyBracketKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getFunctionBodyAccess().getRightCurlyBracketKeyword_1_3())), new TokenAlias(false, false, grammarAccess.getFunctionBodyAccess().getSemicolonKeyword_0()));
 		match_Invariant_TrueKeyword_2_0_q = new TokenAlias(false, true, grammarAccess.getInvariantAccess().getTrueKeyword_2_0());
@@ -194,8 +194,8 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 				emit_FeatureTyping_ColonKeyword_3_0_or___TypedKeyword_3_1_0_ByKeyword_3_1_1__(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_FeatureTyping_SpecializationKeyword_0_0_q.equals(syntax))
 				emit_FeatureTyping_SpecializationKeyword_0_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_FeatureValue_EqualsSignKeyword_0_1_1_q.equals(syntax))
-				emit_FeatureValue_EqualsSignKeyword_0_1_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_FeatureValue_EqualsSignKeyword_0_1_1_0_q.equals(syntax))
+				emit_FeatureValue_EqualsSignKeyword_0_1_1_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_Feature_FeatureKeyword_1_0_0_q.equals(syntax))
 				emit_Feature_FeatureKeyword_1_0_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_FunctionBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_3__.equals(syntax))
@@ -674,7 +674,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 * This ambiguous syntax occurs at:
 	 *     isDefault?='default' (ambiguity) ownedRelatedElement+=OwnedExpression
 	 */
-	protected void emit_FeatureValue_EqualsSignKeyword_0_1_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_FeatureValue_EqualsSignKeyword_0_1_1_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
@@ -804,6 +804,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isReadOnly?='readonly' 'expr' (ambiguity) (rule end)
 	 *     isReadOnly?='readonly' 'inv' 'true'? (ambiguity) (rule end)
 	 *     name=Name (ambiguity) (rule end)
+	 *     ownedRelationship+=EmptyFeatureWriteMember (ambiguity) (rule end)
 	 *     ownedRelationship+=EmptyReturnParameterMember (ambiguity) (rule end)
 	 *     ownedRelationship+=FeatureConjugation (ambiguity) (rule end)
 	 *     ownedRelationship+=FeatureValue (ambiguity) (rule end)
@@ -844,6 +845,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) 'inv' (ambiguity) isSufficient?='all'
 	 *     (rule start) 'inv' (ambiguity) name=Name
 	 *     (rule start) 'inv' (ambiguity) ownedRelationship+=FeatureValue
+	 *     (rule start) 'inv' (ambiguity) ownedRelationship+=FeatureValueExpression
 	 *     (rule start) 'inv' (ambiguity) ownedRelationship+=OwnedMultiplicity
 	 *     direction=FeatureDirection 'inv' (ambiguity) '(' ')' ownedRelationship+=EmptyReturnParameterMember
 	 *     direction=FeatureDirection 'inv' (ambiguity) '(' ')' ownedRelationship+=ReturnParameterMember
@@ -865,6 +867,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     direction=FeatureDirection 'inv' (ambiguity) isSufficient?='all'
 	 *     direction=FeatureDirection 'inv' (ambiguity) name=Name
 	 *     direction=FeatureDirection 'inv' (ambiguity) ownedRelationship+=FeatureValue
+	 *     direction=FeatureDirection 'inv' (ambiguity) ownedRelationship+=FeatureValueExpression
 	 *     direction=FeatureDirection 'inv' (ambiguity) ownedRelationship+=OwnedMultiplicity
 	 *     isAbstract?='abstract' 'inv' (ambiguity) '(' ')' ownedRelationship+=EmptyReturnParameterMember
 	 *     isAbstract?='abstract' 'inv' (ambiguity) '(' ')' ownedRelationship+=ReturnParameterMember
@@ -886,6 +889,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isAbstract?='abstract' 'inv' (ambiguity) isSufficient?='all'
 	 *     isAbstract?='abstract' 'inv' (ambiguity) name=Name
 	 *     isAbstract?='abstract' 'inv' (ambiguity) ownedRelationship+=FeatureValue
+	 *     isAbstract?='abstract' 'inv' (ambiguity) ownedRelationship+=FeatureValueExpression
 	 *     isAbstract?='abstract' 'inv' (ambiguity) ownedRelationship+=OwnedMultiplicity
 	 *     isComposite?='composite' 'inv' (ambiguity) '(' ')' ownedRelationship+=EmptyReturnParameterMember
 	 *     isComposite?='composite' 'inv' (ambiguity) '(' ')' ownedRelationship+=ReturnParameterMember
@@ -907,6 +911,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isComposite?='composite' 'inv' (ambiguity) isSufficient?='all'
 	 *     isComposite?='composite' 'inv' (ambiguity) name=Name
 	 *     isComposite?='composite' 'inv' (ambiguity) ownedRelationship+=FeatureValue
+	 *     isComposite?='composite' 'inv' (ambiguity) ownedRelationship+=FeatureValueExpression
 	 *     isComposite?='composite' 'inv' (ambiguity) ownedRelationship+=OwnedMultiplicity
 	 *     isDerived?='derived' 'inv' (ambiguity) '(' ')' ownedRelationship+=EmptyReturnParameterMember
 	 *     isDerived?='derived' 'inv' (ambiguity) '(' ')' ownedRelationship+=ReturnParameterMember
@@ -928,6 +933,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isDerived?='derived' 'inv' (ambiguity) isSufficient?='all'
 	 *     isDerived?='derived' 'inv' (ambiguity) name=Name
 	 *     isDerived?='derived' 'inv' (ambiguity) ownedRelationship+=FeatureValue
+	 *     isDerived?='derived' 'inv' (ambiguity) ownedRelationship+=FeatureValueExpression
 	 *     isDerived?='derived' 'inv' (ambiguity) ownedRelationship+=OwnedMultiplicity
 	 *     isEnd?='end' 'inv' (ambiguity) '(' ')' ownedRelationship+=EmptyReturnParameterMember
 	 *     isEnd?='end' 'inv' (ambiguity) '(' ')' ownedRelationship+=ReturnParameterMember
@@ -949,6 +955,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isEnd?='end' 'inv' (ambiguity) isSufficient?='all'
 	 *     isEnd?='end' 'inv' (ambiguity) name=Name
 	 *     isEnd?='end' 'inv' (ambiguity) ownedRelationship+=FeatureValue
+	 *     isEnd?='end' 'inv' (ambiguity) ownedRelationship+=FeatureValueExpression
 	 *     isEnd?='end' 'inv' (ambiguity) ownedRelationship+=OwnedMultiplicity
 	 *     isPortion?='portion' 'inv' (ambiguity) '(' ')' ownedRelationship+=EmptyReturnParameterMember
 	 *     isPortion?='portion' 'inv' (ambiguity) '(' ')' ownedRelationship+=ReturnParameterMember
@@ -970,6 +977,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isPortion?='portion' 'inv' (ambiguity) isSufficient?='all'
 	 *     isPortion?='portion' 'inv' (ambiguity) name=Name
 	 *     isPortion?='portion' 'inv' (ambiguity) ownedRelationship+=FeatureValue
+	 *     isPortion?='portion' 'inv' (ambiguity) ownedRelationship+=FeatureValueExpression
 	 *     isPortion?='portion' 'inv' (ambiguity) ownedRelationship+=OwnedMultiplicity
 	 *     isReadOnly?='readonly' 'inv' (ambiguity) '(' ')' ownedRelationship+=EmptyReturnParameterMember
 	 *     isReadOnly?='readonly' 'inv' (ambiguity) '(' ')' ownedRelationship+=ReturnParameterMember
@@ -991,6 +999,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isReadOnly?='readonly' 'inv' (ambiguity) isSufficient?='all'
 	 *     isReadOnly?='readonly' 'inv' (ambiguity) name=Name
 	 *     isReadOnly?='readonly' 'inv' (ambiguity) ownedRelationship+=FeatureValue
+	 *     isReadOnly?='readonly' 'inv' (ambiguity) ownedRelationship+=FeatureValueExpression
 	 *     isReadOnly?='readonly' 'inv' (ambiguity) ownedRelationship+=OwnedMultiplicity
 	 */
 	protected void emit_Invariant_TrueKeyword_2_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
@@ -1612,6 +1621,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     ownedRelationship+=ClassifierConjugation (ambiguity) (rule end)
 	 *     ownedRelationship+=ConnectorEndMember ')' (ambiguity) (rule end)
 	 *     ownedRelationship+=ConnectorEndMember (ambiguity) (rule end)
+	 *     ownedRelationship+=EmptyFeatureWriteMember (ambiguity) (rule end)
 	 *     ownedRelationship+=FeatureConjugation (ambiguity) (rule end)
 	 *     ownedRelationship+=FeatureValue (ambiguity) (rule end)
 	 *     ownedRelationship+=ItemFlowEndMember (ambiguity) (rule end)

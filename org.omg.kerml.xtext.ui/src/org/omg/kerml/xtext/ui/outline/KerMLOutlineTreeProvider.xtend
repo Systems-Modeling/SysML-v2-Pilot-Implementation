@@ -41,6 +41,7 @@ import org.omg.sysml.lang.sysml.Specialization
 import org.omg.sysml.lang.sysml.LiteralInteger
 import org.omg.sysml.lang.sysml.FeatureChaining
 import org.omg.sysml.lang.sysml.Disjoining
+import org.omg.sysml.lang.sysml.FeatureValue
 
 /**
  * Customization of the default outline structure.
@@ -103,6 +104,17 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	def String _text(Membership membership) {
 		membership.prefixText + ' ' + membership.nameText
 	}
+	
+	def String _text(FeatureValue featureValue) {
+		var text = featureValue.metaclassText;
+		if (featureValue.isDefault) {
+			text += ' default';
+		}
+		if (featureValue.isInitial) {
+			text += ' initial';
+		}
+		text
+	}	
 	
 	def String _text(Import import_) {
 		var text = import_.metaclassText
@@ -297,8 +309,7 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 			)
 		}
 		super._createChildren(parentNode, rep)
-	}
-	
+	}	
 
 	def boolean _isLeaf(Membership membership) {
 		false

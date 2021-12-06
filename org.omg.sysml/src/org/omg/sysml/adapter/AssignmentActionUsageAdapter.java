@@ -21,11 +21,7 @@
 
 package org.omg.sysml.adapter;
 
-import java.util.List;
-
 import org.omg.sysml.lang.sysml.AssignmentActionUsage;
-import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.util.TypeUtil;
 
 public class AssignmentActionUsageAdapter extends ActionUsageAdapter {
@@ -40,26 +36,7 @@ public class AssignmentActionUsageAdapter extends ActionUsageAdapter {
 	
 	protected void addTargetRedefinitions() {
 		AssignmentActionUsage target = getTarget();
-		List<Feature> parameters = TypeUtil.getOwnedParametersOf(target);
-		if (!parameters.isEmpty()) {
-			Feature targetFeature = parameters.get(0);
-			List<Feature> features = targetFeature.getOwnedFeature();
-			if (!features.isEmpty()) {
-				Feature startingAtFeature = features.get(0);
-				TypeUtil.addDefaultGeneralTypeTo(startingAtFeature, SysMLPackage.eINSTANCE.getRedefinition(), getDefaultSupertype("startingAt"));
-				TypeUtil.setIsAddImplicitGeneralTypesFor(startingAtFeature, false);
-				features = startingAtFeature.getOwnedFeature();
-				if (!features.isEmpty()) {
-					Feature accessedFeature = features.get(0);
-					TypeUtil.addDefaultGeneralTypeTo(accessedFeature, SysMLPackage.eINSTANCE.getRedefinition(), getDefaultSupertype("accessedFeature"));
-					Feature referent = target.getReferent();
-					if (referent != null) {
-						TypeUtil.addImplicitGeneralTypeTo(accessedFeature, SysMLPackage.eINSTANCE.getRedefinition(), referent);
-					}
-					TypeUtil.setIsAddImplicitGeneralTypesFor(accessedFeature, false);
-				}
-			}
-		}
+		addFeatureWriteTypes(TypeUtil.getOwnedParametersOf(target), target.getReferent());
 	}
 	
 	public void doTransform() {

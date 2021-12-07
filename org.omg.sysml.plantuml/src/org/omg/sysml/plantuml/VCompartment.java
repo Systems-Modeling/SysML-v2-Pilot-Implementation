@@ -37,6 +37,7 @@ import org.omg.sysml.lang.sysml.AnalysisCaseUsage;
 import org.omg.sysml.lang.sysml.AttributeUsage;
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Connector;
+import org.omg.sysml.lang.sysml.ConstraintUsage;
 import org.omg.sysml.lang.sysml.Definition;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.EnumerationDefinition;
@@ -557,6 +558,16 @@ public class VCompartment extends VStructure {
                 append('\n');
             } else if (fe.f instanceof Connector) {
                 addConnectorText((Connector) fe.f, fe.isInherited);
+                append('\n');
+            } else if (fe.f instanceof ConstraintUsage) {
+                String text = getText(fe.f);
+                if (text == null) continue;
+                String name = getFeatureName(fe.f);
+                if (name != null) {
+                    append(name);
+                    append(' ');
+                }
+                appendText(text, false);
                 append('\n');
             } else if (fe.f instanceof Expression) {
                 String name = getFeatureName(fe.f);

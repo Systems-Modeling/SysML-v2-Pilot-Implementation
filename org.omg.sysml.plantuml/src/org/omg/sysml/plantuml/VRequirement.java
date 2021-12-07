@@ -67,7 +67,7 @@ public class VRequirement extends VCompartment {
             String prefix;
             switch (rcm.getKind()) {
             case ASSUMPTION:
-                prefix = "<i>assume</i> ";
+                prefix = "<b>assume</b> ";
                 break;
             case REQUIREMENT:
                 prefix = "<b>require</b> ";

@@ -62,7 +62,7 @@ public interface AssignmentActionUsage extends ActionUsage {
 	 * @return the value of the '<em>Value Expression</em>' reference.
 	 * @see #setValueExpression(Expression)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getAssignmentActionUsage_ValueExpression()
-	 * @model required="true" ordered="false"
+	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='assigningAction'"
 	 * @generated
 	 */

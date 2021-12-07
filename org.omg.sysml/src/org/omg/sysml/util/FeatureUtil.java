@@ -36,6 +36,7 @@ import org.eclipse.emf.common.util.EList;
 import org.omg.sysml.adapter.FeatureAdapter;
 import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureChaining;
 import org.omg.sysml.lang.sysml.FeatureDirectionKind;
@@ -161,6 +162,11 @@ public class FeatureUtil {
 		return (FeatureValue)feature.getOwnedMembership().stream().
 				filter(FeatureValue.class::isInstance).
 				findFirst().orElse(null);
+	}
+	
+	public static Expression getValueExpressionFor(Feature feature) {
+		FeatureValue featureValue = getValuationFor(feature);
+		return featureValue == null? null: featureValue.getValue();
 	}
 
 	// Featuring Types

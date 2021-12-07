@@ -45,9 +45,9 @@ import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.InvocationExpression;
-import org.omg.sysml.lang.sysml.LiteralBoolean;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.Redefinition;
+import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.Structure;
 import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -57,6 +57,7 @@ import org.omg.sysml.util.ConnectorUtil;
 import org.omg.sysml.util.ElementUtil;
 import org.omg.sysml.util.ExpressionUtil;
 import org.omg.sysml.util.FeatureUtil;
+import org.omg.sysml.util.ImplicitGeneralizationMap;
 import org.omg.sysml.util.TypeUtil;
 
 public class FeatureAdapter extends TypeAdapter {
@@ -404,33 +405,66 @@ public class FeatureAdapter extends TypeAdapter {
 		FeatureUtil.addFeaturingTypesTo(connector, featuringTypes);
 		return connector;
 	}
-
-	protected BindingConnector addValueBinding(Expression sourceExpression) {
-		Feature target = getTarget();
-		ElementUtil.transform(sourceExpression);
-		Feature result = sourceExpression.getResult();
-		if (target.getOwnedSpecialization().isEmpty()) {
-			addImplicitGeneralType(SysMLPackage.eINSTANCE.getSubsetting(), result);
+	
+	protected void addFeatureWriteTypes(List<Feature> parameters, Feature referent) {
+		if (!parameters.isEmpty()) {
+			Feature targetFeature = parameters.get(0);
+			List<Feature> features = targetFeature.getOwnedFeature();
+			if (!features.isEmpty()) {
+				Feature startingAtFeature = features.get(0);
+				TypeUtil.addDefaultGeneralTypeTo(startingAtFeature, SysMLPackage.eINSTANCE.getRedefinition(), getDefaultSupertype("startingAt"));
+				TypeUtil.setIsAddImplicitGeneralTypesFor(startingAtFeature, false);
+				features = startingAtFeature.getOwnedFeature();
+				if (!features.isEmpty()) {
+					Feature accessedFeature = features.get(0);
+					TypeUtil.addDefaultGeneralTypeTo(accessedFeature, SysMLPackage.eINSTANCE.getRedefinition(), getDefaultSupertype("accessedFeature"));
+					if (referent != null) {
+						TypeUtil.addImplicitGeneralTypeTo(accessedFeature, SysMLPackage.eINSTANCE.getRedefinition(), referent);
+					}
+					TypeUtil.setIsAddImplicitGeneralTypesFor(accessedFeature, false);
+				}
+			}
 		}
-		return addBindingConnector(target.getFeaturingType(), result, target);
+	}
+
+	protected void addFeatureWritePerformance(Expression value) {
+		// Note: A Membership with an empty Step is assumed to be added in the grammar, 
+		// immediately after the FeatureValue.
+		Feature target = getTarget();
+		List<Element> ownedMembers = target.getOwnedMember();
+		int i = ownedMembers.indexOf(value) + 1;
+		if (i < ownedMembers.size()) {
+			Element featureWrite = ownedMembers.get(i);
+			if (featureWrite instanceof Step) {
+				TypeUtil.addDefaultGeneralTypeTo((Step)featureWrite, SysMLPackage.eINSTANCE.getFeatureTyping(), 
+						ImplicitGeneralizationMap.getDefaultSupertypeFor(featureWrite.getClass(), "featureWrite"));
+				EList<Type> featuringTypes = target.getFeaturingType();
+				FeatureUtil.addFeaturingTypesTo((Step)featureWrite, featuringTypes);
+				List<Feature> parameters = TypeUtil.getOwnedParametersOf((Step)featureWrite);
+				if (parameters.size() > 1) {
+					addBindingConnector(featuringTypes, value.getResult(), parameters.get(1));
+				}
+				addFeatureWriteTypes(parameters, target);
+			}
+		}
 	}
 		
-	public BindingConnector computeAssertionConnector(Feature result) {
-		Feature feature = getTarget();
-		LiteralBoolean literalBoolean = (LiteralBoolean)feature.getOwnedFeature().stream().
-				filter(f->f instanceof LiteralBoolean).
-				findFirst().orElse(null);
-		return literalBoolean == null? null:
-			addResultBinding(literalBoolean, result);
-	}
-	
 	protected void computeValueConnector() {
-		Feature feature = getTarget();
-		FeatureValue valuation = FeatureUtil.getValuationFor(feature);
+		Feature target = getTarget();
+		FeatureValue valuation = FeatureUtil.getValuationFor(target);
 		if (valuation != null && !valuation.isDefault()) {
 			Expression value = valuation.getValue();
 			if (value != null) {
-				addValueBinding(value);
+				ElementUtil.transform(value);
+				Feature result = value.getResult();
+				if (target.getOwnedSpecialization().isEmpty()) {
+					addImplicitGeneralType(SysMLPackage.eINSTANCE.getSubsetting(), result);
+				}
+				if (valuation.isInitial()) {
+					addFeatureWritePerformance(value);
+				} else {
+					addBindingConnector(target.getFeaturingType(), result, target);
+				}
 			}
 		}
 	}

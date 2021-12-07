@@ -2,17 +2,17 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
-import org.eclipse.emf.common.notify.Notification;
+import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.omg.sysml.lang.sysml.AssignmentActionUsage;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.util.FeatureUtil;
+import org.omg.sysml.util.TypeUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -30,16 +30,6 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * @generated
  */
 public class AssignmentActionUsageImpl extends ActionUsageImpl implements AssignmentActionUsage {
-	/**
-	 * The cached value of the '{@link #getValueExpression() <em>Value Expression</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getValueExpression()
-	 * @generated
-	 * @ordered
-	 */
-	protected Expression valueExpression;
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -73,24 +63,20 @@ public class AssignmentActionUsageImpl extends ActionUsageImpl implements Assign
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public Expression basicGetTargetArgument() {
-		// TODO: implement this method to return the 'Target Argument' reference
-		// -> do not perform proxy resolution
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		List<Feature> parameters = TypeUtil.getOwnedParametersOf(this);
+		return parameters.isEmpty()? null: FeatureUtil.getValueExpressionFor(parameters.get(0));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public void setTargetArgument(Expression newTargetArgument) {
-		// TODO: implement this method to set the 'Target Argument' reference
-		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
 	}
 
@@ -101,37 +87,28 @@ public class AssignmentActionUsageImpl extends ActionUsageImpl implements Assign
 	 */
 	@Override
 	public Expression getValueExpression() {
-		if (valueExpression != null && valueExpression.eIsProxy()) {
-			InternalEObject oldValueExpression = (InternalEObject)valueExpression;
-			valueExpression = (Expression)eResolveProxy(oldValueExpression);
-			if (valueExpression != oldValueExpression) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SysMLPackage.ASSIGNMENT_ACTION_USAGE__VALUE_EXPRESSION, oldValueExpression, valueExpression));
-			}
-		}
-		return valueExpression;
+		Expression valueExpression = basicGetValueExpression();
+		return valueExpression != null && valueExpression.eIsProxy() ? (Expression)eResolveProxy((InternalEObject)valueExpression) : valueExpression;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public Expression basicGetValueExpression() {
-		return valueExpression;
+		List<Feature> parameters = TypeUtil.getOwnedParametersOf(this);
+		return parameters.size() < 2? null: FeatureUtil.getValueExpressionFor(parameters.get(1));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public void setValueExpression(Expression newValueExpression) {
-		Expression oldValueExpression = valueExpression;
-		valueExpression = newValueExpression;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.ASSIGNMENT_ACTION_USAGE__VALUE_EXPRESSION, oldValueExpression, valueExpression));
+		throw new UnsupportedOperationException();
 	}
 
 	/**
@@ -148,24 +125,22 @@ public class AssignmentActionUsageImpl extends ActionUsageImpl implements Assign
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public Feature basicGetReferent() {
-		// TODO: implement this method to return the 'Referent' reference
-		// -> do not perform proxy resolution
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		return (Feature) getOwnedMembership().stream().
+				map(Membership::getMemberElement).
+				filter(e->e instanceof Feature && !FeatureUtil.isParameter((Feature)e)).
+				findFirst().orElse(null);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public void setReferent(Feature newReferent) {
-		// TODO: implement this method to set the 'Referent' reference
-		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
 	}
 
@@ -243,7 +218,7 @@ public class AssignmentActionUsageImpl extends ActionUsageImpl implements Assign
 			case SysMLPackage.ASSIGNMENT_ACTION_USAGE__TARGET_ARGUMENT:
 				return basicGetTargetArgument() != null;
 			case SysMLPackage.ASSIGNMENT_ACTION_USAGE__VALUE_EXPRESSION:
-				return valueExpression != null;
+				return basicGetValueExpression() != null;
 			case SysMLPackage.ASSIGNMENT_ACTION_USAGE__REFERENT:
 				return basicGetReferent() != null;
 		}

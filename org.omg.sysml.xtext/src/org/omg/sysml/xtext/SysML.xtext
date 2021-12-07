@@ -475,17 +475,41 @@ fragment UsageBody returns SysML::Usage :
 	DefinitionBody
 ;
 
-fragment ValuePart returns SysML::Feature :
-	ownedRelationship += FeatureValue
-;
-
 fragment ValueOrFlowPart returns SysML::Feature :
 	ValuePart | ownedRelationship += SourceItemFlowMember
 ;
 
+fragment ValuePart returns SysML::Feature :
+	  ownedRelationship += FeatureValue
+	| ownedRelationship += FeatureValueExpression
+	  ownedRelationship += EmptyAssignmentActionMember
+;
+
 FeatureValue returns SysML::FeatureValue :
-	( '=' | isDefault ?= 'default' '='? )
+	( '=' | isDefault ?= 'default' ( '=' | isInitial ?= ':=' )? )
 	ownedRelatedElement += OwnedExpression // value = OwnedExpression
+;
+
+FeatureValueExpression returns SysML::FeatureValue :
+	isInitial ?= ':='
+	ownedRelatedElement += OwnedExpression // value = OwnedExpression
+;
+
+EmptyAssignmentActionMember returns SysML::Membership :
+	ownedRelatedElement += EmptyAssignmentAction // ownedMemberElement = EmptyAssignmentAction
+;
+
+EmptyAssignmentAction returns SysML::AssignmentActionUsage :
+	ownedRelationship += EmptyTargetMember
+	ownedRelationship += EmptyParameterMember
+;
+
+EmptyTargetMember returns SysML::ParameterMembership :
+	ownedRelatedElement += EmptyTargetParameter // ownedMemberParameter = TargetParameter
+;
+
+EmptyTargetParameter returns SysML::ReferenceUsage :
+	ownedRelationship += TargetFeatureMember
 ;
 
 SourceItemFlowMember returns SysML::Membership :
@@ -1341,7 +1365,7 @@ ActionUsageParameter returns SysML::Usage :
 /* Action Nodes */
 
 ActionNode returns SysML::ActionUsage :
-	  SendNode | AcceptNode | ControlNode
+	  SendNode | AcceptNode | AssignmentNode | ControlNode
 ;
 
 AcceptNode returns SysML::AcceptActionUsage :
@@ -1391,7 +1415,43 @@ NodeParameter returns SysML::Usage :
 ;
 
 FeatureBinding returns SysML::FeatureValue :
-	ownedRelatedElement += OwnedExpression // value = ownedExpression
+	ownedRelatedElement += OwnedExpression // value = OwnedExpression
+;
+
+AssignmentNode returns SysML::AssignmentActionUsage :
+	OccurrenceUsagePrefix AssignmentNodeDeclaration ActionBody
+;
+
+fragment AssignmentNodeDeclaration returns SysML::ActionUsage :
+	( 'action' UsageDeclaration )? 'assign' 
+	ownedRelationship += AssignmentTargetMember
+	ownedRelationship += FeatureReferenceMember ':=' 
+	ownedRelationship += NodeParameterMember
+;
+
+AssignmentTargetMember returns SysML::ParameterMembership :
+	ownedRelatedElement += TargetParameter // ownedMemberParameter = TargetParameter
+;
+
+TargetParameter returns SysML::ReferenceUsage :
+	( ownedRelationship += TargetBinding '.' )?
+	ownedRelationship += TargetFeatureMember
+;
+
+TargetFeatureMember returns SysML::FeatureMembership :
+	ownedRelatedElement += TargetFeature // ownedMemberFeature = TargetFeature
+;
+
+TargetFeature returns SysML::ReferenceUsage :
+	ownedRelationship += TargetAccessedFeatureMember
+;
+
+TargetAccessedFeatureMember returns SysML::FeatureMembership :
+	ownedRelatedElement += EmptyUsage // ownedMemberFeature = EmptyUsage
+;
+
+TargetBinding returns SysML::FeatureValue :
+	ownedRelatedElement += PrimaryExpression // value = PrimaryExpression
 ;
 
 ControlNode returns SysML::ControlNode :
@@ -1418,10 +1478,10 @@ ForkNode returns SysML::ForkNode :
 ;
 
 EmptyParameterMember returns SysML::ParameterMembership :
-	ownedRelatedElement += EmptyParameter // ownedMemberParameter = EmptyParameter
+	ownedRelatedElement += EmptyUsage // ownedMemberParameter = EmptyParameter
 ;
 
-EmptyParameter returns SysML::Usage :
+EmptyUsage returns SysML::Usage :
 	{SysML::ReferenceUsage}
 ;
 
@@ -1544,6 +1604,7 @@ PerformedActionUsage returns SysML::ActionUsage :
 	  {SysML::PerformActionUsage} PerformActionUsageDeclaration 
 	| {SysML::AcceptActionUsage} AcceptNodeDeclaration 
 	| {SysML::SendActionUsage} SendNodeDeclaration
+	| {SysML::AssignmentActionUsage} AssignmentNodeDeclaration
 ;
 
 TransitionUsageMember returns SysML::FeatureMembership :
@@ -1760,7 +1821,7 @@ fragment EmptyReturnParameterPart returns SysML::Type :
 ;
 
 EmptyReturnParameterMember returns SysML::ReturnParameterMembership :
-	ownedRelatedElement += EmptyParameter // ownedMemberParameter = EmptyParameter
+	ownedRelatedElement += EmptyUsage // ownedMemberParameter = EmptyParameter
 ;
 
 /* Constraint Usages */

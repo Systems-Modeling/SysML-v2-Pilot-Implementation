@@ -290,6 +290,10 @@ public class TypeUtil {
 	
 	// Implicit general types
 	
+	public static void setIsAddImplicitGeneralTypesFor(Type type, boolean isAddImplicitGeneralTypes) {
+		getTypeAdapter(type).setIsAddImplicitGeneralTypes(isAddImplicitGeneralTypes);
+	}
+	
 	public static boolean isImplicitGeneralizationDeclaredFor(Type type, EClass eClass) {
 		return getTypeAdapter(type).isImplicitGeneralizationDeclaredFor(eClass);
 	}
@@ -312,6 +316,10 @@ public class TypeUtil {
 	
 	public static void addDefaultGeneralTypeTo(Type type) {
 		getTypeAdapter(type).addDefaultGeneralType();
+	}
+	
+	public static void addDefaultGeneralTypeTo(Type type, EClass generalizationEClass, String... superTypeNames) {
+		getTypeAdapter(type).addDefaultGeneralType(generalizationEClass, superTypeNames);
 	}
 	
 	public static void addImplicitGeneralTypeTo(Type type, EClass kind, Type generalType) {

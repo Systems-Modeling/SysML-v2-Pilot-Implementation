@@ -40,7 +40,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	protected AbstractElementAlias match_EffectBehaviorUsage___LeftCurlyBracketKeyword_1_1_0_RightCurlyBracketKeyword_1_1_2__q;
 	protected AbstractElementAlias match_EnumeratedValue_EnumerationUsageKeywordParserRuleCall_0_q;
 	protected AbstractElementAlias match_EnumerationBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__;
-	protected AbstractElementAlias match_FeatureValue_EqualsSignKeyword_0_1_1_q;
+	protected AbstractElementAlias match_FeatureValue_EqualsSignKeyword_0_1_1_0_q;
 	protected AbstractElementAlias match_InterfaceBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__;
 	protected AbstractElementAlias match_InterfaceUsageDeclaration_ConnectorKeywordParserRuleCall_0_1_0_q;
 	protected AbstractElementAlias match_MetadataFeature_FeatureKeyword_0_q;
@@ -82,7 +82,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 		match_EffectBehaviorUsage___LeftCurlyBracketKeyword_1_1_0_RightCurlyBracketKeyword_1_1_2__q = new GroupAlias(false, true, new TokenAlias(false, false, grammarAccess.getEffectBehaviorUsageAccess().getLeftCurlyBracketKeyword_1_1_0()), new TokenAlias(false, false, grammarAccess.getEffectBehaviorUsageAccess().getRightCurlyBracketKeyword_1_1_2()));
 		match_EnumeratedValue_EnumerationUsageKeywordParserRuleCall_0_q = new TokenAlias(false, true, grammarAccess.getEnumeratedValueAccess().getEnumerationUsageKeywordParserRuleCall_0());
 		match_EnumerationBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getEnumerationBodyAccess().getLeftCurlyBracketKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getEnumerationBodyAccess().getRightCurlyBracketKeyword_1_2())), new TokenAlias(false, false, grammarAccess.getEnumerationBodyAccess().getSemicolonKeyword_0()));
-		match_FeatureValue_EqualsSignKeyword_0_1_1_q = new TokenAlias(false, true, grammarAccess.getFeatureValueAccess().getEqualsSignKeyword_0_1_1());
+		match_FeatureValue_EqualsSignKeyword_0_1_1_0_q = new TokenAlias(false, true, grammarAccess.getFeatureValueAccess().getEqualsSignKeyword_0_1_1_0());
 		match_InterfaceBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getInterfaceBodyAccess().getLeftCurlyBracketKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getInterfaceBodyAccess().getRightCurlyBracketKeyword_1_2())), new TokenAlias(false, false, grammarAccess.getInterfaceBodyAccess().getSemicolonKeyword_0()));
 		match_InterfaceUsageDeclaration_ConnectorKeywordParserRuleCall_0_1_0_q = new TokenAlias(false, true, grammarAccess.getInterfaceUsageDeclarationAccess().getConnectorKeywordParserRuleCall_0_1_0());
 		match_MetadataFeature_FeatureKeyword_0_q = new TokenAlias(false, true, grammarAccess.getMetadataFeatureAccess().getFeatureKeyword_0());
@@ -892,8 +892,8 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 				emit_EnumeratedValue_EnumerationUsageKeywordParserRuleCall_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_EnumerationBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__.equals(syntax))
 				emit_EnumerationBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_FeatureValue_EqualsSignKeyword_0_1_1_q.equals(syntax))
-				emit_FeatureValue_EqualsSignKeyword_0_1_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_FeatureValue_EqualsSignKeyword_0_1_1_0_q.equals(syntax))
+				emit_FeatureValue_EqualsSignKeyword_0_1_1_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_InterfaceBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__.equals(syntax))
 				emit_InterfaceBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_InterfaceUsageDeclaration_ConnectorKeywordParserRuleCall_0_1_0_q.equals(syntax))
@@ -967,6 +967,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isVariation?='variation' ActionUsageKeyword (ambiguity) (rule end)
 	 *     name=Name (ambiguity) (rule end)
 	 *     ownedRelationship+=ActionUsageParameterMember ')' (ambiguity) (rule end)
+	 *     ownedRelationship+=EmptyAssignmentActionMember (ambiguity) (rule end)
 	 *     ownedRelationship+=EmptyParameterMember (ambiguity) (rule end)
 	 *     ownedRelationship+=FeatureTyping (ambiguity) (rule end)
 	 *     ownedRelationship+=FeatureValue (ambiguity) (rule end)
@@ -1160,6 +1161,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     name=Name (ambiguity) (rule end)
 	 *     ownedRelationship+=ActionUsageParameterMember ')' (ambiguity) (rule end)
 	 *     ownedRelationship+=CalculationReturnParameterMember (ambiguity) (rule end)
+	 *     ownedRelationship+=EmptyAssignmentActionMember (ambiguity) (rule end)
 	 *     ownedRelationship+=EmptyReturnParameterMember (ambiguity) (rule end)
 	 *     ownedRelationship+=FeatureTyping (ambiguity) (rule end)
 	 *     ownedRelationship+=FeatureValue (ambiguity) (rule end)
@@ -1257,6 +1259,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     name=Name (ambiguity) (rule end)
 	 *     ownedRelationship+=ActionUsageParameterMember ')' (ambiguity) (rule end)
 	 *     ownedRelationship+=CalculationReturnParameterMember (ambiguity) (rule end)
+	 *     ownedRelationship+=EmptyAssignmentActionMember (ambiguity) (rule end)
 	 *     ownedRelationship+=FeatureTyping (ambiguity) (rule end)
 	 *     ownedRelationship+=FeatureValue (ambiguity) (rule end)
 	 *     ownedRelationship+=LifeClassMembership AnalysisCaseDefKeyword (ambiguity) (rule end)
@@ -1486,6 +1489,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     name=Name (ambiguity) ownedRelationship+=LifeClassMembership
 	 *     ownedRelationship+=ConnectorEndMember ')' (ambiguity) (rule end)
 	 *     ownedRelationship+=ConnectorEndMember (ambiguity) (rule end)
+	 *     ownedRelationship+=EmptyAssignmentActionMember (ambiguity) (rule end)
 	 *     ownedRelationship+=FeatureTyping (ambiguity) (rule end)
 	 *     ownedRelationship+=FeatureValue (ambiguity) (rule end)
 	 *     ownedRelationship+=ItemFeatureMember (ambiguity) (rule end)
@@ -1541,6 +1545,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isOrdered?='ordered' (ambiguity) (rule end)
 	 *     name=Name (ambiguity) (rule end)
 	 *     ownedRelationship+=ActionUsageParameterMember ')' (ambiguity) (rule end)
+	 *     ownedRelationship+=EmptyAssignmentActionMember (ambiguity) (rule end)
 	 *     ownedRelationship+=EmptyParameterMember (ambiguity) (rule end)
 	 *     ownedRelationship+=FeatureTyping (ambiguity) (rule end)
 	 *     ownedRelationship+=FeatureValue (ambiguity) (rule end)
@@ -1575,6 +1580,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) isOrdered?='ordered'
 	 *     (rule start) (ambiguity) name=Name
 	 *     (rule start) (ambiguity) ownedRelationship+=FeatureValue
+	 *     (rule start) (ambiguity) ownedRelationship+=FeatureValueExpression
 	 *     (rule start) (ambiguity) ownedRelationship+=OwnedMultiplicity
 	 *     (rule start) (ambiguity) ownedRelationship+=SourceItemFlowMember
 	 */
@@ -1603,7 +1609,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 * This ambiguous syntax occurs at:
 	 *     isDefault?='default' (ambiguity) ownedRelatedElement+=OwnedExpression
 	 */
-	protected void emit_FeatureValue_EqualsSignKeyword_0_1_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_FeatureValue_EqualsSignKeyword_0_1_1_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
@@ -1732,6 +1738,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) isOrdered?='ordered'
 	 *     (rule start) (ambiguity) name=Name
 	 *     (rule start) (ambiguity) ownedRelationship+=FeatureValue
+	 *     (rule start) (ambiguity) ownedRelationship+=FeatureValueExpression
 	 *     (rule start) (ambiguity) ownedRelationship+=OwnedMultiplicity
 	 *     (rule start) (ambiguity) ownedRelationship+=SourceItemFlowMember
 	 *     direction=FeatureDirection (ambiguity) '<' humanId=Name
@@ -1808,6 +1815,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     name=Name (ambiguity) (rule end)
 	 *     ownedRelationship+=ActionUsageParameterMember ')' (ambiguity) (rule end)
 	 *     ownedRelationship+=CalculationReturnParameterMember (ambiguity) (rule end)
+	 *     ownedRelationship+=EmptyAssignmentActionMember (ambiguity) (rule end)
 	 *     ownedRelationship+=EmptyReturnParameterMember (ambiguity) (rule end)
 	 *     ownedRelationship+=FeatureTyping (ambiguity) (rule end)
 	 *     ownedRelationship+=FeatureValue (ambiguity) (rule end)
@@ -1865,6 +1873,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) 'satisfy' RequirementUsageKeyword isOrdered?='ordered'
 	 *     (rule start) (ambiguity) 'satisfy' RequirementUsageKeyword name=Name
 	 *     (rule start) (ambiguity) 'satisfy' RequirementUsageKeyword ownedRelationship+=FeatureValue
+	 *     (rule start) (ambiguity) 'satisfy' RequirementUsageKeyword ownedRelationship+=FeatureValueExpression
 	 *     (rule start) (ambiguity) 'satisfy' RequirementUsageKeyword ownedRelationship+=OwnedMultiplicity
 	 *     (rule start) (ambiguity) 'satisfy' ownedRelationship+=OwnedSubsetting
 	 *     (rule start) (ambiguity) isNegated?='not'
@@ -1893,6 +1902,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     direction=FeatureDirection (ambiguity) 'satisfy' RequirementUsageKeyword isOrdered?='ordered'
 	 *     direction=FeatureDirection (ambiguity) 'satisfy' RequirementUsageKeyword name=Name
 	 *     direction=FeatureDirection (ambiguity) 'satisfy' RequirementUsageKeyword ownedRelationship+=FeatureValue
+	 *     direction=FeatureDirection (ambiguity) 'satisfy' RequirementUsageKeyword ownedRelationship+=FeatureValueExpression
 	 *     direction=FeatureDirection (ambiguity) 'satisfy' RequirementUsageKeyword ownedRelationship+=OwnedMultiplicity
 	 *     direction=FeatureDirection (ambiguity) 'satisfy' ownedRelationship+=OwnedSubsetting
 	 *     direction=FeatureDirection (ambiguity) isNegated?='not'
@@ -1921,6 +1931,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isAbstract?='abstract' (ambiguity) 'satisfy' RequirementUsageKeyword isOrdered?='ordered'
 	 *     isAbstract?='abstract' (ambiguity) 'satisfy' RequirementUsageKeyword name=Name
 	 *     isAbstract?='abstract' (ambiguity) 'satisfy' RequirementUsageKeyword ownedRelationship+=FeatureValue
+	 *     isAbstract?='abstract' (ambiguity) 'satisfy' RequirementUsageKeyword ownedRelationship+=FeatureValueExpression
 	 *     isAbstract?='abstract' (ambiguity) 'satisfy' RequirementUsageKeyword ownedRelationship+=OwnedMultiplicity
 	 *     isAbstract?='abstract' (ambiguity) 'satisfy' ownedRelationship+=OwnedSubsetting
 	 *     isAbstract?='abstract' (ambiguity) isNegated?='not'
@@ -1949,6 +1960,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isDerived?='derived' (ambiguity) 'satisfy' RequirementUsageKeyword isOrdered?='ordered'
 	 *     isDerived?='derived' (ambiguity) 'satisfy' RequirementUsageKeyword name=Name
 	 *     isDerived?='derived' (ambiguity) 'satisfy' RequirementUsageKeyword ownedRelationship+=FeatureValue
+	 *     isDerived?='derived' (ambiguity) 'satisfy' RequirementUsageKeyword ownedRelationship+=FeatureValueExpression
 	 *     isDerived?='derived' (ambiguity) 'satisfy' RequirementUsageKeyword ownedRelationship+=OwnedMultiplicity
 	 *     isDerived?='derived' (ambiguity) 'satisfy' ownedRelationship+=OwnedSubsetting
 	 *     isDerived?='derived' (ambiguity) isNegated?='not'
@@ -1977,6 +1989,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isEnd?='end' (ambiguity) 'satisfy' RequirementUsageKeyword isOrdered?='ordered'
 	 *     isEnd?='end' (ambiguity) 'satisfy' RequirementUsageKeyword name=Name
 	 *     isEnd?='end' (ambiguity) 'satisfy' RequirementUsageKeyword ownedRelationship+=FeatureValue
+	 *     isEnd?='end' (ambiguity) 'satisfy' RequirementUsageKeyword ownedRelationship+=FeatureValueExpression
 	 *     isEnd?='end' (ambiguity) 'satisfy' RequirementUsageKeyword ownedRelationship+=OwnedMultiplicity
 	 *     isEnd?='end' (ambiguity) 'satisfy' ownedRelationship+=OwnedSubsetting
 	 *     isEnd?='end' (ambiguity) isNegated?='not'
@@ -2005,6 +2018,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isIndividual?='individual' (ambiguity) 'satisfy' RequirementUsageKeyword isOrdered?='ordered'
 	 *     isIndividual?='individual' (ambiguity) 'satisfy' RequirementUsageKeyword name=Name
 	 *     isIndividual?='individual' (ambiguity) 'satisfy' RequirementUsageKeyword ownedRelationship+=FeatureValue
+	 *     isIndividual?='individual' (ambiguity) 'satisfy' RequirementUsageKeyword ownedRelationship+=FeatureValueExpression
 	 *     isIndividual?='individual' (ambiguity) 'satisfy' RequirementUsageKeyword ownedRelationship+=OwnedMultiplicity
 	 *     isIndividual?='individual' (ambiguity) 'satisfy' ownedRelationship+=OwnedSubsetting
 	 *     isIndividual?='individual' (ambiguity) isNegated?='not'
@@ -2033,6 +2047,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isReadOnly?='readonly' (ambiguity) 'satisfy' RequirementUsageKeyword isOrdered?='ordered'
 	 *     isReadOnly?='readonly' (ambiguity) 'satisfy' RequirementUsageKeyword name=Name
 	 *     isReadOnly?='readonly' (ambiguity) 'satisfy' RequirementUsageKeyword ownedRelationship+=FeatureValue
+	 *     isReadOnly?='readonly' (ambiguity) 'satisfy' RequirementUsageKeyword ownedRelationship+=FeatureValueExpression
 	 *     isReadOnly?='readonly' (ambiguity) 'satisfy' RequirementUsageKeyword ownedRelationship+=OwnedMultiplicity
 	 *     isReadOnly?='readonly' (ambiguity) 'satisfy' ownedRelationship+=OwnedSubsetting
 	 *     isReadOnly?='readonly' (ambiguity) isNegated?='not'
@@ -2061,6 +2076,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isReference?='ref' (ambiguity) 'satisfy' RequirementUsageKeyword isOrdered?='ordered'
 	 *     isReference?='ref' (ambiguity) 'satisfy' RequirementUsageKeyword name=Name
 	 *     isReference?='ref' (ambiguity) 'satisfy' RequirementUsageKeyword ownedRelationship+=FeatureValue
+	 *     isReference?='ref' (ambiguity) 'satisfy' RequirementUsageKeyword ownedRelationship+=FeatureValueExpression
 	 *     isReference?='ref' (ambiguity) 'satisfy' RequirementUsageKeyword ownedRelationship+=OwnedMultiplicity
 	 *     isReference?='ref' (ambiguity) 'satisfy' ownedRelationship+=OwnedSubsetting
 	 *     isReference?='ref' (ambiguity) isNegated?='not'
@@ -2089,6 +2105,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isVariation?='variation' (ambiguity) 'satisfy' RequirementUsageKeyword isOrdered?='ordered'
 	 *     isVariation?='variation' (ambiguity) 'satisfy' RequirementUsageKeyword name=Name
 	 *     isVariation?='variation' (ambiguity) 'satisfy' RequirementUsageKeyword ownedRelationship+=FeatureValue
+	 *     isVariation?='variation' (ambiguity) 'satisfy' RequirementUsageKeyword ownedRelationship+=FeatureValueExpression
 	 *     isVariation?='variation' (ambiguity) 'satisfy' RequirementUsageKeyword ownedRelationship+=OwnedMultiplicity
 	 *     isVariation?='variation' (ambiguity) 'satisfy' ownedRelationship+=OwnedSubsetting
 	 *     isVariation?='variation' (ambiguity) isNegated?='not'
@@ -2117,6 +2134,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     ownedRelationship+=PortioningFeatureMember (ambiguity) 'satisfy' RequirementUsageKeyword isOrdered?='ordered'
 	 *     ownedRelationship+=PortioningFeatureMember (ambiguity) 'satisfy' RequirementUsageKeyword name=Name
 	 *     ownedRelationship+=PortioningFeatureMember (ambiguity) 'satisfy' RequirementUsageKeyword ownedRelationship+=FeatureValue
+	 *     ownedRelationship+=PortioningFeatureMember (ambiguity) 'satisfy' RequirementUsageKeyword ownedRelationship+=FeatureValueExpression
 	 *     ownedRelationship+=PortioningFeatureMember (ambiguity) 'satisfy' RequirementUsageKeyword ownedRelationship+=OwnedMultiplicity
 	 *     ownedRelationship+=PortioningFeatureMember (ambiguity) 'satisfy' ownedRelationship+=OwnedSubsetting
 	 *     ownedRelationship+=PortioningFeatureMember (ambiguity) isNegated?='not'
@@ -2237,6 +2255,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isReference?='ref' ViewUsageKeyword (ambiguity) (rule end)
 	 *     isVariation?='variation' ViewUsageKeyword (ambiguity) (rule end)
 	 *     name=Name (ambiguity) (rule end)
+	 *     ownedRelationship+=EmptyAssignmentActionMember (ambiguity) (rule end)
 	 *     ownedRelationship+=FeatureTyping (ambiguity) (rule end)
 	 *     ownedRelationship+=FeatureValue (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedMultiplicity (ambiguity) (rule end)

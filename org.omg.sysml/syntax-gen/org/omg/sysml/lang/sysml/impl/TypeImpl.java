@@ -228,9 +228,12 @@ public class TypeImpl extends NamespaceImpl implements Type {
 	 * @generated NOT
 	 */
 	public EList<Feature> getOwnedFeature() {
-		return new DerivedEObjectEList<Feature>(
-				Feature.class, this, SysMLPackage.TYPE__OWNED_FEATURE, 
-				new int[]{SysMLPackage.NAMESPACE__OWNED_MEMBER});
+		EList<Feature> ownedFeatures = new NonNotifyingEObjectEList<>(Feature.class, this, SysMLPackage.TYPE__OWNED_FEATURE);
+		getOwnedFeatureMembership().stream().
+			map(FeatureMembership::getOwnedMemberFeature).
+			filter(feature->feature != null).
+			forEachOrdered(ownedFeatures::add);
+		return ownedFeatures;
 	}
 
 	/**
@@ -239,9 +242,11 @@ public class TypeImpl extends NamespaceImpl implements Type {
 	 * @generated NOT
 	 */
 	public EList<Feature> getFeature() {
-		return new DerivedEObjectEList<Feature>(
-				Feature.class, this, SysMLPackage.TYPE__FEATURE, 
-				new int[]{SysMLPackage.NAMESPACE__MEMBER});
+		EList<Feature> features = new NonNotifyingEObjectEList<>(Feature.class, this, SysMLPackage.TYPE__FEATURE);
+		getFeatureMembership().stream().
+			map(FeatureMembership::getMemberFeature).
+			forEachOrdered(features::add);
+		return features;
 	}
 
 	/**

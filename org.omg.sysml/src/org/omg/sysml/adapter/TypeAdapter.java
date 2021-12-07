@@ -83,6 +83,10 @@ public class TypeAdapter extends NamespaceAdapter {
 	
 	protected boolean isAddImplicitGeneralTypes = true;
 	
+	public void setIsAddImplicitGeneralTypes(boolean isAddImplicitGeneralTypes) {
+		this.isAddImplicitGeneralTypes = isAddImplicitGeneralTypes;
+	}
+	
 	/**
 	 * Contains the required ends for implicit generalizations like implicit
 	 * superclassing, subsetting, featuretyping and redefinitions for future access.

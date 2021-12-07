@@ -76,6 +76,10 @@ public class VCompartment extends VStructure {
 
     private final boolean compartmentMost;
 
+    protected boolean isCompartmentMost() {
+        return compartmentMost;
+    }
+
     protected boolean rec(Membership m, Element e, boolean force) {
         VTree subtree = parent.subtree(m, e, force);
         if (subtree == null) return false;
@@ -90,7 +94,7 @@ public class VCompartment extends VStructure {
     }
 
     private String recCurrent(Element e, boolean force) {
-        if (compartmentMost) return null;
+        if (isCompartmentMost()) return null;
         if (recCurrentMembership(e, force)) return "";
         return null;
     }
@@ -266,7 +270,7 @@ public class VCompartment extends VStructure {
 
     protected FeatureEntry addFeature(Feature f,
                                       String alias) {
-        return addFeature(f, alias, null, compartmentMost);
+        return addFeature(f, alias, null, isCompartmentMost());
     }
 
 
@@ -322,7 +326,7 @@ public class VCompartment extends VStructure {
     protected String tree(Feature f) {
         boolean compartmentTree = styleValue("compartmentTree") != null;
 
-        if (!(compartmentMost || compartmentTree)) return null;
+        if (!(isCompartmentMost() || compartmentTree)) return null;
         FeatureEntry fe = addFeature(f, null, null, true);
         if (compartmentTree) {
             CompTree ct = new CompTree(fe);

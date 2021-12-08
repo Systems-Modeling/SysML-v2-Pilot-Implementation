@@ -528,6 +528,18 @@ public class VCompartment extends VStructure {
         }
     }
 
+    private boolean appendFeatureText(Feature f, String toBeRemoved) {
+        String text = getText(f);
+        if (text == null) return false;
+        text = text.trim();
+        if (text.startsWith(toBeRemoved)) {
+            text = text.substring(toBeRemoved.length()).trim();
+        }
+        appendText(text, false);
+        append('\n');
+        return true;
+    }
+
     private void addFeatures(List<FeatureEntry> es, int level) {
         Collections.sort(es);
         final int size = es.size();
@@ -560,15 +572,7 @@ public class VCompartment extends VStructure {
                 addConnectorText((Connector) fe.f, fe.isInherited);
                 append('\n');
             } else if (fe.f instanceof ConstraintUsage) {
-                String text = getText(fe.f);
-                if (text == null) continue;
-                String name = getFeatureName(fe.f);
-                if (name != null) {
-                    append(name);
-                    append(' ');
-                }
-                appendText(text, false);
-                append('\n');
+                appendFeatureText(fe.f, "constraint");
             } else if (fe.f instanceof Expression) {
                 String name = getFeatureName(fe.f);
                 if (name != null) {

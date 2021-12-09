@@ -37,6 +37,7 @@ import org.omg.sysml.lang.sysml.AnalysisCaseUsage;
 import org.omg.sysml.lang.sysml.AttributeUsage;
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Connector;
+import org.omg.sysml.lang.sysml.ConstraintUsage;
 import org.omg.sysml.lang.sysml.Definition;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.EnumerationDefinition;
@@ -76,6 +77,10 @@ public class VCompartment extends VStructure {
 
     private final boolean compartmentMost;
 
+    protected boolean isCompartmentMost() {
+        return compartmentMost;
+    }
+
     protected boolean rec(Membership m, Element e, boolean force) {
         VTree subtree = parent.subtree(m, e, force);
         if (subtree == null) return false;
@@ -90,7 +95,7 @@ public class VCompartment extends VStructure {
     }
 
     private String recCurrent(Element e, boolean force) {
-        if (compartmentMost) return null;
+        if (isCompartmentMost()) return null;
         if (recCurrentMembership(e, force)) return "";
         return null;
     }
@@ -266,7 +271,7 @@ public class VCompartment extends VStructure {
 
     protected FeatureEntry addFeature(Feature f,
                                       String alias) {
-        return addFeature(f, alias, null, compartmentMost);
+        return addFeature(f, alias, null, isCompartmentMost());
     }
 
 
@@ -322,7 +327,7 @@ public class VCompartment extends VStructure {
     protected String tree(Feature f) {
         boolean compartmentTree = styleValue("compartmentTree") != null;
 
-        if (!(compartmentMost || compartmentTree)) return null;
+        if (!(isCompartmentMost() || compartmentTree)) return null;
         FeatureEntry fe = addFeature(f, null, null, true);
         if (compartmentTree) {
             CompTree ct = new CompTree(fe);
@@ -523,6 +528,18 @@ public class VCompartment extends VStructure {
         }
     }
 
+    private boolean appendFeatureText(Feature f, String toBeRemoved) {
+        String text = getText(f);
+        if (text == null) return false;
+        text = text.trim();
+        if (text.startsWith(toBeRemoved)) {
+            text = text.substring(toBeRemoved.length()).trim();
+        }
+        appendText(text, false);
+        append('\n');
+        return true;
+    }
+
     private void addFeatures(List<FeatureEntry> es, int level) {
         Collections.sort(es);
         final int size = es.size();
@@ -554,6 +571,8 @@ public class VCompartment extends VStructure {
             } else if (fe.f instanceof Connector) {
                 addConnectorText((Connector) fe.f, fe.isInherited);
                 append('\n');
+            } else if (fe.f instanceof ConstraintUsage) {
+                appendFeatureText(fe.f, "constraint");
             } else if (fe.f instanceof Expression) {
                 String name = getFeatureName(fe.f);
                 if (name != null) {

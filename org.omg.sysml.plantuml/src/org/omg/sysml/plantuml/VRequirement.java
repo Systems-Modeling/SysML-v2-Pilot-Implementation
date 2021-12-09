@@ -54,13 +54,20 @@ public class VRequirement extends VCompartment {
         }
     }
 
+    private boolean isAnonymousConstraint(RequirementConstraintMembership rcm) {
+        ConstraintUsage c = rcm.getOwnedConstraint();
+        return c.getName() == null;
+    }
+
     @Override
     public String caseRequirementConstraintMembership(RequirementConstraintMembership rcm) {
-        if (!rec(rcm, rcm, false)) {
+        if (isCompartmentMost()
+            || isAnonymousConstraint(rcm)
+            || !rec(rcm, rcm, false)) {
             String prefix;
             switch (rcm.getKind()) {
             case ASSUMPTION:
-                prefix = "<i>assume</i> ";
+                prefix = "<b>assume</b> ";
                 break;
             case REQUIREMENT:
                 prefix = "<b>require</b> ";

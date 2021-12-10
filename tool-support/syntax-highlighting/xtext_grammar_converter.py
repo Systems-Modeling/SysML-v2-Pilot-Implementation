@@ -344,7 +344,6 @@ class Converter(object):
                     additional_def_keywords.add(keyword)
             logging.info(f"additional_def_keywords={sorted(additional_def_keywords)}")
 
-        logging.info(f"keywords = {self.keywords}")
         keywords_minus_atoms = list(self.keywords)
         keywords_minus_atoms.remove("false")
         keywords_minus_atoms.remove("true")

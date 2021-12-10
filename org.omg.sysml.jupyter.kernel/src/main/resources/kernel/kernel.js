@@ -51,16 +51,17 @@ var enableMode = function (CodeMirror) {
             name: "clike",
             keywords: words([
                 "about", "abstract", "accept", "action", "actor", "alias", "all", "allocate", "allocation", "analysis",
-                "and", "as", "assert", "assume", "attribute", "bind", "binding", "by", "calc", "case", "comment",
-                "concern", "connect", "connection", "constraint", "decide", "def", "default", "defined", "dependency",
-                "derived", "do", "doc", "else", "end", "entry", "enum", "event", "exhibit", "exit", "expose", "feature",
-                "filter", "first", "flow", "for", "fork", "frame", "from", "hastype", "if", "implies", "import", "in",
-                "include", "individual", "inout", "interface", "istype", "item", "join", "language", "merge", "message",
-                "metadata", "nonunique", "not", "objective", "occurrence", "of", "or", "ordered", "out", "package",
-                "parallel", "part", "perform", "port", "private", "protected", "public", "readonly", "redefines", "ref",
-                "render", "rendering", "rep", "require", "requirement", "return", "satisfy", "send", "snapshot",
-                "specializes", "stakeholder", "state", "subject", "subsets", "succession", "then", "timeslice", "to",
-                "transition", "use", "variant", "variation", "verification", "verify", "via", "view", "viewpoint", "xor"
+                "and", "as", "assert", "assign", "assume", "attribute", "bind", "binding", "by", "calc", "case",
+                "comment", "concern", "connect", "connection", "constraint", "decide", "def", "default", "defined",
+                "dependency", "derived", "do", "doc", "else", "end", "entry", "enum", "event", "exhibit", "exit",
+                "expose", "feature", "filter", "first", "flow", "for", "fork", "frame", "from", "hastype", "if",
+                "implies", "import", "in", "include", "individual", "inout", "interface", "istype", "item", "join",
+                "language", "merge", "message", "metadata", "nonunique", "not", "objective", "occurrence", "of", "or",
+                "ordered", "out", "package", "parallel", "part", "perform", "port", "private", "protected", "public",
+                "readonly", "redefines", "ref", "render", "rendering", "rep", "require", "requirement", "return",
+                "satisfy", "send", "snapshot", "specializes", "stakeholder", "state", "subject", "subsets",
+                "succession", "then", "timeslice", "to", "transition", "use", "variant", "variation", "verification",
+                "verify", "via", "view", "viewpoint", "xor"
             ]),
             defKeywords: words([
                 "action", "allocation", "analysis", "attribute", "binding", "calc", "case", "comment", "concern",

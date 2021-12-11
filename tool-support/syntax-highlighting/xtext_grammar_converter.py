@@ -255,8 +255,8 @@ class Converter(object):
                 logging.info(f"{var:{max_name_len}s} = {keywords_dict[var]}")
                 if var.endswith("DefKeyword"):
                     def_keyword_var = keywords_dict[var][0].split()[0]
-                    def_keyword_value = [x for x in keywords_dict[def_keyword_var] if x.isalpha()][0]
-                    def_keywords_set.add(def_keyword_value)
+                    def_keyword_value = [x for x in keywords_dict[def_keyword_var] if x.replace(" ","").isalpha()][0]
+                    def_keywords_set.add(def_keyword_value.split()[-1])
 
         # Remove interpunction terminals that should not be highlighted
         operators_set.remove(".")
@@ -353,7 +353,7 @@ class Converter(object):
         def_keywords_set.update(additional_def_keywords)
         self.def_keywords = sorted(def_keywords_set)
         for def_keyword in self.def_keywords:
-            if def_keyword not in keywords_minus_atoms:
+            if any([x not in keywords_minus_atoms for x in def_keyword.split()]):
                 logging.error(f"def keyword '{def_keyword}' "
                               f"is not in the list of keywords obtained from the xtext grammar")
 

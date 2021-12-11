@@ -22,7 +22,7 @@
         { "match": "(%|&|&&|\\?|\\?\\?|\\^|\\^\\^|\\||\\|\\|)", "name": "keyword.operator.logical.kerml" },
         { "match": "(!|!=|\\<|\\<=|=|==|\\>|\\>=)", "name": "keyword.operator.comparison.kerml" },
         { "match": "(\\*|\\*\\*|\\+|\\-|/)", "name": "keyword.operator.arithmetic.kerml" },
-        { "match": "(\\-\\>|\\.\\.|:|::|:\\>|:\\>\\>|=\\>|@|~)", "name": "keyword.operator.other.kerml" }
+        { "match": "(\\-\\>|\\.\\.|:|::|:=|:\\>|:\\>\\>|=\\>|@|~)", "name": "keyword.operator.other.kerml" }
       ]
     },
     "strings": {

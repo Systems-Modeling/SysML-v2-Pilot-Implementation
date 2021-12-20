@@ -13,6 +13,6 @@
     <booleanAttribute key="org.eclipse.jdt.launching.ATTR_USE_START_ON_FIRST_THREAD" value="true"/>
     <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="org.omg.sysml.xtext.util.SysMLRepositorySaveUtil"/>
     <stringAttribute key="org.eclipse.jdt.launching.MODULE_NAME" value="org.omg.sysml.xtext"/>
-    <stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="-b http://sysml2-dev.intercax.com:9000 -d&#10;-l &quot;${workspace_loc:/SysML-v2-Pilot-Implementation/sysml.library}&quot; &#10;&quot;${selected_resource_loc}&quot;&#10;&quot;Kernel Library&quot;&#10;&quot;Systems Library&quot;&#10;&quot;Domain Library&quot;"/>
+    <stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="-b http://sysml2-sst.intercax.com:9000 -d&#10;-l &quot;${workspace_loc:/SysML-v2-Pilot-Implementation/sysml.library}&quot; &#10;&quot;${selected_resource_loc}&quot;&#10;&quot;Kernel Library&quot;&#10;&quot;Systems Library&quot;&#10;&quot;Domain Library&quot;"/>
     <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="org.omg.sysml.xtext"/>
 </launchConfiguration>

@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Tests
 Bundle-SymbolicName: org.omg.sysml.interactive.tests;singleton:=true
-Bundle-Version: 0.18.0.qualifier
+Bundle-Version: 0.19.0.qualifier
 Automatic-Module-Name: org.omg.sysml.interactive.tests
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.omg.sysml.interactive;bundle-version="0.3.2",

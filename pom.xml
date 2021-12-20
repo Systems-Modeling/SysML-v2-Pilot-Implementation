@@ -214,8 +214,8 @@
                   <fileset dir="${basedir}">
                     <include name="*/feature.xml"/>
                   </fileset>
-                  <regexp pattern="&lt;feature([^>]+)(version\s*=\s*&quot;[^&quot;]*&quot;)([^>]+)>"/>
-                  <substitution expression="&lt;feature\1version=&quot;${bundle-version}&quot;\3>"/>
+                  <regexp pattern="&lt;feature([^&gt;]+)(version\s*=\s*&quot;[^&quot;]*&quot;)([^&gt;]+)&gt;"/>
+                  <substitution expression="&lt;feature\1version=&quot;${bundle-version}&quot;\3&gt;"/>
                 </replaceregexp>
               </target>
             </configuration>

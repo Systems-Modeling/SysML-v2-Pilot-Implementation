@@ -22,6 +22,7 @@ import org.omg.sysml.xtext.services.SysMLGrammarAccess;
 public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 
 	protected SysMLGrammarAccess grammarAccess;
+	protected AbstractElementAlias match_ActionBodyParameter_ActionUsageKeywordParserRuleCall_1_0_q;
 	protected AbstractElementAlias match_ActionBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__;
 	protected AbstractElementAlias match_AllocationUsageDeclaration_AllocateKeywordParserRuleCall_1_0_or___AllocationUsageKeywordParserRuleCall_0_0_AllocateKeywordParserRuleCall_0_2_0__;
 	protected AbstractElementAlias match_AnnotatingFeatureBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__;
@@ -64,6 +65,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	@Inject
 	protected void init(IGrammarAccess access) {
 		grammarAccess = (SysMLGrammarAccess) access;
+		match_ActionBodyParameter_ActionUsageKeywordParserRuleCall_1_0_q = new TokenAlias(false, true, grammarAccess.getActionBodyParameterAccess().getActionUsageKeywordParserRuleCall_1_0());
 		match_ActionBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getActionBodyAccess().getLeftCurlyBracketKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getActionBodyAccess().getRightCurlyBracketKeyword_1_2())), new TokenAlias(false, false, grammarAccess.getActionBodyAccess().getSemicolonKeyword_0()));
 		match_AllocationUsageDeclaration_AllocateKeywordParserRuleCall_1_0_or___AllocationUsageKeywordParserRuleCall_0_0_AllocateKeywordParserRuleCall_0_2_0__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getAllocationUsageDeclarationAccess().getAllocationUsageKeywordParserRuleCall_0_0()), new TokenAlias(false, false, grammarAccess.getAllocationUsageDeclarationAccess().getAllocateKeywordParserRuleCall_0_2_0())), new TokenAlias(false, false, grammarAccess.getAllocationUsageDeclarationAccess().getAllocateKeywordParserRuleCall_1_0()));
 		match_AnnotatingFeatureBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getAnnotatingFeatureBodyAccess().getLeftCurlyBracketKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getAnnotatingFeatureBodyAccess().getRightCurlyBracketKeyword_1_2())), new TokenAlias(false, false, grammarAccess.getAnnotatingFeatureBodyAccess().getSemicolonKeyword_0()));
@@ -856,7 +858,9 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 		List<INode> transitionNodes = collectNodes(fromNode, toNode);
 		for (AbstractElementAlias syntax : transition.getAmbiguousSyntaxes()) {
 			List<INode> syntaxNodes = getNodesFor(transitionNodes, syntax);
-			if (match_ActionBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__.equals(syntax))
+			if (match_ActionBodyParameter_ActionUsageKeywordParserRuleCall_1_0_q.equals(syntax))
+				emit_ActionBodyParameter_ActionUsageKeywordParserRuleCall_1_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_ActionBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__.equals(syntax))
 				emit_ActionBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_AllocationUsageDeclaration_AllocateKeywordParserRuleCall_1_0_or___AllocationUsageKeywordParserRuleCall_0_0_AllocateKeywordParserRuleCall_0_2_0__.equals(syntax))
 				emit_AllocationUsageDeclaration_AllocateKeywordParserRuleCall_1_0_or___AllocationUsageKeywordParserRuleCall_0_0_AllocateKeywordParserRuleCall_0_2_0__(semanticObject, getLastNavigableState(), syntaxNodes);
@@ -936,6 +940,29 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 		}
 	}
 
+	/**
+	 * Ambiguous syntax:
+	 *     ActionUsageKeyword?
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     (rule start) (ambiguity) '{' '}' (rule start)
+	 *     (rule start) (ambiguity) '{' ownedRelationship+=ActionNodeMember
+	 *     (rule start) (ambiguity) '{' ownedRelationship+=AliasMember
+	 *     (rule start) (ambiguity) '{' ownedRelationship+=BehaviorUsageMember
+	 *     (rule start) (ambiguity) '{' ownedRelationship+=DefinitionMember
+	 *     (rule start) (ambiguity) '{' ownedRelationship+=EmptySuccessionMember
+	 *     (rule start) (ambiguity) '{' ownedRelationship+=GuardedSuccessionMember
+	 *     (rule start) (ambiguity) '{' ownedRelationship+=Import
+	 *     (rule start) (ambiguity) '{' ownedRelationship+=InitialNodeMember
+	 *     (rule start) (ambiguity) '{' ownedRelationship+=NonOccurrenceUsageMember
+	 *     (rule start) (ambiguity) '{' ownedRelationship+=OwnedDocumentation
+	 *     (rule start) (ambiguity) '{' ownedRelationship+=StructureUsageMember
+	 *     (rule start) (ambiguity) '{' ownedRelationship+=VariantUsageMember
+	 */
+	protected void emit_ActionBodyParameter_ActionUsageKeywordParserRuleCall_1_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
 	/**
 	 * Ambiguous syntax:
 	 *     ';' | ('{' '}')

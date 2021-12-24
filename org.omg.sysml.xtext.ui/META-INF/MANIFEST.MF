@@ -22,7 +22,8 @@ Require-Bundle: org.omg.sysml;bundle-version="0.2.0",
  org.omg.kerml.xtext.ui;bundle-version="0.2.0",
  org.omg.kerml.expressions.xtext,
  org.omg.kerml.expressions.xtext.ide,
- org.omg.kerml.expressions.xtext.ui
+ org.omg.kerml.expressions.xtext.ui,
+ org.eclipse.xtext.common.types.ui
 Import-Package: org.apache.log4j
 Export-Package: org.omg.sysml.xtext.ui,
  org.omg.sysml.xtext.ui.contentassist,

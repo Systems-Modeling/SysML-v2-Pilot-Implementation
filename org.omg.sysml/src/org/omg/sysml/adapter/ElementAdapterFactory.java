@@ -201,8 +201,18 @@ public class ElementAdapterFactory {
 		}
 		
 		@Override
+		public ElementAdapter caseForLoopActionUsage(ForLoopActionUsage element) {
+			return new ForLoopActionUsageAdapter(element);
+		}
+		
+		@Override
 		public ElementAdapter caseFunction(Function element) {
 			return new FunctionAdapter(element);
+		}
+		
+		@Override
+		public ElementAdapter caseIfActionUsage(IfActionUsage element) {
+			return new IfActionUsageAdapter(element);
 		}
 		
 		@Override

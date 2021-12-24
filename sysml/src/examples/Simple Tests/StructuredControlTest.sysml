@@ -12,6 +12,10 @@ package StructuredControlTest {
 			assign i := i + 1;
 		}
 		
+		if i > 0 {
+			assign i := i + 1;
+		}
+		
 		then action aLoop
 		while i > 0 {
 			assign i := i - 1;
@@ -24,8 +28,8 @@ package StructuredControlTest {
 		loop {
 			assign i := i - 1;
 		} until b;
-		
-		for n in (1, 2, 3) {
+				
+		for n : ScalarValues::Integer in (1, 2, 3) {
 			assign i := i * n;
 		}
 	}

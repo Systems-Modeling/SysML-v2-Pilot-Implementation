@@ -29,8 +29,10 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.eclipse.emf.common.util.BasicEList;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.Import;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.Redefinition;
@@ -67,13 +69,25 @@ public abstract class VTraverser extends Visitor {
 
 
     protected String traverse0(Namespace n) {
-        for (Membership m: n.getOwnedMembership()) {
-            // if (visit(m) == null) return null;
-            setInherited(false);
-            visit(m);
-            for (Relationship r: m.getOwnedRelationship()) {
+        for (Relationship r: n.getOwnedRelationship()) {
+            if (r instanceof Membership) {
+                Membership m = (Membership) r;
+                // if (visit(m) == null) return null;
                 setInherited(false);
-                visit(r);
+                visit(m);
+                for (Relationship r2: m.getOwnedRelationship()) {
+                    setInherited(false);
+                    visit(r2);
+                }
+            } else if (r instanceof Import) {
+                Import imp = (Import) r;
+                if (imp.isImportAll() || imp.isRecursive()) continue;
+                String name = imp.getImportedMemberName();
+                if (name == null || "*". equals(name)) continue;
+                for (Membership ms: imp.importedMembership(new BasicEList<>())) {
+                    setInherited(false);
+                    visit(ms);
+                }
             }
         }
         return "";

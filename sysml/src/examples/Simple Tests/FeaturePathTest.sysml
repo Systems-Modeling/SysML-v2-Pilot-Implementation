@@ -6,7 +6,7 @@ package Q {
   part f : F;
   
   part def A {
-    part g : A = f.a;
+    part g = f.a;
   }
   
   part def B {
@@ -38,6 +38,6 @@ package Q {
   	enum e2;
   }
   
-  part g = (A() as A).g.g.g;
+  part g = A().g.g.g;
 	
 }

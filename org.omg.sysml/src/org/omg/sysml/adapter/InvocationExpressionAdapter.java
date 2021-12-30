@@ -161,10 +161,26 @@ public class InvocationExpressionAdapter extends ExpressionAdapter {
 		}
 	}
 	
+	protected void addResultTyping() {
+		Type expressionType = getExpressionType();
+		if (expressionType != null && 
+				!(expressionType instanceof Function || expressionType instanceof Expression)) {
+			Feature result = TypeUtil.getResultParameterOf(getTarget());
+			if (result != null) {
+				if (expressionType instanceof Feature) {
+					TypeUtil.addImplicitGeneralTypeTo(result, SysMLPackage.eINSTANCE.getSubsetting(), expressionType);
+				} else {
+					TypeUtil.addImplicitGeneralTypeTo(result, SysMLPackage.eINSTANCE.getFeatureTyping(), expressionType);
+				}
+			}
+		}
+	}
+	
 	@Override
 	public void doTransform() {
 		super.doTransform();
 		computeArgumentConnectors();
+		addResultTyping();
 	}
 	
 }

@@ -1451,7 +1451,7 @@ TargetAccessedFeatureMember returns SysML::FeatureMembership :
 ;
 
 TargetBinding returns SysML::FeatureValue :
-	ownedRelatedElement += TargetExpression // value = PrimaryExpression
+	ownedRelatedElement += TargetExpression // value = TargetExpression
 ;
 
 TargetExpression returns SysML::Expression :

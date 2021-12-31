@@ -35,7 +35,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.EClassImpl;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EContentsEList;
@@ -81,16 +80,6 @@ public class OperatorExpressionImpl extends InvocationExpressionImpl implements 
 	 * @ordered
 	 */
 	protected String operator = OPERATOR_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getOperand() <em>Operand</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOperand()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Expression> operand;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -146,6 +135,8 @@ public class OperatorExpressionImpl extends InvocationExpressionImpl implements 
 			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.OPERATOR_EXPRESSION__OPERATOR, oldOperator, operator));
 	}
 	
+	protected EList<Expression> operand = null;
+	
 	/**
 	 * Use a special OperandEList so that operands inserted into the list are automatically actually added
 	 * as owned features.
@@ -160,54 +151,12 @@ public class OperatorExpressionImpl extends InvocationExpressionImpl implements 
 		return operand;
 	}
 	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetOperand() {
-		return operand != null && !operand.isEmpty();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case SysMLPackage.OPERATOR_EXPRESSION__OPERAND:
-				return ((InternalEList<?>)getOperand()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
-
 	@Override
 	public Function getFunction() {
 		String operator = getOperator();
 		return operator == null? super.getFunction():
 			   (Function)SysMLLibraryUtil.getLibraryType(this, 
 					   OperatorExpressionAdapter.getOperatorQualifiedNames(getOperator()));
-	}
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EList<Expression> getArgument() {
-		return getOperand();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetArgument() {
-  		return false;
 	}
 	
 	/**
@@ -268,12 +217,10 @@ public class OperatorExpressionImpl extends InvocationExpressionImpl implements 
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.OPERATOR_EXPRESSION__ARGUMENT:
-				return isSetArgument();
 			case SysMLPackage.OPERATOR_EXPRESSION__OPERATOR:
 				return OPERATOR_EDEFAULT == null ? operator != null : !OPERATOR_EDEFAULT.equals(operator);
 			case SysMLPackage.OPERATOR_EXPRESSION__OPERAND:
-				return isSetOperand();
+				return !getOperand().isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

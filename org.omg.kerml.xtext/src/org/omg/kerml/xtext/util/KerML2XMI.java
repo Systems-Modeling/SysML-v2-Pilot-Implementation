@@ -31,15 +31,11 @@ import java.util.Set;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.XMIResource;
-import org.eclipse.emf.ecore.xmi.XMLSave;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
-import org.eclipse.emf.ecore.xmi.impl.XMLSaveImpl;
 import org.omg.kerml.xtext.KerMLStandaloneSetup;
 import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.util.SysMLUtil;
 
 /**
@@ -79,19 +75,6 @@ public class KerML2XMI extends SysMLUtil {
 					setID(eObject, ((Element)eObject).getIdentifier());
 				}
 				super.attachedHelper(eObject);
-			}
-			
-			@Override
-			protected XMLSave createXMLSave()
-			{
-				return new XMLSaveImpl(createXMLHelper()) {
-					@Override
-					protected boolean shouldSaveFeature(EObject o, EStructuralFeature f)
-					{
-						return f != SysMLPackage.eINSTANCE.getOperatorExpression_Operand() && 
-								super.shouldSaveFeature(o, f);
-					}
-				};
 			}
 		};
 		

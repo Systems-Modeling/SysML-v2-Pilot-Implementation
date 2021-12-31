@@ -27,15 +27,18 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.stream.Collectors;
-
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.DelegatingEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.EClassImpl;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EContentsEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.omg.sysml.adapter.OperatorExpressionAdapter;
 import org.omg.sysml.lang.sysml.Expression;
@@ -96,6 +99,22 @@ public class OperatorExpressionImpl extends InvocationExpressionImpl implements 
 	protected OperatorExpressionImpl() {
 		super();
 	}
+	
+	@Override
+	public EList<EObject> eContents() {
+		EClass eClass = eClass();
+		EStructuralFeature[] containmentFeatures = ((EClassImpl.FeatureSubsetSupplier)eClass.getEAllStructuralFeatures()).containments();
+		EStructuralFeature operandFeature = eClass.getEStructuralFeature(SysMLPackage.OPERATOR_EXPRESSION__OPERAND);
+		EStructuralFeature[] nonOperandFeatures = new EStructuralFeature[containmentFeatures.length - 1];
+		int i = 0;
+		for (EStructuralFeature feature: containmentFeatures) {
+			if (feature != operandFeature) {
+				nonOperandFeatures[i] = feature;
+				i++;
+			}
+		}
+		return new EContentsEList<>(this, nonOperandFeatures);
+	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -126,7 +145,7 @@ public class OperatorExpressionImpl extends InvocationExpressionImpl implements 
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.OPERATOR_EXPRESSION__OPERATOR, oldOperator, operator));
 	}
-
+	
 	/**
 	 * Use a special OperandEList so that operands inserted into the list are automatically actually added
 	 * as owned features.
@@ -148,6 +167,20 @@ public class OperatorExpressionImpl extends InvocationExpressionImpl implements 
 	 */
 	public boolean isSetOperand() {
 		return operand != null && !operand.isEmpty();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SysMLPackage.OPERATOR_EXPRESSION__OPERAND:
+				return ((InternalEList<?>)getOperand()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	@Override
@@ -177,19 +210,6 @@ public class OperatorExpressionImpl extends InvocationExpressionImpl implements 
   		return false;
 	}
 	
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case SysMLPackage.OPERATOR_EXPRESSION__OPERAND:
-				return ((InternalEList<?>)getOperand()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
-
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated

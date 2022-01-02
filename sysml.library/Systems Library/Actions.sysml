@@ -136,7 +136,7 @@ package Actions {
 	/**
 	 * A MergeAction is the ControlAction for a merge node.
 	 * 
-	 * Note: Incoming sucession connectors to a MergeAction must have source multiplicity 
+	 * Note: Incoming succession connectors to a MergeAction must have source multiplicity 
 	 * 0..1 and subset the incomingHBLink feature inherited from MergePerformance.
 	 */
 	action def MergeAction :> ControlAction, MergePerformance;
@@ -144,7 +144,7 @@ package Actions {
 	/** 
 	 * A DecisionAction is the ControlAction for a decision node.
 	 * 
-	 * Note: Outgoing succession connectors to a MergeAction must have target multiplicity
+	 * Note: Outgoing succession connectors from a DecisionAction must have target multiplicity
 	 * 0..1 and subset the outgoingHBLink feature inherited from DecisionPerformance.
 	 * If an outgoing succession has a guard, it should have a transitionStep typed by 
 	 * DecisionTransition.
@@ -182,12 +182,11 @@ package Actions {
 	
 	/**
 	 * A DecisionTransitionAction is a TransitionAction and NonStateTransitionPerformance that has a 
-	 * single guard, but no trigger or effects. It is the base type of TransitionUsages used as 
+	 * guard, but no trigger or effects. It is the base type of TransitionUsages used as 
 	 * conditional successions in action models.
 	 */
 	action def DecisionTransitionAction :> TransitionAction, NonStateTransitionPerformance {
 		ref action :>> accepter[0..0];
-		ref action :>> guard[1];
 		ref action :>> effect[0..0];
 	}
 

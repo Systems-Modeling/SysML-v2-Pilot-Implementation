@@ -1461,20 +1461,27 @@ ControlNode returns SysML::ControlNode :
 	| ForkNode
 ;
 
+fragment ControlNodePrefix returns SysML::OccurrenceUsage :
+	  RefPrefix
+	  ( isIndividual ?= 'individual' )?
+	  ( portionKind = PortionKind
+	    ownedRelationship += PortioningFeatureMember )?
+;
+
 MergeNode returns SysML::MergeNode :
-	OccurrenceUsagePrefix isComposite ?= 'merge' UsageDeclaration? ';'
+	ControlNodePrefix 'merge' UsageDeclaration? ';'
 ;
 
 DecisionNode returns SysML::DecisionNode :
-	OccurrenceUsagePrefix isComposite ?= 'decide' UsageDeclaration? ';'
+	ControlNodePrefix 'decide' UsageDeclaration? ';'
 ;
 
 JoinNode returns SysML::JoinNode :
-	OccurrenceUsagePrefix isComposite ?= 'join' UsageDeclaration? ';'
+	ControlNodePrefix 'join' UsageDeclaration? ';'
 ;
 
 ForkNode returns SysML::ForkNode :
-	OccurrenceUsagePrefix isComposite ?= 'fork' UsageDeclaration? ';'
+	ControlNodePrefix 'fork' UsageDeclaration? ';'
 ;
 
 EmptyParameterMember returns SysML::ParameterMembership :

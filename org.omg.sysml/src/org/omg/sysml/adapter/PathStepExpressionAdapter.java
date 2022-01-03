@@ -21,54 +21,37 @@
 
 package org.omg.sysml.adapter;
 
-import java.util.stream.Stream;
-
 import org.eclipse.emf.common.util.EList;
+import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.OperatorExpression;
+import org.omg.sysml.lang.sysml.PathStepExpression;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.util.ElementUtil;
 import org.omg.sysml.util.TypeUtil;
 
-public class OperatorExpressionAdapter extends InvocationExpressionAdapter {
+public class PathStepExpressionAdapter extends OperatorExpressionAdapter {
 
-	// TODO: Replace with single library package when global scope supports public re-export.
-	public static final String[] LIBRARY_PACKAGE_NAMES = { "BaseFunctions", "DataFunctions", "ControlFunctions" };
-	
-	public static final String CAST_OPERATOR = "as";
-
-	public OperatorExpressionAdapter(OperatorExpression element) {
+	public PathStepExpressionAdapter(PathStepExpression element) {
 		super(element);
 	}
 	
 	@Override
-	public OperatorExpression getTarget() {
-		return (OperatorExpression)super.getTarget();
-	}
-
-	public static String[] getOperatorQualifiedNames(String op) {
-		return Stream.of(LIBRARY_PACKAGE_NAMES).map(pack -> pack + "::'" + op + "'").toArray(String[]::new);
+	public PathStepExpression getTarget() {
+		return (PathStepExpression)super.getTarget();
 	}
 
 	@Override
 	protected void addResultTyping() {
-		OperatorExpression target = getTarget();
-		if (CAST_OPERATOR.equals(target.getOperator())) {
-			EList<Feature> ownedFeatures = target.getOwnedFeature();
-			if (ownedFeatures.size() > 1) {
+		PathStepExpression target = getTarget();
+		EList<Feature> ownedFeatures = target.getOwnedFeature();
+		if (ownedFeatures.size() > 1) {
+			Feature featureReference = ownedFeatures.get(1);
+			if (featureReference instanceof Expression) {
+				ElementUtil.transform(featureReference);
 				TypeUtil.addImplicitGeneralTypeTo(target.getResult(),
-						SysMLPackage.eINSTANCE.getSubsetting(), ownedFeatures.get(1));
+						SysMLPackage.eINSTANCE.getSubsetting(), ((Expression)featureReference).getResult());
 			}
 		}
-	}
-	
-	@Override
-	public void computeImplicitGeneralTypes() {
-		OperatorExpression target = getTarget();
-		String operator = target.getOperator();
-		if (operator != null) {
-			addDefaultGeneralType(SysMLPackage.eINSTANCE.getFeatureTyping(), getOperatorQualifiedNames(operator));
-		}
-		super.computeImplicitGeneralTypes();
 	}
 	
 }

@@ -1435,7 +1435,7 @@ AssignmentNode returns SysML::AssignmentActionUsage :
 fragment AssignmentNodeDeclaration returns SysML::ActionUsage :
 	ActionNodeUsageDeclaration? 'assign' 
 	ownedRelationship += AssignmentTargetMember
-	ownedRelationship += FeatureReferenceMember ':=' 
+	ownedRelationship += FeatureChainMember ':=' 
 	ownedRelationship += NodeParameterMember
 ;
 
@@ -1444,7 +1444,7 @@ AssignmentTargetMember returns SysML::ParameterMembership :
 ;
 
 TargetParameter returns SysML::ReferenceUsage :
-	( ownedRelationship += TargetBinding '.' )?
+	( => ownedRelationship += TargetBinding '.' )?
 	ownedRelationship += TargetFeatureMember
 ;
 
@@ -1461,7 +1461,26 @@ TargetAccessedFeatureMember returns SysML::FeatureMembership :
 ;
 
 TargetBinding returns SysML::FeatureValue :
-	ownedRelatedElement += PrimaryExpression // value = PrimaryExpression
+	ownedRelatedElement += TargetExpression // value = TargetExpression
+;
+
+TargetExpression returns SysML::Expression :
+	BaseExpression
+	( ( {SysML::PathStepExpression.operand += current} '.' 
+	    operand += FeatureChainExpression
+	  )?
+	  ( {SysML::OperatorExpression.operand += current} 
+	    operator = '[' operand += SequenceExpression ']'
+	  | {SysML::OperatorExpression.operand += current} '->' 
+	    ownedRelationship += ReferenceTyping 
+	    ( ownedRelationship += ExpressionBodyMember 
+	    | ownedRelationship += FunctionReferenceMember 
+	    | ArgumentList
+	    ) 
+	  | {SysML::PathSelectExpression.operand += current} '.'
+	    ownedRelationship += ExpressionBodyMember
+	  )
+	)*
 ;
 
 IfNode returns SysML::IfActionUsage :

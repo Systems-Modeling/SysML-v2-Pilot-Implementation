@@ -37,7 +37,7 @@ END_SETUP
 // XPECT noErrors ---> ""
 package Q {
   part def F {
-  	part a;
+  	part a : A;
   }
   
   part f : F;
@@ -66,4 +66,7 @@ package Q {
   	enum e1;
   	enum e2;
   }
+  
+  part g = A().g.g.g;
+	
 }

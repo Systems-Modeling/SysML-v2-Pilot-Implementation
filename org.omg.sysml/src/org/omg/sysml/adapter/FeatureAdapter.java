@@ -332,10 +332,10 @@ public class FeatureAdapter extends TypeAdapter {
 	 */
 	protected List<? extends Feature> getRelevantFeatures(Type type, Element skip) {
 		Feature target = getTarget();
-		return target.isEnd()? TypeUtil.getAllEndFeaturesOf(type):
+		return type == null? Collections.emptyList():
+			   target.isEnd()? TypeUtil.getAllEndFeaturesOf(type):
 			   FeatureUtil.isParameter(target)? getParameterRelevantFeatures(type, skip):
-			   type != null? TypeUtil.getRelevantFeaturesOf(type):
-			   Collections.emptyList();
+			   TypeUtil.getRelevantFeaturesOf(type);
 	}
 	
 	/**

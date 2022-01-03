@@ -19,69 +19,40 @@ import org.eclipse.xtext.builder.clustering.CurrentDescriptions;
 import org.eclipse.xtext.builder.impl.PersistentDataAwareDirtyResource;
 import org.eclipse.xtext.builder.nature.NatureAddingEditorCallback;
 import org.eclipse.xtext.builder.preferences.BuilderPreferenceAccess;
+import org.eclipse.xtext.common.types.ui.DefaultCommonTypesUiModule;
 import org.eclipse.xtext.generator.IContextualOutputConfigurationProvider;
 import org.eclipse.xtext.ide.LexerIdeBindings;
-import org.eclipse.xtext.ide.editor.contentassist.antlr.IContentAssistParser;
-import org.eclipse.xtext.ide.editor.contentassist.antlr.internal.Lexer;
-import org.eclipse.xtext.ide.editor.partialEditing.IPartialEditingContentAssistParser;
 import org.eclipse.xtext.parser.antlr.AntlrTokenDefProvider;
 import org.eclipse.xtext.parser.antlr.ITokenDefProvider;
-import org.eclipse.xtext.parser.antlr.LexerProvider;
+import org.eclipse.xtext.parser.antlr.Lexer;
 import org.eclipse.xtext.resource.IResourceDescriptions;
 import org.eclipse.xtext.resource.containers.IAllContainersState;
 import org.eclipse.xtext.resource.impl.ResourceDescriptionsProvider;
-import org.eclipse.xtext.service.SingletonBinding;
-import org.eclipse.xtext.ui.DefaultUiModule;
 import org.eclipse.xtext.ui.UIBindings;
-import org.eclipse.xtext.ui.codetemplates.ui.AccessibleCodetemplatesActivator;
-import org.eclipse.xtext.ui.codetemplates.ui.partialEditing.IPartialEditingContentAssistContextFactory;
-import org.eclipse.xtext.ui.codetemplates.ui.partialEditing.PartialEditingContentAssistContextFactory;
-import org.eclipse.xtext.ui.codetemplates.ui.preferences.AdvancedTemplatesPreferencePage;
-import org.eclipse.xtext.ui.codetemplates.ui.preferences.TemplatesLanguageConfiguration;
-import org.eclipse.xtext.ui.codetemplates.ui.registry.LanguageRegistrar;
-import org.eclipse.xtext.ui.codetemplates.ui.registry.LanguageRegistry;
 import org.eclipse.xtext.ui.compare.DefaultViewerCreator;
 import org.eclipse.xtext.ui.editor.DocumentBasedDirtyResource;
 import org.eclipse.xtext.ui.editor.IXtextEditorCallback;
-import org.eclipse.xtext.ui.editor.contentassist.ContentAssistContext;
 import org.eclipse.xtext.ui.editor.contentassist.FQNPrefixMatcher;
-import org.eclipse.xtext.ui.editor.contentassist.IContentProposalProvider;
 import org.eclipse.xtext.ui.editor.contentassist.IProposalConflictHelper;
 import org.eclipse.xtext.ui.editor.contentassist.PrefixMatcher;
 import org.eclipse.xtext.ui.editor.contentassist.antlr.AntlrProposalConflictHelper;
-import org.eclipse.xtext.ui.editor.contentassist.antlr.DelegatingContentAssistContextFactory;
 import org.eclipse.xtext.ui.editor.outline.IOutlineTreeProvider;
 import org.eclipse.xtext.ui.editor.outline.impl.IOutlineTreeStructureProvider;
 import org.eclipse.xtext.ui.editor.preferences.IPreferenceStoreInitializer;
-import org.eclipse.xtext.ui.editor.quickfix.IssueResolutionProvider;
-import org.eclipse.xtext.ui.editor.templates.XtextTemplatePreferencePage;
 import org.eclipse.xtext.ui.refactoring.IDependentElementsCalculator;
-import org.eclipse.xtext.ui.refactoring.IReferenceUpdater;
-import org.eclipse.xtext.ui.refactoring.IRenameRefactoringProvider;
-import org.eclipse.xtext.ui.refactoring.IRenameStrategy;
 import org.eclipse.xtext.ui.refactoring.impl.DefaultDependentElementsCalculator;
-import org.eclipse.xtext.ui.refactoring.impl.DefaultReferenceUpdater;
-import org.eclipse.xtext.ui.refactoring.impl.DefaultRenameRefactoringProvider;
-import org.eclipse.xtext.ui.refactoring.impl.DefaultRenameStrategy;
-import org.eclipse.xtext.ui.refactoring.ui.DefaultRenameSupport;
-import org.eclipse.xtext.ui.refactoring.ui.IRenameSupport;
-import org.eclipse.xtext.ui.refactoring.ui.RefactoringPreferences;
 import org.eclipse.xtext.ui.resource.ResourceServiceDescriptionLabelProvider;
 import org.eclipse.xtext.ui.shared.Access;
-import org.omg.kerml.expressions.xtext.ide.contentassist.antlr.KerMLExpressionsParser;
-import org.omg.kerml.expressions.xtext.ide.contentassist.antlr.PartialKerMLExpressionsContentAssistParser;
-import org.omg.kerml.expressions.xtext.ide.contentassist.antlr.internal.InternalKerMLExpressionsLexer;
-import org.omg.kerml.expressions.xtext.ui.contentassist.KerMLExpressionsProposalProvider;
+import org.omg.kerml.expressions.xtext.parser.antlr.internal.InternalKerMLExpressionsLexer;
 import org.omg.kerml.expressions.xtext.ui.labeling.KerMLExpressionsDescriptionLabelProvider;
 import org.omg.kerml.expressions.xtext.ui.labeling.KerMLExpressionsLabelProvider;
 import org.omg.kerml.expressions.xtext.ui.outline.KerMLExpressionsOutlineTreeProvider;
-import org.omg.kerml.expressions.xtext.ui.quickfix.KerMLExpressionsQuickfixProvider;
 
 /**
  * Manual modifications go to {@link KerMLExpressionsUiModule}.
  */
 @SuppressWarnings("all")
-public abstract class AbstractKerMLExpressionsUiModule extends DefaultUiModule {
+public abstract class AbstractKerMLExpressionsUiModule extends DefaultCommonTypesUiModule {
 
 	public AbstractKerMLExpressionsUiModule(AbstractUIPlugin plugin) {
 		super(plugin);
@@ -92,50 +63,23 @@ public abstract class AbstractKerMLExpressionsUiModule extends DefaultUiModule {
 		return Access.getJavaProjectsState();
 	}
 	
-	// contributed by org.eclipse.xtext.xtext.generator.parser.antlr.XtextAntlrGeneratorFragment2
+	// contributed by org.omg.kerml.expressions.xtext.NoContentAssistAntlrGeneratorFragment
 	public Class<? extends IProposalConflictHelper> bindIProposalConflictHelper() {
 		return AntlrProposalConflictHelper.class;
 	}
 	
-	// contributed by org.eclipse.xtext.xtext.generator.parser.antlr.XtextAntlrGeneratorFragment2
-	public void configureContentAssistLexer(Binder binder) {
+	// contributed by org.omg.kerml.expressions.xtext.NoContentAssistAntlrGeneratorFragment
+	public void configureHighlightingLexer(Binder binder) {
 		binder.bind(Lexer.class)
-			.annotatedWith(Names.named(LexerIdeBindings.CONTENT_ASSIST))
+			.annotatedWith(Names.named(LexerIdeBindings.HIGHLIGHTING))
 			.to(InternalKerMLExpressionsLexer.class);
 	}
 	
-	// contributed by org.eclipse.xtext.xtext.generator.parser.antlr.XtextAntlrGeneratorFragment2
-	public void configureHighlightingLexer(Binder binder) {
-		binder.bind(org.eclipse.xtext.parser.antlr.Lexer.class)
-			.annotatedWith(Names.named(LexerIdeBindings.HIGHLIGHTING))
-			.to(org.omg.kerml.expressions.xtext.parser.antlr.internal.InternalKerMLExpressionsLexer.class);
-	}
-	
-	// contributed by org.eclipse.xtext.xtext.generator.parser.antlr.XtextAntlrGeneratorFragment2
+	// contributed by org.omg.kerml.expressions.xtext.NoContentAssistAntlrGeneratorFragment
 	public void configureHighlightingTokenDefProvider(Binder binder) {
 		binder.bind(ITokenDefProvider.class)
 			.annotatedWith(Names.named(LexerIdeBindings.HIGHLIGHTING))
 			.to(AntlrTokenDefProvider.class);
-	}
-	
-	// contributed by org.eclipse.xtext.xtext.generator.parser.antlr.XtextAntlrGeneratorFragment2
-	public Class<? extends ContentAssistContext.Factory> bindContentAssistContext$Factory() {
-		return DelegatingContentAssistContextFactory.class;
-	}
-	
-	// contributed by org.eclipse.xtext.xtext.generator.parser.antlr.XtextAntlrGeneratorFragment2
-	public Class<? extends IContentAssistParser> bindIContentAssistParser() {
-		return KerMLExpressionsParser.class;
-	}
-	
-	// contributed by org.eclipse.xtext.xtext.generator.parser.antlr.XtextAntlrGeneratorFragment2
-	public void configureContentAssistLexerProvider(Binder binder) {
-		binder.bind(InternalKerMLExpressionsLexer.class).toProvider(LexerProvider.create(InternalKerMLExpressionsLexer.class));
-	}
-	
-	// contributed by org.eclipse.xtext.xtext.generator.exporting.QualifiedNamesFragment2
-	public Class<? extends PrefixMatcher> bindPrefixMatcher() {
-		return FQNPrefixMatcher.class;
 	}
 	
 	// contributed by org.eclipse.xtext.xtext.generator.exporting.QualifiedNamesFragment2
@@ -205,72 +149,9 @@ public abstract class AbstractKerMLExpressionsUiModule extends DefaultUiModule {
 		return KerMLExpressionsOutlineTreeProvider.class;
 	}
 	
-	// contributed by org.eclipse.xtext.xtext.generator.ui.quickfix.QuickfixProviderFragment2
-	public Class<? extends IssueResolutionProvider> bindIssueResolutionProvider() {
-		return KerMLExpressionsQuickfixProvider.class;
-	}
-	
-	// contributed by org.eclipse.xtext.xtext.generator.ui.contentAssist.ContentAssistFragment2
-	public Class<? extends IContentProposalProvider> bindIContentProposalProvider() {
-		return KerMLExpressionsProposalProvider.class;
-	}
-	
-	// contributed by org.eclipse.xtext.xtext.generator.ui.refactoring.RefactorElementNameFragment2
-	public void configureIPreferenceStoreInitializer(Binder binder) {
-		binder.bind(IPreferenceStoreInitializer.class)
-			.annotatedWith(Names.named("RefactoringPreferences"))
-			.to(RefactoringPreferences.Initializer.class);
-	}
-	
-	// contributed by org.eclipse.xtext.xtext.generator.ui.refactoring.RefactorElementNameFragment2
-	public Class<? extends IRenameStrategy> bindIRenameStrategy() {
-		return DefaultRenameStrategy.class;
-	}
-	
-	// contributed by org.eclipse.xtext.xtext.generator.ui.refactoring.RefactorElementNameFragment2
-	public Class<? extends IReferenceUpdater> bindIReferenceUpdater() {
-		return DefaultReferenceUpdater.class;
-	}
-	
-	// contributed by org.eclipse.xtext.xtext.generator.ui.refactoring.RefactorElementNameFragment2
-	public Class<? extends IRenameRefactoringProvider> bindIRenameRefactoringProvider() {
-		return DefaultRenameRefactoringProvider.class;
-	}
-	
-	// contributed by org.eclipse.xtext.xtext.generator.ui.refactoring.RefactorElementNameFragment2
-	public Class<? extends IRenameSupport.Factory> bindIRenameSupport$Factory() {
-		return DefaultRenameSupport.Factory.class;
-	}
-	
-	// contributed by org.eclipse.xtext.xtext.generator.ui.templates.CodetemplatesGeneratorFragment2
-	public Provider<? extends TemplatesLanguageConfiguration> provideTemplatesLanguageConfiguration() {
-		return AccessibleCodetemplatesActivator.getTemplatesLanguageConfigurationProvider();
-	}
-	
-	// contributed by org.eclipse.xtext.xtext.generator.ui.templates.CodetemplatesGeneratorFragment2
-	public Provider<? extends LanguageRegistry> provideLanguageRegistry() {
-		return AccessibleCodetemplatesActivator.getLanguageRegistry();
-	}
-	
-	// contributed by org.eclipse.xtext.xtext.generator.ui.templates.CodetemplatesGeneratorFragment2
-	@SingletonBinding(eager=true)
-	public Class<? extends LanguageRegistrar> bindLanguageRegistrar() {
-		return LanguageRegistrar.class;
-	}
-	
-	// contributed by org.eclipse.xtext.xtext.generator.ui.templates.CodetemplatesGeneratorFragment2
-	public Class<? extends XtextTemplatePreferencePage> bindXtextTemplatePreferencePage() {
-		return AdvancedTemplatesPreferencePage.class;
-	}
-	
-	// contributed by org.eclipse.xtext.xtext.generator.ui.templates.CodetemplatesGeneratorFragment2
-	public Class<? extends IPartialEditingContentAssistParser> bindIPartialEditingContentAssistParser() {
-		return PartialKerMLExpressionsContentAssistParser.class;
-	}
-	
-	// contributed by org.eclipse.xtext.xtext.generator.ui.templates.CodetemplatesGeneratorFragment2
-	public Class<? extends IPartialEditingContentAssistContextFactory> bindIPartialEditingContentAssistContextFactory() {
-		return PartialEditingContentAssistContextFactory.class;
+	// contributed by org.eclipse.xtext.xtext.generator.types.TypesGeneratorFragment2
+	public Class<? extends PrefixMatcher> bindPrefixMatcher() {
+		return FQNPrefixMatcher.class;
 	}
 	
 	// contributed by org.eclipse.xtext.xtext.generator.ui.compare.CompareFragment2

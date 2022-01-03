@@ -35,12 +35,18 @@ import org.eclipse.xtext.scoping.IScopeProvider;
 import org.eclipse.xtext.scoping.IgnoreCaseLinking;
 import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider;
 import org.eclipse.xtext.scoping.impl.ImportedNamespaceAwareLocalScopeProvider;
+import org.eclipse.xtext.serializer.ISerializer;
+import org.eclipse.xtext.serializer.impl.Serializer;
+import org.eclipse.xtext.serializer.sequencer.ISemanticSequencer;
+import org.eclipse.xtext.serializer.sequencer.ISyntacticSequencer;
 import org.eclipse.xtext.service.SingletonBinding;
 import org.omg.sysml.xtext.generator.SysMLGenerator;
 import org.omg.sysml.xtext.parser.antlr.SysMLAntlrTokenFileProvider;
 import org.omg.sysml.xtext.parser.antlr.SysMLParser;
 import org.omg.sysml.xtext.parser.antlr.internal.InternalSysMLLexer;
 import org.omg.sysml.xtext.scoping.SysMLScopeProvider;
+import org.omg.sysml.xtext.serializer.SysMLSemanticSequencer;
+import org.omg.sysml.xtext.serializer.SysMLSyntacticSequencer;
 import org.omg.sysml.xtext.services.SysMLGrammarAccess;
 import org.omg.sysml.xtext.validation.SysMLValidator;
 
@@ -75,6 +81,21 @@ public abstract class AbstractSysMLRuntimeModule extends DefaultCommonTypesRunti
 	// contributed by org.eclipse.xtext.xtext.generator.grammarAccess.GrammarAccessFragment2
 	public Class<? extends IGrammarAccess> bindIGrammarAccess() {
 		return SysMLGrammarAccess.class;
+	}
+	
+	// contributed by org.eclipse.xtext.xtext.generator.serializer.SerializerFragment2
+	public Class<? extends ISemanticSequencer> bindISemanticSequencer() {
+		return SysMLSemanticSequencer.class;
+	}
+	
+	// contributed by org.eclipse.xtext.xtext.generator.serializer.SerializerFragment2
+	public Class<? extends ISyntacticSequencer> bindISyntacticSequencer() {
+		return SysMLSyntacticSequencer.class;
+	}
+	
+	// contributed by org.eclipse.xtext.xtext.generator.serializer.SerializerFragment2
+	public Class<? extends ISerializer> bindISerializer() {
+		return Serializer.class;
 	}
 	
 	// contributed by org.eclipse.xtext.xtext.generator.parser.antlr.XtextAntlrGeneratorFragment2

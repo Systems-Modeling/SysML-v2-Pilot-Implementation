@@ -10385,7 +10385,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	//PrimaryExpression returns SysML::Expression :
 	//    BaseExpression
 	//    ( {SysML::PathStepExpression.operand += current} '.'
-	//        operand += FeatureChainExpression
+	//      operand += FeatureChainExpression
 	//    )?
 	//    ( ( {SysML::OperatorExpression.operand += current}
 	//        operator = '[' operand += SequenceExpression ']'

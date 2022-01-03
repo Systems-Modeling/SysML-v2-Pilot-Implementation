@@ -29,5 +29,6 @@ Export-Package: org.omg.sysml.xtext,
  org.omg.sysml.xtext.scoping,
  org.omg.sysml.xtext.services,
  org.omg.sysml.xtext.util,
- org.omg.sysml.xtext.validation
+ org.omg.sysml.xtext.validation,
+ org.omg.sysml.xtext.serializer
 Import-Package: org.apache.log4j

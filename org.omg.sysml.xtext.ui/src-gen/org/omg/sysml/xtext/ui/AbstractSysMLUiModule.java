@@ -22,44 +22,28 @@ import org.eclipse.xtext.builder.preferences.BuilderPreferenceAccess;
 import org.eclipse.xtext.common.types.ui.DefaultCommonTypesUiModule;
 import org.eclipse.xtext.generator.IContextualOutputConfigurationProvider;
 import org.eclipse.xtext.ide.LexerIdeBindings;
-import org.eclipse.xtext.ide.editor.contentassist.antlr.IContentAssistParser;
-import org.eclipse.xtext.ide.editor.contentassist.antlr.internal.Lexer;
-import org.eclipse.xtext.ide.editor.partialEditing.IPartialEditingContentAssistParser;
 import org.eclipse.xtext.parser.antlr.AntlrTokenDefProvider;
 import org.eclipse.xtext.parser.antlr.ITokenDefProvider;
-import org.eclipse.xtext.parser.antlr.LexerProvider;
+import org.eclipse.xtext.parser.antlr.Lexer;
 import org.eclipse.xtext.resource.IResourceDescriptions;
 import org.eclipse.xtext.resource.containers.IAllContainersState;
 import org.eclipse.xtext.resource.impl.ResourceDescriptionsProvider;
-import org.eclipse.xtext.service.SingletonBinding;
 import org.eclipse.xtext.ui.UIBindings;
-import org.eclipse.xtext.ui.codetemplates.ui.AccessibleCodetemplatesActivator;
-import org.eclipse.xtext.ui.codetemplates.ui.partialEditing.IPartialEditingContentAssistContextFactory;
-import org.eclipse.xtext.ui.codetemplates.ui.partialEditing.PartialEditingContentAssistContextFactory;
-import org.eclipse.xtext.ui.codetemplates.ui.preferences.AdvancedTemplatesPreferencePage;
-import org.eclipse.xtext.ui.codetemplates.ui.preferences.TemplatesLanguageConfiguration;
-import org.eclipse.xtext.ui.codetemplates.ui.registry.LanguageRegistrar;
-import org.eclipse.xtext.ui.codetemplates.ui.registry.LanguageRegistry;
 import org.eclipse.xtext.ui.compare.DefaultViewerCreator;
 import org.eclipse.xtext.ui.editor.DocumentBasedDirtyResource;
 import org.eclipse.xtext.ui.editor.IXtextEditorCallback;
-import org.eclipse.xtext.ui.editor.contentassist.ContentAssistContext;
 import org.eclipse.xtext.ui.editor.contentassist.FQNPrefixMatcher;
 import org.eclipse.xtext.ui.editor.contentassist.IProposalConflictHelper;
 import org.eclipse.xtext.ui.editor.contentassist.PrefixMatcher;
 import org.eclipse.xtext.ui.editor.contentassist.antlr.AntlrProposalConflictHelper;
-import org.eclipse.xtext.ui.editor.contentassist.antlr.DelegatingContentAssistContextFactory;
 import org.eclipse.xtext.ui.editor.outline.IOutlineTreeProvider;
 import org.eclipse.xtext.ui.editor.outline.impl.IOutlineTreeStructureProvider;
 import org.eclipse.xtext.ui.editor.preferences.IPreferenceStoreInitializer;
-import org.eclipse.xtext.ui.editor.templates.XtextTemplatePreferencePage;
 import org.eclipse.xtext.ui.refactoring.IDependentElementsCalculator;
 import org.eclipse.xtext.ui.refactoring.impl.DefaultDependentElementsCalculator;
 import org.eclipse.xtext.ui.resource.ResourceServiceDescriptionLabelProvider;
 import org.eclipse.xtext.ui.shared.Access;
-import org.omg.sysml.xtext.ide.contentassist.antlr.PartialSysMLContentAssistParser;
-import org.omg.sysml.xtext.ide.contentassist.antlr.SysMLParser;
-import org.omg.sysml.xtext.ide.contentassist.antlr.internal.InternalSysMLLexer;
+import org.omg.sysml.xtext.parser.antlr.internal.InternalSysMLLexer;
 import org.omg.sysml.xtext.ui.labeling.SysMLDescriptionLabelProvider;
 import org.omg.sysml.xtext.ui.labeling.SysMLLabelProvider;
 import org.omg.sysml.xtext.ui.outline.SysMLOutlineTreeProvider;
@@ -79,45 +63,23 @@ public abstract class AbstractSysMLUiModule extends DefaultCommonTypesUiModule {
 		return Access.getJavaProjectsState();
 	}
 	
-	// contributed by org.eclipse.xtext.xtext.generator.parser.antlr.XtextAntlrGeneratorFragment2
+	// contributed by org.omg.kerml.expressions.xtext.NoContentAssistAntlrGeneratorFragment
 	public Class<? extends IProposalConflictHelper> bindIProposalConflictHelper() {
 		return AntlrProposalConflictHelper.class;
 	}
 	
-	// contributed by org.eclipse.xtext.xtext.generator.parser.antlr.XtextAntlrGeneratorFragment2
-	public void configureContentAssistLexer(Binder binder) {
+	// contributed by org.omg.kerml.expressions.xtext.NoContentAssistAntlrGeneratorFragment
+	public void configureHighlightingLexer(Binder binder) {
 		binder.bind(Lexer.class)
-			.annotatedWith(Names.named(LexerIdeBindings.CONTENT_ASSIST))
+			.annotatedWith(Names.named(LexerIdeBindings.HIGHLIGHTING))
 			.to(InternalSysMLLexer.class);
 	}
 	
-	// contributed by org.eclipse.xtext.xtext.generator.parser.antlr.XtextAntlrGeneratorFragment2
-	public void configureHighlightingLexer(Binder binder) {
-		binder.bind(org.eclipse.xtext.parser.antlr.Lexer.class)
-			.annotatedWith(Names.named(LexerIdeBindings.HIGHLIGHTING))
-			.to(org.omg.sysml.xtext.parser.antlr.internal.InternalSysMLLexer.class);
-	}
-	
-	// contributed by org.eclipse.xtext.xtext.generator.parser.antlr.XtextAntlrGeneratorFragment2
+	// contributed by org.omg.kerml.expressions.xtext.NoContentAssistAntlrGeneratorFragment
 	public void configureHighlightingTokenDefProvider(Binder binder) {
 		binder.bind(ITokenDefProvider.class)
 			.annotatedWith(Names.named(LexerIdeBindings.HIGHLIGHTING))
 			.to(AntlrTokenDefProvider.class);
-	}
-	
-	// contributed by org.eclipse.xtext.xtext.generator.parser.antlr.XtextAntlrGeneratorFragment2
-	public Class<? extends ContentAssistContext.Factory> bindContentAssistContext$Factory() {
-		return DelegatingContentAssistContextFactory.class;
-	}
-	
-	// contributed by org.eclipse.xtext.xtext.generator.parser.antlr.XtextAntlrGeneratorFragment2
-	public Class<? extends IContentAssistParser> bindIContentAssistParser() {
-		return SysMLParser.class;
-	}
-	
-	// contributed by org.eclipse.xtext.xtext.generator.parser.antlr.XtextAntlrGeneratorFragment2
-	public void configureContentAssistLexerProvider(Binder binder) {
-		binder.bind(InternalSysMLLexer.class).toProvider(LexerProvider.create(InternalSysMLLexer.class));
 	}
 	
 	// contributed by org.eclipse.xtext.xtext.generator.exporting.QualifiedNamesFragment2
@@ -190,37 +152,6 @@ public abstract class AbstractSysMLUiModule extends DefaultCommonTypesUiModule {
 	// contributed by org.eclipse.xtext.xtext.generator.types.TypesGeneratorFragment2
 	public Class<? extends PrefixMatcher> bindPrefixMatcher() {
 		return FQNPrefixMatcher.class;
-	}
-	
-	// contributed by org.eclipse.xtext.xtext.generator.ui.templates.CodetemplatesGeneratorFragment2
-	public Provider<? extends TemplatesLanguageConfiguration> provideTemplatesLanguageConfiguration() {
-		return AccessibleCodetemplatesActivator.getTemplatesLanguageConfigurationProvider();
-	}
-	
-	// contributed by org.eclipse.xtext.xtext.generator.ui.templates.CodetemplatesGeneratorFragment2
-	public Provider<? extends LanguageRegistry> provideLanguageRegistry() {
-		return AccessibleCodetemplatesActivator.getLanguageRegistry();
-	}
-	
-	// contributed by org.eclipse.xtext.xtext.generator.ui.templates.CodetemplatesGeneratorFragment2
-	@SingletonBinding(eager=true)
-	public Class<? extends LanguageRegistrar> bindLanguageRegistrar() {
-		return LanguageRegistrar.class;
-	}
-	
-	// contributed by org.eclipse.xtext.xtext.generator.ui.templates.CodetemplatesGeneratorFragment2
-	public Class<? extends XtextTemplatePreferencePage> bindXtextTemplatePreferencePage() {
-		return AdvancedTemplatesPreferencePage.class;
-	}
-	
-	// contributed by org.eclipse.xtext.xtext.generator.ui.templates.CodetemplatesGeneratorFragment2
-	public Class<? extends IPartialEditingContentAssistParser> bindIPartialEditingContentAssistParser() {
-		return PartialSysMLContentAssistParser.class;
-	}
-	
-	// contributed by org.eclipse.xtext.xtext.generator.ui.templates.CodetemplatesGeneratorFragment2
-	public Class<? extends IPartialEditingContentAssistContextFactory> bindIPartialEditingContentAssistContextFactory() {
-		return PartialEditingContentAssistContextFactory.class;
 	}
 	
 	// contributed by org.eclipse.xtext.xtext.generator.ui.compare.CompareFragment2

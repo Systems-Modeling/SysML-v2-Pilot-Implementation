@@ -43,10 +43,7 @@ package P {
         
     feature v1_n : Integer = v1.n;
     
-    //* XPECT errors ---
-        "Must be a valid feature" at "S"
-        "Must be a valid feature" at "S"
-        --- */
+    // XPECT errors ---> "Must be a valid feature" at "S"
     feature v1_m : Integer = v1.S;
     
     // XPECT errors ---> "Must be a valid feature" at "V"

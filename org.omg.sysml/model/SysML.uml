@@ -1546,7 +1546,7 @@ valueConnector.featuringType = featureWithValue.featuringType</body>
     <ownedAttribute xmi:id="20570f1e-fe68-4660-8050-e8f8e05ce806" name="operator" visibility="public">
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
     </ownedAttribute>
-    <ownedAttribute xmi:id="5e317aa3-fe01-4c0d-b580-4e798d36cb83" name="operand" visibility="public" type="b32c4dd3-88a2-4418-b414-e75ceb0bb432" isOrdered="true" aggregation="composite" redefinedProperty="8df13e80-6028-4c00-b26b-10d581ca6fce" association="42eb906b-afc3-4e19-9cf1-3acb2b325108">
+    <ownedAttribute xmi:id="5e317aa3-fe01-4c0d-b580-4e798d36cb83" name="operand" visibility="public" type="b32c4dd3-88a2-4418-b414-e75ceb0bb432" isOrdered="true" aggregation="composite" isDerived="true" association="42eb906b-afc3-4e19-9cf1-3acb2b325108">
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="fc6509ca-3420-4606-bf23-12c8693c0ca1" name="" visibility="public"/>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="8b18ac6c-f136-487e-9a82-53b1263152a4" name="" visibility="public" value="*"/>
     </ownedAttribute>

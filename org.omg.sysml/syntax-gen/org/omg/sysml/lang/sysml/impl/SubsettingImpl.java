@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -114,7 +114,7 @@ public class SubsettingImpl extends SpecializationImpl implements Subsetting {
 		if (subsettedFeature == null) {
 			EList<Element> ownedRelatedElements = getOwnedRelatedElement();
 			if (!ownedRelatedElements.isEmpty()) {
-				subsettedFeature = (Feature)ownedRelatedElements.get(0);
+				subsettedFeature = (Feature)ownedRelatedElements.get(ownedRelatedElements.size() - 1);
 			}
 		}
 		return subsettedFeature;
@@ -161,9 +161,8 @@ public class SubsettingImpl extends SpecializationImpl implements Subsetting {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> If the Subsetting has a Feature as its owner, the use
-	 * this as the default value of the subsettingFeature property. <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc --> 
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
 	 */
@@ -172,6 +171,11 @@ public class SubsettingImpl extends SpecializationImpl implements Subsetting {
 			Element owner = getOwningRelatedElement();
 			if (owner instanceof Feature) {
 				subsettingFeature = (Feature) owner;
+			} else {
+				EList<Element> ownedRelatedElements = getOwnedRelatedElement();
+				if (!ownedRelatedElements.isEmpty()) {
+					subsettingFeature = (Feature)ownedRelatedElements.get(0);
+				}
 			}
 		}
 		return subsettingFeature;

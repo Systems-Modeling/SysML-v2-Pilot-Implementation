@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -104,8 +104,6 @@ public class RedefinitionImpl extends SubsettingImpl implements Redefinition {
 
 	/**
 	 * <!-- begin-user-doc --> 
-	 * If the Redefinition has a Feature as its owner, then
-	 * use this as the default value of the redefiningFeature property. 
 	 * <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
@@ -115,6 +113,11 @@ public class RedefinitionImpl extends SubsettingImpl implements Redefinition {
 			Element owner = getOwningRelatedElement();
 			if (owner instanceof Feature) {
 				redefiningFeature = (Feature) owner;
+			} else {
+				EList<Element> ownedRelatedElements = getOwnedRelatedElement();
+				if (!ownedRelatedElements.isEmpty()) {
+					redefiningFeature = (Feature)ownedRelatedElements.get(0);
+				}
 			}
 		}
 		return redefiningFeature;
@@ -170,7 +173,7 @@ public class RedefinitionImpl extends SubsettingImpl implements Redefinition {
 		if (redefinedFeature == null) {
 			EList<Element> ownedRelatedElements = getOwnedRelatedElement();
 			if (!ownedRelatedElements.isEmpty()) {
-				redefinedFeature = (Feature)ownedRelatedElements.get(0);
+				redefinedFeature = (Feature)ownedRelatedElements.get(ownedRelatedElements.size() - 1);
 			}
 		}
 		return redefinedFeature;

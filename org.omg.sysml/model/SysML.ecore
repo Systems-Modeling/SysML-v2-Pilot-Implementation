@@ -1663,11 +1663,10 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="operator" ordered="false"
         lowerBound="1" eType="ecore:EDataType types.ecore#//String"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="operand" upperBound="-1"
-        eType="#//Expression" containment="true">
+        eType="#//Expression" volatile="true" transient="true" derived="true" containment="true">
       <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName">
         <details key="body" value="operatorExpression"/>
       </eAnnotations>
-      <eAnnotations source="redefines" references="#//InvocationExpression/argument"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PathSelectExpression" eSuperTypes="#//OperatorExpression"/>

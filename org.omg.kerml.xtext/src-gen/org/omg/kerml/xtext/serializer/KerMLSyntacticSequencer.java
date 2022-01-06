@@ -509,6 +509,9 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     conjugatedType=[Type|QualifiedName] (ambiguity) originalType=[Type|QualifiedName]
+	 *     conjugatedType=[Type|QualifiedName] (ambiguity) ownedRelatedElement+=FeatureChain
+	 *     ownedRelatedElement+=FeatureChain (ambiguity) originalType=[Type|QualifiedName]
+	 *     ownedRelatedElement+=FeatureChain (ambiguity) ownedRelatedElement+=FeatureChain
 	 */
 	protected void emit_Conjugation_ConjugatesKeyword_3_1_or_TildeKeyword_3_0(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -520,6 +523,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) (ambiguity) 'conjugate' conjugatedType=[Type|QualifiedName]
+	 *     (rule start) (ambiguity) 'conjugate' ownedRelatedElement+=FeatureChain
 	 */
 	protected void emit_Conjugation_ConjugationKeyword_0_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -530,6 +534,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     'disjoining'?
 	 *
 	 * This ambiguous syntax occurs at:
+	 *     (rule start) (ambiguity) 'disjoint' ownedRelatedElement+=FeatureChain
 	 *     (rule start) (ambiguity) 'disjoint' typeDisjoined=[Type|QualifiedName]
 	 */
 	protected void emit_Disjoining_DisjoiningKeyword_0_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
@@ -1232,6 +1237,8 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     ':>>' | 'redefines'
 	 *
 	 * This ambiguous syntax occurs at:
+	 *     ownedRelatedElement+=FeatureChain (ambiguity) ownedRelatedElement+=FeatureChain
+	 *     ownedRelatedElement+=FeatureChain (ambiguity) redefinedFeature=[Feature|QualifiedName]
 	 *     redefiningFeature=[Feature|QualifiedName] (ambiguity) ownedRelatedElement+=FeatureChain
 	 *     redefiningFeature=[Feature|QualifiedName] (ambiguity) redefinedFeature=[Feature|QualifiedName]
 	 */
@@ -1244,6 +1251,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     'specialization'?
 	 *
 	 * This ambiguous syntax occurs at:
+	 *     (rule start) (ambiguity) 'redefinition' ownedRelatedElement+=FeatureChain
 	 *     (rule start) (ambiguity) 'redefinition' redefiningFeature=[Feature|QualifiedName]
 	 */
 	protected void emit_Redefinition_SpecializationKeyword_0_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
@@ -1318,6 +1326,8 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     ':>' | 'specializes'
 	 *
 	 * This ambiguous syntax occurs at:
+	 *     ownedRelatedElement+=FeatureChain (ambiguity) general=[Type|QualifiedName]
+	 *     ownedRelatedElement+=FeatureChain (ambiguity) ownedRelatedElement+=FeatureChain
 	 *     specific=[Type|QualifiedName] (ambiguity) general=[Type|QualifiedName]
 	 *     specific=[Type|QualifiedName] (ambiguity) ownedRelatedElement+=FeatureChain
 	 */
@@ -1330,6 +1340,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     'specialization'?
 	 *
 	 * This ambiguous syntax occurs at:
+	 *     (rule start) (ambiguity) 'subtype' ownedRelatedElement+=FeatureChain
 	 *     (rule start) (ambiguity) 'subtype' specific=[Type|QualifiedName]
 	 */
 	protected void emit_Specialization_SpecializationKeyword_0_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
@@ -1464,6 +1475,8 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     ':>' | 'subsets'
 	 *
 	 * This ambiguous syntax occurs at:
+	 *     ownedRelatedElement+=FeatureChain (ambiguity) ownedRelatedElement+=FeatureChain
+	 *     ownedRelatedElement+=FeatureChain (ambiguity) subsettedFeature=[Feature|QualifiedName]
 	 *     subsettingFeature=[Feature|QualifiedName] (ambiguity) ownedRelatedElement+=FeatureChain
 	 *     subsettingFeature=[Feature|QualifiedName] (ambiguity) subsettedFeature=[Feature|QualifiedName]
 	 */
@@ -1476,6 +1489,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     'specialization'?
 	 *
 	 * This ambiguous syntax occurs at:
+	 *     (rule start) (ambiguity) 'subset' ownedRelatedElement+=FeatureChain
 	 *     (rule start) (ambiguity) 'subset' subsettingFeature=[Feature|QualifiedName]
 	 */
 	protected void emit_Subsetting_SpecializationKeyword_0_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {

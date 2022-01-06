@@ -405,16 +405,18 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	}
 	
 	def void _createChildren(IOutlineNode parentNode, Conjugation conjugation) {
-		if (conjugation.conjugatedType !== null && conjugation.conjugatedType !== conjugation.eContainer) {
-			createNode(parentNode, conjugation.conjugatedType, 
-				conjugation.conjugatedType._image, conjugation.conjugatedType._text, 
-				true
+		val conjugatedType = conjugation.conjugatedType
+		if (conjugatedType !== null && conjugatedType !== conjugation.eContainer) {
+			createNode(parentNode, conjugatedType, 
+				conjugatedType._image, conjugatedType._text, 
+				!(conjugatedType instanceof Feature) || (conjugatedType as Feature).ownedFeatureChaining.empty
 			)			
 		}
-		if (conjugation.originalType !== null) {
-			createNode(parentNode, conjugation.originalType, 
-				_image(conjugation.originalType), conjugation.originalType._text, 
-				true
+		val originalType = conjugation.originalType
+		if (originalType !== null) {
+			createNode(parentNode, originalType, 
+				_image(originalType), originalType._text, 
+				!(originalType instanceof Feature) || (originalType as Feature).ownedFeatureChaining.empty
 			)
 		}
 	}
@@ -426,11 +428,13 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	def void _createChildren(IOutlineNode parentNode, Disjoining disjoining) {
 		val typeDisjoined = disjoining.typeDisjoined
 		if (typeDisjoined !== null && typeDisjoined !== disjoining.eContainer) {
-			createNode(parentNode, typeDisjoined, typeDisjoined._image, typeDisjoined._text, true)			
+			createNode(parentNode, typeDisjoined, typeDisjoined._image, typeDisjoined._text,  
+				!(typeDisjoined instanceof Feature) || (typeDisjoined as Feature).ownedFeatureChaining.empty)			
 		}
 		val disjoiningType = disjoining.disjoiningType
 		if (disjoiningType !== null) {
-			createNode(parentNode, disjoiningType, disjoiningType._image, disjoiningType._text, true)
+			createNode(parentNode, disjoiningType, disjoiningType._image, disjoiningType._text, 
+				!(disjoiningType instanceof Feature) || (disjoiningType as Feature).ownedFeatureChaining.empty)
 		}
 	}
 	

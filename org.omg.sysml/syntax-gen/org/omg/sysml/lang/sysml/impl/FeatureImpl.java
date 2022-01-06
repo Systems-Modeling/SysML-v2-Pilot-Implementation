@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -27,7 +27,6 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -183,7 +182,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	
 	protected void getTypes(List<Type> types, Set<Feature> visitedFeatures) {
 		visitedFeatures.add(this);
-		types.addAll(getFeatureTypes());		
+		getFeatureTypes(types, visitedFeatures);		
 		Conjugation conjugator = getOwnedConjugator();
 		if (conjugator != null) {
 			Type originalType = conjugator.getOriginalType();
@@ -198,17 +197,16 @@ public class FeatureImpl extends TypeImpl implements Feature {
 		}		
 	}
 	
-	protected List<Type> getFeatureTypes() {
-		List<Type> types = getOwnedTyping().stream().
+	protected void getFeatureTypes(List<Type> types, Set<Feature> visitedFeatures) {
+		getOwnedTyping().stream().
 				map(typing->typing.getType()).
 				filter(type->type != null).
-				collect(Collectors.toList());
+				forEachOrdered(types::add);
 		types.addAll(TypeUtil.getImplicitGeneralTypesFor(this, SysMLPackage.eINSTANCE.getFeatureTyping()));
 		Feature lastChainingFeature = FeatureUtil.getLastChainingFeatureOf(this);
 		if (lastChainingFeature != null) {
-			types.addAll(((FeatureImpl)lastChainingFeature).getAllTypes());
+			((FeatureImpl)lastChainingFeature).getTypes(types, visitedFeatures);
 		}
-		return types;
 	}
 	
 	protected static void removeRedundantTypes(List<Type> types) {

@@ -284,10 +284,10 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 						|| rule == grammarAccess.getUnaryExpressionRule()
 						|| rule == grammarAccess.getExtentExpressionRule()
 						|| rule == grammarAccess.getPrimaryExpressionRule()
-						|| action == grammarAccess.getPrimaryExpressionAccess().getOperatorExpressionOperandAction_1_0_0()
-						|| action == grammarAccess.getPrimaryExpressionAccess().getOperatorExpressionOperandAction_1_1_0()
-						|| action == grammarAccess.getPrimaryExpressionAccess().getPathStepExpressionOperandAction_1_2_0()
-						|| action == grammarAccess.getPrimaryExpressionAccess().getPathSelectExpressionOperandAction_1_3_0()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getPathStepExpressionOperandAction_1_0()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getOperatorExpressionOperandAction_2_0_0_0()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getOperatorExpressionOperandAction_2_0_1_0()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getPathSelectExpressionOperandAction_2_0_2_0()
 						|| rule == grammarAccess.getBaseExpressionRule()
 						|| rule == grammarAccess.getSequenceExpressionRule()
 						|| action == grammarAccess.getSequenceExpressionAccess().getOperatorExpressionOperandAction_1_1_0()) {
@@ -410,7 +410,11 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 				}
 				else break;
 			case SysMLPackage.FEATURE_REFERENCE_EXPRESSION:
-				if (rule == grammarAccess.getOwnedExpressionRule()
+				if (rule == grammarAccess.getFeatureChainExpressionRule()) {
+					sequence_FeatureChainExpression(context, (FeatureReferenceExpression) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getOwnedExpressionRule()
 						|| rule == grammarAccess.getConditionalExpressionRule()
 						|| action == grammarAccess.getConditionalExpressionAccess().getOperatorExpressionOperandAction_0_1_0()
 						|| rule == grammarAccess.getNullCoalescingExpressionRule()
@@ -440,10 +444,10 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 						|| rule == grammarAccess.getUnaryExpressionRule()
 						|| rule == grammarAccess.getExtentExpressionRule()
 						|| rule == grammarAccess.getPrimaryExpressionRule()
-						|| action == grammarAccess.getPrimaryExpressionAccess().getOperatorExpressionOperandAction_1_0_0()
-						|| action == grammarAccess.getPrimaryExpressionAccess().getOperatorExpressionOperandAction_1_1_0()
-						|| action == grammarAccess.getPrimaryExpressionAccess().getPathStepExpressionOperandAction_1_2_0()
-						|| action == grammarAccess.getPrimaryExpressionAccess().getPathSelectExpressionOperandAction_1_3_0()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getPathStepExpressionOperandAction_1_0()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getOperatorExpressionOperandAction_2_0_0_0()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getOperatorExpressionOperandAction_2_0_1_0()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getPathSelectExpressionOperandAction_2_0_2_0()
 						|| rule == grammarAccess.getBaseExpressionRule()
 						|| rule == grammarAccess.getSequenceExpressionRule()
 						|| action == grammarAccess.getSequenceExpressionAccess().getOperatorExpressionOperandAction_1_1_0()
@@ -562,6 +566,10 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 					sequence_EmptyFeatureWriteMember(context, (Membership) semanticObject); 
 					return; 
 				}
+				else if (rule == grammarAccess.getFeatureChainMemberRule()) {
+					sequence_FeatureChainMember(context, (Membership) semanticObject); 
+					return; 
+				}
 				else if (rule == grammarAccess.getFeatureReferenceMemberRule()) {
 					sequence_FeatureReferenceMember(context, (Membership) semanticObject); 
 					return; 
@@ -623,8 +631,51 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 				sequence_NullExpression(context, (NullExpression) semanticObject); 
 				return; 
 			case SysMLPackage.OPERATOR_EXPRESSION:
-				sequence_AdditiveExpression_AndExpression_ClassificationExpression_ConditionalExpression_EqualityExpression_ExponentiationExpression_ExtentExpression_ImpliesExpression_MultiplicativeExpression_NamedArgumentList_NullCoalescingExpression_OrExpression_PositionalArgumentList_PrimaryExpression_RangeExpression_RelationalExpression_SequenceExpression_UnaryExpression_XorExpression(context, (OperatorExpression) semanticObject); 
-				return; 
+				if (rule == grammarAccess.getOwnedExpressionRule()
+						|| rule == grammarAccess.getConditionalExpressionRule()
+						|| action == grammarAccess.getConditionalExpressionAccess().getOperatorExpressionOperandAction_0_1_0()
+						|| rule == grammarAccess.getNullCoalescingExpressionRule()
+						|| action == grammarAccess.getNullCoalescingExpressionAccess().getOperatorExpressionOperandAction_1_0()
+						|| rule == grammarAccess.getImpliesExpressionRule()
+						|| action == grammarAccess.getImpliesExpressionAccess().getOperatorExpressionOperandAction_1_0()
+						|| rule == grammarAccess.getOrExpressionRule()
+						|| action == grammarAccess.getOrExpressionAccess().getOperatorExpressionOperandAction_1_0()
+						|| rule == grammarAccess.getXorExpressionRule()
+						|| action == grammarAccess.getXorExpressionAccess().getOperatorExpressionOperandAction_1_0()
+						|| rule == grammarAccess.getAndExpressionRule()
+						|| action == grammarAccess.getAndExpressionAccess().getOperatorExpressionOperandAction_1_0()
+						|| rule == grammarAccess.getEqualityExpressionRule()
+						|| action == grammarAccess.getEqualityExpressionAccess().getOperatorExpressionOperandAction_1_0()
+						|| rule == grammarAccess.getClassificationExpressionRule()
+						|| action == grammarAccess.getClassificationExpressionAccess().getOperatorExpressionOperandAction_0_1_0()
+						|| rule == grammarAccess.getRelationalExpressionRule()
+						|| action == grammarAccess.getRelationalExpressionAccess().getOperatorExpressionOperandAction_1_0()
+						|| rule == grammarAccess.getRangeExpressionRule()
+						|| action == grammarAccess.getRangeExpressionAccess().getOperatorExpressionOperandAction_1_0()
+						|| rule == grammarAccess.getAdditiveExpressionRule()
+						|| action == grammarAccess.getAdditiveExpressionAccess().getOperatorExpressionOperandAction_1_0()
+						|| rule == grammarAccess.getMultiplicativeExpressionRule()
+						|| action == grammarAccess.getMultiplicativeExpressionAccess().getOperatorExpressionOperandAction_1_0()
+						|| rule == grammarAccess.getExponentiationExpressionRule()
+						|| action == grammarAccess.getExponentiationExpressionAccess().getOperatorExpressionOperandAction_1_0()
+						|| rule == grammarAccess.getUnaryExpressionRule()
+						|| rule == grammarAccess.getExtentExpressionRule()
+						|| rule == grammarAccess.getPrimaryExpressionRule()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getPathStepExpressionOperandAction_1_0()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getOperatorExpressionOperandAction_2_0_0_0()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getOperatorExpressionOperandAction_2_0_1_0()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getPathSelectExpressionOperandAction_2_0_2_0()
+						|| rule == grammarAccess.getBaseExpressionRule()
+						|| rule == grammarAccess.getSequenceExpressionRule()
+						|| action == grammarAccess.getSequenceExpressionAccess().getOperatorExpressionOperandAction_1_1_0()) {
+					sequence_AdditiveExpression_AndExpression_ClassificationExpression_ConditionalExpression_EqualityExpression_ExponentiationExpression_ExtentExpression_ImpliesExpression_MultiplicativeExpression_NamedArgumentList_NullCoalescingExpression_OrExpression_PositionalArgumentList_PrimaryExpression_RangeExpression_RelationalExpression_SequenceExpression_UnaryExpression_XorExpression(context, (OperatorExpression) semanticObject); 
+					return; 
+				}
+				else if (action == grammarAccess.getPrimaryExpressionAccess().getPathStepExpressionOperandAction_2_1_0()) {
+					sequence_NamedArgumentList_PositionalArgumentList_PrimaryExpression_PathStepExpression_2_1_0(context, (OperatorExpression) semanticObject); 
+					return; 
+				}
+				else break;
 			case SysMLPackage.PACKAGE:
 				if (rule == grammarAccess.getFilterPackageRule()) {
 					sequence_FilterPackage(context, (org.omg.sysml.lang.sysml.Package) semanticObject); 
@@ -1190,7 +1241,7 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	 *
 	 * Constraint:
 	 *     (
-	 *         ownedRelationship+=PrefixDocumentation* 
+	 *         ownedRelationship+=PrefixDocumentation? 
 	 *         visibility=VisibilityIndicator? 
 	 *         ((memberName=Name? ownedRelatedElement+=FeatureChain) | ownedRelatedElement+=FeatureElement)
 	 *     )
@@ -1269,10 +1320,10 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	 *         (ownedRelationship+=OwnedDisjoining ownedRelationship+=OwnedDisjoining*)? 
 	 *         (ownedRelationship+=ParameterMember ownedRelationship+=ParameterMember*)? 
 	 *         (ownedRelationship+=ReturnParameterMember | ownedRelationship+=EmptyReturnParameterMember) 
-	 *         ownedRelationship+=NonFeatureMember? 
+	 *         ownedRelationship+=AliasMember? 
 	 *         (
-	 *             (ownedRelationship+=OwnedDocumentation | ownedRelationship+=FeatureMember | ownedRelationship+=AliasMember | ownedRelationship+=Import)? 
-	 *             ownedRelationship+=NonFeatureMember?
+	 *             (ownedRelationship+=OwnedDocumentation | ownedRelationship+=NonFeatureMember | ownedRelationship+=FeatureMember | ownedRelationship+=Import)? 
+	 *             ownedRelationship+=AliasMember?
 	 *         )* 
 	 *         ownedRelationship+=ResultExpressionMember?
 	 *     )
@@ -1297,10 +1348,10 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	 *         (ownedRelationship+=OwnedDisjoining ownedRelationship+=OwnedDisjoining*)? 
 	 *         (ownedRelationship+=ParameterMember ownedRelationship+=ParameterMember*)? 
 	 *         (ownedRelationship+=ReturnParameterMember | ownedRelationship+=EmptyReturnParameterMember) 
-	 *         ownedRelationship+=NonFeatureMember? 
+	 *         ownedRelationship+=AliasMember? 
 	 *         (
-	 *             (ownedRelationship+=OwnedDocumentation | ownedRelationship+=FeatureMember | ownedRelationship+=AliasMember | ownedRelationship+=Import)? 
-	 *             ownedRelationship+=NonFeatureMember?
+	 *             (ownedRelationship+=OwnedDocumentation | ownedRelationship+=NonFeatureMember | ownedRelationship+=FeatureMember | ownedRelationship+=Import)? 
+	 *             ownedRelationship+=AliasMember?
 	 *         )* 
 	 *         ownedRelationship+=ResultExpressionMember?
 	 *     )
@@ -2615,10 +2666,10 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	 *     UnaryExpression returns Expression
 	 *     ExtentExpression returns Expression
 	 *     PrimaryExpression returns Expression
-	 *     PrimaryExpression.OperatorExpression_1_0_0 returns Expression
-	 *     PrimaryExpression.OperatorExpression_1_1_0 returns Expression
-	 *     PrimaryExpression.PathStepExpression_1_2_0 returns Expression
-	 *     PrimaryExpression.PathSelectExpression_1_3_0 returns Expression
+	 *     PrimaryExpression.PathStepExpression_1_0 returns Expression
+	 *     PrimaryExpression.OperatorExpression_2_0_0_0 returns Expression
+	 *     PrimaryExpression.OperatorExpression_2_0_1_0 returns Expression
+	 *     PrimaryExpression.PathSelectExpression_2_0_2_0 returns Expression
 	 *     BaseExpression returns Expression
 	 *     SequenceExpression returns Expression
 	 *     SequenceExpression.OperatorExpression_1_1_0 returns Expression

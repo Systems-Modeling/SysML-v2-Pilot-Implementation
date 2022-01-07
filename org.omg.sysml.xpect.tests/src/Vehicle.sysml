@@ -1,7 +1,7 @@
 package Vehicle {
     part def Vehicle {
         attribute cylinders: ScalarValues::Integer = 3;
-        attribute mass: Real = 1000.1;
+        attribute mass: ScalarValues::Real = 1000.1;
     }
 
     part vehicle_1 : Vehicle {

@@ -115,16 +115,17 @@ class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 		val i = ownedFeatureChainings.indexOf(ch)
 		if (i <= 0) {
 			val owningRelationship = featureChained.owningRelationship
+			var owningNamespace = featureChained?.owningNamespace
 			if (owningRelationship instanceof Subsetting) {
 				featureChained = owningRelationship.subsettingFeature
-				var owningType = featureChained?.owningType
-				if (owningType instanceof Connector) {
-					if (ConnectorUtil.isConnectorEndSubsettingOf(owningType, owningRelationship)) {
-			    		featureChained = owningType
+				owningNamespace = featureChained?.owningNamespace
+				if (owningNamespace instanceof Connector) {
+					if (ConnectorUtil.isConnectorEndSubsettingOf(owningNamespace, owningRelationship)) {
+			    		featureChained = owningNamespace
 			    	}
 			    }
 			}
-			featureChained.scope_nonExpressionNamespace(ch, reference)
+			featureChained.scope_relativeNamespace(owningNamespace, ch, reference)
 		} else
 			ch.scope_Namespace(ownedFeatureChainings.get(i-1).chainingFeature, ch, reference, false)
 	}

@@ -10553,18 +10553,23 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	///* Primary Expressions */
 	//PrimaryExpression returns SysML::Expression :
 	//    BaseExpression
-	//    ( {SysML::OperatorExpression.operand += current}
-	//      operator = '[' operand += SequenceExpression ']'
-	//    | {SysML::OperatorExpression.operand += current} '->'
-	//      ownedRelationship += ReferenceTyping
-	//      ( ownedRelationship += ExpressionBodyMember
-	//      | ownedRelationship += FunctionReferenceMember
-	//      | ArgumentList
+	//    ( {SysML::PathStepExpression.operand += current} '.'
+	//      operand += FeatureChainExpression
+	//    )?
+	//    ( ( {SysML::OperatorExpression.operand += current}
+	//        operator = '[' operand += SequenceExpression ']'
+	//      | {SysML::OperatorExpression.operand += current} '->'
+	//        ownedRelationship += ReferenceTyping
+	//        ( ownedRelationship += ExpressionBodyMember
+	//        | ownedRelationship += FunctionReferenceMember
+	//        | ArgumentList
+	//        )
+	//      | {SysML::PathSelectExpression.operand += current} '.'
+	//        ownedRelationship += ExpressionBodyMember
 	//      )
-	//    | {SysML::PathStepExpression.operand += current} '.'
-	//      operand += FeatureReferenceExpression
-	//    | {SysML::PathSelectExpression.operand += current} '.'
-	//      ownedRelationship += ExpressionBodyMember
+	//      ( {SysML::PathStepExpression.operand += current} '.'
+	//        operand += FeatureChainExpression
+	//      )?
 	//    )*
 	//;
 	public KerMLExpressionsGrammarAccess.PrimaryExpressionElements getPrimaryExpressionAccess() {
@@ -10606,6 +10611,29 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	
 	public ParserRule getFunctionReferenceRule() {
 		return getFunctionReferenceAccess().getRule();
+	}
+	
+	//FeatureChainExpression returns SysML::FeatureReferenceExpression :
+	//    ownedRelationship += FeatureChainMember
+	//;
+	public KerMLExpressionsGrammarAccess.FeatureChainExpressionElements getFeatureChainExpressionAccess() {
+		return gaKerMLExpressions.getFeatureChainExpressionAccess();
+	}
+	
+	public ParserRule getFeatureChainExpressionRule() {
+		return getFeatureChainExpressionAccess().getRule();
+	}
+	
+	//FeatureChainMember returns SysML::Membership :
+	//      memberElement = [SysML::Feature | QualifiedName]
+	//    | ownedRelatedElement += FeatureChain
+	//;
+	public KerMLExpressionsGrammarAccess.FeatureChainMemberElements getFeatureChainMemberAccess() {
+		return gaKerMLExpressions.getFeatureChainMemberAccess();
+	}
+	
+	public ParserRule getFeatureChainMemberRule() {
+		return getFeatureChainMemberAccess().getRule();
 	}
 	
 	///* Base Expressions */

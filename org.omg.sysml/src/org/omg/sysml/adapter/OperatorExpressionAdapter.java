@@ -49,7 +49,8 @@ public class OperatorExpressionAdapter extends InvocationExpressionAdapter {
 		return Stream.of(LIBRARY_PACKAGE_NAMES).map(pack -> pack + "::'" + op + "'").toArray(String[]::new);
 	}
 
-	protected void addCastResultSubsetting() {
+	@Override
+	protected void addResultTyping() {
 		OperatorExpression target = getTarget();
 		if (CAST_OPERATOR.equals(target.getOperator())) {
 			EList<Feature> ownedFeatures = target.getOwnedFeature();
@@ -68,12 +69,6 @@ public class OperatorExpressionAdapter extends InvocationExpressionAdapter {
 			addDefaultGeneralType(SysMLPackage.eINSTANCE.getFeatureTyping(), getOperatorQualifiedNames(operator));
 		}
 		super.computeImplicitGeneralTypes();
-	}
-	
-	@Override
-	public void doTransform() {
-		super.doTransform();
-		addCastResultSubsetting();
 	}
 	
 }

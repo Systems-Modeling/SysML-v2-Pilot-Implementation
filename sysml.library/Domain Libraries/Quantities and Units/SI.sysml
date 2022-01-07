@@ -45,7 +45,7 @@ package SI {
      * Units with special names
      */
     attribute B: StorageCapacityUnit = one { :>> longName = "byte"; }
-    attribute Bd: ModulationRateUnit = one { :>> longName = "baud"; }
+    attribute Bd: ModulationRateUnit = s**-1 { :>> longName = "baud"; }
     attribute bit: StorageCapacityUnit = one { :>> longName = "bit"; }
     attribute Bq: NuclearActivityUnit = s**-1 { :>> longName = "becquerel"; }
     attribute C: ElectricChargeUnit = A*s { :>> longName = "coulomb"; }

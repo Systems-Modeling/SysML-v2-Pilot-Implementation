@@ -128,7 +128,7 @@ public class KerMLExpressionsSyntacticSequencer extends AbstractSyntacticSequenc
 	 *     operand+=EqualityExpression (ambiguity) ')' (rule end)
 	 *     operand+=ExponentiationExpression (ambiguity) ')' (rule end)
 	 *     operand+=ExtentExpression (ambiguity) ')' (rule end)
-	 *     operand+=FeatureReferenceExpression (ambiguity) ')' (rule end)
+	 *     operand+=FeatureChainExpression (ambiguity) ')' (rule end)
 	 *     operand+=ImpliesExpression (ambiguity) ')' (rule end)
 	 *     operand+=MultiplicativeExpression (ambiguity) ')' (rule end)
 	 *     operand+=OrExpression (ambiguity) ')' (rule end)

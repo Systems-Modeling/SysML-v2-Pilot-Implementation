@@ -10,5 +10,4 @@ Require-Bundle: org.omg.kerml.expressions.xtext,
  org.eclipse.xtext.ide,
  org.eclipse.xtext.xbase.ide,
  org.antlr.runtime;bundle-version="[3.2.0,3.2.1)"
-Export-Package: org.omg.kerml.expressions.xtext.ide.contentassist.antlr.internal,
- org.omg.kerml.expressions.xtext.ide.contentassist.antlr
+Export-Package: org.omg.kerml.expressions.xtext.ide.contentassist.antlr

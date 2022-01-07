@@ -100120,13 +100120,22 @@ public interface SysMLPackage extends EPackage {
 	int FOR_LOOP_ACTION_USAGE__BODY_ACTION = LOOP_ACTION_USAGE__BODY_ACTION;
 
 	/**
+	 * The feature id for the '<em><b>Loop Variable</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FOR_LOOP_ACTION_USAGE__LOOP_VARIABLE = LOOP_ACTION_USAGE_FEATURE_COUNT + 0;
+
+	/**
 	 * The feature id for the '<em><b>Seq Argument</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FOR_LOOP_ACTION_USAGE__SEQ_ARGUMENT = LOOP_ACTION_USAGE_FEATURE_COUNT + 0;
+	int FOR_LOOP_ACTION_USAGE__SEQ_ARGUMENT = LOOP_ACTION_USAGE_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>For Loop Action Usage</em>' class.
@@ -100135,7 +100144,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FOR_LOOP_ACTION_USAGE_FEATURE_COUNT = LOOP_ACTION_USAGE_FEATURE_COUNT + 1;
+	int FOR_LOOP_ACTION_USAGE_FEATURE_COUNT = LOOP_ACTION_USAGE_FEATURE_COUNT + 2;
 
 	/**
 	 * The operation id for the '<em>Escaped Name</em>' operation.
@@ -117519,6 +117528,17 @@ public interface SysMLPackage extends EPackage {
 	EReference getForLoopActionUsage_SeqArgument();
 
 	/**
+	 * Returns the meta object for the reference '{@link org.omg.sysml.lang.sysml.ForLoopActionUsage#getLoopVariable <em>Loop Variable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Loop Variable</em>'.
+	 * @see org.omg.sysml.lang.sysml.ForLoopActionUsage#getLoopVariable()
+	 * @see #getForLoopActionUsage()
+	 * @generated
+	 */
+	EReference getForLoopActionUsage_LoopVariable();
+
+	/**
 	 * Returns the meta object for class '{@link org.omg.sysml.lang.sysml.LoopActionUsage <em>Loop Action Usage</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -123533,6 +123553,14 @@ public interface SysMLPackage extends EPackage {
 		 * @generated
 		 */
 		EReference FOR_LOOP_ACTION_USAGE__SEQ_ARGUMENT = eINSTANCE.getForLoopActionUsage_SeqArgument();
+
+		/**
+		 * The meta object literal for the '<em><b>Loop Variable</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FOR_LOOP_ACTION_USAGE__LOOP_VARIABLE = eINSTANCE.getForLoopActionUsage_LoopVariable();
 
 		/**
 		 * The meta object literal for the '{@link org.omg.sysml.lang.sysml.impl.LoopActionUsageImpl <em>Loop Action Usage</em>}' class.

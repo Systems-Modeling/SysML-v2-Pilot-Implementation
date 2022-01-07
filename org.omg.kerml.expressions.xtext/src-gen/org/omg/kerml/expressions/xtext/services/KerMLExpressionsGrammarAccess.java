@@ -1247,7 +1247,7 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 		//PrimaryExpression returns SysML::Expression :
 		//    BaseExpression
 		//    ( {SysML::PathStepExpression.operand += current} '.'
-		//        operand += FeatureChainExpression
+		//      operand += FeatureChainExpression
 		//    )?
 		//    ( ( {SysML::OperatorExpression.operand += current}
 		//        operator = '[' operand += SequenceExpression ']'
@@ -1269,7 +1269,7 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 		
 		//BaseExpression
 		//( {SysML::PathStepExpression.operand += current} '.'
-		//    operand += FeatureChainExpression
+		//  operand += FeatureChainExpression
 		//)?
 		//( ( {SysML::OperatorExpression.operand += current}
 		//    operator = '[' operand += SequenceExpression ']'
@@ -1292,7 +1292,7 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 		public RuleCall getBaseExpressionParserRuleCall_0() { return cBaseExpressionParserRuleCall_0; }
 		
 		//( {SysML::PathStepExpression.operand += current} '.'
-		//    operand += FeatureChainExpression
+		//  operand += FeatureChainExpression
 		//)?
 		public Group getGroup_1() { return cGroup_1; }
 		
@@ -2963,7 +2963,7 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 	//PrimaryExpression returns SysML::Expression :
 	//    BaseExpression
 	//    ( {SysML::PathStepExpression.operand += current} '.'
-	//        operand += FeatureChainExpression
+	//      operand += FeatureChainExpression
 	//    )?
 	//    ( ( {SysML::OperatorExpression.operand += current}
 	//        operator = '[' operand += SequenceExpression ']'

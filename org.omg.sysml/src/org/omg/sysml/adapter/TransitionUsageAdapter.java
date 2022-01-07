@@ -38,8 +38,6 @@ import org.omg.sysml.util.UsageUtil;
 
 public class TransitionUsageAdapter extends ActionUsageAdapter {
 
-	public static final String TRANSITION_LINK_FEATURE = "TransitionPerformances::TransitionPerformance::transitionLink";
-
 	public TransitionUsageAdapter(TransitionUsage element) {
 		super(element);
 	}

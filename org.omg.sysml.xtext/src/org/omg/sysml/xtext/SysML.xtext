@@ -1365,7 +1365,17 @@ ActionUsageParameter returns SysML::Usage :
 /* Action Nodes */
 
 ActionNode returns SysML::ActionUsage :
-	  SendNode | AcceptNode | AssignmentNode | ControlNode
+	  SendNode | AcceptNode | AssignmentNode 
+	| IfNode | WhileLoopNode | ForLoopNode
+	| ControlNode
+;
+
+fragment ActionNodeUsageDeclaration returns SysML::ActionUsage :
+	ActionUsageKeyword UsageDeclaration?
+;
+
+fragment ActionNodePrefix returns SysML::ActionUsage :
+	OccurrenceUsagePrefix ActionNodeUsageDeclaration?
 ;
 
 AcceptNode returns SysML::AcceptActionUsage :
@@ -1373,7 +1383,7 @@ AcceptNode returns SysML::AcceptActionUsage :
 ;
 
 fragment AcceptNodeDeclaration returns SysML::ActionUsage :
-	( 'action' UsageDeclaration )? 'accept' AcceptParameterPart
+	ActionNodeUsageDeclaration? 'accept' AcceptParameterPart
 ;
 
 fragment AcceptParameterPart returns SysML::ActionUsage :
@@ -1402,7 +1412,7 @@ SendNode returns SysML::SendActionUsage :
 ;
 
 fragment SendNodeDeclaration returns SysML::ActionUsage :
-	( 'action' UsageDeclaration )? 'send' ownedRelationship += NodeParameterMember 
+	ActionNodeUsageDeclaration? 'send' ownedRelationship += NodeParameterMember 
 	'to' ownedRelationship += NodeParameterMember
 ;
 
@@ -1423,7 +1433,7 @@ AssignmentNode returns SysML::AssignmentActionUsage :
 ;
 
 fragment AssignmentNodeDeclaration returns SysML::ActionUsage :
-	( 'action' UsageDeclaration )? 'assign' 
+	ActionNodeUsageDeclaration? 'assign' 
 	ownedRelationship += AssignmentTargetMember
 	ownedRelationship += FeatureChainMember ':=' 
 	ownedRelationship += NodeParameterMember
@@ -1471,6 +1481,55 @@ TargetExpression returns SysML::Expression :
 	    ownedRelationship += ExpressionBodyMember
 	  )
 	)*
+;
+
+IfNode returns SysML::IfActionUsage :
+	ActionNodePrefix 
+	'if' ownedRelationship += NodeParameterMember
+	ownedRelationship += ActionBodyParameterMember
+	( 'else' ownedRelationship += ( ActionBodyParameterMember | IfNodeParameterMember ) )?
+;
+
+ActionBodyParameterMember returns SysML::ParameterMembership :
+	ownedRelatedElement += ActionBodyParameter // ownedMemberParameter = ActionBodyParameter
+;
+
+ActionBodyParameter returns SysML::ActionUsage :
+	{SysML::ActionUsage} ( ActionUsageKeyword UsageDeclaration? )? '{' => ActionBodyItem* '}'
+;
+
+IfNodeParameterMember returns SysML::ParameterMembership :
+	ownedRelatedElement += IfNode // ownedMemberParameter = IfNode
+;
+
+WhileLoopNode returns SysML::WhileLoopActionUsage :
+	ActionNodePrefix
+	( 'while' ownedRelationship += ExpressionParameterMember
+	| 'loop' ownedRelationship += EmptyParameterMember
+	)
+	ownedRelationship += ActionBodyParameterMember
+	( 'until' ownedRelationship += ExpressionParameterMember ';' )?
+;
+
+ExpressionParameterMember returns SysML::ParameterMembership :
+	ownedRelatedElement += OwnedExpression // ownedMemberParameter = OwnedExpression
+;
+
+ForLoopNode returns SysML::ForLoopActionUsage :
+	ActionNodePrefix
+	'for' ownedRelationship += ForVariableDeclarationMember
+	'in' ownedRelationship += NodeParameterMember
+	ownedRelationship += ActionBodyParameterMember
+;
+
+
+ForVariableDeclarationMember returns SysML::FeatureMembership :
+	ownedRelatedElement += ForVariableDeclaration // ownedMemberFeature = UsageDeclaration
+;
+
+
+ForVariableDeclaration returns SysML::ReferenceUsage :
+	UsageDeclaration
 ;
 
 ControlNode returns SysML::ControlNode :
@@ -2144,10 +2203,6 @@ UseCaseDefinition returns SysML::UseCaseDefinition :
 
 UseCaseUsage returns SysML::UseCaseUsage :
 	OccurrenceUsagePrefix UseCaseUsageKeyword CalculationUsageDeclaration CaseBody
-;
-
-IncludeUseCaseUsageMember returns SysML::FeatureMembership :
-	MemberPrefix ownedRelatedElement += IncludeUseCaseUsage // ownedMemberFeature = IncludeUseCaseUsage
 ;
 
 IncludeUseCaseUsage returns SysML::IncludeUseCaseUsage :

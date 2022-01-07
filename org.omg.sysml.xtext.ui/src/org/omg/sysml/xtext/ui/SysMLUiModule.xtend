@@ -4,7 +4,6 @@
 package org.omg.sysml.xtext.ui
 
 import org.eclipse.xtend.lib.annotations.FinalFieldsConstructor
-import org.omg.kerml.xtext.ui.contentassist.KerMLPrefixMatcher
 import org.eclipse.xtext.ui.shared.Access
 
 /**
@@ -12,9 +11,6 @@ import org.eclipse.xtext.ui.shared.Access
  */
 @FinalFieldsConstructor
 class SysMLUiModule extends AbstractSysMLUiModule {
-	override bindPrefixMatcher() {
-		KerMLPrefixMatcher
-	}
 	
 	override provideIAllContainersState() {
 		// Replaces the JDT-aware project state implementation with one that handles dependencies via project references

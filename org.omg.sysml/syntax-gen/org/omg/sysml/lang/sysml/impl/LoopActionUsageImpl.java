@@ -8,6 +8,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.LoopActionUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.util.TypeUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -56,24 +57,19 @@ public abstract class LoopActionUsageImpl extends ActionUsageImpl implements Loo
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public ActionUsage basicGetBodyAction() {
-		// TODO: implement this method to return the 'Body Action' reference
-		// -> do not perform proxy resolution
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		return TypeUtil.getOwnedParameterOf(this, 1, ActionUsage.class);
 	}
-
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public void setBodyAction(ActionUsage newBodyAction) {
-		// TODO: implement this method to set the 'Body Action' reference
-		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
 	}
 

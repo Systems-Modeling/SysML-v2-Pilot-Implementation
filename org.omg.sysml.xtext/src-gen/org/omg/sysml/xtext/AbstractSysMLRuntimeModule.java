@@ -9,6 +9,8 @@ import com.google.inject.name.Names;
 import java.util.Properties;
 import org.eclipse.xtext.Constants;
 import org.eclipse.xtext.IGrammarAccess;
+import org.eclipse.xtext.common.types.DefaultCommonTypesRuntimeModule;
+import org.eclipse.xtext.common.types.xtext.TypesAwareDefaultGlobalScopeProvider;
 import org.eclipse.xtext.generator.IGenerator2;
 import org.eclipse.xtext.naming.DefaultDeclarativeQualifiedNameProvider;
 import org.eclipse.xtext.naming.IQualifiedNameProvider;
@@ -32,13 +34,11 @@ import org.eclipse.xtext.scoping.IGlobalScopeProvider;
 import org.eclipse.xtext.scoping.IScopeProvider;
 import org.eclipse.xtext.scoping.IgnoreCaseLinking;
 import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider;
-import org.eclipse.xtext.scoping.impl.DefaultGlobalScopeProvider;
 import org.eclipse.xtext.scoping.impl.ImportedNamespaceAwareLocalScopeProvider;
 import org.eclipse.xtext.serializer.ISerializer;
 import org.eclipse.xtext.serializer.impl.Serializer;
 import org.eclipse.xtext.serializer.sequencer.ISemanticSequencer;
 import org.eclipse.xtext.serializer.sequencer.ISyntacticSequencer;
-import org.eclipse.xtext.service.DefaultRuntimeModule;
 import org.eclipse.xtext.service.SingletonBinding;
 import org.omg.sysml.xtext.generator.SysMLGenerator;
 import org.omg.sysml.xtext.parser.antlr.SysMLAntlrTokenFileProvider;
@@ -54,7 +54,7 @@ import org.omg.sysml.xtext.validation.SysMLValidator;
  * Manual modifications go to {@link SysMLRuntimeModule}.
  */
 @SuppressWarnings("all")
-public abstract class AbstractSysMLRuntimeModule extends DefaultRuntimeModule {
+public abstract class AbstractSysMLRuntimeModule extends DefaultCommonTypesRuntimeModule {
 
 	protected Properties properties = null;
 
@@ -152,11 +152,6 @@ public abstract class AbstractSysMLRuntimeModule extends DefaultRuntimeModule {
 	}
 	
 	// contributed by org.eclipse.xtext.xtext.generator.scoping.ImportNamespacesScopingFragment2
-	public Class<? extends IGlobalScopeProvider> bindIGlobalScopeProvider() {
-		return DefaultGlobalScopeProvider.class;
-	}
-	
-	// contributed by org.eclipse.xtext.xtext.generator.scoping.ImportNamespacesScopingFragment2
 	public void configureIgnoreCaseLinking(Binder binder) {
 		binder.bindConstant().annotatedWith(IgnoreCaseLinking.class).to(false);
 	}
@@ -189,6 +184,11 @@ public abstract class AbstractSysMLRuntimeModule extends DefaultRuntimeModule {
 	// contributed by org.eclipse.xtext.xtext.generator.generator.GeneratorFragment2
 	public Class<? extends IGenerator2> bindIGenerator2() {
 		return SysMLGenerator.class;
+	}
+	
+	// contributed by org.eclipse.xtext.xtext.generator.types.TypesGeneratorFragment2
+	public Class<? extends IGlobalScopeProvider> bindIGlobalScopeProvider() {
+		return TypesAwareDefaultGlobalScopeProvider.class;
 	}
 	
 }

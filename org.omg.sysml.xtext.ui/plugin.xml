@@ -26,11 +26,11 @@
 		<handler
 			class="org.omg.sysml.xtext.ui.SysMLExecutableExtensionFactory:org.eclipse.xtext.ui.editor.handler.ValidateActionHandler"
 			commandId="org.omg.sysml.xtext.SysML.validate">
-		<activeWhen>
-			<reference
+			<activeWhen>
+				<reference
 					definitionId="org.omg.sysml.xtext.SysML.Editor.opened">
-			</reference>
-		</activeWhen>
+				</reference>
+			</activeWhen>
 		</handler>
 		<!-- copy qualified name -->
 		<handler
@@ -81,21 +81,21 @@
 			class="org.omg.sysml.xtext.ui.SysMLExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
 			id="org.omg.sysml.xtext.SysML"
 			name="SysML">
-			<keywordReference id="org.omg.sysml.ui.keyword_SysML"/>
+			<keywordReference id="org.omg.sysml.xtext.ui.keyword_SysML"/>
 		</page>
 		<page
 			category="org.omg.sysml.xtext.SysML"
 			class="org.omg.sysml.xtext.ui.SysMLExecutableExtensionFactory:org.eclipse.xtext.ui.editor.syntaxcoloring.SyntaxColoringPreferencePage"
 			id="org.omg.sysml.xtext.SysML.coloring"
 			name="Syntax Coloring">
-			<keywordReference id="org.omg.sysml.ui.keyword_SysML"/>
+			<keywordReference id="org.omg.sysml.xtext.ui.keyword_SysML"/>
 		</page>
 		<page
 			category="org.omg.sysml.xtext.SysML"
 			class="org.omg.sysml.xtext.ui.SysMLExecutableExtensionFactory:org.eclipse.xtext.ui.editor.templates.XtextTemplatePreferencePage"
 			id="org.omg.sysml.xtext.SysML.templates"
 			name="Templates">
-			<keywordReference id="org.omg.sysml.ui.keyword_SysML"/>
+			<keywordReference id="org.omg.sysml.xtext.ui.keyword_SysML"/>
 		</page>
 	</extension>
 	<extension
@@ -104,7 +104,7 @@
 			class="org.omg.sysml.xtext.ui.SysMLExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
 			id="org.omg.sysml.xtext.SysML"
 			name="SysML">
-			<keywordReference id="org.omg.sysml.ui.keyword_SysML"/>
+			<keywordReference id="org.omg.sysml.xtext.ui.keyword_SysML"/>
 			<enabledWhen>
 				<adapt type="org.eclipse.core.resources.IProject"/>
 			</enabledWhen>
@@ -114,43 +114,43 @@
 	<extension
 		point="org.eclipse.ui.keywords">
 		<keyword
-			id="org.omg.sysml.ui.keyword_SysML"
+			id="org.omg.sysml.xtext.ui.keyword_SysML"
 			label="SysML"/>
 	</extension>
 	<extension
 		point="org.eclipse.ui.commands">
-	<command
+		<command
 			description="Trigger expensive validation"
 			id="org.omg.sysml.xtext.SysML.validate"
 			name="Validate">
-	</command>
-	<!-- copy qualified name -->
-	<command
+		</command>
+		<!-- copy qualified name -->
+		<command
 			id="org.eclipse.xtext.ui.editor.copyqualifiedname.EditorCopyQualifiedName"
 			categoryId="org.eclipse.ui.category.edit"
 			description="Copy the qualified name for the selected element"
 			name="Copy Qualified Name">
-	</command>
-	<command
+		</command>
+		<command
 			id="org.eclipse.xtext.ui.editor.copyqualifiedname.OutlineCopyQualifiedName"
 			categoryId="org.eclipse.ui.category.edit"
 			description="Copy the qualified name for the selected element"
 			name="Copy Qualified Name">
-	</command>
+		</command>
 	</extension>
 	<extension point="org.eclipse.ui.menus">
 		<menuContribution
 			locationURI="popup:#TextEditorContext?after=group.edit">
-			 <command
-				 commandId="org.omg.sysml.xtext.SysML.validate"
-				 style="push"
-				 tooltip="Trigger expensive validation">
-			<visibleWhen checkEnabled="false">
-				<reference
-					definitionId="org.omg.sysml.xtext.SysML.Editor.opened">
-				</reference>
-			</visibleWhen>
-		</command>
+			<command
+				commandId="org.omg.sysml.xtext.SysML.validate"
+				style="push"
+				tooltip="Trigger expensive validation">
+				<visibleWhen checkEnabled="false">
+					<reference
+						definitionId="org.omg.sysml.xtext.SysML.Editor.opened">
+					</reference>
+				</visibleWhen>
+			</command>
 		</menuContribution>
 		<!-- copy qualified name -->
 		<menuContribution locationURI="popup:#TextEditorContext?after=copy">
@@ -260,7 +260,7 @@
 			class="org.omg.sysml.xtext.ui.SysMLExecutableExtensionFactory:org.eclipse.xtext.builder.preferences.BuilderPreferencePage"
 			id="org.omg.sysml.xtext.SysML.compiler.preferencePage"
 			name="Compiler">
-			<keywordReference id="org.omg.sysml.ui.keyword_SysML"/>
+			<keywordReference id="org.omg.sysml.xtext.ui.keyword_SysML"/>
 		</page>
 	</extension>
 	<extension point="org.eclipse.ui.propertyPages">
@@ -269,7 +269,7 @@
 			class="org.omg.sysml.xtext.ui.SysMLExecutableExtensionFactory:org.eclipse.xtext.builder.preferences.BuilderPreferencePage"
 			id="org.omg.sysml.xtext.SysML.compiler.propertyPage"
 			name="Compiler">
-			<keywordReference id="org.omg.sysml.ui.keyword_SysML"/>
+			<keywordReference id="org.omg.sysml.xtext.ui.keyword_SysML"/>
 			<enabledWhen>
 				<adapt type="org.eclipse.core.resources.IProject"/>
 			</enabledWhen>
@@ -300,7 +300,7 @@
 	<!-- Quick Outline -->
 	<extension
 		point="org.eclipse.ui.handlers">
-		<handler 
+		<handler
 			class="org.omg.sysml.xtext.ui.SysMLExecutableExtensionFactory:org.eclipse.xtext.ui.editor.outline.quickoutline.ShowQuickOutlineActionHandler"
 			commandId="org.eclipse.xtext.ui.editor.outline.QuickOutline">
 			<activeWhen>
@@ -329,68 +329,6 @@
 				</visibleWhen>
 			</command>
 		</menuContribution>
-	</extension>
-	<!-- quickfix marker resolution generator for org.omg.sysml.xtext.SysML -->
-	<extension
-			point="org.eclipse.ui.ide.markerResolution">
-		<markerResolutionGenerator
-			class="org.omg.sysml.xtext.ui.SysMLExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
-			markerType="org.omg.sysml.xtext.ui.sysml.check.fast">
-			<attribute
-				name="FIXABLE_KEY"
-				value="true">
-			</attribute>
-		</markerResolutionGenerator>
-		<markerResolutionGenerator
-			class="org.omg.sysml.xtext.ui.SysMLExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
-			markerType="org.omg.sysml.xtext.ui.sysml.check.normal">
-			<attribute
-				name="FIXABLE_KEY"
-				value="true">
-			</attribute>
-		</markerResolutionGenerator>
-		<markerResolutionGenerator
-			class="org.omg.sysml.xtext.ui.SysMLExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
-			markerType="org.omg.sysml.xtext.ui.sysml.check.expensive">
-			<attribute
-				name="FIXABLE_KEY"
-				value="true">
-			</attribute>
-		</markerResolutionGenerator>
-	</extension>
-	<!-- Rename Refactoring -->
-	<extension point="org.eclipse.ui.handlers">
-		<handler 
-			class="org.omg.sysml.xtext.ui.SysMLExecutableExtensionFactory:org.eclipse.xtext.ui.refactoring.ui.DefaultRenameElementHandler"
-			commandId="org.eclipse.xtext.ui.refactoring.RenameElement">
-			<activeWhen>
-				<reference
-					definitionId="org.omg.sysml.xtext.SysML.Editor.opened">
-				</reference>
-			</activeWhen>
-		</handler>
-	</extension>
-	<extension point="org.eclipse.ui.menus">
-		<menuContribution
-			locationURI="popup:#TextEditorContext?after=group.edit">
-			<command commandId="org.eclipse.xtext.ui.refactoring.RenameElement"
-				style="push">
-				<visibleWhen checkEnabled="false">
-					<reference
-						definitionId="org.omg.sysml.xtext.SysML.Editor.opened">
-					</reference>
-				</visibleWhen>
-			</command>
-		</menuContribution>
-	</extension>
-	<extension point="org.eclipse.ui.preferencePages">
-		<page
-			category="org.omg.sysml.xtext.SysML"
-			class="org.omg.sysml.xtext.ui.SysMLExecutableExtensionFactory:org.eclipse.xtext.ui.refactoring.ui.RefactoringPreferencePage"
-			id="org.omg.sysml.xtext.SysML.refactoring"
-			name="Refactoring">
-			<keywordReference id="org.omg.sysml.ui.keyword_SysML"/>
-		</page>
 	</extension>
 	<extension point="org.eclipse.compare.contentViewers">
 		<viewer id="org.omg.sysml.xtext.SysML.compare.contentViewers"

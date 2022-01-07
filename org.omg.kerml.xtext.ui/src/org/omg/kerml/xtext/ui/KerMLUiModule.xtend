@@ -4,7 +4,6 @@
 package org.omg.kerml.xtext.ui
 
 import org.eclipse.xtend.lib.annotations.FinalFieldsConstructor
-import org.omg.kerml.xtext.ui.contentassist.KerMLPrefixMatcher
 import org.eclipse.xtext.ui.shared.Access
 
 /**
@@ -12,10 +11,6 @@ import org.eclipse.xtext.ui.shared.Access
  */
 @FinalFieldsConstructor
 class KerMLUiModule extends AbstractKerMLUiModule {
-	
-	override bindPrefixMatcher() {
-		KerMLPrefixMatcher
-	}
 	
 	override provideIAllContainersState() {
 		// Replaces the JDT-aware project state implementation with one that handles dependencies via project references

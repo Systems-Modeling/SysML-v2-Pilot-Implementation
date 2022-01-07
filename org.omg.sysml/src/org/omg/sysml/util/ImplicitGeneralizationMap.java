@@ -187,7 +187,15 @@ public class ImplicitGeneralizationMap {
 		put(FlowConnectionUsageImpl.class, "base", "Connections::flowConnections");
 		put(FlowConnectionUsageImpl.class, "subperformance", "Performances::Performance::subtransfers");
 		
+		put(ForLoopActionUsageImpl.class, "base", "Actions::forLoopActions");
+		put(ForLoopActionUsageImpl.class, "subaction", "Actions::Action::forLoops");
+		put(ForLoopActionUsageImpl.class, "loopVariable", "Actions::ForLoopAction::var");
+		
 		put(ForkNodeImpl.class, "subaction", "Actions::Action::forks");
+		
+		put(IfActionUsageImpl.class, "base", "Actions::ifThenActions");
+		put(IfActionUsageImpl.class, "ifThenElse", "Actions::ifThenElseActions");
+		put(IfActionUsageImpl.class, "subaction", "Actions::Action::ifSubactions");
 		
 		put(IncludeUseCaseUsageImpl.class, "subUseCase", "UseCases::UseCase::includedUseCases");
 		put(IncludeUseCaseUsageImpl.class, "enactedPerformance", "Parts::Part::performedActions");
@@ -266,6 +274,9 @@ public class ImplicitGeneralizationMap {
 		put(ViewpointDefinitionImpl.class, "base", "Views::ViewpointCheck");
 		put(ViewpointUsageImpl.class, "base", "Views::viewpointChecks");
 		put(ViewpointUsageImpl.class, "satisfied", "Views::View::viewpointSatisfactions");
+		
+		put(WhileLoopActionUsageImpl.class, "base", "Actions::whileLoopActions");
+		put(WhileLoopActionUsageImpl.class, "subaction", "Actions::Action::whileLoops");
 		
 	}
 	

@@ -245,6 +245,17 @@ public class TypeUtil {
 		return resultParameter;
 	}
 	
+	@SuppressWarnings("unchecked")
+	public static <T extends Feature> T getOwnedParameterOf(Type type, int index, Class<T> kind) {
+		List<Feature> parameters = TypeUtil.getOwnedParametersOf(type);
+		if (parameters.size() <= index) {
+			return null;
+		} else {
+			Feature parameter = parameters.get(index);
+			return kind.isInstance(parameter)? (T)parameter: null;
+		}		
+	}
+	
 	// Membership
 
 	public static <M extends Membership, T> Stream<T> getInheritedMembersByMembershipIn(Type type, Class<M> kind, Class<T> memberType) {

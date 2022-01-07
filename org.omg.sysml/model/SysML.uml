@@ -3644,6 +3644,7 @@ association-&amp;gt;is=OrSpecializationOf(TransferBefore) }&lt;/p></body>
       <body>&lt;p>A ForLoopActionUsage is a LoopActionUsage that is typed, directly or indirectly, by the ActionDefinition &lt;em>ForLoopAction&lt;/em> from the Systems model library. It specifies that the &lt;code>bodyClause&lt;/code> ActionUsage should be performed once for each value, in order, from the sequence of values obtained as the result of the &lt;code>seqArgument&lt;/code> Expression. The &lt;code>bodyAction&lt;/code> must have one input parameter, which receives a value from the sequence on each iteration.&lt;/p></body>
     </ownedComment>
     <generalization xmi:id="dc992029-8945-4d9c-becd-e36d15e3fbcb" general="e1012c01-4db7-49af-912f-4c7107756943"/>
+    <ownedAttribute xmi:id="_lzsKsGRrEey80vOiYuhnZw" name="loopVariable" type="ad315d17-6754-4a30-bcde-3b73d63d713e" isDerived="true"/>
     <ownedAttribute xmi:id="6c1ea406-e05b-4f77-bf3c-7f98040826a5" name="seqArgument" visibility="public" type="b32c4dd3-88a2-4418-b414-e75ceb0bb432" isDerived="true" association="08ae3e12-ee81-4fb9-bbcc-4c56ebdfbd16">
       <ownedComment xmi:id="bd988dad-24fc-41fc-905d-a7661152851a" annotatedElement="6c1ea406-e05b-4f77-bf3c-7f98040826a5">
         <body>&lt;p>The Expression whose result provides the sequence of values to be passed to each &lt;code>bodyAction&lt;/code> performance.&lt;/p></body>

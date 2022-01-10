@@ -291,11 +291,13 @@ package SI {
      */
     attribute nm: LengthUnit { :>> longName = "nanometre"; :>> unitConversion: ConversionByPrefix { :>> prefix = nano; :>> referenceUnit = m; } }
     attribute mm: LengthUnit { :>> longName = "millimetre"; :>> unitConversion: ConversionByPrefix { :>> prefix = milli; :>> referenceUnit = m; } }
+    attribute cm: LengthUnit { :>> longName = "centimetre"; :>> unitConversion: ConversionByPrefix { :>> prefix = centi; :>> referenceUnit = m; } }
     attribute km: LengthUnit { :>> longName = "kilometre"; :>> unitConversion: ConversionByPrefix { :>> prefix = kilo; :>> referenceUnit = m; } }
     attribute mN: ForceUnit { :>> longName = "millinewton"; :>> unitConversion: ConversionByPrefix { :>> prefix = milli; :>> referenceUnit = N; } }
     attribute kJ: EnergyUnit { :>> longName = "kilojoule"; :>> unitConversion: ConversionByPrefix { :>> prefix = kilo; :>> referenceUnit = J; } }
     attribute MJ: EnergyUnit { :>> longName = "megajoule"; :>> unitConversion: ConversionByPrefix { :>> prefix = mega; :>> referenceUnit = J; } }
     attribute GJ: EnergyUnit { :>> longName = "gigajoule"; :>> unitConversion: ConversionByPrefix { :>> prefix = giga; :>> referenceUnit = J; } }
+    attribute kW: PowerUnit { :>> longName = "kilowatt"; :>> unitConversion: ConversionByPrefix { :>> prefix = kilo; :>> referenceUnit = W; } }
 
     /*
      * Non-standard conversion based units that are accepted in SI

@@ -69,7 +69,7 @@ package USCustomaryUnits {
 		attribute :>> quantityValueMapping = fahrenheitToCelsiusScaleMapping;
 	}
 	//alias '°F' for '°F_scale';
-	
+
     /*
      * US Customary Units generated after transformation from NIST SP811 Appendix B
      * See https://www.nist.gov/pml/special-publication-811/nist-guide-si-appendix-b-conversion-factors/nist-guide-si-appendix-b8
@@ -242,8 +242,8 @@ package USCustomaryUnits {
     attribute <'ft⁴'> 'foot to the fourth power' : SecondAxialMomentOfAreaUnit = ft^4;
     attribute <Fr> 'franklin' : ElectricChargeUnit { :>> unitConversion: ConversionByConvention { :>> referenceUnit = C; :>> conversionFactor = 3.335641E-10; } }
     //attribute <Gal> 'gal' : AccelerationUnit { :>> unitConversion: ConversionByConvention { :>> referenceUnit = m/s^2; :>> conversionFactor = 1.0E-02; } }
-    attribute <gal> 'gallon (Canadian and UK (Imperial))' : VolumeUnit { :>> unitConversion: ConversionByConvention { :>> referenceUnit = m^3; :>> conversionFactor = 4.54609E-03; } }
-    attribute 'gallon (US)' : VolumeUnit { :>> unitConversion: ConversionByConvention { :>> referenceUnit = m^3; :>> conversionFactor = 3.785412E-03; } }
+    attribute <gal_imp> 'gallon (Canadian and UK (Imperial))' : VolumeUnit { :>> unitConversion: ConversionByConvention { :>> referenceUnit = m^3; :>> conversionFactor = 4.54609E-03; } }
+    attribute <gal> 'gallon (US)' : VolumeUnit { :>> unitConversion: ConversionByConvention { :>> referenceUnit = m^3; :>> conversionFactor = 3.785412E-03; } }
     attribute <'gal/d'> 'gallon (US) per day' : VolumeFlowRateUnit = gal/d;
     //attribute <'gal/(hp⋅h)'> 'gallon (US) per horsepower hour' : EnergySpecificVolumeUnit = gal/(hp*h);
     attribute <'gal/min'> 'gallon (US) per minute (gpm)' : VolumeFlowRateUnit = gal/min;
@@ -448,5 +448,5 @@ package USCustomaryUnits {
     attribute 'year (365 days)' : DurationUnit { :>> unitConversion: ConversionByConvention { :>> referenceUnit = s; :>> conversionFactor = 3.1536E+07; } }
     attribute 'year (sidereal)' : DurationUnit { :>> unitConversion: ConversionByConvention { :>> referenceUnit = s; :>> conversionFactor = 3.155815E+07; } }
     attribute 'year (tropical)' : DurationUnit { :>> unitConversion: ConversionByConvention { :>> referenceUnit = s; :>> conversionFactor = 3.155693E+07; } }
-	
+
 }

@@ -8,30 +8,25 @@ package USCustomaryUnits {
 	import ISQ::*;
 	private import SI::*;
 
-	attribute ft: LengthUnit {
-		:>> longName = "foot";
+	attribute <ft> foot : LengthUnit {
 		:>> unitConversion: ConversionByConvention { :>> referenceUnit = m; :>> conversionFactor = 3048/10000; }
 	}
 
-	attribute 'in': LengthUnit {
-		:>> longName = "inch";
+	attribute <'in'> inch : LengthUnit {
 		:>> unitConversion: ConversionByConvention { :>> referenceUnit = ft; :>> conversionFactor = 1/12; }
 	}
 
-    attribute mi: LengthUnit {
-    	:>> longName = "mile";
+    attribute <mi> mile : LengthUnit {
     	:>> unitConversion: ConversionByConvention { :>> referenceUnit = ft; :>> conversionFactor = 5280; }
     }
 
-    attribute lb: MassUnit {
-    	:>> longName = "pound (avoirdupois)";
+    attribute <lb> 'pound  (avoirdupois)' : MassUnit {
     	:>> unitConversion: ConversionByConvention { :>> referenceUnit = kg; :>> conversionFactor = 4535924/10000000; }
     }
 
-    attribute 'mi/h': SpeedUnit = mi/h { :>> longName = "mile per hour"; }
+    attribute <'mi/h'> 'mile per hour' : SpeedUnit = mi/h;
 
-    attribute lbf: ForceUnit {
-		:>> longName = "pound-force";
+    attribute <lbf> 'pound-force' : ForceUnit {
 		:>> unitConversion: ConversionByConvention { :>> referenceUnit = SI::N; :>> conversionFactor = 4448222/1000000; }
 	}
 
@@ -43,8 +38,7 @@ package USCustomaryUnits {
 	/*
 	 * degree Fahrenheit unit for relative temperature (i.e. temperature difference) quantities
 	 */
-	attribute '°F_unit': TemperatureUnit {
-		:>> longName = "degree fahrenheit (relative)";
+	attribute <'°F_unit'> 'degree fahrenheit (relative)' : TemperatureUnit {
 		:>> unitConversion: ConversionByConvention { :>> referenceUnit = K; :>> conversionFactor = 5/9; }
 	}
 
@@ -53,8 +47,7 @@ package USCustomaryUnits {
 	 *
 	 * The interval scale is defined with an explicit mapping to the degree Celsius interval scale from which the offset between the scales can be computed.
 	 */
-	attribute '°F_scale': IntervalScale {
-		:>> longName = "degree fahrenheit (absolute)";
+	attribute <'°F_scale'> 'degree fahrenheit (absolute)' : IntervalScale {
 		:>> unit = '°F_unit';
 		private attribute temperatureWaterAtFreezingPointInF: DefinitionalQuantityValue {
 			:>> num = 32.0;

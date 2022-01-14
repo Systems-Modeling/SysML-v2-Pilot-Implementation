@@ -52,7 +52,7 @@ package SI {
     attribute <E> erlang : TrafficIntensityUnit = one;
     attribute <F> farad : CapacitanceUnit = C/V;
     attribute <Gy> gray : AbsorbedDoseUnit = J/kg;
-    attribute <H> henry : PermeanceUnit = Wb/A;
+    attribute <H> henry : PermeanceUnit, InductanceUnit = Wb/A;
     attribute <Hart> hartley : InformationContentUnit = one;
     attribute <Hz> hertz : FrequencyUnit = s^-1;
     attribute <J> joule : EnergyUnit = N*m;
@@ -235,7 +235,7 @@ package SI {
     attribute <'mol/kg'> 'mole per kilogram' : MolalityUnit = mol/kg;
     attribute <'mol/L'> 'mole per l' : AmountOfSubstanceConcentrationUnit = mol/L;
     attribute <'mol/m³'> 'mole per cubic metre' : EquilibriumConstantOnConcentrationBasisUnit = mol/m^3;
-    attribute <'N⋅m'> 'newton metre' : MomentOfForceUnit = N*m;
+    attribute <'N⋅m'> 'newton metre' : MomentOfForceUnit, TorqueUnit = N*m;
     attribute <'N⋅m⋅s'> 'newton metre second' : AngularImpulseUnit = N*m*s;
     attribute <'N⋅m⋅s⁻¹'> 'newton metre second to the power minus 1' : PowerUnit = N*m*s^-1;
     attribute <'N⋅m⁻¹'> 'newton metre to the power minus 1' : SurfaceTensionUnit = N*m^-1;

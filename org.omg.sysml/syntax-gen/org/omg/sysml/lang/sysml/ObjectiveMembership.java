@@ -55,7 +55,7 @@ public interface ObjectiveMembership extends FeatureMembership {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The RequirementUsage that is the <code>ownedMemberFeature</code> of this RequirementUsage.</p>
+	 * <p>The RequirementUsage that is the <code>ownedMemberFeature</code> of this RequirementUsage.</p> 
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Objective Requirement</em>' reference.

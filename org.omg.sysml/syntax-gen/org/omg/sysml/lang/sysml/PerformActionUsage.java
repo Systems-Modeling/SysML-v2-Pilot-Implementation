@@ -58,7 +58,7 @@ public interface PerformActionUsage extends ActionUsage, EventOccurrenceUsage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The ActionUsage to be performed by this PerformedActionUsage. It is the <code>subsettedFeature</code> of the first owned Subsetting Relationship of the PerformedActionUsage.</p>
+	 * <p>The ActionUsage to be performed by this PerformedActionUsage. It is the <code>subsettedFeature</code> of the first owned Subsetting Relationship of the PerformedActionUsage.</p> 
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Performed Action</em>' reference.

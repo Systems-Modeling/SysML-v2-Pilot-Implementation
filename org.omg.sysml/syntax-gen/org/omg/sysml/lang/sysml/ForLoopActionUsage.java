@@ -16,8 +16,8 @@ package org.omg.sysml.lang.sysml;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.ForLoopActionUsage#getLoopVariable <em>Loop Variable</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.ForLoopActionUsage#getSeqArgument <em>Seq Argument</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.ForLoopActionUsage#getLoopVariable <em>Loop Variable</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getForLoopActionUsage()
@@ -30,7 +30,8 @@ public interface ForLoopActionUsage extends LoopActionUsage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Expression whose result provides the sequence of values to be passed to each <code>bodyAction</code> performance.</p>
+	 * <p>The Expression whose result provides the sequence of values to be passed to each <code>bodyAction</code> performance. Derived as the <code>value</code> Expression of the FeatureValue for the redefined <em><code>seq</code><em> </em></em>parameter of the ForLoopActionUsage.</p> 
+	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Seq Argument</em>' reference.
 	 * @see #setSeqArgument(Expression)
@@ -59,10 +60,14 @@ public interface ForLoopActionUsage extends LoopActionUsage {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The <code>feature</code> of this ForLoopActionUsage that acts as the loop variable, which is assigned the successive elements of the input sequence on each iteration. Derived as the <code>feature</code> that subsets the library ReferenceUsage <em><code>ForLoopAction::var</code></em>.</p> 
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Loop Variable</em>' reference.
 	 * @see #setLoopVariable(ReferenceUsage)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getForLoopActionUsage_LoopVariable()
 	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='forLoopAction'"
 	 * @generated
 	 */
 	ReferenceUsage getLoopVariable();

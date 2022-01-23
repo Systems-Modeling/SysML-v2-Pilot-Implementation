@@ -544,7 +544,7 @@ public interface Usage extends Feature {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The ReferenceUsages that are <code>nestedUsages</code> of this Usage.</p>
+	 * <p>The ReferenceUsages that are <code>nestedUsages</code> of this Usage.</p> 
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Nested Reference</em>' reference list.
@@ -684,7 +684,7 @@ public interface Usage extends Feature {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The ViewUsages that are <code>nestedUsages</code> of this Usage.</p>
+	 * <p>The ViewUsages that are <code>nestedUsages</code> of this Usage.</p> 
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Nested View</em>' reference list.
@@ -708,7 +708,7 @@ public interface Usage extends Feature {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The ViewpointUsages of this Usage that are <code>nestedUsages</code>.</p>
+	 * <p>The ViewpointUsages of this Usage that are <code>nestedUsages</code>.</p> 
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Nested Viewpoint</em>' reference list.
@@ -732,7 +732,7 @@ public interface Usage extends Feature {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The RenderingUsages that are <code>nestedUsages</code> of this Usage.</p>
+	 * <p>The RenderingUsages that are <code>nestedUsages</code> of this Usage.</p> 
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Nested Rendering</em>' reference list.
@@ -756,7 +756,7 @@ public interface Usage extends Feature {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The VerificationCaseUsages that are <code>nestedUsages</code> of this Usage.</p>
+	 * <p>The VerificationCaseUsages that are <code>nestedUsages</code> of this Usage.</p> 
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Nested Verification Case</em>' reference list.

@@ -223,7 +223,7 @@ public interface Import extends Relationship {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Namespace into which <code>members</code> are imported by this Import, which must be the <code>owningRelatedElement</code> of the Import.</p>
+	 * <p>The Namespace into which <code>members</code> are imported by this Import, which must be the <code>owningRelatedElement</code> of the Import.</p> 
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Import Owning Namespace</em>' reference.

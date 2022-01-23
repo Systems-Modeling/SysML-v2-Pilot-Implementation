@@ -9,7 +9,7 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>An IfActionUsage is an ActionUsage that is typed, directly or indirectly, by the ActionDefinition <em>IfThenAction</em> from the Systems model library, or, more specifically, by <em>IfThenElseAction<em>, if it has an <code>elseAction</code>. It specifies that the <code>thenClause</code> ActionUsage should be performed if the result of the <code>ifArgument</code> Expression is true. It may also optionally specify a <code>elseClause</code> ActionUsage that is performed if the resultof the <code>ifArgument</code> is false.</p>
+ * <p>An IfActionUsage is an ActionUsage that is typed, directly or indirectly, by the ActionDefinition <em>IfThenAction</em> from the Systems model library, or, more specifically, by <em>IfThenElseAction</em>, if it has an <code>elseAction</code>. It specifies that the <code>thenAction</code> ActionUsage should be performed if the result of the <code>ifArgument</code> Expression is true. It may also optionally specify a <code>elseAction</code> ActionUsage that is performed if the result of the <code>ifArgument</code> is false.</p>
  * <!-- end-model-doc -->
  *
  * <p>
@@ -31,7 +31,8 @@ public interface IfActionUsage extends ActionUsage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The ActionUsage that is to be performed if the result of the <code>ifArgument</code> is false. Derived as the FeatureValue for the redefined <em><code>elseClause</code><em> parameter of the IfActionUsage.</p>
+	 * <p>The ActionUsage that is to be performed if the result of the <code>ifArgument</code> is false. Derived as the owned ActionUsage that redefines <em><code>elseClause</code><em> </em></em>parameter of the IfActionUsage.</p> 
+	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Else Action</em>' reference.
 	 * @see #setElseAction(ActionUsage)
@@ -57,13 +58,14 @@ public interface IfActionUsage extends ActionUsage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The ActionUsage that is to be performed if the result of the <code>ifArgument</code> is true. Derived as the FeatureValue for the redefined <em><code>thenClause</code><em> parameter of the IfActionUsage.</p>
+	 * <p>The ActionUsage that is to be performed if the result of the <code>ifArgument</code> is true. Derived as the owned ActionUsage that redefines the <em><code>thenClause</code></em> parameter of the IfActionUsage.</p> 
+	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Then Action</em>' reference.
 	 * @see #setThenAction(ActionUsage)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getIfActionUsage_ThenAction()
 	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='ifthenAction'"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='ifThenAction'"
 	 * @generated
 	 */
 	ActionUsage getThenAction();
@@ -83,7 +85,8 @@ public interface IfActionUsage extends ActionUsage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Expression whose result determines whether the <code>thenAction</code> or (optionally) the <code>elseAction</code> is performed. Derived as the FeatureValue for the redefined <em><code>ifTest</code><em> parameter of the IfActionUsage.</p>
+	 * <p>The Expression whose result determines whether the <code>thenAction</code> or (optionally) the <code>elseAction</code> is performed. Derived as the <code>value</code> Expression of the FeatureValue for the redefined <em><code>ifTest</code></em> parameter of the IfActionUsage.</p> 
+	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>If Argument</em>' reference.
 	 * @see #setIfArgument(Expression)

@@ -51,13 +51,13 @@ import org.omg.sysml.util.ElementUtil;
  * </p>
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.MembershipImpl#getMemberElement <em>Member Element</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.MembershipImpl#getOwnedRelatedElement <em>Owned Related Element</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.MembershipImpl#getOwningRelatedElement <em>Owning Related Element</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.MembershipImpl#getOwnedMemberElement <em>Owned Member Element</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.MembershipImpl#getMembershipOwningNamespace <em>Membership Owning Namespace</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.MembershipImpl#getOwnedRelatedElement <em>Owned Related Element</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.MembershipImpl#getMemberName <em>Member Name</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.MembershipImpl#getEffectiveMemberName <em>Effective Member Name</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.MembershipImpl#getMembershipOwningNamespace <em>Membership Owning Namespace</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.MembershipImpl#getVisibility <em>Visibility</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.MembershipImpl#getOwnedMemberElement <em>Owned Member Element</em>}</li>
  * </ul>
  *
  * @generated
@@ -494,12 +494,12 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case SysMLPackage.MEMBERSHIP__OWNED_RELATED_ELEMENT:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedRelatedElement()).basicAdd(otherEnd, msgs);
 			case SysMLPackage.MEMBERSHIP__OWNING_RELATED_ELEMENT:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
 				return basicSetOwningRelatedElement((Element)otherEnd, msgs);
+			case SysMLPackage.MEMBERSHIP__OWNED_RELATED_ELEMENT:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedRelatedElement()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -512,10 +512,10 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case SysMLPackage.MEMBERSHIP__OWNED_RELATED_ELEMENT:
-				return ((InternalEList<?>)getOwnedRelatedElement()).basicRemove(otherEnd, msgs);
 			case SysMLPackage.MEMBERSHIP__OWNING_RELATED_ELEMENT:
 				return basicSetOwningRelatedElement(null, msgs);
+			case SysMLPackage.MEMBERSHIP__OWNED_RELATED_ELEMENT:
+				return ((InternalEList<?>)getOwnedRelatedElement()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -545,18 +545,18 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 			case SysMLPackage.MEMBERSHIP__MEMBER_ELEMENT:
 				if (resolve) return getMemberElement();
 				return basicGetMemberElement();
-			case SysMLPackage.MEMBERSHIP__OWNED_MEMBER_ELEMENT:
-				if (resolve) return getOwnedMemberElement();
-				return basicGetOwnedMemberElement();
-			case SysMLPackage.MEMBERSHIP__MEMBERSHIP_OWNING_NAMESPACE:
-				if (resolve) return getMembershipOwningNamespace();
-				return basicGetMembershipOwningNamespace();
 			case SysMLPackage.MEMBERSHIP__MEMBER_NAME:
 				return getMemberName();
 			case SysMLPackage.MEMBERSHIP__EFFECTIVE_MEMBER_NAME:
 				return getEffectiveMemberName();
+			case SysMLPackage.MEMBERSHIP__MEMBERSHIP_OWNING_NAMESPACE:
+				if (resolve) return getMembershipOwningNamespace();
+				return basicGetMembershipOwningNamespace();
 			case SysMLPackage.MEMBERSHIP__VISIBILITY:
 				return getVisibility();
+			case SysMLPackage.MEMBERSHIP__OWNED_MEMBER_ELEMENT:
+				if (resolve) return getOwnedMemberElement();
+				return basicGetOwnedMemberElement();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -572,20 +572,20 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 			case SysMLPackage.MEMBERSHIP__MEMBER_ELEMENT:
 				setMemberElement((Element)newValue);
 				return;
-			case SysMLPackage.MEMBERSHIP__OWNED_MEMBER_ELEMENT:
-				setOwnedMemberElement((Element)newValue);
-				return;
-			case SysMLPackage.MEMBERSHIP__MEMBERSHIP_OWNING_NAMESPACE:
-				setMembershipOwningNamespace((Namespace)newValue);
-				return;
 			case SysMLPackage.MEMBERSHIP__MEMBER_NAME:
 				setMemberName((String)newValue);
 				return;
 			case SysMLPackage.MEMBERSHIP__EFFECTIVE_MEMBER_NAME:
 				setEffectiveMemberName((String)newValue);
 				return;
+			case SysMLPackage.MEMBERSHIP__MEMBERSHIP_OWNING_NAMESPACE:
+				setMembershipOwningNamespace((Namespace)newValue);
+				return;
 			case SysMLPackage.MEMBERSHIP__VISIBILITY:
 				setVisibility((VisibilityKind)newValue);
+				return;
+			case SysMLPackage.MEMBERSHIP__OWNED_MEMBER_ELEMENT:
+				setOwnedMemberElement((Element)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -602,20 +602,20 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 			case SysMLPackage.MEMBERSHIP__MEMBER_ELEMENT:
 				setMemberElement((Element)null);
 				return;
-			case SysMLPackage.MEMBERSHIP__OWNED_MEMBER_ELEMENT:
-				setOwnedMemberElement((Element)null);
-				return;
-			case SysMLPackage.MEMBERSHIP__MEMBERSHIP_OWNING_NAMESPACE:
-				setMembershipOwningNamespace((Namespace)null);
-				return;
 			case SysMLPackage.MEMBERSHIP__MEMBER_NAME:
 				setMemberName(MEMBER_NAME_EDEFAULT);
 				return;
 			case SysMLPackage.MEMBERSHIP__EFFECTIVE_MEMBER_NAME:
 				setEffectiveMemberName(EFFECTIVE_MEMBER_NAME_EDEFAULT);
 				return;
+			case SysMLPackage.MEMBERSHIP__MEMBERSHIP_OWNING_NAMESPACE:
+				setMembershipOwningNamespace((Namespace)null);
+				return;
 			case SysMLPackage.MEMBERSHIP__VISIBILITY:
 				setVisibility(VISIBILITY_EDEFAULT);
+				return;
+			case SysMLPackage.MEMBERSHIP__OWNED_MEMBER_ELEMENT:
+				setOwnedMemberElement((Element)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -631,24 +631,24 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 		switch (featureID) {
 			case SysMLPackage.MEMBERSHIP__MEMBER_ELEMENT:
 				return isSetMemberElement();
-			case SysMLPackage.MEMBERSHIP__OWNED_RELATED_ELEMENT:
-				return ownedRelatedElement != null && !ownedRelatedElement.isEmpty();
 			case SysMLPackage.MEMBERSHIP__OWNING_RELATED_ELEMENT:
 				return getOwningRelatedElement() != null;
-			case SysMLPackage.MEMBERSHIP__SOURCE:
-				return isSetSource();
+			case SysMLPackage.MEMBERSHIP__OWNED_RELATED_ELEMENT:
+				return ownedRelatedElement != null && !ownedRelatedElement.isEmpty();
 			case SysMLPackage.MEMBERSHIP__TARGET:
 				return isSetTarget();
-			case SysMLPackage.MEMBERSHIP__OWNED_MEMBER_ELEMENT:
-				return basicGetOwnedMemberElement() != null;
-			case SysMLPackage.MEMBERSHIP__MEMBERSHIP_OWNING_NAMESPACE:
-				return isSetMembershipOwningNamespace();
+			case SysMLPackage.MEMBERSHIP__SOURCE:
+				return isSetSource();
 			case SysMLPackage.MEMBERSHIP__MEMBER_NAME:
 				return MEMBER_NAME_EDEFAULT == null ? memberName != null : !MEMBER_NAME_EDEFAULT.equals(memberName);
 			case SysMLPackage.MEMBERSHIP__EFFECTIVE_MEMBER_NAME:
 				return EFFECTIVE_MEMBER_NAME_EDEFAULT == null ? getEffectiveMemberName() != null : !EFFECTIVE_MEMBER_NAME_EDEFAULT.equals(getEffectiveMemberName());
+			case SysMLPackage.MEMBERSHIP__MEMBERSHIP_OWNING_NAMESPACE:
+				return isSetMembershipOwningNamespace();
 			case SysMLPackage.MEMBERSHIP__VISIBILITY:
 				return visibility != VISIBILITY_EDEFAULT;
+			case SysMLPackage.MEMBERSHIP__OWNED_MEMBER_ELEMENT:
+				return basicGetOwnedMemberElement() != null;
 		}
 		return super.eIsSet(featureID);
 	}

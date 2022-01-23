@@ -42,7 +42,7 @@ import org.omg.sysml.util.UsageUtil;
  * </p>
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.SendActionUsageImpl#getReceiverArgument <em>Receiver Argument</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.SendActionUsageImpl#getItemsArgument <em>Items Argument</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.SendActionUsageImpl#getPayloadArgument <em>Payload Argument</em>}</li>
  * </ul>
  *
  * @generated
@@ -111,18 +111,18 @@ public class SendActionUsageImpl extends ActionUsageImpl implements SendActionUs
 	 * @generated
 	 */
 	@Override
-	public Expression getItemsArgument() {
-		Expression itemsArgument = basicGetItemsArgument();
-		return itemsArgument != null && itemsArgument.eIsProxy() ? (Expression)eResolveProxy((InternalEObject)itemsArgument) : itemsArgument;
+	public Expression getPayloadArgument() {
+		Expression payloadArgument = basicGetPayloadArgument();
+		return payloadArgument != null && payloadArgument.eIsProxy() ? (Expression)eResolveProxy((InternalEObject)payloadArgument) : payloadArgument;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
-	public Expression basicGetItemsArgument() {
-		Feature itemsParameter = UsageUtil.getItemsParameterOf(this);
+	public Expression basicGetPayloadArgument() {
+		Feature itemsParameter = UsageUtil.getPayloadParameterOf(this);
 		return itemsParameter == null? null: FeatureUtil.getValueExpressionFor(itemsParameter);
 	}
 
@@ -132,10 +132,10 @@ public class SendActionUsageImpl extends ActionUsageImpl implements SendActionUs
 	 * @generated NOT
 	 */
 	@Override
-	public void setItemsArgument(Expression newItemsArgument) {
+	public void setPayloadArgument(Expression newPayloadArgument) {
 		throw new UnsupportedOperationException();
 	}
-	
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -147,9 +147,9 @@ public class SendActionUsageImpl extends ActionUsageImpl implements SendActionUs
 			case SysMLPackage.SEND_ACTION_USAGE__RECEIVER_ARGUMENT:
 				if (resolve) return getReceiverArgument();
 				return basicGetReceiverArgument();
-			case SysMLPackage.SEND_ACTION_USAGE__ITEMS_ARGUMENT:
-				if (resolve) return getItemsArgument();
-				return basicGetItemsArgument();
+			case SysMLPackage.SEND_ACTION_USAGE__PAYLOAD_ARGUMENT:
+				if (resolve) return getPayloadArgument();
+				return basicGetPayloadArgument();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -165,8 +165,8 @@ public class SendActionUsageImpl extends ActionUsageImpl implements SendActionUs
 			case SysMLPackage.SEND_ACTION_USAGE__RECEIVER_ARGUMENT:
 				setReceiverArgument((Expression)newValue);
 				return;
-			case SysMLPackage.SEND_ACTION_USAGE__ITEMS_ARGUMENT:
-				setItemsArgument((Expression)newValue);
+			case SysMLPackage.SEND_ACTION_USAGE__PAYLOAD_ARGUMENT:
+				setPayloadArgument((Expression)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -183,8 +183,8 @@ public class SendActionUsageImpl extends ActionUsageImpl implements SendActionUs
 			case SysMLPackage.SEND_ACTION_USAGE__RECEIVER_ARGUMENT:
 				setReceiverArgument((Expression)null);
 				return;
-			case SysMLPackage.SEND_ACTION_USAGE__ITEMS_ARGUMENT:
-				setItemsArgument((Expression)null);
+			case SysMLPackage.SEND_ACTION_USAGE__PAYLOAD_ARGUMENT:
+				setPayloadArgument((Expression)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -200,8 +200,8 @@ public class SendActionUsageImpl extends ActionUsageImpl implements SendActionUs
 		switch (featureID) {
 			case SysMLPackage.SEND_ACTION_USAGE__RECEIVER_ARGUMENT:
 				return basicGetReceiverArgument() != null;
-			case SysMLPackage.SEND_ACTION_USAGE__ITEMS_ARGUMENT:
-				return basicGetItemsArgument() != null;
+			case SysMLPackage.SEND_ACTION_USAGE__PAYLOAD_ARGUMENT:
+				return basicGetPayloadArgument() != null;
 		}
 		return super.eIsSet(featureID);
 	}

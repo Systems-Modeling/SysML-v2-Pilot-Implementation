@@ -27,7 +27,7 @@ package org.omg.sysml.lang.sysml;
  * '<em><b>Membership</b></em>'. <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>Membership is a Relationship between a Namespace and an Element that indicates the Element is a <code>member</code> of (i.e., is contained in) the Namespace. The Membership may define a <code>memberName</code> for the Element as a <code>member</code> of the Namespace and specifies whether or not the Element is publicly visible as a <code>member</code> of the Namespace from outside the Namespace. The Element may be owned by the Namespace, in which case it is an <code>ownedMember</code> of the Namespace, or it may be referenced but not owned, in which case it is effectively individually imported into the Namespace.</p>
+ * <p>Membership is a Relationship between a Namespace and an Element that indicates the Element is a <code>member</code> of (i.e., is contained in) the Namespace. The Membership may define a <code>memberName</code> for the Element as a <code>member</code> of the Namespace and specifies whether or not the Element is publicly visible as a <code>member</code> of the Namespace from outside the Namespace. The Element may be owned by the Namespace via the Membership, in which case it is an <code>ownedMember</code> of the Namespace, or it may be referenced but not owned, in which the Membership provides an alias for the Element in the Namespace.</p>
  * 
  * if memberName <> null then
  *     memberName
@@ -40,12 +40,12 @@ package org.omg.sysml.lang.sysml;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.Membership#getOwnedMemberElement <em>Owned Member Element</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Membership#getMembershipOwningNamespace <em>Membership Owning Namespace</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Membership#getMemberName <em>Member Name</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Membership#getEffectiveMemberName <em>Effective Member Name</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Membership#getMemberElement <em>Member Element</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Membership#getMembershipOwningNamespace <em>Membership Owning Namespace</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Membership#getVisibility <em>Visibility</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Membership#getOwnedMemberElement <em>Owned Member Element</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getMembership()

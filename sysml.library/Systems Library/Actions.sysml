@@ -9,7 +9,7 @@ package Actions {
 	private import Occurrences::Occurrence;
 	private import Performances::Performance;
 	private import Performances::performances;
-	private import FeatureAccessPerformances::FeatureWritePerformance;
+	private import FeatureReferencingPerformances::FeatureWritePerformance;
 	private import Transfers::TransferBefore;
 	private import ControlPerformances::MergePerformance;
 	private import ControlPerformances::DecisionPerformance;

@@ -75,9 +75,8 @@ public class ImplicitGeneralizationMap {
 		put(FeatureImpl.class, "occurrence", "Occurrences::occurrences");
 		put(FeatureImpl.class, "object", "Objects::objects");
 		put(FeatureImpl.class, "participant", "Links::Link::participant");
-		put(FeatureImpl.class, "startingAt", "FeatureAccessPerformances::FeatureAccessPerformance::onOccurrence::startingAt");
-		put(FeatureImpl.class, "accessedFeature", "FeatureAccessPerformances::FeatureAccessPerformance::onOccurrence::startingAt::accessedFeature");
-		
+		put(FeatureImpl.class, "startingAt", "FeatureReferencingPerformances::FeatureAccessPerformance::onOccurrence::startingAt");
+		put(FeatureImpl.class, "accessedFeature", "FeatureReferencingPerformances::FeatureAccessPerformance::onOccurrence::startingAt::accessedFeature");
 		put(FunctionImpl.class, "base", "Performances::Evaluation");
 		
 		put(InvariantImpl.class, "base", "Performances::trueEvaluations");
@@ -113,7 +112,7 @@ public class ImplicitGeneralizationMap {
 		put(StepImpl.class, "subperformance", "Performances::Performance::subperformances");
 		put(StepImpl.class, "enactedPerformance", "Objects::Object::enactedPerformances");
 		put(StepImpl.class, "incomingTransfer", "Occurrences::Occurrence::incomingTransfers");
-		put(StepImpl.class, "featureWrite", "FeatureAccessPerformances::FeatureWritePerformance");
+		put(StepImpl.class, "featureWrite", "FeatureReferencingPerformances::FeatureWritePerformance");
 		
 		put(StructureImpl.class, "base", "Objects::Object");
 		

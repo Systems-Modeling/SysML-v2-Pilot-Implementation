@@ -29,7 +29,10 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>An AcceptActionUsage is an ActionUsage that is typed, directly or indirectly, by the ActionDefinition AcceptAction from the Systems model library. It specifies the acceptance of an <code>incomingTransfer</code> from the Occurrence given by the result of its <code>receiverArgument</code> Expression. The payload of the accepted Transfer is output on its <code>items</code> parameter.</p>
+ * <p>An AcceptActionUsage is an ActionUsage that is typed, directly or indirectly, by the ActionDefinition <code><em>AcceptAction</em></code> from the Systems model library. It specifies the acceptance of an <em><code>incomingTransfer</code></em> from the <code><em>Occurrence</em></code> given by the result of its <code>receiverArgument</code> Expression. The payload of the accepted <em><code>Transfer</em></code> is output on its <code>payloadParameter</code>.</p>
+ * 
+ * <p>Which <em><code>Transfers</em></code> may be accepted is determined by the typing and binding of the <code>payloadParameter</code>. If the <code>triggerKind</code> has any value other than <code>accept</code>, then the <code>payloadParameter</code> must be bound to a <code>payloadArgument</code> that is an InvocationExpression whose <code>function</code> is determined by the <code>triggerKind</code>.</p>
+ * 
  * <!-- end-model-doc -->
  *
  * <p>
@@ -37,6 +40,9 @@ package org.omg.sysml.lang.sysml;
  * </p>
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.AcceptActionUsage#getReceiverArgument <em>Receiver Argument</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.AcceptActionUsage#getPayloadParameter <em>Payload Parameter</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.AcceptActionUsage#getPayloadArgument <em>Payload Argument</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.AcceptActionUsage#getTriggerKind <em>Trigger Kind</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getAcceptActionUsage()
@@ -50,13 +56,14 @@ public interface AcceptActionUsage extends ActionUsage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>An Expression whose result is bound to the <code>receiver</code> input parameter of this AcceptActionUsage.</p>
+	 * <p>An Expression whose result is bound to the <em><code>receiver</code></em> input parameter of this AcceptActionUsage.</p> 
+	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Receiver Argument</em>' reference.
 	 * @see #setReceiverArgument(Expression)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getAcceptActionUsage_ReceiverArgument()
 	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='accepActionUsage'"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='acceptActionUsage'"
 	 * @generated
 	 */
 	Expression getReceiverArgument();
@@ -70,4 +77,94 @@ public interface AcceptActionUsage extends ActionUsage {
 	 * @generated
 	 */
 	void setReceiverArgument(Expression value);
+
+	/**
+	 * Returns the value of the '<em><b>Payload Parameter</b></em>' reference.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Usage#getNestedReference() <em>Nested Reference</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The <code>nestedReference</code> of this AcceptActionUsage that redefines the <code>payload</code> output parameter of the base AcceptActionUsage <em><code>AcceptAction</code></em> from the Systems model library.</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Payload Parameter</em>' reference.
+	 * @see #setPayloadParameter(ReferenceUsage)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getAcceptActionUsage_PayloadParameter()
+	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='owningAcceptActionUsage'"
+	 *        annotation="subsets"
+	 * @generated
+	 */
+	ReferenceUsage getPayloadParameter();
+
+	/**
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.AcceptActionUsage#getPayloadParameter <em>Payload Parameter</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Payload Parameter</em>' reference.
+	 * @see #getPayloadParameter()
+	 * @generated
+	 */
+	void setPayloadParameter(ReferenceUsage value);
+
+	/**
+	 * Returns the value of the '<em><b>Payload Argument</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>An Expression whose result is bound to the <code><em>payload</em></code> parameter of this AcceptActionUsage. If provided, the AcceptActionUsage will only accept a <code><em>Transfer</em></code> with exactly this <code><em>payload</em></code>.</p> 
+	 * 
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Payload Argument</em>' reference.
+	 * @see #setPayloadArgument(Expression)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getAcceptActionUsage_PayloadArgument()
+	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='acceptingActionUsage'"
+	 * @generated
+	 */
+	Expression getPayloadArgument();
+
+	/**
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.AcceptActionUsage#getPayloadArgument <em>Payload Argument</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Payload Argument</em>' reference.
+	 * @see #getPayloadArgument()
+	 * @generated
+	 */
+	void setPayloadArgument(Expression value);
+
+	/**
+	 * Returns the value of the '<em><b>Trigger Kind</b></em>' attribute.
+	 * The default value is <code>"accept"</code>.
+	 * The literals are from the enumeration {@link org.omg.sysml.lang.sysml.TriggerKind}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Trigger Kind</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Trigger Kind</em>' attribute.
+	 * @see org.omg.sysml.lang.sysml.TriggerKind
+	 * @see #setTriggerKind(TriggerKind)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getAcceptActionUsage_TriggerKind()
+	 * @model default="accept" required="true" ordered="false"
+	 * @generated
+	 */
+	TriggerKind getTriggerKind();
+
+	/**
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.AcceptActionUsage#getTriggerKind <em>Trigger Kind</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Trigger Kind</em>' attribute.
+	 * @see org.omg.sysml.lang.sysml.TriggerKind
+	 * @see #getTriggerKind()
+	 * @generated
+	 */
+	void setTriggerKind(TriggerKind value);
 } // AcceptActionUsage

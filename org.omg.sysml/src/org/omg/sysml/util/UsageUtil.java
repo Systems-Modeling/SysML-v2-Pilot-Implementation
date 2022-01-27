@@ -129,7 +129,7 @@ public class UsageUtil {
 	
 	// Send and Accept Actions
 	
-	public static Feature getItemsParameterOf(ActionUsage action) {
+	public static Feature getPayloadParameterOf(ActionUsage action) {
 		List<Feature> parameters = TypeUtil.getOwnedParametersOf(action);
 		return parameters.isEmpty()? null: parameters.get(0);
 	}

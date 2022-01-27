@@ -145,7 +145,7 @@ public interface Association extends Classifier, Relationship {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The target <code>relatedTypes</code> for this Association. This includes all the <code>relatedTypes</code> other than the <code>sourceType</code>. If this is a binary Association, then the <code>associationEnds</code> corresponding to the <code>relatedTypes</code> must all redefine the <code>target</code> Feature of the Association <em>BinaryLink</em> from the Kernel Library.</p>
+	 * <p>The target <code>relatedTypes</code> for this Association. This includes all the <code>relatedTypes</code> other than the <code>sourceType</code>. If this is a binary Association, then the <code>associationEnds</code> corresponding to the <code>relatedTypes</code> must all redefine the <code>target</code> Feature of the Association <em>BinaryLink</em> from the Kernel Library.</p> 
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Target Type</em>' reference list.
@@ -170,7 +170,7 @@ public interface Association extends Classifier, Relationship {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>features</code> of the Association that identifying the things that can be related by it. An Association must have at least two <code>associationEnds</code>. When it has exactly two, the Association is called a <em>binary</em> Association.</p>
+	 * <p>The <code>features</code> of the Association that identifying the things that can be related by it. An Association must have at least two <code>associationEnds</code>. When it has exactly two, the Association is called a <em>binary</em> Association.</p> 
 	 * 
 	 * <p>The ends of the Association determine which elements are eligible to be related by instances of the Association.</p>
 	 * 

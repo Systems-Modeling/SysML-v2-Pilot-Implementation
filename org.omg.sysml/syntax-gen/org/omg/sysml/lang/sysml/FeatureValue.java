@@ -70,7 +70,7 @@ public interface FeatureValue extends Membership {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Expression that provides the value of the <code>FeatureWithValue</code> as its <code>result</code>.</p>
+	 * <p>The Expression that provides the value of the <code>featureWithValue</code> as its <code>result</code>.</p>
 	 * 
 	 * <p>The Expression that provides the value as a result.</p>
 	 * <!-- end-model-doc -->

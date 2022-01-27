@@ -548,7 +548,6 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) 'element' (ambiguity) (rule start)
 	 *     humanId=Name '>' (ambiguity) (rule end)
-	 *     humanId=Name (ambiguity) (rule end)
 	 *     name=Name (ambiguity) (rule end)
 	 */
 	protected void emit_ElementBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
@@ -1263,8 +1262,6 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 *     ';' | ('{' '}')
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) 'relationship' (ambiguity) (rule start)
-	 *     humanId=Name (ambiguity) (rule end)
 	 *     source+=[Element|QualifiedName] (ambiguity) (rule end)
 	 *     target+=[Element|QualifiedName] (ambiguity) (rule end)
 	 */

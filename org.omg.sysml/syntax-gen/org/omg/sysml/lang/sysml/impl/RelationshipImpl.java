@@ -189,9 +189,16 @@ public class RelationshipImpl extends ElementImpl implements Relationship {
 	@Override
 	public EList<Element> getSource() {
 		EList<Element> sources = getSourceGen();
-		Element owningRelatedElement = getOwningRelatedElement();
-		if (sources.isEmpty() && owningRelatedElement != null && !getTarget().contains(owningRelatedElement)) {
-			sources.add(owningRelatedElement);
+		if (sources.isEmpty()) {
+			Element owningRelatedElement = getOwningRelatedElement();
+			if (owningRelatedElement != null && !getTarget().contains(owningRelatedElement)) {
+				sources.add(owningRelatedElement);
+			} else {
+				Element owningRelationship = getOwningRelationship();
+				if (owningRelationship != null && !getTarget().contains(owningRelationship)) {
+					sources.add(owningRelationship);
+				}
+			}
 		}
 		return sources;
 	}

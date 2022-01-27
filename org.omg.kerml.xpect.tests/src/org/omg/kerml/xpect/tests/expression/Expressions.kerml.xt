@@ -12,7 +12,7 @@ XPECT_SETUP org.omg.kerml.xpect.tests.expression.KerMLExpressionTest
 		File {from ="/library/ScalarFunctions.kerml"}
 		File {from ="/library/NumericalFunctions.kerml"}
 		File {from ="/library/ControlFunctions.kerml"}
-		File {from ="/library/FeatureAccessPerformances.kerml"}
+		File {from ="/library/FeatureReferencingPerformances.kerml"}
 		File {from ="/library/ControlPerformances.kerml"}
 	}
 	Workspace {
@@ -29,7 +29,7 @@ XPECT_SETUP org.omg.kerml.xpect.tests.expression.KerMLExpressionTest
 				File {from ="/library/ScalarFunctions.kerml"}
 				File {from ="/library/NumericalFunctions.kerml"}
 				File {from ="/library/ControlFunctions.kerml"}
-				File {from ="/library/FeatureAccessPerformances.kerml"}
+				File {from ="/library/FeatureReferencingPerformances.kerml"}
 				File {from ="/library/ControlPerformances.kerml"}
 			}
 		}
@@ -61,7 +61,7 @@ package Expressions {
 				out v_decr : Integer = v - 1;			
 			}
 			succession decrement then update;
-			step update : FeatureAccessPerformances::FeatureWritePerformance {
+			step update : FeatureReferencingPerformances::FeatureWritePerformance {
 				inout redefines replacementValues = decrement.v_decr;
 				in redefines onOccurrence : w = w::self {
 					feature redefines startingAt {

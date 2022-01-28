@@ -173,13 +173,20 @@ public class RelationshipImpl extends ElementImpl implements Relationship {
 		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.RELATIONSHIP__OWNING_RELATED_ELEMENT, newOwningRelatedElement, newOwningRelatedElement));
 	}
+	
+	@Override
+	public EList<Element> getTarget() {
+		EList<Element> targets = getTargetGen();
+		EList<Element> ownedRelatedElements = getOwnedRelatedElement();
+		ownedRelatedElements.stream().filter(e->!targets.contains(e)).forEachOrdered(targets::add);
+		return targets;
+	}	
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public EList<Element> getTarget() {
+	public EList<Element> getTargetGen() {
 		if (target == null) {
 			target = new EObjectResolvingEList<Element>(Element.class, this, SysMLPackage.RELATIONSHIP__TARGET);
 		}
@@ -189,16 +196,9 @@ public class RelationshipImpl extends ElementImpl implements Relationship {
 	@Override
 	public EList<Element> getSource() {
 		EList<Element> sources = getSourceGen();
-		if (sources.isEmpty()) {
-			Element owningRelatedElement = getOwningRelatedElement();
-			if (owningRelatedElement != null && !getTarget().contains(owningRelatedElement)) {
-				sources.add(owningRelatedElement);
-			} else {
-				Element owningRelationship = getOwningRelationship();
-				if (owningRelationship != null && !getTarget().contains(owningRelationship)) {
-					sources.add(owningRelationship);
-				}
-			}
+		Element owningRelatedElement = getOwningRelatedElement();
+		if (sources.isEmpty() && owningRelatedElement != null && !getTarget().contains(owningRelatedElement)) {
+			sources.add(owningRelatedElement);
 		}
 		return sources;
 	}

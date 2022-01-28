@@ -16,12 +16,12 @@ package Relationships {
 		relationship from P1::S to P2::T;
 	}
 	
-	namespace {		
+	namespace N {		
 		element A;
 		element B {
         	relationship <x> to A {
             	element <y>; // Owned related Element
-            	relationship to B; // Relationship as owned related Element
+            	relationship from A to B; // Relationship as owned related Element 
 			} 
 		}
 		relationship R from A to B {

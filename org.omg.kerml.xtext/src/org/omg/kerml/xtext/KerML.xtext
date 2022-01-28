@@ -72,7 +72,7 @@ Relationship returns SysML::Relationship :
 ;
 
 OwnedRelationship returns SysML::Relationship :
-    'relationship' ( '<' humanId = Name '>' )?
+    'relationship' Identification?
     'to' RelationshipTargetList
     RelationshipBody
 ;
@@ -110,7 +110,13 @@ fragment RelationshipOwnedElement returns SysML::Relationship:
 
 OwnedRelatedElement returns SysML::Element :
       'element' ( '<' humanId = Name '>' )? ElementBody
-    | OwnedRelationship
+    | OwnedRelatedRelationship
+;
+
+OwnedRelatedRelationship returns SysML::Relationship :
+	'relationship' ( '<' humanId = Name '>' )? 
+	RelationshipRelatedElements
+	RelationshipBody
 ;
 
 /* ANNOTATIONS */

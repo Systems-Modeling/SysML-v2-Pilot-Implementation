@@ -1262,6 +1262,9 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 *     ';' | ('{' '}')
 	 *
 	 * This ambiguous syntax occurs at:
+	 *     (rule start) 'relationship' (ambiguity) (rule start)
+	 *     humanId=Name '>' (ambiguity) (rule end)
+	 *     name=Name (ambiguity) (rule end)
 	 *     source+=[Element|QualifiedName] (ambiguity) (rule end)
 	 *     target+=[Element|QualifiedName] (ambiguity) (rule end)
 	 */

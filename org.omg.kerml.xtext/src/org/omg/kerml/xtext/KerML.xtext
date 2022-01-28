@@ -73,13 +73,12 @@ Relationship returns SysML::Relationship :
 
 OwnedRelationship returns SysML::Relationship :
     'relationship' Identification?
-    'to' RelationshipTargetList
+    ( 'to' RelationshipTargetList )?
     RelationshipBody
 ;
 
 fragment RelationshipRelatedElements returns SysML::Relationship :
-      'from' RelationshipSourceList ( 'to' RelationshipTargetList )?
-    | 'to' RelationshipTargetList
+      ('from' RelationshipSourceList)? ( 'to' RelationshipTargetList )?
 ;
 
 fragment RelationshipSourceList returns SysML::Relationship :
@@ -104,13 +103,13 @@ fragment RelationshipBody returns SysML::Relationship :
 
 fragment RelationshipOwnedElement returns SysML::Relationship:
       ownedRelatedElement += OwnedRelatedElement
+    | ownedRelatedElement += OwnedRelatedRelationship
     | ownedRelationship += OwnedDocumentation
     | ownedRelationship += OwnedTextualRepresentationAnnotation
 ;
 
 OwnedRelatedElement returns SysML::Element :
-      'element' ( '<' humanId = Name '>' )? ElementBody
-    | OwnedRelatedRelationship
+    'element' ( '<' humanId = Name '>' )? ElementBody
 ;
 
 OwnedRelatedRelationship returns SysML::Relationship :

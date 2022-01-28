@@ -243,19 +243,20 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cRelationshipKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final RuleCall cIdentificationParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
-		private final Keyword cToKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final RuleCall cRelationshipTargetListParserRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
-		private final RuleCall cRelationshipBodyParserRuleCall_4 = (RuleCall)cGroup.eContents().get(4);
+		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
+		private final Keyword cToKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
+		private final RuleCall cRelationshipTargetListParserRuleCall_2_1 = (RuleCall)cGroup_2.eContents().get(1);
+		private final RuleCall cRelationshipBodyParserRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
 		
 		//OwnedRelationship returns SysML::Relationship :
 		//    'relationship' Identification?
-		//    'to' RelationshipTargetList
+		//    ( 'to' RelationshipTargetList )?
 		//    RelationshipBody
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//'relationship' Identification?
-		//'to' RelationshipTargetList
+		//( 'to' RelationshipTargetList )?
 		//RelationshipBody
 		public Group getGroup() { return cGroup; }
 		
@@ -265,39 +266,37 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//Identification?
 		public RuleCall getIdentificationParserRuleCall_1() { return cIdentificationParserRuleCall_1; }
 		
+		//( 'to' RelationshipTargetList )?
+		public Group getGroup_2() { return cGroup_2; }
+		
 		//'to'
-		public Keyword getToKeyword_2() { return cToKeyword_2; }
+		public Keyword getToKeyword_2_0() { return cToKeyword_2_0; }
 		
 		//RelationshipTargetList
-		public RuleCall getRelationshipTargetListParserRuleCall_3() { return cRelationshipTargetListParserRuleCall_3; }
+		public RuleCall getRelationshipTargetListParserRuleCall_2_1() { return cRelationshipTargetListParserRuleCall_2_1; }
 		
 		//RelationshipBody
-		public RuleCall getRelationshipBodyParserRuleCall_4() { return cRelationshipBodyParserRuleCall_4; }
+		public RuleCall getRelationshipBodyParserRuleCall_3() { return cRelationshipBodyParserRuleCall_3; }
 	}
 	public class RelationshipRelatedElementsElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.RelationshipRelatedElements");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Group cGroup_0 = (Group)cGroup.eContents().get(0);
 		private final Keyword cFromKeyword_0_0 = (Keyword)cGroup_0.eContents().get(0);
 		private final RuleCall cRelationshipSourceListParserRuleCall_0_1 = (RuleCall)cGroup_0.eContents().get(1);
-		private final Group cGroup_0_2 = (Group)cGroup_0.eContents().get(2);
-		private final Keyword cToKeyword_0_2_0 = (Keyword)cGroup_0_2.eContents().get(0);
-		private final RuleCall cRelationshipTargetListParserRuleCall_0_2_1 = (RuleCall)cGroup_0_2.eContents().get(1);
-		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
 		private final Keyword cToKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
 		private final RuleCall cRelationshipTargetListParserRuleCall_1_1 = (RuleCall)cGroup_1.eContents().get(1);
 		
 		//fragment RelationshipRelatedElements returns SysML::Relationship :
-		//      'from' RelationshipSourceList ( 'to' RelationshipTargetList )?
-		//    | 'to' RelationshipTargetList
+		//      ('from' RelationshipSourceList)? ( 'to' RelationshipTargetList )?
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//  'from' RelationshipSourceList ( 'to' RelationshipTargetList )?
-		//| 'to' RelationshipTargetList
-		public Alternatives getAlternatives() { return cAlternatives; }
+		//('from' RelationshipSourceList)? ( 'to' RelationshipTargetList )?
+		public Group getGroup() { return cGroup; }
 		
-		//'from' RelationshipSourceList ( 'to' RelationshipTargetList )?
+		//('from' RelationshipSourceList)?
 		public Group getGroup_0() { return cGroup_0; }
 		
 		//'from'
@@ -307,15 +306,6 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		public RuleCall getRelationshipSourceListParserRuleCall_0_1() { return cRelationshipSourceListParserRuleCall_0_1; }
 		
 		//( 'to' RelationshipTargetList )?
-		public Group getGroup_0_2() { return cGroup_0_2; }
-		
-		//'to'
-		public Keyword getToKeyword_0_2_0() { return cToKeyword_0_2_0; }
-		
-		//RelationshipTargetList
-		public RuleCall getRelationshipTargetListParserRuleCall_0_2_1() { return cRelationshipTargetListParserRuleCall_0_2_1; }
-		
-		//'to' RelationshipTargetList
 		public Group getGroup_1() { return cGroup_1; }
 		
 		//'to'
@@ -457,19 +447,23 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final Assignment cOwnedRelatedElementAssignment_0 = (Assignment)cAlternatives.eContents().get(0);
 		private final RuleCall cOwnedRelatedElementOwnedRelatedElementParserRuleCall_0_0 = (RuleCall)cOwnedRelatedElementAssignment_0.eContents().get(0);
-		private final Assignment cOwnedRelationshipAssignment_1 = (Assignment)cAlternatives.eContents().get(1);
-		private final RuleCall cOwnedRelationshipOwnedDocumentationParserRuleCall_1_0 = (RuleCall)cOwnedRelationshipAssignment_1.eContents().get(0);
+		private final Assignment cOwnedRelatedElementAssignment_1 = (Assignment)cAlternatives.eContents().get(1);
+		private final RuleCall cOwnedRelatedElementOwnedRelatedRelationshipParserRuleCall_1_0 = (RuleCall)cOwnedRelatedElementAssignment_1.eContents().get(0);
 		private final Assignment cOwnedRelationshipAssignment_2 = (Assignment)cAlternatives.eContents().get(2);
-		private final RuleCall cOwnedRelationshipOwnedTextualRepresentationAnnotationParserRuleCall_2_0 = (RuleCall)cOwnedRelationshipAssignment_2.eContents().get(0);
+		private final RuleCall cOwnedRelationshipOwnedDocumentationParserRuleCall_2_0 = (RuleCall)cOwnedRelationshipAssignment_2.eContents().get(0);
+		private final Assignment cOwnedRelationshipAssignment_3 = (Assignment)cAlternatives.eContents().get(3);
+		private final RuleCall cOwnedRelationshipOwnedTextualRepresentationAnnotationParserRuleCall_3_0 = (RuleCall)cOwnedRelationshipAssignment_3.eContents().get(0);
 		
 		//fragment RelationshipOwnedElement returns SysML::Relationship:
 		//      ownedRelatedElement += OwnedRelatedElement
+		//    | ownedRelatedElement += OwnedRelatedRelationship
 		//    | ownedRelationship += OwnedDocumentation
 		//    | ownedRelationship += OwnedTextualRepresentationAnnotation
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//  ownedRelatedElement += OwnedRelatedElement
+		//| ownedRelatedElement += OwnedRelatedRelationship
 		//| ownedRelationship += OwnedDocumentation
 		//| ownedRelationship += OwnedTextualRepresentationAnnotation
 		public Alternatives getAlternatives() { return cAlternatives; }
@@ -480,67 +474,63 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//OwnedRelatedElement
 		public RuleCall getOwnedRelatedElementOwnedRelatedElementParserRuleCall_0_0() { return cOwnedRelatedElementOwnedRelatedElementParserRuleCall_0_0; }
 		
+		//ownedRelatedElement += OwnedRelatedRelationship
+		public Assignment getOwnedRelatedElementAssignment_1() { return cOwnedRelatedElementAssignment_1; }
+		
+		//OwnedRelatedRelationship
+		public RuleCall getOwnedRelatedElementOwnedRelatedRelationshipParserRuleCall_1_0() { return cOwnedRelatedElementOwnedRelatedRelationshipParserRuleCall_1_0; }
+		
 		//ownedRelationship += OwnedDocumentation
-		public Assignment getOwnedRelationshipAssignment_1() { return cOwnedRelationshipAssignment_1; }
-		
-		//OwnedDocumentation
-		public RuleCall getOwnedRelationshipOwnedDocumentationParserRuleCall_1_0() { return cOwnedRelationshipOwnedDocumentationParserRuleCall_1_0; }
-		
-		//ownedRelationship += OwnedTextualRepresentationAnnotation
 		public Assignment getOwnedRelationshipAssignment_2() { return cOwnedRelationshipAssignment_2; }
 		
+		//OwnedDocumentation
+		public RuleCall getOwnedRelationshipOwnedDocumentationParserRuleCall_2_0() { return cOwnedRelationshipOwnedDocumentationParserRuleCall_2_0; }
+		
+		//ownedRelationship += OwnedTextualRepresentationAnnotation
+		public Assignment getOwnedRelationshipAssignment_3() { return cOwnedRelationshipAssignment_3; }
+		
 		//OwnedTextualRepresentationAnnotation
-		public RuleCall getOwnedRelationshipOwnedTextualRepresentationAnnotationParserRuleCall_2_0() { return cOwnedRelationshipOwnedTextualRepresentationAnnotationParserRuleCall_2_0; }
+		public RuleCall getOwnedRelationshipOwnedTextualRepresentationAnnotationParserRuleCall_3_0() { return cOwnedRelationshipOwnedTextualRepresentationAnnotationParserRuleCall_3_0; }
 	}
 	public class OwnedRelatedElementElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.OwnedRelatedElement");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
-		private final Keyword cElementKeyword_0_0 = (Keyword)cGroup_0.eContents().get(0);
-		private final Group cGroup_0_1 = (Group)cGroup_0.eContents().get(1);
-		private final Keyword cLessThanSignKeyword_0_1_0 = (Keyword)cGroup_0_1.eContents().get(0);
-		private final Assignment cHumanIdAssignment_0_1_1 = (Assignment)cGroup_0_1.eContents().get(1);
-		private final RuleCall cHumanIdNameParserRuleCall_0_1_1_0 = (RuleCall)cHumanIdAssignment_0_1_1.eContents().get(0);
-		private final Keyword cGreaterThanSignKeyword_0_1_2 = (Keyword)cGroup_0_1.eContents().get(2);
-		private final RuleCall cElementBodyParserRuleCall_0_2 = (RuleCall)cGroup_0.eContents().get(2);
-		private final RuleCall cOwnedRelatedRelationshipParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cElementKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final Keyword cLessThanSignKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
+		private final Assignment cHumanIdAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final RuleCall cHumanIdNameParserRuleCall_1_1_0 = (RuleCall)cHumanIdAssignment_1_1.eContents().get(0);
+		private final Keyword cGreaterThanSignKeyword_1_2 = (Keyword)cGroup_1.eContents().get(2);
+		private final RuleCall cElementBodyParserRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
 		
 		//OwnedRelatedElement returns SysML::Element :
 		//      'element' ( '<' humanId = Name '>' )? ElementBody
-		//    | OwnedRelatedRelationship
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//  'element' ( '<' humanId = Name '>' )? ElementBody
-		//| OwnedRelatedRelationship
-		public Alternatives getAlternatives() { return cAlternatives; }
-		
 		//'element' ( '<' humanId = Name '>' )? ElementBody
-		public Group getGroup_0() { return cGroup_0; }
+		public Group getGroup() { return cGroup; }
 		
 		//'element'
-		public Keyword getElementKeyword_0_0() { return cElementKeyword_0_0; }
+		public Keyword getElementKeyword_0() { return cElementKeyword_0; }
 		
 		//( '<' humanId = Name '>' )?
-		public Group getGroup_0_1() { return cGroup_0_1; }
+		public Group getGroup_1() { return cGroup_1; }
 		
 		//'<'
-		public Keyword getLessThanSignKeyword_0_1_0() { return cLessThanSignKeyword_0_1_0; }
+		public Keyword getLessThanSignKeyword_1_0() { return cLessThanSignKeyword_1_0; }
 		
 		//humanId = Name
-		public Assignment getHumanIdAssignment_0_1_1() { return cHumanIdAssignment_0_1_1; }
+		public Assignment getHumanIdAssignment_1_1() { return cHumanIdAssignment_1_1; }
 		
 		//Name
-		public RuleCall getHumanIdNameParserRuleCall_0_1_1_0() { return cHumanIdNameParserRuleCall_0_1_1_0; }
+		public RuleCall getHumanIdNameParserRuleCall_1_1_0() { return cHumanIdNameParserRuleCall_1_1_0; }
 		
 		//'>'
-		public Keyword getGreaterThanSignKeyword_0_1_2() { return cGreaterThanSignKeyword_0_1_2; }
+		public Keyword getGreaterThanSignKeyword_1_2() { return cGreaterThanSignKeyword_1_2; }
 		
 		//ElementBody
-		public RuleCall getElementBodyParserRuleCall_0_2() { return cElementBodyParserRuleCall_0_2; }
-		
-		//OwnedRelatedRelationship
-		public RuleCall getOwnedRelatedRelationshipParserRuleCall_1() { return cOwnedRelatedRelationshipParserRuleCall_1; }
+		public RuleCall getElementBodyParserRuleCall_2() { return cElementBodyParserRuleCall_2; }
 	}
 	public class OwnedRelatedRelationshipElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.OwnedRelatedRelationship");
@@ -7901,7 +7891,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	
 	//OwnedRelationship returns SysML::Relationship :
 	//    'relationship' Identification?
-	//    'to' RelationshipTargetList
+	//    ( 'to' RelationshipTargetList )?
 	//    RelationshipBody
 	//;
 	public OwnedRelationshipElements getOwnedRelationshipAccess() {
@@ -7913,8 +7903,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//fragment RelationshipRelatedElements returns SysML::Relationship :
-	//      'from' RelationshipSourceList ( 'to' RelationshipTargetList )?
-	//    | 'to' RelationshipTargetList
+	//      ('from' RelationshipSourceList)? ( 'to' RelationshipTargetList )?
 	//;
 	public RelationshipRelatedElementsElements getRelationshipRelatedElementsAccess() {
 		return pRelationshipRelatedElements;
@@ -7981,6 +7970,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	
 	//fragment RelationshipOwnedElement returns SysML::Relationship:
 	//      ownedRelatedElement += OwnedRelatedElement
+	//    | ownedRelatedElement += OwnedRelatedRelationship
 	//    | ownedRelationship += OwnedDocumentation
 	//    | ownedRelationship += OwnedTextualRepresentationAnnotation
 	//;
@@ -7994,7 +7984,6 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	
 	//OwnedRelatedElement returns SysML::Element :
 	//      'element' ( '<' humanId = Name '>' )? ElementBody
-	//    | OwnedRelatedRelationship
 	//;
 	public OwnedRelatedElementElements getOwnedRelatedElementAccess() {
 		return pOwnedRelatedElement;

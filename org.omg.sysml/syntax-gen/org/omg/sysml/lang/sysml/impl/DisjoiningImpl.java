@@ -18,6 +18,7 @@ import org.eclipse.uml2.common.util.UnionEObjectEList;
 
 import org.omg.sysml.lang.sysml.Disjoining;
 import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 
@@ -76,14 +77,18 @@ public class DisjoiningImpl extends RelationshipImpl implements Disjoining {
 	protected EClass eStaticClass() {
 		return SysMLPackage.Literals.DISJOINING;
 	}
+	
+	@Override
+	public Type getDisjoiningType() {
+		return disjoiningType == null? basicGetDisjoiningType(): getDisjoiningTypeGen();
+	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public Type getDisjoiningType() {
+	public Type getDisjoiningTypeGen() {
 		if (disjoiningType != null && disjoiningType.eIsProxy()) {
 			InternalEObject oldDisjoiningType = (InternalEObject)disjoiningType;
 			disjoiningType = (Type)eResolveProxy(oldDisjoiningType);
@@ -98,9 +103,15 @@ public class DisjoiningImpl extends RelationshipImpl implements Disjoining {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public Type basicGetDisjoiningType() {
+		if (disjoiningType == null) {
+			EList<Element> ownedRelatedElements = getOwnedRelatedElement();
+			if (!ownedRelatedElements.isEmpty()) {
+				disjoiningType = (Feature)ownedRelatedElements.get(ownedRelatedElements.size() - 1);
+			}
+		}
 		return disjoiningType;
 	}
 
@@ -236,8 +247,12 @@ public class DisjoiningImpl extends RelationshipImpl implements Disjoining {
 			Element owner = getOwningRelatedElement();
 			if (owner instanceof Type) {
 				typeDisjoined = (Type)owner;
+			} else {
+				EList<Element> ownedRelatedElements = getOwnedRelatedElement();
+				if (!ownedRelatedElements.isEmpty()) {
+					typeDisjoined = (Feature)ownedRelatedElements.get(0);
+				}
 			}
-			
 		}
 		return typeDisjoined;
 	}

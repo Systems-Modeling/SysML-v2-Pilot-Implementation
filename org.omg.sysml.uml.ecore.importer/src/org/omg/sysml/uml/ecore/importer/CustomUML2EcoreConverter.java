@@ -38,26 +38,32 @@ public class CustomUML2EcoreConverter extends UML2EcoreConverter {
 			Element element = entry.getKey();
 			EModelElement modelElement = entry.getValue();
 			if (element instanceof Property && modelElement instanceof EReference
-					&& !((Property)element).isDerived()
-					&& !((EReference)modelElement).isMany()
 					&& AggregationKind.COMPOSITE_LITERAL.equals(((Property) element).getAggregation())) {
-				EList<Property> subsets = ((Property)element).getSubsettedProperties();
-				EList<Property> redefines = ((Property)element).getRedefinedProperties();
-				if (subsets.stream().anyMatch(Property::isComposite) ||
-					redefines.stream().anyMatch(Property::isComposite)) {
-					EReference ref = (EReference)modelElement;
-					System.out.println(ref.getName());
-					
-					ref.setDerived(true);
-					ref.setTransient(true);
-					ref.setVolatile(true);
-					ref.setContainment(false);
-					
-					EReference opRef = ref.getEOpposite();
-					if (opRef != null) {
-						opRef.setDerived(true);
-						opRef.setTransient(true);
-						opRef.setVolatile(true);
+				Property property = (Property)element;
+				EReference ref = (EReference)modelElement;
+				EList<Property> subsets = property.getSubsettedProperties();
+				EList<Property> redefines = property.getRedefinedProperties();
+				if (property.isDerived()) {
+					if (subsets.isEmpty() && redefines.isEmpty()) {
+						ref.setContainment(true);
+						System.out.println("Make containment: " + ref.getName());
+					}
+				} else if (!ref.isMany()) {
+					if (subsets.stream().anyMatch(Property::isComposite) ||
+						redefines.stream().anyMatch(Property::isComposite)) {
+						System.out.println("Make derived: " + ref.getName());
+						
+						ref.setDerived(true);
+						ref.setTransient(true);
+						ref.setVolatile(true);
+						ref.setContainment(false);
+						
+						EReference opRef = ref.getEOpposite();
+						if (opRef != null) {
+							opRef.setDerived(true);
+							opRef.setTransient(true);
+							opRef.setVolatile(true);
+						}
 					}
 				}
 			}

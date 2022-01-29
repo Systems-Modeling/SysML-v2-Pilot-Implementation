@@ -450,15 +450,15 @@ UnownedFeatureMember returns SysML::FeatureMembership :
 
 Specialization returns SysML::Specialization :
     ( 'specialization' Identification? )?
-    'subtype' specific = [SysML::Type | QualifiedName]
-    ( ':>' | 'specializes') GeneralType ';'
+    'subtype' 
+	( specific = [SysML::Type | QualifiedName]
+	| ownedRelatedElement += FeatureChain )
+    ( ':>' | 'specializes') 
+	( general = [SysML::Type | QualifiedName]
+	| ownedRelatedElement += FeatureChain ) ';'
 ;
 
 OwnedSpecialization returns SysML::Specialization :
-    GeneralType
-;
-
-fragment GeneralType returns SysML::Specialization :
 	  general = [SysML::Type | QualifiedName]
 	| ownedRelatedElement += FeatureChain
 ;
@@ -467,24 +467,34 @@ fragment GeneralType returns SysML::Specialization :
 
 Conjugation returns SysML::Conjugation :
 	( 'conjugation' Identification? )?
-    'conjugate' conjugatedType = [SysML::Type | QualifiedName] 
-    ( '~' | 'conjugates') originalType = [SysML::Type | QualifiedName] ';'
+    'conjugate' 
+    ( conjugatedType = [SysML::Type | QualifiedName]
+	| ownedRelatedElement += FeatureChain )
+    ( '~' | 'conjugates') 
+    ( originalType = [SysML::Type | QualifiedName]
+	| ownedRelatedElement += FeatureChain ) ';'
 ;
 
 OwnedConjugation returns SysML::Conjugation :
-	originalType = [SysML::Type | QualifiedName]
+	  originalType = [SysML::Type | QualifiedName]
+	| ownedRelatedElement += FeatureChain
 ;
 
 /* Disjoining */
 
 Disjoining returns SysML::Disjoining :
 	( 'disjoining' Identification? )?
-	'disjoint' typeDisjoined = [SysML::Type | QualifiedName] 
-	'from' disjoiningType = [SysML::Type | QualifiedName] ';'
+	'disjoint' 
+	( typeDisjoined = [SysML::Type | QualifiedName] 
+	| ownedRelatedElement += FeatureChain )
+	'from' 
+	( disjoiningType = [SysML::Type | QualifiedName]
+	| ownedRelatedElement += FeatureChain ) ';'
 ;
 
 OwnedDisjoining returns SysML::Disjoining :
-	disjoiningType = [SysML::Type | QualifiedName]
+	  disjoiningType = [SysML::Type | QualifiedName]
+	| ownedRelatedElement += FeatureChain
 ;
 
 /* CLASSIFIERS */
@@ -643,15 +653,15 @@ fragment FeatureType returns SysML::FeatureTyping :
 
 Subsetting returns SysML::Subsetting :
 	( 'specialization' Identification? )?
-    'subset' subsettingFeature = [SysML::Feature | QualifiedName]
-    ( ':>' | 'subsets' ) SubsettedFeature ';'
+    'subset' 
+    ( subsettingFeature = [SysML::Feature | QualifiedName]
+	| ownedRelatedElement += FeatureChain )
+    ( ':>' | 'subsets' ) 
+    ( subsettedFeature = [SysML::Feature | QualifiedName]
+	| ownedRelatedElement += FeatureChain ) ';'
 ;
 
 OwnedSubsetting returns SysML::Subsetting:
-	SubsettedFeature
-;
-
-fragment SubsettedFeature returns SysML::Subsetting :
 	  subsettedFeature = [SysML::Feature | QualifiedName]
 	| ownedRelatedElement += FeatureChain
 ;
@@ -660,15 +670,15 @@ fragment SubsettedFeature returns SysML::Subsetting :
 
 Redefinition returns SysML::Redefinition :
 	( 'specialization' Identification? )?
-    'redefinition' redefiningFeature = [SysML::Feature | QualifiedName]
-    ( ':>>' | 'redefines' ) RedefinedFeature ';'
+    'redefinition' 
+    ( redefiningFeature = [SysML::Feature | QualifiedName]
+	| ownedRelatedElement += FeatureChain )
+    ( ':>>' | 'redefines' ) 
+    ( redefinedFeature = [SysML::Feature | QualifiedName]
+	| ownedRelatedElement += FeatureChain ) ';'
 ;
 
 OwnedRedefinition returns SysML::Redefinition:
-	RedefinedFeature
-;
-
-fragment RedefinedFeature returns SysML::Redefinition :
 	  redefinedFeature = [SysML::Feature | QualifiedName]
 	| ownedRelatedElement += FeatureChain 
 ;

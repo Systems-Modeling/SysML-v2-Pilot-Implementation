@@ -125,7 +125,7 @@ public class SpecializationImpl extends RelationshipImpl implements Specializati
 		if (general == null) {
 			EList<Element> ownedRelatedElements = getOwnedRelatedElement();
 			if (!ownedRelatedElements.isEmpty()) {
-				general = (Feature)ownedRelatedElements.get(0);
+				general = (Feature)ownedRelatedElements.get(ownedRelatedElements.size() - 1);
 			}
 		}
 		return general;
@@ -177,7 +177,6 @@ public class SpecializationImpl extends RelationshipImpl implements Specializati
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * If the Generalization has a Type as its owningRelatedElement, then use this as the default value for its specific property.
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
@@ -186,6 +185,11 @@ public class SpecializationImpl extends RelationshipImpl implements Specializati
 			Element owner = getOwningRelatedElement();
 			if (owner instanceof Type) {
 				specific = (Type)owner;
+			} else {
+				EList<Element> ownedRelatedElements = getOwnedRelatedElement();
+				if (!ownedRelatedElements.isEmpty()) {
+					specific = (Feature)ownedRelatedElements.get(0);
+				}
 			}
 		}
 		return specific;

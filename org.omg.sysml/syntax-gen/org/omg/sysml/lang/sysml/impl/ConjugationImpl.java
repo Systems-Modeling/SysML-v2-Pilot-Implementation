@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -128,6 +128,11 @@ public class ConjugationImpl extends RelationshipImpl implements Conjugation {
 			Element owner = getOwningRelatedElement();
 			if (owner instanceof Type) {
 				conjugatedType = (Type)owner;
+			} else {
+				EList<Element> ownedRelatedElements = getOwnedRelatedElement();
+				if (!ownedRelatedElements.isEmpty()) {
+					conjugatedType = (Type)ownedRelatedElements.get(0);
+				}
 			}
 		}
 		return conjugatedType;
@@ -197,14 +202,18 @@ public class ConjugationImpl extends RelationshipImpl implements Conjugation {
 		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.CONJUGATION__OWNING_RELATED_ELEMENT, newOwningRelatedElement, newOwningRelatedElement));
 	}
+	
+	@Override
+	public Type getOriginalType() {
+		return originalType == null? basicGetOriginalType(): getOriginalTypeGen();
+	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public Type getOriginalType() {
+	public Type getOriginalTypeGen() {
 		if (originalType != null && originalType.eIsProxy()) {
 			InternalEObject oldOriginalType = (InternalEObject)originalType;
 			originalType = (Type)eResolveProxy(oldOriginalType);
@@ -219,9 +228,15 @@ public class ConjugationImpl extends RelationshipImpl implements Conjugation {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public Type basicGetOriginalType() {
+		if (originalType == null) {
+			EList<Element> ownedRelatedElements = getOwnedRelatedElement();
+			if (!ownedRelatedElements.isEmpty()) {
+				originalType = (Type)ownedRelatedElements.get(ownedRelatedElements.size() - 1);
+			}
+		}
 		return originalType;
 	}
 

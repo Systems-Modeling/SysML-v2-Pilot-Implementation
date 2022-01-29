@@ -51,14 +51,8 @@ package P {
     feature v1_n : Integer = v1::n;
     // XPECT warnings --> "Should be an accessible feature (use dot notation for nesting)" at "v1::m"
     feature v1_m : Real = v1::m;
-    //* XPECT warnings ---
-        "Should be an accessible feature (use dot notation for nesting)" at "v2::m"
-        "Should be an accessible feature (use dot notation for nesting)" at "v2::m"
-    	--- */
+    // XPECT warnings ---> "Should be an accessible feature (use dot notation for nesting)" at "v2::m"
     feature v2_m : Real = v1.n + v2::m;
-    //* XPECT errors ---
-        "Must be a valid feature" at "m::mm"
-        "Must be a valid feature" at "m::mm"
-    	--- */
+    // XPECT errors ---> "Must be a valid feature" at "m::mm"
 	feature v2_m_mm = v2.m::mm;
 }

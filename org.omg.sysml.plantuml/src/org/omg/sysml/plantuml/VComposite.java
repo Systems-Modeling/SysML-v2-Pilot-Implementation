@@ -114,7 +114,7 @@ public class VComposite extends VMixed {
         return "";
     }
 
-    private void addType(Type typ) {
+    private void addTypeSimple(Type typ) {
         if (typ instanceof Usage) {
             if (!addType(typ, "usage ")) return;
         } else {
@@ -123,10 +123,9 @@ public class VComposite extends VMixed {
         append('\n');
     }
 
-
     @Override
     public String caseType(Type typ) {
-        addType(typ);
+        addTypeSimple(typ);
         return "";
     }
 

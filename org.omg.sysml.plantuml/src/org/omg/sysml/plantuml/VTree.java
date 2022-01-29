@@ -78,14 +78,14 @@ public class VTree extends VStructure {
     @Override
     public String caseAttributeUsage(AttributeUsage au) {
         if (membership == null) {
-            addType(au);
+            addCompartmentType(au);
         }
         return "";
     }
 
     @Override
     public String caseCalculationUsage(CalculationUsage cu) {
-        addType(cu);
+        addCompartmentType(cu);
         return "";
     }
 
@@ -183,7 +183,7 @@ public class VTree extends VStructure {
         return vt;
     }
 
-    private void addType(Type typ) {
+    protected void addCompartmentType(Type typ) {
         addRel(typ, null);
     	if (checkVisited(typ)) return;
         if (typ instanceof Usage) {
@@ -198,13 +198,13 @@ public class VTree extends VStructure {
     // To prevent caseExpression()
     @Override
     public String caseConstraintUsage(ConstraintUsage cu) {
-        addType(cu);
+        addCompartmentType(cu);
         return "";
     }
 
     @Override
     public String caseType(Type typ) {
-        addType(typ);
+        addCompartmentType(typ);
         return "";
     }
 

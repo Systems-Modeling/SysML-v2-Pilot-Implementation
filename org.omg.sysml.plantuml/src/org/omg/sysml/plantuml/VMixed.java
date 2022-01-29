@@ -110,8 +110,8 @@ public class VMixed extends VTree {
 
     @Override
     public String caseCaseDefinition(CaseDefinition ucd) {
-        VCase vu = new VCase(this);
-        return process(vu, ucd);
+    	addCompartmentType(ucd);
+    	return "";
     }
 
 

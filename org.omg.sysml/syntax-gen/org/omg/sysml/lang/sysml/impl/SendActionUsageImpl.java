@@ -119,7 +119,7 @@ public class SendActionUsageImpl extends ActionUsageImpl implements SendActionUs
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public Expression basicGetPayloadArgument() {
 		Feature itemsParameter = UsageUtil.getPayloadParameterOf(this);

@@ -22,16 +22,13 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
-import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.omg.sysml.lang.sysml.AcceptActionUsage;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.ReferenceUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.lang.sysml.TriggerKind;
 import org.omg.sysml.util.FeatureUtil;
 import org.omg.sysml.util.UsageUtil;
 
@@ -46,32 +43,12 @@ import org.omg.sysml.util.UsageUtil;
  *   <li>{@link org.omg.sysml.lang.sysml.impl.AcceptActionUsageImpl#getReceiverArgument <em>Receiver Argument</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.AcceptActionUsageImpl#getPayloadParameter <em>Payload Parameter</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.AcceptActionUsageImpl#getPayloadArgument <em>Payload Argument</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.AcceptActionUsageImpl#getTriggerKind <em>Trigger Kind</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class AcceptActionUsageImpl extends ActionUsageImpl implements AcceptActionUsage {
 	
-	/**
-	 * The default value of the '{@link #getTriggerKind() <em>Trigger Kind</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTriggerKind()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final TriggerKind TRIGGER_KIND_EDEFAULT = TriggerKind.ACCEPT;
-	/**
-	 * The cached value of the '{@link #getTriggerKind() <em>Trigger Kind</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTriggerKind()
-	 * @generated
-	 * @ordered
-	 */
-	protected TriggerKind triggerKind = TRIGGER_KIND_EDEFAULT;
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -190,29 +167,6 @@ public class AcceptActionUsageImpl extends ActionUsageImpl implements AcceptActi
 	 * @generated
 	 */
 	@Override
-	public TriggerKind getTriggerKind() {
-		return triggerKind;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setTriggerKind(TriggerKind newTriggerKind) {
-		TriggerKind oldTriggerKind = triggerKind;
-		triggerKind = newTriggerKind == null ? TRIGGER_KIND_EDEFAULT : newTriggerKind;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.ACCEPT_ACTION_USAGE__TRIGGER_KIND, oldTriggerKind, triggerKind));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case SysMLPackage.ACCEPT_ACTION_USAGE__RECEIVER_ARGUMENT:
@@ -224,8 +178,6 @@ public class AcceptActionUsageImpl extends ActionUsageImpl implements AcceptActi
 			case SysMLPackage.ACCEPT_ACTION_USAGE__PAYLOAD_ARGUMENT:
 				if (resolve) return getPayloadArgument();
 				return basicGetPayloadArgument();
-			case SysMLPackage.ACCEPT_ACTION_USAGE__TRIGGER_KIND:
-				return getTriggerKind();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -246,9 +198,6 @@ public class AcceptActionUsageImpl extends ActionUsageImpl implements AcceptActi
 				return;
 			case SysMLPackage.ACCEPT_ACTION_USAGE__PAYLOAD_ARGUMENT:
 				setPayloadArgument((Expression)newValue);
-				return;
-			case SysMLPackage.ACCEPT_ACTION_USAGE__TRIGGER_KIND:
-				setTriggerKind((TriggerKind)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -271,9 +220,6 @@ public class AcceptActionUsageImpl extends ActionUsageImpl implements AcceptActi
 			case SysMLPackage.ACCEPT_ACTION_USAGE__PAYLOAD_ARGUMENT:
 				setPayloadArgument((Expression)null);
 				return;
-			case SysMLPackage.ACCEPT_ACTION_USAGE__TRIGGER_KIND:
-				setTriggerKind(TRIGGER_KIND_EDEFAULT);
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -292,26 +238,8 @@ public class AcceptActionUsageImpl extends ActionUsageImpl implements AcceptActi
 				return basicGetPayloadParameter() != null;
 			case SysMLPackage.ACCEPT_ACTION_USAGE__PAYLOAD_ARGUMENT:
 				return basicGetPayloadArgument() != null;
-			case SysMLPackage.ACCEPT_ACTION_USAGE__TRIGGER_KIND:
-				return triggerKind != TRIGGER_KIND_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (triggerKind: ");
-		result.append(triggerKind);
-		result.append(')');
-		return result.toString();
 	}
 
 } //AcceptActionUsageImpl

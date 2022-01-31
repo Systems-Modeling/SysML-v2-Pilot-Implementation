@@ -42,7 +42,6 @@ package org.omg.sysml.lang.sysml;
  *   <li>{@link org.omg.sysml.lang.sysml.AcceptActionUsage#getReceiverArgument <em>Receiver Argument</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.AcceptActionUsage#getPayloadParameter <em>Payload Parameter</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.AcceptActionUsage#getPayloadArgument <em>Payload Argument</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.AcceptActionUsage#getTriggerKind <em>Trigger Kind</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getAcceptActionUsage()
@@ -137,34 +136,4 @@ public interface AcceptActionUsage extends ActionUsage {
 	 * @generated
 	 */
 	void setPayloadArgument(Expression value);
-
-	/**
-	 * Returns the value of the '<em><b>Trigger Kind</b></em>' attribute.
-	 * The default value is <code>"accept"</code>.
-	 * The literals are from the enumeration {@link org.omg.sysml.lang.sysml.TriggerKind}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Trigger Kind</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Trigger Kind</em>' attribute.
-	 * @see org.omg.sysml.lang.sysml.TriggerKind
-	 * @see #setTriggerKind(TriggerKind)
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getAcceptActionUsage_TriggerKind()
-	 * @model default="accept" required="true" ordered="false"
-	 * @generated
-	 */
-	TriggerKind getTriggerKind();
-
-	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.AcceptActionUsage#getTriggerKind <em>Trigger Kind</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Trigger Kind</em>' attribute.
-	 * @see org.omg.sysml.lang.sysml.TriggerKind
-	 * @see #getTriggerKind()
-	 * @generated
-	 */
-	void setTriggerKind(TriggerKind value);
 } // AcceptActionUsage

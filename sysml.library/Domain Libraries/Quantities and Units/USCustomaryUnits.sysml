@@ -84,7 +84,7 @@ package USCustomaryUnits {
     attribute <a> 'are' : AreaUnit { :>> unitConversion: ConversionByConvention { :>> referenceUnit = m^2; :>> conversionFactor = 1.0E+02; } }
     attribute <au> 'astronomical unit' : LengthUnit { :>> unitConversion: ConversionByConvention { :>> referenceUnit = m; :>> conversionFactor = 1.495979E+11; } }
     attribute <atm> 'atmosphere, standard' : PressureUnit { :>> unitConversion: ConversionByConvention { :>> referenceUnit = Pa; :>> conversionFactor = 1.01325E+05; } }
-    attribute <at> 'atmosphere, technical' : PressureUnit { :>> unitConversion: ConversionByConvention { :>> referenceUnit = Pa; :>> conversionFactor = 9.80665E+04; } }
+    attribute <'at'> 'atmosphere, technical' : PressureUnit { :>> unitConversion: ConversionByConvention { :>> referenceUnit = Pa; :>> conversionFactor = 9.80665E+04; } }
     attribute <bar> 'bar' : PressureUnit { :>> unitConversion: ConversionByConvention { :>> referenceUnit = Pa; :>> conversionFactor = 1.0E+05; } }
     attribute <b> 'barn' : AreaUnit { :>> unitConversion: ConversionByConvention { :>> referenceUnit = m^2; :>> conversionFactor = 1.0E-28; } }
     attribute <bbl> 'barrel (for petroleum, 42 gallons (US))' : VolumeUnit { :>> unitConversion: ConversionByConvention { :>> referenceUnit = m^3; :>> conversionFactor = 1.589873E-01; } }

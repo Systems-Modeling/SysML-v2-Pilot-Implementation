@@ -504,7 +504,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final RuleCall cElementBodyParserRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
 		
 		//OwnedRelatedElement returns SysML::Element :
-		//      'element' ( '<' humanId = Name '>' )? ElementBody
+		//    'element' ( '<' humanId = Name '>' )? ElementBody
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -7983,7 +7983,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//OwnedRelatedElement returns SysML::Element :
-	//      'element' ( '<' humanId = Name '>' )? ElementBody
+	//    'element' ( '<' humanId = Name '>' )? ElementBody
 	//;
 	public OwnedRelatedElementElements getOwnedRelatedElementAccess() {
 		return pOwnedRelatedElement;

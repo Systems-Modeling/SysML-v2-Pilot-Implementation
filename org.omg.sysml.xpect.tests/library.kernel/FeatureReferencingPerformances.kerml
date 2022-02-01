@@ -1,6 +1,6 @@
 /**
- * This package defines Behaviors used to read and write values of a referenced Feature of an Occurrence 
- * as of the time the Performance of the Behavior ends.
+ * This package defines Behaviors used to read, write and monitor values of a referenced Feature of an 
+ * Occurrence.
  */
 package FeatureReferencingPerformances {
 	private import Base::Anything;
@@ -18,8 +18,8 @@ package FeatureReferencingPerformances {
 
 	/**
 	 * A FeatureReferencingPerformance is the base Performance for specialized behaviors related 
-	 * to values of one more more referenced Features, as identified in specializations of this 
-	 * Behavior.
+	 * to values of a referenced Feature of a given Occurrence, as identified in specializations 
+	 * of this Behavior.
 	 */
 	abstract behavior FeatureReferencingPerformance specializes Performance {
 		

@@ -8,7 +8,6 @@ package SI {
     private import UnitsAndScales::*;
     import ISQ::*;
     import SIPrefixes::*;
-    import QuantityCalculations::*;
 
     /*
      * SI simple units needed before creation of base units

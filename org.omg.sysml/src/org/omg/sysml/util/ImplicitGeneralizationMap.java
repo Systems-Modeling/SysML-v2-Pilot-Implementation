@@ -258,6 +258,10 @@ public class ImplicitGeneralizationMap {
 		put(TransitionUsageImpl.class, "actionTransition", "Actions::Action::transitions");
 		put(TransitionUsageImpl.class, "stateTransition", "States::StateAction::stateTransitions");
 		
+		put(TriggerInvocationExpressionImpl.class, "when", "Triggers::TriggerWhen");
+		put(TriggerInvocationExpressionImpl.class, "at", "Triggers::TriggerAt");
+		put(TriggerInvocationExpressionImpl.class, "after", "Triggers::TriggerAfter");
+		
 		put(UseCaseDefinitionImpl.class, "base", "UseCases::UseCase");
 		put(UseCaseUsageImpl.class, "base", "UseCases::useCases");
 		put(UseCaseUsageImpl.class, "subUseCase", "UseCases::UseCase::subUseCases");

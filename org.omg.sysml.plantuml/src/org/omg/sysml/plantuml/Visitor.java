@@ -458,6 +458,10 @@ public abstract class Visitor extends SysMLSwitch<String> {
             if (dest instanceof org.omg.sysml.lang.sysml.Package) {
                 pkgs.add((org.omg.sysml.lang.sysml.Package) dest);
             } else {
+                if (getName(dest) == null) {
+                    // It would be a feature chain and it should be rendered in the future.
+                    continue;
+                }
                 nonPkgs.add(dest);
             }
         }

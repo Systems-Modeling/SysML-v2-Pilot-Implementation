@@ -53,6 +53,7 @@ import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.FlowConnectionUsage;
+import org.omg.sysml.lang.sysml.Import;
 import org.omg.sysml.lang.sysml.IncludeUseCaseUsage;
 import org.omg.sysml.lang.sysml.ItemDefinition;
 import org.omg.sysml.lang.sysml.ItemFlow;
@@ -439,6 +440,11 @@ public class SysML2PlantUMLStyle {
 		@Override
 		public String caseObjectiveMembership(ObjectiveMembership vm) {
             return " -->> ";
+		}
+
+		@Override
+		public String caseImport(Import imp) {
+            return " ..> ";
 		}
     }
 

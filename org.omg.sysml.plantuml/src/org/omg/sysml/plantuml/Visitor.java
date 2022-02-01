@@ -101,7 +101,7 @@ public abstract class Visitor extends SysMLSwitch<String> {
     protected String getString() {
         if (prev == null) {
             flushContexts();
-            flushPRelations();
+            flushPRelations(true);
             sb.append(pRelationsSB);
             pRelationsSB.setLength(0);
         }
@@ -134,7 +134,7 @@ public abstract class Visitor extends SysMLSwitch<String> {
 
     protected void popIdMap(boolean keep) {
         if (keep) {
-            flushPRelations();
+            flushPRelations(false);
         }
         s2p.popIdMap(keep);
     }
@@ -326,6 +326,32 @@ public abstract class Visitor extends SysMLSwitch<String> {
         return f.getEffectiveName();
     }
 
+    protected static String getName(Element e) {
+        if (e instanceof Feature) {
+            return getFeatureName((Feature) e);
+        } else {
+            return e.getName();
+        }
+    }
+
+    protected static String getNameAnyway(Element e, boolean creole) {
+        String ret = getName(e);
+        if (ret == null) {
+            if (creole) {
+                ret = "<s>noname</s>";
+            } else {
+                ret = "noname";
+            }
+        }
+        if (e instanceof Type) {
+            Type typ = (Type) e;
+            if (typ.isAbstract()) {
+                ret = "<i>" + ret + "</i>";
+            }
+        }
+        return ret;
+    }
+
     protected static String getFeatureChainName(Feature f) {
         String name = f.getEffectiveName();
         if (name != null) return name;
@@ -408,6 +434,48 @@ public abstract class Visitor extends SysMLSwitch<String> {
         appendSubsettingFeature(sb, ":> ", f);
     }
 
+    private void renderImportedPackage(org.omg.sysml.lang.sysml.Package pkg, List<Element> nonPkgs) {
+        String name = getNameAnyway(pkg, true);
+        append("package ");
+        addNameWithId(pkg, name, true);
+        append(' ');
+        addLink(pkg);
+        append(" {\n");
+        for (Element dest: nonPkgs) {
+            if (compId(dest) != null) continue;
+            if (pkg.equals(dest.getOwner())) {
+                visit(dest);
+            }
+        }
+        append("}\n");
+    }
+
+    private void sortOutDestinations(List<org.omg.sysml.lang.sysml.Package> pkgs, List<Element> nonPkgs) {
+        for (PRelation pr: pRelations) {
+            if (compId(pr.src) == null) continue;
+            Element dest = pr.dest;
+            if (compId(dest) != null) continue;
+            if (dest instanceof org.omg.sysml.lang.sysml.Package) {
+                pkgs.add((org.omg.sysml.lang.sysml.Package) dest);
+            } else {
+                nonPkgs.add(dest);
+            }
+        }
+    }
+
+    private void renderDestinations() {
+        List<org.omg.sysml.lang.sysml.Package> pkgs = new ArrayList<>();
+        List<Element> nonPkgs = new ArrayList<>();
+        sortOutDestinations(pkgs, nonPkgs);
+        for (org.omg.sysml.lang.sysml.Package pkg: pkgs) {
+            renderImportedPackage(pkg, nonPkgs);
+        }
+        for (Element e: nonPkgs) {
+            if (compId(e) != null) continue;
+            visit(e);
+        }
+    }
+
     private boolean outputPRelation(StringBuilder ss, PRelation pr) {
         if ((pr.src == null) && (pr.dest == null)) return true;
 
@@ -453,7 +521,7 @@ public abstract class Visitor extends SysMLSwitch<String> {
         }
     }
 
-    private void flushPRelations() {
+    private void flushPRelations(boolean last) {
         PRelation[] prs = new PRelation[pRelations.size()];
         prs = pRelations.toArray(prs);
         pRelations.clear();
@@ -462,6 +530,11 @@ public abstract class Visitor extends SysMLSwitch<String> {
             if (!outputPRelation(pRelationsSB, pr)) {
                 pRelations.add(pr);
             }
+        }
+        if (!last) return;
+        renderDestinations();
+        for (PRelation pr: pRelations) {
+            outputPRelation(pRelationsSB, pr);
         }
     }
 

@@ -4,17 +4,18 @@
 package org.omg.kerml.xtext.ui
 
 import org.eclipse.xtend.lib.annotations.FinalFieldsConstructor
-import org.omg.kerml.xtext.ui.contentassist.KerMLPrefixMatcher
 import org.eclipse.xtext.ui.shared.Access
+import org.eclipse.xtext.ui.editor.quickfix.IssueResolutionProvider
+import org.omg.kerml.xtext.ui.quickfix.KerMLQuickfixProvider
 
 /**
  * Use this class to register components to be used within the Eclipse IDE.
  */
 @FinalFieldsConstructor
 class KerMLUiModule extends AbstractKerMLUiModule {
-	
-	override bindPrefixMatcher() {
-		KerMLPrefixMatcher
+
+	override Class<? extends IssueResolutionProvider> bindIssueResolutionProvider() {
+		return KerMLQuickfixProvider;
 	}
 	
 	override provideIAllContainersState() {

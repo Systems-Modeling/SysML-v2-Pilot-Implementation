@@ -105,7 +105,7 @@ public class SuccessionFlowConnectionUsageImpl extends FlowConnectionUsageImpl i
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public EList<Expression> getGuardExpression() {

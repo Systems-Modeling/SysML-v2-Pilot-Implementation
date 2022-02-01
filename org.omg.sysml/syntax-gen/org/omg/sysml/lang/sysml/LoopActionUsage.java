@@ -9,7 +9,7 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A LoopActionUsage is an ActionUsage that is typed, directly or indirectly, by the ActionDefinition <em>LoopAction</em> from the Systems model library. It specifies that its <code>bodyAction</code> should be performed repeatedly. Its subclasses WhileLoopAction and ForLoopAction provide different ways to determine how many times the <code>bodyAction should be performed.</p>
+ * <p>A LoopActionUsage is an ActionUsage that is typed, directly or indirectly, by the ActionDefinition <em>LoopAction</em> from the Systems model library. It specifies that its <code>bodyAction</code> should be performed repeatedly. Its subclasses WhileLoopActionUsage and ForLoopActionUsage provide different ways to determine how many times the <code>bodyAction should be performed.</p>
  * <!-- end-model-doc -->
  *
  * <p>
@@ -29,7 +29,8 @@ public interface LoopActionUsage extends ActionUsage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The ActionUsage to be performed repeatedly by the LoopActionUsage. Derived as the FeatureValue for the redefined <em><code>body</code><em> parameter of the LoopActionUsage.</p>
+	 * <p>The ActionUsage to be performed repeatedly by the LoopActionUsage. Derived as the owned ActionUsage that redefines the <em><code>body</code><em> </em></em>parameter of the LoopActionUsage.</p> 
+	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Body Action</em>' reference.
 	 * @see #setBodyAction(ActionUsage)

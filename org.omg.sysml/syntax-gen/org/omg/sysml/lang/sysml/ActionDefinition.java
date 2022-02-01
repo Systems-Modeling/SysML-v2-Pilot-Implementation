@@ -32,7 +32,8 @@ import org.eclipse.emf.common.util.EList;
  * <!-- begin-model-doc -->
  * <p>An ActionDefinition is a Definition that is also a Behavior that defines an action performed by a system or part of a system.</p>
  * 
- * <p>An ActionDefinition must subclass, directly or indirectly, the base ActionDefinition Action from the Systems model library.</p>
+ * <p>An ActionDefinition must subclass, directly or indirectly, the base ActionDefinition <code><em>Action</em></code> from the Systems model library.</p>
+ * 
  * <!-- end-model-doc -->
  *
  * <p>
@@ -64,7 +65,8 @@ public interface ActionDefinition extends OccurrenceDefinition, Behavior {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The ActionUsages that are Steps in this Activity, which define the actions that specify the behavior of the Activity.</p>
+	 * <p>The ActionUsages that are Steps in this ActionDefinition, which define the actions that specify the behavior of the ActionDefinition.</p> 
+	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Action</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getActionDefinition_Action()

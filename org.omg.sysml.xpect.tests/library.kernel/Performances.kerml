@@ -147,7 +147,7 @@ package Performances {
 	abstract expr literalEvaluations: LiteralEvaluation[0..*] nonunique subsets evaluations;
 	
 	/**
-	 * literalBooleanEvaluations is a specialization of literalEvaluations and booleanEvaluations restricted 
+	 * literaBooleanlEvaluations is a specialization of literalEvaluations and booleanEvaluations restricted 
 	 * to type LiteralBooleanEvaluation.
 	 */
 	abstract expr literalBooleanEvaluations: LiteralBooleanEvaluation[0..*] nonunique subsets literalEvaluations, booleanEvaluations;

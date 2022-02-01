@@ -29,7 +29,7 @@ import org.eclipse.emf.common.util.EList;
  * '<em><b>Namespace</b></em>'. <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A Namespace is an Element that contains other Elements, known as its <code>members</code>, via Membership Relationships with those Elements. Some of the <code>members</code> of a Namespace may be owned by the Namespace. The rest are imported into the Namespace, either as unowned <code>memberElements</code> of owned Memberships of the Namespace or via Import Relationships with other Namespaces.</p>
+ * <p>A Namespace is an Element that contains other Elements, known as its <code>members</code>, via Membership Relationships with those Elements. The <code>members</code> of a Namespace may be owned by the Namespace, aliased in the Namespace, or imported into the Namespace via Import Relationships with other Namespaces.</p>
  * 
  * <p>A Namespace can provide names for its <code>members</code> via the <code>memberNames</code> specified by the Memberships in the Namespace. If a Membership specifies a <code>memberName</code>, then that is the name of the corresponding <code>memberElement</code> relative to the Namespace. Note that the same Element may be the <code>memberElement</code> of multiple Memberships in a Namespace (though it may be owned at most once), each of which may define a separate alias for the Element relative to the Namespace.</p>
  * 
@@ -48,9 +48,9 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.omg.sysml.lang.sysml.Namespace#getMembership <em>Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Namespace#getOwnedImport <em>Owned Import</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Namespace#getMember <em>Member</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Namespace#getOwnedMembership <em>Owned Membership</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Namespace#getImportedMembership <em>Imported Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Namespace#getOwnedMember <em>Owned Member</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Namespace#getImportedMembership <em>Imported Membership</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Namespace#getOwnedMembership <em>Owned Membership</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getNamespace()

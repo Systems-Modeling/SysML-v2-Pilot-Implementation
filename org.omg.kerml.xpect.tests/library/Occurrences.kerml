@@ -35,6 +35,18 @@ package Occurrences {
 		 */
 		feature successors: Occurrence[0..*] subsets occurrences;
 		
+	  	/**
+	   	 * Occurrences that end just before this occurrence starts, with no
+	     * possibility of other occurrences happening in the time between them.
+	     */
+		feature immediatePredecessors: Occurrence[0..*] subsets predecessors;
+
+  		/**
+   		 * Occurrences that start just after this occurrence ends, with no
+   		 * possibility of other occurrences happening in the time between them.
+   		 */
+		feature immediateSuccessors: Occurrence[0..*] subsets successors;
+
 		/**
 		 * Occurrences that start no earlier than and end no later than
 		 * this occurrence, including at least this occurrence.
@@ -160,13 +172,13 @@ package Occurrences {
 		end feature myselfSameLife: Anything[1..*] redefines source;
 		end feature selfSameLife: Anything[1..*] redefines target;
 
-	 	feature all sourceOccurrence : Occurrence [1..*] subsets myselfSameLife;
-	 	feature all targetOccurrence : Occurrence [1..*] subsets selfSameLife, sourceOccurrence.sameLifeOccurrences;
-		binding sourceOccurrence.portionOfLife = targetOccurrence.portionOfLife;
+	 	feature all sourceOccurrence : Occurrence [0..1] subsets myselfSameLife;
+	 	feature all targetOccurrence : Occurrence [0..1] subsets selfSameLife, sourceOccurrence.sameLifeOccurrences;
+		binding oSelf of sourceOccurrence.portionOfLife = targetOccurrence.portionOfLife;
 
 		feature all sourceDataValue : DataValue [0..1] subsets myselfSameLife;
 		feature all targetDataValue : DataValue [0..1] subsets selfSameLife;
-		binding sourceDataValue = targetDataValue;
+		binding dSelf of sourceDataValue = targetDataValue;
 	}
 	
 	subclassifier SelfLink specializes SelfSameLifeLink; 
@@ -187,12 +199,24 @@ package Occurrences {
 	 * HappensDuring asserts that the shorterOccurrence happens during the longerOccurrence.
 	 * That is, the time interval of the shorterOccurrence is completely within that of the
 	 * longerOccurrence, or every snapshot of the shorterOccurrence happens while (at the
-	 * same time as) some snapshot of the longerOccurrence. Note that this means every
-	 *  occurrence happens during itself.
+	 * same time as) some snapshot of the longerOccurrence. Note that this means every 
+	 * occurrence happens during itself.
 	 */
 	assoc HappensDuring specializes HappensLink {
 		end feature shorterOccurrence: Occurrence[1..*] redefines sourceOccurrence subsets longerOccurrence.suboccurrences;
 		end feature longerOccurrence: Occurrence[1..*] redefines targetOccurrence;
+		
+		/*
+		 * HappensDuring and HappensBefore constrain each other. All predecessors of 
+		 * (occurrences happening before) a HappenDuring's longerOccurrence are also 
+		 * predecessors of its shorterOccurrence. Inversely, all successors (occurrences 
+		 * happening after) its longerOccurrence are also successors of its shorterOccurrence.
+		 */
+		
+		subset longerOccurrence.predecessors subsets shorterOccurrence.predecessors;
+		subset longerOccurrence.successors subsets shorterOccurrence.successors;
+		
+		subset shorterOccurrence.suboccurrences subsets longerOccurrence.suboccurrences;
 	}
 	
 	/**
@@ -218,9 +242,23 @@ package Occurrences {
 		end feature earlierOccurrence: Occurrence[0..*] redefines BinaryLink::source subsets laterOccurrence.predecessors;
 		end feature laterOccurrence: Occurrence[0..*] redefines BinaryLink::target subsets earlierOccurrence.successors;
 		
+		subset laterOccurrence.successors subsets earlierOccurrence.successors;
+		
 		inv { earlierOccurrence != laterOccurrence }
 	}
 	
+	/**
+	 * HappensJustBefore is HappensBefore asserting that the earlierOccurrence happens just 
+	 * before the laterOccurrence, with with no possibility of other occurrences happening in the 
+	 * time between them.
+	 */
+	assoc HappensJustBefore specializes HappensBefore {
+  		end feature redefines earlierOccurrence: Occurrence[0..*] subsets laterOccurrence.immediatePredecessors;
+		end feature redefines laterOccurrence: Occurrence[0..*] subsets earlierOccurrence.immediateSuccessors;
+
+  		disjoint earlierOccurrence.successors from laterOccurrence.predecessors;
+	}
+
 	/**
 	 * PortionOf asserts one occurrence is a portion of another, including at least itself. 
 	 */
@@ -253,4 +291,5 @@ package Occurrences {
 	 	end feature earlierOccurrence: Occurrence[0..*] redefines HappensBefore::earlierOccurrence, binaryLinks::source;
 	 	end feature laterOccurrence: Occurrence[0..*] redefines HappensBefore::laterOccurrence, binaryLinks::target;
 	 }
+	 
 }

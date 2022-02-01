@@ -7,7 +7,7 @@
 			class="org.omg.kerml.xtext.ui.KerMLExecutableExtensionFactory:org.eclipse.xtext.ui.editor.XtextEditor"
 			contributorClass="org.eclipse.ui.editors.text.TextEditorActionContributor"
 			default="true"
-			extensions="kerml,alf"
+			extensions="kerml"
 			id="org.omg.kerml.xtext.KerML"
 			name="KerML Editor">
 		</editor>
@@ -207,7 +207,7 @@
 	<extension point="org.eclipse.core.contenttype.contentTypes">
 		<content-type
 			base-type="org.eclipse.core.runtime.text"
-			file-extensions="kerml,alf"
+			file-extensions="kerml"
 			id="org.omg.kerml.xtext.KerML.contenttype"
 			name="KerML File"
 			priority="normal">
@@ -225,19 +225,6 @@
 		<resourceServiceProvider
 			class="org.omg.kerml.xtext.ui.KerMLExecutableExtensionFactory:org.eclipse.xtext.ui.resource.IResourceUIServiceProvider"
 			uriExtension="kerml">
-		</resourceServiceProvider>
-	</extension>
-	<extension
-		point="org.eclipse.emf.ecore.extension_parser">
-		<parser
-			class="org.omg.kerml.xtext.ui.KerMLExecutableExtensionFactory:org.eclipse.xtext.resource.IResourceFactory"
-			type="alf">
-		</parser>
-	</extension>
-	<extension point="org.eclipse.xtext.extension_resourceServiceProvider">
-		<resourceServiceProvider
-			class="org.omg.kerml.xtext.ui.KerMLExecutableExtensionFactory:org.eclipse.xtext.ui.resource.IResourceUIServiceProvider"
-			uriExtension="alf">
 		</resourceServiceProvider>
 	</extension>
 	<!-- marker definitions for org.omg.kerml.xtext.KerML -->
@@ -265,7 +252,7 @@
 	<extension point="org.eclipse.xtext.builder.participant">
 		<participant
 			class="org.omg.kerml.xtext.ui.KerMLExecutableExtensionFactory:org.eclipse.xtext.builder.IXtextBuilderParticipant"
-			fileExtensions="kerml,alf"/>
+			fileExtensions="kerml"/>
 	</extension>
 	<extension point="org.eclipse.ui.preferencePages">
 		<page
@@ -343,72 +330,10 @@
 			</command>
 		</menuContribution>
 	</extension>
-	<!-- quickfix marker resolution generator for org.omg.kerml.xtext.KerML -->
-	<extension
-			point="org.eclipse.ui.ide.markerResolution">
-		<markerResolutionGenerator
-			class="org.omg.kerml.xtext.ui.KerMLExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
-			markerType="org.omg.kerml.xtext.ui.kerml.check.fast">
-			<attribute
-				name="FIXABLE_KEY"
-				value="true">
-			</attribute>
-		</markerResolutionGenerator>
-		<markerResolutionGenerator
-			class="org.omg.kerml.xtext.ui.KerMLExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
-			markerType="org.omg.kerml.xtext.ui.kerml.check.normal">
-			<attribute
-				name="FIXABLE_KEY"
-				value="true">
-			</attribute>
-		</markerResolutionGenerator>
-		<markerResolutionGenerator
-			class="org.omg.kerml.xtext.ui.KerMLExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
-			markerType="org.omg.kerml.xtext.ui.kerml.check.expensive">
-			<attribute
-				name="FIXABLE_KEY"
-				value="true">
-			</attribute>
-		</markerResolutionGenerator>
-	</extension>
-	<!-- Rename Refactoring -->
-	<extension point="org.eclipse.ui.handlers">
-		<handler
-			class="org.omg.kerml.xtext.ui.KerMLExecutableExtensionFactory:org.eclipse.xtext.ui.refactoring.ui.DefaultRenameElementHandler"
-			commandId="org.eclipse.xtext.ui.refactoring.RenameElement">
-			<activeWhen>
-				<reference
-					definitionId="org.omg.kerml.xtext.KerML.Editor.opened">
-				</reference>
-			</activeWhen>
-		</handler>
-	</extension>
-	<extension point="org.eclipse.ui.menus">
-		<menuContribution
-			locationURI="popup:#TextEditorContext?after=group.edit">
-			<command commandId="org.eclipse.xtext.ui.refactoring.RenameElement"
-				style="push">
-				<visibleWhen checkEnabled="false">
-					<reference
-						definitionId="org.omg.kerml.xtext.KerML.Editor.opened">
-					</reference>
-				</visibleWhen>
-			</command>
-		</menuContribution>
-	</extension>
-	<extension point="org.eclipse.ui.preferencePages">
-		<page
-			category="org.omg.kerml.xtext.KerML"
-			class="org.omg.kerml.xtext.ui.KerMLExecutableExtensionFactory:org.eclipse.xtext.ui.refactoring.ui.RefactoringPreferencePage"
-			id="org.omg.kerml.xtext.KerML.refactoring"
-			name="Refactoring">
-			<keywordReference id="org.omg.kerml.xtext.ui.keyword_KerML"/>
-		</page>
-	</extension>
 	<extension point="org.eclipse.compare.contentViewers">
 		<viewer id="org.omg.kerml.xtext.KerML.compare.contentViewers"
 			class="org.omg.kerml.xtext.ui.KerMLExecutableExtensionFactory:org.eclipse.xtext.ui.compare.InjectableViewerCreator"
-			extensions="kerml,alf">
+			extensions="kerml">
 		</viewer>
 		<contentTypeBinding
 			contentTypeId="org.omg.kerml.xtext.KerML.contenttype"
@@ -417,7 +342,7 @@
 	<extension point="org.eclipse.compare.contentMergeViewers">
 		<viewer id="org.omg.kerml.xtext.KerML.compare.contentMergeViewers"
 			class="org.omg.kerml.xtext.ui.KerMLExecutableExtensionFactory:org.eclipse.xtext.ui.compare.InjectableViewerCreator"
-			extensions="kerml,alf" label="KerML Compare">
+			extensions="kerml" label="KerML Compare">
 		</viewer>
 		<contentTypeBinding
 			contentTypeId="org.omg.kerml.xtext.KerML.contenttype"
@@ -426,16 +351,12 @@
 	<extension point="org.eclipse.ui.editors.documentProviders">
 		<provider id="org.omg.kerml.xtext.KerML.editors.documentProviders"
 			class="org.omg.kerml.xtext.ui.KerMLExecutableExtensionFactory:org.eclipse.xtext.ui.editor.model.XtextDocumentProvider"
-			extensions="kerml,alf">
+			extensions="kerml">
 		</provider>
 	</extension>
 	<extension point="org.eclipse.team.core.fileTypes">
 		<fileTypes
 			extension="kerml"
-			type="text">
-		</fileTypes>
-		<fileTypes
-			extension="alf"
 			type="text">
 		</fileTypes>
 	</extension>

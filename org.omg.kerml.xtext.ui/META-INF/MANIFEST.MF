@@ -3,7 +3,7 @@ Automatic-Module-Name: org.omg.kerml.xtext.ui
 Bundle-ManifestVersion: 2
 Bundle-Name: org.omg.kerml.xtext.ui
 Bundle-Vendor: SysML v2 Submission Team
-Bundle-Version: 0.19.0.qualifier
+Bundle-Version: 0.20.0.qualifier
 Bundle-SymbolicName: org.omg.kerml.xtext.ui; singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.omg.kerml.xtext,
@@ -21,10 +21,10 @@ Require-Bundle: org.omg.kerml.xtext,
  org.omg.sysml;bundle-version="0.2.0",
  org.omg.kerml.expressions.xtext;bundle-version="0.9.0",
  org.omg.kerml.expressions.xtext.ide;bundle-version="0.9.0",
- org.omg.kerml.expressions.xtext.ui;bundle-version="0.9.0"
+ org.omg.kerml.expressions.xtext.ui;bundle-version="0.9.0",
+ org.eclipse.xtext.common.types.ui
 Import-Package: org.apache.log4j
 Export-Package: org.omg.kerml.xtext.ui,
- org.omg.kerml.xtext.ui.contentassist,
  org.omg.kerml.xtext.ui.internal,
  org.omg.kerml.xtext.ui.labeling,
  org.omg.kerml.xtext.ui.outline,

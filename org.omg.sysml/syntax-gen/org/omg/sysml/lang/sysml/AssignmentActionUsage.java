@@ -9,7 +9,8 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>An AssignmentActionUsage is an ActionUsage that is typed, directly or indirectly, by the ActionDefinition <em><code>AssignmentAction</code> from the Systems model library. It specifies that the value of the <code>referent</code> Feature, relative to the target given by the result of the <code>targetArgument</code> Expression, should be set to the result of the <code>valueExpression</code>.</p>
+ * <p>An AssignmentActionUsage is an ActionUsage that is typed, directly or indirectly, by the ActionDefinition <em><code>AssignmentAction</code> </em>from the Systems model library. It specifies that the value of the <code>referent</code> Feature, relative to the target given by the result of the <code>targetArgument</code> Expression, should be set to the result of the <code>valueExpression</code>.</p>
+ * 
  * <!-- end-model-doc -->
  *
  * <p>
@@ -31,7 +32,7 @@ public interface AssignmentActionUsage extends ActionUsage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Expression whose value is an occurrence in the domain of the <code>referent</code> Feature, for which the value of the <code>referent</code> will be set to the result of the <code>valueExpression</code> by this AssignmentActionUsage. Derived as the FeatureValue of the redefined <em><code>target</code>parameter of the AssignmentActionUsage.</p>
+	 * <p>The Expression whose value is an occurrence in the domain of the <code>referent</code> Feature, for which the value of the <code>referent</code> will be set to the result of the <code>valueExpression</code> by this AssignmentActionUsage. Derived as the <code>value</code> of the FeatureValue of the redefined <em><code>target</code></em> parameter of the AssignmentActionUsage.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Target Argument</em>' reference.
 	 * @see #setTargetArgument(Expression)
@@ -57,7 +58,7 @@ public interface AssignmentActionUsage extends ActionUsage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Expression whose result is to be assigned to the <code>referent</code> Feature. Derived as the FeatureValue of the redefined <em><code>values</code>parameter of the AssignmentActionUsage.</p>
+	 * <p>The Expression whose result is to be assigned to the <code>referent</code> Feature. Derived as the <code>value</code> of the FeatureValue of the redefined <em><code>replacementValues</code></em> parameter of the AssignmentActionUsage.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Value Expression</em>' reference.
 	 * @see #setValueExpression(Expression)
@@ -89,7 +90,7 @@ public interface AssignmentActionUsage extends ActionUsage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Feature whose value is to be set, derived as an unowned <code>member</code> of the AssignmentActionUsage. It is redefined by the <em><code>target::accessedFeature</code></em> of the AssignmentActionUsage.</p>
+	 * <p>The Feature whose value is to be set, derived as an unowned <code>member</code> of the AssignmentActionUsage. It shall not be a FeatureChain. It is redefined by the <em><code>target::accessedFeature</code></em> of the AssignmentActionUsage.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Referent</em>' reference.
 	 * @see #setReferent(Feature)

@@ -2,12 +2,18 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
+import java.util.List;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.omg.sysml.lang.sysml.Expression;
+import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.ForLoopActionUsage;
+import org.omg.sysml.lang.sysml.ReferenceUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.util.FeatureUtil;
+import org.omg.sysml.util.TypeUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -18,6 +24,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * </p>
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ForLoopActionUsageImpl#getSeqArgument <em>Seq Argument</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ForLoopActionUsageImpl#getLoopVariable <em>Loop Variable</em>}</li>
  * </ul>
  *
  * @generated
@@ -48,20 +55,29 @@ public class ForLoopActionUsageImpl extends LoopActionUsageImpl implements ForLo
 	 * @generated
 	 */
 	@Override
-	public Expression getSeqArgument() {
-		Expression seqArgument = basicGetSeqArgument();
-		return seqArgument != null && seqArgument.eIsProxy() ? (Expression)eResolveProxy((InternalEObject)seqArgument) : seqArgument;
+	public ReferenceUsage getLoopVariable() {
+		ReferenceUsage loopVariable = basicGetLoopVariable();
+		return loopVariable != null && loopVariable.eIsProxy() ? (ReferenceUsage)eResolveProxy((InternalEObject)loopVariable) : loopVariable;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
-	public Expression basicGetSeqArgument() {
-		// TODO: implement this method to return the 'Seq Argument' reference
-		// -> do not perform proxy resolution
-		// Ensure that you remove @generated or mark it @generated NOT
+	public ReferenceUsage basicGetLoopVariable() {
+		return (ReferenceUsage)getOwnedFeature().stream().
+				findFirst().
+				filter(ReferenceUsage.class::isInstance).orElse(null);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public void setLoopVariable(ReferenceUsage newLoopVariable) {
 		throw new UnsupportedOperationException();
 	}
 
@@ -71,9 +87,28 @@ public class ForLoopActionUsageImpl extends LoopActionUsageImpl implements ForLo
 	 * @generated
 	 */
 	@Override
+	public Expression getSeqArgument() {
+		Expression seqArgument = basicGetSeqArgument();
+		return seqArgument != null && seqArgument.eIsProxy() ? (Expression)eResolveProxy((InternalEObject)seqArgument) : seqArgument;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public Expression basicGetSeqArgument() {
+		List<Feature> parameters = TypeUtil.getOwnedParametersOf(this);
+		return parameters.isEmpty()? null: FeatureUtil.getValueExpressionFor(parameters.get(0));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
 	public void setSeqArgument(Expression newSeqArgument) {
-		// TODO: implement this method to set the 'Seq Argument' reference
-		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
 	}
 
@@ -88,6 +123,9 @@ public class ForLoopActionUsageImpl extends LoopActionUsageImpl implements ForLo
 			case SysMLPackage.FOR_LOOP_ACTION_USAGE__SEQ_ARGUMENT:
 				if (resolve) return getSeqArgument();
 				return basicGetSeqArgument();
+			case SysMLPackage.FOR_LOOP_ACTION_USAGE__LOOP_VARIABLE:
+				if (resolve) return getLoopVariable();
+				return basicGetLoopVariable();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -102,6 +140,9 @@ public class ForLoopActionUsageImpl extends LoopActionUsageImpl implements ForLo
 		switch (featureID) {
 			case SysMLPackage.FOR_LOOP_ACTION_USAGE__SEQ_ARGUMENT:
 				setSeqArgument((Expression)newValue);
+				return;
+			case SysMLPackage.FOR_LOOP_ACTION_USAGE__LOOP_VARIABLE:
+				setLoopVariable((ReferenceUsage)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -118,6 +159,9 @@ public class ForLoopActionUsageImpl extends LoopActionUsageImpl implements ForLo
 			case SysMLPackage.FOR_LOOP_ACTION_USAGE__SEQ_ARGUMENT:
 				setSeqArgument((Expression)null);
 				return;
+			case SysMLPackage.FOR_LOOP_ACTION_USAGE__LOOP_VARIABLE:
+				setLoopVariable((ReferenceUsage)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -132,6 +176,8 @@ public class ForLoopActionUsageImpl extends LoopActionUsageImpl implements ForLo
 		switch (featureID) {
 			case SysMLPackage.FOR_LOOP_ACTION_USAGE__SEQ_ARGUMENT:
 				return basicGetSeqArgument() != null;
+			case SysMLPackage.FOR_LOOP_ACTION_USAGE__LOOP_VARIABLE:
+				return basicGetLoopVariable() != null;
 		}
 		return super.eIsSet(featureID);
 	}

@@ -30,7 +30,8 @@ public interface WhileLoopActionUsage extends LoopActionUsage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Expression whose result, if true, determines that the <code>bodyAction</code> should continue to be performed. Derived as the FeatureValue for the redefined <em><code>whileTest</code><em> parameter of the LoopActionUsage.</p>
+	 * <p>The Expression whose result, if true, determines that the <code>bodyAction</code> should continue to be performed. Derived as the owned Expression that redefines the <em><code>whileTest</code></em> parameter of the WhileLoopActionUsage.</p> 
+	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>While Argument</em>' reference.
 	 * @see #setWhileArgument(Expression)
@@ -56,7 +57,8 @@ public interface WhileLoopActionUsage extends LoopActionUsage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Expression whose result, if false, determines that the <code>bodyAction</code> should continue to be performed. Derived as the FeatureValue for the redefined <em><code>untilTest</code><em> parameter of the LoopActionUsage.</p>
+	 * <p>The Expression whose result, if false, determines that the <code>bodyAction</code> should continue to be performed. Derived as the owned Expression that redefines the <em><code>untilTest</code><em> </em></em>parameter of the WhileLoopActionUsage.</p> 
+	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Until Argument</em>' reference.
 	 * @see #setUntilArgument(Expression)

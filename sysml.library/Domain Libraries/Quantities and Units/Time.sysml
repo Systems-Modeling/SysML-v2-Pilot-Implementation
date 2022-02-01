@@ -168,8 +168,8 @@ package Time {
      * Representation of an ISO 8601-1 date and time in extended string format
 	 */
     attribute def Iso8601DateTime :> UtcTimeInstantValue {
-    	attribute :>> num = getElapsedUtcTime(val);
     	attribute val: Iso8601DateTimeEncoding;
+    	attribute :>> num = getElapsedUtcTime(val);
     	private calc getElapsedUtcTime(iso8601DateTime: Iso8601DateTimeEncoding) : Real {
     		doc /** Return the number of seconds elapsed since the UTC epoch. Can be negative when the date and time is earlier than the epoch. */
     		attribute x: Real;
@@ -187,8 +187,6 @@ package Time {
      * The total time offset is equal to the summation of hourOffset and minuteOffset.
 	 */
     attribute def Iso8601DateTimeStructure :> UtcTimeInstantValue {
-    	attribute :>> num = getElapsedUtcTime(year, month, day, hour, minute, second, microsecond, hourOffset, minuteOffest);
-    	attribute :>> mRef = UTC;
     	attribute year: Integer;
     	attribute month: Natural;
     	attribute day: Natural;
@@ -198,6 +196,8 @@ package Time {
     	attribute microsecond: Natural;
     	attribute hourOffset: Integer;
     	attribute minuteOffest: Integer;
+    	attribute :>> num = getElapsedUtcTime(year, month, day, hour, minute, second, microsecond, hourOffset, minuteOffest);
+    	attribute :>> mRef = UTC;
     	private calc getElapsedUtcTime(year: Integer, month: Natural, day: Natural, hour: Natural, minute: Natural, second: Natural,
     			microsecond: Natural, hourOffset: Integer, minuteOffest: Integer) : Real {
     		attribute x: Real;

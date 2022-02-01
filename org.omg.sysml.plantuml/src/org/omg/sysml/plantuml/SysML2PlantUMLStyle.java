@@ -169,14 +169,15 @@ public class SysML2PlantUMLStyle {
                      return " << (P,limegreen) part>> ";
                  }
              }));
-        add("TB", null, "top to bottom direction\n");
-        add("LR", null, "left to right direction\n");
-        add("POLYLINE", null, "skinparam linetype polyline\n");
-        add("ORTHOLINE", null, "skinparam linetype ortho\n");
+        addn("TB", "\tTop-to-Bottom orientation", "top to bottom direction\n");
+        addn("LR", "\tLeft-to-Right orientation", "left to right direction\n");
+        addn("POLYLINE", "Polyline style", "skinparam linetype polyline\n");
+        addn("ORTHOLINE", "Orthogonal line style", "skinparam linetype ortho\n");
         add("SHOWLIB", "Show elements of the standard libraries", " ", "showLib", "true");
         add("SHOWINHERITED", "Show inherited members", " ", "showInherited", "true");
         add("COMPMOST", "Show as many memberships in a compartment as possible", " ", "compartmentMost", "true");
         add("COMPTREE", "Show nested ports in a compartment", " ", "compartmentTree", "true");
+        add("SHOWIMPORTED", "Show imported elements", " ", "showImported", "true");
     }
 
     public static class StyleSwitch {
@@ -199,15 +200,21 @@ public class SysML2PlantUMLStyle {
         }
     }
 
-    private final boolean isPrimary;
+    private enum Kind {
+        PRIMARY,
+        NO_MENU,
+        NORMAL;
+    }
+
+    private final Kind kind;
     public final String name;
     public final String title;
     public final String commandStr;
     public final StyleSwitch styleSwitch;
     public final Map<String, String> options;
 
-    private SysML2PlantUMLStyle(boolean isPrimary, String name, String title, String commandStr, StyleSwitch styleSwitch, Map<String, String> options) {
-        this.isPrimary = isPrimary;
+    private SysML2PlantUMLStyle(Kind kind, String name, String title, String commandStr, StyleSwitch styleSwitch, Map<String, String> options) {
+        this.kind = kind;
     	this.name = name;
         this.title = title;
         this.commandStr = commandStr;
@@ -216,7 +223,7 @@ public class SysML2PlantUMLStyle {
     }
 
     public SysML2PlantUMLStyle(String name, String title, String commandStr, StyleSwitch styleSwitch, String... options) {
-        this(false, name, title, commandStr, styleSwitch, convOptions(options));
+        this(Kind.NORMAL, name, title, commandStr, styleSwitch, convOptions(options));
     }
 
     private static Map<String, String> convOptions(String[] options) {
@@ -230,39 +237,63 @@ public class SysML2PlantUMLStyle {
         return map;
     }
 
-    private static void add(boolean isPrimary, String name, String title, String commandStr, StyleSwitch styleSwitch, String... options) {
+    private static void add(Kind kind, String name, String title, String commandStr, StyleSwitch styleSwitch, String... options) {
         SysML2PlantUMLStyle s;
         Map<String, String> map = convOptions(options);
         if (name == null) {
-            s = new SysML2PlantUMLStyle(true, "DEFAULT", title, commandStr, styleSwitch, map);
+            s = new SysML2PlantUMLStyle(kind, "DEFAULT", title, commandStr, styleSwitch, map);
             defaultStyle = s;
         } else {
-            s = new SysML2PlantUMLStyle(isPrimary, name, title, commandStr, styleSwitch, map);
+            s = new SysML2PlantUMLStyle(kind, name, title, commandStr, styleSwitch, map);
         }
         styleMap.put(s.name, s);
         styles.add(s);
     }
 
     private static void addp(String name, String title, String commandStr, StyleSwitch styleSwitch, String... options) {
-        add(true, name, title, commandStr, styleSwitch, options);
+        add(Kind.PRIMARY, name, title, commandStr, styleSwitch, options);
+    }
+
+    private static void addn(String name, String title, String commandStr, String... options) {
+        add(Kind.NO_MENU, name, title, commandStr, null, options);
     }
 
     private static void add(String name, String title, String commandStr, String... options) {
-        add(false, name, title, commandStr, null, options);
+        add(Kind.NORMAL, name, title, commandStr, null, options);
     }
 
     public boolean isPrimary() {
-        return isPrimary;
+        return kind == Kind.PRIMARY;
+    }
+
+    public boolean isMenu() {
+        return kind != Kind.NO_MENU;
     }
 
     public static Collection<String> getStyleTitles() {
         List<String> titles = new ArrayList<String>(styles.size());
         for (SysML2PlantUMLStyle s: styles) {
-            if (s.title != null) {
+            if (s.isMenu()) {
                 titles.add(s.title);
             }
         }
         return titles;
+    }
+
+    public static String getStyleHelp() {
+        StringBuilder sb = new StringBuilder();
+        for (SysML2PlantUMLStyle s: styles) {
+            String name = s.name;
+            if (name == null) {
+                name = "DEFAULT";
+            }
+            sb.append("  ");
+            sb.append(name);
+            sb.append("\t\t");
+            sb.append(s.title);
+            sb.append('\n');
+        }
+        return sb.toString();
     }
 
     public static SysML2PlantUMLStyle getStyle(String title) {

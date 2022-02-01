@@ -464,6 +464,7 @@ public abstract class Visitor extends SysMLSwitch<String> {
     }
 
     private void renderDestinations() {
+        if (!styleBooleanValue("showImported")) return;
         List<org.omg.sysml.lang.sysml.Package> pkgs = new ArrayList<>();
         List<Element> nonPkgs = new ArrayList<>();
         sortOutDestinations(pkgs, nonPkgs);

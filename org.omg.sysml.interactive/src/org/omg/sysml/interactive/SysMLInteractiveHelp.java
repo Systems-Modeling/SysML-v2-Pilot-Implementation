@@ -26,6 +26,8 @@
 
 package org.omg.sysml.interactive;
 
+import org.omg.sysml.plantuml.SysML2PlantUMLStyle;
+
 public class SysMLInteractiveHelp {
 	
 	private static final String LIST_HELP_STRING =
@@ -62,19 +64,8 @@ public class SysMLInteractiveHelp {
     	    + "   SEQUENCE\t\tShow events and messages in a sequence diagram\n"
     	    + "   MIXED\t\tShow multiple views\n\n"
     	    + "<STYLE> is also case insensitive. Multiple --style options are allowed.  The possible style names are:\n"
-    	    + "   DEFAULT\t\tStandard B&W format\n"
-    	    + "   STDCOLOR\t\tStandard format with colors\n"
-    	    + "   PLANTUML\t\tPlantUML format\n"
-    	    + "   PUMLCODE\t\tShow PlantUML code mainly for debugging\n"
-    	    + "   TB\t\t\tTop-to-Bottom orientation\n"
-    	    + "   LR\t\t\tLeft-to-Right orientation\n"
-    	    + "   POLYLINE\t\tPolyline style\n"
-    	    + "   ORTHOLINE\t\tOrthogonal line style\n"
-    	    + "   SHOWINHERITED\t\tShow inherited members\n"
-    	    + "   SHOWLIB\t\tShow elements of the standard libraries\n"
-    	    + "   COMPMOST\t\tShow as many memberships in a compartment as possible\n"
-    	    + "   COMPTREE\t\tShow tree structures in compartments\n\n"
-    	    + "Example:\n"
+            + SysML2PlantUMLStyle.getStyleHelp()
+    	    + "\nExample:\n"
     	    + "\t%viz --view Tree --style LR --style ortholine Pkg1::PartDef Pkg1::Pkg2::partUsage\n"
     	    + "should visualize Pkg1::PartDef and Pkg1::Pkg2::partUsage with a tree view ordered in the left-to-right direction with orthogonal lines.\n";
 
@@ -90,15 +81,7 @@ public class SysMLInteractiveHelp {
     	    + "   ACTION\t\tShow actions like an activity diagram\n"
     	    + "   MIXED\t\tShow multiple views\n\n"
     	    + "<STYLE> is also case insensitive. Multiple --style options are allowed.  The possible style names are:\n"
-    	    + "   DEFAULT\t\tStandard B&W format\n"
-    	    + "   STDCOLOR\t\tStandard format with colors\n"
-    	    + "   PLANTUML\t\tPlantUML format\n"
-    	    + "   PUMLCODE\t\tShow PlantUML code mainly for debugging\n"
-    	    + "   TB\t\t\tTop-to-Bottom orientation\n"
-    	    + "   LR\t\t\tLeft-to-Right orientation\n"
-    	    + "   POLYLINE\t\tPolyline style\n"
-    	    + "   ORTHOLINE\t\tOrthogonal line style\n"
-    	    + "   COMPTREE\t\tShow tree structures in compartments\n";
+            + SysML2PlantUMLStyle.getStyleHelp();
     
 
 	private static final String EXPORT_HELP_STRING =

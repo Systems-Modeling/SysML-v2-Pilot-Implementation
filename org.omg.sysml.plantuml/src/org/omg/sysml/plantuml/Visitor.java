@@ -25,7 +25,10 @@
 package org.omg.sysml.plantuml;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
 import org.omg.sysml.lang.sysml.Element;
@@ -434,7 +437,7 @@ public abstract class Visitor extends SysMLSwitch<String> {
         appendSubsettingFeature(sb, ":> ", f);
     }
 
-    private void renderImportedPackage(org.omg.sysml.lang.sysml.Package pkg, List<Element> nonPkgs) {
+    private void renderImportedPackage(org.omg.sysml.lang.sysml.Package pkg, Collection<Element> nonPkgs) {
         String name = pkg.getQualifiedName();
         if (name == null) return;
         append("package ");
@@ -451,7 +454,7 @@ public abstract class Visitor extends SysMLSwitch<String> {
         append("}\n");
     }
 
-    private void sortOutDestinations(List<org.omg.sysml.lang.sysml.Package> pkgs, List<Element> nonPkgs) {
+    private void sortOutDestinations(Collection<org.omg.sysml.lang.sysml.Package> pkgs, Collection<Element> nonPkgs) {
         for (PRelation pr: pRelations) {
             if (compId(pr.src) == null) continue;
             Element dest = pr.dest;
@@ -470,8 +473,8 @@ public abstract class Visitor extends SysMLSwitch<String> {
 
     private void renderDestinations() {
         if (!styleBooleanValue("showImported")) return;
-        List<org.omg.sysml.lang.sysml.Package> pkgs = new ArrayList<>();
-        List<Element> nonPkgs = new ArrayList<>();
+        Set<org.omg.sysml.lang.sysml.Package> pkgs = new HashSet<>();
+        Set<Element> nonPkgs = new HashSet<>();
         sortOutDestinations(pkgs, nonPkgs);
         for (org.omg.sysml.lang.sysml.Package pkg: pkgs) {
             renderImportedPackage(pkg, nonPkgs);

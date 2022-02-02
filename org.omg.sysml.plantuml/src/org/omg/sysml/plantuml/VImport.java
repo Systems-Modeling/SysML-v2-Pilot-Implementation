@@ -42,11 +42,12 @@ public class VImport extends Visitor {
         String name = imp.getImportedMemberName();
         Namespace nsOwn = imp.getImportOwningNamespace();
 
-        if ("*".equals(name) || name == null) {
+        if (name == null) {
             addPRelation(nsOwn, imp.getImportedNamespace(), imp, "<<import>>*");
         } else if (imp.isRecursive()) {
-            Collection<Membership> mss = SysMLScopeUtil.getMembershipsFor(imp, SysMLPackage.eINSTANCE.getImport_ImportOwningNamespace(),
-                                                                          name, false);
+            Collection<Membership> mss =
+                SysMLScopeUtil.getMembershipsFor(imp, SysMLPackage.eINSTANCE.getImport_ImportOwningNamespace(),
+                                                 name, false);
             for (Membership ms: mss) {
                 addPRelation(nsOwn, ms.getMemberElement(), imp, "<<import>>**");
             }

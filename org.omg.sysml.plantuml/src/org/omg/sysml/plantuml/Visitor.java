@@ -100,8 +100,8 @@ public abstract class Visitor extends SysMLSwitch<String> {
 
     protected String getString() {
         if (prev == null) {
-            flushContexts();
             flushPRelations(true);
+            flushContexts();
             sb.append(pRelationsSB);
             pRelationsSB.setLength(0);
         }

@@ -435,7 +435,8 @@ public abstract class Visitor extends SysMLSwitch<String> {
     }
 
     private void renderImportedPackage(org.omg.sysml.lang.sysml.Package pkg, List<Element> nonPkgs) {
-        String name = getNameAnyway(pkg, true);
+        String name = pkg.getQualifiedName();
+        if (name == null) return;
         append("package ");
         addNameWithId(pkg, name, true);
         append(' ');

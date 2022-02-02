@@ -337,8 +337,16 @@ public abstract class Visitor extends SysMLSwitch<String> {
         }
     }
 
-    protected static String getNameAnyway(Element e, boolean creole) {
-        String ret = getName(e);
+    private Element fullyQualifiedElement;
+
+    protected String getNameAnyway(Element e, boolean creole) {
+        String ret = null;
+        if (e.equals(fullyQualifiedElement)) {
+            ret = e.getQualifiedName();
+        }
+        if (ret == null) {
+            ret = getName(e);
+        }
         if (ret == null) {
             if (creole) {
                 ret = "<s>noname</s>";
@@ -481,8 +489,10 @@ public abstract class Visitor extends SysMLSwitch<String> {
         }
         for (Element e: nonPkgs) {
             if (compId(e) != null) continue;
+            this.fullyQualifiedElement = e;
             visit(e);
         }
+        this.fullyQualifiedElement = null;
     }
 
     private boolean outputPRelation(StringBuilder ss, PRelation pr) {

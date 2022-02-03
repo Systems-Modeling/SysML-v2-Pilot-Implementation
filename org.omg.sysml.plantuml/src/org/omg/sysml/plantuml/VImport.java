@@ -1,6 +1,7 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation, PlantUML Visualization
  * Copyright (c) 2022 Mgnite Inc.
+ * Copyright (c) 2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -19,6 +20,7 @@
  * 
  * Contributors:
  *  Hisashi Miyashita, Mgnite Inc.
+ *  Ed Seidewitz, MDS
  * 
  *****************************************************************************/
 
@@ -26,12 +28,10 @@ package org.omg.sysml.plantuml;
 
 import java.util.Collection;
 
-import org.eclipse.emf.common.util.BasicEList;
 import org.omg.sysml.lang.sysml.Import;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
-import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.lang.sysml.util.SysMLScopeUtil;
+import org.omg.sysml.util.NamespaceUtil;
 
 public class VImport extends Visitor {
     public VImport(Visitor v) {
@@ -39,21 +39,16 @@ public class VImport extends Visitor {
     }
 
     public void addImport(Import imp) {
-        String name = imp.getImportedMemberName();
         Namespace nsOwn = imp.getImportOwningNamespace();
 
-        if (name == null) {
-            addPRelation(nsOwn, imp.getImportedNamespace(), imp, "<<import>>*");
-        } else if (imp.isRecursive()) {
-            Collection<Membership> mss =
-                SysMLScopeUtil.getMembershipsFor(imp, SysMLPackage.eINSTANCE.getImport_ImportOwningNamespace(),
-                                                 name, false);
-            for (Membership ms: mss) {
-                addPRelation(nsOwn, ms.getMemberElement(), imp, "<<import>>**");
-            }
+        if (imp.getImportedMemberName() == null) {
+        	String description = imp.isRecursive()? "<<import>>*::**": "<<import>>*";
+            addPRelation(nsOwn, imp.getImportedNamespace(), imp, description);
         } else {
-            for (Membership ms: imp.importedMembership(new BasicEList<>())) {
-                addPRelation(nsOwn, ms.getMemberElement(), imp, "<<import>>");
+            Collection<Membership> mss = NamespaceUtil.getNamedMembershipsFor(imp);
+            String description = imp.isRecursive()? "<<import>>**": "<<import>>";
+            for (Membership ms: mss) {
+                addPRelation(nsOwn, ms.getMemberElement(), imp, description);
             }
         }
     }

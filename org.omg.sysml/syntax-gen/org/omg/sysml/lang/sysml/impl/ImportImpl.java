@@ -43,8 +43,8 @@ import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.VisibilityKind;
-import org.omg.sysml.lang.sysml.util.SysMLScopeUtil;
 import org.omg.sysml.util.ElementUtil;
+import org.omg.sysml.util.NamespaceUtil;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object
@@ -493,7 +493,7 @@ public class ImportImpl extends RelationshipImpl implements Import {
 			Collection<Type> excludedTypes, boolean isRecursive) {
 		Collection<Membership> namespaceMembership = importedMemberName == null? 
 				((NamespaceImpl) importedNamespace).getVisibleMembership(excludedNamespaces, excludedTypes, isImportAll):
-				SysMLScopeUtil.getMembershipsFor(this, SysMLPackage.eINSTANCE.getImport_ImportOwningNamespace(), importedMemberName, isImportAll);
+				NamespaceUtil.getNamedMembershipsFor(this);
 		importedMembership.addAll(namespaceMembership);
 		if (nonpublicMembership != null && !VisibilityKind.PUBLIC.equals(this.getVisibility())) {
 			nonpublicMembership.addAll(namespaceMembership);

@@ -7,7 +7,6 @@ package Clocks {
 	private import ScalarValues::Real;
 	private import Occurrences::Occurrence;
 	private import ControlFunctions::forAll;
-	private import ISQ::DurationValue;
 	
 	/**
 	 * defaultClock is a single Clock that can be used as a default.
@@ -23,7 +22,7 @@ package Clocks {
 	abstract struct Clock {
 		private thisClock : Clock :>> self;
 		/**
-		 * A numerical time reference that advances over the lifetime of the Clock. 
+		 * A scalar time reference that advances over the lifetime of the Clock. 
 		 */
 		readonly feature currentTime : ScalarValue[1];
 						

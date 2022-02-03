@@ -44,7 +44,11 @@ package Clocks {
 	 * which is considered to be synchronized with the snapshot of the Clock 
 	 * with a currentTime equal to the returned timeValue.
 	 */
-	abstract function TimeOf(o : Occurrence[1], clock : Clock[1]) timeValue : ScalarValue[1] {
+	abstract function TimeOf {
+		in o : Occurrence[1];
+		in clock : Clock[1] default defaultClock;
+		return timeValue : ScalarValue[1];
+		
 		/**
 		 * The TimeOf an Occurrence is equal to the time of its start snapshot.
 		 */
@@ -80,8 +84,11 @@ package Clocks {
 	 * given Clock, which is equal to the TimeOf the end snapshot of the
 	 * Occurrence minus the TimeOf its start snapshot.
 	 */
-	function DurationOf(o : Occurrence[1], clock : Clock[1]) duration : ScalarValue {
-		TimeOf(o.endShot, clock) - TimeOf(o.startShot, clock)
+	function DurationOf {
+		in o : Occurrence[1]; 
+		in clock : Clock[1] default defaultClock;
+		return duration : ScalarValue =
+			TimeOf(o.endShot, clock) - TimeOf(o.startShot, clock);
 	}
 	
 	/**

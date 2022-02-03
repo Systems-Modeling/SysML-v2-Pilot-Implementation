@@ -22,7 +22,7 @@ package Time {
     /**
      * defaultClock is a single Clock that can be used as a default.
      */
-    readonly part defaultClock : Clock[1];
+    readonly part defaultClock : Clock[1] = Clocks::defaultClock;
 
 	/**
 	 * A Clock provides a currentTime as a TimeInstantValue that advances montonically over its lifetime.
@@ -36,14 +36,22 @@ package Time {
 	 * time of the start of the Occurrence, which is considered to be synchronized with the snapshot of the Clock with a 
 	 * currentTime equal to the returned imeValue
 	 */
-	calc def TimeOf :> Clocks::TimeOf(o : Occurrence[1], clock : Clock[1]) timeValue : TimeInstantValue[1];
+	calc def TimeOf :> Clocks::TimeOf {
+		in o : Occurrence[1]; 
+		in clock : Clock[1] default defaultClock;
+		return timeValue : TimeInstantValue[1];
+	}
 
 	/**
 	 * DurationOf returns the duration of a given Occurrence relative to a given Clock, which is equal to the TimeOf 
 	 * the end snapshot of the Occurrence minus the TimeOf its start snapshot.
 	 */
-	calc def DurationOf :> Clocks::DurationOf(o : Occurrence[1], clock : Clock[1]) duration : DurationValue;
-
+	calc def DurationOf :> Clocks::DurationOf {
+		in o : Occurrence[1]; 
+		in clock : Clock[1] default defaultClock;
+		return duration : DurationValue;
+	}
+	
 	/**
 	 * Generic time scale to express a time instant, including a textual definition of the meaning of zero time instant value
 	 * 

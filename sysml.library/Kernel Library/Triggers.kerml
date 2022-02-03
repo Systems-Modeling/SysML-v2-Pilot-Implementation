@@ -60,7 +60,7 @@ package Triggers {
 		/**
 		 * The ChangeSignal for the condition, as monitored by the monitor.
 		 */
-		out feature signal : ChangeSignal[1] = ChangeSignal(condition, monitor);
+		return feature signal : ChangeSignal[1] = ChangeSignal(condition, monitor);
 		
 		step :> monitor.startObservation(receiver, signal);			
 	}
@@ -95,7 +95,7 @@ package Triggers {
 		/**
 		 * The TimeSignal for the given time, as monitored by the monitor.
 		 */
-		out feature signal : TimeSignal[1] = TimeSignal(time, clock, monitor);
+		return feature signal : TimeSignal[1] = TimeSignal(time, clock, monitor);
 		
 		step :> monitor.startObservation(receiver, signal);
 	}
@@ -131,7 +131,7 @@ package Triggers {
 		 * The TimeSignal for the currentTime of the clock when the function is invoked
 		 * plus the given time delay, as monitored by the monitor.
 		 */
-		out signal : TimeSignal[1] = 
+		return signal : TimeSignal[1] = 
 			TriggerAt(clock.currentTime + delay, receiver, clock, monitor);
 	}	
 	

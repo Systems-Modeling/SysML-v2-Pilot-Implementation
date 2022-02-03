@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2021-2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -21,6 +21,7 @@
 
 package org.omg.sysml.util;
 
+import java.util.Collection;
 import java.util.function.Supplier;
 import java.util.stream.Stream;
 
@@ -32,16 +33,21 @@ import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.FeatureReferenceExpression;
 import org.omg.sysml.lang.sysml.FeatureValue;
+import org.omg.sysml.lang.sysml.Import;
 import org.omg.sysml.lang.sysml.InvocationExpression;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.PathStepExpression;
 import org.omg.sysml.lang.sysml.SysMLFactory;
+import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.lang.sysml.util.SysMLScopeUtil;
 
 public class NamespaceUtil {
 	
 	private NamespaceUtil() {
 	}
+	
+	// Membership
 
 	public static <M extends Membership, T> Stream<T> getOwnedMembersByMembershipIn(Namespace namespace, Class<M> kind, Class<T> type) {
 		return namespace.getOwnedMembership().stream().
@@ -71,6 +77,13 @@ public class NamespaceUtil {
 		EList<Membership> membership = adapter.getImportedMembership();
 		return membership == null? adapter.setImportedMembership(supplier.get()): membership;
 	}
+	
+	public static Collection<Membership> getNamedMembershipsFor(Import import_) {
+		return SysMLScopeUtil.getMembershipsFor(import_, SysMLPackage.eINSTANCE.getImport_ImportOwningNamespace(), 
+				import_.getImportedMemberName(), import_.isImportAll());
+	}
+	
+	// Related Namespaces
 	
 	public static Namespace getParentNamespaceOf(Element element) {
 		return element == null? null:

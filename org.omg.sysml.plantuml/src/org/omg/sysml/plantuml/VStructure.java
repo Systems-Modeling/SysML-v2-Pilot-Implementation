@@ -1,6 +1,6 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation, PlantUML Visualization
- * Copyright (c) 2020 Mgnite Inc.
+ * Copyright (c) 2020-2022 Mgnite Inc.
  * Copyright (c) 2021 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
@@ -37,6 +37,7 @@ import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.LifeClass;
 import org.omg.sysml.lang.sysml.Membership;
+import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.PortioningFeature;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.RequirementUsage;
@@ -201,10 +202,9 @@ public abstract class VStructure extends VDefault {
     }
 
     @Override
-    public String caseNamespace(org.omg.sysml.lang.sysml.Namespace pkg) {
+    public String caseNamespace(Namespace pkg) {
         String name = pkg.getName();
         if (name == null) return super.caseNamespace(pkg);
-
         flushContexts();
         append("package ");
         addNameWithId(pkg, name, true);

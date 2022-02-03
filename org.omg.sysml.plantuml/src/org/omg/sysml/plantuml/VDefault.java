@@ -1,6 +1,6 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation, PlantUML Visualization
- * Copyright (c) 2020 Mgnite Inc.
+ * Copyright (c) 2020-2022 Mgnite Inc.
  * Copyright (c) 2020 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
@@ -38,6 +38,7 @@ import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureReferenceExpression;
+import org.omg.sysml.lang.sysml.Import;
 import org.omg.sysml.lang.sysml.ItemFlow;
 import org.omg.sysml.lang.sysml.ItemFlowEnd;
 import org.omg.sysml.lang.sysml.PathStepExpression;
@@ -48,32 +49,6 @@ import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
 
 public class VDefault extends VTraverser {
-    protected static String getName(Element e) {
-        if (e instanceof Feature) {
-            return getFeatureName((Feature) e);
-        } else {
-            return e.getName();
-        }
-    }
-
-    protected static String getNameAnyway(Element e, boolean creole) {
-        String ret = getName(e);
-        if (ret == null) {
-            if (creole) {
-                ret = "<s>noname</s>";
-            } else {
-                ret = "noname";
-            }
-        }
-        if (e instanceof Type) {
-            Type typ = (Type) e;
-            if (typ.isAbstract()) {
-                ret = "<i>" + ret + "</i>";
-            }
-        }
-        return ret;
-    }
-
     protected Element getEnd(Feature f) {
         if (f == null) return null;
         if (f instanceof ItemFlowEnd) return f;
@@ -235,6 +210,13 @@ public class VDefault extends VTraverser {
     			addPRelation(c, s, dep, "<<depend>>");
     		}
     	}
+        return "";
+    }
+
+    @Override
+    public String caseImport(Import imp) {
+        VImport v = new VImport(this);
+        v.addImport(imp);
         return "";
     }
 

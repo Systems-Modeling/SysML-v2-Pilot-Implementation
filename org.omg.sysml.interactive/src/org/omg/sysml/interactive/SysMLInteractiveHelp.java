@@ -2,6 +2,7 @@
  * SysML 2 Pilot Implementation
  * Copyright (c) 2021 Model Driven Solutions, Inc.
  * Copyright (c) 2021 Twingineer LLC
+ * Copyright (c) 2022 Mgnite Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -21,6 +22,7 @@
  * Contributors:
  *  Ed Seidewitz, MDS
  *  Ivan Gomes
+ *  Hisashi Miyashita
  *  
  *******************************************************************************/
 

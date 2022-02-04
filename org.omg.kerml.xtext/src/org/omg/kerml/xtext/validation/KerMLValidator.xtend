@@ -269,7 +269,8 @@ class KerMLValidator extends AbstractKerMLValidator {
 			if (!(relatedFeature.featuringType.empty || 
 				cFeaturingTypes.exists[featuringType |
 					relatedFeature.featuringType.exists[f | featuringType.conformsTo(f)]] ||
-				location instanceof FeatureReferenceExpression && relatedFeature.getOwningType() == location)) {
+				location instanceof FeatureReferenceExpression && relatedFeature.getOwningType() == location ||
+				c instanceof ItemFlow && c.owningNamespace instanceof Feature && c.owningType === null)) {
 				warning(INVALID_CONNECTOR_END__CONTEXT_MSG, 
 					if (location === c && i < connectorEnds.size) connectorEnds.get(i) else location, 
 					null, INVALID_CONNECTOR_END__CONTEXT)

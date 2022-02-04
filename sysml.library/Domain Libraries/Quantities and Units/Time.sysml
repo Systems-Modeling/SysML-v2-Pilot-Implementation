@@ -34,12 +34,12 @@ package Time {
 	/**
 	 * TimeOf returns a TimeInstantValue for a given Occurrence relative to a given Clock. This TimeInstantValue is the 
 	 * time of the start of the Occurrence, which is considered to be synchronized with the snapshot of the Clock with a 
-	 * currentTime equal to the returned imeValue
+	 * currentTime equal to the returned timeInstant.
 	 */
 	calc def TimeOf :> Clocks::TimeOf {
 		in o : Occurrence[1]; 
 		in clock : Clock[1] default defaultClock;
-		return timeValue : TimeInstantValue[1];
+		return timeInstant : TimeInstantValue[1];
 	}
 
 	/**

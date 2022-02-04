@@ -3,7 +3,7 @@
  * usable for quantifying the time of an Occurrence.
  */
 package Clocks {
-	private import ScalarValues::ScalarValue;
+	private import ScalarValues::NumericalValue;
 	private import ScalarValues::Real;
 	private import Occurrences::Occurrence;
 	private import ControlFunctions::forAll;
@@ -14,7 +14,7 @@ package Clocks {
 	readonly feature defaultClock : Clock[1];
 	
 	/**
-	 * A Clock provides a scalar currentTime that advances montonically
+	 * A Clock provides a numerical currentTime that advances montonically
 	 * over its lifetime. Clock is an abstract base Structure that can be
 	 * specialized for different kinds of time quantification (e.g., discrete
 	 * time, continuous time, time with units, etc.).
@@ -24,7 +24,7 @@ package Clocks {
 		/**
 		 * A scalar time reference that advances over the lifetime of the Clock. 
 		 */
-		readonly feature currentTime : ScalarValue[1];
+		readonly feature currentTime : NumericalValue[1];
 						
 		/**
 		 * The currentTime of a snapshot of a Clock is equal to
@@ -38,21 +38,21 @@ package Clocks {
 	}
 	
 	/**
-	 * TimeOf returns a scalar timeValue for a given Occurrence relative to
-	 * a given Clock. The timeValue is the time of the start of the Occurrence,
+	 * TimeOf returns a numerical timeInstant for a given Occurrence relative to
+	 * a given Clock. The timeInstant is the time of the start of the Occurrence,
 	 * which is considered to be synchronized with the snapshot of the Clock 
-	 * with a currentTime equal to the returned timeValue.
+	 * with a currentTime equal to the returned timeInstant.
 	 */
 	abstract function TimeOf {
 		in o : Occurrence[1];
 		in clock : Clock[1] default defaultClock;
-		return timeValue : ScalarValue[1];
+		return timeInstant : NumericalValue[1];
 		
 		/**
 		 * The TimeOf an Occurrence is equal to the time of its start snapshot.
 		 */
 		 inv startTimeConstraint { 
-		 	timeValue == TimeOf(o.startShot, clock)
+		 	timeInstant == TimeOf(o.startShot, clock)
 		 }	 
 
 		/**
@@ -62,7 +62,7 @@ package Clocks {
 		 */
 		inv timeOrderingConstraint {
 			o.predecessors->forAll{in p : Occurrence; 
-				TimeOf(p.endShot, clock) <= timeValue
+				TimeOf(p.endShot, clock) <= timeInstant
 			}
 		}
 				
@@ -73,7 +73,7 @@ package Clocks {
 		 */
 		inv timeContinuityConstraint {
 			o.immediatePredecessors->forAll{in p : Occurrence; 
-				TimeOf(p.endShot, clock) == timeValue
+				TimeOf(p.endShot, clock) == timeInstant
 			}
 		}				
 	}
@@ -86,7 +86,7 @@ package Clocks {
 	function DurationOf {
 		in o : Occurrence[1]; 
 		in clock : Clock[1] default defaultClock;
-		return duration : ScalarValue =
+		return duration : NumericalValue =
 			TimeOf(o.endShot, clock) - TimeOf(o.startShot, clock);
 	}
 	

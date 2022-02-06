@@ -17,7 +17,6 @@ package Quantities {
 		attribute isBound: ScalarValues::Boolean;
 		attribute num: ScalarValues::Number[1..*] ordered nonunique :>> elements;
 		attribute mRef: UnitsAndScales::TensorMeasurementReference;
-		attribute measure: UnitsAndScales::TensorMeasurementReference;
         attribute :>> dimensions = mRef.dimensions;
 		attribute order :>> rank = mRef.order;
         attribute contravariantOrder: ScalarValues::Natural;

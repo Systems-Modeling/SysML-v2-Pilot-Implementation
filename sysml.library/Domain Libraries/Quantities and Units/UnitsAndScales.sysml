@@ -22,14 +22,15 @@ package UnitsAndScales {
 	 * to a single dimensional measurement reference for a scalar quantity. The measurement references for all dimensions of a
 	 * quantity are specified through the mRefs attribute. Each element of mRefs is a ScalarMeasurementReference.
 	 *
-	 * The longName of a TensorMeasurementReference is the spelled-out human readable name of the measurement reference.
-	 * For example, typical measurement units for the speed quantity would have the longName "metre per second", "kilometre per hour",
-	 * "mile per hour".
+	 * The humanId of a TensorMeasurementReference is the unique symbol by which the measurement reference is known.
+	 * The name of a TensorMeasurementReference is spelled-out human readable name of the measurement reference.
+	 * For example, typical measurement units for the speed quantity would have the respective humanId and name: 
+	 * <'m/s'> and 'metre per second',
+	 * <'km/h'> and 'kilometre per hour',
+	 * <'mi/h'> and 'mile per hour'.
 	 *
 	 * A measurement reference can have zero or more definitionalQuantityValues that allows to specify
 	 * quantity values that carry a particular meaning or relevance for the measurement reference.
-     *
-	 * To stress the generality of the TensorMeasurementReference the alias MeasurementReference is defined.
 	 */
 	attribute def TensorMeasurementReference :> Array {
 		attribute isBound: Boolean[1] default false;

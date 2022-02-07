@@ -14,6 +14,8 @@ import org.omg.sysml.lang.sysml.RequirementUsage
 import org.omg.sysml.util.TypeUtil
 import org.omg.sysml.lang.sysml.StateUsage
 import org.omg.sysml.lang.sysml.StateDefinition
+import org.omg.sysml.lang.sysml.TriggerInvocationExpression
+import org.omg.sysml.lang.sysml.Expression
 
 /**
  * Customization of the default outline structure.
@@ -52,6 +54,10 @@ class SysMLOutlineTreeProvider extends KerMLOutlineTreeProvider {
 			text += ' parallel'
 		}
 		text + state.idText
+	}
+	
+	def String _text(TriggerInvocationExpression expression) {
+		(expression as Expression)._text + " " + expression.kind
 	}
 	
 	def boolean _isLeaf(RequirementDefinition requirementDef) {

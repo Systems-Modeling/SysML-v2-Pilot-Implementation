@@ -1387,25 +1387,63 @@ fragment AcceptNodeDeclaration returns SysML::ActionUsage :
 ;
 
 fragment AcceptParameterPart returns SysML::ActionUsage :
-	ownedRelationship += ItemParameterMember
+	ownedRelationship += PayloadParameterMember
 	( 'via' ownedRelationship += NodeParameterMember 
 	| ownedRelationship += EmptyParameterMember
 	)
 ;
 
-ItemParameterMember returns SysML::ParameterMembership :
-	ownedRelatedElement += ItemParameter // ownedMemberParameter = ItemParameter
+PayloadParameterMember returns SysML::ParameterMembership :
+	ownedRelatedElement += PayloadParameter // ownedMemberParameter = PayloadParameter
 ;
 
-ItemParameter returns SysML::ReferenceUsage :
-	  Identification? ItemParameterSpecializationPart
+PayloadParameter returns SysML::ReferenceUsage :
+	  Identification? PayloadParameterSpecializationPart ValueOrFlowPart?
+	| Identification? PayloadParameterSpecializationPart? TriggerValuePart
     | ownedRelationship += OwnedFeatureTyping ( ownedRelationship += OwnedMultiplicity )?
+    | ownedRelationship += OwnedMultiplicity ownedRelationship += OwnedFeatureTyping
 ;
 
-fragment ItemParameterSpecializationPart returns SysML::Feature :
+fragment PayloadParameterSpecializationPart returns SysML::Feature :
 	  ( -> FeatureSpecialization )+ MultiplicityPart? FeatureSpecialization*
 	| MultiplicityPart FeatureSpecialization+
 ;
+
+fragment TriggerValuePart returns SysML::Feature :
+	ownedRelationship += TriggerFeatureValue
+;
+
+TriggerFeatureValue returns SysML::FeatureValue :
+	ownedRelatedElement += TriggerExpression // value = TriggerExpression
+;
+
+TriggerExpression returns SysML::TriggerInvocationExpression :
+	  kind = TimeTriggerKind
+	  ownedRelationship += OwnedExpressionMember
+	| kind = ChangeTriggerKind
+	  ownedRelationship += ChangeExpressionMember
+;
+
+TimeTriggerKind returns SysML::TriggerKind :
+	'at' | 'after'
+;
+
+ChangeTriggerKind returns SysML::TriggerKind :
+	'when'
+;
+
+ChangeExpressionMember returns SysML::FeatureMembership :
+	ownedRelatedElement += ChangeExpression // ownedFeatureMember = ChangeExpression
+;
+
+ChangeExpression returns SysML::Expression :
+	ownedRelationship += ChangeResultExpressionMember
+;
+
+ChangeResultExpressionMember returns SysML::ResultExpressionMembership :
+	ownedRelatedElement += OwnedExpression // ownedResultExpression = OwnedExpression
+;
+
 
 SendNode returns SysML::SendActionUsage :
 	OccurrenceUsagePrefix SendNodeDeclaration ActionBody

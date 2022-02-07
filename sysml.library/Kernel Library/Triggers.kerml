@@ -60,20 +60,20 @@ package Triggers {
 		/**
 		 * The ChangeSignal for the condition, as monitored by the monitor.
 		 */
-		out feature signal : ChangeSignal[1] = ChangeSignal(condition, monitor);
+		return feature signal : ChangeSignal[1] = ChangeSignal(condition, monitor);
 		
 		step :> monitor.startObservation(receiver, signal);			
 	}
 	
 	/**
 	 * TriggerAt returns a monitored TimeSignal to be sent to a receiver when
-	 * the currentTime of a given Clock reaches a specific time. 
+	 * the currentTime of a given Clock reaches a specific timeInstant. 
 	 */
 	function TriggerAt {
 		/**
 		 * The time instant, relative to the clock, at which the TimeSignal should be sent. 
 		 */
-		in feature time : NumericalValue[1];
+		in feature timeInstant : NumericalValue[1];
 		
 		/**
 		 * The Occurrence to which the TimeSignal is to be sent.
@@ -81,7 +81,7 @@ package Triggers {
 		in feature receiver : Occurrence[1];
 		
 		/**
-		 * The Clock to be used as the reference for the time. The default is
+		 * The Clock to be used as the reference for the timeInstant. The default is
 		 * the Clocks::defaultClock. 
 		 */
 		in feature clock : Clock[1] default defaultClock;
@@ -93,9 +93,9 @@ package Triggers {
 		in feature monitor : ChangeMonitor[1] default defaultMonitor;
 		
 		/**
-		 * The TimeSignal for the given time, as monitored by the monitor.
+		 * The TimeSignal for the given timeInstant, as monitored by the monitor.
 		 */
-		out feature signal : TimeSignal[1] = TimeSignal(time, clock, monitor);
+		return feature signal : TimeSignal[1] = TimeSignal(timeInstant, clock, monitor);
 		
 		step :> monitor.startObservation(receiver, signal);
 	}
@@ -131,7 +131,7 @@ package Triggers {
 		 * The TimeSignal for the currentTime of the clock when the function is invoked
 		 * plus the given time delay, as monitored by the monitor.
 		 */
-		out signal : TimeSignal[1] = 
+		return signal : TimeSignal[1] = 
 			TriggerAt(clock.currentTime + delay, receiver, clock, monitor);
 	}	
 	

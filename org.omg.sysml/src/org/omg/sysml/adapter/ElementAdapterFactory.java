@@ -406,6 +406,11 @@ public class ElementAdapterFactory {
 		}
 		
 		@Override
+		public ElementAdapter caseTriggerInvocationExpression(TriggerInvocationExpression element) {
+			return new TriggerInvocationExpressionAdapter(element);
+		}
+		
+		@Override
 		public ElementAdapter caseType(Type element) {
 			return new TypeAdapter(element);
 		}

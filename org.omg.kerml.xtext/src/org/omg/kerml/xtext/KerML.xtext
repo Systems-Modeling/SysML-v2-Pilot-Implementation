@@ -954,12 +954,11 @@ Function returns SysML::Function :
 ;
 
 fragment FunctionDeclaration returns SysML::Function :
-	ClassifierDeclaration ParameterPart
+	ClassifierDeclaration ParameterPart?
 ;
 
 fragment ParameterPart returns SysML::Type :
-	  ParameterList ( ReturnParameterPart | EmptyReturnParameterPart )
-	| EmptyReturnParameterPart
+	  ParameterList ReturnParameterPart?
 ;
 
 fragment ReturnParameterPart returns SysML::Type :
@@ -970,18 +969,6 @@ ReturnParameterMember returns SysML::ReturnParameterMembership :
 	ownedRelatedElement += Parameter // ownedMemberParameter = Parameter
 ;
 
-fragment EmptyReturnParameterPart returns SysML::Type :
-	ownedRelationship += EmptyReturnParameterMember
-;
-
-EmptyReturnParameterMember returns SysML::ReturnParameterMembership :
-	ownedRelatedElement += EmptyParameter // ownedMemberFeature = EmptyParameter
-;
-
-EmptyParameter returns SysML::Feature :
-	{SysML::Feature}
-;
-
 fragment FunctionBody returns SysML::Type :
 	  ';'
 	| '{' ( ownedRelationship += OwnedDocumentation
@@ -989,9 +976,15 @@ fragment FunctionBody returns SysML::Type :
 		  | ownedRelationship += FeatureMember 
 		  | ownedRelationship += AliasMember
 		  | ownedRelationship += Import
+		  | ownedRelationship += ReturnFeatureMember
 		  )* 
 		  ( ownedRelationship += ResultExpressionMember )? 
 	  '}'
+;
+
+ReturnFeatureMember returns SysML::ReturnParameterMembership :
+	MemberPrefix 'return' 
+	ownedRelatedElement += FeatureElement // ownedMemberParameter = FeatureElement
 ;
 
 @Override
@@ -1008,7 +1001,7 @@ Expression returns SysML::Expression :
 
 fragment ExpressionDeclaration returns SysML::Expression :
 	FeatureDeclaration? 
-	( ValuePart | StepParameterList ( ReturnParameterPart | EmptyReturnParameterPart ) )? 
+	( ValuePart | StepParameterList ReturnParameterPart? )? 
 ;
 
 /* Predicates */
@@ -1019,7 +1012,7 @@ Predicate returns SysML::Predicate :
 ;
 
 fragment PredicateDeclaration returns SysML::Predicate :
-	ClassifierDeclaration ParameterPart
+	ClassifierDeclaration ParameterPart?
 ;
 
 /* Boolean Expressions */ 

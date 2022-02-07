@@ -11,6 +11,8 @@ XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLTests
 		File {from ="/library.kernel/TransitionPerformances.kerml"}
 		File {from ="/library.kernel/Transfers.kerml"}
 		File {from ="/library.kernel/ScalarValues.kerml"}
+		File {from ="/library.kernel/Triggers.kerml"}
+		File {from ="/library.kernel/ControlFunctions.kerml"}
 		File {from ="/library.systems/Items.sysml"}
 		File {from ="/library.systems/Parts.sysml"}
 		File {from ="/library.systems/Ports.sysml"}
@@ -29,6 +31,8 @@ XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLTests
 				File {from ="/library.kernel/TransitionPerformances.kerml"}
 				File {from ="/library.kernel/Transfers.kerml"}
 				File {from ="/library.kernel/ScalarValues.kerml"}
+				File {from ="/library.kernel/Triggers.kerml"}
+				File {from ="/library.kernel/ControlFunctions.kerml"}
 				File {from ="/library.systems/Items.sysml"}
 				File {from ="/library.systems/Parts.sysml"}
 				File {from ="/library.systems/Ports.sysml"}
@@ -49,4 +53,25 @@ package ActionTest {
 		
 		bind x = b.y;
 	}
+	
+	attribute def S;
+	
+	action a1 {
+		first start;		
+		then merge m;
+		then accept S;
+		then accept sig after 10; 
+		then accept at 0;
+		
+		then send S() to b;
+		then accept when b.f;
+		then decide;
+			if true then m;
+			else done;
+	}
+	
+	action b {
+		attribute f : ScalarValues::Boolean;
+	}
+	
 }

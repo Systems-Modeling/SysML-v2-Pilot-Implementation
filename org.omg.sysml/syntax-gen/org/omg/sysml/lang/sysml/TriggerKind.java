@@ -22,19 +22,6 @@ import org.eclipse.emf.common.util.Enumerator;
  */
 public enum TriggerKind implements Enumerator {
 	/**
-	 * The '<em><b>Accept</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * <p>Indicates a normal accept (signal) trigger, as determined by the <code>payloadParameter</code> and, optionally, its <code>payloadArgument</code>.</p>
-	 * <!-- end-model-doc -->
-	 * @see #ACCEPT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ACCEPT(0, "accept", "accept"),
-
-	/**
 	 * The '<em><b>When</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -45,7 +32,7 @@ public enum TriggerKind implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	WHEN(1, "when", "when"),
+	WHEN(0, "when", "when"),
 
 	/**
 	 * The '<em><b>At</b></em>' literal object.
@@ -58,7 +45,7 @@ public enum TriggerKind implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	AT(2, "at", "at"),
+	AT(1, "at", "at"),
 
 	/**
 	 * The '<em><b>After</b></em>' literal object.
@@ -71,21 +58,7 @@ public enum TriggerKind implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	AFTER(3, "after", "after");
-
-	/**
-	 * The '<em><b>Accept</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * <p>Indicates a normal accept (signal) trigger, as determined by the <code>payloadParameter</code> and, optionally, its <code>payloadArgument</code>.</p>
-	 * <!-- end-model-doc -->
-	 * @see #ACCEPT
-	 * @model name="accept"
-	 * @generated
-	 * @ordered
-	 */
-	public static final int ACCEPT_VALUE = 0;
+	AFTER(2, "after", "after");
 
 	/**
 	 * The '<em><b>When</b></em>' literal value.
@@ -99,7 +72,7 @@ public enum TriggerKind implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int WHEN_VALUE = 1;
+	public static final int WHEN_VALUE = 0;
 
 	/**
 	 * The '<em><b>At</b></em>' literal value.
@@ -113,7 +86,7 @@ public enum TriggerKind implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int AT_VALUE = 2;
+	public static final int AT_VALUE = 1;
 
 	/**
 	 * The '<em><b>After</b></em>' literal value.
@@ -127,7 +100,7 @@ public enum TriggerKind implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int AFTER_VALUE = 3;
+	public static final int AFTER_VALUE = 2;
 
 	/**
 	 * An array of all the '<em><b>Trigger Kind</b></em>' enumerators.
@@ -137,7 +110,6 @@ public enum TriggerKind implements Enumerator {
 	 */
 	private static final TriggerKind[] VALUES_ARRAY =
 		new TriggerKind[] {
-			ACCEPT,
 			WHEN,
 			AT,
 			AFTER,
@@ -197,7 +169,6 @@ public enum TriggerKind implements Enumerator {
 	 */
 	public static TriggerKind get(int value) {
 		switch (value) {
-			case ACCEPT_VALUE: return ACCEPT;
 			case WHEN_VALUE: return WHEN;
 			case AT_VALUE: return AT;
 			case AFTER_VALUE: return AFTER;

@@ -5,7 +5,7 @@
  */
 package Triggers {
 	private import ScalarValues::Boolean;
-	private import ScalarValues::NumericalValue;
+	private import ScalarValues::ScalarValue;
 	private import Occurrences::Occurrence;
 	
 	import Clocks::*;
@@ -19,7 +19,7 @@ package Triggers {
 		/**
 		 * The time at which the TimeSignal should be sent.
 		 */
-		feature signalTime : NumericalValue[1];
+		feature signalTime : ScalarValue[1];
 		
 		/**
 		 * The Clock whose currentTime is being monitored.
@@ -73,7 +73,7 @@ package Triggers {
 		/**
 		 * The time instant, relative to the clock, at which the TimeSignal should be sent. 
 		 */
-		in feature time : NumericalValue[1];
+		in feature time : ScalarValue[1];
 		
 		/**
 		 * The Occurrence to which the TimeSignal is to be sent.
@@ -108,7 +108,7 @@ package Triggers {
 		/**
 		 * The time duration, relative to the clock, after which the TimeSignal is sent.
 		 */
-		in feature delay : NumericalValue[1];
+		in feature delay : ScalarValue[1];
 		
 		/**
 		 * The Occurrence to which the TimeSignal is to be sent.

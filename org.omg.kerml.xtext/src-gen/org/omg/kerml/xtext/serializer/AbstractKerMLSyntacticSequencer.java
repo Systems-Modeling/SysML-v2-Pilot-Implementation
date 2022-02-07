@@ -318,6 +318,7 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 *     (rule start) (ambiguity) '{' ownedRelationship+=NonFeatureMember
 	 *     (rule start) (ambiguity) '{' ownedRelationship+=OwnedDocumentation
 	 *     (rule start) (ambiguity) '{' ownedRelationship+=ResultExpressionMember
+	 *     (rule start) (ambiguity) '{' ownedRelationship+=ReturnFeatureMember
 	 *     (rule start) (ambiguity) (';' | ('{' '}')) (rule start)
 	 *     (rule start) (ambiguity) ('null' | ('(' ')')) (rule start)
 	 *     (rule start) (ambiguity) operand+=SelfReferenceExpression
@@ -780,7 +781,9 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 *     (rule start) '('* (ambiguity) (rule start)
 	 *     (rule start) 'bool' (ambiguity) (rule start)
 	 *     (rule start) 'expr' (ambiguity) (rule start)
+	 *     (rule start) 'function' (ambiguity) (rule start)
 	 *     (rule start) 'inv' 'true'? (ambiguity) (rule start)
+	 *     (rule start) 'predicate' (ambiguity) (rule start)
 	 *     (rule start) (ambiguity) (rule start)
 	 *     direction=FeatureDirection 'bool' (ambiguity) (rule end)
 	 *     direction=FeatureDirection 'expr' (ambiguity) (rule end)
@@ -788,7 +791,9 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 *     humanId=Name '>' (ambiguity) (rule end)
 	 *     isAbstract?='abstract' 'bool' (ambiguity) (rule end)
 	 *     isAbstract?='abstract' 'expr' (ambiguity) (rule end)
+	 *     isAbstract?='abstract' 'function' (ambiguity) (rule end)
 	 *     isAbstract?='abstract' 'inv' 'true'? (ambiguity) (rule end)
+	 *     isAbstract?='abstract' 'predicate' (ambiguity) (rule end)
 	 *     isComposite?='composite' 'bool' (ambiguity) (rule end)
 	 *     isComposite?='composite' 'expr' (ambiguity) (rule end)
 	 *     isComposite?='composite' 'inv' 'true'? (ambiguity) (rule end)
@@ -807,9 +812,10 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 *     isReadOnly?='readonly' 'bool' (ambiguity) (rule end)
 	 *     isReadOnly?='readonly' 'expr' (ambiguity) (rule end)
 	 *     isReadOnly?='readonly' 'inv' 'true'? (ambiguity) (rule end)
+	 *     isSufficient?='all' (ambiguity) (rule end)
 	 *     name=Name (ambiguity) (rule end)
+	 *     ownedRelationship+=ClassifierConjugation (ambiguity) (rule end)
 	 *     ownedRelationship+=EmptyFeatureWriteMember (ambiguity) (rule end)
-	 *     ownedRelationship+=EmptyReturnParameterMember (ambiguity) (rule end)
 	 *     ownedRelationship+=FeatureConjugation (ambiguity) (rule end)
 	 *     ownedRelationship+=FeatureValue (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedDisjoining (ambiguity) (rule end)
@@ -818,7 +824,10 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 *     ownedRelationship+=OwnedRedefinition (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedSubsetting (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedTypeFeaturing (ambiguity) (rule end)
+	 *     ownedRelationship+=Ownedsubclassification (ambiguity) (rule end)
+	 *     ownedRelationship+=ParameterMember ')' (ambiguity) (rule end)
 	 *     ownedRelationship+=ReturnParameterMember (ambiguity) (rule end)
+	 *     ownedRelationship+=StepParameterMember ')' (ambiguity) (rule end)
 	 */
 	protected void emit_FunctionBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_3__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -829,7 +838,6 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 *     'true'?
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) 'inv' (ambiguity) '(' ')' ownedRelationship+=EmptyReturnParameterMember
 	 *     (rule start) 'inv' (ambiguity) '(' ')' ownedRelationship+=ReturnParameterMember
 	 *     (rule start) 'inv' (ambiguity) '(' ownedRelationship+=StepParameterMember
 	 *     (rule start) 'inv' (ambiguity) '<' humanId=Name
@@ -839,6 +847,7 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 *     (rule start) 'inv' (ambiguity) '{' ownedRelationship+=NonFeatureMember
 	 *     (rule start) 'inv' (ambiguity) '{' ownedRelationship+=OwnedDocumentation
 	 *     (rule start) 'inv' (ambiguity) '{' ownedRelationship+=ResultExpressionMember
+	 *     (rule start) 'inv' (ambiguity) '{' ownedRelationship+=ReturnFeatureMember
 	 *     (rule start) 'inv' (ambiguity) (':' | ('typed' 'by')) ownedRelationship+=OwnedFeatureTyping
 	 *     (rule start) 'inv' (ambiguity) (':>' | 'subsets') ownedRelationship+=OwnedSubsetting
 	 *     (rule start) 'inv' (ambiguity) (':>>' | 'redefines') ownedRelationship+=OwnedRedefinition
@@ -851,7 +860,6 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 *     (rule start) 'inv' (ambiguity) ownedRelationship+=FeatureValue
 	 *     (rule start) 'inv' (ambiguity) ownedRelationship+=FeatureValueExpression
 	 *     (rule start) 'inv' (ambiguity) ownedRelationship+=OwnedMultiplicity
-	 *     direction=FeatureDirection 'inv' (ambiguity) '(' ')' ownedRelationship+=EmptyReturnParameterMember
 	 *     direction=FeatureDirection 'inv' (ambiguity) '(' ')' ownedRelationship+=ReturnParameterMember
 	 *     direction=FeatureDirection 'inv' (ambiguity) '(' ownedRelationship+=StepParameterMember
 	 *     direction=FeatureDirection 'inv' (ambiguity) '<' humanId=Name
@@ -861,6 +869,7 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 *     direction=FeatureDirection 'inv' (ambiguity) '{' ownedRelationship+=NonFeatureMember
 	 *     direction=FeatureDirection 'inv' (ambiguity) '{' ownedRelationship+=OwnedDocumentation
 	 *     direction=FeatureDirection 'inv' (ambiguity) '{' ownedRelationship+=ResultExpressionMember
+	 *     direction=FeatureDirection 'inv' (ambiguity) '{' ownedRelationship+=ReturnFeatureMember
 	 *     direction=FeatureDirection 'inv' (ambiguity) (':' | ('typed' 'by')) ownedRelationship+=OwnedFeatureTyping
 	 *     direction=FeatureDirection 'inv' (ambiguity) (':>' | 'subsets') ownedRelationship+=OwnedSubsetting
 	 *     direction=FeatureDirection 'inv' (ambiguity) (':>>' | 'redefines') ownedRelationship+=OwnedRedefinition
@@ -873,7 +882,6 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 *     direction=FeatureDirection 'inv' (ambiguity) ownedRelationship+=FeatureValue
 	 *     direction=FeatureDirection 'inv' (ambiguity) ownedRelationship+=FeatureValueExpression
 	 *     direction=FeatureDirection 'inv' (ambiguity) ownedRelationship+=OwnedMultiplicity
-	 *     isAbstract?='abstract' 'inv' (ambiguity) '(' ')' ownedRelationship+=EmptyReturnParameterMember
 	 *     isAbstract?='abstract' 'inv' (ambiguity) '(' ')' ownedRelationship+=ReturnParameterMember
 	 *     isAbstract?='abstract' 'inv' (ambiguity) '(' ownedRelationship+=StepParameterMember
 	 *     isAbstract?='abstract' 'inv' (ambiguity) '<' humanId=Name
@@ -883,6 +891,7 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 *     isAbstract?='abstract' 'inv' (ambiguity) '{' ownedRelationship+=NonFeatureMember
 	 *     isAbstract?='abstract' 'inv' (ambiguity) '{' ownedRelationship+=OwnedDocumentation
 	 *     isAbstract?='abstract' 'inv' (ambiguity) '{' ownedRelationship+=ResultExpressionMember
+	 *     isAbstract?='abstract' 'inv' (ambiguity) '{' ownedRelationship+=ReturnFeatureMember
 	 *     isAbstract?='abstract' 'inv' (ambiguity) (':' | ('typed' 'by')) ownedRelationship+=OwnedFeatureTyping
 	 *     isAbstract?='abstract' 'inv' (ambiguity) (':>' | 'subsets') ownedRelationship+=OwnedSubsetting
 	 *     isAbstract?='abstract' 'inv' (ambiguity) (':>>' | 'redefines') ownedRelationship+=OwnedRedefinition
@@ -895,7 +904,6 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 *     isAbstract?='abstract' 'inv' (ambiguity) ownedRelationship+=FeatureValue
 	 *     isAbstract?='abstract' 'inv' (ambiguity) ownedRelationship+=FeatureValueExpression
 	 *     isAbstract?='abstract' 'inv' (ambiguity) ownedRelationship+=OwnedMultiplicity
-	 *     isComposite?='composite' 'inv' (ambiguity) '(' ')' ownedRelationship+=EmptyReturnParameterMember
 	 *     isComposite?='composite' 'inv' (ambiguity) '(' ')' ownedRelationship+=ReturnParameterMember
 	 *     isComposite?='composite' 'inv' (ambiguity) '(' ownedRelationship+=StepParameterMember
 	 *     isComposite?='composite' 'inv' (ambiguity) '<' humanId=Name
@@ -905,6 +913,7 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 *     isComposite?='composite' 'inv' (ambiguity) '{' ownedRelationship+=NonFeatureMember
 	 *     isComposite?='composite' 'inv' (ambiguity) '{' ownedRelationship+=OwnedDocumentation
 	 *     isComposite?='composite' 'inv' (ambiguity) '{' ownedRelationship+=ResultExpressionMember
+	 *     isComposite?='composite' 'inv' (ambiguity) '{' ownedRelationship+=ReturnFeatureMember
 	 *     isComposite?='composite' 'inv' (ambiguity) (':' | ('typed' 'by')) ownedRelationship+=OwnedFeatureTyping
 	 *     isComposite?='composite' 'inv' (ambiguity) (':>' | 'subsets') ownedRelationship+=OwnedSubsetting
 	 *     isComposite?='composite' 'inv' (ambiguity) (':>>' | 'redefines') ownedRelationship+=OwnedRedefinition
@@ -917,7 +926,6 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 *     isComposite?='composite' 'inv' (ambiguity) ownedRelationship+=FeatureValue
 	 *     isComposite?='composite' 'inv' (ambiguity) ownedRelationship+=FeatureValueExpression
 	 *     isComposite?='composite' 'inv' (ambiguity) ownedRelationship+=OwnedMultiplicity
-	 *     isDerived?='derived' 'inv' (ambiguity) '(' ')' ownedRelationship+=EmptyReturnParameterMember
 	 *     isDerived?='derived' 'inv' (ambiguity) '(' ')' ownedRelationship+=ReturnParameterMember
 	 *     isDerived?='derived' 'inv' (ambiguity) '(' ownedRelationship+=StepParameterMember
 	 *     isDerived?='derived' 'inv' (ambiguity) '<' humanId=Name
@@ -927,6 +935,7 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 *     isDerived?='derived' 'inv' (ambiguity) '{' ownedRelationship+=NonFeatureMember
 	 *     isDerived?='derived' 'inv' (ambiguity) '{' ownedRelationship+=OwnedDocumentation
 	 *     isDerived?='derived' 'inv' (ambiguity) '{' ownedRelationship+=ResultExpressionMember
+	 *     isDerived?='derived' 'inv' (ambiguity) '{' ownedRelationship+=ReturnFeatureMember
 	 *     isDerived?='derived' 'inv' (ambiguity) (':' | ('typed' 'by')) ownedRelationship+=OwnedFeatureTyping
 	 *     isDerived?='derived' 'inv' (ambiguity) (':>' | 'subsets') ownedRelationship+=OwnedSubsetting
 	 *     isDerived?='derived' 'inv' (ambiguity) (':>>' | 'redefines') ownedRelationship+=OwnedRedefinition
@@ -939,7 +948,6 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 *     isDerived?='derived' 'inv' (ambiguity) ownedRelationship+=FeatureValue
 	 *     isDerived?='derived' 'inv' (ambiguity) ownedRelationship+=FeatureValueExpression
 	 *     isDerived?='derived' 'inv' (ambiguity) ownedRelationship+=OwnedMultiplicity
-	 *     isEnd?='end' 'inv' (ambiguity) '(' ')' ownedRelationship+=EmptyReturnParameterMember
 	 *     isEnd?='end' 'inv' (ambiguity) '(' ')' ownedRelationship+=ReturnParameterMember
 	 *     isEnd?='end' 'inv' (ambiguity) '(' ownedRelationship+=StepParameterMember
 	 *     isEnd?='end' 'inv' (ambiguity) '<' humanId=Name
@@ -949,6 +957,7 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 *     isEnd?='end' 'inv' (ambiguity) '{' ownedRelationship+=NonFeatureMember
 	 *     isEnd?='end' 'inv' (ambiguity) '{' ownedRelationship+=OwnedDocumentation
 	 *     isEnd?='end' 'inv' (ambiguity) '{' ownedRelationship+=ResultExpressionMember
+	 *     isEnd?='end' 'inv' (ambiguity) '{' ownedRelationship+=ReturnFeatureMember
 	 *     isEnd?='end' 'inv' (ambiguity) (':' | ('typed' 'by')) ownedRelationship+=OwnedFeatureTyping
 	 *     isEnd?='end' 'inv' (ambiguity) (':>' | 'subsets') ownedRelationship+=OwnedSubsetting
 	 *     isEnd?='end' 'inv' (ambiguity) (':>>' | 'redefines') ownedRelationship+=OwnedRedefinition
@@ -961,7 +970,6 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 *     isEnd?='end' 'inv' (ambiguity) ownedRelationship+=FeatureValue
 	 *     isEnd?='end' 'inv' (ambiguity) ownedRelationship+=FeatureValueExpression
 	 *     isEnd?='end' 'inv' (ambiguity) ownedRelationship+=OwnedMultiplicity
-	 *     isPortion?='portion' 'inv' (ambiguity) '(' ')' ownedRelationship+=EmptyReturnParameterMember
 	 *     isPortion?='portion' 'inv' (ambiguity) '(' ')' ownedRelationship+=ReturnParameterMember
 	 *     isPortion?='portion' 'inv' (ambiguity) '(' ownedRelationship+=StepParameterMember
 	 *     isPortion?='portion' 'inv' (ambiguity) '<' humanId=Name
@@ -971,6 +979,7 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 *     isPortion?='portion' 'inv' (ambiguity) '{' ownedRelationship+=NonFeatureMember
 	 *     isPortion?='portion' 'inv' (ambiguity) '{' ownedRelationship+=OwnedDocumentation
 	 *     isPortion?='portion' 'inv' (ambiguity) '{' ownedRelationship+=ResultExpressionMember
+	 *     isPortion?='portion' 'inv' (ambiguity) '{' ownedRelationship+=ReturnFeatureMember
 	 *     isPortion?='portion' 'inv' (ambiguity) (':' | ('typed' 'by')) ownedRelationship+=OwnedFeatureTyping
 	 *     isPortion?='portion' 'inv' (ambiguity) (':>' | 'subsets') ownedRelationship+=OwnedSubsetting
 	 *     isPortion?='portion' 'inv' (ambiguity) (':>>' | 'redefines') ownedRelationship+=OwnedRedefinition
@@ -983,7 +992,6 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 *     isPortion?='portion' 'inv' (ambiguity) ownedRelationship+=FeatureValue
 	 *     isPortion?='portion' 'inv' (ambiguity) ownedRelationship+=FeatureValueExpression
 	 *     isPortion?='portion' 'inv' (ambiguity) ownedRelationship+=OwnedMultiplicity
-	 *     isReadOnly?='readonly' 'inv' (ambiguity) '(' ')' ownedRelationship+=EmptyReturnParameterMember
 	 *     isReadOnly?='readonly' 'inv' (ambiguity) '(' ')' ownedRelationship+=ReturnParameterMember
 	 *     isReadOnly?='readonly' 'inv' (ambiguity) '(' ownedRelationship+=StepParameterMember
 	 *     isReadOnly?='readonly' 'inv' (ambiguity) '<' humanId=Name
@@ -993,6 +1001,7 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 *     isReadOnly?='readonly' 'inv' (ambiguity) '{' ownedRelationship+=NonFeatureMember
 	 *     isReadOnly?='readonly' 'inv' (ambiguity) '{' ownedRelationship+=OwnedDocumentation
 	 *     isReadOnly?='readonly' 'inv' (ambiguity) '{' ownedRelationship+=ResultExpressionMember
+	 *     isReadOnly?='readonly' 'inv' (ambiguity) '{' ownedRelationship+=ReturnFeatureMember
 	 *     isReadOnly?='readonly' 'inv' (ambiguity) (':' | ('typed' 'by')) ownedRelationship+=OwnedFeatureTyping
 	 *     isReadOnly?='readonly' 'inv' (ambiguity) (':>' | 'subsets') ownedRelationship+=OwnedSubsetting
 	 *     isReadOnly?='readonly' 'inv' (ambiguity) (':>>' | 'redefines') ownedRelationship+=OwnedRedefinition

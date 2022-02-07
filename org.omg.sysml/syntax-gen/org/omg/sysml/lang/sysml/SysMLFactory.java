@@ -177,6 +177,15 @@ public interface SysMLFactory extends EFactory {
 	DecisionNode createDecisionNode();
 
 	/**
+	 * Returns a new object of class '<em>Trigger Invocation Expression</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Trigger Invocation Expression</em>'.
+	 * @generated
+	 */
+	TriggerInvocationExpression createTriggerInvocationExpression();
+
+	/**
 	 * Returns a new object of class '<em>While Loop Action Usage</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

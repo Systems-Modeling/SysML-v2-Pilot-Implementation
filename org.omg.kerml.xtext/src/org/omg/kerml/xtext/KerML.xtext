@@ -966,7 +966,7 @@ fragment ReturnParameterPart returns SysML::Type :
 ;
 
 ReturnParameterMember returns SysML::ReturnParameterMembership :
-	ownedRelatedElement += Parameter // ownedMemberParameter = Parameter
+	'return'? ownedRelatedElement += Parameter // ownedMemberParameter = Parameter
 ;
 
 fragment FunctionBody returns SysML::Type :

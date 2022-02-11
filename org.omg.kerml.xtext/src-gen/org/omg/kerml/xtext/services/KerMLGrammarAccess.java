@@ -6356,19 +6356,27 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	public class ReturnParameterMemberElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.ReturnParameterMember");
-		private final Assignment cOwnedRelatedElementAssignment = (Assignment)rule.eContents().get(1);
-		private final RuleCall cOwnedRelatedElementParameterParserRuleCall_0 = (RuleCall)cOwnedRelatedElementAssignment.eContents().get(0);
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cReturnKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cOwnedRelatedElementAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cOwnedRelatedElementParameterParserRuleCall_1_0 = (RuleCall)cOwnedRelatedElementAssignment_1.eContents().get(0);
 		
 		//ReturnParameterMember returns SysML::ReturnParameterMembership :
-		//    ownedRelatedElement += Parameter // ownedMemberParameter = Parameter
+		//    'return'? ownedRelatedElement += Parameter // ownedMemberParameter = Parameter
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
+		//'return'? ownedRelatedElement += Parameter
+		public Group getGroup() { return cGroup; }
+		
+		//'return'?
+		public Keyword getReturnKeyword_0() { return cReturnKeyword_0; }
+		
 		//ownedRelatedElement += Parameter
-		public Assignment getOwnedRelatedElementAssignment() { return cOwnedRelatedElementAssignment; }
+		public Assignment getOwnedRelatedElementAssignment_1() { return cOwnedRelatedElementAssignment_1; }
 		
 		//Parameter
-		public RuleCall getOwnedRelatedElementParameterParserRuleCall_0() { return cOwnedRelatedElementParameterParserRuleCall_0; }
+		public RuleCall getOwnedRelatedElementParameterParserRuleCall_1_0() { return cOwnedRelatedElementParameterParserRuleCall_1_0; }
 	}
 	public class FunctionBodyElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.FunctionBody");
@@ -9766,7 +9774,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//ReturnParameterMember returns SysML::ReturnParameterMembership :
-	//    ownedRelatedElement += Parameter // ownedMemberParameter = Parameter
+	//    'return'? ownedRelatedElement += Parameter // ownedMemberParameter = Parameter
 	//;
 	public ReturnParameterMemberElements getReturnParameterMemberAccess() {
 		return pReturnParameterMember;

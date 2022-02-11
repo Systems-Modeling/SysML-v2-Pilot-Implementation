@@ -9999,21 +9999,29 @@ ruleReturnParameterMember returns [EObject current=null]
 }:
 	(
 		(
+			otherlv_0='return'
 			{
-				newCompositeNode(grammarAccess.getReturnParameterMemberAccess().getOwnedRelatedElementParameterParserRuleCall_0());
+				newLeafNode(otherlv_0, grammarAccess.getReturnParameterMemberAccess().getReturnKeyword_0());
 			}
-			lv_ownedRelatedElement_0_0=ruleParameter
-			{
-				if ($current==null) {
-					$current = createModelElementForParent(grammarAccess.getReturnParameterMemberRule());
+		)?
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getReturnParameterMemberAccess().getOwnedRelatedElementParameterParserRuleCall_1_0());
 				}
-				add(
-					$current,
-					"ownedRelatedElement",
-					lv_ownedRelatedElement_0_0,
-					"org.omg.kerml.xtext.KerML.Parameter");
-				afterParserOrEnumRuleCall();
-			}
+				lv_ownedRelatedElement_1_0=ruleParameter
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getReturnParameterMemberRule());
+					}
+					add(
+						$current,
+						"ownedRelatedElement",
+						lv_ownedRelatedElement_1_0,
+						"org.omg.kerml.xtext.KerML.Parameter");
+					afterParserOrEnumRuleCall();
+				}
+			)
 		)
 	)
 ;

@@ -60,6 +60,7 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	protected AbstractElementAlias match_Redefinition_ColonGreaterThanSignGreaterThanSignKeyword_3_0_or_RedefinesKeyword_3_1;
 	protected AbstractElementAlias match_Redefinition_SpecializationKeyword_0_0_q;
 	protected AbstractElementAlias match_RelationshipBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__;
+	protected AbstractElementAlias match_ReturnParameterMember_ReturnKeyword_0_q;
 	protected AbstractElementAlias match_SequenceExpression_CommaKeyword_1_0_q;
 	protected AbstractElementAlias match_SpecializationPart_ColonGreaterThanSignKeyword_0_0_or_SpecializesKeyword_0_1;
 	protected AbstractElementAlias match_Specialization_ColonGreaterThanSignKeyword_3_0_or_SpecializesKeyword_3_1;
@@ -120,6 +121,7 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 		match_Redefinition_ColonGreaterThanSignGreaterThanSignKeyword_3_0_or_RedefinesKeyword_3_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getRedefinitionAccess().getColonGreaterThanSignGreaterThanSignKeyword_3_0()), new TokenAlias(false, false, grammarAccess.getRedefinitionAccess().getRedefinesKeyword_3_1()));
 		match_Redefinition_SpecializationKeyword_0_0_q = new TokenAlias(false, true, grammarAccess.getRedefinitionAccess().getSpecializationKeyword_0_0());
 		match_RelationshipBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getRelationshipBodyAccess().getLeftCurlyBracketKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getRelationshipBodyAccess().getRightCurlyBracketKeyword_1_2())), new TokenAlias(false, false, grammarAccess.getRelationshipBodyAccess().getSemicolonKeyword_0()));
+		match_ReturnParameterMember_ReturnKeyword_0_q = new TokenAlias(false, true, grammarAccess.getReturnParameterMemberAccess().getReturnKeyword_0());
 		match_SequenceExpression_CommaKeyword_1_0_q = new TokenAlias(false, true, grammarAccess.getSequenceExpressionAccess().getCommaKeyword_1_0());
 		match_SpecializationPart_ColonGreaterThanSignKeyword_0_0_or_SpecializesKeyword_0_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getSpecializationPartAccess().getColonGreaterThanSignKeyword_0_0()), new TokenAlias(false, false, grammarAccess.getSpecializationPartAccess().getSpecializesKeyword_0_1()));
 		match_Specialization_ColonGreaterThanSignKeyword_3_0_or_SpecializesKeyword_3_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getSpecializationAccess().getColonGreaterThanSignKeyword_3_0()), new TokenAlias(false, false, grammarAccess.getSpecializationAccess().getSpecializesKeyword_3_1()));
@@ -228,6 +230,8 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 				emit_Redefinition_SpecializationKeyword_0_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_RelationshipBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__.equals(syntax))
 				emit_RelationshipBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_ReturnParameterMember_ReturnKeyword_0_q.equals(syntax))
+				emit_ReturnParameterMember_ReturnKeyword_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_SequenceExpression_CommaKeyword_1_0_q.equals(syntax))
 				emit_SequenceExpression_CommaKeyword_1_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_SpecializationPart_ColonGreaterThanSignKeyword_0_0_or_SpecializesKeyword_0_1.equals(syntax))
@@ -1278,6 +1282,17 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 *     target+=[Element|QualifiedName] (ambiguity) (rule end)
 	 */
 	protected void emit_RelationshipBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Ambiguous syntax:
+	 *     'return'?
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     (rule start) (ambiguity) ownedRelatedElement+=Parameter
+	 */
+	protected void emit_ReturnParameterMember_ReturnKeyword_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	

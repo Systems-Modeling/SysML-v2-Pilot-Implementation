@@ -38,7 +38,6 @@ package UnitsAndScales {
 		attribute mRefs: ScalarMeasurementReference[1..*] :>> elements;
 		attribute definitionalQuantityValues: DefinitionalQuantityValue[0..*];
 	}
-	alias MeasurementReference for TensorMeasurementReference;
 
 	/**
 	 * A VectorMeasurementReference is a specialization of TensorMeasurementReference for vector quantities that are
@@ -46,8 +45,8 @@ package UnitsAndScales {
 	 * The `n` basis unit vectors that span the vector space are defined by the mRefs which each are
 	 * a ScalarMeasurementReference, typically a MeasurementUnit or an IntervalScale.
 	 *
-	 * Pairwise VectorQuantityValue and VectorMeasurementReference specializations can also be used to define a vector space
-	 * for state vectors as used in state-space representation models.
+	 * A pair of a specialization of VectorQuantityValue and a specialization of VectorMeasurementReference can also be used to 
+	 * define a vector space for state vectors as used in state-space representation models.
 	 *
 	 * Attribute isOrthogonal declares whether the basis vectors of the vector space are orthogonal, i.e. whether the
 	 * inner products of any pair of basis vectors yield zero.
@@ -141,10 +140,13 @@ package UnitsAndScales {
 
 	/**
 	 * Representation of the linear conversion relationship between one measurement unit and another measurement unit, that acts as a reference.
+	 * 
+	 * Attribute isExact asserts whether the conversionFactor is exact or not. By default it is set true.
 	 */
 	abstract attribute def UnitConversion {
 		attribute referenceUnit: MeasurementUnit;
 		attribute conversionFactor: Real;
+		attribute isExact: Boolean default true;
 	}
 
 	/**
@@ -250,7 +252,7 @@ package UnitsAndScales {
 	}
 
 	/**
-	 * Representation of a particular quantity value that is used in the definition of a MeasurementReference
+	 * Representation of a particular quantity value that is used in the definition of a TensorMeasurementReference
 	 *
 	 * Typically such a particular value is defined by convention. It can be used to define a selected reference value,
 	 * such as the meaning of zero on a measurement scale or the origin of a top-level coordinate system.
@@ -293,9 +295,12 @@ package UnitsAndScales {
 	 * for a given system of quantities".
 	 * The base units are a particular selection of measurement units for each of the base quantities of a system of quantities,
 	 * that form the basis on top of which all other (derived) units are defined.
+	 * 
+	 * Attribute systemOfQuantities speficies the associated SystemOfQuantities.
 	 */
 	attribute def SystemOfUnits {
 		attribute longName: String[1];
+		attribute systemOfQuantities : SystemOfQuantities[1];
 		attribute baseUnits: SimpleUnit[1..*] ordered;
 	}
 

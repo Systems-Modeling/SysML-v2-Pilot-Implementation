@@ -2,7 +2,6 @@ package QuantityCalculations {
 	import ScalarValues::*;
     import Quantities::*;
     import UnitsAndScales::ScalarMeasurementReference;
-    import UnitsAndScales::MeasurementReference;
     import UnitsAndScales::DimensionOneValue;
     
     calc def '[' specializes BaseFunctions::'[' (x: NumericalValue, y: ScalarMeasurementReference): ScalarQuantityValue;

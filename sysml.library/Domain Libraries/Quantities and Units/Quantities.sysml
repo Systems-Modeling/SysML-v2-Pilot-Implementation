@@ -22,7 +22,6 @@ package Quantities {
 		attribute isBound: Boolean;
 		attribute num: Number[1..*] ordered nonunique :>> elements;
 		attribute mRef: UnitsAndScales::TensorMeasurementReference;
-		attribute measure: UnitsAndScales::TensorMeasurementReference;
         attribute :>> dimensions = mRef.dimensions;
 		attribute order :>> rank = mRef.order;
         attribute contravariantOrder: Natural;
@@ -62,7 +61,6 @@ package Quantities {
 	 * completed by adding derived quantities which are products of powers of the base quantities.
 	 */
 	attribute def SystemOfQuantities {
-		attribute longName: String;
 		attribute baseQuantities: ScalarQuantityValue[*] ordered :> scalarQuantities;
 	}
 

@@ -1,10 +1,9 @@
+/**
+ * Measurement unit declarations generated from NIST SP811 Appendix B
+ *
+ * See https://www.nist.gov/pml/special-publication-811/nist-guide-si-appendix-b-conversion-factors/nist-guide-si-appendix-b8
+ */
 package <USCU> USCustomaryUnits {
-    doc /*
-    Library package with measurement unit declarations generated from NIST SP811 Appendix B
-    See https://www.nist.gov/pml/special-publication-811/nist-guide-si-appendix-b-conversion-factors/nist-guide-si-appendix-b8
-    Generated at 2022-02-11T22:37:06Z
-    */
-
     private import UnitsAndScales::*;
     import ISQ::*;
     import SI::*;

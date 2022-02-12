@@ -1,6 +1,6 @@
 package QuantityCalculations {
 	import ScalarValues::*;
-    import Quantities::*;
+    import Quantities::ScalarQuantityValue;
     import UnitsAndScales::ScalarMeasurementReference;
     import UnitsAndScales::DimensionOneValue;
     

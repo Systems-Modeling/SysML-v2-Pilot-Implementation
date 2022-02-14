@@ -1361,7 +1361,7 @@ package VehicleModel_1_simplified{
                     out massMeasured:>ISQ::mass);
                 then action evaluatePassFail {
                     in massMeasured:>ISQ::mass;
-                    out verdict = PassIf(vehicleSpecification::vehicleMassRequirement(vehicle_b));
+                    out verdict = PassIf(vehicleSpecification.vehicleMassRequirement(vehicle_b));
                 }
                 //return :>> verdict = PassIf(vehicleSpecification::vehicleMassRequirement(vehicle_b));
             }

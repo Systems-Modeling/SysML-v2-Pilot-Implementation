@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2021-2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -21,7 +21,9 @@
 
 package org.omg.sysml.xtext.util;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class SysMLRepositorySaveTest extends SysMLRepositorySaveUtil {
 	
@@ -81,14 +83,29 @@ public class SysMLRepositorySaveTest extends SysMLRepositorySaveUtil {
 	}
 	
 	public static void main(String[] args) {
+		List<String> failedTests = new ArrayList<>();
 		try {
 			String[] args1 = Arrays.copyOf(args, args.length);
 			for (String testFile: TEST_FILES) {
-				new SysMLRepositorySaveTest(testFile).run(args1);
+				SysMLRepositorySaveTest test = new SysMLRepositorySaveTest(testFile);
+				test.run(args1);
+				if (!test.isCommitted()) {
+					failedTests.add(testFile);
+				}
 				System.out.println();
 			}
+			
 		} catch (Exception e) {
 			System.out.println("Error: " + e);
+		}
+		
+		if (failedTests.isEmpty()) {
+			System.out.println("NO FAILED TESTS");
+		} else {
+			System.out.println("FAILED TESTS:");
+			for (String testFile: failedTests) {
+				System.out.println(testFile);
+			}
 		}
 	}
 

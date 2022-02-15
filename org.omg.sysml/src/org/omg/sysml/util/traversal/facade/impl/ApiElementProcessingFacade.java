@@ -1,6 +1,6 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2019-2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2019-2022 Model Driven Solutions, Inc.
  * Copyright (c) 2021 Twingineer LLC
  *    
  * This program is free software: you can redistribute it and/or modify
@@ -116,8 +116,10 @@ public class ApiElementProcessingFacade extends JsonElementProcessingFacade {
 	/**
 	 * Create a new project in the repository, then create and post a commit to the project to save the 
 	 * ElementVersions constructed from the processed model Elements.
+	 * 
+	 * @return	whether the commit succeeded without an ApiException
 	 */
-	public void commit() {
+	public boolean commit() {
 		try {
 			this.project = projectApi.postProject(this.project);
 			
@@ -129,8 +131,10 @@ public class ApiElementProcessingFacade extends JsonElementProcessingFacade {
 			System.out.print("\nPosting Commit (" + n + " element" + (n == 1? ")...": "s)..."));
 			commit = this.commitApi.postCommitByProject(this.project.getAtId(), commit, null);
 			System.out.println(commit.getAtId());
+			return true;
 		} catch (ApiException e) {
 			System.out.println("\nError: " + e.getCode() + " " + e.getMessage());
+			return false;
 		}
 	}
 }

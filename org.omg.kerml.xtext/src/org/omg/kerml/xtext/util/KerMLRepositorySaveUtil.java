@@ -1,6 +1,6 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2019-2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2019-2022 Model Driven Solutions, Inc.
  * Copyright (c) 2021 Twingineer LLC
  *    
  * This program is free software: you can redistribute it and/or modify
@@ -46,6 +46,7 @@ public class KerMLRepositorySaveUtil extends KerMLTraversalUtil {
 	private boolean isAddDerivedElements = false;
 	private boolean isAddImplicitElements = false;
 	private String projectName;
+	private boolean isCommitted = false;
 	
 	public KerMLRepositorySaveUtil() {
 		super();
@@ -88,6 +89,14 @@ public class KerMLRepositorySaveUtil extends KerMLTraversalUtil {
 	 */
 	public String getProjectName() {
 		return this.projectName;
+	}
+	
+	/**
+	 * Return whether the commit succeeded after traversal of the model.
+	 * @return
+	 */
+	public boolean isCommitted() {
+		return this.isCommitted;
 	}
 	
 	/**
@@ -176,7 +185,7 @@ public class KerMLRepositorySaveUtil extends KerMLTraversalUtil {
 	@Override
 	public void process() {
 		super.process();
-		((ApiElementProcessingFacade)this.traversal.getFacade()).commit();
+		this.isCommitted = ((ApiElementProcessingFacade)this.traversal.getFacade()).commit();
 	}
 	
 	/**

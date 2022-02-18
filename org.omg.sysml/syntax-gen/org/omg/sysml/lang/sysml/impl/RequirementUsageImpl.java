@@ -259,7 +259,7 @@ public class RequirementUsageImpl extends ConstraintUsageImpl implements Require
 	 * @generated NOT
 	 */
 	@Override
-	public EList<ConstraintUsage> getRequiredConstraint() {
+	public EList<ConstraintUsage> getAssumedConstraint() {
 		EList<ConstraintUsage> constraints = new NonNotifyingEObjectEList<>(ConstraintUsage.class, this, SysMLPackage.REQUIREMENT_USAGE__ASSUMED_CONSTRAINT);
 		RequirementDefinitionImpl.getRequirementConstraints(this, RequirementConstraintKind.ASSUMPTION).forEachOrdered(constraints::add);
 		return constraints;
@@ -271,7 +271,7 @@ public class RequirementUsageImpl extends ConstraintUsageImpl implements Require
 	 * @generated NOT
 	 */
 	@Override
-	public EList<ConstraintUsage> getAssumedConstraint() {
+	public EList<ConstraintUsage> getRequiredConstraint() {
 		EList<ConstraintUsage> constraints = new NonNotifyingEObjectEList<>(ConstraintUsage.class, this, SysMLPackage.REQUIREMENT_USAGE__REQUIRED_CONSTRAINT);
 		RequirementDefinitionImpl.getRequirementConstraints(this, RequirementConstraintKind.REQUIREMENT).forEachOrdered(constraints::add);
 		return constraints;

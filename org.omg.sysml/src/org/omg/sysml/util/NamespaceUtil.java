@@ -107,19 +107,12 @@ public class NamespaceUtil {
 	}
 	
 	private static Namespace getResultNamespaceFor(Expression expression) {
-		if (expression instanceof FeatureChainExpression) {
-			EList<Expression> ops = ((FeatureChainExpression)expression).getOperand();
-			if (ops.size() >= 2) {
-				Expression op2 = ops.get(1);
-				if (op2 instanceof FeatureReferenceExpression) {
-					return ((FeatureReferenceExpression)op2).getReferent();
-				}
-			}
-			return null;
-		} else {
+//		if (expression instanceof FeatureChainExpression) {
+//			return ((FeatureChainExpression)expression).getTargetFeature();
+//		} else {
 			ElementUtil.transform(expression);
 			return expression.getResult();
-		}
+//		}
 	}
 
 	public static Namespace getRelativeNamespaceFor(Namespace ns) {
@@ -128,16 +121,10 @@ public class NamespaceUtil {
 			if (target != null) {
 				return getResultNamespaceFor(target);		
 			}
-		} else if (ns instanceof FeatureReferenceExpression) {
-			Element oe = ns.getOwner();
-			if (oe instanceof FeatureChainExpression) {
-				EList<Expression> ops = ((FeatureChainExpression)oe).getOperand();
-				if (ops.size() >= 2) {
-					Expression op1 = ops.get(0);
-					if (op1 != ns) {
-						return getResultNamespaceFor(op1);
-					}
-				}
+		} else if (ns instanceof FeatureChainExpression) {
+			EList<Expression> ops = ((FeatureChainExpression)ns).getOperand();
+			if (!ops.isEmpty()) {
+				return getResultNamespaceFor(ops.get(0));
 			}
 		}
 		return null;

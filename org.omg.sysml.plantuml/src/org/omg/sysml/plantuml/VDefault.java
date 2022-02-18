@@ -1,7 +1,7 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation, PlantUML Visualization
  * Copyright (c) 2020-2022 Mgnite Inc.
- * Copyright (c) 2020 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -37,11 +37,11 @@ import org.omg.sysml.lang.sysml.Dependency;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.FeatureChainExpression;
 import org.omg.sysml.lang.sysml.FeatureReferenceExpression;
 import org.omg.sysml.lang.sysml.Import;
 import org.omg.sysml.lang.sysml.ItemFlow;
 import org.omg.sysml.lang.sysml.ItemFlowEnd;
-import org.omg.sysml.lang.sysml.PathStepExpression;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.Specialization;
 import org.omg.sysml.lang.sysml.Subsetting;
@@ -143,7 +143,7 @@ public class VDefault extends VTraverser {
     }
 
     protected Element resolveReference(Feature f) {
-        if (f instanceof PathStepExpression) {
+        if (f instanceof FeatureChainExpression) {
             // return resolvePathStepExpression((PathStepExpression) f, null);
             return f;
         } else if (f instanceof FeatureReferenceExpression) {

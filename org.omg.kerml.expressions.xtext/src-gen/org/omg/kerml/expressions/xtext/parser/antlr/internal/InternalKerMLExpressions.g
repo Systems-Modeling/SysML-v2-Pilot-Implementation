@@ -2074,7 +2074,7 @@ rulePrimaryExpression returns [EObject current=null]
 			(
 				{
 					$current = forceCreateModelElementAndAdd(
-						grammarAccess.getPrimaryExpressionAccess().getPathStepExpressionOperandAction_1_0(),
+						grammarAccess.getPrimaryExpressionAccess().getFeatureChainExpressionOperandAction_1_0(),
 						$current);
 				}
 			)
@@ -2085,18 +2085,18 @@ rulePrimaryExpression returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getPrimaryExpressionAccess().getOperandFeatureChainExpressionParserRuleCall_1_2_0());
+						newCompositeNode(grammarAccess.getPrimaryExpressionAccess().getOwnedRelationshipFeatureChainMemberParserRuleCall_1_2_0());
 					}
-					lv_operand_3_0=ruleFeatureChainExpression
+					lv_ownedRelationship_3_0=ruleFeatureChainMember
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getPrimaryExpressionRule());
 						}
 						add(
 							$current,
-							"operand",
-							lv_operand_3_0,
-							"org.omg.kerml.expressions.xtext.KerMLExpressions.FeatureChainExpression");
+							"ownedRelationship",
+							lv_ownedRelationship_3_0,
+							"org.omg.kerml.expressions.xtext.KerMLExpressions.FeatureChainMember");
 						afterParserOrEnumRuleCall();
 					}
 				)
@@ -2241,7 +2241,7 @@ rulePrimaryExpression returns [EObject current=null]
 					(
 						{
 							$current = forceCreateModelElementAndAdd(
-								grammarAccess.getPrimaryExpressionAccess().getPathSelectExpressionOperandAction_2_0_2_0(),
+								grammarAccess.getPrimaryExpressionAccess().getSelectExpressionOperandAction_2_0_2_0(),
 								$current);
 						}
 					)
@@ -2274,7 +2274,7 @@ rulePrimaryExpression returns [EObject current=null]
 				(
 					{
 						$current = forceCreateModelElementAndAdd(
-							grammarAccess.getPrimaryExpressionAccess().getPathStepExpressionOperandAction_2_1_0(),
+							grammarAccess.getPrimaryExpressionAccess().getFeatureChainExpressionOperandAction_2_1_0(),
 							$current);
 					}
 				)
@@ -2285,18 +2285,18 @@ rulePrimaryExpression returns [EObject current=null]
 				(
 					(
 						{
-							newCompositeNode(grammarAccess.getPrimaryExpressionAccess().getOperandFeatureChainExpressionParserRuleCall_2_1_2_0());
+							newCompositeNode(grammarAccess.getPrimaryExpressionAccess().getOwnedRelationshipFeatureChainMemberParserRuleCall_2_1_2_0());
 						}
-						lv_operand_19_0=ruleFeatureChainExpression
+						lv_ownedRelationship_19_0=ruleFeatureChainMember
 						{
 							if ($current==null) {
 								$current = createModelElementForParent(grammarAccess.getPrimaryExpressionRule());
 							}
 							add(
 								$current,
-								"operand",
-								lv_operand_19_0,
-								"org.omg.kerml.expressions.xtext.KerMLExpressions.FeatureChainExpression");
+								"ownedRelationship",
+								lv_ownedRelationship_19_0,
+								"org.omg.kerml.expressions.xtext.KerMLExpressions.FeatureChainMember");
 							afterParserOrEnumRuleCall();
 						}
 					)
@@ -2408,42 +2408,6 @@ ruleFunctionReference returns [EObject current=null]
 					"ownedRelationship",
 					lv_ownedRelationship_0_0,
 					"org.omg.kerml.expressions.xtext.KerMLExpressions.ReferenceTyping");
-				afterParserOrEnumRuleCall();
-			}
-		)
-	)
-;
-
-// Entry rule entryRuleFeatureChainExpression
-entryRuleFeatureChainExpression returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getFeatureChainExpressionRule()); }
-	iv_ruleFeatureChainExpression=ruleFeatureChainExpression
-	{ $current=$iv_ruleFeatureChainExpression.current; }
-	EOF;
-
-// Rule FeatureChainExpression
-ruleFeatureChainExpression returns [EObject current=null]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
-		(
-			{
-				newCompositeNode(grammarAccess.getFeatureChainExpressionAccess().getOwnedRelationshipFeatureChainMemberParserRuleCall_0());
-			}
-			lv_ownedRelationship_0_0=ruleFeatureChainMember
-			{
-				if ($current==null) {
-					$current = createModelElementForParent(grammarAccess.getFeatureChainExpressionRule());
-				}
-				add(
-					$current,
-					"ownedRelationship",
-					lv_ownedRelationship_0_0,
-					"org.omg.kerml.expressions.xtext.KerMLExpressions.FeatureChainMember");
 				afterParserOrEnumRuleCall();
 			}
 		)

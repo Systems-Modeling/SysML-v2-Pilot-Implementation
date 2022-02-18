@@ -28,6 +28,10 @@ import org.eclipse.emf.common.util.EList;
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Operator
  * Expression</b></em>'. <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * <p>An OperatorExpression is an InvocationExpression whose <code>function</code> is determined by resolving its <code>operator</code> in the context of one of the standard Function packages from the Kernel Model Library.</p>
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>

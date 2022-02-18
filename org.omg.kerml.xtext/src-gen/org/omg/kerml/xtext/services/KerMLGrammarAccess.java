@@ -10531,8 +10531,8 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	///* Primary Expressions */
 	//PrimaryExpression returns SysML::Expression :
 	//    BaseExpression
-	//    ( {SysML::PathStepExpression.operand += current} '.'
-	//      operand += FeatureChainExpression
+	//    ( {SysML::FeatureChainExpression.operand += current} '.'
+	//      ownedRelationship += FeatureChainMember
 	//    )?
 	//    ( ( {SysML::OperatorExpression.operand += current}
 	//        operator = '[' operand += SequenceExpression ']'
@@ -10542,11 +10542,11 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	//        | ownedRelationship += FunctionReferenceMember
 	//        | ArgumentList
 	//        )
-	//      | {SysML::PathSelectExpression.operand += current} '.'
+	//      | {SysML::SelectExpression.operand += current} '.'
 	//        ownedRelationship += ExpressionBodyMember
 	//      )
-	//      ( {SysML::PathStepExpression.operand += current} '.'
-	//        operand += FeatureChainExpression
+	//      ( {SysML::FeatureChainExpression.operand += current} '.'
+	//          ownedRelationship += FeatureChainMember
 	//      )?
 	//    )*
 	//;
@@ -10591,20 +10591,9 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		return getFunctionReferenceAccess().getRule();
 	}
 	
-	//FeatureChainExpression returns SysML::FeatureReferenceExpression :
-	//    ownedRelationship += FeatureChainMember
-	//;
-	public KerMLExpressionsGrammarAccess.FeatureChainExpressionElements getFeatureChainExpressionAccess() {
-		return gaKerMLExpressions.getFeatureChainExpressionAccess();
-	}
-	
-	public ParserRule getFeatureChainExpressionRule() {
-		return getFeatureChainExpressionAccess().getRule();
-	}
-	
 	//FeatureChainMember returns SysML::Membership :
 	//      memberElement = [SysML::Feature | QualifiedName]
-	//    | ownedRelatedElement += FeatureChain
+	//    | ownedRelatedElement += FeatureChain // ownedMemberElement = FeatureChain
 	//;
 	public KerMLExpressionsGrammarAccess.FeatureChainMemberElements getFeatureChainMemberAccess() {
 		return gaKerMLExpressions.getFeatureChainMemberAccess();

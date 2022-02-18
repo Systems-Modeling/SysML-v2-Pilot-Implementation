@@ -227,8 +227,8 @@ ExtentExpression returns SysML::Expression :
 
 PrimaryExpression returns SysML::Expression :
 	BaseExpression
-	( {SysML::PathStepExpression.operand += current} '.' 
-	  operand += FeatureChainExpression
+	( {SysML::FeatureChainExpression.operand += current} '.' 
+	  ownedRelationship += FeatureChainMember
 	)?
 	( ( {SysML::OperatorExpression.operand += current} 
 	    operator = '[' operand += SequenceExpression ']'
@@ -238,11 +238,11 @@ PrimaryExpression returns SysML::Expression :
 	    | ownedRelationship += FunctionReferenceMember 
 	    | ArgumentList
 	    )
-	  | {SysML::PathSelectExpression.operand += current} '.'
+	  | {SysML::SelectExpression.operand += current} '.'
 	    ownedRelationship += ExpressionBodyMember 
 	  )
-	  ( {SysML::PathStepExpression.operand += current} '.' 
-	    operand += FeatureChainExpression
+	  ( {SysML::FeatureChainExpression.operand += current} '.' 
+	  	ownedRelationship += FeatureChainMember
 	  )?
 	)*
 ;
@@ -259,13 +259,9 @@ FunctionReference returns SysML::Expression :
 	ownedRelationship += ReferenceTyping
 ;
 
-FeatureChainExpression returns SysML::FeatureReferenceExpression :
-	ownedRelationship += FeatureChainMember
-;
-
 FeatureChainMember returns SysML::Membership :
 	  memberElement = [SysML::Feature | QualifiedName]
-	| ownedRelatedElement += FeatureChain
+	| ownedRelatedElement += FeatureChain // ownedMemberElement = FeatureChain
 ;
 
 /* Base Expressions */

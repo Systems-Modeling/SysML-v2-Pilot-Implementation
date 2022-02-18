@@ -21,36 +21,31 @@
 
 package org.omg.sysml.adapter;
 
-import org.eclipse.emf.common.util.EList;
-import org.omg.sysml.lang.sysml.Expression;
+import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.PathSelectExpression;
+import org.omg.sysml.lang.sysml.FeatureChainExpression;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.util.ElementUtil;
 import org.omg.sysml.util.TypeUtil;
 
-public class PathSelectExpressionAdapter extends OperatorExpressionAdapter {
+public class FeatureChainExpressionAdapter extends OperatorExpressionAdapter {
 
-	public PathSelectExpressionAdapter(PathSelectExpression element) {
+	public FeatureChainExpressionAdapter(FeatureChainExpression element) {
 		super(element);
 	}
 	
 	@Override
-	public PathSelectExpression getTarget() {
-		return (PathSelectExpression)super.getTarget();
+	public FeatureChainExpression getTarget() {
+		return (FeatureChainExpression)super.getTarget();
 	}
 
 	@Override
 	protected void addResultTyping() {
-		PathSelectExpression target = getTarget();
-		EList<Feature> ownedFeatures = target.getOwnedFeature();
-		if (!ownedFeatures.isEmpty()) {
-			Feature collectionExpression = ownedFeatures.get(0);
-			if (collectionExpression instanceof Expression) {
-				ElementUtil.transform(collectionExpression);
-				TypeUtil.addImplicitGeneralTypeTo(target.getResult(),
-						SysMLPackage.eINSTANCE.getSubsetting(), ((Expression)collectionExpression).getResult());
-			}
+		FeatureChainExpression target = getTarget();
+		Feature result = target.getResult();
+		Element targetFeature = target.getTargetFeature();
+		if (result != null) {
+			TypeUtil.addImplicitGeneralTypeTo(result,
+					SysMLPackage.eINSTANCE.getSubsetting(), (Feature)targetFeature);
 		}
 	}
 	

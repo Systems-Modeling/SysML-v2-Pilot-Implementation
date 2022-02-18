@@ -79,9 +79,9 @@ public abstract class AbstractKerMLExpressionsSyntacticSequencer extends Abstrac
 	 *     (rule start) (ambiguity) value=DECIMAL_VALUE
 	 *     (rule start) (ambiguity) value=RealValue
 	 *     (rule start) (ambiguity) value=STRING_VALUE
+	 *     (rule start) (ambiguity) {FeatureChainExpression.operand+=}
 	 *     (rule start) (ambiguity) {OperatorExpression.operand+=}
-	 *     (rule start) (ambiguity) {PathSelectExpression.operand+=}
-	 *     (rule start) (ambiguity) {PathStepExpression.operand+=}
+	 *     (rule start) (ambiguity) {SelectExpression.operand+=}
 	 */
 	protected void emit_BaseExpression_LeftParenthesisKeyword_5_0_a(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -96,9 +96,9 @@ public abstract class AbstractKerMLExpressionsSyntacticSequencer extends Abstrac
 	 *     (rule start) (ambiguity) operand+=SelfReferenceExpression
 	 *     (rule start) (ambiguity) operator='all'
 	 *     (rule start) (ambiguity) operator=UnaryOperator
+	 *     (rule start) (ambiguity) {FeatureChainExpression.operand+=}
 	 *     (rule start) (ambiguity) {OperatorExpression.operand+=}
-	 *     (rule start) (ambiguity) {PathSelectExpression.operand+=}
-	 *     (rule start) (ambiguity) {PathStepExpression.operand+=}
+	 *     (rule start) (ambiguity) {SelectExpression.operand+=}
 	 */
 	protected void emit_BaseExpression_LeftParenthesisKeyword_5_0_p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -128,7 +128,6 @@ public abstract class AbstractKerMLExpressionsSyntacticSequencer extends Abstrac
 	 *     operand+=EqualityExpression (ambiguity) ')' (rule end)
 	 *     operand+=ExponentiationExpression (ambiguity) ')' (rule end)
 	 *     operand+=ExtentExpression (ambiguity) ')' (rule end)
-	 *     operand+=FeatureChainExpression (ambiguity) ')' (rule end)
 	 *     operand+=ImpliesExpression (ambiguity) ')' (rule end)
 	 *     operand+=MultiplicativeExpression (ambiguity) ')' (rule end)
 	 *     operand+=OrExpression (ambiguity) ')' (rule end)
@@ -137,6 +136,7 @@ public abstract class AbstractKerMLExpressionsSyntacticSequencer extends Abstrac
 	 *     operand+=UnaryExpression (ambiguity) ')' (rule end)
 	 *     operand+=XorExpression (ambiguity) ')' (rule end)
 	 *     ownedRelationship+=ExpressionBodyMember (ambiguity) ')' (rule end)
+	 *     ownedRelationship+=FeatureChainMember (ambiguity) ')' (rule end)
 	 *     ownedRelationship+=FunctionReferenceMember (ambiguity) ')' (rule end)
 	 *     ownedRelationship+=NamedExpressionMember ')' (ambiguity) ')' (rule end)
 	 *     ownedRelationship+=OwnedExpressionMember ')' (ambiguity) ')' (rule end)

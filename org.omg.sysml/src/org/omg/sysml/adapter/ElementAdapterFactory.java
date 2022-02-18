@@ -191,6 +191,11 @@ public class ElementAdapterFactory {
 		}
 		
 		@Override
+		public ElementAdapter caseFeatureChainExpression(FeatureChainExpression element) {
+			return new FeatureChainExpressionAdapter(element);
+		}
+		
+		@Override
 		public ElementAdapter caseFeatureReferenceExpression(FeatureReferenceExpression element) {
 			return new FeatureReferenceExpressionAdapter(element);
 		}
@@ -306,16 +311,6 @@ public class ElementAdapterFactory {
 		}
 		
 		@Override
-		public ElementAdapter casePathStepExpression(PathStepExpression element) {
-			return new PathStepExpressionAdapter(element);
-		}
-		
-		@Override
-		public ElementAdapter casePathSelectExpression(PathSelectExpression element) {
-			return new PathSelectExpressionAdapter(element);
-		}
-		
-		@Override
 		public ElementAdapter casePerformActionUsage(PerformActionUsage element) {
 			return new PerformActionUsageAdapter(element);
 		}
@@ -358,6 +353,11 @@ public class ElementAdapterFactory {
 		@Override
 		public ElementAdapter caseSatisfyRequirementUsage(SatisfyRequirementUsage element) {
 			return new SatisfyRequirementUsageAdapter(element);
+		}
+		
+		@Override
+		public ElementAdapter caseSelectExpression(SelectExpression element) {
+			return new SelectExpressionAdapter(element);
 		}
 		
 		@Override

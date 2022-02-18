@@ -8,6 +8,10 @@ package org.omg.sysml.lang.sysml;
  * A representation of the model object '<em><b>Trigger Invocation Expression</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * <p>A TriggerInvocationExpression is an InvocationExpression that invokes one of the trigger Functions from the Kernel <em>Triggers<em> package, as indicated by its <code>kind</code>.</p>
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>
@@ -29,6 +33,9 @@ public interface TriggerInvocationExpression extends InvocationExpression {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Indicates which of the Functions from the Kernel <em>Triggers</em> package is to be invoked by this TriggerInvocationExpression.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Kind</em>' attribute.
 	 * @see org.omg.sysml.lang.sysml.TriggerKind
 	 * @see #setKind(TriggerKind)

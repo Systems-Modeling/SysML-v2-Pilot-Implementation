@@ -1212,6 +1212,15 @@ public interface SysMLFactory extends EFactory {
 	LiteralBoolean createLiteralBoolean();
 
 	/**
+	 * Returns a new object of class '<em>Select Expression</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Select Expression</em>'.
+	 * @generated
+	 */
+	SelectExpression createSelectExpression();
+
+	/**
 	 * Returns a new object of class '<em>Invocation Expression</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1221,15 +1230,6 @@ public interface SysMLFactory extends EFactory {
 	InvocationExpression createInvocationExpression();
 
 	/**
-	 * Returns a new object of class '<em>Path Select Expression</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Path Select Expression</em>'.
-	 * @generated
-	 */
-	PathSelectExpression createPathSelectExpression();
-
-	/**
 	 * Returns a new object of class '<em>Literal Infinity</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1237,15 +1237,6 @@ public interface SysMLFactory extends EFactory {
 	 * @generated
 	 */
 	LiteralInfinity createLiteralInfinity();
-
-	/**
-	 * Returns a new object of class '<em>Path Step Expression</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Path Step Expression</em>'.
-	 * @generated
-	 */
-	PathStepExpression createPathStepExpression();
 
 	/**
 	 * Returns a new object of class '<em>Parameter Membership</em>'.
@@ -1374,6 +1365,15 @@ public interface SysMLFactory extends EFactory {
 	LiteralString createLiteralString();
 
 	/**
+	 * Returns a new object of class '<em>Feature Chain Expression</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Feature Chain Expression</em>'.
+	 * @generated
+	 */
+	FeatureChainExpression createFeatureChainExpression();
+
+	/**
 	 * Returns a new object of class '<em>Item Flow</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1417,6 +1417,15 @@ public interface SysMLFactory extends EFactory {
 	 * @generated
 	 */
 	NullExpression createNullExpression();
+
+	/**
+	 * Returns a new object of class '<em>Collect Expression</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Collect Expression</em>'.
+	 * @generated
+	 */
+	CollectExpression createCollectExpression();
 
 	/**
 	 * Returns a new object of class '<em>Feature Reference Expression</em>'.

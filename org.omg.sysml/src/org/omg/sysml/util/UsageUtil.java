@@ -112,7 +112,7 @@ public class UsageUtil {
 
 	public static FeatureValue getSatisfyingFeatureValueOf(SatisfyRequirementUsage usage) {
 		Feature subject = usage.getSubjectParameter();
-		return subject == null? null:  FeatureUtil.getValuationFor(subject);
+		return subject == null? null: FeatureUtil.getValuationFor(subject);
 	}
 	
 	// Actors

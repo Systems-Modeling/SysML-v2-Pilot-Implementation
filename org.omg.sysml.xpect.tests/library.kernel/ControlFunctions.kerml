@@ -9,6 +9,14 @@ package ControlFunctions {
 	private import ScalarFunctions::Min;
 	private import ScalarFunctions::Max;
 	
+	abstract function '.' {
+		in feature source : Anything[0..*] nonunique {
+	  		abstract feature target : Anything[0..*] nonunique;
+	  	}	  	
+	  	private feature chain is source.target;
+	    chain
+	}
+	
 	abstract function '?'(test: Boolean[1]): Anything[0..*] ordered nonunique {
 		abstract composite expr thenValue[0..1] (): Anything[0..*] ordered nonunique;
 		abstract composite expr elseValue[0..1] (): Anything[0..*] ordered nonunique;

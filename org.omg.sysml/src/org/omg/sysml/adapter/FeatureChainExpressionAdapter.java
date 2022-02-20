@@ -21,10 +21,14 @@
 
 package org.omg.sysml.adapter;
 
+import java.util.List;
+
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureChainExpression;
+import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.util.ImplicitGeneralizationMap;
 import org.omg.sysml.util.TypeUtil;
 
 public class FeatureChainExpressionAdapter extends OperatorExpressionAdapter {
@@ -47,6 +51,33 @@ public class FeatureChainExpressionAdapter extends OperatorExpressionAdapter {
 			TypeUtil.addImplicitGeneralTypeTo(result,
 					SysMLPackage.eINSTANCE.getSubsetting(), (Feature)targetFeature);
 		}
+	}
+	
+	protected void addTargetRedefinition() {
+		FeatureChainExpression target = getTarget();
+		Feature sourceParameter = TypeUtil.getOwnedParameterOf(target, 0, Feature.class);
+		if (sourceParameter != null) {
+			Feature sourceTarget = null;
+			List<Feature> sourceFeatures = sourceParameter.getOwnedFeature();
+			if (!sourceFeatures.isEmpty()) {
+				sourceTarget = sourceFeatures.get(0);
+			} else {
+				sourceTarget = SysMLFactory.eINSTANCE.createFeature();
+				TypeUtil.addOwnedFeatureTo(sourceParameter, sourceTarget);
+			}
+			TypeUtil.addImplicitGeneralTypeTo(sourceTarget,
+					SysMLPackage.eINSTANCE.getRedefinition(), 
+					getLibraryType(ImplicitGeneralizationMap.getDefaultSupertypeFor(target.getClass(), "target")));
+			TypeUtil.addImplicitGeneralTypeTo(sourceTarget,
+					SysMLPackage.eINSTANCE.getRedefinition(), target.getTargetFeature());
+			TypeUtil.setIsAddImplicitGeneralTypesFor(sourceTarget, false);
+		}
+	}
+	
+	@Override
+	public void doTransform() {
+		super.doTransform();
+		addTargetRedefinition();
 	}
 	
 }

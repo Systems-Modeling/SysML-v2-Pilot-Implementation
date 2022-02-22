@@ -10542,7 +10542,9 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	//        | ownedRelationship += FunctionReferenceMember
 	//        | ArgumentList
 	//        )
-	//      | {SysML::SelectExpression.operand += current} '.'
+	//      | {SysML::CollectExpression.operand += current} '.'
+	//        ownedRelationship += ExpressionBodyMember
+	//      | {SysML::SelectExpression.operand += current} '.?'
 	//        ownedRelationship += ExpressionBodyMember
 	//      )
 	//      ( {SysML::FeatureChainExpression.operand += current} '.'

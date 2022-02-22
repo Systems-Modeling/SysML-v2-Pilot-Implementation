@@ -15,7 +15,7 @@ package MassRollup2 {
 	part filteredMassThing :> compositeThing {
 		attribute minMass :> ISQ::mass;		
 		attribute :>> totalMass =
-			simpleMass + sum(subcomponents.totalMass.{in p:>ISQ::mass; p >= minMass});
+			simpleMass + sum(subcomponents.totalMass.?{in p:>ISQ::mass; p >= minMass});
 	}
 
 }

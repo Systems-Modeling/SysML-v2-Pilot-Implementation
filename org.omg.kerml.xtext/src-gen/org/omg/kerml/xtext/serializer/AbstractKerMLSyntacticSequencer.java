@@ -334,6 +334,7 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 *     (rule start) (ambiguity) value=DECIMAL_VALUE
 	 *     (rule start) (ambiguity) value=RealValue
 	 *     (rule start) (ambiguity) value=STRING_VALUE
+	 *     (rule start) (ambiguity) {CollectExpression.operand+=}
 	 *     (rule start) (ambiguity) {FeatureChainExpression.operand+=}
 	 *     (rule start) (ambiguity) {OperatorExpression.operand+=}
 	 *     (rule start) (ambiguity) {SelectExpression.operand+=}
@@ -351,6 +352,7 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 *     (rule start) (ambiguity) operand+=SelfReferenceExpression
 	 *     (rule start) (ambiguity) operator='all'
 	 *     (rule start) (ambiguity) operator=UnaryOperator
+	 *     (rule start) (ambiguity) {CollectExpression.operand+=}
 	 *     (rule start) (ambiguity) {FeatureChainExpression.operand+=}
 	 *     (rule start) (ambiguity) {OperatorExpression.operand+=}
 	 *     (rule start) (ambiguity) {SelectExpression.operand+=}

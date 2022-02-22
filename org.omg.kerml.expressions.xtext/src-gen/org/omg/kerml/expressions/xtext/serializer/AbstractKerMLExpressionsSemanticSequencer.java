@@ -15,6 +15,7 @@ import org.eclipse.xtext.serializer.acceptor.SequenceFeeder;
 import org.eclipse.xtext.serializer.sequencer.AbstractDelegatingSemanticSequencer;
 import org.eclipse.xtext.serializer.sequencer.ITransientValueService.ValueTransient;
 import org.omg.kerml.expressions.xtext.services.KerMLExpressionsGrammarAccess;
+import org.omg.sysml.lang.sysml.CollectExpression;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureChainExpression;
@@ -51,6 +52,9 @@ public abstract class AbstractKerMLExpressionsSemanticSequencer extends Abstract
 		Set<Parameter> parameters = context.getEnabledBooleanParameters();
 		if (epackage == SysMLPackage.eINSTANCE)
 			switch (semanticObject.eClass().getClassifierID()) {
+			case SysMLPackage.COLLECT_EXPRESSION:
+				sequence_PrimaryExpression(context, (CollectExpression) semanticObject); 
+				return; 
 			case SysMLPackage.EXPRESSION:
 				if (rule == grammarAccess.getOwnedExpressionRule()
 						|| rule == grammarAccess.getConditionalExpressionRule()
@@ -85,7 +89,8 @@ public abstract class AbstractKerMLExpressionsSemanticSequencer extends Abstract
 						|| action == grammarAccess.getPrimaryExpressionAccess().getFeatureChainExpressionOperandAction_1_0()
 						|| action == grammarAccess.getPrimaryExpressionAccess().getOperatorExpressionOperandAction_2_0_0_0()
 						|| action == grammarAccess.getPrimaryExpressionAccess().getOperatorExpressionOperandAction_2_0_1_0()
-						|| action == grammarAccess.getPrimaryExpressionAccess().getSelectExpressionOperandAction_2_0_2_0()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getCollectExpressionOperandAction_2_0_2_0()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getSelectExpressionOperandAction_2_0_3_0()
 						|| rule == grammarAccess.getBaseExpressionRule()
 						|| rule == grammarAccess.getExpressionBodyRule()
 						|| rule == grammarAccess.getSequenceExpressionRule()
@@ -175,7 +180,8 @@ public abstract class AbstractKerMLExpressionsSemanticSequencer extends Abstract
 						|| action == grammarAccess.getPrimaryExpressionAccess().getFeatureChainExpressionOperandAction_1_0()
 						|| action == grammarAccess.getPrimaryExpressionAccess().getOperatorExpressionOperandAction_2_0_0_0()
 						|| action == grammarAccess.getPrimaryExpressionAccess().getOperatorExpressionOperandAction_2_0_1_0()
-						|| action == grammarAccess.getPrimaryExpressionAccess().getSelectExpressionOperandAction_2_0_2_0()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getCollectExpressionOperandAction_2_0_2_0()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getSelectExpressionOperandAction_2_0_3_0()
 						|| rule == grammarAccess.getBaseExpressionRule()
 						|| rule == grammarAccess.getSequenceExpressionRule()
 						|| action == grammarAccess.getSequenceExpressionAccess().getOperatorExpressionOperandAction_1_1_0()
@@ -263,7 +269,8 @@ public abstract class AbstractKerMLExpressionsSemanticSequencer extends Abstract
 						|| action == grammarAccess.getPrimaryExpressionAccess().getFeatureChainExpressionOperandAction_1_0()
 						|| action == grammarAccess.getPrimaryExpressionAccess().getOperatorExpressionOperandAction_2_0_0_0()
 						|| action == grammarAccess.getPrimaryExpressionAccess().getOperatorExpressionOperandAction_2_0_1_0()
-						|| action == grammarAccess.getPrimaryExpressionAccess().getSelectExpressionOperandAction_2_0_2_0()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getCollectExpressionOperandAction_2_0_2_0()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getSelectExpressionOperandAction_2_0_3_0()
 						|| rule == grammarAccess.getBaseExpressionRule()
 						|| rule == grammarAccess.getSequenceExpressionRule()
 						|| action == grammarAccess.getSequenceExpressionAccess().getOperatorExpressionOperandAction_1_1_0()) {
@@ -327,7 +334,8 @@ public abstract class AbstractKerMLExpressionsSemanticSequencer extends Abstract
 	 *     PrimaryExpression.FeatureChainExpression_1_0 returns OperatorExpression
 	 *     PrimaryExpression.OperatorExpression_2_0_0_0 returns OperatorExpression
 	 *     PrimaryExpression.OperatorExpression_2_0_1_0 returns OperatorExpression
-	 *     PrimaryExpression.SelectExpression_2_0_2_0 returns OperatorExpression
+	 *     PrimaryExpression.CollectExpression_2_0_2_0 returns OperatorExpression
+	 *     PrimaryExpression.SelectExpression_2_0_3_0 returns OperatorExpression
 	 *     BaseExpression returns OperatorExpression
 	 *     SequenceExpression returns OperatorExpression
 	 *     SequenceExpression.OperatorExpression_1_1_0 returns OperatorExpression
@@ -442,7 +450,8 @@ public abstract class AbstractKerMLExpressionsSemanticSequencer extends Abstract
 	 *     PrimaryExpression.FeatureChainExpression_1_0 returns Expression
 	 *     PrimaryExpression.OperatorExpression_2_0_0_0 returns Expression
 	 *     PrimaryExpression.OperatorExpression_2_0_1_0 returns Expression
-	 *     PrimaryExpression.SelectExpression_2_0_2_0 returns Expression
+	 *     PrimaryExpression.CollectExpression_2_0_2_0 returns Expression
+	 *     PrimaryExpression.SelectExpression_2_0_3_0 returns Expression
 	 *     BaseExpression returns Expression
 	 *     ExpressionBody returns Expression
 	 *     SequenceExpression returns Expression
@@ -515,7 +524,8 @@ public abstract class AbstractKerMLExpressionsSemanticSequencer extends Abstract
 	 *     PrimaryExpression.FeatureChainExpression_1_0 returns FeatureReferenceExpression
 	 *     PrimaryExpression.OperatorExpression_2_0_0_0 returns FeatureReferenceExpression
 	 *     PrimaryExpression.OperatorExpression_2_0_1_0 returns FeatureReferenceExpression
-	 *     PrimaryExpression.SelectExpression_2_0_2_0 returns FeatureReferenceExpression
+	 *     PrimaryExpression.CollectExpression_2_0_2_0 returns FeatureReferenceExpression
+	 *     PrimaryExpression.SelectExpression_2_0_3_0 returns FeatureReferenceExpression
 	 *     BaseExpression returns FeatureReferenceExpression
 	 *     SequenceExpression returns FeatureReferenceExpression
 	 *     SequenceExpression.OperatorExpression_1_1_0 returns FeatureReferenceExpression
@@ -606,7 +616,8 @@ public abstract class AbstractKerMLExpressionsSemanticSequencer extends Abstract
 	 *     PrimaryExpression.FeatureChainExpression_1_0 returns InvocationExpression
 	 *     PrimaryExpression.OperatorExpression_2_0_0_0 returns InvocationExpression
 	 *     PrimaryExpression.OperatorExpression_2_0_1_0 returns InvocationExpression
-	 *     PrimaryExpression.SelectExpression_2_0_2_0 returns InvocationExpression
+	 *     PrimaryExpression.CollectExpression_2_0_2_0 returns InvocationExpression
+	 *     PrimaryExpression.SelectExpression_2_0_3_0 returns InvocationExpression
 	 *     BaseExpression returns InvocationExpression
 	 *     SequenceExpression returns InvocationExpression
 	 *     SequenceExpression.OperatorExpression_1_1_0 returns InvocationExpression
@@ -661,7 +672,8 @@ public abstract class AbstractKerMLExpressionsSemanticSequencer extends Abstract
 	 *     PrimaryExpression.FeatureChainExpression_1_0 returns LiteralBoolean
 	 *     PrimaryExpression.OperatorExpression_2_0_0_0 returns LiteralBoolean
 	 *     PrimaryExpression.OperatorExpression_2_0_1_0 returns LiteralBoolean
-	 *     PrimaryExpression.SelectExpression_2_0_2_0 returns LiteralBoolean
+	 *     PrimaryExpression.CollectExpression_2_0_2_0 returns LiteralBoolean
+	 *     PrimaryExpression.SelectExpression_2_0_3_0 returns LiteralBoolean
 	 *     BaseExpression returns LiteralBoolean
 	 *     SequenceExpression returns LiteralBoolean
 	 *     SequenceExpression.OperatorExpression_1_1_0 returns LiteralBoolean
@@ -717,7 +729,8 @@ public abstract class AbstractKerMLExpressionsSemanticSequencer extends Abstract
 	 *     PrimaryExpression.FeatureChainExpression_1_0 returns LiteralInfinity
 	 *     PrimaryExpression.OperatorExpression_2_0_0_0 returns LiteralInfinity
 	 *     PrimaryExpression.OperatorExpression_2_0_1_0 returns LiteralInfinity
-	 *     PrimaryExpression.SelectExpression_2_0_2_0 returns LiteralInfinity
+	 *     PrimaryExpression.CollectExpression_2_0_2_0 returns LiteralInfinity
+	 *     PrimaryExpression.SelectExpression_2_0_3_0 returns LiteralInfinity
 	 *     BaseExpression returns LiteralInfinity
 	 *     SequenceExpression returns LiteralInfinity
 	 *     SequenceExpression.OperatorExpression_1_1_0 returns LiteralInfinity
@@ -767,7 +780,8 @@ public abstract class AbstractKerMLExpressionsSemanticSequencer extends Abstract
 	 *     PrimaryExpression.FeatureChainExpression_1_0 returns LiteralInteger
 	 *     PrimaryExpression.OperatorExpression_2_0_0_0 returns LiteralInteger
 	 *     PrimaryExpression.OperatorExpression_2_0_1_0 returns LiteralInteger
-	 *     PrimaryExpression.SelectExpression_2_0_2_0 returns LiteralInteger
+	 *     PrimaryExpression.CollectExpression_2_0_2_0 returns LiteralInteger
+	 *     PrimaryExpression.SelectExpression_2_0_3_0 returns LiteralInteger
 	 *     BaseExpression returns LiteralInteger
 	 *     SequenceExpression returns LiteralInteger
 	 *     SequenceExpression.OperatorExpression_1_1_0 returns LiteralInteger
@@ -823,7 +837,8 @@ public abstract class AbstractKerMLExpressionsSemanticSequencer extends Abstract
 	 *     PrimaryExpression.FeatureChainExpression_1_0 returns LiteralRational
 	 *     PrimaryExpression.OperatorExpression_2_0_0_0 returns LiteralRational
 	 *     PrimaryExpression.OperatorExpression_2_0_1_0 returns LiteralRational
-	 *     PrimaryExpression.SelectExpression_2_0_2_0 returns LiteralRational
+	 *     PrimaryExpression.CollectExpression_2_0_2_0 returns LiteralRational
+	 *     PrimaryExpression.SelectExpression_2_0_3_0 returns LiteralRational
 	 *     BaseExpression returns LiteralRational
 	 *     SequenceExpression returns LiteralRational
 	 *     SequenceExpression.OperatorExpression_1_1_0 returns LiteralRational
@@ -879,7 +894,8 @@ public abstract class AbstractKerMLExpressionsSemanticSequencer extends Abstract
 	 *     PrimaryExpression.FeatureChainExpression_1_0 returns LiteralString
 	 *     PrimaryExpression.OperatorExpression_2_0_0_0 returns LiteralString
 	 *     PrimaryExpression.OperatorExpression_2_0_1_0 returns LiteralString
-	 *     PrimaryExpression.SelectExpression_2_0_2_0 returns LiteralString
+	 *     PrimaryExpression.CollectExpression_2_0_2_0 returns LiteralString
+	 *     PrimaryExpression.SelectExpression_2_0_3_0 returns LiteralString
 	 *     BaseExpression returns LiteralString
 	 *     SequenceExpression returns LiteralString
 	 *     SequenceExpression.OperatorExpression_1_1_0 returns LiteralString
@@ -971,7 +987,8 @@ public abstract class AbstractKerMLExpressionsSemanticSequencer extends Abstract
 	 *     PrimaryExpression.FeatureChainExpression_1_0 returns NullExpression
 	 *     PrimaryExpression.OperatorExpression_2_0_0_0 returns NullExpression
 	 *     PrimaryExpression.OperatorExpression_2_0_1_0 returns NullExpression
-	 *     PrimaryExpression.SelectExpression_2_0_2_0 returns NullExpression
+	 *     PrimaryExpression.CollectExpression_2_0_2_0 returns NullExpression
+	 *     PrimaryExpression.SelectExpression_2_0_3_0 returns NullExpression
 	 *     BaseExpression returns NullExpression
 	 *     SequenceExpression returns NullExpression
 	 *     SequenceExpression.OperatorExpression_1_1_0 returns NullExpression
@@ -1029,6 +1046,56 @@ public abstract class AbstractKerMLExpressionsSemanticSequencer extends Abstract
 	
 	/**
 	 * Contexts:
+	 *     OwnedExpression returns CollectExpression
+	 *     ConditionalExpression returns CollectExpression
+	 *     ConditionalExpression.OperatorExpression_0_1_0 returns CollectExpression
+	 *     NullCoalescingExpression returns CollectExpression
+	 *     NullCoalescingExpression.OperatorExpression_1_0 returns CollectExpression
+	 *     ImpliesExpression returns CollectExpression
+	 *     ImpliesExpression.OperatorExpression_1_0 returns CollectExpression
+	 *     OrExpression returns CollectExpression
+	 *     OrExpression.OperatorExpression_1_0 returns CollectExpression
+	 *     XorExpression returns CollectExpression
+	 *     XorExpression.OperatorExpression_1_0 returns CollectExpression
+	 *     AndExpression returns CollectExpression
+	 *     AndExpression.OperatorExpression_1_0 returns CollectExpression
+	 *     EqualityExpression returns CollectExpression
+	 *     EqualityExpression.OperatorExpression_1_0 returns CollectExpression
+	 *     ClassificationExpression returns CollectExpression
+	 *     ClassificationExpression.OperatorExpression_0_1_0 returns CollectExpression
+	 *     RelationalExpression returns CollectExpression
+	 *     RelationalExpression.OperatorExpression_1_0 returns CollectExpression
+	 *     RangeExpression returns CollectExpression
+	 *     RangeExpression.OperatorExpression_1_0 returns CollectExpression
+	 *     AdditiveExpression returns CollectExpression
+	 *     AdditiveExpression.OperatorExpression_1_0 returns CollectExpression
+	 *     MultiplicativeExpression returns CollectExpression
+	 *     MultiplicativeExpression.OperatorExpression_1_0 returns CollectExpression
+	 *     ExponentiationExpression returns CollectExpression
+	 *     ExponentiationExpression.OperatorExpression_1_0 returns CollectExpression
+	 *     UnaryExpression returns CollectExpression
+	 *     ExtentExpression returns CollectExpression
+	 *     PrimaryExpression returns CollectExpression
+	 *     PrimaryExpression.FeatureChainExpression_1_0 returns CollectExpression
+	 *     PrimaryExpression.OperatorExpression_2_0_0_0 returns CollectExpression
+	 *     PrimaryExpression.OperatorExpression_2_0_1_0 returns CollectExpression
+	 *     PrimaryExpression.CollectExpression_2_0_2_0 returns CollectExpression
+	 *     PrimaryExpression.SelectExpression_2_0_3_0 returns CollectExpression
+	 *     PrimaryExpression.FeatureChainExpression_2_1_0 returns CollectExpression
+	 *     BaseExpression returns CollectExpression
+	 *     SequenceExpression returns CollectExpression
+	 *     SequenceExpression.OperatorExpression_1_1_0 returns CollectExpression
+	 *
+	 * Constraint:
+	 *     (operand+=PrimaryExpression_CollectExpression_2_0_2_0 ownedRelationship+=ExpressionBodyMember)
+	 */
+	protected void sequence_PrimaryExpression(ISerializationContext context, CollectExpression semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     OwnedExpression returns FeatureChainExpression
 	 *     ConditionalExpression returns FeatureChainExpression
 	 *     ConditionalExpression.OperatorExpression_0_1_0 returns FeatureChainExpression
@@ -1062,7 +1129,8 @@ public abstract class AbstractKerMLExpressionsSemanticSequencer extends Abstract
 	 *     PrimaryExpression.FeatureChainExpression_1_0 returns FeatureChainExpression
 	 *     PrimaryExpression.OperatorExpression_2_0_0_0 returns FeatureChainExpression
 	 *     PrimaryExpression.OperatorExpression_2_0_1_0 returns FeatureChainExpression
-	 *     PrimaryExpression.SelectExpression_2_0_2_0 returns FeatureChainExpression
+	 *     PrimaryExpression.CollectExpression_2_0_2_0 returns FeatureChainExpression
+	 *     PrimaryExpression.SelectExpression_2_0_3_0 returns FeatureChainExpression
 	 *     BaseExpression returns FeatureChainExpression
 	 *     SequenceExpression returns FeatureChainExpression
 	 *     SequenceExpression.OperatorExpression_1_1_0 returns FeatureChainExpression
@@ -1113,14 +1181,15 @@ public abstract class AbstractKerMLExpressionsSemanticSequencer extends Abstract
 	 *     PrimaryExpression.FeatureChainExpression_1_0 returns SelectExpression
 	 *     PrimaryExpression.OperatorExpression_2_0_0_0 returns SelectExpression
 	 *     PrimaryExpression.OperatorExpression_2_0_1_0 returns SelectExpression
-	 *     PrimaryExpression.SelectExpression_2_0_2_0 returns SelectExpression
+	 *     PrimaryExpression.CollectExpression_2_0_2_0 returns SelectExpression
+	 *     PrimaryExpression.SelectExpression_2_0_3_0 returns SelectExpression
 	 *     PrimaryExpression.FeatureChainExpression_2_1_0 returns SelectExpression
 	 *     BaseExpression returns SelectExpression
 	 *     SequenceExpression returns SelectExpression
 	 *     SequenceExpression.OperatorExpression_1_1_0 returns SelectExpression
 	 *
 	 * Constraint:
-	 *     (operand+=PrimaryExpression_SelectExpression_2_0_2_0 ownedRelationship+=ExpressionBodyMember)
+	 *     (operand+=PrimaryExpression_SelectExpression_2_0_3_0 ownedRelationship+=ExpressionBodyMember)
 	 */
 	protected void sequence_PrimaryExpression(ISerializationContext context, SelectExpression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

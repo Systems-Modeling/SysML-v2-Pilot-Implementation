@@ -703,11 +703,12 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 */
 	@Override
 	public EList<Feature> getChainingFeature() {
-		EList<Feature> chainingFeatures = new NonNotifyingEObjectEList<>(Feature.class, this, SysMLPackage.FEATURE__CHAINING_FEATURE);
+		EList<Feature> chainingFeatures = new NonNotifyingEObjectEList<>(Feature.class, this, SysMLPackage.FEATURE__CHAINING_FEATURE, false);
 		getOwnedFeatureChaining().stream().
 			map(FeatureChaining::getChainingFeature).
 			filter(f->f != null).
-			forEachOrdered(chainingFeatures::add);
+			forEachOrdered(
+					chainingFeatures::add);
 		return chainingFeatures;
 	}
 

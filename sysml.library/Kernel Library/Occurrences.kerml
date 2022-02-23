@@ -264,7 +264,9 @@ package Occurrences {
 	 */
 	assoc PortionOf specializes HappensDuring { 
 		end feature portionedOccurrence: Occurrence[1..*] redefines longerOccurrence subsets portionOccurrence.portionOf;
-		end feature portionOccurrence: Occurrence[1..*] redefines shorterOccurrence subsets portionedOccurrence.portions; 
+		end feature portionOccurrence: Occurrence[1..*] redefines shorterOccurrence subsets portionedOccurrence.portions;
+		
+		binding portionOccurrence.portionOfLife[1] = portionedOccurrence.portionOfLife[1];
 	}
 	
 	/**

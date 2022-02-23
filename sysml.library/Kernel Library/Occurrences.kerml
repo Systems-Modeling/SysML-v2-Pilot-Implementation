@@ -263,26 +263,26 @@ package Occurrences {
 	 * PortionOf asserts one occurrence is a portion of another, including at least itself. 
 	 */
 	assoc PortionOf specializes HappensDuring { 
-		end feature portionedOccurrence: Occurrence[1..*] redefines longerOccurrence subsets portionOccurrence.portionOf;
 		end feature portionOccurrence: Occurrence[1..*] redefines shorterOccurrence subsets portionedOccurrence.portions;
+		end feature portionedOccurrence: Occurrence[1..*] redefines longerOccurrence subsets portionOccurrence.portionOf;
 		
 		binding portionOccurrence.portionOfLife[1] = portionedOccurrence.portionOfLife[1];
 	}
 	
 	/**
-	 * TimeSliceOf asserts once occurrence is a time slice of another, including at least itself.
+	 * TimeSliceOf asserts one occurrence is a time slice of another, including at least itself.
 	 */
 	assoc TimeSliceOf specializes PortionOf {
-		end feature timeSlicedOccurrence: Occurrence[1..*] redefines portionedOccurrence subsets timeSliceOccurrence.timeSliceOf;
 		end feature timeSliceOccurrence: Occurrence[1..*] redefines portionOccurrence subsets timeSlicedOccurrence.timeSlices;
+		end feature timeSlicedOccurrence: Occurrence[1..*] redefines portionedOccurrence subsets timeSliceOccurrence.timeSliceOf;
 	}
 	
 	/**
-	 * SnapshotsOf asserts once occurrence is a snapshot of another.
+	 * SnapshotsOf asserts one occurrence is a snapshot of another.
 	 */
 	assoc SnapshotOf specializes TimeSliceOf {
-		end feature snapshottedOccurrence: Occurrence[1..*] redefines timeSlicedOccurrence subsets snapshotOcccurrence.snapshotOf;
 		end feature snapshotOcccurrence: Occurrence[1..*] redefines timeSliceOccurrence subsets snapshottedOccurrence.snapshots;
+		end feature snapshottedOccurrence: Occurrence[1..*] redefines timeSlicedOccurrence subsets snapshotOcccurrence.snapshotOf;
 	}
 	
 	/**

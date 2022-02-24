@@ -151,30 +151,20 @@ public class VPath extends VTraverser {
             }
         }
 
-        private PCFeatureChain pcFeatureChain;
-
-        private PCFeatureChain getPCFeatureChain() {
-            if (pcFeatureChain != null) return pcFeatureChain;
-            Feature f = fce.getTargetFeature();
-            if (f == null) return null;
-            List<FeatureChaining> fcs = f.getOwnedFeatureChaining();
-            if (fcs.isEmpty()) return null;
-            pcFeatureChain = new PCFeatureChain(f);
-            return pcFeatureChain;
-        }
-
-        private Element getTargetRef() {
+        @Override
+        protected Element getTarget() {
             Expression ex = getTargetExp();
             if (!(ex instanceof FeatureReferenceExpression)) return null;
             FeatureReferenceExpression fre = (FeatureReferenceExpression) ex;
             return fre.getReferent();
         }
 
-        @Override
-        protected Element getTarget() {
-            PCFeatureChain pcf = getPCFeatureChain();
-            if (pcf != null) return pcf.getTarget();
-            return getTargetRef();
+        private PCFeatureChain getPCFeatureChain() {
+            Feature f = fce.getTargetFeature();
+            if (f == null) return null;
+            List<FeatureChaining> fcs = f.getOwnedFeatureChaining();
+            if (fcs.isEmpty()) return null;
+            return new PCFeatureChain(this, f);
         }
 
         @Override
@@ -243,6 +233,12 @@ public class VPath extends VTraverser {
 
         public PCFeatureChain(Feature f) {
             super(f);
+            this.fcs = f.getOwnedFeatureChaining();
+            this.index = 0;
+        }
+
+        public PCFeatureChain(PC prev, Feature f) {
+            super(prev);
             this.fcs = f.getOwnedFeatureChaining();
             this.index = 0;
         }

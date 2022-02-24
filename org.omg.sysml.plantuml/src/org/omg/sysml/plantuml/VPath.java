@@ -1,6 +1,6 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation, PlantUML Visualization
- * Copyright (c) 2020 Mgnite Inc.
+ * Copyright (c) 2020-2022 Mgnite Inc.
  * Copyright (c) 2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
@@ -129,7 +129,7 @@ public class VPath extends VTraverser {
         }
 
         public PC leave() {
-        	if (!isMatching()) return this;
+            if (!isMatching()) return this;
             if (unmatched == 0) {
                 return getPrev();
             } else {
@@ -151,29 +151,41 @@ public class VPath extends VTraverser {
             }
         }
 
+        private PCFeatureChain pcFeatureChain;
+
+        private PCFeatureChain getPCFeatureChain() {
+            if (pcFeatureChain != null) return pcFeatureChain;
+            Feature f = fce.getTargetFeature();
+            if (f == null) return null;
+            List<FeatureChaining> fcs = f.getOwnedFeatureChaining();
+            if (fcs.isEmpty()) return null;
+            pcFeatureChain = new PCFeatureChain(f);
+            return pcFeatureChain;
+        }
+
+        private Element getTargetRef() {
+            Expression ex = getTargetExp();
+            if (!(ex instanceof FeatureReferenceExpression)) return null;
+            FeatureReferenceExpression fre = (FeatureReferenceExpression) ex;
+            return fre.getReferent();
+        }
+
         @Override
         protected Element getTarget() {
-        	if (isMatching()) {
-        		return fce.getTargetFeature();
-        	} else {
-	            Expression ex = getTargetExp();
-	            if (!(ex instanceof FeatureReferenceExpression)) return null;
-	            FeatureReferenceExpression fre = (FeatureReferenceExpression) ex;
-	            return fre.getReferent();
-        	}
+            PCFeatureChain pcf = getPCFeatureChain();
+            if (pcf != null) return pcf.getTarget();
+            return getTargetRef();
         }
 
         @Override
         protected PC getNext() {
-            if (getPrev() == null) {
-                return new PCFeatureChainExpression(this, fce);
+            PCFeatureChain pcf = getPCFeatureChain();
+            if (pcf != null) return pcf;
+            Feature f = fce.getTargetFeature();
+            if (f == null) {
+                return new PCTerminal(this);
             } else {
-                Type typ = fce.getOwningType();
-                if (typ instanceof FeatureChainExpression) {
-                    return new PCFeatureChainExpression(this, (FeatureChainExpression) typ);
-                } else {
-                    return new PCTerminal(this);
-                }
+                return new PCFeature(this, f);
             }
         }
 
@@ -185,6 +197,25 @@ public class VPath extends VTraverser {
         public PCFeatureChainExpression(FeatureChainExpression target, FeatureChainExpression head) {
             super(target);
             this.fce = head;
+        }
+    }
+
+    private class PCFeature extends PC {
+        private final Feature f;
+
+        @Override
+        protected Element getTarget() {
+            return f;
+        }
+
+        @Override
+        protected PC getNext() {
+            return new PCTerminal(this);
+        }
+
+        public PCFeature(PC prev, Feature f) {
+            super(prev);
+            this.f = f;
         }
     }
 

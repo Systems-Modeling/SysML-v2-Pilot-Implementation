@@ -8889,10 +8889,10 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final RuleCall cBaseExpressionParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
 		private final Group cGroup_1_0 = (Group)cGroup_1.eContents().get(0);
-		private final Action cPathStepExpressionOperandAction_1_0_0 = (Action)cGroup_1_0.eContents().get(0);
+		private final Action cFeatureChainExpressionOperandAction_1_0_0 = (Action)cGroup_1_0.eContents().get(0);
 		private final Keyword cFullStopKeyword_1_0_1 = (Keyword)cGroup_1_0.eContents().get(1);
-		private final Assignment cOperandAssignment_1_0_2 = (Assignment)cGroup_1_0.eContents().get(2);
-		private final RuleCall cOperandFeatureChainExpressionParserRuleCall_1_0_2_0 = (RuleCall)cOperandAssignment_1_0_2.eContents().get(0);
+		private final Assignment cOwnedRelationshipAssignment_1_0_2 = (Assignment)cGroup_1_0.eContents().get(2);
+		private final RuleCall cOwnedRelationshipFeatureChainMemberParserRuleCall_1_0_2_0 = (RuleCall)cOwnedRelationshipAssignment_1_0_2.eContents().get(0);
 		private final Alternatives cAlternatives_1_1 = (Alternatives)cGroup_1.eContents().get(1);
 		private final Group cGroup_1_1_0 = (Group)cAlternatives_1_1.eContents().get(0);
 		private final Action cOperatorExpressionOperandAction_1_1_0_0 = (Action)cGroup_1_1_0.eContents().get(0);
@@ -8913,15 +8913,20 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final RuleCall cOwnedRelationshipFunctionReferenceMemberParserRuleCall_1_1_1_3_1_0 = (RuleCall)cOwnedRelationshipAssignment_1_1_1_3_1.eContents().get(0);
 		private final RuleCall cArgumentListParserRuleCall_1_1_1_3_2 = (RuleCall)cAlternatives_1_1_1_3.eContents().get(2);
 		private final Group cGroup_1_1_2 = (Group)cAlternatives_1_1.eContents().get(2);
-		private final Action cPathSelectExpressionOperandAction_1_1_2_0 = (Action)cGroup_1_1_2.eContents().get(0);
+		private final Action cCollectExpressionOperandAction_1_1_2_0 = (Action)cGroup_1_1_2.eContents().get(0);
 		private final Keyword cFullStopKeyword_1_1_2_1 = (Keyword)cGroup_1_1_2.eContents().get(1);
 		private final Assignment cOwnedRelationshipAssignment_1_1_2_2 = (Assignment)cGroup_1_1_2.eContents().get(2);
 		private final RuleCall cOwnedRelationshipExpressionBodyMemberParserRuleCall_1_1_2_2_0 = (RuleCall)cOwnedRelationshipAssignment_1_1_2_2.eContents().get(0);
+		private final Group cGroup_1_1_3 = (Group)cAlternatives_1_1.eContents().get(3);
+		private final Action cSelectExpressionOperandAction_1_1_3_0 = (Action)cGroup_1_1_3.eContents().get(0);
+		private final Keyword cFullStopDollarSignKeyword_1_1_3_1 = (Keyword)cGroup_1_1_3.eContents().get(1);
+		private final Assignment cOwnedRelationshipAssignment_1_1_3_2 = (Assignment)cGroup_1_1_3.eContents().get(2);
+		private final RuleCall cOwnedRelationshipExpressionBodyMemberParserRuleCall_1_1_3_2_0 = (RuleCall)cOwnedRelationshipAssignment_1_1_3_2.eContents().get(0);
 		
 		//TargetExpression returns SysML::Expression :
 		//    BaseExpression
-		//    ( ( {SysML::PathStepExpression.operand += current} '.'
-		//        operand += FeatureChainExpression
+		//    ( ( {SysML::FeatureChainExpression.operand += current} '.'
+		//      ownedRelationship += FeatureChainMember
 		//      )?
 		//      ( {SysML::OperatorExpression.operand += current}
 		//        operator = '[' operand += SequenceExpression ']'
@@ -8931,7 +8936,9 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//        | ownedRelationship += FunctionReferenceMember
 		//        | ArgumentList
 		//        )
-		//      | {SysML::PathSelectExpression.operand += current} '.'
+		//      | {SysML::CollectExpression.operand += current} '.'
+		//        ownedRelationship += ExpressionBodyMember
+		//      | {SysML::SelectExpression.operand += current} '.$'
 		//        ownedRelationship += ExpressionBodyMember
 		//      )
 		//    )*
@@ -8939,8 +8946,8 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		@Override public ParserRule getRule() { return rule; }
 		
 		//BaseExpression
-		//( ( {SysML::PathStepExpression.operand += current} '.'
-		//    operand += FeatureChainExpression
+		//( ( {SysML::FeatureChainExpression.operand += current} '.'
+		//  ownedRelationship += FeatureChainMember
 		//  )?
 		//  ( {SysML::OperatorExpression.operand += current}
 		//    operator = '[' operand += SequenceExpression ']'
@@ -8950,7 +8957,9 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//    | ownedRelationship += FunctionReferenceMember
 		//    | ArgumentList
 		//    )
-		//  | {SysML::PathSelectExpression.operand += current} '.'
+		//  | {SysML::CollectExpression.operand += current} '.'
+		//    ownedRelationship += ExpressionBodyMember
+		//  | {SysML::SelectExpression.operand += current} '.$'
 		//    ownedRelationship += ExpressionBodyMember
 		//  )
 		//)*
@@ -8959,8 +8968,8 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//BaseExpression
 		public RuleCall getBaseExpressionParserRuleCall_0() { return cBaseExpressionParserRuleCall_0; }
 		
-		//( ( {SysML::PathStepExpression.operand += current} '.'
-		//    operand += FeatureChainExpression
+		//( ( {SysML::FeatureChainExpression.operand += current} '.'
+		//  ownedRelationship += FeatureChainMember
 		//  )?
 		//  ( {SysML::OperatorExpression.operand += current}
 		//    operator = '[' operand += SequenceExpression ']'
@@ -8970,28 +8979,30 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//    | ownedRelationship += FunctionReferenceMember
 		//    | ArgumentList
 		//    )
-		//  | {SysML::PathSelectExpression.operand += current} '.'
+		//  | {SysML::CollectExpression.operand += current} '.'
+		//    ownedRelationship += ExpressionBodyMember
+		//  | {SysML::SelectExpression.operand += current} '.$'
 		//    ownedRelationship += ExpressionBodyMember
 		//  )
 		//)*
 		public Group getGroup_1() { return cGroup_1; }
 		
-		//( {SysML::PathStepExpression.operand += current} '.'
-		//       operand += FeatureChainExpression
+		//( {SysML::FeatureChainExpression.operand += current} '.'
+		//     ownedRelationship += FeatureChainMember
 		//     )?
 		public Group getGroup_1_0() { return cGroup_1_0; }
 		
-		//{SysML::PathStepExpression.operand += current}
-		public Action getPathStepExpressionOperandAction_1_0_0() { return cPathStepExpressionOperandAction_1_0_0; }
+		//{SysML::FeatureChainExpression.operand += current}
+		public Action getFeatureChainExpressionOperandAction_1_0_0() { return cFeatureChainExpressionOperandAction_1_0_0; }
 		
 		//'.'
 		public Keyword getFullStopKeyword_1_0_1() { return cFullStopKeyword_1_0_1; }
 		
-		//operand += FeatureChainExpression
-		public Assignment getOperandAssignment_1_0_2() { return cOperandAssignment_1_0_2; }
+		//ownedRelationship += FeatureChainMember
+		public Assignment getOwnedRelationshipAssignment_1_0_2() { return cOwnedRelationshipAssignment_1_0_2; }
 		
-		//FeatureChainExpression
-		public RuleCall getOperandFeatureChainExpressionParserRuleCall_1_0_2_0() { return cOperandFeatureChainExpressionParserRuleCall_1_0_2_0; }
+		//FeatureChainMember
+		public RuleCall getOwnedRelationshipFeatureChainMemberParserRuleCall_1_0_2_0() { return cOwnedRelationshipFeatureChainMemberParserRuleCall_1_0_2_0; }
 		
 		//( {SysML::OperatorExpression.operand += current}
 		//  operator = '[' operand += SequenceExpression ']'
@@ -9001,7 +9012,9 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//  | ownedRelationship += FunctionReferenceMember
 		//  | ArgumentList
 		//  )
-		//| {SysML::PathSelectExpression.operand += current} '.'
+		//| {SysML::CollectExpression.operand += current} '.'
+		//  ownedRelationship += ExpressionBodyMember
+		//| {SysML::SelectExpression.operand += current} '.$'
 		//  ownedRelationship += ExpressionBodyMember
 		//)
 		public Alternatives getAlternatives_1_1() { return cAlternatives_1_1; }
@@ -9069,12 +9082,12 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//ArgumentList
 		public RuleCall getArgumentListParserRuleCall_1_1_1_3_2() { return cArgumentListParserRuleCall_1_1_1_3_2; }
 		
-		//{SysML::PathSelectExpression.operand += current} '.'
+		//{SysML::CollectExpression.operand += current} '.'
 		//       ownedRelationship += ExpressionBodyMember
 		public Group getGroup_1_1_2() { return cGroup_1_1_2; }
 		
-		//{SysML::PathSelectExpression.operand += current}
-		public Action getPathSelectExpressionOperandAction_1_1_2_0() { return cPathSelectExpressionOperandAction_1_1_2_0; }
+		//{SysML::CollectExpression.operand += current}
+		public Action getCollectExpressionOperandAction_1_1_2_0() { return cCollectExpressionOperandAction_1_1_2_0; }
 		
 		//'.'
 		public Keyword getFullStopKeyword_1_1_2_1() { return cFullStopKeyword_1_1_2_1; }
@@ -9084,6 +9097,22 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		
 		//ExpressionBodyMember
 		public RuleCall getOwnedRelationshipExpressionBodyMemberParserRuleCall_1_1_2_2_0() { return cOwnedRelationshipExpressionBodyMemberParserRuleCall_1_1_2_2_0; }
+		
+		//{SysML::SelectExpression.operand += current} '.$'
+		//       ownedRelationship += ExpressionBodyMember
+		public Group getGroup_1_1_3() { return cGroup_1_1_3; }
+		
+		//{SysML::SelectExpression.operand += current}
+		public Action getSelectExpressionOperandAction_1_1_3_0() { return cSelectExpressionOperandAction_1_1_3_0; }
+		
+		//'.$'
+		public Keyword getFullStopDollarSignKeyword_1_1_3_1() { return cFullStopDollarSignKeyword_1_1_3_1; }
+		
+		//ownedRelationship += ExpressionBodyMember
+		public Assignment getOwnedRelationshipAssignment_1_1_3_2() { return cOwnedRelationshipAssignment_1_1_3_2; }
+		
+		//ExpressionBodyMember
+		public RuleCall getOwnedRelationshipExpressionBodyMemberParserRuleCall_1_1_3_2_0() { return cOwnedRelationshipExpressionBodyMemberParserRuleCall_1_1_3_2_0; }
 	}
 	public class IfNodeElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.IfNode");
@@ -12534,41 +12563,19 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	public class SatisfactionReferenceExpressionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.SatisfactionReferenceExpression");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final RuleCall cFeatureReferenceExpressionParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
-		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final Keyword cFullStopKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
-		private final Action cPathStepExpressionOperandAction_1_1 = (Action)cGroup_1.eContents().get(1);
-		private final Assignment cOperandAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
-		private final RuleCall cOperandFeatureReferenceExpressionParserRuleCall_1_2_0 = (RuleCall)cOperandAssignment_1_2.eContents().get(0);
+		private final Assignment cOwnedRelationshipAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cOwnedRelationshipFeatureChainMemberParserRuleCall_0 = (RuleCall)cOwnedRelationshipAssignment.eContents().get(0);
 		
-		//SatisfactionReferenceExpression returns SysML::Expression :
-		//      FeatureReferenceExpression
-		//      ( '.' {SysML::PathStepExpression.operand += current} operand += FeatureReferenceExpression )*
+		//SatisfactionReferenceExpression returns SysML::FeatureReferenceExpression :
+		//    ownedRelationship += FeatureChainMember
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//FeatureReferenceExpression
-		//( '.' {SysML::PathStepExpression.operand += current} operand += FeatureReferenceExpression )*
-		public Group getGroup() { return cGroup; }
+		//ownedRelationship += FeatureChainMember
+		public Assignment getOwnedRelationshipAssignment() { return cOwnedRelationshipAssignment; }
 		
-		//FeatureReferenceExpression
-		public RuleCall getFeatureReferenceExpressionParserRuleCall_0() { return cFeatureReferenceExpressionParserRuleCall_0; }
-		
-		//( '.' {SysML::PathStepExpression.operand += current} operand += FeatureReferenceExpression )*
-		public Group getGroup_1() { return cGroup_1; }
-		
-		//'.'
-		public Keyword getFullStopKeyword_1_0() { return cFullStopKeyword_1_0; }
-		
-		//{SysML::PathStepExpression.operand += current}
-		public Action getPathStepExpressionOperandAction_1_1() { return cPathStepExpressionOperandAction_1_1; }
-		
-		//operand += FeatureReferenceExpression
-		public Assignment getOperandAssignment_1_2() { return cOperandAssignment_1_2; }
-		
-		//FeatureReferenceExpression
-		public RuleCall getOperandFeatureReferenceExpressionParserRuleCall_1_2_0() { return cOperandFeatureReferenceExpressionParserRuleCall_1_2_0; }
+		//FeatureChainMember
+		public RuleCall getOwnedRelationshipFeatureChainMemberParserRuleCall_0() { return cOwnedRelationshipFeatureChainMemberParserRuleCall_0; }
 	}
 	public class ConcernKeywordElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.ConcernKeyword");
@@ -18401,8 +18408,8 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	
 	//TargetExpression returns SysML::Expression :
 	//    BaseExpression
-	//    ( ( {SysML::PathStepExpression.operand += current} '.'
-	//        operand += FeatureChainExpression
+	//    ( ( {SysML::FeatureChainExpression.operand += current} '.'
+	//      ownedRelationship += FeatureChainMember
 	//      )?
 	//      ( {SysML::OperatorExpression.operand += current}
 	//        operator = '[' operand += SequenceExpression ']'
@@ -18412,7 +18419,9 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	//        | ownedRelationship += FunctionReferenceMember
 	//        | ArgumentList
 	//        )
-	//      | {SysML::PathSelectExpression.operand += current} '.'
+	//      | {SysML::CollectExpression.operand += current} '.'
+	//        ownedRelationship += ExpressionBodyMember
+	//      | {SysML::SelectExpression.operand += current} '.$'
 	//        ownedRelationship += ExpressionBodyMember
 	//      )
 	//    )*
@@ -19713,9 +19722,8 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		return getSatisfactionFeatureValueAccess().getRule();
 	}
 	
-	//SatisfactionReferenceExpression returns SysML::Expression :
-	//      FeatureReferenceExpression
-	//      ( '.' {SysML::PathStepExpression.operand += current} operand += FeatureReferenceExpression )*
+	//SatisfactionReferenceExpression returns SysML::FeatureReferenceExpression :
+	//    ownedRelationship += FeatureChainMember
 	//;
 	public SatisfactionReferenceExpressionElements getSatisfactionReferenceExpressionAccess() {
 		return pSatisfactionReferenceExpression;
@@ -20810,8 +20818,8 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	///* Primary Expressions */
 	//PrimaryExpression returns SysML::Expression :
 	//    BaseExpression
-	//    ( {SysML::PathStepExpression.operand += current} '.'
-	//      operand += FeatureChainExpression
+	//    ( {SysML::FeatureChainExpression.operand += current} '.'
+	//      ownedRelationship += FeatureChainMember
 	//    )?
 	//    ( ( {SysML::OperatorExpression.operand += current}
 	//        operator = '[' operand += SequenceExpression ']'
@@ -20821,11 +20829,13 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	//        | ownedRelationship += FunctionReferenceMember
 	//        | ArgumentList
 	//        )
-	//      | {SysML::PathSelectExpression.operand += current} '.'
+	//      | {SysML::CollectExpression.operand += current} '.'
+	//        ownedRelationship += ExpressionBodyMember
+	//      | {SysML::SelectExpression.operand += current} '.?'
 	//        ownedRelationship += ExpressionBodyMember
 	//      )
-	//      ( {SysML::PathStepExpression.operand += current} '.'
-	//        operand += FeatureChainExpression
+	//      ( {SysML::FeatureChainExpression.operand += current} '.'
+	//          ownedRelationship += FeatureChainMember
 	//      )?
 	//    )*
 	//;
@@ -20870,20 +20880,9 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		return getFunctionReferenceAccess().getRule();
 	}
 	
-	//FeatureChainExpression returns SysML::FeatureReferenceExpression :
-	//    ownedRelationship += FeatureChainMember
-	//;
-	public KerMLExpressionsGrammarAccess.FeatureChainExpressionElements getFeatureChainExpressionAccess() {
-		return gaKerMLExpressions.getFeatureChainExpressionAccess();
-	}
-	
-	public ParserRule getFeatureChainExpressionRule() {
-		return getFeatureChainExpressionAccess().getRule();
-	}
-	
 	//FeatureChainMember returns SysML::Membership :
 	//      memberElement = [SysML::Feature | QualifiedName]
-	//    | ownedRelatedElement += FeatureChain
+	//    | ownedRelatedElement += FeatureChain // ownedMemberElement = FeatureChain
 	//;
 	public KerMLExpressionsGrammarAccess.FeatureChainMemberElements getFeatureChainMemberAccess() {
 		return gaKerMLExpressions.getFeatureChainMemberAccess();

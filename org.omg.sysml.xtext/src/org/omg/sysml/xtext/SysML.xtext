@@ -1504,8 +1504,8 @@ TargetBinding returns SysML::FeatureValue :
 
 TargetExpression returns SysML::Expression :
 	BaseExpression
-	( ( {SysML::PathStepExpression.operand += current} '.' 
-	    operand += FeatureChainExpression
+	( ( {SysML::FeatureChainExpression.operand += current} '.' 
+	  ownedRelationship += FeatureChainMember
 	  )?
 	  ( {SysML::OperatorExpression.operand += current} 
 	    operator = '[' operand += SequenceExpression ']'
@@ -1515,8 +1515,10 @@ TargetExpression returns SysML::Expression :
 	    | ownedRelationship += FunctionReferenceMember 
 	    | ArgumentList
 	    ) 
-	  | {SysML::PathSelectExpression.operand += current} '.'
-	    ownedRelationship += ExpressionBodyMember
+	  | {SysML::CollectExpression.operand += current} '.'
+	    ownedRelationship += ExpressionBodyMember 
+	  | {SysML::SelectExpression.operand += current} '.$'
+	    ownedRelationship += ExpressionBodyMember 
 	  )
 	)*
 ;
@@ -2083,9 +2085,8 @@ SatisfactionFeatureValue returns SysML::FeatureValue :
 	ownedRelatedElement += SatisfactionReferenceExpression // value = SatisfactionFeature
 ;
 
-SatisfactionReferenceExpression returns SysML::Expression :
-	  FeatureReferenceExpression 
-	  ( '.' {SysML::PathStepExpression.operand += current} operand += FeatureReferenceExpression )*
+SatisfactionReferenceExpression returns SysML::FeatureReferenceExpression :
+	ownedRelationship += FeatureChainMember
 ;
 
 /* CONCERNS */
@@ -2103,7 +2104,6 @@ ConcernDefKeyword :
 ConcernDefinition returns SysML::ConcernDefinition :
 	OccurrenceDefinitionPrefix ConcernDefKeyword ConstraintDeclaration RequirementBody  
 ;
-
 
 ConcernUsageKeyword :
 	ConcernKeyword

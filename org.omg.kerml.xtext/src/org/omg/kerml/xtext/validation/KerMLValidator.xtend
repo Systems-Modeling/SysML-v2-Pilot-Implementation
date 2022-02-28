@@ -63,6 +63,7 @@ import org.omg.sysml.lang.sysml.LiteralInfinity
 import org.omg.sysml.lang.sysml.LiteralInteger
 import org.omg.sysml.lang.sysml.ItemFlowFeature
 import org.omg.sysml.lang.sysml.Multiplicity
+import org.omg.sysml.lang.sysml.FeatureChainExpression
 
 /**
  * This class contains custom validation rules. 
@@ -108,6 +109,8 @@ class KerMLValidator extends AbstractKerMLValidator {
 	public static val INVALID_FEATURE_CHAINING__INVALID_FEATURE_MSG = "Must be a valid feature"
 	public static val INVALID_FEATURE_REFERENCE_EXPRESSION__INVALID_FEATURE = "Invalid FeatureReferenceExpression - Invalid feature"
 	public static val INVALID_FEATURE_REFERENCE_EXPRESSION__INVALID_FEATURE_MSG = "Must be a valid feature"
+	public static val INVALID_FEATURE_CHAIN_EXPRESSION__INVALID_FEATURE = "Invalid FeatureChainExpression - Invalid feature"
+	public static val INVALID_FEATURE_CHAIN_EXPRESSION__INVALID_FEATURE_MSG = "Must be a valid feature"
 	public static val INVALID_TYPE_MULTIPLICITY__TOO_MANY = "Invalid Type - Too many multiplicities"
 	public static val INVALID_TYPE_MULTIPLICITY__TOO_MANY_MSG = "Only one multiplicity is allowed"
 	
@@ -219,6 +222,14 @@ class KerMLValidator extends AbstractKerMLValidator {
 	@Check
 	def checkFeatureReferenceExpression(FeatureReferenceExpression e) {
 		val feature = ExpressionUtil.getReferentFor(e)
+		if (feature !== null && !(feature instanceof Feature)) {
+			error(INVALID_FEATURE_REFERENCE_EXPRESSION__INVALID_FEATURE_MSG, e, null, INVALID_FEATURE_REFERENCE_EXPRESSION__INVALID_FEATURE)
+		}
+	}
+	
+	@Check
+	def checkFeatureChainExpression(FeatureChainExpression e) {
+		val feature = ExpressionUtil.getTargetFeatureFor(e)
 		val rel = NamespaceUtil.getRelativeNamespaceFor(e)
 		if (feature !== null &&
 			(!(feature instanceof Feature) || 
@@ -226,7 +237,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 				!(feature as Feature).featuringType.isEmpty &&
 				!(feature as Feature).featuringType.exists[t | (rel as Type).conformsTo(t)]
 			)) {
-			error(INVALID_FEATURE_REFERENCE_EXPRESSION__INVALID_FEATURE_MSG, e, null, INVALID_FEATURE_REFERENCE_EXPRESSION__INVALID_FEATURE)
+			error(INVALID_FEATURE_CHAIN_EXPRESSION__INVALID_FEATURE_MSG, e.ownedMembership.get(1), SysMLPackage.eINSTANCE.membership_MemberElement, INVALID_FEATURE_CHAIN_EXPRESSION__INVALID_FEATURE)
 		}
 	}
 	
@@ -269,7 +280,8 @@ class KerMLValidator extends AbstractKerMLValidator {
 			if (!(relatedFeature.featuringType.empty || 
 				cFeaturingTypes.exists[featuringType |
 					relatedFeature.featuringType.exists[f | featuringType.conformsTo(f)]] ||
-				location instanceof FeatureReferenceExpression && relatedFeature.getOwningType() == location ||
+				(location instanceof FeatureReferenceExpression || location instanceof FeatureChainExpression) && 
+					relatedFeature.getOwningType() == location ||
 				c instanceof ItemFlow && c.owningNamespace instanceof Feature && c.owningType === null)) {
 				warning(INVALID_CONNECTOR_END__CONTEXT_MSG, 
 					if (location === c && i < connectorEnds.size) connectorEnds.get(i) else location, 

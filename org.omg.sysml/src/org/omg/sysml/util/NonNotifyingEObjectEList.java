@@ -1,6 +1,6 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -29,9 +29,21 @@ import org.eclipse.emf.ecore.util.EObjectEList;
 public class NonNotifyingEObjectEList<T> extends EObjectEList<T> {
 
 	private static final long serialVersionUID = -189113090526844372L;
-
+	
+	protected boolean isUnique;
+	
 	public NonNotifyingEObjectEList(Class<?> dataClass, InternalEObject owner, int featureID) {
+		this(dataClass, owner, featureID, true);
+	}
+
+	public NonNotifyingEObjectEList(Class<?> dataClass, InternalEObject owner, int featureID, boolean isUnique) {
 		super(dataClass, owner, featureID);
+		this.isUnique = isUnique;
+	}
+	
+	@Override
+	public boolean isUnique() {
+		return this.isUnique;
 	}
 
 	@Override

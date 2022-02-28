@@ -1,6 +1,7 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation, PlantUML Visualization
- * Copyright (c) 2020 Mgnite Inc.
+ * Copyright (c) 2020-2022 Mgnite Inc.
+ * Copyright (c) 2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -19,6 +20,7 @@
  * 
  * Contributors:
  *  Hisashi Miyashita, Mgnite Inc.
+ *  Ed Seidewitz, MDS
  * 
  *****************************************************************************/
 
@@ -35,13 +37,13 @@ import java.util.Set;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.FeatureChainExpression;
 import org.omg.sysml.lang.sysml.FeatureChaining;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureReferenceExpression;
 import org.omg.sysml.lang.sysml.ItemFlowEnd;
 import org.omg.sysml.lang.sysml.ItemFlowFeature;
 import org.omg.sysml.lang.sysml.Namespace;
-import org.omg.sysml.lang.sysml.PathStepExpression;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.Type;
@@ -127,7 +129,7 @@ public class VPath extends VTraverser {
         }
 
         public PC leave() {
-        	if (!isMatching()) return this;
+            if (!isMatching()) return this;
             if (unmatched == 0) {
                 return getPrev();
             } else {
@@ -137,16 +139,15 @@ public class VPath extends VTraverser {
         }
     }
     
-    private class PCPathStepExpression extends PC {
-        private final PathStepExpression pse;
+    private class PCFeatureChainExpression extends PC {
+        private final FeatureChainExpression fce;
 
         private Expression getTargetExp() {
-            List<Expression> ops = pse.getOperand();
-            if (ops.size() < 2) return null;
-            if (isMatching()) {
-                return ops.get(1);
+            List<Expression> ops = fce.getOperand();
+            if (ops.isEmpty()) {
+            	return null;
             } else {
-                return ops.get(0);
+            	return ops.get(0);
             }
         }
 
@@ -158,28 +159,53 @@ public class VPath extends VTraverser {
             return fre.getReferent();
         }
 
+        private PCFeatureChain getPCFeatureChain() {
+            Feature f = fce.getTargetFeature();
+            if (f == null) return null;
+            List<FeatureChaining> fcs = f.getOwnedFeatureChaining();
+            if (fcs.isEmpty()) return null;
+            return new PCFeatureChain(this, f);
+        }
+
         @Override
         protected PC getNext() {
-            if (getPrev() == null) {
-                return new PCPathStepExpression(this, pse);
+            PCFeatureChain pcf = getPCFeatureChain();
+            if (pcf != null) return pcf;
+            Feature f = fce.getTargetFeature();
+            if (f == null) {
+                return new PCTerminal(this);
             } else {
-                Type typ = pse.getOwningType();
-                if (typ instanceof PathStepExpression) {
-                    return new PCPathStepExpression(this, (PathStepExpression) typ);
-                } else {
-                    return new PCTerminal(this);
-                }
+                return new PCFeature(this, f);
             }
         }
 
-        private PCPathStepExpression(PCPathStepExpression prev, PathStepExpression pse) {
+        private PCFeatureChainExpression(PCFeatureChainExpression prev, FeatureChainExpression fce) {
             super(prev);
-            this.pse = pse;
+            this.fce = fce;
         }
 
-        public PCPathStepExpression(PathStepExpression target, PathStepExpression head) {
+        public PCFeatureChainExpression(FeatureChainExpression target, FeatureChainExpression head) {
             super(target);
-            this.pse = head;
+            this.fce = head;
+        }
+    }
+
+    private class PCFeature extends PC {
+        private final Feature f;
+
+        @Override
+        protected Element getTarget() {
+            return f;
+        }
+
+        @Override
+        protected PC getNext() {
+            return new PCTerminal(this);
+        }
+
+        public PCFeature(PC prev, Feature f) {
+            super(prev);
+            this.f = f;
         }
     }
 
@@ -207,6 +233,12 @@ public class VPath extends VTraverser {
 
         public PCFeatureChain(Feature f) {
             super(f);
+            this.fcs = f.getOwnedFeatureChaining();
+            this.index = 0;
+        }
+
+        public PCFeatureChain(PC prev, Feature f) {
+            super(prev);
             this.fcs = f.getOwnedFeatureChaining();
             this.index = 0;
         }
@@ -409,23 +441,23 @@ public class VPath extends VTraverser {
         return "";
     }
 
-    private static PathStepExpression head(PathStepExpression pse) {
+    private static FeatureChainExpression head(FeatureChainExpression fce) {
         for (;;) {
-            List<Expression> ops = pse.getOperand();
-            if (ops.isEmpty()) return pse;
+            List<Expression> ops = fce.getOperand();
+            if (ops.isEmpty()) return fce;
             Expression ex = ops.get(0);
-            if (ex instanceof PathStepExpression) {
-                pse = (PathStepExpression) ex;
+            if (ex instanceof FeatureChainExpression) {
+                fce = (FeatureChainExpression) ex;
             } else {
-                return pse;
+                return fce;
             }
         }
     }
 
-    private String addContext(PathStepExpression pse) {
-        PathStepExpression head = head(pse);
+    private String addContext(FeatureChainExpression fce) {
+    	FeatureChainExpression head = head(fce);
         if (head == null) return null;
-        addContext(new PCPathStepExpression(pse, head));
+        addContext(new PCFeatureChainExpression(fce, head));
         return "";
     }
 
@@ -480,8 +512,8 @@ public class VPath extends VTraverser {
     }
 
     @Override
-    public String casePathStepExpression(PathStepExpression pse) {
-        return addContext(pse);
+    public String caseFeatureChainExpression(FeatureChainExpression fce) {
+        return addContext(fce);
     }
 
     @Override

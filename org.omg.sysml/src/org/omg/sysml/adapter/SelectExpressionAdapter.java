@@ -24,32 +24,32 @@ package org.omg.sysml.adapter;
 import org.eclipse.emf.common.util.EList;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.PathStepExpression;
+import org.omg.sysml.lang.sysml.SelectExpression;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.util.ElementUtil;
 import org.omg.sysml.util.TypeUtil;
 
-public class PathStepExpressionAdapter extends OperatorExpressionAdapter {
+public class SelectExpressionAdapter extends OperatorExpressionAdapter {
 
-	public PathStepExpressionAdapter(PathStepExpression element) {
+	public SelectExpressionAdapter(SelectExpression element) {
 		super(element);
 	}
 	
 	@Override
-	public PathStepExpression getTarget() {
-		return (PathStepExpression)super.getTarget();
+	public SelectExpression getTarget() {
+		return (SelectExpression)super.getTarget();
 	}
 
 	@Override
 	protected void addResultTyping() {
-		PathStepExpression target = getTarget();
+		SelectExpression target = getTarget();
 		EList<Feature> ownedFeatures = target.getOwnedFeature();
-		if (ownedFeatures.size() > 1) {
-			Feature featureReference = ownedFeatures.get(1);
-			if (featureReference instanceof Expression) {
-				ElementUtil.transform(featureReference);
+		if (!ownedFeatures.isEmpty()) {
+			Feature collectionExpression = ownedFeatures.get(0);
+			if (collectionExpression instanceof Expression) {
+				ElementUtil.transform(collectionExpression);
 				TypeUtil.addImplicitGeneralTypeTo(target.getResult(),
-						SysMLPackage.eINSTANCE.getSubsetting(), ((Expression)featureReference).getResult());
+						SysMLPackage.eINSTANCE.getSubsetting(), ((Expression)collectionExpression).getResult());
 			}
 		}
 	}

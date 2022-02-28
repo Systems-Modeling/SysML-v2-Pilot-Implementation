@@ -14,7 +14,7 @@ import org.eclipse.emf.common.util.Enumerator;
  * and utility methods for working with them.
  * <!-- end-user-doc -->
  * <!-- begin-model-doc -->
- * <p>TriggerKind enumerates the kinds of triggers that can be represented by an AcceptActionUsage. A TriggerKind of <code>accept</code> places no additional restrictions on the AcceptActionUsage. Each of the other TriggerKinds restricts the AcceptActionUsage to only accept <em><code>Transfers</code></em> whose payload is the result of the invocation of a corresponding Function from the Kernel <em><code>Triggers</code></em> library.</p>
+ * <p>TriggerKind enumerates the kinds of triggers that can be represented by TriggerInvocationExpression.</p>
  * <!-- end-model-doc -->
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getTriggerKind()
  * @model

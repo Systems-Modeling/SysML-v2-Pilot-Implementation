@@ -31,13 +31,13 @@ import org.omg.sysml.adapter.NamespaceAdapter;
 import org.omg.sysml.lang.sysml.AssignmentActionUsage;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
+import org.omg.sysml.lang.sysml.FeatureChainExpression;
 import org.omg.sysml.lang.sysml.FeatureReferenceExpression;
 import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.Import;
 import org.omg.sysml.lang.sysml.InvocationExpression;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
-import org.omg.sysml.lang.sysml.PathStepExpression;
 import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.util.SysMLScopeUtil;
@@ -107,19 +107,12 @@ public class NamespaceUtil {
 	}
 	
 	private static Namespace getResultNamespaceFor(Expression expression) {
-		if (expression instanceof PathStepExpression) {
-			EList<Expression> ops = ((PathStepExpression)expression).getOperand();
-			if (ops.size() >= 2) {
-				Expression op2 = ops.get(1);
-				if (op2 instanceof FeatureReferenceExpression) {
-					return ((FeatureReferenceExpression)op2).getReferent();
-				}
-			}
-			return null;
-		} else {
+//		if (expression instanceof FeatureChainExpression) {
+//			return ((FeatureChainExpression)expression).getTargetFeature();
+//		} else {
 			ElementUtil.transform(expression);
 			return expression.getResult();
-		}
+//		}
 	}
 
 	public static Namespace getRelativeNamespaceFor(Namespace ns) {
@@ -128,16 +121,10 @@ public class NamespaceUtil {
 			if (target != null) {
 				return getResultNamespaceFor(target);		
 			}
-		} else if (ns instanceof FeatureReferenceExpression) {
-			Element oe = ns.getOwner();
-			if (oe instanceof PathStepExpression) {
-				EList<Expression> ops = ((PathStepExpression)oe).getOperand();
-				if (ops.size() >= 2) {
-					Expression op1 = ops.get(0);
-					if (op1 != ns) {
-						return getResultNamespaceFor(op1);
-					}
-				}
+		} else if (ns instanceof FeatureChainExpression) {
+			EList<Expression> ops = ((FeatureChainExpression)ns).getOperand();
+			if (!ops.isEmpty()) {
+				return getResultNamespaceFor(ops.get(0));
 			}
 		}
 		return null;

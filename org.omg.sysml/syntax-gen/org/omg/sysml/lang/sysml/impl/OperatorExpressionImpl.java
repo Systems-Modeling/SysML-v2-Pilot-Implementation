@@ -39,13 +39,13 @@ import org.eclipse.emf.ecore.impl.EClassImpl;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EContentsEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.omg.sysml.adapter.OperatorExpressionAdapter;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.OperatorExpression;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.VisibilityKind;
 import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
+import org.omg.sysml.util.ExpressionUtil;
 import org.omg.sysml.util.TypeUtil;
 
 /**
@@ -156,7 +156,7 @@ public class OperatorExpressionImpl extends InvocationExpressionImpl implements 
 		String operator = getOperator();
 		return operator == null? super.getFunction():
 			   (Function)SysMLLibraryUtil.getLibraryType(this, 
-					   OperatorExpressionAdapter.getOperatorQualifiedNames(getOperator()));
+					   ExpressionUtil.getOperatorQualifiedNames(getOperator()));
 	}
 	
 	/**

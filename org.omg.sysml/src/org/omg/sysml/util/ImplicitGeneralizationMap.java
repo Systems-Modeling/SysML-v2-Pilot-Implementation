@@ -77,6 +77,9 @@ public class ImplicitGeneralizationMap {
 		put(FeatureImpl.class, "participant", "Links::Link::participant");
 		put(FeatureImpl.class, "startingAt", "FeatureReferencingPerformances::FeatureAccessPerformance::onOccurrence::startingAt");
 		put(FeatureImpl.class, "accessedFeature", "FeatureReferencingPerformances::FeatureAccessPerformance::onOccurrence::startingAt::accessedFeature");
+		
+		put(FeatureChainExpressionImpl.class, "target", "ControlFunctions::'.'::source::target");
+		
 		put(FunctionImpl.class, "base", "Performances::Evaluation");
 		
 		put(InvariantImpl.class, "base", "Performances::trueEvaluations");

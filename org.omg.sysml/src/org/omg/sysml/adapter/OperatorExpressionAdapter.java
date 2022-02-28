@@ -21,12 +21,11 @@
 
 package org.omg.sysml.adapter;
 
-import java.util.stream.Stream;
-
 import org.eclipse.emf.common.util.EList;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.OperatorExpression;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.util.ExpressionUtil;
 import org.omg.sysml.util.TypeUtil;
 
 public class OperatorExpressionAdapter extends InvocationExpressionAdapter {
@@ -43,10 +42,6 @@ public class OperatorExpressionAdapter extends InvocationExpressionAdapter {
 	@Override
 	public OperatorExpression getTarget() {
 		return (OperatorExpression)super.getTarget();
-	}
-
-	public static String[] getOperatorQualifiedNames(String op) {
-		return Stream.of(LIBRARY_PACKAGE_NAMES).map(pack -> pack + "::'" + op + "'").toArray(String[]::new);
 	}
 
 	@Override
@@ -66,7 +61,7 @@ public class OperatorExpressionAdapter extends InvocationExpressionAdapter {
 		OperatorExpression target = getTarget();
 		String operator = target.getOperator();
 		if (operator != null) {
-			addDefaultGeneralType(SysMLPackage.eINSTANCE.getFeatureTyping(), getOperatorQualifiedNames(operator));
+			addDefaultGeneralType(SysMLPackage.eINSTANCE.getFeatureTyping(), ExpressionUtil.getOperatorQualifiedNames(operator));
 		}
 		super.computeImplicitGeneralTypes();
 	}

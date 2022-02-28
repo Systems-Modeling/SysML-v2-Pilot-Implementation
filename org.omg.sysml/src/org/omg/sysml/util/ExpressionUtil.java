@@ -23,12 +23,16 @@ package org.omg.sysml.util;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
+
 import org.eclipse.emf.common.util.EList;
 import org.omg.sysml.adapter.ExpressionAdapter;
 import org.omg.sysml.adapter.InvocationExpressionAdapter;
+import org.omg.sysml.adapter.OperatorExpressionAdapter;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.FeatureChainExpression;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureReferenceExpression;
 import org.omg.sysml.lang.sysml.FeatureTyping;
@@ -69,6 +73,11 @@ public class ExpressionUtil {
 				map(Membership::getMemberElement).
 				filter(el->el != null).
 				findFirst().orElse(null);
+	}
+	
+	public static Element getTargetFeatureFor(FeatureChainExpression expression) {
+		List<Membership> memberships = expression.getOwnedMembership();
+		return memberships.size() < 2? null: memberships.get(1).getMemberElement();
 	}
 
 	public static boolean isTransitionGuard(Expression expression) {
@@ -130,6 +139,10 @@ public class ExpressionUtil {
 			type = root.getOwningType();
 		}
 		return root;
+	}
+
+	public static String[] getOperatorQualifiedNames(String op) {
+		return Stream.of(OperatorExpressionAdapter.LIBRARY_PACKAGE_NAMES).map(pack -> pack + "::'" + op + "'").toArray(String[]::new);
 	}
 
 }

@@ -21,15 +21,12 @@
 
 package org.omg.sysml.adapter;
 
-import org.eclipse.emf.common.util.EList;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.ElementFilterMembership;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureReferenceExpression;
-import org.omg.sysml.lang.sysml.PathStepExpression;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.util.ExpressionUtil;
 import org.omg.sysml.util.TypeUtil;
 
@@ -51,19 +48,8 @@ public class FeatureReferenceExpressionAdapter extends ExpressionAdapter {
 		return root.getOwningMembership() instanceof ElementFilterMembership;
 	}
 	
-	protected boolean isPathStepOperand() {
-		Type owningType = getTarget().getOwningType();
-		if (owningType instanceof PathStepExpression) {
-			EList<Expression> operands = ((PathStepExpression)owningType).getOperand();
-			if (operands.size() > 1 && operands.get(1) == target) {
-				return true;
-			}
-		}
-		return false;
-	}
-	
 	protected void addReferenceConnector() {
-		if (!(isInFilterExpression() || isPathStepOperand())) {
+		if (!isInFilterExpression()) {
 			FeatureReferenceExpression target = getTarget();
 			addBindingConnector(target.getReferent(), target.getResult());
 		}
@@ -72,6 +58,7 @@ public class FeatureReferenceExpressionAdapter extends ExpressionAdapter {
 	protected void addResultSubsetting() {
 		FeatureReferenceExpression expression = getTarget();
 		Feature result = expression.getResult();
+		// Note: Use getReferentFor here to avoid "self reference" default.
 		Element referent = ExpressionUtil.getReferentFor(expression);
 		if (result != null && referent instanceof Feature) {
 			TypeUtil.addImplicitGeneralTypeTo(result,

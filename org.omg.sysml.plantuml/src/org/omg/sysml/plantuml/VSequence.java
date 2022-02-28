@@ -39,13 +39,13 @@ import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.EventOccurrenceUsage;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.FeatureChainExpression;
 import org.omg.sysml.lang.sysml.FeatureChaining;
 import org.omg.sysml.lang.sysml.FeatureReferenceExpression;
 import org.omg.sysml.lang.sysml.FlowConnectionUsage;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.OccurrenceDefinition;
 import org.omg.sysml.lang.sysml.OccurrenceUsage;
-import org.omg.sysml.lang.sysml.PathStepExpression;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.Succession;
@@ -108,8 +108,8 @@ public class VSequence extends VDefault {
         return isOfFeature(f, "Transfers::Transfer::target");
     }
 
-    private Element next(PathStepExpression pse, boolean first) {
-            List<Expression> ops = pse.getOperand();
+    private Element next(FeatureChainExpression fce, boolean first) {
+            List<Expression> ops = fce.getOperand();
             int size = ops.size();
             if (size == 0) return null;
             Expression ex = ops.get(0);
@@ -119,10 +119,10 @@ public class VSequence extends VDefault {
                     return fre.getReferent();
                 }
             } else {
-                if (ex instanceof PathStepExpression) {
-                    return next((PathStepExpression) ex, true);
+                if (ex instanceof FeatureChainExpression) {
+                    return next((FeatureChainExpression) ex, true);
                 }
-                ex = ops.get(1);
+                return fce.getTargetFeature();
             }
             if (ex instanceof FeatureReferenceExpression) {
                 FeatureReferenceExpression fre = (FeatureReferenceExpression) ex;
@@ -153,10 +153,10 @@ public class VSequence extends VDefault {
 
     private Pair getEventParticipant(Element e) {
         if (e == null) return null;
-        if (e instanceof PathStepExpression) {
-            PathStepExpression pse = (PathStepExpression) e;
-            e = next(pse, true);
-            Element participant = next(pse, false);
+        if (e instanceof FeatureChainExpression) {
+        	FeatureChainExpression fce = (FeatureChainExpression) e;
+            e = next(fce, true);
+            Element participant = next(fce, false);
             if (participant instanceof Type) {
                 return Pair.create(participant, e);
             }

@@ -13,6 +13,13 @@ package ComplexFunctions {
 	function Re(x: Complex[1]): Real[1];
 	function Im(x: Complex[1]): Real[1];
 	
+	function isZero(x : Complex) {
+		Re(x) == 0.0 and Im(x) == 0.0
+	}
+	function isUnit(x : Complex) {
+		Re(x) == 1.0 and Im(x) == 0.0
+	}
+	
 	function Abs specializes NumericalFunctions::Abs (x: Complex[1]): Real[1];
 	function Arg(x: Complex[1]): Real[1];
 	
@@ -28,11 +35,11 @@ package ComplexFunctions {
 	function ToString specializes BaseFunctions::ToString (x: Complex[1]): String[1];
 	function ToComplex(x: String[1]): Complex[1];
 	
-	function sum specializes ScalarFunctions::sum (collection: Complex[0..*]): Complex[1] {
-		ScalarFunctions::sum0(collection, Rect(0.0, 0.0))
+	function sum specializes NumericalFunctions::sum (collection: Complex[0..*]): Complex[1] {
+		NumericalFunctions::sum0(collection, Rect(0.0, 0.0))
 	}
 	
-	function product specializes ScalarFunctions::product (collection: Complex[0..*]): Complex[1] {
-		ScalarFunctions::product1(collection, Rect(1.0, 0.0))
+	function product specializes NumericalFunctions::product (collection: Complex[0..*]): Complex[1] {
+		NumericalFunctions::product1(collection, Rect(1.0, 0.0))
 	}	
 }

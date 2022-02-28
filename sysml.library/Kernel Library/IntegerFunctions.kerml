@@ -31,11 +31,11 @@ package IntegerFunctions {
 	function ToNatural(x: Integer[1]): Natural[1];
 	function ToInteger(x: String[1]): Integer[1];
 	
-	function sum specializes ScalarFunctions::sum(collection: Integer[0..*]): Integer[1] {
-		ScalarFunctions::sum0(collection, 0)
+	function sum specializes NumericalFunctions::sum(collection: Integer[0..*]): Integer[1] {
+		NumericalFunctions::sum0(collection, 0)
 	}
 	
-	function product specializes ScalarFunctions::product(collection: Integer[0..*]): Integer[1] {
-		ScalarFunctions::product1(collection, 1)
+	function product specializes NumericalFunctions::product(collection: Integer[0..*]): Integer[1] {
+		NumericalFunctions::product1(collection, 1)
 	}
 }	

@@ -4,6 +4,13 @@ package QuantityCalculations {
     import UnitsAndScales::ScalarMeasurementReference;
     import UnitsAndScales::DimensionOneValue;
     
+    calc def isZero :> NumericalFunctions::isZero(x: ScalarQuantityValue): Boolean {
+    	NumericalFunctions::isZero(x.num)
+    }
+    calc def isUnit :> NumericalFunctions::isUnit(x: ScalarQuantityValue): Boolean {
+    	NumericalFunctions::isUnit(x.num)
+    }
+    
     calc def '[' specializes BaseFunctions::'[' (x: NumericalValue, y: ScalarMeasurementReference): ScalarQuantityValue;
 
 	calc def Abs specializes NumericalFunctions::Abs (x: ScalarQuantityValue): ScalarQuantityValue;
@@ -37,12 +44,16 @@ package QuantityCalculations {
 	calc def ToReal(x: ScalarQuantityValue): Real;
 	calc def ToDimensionOneValue(x: Real): DimensionOneValue;
 	
-	calc def sum specializes ScalarFunctions::sum (collection: ScalarQuantityValue[0..*]): ScalarQuantityValue {
-		ScalarFunctions::sum0(collection, 0.0)
+	calc def sum specializes NumericalFunctions::sum (collection: ScalarQuantityValue[0..*]): ScalarQuantityValue {
+		private attribute zero : ScalarQuantityValue;
+		assert constraint { isZero(zero) }
+		NumericalFunctions::sum0(collection, zero)
 	}
 	
-	calc def product specializes ScalarFunctions::product (collection: ScalarQuantityValue[0..*]): ScalarQuantityValue {
-		ScalarFunctions::product1(collection, 1.0)
+	calc def product specializes NumericalFunctions::product (collection: ScalarQuantityValue[0..*]): ScalarQuantityValue {
+		private attribute one : ScalarQuantityValue;
+		assert constraint { isUnit(one) }
+		NumericalFunctions::product1(collection, one)
 	}
 
     calc def ConvertQuantity(x: ScalarQuantityValue, targetMRef: ScalarMeasurementReference): ScalarQuantityValue;

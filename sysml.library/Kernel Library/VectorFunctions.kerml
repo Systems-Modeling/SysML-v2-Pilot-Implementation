@@ -1,0 +1,180 @@
+/**
+ * This package defines abstraft functions on VectorValues corresponding to the algebraic operations
+ * provided by a vector space with inner product. It also includes concrete implementations of these
+ * functions specifically for CartesianVectorValues.
+ */
+package VectorFunctions {
+	private import ScalarValues::NumericalValue;
+	private import ScalarValues::Positive;
+	private import ScalarValues::Real;
+	private import ScalarValues::Boolean;
+	private import NumericalFunctions::*;
+	private import RealFunctions::Sqrt;
+	private import TrigFunctions::arccos;
+	private import SequenceFunctions::size;
+	private import ControlFunctions::*;
+	
+	import VectorValues::*;
+	
+	/* Generic arithmetic functions for all VectorValues. */
+	
+	/**
+	 * Return whether a VectorValue is a zero vector.
+	 */
+	abstract function isZeroVector(v : VectorValue[1]): Boolean[1];
+	
+	/**
+	 * With two arguments, returns the sum of two VectorValues. With one argument, returns that VectorValue.
+	 */
+	abstract function '+' specializes DataFunctions::'+' (v: VectorValue[1], w: VectorValue[0..1]) u : VectorValue[1] {
+		inv zeroAddition { w == null or isZeroVector(w) implies u == w }
+		inv commutivity { w != null implies u == w + v }
+	}
+	
+	/**
+	 * With two arguments, returns the difference of two VectorValues. With one arguments, returns the inverse
+	 * of the given VectorValue, that is, the VectorValue that, when added to the original VectorValue, results in
+	 * the zeroVector.
+	 */
+	abstract function '-' specializes DataFunctions::'-' (v: VectorValue[1], w: VectorValue[0..1]) u: VectorValue[1] {
+		inv negation { w == null implies isZeroVector(v + u) }
+		inv difference { w != null implies v + u == w }
+	}
+
+	/* Functions specific to NumericalVectorValues. */
+	
+	/**
+	 * Construct a NumericalVectorValue whose elements are a non-empty list of component NumericalValues.
+	 * The dimension of the NumericalVectorValue is equal to the number of components.
+	 */
+	function VectorOf(components : NumericalValue[1..*] ordered nonunique) : NumericalVectorValue {
+		NumericalVectorValue (
+			dimension = size(components),
+			elements = components
+		)
+	}
+	
+	/**
+	 * Scalar product of a NumericalValue and a NumericalVectorValue.
+	 */
+	abstract function ScalarVectorMult specializes DataFunctions::'*' (x: NumericalValue[1], v: NumericalVectorValue[1]) w : NumericalVectorValue[1] {
+		inv scaling { Length(w) == x * Length(v) }
+		inv zeroLength { isZeroVector(w) implies isZero(Length(w))}
+	}
+	alias '*' for ScalarVectorMult;
+	
+	/**
+	 * Scalar product of a NumericalVectorValue and a NumericalValue, which has the same value as the scalar product of the
+	 * NumericalValue and the NumericalVectorValue.
+	 */
+	abstract function VectorScalarMult specializes DataFunctions::'*' (v: NumericalVectorValue[1], x: NumericalValue[1]): NumericalVectorValue[1] {
+		ScalarVectorMult(x, v)
+	}
+	
+	/**
+	 * Scalar quotient of a NumericalVectorValue and a NumericalValue, defined as the scalar product of the inverse of the 
+	 * NumericalValue and the NumericalVectorValue.
+	 */
+	abstract function VectorScalarDiv specializes DataFunctions::'/' (v: NumericalVectorValue[1], x: NumericalValue[1]): NumericalVectorValue[1] {
+		ScalarVectorMult(1.0 / x, v)
+	}
+
+	/**
+	 * Inner product of two NumericalVectorValues.
+	 */
+	abstract function Inner specializes DataFunctions::'*'(v: NumericalVectorValue[1], w : NumericalVectorValue[1]) x : NumericalValue[1] {
+		inv commmutivity { x == Inner(w, v) }
+		inv zeroInner { isZeroVector(v) or isZeroVector(w) implies isZero(x)}
+	}
+	
+	/**
+	 * The length of a NumericalVectoralue, as a NumericalValue.
+	 */
+	abstract function Length(v: NumericalVectorValue[1]) l : NumericalValue[1] {
+		inv squareLength { l * l == Inner(v,v) }
+		inv lengthZero { isZero(l) == isZeroVector(v) }
+	}
+	
+	/**
+	 * The angle between two NumericalVectorValues, as a NumericalValue.
+	 */
+	abstract function Angle(v: NumericalVectorValue[1], w: NumericalVectorValue[1]) theta : NumericalValue[1] {
+		inv commutivity { theta == Angle(w, v) }
+		inv lengthInsensitive { theta == Angle(w / Length(w), v / Length(v)) }
+	}
+	
+	/* Specialized functions with concrete definitions for CartesianVectorValues. */
+	
+	/**
+	 * Construct a CartesianVectorValue whose elements are a non-empty list of Real components.
+	 * The dimension of the NumericalVectorValue is equal to the number of components.
+	 */
+	function CartesianVectorOf(components : Real[*]) : CartesianVectorValue {
+		CartesianVectorValue (
+			dimension = size(components),
+			elements = components
+		)
+	}
+	function CartesianThreeVectorOf :> CartesianVectorOf(components : Real[*]): CartesianThreeVectorValue;
+	
+	/**
+	 * Cartesian zero vectors of 1, 2 and 3 dimensions.
+	 */
+	feature cartesianZeroVector : CartesianVectorValue[3] =
+		(
+			CartesianVectorOf(0.0),
+			CartesianVectorOf((0.0, 0.0)),
+			CartesianThreeVectorOf((0.0, 0.0, 0.0))
+		);
+	feature cartesian3DZeroVector : CartesianThreeVectorValue[1] =
+		cartesianZeroVector[3];
+	
+	/**
+	 * A CartesianVectorValue is a zero vector if all its elements are zero.
+	 */
+	function isCartesianZeroVector :> isZeroVector (v : CartesianVectorValue): Boolean {
+		v.elements->forAll{in x; x == 0.0}
+	}
+	
+	function 'Cartesian+' specializes '+' (v: CartesianVectorValue[1], w: CartesianVectorValue[0..1]): CartesianVectorValue[1] {
+		inv precondition { w != null implies v.dimension == w.dimension }
+		if w == null? v
+		else CartesianVectorOf(
+			(1..w.dimension)->collect{in i : Positive; v[i] + w[i]}
+		)
+	}
+	
+	function 'Cartesian-' specializes '-' (v: CartesianVectorValue[1], w: CartesianVectorValue[0..1]): CartesianVectorValue[1] {
+		inv precondition { w != null implies v.dimension == w.dimension }
+		CartesianVectorOf(
+			if w == null? CartesianVectorOf(v.elements->collect{in x : Real; -x})
+			else CartesianVectorOf(
+				(1..v.dimension)->collect{in i : Positive; v[i] - w[i]}
+			)
+		)
+	}
+	
+	function CartesianScalarVectorMult specializes ScalarVectorMult (x: Real[1], v: CartesianVectorValue[1]): CartesianVectorValue[1] {
+		CartesianVectorOf(
+			v.elements->collect{in y : Real; x * y}
+		)
+	}
+	function CartesianVectorScalarMult specializes VectorScalarMult (v: CartesianVectorValue[1], x: Real[1]): CartesianVectorValue[1] {
+		CartesianScalarVectorMult(x, v)
+	}
+	
+	function CartesianInner specializes Inner(v: CartesianVectorValue[1], w : CartesianVectorValue[1]): Real[1]{
+		inv precondition { v.dimension == w.dimension }
+		(1..v.dimension)->collect{in i : Positive; v[i] * w[i]}->reduce RealFunctions::'+'
+	}
+	
+	function CartesianLength specializes Length(v: CartesianVectorValue[1]) : NumericalValue[1] {
+		Sqrt(CartesianInner(v, v))
+	}
+	
+	function CartesianAngle specializes Angle(v: CartesianVectorValue[1], w: CartesianVectorValue[1]) : Real[1] {
+		inv precondition { v.dimension == w.dimension }
+		arccos(CartesianInner(v, w) / (Length(v) * Length(w)))
+	}
+	
+}

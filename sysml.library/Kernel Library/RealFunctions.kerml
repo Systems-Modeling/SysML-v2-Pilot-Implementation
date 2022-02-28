@@ -5,6 +5,13 @@
 package RealFunctions {
 	import ScalarValues::*;
 	
+	function Re :> ComplexFunctions::Re(x: Real[1]): Real[1] {
+		x
+	}
+	function Im :> ComplexFunctions::Im(x: Real[1]): Real[1] {
+		0.0
+	}
+	
 	function Abs specializes NumericalFunctions::Abs (x: Real[1]): Real[1];
 
 	function '+' specializes NumericalFunctions::'+' (x: Real[1], y: Real[0..1]): Real[1];
@@ -34,11 +41,11 @@ package RealFunctions {
 	function ToRational(x: Real[1]): Rational[1];
 	function ToReal(x: String[1]): Real[1];
 	
-	function sum specializes ScalarFunctions::sum (collection: Real[0..*]): Real {
-		ScalarFunctions::sum0(collection, 0.0)
+	function sum specializes NumericalFunctions::sum (collection: Real[0..*]): Real {
+		NumericalFunctions::sum0(collection, 0.0)
 	}
 	
-	function product specializes ScalarFunctions::product (collection: Real[0..*]): Real {
-		ScalarFunctions::product1(collection, 1.0)
+	function product specializes NumericalFunctions::product (collection: Real[0..*]): Real {
+		NumericalFunctions::product1(collection, 1.0)
 	}	
 }

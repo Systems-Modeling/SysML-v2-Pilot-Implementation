@@ -37,11 +37,11 @@ package RationalFunctions {
 	function ToInteger(x: Rational[1]): Integer[1];
 	function ToRational(x: String[1]): Rational[1];
 	
-	function sum specializes ScalarFunctions::sum (collection: Rational[0..*]): Rational[1] {
-		ScalarFunctions::sum0(collection, Rat(0, 1))
+	function sum specializes NumericalFunctions::sum (collection: Rational[0..*]): Rational[1] {
+		NumericalFunctions::sum0(collection, Rat(0, 1))
 	}
 	
-	function product specializes ScalarFunctions::product (collection: Rational[0..*]): Rational[1] {
-		ScalarFunctions::product1(collection, Rat(1, 1))
+	function product specializes NumericalFunctions::product (collection: Rational[0..*]): Rational[1] {
+		NumericalFunctions::product1(collection, Rat(1, 1))
 	}	
 }

@@ -26,8 +26,8 @@ package ScalarFunctions {
 	abstract function '<=' specializes DataFunctions::'<=' (x: ScalarValue[1], y: ScalarValue[1]): Boolean[1];
 	abstract function '>=' specializes DataFunctions::'>=' (x: ScalarValue[1], y: ScalarValue[1]): Boolean[1];
 	
-	abstract function Max specializes DataFunctions::Max (x: ScalarValue[1], y: ScalarValue[1]): ScalarValue[1];
-	abstract function Min specializes DataFunctions::Min (x: ScalarValue[1], y: ScalarValue[1]): ScalarValue[1];
+	abstract function max specializes DataFunctions::Max (x: ScalarValue[1], y: ScalarValue[1]): ScalarValue[1];
+	abstract function min specializes DataFunctions::Min (x: ScalarValue[1], y: ScalarValue[1]): ScalarValue[1];
 	
 	abstract function '..' specializes DataFunctions::'..' (lower: ScalarValue[1], upper: ScalarValue[1]): ScalarValue[0..*];
 }

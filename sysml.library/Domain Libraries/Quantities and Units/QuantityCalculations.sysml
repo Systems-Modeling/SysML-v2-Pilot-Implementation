@@ -4,16 +4,16 @@ package QuantityCalculations {
     import UnitsAndScales::ScalarMeasurementReference;
     import UnitsAndScales::DimensionOneValue;
     
-    calc def isZero :> NumericalFunctions::isZero(x: ScalarQuantityValue): Boolean {
+    calc def isZero specializes NumericalFunctions::isZero(x: ScalarQuantityValue): Boolean {
     	NumericalFunctions::isZero(x.num)
     }
-    calc def isUnit :> NumericalFunctions::isUnit(x: ScalarQuantityValue): Boolean {
+    calc def isUnit specializes NumericalFunctions::isUnit(x: ScalarQuantityValue): Boolean {
     	NumericalFunctions::isUnit(x.num)
     }
     
     calc def '[' specializes BaseFunctions::'[' (x: NumericalValue, y: ScalarMeasurementReference): ScalarQuantityValue;
 
-	calc def Abs specializes NumericalFunctions::Abs (x: ScalarQuantityValue): ScalarQuantityValue;
+	calc def abs specializes NumericalFunctions::abs (x: ScalarQuantityValue): ScalarQuantityValue;
 
 	calc def '+' specializes NumericalFunctions::'+' (x: ScalarQuantityValue, y: ScalarQuantityValue[0..1]): ScalarQuantityValue;
 	calc def '-' specializes NumericalFunctions::'-' (x: ScalarQuantityValue, y: ScalarQuantityValue[0..1]): ScalarQuantityValue;
@@ -27,16 +27,15 @@ package QuantityCalculations {
 	calc def '<=' specializes NumericalFunctions::'<=' (x: ScalarQuantityValue, y: ScalarQuantityValue): Boolean;
 	calc def '>=' specializes NumericalFunctions::'>=' (x: ScalarQuantityValue, y: ScalarQuantityValue): Boolean;
 
-	calc def Max specializes NumericalFunctions::Max (x: ScalarQuantityValue, y: ScalarQuantityValue): ScalarQuantityValue;
-	calc def Min specializes NumericalFunctions::Min (x: ScalarQuantityValue, y: ScalarQuantityValue): ScalarQuantityValue;
+	calc def max specializes NumericalFunctions::max (x: ScalarQuantityValue, y: ScalarQuantityValue): ScalarQuantityValue;
+	calc def min specializes NumericalFunctions::min (x: ScalarQuantityValue, y: ScalarQuantityValue): ScalarQuantityValue;
 
-	calc def '==' specializes BaseFunctions::'==' (x: ScalarQuantityValue, y: ScalarQuantityValue): Boolean;
-	calc def '!=' specializes BaseFunctions::'!=' (x: ScalarQuantityValue, y: ScalarQuantityValue): Boolean;
+	calc def '==' specializes DataFunctions::'==' (x: ScalarQuantityValue, y: ScalarQuantityValue): Boolean;
 		
-	calc def Sqrt(x: ScalarQuantityValue): ScalarQuantityValue;
+	calc def sqrt(x: ScalarQuantityValue): ScalarQuantityValue;
 
-	calc def Floor(x: ScalarQuantityValue): ScalarQuantityValue;
-	calc def Round(x: ScalarQuantityValue): ScalarQuantityValue;
+	calc def floor (x: ScalarQuantityValue): ScalarQuantityValue;
+	calc def round (x: ScalarQuantityValue): ScalarQuantityValue;
 	
 	calc def ToString specializes BaseFunctions::ToString (x: ScalarQuantityValue): String;
 	calc def ToInteger(x: ScalarQuantityValue): Integer;

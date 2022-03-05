@@ -1,5 +1,5 @@
 package MassRollup {
-	import ScalarFunctions::*;
+	import NumericalFunctions::*;
 	
 	part def MassedThing {
 		attribute mass :> ISQ::mass; 

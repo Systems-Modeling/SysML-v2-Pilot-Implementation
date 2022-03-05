@@ -29,7 +29,7 @@ package VectorValues {
 	 * specific implementations in VectorFunctions of the abstract vector-space functions.
 	 * 
 	 * Note: The restriction of the element type to Real is to facilitate
-	 * complete of thes functions.
+	 * the complete definition of these functions.
 	 */
 	datatype CartesianVectorValue :> NumericalVectorValue {
 		feature :>> elements : Real;

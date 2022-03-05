@@ -2,6 +2,7 @@ package TrigFunctions {
 	import ScalarValues::Real;
 	
 	feature pi : Real;
+	inv piPrecision { RealFunctions::round(pi * 1E20) == 314159265358979323846.0 }
 	
 	function deg(theta_rad : Real) {
 		theta_rad * 180 / pi
@@ -20,7 +21,7 @@ package TrigFunctions {
 	function tan(theta : Real) : Real {
 		sin(theta) / cos(theta)
 	}
-	function Cot(theta : Real) : Real {
+	function cot(theta : Real) : Real {
 		cos(theta) / sin(theta)
 	}
 	

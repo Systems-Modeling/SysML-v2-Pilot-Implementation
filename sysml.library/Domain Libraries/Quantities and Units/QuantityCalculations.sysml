@@ -11,7 +11,7 @@ package QuantityCalculations {
     	NumericalFunctions::isUnit(x.num)
     }
     
-    calc def '[' specializes BaseFunctions::'[' (x: NumericalValue, y: ScalarMeasurementReference): ScalarQuantityValue;
+    calc def '[' specializes BaseFunctions::'[' (x: Number, y: ScalarMeasurementReference): ScalarQuantityValue;
 
 	calc def abs specializes NumericalFunctions::abs (x: ScalarQuantityValue): ScalarQuantityValue;
 

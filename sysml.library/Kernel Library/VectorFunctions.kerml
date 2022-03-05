@@ -1,5 +1,5 @@
 /**
- * This package defines abstraft functions on VectorValues corresponding to the algebraic operations
+ * This package defines abstract functions on VectorValues corresponding to the algebraic operations
  * provided by a vector space with inner product. It also includes concrete implementations of these
  * functions specifically for CartesianVectorValues.
  */
@@ -66,8 +66,8 @@ package VectorFunctions {
 	 * Scalar product of a NumericalValue and a NumericalVectorValue.
 	 */
 	abstract function scalarVectorMult specializes DataFunctions::'*' (x: NumericalValue[1], v: NumericalVectorValue[1]) w: NumericalVectorValue[1] {
-		inv scaling { length(w) == x * length(v) }
-		inv zeroLength { isZeroVector(w) implies isZero(length(w))}
+		inv scaling { norm(w) == x * norm(v) }
+		inv zeroLength { isZeroVector(w) implies isZero(norm(w))}
 	}
 	alias '*' for scalarVectorMult;
 	
@@ -96,9 +96,9 @@ package VectorFunctions {
 	}
 	
 	/**
-	 * The length of a NumericalVectorValue, as a NumericalValue.
+	 * The norm (magnitude) of a NumericalVectorValue, as a NumericalValue.
 	 */
-	abstract function length(v: NumericalVectorValue[1]) l : NumericalValue[1] {
+	abstract function norm(v: NumericalVectorValue[1]) l : NumericalValue[1] {
 		inv squareNorm { l * l == inner(v,v) }
 		inv lengthZero { isZero(l) == isZeroVector(v) }
 	}
@@ -108,7 +108,7 @@ package VectorFunctions {
 	 */
 	abstract function angle(v: NumericalVectorValue[1], w: NumericalVectorValue[1]) theta: NumericalValue[1] {
 		inv commutivity { theta == angle(w, v) }
-		inv lengthInsensitive { theta == angle(w / length(w), v / length(v)) }
+		inv lengthInsensitive { theta == angle(w / norm(w), v / norm(v)) }
 	}
 	
 	/* Specialized functions with concrete definitions for CartesianVectorValues. */
@@ -176,13 +176,13 @@ package VectorFunctions {
 		(1..v.dimension)->collect{in i : Positive; v[i] * w[i]}->reduce RealFunctions::'+'
 	}
 	
-	function cartesianLength specializes length(v: CartesianVectorValue[1]) : NumericalValue[1] {
+	function cartesianNorm specializes norm(v: CartesianVectorValue[1]) : NumericalValue[1] {
 		sqrt(cartesianInner(v, v))
 	}
 	
 	function cartesianAngle specializes angle(v: CartesianVectorValue[1], w: CartesianVectorValue[1]): Real[1] {
 		inv precondition { v.dimension == w.dimension }
-		arccos(cartesianInner(v, w) / (length(v) * length(w)))
+		arccos(cartesianInner(v, w) / (norm(v) * norm(w)))
 	}
 	
 	function sum(coll: CartesianThreeVectorValue): CartesianThreeVectorValue {

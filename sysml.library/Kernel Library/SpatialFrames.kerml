@@ -63,13 +63,13 @@ package SpatialFrames {
 	function CartesianPositionOf :> PositionOf {
 		in point : Point[1];
 		in frame : CartesianSpatialFrame[1];
-		return positionVector : CartesianThreeVectorValue;
+		return positionVector : CartesianThreeVectorValue[1];
 	}
 	
 	/**
 	 * The DisplacementOf two points relative to a CartesianSpatialFrame is a CartesianThreeVectorValue.
 	 */
-	function Cartesian3DDisplacementOf :> DisplacementOf {
+	function CartesianDisplacementOf :> DisplacementOf {
 		in point1 : Point[1];
 		in point2 : Point[1];
 		in frame : CartesianSpatialFrame;

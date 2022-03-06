@@ -9,8 +9,11 @@ package Objects {
 	private import Occurrences::occurrences;
 	private import Occurrences::HappensLink;
 	private import Occurrences::SelfSameLifeLink;
+	private import Occurrences::WithinBoth;	       
 	private import Performances::Performance;
 	private import Performances::performances;
+	private import SequenceFunctions::notEmpty;
+	private import ScalarValues::Integer;	     
 	
 	/**
 	 * Object is the most general class of structural occurrences that may change over time.
@@ -27,6 +30,11 @@ package Objects {
 		 * Performances which are enacted by this object.
 		 */
 		abstract step enactedPerformances: Performance[0..*] subsets involvingPerformances, suboccurrences;
+
+		/**
+		 * A space boundary that is a structured space object.
+		 */
+		portion structuredSpaceBoundary : StructuredSpaceObject[0..1] subsets spaceBoundary;
 	}
 	
 	/**
@@ -56,4 +64,71 @@ package Objects {
 	 */
 	abstract feature binaryLinkObjects: BinaryLinkObject[0..*] nonunique subsets binaryLinks, linkObjects;
 	
+
+	/**
+	 * A Body is an Object of inner space dimension 3.
+	 */
+	struct Body specializes Object {   /* sufficient? */
+		feature redefines innerSpaceDimension = 3;
+	}
+
+	/**
+	 * A Surface is an Object of inner space dimension 2.
+	 */
+	struct Surface specializes Object {   /* sufficient? */
+		feature redefines innerSpaceDimension = 2;
+		  /* The number of  "holes" in this Surface, assuming it isClosed. */
+		feature genus : Integer[0..1] default 0;
+
+		inv { notEmpty(genus) implies (isClosed & genus >= 0) }
+	}
+
+	/*
+	 * A Curve is an Object of inner space dimension 1.
+	 */
+	struct Curve specializes Object {   /* sufficient? */
+		feature redefines innerSpaceDimension = 1;
+	}
+
+	/*
+	 * A Point is an Object of inner space dimension 0.
+	 */
+	struct Point specializes Object {   /* sufficient? */
+		feature redefines innerSpaceDimension = 0;
+	}
+
+	/*
+	 * A StructuredSpaceObject is an Object that is broken up into smaller structured space objects (cells) 
+	 * of the same or lower inner space dimension: faces that are surfaces, edges that are curves, and 
+	 * vertices that are points, with the highest of their inner space dimensions being that of the structured 
+	 * space object. Structured space cells overlap (for faces and edges at their own structured space
+	 * cells) when this structured space object is closed, as required to be a structured space
+	 * boundary of an object (faces overlap at their edges and/or verticies, while edges overlap at
+	 * their verticies).
+	 */
+	abstract struct StructuredSpaceObject specializes Object {
+
+		abstract portion feature structuredSpaceObjectCells : Object[1..*] subsets Occurrence::spaceShots
+		  { feature cellOrientation : Integer [0..1];
+		    inv { notEmpty(cellOrientation) implies (cellOrientation >= -1 & cellOrientation <= 1) }
+		  }
+
+		portion feature faces : Surface[0..*] subsets structuredSpaceObjectCells;
+
+		portion feature edges : Curve[0..*] subsets structuredSpaceObjectCells;
+
+		portion feature vertices : Point[0..*] subsets structuredSpaceObjectCells;
+		
+		connector feE :WithinBoth
+			from thisOccurrence :> faces.edges [0..*]
+			to thatOccuurence :> edges [0..*];
+
+		connector evV :WithinBoth
+			from thisOccurrence :> edges.vertices [0..*]
+			to thatOccuurence :> vertices [0..*];
+
+		connector fvV :WithinBoth
+			from thisOccurrence :> faces.vertices [0..*]
+			to thatOccuurence :> vertices [0..*];
+	  }
 }

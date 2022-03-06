@@ -240,11 +240,11 @@ package Occurrences {
 			feature redefines elements: Occurrence[0..*];
 			feature difference: Occurrence[0..1];
 			feature interdiff: Set [0..1] {
-				feature minuend: Occurrence [1]; /* ??FIRST in differencesOf.ELEMENTS SYNTAX? */
+				feature minuend: Occurrence [1] subsets elements = head(elements);
 				feature all notSubtrahend: Occurrence [0..*] subsets elements;
 			}
-			feature subtrahend: Occurrence[*] subsets elements; /* ??ELEMENTS AFTER FIRST SYNTAX? */
-
+			feature subtrahend: Occurrence[*] subsets elements = tail(elements);
+			
 			connector :Without
 				  from separateOccurrenceToo :> interdiff.notSubtrahend [0..*]
 				  to separateOccurrence :> subtrahend [1];

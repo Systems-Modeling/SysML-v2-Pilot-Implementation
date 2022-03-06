@@ -108,7 +108,7 @@ package Objects {
 	 */
 	abstract struct StructuredSpaceObject specializes Object {
 
-		abstract portion feature structuredSpaceObjectCells : Object[1..*] subsets Occurrence::spaceShots
+		abstract portion feature structuredSpaceObjectCells : StructuredSpaceObject[1..*] subsets Occurrence::spaceShots
 		  { feature cellOrientation : Integer [0..1];
 		    inv { notEmpty(cellOrientation) implies (cellOrientation >= -1 & cellOrientation <= 1) }
 		  }

@@ -466,7 +466,7 @@ package Occurrences {
 	 */
 	assoc SnapshotOf specializes TimeSliceOf {
 		end feature snapshotOcccurrence: Occurrence[1..*] redefines timeSliceOccurrence subsets snapshottedOccurrence.snapshots;
-		end feature snapshottedOccurrence: Occurrence[1..*] redefines timeSlicedOccurrence subsets snapshotOcccurrence.snapshotOf;
+		end feature snapshottedOccurrence: Occurrence[0..*] redefines timeSlicedOccurrence subsets snapshotOcccurrence.snapshotOf;
 	}
 
 	/**

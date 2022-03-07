@@ -6,9 +6,8 @@ package SpatialFrames {
 	private import VectorValues::ThreeVectorValue;
 	private import VectorValues::CartesianThreeVectorValue;
 	private import VectorFunctions::isZeroVector;
-	
-	// TODO: Replace with import after ST6RI-505 is done. 
-	struct Point;
+	private import Objects::Body;
+	private import Objects::Point;
 	
 	/**
 	 * A fixed SpatialFrame used as a universal default.
@@ -16,11 +15,11 @@ package SpatialFrames {
 	feature defaultFrame : SpatialFrame[1];
 	
 	/**
-	 * A SpatialFrame is a Structure that provides a spatial extent over all time, 
+	 * A SpatialFrame is a three-dimensional Body that provides a spatial extent over all time, 
 	 * that acts as a frame of reference for defining phyiscal position and displacement 
 	 * vectors.
 	 */
-	abstract struct SpatialFrame {
+	abstract struct SpatialFrame specializes Body {
 		// TODO: Add topological invariants after ST6RI-505 is done.
 	}
 	

@@ -16,11 +16,12 @@ package VectorValues {
 	
 	/**
 	 * A NumericalVectorValue is a kind of VectorValue that is specifically represented
-	 * as a one-dimensional array of NumericalValues.
+	 * as a one-dimensional array of NumericalValues. The dimension is allowed to be empty,
+	 * permitting a NumericalVectorValue of rank 0, which is essentially isomorphic to a
+	 * scalar NumericalValue.
 	 */
 	datatype NumericalVectorValue :> VectorValue, Array {
-		// TODO: Change dimension multiplicity to 0..1 after ST6RI-513 is done.
-		feature dimension[1] :>> dimensions;
+		feature dimension[0..1] :>> dimensions;
 		feature :>> elements : NumericalValue;
 	}
 	

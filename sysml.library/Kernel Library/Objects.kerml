@@ -12,7 +12,10 @@ package Objects {
 	private import Occurrences::WithinBoth;	       
 	private import Performances::Performance;
 	private import Performances::performances;
+	private import SequenceFunctions::isEmpty;
 	private import SequenceFunctions::notEmpty;
+	private import SequenceFunctions::union;
+	private import CollectionFunctions::contains;
 	private import ScalarValues::Integer;	     
 	
 	/**
@@ -100,10 +103,10 @@ package Objects {
 	/*
 	 * A StructuredSpaceObject is an Object that is broken up into smaller structured space objects (cells) of
 	 * the same or lower inner space dimension: faces that are surfaces, edges that are curves, and vertices
-	 * that are points, with the highest of their inner space dimensions being that of the structured space
-	 * object. Some structured space cells overlap when this structured space object is closed, as required to
-	 * be a space boundary of an object (faces overlap at their edges and/or verticies, while edges overlap at
-	 * their verticies).
+	 * that are points, with edges and verticies on the boundary of faces, and verticies on the boundary of
+	 * edges. Cells overlap when a structured space object is closed, as required to be a space boundary of
+	 * an object (faces overlap at their edges and/or verticies, while edges overlap at their verticies). The
+	 * inner space dimension of structured space object is the highest of their cells.
 	 */
 	abstract struct StructuredSpaceObject specializes Object {
 
@@ -112,9 +115,17 @@ package Objects {
 		    inv { notEmpty(cellOrientation) implies (cellOrientation >= -1 & cellOrientation <= 1) }
 		  }
 
-		portion feature faces : Surface[0..*] subsets structuredSpaceObjectCells;
+		portion feature faces : Surface[0..*] subsets structuredSpaceObjectCells {
+			derived feature redefines spaceBoundary; 
+			inv { isEmpty(spaceBoundary) == isEmpty(union(edges, vertices)) }
+			inv { notEmpty(spaceBoundary) implies contains(spaceBoundary.unionsOf, union(edges, vertices)) }
+		}
 
-		portion feature edges : Curve[0..*] subsets structuredSpaceObjectCells;
+		portion feature edges : Curve[0..*] subsets structuredSpaceObjectCells {
+			derived feature redefines spaceBoundary;
+			inv { isEmpty(spaceBoundary) == isEmpty(vertices) }
+			inv { notEmpty(spaceBoundary) implies contains(spaceBoundary.unionsOf, vertices) }
+		}
 
 		portion feature vertices : Point[0..*] subsets structuredSpaceObjectCells;
 		

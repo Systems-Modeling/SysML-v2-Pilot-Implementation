@@ -111,7 +111,7 @@ package Shapes {
 	attribute def CsgBoxedHalfSpaceSolid :> CsgHalfSpaceSolid {
 		attribute trimmingBoxCorner : Cartesian3dPositionVector[1];
 		attribute trimmingLength :>> length;
-		attribute trimmingWidht :>> width;
+		attribute trimmingWidth :>> width;
 		attribute trimmingHeight :>> height;
     }
 

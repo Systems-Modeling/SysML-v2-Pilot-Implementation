@@ -22,7 +22,7 @@ package ShapeCalculations {
 	}
 
     /**
-     * Constructive Solid Geometry Instersection
+     * Constructive Solid Geometry Intersection
      * Returns the common (overlapping) solid extents of x and y
      * Note: Can be empty if no overlap between x and y exists.
      */

@@ -9,9 +9,10 @@ package Occurrences {
 	private import ScalarValues::Integer;
 	private import ScalarValues::Boolean;
 	private import Links::*;
-	private import SequenceFunctions::includes;
 	private import Collections::Set;
 	private import Collections::OrderedSet;
+	private import SequenceFunctions::includes;
+	private import CollectionFunctions::contains;
 	
 	/**
 	 * Occurrence is the most general classifier of entities that have identity and 
@@ -283,7 +284,7 @@ package Occurrences {
 		 */
 		feature spaceBoundaryOf: Occurrence[0..*] subsets spaceShotOf;
 
-		inv { isClosed implies includes(self.unionsOf.elements, union(spaceBoundary, spaceInterior)) }
+		inv { isClosed implies contains(self.unionsOf, union(spaceBoundary, spaceInterior)) }
 
 		connector :OutsideOf 
 			from separateSpaceToo :> spaceInterior [0..1]

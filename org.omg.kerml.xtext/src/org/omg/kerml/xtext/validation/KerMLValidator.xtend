@@ -1,7 +1,7 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2018 IncQuery Labs Ltd.
- * Copyright (c) 2018-2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2018-2022 Model Driven Solutions, Inc.
  * Copyright (c) 2020 California Institute of Technology/Jet Propulsion Laboratory
  *    
  * This program is free software: you can redistribute it and/or modify
@@ -57,7 +57,6 @@ import org.omg.sysml.lang.sysml.util.ISysMLScope
 import org.eclipse.emf.ecore.EClass
 import org.omg.sysml.lang.sysml.FeatureChaining
 import org.omg.sysml.lang.sysml.Subsetting
-import org.omg.sysml.lang.sysml.MultiplicityRange
 import org.omg.sysml.lang.sysml.Redefinition
 import org.omg.sysml.lang.sysml.LiteralInfinity
 import org.omg.sysml.lang.sysml.LiteralInteger
@@ -375,15 +374,15 @@ class KerMLValidator extends AbstractKerMLValidator {
 				setted_m_l = setted_m_u
 			}
 			
-			var setting_m_l = (setting_m as MultiplicityRange).lowerBound
-			val setting_m_u = (setting_m as MultiplicityRange).upperBound
+			var setting_m_l = setting_m.lowerBound
+			val setting_m_u = setting_m.upperBound
 			
 			if (setting_m_l === null) {
 				setting_m_l = setting_m_u
 			}
 			
-			// Lower bound (only check if the Subsetting is a Redefinition): setting must be >= setted
-			if (sub instanceof Redefinition) {
+			// Lower bound (only check if the Subsetting is a Redefinition and Features are not ends): setting must be >= setted
+			if (sub instanceof Redefinition && !subsettingFeature.isEnd()) {
 				if (setting_m_l instanceof LiteralInteger && setted_m_l instanceof LiteralInteger && (setting_m_l as LiteralInteger).getValue < (setted_m_l as LiteralInteger).getValue ||
 					setting_m_l instanceof LiteralInfinity && setted_m_l instanceof LiteralInteger && 0 < (setted_m_l as LiteralInteger).getValue) {
 					warning("Redefining feature should not have smaller multiplicity lower bound", sub, 

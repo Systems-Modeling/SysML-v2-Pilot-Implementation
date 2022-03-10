@@ -102,7 +102,7 @@ package Objects {
 
 	/*
 	 * A StructuredSpaceObject is an Object that is broken up into smaller structured space objects (cells) of
-	 * the same or lower inner space dimension: faces that are surfaces, edges that are curves, and vertices
+	 * the same or lower inner space dimension: faces that are surfaces, edges that are curves, and verticies
 	 * that are points, with edges and verticies on the boundary of faces, and verticies on the boundary of
 	 * edges. Cells overlap when a structured space object is closed, as required to be a space boundary of
 	 * an object (faces overlap at their edges and/or verticies, while edges overlap at their verticies). The
@@ -117,17 +117,17 @@ package Objects {
 
 		portion feature faces : Surface[0..*] subsets structuredSpaceObjectCells {
 			derived feature redefines spaceBoundary; 
-			inv { isEmpty(spaceBoundary) == isEmpty(union(edges, vertices)) }
-			inv { notEmpty(spaceBoundary) implies contains(spaceBoundary.unionsOf, union(edges, vertices)) }
+			inv { isEmpty(spaceBoundary) == isEmpty(union(edges, verticies)) }
+			inv { notEmpty(spaceBoundary) implies contains(spaceBoundary.unionsOf, union(edges, verticies)) }
 		}
 
 		portion feature edges : Curve[0..*] subsets structuredSpaceObjectCells {
 			derived feature redefines spaceBoundary;
-			inv { isEmpty(spaceBoundary) == isEmpty(vertices) }
-			inv { notEmpty(spaceBoundary) implies contains(spaceBoundary.unionsOf, vertices) }
+			inv { isEmpty(spaceBoundary) == isEmpty(verticies) }
+			inv { notEmpty(spaceBoundary) implies contains(spaceBoundary.unionsOf, verticies) }
 		}
 
-		portion feature vertices : Point[0..*] subsets structuredSpaceObjectCells;
+		portion feature verticies : Point[0..*] subsets structuredSpaceObjectCells;
 		
 		derived feature redefines innerSpaceDimension = 
 			(if notEmpty(faces)? 2 else (if notEmpty(edges)? 1 else 0));
@@ -137,11 +137,11 @@ package Objects {
 			to thatOccuurence :> edges [0..*];
 
 		connector evV :WithinBoth
-			from thisOccurrence :> edges.vertices [0..*]
-			to thatOccuurence :> vertices [0..*];
+			from thisOccurrence :> edges.verticies [0..*]
+			to thatOccuurence :> verticies [0..*];
 
 		connector fvV :WithinBoth
-			from thisOccurrence :> faces.vertices [0..*]
-			to thatOccuurence :> vertices [0..*];
+			from thisOccurrence :> faces.verticies [0..*]
+			to thatOccuurence :> verticies [0..*];
 	  }
 }

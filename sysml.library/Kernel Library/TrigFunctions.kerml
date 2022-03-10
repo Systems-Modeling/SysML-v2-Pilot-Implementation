@@ -1,3 +1,6 @@
+/**
+ * This package defines basic trigonometric functions on real numbers.
+ */
 package TrigFunctions {
 	import ScalarValues::Real;
 	

@@ -1,6 +1,6 @@
 /**
- * This package models SpatialFrames that provide a frame of reference for
- * quantifying the position of points in a three-dimensional space. 
+ * This package models spatial frames of reference for quantifying the position of points 
+ * in a three-dimensional space. 
  */
 package SpatialFrames {
 	private import Clocks::*;

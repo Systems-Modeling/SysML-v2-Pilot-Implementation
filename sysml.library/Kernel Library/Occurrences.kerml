@@ -1,22 +1,18 @@
 /**
- * This package defines the concept of occurrences and the associations between them 
- * that assert relationships modeling four-dimensional semantics. 
- * [Currently this is primarily time semantics.]
+ * This package defines modeling constructs for anything existing or occurring in time and space, with
+ * associations between them that assert temporal and spatial relationships.
  */
 package Occurrences {
 	private import Base::Anything;
 	private import Base::things;
 	private import Base::DataValue;
+	private import ScalarValues::Integer;
+	private import ScalarValues::Boolean;
 	private import Links::*;
 	private import Collections::Set;
 	private import Collections::OrderedSet;
-	private import SequenceFunctions::isEmpty;
-	private import SequenceFunctions::notEmpty;
-	private import ScalarValues::Boolean;
-	private import DataFunctions::'&';
-	private import ScalarValues::Integer;
-	private import DataFunctions::'<=';
-	private import DataFunctions::'>=';
+	private import SequenceFunctions::includes;
+	private import CollectionFunctions::contains;
 	
 	/**
 	 * Occurrence is the most general classifier of entities that have identity and 
@@ -29,7 +25,6 @@ package Occurrences {
 	 */
 	abstract class Occurrence specializes Anything {
 		private import SequenceFunctions::*;
-		private import ControlFunctions::forAll;
 		
 		feature portionOfLife: Life[1] subsets portionOf;
 		
@@ -77,11 +72,12 @@ package Occurrences {
 		feature subSpaceTimeOccurrences: Occurrence[1..*] subsets suboccurrences, subSpaceOccurrences;
 
 		/**
-		 * All sub space time occurrences that take up no time or space.
+		 * All sub space time occurrences that take up zero time and space.
 		 */
-		feature all spaceTimePoints : Occurrence[1..*] subsets subSpaceTimeOccurrences {
-		  redefines innerSpaceDimension = 0; }
-		inv { spaceTimePoints->forAll {in stp:Occurrence; stp.startShot == stp.endShot}}
+		feature all subSpaceTimePoints : Occurrence[1..*] subsets subSpaceTimeOccurrences {
+			redefines innerSpaceDimension = 0;
+			binding startShot[1] = endShot[1];
+		}
 
 		/**
 		 * The number of variables need to identify space points in this occurrence, from 0
@@ -129,8 +125,9 @@ package Occurrences {
 		 * Time slices of an occurrence that happen at a single instant of time
 		 * (i.e., have no duration).
 		 */
-		portion feature all snapshots: Occurrence[1..*] subsets timeSlices;
-		inv { snapshots->forAll {in s:Occurrence; s.startShot == s.endShot} }
+		portion feature all snapshots: Occurrence[1..*] subsets timeSlices {
+			binding startShot[1] = endShot[1];
+		}
 		inv { snapshots == union(startShot, union(middleTimeSlice.snapshots, endShot)) }
 		
 		/**
@@ -194,8 +191,10 @@ package Occurrences {
 		feature spaceShotOf: Occurrence[1..*] subsets spaceSliceOf;
 
 		/**
-		 * Sets of Occurrences, where the Occurrences in each set taken together have the
-		 * same time and space extent as this occurrence.
+		 * Sets of occurrences, where the time and space taken by all the occurrences in each
+		 * set together is the same as taken by this occurrence (all four dimensional points in
+		 * the occurrences of each set are at the same time and space as those of this
+		 * occurrence).
 		 */
 		feature unionsOf: Set[0..*] {
 			feature redefines elements: Occurrence[0..*];
@@ -205,18 +204,20 @@ package Occurrences {
 				  from smallerOccurrence :> elements [0..*]
 				  to largerOccurrence :> union [1];
 			connector :Within 
-				  from smallerOccurrence :> union.spaceTimePoints [0..*]
+				  from smallerOccurrence :> union.subSpaceTimePoints [0..*]
 				  to largerOccurrence :> elements [1..*];
 		}
 		binding unionsOf.union[0..1] = self[1];
 
 		/**
-		 * Sets of Occurrences, where the largest time and space extent common to the
-		 * Occurrences in each set is the same as this occurrence.
+		 * Sets of occurrences, where the time and space taken in common between the occurrences
+		 * in each set is at the same as taken by this occurrence (all four dimensional points
+		 * common to the occurrences in each set are at the same time and space as those in this
+		 * occurrence).
 		 */
 		feature intersectionsOf: Set[0..*] {
 			feature redefines elements: Occurrence[0..*]
-			  { feature all notIntersection: Occurrence[0..*] subsets portions; }
+			  { feature all notIntersection: Occurrence[0..*] subsets subSpaceTimePoints; }
 			feature intersection: Occurrence[0..1];
 			
 			connector :Within
@@ -232,23 +233,27 @@ package Occurrences {
 		binding intersectionsOf.intersection[0..1] = self[1];
 
 		/**
-		 * Ordered sets of Occurrences, where the time and space extent of first Occurrence
-		 * in each set (minuend) that is not in the time and space extent of the remaining
-		 * Occurrences (subtrahend) is the same as this occurrence.
+		 * Ordered sets of occurrences, where the time and space taken by first occurrence in
+		 * each set that is not in the time and space taken by the remaining occurrences is the
+		 * same as taken by this occurrence (all four dimensional points in the minuend that are
+		 * not in any subtrahend are at the same time and space as those in this occurrence).
 		 */
 		feature differencesOf: OrderedSet[0..*] {
 			feature redefines elements: Occurrence[0..*];
 			feature difference: Occurrence[0..1];
+			feature minuend: Occurrence [0..1] subsets elements, interdiff.elements = head(elements);
+			feature subtrahend: Occurrence[*] subsets elements = tail(elements);
 			feature interdiff: Set [0..1] {
-				feature minuend: Occurrence [1] subsets elements = head(elements);
+				feature redefines elements: Occurrence[1..*];
 				feature all notSubtrahend: Occurrence [0..*] subsets elements;
 			}
-			feature subtrahend: Occurrence[*] subsets elements = tail(elements);
 			
 			connector :Without
 				  from separateOccurrenceToo :> interdiff.notSubtrahend [0..*]
-				  to separateOccurrence :> subtrahend [1];
+				  to separateOccurrence :> subtrahend [1..*];
 
+			inv { isEmpty(difference) == isEmpty(interdiff) }
+			inv { notEmpty(difference) implies (difference.intersectionsOf == interdiff) }
 		}
 		binding differencesOf.difference[0..1] = self[1];
 
@@ -278,6 +283,8 @@ package Occurrences {
 		 * An Occurrence of which this one is the space boundary.
 		 */
 		feature spaceBoundaryOf: Occurrence[0..*] subsets spaceShotOf;
+
+		inv { isClosed implies contains(self.unionsOf, union(spaceBoundary, spaceInterior)) }
 
 		connector :OutsideOf 
 			from separateSpaceToo :> spaceInterior [0..1]
@@ -415,14 +422,16 @@ package Occurrences {
 		end feature largerSpace: Occurrence[1..*] redefines target;
 
 		subset smallerSpace.subSpaceOccurrences subsets largerSpace.subSpaceOccurrences;
+
+		inv { includes(largerSpace.suboccurrences, smallerSpace) implies (self istype Within) }
 	}
 
 	/**
 	 * Within asserts that its largerOccurrence completely overlaps its smallerOccurrence in
 	 * time and space. That is, all four dimensional points of the smallerOccurrence happen
-	 * during and are inside of the largerOccurrence). This means every occurrence is Within
+	 * during and are inside of the largerOccurrence. This means every occurrence is Within
 	 * itself and Within is transitive.
-         */
+	 */
 	assoc all Within specializes HappensDuring, InsideOf {
 		end feature smallerOccurrence: Occurrence[1..*] redefines shorterOccurrence, smallerSpace
 		  subsets largerOccurrence.subSpaceTimeOccurrences;
@@ -466,7 +475,7 @@ package Occurrences {
 	 */
 	assoc SnapshotOf specializes TimeSliceOf {
 		end feature snapshotOcccurrence: Occurrence[1..*] redefines timeSliceOccurrence subsets snapshottedOccurrence.snapshots;
-		end feature snapshottedOccurrence: Occurrence[1..*] redefines timeSlicedOccurrence subsets snapshotOcccurrence.snapshotOf;
+		end feature snapshottedOccurrence: Occurrence[0..*] redefines timeSlicedOccurrence subsets snapshotOcccurrence.snapshotOf;
 	}
 
 	/**
@@ -542,7 +551,7 @@ package Occurrences {
 
 	/**
 	 * OutsideOf asserts that two occurrences do not overlap in space (not necessarily in time,
-	 * see HappensBefore).  That is, no four dimensional points of the occurrences are in the
+	 * see HappensBefore).	That is, no four dimensional points of the occurrences are in the
 	 * spatial extent of both of them. This means no Occurrence is OutsideOf itself.
 	 */
 	assoc OutsideOf specializes Without {

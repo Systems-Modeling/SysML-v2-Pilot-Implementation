@@ -72,7 +72,7 @@ package Occurrences {
 		feature spaceTimeEnclosedOccurrences: Occurrence[1..*] subsets timeEnclosedOccurrences, spaceEnclosedOccurrences;
 
 		/**
-		 * All sub space time occurrences that take up zero time and space.
+		 * All space time enclosed occurrences that take up zero time and space.
 		 */
 		feature all spaceTimeEnclosedPoints : Occurrence[1..*] subsets spaceTimeEnclosedOccurrences {
 			redefines innerSpaceDimension = 0;

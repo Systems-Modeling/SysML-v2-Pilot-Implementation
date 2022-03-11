@@ -245,6 +245,7 @@ public class TypeImpl extends NamespaceImpl implements Type {
 		EList<Feature> features = new NonNotifyingEObjectEList<>(Feature.class, this, SysMLPackage.TYPE__FEATURE);
 		getFeatureMembership().stream().
 			map(FeatureMembership::getMemberFeature).
+			filter(f->f != null).
 			forEachOrdered(features::add);
 		return features;
 	}

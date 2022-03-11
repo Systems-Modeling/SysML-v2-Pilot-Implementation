@@ -103,9 +103,9 @@ package Objects {
 	/*
 	 * A StructuredSpaceObject is an Object that is broken up into smaller structured space objects (cells) of
 	 * the same or lower inner space dimension: faces that are surfaces, edges that are curves, and vertices
-	 * that are points, with edges and verticies on the boundary of faces, and verticies on the boundary of
+	 * that are points, with edges and vertices on the boundary of faces, and vertices on the boundary of
 	 * edges. Cells overlap when a structured space object is closed, as required to be a space boundary of
-	 * an object (faces overlap at their edges and/or verticies, while edges overlap at their verticies). The
+	 * an object (faces overlap at their edges and/or vertices, while edges overlap at their vertices). The
 	 * inner space dimension of structured space object is the highest of their cells.
 	 */
 	abstract struct StructuredSpaceObject specializes Object {

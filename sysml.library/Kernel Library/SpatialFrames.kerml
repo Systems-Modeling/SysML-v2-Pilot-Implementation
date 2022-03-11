@@ -45,12 +45,12 @@ package SpatialFrames {
 		}
 		
 		/**
-		 * If the given point occurs within a Point in the space interior of the given frame,
+		 * If the given point occurs within the extent of a Point that is a spaceShot of the given frame,
 		 * then the result positionVector is equal to the PositionOf the enclosing frame Point at
 		 * the given time.
 		 */
 		inv spacePositionConstraint {
-			(frame.spaceInterior as Point)->forAll{in p : Point;
+			(frame.spaceSlices as Point)->forAll{in p : Point;
 				p.spaceTimeEnclosedOccurrences->includes(point) implies
 					positionVector == PositionOf(p, time, frame)
 			}

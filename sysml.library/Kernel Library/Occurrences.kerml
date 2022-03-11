@@ -57,24 +57,24 @@ package Occurrences {
 		 * Occurrences that start no earlier than and end no later than
 		 * this occurrence, including at least this occurrence.
 		 */
-		feature suboccurrences: Occurrence[1..*] subsets occurrences;
+		feature timeEnclosedOccurrences: Occurrence[1..*] subsets occurrences;
 
 		/**
 		 * Occurrences that this one completely includes in space (not necessarily in time),
 		 * including this one.
 		 */
-		feature subSpaceOccurrences: Occurrence[1..*] subsets occurrences;
+		feature spaceEnclosedOccurrences: Occurrence[1..*] subsets occurrences;
 
 		/**
 		 * Occurrences that this one completely includes in both space and time,
 		 * including this one.
 		 */
-		feature subSpaceTimeOccurrences: Occurrence[1..*] subsets suboccurrences, subSpaceOccurrences;
+		feature spaceTimeEnclosedOccurrences: Occurrence[1..*] subsets timeEnclosedOccurrences, spaceEnclosedOccurrences;
 
 		/**
 		 * All sub space time occurrences that take up zero time and space.
 		 */
-		feature all subSpaceTimePoints : Occurrence[1..*] subsets subSpaceTimeOccurrences {
+		feature all spaceTimeEnclosedPoints : Occurrence[1..*] subsets spaceTimeEnclosedOccurrences {
 			redefines innerSpaceDimension = 0;
 			binding startShot[1] = endShot[1];
 		}
@@ -98,10 +98,10 @@ package Occurrences {
 			 (outerSpaceDimension >= innerSpaceDimension & outerSpaceDimension <= 3) }
 
 		/**
-		 * All subSpaceTimeOccurrences that have the same portionOfLife (considered the same
+		 * All spaceTimeEnclosedOccurrences that have the same portionOfLife (considered the same
 		 * thing occurring), see PortionOf.
 		 */
-		portion feature all portions: Occurrence[1..*] subsets subSpaceTimeOccurrences;
+		portion feature all portions: Occurrence[1..*] subsets spaceTimeEnclosedOccurrences;
 		
 		/**
 		 * Occurrences of which this occurrence is a portion, including at
@@ -204,7 +204,7 @@ package Occurrences {
 				  from smallerOccurrence :> elements [0..*]
 				  to largerOccurrence :> union [1];
 			connector :Within 
-				  from smallerOccurrence :> union.subSpaceTimePoints [0..*]
+				  from smallerOccurrence :> union.spaceTimeEnclosedPoints [0..*]
 				  to largerOccurrence :> elements [1..*];
 		}
 		binding unionsOf.union[0..1] = self[1];
@@ -217,7 +217,7 @@ package Occurrences {
 		 */
 		feature intersectionsOf: Set[0..*] {
 			feature redefines elements: Occurrence[0..*]
-			  { feature all notIntersection: Occurrence[0..*] subsets subSpaceTimePoints; }
+			  { feature all notIntersection: Occurrence[0..*] subsets spaceTimeEnclosedPoints; }
 			feature intersection: Occurrence[0..1];
 			
 			connector :Within
@@ -382,7 +382,7 @@ package Occurrences {
 	 * Occurrence HappensDuring itself and that HappensDuring is transitive.
 	 */
 	assoc HappensDuring specializes HappensLink {
-		end feature shorterOccurrence: Occurrence[1..*] redefines sourceOccurrence subsets longerOccurrence.suboccurrences;
+		end feature shorterOccurrence: Occurrence[1..*] redefines sourceOccurrence subsets longerOccurrence.timeEnclosedOccurrences;
 		end feature longerOccurrence: Occurrence[1..*] redefines targetOccurrence;
 		
 		/*
@@ -395,7 +395,7 @@ package Occurrences {
 		subset longerOccurrence.predecessors subsets shorterOccurrence.predecessors;
 		subset longerOccurrence.successors subsets shorterOccurrence.successors;
 		
-		subset shorterOccurrence.suboccurrences subsets longerOccurrence.suboccurrences;
+		subset shorterOccurrence.timeEnclosedOccurrences subsets longerOccurrence.timeEnclosedOccurrences;
 	}
 	
 	/**
@@ -418,12 +418,12 @@ package Occurrences {
 	 * Occurrence is InsideOf itself and that InsideOf is transitive.
 	 */
 	assoc InsideOf specializes BinaryLink {
-		end feature smallerSpace: Occurrence[1..*] redefines source, largerSpace.subSpaceOccurrences;
+		end feature smallerSpace: Occurrence[1..*] redefines source, largerSpace.spaceEnclosedOccurrences;
 		end feature largerSpace: Occurrence[1..*] redefines target;
 
-		subset smallerSpace.subSpaceOccurrences subsets largerSpace.subSpaceOccurrences;
+		subset smallerSpace.spaceEnclosedOccurrences subsets largerSpace.spaceEnclosedOccurrences;
 
-		inv { includes(largerSpace.suboccurrences, smallerSpace) implies (self istype Within) }
+		inv { includes(largerSpace.timeEnclosedOccurrences, smallerSpace) implies (self istype Within) }
 	}
 
 	/**
@@ -434,7 +434,7 @@ package Occurrences {
 	 */
 	assoc all Within specializes HappensDuring, InsideOf {
 		end feature smallerOccurrence: Occurrence[1..*] redefines shorterOccurrence, smallerSpace
-		  subsets largerOccurrence.subSpaceTimeOccurrences;
+		  subsets largerOccurrence.spaceTimeEnclosedOccurrences;
 		end feature largerOccurrence: Occurrence[1..*] redefines longerOccurrence, largerSpace;
 	 }
 

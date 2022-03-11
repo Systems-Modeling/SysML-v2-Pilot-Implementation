@@ -32,7 +32,7 @@ package Objects {
 		/**
 		 * Performances which are enacted by this object.
 		 */
-		abstract step enactedPerformances: Performance[0..*] subsets involvingPerformances, suboccurrences;
+		abstract step enactedPerformances: Performance[0..*] subsets involvingPerformances, timeEnclosedOccurrences;
 
 		/**
 		 * A space boundary that is a structured space object.

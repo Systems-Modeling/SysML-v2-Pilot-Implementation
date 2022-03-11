@@ -51,7 +51,7 @@ package SpatialFrames {
 		 */
 		inv spacePositionConstraint {
 			(frame.spaceInterior as Point)->forAll{in p : Point;
-				p.subSpaceTimeOccurrences->includes(point) implies
+				p.spaceTimeEnclosedOccurrences->includes(point) implies
 					positionVector == PositionOf(p, time, frame)
 			}
 		}
@@ -88,8 +88,8 @@ package SpatialFrames {
 		 * the zero vector.
 		 */
 		inv zeroDisplacementConstraint {
-			(point1.subSpaceTimeOccurrences->includes(point2) or
-			point2.subSpaceTimeOccurrences->includes(point1)) implies
+			(point1.spaceTimeEnclosedOccurrences->includes(point2) or
+			point2.spaceTimeEnclosedOccurrences->includes(point1)) implies
 				isZeroVector(displacementVector)
 		}
 	}

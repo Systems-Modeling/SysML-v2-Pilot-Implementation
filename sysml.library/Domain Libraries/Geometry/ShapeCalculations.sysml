@@ -47,7 +47,7 @@ package ShapeCalculations {
 	}
 	
 	/**
-	 * Return an Object whose special extent is determined by a CsgDifference shape.
+	 * Return an Object whose spatial extent is determined by a CsgDifference shape.
 	 */
 	calc def ReifyCsgDifference :> ReifyShape (shape : CsgDifference) {
 		return differenceObject : Object {
@@ -58,7 +58,7 @@ package ShapeCalculations {
 	}
 	
 	/**
-	 * Return an Object whose special extent is determined by a CsgIntersection shape.
+	 * Return an Object whose spatial extent is determined by a CsgIntersection shape.
 	 */
 	calc def ReifyCsgIntersection :> ReifyShape (shape : CsgIntersection) {
 		return intersectionObject : Object {

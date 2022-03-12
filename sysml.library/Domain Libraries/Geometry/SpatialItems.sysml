@@ -19,7 +19,7 @@ package SpatialItems {
 	private import ControlFunctions::reduce;
 	
 	/**
-	 * A SpatialItem is an Item with a three dimensional spatial extent that also acts as a SpacialFrame of reference.
+	 * A SpatialItem is an Item with a three dimensional spatial extent that also acts as a SpatialFrame of reference.
 	 */
 	item def SpatialItem :> SpatialFrame {
 		/**
@@ -32,7 +32,7 @@ package SpatialItems {
 		 * The VectorMeasurementReference to be used as the measurement reference for position and displacement
 		 * vector values relative to this SpatialItem.
 		 */
-		attribute coordinateSystem : VectorMeasurementReference[1] default Cartesian3dSpatialCoordinateSystem() {
+		attribute coordinateFrame : VectorMeasurementReference[1] default Cartesian3dSpatialCoordinateSystem() {
 			attribute :>> dimensions = 3;
 		}
 		
@@ -73,10 +73,10 @@ package SpatialItems {
 			item nestedLocalClock :>> localClock default localClock;
 			attribute nestedBasisDirections : VectorQuantityValue[3];
 			attribute nestedOrigin : VectorQuantityValue[0..1];
-			attribute nestedCoordinateSystem :>> coordinateSystem {
+			attribute nestedCoordinateFrame :>> coordinateFrame {
 				attribute :>> placement[1] {
-				 	attribute :>> source = coordinateSystem;
-				 	attribute :>> target = nestedCoordinateSystem;
+				 	attribute :>> source = coordinateFrame;
+				 	attribute :>> target = nestedCoordinateFrame;
 				 	attribute :>> basisDirections = nestedBasisDirections;
 				 	attribute :>> origin = nestedOrigin;
 				}
@@ -93,7 +93,7 @@ package SpatialItems {
 	
 	/**
 	 * The PositionOf a Point relative to a SpatialItem, at a specific TimeInstantValue relative to a given Clock,
-	 * is a positionVector that is a VectorQuantityValue in the coordinateSystem of the SpatialItem.
+	 * is a positionVector that is a VectorQuantityValue in the coordinateFrame of the SpatialItem.
 	 * The default Clock is the localClock of the SpatialItem.
 	 */
 	calc def PositionOf :> SpatialFrames::PositionOf {
@@ -102,7 +102,7 @@ package SpatialItems {
 		in enclosingItem :>> 'frame' : SpatialItem[1];
 		in clock : Clock[1] default enclosingItem.localClock;
 		return positionVector : VectorQuantityValue[1] {
-			attribute :>> mRef = enclosingItem.coordinateSystem;
+			attribute :>> mRef = enclosingItem.coordinateFrame;
 		}
 	}
 
@@ -115,7 +115,7 @@ package SpatialItems {
 		in enclosingItem :>> 'frame' : SpatialItem[1];
 		in clock : Clock[1] default enclosingItem.localClock;
 		return positionVector : VectorQuantityValue[1] {
-			attribute :>> mRef = enclosingItem.coordinateSystem;
+			attribute :>> mRef = enclosingItem.coordinateFrame;
 		}
 	}
 
@@ -131,7 +131,7 @@ package SpatialItems {
 		in enclosingItem :>> 'frame' : SpatialItem[1];
 		in clock : Clock[1] default enclosingItem.localClock;
 		return positionVector : VectorQuantityValue[1] {
-			attribute :>> mRef = enclosingItem.coordinateSystem;
+			attribute :>> mRef = enclosingItem.coordinateFrame;
 		}
 	}
 
@@ -145,7 +145,7 @@ package SpatialItems {
 		in enclosingItem :>> 'frame' : SpatialItem[1];
 		in clock : Clock[1] default enclosingItem.localClock;
 		return positionVector : VectorQuantityValue[1] {
-			attribute :>> mRef = enclosingItem.coordinateSystem;
+			attribute :>> mRef = enclosingItem.coordinateFrame;
 		}
 	}
 

@@ -42,7 +42,7 @@ package ShapeItems {
 		item :>> faces [0];
 		item :>> edges [1] {
 			attribute circumference :>> length = Circle::radius * 3.1415926535898;
-			item :>> spaceBoundary : Item [0];
+			item :>> shape : Item [0];
 			item :>> vertices [0];
 		}
 		item :>> vertices [0];
@@ -54,12 +54,12 @@ package ShapeItems {
 	item def Disc :> Shell {
 		attribute radius :>> radius;
 
-		item :>> spaceBoundary : Circle [1]
+		item :>> shape : Circle [1]
 			{  attribute :>> radius = Disc::radius; }
 
 		item :>> faces : PlanarSurface [1] {
 			item :>> edges [1]; }
-		item :>> edges :Circle [1] = spaceBoundary;
+		item :>> edges : Circle [1] = shape;
 		item :>> vertices [0];
 
 		connection :WithinBoth connect faces.edges [1] to edges [0..*];

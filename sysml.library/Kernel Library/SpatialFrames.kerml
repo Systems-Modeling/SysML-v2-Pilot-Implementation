@@ -20,7 +20,7 @@ package SpatialFrames {
 	
 	/**
 	 * A SpatialFrame is a three-dimensional Body that provides a spatial extent that 
-	 * acts as a frame of reference for defining the phyiscal position and displacement 
+	 * acts as a frame of reference for defining the physical position and displacement 
 	 * vectors of Points over time.
 	 */
 	abstract struct SpatialFrame specializes Body;
@@ -45,12 +45,11 @@ package SpatialFrames {
 		}
 		
 		/**
-		 * If the given point occurs within the extent of a Point that is a spaceShot of the given frame,
-		 * then the result positionVector is equal to the PositionOf the enclosing frame Point at
-		 * the given time.
+		 * The result positionVector is equal to the PositionOf the Point spaceShot of the
+		 * frame that encloses the given point, at the current time.
 		 */
 		inv spacePositionConstraint {
-			(frame.spaceSlices as Point)->forAll{in p : Point;
+			(frame.spaceShots as Point)->forAll{in p : Point;
 				p.spaceTimeEnclosedOccurrences->includes(point) implies
 					positionVector == PositionOf(p, time, frame)
 			}

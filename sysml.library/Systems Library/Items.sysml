@@ -9,6 +9,8 @@ package Items {
 	private import Parts::parts;
 	private import Constraints::ConstraintCheck;
 	private import Constraints::constraintChecks;
+	private import SequenceFunctions::notEmpty;
+	private import ScalarValues::Boolean;
 	
 	/**
 	 * Item is the most general class of objects that are part of, exist in or flow through a system. 
@@ -19,6 +21,9 @@ package Items {
 		
 		item start: Item :>> startShot;
 		item done: Item :>> endShot;
+		
+		item shape : Item :>> spaceBoundary;
+		attribute isSolid : Boolean [1] = ( notEmpty(shape) & innerSpaceDimension == 3 );
 		
 		/**
 		 * The Items that are composite subitems of this Item.

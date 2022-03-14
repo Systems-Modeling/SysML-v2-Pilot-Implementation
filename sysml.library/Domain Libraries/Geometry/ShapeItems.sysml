@@ -1,17 +1,16 @@
 package ShapeItems {
-	private import ScalarValues::String;
+	//private import ScalarValues::String;
 	private import ScalarValues::Boolean;
-	private import UnitsAndScales::CoordinateTransformation;
+	//private import UnitsAndScales::CoordinateTransformation;
 	private import ISQ::*;
-	private import SI::*;
-	private import Collections::KeyValuePair;
-	private import Collections::Map;
+	private import SI::m;
+	//private import Collections::KeyValuePair;
+	//private import Collections::Map;
 	private import Objects::*;
-	private import Items::*;
-	private import SequenceFunctions::union;
-	private import CollectionFunctions::contains;
+	private import Items::Item;
+	//private import SequenceFunctions::union;
+	//private import CollectionFunctions::contains;
 	private import SequenceFunctions::isEmpty;
-	connection def WithinBoth :> Occurrences::WithinBoth { }
 	
 	/**
 	 * Most general shape.	Solids are objects with these as space boundary.	
@@ -41,7 +40,7 @@ package ShapeItems {
 
 		item :>> faces [0];
 		item :>> edges [1] {
-			attribute circumference :>> length = Circle::radius * 3.1415926535898;
+			attribute circumference :>> length = Circle::radius * TrigFunctions::pi;
 			item :>> shape : Item [0];
 			item :>> vertices [0];
 		}
@@ -246,4 +245,6 @@ package ShapeItems {
 		connection :WithinBoth connect brrv [3] to brrv [3];
 	}
 	alias Box for Cuboid;
+
+ 	connection def WithinBoth :> Occurrences::WithinBoth { }
 }

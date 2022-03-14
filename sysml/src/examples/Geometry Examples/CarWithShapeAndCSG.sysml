@@ -1,21 +1,41 @@
 package CarWithShapeAndCSG {
-	import Items::Item;
+	import SpatialItems::*;
     import ShapeItems::*;
-	import CollectionFunctions::contains;
-	import SequenceFunctions::union;
+    import Objects::Point;
+	import Quantities::VectorQuantityValue;
 
-	item def Car specializes Item {
-		item redefines shape : Cuboid [1]; /* Quantify faces, etc, by redefining nested features. */
-		part powerSource : Engine [1] subsets spaceEnclosedOccurrences;
+	item def Car :> CompoundSpatialItem {
+		item :>> shape : Cuboid [1] {
+			/* Quantify faces, etc, by redefining nested features. */
+		}
+		part powerSource : Engine [1] :> componentItems;
 	}
 
-	part def Engine specializes Item {
-  		item redefines shape [1];
- 		private item c1 : Cylinder [1]; /* Quantify faces, etc, by redefining nested features. */
-		private item c2 : Cylinder [1]; /* Quantify faces, etc, by redefining nested features. */
-		    /* Specify relative positions of c1 and c2 here.  */
-		constraint {}
-		   /* CSG "operation" below. */
-		constraint { contains(self.intersectionsOf, union(c1, c2)) } 
+	part def Engine :> SpatialItem {
+  		item :>> shape [1];
+  		
+		/* Specify relative positions of c1 and c2 here.  */
+		private attribute c1Position : VectorQuantityValue;
+		private attribute c2Position : VectorQuantityValue;
+		
+ 		private item c1 : Cylinder, SpatialItem [1] {
+ 			/* Quantify faces, etc, by redefining nested features. */
+ 			attribute :>> coordinateFrame {
+ 				attribute origin = c1Position;
+ 			}
+ 		}
+ 		
+		private item c2 : Cylinder, SpatialItem [1] {
+			/* Quantify faces, etc, by redefining nested features. */
+ 			attribute :>> coordinateFrame {
+ 				attribute origin = c2Position;
+ 			}
+		}
+		
+		/* CSG intersection of c1 and c2. */
+		attribute :> intersectionsOf[1] {
+			item :>> elements = (c1, c2);
+		}
+
 	}
 }

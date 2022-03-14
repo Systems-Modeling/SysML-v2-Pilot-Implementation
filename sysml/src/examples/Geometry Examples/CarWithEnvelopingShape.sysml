@@ -1,29 +1,19 @@
 package CarWithEnvelopingShape {
-	import Items::Item;
-    import ShapeItems::*;
-	import ISQ::mass;
+	import SpatialItems::SpatialItem;
+    import ShapeItems::Box;
 	import SI::mm;
-	private import ISQ::Cartesian3dSpatialCoordinateSystem;
+	import SequenceFunctions::includes;
 
 	/**
-	 * Abstract general tangible item (temporary placeholder)
-	 * 
-	 * TODO: Should be moved to a library package
+	 * Example car with simple enveloping shape that is a solid box
 	 */
-	abstract item def TangibleItem {
-        attribute localFrame : Cartesian3dSpatialCoordinateSystem[1];
-		item alternativeShapes : Item[0..*];
-	}
-	
-	/**
-	 * Example car with simple eveloping shape that is a solid box
-	 */
-	part def Car :> TangibleItem {
-		private item envelopingBox : Box {
+	part def Car :> SpatialItem {
+		private item envelopingShape : Box[1] {
 			:>> length = 4800 [mm];
 			:>> width = 1840 [mm];
 			:>> height = 1350 [mm];
 		}
-		:>> shape = envelopingBox;
+		
+		assert constraint { envelopingShape.spaceInterior->includes(shape) }
 	}
 }

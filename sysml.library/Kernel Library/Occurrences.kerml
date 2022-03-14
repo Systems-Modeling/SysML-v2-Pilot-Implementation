@@ -216,8 +216,9 @@ package Occurrences {
 		 * occurrence).
 		 */
 		feature intersectionsOf: Set[0..*] {
-			feature redefines elements: Occurrence[0..*]
-			  { feature all notIntersection: Occurrence[0..*] subsets spaceTimeEnclosedPoints; }
+			feature redefines elements: Occurrence[0..*] { 
+				feature all notIntersection: Occurrence[0..*] subsets spaceTimeEnclosedPoints;
+			}
 			feature intersection: Occurrence[0..1];
 			
 			connector :Within

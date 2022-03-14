@@ -6,8 +6,8 @@ package ControlFunctions {
 	private import Base::Anything;
 	private import ScalarValues::ScalarValue;
 	private import ScalarValues::Boolean;
-	private import ScalarFunctions::Min;
-	private import ScalarFunctions::Max;
+	private import ScalarFunctions::min;
+	private import ScalarFunctions::max;
 	
 	abstract function '.' {
 		in feature source : Anything[0..*] nonunique {
@@ -92,12 +92,12 @@ package ControlFunctions {
 	
 	function minimize(collection: ScalarValue[1..*]): ScalarValue[1] {
 		abstract composite expr fn[0..*] (argument: ScalarValue[1]): ScalarValue[1];
-		collection->collect {in x; fn(x)}->reduce Min
+		collection->collect {in x; fn(x)}->reduce min
 	}
 	
 	function maximize(collection: ScalarValue[1..*]): ScalarValue {
 		abstract composite expr fn[0..*] (argument: ScalarValue[1]): ScalarValue[1];
-		collection->collect {in x; fn(x)}->reduce Max
+		collection->collect {in x; fn(x)}->reduce max
 	}
 	
 }

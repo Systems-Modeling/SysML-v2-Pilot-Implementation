@@ -436,7 +436,7 @@ package VehicleModel_1_simplified{
         package AttributeDefinitions{
             import ScalarValues::*;
             // Scalar Functions provides Sum expression
-            import ScalarFunctions::*;
+            import NumericalFunctions::*;
             import ISQ::*;
             import SI::*;
             import USCustomaryUnits::*;
@@ -466,7 +466,7 @@ package VehicleModel_1_simplified{
             
             // kpl is approx .425 * mpg
             kpl : DerivedUnit = km / L;
-            rpm : DerivedUnit = 1 / min;
+            rpm : DerivedUnit = 1 / SI::min;
             kW : DerivedUnit = kilo * W;
             //
         }

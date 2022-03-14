@@ -5,9 +5,8 @@
 package SpatialItems {
 	private import Objects::Point;
 	private import SpatialFrames::SpatialFrame;
-	private import Shapes::Shape;
-	private import CSGShapes::CsgSolid;
-	private import CSGShapes::CsgUnion;
+	private import ShapeDefinitions::ShapeDefinition;
+	private import ShapeDefinitions::ShapeUnion;
 	private import ShapeCalculations::ReifyShape;
 	private import SequenceFunctions::includes;
 	private import Quantities::VectorQuantityValue;
@@ -37,16 +36,16 @@ package SpatialItems {
 		}
 		
 		/**
-		 * A Shape that specifies the envelope that contains this SpatialItem.
+		 * A ShapeDefinition that defines the envelope that contains this SpatialItem.
 		 */
-		attribute boundingShape : Shape[0..1];
+		attribute shapeDefinition : ShapeDefinition[0..1];
 		
 		/**
 		 * A SpatialItem must be an enclosed space-time Occurrence of the reification of its bounding shape.
 		 */
-		assert constraint boundingShapeConstraint {
-			boundingShape != null implies
-				ReifyShape(boundingShape).subSpaceTimeOccurrences->includes(self)
+		assert constraint shapeDefConstraint {
+			shapeDefinition != null implies
+				ReifyShape(shapeDefinition).spaceTimeEnclosedOccurrences->includes(self)
 		}
 	}
 	
@@ -56,14 +55,12 @@ package SpatialItems {
 	item def CompoundSpatialItem :> SpatialItem {
 		
 		/**
-		 * By default the boundingShape of a CompoundSpatialItem is the union of the
-		 * boundingShapes of its componentItems, if all the componentItems have
-		 * boundingShapes that are CsgSolids.
+		 * By default the shapeDefinition of a CompoundSpatialItem is the union of the
+		 * shapeDefinitions of its componentItems, if they are all non-null.
 		 */
-		attribute :>> boundingShape default
-			if componentItems->forAll{in i : SpatialItem; 
-				i.boundingShape != null and i.boundingShape istype CsgSolid
-			}? CsgUnion(componentItems.boundingShape as CsgSolid)
+		attribute :>> shapeDefinition default
+			if componentItems->forAll{in i : SpatialItem; i.shapeDefinition != null}? 
+				ShapeUnion(componentItems.shapeDefinition)
 			else null;
 		
 		/**
@@ -103,6 +100,7 @@ package SpatialItems {
 		in clock : Clock[1] default enclosingItem.localClock;
 		return positionVector : VectorQuantityValue[1] {
 			attribute :>> mRef = enclosingItem.coordinateFrame;
+			attribute :>> isBound = true;
 		}
 	}
 
@@ -116,6 +114,7 @@ package SpatialItems {
 		in clock : Clock[1] default enclosingItem.localClock;
 		return positionVector : VectorQuantityValue[1] {
 			attribute :>> mRef = enclosingItem.coordinateFrame;
+			attribute :>> isBound = true;
 		}
 	}
 
@@ -130,8 +129,9 @@ package SpatialItems {
 		in timeInstant : TimeInstantValue[1];
 		in enclosingItem :>> 'frame' : SpatialItem[1];
 		in clock : Clock[1] default enclosingItem.localClock;
-		return positionVector : VectorQuantityValue[1] {
+		return displacementVector : VectorQuantityValue[1] {
 			attribute :>> mRef = enclosingItem.coordinateFrame;
+			attribute :>> isBound = false;
 		}
 	}
 
@@ -144,8 +144,9 @@ package SpatialItems {
 		in point2 : Point[1];
 		in enclosingItem :>> 'frame' : SpatialItem[1];
 		in clock : Clock[1] default enclosingItem.localClock;
-		return positionVector : VectorQuantityValue[1] {
+		return displacementVector : VectorQuantityValue[1] {
 			attribute :>> mRef = enclosingItem.coordinateFrame;
+			attribute :>> isBound = false;
 		}
 	}
 

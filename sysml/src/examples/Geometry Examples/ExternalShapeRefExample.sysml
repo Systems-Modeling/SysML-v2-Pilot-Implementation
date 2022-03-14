@@ -1,11 +1,8 @@
 package ExternalShapeRefExample {
-	import SpatialItems::SpatialItem;
 	import ScalarValues::String;
 	import ShapeItems::*;
 	import ISQ::mass;
 	import SI::mm;
-	import ISQ::Cartesian3dSpatialCoordinateSystem;
-	import SequenceFunctions::includes;
 
 	/**
 	 * Metadata to reference an externally defined shape.
@@ -15,7 +12,7 @@ package ExternalShapeRefExample {
 		attribute shapeIri : String[1];
 	}
 	
-	part myBatteryUnit : SpatialItem {
+	part myBatteryUnit {
 	    item :>> shape : Shell {
 			metadata ExternalShapeRef {
 				purpose = "highLoD";
@@ -23,12 +20,10 @@ package ExternalShapeRefExample {
 			}
 		}		
 
-		private item envelopingBoxBatteryUnit : Box {
+		private item envelopingBoxBatteryUnit : Box :> envelopingShapes {
 			:>> length = 140[mm];
 			:>> width = 148[mm];
 			:>> height = 90[mm];
 		}
-		
-		assert constraint { envelopingBoxBatteryUnit.spaceInterior->includes(shape) }
 	}
 }

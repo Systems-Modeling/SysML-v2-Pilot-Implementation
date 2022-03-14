@@ -6,7 +6,7 @@ package Occurrences {
 	private import Base::Anything;
 	private import Base::things;
 	private import Base::DataValue;
-	private import ScalarValues::Integer;
+	private import ScalarValues::Natural;
 	private import ScalarValues::Boolean;
 	private import Links::*;
 	private import Collections::Set;
@@ -83,7 +83,7 @@ package Occurrences {
 		 * The number of variables need to identify space points in this occurrence, from 0
 		 * to 3, without regard to higher dimensional spaces it might be emedded in.
 		 */
-		feature innerSpaceDimension : Integer [1];
+		feature innerSpaceDimension : Natural [1];
 		inv { innerSpaceDimension >= 0 & innerSpaceDimension <= 3 }
 
 		/**
@@ -93,7 +93,7 @@ package Occurrences {
 		 * indicates the occurrence is spatially straight (innerSpaceDimension 1 embedded in
 		 * 2 or 3 dimensions) or flat (innerSpaceDimension 2 embedded in 3 dimensions).
 		 */
-		feature outerSpaceDimension : Integer [0..1];
+		feature outerSpaceDimension : Natural [0..1];
 		inv { notEmpty(outerSpaceDimension) implies
 			 (outerSpaceDimension >= innerSpaceDimension & outerSpaceDimension <= 3) }
 

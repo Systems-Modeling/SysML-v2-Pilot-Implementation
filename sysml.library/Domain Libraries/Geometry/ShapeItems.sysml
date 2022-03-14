@@ -23,15 +23,14 @@ package ShapeItems {
 		attribute :>> outerSpaceDimension = 2;
 	}
 
-
 	/**
-	 * Most general surface shape.	Solids are objects with these as space boundary.	
+	 * Most general surface shape.
 	 */
 	abstract item def Shell :> Item, StructuredSpaceObject, Surface	 {
 	}
 
 	/**
-	 * Most general curve shape.	Solids are objects with these as space boundary.	
+	 * Most general curve shape.
 	 */
 	abstract item def Path :> Item, StructuredSpaceObject, Curve {
 	}

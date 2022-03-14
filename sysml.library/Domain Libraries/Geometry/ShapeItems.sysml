@@ -1,23 +1,11 @@
 package ShapeItems {
-	//private import ScalarValues::String;
 	private import ScalarValues::Boolean;
-	//private import UnitsAndScales::CoordinateTransformation;
 	private import ISQ::*;
 	private import SI::m;
-	//private import Collections::KeyValuePair;
-	//private import Collections::Map;
 	private import Objects::*;
 	private import Items::Item;
-	//private import SequenceFunctions::union;
-	//private import CollectionFunctions::contains;
 	private import SequenceFunctions::isEmpty;
 	
-	/**
-	 * Most general shape.	Solids are objects with these as space boundary.	
-	 */
-	abstract item def Shell :> Item, StructuredSpaceObject, Surface	 {
-	}
-
 	/**
 	* Straight line.
 	*/
@@ -35,7 +23,20 @@ package ShapeItems {
 		attribute :>> outerSpaceDimension = 2;
 	}
 
-	item def Circle :> Shell {
+
+	/**
+	 * Most general surface shape.	Solids are objects with these as space boundary.	
+	 */
+	abstract item def Shell :> Item, StructuredSpaceObject, Surface	 {
+	}
+
+	/**
+	 * Most general curve shape.	Solids are objects with these as space boundary.	
+	 */
+	abstract item def Path :> Item, StructuredSpaceObject, Curve {
+	}
+
+	item def Circle :> Path {
 		attribute radius :>> radius;
 
 		item :>> faces [0];

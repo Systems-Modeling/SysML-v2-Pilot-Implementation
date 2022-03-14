@@ -1,25 +1,25 @@
 package CarWithEnvelopingShape {
-	import Shapes::*;
+	import Items::Item;
+    import ShapeItems::*;
 	import ISQ::mass;
 	import SI::mm;
 	private import ISQ::Cartesian3dSpatialCoordinateSystem;
 
 	/**
-	 * Abstract general tangible item
+	 * Abstract general tangible item (temporary placeholder)
 	 * 
-	 * TODO: Move to Items.sysml library? Rename to PhysicalItem? Add other attributes?
+	 * TODO: Should be moved to a library package
 	 */
 	abstract item def TangibleItem {
         attribute localFrame : Cartesian3dSpatialCoordinateSystem[1];
-	    attribute shape : Shape[0..*];
+		item alternativeShapes : Item[0..*];
 	}
 	
 	/**
 	 * Example car with simple eveloping shape that is a solid box
 	 */
 	part def Car :> TangibleItem {
-		private attribute envelopingBox : Box {
-			// :>> transformation : CoordinateTransformation { ... }
+		private item envelopingBox : Box {
 			:>> length = 4800 [mm];
 			:>> width = 1840 [mm];
 			:>> height = 1350 [mm];

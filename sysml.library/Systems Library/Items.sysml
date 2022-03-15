@@ -34,10 +34,17 @@ package Items {
 		item envelopingShapes : Item[0..*] {
 			attribute :>> innerSpaceDimension = shape.innerSpaceDimension;
 		}
-		 
-		assert constraint enclosingShapeConstraint { 
-			envelopingShapes->forAll { in enclosingShape : Item;
-				enclosingShape.spaceInterior->includes(shape)
+		
+		/**
+		 * This Item enveloped by all its envelopingShapes. That is, for each envelopingShape, there
+		 * is an Item with that shape for which this Item is a spaceSlice.
+		 */
+		assert constraint envelopingShapeConstraint { 
+			envelopingShapes->forAll { in envelopingShape : Item;
+				item envelopingItem {
+					item :>> shape = envelopingShape; 
+				}
+				envelopingItem.spaceSlices->includes(Item::self)
 			}
 		}
 		

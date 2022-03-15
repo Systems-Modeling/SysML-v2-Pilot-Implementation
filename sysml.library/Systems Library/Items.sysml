@@ -37,14 +37,14 @@ package Items {
 		
 		/**
 		 * This Item enveloped by all its envelopingShapes. That is, for each envelopingShape, there
-		 * is an Item with that shape for which this Item is a spaceSlice.
+		 * is an Item with that shape that encloses this Item in space for its entire lifetime.
 		 */
 		assert constraint envelopingShapeConstraint { 
 			envelopingShapes->forAll { in envelopingShape : Item;
 				item envelopingItem {
 					item :>> shape = envelopingShape; 
 				}
-				envelopingItem.spaceSlices->includes(Item::self)
+				envelopingItem.spaceTimeEnclosedOccurrences->includes(Item::self)
 			}
 		}
 		

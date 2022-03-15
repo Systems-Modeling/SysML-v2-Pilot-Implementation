@@ -24,6 +24,11 @@
 
 package org.omg.sysml.plantuml;
 
+import java.util.List;
+import java.util.Set;
+
+import org.omg.sysml.lang.sysml.Connector;
+import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.MultiplicityRange;
 import org.omg.sysml.lang.sysml.PartDefinition;
@@ -71,6 +76,7 @@ public class VComposite extends VMixed {
         VComposite vc = new VComposite(this);
         vc.traverse(f);
         vc.closeBlock();
+        addSpecializations(f);
 
         return "";
     }
@@ -91,6 +97,38 @@ public class VComposite extends VMixed {
         return "";
     }
 
+    private Feature getEndFeature(Feature f) {
+        while (!f.isEnd()) {
+            Element e = f.getOwner();
+            if (!(e instanceof Feature)) return null;
+            f = (Feature) e;
+        }
+        return f;
+    }
+
+    private boolean isPortOut(int id) {
+        Set<Element> paths = getVPath().getPaths(id);
+        if (paths == null) return false;
+        for (Element path: paths) {
+            if (!(path instanceof Feature)) continue;
+            Feature f = getEndFeature((Feature) path);
+            if (f == null) continue;
+            Type t = f.getOwningType();
+            if (t instanceof Connector) {
+                Connector c = (Connector) t;
+                List<Feature> fs = c.getConnectorEnd();
+                /* 
+                   Currently we regard the first connector end as a source end, but it might be changed.
+                   We can check it by extracting the sources of the relationship, but it does not work with ItemFlowEnd
+                   and is not efficient.  So we will use the current solution for the time being.
+                   if (rel.getSource().contains(path)) return true;
+                 */
+                if (f.equals(fs.get(0))) return true;
+            }
+        }
+        return false;
+    }
+
     @Override
     public String casePortUsage(PortUsage pu) {
         String name = extractTitleName(pu);
@@ -100,14 +138,17 @@ public class VComposite extends VMixed {
         vc.traverse(pu);
         String ret = vc.getString();
 
-        String keyword;
         if (ret.isEmpty()) {
-            keyword = "portin ";
-            addPUMLLine(pu, keyword, name);
+            int pt = getCurrentLength();
+            int id = addPUMLLine(pu, "", name);
+            if (isPortOut(id)) {
+                insert(pt, "portout ");
+            } else {
+                insert(pt, "portin ");
+            }
             append('\n');
         } else {
-            keyword = "rec usage ";
-            addPUMLLine(pu, keyword, name);
+            addPUMLLine(pu, "rec usage ", name);
             vc.closeBlock();
         }
 

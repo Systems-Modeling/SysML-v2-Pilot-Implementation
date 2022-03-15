@@ -93,7 +93,7 @@ public class VPath extends VTraverser {
             if (!isMatching()) return;
             if (unmatched != 0) return;
             if (match(e)) {
-                pathIdMap.put(idTarget, id);
+                putPathIdMap(id, idTarget);
                 isSet = true;
             }
         }
@@ -386,6 +386,20 @@ public class VPath extends VTraverser {
     }
 
     private final Map<Element, Integer> pathIdMap = new HashMap<Element, Integer>();
+    private final Map<Integer, Set<Element>> pathIdRevMap = new HashMap<Integer, Set<Element>>();
+
+    private void putPathIdMap(Integer id, Element e) {
+        pathIdMap.put(e, id);
+        Set<Element> es = pathIdRevMap.get(id);
+        if (es == null) {
+            es = new HashSet<Element>(1);
+            es.add(e);
+            pathIdRevMap.put(id, es);
+        } else {
+            es.add(e);
+        }
+    }
+
     private List<RefPC> current = new ArrayList<RefPC>();
 
     private static Type typeOfInheriting(Type owningType, Feature f) {
@@ -496,6 +510,10 @@ public class VPath extends VTraverser {
 
     public Integer getId(Element e) {
         return pathIdMap.get(e);
+    }
+
+    public Set<Element> getPaths(Integer id) {
+    	return pathIdRevMap.get(id);
     }
 
     VPath() {

@@ -65,6 +65,14 @@ public abstract class Visitor extends SysMLSwitch<String> {
 
     private StringBuilder sb;
 
+    protected int getCurrentLength() {
+        return sb.length();
+    }
+
+    protected void insert(int point, String str) {
+        sb.insert(point, str);
+    }
+
     protected void append(String str) {
         sb.append(str);
     }
@@ -214,11 +222,12 @@ public abstract class Visitor extends SysMLSwitch<String> {
         append('"');
     }
 
-    protected void addNameWithId(Element e, String name, boolean force) {
+    protected int addNameWithId(Element e, String name, boolean force) {
         quote(name);
         append(" as ");
-        addIdStr(e, force);
+        int id = addIdStr(e, force);
         append(' ');
+        return id;
     }
 
     private void close() {
@@ -257,21 +266,25 @@ public abstract class Visitor extends SysMLSwitch<String> {
         return 'E' + ii.toString();
     }
 
-    private void appendId(StringBuilder ss, Element e, boolean force) {
+    private int appendId(StringBuilder ss, Element e, boolean force) {
         if (e == null) {
             ss.append("[*]");
+            return 0;
         } else {
             ss.append('E');
+            int id;
             if (force) {
-                ss.append(newId(e));
+                id = newId(e);
             } else {
-                ss.append(getId(e));
+                id = getId(e);
             }
+            ss.append(id);
+            return id;
         }
     }
 
-    protected void addIdStr(Element e, boolean force) {
-        appendId(sb, e, force);
+    protected int addIdStr(Element e, boolean force) {
+        return appendId(sb, e, force);
     }
 
     private final List<PRelation> pRelations;

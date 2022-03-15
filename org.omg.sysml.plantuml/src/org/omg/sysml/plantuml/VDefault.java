@@ -109,17 +109,18 @@ public class VDefault extends VTraverser {
         }
     }
 
-    protected void addPUMLLine(Type typ, String keyword, String name, String style) {
+    protected int addPUMLLine(Type typ, String keyword, String name, String style) {
         append(keyword);
-        addNameWithId(typ, name, true);
+        int id = addNameWithId(typ, name, true);
         if (style != null) {
             append(style);
         }
         addLink(typ);
+        return id;
     }
 
-    protected void addPUMLLine(Type typ, String keyword, String name) {
-        addPUMLLine(typ, keyword, name, styleString(typ));
+    protected int addPUMLLine(Type typ, String keyword, String name) {
+        return addPUMLLine(typ, keyword, name, styleString(typ));
     }
 
     protected boolean addRecLine(String name, Type typ, boolean withStyle) {

@@ -422,6 +422,7 @@ public class SysML2PlantUMLText {
     private int idCounter;
     private IDMap idMap;
 
+    // element 1<-* id 1<-* path(feature, featureChain, featureChainExpression, ItemFlowEnd)
     private class IDMap {    	
         private final Map<Element, Integer> idMap = new HashMap<Element, Integer>();
         private final IDMap prev;

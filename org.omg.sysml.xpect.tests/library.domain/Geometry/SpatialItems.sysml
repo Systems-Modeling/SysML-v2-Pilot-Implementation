@@ -5,10 +5,6 @@
 package SpatialItems {
 	private import Objects::Point;
 	private import SpatialFrames::SpatialFrame;
-	private import ShapeDefinitions::ShapeDefinition;
-	private import ShapeDefinitions::ShapeUnion;
-	private import ShapeCalculations::ReifyShape;
-	private import SequenceFunctions::includes;
 	private import Quantities::VectorQuantityValue;
 	private import UnitsAndScales::VectorMeasurementReference;
 	private import Time::Clock;
@@ -16,8 +12,6 @@ package SpatialItems {
 	private import ISQ::Cartesian3dSpatialCoordinateSystem;
 	private import VectorFunctions::isZeroVector;
 	private import ControlFunctions::forAll;
-	private import ControlFunctions::forAll;
-	private import ControlFunctions::reduce;
 	
 	/**
 	 * A SpatialItem is an Item with a three dimensional spatial extent that also acts as a SpatialFrame of reference.
@@ -40,19 +34,6 @@ package SpatialItems {
 		}
 		
 		/**
-		 * A ShapeDefinition that defines the envelope that contains this SpatialItem.
-		 */
-		attribute shapeDefinition : ShapeDefinition[0..1];
-		
-		/**
-		 * A SpatialItem must be an enclosed space-time Occurrence of the reification of its bounding shape.
-		 */
-		assert constraint shapeDefConstraint {
-			shapeDefinition != null implies
-				ReifyShape(shapeDefinition).spaceTimeEnclosedOccurrences->includes(self)
-		}
-
-		/**
 		 * The Point at the origin of the coordinateFrame of this SpatialItem.
 		 */
 		item originPoint : Point :> spaceShots;
@@ -69,15 +50,6 @@ package SpatialItems {
 	 * A CompoundSpatialItem is a SpatialItem that is a union of a collection of component SpatialItems.
 	 */
 	item def CompoundSpatialItem :> SpatialItem {
-		
-		/**
-		 * By default the shapeDefinition of a CompoundSpatialItem is the union of the
-		 * shapeDefinitions of its componentItems, if they are all non-null.
-		 */
-		attribute :>> shapeDefinition default
-			if componentItems->forAll{in i : SpatialItem; i.shapeDefinition != null}? 
-				ShapeUnion(componentItems.shapeDefinition)
-			else null;
 		
 		/**
 		 * The composite SpatialItems that together make up this CompoundSpatialItem.

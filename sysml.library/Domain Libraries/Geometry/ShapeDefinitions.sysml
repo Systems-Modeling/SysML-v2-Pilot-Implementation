@@ -45,6 +45,15 @@ package ShapeDefinitions {
 	alias Box for CuboidDefinition;
 	
 	/**
+	 * A ConeShapeDefinition is the PrimitiveShapeDefinition of a 3D right circular cone shape
+	 */
+	attribute def ConeDefinition :> PrimitiveShapeDefinition {
+		attribute baseRadius :> radius;
+		attribute apexRadius :> radius default 0 [m];
+		attribute :>> height;
+	}
+		
+	/**
 	 * A CylinderShapeDefinition is the PrimitiveShapeDefniition of a 3D right circular cylinder shape.
 	 */
 	attribute def CylinderDefinition :> ConeDefinition {
@@ -52,15 +61,6 @@ package ShapeDefinitions {
 		attribute :>> baseRadius = apexRadius;
 	}
 
-	/**
-	 * A ConeShapeDefinition is the PrimitiveShapeDefinition of a 3D right circular cone shape
-	 */
-	attribute def ConeDefinition :> PrimitiveShapeDefinition {
-		attribute baseRadius :>> radius;
-		attribute apexRadius :>> radius default 0 [m];
-		attribute :>> height;
-	}
-		
 	/**
 	 * A SphereDefinition is the PrimitiveShapeDefinition of a 3D sphere solid shape
 	 */

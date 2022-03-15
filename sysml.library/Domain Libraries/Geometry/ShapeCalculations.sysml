@@ -3,9 +3,9 @@
  * calculations for reifying ShapeDefinitions into SpatialItems.
  */
 package ShapeCalculations {
+	private import Items::Item;
 	private import ShapeDefinitions::*;
-	private import BasicShapeItems::*;
-	private import SpatialItems::SpatialItem;
+	private import ShapeItems::*;
 	private import ControlFunctions::collect;
 
     /** 
@@ -35,19 +35,15 @@ package ShapeCalculations {
 	}
 	
 	/**
-	 * Return a SpatialItem with a spatial extent determined by a given ShapeDefinition.
+	 * Return a Item with a spatial extent determined by a given ShapeDefinition.
 	 */
-	abstract calc def ReifyShape (shapeDef : ShapeDefinition) {
-		return reifiedShape : SpatialItem {
-			attribute :>> shapeDefinition = shapeDef;
-		}
-	}
+	abstract calc def ReifyShape (shapeDef : ShapeDefinition) shapedItem : Item;
 	
 	/**
 	 * Return an Object whose special extent is determined by a ShapeUnion shape.
 	 */
 	calc def ReifyShapeUnion :> ReifyShape (shapeDef : ShapeUnion) {
-		return unionObject : SpatialItem {
+		return shapedItem {
 			:>> unionsOf[1] {
 				:>> elements = shapeDef.operands->collect{in s; ReifyShape(s)};
 			}
@@ -58,7 +54,7 @@ package ShapeCalculations {
 	 * Return an Object whose spatial extent is determined by a ShapeDifference shape.
 	 */
 	calc def ReifyShapeDifference :> ReifyShape (shapeDef : ShapeDifference) {
-		return differenceObject : SpatialItem {
+		return shapedItem {
 			:>> differencesOf[1] {
 				:>> elements = shapeDef.operands->collect{in s; ReifyShape(s)};
 			}
@@ -69,15 +65,39 @@ package ShapeCalculations {
 	 * Return an Object whose spatial extent is determined by a ShapeIntersection shape.
 	 */
 	calc def ReifyShapeIntersection :> ReifyShape (shapeDef : ShapeIntersection) {
-		return intersectionObject : SpatialItem {
+		return shapedItem {
 			:>> intersectionsOf[1] {
 				:>> elements = shapeDef.operands->collect{in s; ReifyShape(s)};
 			}
 		}
 	}
 	
-	calc def ReifyCuboid :> ReifyShape (shapeDef : CuboidDefinition) : Cuboid;
-	calc def ReifyCylinder :> ReifyShape (shape : CylinderDefinition) : Cylinder;
-	calc def ReifyCone :> ReifyShape (shapeDef : ConeDefinition) : Cone;
-	calc def ReifySphere :> ReifyShape (shapeDef : SphereDefinition) : Sphere;
+	calc def ReifyCuboid :> ReifyShape (shapeDef : CuboidDefinition) {
+		return shapedItem : Cuboid {
+			:>> length = shapeDef.length;
+			:>> width = shapeDef.width;
+			:>> height = shapeDef.height;
+		}
+	}
+	
+	calc def ReifyCone :> ReifyShape (shapeDef : ConeDefinition) {
+		return shapedItem : Cone {
+			:>> baseRadius = shapeDef.baseRadius;
+			:>> apexRadius = shapeDef.apexRadius;
+			:>> height = shapeDef.height;
+		}
+	}
+	
+	calc def ReifyCylinder :> ReifyCone (shapeDef : CylinderDefinition) {
+		return shapedItem : Cylinder {
+			:>> radius = shapeDef.radius;
+			:>> height = shapeDef.height;
+		}
+	}
+	
+	calc def ReifySphere :> ReifyShape (shapeDef : SphereDefinition) {
+		return shapedItem : Sphere {
+			:>> radius = shapeDef.radius;
+		}
+	}
 }

@@ -216,8 +216,9 @@ package Occurrences {
 		 * occurrence).
 		 */
 		feature intersectionsOf: Set[0..*] {
-			feature redefines elements: Occurrence[0..*]
-			  { feature all notIntersection: Occurrence[0..*] subsets spaceTimeEnclosedPoints; }
+			feature redefines elements: Occurrence[0..*] { 
+				feature all notIntersection: Occurrence[0..*] subsets spaceTimeEnclosedPoints;
+			}
 			feature intersection: Occurrence[0..1];
 			
 			connector :Within
@@ -276,8 +277,9 @@ package Occurrences {
 		 * A space shot of this Occurrence that is not among those of its space interior, of
 		 * which it must be outside. It must have no spaceBoundary.
 		 */
-		portion feature spaceBoundary: Occurrence[0..1] subsets spaceShots
-		  { feature redefines isClosed = true; }
+		portion feature spaceBoundary: Occurrence[0..1] subsets spaceShots { 
+			feature redefines isClosed = true;
+		}
 
 		/**
 		 * An Occurrence of which this one is the space boundary.

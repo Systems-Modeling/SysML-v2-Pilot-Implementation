@@ -115,19 +115,19 @@ package Objects {
 		    inv { notEmpty(cellOrientation) implies (cellOrientation >= -1 & cellOrientation <= 1) }
 		  }
 
-		portion feature faces : Surface[0..*] subsets structuredSpaceObjectCells {
+		portion feature faces : Surface[0..*] ordered subsets structuredSpaceObjectCells {
 			derived feature redefines spaceBoundary; 
 			inv { isEmpty(spaceBoundary) == isEmpty(union(edges, vertices)) }
 			inv { notEmpty(spaceBoundary) implies contains(spaceBoundary.unionsOf, union(edges, vertices)) }
 		}
 
-		portion feature edges : Curve[0..*] subsets structuredSpaceObjectCells {
+		portion feature edges : Curve[0..*] ordered subsets structuredSpaceObjectCells {
 			derived feature redefines spaceBoundary;
 			inv { isEmpty(spaceBoundary) == isEmpty(vertices) }
 			inv { notEmpty(spaceBoundary) implies contains(spaceBoundary.unionsOf, vertices) }
 		}
 
-		portion feature vertices : Point[0..*] subsets structuredSpaceObjectCells;
+		portion feature vertices : Point[0..*] ordered subsets structuredSpaceObjectCells;
 		
 		derived feature redefines innerSpaceDimension = 
 			(if notEmpty(faces)? 2 else (if notEmpty(edges)? 1 else 0));

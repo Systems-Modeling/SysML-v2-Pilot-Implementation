@@ -42,6 +42,10 @@ import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
 public abstract class VTraverser extends Visitor {
     private Set<Namespace> visited;
 
+    private Namespace currentNamespace;
+    protected Namespace getCurrentNamespace() {
+        return currentNamespace;
+    }
     private Membership currentMembership;
     protected Membership getCurrentMembership() {
         return currentMembership;
@@ -127,6 +131,7 @@ public abstract class VTraverser extends Visitor {
     public String traverse(Namespace ns) {
         VPath vpath = getVPath();
         vpath.enter(ns);
+        this.currentNamespace = ns;
         if (showInherited() && (ns instanceof Type)) {
             traverseWithInherited((Type) ns);
         } else {
@@ -138,6 +143,7 @@ public abstract class VTraverser extends Visitor {
             }
             setInherited(false);
         }
+        this.currentNamespace = null;
         vpath.leave(ns);
         return "";
     }

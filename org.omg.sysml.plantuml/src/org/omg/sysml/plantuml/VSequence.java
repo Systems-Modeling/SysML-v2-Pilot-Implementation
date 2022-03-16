@@ -184,7 +184,7 @@ public class VSequence extends VDefault {
 
     private void addParticipant(Type participant) {
         if (checkId(participant)) return;
-        addPUMLLine(participant, "participant ", getNameAnyway(participant, true));
+        addPUMLLine(participant, "participant ", getNameAnyway(participant));
         append('\n');
     }
 

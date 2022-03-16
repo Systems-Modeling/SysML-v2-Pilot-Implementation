@@ -139,7 +139,7 @@ public abstract class VBehavior extends VDefault {
         	}
         }
         if (text.length() == 0) {
-            String name = getNameAnyway(au, true);
+            String name = getNameAnyway(au);
             text.append(name);
         }
         addPUMLLine(au, send ? "send " : "accept ", text.toString());

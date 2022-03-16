@@ -168,7 +168,7 @@ public abstract class VStructure extends VDefault {
     }
 
     protected String extractTitleName(Element e) {
-        String name = getNameAnyway(e, true);
+        String name = getNameAnyway(e);
         if (!(e instanceof Feature)) return name;
 
         Feature f = (Feature) e;

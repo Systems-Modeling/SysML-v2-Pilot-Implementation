@@ -139,7 +139,7 @@ public class VDefault extends VTraverser {
     }
 
     protected boolean addRecLine(Type typ, boolean withStyle) {
-    	String name = getNameAnyway(typ, true);
+    	String name = getNameAnyway(typ);
         return addRecLine(name, typ, withStyle);
     }
 

@@ -29,6 +29,7 @@ import java.util.List;
 import org.omg.sysml.lang.sysml.CaseDefinition;
 import org.omg.sysml.lang.sysml.CaseUsage;
 import org.omg.sysml.lang.sysml.Membership;
+import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.ObjectiveMembership;
 import org.omg.sysml.lang.sysml.RequirementUsage;
 import org.omg.sysml.lang.sysml.Succession;
@@ -60,12 +61,12 @@ public class VCase extends VTree {
     }
 
     @Override
-    protected VTree newVTree(Membership membership) {
-        return new VCase(this, membership);
+    protected VTree newVTree(Namespace namespace, Membership membership) {
+        return new VCase(this, namespace, membership);
     }
 
     private String addCase(Type typ) {
-        String name = getNameAnyway(typ, true);
+        String name = getNameAnyway(typ);
         addRecLine(name, typ, true);
         addSpecializations(typ);
 
@@ -104,8 +105,8 @@ public class VCase extends VTree {
         return addCase(ucd);
     }
 
-    VCase(Visitor vt, Membership membership) {
-        super(vt, membership);
+    VCase(Visitor vt, Namespace namespace, Membership membership) {
+        super(vt, namespace, membership);
     }
 
     VCase(VCaseMembers vt) {

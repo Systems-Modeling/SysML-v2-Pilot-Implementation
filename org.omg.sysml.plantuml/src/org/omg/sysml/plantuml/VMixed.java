@@ -30,6 +30,7 @@ import org.omg.sysml.lang.sysml.CaseDefinition;
 import org.omg.sysml.lang.sysml.CaseUsage;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Membership;
+import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.StateDefinition;
 import org.omg.sysml.lang.sysml.StateUsage;
 import org.omg.sysml.lang.sysml.Type;
@@ -50,8 +51,8 @@ public class VMixed extends VTree {
     }
 
     @Override
-    protected VTree newVTree(Membership membership) {
-        return new VMixed(this, membership);
+    protected VTree newVTree(Namespace namespace, Membership membership) {
+        return new VMixed(this, namespace, membership);
     }
 
     private String process(Visitor v, Element e) {
@@ -115,8 +116,8 @@ public class VMixed extends VTree {
     }
 
 
-    private VMixed(VTree vt, Membership membership) {
-        super(vt, membership);
+    private VMixed(VTree vt, Namespace namespace, Membership membership) {
+        super(vt, namespace, membership);
     }
 
     public VMixed(Visitor vt) {

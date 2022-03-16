@@ -352,7 +352,7 @@ public abstract class Visitor extends SysMLSwitch<String> {
 
     private Element fullyQualifiedElement;
 
-    protected String getNameAnyway(Element e, boolean creole) {
+    protected String getNameAnyway(Element e, boolean creole, boolean isInherited) {
         String ret = null;
         if (e.equals(fullyQualifiedElement)) {
             ret = e.getQualifiedName();
@@ -373,7 +373,15 @@ public abstract class Visitor extends SysMLSwitch<String> {
                 ret = "<i>" + ret + "</i>";
             }
         }
-        return ret;
+        if (isInherited) {
+            return '^' + ret;
+        } else {
+            return ret;
+        }
+    }
+
+    protected String getNameAnyway(Element e) {
+        return getNameAnyway(e, true, isInherited());
     }
 
     protected static String getFeatureChainName(Feature f) {

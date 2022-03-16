@@ -24,7 +24,7 @@ package Items {
 		item done: Item :>> endShot;
 		
 		/**
-		 * The shape of an Item is its spatial boundary;
+		 * The shape of an Item is its spatial boundary.
 		 */
 		item shape : Item :>> spaceBoundary;
 		
@@ -36,7 +36,7 @@ package Items {
 		}
 		
 		/**
-		 * This Item enveloped by all its envelopingShapes. That is, for each envelopingShape, there
+		 * An Item is enveloped by all its envelopingShapes. That is, for each envelopingShape, there
 		 * is an Item with that shape that encloses this Item in space for its entire lifetime.
 		 */
 		assert constraint envelopingShapeConstraint { 

@@ -12,6 +12,7 @@ XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLTests
 		File {from ="/library.kernel/TransitionPerformances.kerml"}
 		File {from ="/library.kernel/Transfers.kerml"}
 		File {from ="/library.kernel/ScalarFunctions.kerml"}
+		File {from ="/library.kernel/NumericalFunctions.kerml"}
 		File {from ="/library.kernel/ControlFunctions.kerml"}
 		File {from ="/library.kernel/ScalarValues.kerml"}
 		File {from ="/library.systems/Items.sysml"}
@@ -33,6 +34,7 @@ XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLTests
 				File {from ="/library.kernel/TransitionPerformances.kerml"}
 				File {from ="/library.kernel/Transfers.kerml"}
 				File {from ="/library.kernel/ScalarFunctions.kerml"}
+				File {from ="/library.kernel/NumericalFunctions.kerml"}
 				File {from ="/library.kernel/ControlFunctions.kerml"}
 				File {from ="/library.kernel/ScalarValues.kerml"}
 				File {from ="/library.systems/Items.sysml"}
@@ -47,7 +49,7 @@ END_SETUP
 // XPECT noErrors ---> ""
 package CalculationExample {
 	import ScalarValues::Real;
-	import ScalarFunctions::*;
+	import NumericalFunctions::*;
 	
 	part def VehiclePart {
 		attribute m : Real;

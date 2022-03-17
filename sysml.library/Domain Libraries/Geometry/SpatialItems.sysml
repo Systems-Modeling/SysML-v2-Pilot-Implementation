@@ -17,13 +17,13 @@ package SpatialItems {
 	 * A SpatialItem is an Item with a three-dimensional spatial extent that also acts as a SpatialFrame of reference.
 	 */
 	item def SpatialItem :> SpatialFrame {
-		item :>> self : SpatialItem;
+		ref item :>> self : SpatialItem;
 		
 		/**
 		 * A local Clock to be used as the corresponding time reference within this SpatialItem. 
 		 * By default this is the global defaultClock.
 		 */
-		item localClock : Clock[1] default Time::defaultClock;
+		ref item localClock : Clock[1] default Time::defaultClock;
 		
 		/**
 		 * The three-dimensional VectorMeasurementReference to be used as the measurement reference for position 

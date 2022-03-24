@@ -47,14 +47,14 @@ package SpatialItems {
 	}
 	
 	/**
-	 * A CompoundSpatialItem is a SpatialItem that is a spacial union of a collection of component SpatialItems.
+	 * A CompoundSpatialItem is a SpatialItem that is a spatial union of a collection of component SpatialItems.
 	 */
 	item def CompoundSpatialItem :> SpatialItem {
 		
 		/**
 		 * The composite SpatialItems that together make up this CompoundSpatialItem. 
 		 * The coordinateFrames of the compositeItems are nested in the coordinateFrame of the CompoundSpatialItem, 
-		 * and, by default, they have the same localClock as the CompoundSpacialItem.
+		 * and, by default, they have the same localClock as the CompoundSpatialItem.
 		 */
 		item componentItems : SpatialItem[0..*] ordered :> subitems {
 			item nestedLocalClock :>> localClock default localClock;
@@ -118,25 +118,25 @@ package SpatialItems {
 		in point1 : Point[1];
 		in point2 : Point[1];
 		in timeInstant : TimeInstantValue[1];
-		in spacialItem :>> 'frame' : SpatialItem[1];
-		in clock : Clock[1] default spacialItem.localClock;
+		in spatialItem :>> 'frame' : SpatialItem[1];
+		in clock : Clock[1] default spatialItem.localClock;
 		return displacementVector : VectorQuantityValue[1] {
-			attribute :>> mRef = spacialItem.coordinateFrame;
+			attribute :>> mRef = spatialItem.coordinateFrame;
 			attribute :>> isBound = false;
 		}
 	}
 
 	/**
 	 * The CurrentDisplacementOf two Points relative to a SpatialItem and a Clock is the DisplacementOf
-	 * the Points relative to the SpacialItem, at the currentTime of the Clock.
+	 * the Points relative to the SpatialItem, at the currentTime of the Clock.
 	 */
 	calc def CurrentDisplacementOf :> SpatialFrames::CurrentDisplacementOf {
 		in point1 : Point[1];
 		in point2 : Point[1];
-		in spacialItem :>> 'frame' : SpatialItem[1];
-		in clock : Clock[1] default spacialItem.localClock;
+		in spatialItem :>> 'frame' : SpatialItem[1];
+		in clock : Clock[1] default spatialItem.localClock;
 		return displacementVector : VectorQuantityValue[1] {
-			attribute :>> mRef = spacialItem.coordinateFrame;
+			attribute :>> mRef = spatialItem.coordinateFrame;
 			attribute :>> isBound = false;
 		}
 	}

@@ -10,7 +10,7 @@ package SpatialItems {
 	private import UnitsAndScales::VectorMeasurementReference;
 	private import Time::Clock;
 	private import Time::TimeInstantValue;
-	private import ISQ::Cartesian3dSpatialCoordinateSystem;
+	private import ISQ::Cartesian3dSpatialCoordinateFrame;
 	private import VectorFunctions::isZeroVector;
 	private import ControlFunctions::forAll;
 	
@@ -30,7 +30,7 @@ package SpatialItems {
 		 * The three-dimensional VectorMeasurementReference to be used as the measurement reference for position 
 		 * and displacement vector values relative to this SpatialItem.
 		 */
-		attribute coordinateFrame : VectorMeasurementReference[1] default Cartesian3dSpatialCoordinateSystem() {
+		attribute coordinateFrame : VectorMeasurementReference[1] default Cartesian3dSpatialCoordinateFrame() {
 			attribute :>> dimensions = 3;
 		}
 		

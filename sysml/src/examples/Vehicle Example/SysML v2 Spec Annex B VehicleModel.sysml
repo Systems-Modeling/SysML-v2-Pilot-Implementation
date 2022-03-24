@@ -484,7 +484,7 @@ package sfriedenthal_VehicleModel_1_simplified{
 
             part def Context {
                 attribute time:TimeValue;
-                attribute spatialCS: Cartesian3dSpatialCoordinateSystem[1] { :>> mRefs = (m, m, m); }
+                attribute spatialCS: Cartesian3dSpatialCoordinateFrame[1] { :>> mRefs = (m, m, m); }
                 attribute velocityCS: Cartesian3dVelocityCoordinateSystem[1] = spatialCS/s { :>> isBound = false; }
                 attribute accelarationCS: Cartesian3dAccelerationCoordinateSystem[1] = velocityCS/s { :>> isBound = false; }
             }

@@ -6,7 +6,7 @@
  * Note 1: In documentation comments, AsciiMath notation (see http://asciimath.org/) is used for mathematical concepts,
  * with Greek letters in Unicode encoding. In running text, AsciiMath is placed between backticks.
  * Note 2: For vector and tensor quantities currently the unit and quantity value type for their (scalar) magnitude is 
- * defined, as well as their typical Cartesian 3d VectorMeasurementReference (i.e. coordinate system) 
+ * defined, as well as their typical Cartesian 3d VectorMeasurementReference (i.e. coordinate frame) 
  * or TensorMeasurementReference.
  */
 package ISQSpaceTime {
@@ -159,7 +159,7 @@ package ISQSpaceTime {
         attribute :>> dimensions = 3;
         attribute :>> isBound = true;
         attribute :>> num: Real[3];
-        attribute :>> mRef: Cartesian3dSpatialCoordinateSystem[1];
+        attribute :>> mRef: Cartesian3dSpatialCoordinateFrame[1];
     }
     attribute positionVector: Cartesian3dPositionVector :> vectorQuantities;
 
@@ -178,7 +178,7 @@ package ISQSpaceTime {
         attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> num: Real[3];
-        attribute :>> mRef: Cartesian3dSpatialCoordinateSystem[1];
+        attribute :>> mRef: Cartesian3dSpatialCoordinateFrame[1];
     }
     attribute displacementVector: Cartesian3dDisplacementVector :> vectorQuantities;
 

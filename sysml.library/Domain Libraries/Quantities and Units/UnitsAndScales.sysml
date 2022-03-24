@@ -1,5 +1,5 @@
 /**
- * This package defines the general representations used to construct measurement scale and unit types.
+ * This package defines the representations for measurement references.
  * TODO: Propose to rename to MeasurementReferences
  */
 package UnitsAndScales {
@@ -51,8 +51,8 @@ package UnitsAndScales {
 	 * Attribute isOrthogonal declares whether the basis vectors of the vector space are orthogonal, i.e. whether the
 	 * inner products of any pair of basis vectors yield zero.
 	 *
-	 * Attribute placement enables the location and orientation of a dependent (nested) coordinate system (that is
-	 * a VectorMeasurementReference) w.r.t. another (independent or reference) coordinate system.
+	 * Attribute placement enables the location and orientation of a dependent (nested) coordinate frame (that is
+	 * a VectorMeasurementReference) w.r.t. another (independent or reference) coordinate frame.
 	 */
 	attribute def VectorMeasurementReference :> TensorMeasurementReference {
 		attribute :>> dimensions: Positive[0..1];
@@ -78,7 +78,7 @@ package UnitsAndScales {
 	}
 
 	/**
-	 * Coordinate system transformation
+	 * Coordinate frame transformation
 	 */
 	 attribute def CoordinateTransformation {
 	 	attribute source: VectorMeasurementReference[1];
@@ -254,7 +254,7 @@ package UnitsAndScales {
 	 * Representation of a particular quantity value that is used in the definition of a TensorMeasurementReference
 	 *
 	 * Typically such a particular value is defined by convention. It can be used to define a selected reference value,
-	 * such as the meaning of zero on a measurement scale or the origin of a top-level coordinate system.
+	 * such as the meaning of zero on a measurement scale or the origin of a top-level coordinate frame.
 	 *
 	 * Example: The 'kelvin' MeasurementReference for thermodynamic temperature could have a
 	 * DefinitionalQuantityValue {

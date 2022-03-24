@@ -95,7 +95,7 @@ package ISQCondensedMatter {
      * definition: vector whose scalar products with all fundamental lattice vectors are integral multiples of  `2π`
      * remarks: In crystallography, however, the quantity `G/(2π)` is sometimes used.
      */
-    attribute def Cartesian3dAngularReciprocalLatticeCoordinateSystem :> VectorMeasurementReference {
+    attribute def Cartesian3dAngularReciprocalLatticeCoordinateFrame :> VectorMeasurementReference {
         attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> isOrthogonal = true;
@@ -106,7 +106,7 @@ package ISQCondensedMatter {
         attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> num: Real[3];
-        attribute :>> mRef: Cartesian3dAngularReciprocalLatticeCoordinateSystem[1];
+        attribute :>> mRef: Cartesian3dAngularReciprocalLatticeCoordinateFrame[1];
     }
     attribute angularReciprocalLatticeVector: Cartesian3dAngularReciprocalLatticeVector :> vectorQuantities;
 
@@ -143,7 +143,7 @@ package ISQCondensedMatter {
      * definition: fundamental translation vectors for the reciprocal lattice
      * remarks: `vec(a_i) * vec(b_i) = 2π δ_(ij)`. In crystallography, however, the quantities `vec(b_j)/(2π)` are also often used.
      */
-    attribute def Cartesian3dFundamentalReciprocalLatticeCoordinateSystem :> VectorMeasurementReference {
+    attribute def Cartesian3dFundamentalReciprocalLatticeCoordinateFrame :> VectorMeasurementReference {
         attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> isOrthogonal = true;
@@ -154,7 +154,7 @@ package ISQCondensedMatter {
         attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> num: Real[3];
-        attribute :>> mRef: Cartesian3dFundamentalReciprocalLatticeCoordinateSystem[1];
+        attribute :>> mRef: Cartesian3dFundamentalReciprocalLatticeCoordinateFrame[1];
     }
     attribute fundamentalReciprocalLatticeVector: Cartesian3dFundamentalReciprocalLatticeVector :> vectorQuantities;
 

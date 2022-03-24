@@ -5,6 +5,7 @@
 package SpatialItems {
 	private import Objects::Point;
 	private import SpatialFrames::SpatialFrame;
+	private import Items::Item;
 	private import Quantities::VectorQuantityValue;
 	private import UnitsAndScales::VectorMeasurementReference;
 	private import Time::Clock;
@@ -16,7 +17,7 @@ package SpatialItems {
 	/**
 	 * A SpatialItem is an Item with a three-dimensional spatial extent that also acts as a SpatialFrame of reference.
 	 */
-	item def SpatialItem :> SpatialFrame {
+	item def SpatialItem :> SpatialFrame, Item {
 		ref item :>> self : SpatialItem;
 		
 		/**

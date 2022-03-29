@@ -1,6 +1,6 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation, PlantUML Visualization
- * Copyright (c) 2020 Mgnite Inc.
+ * Copyright (c) 2020-2022 Mgnite Inc.
  * Copyright (c) 2020 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
@@ -78,14 +78,14 @@ public class VComment extends Visitor {
         addCommentInternal(c);
         List<Element> es = c.getAnnotatedElement();
         for (Element e: es) {
-        	addPRelation(c, e, c);
+        	addPRelation(null, c, e, c, null);
         }
     }
 
 	public void addComment(Comment c, Element annotatedElement) {
         addCommentInternal(c);
         if (annotatedElement != null) {
-        	addPRelation(c, annotatedElement, c);
+        	addPRelation(null, c, annotatedElement, c, null);
         }
     }
 }

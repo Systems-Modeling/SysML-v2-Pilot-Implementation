@@ -63,7 +63,7 @@ public class VTree extends VStructure {
 
     protected void addRel(Element typ, Element rel, String text) {
         hasItems = true;
-        Element tgt = getNamespace();
+        Namespace tgt = getNamespace();
         if (tgt == null) return;
         addPRelation(tgt, typ, rel, text);
     }

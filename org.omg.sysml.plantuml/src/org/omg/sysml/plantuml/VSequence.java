@@ -1,6 +1,6 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation, PlantUML Visualization
- * Copyright (c) 2021 Mgnite Inc.
+ * Copyright (c) 2021-2022 Mgnite Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -192,8 +192,8 @@ public class VSequence extends VDefault {
     private class Message extends PRelation implements Comparable<Message> {
         private final Pair p1;
         private final Pair p2;
-        Message(Pair p1, Pair p2, Element rel, String desc) {
-            super(p1.participant, p2.participant, rel, desc);
+        Message(InheritKey ik, Pair p1, Pair p2, Feature rel, String desc) {
+            super(ik, p1.participant, p2.participant, rel, desc);
             this.p1 = p1;
             this.p2 = p2;
         }
@@ -238,7 +238,7 @@ public class VSequence extends VDefault {
     private void addMessage(Pair p1, Pair p2, FlowConnectionUsage fcu) {
         addParticipant(p1.participant);
         addParticipant(p2.participant);
-        messages.add(new Message(p1, p2, fcu, fcu.getEffectiveName()));
+        messages.add(new Message(makeInheritKey(fcu), p1, p2, fcu, fcu.getEffectiveName()));
     }
 
     @Override

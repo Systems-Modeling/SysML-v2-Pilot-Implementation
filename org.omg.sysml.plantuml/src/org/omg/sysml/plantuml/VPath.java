@@ -46,14 +46,16 @@ import org.omg.sysml.lang.sysml.ItemFlowFeature;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.Subsetting;
-import org.omg.sysml.lang.sysml.Type;
 
 public class VPath extends VTraverser {
 	// PC (PathContext) management. 
     private abstract class PC {
         private final Element idTarget;
         private PC next;
-        private final PC prev;
+        private PC prev;
+        public void setPrev(PC prev) {
+            this.prev = prev;
+        }
 
         protected boolean isTerminal() {
             return false;
@@ -87,13 +89,13 @@ public class VPath extends VTraverser {
 
         private boolean isSet;
 
-        public void setId(Element e, Integer id) {
+        public void setId(InheritKey ik, Element e, Integer id) {
             if (isSet) return;
             if (isTerminal()) return;
             if (!isMatching()) return;
             if (unmatched != 0) return;
             if (match(e)) {
-                putPathIdMap(id, idTarget);
+                putPathIdMap(id, ik, idTarget);
                 isSet = true;
             }
         }
@@ -116,10 +118,11 @@ public class VPath extends VTraverser {
             return getTarget();
         }
 
-        public PC enter(Element e) {
+        public PC enter(Namespace ns) {
             if (unmatched == 0) {
-                if (match(e)) {
-                    return getNextI();
+                if (match(ns)) {
+                    PC next = getNextI();
+                    return next;
                 }
             }
             if (isMatching()) {
@@ -138,7 +141,7 @@ public class VPath extends VTraverser {
             return this;
         }
     }
-    
+
     private class PCFeatureChainExpression extends PC {
         private final FeatureChainExpression fce;
 
@@ -184,9 +187,9 @@ public class VPath extends VTraverser {
             this.fce = fce;
         }
 
-        public PCFeatureChainExpression(FeatureChainExpression target, FeatureChainExpression head) {
-            super(target);
-            this.fce = head;
+        public PCFeatureChainExpression(FeatureChainExpression fce) {
+            super(fce);
+            this.fce = fce;
         }
     }
 
@@ -206,6 +209,11 @@ public class VPath extends VTraverser {
         public PCFeature(PC prev, Feature f) {
             super(prev);
             this.f = f;
+        }
+        
+        public PCFeature(Feature f) {
+        	super(f);
+        	this.f = f;
         }
     }
 
@@ -262,41 +270,6 @@ public class VPath extends VTraverser {
         }
     }
 
-    private class PCInherited extends PC {
-        private final Type typ;
-        private final Subsetting ss;
-
-        @Override
-        protected Element getTarget() {
-            if (typ == null) {
-                return ss.getSubsettedFeature();
-            } else {
-                return typ;
-            }
-        }
-        @Override
-        protected PC getNext() {
-            if (typ != null) {
-                return new PCInherited(this);
-            } else {
-                return new PCTerminal(this);
-            }
-        }
-
-        private PCInherited(PCInherited prev) {
-            super(prev);
-            this.typ = null;
-            this.ss = prev.ss;
-        }
-
-        public PCInherited(Subsetting ss, Type typ) {
-            super(ss);
-            this.typ = typ;
-            this.ss = ss;
-        }
-    }
-
-
     /*
       ife : ItemFlowEnd :> baseTarget (e.g. action) {
            // ReferenceUsage
@@ -315,11 +288,13 @@ public class VPath extends VTraverser {
         return null;
     }
     
-    public PCItemFlowEnd createPCItemFlowEnd(ItemFlowEnd ife) {
+    public RefPC makeRefPCItemFlowEnd(ItemFlowEnd ife) {
+        PC pc = makePC(ife);
+        if (pc == null) return null;
         Feature ioTarget = getIOTarget(ife);
-        PC basePC = makePC(ife, true);
-        if (basePC == null) return null;
-        return new PCItemFlowEnd(ife, basePC, ioTarget);
+        pc = new PCItemFlowEnd(ife, pc, ioTarget);
+        InheritKey ik = getInheritKey(ife);
+        return new RefPC(pc, ik);
     }
 
     private class PCItemFlowEnd extends PC {
@@ -359,17 +334,49 @@ public class VPath extends VTraverser {
         }
     }
 
+    private class PCInheritKey extends PC {
+        public final InheritKey ik;
+        private final PC pc;
+
+        @Override
+        protected PC getNext() {
+            return pc;
+        }
+
+        @Override
+        public PC enter(Namespace ns) {
+            if (matchCurrentInheritings(ik)) {
+                return pc;
+            } else {
+                return this;
+            }
+        }
+
+        public PCInheritKey(InheritKey ik, PC pc) {
+            super((Element) null);
+            this.ik = ik;
+            this.pc = pc;
+            pc.setPrev(this);
+        }
+
+        @Override
+        protected Element getTarget() {
+            throw new UnsupportedOperationException();
+        }
+    }
 
     private class RefPC {
         private PC pc;
+        private final InheritKey ik;
 
-        public void enter(Element e) {
-            pc = pc.enter(e);
+        public void enter(Namespace ns) {
+            pc = pc.enter(ns);
         }
         
         public boolean leave() {
             pc = pc.leave();
-            return pc != null;
+            if (pc != null) return true;
+            return false;
         }
 
         public Element requiredElement() {
@@ -377,101 +384,125 @@ public class VPath extends VTraverser {
         }
 
         public void setId(Element e, Integer id) {
-            pc.setId(e, id);
+            pc.setId(ik, e, id);
         }
 
-        RefPC(PC pc) {
-            this.pc = pc;
+        RefPC(PC pc, InheritKey ik) {
+            if (ik == null) {
+                this.pc = pc;
+            } else {
+                this.pc = new PCInheritKey(ik, pc);
+            }
+            this.ik = ik;
         }
     }
 
-    private final Map<Element, Integer> pathIdMap = new HashMap<Element, Integer>();
+    // InheritKey->Element->Integer
+    private final Map<InheritKey, Map<Element, Integer>> inheritedPathIdMap = new HashMap<>();
+
+    // Element -> Integer or Map<Element, Integer>
     private final Map<Integer, Set<Element>> pathIdRevMap = new HashMap<Integer, Set<Element>>();
 
-    private void putPathIdMap(Integer id, Element e) {
-        pathIdMap.put(e, id);
+    private void putPathIdMap(Integer id, InheritKey ik, Element pt) {
+        Map<Element, Integer> ikPathIdMap = inheritedPathIdMap.get(ik);
+        if (ikPathIdMap == null) {
+            ikPathIdMap = new HashMap<>();
+            inheritedPathIdMap.put(ik, ikPathIdMap);
+        }
+        ikPathIdMap.put(pt, id);
+        
         Set<Element> es = pathIdRevMap.get(id);
         if (es == null) {
             es = new HashSet<Element>(1);
-            es.add(e);
+            es.add(pt);
             pathIdRevMap.put(id, es);
         } else {
-            es.add(e);
+            es.add(pt);
         }
     }
 
     private List<RefPC> current = new ArrayList<RefPC>();
 
-    private static Type typeOfInheriting(Type owningType, Feature f) {
-        if (owningType == null) return null;
-        if (owningType.getOwnedFeature().contains(f)) return owningType;
-        if (owningType.getInheritedFeature().contains(f)) return owningType;
-        if (owningType instanceof Feature) {
-            Feature owningFeature = (Feature) owningType;
-            return typeOfInheriting(owningFeature.getOwningType(), f);
-        }
-        return null;
+    private InheritKey getInheritKey(List<FeatureChaining> fcs) {
+        FeatureChaining fc = fcs.get(0);
+        Feature ref = fc.getChainingFeature();
+        return makeInheritKey(ref);
     }
 
-    private PC makePC(Feature f, boolean force) {
+    private InheritKey getInheritKey(Feature f) {
         for (Subsetting ss: f.getOwnedSubsetting()) {
             Feature sf = ss.getSubsettedFeature();
             List<FeatureChaining> fcs = sf.getOwnedFeatureChaining();
             if (fcs.isEmpty()) {
-                Type typ = typeOfInheriting(f.getOwningType(), sf);
-                if (force) {
-                    return new PCInherited(ss, typ);
-                }
-                if (typ != null) {
-                    return new PCInherited(ss, typ);
-                }
+                return makeInheritKey(sf);
+            } else {
+                return getInheritKey(fcs);
+            }
+        }
+        return null;
+    }
+
+    private PC makePC(Feature f) {
+        for (Subsetting ss: f.getOwnedSubsetting()) {
+            Feature sf = ss.getSubsettedFeature();
+            List<FeatureChaining> fcs = sf.getOwnedFeatureChaining();
+            if (fcs.isEmpty()) {
+                return new PCFeature(sf);
             } else {
                 return new PCFeatureChain(sf);
             }
         }
         return null;
     }
-    
 
-    private void addContext(PC pc) {
-        current.add(new RefPC(pc));
+    private RefPC makeRefPC(Feature f) {
+        PC pc = makePC(f);
+        if (pc == null) return null;
+        InheritKey ik = getInheritKey(f);
+        return new RefPC(pc, ik);
+    }
+
+    private void addRefPC(RefPC rpc) {
+        current.add(rpc);
     }
 
     private String addContext(Feature f) {
         if (!f.isEnd()) return null;
-        PC pc = makePC(f, false);
-        if (pc == null) {
+        RefPC rpc = makeRefPC(f);
+        if (rpc == null) {
             return null;
         } else {
-            addContext(pc);
+            addRefPC(rpc);
             return "";
         }
     }
 
     private String addContext(ItemFlowEnd ife) {
-        PC pc = createPCItemFlowEnd(ife);
-        if (pc == null) return null;
-        addContext(pc);
+        RefPC rpc = makeRefPCItemFlowEnd(ife);
+        if (rpc == null) return null;
+        addRefPC(rpc);
         return "";
     }
 
-    private static FeatureChainExpression head(FeatureChainExpression fce) {
-        for (;;) {
-            List<Expression> ops = fce.getOperand();
-            if (ops.isEmpty()) return fce;
+    private static Feature head(FeatureChainExpression fce) {
+        List<Expression> ops = fce.getOperand();
+        if (ops.isEmpty()) {
+            return null;
+        } else {
             Expression ex = ops.get(0);
-            if (ex instanceof FeatureChainExpression) {
-                fce = (FeatureChainExpression) ex;
-            } else {
-                return fce;
-            }
+            if (!(ex instanceof FeatureReferenceExpression)) return null;
+            FeatureReferenceExpression fre = (FeatureReferenceExpression) ex;
+            return fre.getReferent();
         }
     }
 
     private String addContext(FeatureChainExpression fce) {
-    	FeatureChainExpression head = head(fce);
-        if (head == null) return null;
-        addContext(new PCFeatureChainExpression(fce, head));
+        Feature ref = head(fce);
+        if (ref == null) return null;
+        InheritKey ik = getInheritKey(ref);
+        PC pc = new PCFeatureChainExpression(fce);
+        RefPC rpc = new RefPC(pc, ik);
+        addRefPC(rpc);
         return "";
     }
 
@@ -508,8 +539,17 @@ public class VPath extends VTraverser {
         }
     }
 
-    public Integer getId(Element e) {
-        return pathIdMap.get(e);
+    public Integer getId(InheritKey ik, Element e) {
+        Map<Element, Integer> ikPathIdMap = inheritedPathIdMap.get(ik);
+        if (ik != null) {
+            if (ikPathIdMap != null) {
+                Integer ret = ikPathIdMap.get(e);
+                if (ret != null) return ret;
+            }
+            ikPathIdMap = inheritedPathIdMap.get(null);
+        }
+        if (ikPathIdMap == null) return null;
+        return ikPathIdMap.get(e);
     }
 
     public Set<Element> getPaths(Integer id) {
@@ -521,7 +561,7 @@ public class VPath extends VTraverser {
 
     @Override
     public String traverse(Namespace ns) {
-        return super.traverse0(ns);
+        return super.traverse(ns, false);
     }
 
     @Override

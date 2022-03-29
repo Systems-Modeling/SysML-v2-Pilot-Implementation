@@ -1,6 +1,6 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation, PlantUML Visualization
- * Copyright (c) 2021 Mgnite Inc.
+ * Copyright (c) 2021-2022 Mgnite Inc.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -100,14 +100,14 @@ public class VMetadata extends Visitor {
         addAnnotatingFeatureInternal(af);
         List<Element> es = af.getAnnotatedElement();
         for (Element e: es) {
-        	addPRelation(af, e, af);
+        	addPRelation(null, af, e, af, null);
         }
     }
 
 	public void addAnnotatingFeature(AnnotatingFeature af, Element annotatedElement) {
         addAnnotatingFeatureInternal(af);
         if (annotatedElement != null) {
-        	addPRelation(af, annotatedElement, af);
+        	addPRelation(null, af, annotatedElement, af, null);
         }
     }
 }

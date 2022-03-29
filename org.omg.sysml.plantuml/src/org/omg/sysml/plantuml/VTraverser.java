@@ -1,6 +1,6 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation, PlantUML Visualization
- * Copyright (c) 2020 Mgnite Inc.
+ * Copyright (c) 2020-2022 Mgnite Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -70,25 +70,6 @@ public abstract class VTraverser extends Visitor {
         listOfVisited.remove(idx);
     }
 
-
-    protected String traverse0(Namespace n) {
-        for (Relationship r: n.getOwnedRelationship()) {
-            if (r instanceof Membership) {
-                Membership m = (Membership) r;
-                setInherited(false);
-                visit(m);
-                for (Relationship r2: m.getOwnedRelationship()) {
-                    setInherited(false);
-                    visit(r2);
-                }
-            } else if (r instanceof Import) {
-                setInherited(false);
-                visit(r);
-            }
-        }
-        return "";
-    }
-
     private boolean markRedefining(Element e, Set<Element> covered) {
         if (covered.contains(e)) return true;
         if (!(e instanceof Feature)) return false;
@@ -104,18 +85,26 @@ public abstract class VTraverser extends Visitor {
         return SysMLLibraryUtil.isModelLibrary(e.eResource());
     }
 
-    private String traverseWithInherited(Type typ) {
-        Set<Element> covered = new HashSet<Element>();
-        for (Membership ms: typ.getOwnedMembership()) {
-            Element e = ms.getMemberElement();
-            markRedefining(e, covered);
-            setInherited(false);
-            visit(ms);
-            for (Relationship r: ms.getOwnedRelationship()) {
+    private void traverseInternal(Namespace n, Set<Element> covered) {
+        for (Relationship r: n.getOwnedRelationship()) {
+            if (r instanceof Membership) {
+                Membership ms = (Membership) r;
+                setInherited(false);
+                Element e = ms.getMemberElement();
+                markRedefining(e, covered);
+                visit(ms);
+                for (Relationship r2: ms.getOwnedRelationship()) {
+                    setInherited(false);
+                    visit(r2);
+                }
+            } else if (r instanceof Import) {
                 setInherited(false);
                 visit(r);
             }
         }
+    }
+
+    private void traverseInherited(Type typ, Set<Element> covered) {
         for (Membership ms: typ.getInheritedMembership()) {
             Element e = ms.getMemberElement();
             if (!showLib() && isModelLibrary(e)) continue;
@@ -123,29 +112,39 @@ public abstract class VTraverser extends Visitor {
             setInherited(true);
             visit(ms);
         }
-        setInherited(false);
+    }
 
+    private void traverseRest(VPath vpath) {
+        for (Element e: vpath.rest()) {
+            currentMembership = null;
+            setInherited(true);
+            visit(e);
+        }
+    }
+
+    public String traverse(Namespace ns, boolean noInherit) {
+        VPath vpath = getVPath();
+        pushNamespace(ns);
+        vpath.enter(ns);
+        this.currentNamespace = ns;
+        Set<Element> covered = new HashSet<Element>();
+        traverseInternal(ns, covered);
+        if (!noInherit) {
+            inheriting();
+            if (showInherited() && (ns instanceof Type)) {
+                traverseInherited((Type) ns, covered);
+            } else {
+                traverseRest(vpath);
+            }
+        }
+        this.currentNamespace = null;
+        vpath.leave(ns);
+        popNamespace();
         return "";
     }
 
     public String traverse(Namespace ns) {
-        VPath vpath = getVPath();
-        vpath.enter(ns);
-        this.currentNamespace = ns;
-        if (showInherited() && (ns instanceof Type)) {
-            traverseWithInherited((Type) ns);
-        } else {
-            traverse0(ns);
-            for (Element e: vpath.rest()) {
-                setInherited(true);
-                currentMembership = null;
-                visit(e);
-            }
-            setInherited(false);
-        }
-        this.currentNamespace = null;
-        vpath.leave(ns);
-        return "";
+        return traverse(ns, false);
     }
 
     protected String visitMembership(Membership m) {

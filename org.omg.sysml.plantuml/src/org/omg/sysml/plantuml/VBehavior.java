@@ -1,6 +1,6 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation, PlantUML Visualization
- * Copyright (c) 2020 Mgnite Inc.
+ * Copyright (c) 2020-2022 Mgnite Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -90,7 +90,7 @@ public abstract class VBehavior extends VDefault {
                 }
                 if ((src == null) && (dest == null)) continue;
                 if ((src == null) || (dest == null)) {
-                    addEntryExitTransitions(new PRelation(src, dest, su, null));
+                    addEntryExitTransitions(new PRelation(makeInheritKey(su), src, dest, su, null));
                 } else {
                     addPRelation(src, dest, su);
                 }
@@ -267,7 +267,7 @@ public abstract class VBehavior extends VDefault {
             if (isDoneAction(tgt)) tgt = null;
         }
         if ((src == null) || (tgt == null)) {
-            addEntryExitTransitions(new PRelation(src, tgt, tu, description));
+            addEntryExitTransitions(new PRelation(makeInheritKey(tu), src, tgt, tu, description));
         } else {
             addPRelation(src, tgt, tu, description);
         }

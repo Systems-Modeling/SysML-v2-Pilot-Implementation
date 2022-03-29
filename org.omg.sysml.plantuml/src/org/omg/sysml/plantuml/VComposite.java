@@ -45,7 +45,7 @@ public class VComposite extends VMixed {
     = new SysML2PlantUMLStyle
     ("VComposite",
       null,
-     "skinparam ranksep 10\n"
+     "skinparam ranksep 40\n"
      + "skinparam rectangle {\n backgroundColor<<block>> LightGreen\n}\n",
      new StyleSwitch(null, new StyleStereotypeSwitch() {
          @Override

@@ -30,7 +30,7 @@ import java.util.List;
 
 import org.junit.Test;
 import org.omg.sysml.interactive.SysMLInteractive;
-import org.omg.sysml.lang.sysml.AnnotatingFeature;
+import org.omg.sysml.lang.sysml.MetadataFeature;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
@@ -119,16 +119,16 @@ public class ModelLevelEvaluationTest extends SysMLInteractiveTest {
 		return ((LiteralRational)result).getValue();
 	}
 	
-	protected AnnotatingFeature checkAnnotatingFeature(SysMLInteractive instance, String annotationName, String elementName) {
+	protected MetadataFeature checkAnnotatingFeature(SysMLInteractive instance, String annotationName, String elementName) {
 		Element target = instance.resolve(elementName);
 		assertTrue(target instanceof Namespace);
 		assertTrue(!((Namespace)target).getOwnedMembership().isEmpty());
 		
-		Element annotatingFeature = ((Namespace)target).getOwnedMembership().get(0).getOwnedMemberElement();
-		assertTrue(annotatingFeature instanceof AnnotatingFeature);		
-		assertTrue(annotationName.equals(((AnnotatingFeature)annotatingFeature).getMetadataType().getName()));
+		Element metadataFeature = ((Namespace)target).getOwnedMembership().get(0).getOwnedMemberElement();
+		assertTrue(metadataFeature instanceof MetadataFeature);		
+		assertTrue(annotationName.equals(((MetadataFeature)metadataFeature).getMetaclass().getName()));
 		
-		return (AnnotatingFeature)annotatingFeature;
+		return (MetadataFeature)metadataFeature;
 	}
 	
 	protected Feature checkMetaclassFeature(SysMLInteractive instance, String elementName) {
@@ -297,7 +297,7 @@ public class ModelLevelEvaluationTest extends SysMLInteractiveTest {
 				"attribute def Annotation; " +
 		        "attribute x {@Annotation;}");
 		
-		AnnotatingFeature feature = checkAnnotatingFeature(instance, "Annotation", "x");
+		MetadataFeature feature = checkAnnotatingFeature(instance, "Annotation", "x");
 		assertEquals(feature, evaluateSingleValue(instance, feature, "Base::Anything::self"));		
 	}
 	
@@ -309,7 +309,7 @@ public class ModelLevelEvaluationTest extends SysMLInteractiveTest {
 			    "enum def E { e; }" +
 		        "attribute x {@Annotation{a = E::e; b = 2;}}");
 		
-		AnnotatingFeature feature = checkAnnotatingFeature(instance, "Annotation", "x");
+		MetadataFeature feature = checkAnnotatingFeature(instance, "Annotation", "x");
 		assertTrue(evaluateBooleanValue(instance, feature, "Annotation::a istype E"));		
 		assertTrue(evaluateBooleanValue(instance, feature, "Annotation::b istype ScalarValues::Integer"));		
 	}

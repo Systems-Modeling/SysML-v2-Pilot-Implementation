@@ -29,7 +29,7 @@ package org.omg.sysml.plantuml;
 import java.util.List;
 
 import org.omg.sysml.lang.sysml.AnnotatingElement;
-import org.omg.sysml.lang.sysml.AnnotatingFeature;
+import org.omg.sysml.lang.sysml.MetadataFeature;
 import org.omg.sysml.lang.sysml.Annotation;
 import org.omg.sysml.lang.sysml.Comment;
 import org.omg.sysml.lang.sysml.Connector;
@@ -181,8 +181,8 @@ public class VDefault extends VTraverser {
             Comment c = (Comment) ae;
             VComment v = new VComment(this);
             v.addComment(c, a.getAnnotatedElement());
-        } else if (ae instanceof AnnotatingFeature) {
-            AnnotatingFeature af = (AnnotatingFeature) ae;
+        } else if (ae instanceof MetadataFeature) {
+            MetadataFeature af = (MetadataFeature) ae;
             VMetadata v = new VMetadata(this);
             v.addAnnotatingFeature(af, a.getAnnotatedElement());
         }
@@ -190,7 +190,7 @@ public class VDefault extends VTraverser {
     }
 
     @Override
-    public String caseAnnotatingFeature(AnnotatingFeature af) {
+    public String caseMetadataFeature(MetadataFeature af) {
         VMetadata v = new VMetadata(this);
         v.addAnnotatingFeature(af);
         return "";

@@ -185,7 +185,7 @@ public class TextualRepresentationImpl extends AnnotatingElementImpl implements 
 	 * @generated NOT
 	 */
 	public Element basicGetRepresentedElement() {
-		return super.getAnnotatedElement().stream().findFirst().orElse(null);
+		return super.basicGetOwner();
 	}
 
 	/**
@@ -205,6 +205,30 @@ public class TextualRepresentationImpl extends AnnotatingElementImpl implements 
 	 */
 	public boolean isSetRepresentedElement() {
 		return basicGetRepresentedElement() != null;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<Element> getAnnotatedElement() {
+		EList<Element> annotatedElement = new UniqueEList<Element>();
+		Element representedElement = getRepresentedElement();
+		if (representedElement != null) {
+			annotatedElement.add(representedElement);
+		}
+		return new UnionEObjectEList<Element>(this, SysMLPackage.Literals.ANNOTATING_ELEMENT__ANNOTATED_ELEMENT, annotatedElement.size(), annotatedElement.toArray());
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetAnnotatedElement() {
+  		return false;
 	}
 
 	/**
@@ -304,30 +328,6 @@ public class TextualRepresentationImpl extends AnnotatingElementImpl implements 
 		result.append(body);
 		result.append(')');
 		return result.toString();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EList<Element> getAnnotatedElement() {
-		EList<Element> annotatedElement = new UniqueEList<Element>();
-		Element representedElement = getRepresentedElement();
-		if (representedElement != null) {
-			annotatedElement.add(representedElement);
-		}
-		return new UnionEObjectEList<Element>(this, SysMLPackage.Literals.ANNOTATING_ELEMENT__ANNOTATED_ELEMENT, annotatedElement.size(), annotatedElement.toArray());
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetAnnotatedElement() {
-  		return false;
 	}
 
 } //TextualRepresentationImpl

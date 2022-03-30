@@ -43,7 +43,6 @@ import org.omg.sysml.lang.sysml.FeatureReferenceExpression
 import org.omg.sysml.lang.sysml.LiteralExpression
 import org.omg.sysml.lang.sysml.NullExpression
 import org.omg.sysml.lang.sysml.ElementFilterMembership
-import org.omg.sysml.lang.sysml.MetadataFeatureValue
 import org.omg.sysml.lang.sysml.ItemFlow
 import org.omg.sysml.util.TypeUtil
 import org.omg.sysml.util.ElementUtil
@@ -63,6 +62,7 @@ import org.omg.sysml.lang.sysml.LiteralInteger
 import org.omg.sysml.lang.sysml.ItemFlowFeature
 import org.omg.sysml.lang.sysml.Multiplicity
 import org.omg.sysml.lang.sysml.FeatureChainExpression
+import org.omg.sysml.lang.sysml.MetadataFeature
 
 /**
  * This class contains custom validation rules. 
@@ -192,11 +192,12 @@ class KerMLValidator extends AbstractKerMLValidator {
 	}
 	
 	@Check
-	def checkMetadataFeatureValue(MetadataFeatureValue mfv) {
-		val value = mfv.metadataValue
-		if (value !== null && !value.isModelLevelEvaluable) {
-			error(INVALID_METADATA_FEATURE_VALUE__NOT_MODEL_LEVEL_MSG, mfv, SysMLPackage.eINSTANCE.metadataFeatureValue_MetadataValue, INVALID_METADATA_FEATURE_VALUE__NOT_MODEL_LEVEL)
-		}
+	def checkMetadataFeature(MetadataFeature mf) {
+		// TODO: MetadataFeature validation
+//		val value = mfv.metadataValue
+//		if (value !== null && !value.isModelLevelEvaluable) {
+//			error(INVALID_METADATA_FEATURE_VALUE__NOT_MODEL_LEVEL_MSG, mfv, SysMLPackage.eINSTANCE.metadataFeatureValue_MetadataValue, INVALID_METADATA_FEATURE_VALUE__NOT_MODEL_LEVEL)
+//		}
 	}
 	
 	@Check

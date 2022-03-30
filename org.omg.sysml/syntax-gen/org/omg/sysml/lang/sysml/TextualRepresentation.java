@@ -29,7 +29,7 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A TextualRepresentation is an AnnotatingElement that whose <code>body</code> represents the <code>representedElement</code> in a given <code>language</code>. The named <code>language</code> can be a natural language, in which case the <code>body</code> is an informal representation, or an artifical language, in which case the <code>body</code> is expected to be a formal, machine-parsable representation.</p>
+ * <p>A TextualRepresentation is an AnnotatingElement whose <code>body</code> represents the <code>representedElement</code> in a given <code>language</code>. The <code>representedElement</code> must be the <code>owner</code> of the TextualRepresentation. The named <code>language</code> can be a natural language, in which case the <code>body</code> is an informal representation, or an artifical language, in which case the <code>body</code> is expected to be a formal, machine-parsable representation.</p>
  * <!-- end-model-doc -->
  *
  * <p>
@@ -85,7 +85,7 @@ public interface TextualRepresentation extends AnnotatingElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>A textual representation of the <code>representedElement</code> in the given <code>language</code>.</p>
+	 * <p>The annotation text for the Comment.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Body</em>' attribute.
@@ -108,6 +108,13 @@ public interface TextualRepresentation extends AnnotatingElement {
 
 	/**
 	 * Returns the value of the '<em><b>Represented Element</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Element#getTextualRepresentation <em>Textual Representation</em>}'.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Element#getOwner() <em>Owner</em>}'</li>
+	 * </ul>
 	 * <p>
 	 * This feature redefines the following features:
 	 * </p>
@@ -117,14 +124,15 @@ public interface TextualRepresentation extends AnnotatingElement {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Element represented textually by this TextualRepresentation, which is its single <code>annotatedElement</code>.</p>
+	 * <p>The Element that is represented by this TextualRepresentation.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Represented Element</em>' reference.
 	 * @see #setRepresentedElement(Element)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getTextualRepresentation_RepresentedElement()
-	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='textualRepresentation'"
+	 * @see org.omg.sysml.lang.sysml.Element#getTextualRepresentation
+	 * @model opposite="textualRepresentation" required="true" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="redefines"
+	 *        annotation="subsets"
 	 * @generated
 	 */
 	Element getRepresentedElement();

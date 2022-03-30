@@ -58,9 +58,9 @@ fragment ElementBody returns SysML::Element :
 
 fragment OwnedElement returns SysML::Element :
       ownedRelationship += OwnedRelationship
-    | ownedRelationship += OwnedDocumentation
+    | ownedRelationship += OwnedCommentAnnotation
     | ownedRelationship += OwnedTextualRepresentationAnnotation
-    | ownedRelationship += OwnedAnnotatingFeatureAnnotation
+    | ownedRelationship += OwnedMetadataFeatureAnnotation
 ;
 
 /* Relationships */
@@ -104,8 +104,9 @@ fragment RelationshipBody returns SysML::Relationship :
 fragment RelationshipOwnedElement returns SysML::Relationship:
       ownedRelatedElement += OwnedRelatedElement
     | ownedRelatedElement += OwnedRelatedRelationship
-    | ownedRelationship += OwnedDocumentation
+    | ownedRelationship += OwnedCommentAnnotation
     | ownedRelationship += OwnedTextualRepresentationAnnotation
+    | ownedRelationship += OwnedMetadataFeatureAnnotation
 ;
 
 OwnedRelatedElement returns SysML::Element :
@@ -120,16 +121,6 @@ OwnedRelatedRelationship returns SysML::Relationship :
 
 /* ANNOTATIONS */
 
-/* Comments */
-
-Comment returns SysML::Comment :
-	( 'comment' Identification? 'about' ownedRelationship += Annotation
-	  ( ',' ownedRelationship += Annotation )*
-	| ( 'comment' Identification? )? ownedRelationship += EmptyAnnotation
-	)
-	body = REGULAR_COMMENT
-;
-
 Annotation returns SysML::Annotation :
 	annotatedElement = [SysML::Element|QualifiedName]
 ;
@@ -138,22 +129,36 @@ EmptyAnnotation returns SysML::Annotation :
 	{SysML::Annotation}
 ;
 
-/* Documentation */
+/* Comments */
+
+Comment returns SysML::Comment :
+	( 'comment' Identification? 
+	  ('about' ownedRelationship += Annotation
+	     ( ',' ownedRelationship += Annotation )* )? 
+	)?
+	body = REGULAR_COMMENT
+;
+
+PrefixComment returns SysML::Comment :
+	( 'comment' Identification? )? 
+	ownedRelationship += EmptyAnnotation
+	body = PREFIX_COMMENT
+;
+
+Documentation returns SysML::Documentation :
+	'doc' Identification? body = REGULAR_COMMENT
+;
+
+OwnedCommentAnnotation returns SysML::Annotation :
+	ownedRelatedElement += ( OwnedComment | OwnedDocumentation )
+;
+
+OwnedComment returns SysML::Comment :
+	( 'comment' ( '<' humanId = Name '>' )? )? body = REGULAR_COMMENT
+;
 
 OwnedDocumentation returns SysML::Documentation :
-	ownedRelatedElement += DocumentationComment // documentingComment = DocumentationComment
-;
-
-DocumentationComment returns SysML::Comment :
 	'doc' ( '<' humanId = Name '>' )? body = REGULAR_COMMENT
-;
-
-PrefixDocumentation returns SysML::Annotation :
-	ownedRelatedElement += PrefixDocumentationComment
-;
-
-PrefixDocumentationComment returns SysML::Comment :
-	( 'doc' ( '<' humanId = Name '>' )? )? body = DOCUMENTATION_COMMENT
 ;
 
 /* Textual Representation */
@@ -176,49 +181,32 @@ TextualRepresentation returns SysML::TextualRepresentation :
     body = REGULAR_COMMENT
 ;
 
-/* Annotating Features */
+/* Metadata Features */
 
-OwnedAnnotatingFeatureAnnotation returns SysML::Annotation :
-	ownedRelatedElement += OwnedAnnotatingFeature
+OwnedMetadataFeatureAnnotation returns SysML::Annotation :
+	ownedRelatedElement += OwnedMetadataFeature
 ;
 
-OwnedAnnotatingFeature returns SysML::AnnotatingFeature :
-	'metadata' ( humanId = Name ( ':' | 'typed' 'by' ) )? ownedRelationship += MetadataTyping 
-	ownedRelationship += EmptyAnnotation 
-	AnnotatingFeatureBody
+OwnedMetadataFeature returns SysML::MetadataFeature :
+	'metadata' ( humanId = Name ( ':' | 'typed' 'by' ) )? 
+	ownedRelationship += MetadataTyping 
+	TypeBody
 ;
 
-AnnotatingFeature returns SysML::AnnotatingFeature :
-	( '@' | 'metadata' ) AnnotatingFeatureDeclaration 
-	( 'about' ownedRelationship += Annotation ( ',' ownedRelationship += Annotation )* 
-	| ownedRelationship += EmptyAnnotation
-	)	
-	AnnotatingFeatureBody
+MetadataFeature returns SysML::MetadataFeature :
+	( '@' | 'metadata' ) MetadataFeatureDeclaration 
+	( 'about' ownedRelationship += Annotation 
+		( ',' ownedRelationship += Annotation )*
+	)?
+	TypeBody
 ;
 
-fragment AnnotatingFeatureDeclaration returns SysML::AnnotatingFeature :
+fragment MetadataFeatureDeclaration returns SysML::MetadataFeature :
 	( Identification ( ':' | 'typed' 'by' ) )? ownedRelationship += MetadataTyping
 ;
 
 MetadataTyping returns SysML::FeatureTyping :
-	type = [SysML::DataType | QualifiedName]
-;
-
-fragment AnnotatingFeatureBody returns SysML::AnnotatingFeature :
-	';' | '{' ( ownedRelationship += MetadataFeatureMember )* '}'
-;
-
-MetadataFeatureMember returns SysML::FeatureMembership :
-	ownedRelatedElement += MetadataFeature // ownedMemberFeature = MetadataFeature
-;
-
-MetadataFeature returns SysML::MetadataFeature :
-	'feature'? ( ':>>' | 'redefines')? ownedRelationship += OwnedRedefinition 
-	'=' ownedRelationship += MetadataFeatureValue ';' // metadataFeatureValue = MetadataFeatureValue ';'
-;
-
-MetadataFeatureValue returns SysML::MetadataFeatureValue :
-	ownedRelatedElement += OwnedExpression // metadataValue = OwnedExpression
+	type = [SysML::Metaclass | QualifiedName]
 ;
 
 /* NAMESPACES */
@@ -235,8 +223,7 @@ fragment NamespaceBody returns SysML::Namespace :
 	  ';' 
 	| '{' ( // Note: PackageBodyElement is expanded here to avoid
 			// infinite loops in the incremental parser.
-		    ownedRelationship += OwnedDocumentation
-	      | ownedRelationship += NamespaceMember 
+		    ownedRelationship += NamespaceMember 
 	      | ownedRelationship += AliasMember
 	      | ownedRelationship += Import )* 
 	  '}'
@@ -245,14 +232,12 @@ fragment NamespaceBody returns SysML::Namespace :
 /* Namespace Bodies */
 
 fragment NamespaceBodyElement returns SysML::Namespace :
-	  ownedRelationship += OwnedDocumentation
-	| ownedRelationship += NamespaceMember
+	  ownedRelationship += NamespaceMember
 	| ownedRelationship += AliasMember
 	| ownedRelationship += Import
 ;
 
 fragment MemberPrefix returns SysML::Membership :
-	( ownedRelationship += PrefixDocumentation )*
     ( visibility = VisibilityIndicator )?
 ;
 
@@ -280,7 +265,6 @@ AliasMember returns SysML::Membership :
 ;
 
 Import returns SysML::Import :
-	( ownedRelationship += PrefixDocumentation )*
 	( visibility = VisibilityIndicator )?  
 	'import' ( isImportAll ?= 'all' )?
 	( ImportedNamespace | ImportedFilterPackage ) ';'
@@ -323,8 +307,10 @@ NonFeatureElement returns SysML::Element :
 	  Element
 	| Relationship
 	| Comment
+	| PrefixComment
+	| Documentation
 	| TextualRepresentation
-	| AnnotatingFeature
+	| MetadataFeature
 	| Namespace
 	| Package 
 	| Multiplicity
@@ -376,8 +362,7 @@ fragment PackageBody returns SysML::Namespace :
 	  ';' 
 	| '{' ( // Note: PackageBodyElement is expanded here to avoid
 			// infinite loops in the incremental parser.
-		    ownedRelationship += OwnedDocumentation
-	      | ownedRelationship += NamespaceMember 
+		    ownedRelationship += NamespaceMember 
 	      | ownedRelationship += ElementFilterMember
 	      | ownedRelationship += AliasMember
 	      | ownedRelationship += Import )*
@@ -421,8 +406,7 @@ fragment DisjoiningPart returns SysML::Type :
 
 fragment TypeBody returns SysML::Type :
 	';' | 
-	'{' ( ownedRelationship += OwnedDocumentation
-		| ownedRelationship += NonFeatureMember 
+	'{' ( ownedRelationship += NonFeatureMember 
 		| ownedRelationship += FeatureMember 
 		| ownedRelationship += AliasMember
 		| ownedRelationship += Import
@@ -971,8 +955,7 @@ ReturnParameterMember returns SysML::ReturnParameterMembership :
 
 fragment FunctionBody returns SysML::Type :
 	  ';'
-	| '{' ( ownedRelationship += OwnedDocumentation
-		  | ownedRelationship += NonFeatureMember 
+	| '{' ( ownedRelationship += NonFeatureMember 
 		  | ownedRelationship += FeatureMember 
 		  | ownedRelationship += AliasMember
 		  | ownedRelationship += Import

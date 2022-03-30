@@ -24,61 +24,60 @@ package org.omg.sysml.lang.sysml;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Metadata Feature</b></em>'.
+ * A representation of the model object '<em><b>Annotating Feature</b></em>'.
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A MetadataFeature is an <code>ownedFeature</code> of an AnnotatingFeature that redefines a Feature of the <code>metadataType</code> and binds a value to it.</p>
+ * <p>A MetadataFeature is a Feature that is an AnnotatingElement used to annotate another Element with metadata. It is typed by a Metaclass. All its <code>ownedFeatures</code> must redefine <code>features</code> of its <code>metaclass</code> and any feature bindings must be model-level evaluable.</p>
+ * 
+ * <p>A MetadataFeature must subset, directly or indirectly, the base MetadataFeature <em><code>metadata</code></em> from the Kernel Library.</p>
+ * 
+ * 
  * <!-- end-model-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.MetadataFeature#getMetadataFeatureValue <em>Metadata Feature Value</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.MetadataFeature#getMetaclass <em>Metaclass</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getMetadataFeature()
  * @model
  * @generated
  */
-public interface MetadataFeature extends Feature {
+public interface MetadataFeature extends Feature, AnnotatingElement {
 	/**
-	 * Returns the value of the '<em><b>Metadata Feature Value</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.MetadataFeatureValue#getOwningMetadataFeature <em>Owning Metadata Feature</em>}'.
+	 * Returns the value of the '<em><b>Metaclass</b></em>' reference.
 	 * <p>
 	 * This feature redefines the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Namespace#getOwnedMembership() <em>Owned Membership</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Feature#getType() <em>Type</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Metadata Feature Value</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The required MetadataFeatureValue for this MetadataFeature that gives the <code>metadataValue</code> for it in the context of its owning AnnotatingFeature.</p>
+	 * <p>The <code>type</code> of this AnnotatingFeature, which must be a DataType.</p>
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Metadata Feature Value</em>' reference.
-	 * @see #setMetadataFeatureValue(MetadataFeatureValue)
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getMetadataFeature_MetadataFeatureValue()
-	 * @see org.omg.sysml.lang.sysml.MetadataFeatureValue#getOwningMetadataFeature
-	 * @model opposite="owningMetadataFeature" required="true" transient="true" volatile="true" derived="true" ordered="false"
+	 * @return the value of the '<em>Metaclass</em>' reference.
+	 * @see #setMetaclass(Metaclass)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getMetadataFeature_Metaclass()
+	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='typedMetadata'"
 	 *        annotation="redefines"
 	 * @generated
 	 */
-	MetadataFeatureValue getMetadataFeatureValue();
+	Metaclass getMetaclass();
 
 	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.MetadataFeature#getMetadataFeatureValue <em>Metadata Feature Value</em>}' reference.
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.MetadataFeature#getMetaclass <em>Metaclass</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Metadata Feature Value</em>' reference.
-	 * @see #getMetadataFeatureValue()
+	 * @param value the new value of the '<em>Metaclass</em>' reference.
+	 * @see #getMetaclass()
 	 * @generated
 	 */
-	void setMetadataFeatureValue(MetadataFeatureValue value);
+	void setMetaclass(Metaclass value);
 
-} // MetadataFeature
+} // AnnotatingFeature

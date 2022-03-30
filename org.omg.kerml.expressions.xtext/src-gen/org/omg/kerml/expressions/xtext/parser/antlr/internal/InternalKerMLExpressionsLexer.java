@@ -28,7 +28,6 @@ public class InternalKerMLExpressionsLexer extends Lexer {
     public static final int T__51=51;
     public static final int T__52=52;
     public static final int T__53=53;
-    public static final int RULE_DOCUMENTATION_COMMENT=10;
     public static final int T__54=54;
     public static final int T__60=60;
     public static final int T__61=61;
@@ -64,6 +63,7 @@ public class InternalKerMLExpressionsLexer extends Lexer {
     public static final int T__31=31;
     public static final int T__32=32;
     public static final int RULE_WS=13;
+    public static final int RULE_PREFIX_COMMENT=10;
     public static final int RULE_UNRESTRICTED_NAME=8;
     public static final int T__48=48;
     public static final int T__49=49;
@@ -1577,17 +1577,17 @@ public class InternalKerMLExpressionsLexer extends Lexer {
     }
     // $ANTLR end "RULE_REGULAR_COMMENT"
 
-    // $ANTLR start "RULE_DOCUMENTATION_COMMENT"
-    public final void mRULE_DOCUMENTATION_COMMENT() throws RecognitionException {
+    // $ANTLR start "RULE_PREFIX_COMMENT"
+    public final void mRULE_PREFIX_COMMENT() throws RecognitionException {
         try {
-            int _type = RULE_DOCUMENTATION_COMMENT;
+            int _type = RULE_PREFIX_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalKerMLExpressions.g:3834:28: ( '/**' ( options {greedy=false; } : . )* '*/' )
-            // InternalKerMLExpressions.g:3834:30: '/**' ( options {greedy=false; } : . )* '*/'
+            // InternalKerMLExpressions.g:3834:21: ( '/**' ( options {greedy=false; } : . )* '*/' )
+            // InternalKerMLExpressions.g:3834:23: '/**' ( options {greedy=false; } : . )* '*/'
             {
             match("/**"); 
 
-            // InternalKerMLExpressions.g:3834:36: ( options {greedy=false; } : . )*
+            // InternalKerMLExpressions.g:3834:29: ( options {greedy=false; } : . )*
             loop7:
             do {
                 int alt7=2;
@@ -1612,7 +1612,7 @@ public class InternalKerMLExpressionsLexer extends Lexer {
 
                 switch (alt7) {
             	case 1 :
-            	    // InternalKerMLExpressions.g:3834:64: .
+            	    // InternalKerMLExpressions.g:3834:57: .
             	    {
             	    matchAny(); 
 
@@ -1635,7 +1635,7 @@ public class InternalKerMLExpressionsLexer extends Lexer {
         finally {
         }
     }
-    // $ANTLR end "RULE_DOCUMENTATION_COMMENT"
+    // $ANTLR end "RULE_PREFIX_COMMENT"
 
     // $ANTLR start "RULE_ML_NOTE"
     public final void mRULE_ML_NOTE() throws RecognitionException {
@@ -1871,7 +1871,7 @@ public class InternalKerMLExpressionsLexer extends Lexer {
     // $ANTLR end "RULE_WS"
 
     public void mTokens() throws RecognitionException {
-        // InternalKerMLExpressions.g:1:8: ( T__14 | T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | T__60 | T__61 | T__62 | T__63 | T__64 | T__65 | T__66 | T__67 | RULE_DECIMAL_VALUE | RULE_EXP_VALUE | RULE_ID | RULE_UNRESTRICTED_NAME | RULE_STRING_VALUE | RULE_REGULAR_COMMENT | RULE_DOCUMENTATION_COMMENT | RULE_ML_NOTE | RULE_SL_NOTE | RULE_WS )
+        // InternalKerMLExpressions.g:1:8: ( T__14 | T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | T__60 | T__61 | T__62 | T__63 | T__64 | T__65 | T__66 | T__67 | RULE_DECIMAL_VALUE | RULE_EXP_VALUE | RULE_ID | RULE_UNRESTRICTED_NAME | RULE_STRING_VALUE | RULE_REGULAR_COMMENT | RULE_PREFIX_COMMENT | RULE_ML_NOTE | RULE_SL_NOTE | RULE_WS )
         int alt14=64;
         alt14 = dfa14.predict(input);
         switch (alt14) {
@@ -2296,28 +2296,28 @@ public class InternalKerMLExpressionsLexer extends Lexer {
                 }
                 break;
             case 61 :
-                // InternalKerMLExpressions.g:1:438: RULE_DOCUMENTATION_COMMENT
+                // InternalKerMLExpressions.g:1:438: RULE_PREFIX_COMMENT
                 {
-                mRULE_DOCUMENTATION_COMMENT(); 
+                mRULE_PREFIX_COMMENT(); 
 
                 }
                 break;
             case 62 :
-                // InternalKerMLExpressions.g:1:465: RULE_ML_NOTE
+                // InternalKerMLExpressions.g:1:458: RULE_ML_NOTE
                 {
                 mRULE_ML_NOTE(); 
 
                 }
                 break;
             case 63 :
-                // InternalKerMLExpressions.g:1:478: RULE_SL_NOTE
+                // InternalKerMLExpressions.g:1:471: RULE_SL_NOTE
                 {
                 mRULE_SL_NOTE(); 
 
                 }
                 break;
             case 64 :
-                // InternalKerMLExpressions.g:1:491: RULE_WS
+                // InternalKerMLExpressions.g:1:484: RULE_WS
                 {
                 mRULE_WS(); 
 
@@ -2514,7 +2514,7 @@ public class InternalKerMLExpressionsLexer extends Lexer {
             this.transition = DFA14_transition;
         }
         public String getDescription() {
-            return "1:1: Tokens : ( T__14 | T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | T__60 | T__61 | T__62 | T__63 | T__64 | T__65 | T__66 | T__67 | RULE_DECIMAL_VALUE | RULE_EXP_VALUE | RULE_ID | RULE_UNRESTRICTED_NAME | RULE_STRING_VALUE | RULE_REGULAR_COMMENT | RULE_DOCUMENTATION_COMMENT | RULE_ML_NOTE | RULE_SL_NOTE | RULE_WS );";
+            return "1:1: Tokens : ( T__14 | T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | T__60 | T__61 | T__62 | T__63 | T__64 | T__65 | T__66 | T__67 | RULE_DECIMAL_VALUE | RULE_EXP_VALUE | RULE_ID | RULE_UNRESTRICTED_NAME | RULE_STRING_VALUE | RULE_REGULAR_COMMENT | RULE_PREFIX_COMMENT | RULE_ML_NOTE | RULE_SL_NOTE | RULE_WS );";
         }
         public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
             IntStream input = _input;

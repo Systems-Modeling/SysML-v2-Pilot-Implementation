@@ -161,24 +161,24 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Assignment cOwnedRelationshipAssignment_0 = (Assignment)cAlternatives.eContents().get(0);
 		private final RuleCall cOwnedRelationshipOwnedRelationshipParserRuleCall_0_0 = (RuleCall)cOwnedRelationshipAssignment_0.eContents().get(0);
 		private final Assignment cOwnedRelationshipAssignment_1 = (Assignment)cAlternatives.eContents().get(1);
-		private final RuleCall cOwnedRelationshipOwnedDocumentationParserRuleCall_1_0 = (RuleCall)cOwnedRelationshipAssignment_1.eContents().get(0);
+		private final RuleCall cOwnedRelationshipOwnedCommentAnnotationParserRuleCall_1_0 = (RuleCall)cOwnedRelationshipAssignment_1.eContents().get(0);
 		private final Assignment cOwnedRelationshipAssignment_2 = (Assignment)cAlternatives.eContents().get(2);
 		private final RuleCall cOwnedRelationshipOwnedTextualRepresentationAnnotationParserRuleCall_2_0 = (RuleCall)cOwnedRelationshipAssignment_2.eContents().get(0);
 		private final Assignment cOwnedRelationshipAssignment_3 = (Assignment)cAlternatives.eContents().get(3);
-		private final RuleCall cOwnedRelationshipOwnedAnnotatingFeatureAnnotationParserRuleCall_3_0 = (RuleCall)cOwnedRelationshipAssignment_3.eContents().get(0);
+		private final RuleCall cOwnedRelationshipOwnedMetadataFeatureAnnotationParserRuleCall_3_0 = (RuleCall)cOwnedRelationshipAssignment_3.eContents().get(0);
 		
 		//fragment OwnedElement returns SysML::Element :
 		//      ownedRelationship += OwnedRelationship
-		//    | ownedRelationship += OwnedDocumentation
+		//    | ownedRelationship += OwnedCommentAnnotation
 		//    | ownedRelationship += OwnedTextualRepresentationAnnotation
-		//    | ownedRelationship += OwnedAnnotatingFeatureAnnotation
+		//    | ownedRelationship += OwnedMetadataFeatureAnnotation
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//  ownedRelationship += OwnedRelationship
-		//| ownedRelationship += OwnedDocumentation
+		//| ownedRelationship += OwnedCommentAnnotation
 		//| ownedRelationship += OwnedTextualRepresentationAnnotation
-		//| ownedRelationship += OwnedAnnotatingFeatureAnnotation
+		//| ownedRelationship += OwnedMetadataFeatureAnnotation
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//ownedRelationship += OwnedRelationship
@@ -187,11 +187,11 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//OwnedRelationship
 		public RuleCall getOwnedRelationshipOwnedRelationshipParserRuleCall_0_0() { return cOwnedRelationshipOwnedRelationshipParserRuleCall_0_0; }
 		
-		//ownedRelationship += OwnedDocumentation
+		//ownedRelationship += OwnedCommentAnnotation
 		public Assignment getOwnedRelationshipAssignment_1() { return cOwnedRelationshipAssignment_1; }
 		
-		//OwnedDocumentation
-		public RuleCall getOwnedRelationshipOwnedDocumentationParserRuleCall_1_0() { return cOwnedRelationshipOwnedDocumentationParserRuleCall_1_0; }
+		//OwnedCommentAnnotation
+		public RuleCall getOwnedRelationshipOwnedCommentAnnotationParserRuleCall_1_0() { return cOwnedRelationshipOwnedCommentAnnotationParserRuleCall_1_0; }
 		
 		//ownedRelationship += OwnedTextualRepresentationAnnotation
 		public Assignment getOwnedRelationshipAssignment_2() { return cOwnedRelationshipAssignment_2; }
@@ -199,11 +199,11 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//OwnedTextualRepresentationAnnotation
 		public RuleCall getOwnedRelationshipOwnedTextualRepresentationAnnotationParserRuleCall_2_0() { return cOwnedRelationshipOwnedTextualRepresentationAnnotationParserRuleCall_2_0; }
 		
-		//ownedRelationship += OwnedAnnotatingFeatureAnnotation
+		//ownedRelationship += OwnedMetadataFeatureAnnotation
 		public Assignment getOwnedRelationshipAssignment_3() { return cOwnedRelationshipAssignment_3; }
 		
-		//OwnedAnnotatingFeatureAnnotation
-		public RuleCall getOwnedRelationshipOwnedAnnotatingFeatureAnnotationParserRuleCall_3_0() { return cOwnedRelationshipOwnedAnnotatingFeatureAnnotationParserRuleCall_3_0; }
+		//OwnedMetadataFeatureAnnotation
+		public RuleCall getOwnedRelationshipOwnedMetadataFeatureAnnotationParserRuleCall_3_0() { return cOwnedRelationshipOwnedMetadataFeatureAnnotationParserRuleCall_3_0; }
 	}
 	public class RelationshipElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.Relationship");
@@ -450,22 +450,26 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Assignment cOwnedRelatedElementAssignment_1 = (Assignment)cAlternatives.eContents().get(1);
 		private final RuleCall cOwnedRelatedElementOwnedRelatedRelationshipParserRuleCall_1_0 = (RuleCall)cOwnedRelatedElementAssignment_1.eContents().get(0);
 		private final Assignment cOwnedRelationshipAssignment_2 = (Assignment)cAlternatives.eContents().get(2);
-		private final RuleCall cOwnedRelationshipOwnedDocumentationParserRuleCall_2_0 = (RuleCall)cOwnedRelationshipAssignment_2.eContents().get(0);
+		private final RuleCall cOwnedRelationshipOwnedCommentAnnotationParserRuleCall_2_0 = (RuleCall)cOwnedRelationshipAssignment_2.eContents().get(0);
 		private final Assignment cOwnedRelationshipAssignment_3 = (Assignment)cAlternatives.eContents().get(3);
 		private final RuleCall cOwnedRelationshipOwnedTextualRepresentationAnnotationParserRuleCall_3_0 = (RuleCall)cOwnedRelationshipAssignment_3.eContents().get(0);
+		private final Assignment cOwnedRelationshipAssignment_4 = (Assignment)cAlternatives.eContents().get(4);
+		private final RuleCall cOwnedRelationshipOwnedMetadataFeatureAnnotationParserRuleCall_4_0 = (RuleCall)cOwnedRelationshipAssignment_4.eContents().get(0);
 		
 		//fragment RelationshipOwnedElement returns SysML::Relationship:
 		//      ownedRelatedElement += OwnedRelatedElement
 		//    | ownedRelatedElement += OwnedRelatedRelationship
-		//    | ownedRelationship += OwnedDocumentation
+		//    | ownedRelationship += OwnedCommentAnnotation
 		//    | ownedRelationship += OwnedTextualRepresentationAnnotation
+		//    | ownedRelationship += OwnedMetadataFeatureAnnotation
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//  ownedRelatedElement += OwnedRelatedElement
 		//| ownedRelatedElement += OwnedRelatedRelationship
-		//| ownedRelationship += OwnedDocumentation
+		//| ownedRelationship += OwnedCommentAnnotation
 		//| ownedRelationship += OwnedTextualRepresentationAnnotation
+		//| ownedRelationship += OwnedMetadataFeatureAnnotation
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//ownedRelatedElement += OwnedRelatedElement
@@ -480,17 +484,23 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//OwnedRelatedRelationship
 		public RuleCall getOwnedRelatedElementOwnedRelatedRelationshipParserRuleCall_1_0() { return cOwnedRelatedElementOwnedRelatedRelationshipParserRuleCall_1_0; }
 		
-		//ownedRelationship += OwnedDocumentation
+		//ownedRelationship += OwnedCommentAnnotation
 		public Assignment getOwnedRelationshipAssignment_2() { return cOwnedRelationshipAssignment_2; }
 		
-		//OwnedDocumentation
-		public RuleCall getOwnedRelationshipOwnedDocumentationParserRuleCall_2_0() { return cOwnedRelationshipOwnedDocumentationParserRuleCall_2_0; }
+		//OwnedCommentAnnotation
+		public RuleCall getOwnedRelationshipOwnedCommentAnnotationParserRuleCall_2_0() { return cOwnedRelationshipOwnedCommentAnnotationParserRuleCall_2_0; }
 		
 		//ownedRelationship += OwnedTextualRepresentationAnnotation
 		public Assignment getOwnedRelationshipAssignment_3() { return cOwnedRelationshipAssignment_3; }
 		
 		//OwnedTextualRepresentationAnnotation
 		public RuleCall getOwnedRelationshipOwnedTextualRepresentationAnnotationParserRuleCall_3_0() { return cOwnedRelationshipOwnedTextualRepresentationAnnotationParserRuleCall_3_0; }
+		
+		//ownedRelationship += OwnedMetadataFeatureAnnotation
+		public Assignment getOwnedRelationshipAssignment_4() { return cOwnedRelationshipAssignment_4; }
+		
+		//OwnedMetadataFeatureAnnotation
+		public RuleCall getOwnedRelationshipOwnedMetadataFeatureAnnotationParserRuleCall_4_0() { return cOwnedRelationshipOwnedMetadataFeatureAnnotationParserRuleCall_4_0; }
 	}
 	public class OwnedRelatedElementElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.OwnedRelatedElement");
@@ -580,114 +590,13 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//RelationshipBody
 		public RuleCall getRelationshipBodyParserRuleCall_3() { return cRelationshipBodyParserRuleCall_3; }
 	}
-	public class CommentElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.Comment");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Alternatives cAlternatives_0 = (Alternatives)cGroup.eContents().get(0);
-		private final Group cGroup_0_0 = (Group)cAlternatives_0.eContents().get(0);
-		private final Keyword cCommentKeyword_0_0_0 = (Keyword)cGroup_0_0.eContents().get(0);
-		private final RuleCall cIdentificationParserRuleCall_0_0_1 = (RuleCall)cGroup_0_0.eContents().get(1);
-		private final Keyword cAboutKeyword_0_0_2 = (Keyword)cGroup_0_0.eContents().get(2);
-		private final Assignment cOwnedRelationshipAssignment_0_0_3 = (Assignment)cGroup_0_0.eContents().get(3);
-		private final RuleCall cOwnedRelationshipAnnotationParserRuleCall_0_0_3_0 = (RuleCall)cOwnedRelationshipAssignment_0_0_3.eContents().get(0);
-		private final Group cGroup_0_0_4 = (Group)cGroup_0_0.eContents().get(4);
-		private final Keyword cCommaKeyword_0_0_4_0 = (Keyword)cGroup_0_0_4.eContents().get(0);
-		private final Assignment cOwnedRelationshipAssignment_0_0_4_1 = (Assignment)cGroup_0_0_4.eContents().get(1);
-		private final RuleCall cOwnedRelationshipAnnotationParserRuleCall_0_0_4_1_0 = (RuleCall)cOwnedRelationshipAssignment_0_0_4_1.eContents().get(0);
-		private final Group cGroup_0_1 = (Group)cAlternatives_0.eContents().get(1);
-		private final Group cGroup_0_1_0 = (Group)cGroup_0_1.eContents().get(0);
-		private final Keyword cCommentKeyword_0_1_0_0 = (Keyword)cGroup_0_1_0.eContents().get(0);
-		private final RuleCall cIdentificationParserRuleCall_0_1_0_1 = (RuleCall)cGroup_0_1_0.eContents().get(1);
-		private final Assignment cOwnedRelationshipAssignment_0_1_1 = (Assignment)cGroup_0_1.eContents().get(1);
-		private final RuleCall cOwnedRelationshipEmptyAnnotationParserRuleCall_0_1_1_0 = (RuleCall)cOwnedRelationshipAssignment_0_1_1.eContents().get(0);
-		private final Assignment cBodyAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cBodyREGULAR_COMMENTTerminalRuleCall_1_0 = (RuleCall)cBodyAssignment_1.eContents().get(0);
-		
-		///* ANNOTATIONS */
-		///* Comments */
-		//Comment returns SysML::Comment :
-		//    ( 'comment' Identification? 'about' ownedRelationship += Annotation
-		//      ( ',' ownedRelationship += Annotation )*
-		//    | ( 'comment' Identification? )? ownedRelationship += EmptyAnnotation
-		//    )
-		//    body = REGULAR_COMMENT
-		//;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//( 'comment' Identification? 'about' ownedRelationship += Annotation
-		//  ( ',' ownedRelationship += Annotation )*
-		//| ( 'comment' Identification? )? ownedRelationship += EmptyAnnotation
-		//)
-		//body = REGULAR_COMMENT
-		public Group getGroup() { return cGroup; }
-		
-		//( 'comment' Identification? 'about' ownedRelationship += Annotation
-		//  ( ',' ownedRelationship += Annotation )*
-		//| ( 'comment' Identification? )? ownedRelationship += EmptyAnnotation
-		//)
-		public Alternatives getAlternatives_0() { return cAlternatives_0; }
-		
-		//'comment' Identification? 'about' ownedRelationship += Annotation
-		//     ( ',' ownedRelationship += Annotation )*
-		public Group getGroup_0_0() { return cGroup_0_0; }
-		
-		//'comment'
-		public Keyword getCommentKeyword_0_0_0() { return cCommentKeyword_0_0_0; }
-		
-		//Identification?
-		public RuleCall getIdentificationParserRuleCall_0_0_1() { return cIdentificationParserRuleCall_0_0_1; }
-		
-		//'about'
-		public Keyword getAboutKeyword_0_0_2() { return cAboutKeyword_0_0_2; }
-		
-		//ownedRelationship += Annotation
-		public Assignment getOwnedRelationshipAssignment_0_0_3() { return cOwnedRelationshipAssignment_0_0_3; }
-		
-		//Annotation
-		public RuleCall getOwnedRelationshipAnnotationParserRuleCall_0_0_3_0() { return cOwnedRelationshipAnnotationParserRuleCall_0_0_3_0; }
-		
-		//( ',' ownedRelationship += Annotation )*
-		public Group getGroup_0_0_4() { return cGroup_0_0_4; }
-		
-		//','
-		public Keyword getCommaKeyword_0_0_4_0() { return cCommaKeyword_0_0_4_0; }
-		
-		//ownedRelationship += Annotation
-		public Assignment getOwnedRelationshipAssignment_0_0_4_1() { return cOwnedRelationshipAssignment_0_0_4_1; }
-		
-		//Annotation
-		public RuleCall getOwnedRelationshipAnnotationParserRuleCall_0_0_4_1_0() { return cOwnedRelationshipAnnotationParserRuleCall_0_0_4_1_0; }
-		
-		//( 'comment' Identification? )? ownedRelationship += EmptyAnnotation
-		public Group getGroup_0_1() { return cGroup_0_1; }
-		
-		//( 'comment' Identification? )?
-		public Group getGroup_0_1_0() { return cGroup_0_1_0; }
-		
-		//'comment'
-		public Keyword getCommentKeyword_0_1_0_0() { return cCommentKeyword_0_1_0_0; }
-		
-		//Identification?
-		public RuleCall getIdentificationParserRuleCall_0_1_0_1() { return cIdentificationParserRuleCall_0_1_0_1; }
-		
-		//ownedRelationship += EmptyAnnotation
-		public Assignment getOwnedRelationshipAssignment_0_1_1() { return cOwnedRelationshipAssignment_0_1_1; }
-		
-		//EmptyAnnotation
-		public RuleCall getOwnedRelationshipEmptyAnnotationParserRuleCall_0_1_1_0() { return cOwnedRelationshipEmptyAnnotationParserRuleCall_0_1_1_0; }
-		
-		//body = REGULAR_COMMENT
-		public Assignment getBodyAssignment_1() { return cBodyAssignment_1; }
-		
-		//REGULAR_COMMENT
-		public RuleCall getBodyREGULAR_COMMENTTerminalRuleCall_1_0() { return cBodyREGULAR_COMMENTTerminalRuleCall_1_0; }
-	}
 	public class AnnotationElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.Annotation");
 		private final Assignment cAnnotatedElementAssignment = (Assignment)rule.eContents().get(1);
 		private final CrossReference cAnnotatedElementElementCrossReference_0 = (CrossReference)cAnnotatedElementAssignment.eContents().get(0);
 		private final RuleCall cAnnotatedElementElementQualifiedNameParserRuleCall_0_1 = (RuleCall)cAnnotatedElementElementCrossReference_0.eContents().get(1);
 		
+		///* ANNOTATIONS */
 		//Annotation returns SysML::Annotation :
 		//    annotatedElement = [SysML::Element|QualifiedName]
 		//;
@@ -714,25 +623,229 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//{SysML::Annotation}
 		public Action getAnnotationAction() { return cAnnotationAction; }
 	}
-	public class OwnedDocumentationElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.OwnedDocumentation");
-		private final Assignment cOwnedRelatedElementAssignment = (Assignment)rule.eContents().get(1);
-		private final RuleCall cOwnedRelatedElementDocumentationCommentParserRuleCall_0 = (RuleCall)cOwnedRelatedElementAssignment.eContents().get(0);
+	public class CommentElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.Comment");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Group cGroup_0 = (Group)cGroup.eContents().get(0);
+		private final Keyword cCommentKeyword_0_0 = (Keyword)cGroup_0.eContents().get(0);
+		private final RuleCall cIdentificationParserRuleCall_0_1 = (RuleCall)cGroup_0.eContents().get(1);
+		private final Group cGroup_0_2 = (Group)cGroup_0.eContents().get(2);
+		private final Keyword cAboutKeyword_0_2_0 = (Keyword)cGroup_0_2.eContents().get(0);
+		private final Assignment cOwnedRelationshipAssignment_0_2_1 = (Assignment)cGroup_0_2.eContents().get(1);
+		private final RuleCall cOwnedRelationshipAnnotationParserRuleCall_0_2_1_0 = (RuleCall)cOwnedRelationshipAssignment_0_2_1.eContents().get(0);
+		private final Group cGroup_0_2_2 = (Group)cGroup_0_2.eContents().get(2);
+		private final Keyword cCommaKeyword_0_2_2_0 = (Keyword)cGroup_0_2_2.eContents().get(0);
+		private final Assignment cOwnedRelationshipAssignment_0_2_2_1 = (Assignment)cGroup_0_2_2.eContents().get(1);
+		private final RuleCall cOwnedRelationshipAnnotationParserRuleCall_0_2_2_1_0 = (RuleCall)cOwnedRelationshipAssignment_0_2_2_1.eContents().get(0);
+		private final Assignment cBodyAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cBodyREGULAR_COMMENTTerminalRuleCall_1_0 = (RuleCall)cBodyAssignment_1.eContents().get(0);
 		
-		///* Documentation */
-		//OwnedDocumentation returns SysML::Documentation :
-		//    ownedRelatedElement += DocumentationComment // documentingComment = DocumentationComment
+		///* Comments */
+		//Comment returns SysML::Comment :
+		//    ( 'comment' Identification?
+		//      ('about' ownedRelationship += Annotation
+		//         ( ',' ownedRelationship += Annotation )* )?
+		//    )?
+		//    body = REGULAR_COMMENT
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//ownedRelatedElement += DocumentationComment
+		//( 'comment' Identification?
+		//  ('about' ownedRelationship += Annotation
+		//     ( ',' ownedRelationship += Annotation )* )?
+		//)?
+		//body = REGULAR_COMMENT
+		public Group getGroup() { return cGroup; }
+		
+		//( 'comment' Identification?
+		//  ('about' ownedRelationship += Annotation
+		//     ( ',' ownedRelationship += Annotation )* )?
+		//)?
+		public Group getGroup_0() { return cGroup_0; }
+		
+		//'comment'
+		public Keyword getCommentKeyword_0_0() { return cCommentKeyword_0_0; }
+		
+		//Identification?
+		public RuleCall getIdentificationParserRuleCall_0_1() { return cIdentificationParserRuleCall_0_1; }
+		
+		//('about' ownedRelationship += Annotation
+		//   ( ',' ownedRelationship += Annotation )* )?
+		public Group getGroup_0_2() { return cGroup_0_2; }
+		
+		//'about'
+		public Keyword getAboutKeyword_0_2_0() { return cAboutKeyword_0_2_0; }
+		
+		//ownedRelationship += Annotation
+		public Assignment getOwnedRelationshipAssignment_0_2_1() { return cOwnedRelationshipAssignment_0_2_1; }
+		
+		//Annotation
+		public RuleCall getOwnedRelationshipAnnotationParserRuleCall_0_2_1_0() { return cOwnedRelationshipAnnotationParserRuleCall_0_2_1_0; }
+		
+		//( ',' ownedRelationship += Annotation )*
+		public Group getGroup_0_2_2() { return cGroup_0_2_2; }
+		
+		//','
+		public Keyword getCommaKeyword_0_2_2_0() { return cCommaKeyword_0_2_2_0; }
+		
+		//ownedRelationship += Annotation
+		public Assignment getOwnedRelationshipAssignment_0_2_2_1() { return cOwnedRelationshipAssignment_0_2_2_1; }
+		
+		//Annotation
+		public RuleCall getOwnedRelationshipAnnotationParserRuleCall_0_2_2_1_0() { return cOwnedRelationshipAnnotationParserRuleCall_0_2_2_1_0; }
+		
+		//body = REGULAR_COMMENT
+		public Assignment getBodyAssignment_1() { return cBodyAssignment_1; }
+		
+		//REGULAR_COMMENT
+		public RuleCall getBodyREGULAR_COMMENTTerminalRuleCall_1_0() { return cBodyREGULAR_COMMENTTerminalRuleCall_1_0; }
+	}
+	public class PrefixCommentElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.PrefixComment");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Group cGroup_0 = (Group)cGroup.eContents().get(0);
+		private final Keyword cCommentKeyword_0_0 = (Keyword)cGroup_0.eContents().get(0);
+		private final RuleCall cIdentificationParserRuleCall_0_1 = (RuleCall)cGroup_0.eContents().get(1);
+		private final Assignment cOwnedRelationshipAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cOwnedRelationshipEmptyAnnotationParserRuleCall_1_0 = (RuleCall)cOwnedRelationshipAssignment_1.eContents().get(0);
+		private final Assignment cBodyAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cBodyPREFIX_COMMENTTerminalRuleCall_2_0 = (RuleCall)cBodyAssignment_2.eContents().get(0);
+		
+		//PrefixComment returns SysML::Comment :
+		//    ( 'comment' Identification? )?
+		//    ownedRelationship += EmptyAnnotation
+		//    body = PREFIX_COMMENT
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//( 'comment' Identification? )?
+		//ownedRelationship += EmptyAnnotation
+		//body = PREFIX_COMMENT
+		public Group getGroup() { return cGroup; }
+		
+		//( 'comment' Identification? )?
+		public Group getGroup_0() { return cGroup_0; }
+		
+		//'comment'
+		public Keyword getCommentKeyword_0_0() { return cCommentKeyword_0_0; }
+		
+		//Identification?
+		public RuleCall getIdentificationParserRuleCall_0_1() { return cIdentificationParserRuleCall_0_1; }
+		
+		//ownedRelationship += EmptyAnnotation
+		public Assignment getOwnedRelationshipAssignment_1() { return cOwnedRelationshipAssignment_1; }
+		
+		//EmptyAnnotation
+		public RuleCall getOwnedRelationshipEmptyAnnotationParserRuleCall_1_0() { return cOwnedRelationshipEmptyAnnotationParserRuleCall_1_0; }
+		
+		//body = PREFIX_COMMENT
+		public Assignment getBodyAssignment_2() { return cBodyAssignment_2; }
+		
+		//PREFIX_COMMENT
+		public RuleCall getBodyPREFIX_COMMENTTerminalRuleCall_2_0() { return cBodyPREFIX_COMMENTTerminalRuleCall_2_0; }
+	}
+	public class DocumentationElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.Documentation");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cDocKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final RuleCall cIdentificationParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
+		private final Assignment cBodyAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cBodyREGULAR_COMMENTTerminalRuleCall_2_0 = (RuleCall)cBodyAssignment_2.eContents().get(0);
+		
+		//Documentation returns SysML::Documentation :
+		//    'doc' Identification? body = REGULAR_COMMENT
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'doc' Identification? body = REGULAR_COMMENT
+		public Group getGroup() { return cGroup; }
+		
+		//'doc'
+		public Keyword getDocKeyword_0() { return cDocKeyword_0; }
+		
+		//Identification?
+		public RuleCall getIdentificationParserRuleCall_1() { return cIdentificationParserRuleCall_1; }
+		
+		//body = REGULAR_COMMENT
+		public Assignment getBodyAssignment_2() { return cBodyAssignment_2; }
+		
+		//REGULAR_COMMENT
+		public RuleCall getBodyREGULAR_COMMENTTerminalRuleCall_2_0() { return cBodyREGULAR_COMMENTTerminalRuleCall_2_0; }
+	}
+	public class OwnedCommentAnnotationElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.OwnedCommentAnnotation");
+		private final Assignment cOwnedRelatedElementAssignment = (Assignment)rule.eContents().get(1);
+		private final Alternatives cOwnedRelatedElementAlternatives_0 = (Alternatives)cOwnedRelatedElementAssignment.eContents().get(0);
+		private final RuleCall cOwnedRelatedElementOwnedCommentParserRuleCall_0_0 = (RuleCall)cOwnedRelatedElementAlternatives_0.eContents().get(0);
+		private final RuleCall cOwnedRelatedElementOwnedDocumentationParserRuleCall_0_1 = (RuleCall)cOwnedRelatedElementAlternatives_0.eContents().get(1);
+		
+		//OwnedCommentAnnotation returns SysML::Annotation :
+		//    ownedRelatedElement += ( OwnedComment | OwnedDocumentation )
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//ownedRelatedElement += ( OwnedComment | OwnedDocumentation )
 		public Assignment getOwnedRelatedElementAssignment() { return cOwnedRelatedElementAssignment; }
 		
-		//DocumentationComment
-		public RuleCall getOwnedRelatedElementDocumentationCommentParserRuleCall_0() { return cOwnedRelatedElementDocumentationCommentParserRuleCall_0; }
+		//( OwnedComment | OwnedDocumentation )
+		public Alternatives getOwnedRelatedElementAlternatives_0() { return cOwnedRelatedElementAlternatives_0; }
+		
+		//OwnedComment
+		public RuleCall getOwnedRelatedElementOwnedCommentParserRuleCall_0_0() { return cOwnedRelatedElementOwnedCommentParserRuleCall_0_0; }
+		
+		//OwnedDocumentation
+		public RuleCall getOwnedRelatedElementOwnedDocumentationParserRuleCall_0_1() { return cOwnedRelatedElementOwnedDocumentationParserRuleCall_0_1; }
 	}
-	public class DocumentationCommentElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.DocumentationComment");
+	public class OwnedCommentElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.OwnedComment");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Group cGroup_0 = (Group)cGroup.eContents().get(0);
+		private final Keyword cCommentKeyword_0_0 = (Keyword)cGroup_0.eContents().get(0);
+		private final Group cGroup_0_1 = (Group)cGroup_0.eContents().get(1);
+		private final Keyword cLessThanSignKeyword_0_1_0 = (Keyword)cGroup_0_1.eContents().get(0);
+		private final Assignment cHumanIdAssignment_0_1_1 = (Assignment)cGroup_0_1.eContents().get(1);
+		private final RuleCall cHumanIdNameParserRuleCall_0_1_1_0 = (RuleCall)cHumanIdAssignment_0_1_1.eContents().get(0);
+		private final Keyword cGreaterThanSignKeyword_0_1_2 = (Keyword)cGroup_0_1.eContents().get(2);
+		private final Assignment cBodyAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cBodyREGULAR_COMMENTTerminalRuleCall_1_0 = (RuleCall)cBodyAssignment_1.eContents().get(0);
+		
+		//OwnedComment returns SysML::Comment :
+		//    ( 'comment' ( '<' humanId = Name '>' )? )? body = REGULAR_COMMENT
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//( 'comment' ( '<' humanId = Name '>' )? )? body = REGULAR_COMMENT
+		public Group getGroup() { return cGroup; }
+		
+		//( 'comment' ( '<' humanId = Name '>' )? )?
+		public Group getGroup_0() { return cGroup_0; }
+		
+		//'comment'
+		public Keyword getCommentKeyword_0_0() { return cCommentKeyword_0_0; }
+		
+		//( '<' humanId = Name '>' )?
+		public Group getGroup_0_1() { return cGroup_0_1; }
+		
+		//'<'
+		public Keyword getLessThanSignKeyword_0_1_0() { return cLessThanSignKeyword_0_1_0; }
+		
+		//humanId = Name
+		public Assignment getHumanIdAssignment_0_1_1() { return cHumanIdAssignment_0_1_1; }
+		
+		//Name
+		public RuleCall getHumanIdNameParserRuleCall_0_1_1_0() { return cHumanIdNameParserRuleCall_0_1_1_0; }
+		
+		//'>'
+		public Keyword getGreaterThanSignKeyword_0_1_2() { return cGreaterThanSignKeyword_0_1_2; }
+		
+		//body = REGULAR_COMMENT
+		public Assignment getBodyAssignment_1() { return cBodyAssignment_1; }
+		
+		//REGULAR_COMMENT
+		public RuleCall getBodyREGULAR_COMMENTTerminalRuleCall_1_0() { return cBodyREGULAR_COMMENTTerminalRuleCall_1_0; }
+	}
+	public class OwnedDocumentationElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.OwnedDocumentation");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cDocKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
@@ -743,7 +856,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Assignment cBodyAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cBodyREGULAR_COMMENTTerminalRuleCall_2_0 = (RuleCall)cBodyAssignment_2.eContents().get(0);
 		
-		//DocumentationComment returns SysML::Comment :
+		//OwnedDocumentation returns SysML::Documentation :
 		//    'doc' ( '<' humanId = Name '>' )? body = REGULAR_COMMENT
 		//;
 		@Override public ParserRule getRule() { return rule; }
@@ -774,70 +887,6 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		
 		//REGULAR_COMMENT
 		public RuleCall getBodyREGULAR_COMMENTTerminalRuleCall_2_0() { return cBodyREGULAR_COMMENTTerminalRuleCall_2_0; }
-	}
-	public class PrefixDocumentationElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.PrefixDocumentation");
-		private final Assignment cOwnedRelatedElementAssignment = (Assignment)rule.eContents().get(1);
-		private final RuleCall cOwnedRelatedElementPrefixDocumentationCommentParserRuleCall_0 = (RuleCall)cOwnedRelatedElementAssignment.eContents().get(0);
-		
-		//PrefixDocumentation returns SysML::Annotation :
-		//    ownedRelatedElement += PrefixDocumentationComment
-		//;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//ownedRelatedElement += PrefixDocumentationComment
-		public Assignment getOwnedRelatedElementAssignment() { return cOwnedRelatedElementAssignment; }
-		
-		//PrefixDocumentationComment
-		public RuleCall getOwnedRelatedElementPrefixDocumentationCommentParserRuleCall_0() { return cOwnedRelatedElementPrefixDocumentationCommentParserRuleCall_0; }
-	}
-	public class PrefixDocumentationCommentElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.PrefixDocumentationComment");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Group cGroup_0 = (Group)cGroup.eContents().get(0);
-		private final Keyword cDocKeyword_0_0 = (Keyword)cGroup_0.eContents().get(0);
-		private final Group cGroup_0_1 = (Group)cGroup_0.eContents().get(1);
-		private final Keyword cLessThanSignKeyword_0_1_0 = (Keyword)cGroup_0_1.eContents().get(0);
-		private final Assignment cHumanIdAssignment_0_1_1 = (Assignment)cGroup_0_1.eContents().get(1);
-		private final RuleCall cHumanIdNameParserRuleCall_0_1_1_0 = (RuleCall)cHumanIdAssignment_0_1_1.eContents().get(0);
-		private final Keyword cGreaterThanSignKeyword_0_1_2 = (Keyword)cGroup_0_1.eContents().get(2);
-		private final Assignment cBodyAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cBodyDOCUMENTATION_COMMENTTerminalRuleCall_1_0 = (RuleCall)cBodyAssignment_1.eContents().get(0);
-		
-		//PrefixDocumentationComment returns SysML::Comment :
-		//    ( 'doc' ( '<' humanId = Name '>' )? )? body = DOCUMENTATION_COMMENT
-		//;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//( 'doc' ( '<' humanId = Name '>' )? )? body = DOCUMENTATION_COMMENT
-		public Group getGroup() { return cGroup; }
-		
-		//( 'doc' ( '<' humanId = Name '>' )? )?
-		public Group getGroup_0() { return cGroup_0; }
-		
-		//'doc'
-		public Keyword getDocKeyword_0_0() { return cDocKeyword_0_0; }
-		
-		//( '<' humanId = Name '>' )?
-		public Group getGroup_0_1() { return cGroup_0_1; }
-		
-		//'<'
-		public Keyword getLessThanSignKeyword_0_1_0() { return cLessThanSignKeyword_0_1_0; }
-		
-		//humanId = Name
-		public Assignment getHumanIdAssignment_0_1_1() { return cHumanIdAssignment_0_1_1; }
-		
-		//Name
-		public RuleCall getHumanIdNameParserRuleCall_0_1_1_0() { return cHumanIdNameParserRuleCall_0_1_1_0; }
-		
-		//'>'
-		public Keyword getGreaterThanSignKeyword_0_1_2() { return cGreaterThanSignKeyword_0_1_2; }
-		
-		//body = DOCUMENTATION_COMMENT
-		public Assignment getBodyAssignment_1() { return cBodyAssignment_1; }
-		
-		//DOCUMENTATION_COMMENT
-		public RuleCall getBodyDOCUMENTATION_COMMENTTerminalRuleCall_1_0() { return cBodyDOCUMENTATION_COMMENTTerminalRuleCall_1_0; }
 	}
 	public class OwnedTextualRepresentationAnnotationElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.OwnedTextualRepresentationAnnotation");
@@ -1010,25 +1059,25 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//REGULAR_COMMENT
 		public RuleCall getBodyREGULAR_COMMENTTerminalRuleCall_3_0() { return cBodyREGULAR_COMMENTTerminalRuleCall_3_0; }
 	}
-	public class OwnedAnnotatingFeatureAnnotationElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.OwnedAnnotatingFeatureAnnotation");
+	public class OwnedMetadataFeatureAnnotationElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.OwnedMetadataFeatureAnnotation");
 		private final Assignment cOwnedRelatedElementAssignment = (Assignment)rule.eContents().get(1);
-		private final RuleCall cOwnedRelatedElementOwnedAnnotatingFeatureParserRuleCall_0 = (RuleCall)cOwnedRelatedElementAssignment.eContents().get(0);
+		private final RuleCall cOwnedRelatedElementOwnedMetadataFeatureParserRuleCall_0 = (RuleCall)cOwnedRelatedElementAssignment.eContents().get(0);
 		
-		///* Annotating Features */
-		//OwnedAnnotatingFeatureAnnotation returns SysML::Annotation :
-		//    ownedRelatedElement += OwnedAnnotatingFeature
+		///* Metadata Features */
+		//OwnedMetadataFeatureAnnotation returns SysML::Annotation :
+		//    ownedRelatedElement += OwnedMetadataFeature
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//ownedRelatedElement += OwnedAnnotatingFeature
+		//ownedRelatedElement += OwnedMetadataFeature
 		public Assignment getOwnedRelatedElementAssignment() { return cOwnedRelatedElementAssignment; }
 		
-		//OwnedAnnotatingFeature
-		public RuleCall getOwnedRelatedElementOwnedAnnotatingFeatureParserRuleCall_0() { return cOwnedRelatedElementOwnedAnnotatingFeatureParserRuleCall_0; }
+		//OwnedMetadataFeature
+		public RuleCall getOwnedRelatedElementOwnedMetadataFeatureParserRuleCall_0() { return cOwnedRelatedElementOwnedMetadataFeatureParserRuleCall_0; }
 	}
-	public class OwnedAnnotatingFeatureElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.OwnedAnnotatingFeature");
+	public class OwnedMetadataFeatureElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.OwnedMetadataFeature");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cMetadataKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
@@ -1041,20 +1090,18 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Keyword cByKeyword_1_1_1_1 = (Keyword)cGroup_1_1_1.eContents().get(1);
 		private final Assignment cOwnedRelationshipAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cOwnedRelationshipMetadataTypingParserRuleCall_2_0 = (RuleCall)cOwnedRelationshipAssignment_2.eContents().get(0);
-		private final Assignment cOwnedRelationshipAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cOwnedRelationshipEmptyAnnotationParserRuleCall_3_0 = (RuleCall)cOwnedRelationshipAssignment_3.eContents().get(0);
-		private final RuleCall cAnnotatingFeatureBodyParserRuleCall_4 = (RuleCall)cGroup.eContents().get(4);
+		private final RuleCall cTypeBodyParserRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
 		
-		//OwnedAnnotatingFeature returns SysML::AnnotatingFeature :
-		//    'metadata' ( humanId = Name ( ':' | 'typed' 'by' ) )? ownedRelationship += MetadataTyping
-		//    ownedRelationship += EmptyAnnotation
-		//    AnnotatingFeatureBody
+		//OwnedMetadataFeature returns SysML::MetadataFeature :
+		//    'metadata' ( humanId = Name ( ':' | 'typed' 'by' ) )?
+		//    ownedRelationship += MetadataTyping
+		//    TypeBody
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'metadata' ( humanId = Name ( ':' | 'typed' 'by' ) )? ownedRelationship += MetadataTyping
-		//ownedRelationship += EmptyAnnotation
-		//AnnotatingFeatureBody
+		//'metadata' ( humanId = Name ( ':' | 'typed' 'by' ) )?
+		//ownedRelationship += MetadataTyping
+		//TypeBody
 		public Group getGroup() { return cGroup; }
 		
 		//'metadata'
@@ -1090,49 +1137,40 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//MetadataTyping
 		public RuleCall getOwnedRelationshipMetadataTypingParserRuleCall_2_0() { return cOwnedRelationshipMetadataTypingParserRuleCall_2_0; }
 		
-		//ownedRelationship += EmptyAnnotation
-		public Assignment getOwnedRelationshipAssignment_3() { return cOwnedRelationshipAssignment_3; }
-		
-		//EmptyAnnotation
-		public RuleCall getOwnedRelationshipEmptyAnnotationParserRuleCall_3_0() { return cOwnedRelationshipEmptyAnnotationParserRuleCall_3_0; }
-		
-		//AnnotatingFeatureBody
-		public RuleCall getAnnotatingFeatureBodyParserRuleCall_4() { return cAnnotatingFeatureBodyParserRuleCall_4; }
+		//TypeBody
+		public RuleCall getTypeBodyParserRuleCall_3() { return cTypeBodyParserRuleCall_3; }
 	}
-	public class AnnotatingFeatureElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.AnnotatingFeature");
+	public class MetadataFeatureElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.MetadataFeature");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Alternatives cAlternatives_0 = (Alternatives)cGroup.eContents().get(0);
 		private final Keyword cCommercialAtKeyword_0_0 = (Keyword)cAlternatives_0.eContents().get(0);
 		private final Keyword cMetadataKeyword_0_1 = (Keyword)cAlternatives_0.eContents().get(1);
-		private final RuleCall cAnnotatingFeatureDeclarationParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
-		private final Alternatives cAlternatives_2 = (Alternatives)cGroup.eContents().get(2);
-		private final Group cGroup_2_0 = (Group)cAlternatives_2.eContents().get(0);
-		private final Keyword cAboutKeyword_2_0_0 = (Keyword)cGroup_2_0.eContents().get(0);
-		private final Assignment cOwnedRelationshipAssignment_2_0_1 = (Assignment)cGroup_2_0.eContents().get(1);
-		private final RuleCall cOwnedRelationshipAnnotationParserRuleCall_2_0_1_0 = (RuleCall)cOwnedRelationshipAssignment_2_0_1.eContents().get(0);
-		private final Group cGroup_2_0_2 = (Group)cGroup_2_0.eContents().get(2);
-		private final Keyword cCommaKeyword_2_0_2_0 = (Keyword)cGroup_2_0_2.eContents().get(0);
-		private final Assignment cOwnedRelationshipAssignment_2_0_2_1 = (Assignment)cGroup_2_0_2.eContents().get(1);
-		private final RuleCall cOwnedRelationshipAnnotationParserRuleCall_2_0_2_1_0 = (RuleCall)cOwnedRelationshipAssignment_2_0_2_1.eContents().get(0);
-		private final Assignment cOwnedRelationshipAssignment_2_1 = (Assignment)cAlternatives_2.eContents().get(1);
-		private final RuleCall cOwnedRelationshipEmptyAnnotationParserRuleCall_2_1_0 = (RuleCall)cOwnedRelationshipAssignment_2_1.eContents().get(0);
-		private final RuleCall cAnnotatingFeatureBodyParserRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
+		private final RuleCall cMetadataFeatureDeclarationParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
+		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
+		private final Keyword cAboutKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
+		private final Assignment cOwnedRelationshipAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
+		private final RuleCall cOwnedRelationshipAnnotationParserRuleCall_2_1_0 = (RuleCall)cOwnedRelationshipAssignment_2_1.eContents().get(0);
+		private final Group cGroup_2_2 = (Group)cGroup_2.eContents().get(2);
+		private final Keyword cCommaKeyword_2_2_0 = (Keyword)cGroup_2_2.eContents().get(0);
+		private final Assignment cOwnedRelationshipAssignment_2_2_1 = (Assignment)cGroup_2_2.eContents().get(1);
+		private final RuleCall cOwnedRelationshipAnnotationParserRuleCall_2_2_1_0 = (RuleCall)cOwnedRelationshipAssignment_2_2_1.eContents().get(0);
+		private final RuleCall cTypeBodyParserRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
 		
-		//AnnotatingFeature returns SysML::AnnotatingFeature :
-		//    ( '@' | 'metadata' ) AnnotatingFeatureDeclaration
-		//    ( 'about' ownedRelationship += Annotation ( ',' ownedRelationship += Annotation )*
-		//    | ownedRelationship += EmptyAnnotation
-		//    )
-		//    AnnotatingFeatureBody
+		//MetadataFeature returns SysML::MetadataFeature :
+		//    ( '@' | 'metadata' ) MetadataFeatureDeclaration
+		//    ( 'about' ownedRelationship += Annotation
+		//        ( ',' ownedRelationship += Annotation )*
+		//    )?
+		//    TypeBody
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//( '@' | 'metadata' ) AnnotatingFeatureDeclaration
-		//( 'about' ownedRelationship += Annotation ( ',' ownedRelationship += Annotation )*
-		//| ownedRelationship += EmptyAnnotation
-		//)
-		//AnnotatingFeatureBody
+		//( '@' | 'metadata' ) MetadataFeatureDeclaration
+		//( 'about' ownedRelationship += Annotation
+		//    ( ',' ownedRelationship += Annotation )*
+		//)?
+		//TypeBody
 		public Group getGroup() { return cGroup; }
 		
 		//( '@' | 'metadata' )
@@ -1144,49 +1182,40 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//'metadata'
 		public Keyword getMetadataKeyword_0_1() { return cMetadataKeyword_0_1; }
 		
-		//AnnotatingFeatureDeclaration
-		public RuleCall getAnnotatingFeatureDeclarationParserRuleCall_1() { return cAnnotatingFeatureDeclarationParserRuleCall_1; }
+		//MetadataFeatureDeclaration
+		public RuleCall getMetadataFeatureDeclarationParserRuleCall_1() { return cMetadataFeatureDeclarationParserRuleCall_1; }
 		
-		//( 'about' ownedRelationship += Annotation ( ',' ownedRelationship += Annotation )*
-		//| ownedRelationship += EmptyAnnotation
-		//)
-		public Alternatives getAlternatives_2() { return cAlternatives_2; }
-		
-		//'about' ownedRelationship += Annotation ( ',' ownedRelationship += Annotation )*
-		public Group getGroup_2_0() { return cGroup_2_0; }
+		//( 'about' ownedRelationship += Annotation
+		//    ( ',' ownedRelationship += Annotation )*
+		//)?
+		public Group getGroup_2() { return cGroup_2; }
 		
 		//'about'
-		public Keyword getAboutKeyword_2_0_0() { return cAboutKeyword_2_0_0; }
+		public Keyword getAboutKeyword_2_0() { return cAboutKeyword_2_0; }
 		
 		//ownedRelationship += Annotation
-		public Assignment getOwnedRelationshipAssignment_2_0_1() { return cOwnedRelationshipAssignment_2_0_1; }
-		
-		//Annotation
-		public RuleCall getOwnedRelationshipAnnotationParserRuleCall_2_0_1_0() { return cOwnedRelationshipAnnotationParserRuleCall_2_0_1_0; }
-		
-		//( ',' ownedRelationship += Annotation )*
-		public Group getGroup_2_0_2() { return cGroup_2_0_2; }
-		
-		//','
-		public Keyword getCommaKeyword_2_0_2_0() { return cCommaKeyword_2_0_2_0; }
-		
-		//ownedRelationship += Annotation
-		public Assignment getOwnedRelationshipAssignment_2_0_2_1() { return cOwnedRelationshipAssignment_2_0_2_1; }
-		
-		//Annotation
-		public RuleCall getOwnedRelationshipAnnotationParserRuleCall_2_0_2_1_0() { return cOwnedRelationshipAnnotationParserRuleCall_2_0_2_1_0; }
-		
-		//ownedRelationship += EmptyAnnotation
 		public Assignment getOwnedRelationshipAssignment_2_1() { return cOwnedRelationshipAssignment_2_1; }
 		
-		//EmptyAnnotation
-		public RuleCall getOwnedRelationshipEmptyAnnotationParserRuleCall_2_1_0() { return cOwnedRelationshipEmptyAnnotationParserRuleCall_2_1_0; }
+		//Annotation
+		public RuleCall getOwnedRelationshipAnnotationParserRuleCall_2_1_0() { return cOwnedRelationshipAnnotationParserRuleCall_2_1_0; }
 		
-		//AnnotatingFeatureBody
-		public RuleCall getAnnotatingFeatureBodyParserRuleCall_3() { return cAnnotatingFeatureBodyParserRuleCall_3; }
+		//( ',' ownedRelationship += Annotation )*
+		public Group getGroup_2_2() { return cGroup_2_2; }
+		
+		//','
+		public Keyword getCommaKeyword_2_2_0() { return cCommaKeyword_2_2_0; }
+		
+		//ownedRelationship += Annotation
+		public Assignment getOwnedRelationshipAssignment_2_2_1() { return cOwnedRelationshipAssignment_2_2_1; }
+		
+		//Annotation
+		public RuleCall getOwnedRelationshipAnnotationParserRuleCall_2_2_1_0() { return cOwnedRelationshipAnnotationParserRuleCall_2_2_1_0; }
+		
+		//TypeBody
+		public RuleCall getTypeBodyParserRuleCall_3() { return cTypeBodyParserRuleCall_3; }
 	}
-	public class AnnotatingFeatureDeclarationElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.AnnotatingFeatureDeclaration");
+	public class MetadataFeatureDeclarationElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.MetadataFeatureDeclaration");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Group cGroup_0 = (Group)cGroup.eContents().get(0);
 		private final RuleCall cIdentificationParserRuleCall_0_0 = (RuleCall)cGroup_0.eContents().get(0);
@@ -1198,7 +1227,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Assignment cOwnedRelationshipAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cOwnedRelationshipMetadataTypingParserRuleCall_1_0 = (RuleCall)cOwnedRelationshipAssignment_1.eContents().get(0);
 		
-		//fragment AnnotatingFeatureDeclaration returns SysML::AnnotatingFeature :
+		//fragment MetadataFeatureDeclaration returns SysML::MetadataFeature :
 		//    ( Identification ( ':' | 'typed' 'by' ) )? ownedRelationship += MetadataTyping
 		//;
 		@Override public ParserRule getRule() { return rule; }
@@ -1236,144 +1265,22 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	public class MetadataTypingElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.MetadataTyping");
 		private final Assignment cTypeAssignment = (Assignment)rule.eContents().get(1);
-		private final CrossReference cTypeDataTypeCrossReference_0 = (CrossReference)cTypeAssignment.eContents().get(0);
-		private final RuleCall cTypeDataTypeQualifiedNameParserRuleCall_0_1 = (RuleCall)cTypeDataTypeCrossReference_0.eContents().get(1);
+		private final CrossReference cTypeMetaclassCrossReference_0 = (CrossReference)cTypeAssignment.eContents().get(0);
+		private final RuleCall cTypeMetaclassQualifiedNameParserRuleCall_0_1 = (RuleCall)cTypeMetaclassCrossReference_0.eContents().get(1);
 		
 		//MetadataTyping returns SysML::FeatureTyping :
-		//    type = [SysML::DataType | QualifiedName]
+		//    type = [SysML::Metaclass | QualifiedName]
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//type = [SysML::DataType | QualifiedName]
+		//type = [SysML::Metaclass | QualifiedName]
 		public Assignment getTypeAssignment() { return cTypeAssignment; }
 		
-		//[SysML::DataType | QualifiedName]
-		public CrossReference getTypeDataTypeCrossReference_0() { return cTypeDataTypeCrossReference_0; }
+		//[SysML::Metaclass | QualifiedName]
+		public CrossReference getTypeMetaclassCrossReference_0() { return cTypeMetaclassCrossReference_0; }
 		
 		//QualifiedName
-		public RuleCall getTypeDataTypeQualifiedNameParserRuleCall_0_1() { return cTypeDataTypeQualifiedNameParserRuleCall_0_1; }
-	}
-	public class AnnotatingFeatureBodyElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.AnnotatingFeatureBody");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final Keyword cSemicolonKeyword_0 = (Keyword)cAlternatives.eContents().get(0);
-		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
-		private final Keyword cLeftCurlyBracketKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
-		private final Assignment cOwnedRelationshipAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
-		private final RuleCall cOwnedRelationshipMetadataFeatureMemberParserRuleCall_1_1_0 = (RuleCall)cOwnedRelationshipAssignment_1_1.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_1_2 = (Keyword)cGroup_1.eContents().get(2);
-		
-		//fragment AnnotatingFeatureBody returns SysML::AnnotatingFeature :
-		//    ';' | '{' ( ownedRelationship += MetadataFeatureMember )* '}'
-		//;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//';' | '{' ( ownedRelationship += MetadataFeatureMember )* '}'
-		public Alternatives getAlternatives() { return cAlternatives; }
-		
-		//';'
-		public Keyword getSemicolonKeyword_0() { return cSemicolonKeyword_0; }
-		
-		//'{' ( ownedRelationship += MetadataFeatureMember )* '}'
-		public Group getGroup_1() { return cGroup_1; }
-		
-		//'{'
-		public Keyword getLeftCurlyBracketKeyword_1_0() { return cLeftCurlyBracketKeyword_1_0; }
-		
-		//( ownedRelationship += MetadataFeatureMember )*
-		public Assignment getOwnedRelationshipAssignment_1_1() { return cOwnedRelationshipAssignment_1_1; }
-		
-		//MetadataFeatureMember
-		public RuleCall getOwnedRelationshipMetadataFeatureMemberParserRuleCall_1_1_0() { return cOwnedRelationshipMetadataFeatureMemberParserRuleCall_1_1_0; }
-		
-		//'}'
-		public Keyword getRightCurlyBracketKeyword_1_2() { return cRightCurlyBracketKeyword_1_2; }
-	}
-	public class MetadataFeatureMemberElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.MetadataFeatureMember");
-		private final Assignment cOwnedRelatedElementAssignment = (Assignment)rule.eContents().get(1);
-		private final RuleCall cOwnedRelatedElementMetadataFeatureParserRuleCall_0 = (RuleCall)cOwnedRelatedElementAssignment.eContents().get(0);
-		
-		//MetadataFeatureMember returns SysML::FeatureMembership :
-		//    ownedRelatedElement += MetadataFeature // ownedMemberFeature = MetadataFeature
-		//;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//ownedRelatedElement += MetadataFeature
-		public Assignment getOwnedRelatedElementAssignment() { return cOwnedRelatedElementAssignment; }
-		
-		//MetadataFeature
-		public RuleCall getOwnedRelatedElementMetadataFeatureParserRuleCall_0() { return cOwnedRelatedElementMetadataFeatureParserRuleCall_0; }
-	}
-	public class MetadataFeatureElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.MetadataFeature");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cFeatureKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Alternatives cAlternatives_1 = (Alternatives)cGroup.eContents().get(1);
-		private final Keyword cColonGreaterThanSignGreaterThanSignKeyword_1_0 = (Keyword)cAlternatives_1.eContents().get(0);
-		private final Keyword cRedefinesKeyword_1_1 = (Keyword)cAlternatives_1.eContents().get(1);
-		private final Assignment cOwnedRelationshipAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cOwnedRelationshipOwnedRedefinitionParserRuleCall_2_0 = (RuleCall)cOwnedRelationshipAssignment_2.eContents().get(0);
-		private final Keyword cEqualsSignKeyword_3 = (Keyword)cGroup.eContents().get(3);
-		private final Assignment cOwnedRelationshipAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cOwnedRelationshipMetadataFeatureValueParserRuleCall_4_0 = (RuleCall)cOwnedRelationshipAssignment_4.eContents().get(0);
-		private final Keyword cSemicolonKeyword_5 = (Keyword)cGroup.eContents().get(5);
-		
-		//MetadataFeature returns SysML::MetadataFeature :
-		//    'feature'? ( ':>>' | 'redefines')? ownedRelationship += OwnedRedefinition
-		//    '=' ownedRelationship += MetadataFeatureValue ';' // metadataFeatureValue = MetadataFeatureValue ';'
-		//;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//'feature'? ( ':>>' | 'redefines')? ownedRelationship += OwnedRedefinition
-		//'=' ownedRelationship += MetadataFeatureValue ';'
-		public Group getGroup() { return cGroup; }
-		
-		//'feature'?
-		public Keyword getFeatureKeyword_0() { return cFeatureKeyword_0; }
-		
-		//( ':>>' | 'redefines')?
-		public Alternatives getAlternatives_1() { return cAlternatives_1; }
-		
-		//':>>'
-		public Keyword getColonGreaterThanSignGreaterThanSignKeyword_1_0() { return cColonGreaterThanSignGreaterThanSignKeyword_1_0; }
-		
-		//'redefines'
-		public Keyword getRedefinesKeyword_1_1() { return cRedefinesKeyword_1_1; }
-		
-		//ownedRelationship += OwnedRedefinition
-		public Assignment getOwnedRelationshipAssignment_2() { return cOwnedRelationshipAssignment_2; }
-		
-		//OwnedRedefinition
-		public RuleCall getOwnedRelationshipOwnedRedefinitionParserRuleCall_2_0() { return cOwnedRelationshipOwnedRedefinitionParserRuleCall_2_0; }
-		
-		//'='
-		public Keyword getEqualsSignKeyword_3() { return cEqualsSignKeyword_3; }
-		
-		//ownedRelationship += MetadataFeatureValue
-		public Assignment getOwnedRelationshipAssignment_4() { return cOwnedRelationshipAssignment_4; }
-		
-		//MetadataFeatureValue
-		public RuleCall getOwnedRelationshipMetadataFeatureValueParserRuleCall_4_0() { return cOwnedRelationshipMetadataFeatureValueParserRuleCall_4_0; }
-		
-		//';'
-		public Keyword getSemicolonKeyword_5() { return cSemicolonKeyword_5; }
-	}
-	public class MetadataFeatureValueElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.MetadataFeatureValue");
-		private final Assignment cOwnedRelatedElementAssignment = (Assignment)rule.eContents().get(1);
-		private final RuleCall cOwnedRelatedElementOwnedExpressionParserRuleCall_0 = (RuleCall)cOwnedRelatedElementAssignment.eContents().get(0);
-		
-		//MetadataFeatureValue returns SysML::MetadataFeatureValue :
-		//    ownedRelatedElement += OwnedExpression // metadataValue = OwnedExpression
-		//;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//ownedRelatedElement += OwnedExpression
-		public Assignment getOwnedRelatedElementAssignment() { return cOwnedRelatedElementAssignment; }
-		
-		//OwnedExpression
-		public RuleCall getOwnedRelatedElementOwnedExpressionParserRuleCall_0() { return cOwnedRelatedElementOwnedExpressionParserRuleCall_0; }
+		public RuleCall getTypeMetaclassQualifiedNameParserRuleCall_0_1() { return cTypeMetaclassQualifiedNameParserRuleCall_0_1; }
 	}
 	public class NamespaceElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.Namespace");
@@ -1424,21 +1331,18 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Keyword cLeftCurlyBracketKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
 		private final Alternatives cAlternatives_1_1 = (Alternatives)cGroup_1.eContents().get(1);
 		private final Assignment cOwnedRelationshipAssignment_1_1_0 = (Assignment)cAlternatives_1_1.eContents().get(0);
-		private final RuleCall cOwnedRelationshipOwnedDocumentationParserRuleCall_1_1_0_0 = (RuleCall)cOwnedRelationshipAssignment_1_1_0.eContents().get(0);
+		private final RuleCall cOwnedRelationshipNamespaceMemberParserRuleCall_1_1_0_0 = (RuleCall)cOwnedRelationshipAssignment_1_1_0.eContents().get(0);
 		private final Assignment cOwnedRelationshipAssignment_1_1_1 = (Assignment)cAlternatives_1_1.eContents().get(1);
-		private final RuleCall cOwnedRelationshipNamespaceMemberParserRuleCall_1_1_1_0 = (RuleCall)cOwnedRelationshipAssignment_1_1_1.eContents().get(0);
+		private final RuleCall cOwnedRelationshipAliasMemberParserRuleCall_1_1_1_0 = (RuleCall)cOwnedRelationshipAssignment_1_1_1.eContents().get(0);
 		private final Assignment cOwnedRelationshipAssignment_1_1_2 = (Assignment)cAlternatives_1_1.eContents().get(2);
-		private final RuleCall cOwnedRelationshipAliasMemberParserRuleCall_1_1_2_0 = (RuleCall)cOwnedRelationshipAssignment_1_1_2.eContents().get(0);
-		private final Assignment cOwnedRelationshipAssignment_1_1_3 = (Assignment)cAlternatives_1_1.eContents().get(3);
-		private final RuleCall cOwnedRelationshipImportParserRuleCall_1_1_3_0 = (RuleCall)cOwnedRelationshipAssignment_1_1_3.eContents().get(0);
+		private final RuleCall cOwnedRelationshipImportParserRuleCall_1_1_2_0 = (RuleCall)cOwnedRelationshipAssignment_1_1_2.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_1_2 = (Keyword)cGroup_1.eContents().get(2);
 		
 		//fragment NamespaceBody returns SysML::Namespace :
 		//      ';'
 		//    | '{' ( // Note: PackageBodyElement is expanded here to avoid
 		//            // infinite loops in the incremental parser.
-		//            ownedRelationship += OwnedDocumentation
-		//          | ownedRelationship += NamespaceMember
+		//            ownedRelationship += NamespaceMember
 		//          | ownedRelationship += AliasMember
 		//          | ownedRelationship += Import )*
 		//      '}'
@@ -1448,8 +1352,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//  ';'
 		//| '{' ( // Note: PackageBodyElement is expanded here to avoid
 		//        // infinite loops in the incremental parser.
-		//        ownedRelationship += OwnedDocumentation
-		//      | ownedRelationship += NamespaceMember
+		//        ownedRelationship += NamespaceMember
 		//      | ownedRelationship += AliasMember
 		//      | ownedRelationship += Import )*
 		//  '}'
@@ -1460,8 +1363,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		
 		//'{' ( // Note: PackageBodyElement is expanded here to avoid
 		//           // infinite loops in the incremental parser.
-		//           ownedRelationship += OwnedDocumentation
-		//         | ownedRelationship += NamespaceMember
+		//           ownedRelationship += NamespaceMember
 		//         | ownedRelationship += AliasMember
 		//         | ownedRelationship += Import )*
 		//     '}'
@@ -1472,37 +1374,30 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		
 		//( // Note: PackageBodyElement is expanded here to avoid
 		//           // infinite loops in the incremental parser.
-		//           ownedRelationship += OwnedDocumentation
-		//         | ownedRelationship += NamespaceMember
+		//           ownedRelationship += NamespaceMember
 		//         | ownedRelationship += AliasMember
 		//         | ownedRelationship += Import )*
 		public Alternatives getAlternatives_1_1() { return cAlternatives_1_1; }
 		
 		//// Note: PackageBodyElement is expanded here to avoid
 		//           // infinite loops in the incremental parser.
-		//           ownedRelationship += OwnedDocumentation
+		//           ownedRelationship += NamespaceMember
 		public Assignment getOwnedRelationshipAssignment_1_1_0() { return cOwnedRelationshipAssignment_1_1_0; }
 		
-		//OwnedDocumentation
-		public RuleCall getOwnedRelationshipOwnedDocumentationParserRuleCall_1_1_0_0() { return cOwnedRelationshipOwnedDocumentationParserRuleCall_1_1_0_0; }
-		
-		//ownedRelationship += NamespaceMember
-		public Assignment getOwnedRelationshipAssignment_1_1_1() { return cOwnedRelationshipAssignment_1_1_1; }
-		
 		//NamespaceMember
-		public RuleCall getOwnedRelationshipNamespaceMemberParserRuleCall_1_1_1_0() { return cOwnedRelationshipNamespaceMemberParserRuleCall_1_1_1_0; }
+		public RuleCall getOwnedRelationshipNamespaceMemberParserRuleCall_1_1_0_0() { return cOwnedRelationshipNamespaceMemberParserRuleCall_1_1_0_0; }
 		
 		//ownedRelationship += AliasMember
-		public Assignment getOwnedRelationshipAssignment_1_1_2() { return cOwnedRelationshipAssignment_1_1_2; }
+		public Assignment getOwnedRelationshipAssignment_1_1_1() { return cOwnedRelationshipAssignment_1_1_1; }
 		
 		//AliasMember
-		public RuleCall getOwnedRelationshipAliasMemberParserRuleCall_1_1_2_0() { return cOwnedRelationshipAliasMemberParserRuleCall_1_1_2_0; }
+		public RuleCall getOwnedRelationshipAliasMemberParserRuleCall_1_1_1_0() { return cOwnedRelationshipAliasMemberParserRuleCall_1_1_1_0; }
 		
 		//ownedRelationship += Import
-		public Assignment getOwnedRelationshipAssignment_1_1_3() { return cOwnedRelationshipAssignment_1_1_3; }
+		public Assignment getOwnedRelationshipAssignment_1_1_2() { return cOwnedRelationshipAssignment_1_1_2; }
 		
 		//Import
-		public RuleCall getOwnedRelationshipImportParserRuleCall_1_1_3_0() { return cOwnedRelationshipImportParserRuleCall_1_1_3_0; }
+		public RuleCall getOwnedRelationshipImportParserRuleCall_1_1_2_0() { return cOwnedRelationshipImportParserRuleCall_1_1_2_0; }
 		
 		//'}'
 		public Keyword getRightCurlyBracketKeyword_1_2() { return cRightCurlyBracketKeyword_1_2; }
@@ -1511,82 +1406,58 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.NamespaceBodyElement");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final Assignment cOwnedRelationshipAssignment_0 = (Assignment)cAlternatives.eContents().get(0);
-		private final RuleCall cOwnedRelationshipOwnedDocumentationParserRuleCall_0_0 = (RuleCall)cOwnedRelationshipAssignment_0.eContents().get(0);
+		private final RuleCall cOwnedRelationshipNamespaceMemberParserRuleCall_0_0 = (RuleCall)cOwnedRelationshipAssignment_0.eContents().get(0);
 		private final Assignment cOwnedRelationshipAssignment_1 = (Assignment)cAlternatives.eContents().get(1);
-		private final RuleCall cOwnedRelationshipNamespaceMemberParserRuleCall_1_0 = (RuleCall)cOwnedRelationshipAssignment_1.eContents().get(0);
+		private final RuleCall cOwnedRelationshipAliasMemberParserRuleCall_1_0 = (RuleCall)cOwnedRelationshipAssignment_1.eContents().get(0);
 		private final Assignment cOwnedRelationshipAssignment_2 = (Assignment)cAlternatives.eContents().get(2);
-		private final RuleCall cOwnedRelationshipAliasMemberParserRuleCall_2_0 = (RuleCall)cOwnedRelationshipAssignment_2.eContents().get(0);
-		private final Assignment cOwnedRelationshipAssignment_3 = (Assignment)cAlternatives.eContents().get(3);
-		private final RuleCall cOwnedRelationshipImportParserRuleCall_3_0 = (RuleCall)cOwnedRelationshipAssignment_3.eContents().get(0);
+		private final RuleCall cOwnedRelationshipImportParserRuleCall_2_0 = (RuleCall)cOwnedRelationshipAssignment_2.eContents().get(0);
 		
 		///* Namespace Bodies */
 		//fragment NamespaceBodyElement returns SysML::Namespace :
-		//      ownedRelationship += OwnedDocumentation
-		//    | ownedRelationship += NamespaceMember
+		//      ownedRelationship += NamespaceMember
 		//    | ownedRelationship += AliasMember
 		//    | ownedRelationship += Import
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//  ownedRelationship += OwnedDocumentation
-		//| ownedRelationship += NamespaceMember
+		//  ownedRelationship += NamespaceMember
 		//| ownedRelationship += AliasMember
 		//| ownedRelationship += Import
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
-		//ownedRelationship += OwnedDocumentation
+		//ownedRelationship += NamespaceMember
 		public Assignment getOwnedRelationshipAssignment_0() { return cOwnedRelationshipAssignment_0; }
 		
-		//OwnedDocumentation
-		public RuleCall getOwnedRelationshipOwnedDocumentationParserRuleCall_0_0() { return cOwnedRelationshipOwnedDocumentationParserRuleCall_0_0; }
-		
-		//ownedRelationship += NamespaceMember
-		public Assignment getOwnedRelationshipAssignment_1() { return cOwnedRelationshipAssignment_1; }
-		
 		//NamespaceMember
-		public RuleCall getOwnedRelationshipNamespaceMemberParserRuleCall_1_0() { return cOwnedRelationshipNamespaceMemberParserRuleCall_1_0; }
+		public RuleCall getOwnedRelationshipNamespaceMemberParserRuleCall_0_0() { return cOwnedRelationshipNamespaceMemberParserRuleCall_0_0; }
 		
 		//ownedRelationship += AliasMember
-		public Assignment getOwnedRelationshipAssignment_2() { return cOwnedRelationshipAssignment_2; }
+		public Assignment getOwnedRelationshipAssignment_1() { return cOwnedRelationshipAssignment_1; }
 		
 		//AliasMember
-		public RuleCall getOwnedRelationshipAliasMemberParserRuleCall_2_0() { return cOwnedRelationshipAliasMemberParserRuleCall_2_0; }
+		public RuleCall getOwnedRelationshipAliasMemberParserRuleCall_1_0() { return cOwnedRelationshipAliasMemberParserRuleCall_1_0; }
 		
 		//ownedRelationship += Import
-		public Assignment getOwnedRelationshipAssignment_3() { return cOwnedRelationshipAssignment_3; }
+		public Assignment getOwnedRelationshipAssignment_2() { return cOwnedRelationshipAssignment_2; }
 		
 		//Import
-		public RuleCall getOwnedRelationshipImportParserRuleCall_3_0() { return cOwnedRelationshipImportParserRuleCall_3_0; }
+		public RuleCall getOwnedRelationshipImportParserRuleCall_2_0() { return cOwnedRelationshipImportParserRuleCall_2_0; }
 	}
 	public class MemberPrefixElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.MemberPrefix");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cOwnedRelationshipAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cOwnedRelationshipPrefixDocumentationParserRuleCall_0_0 = (RuleCall)cOwnedRelationshipAssignment_0.eContents().get(0);
-		private final Assignment cVisibilityAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cVisibilityVisibilityIndicatorEnumRuleCall_1_0 = (RuleCall)cVisibilityAssignment_1.eContents().get(0);
+		private final Assignment cVisibilityAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cVisibilityVisibilityIndicatorEnumRuleCall_0 = (RuleCall)cVisibilityAssignment.eContents().get(0);
 		
 		//fragment MemberPrefix returns SysML::Membership :
-		//    ( ownedRelationship += PrefixDocumentation )*
 		//    ( visibility = VisibilityIndicator )?
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//( ownedRelationship += PrefixDocumentation )*
 		//( visibility = VisibilityIndicator )?
-		public Group getGroup() { return cGroup; }
-		
-		//( ownedRelationship += PrefixDocumentation )*
-		public Assignment getOwnedRelationshipAssignment_0() { return cOwnedRelationshipAssignment_0; }
-		
-		//PrefixDocumentation
-		public RuleCall getOwnedRelationshipPrefixDocumentationParserRuleCall_0_0() { return cOwnedRelationshipPrefixDocumentationParserRuleCall_0_0; }
-		
-		//( visibility = VisibilityIndicator )?
-		public Assignment getVisibilityAssignment_1() { return cVisibilityAssignment_1; }
+		public Assignment getVisibilityAssignment() { return cVisibilityAssignment; }
 		
 		//VisibilityIndicator
-		public RuleCall getVisibilityVisibilityIndicatorEnumRuleCall_1_0() { return cVisibilityVisibilityIndicatorEnumRuleCall_1_0; }
+		public RuleCall getVisibilityVisibilityIndicatorEnumRuleCall_0() { return cVisibilityVisibilityIndicatorEnumRuleCall_0; }
 	}
 	public class NamespaceMemberElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.NamespaceMember");
@@ -1761,64 +1632,54 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	public class ImportElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.Import");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cOwnedRelationshipAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cOwnedRelationshipPrefixDocumentationParserRuleCall_0_0 = (RuleCall)cOwnedRelationshipAssignment_0.eContents().get(0);
-		private final Assignment cVisibilityAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cVisibilityVisibilityIndicatorEnumRuleCall_1_0 = (RuleCall)cVisibilityAssignment_1.eContents().get(0);
-		private final Keyword cImportKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Assignment cIsImportAllAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final Keyword cIsImportAllAllKeyword_3_0 = (Keyword)cIsImportAllAssignment_3.eContents().get(0);
-		private final Alternatives cAlternatives_4 = (Alternatives)cGroup.eContents().get(4);
-		private final RuleCall cImportedNamespaceParserRuleCall_4_0 = (RuleCall)cAlternatives_4.eContents().get(0);
-		private final RuleCall cImportedFilterPackageParserRuleCall_4_1 = (RuleCall)cAlternatives_4.eContents().get(1);
-		private final Keyword cSemicolonKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final Assignment cVisibilityAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cVisibilityVisibilityIndicatorEnumRuleCall_0_0 = (RuleCall)cVisibilityAssignment_0.eContents().get(0);
+		private final Keyword cImportKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cIsImportAllAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final Keyword cIsImportAllAllKeyword_2_0 = (Keyword)cIsImportAllAssignment_2.eContents().get(0);
+		private final Alternatives cAlternatives_3 = (Alternatives)cGroup.eContents().get(3);
+		private final RuleCall cImportedNamespaceParserRuleCall_3_0 = (RuleCall)cAlternatives_3.eContents().get(0);
+		private final RuleCall cImportedFilterPackageParserRuleCall_3_1 = (RuleCall)cAlternatives_3.eContents().get(1);
+		private final Keyword cSemicolonKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
 		//Import returns SysML::Import :
-		//    ( ownedRelationship += PrefixDocumentation )*
 		//    ( visibility = VisibilityIndicator )?
 		//    'import' ( isImportAll ?= 'all' )?
 		//    ( ImportedNamespace | ImportedFilterPackage ) ';'
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//( ownedRelationship += PrefixDocumentation )*
 		//( visibility = VisibilityIndicator )?
 		//'import' ( isImportAll ?= 'all' )?
 		//( ImportedNamespace | ImportedFilterPackage ) ';'
 		public Group getGroup() { return cGroup; }
 		
-		//( ownedRelationship += PrefixDocumentation )*
-		public Assignment getOwnedRelationshipAssignment_0() { return cOwnedRelationshipAssignment_0; }
-		
-		//PrefixDocumentation
-		public RuleCall getOwnedRelationshipPrefixDocumentationParserRuleCall_0_0() { return cOwnedRelationshipPrefixDocumentationParserRuleCall_0_0; }
-		
 		//( visibility = VisibilityIndicator )?
-		public Assignment getVisibilityAssignment_1() { return cVisibilityAssignment_1; }
+		public Assignment getVisibilityAssignment_0() { return cVisibilityAssignment_0; }
 		
 		//VisibilityIndicator
-		public RuleCall getVisibilityVisibilityIndicatorEnumRuleCall_1_0() { return cVisibilityVisibilityIndicatorEnumRuleCall_1_0; }
+		public RuleCall getVisibilityVisibilityIndicatorEnumRuleCall_0_0() { return cVisibilityVisibilityIndicatorEnumRuleCall_0_0; }
 		
 		//'import'
-		public Keyword getImportKeyword_2() { return cImportKeyword_2; }
+		public Keyword getImportKeyword_1() { return cImportKeyword_1; }
 		
 		//( isImportAll ?= 'all' )?
-		public Assignment getIsImportAllAssignment_3() { return cIsImportAllAssignment_3; }
+		public Assignment getIsImportAllAssignment_2() { return cIsImportAllAssignment_2; }
 		
 		//'all'
-		public Keyword getIsImportAllAllKeyword_3_0() { return cIsImportAllAllKeyword_3_0; }
+		public Keyword getIsImportAllAllKeyword_2_0() { return cIsImportAllAllKeyword_2_0; }
 		
 		//( ImportedNamespace | ImportedFilterPackage )
-		public Alternatives getAlternatives_4() { return cAlternatives_4; }
+		public Alternatives getAlternatives_3() { return cAlternatives_3; }
 		
 		//ImportedNamespace
-		public RuleCall getImportedNamespaceParserRuleCall_4_0() { return cImportedNamespaceParserRuleCall_4_0; }
+		public RuleCall getImportedNamespaceParserRuleCall_3_0() { return cImportedNamespaceParserRuleCall_3_0; }
 		
 		//ImportedFilterPackage
-		public RuleCall getImportedFilterPackageParserRuleCall_4_1() { return cImportedFilterPackageParserRuleCall_4_1; }
+		public RuleCall getImportedFilterPackageParserRuleCall_3_1() { return cImportedFilterPackageParserRuleCall_3_1; }
 		
 		//';'
-		public Keyword getSemicolonKeyword_5() { return cSemicolonKeyword_5; }
+		public Keyword getSemicolonKeyword_4() { return cSemicolonKeyword_4; }
 	}
 	public class ImportedNamespaceElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.ImportedNamespace");
@@ -1976,38 +1837,42 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final RuleCall cElementParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cRelationshipParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		private final RuleCall cCommentParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
-		private final RuleCall cTextualRepresentationParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
-		private final RuleCall cAnnotatingFeatureParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
-		private final RuleCall cNamespaceParserRuleCall_5 = (RuleCall)cAlternatives.eContents().get(5);
-		private final RuleCall cPackageParserRuleCall_6 = (RuleCall)cAlternatives.eContents().get(6);
-		private final RuleCall cMultiplicityParserRuleCall_7 = (RuleCall)cAlternatives.eContents().get(7);
-		private final RuleCall cTypeParserRuleCall_8 = (RuleCall)cAlternatives.eContents().get(8);
-		private final RuleCall cClassifierParserRuleCall_9 = (RuleCall)cAlternatives.eContents().get(9);
-		private final RuleCall cClassParserRuleCall_10 = (RuleCall)cAlternatives.eContents().get(10);
-		private final RuleCall cStructureParserRuleCall_11 = (RuleCall)cAlternatives.eContents().get(11);
-		private final RuleCall cDataTypeParserRuleCall_12 = (RuleCall)cAlternatives.eContents().get(12);
-		private final RuleCall cAssociationParserRuleCall_13 = (RuleCall)cAlternatives.eContents().get(13);
-		private final RuleCall cAssociationStructureParserRuleCall_14 = (RuleCall)cAlternatives.eContents().get(14);
-		private final RuleCall cInteractionParserRuleCall_15 = (RuleCall)cAlternatives.eContents().get(15);
-		private final RuleCall cBehaviorParserRuleCall_16 = (RuleCall)cAlternatives.eContents().get(16);
-		private final RuleCall cFunctionParserRuleCall_17 = (RuleCall)cAlternatives.eContents().get(17);
-		private final RuleCall cPredicateParserRuleCall_18 = (RuleCall)cAlternatives.eContents().get(18);
-		private final RuleCall cSpecializationParserRuleCall_19 = (RuleCall)cAlternatives.eContents().get(19);
-		private final RuleCall cConjugationParserRuleCall_20 = (RuleCall)cAlternatives.eContents().get(20);
-		private final RuleCall cFeatureTypingParserRuleCall_21 = (RuleCall)cAlternatives.eContents().get(21);
-		private final RuleCall cSubclassificationParserRuleCall_22 = (RuleCall)cAlternatives.eContents().get(22);
-		private final RuleCall cDisjoiningParserRuleCall_23 = (RuleCall)cAlternatives.eContents().get(23);
-		private final RuleCall cSubsettingParserRuleCall_24 = (RuleCall)cAlternatives.eContents().get(24);
-		private final RuleCall cRedefinitionParserRuleCall_25 = (RuleCall)cAlternatives.eContents().get(25);
-		private final RuleCall cTypeFeaturingParserRuleCall_26 = (RuleCall)cAlternatives.eContents().get(26);
+		private final RuleCall cPrefixCommentParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
+		private final RuleCall cDocumentationParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
+		private final RuleCall cTextualRepresentationParserRuleCall_5 = (RuleCall)cAlternatives.eContents().get(5);
+		private final RuleCall cMetadataFeatureParserRuleCall_6 = (RuleCall)cAlternatives.eContents().get(6);
+		private final RuleCall cNamespaceParserRuleCall_7 = (RuleCall)cAlternatives.eContents().get(7);
+		private final RuleCall cPackageParserRuleCall_8 = (RuleCall)cAlternatives.eContents().get(8);
+		private final RuleCall cMultiplicityParserRuleCall_9 = (RuleCall)cAlternatives.eContents().get(9);
+		private final RuleCall cTypeParserRuleCall_10 = (RuleCall)cAlternatives.eContents().get(10);
+		private final RuleCall cClassifierParserRuleCall_11 = (RuleCall)cAlternatives.eContents().get(11);
+		private final RuleCall cClassParserRuleCall_12 = (RuleCall)cAlternatives.eContents().get(12);
+		private final RuleCall cStructureParserRuleCall_13 = (RuleCall)cAlternatives.eContents().get(13);
+		private final RuleCall cDataTypeParserRuleCall_14 = (RuleCall)cAlternatives.eContents().get(14);
+		private final RuleCall cAssociationParserRuleCall_15 = (RuleCall)cAlternatives.eContents().get(15);
+		private final RuleCall cAssociationStructureParserRuleCall_16 = (RuleCall)cAlternatives.eContents().get(16);
+		private final RuleCall cInteractionParserRuleCall_17 = (RuleCall)cAlternatives.eContents().get(17);
+		private final RuleCall cBehaviorParserRuleCall_18 = (RuleCall)cAlternatives.eContents().get(18);
+		private final RuleCall cFunctionParserRuleCall_19 = (RuleCall)cAlternatives.eContents().get(19);
+		private final RuleCall cPredicateParserRuleCall_20 = (RuleCall)cAlternatives.eContents().get(20);
+		private final RuleCall cSpecializationParserRuleCall_21 = (RuleCall)cAlternatives.eContents().get(21);
+		private final RuleCall cConjugationParserRuleCall_22 = (RuleCall)cAlternatives.eContents().get(22);
+		private final RuleCall cFeatureTypingParserRuleCall_23 = (RuleCall)cAlternatives.eContents().get(23);
+		private final RuleCall cSubclassificationParserRuleCall_24 = (RuleCall)cAlternatives.eContents().get(24);
+		private final RuleCall cDisjoiningParserRuleCall_25 = (RuleCall)cAlternatives.eContents().get(25);
+		private final RuleCall cSubsettingParserRuleCall_26 = (RuleCall)cAlternatives.eContents().get(26);
+		private final RuleCall cRedefinitionParserRuleCall_27 = (RuleCall)cAlternatives.eContents().get(27);
+		private final RuleCall cTypeFeaturingParserRuleCall_28 = (RuleCall)cAlternatives.eContents().get(28);
 		
 		///* Namespace Elements */
 		//NonFeatureElement returns SysML::Element :
 		//      Element
 		//    | Relationship
 		//    | Comment
+		//    | PrefixComment
+		//    | Documentation
 		//    | TextualRepresentation
-		//    | AnnotatingFeature
+		//    | MetadataFeature
 		//    | Namespace
 		//    | Package
 		//    | Multiplicity
@@ -2036,8 +1901,10 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//  Element
 		//| Relationship
 		//| Comment
+		//| PrefixComment
+		//| Documentation
 		//| TextualRepresentation
-		//| AnnotatingFeature
+		//| MetadataFeature
 		//| Namespace
 		//| Package
 		//| Multiplicity
@@ -2071,77 +1938,83 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//Comment
 		public RuleCall getCommentParserRuleCall_2() { return cCommentParserRuleCall_2; }
 		
-		//TextualRepresentation
-		public RuleCall getTextualRepresentationParserRuleCall_3() { return cTextualRepresentationParserRuleCall_3; }
+		//PrefixComment
+		public RuleCall getPrefixCommentParserRuleCall_3() { return cPrefixCommentParserRuleCall_3; }
 		
-		//AnnotatingFeature
-		public RuleCall getAnnotatingFeatureParserRuleCall_4() { return cAnnotatingFeatureParserRuleCall_4; }
+		//Documentation
+		public RuleCall getDocumentationParserRuleCall_4() { return cDocumentationParserRuleCall_4; }
+		
+		//TextualRepresentation
+		public RuleCall getTextualRepresentationParserRuleCall_5() { return cTextualRepresentationParserRuleCall_5; }
+		
+		//MetadataFeature
+		public RuleCall getMetadataFeatureParserRuleCall_6() { return cMetadataFeatureParserRuleCall_6; }
 		
 		//Namespace
-		public RuleCall getNamespaceParserRuleCall_5() { return cNamespaceParserRuleCall_5; }
+		public RuleCall getNamespaceParserRuleCall_7() { return cNamespaceParserRuleCall_7; }
 		
 		//Package
-		public RuleCall getPackageParserRuleCall_6() { return cPackageParserRuleCall_6; }
+		public RuleCall getPackageParserRuleCall_8() { return cPackageParserRuleCall_8; }
 		
 		//Multiplicity
-		public RuleCall getMultiplicityParserRuleCall_7() { return cMultiplicityParserRuleCall_7; }
+		public RuleCall getMultiplicityParserRuleCall_9() { return cMultiplicityParserRuleCall_9; }
 		
 		//Type
-		public RuleCall getTypeParserRuleCall_8() { return cTypeParserRuleCall_8; }
+		public RuleCall getTypeParserRuleCall_10() { return cTypeParserRuleCall_10; }
 		
 		//Classifier
-		public RuleCall getClassifierParserRuleCall_9() { return cClassifierParserRuleCall_9; }
+		public RuleCall getClassifierParserRuleCall_11() { return cClassifierParserRuleCall_11; }
 		
 		//Class
-		public RuleCall getClassParserRuleCall_10() { return cClassParserRuleCall_10; }
+		public RuleCall getClassParserRuleCall_12() { return cClassParserRuleCall_12; }
 		
 		//Structure
-		public RuleCall getStructureParserRuleCall_11() { return cStructureParserRuleCall_11; }
+		public RuleCall getStructureParserRuleCall_13() { return cStructureParserRuleCall_13; }
 		
 		//DataType
-		public RuleCall getDataTypeParserRuleCall_12() { return cDataTypeParserRuleCall_12; }
+		public RuleCall getDataTypeParserRuleCall_14() { return cDataTypeParserRuleCall_14; }
 		
 		//Association
-		public RuleCall getAssociationParserRuleCall_13() { return cAssociationParserRuleCall_13; }
+		public RuleCall getAssociationParserRuleCall_15() { return cAssociationParserRuleCall_15; }
 		
 		//AssociationStructure
-		public RuleCall getAssociationStructureParserRuleCall_14() { return cAssociationStructureParserRuleCall_14; }
+		public RuleCall getAssociationStructureParserRuleCall_16() { return cAssociationStructureParserRuleCall_16; }
 		
 		//Interaction
-		public RuleCall getInteractionParserRuleCall_15() { return cInteractionParserRuleCall_15; }
+		public RuleCall getInteractionParserRuleCall_17() { return cInteractionParserRuleCall_17; }
 		
 		//Behavior
-		public RuleCall getBehaviorParserRuleCall_16() { return cBehaviorParserRuleCall_16; }
+		public RuleCall getBehaviorParserRuleCall_18() { return cBehaviorParserRuleCall_18; }
 		
 		//Function
-		public RuleCall getFunctionParserRuleCall_17() { return cFunctionParserRuleCall_17; }
+		public RuleCall getFunctionParserRuleCall_19() { return cFunctionParserRuleCall_19; }
 		
 		//Predicate
-		public RuleCall getPredicateParserRuleCall_18() { return cPredicateParserRuleCall_18; }
+		public RuleCall getPredicateParserRuleCall_20() { return cPredicateParserRuleCall_20; }
 		
 		//Specialization
-		public RuleCall getSpecializationParserRuleCall_19() { return cSpecializationParserRuleCall_19; }
+		public RuleCall getSpecializationParserRuleCall_21() { return cSpecializationParserRuleCall_21; }
 		
 		//Conjugation
-		public RuleCall getConjugationParserRuleCall_20() { return cConjugationParserRuleCall_20; }
+		public RuleCall getConjugationParserRuleCall_22() { return cConjugationParserRuleCall_22; }
 		
 		//FeatureTyping
-		public RuleCall getFeatureTypingParserRuleCall_21() { return cFeatureTypingParserRuleCall_21; }
+		public RuleCall getFeatureTypingParserRuleCall_23() { return cFeatureTypingParserRuleCall_23; }
 		
 		//Subclassification
-		public RuleCall getSubclassificationParserRuleCall_22() { return cSubclassificationParserRuleCall_22; }
+		public RuleCall getSubclassificationParserRuleCall_24() { return cSubclassificationParserRuleCall_24; }
 		
 		//Disjoining
-		public RuleCall getDisjoiningParserRuleCall_23() { return cDisjoiningParserRuleCall_23; }
+		public RuleCall getDisjoiningParserRuleCall_25() { return cDisjoiningParserRuleCall_25; }
 		
 		//Subsetting
-		public RuleCall getSubsettingParserRuleCall_24() { return cSubsettingParserRuleCall_24; }
+		public RuleCall getSubsettingParserRuleCall_26() { return cSubsettingParserRuleCall_26; }
 		
 		//Redefinition
-		public RuleCall getRedefinitionParserRuleCall_25() { return cRedefinitionParserRuleCall_25; }
+		public RuleCall getRedefinitionParserRuleCall_27() { return cRedefinitionParserRuleCall_27; }
 		
 		//TypeFeaturing
-		public RuleCall getTypeFeaturingParserRuleCall_26() { return cTypeFeaturingParserRuleCall_26; }
+		public RuleCall getTypeFeaturingParserRuleCall_28() { return cTypeFeaturingParserRuleCall_28; }
 	}
 	public class FeatureElementElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.FeatureElement");
@@ -2262,23 +2135,20 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Keyword cLeftCurlyBracketKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
 		private final Alternatives cAlternatives_1_1 = (Alternatives)cGroup_1.eContents().get(1);
 		private final Assignment cOwnedRelationshipAssignment_1_1_0 = (Assignment)cAlternatives_1_1.eContents().get(0);
-		private final RuleCall cOwnedRelationshipOwnedDocumentationParserRuleCall_1_1_0_0 = (RuleCall)cOwnedRelationshipAssignment_1_1_0.eContents().get(0);
+		private final RuleCall cOwnedRelationshipNamespaceMemberParserRuleCall_1_1_0_0 = (RuleCall)cOwnedRelationshipAssignment_1_1_0.eContents().get(0);
 		private final Assignment cOwnedRelationshipAssignment_1_1_1 = (Assignment)cAlternatives_1_1.eContents().get(1);
-		private final RuleCall cOwnedRelationshipNamespaceMemberParserRuleCall_1_1_1_0 = (RuleCall)cOwnedRelationshipAssignment_1_1_1.eContents().get(0);
+		private final RuleCall cOwnedRelationshipElementFilterMemberParserRuleCall_1_1_1_0 = (RuleCall)cOwnedRelationshipAssignment_1_1_1.eContents().get(0);
 		private final Assignment cOwnedRelationshipAssignment_1_1_2 = (Assignment)cAlternatives_1_1.eContents().get(2);
-		private final RuleCall cOwnedRelationshipElementFilterMemberParserRuleCall_1_1_2_0 = (RuleCall)cOwnedRelationshipAssignment_1_1_2.eContents().get(0);
+		private final RuleCall cOwnedRelationshipAliasMemberParserRuleCall_1_1_2_0 = (RuleCall)cOwnedRelationshipAssignment_1_1_2.eContents().get(0);
 		private final Assignment cOwnedRelationshipAssignment_1_1_3 = (Assignment)cAlternatives_1_1.eContents().get(3);
-		private final RuleCall cOwnedRelationshipAliasMemberParserRuleCall_1_1_3_0 = (RuleCall)cOwnedRelationshipAssignment_1_1_3.eContents().get(0);
-		private final Assignment cOwnedRelationshipAssignment_1_1_4 = (Assignment)cAlternatives_1_1.eContents().get(4);
-		private final RuleCall cOwnedRelationshipImportParserRuleCall_1_1_4_0 = (RuleCall)cOwnedRelationshipAssignment_1_1_4.eContents().get(0);
+		private final RuleCall cOwnedRelationshipImportParserRuleCall_1_1_3_0 = (RuleCall)cOwnedRelationshipAssignment_1_1_3.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_1_2 = (Keyword)cGroup_1.eContents().get(2);
 		
 		//fragment PackageBody returns SysML::Namespace :
 		//      ';'
 		//    | '{' ( // Note: PackageBodyElement is expanded here to avoid
 		//            // infinite loops in the incremental parser.
-		//            ownedRelationship += OwnedDocumentation
-		//          | ownedRelationship += NamespaceMember
+		//            ownedRelationship += NamespaceMember
 		//          | ownedRelationship += ElementFilterMember
 		//          | ownedRelationship += AliasMember
 		//          | ownedRelationship += Import )*
@@ -2289,8 +2159,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//  ';'
 		//| '{' ( // Note: PackageBodyElement is expanded here to avoid
 		//        // infinite loops in the incremental parser.
-		//        ownedRelationship += OwnedDocumentation
-		//      | ownedRelationship += NamespaceMember
+		//        ownedRelationship += NamespaceMember
 		//      | ownedRelationship += ElementFilterMember
 		//      | ownedRelationship += AliasMember
 		//      | ownedRelationship += Import )*
@@ -2302,8 +2171,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		
 		//'{' ( // Note: PackageBodyElement is expanded here to avoid
 		//           // infinite loops in the incremental parser.
-		//           ownedRelationship += OwnedDocumentation
-		//         | ownedRelationship += NamespaceMember
+		//           ownedRelationship += NamespaceMember
 		//         | ownedRelationship += ElementFilterMember
 		//         | ownedRelationship += AliasMember
 		//         | ownedRelationship += Import )*
@@ -2315,8 +2183,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		
 		//( // Note: PackageBodyElement is expanded here to avoid
 		//           // infinite loops in the incremental parser.
-		//           ownedRelationship += OwnedDocumentation
-		//         | ownedRelationship += NamespaceMember
+		//           ownedRelationship += NamespaceMember
 		//         | ownedRelationship += ElementFilterMember
 		//         | ownedRelationship += AliasMember
 		//         | ownedRelationship += Import )*
@@ -2324,35 +2191,29 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		
 		//// Note: PackageBodyElement is expanded here to avoid
 		//           // infinite loops in the incremental parser.
-		//           ownedRelationship += OwnedDocumentation
+		//           ownedRelationship += NamespaceMember
 		public Assignment getOwnedRelationshipAssignment_1_1_0() { return cOwnedRelationshipAssignment_1_1_0; }
 		
-		//OwnedDocumentation
-		public RuleCall getOwnedRelationshipOwnedDocumentationParserRuleCall_1_1_0_0() { return cOwnedRelationshipOwnedDocumentationParserRuleCall_1_1_0_0; }
-		
-		//ownedRelationship += NamespaceMember
-		public Assignment getOwnedRelationshipAssignment_1_1_1() { return cOwnedRelationshipAssignment_1_1_1; }
-		
 		//NamespaceMember
-		public RuleCall getOwnedRelationshipNamespaceMemberParserRuleCall_1_1_1_0() { return cOwnedRelationshipNamespaceMemberParserRuleCall_1_1_1_0; }
+		public RuleCall getOwnedRelationshipNamespaceMemberParserRuleCall_1_1_0_0() { return cOwnedRelationshipNamespaceMemberParserRuleCall_1_1_0_0; }
 		
 		//ownedRelationship += ElementFilterMember
-		public Assignment getOwnedRelationshipAssignment_1_1_2() { return cOwnedRelationshipAssignment_1_1_2; }
+		public Assignment getOwnedRelationshipAssignment_1_1_1() { return cOwnedRelationshipAssignment_1_1_1; }
 		
 		//ElementFilterMember
-		public RuleCall getOwnedRelationshipElementFilterMemberParserRuleCall_1_1_2_0() { return cOwnedRelationshipElementFilterMemberParserRuleCall_1_1_2_0; }
+		public RuleCall getOwnedRelationshipElementFilterMemberParserRuleCall_1_1_1_0() { return cOwnedRelationshipElementFilterMemberParserRuleCall_1_1_1_0; }
 		
 		//ownedRelationship += AliasMember
-		public Assignment getOwnedRelationshipAssignment_1_1_3() { return cOwnedRelationshipAssignment_1_1_3; }
+		public Assignment getOwnedRelationshipAssignment_1_1_2() { return cOwnedRelationshipAssignment_1_1_2; }
 		
 		//AliasMember
-		public RuleCall getOwnedRelationshipAliasMemberParserRuleCall_1_1_3_0() { return cOwnedRelationshipAliasMemberParserRuleCall_1_1_3_0; }
+		public RuleCall getOwnedRelationshipAliasMemberParserRuleCall_1_1_2_0() { return cOwnedRelationshipAliasMemberParserRuleCall_1_1_2_0; }
 		
 		//ownedRelationship += Import
-		public Assignment getOwnedRelationshipAssignment_1_1_4() { return cOwnedRelationshipAssignment_1_1_4; }
+		public Assignment getOwnedRelationshipAssignment_1_1_3() { return cOwnedRelationshipAssignment_1_1_3; }
 		
 		//Import
-		public RuleCall getOwnedRelationshipImportParserRuleCall_1_1_4_0() { return cOwnedRelationshipImportParserRuleCall_1_1_4_0; }
+		public RuleCall getOwnedRelationshipImportParserRuleCall_1_1_3_0() { return cOwnedRelationshipImportParserRuleCall_1_1_3_0; }
 		
 		//'}'
 		public Keyword getRightCurlyBracketKeyword_1_2() { return cRightCurlyBracketKeyword_1_2; }
@@ -2617,21 +2478,18 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Keyword cLeftCurlyBracketKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
 		private final Alternatives cAlternatives_1_1 = (Alternatives)cGroup_1.eContents().get(1);
 		private final Assignment cOwnedRelationshipAssignment_1_1_0 = (Assignment)cAlternatives_1_1.eContents().get(0);
-		private final RuleCall cOwnedRelationshipOwnedDocumentationParserRuleCall_1_1_0_0 = (RuleCall)cOwnedRelationshipAssignment_1_1_0.eContents().get(0);
+		private final RuleCall cOwnedRelationshipNonFeatureMemberParserRuleCall_1_1_0_0 = (RuleCall)cOwnedRelationshipAssignment_1_1_0.eContents().get(0);
 		private final Assignment cOwnedRelationshipAssignment_1_1_1 = (Assignment)cAlternatives_1_1.eContents().get(1);
-		private final RuleCall cOwnedRelationshipNonFeatureMemberParserRuleCall_1_1_1_0 = (RuleCall)cOwnedRelationshipAssignment_1_1_1.eContents().get(0);
+		private final RuleCall cOwnedRelationshipFeatureMemberParserRuleCall_1_1_1_0 = (RuleCall)cOwnedRelationshipAssignment_1_1_1.eContents().get(0);
 		private final Assignment cOwnedRelationshipAssignment_1_1_2 = (Assignment)cAlternatives_1_1.eContents().get(2);
-		private final RuleCall cOwnedRelationshipFeatureMemberParserRuleCall_1_1_2_0 = (RuleCall)cOwnedRelationshipAssignment_1_1_2.eContents().get(0);
+		private final RuleCall cOwnedRelationshipAliasMemberParserRuleCall_1_1_2_0 = (RuleCall)cOwnedRelationshipAssignment_1_1_2.eContents().get(0);
 		private final Assignment cOwnedRelationshipAssignment_1_1_3 = (Assignment)cAlternatives_1_1.eContents().get(3);
-		private final RuleCall cOwnedRelationshipAliasMemberParserRuleCall_1_1_3_0 = (RuleCall)cOwnedRelationshipAssignment_1_1_3.eContents().get(0);
-		private final Assignment cOwnedRelationshipAssignment_1_1_4 = (Assignment)cAlternatives_1_1.eContents().get(4);
-		private final RuleCall cOwnedRelationshipImportParserRuleCall_1_1_4_0 = (RuleCall)cOwnedRelationshipAssignment_1_1_4.eContents().get(0);
+		private final RuleCall cOwnedRelationshipImportParserRuleCall_1_1_3_0 = (RuleCall)cOwnedRelationshipAssignment_1_1_3.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_1_2 = (Keyword)cGroup_1.eContents().get(2);
 		
 		//fragment TypeBody returns SysML::Type :
 		//    ';' |
-		//    '{' ( ownedRelationship += OwnedDocumentation
-		//        | ownedRelationship += NonFeatureMember
+		//    '{' ( ownedRelationship += NonFeatureMember
 		//        | ownedRelationship += FeatureMember
 		//        | ownedRelationship += AliasMember
 		//        | ownedRelationship += Import
@@ -2640,8 +2498,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		@Override public ParserRule getRule() { return rule; }
 		
 		//';' |
-		//'{' ( ownedRelationship += OwnedDocumentation
-		//    | ownedRelationship += NonFeatureMember
+		//'{' ( ownedRelationship += NonFeatureMember
 		//    | ownedRelationship += FeatureMember
 		//    | ownedRelationship += AliasMember
 		//    | ownedRelationship += Import
@@ -2651,8 +2508,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//';'
 		public Keyword getSemicolonKeyword_0() { return cSemicolonKeyword_0; }
 		
-		//'{' ( ownedRelationship += OwnedDocumentation
-		//    | ownedRelationship += NonFeatureMember
+		//'{' ( ownedRelationship += NonFeatureMember
 		//    | ownedRelationship += FeatureMember
 		//    | ownedRelationship += AliasMember
 		//    | ownedRelationship += Import
@@ -2662,43 +2518,36 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//'{'
 		public Keyword getLeftCurlyBracketKeyword_1_0() { return cLeftCurlyBracketKeyword_1_0; }
 		
-		//( ownedRelationship += OwnedDocumentation
-		//       | ownedRelationship += NonFeatureMember
+		//( ownedRelationship += NonFeatureMember
 		//       | ownedRelationship += FeatureMember
 		//       | ownedRelationship += AliasMember
 		//       | ownedRelationship += Import
 		//   )*
 		public Alternatives getAlternatives_1_1() { return cAlternatives_1_1; }
 		
-		//ownedRelationship += OwnedDocumentation
+		//ownedRelationship += NonFeatureMember
 		public Assignment getOwnedRelationshipAssignment_1_1_0() { return cOwnedRelationshipAssignment_1_1_0; }
 		
-		//OwnedDocumentation
-		public RuleCall getOwnedRelationshipOwnedDocumentationParserRuleCall_1_1_0_0() { return cOwnedRelationshipOwnedDocumentationParserRuleCall_1_1_0_0; }
-		
-		//ownedRelationship += NonFeatureMember
-		public Assignment getOwnedRelationshipAssignment_1_1_1() { return cOwnedRelationshipAssignment_1_1_1; }
-		
 		//NonFeatureMember
-		public RuleCall getOwnedRelationshipNonFeatureMemberParserRuleCall_1_1_1_0() { return cOwnedRelationshipNonFeatureMemberParserRuleCall_1_1_1_0; }
+		public RuleCall getOwnedRelationshipNonFeatureMemberParserRuleCall_1_1_0_0() { return cOwnedRelationshipNonFeatureMemberParserRuleCall_1_1_0_0; }
 		
 		//ownedRelationship += FeatureMember
-		public Assignment getOwnedRelationshipAssignment_1_1_2() { return cOwnedRelationshipAssignment_1_1_2; }
+		public Assignment getOwnedRelationshipAssignment_1_1_1() { return cOwnedRelationshipAssignment_1_1_1; }
 		
 		//FeatureMember
-		public RuleCall getOwnedRelationshipFeatureMemberParserRuleCall_1_1_2_0() { return cOwnedRelationshipFeatureMemberParserRuleCall_1_1_2_0; }
+		public RuleCall getOwnedRelationshipFeatureMemberParserRuleCall_1_1_1_0() { return cOwnedRelationshipFeatureMemberParserRuleCall_1_1_1_0; }
 		
 		//ownedRelationship += AliasMember
-		public Assignment getOwnedRelationshipAssignment_1_1_3() { return cOwnedRelationshipAssignment_1_1_3; }
+		public Assignment getOwnedRelationshipAssignment_1_1_2() { return cOwnedRelationshipAssignment_1_1_2; }
 		
 		//AliasMember
-		public RuleCall getOwnedRelationshipAliasMemberParserRuleCall_1_1_3_0() { return cOwnedRelationshipAliasMemberParserRuleCall_1_1_3_0; }
+		public RuleCall getOwnedRelationshipAliasMemberParserRuleCall_1_1_2_0() { return cOwnedRelationshipAliasMemberParserRuleCall_1_1_2_0; }
 		
 		//ownedRelationship += Import
-		public Assignment getOwnedRelationshipAssignment_1_1_4() { return cOwnedRelationshipAssignment_1_1_4; }
+		public Assignment getOwnedRelationshipAssignment_1_1_3() { return cOwnedRelationshipAssignment_1_1_3; }
 		
 		//Import
-		public RuleCall getOwnedRelationshipImportParserRuleCall_1_1_4_0() { return cOwnedRelationshipImportParserRuleCall_1_1_4_0; }
+		public RuleCall getOwnedRelationshipImportParserRuleCall_1_1_3_0() { return cOwnedRelationshipImportParserRuleCall_1_1_3_0; }
 		
 		//'}'
 		public Keyword getRightCurlyBracketKeyword_1_2() { return cRightCurlyBracketKeyword_1_2; }
@@ -6386,25 +6235,22 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Keyword cLeftCurlyBracketKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
 		private final Alternatives cAlternatives_1_1 = (Alternatives)cGroup_1.eContents().get(1);
 		private final Assignment cOwnedRelationshipAssignment_1_1_0 = (Assignment)cAlternatives_1_1.eContents().get(0);
-		private final RuleCall cOwnedRelationshipOwnedDocumentationParserRuleCall_1_1_0_0 = (RuleCall)cOwnedRelationshipAssignment_1_1_0.eContents().get(0);
+		private final RuleCall cOwnedRelationshipNonFeatureMemberParserRuleCall_1_1_0_0 = (RuleCall)cOwnedRelationshipAssignment_1_1_0.eContents().get(0);
 		private final Assignment cOwnedRelationshipAssignment_1_1_1 = (Assignment)cAlternatives_1_1.eContents().get(1);
-		private final RuleCall cOwnedRelationshipNonFeatureMemberParserRuleCall_1_1_1_0 = (RuleCall)cOwnedRelationshipAssignment_1_1_1.eContents().get(0);
+		private final RuleCall cOwnedRelationshipFeatureMemberParserRuleCall_1_1_1_0 = (RuleCall)cOwnedRelationshipAssignment_1_1_1.eContents().get(0);
 		private final Assignment cOwnedRelationshipAssignment_1_1_2 = (Assignment)cAlternatives_1_1.eContents().get(2);
-		private final RuleCall cOwnedRelationshipFeatureMemberParserRuleCall_1_1_2_0 = (RuleCall)cOwnedRelationshipAssignment_1_1_2.eContents().get(0);
+		private final RuleCall cOwnedRelationshipAliasMemberParserRuleCall_1_1_2_0 = (RuleCall)cOwnedRelationshipAssignment_1_1_2.eContents().get(0);
 		private final Assignment cOwnedRelationshipAssignment_1_1_3 = (Assignment)cAlternatives_1_1.eContents().get(3);
-		private final RuleCall cOwnedRelationshipAliasMemberParserRuleCall_1_1_3_0 = (RuleCall)cOwnedRelationshipAssignment_1_1_3.eContents().get(0);
+		private final RuleCall cOwnedRelationshipImportParserRuleCall_1_1_3_0 = (RuleCall)cOwnedRelationshipAssignment_1_1_3.eContents().get(0);
 		private final Assignment cOwnedRelationshipAssignment_1_1_4 = (Assignment)cAlternatives_1_1.eContents().get(4);
-		private final RuleCall cOwnedRelationshipImportParserRuleCall_1_1_4_0 = (RuleCall)cOwnedRelationshipAssignment_1_1_4.eContents().get(0);
-		private final Assignment cOwnedRelationshipAssignment_1_1_5 = (Assignment)cAlternatives_1_1.eContents().get(5);
-		private final RuleCall cOwnedRelationshipReturnFeatureMemberParserRuleCall_1_1_5_0 = (RuleCall)cOwnedRelationshipAssignment_1_1_5.eContents().get(0);
+		private final RuleCall cOwnedRelationshipReturnFeatureMemberParserRuleCall_1_1_4_0 = (RuleCall)cOwnedRelationshipAssignment_1_1_4.eContents().get(0);
 		private final Assignment cOwnedRelationshipAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
 		private final RuleCall cOwnedRelationshipResultExpressionMemberParserRuleCall_1_2_0 = (RuleCall)cOwnedRelationshipAssignment_1_2.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_1_3 = (Keyword)cGroup_1.eContents().get(3);
 		
 		//fragment FunctionBody returns SysML::Type :
 		//      ';'
-		//    | '{' ( ownedRelationship += OwnedDocumentation
-		//          | ownedRelationship += NonFeatureMember
+		//    | '{' ( ownedRelationship += NonFeatureMember
 		//          | ownedRelationship += FeatureMember
 		//          | ownedRelationship += AliasMember
 		//          | ownedRelationship += Import
@@ -6416,8 +6262,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		@Override public ParserRule getRule() { return rule; }
 		
 		//  ';'
-		//| '{' ( ownedRelationship += OwnedDocumentation
-		//      | ownedRelationship += NonFeatureMember
+		//| '{' ( ownedRelationship += NonFeatureMember
 		//      | ownedRelationship += FeatureMember
 		//      | ownedRelationship += AliasMember
 		//      | ownedRelationship += Import
@@ -6430,8 +6275,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//';'
 		public Keyword getSemicolonKeyword_0() { return cSemicolonKeyword_0; }
 		
-		//'{' ( ownedRelationship += OwnedDocumentation
-		//         | ownedRelationship += NonFeatureMember
+		//'{' ( ownedRelationship += NonFeatureMember
 		//         | ownedRelationship += FeatureMember
 		//         | ownedRelationship += AliasMember
 		//         | ownedRelationship += Import
@@ -6444,8 +6288,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//'{'
 		public Keyword getLeftCurlyBracketKeyword_1_0() { return cLeftCurlyBracketKeyword_1_0; }
 		
-		//( ownedRelationship += OwnedDocumentation
-		//         | ownedRelationship += NonFeatureMember
+		//( ownedRelationship += NonFeatureMember
 		//         | ownedRelationship += FeatureMember
 		//         | ownedRelationship += AliasMember
 		//         | ownedRelationship += Import
@@ -6453,41 +6296,35 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//         )*
 		public Alternatives getAlternatives_1_1() { return cAlternatives_1_1; }
 		
-		//ownedRelationship += OwnedDocumentation
+		//ownedRelationship += NonFeatureMember
 		public Assignment getOwnedRelationshipAssignment_1_1_0() { return cOwnedRelationshipAssignment_1_1_0; }
 		
-		//OwnedDocumentation
-		public RuleCall getOwnedRelationshipOwnedDocumentationParserRuleCall_1_1_0_0() { return cOwnedRelationshipOwnedDocumentationParserRuleCall_1_1_0_0; }
-		
-		//ownedRelationship += NonFeatureMember
-		public Assignment getOwnedRelationshipAssignment_1_1_1() { return cOwnedRelationshipAssignment_1_1_1; }
-		
 		//NonFeatureMember
-		public RuleCall getOwnedRelationshipNonFeatureMemberParserRuleCall_1_1_1_0() { return cOwnedRelationshipNonFeatureMemberParserRuleCall_1_1_1_0; }
+		public RuleCall getOwnedRelationshipNonFeatureMemberParserRuleCall_1_1_0_0() { return cOwnedRelationshipNonFeatureMemberParserRuleCall_1_1_0_0; }
 		
 		//ownedRelationship += FeatureMember
-		public Assignment getOwnedRelationshipAssignment_1_1_2() { return cOwnedRelationshipAssignment_1_1_2; }
+		public Assignment getOwnedRelationshipAssignment_1_1_1() { return cOwnedRelationshipAssignment_1_1_1; }
 		
 		//FeatureMember
-		public RuleCall getOwnedRelationshipFeatureMemberParserRuleCall_1_1_2_0() { return cOwnedRelationshipFeatureMemberParserRuleCall_1_1_2_0; }
+		public RuleCall getOwnedRelationshipFeatureMemberParserRuleCall_1_1_1_0() { return cOwnedRelationshipFeatureMemberParserRuleCall_1_1_1_0; }
 		
 		//ownedRelationship += AliasMember
-		public Assignment getOwnedRelationshipAssignment_1_1_3() { return cOwnedRelationshipAssignment_1_1_3; }
+		public Assignment getOwnedRelationshipAssignment_1_1_2() { return cOwnedRelationshipAssignment_1_1_2; }
 		
 		//AliasMember
-		public RuleCall getOwnedRelationshipAliasMemberParserRuleCall_1_1_3_0() { return cOwnedRelationshipAliasMemberParserRuleCall_1_1_3_0; }
+		public RuleCall getOwnedRelationshipAliasMemberParserRuleCall_1_1_2_0() { return cOwnedRelationshipAliasMemberParserRuleCall_1_1_2_0; }
 		
 		//ownedRelationship += Import
-		public Assignment getOwnedRelationshipAssignment_1_1_4() { return cOwnedRelationshipAssignment_1_1_4; }
+		public Assignment getOwnedRelationshipAssignment_1_1_3() { return cOwnedRelationshipAssignment_1_1_3; }
 		
 		//Import
-		public RuleCall getOwnedRelationshipImportParserRuleCall_1_1_4_0() { return cOwnedRelationshipImportParserRuleCall_1_1_4_0; }
+		public RuleCall getOwnedRelationshipImportParserRuleCall_1_1_3_0() { return cOwnedRelationshipImportParserRuleCall_1_1_3_0; }
 		
 		//ownedRelationship += ReturnFeatureMember
-		public Assignment getOwnedRelationshipAssignment_1_1_5() { return cOwnedRelationshipAssignment_1_1_5; }
+		public Assignment getOwnedRelationshipAssignment_1_1_4() { return cOwnedRelationshipAssignment_1_1_4; }
 		
 		//ReturnFeatureMember
-		public RuleCall getOwnedRelationshipReturnFeatureMemberParserRuleCall_1_1_5_0() { return cOwnedRelationshipReturnFeatureMemberParserRuleCall_1_1_5_0; }
+		public RuleCall getOwnedRelationshipReturnFeatureMemberParserRuleCall_1_1_4_0() { return cOwnedRelationshipReturnFeatureMemberParserRuleCall_1_1_4_0; }
 		
 		//( ownedRelationship += ResultExpressionMember )?
 		public Assignment getOwnedRelationshipAssignment_1_2() { return cOwnedRelationshipAssignment_1_2; }
@@ -7400,25 +7237,22 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	private final RelationshipOwnedElementElements pRelationshipOwnedElement;
 	private final OwnedRelatedElementElements pOwnedRelatedElement;
 	private final OwnedRelatedRelationshipElements pOwnedRelatedRelationship;
-	private final CommentElements pComment;
 	private final AnnotationElements pAnnotation;
 	private final EmptyAnnotationElements pEmptyAnnotation;
+	private final CommentElements pComment;
+	private final PrefixCommentElements pPrefixComment;
+	private final DocumentationElements pDocumentation;
+	private final OwnedCommentAnnotationElements pOwnedCommentAnnotation;
+	private final OwnedCommentElements pOwnedComment;
 	private final OwnedDocumentationElements pOwnedDocumentation;
-	private final DocumentationCommentElements pDocumentationComment;
-	private final PrefixDocumentationElements pPrefixDocumentation;
-	private final PrefixDocumentationCommentElements pPrefixDocumentationComment;
 	private final OwnedTextualRepresentationAnnotationElements pOwnedTextualRepresentationAnnotation;
 	private final OwnedTextualRepresentationElements pOwnedTextualRepresentation;
 	private final TextualRepresentationElements pTextualRepresentation;
-	private final OwnedAnnotatingFeatureAnnotationElements pOwnedAnnotatingFeatureAnnotation;
-	private final OwnedAnnotatingFeatureElements pOwnedAnnotatingFeature;
-	private final AnnotatingFeatureElements pAnnotatingFeature;
-	private final AnnotatingFeatureDeclarationElements pAnnotatingFeatureDeclaration;
-	private final MetadataTypingElements pMetadataTyping;
-	private final AnnotatingFeatureBodyElements pAnnotatingFeatureBody;
-	private final MetadataFeatureMemberElements pMetadataFeatureMember;
+	private final OwnedMetadataFeatureAnnotationElements pOwnedMetadataFeatureAnnotation;
+	private final OwnedMetadataFeatureElements pOwnedMetadataFeature;
 	private final MetadataFeatureElements pMetadataFeature;
-	private final MetadataFeatureValueElements pMetadataFeatureValue;
+	private final MetadataFeatureDeclarationElements pMetadataFeatureDeclaration;
+	private final MetadataTypingElements pMetadataTyping;
 	private final NamespaceElements pNamespace;
 	private final NamespaceDeclarationElements pNamespaceDeclaration;
 	private final NamespaceBodyElements pNamespaceBody;
@@ -7593,25 +7427,22 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		this.pRelationshipOwnedElement = new RelationshipOwnedElementElements();
 		this.pOwnedRelatedElement = new OwnedRelatedElementElements();
 		this.pOwnedRelatedRelationship = new OwnedRelatedRelationshipElements();
-		this.pComment = new CommentElements();
 		this.pAnnotation = new AnnotationElements();
 		this.pEmptyAnnotation = new EmptyAnnotationElements();
+		this.pComment = new CommentElements();
+		this.pPrefixComment = new PrefixCommentElements();
+		this.pDocumentation = new DocumentationElements();
+		this.pOwnedCommentAnnotation = new OwnedCommentAnnotationElements();
+		this.pOwnedComment = new OwnedCommentElements();
 		this.pOwnedDocumentation = new OwnedDocumentationElements();
-		this.pDocumentationComment = new DocumentationCommentElements();
-		this.pPrefixDocumentation = new PrefixDocumentationElements();
-		this.pPrefixDocumentationComment = new PrefixDocumentationCommentElements();
 		this.pOwnedTextualRepresentationAnnotation = new OwnedTextualRepresentationAnnotationElements();
 		this.pOwnedTextualRepresentation = new OwnedTextualRepresentationElements();
 		this.pTextualRepresentation = new TextualRepresentationElements();
-		this.pOwnedAnnotatingFeatureAnnotation = new OwnedAnnotatingFeatureAnnotationElements();
-		this.pOwnedAnnotatingFeature = new OwnedAnnotatingFeatureElements();
-		this.pAnnotatingFeature = new AnnotatingFeatureElements();
-		this.pAnnotatingFeatureDeclaration = new AnnotatingFeatureDeclarationElements();
-		this.pMetadataTyping = new MetadataTypingElements();
-		this.pAnnotatingFeatureBody = new AnnotatingFeatureBodyElements();
-		this.pMetadataFeatureMember = new MetadataFeatureMemberElements();
+		this.pOwnedMetadataFeatureAnnotation = new OwnedMetadataFeatureAnnotationElements();
+		this.pOwnedMetadataFeature = new OwnedMetadataFeatureElements();
 		this.pMetadataFeature = new MetadataFeatureElements();
-		this.pMetadataFeatureValue = new MetadataFeatureValueElements();
+		this.pMetadataFeatureDeclaration = new MetadataFeatureDeclarationElements();
+		this.pMetadataTyping = new MetadataTypingElements();
 		this.pNamespace = new NamespaceElements();
 		this.pNamespaceDeclaration = new NamespaceDeclarationElements();
 		this.pNamespaceBody = new NamespaceBodyElements();
@@ -7839,9 +7670,9 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	
 	//fragment OwnedElement returns SysML::Element :
 	//      ownedRelationship += OwnedRelationship
-	//    | ownedRelationship += OwnedDocumentation
+	//    | ownedRelationship += OwnedCommentAnnotation
 	//    | ownedRelationship += OwnedTextualRepresentationAnnotation
-	//    | ownedRelationship += OwnedAnnotatingFeatureAnnotation
+	//    | ownedRelationship += OwnedMetadataFeatureAnnotation
 	//;
 	public OwnedElementElements getOwnedElementAccess() {
 		return pOwnedElement;
@@ -7947,8 +7778,9 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	//fragment RelationshipOwnedElement returns SysML::Relationship:
 	//      ownedRelatedElement += OwnedRelatedElement
 	//    | ownedRelatedElement += OwnedRelatedRelationship
-	//    | ownedRelationship += OwnedDocumentation
+	//    | ownedRelationship += OwnedCommentAnnotation
 	//    | ownedRelationship += OwnedTextualRepresentationAnnotation
+	//    | ownedRelationship += OwnedMetadataFeatureAnnotation
 	//;
 	public RelationshipOwnedElementElements getRelationshipOwnedElementAccess() {
 		return pRelationshipOwnedElement;
@@ -7983,22 +7815,6 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	///* ANNOTATIONS */
-	///* Comments */
-	//Comment returns SysML::Comment :
-	//    ( 'comment' Identification? 'about' ownedRelationship += Annotation
-	//      ( ',' ownedRelationship += Annotation )*
-	//    | ( 'comment' Identification? )? ownedRelationship += EmptyAnnotation
-	//    )
-	//    body = REGULAR_COMMENT
-	//;
-	public CommentElements getCommentAccess() {
-		return pComment;
-	}
-	
-	public ParserRule getCommentRule() {
-		return getCommentAccess().getRule();
-	}
-	
 	//Annotation returns SysML::Annotation :
 	//    annotatedElement = [SysML::Element|QualifiedName]
 	//;
@@ -8021,9 +7837,70 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		return getEmptyAnnotationAccess().getRule();
 	}
 	
-	///* Documentation */
+	///* Comments */
+	//Comment returns SysML::Comment :
+	//    ( 'comment' Identification?
+	//      ('about' ownedRelationship += Annotation
+	//         ( ',' ownedRelationship += Annotation )* )?
+	//    )?
+	//    body = REGULAR_COMMENT
+	//;
+	public CommentElements getCommentAccess() {
+		return pComment;
+	}
+	
+	public ParserRule getCommentRule() {
+		return getCommentAccess().getRule();
+	}
+	
+	//PrefixComment returns SysML::Comment :
+	//    ( 'comment' Identification? )?
+	//    ownedRelationship += EmptyAnnotation
+	//    body = PREFIX_COMMENT
+	//;
+	public PrefixCommentElements getPrefixCommentAccess() {
+		return pPrefixComment;
+	}
+	
+	public ParserRule getPrefixCommentRule() {
+		return getPrefixCommentAccess().getRule();
+	}
+	
+	//Documentation returns SysML::Documentation :
+	//    'doc' Identification? body = REGULAR_COMMENT
+	//;
+	public DocumentationElements getDocumentationAccess() {
+		return pDocumentation;
+	}
+	
+	public ParserRule getDocumentationRule() {
+		return getDocumentationAccess().getRule();
+	}
+	
+	//OwnedCommentAnnotation returns SysML::Annotation :
+	//    ownedRelatedElement += ( OwnedComment | OwnedDocumentation )
+	//;
+	public OwnedCommentAnnotationElements getOwnedCommentAnnotationAccess() {
+		return pOwnedCommentAnnotation;
+	}
+	
+	public ParserRule getOwnedCommentAnnotationRule() {
+		return getOwnedCommentAnnotationAccess().getRule();
+	}
+	
+	//OwnedComment returns SysML::Comment :
+	//    ( 'comment' ( '<' humanId = Name '>' )? )? body = REGULAR_COMMENT
+	//;
+	public OwnedCommentElements getOwnedCommentAccess() {
+		return pOwnedComment;
+	}
+	
+	public ParserRule getOwnedCommentRule() {
+		return getOwnedCommentAccess().getRule();
+	}
+	
 	//OwnedDocumentation returns SysML::Documentation :
-	//    ownedRelatedElement += DocumentationComment // documentingComment = DocumentationComment
+	//    'doc' ( '<' humanId = Name '>' )? body = REGULAR_COMMENT
 	//;
 	public OwnedDocumentationElements getOwnedDocumentationAccess() {
 		return pOwnedDocumentation;
@@ -8031,39 +7908,6 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	
 	public ParserRule getOwnedDocumentationRule() {
 		return getOwnedDocumentationAccess().getRule();
-	}
-	
-	//DocumentationComment returns SysML::Comment :
-	//    'doc' ( '<' humanId = Name '>' )? body = REGULAR_COMMENT
-	//;
-	public DocumentationCommentElements getDocumentationCommentAccess() {
-		return pDocumentationComment;
-	}
-	
-	public ParserRule getDocumentationCommentRule() {
-		return getDocumentationCommentAccess().getRule();
-	}
-	
-	//PrefixDocumentation returns SysML::Annotation :
-	//    ownedRelatedElement += PrefixDocumentationComment
-	//;
-	public PrefixDocumentationElements getPrefixDocumentationAccess() {
-		return pPrefixDocumentation;
-	}
-	
-	public ParserRule getPrefixDocumentationRule() {
-		return getPrefixDocumentationAccess().getRule();
-	}
-	
-	//PrefixDocumentationComment returns SysML::Comment :
-	//    ( 'doc' ( '<' humanId = Name '>' )? )? body = DOCUMENTATION_COMMENT
-	//;
-	public PrefixDocumentationCommentElements getPrefixDocumentationCommentAccess() {
-		return pPrefixDocumentationComment;
-	}
-	
-	public ParserRule getPrefixDocumentationCommentRule() {
-		return getPrefixDocumentationCommentAccess().getRule();
 	}
 	
 	///* Textual Representation */
@@ -8106,93 +7950,37 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		return getTextualRepresentationAccess().getRule();
 	}
 	
-	///* Annotating Features */
-	//OwnedAnnotatingFeatureAnnotation returns SysML::Annotation :
-	//    ownedRelatedElement += OwnedAnnotatingFeature
+	///* Metadata Features */
+	//OwnedMetadataFeatureAnnotation returns SysML::Annotation :
+	//    ownedRelatedElement += OwnedMetadataFeature
 	//;
-	public OwnedAnnotatingFeatureAnnotationElements getOwnedAnnotatingFeatureAnnotationAccess() {
-		return pOwnedAnnotatingFeatureAnnotation;
+	public OwnedMetadataFeatureAnnotationElements getOwnedMetadataFeatureAnnotationAccess() {
+		return pOwnedMetadataFeatureAnnotation;
 	}
 	
-	public ParserRule getOwnedAnnotatingFeatureAnnotationRule() {
-		return getOwnedAnnotatingFeatureAnnotationAccess().getRule();
+	public ParserRule getOwnedMetadataFeatureAnnotationRule() {
+		return getOwnedMetadataFeatureAnnotationAccess().getRule();
 	}
 	
-	//OwnedAnnotatingFeature returns SysML::AnnotatingFeature :
-	//    'metadata' ( humanId = Name ( ':' | 'typed' 'by' ) )? ownedRelationship += MetadataTyping
-	//    ownedRelationship += EmptyAnnotation
-	//    AnnotatingFeatureBody
+	//OwnedMetadataFeature returns SysML::MetadataFeature :
+	//    'metadata' ( humanId = Name ( ':' | 'typed' 'by' ) )?
+	//    ownedRelationship += MetadataTyping
+	//    TypeBody
 	//;
-	public OwnedAnnotatingFeatureElements getOwnedAnnotatingFeatureAccess() {
-		return pOwnedAnnotatingFeature;
+	public OwnedMetadataFeatureElements getOwnedMetadataFeatureAccess() {
+		return pOwnedMetadataFeature;
 	}
 	
-	public ParserRule getOwnedAnnotatingFeatureRule() {
-		return getOwnedAnnotatingFeatureAccess().getRule();
-	}
-	
-	//AnnotatingFeature returns SysML::AnnotatingFeature :
-	//    ( '@' | 'metadata' ) AnnotatingFeatureDeclaration
-	//    ( 'about' ownedRelationship += Annotation ( ',' ownedRelationship += Annotation )*
-	//    | ownedRelationship += EmptyAnnotation
-	//    )
-	//    AnnotatingFeatureBody
-	//;
-	public AnnotatingFeatureElements getAnnotatingFeatureAccess() {
-		return pAnnotatingFeature;
-	}
-	
-	public ParserRule getAnnotatingFeatureRule() {
-		return getAnnotatingFeatureAccess().getRule();
-	}
-	
-	//fragment AnnotatingFeatureDeclaration returns SysML::AnnotatingFeature :
-	//    ( Identification ( ':' | 'typed' 'by' ) )? ownedRelationship += MetadataTyping
-	//;
-	public AnnotatingFeatureDeclarationElements getAnnotatingFeatureDeclarationAccess() {
-		return pAnnotatingFeatureDeclaration;
-	}
-	
-	public ParserRule getAnnotatingFeatureDeclarationRule() {
-		return getAnnotatingFeatureDeclarationAccess().getRule();
-	}
-	
-	//MetadataTyping returns SysML::FeatureTyping :
-	//    type = [SysML::DataType | QualifiedName]
-	//;
-	public MetadataTypingElements getMetadataTypingAccess() {
-		return pMetadataTyping;
-	}
-	
-	public ParserRule getMetadataTypingRule() {
-		return getMetadataTypingAccess().getRule();
-	}
-	
-	//fragment AnnotatingFeatureBody returns SysML::AnnotatingFeature :
-	//    ';' | '{' ( ownedRelationship += MetadataFeatureMember )* '}'
-	//;
-	public AnnotatingFeatureBodyElements getAnnotatingFeatureBodyAccess() {
-		return pAnnotatingFeatureBody;
-	}
-	
-	public ParserRule getAnnotatingFeatureBodyRule() {
-		return getAnnotatingFeatureBodyAccess().getRule();
-	}
-	
-	//MetadataFeatureMember returns SysML::FeatureMembership :
-	//    ownedRelatedElement += MetadataFeature // ownedMemberFeature = MetadataFeature
-	//;
-	public MetadataFeatureMemberElements getMetadataFeatureMemberAccess() {
-		return pMetadataFeatureMember;
-	}
-	
-	public ParserRule getMetadataFeatureMemberRule() {
-		return getMetadataFeatureMemberAccess().getRule();
+	public ParserRule getOwnedMetadataFeatureRule() {
+		return getOwnedMetadataFeatureAccess().getRule();
 	}
 	
 	//MetadataFeature returns SysML::MetadataFeature :
-	//    'feature'? ( ':>>' | 'redefines')? ownedRelationship += OwnedRedefinition
-	//    '=' ownedRelationship += MetadataFeatureValue ';' // metadataFeatureValue = MetadataFeatureValue ';'
+	//    ( '@' | 'metadata' ) MetadataFeatureDeclaration
+	//    ( 'about' ownedRelationship += Annotation
+	//        ( ',' ownedRelationship += Annotation )*
+	//    )?
+	//    TypeBody
 	//;
 	public MetadataFeatureElements getMetadataFeatureAccess() {
 		return pMetadataFeature;
@@ -8202,15 +7990,26 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		return getMetadataFeatureAccess().getRule();
 	}
 	
-	//MetadataFeatureValue returns SysML::MetadataFeatureValue :
-	//    ownedRelatedElement += OwnedExpression // metadataValue = OwnedExpression
+	//fragment MetadataFeatureDeclaration returns SysML::MetadataFeature :
+	//    ( Identification ( ':' | 'typed' 'by' ) )? ownedRelationship += MetadataTyping
 	//;
-	public MetadataFeatureValueElements getMetadataFeatureValueAccess() {
-		return pMetadataFeatureValue;
+	public MetadataFeatureDeclarationElements getMetadataFeatureDeclarationAccess() {
+		return pMetadataFeatureDeclaration;
 	}
 	
-	public ParserRule getMetadataFeatureValueRule() {
-		return getMetadataFeatureValueAccess().getRule();
+	public ParserRule getMetadataFeatureDeclarationRule() {
+		return getMetadataFeatureDeclarationAccess().getRule();
+	}
+	
+	//MetadataTyping returns SysML::FeatureTyping :
+	//    type = [SysML::Metaclass | QualifiedName]
+	//;
+	public MetadataTypingElements getMetadataTypingAccess() {
+		return pMetadataTyping;
+	}
+	
+	public ParserRule getMetadataTypingRule() {
+		return getMetadataTypingAccess().getRule();
 	}
 	
 	///* NAMESPACES */
@@ -8240,8 +8039,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	//      ';'
 	//    | '{' ( // Note: PackageBodyElement is expanded here to avoid
 	//            // infinite loops in the incremental parser.
-	//            ownedRelationship += OwnedDocumentation
-	//          | ownedRelationship += NamespaceMember
+	//            ownedRelationship += NamespaceMember
 	//          | ownedRelationship += AliasMember
 	//          | ownedRelationship += Import )*
 	//      '}'
@@ -8256,8 +8054,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	
 	///* Namespace Bodies */
 	//fragment NamespaceBodyElement returns SysML::Namespace :
-	//      ownedRelationship += OwnedDocumentation
-	//    | ownedRelationship += NamespaceMember
+	//      ownedRelationship += NamespaceMember
 	//    | ownedRelationship += AliasMember
 	//    | ownedRelationship += Import
 	//;
@@ -8270,7 +8067,6 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//fragment MemberPrefix returns SysML::Membership :
-	//    ( ownedRelationship += PrefixDocumentation )*
 	//    ( visibility = VisibilityIndicator )?
 	//;
 	public MemberPrefixElements getMemberPrefixAccess() {
@@ -8340,7 +8136,6 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//Import returns SysML::Import :
-	//    ( ownedRelationship += PrefixDocumentation )*
 	//    ( visibility = VisibilityIndicator )?
 	//    'import' ( isImportAll ?= 'all' )?
 	//    ( ImportedNamespace | ImportedFilterPackage ) ';'
@@ -8438,8 +8233,10 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	//      Element
 	//    | Relationship
 	//    | Comment
+	//    | PrefixComment
+	//    | Documentation
 	//    | TextualRepresentation
-	//    | AnnotatingFeature
+	//    | MetadataFeature
 	//    | Namespace
 	//    | Package
 	//    | Multiplicity
@@ -8518,8 +8315,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	//      ';'
 	//    | '{' ( // Note: PackageBodyElement is expanded here to avoid
 	//            // infinite loops in the incremental parser.
-	//            ownedRelationship += OwnedDocumentation
-	//          | ownedRelationship += NamespaceMember
+	//            ownedRelationship += NamespaceMember
 	//          | ownedRelationship += ElementFilterMember
 	//          | ownedRelationship += AliasMember
 	//          | ownedRelationship += Import )*
@@ -8610,8 +8406,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	
 	//fragment TypeBody returns SysML::Type :
 	//    ';' |
-	//    '{' ( ownedRelationship += OwnedDocumentation
-	//        | ownedRelationship += NonFeatureMember
+	//    '{' ( ownedRelationship += NonFeatureMember
 	//        | ownedRelationship += FeatureMember
 	//        | ownedRelationship += AliasMember
 	//        | ownedRelationship += Import
@@ -9786,8 +9581,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	
 	//fragment FunctionBody returns SysML::Type :
 	//      ';'
-	//    | '{' ( ownedRelationship += OwnedDocumentation
-	//          | ownedRelationship += NonFeatureMember
+	//    | '{' ( ownedRelationship += NonFeatureMember
 	//          | ownedRelationship += FeatureMember
 	//          | ownedRelationship += AliasMember
 	//          | ownedRelationship += Import
@@ -10940,10 +10734,10 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		return gaKerMLExpressions.getREGULAR_COMMENTRule();
 	}
 	
-	//terminal DOCUMENTATION_COMMENT:
+	//terminal PREFIX_COMMENT:
 	//    '/**'->'*/';
-	public TerminalRule getDOCUMENTATION_COMMENTRule() {
-		return gaKerMLExpressions.getDOCUMENTATION_COMMENTRule();
+	public TerminalRule getPREFIX_COMMENTRule() {
+		return gaKerMLExpressions.getPREFIX_COMMENTRule();
 	}
 	
 	//terminal ML_NOTE:

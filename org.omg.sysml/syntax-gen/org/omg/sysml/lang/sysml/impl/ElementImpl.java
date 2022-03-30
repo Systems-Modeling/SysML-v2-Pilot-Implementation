@@ -42,7 +42,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.uml2.common.util.DerivedEObjectEList;
 import org.eclipse.uml2.common.util.SubsetSupersetEDataTypeUniqueEList;
 import org.omg.sysml.lang.sysml.Annotation;
-import org.omg.sysml.lang.sysml.Comment;
 import org.omg.sysml.lang.sysml.Documentation;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Membership;
@@ -72,8 +71,7 @@ import org.omg.sysml.util.NonNotifyingEObjectEList;
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getOwnedElement <em>Owned Element</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getDocumentation <em>Documentation</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getOwnedAnnotation <em>Owned Annotation</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getDocumentationComment <em>Documentation Comment</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getOwnedTextualRepresentation <em>Owned Textual Representation</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getTextualRepresentation <em>Textual Representation</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getQualifiedName <em>Qualified Name</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getEffectiveName <em>Effective Name</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getHumanId <em>Human Id</em>}</li>
@@ -364,36 +362,6 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	@Override
-	public EList<Comment> getDocumentationComment() {
-		EList<Comment> documentationComments = new NonNotifyingEObjectEList<>(Comment.class, this, SysMLPackage.ELEMENT__DOCUMENTATION_COMMENT);
-		getDocumentation().stream().
-			map(Documentation::getDocumentingComment).
-			forEachOrdered(documentationComments::add);
-		return documentationComments;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	@Override
-	public EList<TextualRepresentation> getOwnedTextualRepresentation() {
-		EList<TextualRepresentation> ownedTextualRepresentations = new NonNotifyingEObjectEList<>(TextualRepresentation.class, this, SysMLPackage.ELEMENT__OWNED_TEXTUAL_REPRESENTATION);
-		getOwnedAnnotation().stream().
-			map(Annotation::getAnnotatingElement).
-			filter(TextualRepresentation.class::isInstance).
-			map(TextualRepresentation.class::cast).
-			forEachOrdered(ownedTextualRepresentations::add);
-		return ownedTextualRepresentations;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -514,7 +482,13 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	 */
 	@Override
 	public EList<Annotation> getOwnedAnnotation() {
-		return new DerivedEObjectEList<Annotation>(Annotation.class, this, SysMLPackage.ELEMENT__OWNED_ANNOTATION, new int[] {SysMLPackage.ELEMENT__OWNED_RELATIONSHIP});
+		EList<Annotation> annotations = new NonNotifyingEObjectEList<>(Element.class, this, SysMLPackage.ELEMENT__OWNED_ANNOTATION);
+		getOwnedRelationship().stream().
+			filter(Annotation.class::isInstance).
+			map(Annotation.class::cast).
+			filter(ann->ann.getAnnotatedElement() == this).
+			forEachOrdered(annotations::add);
+		return annotations;
 	}
 
 	/**
@@ -527,6 +501,16 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	 */
 	protected static final int[] OWNED_ANNOTATION_ESUPERSETS = new int[] {SysMLPackage.ELEMENT__OWNED_RELATIONSHIP};
 
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public EList<TextualRepresentation> getTextualRepresentation() {
+		return new DerivedEObjectEList<TextualRepresentation>(TextualRepresentation.class, this, SysMLPackage.ELEMENT__TEXTUAL_REPRESENTATION, new int[] {SysMLPackage.ELEMENT__OWNED_RELATIONSHIP});
+	}
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -700,10 +684,8 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 				return getDocumentation();
 			case SysMLPackage.ELEMENT__OWNED_ANNOTATION:
 				return getOwnedAnnotation();
-			case SysMLPackage.ELEMENT__DOCUMENTATION_COMMENT:
-				return getDocumentationComment();
-			case SysMLPackage.ELEMENT__OWNED_TEXTUAL_REPRESENTATION:
-				return getOwnedTextualRepresentation();
+			case SysMLPackage.ELEMENT__TEXTUAL_REPRESENTATION:
+				return getTextualRepresentation();
 			case SysMLPackage.ELEMENT__QUALIFIED_NAME:
 				return getQualifiedName();
 			case SysMLPackage.ELEMENT__EFFECTIVE_NAME:
@@ -761,13 +743,9 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 				getOwnedAnnotation().clear();
 				getOwnedAnnotation().addAll((Collection<? extends Annotation>)newValue);
 				return;
-			case SysMLPackage.ELEMENT__DOCUMENTATION_COMMENT:
-				getDocumentationComment().clear();
-				getDocumentationComment().addAll((Collection<? extends Comment>)newValue);
-				return;
-			case SysMLPackage.ELEMENT__OWNED_TEXTUAL_REPRESENTATION:
-				getOwnedTextualRepresentation().clear();
-				getOwnedTextualRepresentation().addAll((Collection<? extends TextualRepresentation>)newValue);
+			case SysMLPackage.ELEMENT__TEXTUAL_REPRESENTATION:
+				getTextualRepresentation().clear();
+				getTextualRepresentation().addAll((Collection<? extends TextualRepresentation>)newValue);
 				return;
 			case SysMLPackage.ELEMENT__QUALIFIED_NAME:
 				setQualifiedName((String)newValue);
@@ -823,11 +801,8 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 			case SysMLPackage.ELEMENT__OWNED_ANNOTATION:
 				getOwnedAnnotation().clear();
 				return;
-			case SysMLPackage.ELEMENT__DOCUMENTATION_COMMENT:
-				getDocumentationComment().clear();
-				return;
-			case SysMLPackage.ELEMENT__OWNED_TEXTUAL_REPRESENTATION:
-				getOwnedTextualRepresentation().clear();
+			case SysMLPackage.ELEMENT__TEXTUAL_REPRESENTATION:
+				getTextualRepresentation().clear();
 				return;
 			case SysMLPackage.ELEMENT__QUALIFIED_NAME:
 				setQualifiedName(QUALIFIED_NAME_EDEFAULT);
@@ -872,10 +847,8 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 				return !getDocumentation().isEmpty();
 			case SysMLPackage.ELEMENT__OWNED_ANNOTATION:
 				return !getOwnedAnnotation().isEmpty();
-			case SysMLPackage.ELEMENT__DOCUMENTATION_COMMENT:
-				return !getDocumentationComment().isEmpty();
-			case SysMLPackage.ELEMENT__OWNED_TEXTUAL_REPRESENTATION:
-				return !getOwnedTextualRepresentation().isEmpty();
+			case SysMLPackage.ELEMENT__TEXTUAL_REPRESENTATION:
+				return !getTextualRepresentation().isEmpty();
 			case SysMLPackage.ELEMENT__QUALIFIED_NAME:
 				return QUALIFIED_NAME_EDEFAULT == null ? getQualifiedName() != null : !QUALIFIED_NAME_EDEFAULT.equals(getQualifiedName());
 			case SysMLPackage.ELEMENT__EFFECTIVE_NAME:

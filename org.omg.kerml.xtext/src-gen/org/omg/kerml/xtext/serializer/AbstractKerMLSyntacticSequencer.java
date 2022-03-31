@@ -44,12 +44,16 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	protected AbstractElementAlias match_Feature_FeatureKeyword_1_0_0_q;
 	protected AbstractElementAlias match_FunctionBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_3__;
 	protected AbstractElementAlias match_Invariant_TrueKeyword_2_0_q;
+	protected AbstractElementAlias match_MetadataBodyFeature_FeatureKeyword_0_q;
+	protected AbstractElementAlias match_MetadataBodyFeature___ColonGreaterThanSignGreaterThanSignKeyword_1_0_or_RedefinesKeyword_1_1__q;
+	protected AbstractElementAlias match_MetadataBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__;
 	protected AbstractElementAlias match_MetadataFeatureDeclaration_ColonKeyword_0_1_0_or___TypedKeyword_0_1_1_0_ByKeyword_0_1_1_1__;
 	protected AbstractElementAlias match_MetadataFeature_CommercialAtKeyword_0_0_or_MetadataKeyword_0_1;
 	protected AbstractElementAlias match_NamespaceBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__;
 	protected AbstractElementAlias match_NullExpression_NullKeyword_1_0_or___LeftParenthesisKeyword_1_1_0_RightParenthesisKeyword_1_1_1__;
 	protected AbstractElementAlias match_OwnedComment_CommentKeyword_0_0_q;
 	protected AbstractElementAlias match_OwnedMetadataFeature_ColonKeyword_1_1_0_or___TypedKeyword_1_1_1_0_ByKeyword_1_1_1_1__;
+	protected AbstractElementAlias match_OwnedMetadataFeature_CommercialAtKeyword_0_0_or_MetadataKeyword_0_1;
 	protected AbstractElementAlias match_OwnedTextualRepresentation_RepKeyword_0_0_q;
 	protected AbstractElementAlias match_PackageBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__;
 	protected AbstractElementAlias match_Parameter_FeatureKeyword_0_1_q;
@@ -71,8 +75,7 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	protected AbstractElementAlias match_SuccessionDeclaration_FirstKeyword_0_0_1_q;
 	protected AbstractElementAlias match_SuccessionDeclaration_FirstKeyword_0_1_1_q;
 	protected AbstractElementAlias match_SuperclassingPart_ColonGreaterThanSignKeyword_0_0_or_SpecializesKeyword_0_1;
-	protected AbstractElementAlias match_TextualRepresentation_RepKeyword_0_0_0_or_RepKeyword_0_1_0_0;
-	protected AbstractElementAlias match_TextualRepresentation_RepKeyword_0_1_0_0_q;
+	protected AbstractElementAlias match_TextualRepresentation_RepKeyword_0_0_q;
 	protected AbstractElementAlias match_TypeBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__;
 	protected AbstractElementAlias match_TypeFeaturing_OfKeyword_1_1_q;
 	protected AbstractElementAlias match_TypedBy_ColonKeyword_0_0_or___TypedKeyword_0_1_0_ByKeyword_0_1_1__;
@@ -103,12 +106,16 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 		match_Feature_FeatureKeyword_1_0_0_q = new TokenAlias(false, true, grammarAccess.getFeatureAccess().getFeatureKeyword_1_0_0());
 		match_FunctionBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_3__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getFunctionBodyAccess().getLeftCurlyBracketKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getFunctionBodyAccess().getRightCurlyBracketKeyword_1_3())), new TokenAlias(false, false, grammarAccess.getFunctionBodyAccess().getSemicolonKeyword_0()));
 		match_Invariant_TrueKeyword_2_0_q = new TokenAlias(false, true, grammarAccess.getInvariantAccess().getTrueKeyword_2_0());
+		match_MetadataBodyFeature_FeatureKeyword_0_q = new TokenAlias(false, true, grammarAccess.getMetadataBodyFeatureAccess().getFeatureKeyword_0());
+		match_MetadataBodyFeature___ColonGreaterThanSignGreaterThanSignKeyword_1_0_or_RedefinesKeyword_1_1__q = new AlternativeAlias(false, true, new TokenAlias(false, false, grammarAccess.getMetadataBodyFeatureAccess().getColonGreaterThanSignGreaterThanSignKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getMetadataBodyFeatureAccess().getRedefinesKeyword_1_1()));
+		match_MetadataBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getMetadataBodyAccess().getLeftCurlyBracketKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getMetadataBodyAccess().getRightCurlyBracketKeyword_1_2())), new TokenAlias(false, false, grammarAccess.getMetadataBodyAccess().getSemicolonKeyword_0()));
 		match_MetadataFeatureDeclaration_ColonKeyword_0_1_0_or___TypedKeyword_0_1_1_0_ByKeyword_0_1_1_1__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getMetadataFeatureDeclarationAccess().getTypedKeyword_0_1_1_0()), new TokenAlias(false, false, grammarAccess.getMetadataFeatureDeclarationAccess().getByKeyword_0_1_1_1())), new TokenAlias(false, false, grammarAccess.getMetadataFeatureDeclarationAccess().getColonKeyword_0_1_0()));
 		match_MetadataFeature_CommercialAtKeyword_0_0_or_MetadataKeyword_0_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getMetadataFeatureAccess().getCommercialAtKeyword_0_0()), new TokenAlias(false, false, grammarAccess.getMetadataFeatureAccess().getMetadataKeyword_0_1()));
 		match_NamespaceBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getNamespaceBodyAccess().getLeftCurlyBracketKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getNamespaceBodyAccess().getRightCurlyBracketKeyword_1_2())), new TokenAlias(false, false, grammarAccess.getNamespaceBodyAccess().getSemicolonKeyword_0()));
 		match_NullExpression_NullKeyword_1_0_or___LeftParenthesisKeyword_1_1_0_RightParenthesisKeyword_1_1_1__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getNullExpressionAccess().getLeftParenthesisKeyword_1_1_0()), new TokenAlias(false, false, grammarAccess.getNullExpressionAccess().getRightParenthesisKeyword_1_1_1())), new TokenAlias(false, false, grammarAccess.getNullExpressionAccess().getNullKeyword_1_0()));
 		match_OwnedComment_CommentKeyword_0_0_q = new TokenAlias(false, true, grammarAccess.getOwnedCommentAccess().getCommentKeyword_0_0());
 		match_OwnedMetadataFeature_ColonKeyword_1_1_0_or___TypedKeyword_1_1_1_0_ByKeyword_1_1_1_1__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getOwnedMetadataFeatureAccess().getTypedKeyword_1_1_1_0()), new TokenAlias(false, false, grammarAccess.getOwnedMetadataFeatureAccess().getByKeyword_1_1_1_1())), new TokenAlias(false, false, grammarAccess.getOwnedMetadataFeatureAccess().getColonKeyword_1_1_0()));
+		match_OwnedMetadataFeature_CommercialAtKeyword_0_0_or_MetadataKeyword_0_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getOwnedMetadataFeatureAccess().getCommercialAtKeyword_0_0()), new TokenAlias(false, false, grammarAccess.getOwnedMetadataFeatureAccess().getMetadataKeyword_0_1()));
 		match_OwnedTextualRepresentation_RepKeyword_0_0_q = new TokenAlias(false, true, grammarAccess.getOwnedTextualRepresentationAccess().getRepKeyword_0_0());
 		match_PackageBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getPackageBodyAccess().getLeftCurlyBracketKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getPackageBodyAccess().getRightCurlyBracketKeyword_1_2())), new TokenAlias(false, false, grammarAccess.getPackageBodyAccess().getSemicolonKeyword_0()));
 		match_Parameter_FeatureKeyword_0_1_q = new TokenAlias(false, true, grammarAccess.getParameterAccess().getFeatureKeyword_0_1());
@@ -130,8 +137,7 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 		match_SuccessionDeclaration_FirstKeyword_0_0_1_q = new TokenAlias(false, true, grammarAccess.getSuccessionDeclarationAccess().getFirstKeyword_0_0_1());
 		match_SuccessionDeclaration_FirstKeyword_0_1_1_q = new TokenAlias(false, true, grammarAccess.getSuccessionDeclarationAccess().getFirstKeyword_0_1_1());
 		match_SuperclassingPart_ColonGreaterThanSignKeyword_0_0_or_SpecializesKeyword_0_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getSuperclassingPartAccess().getColonGreaterThanSignKeyword_0_0()), new TokenAlias(false, false, grammarAccess.getSuperclassingPartAccess().getSpecializesKeyword_0_1()));
-		match_TextualRepresentation_RepKeyword_0_0_0_or_RepKeyword_0_1_0_0 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getTextualRepresentationAccess().getRepKeyword_0_0_0()), new TokenAlias(false, false, grammarAccess.getTextualRepresentationAccess().getRepKeyword_0_1_0_0()));
-		match_TextualRepresentation_RepKeyword_0_1_0_0_q = new TokenAlias(false, true, grammarAccess.getTextualRepresentationAccess().getRepKeyword_0_1_0_0());
+		match_TextualRepresentation_RepKeyword_0_0_q = new TokenAlias(false, true, grammarAccess.getTextualRepresentationAccess().getRepKeyword_0_0());
 		match_TypeBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getTypeBodyAccess().getLeftCurlyBracketKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getTypeBodyAccess().getRightCurlyBracketKeyword_1_2())), new TokenAlias(false, false, grammarAccess.getTypeBodyAccess().getSemicolonKeyword_0()));
 		match_TypeFeaturing_OfKeyword_1_1_q = new TokenAlias(false, true, grammarAccess.getTypeFeaturingAccess().getOfKeyword_1_1());
 		match_TypedBy_ColonKeyword_0_0_or___TypedKeyword_0_1_0_ByKeyword_0_1_1__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getTypedByAccess().getTypedKeyword_0_1_0()), new TokenAlias(false, false, grammarAccess.getTypedByAccess().getByKeyword_0_1_1())), new TokenAlias(false, false, grammarAccess.getTypedByAccess().getColonKeyword_0_0()));
@@ -194,6 +200,12 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 				emit_FunctionBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_3__(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_Invariant_TrueKeyword_2_0_q.equals(syntax))
 				emit_Invariant_TrueKeyword_2_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_MetadataBodyFeature_FeatureKeyword_0_q.equals(syntax))
+				emit_MetadataBodyFeature_FeatureKeyword_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_MetadataBodyFeature___ColonGreaterThanSignGreaterThanSignKeyword_1_0_or_RedefinesKeyword_1_1__q.equals(syntax))
+				emit_MetadataBodyFeature___ColonGreaterThanSignGreaterThanSignKeyword_1_0_or_RedefinesKeyword_1_1__q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_MetadataBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__.equals(syntax))
+				emit_MetadataBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_MetadataFeatureDeclaration_ColonKeyword_0_1_0_or___TypedKeyword_0_1_1_0_ByKeyword_0_1_1_1__.equals(syntax))
 				emit_MetadataFeatureDeclaration_ColonKeyword_0_1_0_or___TypedKeyword_0_1_1_0_ByKeyword_0_1_1_1__(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_MetadataFeature_CommercialAtKeyword_0_0_or_MetadataKeyword_0_1.equals(syntax))
@@ -206,6 +218,8 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 				emit_OwnedComment_CommentKeyword_0_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_OwnedMetadataFeature_ColonKeyword_1_1_0_or___TypedKeyword_1_1_1_0_ByKeyword_1_1_1_1__.equals(syntax))
 				emit_OwnedMetadataFeature_ColonKeyword_1_1_0_or___TypedKeyword_1_1_1_0_ByKeyword_1_1_1_1__(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_OwnedMetadataFeature_CommercialAtKeyword_0_0_or_MetadataKeyword_0_1.equals(syntax))
+				emit_OwnedMetadataFeature_CommercialAtKeyword_0_0_or_MetadataKeyword_0_1(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_OwnedTextualRepresentation_RepKeyword_0_0_q.equals(syntax))
 				emit_OwnedTextualRepresentation_RepKeyword_0_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_PackageBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__.equals(syntax))
@@ -248,10 +262,8 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 				emit_SuccessionDeclaration_FirstKeyword_0_1_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_SuperclassingPart_ColonGreaterThanSignKeyword_0_0_or_SpecializesKeyword_0_1.equals(syntax))
 				emit_SuperclassingPart_ColonGreaterThanSignKeyword_0_0_or_SpecializesKeyword_0_1(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_TextualRepresentation_RepKeyword_0_0_0_or_RepKeyword_0_1_0_0.equals(syntax))
-				emit_TextualRepresentation_RepKeyword_0_0_0_or_RepKeyword_0_1_0_0(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_TextualRepresentation_RepKeyword_0_1_0_0_q.equals(syntax))
-				emit_TextualRepresentation_RepKeyword_0_1_0_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_TextualRepresentation_RepKeyword_0_0_q.equals(syntax))
+				emit_TextualRepresentation_RepKeyword_0_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_TypeBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__.equals(syntax))
 				emit_TypeBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_TypeFeaturing_OfKeyword_1_1_q.equals(syntax))
@@ -400,6 +412,7 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 *     (rule start) 'datatype' (ambiguity) ownedRelationship+=ClassifierConjugation
 	 *     (rule start) 'function' (ambiguity) ownedRelationship+=ClassifierConjugation
 	 *     (rule start) 'interaction' (ambiguity) ownedRelationship+=ClassifierConjugation
+	 *     (rule start) 'metaclass' (ambiguity) ownedRelationship+=ClassifierConjugation
 	 *     (rule start) 'predicate' (ambiguity) ownedRelationship+=ClassifierConjugation
 	 *     (rule start) 'struct' (ambiguity) ownedRelationship+=ClassifierConjugation
 	 *     humanId=Name '>' (ambiguity) ownedRelationship+=ClassifierConjugation
@@ -411,6 +424,7 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 *     isAbstract?='abstract' 'datatype' (ambiguity) ownedRelationship+=ClassifierConjugation
 	 *     isAbstract?='abstract' 'function' (ambiguity) ownedRelationship+=ClassifierConjugation
 	 *     isAbstract?='abstract' 'interaction' (ambiguity) ownedRelationship+=ClassifierConjugation
+	 *     isAbstract?='abstract' 'metaclass' (ambiguity) ownedRelationship+=ClassifierConjugation
 	 *     isAbstract?='abstract' 'predicate' (ambiguity) ownedRelationship+=ClassifierConjugation
 	 *     isAbstract?='abstract' 'struct' (ambiguity) ownedRelationship+=ClassifierConjugation
 	 *     isSufficient?='all' (ambiguity) ownedRelationship+=ClassifierConjugation
@@ -971,6 +985,48 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	
 	/**
 	 * Ambiguous syntax:
+	 *     'feature'?
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     (rule start) (ambiguity) (':>>' | 'redefines')? ownedRelationship+=OwnedRedefinition
+	 */
+	protected void emit_MetadataBodyFeature_FeatureKeyword_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Ambiguous syntax:
+	 *     (':>>' | 'redefines')?
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     (rule start) 'feature'? (ambiguity) ownedRelationship+=OwnedRedefinition
+	 */
+	protected void emit_MetadataBodyFeature___ColonGreaterThanSignGreaterThanSignKeyword_1_0_or_RedefinesKeyword_1_1__q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Ambiguous syntax:
+	 *     ';' | ('{' '}')
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     isNonunique?='nonunique' (ambiguity) (rule end)
+	 *     isOrdered?='ordered' (ambiguity) (rule end)
+	 *     ownedRelationship+=Annotation (ambiguity) (rule end)
+	 *     ownedRelationship+=EmptyFeatureWriteMember (ambiguity) (rule end)
+	 *     ownedRelationship+=FeatureValue (ambiguity) (rule end)
+	 *     ownedRelationship+=MetadataTyping (ambiguity) (rule end)
+	 *     ownedRelationship+=OwnedFeatureTyping (ambiguity) (rule end)
+	 *     ownedRelationship+=OwnedMultiplicity (ambiguity) (rule end)
+	 *     ownedRelationship+=OwnedRedefinition (ambiguity) (rule end)
+	 *     ownedRelationship+=OwnedSubsetting (ambiguity) (rule end)
+	 */
+	protected void emit_MetadataBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Ambiguous syntax:
 	 *     ':' | ('typed' 'by')
 	 *
 	 * This ambiguous syntax occurs at:
@@ -1038,6 +1094,18 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 *     humanId=Name (ambiguity) ownedRelationship+=MetadataTyping
 	 */
 	protected void emit_OwnedMetadataFeature_ColonKeyword_1_1_0_or___TypedKeyword_1_1_1_0_ByKeyword_1_1_1_1__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Ambiguous syntax:
+	 *     '@' | 'metadata'
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     (rule start) (ambiguity) humanId=Name
+	 *     (rule start) (ambiguity) ownedRelationship+=MetadataTyping
+	 */
+	protected void emit_OwnedMetadataFeature_CommercialAtKeyword_0_0_or_MetadataKeyword_0_1(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
@@ -1522,6 +1590,7 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 *     (rule start) 'datatype' (ambiguity) ownedRelationship+=Ownedsubclassification
 	 *     (rule start) 'function' (ambiguity) ownedRelationship+=Ownedsubclassification
 	 *     (rule start) 'interaction' (ambiguity) ownedRelationship+=Ownedsubclassification
+	 *     (rule start) 'metaclass' (ambiguity) ownedRelationship+=Ownedsubclassification
 	 *     (rule start) 'predicate' (ambiguity) ownedRelationship+=Ownedsubclassification
 	 *     (rule start) 'struct' (ambiguity) ownedRelationship+=Ownedsubclassification
 	 *     humanId=Name '>' (ambiguity) ownedRelationship+=Ownedsubclassification
@@ -1533,6 +1602,7 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 *     isAbstract?='abstract' 'datatype' (ambiguity) ownedRelationship+=Ownedsubclassification
 	 *     isAbstract?='abstract' 'function' (ambiguity) ownedRelationship+=Ownedsubclassification
 	 *     isAbstract?='abstract' 'interaction' (ambiguity) ownedRelationship+=Ownedsubclassification
+	 *     isAbstract?='abstract' 'metaclass' (ambiguity) ownedRelationship+=Ownedsubclassification
 	 *     isAbstract?='abstract' 'predicate' (ambiguity) ownedRelationship+=Ownedsubclassification
 	 *     isAbstract?='abstract' 'struct' (ambiguity) ownedRelationship+=Ownedsubclassification
 	 *     isSufficient?='all' (ambiguity) ownedRelationship+=Ownedsubclassification
@@ -1545,24 +1615,12 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	
 	/**
 	 * Ambiguous syntax:
-	 *     'rep' | 'rep'
-	 *
-	 * This ambiguous syntax occurs at:
-	 *     (rule start) (ambiguity) '<' humanId=Name
-	 *     (rule start) (ambiguity) name=Name
-	 */
-	protected void emit_TextualRepresentation_RepKeyword_0_0_0_or_RepKeyword_0_1_0_0(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
-	/**
-	 * Ambiguous syntax:
 	 *     'rep'?
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) (ambiguity) ownedRelationship+=EmptyAnnotation
+	 *     (rule start) (ambiguity) 'language' language=STRING_VALUE
 	 */
-	protected void emit_TextualRepresentation_RepKeyword_0_1_0_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_TextualRepresentation_RepKeyword_0_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
@@ -1580,6 +1638,7 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 *     (rule start) 'datatype' (ambiguity) (rule start)
 	 *     (rule start) 'feature' (ambiguity) (rule start)
 	 *     (rule start) 'interaction' (ambiguity) (rule start)
+	 *     (rule start) 'metaclass' (ambiguity) (rule start)
 	 *     (rule start) 'step' (ambiguity) (rule start)
 	 *     (rule start) 'struct' (ambiguity) (rule start)
 	 *     direction=FeatureDirection 'connector' (ambiguity) (rule end)
@@ -1595,6 +1654,7 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 *     isAbstract?='abstract' 'datatype' (ambiguity) (rule end)
 	 *     isAbstract?='abstract' 'feature' (ambiguity) (rule end)
 	 *     isAbstract?='abstract' 'interaction' (ambiguity) (rule end)
+	 *     isAbstract?='abstract' 'metaclass' (ambiguity) (rule end)
 	 *     isAbstract?='abstract' 'step' (ambiguity) (rule end)
 	 *     isAbstract?='abstract' 'struct' (ambiguity) (rule end)
 	 *     isComposite?='composite' 'connector' (ambiguity) (rule end)
@@ -1616,7 +1676,6 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 *     isReadOnly?='readonly' 'step' (ambiguity) (rule end)
 	 *     isSufficient?='all' (ambiguity) (rule end)
 	 *     name=Name (ambiguity) (rule end)
-	 *     ownedRelationship+=Annotation (ambiguity) (rule end)
 	 *     ownedRelationship+=ClassifierConjugation (ambiguity) (rule end)
 	 *     ownedRelationship+=ConnectorEndMember ')' (ambiguity) (rule end)
 	 *     ownedRelationship+=ConnectorEndMember (ambiguity) (rule end)

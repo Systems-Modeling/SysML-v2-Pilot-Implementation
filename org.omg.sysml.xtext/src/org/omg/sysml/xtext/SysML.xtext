@@ -56,6 +56,18 @@ EmptyAnnotation returns SysML::Annotation :
 	{SysML::Annotation}
 ;
 
+AnnotatingElement returns SysML::AnnotatingElement :
+	  Comment 
+	| PrefixComment 
+	| Documentation
+	| TextualRepresentation
+	| MetadataUsage
+;
+
+AnnotatingMember returns SysML::Membership :
+	ownedRelatedElement += AnnotatingElement // ownedMember = AnnotatingElement
+;
+
 /* Comments */
 
 Comment returns SysML::Comment :
@@ -79,21 +91,36 @@ Documentation returns SysML::Documentation :
 /* Textual Representation */
 
 TextualRepresentation returns SysML::TextualRepresentation :
-    ( 'rep' Identification? 'about' ownedRelationship += Annotation
-    | ( 'rep' Identification? )? ownedRelationship += EmptyAnnotation
-    )
+    ( 'rep' Identification? ( 'about' ownedRelationship += Annotation )? )?
     'language' language = STRING_VALUE 
     body = REGULAR_COMMENT
 ;
 
-/* Metadata Features */
+/* Metadata */
 
-MetadataFeature returns SysML::MetadataUsage :
-	( '@' | 'metadata' ) MetadataFeatureDeclaration 
+MetadataKeyword :
+	'metadata'
+;
+
+MetadataDefKeyword :
+	MetadataKeyword 'def'
+;
+
+MetadataUsageKeyword :
+	MetadataKeyword | '@'
+;
+
+MetadataDefinition returns SysML::MetadataDefinition :
+	( isAbstract ?= 'abstract')? MetadataDefKeyword 
+	Definition
+;
+
+MetadataUsage returns SysML::MetadataUsage :
+	MetadataUsageKeyword MetadataFeatureDeclaration 
 	( 'about' ownedRelationship += Annotation 
 		( ',' ownedRelationship += Annotation )*
 	)?
-	UsageBody
+	MetadataBody
 ;
 
 fragment MetadataFeatureDeclaration returns SysML::MetadataFeature :
@@ -102,6 +129,25 @@ fragment MetadataFeatureDeclaration returns SysML::MetadataFeature :
 
 MetadataTyping returns SysML::FeatureTyping :
 	type = [SysML::Metaclass | QualifiedName]
+;
+
+fragment MetadataBody returns SysML::Feature :
+	';' | 
+	'{' ( ownedRelationship += DefinitionMember 
+		| ownedRelationship += MetadataBodyUsageMember 
+		| ownedRelationship += AliasMember
+		| ownedRelationship += Import
+	)* '}'
+;
+
+MetadataBodyUsageMember returns SysML::FeatureMembership :
+	ownedRelatedElement += MetadataBodyUsage
+;
+
+MetadataBodyUsage returns SysML::ReferenceUsage :
+	'ref'? ( ':>>' | 'redefines' )? ownedRelationship += OwnedRedefinition 
+	FeatureSpecializationPart? ValuePart?
+	MetadataBody
 ;
 
 /* PACKAGES */
@@ -198,17 +244,14 @@ enum VisibilityIndicator returns SysML::VisibilityKind:
 
 DefinitionElement returns SysML::Element :
 	  Package
-	| Comment
-	| PrefixComment
-	| Documentation
-	| TextualRepresentation
-	| MetadataFeature
+	| AnnotatingElement
 	| Dependency	  
 	| AttributeDefinition
 	| EnumerationDefinition
 	| OccurrenceDefinition
 	| IndividualDefinition
 	| ItemDefinition
+	| MetadataDefinition
 	| PartDefinition
 	| ConnectionDefinition
 	| InterfaceDefinition
@@ -638,7 +681,9 @@ EnumerationDefinition returns SysML::EnumerationDefinition :
 
 fragment EnumerationBody returns SysML::EnumerationDefinition :
 	  ';' 
-	| '{' ( => ownedRelationship += EnumerationUsageMember )* '}'
+	| '{' ( ownedRelationship += AnnotatingMember
+		  | => ownedRelationship += EnumerationUsageMember )* 
+	   '}'
 ;
 
 EnumerationUsageMember returns SysML::VariantMembership :

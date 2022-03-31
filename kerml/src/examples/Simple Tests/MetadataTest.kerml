@@ -8,11 +8,11 @@ package MetadataTest {
 		feature conf[1] : ClassificationLevel = 1;
 		feature secret[1] : ClassificationLevel = 2;
 		
-		datatype Classified {
+		metaclass Classified {
 			feature classificationLevel : ClassificationLevel;
 		}
 		
-		datatype Security;
+		metaclass Security;
 	}
 	
 	feature x {

@@ -170,43 +170,12 @@ OwnedTextualRepresentationAnnotation returns SysML::Annotation :
 OwnedTextualRepresentation returns SysML::TextualRepresentation :
 	( 'rep' ( humanId = Name )? )? 
 	'language' language = STRING_VALUE body = REGULAR_COMMENT
-	ownedRelationship += EmptyAnnotation
 ;
 
 TextualRepresentation returns SysML::TextualRepresentation :
-    ( 'rep' Identification? 'about' ownedRelationship += Annotation
-    | ( 'rep' Identification? )? ownedRelationship += EmptyAnnotation
-    )
+    ( 'rep' Identification? ( 'about' ownedRelationship += Annotation )? )?
     'language' language = STRING_VALUE 
     body = REGULAR_COMMENT
-;
-
-/* Metadata Features */
-
-OwnedMetadataFeatureAnnotation returns SysML::Annotation :
-	ownedRelatedElement += OwnedMetadataFeature
-;
-
-OwnedMetadataFeature returns SysML::MetadataFeature :
-	'metadata' ( humanId = Name ( ':' | 'typed' 'by' ) )? 
-	ownedRelationship += MetadataTyping 
-	TypeBody
-;
-
-MetadataFeature returns SysML::MetadataFeature :
-	( '@' | 'metadata' ) MetadataFeatureDeclaration 
-	( 'about' ownedRelationship += Annotation 
-		( ',' ownedRelationship += Annotation )*
-	)?
-	TypeBody
-;
-
-fragment MetadataFeatureDeclaration returns SysML::MetadataFeature :
-	( Identification ( ':' | 'typed' 'by' ) )? ownedRelationship += MetadataTyping
-;
-
-MetadataTyping returns SysML::FeatureTyping :
-	type = [SysML::Metaclass | QualifiedName]
 ;
 
 /* NAMESPACES */
@@ -318,6 +287,7 @@ NonFeatureElement returns SysML::Element :
 	| Classifier 
 	| Class
 	| Structure
+	| Metaclass
 	| DataType 
 	| Association
 	| AssociationStructure
@@ -1091,6 +1061,58 @@ ItemFlowFeature returns SysML::ItemFlowFeature :
 
 ItemFlowRedefinition returns SysML::Redefinition :
 	redefinedFeature = [SysML::Feature|QualifiedName]
+;
+
+/* METADATA */
+
+Metaclass returns SysML::Metaclass :
+	( isAbstract ?= 'abstract' )? 'metaclass' 
+	ClassifierDeclaration TypeBody
+;
+
+OwnedMetadataFeatureAnnotation returns SysML::Annotation :
+	ownedRelatedElement += OwnedMetadataFeature
+;
+
+OwnedMetadataFeature returns SysML::MetadataFeature :
+	( '@' | 'metadata' ) ( humanId = Name ( ':' | 'typed' 'by' ) )? 
+	ownedRelationship += MetadataTyping 
+	TypeBody
+;
+
+MetadataFeature returns SysML::MetadataFeature :
+	( '@' | 'metadata' ) MetadataFeatureDeclaration 
+	( 'about' ownedRelationship += Annotation 
+		( ',' ownedRelationship += Annotation )*
+	)?
+	MetadataBody
+;
+
+fragment MetadataFeatureDeclaration returns SysML::MetadataFeature :
+	( Identification ( ':' | 'typed' 'by' ) )? ownedRelationship += MetadataTyping
+;
+
+MetadataTyping returns SysML::FeatureTyping :
+	type = [SysML::Metaclass | QualifiedName]
+;
+
+fragment MetadataBody returns SysML::Feature :
+	';' | 
+	'{' ( ownedRelationship += NonFeatureMember 
+		| ownedRelationship += MetadataBodyFeatureMember 
+		| ownedRelationship += AliasMember
+		| ownedRelationship += Import
+	)* '}'
+;
+
+MetadataBodyFeatureMember returns SysML::FeatureMembership :
+	ownedRelatedElement += MetadataBodyFeature
+;
+
+MetadataBodyFeature returns SysML::Feature :
+	'feature'? ( ':>>' | 'redefines' )? ownedRelationship += OwnedRedefinition 
+	FeatureSpecializationPart? ValuePart?
+	MetadataBody
 ;
 
 /* EXPRESSIONS */

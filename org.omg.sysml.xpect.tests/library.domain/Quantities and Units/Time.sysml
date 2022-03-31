@@ -22,7 +22,7 @@ package Time {
     /**
      * defaultClock is a single Clock that can be used as a default.
      */
-    readonly part defaultClock : Clock[1];
+    readonly part defaultClock : Clock[1] = Clocks::defaultClock;
 
 	/**
 	 * A Clock provides a currentTime as a TimeInstantValue that advances montonically over its lifetime.
@@ -34,16 +34,24 @@ package Time {
 	/**
 	 * TimeOf returns a TimeInstantValue for a given Occurrence relative to a given Clock. This TimeInstantValue is the 
 	 * time of the start of the Occurrence, which is considered to be synchronized with the snapshot of the Clock with a 
-	 * currentTime equal to the returned imeValue
+	 * currentTime equal to the returned timeInstant.
 	 */
-	calc def TimeOf :> Clocks::TimeOf(o : Occurrence[1], clock : Clock[1]) timeValue : TimeInstantValue[1];
+	calc def TimeOf :> Clocks::TimeOf {
+		in o : Occurrence[1]; 
+		in clock : Clock[1] default defaultClock;
+		return timeInstant : TimeInstantValue[1];
+	}
 
 	/**
 	 * DurationOf returns the duration of a given Occurrence relative to a given Clock, which is equal to the TimeOf 
 	 * the end snapshot of the Occurrence minus the TimeOf its start snapshot.
 	 */
-	calc def DurationOf :> Clocks::DurationOf(o : Occurrence[1], clock : Clock[1]) duration : DurationValue;
-
+	calc def DurationOf :> Clocks::DurationOf {
+		in o : Occurrence[1]; 
+		in clock : Clock[1] default defaultClock;
+		return duration : DurationValue;
+	}
+	
 	/**
 	 * Generic time scale to express a time instant, including a textual definition of the meaning of zero time instant value
 	 * 
@@ -171,7 +179,7 @@ package Time {
     	attribute val: Iso8601DateTimeEncoding;
     	attribute :>> num = getElapsedUtcTime(val);
     	private calc getElapsedUtcTime(iso8601DateTime: Iso8601DateTimeEncoding) : Real {
-    		doc /** Return the number of seconds elapsed since the UTC epoch. Can be negative when the date and time is earlier than the epoch. */
+    		/** Return the number of seconds elapsed since the UTC epoch. Can be negative when the date and time is earlier than the epoch. */
     		attribute x: Real;
     		// TO DO: implement summation of ISO 8601 date and time components in x
     		x

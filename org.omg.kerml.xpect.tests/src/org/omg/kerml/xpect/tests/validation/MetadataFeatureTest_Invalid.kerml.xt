@@ -1,0 +1,76 @@
+//* 
+XPECT_SETUP org.omg.kerml.xpect.tests.validation.KerMLValidationTest
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library/Base.kerml"}
+		File {from ="/library/Links.kerml"}
+       	File {from ="/library/Occurrences.kerml"}
+       	File {from ="/library/Objects.kerml"}
+       	File {from ="/library/Performances.kerml"}
+       	File {from ="/library/ScalarValues.kerml"}
+       	File {from ="/library/BaseFunctions.kerml"}
+       	File {from ="/library/DataFunctions.kerml"}
+       	File {from ="/library/ScalarFunctions.kerml"}
+       	File {from ="/library/ControlFunctions.kerml"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library/Base.kerml"}
+				File {from ="/library/Links.kerml"}
+		       	File {from ="/library/Occurrences.kerml"}
+		       	File {from ="/library/Objects.kerml"}
+		       	File {from ="/library/Performances.kerml"}
+		       	File {from ="/library/ScalarValues.kerml"}
+		       	File {from ="/library/BaseFunctions.kerml"}
+		       	File {from ="/library/DataFunctions.kerml"}
+		       	File {from ="/library/ScalarFunctions.kerml"}
+		       	File {from ="/library/ControlFunctions.kerml"}
+			}
+		}
+	}
+END_SETUP 
+*/
+package MetadataFeatureTest {
+	import ScalarValues::*;
+	import ControlFunctions::collect;
+	
+	metaclass A {
+		feature x : Integer;
+		feature y : String;
+		feature z : Boolean;
+		feature u {
+			feature v : Integer;
+		}
+	}
+	
+	function f(x): Boolean;
+	
+	// XPECT errors --> "Must be model-level evaluable" at "filter f(A::y);"
+	filter f(A::y);
+	// XPECT errors --> "Must be model-level evaluable" at "filter ~A::z;"
+	filter ~A::z;
+	// XPECT errors --> "Must be model-level evaluable" at "filter A::y->collect {in x; x};"
+	filter A::y->collect {in x; x};
+	// XPECT errors --> "Must be model-level evaluable" at "filter A(1, "", false);"
+	filter A(1, "", false);
+	
+	feature bad;
+	
+	feature a {
+		@A {
+			// XPECT errors --> "Must be model-level evaluable" at "= ~3"
+			x = ~3;
+			y = "e";
+			// XPECT errors --> "Must be model-level evaluable" at "= f(A::y)"
+			z = f(A::y);
+			u {
+				v = 1;
+				// XPECT errors --> "Must redefine an owning-type feature" at "bad;"
+				bad;
+			}		
+		}
+	}
+	
+}

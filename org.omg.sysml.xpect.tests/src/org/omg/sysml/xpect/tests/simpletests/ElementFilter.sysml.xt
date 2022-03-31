@@ -41,8 +41,8 @@ package ElementFilterTest {
 	abstract attribute def PartInfo {
 		attribute isMandatory: ScalarValues::Boolean[0..1];
 	}
-	attribute def Safety :> PartInfo;
-	attribute def Security :> PartInfo {
+	metadata def Safety :> PartInfo;
+	metadata def Security :> PartInfo {
 		attribute :> isMandatory = false;
 	}
 	

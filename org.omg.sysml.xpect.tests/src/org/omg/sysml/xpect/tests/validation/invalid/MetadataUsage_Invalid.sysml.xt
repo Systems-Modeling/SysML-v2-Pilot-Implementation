@@ -38,10 +38,13 @@ package Test {
 	import ScalarValues::*;
 	import ControlFunctions::collect;
 	
-	attribute def A {
+	metadata def A {
 		attribute x : Integer;
 		attribute y : String;
 		attribute z : Boolean;
+		attribute u {
+			attribute v : Integer;
+		}
 	}
 	
 	calc def f(x): Boolean;
@@ -59,13 +62,20 @@ package Test {
 		enum e = "e";
 	}
 	
+	attribute bad;
+	
 	attribute a {
 		@A {
-			// XPECT errors --> "Must be model-level evaluable" at "~3"
+			// XPECT errors --> "Must be model-level evaluable" at "= ~3"
 			x = ~3;
 			y = E::e;
-			// XPECT errors --> "Must be model-level evaluable" at "f(A::y)"
-			z = f(A::y);			
+			// XPECT errors --> "Must be model-level evaluable" at "= f(A::y)"
+			z = f(A::y);
+			u {
+				v = 1;
+				// XPECT errors --> "Must redefine an owning-type feature" at "bad;"
+				bad;
+			}		
 		}
 	}
 	

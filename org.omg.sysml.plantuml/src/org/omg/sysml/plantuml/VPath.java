@@ -73,10 +73,6 @@ public class VPath extends VTraverser {
             return this.next;
         }
 
-        protected PC getPrev() {
-            return prev;
-        }
-
         protected PC(PC prev) {
             this.prev = prev;
             this.idTarget = prev.idTarget;
@@ -88,6 +84,10 @@ public class VPath extends VTraverser {
         }
 
         private boolean isSet;
+
+        protected void disablePrev() {
+            prev.isSet = true;
+        }
 
         public void setId(InheritKey ik, Element e, Integer id) {
             if (isSet) return;
@@ -134,7 +134,7 @@ public class VPath extends VTraverser {
         public PC leave() {
             if (!isMatching()) return this;
             if (unmatched == 0) {
-                return getPrev();
+                return prev;
             } else {
                 unmatched--;
             }
@@ -311,6 +311,13 @@ public class VPath extends VTraverser {
             super(prev);
             this.basePC = basePC;
             this.ioTarget = prev.ioTarget;
+        }
+
+        public void setId(InheritKey ik, Element e, Integer id) {
+            if (basePC == null) {
+                disablePrev();
+            }
+            super.setId(ik, e, id);
         }
 
         @Override

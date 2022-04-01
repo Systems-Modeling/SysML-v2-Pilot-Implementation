@@ -268,7 +268,7 @@ public class ModelLevelEvaluationTest extends SysMLInteractiveTest {
 	public void testFeatureReferenceEvaluation() throws Exception {
 		SysMLInteractive instance = getSysMLInteractiveInstance();
 		eval(instance, 
-				"attribute def Annotation { attribute a; } " +
+				"metadata def Annotation { attribute a; } " +
 		        "attribute x {@Annotation{a = 1;}}");
 		
 		assertEquals(1, evaluateIntegerValue(instance, 
@@ -280,7 +280,7 @@ public class ModelLevelEvaluationTest extends SysMLInteractiveTest {
 	public void testEnumeratedValueEvaluation() throws Exception {
 		SysMLInteractive instance = getSysMLInteractiveInstance();
 		eval(instance, 
-				"attribute def Annotation { attribute a; } " +
+				"metadata def Annotation { attribute a; } " +
 			    "enum def E { e; }" +
 		        "attribute x {@Annotation{a = E::e;}}");
 		
@@ -294,7 +294,7 @@ public class ModelLevelEvaluationTest extends SysMLInteractiveTest {
 	public void testSelfReferenceEvaluation() throws Exception {
 		SysMLInteractive instance = getSysMLInteractiveInstance();
 		eval(instance, 
-				"attribute def Annotation; " +
+				"metadata def Annotation; " +
 		        "attribute x {@Annotation;}");
 		
 		MetadataFeature feature = checkAnnotatingFeature(instance, "Annotation", "x");
@@ -305,7 +305,7 @@ public class ModelLevelEvaluationTest extends SysMLInteractiveTest {
 	public void testIsTypeEvaluation() throws Exception {
 		SysMLInteractive instance = getSysMLInteractiveInstance();
 		eval(instance, 
-				"attribute def Annotation { attribute a; attribute b; } " +
+				"metadata def Annotation { attribute a; attribute b; } " +
 			    "enum def E { e; }" +
 		        "attribute x {@Annotation{a = E::e; b = 2;}}");
 		
@@ -318,7 +318,7 @@ public class ModelLevelEvaluationTest extends SysMLInteractiveTest {
 	public void testSelfIsTypeEvaluation() throws Exception {
 		SysMLInteractive instance = getSysMLInteractiveInstance();
 		eval(instance, 
-				"attribute def Annotation; " +
+				"metadata def Annotation; " +
 				"attribute x {@Annotation;}");
 		
 		assertTrue(evaluateBooleanValue(instance, 

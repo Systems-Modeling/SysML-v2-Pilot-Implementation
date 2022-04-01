@@ -57,15 +57,19 @@ import org.eclipse.xtext.validation.Issue;
 import org.omg.kerml.xtext.KerMLStandaloneSetup;
 import org.omg.kerml.xtext.naming.KerMLQualifiedNameConverter;
 import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.RenderingUsage;
+import org.omg.sysml.lang.sysml.ResultExpressionMembership;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.ViewUsage;
 import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
 import org.omg.sysml.plantuml.SysML2PlantUMLLinkProvider;
 import org.omg.sysml.plantuml.SysML2PlantUMLSvc;
 import org.omg.sysml.util.SysMLUtil;
+import org.omg.sysml.util.TypeUtil;
 import org.omg.sysml.util.traversal.Traversal;
 import org.omg.sysml.util.traversal.facade.impl.ApiElementProcessingFacade;
 import org.omg.sysml.util.traversal.facade.impl.JsonElementProcessingFacade;
@@ -487,6 +491,34 @@ public class SysMLInteractive extends SysMLUtil {
 		getSysML2PlantUMLSvc().setGraphVizPath(path);
 	}
 	
+	public void evaluate(String name, String input) {
+		if (input != null && !input.isEmpty()) {
+			Element target = null;
+			if (name != null && !name.isEmpty()) {
+				target = this.resolve(name);
+				if (target == null) {
+					System.out.println("ERROR:Couldn't resolve reference to Element '" + name + "'");
+					return;
+				}
+			}
+			input = "calc{" + input + "}";
+			SysMLInteractiveResult result = this.eval(input, false);
+			if (result.hasErrors()) {
+				System.out.print(result);
+			} else {
+				Type calc = (Type)((Namespace)result.getRootElement()).getOwnedMember().get(0);
+				Expression expr = (Expression)TypeUtil.getFeatureByMembershipIn(calc, ResultExpressionMembership.class);
+				List<Element> elements = expr.evaluate(target);
+				if (elements != null) {
+					for (Element element: elements) {
+						System.out.print(SysMLInteractiveUtil.formatElement(element));
+					}
+				}
+				this.removeResource();
+			}
+		}
+	}
+	
 	public void run(String input) {
 		if (input != null && !input.isEmpty()) {
 			System.out.print(this.eval(input));
@@ -535,6 +567,17 @@ public class SysMLInteractive extends SysMLUtil {
 	        			} else if ("%view".equals(command)) {
 	        				if (!"".equals(argument)) {
 	        					System.out.print(this.view(argument));
+	        				}
+	        			} else if ("%eval".equals(command)) {
+	        				if (!"".equals(argument)) {
+	        					String name = null;
+	        					if (argument.startsWith("--target ") || argument.startsWith("--target=")) {
+		        					argument = argument.substring(9);
+		    	        			i = argument.indexOf(' ');
+		    	        			name = i == -1? argument: argument.substring(0, i);
+		    	        			argument = i == -1? null: argument.substring(i + 1).trim();
+	        					}
+	        					this.evaluate(name, argument);
 	        				}
 	        			} else {
 	        				System.out.println("ERROR:Invalid command '" + input + "'");

@@ -7,6 +7,11 @@ import java.util.stream.Collectors;
 
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
+import org.omg.sysml.lang.sysml.LiteralBoolean;
+import org.omg.sysml.lang.sysml.LiteralInfinity;
+import org.omg.sysml.lang.sysml.LiteralInteger;
+import org.omg.sysml.lang.sysml.LiteralRational;
+import org.omg.sysml.lang.sysml.LiteralString;
 import org.eclipse.emf.ecore.EClass;
 import org.omg.sysml.lang.sysml.CalculationUsage;
 import org.omg.sysml.lang.sysml.Membership;
@@ -31,7 +36,7 @@ public class SysMLInteractiveUtil {
 	
 	private static void formatElement(StringBuilder buffer, String indentation, Element element, String relationshipTag) {
 		String humanId = element.getHumanId();
-		String name = element.getName();
+		String name = nameOf(element);
 		buffer.append(indentation + 
 				relationshipTag + 
 				element.eClass().getName() + 
@@ -40,6 +45,15 @@ public class SysMLInteractiveUtil {
 				" (" + element.getIdentifier() + ")\n");
 	}
 	
+	public static String nameOf(Element element) {
+		return element instanceof LiteralBoolean? Boolean.valueOf(((LiteralBoolean)element).isValue()).toString():
+			   element instanceof LiteralString? ((LiteralString)element).getValue().toString():
+			   element instanceof LiteralInteger? Integer.valueOf(((LiteralInteger)element).getValue()).toString():
+			   element instanceof LiteralRational? Double.valueOf(((LiteralRational)element).getValue()).toString():
+			   element instanceof LiteralInfinity? "*":
+			   element.getName();
+	}
+
 	private static void formatExplicitElement(StringBuilder buffer, String indentation, Element element, Relationship relationship) {
 		formatElement(buffer, indentation, element, formatRelationship(relationship));
 	}

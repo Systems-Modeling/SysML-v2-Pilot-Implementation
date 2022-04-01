@@ -84,9 +84,8 @@ public class VPath extends VTraverser {
         }
 
         private boolean isSet;
-
-        protected void disablePrev() {
-            prev.isSet = true;
+        protected void disable() {
+            this.isSet = true;
         }
 
         public void setId(InheritKey ik, Element e, Integer id) {
@@ -314,10 +313,12 @@ public class VPath extends VTraverser {
         }
 
         public void setId(InheritKey ik, Element e, Integer id) {
+            // When we support item flow connection, we setId() if basePC is non-null.
             if (basePC == null) {
-                disablePrev();
+                super.setId(ik, e, id);
+            } else {
+                disable();
             }
-            super.setId(ik, e, id);
         }
 
         @Override
@@ -564,11 +565,6 @@ public class VPath extends VTraverser {
     }
 
     VPath() {
-    }
-
-    @Override
-    public String traverse(Namespace ns) {
-        return super.traverse(ns, false);
     }
 
     @Override

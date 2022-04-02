@@ -585,7 +585,11 @@ public abstract class Visitor extends SysMLSwitch<String> {
         addLink(ss, pr.rel, null);
 
         String desc = pr.getDescription();
-        if (!((desc == null) || (desc.isEmpty()))) {
+        if (desc == null) desc = "";
+        if (InheritKey.isDirectInherit(pr.ik)) {
+            desc = "^" + desc;
+        }
+        if (!desc.isEmpty()) {
             ss.append(": ");
             desc = desc.replace("\r", "").replace("\n", "\\n");
             ss.append(desc);

@@ -33,6 +33,7 @@ import org.omg.sysml.lang.sysml.Type;
 
 class InheritKey {
     public final Type[] keys;
+    private final boolean isDirect;
 
     private static boolean isBelonging(Type typ, Feature f) {
         if (typ.getOwnedFeature().contains(f)) return true;
@@ -77,6 +78,7 @@ class InheritKey {
         }
         return -1;
     }
+    
     private static int findKeyType(List<Namespace> ctx, Membership ref) {
         for (int i = ctx.size() - 1; i >=0; i--) {
             Namespace ns = ctx.get(i);
@@ -85,13 +87,6 @@ class InheritKey {
             if (isBelonging(typ, ref)) return i;
         }
         return -1;
-    }
-
-    private InheritKey(List<Type> inheritings, int size) {
-        List<Type> sublist = inheritings.subList(0, size);
-        Type[] keys = new Type[size];
-        keys = sublist.toArray(keys);
-        this.keys = keys;
     }
 
     private static void fill(Type[] keys, List<Namespace> ctx, List<Integer> inheritIdices, int i) {
@@ -107,6 +102,7 @@ class InheritKey {
         Type[] keys = new Type[i];
         fill(keys, ctx, inheritIdices, i);
         this.keys = keys;
+        this.isDirect = true;
     }
 
     private InheritKey(List<Namespace> ctx, List<Integer> inheritIdices, int i, Type tail) {
@@ -114,12 +110,14 @@ class InheritKey {
         fill(keys, ctx, inheritIdices, i);
         keys[i] = tail;
         this.keys = keys;
+        this.isDirect = false;
     }
 
     private InheritKey(Type tail) {
         Type[] keys = new Type[1];
         keys[0] = tail;
         this.keys = keys;
+        this.isDirect = false;
     }
 
     @Override
@@ -187,5 +185,10 @@ class InheritKey {
             // In the case that ik is in the form of [..., ^ow]
             return ik.keys[kLen - 1].equals(ctx.get(ctxSize - 1));
         }
+    }
+
+    public static boolean isDirectInherit(InheritKey ik) {
+        if (ik == null) return false;
+        return ik.isDirect;
     }
 }

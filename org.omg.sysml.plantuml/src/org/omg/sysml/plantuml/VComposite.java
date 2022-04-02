@@ -30,10 +30,11 @@ import java.util.Set;
 import org.omg.sysml.lang.sysml.Connector;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.MultiplicityRange;
+import org.omg.sysml.lang.sysml.FeatureDirectionKind;
 import org.omg.sysml.lang.sysml.PartDefinition;
 import org.omg.sysml.lang.sysml.PartUsage;
 import org.omg.sysml.lang.sysml.PortUsage;
+import org.omg.sysml.lang.sysml.ReferenceUsage;
 import org.omg.sysml.lang.sysml.Succession;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
@@ -156,7 +157,31 @@ public class VComposite extends VMixed {
     }
 
     private void addTypeSimple(Type typ) {
-        if (typ instanceof Usage) {
+        if (typ instanceof Feature) {
+            Feature f = (Feature) typ;
+            FeatureDirectionKind fdk = f.getDirection();
+            if (fdk != null) {
+                String name = extractTitleName(f);
+                if (name == null) return;
+
+                VComposite vc = new VComposite(this);
+                vc.traverse(f);
+                String ret = vc.getString();
+
+                if (ret.isEmpty()) {
+                    if (fdk == FeatureDirectionKind.OUT) {
+                        addPUMLLine(f, "portout ", name);
+                    } else {
+                        addPUMLLine(f, "portin ", name);
+                    }
+                } else {
+                    addPUMLLine(f, "rec usage ", name);
+                    vc.closeBlock();
+                }
+            } else {
+                if (!addType(typ, "usage ")) return;
+            }
+        } else if (typ instanceof Usage) {
             if (!addType(typ, "usage ")) return;
         } else {
             if (!addType(typ, "def ")) return;
@@ -165,16 +190,24 @@ public class VComposite extends VMixed {
     }
 
     @Override
+    public String caseReferenceUsage(ReferenceUsage ru) {
+        addTypeSimple(ru);
+        return "";
+    }
+
+    @Override
     public String caseType(Type typ) {
         addTypeSimple(typ);
         return "";
     }
 
+    /*
     @Override
-    public String caseMultiplicityRange(MultiplicityRange mr) {
+    public String caseMultiplicity(Multiplicity m) {
         // Do not show MultiplicityRange
         return "";
     }
+    */
 
     private VComposite(Visitor vt) {
         super(vt);

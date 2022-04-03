@@ -115,6 +115,15 @@ MetadataDefinition returns SysML::MetadataDefinition :
 	Definition
 ;
 
+PrefixMetadataMember returns SysML::Membership :
+	ownedRelatedElement += PrefixMetadataUsage // ownedMemberElement = PrefixMetadataUsage
+;
+
+PrefixMetadataUsage returns SysML::MetadataUsage :
+	ownedRelationship += MetadataTyping
+//	( ownedRelationship += MetadataBodyUsageMember )*
+;
+
 MetadataUsage returns SysML::MetadataUsage :
 	MetadataUsageKeyword MetadataFeatureDeclaration 
 	( 'about' ownedRelationship += Annotation 
@@ -124,7 +133,7 @@ MetadataUsage returns SysML::MetadataUsage :
 ;
 
 fragment MetadataFeatureDeclaration returns SysML::MetadataFeature :
-	( Identification DefinedByKeyword )? ownedRelationship += MetadataTyping
+	( Identification? DefinedByKeyword )? ownedRelationship += MetadataTyping
 ;
 
 MetadataTyping returns SysML::FeatureTyping :
@@ -155,6 +164,7 @@ MetadataBodyUsage returns SysML::ReferenceUsage :
 /* Packages */
 
 Package returns SysML::Package :
+	( ownedRelationship += PrefixMetadataMember )?
 	PackageDeclaration PackageBody 
 ;
 
@@ -245,7 +255,7 @@ enum VisibilityIndicator returns SysML::VisibilityKind:
 DefinitionElement returns SysML::Element :
 	  Package
 	| AnnotatingElement
-	| Dependency	  
+	| Dependency
 	| AttributeDefinition
 	| EnumerationDefinition
 	| OccurrenceDefinition
@@ -270,6 +280,7 @@ DefinitionElement returns SysML::Element :
 	| ViewDefinition
 	| ViewpointDefinition
 	| RenderingDefinition
+	| ExtendedDefinition
 ;
 	
 UsageElement returns SysML::Usage :
@@ -393,6 +404,7 @@ MultiplicityExpressionMember returns SysML::Membership :
 /* DEPENDENCIES */
 
 Dependency returns SysML::Dependency :
+	( ownedRelationship += PrefixMetadataMember )?
 	'dependency' ( Identification? 'from' )?
     client += [SysML::Element|QualifiedName] ( ',' client += [SysML::Element|QualifiedName] )* 'to'
     supplier += [SysML::Element|QualifiedName] ( ',' supplier += [SysML::Element|QualifiedName] )* ';'
@@ -402,8 +414,16 @@ Dependency returns SysML::Dependency :
 
 /* Definitions */
 
-fragment DefinitionPrefix returns SysML::Definition :
+fragment BasicDefinitionPrefix returns SysML::Definition :
 	isAbstract ?= 'abstract' | isVariation ?= 'variation'
+;
+
+fragment DefinitionExtensionKeyword returns SysML::Definition :
+	'#' ownedRelationship += PrefixMetadataMember
+;
+
+fragment DefinitionPrefix returns SysML::Definition :
+	BasicDefinitionPrefix? DefinitionExtensionKeyword?
 ;
 
 fragment Definition returns SysML::Definition :
@@ -469,9 +489,17 @@ fragment RefPrefix returns SysML::Usage :
 	( isEnd ?= 'end' )?	
 ;
 
-fragment UsagePrefix returns SysML::Usage :
+fragment BasicUsagePrefix returns SysML::Usage :
 	RefPrefix
 	( isReference ?= 'ref' )?
+;
+
+fragment UsageExtensionKeyword returns SysML::Usage :
+	'#' ownedRelationship += PrefixMetadataMember
+;
+
+fragment UsagePrefix returns SysML::Usage :
+	BasicUsagePrefix UsageExtensionKeyword?
 ;
 
 fragment Usage returns SysML::Usage :
@@ -573,6 +601,7 @@ NonOccurrenceUsageElement returns SysML::Usage :
 	| EnumerationUsage
 	| BindingConnector
 	| Succession
+	| ExtendedUsage
 ;
 
 OccurrenceUsageElement returns SysML::Usage :
@@ -640,6 +669,16 @@ VariantUsageElement returns SysML::Usage :
 	| BehaviorUsageElement
 ;
 
+/* EXTENSION */
+
+ExtendedDefinition returns SysML::Definition :
+	BasicDefinitionPrefix? DefinitionExtensionKeyword 'def' Definition
+;
+
+ExtendedUsage returns SysML::Usage :
+	BasicUsagePrefix UsageExtensionKeyword Usage
+;
+
 /* ATTRIBUTES */
 
 AttributeKeyword :
@@ -655,7 +694,7 @@ AttributeUsageKeyword :
 ;
 
 AttributeDefinition returns SysML::AttributeDefinition :
-	DefinitionPrefix? AttributeDefKeyword Definition
+	DefinitionPrefix AttributeDefKeyword Definition
 ;
 
 AttributeUsage returns SysML::AttributeUsage :
@@ -711,8 +750,9 @@ OccurrenceDefKeyword :
 ;
 
 fragment OccurrenceDefinitionPrefix returns SysML::OccurrenceDefinition :
-	DefinitionPrefix? 
+	BasicDefinitionPrefix?
 	( isIndividual ?= 'individual' ownedRelationship += LifeClassMembership )?
+	DefinitionExtensionKeyword?
 ;
 
 OccurrenceDefinition returns SysML::OccurrenceDefinition :
@@ -720,7 +760,8 @@ OccurrenceDefinition returns SysML::OccurrenceDefinition :
 ;
 
 IndividualDefinition returns SysML::OccurrenceDefinition :
-	DefinitionPrefix? isIndividual ?= 'individual' 'def' Definition
+	BasicDefinitionPrefix? isIndividual ?= 'individual' 
+	DefinitionExtensionKeyword? 'def' Definition
 	ownedRelationship += LifeClassMembership
 ;
 
@@ -739,10 +780,11 @@ OccurrenceUsageKeyword :
 ;
 
 fragment OccurrenceUsagePrefix returns SysML::OccurrenceUsage :
-	  UsagePrefix
+	  BasicUsagePrefix
 	  ( isIndividual ?= 'individual' )?
 	  ( portionKind = PortionKind
 	    ownedRelationship += PortioningFeatureMember )?
+	  UsageExtensionKeyword?
 ;
 
 OccurrenceUsage returns SysML::OccurrenceUsage :
@@ -750,14 +792,15 @@ OccurrenceUsage returns SysML::OccurrenceUsage :
 ;
 
 IndividualUsage returns SysML::OccurrenceUsage :
-	UsagePrefix isIndividual ?= 'individual' Usage
+	BasicUsagePrefix isIndividual ?= 'individual' 
+	UsageExtensionKeyword? Usage
 ;
 
 PortionUsage returns SysML::OccurrenceUsage :
-	UsagePrefix ( isIndividual ?= 'individual' )?
+	BasicUsagePrefix ( isIndividual ?= 'individual' )?
 	portionKind = PortionKind
 	ownedRelationship += PortioningFeatureMember
-	Usage
+	UsageExtensionKeyword? Usage
 ;
 
 enum PortionKind returns SysML::PortionKind :
@@ -864,7 +907,7 @@ PortDefKeyword :
 ;
 
 PortDefinition returns SysML::PortDefinition :
-	DefinitionPrefix? PortDefKeyword Definition
+	DefinitionPrefix PortDefKeyword Definition
 	ownedRelationship += ConjugatedPortDefinitionMember
 ;
 

@@ -201,14 +201,6 @@ public class VComposite extends VMixed {
         return "";
     }
 
-    /*
-    @Override
-    public String caseMultiplicity(Multiplicity m) {
-        // Do not show MultiplicityRange
-        return "";
-    }
-    */
-
     private VComposite(Visitor vt) {
         super(vt);
     }

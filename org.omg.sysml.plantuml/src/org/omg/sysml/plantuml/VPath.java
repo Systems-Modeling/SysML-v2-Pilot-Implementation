@@ -232,6 +232,15 @@ public class VPath extends VTraverser {
             return new PCFeatureChain(this);
         }
 
+        @Override
+        public void setId(InheritKey ik, Element e, Integer id) {
+            if (index < fcs.size() - 1) {
+                disable();
+            } else {
+                super.setId(ik, e, id);
+            }
+        }
+
         private PCFeatureChain(PCFeatureChain prev) {
             super(prev);
             this.fcs = prev.fcs;
@@ -312,6 +321,7 @@ public class VPath extends VTraverser {
             this.ioTarget = prev.ioTarget;
         }
 
+        @Override
         public void setId(InheritKey ik, Element e, Integer id) {
             // When we support item flow connection, we setId() if basePC is non-null.
             if (basePC == null) {

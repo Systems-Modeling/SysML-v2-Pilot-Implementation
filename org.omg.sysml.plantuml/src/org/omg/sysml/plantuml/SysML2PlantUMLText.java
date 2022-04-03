@@ -406,6 +406,7 @@ public class SysML2PlantUMLText {
                 vpath.visit(e);
             }
         }
+        vpath.init();
         for (EObject eObj : eObjs) {
             if (eObj instanceof Element) {
                 Element e = (Element) eObj;

@@ -48,6 +48,8 @@ import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.Subsetting;
 
 public class VPath extends VTraverser {
+    private boolean initialized;
+
 	// PC (PathContext) management. 
     private abstract class PC {
         private final Element idTarget;
@@ -88,15 +90,20 @@ public class VPath extends VTraverser {
             this.isSet = true;
         }
 
-        public void setId(InheritKey ik, Element e, Integer id) {
+        protected void setIdInternal(InheritKey ik, Element e, Integer id, boolean enable) {
             if (isSet) return;
             if (isTerminal()) return;
             if (!isMatching()) return;
             if (unmatched != 0) return;
-            if (match(e)) {
+            if (!match(e)) return;
+            if (enable) {
                 putPathIdMap(id, ik, idTarget);
-                isSet = true;
             }
+            isSet = true;
+        }
+
+        public void setId(InheritKey ik, Element e, Integer id) {
+            setIdInternal(ik, e, id, true);
         }
 
         private int unmatched;
@@ -235,9 +242,9 @@ public class VPath extends VTraverser {
         @Override
         public void setId(InheritKey ik, Element e, Integer id) {
             if (index < fcs.size() - 1) {
-                disable();
+                super.setIdInternal(ik, e, id, false);
             } else {
-                super.setId(ik, e, id);
+                super.setIdInternal(ik, e, id, true);
             }
         }
 
@@ -325,9 +332,9 @@ public class VPath extends VTraverser {
         public void setId(InheritKey ik, Element e, Integer id) {
             // When we support item flow connection, we setId() if basePC is non-null.
             if (basePC == null) {
-                super.setId(ik, e, id);
+                super.setIdInternal(ik, e, id, true);
             } else {
-                disable();
+                super.setIdInternal(ik, e, id, false);
             }
         }
 
@@ -531,6 +538,7 @@ public class VPath extends VTraverser {
     }
 
     public void enter(Namespace ns) {
+        if (!initialized) return;
         for (RefPC c: current) {
             c.enter(ns);
         }
@@ -538,6 +546,7 @@ public class VPath extends VTraverser {
 
     public Collection<Element> rest() {
         Set<Element> ret = new HashSet<Element>(current.size());
+        if (!initialized) return ret;
         for (RefPC c: current) {
             Element e = c.requiredElement();
             if (e != null) ret.add(e);
@@ -546,6 +555,7 @@ public class VPath extends VTraverser {
     }
 
     public void leave(Namespace ns) {
+        if (!initialized) return;
         int size = current.size();
         RefPC[] cs = new RefPC[size];
         cs = current.toArray(cs);
@@ -572,6 +582,10 @@ public class VPath extends VTraverser {
 
     public Set<Element> getPaths(Integer id) {
     	return pathIdRevMap.get(id);
+    }
+
+    public void init() {
+        initialized = true;
     }
 
     VPath() {

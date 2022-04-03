@@ -1,6 +1,6 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2019, 2020 Model Driven Solutions, Inc.
+ * Copyright (c) 2019, 2020, 2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -24,6 +24,7 @@
 
 package org.omg.sysml.util;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -33,7 +34,8 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.xtext.resource.DerivedStateAwareResource;
 import org.omg.sysml.adapter.ElementAdapter;
 import org.omg.sysml.adapter.ElementAdapterFactory;
-import org.omg.sysml.lang.sysml.AnnotatingFeature;
+import org.omg.sysml.lang.sysml.MetadataFeature;
+import org.omg.sysml.lang.sysml.AnnotatingElement;
 import org.omg.sysml.lang.sysml.Annotation;
 import org.omg.sysml.lang.sysml.Comment;
 import org.omg.sysml.lang.sysml.Element;
@@ -120,30 +122,46 @@ public class ElementUtil {
 	 * annotating the element (if any).
 	 */
 	public static String getDocumentationTextFor(Element element) {
-		return element.getDocumentationComment().stream().
+		return element.getDocumentation().stream().
 				map(Comment::getBody).
 				findFirst().orElse(null);
 	}
 	
 	// Annotation
 	
+	public static List<Element> getAnnotatedElementOf(AnnotatingElement annotatingElement) {
+		List<Element> annotatedElements = new ArrayList<>();
+		List<Annotation> annotations = annotatingElement.getAnnotation();
+		if (annotations.isEmpty()) {
+			Element owningNamespace = annotatingElement.getOwningNamespace();
+			if (owningNamespace != null) {
+				annotatedElements.add(owningNamespace);
+			}
+		} else {
+			annotations.stream().
+				map(Annotation::getAnnotatedElement).
+				filter(e->e != null).
+				forEachOrdered(annotatedElements::add);
+		}
+		return annotatedElements;
+	}
+	
 	/**
-	 * Get all the AnnotatingFeatures relevant to this Element. By default, these are just those that
-	 * are related to the Element by ownedAnnotations.
+	 * Get all the MetadataFeatures relevant to this Element.
 	 */
-	public static List<AnnotatingFeature> getAllAnnotatingFeaturesOf(Element element) {
-		List<AnnotatingFeature> annotatingFeatures =  element.getOwnedAnnotation().stream().
+	public static List<MetadataFeature> getAllMetadataFeaturesOf(Element element) {
+		List<MetadataFeature> annotatingFeatures =  element.getOwnedAnnotation().stream().
 				map(Annotation::getAnnotatingElement).
-				filter(AnnotatingFeature.class::isInstance).
-				map(AnnotatingFeature.class::cast).
+				filter(MetadataFeature.class::isInstance).
+				map(MetadataFeature.class::cast).
 				collect(Collectors.toList());
 		if (element instanceof Namespace) {
 			/**
-			 * Include AnnotatingFeatures that are members of a Namespace.
+			 * Include MetadataFeatures that are members of a Namespace.
 			 */
 			(((Namespace)element).getOwnedMember()).stream().
-				filter(AnnotatingFeature.class::isInstance).
-				map(AnnotatingFeature.class::cast).
+				filter(MetadataFeature.class::isInstance).
+				map(MetadataFeature.class::cast).
 				filter(feature->feature.getAnnotatedElement().contains(element)).
 				forEach(annotatingFeatures::add);
 			}

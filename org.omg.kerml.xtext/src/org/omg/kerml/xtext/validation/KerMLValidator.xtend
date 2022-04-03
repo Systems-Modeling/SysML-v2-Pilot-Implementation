@@ -43,7 +43,6 @@ import org.omg.sysml.lang.sysml.FeatureReferenceExpression
 import org.omg.sysml.lang.sysml.LiteralExpression
 import org.omg.sysml.lang.sysml.NullExpression
 import org.omg.sysml.lang.sysml.ElementFilterMembership
-import org.omg.sysml.lang.sysml.MetadataFeatureValue
 import org.omg.sysml.lang.sysml.ItemFlow
 import org.omg.sysml.util.TypeUtil
 import org.omg.sysml.util.ElementUtil
@@ -63,6 +62,7 @@ import org.omg.sysml.lang.sysml.LiteralInteger
 import org.omg.sysml.lang.sysml.ItemFlowFeature
 import org.omg.sysml.lang.sysml.Multiplicity
 import org.omg.sysml.lang.sysml.FeatureChainExpression
+import org.omg.sysml.lang.sysml.MetadataFeature
 
 /**
  * This class contains custom validation rules. 
@@ -102,8 +102,10 @@ class KerMLValidator extends AbstractKerMLValidator {
 	public static val INVALID_IMPORT__NAME_NOT_RESOLVED_MSG = "Couldn't resolve reference to Element '{name}'."
 	public static val INVALID_ELEMENT_FILTER_MEMBERSHIP__NOT_MODEL_LEVEL = "Invalid ElementFilterMembership - Not model-level"
 	public static val INVALID_ELEMENT_FILTER_MEMBERSHIP__NOT_MODEL_LEVEL_MSG = "Must be model-level evaluable"
-	public static val INVALID_METADATA_FEATURE_VALUE__NOT_MODEL_LEVEL = "Invalid MetadataFeatureValue - Not model-level"
-	public static val INVALID_METADATA_FEATURE_VALUE__NOT_MODEL_LEVEL_MSG = "Must be model-level evaluable"
+	public static val INVALID_METADATA_FEATURE__BAD_REDEFINITION = "Invalid MetadataFeature - Bad redefinition"
+	public static val INVALID_METADATA_FEATURE__BAD_REDEFINITION_MSG = "Must redefine an owning-type feature"
+	public static val INVALID_METADATA_FEATURE__FEATURE_VALUE_NOT_MODEL_LEVEL = "Invalid MetadataFeature - FeatureValue not model-level"
+	public static val INVALID_METADATA_FEATURE__FEATURE_VALUE_NOT_MODEL_LEVEL_MSG = "Must be model-level evaluable"
 	public static val INVALID_FEATURE_CHAINING__INVALID_FEATURE = "Invalid FeatureChaining - Invalid feature"
 	public static val INVALID_FEATURE_CHAINING__INVALID_FEATURE_MSG = "Must be a valid feature"
 	public static val INVALID_FEATURE_REFERENCE_EXPRESSION__INVALID_FEATURE = "Invalid FeatureReferenceExpression - Invalid feature"
@@ -192,11 +194,31 @@ class KerMLValidator extends AbstractKerMLValidator {
 	}
 	
 	@Check
-	def checkMetadataFeatureValue(MetadataFeatureValue mfv) {
-		val value = mfv.metadataValue
-		if (value !== null && !value.isModelLevelEvaluable) {
-			error(INVALID_METADATA_FEATURE_VALUE__NOT_MODEL_LEVEL_MSG, mfv, SysMLPackage.eINSTANCE.metadataFeatureValue_MetadataValue, INVALID_METADATA_FEATURE_VALUE__NOT_MODEL_LEVEL)
+	def checkMetadataFeature(MetadataFeature mf) {
+		checkMetadataBody(mf)
+	}
+	
+	def void checkMetadataBody(Type t) {
+		for (f: t.ownedFeature) {
+			checkMetadataBodyFeature(f)
 		}
+	}
+	
+	def checkMetadataBodyFeature(Feature f) {
+		// Must redefine a feature owned by a supertype of its owner.
+		if (!f.ownedRedefinition.map[redefinedFeature?.owningType].exists[t | t !== null && TypeUtil.conforms(f.owningType, t)]) {
+			error(INVALID_METADATA_FEATURE__BAD_REDEFINITION_MSG, f, null, INVALID_METADATA_FEATURE__BAD_REDEFINITION)
+		}
+		
+		// Feature value, if any, must be model-level evaluable.
+		val fv = FeatureUtil.getValuationFor(f)
+		val value = fv?.value
+		if (value !== null && !value.isModelLevelEvaluable) {
+			error(INVALID_METADATA_FEATURE__FEATURE_VALUE_NOT_MODEL_LEVEL_MSG, fv, SysMLPackage.eINSTANCE.featureValue_Value, INVALID_METADATA_FEATURE__FEATURE_VALUE_NOT_MODEL_LEVEL)
+		}
+		
+		// Must have a valid metadata body.
+		checkMetadataBody(f)		
 	}
 	
 	@Check

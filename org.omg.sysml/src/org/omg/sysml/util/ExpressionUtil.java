@@ -91,7 +91,7 @@ public class ExpressionUtil {
 			return false;
 		} else {
 			List<Feature> annotatingFeatures = new ArrayList<>(); 
-			annotatingFeatures.addAll(ElementUtil.getAllAnnotatingFeaturesOf(element));
+			annotatingFeatures.addAll(ElementUtil.getAllMetadataFeaturesOf(element));
 			Feature metaclassFeature = getMetaclassFeatureFor(element);
 			if (metaclassFeature != null) {
 				annotatingFeatures.add(metaclassFeature);

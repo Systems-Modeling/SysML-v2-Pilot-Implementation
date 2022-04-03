@@ -37,14 +37,13 @@ import org.eclipse.emf.ecore.EObject;
  * else owningNamespace.nameOf(self) endif
  * ownedElement = ownedRelationship.ownedRelatedElement
  * owner = owningRelationship.owningRelatedElement
- * documentationComment = documentation.documentingComment
  * qualifiedName =
  *     if owningNamespace = null then null
  *     else if owningNamespace.owner = null then escapedName()
  *     else if owningNamespace.qualifiedName = null then null
  *     else owningNamespace.qualifiedName + "::" + escapedName()
  *     endif endif endif
- * documentation = ownedAnnotation->selectByKind(Documentation)
+ * documentation = ownedElement->selectByKind(Documentation)
  * ownedAnnotation = ownedRelationship->selectByKind(Annotation)->
  *     select(a | a.annotatedElement = self)
  * effectiveName()
@@ -64,8 +63,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwnedElement <em>Owned Element</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getDocumentation <em>Documentation</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwnedAnnotation <em>Owned Annotation</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Element#getDocumentationComment <em>Documentation Comment</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwnedTextualRepresentation <em>Owned Textual Representation</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Element#getTextualRepresentation <em>Textual Representation</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getQualifiedName <em>Qualified Name</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getEffectiveName <em>Effective Name</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getAliasId <em>Alias Id</em>}</li>
@@ -201,52 +199,6 @@ public interface Element extends EObject {
 	 * @generated
 	 */
 	EList<Element> getOwnedElement();
-
-	/**
-	 * Returns the value of the '<em><b>Documentation Comment</b></em>' reference list.
-	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Comment}.
-	 * <p>
-	 * This feature subsets the following features:
-	 * </p>
-	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Element#getOwnedElement() <em>Owned Element</em>}'</li>
-	 * </ul>
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * <p>The Comments that document this Element, derived as the <code>documentingComments</code> of the <code>documentation</code> of the Element.</p>
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Documentation Comment</em>' reference list.
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getElement_DocumentationComment()
-	 * @model transient="true" volatile="true" derived="true"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='documentedElement'"
-	 *        annotation="subsets"
-	 * @generated
-	 */
-	EList<Comment> getDocumentationComment();
-
-	/**
-	 * Returns the value of the '<em><b>Owned Textual Representation</b></em>' reference list.
-	 * The list contents are of type {@link org.omg.sysml.lang.sysml.TextualRepresentation}.
-	 * <p>
-	 * This feature subsets the following features:
-	 * </p>
-	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Element#getOwnedElement() <em>Owned Element</em>}'</li>
-	 * </ul>
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * <p>The <code>textualRepresentations</code> that are <code>ownedElements</code> of this Element.</p>
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Owned Textual Representation</em>' reference list.
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getElement_OwnedTextualRepresentation()
-	 * @model transient="true" volatile="true" derived="true" ordered="false"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='owningRepresentedElement'"
-	 *        annotation="subsets"
-	 * @generated
-	 */
-	EList<TextualRepresentation> getOwnedTextualRepresentation();
 
 	/**
 	 * Returns the value of the '<em><b>Qualified Name</b></em>' attribute.
@@ -460,12 +412,12 @@ public interface Element extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Documentation</b></em>' reference list.
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Documentation}.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Documentation#getOwningDocumentedElement <em>Owning Documented Element</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Documentation#getDocumentedElement <em>Documented Element</em>}'.
 	 * <p>
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Element#getOwnedAnnotation() <em>Owned Annotation</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Element#getOwnedElement() <em>Owned Element</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -474,12 +426,12 @@ public interface Element extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>ownedAnnotations</code> of this Element that are Documentation, for which the Element is the <code>annotatedElement</code>.</p>
+	 * <p>The Documentation owned by this Element.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Documentation</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getElement_Documentation()
-	 * @see org.omg.sysml.lang.sysml.Documentation#getOwningDocumentedElement
-	 * @model opposite="owningDocumentedElement" transient="true" volatile="true" derived="true"
+	 * @see org.omg.sysml.lang.sysml.Documentation#getDocumentedElement
+	 * @model opposite="documentedElement" transient="true" volatile="true" derived="true"
 	 *        annotation="subsets"
 	 * @generated
 	 */
@@ -496,10 +448,6 @@ public interface Element extends EObject {
 	 *   <li>'{@link org.omg.sysml.lang.sysml.Element#getOwnedRelationship() <em>Owned Relationship</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Owned Annotation</em>' reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * <p>The <code>ownedRelationships</code> of this Element that are Annotations, for which this Element is the <code>annotatedElement</code>.</code>
@@ -512,6 +460,30 @@ public interface Element extends EObject {
 	 * @generated
 	 */
 	EList<Annotation> getOwnedAnnotation();
+
+	/**
+	 * Returns the value of the '<em><b>Textual Representation</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.TextualRepresentation}.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.TextualRepresentation#getRepresentedElement <em>Represented Element</em>}'.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Element#getOwnedElement() <em>Owned Element</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The <code>textualRepresentations</code> that annotate this Element.</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Textual Representation</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getElement_TextualRepresentation()
+	 * @see org.omg.sysml.lang.sysml.TextualRepresentation#getRepresentedElement
+	 * @model opposite="representedElement" transient="true" volatile="true" derived="true"
+	 *        annotation="subsets"
+	 * @generated
+	 */
+	EList<TextualRepresentation> getTextualRepresentation();
 
 	/**
 	 * <!-- begin-user-doc -->

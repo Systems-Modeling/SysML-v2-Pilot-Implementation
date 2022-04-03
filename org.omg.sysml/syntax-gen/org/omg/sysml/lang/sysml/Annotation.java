@@ -37,9 +37,9 @@ package org.omg.sysml.lang.sysml;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.Annotation#getAnnotatingElement <em>Annotating Element</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Annotation#getAnnotatedElement <em>Annotated Element</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Annotation#getOwningAnnotatedElement <em>Owning Annotated Element</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Annotation#getAnnotatingElement <em>Annotating Element</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getAnnotation()
@@ -127,11 +127,6 @@ public interface Annotation extends Relationship {
 	 * </p>
 	 * <ul>
 	 *   <li>'{@link org.omg.sysml.lang.sysml.Annotation#getAnnotatedElement() <em>Annotated Element</em>}'</li>
-	 * </ul>
-	 * <p>
-	 * This feature redefines the following features:
-	 * </p>
-	 * <ul>
 	 *   <li>'{@link org.omg.sysml.lang.sysml.Relationship#getOwningRelatedElement() <em>Owning Related Element</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
@@ -144,7 +139,6 @@ public interface Annotation extends Relationship {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getAnnotation_OwningAnnotatedElement()
 	 * @see org.omg.sysml.lang.sysml.Element#getOwnedAnnotation
 	 * @model opposite="ownedAnnotation" transient="true" volatile="true" derived="true" ordered="false"
-	 *        annotation="redefines"
 	 *        annotation="subsets"
 	 * @generated
 	 */

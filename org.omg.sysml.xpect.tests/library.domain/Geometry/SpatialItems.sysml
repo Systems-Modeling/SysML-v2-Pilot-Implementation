@@ -14,20 +14,20 @@ package SpatialItems {
 	private import ControlFunctions::forAll;
 	
 	/**
-	 * A SpatialItem is an Item with a three dimensional spatial extent that also acts as a SpatialFrame of reference.
+	 * A SpatialItem is an Item with a three-dimensional spatial extent that also acts as a SpatialFrame of reference.
 	 */
 	item def SpatialItem :> SpatialFrame {
-		item :>> self : SpatialItem;
+		ref item :>> self : SpatialItem;
 		
 		/**
-		 * A local Clock to be used as the corresponding time reference within this SpatialItem
-		 * and any componentItems. By default this is the global defaultClock.
+		 * A local Clock to be used as the corresponding time reference within this SpatialItem. 
+		 * By default this is the global defaultClock.
 		 */
-		item localClock : Clock[1] default Time::defaultClock;
+		ref item localClock : Clock[1] default Time::defaultClock;
 		
 		/**
-		 * The VectorMeasurementReference to be used as the measurement reference for position and displacement
-		 * vector values relative to this SpatialItem.
+		 * The three-dimensional VectorMeasurementReference to be used as the measurement reference for position 
+		 * and displacement vector values relative to this SpatialItem.
 		 */
 		attribute coordinateFrame : VectorMeasurementReference[1] default Cartesian3dSpatialCoordinateSystem() {
 			attribute :>> dimensions = 3;
@@ -36,7 +36,7 @@ package SpatialItems {
 		/**
 		 * The Point at the origin of the coordinateFrame of this SpatialItem.
 		 */
-		item originPoint : Point :> spaceShots;
+		item originPoint : Point[1] :> spaceShots;
 		
 		/**
 		 * The CurrentPositionOf the originPoint must always be a zero vector.
@@ -47,12 +47,14 @@ package SpatialItems {
 	}
 	
 	/**
-	 * A CompoundSpatialItem is a SpatialItem that is a union of a collection of component SpatialItems.
+	 * A CompoundSpatialItem is a SpatialItem that is a spacial union of a collection of component SpatialItems.
 	 */
 	item def CompoundSpatialItem :> SpatialItem {
 		
 		/**
-		 * The composite SpatialItems that together make up this CompoundSpatialItem.
+		 * The composite SpatialItems that together make up this CompoundSpatialItem. 
+		 * The coordinateFrames of the compositeItems are nested in the coordinateFrame of the CompoundSpatialItem, 
+		 * and, by default, they have the same localClock as the CompoundSpacialItem.
 		 */
 		item componentItems : SpatialItem[0..*] ordered :> subitems {
 			item nestedLocalClock :>> localClock default localClock;

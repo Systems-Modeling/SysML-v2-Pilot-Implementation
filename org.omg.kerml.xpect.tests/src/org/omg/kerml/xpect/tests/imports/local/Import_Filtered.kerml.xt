@@ -24,10 +24,10 @@ END_SETUP
 */
 
 package Import_Filtered {
-	datatype Safety {
+	metaclass Safety {
 		feature isMandatory: ScalarValues::Boolean[0..1];
 	}
-	datatype Security;
+	metaclass Security;
 	
 	classifier vehicle1_c1 {
 		classifier interior {

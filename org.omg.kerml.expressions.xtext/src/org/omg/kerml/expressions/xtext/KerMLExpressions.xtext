@@ -1,6 +1,6 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2018, 2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2018-2022 Model Driven Solutions, Inc.
  * Copyright (c) 2018 IncQuery Labs Ltd.
  * Copyright (c) 2019 Maplesoft (Waterloo Maple, Inc.)
  * Copyright (c) 2019 Mgnite Inc.
@@ -15,7 +15,7 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Lesser General Public License for more details.
  *
- * You should have received a copy of theGNU Lesser General Public License
+ * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  *
  * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
@@ -434,7 +434,7 @@ terminal STRING_VALUE returns Ecore::EString:
 terminal REGULAR_COMMENT:
 	'/*' !('*') ->'*/';
 
-terminal DOCUMENTATION_COMMENT:
+terminal PREFIX_COMMENT:
 	'/**'->'*/';
 
 terminal ML_NOTE:

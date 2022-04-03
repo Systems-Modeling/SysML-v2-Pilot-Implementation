@@ -1,6 +1,7 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation, PlantUML Visualization
  * Copyright (c) 2021-2022 Mgnite Inc.
+ * Copyright (c) 2022 Model Driven Solutions, Inc.
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -19,6 +20,7 @@
  * 
  * Contributors:
  *  Hisashi Miyashita, Mgnite Inc.
+ *  Ed Seidewitz, MDS
  * 
  *****************************************************************************/
 
@@ -26,11 +28,12 @@ package org.omg.sysml.plantuml;
 
 import java.util.List;
 
-import org.omg.sysml.lang.sysml.AnnotatingFeature;
-import org.omg.sysml.lang.sysml.DataType;
 import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.FeatureValue;
+import org.omg.sysml.lang.sysml.Metaclass;
 import org.omg.sysml.lang.sysml.MetadataFeature;
-import org.omg.sysml.lang.sysml.MetadataFeatureValue;
+import org.omg.sysml.util.FeatureUtil;
 
 public class VMetadata extends Visitor {
     public VMetadata(Visitor v) {
@@ -39,7 +42,7 @@ public class VMetadata extends Visitor {
     
     private final String metadataTitle = "«metadata»";
 
-    private void addAnnotatingFeatureInternal(AnnotatingFeature af) {
+    private void addAnnotatingFeatureInternal(MetadataFeature af) {
         if (checkId(af)) return;
         append("note as ");
         addIdStr(af, true);
@@ -47,17 +50,17 @@ public class VMetadata extends Visitor {
 
         int maxWidth = metadataTitle.length() + 1;
         StringBuilder sb = new StringBuilder();
-        for (MetadataFeature mf: af.getOwnedMetadata()) {
+        for (Feature mf: af.getOwnedFeature()) {
             int sLen = sb.length();
             String name = getFeatureChainName(mf);
             if (name == null) {
                 sb.append(getText(mf));
             } else {
                 sb.append(name);
-                MetadataFeatureValue mfv = mf.getMetadataFeatureValue();
+                FeatureValue mfv = FeatureUtil.getValuationFor(mf);
                 if (mfv == null) continue;
                 sb.append(" = ");
-                sb.append(getText(mfv.getMetadataValue()));
+                sb.append(getText(mfv.getValue()));
             }
             int eLen = sb.length();
             int width = eLen - sLen;
@@ -75,7 +78,7 @@ public class VMetadata extends Visitor {
         append("\"\"");
         addLink(af, metadataTitle);
         append('\n');
-        DataType dt = af.getMetadataType();
+        Metaclass dt = af.getMetaclass();
         if (dt != null) {
             String name = dt.getEffectiveName();
             if (name != null) {
@@ -96,7 +99,7 @@ public class VMetadata extends Visitor {
         append("end note\n");
     }
 
-	public void addAnnotatingFeature(AnnotatingFeature af) {
+	public void addAnnotatingFeature(MetadataFeature af) {
         addAnnotatingFeatureInternal(af);
         List<Element> es = af.getAnnotatedElement();
         for (Element e: es) {
@@ -104,7 +107,7 @@ public class VMetadata extends Visitor {
         }
     }
 
-	public void addAnnotatingFeature(AnnotatingFeature af, Element annotatedElement) {
+	public void addAnnotatingFeature(MetadataFeature af, Element annotatedElement) {
         addAnnotatingFeatureInternal(af);
         if (annotatedElement != null) {
         	addPRelation(null, af, annotatedElement, af, null);

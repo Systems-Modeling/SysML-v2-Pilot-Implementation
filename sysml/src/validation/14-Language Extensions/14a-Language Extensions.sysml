@@ -11,7 +11,7 @@ package '14a-Language Extensions' {
 		
 		// Cannot currently be restricted to apply only to
 		// a specific metaclass.
-		attribute def Classified {
+		metadata def Classified {
 			attribute classificationLevel : ClassificationLevel[1];
 		}
 	}

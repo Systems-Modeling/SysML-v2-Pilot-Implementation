@@ -64,7 +64,7 @@ package '14c-Language-Extensions' {
 			NotApproved;
 		}
 		
-		attribute def StatusHolder {
+		metadata def StatusHolder {
 			status: Status;
 		}
 		

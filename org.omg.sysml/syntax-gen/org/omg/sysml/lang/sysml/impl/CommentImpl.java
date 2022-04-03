@@ -38,12 +38,33 @@ import org.omg.sysml.util.ElementUtil;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.CommentImpl#getLocale <em>Locale</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.CommentImpl#getBody <em>Body</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class CommentImpl extends AnnotatingElementImpl implements Comment {
+	/**
+	 * The default value of the '{@link #getLocale() <em>Locale</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLocale()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String LOCALE_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getLocale() <em>Locale</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLocale()
+	 * @generated
+	 * @ordered
+	 */
+	protected String locale = LOCALE_EDEFAULT;
+
 	/**
 	 * The default value of the '{@link #getBody() <em>Body</em>}' attribute. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
@@ -79,6 +100,29 @@ public class CommentImpl extends AnnotatingElementImpl implements Comment {
 	@Override
 	protected EClass eStaticClass() {
 		return SysMLPackage.Literals.COMMENT;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String getLocale() {
+		return locale;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setLocale(String newLocale) {
+		String oldLocale = locale;
+		locale = newLocale;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.COMMENT__LOCALE, oldLocale, locale));
 	}
 
 	/**
@@ -122,6 +166,8 @@ public class CommentImpl extends AnnotatingElementImpl implements Comment {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case SysMLPackage.COMMENT__LOCALE:
+				return getLocale();
 			case SysMLPackage.COMMENT__BODY:
 				return getBody();
 		}
@@ -135,6 +181,9 @@ public class CommentImpl extends AnnotatingElementImpl implements Comment {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case SysMLPackage.COMMENT__LOCALE:
+				setLocale((String)newValue);
+				return;
 			case SysMLPackage.COMMENT__BODY:
 				setBody((String)newValue);
 				return;
@@ -149,6 +198,9 @@ public class CommentImpl extends AnnotatingElementImpl implements Comment {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case SysMLPackage.COMMENT__LOCALE:
+				setLocale(LOCALE_EDEFAULT);
+				return;
 			case SysMLPackage.COMMENT__BODY:
 				setBody(BODY_EDEFAULT);
 				return;
@@ -163,6 +215,8 @@ public class CommentImpl extends AnnotatingElementImpl implements Comment {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case SysMLPackage.COMMENT__LOCALE:
+				return LOCALE_EDEFAULT == null ? locale != null : !LOCALE_EDEFAULT.equals(locale);
 			case SysMLPackage.COMMENT__BODY:
 				return BODY_EDEFAULT == null ? body != null : !BODY_EDEFAULT.equals(body);
 		}
@@ -178,7 +232,9 @@ public class CommentImpl extends AnnotatingElementImpl implements Comment {
 		if (eIsProxy()) return super.toString();
 
 		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (body: ");
+		result.append(" (locale: ");
+		result.append(locale);
+		result.append(", body: ");
 		result.append(body);
 		result.append(')');
 		return result.toString();

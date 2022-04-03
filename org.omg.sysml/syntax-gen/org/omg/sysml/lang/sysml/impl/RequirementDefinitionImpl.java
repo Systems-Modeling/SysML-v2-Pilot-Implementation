@@ -210,7 +210,7 @@ public class RequirementDefinitionImpl extends ConstraintDefinitionImpl implemen
 	@Override
 	public EList<String> getText() {
 		EList<String> text = new NonNotifyingEObjectEList<>(String.class, this, SysMLPackage.REQUIREMENT_DEFINITION__TEXT);
-		getDocumentationComment().stream().map(Comment::getBody).forEachOrdered(text::add);
+		getDocumentation().stream().map(Comment::getBody).forEachOrdered(text::add);
 		return text;
 	}
 	

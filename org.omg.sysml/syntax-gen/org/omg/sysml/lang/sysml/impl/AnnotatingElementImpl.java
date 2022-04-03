@@ -37,6 +37,7 @@ import org.omg.sysml.lang.sysml.AnnotatingElement;
 import org.omg.sysml.lang.sysml.Annotation;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.util.ElementUtil;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
 
 /**
@@ -47,8 +48,8 @@ import org.omg.sysml.util.NonNotifyingEObjectEList;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.AnnotatingElementImpl#getAnnotatedElement <em>Annotated Element</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.AnnotatingElementImpl#getAnnotation <em>Annotation</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.AnnotatingElementImpl#getAnnotatedElement <em>Annotated Element</em>}</li>
  * </ul>
  *
  * @generated
@@ -91,7 +92,7 @@ public class AnnotatingElementImpl extends ElementImpl implements AnnotatingElem
 	@Override
 	public EList<Element> getAnnotatedElement() {
 		EList<Element> annotatedElements = new NonNotifyingEObjectEList<>(Element.class, this, SysMLPackage.ANNOTATING_ELEMENT__ANNOTATED_ELEMENT);
-		getAnnotation().stream().map(Annotation::getAnnotatedElement).forEachOrdered(annotatedElements::add);
+		annotatedElements.addAll(ElementUtil.getAnnotatedElementOf(this));
 		return annotatedElements;
 	}
 	
@@ -145,10 +146,10 @@ public class AnnotatingElementImpl extends ElementImpl implements AnnotatingElem
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case SysMLPackage.ANNOTATING_ELEMENT__ANNOTATED_ELEMENT:
-				return getAnnotatedElement();
 			case SysMLPackage.ANNOTATING_ELEMENT__ANNOTATION:
 				return getAnnotation();
+			case SysMLPackage.ANNOTATING_ELEMENT__ANNOTATED_ELEMENT:
+				return getAnnotatedElement();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -162,13 +163,13 @@ public class AnnotatingElementImpl extends ElementImpl implements AnnotatingElem
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case SysMLPackage.ANNOTATING_ELEMENT__ANNOTATED_ELEMENT:
-				getAnnotatedElement().clear();
-				getAnnotatedElement().addAll((Collection<? extends Element>)newValue);
-				return;
 			case SysMLPackage.ANNOTATING_ELEMENT__ANNOTATION:
 				getAnnotation().clear();
 				getAnnotation().addAll((Collection<? extends Annotation>)newValue);
+				return;
+			case SysMLPackage.ANNOTATING_ELEMENT__ANNOTATED_ELEMENT:
+				getAnnotatedElement().clear();
+				getAnnotatedElement().addAll((Collection<? extends Element>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -182,11 +183,11 @@ public class AnnotatingElementImpl extends ElementImpl implements AnnotatingElem
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.ANNOTATING_ELEMENT__ANNOTATED_ELEMENT:
-				getAnnotatedElement().clear();
-				return;
 			case SysMLPackage.ANNOTATING_ELEMENT__ANNOTATION:
 				getAnnotation().clear();
+				return;
+			case SysMLPackage.ANNOTATING_ELEMENT__ANNOTATED_ELEMENT:
+				getAnnotatedElement().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -200,10 +201,10 @@ public class AnnotatingElementImpl extends ElementImpl implements AnnotatingElem
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.ANNOTATING_ELEMENT__ANNOTATED_ELEMENT:
-				return !getAnnotatedElement().isEmpty();
 			case SysMLPackage.ANNOTATING_ELEMENT__ANNOTATION:
 				return annotation != null && !annotation.isEmpty();
+			case SysMLPackage.ANNOTATING_ELEMENT__ANNOTATED_ELEMENT:
+				return !getAnnotatedElement().isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

@@ -18,7 +18,7 @@ package Metaobjects {
 		 * The Elements annotated by this Metaobject. This is set automatically when a Metaobject is
 		 * instantiated as the value of a MetadataFeature.
 		 */
-		readonly feature annotatedElement : Element[1..*];
+		abstract readonly feature annotatedElement : Element[1..*];
 	}
 	
 	/**

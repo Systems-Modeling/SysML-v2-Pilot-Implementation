@@ -9,6 +9,7 @@ package MetadataTest {
 		feature secret[1] : ClassificationLevel = 2;
 		
 		metaclass Classified {
+			feature :>> annotatedElement : KerML::Feature;
 			feature classificationLevel : ClassificationLevel;
 		}
 		
@@ -27,4 +28,5 @@ package MetadataTest {
 		}
 		@Security;
 	}
+	
 }

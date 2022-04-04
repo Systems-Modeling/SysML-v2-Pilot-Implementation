@@ -90,15 +90,15 @@ public class ExpressionUtil {
 		if (element == null) {
 			return false;
 		} else {
-			List<Feature> annotatingFeatures = new ArrayList<>(); 
-			annotatingFeatures.addAll(ElementUtil.getAllMetadataFeaturesOf(element));
+			List<Feature> metadataFeatures = new ArrayList<>(); 
+			metadataFeatures.addAll(ElementUtil.getAllMetadataFeaturesOf(element));
 			Feature metaclassFeature = getMetaclassFeatureFor(element);
 			if (metaclassFeature != null) {
-				annotatingFeatures.add(metaclassFeature);
+				metadataFeatures.add(metaclassFeature);
 			}
 			return conditions.stream().allMatch(cond->
-				annotatingFeatures.isEmpty()? checkConditionOn(null, cond):
-				annotatingFeatures.stream().anyMatch(elem->checkConditionOn(elem, cond)));
+				metadataFeatures.isEmpty()? checkConditionOn(null, cond):
+				metadataFeatures.stream().anyMatch(elem->checkConditionOn(elem, cond)));
 		}
 	}
 		

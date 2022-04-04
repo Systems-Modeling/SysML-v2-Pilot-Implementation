@@ -87,9 +87,6 @@ public class VPath extends VTraverser {
         }
 
         private boolean isSet;
-        protected void disable() {
-            this.isSet = true;
-        }
 
         protected void setIdInternal(InheritKey ik, Element e, Integer id, boolean enable) {
             if (isSet) return;

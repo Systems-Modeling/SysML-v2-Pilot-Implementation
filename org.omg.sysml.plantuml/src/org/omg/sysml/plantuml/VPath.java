@@ -34,6 +34,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.omg.sysml.lang.sysml.Connector;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
@@ -604,5 +605,15 @@ public class VPath extends VTraverser {
     @Override
     public String caseItemFlowEnd(ItemFlowEnd ife) {
         return addContext(ife);
+    }
+
+    @Override
+    public String caseConnector(Connector c) {
+        /* VTraverser.traverse() do not duplicatedly traverse features already visited.
+           Thus VPath visits ends without counting on travserse(). */
+        for (Feature f: c.getConnectorEnd()) {
+            visit(f);
+        }
+        return "";
     }
 }

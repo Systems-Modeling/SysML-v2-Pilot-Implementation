@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021-2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -18,27 +18,40 @@
  * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
  *  
  *******************************************************************************/
+
 package org.omg.sysml.expressions;
 
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.InvocationExpression;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.util.ExpressionUtil;
+import org.omg.sysml.util.TypeUtil;
 
-public class IsTypeFunction extends BaseFunction {
+public class AsFunction extends BaseFunction {
 
 	@Override
 	public String getOperatorName() {
-		return "istype";
+		return "as";
+	}
+	
+	protected static boolean isTypeOrMetatype(Element context, Element element, Type targetType) {
+		return isType(context, element, targetType) ||
+			   TypeUtil.conforms(ExpressionUtil.getMetaclassOf(element), targetType);
 	}
 	
 	@Override
 	public EList<Element> invoke(InvocationExpression invocation, Element target) {
-		Type testedType = getTypeArgument(invocation);
-		if (testedType != null) {
+		Type targetType = getTypeArgument(invocation);
+		if (targetType != null) {
 			EList<Element> values = evaluateArgument(invocation, 0, target);
 			if (values != null) {
-				return booleanResult(!values.isEmpty() && isType(invocation, values.get(0), testedType));
+				EList<Element> results = new BasicEList<>();
+				values.stream().
+					filter(value->isTypeOrMetatype(invocation, value, targetType)).
+					forEachOrdered(results::add);
+				return results;
 			}
 		}
 		return null;

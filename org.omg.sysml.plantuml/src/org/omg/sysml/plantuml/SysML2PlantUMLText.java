@@ -410,6 +410,7 @@ public class SysML2PlantUMLText {
         for (EObject eObj : eObjs) {
             if (eObj instanceof Element) {
                 Element e = (Element) eObj;
+                setInherited(false);
                 v.visit(e);
             }
         }

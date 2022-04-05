@@ -30,7 +30,7 @@ package Metaobjects {
 		/**
 		 * The single annotatedElement of this SemanticMetadata, which must be a Type.
 		 */
-		readonly feature annotatedType : Type[1] redefines annotatedElement;
+		abstract readonly feature redefines annotatedElement : Type[1];
 		
 		/**
 		 * The required base Type for the annotatedType.

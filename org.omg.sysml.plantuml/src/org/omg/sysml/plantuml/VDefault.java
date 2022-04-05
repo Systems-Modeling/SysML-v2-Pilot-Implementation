@@ -185,7 +185,7 @@ public class VDefault extends VTraverser {
         } else if (ae instanceof MetadataFeature) {
             MetadataFeature af = (MetadataFeature) ae;
             VMetadata v = new VMetadata(this);
-            v.addAnnotatingFeature(af, a.getAnnotatedElement());
+            v.addMetadataFeature(af, a.getAnnotatedElement());
         }
         return "";
     }
@@ -193,7 +193,7 @@ public class VDefault extends VTraverser {
     @Override
     public String caseMetadataFeature(MetadataFeature af) {
         VMetadata v = new VMetadata(this);
-        v.addAnnotatingFeature(af);
+        v.addMetadataFeature(af);
         return "";
     }
 

@@ -291,6 +291,7 @@ public class TypeAdapter extends NamespaceAdapter {
 				metadataFeature.getFeature().stream().
 						filter(f->TypeUtil.conforms(f, getBaseTypeFeature(metadataFeature))).
 						map(FeatureUtil::getValueExpressionFor).
+						filter(expr->expr != null).
 						map(expr->expr.evaluate(target)).
 						filter(results->results != null && !results.isEmpty()).
 						map(results->results.get(0)).

@@ -35,7 +35,6 @@ package BindingConnectorExample {
 	part def B1; 
 	part def V;
 	part v : V {
-		// XPECT warnings ---> "Duplicate owned member name" at "b0"
 		part b0 : B0 {
 			port p0 {
 				in ref myIn;
@@ -49,10 +48,9 @@ package BindingConnectorExample {
 		//* XPECT errors --- 
 		"Relationships must have at least two related elements" at "bind b0.p0.myIn to"
 		"mismatched input 'to' expecting '='" at "to"
-		"no viable alternative at input '.'" at "."
-		"no viable alternative at input '.'" at "."
+		"no viable alternative at input '.'" at "b0"
+		"no viable alternative at input '.'" at "p1"
 		--- */
-		// XPECT warnings ---> "Duplicate owned member name" at "b0"
 		bind b0.p0.myIn to b0.p1.myOut;	
 	} 
 }

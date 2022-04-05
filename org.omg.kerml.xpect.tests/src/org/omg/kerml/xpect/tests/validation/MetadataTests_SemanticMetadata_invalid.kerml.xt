@@ -1,0 +1,67 @@
+//* 
+XPECT_SETUP org.omg.kerml.xpect.tests.validation.KerMLValidationTest
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library/Base.kerml"}
+		File {from ="/library/Links.kerml"}
+       	File {from ="/library/Occurrences.kerml"}
+       	File {from ="/library/Objects.kerml"}
+      	File {from ="/library/Metaobjects.kerml"}
+       	File {from ="/library/Performances.kerml"}
+       	File {from ="/library/BaseFunctions.kerml"}
+        File {from ="/library/KerML.kerml"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library/Base.kerml"}
+				File {from ="/library/Links.kerml"}
+		       	File {from ="/library/Occurrences.kerml"}
+		       	File {from ="/library/Objects.kerml"}
+		       	File {from ="/library/Metaobjects.kerml"}
+		       	File {from ="/library/Performances.kerml"}
+		       	File {from ="/library/BaseFunctions.kerml"}
+		       	File {from ="/library/KerML.kerml"}
+			}
+		}
+	}
+END_SETUP 
+*/
+package SemanticMetadata_invalid {
+
+	class C {
+		feature x;
+	}
+	feature f : C {
+		feature y;
+	}
+
+    abstract metaclass A :> Metaobjects::SemanticMetadata {
+    	feature :>> baseType; // Testing that baseType can be left unbound.
+    }
+	
+	metaclass B :> A {
+		feature :>> baseType = f as KerML::Type;
+	}
+	
+	class C1 {
+		// XPECT errors --> "Must have a concrete type" at "@A;"
+		@A;
+		// XPECT errors --> "Couldn't resolve reference to Feature 'x'." at "x"
+		feature :>> x;
+	}
+	
+	class C2 {
+		@B;
+		feature :>> x;
+		// XPECT errors --> "Couldn't resolve reference to Feature 'y'." at "y"
+		feature :>> y;
+	}
+	
+	feature f1 {
+		// XPECT errors --> "Must have a concrete type" at "@A;"
+		@A;
+	}
+	
+}

@@ -21,7 +21,11 @@
 
 package org.omg.sysml.adapter;
 
+import java.util.Collections;
+import java.util.List;
+
 import org.omg.sysml.lang.sysml.MetadataFeature;
+import org.omg.sysml.lang.sysml.Type;
 
 public class MetadataFeatureAdapter extends FeatureAdapter {
 	
@@ -36,5 +40,10 @@ public class MetadataFeatureAdapter extends FeatureAdapter {
 	@Override
 	protected String getDefaultSupertype() {
 		return getDefaultSupertype("base");
+	}
+	
+	@Override
+	protected List<Type> getBaseTypes() {
+		return Collections.emptyList();
 	}
 }

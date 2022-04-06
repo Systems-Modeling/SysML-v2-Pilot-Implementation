@@ -163,11 +163,11 @@ public class AcceptActionUsageImpl extends ActionUsageImpl implements AcceptActi
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setPayloadArgument(Expression newPayloadArgument) {
-		throw new UnsupportedOperationException();
+		PAYLOAD_ARGUMENT__ESETTING_DELEGATE.dynamicSet(this, null, 0, newPayloadArgument);
 	}
 
 	/**

@@ -3,6 +3,8 @@
  */
 package org.omg.kerml.xtext
 
+import org.eclipse.emf.ecore.EStructuralFeature
+import org.omg.sysml.delegate.DerivedPropertySettingDelegateFactory;
 
 /**
  * Initialization support for running Xtext languages without Equinox extension registry.
@@ -10,6 +12,8 @@ package org.omg.kerml.xtext
 class KerMLStandaloneSetup extends KerMLStandaloneSetupGenerated {
 
 	def static void doSetup() {
+		EStructuralFeature.Internal.SettingDelegate.Factory.Registry.INSTANCE.
+			put("http://www.omg.org/spec/SysML", new DerivedPropertySettingDelegateFactory());
 		new KerMLStandaloneSetup().createInjectorAndDoEMFRegistration()
 	}
 }

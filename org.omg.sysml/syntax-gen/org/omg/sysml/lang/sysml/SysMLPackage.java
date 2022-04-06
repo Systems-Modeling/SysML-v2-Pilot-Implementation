@@ -43,6 +43,7 @@ import org.eclipse.emf.ecore.EReference;
  * <!-- end-user-doc -->
  * @see org.omg.sysml.lang.sysml.SysMLFactory
  * @model kind="package"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore settingDelegates='http://www.omg.org/spec/SysML'"
  * @generated
  */
 public interface SysMLPackage extends EPackage {

@@ -27,6 +27,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.uml2.common.util.DerivedEObjectEList;
 import org.omg.sysml.lang.sysml.ActionUsage;
@@ -104,6 +105,15 @@ import org.omg.sysml.util.NonNotifyingEObjectEList;
  * @generated
  */
 public class DefinitionImpl extends ClassifierImpl implements Definition {
+	/**
+	 * The cached setting delegate for the '{@link #getOwnedUsage() <em>Owned Usage</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedUsage()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate OWNED_USAGE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.DEFINITION__OWNED_USAGE).getSettingDelegate();
 	/**
 	 * The default value of the '{@link #isVariation() <em>Is Variation</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -441,11 +451,12 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<Usage> getOwnedUsage() {
-		return new DerivedEObjectEList<Usage>(Usage.class, this, SysMLPackage.DEFINITION__OWNED_USAGE, new int[] {SysMLPackage.TYPE__OWNED_FEATURE});
+		return (EList<Usage>)OWNED_USAGE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
@@ -805,7 +816,7 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case SysMLPackage.DEFINITION__OWNED_USAGE:
-				return !getOwnedUsage().isEmpty();
+				return OWNED_USAGE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.DEFINITION__OWNED_PORT:
 				return !getOwnedPort().isEmpty();
 			case SysMLPackage.DEFINITION__DIRECTED_USAGE:

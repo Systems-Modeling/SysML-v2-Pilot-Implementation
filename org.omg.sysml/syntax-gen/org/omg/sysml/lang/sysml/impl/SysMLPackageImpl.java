@@ -8938,6 +8938,8 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		createResource(eNS_URI);
 
 		// Create annotations
+		// http://www.eclipse.org/emf/2002/Ecore
+		createEcoreAnnotations();
 		// http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName
 		createEmofAnnotations();
 		// redefines
@@ -8946,6 +8948,24 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		createSubsetsAnnotations();
 		// union
 		createUnionAnnotations();
+		// http://www.omg.org/spec/SysML
+		createSysMLAnnotations();
+	}
+
+	/**
+	 * Initializes the annotations for <b>http://www.eclipse.org/emf/2002/Ecore</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createEcoreAnnotations() {
+		String source = "http://www.eclipse.org/emf/2002/Ecore";
+		addAnnotation
+		  (this,
+		   source,
+		   new String[] {
+			   "settingDelegates", "http://www.omg.org/spec/SysML"
+		   });
 	}
 
 	/**
@@ -12883,6 +12903,24 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		  (getConnector_RelatedFeature(),
 		   source,
 		   new String[] {
+		   });
+	}
+
+	/**
+	 * Initializes the annotations for <b>http://www.omg.org/spec/SysML</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createSysMLAnnotations() {
+		String source = "http://www.omg.org/spec/SysML";
+		addAnnotation
+		  (getDefinition_OwnedUsage(),
+		   source,
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("//Type/ownedFeature")
 		   });
 	}
 

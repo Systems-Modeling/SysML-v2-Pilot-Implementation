@@ -813,6 +813,7 @@ public interface Definition extends Classifier {
 	 * @see org.omg.sysml.lang.sysml.Usage#getOwningDefinition
 	 * @model opposite="owningDefinition" transient="true" volatile="true" derived="true"
 	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<Usage> getOwnedUsage();

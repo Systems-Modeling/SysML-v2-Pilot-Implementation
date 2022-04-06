@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="sysml" nsURI="http://www.omg.org/spec/SysML/2.0" nsPrefix="sysml">
+  <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+    <details key="settingDelegates" value="http://www.omg.org/spec/SysML"/>
+  </eAnnotations>
   <eClassifiers xsi:type="ecore:EClass" name="Conjugation" eSuperTypes="#//Relationship">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="&lt;p>Conjugation is a Relationship between two types in which the &lt;code>conjugatedType&lt;/code> inherits all the Features of the &lt;code>originalType&lt;/code>, but with all &lt;code>input&lt;/code> and &lt;code>output&lt;/code> Features reversed. That is, any Features with a FeatureMembership with &lt;code>direction&lt;/code> &lt;em>in&lt;/em> relative to the &lt;code>originalType&lt;/code> are considered to have an effective &lt;code>direction&lt;/code> of &lt;em>out&lt;/em> relative to the &lt;code>conjugatedType&lt;/code> and, similarly, Features with &lt;code>direction&lt;/code> &lt;em>out&lt;/em> in the &lt;code>originalType&lt;/code> are considered to have an effective &lt;code>direction&lt;/code> of &lt;em>in&lt;/em> in the &lt;code>originalType&lt;/code>. Features with &lt;code>direction&lt;/code> &lt;em>inout&lt;/em>, or with no &lt;code>direction&lt;/code>, in the &lt;code>originalType&lt;/code>, are inherited without change.&lt;/p>&#xA;&#xA;&lt;p>A Type may participate as a &lt;code>conjugatedType&lt;/code> in at most one Conjugation relationship, and such a Type may not also be the &lt;code>specific&lt;/code> Type in any Generalization relationship.&lt;/p>&#xA;"/>
@@ -1942,6 +1945,7 @@
         <details key="documentation" value="&lt;p>The Usages that are &lt;code>ownedFeatures&lt;/code> of this Definition.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Type/ownedFeature #//Definition/usage"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML" references="#//Type/ownedFeature"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedPort" upperBound="-1"
         eType="#//PortUsage" volatile="true" transient="true" derived="true">

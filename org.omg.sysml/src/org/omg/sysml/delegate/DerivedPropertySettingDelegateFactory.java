@@ -23,12 +23,16 @@ package org.omg.sysml.delegate;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EStructuralFeature.Internal.SettingDelegate;
+import org.omg.sysml.lang.sysml.SysMLPackage;
 
 public class DerivedPropertySettingDelegateFactory 
 	implements EStructuralFeature.Internal.SettingDelegate.Factory {
 
 	@Override
 	public SettingDelegate createSettingDelegate(EStructuralFeature eStructuralFeature) {
+		if (eStructuralFeature.getFeatureID() == SysMLPackage.ACCEPT_ACTION_USAGE__PAYLOAD_ARGUMENT) {
+			return new AcceptActionUsage_payloadArgumentDerived_PropertySettingDelegate(eStructuralFeature);
+		}
 		return new DefaultDerivedPropertySettingDelegate(eStructuralFeature);
 	}
 

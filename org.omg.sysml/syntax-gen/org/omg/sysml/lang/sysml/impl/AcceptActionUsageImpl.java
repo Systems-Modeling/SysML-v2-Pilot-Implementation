@@ -23,6 +23,7 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.AcceptActionUsage;
 import org.omg.sysml.lang.sysml.Expression;
@@ -49,6 +50,16 @@ import org.omg.sysml.util.UsageUtil;
  */
 public class AcceptActionUsageImpl extends ActionUsageImpl implements AcceptActionUsage {
 	
+	/**
+	 * The cached setting delegate for the '{@link #getPayloadArgument() <em>Payload Argument</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPayloadArgument()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate PAYLOAD_ARGUMENT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.ACCEPT_ACTION_USAGE__PAYLOAD_ARGUMENT).getSettingDelegate();
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -137,18 +148,16 @@ public class AcceptActionUsageImpl extends ActionUsageImpl implements AcceptActi
 	 */
 	@Override
 	public Expression getPayloadArgument() {
-		Expression payloadArgument = basicGetPayloadArgument();
-		return payloadArgument != null && payloadArgument.eIsProxy() ? (Expression)eResolveProxy((InternalEObject)payloadArgument) : payloadArgument;
+		return (Expression)PAYLOAD_ARGUMENT__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Expression basicGetPayloadArgument() {
-		Feature receiverParameter = UsageUtil.getPayloadParameterOf(this);
-		return receiverParameter == null? null: FeatureUtil.getValueExpressionFor(receiverParameter);
+		return (Expression)PAYLOAD_ARGUMENT__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
@@ -237,7 +246,7 @@ public class AcceptActionUsageImpl extends ActionUsageImpl implements AcceptActi
 			case SysMLPackage.ACCEPT_ACTION_USAGE__PAYLOAD_PARAMETER:
 				return basicGetPayloadParameter() != null;
 			case SysMLPackage.ACCEPT_ACTION_USAGE__PAYLOAD_ARGUMENT:
-				return basicGetPayloadArgument() != null;
+				return PAYLOAD_ARGUMENT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 		}
 		return super.eIsSet(featureID);
 	}

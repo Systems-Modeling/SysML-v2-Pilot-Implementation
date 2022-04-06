@@ -21,30 +21,32 @@
 
 package org.omg.sysml.delegate;
 
-import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.BasicSettingDelegate;
-import org.eclipse.uml2.common.util.DerivedEObjectEList;
+import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.AcceptActionUsage;
+import org.omg.sysml.lang.sysml.Expression;
+import org.omg.sysml.util.FeatureUtil;
+import org.omg.sysml.util.UsageUtil;
 
-public class DefaultDerivedPropertySettingDelegate extends BasicSettingDelegate.Stateless {
+public class AcceptActionUsage_payloadArgumentDerived_PropertySettingDelegate extends BasicSettingDelegate.Stateless {
 	
-	private Class<?> type;
-	private int featureID;
-	private int sourceFeatureID;
-
-	public DefaultDerivedPropertySettingDelegate(EStructuralFeature eStructuralFeature) {
+	public AcceptActionUsage_payloadArgumentDerived_PropertySettingDelegate(EStructuralFeature eStructuralFeature) {
 		super(eStructuralFeature);
-		this.type = eStructuralFeature.getEType().getInstanceClass();
-		this.featureID = eStructuralFeature.getFeatureID();
-		EAnnotation annotation = eStructuralFeature.getEAnnotation("subsets");
-		EStructuralFeature sourceFeature = (EStructuralFeature)annotation.getReferences().get(0);
-		this.sourceFeatureID = sourceFeature.getFeatureID();
+
 	}
 
 	@Override
 	protected Object get(InternalEObject owner, boolean resolve, boolean coreType) {
-		return new DerivedEObjectEList<>(type, owner, featureID, new int[] {sourceFeatureID});
+		Expression payloadArgument = basicGetPayloadArgument((AcceptActionUsage)owner);
+		return payloadArgument != null && payloadArgument.eIsProxy() && resolve? 
+				(Expression)owner.eResolveProxy((InternalEObject)payloadArgument) : payloadArgument;
+	}
+	
+	private static Expression basicGetPayloadArgument(AcceptActionUsage action) {
+		Feature receiverParameter = UsageUtil.getPayloadParameterOf(action);
+		return receiverParameter == null? null: FeatureUtil.getValueExpressionFor(receiverParameter);
 	}
 
 	@Override

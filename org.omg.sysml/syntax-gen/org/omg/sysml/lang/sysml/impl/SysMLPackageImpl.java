@@ -12918,9 +12918,11 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		  (getDefinition_OwnedUsage(),
 		   source,
 		   new String[] {
-		   },
-		   new URI[] {
-			 URI.createURI(eNS_URI).appendFragment("//Type/ownedFeature")
+		   });
+		addAnnotation
+		  (getAcceptActionUsage_PayloadArgument(),
+		   source,
+		   new String[] {
 		   });
 	}
 

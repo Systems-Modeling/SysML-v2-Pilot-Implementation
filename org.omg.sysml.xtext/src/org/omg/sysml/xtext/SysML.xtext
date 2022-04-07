@@ -115,6 +115,10 @@ MetadataDefinition returns SysML::MetadataDefinition :
 	Definition
 ;
 
+PrefixMetadataAnnotation returns SysML::Annotation :
+	'#' ownedRelatedElement += PrefixMetadataUsage
+;
+
 PrefixMetadataMember returns SysML::Membership :
 	'#' ownedRelatedElement += PrefixMetadataUsage // ownedMemberElement = PrefixMetadataUsage
 ;
@@ -404,7 +408,7 @@ MultiplicityExpressionMember returns SysML::Membership :
 /* DEPENDENCIES */
 
 Dependency returns SysML::Dependency :
-	( ownedRelationship += PrefixMetadataMember )?
+	( ownedRelationship += PrefixMetadataAnnotation )?
 	'dependency' ( Identification? 'from' )?
     client += [SysML::Element|QualifiedName] ( ',' client += [SysML::Element|QualifiedName] )* 'to'
     supplier += [SysML::Element|QualifiedName] ( ',' supplier += [SysML::Element|QualifiedName] )* ';'

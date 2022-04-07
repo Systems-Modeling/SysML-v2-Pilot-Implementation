@@ -1598,7 +1598,7 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) 'dependency' (ambiguity) client+=[Element|QualifiedName]
-	 *     ownedRelationship+=PrefixMetadataMember 'dependency' (ambiguity) client+=[Element|QualifiedName]
+	 *     ownedRelationship+=PrefixMetadataAnnotation 'dependency' (ambiguity) client+=[Element|QualifiedName]
 	 */
 	protected void emit_Dependency_FromKeyword_2_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);

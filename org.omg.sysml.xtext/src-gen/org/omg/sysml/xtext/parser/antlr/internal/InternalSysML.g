@@ -817,6 +817,48 @@ ruleMetadataDefinition returns [EObject current=null]
 	)
 ;
 
+// Entry rule entryRulePrefixMetadataAnnotation
+entryRulePrefixMetadataAnnotation returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getPrefixMetadataAnnotationRule()); }
+	iv_rulePrefixMetadataAnnotation=rulePrefixMetadataAnnotation
+	{ $current=$iv_rulePrefixMetadataAnnotation.current; }
+	EOF;
+
+// Rule PrefixMetadataAnnotation
+rulePrefixMetadataAnnotation returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		otherlv_0='#'
+		{
+			newLeafNode(otherlv_0, grammarAccess.getPrefixMetadataAnnotationAccess().getNumberSignKeyword_0());
+		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getPrefixMetadataAnnotationAccess().getOwnedRelatedElementPrefixMetadataUsageParserRuleCall_1_0());
+				}
+				lv_ownedRelatedElement_1_0=rulePrefixMetadataUsage
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getPrefixMetadataAnnotationRule());
+					}
+					add(
+						$current,
+						"ownedRelatedElement",
+						lv_ownedRelatedElement_1_0,
+						"org.omg.sysml.xtext.SysML.PrefixMetadataUsage");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+	)
+;
+
 // Entry rule entryRulePrefixMetadataMember
 entryRulePrefixMetadataMember returns [EObject current=null]:
 	{ newCompositeNode(grammarAccess.getPrefixMetadataMemberRule()); }
@@ -3597,9 +3639,9 @@ ruleDependency returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getDependencyAccess().getOwnedRelationshipPrefixMetadataMemberParserRuleCall_0_0());
+					newCompositeNode(grammarAccess.getDependencyAccess().getOwnedRelationshipPrefixMetadataAnnotationParserRuleCall_0_0());
 				}
-				lv_ownedRelationship_0_0=rulePrefixMetadataMember
+				lv_ownedRelationship_0_0=rulePrefixMetadataAnnotation
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getDependencyRule());
@@ -3608,7 +3650,7 @@ ruleDependency returns [EObject current=null]
 						$current,
 						"ownedRelationship",
 						lv_ownedRelationship_0_0,
-						"org.omg.sysml.xtext.SysML.PrefixMetadataMember");
+						"org.omg.sysml.xtext.SysML.PrefixMetadataAnnotation");
 					afterParserOrEnumRuleCall();
 				}
 			)

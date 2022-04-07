@@ -22,7 +22,6 @@ import org.omg.kerml.xpect.tests.visibility.KerMLVisibilityTest;
 		KerMLImportLocalTest.class, //
 		KerMLImportRecursiveTest.class, //
 		KerMLLinkingTest.class,//
-//		KerMLParserTest.class, //
 		KerMLScopingTest.class, //
 		KerMLXtextTest.class, //
 		KerMLValidationTest.class, //

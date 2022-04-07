@@ -2,11 +2,13 @@
 XPECT_SETUP org.omg.kerml.xpect.tests.testsuite.KerMLXtextTest
 	ResourceSet {
 		ThisFile {}
+		File {from ="/library/Base.kerml"}
 	}
 	Workspace {
 		JavaProject {
 			SrcFolder {
 				ThisFile {}
+				File {from ="/library/Base.kerml"}
 			}
 		}
 	}
@@ -14,7 +16,7 @@ END_SETUP
 */
 // XPECT noErrors --> ""
 package Test1{
-	class <'A_Id'> A specializes A::B{
+	classifier <'A_Id'> A specializes A::B{
 		//XPECT linkedName at A --> Test1.A
 		//* XPECT scope at A ---
    		A, A.B, A.B.B, B, B.B, 
@@ -28,7 +30,7 @@ package Test1{
    		
    		Test1.A.B_Id.B, Test1.A.B_Id.B_Id, Test1.A.B.B_Id, 
  	--- */
-		class <'B_Id'> B specializes A {}
+		classifier <'B_Id'> B specializes A, Base::Anything {}
 	}
 }
 //not included Test1.B_Id, Test1.B.B_Id, Test1.B_Id.B, Test1.B_Id.B_Id,

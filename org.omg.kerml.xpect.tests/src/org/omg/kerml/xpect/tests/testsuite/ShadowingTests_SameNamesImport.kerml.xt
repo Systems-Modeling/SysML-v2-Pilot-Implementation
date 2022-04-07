@@ -2,6 +2,7 @@
 XPECT_SETUP org.omg.kerml.xpect.tests.testsuite.KerMLXtextTest
 	ResourceSet {
 		ThisFile {}
+		File {from ="/library/Base.kerml"}
 		File {from ="/src/DependencySamePackageName_A.kerml" }
 		File {from ="/src/DependencySamePackageName_B.kerml" }
 	}
@@ -9,6 +10,7 @@ XPECT_SETUP org.omg.kerml.xpect.tests.testsuite.KerMLXtextTest
 		JavaProject {
 			SrcFolder {
 				ThisFile {}
+				File {from ="/library/Base.kerml"}
 				File {from ="/src/DependencySamePackageName_A.kerml" }
 				File {from ="/src/DependencySamePackageName_B.kerml" }
 			}
@@ -20,9 +22,9 @@ END_SETUP
 //Current implemention import from the first src package(A).
 package test{
 	import SamePackage::container::*;
-	class something1 specializes A{}
+	classifier something1 specializes A{}
 	//pass junit test
 	//XPECT errors -->"Couldn't resolve reference to Classifier 'B'." at "B"
-	class something2 specializes B{}
+	classifier something2 specializes B{}
 }
 

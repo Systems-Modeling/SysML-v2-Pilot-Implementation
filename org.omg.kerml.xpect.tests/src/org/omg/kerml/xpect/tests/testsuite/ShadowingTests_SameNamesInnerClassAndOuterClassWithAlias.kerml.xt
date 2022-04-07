@@ -2,11 +2,13 @@
 XPECT_SETUP org.omg.kerml.xpect.tests.testsuite.KerMLXtextTest
 	ResourceSet {
 		ThisFile {}
+		File {from ="/library/Base.kerml"}
 	}
 	Workspace {
 		JavaProject {
 			SrcFolder {
 				ThisFile {}
+				File {from ="/library/Base.kerml"}
 			}
 		}
 	}
@@ -16,15 +18,15 @@ END_SETUP
 // XPECT noErrors --> ""
 package test{
 	alias A for A1;
-	class A1{
-		class A{
+	classifier A1{
+		classifier A{
 			//XPECT linkedName at A --> test.A1.A
 			//* XPECT scope at A ---
 			A.B.B, A1.A.B.B, B.B, test.A.A.B.B, test.A1.A.B.B,
 		    A, A.B, A1, A1.A, A1.A.B, B, 
 		    test.A, test.A.A, test.A.A.B, test.A1, test.A1.A, test.A1.A.B,
 		--- */
-			class B specializes A{}
+			classifier B specializes A{}
 		}
 	}
 }

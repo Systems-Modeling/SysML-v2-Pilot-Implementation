@@ -2,11 +2,13 @@
 XPECT_SETUP org.omg.kerml.xpect.tests.validation.KerMLValidationTest
 	ResourceSet {
 		ThisFile {}
+		File {from ="/library/Base.kerml"}
 	}
 	Workspace {
 		JavaProject {
 			SrcFolder {
 				ThisFile {}
+				File {from ="/library/Base.kerml"}
 			}
 		}
 	}
@@ -16,7 +18,7 @@ END_SETUP
 package Test {
 	 //name and id are the same
 	 //XPECT warnings --> "Duplicate of owned member ID" at "two"
-	 class <one> two;
+	 classifier <one> two;
 	  //XPECT warnings --> "Duplicate of other ID or member name" at "two"
-	 class <two> three;
+	 classifier <two> three;
 }

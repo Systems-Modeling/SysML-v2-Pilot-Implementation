@@ -2,11 +2,13 @@
 XPECT_SETUP org.omg.kerml.xpect.tests.validation.KerMLValidationTest
 	ResourceSet {
 		ThisFile {}
+		File {from ="/library/Base.kerml"}
 	}
 	Workspace {
 		JavaProject {
 			SrcFolder {
 				ThisFile {}
+				File {from ="/library/Base.kerml"}
 			}
 		}
 	}
@@ -14,14 +16,14 @@ END_SETUP
 */
 
 package test{
-	class A{
-		class a1{}
+	classifier A{
+		classifier a1{}
 	}
-	class B specializes A{
-		class A{
-			class a2{}
+	classifier B specializes A{
+		classifier A{
+			classifier a2{}
 		}
 		// XPECT errors ---> "Couldn't resolve reference to Classifier 'A::a1'." at "A::a1"
-		class b specializes A::a1{}
+		classifier b specializes A::a1{}
 	}
 }

@@ -2,11 +2,13 @@
 XPECT_SETUP org.omg.kerml.xpect.tests.testsuite.KerMLXtextTest
 	ResourceSet {
 		ThisFile {}
+		File {from ="/library/Base.kerml"}
 	}
 	Workspace {
 		JavaProject {
 			SrcFolder {
 				ThisFile {}
+				File {from ="/library/Base.kerml"}
 			}
 		}
 	}
@@ -15,8 +17,8 @@ END_SETUP
 
 //XPECT noErrors ---> ""
 package test{
-	class A{
-		class a {}
+	classifier A{
+		classifier a {}
 		alias aa for a;
 	}
 	alias AA for A;
@@ -25,10 +27,15 @@ package test{
 	   test.A, test.A.a, test.A.aa, test.AA, test.AA.a, test.AA.aa, test.B, test.B.a, test.B.aa, 
 --- */
 	//XPECT linkedName at AA --> test.A
-	class B specializes AA{
+	classifier B specializes AA{
 		//* XPECT scope at aa ---
-			   A, A.a, A.aa, AA, AA.a, AA.aa, B, B.a, B.aa, B.b, B.b_alias, a, aa, b, b_alias,
-			   test.A, test.A.a, test.A.aa, test.AA, test.AA.a, test.AA.aa, test.B, test.B.a, test.B.aa, test.B.b, test.B.b_alias,
+			   A, A.a, A.a.self, A.aa, A.aa.self, A.self, AA, AA.a, AA.a.self, AA.aa,
+			   AA.aa.self, AA.self, B, B.a, B.a.self, B.aa, B.aa.self, B.b, B.b.self, B.b_alias,
+			   B.b_alias.self, B.self, a, a.self, aa, aa.self, b, b.self, b_alias, b_alias.self, self, test.A,
+			   test.A.a, test.A.a.self, test.A.aa, test.A.aa.self, test.A.self, test.AA, test.AA.a,
+			   test.AA.a.self, test.AA.aa, test.AA.aa.self, test.AA.self, test.B, test.B.a, test.B.a.self,
+			   test.B.aa, test.B.aa.self, test.B.b, test.B.b.self, test.B.b_alias, test.B.b_alias.self,
+			   test.B.self
 		--- */
 		//XPECT linkedName at aa --> test.A.a
 		feature b: aa;

@@ -2,11 +2,13 @@
 XPECT_SETUP org.omg.kerml.xpect.tests.scoping.KerMLScopingTest
 	ResourceSet {
 		ThisFile {}
+		File {from ="/library/Base.kerml"}
 	}
 	Workspace {
 		JavaProject {
 			SrcFolder {
 				ThisFile {}
+				File {from ="/library/Base.kerml"}
 			}
 		}
 	}
@@ -19,26 +21,26 @@ package Test {
 	package Test0 {
 		import Test2::VP_Id::*;
 		//XPECT linkedName at VVP_Id::VVVP_Id--> Test.Test2.VP.VVP.VVVP
-		class A specializes VVP_Id::VVVP_Id;
+		classifier A specializes VVP_Id::VVVP_Id;
 		//XPECT linkedName at VVP::VVVP_Id--> Test.Test2.VP.VVP.VVVP
-		class B specializes VVP::VVVP_Id;
+		classifier B specializes VVP::VVVP_Id;
 		//XPECT linkedName at VVP_Id::VVVP--> Test.Test2.VP.VVP.VVVP
-		class C specializes VVP_Id::VVVP;
+		classifier C specializes VVP_Id::VVVP;
 		//XPECT linkedName at VVP_Id::VVVP_Id::VVVVP_Id_alias--> Test.Test2.VP.VVP.VVVP.VVVVP
-		class D specializes VVP_Id::VVVP_Id::VVVVP_Id_alias;
+		classifier D specializes VVP_Id::VVVP_Id::VVVVP_Id_alias;
 		
 	}
 	package Test1 {
 		import Test2::VP_Id::*;
 		//XPECT linkedName at VVP_Id --> Test.Test2.VP.VVP
-		class A specializes VVP_Id;
+		classifier A specializes VVP_Id;
 	}
 	
 	package Test2 {
-		public class <'VP_Id'> VP {	
-			public class <'VVP_Id'> VVP {
-				public class <'VVVP_Id'> VVVP{
-					public class <'VVVVP_Id'> VVVVP;
+		public classifier <'VP_Id'> VP {	
+			public classifier <'VVP_Id'> VVP {
+				public classifier <'VVVP_Id'> VVVP{
+					public classifier <'VVVVP_Id'> VVVVP;
 					alias VVVVP_Id_alias for VVVVP_Id;
 				}
 			}

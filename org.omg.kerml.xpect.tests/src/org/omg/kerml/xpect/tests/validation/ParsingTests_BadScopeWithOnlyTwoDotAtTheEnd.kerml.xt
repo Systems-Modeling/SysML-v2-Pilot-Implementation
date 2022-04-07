@@ -2,11 +2,13 @@
 XPECT_SETUP org.omg.kerml.xpect.tests.validation.KerMLValidationTest
 	ResourceSet {
 		ThisFile {}
+		File {from ="/library/Base.kerml"}
 	}
 	Workspace {
 		JavaProject {
 			SrcFolder {
 				ThisFile {}
+				File {from ="/library/Base.kerml"}
 			}
 		}
 	}
@@ -14,13 +16,13 @@ END_SETUP
 */
 
 package test{
-	class non{}
-	class A{
+	classifier non{}
+	classifier A{
 		// XPECT errors ---> "Couldn't resolve reference to Feature 'non'." at "non"
 		feature aa is non;
 		feature a: A;
 	}
-	class B{
+	classifier B{
 		//* XPECT errors ---
 			"Couldn't resolve reference to Type 'Test3::A'." at "Test3::A"
 			"Couldn't resolve reference to Type 'a'." at "a"

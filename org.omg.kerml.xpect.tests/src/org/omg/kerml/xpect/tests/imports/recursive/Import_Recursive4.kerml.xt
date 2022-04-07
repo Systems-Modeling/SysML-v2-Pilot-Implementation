@@ -2,11 +2,13 @@
 XPECT_SETUP org.omg.kerml.xpect.tests.imports.recursive.KerMLImportRecursiveTest
 	ResourceSet {
 		ThisFile {}
+		File {from ="/library/Base.kerml"}
 	}
 	Workspace {
 		JavaProject {
 			SrcFolder {
 				ThisFile {}
+				File {from ="/library/Base.kerml"}
 			}
 		}
 	}
@@ -17,21 +19,21 @@ END_SETUP
 package RecursiveImport {
   
   package P {
-    class X {
-    	class X1;
+    classifier X {
+    	classifier X1;
     }
     package Q {
-      class Y;
+      classifier Y;
       package R {
-        class Z;
+        classifier Z;
       }
     }
     package S {
-      class S1 specializes X;
+      classifier S1 specializes X;
       package T {
-        class T1;
+        classifier T1;
         package U {
-        	class U1;
+        	classifier U1;
         }
       }
     }
@@ -42,27 +44,16 @@ package RecursiveImport {
   	y: Y;
 	
 	//* XPECT scope at Z ---
-	Q.R.Z, Q.Y,
-	RecursiveImport.Q.R.Z, RecursiveImport.Q.Y,
-	
-  	P.X, RecursiveImport.P.X,
-	P.X.X1, RecursiveImport.P.X.X1,
-	P.Q.Y, RecursiveImport.P.Q.Y,
-	P.Q.R.Z, RecursiveImport.P.Q.R.Z,
-	
-	Y, RecursiveImport.Y,
-	R.Z, RecursiveImport.R.Z,
-	Z, RecursiveImport.Z,
-	
-	P.S.S1, RecursiveImport.P.S.S1,
-	P.S.S1.X1, RecursiveImport.P.S.S1.X1,
-	P.S.T.T1, RecursiveImport.P.S.T.T1,
-	P.S.T.U.U1, RecursiveImport.P.S.T.U.U1,
-	
-	
-	y, RecursiveImport.y,
-	z, RecursiveImport.z,
-	
+	P.Q.R.Z, P.Q.R.Z.self, P.Q.Y, P.Q.Y.self, P.S.S1, P.S.S1.X1, P.S.S1.X1.self,
+	P.S.S1.self, P.S.T.T1, P.S.T.T1.self, P.S.T.U.U1, P.S.T.U.U1.self, P.X, P.X.X1, P.X.X1.self,
+	P.X.self, Q.R.Z, Q.R.Z.self, Q.Y, Q.Y.self, R.Z, RecursiveImport.P.Q.R.Z,
+	RecursiveImport.P.Q.R.Z.self, RecursiveImport.P.Q.Y, RecursiveImport.P.Q.Y.self, RecursiveImport.P.S.S1,
+	RecursiveImport.P.S.S1.X1, RecursiveImport.P.S.S1.X1.self, RecursiveImport.P.S.S1.self,
+	RecursiveImport.P.S.T.T1, RecursiveImport.P.S.T.T1.self, RecursiveImport.P.S.T.U.U1,
+	RecursiveImport.P.S.T.U.U1.self, RecursiveImport.P.X, RecursiveImport.P.X.X1, RecursiveImport.P.X.X1.self,
+	RecursiveImport.P.X.self, RecursiveImport.Q.R.Z, RecursiveImport.Q.R.Z.self, RecursiveImport.Q.Y,
+	RecursiveImport.Q.Y.self, RecursiveImport.R.Z, RecursiveImport.Y, RecursiveImport.Z, RecursiveImport.y,
+	RecursiveImport.y.self, RecursiveImport.z, RecursiveImport.z.self, Y, Z, y, y.self, z, z.self
 --- */
 	
 	z: Z;

@@ -18,7 +18,7 @@ END_SETUP
 */
 
 package test{
-	class C{
+	classifier C{
 		//* XPECT errors ---
 		"Couldn't resolve reference to Feature 'OuterPackage::B'." at "OuterPackage::B"
 		"Couldn't resolve reference to Feature 'b'." at "b"

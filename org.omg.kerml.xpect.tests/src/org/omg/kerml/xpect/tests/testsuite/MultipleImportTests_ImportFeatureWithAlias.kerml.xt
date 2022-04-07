@@ -2,6 +2,7 @@
 XPECT_SETUP org.omg.kerml.xpect.tests.testsuite.KerMLXtextTest
 	ResourceSet {
 		ThisFile {}
+		File {from ="/library/Base.kerml"}
 		File {from ="/src/DependencyOuterPackage.kerml"}
 		File {from ="/src/DependencyMultipleMembership.kerml"}
 	}
@@ -9,6 +10,7 @@ XPECT_SETUP org.omg.kerml.xpect.tests.testsuite.KerMLXtextTest
 		JavaProject {
 			SrcFolder {
 				ThisFile {}
+				File {from ="/library/Base.kerml"}
 				File {from ="/src/DependencyOuterPackage.kerml"}
 				File {from ="/src/DependencyMultipleMembership.kerml"}
 			}
@@ -19,7 +21,7 @@ END_SETUP
 // XPECT noErrors --> ""
 package test{
 	alias bb for OuterPackage::B::b;
-	class D{
+	classifier D{
 		//XPECT linkedName at bb --> OuterPackage.B.b	
 		feature try is bb;
 	}

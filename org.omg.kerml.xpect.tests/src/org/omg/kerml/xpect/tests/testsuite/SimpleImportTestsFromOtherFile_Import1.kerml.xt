@@ -2,12 +2,14 @@
 XPECT_SETUP org.omg.kerml.xpect.tests.testsuite.KerMLXtextTest
 	ResourceSet {
 		ThisFile {}
+		File {from ="/library/Base.kerml"}
 		File {from ="/src/DependencyOuterPackage.kerml"}
 	}
 	Workspace {
 		JavaProject {
 			SrcFolder {
 				ThisFile {}
+				File {from ="/library/Base.kerml"}
 				File {from ="/src/DependencyOuterPackage.kerml"}
 			}
 		}
@@ -25,13 +27,13 @@ package test {
 		   test.Try, test.Try.a1, test.A, test.A.a1, test.B, 
 		   OuterPackage.A,OuterPackage.A.a1, OuterPackage.B, OuterPackage.B.b.a1,
 	--- */
-	class Try specializes A{}
+	classifier Try specializes A{}
 	//XPECT linkedName at B::b --> OuterPackage.B.b
 	//* XPECT scope at B::b ---
-	       B.b.a1, test.B.b.a1, try.a1, test.try.a1,
-		   Try, Try.a1, A, A.a1, B, B.b, try,
-		   test.Try, test.Try.a1, test.A, test.A.a1, test.B, test.B.b, test.try, 
-		   OuterPackage.A,OuterPackage.A.a1, OuterPackage.B, OuterPackage.B.b, OuterPackage.B.b.a1,
+		A, A.a1, B, B.b, B.b.a1, OuterPackage.A, OuterPackage.A.a1, OuterPackage.B,
+		OuterPackage.B.b, OuterPackage.B.b.a1, Try, Try.a1, Try.self, test.A, test.A.a1, test.B,
+		test.B.b, test.B.b.a1, test.Try, test.Try.a1, test.Try.self, test.try, test.try.a1,
+		test.try.self, try, try.a1, try.self
 	--- */
 	feature try : B::b;
 }

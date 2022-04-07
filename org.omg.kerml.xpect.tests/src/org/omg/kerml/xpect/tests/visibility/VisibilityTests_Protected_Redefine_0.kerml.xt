@@ -17,14 +17,14 @@ END_SETUP
 
 package testt {
 
-	class P{
-		class PP {
+	classifier P{
+		classifier PP {
 			protected feature PPP;
 			protected feature PPP1;
 			private feature PPP2;
 		}
 	}
-	class A specializes P::PP{
+	classifier A specializes P::PP{
 		feature aa subsets PPP;
 		feature bb redefines PPP1;
 		feature cc subsets dd;
@@ -32,9 +32,9 @@ package testt {
 		//XPECT errors --> "Couldn't resolve reference to Feature 'PPP2'." at "PPP2"
 		feature ee: A redefines PPP2;
 	}
-	class B specializes A {
+	classifier B specializes A {
 	}
-	class C specializes B {
+	classifier C specializes B {
 		feature ff subsets aa;
 		feature gg redefines bb;
 		feature hh subsets ii;

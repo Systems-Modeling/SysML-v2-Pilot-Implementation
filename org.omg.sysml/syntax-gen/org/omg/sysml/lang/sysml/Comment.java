@@ -27,7 +27,7 @@ package org.omg.sysml.lang.sysml;
  * '<em><b>Comment</b></em>'. <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A Comment is AnnotatingElement whose <code>body</code> in some way describes its <code>annotatedElements</code>.</p>
+ * <p>A Comment is an AnnotatingElement whose <code>body</code> in some way describes its <code>annotatedElements</code>.</p>
  * 
  * <!-- end-model-doc -->
  *
@@ -35,6 +35,7 @@ package org.omg.sysml.lang.sysml;
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link org.omg.sysml.lang.sysml.Comment#getLocale <em>Locale</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Comment#getBody <em>Body</em>}</li>
  * </ul>
  *
@@ -43,6 +44,31 @@ package org.omg.sysml.lang.sysml;
  * @generated
  */
 public interface Comment extends AnnotatingElement {
+	/**
+	 * Returns the value of the '<em><b>Locale</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Identification of the language of the <code>body</code> text and, optionally, the region and/or encoding. The format shall be a POSIX locale conformant to ISO/IEC 15897, with the format <code>[language[_territory][.codeset][@modifier]]</code>.</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Locale</em>' attribute.
+	 * @see #setLocale(String)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getComment_Locale()
+	 * @model dataType="org.omg.sysml.lang.types.String" ordered="false"
+	 * @generated
+	 */
+	String getLocale();
+
+	/**
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Comment#getLocale <em>Locale</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Locale</em>' attribute.
+	 * @see #getLocale()
+	 * @generated
+	 */
+	void setLocale(String value);
+
 	/**
 	 * Returns the value of the '<em><b>Body</b></em>' attribute. <!--
 	 * begin-user-doc -->

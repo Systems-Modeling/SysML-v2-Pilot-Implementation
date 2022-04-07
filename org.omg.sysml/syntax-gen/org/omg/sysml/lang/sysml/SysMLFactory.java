@@ -240,6 +240,24 @@ public interface SysMLFactory extends EFactory {
 	StateDefinition createStateDefinition();
 
 	/**
+	 * Returns a new object of class '<em>Metadata Definition</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Metadata Definition</em>'.
+	 * @generated
+	 */
+	MetadataDefinition createMetadataDefinition();
+
+	/**
+	 * Returns a new object of class '<em>Metadata Usage</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Metadata Usage</em>'.
+	 * @generated
+	 */
+	MetadataUsage createMetadataUsage();
+
+	/**
 	 * Returns a new object of class '<em>Feature Membership</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -753,6 +771,24 @@ public interface SysMLFactory extends EFactory {
 	OccurrenceDefinition createOccurrenceDefinition();
 
 	/**
+	 * Returns a new object of class '<em>Definition</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Definition</em>'.
+	 * @generated
+	 */
+	Definition createDefinition();
+
+	/**
+	 * Returns a new object of class '<em>Usage</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Usage</em>'.
+	 * @generated
+	 */
+	Usage createUsage();
+
+	/**
 	 * Returns a new object of class '<em>Interface Definition</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1095,15 +1131,6 @@ public interface SysMLFactory extends EFactory {
 	MultiplicityRange createMultiplicityRange();
 
 	/**
-	 * Returns a new object of class '<em>Annotating Feature</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Annotating Feature</em>'.
-	 * @generated
-	 */
-	AnnotatingFeature createAnnotatingFeature();
-
-	/**
 	 * Returns a new object of class '<em>Metadata Feature</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1113,13 +1140,13 @@ public interface SysMLFactory extends EFactory {
 	MetadataFeature createMetadataFeature();
 
 	/**
-	 * Returns a new object of class '<em>Metadata Feature Value</em>'.
+	 * Returns a new object of class '<em>Metaclass</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Metadata Feature Value</em>'.
+	 * @return a new object of class '<em>Metaclass</em>'.
 	 * @generated
 	 */
-	MetadataFeatureValue createMetadataFeatureValue();
+	Metaclass createMetaclass();
 
 	/**
 	 * Returns a new object of class '<em>Succession</em>'.

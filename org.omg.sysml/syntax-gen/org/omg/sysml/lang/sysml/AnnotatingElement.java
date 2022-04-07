@@ -32,16 +32,17 @@ import org.eclipse.emf.common.util.EList;
  * <!-- begin-model-doc -->
  * <p>An AnnotatingElement is an Element that provides additional description of or metadata on some other Element. An AnnotatingElement is attached to its <code>annotatedElement</code> by an Annotation Relationship.</p>
  * 
- * annotatedElement = annotation
- * .annotatedElement
+ * annotatedElement = 
+ *  if annotation->notEmpty() then annotation.annotatedElement
+ *  else owningNamespace endif
  * <!-- end-model-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.AnnotatingElement#getAnnotatedElement <em>Annotated Element</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.AnnotatingElement#getAnnotation <em>Annotation</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.AnnotatingElement#getAnnotatedElement <em>Annotated Element</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getAnnotatingElement()
@@ -55,12 +56,12 @@ public interface AnnotatingElement extends Element {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Elements that are annotated by this AnnotatingElement, derived as the <code>annotatedElements</code> of the <code>annotations</code> of this AnnotatingElement.</p>
+	 * <p>The Elements that are annotated by this AnnotatingElement. If <code>annotation</code<> is not empty, this is derived as the <code>annotatedElements</code> of the <code>annotations</code>. If <code>annotation</code>, then it is derived as the <code>owningNamespace</code> of the AnnotatingElement.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Annotated Element</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getAnnotatingElement_AnnotatedElement()
-	 * @model transient="true" volatile="true" derived="true"
+	 * @model required="true" transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='annotatingElement'"
 	 * @generated
 	 */

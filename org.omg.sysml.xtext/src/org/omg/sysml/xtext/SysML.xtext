@@ -48,16 +48,6 @@ fragment Identification returns SysML::Element :
 
 /* ANNOTATIONS */
 
-/* Comments */
-
-Comment returns SysML::Comment :
-	( 'comment' Identification? 'about' ownedRelationship += Annotation
-	  ( ',' ownedRelationship += Annotation )*
-	| ( 'comment' Identification? )? ownedRelationship += EmptyAnnotation
-	)
-	body = REGULAR_COMMENT
-;
-
 Annotation returns SysML::Annotation :
 	annotatedElement = [SysML::Element|QualifiedName]
 ;
@@ -66,67 +56,98 @@ EmptyAnnotation returns SysML::Annotation :
 	{SysML::Annotation}
 ;
 
-/* Documentation */
-
-OwnedDocumentation returns SysML::Documentation :
-	ownedRelatedElement += DocumentationComment // documentingComment = DocumentationComment
+AnnotatingElement returns SysML::AnnotatingElement :
+	  Comment 
+	| PrefixComment 
+	| Documentation
+	| TextualRepresentation
+	| MetadataUsage
 ;
 
-DocumentationComment returns SysML::Comment :
-	'doc' ( '<' humanId = Name '>' )? body = REGULAR_COMMENT
+AnnotatingMember returns SysML::Membership :
+	ownedRelatedElement += AnnotatingElement // ownedMember = AnnotatingElement
 ;
 
-PrefixDocumentation returns SysML::Annotation :
-	ownedRelatedElement += PrefixDocumentationComment
+/* Comments */
+
+Comment returns SysML::Comment :
+	( 'comment' Identification? 
+	  ('about' ownedRelationship += Annotation
+	     ( ',' ownedRelationship += Annotation )* )? 
+	)?
+	body = REGULAR_COMMENT
 ;
 
-PrefixDocumentationComment returns SysML::Comment :
-	( 'doc' ( '<' humanId = Name '>' )? )? body = DOCUMENTATION_COMMENT
+PrefixComment returns SysML::Comment :
+	( 'comment' Identification? )? 
+	ownedRelationship += EmptyAnnotation
+	body = PREFIX_COMMENT
+;
+
+Documentation returns SysML::Documentation :
+	'doc' Identification? body = REGULAR_COMMENT
 ;
 
 /* Textual Representation */
 
 TextualRepresentation returns SysML::TextualRepresentation :
-    ( 'rep' Identification? 'about' ownedRelationship += Annotation
-    | ( 'rep' Identification? )? ownedRelationship += EmptyAnnotation
-    )
+    ( 'rep' Identification? ( 'about' ownedRelationship += Annotation )? )?
     'language' language = STRING_VALUE 
     body = REGULAR_COMMENT
 ;
 
-/* Annotating Features */
+/* Metadata */
 
-AnnotatingFeature returns SysML::AnnotatingFeature :
-	( '@' | 'metadata' ) AnnotatingFeatureDeclaration 
-	( 'about' ownedRelationship += Annotation ( ',' ownedRelationship += Annotation )* 
-	| ownedRelationship += EmptyAnnotation
-	)	
-	AnnotatingFeatureBody
+MetadataKeyword :
+	'metadata'
 ;
 
-fragment AnnotatingFeatureDeclaration returns SysML::AnnotatingFeature :
+MetadataDefKeyword :
+	MetadataKeyword 'def'
+;
+
+MetadataUsageKeyword :
+	MetadataKeyword | '@'
+;
+
+MetadataDefinition returns SysML::MetadataDefinition :
+	( isAbstract ?= 'abstract')? MetadataDefKeyword 
+	Definition
+;
+
+MetadataUsage returns SysML::MetadataUsage :
+	MetadataUsageKeyword MetadataFeatureDeclaration 
+	( 'about' ownedRelationship += Annotation 
+		( ',' ownedRelationship += Annotation )*
+	)?
+	MetadataBody
+;
+
+fragment MetadataFeatureDeclaration returns SysML::MetadataFeature :
 	( Identification DefinedByKeyword )? ownedRelationship += MetadataTyping
 ;
 
 MetadataTyping returns SysML::FeatureTyping :
-	type = [SysML::DataType | QualifiedName]
+	type = [SysML::Metaclass | QualifiedName]
 ;
 
-fragment AnnotatingFeatureBody returns SysML::AnnotatingFeature :
-	';' | '{' ( ownedRelationship += MetadataFeatureMember )* '}'
+fragment MetadataBody returns SysML::Feature :
+	';' | 
+	'{' ( ownedRelationship += DefinitionMember 
+		| ownedRelationship += MetadataBodyUsageMember 
+		| ownedRelationship += AliasMember
+		| ownedRelationship += Import
+	)* '}'
 ;
 
-MetadataFeatureMember returns SysML::FeatureMembership :
-	ownedRelatedElement += MetadataFeature // ownedMemberFeature = MetadataFeature
+MetadataBodyUsageMember returns SysML::FeatureMembership :
+	ownedRelatedElement += MetadataBodyUsage
 ;
 
-MetadataFeature returns SysML::MetadataFeature :
-	'feature'? ( ':>>' | 'redefines')? ownedRelationship += OwnedRedefinition 
-	'=' ownedRelationship += MetadataFeatureValue ';' // metadataFeatureValue = MetadataFeatureValue ';'
-;
-
-MetadataFeatureValue returns SysML::MetadataFeatureValue :
-	ownedRelatedElement += OwnedExpression // metadataValue = OwnedExpression
+MetadataBodyUsage returns SysML::ReferenceUsage :
+	'ref'? ( ':>>' | 'redefines' )? ownedRelationship += OwnedRedefinition 
+	FeatureSpecializationPart? ValuePart?
+	MetadataBody
 ;
 
 /* PACKAGES */
@@ -145,8 +166,7 @@ fragment PackageBody returns SysML::Package :
 	  ';' 
 	| '{' ( // Note: PackageBodyElement is expanded here to avoid
 			// infinite loops in the incremental parser.
-		    ownedRelationship += OwnedDocumentation
-		  | ownedRelationship += PackageMember
+		    ownedRelationship += PackageMember
 		  | ownedRelationship += ElementFilterMember
 		  | ownedRelationship += AliasMember
 		  | ownedRelationship += Import )* 
@@ -156,15 +176,13 @@ fragment PackageBody returns SysML::Package :
 /* Package Bodies */
 
 fragment PackageBodyElement returns SysML::Namespace :
-	  ownedRelationship += OwnedDocumentation 
-	| ownedRelationship += PackageMember
+	  ownedRelationship += PackageMember
 	| ownedRelationship += ElementFilterMember
 	| ownedRelationship += AliasMember
 	| ownedRelationship += Import
 ;
 
 fragment MemberPrefix returns SysML::Membership :
-	( ownedRelationship += PrefixDocumentation )*
     ( visibility = VisibilityIndicator )?
 ;
 
@@ -186,7 +204,6 @@ AliasMember returns SysML::Membership :
 ;
 
 Import returns SysML::Import :
-	( ownedRelationship += PrefixDocumentation )*
 	( visibility = VisibilityIndicator )?  
 	'import' ( isImportAll ?= 'all' )?
 	( ImportedNamespace | ImportedFilterPackage ) ';'
@@ -227,15 +244,14 @@ enum VisibilityIndicator returns SysML::VisibilityKind:
 
 DefinitionElement returns SysML::Element :
 	  Package
-	| Comment
-	| TextualRepresentation
-	| AnnotatingFeature
+	| AnnotatingElement
 	| Dependency	  
 	| AttributeDefinition
 	| EnumerationDefinition
 	| OccurrenceDefinition
 	| IndividualDefinition
 	| ItemDefinition
+	| MetadataDefinition
 	| PartDefinition
 	| ConnectionDefinition
 	| InterfaceDefinition
@@ -404,8 +420,7 @@ fragment DefinitionBody returns SysML::Type :
 ;
 
 fragment DefinitionBodyItem returns SysML::Type :
-	  ownedRelationship += OwnedDocumentation 
-	| ownedRelationship += DefinitionMember 
+	  ownedRelationship += DefinitionMember 
 	| ownedRelationship += VariantUsageMember
 	| ownedRelationship += NonOccurrenceUsageMember
 	| ( ownedRelationship += EmptySuccessionMember )?
@@ -666,7 +681,9 @@ EnumerationDefinition returns SysML::EnumerationDefinition :
 
 fragment EnumerationBody returns SysML::EnumerationDefinition :
 	  ';' 
-	| '{' ( => ownedRelationship += EnumerationUsageMember )* '}'
+	| '{' ( ownedRelationship += AnnotatingMember
+		  | => ownedRelationship += EnumerationUsageMember )* 
+	   '}'
 ;
 
 EnumerationUsageMember returns SysML::VariantMembership :
@@ -1110,8 +1127,7 @@ fragment InterfaceBody returns SysML::Type :
 ;
 
 fragment InterfaceBodyItem returns SysML::Type :
-	  ownedRelationship += OwnedDocumentation 
-	| ownedRelationship += DefinitionMember 
+	  ownedRelationship += DefinitionMember 
 	| ownedRelationship += VariantUsageMember
 	| ownedRelationship += InterfaceNonOccurrenceUsageMember
 	| ( ownedRelationship += EmptySuccessionMember )?
@@ -1256,8 +1272,7 @@ fragment ActionBody returns SysML::Type :
 ;
 
 fragment ActionBodyItem returns SysML::Type :
-	  ownedRelationship += OwnedDocumentation
-	| ownedRelationship += Import
+	  ownedRelationship += Import
 	| ownedRelationship += AliasMember
 	| ownedRelationship += DefinitionMember 
 	| ownedRelationship += VariantUsageMember
@@ -1668,8 +1683,7 @@ fragment StateBodyPart returns SysML::Type :
 ;
 
 fragment StateBodyItem returns SysML::Type :
-	  ownedRelationship += OwnedDocumentation
-	| ownedRelationship += Import
+	  ownedRelationship += Import
 	| ownedRelationship += AliasMember
 	| ownedRelationship += DefinitionMember 
 	| ownedRelationship += VariantUsageMember
@@ -2309,7 +2323,6 @@ fragment ViewBodyItem returns SysML::ViewUsage :
 ;
 
 Expose returns SysML::Expose :
-	( ownedRelationship += PrefixDocumentation )*
 	( visibility = VisibilityIndicator )?  
 	'expose' ( ImportedNamespace | ImportedFilterPackage ) ';'
 ;

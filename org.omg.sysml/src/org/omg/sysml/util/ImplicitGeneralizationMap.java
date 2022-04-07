@@ -100,6 +100,10 @@ public class ImplicitGeneralizationMap {
 		
 		put(LiteralStringImpl.class, "base", "Performances::literalStringEvaluations");
 		
+		put(MetaclassImpl.class, "base", "Metaobjects::Metaobject");
+		put(MetadataFeatureImpl.class, "base", "Metaobjects::metaobjects");
+		put(MetadataFeatureImpl.class, "annotatedElement", "Metaobjects::Metaobject::annotatedElement");
+		
 		put(MultiplicityImpl.class, "base", "Base::naturals");
 		put(MultiplicityImpl.class, "feature", "Base::exactlyOne");
 		put(MultiplicityImpl.class, "classifier", "Base::zeroOrOne");
@@ -214,6 +218,10 @@ public class ImplicitGeneralizationMap {
 		put(JoinNodeImpl.class, "subaction", "Actions::Action::joins");
 		
 		put(LifeClassImpl.class, "base", "Occurrences::Life");
+		
+		put(MetadataDefinitionImpl.class, "base", "Metadata::MetadataItem");
+		put(MetadataUsageImpl.class, "base", "Metadata::metadataItems");
+		put(MetadataUsageImpl.class, "annotatedElement", "Metaobjects::Metaobject::annotatedElement");
 		
 		put(MergeNodeImpl.class, "subaction", "Actions::Action::merges");
 		

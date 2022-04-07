@@ -249,7 +249,7 @@ public class RequirementUsageImpl extends ConstraintUsageImpl implements Require
 	@Override
 	public EList<String> getText() {
 		EList<String> text = new NonNotifyingEObjectEList<>(String.class, this, SysMLPackage.REQUIREMENT_USAGE__TEXT);
-		getDocumentationComment().stream().map(Comment::getBody).forEachOrdered(text::add);
+		getDocumentation().stream().map(Comment::getBody).forEachOrdered(text::add);
 		return text;
 	}
 

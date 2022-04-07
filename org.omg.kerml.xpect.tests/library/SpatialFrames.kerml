@@ -27,7 +27,7 @@ package SpatialFrames {
 	
 	/**
 	 * The PositionOf a Point relative to a SpatialFrame, at a specific time relative to a given
-	 * clock, as a positionVector that is a ThreeVectorValue.
+	 * Clock, as a positionVector that is a ThreeVectorValue.
 	 */
 	abstract function PositionOf {
 		in point : Point[1];
@@ -46,7 +46,7 @@ package SpatialFrames {
 		
 		/**
 		 * The result positionVector is equal to the PositionOf the Point spaceShot of the
-		 * frame that encloses the given point, at the current time.
+		 * frame that encloses the given point, at the given time.
 		 */
 		inv spacePositionConstraint {
 			(frame.spaceShots as Point)->forAll{in p : Point;
@@ -70,8 +70,8 @@ package SpatialFrames {
 		
 	/**
 	 * The DisplacementOf two Points relative to a SpatialFrame, at a specific time relative to a
-	 * given clock, is the displacementVector computed as the difference between the PositionOf the 
-	 * first point and PositionOf the second point, relative to that SpatialFrame, at that time.
+	 * given Clock, is the displacementVector computed as the difference between the PositionOf the 
+	 * first Point and PositionOf the second Point, relative to that SpatialFrame, at that time.
 	 */
 	function DisplacementOf {
 		in point1 : Point[1];
@@ -94,8 +94,8 @@ package SpatialFrames {
 	}
 	
 	/**
-	 * The CurrentDisplacementOf two points relative to a SpatialFrame and Clock is the DisplacementOf
-	 * the Points realtive to the SpacialFrame at the currentTime of the Clock.
+	 * The CurrentDisplacementOf two Points relative to a SpatialFrame and Clock is the DisplacementOf
+	 * the Points relative to the SpacialFrame at the currentTime of the Clock.
 	 */
 	function CurrentDisplacementOf {
 		in point1 : Point[1];
@@ -134,7 +134,7 @@ package SpatialFrames {
 	}
 	
 	/**
-	 * The DisplacementOf two points relative to a CartesianSpatialFrame is a CartesianThreeVectorValue.
+	 * The DisplacementOf two Points relative to a CartesianSpatialFrame is a CartesianThreeVectorValue.
 	 */
 	function CartesianDisplacementOf :> DisplacementOf {
 		in point1 : Point[1];
@@ -146,7 +146,7 @@ package SpatialFrames {
 	}
 		
 	/**
-	 * The CurrentDisplacementOf two points relative to a CartesianSpatialFrame is a CartesianThreeVectorValue.
+	 * The CurrentDisplacementOf two Points relative to a CartesianSpatialFrame is a CartesianThreeVectorValue.
 	 */
 	function CartesianCurrentDisplacementOf :> CurrentDisplacementOf {
 		in point1 : Point[1];

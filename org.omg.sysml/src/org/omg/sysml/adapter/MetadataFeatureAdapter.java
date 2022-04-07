@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -21,22 +21,20 @@
 
 package org.omg.sysml.adapter;
 
-import org.omg.sysml.lang.sysml.AnnotatingFeature;
+import org.omg.sysml.lang.sysml.MetadataFeature;
 
-public class AnnotatingFeatureAdapter extends FeatureAdapter {
-
-	public AnnotatingFeatureAdapter(AnnotatingFeature feature) {
-		super(feature);
+public class MetadataFeatureAdapter extends FeatureAdapter {
+	
+	public MetadataFeatureAdapter(MetadataFeature element) {
+		super(element);
 	}
 	
+	public MetadataFeature getTarget() {
+		return (MetadataFeature)super.getTarget();
+	}
+
 	@Override
-	public AnnotatingFeature getTarget() {
-		return (AnnotatingFeature)super.getTarget();
+	protected String getDefaultSupertype() {
+		return getDefaultSupertype("base");
 	}
-	
-	public void doTransform() {
-		super.doTransform();
-		AnnotatingElementAdapter.transformAnnotatingElement(getTarget());
-	}
-	
 }

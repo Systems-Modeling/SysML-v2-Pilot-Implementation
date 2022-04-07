@@ -91,6 +91,8 @@ import org.omg.sysml.lang.sysml.Type
 import org.omg.sysml.lang.sysml.StateSubactionKind
 import org.omg.sysml.lang.sysml.UseCaseUsage
 import org.omg.sysml.lang.sysml.UseCaseDefinition
+import org.omg.sysml.lang.sysml.MetadataUsage
+import org.omg.sysml.lang.sysml.Metaclass
 
 /**
  * This class contains custom validation rules. 
@@ -168,6 +170,8 @@ class SysMLValidator extends KerMLValidator {
 	public static val INVALID_VIEWPOINTUSAGE_MSG = 'A viewpoint must be typed by one viewpoint definition.'
 	public static val INVALID_RENDERINGUSAGE = 'Invalid RenderingUsage - invalid type'
 	public static val INVALID_RENDERINGUSAGE_MSG = 'A rendering must be typed by one rendering definition.'
+	public static val INVALID_METADATAUSAGE = 'Invalid MetadataUsage - invalid type'
+	public static val INVALID_METADATAUSAGE_MSG = 'A metadata usage must be typed by one metadata definition.'
 	
 	public static val INVALID_VIEWDEFINITION_RENDER = 'Invalid ViewDefinition - invalid render';
 	public static val INVALID_VIEWDEFINITION_RENDER_MSG = 'A view definition may have at most one rendering.';
@@ -226,7 +230,7 @@ class SysMLValidator extends KerMLValidator {
 	}
 	@Check //All types must be Structures. 
 	def checkItemUsageTypes(ItemUsage iu){
-		if (!(iu instanceof PartUsage || iu instanceof PortUsage))	
+		if (!(iu instanceof PartUsage || iu instanceof PortUsage || iu instanceof MetadataUsage))	
 			checkAllTypes(iu, Structure, SysMLValidator.INVALID_ITEMUSAGE_MSG, SysMLPackage.eINSTANCE.itemUsage_ItemDefinition, SysMLValidator.INVALID_ITEMUSAGE)
 	}
 	@Check //All types must be Structures, at least one must be a PartDefinition. 
@@ -319,6 +323,11 @@ class SysMLValidator extends KerMLValidator {
 		checkAtMostOneElement(viewUsg.ownedFeature.filter[f|f instanceof RenderingUsage], INVALID_VIEWUSAGE_RENDER_MSG, INVALID_VIEWUSAGE_RENDER)
 	}
 	
+	@Check //Must have exactly one type, which is a MetadataDefinition. 
+	def checkMetadataUsageTypes(MetadataUsage usg){
+		checkOneType(usg, Metaclass, SysMLValidator.INVALID_METADATAUSAGE_MSG, SysMLPackage.eINSTANCE.metadataUsage_MetadataDefinition, SysMLValidator.INVALID_METADATAUSAGE)
+	}
+
 	@Check //Ends must be ports
 	def checkInterfaceDefinitionEnds(InterfaceDefinition usg) {
 		for (end: usg.ownedFeature.filter[isEnd]) {

@@ -31,7 +31,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.omg.sysml.lang.sysml.AnnotatingFeature;
+import org.omg.sysml.lang.sysml.MetadataFeature;
 import org.omg.sysml.lang.sysml.Annotation;
 import org.omg.sysml.lang.sysml.Comment;
 import org.omg.sysml.lang.sysml.Connector;
@@ -462,7 +462,7 @@ public class VSequence extends VDefault {
     @Override
     public String caseAnnotation(Annotation a) { return ""; }
     @Override
-    public String caseAnnotatingFeature(AnnotatingFeature af) { return ""; }
+    public String caseMetadataFeature(MetadataFeature af) { return ""; }
     @Override
     public String caseComment(Comment c) { return ""; }
 

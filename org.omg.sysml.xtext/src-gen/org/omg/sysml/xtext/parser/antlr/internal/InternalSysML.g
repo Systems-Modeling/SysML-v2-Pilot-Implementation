@@ -833,22 +833,28 @@ rulePrefixMetadataMember returns [EObject current=null]
 	leaveRule();
 }:
 	(
+		otherlv_0='#'
+		{
+			newLeafNode(otherlv_0, grammarAccess.getPrefixMetadataMemberAccess().getNumberSignKeyword_0());
+		}
 		(
-			{
-				newCompositeNode(grammarAccess.getPrefixMetadataMemberAccess().getOwnedRelatedElementPrefixMetadataUsageParserRuleCall_0());
-			}
-			lv_ownedRelatedElement_0_0=rulePrefixMetadataUsage
-			{
-				if ($current==null) {
-					$current = createModelElementForParent(grammarAccess.getPrefixMetadataMemberRule());
+			(
+				{
+					newCompositeNode(grammarAccess.getPrefixMetadataMemberAccess().getOwnedRelatedElementPrefixMetadataUsageParserRuleCall_1_0());
 				}
-				add(
-					$current,
-					"ownedRelatedElement",
-					lv_ownedRelatedElement_0_0,
-					"org.omg.sysml.xtext.SysML.PrefixMetadataUsage");
-				afterParserOrEnumRuleCall();
-			}
+				lv_ownedRelatedElement_1_0=rulePrefixMetadataUsage
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getPrefixMetadataMemberRule());
+					}
+					add(
+						$current,
+						"ownedRelatedElement",
+						lv_ownedRelatedElement_1_0,
+						"org.omg.sysml.xtext.SysML.PrefixMetadataUsage");
+					afterParserOrEnumRuleCall();
+				}
+			)
 		)
 	)
 ;
@@ -3769,28 +3775,22 @@ ruleDefinitionExtensionKeyword[EObject in_current]  returns [EObject current=in_
 	leaveRule();
 }:
 	(
-		otherlv_0='#'
-		{
-			newLeafNode(otherlv_0, grammarAccess.getDefinitionExtensionKeywordAccess().getNumberSignKeyword_0());
-		}
 		(
-			(
-				{
-					newCompositeNode(grammarAccess.getDefinitionExtensionKeywordAccess().getOwnedRelationshipPrefixMetadataMemberParserRuleCall_1_0());
+			{
+				newCompositeNode(grammarAccess.getDefinitionExtensionKeywordAccess().getOwnedRelationshipPrefixMetadataMemberParserRuleCall_0());
+			}
+			lv_ownedRelationship_0_0=rulePrefixMetadataMember
+			{
+				if ($current==null) {
+					$current = createModelElementForParent(grammarAccess.getDefinitionExtensionKeywordRule());
 				}
-				lv_ownedRelationship_1_0=rulePrefixMetadataMember
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getDefinitionExtensionKeywordRule());
-					}
-					add(
-						$current,
-						"ownedRelationship",
-						lv_ownedRelationship_1_0,
-						"org.omg.sysml.xtext.SysML.PrefixMetadataMember");
-					afterParserOrEnumRuleCall();
-				}
-			)
+				add(
+					$current,
+					"ownedRelationship",
+					lv_ownedRelationship_0_0,
+					"org.omg.sysml.xtext.SysML.PrefixMetadataMember");
+				afterParserOrEnumRuleCall();
+			}
 		)
 	)
 ;
@@ -4557,28 +4557,22 @@ ruleUsageExtensionKeyword[EObject in_current]  returns [EObject current=in_curre
 	leaveRule();
 }:
 	(
-		otherlv_0='#'
-		{
-			newLeafNode(otherlv_0, grammarAccess.getUsageExtensionKeywordAccess().getNumberSignKeyword_0());
-		}
 		(
-			(
-				{
-					newCompositeNode(grammarAccess.getUsageExtensionKeywordAccess().getOwnedRelationshipPrefixMetadataMemberParserRuleCall_1_0());
+			{
+				newCompositeNode(grammarAccess.getUsageExtensionKeywordAccess().getOwnedRelationshipPrefixMetadataMemberParserRuleCall_0());
+			}
+			lv_ownedRelationship_0_0=rulePrefixMetadataMember
+			{
+				if ($current==null) {
+					$current = createModelElementForParent(grammarAccess.getUsageExtensionKeywordRule());
 				}
-				lv_ownedRelationship_1_0=rulePrefixMetadataMember
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getUsageExtensionKeywordRule());
-					}
-					add(
-						$current,
-						"ownedRelationship",
-						lv_ownedRelationship_1_0,
-						"org.omg.sysml.xtext.SysML.PrefixMetadataMember");
-					afterParserOrEnumRuleCall();
-				}
-			)
+				add(
+					$current,
+					"ownedRelationship",
+					lv_ownedRelationship_0_0,
+					"org.omg.sysml.xtext.SysML.PrefixMetadataMember");
+				afterParserOrEnumRuleCall();
+			}
 		)
 	)
 ;

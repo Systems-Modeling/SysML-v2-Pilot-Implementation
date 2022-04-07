@@ -116,7 +116,7 @@ MetadataDefinition returns SysML::MetadataDefinition :
 ;
 
 PrefixMetadataMember returns SysML::Membership :
-	ownedRelatedElement += PrefixMetadataUsage // ownedMemberElement = PrefixMetadataUsage
+	'#' ownedRelatedElement += PrefixMetadataUsage // ownedMemberElement = PrefixMetadataUsage
 ;
 
 PrefixMetadataUsage returns SysML::MetadataUsage :
@@ -419,7 +419,7 @@ fragment BasicDefinitionPrefix returns SysML::Definition :
 ;
 
 fragment DefinitionExtensionKeyword returns SysML::Definition :
-	'#' ownedRelationship += PrefixMetadataMember
+	ownedRelationship += PrefixMetadataMember
 ;
 
 fragment DefinitionPrefix returns SysML::Definition :
@@ -495,7 +495,7 @@ fragment BasicUsagePrefix returns SysML::Usage :
 ;
 
 fragment UsageExtensionKeyword returns SysML::Usage :
-	'#' ownedRelationship += PrefixMetadataMember
+	ownedRelationship += PrefixMetadataMember
 ;
 
 fragment UsagePrefix returns SysML::Usage :

@@ -486,19 +486,27 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	public class PrefixMetadataMemberElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.PrefixMetadataMember");
-		private final Assignment cOwnedRelatedElementAssignment = (Assignment)rule.eContents().get(1);
-		private final RuleCall cOwnedRelatedElementPrefixMetadataUsageParserRuleCall_0 = (RuleCall)cOwnedRelatedElementAssignment.eContents().get(0);
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cNumberSignKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cOwnedRelatedElementAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cOwnedRelatedElementPrefixMetadataUsageParserRuleCall_1_0 = (RuleCall)cOwnedRelatedElementAssignment_1.eContents().get(0);
 		
 		//PrefixMetadataMember returns SysML::Membership :
-		//    ownedRelatedElement += PrefixMetadataUsage // ownedMemberElement = PrefixMetadataUsage
+		//    '#' ownedRelatedElement += PrefixMetadataUsage // ownedMemberElement = PrefixMetadataUsage
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
+		//'#' ownedRelatedElement += PrefixMetadataUsage
+		public Group getGroup() { return cGroup; }
+		
+		//'#'
+		public Keyword getNumberSignKeyword_0() { return cNumberSignKeyword_0; }
+		
 		//ownedRelatedElement += PrefixMetadataUsage
-		public Assignment getOwnedRelatedElementAssignment() { return cOwnedRelatedElementAssignment; }
+		public Assignment getOwnedRelatedElementAssignment_1() { return cOwnedRelatedElementAssignment_1; }
 		
 		//PrefixMetadataUsage
-		public RuleCall getOwnedRelatedElementPrefixMetadataUsageParserRuleCall_0() { return cOwnedRelatedElementPrefixMetadataUsageParserRuleCall_0; }
+		public RuleCall getOwnedRelatedElementPrefixMetadataUsageParserRuleCall_1_0() { return cOwnedRelatedElementPrefixMetadataUsageParserRuleCall_1_0; }
 	}
 	public class PrefixMetadataUsageElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.PrefixMetadataUsage");
@@ -2360,27 +2368,19 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	public class DefinitionExtensionKeywordElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.DefinitionExtensionKeyword");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cNumberSignKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cOwnedRelationshipAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cOwnedRelationshipPrefixMetadataMemberParserRuleCall_1_0 = (RuleCall)cOwnedRelationshipAssignment_1.eContents().get(0);
+		private final Assignment cOwnedRelationshipAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cOwnedRelationshipPrefixMetadataMemberParserRuleCall_0 = (RuleCall)cOwnedRelationshipAssignment.eContents().get(0);
 		
 		//fragment DefinitionExtensionKeyword returns SysML::Definition :
-		//    '#' ownedRelationship += PrefixMetadataMember
+		//    ownedRelationship += PrefixMetadataMember
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'#' ownedRelationship += PrefixMetadataMember
-		public Group getGroup() { return cGroup; }
-		
-		//'#'
-		public Keyword getNumberSignKeyword_0() { return cNumberSignKeyword_0; }
-		
 		//ownedRelationship += PrefixMetadataMember
-		public Assignment getOwnedRelationshipAssignment_1() { return cOwnedRelationshipAssignment_1; }
+		public Assignment getOwnedRelationshipAssignment() { return cOwnedRelationshipAssignment; }
 		
 		//PrefixMetadataMember
-		public RuleCall getOwnedRelationshipPrefixMetadataMemberParserRuleCall_1_0() { return cOwnedRelationshipPrefixMetadataMemberParserRuleCall_1_0; }
+		public RuleCall getOwnedRelationshipPrefixMetadataMemberParserRuleCall_0() { return cOwnedRelationshipPrefixMetadataMemberParserRuleCall_0; }
 	}
 	public class DefinitionPrefixElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.DefinitionPrefix");
@@ -2813,27 +2813,19 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	public class UsageExtensionKeywordElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.UsageExtensionKeyword");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cNumberSignKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cOwnedRelationshipAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cOwnedRelationshipPrefixMetadataMemberParserRuleCall_1_0 = (RuleCall)cOwnedRelationshipAssignment_1.eContents().get(0);
+		private final Assignment cOwnedRelationshipAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cOwnedRelationshipPrefixMetadataMemberParserRuleCall_0 = (RuleCall)cOwnedRelationshipAssignment.eContents().get(0);
 		
 		//fragment UsageExtensionKeyword returns SysML::Usage :
-		//    '#' ownedRelationship += PrefixMetadataMember
+		//    ownedRelationship += PrefixMetadataMember
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'#' ownedRelationship += PrefixMetadataMember
-		public Group getGroup() { return cGroup; }
-		
-		//'#'
-		public Keyword getNumberSignKeyword_0() { return cNumberSignKeyword_0; }
-		
 		//ownedRelationship += PrefixMetadataMember
-		public Assignment getOwnedRelationshipAssignment_1() { return cOwnedRelationshipAssignment_1; }
+		public Assignment getOwnedRelationshipAssignment() { return cOwnedRelationshipAssignment; }
 		
 		//PrefixMetadataMember
-		public RuleCall getOwnedRelationshipPrefixMetadataMemberParserRuleCall_1_0() { return cOwnedRelationshipPrefixMetadataMemberParserRuleCall_1_0; }
+		public RuleCall getOwnedRelationshipPrefixMetadataMemberParserRuleCall_0() { return cOwnedRelationshipPrefixMetadataMemberParserRuleCall_0; }
 	}
 	public class UsagePrefixElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.UsagePrefix");
@@ -15498,7 +15490,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//PrefixMetadataMember returns SysML::Membership :
-	//    ownedRelatedElement += PrefixMetadataUsage // ownedMemberElement = PrefixMetadataUsage
+	//    '#' ownedRelatedElement += PrefixMetadataUsage // ownedMemberElement = PrefixMetadataUsage
 	//;
 	public PrefixMetadataMemberElements getPrefixMetadataMemberAccess() {
 		return pPrefixMetadataMember;
@@ -16137,7 +16129,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//fragment DefinitionExtensionKeyword returns SysML::Definition :
-	//    '#' ownedRelationship += PrefixMetadataMember
+	//    ownedRelationship += PrefixMetadataMember
 	//;
 	public DefinitionExtensionKeywordElements getDefinitionExtensionKeywordAccess() {
 		return pDefinitionExtensionKeyword;
@@ -16317,7 +16309,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//fragment UsageExtensionKeyword returns SysML::Usage :
-	//    '#' ownedRelationship += PrefixMetadataMember
+	//    ownedRelationship += PrefixMetadataMember
 	//;
 	public UsageExtensionKeywordElements getUsageExtensionKeywordAccess() {
 		return pUsageExtensionKeyword;

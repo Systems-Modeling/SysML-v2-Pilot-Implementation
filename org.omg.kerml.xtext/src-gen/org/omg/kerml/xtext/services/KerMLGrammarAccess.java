@@ -4576,13 +4576,14 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Keyword cMultiplicityKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final RuleCall cIdentificationParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
 		private final RuleCall cSubsetsParserRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
+		private final Keyword cSemicolonKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		//MultiplicitySubset returns SysML::Multiplicity :
-		//    'multiplicity' Identification? Subsets
+		//    'multiplicity' Identification? Subsets ';'
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'multiplicity' Identification? Subsets
+		//'multiplicity' Identification? Subsets ';'
 		public Group getGroup() { return cGroup; }
 		
 		//'multiplicity'
@@ -4593,6 +4594,9 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		
 		//Subsets
 		public RuleCall getSubsetsParserRuleCall_2() { return cSubsetsParserRuleCall_2; }
+		
+		//';'
+		public Keyword getSemicolonKeyword_3() { return cSemicolonKeyword_3; }
 	}
 	public class MultiplicityRangeElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.MultiplicityRange");
@@ -9206,7 +9210,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//MultiplicitySubset returns SysML::Multiplicity :
-	//    'multiplicity' Identification? Subsets
+	//    'multiplicity' Identification? Subsets ';'
 	//;
 	public MultiplicitySubsetElements getMultiplicitySubsetAccess() {
 		return pMultiplicitySubset;

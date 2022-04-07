@@ -14,6 +14,7 @@ XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLTests
  		File {from ="/library.systems/Items.sysml"}
  		File {from ="/library.systems/Parts.sysml"}
  		File {from ="/library.systems/Ports.sysml"}
+ 		File {from ="/library.systems/Metadata.sysml"}
 	}
 	Workspace {
 		JavaProject {
@@ -31,6 +32,7 @@ XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLTests
 				File {from ="/library.systems/Items.sysml"}
 				File {from ="/library.systems/Parts.sysml"}
  				File {from ="/library.systems/Ports.sysml"}
+ 				File {from ="/library.systems/Metadata.sysml"}
 			}
 		}
 	}

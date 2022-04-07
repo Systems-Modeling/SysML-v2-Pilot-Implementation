@@ -2,12 +2,14 @@
 XPECT_SETUP org.omg.kerml.xpect.tests.visibility.KerMLVisibilityTest
 	ResourceSet {
 		ThisFile {}
+		File {from ="/library/Base.kerml"}
 		File {from ="/src/DependencyVisibilityPackage.kerml"}
 	}
 	Workspace {
 		JavaProject {
 			SrcFolder {
 				ThisFile {}
+				File {from ="/library/Base.kerml"}
 				File {from ="/src/DependencyVisibilityPackage.kerml"}
 			}
 		}
@@ -19,19 +21,19 @@ END_SETUP
 package Test3{
 	import VisibilityPackage::c_clazz::*;
 	// XPECT errors --> "Couldn't resolve reference to Classifier 'c_Protect::c_publicc'." at "c_Protect::c_publicc"
-	class A specializes c_Protect::c_publicc{}
+	classifier A specializes c_Protect::c_publicc{}
 	// XPECT errors --> "Couldn't resolve reference to Classifier 'VisibilityPackage::c_clazz::c_Protect::c_publicc'." at "VisibilityPackage::c_clazz::c_Protect::c_publicc"
-	class A1 specializes VisibilityPackage::c_clazz::c_Protect::c_publicc{}
+	classifier A1 specializes VisibilityPackage::c_clazz::c_Protect::c_publicc{}
 	//XPECT errors --> "Couldn't resolve reference to Classifier 'c_Protect'." at "c_Protect"
-	class B specializes c_Protect{}
+	classifier B specializes c_Protect{}
 	//XPECT errors --> "Couldn't resolve reference to Classifier 'c_Protect::c_protect'." at "c_Protect::c_protect"
-	class C specializes c_Protect::c_protect{}
+	classifier C specializes c_Protect::c_protect{}
 	//XPECT errors --> "Couldn't resolve reference to Classifier 'c_Package'." at "c_Package"
-	class D specializes c_Package{}
+	classifier D specializes c_Package{}
 	//XPECT errors --> "Couldn't resolve reference to Classifier 'c_Package::c_publicc'." at "c_Package::c_publicc"
-	class E specializes c_Package::c_publicc{}
+	classifier E specializes c_Package::c_publicc{}
 	//XPECT errors --> "Couldn't resolve reference to Classifier 'c_Public::c_protect'." at "c_Public::c_protect"
-	class F specializes c_Public::c_protect{}
+	classifier F specializes c_Public::c_protect{}
 	//XPECT errors --> "Couldn't resolve reference to Classifier 'c_Public::c_package'." at "c_Public::c_package"
-	class G specializes c_Public::c_package{}
+	classifier G specializes c_Public::c_package{}
 }

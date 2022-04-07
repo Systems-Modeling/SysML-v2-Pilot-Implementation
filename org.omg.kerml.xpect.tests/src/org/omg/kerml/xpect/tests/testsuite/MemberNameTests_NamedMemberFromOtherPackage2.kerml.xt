@@ -2,11 +2,13 @@
 XPECT_SETUP org.omg.kerml.xpect.tests.testsuite.KerMLXtextTest
 	ResourceSet {
 		ThisFile {}
+		File {from ="/library/Base.kerml"}
 	}
 	Workspace {
 		JavaProject {
 			SrcFolder {
 				ThisFile {}
+				File {from ="/library/Base.kerml"}
 			}
 		}
 	}
@@ -16,9 +18,9 @@ END_SETUP
 // XPECT noErrors --> ""
 package test{
 	package P{
-		class A {
-			class AA{
-				class AAA{}
+		classifier A {
+			classifier AA{
+				classifier AAA{}
 			}
 		}
 		alias A_alias for A;
@@ -27,12 +29,17 @@ package test{
 	alias P1 for P;
 	//XPECT linkedName at P1::A_alias --> test.P.A
 	//* XPECT scope at P1::A_alias ---
-	    a.AA, a.AA.AAA, test.a.AA, test.a.AA.AAA,
-   	    P.A, P.A.AA, P.A.AA.AAA, P.A_alias, P.A_alias.AA,
-		P.A_alias.AA.AAA, P1.A, P1.A.AA, P1.A.AA.AAA, P1.A_alias, P1.A_alias.AA, P1.A_alias.AA.AAA, a,
-		test.P.A, test.P.A.AA, test.P.A.AA.AAA, test.P.A_alias, test.P.A_alias.AA,
-		test.P.A_alias.AA.AAA, test.P1.A, test.P1.A.AA, test.P1.A.AA.AAA, test.P1.A_alias, test.P1.A_alias.AA,
-		test.P1.A_alias.AA.AAA, test.a,
+		P.A, P.A.AA, P.A.AA.AAA, P.A.AA.AAA.self, P.A.AA.self, P.A.self, P.A_alias,
+		P.A_alias.AA, P.A_alias.AA.AAA, P.A_alias.AA.AAA.self, P.A_alias.AA.self, P.A_alias.self,
+		P1.A, P1.A.AA, P1.A.AA.AAA, P1.A.AA.AAA.self, P1.A.AA.self, P1.A.self, P1.A_alias,
+		P1.A_alias.AA, P1.A_alias.AA.AAA, P1.A_alias.AA.AAA.self, P1.A_alias.AA.self, P1.A_alias.self,
+		a, a.AA, a.AA.AAA, a.AA.AAA.self, a.AA.self, a.self, test.P.A, test.P.A.AA,
+		test.P.A.AA.AAA, test.P.A.AA.AAA.self, test.P.A.AA.self, test.P.A.self, test.P.A_alias,
+		test.P.A_alias.AA, test.P.A_alias.AA.AAA, test.P.A_alias.AA.AAA.self, test.P.A_alias.AA.self,
+		test.P.A_alias.self, test.P1.A, test.P1.A.AA, test.P1.A.AA.AAA, test.P1.A.AA.AAA.self,
+		test.P1.A.AA.self, test.P1.A.self, test.P1.A_alias, test.P1.A_alias.AA, test.P1.A_alias.AA.AAA,
+		test.P1.A_alias.AA.AAA.self, test.P1.A_alias.AA.self, test.P1.A_alias.self, test.a, test.a.AA,
+		test.a.AA.AAA, test.a.AA.AAA.self, test.a.AA.self, test.a.self
 --- */
 	feature a: P1::A_alias ;
 	

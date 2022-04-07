@@ -16,13 +16,13 @@ END_SETUP
 */
 
 package test{
-	class non{}
-	class A{
+	classifier non{}
+	classifier A{
 		// XPECT errors ---> "Couldn't resolve reference to Feature 'non'." at "non"
 		feature aa is non;
 		feature a: A;
 	}
-	class B{
+	classifier B{
 		//* XPECT errors ---
 		"Relationships must have at least two related elements" at ""
 		"no viable alternative at input '..'" at "test"

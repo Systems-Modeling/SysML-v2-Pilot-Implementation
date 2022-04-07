@@ -2,11 +2,13 @@
 XPECT_SETUP org.omg.kerml.xpect.tests.imports.recursive.KerMLImportRecursiveTest
 	ResourceSet {
 		ThisFile {}
+		File {from ="/library/Base.kerml"}
 	}
 	Workspace {
 		JavaProject {
 			SrcFolder {
 				ThisFile {}
+				File {from ="/library/Base.kerml"}
 			}
 		}
 	}
@@ -50,22 +52,22 @@ package Test {
 		VP2.A_Id, VP2.A, Test1.VP2.A, Test1.VP2.A_Id, Test.Test1.VP2.A, Test.Test1.VP2.A_Id,
 		
 		--- */
-		class A specializes c_Public_Id;
+		classifier A specializes c_Public_Id;
 	
 	}
 
 	package VP {
 			
 		package VP1 {	
-			public class <'c_Public_Id'> c_Public {
-				private class c_private{}
-				public class c_public{}
-				protected class c_protected{}
+			public classifier <'c_Public_Id'> c_Public {
+				private classifier c_private{}
+				public classifier c_public{}
+				protected classifier c_protected{}
 			}
 		}
 		
 		package VP2 {
-			public class <'A_Id'> A;
+			public classifier <'A_Id'> A;
 		}
 	}
 	

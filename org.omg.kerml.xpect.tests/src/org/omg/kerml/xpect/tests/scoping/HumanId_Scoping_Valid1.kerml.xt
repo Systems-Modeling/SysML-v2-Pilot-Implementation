@@ -2,11 +2,13 @@
 XPECT_SETUP org.omg.kerml.xpect.tests.scoping.KerMLScopingTest
 	ResourceSet {
 		ThisFile {}
+		File {from ="/library/Base.kerml"}
 	}
 	Workspace {
 		JavaProject {
 			SrcFolder {
 				ThisFile {}
+				File {from ="/library/Base.kerml"}
 			}
 		}
 	}
@@ -15,8 +17,8 @@ END_SETUP
 
 // XPECT noErrors --> ""
 package Test {
-	 class <'1'> A {
-	 	class <'11A'> AA;
+	 classifier <'1'> A {
+	 	classifier <'11A'> AA;
 	 }
 
 	//* XPECT scope at 1 ---
@@ -33,10 +35,10 @@ package Test {
    		C.AAA, Test.C.AAA, 
    		C.33A, Test.C.33A
    	--- */
-	 class <'two'> B specializes '1';
+	 classifier <'two'> B specializes '1';
 	 
-	 class <'3'> C specializes 'two'{
-	 	class <'33A'> AAA;
+	 classifier <'3'> C specializes 'two'{
+	 	classifier <'33A'> AAA;
 	 }
 }
 

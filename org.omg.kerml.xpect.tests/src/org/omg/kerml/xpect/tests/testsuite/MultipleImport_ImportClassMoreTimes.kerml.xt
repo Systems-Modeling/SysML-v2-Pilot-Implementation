@@ -2,6 +2,7 @@
 XPECT_SETUP org.omg.kerml.xpect.tests.testsuite.KerMLXtextTest
 	ResourceSet {
 		ThisFile {}
+		File {from ="/library/Base.kerml"}
 		File {from ="/src/DependencyOuterPackage.kerml"}
 		File {from ="/src/DependencyMultipleMembership.kerml"}
 		File {from ="/src/DependencyMembership2.kerml"}
@@ -10,6 +11,7 @@ XPECT_SETUP org.omg.kerml.xpect.tests.testsuite.KerMLXtextTest
 		JavaProject {
 			SrcFolder {
 				ThisFile {}
+				File {from ="/library/Base.kerml"}
 				File {from ="/src/DependencyOuterPackage.kerml"}
 				File {from ="/src/DependencyMultipleMembership.kerml"}
 				File {from ="/src/DependencyMembership2.kerml"}
@@ -32,20 +34,21 @@ package test{
 		   OuterPackage3.C, OuterPackage3.C.b.a1,  
 		   OuterPackage3.D, OuterPackage3.D.b.a1, OuterPackage3.D.f.a1,
 	--- */
-	class EE specializes D {
+	classifier EE specializes D {
 		//XPECT linkedName at b --> OuterPackage.B.b
 		//* XPECT scope at b ---
-		   D.b.a1, D.f.a1,  EE.b.a1,  EE.f.a1,  EE.try.a1, 
-		   test.D.b.a1, test.D.f.a1, test.EE.b.a1, test.EE.f.a1, test.EE.try.a1, 
-		   b.a1, f.a1,try, try.a1,
-		   D, D.b, D.c, D.f, EE, EE.b, EE.c, EE.f, EE.try, b, c, f,
-		   test.D, test.D.b, test.D.c, test.D.f, test.EE, test.EE.b, test.EE.c, test.EE.f, test.EE.try, 
-		   OuterPackage.A, OuterPackage.A.a1, 
-		   OuterPackage.B, OuterPackage.B.b, OuterPackage.B.b.a1, 
-		   OuterPackage2.B, OuterPackage2.B.b, OuterPackage2.B.b.a1, 
-		   OuterPackage2.C, OuterPackage2.C.b, OuterPackage2.C.c, OuterPackage2.C.b.a1,
-		   OuterPackage3.C, OuterPackage3.C.b, OuterPackage3.C.b.a1, OuterPackage3.C.c,
-		   OuterPackage3.D, OuterPackage3.D.b, OuterPackage3.D.c, OuterPackage3.D.b.a1, OuterPackage3.D.f, OuterPackage3.D.f.a1,
+		   D, D.b, D.b.a1, D.c, D.c.self, D.f, D.f.a1, D.f.self, EE, EE.b, EE.b.a1, EE.c,
+		   EE.c.self, EE.f, EE.f.a1, EE.f.self, EE.self, EE.try, EE.try.a1, EE.try.self,
+		   OuterPackage.A, OuterPackage.A.a1, OuterPackage.B, OuterPackage.B.b, OuterPackage.B.b.a1,
+		   OuterPackage2.B, OuterPackage2.B.b, OuterPackage2.B.b.a1, OuterPackage2.C, OuterPackage2.C.b,
+		   OuterPackage2.C.b.a1, OuterPackage2.C.c, OuterPackage2.C.c.self, OuterPackage3.C, OuterPackage3.C.b,
+		   OuterPackage3.C.b.a1, OuterPackage3.C.c, OuterPackage3.C.c.self, OuterPackage3.D, OuterPackage3.D.b,
+		   OuterPackage3.D.b.a1, OuterPackage3.D.c, OuterPackage3.D.c.self, OuterPackage3.D.f,
+		   OuterPackage3.D.f.a1, OuterPackage3.D.f.self, b, b.a1, c, c.self, f, f.a1, f.self, self, test.D,
+		   test.D.b, test.D.b.a1, test.D.c, test.D.c.self, test.D.f, test.D.f.a1, test.D.f.self,
+		   test.EE, test.EE.b, test.EE.b.a1, test.EE.c, test.EE.c.self, test.EE.f, test.EE.f.a1,
+		   test.EE.f.self, test.EE.self, test.EE.try, test.EE.try.a1, test.EE.try.self, try, try.a1,
+		   try.self
 	--- */
 		feature try : b;
 	}

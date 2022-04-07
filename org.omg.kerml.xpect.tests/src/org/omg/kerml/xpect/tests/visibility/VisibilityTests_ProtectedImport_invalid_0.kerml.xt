@@ -2,12 +2,14 @@
 XPECT_SETUP org.omg.kerml.xpect.tests.visibility.KerMLVisibilityTest
 	ResourceSet {
 		ThisFile {}
+		File {from ="/library/Base.kerml"}
 		File {from ="/src/DependencyVisibilityPackage.kerml"}
 	}
 	Workspace {
 		JavaProject {
 			SrcFolder {
 				ThisFile {}
+				File {from ="/library/Base.kerml"}
 				File {from ="/src/DependencyVisibilityPackage.kerml"}
 			}
 		}
@@ -19,9 +21,9 @@ END_SETUP
 package Test3{
 	import VisibilityPackage::c_clazz::*;
 	//XPECT errors --> "Couldn't resolve reference to Classifier 'c_Protect'." at "c_Protect"
-	class A specializes c_Protect{
+	classifier A specializes c_Protect{
 	}
 	//XPECT errors --> "Couldn't resolve reference to Classifier 'c_Protect::c_publicc'." at "c_Protect::c_publicc"
-	class B specializes c_Protect::c_publicc{
+	classifier B specializes c_Protect::c_publicc{
 	}
 }

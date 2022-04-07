@@ -2,11 +2,13 @@
 XPECT_SETUP org.omg.kerml.xpect.tests.testsuite.KerMLXtextTest
 	ResourceSet {
 		ThisFile {}
+		File {from ="/library/Base.kerml"}
 	}
 	Workspace {
 		JavaProject {
 			SrcFolder {
 				ThisFile {}
+				File {from ="/library/Base.kerml"}
 			}
 		}
 	}
@@ -14,19 +16,19 @@ END_SETUP
 */
 //XPECT noErrors ---> ""
 package test{
-	class <'A_Id'> A{
-		class <'a_Id'> a {
-			class <'aa_Id'> aa{}		
+	classifier <'A_Id'> A{
+		classifier <'a_Id'> a {
+			classifier <'aa_Id'> aa{}		
 		}
 	}
-	class <'B_Id'> B specializes A{
-		class <'b_Id'> b specializes a {}
+	classifier <'B_Id'> B specializes A{
+		classifier <'b_Id'> b specializes a {}
 	}
-	class <'C_Id'> C specializes B{
-		class <'c1_Id'> c1 specializes a {}
-		class <'c2_Id'> c2 specializes b {}
+	classifier <'C_Id'> C specializes B{
+		classifier <'c1_Id'> c1 specializes a {}
+		classifier <'c2_Id'> c2 specializes b {}
 	}
-	class <'D_Id'> D specializes C::a {
+	classifier <'D_Id'> D specializes C::a {
 		//XPECT linkedName at aa_Id --> test.A.a.aa
 		//* XPECT scope at aa_Id ---
  		A, A_Id, A.a, A.a_Id, A_Id.a, A_Id.a_Id, A.a.aa, A.a.aa_Id, A.a_Id.aa, A.a_Id.aa_Id,
@@ -66,10 +68,10 @@ package test{
 		test.C_Id.c2.aa, test.C_Id.c2.aa_Id, test.C_Id.c2_Id.aa, test.C_Id.c2_Id.aa_Id,
 		test.D, test.D_Id, test.D.aa, test.D.aa_Id, test.D_Id.aa, test.D_Id.aa_Id, test.D.d, test.D.d_Id, test.D_Id.d, test.D_Id.d_Id
 	--- */
-		class <'d_Id'> d specializes aa_Id {}
-		class <'dd_Id'> dd specializes test::D_Id::aa_Id;
-		class <'ddd_Id'> ddd specializes test::D::aa_Id; 
-		class <'dddd_Id'> dddd specializes test::D_Id::aa;
+		classifier <'d_Id'> d specializes aa_Id {}
+		classifier <'dd_Id'> dd specializes test::D_Id::aa_Id;
+		classifier <'ddd_Id'> ddd specializes test::D::aa_Id; 
+		classifier <'dddd_Id'> dddd specializes test::D_Id::aa;
 		 
 		
 	}

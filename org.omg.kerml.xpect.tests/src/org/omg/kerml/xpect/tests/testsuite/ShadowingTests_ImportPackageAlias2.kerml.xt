@@ -2,6 +2,7 @@
 XPECT_SETUP org.omg.kerml.xpect.tests.testsuite.KerMLXtextTest
 	ResourceSet {
 		ThisFile {}
+		File {from ="/library/Base.kerml"}
 		File {from ="/src/DependencyPackageAlias1.kerml"}
 		File {from ="/src/DependencyPackageAlias2.kerml"}
 	}
@@ -9,6 +10,7 @@ XPECT_SETUP org.omg.kerml.xpect.tests.testsuite.KerMLXtextTest
 		JavaProject {
 			SrcFolder {
 				ThisFile {}
+				File {from ="/library/Base.kerml"}
 				File {from ="/src/DependencyPackageAlias1.kerml"}
 				File {from ="/src/DependencyPackageAlias2.kerml"}
 			}
@@ -20,7 +22,7 @@ END_SETUP
 // XPECT noErrors ---> ""
 package test{
 	import PackageAlias1::*;
-	class A{}
+	classifier A{}
 	alias A_alias for A;
 	//XPECT linkedName at  A_alias --> test.A
 	//* XPECT scope at  A_alias ---
@@ -42,6 +44,6 @@ package test{
  		     
  		   	PackageAlias2.B, PackageAlias2.B.a, PackageAlias2.B.b,  PackageAlias2.B.a_alias,
  		   			   --- */
-	class test_A specializes A_alias{}
+	classifier test_A specializes A_alias{}
 }
  

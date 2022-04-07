@@ -2,11 +2,13 @@
 XPECT_SETUP org.omg.kerml.xpect.tests.imports.recursive.KerMLImportRecursiveTest
 	ResourceSet {
 		ThisFile {}
+		File {from ="/library/Base.kerml"}
 	}
 	Workspace {
 		JavaProject {
 			SrcFolder {
 				ThisFile {}
+				File {from ="/library/Base.kerml"}
 			}
 		}
 	}
@@ -17,14 +19,14 @@ END_SETUP
 package RecursiveImport {
   
   package P {
-    class C {
-    	class C1 {
-    		class C2;
+    classifier C {
+    	classifier C1 {
+    		classifier C2;
     	}
     }
 	package P3 {
 		package P4 {
-			class C5;
+			classifier C5;
 		}
 	}
   }

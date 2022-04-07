@@ -2,12 +2,14 @@
 XPECT_SETUP org.omg.kerml.xpect.tests.visibility.KerMLVisibilityTest
 	ResourceSet {
 		ThisFile {}
+		File {from ="/library/Base.kerml"}
 		File {from ="/src/DependencyVisibilityPackage.kerml"}
 	}
 	Workspace {
 		JavaProject {
 			SrcFolder {
 				ThisFile {}
+				File {from ="/library/Base.kerml"}
 				File {from ="/src/DependencyVisibilityPackage.kerml"}
 			}
 		}
@@ -17,20 +19,20 @@ END_SETUP
 
 
 package Test3{
-	class P{
-		class PP {
-			protected class PPP{
-				class PPPP{}
+	classifier P{
+		classifier PP {
+			protected classifier PPP{
+				classifier PPPP{}
 			}
 		}
 	}
-	class C specializes P::PP {
+	classifier C specializes P::PP {
 		feature CC: PPP;
 	}
-	class D specializes C {
+	classifier D specializes C {
 		feature DD: PPP;
 	}
-	class E specializes D {
+	classifier E specializes D {
 		feature EE: PPP;
 		feature GG: PPP::PPPP;
 	}

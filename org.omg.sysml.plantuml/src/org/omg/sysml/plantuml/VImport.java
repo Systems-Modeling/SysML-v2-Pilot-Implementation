@@ -43,12 +43,12 @@ public class VImport extends Visitor {
 
         if (imp.getImportedMemberName() == null) {
         	String description = imp.isRecursive()? "<<import>>*::**": "<<import>>*";
-            addPRelation(nsOwn, imp.getImportedNamespace(), imp, description);
+            addPRelation(null, nsOwn, imp.getImportedNamespace(), imp, description);
         } else {
             Collection<Membership> mss = NamespaceUtil.getNamedMembershipsFor(imp);
             String description = imp.isRecursive()? "<<import>>**": "<<import>>";
             for (Membership ms: mss) {
-                addPRelation(nsOwn, ms.getMemberElement(), imp, description);
+                addPRelation(null, nsOwn, ms.getMemberElement(), imp, description);
             }
         }
     }

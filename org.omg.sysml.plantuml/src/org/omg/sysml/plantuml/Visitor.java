@@ -38,6 +38,7 @@ import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Multiplicity;
 import org.omg.sysml.lang.sysml.MultiplicityRange;
+import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.Type;
@@ -64,6 +65,14 @@ public abstract class Visitor extends SysMLSwitch<String> {
     private final Visitor prev;
 
     private StringBuilder sb;
+
+    protected int getCurrentLength() {
+        return sb.length();
+    }
+
+    protected void insert(int point, String str) {
+        sb.insert(point, str);
+    }
 
     protected void append(String str) {
         sb.append(str);
@@ -142,6 +151,30 @@ public abstract class Visitor extends SysMLSwitch<String> {
         s2p.popIdMap(keep);
     }
 
+    protected void pushNamespace(Namespace ns) {
+        s2p.pushNamespace(ns);
+    }
+
+    protected void inheriting() {
+        s2p.inheriting();
+    }
+
+    protected void popNamespace() {
+        s2p.popNamespace();
+    }
+
+    protected InheritKey makeInheritKey(Feature ref) {
+        return s2p.makeInheritKey(ref);
+    }
+
+    protected InheritKey makeInheritKey(Membership ref) {
+        return s2p.makeInheritKey(ref);
+    }
+
+    protected boolean matchCurrentInheritings(InheritKey ik) {
+        return s2p.matchCurrentInheritings(ik);
+    }
+
     protected void setInherited(boolean flag) {
         s2p.setInherited(flag);
     }
@@ -214,11 +247,12 @@ public abstract class Visitor extends SysMLSwitch<String> {
         append('"');
     }
 
-    protected void addNameWithId(Element e, String name, boolean force) {
+    protected int addNameWithId(Element e, String name, boolean force) {
         quote(name);
         append(" as ");
-        addIdStr(e, force);
+        int id = addIdStr(e, force);
         append(' ');
+        return id;
     }
 
     private void close() {
@@ -239,9 +273,9 @@ public abstract class Visitor extends SysMLSwitch<String> {
         close();
     }
 
-    private String compId(Element e) {
+    private String compId(InheritKey ik, Element e) {
         if (e == null) return "[*]";
-        Integer ii = getVPath().getId(e);
+        Integer ii = getVPath().getId(ik, e);
         if (ii == null) {
             if (!checkId(e)) {
                 if (e instanceof Subsetting) {
@@ -257,30 +291,49 @@ public abstract class Visitor extends SysMLSwitch<String> {
         return 'E' + ii.toString();
     }
 
-    private void appendId(StringBuilder ss, Element e, boolean force) {
+    private int appendId(StringBuilder ss, Element e, boolean force) {
         if (e == null) {
             ss.append("[*]");
+            return 0;
         } else {
             ss.append('E');
+            int id;
             if (force) {
-                ss.append(newId(e));
+                id = newId(e);
             } else {
-                ss.append(getId(e));
+                id = getId(e);
             }
+            ss.append(id);
+            return id;
         }
     }
 
-    protected void addIdStr(Element e, boolean force) {
-        appendId(sb, e, force);
+    protected int addIdStr(Element e, boolean force) {
+        return appendId(sb, e, force);
     }
 
     private final List<PRelation> pRelations;
     private final StringBuilder pRelationsSB;
 
-    protected PRelation addPRelation(Element src, Element dest, Element rel, String description) {
-        PRelation pr = new PRelation(src, dest, rel, description);
+    protected PRelation addPRelation(PRelation pr) {
         pRelations.add(pr);
         return pr;
+    }
+
+    protected PRelation addPRelation(InheritKey ik, Element src, Element dest, Element rel, String description) {
+        PRelation pr = new PRelation(ik, src, dest, rel, description);
+        pRelations.add(pr);
+        return pr;
+    }
+
+    protected PRelation addPRelation(Element src, Element dest, Element rel, String description) {
+        if (rel instanceof Feature) {
+            return addPRelation(makeInheritKey((Feature) rel), src, dest, rel, description);
+        } else if (rel instanceof Membership) {
+            return addPRelation(makeInheritKey((Membership) rel), src, dest, rel, description);
+        } else {
+            return addPRelation(null, src, dest, rel, description);
+        }
     }
 
     protected PRelation addPRelation(Element src, Element dest, Element rel) {
@@ -339,7 +392,7 @@ public abstract class Visitor extends SysMLSwitch<String> {
 
     private Element fullyQualifiedElement;
 
-    protected String getNameAnyway(Element e, boolean creole) {
+    protected String getNameAnyway(Element e, boolean creole, boolean isInherited) {
         String ret = null;
         if (e.equals(fullyQualifiedElement)) {
             ret = e.getQualifiedName();
@@ -360,7 +413,15 @@ public abstract class Visitor extends SysMLSwitch<String> {
                 ret = "<i>" + ret + "</i>";
             }
         }
-        return ret;
+        if (isInherited) {
+            return '^' + ret;
+        } else {
+            return ret;
+        }
+    }
+
+    protected String getNameAnyway(Element e) {
+        return getNameAnyway(e, true, isInherited());
     }
 
     protected static String getFeatureChainName(Feature f) {
@@ -454,7 +515,8 @@ public abstract class Visitor extends SysMLSwitch<String> {
         addLink(pkg);
         append(" {\n");
         for (Element dest: nonPkgs) {
-            if (compId(dest) != null) continue;
+        	// pkg cannot be inherit so that pass null as an inheritKey.
+            if (compId(null, dest) != null) continue;
             if (pkg.equals(dest.getOwner())) {
                 visit(dest);
             }
@@ -464,9 +526,9 @@ public abstract class Visitor extends SysMLSwitch<String> {
 
     private void sortOutDestinations(Collection<org.omg.sysml.lang.sysml.Package> pkgs, Collection<Element> nonPkgs) {
         for (PRelation pr: pRelations) {
-            if (compId(pr.src) == null) continue;
+            if (compId(pr.ik, pr.src) == null) continue;
             Element dest = pr.dest;
-            if (compId(dest) != null) continue;
+            if (compId(pr.ik, dest) != null) continue;
             if (dest instanceof org.omg.sysml.lang.sysml.Package) {
                 pkgs.add((org.omg.sysml.lang.sysml.Package) dest);
             } else {
@@ -488,7 +550,7 @@ public abstract class Visitor extends SysMLSwitch<String> {
             renderImportedPackage(pkg, nonPkgs);
         }
         for (Element e: nonPkgs) {
-            if (compId(e) != null) continue;
+            if (compId(null, e) != null) continue;
             this.fullyQualifiedElement = e;
             visit(e);
         }
@@ -498,9 +560,9 @@ public abstract class Visitor extends SysMLSwitch<String> {
     private boolean outputPRelation(StringBuilder ss, PRelation pr) {
         if ((pr.src == null) && (pr.dest == null)) return true;
 
-        String srcId = compId(pr.src);
+        String srcId = compId(pr.ik, pr.src);
         if (srcId == null) return false;
-        String destId = compId(pr.dest);
+        String destId = compId(pr.ik, pr.dest);
         if (destId == null) return false;
 
         String relStr = getRelStyle(pr.rel);
@@ -523,7 +585,11 @@ public abstract class Visitor extends SysMLSwitch<String> {
         addLink(ss, pr.rel, null);
 
         String desc = pr.getDescription();
-        if (!((desc == null) || (desc.isEmpty()))) {
+        if (desc == null) desc = "";
+        if (InheritKey.isDirectInherit(pr.ik)) {
+            desc = "^" + desc;
+        }
+        if (!desc.isEmpty()) {
             ss.append(": ");
             desc = desc.replace("\r", "").replace("\n", "\\n");
             ss.append(desc);

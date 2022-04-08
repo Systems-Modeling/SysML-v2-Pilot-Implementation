@@ -61,7 +61,7 @@ public class VCaseMembers extends VBehavior {
     }
 
     private void recMembership(Membership ms, boolean inside) {
-        rec(new VCase(this, ms), ms, inside);
+        rec(new VCase(this, getCurrentNamespace(), ms), ms, inside);
     }
 
     private void recElement(Element e, boolean inside) {

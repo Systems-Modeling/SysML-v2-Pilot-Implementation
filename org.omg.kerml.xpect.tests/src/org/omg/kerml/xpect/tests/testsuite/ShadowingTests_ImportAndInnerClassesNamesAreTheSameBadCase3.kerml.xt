@@ -2,6 +2,7 @@
 XPECT_SETUP org.omg.kerml.xpect.tests.testsuite.KerMLXtextTest
 	ResourceSet {
 		ThisFile {}
+		File {from ="/library/Base.kerml"}
 		File {from ="/src/DependencyOuterPackage.kerml"}
 	}
 	Workspace {
@@ -9,6 +10,7 @@ XPECT_SETUP org.omg.kerml.xpect.tests.testsuite.KerMLXtextTest
 			SrcFolder {
 				ThisFile {}
 				File {from ="/src/DependencyOuterPackage.kerml"}
+				File {from ="/library/Base.kerml"}
 			}
 		}
 	}
@@ -17,12 +19,12 @@ END_SETUP
 
 // XPECT noErrors ---> ""
 package test{				
-	class A{
-		class a2{}
+	classifier A{
+		classifier a2{}
 	}
-	class inner{
+	classifier inner{
 		import OuterPackage::*;
-		class B specializes A {
+		classifier B specializes A {
 			//XPECT linkedName at a1 --> OuterPackage.A.a1
 			//* XPECT scope at a1 ---
 			inner.A, inner.A.a1, test.inner.A, test.inner.A.a1,
@@ -31,7 +33,7 @@ package test{
 		    test.A, test.A.a2, test.inner, test.inner.B, test.inner.B.a1, test.inner.B.b,
 		    OuterPackage.A, OuterPackage.A.a1, OuterPackage.B, OuterPackage.B.b.a1,
 		--- */
-			class b specializes a1{}
+			classifier b specializes a1{}
 		}
 	}
 }

@@ -2,12 +2,14 @@
 XPECT_SETUP org.omg.kerml.xpect.tests.validation.KerMLValidationTest
 	ResourceSet {
 		ThisFile {}
+		File {from ="/library/Base.kerml"}
 		File {from ="/src/DependencyOuterPackage.kerml"}
 	}
 	Workspace {
 		JavaProject {
 			SrcFolder {
 				ThisFile {}
+				File {from ="/library/Base.kerml"}
 				File {from ="/src/DependencyOuterPackage.kerml"}
 			}
 		}
@@ -17,7 +19,7 @@ END_SETUP
 
 package test{
 	import OuterPackage::B::b;
-	class C {
+	classifier C {
 		// XPECT errors ---> "Couldn't resolve reference to Type 'B'." at "B"
 		feature c: B;
 	}

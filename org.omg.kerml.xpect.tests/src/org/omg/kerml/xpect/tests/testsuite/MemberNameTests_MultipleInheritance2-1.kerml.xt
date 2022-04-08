@@ -6,11 +6,13 @@
 XPECT_SETUP org.omg.kerml.xpect.tests.testsuite.KerMLXtextTest
 	ResourceSet {
 		ThisFile {}
+		File {from ="/library/Base.kerml"}
 	}
 	Workspace {
 		JavaProject {
 			SrcFolder {
 				ThisFile {}
+				File {from ="/library/Base.kerml"}
 			}
 		}
 	}
@@ -20,20 +22,20 @@ END_SETUP
 //copied from MultipleInheritance2, rename a to AA then possible to perform linking test
 //XPECT noErrors ---> ""
 package test{
-	class A{
-		class AA {}
+	classifier A{
+		classifier AA {}
 	}
-	class B specializes A{
+	classifier B specializes A{
 		//XPECT linkedName at AA --> test.A.AA  
-		class b specializes AA {}
+		classifier b specializes AA {}
 	}
-	class C specializes B{
+	classifier C specializes B{
 		//XPECT linkedName at AA --> test.A.AA
-		class c specializes AA {}
+		classifier c specializes AA {}
 	}
 	//* XPECT scope at C::AA ---
  		A, A.AA, B, B.AA, B.b, C, C.AA, C.b, C.c, D,
  		test.A, test.A.AA, test.B, test.B.AA, test.B.b, test.C, test.C.AA, test.C.b, test.C.c, test.D, 
  	--- */
-	class D specializes C::AA{}
+	classifier D specializes C::AA{}
 }

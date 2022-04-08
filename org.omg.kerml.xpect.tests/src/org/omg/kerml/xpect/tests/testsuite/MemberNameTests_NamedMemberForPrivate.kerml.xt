@@ -2,11 +2,13 @@
 XPECT_SETUP org.omg.kerml.xpect.tests.testsuite.KerMLXtextTest
 	ResourceSet {
 		ThisFile {}
+		File {from ="/library/Base.kerml"}
 	}
 	Workspace {
 		JavaProject {
 			SrcFolder {
 				ThisFile {}
+				File {from ="/library/Base.kerml"}
 			}
 		}
 	}
@@ -14,17 +16,17 @@ END_SETUP
 */
 //XPECT noErrors ---> ""
 package test {
-	private class <'s_Id'> something{}
+	private classifier <'s_Id'> something{}
 	private alias k for something;
 	private alias kk for s_Id;
-	class hello {
+	classifier hello {
 		//* XPECT scope at k ---
 		   		hello, hello.test, k, something, 
 		   		test, s_Id, kk, hello.test1, test1
 		--- */
 		//XPECT linkedName at k --> test.something
-		class test specializes k{}
+		classifier test specializes k{}
 		//XPECT linkedName at kk --> test.something
-		class test1 specializes kk;
+		classifier test1 specializes kk;
 	}
 }

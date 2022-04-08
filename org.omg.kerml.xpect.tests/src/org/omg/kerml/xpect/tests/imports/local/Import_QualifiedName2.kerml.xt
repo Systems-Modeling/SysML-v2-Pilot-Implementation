@@ -2,11 +2,13 @@
 XPECT_SETUP org.omg.kerml.xpect.tests.imports.local.KerMLImportLocalTest
 	ResourceSet {
 		ThisFile {}
+		File {from ="/library/Base.kerml"}
 	}
 	Workspace {
 		JavaProject {
 			SrcFolder {
 				ThisFile {}
+				File {from ="/library/Base.kerml"}
 			}
 		}
 	}
@@ -16,27 +18,38 @@ END_SETUP
 //XPECT noErrors ---> ""
 package Import_QualifiedName {
 	package P1{
-		class A;
+		classifier A;
 	}
 	package P2{
 		package P2a{
 			import P1::*;
 			//* XPECT scope at A ---
-			   A,  P1.A, P2.P2a.A, P2.P2a.x, P2.y, P2a.A, P2a.x, P3.z, x, y, 
-			   Import_QualifiedName.P1.A, Import_QualifiedName.P2.P2a.A, Import_QualifiedName.P2.P2a.x, Import_QualifiedName.P2.y, Import_QualifiedName.P3.z,
+			   A, A.self, Import_QualifiedName.P1.A, Import_QualifiedName.P1.A.self,
+			   Import_QualifiedName.P2.P2a.A, Import_QualifiedName.P2.P2a.A.self, Import_QualifiedName.P2.P2a.x,
+			   Import_QualifiedName.P2.P2a.x.self, Import_QualifiedName.P2.y, Import_QualifiedName.P2.y.self,
+			   Import_QualifiedName.P3.z, Import_QualifiedName.P3.z.self, P1.A, P1.A.self, P2.P2a.A, P2.P2a.A.self,
+			   P2.P2a.x, P2.P2a.x.self, P2.y, P2.y.self, P2a.A, P2a.A.self, P2a.x, P2a.x.self, P3.z,
+			   P3.z.self, x, x.self, y, y.self
 			--- */
 			x: A;
 		}
 		//* XPECT scope at P2a::A ---
-			   P1.A, P2.P2a.A, P2.P2a.x, P2.y, P2a.A, P2a.x, P3.z, y, 
-			   Import_QualifiedName.P1.A, Import_QualifiedName.P2.P2a.A, Import_QualifiedName.P2.P2a.x, Import_QualifiedName.P2.y, Import_QualifiedName.P3.z,
+			   Import_QualifiedName.P1.A, Import_QualifiedName.P1.A.self,
+			   Import_QualifiedName.P2.P2a.A, Import_QualifiedName.P2.P2a.A.self, Import_QualifiedName.P2.P2a.x,
+			   Import_QualifiedName.P2.P2a.x.self, Import_QualifiedName.P2.y, Import_QualifiedName.P2.y.self,
+			   Import_QualifiedName.P3.z, Import_QualifiedName.P3.z.self, P1.A, P1.A.self, P2.P2a.A, P2.P2a.A.self,
+			   P2.P2a.x, P2.P2a.x.self, P2.y, P2.y.self, P2a.A, P2a.A.self, P2a.x, P2a.x.self, P3.z,
+			   P3.z.self, y, y.self
 		--- */
 		y: P2a::A;  
 	}
 	package P3{
 		//* XPECT scope at P2a::A ---
-			   P1.A, P2.P2a.A, P2.P2a.x, P2.y, P3.z, z, 
-			   Import_QualifiedName.P1.A, Import_QualifiedName.P2.P2a.A, Import_QualifiedName.P2.P2a.x, Import_QualifiedName.P2.y, Import_QualifiedName.P3.z,
+			   Import_QualifiedName.P1.A, Import_QualifiedName.P1.A.self,
+			   Import_QualifiedName.P2.P2a.A, Import_QualifiedName.P2.P2a.A.self, Import_QualifiedName.P2.P2a.x,
+			   Import_QualifiedName.P2.P2a.x.self, Import_QualifiedName.P2.y, Import_QualifiedName.P2.y.self,
+			   Import_QualifiedName.P3.z, Import_QualifiedName.P3.z.self, P1.A, P1.A.self, P2.P2a.A, P2.P2a.A.self,
+			   P2.P2a.x, P2.P2a.x.self, P2.y, P2.y.self, P3.z, P3.z.self, z, z.self
 		--- */
 		z: P2::P2a::A;
 	}

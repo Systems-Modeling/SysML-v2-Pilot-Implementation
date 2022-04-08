@@ -6,6 +6,4 @@ package Conjugation {
 	class B conjugates A;
 	
 	feature g ~ B::f;
-
-	// feature h ~ h;
 }

@@ -1,4 +1,5 @@
-//* XPECT_SETUP org.omg.kerml.xpect.tests.indexing.KerMLIndexerTest
+//* 
+XPECT_SETUP org.omg.kerml.xpect.tests.testsuite.KerMLXtextTest
 	ResourceSet {
 		ThisFile {}
 		File {from ="/library/Base.kerml"}
@@ -17,15 +18,11 @@
 	}
 END_SETUP 
 */
-
-//*
-XPECT exportedObjects ---
-	sysml::Package: NameEscape
-	sysml::Function: NameEscape::..
-	sysml::Feature: NameEscape::..::parameter
---- */
-
-package NameEscape {
-	
-	function '..'(parameter: Base::Anything): Base::Anything;
+// XPECT noErrors ---> ""
+package test{
+	multiplicity zeroOrMore [0..*];
+	multiplicity m subsets zeroOrMore;
+	feature f {
+		multiplicity [1..1];
+	}
 }

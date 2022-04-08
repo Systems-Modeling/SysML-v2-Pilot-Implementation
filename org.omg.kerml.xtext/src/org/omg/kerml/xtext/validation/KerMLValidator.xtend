@@ -54,6 +54,7 @@ import com.google.inject.Inject
 import org.eclipse.xtext.scoping.IScopeProvider
 import org.omg.sysml.lang.sysml.util.ISysMLScope
 import org.eclipse.emf.ecore.EClass
+import org.omg.sysml.lang.sysml.Classifier
 import org.omg.sysml.lang.sysml.FeatureChaining
 import org.omg.sysml.lang.sysml.Subsetting
 import org.omg.sysml.lang.sysml.Redefinition
@@ -90,6 +91,8 @@ class KerMLValidator extends AbstractKerMLValidator {
 	public static val INVALID_ITEMFLOW__INVALID_END_MSG = "Cannot identify item flow end (use dot notation)"
 	public static val INVALID_ITEMFLOW__IMPLICIT_END = 'Invalid ItemFlow end - Implicit subsetting'
 	public static val INVALID_ITEMFLOW__IMPLICIT_END_MSG = "Flow ends should use dot notation"
+	public static val INVALID_CLASSIFIER__DEFAULT_SUPERTYPE = 'Invalid Classifier - Default supertype conformance'
+	public static val INVALID_CLASSIFIER__DEFAULT_SUPERTYPE_MSG = "Must directly or indirectly specialize {supertype}"
 	public static val INVALID_FEATURE__NO_TYPE = 'Invalid Feature - Mandatory typing'
 	public static val INVALID_FEATURE__NO_TYPE_MSG = "Features must have at least one type"
 	public static val INVALID_RELATIONSHIP__RELATED_ELEMENTS = 'Invalid Relationship - Related element minimum validation'
@@ -200,6 +203,20 @@ class KerMLValidator extends AbstractKerMLValidator {
 	}
 	
 	@Check
+	def checkClassifier(Classifier c){
+		val defaultSupertype = ImplicitGeneralizationMap.getDefaultSupertypeFor(c.getClass())
+		if (!TypeUtil.conforms(c, SysMLLibraryUtil.getLibraryType(c, defaultSupertype)))
+			error(INVALID_CLASSIFIER__DEFAULT_SUPERTYPE_MSG.replace("{supertype}", defaultSupertype), c, SysMLPackage.eINSTANCE.classifier_OwnedSubclassification, INVALID_CLASSIFIER__DEFAULT_SUPERTYPE)
+	}
+	
+	@Check
+	def checkFeature(Feature f){
+		val types = f.type;
+		if (types !== null && types.isEmpty)
+			error(INVALID_FEATURE__NO_TYPE_MSG, f, SysMLPackage.eINSTANCE.feature_Type, INVALID_FEATURE__NO_TYPE)
+	}
+	
+	@Check
 	def checkMetadataFeature(MetadataFeature mf) {
 		checkMetadataType(mf)
 		checkMetadataAnnotatedElements(mf)
@@ -251,13 +268,6 @@ class KerMLValidator extends AbstractKerMLValidator {
 		
 		// Must have a valid metadata body.
 		checkMetadataBody(f)		
-	}
-	
-	@Check
-	def checkFeature(Feature f){
-		val types = f.type;
-		if (types !== null && types.isEmpty)
-			error(INVALID_FEATURE__NO_TYPE_MSG, f, SysMLPackage.eINSTANCE.feature_Type, INVALID_FEATURE__NO_TYPE)
 	}
 	
 	@Check

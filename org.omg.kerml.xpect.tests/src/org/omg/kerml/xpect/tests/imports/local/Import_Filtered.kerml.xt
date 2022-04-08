@@ -3,6 +3,9 @@ XPECT_SETUP org.omg.kerml.xpect.tests.imports.local.KerMLImportLocalTest
 	ResourceSet {
 		ThisFile {}
 			File {from ="/library/Base.kerml"}
+			File {from ="/library/Occurrences.kerml"}
+			File {from ="/library/Objects.kerml"}
+			File {from ="/library/Metaobjects.kerml"}
 			File {from ="/library/Performances.kerml"}
 		    File {from ="/library/ScalarValues.kerml"}
 		    File {from ="/library/BaseFunctions.kerml"}
@@ -13,6 +16,9 @@ XPECT_SETUP org.omg.kerml.xpect.tests.imports.local.KerMLImportLocalTest
 			SrcFolder {
 				ThisFile {}
 				File {from ="/library/Base.kerml"}
+				File {from ="/library/Occurrences.kerml"}
+				File {from ="/library/Objects.kerml"}
+				File {from ="/library/Metaobjects.kerml"}
 			   	File {from ="/library/Performances.kerml"}
 		       	File {from ="/library/ScalarValues.kerml"}
 		       	File {from ="/library/BaseFunctions.kerml"}

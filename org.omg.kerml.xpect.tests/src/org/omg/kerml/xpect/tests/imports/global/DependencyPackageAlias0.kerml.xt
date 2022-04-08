@@ -2,12 +2,14 @@
 XPECT_SETUP org.omg.kerml.xpect.tests.imports.global.KerMLImportGlobalTest
 	ResourceSet {
 		ThisFile {}
+		File {from ="/library/Base.kerml"}
 		File {from ="/src/DependencyPackageAlias1.kerml"}
 	}
 	Workspace {
 		JavaProject {
 			SrcFolder {
 				ThisFile {}
+				File {from ="/library/Base.kerml"}
 				File {from ="/src/DependencyPackageAlias1.kerml"}
 			}
 		}
@@ -31,24 +33,5 @@ package test{
 	   	PackageAlias1.A_alias, PackageAlias1.A_alias.a, PackageAlias1.A_alias.a_alias,
     	PackageAlias1.AA_alias, PackageAlias1.AA_alias.aa, PackageAlias1.AA_alias.aa_alias,
  --- */
-	class X specializes A {}
+	classifier X specializes A {}
 }
-//*
-package PackageAlias1{
-	class A_alias is A;
-	class A{
-		class a{}
-		class a_alias is a;
-	}
-	class AA_alias is AA;
-	class AA{
-		class aa{}
-		class aa_alias is aa;
-	}
-}
-*/
-//*
-	missing in scopes are
-	   	PackageAlias1.A_alias, PackageAlias1.A_alias.a, PackageAlias1.A_alias.a_alias,
-    	PackageAlias1.AA_alias, PackageAlias1.AA_alias.a, PackageAlias1.AA_alias.aa_alias,
- */

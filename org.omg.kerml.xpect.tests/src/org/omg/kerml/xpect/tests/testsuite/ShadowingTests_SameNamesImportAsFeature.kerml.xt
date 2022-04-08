@@ -2,6 +2,7 @@
 XPECT_SETUP org.omg.kerml.xpect.tests.testsuite.KerMLXtextTest
 	ResourceSet {
 		ThisFile {}
+		File {from ="/library/Base.kerml"}
 		File {from ="/src/DependencySamePackageName_A.kerml"}
 		File {from ="/src/DependencySamePackageName_B.kerml"}
 	}
@@ -9,6 +10,7 @@ XPECT_SETUP org.omg.kerml.xpect.tests.testsuite.KerMLXtextTest
 		JavaProject {
 			SrcFolder {
 				ThisFile {}
+				File {from ="/library/Base.kerml"}
 				File {from ="/src/DependencySamePackageName_A.kerml"}
 				File {from ="/src/DependencySamePackageName_B.kerml"}
 			}
@@ -21,7 +23,7 @@ END_SETUP
 //XPECT noErrors --> ""
 package test{
 	import SamePackage::container;
-	class something1 specializes container::A{}
+	classifier something1 specializes container::A{}
 	//XPECT errors -->"Couldn't resolve reference to Classifier 'container::B'." at "container::B"
-	class something2 specializes container::B{}
+	classifier something2 specializes container::B{}
 }

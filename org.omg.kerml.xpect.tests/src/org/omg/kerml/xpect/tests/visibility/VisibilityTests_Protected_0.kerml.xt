@@ -2,12 +2,14 @@
 XPECT_SETUP org.omg.kerml.xpect.tests.visibility.KerMLVisibilityTest
 	ResourceSet {
 		ThisFile {}
+		File {from ="/library/Base.kerml"}
 		File {from ="/src/DependencyVisibilityPackage.kerml"}
 	}
 	Workspace {
 		JavaProject {
 			SrcFolder {
 				ThisFile {}
+				File {from ="/library/Base.kerml"}
 				File {from ="/src/DependencyVisibilityPackage.kerml"}
 			}
 		}
@@ -16,21 +18,21 @@ END_SETUP
 */
 
 package Test3{
-	class P{
-		protected class PP{}
+	classifier P{
+		protected classifier PP{}
 	}
-	class A specializes P {
- 		class AA specializes PP{}
+	classifier A specializes P {
+ 		classifier AA specializes PP{}
  		
  		// P::PP does not resolve because qualified names currently require public visibility.
  		// XPECT errors --> "Couldn't resolve reference to Classifier 'P::PP'." at "P::PP"
- 		class BB specializes P::PP{}
+ 		classifier BB specializes P::PP{}
   		// XPECT errors --> "Couldn't resolve reference to Classifier 'Test3::P::PP'." at "Test3::P::PP"
- 		class CC specializes Test3::P::PP{}
+ 		classifier CC specializes Test3::P::PP{}
  		
  		feature DD: PP;
 	}	
-	class B {
+	classifier B {
 		feature BB1: P;
 		// XPECT errors --> "Couldn't resolve reference to Type 'P::PP'." at "P::PP"
 		feature BB2: P::PP; 

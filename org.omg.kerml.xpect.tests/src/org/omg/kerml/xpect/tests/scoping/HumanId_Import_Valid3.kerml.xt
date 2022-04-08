@@ -2,11 +2,13 @@
 XPECT_SETUP org.omg.kerml.xpect.tests.scoping.KerMLScopingTest
 	ResourceSet {
 		ThisFile {}
+		File {from ="/library/Base.kerml"}
 	}
 	Workspace {
 		JavaProject {
 			SrcFolder {
 				ThisFile {}
+				File {from ="/library/Base.kerml"}
 			}
 		}
 	}
@@ -18,7 +20,7 @@ package Test {
 
 	package Test2 {
 		import VP::VP2::*;
-		class A;
+		classifier A;
 		//* XPECT scope at A_Id ---
 		 A,  Test2.A, Test.Test2.A,
 		 AA, Test2.AA, Test.Test2.AA,
@@ -27,11 +29,11 @@ package Test {
 		 VP.VP2.B, Test.VP.VP2.B,
 		 VP.VP2.A_Id, Test.VP.VP2.A_Id,  
 		--- */
-		class AA specializes A_Id;
+		classifier AA specializes A_Id;
 	}
 	package VP {
 		package VP2 {
-			public class <'A_Id'> B;
+			public classifier <'A_Id'> B;
 		}
 	}
 	

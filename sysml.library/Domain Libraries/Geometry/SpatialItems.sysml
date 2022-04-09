@@ -8,6 +8,8 @@ package SpatialItems {
 	private import Items::Item;
 	private import Quantities::VectorQuantityValue;
 	private import UnitsAndScales::VectorMeasurementReference;
+	private import UnitsAndScales::CoordinateFrame;
+	private import UnitsAndScales::CoordinateTransformation;
 	private import Time::Clock;
 	private import Time::TimeInstantValue;
 	private import ISQ::Cartesian3dSpatialCoordinateFrame;
@@ -30,7 +32,7 @@ package SpatialItems {
 		 * The three-dimensional VectorMeasurementReference to be used as the measurement reference for position 
 		 * and displacement vector values relative to this SpatialItem.
 		 */
-		attribute coordinateFrame : VectorMeasurementReference[1] default Cartesian3dSpatialCoordinateFrame() {
+		attribute coordinateFrame : CoordinateFrame[1] default Cartesian3dSpatialCoordinateFrame() {
 			attribute :>> dimensions = 3;
 		}
 		
@@ -45,6 +47,28 @@ package SpatialItems {
 		assert constraint originPointConstraint {
 			isZeroVector(CurrentPositionOf(originPoint, SpatialItem::self))
 		}
+		
+		item <spatialSubitems> componentItems : SpatialItem[0..*] :> subitems {
+			item nestedLocalClock :>> localClock default localClock;
+			attribute nestedBasisDirections : VectorQuantityValue[3];
+			attribute nestedOrigin : VectorQuantityValue[0..1];
+			attribute nestedCoordinateFrame :>> coordinateFrame {
+				attribute :>> transformation[1] {
+				 	attribute :>> source = coordinateFrame;
+				 	attribute :>> target = nestedCoordinateFrame;
+				 	//attribute :>> basisDirections = nestedBasisDirections;
+				 	//attribute :>> origin = nestedOrigin;
+				}
+				
+			}
+		}
+		
+		/**
+		 * A CompoundSpatialItem is a spatial union of its componentItems.
+		 */
+		attribute componentUnion[1] :> unionsOf {
+			item :>> elements = componentItems;
+		}
 	}
 	
 	/**
@@ -57,17 +81,18 @@ package SpatialItems {
 		 * The coordinateFrames of the compositeItems are nested in the coordinateFrame of the CompoundSpatialItem, 
 		 * and, by default, they have the same localClock as the CompoundSpatialItem.
 		 */
-		item componentItems : SpatialItem[0..*] ordered :> subitems {
+		item <spatialSubitems> componentItems : SpatialItem[0..*] ordered :> subitems {
 			item nestedLocalClock :>> localClock default localClock;
 			attribute nestedBasisDirections : VectorQuantityValue[3];
 			attribute nestedOrigin : VectorQuantityValue[0..1];
 			attribute nestedCoordinateFrame :>> coordinateFrame {
-				attribute :>> placement[1] {
+				attribute :>> transformation[1] {
 				 	attribute :>> source = coordinateFrame;
 				 	attribute :>> target = nestedCoordinateFrame;
-				 	attribute :>> basisDirections = nestedBasisDirections;
-				 	attribute :>> origin = nestedOrigin;
+				 	//attribute :>> basisDirections = nestedBasisDirections;
+				 	//attribute :>> origin = nestedOrigin;
 				}
+				
 			}
 		}
 		

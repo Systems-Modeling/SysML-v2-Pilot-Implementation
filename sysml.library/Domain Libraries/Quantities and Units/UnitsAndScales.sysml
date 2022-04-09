@@ -6,6 +6,8 @@ package UnitsAndScales {
 	private import ScalarValues::*;
 	private import Quantities::*;
 	private import Collections::*;
+	private import ISQSpaceTime::angularMeasure;
+	private import ISQSpaceTime::displacementVector;
 
 	/**
 	 * Representation of a measurement reference.
@@ -24,7 +26,7 @@ package UnitsAndScales {
 	 *
 	 * The humanId of a TensorMeasurementReference is the unique symbol by which the measurement reference is known.
 	 * The name of a TensorMeasurementReference is spelled-out human readable name of the measurement reference.
-	 * For example, typical measurement units for the speed quantity would have the respective humanId and name: 
+	 * For example, typical measurement units for the speed quantity would have the respective humanId and name:
 	 * <'m/s'> and 'metre per second',
 	 * <'km/h'> and 'kilometre per hour',
 	 * <'mi/h'> and 'mile per hour'.
@@ -42,22 +44,111 @@ package UnitsAndScales {
 	/**
 	 * A VectorMeasurementReference is a specialization of TensorMeasurementReference for vector quantities that are
 	 * typed by a VectorQuantityValue. Its order is one. Implicitly, it defines a vector space of dimension `n` = dimensions[1].
-	 * The `n` basis unit vectors that span the vector space are defined by the mRefs which each are
+	 * The magnitudes of the `n` basis unit vectors that span the vector space are defined by the mRefs which each are
 	 * a ScalarMeasurementReference, typically a MeasurementUnit or an IntervalScale.
-	 *
-	 * A pair of a specialization of VectorQuantityValue and a specialization of VectorMeasurementReference can also be used to 
+	 * 
+	 * CoordinateFrame is the alternative short name for VectorMeasurementReference. When used as a coordinate frame this is the 
+	 * preferred identifier for the concept.
+	 * 
+	 * A pair of a specialization of VectorQuantityValue and a specialization of VectorMeasurementReference can also be used to
 	 * define a vector space for state vectors as used in state-space representation models.
 	 *
 	 * Attribute isOrthogonal declares whether the basis vectors of the vector space are orthogonal, i.e. whether the
-	 * inner products of any pair of basis vectors yield zero.
+	 * inner products of any pair of basis vectors are equal to zero.
 	 *
-	 * Attribute placement enables the location and orientation of a dependent (nested) coordinate frame (that is
+	 * Optional attribute transformation enables specification of the location and orientation of a dependent (nested) coordinate frame (that is
 	 * a VectorMeasurementReference) w.r.t. another (independent or reference) coordinate frame.
+	 * The transformation can be used to place the CoordinateFrame with respect to another CoordinateFrame.
 	 */
-	attribute def VectorMeasurementReference :> TensorMeasurementReference {
+	attribute def <CoordinateFrame> VectorMeasurementReference :> TensorMeasurementReference {
+		ref attribute :>> self: VectorMeasurementReference[1];
 		attribute :>> dimensions: Positive[0..1];
 		attribute isOrthogonal: Boolean[1] default true;
-		attribute placement: CoordinateTransformation[0..1];
+		attribute transformation: CoordinateTransformation[0..1] {
+			attribute :>> target = VectorMeasurementReference::self;
+		}
+	}
+	
+	/**
+	 * Most general representation of the transformation of a target coordinate frame w.r.t. a source coordinate frame
+	 */
+    abstract attribute def CoordinateTransformation {
+	 	attribute source: CoordinateFrame[1];
+	 	attribute target: CoordinateFrame[1];
+	 	assert constraint { source.dimensions == target.dimensions }
+    }
+
+	/**
+	 * Coordinate frame placement transformation
+	 */
+	 attribute def CoordinateFramePlacement :> CoordinateTransformation {
+	 	attribute origin: VectorQuantityValue[0..1];
+	 	attribute basisDirections: VectorQuantityValue[1..*];
+	 	//assert constraint { source.dimensions = origin.dimensions } // Problem: source does not resolve
+	 }
+
+	/**
+	 * Common generalization of translation or rotation
+	 */
+	abstract attribute def TranslationOrRotation;
+
+	/**
+	 * Representation of a translation with respect to a coordinate frame
+	 */
+	attribute def Translation :> TranslationOrRotation {
+		attribute translationVector :>> displacementVector;
+	}
+
+	/**
+	 * Representation of a rotation about an axis over an angle
+	 */
+	attribute def Rotation :> TranslationOrRotation {
+		attribute axisDirection :>> displacementVector;
+		attribute angle :>> angularMeasure;
+	}
+
+	/**
+	 * Coordinate transformation specified by a sequence of translations and/or rotations
+	 *
+	 * Note: This  is a convenience that enables specification of a coordinate transformation that can be persisted and is easy to interprete for humans.
+	 * In particular a sequence of rotations about the principal axes is much more easy to understand than a rotation about an arbitrary axis.
+	 * Any sequence can be reduced to a single translation and rotation about a particular axis, but in general the original sequence
+	 * cannot be retrieved as there are infinitely many sequences representing the reduced transformation.
+	 */
+	attribute def TranslationRotationSequence :> CoordinateTransformation {
+		attribute sequence : TranslationOrRotation[1..*] ordered nonunique;
+	}
+
+	/**
+	 * Coordinate transformation specified via an affine transformation matrix
+	 *
+	 * The interpretation of the matrix is as follows:
+	 * - the upper left 3x3 matrix represents the rotation matrix
+	 * - the uper right 3x1 column vector represents the translation vector
+	 * - the bottom row must be the row vector (0, 0, 0, 1).
+	 *
+	 * I.e. the matrix has the following form:
+	 * ( R, R, R, T,
+	 *   R, R, R, T,
+	 *   R, R, R, T,
+	 *   0, 0, 0, 1 )
+	 *
+	 * Note: See https://en.wikipedia.org/wiki/Transformation_matrix affine transformations for a general explanation.
+	 */
+	attribute def AffineTransformationMatrix :> CoordinateTransformation {
+		attribute matrix : Array {
+			attribute :>> dimensions = (4, 4);
+			attribute :>> elements : Real[16] ordered nonunique;
+			derived attribute translation :>> displacementVector = (elements[4], elements[8], elements[12]);
+		}
+	}
+
+	/**
+	 * Coordinate transformation specified as a translation and a rotation using quaternions
+	 *
+	 * TODO: Implement similar to https://en.wikipedia.org/wiki/Quaternions_and_spatial_rotation after adding quaternion to ScalarValues
+	 */
+	attribute def TranslationRotationQuaternion :> CoordinateTransformation {
 	}
 
 	/**
@@ -78,16 +169,6 @@ package UnitsAndScales {
 	}
 
 	/**
-	 * Coordinate frame transformation
-	 */
-	 attribute def CoordinateTransformation {
-	 	attribute source: VectorMeasurementReference[1];
-	 	attribute target: VectorMeasurementReference[1];
-	 	attribute basisDirections: VectorQuantityValue[1..*];
-	 	attribute origin: VectorQuantityValue[0..1];
-	 }
-
-	/**
 	 * Representation of a measurement unit.
 	 *
 	 * Note: MeasurementUnit directly specializes ScalarMeasurementReference in order to allow for efficient and intuitive definition of a ratio scale.
@@ -99,6 +180,7 @@ package UnitsAndScales {
 	 * A MeasurementUnit specifies one or more UnitPowerFactors.
 	 */
 	abstract attribute def MeasurementUnit :> ScalarMeasurementReference {
+		attribute :>> isBound = false;
 		attribute unitPowerFactors: UnitPowerFactor[0..*] ordered;
 		attribute unitConversion: UnitConversion[0..1];
         assert constraint hasValidUnitPowerFactors : VerifyUnitPowerFactors(
@@ -139,7 +221,7 @@ package UnitsAndScales {
 
 	/**
 	 * Representation of the linear conversion relationship between one measurement unit and another measurement unit, that acts as a reference.
-	 * 
+	 *
 	 * Attribute isExact asserts whether the conversionFactor is exact or not. By default it is set true.
 	 */
 	abstract attribute def UnitConversion {
@@ -163,7 +245,7 @@ package UnitsAndScales {
 	 */
 	attribute def ConversionByPrefix :> UnitConversion {
 		attribute prefix: UnitPrefix[1];
-		attribute conversionFactor redefines UnitConversion::conversionFactor = prefix.conversionFactor;		
+		attribute conversionFactor redefines UnitConversion::conversionFactor = prefix.conversionFactor;
 	}
 
 	/**
@@ -194,6 +276,7 @@ package UnitsAndScales {
 	/**
 	 * Representation of an interval measurement scale.
 	 *
+	 * An IntervalScale is also a CoordinateFrame
 	 * The offset of one interval measurement scale w.r.t. another interval or ratio scale is defined through a quantityValueMapping, see MeasurementReference.
 	 */
 	attribute def IntervalScale :> MeasurementScale {
@@ -294,7 +377,7 @@ package UnitsAndScales {
 	 * for a given system of quantities".
 	 * The base units are a particular selection of measurement units for each of the base quantities of a system of quantities,
 	 * that form the basis on top of which all other (derived) units are defined.
-	 * 
+	 *
 	 * Attribute systemOfQuantities speficies the associated SystemOfQuantities.
 	 */
 	attribute def SystemOfUnits {

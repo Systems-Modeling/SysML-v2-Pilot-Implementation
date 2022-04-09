@@ -225,7 +225,8 @@ package <USCU> USCustomaryUnits {
 	/*
 	 * degree Fahrenheit interval scale for absolute (thermodynamic) temperature quantities
 	 *
-	 * The scale is defined with an explicit mapping to the degree Celsius interval scale and a coordinate transformation w.r.t. the kelvin scale
+	 * The scale is defined with an explicit mapping to the degree Celsius interval scale 
+	 * and a coordinate transformation w.r.t. the thermodynamic temperature scale in kelvin.
 	 */
 	attribute <'°F_abs'> 'degree fahrenheit (absolute)' : IntervalScale {
 		:>> unit = '°F';
@@ -241,10 +242,8 @@ package <USCU> USCustomaryUnits {
 		attribute :>> definitionalQuantityValues = temperatureWaterAtFreezingPointInF;
 		attribute :>> quantityValueMapping = fahrenheitToCelsiusScaleMapping;
 
-        /* CoordinateTransformation (zero shift) w.r.t. thermodynamic temperature in kelvin */ 
+        /* CoordinateFramePlacement (zero shift) w.r.t. thermodynamic temperature in kelvin */
         private attribute zeroDegreeFahrenheitInKelvin: ThermodynamicTemperatureValue = 229835/900 [K];
-        attribute zeroShift : CoordinateTransformation { :>> source = K; :>> target = self; :>> origin = zeroDegreeFahrenheitInKelvin; :>> basisDirections = 1 [K]; }
-        attribute :>> placement = zeroShift;
+        attribute zeroShift : CoordinateFramePlacement :>> transformation { :>> source = K; :>> target = self; :>> origin = zeroDegreeFahrenheitInKelvin; :>> basisDirections = 1 [K]; }
 	}
-
 }

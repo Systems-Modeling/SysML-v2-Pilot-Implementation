@@ -54,12 +54,12 @@ var enableMode = function (CodeMirror) {
                 "analysis", "and", "as", "assert", "assign", "assume", "at", "attribute", "bind", "binding", "by",
                 "calc", "case", "comment", "concern", "connect", "connection", "constraint", "decide", "def", "default",
                 "defined", "dependency", "derived", "do", "doc", "else", "end", "entry", "enum", "event", "exhibit",
-                "exit", "expose", "feature", "filter", "first", "flow", "for", "fork", "frame", "from", "hastype", "if",
-                "implies", "import", "in", "include", "individual", "inout", "interface", "istype", "item", "join",
-                "language", "loop", "merge", "message", "metadata", "nonunique", "not", "objective", "occurrence", "of",
-                "or", "ordered", "out", "package", "parallel", "part", "perform", "port", "private", "protected",
-                "public", "readonly", "redefines", "ref", "render", "rendering", "rep", "require", "requirement",
-                "return", "satisfy", "send", "snapshot", "specializes", "stakeholder", "state", "subject", "subsets",
+                "exit", "expose", "filter", "first", "flow", "for", "fork", "frame", "from", "hastype", "if", "implies",
+                "import", "in", "include", "individual", "inout", "interface", "istype", "item", "join", "language",
+                "loop", "merge", "message", "metadata", "nonunique", "not", "objective", "occurrence", "of", "or",
+                "ordered", "out", "package", "parallel", "part", "perform", "port", "private", "protected", "public",
+                "readonly", "redefines", "ref", "render", "rendering", "rep", "require", "requirement", "return",
+                "satisfy", "send", "snapshot", "specializes", "stakeholder", "state", "subject", "subsets",
                 "succession", "then", "timeslice", "to", "transition", "until", "use", "variant", "variation",
                 "verification", "verify", "via", "view", "viewpoint", "when", "while", "xor"
             ]),
@@ -75,14 +75,13 @@ var enableMode = function (CodeMirror) {
             modeProps: {fold: ["brace"]},
             hooks: {
                 "'": function (stream) {
-                    var escaped = false, next;
-                    while ((next = stream.next()) != null) {
-                        if (next == "'" && !escaped) {
-                            break;
-                        }
-                        escaped = !escaped && next == "\\";
+                    let b_escaped = false;
+                    let s_next;
+                    while(s_next = stream.next()) {
+                        if(s_next === "'" && !b_escaped) break;
+                        b_escaped = !b_escaped && s_next === '\\';
                     }
-                    return "variable";
+                    return 'variable';
                 },
                 "/": function (stream) {
                     if (stream.match("/*", false)) {
@@ -90,6 +89,21 @@ var enableMode = function (CodeMirror) {
                     }
                     return false;
                 }
+                "#": function(stream) {
+                 	do {
+                 		if (stream.match("'", true)) { 
+                    		let b_escaped = false;
+                    		let s_next;
+                    		while(s_next = stream.next()) {
+                        		if(s_next === "'" && !b_escaped) break;
+                        		b_escaped = !b_escaped && s_next === '\\';
+                    		}
+                		} else {
+                			stream.eatWhile(/\w/);
+                		}
+                	} while (stream.match('::', true))
+                    return 'keyword';
+                },
             }
         });
     });

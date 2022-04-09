@@ -17,10 +17,10 @@ package '15_13-Discretely Sampled Function Value' {
 		
 		// Map the definitional epoch (t = 0) of this scale to a reference epoch expressed in UTC
 		// This modeled as a 1D coordinate transformation (translation only)
-		attribute :>> placement : CoordinateTransformation {
+		attribute :>> transformation : CoordinateFramePlacement {
 			:>> source = UTC;
-			:>> target = self;
 			:>> origin = definitionalEpochInUTC;
+			:>> basisDirections = 1 [UTC];
 		}
   }
 

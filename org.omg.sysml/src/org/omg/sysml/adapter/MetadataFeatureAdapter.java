@@ -46,4 +46,11 @@ public class MetadataFeatureAdapter extends FeatureAdapter {
 	protected List<Type> getBaseTypes() {
 		return Collections.emptyList();
 	}
+	
+	@Override
+	public void doTransform() {
+		super.doTransform();
+		AnnotatingElementAdapter.transformAnnotatingElement(getTarget());
+	}
+
 }

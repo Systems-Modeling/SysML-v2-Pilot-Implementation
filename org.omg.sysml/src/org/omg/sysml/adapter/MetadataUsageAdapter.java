@@ -37,4 +37,11 @@ public class MetadataUsageAdapter extends ItemUsageAdapter {
 	protected String getDefaultSupertype() {
 		return getDefaultSupertype("base");
 	}
+	
+	@Override
+	public void doTransform() {
+		super.doTransform();
+		AnnotatingElementAdapter.transformAnnotatingElement(getTarget());
+	}
+
 }

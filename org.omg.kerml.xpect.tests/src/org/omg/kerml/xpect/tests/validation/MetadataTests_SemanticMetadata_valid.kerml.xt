@@ -1,0 +1,60 @@
+//* 
+XPECT_SETUP org.omg.kerml.xpect.tests.validation.KerMLValidationTest
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library/Base.kerml"}
+		File {from ="/library/Links.kerml"}
+       	File {from ="/library/Occurrences.kerml"}
+       	File {from ="/library/Objects.kerml"}
+      	File {from ="/library/Metaobjects.kerml"}
+       	File {from ="/library/Performances.kerml"}
+       	File {from ="/library/BaseFunctions.kerml"}
+        File {from ="/library/KerML.kerml"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library/Base.kerml"}
+				File {from ="/library/Links.kerml"}
+		       	File {from ="/library/Occurrences.kerml"}
+		       	File {from ="/library/Objects.kerml"}
+		       	File {from ="/library/Metaobjects.kerml"}
+		       	File {from ="/library/Performances.kerml"}
+		       	File {from ="/library/BaseFunctions.kerml"}
+		       	File {from ="/library/KerML.kerml"}
+			}
+		}
+	}
+END_SETUP 
+*/
+// XPECT noErrors ---> ""
+package SemanticMetadata_valid {
+
+	class C {
+		feature x;
+	}
+	feature f : C {
+		feature y;
+	}
+
+    abstract metaclass A :> Metaobjects::SemanticMetadata {
+    	feature :>> baseType; // Testing that baseType can be left unbound.
+    }
+	
+	metaclass B :> A {
+		feature :>> baseType = f as KerML::Type;
+	}
+	
+	class C1 {
+		@B;
+		feature :>> x;
+	}
+	
+	feature f1 {
+		@B;
+		feature :>> x;
+		feature :>> y;
+	}
+	
+}

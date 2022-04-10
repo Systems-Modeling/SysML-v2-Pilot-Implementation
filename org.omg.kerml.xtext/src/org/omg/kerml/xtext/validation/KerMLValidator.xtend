@@ -230,7 +230,10 @@ class KerMLValidator extends AbstractKerMLValidator {
 	}
 	
 	def void checkMetadataAnnotatedElements(MetadataFeature mf) {
-		val annotatedElementFeatures = FeatureUtil.getAllSubsettingFeaturesIn(mf, mf.annotatedElementFeature).filter[f | !f.abstract];
+		var annotatedElementFeatures = FeatureUtil.getAllSubsettingFeaturesIn(mf, mf.annotatedElementFeature);
+		if (annotatedElementFeatures.exists[!abstract]) {
+			annotatedElementFeatures = annotatedElementFeatures.filter[!abstract].toList
+		}
 		if (!annotatedElementFeatures.empty) {
 			for (element: mf.annotatedElement) {
 				val metaclass = ExpressionUtil.getMetaclassOf(element)

@@ -50,6 +50,7 @@ public abstract class ModelLevelFunction {
 		
 		put(new EqualsFunction());
 		put(new NotEqualsFunction());
+		put(new AsFunction());
 		
 		put(new SizeFunction());
 		put(new IsEmptyFunction());

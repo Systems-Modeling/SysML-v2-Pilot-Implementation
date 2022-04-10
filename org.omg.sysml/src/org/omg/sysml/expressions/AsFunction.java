@@ -19,38 +19,42 @@
  *  
  *******************************************************************************/
 
-package org.omg.sysml.adapter;
+package org.omg.sysml.expressions;
 
-import java.util.Collections;
-import java.util.List;
-
-import org.omg.sysml.lang.sysml.MetadataFeature;
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
+import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.InvocationExpression;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.util.ExpressionUtil;
+import org.omg.sysml.util.TypeUtil;
 
-public class MetadataFeatureAdapter extends FeatureAdapter {
-	
-	public MetadataFeatureAdapter(MetadataFeature element) {
-		super(element);
-	}
-	
-	public MetadataFeature getTarget() {
-		return (MetadataFeature)super.getTarget();
-	}
+public class AsFunction extends BaseFunction {
 
 	@Override
-	protected String getDefaultSupertype() {
-		return getDefaultSupertype("base");
+	public String getOperatorName() {
+		return "as";
+	}
+	
+	protected static boolean isTypeOrMetatype(Element context, Element element, Type targetType) {
+		return isType(context, element, targetType) ||
+			   TypeUtil.conforms(ExpressionUtil.getMetaclassOf(element), targetType);
 	}
 	
 	@Override
-	protected List<Type> getBaseTypes() {
-		return Collections.emptyList();
-	}
-	
-	@Override
-	public void doTransform() {
-		super.doTransform();
-		AnnotatingElementAdapter.transformAnnotatingElement(getTarget());
+	public EList<Element> invoke(InvocationExpression invocation, Element target) {
+		Type targetType = getTypeArgument(invocation);
+		if (targetType != null) {
+			EList<Element> values = evaluateArgument(invocation, 0, target);
+			if (values != null) {
+				EList<Element> results = new BasicEList<>();
+				values.stream().
+					filter(value->isTypeOrMetatype(invocation, value, targetType)).
+					forEachOrdered(results::add);
+				return results;
+			}
+		}
+		return null;
 	}
 
 }

@@ -17,8 +17,6 @@ XPECT_SETUP org.omg.sysml.xpect.tests.validation.invalid.SysMLTests
        	File {from ="/library.systems/Attributes.sysml"}
        	File {from ="/library.systems/Items.sysml"}
        	File {from ="/library.systems/Metadata.sysml"}
-       	File {from ="/library.systems/Actions.sysml"}
-       	File {from ="/library.systems/Calculations.sysml"}
        	File {from ="/library.systems/SysML.sysml"}
 	}
 	Workspace {
@@ -40,65 +38,46 @@ XPECT_SETUP org.omg.sysml.xpect.tests.validation.invalid.SysMLTests
 		       	File {from ="/library.systems/Attributes.sysml"}
 		       	File {from ="/library.systems/Items.sysml"}
        			File {from ="/library.systems/Metadata.sysml"}
-       			File {from ="/library.systems/Actions.sysml"}
-       			File {from ="/library.systems/Calculations.sysml"}
 		       	File {from ="/library.systems/SysML.sysml"}
 			}
 		}
 	}
 END_SETUP 
 */
-package Test {
-	import ScalarValues::*;
-	import ControlFunctions::collect;
+package SemanticMetadata_invalid {
+
+	item def C {
+		ref x;
+	}
+	item f : C {
+		ref y;
+	}
+
+    abstract metadata def A :> Metaobjects::SemanticMetadata {
+    	ref :>> baseType; // Testing that baseType can be left unbound.
+    }
 	
-	metadata def A {
-		ref :>> annotatedElement : SysML::AttributeUsage;
-		attribute x : Integer;
-		attribute y : String;
-		attribute z : Boolean;
-		attribute u {
-			attribute v : Integer;
-		}
+	metadata def B :> A {
+		ref :>> baseType = f as SysML::Usage;
 	}
 	
-	calc def f(x): Boolean;
-	
-	// XPECT errors --> "Must be model-level evaluable" at "filter f(A::y);"
-	filter f(A::y);
-	// XPECT errors --> "Must be model-level evaluable" at "filter ~A::z;"
-	filter ~A::z;
-	// XPECT errors --> "Must be model-level evaluable" at "filter A::y->collect {in ref x; x};"
-	filter A::y->collect {in ref x; x};
-	// XPECT errors --> "Must be model-level evaluable" at "filter A(null, 1, "", false);"
-	filter A(null, 1, "", false);
-	
-	enum def E :> String {
-		enum e = "e";
-	}
-	
-	attribute bad;
-	
-	attribute a {
-		@A {
-			// XPECT errors --> "Must be model-level evaluable" at "= ~3"
-			x = ~3;
-			y = E::e;
-			// XPECT errors --> "Must be model-level evaluable" at "= f(A::y)"
-			z = f(A::y);
-			u {
-				v = 1;
-				// XPECT errors --> "Must redefine an owning-type feature" at "bad;"
-				bad;
-			}		
-		}
-	}
-	
-	item p {
-		// XPECT errors --> "Cannot annotate ItemUsage" at "@A;"
+	item def C1 {
+		// XPECT errors --> "Must have a concrete type" at "@A;"
 		@A;
-		// XPECT errors --> "Must have a concrete type" at "@Metaobjects::Metaobject;"
-		@Metaobjects::Metaobject;
+		// XPECT errors --> "Couldn't resolve reference to Feature 'x'." at "x"
+		ref :>> x;
+	}
+	
+	item def C2 {
+		@B;
+		ref :>> x;
+		// XPECT errors --> "Couldn't resolve reference to Feature 'y'." at "y"
+		ref :>> y;
+	}
+	
+	item f1 {
+		// XPECT errors --> "Must have a concrete type" at "@A;"
+		@A;
 	}
 	
 }

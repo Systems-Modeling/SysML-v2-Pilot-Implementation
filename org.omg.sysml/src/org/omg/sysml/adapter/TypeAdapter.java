@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2021-2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -34,7 +34,9 @@ import java.util.stream.Stream;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.omg.sysml.lang.sysml.MetadataFeature;
 import org.omg.sysml.lang.sysml.BindingConnector;
+import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Specialization;
@@ -234,6 +236,9 @@ public class TypeAdapter extends NamespaceAdapter {
 	}
 	
 	public void addDefaultGeneralType() {
+		for (Type baseType: getBaseTypes()) {
+			addImplicitGeneralType(getGeneralizationEClass(), baseType);
+		}
 		addDefaultGeneralType(getGeneralizationEClass(), getDefaultSupertype());
 	}
 	
@@ -271,6 +276,37 @@ public class TypeAdapter extends NamespaceAdapter {
 	 */
 	public List<? extends Feature> getRelevantFeatures() {
 		return Collections.emptyList();
+	}
+	
+	// Extension
+	
+	private boolean isGetBaseTypes = true;
+	
+	protected List<Type> getBaseTypes() {
+		List<Type> baseTypes = new ArrayList<>();
+		if (isGetBaseTypes) {
+			isGetBaseTypes = false;
+			Type target = getTarget();
+			for (MetadataFeature metadataFeature : ElementUtil.getAllMetadataFeaturesOf(target)) {
+				metadataFeature.getFeature().stream().
+						filter(f->TypeUtil.conforms(f, getBaseTypeFeature(metadataFeature))).
+						map(FeatureUtil::getValueExpressionFor).
+						filter(expr->expr != null).
+						map(expr->expr.evaluate(target)).
+						filter(results->results != null && !results.isEmpty()).
+						map(results->results.get(0)).
+						filter(Type.class::isInstance).
+						map(Type.class::cast).
+						forEachOrdered(baseTypes::add);
+			}
+			isGetBaseTypes = true;
+		}
+		return baseTypes;
+	}
+	
+	protected Feature getBaseTypeFeature(Element element) {
+		return (Feature)SysMLLibraryUtil.getLibraryType(element, 
+				ImplicitGeneralizationMap.getDefaultSupertypeFor(element.getClass(), "baseType"));
 	}
 	
 	// Transformation

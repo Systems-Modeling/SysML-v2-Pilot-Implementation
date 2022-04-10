@@ -323,7 +323,7 @@ class SysMLValidator extends KerMLValidator {
 		checkAtMostOneElement(viewUsg.ownedFeature.filter[f|f instanceof RenderingUsage], INVALID_VIEWUSAGE_RENDER_MSG, INVALID_VIEWUSAGE_RENDER)
 	}
 	
-	@Check //Must have exactly one type, which is a MetadataDefinition. 
+	@Check //Must have exactly one type, which is a Metaclass. 
 	def checkMetadataUsageTypes(MetadataUsage usg){
 		checkOneType(usg, Metaclass, SysMLValidator.INVALID_METADATAUSAGE_MSG, SysMLPackage.eINSTANCE.metadataUsage_MetadataDefinition, SysMLValidator.INVALID_METADATAUSAGE)
 	}

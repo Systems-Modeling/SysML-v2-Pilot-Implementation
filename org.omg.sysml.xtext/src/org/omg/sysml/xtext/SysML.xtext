@@ -1579,7 +1579,7 @@ TargetExpression returns SysML::Expression :
 	    ) 
 	  | {SysML::CollectExpression.operand += current} '.'
 	    ownedRelationship += ExpressionBodyMember 
-	  | {SysML::SelectExpression.operand += current} '.$'
+	  | {SysML::SelectExpression.operand += current} '.?'
 	    ownedRelationship += ExpressionBodyMember 
 	  )
 	)*

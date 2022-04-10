@@ -75,13 +75,14 @@ var enableMode = function (CodeMirror) {
             modeProps: {fold: ["brace"]},
             hooks: {
                 "'": function (stream) {
-                    let b_escaped = false;
-                    let s_next;
-                    while(s_next = stream.next()) {
-                        if(s_next === "'" && !b_escaped) break;
-                        b_escaped = !b_escaped && s_next === '\\';
+                    var escaped = false, next;
+                    while ((next = stream.next()) != null) {
+                        if (next == "'" && !escaped) {
+                            break;
+                        }
+                        escaped = !escaped && next == "\\";
                     }
-                    return 'variable';
+                    return "variable";
                 },
                 "/": function (stream) {
                     if (stream.match("/*", false)) {
@@ -89,21 +90,6 @@ var enableMode = function (CodeMirror) {
                     }
                     return false;
                 }
-                "#": function(stream) {
-                 	do {
-                 		if (stream.match("'", true)) { 
-                    		let b_escaped = false;
-                    		let s_next;
-                    		while(s_next = stream.next()) {
-                        		if(s_next === "'" && !b_escaped) break;
-                        		b_escaped = !b_escaped && s_next === '\\';
-                    		}
-                		} else {
-                			stream.eatWhile(/\w/);
-                		}
-                	} while (stream.match('::', true))
-                    return 'keyword';
-                },
             }
         });
     });

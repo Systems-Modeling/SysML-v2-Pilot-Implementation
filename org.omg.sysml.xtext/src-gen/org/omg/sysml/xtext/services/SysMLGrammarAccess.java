@@ -9145,7 +9145,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final RuleCall cOwnedRelationshipExpressionBodyMemberParserRuleCall_1_1_2_2_0 = (RuleCall)cOwnedRelationshipAssignment_1_1_2_2.eContents().get(0);
 		private final Group cGroup_1_1_3 = (Group)cAlternatives_1_1.eContents().get(3);
 		private final Action cSelectExpressionOperandAction_1_1_3_0 = (Action)cGroup_1_1_3.eContents().get(0);
-		private final Keyword cFullStopDollarSignKeyword_1_1_3_1 = (Keyword)cGroup_1_1_3.eContents().get(1);
+		private final Keyword cFullStopQuestionMarkKeyword_1_1_3_1 = (Keyword)cGroup_1_1_3.eContents().get(1);
 		private final Assignment cOwnedRelationshipAssignment_1_1_3_2 = (Assignment)cGroup_1_1_3.eContents().get(2);
 		private final RuleCall cOwnedRelationshipExpressionBodyMemberParserRuleCall_1_1_3_2_0 = (RuleCall)cOwnedRelationshipAssignment_1_1_3_2.eContents().get(0);
 		
@@ -9164,7 +9164,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//        )
 		//      | {SysML::CollectExpression.operand += current} '.'
 		//        ownedRelationship += ExpressionBodyMember
-		//      | {SysML::SelectExpression.operand += current} '.$'
+		//      | {SysML::SelectExpression.operand += current} '.?'
 		//        ownedRelationship += ExpressionBodyMember
 		//      )
 		//    )*
@@ -9185,7 +9185,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//    )
 		//  | {SysML::CollectExpression.operand += current} '.'
 		//    ownedRelationship += ExpressionBodyMember
-		//  | {SysML::SelectExpression.operand += current} '.$'
+		//  | {SysML::SelectExpression.operand += current} '.?'
 		//    ownedRelationship += ExpressionBodyMember
 		//  )
 		//)*
@@ -9207,7 +9207,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//    )
 		//  | {SysML::CollectExpression.operand += current} '.'
 		//    ownedRelationship += ExpressionBodyMember
-		//  | {SysML::SelectExpression.operand += current} '.$'
+		//  | {SysML::SelectExpression.operand += current} '.?'
 		//    ownedRelationship += ExpressionBodyMember
 		//  )
 		//)*
@@ -9240,7 +9240,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//  )
 		//| {SysML::CollectExpression.operand += current} '.'
 		//  ownedRelationship += ExpressionBodyMember
-		//| {SysML::SelectExpression.operand += current} '.$'
+		//| {SysML::SelectExpression.operand += current} '.?'
 		//  ownedRelationship += ExpressionBodyMember
 		//)
 		public Alternatives getAlternatives_1_1() { return cAlternatives_1_1; }
@@ -9324,15 +9324,15 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//ExpressionBodyMember
 		public RuleCall getOwnedRelationshipExpressionBodyMemberParserRuleCall_1_1_2_2_0() { return cOwnedRelationshipExpressionBodyMemberParserRuleCall_1_1_2_2_0; }
 		
-		//{SysML::SelectExpression.operand += current} '.$'
+		//{SysML::SelectExpression.operand += current} '.?'
 		//       ownedRelationship += ExpressionBodyMember
 		public Group getGroup_1_1_3() { return cGroup_1_1_3; }
 		
 		//{SysML::SelectExpression.operand += current}
 		public Action getSelectExpressionOperandAction_1_1_3_0() { return cSelectExpressionOperandAction_1_1_3_0; }
 		
-		//'.$'
-		public Keyword getFullStopDollarSignKeyword_1_1_3_1() { return cFullStopDollarSignKeyword_1_1_3_1; }
+		//'.?'
+		public Keyword getFullStopQuestionMarkKeyword_1_1_3_1() { return cFullStopQuestionMarkKeyword_1_1_3_1; }
 		
 		//ownedRelationship += ExpressionBodyMember
 		public Assignment getOwnedRelationshipAssignment_1_1_3_2() { return cOwnedRelationshipAssignment_1_1_3_2; }
@@ -18797,7 +18797,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	//        )
 	//      | {SysML::CollectExpression.operand += current} '.'
 	//        ownedRelationship += ExpressionBodyMember
-	//      | {SysML::SelectExpression.operand += current} '.$'
+	//      | {SysML::SelectExpression.operand += current} '.?'
 	//        ownedRelationship += ExpressionBodyMember
 	//      )
 	//    )*

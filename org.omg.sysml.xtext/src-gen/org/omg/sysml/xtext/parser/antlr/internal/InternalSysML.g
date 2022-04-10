@@ -16085,9 +16085,9 @@ ruleTargetExpression returns [EObject current=null]
 								$current);
 						}
 					)
-					otherlv_18='.$'
+					otherlv_18='.?'
 					{
-						newLeafNode(otherlv_18, grammarAccess.getTargetExpressionAccess().getFullStopDollarSignKeyword_1_1_3_1());
+						newLeafNode(otherlv_18, grammarAccess.getTargetExpressionAccess().getFullStopQuestionMarkKeyword_1_1_3_1());
 					}
 					(
 						(

@@ -36,7 +36,6 @@ public class ISysML {
     private static volatile SysMLKernel kernel;
 
     public static void initialize() {
-        System.setProperty("file.encoding", "UTF-8");
         kernel = new SysMLKernel();
     }
 

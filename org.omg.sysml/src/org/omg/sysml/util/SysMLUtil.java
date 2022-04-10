@@ -1,6 +1,6 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2019, 2020 Model Driven Solutions, Inc.
+ * Copyright (c) 2019-2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -38,6 +38,7 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.xtext.resource.IResourceDescription.Manager;
 import org.eclipse.xtext.resource.IResourceServiceProvider;
+import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.resource.impl.ResourceDescriptionsData;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
@@ -68,6 +69,7 @@ public abstract class SysMLUtil {
 	protected SysMLUtil(ResourceDescriptionsData resourceDescriptionData) {
 		SysMLPackage.eINSTANCE.getName();
 		this.resourceSet = new ResourceSetImpl();
+		this.resourceSet.getLoadOptions().put(XtextResource.OPTION_ENCODING, "UTF-8");
 		this.index = resourceDescriptionData;
 		ResourceDescriptionsData.ResourceSetAdapter.installResourceDescriptionsData(this.resourceSet, this.index);
 	}
@@ -214,7 +216,7 @@ public abstract class SysMLUtil {
 	}
 	
 	/**
-	 * If the given path identifies an file with an allowable extension, then read it. 
+	 * If the given path identifies a file with an allowable extension, then read it. 
 	 * If the given path is for a directory, then recursively read all the allowable files in it, 
 	 * directly or indirectly.
 	 * 

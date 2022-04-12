@@ -14,10 +14,10 @@ package ShapeItems {
 	private import ControlFunctions::'?';
 
 	/**
-	 * A PlanarCurve is a flat Surface with a given area.
+	 * A PlanarCurve is a Curve with a given length embeddable in a plane.
 	 */
 	item def PlanarCurve :> Curve {
-		attribute :>> area [1] ;
+		attribute :>> length [1] ;
 
 		constraint { notEmpty(outerSpaceDimension) &  outerSpaceDimension <= 2 }
 	}

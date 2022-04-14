@@ -1,33 +1,66 @@
 package VehicleGeometryAndCoordinateFrames {
+    import TrigFunctions::*;
+    import ISQ::*;
 	import SI::*;
 	import Time::*;
 
     import ShapeItems::*;
     import SpatialItems::*;
 
+    import UnitsAndScales::CoordinateFrame;
     import UnitsAndScales::TranslationRotationSequence;
     import UnitsAndScales::Translation;
     import UnitsAndScales::Rotation;
     
     private import Collections::Array;
     private import ScalarValues::Real;
+    private import ScalarValues::Natural;
+    
+    part def Vehicle :> CompoundSpatialItem;
 
-    part def Vehicle :> SpatialItem;
+    part def Chassis :> CompoundSpatialItem {
+        item :>> shape = Box(4800 [mm], 1840 [mm], 1350 [mm]);
+    }
 
-    part def Wheel :> SpatialItem {
+	/**
+	 * Generic wheel with lugbolts
+	 * 
+	 * The radius is estimated for 22 inch hub and 110 mm tire height
+	 * The wheel width is equal to the cylinder height 
+	 */
+    part def Wheel :> CompoundSpatialItem {
+    	ref item :>> self : Wheel;
         item :>> shape : Cylinder {
-        	// estimated radius of 22 inch hub + 110 mm tire height 
             :>> radius = 22/2*25.4 + 110 [mm]; 
             :>> height = 220 [mm];
         }
+        attribute numberOfBolts : Natural = 5;
+		part lugBolts : LugBolt[Wheel::numberOfBolts] = (
+			LugBolt(1, numberOfBolts, self.coordinateFrame),
+			LugBolt(2, numberOfBolts, self.coordinateFrame),
+			LugBolt(3, numberOfBolts, self.coordinateFrame),
+			LugBolt(4, numberOfBolts, self.coordinateFrame),
+			LugBolt(5, numberOfBolts, self.coordinateFrame),
+		);
     }
 
-    part def Chassis :> SpatialItem {
-        item :> shape : Box[1] {
-            :>> length = 4800 [mm];
-            :>> width = 1840 [mm];
-            :>> height = 1350 [mm];
-        }
+    part def LugBolt :> CompoundSpatialItem {
+        attribute boltNumber : Natural;
+        attribute numberOfBolts : Natural;
+        attribute <scf> sourceCoordinateFrame : CoordinateFrame;
+        attribute <lbpr> lugBoltPlacementRadius :>> radius default 60 [mm];
+		private attribute lugBoltPlacementAngle :>> planeAngle = 360/numberOfBolts ['°'];
+        private attribute lbpa : Real = lugBoltPlacementAngle.num * (pi/180); // placement angle in radian
+    	item :>> shape : Cylinder {
+    		:>> radius = 14 [mm];
+    		:>> height = 40 [mm];
+    	}
+		attribute :>> coordinateFrame {
+			attribute :>> transformation : TranslationRotationSequence {
+ 	          	attribute :>> source = scf;
+            	attribute :>> sequence = Translation((lbpr*cos((boltNumber-1)*lbpa), lbpr*sin((boltNumber-1)*lbpa), -8)[scf]);
+            } 
+		}
     }
 
     part vehicle : Vehicle {
@@ -42,6 +75,7 @@ package VehicleGeometryAndCoordinateFrames {
         part chassis : Chassis[1] :> componentItems {
 			attribute :>> coordinateFrame {
 				attribute :>> transformation : TranslationRotationSequence {
+	 	          	attribute :>> source = datum;
                 	:>> sequence = Translation((-(shape as Box).length/2, -(shape as Box).width/2, 0)[datum]);
                 } 
 			}        	

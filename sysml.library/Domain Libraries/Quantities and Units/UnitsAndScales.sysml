@@ -14,24 +14,27 @@ package UnitsAndScales {
 	 *
 	 * The measurement reference concept is defined in [VIM] "quantity" NOTE 2 as "A reference can be a measurement unit,
 	 * a measurement procedure, a reference material, or a combination of such.", see https://jcgm.bipm.org/vim/en/1.1.html .
-	 * Although [VIM] "quantity" NOTE 5 states that "A quantity as defined here is a scalar. However, a vector or a tensor,
-	 * the components of which are quantities, is also considered to be a quantity", the rest of [VIM] does not explicitly
-	 * define how tensor and vector quantities should be supported or integrated.
+	 * Although [VIM] "quantity" NOTE 5 states that "A quantity as defined here is a scalar. However, a vector or a tensor, 
+	 * the components of which are quantities, is also considered to be a quantity", the rest of [VIM] does not explicitly define 
+	 * how tensor and vector quantities should be supported or integrated.
 	 *
 	 * In this package, in line with TensorQuantityValue in package Quantities, the most general kind of measurement reference
-	 * is TensorMeasurementReference, which is an AttributeDefinition that forms the basis for any kind of measurement reference
-	 * for multi-dimensional quantities. In this type hierarchy, ScalarMeasurementReference is defined as a specialization down
-	 * to a single dimensional measurement reference for a scalar quantity. The measurement references for all dimensions of a
-	 * quantity are specified through the mRefs attribute. Each element of mRefs is a ScalarMeasurementReference.
+	 * is TensorMeasurementReference, which is an AttributeDefinition that can capture a measurement reference for any order of tensor quantity.
+	 * Specializations VectorMeasurementReference and ScalarMeasurementReference are defined to capture specifically measurement references 
+	 * for vector and scalar quantities. Vector measurement references have order one and scalar measurement references have order zero.
+	 * 
+	 * The measurement references for all dimensions of a quantity are specified through the mRefs attribute. 
+	 * Each element of mRefs is a ScalarMeasurementReference.
 	 *
 	 * The humanId of a TensorMeasurementReference is the unique symbol by which the measurement reference is known.
 	 * The name of a TensorMeasurementReference is spelled-out human readable name of the measurement reference.
-	 * For example, typical measurement units for the speed quantity would have the respective humanId and name:
+	 *
+	 * For example, typical measurement references for (scalar) quantity speed are declared with the following humanId and name:
 	 * <'m/s'> and 'metre per second',
 	 * <'km/h'> and 'kilometre per hour',
 	 * <'mi/h'> and 'mile per hour'.
 	 *
-	 * A measurement reference can have zero or more definitionalQuantityValues that allows to specify
+	 * A measurement reference can have zero or more definitionalQuantityValues that allow to specify
 	 * quantity values that carry a particular meaning or relevance for the measurement reference.
 	 */
 	attribute def TensorMeasurementReference :> Array {
@@ -53,12 +56,12 @@ package UnitsAndScales {
 	 * A pair of a specialization of VectorQuantityValue and a specialization of VectorMeasurementReference can also be used to
 	 * define a vector space for state vectors as used in state-space representation models.
 	 *
-	 * Attribute isOrthogonal declares whether the basis vectors of the vector space are orthogonal, i.e. whether the
+	 * Attribute isOrthogonal declares whether the basis vectors of the vector space are orthogonal, i.e., whether all
 	 * inner products of any pair of basis vectors are equal to zero.
 	 *
-	 * Optional attribute transformation enables specification of the location and orientation of a dependent (nested) coordinate frame (that is
-	 * a VectorMeasurementReference) w.r.t. another (independent or reference) coordinate frame.
-	 * The transformation can be used to place the CoordinateFrame with respect to another CoordinateFrame.
+	 * Optional attribute transformation enables specification of the location and orientation of a dependent, nested coordinate frame
+	 * w.r.t. another (reference) coordinate frame.
+	 * Typically the other (reference) coordinate frame is the frame of the next higher element in a composite structure.
 	 */
 	attribute def <CoordinateFrame> VectorMeasurementReference :> TensorMeasurementReference {
 		ref attribute :>> self: VectorMeasurementReference[1];
@@ -84,11 +87,11 @@ package UnitsAndScales {
 	 attribute def CoordinateFramePlacement :> CoordinateTransformation {
 	 	attribute origin: VectorQuantityValue[0..1];
 	 	attribute basisDirections: VectorQuantityValue[1..*];
-	 	//assert constraint { source.dimensions = origin.dimensions } // Problem: source does not resolve
+	 	assert constraint { source.dimensions == origin.dimensions }
 	 }
 
 	/**
-	 * Common generalization of translation or rotation
+	 * Abstract union of Translation and Rotation
 	 */
 	abstract attribute def TranslationOrRotation;
 
@@ -133,22 +136,20 @@ package UnitsAndScales {
 	 *   R, R, R, T,
 	 *   0, 0, 0, 1 )
 	 *
-	 * Note: See https://en.wikipedia.org/wiki/Transformation_matrix affine transformations for a general explanation.
+	 * Note: See https://en.wikipedia.org/wiki/Transformation_matrix, under affine transformations for a general explanation.
 	 */
-	attribute def AffineTransformationMatrix :> CoordinateTransformation {
-		attribute matrix : Array {
+	attribute def AffineTransformationMatrix3d :> CoordinateTransformation, Array {
+		    attribute rotationMatrix : Array {
+				attribute :>> elements : Real[9] ordered nonunique;
+				attribute :>> dimensions = (3, 3);
+		    }
+			attribute translation :> displacementVector;
 			attribute :>> dimensions = (4, 4);
-			attribute :>> elements : Real[16] ordered nonunique;
-			derived attribute translation :>> displacementVector = (elements[4], elements[8], elements[12]);
-		}
-	}
-
-	/**
-	 * Coordinate transformation specified as a translation and a rotation using quaternions
-	 *
-	 * TODO: Implement similar to https://en.wikipedia.org/wiki/Quaternions_and_spatial_rotation after adding quaternion to ScalarValues
-	 */
-	attribute def TranslationRotationQuaternion :> CoordinateTransformation {
+			attribute :>> elements : Real[16] ordered nonunique = (
+				rotationMatrix.elements[1], rotationMatrix.elements[2], rotationMatrix.elements[3], translation.num[1],
+				rotationMatrix.elements[4], rotationMatrix.elements[5], rotationMatrix.elements[6], translation.num[2],
+				rotationMatrix.elements[7], rotationMatrix.elements[8], rotationMatrix.elements[9], translation.num[3],
+				0, 0, 0, 1);
 	}
 
 	/**

@@ -21,7 +21,7 @@ package SpatialItems {
 	 */
 	item def SpatialItem :> SpatialFrame, Item {
 		ref item :>> self : SpatialItem;
-		
+
 		/**
 		 * A local Clock to be used as the corresponding time reference within this SpatialItem. 
 		 * By default this is the global defaultClock.
@@ -46,28 +46,6 @@ package SpatialItems {
 		 */
 		assert constraint originPointConstraint {
 			isZeroVector(CurrentPositionOf(originPoint, SpatialItem::self))
-		}
-		
-		item <spatialSubitems> componentItems : SpatialItem[0..*] :> subitems {
-			item nestedLocalClock :>> localClock default localClock;
-			attribute nestedBasisDirections : VectorQuantityValue[3];
-			attribute nestedOrigin : VectorQuantityValue[0..1];
-			attribute nestedCoordinateFrame :>> coordinateFrame {
-				attribute :>> transformation[1] {
-				 	attribute :>> source = coordinateFrame;
-				 	attribute :>> target = nestedCoordinateFrame;
-				 	//attribute :>> basisDirections = nestedBasisDirections;
-				 	//attribute :>> origin = nestedOrigin;
-				}
-				
-			}
-		}
-		
-		/**
-		 * A CompoundSpatialItem is a spatial union of its componentItems.
-		 */
-		attribute componentUnion[1] :> unionsOf {
-			item :>> elements = componentItems;
 		}
 	}
 	

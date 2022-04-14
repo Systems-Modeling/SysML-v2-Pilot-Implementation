@@ -296,7 +296,7 @@ package SI {
     /*
      * Prefixed units
      */
-    
+
     /* Length */
     attribute <nm> nanometre : LengthUnit { :>> unitConversion: ConversionByPrefix { :>> prefix = nano; :>> referenceUnit = m; } }
     attribute <mm> millimetre : LengthUnit { :>> unitConversion: ConversionByPrefix { :>> prefix = milli; :>> referenceUnit = m; } }
@@ -313,7 +313,7 @@ package SI {
     attribute <kJ> kilojoule : EnergyUnit { :>> unitConversion: ConversionByPrefix { :>> prefix = kilo; :>> referenceUnit = J; } }
     attribute <MJ> megajoule : EnergyUnit { :>> unitConversion: ConversionByPrefix { :>> prefix = mega; :>> referenceUnit = J; } }
     attribute <GJ> gigajoule : EnergyUnit { :>> unitConversion: ConversionByPrefix { :>> prefix = giga; :>> referenceUnit = J; } }
-    
+
     /* Power */
     attribute <kW> kilowatt : PowerUnit { :>> unitConversion: ConversionByPrefix { :>> prefix = kilo; :>> referenceUnit = W; } }
 
@@ -346,9 +346,8 @@ package SI {
         attribute :>> definitionalQuantityValues = (temperatureWaterAtTriplePointInC, temperatureWaterAtFreezingPointInC);
         attribute :>> quantityValueMapping = celsiusToKelvinScaleMapping;
 
-        /* CoordinateTransformation (zero shift) w.r.t. thermodynamic temperature in kelvin */ 
+        /* CoordinateFramePlacement (zero shift) w.r.t. thermodynamic temperature in kelvin */
         private attribute zeroDegreeCelsiusInKelvin: ThermodynamicTemperatureValue = 273.15 [K];
-        attribute zeroShift : CoordinateTransformation { :>> source = K; :>> target = self; :>> origin = zeroDegreeCelsiusInKelvin; :>> basisDirections = 1 [K]; }
-        attribute :>> placement = zeroShift;
+        attribute zeroShift : CoordinateFramePlacement :>> transformation { :>> source = K; :>> target = self; :>> origin = zeroDegreeCelsiusInKelvin; :>> basisDirections = 1 [K]; }
     }
 }

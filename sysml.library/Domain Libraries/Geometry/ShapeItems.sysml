@@ -17,9 +17,9 @@ package ShapeItems {
 	 * A PlanarCurve is a Curve with a given length embeddable in a plane.
 	 */
 	item def PlanarCurve :> Curve {
-		attribute :>> length [1] ;
+		attribute :>> length [1];
 
-		constraint { notEmpty(outerSpaceDimension) &  outerSpaceDimension <= 2 }
+		assert constraint { notEmpty(outerSpaceDimension) &  outerSpaceDimension <= 2 }
 	}
 
 	/**
@@ -113,7 +113,7 @@ package ShapeItems {
 		item bf : Disc [1] :> faces;
 		item af : Disc [0..1] :> faces;
 		item cf : Surface [1] :> faces;
-		constraint { (apexRadius == 0) == isEmpty(af) }
+		assert constraint { (apexRadius == 0) == isEmpty(af) }
 
 		item :>> edges : Circle [2..4];
 		item be [2] :> edges { 
@@ -122,10 +122,10 @@ package ShapeItems {
 		item ae [0..2] :> edges { 
 			attribute :>> radius = apexRadius;
 		}
-		constraint { isEmpty(af) ? isEmpty(ae) : size(ae) == 2 }
+		assert constraint { isEmpty(af) ? isEmpty(ae) : size(ae) == 2 }
 
 		item :>> vertices [0..1];
-		constraint { isEmpty(ae) == notEmpty(vertices) }
+		assert constraint { isEmpty(ae) == notEmpty(vertices) }
 
 		/* Faces to edges */
 		connection :WithinBoth connect bf.edges [1] to be [0..*];

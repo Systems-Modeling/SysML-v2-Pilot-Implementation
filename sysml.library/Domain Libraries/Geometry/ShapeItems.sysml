@@ -102,12 +102,12 @@ package ShapeItems {
 	 * baseRadius, apexRadius and height.
 	 */
 	item def Cone :> Shell {
-		attribute baseRadius [1] = radius;
-		attribute apexRadius [1] default 0 [m];
+		attribute baseRadius [1] :> length = radius;
+		attribute apexRadius [1] :> length default 0 [m];
 		attribute :>> height [1];
 
 		attribute :>> radius [1];
-		attribute isTruncated : Boolean [1] = (apexRadius > 0);
+		attribute isTruncated : Boolean [1] = apexRadius > 0;
 
 		item :>> faces [2..3];
 		item bf : Disc [1] :> faces;

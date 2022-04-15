@@ -21,6 +21,11 @@ public class AnnotatingElementAdapter extends ElementAdapter {
 			Relationship owningRelationship = annotatingElement.getOwningRelationship();
 			if (owningRelationship instanceof Annotation) {
 				annotations.add((Annotation)owningRelationship);
+			} else {
+				annotatingElement.getOwnedRelationship().stream().
+					filter(Annotation.class::isInstance).
+					map(Annotation.class::cast).
+					forEachOrdered(annotations::add);
 			}
 		}
 	}

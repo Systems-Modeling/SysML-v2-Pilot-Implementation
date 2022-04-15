@@ -13,8 +13,10 @@ package VehicleGeometryAndCoordinateFrames {
     import UnitsAndScales::Rotation;
     
     private import Collections::Array;
+    private import ScalarValues::Boolean;
     private import ScalarValues::Real;
     private import ScalarValues::Natural;
+	private import ControlFunctions::forAll;
     
     part def Vehicle :> CompoundSpatialItem;
 
@@ -34,33 +36,41 @@ package VehicleGeometryAndCoordinateFrames {
             :>> radius = 22/2*25.4 + 110 [mm]; 
             :>> height = 220 [mm];
         }
-        attribute numberOfBolts : Natural = 5;
-		part lugBolts : LugBolt[Wheel::numberOfBolts] = (
-			LugBolt(1, numberOfBolts, self.coordinateFrame),
-			LugBolt(2, numberOfBolts, self.coordinateFrame),
-			LugBolt(3, numberOfBolts, self.coordinateFrame),
-			LugBolt(4, numberOfBolts, self.coordinateFrame),
-			LugBolt(5, numberOfBolts, self.coordinateFrame),
-		);
+        attribute <wcf> wheelCoordinateFrame : CoordinateFrame;
+        
+        attribute numberOfBolts : Natural = 5;	
+		part lugBolts : LugBolt[1..numberOfBolts];
+		
+		/* 
+		 * As an example of a more involved placement of composite parts, constrain the positions of the coordinate frame origins 
+		 * of the lugbolts to a circle with radius lbpr distributed evenly over 360°.
+		 * 		
+		 * Currently casting (lugBolts[i] as LugBolt) is needed to resolve coordinateFrame
+		 * TODO: When origin position is available as position3dVector rather than Point, use SpatialItem::PositionOf to reformulate 
+		 * the constraint in terms of the origin postion of each of lugbolts.
+		 */
+        attribute <lbpr> lugBoltPlacementRadius :>> radius default 60 [mm];
+		private attribute lugBoltDistributionAngle :>> planeAngle = 360/numberOfBolts ['°'];
+        private attribute lbda : Real = lugBoltDistributionAngle.num * (pi/180); // lugBoltDistributionAngle in radian
+		assert constraint {
+			1..numberOfBolts->forAll { 
+				in i : Natural;
+				private attribute lbcf = (lugBolts[i] as LugBolt).coordinateFrame;
+				private attribute trs : TranslationRotationSequence {
+					:>> source = wcf;
+					:>> target = lbcf;
+					:>> elements = Translation((lbpr*cos((i-1)*lbda), lbpr*sin((i-1)*lbda), -8)[wcf]); 
+				}
+				lbcf.transformation == trs
+			}
+		}
     }
 
     part def LugBolt :> CompoundSpatialItem {
-        attribute boltNumber : Natural;
-        attribute numberOfBolts : Natural;
-        attribute <scf> sourceCoordinateFrame : CoordinateFrame;
-        attribute <lbpr> lugBoltPlacementRadius :>> radius default 60 [mm];
-		private attribute lugBoltPlacementAngle :>> planeAngle = 360/numberOfBolts ['°'];
-        private attribute lbpa : Real = lugBoltPlacementAngle.num * (pi/180); // placement angle in radian
     	item :>> shape : Cylinder {
     		:>> radius = 14 [mm];
     		:>> height = 40 [mm];
     	}
-		attribute :>> coordinateFrame {
-			attribute :>> transformation : TranslationRotationSequence {
- 	          	attribute :>> source = scf;
-            	attribute :>> sequence = Translation((lbpr*cos((boltNumber-1)*lbpa), lbpr*sin((boltNumber-1)*lbpa), -8)[scf]);
-            } 
-		}
     }
 
     part vehicle : Vehicle {
@@ -76,21 +86,21 @@ package VehicleGeometryAndCoordinateFrames {
 			attribute :>> coordinateFrame {
 				attribute :>> transformation : TranslationRotationSequence {
 	 	          	attribute :>> source = datum;
-                	:>> sequence = Translation((-(shape as Box).length/2, -(shape as Box).width/2, 0)[datum]);
-                } 
-			}        	
+                	attribute :>> elements = Translation((-(shape as Box).length/2, -(shape as Box).width/2, 0)[datum]);
+                }
+			}
         }
 
         private attribute plusXAxis : Array { :>> dimensions = 3; :>> elements : Real[3] = (1, 0, 0); }
-        private attribute xFrontWheelShift : Real = 1670;
-        private attribute xRearWheelShift : Real = -1820;
-        private attribute yWheelShift : Real = 720;
+        private attribute frontWheelXShift : Real = 1670;
+        private attribute rearWheelXShift : Real = -1820;
+        private attribute wheelYShift : Real = 720;
 
         part leftFrontWheel : Wheel[1] {
             attribute :>> coordinateFrame {
                 attribute :>> transformation : TranslationRotationSequence {
 	            	attribute :>> source = datum;
-                	attribute :>> sequence = (Translation((xFrontWheelShift, yWheelShift, 80)[datum]), Rotation(plusXAxis[datum], -90['°']));
+                	attribute :>> elements = (Translation((frontWheelXShift, wheelYShift, 80)[datum]), Rotation(plusXAxis[datum], -90['°']));
                 }
             }
         }
@@ -98,7 +108,7 @@ package VehicleGeometryAndCoordinateFrames {
             attribute :>> coordinateFrame {
                 attribute :>> transformation : TranslationRotationSequence {
                 	attribute :>> source = datum;
-                	attribute :>> sequence = (Translation((xFrontWheelShift, -yWheelShift, 80)[datum]), Rotation((1, 0, 0)[datum], 90['°']));
+                	attribute :>> elements = (Translation((frontWheelXShift, -wheelYShift, 80)[datum]), Rotation((1, 0, 0)[datum], 90['°']));
                 }
             }
         }
@@ -106,7 +116,7 @@ package VehicleGeometryAndCoordinateFrames {
             attribute :>> coordinateFrame {
                 attribute :>> transformation : TranslationRotationSequence {
                 	attribute :>> source = datum;
-                	attribute :>> sequence = (Translation((xRearWheelShift, yWheelShift, 80)[datum]), Rotation((1, 0, 0)[datum], 90['°']));
+                	attribute :>> elements = (Translation((rearWheelXShift, wheelYShift, 80)[datum]), Rotation((1, 0, 0)[datum], 90['°']));
                 }
             }
         }
@@ -114,7 +124,7 @@ package VehicleGeometryAndCoordinateFrames {
             attribute :>> coordinateFrame {
                 attribute :>> transformation : TranslationRotationSequence {
 					attribute :>> source = datum;
-                	attribute :>> sequence = (Translation((xRearWheelShift, -yWheelShift, 80)[datum]), Rotation((-1, 0, 0)[datum], 90['°']));
+                	attribute :>> elements = (Translation((rearWheelXShift, -wheelYShift, 80)[datum]), Rotation((-1, 0, 0)[datum], 90['°']));
                 }
             }
         }

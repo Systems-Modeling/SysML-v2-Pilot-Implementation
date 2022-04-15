@@ -48,7 +48,7 @@ package SpatialItems {
 			isZeroVector(CurrentPositionOf(originPoint, SpatialItem::self))
 		}
 	}
-	
+
 	/**
 	 * A CompoundSpatialItem is a SpatialItem that is a spatial union of a collection of component SpatialItems.
 	 */
@@ -59,7 +59,7 @@ package SpatialItems {
 		 * The coordinateFrames of the compositeItems are nested in the coordinateFrame of the CompoundSpatialItem, 
 		 * and, by default, they have the same localClock as the CompoundSpatialItem.
 		 */
-		item <spatialSubitems> componentItems : SpatialItem[0..*] ordered :> subitems {
+		item componentItems : SpatialItem[0..*] ordered :> subitems {
 			item nestedLocalClock :>> localClock default localClock;
 			attribute nestedBasisDirections : VectorQuantityValue[3];
 			attribute nestedOrigin : VectorQuantityValue[0..1];
@@ -67,10 +67,7 @@ package SpatialItems {
 				attribute :>> transformation[1] {
 				 	attribute :>> source = coordinateFrame;
 				 	attribute :>> target = nestedCoordinateFrame;
-				 	//attribute :>> basisDirections = nestedBasisDirections;
-				 	//attribute :>> origin = nestedOrigin;
 				}
-				
 			}
 		}
 		

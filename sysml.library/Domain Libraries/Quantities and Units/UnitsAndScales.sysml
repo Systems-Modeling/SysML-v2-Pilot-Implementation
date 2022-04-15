@@ -4,6 +4,8 @@
  */
 package UnitsAndScales {
 	private import ScalarValues::*;
+	private import SequenceFunctions::size;
+	private import ControlFunctions::forAll;
 	private import Quantities::*;
 	private import Collections::*;
 	private import ISQSpaceTime::angularMeasure;
@@ -50,7 +52,7 @@ package UnitsAndScales {
 	 * The magnitudes of the `n` basis unit vectors that span the vector space are defined by the mRefs which each are
 	 * a ScalarMeasurementReference, typically a MeasurementUnit or an IntervalScale.
 	 * 
-	 * CoordinateFrame is the alternative short name for VectorMeasurementReference. When used as a coordinate frame this is the 
+	 * CoordinateFrame is the short name for VectorMeasurementReference. When used as a coordinate frame this is the 
 	 * preferred identifier for the concept.
 	 * 
 	 * A pair of a specialization of VectorQuantityValue and a specialization of VectorMeasurementReference can also be used to
@@ -82,12 +84,19 @@ package UnitsAndScales {
     }
 
 	/**
-	 * Coordinate frame placement transformation
+	 * Coordinate frame transformation by placement of the target frame
+	 *  
+	 * Attribute origin specifies the location of the origin of the target frame as a position in the source frame.
+	 * Attribute basisDirections specifies the orientation of the basis vector directions of the target frame as directions in the source frame. 
 	 */
 	 attribute def CoordinateFramePlacement :> CoordinateTransformation {
 	 	attribute origin: VectorQuantityValue[0..1];
 	 	attribute basisDirections: VectorQuantityValue[1..*];
 	 	assert constraint { source.dimensions == origin.dimensions }
+	 	assert constraint { size(basisDirections) == source.dimensions[1]}
+	 	assert constraint { 1..size(basisDirections)->forAll { in i : Natural; 
+	 		(basisDirections[i] as VectorQuantityValue).dimensions == source.dimensions } 
+	 	}
 	 }
 
 	/**
@@ -111,15 +120,16 @@ package UnitsAndScales {
 	}
 
 	/**
-	 * Coordinate transformation specified by a sequence of translations and/or rotations
+	 * Coordinate frame transformation specified by a sequence of translations and/or rotations
 	 *
-	 * Note: This  is a convenience that enables specification of a coordinate transformation that can be persisted and is easy to interprete for humans.
-	 * In particular a sequence of rotations about the principal axes is much more easy to understand than a rotation about an arbitrary axis.
-	 * Any sequence can be reduced to a single translation and rotation about a particular axis, but in general the original sequence
-	 * cannot be retrieved as there are infinitely many sequences representing the reduced transformation.
+	 * Note: This is a coordinate transformation that is convenient for interpretation by humans.
+	 * In particular a sequence of rotations about the principal axes of a coordinate frame is much more easy understandable 
+	 * than a rotation about an arbitrary axis.
+	 * Any sequence can be reduced to a single combination of a translation and a rotation about a particular axis, but in general 
+	 * the original sequence cannot be retrieved as there are infinitely many sequences representing the reduced transformation.
 	 */
-	attribute def TranslationRotationSequence :> CoordinateTransformation {
-		attribute sequence : TranslationOrRotation[1..*] ordered nonunique;
+	attribute def TranslationRotationSequence :> CoordinateTransformation, List {
+		attribute :>> elements : TranslationOrRotation[1..*];
 	}
 
 	/**
@@ -159,13 +169,14 @@ package UnitsAndScales {
 	 * It establishes how to interpret the numerical value (num) of a ScalarQuantityValue or a component of
 	 * a tensor or vector quantity value, and establishes its actual quantity dimension.
 	 *
-	 * Attribute mRefs is bound to self for a ScalarMeasurementReference, as the dimension or component of a scalar quantity is itself,
-	 * and for consistency with tensor and vector measurement references.
+	 * Attribute mRefs is bound to self for a ScalarMeasurementReference, for consistency with tensor and vector measurement references,
+	 * as the dimension or component of a scalar quantity is itself.
 	 */
 	abstract attribute def ScalarMeasurementReference :> VectorMeasurementReference {
+		ref attribute :>> self: ScalarMeasurementReference[1];
 		attribute :>> dimensions = ();
 		attribute :>> isOrthogonal = true;
-		attribute :>> mRefs = self;
+		attribute :>> mRefs = ScalarMeasurementReference::self;
 		attribute quantityDimension: QuantityDimension[1];
 	}
 

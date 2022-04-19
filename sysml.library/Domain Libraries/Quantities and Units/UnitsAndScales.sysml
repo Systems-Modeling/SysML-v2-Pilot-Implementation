@@ -106,6 +106,8 @@ package UnitsAndScales {
 
 	/**
 	 * Representation of a translation with respect to a coordinate frame
+	 * 
+	 * Attribute translationVector specifies the displacement vector that constitutes the translation.
 	 */
 	attribute def Translation :> TranslationOrRotation {
 		attribute translationVector :>> displacementVector;
@@ -113,10 +115,18 @@ package UnitsAndScales {
 
 	/**
 	 * Representation of a rotation about an axis over an angle
+	 * 
+	 * Attribute axisDirection specifies the direction of the rotation axis.
+	 * Attribute angle specifies the angle of rotation, where a positive value implies right-handed rotation.
+	 * Attribute isIntrinsic asserts whether the intermediate coordinate frame moves with the rotation or not, 
+	 * i.e. whether an instrinsic or extrinsic rotation is specified.
+	 * 
+	 * See https://en.wikipedia.org/wiki/Davenport_chained_rotations for details.
 	 */
 	attribute def Rotation :> TranslationOrRotation {
 		attribute axisDirection :>> displacementVector;
 		attribute angle :>> angularMeasure;
+		attribute isIntrinsic : Boolean[1] default true;
 	}
 
 	/**

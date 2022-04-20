@@ -89,7 +89,22 @@ var enableMode = function (CodeMirror) {
                         stream.next();
                     }
                     return false;
-                }
+                },
+                "#": function(stream: CodeMirror.StringStream) {
+                 	do {
+                 		if (stream.match("'", true)) { 
+                    		let b_escaped = false;
+                    		let s_next;
+                    		while(s_next = stream.next()) {
+                        		if(s_next === "'" && !b_escaped) break;
+                        		b_escaped = !b_escaped && s_next === '\\';
+                    		}
+                		} else {
+                			stream.eatWhile(/\w/);
+                		}
+                	} while (stream.match('::', true))
+                    return 'keyword';
+                },
             }
         });
     });

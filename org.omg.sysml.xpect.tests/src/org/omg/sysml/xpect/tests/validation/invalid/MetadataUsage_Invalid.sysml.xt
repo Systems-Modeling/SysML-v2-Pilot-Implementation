@@ -6,13 +6,20 @@ XPECT_SETUP org.omg.sysml.xpect.tests.validation.invalid.SysMLTests
 		File {from ="/library.kernel/Links.kerml"}
        	File {from ="/library.kernel/Occurrences.kerml"}
        	File {from ="/library.kernel/Objects.kerml"}
+       	File {from ="/library.kernel/Metaobjects.kerml"}
        	File {from ="/library.kernel/Performances.kerml"}
        	File {from ="/library.kernel/ScalarValues.kerml"}
        	File {from ="/library.kernel/BaseFunctions.kerml"}
        	File {from ="/library.kernel/DataFunctions.kerml"}
        	File {from ="/library.kernel/ScalarFunctions.kerml"}
        	File {from ="/library.kernel/ControlFunctions.kerml"}
+       	File {from ="/library.kernel/KerML.kerml"}
        	File {from ="/library.systems/Attributes.sysml"}
+       	File {from ="/library.systems/Items.sysml"}
+       	File {from ="/library.systems/Metadata.sysml"}
+       	File {from ="/library.systems/Actions.sysml"}
+       	File {from ="/library.systems/Calculations.sysml"}
+       	File {from ="/library.systems/SysML.sysml"}
 	}
 	Workspace {
 		JavaProject {
@@ -22,13 +29,20 @@ XPECT_SETUP org.omg.sysml.xpect.tests.validation.invalid.SysMLTests
 				File {from ="/library.kernel/Links.kerml"}
 		       	File {from ="/library.kernel/Occurrences.kerml"}
 		       	File {from ="/library.kernel/Objects.kerml"}
+		       	File {from ="/library.kernel/Metaobjects.kerml"}
 		       	File {from ="/library.kernel/Performances.kerml"}
 		       	File {from ="/library.kernel/ScalarValues.kerml"}
 		       	File {from ="/library.kernel/BaseFunctions.kerml"}
 		       	File {from ="/library.kernel/DataFunctions.kerml"}
 		       	File {from ="/library.kernel/ScalarFunctions.kerml"}
 		       	File {from ="/library.kernel/ControlFunctions.kerml"}
+		       	File {from ="/library.kernel/KerML.kerml"}
 		       	File {from ="/library.systems/Attributes.sysml"}
+		       	File {from ="/library.systems/Items.sysml"}
+       			File {from ="/library.systems/Metadata.sysml"}
+       			File {from ="/library.systems/Actions.sysml"}
+       			File {from ="/library.systems/Calculations.sysml"}
+		       	File {from ="/library.systems/SysML.sysml"}
 			}
 		}
 	}
@@ -39,6 +53,7 @@ package Test {
 	import ControlFunctions::collect;
 	
 	metadata def A {
+		ref :>> annotatedElement : SysML::AttributeUsage;
 		attribute x : Integer;
 		attribute y : String;
 		attribute z : Boolean;
@@ -55,8 +70,8 @@ package Test {
 	filter ~A::z;
 	// XPECT errors --> "Must be model-level evaluable" at "filter A::y->collect {in ref x; x};"
 	filter A::y->collect {in ref x; x};
-	// XPECT errors --> "Must be model-level evaluable" at "filter A(1, "", false);"
-	filter A(1, "", false);
+	// XPECT errors --> "Must be model-level evaluable" at "filter A(null, 1, "", false);"
+	filter A(null, 1, "", false);
 	
 	enum def E :> String {
 		enum e = "e";
@@ -77,6 +92,13 @@ package Test {
 				bad;
 			}		
 		}
+	}
+	
+	item p {
+		// XPECT errors --> "Cannot annotate ItemUsage" at "@A;"
+		@A;
+		// XPECT errors --> "Must have a concrete type" at "@Metaobjects::Metaobject;"
+		@Metaobjects::Metaobject;
 	}
 	
 }

@@ -2,11 +2,13 @@
 XPECT_SETUP org.omg.kerml.xpect.tests.validation.KerMLValidationTest
 	ResourceSet {
 		ThisFile {}
+		File {from ="/library/Base.kerml"}
 	}
 	Workspace {
 		JavaProject {
 			SrcFolder {
 				ThisFile {}
+				File {from ="/library/Base.kerml"}
 			}
 		}
 	}
@@ -18,14 +20,14 @@ package test{
 	 "Duplicate owned member name" at "A"
 	 "Duplicate owned member name" at "A"
 	--- */ 
-	class A {}
+	classifier A {}
 	//* XPECT warnings ---
 	    "Duplicate owned member name" at "A"
 	    "Duplicate owned member name" at "A"
 	    "Duplicate owned member name" at "A"
 	    --- */
 	package A{
-		class A {}
+		classifier A {}
 		alias A_alias for A;
 	}
 	//* XPECT warnings ---
@@ -42,17 +44,17 @@ package test{
 	feature A: A::A_alias;
 	feature B: A::A_alias;
 	
-	class C {
-		class D {}
-		class F {}
+	classifier C {
+		classifier D {}
+		classifier F {}
 	}
-	class D :> C {
+	classifier D :> C {
 		// XPECT warnings --> "Duplicate of inherited member name" at "D"
-		class D {}
+		classifier D {}
 	}
-	class E :> D {
+	classifier E :> D {
 		// XPECT warnings --> "Duplicate of inherited member name" at "F"
-		class F {}
+		classifier F {}
 	}
 	
 

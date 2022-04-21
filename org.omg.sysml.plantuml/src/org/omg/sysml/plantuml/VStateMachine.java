@@ -31,7 +31,7 @@ import org.omg.sysml.lang.sysml.Type;
 
 public class VStateMachine extends VDefault {
     private void addState(Type typ, boolean isParallel, boolean withStyle) {
-        String name = getNameAnyway(typ, true);
+        String name = getNameAnyway(typ);
         if (isParallel) {
             name = name + "\\n" + "<b>parallel</b>";
         }

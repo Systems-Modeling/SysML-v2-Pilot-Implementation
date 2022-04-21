@@ -7095,6 +7095,10 @@ ruleMultiplicitySubset returns [EObject current=null]
 			$current = $this_Subsets_2.current;
 			afterParserOrEnumRuleCall();
 		}
+		otherlv_3=';'
+		{
+			newLeafNode(otherlv_3, grammarAccess.getMultiplicitySubsetAccess().getSemicolonKeyword_3());
+		}
 	)
 ;
 

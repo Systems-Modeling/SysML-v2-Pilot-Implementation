@@ -118,7 +118,7 @@ public class VStateMembers extends VBehavior {
     public String startStateUsage(Type typ) {
         traverse(typ);
         if (descriptions != null) {
-            String name = getNameAnyway(typ, true);
+            String name = getNameAnyway(typ);
             int size = descriptions.size();
             for (int i = 0; i < size; i++) {
                 append("desc ");

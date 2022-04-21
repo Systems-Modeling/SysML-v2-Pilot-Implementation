@@ -1,6 +1,6 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation, PlantUML Visualization
- * Copyright (c) 2020 Mgnite Inc.
+ * Copyright (c) 2020-2022 Mgnite Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -27,6 +27,7 @@ package org.omg.sysml.plantuml;
 import org.omg.sysml.lang.sysml.Element;
 
 class PRelation {
+    public final InheritKey ik;
     public final Element src;
     public final Element dest;
     public final Element rel;
@@ -39,7 +40,8 @@ class PRelation {
     	this.description = desc;
     }
 
-    public PRelation(Element src, Element dest, Element rel, String description) {
+    public PRelation(InheritKey ik, Element src, Element dest, Element rel, String description) {
+        this.ik = ik;
         this.src = src;
         this.dest = dest;
         this.rel = rel;

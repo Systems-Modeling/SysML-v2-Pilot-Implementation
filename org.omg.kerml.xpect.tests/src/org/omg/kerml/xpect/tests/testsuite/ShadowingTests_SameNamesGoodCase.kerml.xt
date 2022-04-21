@@ -2,11 +2,13 @@
 XPECT_SETUP org.omg.kerml.xpect.tests.testsuite.KerMLXtextTest
 	ResourceSet {
 		ThisFile {}
+		File {from ="/library/Base.kerml"}
 	}
 	Workspace {
 		JavaProject {
 			SrcFolder {
 				ThisFile {}
+				File {from ="/library/Base.kerml"}
 			}
 		}
 	}
@@ -15,17 +17,17 @@ END_SETUP
 
 // XPECT noErrors --> ""
 package test{
-	class A{
-		class a1{}
+	classifier A{
+		classifier a1{}
 	}
 	//XPECT linkedName at A --> test.A
 	//* XPECT scope at A ---
 		    A, A.a1, B.A, B.A.a2, B, B.a1, B.b, 
 		    test.A, test.A.a1, test.B, test.B.a1, test.B.A, test.B.A.a2, test.B.b,
 		--- */
-	class B specializes A{
-		class A{
-			class a2{}
+	classifier B specializes A{
+		classifier A{
+			classifier a2{}
 		}
 		//XPECT linkedName at a1 --> test.A.a1
 		//* XPECT scope at a1 ---
@@ -33,6 +35,6 @@ package test{
 		    A, A.a2, B, B.a1, B.A, B.A.a2, B.b, 
 		    test.A, test.A.a1, test.B, test.B.a1, test.B.A, test.B.A.a2, test.B.b,
 		--- */
-		class b specializes a1{}
+		classifier b specializes a1{}
 	}
 }

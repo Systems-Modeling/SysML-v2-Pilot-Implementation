@@ -131,6 +131,13 @@ public class FeatureAdapter extends TypeAdapter {
 		return SysMLPackage.eINSTANCE.getSubsetting();
 	}
 	
+	@Override
+	protected List<Type> getBaseTypes() {
+		return super.getBaseTypes().stream().
+				filter(Feature.class::isInstance).
+				collect(Collectors.toList());
+	}
+	
 	protected boolean isSubperformance() {
 		return FeatureUtil.isPerformanceFeature(getTarget());
 	}

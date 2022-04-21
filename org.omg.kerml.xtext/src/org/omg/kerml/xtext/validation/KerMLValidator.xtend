@@ -54,6 +54,7 @@ import com.google.inject.Inject
 import org.eclipse.xtext.scoping.IScopeProvider
 import org.omg.sysml.lang.sysml.util.ISysMLScope
 import org.eclipse.emf.ecore.EClass
+import org.omg.sysml.lang.sysml.Classifier
 import org.omg.sysml.lang.sysml.FeatureChaining
 import org.omg.sysml.lang.sysml.Subsetting
 import org.omg.sysml.lang.sysml.Redefinition
@@ -63,6 +64,8 @@ import org.omg.sysml.lang.sysml.ItemFlowFeature
 import org.omg.sysml.lang.sysml.Multiplicity
 import org.omg.sysml.lang.sysml.FeatureChainExpression
 import org.omg.sysml.lang.sysml.MetadataFeature
+import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil
+import org.omg.sysml.util.ImplicitGeneralizationMap
 
 /**
  * This class contains custom validation rules. 
@@ -88,6 +91,8 @@ class KerMLValidator extends AbstractKerMLValidator {
 	public static val INVALID_ITEMFLOW__INVALID_END_MSG = "Cannot identify item flow end (use dot notation)"
 	public static val INVALID_ITEMFLOW__IMPLICIT_END = 'Invalid ItemFlow end - Implicit subsetting'
 	public static val INVALID_ITEMFLOW__IMPLICIT_END_MSG = "Flow ends should use dot notation"
+	public static val INVALID_CLASSIFIER__DEFAULT_SUPERTYPE = 'Invalid Classifier - Default supertype conformance'
+	public static val INVALID_CLASSIFIER__DEFAULT_SUPERTYPE_MSG = "Must directly or indirectly specialize {supertype}"
 	public static val INVALID_FEATURE__NO_TYPE = 'Invalid Feature - Mandatory typing'
 	public static val INVALID_FEATURE__NO_TYPE_MSG = "Features must have at least one type"
 	public static val INVALID_RELATIONSHIP__RELATED_ELEMENTS = 'Invalid Relationship - Related element minimum validation'
@@ -102,6 +107,10 @@ class KerMLValidator extends AbstractKerMLValidator {
 	public static val INVALID_IMPORT__NAME_NOT_RESOLVED_MSG = "Couldn't resolve reference to Element '{name}'."
 	public static val INVALID_ELEMENT_FILTER_MEMBERSHIP__NOT_MODEL_LEVEL = "Invalid ElementFilterMembership - Not model-level"
 	public static val INVALID_ELEMENT_FILTER_MEMBERSHIP__NOT_MODEL_LEVEL_MSG = "Must be model-level evaluable"
+	public static val INVALID_METADATA_FEATURE__ABSTRACT_TYPE = "Invalid MetadataFeature - Abstract type"
+	public static val INVALID_METADATA_FEATURE__ABSTRACT_TYPE_MSG = "Must have a concrete type"
+	public static val INVALID_METADATA_FEATURE__BAD_ELEMENT = "Invalid MetadataFeature - Bad annotated element"
+	public static val INVALID_METADATA_FEATURE__BAD_ELEMENT_MSG = "Cannot annotate {metaclass}"
 	public static val INVALID_METADATA_FEATURE__BAD_REDEFINITION = "Invalid MetadataFeature - Bad redefinition"
 	public static val INVALID_METADATA_FEATURE__BAD_REDEFINITION_MSG = "Must redefine an owning-type feature"
 	public static val INVALID_METADATA_FEATURE__FEATURE_VALUE_NOT_MODEL_LEVEL = "Invalid MetadataFeature - FeatureValue not model-level"
@@ -194,8 +203,51 @@ class KerMLValidator extends AbstractKerMLValidator {
 	}
 	
 	@Check
+	def checkClassifier(Classifier c){
+		val defaultSupertype = ImplicitGeneralizationMap.getDefaultSupertypeFor(c.getClass())
+		if (!TypeUtil.conforms(c, SysMLLibraryUtil.getLibraryType(c, defaultSupertype)))
+			error(INVALID_CLASSIFIER__DEFAULT_SUPERTYPE_MSG.replace("{supertype}", defaultSupertype), c, SysMLPackage.eINSTANCE.classifier_OwnedSubclassification, INVALID_CLASSIFIER__DEFAULT_SUPERTYPE)
+	}
+	
+	@Check
+	def checkFeature(Feature f){
+		val types = f.type;
+		if (types !== null && types.isEmpty)
+			error(INVALID_FEATURE__NO_TYPE_MSG, f, SysMLPackage.eINSTANCE.feature_Type, INVALID_FEATURE__NO_TYPE)
+	}
+	
+	@Check
 	def checkMetadataFeature(MetadataFeature mf) {
+		checkMetadataType(mf)
+		checkMetadataAnnotatedElements(mf)
 		checkMetadataBody(mf)
+	}
+	
+	def void checkMetadataType(MetadataFeature mf) {
+		if (mf.type.exists[abstract]) {
+			error(INVALID_METADATA_FEATURE__ABSTRACT_TYPE_MSG, mf, null, INVALID_METADATA_FEATURE__ABSTRACT_TYPE)
+		}
+	}
+	
+	def void checkMetadataAnnotatedElements(MetadataFeature mf) {
+		var annotatedElementFeatures = FeatureUtil.getAllSubsettingFeaturesIn(mf, mf.annotatedElementFeature);
+		if (annotatedElementFeatures.exists[!abstract]) {
+			annotatedElementFeatures = annotatedElementFeatures.filter[!abstract].toList
+		}
+		if (!annotatedElementFeatures.empty) {
+			for (element: mf.annotatedElement) {
+				val metaclass = ExpressionUtil.getMetaclassOf(element)
+				if (!annotatedElementFeatures.exists[f | f.type.forall[t | TypeUtil.conforms(metaclass, t)]]) {
+					error(INVALID_METADATA_FEATURE__BAD_ELEMENT_MSG.replace("{metaclass}", metaclass.name), mf, null, INVALID_METADATA_FEATURE__BAD_ELEMENT)
+				}
+			}
+		}
+	}
+	
+	def Feature getAnnotatedElementFeature(Element element) {
+		SysMLLibraryUtil.getLibraryType(element, 
+						ImplicitGeneralizationMap.getDefaultSupertypeFor(element.getClass(), "annotatedElement"))
+						as Feature
 	}
 	
 	def void checkMetadataBody(Type t) {
@@ -219,13 +271,6 @@ class KerMLValidator extends AbstractKerMLValidator {
 		
 		// Must have a valid metadata body.
 		checkMetadataBody(f)		
-	}
-	
-	@Check
-	def checkFeature(Feature f){
-		val types = f.type;
-		if (types !== null && types.isEmpty)
-			error(INVALID_FEATURE__NO_TYPE_MSG, f, SysMLPackage.eINSTANCE.feature_Type, INVALID_FEATURE__NO_TYPE)
 	}
 	
 	@Check

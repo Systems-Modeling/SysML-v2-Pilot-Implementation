@@ -1,6 +1,6 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation, PlantUML Visualization
- * Copyright (c) 2021 Mgnite Inc.
+ * Copyright (c) 2021-2022 Mgnite Inc.
  * Copyright (c) 2022 Model Driven Solutions, Inc.
  * 
  * This program is free software: you can redistribute it and/or modify
@@ -41,50 +41,80 @@ public class VMetadata extends Visitor {
 	}
     
     private final String metadataTitle = "«metadata»";
+    private final int INDENT = 2;
 
-    private void addAnnotatingFeatureInternal(MetadataFeature af) {
-        if (checkId(af)) return;
-        append("note as ");
-        addIdStr(af, true);
-        append('\n');
+    private void indent(StringBuilder sb, int len) {
+        for (int i = 0; i < len; i++) {
+            sb.append(' ');
+        }
+    }
 
-        int maxWidth = metadataTitle.length() + 1;
-        StringBuilder sb = new StringBuilder();
-        for (Feature mf: af.getOwnedFeature()) {
+    private int addMetadataText(Feature mf, StringBuilder sb, int indent, int maxWidth) {
+        boolean first = true;
+        for (Feature f: mf.getOwnedFeature()) {
+            String name = getFeatureChainName(f);
+            if (first) {
+                if (indent > 0) {
+                    sb.append(" {\n");
+                }
+                first = false;
+            }
             int sLen = sb.length();
-            String name = getFeatureChainName(mf);
+            indent(sb, indent);
+            int added = 0;
             if (name == null) {
                 sb.append(getText(mf));
             } else {
                 sb.append(name);
-                FeatureValue mfv = FeatureUtil.getValuationFor(mf);
-                if (mfv == null) continue;
-                sb.append(" = ");
-                sb.append(getText(mfv.getValue()));
+                FeatureValue fv = FeatureUtil.getValuationFor(f);
+                if (fv != null) {
+                    sb.append(" = ");
+                    sb.append(getText(fv.getValue()));
+                }
+                int pos = sb.length();
+                maxWidth = addMetadataText(f, sb, indent + INDENT, maxWidth);
+                added = sb.length() - pos;
             }
-            int eLen = sb.length();
+            int eLen = sb.length() - added;
             int width = eLen - sLen;
             if (width > maxWidth) {
                 maxWidth = width;
             }
             sb.append('\n');
         }
+        if (indent > 0 && !first) {
+            sb.append('}');
+        }
+        return maxWidth;
+    }
+
+    private void addMetadataFeatureInternal(MetadataFeature mf) {
+        if (checkId(mf)) return;
+        append("note as ");
+        addIdStr(mf, true);
+        append('\n');
+
+        int maxWidth = metadataTitle.length() + 1;
+        StringBuilder sb = new StringBuilder();
+        maxWidth = addMetadataText(mf, sb, 0, maxWidth);
 
         int hWidth = (maxWidth - 1) / 2;
+        // Determined by the wrap width.
+        if (hWidth > 20) hWidth = 20;
         append("\"\"");
-        for (int pos = metadataTitle.length() / 2; pos < hWidth; pos++) {
+        for (float pos = metadataTitle.length() / 2.0F; pos < hWidth; pos += 1.1) {
             append(' ');
         }
         append("\"\"");
-        addLink(af, metadataTitle);
+        addLink(mf, metadataTitle);
         append('\n');
-        Metaclass dt = af.getMetaclass();
+        Metaclass dt = mf.getMetaclass();
         if (dt != null) {
             String name = dt.getEffectiveName();
             if (name != null) {
                 append("==== ");
                 append("\"\"");
-                for (int pos = name.length() / 2; pos < hWidth; pos++) {
+                for (float pos = name.length() / 2.0F; pos < hWidth; pos += 1.1) {
                     append(' ');
                 }
                 append("\"\"");
@@ -99,18 +129,18 @@ public class VMetadata extends Visitor {
         append("end note\n");
     }
 
-	public void addAnnotatingFeature(MetadataFeature af) {
-        addAnnotatingFeatureInternal(af);
+	public void addMetadataFeature(MetadataFeature af) {
+        addMetadataFeatureInternal(af);
         List<Element> es = af.getAnnotatedElement();
         for (Element e: es) {
-        	addPRelation(af, e, af);
+        	addPRelation(null, af, e, af, null);
         }
     }
 
-	public void addAnnotatingFeature(MetadataFeature af, Element annotatedElement) {
-        addAnnotatingFeatureInternal(af);
+	public void addMetadataFeature(MetadataFeature af, Element annotatedElement) {
+        addMetadataFeatureInternal(af);
         if (annotatedElement != null) {
-        	addPRelation(af, annotatedElement, af);
+        	addPRelation(null, af, annotatedElement, af, null);
         }
     }
 }

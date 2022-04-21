@@ -2,11 +2,13 @@
 XPECT_SETUP org.omg.kerml.xpect.tests.imports.recursive.KerMLImportRecursiveTest
 	ResourceSet {
 		ThisFile {}
+		File {from ="/library/Base.kerml"}
 	}
 	Workspace {
 		JavaProject {
 			SrcFolder {
 				ThisFile {}
+				File {from ="/library/Base.kerml"}
 			}
 		}
 	}
@@ -18,33 +20,23 @@ package RecursiveImport {
 	import P::**;
   
 	package P {
-		class X;
+		classifier X;
 		package Q {
-			class Y;
+			classifier Y;
 			package R {
-        		class Z;
+        		classifier Z;
       		}
 		}
 	
 	}
 
 	//* XPECT scope at X ---
-	    P.X, RecursiveImport.P.X,
-	    P.Q.Y,  RecursiveImport.P.Q.Y,
-	    P.Q.R.Z, RecursiveImport.P.Q.R.Z,
-	   
-	    X,RecursiveImport.X,  
-	    Q.Y, RecursiveImport.Q.Y,
-	    Q.R.Z, RecursiveImport.Q.R.Z,
-	   
-		Y, RecursiveImport.Y,
-		R.Z, RecursiveImport.R.Z,
-	 	
-		Z, RecursiveImport.Z,
-	   
-	    x,RecursiveImport.x, 
-	    y, RecursiveImport.y,
-		z, RecursiveImport.z
+	P.Q.R.Z, P.Q.R.Z.self, P.Q.Y, P.Q.Y.self, P.X, P.X.self, Q.R.Z, Q.Y, R.Z,
+	RecursiveImport.P.Q.R.Z, RecursiveImport.P.Q.R.Z.self, RecursiveImport.P.Q.Y,
+	RecursiveImport.P.Q.Y.self, RecursiveImport.P.X, RecursiveImport.P.X.self, RecursiveImport.Q.R.Z,
+	RecursiveImport.Q.Y, RecursiveImport.R.Z, RecursiveImport.X, RecursiveImport.Y, RecursiveImport.Z,
+	RecursiveImport.x, RecursiveImport.x.self, RecursiveImport.y, RecursiveImport.y.self,
+	RecursiveImport.z, RecursiveImport.z.self, X, Y, Z, x, x.self, y, y.self, z, z.self
 	--- */
 
 	feature x: X;

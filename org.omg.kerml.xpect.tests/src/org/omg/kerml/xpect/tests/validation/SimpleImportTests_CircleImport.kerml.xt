@@ -2,11 +2,13 @@
 XPECT_SETUP org.omg.kerml.xpect.tests.validation.KerMLValidationTest
 	ResourceSet {
 		ThisFile {}
+		File {from ="/library/Base.kerml"}
 	}
 	Workspace {
 		JavaProject {
 			SrcFolder {
 				ThisFile {}
+				File {from ="/library/Base.kerml"}
 			}
 		}
 	}
@@ -15,13 +17,13 @@ END_SETUP
 
 // XPECT noErrors ---> ""
 package test{
-	class A{
+	classifier A{
 		import B::*;
-		class a{}
+		classifier a{}
 	}
 	
-	class B{
+	classifier B{
 		import A::*;
-		class b{}
+		classifier b{}
 	}
 }

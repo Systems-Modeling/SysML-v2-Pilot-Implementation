@@ -2,11 +2,13 @@
 XPECT_SETUP org.omg.kerml.xpect.tests.scoping.KerMLScopingTest
 	ResourceSet {
 		ThisFile {}
+		File {from ="/library/Base.kerml"}
 	}
 	Workspace {
 		JavaProject {
 			SrcFolder {
 				ThisFile {}
+				File {from ="/library/Base.kerml"}
 			}
 		}
 	}
@@ -15,7 +17,7 @@ END_SETUP
 
 // XPECT noErrors --> ""
 package Test {
-	class A {
+	classifier A {
 		// Non-member owned element
 		doc <B> /* */
 	}

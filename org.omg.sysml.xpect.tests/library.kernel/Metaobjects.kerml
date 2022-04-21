@@ -18,7 +18,7 @@ package Metaobjects {
 		 * The Elements annotated by this Metaobject. This is set automatically when a Metaobject is
 		 * instantiated as the value of a MetadataFeature.
 		 */
-		readonly feature annotatedElement : Element[1..*];
+		abstract readonly feature annotatedElement : Element[1..*];
 	}
 	
 	/**
@@ -30,7 +30,7 @@ package Metaobjects {
 		/**
 		 * The single annotatedElement of this SemanticMetadata, which must be a Type.
 		 */
-		readonly feature annotatedType : Type[1] redefines annotatedElement;
+		abstract readonly feature redefines annotatedElement : Type[1];
 		
 		/**
 		 * The required base Type for the annotatedType.

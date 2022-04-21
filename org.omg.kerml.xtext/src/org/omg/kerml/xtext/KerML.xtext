@@ -706,7 +706,7 @@ Multiplicity returns SysML::Multiplicity :
 ;
 
 MultiplicitySubset returns SysML::Multiplicity :
-	'multiplicity' Identification? Subsets
+	'multiplicity' Identification? Subsets ';'
 ;
 
 MultiplicityRange returns SysML::MultiplicityRange :

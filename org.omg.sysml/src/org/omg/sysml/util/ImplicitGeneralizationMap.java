@@ -102,6 +102,8 @@ public class ImplicitGeneralizationMap {
 		
 		put(MetaclassImpl.class, "base", "Metaobjects::Metaobject");
 		put(MetadataFeatureImpl.class, "base", "Metaobjects::metaobjects");
+		put(MetadataFeatureImpl.class, "annotatedElement", "Metaobjects::Metaobject::annotatedElement");
+		put(MetadataFeatureImpl.class, "baseType", "Metaobjects::SemanticMetadata::baseType");
 		
 		put(MultiplicityImpl.class, "base", "Base::naturals");
 		put(MultiplicityImpl.class, "feature", "Base::exactlyOne");
@@ -112,7 +114,7 @@ public class ImplicitGeneralizationMap {
 		
 		put(NullExpressionImpl.class, "base", "Performances::nullEvaluations");
 		
-		put(PredicateImpl.class, "base", "Performances::BooleanExpressions");
+		put(PredicateImpl.class, "base", "Performances::BooleanEvaluation");
 		
 		put(StepImpl.class, "base", "Performances::performances");
 		put(StepImpl.class, "subperformance", "Performances::Performance::subperformances");
@@ -220,6 +222,8 @@ public class ImplicitGeneralizationMap {
 		
 		put(MetadataDefinitionImpl.class, "base", "Metadata::MetadataItem");
 		put(MetadataUsageImpl.class, "base", "Metadata::metadataItems");
+		put(MetadataUsageImpl.class, "annotatedElement", "Metaobjects::Metaobject::annotatedElement");
+		put(MetadataUsageImpl.class, "baseType", "Metaobjects::SemanticMetadata::baseType");
 		
 		put(MergeNodeImpl.class, "subaction", "Actions::Action::merges");
 		

@@ -2,12 +2,14 @@
 XPECT_SETUP org.omg.kerml.xpect.tests.testsuite.KerMLXtextTest
 	ResourceSet {
 		ThisFile {}
+		File {from ="/library/Base.kerml"}
 		File {from ="/src/DependencyPackageAlias1.kerml"}
 	}
 	Workspace {
 		JavaProject {
 			SrcFolder {
 				ThisFile {}
+				File {from ="/library/Base.kerml"}
 				File {from ="/src/DependencyPackageAlias1.kerml"}
 			}
 		}
@@ -18,7 +20,7 @@ END_SETUP
 // XPECT noErrors ---> ""
 package test{
 	import PackageAlias1::*;
-	class A{}
+	classifier A{}
 	//XPECT linkedName at A --> test.A
 	//* XPECT scope at A ---
 		   A, test.A,  
@@ -32,7 +34,7 @@ package test{
  		   PackageAlias1.A_alias, PackageAlias1.A_alias.a, PackageAlias1.A_alias.a_alias,
  		   PackageAlias1.AA_alias, PackageAlias1.AA_alias.aa,  PackageAlias1.AA_alias.aa_alias,
 		   --- */
-	class test_a specializes A{} //rename test_A to test_a because xpect linking and scoping throw RuntimeError
+	classifier test_a specializes A{} //rename test_A to test_a because xpect linking and scoping throw RuntimeError
  		   
 	
 	//XPECT linkedName at A_alias --> PackageAlias1.A
@@ -48,6 +50,6 @@ package test{
  		   PackageAlias1.A_alias, PackageAlias1.A_alias.a, PackageAlias1.A_alias.a_alias,
  		   PackageAlias1.AA_alias, PackageAlias1.AA_alias.aa,  PackageAlias1.AA_alias.aa_alias,
   		   --- */
-	class test_alias specializes A_alias{}
+	classifier test_alias specializes A_alias{}
 }
    

@@ -1,0 +1,74 @@
+//* 
+XPECT_SETUP org.omg.sysml.xpect.tests.validation.valid.SysMLTests
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library.kernel/Base.kerml"}
+		File {from ="/library.kernel/Links.kerml"}
+       	File {from ="/library.kernel/Occurrences.kerml"}
+       	File {from ="/library.kernel/Objects.kerml"}
+       	File {from ="/library.kernel/Metaobjects.kerml"}
+       	File {from ="/library.kernel/Performances.kerml"}
+       	File {from ="/library.kernel/ScalarValues.kerml"}
+       	File {from ="/library.kernel/BaseFunctions.kerml"}
+       	File {from ="/library.kernel/DataFunctions.kerml"}
+       	File {from ="/library.kernel/ScalarFunctions.kerml"}
+       	File {from ="/library.kernel/ControlFunctions.kerml"}
+       	File {from ="/library.kernel/KerML.kerml"}
+       	File {from ="/library.systems/Attributes.sysml"}
+       	File {from ="/library.systems/Items.sysml"}
+       	File {from ="/library.systems/Metadata.sysml"}
+       	File {from ="/library.systems/SysML.sysml"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library.kernel/Base.kerml"}
+				File {from ="/library.kernel/Links.kerml"}
+		       	File {from ="/library.kernel/Occurrences.kerml"}
+		       	File {from ="/library.kernel/Objects.kerml"}
+		       	File {from ="/library.kernel/Metaobjects.kerml"}
+		       	File {from ="/library.kernel/Performances.kerml"}
+		       	File {from ="/library.kernel/ScalarValues.kerml"}
+		       	File {from ="/library.kernel/BaseFunctions.kerml"}
+		       	File {from ="/library.kernel/DataFunctions.kerml"}
+		       	File {from ="/library.kernel/ScalarFunctions.kerml"}
+		       	File {from ="/library.kernel/ControlFunctions.kerml"}
+		       	File {from ="/library.kernel/KerML.kerml"}
+		       	File {from ="/library.systems/Attributes.sysml"}
+		       	File {from ="/library.systems/Items.sysml"}
+       			File {from ="/library.systems/Metadata.sysml"}
+		       	File {from ="/library.systems/SysML.sysml"}
+			}
+		}
+	}
+END_SETUP 
+*/
+// XPECT noErrors ---> ""
+package SemanticMetadata_valid {
+
+	item def C {
+		ref x;
+	}
+	item f : C {
+		ref y;
+	}
+
+    abstract metadata def A :> Metaobjects::SemanticMetadata {
+    	ref :>> baseType; // Testing that baseType can be left unbound.
+    }
+	
+	metadata def B :> A {
+		ref :>> baseType = f as SysML::Usage;
+	}
+	
+	#B def C1 {
+		ref :>> x;
+	}
+	
+	#B f1 {
+		ref :>> x;
+		ref :>> y;
+	}
+	
+}

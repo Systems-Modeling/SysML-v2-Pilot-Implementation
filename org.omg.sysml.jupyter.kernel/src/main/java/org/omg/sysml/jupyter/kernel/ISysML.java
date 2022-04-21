@@ -35,10 +35,16 @@ public class ISysML {
 
     private static volatile SysMLKernel kernel;
 
+    public static void initialize() {
+        kernel = new SysMLKernel();
+    }
+
     public static void main(String[] args) throws Exception {
         if (args.length < 1) {
             throw new IllegalArgumentException("Missing connection file argument");
         }
+
+        initialize();
 
         Path connectionFile = Paths.get(args[0]);
 
@@ -52,8 +58,6 @@ public class ISysML {
         KernelConnectionProperties connProps = KernelConnectionProperties.parse(contents);
         JupyterConnection connection = new JupyterConnection(connProps);
 
-
-        kernel = new SysMLKernel();
         kernel.becomeHandlerForConnection(connection);
 
         connection.connect();

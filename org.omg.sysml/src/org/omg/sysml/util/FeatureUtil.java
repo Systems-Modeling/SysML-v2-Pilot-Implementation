@@ -155,6 +155,12 @@ public class FeatureUtil {
 	public static boolean isIgnoredParameter(Feature feature) {
 		return getFeatureAdapter(feature).isIgnoredParameter();
 	}
+	
+	public static List<Feature> getAllSubsettingFeaturesIn(Type type, Feature subsettedFeature) {
+		return type.getFeature().stream().
+				filter(f->TypeUtil.conforms(f, subsettedFeature)).
+				collect(Collectors.toList());
+	}
 
 	// Feature values
 	

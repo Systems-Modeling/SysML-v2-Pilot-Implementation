@@ -2,12 +2,14 @@
 XPECT_SETUP org.omg.kerml.xpect.tests.visibility.KerMLVisibilityTest
 	ResourceSet {
 		ThisFile {}
+		File {from ="/library/Base.kerml"}
 		File {from ="/src/DependencyVisibilityPackage.kerml"}
 	}
 	Workspace {
 		JavaProject {
 			SrcFolder {
 				ThisFile {}
+				File {from ="/library/Base.kerml"}
 				File {from ="/src/DependencyVisibilityPackage.kerml"}
 			}
 		}
@@ -34,7 +36,7 @@ package Test3{
 			c_Public_alias, c_Public_alias.alias_public, c_Public_alias.c_public, 
 			c_clazz, c_clazz.c_Public, c_clazz.c_Public.c_publicc
 	--- */
-	class A specializes c_clazz{
+	classifier A specializes c_clazz{
 		//XPECT linkedName at c_Public --> VisibilityPackage.c_clazz.c_Public
 		//* XPECT scope at c_Public ---
 		    AA, AA.c_publicc, c_Public.c_publicc,  
@@ -58,11 +60,11 @@ package Test3{
 		//  Test3.A.c_Protect, Test3.A.c_Protect.c_publicc, Test3.c_clazz.c_Protect, Test3.c_clazz.c_Protect.c_publicc, 
 		//  c_clazz.c_Protect, c_clazz.c_Protect.c_publicc
 		//
-		class AA specializes c_Public{}
+		classifier AA specializes c_Public{}
 	}
 	//XPECT linkedName at c_Public --> VisibilityPackage.c_Public
 	
-	class B specializes c_Public{
+	classifier B specializes c_Public{
 		//* XPECT scope at c_public ---
 		    BB,  c_Public.c_public, c_public,
 		    A, A.AA, A.AA.c_publicc, A.c_Public, A.c_Public.c_publicc,
@@ -81,7 +83,7 @@ package Test3{
 		--- */
 		// The following are not visible, because qualified names currently require public visibility:
 		//  B.c_protected, Test3.B.c_protected, Test3.c_Public.c_protected, c_Public.c_protected
-		class BB specializes c_public{}
+		classifier BB specializes c_public{}
 		
 	}
 }

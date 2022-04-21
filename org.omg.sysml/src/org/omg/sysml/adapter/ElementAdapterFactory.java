@@ -77,6 +77,11 @@ public class ElementAdapterFactory {
 		}
 		
 		@Override
+		public ElementAdapter caseAnnotatingElement(AnnotatingElement element) {
+			return new AnnotatingElementAdapter(element);
+		}
+		
+		@Override
 		public ElementAdapter caseAssertConstraintUsage(AssertConstraintUsage element) {
 			return new AssertConstraintUsageAdapter(element);
 		}

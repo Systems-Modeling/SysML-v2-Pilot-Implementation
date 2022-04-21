@@ -17,11 +17,11 @@ END_SETUP
 
 package Test {
 
-	class A {
+	classifier A {
 		protected feature a;
 	}
 	
-	class B :> A {
+	classifier B :> A {
 		feature b {
 			feature c :> a;
 		}

@@ -27,8 +27,9 @@ package VehicleGeometryAndCoordinateFrames {
 	/**
 	 * Generic wheel with lugbolts
 	 * 
-	 * The radius is estimated for 22 inch hub and 110 mm tire height
-	 * The wheel width is equal to the cylinder height 
+	 * The radius is estimated for a 22 inch hub plus 110 mm tire height.
+	 * The wheel width is equal to the cylinder height.
+	 * The wheel has 5 lugbolts that are evenly distributed along a circle centered at the wheel's center.
 	 */
     part def Wheel :> CompoundSpatialItem {
     	ref item :>> self : Wheel;

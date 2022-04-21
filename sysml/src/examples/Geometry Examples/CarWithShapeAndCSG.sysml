@@ -33,7 +33,7 @@ package CarWithShapeAndCSG {
 	/**
 	 * Simple 2-cylinder engine
 	 * 
-	 * Note: Only a gross simplification of the engine block is modeled as a Box with two Cylinder holes. 
+	 * Note: The engine shape is modeled as a rectangular box with two cylindrical holes, a gross simplification.
 	 */
 	part def Engine :> CompoundSpatialItem {
 		item :>> shape [1];

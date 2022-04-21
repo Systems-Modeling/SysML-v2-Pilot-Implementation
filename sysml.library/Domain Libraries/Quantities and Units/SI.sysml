@@ -323,16 +323,17 @@ package SI {
     /*
      * degree Celsius unit for temperature interval (i.e. temperature difference) quantities
      */
-    attribute <'°C'> 'degree celsius (temperature interval)' : TemperatureDifferenceUnit {
+    attribute <'°C'> 'degree celsius (temperature difference)' : TemperatureDifferenceUnit {
         attribute :>> unitConversion: ConversionByConvention { :>> referenceUnit = K; :>> conversionFactor = 1; }
    	}
 
     /*
-     * degree Celsius interval scale for absolute temperature quantities
+     * degree Celsius interval scale for absolute (thermodynamic) temperature quantities
      *
-     * The interval scale is defined with an explicit mapping to the kelvin thermodynamic temperature ratio scale from which the offset between the scales can be computed.
+     * The interval scale is defined with an explicit transformation with respect to 
+     * the kelvin thermodynamic temperature scale that specifies the zero shift.
      */
-    attribute <'°C_abs'> 'degree celsius (temperature scale)' : IntervalScale {
+    attribute <'°C_abs'> 'degree celsius (absolute temperature scale)' : IntervalScale {
         attribute :>> unit = '°C';
         attribute temperatureWaterAtFreezingPointInC: DefinitionalQuantityValue {
             :>> num = 0; :>> definition = "temperature in degree Celsius of pure water at freezing point";
@@ -341,13 +342,16 @@ package SI {
             :>> num = 1/100; :>> definition = "temperature in degree Celsius of pure water at the triple point";
         }
         private attribute celsiusToKelvinScaleMapping: QuantityValueMapping {
-            :>> mappedQuantityValue = temperatureWaterAtTriplePointInC; :>> referenceQuantityValue = K.temperatureOfWaterAtTriplePointInK;
+            :>> mappedQuantityValue = temperatureWaterAtTriplePointInC; 
+            :>> referenceQuantityValue = K.temperatureOfWaterAtTriplePointInK;
         }
         attribute :>> definitionalQuantityValues = (temperatureWaterAtTriplePointInC, temperatureWaterAtFreezingPointInC);
         attribute :>> quantityValueMapping = celsiusToKelvinScaleMapping;
 
-        /* CoordinateFramePlacement (zero shift) w.r.t. thermodynamic temperature in kelvin */
+        /* CoordinateFramePlacement (zero shift) w.r.t. the kelvin thermodynamic temperature scale */
         private attribute zeroDegreeCelsiusInKelvin: ThermodynamicTemperatureValue = 273.15 [K];
-        attribute zeroShift : CoordinateFramePlacement :>> transformation { :>> source = K; :>> target = self; :>> origin = zeroDegreeCelsiusInKelvin; :>> basisDirections = 1 [K]; }
+        attribute zeroDegreeCelsiusToKelvinShift : CoordinateFramePlacement :>> transformation { 
+        	:>> source = K; :>> origin = zeroDegreeCelsiusInKelvin;
+        }
     }
 }

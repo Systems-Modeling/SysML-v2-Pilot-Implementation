@@ -1,32 +1,42 @@
 /**
  * This package defines the representations for measurement references.
- * TODO: Propose to rename to MeasurementReferences
+ * TODO: Rename package to MeasurementReferences as this name captures the content much better
  */
 package UnitsAndScales {
+	private import Collections::Array;
+	private import Collections::List;
 	private import ScalarValues::*;
+	private import VectorValues::ThreeVectorValue;
+
 	private import SequenceFunctions::size;
 	private import ControlFunctions::forAll;
-	private import Quantities::*;
-	private import Collections::*;
+	private import Quantities::QuantityDimension;
+	private import Quantities::VectorQuantityValue;
+	private import Quantities::scalarQuantities;
+	private import Quantities::ScalarQuantityValue;
+	private import Quantities::SystemOfQuantities;
 	private import ISQSpaceTime::angularMeasure;
-	private import ISQSpaceTime::displacementVector;
 
 	/**
-	 * Representation of a measurement reference.
+	 * TensorMeasurementReference is the most general AttributeDefinition to represent measurement references.
 	 *
-	 * The measurement reference concept is defined in [VIM] "quantity" NOTE 2 as "A reference can be a measurement unit,
+	 * The concept "measurement reference" is defined in [VIM] "quantity" NOTE 2 as "A reference can be a measurement unit,
 	 * a measurement procedure, a reference material, or a combination of such.", see https://jcgm.bipm.org/vim/en/1.1.html .
-	 * Although [VIM] "quantity" NOTE 5 states that "A quantity as defined here is a scalar. However, a vector or a tensor, 
-	 * the components of which are quantities, is also considered to be a quantity", the rest of [VIM] does not explicitly define 
-	 * how tensor and vector quantities should be supported or integrated.
+	 * In addition [VIM] "quantity" NOTE 5 states that "A quantity as defined here is a scalar. However, a vector or a tensor, 
+	 * the components of which are quantities, is also considered to be a quantity". However, the rest of [VIM] does not explicitly 
+	 * define how tensor and vector quantities can be or should be supported.
 	 *
 	 * In this package, in line with TensorQuantityValue in package Quantities, the most general kind of measurement reference
-	 * is TensorMeasurementReference, which is an AttributeDefinition that can capture a measurement reference for any order of tensor quantity.
-	 * Specializations VectorMeasurementReference and ScalarMeasurementReference are defined to capture specifically measurement references 
-	 * for vector and scalar quantities. Vector measurement references have order one and scalar measurement references have order zero.
+	 * is TensorMeasurementReference that represents a measurement reference for any order of tensor quantity. Since the order can 
+	 * also be one or zero, this includes vector and scalar quantities. The specializations VectorMeasurementReference and 
+	 * ScalarMeasurementReference are defined to specifically represent measurement references for vector and scalar quantities.
 	 * 
-	 * The measurement references for all dimensions of a quantity are specified through the mRefs attribute. 
-	 * Each element of mRefs is a ScalarMeasurementReference.
+	 * TensorMeasurementReference specializes Array, which provides its multi-dimensional structure. The order of a tensor is equivalent
+	 * to the rank of an Array.
+	 * 
+	 * Attribute isBound specifies whether the vector space product is bound (isBound is true) or free (isBound is false).
+	 * 
+	 * Attribute mRefs specifies the scalar measurement references for all dimensions of a tensor quantity.
 	 *
 	 * The humanId of a TensorMeasurementReference is the unique symbol by which the measurement reference is known.
 	 * The name of a TensorMeasurementReference is spelled-out human readable name of the measurement reference.
@@ -52,124 +62,15 @@ package UnitsAndScales {
 	 * The magnitudes of the `n` basis unit vectors that span the vector space are defined by the mRefs which each are
 	 * a ScalarMeasurementReference, typically a MeasurementUnit or an IntervalScale.
 	 * 
-	 * CoordinateFrame is the short name for VectorMeasurementReference. When used as a coordinate frame this is the 
-	 * preferred identifier for the concept.
+	 * Attribute isOrthogonal declares whether the basis vectors of the vector space are orthogonal, i.e., whether all
+	 * inner products of any pair of basis vectors are equal to zero.
 	 * 
 	 * A pair of a specialization of VectorQuantityValue and a specialization of VectorMeasurementReference can also be used to
 	 * define a vector space for state vectors as used in state-space representation models.
-	 *
-	 * Attribute isOrthogonal declares whether the basis vectors of the vector space are orthogonal, i.e., whether all
-	 * inner products of any pair of basis vectors are equal to zero.
-	 *
-	 * Optional attribute transformation enables specification of the location and orientation of a dependent, nested coordinate frame
-	 * w.r.t. another (reference) coordinate frame.
-	 * Typically the other (reference) coordinate frame is the frame of the next higher element in a composite structure.
 	 */
-	attribute def <CoordinateFrame> VectorMeasurementReference :> TensorMeasurementReference {
-		ref attribute :>> self: VectorMeasurementReference[1];
+	attribute def VectorMeasurementReference :> TensorMeasurementReference {
 		attribute :>> dimensions: Positive[0..1];
 		attribute isOrthogonal: Boolean[1] default true;
-		attribute transformation: CoordinateTransformation[0..1] {
-			attribute :>> target = VectorMeasurementReference::self;
-		}
-	}
-	
-	/**
-	 * Most general representation of the transformation of a target coordinate frame w.r.t. a source coordinate frame
-	 */
-    abstract attribute def CoordinateTransformation {
-	 	attribute source: CoordinateFrame[1];
-	 	attribute target: CoordinateFrame[1];
-	 	assert constraint { source.dimensions == target.dimensions }
-    }
-
-	/**
-	 * Coordinate frame transformation by placement of the target frame
-	 *  
-	 * Attribute origin specifies the location of the origin of the target frame as a position in the source frame.
-	 * Attribute basisDirections specifies the orientation of the basis vector directions of the target frame as directions in the source frame. 
-	 */
-	 attribute def CoordinateFramePlacement :> CoordinateTransformation {
-	 	attribute origin: VectorQuantityValue[0..1];
-	 	attribute basisDirections: VectorQuantityValue[1..*];
-	 	assert constraint { source.dimensions == origin.dimensions }
-	 	assert constraint { size(basisDirections) == source.dimensions[1]}
-	 	assert constraint { 1..size(basisDirections)->forAll { in i : Natural; 
-	 		(basisDirections[i] as VectorQuantityValue).dimensions == source.dimensions } 
-	 	}
-	 }
-
-	/**
-	 * Abstract union of Translation and Rotation
-	 */
-	abstract attribute def TranslationOrRotation;
-
-	/**
-	 * Representation of a translation with respect to a coordinate frame
-	 * 
-	 * Attribute translationVector specifies the displacement vector that constitutes the translation.
-	 */
-	attribute def Translation :> TranslationOrRotation {
-		attribute translationVector :>> displacementVector;
-	}
-
-	/**
-	 * Representation of a rotation about an axis over an angle
-	 * 
-	 * Attribute axisDirection specifies the direction of the rotation axis.
-	 * Attribute angle specifies the angle of rotation, where a positive value implies right-handed rotation.
-	 * Attribute isIntrinsic asserts whether the intermediate coordinate frame moves with the rotation or not, 
-	 * i.e. whether an instrinsic or extrinsic rotation is specified.
-	 * 
-	 * See https://en.wikipedia.org/wiki/Davenport_chained_rotations for details.
-	 */
-	attribute def Rotation :> TranslationOrRotation {
-		attribute axisDirection :>> displacementVector;
-		attribute angle :>> angularMeasure;
-		attribute isIntrinsic : Boolean[1] default true;
-	}
-
-	/**
-	 * Coordinate frame transformation specified by a sequence of translations and/or rotations
-	 *
-	 * Note: This is a coordinate transformation that is convenient for interpretation by humans.
-	 * In particular a sequence of rotations about the principal axes of a coordinate frame is much more easy understandable 
-	 * than a rotation about an arbitrary axis.
-	 * Any sequence can be reduced to a single combination of a translation and a rotation about a particular axis, but in general 
-	 * the original sequence cannot be retrieved as there are infinitely many sequences representing the reduced transformation.
-	 */
-	attribute def TranslationRotationSequence :> CoordinateTransformation, List {
-		attribute :>> elements : TranslationOrRotation[1..*];
-	}
-
-	/**
-	 * Coordinate transformation specified via an affine transformation matrix
-	 *
-	 * The interpretation of the matrix is as follows:
-	 * - the upper left 3x3 matrix represents the rotation matrix
-	 * - the uper right 3x1 column vector represents the translation vector
-	 * - the bottom row must be the row vector (0, 0, 0, 1).
-	 *
-	 * I.e. the matrix has the following form:
-	 * ( R, R, R, T,
-	 *   R, R, R, T,
-	 *   R, R, R, T,
-	 *   0, 0, 0, 1 )
-	 *
-	 * Note: See https://en.wikipedia.org/wiki/Transformation_matrix, under affine transformations for a general explanation.
-	 */
-	attribute def AffineTransformationMatrix3d :> CoordinateTransformation, Array {
-		    attribute rotationMatrix : Array {
-				attribute :>> elements : Real[9] ordered nonunique;
-				attribute :>> dimensions = (3, 3);
-		    }
-			attribute translation :> displacementVector;
-			attribute :>> dimensions = (4, 4);
-			attribute :>> elements : Real[16] ordered nonunique = (
-				rotationMatrix.elements[1], rotationMatrix.elements[2], rotationMatrix.elements[3], translation.num[1],
-				rotationMatrix.elements[4], rotationMatrix.elements[5], rotationMatrix.elements[6], translation.num[2],
-				rotationMatrix.elements[7], rotationMatrix.elements[8], rotationMatrix.elements[9], translation.num[3],
-				0, 0, 0, 1);
 	}
 
 	/**
@@ -189,6 +90,125 @@ package UnitsAndScales {
 		attribute :>> mRefs = ScalarMeasurementReference::self;
 		attribute quantityDimension: QuantityDimension[1];
 	}
+	
+	/**
+	 * CoordinateFrame is a VectorMeasurementReference with the specific purpose to quantify (i.e., coordinatize) a vector space, 
+	 * and locate and orient it with respect to another CoordinateFrame.
+	 * 
+	 * Optional attribute transformation enables specification of the location and orientation of this CoordinateFrame as dependent
+	 * and nested with respect to another (reference) coordinate frame. Typically the other CoordinateFrame is the frame of 
+	 * the next higher element (Object, Item or Part) in a composite structure.
+	 */
+	attribute def CoordinateFrame :> VectorMeasurementReference {
+		ref attribute :>> self: CoordinateFrame[1];
+		attribute transformation: CoordinateTransformation[0..1] {
+			attribute :>> target = CoordinateFrame::self;
+		}
+	}
+
+	/**
+	 * CoordinateTransformation is the most general representation of the transformation of a target coordinate frame 
+	 * with respect to a source coordinate frame.
+	 */
+    abstract attribute def CoordinateTransformation {
+	 	attribute source: VectorMeasurementReference[1];
+	 	attribute target: VectorMeasurementReference[1];
+	 	assert constraint { source.dimensions == target.dimensions }
+    }
+
+	/**
+	 * CoordinateFramePlacement is a CoordinateTransformation by placement of the target frame in the source frame.
+	 *  
+	 * Attribute origin specifies the location of the origin of the target frame through a vector in the source frame.
+	 * 
+	 * Attribute basisDirections specifies the orientation of the target frame by specifying the directions of 
+	 * the respective basis vectors of the target frame via direction vectors in the source frame. An empty sequence of
+	 * basisDirections signifies no change of orientation of the target coordinate frame.
+	 */
+	 attribute def CoordinateFramePlacement :> CoordinateTransformation {
+	 	attribute origin : VectorQuantityValue[1];
+	 	attribute basisDirections : VectorQuantityValue[0..*] ordered;
+	 	assert constraint { origin.dimensions == source.dimensions }
+	 	assert constraint { size(basisDirections) == 0 or size(basisDirections) == source.dimensions[1]}
+	 	assert constraint { 1..size(basisDirections)->forAll { in i : Natural; 
+	 		(basisDirections[i] as VectorQuantityValue).dimensions == source.dimensions } 
+	 	}
+	 }
+
+	/**
+	 * TranslationOrRotation is an abstract union of Translation and Rotation
+	 */
+	abstract attribute def TranslationOrRotation;
+
+	/**
+	 * Representation of a translation with respect to a coordinate frame
+	 * 
+	 * Attribute translationVector specifies the displacement vector that constitutes the translation.
+	 */
+	attribute def Translation :> TranslationOrRotation {
+		attribute translationVector : VectorQuantityValue[1];
+	}
+
+	/**
+	 * Representation of a rotation about an axis over an angle
+	 * 
+	 * Attribute axisDirection specifies the direction of the rotation axis.
+	 * Attribute angle specifies the angle of rotation, where a positive value implies right-handed rotation.
+	 * Attribute isIntrinsic asserts whether the intermediate coordinate frame moves with the rotation or not, 
+	 * i.e. whether an instrinsic or extrinsic rotation is specified.
+	 * 
+	 * See https://en.wikipedia.org/wiki/Davenport_chained_rotations for details.
+	 */
+	attribute def Rotation :> TranslationOrRotation {
+		attribute axisDirection : VectorQuantityValue[1];
+		attribute angle :>> angularMeasure;
+		attribute isIntrinsic : Boolean[1] default true;
+	}
+
+	/**
+	 * Coordinate frame transformation specified by a sequence of translations and/or rotations
+	 *
+	 * Note: This is a coordinate transformation that is convenient for interpretation by humans.
+	 * In particular a sequence of rotations about the principal axes of a coordinate frame is much more easy understandable 
+	 * than a rotation about an arbitrary axis.
+	 * Any sequence can be reduced to a single combination of a translation and a rotation about a particular axis, but in general 
+	 * the original sequence cannot be retrieved as there are infinitely many sequences representing the reduced transformation.
+	 */
+	attribute def TranslationRotationSequence :> CoordinateTransformation, List {
+		attribute :>> elements : TranslationOrRotation[1..*];
+	}
+
+	/**
+	 * AffineTransformationMatrix3d is a three dimensional CoordinateTransformation specified via an affine transformation matrix
+	 *
+	 * The interpretation of the matrix is as follows:
+	 * - the upper left 3x3 matrix represents the rotation matrix
+	 * - the uper right 3x1 column vector represents the translation vector
+	 * - the bottom row must be the row vector (0, 0, 0, 1).
+	 *
+	 * I.e. the matrix has the following form:
+	 * ( R, R, R, T,
+	 *   R, R, R, T,
+	 *   R, R, R, T,
+	 *   0, 0, 0, 1 )
+	 * where the cells marked R form the rotation matrix and the cells marked T form the translation vector.
+	 * 
+	 * Note: See https://en.wikipedia.org/wiki/Transformation_matrix, under affine transformations for a general explanation.
+	 */
+	attribute def AffineTransformationMatrix3d :> CoordinateTransformation, Array {
+		    attribute rotationMatrix : Array {
+				attribute :>> elements : Real[9] ordered nonunique;
+				attribute :>> dimensions = (3, 3);
+		    }
+			attribute translationVector : ThreeVectorValue[1] { :>> elements : Real[3]; }
+			attribute :>> dimensions = (4, 4);
+			attribute :>> elements : Real[16] ordered nonunique = (
+				rotationMatrix.elements[1], rotationMatrix.elements[2], rotationMatrix.elements[3], translationVector[1],
+				rotationMatrix.elements[4], rotationMatrix.elements[5], rotationMatrix.elements[6], translationVector[2],
+				rotationMatrix.elements[7], rotationMatrix.elements[8], rotationMatrix.elements[9], translationVector[3],
+				0, 0, 0, 1);
+			assert constraint { source.dimensions == 3 }
+	}
 
 	/**
 	 * Representation of a measurement unit.
@@ -205,10 +225,7 @@ package UnitsAndScales {
 		attribute :>> isBound = false;
 		attribute unitPowerFactors: UnitPowerFactor[0..*] ordered;
 		attribute unitConversion: UnitConversion[0..1];
-        assert constraint hasValidUnitPowerFactors : VerifyUnitPowerFactors(
-        	unitPowerFactors = unitPowerFactors,
-        	quantityDimension = quantityDimension
-        );
+        assert constraint hasValidUnitPowerFactors : VerifyUnitPowerFactors(unitPowerFactors, quantityDimension);
 	}
 
 
@@ -301,7 +318,7 @@ package UnitsAndScales {
 	 * An IntervalScale is also a CoordinateFrame
 	 * The offset of one interval measurement scale w.r.t. another interval or ratio scale is defined through a quantityValueMapping, see MeasurementReference.
 	 */
-	attribute def IntervalScale :> MeasurementScale {
+	attribute def IntervalScale :> MeasurementScale, CoordinateFrame {
 		attribute :>> isBound = true;
 	}
 
@@ -409,7 +426,7 @@ package UnitsAndScales {
 	}
 
 	/**
-	 * Declare a constraint to verify that the given unit power factors comply with the required quantity dimension
+	 * Constraint definition to verify that the given unit power factors comply with the required quantity dimension
 	 *
 	 * TODO: The implementation of this constraint requires reflection.
 	 */

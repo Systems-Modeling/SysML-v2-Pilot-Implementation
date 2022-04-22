@@ -1936,14 +1936,12 @@
         <details key="documentation" value="&lt;p>If &lt;code>isIndividual&lt;/code> is true, a LifeClass that specializes this OccurrenceDefinition, restricting it to represent an individual.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Namespace/ownedMember"/>
-      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isIndividual" ordered="false"
         lowerBound="1" eType="ecore:EDataType types.ecore#//Boolean" defaultValueLiteral="false">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>Whether this OccurrenceDefinition is constrained to represent single individual.&lt;/p>"/>
       </eAnnotations>
-      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Definition" eSuperTypes="#//Classifier">
@@ -2276,7 +2274,6 @@
         <details key="documentation" value="&lt;p>The Usage in which this Usage is nested (if any).&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Feature/owningType"/>
-      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="nestedPort" upperBound="-1"
         eType="#//PortUsage" volatile="true" transient="true" derived="true" eOpposite="#//PortUsage/portOwningUsage">

@@ -12915,12 +12915,72 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	protected void createSysMLAnnotations() {
 		String source = "http://www.omg.org/spec/SysML";
 		addAnnotation
+		  (getElement_OwningMembership(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getElement_OwningNamespace(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getElement_Name(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getElement_Owner(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getElement_OwnedElement(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getElement_Documentation(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getElement_OwnedAnnotation(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getElement_QualifiedName(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getElement_EffectiveName(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
 		  (getDefinition_OwnedUsage(),
 		   source,
 		   new String[] {
 		   });
 		addAnnotation
+		  (getAcceptActionUsage_ReceiverArgument(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getAcceptActionUsage_PayloadParameter(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
 		  (getAcceptActionUsage_PayloadArgument(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getActionDefinition_Action(),
 		   source,
 		   new String[] {
 		   });

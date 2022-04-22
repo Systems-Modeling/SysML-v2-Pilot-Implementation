@@ -31,6 +31,7 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -101,6 +102,27 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	protected EList<String> aliasId;
 
 	/**
+	 * The cached setting delegate for the '{@link #getOwningMembership() <em>Owning Membership</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwningMembership()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate OWNING_MEMBERSHIP__ESETTING_DELEGATE = 
+			((EStructuralFeature.Internal)SysMLPackage.Literals.ELEMENT__OWNING_MEMBERSHIP).getSettingDelegate();
+
+	/**
+	 * The cached setting delegate for the '{@link #getOwningNamespace() <em>Owning Namespace</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwningNamespace()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate OWNING_NAMESPACE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.ELEMENT__OWNING_NAMESPACE).getSettingDelegate();
+
+	/**
 	 * The default value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -121,34 +143,74 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	protected String identifier = IDENTIFIER_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * The cached setting delegate for the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getName()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String NAME_EDEFAULT = null;
+	protected EStructuralFeature.Internal.SettingDelegate NAME__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.ELEMENT__NAME).getSettingDelegate();
 
 	/**
-	 * The default value of the '{@link #getQualifiedName() <em>Qualified Name</em>}' attribute.
+	 * The cached setting delegate for the '{@link #getOwner() <em>Owner</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwner()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate OWNER__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.ELEMENT__OWNER).getSettingDelegate();
+
+	/**
+	 * The cached setting delegate for the '{@link #getOwnedElement() <em>Owned Element</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedElement()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate OWNED_ELEMENT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.ELEMENT__OWNED_ELEMENT).getSettingDelegate();
+
+	/**
+	 * The cached setting delegate for the '{@link #getDocumentation() <em>Documentation</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDocumentation()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate DOCUMENTATION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.ELEMENT__DOCUMENTATION).getSettingDelegate();
+
+	/**
+	 * The cached setting delegate for the '{@link #getOwnedAnnotation() <em>Owned Annotation</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedAnnotation()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate OWNED_ANNOTATION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.ELEMENT__OWNED_ANNOTATION).getSettingDelegate();
+
+	/**
+	 * The cached setting delegate for the '{@link #getQualifiedName() <em>Qualified Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getQualifiedName()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String QUALIFIED_NAME_EDEFAULT = null;
+	protected EStructuralFeature.Internal.SettingDelegate QUALIFIED_NAME__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.ELEMENT__QUALIFIED_NAME).getSettingDelegate();
 
 	/**
-	 * The default value of the '{@link #getEffectiveName() <em>Effective Name</em>}' attribute.
+	 * The cached setting delegate for the '{@link #getEffectiveName() <em>Effective Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getEffectiveName()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String EFFECTIVE_NAME_EDEFAULT = null;
+	protected EStructuralFeature.Internal.SettingDelegate EFFECTIVE_NAME__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.ELEMENT__EFFECTIVE_NAME).getSettingDelegate();
 
 	/**
 	 * The default value of the '{@link #getHumanId() <em>Human Id</em>}' attribute.
@@ -238,8 +300,7 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	 */
 	@Override
 	public Element getOwner() {
-		Element owner = basicGetOwner();
-		return owner != null && owner.eIsProxy() ? (Element)eResolveProxy((InternalEObject)owner) : owner;
+		return (Element)OWNER__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
@@ -270,8 +331,7 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	 */
 	@Override
 	public Membership getOwningMembership() {
-		Membership owningMembership = basicGetOwningMembership();
-		return owningMembership != null && owningMembership.eIsProxy() ? (Membership)eResolveProxy((InternalEObject)owningMembership) : owningMembership;
+		return (Membership)OWNING_MEMBERSHIP__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
@@ -324,8 +384,7 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	 */
 	@Override
 	public Namespace getOwningNamespace() {
-		Namespace owningNamespace = basicGetOwningNamespace();
-		return owningNamespace != null && owningNamespace.eIsProxy() ? (Namespace)eResolveProxy((InternalEObject)owningNamespace) : owningNamespace;
+		return (Namespace)OWNING_NAMESPACE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
@@ -787,7 +846,7 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 				setIdentifier(IDENTIFIER_EDEFAULT);
 				return;
 			case SysMLPackage.ELEMENT__NAME:
-				setName(NAME_EDEFAULT);
+				NAME__ESETTING_DELEGATE.dynamicUnset(this, null, 0);
 				return;
 			case SysMLPackage.ELEMENT__OWNER:
 				setOwner((Element)null);
@@ -805,10 +864,10 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 				getTextualRepresentation().clear();
 				return;
 			case SysMLPackage.ELEMENT__QUALIFIED_NAME:
-				setQualifiedName(QUALIFIED_NAME_EDEFAULT);
+				QUALIFIED_NAME__ESETTING_DELEGATE.dynamicUnset(this, null, 0);
 				return;
 			case SysMLPackage.ELEMENT__EFFECTIVE_NAME:
-				setEffectiveName(EFFECTIVE_NAME_EDEFAULT);
+				EFFECTIVE_NAME__ESETTING_DELEGATE.dynamicUnset(this, null, 0);
 				return;
 			case SysMLPackage.ELEMENT__HUMAN_ID:
 				setHumanId(HUMAN_ID_EDEFAULT);
@@ -832,27 +891,27 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 			case SysMLPackage.ELEMENT__ALIAS_ID:
 				return aliasId != null && !aliasId.isEmpty();
 			case SysMLPackage.ELEMENT__OWNING_MEMBERSHIP:
-				return basicGetOwningMembership() != null;
+				return OWNING_MEMBERSHIP__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.ELEMENT__OWNING_NAMESPACE:
-				return basicGetOwningNamespace() != null;
+				return OWNING_NAMESPACE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.ELEMENT__IDENTIFIER:
 				return IDENTIFIER_EDEFAULT == null ? identifier != null : !IDENTIFIER_EDEFAULT.equals(identifier);
 			case SysMLPackage.ELEMENT__NAME:
-				return NAME_EDEFAULT == null ? getName() != null : !NAME_EDEFAULT.equals(getName());
+				return NAME__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.ELEMENT__OWNER:
-				return basicGetOwner() != null;
+				return OWNER__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.ELEMENT__OWNED_ELEMENT:
-				return !getOwnedElement().isEmpty();
+				return OWNED_ELEMENT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.ELEMENT__DOCUMENTATION:
-				return !getDocumentation().isEmpty();
+				return DOCUMENTATION__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.ELEMENT__OWNED_ANNOTATION:
-				return !getOwnedAnnotation().isEmpty();
+				return OWNED_ANNOTATION__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.ELEMENT__TEXTUAL_REPRESENTATION:
 				return !getTextualRepresentation().isEmpty();
 			case SysMLPackage.ELEMENT__QUALIFIED_NAME:
-				return QUALIFIED_NAME_EDEFAULT == null ? getQualifiedName() != null : !QUALIFIED_NAME_EDEFAULT.equals(getQualifiedName());
+				return QUALIFIED_NAME__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.ELEMENT__EFFECTIVE_NAME:
-				return EFFECTIVE_NAME_EDEFAULT == null ? getEffectiveName() != null : !EFFECTIVE_NAME_EDEFAULT.equals(getEffectiveName());
+				return EFFECTIVE_NAME__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.ELEMENT__HUMAN_ID:
 				return HUMAN_ID_EDEFAULT == null ? humanId != null : !HUMAN_ID_EDEFAULT.equals(humanId);
 		}

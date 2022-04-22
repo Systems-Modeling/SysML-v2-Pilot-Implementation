@@ -27,6 +27,7 @@ import java.util.Collection;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.uml2.common.util.DerivedEObjectEList;
 import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.ActionDefinition;
@@ -53,6 +54,16 @@ import org.omg.sysml.util.TypeUtil;
  * @generated
  */
 public class ActionDefinitionImpl extends OccurrenceDefinitionImpl implements ActionDefinition {
+
+	/**
+	 * The cached setting delegate for the '{@link #getAction() <em>Action</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAction()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate ACTION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.ACTION_DEFINITION__ACTION).getSettingDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -109,13 +120,12 @@ public class ActionDefinitionImpl extends OccurrenceDefinitionImpl implements Ac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<ActionUsage> getAction() {
-		return new DerivedEObjectEList<ActionUsage>(ActionUsage.class, this, 
-				SysMLPackage.ACTION_DEFINITION__ACTION, 
-				new int[] {SysMLPackage.TYPE__FEATURE});
+		return (EList<ActionUsage>)ACTION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
@@ -197,7 +207,7 @@ public class ActionDefinitionImpl extends OccurrenceDefinitionImpl implements Ac
 			case SysMLPackage.ACTION_DEFINITION__PARAMETER:
 				return isSetParameter();
 			case SysMLPackage.ACTION_DEFINITION__ACTION:
-				return !getAction().isEmpty();
+				return ACTION__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 		}
 		return super.eIsSet(featureID);
 	}

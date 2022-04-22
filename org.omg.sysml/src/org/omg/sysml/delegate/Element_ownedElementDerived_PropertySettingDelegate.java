@@ -21,35 +21,33 @@
 
 package org.omg.sysml.delegate;
 
+import java.util.stream.Collectors;
+
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.BasicSettingDelegate;
-import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.AcceptActionUsage;
-import org.omg.sysml.lang.sysml.Expression;
-import org.omg.sysml.util.FeatureUtil;
-import org.omg.sysml.util.UsageUtil;
+import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.util.NonNotifyingEObjectEList;
 
-public class AcceptActionUsage_payloadArgumentDerived_PropertySettingDelegate extends BasicSettingDelegate.Stateless {
-	
-	public AcceptActionUsage_payloadArgumentDerived_PropertySettingDelegate(EStructuralFeature eStructuralFeature) {
+public class Element_ownedElementDerived_PropertySettingDelegate extends BasicSettingDelegate.Stateless {
+
+	public Element_ownedElementDerived_PropertySettingDelegate(EStructuralFeature eStructuralFeature) {
 		super(eStructuralFeature);
 	}
 
 	@Override
 	protected Object get(InternalEObject owner, boolean resolve, boolean coreType) {
-		Expression payloadArgument = basicGetPayloadArgument((AcceptActionUsage)owner);
-		return payloadArgument != null && payloadArgument.eIsProxy() && resolve? 
-				(Expression)owner.eResolveProxy((InternalEObject)payloadArgument) : payloadArgument;
-	}
-	
-	private static Expression basicGetPayloadArgument(AcceptActionUsage action) {
-		Feature receiverParameter = UsageUtil.getPayloadParameterOf(action);
-		return receiverParameter == null? null: FeatureUtil.getValueExpressionFor(receiverParameter);
+		BasicEList<Element> ownedElements = new NonNotifyingEObjectEList<>(Element.class, owner, SysMLPackage.ELEMENT__OWNED_ELEMENT);
+		ownedElements.addAllUnique(((Element) owner).getOwnedRelationship().stream().
+				flatMap(relationship->relationship.getOwnedRelatedElement().stream()).collect(Collectors.toList()));
+		return ownedElements;
 	}
 
 	@Override
 	protected boolean isSet(InternalEObject owner) {
+		// TODO Auto-generated method stub
 		return false;
 	}
 

@@ -24,32 +24,35 @@ package org.omg.sysml.delegate;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.BasicSettingDelegate;
-import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.AcceptActionUsage;
-import org.omg.sysml.lang.sysml.Expression;
-import org.omg.sysml.util.FeatureUtil;
-import org.omg.sysml.util.UsageUtil;
+import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.Membership;
+import org.omg.sysml.lang.sysml.Relationship;
 
-public class AcceptActionUsage_payloadArgumentDerived_PropertySettingDelegate extends BasicSettingDelegate.Stateless {
-	
-	public AcceptActionUsage_payloadArgumentDerived_PropertySettingDelegate(EStructuralFeature eStructuralFeature) {
+public class Element_owningMembershipDerived_PropertySettingDelegate extends BasicSettingDelegate.Stateless {
+
+	public Element_owningMembershipDerived_PropertySettingDelegate(EStructuralFeature eStructuralFeature) {
 		super(eStructuralFeature);
 	}
 
 	@Override
 	protected Object get(InternalEObject owner, boolean resolve, boolean coreType) {
-		Expression payloadArgument = basicGetPayloadArgument((AcceptActionUsage)owner);
-		return payloadArgument != null && payloadArgument.eIsProxy() && resolve? 
-				(Expression)owner.eResolveProxy((InternalEObject)payloadArgument) : payloadArgument;
+		Membership owningMembership = basicGetOwningMembership((Element)owner);
+		return owningMembership != null && owningMembership.eIsProxy() ? (Membership)owner.eResolveProxy((InternalEObject)owningMembership) : owningMembership;
 	}
 	
-	private static Expression basicGetPayloadArgument(AcceptActionUsage action) {
-		Feature receiverParameter = UsageUtil.getPayloadParameterOf(action);
-		return receiverParameter == null? null: FeatureUtil.getValueExpressionFor(receiverParameter);
+	public Membership basicGetOwningMembership(Element owner) {
+		Relationship owningRelationship = owner.getOwningRelationship();
+		return owningRelationship instanceof Membership? (Membership)owningRelationship: null;
+	}
+	
+	@Override
+	protected void set(InternalEObject owner, Object newValue) {
+		((Element)owner).setOwningRelationship((Membership)newValue);
 	}
 
 	@Override
 	protected boolean isSet(InternalEObject owner) {
+		// TODO Auto-generated method stub
 		return false;
 	}
 

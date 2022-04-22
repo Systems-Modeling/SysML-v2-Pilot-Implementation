@@ -24,32 +24,43 @@ package org.omg.sysml.delegate;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.BasicSettingDelegate;
-import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.AcceptActionUsage;
-import org.omg.sysml.lang.sysml.Expression;
-import org.omg.sysml.util.FeatureUtil;
-import org.omg.sysml.util.UsageUtil;
+import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.impl.ElementImpl;
+import org.omg.sysml.lang.sysml.Membership;
+import org.omg.sysml.lang.sysml.impl.MembershipImpl;
+import org.omg.sysml.util.ElementUtil;
 
-public class AcceptActionUsage_payloadArgumentDerived_PropertySettingDelegate extends BasicSettingDelegate.Stateless {
-	
-	public AcceptActionUsage_payloadArgumentDerived_PropertySettingDelegate(EStructuralFeature eStructuralFeature) {
+public class Element_nameDerived_PropertySettingDelegate extends BasicSettingDelegate.Stateless {
+
+	public Element_nameDerived_PropertySettingDelegate(EStructuralFeature eStructuralFeature) {
 		super(eStructuralFeature);
 	}
 
 	@Override
 	protected Object get(InternalEObject owner, boolean resolve, boolean coreType) {
-		Expression payloadArgument = basicGetPayloadArgument((AcceptActionUsage)owner);
-		return payloadArgument != null && payloadArgument.eIsProxy() && resolve? 
-				(Expression)owner.eResolveProxy((InternalEObject)payloadArgument) : payloadArgument;
+		String name = ((ElementImpl)owner).basicGetName();
+		if (name != null) {
+			return name;
+		} else {
+			Membership owningMembership = ((Element)owner).getOwningMembership();
+			return owningMembership == null? null: ((MembershipImpl)owningMembership).basicGetMemberName(); 
+		}
 	}
 	
-	private static Expression basicGetPayloadArgument(AcceptActionUsage action) {
-		Feature receiverParameter = UsageUtil.getPayloadParameterOf(action);
-		return receiverParameter == null? null: FeatureUtil.getValueExpressionFor(receiverParameter);
-	}
+	 @Override
+		protected void set(InternalEObject owner, Object newValue) {
+		 Membership owningMembership = ((Element)owner).getOwningMembership();
+			if (owningMembership != null) {
+				owningMembership.setMemberName((String)newValue);
+				((ElementImpl)owner).basicSetName(null);
+			} else {
+				((ElementImpl)owner).basicSetName(ElementUtil.unescapeString((String)newValue));
+			}
+		}
 
 	@Override
 	protected boolean isSet(InternalEObject owner) {
+		// TODO Auto-generated method stub
 		return false;
 	}
 

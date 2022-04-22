@@ -24,32 +24,35 @@ package org.omg.sysml.delegate;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.BasicSettingDelegate;
-import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.AcceptActionUsage;
-import org.omg.sysml.lang.sysml.Expression;
-import org.omg.sysml.util.FeatureUtil;
-import org.omg.sysml.util.UsageUtil;
+import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.Relationship;
 
-public class AcceptActionUsage_payloadArgumentDerived_PropertySettingDelegate extends BasicSettingDelegate.Stateless {
-	
-	public AcceptActionUsage_payloadArgumentDerived_PropertySettingDelegate(EStructuralFeature eStructuralFeature) {
+public class Element_ownerDerived_PropertySettingDelegate extends BasicSettingDelegate.Stateless {
+
+	public Element_ownerDerived_PropertySettingDelegate(EStructuralFeature eStructuralFeature) {
 		super(eStructuralFeature);
 	}
 
 	@Override
 	protected Object get(InternalEObject owner, boolean resolve, boolean coreType) {
-		Expression payloadArgument = basicGetPayloadArgument((AcceptActionUsage)owner);
-		return payloadArgument != null && payloadArgument.eIsProxy() && resolve? 
-				(Expression)owner.eResolveProxy((InternalEObject)payloadArgument) : payloadArgument;
+		Element ownerElement = basicGetOwner((Element)owner);
+		return ownerElement != null && ownerElement.eIsProxy() ? (Element)owner.eResolveProxy((InternalEObject)ownerElement) : ownerElement;
 	}
 	
-	private static Expression basicGetPayloadArgument(AcceptActionUsage action) {
-		Feature receiverParameter = UsageUtil.getPayloadParameterOf(action);
-		return receiverParameter == null? null: FeatureUtil.getValueExpressionFor(receiverParameter);
+	private static Element basicGetOwner(Element owner) {
+		Relationship owningRelationship = owner.getOwningRelationship();
+		return owningRelationship != null && owningRelationship.getOwnedRelatedElement().contains(owner)? 
+						owningRelationship.getOwningRelatedElement(): null;
+	}
+	
+	@Override
+	protected void set(InternalEObject owner, Object newValue) {
+		throw new UnsupportedOperationException();
 	}
 
 	@Override
 	protected boolean isSet(InternalEObject owner) {
+		// TODO Auto-generated method stub
 		return false;
 	}
 

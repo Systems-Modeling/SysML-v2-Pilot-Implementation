@@ -26,26 +26,25 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.BasicSettingDelegate;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.AcceptActionUsage;
-import org.omg.sysml.lang.sysml.Expression;
-import org.omg.sysml.util.FeatureUtil;
+import org.omg.sysml.lang.sysml.ReferenceUsage;
 import org.omg.sysml.util.UsageUtil;
 
-public class AcceptActionUsage_payloadArgumentDerived_PropertySettingDelegate extends BasicSettingDelegate.Stateless {
-	
-	public AcceptActionUsage_payloadArgumentDerived_PropertySettingDelegate(EStructuralFeature eStructuralFeature) {
+public class AcceptActionUsage_payloadParameterDerived_PropertySettingDelegate extends BasicSettingDelegate.Stateless {
+
+	public AcceptActionUsage_payloadParameterDerived_PropertySettingDelegate(EStructuralFeature eStructuralFeature) {
 		super(eStructuralFeature);
 	}
 
 	@Override
 	protected Object get(InternalEObject owner, boolean resolve, boolean coreType) {
-		Expression payloadArgument = basicGetPayloadArgument((AcceptActionUsage)owner);
-		return payloadArgument != null && payloadArgument.eIsProxy() && resolve? 
-				(Expression)owner.eResolveProxy((InternalEObject)payloadArgument) : payloadArgument;
+		ReferenceUsage payloadParameter = basicGetPayloadParameter((AcceptActionUsage)owner);
+		return payloadParameter != null && payloadParameter.eIsProxy() ? 
+				(ReferenceUsage)owner.eResolveProxy((InternalEObject)payloadParameter) : payloadParameter;
 	}
-	
-	private static Expression basicGetPayloadArgument(AcceptActionUsage action) {
-		Feature receiverParameter = UsageUtil.getPayloadParameterOf(action);
-		return receiverParameter == null? null: FeatureUtil.getValueExpressionFor(receiverParameter);
+
+	private ReferenceUsage basicGetPayloadParameter(AcceptActionUsage owner) {
+		Feature payloadParameter = UsageUtil.getPayloadParameterOf(owner);
+		return payloadParameter instanceof ReferenceUsage? (ReferenceUsage)payloadParameter: null;
 	}
 
 	@Override

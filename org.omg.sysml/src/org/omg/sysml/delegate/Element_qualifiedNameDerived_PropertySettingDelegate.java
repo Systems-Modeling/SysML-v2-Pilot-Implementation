@@ -24,32 +24,41 @@ package org.omg.sysml.delegate;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.BasicSettingDelegate;
-import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.AcceptActionUsage;
-import org.omg.sysml.lang.sysml.Expression;
-import org.omg.sysml.util.FeatureUtil;
-import org.omg.sysml.util.UsageUtil;
+import org.omg.sysml.lang.sysml.Namespace;
+import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.impl.ElementImpl;
 
-public class AcceptActionUsage_payloadArgumentDerived_PropertySettingDelegate extends BasicSettingDelegate.Stateless {
-	
-	public AcceptActionUsage_payloadArgumentDerived_PropertySettingDelegate(EStructuralFeature eStructuralFeature) {
+public class Element_qualifiedNameDerived_PropertySettingDelegate extends BasicSettingDelegate.Stateless {
+
+	public Element_qualifiedNameDerived_PropertySettingDelegate(EStructuralFeature eStructuralFeature) {
 		super(eStructuralFeature);
 	}
 
 	@Override
 	protected Object get(InternalEObject owner, boolean resolve, boolean coreType) {
-		Expression payloadArgument = basicGetPayloadArgument((AcceptActionUsage)owner);
-		return payloadArgument != null && payloadArgument.eIsProxy() && resolve? 
-				(Expression)owner.eResolveProxy((InternalEObject)payloadArgument) : payloadArgument;
+		Namespace owningNamespace = ((Element) owner).getOwningNamespace();
+		if (owningNamespace == null) {
+			return null;
+		} else if (owningNamespace.getOwner() == null) {
+			return ((Element) owner).escapedName();
+		} else {
+			String qualification = ((ElementImpl) owningNamespace).getQualifiedName();
+			if (qualification == null) {
+				return null;
+			} else {
+				return qualification + "::" + ((Element) owner).escapedName();
+			}
+		}
 	}
-	
-	private static Expression basicGetPayloadArgument(AcceptActionUsage action) {
-		Feature receiverParameter = UsageUtil.getPayloadParameterOf(action);
-		return receiverParameter == null? null: FeatureUtil.getValueExpressionFor(receiverParameter);
+
+	@Override
+	protected void set(InternalEObject owner, Object newValue) {
+		throw new UnsupportedOperationException();
 	}
 
 	@Override
 	protected boolean isSet(InternalEObject owner) {
+		// TODO Auto-generated method stub
 		return false;
 	}
 

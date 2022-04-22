@@ -106,12 +106,14 @@
         <details key="documentation" value="&lt;p>The &lt;code>owningRelationship&lt;/code> of this Element, if that Relationship is a Membership.&lt;/p>&#xA;"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Element/owningRelationship"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="owningNamespace" ordered="false"
         eType="#//Namespace" volatile="true" transient="true" derived="true" eOpposite="#//Namespace/ownedMember">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>The Namespace that owns this Element, derived as the &lt;code>membershipOwningNamespace&lt;/code> of the &lt;code>owningMembership&lt;/code> of this Element, if any.&lt;/p>&#xA;"/>
       </eAnnotations>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="owningRelationship" ordered="false"
         eType="#//Relationship" eOpposite="#//Relationship/ownedRelatedElement">
@@ -130,6 +132,7 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>The primary name of this Element. If the Element is owned by a Namespace, then its &lt;code>name&lt;/code> is derived as the &lt;code>memberName&lt;/code> of the &lt;code>owningMembership&lt;/code> of the Element.&lt;/p>&#xA;"/>
       </eAnnotations>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedRelationship" upperBound="-1"
         eType="#//Relationship" containment="true" eOpposite="#//Relationship/owningRelatedElement">
@@ -142,12 +145,14 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>The owner of this Element, derived as the &lt;tt>owningRelatedElement&lt;/tt> of the &lt;tt>owningRelationship&lt;/tt> of this Element, if any.&lt;/p>"/>
       </eAnnotations>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedElement" upperBound="-1"
         eType="#//Element" volatile="true" transient="true" derived="true" eOpposite="#//Element/owner">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>The Elements owned by this Element, derived as the &lt;tt>ownedRelatedElements&lt;/tt> of the &lt;tt>ownedRelationships&lt;/tt> of this Element.&lt;/p>&#xA;"/>
       </eAnnotations>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="documentation" upperBound="-1"
         eType="#//Documentation" volatile="true" transient="true" derived="true" eOpposite="#//Documentation/documentedElement">
@@ -155,6 +160,7 @@
         <details key="documentation" value="&lt;p>The Documentation owned by this Element.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Element/ownedElement"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedAnnotation" upperBound="-1"
         eType="#//Annotation" volatile="true" transient="true" derived="true" eOpposite="#//Annotation/owningAnnotatedElement">
@@ -162,6 +168,7 @@
         <details key="documentation" value="&lt;p>The &lt;code>ownedRelationships&lt;/code> of this Element that are Annotations, for which this Element is the &lt;code>annotatedElement&lt;/code>.&lt;/code>"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Element/ownedRelationship"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="textualRepresentation"
         upperBound="-1" eType="#//TextualRepresentation" volatile="true" transient="true"
@@ -177,6 +184,7 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>The name of this Element, if it has one, qualified by the name of its &lt;code>owningNamespace&lt;/code>, if it has one. The &lt;code>qualifiedName&lt;code> is represented in a form that is valid according to the KerML textual concrete syntax.&lt;/p>"/>
       </eAnnotations>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="effectiveName" ordered="false"
         eType="ecore:EDataType types.ecore#//String" volatile="true" transient="true"
@@ -184,6 +192,7 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>The effective name to be used for this Element during name resolution within its &lt;code>owningNamespace&lt;/code>.&lt;/p>"/>
       </eAnnotations>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="aliasId" upperBound="-1"
         eType="ecore:EDataType types.ecore#//String">
@@ -1927,12 +1936,14 @@
         <details key="documentation" value="&lt;p>If &lt;code>isIndividual&lt;/code> is true, a LifeClass that specializes this OccurrenceDefinition, restricting it to represent an individual.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Namespace/ownedMember"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isIndividual" ordered="false"
         lowerBound="1" eType="ecore:EDataType types.ecore#//Boolean" defaultValueLiteral="false">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>Whether this OccurrenceDefinition is constrained to represent single individual.&lt;/p>"/>
       </eAnnotations>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Definition" eSuperTypes="#//Classifier">
@@ -2265,6 +2276,7 @@
         <details key="documentation" value="&lt;p>The Usage in which this Usage is nested (if any).&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Feature/owningType"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="nestedPort" upperBound="-1"
         eType="#//PortUsage" volatile="true" transient="true" derived="true" eOpposite="#//PortUsage/portOwningUsage">
@@ -2895,6 +2907,7 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>An Expression whose result is bound to the &lt;em>&lt;code>receiver&lt;/code>&lt;/em> input parameter of this AcceptActionUsage.&lt;/p> &#xA;"/>
       </eAnnotations>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="payloadParameter" ordered="false"
         lowerBound="1" eType="#//ReferenceUsage" volatile="true" transient="true"
@@ -2906,6 +2919,7 @@
         <details key="documentation" value="&lt;p>The &lt;code>nestedReference&lt;/code> of this AcceptActionUsage that redefines the &lt;code>payload&lt;/code> output parameter of the base AcceptActionUsage &lt;em>&lt;code>AcceptAction&lt;/code>&lt;/em> from the Systems model library.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Usage/nestedReference"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="payloadArgument" ordered="false"
         eType="#//Expression" volatile="true" transient="true" derived="true">
@@ -3273,6 +3287,7 @@
         <details key="documentation" value="&lt;p>The ActionUsages that are Steps in this ActionDefinition, which define the actions that specify the behavior of the ActionDefinition.&lt;/p> &#xA;"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Behavior/step #//Definition/usage"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AnalysisCaseUsage" eSuperTypes="#//CaseUsage">

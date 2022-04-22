@@ -24,27 +24,27 @@ package org.omg.sysml.delegate;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.BasicSettingDelegate;
-import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.AcceptActionUsage;
 import org.omg.sysml.lang.sysml.Expression;
+import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.util.FeatureUtil;
 import org.omg.sysml.util.UsageUtil;
 
-public class AcceptActionUsage_payloadArgumentDerived_PropertySettingDelegate extends BasicSettingDelegate.Stateless {
-	
-	public AcceptActionUsage_payloadArgumentDerived_PropertySettingDelegate(EStructuralFeature eStructuralFeature) {
+public class AcceptActionUsage_receiverArgumentDerived_PropertySettingDelegate extends BasicSettingDelegate.Stateless {
+
+	public AcceptActionUsage_receiverArgumentDerived_PropertySettingDelegate(EStructuralFeature eStructuralFeature) {
 		super(eStructuralFeature);
 	}
 
 	@Override
 	protected Object get(InternalEObject owner, boolean resolve, boolean coreType) {
-		Expression payloadArgument = basicGetPayloadArgument((AcceptActionUsage)owner);
-		return payloadArgument != null && payloadArgument.eIsProxy() && resolve? 
-				(Expression)owner.eResolveProxy((InternalEObject)payloadArgument) : payloadArgument;
+		Expression receiverArgument = basicGetReceiverArgument((AcceptActionUsage)owner);
+		return receiverArgument != null && receiverArgument.eIsProxy() ? 
+				(Expression)owner.eResolveProxy((InternalEObject)receiverArgument) : receiverArgument;
 	}
-	
-	private static Expression basicGetPayloadArgument(AcceptActionUsage action) {
-		Feature receiverParameter = UsageUtil.getPayloadParameterOf(action);
+
+	private Expression basicGetReceiverArgument(AcceptActionUsage owner) {
+		Feature receiverParameter = UsageUtil.getReceiverParameterOf(owner);
 		return receiverParameter == null? null: FeatureUtil.getValueExpressionFor(receiverParameter);
 	}
 

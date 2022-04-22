@@ -30,43 +30,34 @@ public class DerivedPropertySettingDelegateFactory
 
 	@Override
 	public SettingDelegate createSettingDelegate(EStructuralFeature eStructuralFeature) {
-		if (eStructuralFeature.getFeatureID() == SysMLPackage.ACCEPT_ACTION_USAGE__PAYLOAD_ARGUMENT) {
-			return new AcceptActionUsage_payloadArgumentDerived_PropertySettingDelegate(eStructuralFeature);
-		}
-		else if (eStructuralFeature.getFeatureID() == SysMLPackage.ACCEPT_ACTION_USAGE__PAYLOAD_PARAMETER) {
-			return new AcceptActionUsage_payloadParameterDerived_PropertySettingDelegate(eStructuralFeature);
-		}
-		else if (eStructuralFeature.getFeatureID() == SysMLPackage.ACCEPT_ACTION_USAGE__RECEIVER_ARGUMENT) {
-			return new AcceptActionUsage_receiverArgumentDerived_PropertySettingDelegate(eStructuralFeature);
-		}
-		else if (eStructuralFeature.getFeatureID() == SysMLPackage.ELEMENT__DOCUMENTATION) {
-			return new Element_documentationDerived_PropertySettingDelegate(eStructuralFeature);
-		}
-		else if (eStructuralFeature.getFeatureID() == SysMLPackage.ELEMENT___EFFECTIVE_NAME) {
-			return new Element_effectiveNameDerived_PropertySettingDelegate(eStructuralFeature);
-		}
-		else if (eStructuralFeature.getFeatureID() == SysMLPackage.ELEMENT__NAME) {
-			return new Element_nameDerived_PropertySettingDelegate(eStructuralFeature);
-		}
-		else if (eStructuralFeature.getFeatureID() == SysMLPackage.ELEMENT__OWNED_ANNOTATION) {
-			return new Element_ownedAnnotationDerived_PropertySettingDelegate(eStructuralFeature);
-		}
-		else if (eStructuralFeature.getFeatureID() == SysMLPackage.ELEMENT__OWNED_ELEMENT) {
-			return new Element_ownedElementDerived_PropertySettingDelegate(eStructuralFeature);
-		}
-		else if (eStructuralFeature.getFeatureID() == SysMLPackage.ELEMENT__OWNER) {
-			return new Element_ownerDerived_PropertySettingDelegate(eStructuralFeature);
-		}
-		else if (eStructuralFeature.getFeatureID() == SysMLPackage.ELEMENT__OWNING_MEMBERSHIP) {
-			return new Element_owningMembershipDerived_PropertySettingDelegate(eStructuralFeature);
-		}
-		else if (eStructuralFeature.getFeatureID() == SysMLPackage.ELEMENT__OWNING_NAMESPACE) {
-			return new Element_owningNamespaceDerived_PropertySettingDelegate(eStructuralFeature);
-		}
-		else if (eStructuralFeature.getFeatureID() == SysMLPackage.ELEMENT__QUALIFIED_NAME) {
-			return new Element_qualifiedNameDerived_PropertySettingDelegate(eStructuralFeature);
-		}
-		return new DefaultDerivedPropertySettingDelegate(eStructuralFeature);
+		switch (eStructuralFeature.getFeatureID()) {
+			case SysMLPackage.ACCEPT_ACTION_USAGE__PAYLOAD_ARGUMENT:
+				return new AcceptActionUsage_payloadArgumentDerived_PropertySettingDelegate(eStructuralFeature);
+			case SysMLPackage.ACCEPT_ACTION_USAGE__PAYLOAD_PARAMETER:
+				return new AcceptActionUsage_payloadParameterDerived_PropertySettingDelegate(eStructuralFeature);
+			case SysMLPackage.ACCEPT_ACTION_USAGE__RECEIVER_ARGUMENT:
+				return new AcceptActionUsage_receiverArgumentDerived_PropertySettingDelegate(eStructuralFeature);
+			case SysMLPackage.ELEMENT__DOCUMENTATION:
+				return new Element_documentationDerived_PropertySettingDelegate(eStructuralFeature);
+			case SysMLPackage.ELEMENT__EFFECTIVE_NAME:
+				return new Element_effectiveNameDerived_PropertySettingDelegate(eStructuralFeature);
+			case SysMLPackage.ELEMENT__NAME:
+				return new Element_nameDerived_PropertySettingDelegate(eStructuralFeature);
+			case SysMLPackage.ELEMENT__OWNED_ANNOTATION:
+				return new Element_ownedAnnotationDerived_PropertySettingDelegate(eStructuralFeature);
+			case SysMLPackage.ELEMENT__OWNED_ELEMENT:
+				return new Element_ownedElementDerived_PropertySettingDelegate(eStructuralFeature);
+			case SysMLPackage.ELEMENT__OWNER:
+				return new Element_ownerDerived_PropertySettingDelegate(eStructuralFeature);
+			case SysMLPackage.ELEMENT__OWNING_MEMBERSHIP:
+				return new Element_owningMembershipDerived_PropertySettingDelegate(eStructuralFeature);
+			case SysMLPackage.ELEMENT__OWNING_NAMESPACE:
+				return new Element_owningNamespaceDerived_PropertySettingDelegate(eStructuralFeature);
+			case SysMLPackage.ELEMENT__QUALIFIED_NAME:
+				return new Element_qualifiedNameDerived_PropertySettingDelegate(eStructuralFeature);
+			default:
+				return new DefaultDerivedPropertySettingDelegate(eStructuralFeature);
+		}	
 	}
 
 }

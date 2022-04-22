@@ -13,9 +13,12 @@ XPECT_SETUP org.omg.sysml.xpect.tests.validation.invalid.SysMLTests
        	File {from ="/library.kernel/DataFunctions.kerml"}
        	File {from ="/library.kernel/ScalarFunctions.kerml"}
        	File {from ="/library.kernel/ControlFunctions.kerml"}
+       	File {from ="/library.kernel/KerML.kerml"}
        	File {from ="/library.systems/Attributes.sysml"}
        	File {from ="/library.systems/Items.sysml"}
        	File {from ="/library.systems/Metadata.sysml"}
+       	File {from ="/library.systems/Actions.sysml"}
+       	File {from ="/library.systems/Calculations.sysml"}
        	File {from ="/library.systems/SysML.sysml"}
 	}
 	Workspace {
@@ -33,9 +36,12 @@ XPECT_SETUP org.omg.sysml.xpect.tests.validation.invalid.SysMLTests
 		       	File {from ="/library.kernel/DataFunctions.kerml"}
 		       	File {from ="/library.kernel/ScalarFunctions.kerml"}
 		       	File {from ="/library.kernel/ControlFunctions.kerml"}
+		       	File {from ="/library.kernel/KerML.kerml"}
 		       	File {from ="/library.systems/Attributes.sysml"}
 		       	File {from ="/library.systems/Items.sysml"}
        			File {from ="/library.systems/Metadata.sysml"}
+       			File {from ="/library.systems/Actions.sysml"}
+       			File {from ="/library.systems/Calculations.sysml"}
 		       	File {from ="/library.systems/SysML.sysml"}
 			}
 		}

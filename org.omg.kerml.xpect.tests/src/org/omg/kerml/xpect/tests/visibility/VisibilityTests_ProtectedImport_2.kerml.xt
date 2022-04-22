@@ -2,12 +2,14 @@
 XPECT_SETUP org.omg.kerml.xpect.tests.visibility.KerMLVisibilityTest
 	ResourceSet {
 		ThisFile {}
+		File {from ="/library/Base.kerml"}
 		File {from ="/src/DependencyVisibilityPackage.kerml"}
 	}
 	Workspace {
 		JavaProject {
 			SrcFolder {
 				ThisFile {}
+				File {from ="/library/Base.kerml"}
 				File {from ="/src/DependencyVisibilityPackage.kerml"}
 			}
 		}
@@ -18,7 +20,7 @@ END_SETUP
 // XPECT noErrors ---> ""
 package Test3{
 	import VisibilityPackage::*;
-	class B specializes c_Public{
- 		class BB specializes c_protected{}
+	classifier B specializes c_Public{
+ 		classifier BB specializes c_protected{}
  	}
 }

@@ -3,7 +3,7 @@ Automatic-Module-Name: org.omg.sysml.xtext.ide
 Bundle-ManifestVersion: 2
 Bundle-Name: org.omg.sysml.xtext.ide
 Bundle-Vendor: SysML v2 Submission Team
-Bundle-Version: 0.22.0.qualifier
+Bundle-Version: 0.22.1.qualifier
 Bundle-SymbolicName: org.omg.sysml.xtext.ide; singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.omg.sysml.xtext,

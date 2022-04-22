@@ -114,7 +114,7 @@ public class ImplicitGeneralizationMap {
 		
 		put(NullExpressionImpl.class, "base", "Performances::nullEvaluations");
 		
-		put(PredicateImpl.class, "base", "Performances::BooleanExpressions");
+		put(PredicateImpl.class, "base", "Performances::BooleanEvaluation");
 		
 		put(StepImpl.class, "base", "Performances::performances");
 		put(StepImpl.class, "subperformance", "Performances::Performance::subperformances");

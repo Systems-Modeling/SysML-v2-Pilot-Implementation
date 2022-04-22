@@ -62,7 +62,7 @@ public abstract class VStructure extends VDefault {
         }
     }
 
-    private static Pattern patEq = Pattern.compile("^\\s*=");
+    private static Pattern patEq = Pattern.compile("^\\s*:?=");
     private boolean addFeatureMembershipText(Feature f) {
         boolean flag = false;
         for (Membership m: f.getOwnedMembership()) {
@@ -168,7 +168,7 @@ public abstract class VStructure extends VDefault {
     }
 
     protected String extractTitleName(Element e) {
-        String name = getNameAnyway(e, true);
+        String name = getNameAnyway(e);
         if (!(e instanceof Feature)) return name;
 
         Feature f = (Feature) e;

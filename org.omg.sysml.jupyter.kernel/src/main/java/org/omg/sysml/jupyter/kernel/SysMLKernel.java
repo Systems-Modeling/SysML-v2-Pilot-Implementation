@@ -45,6 +45,10 @@ public class SysMLKernel extends BaseKernel {
     private final Magics magics;
     private final MyMagicParser magicParser;
 
+    public Magics getMagics() {
+        return magics;
+    }
+
     public SysMLKernel() {
         this.interactive = SysMLInteractive.getInstance();
         Optional<String> libraryPath = Optional.ofNullable(System.getenv(ISysML.LIBRARY_PATH_KEY));

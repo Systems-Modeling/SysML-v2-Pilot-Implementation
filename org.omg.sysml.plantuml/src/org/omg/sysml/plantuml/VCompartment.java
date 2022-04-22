@@ -50,6 +50,7 @@ import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.FlowConnectionUsage;
 import org.omg.sysml.lang.sysml.ItemFlow;
 import org.omg.sysml.lang.sysml.Membership;
+import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.ObjectiveMembership;
 import org.omg.sysml.lang.sysml.OccurrenceUsage;
 import org.omg.sysml.lang.sysml.PartUsage;
@@ -81,11 +82,15 @@ public class VCompartment extends VStructure {
         return compartmentMost;
     }
 
-    protected boolean rec(Membership m, Element e, boolean force) {
-        VTree subtree = parent.subtree(m, e, force);
+    protected boolean rec(Namespace n, Membership m, Element e, boolean force) {
+        VTree subtree = parent.subtree(n, m, e, force);
         if (subtree == null) return false;
         subtrees.add(subtree);
         return true;
+    }
+
+    protected boolean rec(Membership m, Element e, boolean force) {
+        return rec(getCurrentNamespace(), m, e, force);
     }
 
     private boolean recCurrentMembership(Element e, boolean force) {
@@ -314,7 +319,7 @@ public class VCompartment extends VStructure {
                     CompTree ct = new CompTree(fe);
                     ct.process(f2);
                 } else {
-                    rec(m, e, true);
+                    rec(f, m, e, true);
                 }
             }
         }

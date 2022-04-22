@@ -186,7 +186,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 		Conjugation conjugator = getOwnedConjugator();
 		if (conjugator != null) {
 			Type originalType = conjugator.getOriginalType();
-			if (originalType instanceof Feature) {
+			if (originalType instanceof Feature && !visitedFeatures.contains(originalType)) {
 				((FeatureImpl)originalType).getTypes(types, visitedFeatures);
 			}
 		}

@@ -817,6 +817,48 @@ ruleMetadataDefinition returns [EObject current=null]
 	)
 ;
 
+// Entry rule entryRulePrefixMetadataAnnotation
+entryRulePrefixMetadataAnnotation returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getPrefixMetadataAnnotationRule()); }
+	iv_rulePrefixMetadataAnnotation=rulePrefixMetadataAnnotation
+	{ $current=$iv_rulePrefixMetadataAnnotation.current; }
+	EOF;
+
+// Rule PrefixMetadataAnnotation
+rulePrefixMetadataAnnotation returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		otherlv_0='#'
+		{
+			newLeafNode(otherlv_0, grammarAccess.getPrefixMetadataAnnotationAccess().getNumberSignKeyword_0());
+		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getPrefixMetadataAnnotationAccess().getOwnedRelatedElementPrefixMetadataUsageParserRuleCall_1_0());
+				}
+				lv_ownedRelatedElement_1_0=rulePrefixMetadataUsage
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getPrefixMetadataAnnotationRule());
+					}
+					add(
+						$current,
+						"ownedRelatedElement",
+						lv_ownedRelatedElement_1_0,
+						"org.omg.sysml.xtext.SysML.PrefixMetadataUsage");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+	)
+;
+
 // Entry rule entryRulePrefixMetadataMember
 entryRulePrefixMetadataMember returns [EObject current=null]:
 	{ newCompositeNode(grammarAccess.getPrefixMetadataMemberRule()); }
@@ -833,22 +875,28 @@ rulePrefixMetadataMember returns [EObject current=null]
 	leaveRule();
 }:
 	(
+		otherlv_0='#'
+		{
+			newLeafNode(otherlv_0, grammarAccess.getPrefixMetadataMemberAccess().getNumberSignKeyword_0());
+		}
 		(
-			{
-				newCompositeNode(grammarAccess.getPrefixMetadataMemberAccess().getOwnedRelatedElementPrefixMetadataUsageParserRuleCall_0());
-			}
-			lv_ownedRelatedElement_0_0=rulePrefixMetadataUsage
-			{
-				if ($current==null) {
-					$current = createModelElementForParent(grammarAccess.getPrefixMetadataMemberRule());
+			(
+				{
+					newCompositeNode(grammarAccess.getPrefixMetadataMemberAccess().getOwnedRelatedElementPrefixMetadataUsageParserRuleCall_1_0());
 				}
-				add(
-					$current,
-					"ownedRelatedElement",
-					lv_ownedRelatedElement_0_0,
-					"org.omg.sysml.xtext.SysML.PrefixMetadataUsage");
-				afterParserOrEnumRuleCall();
-			}
+				lv_ownedRelatedElement_1_0=rulePrefixMetadataUsage
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getPrefixMetadataMemberRule());
+					}
+					add(
+						$current,
+						"ownedRelatedElement",
+						lv_ownedRelatedElement_1_0,
+						"org.omg.sysml.xtext.SysML.PrefixMetadataUsage");
+					afterParserOrEnumRuleCall();
+				}
+			)
 		)
 	)
 ;
@@ -3591,9 +3639,9 @@ ruleDependency returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getDependencyAccess().getOwnedRelationshipPrefixMetadataMemberParserRuleCall_0_0());
+					newCompositeNode(grammarAccess.getDependencyAccess().getOwnedRelationshipPrefixMetadataAnnotationParserRuleCall_0_0());
 				}
-				lv_ownedRelationship_0_0=rulePrefixMetadataMember
+				lv_ownedRelationship_0_0=rulePrefixMetadataAnnotation
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getDependencyRule());
@@ -3602,7 +3650,7 @@ ruleDependency returns [EObject current=null]
 						$current,
 						"ownedRelationship",
 						lv_ownedRelationship_0_0,
-						"org.omg.sysml.xtext.SysML.PrefixMetadataMember");
+						"org.omg.sysml.xtext.SysML.PrefixMetadataAnnotation");
 					afterParserOrEnumRuleCall();
 				}
 			)
@@ -3769,28 +3817,22 @@ ruleDefinitionExtensionKeyword[EObject in_current]  returns [EObject current=in_
 	leaveRule();
 }:
 	(
-		otherlv_0='#'
-		{
-			newLeafNode(otherlv_0, grammarAccess.getDefinitionExtensionKeywordAccess().getNumberSignKeyword_0());
-		}
 		(
-			(
-				{
-					newCompositeNode(grammarAccess.getDefinitionExtensionKeywordAccess().getOwnedRelationshipPrefixMetadataMemberParserRuleCall_1_0());
+			{
+				newCompositeNode(grammarAccess.getDefinitionExtensionKeywordAccess().getOwnedRelationshipPrefixMetadataMemberParserRuleCall_0());
+			}
+			lv_ownedRelationship_0_0=rulePrefixMetadataMember
+			{
+				if ($current==null) {
+					$current = createModelElementForParent(grammarAccess.getDefinitionExtensionKeywordRule());
 				}
-				lv_ownedRelationship_1_0=rulePrefixMetadataMember
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getDefinitionExtensionKeywordRule());
-					}
-					add(
-						$current,
-						"ownedRelationship",
-						lv_ownedRelationship_1_0,
-						"org.omg.sysml.xtext.SysML.PrefixMetadataMember");
-					afterParserOrEnumRuleCall();
-				}
-			)
+				add(
+					$current,
+					"ownedRelationship",
+					lv_ownedRelationship_0_0,
+					"org.omg.sysml.xtext.SysML.PrefixMetadataMember");
+				afterParserOrEnumRuleCall();
+			}
 		)
 	)
 ;
@@ -4557,28 +4599,22 @@ ruleUsageExtensionKeyword[EObject in_current]  returns [EObject current=in_curre
 	leaveRule();
 }:
 	(
-		otherlv_0='#'
-		{
-			newLeafNode(otherlv_0, grammarAccess.getUsageExtensionKeywordAccess().getNumberSignKeyword_0());
-		}
 		(
-			(
-				{
-					newCompositeNode(grammarAccess.getUsageExtensionKeywordAccess().getOwnedRelationshipPrefixMetadataMemberParserRuleCall_1_0());
+			{
+				newCompositeNode(grammarAccess.getUsageExtensionKeywordAccess().getOwnedRelationshipPrefixMetadataMemberParserRuleCall_0());
+			}
+			lv_ownedRelationship_0_0=rulePrefixMetadataMember
+			{
+				if ($current==null) {
+					$current = createModelElementForParent(grammarAccess.getUsageExtensionKeywordRule());
 				}
-				lv_ownedRelationship_1_0=rulePrefixMetadataMember
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getUsageExtensionKeywordRule());
-					}
-					add(
-						$current,
-						"ownedRelationship",
-						lv_ownedRelationship_1_0,
-						"org.omg.sysml.xtext.SysML.PrefixMetadataMember");
-					afterParserOrEnumRuleCall();
-				}
-			)
+				add(
+					$current,
+					"ownedRelationship",
+					lv_ownedRelationship_0_0,
+					"org.omg.sysml.xtext.SysML.PrefixMetadataMember");
+				afterParserOrEnumRuleCall();
+			}
 		)
 	)
 ;
@@ -16049,9 +16085,9 @@ ruleTargetExpression returns [EObject current=null]
 								$current);
 						}
 					)
-					otherlv_18='.$'
+					otherlv_18='.?'
 					{
-						newLeafNode(otherlv_18, grammarAccess.getTargetExpressionAccess().getFullStopDollarSignKeyword_1_1_3_1());
+						newLeafNode(otherlv_18, grammarAccess.getTargetExpressionAccess().getFullStopQuestionMarkKeyword_1_1_3_1());
 					}
 					(
 						(

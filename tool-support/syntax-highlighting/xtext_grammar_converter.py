@@ -406,7 +406,7 @@ class Converter(object):
         :param s: string to be processed
         :return: escaped string
         """
-        chars_to_be_escaped = ("<", ">", "(", ")", "[", "]", "+", "-", "*", ".", "|", "?", "^")
+        chars_to_be_escaped = ("<", ">", "(", ")", "[", "]", "+", "-", "*", ".", "|", "?", "^", "$")
 
         escaped_s = []
         for ch in s:

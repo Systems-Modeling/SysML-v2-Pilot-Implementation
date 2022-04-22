@@ -115,8 +115,12 @@ MetadataDefinition returns SysML::MetadataDefinition :
 	Definition
 ;
 
+PrefixMetadataAnnotation returns SysML::Annotation :
+	'#' ownedRelatedElement += PrefixMetadataUsage
+;
+
 PrefixMetadataMember returns SysML::Membership :
-	ownedRelatedElement += PrefixMetadataUsage // ownedMemberElement = PrefixMetadataUsage
+	'#' ownedRelatedElement += PrefixMetadataUsage // ownedMemberElement = PrefixMetadataUsage
 ;
 
 PrefixMetadataUsage returns SysML::MetadataUsage :
@@ -404,7 +408,7 @@ MultiplicityExpressionMember returns SysML::Membership :
 /* DEPENDENCIES */
 
 Dependency returns SysML::Dependency :
-	( ownedRelationship += PrefixMetadataMember )?
+	( ownedRelationship += PrefixMetadataAnnotation )?
 	'dependency' ( Identification? 'from' )?
     client += [SysML::Element|QualifiedName] ( ',' client += [SysML::Element|QualifiedName] )* 'to'
     supplier += [SysML::Element|QualifiedName] ( ',' supplier += [SysML::Element|QualifiedName] )* ';'
@@ -419,7 +423,7 @@ fragment BasicDefinitionPrefix returns SysML::Definition :
 ;
 
 fragment DefinitionExtensionKeyword returns SysML::Definition :
-	'#' ownedRelationship += PrefixMetadataMember
+	ownedRelationship += PrefixMetadataMember
 ;
 
 fragment DefinitionPrefix returns SysML::Definition :
@@ -495,7 +499,7 @@ fragment BasicUsagePrefix returns SysML::Usage :
 ;
 
 fragment UsageExtensionKeyword returns SysML::Usage :
-	'#' ownedRelationship += PrefixMetadataMember
+	ownedRelationship += PrefixMetadataMember
 ;
 
 fragment UsagePrefix returns SysML::Usage :
@@ -1575,7 +1579,7 @@ TargetExpression returns SysML::Expression :
 	    ) 
 	  | {SysML::CollectExpression.operand += current} '.'
 	    ownedRelationship += ExpressionBodyMember 
-	  | {SysML::SelectExpression.operand += current} '.$'
+	  | {SysML::SelectExpression.operand += current} '.?'
 	    ownedRelationship += ExpressionBodyMember 
 	  )
 	)*

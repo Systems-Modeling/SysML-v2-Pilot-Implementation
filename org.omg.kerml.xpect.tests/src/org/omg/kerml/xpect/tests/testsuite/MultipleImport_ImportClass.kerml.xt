@@ -2,6 +2,7 @@
 XPECT_SETUP org.omg.kerml.xpect.tests.testsuite.KerMLXtextTest
 	ResourceSet {
 		ThisFile {}
+		File {from ="/library/Base.kerml"}
 		File {from ="/src/DependencyOuterPackage.kerml"}
 		File {from ="/src/DependencyMultipleMembership.kerml"}
 	}
@@ -9,6 +10,7 @@ XPECT_SETUP org.omg.kerml.xpect.tests.testsuite.KerMLXtextTest
 		JavaProject {
 			SrcFolder {
 				ThisFile {}
+				File {from ="/library/Base.kerml"}
 				File {from ="/src/DependencyOuterPackage.kerml"}
 				File {from ="/src/DependencyMultipleMembership.kerml"}
 			}
@@ -29,18 +31,16 @@ package test{
 		   OuterPackage2.B, OuterPackage2.B.b.a1,
 		   OuterPackage2.C, OuterPackage2.C.b.a1,
 	--- */
-	class D specializes C {
+	classifier D specializes C {
 		//linkedName at b --> OuterPackage.B.b
 		//* XPECT scope at b ---
-		   C.b.a1, D.b.a1, D.try.a1, b.a1, try.a1,
-		   test.C.b.a1, test.D.b.a1, test.D.try.a1, 
-		   C, C.b, C.c, D, D.b, D.c, D.try, 
-		   OuterPackage.A, OuterPackage.A.a1, 
-		   OuterPackage.B, OuterPackage.B.b, OuterPackage.B.b.a1, 
-		   OuterPackage2.B, OuterPackage2.B.b, OuterPackage2.B.b.a1, 
-		   OuterPackage2.C, OuterPackage2.C.c, OuterPackage2.C.b.a1, OuterPackage2.C.b,
-		   b, c,
-		   test.C, test.C.b, test.C.c, test.D, test.D.b, test.D.c, test.D.try, try,
+		   C, C.b, C.b.a1, C.c, C.c.self, D, D.b, D.b.a1, D.c, D.c.self, D.self, D.try,
+		   D.try.a1, D.try.self, OuterPackage.A, OuterPackage.A.a1, OuterPackage.B,
+		   OuterPackage.B.b, OuterPackage.B.b.a1, OuterPackage2.B, OuterPackage2.B.b, OuterPackage2.B.b.a1,
+		   OuterPackage2.C, OuterPackage2.C.b, OuterPackage2.C.b.a1, OuterPackage2.C.c,
+		   OuterPackage2.C.c.self, b, b.a1, c, c.self, self, test.C, test.C.b, test.C.b.a1, test.C.c,
+		   test.C.c.self, test.D, test.D.b, test.D.b.a1, test.D.c, test.D.c.self, test.D.self,
+		   test.D.try, test.D.try.a1, test.D.try.self, try, try.a1, try.self
 	--- */
 		feature try : b;
 	}

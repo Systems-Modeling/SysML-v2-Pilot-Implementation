@@ -13,6 +13,7 @@ XPECT_SETUP org.omg.sysml.xpect.tests.validation.valid.SysMLTests
        	File {from ="/library.kernel/DataFunctions.kerml"}
        	File {from ="/library.kernel/ScalarFunctions.kerml"}
        	File {from ="/library.kernel/ControlFunctions.kerml"}
+       	File {from ="/library.kernel/KerML.kerml"}
        	File {from ="/library.systems/Attributes.sysml"}
        	File {from ="/library.systems/Items.sysml"}
        	File {from ="/library.systems/Metadata.sysml"}
@@ -33,6 +34,7 @@ XPECT_SETUP org.omg.sysml.xpect.tests.validation.valid.SysMLTests
 		       	File {from ="/library.kernel/DataFunctions.kerml"}
 		       	File {from ="/library.kernel/ScalarFunctions.kerml"}
 		       	File {from ="/library.kernel/ControlFunctions.kerml"}
+		       	File {from ="/library.kernel/KerML.kerml"}
 		       	File {from ="/library.systems/Attributes.sysml"}
 		       	File {from ="/library.systems/Items.sysml"}
        			File {from ="/library.systems/Metadata.sysml"}

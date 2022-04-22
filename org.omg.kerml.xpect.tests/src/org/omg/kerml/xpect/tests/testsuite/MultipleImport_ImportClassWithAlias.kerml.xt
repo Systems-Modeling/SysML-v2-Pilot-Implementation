@@ -2,12 +2,14 @@
 XPECT_SETUP org.omg.kerml.xpect.tests.testsuite.KerMLXtextTest
 	ResourceSet {
 		ThisFile {}
+		File {from ="/library/Base.kerml"}
 		File {from ="/src/DependencyOuterPackage.kerml"}
 	}
 	Workspace {
 		JavaProject {
 			SrcFolder {
 				ThisFile {}
+				File {from ="/library/Base.kerml"}
 				File {from ="/src/DependencyOuterPackage.kerml"}
 			}
 		}
@@ -19,12 +21,11 @@ END_SETUP
 package test{
 	alias aliass for OuterPackage::A;
 	//XPECT linkedName at aliass --> OuterPackage.A
-	class C {
+	classifier C {
 			//* XPECT scope at aliass---
-		   c.a1, C.c.a1, test.C.c.a1,
-		   C, C.c, aliass, aliass.a1, c, 
-		   OuterPackage.A, OuterPackage.A.a1, OuterPackage.B, OuterPackage.B.b, OuterPackage.B.b.a1,
-		   test.C, test.C.c, test.aliass, test.aliass.a1, 
+		   C, C.c, C.c.a1, C.self, OuterPackage.A, OuterPackage.A.a1, OuterPackage.B,
+		   OuterPackage.B.b, OuterPackage.B.b.a1, aliass, aliass.a1, c, c.a1, self, test.C, test.C.c,
+		   test.C.c.a1, test.C.self, test.aliass, test.aliass.a1
 	--- */
 		feature c: aliass;
 	}

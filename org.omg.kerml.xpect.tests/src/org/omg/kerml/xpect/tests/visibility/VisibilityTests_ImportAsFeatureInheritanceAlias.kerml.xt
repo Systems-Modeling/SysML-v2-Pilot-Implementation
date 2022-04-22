@@ -2,12 +2,14 @@
 XPECT_SETUP org.omg.kerml.xpect.tests.visibility.KerMLVisibilityTest
 	ResourceSet {
 		ThisFile {}
+		File {from ="/library/Base.kerml"}
 		File {from ="/src/DependencyVisibilityPackage.kerml"}
 	}
 	Workspace {
 		JavaProject {
 			SrcFolder {
 				ThisFile {}
+				File {from ="/library/Base.kerml"}
 				File {from ="/src/DependencyVisibilityPackage.kerml"}
 			}
 		}
@@ -25,15 +27,15 @@ package Classes {
 	  	 VisibilityPackage.c_clazz, VisibilityPackage.c_clazz.c_Public, VisibilityPackage.c_Public, VisibilityPackage.c_Public.c_public, VisibilityPackage.c_Public_alias.alias_public, VisibilityPackage.c_Public_alias.c_public, 
 		 VisibilityPackage.c_Public_alias,VisibilityPackage.c_clazz.c_Public.c_publicc
 	--- */
-	class Try specializes aliass{
+	classifier Try specializes aliass{
 		//XPECT linkedName at c_public --> VisibilityPackage.c_Public.c_public
 		/* XPECT scope at c_public ---
-		 c_protected,
-		 Try.feature4, c_public, feature4, Classes.Try.feature4, 	    
-	     Classes.Try, Classes.Try.c_public, Classes.aliass,	Classes.aliass.c_public, 
-	  	 Try, Try.c_public, aliass, aliass.c_public,
-	  	 VisibilityPackage.c_clazz, VisibilityPackage.c_clazz.c_Public, VisibilityPackage.c_Public, VisibilityPackage.c_Public.c_public, VisibilityPackage.c_Public_alias.alias_public, VisibilityPackage.c_Public_alias.c_public, 
-		 VisibilityPackage.c_Public_alias,VisibilityPackage.c_clazz.c_Public.c_publicc
+		Classes.Try, Classes.Try.c_public, Classes.Try.feature4, Classes.Try.self,
+		Classes.aliass, Classes.aliass.c_public, Try, Try.c_public, Try.feature4, Try.self,
+		VisibilityPackage.c_Public, VisibilityPackage.c_Public.c_public, VisibilityPackage.c_Public_alias,
+		VisibilityPackage.c_Public_alias.alias_public, VisibilityPackage.c_Public_alias.c_public, VisibilityPackage.c_clazz,
+		VisibilityPackage.c_clazz.c_Public, VisibilityPackage.c_clazz.c_Public.c_publicc, aliass, aliass.c_public,
+		c_protected, c_public, feature4, self
 		--- */
 		// The following are not visible because qualified names currently require public visibility:
 		//  Classes.Try.c_protected, Classes.aliass.c_protected, Try.c_protected, aliass.c_protected

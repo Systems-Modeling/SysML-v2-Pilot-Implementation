@@ -33,6 +33,7 @@ import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Multiplicity;
+import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.ObjectiveMembership;
 import org.omg.sysml.lang.sysml.ReferenceUsage;
 import org.omg.sysml.lang.sysml.RequirementConstraintMembership;
@@ -51,12 +52,19 @@ public class VTree extends VStructure {
         return style;
     }
 
+    private Namespace namespace;
     private Membership membership;
+
+    private Namespace getNamespace() {
+        if (namespace != null) return namespace;
+        if (membership != null) return membership.getMembershipOwningNamespace();
+        return null;
+    }
 
     protected void addRel(Element typ, Element rel, String text) {
         hasItems = true;
-        if (membership == null) return;
-        Element tgt = membership.getMembershipOwningNamespace();
+        Namespace tgt = getNamespace();
+        if (tgt == null) return;
         addPRelation(tgt, typ, rel, text);
     }
     
@@ -171,8 +179,8 @@ public class VTree extends VStructure {
     }
 
     /* VCompartment uses */
-    VTree subtree(Membership membership, Element e, boolean force) {
-        VTree vt = newVTree(membership);
+    VTree subtree(Namespace namespace, Membership membership, Element e, boolean force) {
+        VTree vt = newVTree(namespace, membership);
         vt.pushIdMap();
         vt.visit(e);
         if (!(force || vt.hasItems)) {
@@ -240,12 +248,13 @@ public class VTree extends VStructure {
         return "";
     }
 
-    protected VTree newVTree(Membership membership) {
-        return new VTree(this, membership);
+    protected VTree newVTree(Namespace namespace, Membership membership) {
+        return new VTree(this, namespace, membership);
     }
 
-    protected VTree(Visitor vt, Membership membership) {
+    protected VTree(Visitor vt, Namespace namespace, Membership membership) {
         super(vt);
+        this.namespace = namespace;
         this.membership = membership;
     }
     
@@ -255,6 +264,7 @@ public class VTree extends VStructure {
 
     public VTree() {
         super();
+        this.namespace = null;
         this.membership = null;
     }
 }

@@ -1,6 +1,6 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation, PlantUML Visualization
- * Copyright (c) 2020 Mgnite Inc.
+ * Copyright (c) 2020-2022 Mgnite Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -38,7 +38,10 @@ import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.CaseDefinition;
 import org.omg.sysml.lang.sysml.CaseUsage;
 import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.ItemDefinition;
+import org.omg.sysml.lang.sysml.Membership;
+import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.OccurrenceDefinition;
 import org.omg.sysml.lang.sysml.OccurrenceUsage;
 import org.omg.sysml.lang.sysml.PortDefinition;
@@ -395,7 +398,7 @@ public class SysML2PlantUMLText {
 
         addStyleHeader(sb);
         
-        initIdMap();
+        init();
 
         for (EObject eObj : eObjs) {
             if (eObj instanceof Element) {
@@ -403,9 +406,11 @@ public class SysML2PlantUMLText {
                 vpath.visit(e);
             }
         }
+        vpath.init();
         for (EObject eObj : eObjs) {
             if (eObj instanceof Element) {
                 Element e = (Element) eObj;
+                setInherited(false);
                 v.visit(e);
             }
         }
@@ -422,6 +427,7 @@ public class SysML2PlantUMLText {
     private int idCounter;
     private IDMap idMap;
 
+    // element 1<-* id 1<-* path(feature, featureChain, featureChainExpression, ItemFlowEnd)
     private class IDMap {    	
         private final Map<Element, Integer> idMap = new HashMap<Element, Integer>();
         private final IDMap prev;
@@ -482,11 +488,6 @@ public class SysML2PlantUMLText {
         }
     }
 
-    private void initIdMap() {
-        idCounter = 1;
-        this.idMap = new IDMap();
-    }
-
     boolean checkId(Element e) {
         return idMap.checkId(e);
     }
@@ -508,12 +509,53 @@ public class SysML2PlantUMLText {
     }
 
     private boolean inherited;
-
     void setInherited(boolean flag) {
         this.inherited = flag;
     }
-    
     boolean isInherited() {
         return inherited;
+    }
+
+    private void init() {
+        idCounter = 1;
+        this.idMap = new IDMap();
+        this.namespaces = new ArrayList<>();
+        this.inheritingIdices = new ArrayList<>();
+    }
+
+    private List<Namespace> namespaces;
+    private List<Integer> inheritingIdices;
+
+    
+    void pushNamespace(Namespace ns) {
+        namespaces.add(ns);
+    }
+
+    void inheriting() {
+        inheritingIdices.add(namespaces.size() - 1);
+    }
+
+    void popNamespace() {
+        int idx = namespaces.size() - 1;
+        namespaces.remove(idx);
+        int sizeI = inheritingIdices.size();
+        if (sizeI == 0) return;
+        sizeI--;
+        int idxI = inheritingIdices.get(sizeI);
+        if (idxI == idx) {
+            inheritingIdices.remove(sizeI);
+        }
+    }
+
+    InheritKey makeInheritKey(Feature ref) {
+        return InheritKey.construct(namespaces, inheritingIdices, ref);
+    }
+
+    InheritKey makeInheritKey(Membership ref) {
+        return InheritKey.construct(namespaces, inheritingIdices, ref);
+    }
+
+    boolean matchCurrentInheritings(InheritKey ik) {
+        return InheritKey.match(ik, namespaces, inheritingIdices);
     }
 }

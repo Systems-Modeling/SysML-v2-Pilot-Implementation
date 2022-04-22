@@ -2,12 +2,14 @@
 XPECT_SETUP org.omg.kerml.xpect.tests.testsuite.KerMLXtextTest
 	ResourceSet {
 		ThisFile {}
+		File {from ="/library/Base.kerml"}
 		File {from ="/src/DependencyOuterPackage.kerml"}
 	}
 	Workspace {
 		JavaProject {
 			SrcFolder {
 				ThisFile {}
+				File {from ="/library/Base.kerml"}
 				File {from ="/src/DependencyOuterPackage.kerml"}
 			}
 		}
@@ -17,11 +19,11 @@ END_SETUP
 
 // XPECT noErrors ---> ""
 package test{
-	class C{
+	classifier C{
 		//* XPECT scope at OuterPackage::B::b ---
-		c.a1, C.c.a1, test.C.c.a1,
-	  	C, C.c, c, test.C, test.C.c,
-	  	OuterPackage.A, OuterPackage.A.a1, OuterPackage.B, OuterPackage.B.b, OuterPackage.B.b.a1, 
+			C, C.c, C.c.a1, C.c.self, C.self, OuterPackage.A, OuterPackage.A.a1,
+			OuterPackage.B, OuterPackage.B.b, OuterPackage.B.b.a1, c, c.a1, c.self, self, test.C, test.C.c,
+			test.C.c.a1, test.C.c.self, test.C.self
 	--- */
 		feature c : OuterPackage::B::b;
 	}

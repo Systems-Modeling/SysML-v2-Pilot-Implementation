@@ -105,21 +105,22 @@ public class VDefault extends VTraverser {
         for (Specialization s: typ.getOwnedSpecialization()) {
             Type gt = s.getGeneral();
             if (gt == null || gt.getName() == null) continue;
-            addPRelation(typ, gt, s);
+            addPRelation(null, typ, gt, s, null);
         }
     }
 
-    protected void addPUMLLine(Type typ, String keyword, String name, String style) {
+    protected int addPUMLLine(Type typ, String keyword, String name, String style) {
         append(keyword);
-        addNameWithId(typ, name, true);
+        int id = addNameWithId(typ, name, true);
         if (style != null) {
             append(style);
         }
         addLink(typ);
+        return id;
     }
 
-    protected void addPUMLLine(Type typ, String keyword, String name) {
-        addPUMLLine(typ, keyword, name, styleString(typ));
+    protected int addPUMLLine(Type typ, String keyword, String name) {
+        return addPUMLLine(typ, keyword, name, styleString(typ));
     }
 
     protected boolean addRecLine(String name, Type typ, boolean withStyle) {
@@ -138,7 +139,7 @@ public class VDefault extends VTraverser {
     }
 
     protected boolean addRecLine(Type typ, boolean withStyle) {
-    	String name = getNameAnyway(typ, true);
+    	String name = getNameAnyway(typ);
         return addRecLine(name, typ, withStyle);
     }
 
@@ -184,7 +185,7 @@ public class VDefault extends VTraverser {
         } else if (ae instanceof MetadataFeature) {
             MetadataFeature af = (MetadataFeature) ae;
             VMetadata v = new VMetadata(this);
-            v.addAnnotatingFeature(af, a.getAnnotatedElement());
+            v.addMetadataFeature(af, a.getAnnotatedElement());
         }
         return "";
     }
@@ -192,7 +193,7 @@ public class VDefault extends VTraverser {
     @Override
     public String caseMetadataFeature(MetadataFeature af) {
         VMetadata v = new VMetadata(this);
-        v.addAnnotatingFeature(af);
+        v.addMetadataFeature(af);
         return "";
     }
 

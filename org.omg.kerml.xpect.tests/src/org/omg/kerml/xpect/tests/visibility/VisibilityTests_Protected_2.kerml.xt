@@ -2,12 +2,14 @@
 XPECT_SETUP org.omg.kerml.xpect.tests.visibility.KerMLVisibilityTest
 	ResourceSet {
 		ThisFile {}
+		File {from ="/library/Base.kerml"}
 		File {from ="/src/DependencyVisibilityPackage.kerml"}
 	}
 	Workspace {
 		JavaProject {
 			SrcFolder {
 				ThisFile {}
+				File {from ="/library/Base.kerml"}
 				File {from ="/src/DependencyVisibilityPackage.kerml"}
 			}
 		}
@@ -16,14 +18,14 @@ END_SETUP
 */
 
 package Test3{
-	class P{
-		protected class PP{}
+	classifier P{
+		protected classifier PP{}
 	}
-	class B {
+	classifier B {
 		// XPECT errors --> "Couldn't resolve reference to Classifier 'P::PP'." at "P::PP"
-		class BB specializes P::PP{}
+		classifier BB specializes P::PP{}
 	}
-	class A specializes P {
- 		class AA specializes PP{}
+	classifier A specializes P {
+ 		classifier AA specializes PP{}
 	}
 }

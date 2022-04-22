@@ -24,11 +24,17 @@
 
 package org.omg.sysml.plantuml;
 
+import java.util.List;
+import java.util.Set;
+
+import org.omg.sysml.lang.sysml.Connector;
+import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.MultiplicityRange;
+import org.omg.sysml.lang.sysml.FeatureDirectionKind;
 import org.omg.sysml.lang.sysml.PartDefinition;
 import org.omg.sysml.lang.sysml.PartUsage;
 import org.omg.sysml.lang.sysml.PortUsage;
+import org.omg.sysml.lang.sysml.ReferenceUsage;
 import org.omg.sysml.lang.sysml.Succession;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
@@ -71,6 +77,7 @@ public class VComposite extends VMixed {
         VComposite vc = new VComposite(this);
         vc.traverse(f);
         vc.closeBlock();
+        addSpecializations(f);
 
         return "";
     }
@@ -91,6 +98,38 @@ public class VComposite extends VMixed {
         return "";
     }
 
+    private Feature getEndFeature(Feature f) {
+        while (!f.isEnd()) {
+            Element e = f.getOwner();
+            if (!(e instanceof Feature)) return null;
+            f = (Feature) e;
+        }
+        return f;
+    }
+
+    private boolean isPortOut(int id) {
+        Set<Element> paths = getVPath().getPaths(id);
+        if (paths == null) return false;
+        for (Element path: paths) {
+            if (!(path instanceof Feature)) continue;
+            Feature f = getEndFeature((Feature) path);
+            if (f == null) continue;
+            Type t = f.getOwningType();
+            if (t instanceof Connector) {
+                Connector c = (Connector) t;
+                List<Feature> fs = c.getConnectorEnd();
+                /* 
+                   Currently we regard the first connector end as a source end, but it might be changed.
+                   We can check it by extracting the sources of the relationship, but it does not work with ItemFlowEnd
+                   and is not efficient.  So we will use the current solution for the time being.
+                   if (rel.getSource().contains(path)) return true;
+                 */
+                if (f.equals(fs.get(0))) return true;
+            }
+        }
+        return false;
+    }
+
     @Override
     public String casePortUsage(PortUsage pu) {
         String name = extractTitleName(pu);
@@ -100,14 +139,17 @@ public class VComposite extends VMixed {
         vc.traverse(pu);
         String ret = vc.getString();
 
-        String keyword;
         if (ret.isEmpty()) {
-            keyword = "portin ";
-            addPUMLLine(pu, keyword, name);
+            int pt = getCurrentLength();
+            int id = addPUMLLine(pu, "", name);
+            if (isPortOut(id)) {
+                insert(pt, "portout ");
+            } else {
+                insert(pt, "portin ");
+            }
             append('\n');
         } else {
-            keyword = "rec usage ";
-            addPUMLLine(pu, keyword, name);
+            addPUMLLine(pu, "rec usage ", name);
             vc.closeBlock();
         }
 
@@ -115,7 +157,31 @@ public class VComposite extends VMixed {
     }
 
     private void addTypeSimple(Type typ) {
-        if (typ instanceof Usage) {
+        if (typ instanceof Feature) {
+            Feature f = (Feature) typ;
+            FeatureDirectionKind fdk = f.getDirection();
+            if (fdk != null) {
+                String name = extractTitleName(f);
+                if (name == null) return;
+
+                VComposite vc = new VComposite(this);
+                vc.traverse(f);
+                String ret = vc.getString();
+
+                if (ret.isEmpty()) {
+                    if (fdk == FeatureDirectionKind.OUT) {
+                        addPUMLLine(f, "portout ", name);
+                    } else {
+                        addPUMLLine(f, "portin ", name);
+                    }
+                } else {
+                    addPUMLLine(f, "rec usage ", name);
+                    vc.closeBlock();
+                }
+            } else {
+                if (!addType(typ, "usage ")) return;
+            }
+        } else if (typ instanceof Usage) {
             if (!addType(typ, "usage ")) return;
         } else {
             if (!addType(typ, "def ")) return;
@@ -124,14 +190,14 @@ public class VComposite extends VMixed {
     }
 
     @Override
-    public String caseType(Type typ) {
-        addTypeSimple(typ);
+    public String caseReferenceUsage(ReferenceUsage ru) {
+        addTypeSimple(ru);
         return "";
     }
 
     @Override
-    public String caseMultiplicityRange(MultiplicityRange mr) {
-        // Do not show MultiplicityRange
+    public String caseType(Type typ) {
+        addTypeSimple(typ);
         return "";
     }
 

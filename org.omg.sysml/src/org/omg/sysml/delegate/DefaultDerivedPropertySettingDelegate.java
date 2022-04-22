@@ -21,6 +21,8 @@
 
 package org.omg.sysml.delegate;
 
+import java.util.List;
+
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -32,6 +34,8 @@ public class DefaultDerivedPropertySettingDelegate extends BasicSettingDelegate.
 	private Class<?> type;
 	private int featureID;
 	private int sourceFeatureID;
+	
+	private List<?> derivedList = null;
 
 	public DefaultDerivedPropertySettingDelegate(EStructuralFeature eStructuralFeature) {
 		super(eStructuralFeature);
@@ -44,12 +48,19 @@ public class DefaultDerivedPropertySettingDelegate extends BasicSettingDelegate.
 
 	@Override
 	protected Object get(InternalEObject owner, boolean resolve, boolean coreType) {
-		return new DerivedEObjectEList<>(type, owner, featureID, new int[] {sourceFeatureID});
+		return getDerivedList(owner);
 	}
 
 	@Override
 	protected boolean isSet(InternalEObject owner) {
-		return false;
+		return !getDerivedList(owner).isEmpty();
+	}
+	
+	List<?> getDerivedList(InternalEObject owner) {
+		if (derivedList == null) {
+			derivedList = new DerivedEObjectEList<>(type, owner, featureID, new int[] {sourceFeatureID});
+		}
+		return derivedList;
 	}
 
 }

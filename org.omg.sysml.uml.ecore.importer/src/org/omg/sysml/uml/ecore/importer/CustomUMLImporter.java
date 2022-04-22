@@ -10,6 +10,14 @@
  *   Kenn Hussey (Embarcadero Technologies) - 156879, 220552, 226102
  *   Kenn Hussey (CEA) - 327039, 351774, 364419, 366289
  *   Kenn Hussey - 535301
+ *   
+ * SysML Customizations:
+ * Copyright (c) 2019 Obeo
+ * Copyright (c) 2019-2022 Model Driven Solutions, Inc.
+ * 
+ * Contributors :
+ *   William Piers, Obeo
+ *   Ed Seidewitz, MDS
  *
  */
 package org.omg.sysml.uml.ecore.importer;
@@ -31,7 +39,10 @@ import org.eclipse.emf.common.util.Monitor;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.converter.ConverterPlugin;
 import org.eclipse.emf.converter.util.ConverterUtil;
+import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EcoreFactory;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.importer.ModelImporter;
@@ -48,6 +59,7 @@ public class CustomUMLImporter extends UMLImporter {
 	private static final String SYSML_URI = "http://www.omg.org/spec/SysML/2.0";
 	private static final String BASE_PACKAGE = "org.omg.sysml.lang";
 	private static final String TYPES_URI = "https://www.omg.org/spec/UML/20161101/PrimitiveTypes";
+	private static final String SETTING_DELEGATES_KEY = "settingDelegates";
 
 	/*
 	 * MOSTLY FORKED FROM org.eclipse.uml2.uml.ecore.importer.UMLImporter except for
@@ -129,6 +141,13 @@ public class CustomUMLImporter extends UMLImporter {
 					}
 				}
 			}.convert(packages, options, diagnostics, context);
+			
+			for (EPackage ePackage: ePackages) {
+				EAnnotation annotation = EcoreFactory.eINSTANCE.createEAnnotation();
+				annotation.setSource(EcorePackage.eNS_URI);
+				annotation.getDetails().put(SETTING_DELEGATES_KEY, CustomUML2EcoreConverter.ANNOTATION_SYSML);
+				ePackage.getEAnnotations().add(annotation);
+			}
 
 			getEPackages().addAll(ePackages);
 

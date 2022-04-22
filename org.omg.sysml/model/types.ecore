@@ -5,6 +5,9 @@
   <eAnnotations source="http://www.eclipse.org/uml2/2.0.0/UML">
     <details key="originalName" value="primitiveTypes"/>
   </eAnnotations>
+  <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+    <details key="settingDelegates" value="http://www.omg.org/spec/SysML"/>
+  </eAnnotations>
   <eClassifiers xsi:type="ecore:EDataType" name="Boolean" instanceClassName="boolean">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="Boolean is used for logical expressions, consisting of the predefined values true and false."/>

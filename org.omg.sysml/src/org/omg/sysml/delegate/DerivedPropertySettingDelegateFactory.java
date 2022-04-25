@@ -27,6 +27,8 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
 
 public class DerivedPropertySettingDelegateFactory 
 	implements EStructuralFeature.Internal.SettingDelegate.Factory {
+	
+	public static final String SYSML_ANNOTATION = "http://www.omg.org/spec/SysML";
 
 	@Override
 	public SettingDelegate createSettingDelegate(EStructuralFeature eStructuralFeature) {

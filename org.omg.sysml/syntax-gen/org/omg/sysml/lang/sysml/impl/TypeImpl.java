@@ -413,7 +413,7 @@ public class TypeImpl extends NamespaceImpl implements Type {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public EList<FeatureMembership> getFeatureMembership() {

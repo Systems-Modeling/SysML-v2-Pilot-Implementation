@@ -67,7 +67,7 @@ public class ClassifierImpl extends TypeImpl implements Classifier {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public EList<Subclassification> getOwnedSubclassification() {

@@ -4848,7 +4848,7 @@ else
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="314714f4-972a-4011-8ef9-46147211a8b9" name="" visibility="public"/>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="fa1b3d41-6155-4380-96c1-966b0d6bf116" name="" visibility="public" value="*"/>
     </ownedAttribute>
-    <ownedAttribute xmi:id="6d75f458-5fe0-4c99-8e0f-a41c252b972c" name="directedUsage" visibility="public" type="46068009-84f1-4001-a9bb-fc03fd6a381c" isOrdered="true" isDerived="true" subsettedProperty="db471ae1-04e1-47b7-b6bc-2d40afdda735 ee47daa4-a81f-4204-b23b-bfc54283691f" association="820df8ab-51c8-4d5a-bb66-70d583ab4d1b">
+    <ownedAttribute xmi:id="6d75f458-5fe0-4c99-8e0f-a41c252b972c" name="directedUsage" visibility="public" type="46068009-84f1-4001-a9bb-fc03fd6a381c" isOrdered="true" isDerived="true" subsettedProperty="ee47daa4-a81f-4204-b23b-bfc54283691f db471ae1-04e1-47b7-b6bc-2d40afdda735" association="820df8ab-51c8-4d5a-bb66-70d583ab4d1b">
       <ownedComment xmi:id="d585e16c-9cda-4878-870f-4b7676d01022" annotatedElement="6d75f458-5fe0-4c99-8e0f-a41c252b972c">
         <body>&lt;p>The &lt;code>usages&lt;/code> of this Definition that are &lt;code>directedFeatures&lt;/code>.&lt;/p>
 </body>

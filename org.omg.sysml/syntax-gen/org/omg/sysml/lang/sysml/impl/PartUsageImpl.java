@@ -67,7 +67,7 @@ public class PartUsageImpl extends ItemUsageImpl implements PartUsage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public EList<PartDefinition> getPartDefinition() {

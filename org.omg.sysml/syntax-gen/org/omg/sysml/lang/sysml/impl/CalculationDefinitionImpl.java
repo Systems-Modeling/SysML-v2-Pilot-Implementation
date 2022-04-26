@@ -158,7 +158,7 @@ public class CalculationDefinitionImpl extends ActionDefinitionImpl implements C
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public EList<CalculationUsage> getCalculation() {

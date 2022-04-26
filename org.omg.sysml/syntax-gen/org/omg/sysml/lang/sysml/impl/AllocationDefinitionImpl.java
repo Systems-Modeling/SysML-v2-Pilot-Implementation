@@ -49,7 +49,7 @@ public class AllocationDefinitionImpl extends ConnectionDefinitionImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public EList<AllocationUsage> getAllocation() {

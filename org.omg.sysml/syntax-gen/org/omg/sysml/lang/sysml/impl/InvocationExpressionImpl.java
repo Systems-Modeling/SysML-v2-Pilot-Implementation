@@ -113,7 +113,7 @@ public class InvocationExpressionImpl extends ExpressionImpl implements Invocati
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public EList<Expression> getArgument() {

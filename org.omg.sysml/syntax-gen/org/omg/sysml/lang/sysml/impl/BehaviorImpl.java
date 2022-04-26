@@ -70,7 +70,7 @@ public class BehaviorImpl extends ClassImpl implements Behavior {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT // derived
+	 * @generated
 	 */
 	public EList<Step> getStep() {
 		return new DerivedEObjectEList<Step>(Step.class, this, SysMLPackage.BEHAVIOR__STEP,

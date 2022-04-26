@@ -135,7 +135,7 @@ public class ViewUsageImpl extends PartUsageImpl implements ViewUsage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public EList<ViewpointUsage> getSatisfiedViewpoint() {

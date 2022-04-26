@@ -76,7 +76,7 @@ public class AnalysisCaseUsageImpl extends CaseUsageImpl implements AnalysisCase
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public EList<ActionUsage> getAnalysisAction() {

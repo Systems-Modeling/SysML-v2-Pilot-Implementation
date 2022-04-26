@@ -154,7 +154,7 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public EList<Usage> getUsage() {
@@ -164,7 +164,7 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public EList<PortUsage> getOwnedPort() {
@@ -188,7 +188,7 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public EList<ActionUsage> getOwnedAction() {
@@ -198,7 +198,7 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public EList<ConnectorAsUsage> getOwnedConnection() {
@@ -208,7 +208,7 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public EList<ItemUsage> getOwnedItem() {
@@ -218,7 +218,7 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public EList<PartUsage> getOwnedPart() {
@@ -228,7 +228,7 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public EList<InterfaceUsage> getOwnedInterface() {
@@ -238,7 +238,7 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public EList<AttributeUsage> getOwnedAttribute() {
@@ -248,7 +248,7 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public EList<ViewUsage> getOwnedView() {
@@ -258,7 +258,7 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public EList<ViewpointUsage> getOwnedViewpoint() {
@@ -268,7 +268,7 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public EList<RenderingUsage> getOwnedRendering() {
@@ -278,7 +278,7 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public EList<VerificationCaseUsage> getOwnedVerificationCase() {
@@ -288,7 +288,7 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public EList<EnumerationUsage> getOwnedEnumeration() {
@@ -298,7 +298,7 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public EList<AllocationUsage> getOwnedAllocation() {
@@ -308,7 +308,7 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public EList<ConcernUsage> getOwnedConcern() {
@@ -318,7 +318,7 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public EList<OccurrenceUsage> getOwnedOccurrence() {
@@ -328,7 +328,7 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public EList<UseCaseUsage> getOwnedUseCase() {
@@ -338,7 +338,7 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public EList<FlowConnectionUsage> getOwnedFlow() {
@@ -348,7 +348,7 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public EList<StateUsage> getOwnedState() {
@@ -358,7 +358,7 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public EList<ConstraintUsage> getOwnedConstraint() {
@@ -368,7 +368,7 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public EList<TransitionUsage> getOwnedTransition() {
@@ -378,7 +378,7 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public EList<RequirementUsage> getOwnedRequirement() {
@@ -388,7 +388,7 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public EList<CalculationUsage> getOwnedCalculation() {
@@ -421,7 +421,7 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public EList<AnalysisCaseUsage> getOwnedAnalysisCase() {
@@ -431,7 +431,7 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public EList<CaseUsage> getOwnedCase() {
@@ -441,7 +441,7 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public EList<ReferenceUsage> getOwnedReference() {
@@ -476,7 +476,7 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public EList<VariantMembership> getVariantMembership() {

@@ -125,7 +125,7 @@ public class StateDefinitionImpl extends ActionDefinitionImpl implements StateDe
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public EList<StateUsage> getState() {

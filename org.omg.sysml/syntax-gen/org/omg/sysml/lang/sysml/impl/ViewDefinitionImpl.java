@@ -80,7 +80,7 @@ public class ViewDefinitionImpl extends PartDefinitionImpl implements ViewDefini
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public EList<ViewUsage> getView() {
@@ -90,7 +90,7 @@ public class ViewDefinitionImpl extends PartDefinitionImpl implements ViewDefini
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public EList<ViewpointUsage> getSatisfiedViewpoint() {

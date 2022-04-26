@@ -69,7 +69,7 @@ public class RenderingDefinitionImpl extends PartDefinitionImpl implements Rende
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public EList<RenderingUsage> getRendering() {

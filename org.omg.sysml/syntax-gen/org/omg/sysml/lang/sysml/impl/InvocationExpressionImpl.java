@@ -27,7 +27,7 @@ import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.uml2.common.util.DerivedEObjectEList;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.omg.sysml.expressions.ModelLevelFunction;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
@@ -55,6 +55,16 @@ import org.omg.sysml.util.ImplicitGeneralizationMap;
  */
 public class InvocationExpressionImpl extends ExpressionImpl implements InvocationExpression {
 	
+	/**
+	 * The cached setting delegate for the '{@link #getArgument() <em>Argument</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getArgument()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate ARGUMENT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.INVOCATION_EXPRESSION__ARGUMENT).getSettingDelegate();
+
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -115,9 +125,10 @@ public class InvocationExpressionImpl extends ExpressionImpl implements Invocati
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<Expression> getArgument() {
-		return new DerivedEObjectEList<Expression>(Expression.class, this, SysMLPackage.INVOCATION_EXPRESSION__ARGUMENT, new int[] {SysMLPackage.INVOCATION_EXPRESSION__OWNED_FEATURE});
+		return (EList<Expression>)ARGUMENT__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 	
 	/**
@@ -175,7 +186,7 @@ public class InvocationExpressionImpl extends ExpressionImpl implements Invocati
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case SysMLPackage.INVOCATION_EXPRESSION__ARGUMENT:
-				return !getArgument().isEmpty();
+				return ARGUMENT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 		}
 		return super.eIsSet(featureID);
 	}

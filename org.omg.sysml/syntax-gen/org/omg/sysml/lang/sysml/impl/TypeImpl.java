@@ -36,6 +36,7 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.BasicInternalEList;
@@ -94,6 +95,16 @@ import org.omg.sysml.util.TypeUtil;
  */
 public class TypeImpl extends NamespaceImpl implements Type {
 	
+	/**
+	 * The cached setting delegate for the '{@link #getOwnedFeatureMembership() <em>Owned Feature Membership</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedFeatureMembership()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate OWNED_FEATURE_MEMBERSHIP__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.TYPE__OWNED_FEATURE_MEMBERSHIP).getSettingDelegate();
+
 	/**
 	 * The default value of the '{@link #isAbstract() <em>Is Abstract</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -413,14 +424,14 @@ public class TypeImpl extends NamespaceImpl implements Type {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public EList<FeatureMembership> getFeatureMembership() {
 		EList<FeatureMembership> featureMemberships = new NonNotifyingEObjectEList<>(FeatureMembership.class, this, SysMLPackage.TYPE__FEATURE_MEMBERSHIP);
 		getMembership().stream().
-			filter(m->m instanceof FeatureMembership).
-			map(m->(FeatureMembership)m).
+			filter(FeatureMembership.class::isInstance).
+			map(FeatureMembership.class::cast).
 			forEachOrdered(featureMemberships::add);
 		return featureMemberships;
 	}
@@ -916,7 +927,7 @@ public class TypeImpl extends NamespaceImpl implements Type {
 			case SysMLPackage.TYPE__OWNED_SPECIALIZATION:
 				return !getOwnedSpecialization().isEmpty();
 			case SysMLPackage.TYPE__OWNED_FEATURE_MEMBERSHIP:
-				return !getOwnedFeatureMembership().isEmpty();
+				return OWNED_FEATURE_MEMBERSHIP__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.TYPE__OWNED_FEATURE:
 				return !getOwnedFeature().isEmpty();
 			case SysMLPackage.TYPE__OWNED_END_FEATURE:

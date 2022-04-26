@@ -114,6 +114,7 @@ public interface Type extends Namespace {
 	 * @see org.omg.sysml.lang.sysml.FeatureMembership#getOwningType
 	 * @model opposite="owningType" transient="true" volatile="true" derived="true"
 	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<FeatureMembership> getOwnedFeatureMembership();

@@ -38,19 +38,22 @@ public class Element_ownedAnnotationDerived_PropertySettingDelegate extends Basi
 
 	@Override
 	protected Object get(InternalEObject owner, boolean resolve, boolean coreType) {
-		EList<Annotation> annotations = new NonNotifyingEObjectEList<>(Element.class, owner, SysMLPackage.ELEMENT__OWNED_ANNOTATION);
-		((Element)owner).getOwnedRelationship().stream().
-			filter(Annotation.class::isInstance).
-			map(Annotation.class::cast).
-			filter(ann->ann.getAnnotatedElement() == this).
-			forEachOrdered(annotations::add);
-		return annotations;
+		return getOwnedAnnotation(owner);
 	}
 
 	@Override
 	protected boolean isSet(InternalEObject owner) {
-		// TODO Auto-generated method stub
-		return false;
+		return !getOwnedAnnotation(owner).isEmpty();
+	}
+	
+	protected static EList<Annotation> getOwnedAnnotation(InternalEObject owner) {
+		EList<Annotation> annotations = new NonNotifyingEObjectEList<>(Element.class, owner, SysMLPackage.ELEMENT__OWNED_ANNOTATION);
+		((Element)owner).getOwnedRelationship().stream().
+			filter(Annotation.class::isInstance).
+			map(Annotation.class::cast).
+			filter(ann->ann.getAnnotatedElement() == owner).
+			forEachOrdered(annotations::add);
+		return annotations;
 	}
 
 }

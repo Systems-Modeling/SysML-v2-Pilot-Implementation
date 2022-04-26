@@ -10395,8 +10395,8 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   new String[] {
 		   },
 		   new URI[] {
-			 URI.createURI(eNS_URI).appendFragment("//Definition/usage"),
-			 URI.createURI(eNS_URI).appendFragment("//Type/directedFeature")
+			 URI.createURI(eNS_URI).appendFragment("//Type/directedFeature"),
+			 URI.createURI(eNS_URI).appendFragment("//Definition/usage")
 		   });
 		addAnnotation
 		  (getDefinition_Usage(),
@@ -12950,6 +12950,11 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   new String[] {
 		   });
 		addAnnotation
+		  (getElement_TextualRepresentation(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
 		  (getElement_QualifiedName(),
 		   source,
 		   new String[] {
@@ -12970,26 +12975,6 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   new String[] {
 		   });
 		addAnnotation
-		  (getType_OwnedFeature(),
-		   source,
-		   new String[] {
-		   });
-		addAnnotation
-		  (getType_Feature(),
-		   source,
-		   new String[] {
-		   });
-		addAnnotation
-		  (getType_FeatureMembership(),
-		   source,
-		   new String[] {
-		   });
-		addAnnotation
-		  (getType_OwnedDisjoining(),
-		   source,
-		   new String[] {
-		   });
-		addAnnotation
 		  (getFeature_OwnedRedefinition(),
 		   source,
 		   new String[] {
@@ -13001,11 +12986,6 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   });
 		addAnnotation
 		  (getFeature_OwnedTyping(),
-		   source,
-		   new String[] {
-		   });
-		addAnnotation
-		  (getFeature_OwnedTypeFeaturing(),
 		   source,
 		   new String[] {
 		   });
@@ -13030,11 +13010,6 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   new String[] {
 		   });
 		addAnnotation
-		  (getPackage_FilterCondition(),
-		   source,
-		   new String[] {
-		   });
-		addAnnotation
 		  (getInvocationExpression_Argument(),
 		   source,
 		   new String[] {
@@ -13046,6 +13021,11 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   });
 		addAnnotation
 		  (getDefinition_OwnedPort(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getDefinition_DirectedUsage(),
 		   source,
 		   new String[] {
 		   });
@@ -13086,11 +13066,6 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   });
 		addAnnotation
 		  (getDefinition_OwnedAnalysisCase(),
-		   source,
-		   new String[] {
-		   });
-		addAnnotation
-		  (getDefinition_Variant(),
 		   source,
 		   new String[] {
 		   });
@@ -13245,11 +13220,6 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   new String[] {
 		   });
 		addAnnotation
-		  (getUsage_Variant(),
-		   source,
-		   new String[] {
-		   });
-		addAnnotation
 		  (getUsage_NestedReference(),
 		   source,
 		   new String[] {
@@ -13330,21 +13300,6 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   new String[] {
 		   });
 		addAnnotation
-		  (getTransitionUsage_TriggerAction(),
-		   source,
-		   new String[] {
-		   });
-		addAnnotation
-		  (getTransitionUsage_GuardExpression(),
-		   source,
-		   new String[] {
-		   });
-		addAnnotation
-		  (getTransitionUsage_EffectAction(),
-		   source,
-		   new String[] {
-		   });
-		addAnnotation
 		  (getAcceptActionUsage_ReceiverArgument(),
 		   source,
 		   new String[] {
@@ -13360,42 +13315,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   new String[] {
 		   });
 		addAnnotation
-		  (getRequirementUsage_RequiredConstraint(),
-		   source,
-		   new String[] {
-		   });
-		addAnnotation
-		  (getRequirementUsage_AssumedConstraint(),
-		   source,
-		   new String[] {
-		   });
-		addAnnotation
-		  (getRequirementUsage_FramedConcern(),
-		   source,
-		   new String[] {
-		   });
-		addAnnotation
-		  (getRequirementDefinition_AssumedConstraint(),
-		   source,
-		   new String[] {
-		   });
-		addAnnotation
-		  (getRequirementDefinition_RequiredConstraint(),
-		   source,
-		   new String[] {
-		   });
-		addAnnotation
-		  (getRequirementDefinition_FramedConcern(),
-		   source,
-		   new String[] {
-		   });
-		addAnnotation
 		  (getPartUsage_PartDefinition(),
-		   source,
-		   new String[] {
-		   });
-		addAnnotation
-		  (getCaseDefinition_ActorParameter(),
 		   source,
 		   new String[] {
 		   });
@@ -13425,22 +13345,12 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   new String[] {
 		   });
 		addAnnotation
-		  (getViewUsage_ViewCondition(),
-		   source,
-		   new String[] {
-		   });
-		addAnnotation
 		  (getViewDefinition_View(),
 		   source,
 		   new String[] {
 		   });
 		addAnnotation
 		  (getViewDefinition_SatisfiedViewpoint(),
-		   source,
-		   new String[] {
-		   });
-		addAnnotation
-		  (getViewDefinition_ViewCondition(),
 		   source,
 		   new String[] {
 		   });

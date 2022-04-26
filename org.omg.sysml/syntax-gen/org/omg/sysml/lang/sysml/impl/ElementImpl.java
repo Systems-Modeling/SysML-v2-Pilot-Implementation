@@ -40,7 +40,6 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.eclipse.uml2.common.util.DerivedEObjectEList;
 import org.eclipse.uml2.common.util.SubsetSupersetEDataTypeUniqueEList;
 import org.omg.sysml.lang.sysml.Annotation;
 import org.omg.sysml.lang.sysml.Documentation;
@@ -191,6 +190,16 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate OWNED_ANNOTATION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.ELEMENT__OWNED_ANNOTATION).getSettingDelegate();
+
+	/**
+	 * The cached setting delegate for the '{@link #getTextualRepresentation() <em>Textual Representation</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTextualRepresentation()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate TEXTUAL_REPRESENTATION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.ELEMENT__TEXTUAL_REPRESENTATION).getSettingDelegate();
 
 	/**
 	 * The cached setting delegate for the '{@link #getQualifiedName() <em>Qualified Name</em>}' attribute.
@@ -529,9 +538,10 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<Documentation> getDocumentation() {
-		return new DerivedEObjectEList<Documentation>(Documentation.class, this, SysMLPackage.ELEMENT__DOCUMENTATION, new int[] {SysMLPackage.ELEMENT__OWNED_RELATIONSHIP});
+		return (EList<Documentation>)DOCUMENTATION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
@@ -539,15 +549,10 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<Annotation> getOwnedAnnotation() {
-		EList<Annotation> annotations = new NonNotifyingEObjectEList<>(Element.class, this, SysMLPackage.ELEMENT__OWNED_ANNOTATION);
-		getOwnedRelationship().stream().
-			filter(Annotation.class::isInstance).
-			map(Annotation.class::cast).
-			filter(ann->ann.getAnnotatedElement() == this).
-			forEachOrdered(annotations::add);
-		return annotations;
+		return (EList<Annotation>)OWNED_ANNOTATION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
@@ -566,9 +571,10 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<TextualRepresentation> getTextualRepresentation() {
-		return new DerivedEObjectEList<TextualRepresentation>(TextualRepresentation.class, this, SysMLPackage.ELEMENT__TEXTUAL_REPRESENTATION, new int[] {SysMLPackage.ELEMENT__OWNED_RELATIONSHIP});
+		return (EList<TextualRepresentation>)TEXTUAL_REPRESENTATION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
@@ -907,7 +913,7 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 			case SysMLPackage.ELEMENT__OWNED_ANNOTATION:
 				return OWNED_ANNOTATION__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.ELEMENT__TEXTUAL_REPRESENTATION:
-				return !getTextualRepresentation().isEmpty();
+				return TEXTUAL_REPRESENTATION__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.ELEMENT__QUALIFIED_NAME:
 				return QUALIFIED_NAME__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.ELEMENT__EFFECTIVE_NAME:

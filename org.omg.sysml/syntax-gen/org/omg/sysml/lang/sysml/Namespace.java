@@ -106,6 +106,7 @@ public interface Namespace extends Element {
 	 * @see org.omg.sysml.lang.sysml.Import#getImportOwningNamespace
 	 * @model opposite="importOwningNamespace" transient="true" volatile="true" derived="true"
 	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<Import> getOwnedImport();

@@ -164,6 +164,7 @@ public interface ItemFlow extends Connector, Step {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getItemFlow_ItemFeature()
 	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<ItemFeature> getItemFeature();

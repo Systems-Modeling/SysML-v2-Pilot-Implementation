@@ -27,7 +27,7 @@ import java.util.Collection;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.uml2.common.util.DerivedEObjectEList;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Interaction;
@@ -51,6 +51,16 @@ import org.omg.sysml.util.TypeUtil;
  */
 public class InteractionImpl extends AssociationImpl implements Interaction {
 	/**
+	 * The cached setting delegate for the '{@link #getStep() <em>Step</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getStep()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate STEP__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.BEHAVIOR__STEP).getSettingDelegate();
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -69,13 +79,12 @@ public class InteractionImpl extends AssociationImpl implements Interaction {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated NOT // derived, inherited from Behavior
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<Step> getStep() {
-		return new DerivedEObjectEList<Step>(Step.class, this, SysMLPackage.INTERACTION__STEP,
-				new int[] { SysMLPackage.TYPE__FEATURE });
+		return (EList<Step>)STEP__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
@@ -161,7 +170,7 @@ public class InteractionImpl extends AssociationImpl implements Interaction {
 			case SysMLPackage.INTERACTION__DIRECTED_FEATURE:
 				return isSetDirectedFeature();
 			case SysMLPackage.INTERACTION__STEP:
-				return !getStep().isEmpty();
+				return STEP__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.INTERACTION__PARAMETER:
 				return isSetParameter();
 		}

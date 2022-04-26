@@ -25,10 +25,10 @@ package org.omg.sysml.lang.sysml.impl;
 import java.util.Collection;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.omg.sysml.lang.sysml.PartDefinition;
 import org.omg.sysml.lang.sysml.PartUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.util.NonNotifyingEObjectEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -45,6 +45,16 @@ import org.omg.sysml.util.NonNotifyingEObjectEList;
  */
 public class PartUsageImpl extends ItemUsageImpl implements PartUsage {
 	
+	/**
+	 * The cached setting delegate for the '{@link #getPartDefinition() <em>Part Definition</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPartDefinition()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate PART_DEFINITION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.PART_USAGE__PART_DEFINITION).getSettingDelegate();
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -69,15 +79,10 @@ public class PartUsageImpl extends ItemUsageImpl implements PartUsage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<PartDefinition> getPartDefinition() {
-		EList<PartDefinition> partDefinitions =
-				new NonNotifyingEObjectEList<>(PartDefinition.class, this, SysMLPackage.PART_USAGE__PART_DEFINITION);
-		super.getItemDefinition().stream().
-			filter(PartDefinition.class::isInstance).
-			map(PartDefinition.class::cast).
-			forEachOrdered(partDefinitions::add);
-		return partDefinitions;
+		return (EList<PartDefinition>)PART_DEFINITION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
@@ -135,7 +140,7 @@ public class PartUsageImpl extends ItemUsageImpl implements PartUsage {
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case SysMLPackage.PART_USAGE__PART_DEFINITION:
-				return !getPartDefinition().isEmpty();
+				return PART_DEFINITION__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 		}
 		return super.eIsSet(featureID);
 	}

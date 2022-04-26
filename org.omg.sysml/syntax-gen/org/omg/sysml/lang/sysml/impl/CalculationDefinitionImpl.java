@@ -27,6 +27,7 @@ import java.util.Collection;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.uml2.common.util.DerivedEObjectEList;
 import org.omg.sysml.lang.sysml.Expression;
@@ -65,6 +66,16 @@ public class CalculationDefinitionImpl extends ActionDefinitionImpl implements C
 	 * @ordered
 	 */
 	protected static final boolean IS_MODEL_LEVEL_EVALUABLE_EDEFAULT = false;
+
+	/**
+	 * The cached setting delegate for the '{@link #getCalculation() <em>Calculation</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCalculation()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate CALCULATION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.CALCULATION_DEFINITION__CALCULATION).getSettingDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -160,10 +171,10 @@ public class CalculationDefinitionImpl extends ActionDefinitionImpl implements C
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<CalculationUsage> getCalculation() {
-		return new DerivedEObjectEList<CalculationUsage>(CalculationUsage.class, this, SysMLPackage.CALCULATION_DEFINITION__CALCULATION,
-				new int[] { SysMLPackage.TYPE__FEATURE });
+		return (EList<CalculationUsage>)CALCULATION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
@@ -276,7 +287,7 @@ public class CalculationDefinitionImpl extends ActionDefinitionImpl implements C
 			case SysMLPackage.CALCULATION_DEFINITION__IS_MODEL_LEVEL_EVALUABLE:
 				return isModelLevelEvaluable() != IS_MODEL_LEVEL_EVALUABLE_EDEFAULT;
 			case SysMLPackage.CALCULATION_DEFINITION__CALCULATION:
-				return !getCalculation().isEmpty();
+				return CALCULATION__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 		}
 		return super.eIsSet(featureID);
 	}

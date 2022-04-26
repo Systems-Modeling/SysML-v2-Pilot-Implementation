@@ -490,6 +490,7 @@ public interface Element extends EObject {
 	 * @see org.omg.sysml.lang.sysml.TextualRepresentation#getRepresentedElement
 	 * @model opposite="representedElement" transient="true" volatile="true" derived="true"
 	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<TextualRepresentation> getTextualRepresentation();

@@ -39,8 +39,6 @@ public class DerivedPropertySettingDelegateFactory
 				return new AcceptActionUsage_payloadParameterDerived_PropertySettingDelegate(eStructuralFeature);
 			case SysMLPackage.ACCEPT_ACTION_USAGE__RECEIVER_ARGUMENT:
 				return new AcceptActionUsage_receiverArgumentDerived_PropertySettingDelegate(eStructuralFeature);
-			case SysMLPackage.ELEMENT__DOCUMENTATION:
-				return new Element_documentationDerived_PropertySettingDelegate(eStructuralFeature);
 			case SysMLPackage.ELEMENT__EFFECTIVE_NAME:
 				return new Element_effectiveNameDerived_PropertySettingDelegate(eStructuralFeature);
 			case SysMLPackage.ELEMENT__NAME:

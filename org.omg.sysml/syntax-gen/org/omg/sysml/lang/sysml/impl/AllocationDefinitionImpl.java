@@ -7,7 +7,7 @@ import java.util.Collection;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.uml2.common.util.DerivedEObjectEList;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.omg.sysml.lang.sysml.AllocationDefinition;
 import org.omg.sysml.lang.sysml.AllocationUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -26,6 +26,16 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * @generated
  */
 public class AllocationDefinitionImpl extends ConnectionDefinitionImpl implements AllocationDefinition {
+
+	/**
+	 * The cached setting delegate for the '{@link #getAllocation() <em>Allocation</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAllocation()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate ALLOCATION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.ALLOCATION_DEFINITION__ALLOCATION).getSettingDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -51,9 +61,10 @@ public class AllocationDefinitionImpl extends ConnectionDefinitionImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<AllocationUsage> getAllocation() {
-		return new DerivedEObjectEList<>(AllocationUsage.class, this, SysMLPackage.ALLOCATION_DEFINITION__ALLOCATION, new int[] {SysMLPackage.TYPE__FEATURE});
+		return (EList<AllocationUsage>)ALLOCATION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
@@ -111,7 +122,7 @@ public class AllocationDefinitionImpl extends ConnectionDefinitionImpl implement
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case SysMLPackage.ALLOCATION_DEFINITION__ALLOCATION:
-				return !getAllocation().isEmpty();
+				return ALLOCATION__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 		}
 		return super.eIsSet(featureID);
 	}

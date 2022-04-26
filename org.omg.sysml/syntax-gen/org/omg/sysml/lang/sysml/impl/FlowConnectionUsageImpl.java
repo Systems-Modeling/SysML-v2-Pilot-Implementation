@@ -8,8 +8,8 @@ import java.util.Optional;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-import org.eclipse.uml2.common.util.DerivedEObjectEList;
 import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.Classifier;
 import org.omg.sysml.lang.sysml.Feature;
@@ -45,6 +45,16 @@ import org.omg.sysml.util.TypeUtil;
  * @generated
  */
 public class FlowConnectionUsageImpl extends ConnectionUsageImpl implements FlowConnectionUsage {
+	/**
+	 * The cached setting delegate for the '{@link #getItemFeature() <em>Item Feature</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getItemFeature()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate ITEM_FEATURE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.ITEM_FLOW__ITEM_FEATURE).getSettingDelegate();
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -182,13 +192,12 @@ public class FlowConnectionUsageImpl extends ConnectionUsageImpl implements Flow
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<ItemFeature> getItemFeature() {
-		return new DerivedEObjectEList<ItemFeature>(
-				ItemFeature.class, this, SysMLPackage.FLOW_CONNECTION_USAGE__ITEM_FEATURE, 
-				new int[]{SysMLPackage.TYPE__OWNED_FEATURE});
+		return (EList<ItemFeature>)ITEM_FEATURE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
@@ -352,7 +361,7 @@ public class FlowConnectionUsageImpl extends ConnectionUsageImpl implements Flow
 			case SysMLPackage.FLOW_CONNECTION_USAGE__ITEM_FLOW_END:
 				return isSetItemFlowEnd();
 			case SysMLPackage.FLOW_CONNECTION_USAGE__ITEM_FEATURE:
-				return !getItemFeature().isEmpty();
+				return ITEM_FEATURE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.FLOW_CONNECTION_USAGE__ITEM_FLOW_FEATURE:
 				return !getItemFlowFeature().isEmpty();
 		}

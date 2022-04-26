@@ -145,6 +145,7 @@ public interface Feature extends Type {
 	 * @see org.omg.sysml.lang.sysml.FeatureChaining#getFeatureChained
 	 * @model opposite="featureChained" required="true" transient="true" volatile="true" derived="true"
 	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<FeatureChaining> getOwnedFeatureChaining();
@@ -349,6 +350,7 @@ public interface Feature extends Type {
 	 * @model transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='owningFeature'"
 	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<Redefinition> getOwnedRedefinition();
@@ -378,6 +380,7 @@ public interface Feature extends Type {
 	 * @see org.omg.sysml.lang.sysml.Subsetting#getOwningFeature
 	 * @model opposite="owningFeature" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<Subsetting> getOwnedSubsetting();
@@ -406,6 +409,7 @@ public interface Feature extends Type {
 	 * @see org.omg.sysml.lang.sysml.FeatureTyping#getOwningFeature
 	 * @model opposite="owningFeature" transient="true" volatile="true" derived="true"
 	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<FeatureTyping> getOwnedTyping();

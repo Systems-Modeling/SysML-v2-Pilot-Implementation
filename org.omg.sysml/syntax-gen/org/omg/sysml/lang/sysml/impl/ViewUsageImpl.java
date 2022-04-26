@@ -30,8 +30,8 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.UniqueEList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.uml2.common.util.DerivedEObjectEList;
 import org.eclipse.uml2.common.util.UnionEObjectEList;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.ElementFilterMembership;
@@ -72,6 +72,16 @@ import org.omg.sysml.util.UsageUtil;
  */
 public class ViewUsageImpl extends PartUsageImpl implements ViewUsage {
 	
+	/**
+	 * The cached setting delegate for the '{@link #getSatisfiedViewpoint() <em>Satisfied Viewpoint</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSatisfiedViewpoint()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate SATISFIED_VIEWPOINT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.VIEW_USAGE__SATISFIED_VIEWPOINT).getSettingDelegate();
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -137,9 +147,10 @@ public class ViewUsageImpl extends PartUsageImpl implements ViewUsage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<ViewpointUsage> getSatisfiedViewpoint() {
-		return new DerivedEObjectEList<>(ViewpointUsage.class, this, SysMLPackage.VIEW_USAGE__SATISFIED_VIEWPOINT, new int[] {SysMLPackage.USAGE__NESTED_USAGE});
+		return (EList<ViewpointUsage>)SATISFIED_VIEWPOINT__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
@@ -331,7 +342,7 @@ public class ViewUsageImpl extends PartUsageImpl implements ViewUsage {
 			case SysMLPackage.VIEW_USAGE__VIEW_DEFINITION:
 				return isSetViewDefinition();
 			case SysMLPackage.VIEW_USAGE__SATISFIED_VIEWPOINT:
-				return !getSatisfiedViewpoint().isEmpty();
+				return SATISFIED_VIEWPOINT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.VIEW_USAGE__EXPOSED_NAMESPACE:
 				return !getExposedNamespace().isEmpty();
 			case SysMLPackage.VIEW_USAGE__VIEW_RENDERING:

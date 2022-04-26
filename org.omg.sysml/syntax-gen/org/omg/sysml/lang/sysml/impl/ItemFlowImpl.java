@@ -27,8 +27,8 @@ import java.util.Optional;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-import org.eclipse.uml2.common.util.DerivedEObjectEList;
 import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.Classifier;
 import org.omg.sysml.lang.sysml.Type;
@@ -65,6 +65,16 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  */
 public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 	
+	/**
+	 * The cached setting delegate for the '{@link #getItemFeature() <em>Item Feature</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getItemFeature()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate ITEM_FEATURE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.ITEM_FLOW__ITEM_FEATURE).getSettingDelegate();
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -151,11 +161,10 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<ItemFeature> getItemFeature() {
-		return new DerivedEObjectEList<ItemFeature>(
-				ItemFeature.class, this, SysMLPackage.ITEM_FLOW__ITEM_FEATURE, 
-				new int[]{SysMLPackage.TYPE__OWNED_FEATURE});
+		return (EList<ItemFeature>)ITEM_FEATURE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
@@ -385,7 +394,7 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 			case SysMLPackage.ITEM_FLOW__ITEM_FLOW_END:
 				return isSetItemFlowEnd();
 			case SysMLPackage.ITEM_FLOW__ITEM_FEATURE:
-				return !getItemFeature().isEmpty();
+				return ITEM_FEATURE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.ITEM_FLOW__ITEM_FLOW_FEATURE:
 				return !getItemFlowFeature().isEmpty();
 		}

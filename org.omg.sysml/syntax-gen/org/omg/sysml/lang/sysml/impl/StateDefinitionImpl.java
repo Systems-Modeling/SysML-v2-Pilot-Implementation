@@ -27,6 +27,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.uml2.common.util.DerivedEObjectEList;
@@ -61,6 +62,15 @@ import org.omg.sysml.util.TypeUtil;
  */
 public class StateDefinitionImpl extends ActionDefinitionImpl implements StateDefinition {
 
+	/**
+	 * The cached setting delegate for the '{@link #getState() <em>State</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getState()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate STATE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.STATE_DEFINITION__STATE).getSettingDelegate();
 	/**
 	 * The default value of the '{@link #isParallel() <em>Is Parallel</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -127,10 +137,10 @@ public class StateDefinitionImpl extends ActionDefinitionImpl implements StateDe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<StateUsage> getState() {
-		return new DerivedEObjectEList<StateUsage>(StateUsage.class, this, SysMLPackage.STATE_DEFINITION__STATE,
-				new int[] { SysMLPackage.TYPE__FEATURE });
+		return (EList<StateUsage>)STATE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	public static ActionUsage getStateSubaction(Type owner, StateSubactionKind kind) {
@@ -344,7 +354,7 @@ public class StateDefinitionImpl extends ActionDefinitionImpl implements StateDe
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case SysMLPackage.STATE_DEFINITION__STATE:
-				return !getState().isEmpty();
+				return STATE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.STATE_DEFINITION__ENTRY_ACTION:
 				return basicGetEntryAction() != null;
 			case SysMLPackage.STATE_DEFINITION__DO_ACTION:

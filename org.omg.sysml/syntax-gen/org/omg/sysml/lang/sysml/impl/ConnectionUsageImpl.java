@@ -27,6 +27,7 @@ import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.BasicInternalEList;
@@ -110,6 +111,26 @@ public class ConnectionUsageImpl extends ConnectorAsUsageImpl implements Connect
 	 * @ordered
 	 */
 	protected PortionKind portionKind = PORTION_KIND_EDEFAULT;
+
+	/**
+	 * The cached setting delegate for the '{@link #getPartDefinition() <em>Part Definition</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPartDefinition()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate PART_DEFINITION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.PART_USAGE__PART_DEFINITION).getSettingDelegate();
+
+	/**
+	 * The cached setting delegate for the '{@link #getConnectionDefinition() <em>Connection Definition</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getConnectionDefinition()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate CONNECTION_DEFINITION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.CONNECTION_USAGE__CONNECTION_DEFINITION).getSettingDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -290,11 +311,12 @@ public class ConnectionUsageImpl extends ConnectorAsUsageImpl implements Connect
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<PartDefinition> getPartDefinition() {
-		return new DerivedEObjectEList<>(PartDefinition.class, this, SysMLPackage.CONNECTION_USAGE__PART_DEFINITION, new int[] {SysMLPackage.CONNECTION_USAGE__OCCURRENCE_DEFINITION});
+		return (EList<PartDefinition>)PART_DEFINITION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
@@ -342,9 +364,10 @@ public class ConnectionUsageImpl extends ConnectorAsUsageImpl implements Connect
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<AssociationStructure> getConnectionDefinition() {
-		return new DerivedEObjectEList<>(AssociationStructure.class, this, SysMLPackage.CONNECTION_USAGE__CONNECTION_DEFINITION, new int[] {SysMLPackage.CONNECTION_USAGE__OCCURRENCE_DEFINITION});
+		return (EList<AssociationStructure>)CONNECTION_DEFINITION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
@@ -548,7 +571,7 @@ public class ConnectionUsageImpl extends ConnectorAsUsageImpl implements Connect
 			case SysMLPackage.CONNECTION_USAGE__ITEM_DEFINITION:
 				return isSetItemDefinition();
 			case SysMLPackage.CONNECTION_USAGE__PART_DEFINITION:
-				return !getPartDefinition().isEmpty();
+				return PART_DEFINITION__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.CONNECTION_USAGE__ASSOCIATION:
 				return isSetAssociation();
 			case SysMLPackage.CONNECTION_USAGE__CONNECTION_DEFINITION:

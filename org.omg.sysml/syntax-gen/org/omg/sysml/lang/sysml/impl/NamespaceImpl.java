@@ -37,6 +37,7 @@ import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.uml2.common.util.DerivedEObjectEList;
@@ -72,6 +73,16 @@ import org.omg.sysml.util.NonNotifyingEObjectEList;
  * @generated
  */
 public class NamespaceImpl extends ElementImpl implements Namespace {
+	/**
+	 * The cached setting delegate for the '{@link #getOwnedImport() <em>Owned Import</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedImport()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate OWNED_IMPORT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.NAMESPACE__OWNED_IMPORT).getSettingDelegate();
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -143,9 +154,10 @@ public class NamespaceImpl extends ElementImpl implements Namespace {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<Import> getOwnedImport() {
-		return new DerivedEObjectEList<Import>(Import.class, this, SysMLPackage.NAMESPACE__OWNED_IMPORT, new int[] {SysMLPackage.NAMESPACE__OWNED_RELATIONSHIP});
+		return (EList<Import>)OWNED_IMPORT__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
@@ -392,7 +404,7 @@ public class NamespaceImpl extends ElementImpl implements Namespace {
 			case SysMLPackage.NAMESPACE__OWNED_RELATIONSHIP:
 				return ownedRelationship != null && !ownedRelationship.isEmpty();
 			case SysMLPackage.NAMESPACE__OWNED_IMPORT:
-				return !getOwnedImport().isEmpty();
+				return OWNED_IMPORT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.NAMESPACE__MEMBER:
 				return !getMember().isEmpty();
 			case SysMLPackage.NAMESPACE__OWNED_MEMBER:

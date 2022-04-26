@@ -78,6 +78,7 @@ public interface Classifier extends Type {
 	 * @see org.omg.sysml.lang.sysml.Subclassification#getOwningClassifier
 	 * @model opposite="owningClassifier" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<Subclassification> getOwnedSubclassification();

@@ -28,7 +28,6 @@ import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.uml2.common.util.DerivedEObjectEList;
 import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.ActionDefinition;
 import org.omg.sysml.lang.sysml.Behavior;
@@ -55,6 +54,15 @@ import org.omg.sysml.util.TypeUtil;
  */
 public class ActionDefinitionImpl extends OccurrenceDefinitionImpl implements ActionDefinition {
 
+	/**
+	 * The cached setting delegate for the '{@link #getStep() <em>Step</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getStep()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate STEP__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.BEHAVIOR__STEP).getSettingDelegate();
 	/**
 	 * The cached setting delegate for the '{@link #getAction() <em>Action</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -87,13 +95,12 @@ public class ActionDefinitionImpl extends OccurrenceDefinitionImpl implements Ac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<Step> getStep() {
-		return new DerivedEObjectEList<Step>(Step.class, this, 
-				SysMLPackage.ACTION_DEFINITION__STEP, 
-				new int[] {SysMLPackage.TYPE__FEATURE});
+		return (EList<Step>)STEP__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
@@ -203,7 +210,7 @@ public class ActionDefinitionImpl extends OccurrenceDefinitionImpl implements Ac
 			case SysMLPackage.ACTION_DEFINITION__DIRECTED_FEATURE:
 				return isSetDirectedFeature();
 			case SysMLPackage.ACTION_DEFINITION__STEP:
-				return !getStep().isEmpty();
+				return STEP__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.ACTION_DEFINITION__PARAMETER:
 				return isSetParameter();
 			case SysMLPackage.ACTION_DEFINITION__ACTION:

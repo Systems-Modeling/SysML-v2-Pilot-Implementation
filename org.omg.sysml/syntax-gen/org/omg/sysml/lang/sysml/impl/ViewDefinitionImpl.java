@@ -27,8 +27,8 @@ import java.util.Collection;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.uml2.common.util.DerivedEObjectEList;
 import org.omg.sysml.lang.sysml.ElementFilterMembership;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.RenderingUsage;
@@ -59,6 +59,25 @@ import org.omg.sysml.util.UsageUtil;
 public class ViewDefinitionImpl extends PartDefinitionImpl implements ViewDefinition {
 
 	/**
+	 * The cached setting delegate for the '{@link #getView() <em>View</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getView()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate VIEW__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.VIEW_DEFINITION__VIEW).getSettingDelegate();
+	/**
+	 * The cached setting delegate for the '{@link #getSatisfiedViewpoint() <em>Satisfied Viewpoint</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSatisfiedViewpoint()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate SATISFIED_VIEWPOINT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.VIEW_DEFINITION__SATISFIED_VIEWPOINT).getSettingDelegate();
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -82,9 +101,10 @@ public class ViewDefinitionImpl extends PartDefinitionImpl implements ViewDefini
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<ViewUsage> getView() {
-		return new DerivedEObjectEList<>(ViewUsage.class, this, SysMLPackage.VIEW_DEFINITION__VIEW, new int[] {SysMLPackage.DEFINITION__USAGE});
+		return (EList<ViewUsage>)VIEW__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
@@ -92,9 +112,10 @@ public class ViewDefinitionImpl extends PartDefinitionImpl implements ViewDefini
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<ViewpointUsage> getSatisfiedViewpoint() {
-		return new DerivedEObjectEList<>(ViewpointUsage.class, this, SysMLPackage.VIEW_DEFINITION__SATISFIED_VIEWPOINT, new int[] {SysMLPackage.DEFINITION__OWNED_USAGE});
+		return (EList<ViewpointUsage>)SATISFIED_VIEWPOINT__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
@@ -222,9 +243,9 @@ public class ViewDefinitionImpl extends PartDefinitionImpl implements ViewDefini
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case SysMLPackage.VIEW_DEFINITION__VIEW:
-				return !getView().isEmpty();
+				return VIEW__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.VIEW_DEFINITION__SATISFIED_VIEWPOINT:
-				return !getSatisfiedViewpoint().isEmpty();
+				return SATISFIED_VIEWPOINT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.VIEW_DEFINITION__VIEW_RENDERING:
 				return basicGetViewRendering() != null;
 			case SysMLPackage.VIEW_DEFINITION__VIEW_CONDITION:

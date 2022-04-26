@@ -39,6 +39,7 @@ import org.eclipse.emf.ecore.EPackage;
  * @see org.omg.sysml.lang.types.TypesFactory
  * @model kind="package"
  *        annotation="http://www.eclipse.org/uml2/2.0.0/UML originalName='primitiveTypes'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore settingDelegates='http://www.omg.org/spec/SysML'"
  * @generated
  */
 public interface TypesPackage extends EPackage {

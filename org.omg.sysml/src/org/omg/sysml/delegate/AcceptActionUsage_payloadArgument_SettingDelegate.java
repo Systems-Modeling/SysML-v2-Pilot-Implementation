@@ -1,6 +1,7 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2022 Siemens
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -21,35 +22,24 @@
 
 package org.omg.sysml.delegate;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.util.BasicSettingDelegate;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.AcceptActionUsage;
-import org.omg.sysml.lang.sysml.ReferenceUsage;
+import org.omg.sysml.util.FeatureUtil;
 import org.omg.sysml.util.UsageUtil;
 
-public class AcceptActionUsage_payloadParameterDerived_PropertySettingDelegate extends BasicSettingDelegate.Stateless {
-
-	public AcceptActionUsage_payloadParameterDerived_PropertySettingDelegate(EStructuralFeature eStructuralFeature) {
+public class AcceptActionUsage_payloadArgument_SettingDelegate extends BasicDerivedObjectSettingDelegate {
+	
+	public AcceptActionUsage_payloadArgument_SettingDelegate(EStructuralFeature eStructuralFeature) {
 		super(eStructuralFeature);
 	}
 
 	@Override
-	protected Object get(InternalEObject owner, boolean resolve, boolean coreType) {
-		ReferenceUsage payloadParameter = basicGetPayloadParameter((AcceptActionUsage)owner);
-		return payloadParameter != null && payloadParameter.eIsProxy() ? 
-				(ReferenceUsage)owner.eResolveProxy((InternalEObject)payloadParameter) : payloadParameter;
-	}
-
-	private ReferenceUsage basicGetPayloadParameter(AcceptActionUsage owner) {
-		Feature payloadParameter = UsageUtil.getPayloadParameterOf(owner);
-		return payloadParameter instanceof ReferenceUsage? (ReferenceUsage)payloadParameter: null;
-	}
-
-	@Override
-	protected boolean isSet(InternalEObject owner) {
-		return false;
+	protected EObject basicGet(InternalEObject action) {
+		Feature receiverParameter = UsageUtil.getPayloadParameterOf((AcceptActionUsage)action);
+		return receiverParameter == null? null: FeatureUtil.getValueExpressionFor(receiverParameter);
 	}
 
 }

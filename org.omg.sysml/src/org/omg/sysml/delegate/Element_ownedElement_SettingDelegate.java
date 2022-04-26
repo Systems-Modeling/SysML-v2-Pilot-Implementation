@@ -1,6 +1,7 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2022 Siemens
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -21,31 +22,28 @@
 
 package org.omg.sysml.delegate;
 
+import java.util.stream.Collectors;
+
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.util.BasicSettingDelegate;
 import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.util.NonNotifyingEObjectEList;
 
-public class Element_effectiveNameDerived_PropertySettingDelegate extends BasicSettingDelegate.Stateless {
+public class Element_ownedElement_SettingDelegate extends BasicDerivedListSettingDelegate {
 
-	public Element_effectiveNameDerived_PropertySettingDelegate(EStructuralFeature eStructuralFeature) {
+	public Element_ownedElement_SettingDelegate(EStructuralFeature eStructuralFeature) {
 		super(eStructuralFeature);
 	}
 
 	@Override
-	protected Object get(InternalEObject owner, boolean resolve, boolean coreType) {
-		return ((Element) owner).effectiveName();
-	}
-
-	@Override
-	protected void set(InternalEObject owner, Object newValue) {
-		throw new UnsupportedOperationException();
-	}
-
-	@Override
-	protected boolean isSet(InternalEObject owner) {
-		// TODO Auto-generated method stub
-		return false;
+	protected EList<?> basicGet(InternalEObject owner) {
+		BasicEList<Element> ownedElements = new NonNotifyingEObjectEList<>(Element.class, owner, SysMLPackage.ELEMENT__OWNED_ELEMENT);
+		ownedElements.addAllUnique(((Element) owner).getOwnedRelationship().stream().
+				flatMap(relationship->relationship.getOwnedRelatedElement().stream()).collect(Collectors.toList()));
+		return ownedElements;
 	}
 
 }

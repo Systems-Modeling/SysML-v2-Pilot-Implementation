@@ -1,6 +1,7 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2022 Siemens
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -23,21 +24,20 @@ package org.omg.sysml.delegate;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.util.BasicSettingDelegate;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.impl.ElementImpl;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.impl.MembershipImpl;
 import org.omg.sysml.util.ElementUtil;
 
-public class Element_nameDerived_PropertySettingDelegate extends BasicSettingDelegate.Stateless {
+public class Element_name_SettingDelegate extends BasicDerivedPropertySettingDelegate {
 
-	public Element_nameDerived_PropertySettingDelegate(EStructuralFeature eStructuralFeature) {
+	public Element_name_SettingDelegate(EStructuralFeature eStructuralFeature) {
 		super(eStructuralFeature);
 	}
 
 	@Override
-	protected Object get(InternalEObject owner, boolean resolve, boolean coreType) {
+	protected Object basicGet(InternalEObject owner) {
 		String name = ((ElementImpl)owner).basicGetName();
 		if (name != null) {
 			return name;
@@ -48,20 +48,14 @@ public class Element_nameDerived_PropertySettingDelegate extends BasicSettingDel
 	}
 	
 	 @Override
-		protected void set(InternalEObject owner, Object newValue) {
+	 protected void set(InternalEObject owner, Object newValue) {
 		 Membership owningMembership = ((Element)owner).getOwningMembership();
-			if (owningMembership != null) {
-				owningMembership.setMemberName((String)newValue);
-				((ElementImpl)owner).basicSetName(null);
-			} else {
-				((ElementImpl)owner).basicSetName(ElementUtil.unescapeString((String)newValue));
-			}
-		}
-
-	@Override
-	protected boolean isSet(InternalEObject owner) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+		 if (owningMembership != null) {
+			 owningMembership.setMemberName((String)newValue);
+			 ((ElementImpl)owner).basicSetName(null);
+		 } else {
+			 ((ElementImpl)owner).basicSetName(ElementUtil.unescapeString((String)newValue));
+		 }
+	 }
 
 }

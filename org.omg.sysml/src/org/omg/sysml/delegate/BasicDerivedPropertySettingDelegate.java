@@ -21,30 +21,26 @@
 
 package org.omg.sysml.delegate;
 
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.uml2.common.util.DerivedEObjectEList;
+import org.eclipse.emf.ecore.util.BasicSettingDelegate;
 
-public class DefaultDerivedPropertySettingDelegate extends BasicDerivedListSettingDelegate {
-	
-	private Class<?> type;
-	private int featureID;
-	private int sourceFeatureID;
-	
-	public DefaultDerivedPropertySettingDelegate(EStructuralFeature eStructuralFeature) {
+public abstract class BasicDerivedPropertySettingDelegate extends BasicSettingDelegate.Stateless {
+
+	public BasicDerivedPropertySettingDelegate(EStructuralFeature eStructuralFeature) {
 		super(eStructuralFeature);
-		this.type = eStructuralFeature.getEType().getInstanceClass();
-		this.featureID = eStructuralFeature.getFeatureID();
-		EAnnotation annotation = eStructuralFeature.getEAnnotation("subsets");
-		EStructuralFeature sourceFeature = (EStructuralFeature)annotation.getReferences().get(0);
-		this.sourceFeatureID = sourceFeature.getFeatureID();
 	}
 
 	@Override
-	protected EList<?> basicGet(InternalEObject owner) {
-		return new DerivedEObjectEList<>(type, owner, featureID, new int[] {sourceFeatureID});
+	protected Object get(InternalEObject owner, boolean resolve, boolean coreType) {
+		return basicGet(owner);
 	}
-
+	
+	@Override 
+	protected boolean isSet(InternalEObject owner) {
+		return basicGet(owner) != null;
+	}
+	
+	protected abstract Object basicGet(InternalEObject owner);
+	
 }

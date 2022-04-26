@@ -21,39 +21,22 @@
 
 package org.omg.sysml.delegate;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.util.BasicSettingDelegate;
-import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.lang.sysml.Relationship;
 
-public class Element_ownerDerived_PropertySettingDelegate extends BasicSettingDelegate.Stateless {
+public abstract class BasicDerivedListSettingDelegate extends BasicDerivedPropertySettingDelegate {
 
-	public Element_ownerDerived_PropertySettingDelegate(EStructuralFeature eStructuralFeature) {
+	public BasicDerivedListSettingDelegate(EStructuralFeature eStructuralFeature) {
 		super(eStructuralFeature);
 	}
 
-	@Override
-	protected Object get(InternalEObject owner, boolean resolve, boolean coreType) {
-		Element ownerElement = basicGetOwner((Element)owner);
-		return ownerElement != null && ownerElement.eIsProxy() ? (Element)owner.eResolveProxy((InternalEObject)ownerElement) : ownerElement;
-	}
-	
-	private static Element basicGetOwner(Element owner) {
-		Relationship owningRelationship = owner.getOwningRelationship();
-		return owningRelationship != null && owningRelationship.getOwnedRelatedElement().contains(owner)? 
-						owningRelationship.getOwningRelatedElement(): null;
-	}
-	
-	@Override
-	protected void set(InternalEObject owner, Object newValue) {
-		throw new UnsupportedOperationException();
-	}
-
-	@Override
+	@Override 
 	protected boolean isSet(InternalEObject owner) {
-		// TODO Auto-generated method stub
-		return false;
+		return !basicGet(owner).isEmpty();
 	}
 
+	@Override
+	protected abstract EList<?> basicGet(InternalEObject owner);
+	
 }

@@ -1,6 +1,7 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2022 Siemens
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -23,43 +24,22 @@ package org.omg.sysml.delegate;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.util.BasicSettingDelegate;
-import org.omg.sysml.lang.sysml.Namespace;
-import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.lang.sysml.impl.ElementImpl;
+import org.omg.sysml.lang.sysml.AcceptActionUsage;
+import org.omg.sysml.lang.sysml.Expression;
+import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.util.FeatureUtil;
+import org.omg.sysml.util.UsageUtil;
 
-public class Element_qualifiedNameDerived_PropertySettingDelegate extends BasicSettingDelegate.Stateless {
+public class AcceptActionUsage_receiverArgument_SettingDelegate extends BasicDerivedObjectSettingDelegate {
 
-	public Element_qualifiedNameDerived_PropertySettingDelegate(EStructuralFeature eStructuralFeature) {
+	public AcceptActionUsage_receiverArgument_SettingDelegate(EStructuralFeature eStructuralFeature) {
 		super(eStructuralFeature);
 	}
 
 	@Override
-	protected Object get(InternalEObject owner, boolean resolve, boolean coreType) {
-		Namespace owningNamespace = ((Element) owner).getOwningNamespace();
-		if (owningNamespace == null) {
-			return null;
-		} else if (owningNamespace.getOwner() == null) {
-			return ((Element) owner).escapedName();
-		} else {
-			String qualification = ((ElementImpl) owningNamespace).getQualifiedName();
-			if (qualification == null) {
-				return null;
-			} else {
-				return qualification + "::" + ((Element) owner).escapedName();
-			}
-		}
-	}
-
-	@Override
-	protected void set(InternalEObject owner, Object newValue) {
-		throw new UnsupportedOperationException();
-	}
-
-	@Override
-	protected boolean isSet(InternalEObject owner) {
-		// TODO Auto-generated method stub
-		return false;
+	protected Expression basicGet(InternalEObject owner) {
+		Feature receiverParameter = UsageUtil.getReceiverParameterOf((AcceptActionUsage)owner);
+		return receiverParameter == null? null: FeatureUtil.getValueExpressionFor(receiverParameter);
 	}
 
 }

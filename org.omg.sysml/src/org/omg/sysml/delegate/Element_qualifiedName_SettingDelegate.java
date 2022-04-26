@@ -1,6 +1,7 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2022 Siemens
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -23,37 +24,31 @@ package org.omg.sysml.delegate;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.util.BasicSettingDelegate;
+import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.lang.sysml.Membership;
-import org.omg.sysml.lang.sysml.Relationship;
+import org.omg.sysml.lang.sysml.impl.ElementImpl;
 
-public class Element_owningMembershipDerived_PropertySettingDelegate extends BasicSettingDelegate.Stateless {
+public class Element_qualifiedName_SettingDelegate extends BasicDerivedPropertySettingDelegate {
 
-	public Element_owningMembershipDerived_PropertySettingDelegate(EStructuralFeature eStructuralFeature) {
+	public Element_qualifiedName_SettingDelegate(EStructuralFeature eStructuralFeature) {
 		super(eStructuralFeature);
 	}
 
 	@Override
-	protected Object get(InternalEObject owner, boolean resolve, boolean coreType) {
-		Membership owningMembership = basicGetOwningMembership((Element)owner);
-		return owningMembership != null && owningMembership.eIsProxy() ? (Membership)owner.eResolveProxy((InternalEObject)owningMembership) : owningMembership;
-	}
-	
-	public Membership basicGetOwningMembership(Element owner) {
-		Relationship owningRelationship = owner.getOwningRelationship();
-		return owningRelationship instanceof Membership? (Membership)owningRelationship: null;
-	}
-	
-	@Override
-	protected void set(InternalEObject owner, Object newValue) {
-		((Element)owner).setOwningRelationship((Membership)newValue);
-	}
-
-	@Override
-	protected boolean isSet(InternalEObject owner) {
-		// TODO Auto-generated method stub
-		return false;
+	protected Object basicGet(InternalEObject owner) {
+		Namespace owningNamespace = ((Element) owner).getOwningNamespace();
+		if (owningNamespace == null) {
+			return null;
+		} else if (owningNamespace.getOwner() == null) {
+			return ((Element) owner).escapedName();
+		} else {
+			String qualification = ((ElementImpl) owningNamespace).getQualifiedName();
+			if (qualification == null) {
+				return null;
+			} else {
+				return qualification + "::" + ((Element) owner).escapedName();
+			}
+		}
 	}
 
 }

@@ -1,6 +1,7 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2022 Siemens
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -21,34 +22,24 @@
 
 package org.omg.sysml.delegate;
 
-import java.util.stream.Collectors;
-
-import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.util.BasicSettingDelegate;
-import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.util.NonNotifyingEObjectEList;
+import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.AcceptActionUsage;
+import org.omg.sysml.lang.sysml.ReferenceUsage;
+import org.omg.sysml.util.UsageUtil;
 
-public class Element_ownedElementDerived_PropertySettingDelegate extends BasicSettingDelegate.Stateless {
+public class AcceptActionUsage_payloadParameter_SettingDelegate extends BasicDerivedObjectSettingDelegate {
 
-	public Element_ownedElementDerived_PropertySettingDelegate(EStructuralFeature eStructuralFeature) {
+	public AcceptActionUsage_payloadParameter_SettingDelegate(EStructuralFeature eStructuralFeature) {
 		super(eStructuralFeature);
 	}
 
 	@Override
-	protected Object get(InternalEObject owner, boolean resolve, boolean coreType) {
-		BasicEList<Element> ownedElements = new NonNotifyingEObjectEList<>(Element.class, owner, SysMLPackage.ELEMENT__OWNED_ELEMENT);
-		ownedElements.addAllUnique(((Element) owner).getOwnedRelationship().stream().
-				flatMap(relationship->relationship.getOwnedRelatedElement().stream()).collect(Collectors.toList()));
-		return ownedElements;
-	}
-
-	@Override
-	protected boolean isSet(InternalEObject owner) {
-		// TODO Auto-generated method stub
-		return false;
+	protected EObject basicGet(InternalEObject owner) {
+		Feature payloadParameter = UsageUtil.getPayloadParameterOf((AcceptActionUsage)owner);
+		return payloadParameter instanceof ReferenceUsage? payloadParameter: null;
 	}
 
 }

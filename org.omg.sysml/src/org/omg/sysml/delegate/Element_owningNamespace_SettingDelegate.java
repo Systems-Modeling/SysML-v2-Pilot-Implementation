@@ -1,6 +1,7 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2022 Siemens
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -21,30 +22,22 @@
 
 package org.omg.sysml.delegate;
 
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.uml2.common.util.DerivedEObjectEList;
+import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.Membership;
+import org.omg.sysml.lang.sysml.Namespace;
 
-public class DefaultDerivedPropertySettingDelegate extends BasicDerivedListSettingDelegate {
-	
-	private Class<?> type;
-	private int featureID;
-	private int sourceFeatureID;
-	
-	public DefaultDerivedPropertySettingDelegate(EStructuralFeature eStructuralFeature) {
+public class Element_owningNamespace_SettingDelegate extends BasicDerivedObjectSettingDelegate {
+
+	public Element_owningNamespace_SettingDelegate(EStructuralFeature eStructuralFeature) {
 		super(eStructuralFeature);
-		this.type = eStructuralFeature.getEType().getInstanceClass();
-		this.featureID = eStructuralFeature.getFeatureID();
-		EAnnotation annotation = eStructuralFeature.getEAnnotation("subsets");
-		EStructuralFeature sourceFeature = (EStructuralFeature)annotation.getReferences().get(0);
-		this.sourceFeatureID = sourceFeature.getFeatureID();
 	}
 
 	@Override
-	protected EList<?> basicGet(InternalEObject owner) {
-		return new DerivedEObjectEList<>(type, owner, featureID, new int[] {sourceFeatureID});
+	protected Namespace basicGet(InternalEObject owner) {
+		Membership membership = ((Element)owner).getOwningMembership();
+		return membership == null? null: membership.getMembershipOwningNamespace();
 	}
 
 }

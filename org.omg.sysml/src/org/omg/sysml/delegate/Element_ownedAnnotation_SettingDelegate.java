@@ -1,6 +1,7 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2022 Siemens
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -21,39 +22,29 @@
 
 package org.omg.sysml.delegate;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.util.BasicSettingDelegate;
+import org.omg.sysml.lang.sysml.Annotation;
 import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.lang.sysml.Membership;
-import org.omg.sysml.lang.sysml.Namespace;
+import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.util.NonNotifyingEObjectEList;
 
-public class Element_owningNamespaceDerived_PropertySettingDelegate extends BasicSettingDelegate.Stateless {
+public class Element_ownedAnnotation_SettingDelegate extends BasicDerivedListSettingDelegate {
 
-	public Element_owningNamespaceDerived_PropertySettingDelegate(EStructuralFeature eStructuralFeature) {
+	public Element_ownedAnnotation_SettingDelegate(EStructuralFeature eStructuralFeature) {
 		super(eStructuralFeature);
 	}
 
 	@Override
-	protected Object get(InternalEObject owner, boolean resolve, boolean coreType) {
-		Namespace owningNamespace = basicGetOwningNamespace((Element)owner);
-		return owningNamespace != null && owningNamespace.eIsProxy() ? (Namespace)owner.eResolveProxy((InternalEObject)owningNamespace) : owningNamespace;
-	}
-	
-	private static Namespace basicGetOwningNamespace(Element owner) {
-		Membership membership = owner.getOwningMembership();
-		return membership == null? null: membership.getMembershipOwningNamespace();
-	}
-	
-	@Override
-	protected void set(InternalEObject owner, Object newValue) {
-		throw new UnsupportedOperationException();
-	}
-
-	@Override
-	protected boolean isSet(InternalEObject owner) {
-		// TODO Auto-generated method stub
-		return false;
+	protected EList<Annotation> basicGet(InternalEObject owner) {
+		EList<Annotation> annotations = new NonNotifyingEObjectEList<>(Element.class, owner, SysMLPackage.ELEMENT__OWNED_ANNOTATION);
+		((Element)owner).getOwnedRelationship().stream().
+			filter(Annotation.class::isInstance).
+			map(Annotation.class::cast).
+			filter(ann->ann.getAnnotatedElement() == owner).
+			forEachOrdered(annotations::add);
+		return annotations;
 	}
 
 }

@@ -1,6 +1,7 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2022 Siemens
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -21,39 +22,27 @@
 
 package org.omg.sysml.delegate;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.util.BasicSettingDelegate;
-import org.omg.sysml.lang.sysml.Annotation;
 import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.util.NonNotifyingEObjectEList;
+import org.omg.sysml.lang.sysml.Membership;
+import org.omg.sysml.lang.sysml.Relationship;
 
-public class Element_ownedAnnotationDerived_PropertySettingDelegate extends BasicSettingDelegate.Stateless {
+public class Element_owningMembership_SettingDelegate extends BasicDerivedObjectSettingDelegate {
 
-	public Element_ownedAnnotationDerived_PropertySettingDelegate(EStructuralFeature eStructuralFeature) {
+	public Element_owningMembership_SettingDelegate(EStructuralFeature eStructuralFeature) {
 		super(eStructuralFeature);
 	}
 
 	@Override
-	protected Object get(InternalEObject owner, boolean resolve, boolean coreType) {
-		return getOwnedAnnotation(owner);
-	}
-
-	@Override
-	protected boolean isSet(InternalEObject owner) {
-		return !getOwnedAnnotation(owner).isEmpty();
+	protected Membership basicGet(InternalEObject owner) {
+		Relationship owningRelationship = ((Element)owner).getOwningRelationship();
+		return owningRelationship instanceof Membership? (Membership)owningRelationship: null;
 	}
 	
-	protected static EList<Annotation> getOwnedAnnotation(InternalEObject owner) {
-		EList<Annotation> annotations = new NonNotifyingEObjectEList<>(Element.class, owner, SysMLPackage.ELEMENT__OWNED_ANNOTATION);
-		((Element)owner).getOwnedRelationship().stream().
-			filter(Annotation.class::isInstance).
-			map(Annotation.class::cast).
-			filter(ann->ann.getAnnotatedElement() == owner).
-			forEachOrdered(annotations::add);
-		return annotations;
+	@Override
+	protected void set(InternalEObject owner, Object newValue) {
+		((Element)owner).setOwningRelationship((Membership)newValue);
 	}
 
 }

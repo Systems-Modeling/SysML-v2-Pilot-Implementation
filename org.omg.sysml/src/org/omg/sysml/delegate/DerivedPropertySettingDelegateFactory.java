@@ -34,27 +34,27 @@ public class DerivedPropertySettingDelegateFactory
 	public SettingDelegate createSettingDelegate(EStructuralFeature eStructuralFeature) {
 		switch (eStructuralFeature.getFeatureID()) {
 			case SysMLPackage.ACCEPT_ACTION_USAGE__PAYLOAD_ARGUMENT:
-				return new AcceptActionUsage_payloadArgumentDerived_PropertySettingDelegate(eStructuralFeature);
+				return new AcceptActionUsage_payloadArgument_SettingDelegate(eStructuralFeature);
 			case SysMLPackage.ACCEPT_ACTION_USAGE__PAYLOAD_PARAMETER:
-				return new AcceptActionUsage_payloadParameterDerived_PropertySettingDelegate(eStructuralFeature);
+				return new AcceptActionUsage_payloadParameter_SettingDelegate(eStructuralFeature);
 			case SysMLPackage.ACCEPT_ACTION_USAGE__RECEIVER_ARGUMENT:
-				return new AcceptActionUsage_receiverArgumentDerived_PropertySettingDelegate(eStructuralFeature);
+				return new AcceptActionUsage_receiverArgument_SettingDelegate(eStructuralFeature);
 			case SysMLPackage.ELEMENT__EFFECTIVE_NAME:
-				return new Element_effectiveNameDerived_PropertySettingDelegate(eStructuralFeature);
+				return new Element_effectiveName_SettingDelegate(eStructuralFeature);
 			case SysMLPackage.ELEMENT__NAME:
-				return new Element_nameDerived_PropertySettingDelegate(eStructuralFeature);
+				return new Element_name_SettingDelegate(eStructuralFeature);
 			case SysMLPackage.ELEMENT__OWNED_ANNOTATION:
-				return new Element_ownedAnnotationDerived_PropertySettingDelegate(eStructuralFeature);
+				return new Element_ownedAnnotation_SettingDelegate(eStructuralFeature);
 			case SysMLPackage.ELEMENT__OWNED_ELEMENT:
-				return new Element_ownedElementDerived_PropertySettingDelegate(eStructuralFeature);
+				return new Element_ownedElement_SettingDelegate(eStructuralFeature);
 			case SysMLPackage.ELEMENT__OWNER:
-				return new Element_ownerDerived_PropertySettingDelegate(eStructuralFeature);
+				return new Element_owner_SettingDelegate(eStructuralFeature);
 			case SysMLPackage.ELEMENT__OWNING_MEMBERSHIP:
-				return new Element_owningMembershipDerived_PropertySettingDelegate(eStructuralFeature);
+				return new Element_owningMembership_SettingDelegate(eStructuralFeature);
 			case SysMLPackage.ELEMENT__OWNING_NAMESPACE:
-				return new Element_owningNamespaceDerived_PropertySettingDelegate(eStructuralFeature);
+				return new Element_owningNamespace_SettingDelegate(eStructuralFeature);
 			case SysMLPackage.ELEMENT__QUALIFIED_NAME:
-				return new Element_qualifiedNameDerived_PropertySettingDelegate(eStructuralFeature);
+				return new Element_qualifiedName_SettingDelegate(eStructuralFeature);
 			default:
 				return new DefaultDerivedPropertySettingDelegate(eStructuralFeature);
 		}	

@@ -23,7 +23,6 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import java.util.Collection;
-import java.util.stream.Stream;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -40,15 +39,14 @@ import org.omg.sysml.lang.sysml.Comment;
 import org.omg.sysml.lang.sysml.ConcernUsage;
 import org.omg.sysml.lang.sysml.ConstraintUsage;
 import org.omg.sysml.lang.sysml.RequirementConstraintKind;
-import org.omg.sysml.lang.sysml.RequirementConstraintMembership;
 import org.omg.sysml.lang.sysml.RequirementDefinition;
 import org.omg.sysml.lang.sysml.StakeholderMembership;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
 import org.omg.sysml.util.ElementUtil;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
 import org.omg.sysml.util.TypeUtil;
+import org.omg.sysml.util.UsageUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -214,17 +212,6 @@ public class RequirementDefinitionImpl extends ConstraintDefinitionImpl implemen
 		return text;
 	}
 	
-	public static <T extends RequirementConstraintMembership> Stream<ConstraintUsage> getRequirementConstraints(Type owner, Class<T> membershipClass, RequirementConstraintKind kind) {
-		return owner.getOwnedFeatureMembership().stream().
-				filter(mem->membershipClass.isInstance(mem) && ((RequirementConstraintMembership)mem).getKind() == kind).
-				map(mem->((RequirementConstraintMembership)mem).getOwnedConstraint()).
-				filter(constraint->constraint != null);
-	}
-
-	public static Stream<ConstraintUsage> getRequirementConstraints(Type owner, RequirementConstraintKind kind) {
-		return getRequirementConstraints(owner, RequirementConstraintMembership.class, kind);
-	}
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -233,7 +220,7 @@ public class RequirementDefinitionImpl extends ConstraintDefinitionImpl implemen
 	@Override
 	public EList<ConstraintUsage> getAssumedConstraint() {
 		EList<ConstraintUsage> constraints = new NonNotifyingEObjectEList<>(ConstraintUsage.class, this, SysMLPackage.REQUIREMENT_DEFINITION__ASSUMED_CONSTRAINT);
-		getRequirementConstraints(this, RequirementConstraintKind.ASSUMPTION).forEachOrdered(constraints::add);
+		UsageUtil.getRequirementConstraints(this, RequirementConstraintKind.ASSUMPTION).forEachOrdered(constraints::add);
 		return constraints;
 	}
 
@@ -245,7 +232,7 @@ public class RequirementDefinitionImpl extends ConstraintDefinitionImpl implemen
 	@Override
 	public EList<ConstraintUsage> getRequiredConstraint() {
 		EList<ConstraintUsage> constraints = new NonNotifyingEObjectEList<>(ConstraintUsage.class, this, SysMLPackage.REQUIREMENT_DEFINITION__REQUIRED_CONSTRAINT);
-		getRequirementConstraints(this, RequirementConstraintKind.REQUIREMENT).forEachOrdered(constraints::add);
+		UsageUtil.getRequirementConstraints(this, RequirementConstraintKind.REQUIREMENT).forEachOrdered(constraints::add);
 		return constraints;
 	}
 
@@ -257,7 +244,7 @@ public class RequirementDefinitionImpl extends ConstraintDefinitionImpl implemen
 	@Override
 	public EList<ConcernUsage> getFramedConcern() {
 		EList<ConcernUsage> concerns = new NonNotifyingEObjectEList<>(ConcernUsage.class, this, SysMLPackage.REQUIREMENT_DEFINITION__FRAMED_CONCERN);
-		getRequirementConstraints(this, FramedConcernMembership.class, RequirementConstraintKind.REQUIREMENT).
+		UsageUtil.getRequirementConstraints(this, FramedConcernMembership.class, RequirementConstraintKind.REQUIREMENT).
 			map(ConcernUsage.class::cast).forEachOrdered(concerns::add);
 		return concerns;
 	}

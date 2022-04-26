@@ -189,6 +189,17 @@ public class UsageUtil {
 		return concern.getOwningFeatureMembership() instanceof FramedConcernMembership;
 	}
 	
+	public static <T extends RequirementConstraintMembership> Stream<ConstraintUsage> getRequirementConstraints(Type owner, Class<T> membershipClass, RequirementConstraintKind kind) {
+		return owner.getOwnedFeatureMembership().stream().
+				filter(mem->membershipClass.isInstance(mem) && ((RequirementConstraintMembership)mem).getKind() == kind).
+				map(mem->((RequirementConstraintMembership)mem).getOwnedConstraint()).
+				filter(constraint->constraint != null);
+	}
+
+	public static Stream<ConstraintUsage> getRequirementConstraints(Type owner, RequirementConstraintKind kind) {
+		return getRequirementConstraints(owner, RequirementConstraintMembership.class, kind);
+	}
+		
 	// States
 	
 	public static boolean isParallelState(Type type) {
@@ -301,5 +312,5 @@ public class UsageUtil {
 				findFirst().
 				orElse(null);
 	}
-		
+
 }

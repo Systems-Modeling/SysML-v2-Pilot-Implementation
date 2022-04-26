@@ -48,6 +48,7 @@ import org.omg.sysml.lang.sysml.Usage;
 import org.omg.sysml.util.ElementUtil;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
 import org.omg.sysml.util.TypeUtil;
+import org.omg.sysml.util.UsageUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -261,7 +262,7 @@ public class RequirementUsageImpl extends ConstraintUsageImpl implements Require
 	@Override
 	public EList<ConstraintUsage> getAssumedConstraint() {
 		EList<ConstraintUsage> constraints = new NonNotifyingEObjectEList<>(ConstraintUsage.class, this, SysMLPackage.REQUIREMENT_USAGE__ASSUMED_CONSTRAINT);
-		RequirementDefinitionImpl.getRequirementConstraints(this, RequirementConstraintKind.ASSUMPTION).forEachOrdered(constraints::add);
+		UsageUtil.getRequirementConstraints(this, RequirementConstraintKind.ASSUMPTION).forEachOrdered(constraints::add);
 		return constraints;
 	}
 
@@ -273,7 +274,7 @@ public class RequirementUsageImpl extends ConstraintUsageImpl implements Require
 	@Override
 	public EList<ConstraintUsage> getRequiredConstraint() {
 		EList<ConstraintUsage> constraints = new NonNotifyingEObjectEList<>(ConstraintUsage.class, this, SysMLPackage.REQUIREMENT_USAGE__REQUIRED_CONSTRAINT);
-		RequirementDefinitionImpl.getRequirementConstraints(this, RequirementConstraintKind.REQUIREMENT).forEachOrdered(constraints::add);
+		UsageUtil.getRequirementConstraints(this, RequirementConstraintKind.REQUIREMENT).forEachOrdered(constraints::add);
 		return constraints;
 	}
 
@@ -285,7 +286,7 @@ public class RequirementUsageImpl extends ConstraintUsageImpl implements Require
 	@Override
 	public EList<ConcernUsage> getFramedConcern() {
 		EList<ConcernUsage> concerns = new NonNotifyingEObjectEList<>(ConcernUsage.class, this, SysMLPackage.REQUIREMENT_USAGE__FRAMED_CONCERN);
-		RequirementDefinitionImpl.getRequirementConstraints(this, FramedConcernMembership.class, RequirementConstraintKind.REQUIREMENT).
+		UsageUtil.getRequirementConstraints(this, FramedConcernMembership.class, RequirementConstraintKind.REQUIREMENT).
 			map(ConcernUsage.class::cast).forEachOrdered(concerns::add);
 		return concerns;
 	}

@@ -26,11 +26,8 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.omg.sysml.lang.sysml.AcceptActionUsage;
 import org.omg.sysml.lang.sysml.Expression;
-import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.ReferenceUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.util.FeatureUtil;
-import org.omg.sysml.util.UsageUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -109,21 +106,20 @@ public class AcceptActionUsageImpl extends ActionUsageImpl implements AcceptActi
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Expression basicGetReceiverArgument() {
-		Feature receiverParameter = UsageUtil.getReceiverParameterOf(this);
-		return receiverParameter == null? null: FeatureUtil.getValueExpressionFor(receiverParameter);
+		return (Expression)RECEIVER_ARGUMENT__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setReceiverArgument(Expression newReceiverArgument) {
-		throw new UnsupportedOperationException();
+		RECEIVER_ARGUMENT__ESETTING_DELEGATE.dynamicSet(this, null, 0, newReceiverArgument);
 	}
 	
 	/**
@@ -139,21 +135,20 @@ public class AcceptActionUsageImpl extends ActionUsageImpl implements AcceptActi
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public ReferenceUsage basicGetPayloadParameter() {
-		Feature payloadParameter = UsageUtil.getPayloadParameterOf(this);
-		return payloadParameter instanceof ReferenceUsage? (ReferenceUsage)payloadParameter: null;
+		return (ReferenceUsage)PAYLOAD_PARAMETER__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setPayloadParameter(ReferenceUsage newPayloadParameter) {
-		throw new UnsupportedOperationException();
+		PAYLOAD_PARAMETER__ESETTING_DELEGATE.dynamicSet(this, null, 0, newPayloadParameter);
 	}
 
 	/**

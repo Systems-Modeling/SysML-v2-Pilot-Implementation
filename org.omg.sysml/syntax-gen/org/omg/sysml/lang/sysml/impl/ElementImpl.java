@@ -23,11 +23,8 @@ package org.omg.sysml.lang.sysml.impl;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 import java.util.UUID;
-import java.util.stream.Collectors;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -50,7 +47,6 @@ import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.TextualRepresentation;
 import org.omg.sysml.util.ElementUtil;
-import org.omg.sysml.util.NonNotifyingEObjectEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -315,22 +311,20 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Element basicGetOwner() {
-		Relationship owningRelationship = getOwningRelationship();
-		return owningRelationship != null && owningRelationship.getOwnedRelatedElement().contains(this)? 
-						owningRelationship.getOwningRelatedElement(): null;
+		return (Element)OWNER__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setOwner(Element newOwner) {
-		throw new UnsupportedOperationException();
+		OWNER__ESETTING_DELEGATE.dynamicSet(this, null, 0, newOwner);
 	}
 
 	/**
@@ -346,17 +340,16 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Membership basicGetOwningMembership() {
-		Relationship owningRelationship = getOwningRelationship();
-		return owningRelationship instanceof Membership? (Membership)owningRelationship: null;
+		return (Membership)OWNING_MEMBERSHIP__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generate
 	 */
 	@Override
 	public void setOwningMembership(Membership newOwningMembership) {
@@ -399,32 +392,31 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Namespace basicGetOwningNamespace() {
-		Membership membership = getOwningMembership();
-		return membership == null? null: membership.getMembershipOwningNamespace();
+		return (Namespace)OWNING_NAMESPACE__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@Override
 	public void setOwningNamespace(Namespace newOwningNamespace) {
-		throw new UnsupportedOperationException();
+		OWNING_NAMESPACE__ESETTING_DELEGATE.dynamicSet(this, null, 0, newOwningNamespace);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
-	public BasicEList<Element> getOwnedElement() {
-		BasicEList<Element> ownedElements = new NonNotifyingEObjectEList<>(Element.class, this, SysMLPackage.ELEMENT__OWNED_ELEMENT);
-		ownedElements.addAllUnique(getOwnedRelationship().stream().
-				flatMap(relationship->relationship.getOwnedRelatedElement().stream()).collect(Collectors.toList()));
-		return ownedElements;
+	@SuppressWarnings("unchecked")
+		@Override
+	public EList<Element> getOwnedElement() {
+		return (EList<Element>)OWNED_ELEMENT__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
@@ -493,31 +485,21 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@Override
 	public String getName() {
-		String name = this.basicGetName();
-		if (name != null) {
-			return name;
-		} else {
-			Membership owningMembership = this.getOwningMembership();
-			return owningMembership == null? null: ((MembershipImpl)owningMembership).basicGetMemberName(); 
-		}
+		return (String)NAME__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@Override
 	public void setName(String newName) {
-		Membership owningMembership = this.getOwningMembership();
-		if (owningMembership != null) {
-			owningMembership.setMemberName(newName);
-			this.basicSetName(null);
-		} else {
-			this.basicSetName(ElementUtil.unescapeString(newName));
-		}
+		NAME__ESETTING_DELEGATE.dynamicSet(this, null, 0, newName);
 	}
 	
 	/**
@@ -580,53 +562,42 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public String getQualifiedName() {
-		Namespace owningNamespace = getOwningNamespace();
-		if (owningNamespace == null) {
-			return null;
-		} else if (owningNamespace.getOwner() == null) {
-			return escapedName();
-		} else {
-			String qualification = ((ElementImpl)owningNamespace).getQualifiedName();
-			if (qualification == null) {
-				return null;
-			} else {
-				return qualification + "::" + escapedName();
-			}
-		}
+		return (String)QUALIFIED_NAME__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setQualifiedName(String newQualifiedName) {
-		throw new UnsupportedOperationException();
+		QUALIFIED_NAME__ESETTING_DELEGATE.dynamicSet(this, null, 0, newQualifiedName);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * Get the effective name for this element, which by default is just its regular name.
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@Override
 	public String getEffectiveName() {
-		return effectiveName();
+		return (String)EFFECTIVE_NAME__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setEffectiveName(String newEffectiveName) {
-		throw new UnsupportedOperationException();
+		EFFECTIVE_NAME__ESETTING_DELEGATE.dynamicSet(this, null, 0, newEffectiveName);
 	}
 
 	/**

@@ -1,6 +1,5 @@
 /**
  * This package defines the representations for measurement references.
- * TODO: Rename package to MeasurementReferences as this name captures the content much better
  */
 package UnitsAndScales {
 	private import Collections::Array;

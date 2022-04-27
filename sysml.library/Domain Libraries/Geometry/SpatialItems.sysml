@@ -5,7 +5,6 @@
 package SpatialItems {
 	private import Objects::Point;
 	private import SpatialFrames::SpatialFrame;
-	private import Items::Item;
 	private import Quantities::VectorQuantityValue;
 	private import UnitsAndScales::VectorMeasurementReference;
 	private import UnitsAndScales::CoordinateFrame;
@@ -19,7 +18,7 @@ package SpatialItems {
 	/**
 	 * A SpatialItem is an Item with a three-dimensional spatial extent that also acts as a SpatialFrame of reference.
 	 */
-	item def SpatialItem :> SpatialFrame, Item {
+	item def SpatialItem :> SpatialFrame {
 		ref item :>> self : SpatialItem;
 
 		/**
@@ -59,10 +58,8 @@ package SpatialItems {
 		 * The coordinateFrames of the compositeItems are nested in the coordinateFrame of the CompoundSpatialItem, 
 		 * and, by default, they have the same localClock as the CompoundSpatialItem.
 		 */
-		item componentItems : SpatialItem[0..*] ordered :> subitems {
+		item componentItems : SpatialItem[1..*] ordered :> subitems {
 			item nestedLocalClock :>> localClock default localClock;
-			attribute nestedBasisDirections : VectorQuantityValue[3];
-			attribute nestedOrigin : VectorQuantityValue[0..1];
 			attribute nestedCoordinateFrame :>> coordinateFrame {
 				attribute :>> transformation[1] {
 				 	attribute :>> source = coordinateFrame;

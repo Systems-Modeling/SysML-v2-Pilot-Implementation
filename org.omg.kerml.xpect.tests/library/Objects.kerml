@@ -16,7 +16,8 @@ package Objects {
 	private import SequenceFunctions::notEmpty;
 	private import SequenceFunctions::union;
 	private import CollectionFunctions::contains;
-	private import ScalarValues::Integer;	     
+	private import ScalarValues::Integer;
+	private import ScalarValues::Natural;
 	
 	/**
 	 * Object is the most general class of structural occurrences that may change over time.
@@ -81,9 +82,9 @@ package Objects {
 	struct all Surface specializes Object {
 		feature redefines innerSpaceDimension = 2;
 		  /* The number of  "holes" in this Surface, assuming it isClosed. */
-		feature genus : Integer[0..1] default 0;
+		feature genus : Natural[0..1] default 0;
 
-		inv { notEmpty(genus) implies (isClosed & genus >= 0) }
+		inv { notEmpty(genus) implies isClosed }
 	}
 
 	/*
@@ -134,14 +135,14 @@ package Objects {
 
 		connector feE :WithinBoth
 			from thisOccurrence :> faces.edges [0..*]
-			to thatOccuurence :> edges [0..*];
+			to thatOccurrence :> edges [0..*];
 
 		connector evV :WithinBoth
 			from thisOccurrence :> edges.vertices [0..*]
-			to thatOccuurence :> vertices [0..*];
+			to thatOccurrence :> vertices [0..*];
 
 		connector fvV :WithinBoth
 			from thisOccurrence :> faces.vertices [0..*]
-			to thatOccuurence :> vertices [0..*];
+			to thatOccurrence :> vertices [0..*];
 	  }
 }

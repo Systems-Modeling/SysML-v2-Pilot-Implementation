@@ -74,7 +74,7 @@ public class FramedConcernMembershipImpl extends RequirementConstraintMembership
 	 */
 	@Override
 	public void setOwnedConcern(ConcernUsage newOwnedConcern) {
-		throw new UnsupportedOperationException();
+		super.setOwnedConstraint(newOwnedConcern);
 	}
 
 	/**

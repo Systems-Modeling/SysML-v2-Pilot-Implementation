@@ -49,6 +49,7 @@ import org.omg.sysml.lang.sysml.Import
 import org.omg.sysml.lang.sysml.Relationship
 import org.omg.sysml.lang.sysml.util.ISysMLScope
 import java.util.Collections
+import org.omg.sysml.lang.sysml.OwningMembership
 
 class KerMLScope extends AbstractScope implements ISysMLScope {
 	
@@ -261,9 +262,13 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 						// In this case, the membership r should be excluded from the scope, to avoid a 
 						// cyclic linking error.
 						scopeProvider.addVisited(r)
-						var memberElement = r.ownedMemberElement
+						var memberElement = if (r instanceof OwningMembership) r.ownedMemberElement else null
+						val memberName = 
+							if (r instanceof OwningMembership) memberElement?.name 
+							else if (!r.memberNames.empty) r.memberNames.get(0)
+							else null
 						var elementName = 
-							if (r.memberName !== null || (isFirstScope && ns == this.ns && memberElement === element)) r.memberName 
+							if (memberName !== null || (isFirstScope && ns == this.ns && memberElement === element)) memberName 
 							else memberElement?.getEffectiveName
 						if (elementName !== null) {
 							val elementqn = qn.append(elementName)
@@ -293,14 +298,14 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 	protected def checkElementId(QualifiedName qn, boolean checkIfAdded, Relationship r, Set<Namespace> ownedvisited, Set<Namespace> visited, 
 		boolean includeImplicitGen, boolean includeAll) {
 		val element =
-			if (r instanceof Membership) r.getOwnedMemberElement
+			if (r instanceof OwningMembership) r.getOwnedMemberElement
 			else {
 				// Note: This assumes ownership relationships will be binary.
 				val ownedElements = r.ownedRelatedElement
 				if (ownedElements !== null && !ownedElements.empty) ownedElements.get(0)
 				else null
 			}
-		val elementId = element?.humanId
+		val elementId = element?.shortName
 		if (elementId === null) false
 		else {
 			val elementqn = qn.append(elementId)
@@ -437,10 +442,10 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 			for (mem: mems) {
 				// Check if the targetqn resolves via the imported membership.
 				val elm = mem.memberElement
-				if (resolveForName(mem, elm, mem.memberName, qn, visited, includeImplicitGen, imp.isImportAll)) {
+				if (resolveForName(mem, elm, mem.displayName, qn, visited, includeImplicitGen, imp.isImportAll)) {
 					return true
 				}
-				if (resolveForName(mem, elm, elm.humanId, qn, visited, includeImplicitGen, imp.isImportAll)) {
+				if (resolveForName(mem, elm, elm.shortName, qn, visited, includeImplicitGen, imp.isImportAll)) {
 					return true
 				}
 								
@@ -482,7 +487,7 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 	
 	protected def boolean resolveRecursive(Namespace ns, QualifiedName qn, Set<Namespace> visited, boolean includeAll) {
 		for (r: ns.ownedRelationship) {
-			if (r instanceof Membership) {
+			if (r instanceof OwningMembership) {
 				if (r.visibility == VisibilityKind.PUBLIC) {
 					val memberElement = r.ownedMemberElement
 					if (memberElement instanceof Namespace) {

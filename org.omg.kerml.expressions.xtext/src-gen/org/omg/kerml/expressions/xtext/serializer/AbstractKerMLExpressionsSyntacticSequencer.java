@@ -137,11 +137,11 @@ public abstract class AbstractKerMLExpressionsSyntacticSequencer extends Abstrac
 	 *     operand+=SequenceExpression ']' (ambiguity) ')' (rule end)
 	 *     operand+=UnaryExpression (ambiguity) ')' (rule end)
 	 *     operand+=XorExpression (ambiguity) ')' (rule end)
+	 *     ownedRelationship+=ArgumentMember ')' (ambiguity) ')' (rule end)
 	 *     ownedRelationship+=ExpressionBodyMember (ambiguity) ')' (rule end)
 	 *     ownedRelationship+=FeatureChainMember (ambiguity) ')' (rule end)
 	 *     ownedRelationship+=FunctionReferenceMember (ambiguity) ')' (rule end)
-	 *     ownedRelationship+=NamedExpressionMember ')' (ambiguity) ')' (rule end)
-	 *     ownedRelationship+=OwnedExpressionMember ')' (ambiguity) ')' (rule end)
+	 *     ownedRelationship+=NamedArgumentMember ')' (ambiguity) ')' (rule end)
 	 *     ownedRelationship+=ReferenceTyping '(' ')' (ambiguity) ')' (rule end)
 	 *     ownedRelationship+=TypeReferenceMember (ambiguity) ')' (rule end)
 	 */

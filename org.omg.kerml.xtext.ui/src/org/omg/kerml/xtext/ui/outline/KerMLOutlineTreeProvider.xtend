@@ -42,6 +42,7 @@ import org.omg.sysml.lang.sysml.LiteralInteger
 import org.omg.sysml.lang.sysml.FeatureChaining
 import org.omg.sysml.lang.sysml.Disjoining
 import org.omg.sysml.lang.sysml.FeatureValue
+import org.omg.sysml.lang.sysml.OwningMembership
 
 /**
  * Customization of the default outline structure.
@@ -56,8 +57,8 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	
 	def String idText(Element element) {
 		var text = ""
-		if (element.humanId !== null) {
-			text += ' id ' + element.humanId
+		if (element.shortName !== null) {
+			text += ' <' + element.shortName + '>'
 		}
 		val name = element.getEffectiveName;
 		if (name !== null) {
@@ -83,7 +84,7 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	
 	def String prefixText(Membership membership) {
 		var text = membership.metaclassText
-		if (membership.ownedMemberElement !== null) {
+		if (membership instanceof OwningMembership) {
 			text += ' owns'
 		}
 		if (membership.visibility !== null) {
@@ -93,12 +94,19 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	}
 	
 	def String nameText(Membership membership) {
-		if (membership.memberName !== null)
-			membership.memberName
-		else {
-			val name = membership.memberElement?.getEffectiveName;
-			if (name !== null) name else ""
+		var String name = null;
+		if (membership instanceof OwningMembership) {
+			name = membership.ownedMemberElement?.getEffectiveName
+		} else {
+			for (memberName: membership.memberNames) {
+				if (name === null) {
+					name = memberName
+				} else {
+					name += "," + memberName
+				}
+			}
 		}
+		if (name !== null) name else ""
 	}
 	
 	def String _text(Membership membership) {
@@ -147,8 +155,8 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		if (type.isAbstract) {
 			text += ' abstract'
 		}
-		if (type.humanId !== null) {
-			text += ' id ' + type.humanId
+		if (type.shortName !== null) {
+			text += ' <' + type.shortName + '>'
 		}
 		text
 	}
@@ -318,7 +326,7 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	def void _createChildren(IOutlineNode parentNode, Membership membership) {
 		super._createChildren(parentNode, membership)
 		var memberElement = membership.memberElement;
-		if (membership.ownedMemberElement === null && 
+		if (!(membership instanceof OwningMembership) && 
 				memberElement !== null) {
 			createNode(parentNode, memberElement, 
 				memberElement._image, memberElement._text, 

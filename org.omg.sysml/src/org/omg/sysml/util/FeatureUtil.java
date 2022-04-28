@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2021-2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -44,6 +44,7 @@ import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Multiplicity;
 import org.omg.sysml.lang.sysml.MultiplicityRange;
+import org.omg.sysml.lang.sysml.OwningMembership;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.ReturnParameterMembership;
 import org.omg.sysml.lang.sysml.Step;
@@ -287,7 +288,7 @@ public class FeatureUtil {
 				map(Membership::getMemberElement).
 				anyMatch(Multiplicity.class::isInstance)) {
 			Multiplicity multiplicity = SysMLFactory.eINSTANCE.createMultiplicity();
-			Membership membership = SysMLFactory.eINSTANCE.createMembership();
+			OwningMembership membership = SysMLFactory.eINSTANCE.createOwningMembership();
 			membership.setOwnedMemberElement(multiplicity);
 			type.getOwnedRelationship().add(membership);
 		}

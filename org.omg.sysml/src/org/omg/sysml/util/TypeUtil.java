@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2021-2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -143,7 +143,7 @@ public class TypeUtil {
 		return type.visibleMemberships(new BasicEList<>(), false, false).stream().
 				filter(FeatureMembership.class::isInstance).
 				map(FeatureMembership.class::cast).
-				map(FeatureMembership::getMemberFeature).
+				map(FeatureMembership::getOwnedMemberFeature).
 				collect(Collectors.toList());
 	}
 	
@@ -261,7 +261,7 @@ public class TypeUtil {
 	public static <M extends Membership, T> Stream<T> getInheritedMembersByMembershipIn(Type type, Class<M> kind, Class<T> memberType) {
 		return type.getInheritedMembership().stream().
 				filter(kind::isInstance).
-				map(Membership::getOwnedMemberElement).
+				map(Membership::getMemberElement).
 				filter(memberType::isInstance).
 				map(memberType::cast);
 	}
@@ -269,7 +269,7 @@ public class TypeUtil {
 	public static <T extends Membership> Stream<Feature> getFeaturesByMembershipIn(Type type, Class<T> kind) {
 		return type.getFeatureMembership().stream().
 				filter(kind::isInstance).
-				map(FeatureMembership::getMemberFeature);
+				map(FeatureMembership::getOwnedMemberFeature);
 	}
 
 	public static <T extends Membership> Feature getFeatureByMembershipIn(Type type, Class<T> kind) {

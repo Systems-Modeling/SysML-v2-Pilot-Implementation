@@ -42,12 +42,6 @@ main() {
 	if featureClass <> null then {
 		featureClass.addNonuniqueAttribute();
 	} endif;
-	
-	var identifierProperty := prepared.objects()[Property]![name = "identifier"];
-	assert warning (identifierProperty <> null) with log ("identifier property not found.");
-	if identifierProperty <> null then {
-		makeReadable(identifierProperty);
-	} endif;
 }
 
 helper Class::addNonuniqueAttribute() {
@@ -64,11 +58,6 @@ helper Class::addNonuniqueAttribute() {
 	};
 	self.oclAsType(Class).ownedAttribute += isNonuniqueProperty;
 	log("Added Property " + isNonuniqueProperty.featureQualifiedName());
-}
-
-helper makeReadable(inout attr: Property) {
-	attr.isReadOnly := false;
-	log("Made readable " + attr.featureQualifiedName());
 }
 
 mapping Package::Namespace(inout model: Model) 

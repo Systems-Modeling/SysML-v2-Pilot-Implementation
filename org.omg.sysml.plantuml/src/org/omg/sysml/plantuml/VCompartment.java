@@ -1,7 +1,7 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation, PlantUML Visualization
- * Copyright (c) 2020 Mgnite Inc.
- * Copyright (c) 2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2022 Mgnite Inc.
+ * Copyright (c) 2021-2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -315,7 +315,7 @@ public class VCompartment extends VStructure {
                     // Do not show it
                 } else if (e instanceof Feature) {
                 	Feature f2 = (Feature) e;
-                    FeatureEntry fe = addFeature(f2, m.getMemberName(), null, true, parent);
+                    FeatureEntry fe = addFeature(f2, m.displayName(), null, true, parent);
                     CompTree ct = new CompTree(fe);
                     ct.process(f2);
                 } else {
@@ -424,7 +424,7 @@ public class VCompartment extends VStructure {
 
     private static boolean isEmptyFeature(Feature f) {
         for (FeatureMembership fm: f.getOwnedFeatureMembership()) {
-            if (fm.getMemberFeature() instanceof BindingConnector) continue;
+            if (fm.getOwnedMemberFeature() instanceof BindingConnector) continue;
             return false;
         }
         return true;

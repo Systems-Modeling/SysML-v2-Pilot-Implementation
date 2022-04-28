@@ -66,6 +66,7 @@ import org.omg.sysml.lang.sysml.FeatureChainExpression
 import org.omg.sysml.lang.sysml.MetadataFeature
 import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil
 import org.omg.sysml.util.ImplicitGeneralizationMap
+import org.omg.sysml.lang.sysml.OwningMembership
 
 /**
  * This class contains custom validation rules. 
@@ -129,13 +130,13 @@ class KerMLValidator extends AbstractKerMLValidator {
 		
 	@Check
 	def checkElement(Element elm) {
-		if (elm.humanId !== null) {
+		if (elm.shortName !== null) {
 			val owner = elm.owner;
 			if (owner !== null) {
 				for (e: owner.ownedElement) {
 					if (e != elm) {
-						if (elm.humanId == e.humanId || elm.humanId == e.getEffectiveName) {
-							warning(INVALID_ELEMENT__ID_DISTINGUISHABILITY_MSG, elm, SysMLPackage.eINSTANCE.element_HumanId, INVALID_ELEMENT__ID_DISTINGUISHABILITY)							
+						if (elm.shortName == e.shortName || elm.shortName == e.getEffectiveName) {
+							warning(INVALID_ELEMENT__ID_DISTINGUISHABILITY_MSG, elm, SysMLPackage.eINSTANCE.element_ShortName, INVALID_ELEMENT__ID_DISTINGUISHABILITY)							
 						}						
 					}
 				}
@@ -150,20 +151,20 @@ class KerMLValidator extends AbstractKerMLValidator {
 		if (!(namesp instanceof InvocationExpression || namesp instanceof FeatureReferenceExpression || namesp instanceof LiteralExpression || namesp instanceof NullExpression ||
 			  namesp instanceof BindingConnector)) {
 			for (e : namesp.ownedElement) {
-				if (mem.memberElement !== e && e.humanId !== null && mem.effectiveMemberName == e.humanId) {
-					if (mem.ownedMemberElement !== null) {
+				if (mem.memberElement !== e && e.shortName !== null && mem.displayName == e.shortName) {
+					if (mem instanceof OwningMembership) {
 						warning(INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_0, mem.ownedMemberElement, SysMLPackage.eINSTANCE.element_Name, INVALID_MEMBERSHIP__DISTINGUISHABILITY)
 					} else {
-						warning(INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_0, mem, SysMLPackage.eINSTANCE.membership_MemberName, INVALID_MEMBERSHIP__DISTINGUISHABILITY)
+						warning(INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_0, mem, SysMLPackage.eINSTANCE.membership_MemberNames, INVALID_MEMBERSHIP__DISTINGUISHABILITY)
 					}
 				}
 			}
 			for (m: namesp.ownedMembership) {
-				if (m.memberElement !== mem.memberElement && !mem.isDistinguishableFrom(m)) {
-					if (mem.ownedMemberElement !== null) {
+				if (m.memberElement !== mem.memberElement && m.displayName !== null && mem.displayName == m.displayName) {
+					if (mem instanceof OwningMembership) {
 						warning(INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_1, mem.ownedMemberElement, SysMLPackage.eINSTANCE.element_Name, INVALID_MEMBERSHIP__DISTINGUISHABILITY)
 					} else {
-						warning(INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_1, mem, SysMLPackage.eINSTANCE.membership_MemberName, INVALID_MEMBERSHIP__DISTINGUISHABILITY)
+						warning(INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_1, mem, SysMLPackage.eINSTANCE.membership_MemberNames, INVALID_MEMBERSHIP__DISTINGUISHABILITY)
 					}
 				}
 						
@@ -172,10 +173,10 @@ class KerMLValidator extends AbstractKerMLValidator {
 				ElementUtil.clearCachesOf(namesp) // Force recomputation of inherited memberships.
 				for (m : namesp.inheritedMembership) {
 					if (m.memberElement !== mem.memberElement && !mem.isDistinguishableFrom(m)){
-						if (mem.ownedMemberElement !== null) {
+						if (mem instanceof OwningMembership) {
 							warning(INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_2, mem.ownedMemberElement, SysMLPackage.eINSTANCE.element_Name, INVALID_MEMBERSHIP__DISTINGUISHABILITY)
 						} else {
-							warning(INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_2, mem, SysMLPackage.eINSTANCE.membership_MemberName, INVALID_MEMBERSHIP__DISTINGUISHABILITY)
+							warning(INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_2, mem, SysMLPackage.eINSTANCE.membership_MemberNames, INVALID_MEMBERSHIP__DISTINGUISHABILITY)
 						}
 					}
 				}

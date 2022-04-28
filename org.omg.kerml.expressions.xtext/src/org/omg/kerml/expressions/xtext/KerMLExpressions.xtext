@@ -263,7 +263,7 @@ FunctionReference returns SysML::Expression :
 
 FeatureChainMember returns SysML::Membership :
 	  memberElement = [SysML::Feature | QualifiedName]
-	| ownedRelatedElement += FeatureChain // ownedMemberElement = FeatureChain
+	| {SysML::OwningMembership} ownedRelatedElement += OwnedFeatureChain // ownedMemberElement = OwnedFeatureChain
 ;
 
 /* Base Expressions */
@@ -290,11 +290,11 @@ ResultExpressionMember returns SysML::ResultExpressionMembership :
 ;
 
 BodyParameterMember returns SysML::ParameterMembership :
-	'in' memberName = Name ownedRelatedElement += BodyParameter // ownedMemberParameter = BodyParameter
+	'in' ownedRelatedElement += BodyParameter // ownedMemberParameter = BodyParameter
 ;
 
 BodyParameter returns SysML::Feature :
-	{SysML::Feature}
+	name = Name
 ;
 
 // Sequence Expressions
@@ -325,17 +325,21 @@ InvocationExpression returns SysML::InvocationExpression :
 
 OwnedFeatureTyping returns SysML::FeatureTyping :
 	  type = [SysML::Type | QualifiedName]
-	| ownedRelatedElement += FeatureChain
+	| ownedRelatedElement += OwnedFeatureChain
 ;
 
-FeatureChain returns SysML::Feature :
+OwnedFeatureChain returns SysML::Feature :
+	FeatureChain
+;
+
+// For use in KerML and SysML grammars
+fragment FeatureChain returns SysML::Feature :
 	ownedRelationship += OwnedFeatureChaining
 	( '.' ownedRelationship += OwnedFeatureChaining )+
 ;
 
 OwnedFeatureChaining returns SysML::FeatureChaining :
 	chainingFeature = [SysML::Feature | QualifiedName]
-	
 ;
 
 fragment ArgumentList returns SysML::Expression :
@@ -343,17 +347,33 @@ fragment ArgumentList returns SysML::Expression :
 ;
 
 fragment PositionalArgumentList returns SysML::Expression :
-	ownedRelationship += OwnedExpressionMember 
-	( ',' ownedRelationship += OwnedExpressionMember )*
+	ownedRelationship += ArgumentMember 
+	( ',' ownedRelationship += ArgumentMember )*
+;
+
+ArgumentMember returns SysML::FeatureMembership :
+	ownedRelatedElement += Argument // ownedMemberFeature = Argument
+;
+
+Argument returns SysML::Feature :
+	ownedRelationship += ArgumentValue
 ;
 
 fragment NamedArgumentList returns SysML::Expression :
-	ownedRelationship += NamedExpressionMember 
-	( ',' ownedRelationship += NamedExpressionMember )*
+	ownedRelationship += NamedArgumentMember 
+	( ',' ownedRelationship += NamedArgumentMember )*
 ;
 
-NamedExpressionMember returns SysML::FeatureMembership :
-	memberName = Name '=' ownedRelatedElement += OwnedExpression // ownedMemberFeature = OwnedExpression
+NamedArgumentMember returns SysML::FeatureMembership :
+	ownedRelatedElement += NamedArgument // ownedMemberFeature = NamedArgument
+;
+
+NamedArgument returns SysML::Feature :
+	name = Name '=' ownedRelationship += ArgumentValue
+;
+
+ArgumentValue returns SysML::FeatureValue :
+	ownedRelatedElement += OwnedExpression // value = OwnedExpression
 ;
 
 // Null Expressions

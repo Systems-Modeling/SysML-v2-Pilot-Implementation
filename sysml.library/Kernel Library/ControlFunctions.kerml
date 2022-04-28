@@ -13,7 +13,7 @@ package ControlFunctions {
 		in feature source : Anything[0..*] nonunique {
 	  		abstract feature target : Anything[0..*] nonunique;
 	  	}	  	
-	  	private feature chain is source.target;
+	  	private feature chain chains source.target;
 	    chain
 	}
 	

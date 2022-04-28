@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -32,7 +32,7 @@ import java.util.stream.Collectors;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.util.BasicInternalEList;
-import org.eclipse.emf.ecore.util.EDataTypeEList;
+import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.common.util.EList;
 
@@ -46,6 +46,7 @@ import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Import;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
+import org.omg.sysml.lang.sysml.OwningMembership;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.VisibilityKind;
@@ -156,7 +157,8 @@ public class NamespaceImpl extends ElementImpl implements Namespace {
 	public EList<Element> getOwnedMember() {
 		EList<Element> ownedMembers = new NonNotifyingEObjectEList<>(Element.class, this, SysMLPackage.NAMESPACE__OWNED_MEMBER);
 		getOwnedMembership().stream().
-			map(Membership::getOwnedMemberElement).
+			filter(OwningMembership.class::isInstance).
+			map(Membership::getMemberElement).
 			filter(m->m != null).
 			forEachOrdered(ownedMembers::add);
 		return ownedMembers;
@@ -220,11 +222,11 @@ public class NamespaceImpl extends ElementImpl implements Namespace {
 	 */
 	@Override
 	public EList<String> namesOf(Element element) {
-		EList<String> names = new EDataTypeEList<>(String.class, this, SysMLPackage.NAMESPACE___NAMES_OF__ELEMENT);
+		EList<String> names = new EDataTypeUniqueEList<>(String.class, this, SysMLPackage.NAMESPACE___NAMES_OF__ELEMENT);
 		getMembership().stream().
 			filter(mem->mem.getMemberElement() == element).
-			map(Membership::getMemberName).
-			forEachOrdered(names::add);
+			map(Membership::getMemberNames).
+			forEachOrdered(names::addAll);
 		return names;
 	}
 

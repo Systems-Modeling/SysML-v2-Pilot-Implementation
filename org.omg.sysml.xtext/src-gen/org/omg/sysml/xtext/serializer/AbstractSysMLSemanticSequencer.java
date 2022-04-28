@@ -94,6 +94,7 @@ import org.omg.sysml.lang.sysml.ObjectiveMembership;
 import org.omg.sysml.lang.sysml.OccurrenceDefinition;
 import org.omg.sysml.lang.sysml.OccurrenceUsage;
 import org.omg.sysml.lang.sysml.OperatorExpression;
+import org.omg.sysml.lang.sysml.OwningMembership;
 import org.omg.sysml.lang.sysml.ParameterMembership;
 import org.omg.sysml.lang.sysml.PartDefinition;
 import org.omg.sysml.lang.sysml.PartUsage;
@@ -221,15 +222,25 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 				sequence_BasicUsagePrefix_BinaryConnectorPart_DefinitionBodyItem_Identification_MultiplicityPart_NaryConnectorPart_OccurrenceUsagePrefix_Redefines_Redefinitions_RefPrefix_Subsets_Subsettings_TypedBy_Typings_UsageExtensionKeyword(context, (AllocationUsage) semanticObject); 
 				return; 
 			case SysMLPackage.ANALYSIS_CASE_DEFINITION:
-				sequence_ActionBodyItem_BasicDefinitionPrefix_CalculationBodyItem_CaseBody_CaseBodyItem_DefinitionExtensionKeyword_Identification_OccurrenceDefinitionPrefix_ParameterList_ReturnParameterPart_SubclassificationPart(context, (AnalysisCaseDefinition) semanticObject); 
-				return; 
+				if (rule == grammarAccess.getDefinitionElementRule()) {
+					sequence_ActionBodyItem_BasicDefinitionPrefix_CalculationBodyItem_CaseBody_CaseBodyItem_DefinitionExtensionKeyword_Identification_OccurrenceDefinitionPrefix_ParameterList_ReturnParameterPart_SubclassificationPart(context, (AnalysisCaseDefinition) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getAnalysisCaseDefinitionRule()) {
+					sequence_ActionBodyItem_BasicDefinitionPrefix_CalculationBodyItem_CaseBody_CaseBodyItem_DefinitionExtensionKeyword_Identification_OccurrenceDefinitionPrefix_ParameterList_ReturnParameterPart_SubclassificationPart(context, (AnalysisCaseDefinition) semanticObject); 
+					return; 
+				}
+				else break;
 			case SysMLPackage.ANALYSIS_CASE_USAGE:
 				if (rule == grammarAccess.getUsageElementRule()
 						|| rule == grammarAccess.getOccurrenceUsageElementRule()
 						|| rule == grammarAccess.getBehaviorUsageElementRule()
 						|| rule == grammarAccess.getVariantUsageElementRule()
-						|| rule == grammarAccess.getInterfaceOccurrenceUsageElementRule()
-						|| rule == grammarAccess.getAnalysisCaseUsageRule()) {
+						|| rule == grammarAccess.getInterfaceOccurrenceUsageElementRule()) {
+					sequence_ActionBodyItem_ActionUsageParameterList_BasicUsagePrefix_CalculationBodyItem_CalculationReturnParameterPart_CaseBody_CaseBodyItem_Identification_MultiplicityPart_OccurrenceUsagePrefix_Redefines_Redefinitions_RefPrefix_Subsets_Subsettings_TypedBy_Typings_UsageExtensionKeyword_ValuePart(context, (AnalysisCaseUsage) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getAnalysisCaseUsageRule()) {
 					sequence_ActionBodyItem_ActionUsageParameterList_BasicUsagePrefix_CalculationBodyItem_CalculationReturnParameterPart_CaseBody_CaseBodyItem_Identification_MultiplicityPart_OccurrenceUsagePrefix_Redefines_Redefinitions_RefPrefix_Subsets_Subsettings_TypedBy_Typings_UsageExtensionKeyword_ValuePart(context, (AnalysisCaseUsage) semanticObject); 
 					return; 
 				}
@@ -257,8 +268,19 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 				}
 				else break;
 			case SysMLPackage.ASSERT_CONSTRAINT_USAGE:
-				sequence_ActionBodyItem_ActionUsageParameterList_AssertConstraintUsage_BasicUsagePrefix_CalculationBody_CalculationBodyItem_CalculationReturnParameterPart_Identification_MultiplicityPart_OccurrenceUsagePrefix_Redefines_Redefinitions_RefPrefix_Subsets_Subsettings_TypedBy_Typings_UsageExtensionKeyword(context, (AssertConstraintUsage) semanticObject); 
-				return; 
+				if (rule == grammarAccess.getUsageElementRule()
+						|| rule == grammarAccess.getOccurrenceUsageElementRule()
+						|| rule == grammarAccess.getBehaviorUsageElementRule()
+						|| rule == grammarAccess.getVariantUsageElementRule()
+						|| rule == grammarAccess.getInterfaceOccurrenceUsageElementRule()) {
+					sequence_ActionBodyItem_ActionUsageParameterList_AssertConstraintUsage_BasicUsagePrefix_CalculationBody_CalculationBodyItem_CalculationReturnParameterPart_Identification_MultiplicityPart_OccurrenceUsagePrefix_Redefines_Redefinitions_RefPrefix_Subsets_Subsettings_TypedBy_Typings_UsageExtensionKeyword(context, (AssertConstraintUsage) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getAssertConstraintUsageRule()) {
+					sequence_ActionBodyItem_ActionUsageParameterList_AssertConstraintUsage_BasicUsagePrefix_CalculationBody_CalculationBodyItem_CalculationReturnParameterPart_Identification_MultiplicityPart_OccurrenceUsagePrefix_Redefines_Redefinitions_RefPrefix_Subsets_Subsettings_TypedBy_Typings_UsageExtensionKeyword(context, (AssertConstraintUsage) semanticObject); 
+					return; 
+				}
+				else break;
 			case SysMLPackage.ASSIGNMENT_ACTION_USAGE:
 				if (rule == grammarAccess.getActionNodeRule()
 						|| rule == grammarAccess.getAssignmentNodeRule()) {
@@ -304,15 +326,25 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 				sequence_BasicUsagePrefix_BindingConnector_DefinitionBodyItem_Identification_MultiplicityPart_Redefines_Redefinitions_RefPrefix_Subsets_Subsettings_TypedBy_Typings_UsageExtensionKeyword(context, (BindingConnectorAsUsage) semanticObject); 
 				return; 
 			case SysMLPackage.CALCULATION_DEFINITION:
-				sequence_ActionBodyItem_BasicDefinitionPrefix_CalculationBody_CalculationBodyItem_CalculationDefinition_DefinitionExtensionKeyword_Identification_OccurrenceDefinitionPrefix_ParameterList_ReturnParameterPart_SubclassificationPart(context, (CalculationDefinition) semanticObject); 
-				return; 
+				if (rule == grammarAccess.getDefinitionElementRule()) {
+					sequence_ActionBodyItem_BasicDefinitionPrefix_CalculationBody_CalculationBodyItem_CalculationDefinition_DefinitionExtensionKeyword_Identification_OccurrenceDefinitionPrefix_ParameterList_ReturnParameterPart_SubclassificationPart(context, (CalculationDefinition) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getCalculationDefinitionRule()) {
+					sequence_ActionBodyItem_BasicDefinitionPrefix_CalculationBody_CalculationBodyItem_CalculationDefinition_DefinitionExtensionKeyword_Identification_OccurrenceDefinitionPrefix_ParameterList_ReturnParameterPart_SubclassificationPart(context, (CalculationDefinition) semanticObject); 
+					return; 
+				}
+				else break;
 			case SysMLPackage.CALCULATION_USAGE:
 				if (rule == grammarAccess.getUsageElementRule()
 						|| rule == grammarAccess.getOccurrenceUsageElementRule()
 						|| rule == grammarAccess.getBehaviorUsageElementRule()
 						|| rule == grammarAccess.getVariantUsageElementRule()
-						|| rule == grammarAccess.getInterfaceOccurrenceUsageElementRule()
-						|| rule == grammarAccess.getCalculationUsageRule()) {
+						|| rule == grammarAccess.getInterfaceOccurrenceUsageElementRule()) {
+					sequence_ActionBodyItem_ActionUsageParameterList_BasicUsagePrefix_CalculationBody_CalculationBodyItem_CalculationReturnParameterPart_Identification_MultiplicityPart_OccurrenceUsagePrefix_Redefines_Redefinitions_RefPrefix_Subsets_Subsettings_TypedBy_Typings_UsageExtensionKeyword_ValuePart(context, (CalculationUsage) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getCalculationUsageRule()) {
 					sequence_ActionBodyItem_ActionUsageParameterList_BasicUsagePrefix_CalculationBody_CalculationBodyItem_CalculationReturnParameterPart_Identification_MultiplicityPart_OccurrenceUsagePrefix_Redefines_Redefinitions_RefPrefix_Subsets_Subsettings_TypedBy_Typings_UsageExtensionKeyword_ValuePart(context, (CalculationUsage) semanticObject); 
 					return; 
 				}
@@ -326,11 +358,29 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 				}
 				else break;
 			case SysMLPackage.CASE_DEFINITION:
-				sequence_ActionBodyItem_BasicDefinitionPrefix_CalculationBodyItem_CaseBody_CaseBodyItem_DefinitionExtensionKeyword_Identification_OccurrenceDefinitionPrefix_ParameterList_ReturnParameterPart_SubclassificationPart(context, (CaseDefinition) semanticObject); 
-				return; 
+				if (rule == grammarAccess.getDefinitionElementRule()) {
+					sequence_ActionBodyItem_BasicDefinitionPrefix_CalculationBodyItem_CaseBody_CaseBodyItem_DefinitionExtensionKeyword_Identification_OccurrenceDefinitionPrefix_ParameterList_ReturnParameterPart_SubclassificationPart(context, (CaseDefinition) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getCaseDefinitionRule()) {
+					sequence_ActionBodyItem_BasicDefinitionPrefix_CalculationBodyItem_CaseBody_CaseBodyItem_DefinitionExtensionKeyword_Identification_OccurrenceDefinitionPrefix_ParameterList_ReturnParameterPart_SubclassificationPart(context, (CaseDefinition) semanticObject); 
+					return; 
+				}
+				else break;
 			case SysMLPackage.CASE_USAGE:
-				sequence_ActionBodyItem_ActionUsageParameterList_BasicUsagePrefix_CalculationBodyItem_CalculationReturnParameterPart_CaseBody_CaseBodyItem_Identification_MultiplicityPart_OccurrenceUsagePrefix_Redefines_Redefinitions_RefPrefix_Subsets_Subsettings_TypedBy_Typings_UsageExtensionKeyword_ValuePart(context, (CaseUsage) semanticObject); 
-				return; 
+				if (rule == grammarAccess.getUsageElementRule()
+						|| rule == grammarAccess.getOccurrenceUsageElementRule()
+						|| rule == grammarAccess.getBehaviorUsageElementRule()
+						|| rule == grammarAccess.getVariantUsageElementRule()
+						|| rule == grammarAccess.getInterfaceOccurrenceUsageElementRule()) {
+					sequence_ActionBodyItem_ActionUsageParameterList_BasicUsagePrefix_CalculationBodyItem_CalculationReturnParameterPart_CaseBody_CaseBodyItem_Identification_MultiplicityPart_OccurrenceUsagePrefix_Redefines_Redefinitions_RefPrefix_Subsets_Subsettings_TypedBy_Typings_UsageExtensionKeyword_ValuePart(context, (CaseUsage) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getCaseUsageRule()) {
+					sequence_ActionBodyItem_ActionUsageParameterList_BasicUsagePrefix_CalculationBodyItem_CalculationReturnParameterPart_CaseBody_CaseBodyItem_Identification_MultiplicityPart_OccurrenceUsagePrefix_Redefines_Redefinitions_RefPrefix_Subsets_Subsettings_TypedBy_Typings_UsageExtensionKeyword_ValuePart(context, (CaseUsage) semanticObject); 
+					return; 
+				}
+				else break;
 			case SysMLPackage.COLLECT_EXPRESSION:
 				if (rule == grammarAccess.getOwnedExpressionRule()
 						|| rule == grammarAccess.getConditionalExpressionRule()
@@ -438,15 +488,25 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 				sequence_BasicUsagePrefix_BinaryConnectorPart_DefinitionBodyItem_Identification_MultiplicityPart_NaryConnectorPart_OccurrenceUsagePrefix_Redefines_Redefinitions_RefPrefix_Subsets_Subsettings_TypedBy_Typings_UsageExtensionKeyword(context, (ConnectionUsage) semanticObject); 
 				return; 
 			case SysMLPackage.CONSTRAINT_DEFINITION:
-				sequence_ActionBodyItem_BasicDefinitionPrefix_CalculationBody_CalculationBodyItem_DefinitionExtensionKeyword_EmptyReturnParameterPart_Identification_OccurrenceDefinitionPrefix_ParameterList_SubclassificationPart(context, (ConstraintDefinition) semanticObject); 
-				return; 
+				if (rule == grammarAccess.getDefinitionElementRule()) {
+					sequence_ActionBodyItem_BasicDefinitionPrefix_CalculationBody_CalculationBodyItem_DefinitionExtensionKeyword_EmptyReturnParameterPart_Identification_OccurrenceDefinitionPrefix_ParameterList_SubclassificationPart(context, (ConstraintDefinition) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getConstraintDefinitionRule()) {
+					sequence_ActionBodyItem_BasicDefinitionPrefix_CalculationBody_CalculationBodyItem_DefinitionExtensionKeyword_EmptyReturnParameterPart_Identification_OccurrenceDefinitionPrefix_ParameterList_SubclassificationPart(context, (ConstraintDefinition) semanticObject); 
+					return; 
+				}
+				else break;
 			case SysMLPackage.CONSTRAINT_USAGE:
 				if (rule == grammarAccess.getUsageElementRule()
 						|| rule == grammarAccess.getOccurrenceUsageElementRule()
 						|| rule == grammarAccess.getBehaviorUsageElementRule()
 						|| rule == grammarAccess.getVariantUsageElementRule()
-						|| rule == grammarAccess.getInterfaceOccurrenceUsageElementRule()
-						|| rule == grammarAccess.getConstraintUsageRule()) {
+						|| rule == grammarAccess.getInterfaceOccurrenceUsageElementRule()) {
+					sequence_ActionBodyItem_ActionUsageParameterList_BasicUsagePrefix_CalculationBody_CalculationBodyItem_CalculationReturnParameterPart_Identification_MultiplicityPart_OccurrenceUsagePrefix_Redefines_Redefinitions_RefPrefix_Subsets_Subsettings_TypedBy_Typings_UsageExtensionKeyword_ValuePart(context, (ConstraintUsage) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getConstraintUsageRule()) {
 					sequence_ActionBodyItem_ActionUsageParameterList_BasicUsagePrefix_CalculationBody_CalculationBodyItem_CalculationReturnParameterPart_Identification_MultiplicityPart_OccurrenceUsagePrefix_Redefines_Redefinitions_RefPrefix_Subsets_Subsettings_TypedBy_Typings_UsageExtensionKeyword_ValuePart(context, (ConstraintUsage) semanticObject); 
 					return; 
 				}
@@ -599,21 +659,32 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 				}
 				else break;
 			case SysMLPackage.FEATURE:
-				if (rule == grammarAccess.getEmptyFeatureRule()
-						|| rule == grammarAccess.getBodyParameterRule()) {
-					sequence_BodyParameter_EmptyFeature(context, (Feature) semanticObject); 
+				if (rule == grammarAccess.getArgumentRule()) {
+					sequence_Argument(context, (Feature) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getBodyParameterRule()) {
+					sequence_BodyParameter(context, (Feature) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getConnectorEndRule()) {
 					sequence_ConnectorEnd(context, (Feature) semanticObject); 
 					return; 
 				}
+				else if (rule == grammarAccess.getEmptyFeatureRule()) {
+					sequence_EmptyFeature(context, (Feature) semanticObject); 
+					return; 
+				}
 				else if (rule == grammarAccess.getFeatureChainPrefixRule()) {
 					sequence_FeatureChainPrefix(context, (Feature) semanticObject); 
 					return; 
 				}
-				else if (rule == grammarAccess.getFeatureChainRule()) {
+				else if (rule == grammarAccess.getOwnedFeatureChainRule()) {
 					sequence_FeatureChain(context, (Feature) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getNamedArgumentRule()) {
+					sequence_NamedArgument(context, (Feature) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getTypeReferenceRule()) {
@@ -679,6 +750,10 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 			case SysMLPackage.FEATURE_MEMBERSHIP:
 				if (rule == grammarAccess.getActionNodeMemberRule()) {
 					sequence_ActionNodeMember_MemberPrefix(context, (FeatureMembership) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getArgumentMemberRule()) {
+					sequence_ArgumentMember(context, (FeatureMembership) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getBehaviorUsageMemberRule()) {
@@ -765,8 +840,8 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 					sequence_MetadataBodyUsageMember(context, (FeatureMembership) semanticObject); 
 					return; 
 				}
-				else if (rule == grammarAccess.getNamedExpressionMemberRule()) {
-					sequence_NamedExpressionMember(context, (FeatureMembership) semanticObject); 
+				else if (rule == grammarAccess.getNamedArgumentMemberRule()) {
+					sequence_NamedArgumentMember(context, (FeatureMembership) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getOwnedExpressionMemberRule()) {
@@ -864,7 +939,11 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 				}
 				else break;
 			case SysMLPackage.FEATURE_VALUE:
-				if (rule == grammarAccess.getFeatureBindingRule()) {
+				if (rule == grammarAccess.getArgumentValueRule()) {
+					sequence_ArgumentValue(context, (FeatureValue) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getFeatureBindingRule()) {
 					sequence_FeatureBinding(context, (FeatureValue) semanticObject); 
 					return; 
 				}
@@ -934,8 +1013,19 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 				}
 				else break;
 			case SysMLPackage.INCLUDE_USE_CASE_USAGE:
-				sequence_ActionBodyItem_ActionUsageParameterList_BasicUsagePrefix_CalculationBodyItem_CaseBody_CaseBodyItem_Identification_IncludeUseCaseUsage_MultiplicityPart_OccurrenceUsagePrefix_Redefines_Redefinitions_RefPrefix_Subsets_Subsettings_TypedBy_Typings_UsageExtensionKeyword_ValuePart(context, (IncludeUseCaseUsage) semanticObject); 
-				return; 
+				if (rule == grammarAccess.getUsageElementRule()
+						|| rule == grammarAccess.getOccurrenceUsageElementRule()
+						|| rule == grammarAccess.getBehaviorUsageElementRule()
+						|| rule == grammarAccess.getVariantUsageElementRule()
+						|| rule == grammarAccess.getInterfaceOccurrenceUsageElementRule()) {
+					sequence_ActionBodyItem_ActionUsageParameterList_BasicUsagePrefix_CalculationBodyItem_CaseBody_CaseBodyItem_Identification_IncludeUseCaseUsage_MultiplicityPart_OccurrenceUsagePrefix_Redefines_Redefinitions_RefPrefix_Subsets_Subsettings_TypedBy_Typings_UsageExtensionKeyword_ValuePart(context, (IncludeUseCaseUsage) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getIncludeUseCaseUsageRule()) {
+					sequence_ActionBodyItem_ActionUsageParameterList_BasicUsagePrefix_CalculationBodyItem_CaseBody_CaseBodyItem_Identification_IncludeUseCaseUsage_MultiplicityPart_OccurrenceUsagePrefix_Redefines_Redefinitions_RefPrefix_Subsets_Subsettings_TypedBy_Typings_UsageExtensionKeyword_ValuePart(context, (IncludeUseCaseUsage) semanticObject); 
+					return; 
+				}
+				else break;
 			case SysMLPackage.INTERFACE_DEFINITION:
 				sequence_BasicDefinitionPrefix_DefinitionExtensionKeyword_Identification_InterfaceBodyItem_OccurrenceDefinitionPrefix_SubclassificationPart(context, (InterfaceDefinition) semanticObject); 
 				return; 
@@ -1023,22 +1113,6 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 					sequence_AliasMember_MemberPrefix(context, (Membership) semanticObject); 
 					return; 
 				}
-				else if (rule == grammarAccess.getAnnotatingMemberRule()) {
-					sequence_AnnotatingMember(context, (Membership) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getConjugatedPortDefinitionMemberRule()) {
-					sequence_ConjugatedPortDefinitionMember(context, (Membership) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getDefinitionMemberRule()) {
-					sequence_DefinitionMember_MemberPrefix(context, (Membership) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getEmptyAssignmentActionMemberRule()) {
-					sequence_EmptyAssignmentActionMember(context, (Membership) semanticObject); 
-					return; 
-				}
 				else if (rule == grammarAccess.getFeatureChainMemberRule()) {
 					sequence_FeatureChainMember(context, (Membership) semanticObject); 
 					return; 
@@ -1051,36 +1125,8 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 					sequence_InitialNodeMember_MemberPrefix(context, (Membership) semanticObject); 
 					return; 
 				}
-				else if (rule == grammarAccess.getLifeClassMembershipRule()) {
-					sequence_LifeClassMembership(context, (Membership) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getPackageMemberRule()) {
-					sequence_MemberPrefix_PackageMember(context, (Membership) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getMultiplicityExpressionMemberRule()) {
-					sequence_MultiplicityExpressionMember(context, (Membership) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getOwnedMultiplicityRule()) {
-					sequence_OwnedMultiplicity(context, (Membership) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getPrefixMetadataMemberRule()) {
-					sequence_PrefixMetadataMember(context, (Membership) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getSourceItemFlowMemberRule()) {
-					sequence_SourceItemFlowMember(context, (Membership) semanticObject); 
-					return; 
-				}
 				else if (rule == grammarAccess.getTransitionSourceMemberRule()) {
 					sequence_TransitionSourceMember(context, (Membership) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getTransitionSuccessionMemberRule()) {
-					sequence_TransitionSuccessionMember(context, (Membership) semanticObject); 
 					return; 
 				}
 				else break;
@@ -1211,6 +1257,60 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 				}
 				else if (action == grammarAccess.getPrimaryExpressionAccess().getFeatureChainExpressionOperandAction_2_1_0()) {
 					sequence_NamedArgumentList_PositionalArgumentList_PrimaryExpression_FeatureChainExpression_2_1_0(context, (OperatorExpression) semanticObject); 
+					return; 
+				}
+				else break;
+			case SysMLPackage.OWNING_MEMBERSHIP:
+				if (rule == grammarAccess.getAnnotatingMemberRule()) {
+					sequence_AnnotatingMember(context, (OwningMembership) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getConjugatedPortDefinitionMemberRule()) {
+					sequence_ConjugatedPortDefinitionMember(context, (OwningMembership) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getDefinitionMemberRule()) {
+					sequence_DefinitionMember_MemberPrefix(context, (OwningMembership) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getEmptyAssignmentActionMemberRule()) {
+					sequence_EmptyAssignmentActionMember(context, (OwningMembership) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getFeatureChainMemberRule()) {
+					sequence_FeatureChainMember(context, (OwningMembership) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getLifeClassMembershipRule()) {
+					sequence_LifeClassMembership(context, (OwningMembership) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getPackageMemberRule()) {
+					sequence_MemberPrefix_PackageMember(context, (OwningMembership) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getMultiplicityExpressionMemberRule()) {
+					sequence_MultiplicityExpressionMember(context, (OwningMembership) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getOwnedMultiplicityRule()) {
+					sequence_OwnedMultiplicity(context, (OwningMembership) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getPrefixMetadataMemberRule()) {
+					sequence_PrefixMetadataMember(context, (OwningMembership) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getSourceItemFlowMemberRule()) {
+					sequence_SourceItemFlowMember(context, (OwningMembership) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getTransitionSourceMemberRule()) {
+					sequence_TransitionSourceMember(context, (OwningMembership) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getTransitionSuccessionMemberRule()) {
+					sequence_TransitionSuccessionMember(context, (OwningMembership) semanticObject); 
 					return; 
 				}
 				else break;
@@ -1757,15 +1857,25 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 				sequence_BasicUsagePrefix_DefinitionBodyItem_Identification_MultiplicityPart_Redefines_Redefinitions_RefPrefix_Subsets_Subsettings_TypedBy_Typings_UsageExtensionKeyword_ValueOrFlowPart_ValuePart(context, (Usage) semanticObject); 
 				return; 
 			case SysMLPackage.USE_CASE_DEFINITION:
-				sequence_ActionBodyItem_BasicDefinitionPrefix_CalculationBodyItem_CaseBody_CaseBodyItem_DefinitionExtensionKeyword_Identification_OccurrenceDefinitionPrefix_ParameterList_ReturnParameterPart_SubclassificationPart(context, (UseCaseDefinition) semanticObject); 
-				return; 
+				if (rule == grammarAccess.getDefinitionElementRule()) {
+					sequence_ActionBodyItem_BasicDefinitionPrefix_CalculationBodyItem_CaseBody_CaseBodyItem_DefinitionExtensionKeyword_Identification_OccurrenceDefinitionPrefix_ParameterList_ReturnParameterPart_SubclassificationPart(context, (UseCaseDefinition) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getUseCaseDefinitionRule()) {
+					sequence_ActionBodyItem_BasicDefinitionPrefix_CalculationBodyItem_CaseBody_CaseBodyItem_DefinitionExtensionKeyword_Identification_OccurrenceDefinitionPrefix_ParameterList_ReturnParameterPart_SubclassificationPart(context, (UseCaseDefinition) semanticObject); 
+					return; 
+				}
+				else break;
 			case SysMLPackage.USE_CASE_USAGE:
 				if (rule == grammarAccess.getUsageElementRule()
 						|| rule == grammarAccess.getOccurrenceUsageElementRule()
 						|| rule == grammarAccess.getBehaviorUsageElementRule()
 						|| rule == grammarAccess.getVariantUsageElementRule()
-						|| rule == grammarAccess.getInterfaceOccurrenceUsageElementRule()
-						|| rule == grammarAccess.getUseCaseUsageRule()) {
+						|| rule == grammarAccess.getInterfaceOccurrenceUsageElementRule()) {
+					sequence_ActionBodyItem_ActionUsageParameterList_BasicUsagePrefix_CalculationBodyItem_CalculationReturnParameterPart_CaseBody_CaseBodyItem_Identification_MultiplicityPart_OccurrenceUsagePrefix_Redefines_Redefinitions_RefPrefix_Subsets_Subsettings_TypedBy_Typings_UsageExtensionKeyword_ValuePart(context, (UseCaseUsage) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getUseCaseUsageRule()) {
 					sequence_ActionBodyItem_ActionUsageParameterList_BasicUsagePrefix_CalculationBodyItem_CalculationReturnParameterPart_CaseBody_CaseBodyItem_Identification_MultiplicityPart_OccurrenceUsagePrefix_Redefines_Redefinitions_RefPrefix_Subsets_Subsettings_TypedBy_Typings_UsageExtensionKeyword_ValuePart(context, (UseCaseUsage) semanticObject); 
 					return; 
 				}
@@ -1789,15 +1899,25 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 				}
 				else break;
 			case SysMLPackage.VERIFICATION_CASE_DEFINITION:
-				sequence_ActionBodyItem_BasicDefinitionPrefix_CalculationBodyItem_CaseBody_CaseBodyItem_DefinitionExtensionKeyword_Identification_OccurrenceDefinitionPrefix_ParameterList_ReturnParameterPart_SubclassificationPart(context, (VerificationCaseDefinition) semanticObject); 
-				return; 
+				if (rule == grammarAccess.getDefinitionElementRule()) {
+					sequence_ActionBodyItem_BasicDefinitionPrefix_CalculationBodyItem_CaseBody_CaseBodyItem_DefinitionExtensionKeyword_Identification_OccurrenceDefinitionPrefix_ParameterList_ReturnParameterPart_SubclassificationPart(context, (VerificationCaseDefinition) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getVerificationCaseDefinitionRule()) {
+					sequence_ActionBodyItem_BasicDefinitionPrefix_CalculationBodyItem_CaseBody_CaseBodyItem_DefinitionExtensionKeyword_Identification_OccurrenceDefinitionPrefix_ParameterList_ReturnParameterPart_SubclassificationPart(context, (VerificationCaseDefinition) semanticObject); 
+					return; 
+				}
+				else break;
 			case SysMLPackage.VERIFICATION_CASE_USAGE:
 				if (rule == grammarAccess.getUsageElementRule()
 						|| rule == grammarAccess.getOccurrenceUsageElementRule()
 						|| rule == grammarAccess.getBehaviorUsageElementRule()
 						|| rule == grammarAccess.getVariantUsageElementRule()
-						|| rule == grammarAccess.getInterfaceOccurrenceUsageElementRule()
-						|| rule == grammarAccess.getVerificationCaseUsageRule()) {
+						|| rule == grammarAccess.getInterfaceOccurrenceUsageElementRule()) {
+					sequence_ActionBodyItem_ActionUsageParameterList_BasicUsagePrefix_CalculationBodyItem_CalculationReturnParameterPart_CaseBody_CaseBodyItem_Identification_MultiplicityPart_OccurrenceUsagePrefix_Redefines_Redefinitions_RefPrefix_Subsets_Subsettings_TypedBy_Typings_UsageExtensionKeyword_ValuePart(context, (VerificationCaseUsage) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getVerificationCaseUsageRule()) {
 					sequence_ActionBodyItem_ActionUsageParameterList_BasicUsagePrefix_CalculationBodyItem_CalculationReturnParameterPart_CaseBody_CaseBodyItem_Identification_MultiplicityPart_OccurrenceUsagePrefix_Redefines_Redefinitions_RefPrefix_Subsets_Subsettings_TypedBy_Typings_UsageExtensionKeyword_ValuePart(context, (VerificationCaseUsage) semanticObject); 
 					return; 
 				}
@@ -1893,7 +2013,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         isIndividual?='individual'? 
 	 *         (portionKind=PortionKind ownedRelationship+=PortioningFeatureMember)? 
 	 *         ownedRelationship+=PrefixMetadataMember? 
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (
 	 *             ownedRelationship+=OwnedMultiplicity | 
 	 *             (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
@@ -1911,13 +2031,12 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         )* 
 	 *         ownedRelationship+=PayloadParameterMember 
 	 *         (ownedRelationship+=NodeParameterMember | ownedRelationship+=EmptyParameterMember) 
-	 *         ownedRelationship+=GuardedSuccessionMember? 
+	 *         ownedRelationship+=VariantUsageMember? 
 	 *         (
 	 *             (
 	 *                 ownedRelationship+=Import | 
 	 *                 ownedRelationship+=AliasMember | 
 	 *                 ownedRelationship+=DefinitionMember | 
-	 *                 ownedRelationship+=VariantUsageMember | 
 	 *                 ownedRelationship+=NonOccurrenceUsageMember | 
 	 *                 (ownedRelationship+=EmptySuccessionMember? ownedRelationship+=StructureUsageMember) | 
 	 *                 (ownedRelationship+=InitialNodeMember ownedRelationship+=TargetSuccessionMember*) | 
@@ -1925,9 +2044,10 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *                     ownedRelationship+=EmptySuccessionMember? 
 	 *                     (ownedRelationship+=BehaviorUsageMember | ownedRelationship+=ActionNodeMember) 
 	 *                     ownedRelationship+=TargetSuccessionMember*
-	 *                 )
+	 *                 ) | 
+	 *                 ownedRelationship+=GuardedSuccessionMember
 	 *             )? 
-	 *             ownedRelationship+=GuardedSuccessionMember?
+	 *             ownedRelationship+=VariantUsageMember?
 	 *         )*
 	 *     )
 	 */
@@ -1943,7 +2063,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *
 	 * Constraint:
 	 *     (
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (
 	 *             ownedRelationship+=OwnedMultiplicity | 
 	 *             (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
@@ -1961,13 +2081,12 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         )* 
 	 *         ownedRelationship+=PayloadParameterMember 
 	 *         (ownedRelationship+=NodeParameterMember | ownedRelationship+=EmptyParameterMember) 
-	 *         ownedRelationship+=GuardedSuccessionMember? 
+	 *         ownedRelationship+=VariantUsageMember? 
 	 *         (
 	 *             (
 	 *                 ownedRelationship+=Import | 
 	 *                 ownedRelationship+=AliasMember | 
 	 *                 ownedRelationship+=DefinitionMember | 
-	 *                 ownedRelationship+=VariantUsageMember | 
 	 *                 ownedRelationship+=NonOccurrenceUsageMember | 
 	 *                 (ownedRelationship+=EmptySuccessionMember? ownedRelationship+=StructureUsageMember) | 
 	 *                 (ownedRelationship+=InitialNodeMember ownedRelationship+=TargetSuccessionMember*) | 
@@ -1975,9 +2094,10 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *                     ownedRelationship+=EmptySuccessionMember? 
 	 *                     (ownedRelationship+=BehaviorUsageMember | ownedRelationship+=ActionNodeMember) 
 	 *                     ownedRelationship+=TargetSuccessionMember*
-	 *                 )
+	 *                 ) | 
+	 *                 ownedRelationship+=GuardedSuccessionMember
 	 *             )? 
-	 *             ownedRelationship+=GuardedSuccessionMember?
+	 *             ownedRelationship+=VariantUsageMember?
 	 *         )*
 	 *     )
 	 */
@@ -1992,7 +2112,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *
 	 * Constraint:
 	 *     (
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (
 	 *             ownedRelationship+=OwnedMultiplicity | 
 	 *             (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
@@ -2023,7 +2143,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *
 	 * Constraint:
 	 *     (
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (
 	 *             ownedRelationship+=OwnedMultiplicity | 
 	 *             (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
@@ -2070,7 +2190,6 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *     BehaviorUsageElement returns AssertConstraintUsage
 	 *     VariantUsageElement returns AssertConstraintUsage
 	 *     InterfaceOccurrenceUsageElement returns AssertConstraintUsage
-	 *     AssertConstraintUsage returns AssertConstraintUsage
 	 *
 	 * Constraint:
 	 *     (
@@ -2084,7 +2203,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         (portionKind=PortionKind ownedRelationship+=PortioningFeatureMember)? 
 	 *         ownedRelationship+=PrefixMetadataMember? 
 	 *         isNegated?='not'? 
-	 *         ((humanId=Name name=Name?) | name=Name | ownedRelationship+=OwnedSubsetting)? 
+	 *         ((shortName=Name name=Name?) | name=Name | ownedRelationship+=OwnedSubsetting)? 
 	 *         (
 	 *             ownedRelationship+=OwnedMultiplicity | 
 	 *             (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
@@ -2115,7 +2234,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *                 (
 	 *                     ownedRelationship+=EmptySuccessionMember? 
 	 *                     (ownedRelationship+=BehaviorUsageMember | ownedRelationship+=ActionNodeMember) 
-	 *                     ownedRelationship+=TargetSuccessionMember*
+	 *                     ownedRelationship+=TargetSuccessionMember?
 	 *                 ) | 
 	 *                 ownedRelationship+=GuardedSuccessionMember
 	 *             )? 
@@ -2129,6 +2248,67 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	}
 	
 	
+	// This method is commented out because it has the same signature as another method in this class.
+	// This is probably a bug in Xtext's serializer, please report it here: 
+	// https://bugs.eclipse.org/bugs/enter_bug.cgi?product=TMF
+	//
+	// Contexts:
+	//     AssertConstraintUsage returns AssertConstraintUsage
+	//
+	// Constraint:
+	//     (
+	//         direction=FeatureDirection? 
+	//         (isAbstract?='abstract' | isVariation?='variation')? 
+	//         isReadOnly?='readonly'? 
+	//         isDerived?='derived'? 
+	//         isEnd?='end'? 
+	//         isReference?='ref'? 
+	//         isIndividual?='individual'? 
+	//         (portionKind=PortionKind ownedRelationship+=PortioningFeatureMember)? 
+	//         ownedRelationship+=PrefixMetadataMember? 
+	//         isNegated?='not'? 
+	//         ((shortName=Name name=Name?) | name=Name | ownedRelationship+=OwnedSubsetting)? 
+	//         (
+	//             ownedRelationship+=OwnedMultiplicity | 
+	//             (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
+	//         )? 
+	//         (
+	//             (
+	//                 (ownedRelationship+=FeatureTyping ownedRelationship+=FeatureTyping*) | 
+	//                 (ownedRelationship+=OwnedSubsetting ownedRelationship+=OwnedSubsetting*) | 
+	//                 (ownedRelationship+=OwnedRedefinition ownedRelationship+=OwnedRedefinition*)
+	//             ) 
+	//             (
+	//                 ownedRelationship+=OwnedMultiplicity | 
+	//                 (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
+	//             )?
+	//         )* 
+	//         (ownedRelationship+=ActionUsageParameterMember ownedRelationship+=ActionUsageParameterMember*)? 
+	//         ownedRelationship+=CalculationReturnParameterMember? 
+	//         ownedRelationship+=Import? 
+	//         (
+	//             (
+	//                 ownedRelationship+=AliasMember | 
+	//                 ownedRelationship+=DefinitionMember | 
+	//                 ownedRelationship+=VariantUsageMember | 
+	//                 ownedRelationship+=NonOccurrenceUsageMember | 
+	//                 (ownedRelationship+=EmptySuccessionMember? ownedRelationship+=StructureUsageMember) | 
+	//                 (ownedRelationship+=InitialNodeMember ownedRelationship+=TargetSuccessionMember*) | 
+	//                 (
+	//                     ownedRelationship+=EmptySuccessionMember? 
+	//                     (ownedRelationship+=BehaviorUsageMember | ownedRelationship+=ActionNodeMember) 
+	//                     ownedRelationship+=TargetSuccessionMember*
+	//                 ) | 
+	//                 ownedRelationship+=GuardedSuccessionMember | 
+	//                 ownedRelationship+=ReturnParameterFlowUsageMember
+	//             )? 
+	//             ownedRelationship+=Import?
+	//         )* 
+	//         ownedRelationship+=ResultExpressionMember?
+	//     )
+	//
+	// protected void sequence_ActionBodyItem_ActionUsageParameterList_AssertConstraintUsage_BasicUsagePrefix_CalculationBody_CalculationBodyItem_CalculationReturnParameterPart_Identification_MultiplicityPart_OccurrenceUsagePrefix_Redefines_Redefinitions_RefPrefix_Subsets_Subsettings_TypedBy_Typings_UsageExtensionKeyword(ISerializationContext context, AssertConstraintUsage semanticObject) { }
+	
 	/**
 	 * Contexts:
 	 *     UsageElement returns AnalysisCaseUsage
@@ -2136,7 +2316,6 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *     BehaviorUsageElement returns AnalysisCaseUsage
 	 *     VariantUsageElement returns AnalysisCaseUsage
 	 *     InterfaceOccurrenceUsageElement returns AnalysisCaseUsage
-	 *     AnalysisCaseUsage returns AnalysisCaseUsage
 	 *
 	 * Constraint:
 	 *     (
@@ -2149,7 +2328,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         isIndividual?='individual'? 
 	 *         (portionKind=PortionKind ownedRelationship+=PortioningFeatureMember)? 
 	 *         ownedRelationship+=PrefixMetadataMember? 
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (
 	 *             ownedRelationship+=OwnedMultiplicity | 
 	 *             (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
@@ -2191,7 +2370,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *             (
 	 *                 ownedRelationship+=EmptySuccessionMember? 
 	 *                 (ownedRelationship+=BehaviorUsageMember | ownedRelationship+=ActionNodeMember) 
-	 *                 ownedRelationship+=TargetSuccessionMember*
+	 *                 ownedRelationship+=TargetSuccessionMember?
 	 *             )?
 	 *         )+ 
 	 *         ownedRelationship+=ResultExpressionMember?
@@ -2202,6 +2381,75 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	}
 	
 	
+	// This method is commented out because it has the same signature as another method in this class.
+	// This is probably a bug in Xtext's serializer, please report it here: 
+	// https://bugs.eclipse.org/bugs/enter_bug.cgi?product=TMF
+	//
+	// Contexts:
+	//     AnalysisCaseUsage returns AnalysisCaseUsage
+	//
+	// Constraint:
+	//     (
+	//         direction=FeatureDirection? 
+	//         (isAbstract?='abstract' | isVariation?='variation')? 
+	//         isReadOnly?='readonly'? 
+	//         isDerived?='derived'? 
+	//         isEnd?='end'? 
+	//         isReference?='ref'? 
+	//         isIndividual?='individual'? 
+	//         (portionKind=PortionKind ownedRelationship+=PortioningFeatureMember)? 
+	//         ownedRelationship+=PrefixMetadataMember? 
+	//         ((shortName=Name name=Name?) | name=Name)? 
+	//         (
+	//             ownedRelationship+=OwnedMultiplicity | 
+	//             (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
+	//         )? 
+	//         (
+	//             (
+	//                 (ownedRelationship+=FeatureTyping ownedRelationship+=FeatureTyping*) | 
+	//                 (ownedRelationship+=OwnedSubsetting ownedRelationship+=OwnedSubsetting*) | 
+	//                 (ownedRelationship+=OwnedRedefinition ownedRelationship+=OwnedRedefinition*)
+	//             ) 
+	//             (
+	//                 ownedRelationship+=OwnedMultiplicity | 
+	//                 (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
+	//             )?
+	//         )* 
+	//         (
+	//             ownedRelationship+=FeatureValue | 
+	//             (ownedRelationship+=FeatureValueExpression ownedRelationship+=EmptyAssignmentActionMember) | 
+	//             (
+	//                 (ownedRelationship+=ActionUsageParameterMember ownedRelationship+=ActionUsageParameterMember*)? 
+	//                 ownedRelationship+=CalculationReturnParameterMember?
+	//             )
+	//         )? 
+	//         ownedRelationship+=Import? 
+	//         (
+	//             (
+	//                 ownedRelationship+=AliasMember | 
+	//                 ownedRelationship+=DefinitionMember | 
+	//                 ownedRelationship+=VariantUsageMember | 
+	//                 ownedRelationship+=NonOccurrenceUsageMember | 
+	//                 (ownedRelationship+=EmptySuccessionMember? ownedRelationship+=StructureUsageMember) | 
+	//                 (ownedRelationship+=InitialNodeMember ownedRelationship+=TargetSuccessionMember*) | 
+	//                 (
+	//                     ownedRelationship+=EmptySuccessionMember? 
+	//                     (ownedRelationship+=BehaviorUsageMember | ownedRelationship+=ActionNodeMember) 
+	//                     ownedRelationship+=TargetSuccessionMember*
+	//                 ) | 
+	//                 ownedRelationship+=GuardedSuccessionMember | 
+	//                 ownedRelationship+=ReturnParameterFlowUsageMember | 
+	//                 ownedRelationship+=SubjectMember | 
+	//                 ownedRelationship+=ActorMember | 
+	//                 ownedRelationship+=ObjectiveMember
+	//             )? 
+	//             ownedRelationship+=Import?
+	//         )* 
+	//         ownedRelationship+=ResultExpressionMember?
+	//     )
+	//
+	// protected void sequence_ActionBodyItem_ActionUsageParameterList_BasicUsagePrefix_CalculationBodyItem_CalculationReturnParameterPart_CaseBody_CaseBodyItem_Identification_MultiplicityPart_OccurrenceUsagePrefix_Redefines_Redefinitions_RefPrefix_Subsets_Subsettings_TypedBy_Typings_UsageExtensionKeyword_ValuePart(ISerializationContext context, AnalysisCaseUsage semanticObject) { }
+	
 	/**
 	 * Contexts:
 	 *     UsageElement returns CaseUsage
@@ -2209,7 +2457,6 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *     BehaviorUsageElement returns CaseUsage
 	 *     VariantUsageElement returns CaseUsage
 	 *     InterfaceOccurrenceUsageElement returns CaseUsage
-	 *     CaseUsage returns CaseUsage
 	 *
 	 * Constraint:
 	 *     (
@@ -2222,7 +2469,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         isIndividual?='individual'? 
 	 *         (portionKind=PortionKind ownedRelationship+=PortioningFeatureMember)? 
 	 *         ownedRelationship+=PrefixMetadataMember? 
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (
 	 *             ownedRelationship+=OwnedMultiplicity | 
 	 *             (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
@@ -2264,7 +2511,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *             (
 	 *                 ownedRelationship+=EmptySuccessionMember? 
 	 *                 (ownedRelationship+=BehaviorUsageMember | ownedRelationship+=ActionNodeMember) 
-	 *                 ownedRelationship+=TargetSuccessionMember*
+	 *                 ownedRelationship+=TargetSuccessionMember?
 	 *             )?
 	 *         )+ 
 	 *         ownedRelationship+=ResultExpressionMember?
@@ -2275,6 +2522,75 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	}
 	
 	
+	// This method is commented out because it has the same signature as another method in this class.
+	// This is probably a bug in Xtext's serializer, please report it here: 
+	// https://bugs.eclipse.org/bugs/enter_bug.cgi?product=TMF
+	//
+	// Contexts:
+	//     CaseUsage returns CaseUsage
+	//
+	// Constraint:
+	//     (
+	//         direction=FeatureDirection? 
+	//         (isAbstract?='abstract' | isVariation?='variation')? 
+	//         isReadOnly?='readonly'? 
+	//         isDerived?='derived'? 
+	//         isEnd?='end'? 
+	//         isReference?='ref'? 
+	//         isIndividual?='individual'? 
+	//         (portionKind=PortionKind ownedRelationship+=PortioningFeatureMember)? 
+	//         ownedRelationship+=PrefixMetadataMember? 
+	//         ((shortName=Name name=Name?) | name=Name)? 
+	//         (
+	//             ownedRelationship+=OwnedMultiplicity | 
+	//             (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
+	//         )? 
+	//         (
+	//             (
+	//                 (ownedRelationship+=FeatureTyping ownedRelationship+=FeatureTyping*) | 
+	//                 (ownedRelationship+=OwnedSubsetting ownedRelationship+=OwnedSubsetting*) | 
+	//                 (ownedRelationship+=OwnedRedefinition ownedRelationship+=OwnedRedefinition*)
+	//             ) 
+	//             (
+	//                 ownedRelationship+=OwnedMultiplicity | 
+	//                 (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
+	//             )?
+	//         )* 
+	//         (
+	//             ownedRelationship+=FeatureValue | 
+	//             (ownedRelationship+=FeatureValueExpression ownedRelationship+=EmptyAssignmentActionMember) | 
+	//             (
+	//                 (ownedRelationship+=ActionUsageParameterMember ownedRelationship+=ActionUsageParameterMember*)? 
+	//                 ownedRelationship+=CalculationReturnParameterMember?
+	//             )
+	//         )? 
+	//         ownedRelationship+=Import? 
+	//         (
+	//             (
+	//                 ownedRelationship+=AliasMember | 
+	//                 ownedRelationship+=DefinitionMember | 
+	//                 ownedRelationship+=VariantUsageMember | 
+	//                 ownedRelationship+=NonOccurrenceUsageMember | 
+	//                 (ownedRelationship+=EmptySuccessionMember? ownedRelationship+=StructureUsageMember) | 
+	//                 (ownedRelationship+=InitialNodeMember ownedRelationship+=TargetSuccessionMember*) | 
+	//                 (
+	//                     ownedRelationship+=EmptySuccessionMember? 
+	//                     (ownedRelationship+=BehaviorUsageMember | ownedRelationship+=ActionNodeMember) 
+	//                     ownedRelationship+=TargetSuccessionMember*
+	//                 ) | 
+	//                 ownedRelationship+=GuardedSuccessionMember | 
+	//                 ownedRelationship+=ReturnParameterFlowUsageMember | 
+	//                 ownedRelationship+=SubjectMember | 
+	//                 ownedRelationship+=ActorMember | 
+	//                 ownedRelationship+=ObjectiveMember
+	//             )? 
+	//             ownedRelationship+=Import?
+	//         )* 
+	//         ownedRelationship+=ResultExpressionMember?
+	//     )
+	//
+	// protected void sequence_ActionBodyItem_ActionUsageParameterList_BasicUsagePrefix_CalculationBodyItem_CalculationReturnParameterPart_CaseBody_CaseBodyItem_Identification_MultiplicityPart_OccurrenceUsagePrefix_Redefines_Redefinitions_RefPrefix_Subsets_Subsettings_TypedBy_Typings_UsageExtensionKeyword_ValuePart(ISerializationContext context, CaseUsage semanticObject) { }
+	
 	/**
 	 * Contexts:
 	 *     UsageElement returns UseCaseUsage
@@ -2282,7 +2598,6 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *     BehaviorUsageElement returns UseCaseUsage
 	 *     VariantUsageElement returns UseCaseUsage
 	 *     InterfaceOccurrenceUsageElement returns UseCaseUsage
-	 *     UseCaseUsage returns UseCaseUsage
 	 *
 	 * Constraint:
 	 *     (
@@ -2295,7 +2610,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         isIndividual?='individual'? 
 	 *         (portionKind=PortionKind ownedRelationship+=PortioningFeatureMember)? 
 	 *         ownedRelationship+=PrefixMetadataMember? 
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (
 	 *             ownedRelationship+=OwnedMultiplicity | 
 	 *             (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
@@ -2337,7 +2652,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *             (
 	 *                 ownedRelationship+=EmptySuccessionMember? 
 	 *                 (ownedRelationship+=BehaviorUsageMember | ownedRelationship+=ActionNodeMember) 
-	 *                 ownedRelationship+=TargetSuccessionMember*
+	 *                 ownedRelationship+=TargetSuccessionMember?
 	 *             )?
 	 *         )+ 
 	 *         ownedRelationship+=ResultExpressionMember?
@@ -2348,6 +2663,75 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	}
 	
 	
+	// This method is commented out because it has the same signature as another method in this class.
+	// This is probably a bug in Xtext's serializer, please report it here: 
+	// https://bugs.eclipse.org/bugs/enter_bug.cgi?product=TMF
+	//
+	// Contexts:
+	//     UseCaseUsage returns UseCaseUsage
+	//
+	// Constraint:
+	//     (
+	//         direction=FeatureDirection? 
+	//         (isAbstract?='abstract' | isVariation?='variation')? 
+	//         isReadOnly?='readonly'? 
+	//         isDerived?='derived'? 
+	//         isEnd?='end'? 
+	//         isReference?='ref'? 
+	//         isIndividual?='individual'? 
+	//         (portionKind=PortionKind ownedRelationship+=PortioningFeatureMember)? 
+	//         ownedRelationship+=PrefixMetadataMember? 
+	//         ((shortName=Name name=Name?) | name=Name)? 
+	//         (
+	//             ownedRelationship+=OwnedMultiplicity | 
+	//             (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
+	//         )? 
+	//         (
+	//             (
+	//                 (ownedRelationship+=FeatureTyping ownedRelationship+=FeatureTyping*) | 
+	//                 (ownedRelationship+=OwnedSubsetting ownedRelationship+=OwnedSubsetting*) | 
+	//                 (ownedRelationship+=OwnedRedefinition ownedRelationship+=OwnedRedefinition*)
+	//             ) 
+	//             (
+	//                 ownedRelationship+=OwnedMultiplicity | 
+	//                 (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
+	//             )?
+	//         )* 
+	//         (
+	//             ownedRelationship+=FeatureValue | 
+	//             (ownedRelationship+=FeatureValueExpression ownedRelationship+=EmptyAssignmentActionMember) | 
+	//             (
+	//                 (ownedRelationship+=ActionUsageParameterMember ownedRelationship+=ActionUsageParameterMember*)? 
+	//                 ownedRelationship+=CalculationReturnParameterMember?
+	//             )
+	//         )? 
+	//         ownedRelationship+=Import? 
+	//         (
+	//             (
+	//                 ownedRelationship+=AliasMember | 
+	//                 ownedRelationship+=DefinitionMember | 
+	//                 ownedRelationship+=VariantUsageMember | 
+	//                 ownedRelationship+=NonOccurrenceUsageMember | 
+	//                 (ownedRelationship+=EmptySuccessionMember? ownedRelationship+=StructureUsageMember) | 
+	//                 (ownedRelationship+=InitialNodeMember ownedRelationship+=TargetSuccessionMember*) | 
+	//                 (
+	//                     ownedRelationship+=EmptySuccessionMember? 
+	//                     (ownedRelationship+=BehaviorUsageMember | ownedRelationship+=ActionNodeMember) 
+	//                     ownedRelationship+=TargetSuccessionMember*
+	//                 ) | 
+	//                 ownedRelationship+=GuardedSuccessionMember | 
+	//                 ownedRelationship+=ReturnParameterFlowUsageMember | 
+	//                 ownedRelationship+=SubjectMember | 
+	//                 ownedRelationship+=ActorMember | 
+	//                 ownedRelationship+=ObjectiveMember
+	//             )? 
+	//             ownedRelationship+=Import?
+	//         )* 
+	//         ownedRelationship+=ResultExpressionMember?
+	//     )
+	//
+	// protected void sequence_ActionBodyItem_ActionUsageParameterList_BasicUsagePrefix_CalculationBodyItem_CalculationReturnParameterPart_CaseBody_CaseBodyItem_Identification_MultiplicityPart_OccurrenceUsagePrefix_Redefines_Redefinitions_RefPrefix_Subsets_Subsettings_TypedBy_Typings_UsageExtensionKeyword_ValuePart(ISerializationContext context, UseCaseUsage semanticObject) { }
+	
 	/**
 	 * Contexts:
 	 *     UsageElement returns VerificationCaseUsage
@@ -2355,7 +2739,6 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *     BehaviorUsageElement returns VerificationCaseUsage
 	 *     VariantUsageElement returns VerificationCaseUsage
 	 *     InterfaceOccurrenceUsageElement returns VerificationCaseUsage
-	 *     VerificationCaseUsage returns VerificationCaseUsage
 	 *
 	 * Constraint:
 	 *     (
@@ -2368,7 +2751,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         isIndividual?='individual'? 
 	 *         (portionKind=PortionKind ownedRelationship+=PortioningFeatureMember)? 
 	 *         ownedRelationship+=PrefixMetadataMember? 
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (
 	 *             ownedRelationship+=OwnedMultiplicity | 
 	 *             (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
@@ -2410,7 +2793,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *             (
 	 *                 ownedRelationship+=EmptySuccessionMember? 
 	 *                 (ownedRelationship+=BehaviorUsageMember | ownedRelationship+=ActionNodeMember) 
-	 *                 ownedRelationship+=TargetSuccessionMember*
+	 *                 ownedRelationship+=TargetSuccessionMember?
 	 *             )?
 	 *         )+ 
 	 *         ownedRelationship+=ResultExpressionMember?
@@ -2421,6 +2804,75 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	}
 	
 	
+	// This method is commented out because it has the same signature as another method in this class.
+	// This is probably a bug in Xtext's serializer, please report it here: 
+	// https://bugs.eclipse.org/bugs/enter_bug.cgi?product=TMF
+	//
+	// Contexts:
+	//     VerificationCaseUsage returns VerificationCaseUsage
+	//
+	// Constraint:
+	//     (
+	//         direction=FeatureDirection? 
+	//         (isAbstract?='abstract' | isVariation?='variation')? 
+	//         isReadOnly?='readonly'? 
+	//         isDerived?='derived'? 
+	//         isEnd?='end'? 
+	//         isReference?='ref'? 
+	//         isIndividual?='individual'? 
+	//         (portionKind=PortionKind ownedRelationship+=PortioningFeatureMember)? 
+	//         ownedRelationship+=PrefixMetadataMember? 
+	//         ((shortName=Name name=Name?) | name=Name)? 
+	//         (
+	//             ownedRelationship+=OwnedMultiplicity | 
+	//             (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
+	//         )? 
+	//         (
+	//             (
+	//                 (ownedRelationship+=FeatureTyping ownedRelationship+=FeatureTyping*) | 
+	//                 (ownedRelationship+=OwnedSubsetting ownedRelationship+=OwnedSubsetting*) | 
+	//                 (ownedRelationship+=OwnedRedefinition ownedRelationship+=OwnedRedefinition*)
+	//             ) 
+	//             (
+	//                 ownedRelationship+=OwnedMultiplicity | 
+	//                 (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
+	//             )?
+	//         )* 
+	//         (
+	//             ownedRelationship+=FeatureValue | 
+	//             (ownedRelationship+=FeatureValueExpression ownedRelationship+=EmptyAssignmentActionMember) | 
+	//             (
+	//                 (ownedRelationship+=ActionUsageParameterMember ownedRelationship+=ActionUsageParameterMember*)? 
+	//                 ownedRelationship+=CalculationReturnParameterMember?
+	//             )
+	//         )? 
+	//         ownedRelationship+=Import? 
+	//         (
+	//             (
+	//                 ownedRelationship+=AliasMember | 
+	//                 ownedRelationship+=DefinitionMember | 
+	//                 ownedRelationship+=VariantUsageMember | 
+	//                 ownedRelationship+=NonOccurrenceUsageMember | 
+	//                 (ownedRelationship+=EmptySuccessionMember? ownedRelationship+=StructureUsageMember) | 
+	//                 (ownedRelationship+=InitialNodeMember ownedRelationship+=TargetSuccessionMember*) | 
+	//                 (
+	//                     ownedRelationship+=EmptySuccessionMember? 
+	//                     (ownedRelationship+=BehaviorUsageMember | ownedRelationship+=ActionNodeMember) 
+	//                     ownedRelationship+=TargetSuccessionMember*
+	//                 ) | 
+	//                 ownedRelationship+=GuardedSuccessionMember | 
+	//                 ownedRelationship+=ReturnParameterFlowUsageMember | 
+	//                 ownedRelationship+=SubjectMember | 
+	//                 ownedRelationship+=ActorMember | 
+	//                 ownedRelationship+=ObjectiveMember
+	//             )? 
+	//             ownedRelationship+=Import?
+	//         )* 
+	//         ownedRelationship+=ResultExpressionMember?
+	//     )
+	//
+	// protected void sequence_ActionBodyItem_ActionUsageParameterList_BasicUsagePrefix_CalculationBodyItem_CalculationReturnParameterPart_CaseBody_CaseBodyItem_Identification_MultiplicityPart_OccurrenceUsagePrefix_Redefines_Redefinitions_RefPrefix_Subsets_Subsettings_TypedBy_Typings_UsageExtensionKeyword_ValuePart(ISerializationContext context, VerificationCaseUsage semanticObject) { }
+	
 	/**
 	 * Contexts:
 	 *     UsageElement returns IncludeUseCaseUsage
@@ -2428,7 +2880,6 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *     BehaviorUsageElement returns IncludeUseCaseUsage
 	 *     VariantUsageElement returns IncludeUseCaseUsage
 	 *     InterfaceOccurrenceUsageElement returns IncludeUseCaseUsage
-	 *     IncludeUseCaseUsage returns IncludeUseCaseUsage
 	 *
 	 * Constraint:
 	 *     (
@@ -2441,7 +2892,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         isIndividual?='individual'? 
 	 *         (portionKind=PortionKind ownedRelationship+=PortioningFeatureMember)? 
 	 *         ownedRelationship+=PrefixMetadataMember? 
-	 *         ((humanId=Name name=Name?) | name=Name | ownedRelationship+=OwnedSubsetting)? 
+	 *         ((shortName=Name name=Name?) | name=Name | ownedRelationship+=OwnedSubsetting)? 
 	 *         (
 	 *             ownedRelationship+=OwnedMultiplicity | 
 	 *             (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
@@ -2475,7 +2926,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *                 (
 	 *                     ownedRelationship+=EmptySuccessionMember? 
 	 *                     (ownedRelationship+=BehaviorUsageMember | ownedRelationship+=ActionNodeMember) 
-	 *                     ownedRelationship+=TargetSuccessionMember*
+	 *                     ownedRelationship+=TargetSuccessionMember?
 	 *                 ) | 
 	 *                 ownedRelationship+=GuardedSuccessionMember | 
 	 *                 ownedRelationship+=ReturnParameterFlowUsageMember | 
@@ -2492,6 +2943,72 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	}
 	
 	
+	// This method is commented out because it has the same signature as another method in this class.
+	// This is probably a bug in Xtext's serializer, please report it here: 
+	// https://bugs.eclipse.org/bugs/enter_bug.cgi?product=TMF
+	//
+	// Contexts:
+	//     IncludeUseCaseUsage returns IncludeUseCaseUsage
+	//
+	// Constraint:
+	//     (
+	//         direction=FeatureDirection? 
+	//         (isAbstract?='abstract' | isVariation?='variation')? 
+	//         isReadOnly?='readonly'? 
+	//         isDerived?='derived'? 
+	//         isEnd?='end'? 
+	//         isReference?='ref'? 
+	//         isIndividual?='individual'? 
+	//         (portionKind=PortionKind ownedRelationship+=PortioningFeatureMember)? 
+	//         ownedRelationship+=PrefixMetadataMember? 
+	//         ((shortName=Name name=Name?) | name=Name | ownedRelationship+=OwnedSubsetting)? 
+	//         (
+	//             ownedRelationship+=OwnedMultiplicity | 
+	//             (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
+	//         )? 
+	//         (
+	//             (
+	//                 (ownedRelationship+=FeatureTyping ownedRelationship+=FeatureTyping*) | 
+	//                 (ownedRelationship+=OwnedSubsetting ownedRelationship+=OwnedSubsetting*) | 
+	//                 (ownedRelationship+=OwnedRedefinition ownedRelationship+=OwnedRedefinition*)
+	//             ) 
+	//             (
+	//                 ownedRelationship+=OwnedMultiplicity | 
+	//                 (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
+	//             )?
+	//         )* 
+	//         (
+	//             ownedRelationship+=FeatureValue | 
+	//             (ownedRelationship+=FeatureValueExpression ownedRelationship+=EmptyAssignmentActionMember) | 
+	//             (ownedRelationship+=ActionUsageParameterMember ownedRelationship+=ActionUsageParameterMember*)
+	//         )? 
+	//         ownedRelationship+=Import? 
+	//         (
+	//             (
+	//                 ownedRelationship+=AliasMember | 
+	//                 ownedRelationship+=DefinitionMember | 
+	//                 ownedRelationship+=VariantUsageMember | 
+	//                 ownedRelationship+=NonOccurrenceUsageMember | 
+	//                 (ownedRelationship+=EmptySuccessionMember? ownedRelationship+=StructureUsageMember) | 
+	//                 (ownedRelationship+=InitialNodeMember ownedRelationship+=TargetSuccessionMember*) | 
+	//                 (
+	//                     ownedRelationship+=EmptySuccessionMember? 
+	//                     (ownedRelationship+=BehaviorUsageMember | ownedRelationship+=ActionNodeMember) 
+	//                     ownedRelationship+=TargetSuccessionMember*
+	//                 ) | 
+	//                 ownedRelationship+=GuardedSuccessionMember | 
+	//                 ownedRelationship+=ReturnParameterFlowUsageMember | 
+	//                 ownedRelationship+=SubjectMember | 
+	//                 ownedRelationship+=ActorMember | 
+	//                 ownedRelationship+=ObjectiveMember
+	//             )? 
+	//             ownedRelationship+=Import?
+	//         )* 
+	//         ownedRelationship+=ResultExpressionMember?
+	//     )
+	//
+	// protected void sequence_ActionBodyItem_ActionUsageParameterList_BasicUsagePrefix_CalculationBodyItem_CaseBody_CaseBodyItem_Identification_IncludeUseCaseUsage_MultiplicityPart_OccurrenceUsagePrefix_Redefines_Redefinitions_RefPrefix_Subsets_Subsettings_TypedBy_Typings_UsageExtensionKeyword_ValuePart(ISerializationContext context, IncludeUseCaseUsage semanticObject) { }
+	
 	/**
 	 * Contexts:
 	 *     UsageElement returns CalculationUsage
@@ -2499,7 +3016,6 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *     BehaviorUsageElement returns CalculationUsage
 	 *     VariantUsageElement returns CalculationUsage
 	 *     InterfaceOccurrenceUsageElement returns CalculationUsage
-	 *     CalculationUsage returns CalculationUsage
 	 *
 	 * Constraint:
 	 *     (
@@ -2512,7 +3028,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         isIndividual?='individual'? 
 	 *         (portionKind=PortionKind ownedRelationship+=PortioningFeatureMember)? 
 	 *         ownedRelationship+=PrefixMetadataMember? 
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (
 	 *             ownedRelationship+=OwnedMultiplicity | 
 	 *             (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
@@ -2551,7 +3067,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *             (
 	 *                 ownedRelationship+=EmptySuccessionMember? 
 	 *                 (ownedRelationship+=BehaviorUsageMember | ownedRelationship+=ActionNodeMember) 
-	 *                 ownedRelationship+=TargetSuccessionMember*
+	 *                 ownedRelationship+=TargetSuccessionMember?
 	 *             )?
 	 *         )+ 
 	 *         ownedRelationship+=ResultExpressionMember?
@@ -2562,6 +3078,72 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	}
 	
 	
+	// This method is commented out because it has the same signature as another method in this class.
+	// This is probably a bug in Xtext's serializer, please report it here: 
+	// https://bugs.eclipse.org/bugs/enter_bug.cgi?product=TMF
+	//
+	// Contexts:
+	//     CalculationUsage returns CalculationUsage
+	//
+	// Constraint:
+	//     (
+	//         direction=FeatureDirection? 
+	//         (isAbstract?='abstract' | isVariation?='variation')? 
+	//         isReadOnly?='readonly'? 
+	//         isDerived?='derived'? 
+	//         isEnd?='end'? 
+	//         isReference?='ref'? 
+	//         isIndividual?='individual'? 
+	//         (portionKind=PortionKind ownedRelationship+=PortioningFeatureMember)? 
+	//         ownedRelationship+=PrefixMetadataMember? 
+	//         ((shortName=Name name=Name?) | name=Name)? 
+	//         (
+	//             ownedRelationship+=OwnedMultiplicity | 
+	//             (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
+	//         )? 
+	//         (
+	//             (
+	//                 (ownedRelationship+=FeatureTyping ownedRelationship+=FeatureTyping*) | 
+	//                 (ownedRelationship+=OwnedSubsetting ownedRelationship+=OwnedSubsetting*) | 
+	//                 (ownedRelationship+=OwnedRedefinition ownedRelationship+=OwnedRedefinition*)
+	//             ) 
+	//             (
+	//                 ownedRelationship+=OwnedMultiplicity | 
+	//                 (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
+	//             )?
+	//         )* 
+	//         (
+	//             ownedRelationship+=FeatureValue | 
+	//             (ownedRelationship+=FeatureValueExpression ownedRelationship+=EmptyAssignmentActionMember) | 
+	//             (
+	//                 (ownedRelationship+=ActionUsageParameterMember ownedRelationship+=ActionUsageParameterMember*)? 
+	//                 ownedRelationship+=CalculationReturnParameterMember?
+	//             )
+	//         )? 
+	//         ownedRelationship+=Import? 
+	//         (
+	//             (
+	//                 ownedRelationship+=AliasMember | 
+	//                 ownedRelationship+=DefinitionMember | 
+	//                 ownedRelationship+=VariantUsageMember | 
+	//                 ownedRelationship+=NonOccurrenceUsageMember | 
+	//                 (ownedRelationship+=EmptySuccessionMember? ownedRelationship+=StructureUsageMember) | 
+	//                 (ownedRelationship+=InitialNodeMember ownedRelationship+=TargetSuccessionMember*) | 
+	//                 (
+	//                     ownedRelationship+=EmptySuccessionMember? 
+	//                     (ownedRelationship+=BehaviorUsageMember | ownedRelationship+=ActionNodeMember) 
+	//                     ownedRelationship+=TargetSuccessionMember*
+	//                 ) | 
+	//                 ownedRelationship+=GuardedSuccessionMember | 
+	//                 ownedRelationship+=ReturnParameterFlowUsageMember
+	//             )? 
+	//             ownedRelationship+=Import?
+	//         )* 
+	//         ownedRelationship+=ResultExpressionMember?
+	//     )
+	//
+	// protected void sequence_ActionBodyItem_ActionUsageParameterList_BasicUsagePrefix_CalculationBody_CalculationBodyItem_CalculationReturnParameterPart_Identification_MultiplicityPart_OccurrenceUsagePrefix_Redefines_Redefinitions_RefPrefix_Subsets_Subsettings_TypedBy_Typings_UsageExtensionKeyword_ValuePart(ISerializationContext context, CalculationUsage semanticObject) { }
+	
 	/**
 	 * Contexts:
 	 *     UsageElement returns ConstraintUsage
@@ -2569,7 +3151,6 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *     BehaviorUsageElement returns ConstraintUsage
 	 *     VariantUsageElement returns ConstraintUsage
 	 *     InterfaceOccurrenceUsageElement returns ConstraintUsage
-	 *     ConstraintUsage returns ConstraintUsage
 	 *
 	 * Constraint:
 	 *     (
@@ -2582,7 +3163,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         isIndividual?='individual'? 
 	 *         (portionKind=PortionKind ownedRelationship+=PortioningFeatureMember)? 
 	 *         ownedRelationship+=PrefixMetadataMember? 
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (
 	 *             ownedRelationship+=OwnedMultiplicity | 
 	 *             (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
@@ -2621,7 +3202,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *             (
 	 *                 ownedRelationship+=EmptySuccessionMember? 
 	 *                 (ownedRelationship+=BehaviorUsageMember | ownedRelationship+=ActionNodeMember) 
-	 *                 ownedRelationship+=TargetSuccessionMember*
+	 *                 ownedRelationship+=TargetSuccessionMember?
 	 *             )?
 	 *         )+ 
 	 *         ownedRelationship+=ResultExpressionMember?
@@ -2631,6 +3212,72 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
+	
+	// This method is commented out because it has the same signature as another method in this class.
+	// This is probably a bug in Xtext's serializer, please report it here: 
+	// https://bugs.eclipse.org/bugs/enter_bug.cgi?product=TMF
+	//
+	// Contexts:
+	//     ConstraintUsage returns ConstraintUsage
+	//
+	// Constraint:
+	//     (
+	//         direction=FeatureDirection? 
+	//         (isAbstract?='abstract' | isVariation?='variation')? 
+	//         isReadOnly?='readonly'? 
+	//         isDerived?='derived'? 
+	//         isEnd?='end'? 
+	//         isReference?='ref'? 
+	//         isIndividual?='individual'? 
+	//         (portionKind=PortionKind ownedRelationship+=PortioningFeatureMember)? 
+	//         ownedRelationship+=PrefixMetadataMember? 
+	//         ((shortName=Name name=Name?) | name=Name)? 
+	//         (
+	//             ownedRelationship+=OwnedMultiplicity | 
+	//             (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
+	//         )? 
+	//         (
+	//             (
+	//                 (ownedRelationship+=FeatureTyping ownedRelationship+=FeatureTyping*) | 
+	//                 (ownedRelationship+=OwnedSubsetting ownedRelationship+=OwnedSubsetting*) | 
+	//                 (ownedRelationship+=OwnedRedefinition ownedRelationship+=OwnedRedefinition*)
+	//             ) 
+	//             (
+	//                 ownedRelationship+=OwnedMultiplicity | 
+	//                 (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
+	//             )?
+	//         )* 
+	//         (
+	//             ownedRelationship+=FeatureValue | 
+	//             (ownedRelationship+=FeatureValueExpression ownedRelationship+=EmptyAssignmentActionMember) | 
+	//             (
+	//                 (ownedRelationship+=ActionUsageParameterMember ownedRelationship+=ActionUsageParameterMember*)? 
+	//                 ownedRelationship+=CalculationReturnParameterMember?
+	//             )
+	//         )? 
+	//         ownedRelationship+=Import? 
+	//         (
+	//             (
+	//                 ownedRelationship+=AliasMember | 
+	//                 ownedRelationship+=DefinitionMember | 
+	//                 ownedRelationship+=VariantUsageMember | 
+	//                 ownedRelationship+=NonOccurrenceUsageMember | 
+	//                 (ownedRelationship+=EmptySuccessionMember? ownedRelationship+=StructureUsageMember) | 
+	//                 (ownedRelationship+=InitialNodeMember ownedRelationship+=TargetSuccessionMember*) | 
+	//                 (
+	//                     ownedRelationship+=EmptySuccessionMember? 
+	//                     (ownedRelationship+=BehaviorUsageMember | ownedRelationship+=ActionNodeMember) 
+	//                     ownedRelationship+=TargetSuccessionMember*
+	//                 ) | 
+	//                 ownedRelationship+=GuardedSuccessionMember | 
+	//                 ownedRelationship+=ReturnParameterFlowUsageMember
+	//             )? 
+	//             ownedRelationship+=Import?
+	//         )* 
+	//         ownedRelationship+=ResultExpressionMember?
+	//     )
+	//
+	// protected void sequence_ActionBodyItem_ActionUsageParameterList_BasicUsagePrefix_CalculationBody_CalculationBodyItem_CalculationReturnParameterPart_Identification_MultiplicityPart_OccurrenceUsagePrefix_Redefines_Redefinitions_RefPrefix_Subsets_Subsettings_TypedBy_Typings_UsageExtensionKeyword_ValuePart(ISerializationContext context, ConstraintUsage semanticObject) { }
 	
 	/**
 	 * Contexts:
@@ -2652,7 +3299,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         isIndividual?='individual'? 
 	 *         (portionKind=PortionKind ownedRelationship+=PortioningFeatureMember)? 
 	 *         ownedRelationship+=PrefixMetadataMember? 
-	 *         ((humanId=Name name=Name?) | name=Name | ownedRelationship+=OwnedSubsetting)? 
+	 *         ((shortName=Name name=Name?) | name=Name | ownedRelationship+=OwnedSubsetting)? 
 	 *         (
 	 *             ownedRelationship+=OwnedMultiplicity | 
 	 *             (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
@@ -2673,23 +3320,24 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *             (ownedRelationship+=FeatureValueExpression ownedRelationship+=EmptyAssignmentActionMember) | 
 	 *             (ownedRelationship+=ActionUsageParameterMember ownedRelationship+=ActionUsageParameterMember*)
 	 *         )? 
+	 *         ownedRelationship+=VariantUsageMember? 
 	 *         (
 	 *             (
 	 *                 ownedRelationship+=Import | 
 	 *                 ownedRelationship+=AliasMember | 
 	 *                 ownedRelationship+=DefinitionMember | 
-	 *                 ownedRelationship+=VariantUsageMember | 
 	 *                 ownedRelationship+=NonOccurrenceUsageMember | 
+	 *                 (ownedRelationship+=EmptySuccessionMember? ownedRelationship+=StructureUsageMember) | 
+	 *                 (ownedRelationship+=InitialNodeMember ownedRelationship+=TargetSuccessionMember*) | 
+	 *                 (
+	 *                     ownedRelationship+=EmptySuccessionMember? 
+	 *                     (ownedRelationship+=BehaviorUsageMember | ownedRelationship+=ActionNodeMember) 
+	 *                     ownedRelationship+=TargetSuccessionMember*
+	 *                 ) | 
 	 *                 ownedRelationship+=GuardedSuccessionMember
 	 *             )? 
-	 *             (ownedRelationship+=InitialNodeMember ownedRelationship+=TargetSuccessionMember*)? 
-	 *             (ownedRelationship+=EmptySuccessionMember? ownedRelationship+=StructureUsageMember)? 
-	 *             (
-	 *                 ownedRelationship+=EmptySuccessionMember? 
-	 *                 (ownedRelationship+=BehaviorUsageMember | ownedRelationship+=ActionNodeMember) 
-	 *                 ownedRelationship+=TargetSuccessionMember*
-	 *             )?
-	 *         )+
+	 *             ownedRelationship+=VariantUsageMember?
+	 *         )*
 	 *     )
 	 */
 	protected void sequence_ActionBodyItem_ActionUsageParameterList_BasicUsagePrefix_Identification_MultiplicityPart_OccurrenceUsagePrefix_PerformActionUsageDeclaration_Redefines_Redefinitions_RefPrefix_Subsets_Subsettings_TypedBy_Typings_UsageExtensionKeyword_ValuePart(ISerializationContext context, PerformActionUsage semanticObject) {
@@ -2717,7 +3365,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         isIndividual?='individual'? 
 	 *         (portionKind=PortionKind ownedRelationship+=PortioningFeatureMember)? 
 	 *         ownedRelationship+=PrefixMetadataMember? 
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (
 	 *             ownedRelationship+=OwnedMultiplicity | 
 	 *             (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
@@ -2770,7 +3418,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *     (
 	 *         (
 	 *             (
-	 *                 (humanId=Name name=Name?) | 
+	 *                 (shortName=Name name=Name?) | 
 	 *                 name=Name | 
 	 *                 (
 	 *                     ownedRelationship+=OwnedSubsetting? 
@@ -2912,7 +3560,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *     (
 	 *         (
 	 *             (
-	 *                 (humanId=Name name=Name?) | 
+	 *                 (shortName=Name name=Name?) | 
 	 *                 name=Name | 
 	 *                 (
 	 *                     ownedRelationship+=OwnedSubsetting? 
@@ -3053,7 +3701,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *
 	 * Constraint:
 	 *     (
-	 *         ((humanId=Name name=Name?) | name=Name | ownedRelationship+=OwnedSubsetting)? 
+	 *         ((shortName=Name name=Name?) | name=Name | ownedRelationship+=OwnedSubsetting)? 
 	 *         (
 	 *             ownedRelationship+=OwnedMultiplicity | 
 	 *             (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
@@ -3074,23 +3722,24 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *             (ownedRelationship+=FeatureValueExpression ownedRelationship+=EmptyAssignmentActionMember) | 
 	 *             (ownedRelationship+=ActionUsageParameterMember ownedRelationship+=ActionUsageParameterMember*)
 	 *         )? 
+	 *         ownedRelationship+=VariantUsageMember? 
 	 *         (
 	 *             (
 	 *                 ownedRelationship+=Import | 
 	 *                 ownedRelationship+=AliasMember | 
 	 *                 ownedRelationship+=DefinitionMember | 
-	 *                 ownedRelationship+=VariantUsageMember | 
 	 *                 ownedRelationship+=NonOccurrenceUsageMember | 
+	 *                 (ownedRelationship+=EmptySuccessionMember? ownedRelationship+=StructureUsageMember) | 
+	 *                 (ownedRelationship+=InitialNodeMember ownedRelationship+=TargetSuccessionMember*) | 
+	 *                 (
+	 *                     ownedRelationship+=EmptySuccessionMember? 
+	 *                     (ownedRelationship+=BehaviorUsageMember | ownedRelationship+=ActionNodeMember) 
+	 *                     ownedRelationship+=TargetSuccessionMember*
+	 *                 ) | 
 	 *                 ownedRelationship+=GuardedSuccessionMember
 	 *             )? 
-	 *             (ownedRelationship+=InitialNodeMember ownedRelationship+=TargetSuccessionMember*)? 
-	 *             (ownedRelationship+=EmptySuccessionMember? ownedRelationship+=StructureUsageMember)? 
-	 *             (
-	 *                 ownedRelationship+=EmptySuccessionMember? 
-	 *                 (ownedRelationship+=BehaviorUsageMember | ownedRelationship+=ActionNodeMember) 
-	 *                 ownedRelationship+=TargetSuccessionMember*
-	 *             )?
-	 *         )+
+	 *             ownedRelationship+=VariantUsageMember?
+	 *         )*
 	 *     )
 	 */
 	protected void sequence_ActionBodyItem_ActionUsageParameterList_Identification_MultiplicityPart_PerformActionUsageDeclaration_PerformedActionUsage_Redefines_Redefinitions_Subsets_Subsettings_TypedBy_Typings_ValuePart(ISerializationContext context, PerformActionUsage semanticObject) {
@@ -3114,7 +3763,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         isIndividual?='individual'? 
 	 *         (portionKind=PortionKind ownedRelationship+=PortioningFeatureMember)? 
 	 *         ownedRelationship+=PrefixMetadataMember? 
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (
 	 *             ownedRelationship+=OwnedMultiplicity | 
 	 *             (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
@@ -3164,7 +3813,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *
 	 * Constraint:
 	 *     (
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (
 	 *             ownedRelationship+=OwnedMultiplicity | 
 	 *             (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
@@ -3210,14 +3859,13 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	/**
 	 * Contexts:
 	 *     DefinitionElement returns AnalysisCaseDefinition
-	 *     AnalysisCaseDefinition returns AnalysisCaseDefinition
 	 *
 	 * Constraint:
 	 *     (
 	 *         (isAbstract?='abstract' | isVariation?='variation')? 
 	 *         (isIndividual?='individual' ownedRelationship+=LifeClassMembership)? 
 	 *         ownedRelationship+=PrefixMetadataMember? 
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (ownedRelationship+=OwnedSubclassification ownedRelationship+=OwnedSubclassification*)? 
 	 *         (ownedRelationship+=ParameterMember ownedRelationship+=ParameterMember*)? 
 	 *         ownedRelationship+=ReturnParameterMember? 
@@ -3239,7 +3887,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *             (
 	 *                 ownedRelationship+=EmptySuccessionMember? 
 	 *                 (ownedRelationship+=BehaviorUsageMember | ownedRelationship+=ActionNodeMember) 
-	 *                 ownedRelationship+=TargetSuccessionMember*
+	 *                 ownedRelationship+=TargetSuccessionMember?
 	 *             )?
 	 *         )+ 
 	 *         ownedRelationship+=ResultExpressionMember?
@@ -3250,17 +3898,59 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	}
 	
 	
+	// This method is commented out because it has the same signature as another method in this class.
+	// This is probably a bug in Xtext's serializer, please report it here: 
+	// https://bugs.eclipse.org/bugs/enter_bug.cgi?product=TMF
+	//
+	// Contexts:
+	//     AnalysisCaseDefinition returns AnalysisCaseDefinition
+	//
+	// Constraint:
+	//     (
+	//         (isAbstract?='abstract' | isVariation?='variation')? 
+	//         (isIndividual?='individual' ownedRelationship+=LifeClassMembership)? 
+	//         ownedRelationship+=PrefixMetadataMember? 
+	//         ((shortName=Name name=Name?) | name=Name)? 
+	//         (ownedRelationship+=OwnedSubclassification ownedRelationship+=OwnedSubclassification*)? 
+	//         (ownedRelationship+=ParameterMember ownedRelationship+=ParameterMember*)? 
+	//         ownedRelationship+=ReturnParameterMember? 
+	//         ownedRelationship+=Import? 
+	//         (
+	//             (
+	//                 ownedRelationship+=AliasMember | 
+	//                 ownedRelationship+=DefinitionMember | 
+	//                 ownedRelationship+=VariantUsageMember | 
+	//                 ownedRelationship+=NonOccurrenceUsageMember | 
+	//                 (ownedRelationship+=EmptySuccessionMember? ownedRelationship+=StructureUsageMember) | 
+	//                 (ownedRelationship+=InitialNodeMember ownedRelationship+=TargetSuccessionMember*) | 
+	//                 (
+	//                     ownedRelationship+=EmptySuccessionMember? 
+	//                     (ownedRelationship+=BehaviorUsageMember | ownedRelationship+=ActionNodeMember) 
+	//                     ownedRelationship+=TargetSuccessionMember*
+	//                 ) | 
+	//                 ownedRelationship+=GuardedSuccessionMember | 
+	//                 ownedRelationship+=ReturnParameterFlowUsageMember | 
+	//                 ownedRelationship+=SubjectMember | 
+	//                 ownedRelationship+=ActorMember | 
+	//                 ownedRelationship+=ObjectiveMember
+	//             )? 
+	//             ownedRelationship+=Import?
+	//         )* 
+	//         ownedRelationship+=ResultExpressionMember?
+	//     )
+	//
+	// protected void sequence_ActionBodyItem_BasicDefinitionPrefix_CalculationBodyItem_CaseBody_CaseBodyItem_DefinitionExtensionKeyword_Identification_OccurrenceDefinitionPrefix_ParameterList_ReturnParameterPart_SubclassificationPart(ISerializationContext context, AnalysisCaseDefinition semanticObject) { }
+	
 	/**
 	 * Contexts:
 	 *     DefinitionElement returns CaseDefinition
-	 *     CaseDefinition returns CaseDefinition
 	 *
 	 * Constraint:
 	 *     (
 	 *         (isAbstract?='abstract' | isVariation?='variation')? 
 	 *         (isIndividual?='individual' ownedRelationship+=LifeClassMembership)? 
 	 *         ownedRelationship+=PrefixMetadataMember? 
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (ownedRelationship+=OwnedSubclassification ownedRelationship+=OwnedSubclassification*)? 
 	 *         (ownedRelationship+=ParameterMember ownedRelationship+=ParameterMember*)? 
 	 *         ownedRelationship+=ReturnParameterMember? 
@@ -3282,7 +3972,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *             (
 	 *                 ownedRelationship+=EmptySuccessionMember? 
 	 *                 (ownedRelationship+=BehaviorUsageMember | ownedRelationship+=ActionNodeMember) 
-	 *                 ownedRelationship+=TargetSuccessionMember*
+	 *                 ownedRelationship+=TargetSuccessionMember?
 	 *             )?
 	 *         )+ 
 	 *         ownedRelationship+=ResultExpressionMember?
@@ -3293,17 +3983,59 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	}
 	
 	
+	// This method is commented out because it has the same signature as another method in this class.
+	// This is probably a bug in Xtext's serializer, please report it here: 
+	// https://bugs.eclipse.org/bugs/enter_bug.cgi?product=TMF
+	//
+	// Contexts:
+	//     CaseDefinition returns CaseDefinition
+	//
+	// Constraint:
+	//     (
+	//         (isAbstract?='abstract' | isVariation?='variation')? 
+	//         (isIndividual?='individual' ownedRelationship+=LifeClassMembership)? 
+	//         ownedRelationship+=PrefixMetadataMember? 
+	//         ((shortName=Name name=Name?) | name=Name)? 
+	//         (ownedRelationship+=OwnedSubclassification ownedRelationship+=OwnedSubclassification*)? 
+	//         (ownedRelationship+=ParameterMember ownedRelationship+=ParameterMember*)? 
+	//         ownedRelationship+=ReturnParameterMember? 
+	//         ownedRelationship+=Import? 
+	//         (
+	//             (
+	//                 ownedRelationship+=AliasMember | 
+	//                 ownedRelationship+=DefinitionMember | 
+	//                 ownedRelationship+=VariantUsageMember | 
+	//                 ownedRelationship+=NonOccurrenceUsageMember | 
+	//                 (ownedRelationship+=EmptySuccessionMember? ownedRelationship+=StructureUsageMember) | 
+	//                 (ownedRelationship+=InitialNodeMember ownedRelationship+=TargetSuccessionMember*) | 
+	//                 (
+	//                     ownedRelationship+=EmptySuccessionMember? 
+	//                     (ownedRelationship+=BehaviorUsageMember | ownedRelationship+=ActionNodeMember) 
+	//                     ownedRelationship+=TargetSuccessionMember*
+	//                 ) | 
+	//                 ownedRelationship+=GuardedSuccessionMember | 
+	//                 ownedRelationship+=ReturnParameterFlowUsageMember | 
+	//                 ownedRelationship+=SubjectMember | 
+	//                 ownedRelationship+=ActorMember | 
+	//                 ownedRelationship+=ObjectiveMember
+	//             )? 
+	//             ownedRelationship+=Import?
+	//         )* 
+	//         ownedRelationship+=ResultExpressionMember?
+	//     )
+	//
+	// protected void sequence_ActionBodyItem_BasicDefinitionPrefix_CalculationBodyItem_CaseBody_CaseBodyItem_DefinitionExtensionKeyword_Identification_OccurrenceDefinitionPrefix_ParameterList_ReturnParameterPart_SubclassificationPart(ISerializationContext context, CaseDefinition semanticObject) { }
+	
 	/**
 	 * Contexts:
 	 *     DefinitionElement returns UseCaseDefinition
-	 *     UseCaseDefinition returns UseCaseDefinition
 	 *
 	 * Constraint:
 	 *     (
 	 *         (isAbstract?='abstract' | isVariation?='variation')? 
 	 *         (isIndividual?='individual' ownedRelationship+=LifeClassMembership)? 
 	 *         ownedRelationship+=PrefixMetadataMember? 
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (ownedRelationship+=OwnedSubclassification ownedRelationship+=OwnedSubclassification*)? 
 	 *         (ownedRelationship+=ParameterMember ownedRelationship+=ParameterMember*)? 
 	 *         ownedRelationship+=ReturnParameterMember? 
@@ -3325,7 +4057,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *             (
 	 *                 ownedRelationship+=EmptySuccessionMember? 
 	 *                 (ownedRelationship+=BehaviorUsageMember | ownedRelationship+=ActionNodeMember) 
-	 *                 ownedRelationship+=TargetSuccessionMember*
+	 *                 ownedRelationship+=TargetSuccessionMember?
 	 *             )?
 	 *         )+ 
 	 *         ownedRelationship+=ResultExpressionMember?
@@ -3336,17 +4068,59 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	}
 	
 	
+	// This method is commented out because it has the same signature as another method in this class.
+	// This is probably a bug in Xtext's serializer, please report it here: 
+	// https://bugs.eclipse.org/bugs/enter_bug.cgi?product=TMF
+	//
+	// Contexts:
+	//     UseCaseDefinition returns UseCaseDefinition
+	//
+	// Constraint:
+	//     (
+	//         (isAbstract?='abstract' | isVariation?='variation')? 
+	//         (isIndividual?='individual' ownedRelationship+=LifeClassMembership)? 
+	//         ownedRelationship+=PrefixMetadataMember? 
+	//         ((shortName=Name name=Name?) | name=Name)? 
+	//         (ownedRelationship+=OwnedSubclassification ownedRelationship+=OwnedSubclassification*)? 
+	//         (ownedRelationship+=ParameterMember ownedRelationship+=ParameterMember*)? 
+	//         ownedRelationship+=ReturnParameterMember? 
+	//         ownedRelationship+=Import? 
+	//         (
+	//             (
+	//                 ownedRelationship+=AliasMember | 
+	//                 ownedRelationship+=DefinitionMember | 
+	//                 ownedRelationship+=VariantUsageMember | 
+	//                 ownedRelationship+=NonOccurrenceUsageMember | 
+	//                 (ownedRelationship+=EmptySuccessionMember? ownedRelationship+=StructureUsageMember) | 
+	//                 (ownedRelationship+=InitialNodeMember ownedRelationship+=TargetSuccessionMember*) | 
+	//                 (
+	//                     ownedRelationship+=EmptySuccessionMember? 
+	//                     (ownedRelationship+=BehaviorUsageMember | ownedRelationship+=ActionNodeMember) 
+	//                     ownedRelationship+=TargetSuccessionMember*
+	//                 ) | 
+	//                 ownedRelationship+=GuardedSuccessionMember | 
+	//                 ownedRelationship+=ReturnParameterFlowUsageMember | 
+	//                 ownedRelationship+=SubjectMember | 
+	//                 ownedRelationship+=ActorMember | 
+	//                 ownedRelationship+=ObjectiveMember
+	//             )? 
+	//             ownedRelationship+=Import?
+	//         )* 
+	//         ownedRelationship+=ResultExpressionMember?
+	//     )
+	//
+	// protected void sequence_ActionBodyItem_BasicDefinitionPrefix_CalculationBodyItem_CaseBody_CaseBodyItem_DefinitionExtensionKeyword_Identification_OccurrenceDefinitionPrefix_ParameterList_ReturnParameterPart_SubclassificationPart(ISerializationContext context, UseCaseDefinition semanticObject) { }
+	
 	/**
 	 * Contexts:
 	 *     DefinitionElement returns VerificationCaseDefinition
-	 *     VerificationCaseDefinition returns VerificationCaseDefinition
 	 *
 	 * Constraint:
 	 *     (
 	 *         (isAbstract?='abstract' | isVariation?='variation')? 
 	 *         (isIndividual?='individual' ownedRelationship+=LifeClassMembership)? 
 	 *         ownedRelationship+=PrefixMetadataMember? 
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (ownedRelationship+=OwnedSubclassification ownedRelationship+=OwnedSubclassification*)? 
 	 *         (ownedRelationship+=ParameterMember ownedRelationship+=ParameterMember*)? 
 	 *         ownedRelationship+=ReturnParameterMember? 
@@ -3368,7 +4142,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *             (
 	 *                 ownedRelationship+=EmptySuccessionMember? 
 	 *                 (ownedRelationship+=BehaviorUsageMember | ownedRelationship+=ActionNodeMember) 
-	 *                 ownedRelationship+=TargetSuccessionMember*
+	 *                 ownedRelationship+=TargetSuccessionMember?
 	 *             )?
 	 *         )+ 
 	 *         ownedRelationship+=ResultExpressionMember?
@@ -3379,17 +4153,59 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	}
 	
 	
+	// This method is commented out because it has the same signature as another method in this class.
+	// This is probably a bug in Xtext's serializer, please report it here: 
+	// https://bugs.eclipse.org/bugs/enter_bug.cgi?product=TMF
+	//
+	// Contexts:
+	//     VerificationCaseDefinition returns VerificationCaseDefinition
+	//
+	// Constraint:
+	//     (
+	//         (isAbstract?='abstract' | isVariation?='variation')? 
+	//         (isIndividual?='individual' ownedRelationship+=LifeClassMembership)? 
+	//         ownedRelationship+=PrefixMetadataMember? 
+	//         ((shortName=Name name=Name?) | name=Name)? 
+	//         (ownedRelationship+=OwnedSubclassification ownedRelationship+=OwnedSubclassification*)? 
+	//         (ownedRelationship+=ParameterMember ownedRelationship+=ParameterMember*)? 
+	//         ownedRelationship+=ReturnParameterMember? 
+	//         ownedRelationship+=Import? 
+	//         (
+	//             (
+	//                 ownedRelationship+=AliasMember | 
+	//                 ownedRelationship+=DefinitionMember | 
+	//                 ownedRelationship+=VariantUsageMember | 
+	//                 ownedRelationship+=NonOccurrenceUsageMember | 
+	//                 (ownedRelationship+=EmptySuccessionMember? ownedRelationship+=StructureUsageMember) | 
+	//                 (ownedRelationship+=InitialNodeMember ownedRelationship+=TargetSuccessionMember*) | 
+	//                 (
+	//                     ownedRelationship+=EmptySuccessionMember? 
+	//                     (ownedRelationship+=BehaviorUsageMember | ownedRelationship+=ActionNodeMember) 
+	//                     ownedRelationship+=TargetSuccessionMember*
+	//                 ) | 
+	//                 ownedRelationship+=GuardedSuccessionMember | 
+	//                 ownedRelationship+=ReturnParameterFlowUsageMember | 
+	//                 ownedRelationship+=SubjectMember | 
+	//                 ownedRelationship+=ActorMember | 
+	//                 ownedRelationship+=ObjectiveMember
+	//             )? 
+	//             ownedRelationship+=Import?
+	//         )* 
+	//         ownedRelationship+=ResultExpressionMember?
+	//     )
+	//
+	// protected void sequence_ActionBodyItem_BasicDefinitionPrefix_CalculationBodyItem_CaseBody_CaseBodyItem_DefinitionExtensionKeyword_Identification_OccurrenceDefinitionPrefix_ParameterList_ReturnParameterPart_SubclassificationPart(ISerializationContext context, VerificationCaseDefinition semanticObject) { }
+	
 	/**
 	 * Contexts:
 	 *     DefinitionElement returns CalculationDefinition
-	 *     CalculationDefinition returns CalculationDefinition
 	 *
 	 * Constraint:
 	 *     (
 	 *         (isAbstract?='abstract' | isVariation?='variation')? 
 	 *         (isIndividual?='individual' ownedRelationship+=LifeClassMembership)? 
 	 *         ownedRelationship+=PrefixMetadataMember? 
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (ownedRelationship+=OwnedSubclassification ownedRelationship+=OwnedSubclassification*)? 
 	 *         (ownedRelationship+=ParameterMember ownedRelationship+=ParameterMember*)? 
 	 *         ownedRelationship+=ReturnParameterMember? 
@@ -3410,7 +4226,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *                     (
 	 *                         ownedRelationship+=EmptySuccessionMember? 
 	 *                         (ownedRelationship+=BehaviorUsageMember | ownedRelationship+=ActionNodeMember) 
-	 *                         ownedRelationship+=TargetSuccessionMember*
+	 *                         ownedRelationship+=TargetSuccessionMember?
 	 *                     )?
 	 *                 )+ 
 	 *                 ownedRelationship+=ResultExpressionMember?
@@ -3424,17 +4240,61 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	}
 	
 	
+	// This method is commented out because it has the same signature as another method in this class.
+	// This is probably a bug in Xtext's serializer, please report it here: 
+	// https://bugs.eclipse.org/bugs/enter_bug.cgi?product=TMF
+	//
+	// Contexts:
+	//     CalculationDefinition returns CalculationDefinition
+	//
+	// Constraint:
+	//     (
+	//         (isAbstract?='abstract' | isVariation?='variation')? 
+	//         (isIndividual?='individual' ownedRelationship+=LifeClassMembership)? 
+	//         ownedRelationship+=PrefixMetadataMember? 
+	//         ((shortName=Name name=Name?) | name=Name)? 
+	//         (ownedRelationship+=OwnedSubclassification ownedRelationship+=OwnedSubclassification*)? 
+	//         (ownedRelationship+=ParameterMember ownedRelationship+=ParameterMember*)? 
+	//         ownedRelationship+=ReturnParameterMember? 
+	//         (
+	//             (
+	//                 ownedRelationship+=Import? 
+	//                 (
+	//                     (
+	//                         ownedRelationship+=AliasMember | 
+	//                         ownedRelationship+=DefinitionMember | 
+	//                         ownedRelationship+=VariantUsageMember | 
+	//                         ownedRelationship+=NonOccurrenceUsageMember | 
+	//                         (ownedRelationship+=EmptySuccessionMember? ownedRelationship+=StructureUsageMember) | 
+	//                         (ownedRelationship+=InitialNodeMember ownedRelationship+=TargetSuccessionMember*) | 
+	//                         (
+	//                             ownedRelationship+=EmptySuccessionMember? 
+	//                             (ownedRelationship+=BehaviorUsageMember | ownedRelationship+=ActionNodeMember) 
+	//                             ownedRelationship+=TargetSuccessionMember*
+	//                         ) | 
+	//                         ownedRelationship+=GuardedSuccessionMember | 
+	//                         ownedRelationship+=ReturnParameterFlowUsageMember
+	//                     )? 
+	//                     ownedRelationship+=Import?
+	//                 )* 
+	//                 ownedRelationship+=ResultExpressionMember?
+	//             ) | 
+	//             ownedRelationship+=ResultExpressionMember
+	//         )?
+	//     )
+	//
+	// protected void sequence_ActionBodyItem_BasicDefinitionPrefix_CalculationBody_CalculationBodyItem_CalculationDefinition_DefinitionExtensionKeyword_Identification_OccurrenceDefinitionPrefix_ParameterList_ReturnParameterPart_SubclassificationPart(ISerializationContext context, CalculationDefinition semanticObject) { }
+	
 	/**
 	 * Contexts:
 	 *     DefinitionElement returns ConstraintDefinition
-	 *     ConstraintDefinition returns ConstraintDefinition
 	 *
 	 * Constraint:
 	 *     (
 	 *         (isAbstract?='abstract' | isVariation?='variation')? 
 	 *         (isIndividual?='individual' ownedRelationship+=LifeClassMembership)? 
 	 *         ownedRelationship+=PrefixMetadataMember? 
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (ownedRelationship+=OwnedSubclassification ownedRelationship+=OwnedSubclassification*)? 
 	 *         (ownedRelationship+=ParameterMember ownedRelationship+=ParameterMember*)? 
 	 *         ownedRelationship+=EmptyReturnParameterMember 
@@ -3453,7 +4313,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *             (
 	 *                 ownedRelationship+=EmptySuccessionMember? 
 	 *                 (ownedRelationship+=BehaviorUsageMember | ownedRelationship+=ActionNodeMember) 
-	 *                 ownedRelationship+=TargetSuccessionMember*
+	 *                 ownedRelationship+=TargetSuccessionMember?
 	 *             )?
 	 *         )+ 
 	 *         ownedRelationship+=ResultExpressionMember?
@@ -3463,6 +4323,45 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
+	
+	// This method is commented out because it has the same signature as another method in this class.
+	// This is probably a bug in Xtext's serializer, please report it here: 
+	// https://bugs.eclipse.org/bugs/enter_bug.cgi?product=TMF
+	//
+	// Contexts:
+	//     ConstraintDefinition returns ConstraintDefinition
+	//
+	// Constraint:
+	//     (
+	//         (isAbstract?='abstract' | isVariation?='variation')? 
+	//         (isIndividual?='individual' ownedRelationship+=LifeClassMembership)? 
+	//         ownedRelationship+=PrefixMetadataMember? 
+	//         ((shortName=Name name=Name?) | name=Name)? 
+	//         (ownedRelationship+=OwnedSubclassification ownedRelationship+=OwnedSubclassification*)? 
+	//         (ownedRelationship+=ParameterMember ownedRelationship+=ParameterMember*)? 
+	//         ownedRelationship+=EmptyReturnParameterMember 
+	//         (
+	//             (
+	//                 ownedRelationship+=Import | 
+	//                 ownedRelationship+=AliasMember | 
+	//                 ownedRelationship+=DefinitionMember | 
+	//                 ownedRelationship+=VariantUsageMember | 
+	//                 ownedRelationship+=NonOccurrenceUsageMember | 
+	//                 ownedRelationship+=GuardedSuccessionMember | 
+	//                 ownedRelationship+=ReturnParameterFlowUsageMember
+	//             )? 
+	//             (ownedRelationship+=InitialNodeMember ownedRelationship+=TargetSuccessionMember*)? 
+	//             (ownedRelationship+=EmptySuccessionMember? ownedRelationship+=StructureUsageMember)? 
+	//             (
+	//                 ownedRelationship+=EmptySuccessionMember? 
+	//                 (ownedRelationship+=BehaviorUsageMember | ownedRelationship+=ActionNodeMember) 
+	//                 ownedRelationship+=TargetSuccessionMember*
+	//             )?
+	//         )+ 
+	//         ownedRelationship+=ResultExpressionMember?
+	//     )
+	//
+	// protected void sequence_ActionBodyItem_BasicDefinitionPrefix_CalculationBody_CalculationBodyItem_DefinitionExtensionKeyword_EmptyReturnParameterPart_Identification_OccurrenceDefinitionPrefix_ParameterList_SubclassificationPart(ISerializationContext context, ConstraintDefinition semanticObject) { }
 	
 	/**
 	 * Contexts:
@@ -3474,7 +4373,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         (isAbstract?='abstract' | isVariation?='variation')? 
 	 *         (isIndividual?='individual' ownedRelationship+=LifeClassMembership)? 
 	 *         ownedRelationship+=PrefixMetadataMember? 
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (ownedRelationship+=OwnedSubclassification ownedRelationship+=OwnedSubclassification*)? 
 	 *         (ownedRelationship+=ParameterMember ownedRelationship+=ParameterMember*)? 
 	 *         (
@@ -3517,7 +4416,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         isIndividual?='individual'? 
 	 *         (portionKind=PortionKind ownedRelationship+=PortioningFeatureMember)? 
 	 *         ownedRelationship+=PrefixMetadataMember? 
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (
 	 *             ownedRelationship+=OwnedMultiplicity | 
 	 *             (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
@@ -3642,7 +4541,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *
 	 * Constraint:
 	 *     (
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (
 	 *             ownedRelationship+=OwnedMultiplicity | 
 	 *             (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
@@ -3728,7 +4627,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         isIndividual?='individual'? 
 	 *         (portionKind=PortionKind ownedRelationship+=PortioningFeatureMember)? 
 	 *         ownedRelationship+=PrefixMetadataMember? 
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (
 	 *             ownedRelationship+=OwnedMultiplicity | 
 	 *             (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
@@ -3795,7 +4694,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         isIndividual?='individual'? 
 	 *         (portionKind=PortionKind ownedRelationship+=PortioningFeatureMember)? 
 	 *         ownedRelationship+=PrefixMetadataMember? 
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (
 	 *             ownedRelationship+=OwnedMultiplicity | 
 	 *             (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
@@ -3862,7 +4761,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         isIndividual?='individual'? 
 	 *         (portionKind=PortionKind ownedRelationship+=PortioningFeatureMember)? 
 	 *         ownedRelationship+=PrefixMetadataMember? 
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (
 	 *             ownedRelationship+=OwnedMultiplicity | 
 	 *             (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
@@ -3930,7 +4829,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         (portionKind=PortionKind ownedRelationship+=PortioningFeatureMember)? 
 	 *         ownedRelationship+=PrefixMetadataMember? 
 	 *         isNegated?='not'? 
-	 *         ((humanId=Name name=Name?) | name=Name | ownedRelationship+=OwnedSubsetting)? 
+	 *         ((shortName=Name name=Name?) | name=Name | ownedRelationship+=OwnedSubsetting)? 
 	 *         (
 	 *             ownedRelationship+=OwnedMultiplicity | 
 	 *             (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
@@ -3952,7 +4851,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *             (ownedRelationship+=ActionUsageParameterMember ownedRelationship+=ActionUsageParameterMember*)
 	 *         )? 
 	 *         ownedRelationship+=SatisfactionSubjectMember? 
-	 *         ownedRelationship+=SubjectMember? 
+	 *         ownedRelationship+=RequirementConstraintMember? 
 	 *         (
 	 *             (
 	 *                 ownedRelationship+=DefinitionMember | 
@@ -3961,13 +4860,13 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *                 (ownedRelationship+=EmptySuccessionMember? ownedRelationship+=OccurrenceUsageMember) | 
 	 *                 ownedRelationship+=AliasMember | 
 	 *                 ownedRelationship+=Import | 
-	 *                 ownedRelationship+=RequirementConstraintMember | 
+	 *                 ownedRelationship+=SubjectMember | 
 	 *                 ownedRelationship+=FramedConcernMember | 
 	 *                 ownedRelationship+=RequirementVerificationMember | 
 	 *                 ownedRelationship+=ActorMember | 
 	 *                 ownedRelationship+=StakeholderMember
 	 *             )? 
-	 *             ownedRelationship+=SubjectMember?
+	 *             ownedRelationship+=RequirementConstraintMember?
 	 *         )*
 	 *     )
 	 */
@@ -3996,7 +4895,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         isIndividual?='individual'? 
 	 *         (portionKind=PortionKind ownedRelationship+=PortioningFeatureMember)? 
 	 *         ownedRelationship+=PrefixMetadataMember? 
-	 *         ((humanId=Name name=Name?) | name=Name | ownedRelationship+=OwnedSubsetting)? 
+	 *         ((shortName=Name name=Name?) | name=Name | ownedRelationship+=OwnedSubsetting)? 
 	 *         (
 	 *             ownedRelationship+=OwnedMultiplicity | 
 	 *             (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
@@ -4018,6 +4917,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *             (ownedRelationship+=ActionUsageParameterMember ownedRelationship+=ActionUsageParameterMember*)
 	 *         )? 
 	 *         isParallel?='parallel'? 
+	 *         ownedRelationship+=DoActionMember? 
 	 *         (
 	 *             (
 	 *                 ownedRelationship+=Import | 
@@ -4025,14 +4925,14 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *                 ownedRelationship+=DefinitionMember | 
 	 *                 ownedRelationship+=VariantUsageMember | 
 	 *                 ownedRelationship+=NonOccurrenceUsageMember | 
+	 *                 (ownedRelationship+=EmptySuccessionMember? ownedRelationship+=StructureUsageMember) | 
+	 *                 (ownedRelationship+=EmptySuccessionMember? ownedRelationship+=BehaviorUsageMember ownedRelationship+=TargetTransitionUsageMember*) | 
 	 *                 ownedRelationship+=TransitionUsageMember | 
-	 *                 ownedRelationship+=DoActionMember | 
+	 *                 (ownedRelationship+=EntryActionMember ownedRelationship+=EntryTransitionMember*) | 
 	 *                 ownedRelationship+=ExitActionMember
 	 *             )? 
-	 *             (ownedRelationship+=EntryActionMember ownedRelationship+=EntryTransitionMember*)? 
-	 *             (ownedRelationship+=EmptySuccessionMember? ownedRelationship+=StructureUsageMember)? 
-	 *             (ownedRelationship+=EmptySuccessionMember? ownedRelationship+=BehaviorUsageMember ownedRelationship+=TargetTransitionUsageMember*)?
-	 *         )+
+	 *             ownedRelationship+=DoActionMember?
+	 *         )*
 	 *     )
 	 */
 	protected void sequence_ActionUsageParameterList_BasicUsagePrefix_ExhibitStateUsage_Identification_MultiplicityPart_OccurrenceUsagePrefix_Redefines_Redefinitions_RefPrefix_StateBodyItem_StateUsageBody_Subsets_Subsettings_TypedBy_Typings_UsageExtensionKeyword_ValuePart(ISerializationContext context, ExhibitStateUsage semanticObject) {
@@ -4060,7 +4960,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         isIndividual?='individual'? 
 	 *         (portionKind=PortionKind ownedRelationship+=PortioningFeatureMember)? 
 	 *         ownedRelationship+=PrefixMetadataMember? 
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (
 	 *             ownedRelationship+=OwnedMultiplicity | 
 	 *             (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
@@ -4113,7 +5013,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         (
 	 *             (
 	 *                 (
-	 *                     (humanId=Name name=Name?) | 
+	 *                     (shortName=Name name=Name?) | 
 	 *                     name=Name | 
 	 *                     (
 	 *                         ownedRelationship+=OwnedSubsetting? 
@@ -4183,7 +5083,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *
 	 * Constraint:
 	 *     (
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (
 	 *             ownedRelationship+=OwnedMultiplicity | 
 	 *             (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
@@ -4236,7 +5136,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *
 	 * Constraint:
 	 *     (
-	 *         ((humanId=Name name=Name?) | name=Name | ownedRelationship+=OwnedSubsetting)? 
+	 *         ((shortName=Name name=Name?) | name=Name | ownedRelationship+=OwnedSubsetting)? 
 	 *         (
 	 *             ownedRelationship+=OwnedMultiplicity | 
 	 *             (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
@@ -4283,7 +5183,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 * Constraint:
 	 *     (
 	 *         direction=FeatureDirection? 
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (
 	 *             ownedRelationship+=OwnedMultiplicity | 
 	 *             (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
@@ -4342,8 +5242,8 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *                 (operand+=PrimaryExpression_OperatorExpression_2_0_1_0 ownedRelationship+=ReferenceTyping)
 	 *             ) 
 	 *             (
-	 *                 (ownedRelationship+=OwnedExpressionMember ownedRelationship+=OwnedExpressionMember*) | 
-	 *                 (ownedRelationship+=NamedExpressionMember ownedRelationship+=NamedExpressionMember*)
+	 *                 (ownedRelationship+=ArgumentMember ownedRelationship+=ArgumentMember*) | 
+	 *                 (ownedRelationship+=NamedArgumentMember ownedRelationship+=NamedArgumentMember*)
 	 *             )
 	 *         ) | 
 	 *         (operand+=ConditionalExpression_OperatorExpression_0_1_0 operator=ConditionalOperator operand+=OwnedExpression operand+=ConditionalExpression) | 
@@ -4382,7 +5282,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *     AliasMember returns Membership
 	 *
 	 * Constraint:
-	 *     (visibility=VisibilityIndicator? memberName=Name memberElement=[Element|QualifiedName])
+	 *     (visibility=VisibilityIndicator? memberNames+=Name memberNames+=Name* memberElement=[Element|QualifiedName])
 	 */
 	protected void sequence_AliasMember_MemberPrefix(ISerializationContext context, Membership semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -4391,12 +5291,12 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	
 	/**
 	 * Contexts:
-	 *     AnnotatingMember returns Membership
+	 *     AnnotatingMember returns OwningMembership
 	 *
 	 * Constraint:
 	 *     ownedRelatedElement+=AnnotatingElement
 	 */
-	protected void sequence_AnnotatingMember(ISerializationContext context, Membership semanticObject) {
+	protected void sequence_AnnotatingMember(ISerializationContext context, OwningMembership semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -4425,7 +5325,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *
 	 * Constraint:
 	 *     (
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (
 	 *             ownedRelationship+=OwnedMultiplicity | 
 	 *             (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
@@ -4473,7 +5373,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         (isAbstract?='abstract' | isVariation?='variation')? 
 	 *         (isIndividual?='individual' ownedRelationship+=LifeClassMembership)? 
 	 *         ownedRelationship+=PrefixMetadataMember? 
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (ownedRelationship+=OwnedSubclassification ownedRelationship+=OwnedSubclassification*)? 
 	 *         (ownedRelationship+=ParameterMember ownedRelationship+=ParameterMember*)? 
 	 *         ownedRelationship+=EmptyReturnParameterMember 
@@ -4510,7 +5410,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         (isAbstract?='abstract' | isVariation?='variation')? 
 	 *         (isIndividual?='individual' ownedRelationship+=LifeClassMembership)? 
 	 *         ownedRelationship+=PrefixMetadataMember? 
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (ownedRelationship+=OwnedSubclassification ownedRelationship+=OwnedSubclassification*)? 
 	 *         (ownedRelationship+=ParameterMember ownedRelationship+=ParameterMember*)? 
 	 *         ownedRelationship+=EmptyReturnParameterMember 
@@ -4547,7 +5447,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         (isAbstract?='abstract' | isVariation?='variation')? 
 	 *         (isIndividual?='individual' ownedRelationship+=LifeClassMembership)? 
 	 *         ownedRelationship+=PrefixMetadataMember? 
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (ownedRelationship+=OwnedSubclassification ownedRelationship+=OwnedSubclassification*)? 
 	 *         (ownedRelationship+=ParameterMember ownedRelationship+=ParameterMember*)? 
 	 *         ownedRelationship+=EmptyReturnParameterMember 
@@ -4583,7 +5483,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         (isAbstract?='abstract' | isVariation?='variation')? 
 	 *         ((isIndividual?='individual' ownedRelationship+=LifeClassMembership) | isIndividual?='individual')? 
 	 *         ownedRelationship+=PrefixMetadataMember? 
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (ownedRelationship+=OwnedSubclassification ownedRelationship+=OwnedSubclassification*)? 
 	 *         (
 	 *             (
@@ -4612,7 +5512,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         (isAbstract?='abstract' | isVariation?='variation')? 
 	 *         isIndividual?='individual' 
 	 *         ownedRelationship+=PrefixMetadataMember? 
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (ownedRelationship+=OwnedSubclassification ownedRelationship+=OwnedSubclassification*)? 
 	 *         (
 	 *             (
@@ -4642,7 +5542,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         (isAbstract?='abstract' | isVariation?='variation')? 
 	 *         (isIndividual?='individual' ownedRelationship+=LifeClassMembership)? 
 	 *         ownedRelationship+=PrefixMetadataMember? 
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (ownedRelationship+=OwnedSubclassification ownedRelationship+=OwnedSubclassification*)? 
 	 *         (
 	 *             (
@@ -4671,7 +5571,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         (isAbstract?='abstract' | isVariation?='variation')? 
 	 *         (isIndividual?='individual' ownedRelationship+=LifeClassMembership)? 
 	 *         ownedRelationship+=PrefixMetadataMember? 
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (ownedRelationship+=OwnedSubclassification ownedRelationship+=OwnedSubclassification*)? 
 	 *         (
 	 *             (
@@ -4700,7 +5600,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         (isAbstract?='abstract' | isVariation?='variation')? 
 	 *         (isIndividual?='individual' ownedRelationship+=LifeClassMembership)? 
 	 *         ownedRelationship+=PrefixMetadataMember? 
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (ownedRelationship+=OwnedSubclassification ownedRelationship+=OwnedSubclassification*)? 
 	 *         (
 	 *             (
@@ -4728,7 +5628,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         (isAbstract?='abstract' | isVariation?='variation')? 
 	 *         (isIndividual?='individual' ownedRelationship+=LifeClassMembership)? 
 	 *         ownedRelationship+=PrefixMetadataMember? 
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (ownedRelationship+=OwnedSubclassification ownedRelationship+=OwnedSubclassification*)? 
 	 *         (
 	 *             (
@@ -4757,7 +5657,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         (isAbstract?='abstract' | isVariation?='variation')? 
 	 *         (isIndividual?='individual' ownedRelationship+=LifeClassMembership)? 
 	 *         ownedRelationship+=PrefixMetadataMember? 
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (ownedRelationship+=OwnedSubclassification ownedRelationship+=OwnedSubclassification*)? 
 	 *         (
 	 *             (
@@ -4786,7 +5686,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         (isAbstract?='abstract' | isVariation?='variation')? 
 	 *         (isIndividual?='individual' ownedRelationship+=LifeClassMembership)? 
 	 *         ownedRelationship+=PrefixMetadataMember? 
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (ownedRelationship+=OwnedSubclassification ownedRelationship+=OwnedSubclassification*)? 
 	 *         (
 	 *             (
@@ -4815,7 +5715,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         (isAbstract?='abstract' | isVariation?='variation')? 
 	 *         (isIndividual?='individual' ownedRelationship+=LifeClassMembership)? 
 	 *         ownedRelationship+=PrefixMetadataMember? 
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (ownedRelationship+=OwnedSubclassification ownedRelationship+=OwnedSubclassification*)? 
 	 *         (
 	 *             (
@@ -4845,7 +5745,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *     (
 	 *         (isAbstract?='abstract' | isVariation?='variation')? 
 	 *         ownedRelationship+=PrefixMetadataMember? 
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (ownedRelationship+=OwnedSubclassification ownedRelationship+=OwnedSubclassification*)? 
 	 *         (
 	 *             (
@@ -4874,7 +5774,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *     (
 	 *         (isAbstract?='abstract' | isVariation?='variation')? 
 	 *         ownedRelationship+=PrefixMetadataMember? 
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (ownedRelationship+=OwnedSubclassification ownedRelationship+=OwnedSubclassification*)? 
 	 *         (
 	 *             (
@@ -4902,7 +5802,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *     (
 	 *         (isAbstract?='abstract' | isVariation?='variation')? 
 	 *         ownedRelationship+=PrefixMetadataMember 
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (ownedRelationship+=OwnedSubclassification ownedRelationship+=OwnedSubclassification*)? 
 	 *         (
 	 *             (
@@ -4931,7 +5831,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         (isAbstract?='abstract' | isVariation?='variation')? 
 	 *         (isIndividual?='individual' ownedRelationship+=LifeClassMembership)? 
 	 *         ownedRelationship+=PrefixMetadataMember? 
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (ownedRelationship+=OwnedSubclassification ownedRelationship+=OwnedSubclassification*)? 
 	 *         (
 	 *             (
@@ -4960,7 +5860,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         (isAbstract?='abstract' | isVariation?='variation')? 
 	 *         (isIndividual?='individual' ownedRelationship+=LifeClassMembership)? 
 	 *         ownedRelationship+=PrefixMetadataMember? 
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (ownedRelationship+=OwnedSubclassification ownedRelationship+=OwnedSubclassification*)? 
 	 *         (ownedRelationship+=ParameterMember ownedRelationship+=ParameterMember*)? 
 	 *         isParallel?='parallel'? 
@@ -5007,7 +5907,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         ownedRelationship+=PrefixMetadataMember? 
 	 *         (
 	 *             (
-	 *                 ((humanId=Name name=Name?) | name=Name)? 
+	 *                 ((shortName=Name name=Name?) | name=Name)? 
 	 *                 (
 	 *                     ownedRelationship+=OwnedMultiplicity | 
 	 *                     (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
@@ -5073,7 +5973,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         isIndividual?='individual'? 
 	 *         (portionKind=PortionKind ownedRelationship+=PortioningFeatureMember)? 
 	 *         ownedRelationship+=PrefixMetadataMember? 
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (
 	 *             ownedRelationship+=OwnedMultiplicity | 
 	 *             (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
@@ -5133,7 +6033,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         isIndividual?='individual'? 
 	 *         (portionKind=PortionKind ownedRelationship+=PortioningFeatureMember)? 
 	 *         ownedRelationship+=PrefixMetadataMember? 
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (
 	 *             ownedRelationship+=OwnedMultiplicity | 
 	 *             (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
@@ -5190,7 +6090,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         isIndividual?='individual'? 
 	 *         (portionKind=PortionKind ownedRelationship+=PortioningFeatureMember)? 
 	 *         ownedRelationship+=PrefixMetadataMember? 
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (
 	 *             ownedRelationship+=OwnedMultiplicity | 
 	 *             (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
@@ -5247,7 +6147,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         isIndividual?='individual'? 
 	 *         (portionKind=PortionKind ownedRelationship+=PortioningFeatureMember)? 
 	 *         ownedRelationship+=PrefixMetadataMember? 
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (
 	 *             ownedRelationship+=OwnedMultiplicity | 
 	 *             (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
@@ -5301,7 +6201,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         isEnd?='end'? 
 	 *         isReference?='ref'? 
 	 *         ownedRelationship+=PrefixMetadataMember? 
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (
 	 *             ownedRelationship+=OwnedMultiplicity | 
 	 *             (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
@@ -5356,7 +6256,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *             ) | 
 	 *             (direction=FeatureDirection? (isAbstract?='abstract' | isVariation?='variation')? isEnd?='end')
 	 *         ) 
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (
 	 *             ownedRelationship+=OwnedMultiplicity | 
 	 *             (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
@@ -5414,7 +6314,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         isIndividual?='individual'? 
 	 *         (portionKind=PortionKind ownedRelationship+=PortioningFeatureMember)? 
 	 *         ownedRelationship+=PrefixMetadataMember? 
-	 *         ((humanId=Name name=Name?) | name=Name | ownedRelationship+=OwnedSubsetting)? 
+	 *         ((shortName=Name name=Name?) | name=Name | ownedRelationship+=OwnedSubsetting)? 
 	 *         (
 	 *             ownedRelationship+=OwnedMultiplicity | 
 	 *             (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
@@ -5435,16 +6335,16 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *             ownedRelationship+=FeatureValue | 
 	 *             (ownedRelationship+=FeatureValueExpression ownedRelationship+=EmptyAssignmentActionMember)
 	 *         )? 
-	 *         ownedRelationship+=NonOccurrenceUsageMember? 
+	 *         ownedRelationship+=DefinitionMember? 
 	 *         (
 	 *             (
-	 *                 ownedRelationship+=DefinitionMember | 
 	 *                 ownedRelationship+=VariantUsageMember | 
+	 *                 ownedRelationship+=NonOccurrenceUsageMember | 
 	 *                 (ownedRelationship+=EmptySuccessionMember? ownedRelationship+=OccurrenceUsageMember) | 
 	 *                 ownedRelationship+=AliasMember | 
 	 *                 ownedRelationship+=Import
 	 *             )? 
-	 *             ownedRelationship+=NonOccurrenceUsageMember?
+	 *             ownedRelationship+=DefinitionMember?
 	 *         )*
 	 *     )
 	 */
@@ -5470,7 +6370,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         ownedRelationship+=PrefixMetadataMember? 
 	 *         (
 	 *             (
-	 *                 ((humanId=Name name=Name?) | name=Name)? 
+	 *                 ((shortName=Name name=Name?) | name=Name)? 
 	 *                 (
 	 *                     ownedRelationship+=OwnedMultiplicity | 
 	 *                     (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
@@ -5531,7 +6431,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         ownedRelationship+=PrefixMetadataMember? 
 	 *         (
 	 *             (
-	 *                 ((humanId=Name name=Name?) | name=Name)? 
+	 *                 ((shortName=Name name=Name?) | name=Name)? 
 	 *                 (
 	 *                     ownedRelationship+=OwnedMultiplicity | 
 	 *                     (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
@@ -5592,7 +6492,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *             (isIndividual?='individual'? portionKind=PortionKind ownedRelationship+=PortioningFeatureMember)
 	 *         )? 
 	 *         ownedRelationship+=PrefixMetadataMember? 
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (
 	 *             ownedRelationship+=OwnedMultiplicity | 
 	 *             (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
@@ -5644,7 +6544,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         isReference?='ref'? 
 	 *         isIndividual?='individual' 
 	 *         ownedRelationship+=PrefixMetadataMember? 
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (
 	 *             ownedRelationship+=OwnedMultiplicity | 
 	 *             (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
@@ -5703,7 +6603,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         isIndividual?='individual'? 
 	 *         (portionKind=PortionKind ownedRelationship+=PortioningFeatureMember)? 
 	 *         ownedRelationship+=PrefixMetadataMember? 
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (
 	 *             ownedRelationship+=OwnedMultiplicity | 
 	 *             (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
@@ -5756,7 +6656,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         isIndividual?='individual'? 
 	 *         (portionKind=PortionKind ownedRelationship+=PortioningFeatureMember)? 
 	 *         ownedRelationship+=PrefixMetadataMember? 
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (
 	 *             ownedRelationship+=OwnedMultiplicity | 
 	 *             (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
@@ -5814,7 +6714,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         isIndividual?='individual'? 
 	 *         (portionKind=PortionKind ownedRelationship+=PortioningFeatureMember)? 
 	 *         ownedRelationship+=PrefixMetadataMember? 
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (
 	 *             ownedRelationship+=OwnedMultiplicity | 
 	 *             (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
@@ -5871,7 +6771,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         isIndividual?='individual'? 
 	 *         (portionKind=PortionKind ownedRelationship+=PortioningFeatureMember)? 
 	 *         ownedRelationship+=PrefixMetadataMember? 
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (
 	 *             ownedRelationship+=OwnedMultiplicity | 
 	 *             (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
@@ -5929,7 +6829,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         isIndividual?='individual'? 
 	 *         (portionKind=PortionKind ownedRelationship+=PortioningFeatureMember)? 
 	 *         ownedRelationship+=PrefixMetadataMember? 
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (
 	 *             ownedRelationship+=OwnedMultiplicity | 
 	 *             (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
@@ -5987,7 +6887,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         isIndividual?='individual'? 
 	 *         (portionKind=PortionKind ownedRelationship+=PortioningFeatureMember)? 
 	 *         ownedRelationship+=PrefixMetadataMember? 
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (
 	 *             ownedRelationship+=OwnedMultiplicity | 
 	 *             (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
@@ -6044,7 +6944,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         portionKind=PortionKind 
 	 *         ownedRelationship+=PortioningFeatureMember 
 	 *         ownedRelationship+=PrefixMetadataMember? 
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (
 	 *             ownedRelationship+=OwnedMultiplicity | 
 	 *             (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
@@ -6100,7 +7000,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         isEnd?='end'? 
 	 *         isReference?='ref'? 
 	 *         ownedRelationship+=PrefixMetadataMember? 
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (
 	 *             ownedRelationship+=OwnedMultiplicity | 
 	 *             (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
@@ -6152,7 +7052,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         isEnd?='end'? 
 	 *         isReference?='ref'? 
 	 *         ownedRelationship+=PrefixMetadataMember? 
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (
 	 *             ownedRelationship+=OwnedMultiplicity | 
 	 *             (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
@@ -6206,7 +7106,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         isEnd?='end'? 
 	 *         isReference?='ref'? 
 	 *         ownedRelationship+=PrefixMetadataMember? 
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (
 	 *             ownedRelationship+=OwnedMultiplicity | 
 	 *             (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
@@ -6259,7 +7159,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         isEnd?='end'? 
 	 *         isReference?='ref'? 
 	 *         ownedRelationship+=PrefixMetadataMember 
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (
 	 *             ownedRelationship+=OwnedMultiplicity | 
 	 *             (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
@@ -6313,7 +7213,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         isIndividual?='individual'? 
 	 *         (portionKind=PortionKind ownedRelationship+=PortioningFeatureMember)? 
 	 *         ownedRelationship+=PrefixMetadataMember? 
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (
 	 *             ownedRelationship+=OwnedMultiplicity | 
 	 *             (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
@@ -6355,7 +7255,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         isIndividual?='individual'? 
 	 *         (portionKind=PortionKind ownedRelationship+=PortioningFeatureMember)? 
 	 *         ownedRelationship+=PrefixMetadataMember? 
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (
 	 *             ownedRelationship+=OwnedMultiplicity | 
 	 *             (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
@@ -6397,7 +7297,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         isIndividual?='individual'? 
 	 *         (portionKind=PortionKind ownedRelationship+=PortioningFeatureMember)? 
 	 *         ownedRelationship+=PrefixMetadataMember? 
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (
 	 *             ownedRelationship+=OwnedMultiplicity | 
 	 *             (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
@@ -6488,7 +7388,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *     Comment returns Comment
 	 *
 	 * Constraint:
-	 *     (((humanId=Name name=Name?) | name=Name)? (ownedRelationship+=Annotation ownedRelationship+=Annotation*)? body=REGULAR_COMMENT)
+	 *     (((shortName=Name name=Name?) | name=Name)? (ownedRelationship+=Annotation ownedRelationship+=Annotation*)? body=REGULAR_COMMENT)
 	 */
 	protected void sequence_Comment_Identification(ISerializationContext context, Comment semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -6502,7 +7402,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *
 	 * Constraint:
 	 *     (
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (
 	 *             ((ownedRelationship+=Annotation ownedRelationship+=Annotation*)? body=REGULAR_COMMENT) | 
 	 *             (ownedRelationship+=EmptyAnnotation body=PREFIX_COMMENT)
@@ -6516,12 +7416,12 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	
 	/**
 	 * Contexts:
-	 *     ConjugatedPortDefinitionMember returns Membership
+	 *     ConjugatedPortDefinitionMember returns OwningMembership
 	 *
 	 * Constraint:
 	 *     ownedRelatedElement+=ConjugatedPortDefinition
 	 */
-	protected void sequence_ConjugatedPortDefinitionMember(ISerializationContext context, Membership semanticObject) {
+	protected void sequence_ConjugatedPortDefinitionMember(ISerializationContext context, OwningMembership semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -6562,7 +7462,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *     ConnectorEndMember returns EndFeatureMembership
 	 *
 	 * Constraint:
-	 *     (memberName=Name? ownedRelatedElement+=ConnectorEnd)
+	 *     ownedRelatedElement+=ConnectorEnd
 	 */
 	protected void sequence_ConnectorEndMember(ISerializationContext context, EndFeatureMembership semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -6574,7 +7474,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *     ConnectorEnd returns Feature
 	 *
 	 * Constraint:
-	 *     (ownedRelationship+=OwnedSubsetting ownedRelationship+=OwnedMultiplicity?)
+	 *     (name=Name? ownedRelationship+=OwnedSubsetting ownedRelationship+=OwnedMultiplicity?)
 	 */
 	protected void sequence_ConnectorEnd(ISerializationContext context, Feature semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -6596,7 +7496,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         isEnd?='end'? 
 	 *         isIndividual?='individual'? 
 	 *         (portionKind=PortionKind ownedRelationship+=PortioningFeatureMember)? 
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (
 	 *             ownedRelationship+=OwnedMultiplicity | 
 	 *             (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
@@ -6634,7 +7534,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         isEnd?='end'? 
 	 *         isIndividual?='individual'? 
 	 *         (portionKind=PortionKind ownedRelationship+=PortioningFeatureMember)? 
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (
 	 *             ownedRelationship+=OwnedMultiplicity | 
 	 *             (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
@@ -6672,7 +7572,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         isEnd?='end'? 
 	 *         isIndividual?='individual'? 
 	 *         (portionKind=PortionKind ownedRelationship+=PortioningFeatureMember)? 
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (
 	 *             ownedRelationship+=OwnedMultiplicity | 
 	 *             (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
@@ -6710,7 +7610,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         isEnd?='end'? 
 	 *         isIndividual?='individual'? 
 	 *         (portionKind=PortionKind ownedRelationship+=PortioningFeatureMember)? 
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (
 	 *             ownedRelationship+=OwnedMultiplicity | 
 	 *             (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
@@ -6742,7 +7642,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         direction=FeatureDirection? 
 	 *         (isAbstract?='abstract' | isVariation?='variation')? 
 	 *         isEnd?='end' 
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (
 	 *             ownedRelationship+=OwnedMultiplicity | 
 	 *             (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
@@ -6816,7 +7716,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 * Constraint:
 	 *     (
 	 *         isAbstract?='abstract'? 
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (ownedRelationship+=OwnedSubclassification ownedRelationship+=OwnedSubclassification*)? 
 	 *         (
 	 *             (
@@ -6849,7 +7749,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         isReadOnly?='readonly'? 
 	 *         isDerived?='derived'? 
 	 *         isEnd?='end'? 
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (
 	 *             ownedRelationship+=OwnedMultiplicity | 
 	 *             (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
@@ -6870,17 +7770,16 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *             ownedRelationship+=FeatureValue | 
 	 *             (ownedRelationship+=FeatureValueExpression ownedRelationship+=EmptyAssignmentActionMember)
 	 *         )? 
-	 *         ownedRelationship+=NonOccurrenceUsageMember? 
 	 *         (
 	 *             (
 	 *                 ownedRelationship+=DefinitionMember | 
 	 *                 ownedRelationship+=VariantUsageMember | 
-	 *                 (ownedRelationship+=EmptySuccessionMember? ownedRelationship+=OccurrenceUsageMember) | 
+	 *                 ownedRelationship+=NonOccurrenceUsageMember | 
 	 *                 ownedRelationship+=AliasMember | 
 	 *                 ownedRelationship+=Import
 	 *             )? 
-	 *             ownedRelationship+=NonOccurrenceUsageMember?
-	 *         )*
+	 *             (ownedRelationship+=EmptySuccessionMember? ownedRelationship+=OccurrenceUsageMember)?
+	 *         )+
 	 *     )
 	 */
 	protected void sequence_DefinitionBodyItem_Identification_MultiplicityPart_Redefines_Redefinitions_RefPrefix_Subsets_Subsettings_TypedBy_Typings_ValueOrFlowPart_ValuePart(ISerializationContext context, ReferenceUsage semanticObject) {
@@ -6903,9 +7802,9 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	//         isDerived?='derived'? 
 	//         isEnd?='end'? 
 	//         (
-	//             (humanId=Name name=Name?) | 
+	//             (shortName=Name name=Name?) | 
 	//             (
-	//                 ((humanId=Name name=Name?) | name=Name)? 
+	//                 ((shortName=Name name=Name?) | name=Name)? 
 	//                 (
 	//                     (ownedRelationship+=FeatureTyping ownedRelationship+=FeatureTyping*) | 
 	//                     (ownedRelationship+=OwnedSubsetting ownedRelationship+=OwnedSubsetting*) | 
@@ -6915,14 +7814,14 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	//             (
 	//                 (
 	//                     (
-	//                         ((humanId=Name name=Name?) | name=Name)? 
+	//                         ((shortName=Name name=Name?) | name=Name)? 
 	//                         (
 	//                             ownedRelationship+=OwnedMultiplicity | 
 	//                             (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
 	//                         )
 	//                     ) | 
 	//                     (
-	//                         ((humanId=Name name=Name?) | name=Name)? 
+	//                         ((shortName=Name name=Name?) | name=Name)? 
 	//                         (
 	//                             (ownedRelationship+=FeatureTyping ownedRelationship+=FeatureTyping*) | 
 	//                             (ownedRelationship+=OwnedSubsetting ownedRelationship+=OwnedSubsetting*) | 
@@ -6988,7 +7887,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *                         isReadOnly?='readonly'? 
 	 *                         isDerived?='derived'? 
 	 *                         isEnd?='end'? 
-	 *                         ((humanId=Name name=Name?) | name=Name)?
+	 *                         ((shortName=Name name=Name?) | name=Name)?
 	 *                     ) | 
 	 *                     (
 	 *                         ownedRelationship+=OwnedSubsetting 
@@ -7045,7 +7944,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *
 	 * Constraint:
 	 *     (
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (
 	 *             ownedRelationship+=OwnedMultiplicity | 
 	 *             (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
@@ -7091,7 +7990,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *
 	 * Constraint:
 	 *     (
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (
 	 *             ownedRelationship+=OwnedMultiplicity | 
 	 *             (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
@@ -7136,7 +8035,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *
 	 * Constraint:
 	 *     (
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (
 	 *             ownedRelationship+=OwnedMultiplicity | 
 	 *             (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
@@ -7235,12 +8134,12 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	
 	/**
 	 * Contexts:
-	 *     DefinitionMember returns Membership
+	 *     DefinitionMember returns OwningMembership
 	 *
 	 * Constraint:
 	 *     (visibility=VisibilityIndicator? ownedRelatedElement+=DefinitionElement)
 	 */
-	protected void sequence_DefinitionMember_MemberPrefix(ISerializationContext context, Membership semanticObject) {
+	protected void sequence_DefinitionMember_MemberPrefix(ISerializationContext context, OwningMembership semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -7253,7 +8152,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 * Constraint:
 	 *     (
 	 *         ownedRelationship+=PrefixMetadataAnnotation? 
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         client+=[Element|QualifiedName] 
 	 *         client+=[Element|QualifiedName]* 
 	 *         supplier+=[Element|QualifiedName] 
@@ -7284,7 +8183,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *     DefinitionElement returns Documentation
 	 *
 	 * Constraint:
-	 *     (((humanId=Name name=Name?) | name=Name)? body=REGULAR_COMMENT)
+	 *     (((shortName=Name name=Name?) | name=Name)? body=REGULAR_COMMENT)
 	 */
 	protected void sequence_Documentation_Identification(ISerializationContext context, Documentation semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -7343,12 +8242,12 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	
 	/**
 	 * Contexts:
-	 *     EmptyAssignmentActionMember returns Membership
+	 *     EmptyAssignmentActionMember returns OwningMembership
 	 *
 	 * Constraint:
 	 *     ownedRelatedElement+=EmptyAssignmentAction
 	 */
-	protected void sequence_EmptyAssignmentActionMember(ISerializationContext context, Membership semanticObject) {
+	protected void sequence_EmptyAssignmentActionMember(ISerializationContext context, OwningMembership semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -7600,7 +8499,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *
 	 * Constraint:
 	 *     (
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (ownedRelationship+=OwnedSubclassification ownedRelationship+=OwnedSubclassification*)? 
 	 *         (ownedRelationship+=AnnotatingMember | ownedRelationship+=EnumerationUsageMember)*
 	 *     )
@@ -7787,7 +8686,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *
 	 * Constraint:
 	 *     (
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (
 	 *             ownedRelationship+=OwnedMultiplicity | 
 	 *             (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
@@ -7834,7 +8733,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *
 	 * Constraint:
 	 *     (
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         ownedRelationship+=MetadataTyping 
 	 *         (ownedRelationship+=Annotation ownedRelationship+=Annotation*)? 
 	 *         (ownedRelationship+=DefinitionMember | ownedRelationship+=MetadataBodyUsageMember | ownedRelationship+=AliasMember | ownedRelationship+=Import)*
@@ -7852,7 +8751,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 * Constraint:
 	 *     (
 	 *         direction=FeatureDirection? 
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (
 	 *             (ownedRelationship+=FeatureTyping | ownedRelationship+=OwnedSubsetting | ownedRelationship+=OwnedRedefinition) 
 	 *             ownedRelationship+=OwnedMultiplicity? 
@@ -7872,7 +8771,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 * Constraint:
 	 *     (
 	 *         direction=FeatureDirection? 
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (
 	 *             (ownedRelationship+=FeatureTyping | ownedRelationship+=OwnedSubsetting | ownedRelationship+=OwnedRedefinition) 
 	 *             ownedRelationship+=OwnedMultiplicity? 
@@ -7892,7 +8791,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 * Constraint:
 	 *     (
 	 *         direction=FeatureDirection? 
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (
 	 *             (ownedRelationship+=FeatureTyping | ownedRelationship+=OwnedSubsetting | ownedRelationship+=OwnedRedefinition) 
 	 *             ownedRelationship+=OwnedMultiplicity? 
@@ -7912,7 +8811,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 * Constraint:
 	 *     (
 	 *         direction=FeatureDirection? 
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (
 	 *             (ownedRelationship+=FeatureTyping | ownedRelationship+=OwnedSubsetting | ownedRelationship+=OwnedRedefinition) 
 	 *             ownedRelationship+=OwnedMultiplicity? 
@@ -7932,7 +8831,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 * Constraint:
 	 *     (
 	 *         direction=FeatureDirection? 
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (
 	 *             (ownedRelationship+=FeatureTyping | ownedRelationship+=OwnedSubsetting | ownedRelationship+=OwnedRedefinition) 
 	 *             ownedRelationship+=OwnedMultiplicity? 
@@ -7952,7 +8851,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 * Constraint:
 	 *     (
 	 *         direction=FeatureDirection? 
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (
 	 *             (ownedRelationship+=FeatureTyping | ownedRelationship+=OwnedSubsetting | ownedRelationship+=OwnedRedefinition) 
 	 *             ownedRelationship+=OwnedMultiplicity? 
@@ -7972,7 +8871,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 * Constraint:
 	 *     (
 	 *         direction=FeatureDirection? 
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (
 	 *             (ownedRelationship+=FeatureTyping | ownedRelationship+=OwnedSubsetting | ownedRelationship+=OwnedRedefinition) 
 	 *             ownedRelationship+=OwnedMultiplicity? 
@@ -7992,7 +8891,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 * Constraint:
 	 *     (
 	 *         direction=FeatureDirection? 
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (
 	 *             (ownedRelationship+=FeatureTyping | ownedRelationship+=OwnedSubsetting | ownedRelationship+=OwnedRedefinition) 
 	 *             ownedRelationship+=OwnedMultiplicity? 
@@ -8012,7 +8911,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 * Constraint:
 	 *     (
 	 *         direction=FeatureDirection? 
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (
 	 *             (ownedRelationship+=FeatureTyping | ownedRelationship+=OwnedSubsetting | ownedRelationship+=OwnedRedefinition) 
 	 *             ownedRelationship+=OwnedMultiplicity? 
@@ -8032,7 +8931,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 * Constraint:
 	 *     (
 	 *         direction=FeatureDirection? 
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (
 	 *             (ownedRelationship+=FeatureTyping | ownedRelationship+=OwnedSubsetting | ownedRelationship+=OwnedRedefinition) 
 	 *             ownedRelationship+=OwnedMultiplicity? 
@@ -8052,7 +8951,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 * Constraint:
 	 *     (
 	 *         direction=FeatureDirection? 
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (
 	 *             (ownedRelationship+=FeatureTyping | ownedRelationship+=OwnedSubsetting | ownedRelationship+=OwnedRedefinition) 
 	 *             ownedRelationship+=OwnedMultiplicity? 
@@ -8072,7 +8971,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 * Constraint:
 	 *     (
 	 *         direction=FeatureDirection? 
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (
 	 *             (ownedRelationship+=FeatureTyping | ownedRelationship+=OwnedSubsetting | ownedRelationship+=OwnedRedefinition) 
 	 *             ownedRelationship+=OwnedMultiplicity? 
@@ -8092,7 +8991,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 * Constraint:
 	 *     (
 	 *         direction=FeatureDirection? 
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (
 	 *             (ownedRelationship+=FeatureTyping | ownedRelationship+=OwnedSubsetting | ownedRelationship+=OwnedRedefinition) 
 	 *             ownedRelationship+=OwnedMultiplicity? 
@@ -8112,7 +9011,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 * Constraint:
 	 *     (
 	 *         direction=FeatureDirection? 
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (
 	 *             (ownedRelationship+=FeatureTyping | ownedRelationship+=OwnedSubsetting | ownedRelationship+=OwnedRedefinition) 
 	 *             ownedRelationship+=OwnedMultiplicity? 
@@ -8132,7 +9031,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 * Constraint:
 	 *     (
 	 *         direction=FeatureDirection? 
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (
 	 *             ownedRelationship+=OwnedMultiplicity | 
 	 *             (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
@@ -8163,7 +9062,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 * Constraint:
 	 *     (
 	 *         direction=FeatureDirection? 
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (
 	 *             ownedRelationship+=OwnedMultiplicity | 
 	 *             (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
@@ -8194,7 +9093,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 * Constraint:
 	 *     (
 	 *         direction=FeatureDirection? 
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (
 	 *             ownedRelationship+=OwnedMultiplicity | 
 	 *             (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
@@ -8225,7 +9124,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 * Constraint:
 	 *     (
 	 *         direction=FeatureDirection? 
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (
 	 *             ownedRelationship+=OwnedMultiplicity | 
 	 *             (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
@@ -8256,7 +9155,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 * Constraint:
 	 *     (
 	 *         direction=FeatureDirection? 
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (
 	 *             ownedRelationship+=OwnedMultiplicity | 
 	 *             (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
@@ -8287,7 +9186,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 * Constraint:
 	 *     (
 	 *         direction=FeatureDirection? 
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (
 	 *             ownedRelationship+=OwnedMultiplicity | 
 	 *             (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
@@ -8318,7 +9217,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 * Constraint:
 	 *     (
 	 *         direction=FeatureDirection? 
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (
 	 *             ownedRelationship+=OwnedMultiplicity | 
 	 *             (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
@@ -8349,7 +9248,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 * Constraint:
 	 *     (
 	 *         direction=FeatureDirection? 
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (
 	 *             ownedRelationship+=OwnedMultiplicity | 
 	 *             (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
@@ -8380,7 +9279,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 * Constraint:
 	 *     (
 	 *         direction=FeatureDirection? 
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (
 	 *             ownedRelationship+=OwnedMultiplicity | 
 	 *             (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
@@ -8411,7 +9310,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 * Constraint:
 	 *     (
 	 *         direction=FeatureDirection? 
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (
 	 *             ownedRelationship+=OwnedMultiplicity | 
 	 *             (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
@@ -8442,7 +9341,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 * Constraint:
 	 *     (
 	 *         direction=FeatureDirection? 
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (
 	 *             ownedRelationship+=OwnedMultiplicity | 
 	 *             (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
@@ -8473,7 +9372,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 * Constraint:
 	 *     (
 	 *         direction=FeatureDirection? 
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (
 	 *             ownedRelationship+=OwnedMultiplicity | 
 	 *             (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
@@ -8504,7 +9403,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 * Constraint:
 	 *     (
 	 *         direction=FeatureDirection? 
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (
 	 *             ownedRelationship+=OwnedMultiplicity | 
 	 *             (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
@@ -8535,7 +9434,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 * Constraint:
 	 *     (
 	 *         direction=FeatureDirection? 
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (
 	 *             ownedRelationship+=OwnedMultiplicity | 
 	 *             (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
@@ -8566,7 +9465,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 * Constraint:
 	 *     (
 	 *         direction=FeatureDirection? 
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (
 	 *             ownedRelationship+=OwnedMultiplicity | 
 	 *             (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
@@ -8597,7 +9496,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 * Constraint:
 	 *     (
 	 *         direction=FeatureDirection? 
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (
 	 *             ownedRelationship+=OwnedMultiplicity | 
 	 *             (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
@@ -8628,7 +9527,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 * Constraint:
 	 *     (
 	 *         direction=FeatureDirection? 
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (
 	 *             (ownedRelationship+=FeatureTyping | ownedRelationship+=OwnedSubsetting | ownedRelationship+=OwnedRedefinition) 
 	 *             ownedRelationship+=OwnedMultiplicity? 
@@ -8648,7 +9547,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 * Constraint:
 	 *     (
 	 *         direction=FeatureDirection? 
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (
 	 *             (ownedRelationship+=FeatureTyping | ownedRelationship+=OwnedSubsetting | ownedRelationship+=OwnedRedefinition) 
 	 *             ownedRelationship+=OwnedMultiplicity? 
@@ -8668,7 +9567,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 * Constraint:
 	 *     (
 	 *         direction=FeatureDirection? 
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (
 	 *             (ownedRelationship+=FeatureTyping | ownedRelationship+=OwnedSubsetting | ownedRelationship+=OwnedRedefinition) 
 	 *             ownedRelationship+=OwnedMultiplicity? 
@@ -8690,14 +9589,14 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         (
 	 *             (
 	 *                 (
-	 *                     ((humanId=Name name=Name?) | name=Name)? 
+	 *                     ((shortName=Name name=Name?) | name=Name)? 
 	 *                     (
 	 *                         ownedRelationship+=OwnedMultiplicity | 
 	 *                         (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
 	 *                     )
 	 *                 ) | 
 	 *                 (
-	 *                     ((humanId=Name name=Name?) | name=Name)? 
+	 *                     ((shortName=Name name=Name?) | name=Name)? 
 	 *                     (
 	 *                         (ownedRelationship+=FeatureTyping ownedRelationship+=FeatureTyping*) | 
 	 *                         (ownedRelationship+=OwnedSubsetting ownedRelationship+=OwnedSubsetting*) | 
@@ -8740,9 +9639,9 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *                 ownedRelationship+=TriggerFeatureValue
 	 *             )?
 	 *         ) | 
-	 *         (((humanId=Name name=Name?) | name=Name)? ownedRelationship+=TriggerFeatureValue) | 
+	 *         (((shortName=Name name=Name?) | name=Name)? ownedRelationship+=TriggerFeatureValue) | 
 	 *         (
-	 *             ((humanId=Name name=Name?) | name=Name)? 
+	 *             ((shortName=Name name=Name?) | name=Name)? 
 	 *             (
 	 *                 (ownedRelationship+=FeatureTyping ownedRelationship+=FeatureTyping*) | 
 	 *                 (ownedRelationship+=OwnedSubsetting ownedRelationship+=OwnedSubsetting*) | 
@@ -8770,7 +9669,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *
 	 * Constraint:
 	 *     (
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (
 	 *             ownedRelationship+=OwnedMultiplicity | 
 	 *             (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
@@ -8801,7 +9700,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *
 	 * Constraint:
 	 *     (
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (
 	 *             ownedRelationship+=OwnedMultiplicity | 
 	 *             (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
@@ -8836,9 +9735,9 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *
 	 * Constraint:
 	 *     (
-	 *         (humanId=Name name=Name?) | 
+	 *         (shortName=Name name=Name?) | 
 	 *         (
-	 *             ((humanId=Name name=Name?) | name=Name)? 
+	 *             ((shortName=Name name=Name?) | name=Name)? 
 	 *             (
 	 *                 (ownedRelationship+=FeatureTyping ownedRelationship+=FeatureTyping*) | 
 	 *                 (ownedRelationship+=OwnedSubsetting ownedRelationship+=OwnedSubsetting*) | 
@@ -8848,14 +9747,14 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         (
 	 *             (
 	 *                 (
-	 *                     ((humanId=Name name=Name?) | name=Name)? 
+	 *                     ((shortName=Name name=Name?) | name=Name)? 
 	 *                     (
 	 *                         ownedRelationship+=OwnedMultiplicity | 
 	 *                         (ownedRelationship+=OwnedMultiplicity? ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?)))
 	 *                     )
 	 *                 ) | 
 	 *                 (
-	 *                     ((humanId=Name name=Name?) | name=Name)? 
+	 *                     ((shortName=Name name=Name?) | name=Name)? 
 	 *                     (
 	 *                         (ownedRelationship+=FeatureTyping ownedRelationship+=FeatureTyping*) | 
 	 *                         (ownedRelationship+=OwnedSubsetting ownedRelationship+=OwnedSubsetting*) | 
@@ -8900,7 +9799,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 * Constraint:
 	 *     (
 	 *         ownedRelationship+=PrefixMetadataMember? 
-	 *         ((humanId=Name name=Name?) | name=Name)? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
 	 *         (ownedRelationship+=PackageMember | ownedRelationship+=ElementFilterMember | ownedRelationship+=AliasMember | ownedRelationship+=Import)*
 	 *     )
 	 */
@@ -8914,7 +9813,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *     PrefixComment returns Comment
 	 *
 	 * Constraint:
-	 *     (((humanId=Name name=Name?) | name=Name)? ownedRelationship+=EmptyAnnotation body=PREFIX_COMMENT)
+	 *     (((shortName=Name name=Name?) | name=Name)? ownedRelationship+=EmptyAnnotation body=PREFIX_COMMENT)
 	 */
 	protected void sequence_Identification_PrefixComment(ISerializationContext context, Comment semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -8928,7 +9827,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *     DefinitionElement returns TextualRepresentation
 	 *
 	 * Constraint:
-	 *     (((humanId=Name name=Name?) | name=Name)? ownedRelationship+=Annotation? language=STRING_VALUE body=REGULAR_COMMENT)
+	 *     (((shortName=Name name=Name?) | name=Name)? ownedRelationship+=Annotation? language=STRING_VALUE body=REGULAR_COMMENT)
 	 */
 	protected void sequence_Identification_TextualRepresentation(ISerializationContext context, TextualRepresentation semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -8992,7 +9891,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *     InterfaceEndMember returns EndFeatureMembership
 	 *
 	 * Constraint:
-	 *     (memberName=Name? ownedRelatedElement+=InterfaceEnd)
+	 *     ownedRelatedElement+=InterfaceEnd
 	 */
 	protected void sequence_InterfaceEndMember(ISerializationContext context, EndFeatureMembership semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -9004,7 +9903,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *     InterfaceEnd returns PortUsage
 	 *
 	 * Constraint:
-	 *     (ownedRelationship+=OwnedSubsetting ownedRelationship+=OwnedMultiplicity?)
+	 *     (name=Name? ownedRelationship+=OwnedSubsetting ownedRelationship+=OwnedMultiplicity?)
 	 */
 	protected void sequence_InterfaceEnd(ISerializationContext context, PortUsage semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -9040,7 +9939,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *     ItemFeatureMember returns FeatureMembership
 	 *
 	 * Constraint:
-	 *     (memberName=Name? ownedRelatedElement+=ItemFeature)
+	 *     ownedRelatedElement+=ItemFeature
 	 */
 	protected void sequence_ItemFeatureMember(ISerializationContext context, FeatureMembership semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -9053,8 +9952,11 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *
 	 * Constraint:
 	 *     (
-	 *         (ownedRelationship+=OwnedFeatureTyping ownedRelationship+=OwnedMultiplicity?) | 
-	 *         (ownedRelationship+=OwnedMultiplicity ownedRelationship+=OwnedFeatureTyping?)
+	 *         name=Name? 
+	 *         (
+	 *             (ownedRelationship+=OwnedFeatureTyping ownedRelationship+=OwnedMultiplicity?) | 
+	 *             (ownedRelationship+=OwnedMultiplicity ownedRelationship+=OwnedFeatureTyping?)
+	 *         )
 	 *     )
 	 */
 	protected void sequence_ItemFeature(ISerializationContext context, ItemFeature semanticObject) {
@@ -9142,12 +10044,12 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	
 	/**
 	 * Contexts:
-	 *     LifeClassMembership returns Membership
+	 *     LifeClassMembership returns OwningMembership
 	 *
 	 * Constraint:
 	 *     ownedRelatedElement+=LifeClass
 	 */
-	protected void sequence_LifeClassMembership(ISerializationContext context, Membership semanticObject) {
+	protected void sequence_LifeClassMembership(ISerializationContext context, OwningMembership semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -9202,12 +10104,12 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	
 	/**
 	 * Contexts:
-	 *     PackageMember returns Membership
+	 *     PackageMember returns OwningMembership
 	 *
 	 * Constraint:
 	 *     (visibility=VisibilityIndicator? (ownedRelatedElement+=DefinitionElement | ownedRelatedElement+=UsageElement))
 	 */
-	protected void sequence_MemberPrefix_PackageMember(ISerializationContext context, Membership semanticObject) {
+	protected void sequence_MemberPrefix_PackageMember(ISerializationContext context, OwningMembership semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -9419,12 +10321,12 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	
 	/**
 	 * Contexts:
-	 *     MultiplicityExpressionMember returns Membership
+	 *     MultiplicityExpressionMember returns OwningMembership
 	 *
 	 * Constraint:
 	 *     (ownedRelatedElement+=LiteralExpression | ownedRelatedElement+=FeatureReferenceExpression)
 	 */
-	protected void sequence_MultiplicityExpressionMember(ISerializationContext context, Membership semanticObject) {
+	protected void sequence_MultiplicityExpressionMember(ISerializationContext context, OwningMembership semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -9491,12 +10393,12 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	
 	/**
 	 * Contexts:
-	 *     OwnedMultiplicity returns Membership
+	 *     OwnedMultiplicity returns OwningMembership
 	 *
 	 * Constraint:
 	 *     ownedRelatedElement+=MultiplicityRange
 	 */
-	protected void sequence_OwnedMultiplicity(ISerializationContext context, Membership semanticObject) {
+	protected void sequence_OwnedMultiplicity(ISerializationContext context, OwningMembership semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -9506,7 +10408,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *     OwnedRedefinition returns Redefinition
 	 *
 	 * Constraint:
-	 *     (redefinedFeature=[Feature|QualifiedName] | ownedRelatedElement+=FeatureChain)
+	 *     (redefinedFeature=[Feature|QualifiedName] | ownedRelatedElement+=OwnedFeatureChain)
 	 */
 	protected void sequence_OwnedRedefinition(ISerializationContext context, Redefinition semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -9536,7 +10438,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *     OwnedSubsetting returns Subsetting
 	 *
 	 * Constraint:
-	 *     (subsettedFeature=[Feature|QualifiedName] | ownedRelatedElement+=FeatureChain)
+	 *     (subsettedFeature=[Feature|QualifiedName] | ownedRelatedElement+=OwnedFeatureChain)
 	 */
 	protected void sequence_OwnedSubsetting(ISerializationContext context, Subsetting semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -9629,12 +10531,12 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	
 	/**
 	 * Contexts:
-	 *     PrefixMetadataMember returns Membership
+	 *     PrefixMetadataMember returns OwningMembership
 	 *
 	 * Constraint:
 	 *     ownedRelatedElement+=PrefixMetadataUsage
 	 */
-	protected void sequence_PrefixMetadataMember(ISerializationContext context, Membership semanticObject) {
+	protected void sequence_PrefixMetadataMember(ISerializationContext context, OwningMembership semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -9772,12 +10674,12 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	
 	/**
 	 * Contexts:
-	 *     SourceItemFlowMember returns Membership
+	 *     SourceItemFlowMember returns OwningMembership
 	 *
 	 * Constraint:
 	 *     ownedRelatedElement+=SourceItemFlow
 	 */
-	protected void sequence_SourceItemFlowMember(ISerializationContext context, Membership semanticObject) {
+	protected void sequence_SourceItemFlowMember(ISerializationContext context, OwningMembership semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -9913,21 +10815,39 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *     TransitionSourceMember returns Membership
 	 *
 	 * Constraint:
-	 *     (memberElement=[Feature|QualifiedName] | ownedRelatedElement+=FeatureChain)
+	 *     memberElement=[Feature|QualifiedName]
 	 */
 	protected void sequence_TransitionSourceMember(ISerializationContext context, Membership semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, SysMLPackage.Literals.MEMBERSHIP__MEMBER_ELEMENT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SysMLPackage.Literals.MEMBERSHIP__MEMBER_ELEMENT));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getTransitionSourceMemberAccess().getMemberElementFeatureQualifiedNameParserRuleCall_0_0_1(), semanticObject.eGet(SysMLPackage.Literals.MEMBERSHIP__MEMBER_ELEMENT, false));
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     TransitionSourceMember returns OwningMembership
+	 *
+	 * Constraint:
+	 *     ownedRelatedElement+=OwnedFeatureChain
+	 */
+	protected void sequence_TransitionSourceMember(ISerializationContext context, OwningMembership semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
 	 * Contexts:
-	 *     TransitionSuccessionMember returns Membership
+	 *     TransitionSuccessionMember returns OwningMembership
 	 *
 	 * Constraint:
 	 *     ownedRelatedElement+=TransitionSuccession
 	 */
-	protected void sequence_TransitionSuccessionMember(ISerializationContext context, Membership semanticObject) {
+	protected void sequence_TransitionSuccessionMember(ISerializationContext context, OwningMembership semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

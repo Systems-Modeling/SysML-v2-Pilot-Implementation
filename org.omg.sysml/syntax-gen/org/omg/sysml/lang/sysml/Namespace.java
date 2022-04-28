@@ -35,7 +35,7 @@ import org.eclipse.emf.common.util.EList;
  * 
  * membership->forAll(m1 | membership->forAll(m2 | m1 <> m2 implies m1.isDistinguishableFrom(m2)))
  * member = membership.memberElement
- * ownedMember = ownedMembership.ownedMemberElement
+ * ownedMember = ownedMembership->selectByKind(OwningMembership).ownedMemberElement
  * importedMembership = importedMemberships(Set{})
  * ownedImport = ownedRelationship->selectByKind(Import)
  * ownedMembership = ownedRelationship->selectByKind(Membership)
@@ -69,7 +69,7 @@ public interface Namespace extends Element {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>All Memberships in this Namespace, defined as the union of <code>ownedMemberships</code> and <code>importedMemberships</code>.</p>
+	 * <p>All Memberships in this Namespace, including (at least) the union of <code>ownedMemberships</code> and <code>importedMemberships</code>.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Membership</em>' reference list.

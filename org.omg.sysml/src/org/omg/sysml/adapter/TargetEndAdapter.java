@@ -60,7 +60,7 @@ public class TargetEndAdapter extends FeatureAdapter {
 			if (type != null) {
 				EList<FeatureMembership> memberships = type.getOwnedFeatureMembership();
 				int i = memberships.indexOf(feature.getOwningFeatureMembership()) + 1;
-				return i < memberships.size()? memberships.get(i).getMemberFeature(): null;
+				return i < memberships.size()? memberships.get(i).getOwnedMemberFeature(): null;
 			}
 		}
 		return null;

@@ -321,6 +321,15 @@ public interface SysMLFactory extends EFactory {
 	Element createElement();
 
 	/**
+	 * Returns a new object of class '<em>Owning Membership</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Owning Membership</em>'.
+	 * @generated
+	 */
+	OwningMembership createOwningMembership();
+
+	/**
 	 * Returns a new object of class '<em>Package</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

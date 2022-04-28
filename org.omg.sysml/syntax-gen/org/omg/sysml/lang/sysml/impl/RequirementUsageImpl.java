@@ -336,8 +336,7 @@ public class RequirementUsageImpl extends ConstraintUsageImpl implements Require
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public String getHumanId() {
+	public String getShortName() {
 		return getReqId();
 	}
 
@@ -346,8 +345,8 @@ public class RequirementUsageImpl extends ConstraintUsageImpl implements Require
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setHumanId(String newHumanId) {
-		setReqId(newHumanId);
+	public void setShortName(String newShortName) {
+		setReqId(newShortName);
 	}
 
 	/**
@@ -355,10 +354,10 @@ public class RequirementUsageImpl extends ConstraintUsageImpl implements Require
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isSetHumanId() {
+	public boolean isSetShortName() {
   		return false;
 	}
-	
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -486,8 +485,8 @@ public class RequirementUsageImpl extends ConstraintUsageImpl implements Require
 		switch (featureID) {
 			case SysMLPackage.REQUIREMENT_USAGE__CONSTRAINT_DEFINITION:
 				return isSetConstraintDefinition();
-			case SysMLPackage.REQUIREMENT_USAGE__HUMAN_ID:
-				return isSetHumanId();
+			case SysMLPackage.REQUIREMENT_USAGE__SHORT_NAME:
+				return isSetShortName();
 			case SysMLPackage.REQUIREMENT_USAGE__REQUIREMENT_DEFINITION:
 				return isSetRequirementDefinition();
 			case SysMLPackage.REQUIREMENT_USAGE__REQ_ID:

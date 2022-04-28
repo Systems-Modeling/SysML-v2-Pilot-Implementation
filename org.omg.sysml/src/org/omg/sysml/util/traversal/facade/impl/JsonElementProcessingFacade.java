@@ -1,6 +1,6 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2019-2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2019-2022 Model Driven Solutions, Inc.
  * Copyright (c) 2021 Twingineer LLC
  *    
  * This program is free software: you can redistribute it and/or modify
@@ -207,7 +207,7 @@ public class JsonElementProcessingFacade implements ElementProcessingFacade {
 			}
 		}
 		return new DataVersion().payload(apiElement).
-				identity(new DataIdentity().atId(UUID.fromString(element.getIdentifier())));
+				identity(new DataIdentity().atId(UUID.fromString(element.getElementId())));
 	}
 	
 	/**
@@ -226,7 +226,7 @@ public class JsonElementProcessingFacade implements ElementProcessingFacade {
 		if (element.eIsProxy()) {
 			s += " PROXY";
 		}
-		return s + " " + element.getIdentifier();
+		return s + " " + element.getElementId();
 	}
 	
 	/**
@@ -252,7 +252,7 @@ public class JsonElementProcessingFacade implements ElementProcessingFacade {
 			}
 			elementCount++;
 		}
-		return UUID.fromString(element.getIdentifier());
+		return UUID.fromString(element.getElementId());
 	}
 	
 	/**

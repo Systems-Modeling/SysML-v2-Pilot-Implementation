@@ -10,6 +10,7 @@ import org.omg.sysml.lang.sysml.Expression;
 import org.eclipse.emf.ecore.EClass;
 import org.omg.sysml.lang.sysml.CalculationUsage;
 import org.omg.sysml.lang.sysml.Membership;
+import org.omg.sysml.lang.sysml.OwningMembership;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.util.TypeUtil;
@@ -18,26 +19,42 @@ public class SysMLInteractiveUtil {
 
 	public static final String INDENT = "  ";
 	
-	private static String formatRelationship(EClass kind, String memberName) {
-		return "[" + kind.getName() + (memberName == null? "": " " + memberName) + "] ";
+	private static String formatMemberNames(List<String> memberNames) {
+		if (memberNames == null || memberNames.isEmpty()) {
+			return "";
+		} else {
+			String nameList = null;
+			for (String memberName: memberNames) {
+				if (nameList == null) {
+					nameList = " " + memberName;
+				} else {
+					nameList += "," + memberName;
+				}
+			}
+			return nameList;
+		}
+	}
+	
+	private static String formatRelationship(EClass kind, String names) {
+		return "[" + kind.getName() + names + "] ";
 	}
 	
 	private static String formatRelationship(Relationship relationship) {
 		return relationship == null? "":
-			   relationship instanceof Membership && ((Membership)relationship).getOwnedMemberElement() == null?
-					   formatRelationship(relationship.eClass(), ((Membership)relationship).getMemberName()):
+			   relationship instanceof Membership && !(relationship instanceof OwningMembership)?
+					   formatRelationship(relationship.eClass(), formatMemberNames(((Membership)relationship).getMemberNames())):
 			   formatRelationship(relationship.eClass(), null);
 	}
 	
 	private static void formatElement(StringBuilder buffer, String indentation, Element element, String relationshipTag) {
-		String humanId = element.getHumanId();
-		String name = element.getName();
+		String shortName = element.getShortName();
+		String name = element.getEffectiveName();
 		buffer.append(indentation + 
 				relationshipTag + 
 				element.eClass().getName() + 
-				(humanId == null? "": " [" + humanId + "]") +
+				(shortName == null? "": " <" + shortName + ">") +
 				(name == null? "": " " + name) + 
-				" (" + element.getIdentifier() + ")\n");
+				" (" + element.getElementId() + ")\n");
 	}
 	
 	private static void formatExplicitElement(StringBuilder buffer, String indentation, Element element, Relationship relationship) {
@@ -45,7 +62,7 @@ public class SysMLInteractiveUtil {
 	}
 	
 	private static void formatImplicitElement(StringBuilder buffer, String indentation, Element element, EClass kind) {
-		formatElement(buffer, indentation, element, formatRelationship(kind, "(implicit)"));
+		formatElement(buffer, indentation, element, formatRelationship(kind, " (implicit)"));
 	}
 	
 	private static void formatTree(StringBuilder buffer, String indentation, Element element, Relationship relationship) {
@@ -110,10 +127,10 @@ public class SysMLInteractiveUtil {
 	}
 	
 	public static int compare(Element element1, Element element2) {
-		String humanId1 = element1.getHumanId();
-		String humanId2 = element2.getHumanId();
-		String name1 = element1.getName();
-		String name2 = element2.getName();
+		String humanId1 = element1.getShortName();
+		String humanId2 = element2.getShortName();
+		String name1 = element1.getEffectiveName();
+		String name2 = element2.getEffectiveName();
 		return name1 != null && name2 != null? name1.compareToIgnoreCase(name2):
 			   name1 == null && name2 != null? -1:
 			   name1 != null && name2 == null? 1:

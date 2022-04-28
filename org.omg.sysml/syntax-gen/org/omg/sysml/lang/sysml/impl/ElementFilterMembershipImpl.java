@@ -42,7 +42,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  *
  * @generated
  */
-public class ElementFilterMembershipImpl extends MembershipImpl implements ElementFilterMembership {
+public class ElementFilterMembershipImpl extends OwningMembershipImpl implements ElementFilterMembership {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

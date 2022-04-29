@@ -99,11 +99,11 @@ class KerMLValidator extends AbstractKerMLValidator {
 	public static val INVALID_RELATIONSHIP__RELATED_ELEMENTS = 'Invalid Relationship - Related element minimum validation'
 	public static val INVALID_RELATIONSHIP__RELATED_ELEMENTS_MSG = "Relationships must have at least two related elements"
 	public static val INVALID_MEMBERSHIP__DISTINGUISHABILITY = "Invalid Membership - Distinguishablity"
-	public static val INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_0 = "Duplicate of owned member ID"
-	public static val INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_1 = "Duplicate owned member name"
+	public static val INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_0 = "Duplicate of owned element name"
+	public static val INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_1 = "Duplicate of other alias name"
 	public static val INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_2 = "Duplicate of inherited member name"
-	public static val INVALID_ELEMENT__ID_DISTINGUISHABILITY = "Invalid Element - ID distinguishability"
-	public static val INVALID_ELEMENT__ID_DISTINGUISHABILITY_MSG = "Duplicate of other ID or member name"
+	public static val INVALID_ELEMENT__DISTINGUISHABILITY = "Invalid Element - Distinguishability"
+	public static val INVALID_ELEMENT__DISTINGUISHABILITY_MSG = "Duplicate of other element name"
 	public static val INVALID_IMPORT__NAME_NOT_RESOLVED = "Invalid Import - Name not resolved"
 	public static val INVALID_IMPORT__NAME_NOT_RESOLVED_MSG = "Couldn't resolve reference to Element '{name}'."
 	public static val INVALID_ELEMENT_FILTER_MEMBERSHIP__NOT_MODEL_LEVEL = "Invalid ElementFilterMembership - Not model-level"
@@ -130,14 +130,21 @@ class KerMLValidator extends AbstractKerMLValidator {
 		
 	@Check
 	def checkElement(Element elm) {
-		if (elm.shortName !== null) {
+		if (elm.shortName !== null || elm.getEffectiveName !== null) {
 			val owner = elm.owner;
-			if (owner !== null) {
+			if (owner !== null && 
+				// Do not check distinguishability for automatically constructed expressions and binding connectors (to improve performance).
+			    !(owner instanceof InvocationExpression || owner instanceof FeatureReferenceExpression || owner instanceof LiteralExpression || 
+			    	owner instanceof NullExpression || owner instanceof BindingConnector)) {
 				for (e: owner.ownedElement) {
 					if (e != elm) {
-						if (elm.shortName == e.shortName || elm.shortName == e.getEffectiveName) {
-							warning(INVALID_ELEMENT__ID_DISTINGUISHABILITY_MSG, elm, SysMLPackage.eINSTANCE.element_ShortName, INVALID_ELEMENT__ID_DISTINGUISHABILITY)							
-						}						
+						if (elm.shortName !== null && (elm.shortName == e.shortName || elm.shortName == e.getEffectiveName)) {
+							warning(INVALID_ELEMENT__DISTINGUISHABILITY_MSG, elm, SysMLPackage.eINSTANCE.element_ShortName, INVALID_ELEMENT__DISTINGUISHABILITY)
+							return						
+						} else if (elm.getEffectiveName !== null && (elm.getEffectiveName == e.shortName || elm.getEffectiveName == e.getEffectiveName)) {
+							warning(INVALID_ELEMENT__DISTINGUISHABILITY_MSG, elm, if (e.name !== null) SysMLPackage.eINSTANCE.element_Name else null, INVALID_ELEMENT__DISTINGUISHABILITY)
+							return														
+						}												
 					}
 				}
 			}
@@ -148,26 +155,20 @@ class KerMLValidator extends AbstractKerMLValidator {
 	def checkMembership(Membership mem){
 		val namesp = mem.membershipOwningNamespace;	
 		// Do not check distinguishability for automatically constructed expressions and binding connectors (to improve performance).
-		if (!(namesp instanceof InvocationExpression || namesp instanceof FeatureReferenceExpression || namesp instanceof LiteralExpression || namesp instanceof NullExpression ||
-			  namesp instanceof BindingConnector)) {
-			for (e : namesp.ownedElement) {
-				if (mem.memberElement !== e && e.shortName !== null && mem.displayName == e.shortName) {
-					if (mem instanceof OwningMembership) {
-						warning(INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_0, mem.ownedMemberElement, SysMLPackage.eINSTANCE.element_Name, INVALID_MEMBERSHIP__DISTINGUISHABILITY)
-					} else {
+		if (!(namesp instanceof InvocationExpression || namesp instanceof FeatureReferenceExpression || namesp instanceof LiteralExpression || 
+				namesp instanceof NullExpression || namesp instanceof BindingConnector)) {
+			if (!(mem instanceof OwningMembership) && mem.displayName !== null) {
+				for (e: namesp.ownedElement) {
+					if (mem.displayName == e.shortName || mem.displayName == e.getEffectiveName) {
 						warning(INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_0, mem, SysMLPackage.eINSTANCE.membership_MemberNames, INVALID_MEMBERSHIP__DISTINGUISHABILITY)
 					}
 				}
-			}
-			for (m: namesp.ownedMembership) {
-				if (m.memberElement !== mem.memberElement && m.displayName !== null && mem.displayName == m.displayName) {
-					if (mem instanceof OwningMembership) {
-						warning(INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_1, mem.ownedMemberElement, SysMLPackage.eINSTANCE.element_Name, INVALID_MEMBERSHIP__DISTINGUISHABILITY)
-					} else {
+				for (m: namesp.ownedMembership) {
+					if (!(m instanceof OwningMembership) && m !== mem && !mem.isDistinguishableFrom(m)) {
 						warning(INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_1, mem, SysMLPackage.eINSTANCE.membership_MemberNames, INVALID_MEMBERSHIP__DISTINGUISHABILITY)
 					}
+							
 				}
-						
 			}
 			if (namesp instanceof Type){
 				ElementUtil.clearCachesOf(namesp) // Force recomputation of inherited memberships.

@@ -135,14 +135,14 @@ package Objects {
 
 		connector feE :WithinBoth
 			from thisOccurrence :> faces.edges [0..*]
-			to thatOccuurence :> edges [0..*];
+			to thatOccurrence :> edges [0..*];
 
 		connector evV :WithinBoth
 			from thisOccurrence :> edges.vertices [0..*]
-			to thatOccuurence :> vertices [0..*];
+			to thatOccurrence :> vertices [0..*];
 
 		connector fvV :WithinBoth
 			from thisOccurrence :> faces.vertices [0..*]
-			to thatOccuurence :> vertices [0..*];
+			to thatOccurrence :> vertices [0..*];
 	  }
 }

@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2021-2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -24,7 +24,6 @@ package org.omg.sysml.adapter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureTyping;
@@ -69,14 +68,14 @@ public class InvocationExpressionAdapter extends ExpressionAdapter {
 	public List<Feature> getTypeFeatures() {
 		Type type = getExpressionType();
 		List<Feature> typeFeatures = new ArrayList<>();
-		List<Expression> arguments = getTarget().getArgument();
+		List<Feature> inputs = getTarget().getInput();
 		int i = 0;
 		for (Feature typeFeature: TypeUtil.getPublicFeaturesOf(type)) {
-			if (i >= arguments.size()) {
+			if (i >= inputs.size()) {
 				break;
 			}
-			Expression argument = getArgumentForFeature(arguments, typeFeature, i);
-			if (argument != null) {
+			Feature input = getInputForFeature(inputs, typeFeature, i);
+			if (input != null) {
 				typeFeatures.add(typeFeature);
 				i++;
 			}
@@ -84,21 +83,21 @@ public class InvocationExpressionAdapter extends ExpressionAdapter {
 		return typeFeatures;
 	}
 	
-	public static Expression getArgumentForFeature(List<Expression> arguments, Feature feature, int index) {
-		Expression argument = null;
-		if (!arguments.isEmpty() && feature != null) {
-			argument = arguments.get(0);
-			String argumentName = argument.getName();
+	public static Feature getInputForFeature(List<Feature> inputs, Feature feature, int index) {
+		Feature input = null;
+		if (!inputs.isEmpty() && feature != null) {
+			input = inputs.get(0);
+			String argumentName = input.getName();
 			String featureName = feature.getEffectiveName();
 			if (argumentName == null || featureName == null) {
-				if (index < arguments.size()) {
-					argument = arguments.get(index);
+				if (index < inputs.size()) {
+					input = inputs.get(index);
 				}
 			} else {
-				argument = arguments.stream().filter(a->featureName.equals(a.getName())).findFirst().orElse(null);
+				input = inputs.stream().filter(a->featureName.equals(a.getName())).findFirst().orElse(null);
 			}
 		}
-		return argument;
+		return input;
 	}
 	
 	// Computed Redefinition
@@ -116,51 +115,7 @@ public class InvocationExpressionAdapter extends ExpressionAdapter {
 	}
 	
 	// Transformation
-	
-	@Override
-	protected void computeInput() {
-		InvocationExpression expression = getTarget();
-		if (expression.getInput().isEmpty()) {
-			Type type = getExpressionType();
-			if (type instanceof Function || type instanceof Expression) {
-				super.computeInput();
-			} else if (type != null) {
-				for (Feature typeFeature: getTypeFeatures()) {
-					createFeatureForParameter(typeFeature);
-				}
-			}
-		}
-	}
-	
-	public static Expression getArgumentForInput(List<Expression> arguments, Feature input, int argIndex) {
-		FeatureUtil.forceComputeRedefinitionsFor(input);
-		List<Feature> redefinedFeatures = FeatureUtil.getRedefinedFeaturesOf(input);
-		if (!redefinedFeatures.isEmpty()) {
-			Feature feature = redefinedFeatures.get(0);
-			if (feature != null) {
-				return getArgumentForFeature(arguments, feature, argIndex);
-			}
-		}
-		return null;
-	}
-	
-	public void computeArgumentConnectors() {
-		InvocationExpression expression = getTarget();
-		List<Expression> arguments = expression.getArgument();
-		BindingConnector[] argumentConnectors = new BindingConnector[arguments.size()];
-		int i = 0;
-		for (Feature input: expression.getInput()) {
-			if (i >= argumentConnectors.length) {
-				break;
-			}
-			Expression argument = getArgumentForInput(arguments, input, i);
-			if (argument != null) {
-				argumentConnectors[i] = addResultBinding(argument, input);
-				i++;
-			}
-		}
-	}
-	
+		
 	protected void addResultTyping() {
 		Type expressionType = getExpressionType();
 		if (expressionType != null && 
@@ -179,7 +134,6 @@ public class InvocationExpressionAdapter extends ExpressionAdapter {
 	@Override
 	public void doTransform() {
 		super.doTransform();
-		computeArgumentConnectors();
 		addResultTyping();
 	}
 	

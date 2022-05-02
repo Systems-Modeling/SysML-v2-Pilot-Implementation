@@ -1592,7 +1592,7 @@ TargetExpression returns SysML::Expression :
 
 IfNode returns SysML::IfActionUsage :
 	ActionNodePrefix 
-	'if' ownedRelationship += NodeParameterMember
+	'if' ownedRelationship += ExpressionParameterMember
 	ownedRelationship += ActionBodyParameterMember
 	( 'else' ownedRelationship += ( ActionBodyParameterMember | IfNodeParameterMember ) )?
 ;

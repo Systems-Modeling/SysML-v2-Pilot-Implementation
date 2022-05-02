@@ -42,6 +42,7 @@ import org.omg.sysml.lang.sysml.CaseDefinition;
 import org.omg.sysml.lang.sysml.CaseUsage;
 import org.omg.sysml.lang.sysml.Definition;
 import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureChaining;
 import org.omg.sysml.lang.sysml.FeatureMembership;
@@ -50,6 +51,7 @@ import org.omg.sysml.lang.sysml.ItemFeature;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.OccurrenceDefinition;
 import org.omg.sysml.lang.sysml.OccurrenceUsage;
+import org.omg.sysml.lang.sysml.ParameterMembership;
 import org.omg.sysml.lang.sysml.RequirementUsage;
 import org.omg.sysml.lang.sysml.SubjectMembership;
 import org.omg.sysml.lang.sysml.SysMLFactory;
@@ -294,6 +296,17 @@ public class TypeUtil {
 
 	public static FeatureMembership addOwnedFeatureTo(Type type, Feature feature) {
 		FeatureMembership membership = SysMLFactory.eINSTANCE.createFeatureMembership();
+		membership.setOwnedMemberFeature(feature);
+		type.getOwnedRelationship().add(membership);
+		return membership;
+	}
+	
+	public static ParameterMembership addOwnedParameterTo(Type type, Expression value) {
+		Feature feature = SysMLFactory.eINSTANCE.createFeature();
+		if (value != null) {
+			FeatureUtil.addFeatureValueTo(feature, value);
+		}
+		ParameterMembership membership = SysMLFactory.eINSTANCE.createParameterMembership();
 		membership.setOwnedMemberFeature(feature);
 		type.getOwnedRelationship().add(membership);
 		return membership;

@@ -351,8 +351,8 @@ fragment PositionalArgumentList returns SysML::Expression :
 	( ',' ownedRelationship += ArgumentMember )*
 ;
 
-ArgumentMember returns SysML::FeatureMembership :
-	ownedRelatedElement += Argument // ownedMemberFeature = Argument
+ArgumentMember returns SysML::ParameterMembership :
+	ownedRelatedElement += Argument // ownedMemberParameter = Argument
 ;
 
 Argument returns SysML::Feature :
@@ -364,12 +364,16 @@ fragment NamedArgumentList returns SysML::Expression :
 	( ',' ownedRelationship += NamedArgumentMember )*
 ;
 
-NamedArgumentMember returns SysML::FeatureMembership :
+NamedArgumentMember returns SysML::ParameterMembership :
 	ownedRelatedElement += NamedArgument // ownedMemberFeature = NamedArgument
 ;
 
 NamedArgument returns SysML::Feature :
-	name = Name '=' ownedRelationship += ArgumentValue
+	ownedRelationship += ParameterRedefinition '=' ownedRelationship += ArgumentValue
+;
+
+ParameterRedefinition returns SysML::Redefinition:
+	redefinedFeature = [SysML::Feature | QualifiedName]
 ;
 
 ArgumentValue returns SysML::FeatureValue :

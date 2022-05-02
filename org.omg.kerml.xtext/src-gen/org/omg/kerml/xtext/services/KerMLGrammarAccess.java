@@ -10699,8 +10699,8 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		return getPositionalArgumentListAccess().getRule();
 	}
 	
-	//ArgumentMember returns SysML::FeatureMembership :
-	//    ownedRelatedElement += Argument // ownedMemberFeature = Argument
+	//ArgumentMember returns SysML::ParameterMembership :
+	//    ownedRelatedElement += Argument // ownedMemberParameter = Argument
 	//;
 	public KerMLExpressionsGrammarAccess.ArgumentMemberElements getArgumentMemberAccess() {
 		return gaKerMLExpressions.getArgumentMemberAccess();
@@ -10733,7 +10733,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		return getNamedArgumentListAccess().getRule();
 	}
 	
-	//NamedArgumentMember returns SysML::FeatureMembership :
+	//NamedArgumentMember returns SysML::ParameterMembership :
 	//    ownedRelatedElement += NamedArgument // ownedMemberFeature = NamedArgument
 	//;
 	public KerMLExpressionsGrammarAccess.NamedArgumentMemberElements getNamedArgumentMemberAccess() {
@@ -10745,7 +10745,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//NamedArgument returns SysML::Feature :
-	//    name = Name '=' ownedRelationship += ArgumentValue
+	//    ownedRelationship += ParameterRedefinition '=' ownedRelationship += ArgumentValue
 	//;
 	public KerMLExpressionsGrammarAccess.NamedArgumentElements getNamedArgumentAccess() {
 		return gaKerMLExpressions.getNamedArgumentAccess();
@@ -10753,6 +10753,17 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	
 	public ParserRule getNamedArgumentRule() {
 		return getNamedArgumentAccess().getRule();
+	}
+	
+	//ParameterRedefinition returns SysML::Redefinition:
+	//    redefinedFeature = [SysML::Feature | QualifiedName]
+	//;
+	public KerMLExpressionsGrammarAccess.ParameterRedefinitionElements getParameterRedefinitionAccess() {
+		return gaKerMLExpressions.getParameterRedefinitionAccess();
+	}
+	
+	public ParserRule getParameterRedefinitionRule() {
+		return getParameterRedefinitionAccess().getRule();
 	}
 	
 	//ArgumentValue returns SysML::FeatureValue :

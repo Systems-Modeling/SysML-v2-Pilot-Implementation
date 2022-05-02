@@ -3432,18 +3432,18 @@ ruleNamedArgument returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getNamedArgumentAccess().getNameNameParserRuleCall_0_0());
+					newCompositeNode(grammarAccess.getNamedArgumentAccess().getOwnedRelationshipParameterRedefinitionParserRuleCall_0_0());
 				}
-				lv_name_0_0=ruleName
+				lv_ownedRelationship_0_0=ruleParameterRedefinition
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getNamedArgumentRule());
 					}
-					set(
+					add(
 						$current,
-						"name",
-						lv_name_0_0,
-						"org.omg.kerml.expressions.xtext.KerMLExpressions.Name");
+						"ownedRelationship",
+						lv_ownedRelationship_0_0,
+						"org.omg.kerml.expressions.xtext.KerMLExpressions.ParameterRedefinition");
 					afterParserOrEnumRuleCall();
 				}
 			)
@@ -3470,6 +3470,39 @@ ruleNamedArgument returns [EObject current=null]
 					afterParserOrEnumRuleCall();
 				}
 			)
+		)
+	)
+;
+
+// Entry rule entryRuleParameterRedefinition
+entryRuleParameterRedefinition returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getParameterRedefinitionRule()); }
+	iv_ruleParameterRedefinition=ruleParameterRedefinition
+	{ $current=$iv_ruleParameterRedefinition.current; }
+	EOF;
+
+// Rule ParameterRedefinition
+ruleParameterRedefinition returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			{
+				if ($current==null) {
+					$current = createModelElement(grammarAccess.getParameterRedefinitionRule());
+				}
+			}
+			{
+				newCompositeNode(grammarAccess.getParameterRedefinitionAccess().getRedefinedFeatureFeatureCrossReference_0());
+			}
+			ruleQualifiedName
+			{
+				afterParserOrEnumRuleCall();
+			}
 		)
 	)
 ;

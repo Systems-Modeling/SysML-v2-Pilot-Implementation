@@ -35,6 +35,7 @@ import org.omg.sysml.lang.sysml.NullExpression;
 import org.omg.sysml.lang.sysml.OperatorExpression;
 import org.omg.sysml.lang.sysml.OwningMembership;
 import org.omg.sysml.lang.sysml.ParameterMembership;
+import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.ResultExpressionMembership;
 import org.omg.sysml.lang.sysml.ReturnParameterMembership;
 import org.omg.sysml.lang.sysml.SelectExpression;
@@ -138,20 +139,12 @@ public abstract class AbstractKerMLExpressionsSemanticSequencer extends Abstract
 				sequence_OwnedFeatureChaining(context, (FeatureChaining) semanticObject); 
 				return; 
 			case SysMLPackage.FEATURE_MEMBERSHIP:
-				if (rule == grammarAccess.getArgumentMemberRule()) {
-					sequence_ArgumentMember(context, (FeatureMembership) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getExpressionBodyMemberRule()) {
+				if (rule == grammarAccess.getExpressionBodyMemberRule()) {
 					sequence_ExpressionBodyMember(context, (FeatureMembership) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getFunctionReferenceMemberRule()) {
 					sequence_FunctionReferenceMember(context, (FeatureMembership) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getNamedArgumentMemberRule()) {
-					sequence_NamedArgumentMember(context, (FeatureMembership) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getOwnedExpressionMemberRule()) {
@@ -306,7 +299,21 @@ public abstract class AbstractKerMLExpressionsSemanticSequencer extends Abstract
 				sequence_FeatureChainMember(context, (OwningMembership) semanticObject); 
 				return; 
 			case SysMLPackage.PARAMETER_MEMBERSHIP:
-				sequence_BodyParameterMember(context, (ParameterMembership) semanticObject); 
+				if (rule == grammarAccess.getArgumentMemberRule()) {
+					sequence_ArgumentMember(context, (ParameterMembership) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getBodyParameterMemberRule()) {
+					sequence_BodyParameterMember(context, (ParameterMembership) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getNamedArgumentMemberRule()) {
+					sequence_NamedArgumentMember(context, (ParameterMembership) semanticObject); 
+					return; 
+				}
+				else break;
+			case SysMLPackage.REDEFINITION:
+				sequence_ParameterRedefinition(context, (Redefinition) semanticObject); 
 				return; 
 			case SysMLPackage.RESULT_EXPRESSION_MEMBERSHIP:
 				sequence_ResultExpressionMember(context, (ResultExpressionMembership) semanticObject); 
@@ -403,12 +410,12 @@ public abstract class AbstractKerMLExpressionsSemanticSequencer extends Abstract
 	
 	/**
 	 * Contexts:
-	 *     ArgumentMember returns FeatureMembership
+	 *     ArgumentMember returns ParameterMembership
 	 *
 	 * Constraint:
 	 *     ownedRelatedElement+=Argument
 	 */
-	protected void sequence_ArgumentMember(ISerializationContext context, FeatureMembership semanticObject) {
+	protected void sequence_ArgumentMember(ISerializationContext context, ParameterMembership semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -1036,12 +1043,12 @@ public abstract class AbstractKerMLExpressionsSemanticSequencer extends Abstract
 	
 	/**
 	 * Contexts:
-	 *     NamedArgumentMember returns FeatureMembership
+	 *     NamedArgumentMember returns ParameterMembership
 	 *
 	 * Constraint:
 	 *     ownedRelatedElement+=NamedArgument
 	 */
-	protected void sequence_NamedArgumentMember(ISerializationContext context, FeatureMembership semanticObject) {
+	protected void sequence_NamedArgumentMember(ISerializationContext context, ParameterMembership semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -1051,7 +1058,7 @@ public abstract class AbstractKerMLExpressionsSemanticSequencer extends Abstract
 	 *     NamedArgument returns Feature
 	 *
 	 * Constraint:
-	 *     (name=Name ownedRelationship+=ArgumentValue)
+	 *     (ownedRelationship+=ParameterRedefinition ownedRelationship+=ArgumentValue)
 	 */
 	protected void sequence_NamedArgument(ISerializationContext context, Feature semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1147,6 +1154,24 @@ public abstract class AbstractKerMLExpressionsSemanticSequencer extends Abstract
 	 */
 	protected void sequence_OwnedFeatureTyping(ISerializationContext context, FeatureTyping semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     ParameterRedefinition returns Redefinition
+	 *
+	 * Constraint:
+	 *     redefinedFeature=[Feature|QualifiedName]
+	 */
+	protected void sequence_ParameterRedefinition(ISerializationContext context, Redefinition semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, SysMLPackage.Literals.REDEFINITION__REDEFINED_FEATURE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SysMLPackage.Literals.REDEFINITION__REDEFINED_FEATURE));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getParameterRedefinitionAccess().getRedefinedFeatureFeatureQualifiedNameParserRuleCall_0_1(), semanticObject.eGet(SysMLPackage.Literals.REDEFINITION__REDEFINED_FEATURE, false));
+		feeder.finish();
 	}
 	
 	

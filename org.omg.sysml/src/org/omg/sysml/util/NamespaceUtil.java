@@ -39,6 +39,7 @@ import org.omg.sysml.lang.sysml.InvocationExpression;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.OwningMembership;
+import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.util.SysMLScopeUtil;
@@ -91,17 +92,27 @@ public class NamespaceUtil {
 			EcoreUtil2.getContainerOfType(element.eContainer(), Namespace.class);
 	}
 	
+	public static Namespace getExpressionNamespaceOf(Element element) {
+		Namespace namespace = getParentNamespaceOf(element);
+		Namespace owningNamespace = namespace.getOwningNamespace();
+		if (!(element instanceof Relationship)) {
+			element = element.getOwningMembership();
+		}
+		return element instanceof FeatureValue && owningNamespace instanceof InvocationExpression?
+			owningNamespace: namespace;		
+	}
+	
 	public static Namespace getNonExpressionNamespaceFor(Element element) {
 		if (element == null) {
 			return null;
 		} else {
-			Namespace namespace = getParentNamespaceOf(element);
+			Namespace namespace = getExpressionNamespaceOf(element);
 			while (element instanceof FeatureValue || 
 				   namespace instanceof InvocationExpression || 
 				   namespace instanceof FeatureReferenceExpression
 			) {
 				element = namespace.getOwningMembership();
-				namespace = getParentNamespaceOf(element);
+				namespace = getExpressionNamespaceOf(element);
 			}
 			return namespace;
 		}

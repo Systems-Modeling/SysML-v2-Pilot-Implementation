@@ -16169,9 +16169,9 @@ ruleIfNode returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getIfNodeAccess().getOwnedRelationshipNodeParameterMemberParserRuleCall_2_0());
+					newCompositeNode(grammarAccess.getIfNodeAccess().getOwnedRelationshipExpressionParameterMemberParserRuleCall_2_0());
 				}
-				lv_ownedRelationship_2_0=ruleNodeParameterMember
+				lv_ownedRelationship_2_0=ruleExpressionParameterMember
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getIfNodeRule());
@@ -16180,7 +16180,7 @@ ruleIfNode returns [EObject current=null]
 						$current,
 						"ownedRelationship",
 						lv_ownedRelationship_2_0,
-						"org.omg.sysml.xtext.SysML.NodeParameterMember");
+						"org.omg.sysml.xtext.SysML.ExpressionParameterMember");
 					afterParserOrEnumRuleCall();
 				}
 			)
@@ -28084,18 +28084,18 @@ ruleNamedArgument returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getNamedArgumentAccess().getNameNameParserRuleCall_0_0());
+					newCompositeNode(grammarAccess.getNamedArgumentAccess().getOwnedRelationshipParameterRedefinitionParserRuleCall_0_0());
 				}
-				lv_name_0_0=ruleName
+				lv_ownedRelationship_0_0=ruleParameterRedefinition
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getNamedArgumentRule());
 					}
-					set(
+					add(
 						$current,
-						"name",
-						lv_name_0_0,
-						"org.omg.kerml.expressions.xtext.KerMLExpressions.Name");
+						"ownedRelationship",
+						lv_ownedRelationship_0_0,
+						"org.omg.kerml.expressions.xtext.KerMLExpressions.ParameterRedefinition");
 					afterParserOrEnumRuleCall();
 				}
 			)
@@ -28122,6 +28122,39 @@ ruleNamedArgument returns [EObject current=null]
 					afterParserOrEnumRuleCall();
 				}
 			)
+		)
+	)
+;
+
+// Entry rule entryRuleParameterRedefinition
+entryRuleParameterRedefinition returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getParameterRedefinitionRule()); }
+	iv_ruleParameterRedefinition=ruleParameterRedefinition
+	{ $current=$iv_ruleParameterRedefinition.current; }
+	EOF;
+
+// Rule ParameterRedefinition
+ruleParameterRedefinition returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			{
+				if ($current==null) {
+					$current = createModelElement(grammarAccess.getParameterRedefinitionRule());
+				}
+			}
+			{
+				newCompositeNode(grammarAccess.getParameterRedefinitionAccess().getRedefinedFeatureFeatureCrossReference_0());
+			}
+			ruleQualifiedName
+			{
+				afterParserOrEnumRuleCall();
+			}
 		)
 	)
 ;

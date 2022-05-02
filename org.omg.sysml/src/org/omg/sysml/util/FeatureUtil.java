@@ -175,6 +175,13 @@ public class FeatureUtil {
 		FeatureValue featureValue = getValuationFor(feature);
 		return featureValue == null? null: featureValue.getValue();
 	}
+	
+	public static FeatureValue addFeatureValueTo(Feature feature, Expression value) {
+		FeatureValue featureValue = SysMLFactory.eINSTANCE.createFeatureValue();
+		featureValue.setValue(value);
+		feature.getOwnedRelationship().add(featureValue);
+		return featureValue;
+	}
 
 	// Featuring Types
 	

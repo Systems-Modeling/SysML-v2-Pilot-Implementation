@@ -122,6 +122,10 @@ class KerMLValidator extends AbstractKerMLValidator {
 	public static val INVALID_FEATURE_REFERENCE_EXPRESSION__INVALID_FEATURE_MSG = "Must be a valid feature"
 	public static val INVALID_FEATURE_CHAIN_EXPRESSION__INVALID_FEATURE = "Invalid FeatureChainExpression - Invalid feature"
 	public static val INVALID_FEATURE_CHAIN_EXPRESSION__INVALID_FEATURE_MSG = "Must be a valid feature"
+	public static val INVALID_INVOCATION_EXPRESSION__BAD_REDEFINITION = "Invalid InvocationExpression - Bad redefinition"
+	public static val INVALID_INVOCATION_EXPRESSION__BAD_REDEFINITION_MSG = "Must name an input or undirected feature"
+	public static val INVALID_INVOCATION_EXPRESSION__DUPLICATE_REDEFINITION = "Invalid InvocationExpression - Duplicate redefinition"
+	public static val INVALID_INVOCATION_EXPRESSION__DUPLICATE_REDEFINITION_MSG = "Feature already bound"
 	public static val INVALID_TYPE_MULTIPLICITY__TOO_MANY = "Invalid Type - Too many multiplicities"
 	public static val INVALID_TYPE_MULTIPLICITY__TOO_MANY_MSG = "Only one multiplicity is allowed"
 	
@@ -306,6 +310,30 @@ class KerMLValidator extends AbstractKerMLValidator {
 				!(feature as Feature).featuringType.exists[t | (rel as Type).conformsTo(t)]
 			)) {
 			error(INVALID_FEATURE_CHAIN_EXPRESSION__INVALID_FEATURE_MSG, e.ownedMembership.get(1), SysMLPackage.eINSTANCE.membership_MemberElement, INVALID_FEATURE_CHAIN_EXPRESSION__INVALID_FEATURE)
+		}
+	}
+	
+	@Check
+	def checkInvocationExpression(InvocationExpression e) {
+		val type = ExpressionUtil.getExpressionTypeOf(e)
+		if (type !== null) {
+			val typeParams = type.feature.filter[p | FeatureUtil.getDirection(p) === null || FeatureUtil.isInputParameter(p)]
+			val exprParams = e.ownedFeature.filter[p | FeatureUtil.isInputParameter(p)]
+			val usedParams = newHashSet
+			for (p: exprParams) {
+				val redefinitions = p.ownedRedefinition
+				if (!redefinitions.empty) {
+					val redefParams = redefinitions.map[redefinedFeature].filter[f | typeParams.contains(f)]
+					if (redefParams.empty) {
+						// Input parameter must redefine a parameter of the expression type
+						error(INVALID_INVOCATION_EXPRESSION__BAD_REDEFINITION_MSG, p, null, INVALID_INVOCATION_EXPRESSION__BAD_REDEFINITION)
+					} else if (redefParams.exists[f | usedParams.contains(f)]) {
+						// Two parameters cannot redefine the same type parameter 
+						error(INVALID_INVOCATION_EXPRESSION__DUPLICATE_REDEFINITION_MSG, p, null, INVALID_INVOCATION_EXPRESSION__DUPLICATE_REDEFINITION)
+					}
+					usedParams.addAll(redefParams)
+				}
+			}
 		}
 	}
 	

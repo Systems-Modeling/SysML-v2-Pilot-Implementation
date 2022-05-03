@@ -275,17 +275,11 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) (ambiguity) '*' (rule start)
 	 *     (rule start) (ambiguity) 'if' operand+=NullCoalescingExpression
-	 *     (rule start) (ambiguity) '{' ownedRelationship+=AliasMember
-	 *     (rule start) (ambiguity) '{' ownedRelationship+=FeatureMember
-	 *     (rule start) (ambiguity) '{' ownedRelationship+=Import
-	 *     (rule start) (ambiguity) '{' ownedRelationship+=NonFeatureMember
-	 *     (rule start) (ambiguity) '{' ownedRelationship+=ResultExpressionMember
-	 *     (rule start) (ambiguity) '{' ownedRelationship+=ReturnFeatureMember
-	 *     (rule start) (ambiguity) (';' | ('{' '}')) (rule start)
 	 *     (rule start) (ambiguity) ('null' | ('(' ')')) (rule start)
 	 *     (rule start) (ambiguity) operand+=SelfReferenceExpression
 	 *     (rule start) (ambiguity) operator='all'
 	 *     (rule start) (ambiguity) operator=UnaryOperator
+	 *     (rule start) (ambiguity) ownedRelationship+=ExpressionBodyMember
 	 *     (rule start) (ambiguity) ownedRelationship+=FeatureReferenceMember
 	 *     (rule start) (ambiguity) ownedRelationship+=OwnedFeatureTyping
 	 *     (rule start) (ambiguity) value=BooleanValue
@@ -728,7 +722,6 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 *     ';' | ('{' '}')
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) '('* (ambiguity) (rule start)
 	 *     (rule start) 'bool' (ambiguity) (rule start)
 	 *     (rule start) 'expr' (ambiguity) (rule start)
 	 *     (rule start) 'function' (ambiguity) (rule start)
@@ -1310,22 +1303,24 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 * This ambiguous syntax occurs at:
 	 *     operand+=AdditiveExpression (ambiguity) ')' (rule end)
 	 *     operand+=AndExpression (ambiguity) ')' (rule end)
+	 *     operand+=BodyExpression (ambiguity) ')' (rule end)
 	 *     operand+=ClassificationExpression (ambiguity) ')' (rule end)
-	 *     operand+=ConditionalExpression (ambiguity) ')' (rule end)
 	 *     operand+=EqualityExpression (ambiguity) ')' (rule end)
+	 *     operand+=EqualityExpressionReference (ambiguity) ')' (rule end)
 	 *     operand+=ExponentiationExpression (ambiguity) ')' (rule end)
 	 *     operand+=ExtentExpression (ambiguity) ')' (rule end)
-	 *     operand+=ImpliesExpression (ambiguity) ')' (rule end)
+	 *     operand+=FunctionReferenceExpression (ambiguity) ')' (rule end)
+	 *     operand+=ImpliesExpressionReference (ambiguity) ')' (rule end)
 	 *     operand+=MultiplicativeExpression (ambiguity) ')' (rule end)
-	 *     operand+=OrExpression (ambiguity) ')' (rule end)
+	 *     operand+=OrExpressionReference (ambiguity) ')' (rule end)
+	 *     operand+=OwnedExpressionReference (ambiguity) ')' (rule end)
 	 *     operand+=RangeExpression (ambiguity) ')' (rule end)
 	 *     operand+=SequenceExpression ']' (ambiguity) ')' (rule end)
 	 *     operand+=UnaryExpression (ambiguity) ')' (rule end)
 	 *     operand+=XorExpression (ambiguity) ')' (rule end)
+	 *     operand+=XorExpressionReference (ambiguity) ')' (rule end)
 	 *     ownedRelationship+=ArgumentMember ')' (ambiguity) ')' (rule end)
-	 *     ownedRelationship+=ExpressionBodyMember (ambiguity) ')' (rule end)
 	 *     ownedRelationship+=FeatureChainMember (ambiguity) ')' (rule end)
-	 *     ownedRelationship+=FunctionReferenceMember (ambiguity) ')' (rule end)
 	 *     ownedRelationship+=NamedArgumentMember ')' (ambiguity) ')' (rule end)
 	 *     ownedRelationship+=ReferenceTyping '(' ')' (ambiguity) ')' (rule end)
 	 *     ownedRelationship+=TypeReferenceMember (ambiguity) ')' (rule end)

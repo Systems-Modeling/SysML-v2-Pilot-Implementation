@@ -52,15 +52,15 @@ import org.omg.sysml.lang.sysml.OwningMembership
 class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	
 	def String metaclassText(Element element) {
-		element.eClass.name
+		element?.eClass.name
 	}
 	
 	def String idText(Element element) {
 		var text = ""
-		if (element.shortName !== null) {
+		if (element?.shortName !== null) {
 			text += ' <' + element.shortName + '>'
 		}
-		val name = element.getEffectiveName;
+		val name = element?.getEffectiveName;
 		if (name !== null) {
 			text += ' ' + name;
 		}

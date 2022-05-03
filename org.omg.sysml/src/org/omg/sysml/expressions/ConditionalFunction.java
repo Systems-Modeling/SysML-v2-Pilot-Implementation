@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2021-2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -12,7 +12,7 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Lesser General Public License for more details.
  *  
- * You should have received a copy of theGNU Lesser General Public License
+ * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  *  
  * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
@@ -35,8 +35,8 @@ public class ConditionalFunction extends ControlFunction {
 	public EList<Element> invoke(InvocationExpression invocation, Element target) {
 		Boolean test = booleanValue(invocation, 0, target);
 		return test == null? null:
-			   test? evaluateArgument(invocation, 1, target):
-			   evaluateArgument(invocation, 2, target);
+			   test? expressionValue(invocation, 1, target):
+			   expressionValue(invocation, 2, target);
 	}
 
 }

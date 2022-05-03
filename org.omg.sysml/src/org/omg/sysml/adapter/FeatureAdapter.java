@@ -278,7 +278,7 @@ public class FeatureAdapter extends TypeAdapter {
 	
 	public boolean isComputeRedefinitions() {
 		EList<Redefinition> ownedRedefinitions = getTarget().getOwnedRedefinition();
-		return isComputeRedefinitions && ownedRedefinitions.isEmpty();
+		return isAddImplicitGeneralTypes && isComputeRedefinitions && ownedRedefinitions.isEmpty();
 	}
 	
 	/**

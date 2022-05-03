@@ -59,45 +59,7 @@ public abstract class AbstractKerMLExpressionsSemanticSequencer extends Abstract
 				sequence_PrimaryExpression(context, (CollectExpression) semanticObject); 
 				return; 
 			case SysMLPackage.EXPRESSION:
-				if (rule == grammarAccess.getOwnedExpressionRule()
-						|| rule == grammarAccess.getConditionalExpressionRule()
-						|| action == grammarAccess.getConditionalExpressionAccess().getOperatorExpressionOperandAction_0_1_0()
-						|| rule == grammarAccess.getNullCoalescingExpressionRule()
-						|| action == grammarAccess.getNullCoalescingExpressionAccess().getOperatorExpressionOperandAction_1_0()
-						|| rule == grammarAccess.getImpliesExpressionRule()
-						|| action == grammarAccess.getImpliesExpressionAccess().getOperatorExpressionOperandAction_1_0()
-						|| rule == grammarAccess.getOrExpressionRule()
-						|| action == grammarAccess.getOrExpressionAccess().getOperatorExpressionOperandAction_1_0()
-						|| rule == grammarAccess.getXorExpressionRule()
-						|| action == grammarAccess.getXorExpressionAccess().getOperatorExpressionOperandAction_1_0()
-						|| rule == grammarAccess.getAndExpressionRule()
-						|| action == grammarAccess.getAndExpressionAccess().getOperatorExpressionOperandAction_1_0()
-						|| rule == grammarAccess.getEqualityExpressionRule()
-						|| action == grammarAccess.getEqualityExpressionAccess().getOperatorExpressionOperandAction_1_0()
-						|| rule == grammarAccess.getClassificationExpressionRule()
-						|| action == grammarAccess.getClassificationExpressionAccess().getOperatorExpressionOperandAction_0_1_0()
-						|| rule == grammarAccess.getRelationalExpressionRule()
-						|| action == grammarAccess.getRelationalExpressionAccess().getOperatorExpressionOperandAction_1_0()
-						|| rule == grammarAccess.getRangeExpressionRule()
-						|| action == grammarAccess.getRangeExpressionAccess().getOperatorExpressionOperandAction_1_0()
-						|| rule == grammarAccess.getAdditiveExpressionRule()
-						|| action == grammarAccess.getAdditiveExpressionAccess().getOperatorExpressionOperandAction_1_0()
-						|| rule == grammarAccess.getMultiplicativeExpressionRule()
-						|| action == grammarAccess.getMultiplicativeExpressionAccess().getOperatorExpressionOperandAction_1_0()
-						|| rule == grammarAccess.getExponentiationExpressionRule()
-						|| action == grammarAccess.getExponentiationExpressionAccess().getOperatorExpressionOperandAction_1_0()
-						|| rule == grammarAccess.getUnaryExpressionRule()
-						|| rule == grammarAccess.getExtentExpressionRule()
-						|| rule == grammarAccess.getPrimaryExpressionRule()
-						|| action == grammarAccess.getPrimaryExpressionAccess().getFeatureChainExpressionOperandAction_1_0()
-						|| action == grammarAccess.getPrimaryExpressionAccess().getOperatorExpressionOperandAction_2_0_0_0()
-						|| action == grammarAccess.getPrimaryExpressionAccess().getOperatorExpressionOperandAction_2_0_1_0()
-						|| action == grammarAccess.getPrimaryExpressionAccess().getCollectExpressionOperandAction_2_0_2_0()
-						|| action == grammarAccess.getPrimaryExpressionAccess().getSelectExpressionOperandAction_2_0_3_0()
-						|| rule == grammarAccess.getBaseExpressionRule()
-						|| rule == grammarAccess.getExpressionBodyRule()
-						|| rule == grammarAccess.getSequenceExpressionRule()
-						|| action == grammarAccess.getSequenceExpressionAccess().getOperatorExpressionOperandAction_1_1_0()) {
+				if (rule == grammarAccess.getExpressionBodyRule()) {
 					sequence_ExpressionBody(context, (Expression) semanticObject); 
 					return; 
 				}
@@ -139,12 +101,24 @@ public abstract class AbstractKerMLExpressionsSemanticSequencer extends Abstract
 				sequence_OwnedFeatureChaining(context, (FeatureChaining) semanticObject); 
 				return; 
 			case SysMLPackage.FEATURE_MEMBERSHIP:
-				if (rule == grammarAccess.getExpressionBodyMemberRule()) {
+				if (rule == grammarAccess.getEqualityExpressionMemberRule()) {
+					sequence_EqualityExpressionMember(context, (FeatureMembership) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getExpressionBodyMemberRule()) {
 					sequence_ExpressionBodyMember(context, (FeatureMembership) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getFunctionReferenceMemberRule()) {
 					sequence_FunctionReferenceMember(context, (FeatureMembership) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getImpliesExpressionMemberRule()) {
+					sequence_ImpliesExpressionMember(context, (FeatureMembership) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getOrExpressionMemberRule()) {
+					sequence_OrExpressionMember(context, (FeatureMembership) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getOwnedExpressionMemberRule()) {
@@ -155,9 +129,17 @@ public abstract class AbstractKerMLExpressionsSemanticSequencer extends Abstract
 					sequence_TypeReferenceMember(context, (FeatureMembership) semanticObject); 
 					return; 
 				}
+				else if (rule == grammarAccess.getXorExpressionMemberRule()) {
+					sequence_XorExpressionMember(context, (FeatureMembership) semanticObject); 
+					return; 
+				}
 				else break;
 			case SysMLPackage.FEATURE_REFERENCE_EXPRESSION:
-				if (rule == grammarAccess.getOwnedExpressionRule()
+				if (rule == grammarAccess.getBodyExpressionRule()) {
+					sequence_BodyExpression(context, (FeatureReferenceExpression) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getOwnedExpressionRule()
 						|| rule == grammarAccess.getConditionalExpressionRule()
 						|| action == grammarAccess.getConditionalExpressionAccess().getOperatorExpressionOperandAction_0_1_0()
 						|| rule == grammarAccess.getNullCoalescingExpressionRule()
@@ -194,13 +176,40 @@ public abstract class AbstractKerMLExpressionsSemanticSequencer extends Abstract
 						|| action == grammarAccess.getPrimaryExpressionAccess().getSelectExpressionOperandAction_2_0_3_0()
 						|| rule == grammarAccess.getBaseExpressionRule()
 						|| rule == grammarAccess.getSequenceExpressionRule()
-						|| action == grammarAccess.getSequenceExpressionAccess().getOperatorExpressionOperandAction_1_1_0()
-						|| rule == grammarAccess.getFeatureReferenceExpressionRule()) {
+						|| action == grammarAccess.getSequenceExpressionAccess().getOperatorExpressionOperandAction_1_1_0()) {
+					sequence_BodyExpression_FeatureReferenceExpression(context, (FeatureReferenceExpression) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getEqualityExpressionReferenceRule()) {
+					sequence_EqualityExpressionReference(context, (FeatureReferenceExpression) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getFeatureReferenceExpressionRule()) {
 					sequence_FeatureReferenceExpression(context, (FeatureReferenceExpression) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getFunctionReferenceExpressionRule()) {
+					sequence_FunctionReferenceExpression(context, (FeatureReferenceExpression) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getImpliesExpressionReferenceRule()) {
+					sequence_ImpliesExpressionReference(context, (FeatureReferenceExpression) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getOrExpressionReferenceRule()) {
+					sequence_OrExpressionReference(context, (FeatureReferenceExpression) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getOwnedExpressionReferenceRule()) {
+					sequence_OwnedExpressionReference(context, (FeatureReferenceExpression) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getSelfReferenceExpressionRule()) {
 					sequence_SelfReferenceExpression(context, (FeatureReferenceExpression) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getXorExpressionReferenceRule()) {
+					sequence_XorExpressionReference(context, (FeatureReferenceExpression) semanticObject); 
 					return; 
 				}
 				else break;
@@ -372,13 +381,24 @@ public abstract class AbstractKerMLExpressionsSemanticSequencer extends Abstract
 	 *
 	 * Constraint:
 	 *     (
-	 *         (operand+=ConditionalExpression_OperatorExpression_0_1_0 operator=ConditionalOperator operand+=OwnedExpression operand+=ConditionalExpression) | 
-	 *         (operand+=NullCoalescingExpression operator=ConditionalOperator operand+=OwnedExpression operand+=ConditionalExpression) | 
-	 *         (operand+=NullCoalescingExpression_OperatorExpression_1_0 operator=NullCoalescingOperator operand+=ImpliesExpression) | 
-	 *         (operand+=ImpliesExpression_OperatorExpression_1_0 operator=ImpliesOperator operand+=OrExpression) | 
-	 *         (operand+=OrExpression_OperatorExpression_1_0 operator=OrOperator operand+=XorExpression) | 
+	 *         (
+	 *             operand+=ConditionalExpression_OperatorExpression_0_1_0 
+	 *             operator=ConditionalOperator 
+	 *             operand+=OwnedExpressionReference 
+	 *             operand+=OwnedExpressionReference
+	 *         ) | 
+	 *         (operand+=NullCoalescingExpression operator=ConditionalOperator operand+=OwnedExpressionReference operand+=OwnedExpressionReference) | 
+	 *         (operand+=NullCoalescingExpression_OperatorExpression_1_0 operator=NullCoalescingOperator operand+=ImpliesExpressionReference) | 
+	 *         (operand+=ImpliesExpression_OperatorExpression_1_0 operator=ImpliesOperator operand+=OrExpressionReference) | 
+	 *         (
+	 *             operand+=OrExpression_OperatorExpression_1_0 
+	 *             ((operator=OrOperator operand+=XorExpression) | (operator=ConditionalOrOperator operand+=XorExpressionReference))
+	 *         ) | 
 	 *         (operand+=XorExpression_OperatorExpression_1_0 operator=XorOperator operand+=AndExpression) | 
-	 *         (operand+=AndExpression_OperatorExpression_1_0 operator=AndOperator operand+=EqualityExpression) | 
+	 *         (
+	 *             operand+=AndExpression_OperatorExpression_1_0 
+	 *             ((operator=AndOperator operand+=EqualityExpression) | (operator=ConditionalAndOperator operand+=EqualityExpressionReference))
+	 *         ) | 
 	 *         (operand+=EqualityExpression_OperatorExpression_1_0 operator=EqualityOperator operand+=ClassificationExpression) | 
 	 *         (operand+=ClassificationExpression_OperatorExpression_0_1_0 operator=ClassificationOperator ownedRelationship+=TypeReferenceMember) | 
 	 *         (operand+=SelfReferenceExpression operator=ClassificationOperator ownedRelationship+=TypeReferenceMember) | 
@@ -394,8 +414,8 @@ public abstract class AbstractKerMLExpressionsSemanticSequencer extends Abstract
 	 *             operand+=PrimaryExpression_OperatorExpression_2_0_1_0 
 	 *             ownedRelationship+=ReferenceTyping 
 	 *             (
-	 *                 ownedRelationship+=ExpressionBodyMember | 
-	 *                 ownedRelationship+=FunctionReferenceMember | 
+	 *                 operand+=BodyExpression | 
+	 *                 operand+=FunctionReferenceExpression | 
 	 *                 (ownedRelationship+=ArgumentMember ownedRelationship+=ArgumentMember*) | 
 	 *                 (ownedRelationship+=NamedArgumentMember ownedRelationship+=NamedArgumentMember*)
 	 *             )?
@@ -446,6 +466,67 @@ public abstract class AbstractKerMLExpressionsSemanticSequencer extends Abstract
 	
 	/**
 	 * Contexts:
+	 *     BodyExpression returns FeatureReferenceExpression
+	 *
+	 * Constraint:
+	 *     ownedRelationship+=ExpressionBodyMember
+	 */
+	protected void sequence_BodyExpression(ISerializationContext context, FeatureReferenceExpression semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     OwnedExpression returns FeatureReferenceExpression
+	 *     ConditionalExpression returns FeatureReferenceExpression
+	 *     ConditionalExpression.OperatorExpression_0_1_0 returns FeatureReferenceExpression
+	 *     NullCoalescingExpression returns FeatureReferenceExpression
+	 *     NullCoalescingExpression.OperatorExpression_1_0 returns FeatureReferenceExpression
+	 *     ImpliesExpression returns FeatureReferenceExpression
+	 *     ImpliesExpression.OperatorExpression_1_0 returns FeatureReferenceExpression
+	 *     OrExpression returns FeatureReferenceExpression
+	 *     OrExpression.OperatorExpression_1_0 returns FeatureReferenceExpression
+	 *     XorExpression returns FeatureReferenceExpression
+	 *     XorExpression.OperatorExpression_1_0 returns FeatureReferenceExpression
+	 *     AndExpression returns FeatureReferenceExpression
+	 *     AndExpression.OperatorExpression_1_0 returns FeatureReferenceExpression
+	 *     EqualityExpression returns FeatureReferenceExpression
+	 *     EqualityExpression.OperatorExpression_1_0 returns FeatureReferenceExpression
+	 *     ClassificationExpression returns FeatureReferenceExpression
+	 *     ClassificationExpression.OperatorExpression_0_1_0 returns FeatureReferenceExpression
+	 *     RelationalExpression returns FeatureReferenceExpression
+	 *     RelationalExpression.OperatorExpression_1_0 returns FeatureReferenceExpression
+	 *     RangeExpression returns FeatureReferenceExpression
+	 *     RangeExpression.OperatorExpression_1_0 returns FeatureReferenceExpression
+	 *     AdditiveExpression returns FeatureReferenceExpression
+	 *     AdditiveExpression.OperatorExpression_1_0 returns FeatureReferenceExpression
+	 *     MultiplicativeExpression returns FeatureReferenceExpression
+	 *     MultiplicativeExpression.OperatorExpression_1_0 returns FeatureReferenceExpression
+	 *     ExponentiationExpression returns FeatureReferenceExpression
+	 *     ExponentiationExpression.OperatorExpression_1_0 returns FeatureReferenceExpression
+	 *     UnaryExpression returns FeatureReferenceExpression
+	 *     ExtentExpression returns FeatureReferenceExpression
+	 *     PrimaryExpression returns FeatureReferenceExpression
+	 *     PrimaryExpression.FeatureChainExpression_1_0 returns FeatureReferenceExpression
+	 *     PrimaryExpression.OperatorExpression_2_0_0_0 returns FeatureReferenceExpression
+	 *     PrimaryExpression.OperatorExpression_2_0_1_0 returns FeatureReferenceExpression
+	 *     PrimaryExpression.CollectExpression_2_0_2_0 returns FeatureReferenceExpression
+	 *     PrimaryExpression.SelectExpression_2_0_3_0 returns FeatureReferenceExpression
+	 *     BaseExpression returns FeatureReferenceExpression
+	 *     SequenceExpression returns FeatureReferenceExpression
+	 *     SequenceExpression.OperatorExpression_1_1_0 returns FeatureReferenceExpression
+	 *
+	 * Constraint:
+	 *     (ownedRelationship+=ExpressionBodyMember | ownedRelationship+=FeatureReferenceMember)
+	 */
+	protected void sequence_BodyExpression_FeatureReferenceExpression(ISerializationContext context, FeatureReferenceExpression semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     BodyParameterMember returns ParameterMembership
 	 *
 	 * Constraint:
@@ -488,6 +569,30 @@ public abstract class AbstractKerMLExpressionsSemanticSequencer extends Abstract
 	
 	/**
 	 * Contexts:
+	 *     EqualityExpressionMember returns FeatureMembership
+	 *
+	 * Constraint:
+	 *     ownedRelatedElement+=EqualityExpression
+	 */
+	protected void sequence_EqualityExpressionMember(ISerializationContext context, FeatureMembership semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     EqualityExpressionReference returns FeatureReferenceExpression
+	 *
+	 * Constraint:
+	 *     ownedRelationship+=EqualityExpressionMember
+	 */
+	protected void sequence_EqualityExpressionReference(ISerializationContext context, FeatureReferenceExpression semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     ExpressionBodyMember returns FeatureMembership
 	 *
 	 * Constraint:
@@ -500,45 +605,7 @@ public abstract class AbstractKerMLExpressionsSemanticSequencer extends Abstract
 	
 	/**
 	 * Contexts:
-	 *     OwnedExpression returns Expression
-	 *     ConditionalExpression returns Expression
-	 *     ConditionalExpression.OperatorExpression_0_1_0 returns Expression
-	 *     NullCoalescingExpression returns Expression
-	 *     NullCoalescingExpression.OperatorExpression_1_0 returns Expression
-	 *     ImpliesExpression returns Expression
-	 *     ImpliesExpression.OperatorExpression_1_0 returns Expression
-	 *     OrExpression returns Expression
-	 *     OrExpression.OperatorExpression_1_0 returns Expression
-	 *     XorExpression returns Expression
-	 *     XorExpression.OperatorExpression_1_0 returns Expression
-	 *     AndExpression returns Expression
-	 *     AndExpression.OperatorExpression_1_0 returns Expression
-	 *     EqualityExpression returns Expression
-	 *     EqualityExpression.OperatorExpression_1_0 returns Expression
-	 *     ClassificationExpression returns Expression
-	 *     ClassificationExpression.OperatorExpression_0_1_0 returns Expression
-	 *     RelationalExpression returns Expression
-	 *     RelationalExpression.OperatorExpression_1_0 returns Expression
-	 *     RangeExpression returns Expression
-	 *     RangeExpression.OperatorExpression_1_0 returns Expression
-	 *     AdditiveExpression returns Expression
-	 *     AdditiveExpression.OperatorExpression_1_0 returns Expression
-	 *     MultiplicativeExpression returns Expression
-	 *     MultiplicativeExpression.OperatorExpression_1_0 returns Expression
-	 *     ExponentiationExpression returns Expression
-	 *     ExponentiationExpression.OperatorExpression_1_0 returns Expression
-	 *     UnaryExpression returns Expression
-	 *     ExtentExpression returns Expression
-	 *     PrimaryExpression returns Expression
-	 *     PrimaryExpression.FeatureChainExpression_1_0 returns Expression
-	 *     PrimaryExpression.OperatorExpression_2_0_0_0 returns Expression
-	 *     PrimaryExpression.OperatorExpression_2_0_1_0 returns Expression
-	 *     PrimaryExpression.CollectExpression_2_0_2_0 returns Expression
-	 *     PrimaryExpression.SelectExpression_2_0_3_0 returns Expression
-	 *     BaseExpression returns Expression
 	 *     ExpressionBody returns Expression
-	 *     SequenceExpression returns Expression
-	 *     SequenceExpression.OperatorExpression_1_1_0 returns Expression
 	 *
 	 * Constraint:
 	 *     (ownedRelationship+=BodyParameterMember* ownedRelationship+=ResultExpressionMember)
@@ -592,44 +659,6 @@ public abstract class AbstractKerMLExpressionsSemanticSequencer extends Abstract
 	
 	/**
 	 * Contexts:
-	 *     OwnedExpression returns FeatureReferenceExpression
-	 *     ConditionalExpression returns FeatureReferenceExpression
-	 *     ConditionalExpression.OperatorExpression_0_1_0 returns FeatureReferenceExpression
-	 *     NullCoalescingExpression returns FeatureReferenceExpression
-	 *     NullCoalescingExpression.OperatorExpression_1_0 returns FeatureReferenceExpression
-	 *     ImpliesExpression returns FeatureReferenceExpression
-	 *     ImpliesExpression.OperatorExpression_1_0 returns FeatureReferenceExpression
-	 *     OrExpression returns FeatureReferenceExpression
-	 *     OrExpression.OperatorExpression_1_0 returns FeatureReferenceExpression
-	 *     XorExpression returns FeatureReferenceExpression
-	 *     XorExpression.OperatorExpression_1_0 returns FeatureReferenceExpression
-	 *     AndExpression returns FeatureReferenceExpression
-	 *     AndExpression.OperatorExpression_1_0 returns FeatureReferenceExpression
-	 *     EqualityExpression returns FeatureReferenceExpression
-	 *     EqualityExpression.OperatorExpression_1_0 returns FeatureReferenceExpression
-	 *     ClassificationExpression returns FeatureReferenceExpression
-	 *     ClassificationExpression.OperatorExpression_0_1_0 returns FeatureReferenceExpression
-	 *     RelationalExpression returns FeatureReferenceExpression
-	 *     RelationalExpression.OperatorExpression_1_0 returns FeatureReferenceExpression
-	 *     RangeExpression returns FeatureReferenceExpression
-	 *     RangeExpression.OperatorExpression_1_0 returns FeatureReferenceExpression
-	 *     AdditiveExpression returns FeatureReferenceExpression
-	 *     AdditiveExpression.OperatorExpression_1_0 returns FeatureReferenceExpression
-	 *     MultiplicativeExpression returns FeatureReferenceExpression
-	 *     MultiplicativeExpression.OperatorExpression_1_0 returns FeatureReferenceExpression
-	 *     ExponentiationExpression returns FeatureReferenceExpression
-	 *     ExponentiationExpression.OperatorExpression_1_0 returns FeatureReferenceExpression
-	 *     UnaryExpression returns FeatureReferenceExpression
-	 *     ExtentExpression returns FeatureReferenceExpression
-	 *     PrimaryExpression returns FeatureReferenceExpression
-	 *     PrimaryExpression.FeatureChainExpression_1_0 returns FeatureReferenceExpression
-	 *     PrimaryExpression.OperatorExpression_2_0_0_0 returns FeatureReferenceExpression
-	 *     PrimaryExpression.OperatorExpression_2_0_1_0 returns FeatureReferenceExpression
-	 *     PrimaryExpression.CollectExpression_2_0_2_0 returns FeatureReferenceExpression
-	 *     PrimaryExpression.SelectExpression_2_0_3_0 returns FeatureReferenceExpression
-	 *     BaseExpression returns FeatureReferenceExpression
-	 *     SequenceExpression returns FeatureReferenceExpression
-	 *     SequenceExpression.OperatorExpression_1_1_0 returns FeatureReferenceExpression
 	 *     FeatureReferenceExpression returns FeatureReferenceExpression
 	 *
 	 * Constraint:
@@ -660,6 +689,18 @@ public abstract class AbstractKerMLExpressionsSemanticSequencer extends Abstract
 	
 	/**
 	 * Contexts:
+	 *     FunctionReferenceExpression returns FeatureReferenceExpression
+	 *
+	 * Constraint:
+	 *     ownedRelationship+=FunctionReferenceMember
+	 */
+	protected void sequence_FunctionReferenceExpression(ISerializationContext context, FeatureReferenceExpression semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     FunctionReferenceMember returns FeatureMembership
 	 *
 	 * Constraint:
@@ -678,6 +719,30 @@ public abstract class AbstractKerMLExpressionsSemanticSequencer extends Abstract
 	 *     ownedRelationship+=ReferenceTyping
 	 */
 	protected void sequence_FunctionReference(ISerializationContext context, Expression semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     ImpliesExpressionMember returns FeatureMembership
+	 *
+	 * Constraint:
+	 *     ownedRelatedElement+=ImpliesExpression
+	 */
+	protected void sequence_ImpliesExpressionMember(ISerializationContext context, FeatureMembership semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     ImpliesExpressionReference returns FeatureReferenceExpression
+	 *
+	 * Constraint:
+	 *     ownedRelationship+=ImpliesExpressionMember
+	 */
+	protected void sequence_ImpliesExpressionReference(ISerializationContext context, FeatureReferenceExpression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -1028,8 +1093,8 @@ public abstract class AbstractKerMLExpressionsSemanticSequencer extends Abstract
 	 *             operand+=PrimaryExpression_OperatorExpression_2_0_1_0 
 	 *             ownedRelationship+=ReferenceTyping 
 	 *             (
-	 *                 ownedRelationship+=ExpressionBodyMember | 
-	 *                 ownedRelationship+=FunctionReferenceMember | 
+	 *                 operand+=BodyExpression | 
+	 *                 operand+=FunctionReferenceExpression | 
 	 *                 (ownedRelationship+=ArgumentMember ownedRelationship+=ArgumentMember*) | 
 	 *                 (ownedRelationship+=NamedArgumentMember ownedRelationship+=NamedArgumentMember*)
 	 *             )?
@@ -1117,12 +1182,48 @@ public abstract class AbstractKerMLExpressionsSemanticSequencer extends Abstract
 	
 	/**
 	 * Contexts:
+	 *     OrExpressionMember returns FeatureMembership
+	 *
+	 * Constraint:
+	 *     ownedRelatedElement+=OrExpression
+	 */
+	protected void sequence_OrExpressionMember(ISerializationContext context, FeatureMembership semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     OrExpressionReference returns FeatureReferenceExpression
+	 *
+	 * Constraint:
+	 *     ownedRelationship+=OrExpressionMember
+	 */
+	protected void sequence_OrExpressionReference(ISerializationContext context, FeatureReferenceExpression semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     OwnedExpressionMember returns FeatureMembership
 	 *
 	 * Constraint:
 	 *     ownedRelatedElement+=OwnedExpression
 	 */
 	protected void sequence_OwnedExpressionMember(ISerializationContext context, FeatureMembership semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     OwnedExpressionReference returns FeatureReferenceExpression
+	 *
+	 * Constraint:
+	 *     ownedRelationship+=OwnedExpressionMember
+	 */
+	protected void sequence_OwnedExpressionReference(ISerializationContext context, FeatureReferenceExpression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -1218,7 +1319,7 @@ public abstract class AbstractKerMLExpressionsSemanticSequencer extends Abstract
 	 *     SequenceExpression.OperatorExpression_1_1_0 returns CollectExpression
 	 *
 	 * Constraint:
-	 *     (operand+=PrimaryExpression_CollectExpression_2_0_2_0 ownedRelationship+=ExpressionBodyMember)
+	 *     (operand+=PrimaryExpression_CollectExpression_2_0_2_0 operand+=BodyExpression)
 	 */
 	protected void sequence_PrimaryExpression(ISerializationContext context, CollectExpression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1320,7 +1421,7 @@ public abstract class AbstractKerMLExpressionsSemanticSequencer extends Abstract
 	 *     SequenceExpression.OperatorExpression_1_1_0 returns SelectExpression
 	 *
 	 * Constraint:
-	 *     (operand+=PrimaryExpression_SelectExpression_2_0_3_0 ownedRelationship+=ExpressionBodyMember)
+	 *     (operand+=PrimaryExpression_SelectExpression_2_0_3_0 operand+=BodyExpression)
 	 */
 	protected void sequence_PrimaryExpression(ISerializationContext context, SelectExpression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1401,6 +1502,30 @@ public abstract class AbstractKerMLExpressionsSemanticSequencer extends Abstract
 	 *     ownedRelationship+=ReferenceTyping
 	 */
 	protected void sequence_TypeReference(ISerializationContext context, Feature semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     XorExpressionMember returns FeatureMembership
+	 *
+	 * Constraint:
+	 *     ownedRelatedElement+=XorExpression
+	 */
+	protected void sequence_XorExpressionMember(ISerializationContext context, FeatureMembership semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     XorExpressionReference returns FeatureReferenceExpression
+	 *
+	 * Constraint:
+	 *     ownedRelationship+=XorExpressionMember
+	 */
+	protected void sequence_XorExpressionReference(ISerializationContext context, FeatureReferenceExpression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

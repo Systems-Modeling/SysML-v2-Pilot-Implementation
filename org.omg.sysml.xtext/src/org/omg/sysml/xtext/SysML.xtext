@@ -1590,6 +1590,10 @@ TargetExpression returns SysML::Expression :
 	)*
 ;
 
+ExpressionParameterMember returns SysML::ParameterMembership :
+	ownedRelatedElement += OwnedExpression // ownedMemberParameter = OwnedExpression
+;
+
 IfNode returns SysML::IfActionUsage :
 	ActionNodePrefix 
 	'if' ownedRelationship += ExpressionParameterMember
@@ -1616,10 +1620,6 @@ WhileLoopNode returns SysML::WhileLoopActionUsage :
 	)
 	ownedRelationship += ActionBodyParameterMember
 	( 'until' ownedRelationship += ExpressionParameterMember ';' )?
-;
-
-ExpressionParameterMember returns SysML::ParameterMembership :
-	ownedRelatedElement += OwnedExpression // ownedMemberParameter = OwnedExpression
 ;
 
 ForLoopNode returns SysML::ForLoopActionUsage :

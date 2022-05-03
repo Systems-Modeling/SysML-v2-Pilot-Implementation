@@ -47,12 +47,16 @@ OwnedExpression returns SysML::Expression :
 
 // Conditional Test Expressions
 
+OwnedExpressionReference returns SysML::FeatureReferenceExpression :
+	ownedRelationship += OwnedExpressionMember
+;
+
 ConditionalExpression returns SysML::Expression :
 	  NullCoalescingExpression ( {SysML::OperatorExpression.operand += current}
-		  operator = ConditionalOperator operand += OwnedExpression ':' operand += ConditionalExpression
+		  operator = ConditionalOperator operand += OwnedExpressionReference ':' operand += OwnedExpressionReference
 	  )?
 	| {SysML::OperatorExpression} 'if' operand += NullCoalescingExpression 
-		  operator = ConditionalOperator operand += OwnedExpression 'else' operand += ConditionalExpression	
+		  operator = ConditionalOperator operand += OwnedExpressionReference 'else' operand += OwnedExpressionReference	
 ;
 
 ConditionalOperator :
@@ -63,7 +67,7 @@ ConditionalOperator :
 
 NullCoalescingExpression returns SysML::Expression :
 	ImpliesExpression ( {SysML::OperatorExpression.operand += current}
-		operator = NullCoalescingOperator operand += ImpliesExpression )*
+		operator = NullCoalescingOperator operand += ImpliesExpressionReference )*
 ;
 
 NullCoalescingOperator :
@@ -72,22 +76,51 @@ NullCoalescingOperator :
 
 // Logical Expressions
 
+ImpliesExpressionReference returns SysML::FeatureReferenceExpression :
+	ownedRelationship += ImpliesExpressionMember
+;
+
+ImpliesExpressionMember returns SysML::FeatureMembership :
+	ownedRelatedElement += ImpliesExpression // ownedMemberFeature = ImpliesExpression
+;
+
 ImpliesExpression returns SysML::Expression :
 	OrExpression ( {SysML::OperatorExpression.operand += current}  
-		operator = ImpliesOperator operand += OrExpression )*
+		operator = ImpliesOperator operand += OrExpressionReference )*
 ;
 
 ImpliesOperator :
 	'=>' | 'implies'
 ;
 
+OrExpressionReference returns SysML::FeatureReferenceExpression :
+	ownedRelationship += OrExpressionMember
+;
+
+OrExpressionMember returns SysML::FeatureMembership :
+	ownedRelatedElement += OrExpression // ownedMemberFeature = OrExpression
+;
+
 OrExpression returns SysML::Expression :
 	XorExpression ( {SysML::OperatorExpression.operand += current}  
-		operator = OrOperator operand += XorExpression )*
+		( operator = OrOperator operand += XorExpression
+		| operator = ConditionalOrOperator operand += XorExpressionReference ) )*
 ;
 
 OrOperator :
-	'|' | '||' | 'or'
+	'|' 
+;
+
+ConditionalOrOperator :
+	'||' | 'or'
+;
+
+XorExpressionReference returns SysML::FeatureReferenceExpression :
+	ownedRelationship += XorExpressionMember
+;
+
+XorExpressionMember returns SysML::FeatureMembership :
+	ownedRelatedElement += XorExpression // ownedMemberFeature = XorExpression
 ;
 
 XorExpression returns SysML::Expression :
@@ -101,14 +134,27 @@ XorOperator :
 
 AndExpression returns SysML::Expression :
 	EqualityExpression ( {SysML::OperatorExpression.operand += current}  
-		operator = AndOperator operand += EqualityExpression )*
+		( operator = AndOperator operand += EqualityExpression
+		| operator = ConditionalAndOperator operand += EqualityExpressionReference ) )*
 ;
 
 AndOperator :
-	'&' | '&&' | 'and'
+    '&'
+;
+
+ConditionalAndOperator :
+	'&&' | 'and'
 ;
 
 // Equality Expressions
+
+EqualityExpressionReference returns SysML::FeatureReferenceExpression :
+	ownedRelationship += EqualityExpressionMember
+;
+
+EqualityExpressionMember returns SysML::FeatureMembership :
+	ownedRelatedElement += EqualityExpression // ownedMemberParameter = EqualityExpression
+;
 
 EqualityExpression returns SysML::Expression :
 	ClassificationExpression ( {SysML::OperatorExpression.operand += current}  
@@ -234,14 +280,14 @@ PrimaryExpression returns SysML::Expression :
 	    operator = '[' operand += SequenceExpression ']'
 	  | {SysML::OperatorExpression.operand += current} '->' 
 	    ownedRelationship += ReferenceTyping 
-	    ( ownedRelationship += ExpressionBodyMember 
-	    | ownedRelationship += FunctionReferenceMember 
+	    ( operand += BodyExpression 
+	    | operand += FunctionReferenceExpression 
 	    | ArgumentList
 	    )
 	  | {SysML::CollectExpression.operand += current} '.'
-	    ownedRelationship += ExpressionBodyMember 
+	    operand += BodyExpression 
 	  | {SysML::SelectExpression.operand += current} '.?'
-	    ownedRelationship += ExpressionBodyMember 
+	    operand += BodyExpression 
 	  )
 	  ( {SysML::FeatureChainExpression.operand += current} '.' 
 	  	ownedRelationship += FeatureChainMember
@@ -249,8 +295,8 @@ PrimaryExpression returns SysML::Expression :
 	)*
 ;
 
-ExpressionBodyMember returns SysML::FeatureMembership :
-	ownedRelatedElement += ExpressionBody // ownedMemberFeature = BodyExpression
+FunctionReferenceExpression returns SysML::FeatureReferenceExpression :
+	ownedRelationship += FunctionReferenceMember
 ;
 
 FunctionReferenceMember returns SysML::FeatureMembership :
@@ -273,11 +319,19 @@ BaseExpression returns SysML::Expression :
 	| LiteralExpression 
 	| FeatureReferenceExpression 
 	| InvocationExpression 
-	| ExpressionBody
+	| BodyExpression
 	| '(' SequenceExpression ')'
 ;
 
 // Expression Bodies
+
+BodyExpression returns SysML::FeatureReferenceExpression :
+	ownedRelationship += ExpressionBodyMember
+;
+
+ExpressionBodyMember returns SysML::FeatureMembership :
+	ownedRelatedElement += ExpressionBody // ownedMemberFeature = ExpressionBody
+;
 
 // This default production is overridden in the KerML and SysML grammars.
 ExpressionBody returns SysML::Expression :

@@ -118,10 +118,10 @@ public class InvocationExpressionImpl extends ExpressionImpl implements Invocati
 	 */
 	@Override
 	public EList<Expression> getArgument() {
-		EList<Expression> arguments = new NonNotifyingEObjectEList<>(Expression.class, this, SysMLPackage.INVOCATION_EXPRESSION__ARGUMENT);
+		EList<Expression> arguments = new NonNotifyingEObjectEList<Expression>(Expression.class, this, SysMLPackage.INVOCATION_EXPRESSION__ARGUMENT, false);
 		TypeUtil.getFeaturesByMembershipIn(this, ParameterMembership.class).
+			filter(FeatureUtil::isInputParameter).
 			map(FeatureUtil::getValueExpressionFor).
-			filter(e->e != null).
 			forEachOrdered(arguments::add);
 		return arguments;
 	}

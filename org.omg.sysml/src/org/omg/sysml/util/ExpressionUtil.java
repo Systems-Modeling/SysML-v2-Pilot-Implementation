@@ -133,6 +133,9 @@ public class ExpressionUtil {
 	
 	public static InvocationExpression getInvocationExpressionFor(Expression argument) {
 		Element parameter = argument.getOwningNamespace();
+		if (parameter instanceof FeatureReferenceExpression) {
+			parameter = parameter.getOwningNamespace();
+		}
 		if (parameter == null) {
 			return null;
 		} else {

@@ -80,6 +80,12 @@ package Occurrences {
 		}
 
 		/**
+		 * Occurrences that this one completely includes in both space and time,
+		 * and vice-versa, including this one.
+		 */
+		feature spaceTimeCoincidentOccurrences: Occurrence[1..*] subsets spaceTimeEnclosedOccurrences;		
+
+		/**
 		 * The number of variables needed to identify space points in this occurrence, from 0
 		 * to 3, without regard to higher dimensional spaces it might be embedded in.
 		 */
@@ -448,8 +454,10 @@ package Occurrences {
 	 * itself and transitive.
 	 */
 	assoc WithinBoth specializes Within {
-		end feature thisOccurrence: Occurrence[1..*] redefines smallerOccurrence;
-		end feature thatOccurrence: Occurrence[1..*] redefines largerOccurrence;
+		end feature thisOccurrence: Occurrence[1..*] redefines smallerOccurrence
+		  subsets thatOccurrence.spaceTimeCoincidentOccurrences;
+		end feature thatOccurrence: Occurrence[1..*] redefines largerOccurrence
+		  subsets thisOccurrence.spaceTimeCoincidentOccurrences;
 
 		connector :Within
 			from smallerOccurrence :> thatOccurrence [1]

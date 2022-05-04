@@ -21,43 +21,51 @@
 
 package org.omg.sysml.delegate;
 
+import java.lang.reflect.Constructor;
+import java.util.HashMap;
+import java.util.Map;
+
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EStructuralFeature.Internal.SettingDelegate;
-import org.omg.sysml.lang.sysml.SysMLPackage;
 
 public class DerivedPropertySettingDelegateFactory 
 	implements EStructuralFeature.Internal.SettingDelegate.Factory {
 	
 	public static final String SYSML_ANNOTATION = "http://www.omg.org/spec/SysML";
-
+	
+	private static final String PACKAGE_NAME = DerivedPropertySettingDelegateFactory.class.getPackage().getName();
+	
+	private final Map<EStructuralFeature, Constructor<?>> constructorMap = new HashMap<>();
+	
+	protected Constructor<?> getDelegateConstructor(EStructuralFeature eStructuralFeature) {
+		Constructor<?> constructor = constructorMap.get(eStructuralFeature);
+		if (constructor == null) {
+			try {
+				String delegateName = PACKAGE_NAME + "." + 
+						eStructuralFeature.getEContainingClass().getName() + "_" + 
+						eStructuralFeature.getName() + "_SettingDelegate";
+				constructor = Class.forName(delegateName).getConstructor(EStructuralFeature.class);
+				constructorMap.put(eStructuralFeature, constructor);
+			} catch (ClassNotFoundException e) {
+			} catch (Exception e) {
+				throw new RuntimeException(e);
+			}
+		}
+		return constructor;
+	}
+	
 	@Override
 	public SettingDelegate createSettingDelegate(EStructuralFeature eStructuralFeature) {
-		switch (eStructuralFeature.getFeatureID()) {
-			case SysMLPackage.ACCEPT_ACTION_USAGE__PAYLOAD_ARGUMENT:
-				return new AcceptActionUsage_payloadArgument_SettingDelegate(eStructuralFeature);
-			case SysMLPackage.ACCEPT_ACTION_USAGE__PAYLOAD_PARAMETER:
-				return new AcceptActionUsage_payloadParameter_SettingDelegate(eStructuralFeature);
-			case SysMLPackage.ACCEPT_ACTION_USAGE__RECEIVER_ARGUMENT:
-				return new AcceptActionUsage_receiverArgument_SettingDelegate(eStructuralFeature);
-			case SysMLPackage.ELEMENT__EFFECTIVE_NAME:
-				return new Element_effectiveName_SettingDelegate(eStructuralFeature);
-			case SysMLPackage.ELEMENT__NAME:
-				return new Element_name_SettingDelegate(eStructuralFeature);
-			case SysMLPackage.ELEMENT__OWNED_ANNOTATION:
-				return new Element_ownedAnnotation_SettingDelegate(eStructuralFeature);
-			case SysMLPackage.ELEMENT__OWNED_ELEMENT:
-				return new Element_ownedElement_SettingDelegate(eStructuralFeature);
-			case SysMLPackage.ELEMENT__OWNER:
-				return new Element_owner_SettingDelegate(eStructuralFeature);
-			case SysMLPackage.ELEMENT__OWNING_MEMBERSHIP:
-				return new Element_owningMembership_SettingDelegate(eStructuralFeature);
-			case SysMLPackage.ELEMENT__OWNING_NAMESPACE:
-				return new Element_owningNamespace_SettingDelegate(eStructuralFeature);
-			case SysMLPackage.ELEMENT__QUALIFIED_NAME:
-				return new Element_qualifiedName_SettingDelegate(eStructuralFeature);
-			default:
-				return new DefaultDerivedPropertySettingDelegate(eStructuralFeature);
-		}	
+		Constructor<?> constructor = getDelegateConstructor(eStructuralFeature);
+		if (constructor == null) {
+			return new DefaultDerivedPropertySettingDelegate(eStructuralFeature);
+		} else {
+			try {
+				return (SettingDelegate) constructor.newInstance(eStructuralFeature);
+			} catch (Exception e) {
+				throw new RuntimeException(e);
+			}
+		}
 	}
 
 }

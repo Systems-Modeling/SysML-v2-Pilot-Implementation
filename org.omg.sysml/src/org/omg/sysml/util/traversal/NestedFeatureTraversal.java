@@ -34,6 +34,8 @@ import java.util.UUID;
 
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Relationship;
+import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.lang.sysml.Usage;
 import org.omg.sysml.util.traversal.facade.ElementProcessingFacade;
 import org.omg.sysml.util.traversal.facade.impl.BandedGraphProcessingFacade;
 
@@ -66,6 +68,10 @@ public class NestedFeatureTraversal extends Traversal {
 	@Override
 	public NestedFeatureVisitor createVisitor(Element element) {
 		return new NestedFeatureVisitor(element, this);
+	}
+	
+	public NestedFeatureVisitor createVisitor(Element element, Element visitingFrom) {
+		return new NestedFeatureVisitor(element, this, visitingFrom);
 	}
 	
 	public BandedRelationshipVisitor createRelationshipVisitor(Relationship element, Element visitingFrom) {
@@ -107,18 +113,12 @@ public class NestedFeatureTraversal extends Traversal {
 	 */
 	public Object visit(Element element, Element visitingFrom, Relationship relation) {
 		Object identifier = this.getIdentifier(element);
-		// clone the path of the soon-to-be previous element into the visited element so it can add itself to the path
-		if (identifier == null) {
-			ArrayList<Element> visitingFromPath = getPathFor(visitingFrom);
-			ArrayList<Element> newPath = new ArrayList<Element>(visitingFromPath);
-			newPath.add(element);
-			mapIntoPath(element, newPath);
-		}
+			
 		if (identifier != null) {
 			return identifier;
 		}
 		else {
-			return this.visit(this.createVisitor(element));
+			return this.visit(this.createVisitor(element, visitingFrom));
 		}
 	}
 	
@@ -131,6 +131,52 @@ public class NestedFeatureTraversal extends Traversal {
 			}
 		}
 		return description;
+	}
+	
+	public String writePathConstraint() {
+		String description = "";
+		for (Element pathKey : pathToElement.keySet()) {
+			ArrayList<Element> thisPath = pathToElement.get(pathKey);
+			int counter = 0;
+			description = description + "\nNext constraint:\n";
+			description = description + describeElement(pathKey) + " " + pathKey.getIdentifier() +  " : ";
+			for (Element el : thisPath) {
+				description = description + describeElement(el);
+				if (counter < thisPath.size() - 1) {
+					description = description +".";
+				}
+				counter++;
+			}
+			description = description + " != {Ø}";
+		}
+		
+		return description;
+	}
+	
+	/**
+	 * Create a description of the given SysML model Element, for use in logging.
+	 * 
+	 * @param 	element				the Element to be described
+	 * @return	a description of the Element, in terms of its EClass name, hash code, Element name 
+	 * 			and whether it is a proxy.
+	 */
+	public String describeElement(Element element) {
+		
+		String s = "";
+		String name = element.getName();
+		if (name != null) {
+			s += name;
+		}
+		else if (element instanceof Usage) {
+			if (((Usage) element).getOwnedRedefinition().size() > 0) {
+				s += " : > " + ((Usage) element).getOwnedRedefinition().get(0).getRedefinedFeature().getName();
+			}
+		}
+		if (element.eIsProxy()) {
+			s += " PROXY";
+		}
+		
+		return s;
 	}
 	
 	public void mapIntoPath(Element element, ArrayList<Element> workingPath) {

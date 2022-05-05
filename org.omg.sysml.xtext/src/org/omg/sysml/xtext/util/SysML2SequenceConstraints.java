@@ -82,8 +82,8 @@ public class SysML2SequenceConstraints extends KerMLTraversalUtil {
 				System.out.println(pathString);
 			}*/
 			System.out.println("Found paths:");
-			System.out.print(this.getTraversal().describePaths());
-			System.out.println("Completed path listing.");
+			System.out.print(this.getTraversal().writePathConstraint());
+			System.out.println("\nCompleted path listing.");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

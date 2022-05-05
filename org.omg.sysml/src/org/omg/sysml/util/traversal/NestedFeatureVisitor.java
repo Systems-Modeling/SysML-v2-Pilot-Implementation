@@ -56,6 +56,12 @@ public class NestedFeatureVisitor extends ElementVisitor {
 	 */
 	private final Element element;
 	
+	/**
+	 * The last element visited from the relationship incoming to this Element
+	 */
+	
+	private final Element visitingFrom;
+	
 	/** 
 	 * The traversal object used to record which Elements have already been visited.
 	 */
@@ -72,6 +78,14 @@ public class NestedFeatureVisitor extends ElementVisitor {
 		super(element, traversal, null);
 		this.element = element;
 		this.traversal = traversal;
+		this.visitingFrom = null;
+	}
+	
+	public NestedFeatureVisitor(Element element, NestedFeatureTraversal traversal, Element visitingFrom) {
+		super(element, traversal, null);
+		this.element = element;
+		this.traversal = traversal;
+		this.visitingFrom = visitingFrom;
 	}
 
 	/**
@@ -88,8 +102,8 @@ public class NestedFeatureVisitor extends ElementVisitor {
 	 * 
 	 * @return	the traversal for this visitor
 	 */
-	public Traversal getTraversal() {
-		return this.traversal;
+	public NestedFeatureTraversal getTraversal() {
+		return ((NestedFeatureTraversal) this.traversal);
 	}
 	
 	/**
@@ -123,7 +137,16 @@ public class NestedFeatureVisitor extends ElementVisitor {
 	 * 
 	 * @return	a unique identifier for the Element, to be used to avoid redundant processing of it
 	 */
-	protected Object process() {	
+	protected Object process() {
+		if (visitingFrom != null) {
+			ArrayList<Element> visitingFromPath = this.getTraversal().getPathFor(visitingFrom);
+			ArrayList<Element> newPath = new ArrayList<Element>(visitingFromPath);
+			// only extend the path if this is a Usage or the beginning of the path
+			if (element instanceof Usage || visitingFromPath.size() == 0) {
+				newPath.add(element);
+			}
+			this.getTraversal().mapIntoPath(element, newPath);
+		}
 		return UUID.fromString(element.getIdentifier());
 	}
 	

@@ -20,9 +20,9 @@ END_SETUP
 
 //*
 XPECT exportedObjects ---
-	sysml::Package: NameEscape
-	sysml::Function: NameEscape::..
-	sysml::Feature: NameEscape::..::parameter
+sysml::Feature: NameEscape::..::parameter
+sysml::Function: NameEscape::..
+sysml::Package: NameEscape
 --- */
 
 package NameEscape {

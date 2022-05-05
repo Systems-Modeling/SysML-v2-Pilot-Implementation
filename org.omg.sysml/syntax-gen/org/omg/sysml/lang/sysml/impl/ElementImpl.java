@@ -64,7 +64,6 @@ import org.omg.sysml.util.NonNotifyingEObjectEList;
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getOwnedRelationship <em>Owned Relationship</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getOwningMembership <em>Owning Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getOwningNamespace <em>Owning Namespace</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getElementNames <em>Element Names</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getElementId <em>Element Id</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getOwner <em>Owner</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getOwnedElement <em>Owned Element</em>}</li>
@@ -200,35 +199,6 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 		return SysMLPackage.Literals.ELEMENT;
 	}
 	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	@Override
-	public EList<String> getElementNames() {
-		EList<String> elementNames = new BasicEList<>();
-		String effectiveName = getEffectiveName();
-		if (effectiveName != null) {
-			elementNames.add(effectiveName);
-		}
-		String shortName = getShortName();
-		if (shortName != null) {
-			elementNames.add(shortName);
-		}
-		return elementNames;
-	}
-
-	/**
-	 * The array of subset feature identifiers for the '{@link #getElementNames() <em>Element Names</em>}' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getElementNames()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final int[] ELEMENT_NAMES_ESUBSETS = new int[] {SysMLPackage.ELEMENT__ELEMENT_ID, SysMLPackage.ELEMENT__SHORT_NAME};
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -539,13 +509,11 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 		Namespace owningNamespace = getOwningNamespace();
 		if (owningNamespace == null) {
 			return null;
+		} else if (owningNamespace.getOwner() == null) {
+			return escapedName();
 		} else {
 			String qualification = owningNamespace.getQualifiedName();
-			if (qualification == null) {
-				return escapedName();
-			} else {
-				return qualification + "::" + escapedName();
-			}
+			return qualification == null? null: qualification + "::" + escapedName();
 		}
 	}
 	
@@ -585,7 +553,13 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	 * @generated NOT
 	 */
 	public String escapedName() {
-		return ElementUtil.escapeName(getElementNames().get(0));
+		String effectiveName = getEffectiveName();
+		String shortName = getShortName();
+		String elementName = 
+				effectiveName != null? effectiveName:
+				shortName != null? shortName:
+				null;
+		return ElementUtil.escapeName(elementName);
 	}	
 
 	/**
@@ -664,8 +638,6 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 			case SysMLPackage.ELEMENT__OWNING_NAMESPACE:
 				if (resolve) return getOwningNamespace();
 				return basicGetOwningNamespace();
-			case SysMLPackage.ELEMENT__ELEMENT_NAMES:
-				return getElementNames();
 			case SysMLPackage.ELEMENT__ELEMENT_ID:
 				return getElementId();
 			case SysMLPackage.ELEMENT__OWNER:
@@ -714,10 +686,6 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 				return;
 			case SysMLPackage.ELEMENT__OWNING_NAMESPACE:
 				setOwningNamespace((Namespace)newValue);
-				return;
-			case SysMLPackage.ELEMENT__ELEMENT_NAMES:
-				getElementNames().clear();
-				getElementNames().addAll((Collection<? extends String>)newValue);
 				return;
 			case SysMLPackage.ELEMENT__ELEMENT_ID:
 				setElementId((String)newValue);
@@ -781,9 +749,6 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 			case SysMLPackage.ELEMENT__OWNING_NAMESPACE:
 				setOwningNamespace((Namespace)null);
 				return;
-			case SysMLPackage.ELEMENT__ELEMENT_NAMES:
-				getElementNames().clear();
-				return;
 			case SysMLPackage.ELEMENT__ELEMENT_ID:
 				setElementId(ELEMENT_ID_EDEFAULT);
 				return;
@@ -837,8 +802,6 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 				return basicGetOwningMembership() != null;
 			case SysMLPackage.ELEMENT__OWNING_NAMESPACE:
 				return basicGetOwningNamespace() != null;
-			case SysMLPackage.ELEMENT__ELEMENT_NAMES:
-				return !getElementNames().isEmpty();
 			case SysMLPackage.ELEMENT__ELEMENT_ID:
 				return ELEMENT_ID_EDEFAULT == null ? elementId != null : !ELEMENT_ID_EDEFAULT.equals(elementId);
 			case SysMLPackage.ELEMENT__OWNER:

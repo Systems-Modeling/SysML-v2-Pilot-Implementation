@@ -95,6 +95,12 @@ public interface FeatureMembership extends OwningMembership, TypeFeaturing {
 	 * Returns the value of the '<em><b>Owned Member Feature</b></em>' reference.
 	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Feature#getOwningFeatureMembership <em>Owning Feature Membership</em>}'.
 	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.TypeFeaturing#getFeatureOfType() <em>Feature Of Type</em>}'</li>
+	 * </ul>
+	 * <p>
 	 * This feature redefines the following features:
 	 * </p>
 	 * <ul>
@@ -115,6 +121,7 @@ public interface FeatureMembership extends OwningMembership, TypeFeaturing {
 	 * @see org.omg.sysml.lang.sysml.Feature#getOwningFeatureMembership
 	 * @model opposite="owningFeatureMembership" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="redefines"
+	 *        annotation="subsets"
 	 * @generated
 	 */
 	Feature getOwnedMemberFeature();

@@ -214,7 +214,7 @@ ElementFilterMember returns SysML::ElementFilterMembership :
 
 AliasMember returns SysML::Membership :
 	MemberPrefix
-	'alias' memberNames += Name ( ',' memberNames += Name )*
+	'alias' ( '<' memberShortName = Name '>' )? ( memberName = Name )?
 	'for' memberElement = [SysML::Element|QualifiedName] ';'
 ;
 

@@ -17,12 +17,10 @@
  *  
  * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
  *  
- *******************************************************************************/package org.omg.sysml.lang.sysml.impl;
-
-import java.util.Collection;
+ *******************************************************************************/
+package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
@@ -44,13 +42,43 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * </p>
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.OwningMembershipImpl#getOwnedRelatedElement <em>Owned Related Element</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.OwningMembershipImpl#getOwnedMemberNames <em>Owned Member Names</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.OwningMembershipImpl#getOwnedMemberElementId <em>Owned Member Element Id</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.OwningMembershipImpl#getOwnedMemberShortName <em>Owned Member Short Name</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.OwningMembershipImpl#getOwnedMemberName <em>Owned Member Name</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.OwningMembershipImpl#getOwnedMemberElement <em>Owned Member Element</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class OwningMembershipImpl extends MembershipImpl implements OwningMembership {
+	/**
+	 * The default value of the '{@link #getOwnedMemberElementId() <em>Owned Member Element Id</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedMemberElementId()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String OWNED_MEMBER_ELEMENT_ID_EDEFAULT = null;
+	/**
+	 * The default value of the '{@link #getOwnedMemberShortName() <em>Owned Member Short Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedMemberShortName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String OWNED_MEMBER_SHORT_NAME_EDEFAULT = null;
+	/**
+	 * The default value of the '{@link #getOwnedMemberName() <em>Owned Member Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedMemberName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String OWNED_MEMBER_NAME_EDEFAULT = null;
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -86,10 +114,21 @@ public class OwningMembershipImpl extends MembershipImpl implements OwningMember
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
-	public EList<String> getMemberNames() {
-		return getOwnedMemberNames();
+	@Override
+	public String getOwnedMemberElementId() {
+		return super.getMemberElementId();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public void setOwnedMemberElementId(String newOwnedMemberElementId) {
+		throw new UnsupportedOperationException();
 	}
 
 	/**
@@ -97,8 +136,68 @@ public class OwningMembershipImpl extends MembershipImpl implements OwningMember
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isSetMemberNames() {
-  		return false;
+	public boolean isSetOwnedMemberElementId() {
+		return OWNED_MEMBER_ELEMENT_ID_EDEFAULT == null ? getOwnedMemberElementId() != null : !OWNED_MEMBER_ELEMENT_ID_EDEFAULT.equals(getOwnedMemberElementId());
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public String getOwnedMemberShortName() {
+		Element ownedMemberElement = getOwnedMemberElement();
+		return ownedMemberElement == null? null: ownedMemberElement.getShortName();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public void setOwnedMemberShortName(String newOwnedMemberShortName) {
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetOwnedMemberShortName() {
+		return OWNED_MEMBER_SHORT_NAME_EDEFAULT == null ? getOwnedMemberShortName() != null : !OWNED_MEMBER_SHORT_NAME_EDEFAULT.equals(getOwnedMemberShortName());
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public String getOwnedMemberName() {
+		Element ownedMemberElement = getOwnedMemberElement();
+		return ownedMemberElement == null? null: ownedMemberElement.getEffectiveName();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public void setOwnedMemberName(String newOwnedMemberName) {
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetOwnedMemberName() {
+		return OWNED_MEMBER_NAME_EDEFAULT == null ? getOwnedMemberName() != null : !OWNED_MEMBER_NAME_EDEFAULT.equals(getOwnedMemberName());
 	}
 
 	/**
@@ -136,26 +235,6 @@ public class OwningMembershipImpl extends MembershipImpl implements OwningMember
 	 */
 	public boolean isSetMemberElement() {
   		return false;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	@Override
-	public EList<String> getOwnedMemberNames() {
-		Element ownedMemberElement = getOwnedMemberElement();
-		return ownedMemberElement == null? new BasicEList<String>(): ownedMemberElement.getElementNames();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetOwnedMemberNames() {
-		return !getOwnedMemberNames().isEmpty();
 	}
 
 	/**
@@ -202,16 +281,87 @@ public class OwningMembershipImpl extends MembershipImpl implements OwningMember
 		return basicGetOwnedMemberElement() != null;
 	}
 	
-	// Additional operation overrides
-	
-	@Override
-	public String displayName() {
-		Element ownedMemberElement = getOwnedMemberElement();
-		return ownedMemberElement == null? null: ownedMemberElement.getEffectiveName();
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getMemberElementId() {
+		return getOwnedMemberElementId();
 	}
 
-	//
-	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setMemberElementId(String newMemberElementId) {
+		setOwnedMemberElementId(newMemberElementId);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetMemberElementId() {
+  		return false;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getMemberShortName() {
+		return getOwnedMemberShortName();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setMemberShortName(String newMemberShortName) {
+		setOwnedMemberShortName(newMemberShortName);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetMemberShortName() {
+  		return false;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getMemberName() {
+		return getOwnedMemberName();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setMemberName(String newMemberName) {
+		setOwnedMemberName(newMemberName);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetMemberName() {
+  		return false;
+	}
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -249,8 +399,12 @@ public class OwningMembershipImpl extends MembershipImpl implements OwningMember
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case SysMLPackage.OWNING_MEMBERSHIP__OWNED_MEMBER_NAMES:
-				return getOwnedMemberNames();
+			case SysMLPackage.OWNING_MEMBERSHIP__OWNED_MEMBER_ELEMENT_ID:
+				return getOwnedMemberElementId();
+			case SysMLPackage.OWNING_MEMBERSHIP__OWNED_MEMBER_SHORT_NAME:
+				return getOwnedMemberShortName();
+			case SysMLPackage.OWNING_MEMBERSHIP__OWNED_MEMBER_NAME:
+				return getOwnedMemberName();
 			case SysMLPackage.OWNING_MEMBERSHIP__OWNED_MEMBER_ELEMENT:
 				if (resolve) return getOwnedMemberElement();
 				return basicGetOwnedMemberElement();
@@ -263,13 +417,17 @@ public class OwningMembershipImpl extends MembershipImpl implements OwningMember
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case SysMLPackage.OWNING_MEMBERSHIP__OWNED_MEMBER_NAMES:
-				getOwnedMemberNames().clear();
-				getOwnedMemberNames().addAll((Collection<? extends String>)newValue);
+			case SysMLPackage.OWNING_MEMBERSHIP__OWNED_MEMBER_ELEMENT_ID:
+				setOwnedMemberElementId((String)newValue);
+				return;
+			case SysMLPackage.OWNING_MEMBERSHIP__OWNED_MEMBER_SHORT_NAME:
+				setOwnedMemberShortName((String)newValue);
+				return;
+			case SysMLPackage.OWNING_MEMBERSHIP__OWNED_MEMBER_NAME:
+				setOwnedMemberName((String)newValue);
 				return;
 			case SysMLPackage.OWNING_MEMBERSHIP__OWNED_MEMBER_ELEMENT:
 				setOwnedMemberElement((Element)newValue);
@@ -286,8 +444,14 @@ public class OwningMembershipImpl extends MembershipImpl implements OwningMember
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.OWNING_MEMBERSHIP__OWNED_MEMBER_NAMES:
-				getOwnedMemberNames().clear();
+			case SysMLPackage.OWNING_MEMBERSHIP__OWNED_MEMBER_ELEMENT_ID:
+				setOwnedMemberElementId(OWNED_MEMBER_ELEMENT_ID_EDEFAULT);
+				return;
+			case SysMLPackage.OWNING_MEMBERSHIP__OWNED_MEMBER_SHORT_NAME:
+				setOwnedMemberShortName(OWNED_MEMBER_SHORT_NAME_EDEFAULT);
+				return;
+			case SysMLPackage.OWNING_MEMBERSHIP__OWNED_MEMBER_NAME:
+				setOwnedMemberName(OWNED_MEMBER_NAME_EDEFAULT);
 				return;
 			case SysMLPackage.OWNING_MEMBERSHIP__OWNED_MEMBER_ELEMENT:
 				setOwnedMemberElement((Element)null);
@@ -306,12 +470,20 @@ public class OwningMembershipImpl extends MembershipImpl implements OwningMember
 		switch (featureID) {
 			case SysMLPackage.OWNING_MEMBERSHIP__OWNED_RELATED_ELEMENT:
 				return ownedRelatedElement != null && !ownedRelatedElement.isEmpty();
-			case SysMLPackage.OWNING_MEMBERSHIP__MEMBER_NAMES:
-				return isSetMemberNames();
+			case SysMLPackage.OWNING_MEMBERSHIP__MEMBER_ELEMENT_ID:
+				return isSetMemberElementId();
+			case SysMLPackage.OWNING_MEMBERSHIP__MEMBER_SHORT_NAME:
+				return isSetMemberShortName();
+			case SysMLPackage.OWNING_MEMBERSHIP__MEMBER_NAME:
+				return isSetMemberName();
 			case SysMLPackage.OWNING_MEMBERSHIP__MEMBER_ELEMENT:
 				return isSetMemberElement();
-			case SysMLPackage.OWNING_MEMBERSHIP__OWNED_MEMBER_NAMES:
-				return isSetOwnedMemberNames();
+			case SysMLPackage.OWNING_MEMBERSHIP__OWNED_MEMBER_ELEMENT_ID:
+				return isSetOwnedMemberElementId();
+			case SysMLPackage.OWNING_MEMBERSHIP__OWNED_MEMBER_SHORT_NAME:
+				return isSetOwnedMemberShortName();
+			case SysMLPackage.OWNING_MEMBERSHIP__OWNED_MEMBER_NAME:
+				return isSetOwnedMemberName();
 			case SysMLPackage.OWNING_MEMBERSHIP__OWNED_MEMBER_ELEMENT:
 				return isSetOwnedMemberElement();
 		}

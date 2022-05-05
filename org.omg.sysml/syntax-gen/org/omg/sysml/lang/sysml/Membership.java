@@ -22,8 +22,6 @@
  */
 package org.omg.sysml.lang.sysml;
 
-import org.eclipse.emf.common.util.EList;
-
 /**
  * <!-- begin-user-doc --> A representation of the model object
  * '<em><b>Membership</b></em>'. <!-- end-user-doc -->
@@ -33,21 +31,18 @@ import org.eclipse.emf.common.util.EList;
  * 
  * <p>If a Membership is an OwningMembership, then it owns its <code>memberElement</code>, which becomes an <code>ownedMember</code> of the <code>membershipOwningNamespace</code>. Otherwise, the <code>memberNames</code> of a Membership are effectively aliases within the <code>membershipOwningNamespace</code> for an Element with a separate OwningMembership in the same or a different Namespace.<p>
  * 
- * if memberName <> null then
- *     memberName
- * else
- *     memberElement.effectiveName
- * endif
  * <!-- end-model-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.Membership#getMemberNames <em>Member Names</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Membership#getMemberElementId <em>Member Element Id</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Membership#getMembershipOwningNamespace <em>Membership Owning Namespace</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Membership#getVisibility <em>Visibility</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Membership#getMemberShortName <em>Member Short Name</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Membership#getMemberElement <em>Member Element</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Membership#getMemberName <em>Member Name</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Membership#getVisibility <em>Visibility</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getMembership()
@@ -56,20 +51,29 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface Membership extends Relationship {
 	/**
-	 * Returns the value of the '<em><b>Member Names</b></em>' attribute list.
-	 * The list contents are of type {@link java.lang.String}.
+	 * Returns the value of the '<em><b>Member Element Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The names of the <code>memberElement</code> relative to the <code>membershipOwningNamespace</code>.</p>
-	 * 
+	 * <p>The <code>elementId</code> of the <code>memberElement</code>.</p>
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Member Names</em>' attribute list.
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getMembership_MemberNames()
-	 * @model dataType="org.omg.sysml.lang.types.String" required="true" ordered="false"
+	 * @return the value of the '<em>Member Element Id</em>' attribute.
+	 * @see #setMemberElementId(String)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getMembership_MemberElementId()
+	 * @model dataType="org.omg.sysml.lang.types.String" required="true" transient="true" volatile="true" derived="true" ordered="false"
 	 * @generated
 	 */
-	EList<String> getMemberNames();
+	String getMemberElementId();
+
+	/**
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Membership#getMemberElementId <em>Member Element Id</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Member Element Id</em>' attribute.
+	 * @see #getMemberElementId()
+	 * @generated
+	 */
+	void setMemberElementId(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Visibility</b></em>' attribute.
@@ -145,6 +149,32 @@ public interface Membership extends Relationship {
 	void setMemberElement(Element value);
 
 	/**
+	 * Returns the value of the '<em><b>Member Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The name of the <code>memberElement</code> relative to the <code>membershipOwningNamespace</code>.</p>
+	 * 
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Member Name</em>' attribute.
+	 * @see #setMemberName(String)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getMembership_MemberName()
+	 * @model dataType="org.omg.sysml.lang.types.String" ordered="false"
+	 * @generated
+	 */
+	String getMemberName();
+
+	/**
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Membership#getMemberName <em>Member Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Member Name</em>' attribute.
+	 * @see #getMemberName()
+	 * @generated
+	 */
+	void setMemberName(String value);
+
+	/**
 	 * Returns the value of the '<em><b>Membership Owning Namespace</b></em>' reference.
 	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Namespace#getOwnedMembership <em>Owned Membership</em>}'.
 	 * <p>
@@ -187,22 +217,47 @@ public interface Membership extends Relationship {
 	void setMembershipOwningNamespace(Namespace value);
 
 	/**
+	 * Returns the value of the '<em><b>Member Short Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The short name of the <code>memberElement</code> relative to the <code>membershipOwningNamespace</code>.</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Member Short Name</em>' attribute.
+	 * @see #setMemberShortName(String)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getMembership_MemberShortName()
+	 * @model dataType="org.omg.sysml.lang.types.String" ordered="false"
+	 * @generated
+	 */
+	String getMemberShortName();
+
+	/**
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Membership#getMemberShortName <em>Member Short Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Member Short Name</em>' attribute.
+	 * @see #getMemberShortName()
+	 * @generated
+	 */
+	void setMemberShortName(String value);
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Whether this Membership is distinguishable from a given <code>other</code> Membership. By default, this is true if the the Membership has no <code>memberNames</code> or all the <code>memberNames</code> are different than all the <code>memberNames</code> of the <code>other</code> Membership, or if the metaclass of the <code>memberElement</code> of this Membership is different than the metaclass of the <code>memberElement</code> of the <code>other</code> Membership. But this may be overridden in specializations of Membership.</p>
+	 * <p>Whether this Membership is distinguishable from a given <code>other</code> Membership. By default, this is true if this Membership has no <code>memberShortName</code> or <code>memberName</code>; or each of the <code>memberShortName</code> and <code>memberName</code> are different than both of those of the <code>other</code> Membership; or the metaclass of the <code>memberElement</code> of this Membership is different than the metaclass of the <code>memberElement</code> of the <code>other</code> Membership. But this may be overridden in specializations of Membership.</p>
+	 * 
+	 * memberElement.oclType() <> other.memberElement.oclType() or
+	 * (shortMemberName = null or
+	 *     (shortMemberName <> other.shortMemberName and
+	 *      shortMemberName <> other.memberName)) and
+	 * (memberName = null or
+	 *     (memberName <> other.shortMemberName and
+	 *      memberName <> other.memberName))
 	 * 
 	 * <!-- end-model-doc -->
 	 * @model dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false" otherRequired="true" otherOrdered="false"
 	 * @generated
 	 */
 	boolean isDistinguishableFrom(Membership other);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model dataType="org.omg.sysml.lang.types.String" ordered="false"
-	 * @generated
-	 */
-	String displayName();
 
 } // Membership

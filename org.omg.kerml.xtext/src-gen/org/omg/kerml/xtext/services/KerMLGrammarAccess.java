@@ -1269,12 +1269,13 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final RuleCall cMemberPrefixParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
 		private final Keyword cAliasKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cMemberNamesAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cMemberNamesNameParserRuleCall_2_0 = (RuleCall)cMemberNamesAssignment_2.eContents().get(0);
-		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
-		private final Keyword cCommaKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
-		private final Assignment cMemberNamesAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
-		private final RuleCall cMemberNamesNameParserRuleCall_3_1_0 = (RuleCall)cMemberNamesAssignment_3_1.eContents().get(0);
+		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
+		private final Keyword cLessThanSignKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
+		private final Assignment cMemberShortNameAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
+		private final RuleCall cMemberShortNameNameParserRuleCall_2_1_0 = (RuleCall)cMemberShortNameAssignment_2_1.eContents().get(0);
+		private final Keyword cGreaterThanSignKeyword_2_2 = (Keyword)cGroup_2.eContents().get(2);
+		private final Assignment cMemberNameAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cMemberNameNameParserRuleCall_3_0 = (RuleCall)cMemberNameAssignment_3.eContents().get(0);
 		private final Keyword cForKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		private final Assignment cMemberElementAssignment_5 = (Assignment)cGroup.eContents().get(5);
 		private final CrossReference cMemberElementElementCrossReference_5_0 = (CrossReference)cMemberElementAssignment_5.eContents().get(0);
@@ -1283,13 +1284,13 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		
 		//AliasMember returns SysML::Membership :
 		//    MemberPrefix
-		//    'alias' memberNames += Name ( ',' memberNames += Name )*
+		//    'alias' ( '<' memberShortName = Name '>' )? ( memberName = Name )?
 		//    'for' memberElement = [SysML::Element|QualifiedName] ';'
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//MemberPrefix
-		//'alias' memberNames += Name ( ',' memberNames += Name )*
+		//'alias' ( '<' memberShortName = Name '>' )? ( memberName = Name )?
 		//'for' memberElement = [SysML::Element|QualifiedName] ';'
 		public Group getGroup() { return cGroup; }
 		
@@ -1299,23 +1300,26 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//'alias'
 		public Keyword getAliasKeyword_1() { return cAliasKeyword_1; }
 		
-		//memberNames += Name
-		public Assignment getMemberNamesAssignment_2() { return cMemberNamesAssignment_2; }
+		//( '<' memberShortName = Name '>' )?
+		public Group getGroup_2() { return cGroup_2; }
+		
+		//'<'
+		public Keyword getLessThanSignKeyword_2_0() { return cLessThanSignKeyword_2_0; }
+		
+		//memberShortName = Name
+		public Assignment getMemberShortNameAssignment_2_1() { return cMemberShortNameAssignment_2_1; }
 		
 		//Name
-		public RuleCall getMemberNamesNameParserRuleCall_2_0() { return cMemberNamesNameParserRuleCall_2_0; }
+		public RuleCall getMemberShortNameNameParserRuleCall_2_1_0() { return cMemberShortNameNameParserRuleCall_2_1_0; }
 		
-		//( ',' memberNames += Name )*
-		public Group getGroup_3() { return cGroup_3; }
+		//'>'
+		public Keyword getGreaterThanSignKeyword_2_2() { return cGreaterThanSignKeyword_2_2; }
 		
-		//','
-		public Keyword getCommaKeyword_3_0() { return cCommaKeyword_3_0; }
-		
-		//memberNames += Name
-		public Assignment getMemberNamesAssignment_3_1() { return cMemberNamesAssignment_3_1; }
+		//( memberName = Name )?
+		public Assignment getMemberNameAssignment_3() { return cMemberNameAssignment_3; }
 		
 		//Name
-		public RuleCall getMemberNamesNameParserRuleCall_3_1_0() { return cMemberNamesNameParserRuleCall_3_1_0; }
+		public RuleCall getMemberNameNameParserRuleCall_3_0() { return cMemberNameNameParserRuleCall_3_0; }
 		
 		//'for'
 		public Keyword getForKeyword_4() { return cForKeyword_4; }
@@ -8157,7 +8161,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	
 	//AliasMember returns SysML::Membership :
 	//    MemberPrefix
-	//    'alias' memberNames += Name ( ',' memberNames += Name )*
+	//    'alias' ( '<' memberShortName = Name '>' )? ( memberName = Name )?
 	//    'for' memberElement = [SysML::Element|QualifiedName] ';'
 	//;
 	public AliasMemberElements getAliasMemberAccess() {

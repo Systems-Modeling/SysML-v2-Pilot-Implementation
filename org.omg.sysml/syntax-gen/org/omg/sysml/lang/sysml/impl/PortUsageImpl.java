@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -25,12 +25,10 @@ package org.omg.sysml.lang.sysml.impl;
 import java.util.Collection;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.PortDefinition;
 import org.omg.sysml.lang.sysml.PortUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.lang.sysml.Usage;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
 
 /**
@@ -42,7 +40,6 @@ import org.omg.sysml.util.NonNotifyingEObjectEList;
  * </p>
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.PortUsageImpl#getPortDefinition <em>Port Definition</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.PortUsageImpl#getPortOwningUsage <em>Port Owning Usage</em>}</li>
  * </ul>
  *
  * @generated
@@ -114,46 +111,6 @@ public class PortUsageImpl extends OccurrenceUsageImpl implements PortUsage {
 	 * @generated
 	 */
 	@Override
-	public Usage getPortOwningUsage() {
-		Usage portOwningUsage = basicGetPortOwningUsage();
-		return portOwningUsage != null && portOwningUsage.eIsProxy() ? (Usage)eResolveProxy((InternalEObject)portOwningUsage) : portOwningUsage;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public Usage basicGetPortOwningUsage() {
-		Type owningType = getOwningType();
-		return owningType instanceof Usage? (Usage)owningType: null;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	@Override
-	public void setPortOwningUsage(Usage newPortOwningUsage) {
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetPortOwningUsage() {
-		return basicGetPortOwningUsage() != null;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EList<Type> getType() {
 		@SuppressWarnings("unchecked")
 		EList<Type> definition = (EList<Type>)((EList<?>)getDefinition());
@@ -166,44 +123,6 @@ public class PortUsageImpl extends OccurrenceUsageImpl implements PortUsage {
 	 * @generated
 	 */
 	public boolean isSetType() {
-  		return false;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Usage getOwningUsage() {
-		return getPortOwningUsage();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Usage basicGetOwningUsage() {
-		return basicGetPortOwningUsage();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setOwningUsage(Usage newOwningUsage) {
-		setPortOwningUsage(newOwningUsage);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetOwningUsage() {
   		return false;
 	}
 
@@ -226,9 +145,6 @@ public class PortUsageImpl extends OccurrenceUsageImpl implements PortUsage {
 		switch (featureID) {
 			case SysMLPackage.PORT_USAGE__PORT_DEFINITION:
 				return getPortDefinition();
-			case SysMLPackage.PORT_USAGE__PORT_OWNING_USAGE:
-				if (resolve) return getPortOwningUsage();
-				return basicGetPortOwningUsage();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -246,9 +162,6 @@ public class PortUsageImpl extends OccurrenceUsageImpl implements PortUsage {
 				getPortDefinition().clear();
 				getPortDefinition().addAll((Collection<? extends PortDefinition>)newValue);
 				return;
-			case SysMLPackage.PORT_USAGE__PORT_OWNING_USAGE:
-				setPortOwningUsage((Usage)newValue);
-				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -264,9 +177,6 @@ public class PortUsageImpl extends OccurrenceUsageImpl implements PortUsage {
 			case SysMLPackage.PORT_USAGE__PORT_DEFINITION:
 				getPortDefinition().clear();
 				return;
-			case SysMLPackage.PORT_USAGE__PORT_OWNING_USAGE:
-				setPortOwningUsage((Usage)null);
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -281,12 +191,8 @@ public class PortUsageImpl extends OccurrenceUsageImpl implements PortUsage {
 		switch (featureID) {
 			case SysMLPackage.PORT_USAGE__TYPE:
 				return isSetType();
-			case SysMLPackage.PORT_USAGE__OWNING_USAGE:
-				return isSetOwningUsage();
 			case SysMLPackage.PORT_USAGE__PORT_DEFINITION:
 				return isSetPortDefinition();
-			case SysMLPackage.PORT_USAGE__PORT_OWNING_USAGE:
-				return isSetPortOwningUsage();
 		}
 		return super.eIsSet(featureID);
 	}

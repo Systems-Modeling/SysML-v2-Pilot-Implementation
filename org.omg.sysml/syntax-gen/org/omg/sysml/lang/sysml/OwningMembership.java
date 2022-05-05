@@ -2,8 +2,6 @@
  */
 package org.omg.sysml.lang.sysml;
 
-import org.eclipse.emf.common.util.EList;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Owning Membership</b></em>'.
@@ -11,14 +9,17 @@ import org.eclipse.emf.common.util.EList;
  *
  * <!-- begin-model-doc -->
  * <p>An OwningMembership is a Membership that owns its <code>memberElement</code> as a <code>ownedRelatedElement</code>. The <code>ownedMemberElementM</code> becomes an <code>ownedMember</code> of the <code>membershipOwningNamespace</code>.
- * ownedMemberNames = ownedMember.elementNames
+ * ownedMemberName = ownedMemberElement.effectiveName
+ * ownedMemberShortName = ownedMemberElement.shortName
  * <!-- end-model-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.OwningMembership#getOwnedMemberNames <em>Owned Member Names</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.OwningMembership#getOwnedMemberElementId <em>Owned Member Element Id</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.OwningMembership#getOwnedMemberShortName <em>Owned Member Short Name</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.OwningMembership#getOwnedMemberName <em>Owned Member Name</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.OwningMembership#getOwnedMemberElement <em>Owned Member Element</em>}</li>
  * </ul>
  *
@@ -28,27 +29,101 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface OwningMembership extends Membership {
 	/**
-	 * Returns the value of the '<em><b>Owned Member Names</b></em>' attribute list.
-	 * The list contents are of type {@link java.lang.String}.
+	 * Returns the value of the '<em><b>Owned Member Element Id</b></em>' attribute.
 	 * <p>
 	 * This feature redefines the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Membership#getMemberNames() <em>Member Names</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Membership#getMemberElementId() <em>Member Element Id</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The names of the <code>ownedMemberElement</code> in the <code>membershipOwningNamespace</code>, derived as the <code>memberNames</code> of the <code>ownedMemberElement</code>. This will include at least the <code>uuid</code> of the <code>ownedMemberElement</code>.</p>
-	 * 
+	 * <p>The <code>elementId</code> of the <code>ownedMemberElement</code>.</p>
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Owned Member Names</em>' attribute list.
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getOwningMembership_OwnedMemberNames()
+	 * @return the value of the '<em>Owned Member Element Id</em>' attribute.
+	 * @see #setOwnedMemberElementId(String)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getOwningMembership_OwnedMemberElementId()
 	 * @model dataType="org.omg.sysml.lang.types.String" required="true" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="redefines"
 	 * @generated
 	 */
-	EList<String> getOwnedMemberNames();
+	String getOwnedMemberElementId();
+
+	/**
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.OwningMembership#getOwnedMemberElementId <em>Owned Member Element Id</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Owned Member Element Id</em>' attribute.
+	 * @see #getOwnedMemberElementId()
+	 * @generated
+	 */
+	void setOwnedMemberElementId(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Owned Member Short Name</b></em>' attribute.
+	 * <p>
+	 * This feature redefines the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Membership#getMemberShortName() <em>Member Short Name</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The <code>shortName</code> of the <code>ownedMemberElement</code>.</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Owned Member Short Name</em>' attribute.
+	 * @see #setOwnedMemberShortName(String)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getOwningMembership_OwnedMemberShortName()
+	 * @model dataType="org.omg.sysml.lang.types.String" transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="redefines"
+	 * @generated
+	 */
+	String getOwnedMemberShortName();
+
+	/**
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.OwningMembership#getOwnedMemberShortName <em>Owned Member Short Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Owned Member Short Name</em>' attribute.
+	 * @see #getOwnedMemberShortName()
+	 * @generated
+	 */
+	void setOwnedMemberShortName(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Owned Member Name</b></em>' attribute.
+	 * <p>
+	 * This feature redefines the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Membership#getMemberName() <em>Member Name</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The <code>effectiveName</code> of the <code>ownedMemberElement</code>.</p>
+	 * 
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Owned Member Name</em>' attribute.
+	 * @see #setOwnedMemberName(String)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getOwningMembership_OwnedMemberName()
+	 * @model dataType="org.omg.sysml.lang.types.String" transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="redefines"
+	 * @generated
+	 */
+	String getOwnedMemberName();
+
+	/**
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.OwningMembership#getOwnedMemberName <em>Owned Member Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Owned Member Name</em>' attribute.
+	 * @see #getOwnedMemberName()
+	 * @generated
+	 */
+	void setOwnedMemberName(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Owned Member Element</b></em>' reference.

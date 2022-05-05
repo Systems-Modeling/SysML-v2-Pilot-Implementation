@@ -19,31 +19,20 @@ public class SysMLInteractiveUtil {
 
 	public static final String INDENT = "  ";
 	
-	private static String formatMemberNames(List<String> memberNames) {
-		if (memberNames == null || memberNames.isEmpty()) {
-			return "";
-		} else {
-			String nameList = null;
-			for (String memberName: memberNames) {
-				if (nameList == null) {
-					nameList = " " + memberName;
-				} else {
-					nameList += "," + memberName;
-				}
-			}
-			return nameList;
-		}
-	}
-	
-	private static String formatRelationship(EClass kind, String names) {
-		return "[" + kind.getName() + names + "] ";
+	private static String formatRelationship(EClass kind, String shortName, String memberName) {
+		return "[" + kind.getName() + 
+				     (shortName == null? "": " <" + shortName + ">") + 
+				     (memberName == null? "": " " + memberName) +
+			   "] ";
 	}
 	
 	private static String formatRelationship(Relationship relationship) {
 		return relationship == null? "":
 			   relationship instanceof Membership && !(relationship instanceof OwningMembership)?
-					   formatRelationship(relationship.eClass(), formatMemberNames(((Membership)relationship).getMemberNames())):
-			   formatRelationship(relationship.eClass(), null);
+					   formatRelationship(relationship.eClass(), 
+							   ((Membership)relationship).getMemberShortName(), 
+							   ((Membership)relationship).getMemberName()):
+			   formatRelationship(relationship.eClass(), null, null);
 	}
 	
 	private static void formatElement(StringBuilder buffer, String indentation, Element element, String relationshipTag) {
@@ -62,7 +51,7 @@ public class SysMLInteractiveUtil {
 	}
 	
 	private static void formatImplicitElement(StringBuilder buffer, String indentation, Element element, EClass kind) {
-		formatElement(buffer, indentation, element, formatRelationship(kind, " (implicit)"));
+		formatElement(buffer, indentation, element, formatRelationship(kind, null, "(implicit)"));
 	}
 	
 	private static void formatTree(StringBuilder buffer, String indentation, Element element, Relationship relationship) {

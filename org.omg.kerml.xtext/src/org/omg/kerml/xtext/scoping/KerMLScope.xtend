@@ -264,9 +264,8 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 						scopeProvider.addVisited(r)
 						var memberElement = if (r instanceof OwningMembership) r.ownedMemberElement else null
 						val memberName = 
-							if (r instanceof OwningMembership) memberElement?.name 
-							else if (!r.memberNames.empty) r.memberNames.get(0)
-							else null
+							if (r instanceof OwningMembership) memberElement?.name // NOTE: Not the effectiveName
+							else r.memberName
 						var elementName = 
 							if (memberName !== null || (isFirstScope && ns == this.ns && memberElement === element)) memberName 
 							else memberElement?.getEffectiveName
@@ -442,7 +441,7 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 			for (mem: mems) {
 				// Check if the targetqn resolves via the imported membership.
 				val elm = mem.memberElement
-				if (resolveForName(mem, elm, mem.displayName, qn, visited, includeImplicitGen, imp.isImportAll)) {
+				if (resolveForName(mem, elm, mem.memberName, qn, visited, includeImplicitGen, imp.isImportAll)) {
 					return true
 				}
 				if (resolveForName(mem, elm, elm.shortName, qn, visited, includeImplicitGen, imp.isImportAll)) {

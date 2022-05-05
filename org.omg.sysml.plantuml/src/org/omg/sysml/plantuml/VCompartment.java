@@ -315,7 +315,7 @@ public class VCompartment extends VStructure {
                     // Do not show it
                 } else if (e instanceof Feature) {
                 	Feature f2 = (Feature) e;
-                    FeatureEntry fe = addFeature(f2, m.displayName(), null, true, parent);
+                    FeatureEntry fe = addFeature(f2, m.getMemberName(), null, true, parent);
                     CompTree ct = new CompTree(fe);
                     ct.process(f2);
                 } else {

@@ -223,8 +223,8 @@ NamespaceFeatureMember returns SysML::OwningMembership :
 ;
 
 AliasMember returns SysML::Membership :
-	MemberPrefix
-	'alias' memberNames += Name ( ',' memberNames += Name )* 
+	MemberPrefix 
+	'alias' ( '<' memberShortName = Name '>' )? ( memberName = Name )?
 	'for' memberElement = [SysML::Element|QualifiedName] ';'
 ;
 

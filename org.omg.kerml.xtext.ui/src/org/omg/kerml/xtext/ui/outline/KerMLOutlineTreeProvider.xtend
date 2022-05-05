@@ -94,19 +94,16 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	}
 	
 	def String nameText(Membership membership) {
-		var String name = null;
-		if (membership instanceof OwningMembership) {
-			name = membership.ownedMemberElement?.getEffectiveName
-		} else {
-			for (memberName: membership.memberNames) {
-				if (name === null) {
-					name = memberName
-				} else {
-					name += "," + memberName
-				}
-			}
+		var text = ""
+		val shortName = membership.memberShortName
+		if (shortName !== null) {
+			text += ' <' + shortName + '>'
 		}
-		if (name !== null) name else ""
+		val name = membership.memberName;
+		if (name !== null) {
+			text += ' ' + name;
+		}
+		text
 	}
 	
 	def String _text(Membership membership) {

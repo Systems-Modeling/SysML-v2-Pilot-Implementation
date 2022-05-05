@@ -161,33 +161,49 @@ class KerMLValidator extends AbstractKerMLValidator {
 		// Do not check distinguishability for automatically constructed expressions and binding connectors (to improve performance).
 		if (!(namesp instanceof InvocationExpression || namesp instanceof FeatureReferenceExpression || namesp instanceof LiteralExpression || 
 				namesp instanceof NullExpression || namesp instanceof BindingConnector)) {
-			if (!(mem instanceof OwningMembership) && mem.displayName !== null) {
+			if (!(mem instanceof OwningMembership)) {
 				for (e: namesp.ownedElement) {
-					if (mem.displayName == e.shortName || mem.displayName == e.getEffectiveName) {
-						warning(INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_0, mem, SysMLPackage.eINSTANCE.membership_MemberNames, INVALID_MEMBERSHIP__DISTINGUISHABILITY)
+					if (mem.memberShortName !== null && (mem.memberShortName == e.shortName || mem.memberShortName == e.getEffectiveName)) {
+						warning(INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_0, mem, SysMLPackage.eINSTANCE.membership_MemberShortName, INVALID_MEMBERSHIP__DISTINGUISHABILITY)
+					} else if (mem.memberName !== null && (mem.memberName == e.shortName || mem.memberName == e.getEffectiveName)) {
+						warning(INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_0, mem, SysMLPackage.eINSTANCE.membership_MemberName, INVALID_MEMBERSHIP__DISTINGUISHABILITY)
 					}
 				}
 				for (m: namesp.ownedMembership) {
-					if (!(m instanceof OwningMembership) && m !== mem && !mem.isDistinguishableFrom(m)) {
-						warning(INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_1, mem, SysMLPackage.eINSTANCE.membership_MemberNames, INVALID_MEMBERSHIP__DISTINGUISHABILITY)
-					}
-							
+					checkDistinguishibility(mem, m, INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_1)							
 				}
 			}
 			if (namesp instanceof Type){
 				ElementUtil.clearCachesOf(namesp) // Force recomputation of inherited memberships.
 				for (m : namesp.inheritedMembership) {
-					if (m.memberElement !== mem.memberElement && !mem.isDistinguishableFrom(m)){
-						if (mem instanceof OwningMembership) {
-							warning(INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_2, mem.ownedMemberElement, SysMLPackage.eINSTANCE.element_Name, INVALID_MEMBERSHIP__DISTINGUISHABILITY)
-						} else {
-							warning(INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_2, mem, SysMLPackage.eINSTANCE.membership_MemberNames, INVALID_MEMBERSHIP__DISTINGUISHABILITY)
-						}
-					}
+					checkDistinguishibility(mem, m, INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_2)
 				}
 			}
 		}
 		
+	}
+	
+	def checkDistinguishibility(Membership mem, Membership other, String msg) {
+		val memShortName = mem.memberShortName
+		val memName = mem.memberName
+		val otherShortName = other.memberShortName
+		val otherName = other.memberName
+		
+		if (mem.memberElement !== other.memberElement) {
+			if (memShortName !== null && (memShortName == otherShortName || memShortName == otherName)) {
+				if (mem instanceof OwningMembership) {
+					warning(msg, mem.ownedMemberElement, SysMLPackage.eINSTANCE.element_ShortName, INVALID_MEMBERSHIP__DISTINGUISHABILITY)
+				} else {
+					warning(msg, mem, SysMLPackage.eINSTANCE.membership_MemberShortName, INVALID_MEMBERSHIP__DISTINGUISHABILITY)
+				}
+			} else if (memName !== null && (memName == otherShortName || memName == otherName)) {
+				if (mem instanceof OwningMembership) {
+					warning(msg, mem.ownedMemberElement, SysMLPackage.eINSTANCE.element_Name, INVALID_MEMBERSHIP__DISTINGUISHABILITY)
+				} else {
+					warning(msg, mem, SysMLPackage.eINSTANCE.membership_MemberName, INVALID_MEMBERSHIP__DISTINGUISHABILITY)
+				}
+			}
+		}
 	}
 	
 	@Check

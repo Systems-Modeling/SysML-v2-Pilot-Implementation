@@ -54,7 +54,6 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwnedRelationship <em>Owned Relationship</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwningRelationship <em>Owning Relationship</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwningNamespace <em>Owning Namespace</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Element#getElementNames <em>Element Names</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getElementId <em>Element Id</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwner <em>Owner</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwnedElement <em>Owned Element</em>}</li>
@@ -177,28 +176,7 @@ public interface Element extends EObject {
 	void setOwningNamespace(Namespace value);
 
 	/**
-	 * Returns the value of the '<em><b>Element Names</b></em>' attribute list.
-	 * The list contents are of type {@link java.lang.String}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * <p>Names defined for this Element by which it can be identified.</p>
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Element Names</em>' attribute list.
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getElement_ElementNames()
-	 * @model dataType="org.omg.sysml.lang.types.String" required="true" upper="3" transient="true" volatile="true" derived="true"
-	 * @generated
-	 */
-	EList<String> getElementNames();
-
-	/**
 	 * Returns the value of the '<em><b>Element Id</b></em>' attribute.
-	 * <p>
-	 * This feature subsets the following features:
-	 * </p>
-	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Element#getElementNames() <em>Element Names</em>}'</li>
-	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
@@ -208,7 +186,6 @@ public interface Element extends EObject {
 	 * @see #setElementId(String)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getElement_ElementId()
 	 * @model id="true" dataType="org.omg.sysml.lang.types.String" required="true" ordered="false"
-	 *        annotation="subsets"
 	 * @generated
 	 */
 	String getElementId();
@@ -250,7 +227,7 @@ public interface Element extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>If this the <code>owningNamespace</code> is a root Namespace, then its unqualified name, defined as the first of the following that is not null: <code>effectiveName</code>, <code>shortName</code>, <code>uuid</code>. If this Element has an <code>owningNamespace</code>, then the unqualified name of this Element, qualified by the <code>qualifiedName<code> of its <code>owningNamespace</code>. The <code>qualifiedName<code> is represented in a form that is valid according to the KerML textual concrete syntax. Only a root Namespace has an empty <code>qualifiedName</code>.</p>
+	 * <p>If this Element has an <code>owningNamespace</code>, then the full ownership-qualified name of the Element. This is defined as <code>qualifiedName</code> (if any) of the <code>owningNamespace</code> of the Element followed by the unqualified name of the Element (given by the first of its <code>elementNames</code>). The <code>qualifiedName<code> is represented in a form that is valid according to the KerML textual concrete syntax for qualified names (including use of unrestricted name notation and escaped characters, as necessary). Only a root Namespace has an empty <code>qualifiedName</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Qualified Name</em>' attribute.
 	 * @see #setQualifiedName(String)
@@ -272,12 +249,6 @@ public interface Element extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Effective Name</b></em>' attribute.
-	 * <p>
-	 * This feature subsets the following features:
-	 * </p>
-	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Element#getElementNames() <em>Element Names</em>}'</li>
-	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
@@ -287,7 +258,6 @@ public interface Element extends EObject {
 	 * @see #setEffectiveName(String)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getElement_EffectiveName()
 	 * @model dataType="org.omg.sysml.lang.types.String" transient="true" volatile="true" derived="true" ordered="false"
-	 *        annotation="subsets"
 	 * @generated
 	 */
 	String getEffectiveName();
@@ -477,12 +447,6 @@ public interface Element extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Short Name</b></em>' attribute.
-	 * <p>
-	 * This feature subsets the following features:
-	 * </p>
-	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Element#getElementNames() <em>Element Names</em>}'</li>
-	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
@@ -493,7 +457,6 @@ public interface Element extends EObject {
 	 * @see #setShortName(String)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getElement_ShortName()
 	 * @model dataType="org.omg.sysml.lang.types.String" ordered="false"
-	 *        annotation="subsets"
 	 * @generated
 	 */
 	String getShortName();
@@ -512,7 +475,7 @@ public interface Element extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Return the unqualified name of this Element, defined as the first of the following that is not null: <code>effectiveName</code>, <code>shortName</code>, <code>uuid</code>, either as is, if it has the form of a basic name, or, otherwise, its representation as a restricted name according to the lexical structure of the KerML textual notation (i.e., surrounded by single quote characters and with special characters escaped).</p>
+	 * <p>Return the fist of <code>effectiveName</code>, <code>shortName</code> or <code>elementId</code> of this Element that is non-null, either as is, if it has the form of a basic name, or, otherwise, represented as a restricted name according to the lexical structure of the KerML textual notation (i.e., surrounded by single quote characters and with special characters escaped).</p>
 	 * <!-- end-model-doc -->
 	 * @model dataType="org.omg.sysml.lang.types.String" ordered="false"
 	 * @generated

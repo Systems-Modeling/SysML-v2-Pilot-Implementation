@@ -2095,52 +2095,56 @@ ruleAliasMember returns [EObject current=null]
 			newLeafNode(otherlv_1, grammarAccess.getAliasMemberAccess().getAliasKeyword_1());
 		}
 		(
-			(
-				{
-					newCompositeNode(grammarAccess.getAliasMemberAccess().getMemberNamesNameParserRuleCall_2_0());
-				}
-				lv_memberNames_2_0=ruleName
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getAliasMemberRule());
-					}
-					add(
-						$current,
-						"memberNames",
-						lv_memberNames_2_0,
-						"org.omg.kerml.expressions.xtext.KerMLExpressions.Name");
-					afterParserOrEnumRuleCall();
-				}
-			)
-		)
-		(
-			otherlv_3=','
+			otherlv_2='<'
 			{
-				newLeafNode(otherlv_3, grammarAccess.getAliasMemberAccess().getCommaKeyword_3_0());
+				newLeafNode(otherlv_2, grammarAccess.getAliasMemberAccess().getLessThanSignKeyword_2_0());
 			}
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getAliasMemberAccess().getMemberNamesNameParserRuleCall_3_1_0());
+						newCompositeNode(grammarAccess.getAliasMemberAccess().getMemberShortNameNameParserRuleCall_2_1_0());
 					}
-					lv_memberNames_4_0=ruleName
+					lv_memberShortName_3_0=ruleName
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getAliasMemberRule());
 						}
-						add(
+						set(
 							$current,
-							"memberNames",
-							lv_memberNames_4_0,
+							"memberShortName",
+							lv_memberShortName_3_0,
 							"org.omg.kerml.expressions.xtext.KerMLExpressions.Name");
 						afterParserOrEnumRuleCall();
 					}
 				)
 			)
-		)*
-		otherlv_5='for'
+			otherlv_4='>'
+			{
+				newLeafNode(otherlv_4, grammarAccess.getAliasMemberAccess().getGreaterThanSignKeyword_2_2());
+			}
+		)?
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getAliasMemberAccess().getMemberNameNameParserRuleCall_3_0());
+				}
+				lv_memberName_5_0=ruleName
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getAliasMemberRule());
+					}
+					set(
+						$current,
+						"memberName",
+						lv_memberName_5_0,
+						"org.omg.kerml.expressions.xtext.KerMLExpressions.Name");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)?
+		otherlv_6='for'
 		{
-			newLeafNode(otherlv_5, grammarAccess.getAliasMemberAccess().getForKeyword_4());
+			newLeafNode(otherlv_6, grammarAccess.getAliasMemberAccess().getForKeyword_4());
 		}
 		(
 			(
@@ -2158,9 +2162,9 @@ ruleAliasMember returns [EObject current=null]
 				}
 			)
 		)
-		otherlv_7=';'
+		otherlv_8=';'
 		{
-			newLeafNode(otherlv_7, grammarAccess.getAliasMemberAccess().getSemicolonKeyword_6());
+			newLeafNode(otherlv_8, grammarAccess.getAliasMemberAccess().getSemicolonKeyword_6());
 		}
 	)
 ;

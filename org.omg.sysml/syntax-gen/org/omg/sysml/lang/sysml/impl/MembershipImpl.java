@@ -23,7 +23,6 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
@@ -32,7 +31,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.uml2.common.util.UnionEObjectEList;
 import org.omg.sysml.lang.sysml.Element;
@@ -51,24 +49,76 @@ import org.omg.sysml.util.ElementUtil;
  * </p>
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.MembershipImpl#getOwningRelatedElement <em>Owning Related Element</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.MembershipImpl#getMemberNames <em>Member Names</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.MembershipImpl#getMemberElementId <em>Member Element Id</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.MembershipImpl#getMembershipOwningNamespace <em>Membership Owning Namespace</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.MembershipImpl#getVisibility <em>Visibility</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.MembershipImpl#getMemberShortName <em>Member Short Name</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.MembershipImpl#getMemberElement <em>Member Element</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.MembershipImpl#getMemberName <em>Member Name</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.MembershipImpl#getVisibility <em>Visibility</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class MembershipImpl extends RelationshipImpl implements Membership {
 	/**
-	 * The cached value of the '{@link #getMemberNames() <em>Member Names</em>}' attribute list.
+	 * The default value of the '{@link #getMemberElementId() <em>Member Element Id</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getMemberNames()
+	 * @see #getMemberElementId()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<String> memberNames;
+	protected static final String MEMBER_ELEMENT_ID_EDEFAULT = null;
+
+	/**
+	 * The default value of the '{@link #getMemberShortName() <em>Member Short Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMemberShortName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String MEMBER_SHORT_NAME_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getMemberShortName() <em>Member Short Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMemberShortName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String memberShortName = MEMBER_SHORT_NAME_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getMemberElement() <em>Member Element</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMemberElement()
+	 * @generated
+	 * @ordered
+	 */
+	protected Element memberElement;
+
+	/**
+	 * The default value of the '{@link #getMemberName() <em>Member Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMemberName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String MEMBER_NAME_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getMemberName() <em>Member Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMemberName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String memberName = MEMBER_NAME_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getVisibility() <em>Visibility</em>}' attribute.
@@ -89,16 +139,6 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 	 * @ordered
 	 */
 	protected VisibilityKind visibility = VISIBILITY_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getMemberElement() <em>Member Element</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getMemberElement()
-	 * @generated
-	 * @ordered
-	 */
-	protected Element memberElement;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -174,6 +214,33 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 	 * @generated
 	 */
 	@Override
+	public String getMemberName() {
+		return memberName;
+	}
+	
+	@Override
+	public void setMemberName(String newMemberName) {
+		setMemberNameGen(ElementUtil.unescapeString(newMemberName));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setMemberNameGen(String newMemberName) {
+		String oldMemberName = memberName;
+		memberName = newMemberName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.MEMBERSHIP__MEMBER_NAME, oldMemberName, memberName));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Element getOwningRelatedElement() {
 		if (eContainerFeatureID() != SysMLPackage.MEMBERSHIP__OWNING_RELATED_ELEMENT) return null;
 		return (Element)eInternalContainer();
@@ -217,18 +284,19 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 	 * @generated NOT
 	 */
 	@Override
-	public EList<String> getMemberNames() {
-		if (memberNames == null) {
-			memberNames = new EDataTypeUniqueEList<String>(String.class, this, SysMLPackage.MEMBERSHIP__MEMBER_NAMES) {
-				private static final long serialVersionUID = 1L;
-				
-				@Override
-				public boolean add(String name) {
-					return super.add(ElementUtil.unescapeString(name));
-				}
-			};
-		}
-		return memberNames;
+	public String getMemberElementId() {
+		Element memberElement = getMemberElement();
+		return memberElement == null? null: memberElement.getElementId();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public void setMemberElementId(String newMemberElementId) {
+		throw new UnsupportedOperationException();
 	}
 
 	/**
@@ -300,6 +368,33 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 	 * @generated
 	 */
 	@Override
+	public String getMemberShortName() {
+		return memberShortName;
+	}
+
+	@Override
+	public void setMemberShortName(String newMemberShortName) {
+		setMemberShortNameGen(ElementUtil.unescapeString(newMemberShortName));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setMemberShortNameGen(String newMemberShortName) {
+		String oldMemberShortName = memberShortName;
+		memberShortName = newMemberShortName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.MEMBERSHIP__MEMBER_SHORT_NAME, oldMemberShortName, memberShortName));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EList<Element> getTarget() {
 		EList<Element> target = new UniqueEList<Element>();
 		Element memberElement = getMemberElement();
@@ -349,20 +444,25 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
+	@Override
 	public boolean isDistinguishableFrom(Membership other) {
-		// TODO Implement full distinguishability test.
-		EList<String> otherNames = other.getMemberNames();
-		return getMemberNames().stream().noneMatch(name->otherNames.contains(name));			
-	}
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public String displayName() {
-		EList<String> memberNames = getMemberNames();
-		return memberNames.isEmpty()? null: memberNames.get(0);
+		// TODO: Add member element metaclass check
+		
+		String memberShortName = getMemberShortName();
+		String memberName = getMemberName();
+		String otherShortName = other.getMemberShortName();
+		String otherName = other.getMemberName();
+		if (memberShortName != null) {
+			if (memberShortName == otherShortName || memberShortName == otherName) {
+				return false;
+			}
+		}
+		if (memberName == null) {
+			if (memberName == otherShortName || memberName == otherName) {
+				return false;
+			}
+		}
+		return true;
 	}
 	
 	//
@@ -419,16 +519,20 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case SysMLPackage.MEMBERSHIP__MEMBER_NAMES:
-				return getMemberNames();
+			case SysMLPackage.MEMBERSHIP__MEMBER_ELEMENT_ID:
+				return getMemberElementId();
 			case SysMLPackage.MEMBERSHIP__MEMBERSHIP_OWNING_NAMESPACE:
 				if (resolve) return getMembershipOwningNamespace();
 				return basicGetMembershipOwningNamespace();
-			case SysMLPackage.MEMBERSHIP__VISIBILITY:
-				return getVisibility();
+			case SysMLPackage.MEMBERSHIP__MEMBER_SHORT_NAME:
+				return getMemberShortName();
 			case SysMLPackage.MEMBERSHIP__MEMBER_ELEMENT:
 				if (resolve) return getMemberElement();
 				return basicGetMemberElement();
+			case SysMLPackage.MEMBERSHIP__MEMBER_NAME:
+				return getMemberName();
+			case SysMLPackage.MEMBERSHIP__VISIBILITY:
+				return getVisibility();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -438,22 +542,26 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case SysMLPackage.MEMBERSHIP__MEMBER_NAMES:
-				getMemberNames().clear();
-				getMemberNames().addAll((Collection<? extends String>)newValue);
+			case SysMLPackage.MEMBERSHIP__MEMBER_ELEMENT_ID:
+				setMemberElementId((String)newValue);
 				return;
 			case SysMLPackage.MEMBERSHIP__MEMBERSHIP_OWNING_NAMESPACE:
 				setMembershipOwningNamespace((Namespace)newValue);
 				return;
-			case SysMLPackage.MEMBERSHIP__VISIBILITY:
-				setVisibility((VisibilityKind)newValue);
+			case SysMLPackage.MEMBERSHIP__MEMBER_SHORT_NAME:
+				setMemberShortName((String)newValue);
 				return;
 			case SysMLPackage.MEMBERSHIP__MEMBER_ELEMENT:
 				setMemberElement((Element)newValue);
+				return;
+			case SysMLPackage.MEMBERSHIP__MEMBER_NAME:
+				setMemberName((String)newValue);
+				return;
+			case SysMLPackage.MEMBERSHIP__VISIBILITY:
+				setVisibility((VisibilityKind)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -467,17 +575,23 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.MEMBERSHIP__MEMBER_NAMES:
-				getMemberNames().clear();
+			case SysMLPackage.MEMBERSHIP__MEMBER_ELEMENT_ID:
+				setMemberElementId(MEMBER_ELEMENT_ID_EDEFAULT);
 				return;
 			case SysMLPackage.MEMBERSHIP__MEMBERSHIP_OWNING_NAMESPACE:
 				setMembershipOwningNamespace((Namespace)null);
 				return;
-			case SysMLPackage.MEMBERSHIP__VISIBILITY:
-				setVisibility(VISIBILITY_EDEFAULT);
+			case SysMLPackage.MEMBERSHIP__MEMBER_SHORT_NAME:
+				setMemberShortName(MEMBER_SHORT_NAME_EDEFAULT);
 				return;
 			case SysMLPackage.MEMBERSHIP__MEMBER_ELEMENT:
 				setMemberElement((Element)null);
+				return;
+			case SysMLPackage.MEMBERSHIP__MEMBER_NAME:
+				setMemberName(MEMBER_NAME_EDEFAULT);
+				return;
+			case SysMLPackage.MEMBERSHIP__VISIBILITY:
+				setVisibility(VISIBILITY_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -497,14 +611,18 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 				return isSetSource();
 			case SysMLPackage.MEMBERSHIP__TARGET:
 				return isSetTarget();
-			case SysMLPackage.MEMBERSHIP__MEMBER_NAMES:
-				return memberNames != null && !memberNames.isEmpty();
+			case SysMLPackage.MEMBERSHIP__MEMBER_ELEMENT_ID:
+				return MEMBER_ELEMENT_ID_EDEFAULT == null ? getMemberElementId() != null : !MEMBER_ELEMENT_ID_EDEFAULT.equals(getMemberElementId());
 			case SysMLPackage.MEMBERSHIP__MEMBERSHIP_OWNING_NAMESPACE:
 				return isSetMembershipOwningNamespace();
-			case SysMLPackage.MEMBERSHIP__VISIBILITY:
-				return visibility != VISIBILITY_EDEFAULT;
+			case SysMLPackage.MEMBERSHIP__MEMBER_SHORT_NAME:
+				return MEMBER_SHORT_NAME_EDEFAULT == null ? memberShortName != null : !MEMBER_SHORT_NAME_EDEFAULT.equals(memberShortName);
 			case SysMLPackage.MEMBERSHIP__MEMBER_ELEMENT:
 				return isSetMemberElement();
+			case SysMLPackage.MEMBERSHIP__MEMBER_NAME:
+				return MEMBER_NAME_EDEFAULT == null ? memberName != null : !MEMBER_NAME_EDEFAULT.equals(memberName);
+			case SysMLPackage.MEMBERSHIP__VISIBILITY:
+				return visibility != VISIBILITY_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -519,8 +637,6 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 		switch (operationID) {
 			case SysMLPackage.MEMBERSHIP___IS_DISTINGUISHABLE_FROM__MEMBERSHIP:
 				return isDistinguishableFrom((Membership)arguments.get(0));
-			case SysMLPackage.MEMBERSHIP___DISPLAY_NAME:
-				return displayName();
 		}
 		return super.eInvoke(operationID, arguments);
 	}
@@ -535,8 +651,10 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 		if (eIsProxy()) return super.toString();
 
 		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (memberNames: ");
-		result.append(memberNames);
+		result.append(" (memberShortName: ");
+		result.append(memberShortName);
+		result.append(", memberName: ");
+		result.append(memberName);
 		result.append(", visibility: ");
 		result.append(visibility);
 		result.append(')');

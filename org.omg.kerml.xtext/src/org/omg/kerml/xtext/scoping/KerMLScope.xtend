@@ -248,45 +248,32 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 				ownedvisited.add(ns)		
 			}
 			
-			for (r: ns.ownedRelationship) {
-				if (!scopeProvider.visited.contains(r)) {
-					
-					if (checkElementId(qn, checkIfAdded, r, ownedvisited, visited, includeImplicitGen, includeAll)) {
-						return true
-					}
-					
-					if (r instanceof Membership) {
+			for (mem: ns.ownedMembership) {
+				if (!scopeProvider.visited.contains(mem)) {
+					if (includeAll || isInsideScope || mem.visibility == VisibilityKind.PUBLIC || 
+						     mem.visibility == VisibilityKind.PROTECTED && isInheriting) {
 
-						// Note: Proxy resolution for memberElement may result in recursive name resolution
-						// (and getting the memberName may also result in accessing the memberElement).
-						// In this case, the membership r should be excluded from the scope, to avoid a 
-						// cyclic linking error.
-						scopeProvider.addVisited(r)
-						var memberElement = if (r instanceof OwningMembership) r.ownedMemberElement else null
-						val memberName = 
-							if (r instanceof OwningMembership) memberElement?.name // NOTE: Not the effectiveName
-							else r.memberName
-						var elementName = 
-							if (memberName !== null || (isFirstScope && ns == this.ns && memberElement === element)) memberName 
-							else memberElement?.getEffectiveName
-						if (elementName !== null) {
-							val elementqn = qn.append(elementName)
-							if ((includeAll || isInsideScope || r.visibility == VisibilityKind.PUBLIC || 
-							     r.visibility == VisibilityKind.PROTECTED && isInheriting) &&
-							     checkQualifiedName(elementqn, checkIfAdded)) {
-							    // Delay proxy resolution of memberElement for as long as possible (if not caused by getting memberName).
-							    // This can prevent the proxy from being spuriously marked as unresolvable during an earlier phase of the search. 
-								memberElement = r.memberElement
-								scopeProvider.removeVisited(r)
-							    if (memberElement !== null && !memberElement.eIsProxy && 
-							    	!redefined.contains(memberElement) && 
-							    	visitQualifiedName(elementqn, r, memberElement, ownedvisited, visited, includeImplicitGen, includeAll)) {
-									return true
-								}
-							}
+						// Note: Proxy resolution may result in recursive name resolution. In this case, the
+						// membership r should be excluded from the scope, to avoid a cyclic linking error.
+						scopeProvider.addVisited(mem)
+						
+						var memberName = 
+							if (mem instanceof OwningMembership && isFirstScope && ns == this.ns && mem.memberElement === element) 
+								mem.memberElement?.name // Note: Don't use effective name.
+							else mem.memberName
+					
+						if (checkElementName(memberName, qn, mem, ownedvisited, visited, redefined, checkIfAdded, includeImplicitGen, includeAll)) {
+							return true
 						}
-						scopeProvider.removeVisited(r)						
-					}									
+						
+						scopeProvider.addVisited(mem) // In case it was removed during the previous checkElementName call.
+						
+						if (checkElementName(mem.memberShortName, qn, mem, ownedvisited, visited, redefined, checkIfAdded, includeImplicitGen, includeAll)) {
+							return true
+						}
+					
+						scopeProvider.removeVisited(mem)						
+					}					
 				}
 			}
 			ownedvisited.remove(ns)
@@ -294,23 +281,24 @@ class KerMLScope extends AbstractScope implements ISysMLScope {
 		return false
 	}
 	
-	protected def checkElementId(QualifiedName qn, boolean checkIfAdded, Relationship r, Set<Namespace> ownedvisited, Set<Namespace> visited, 
-		boolean includeImplicitGen, boolean includeAll) {
-		val element =
-			if (r instanceof OwningMembership) r.getOwnedMemberElement
-			else {
-				// Note: This assumes ownership relationships will be binary.
-				val ownedElements = r.ownedRelatedElement
-				if (ownedElements !== null && !ownedElements.empty) ownedElements.get(0)
-				else null
+	protected def checkElementName(String elementName, QualifiedName qn, Membership mem, 
+		Set<Namespace> ownedvisited, Set<Namespace> visited, Set<Element> redefined,
+		boolean checkIfAdded, boolean includeImplicitGen, boolean includeAll) {
+		if (elementName !== null) {
+			val elementqn = qn.append(elementName)
+			if (checkQualifiedName(elementqn, checkIfAdded)) {
+			    // Delay proxy resolution of memberElement for as long as possible (if not caused by getting memberName).
+			    // This can prevent the proxy from being spuriously marked as unresolvable during an earlier phase of the search. 
+			    val memberElement = mem.memberElement
+				scopeProvider.removeVisited(mem)
+			    if (memberElement !== null && !memberElement.eIsProxy && 
+			    	!redefined.contains(memberElement) && 
+			    	visitQualifiedName(elementqn, mem, memberElement, ownedvisited, visited, includeImplicitGen, includeAll)) {
+					return true
+				}
 			}
-		val elementId = element?.shortName
-		if (elementId === null) false
-		else {
-			val elementqn = qn.append(elementId)
-			checkQualifiedName(elementqn, checkIfAdded) && 
-			visitQualifiedName(elementqn, r, element, ownedvisited, visited, includeImplicitGen, includeAll)
 		}
+		return false
 	}
 	
 	protected def checkQualifiedName(QualifiedName elementqn, boolean checkIfAdded) {

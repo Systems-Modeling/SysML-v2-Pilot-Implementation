@@ -3,6 +3,7 @@
  */
 package ShapeItems {
 	private import ScalarValues::Boolean;
+	private import ScalarValues::Positive;
 	private import ISQ::*;
 	private import SI::m;
 	private import Occurrences::WithinBoth;
@@ -24,6 +25,7 @@ package ShapeItems {
 	item def PlanarCurve :> Curve {
 		attribute :>> length [1];
 
+		attribute :>> outerSpaceDimension;
 		assert constraint { notEmpty(outerSpaceDimension) &  outerSpaceDimension <= 2 }
 	}
 
@@ -68,7 +70,7 @@ package ShapeItems {
 	attribute baseWidth : LengthValue [0..*] :> scalarQuantities;
 
 	/**
-	 * An ConicSection is a closed PlanarCurve, possibly disconnected, see Hyperbola.
+	 * A ConicSection is a closed PlanarCurve, possibly disconnected, see Hyperbola.
 	 */
 	item def ConicSection :> Path, PlanarCurve {
 
@@ -88,7 +90,7 @@ package ShapeItems {
 	}
 
 	/**
-	 * A Circle is an Ellipse with equal radii.
+	 * A Circle is an Ellipse with equal axes.
 	 */
 	item def Circle :> Ellipse {
 		attribute :>> radius [1] = semiMajorAxis;
@@ -101,7 +103,7 @@ package ShapeItems {
 	}
 
 	/**
-	 * A Parabola is a planar Path in the shape of a parabola of a given focal length.
+	 * A Parabola is a ConicSection in the shape of a parabola of a given focal length.
 	 */
 	item def Parabola :> ConicSection {
 		attribute focalDistance : LengthValue [1] :> scalarQuantities;
@@ -110,7 +112,7 @@ package ShapeItems {
 	}
 
 	/**
-	 * A Hyperbola is a planar Path in the shape of a hyperbola with given axes.
+	 * A Hyperbola is a ConicSection in the shape of a hyperbola with given axes.
 	 */
 	item def Hyperbola :> ConicSection {
 		attribute tranverseAxis : LengthValue [1] :> scalarQuantities;
@@ -154,7 +156,7 @@ package ShapeItems {
 	}
 
 	/**
-	 * A RightTriangle is a Triangle with base and third edge at right angles.
+	 * A RightTriangle is a Triangle with sides opposite the hypotenuse at right angles.
 	 */
 	item def RightTriangle :> Triangle {
 
@@ -178,7 +180,7 @@ package ShapeItems {
 		item e3 [1];
 		item e4 [1];
 
-		item :>> vertices;
+		item :>> vertices [8];
 		item v12 [2] ordered = (vertices[2], vertices[3]);
 		item v23 [2] ordered = (vertices[4], vertices[5]);
 		item v34 [2] ordered = (vertices[6], vertices[7]);
@@ -186,7 +188,7 @@ package ShapeItems {
 	}
 
 	/**
-	 * A Rectangle is a Quadrilateral two four right angles and given length and width.
+	 * A Rectangle is a Quadrilateral four right angles and given length and width.
 	 */
 	item def Rectangle :> Quadrilateral {
 		attribute :>> length [1];
@@ -223,7 +225,7 @@ package ShapeItems {
 	}
 
 	/**
-	 * A CircularDisc is a Shell bound by a Circle.
+	 * A CircularDisc is a Disc bound by a Circle.
 	 */
 	item def CircularDisc :> Disc {
 		attribute :>> radius [1] = semiMajorAxis;
@@ -232,7 +234,7 @@ package ShapeItems {
 	}
 
 	/**
-	 * An ConicSurface is a surface that has ConicSection cross-sections.
+	 * A ConicSurface is a Surface that has ConicSection cross-sections.
 	 */
 	item def ConicSurface :> Shell {
 		item :>> faces [1..2];
@@ -261,11 +263,11 @@ package ShapeItems {
 		attribute :>> radius [1] = semiAxis1;
 
 		assert constraint { ( semiAxis1 == semiAxis2 ) &
-						( semiAxis2 ==  semiAxis3 ) }
+						    ( semiAxis2 ==  semiAxis3 ) }
 	}
 
 	/**
-	 * An Paraboloid is a ConicSurface with only parabolic cross-sections.
+	 * A Paraboloid is a ConicSurface with only parabolic cross-sections.
 	 */
 	item def Paraboloid :> ConicSurface {
 		attribute focalDistance : LengthValue [1] :> scalarQuantities;
@@ -274,13 +276,11 @@ package ShapeItems {
 	}
 
 	/**
-	 * An Paraboloid is a ConicSurface with only hypebolic cross-sections.
+	 * A Hyperboloid is a ConicSurface with only hypebolic cross-sections.
 	 */
 	item def Hyperboloid :> ConicSurface {
-		attribute tranverseAxis : LengthValue [1] :> scalarQuantities;
+		attribute transverseAxis : LengthValue [1] :> scalarQuantities;
 		attribute conjugateAxis : LengthValue [1] :> scalarQuantities;
-
-		item :>> faces [1..2];
 	}
 
 	/**
@@ -301,7 +301,7 @@ package ShapeItems {
 	}
 
 	/**
-	 * A Torus is Toroid is a revolution of a Circle.
+	 * A Torus is a revolution of a Circle.
 	 */
 	item def Torus :> Toroid {
 
@@ -328,9 +328,9 @@ package ShapeItems {
 
 
 	/**
-	 * A ConeOrCylinder is a Cone or a Cylinder with a given elliptical base, height, width
-	 * (perpindicular distance from the base to the center of the top side or vertex),
-	 * and offsets of this perpindicular at the base from the center of the base.
+	 * A ConeOrCylinder is Shell that a Cone or a Cylinder with a given elliptical base,
+	 * height, width (perpendicular distance from the base to the center of the top side or vertex),
+	 * and offsets of this perpendicular at the base from the center of the base.
 	 */
 	item def ConeOrCylinder :> Shell {
 		attribute :>> semiMajorAxis [1];
@@ -345,7 +345,7 @@ package ShapeItems {
 		item af : Disc [0..1] :> faces;
 		item cf : Surface [1] :> faces;
 
-		item :>> edges [2..4];
+		item :>> edges [2..4] = faces.edges;
 		item be [2] :> edges { 
 			attribute :>> semiMajorAxis = ConeOrCylinder::semiMajorAxis;
 			attribute :>> semiMinorAxis = ConeOrCylinder::semiMinorAxis;
@@ -355,9 +355,9 @@ package ShapeItems {
 			attribute :>> semiMinorAxis = be.semiMinorAxis;
 		}
 		assert constraint { size(ae) == ( isEmpty(af) ? 0 : 2 ) &
-				    size(edges) == (isEmpty(af) ? 2 : 4 )  }
+				            size(edges) == (isEmpty(af) ? 2 : 4 )  }
 
-		item :>> vertices [0..1];
+		item :>> vertices [0..1] = faces.vertices;
 		assert constraint { isEmpty(af) == notEmpty(vertices) }
 
 		/* Bind face edges to specific edges */
@@ -371,7 +371,7 @@ package ShapeItems {
 	}
 
 	/**
-	 * A Cone has two faces and one vertex.
+	 * A Cone has one elliptical sides joined to a point by a curved side.
 	 */
 	item def Cone :> ConeOrCylinder {
 
@@ -406,8 +406,8 @@ package ShapeItems {
 	 * A RightCircularCone is a CircularCone with zero offsets.
 	 */
 	item def RightCircularCone :> CircularCone {
-		attribute :>> xoffset = 0;
-		attribute :>> yoffset = 0;
+		attribute :>> xoffset { attribute :>> num = 0; }
+		attribute :>> yoffset { attribute :>> num = 0; }
 	}
 
 	/**
@@ -435,6 +435,8 @@ package ShapeItems {
 	 item def CircularCylinder :> Cylinder {
 		attribute :>> radius [1] = semiMajorAxis;
 
+		assert constraint { semiMajorAxis == semiMinorAxis }
+
 		item :>> base : CircularDisc;
 		item :>> af : CircularDisc;
 	}
@@ -443,8 +445,8 @@ package ShapeItems {
 	 * A RightCircularCylinder is a CircularCylinder with zero offsets.
 	 */
 	item def RightCircularCylinder :> CircularCylinder {
-		attribute :>> xoffset = 0;
-		attribute :>> yoffset = 0;
+		attribute :>> xoffset { attribute :>> num = 0; }
+		attribute :>> yoffset { attribute :>> num = 0; }
 	}
 
 	/**
@@ -454,13 +456,17 @@ package ShapeItems {
 
 		attribute :>> isClosed = true;
 
-		item :>> faces : Polygon;
+		item :>> faces : Polygon [2..*];
+		
+		item :>> edges = faces.edges;
+		
+		attribute :>> outerSpaceDimension = (size(faces) > 2 ? 3 : 2);
 
 		attribute :>> genus = 0;
 	}
 
 	/**
-	 * A CuboidOrTriangularPrism is either a Cuboid or TriangularPrism.
+	 * A CuboidOrTriangularPrism is a Polyhedron that is either a Cuboid or TriangularPrism.
 	 */
 
 	item def CuboidOrTriangularPrism :> Polyhedron {
@@ -468,8 +474,8 @@ package ShapeItems {
 		item :>> faces [5..6];
 		item tf	 : Quadrilateral [1] :> faces;
 		item bf	 : Quadrilateral [1] :> faces;
-		item ff	 : Polygon :> faces { item :>> edges [3..4]; }
-		item rf	 : Polygon :> faces { item :>> edges [3..4]; }
+		item ff	 : Polygon [1] :> faces { item :>> edges [3..4]; }
+		item rf	 : Polygon [1] :> faces { item :>> edges [3..4]; }
 		item slf : Quadrilateral [1] :> faces;
 		item srf : Quadrilateral [0..1] :> faces;
 
@@ -633,7 +639,7 @@ package ShapeItems {
 
 		item :>> edges [24];
 
-		item :>> vertices [24];
+		item :>> vertices;
 
 		/* Bind face edges to specific edges */
 
@@ -675,7 +681,10 @@ package ShapeItems {
 	 * A RectangularCuboid is a Cuboid with all Rectangular sides.
 	 */
 	item def RectangularCuboid :> Cuboid {
-
+		attribute :>> length [1];
+		attribute :>> width [1];
+		attribute :>> height [1];
+	
 		item :>> tf  : Rectangle;
 		item :>> bf  : Rectangle;
 		item :>> ff  : Rectangle;
@@ -685,10 +694,9 @@ package ShapeItems {
 	}
 	alias Box for RectangularCuboid;
 
-
 	/**
 	 * A Pyramid is a Polyhedron with the sides of a polygon (base) forming the bases of triangles
-	 * that coincide at an apex.  Its height is the perpindicular distance from the base to the apex,
+	 * that join at an apex point.  Its height is the perpindicular distance from the base to the apex,
 	 * and its offsets are between this perpindicular at the base and the center of the base.
 	 */
 	item def Pyramid :> Polyhedron { 
@@ -703,7 +711,7 @@ package ShapeItems {
 		attribute wallNumber : Positive = size(wall);
 
 		assert constraint { size(faces) == wallNumber + 1 }
-		assert constraint { wallNumber == size(base.edges) }
+		assert constraint { size(wall) == size(base.edges) }
 
 		item :>> edges;
 
@@ -712,7 +720,6 @@ package ShapeItems {
 		item :>> vertices;
 		item apex :> vertices = wall.apex;
 
-		assert constraint { size(vertices) == size(edges) }
 		assert constraint { size(apex) == wallNumber }
 
 		/* Base to wall and wall to wall edge coincidence. */

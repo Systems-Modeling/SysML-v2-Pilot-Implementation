@@ -61,6 +61,7 @@ import org.omg.sysml.lang.sysml.ItemUsage;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.ObjectiveMembership;
+import org.omg.sysml.lang.sysml.OwningMembership;
 import org.omg.sysml.lang.sysml.PartDefinition;
 import org.omg.sysml.lang.sysml.PartUsage;
 import org.omg.sysml.lang.sysml.PerformActionUsage;
@@ -328,10 +329,10 @@ public class SysML2PlantUMLStyle {
 
 		@Override
         public String caseMembership(Membership m) {
-            if (m.getOwnedMemberElement() == null) {
-                return " +.. ";
-            } else {
+            if (m instanceof OwningMembership) {
                 return " +-- ";
+            } else {
+                return " +.. ";
             }
         }
 
@@ -347,7 +348,7 @@ public class SysML2PlantUMLStyle {
 
 		@Override
         public String caseFeatureMembership(FeatureMembership fm) {
-			Feature feature = fm.getMemberFeature();
+			Feature feature = fm.getOwnedMemberFeature();
 			return feature != null && feature.isComposite() ? " *-- ": " o-- ";
         }
 

@@ -102,7 +102,7 @@ package AHFNorway {
 				then WaitOnData;
 				// initialize the asynchronous communication with MQTT
 				state WaitOnData;
-					accept cl:Call via tellu.APIS_HTTP.cll
+					accept cl:Call via tellu.APIS_HTTP
 					do action {
 						first start;
 						then action rest_giveItems(in itms=cl.payload,out ack=x);
@@ -125,7 +125,7 @@ package AHFNorway {
 				entry send Subscribe("Return_AllItems") to apisp.APIS_MQTT; 
 				then Idle;		
 				state Idle;
-					accept Return_AllItems via apisp.APIS_MQTT.retall
+					accept Return_AllItems via apisp.APIS_MQTT
 					// Get the stuff and do something with them
 					then Idle;
 			}
@@ -145,17 +145,17 @@ package AHFNorway {
  				entry;
  				then Publ;
  				state Publ;
- 					accept pub:Publish via getTopic.APIS_MQTT.pub
+ 					accept pub:Publish via getTopic.APIS_MQTT
  					// store information about who will provide "Publish::nametopic"
  				then Subsr;
  				
  				state Subsr;
- 					accept Subscribe via giveTopic.APIS_MQTT.subscr
+ 					accept Subscribe via giveTopic.APIS_MQTT
  					// store information about who want to receive "Subscribe::nametopic"
  				then Idle;
  				
  				state Idle;
- 					accept retrnall:Return_AllItems via getTopic.APIS_MQTT.retall
+ 					accept retrnall:Return_AllItems via getTopic.APIS_MQTT
  					do send retrnall to giveTopic.APIS_MQTT
  				then Idle;
  			} 			

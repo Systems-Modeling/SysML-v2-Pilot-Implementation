@@ -54,14 +54,14 @@ package org.omg.sysml.lang.sysml;
  * @model
  * @generated
  */
-public interface FeatureValue extends Membership {
+public interface FeatureValue extends OwningMembership {
 	/**
 	 * Returns the value of the '<em><b>Value</b></em>' reference.
 	 * <p>
 	 * This feature redefines the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Membership#getOwnedMemberElement() <em>Owned Member Element</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.OwningMembership#getOwnedMemberElement() <em>Owned Member Element</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>

@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -22,10 +22,8 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
-import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.ParameterMembership;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -38,21 +36,11 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * </p>
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ParameterMembershipImpl#getOwnedMemberParameter <em>Owned Member Parameter</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.ParameterMembershipImpl#getMemberParameter <em>Member Parameter</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class ParameterMembershipImpl extends FeatureMembershipImpl implements ParameterMembership {
-	/**
-	 * The cached value of the '{@link #getMemberParameter() <em>Member Parameter</em>}' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @see #getMemberParameter()
-	 * @generated
-	 * @ordered
-	 */
-	protected Feature memberParameter;
-
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -68,64 +56,6 @@ public class ParameterMembershipImpl extends FeatureMembershipImpl implements Pa
 	@Override
 	protected EClass eStaticClass() {
 		return SysMLPackage.Literals.PARAMETER_MEMBERSHIP;
-	}
-
-	@Override
-	public Feature getMemberParameter() {
-		return memberParameter == null ? basicGetMemberParameter() : getMemberParameterGen();
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Feature getMemberParameterGen() {
-		if (memberParameter != null && memberParameter.eIsProxy()) {
-			InternalEObject oldMemberParameter = (InternalEObject)memberParameter;
-			memberParameter = (Feature)eResolveProxy(oldMemberParameter);
-			if (memberParameter != oldMemberParameter) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SysMLPackage.PARAMETER_MEMBERSHIP__MEMBER_PARAMETER, oldMemberParameter, memberParameter));
-			}
-		}
-		return memberParameter;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> 
-	 * This is still necessary, because the Xtext grammar bypasses setOwnedMemberParameter to add a new Feature
-	 * directly into the ownedRelationship list.
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated NOT
-	 */
-	public Feature basicGetMemberParameter() {
-		Feature ownedMemberParameter = getOwnedMemberParameter();
-		if (memberParameter == null && ownedMemberParameter != null) {
-			memberParameter = ownedMemberParameter;
-		}
-		return memberParameter;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setMemberParameter(Feature newMemberParameter) {
-		Feature oldMemberParameter = memberParameter;
-		memberParameter = newMemberParameter;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.PARAMETER_MEMBERSHIP__MEMBER_PARAMETER, oldMemberParameter, memberParameter));
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetMemberParameter() {
-		return memberParameter != null;
 	}
 
 	/**
@@ -164,44 +94,6 @@ public class ParameterMembershipImpl extends FeatureMembershipImpl implements Pa
 	 */
 	public boolean isSetOwnedMemberParameter() {
 		return basicGetOwnedMemberParameter() != null;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> 
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Feature getMemberFeature() {
-		return getMemberParameter();
-	}
-
-	/**
-	 * <!-- begin-user-doc --> 
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Feature basicGetMemberFeature() {
-		return basicGetMemberParameter();
-	}
-
-	/**
-	 * <!-- begin-user-doc --> 
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setMemberFeature(Feature newMemberFeature) {
-		setMemberParameter(newMemberFeature);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> 
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetMemberFeature() {
-  		return false;
 	}
 
 	/**
@@ -252,9 +144,6 @@ public class ParameterMembershipImpl extends FeatureMembershipImpl implements Pa
 			case SysMLPackage.PARAMETER_MEMBERSHIP__OWNED_MEMBER_PARAMETER:
 				if (resolve) return getOwnedMemberParameter();
 				return basicGetOwnedMemberParameter();
-			case SysMLPackage.PARAMETER_MEMBERSHIP__MEMBER_PARAMETER:
-				if (resolve) return getMemberParameter();
-				return basicGetMemberParameter();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -268,9 +157,6 @@ public class ParameterMembershipImpl extends FeatureMembershipImpl implements Pa
 		switch (featureID) {
 			case SysMLPackage.PARAMETER_MEMBERSHIP__OWNED_MEMBER_PARAMETER:
 				setOwnedMemberParameter((Feature)newValue);
-				return;
-			case SysMLPackage.PARAMETER_MEMBERSHIP__MEMBER_PARAMETER:
-				setMemberParameter((Feature)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -286,9 +172,6 @@ public class ParameterMembershipImpl extends FeatureMembershipImpl implements Pa
 			case SysMLPackage.PARAMETER_MEMBERSHIP__OWNED_MEMBER_PARAMETER:
 				setOwnedMemberParameter((Feature)null);
 				return;
-			case SysMLPackage.PARAMETER_MEMBERSHIP__MEMBER_PARAMETER:
-				setMemberParameter((Feature)null);
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -302,12 +185,8 @@ public class ParameterMembershipImpl extends FeatureMembershipImpl implements Pa
 		switch (featureID) {
 			case SysMLPackage.PARAMETER_MEMBERSHIP__OWNED_MEMBER_FEATURE:
 				return isSetOwnedMemberFeature();
-			case SysMLPackage.PARAMETER_MEMBERSHIP__MEMBER_FEATURE:
-				return isSetMemberFeature();
 			case SysMLPackage.PARAMETER_MEMBERSHIP__OWNED_MEMBER_PARAMETER:
 				return isSetOwnedMemberParameter();
-			case SysMLPackage.PARAMETER_MEMBERSHIP__MEMBER_PARAMETER:
-				return isSetMemberParameter();
 		}
 		return super.eIsSet(featureID);
 	}

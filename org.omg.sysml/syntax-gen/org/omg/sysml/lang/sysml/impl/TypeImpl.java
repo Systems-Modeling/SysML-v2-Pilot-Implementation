@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -71,7 +71,6 @@ import org.omg.sysml.util.TypeUtil;
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeImpl#getMembership <em>Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeImpl#getOwnedRelationship <em>Owned Relationship</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeImpl#getOwnedSpecialization <em>Owned Specialization</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeImpl#getOwnedFeatureMembership <em>Owned Feature Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeImpl#getOwnedFeature <em>Owned Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeImpl#getOwnedEndFeature <em>Owned End Feature</em>}</li>
@@ -84,11 +83,12 @@ import org.omg.sysml.util.TypeUtil;
  *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeImpl#isSufficient <em>Is Sufficient</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeImpl#getOwnedConjugator <em>Owned Conjugator</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeImpl#isConjugated <em>Is Conjugated</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeImpl#getFeatureMembership <em>Feature Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeImpl#getInheritedFeature <em>Inherited Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeImpl#getMultiplicity <em>Multiplicity</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeImpl#getDirectedFeature <em>Directed Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeImpl#getOwnedDisjoining <em>Owned Disjoining</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeImpl#getFeatureMembership <em>Feature Membership</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeImpl#getOwnedSpecialization <em>Owned Specialization</em>}</li>
  * </ul>
  *
  * @generated
@@ -255,7 +255,7 @@ public class TypeImpl extends NamespaceImpl implements Type {
 	public EList<Feature> getFeature() {
 		EList<Feature> features = new NonNotifyingEObjectEList<>(Feature.class, this, SysMLPackage.TYPE__FEATURE);
 		getFeatureMembership().stream().
-			map(FeatureMembership::getMemberFeature).
+			map(FeatureMembership::getOwnedMemberFeature).
 			filter(f->f != null).
 			forEachOrdered(features::add);
 		return features;
@@ -429,7 +429,8 @@ public class TypeImpl extends NamespaceImpl implements Type {
 	@Override
 	public EList<FeatureMembership> getFeatureMembership() {
 		EList<FeatureMembership> featureMemberships = new NonNotifyingEObjectEList<>(FeatureMembership.class, this, SysMLPackage.TYPE__FEATURE_MEMBERSHIP);
-		getMembership().stream().
+		featureMemberships.addAll(getOwnedFeatureMembership());
+		getInheritedMembership().stream().
 			filter(FeatureMembership.class::isInstance).
 			map(FeatureMembership.class::cast).
 			forEachOrdered(featureMemberships::add);
@@ -445,8 +446,9 @@ public class TypeImpl extends NamespaceImpl implements Type {
 	public EList<Feature> getInheritedFeature() {
 		EList<Feature> features = new NonNotifyingEObjectEList<>(Feature.class, this, SysMLPackage.TYPE__INHERITED_FEATURE);
 		getInheritedMembership().stream().
-			filter(m->m instanceof FeatureMembership).
-			map(m->((FeatureMembership)m).getMemberFeature()).
+			filter(FeatureMembership.class::isInstance).
+			map(FeatureMembership.class::cast).
+			map(FeatureMembership::getOwnedMemberFeature).
 			filter(f->f != null).
 			forEachOrdered(features::add);
 		return features;
@@ -531,16 +533,6 @@ public class TypeImpl extends NamespaceImpl implements Type {
 	}
 
 	/**
-	 * The array of superset feature identifiers for the '{@link #getOwnedSpecialization() <em>Owned Specialization</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOwnedSpecialization()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final int[] OWNED_SPECIALIZATION_ESUPERSETS = new int[] {SysMLPackage.TYPE__OWNED_RELATIONSHIP};
-
-	/**
 	 * The array of superset feature identifiers for the '{@link #getOwnedDisjoining() <em>Owned Disjoining</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -549,6 +541,16 @@ public class TypeImpl extends NamespaceImpl implements Type {
 	 * @ordered
 	 */
 	protected static final int[] OWNED_DISJOINING_ESUPERSETS = new int[] {SysMLPackage.TYPE__OWNED_RELATIONSHIP};
+
+	/**
+	 * The array of superset feature identifiers for the '{@link #getOwnedSpecialization() <em>Owned Specialization</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedSpecialization()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int[] OWNED_SPECIALIZATION_ESUPERSETS = new int[] {SysMLPackage.TYPE__OWNED_RELATIONSHIP};
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -724,8 +726,6 @@ public class TypeImpl extends NamespaceImpl implements Type {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case SysMLPackage.TYPE__OWNED_SPECIALIZATION:
-				return getOwnedSpecialization();
 			case SysMLPackage.TYPE__OWNED_FEATURE_MEMBERSHIP:
 				return getOwnedFeatureMembership();
 			case SysMLPackage.TYPE__OWNED_FEATURE:
@@ -751,8 +751,6 @@ public class TypeImpl extends NamespaceImpl implements Type {
 				return basicGetOwnedConjugator();
 			case SysMLPackage.TYPE__IS_CONJUGATED:
 				return isConjugated();
-			case SysMLPackage.TYPE__FEATURE_MEMBERSHIP:
-				return getFeatureMembership();
 			case SysMLPackage.TYPE__INHERITED_FEATURE:
 				return getInheritedFeature();
 			case SysMLPackage.TYPE__MULTIPLICITY:
@@ -762,6 +760,10 @@ public class TypeImpl extends NamespaceImpl implements Type {
 				return getDirectedFeature();
 			case SysMLPackage.TYPE__OWNED_DISJOINING:
 				return getOwnedDisjoining();
+			case SysMLPackage.TYPE__FEATURE_MEMBERSHIP:
+				return getFeatureMembership();
+			case SysMLPackage.TYPE__OWNED_SPECIALIZATION:
+				return getOwnedSpecialization();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -775,10 +777,6 @@ public class TypeImpl extends NamespaceImpl implements Type {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case SysMLPackage.TYPE__OWNED_SPECIALIZATION:
-				getOwnedSpecialization().clear();
-				getOwnedSpecialization().addAll((Collection<? extends Specialization>)newValue);
-				return;
 			case SysMLPackage.TYPE__OWNED_FEATURE_MEMBERSHIP:
 				getOwnedFeatureMembership().clear();
 				getOwnedFeatureMembership().addAll((Collection<? extends FeatureMembership>)newValue);
@@ -823,10 +821,6 @@ public class TypeImpl extends NamespaceImpl implements Type {
 			case SysMLPackage.TYPE__IS_CONJUGATED:
 				setIsConjugated((Boolean)newValue);
 				return;
-			case SysMLPackage.TYPE__FEATURE_MEMBERSHIP:
-				getFeatureMembership().clear();
-				getFeatureMembership().addAll((Collection<? extends FeatureMembership>)newValue);
-				return;
 			case SysMLPackage.TYPE__INHERITED_FEATURE:
 				getInheritedFeature().clear();
 				getInheritedFeature().addAll((Collection<? extends Feature>)newValue);
@@ -842,6 +836,14 @@ public class TypeImpl extends NamespaceImpl implements Type {
 				getOwnedDisjoining().clear();
 				getOwnedDisjoining().addAll((Collection<? extends Disjoining>)newValue);
 				return;
+			case SysMLPackage.TYPE__FEATURE_MEMBERSHIP:
+				getFeatureMembership().clear();
+				getFeatureMembership().addAll((Collection<? extends FeatureMembership>)newValue);
+				return;
+			case SysMLPackage.TYPE__OWNED_SPECIALIZATION:
+				getOwnedSpecialization().clear();
+				getOwnedSpecialization().addAll((Collection<? extends Specialization>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -854,9 +856,6 @@ public class TypeImpl extends NamespaceImpl implements Type {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.TYPE__OWNED_SPECIALIZATION:
-				getOwnedSpecialization().clear();
-				return;
 			case SysMLPackage.TYPE__OWNED_FEATURE_MEMBERSHIP:
 				getOwnedFeatureMembership().clear();
 				return;
@@ -893,9 +892,6 @@ public class TypeImpl extends NamespaceImpl implements Type {
 			case SysMLPackage.TYPE__IS_CONJUGATED:
 				setIsConjugated(IS_CONJUGATED_EDEFAULT);
 				return;
-			case SysMLPackage.TYPE__FEATURE_MEMBERSHIP:
-				getFeatureMembership().clear();
-				return;
 			case SysMLPackage.TYPE__INHERITED_FEATURE:
 				getInheritedFeature().clear();
 				return;
@@ -907,6 +903,12 @@ public class TypeImpl extends NamespaceImpl implements Type {
 				return;
 			case SysMLPackage.TYPE__OWNED_DISJOINING:
 				getOwnedDisjoining().clear();
+				return;
+			case SysMLPackage.TYPE__FEATURE_MEMBERSHIP:
+				getFeatureMembership().clear();
+				return;
+			case SysMLPackage.TYPE__OWNED_SPECIALIZATION:
+				getOwnedSpecialization().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -924,8 +926,6 @@ public class TypeImpl extends NamespaceImpl implements Type {
 				return isSetMembership();
 			case SysMLPackage.TYPE__OWNED_RELATIONSHIP:
 				return ownedRelationship != null && !ownedRelationship.isEmpty();
-			case SysMLPackage.TYPE__OWNED_SPECIALIZATION:
-				return !getOwnedSpecialization().isEmpty();
 			case SysMLPackage.TYPE__OWNED_FEATURE_MEMBERSHIP:
 				return OWNED_FEATURE_MEMBERSHIP__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.TYPE__OWNED_FEATURE:
@@ -950,8 +950,6 @@ public class TypeImpl extends NamespaceImpl implements Type {
 				return basicGetOwnedConjugator() != null;
 			case SysMLPackage.TYPE__IS_CONJUGATED:
 				return isConjugated() != IS_CONJUGATED_EDEFAULT;
-			case SysMLPackage.TYPE__FEATURE_MEMBERSHIP:
-				return !getFeatureMembership().isEmpty();
 			case SysMLPackage.TYPE__INHERITED_FEATURE:
 				return !getInheritedFeature().isEmpty();
 			case SysMLPackage.TYPE__MULTIPLICITY:
@@ -960,6 +958,10 @@ public class TypeImpl extends NamespaceImpl implements Type {
 				return !getDirectedFeature().isEmpty();
 			case SysMLPackage.TYPE__OWNED_DISJOINING:
 				return !getOwnedDisjoining().isEmpty();
+			case SysMLPackage.TYPE__FEATURE_MEMBERSHIP:
+				return !getFeatureMembership().isEmpty();
+			case SysMLPackage.TYPE__OWNED_SPECIALIZATION:
+				return !getOwnedSpecialization().isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

@@ -172,10 +172,10 @@ public class ExpressionImpl extends StepImpl implements Expression {
 		EList<Feature> outputs = new BasicInternalEList<Feature>(Feature.class);
 		// Note: Using directionOf causes an infinite recursion.
 		getOwnedFeature().stream().
-		filter(feature->
-			FeatureDirectionKind.OUT == feature.getDirection() || 
-			FeatureDirectionKind.INOUT == feature.getDirection()).
-			forEachOrdered(outputs::add);
+			filter(feature->
+				FeatureDirectionKind.OUT == feature.getDirection() || 
+				FeatureDirectionKind.INOUT == feature.getDirection()).
+				forEachOrdered(outputs::add);
 		return outputs;
 	}
 	

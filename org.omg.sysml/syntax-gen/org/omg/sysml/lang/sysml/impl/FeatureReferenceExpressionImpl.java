@@ -121,8 +121,8 @@ public class FeatureReferenceExpressionImpl extends ExpressionImpl implements Fe
 	
 	@Override
 	public EList<Element> evaluate(Element target) {
+		Feature referent = getReferent();
 		if (target instanceof Type) {
-			Feature referent = getReferent();
 			if (referent != null) {
 				if (TypeUtil.conforms(referent, getSelfReferenceFeature())) {
 					EList<Element> result = new BasicEList<>();
@@ -131,7 +131,7 @@ public class FeatureReferenceExpressionImpl extends ExpressionImpl implements Fe
 				} else {
 					Optional<FeatureImpl> feature = ((Type)target).getFeature().stream().
 							map(FeatureImpl.class::cast).
-							filter(f->FeatureUtil.getRedefinedFeaturesOf(f).contains(referent)).
+							filter(f->f == referent || FeatureUtil.getRedefinedFeaturesOf(f).contains(referent)).
 							findFirst();
 					if (feature.isPresent()) {
 						FeatureValue featureValue = FeatureUtil.getValuationFor(feature.get());
@@ -141,7 +141,7 @@ public class FeatureReferenceExpressionImpl extends ExpressionImpl implements Fe
 								return value.evaluate(target);
 							}
 						}
-					} else if (referent.getFeaturingType().isEmpty()) {
+					} else {
 						EList<Element> result = new BasicEList<>();
 						result.add(referent);
 						return result;
@@ -149,7 +149,9 @@ public class FeatureReferenceExpressionImpl extends ExpressionImpl implements Fe
 				}
 			}
 		}
-		return new BasicEList<>();
+		EList<Element> result = new BasicEList<>();
+		result.add(referent);
+		return result;
 	}
 	
 	/**

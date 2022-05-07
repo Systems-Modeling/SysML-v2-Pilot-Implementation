@@ -254,8 +254,7 @@ public class RequirementDefinitionImpl extends ConstraintDefinitionImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public String getHumanId() {
+	public String getShortName() {
 		return getReqId();
 	}
 
@@ -264,8 +263,8 @@ public class RequirementDefinitionImpl extends ConstraintDefinitionImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setHumanId(String newHumanId) {
-		setReqId(newHumanId);
+	public void setShortName(String newShortName) {
+		setReqId(newShortName);
 	}
 
 	/**
@@ -273,7 +272,7 @@ public class RequirementDefinitionImpl extends ConstraintDefinitionImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isSetHumanId() {
+	public boolean isSetShortName() {
   		return false;
 	}
 
@@ -393,8 +392,8 @@ public class RequirementDefinitionImpl extends ConstraintDefinitionImpl implemen
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.REQUIREMENT_DEFINITION__HUMAN_ID:
-				return isSetHumanId();
+			case SysMLPackage.REQUIREMENT_DEFINITION__SHORT_NAME:
+				return isSetShortName();
 			case SysMLPackage.REQUIREMENT_DEFINITION__REQ_ID:
 				return isSetReqId();
 			case SysMLPackage.REQUIREMENT_DEFINITION__TEXT:

@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2021-2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -42,6 +42,7 @@ import org.omg.sysml.lang.sysml.CaseDefinition;
 import org.omg.sysml.lang.sysml.CaseUsage;
 import org.omg.sysml.lang.sysml.Definition;
 import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureChaining;
 import org.omg.sysml.lang.sysml.FeatureMembership;
@@ -50,6 +51,7 @@ import org.omg.sysml.lang.sysml.ItemFeature;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.OccurrenceDefinition;
 import org.omg.sysml.lang.sysml.OccurrenceUsage;
+import org.omg.sysml.lang.sysml.ParameterMembership;
 import org.omg.sysml.lang.sysml.RequirementUsage;
 import org.omg.sysml.lang.sysml.SubjectMembership;
 import org.omg.sysml.lang.sysml.SysMLFactory;
@@ -143,7 +145,7 @@ public class TypeUtil {
 		return type.visibleMemberships(new BasicEList<>(), false, false).stream().
 				filter(FeatureMembership.class::isInstance).
 				map(FeatureMembership.class::cast).
-				map(FeatureMembership::getMemberFeature).
+				map(FeatureMembership::getOwnedMemberFeature).
 				collect(Collectors.toList());
 	}
 	
@@ -261,7 +263,7 @@ public class TypeUtil {
 	public static <M extends Membership, T> Stream<T> getInheritedMembersByMembershipIn(Type type, Class<M> kind, Class<T> memberType) {
 		return type.getInheritedMembership().stream().
 				filter(kind::isInstance).
-				map(Membership::getOwnedMemberElement).
+				map(Membership::getMemberElement).
 				filter(memberType::isInstance).
 				map(memberType::cast);
 	}
@@ -269,7 +271,7 @@ public class TypeUtil {
 	public static <T extends Membership> Stream<Feature> getFeaturesByMembershipIn(Type type, Class<T> kind) {
 		return type.getFeatureMembership().stream().
 				filter(kind::isInstance).
-				map(FeatureMembership::getMemberFeature);
+				map(FeatureMembership::getOwnedMemberFeature);
 	}
 
 	public static <T extends Membership> Feature getFeatureByMembershipIn(Type type, Class<T> kind) {
@@ -294,6 +296,17 @@ public class TypeUtil {
 
 	public static FeatureMembership addOwnedFeatureTo(Type type, Feature feature) {
 		FeatureMembership membership = SysMLFactory.eINSTANCE.createFeatureMembership();
+		membership.setOwnedMemberFeature(feature);
+		type.getOwnedRelationship().add(membership);
+		return membership;
+	}
+	
+	public static ParameterMembership addOwnedParameterTo(Type type, Expression value) {
+		Feature feature = SysMLFactory.eINSTANCE.createFeature();
+		if (value != null) {
+			FeatureUtil.addFeatureValueTo(feature, value);
+		}
+		ParameterMembership membership = SysMLFactory.eINSTANCE.createParameterMembership();
 		membership.setOwnedMemberFeature(feature);
 		type.getOwnedRelationship().add(membership);
 		return membership;

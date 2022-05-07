@@ -16,10 +16,10 @@ END_SETUP
 */
 
 package Test {
-	 //ids are the same
-	 //XPECT warnings --> "Duplicate of other ID or member name" at "one"
+	 //short names are the same
+	 //XPECT warnings --> "Duplicate of other element name" at "one"
 	 classifier <one> two;
-	 //XPECT warnings --> "Duplicate of other ID or member name" at "one"
+	 //XPECT warnings --> "Duplicate of other element name" at "one"
 	 classifier <one> three;
 }
 

@@ -225,7 +225,6 @@ public interface Usage extends Feature {
 	/**
 	 * Returns the value of the '<em><b>Nested Port</b></em>' reference list.
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.PortUsage}.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.PortUsage#getPortOwningUsage <em>Port Owning Usage</em>}'.
 	 * <p>
 	 * This feature subsets the following features:
 	 * </p>
@@ -243,8 +242,8 @@ public interface Usage extends Feature {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Nested Port</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedPort()
-	 * @see org.omg.sysml.lang.sysml.PortUsage#getPortOwningUsage
-	 * @model opposite="portOwningUsage" transient="true" volatile="true" derived="true"
+	 * @model transient="true" volatile="true" derived="true"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='portOwningUsage'"
 	 *        annotation="subsets"
 	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated

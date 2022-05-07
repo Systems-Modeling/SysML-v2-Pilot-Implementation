@@ -19,6 +19,7 @@
  * 
  * Contributors:
  *  Zoltan Ujhelyi
+ *  Ed Seidewitz
  * 
  *****************************************************************************/
 package org.omg.sysml.util;
@@ -44,6 +45,11 @@ public class NonNotifyingEObjectEList<T> extends EObjectEList<T> {
 	@Override
 	public boolean isUnique() {
 		return this.isUnique;
+	}
+	
+	@Override
+	protected boolean canContainNull() {
+		return !this.isUnique;
 	}
 
 	@Override

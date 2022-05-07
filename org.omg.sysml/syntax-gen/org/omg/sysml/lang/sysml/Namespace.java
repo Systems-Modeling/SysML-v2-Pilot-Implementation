@@ -35,7 +35,7 @@ import org.eclipse.emf.common.util.EList;
  * 
  * membership->forAll(m1 | membership->forAll(m2 | m1 <> m2 implies m1.isDistinguishableFrom(m2)))
  * member = membership.memberElement
- * ownedMember = ownedMembership.ownedMemberElement
+ * ownedMember = ownedMembership->selectByKind(OwningMembership).ownedMemberElement
  * importedMembership = importedMemberships(Set{})
  * ownedImport = ownedRelationship->selectByKind(Import)
  * ownedMembership = ownedRelationship->selectByKind(Membership)
@@ -45,12 +45,12 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link org.omg.sysml.lang.sysml.Namespace#getOwnedMembership <em>Owned Membership</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Namespace#getOwnedMember <em>Owned Member</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Namespace#getMembership <em>Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Namespace#getOwnedImport <em>Owned Import</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Namespace#getMember <em>Member</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Namespace#getOwnedMember <em>Owned Member</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Namespace#getImportedMembership <em>Imported Membership</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Namespace#getOwnedMembership <em>Owned Membership</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getNamespace()
@@ -69,7 +69,7 @@ public interface Namespace extends Element {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>All Memberships in this Namespace, defined as the union of <code>ownedMemberships</code> and <code>importedMemberships</code>.</p>
+	 * <p>All Memberships in this Namespace, including (at least) the union of <code>ownedMemberships</code> and <code>importedMemberships</code>.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Membership</em>' reference list.
@@ -117,7 +117,13 @@ public interface Namespace extends Element {
 	 * <!-- begin-model-doc -->
 	 * <p>Return the names of the given <code>element</code> as it is known in this Namespace.</p>
 	 * 
-	 * memberships->select(memberElement = element).effectiveMemberName->asSet()
+	 * let elementMemberships : Sequence(Membership) = 
+	 *     memberships->select(memberElement = element) 
+	 * in
+	 *     memberships.memberElementId->
+	 *         union(memberships.memberShortName)->
+	 *         union(memberships.memberName)->
+	 *         asSet()
 	 * <!-- end-model-doc -->
 	 * @model dataType="org.omg.sysml.lang.types.String" ordered="false" elementRequired="true" elementOrdered="false"
 	 * @generated

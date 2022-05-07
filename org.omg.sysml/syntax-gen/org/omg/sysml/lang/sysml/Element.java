@@ -33,16 +33,13 @@ import org.eclipse.emf.ecore.EObject;
  * <!-- begin-model-doc -->
  * <p>An Element is a constituent of a model that is uniquely identified relative to all other Elements. It can have Relationships with other Elements. Some of these Relationships might imply ownership of other Elements, which means that if an Element is deleted from a model, then so are all the Elements that it owns.</p>
  * 
- * name = if owningNamespace = null then null
- * else owningNamespace.nameOf(self) endif
  * ownedElement = ownedRelationship.ownedRelatedElement
  * owner = owningRelationship.owningRelatedElement
  * qualifiedName =
  *     if owningNamespace = null then null
- *     else if owningNamespace.owner = null then escapedName()
- *     else if owningNamespace.qualifiedName = null then null
- *     else owningNamespace.qualifiedName + "::" + escapedName()
- *     endif endif endif
+ *     else if owningNamespace.qualifiedName = null then escapedName()
+ *     else owningNamespace.qualifiedName + '::' + escapedName()
+ *     endif endif
  * documentation = ownedElement->selectByKind(Documentation)
  * ownedAnnotation = ownedRelationship->selectByKind(Annotation)->
  *     select(a | a.annotatedElement = self)
@@ -54,20 +51,20 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwningMembership <em>Owning Membership</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwningNamespace <em>Owning Namespace</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwningRelationship <em>Owning Relationship</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Element#getIdentifier <em>Identifier</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Element#getName <em>Name</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwnedRelationship <em>Owned Relationship</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwningRelationship <em>Owning Relationship</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwningNamespace <em>Owning Namespace</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Element#getElementId <em>Element Id</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwner <em>Owner</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwnedElement <em>Owned Element</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getDocumentation <em>Documentation</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwnedAnnotation <em>Owned Annotation</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getTextualRepresentation <em>Textual Representation</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Element#getQualifiedName <em>Qualified Name</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Element#getAliasIds <em>Alias Ids</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Element#getShortName <em>Short Name</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getEffectiveName <em>Effective Name</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Element#getAliasId <em>Alias Id</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Element#getHumanId <em>Human Id</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Element#getName <em>Name</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Element#getQualifiedName <em>Qualified Name</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getElement()
@@ -77,7 +74,7 @@ import org.eclipse.emf.ecore.EObject;
 public interface Element extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Owning Membership</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Membership#getOwnedMemberElement <em>Owned Member Element</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.OwningMembership#getOwnedMemberElement <em>Owned Member Element</em>}'.
 	 * <p>
 	 * This feature subsets the following features:
 	 * </p>
@@ -95,15 +92,14 @@ public interface Element extends EObject {
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owning Membership</em>' reference.
-	 * @see #setOwningMembership(Membership)
+	 * @see #setOwningMembership(OwningMembership)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getElement_OwningMembership()
-	 * @see org.omg.sysml.lang.sysml.Membership#getOwnedMemberElement
+	 * @see org.omg.sysml.lang.sysml.OwningMembership#getOwnedMemberElement
 	 * @model opposite="ownedMemberElement" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="subsets"
-	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
-	Membership getOwningMembership();
+	OwningMembership getOwningMembership();
 
 	/**
 	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Element#getOwningMembership <em>Owning Membership</em>}' reference.
@@ -113,7 +109,7 @@ public interface Element extends EObject {
 	 * @see #getOwningMembership()
 	 * @generated
 	 */
-	void setOwningMembership(Membership value);
+	void setOwningMembership(OwningMembership value);
 
 	/**
 	 * Returns the value of the '<em><b>Owning Relationship</b></em>' container reference.
@@ -165,7 +161,6 @@ public interface Element extends EObject {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getElement_OwningNamespace()
 	 * @see org.omg.sysml.lang.sysml.Namespace#getOwnedMember
 	 * @model opposite="ownedMember" transient="true" volatile="true" derived="true" ordered="false"
-	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	Namespace getOwningNamespace();
@@ -179,6 +174,31 @@ public interface Element extends EObject {
 	 * @generated
 	 */
 	void setOwningNamespace(Namespace value);
+
+	/**
+	 * Returns the value of the '<em><b>Element Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The globally unique identifier for this Element. This is intended to be set by tooling, and it must not change during the lifetime of the Element.</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Element Id</em>' attribute.
+	 * @see #setElementId(String)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getElement_ElementId()
+	 * @model id="true" dataType="org.omg.sysml.lang.types.String" required="true" ordered="false"
+	 * @generated
+	 */
+	String getElementId();
+
+	/**
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Element#getElementId <em>Element Id</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Element Id</em>' attribute.
+	 * @see #getElementId()
+	 * @generated
+	 */
+	void setElementId(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Owned Element</b></em>' reference list.
@@ -198,7 +218,6 @@ public interface Element extends EObject {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getElement_OwnedElement()
 	 * @see org.omg.sysml.lang.sysml.Element#getOwner
 	 * @model opposite="owner" transient="true" volatile="true" derived="true"
-	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<Element> getOwnedElement();
@@ -208,13 +227,12 @@ public interface Element extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The name of this Element, if it has one, qualified by the name of its <code>owningNamespace</code>, if it has one. The <code>qualifiedName<code> is represented in a form that is valid according to the KerML textual concrete syntax.</p>
+	 * <p>If this Element has an <code>owningNamespace</code>, then the full ownership-qualified name of the Element. This is defined as <code>qualifiedName</code> (if any) of the <code>owningNamespace</code> of the Element followed by the unqualified name of the Element (given by the first of its <code>elementNames</code>). The <code>qualifiedName<code> is represented in a form that is valid according to the KerML textual concrete syntax for qualified names (including use of unrestricted name notation and escaped characters, as necessary). Only a root Namespace has an empty <code>qualifiedName</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Qualified Name</em>' attribute.
 	 * @see #setQualifiedName(String)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getElement_QualifiedName()
 	 * @model dataType="org.omg.sysml.lang.types.String" transient="true" volatile="true" derived="true" ordered="false"
-	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	String getQualifiedName();
@@ -240,7 +258,6 @@ public interface Element extends EObject {
 	 * @see #setEffectiveName(String)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getElement_EffectiveName()
 	 * @model dataType="org.omg.sysml.lang.types.String" transient="true" volatile="true" derived="true" ordered="false"
-	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	String getEffectiveName();
@@ -254,54 +271,6 @@ public interface Element extends EObject {
 	 * @generated
 	 */
 	void setEffectiveName(String value);
-
-	/**
-	 * Returns the value of the '<em><b>Alias Id</b></em>' attribute list.
-	 * The list contents are of type {@link java.lang.String}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * <p>Various alternative identifiers for this Element. Generally, these will be set by tools, but one of them (the <code>humanId</code>), in particular, may be set by the modeler.</p>
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Alias Id</em>' attribute list.
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getElement_AliasId()
-	 * @model dataType="org.omg.sysml.lang.types.String"
-	 * @generated
-	 */
-	EList<String> getAliasId();
-
-	/**
-	 * Returns the value of the '<em><b>Human Id</b></em>' attribute.
-	 * <p>
-	 * This feature subsets the following features:
-	 * </p>
-	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Element#getAliasId() <em>Alias Id</em>}'</li>
-	 * </ul>
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * <p>An identifier for this Element that is set by the modeler. It is the responsibility of the modeler to maintain the uniqueness of this identifier within a model or relative to some other context. The <code>humanId</code> essentially acts as an alias for an Element that is specifically tied to that Element, rather than being a name for it in the context of some explicit namespace.</p> 
-	 * 
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Human Id</em>' attribute.
-	 * @see #setHumanId(String)
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getElement_HumanId()
-	 * @model dataType="org.omg.sysml.lang.types.String" ordered="false"
-	 *        annotation="subsets"
-	 * @generated
-	 */
-	String getHumanId();
-
-	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Element#getHumanId <em>Human Id</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Human Id</em>' attribute.
-	 * @see #getHumanId()
-	 * @generated
-	 */
-	void setHumanId(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Owner</b></em>' reference.
@@ -320,7 +289,6 @@ public interface Element extends EObject {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getElement_Owner()
 	 * @see org.omg.sysml.lang.sysml.Element#getOwnedElement
 	 * @model opposite="ownedElement" transient="true" volatile="true" derived="true" ordered="false"
-	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	Element getOwner();
@@ -336,35 +304,6 @@ public interface Element extends EObject {
 	void setOwner(Element value);
 
 	/**
-	 * Returns the value of the '<em><b>Identifier</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Identifier</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * <p>The globally unique identifier for this Element. This is intended to be set by tooling, and it must not change during the lifetime of the Element.</p>
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Identifier</em>' attribute.
-	 * @see #setIdentifier(String)
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getElement_Identifier()
-	 * @model id="true" dataType="org.omg.sysml.lang.types.String" required="true" ordered="false"
-	 * @generated
-	 */
-	String getIdentifier();
-
-	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Element#getIdentifier <em>Identifier</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Identifier</em>' attribute.
-	 * @see #getIdentifier()
-	 * @generated
-	 */
-	void setIdentifier(String value);
-
-	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -373,14 +312,13 @@ public interface Element extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The primary name of this Element. If the Element is owned by a Namespace, then its <code>name</code> is derived as the <code>memberName</code> of the <code>owningMembership</code> of the Element.</p>
+	 * <p>The primary name of this Element.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getElement_Name()
-	 * @model dataType="org.omg.sysml.lang.types.String" transient="true" volatile="true" derived="true" ordered="false"
-	 *        annotation="http://www.omg.org/spec/SysML"
+	 * @model dataType="org.omg.sysml.lang.types.String" ordered="false"
 	 * @generated
 	 */
 	String getName();
@@ -440,7 +378,6 @@ public interface Element extends EObject {
 	 * @see org.omg.sysml.lang.sysml.Documentation#getDocumentedElement
 	 * @model opposite="documentedElement" transient="true" volatile="true" derived="true"
 	 *        annotation="subsets"
-	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<Documentation> getDocumentation();
@@ -465,7 +402,6 @@ public interface Element extends EObject {
 	 * @see org.omg.sysml.lang.sysml.Annotation#getOwningAnnotatedElement
 	 * @model opposite="owningAnnotatedElement" transient="true" volatile="true" derived="true"
 	 *        annotation="subsets"
-	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<Annotation> getOwnedAnnotation();
@@ -490,16 +426,56 @@ public interface Element extends EObject {
 	 * @see org.omg.sysml.lang.sysml.TextualRepresentation#getRepresentedElement
 	 * @model opposite="representedElement" transient="true" volatile="true" derived="true"
 	 *        annotation="subsets"
-	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<TextualRepresentation> getTextualRepresentation();
 
 	/**
+	 * Returns the value of the '<em><b>Alias Ids</b></em>' attribute list.
+	 * The list contents are of type {@link java.lang.String}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Return either the <code>name</code> of this Element, if this has the form of a basic name (or is null), or, otherwise, its representation as a restricted name according to the lexical structure of the KerML textual notation (i.e., with special characters escaped and surrounded by single quote characters).<p>
+	 * <p>Various alternative identifiers for this Element. Generally, these will be set by tools.</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Alias Ids</em>' attribute list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getElement_AliasIds()
+	 * @model dataType="org.omg.sysml.lang.types.String"
+	 * @generated
+	 */
+	EList<String> getAliasIds();
+
+	/**
+	 * Returns the value of the '<em><b>Short Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>An optional alternative name for the Element that is intended to be shorter or in some way more succinct than its primary <code>name</code>. It may act as a modeler-specified identifier for the Element, though it is then the responsibility of the modeler to maintain the uniqueness of this identifier within a model or relative to some other context.</p> 
+	 * 
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Short Name</em>' attribute.
+	 * @see #setShortName(String)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getElement_ShortName()
+	 * @model dataType="org.omg.sysml.lang.types.String" ordered="false"
+	 * @generated
+	 */
+	String getShortName();
+
+	/**
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Element#getShortName <em>Short Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Short Name</em>' attribute.
+	 * @see #getShortName()
+	 * @generated
+	 */
+	void setShortName(String value);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Return the fist of <code>effectiveName</code>, <code>shortName</code> or <code>elementId</code> of this Element that is non-null, either as is, if it has the form of a basic name, or, otherwise, represented as a restricted name according to the lexical structure of the KerML textual notation (i.e., surrounded by single quote characters and with special characters escaped).</p>
 	 * <!-- end-model-doc -->
 	 * @model dataType="org.omg.sysml.lang.types.String" ordered="false"
 	 * @generated

@@ -66,6 +66,7 @@ import org.omg.sysml.lang.sysml.FeatureChainExpression
 import org.omg.sysml.lang.sysml.MetadataFeature
 import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil
 import org.omg.sysml.util.ImplicitGeneralizationMap
+import org.omg.sysml.lang.sysml.OwningMembership
 
 /**
  * This class contains custom validation rules. 
@@ -98,11 +99,11 @@ class KerMLValidator extends AbstractKerMLValidator {
 	public static val INVALID_RELATIONSHIP__RELATED_ELEMENTS = 'Invalid Relationship - Related element minimum validation'
 	public static val INVALID_RELATIONSHIP__RELATED_ELEMENTS_MSG = "Relationships must have at least two related elements"
 	public static val INVALID_MEMBERSHIP__DISTINGUISHABILITY = "Invalid Membership - Distinguishablity"
-	public static val INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_0 = "Duplicate of owned member ID"
-	public static val INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_1 = "Duplicate owned member name"
+	public static val INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_0 = "Duplicate of owned element name"
+	public static val INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_1 = "Duplicate of other alias name"
 	public static val INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_2 = "Duplicate of inherited member name"
-	public static val INVALID_ELEMENT__ID_DISTINGUISHABILITY = "Invalid Element - ID distinguishability"
-	public static val INVALID_ELEMENT__ID_DISTINGUISHABILITY_MSG = "Duplicate of other ID or member name"
+	public static val INVALID_ELEMENT__DISTINGUISHABILITY = "Invalid Element - Distinguishability"
+	public static val INVALID_ELEMENT__DISTINGUISHABILITY_MSG = "Duplicate of other element name"
 	public static val INVALID_IMPORT__NAME_NOT_RESOLVED = "Invalid Import - Name not resolved"
 	public static val INVALID_IMPORT__NAME_NOT_RESOLVED_MSG = "Couldn't resolve reference to Element '{name}'."
 	public static val INVALID_ELEMENT_FILTER_MEMBERSHIP__NOT_MODEL_LEVEL = "Invalid ElementFilterMembership - Not model-level"
@@ -121,6 +122,10 @@ class KerMLValidator extends AbstractKerMLValidator {
 	public static val INVALID_FEATURE_REFERENCE_EXPRESSION__INVALID_FEATURE_MSG = "Must be a valid feature"
 	public static val INVALID_FEATURE_CHAIN_EXPRESSION__INVALID_FEATURE = "Invalid FeatureChainExpression - Invalid feature"
 	public static val INVALID_FEATURE_CHAIN_EXPRESSION__INVALID_FEATURE_MSG = "Must be a valid feature"
+	public static val INVALID_INVOCATION_EXPRESSION__BAD_REDEFINITION = "Invalid InvocationExpression - Bad redefinition"
+	public static val INVALID_INVOCATION_EXPRESSION__BAD_REDEFINITION_MSG = "Must name an input or undirected feature"
+	public static val INVALID_INVOCATION_EXPRESSION__DUPLICATE_REDEFINITION = "Invalid InvocationExpression - Duplicate redefinition"
+	public static val INVALID_INVOCATION_EXPRESSION__DUPLICATE_REDEFINITION_MSG = "Feature already bound"
 	public static val INVALID_TYPE_MULTIPLICITY__TOO_MANY = "Invalid Type - Too many multiplicities"
 	public static val INVALID_TYPE_MULTIPLICITY__TOO_MANY_MSG = "Only one multiplicity is allowed"
 	
@@ -129,14 +134,21 @@ class KerMLValidator extends AbstractKerMLValidator {
 		
 	@Check
 	def checkElement(Element elm) {
-		if (elm.humanId !== null) {
+		if (elm.shortName !== null || elm.getEffectiveName !== null) {
 			val owner = elm.owner;
-			if (owner !== null) {
+			if (owner !== null && 
+				// Do not check distinguishability for automatically constructed expressions and binding connectors (to improve performance).
+			    !(owner instanceof InvocationExpression || owner instanceof FeatureReferenceExpression || owner instanceof LiteralExpression || 
+			    	owner instanceof NullExpression || owner instanceof BindingConnector)) {
 				for (e: owner.ownedElement) {
 					if (e != elm) {
-						if (elm.humanId == e.humanId || elm.humanId == e.getEffectiveName) {
-							warning(INVALID_ELEMENT__ID_DISTINGUISHABILITY_MSG, elm, SysMLPackage.eINSTANCE.element_HumanId, INVALID_ELEMENT__ID_DISTINGUISHABILITY)							
-						}						
+						if (elm.shortName !== null && (elm.shortName == e.shortName || elm.shortName == e.getEffectiveName)) {
+							warning(INVALID_ELEMENT__DISTINGUISHABILITY_MSG, elm, SysMLPackage.eINSTANCE.element_ShortName, INVALID_ELEMENT__DISTINGUISHABILITY)
+							return						
+						} else if (elm.getEffectiveName !== null && (elm.getEffectiveName == e.shortName || elm.getEffectiveName == e.getEffectiveName)) {
+							warning(INVALID_ELEMENT__DISTINGUISHABILITY_MSG, elm, if (e.name !== null) SysMLPackage.eINSTANCE.element_Name else null, INVALID_ELEMENT__DISTINGUISHABILITY)
+							return														
+						}												
 					}
 				}
 			}
@@ -147,41 +159,51 @@ class KerMLValidator extends AbstractKerMLValidator {
 	def checkMembership(Membership mem){
 		val namesp = mem.membershipOwningNamespace;	
 		// Do not check distinguishability for automatically constructed expressions and binding connectors (to improve performance).
-		if (!(namesp instanceof InvocationExpression || namesp instanceof FeatureReferenceExpression || namesp instanceof LiteralExpression || namesp instanceof NullExpression ||
-			  namesp instanceof BindingConnector)) {
-			for (e : namesp.ownedElement) {
-				if (mem.memberElement !== e && e.humanId !== null && mem.effectiveMemberName == e.humanId) {
-					if (mem.ownedMemberElement !== null) {
-						warning(INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_0, mem.ownedMemberElement, SysMLPackage.eINSTANCE.element_Name, INVALID_MEMBERSHIP__DISTINGUISHABILITY)
-					} else {
+		if (!(namesp instanceof InvocationExpression || namesp instanceof FeatureReferenceExpression || namesp instanceof LiteralExpression || 
+				namesp instanceof NullExpression || namesp instanceof BindingConnector)) {
+			if (!(mem instanceof OwningMembership)) {
+				for (e: namesp.ownedElement) {
+					if (mem.memberShortName !== null && (mem.memberShortName == e.shortName || mem.memberShortName == e.getEffectiveName)) {
+						warning(INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_0, mem, SysMLPackage.eINSTANCE.membership_MemberShortName, INVALID_MEMBERSHIP__DISTINGUISHABILITY)
+					} else if (mem.memberName !== null && (mem.memberName == e.shortName || mem.memberName == e.getEffectiveName)) {
 						warning(INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_0, mem, SysMLPackage.eINSTANCE.membership_MemberName, INVALID_MEMBERSHIP__DISTINGUISHABILITY)
 					}
 				}
-			}
-			for (m: namesp.ownedMembership) {
-				if (m.memberElement !== mem.memberElement && !mem.isDistinguishableFrom(m)) {
-					if (mem.ownedMemberElement !== null) {
-						warning(INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_1, mem.ownedMemberElement, SysMLPackage.eINSTANCE.element_Name, INVALID_MEMBERSHIP__DISTINGUISHABILITY)
-					} else {
-						warning(INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_1, mem, SysMLPackage.eINSTANCE.membership_MemberName, INVALID_MEMBERSHIP__DISTINGUISHABILITY)
-					}
+				for (m: namesp.ownedMembership) {
+					checkDistinguishibility(mem, m, INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_1)							
 				}
-						
 			}
 			if (namesp instanceof Type){
 				ElementUtil.clearCachesOf(namesp) // Force recomputation of inherited memberships.
 				for (m : namesp.inheritedMembership) {
-					if (m.memberElement !== mem.memberElement && !mem.isDistinguishableFrom(m)){
-						if (mem.ownedMemberElement !== null) {
-							warning(INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_2, mem.ownedMemberElement, SysMLPackage.eINSTANCE.element_Name, INVALID_MEMBERSHIP__DISTINGUISHABILITY)
-						} else {
-							warning(INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_2, mem, SysMLPackage.eINSTANCE.membership_MemberName, INVALID_MEMBERSHIP__DISTINGUISHABILITY)
-						}
-					}
+					checkDistinguishibility(mem, m, INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_2)
 				}
 			}
 		}
 		
+	}
+	
+	def checkDistinguishibility(Membership mem, Membership other, String msg) {
+		val memShortName = mem.memberShortName
+		val memName = mem.memberName
+		val otherShortName = other.memberShortName
+		val otherName = other.memberName
+		
+		if (mem.memberElement !== other.memberElement) {
+			if (memShortName !== null && (memShortName == otherShortName || memShortName == otherName)) {
+				if (mem instanceof OwningMembership) {
+					warning(msg, mem.ownedMemberElement, SysMLPackage.eINSTANCE.element_ShortName, INVALID_MEMBERSHIP__DISTINGUISHABILITY)
+				} else {
+					warning(msg, mem, SysMLPackage.eINSTANCE.membership_MemberShortName, INVALID_MEMBERSHIP__DISTINGUISHABILITY)
+				}
+			} else if (memName !== null && (memName == otherShortName || memName == otherName)) {
+				if (mem instanceof OwningMembership) {
+					warning(msg, mem.ownedMemberElement, SysMLPackage.eINSTANCE.element_Name, INVALID_MEMBERSHIP__DISTINGUISHABILITY)
+				} else {
+					warning(msg, mem, SysMLPackage.eINSTANCE.membership_MemberName, INVALID_MEMBERSHIP__DISTINGUISHABILITY)
+				}
+			}
+		}
 	}
 	
 	@Check
@@ -304,6 +326,30 @@ class KerMLValidator extends AbstractKerMLValidator {
 				!(feature as Feature).featuringType.exists[t | (rel as Type).conformsTo(t)]
 			)) {
 			error(INVALID_FEATURE_CHAIN_EXPRESSION__INVALID_FEATURE_MSG, e.ownedMembership.get(1), SysMLPackage.eINSTANCE.membership_MemberElement, INVALID_FEATURE_CHAIN_EXPRESSION__INVALID_FEATURE)
+		}
+	}
+	
+	@Check
+	def checkInvocationExpression(InvocationExpression e) {
+		val type = ExpressionUtil.getExpressionTypeOf(e)
+		if (type !== null) {
+			val typeParams = type.feature.filter[p | FeatureUtil.getDirection(p) === null || FeatureUtil.isInputParameter(p)]
+			val exprParams = e.ownedFeature.filter[p | FeatureUtil.isInputParameter(p)]
+			val usedParams = newHashSet
+			for (p: exprParams) {
+				val redefinitions = p.ownedRedefinition
+				if (!redefinitions.empty) {
+					val redefParams = redefinitions.map[redefinedFeature].filter[f | typeParams.contains(f)]
+					if (redefParams.empty) {
+						// Input parameter must redefine a parameter of the expression type
+						error(INVALID_INVOCATION_EXPRESSION__BAD_REDEFINITION_MSG, p, null, INVALID_INVOCATION_EXPRESSION__BAD_REDEFINITION)
+					} else if (redefParams.exists[f | usedParams.contains(f)]) {
+						// Two parameters cannot redefine the same type parameter 
+						error(INVALID_INVOCATION_EXPRESSION__DUPLICATE_REDEFINITION_MSG, p, null, INVALID_INVOCATION_EXPRESSION__DUPLICATE_REDEFINITION)
+					}
+					usedParams.addAll(redefParams)
+				}
+			}
 		}
 	}
 	

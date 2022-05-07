@@ -19,5 +19,5 @@ package org.omg.sysml.lang.sysml;
  * @model
  * @generated
  */
-public interface MetadataDefinition extends ItemDefinition, Definition, Metaclass {
+public interface MetadataDefinition extends ItemDefinition, Metaclass {
 } // MetadataDefinition

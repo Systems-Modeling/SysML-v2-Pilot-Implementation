@@ -1,5 +1,5 @@
 package SamePackage{
-	class container{
-	class B{}
+	classifier container{
+	classifier B{}
 	}
 }

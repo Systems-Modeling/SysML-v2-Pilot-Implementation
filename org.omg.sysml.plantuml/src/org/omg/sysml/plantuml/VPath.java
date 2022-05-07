@@ -291,7 +291,7 @@ public class VPath extends VTraverser {
     */
     private static Feature getIOTarget(ItemFlowEnd ife) {
         for (FeatureMembership fm: ife.getOwnedFeatureMembership()) {
-            Feature f = fm.getMemberFeature();
+            Feature f = fm.getOwnedMemberFeature();
             if (f instanceof ItemFlowFeature) {
                 for (Redefinition rd: f.getOwnedRedefinition()) {
                     return rd.getRedefinedFeature();

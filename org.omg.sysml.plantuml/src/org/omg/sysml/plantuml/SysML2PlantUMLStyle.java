@@ -326,14 +326,14 @@ public class SysML2PlantUMLStyle {
 
 
     public static class StyleRelDefaultSwitch extends StyleRelSwitch {
+        @Override
+        public String caseOwningMembership(OwningMembership m) {
+            return " +-- ";
+        }
 
 		@Override
         public String caseMembership(Membership m) {
-            if (m instanceof OwningMembership) {
-                return " +-- ";
-            } else {
-                return " +.. ";
-            }
+            return " +.. ";
         }
 
         @Override

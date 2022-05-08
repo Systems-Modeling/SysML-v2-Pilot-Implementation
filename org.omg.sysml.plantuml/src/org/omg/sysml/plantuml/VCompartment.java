@@ -53,6 +53,7 @@ import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.ObjectiveMembership;
 import org.omg.sysml.lang.sysml.OccurrenceUsage;
+import org.omg.sysml.lang.sysml.OwningMembership;
 import org.omg.sysml.lang.sysml.PartUsage;
 import org.omg.sysml.lang.sysml.PortUsage;
 import org.omg.sysml.lang.sysml.ReferenceUsage;
@@ -384,9 +385,18 @@ public class VCompartment extends VStructure {
     }
 
     @Override
+    public String caseOwningMembership(OwningMembership m) {
+        Element e = m.getOwnedMemberElement();
+        rec(m, e, true);
+        return "";
+    }
+
+    @Override
     public String caseMembership(Membership m) {
         Element e = m.getMemberElement();
-        rec(m, e, true);
+        if (e instanceof Feature) {
+            addFeature((Feature) e, m.getMemberName(), null, true);
+        }
         return "";
     }
 
@@ -597,7 +607,7 @@ public class VCompartment extends VStructure {
                     FeatureEntry fe2 = es.get(j);
                     if (fe.f.equals(fe2.f)) {
                         if (fe2.alias != null) {
-                            if (first) append(" <b>as</b> ");
+                            if (first) append(" <b>alias</b> ");
                             append(fe2.alias);
                             append(' ');
                             first = false;

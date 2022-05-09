@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="sysml" nsURI="http://www.omg.org/spec/SysML/2.0" nsPrefix="sysml">
+  <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+    <details key="settingDelegates" value="http://www.omg.org/spec/SysML"/>
+  </eAnnotations>
   <eClassifiers xsi:type="ecore:EClass" name="Disjoining" eSuperTypes="#//Relationship">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="&lt;p>A Disjoining is a Relationship between Types asserted to have interpretations that are not shared (disjoint) between them, identified as &lt;code>typeDisjoined&lt;/code> and &lt;code>disjoiningType&lt;/code>. For example, a Classifier for mammals is disjoint from a Classifier for minerals, and a Feature for people&amp;#39;s parents is disjoint from a Feature for their children. &lt;/code>&lt;/p>&#xA;"/>
@@ -104,12 +107,14 @@
         <details key="documentation" value="&lt;p>The &lt;code>owningRelationship&lt;/code> of this Element, if that Relationship is a Membership.&lt;/p>&#xA;"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Element/owningRelationship"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="owningNamespace" ordered="false"
         eType="#//Namespace" volatile="true" transient="true" derived="true" eOpposite="#//Namespace/ownedMember">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>The Namespace that owns this Element, derived as the &lt;code>membershipOwningNamespace&lt;/code> of the &lt;code>owningMembership&lt;/code> of this Element, if any.&lt;/p>&#xA;"/>
       </eAnnotations>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="owningRelationship" ordered="false"
         eType="#//Relationship" eOpposite="#//Relationship/ownedRelatedElement">
@@ -134,12 +139,14 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>The owner of this Element, derived as the &lt;tt>owningRelatedElement&lt;/tt> of the &lt;tt>owningRelationship&lt;/tt> of this Element, if any.&lt;/p>"/>
       </eAnnotations>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedElement" upperBound="-1"
         eType="#//Element" volatile="true" transient="true" derived="true" eOpposite="#//Element/owner">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>The Elements owned by this Element, derived as the &lt;tt>ownedRelatedElements&lt;/tt> of the &lt;tt>ownedRelationships&lt;/tt> of this Element.&lt;/p>&#xA;"/>
       </eAnnotations>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="documentation" upperBound="-1"
         eType="#//Documentation" volatile="true" transient="true" derived="true" eOpposite="#//Documentation/documentedElement">
@@ -147,6 +154,7 @@
         <details key="documentation" value="&lt;p>The Documentation owned by this Element.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Element/ownedElement"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedAnnotation" upperBound="-1"
         eType="#//Annotation" volatile="true" transient="true" derived="true" eOpposite="#//Annotation/owningAnnotatedElement">
@@ -154,6 +162,7 @@
         <details key="documentation" value="&lt;p>The &lt;code>ownedRelationships&lt;/code> of this Element that are Annotations, for which this Element is the &lt;code>annotatedElement&lt;/code>.&lt;/code>"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Element/ownedRelationship"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="textualRepresentation"
         upperBound="-1" eType="#//TextualRepresentation" volatile="true" transient="true"
@@ -162,6 +171,7 @@
         <details key="documentation" value="&lt;p>The &lt;code>textualRepresentations&lt;/code> that annotate this Element.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Element/ownedElement"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="aliasIds" upperBound="-1"
         eType="ecore:EDataType types.ecore#//String">
@@ -181,6 +191,7 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>The effective name to be used for this Element during name resolution within its &lt;code>owningNamespace&lt;/code>.&lt;/p>"/>
       </eAnnotations>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false" eType="ecore:EDataType types.ecore#//String">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -193,6 +204,7 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>The full ownership-qualified name of this Element, represented in a form that is valid according to the KerML textual concrete syntax for qualified names (including use of unrestricted name notation and escaped characters, as necessary). The &lt;code>qualifiedName&lt;/code> is null if this Element has no &lt;code>owningNamespace&lt;/code> or if there is not a complete ownership chain of named Namespaces from a root Namespace to this Element.&lt;/p>"/>
       </eAnnotations>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="OwningMembership" eSuperTypes="#//Membership">
@@ -335,6 +347,7 @@
         <details key="documentation" value="&lt;p>The &lt;code>ownedRelationships&lt;/code> of this Namespace that are Imports, for which the Namespace is the &lt;code>importOwningNamespace&lt;/code>.&lt;/p>&#xA;"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Element/ownedRelationship"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="member" upperBound="-1"
         eType="#//Element" volatile="true" transient="true" derived="true">
@@ -587,6 +600,7 @@
         <details key="documentation" value="&lt;p>The &lt;code>ownedMemberships&lt;/code> of this Type that are FeatureMemberships, for which the Type is the &lt;code>owningType&lt;/code>. Each such FeatureMembership identifies an &lt;code>ownedFeature&lt;/code> of the Type.&lt;/p>&#xA;"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Namespace/ownedMembership #//Type/featureMembership"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedFeature" upperBound="-1"
         eType="#//Feature" volatile="true" transient="true" derived="true" eOpposite="#//Feature/owningType">
@@ -880,6 +894,7 @@
         <details key="documentation" value="&lt;p>The &lt;code>ownedSubsettings&lt;/code> of this Feature that are Redefinitions, for which the Feature is the &lt;code>redefiningFeature&lt;/code>.&lt;/p>&#xA;&#xA;"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Feature/ownedSubsetting"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedSubsetting" ordered="false"
         upperBound="-1" eType="#//Subsetting" volatile="true" transient="true" derived="true"
@@ -888,6 +903,7 @@
         <details key="documentation" value="&lt;p>The &lt;code>ownedGeneralizations&lt;/code> of this Feature that are Subsettings, for which the Feature is the &lt;code>subsettingFeature&lt;/code>.&lt;/p>&#xA;"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Type/ownedSpecialization"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="owningFeatureMembership"
         ordered="false" eType="#//FeatureMembership" volatile="true" transient="true"
@@ -922,6 +938,7 @@
         <details key="documentation" value="&lt;p>The &lt;code>ownedGeneralizations&lt;/code> of this Feature that are FeatureTypings, for which the Feature is the &lt;code>typedFeature&lt;/code>.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Type/ownedSpecialization"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="featuringType" upperBound="-1"
         eType="#//Type" volatile="true" transient="true" derived="true">
@@ -956,6 +973,7 @@
         <details key="documentation" value="&lt;p>The FeatureChainings that are among the &lt;code>ownedRelationships&lt;/owned> of this Feature (identify their &lt;code>featureChained&lt;/code> also as an &lt;code>owningRelatedElement&lt;/code>).&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Element/ownedRelationship"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isDerived" ordered="false"
         lowerBound="1" eType="ecore:EDataType types.ecore#//Boolean" defaultValueLiteral="false">
@@ -1200,6 +1218,7 @@
         <details key="documentation" value="&lt;p>The &lt;code>ownedSpecializations&lt;/code> of this Classifier that are Subclassifications, for which this Classifier is the &lt;code>subclassifier&lt;/code>.&lt;/p>&#xA;"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Type/ownedSpecialization"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="EndFeatureMembership" eSuperTypes="#//FeatureMembership">
@@ -1255,6 +1274,7 @@
         <details key="documentation" value="&lt;p>The Steps that make up this Behavior.&lt;/p>&#xA;"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Type/feature"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="parameter" upperBound="-1"
         eType="#//Feature" volatile="true" transient="true" derived="true">
@@ -1539,6 +1559,7 @@
         <details key="documentation" value="&lt;p>An Expression owned by the InvocationExpression whose &lt;code>result&lt;/code> is bound to an input &lt;code>parameter&lt;/code> of the InvocationExpression.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Type/ownedFeature"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LiteralRational" eSuperTypes="#//LiteralExpression">
@@ -1894,6 +1915,7 @@
         <details key="documentation" value="&lt;p>The Feature representing the Item in transit between the source and the target during the transfer. (IMPL)&lt;/p>&#xA;&#xA;&lt;p>This Feature represents the Item in transit between the source and the target during the transfer.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Type/ownedFeature"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="itemFlowFeature" ordered="false"
         lowerBound="2" upperBound="-1" eType="#//ItemFlowFeature" volatile="true"
@@ -1990,6 +2012,7 @@
         <details key="documentation" value="&lt;p>The Usages that are &lt;code>ownedFeatures&lt;/code> of this Usage.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Type/ownedFeature #//Usage/usage"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="owningUsage" ordered="false"
         eType="#//Usage" volatile="true" transient="true" derived="true" eOpposite="#//Usage/nestedUsage">
@@ -2014,6 +2037,7 @@
         <details key="documentation" value="&lt;p>The PortUsages that are &lt;code>nestedUsages&lt;/code> of this Usage.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Usage/nestedUsage"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="nestedAction" upperBound="-1"
         eType="#//ActionUsage" volatile="true" transient="true" derived="true">
@@ -2024,6 +2048,7 @@
         <details key="documentation" value="&lt;p>The ActionUsages that are &lt;code>nestedUsages&lt;/code> of this Usage.&lt;/p>&#xA;"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Usage/nestedOccurrence"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="nestedState" upperBound="-1"
         eType="#//StateUsage" volatile="true" transient="true" derived="true">
@@ -2034,6 +2059,7 @@
         <details key="documentation" value="&lt;p>The StateUsages that are &lt;code>nestedUsages&lt;/code> of this Usage.&lt;/p>&#xA;"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Usage/nestedAction"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="nestedConstraint" upperBound="-1"
         eType="#//ConstraintUsage" volatile="true" transient="true" derived="true">
@@ -2044,6 +2070,7 @@
         <details key="documentation" value="&lt;p>The ConstraintUsages that are &lt;code>nestedUsages&lt;/code> of this Usage.&lt;/p>&#xA;"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Usage/nestedOccurrence"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="nestedTransition" ordered="false"
         upperBound="-1" eType="#//TransitionUsage" volatile="true" transient="true"
@@ -2055,6 +2082,7 @@
         <details key="documentation" value="&lt;p>The TransitionUsages that are &lt;code>nestedUsages&lt;/code> of this Usage.&lt;/p>&#xA;"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Usage/nestedUsage"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="nestedRequirement" upperBound="-1"
         eType="#//RequirementUsage" volatile="true" transient="true" derived="true">
@@ -2065,6 +2093,7 @@
         <details key="documentation" value="&lt;p>The RequirementUsages that are &lt;code>nestedUsages&lt;/code> of this Usage.&lt;/p>&#xA;"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Usage/nestedConstraint"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="nestedCalculation" upperBound="-1"
         eType="#//CalculationUsage" volatile="true" transient="true" derived="true">
@@ -2075,6 +2104,7 @@
         <details key="documentation" value="&lt;p>The CalculationUsage that are &lt;code>nestedUsages&lt;/code> of this Usage.&lt;/p>&#xA;"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Usage/nestedAction"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isVariation" ordered="false"
         lowerBound="1" eType="ecore:EDataType types.ecore#//Boolean">
@@ -2101,6 +2131,7 @@
         <details key="documentation" value="&lt;p>The CaseUsages that are &lt;code>nestedUsages&lt;/code> of this Usage.&lt;/p>&#xA;"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Usage/nestedCalculation"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="nestedAnalysisCase" upperBound="-1"
         eType="#//AnalysisCaseUsage" volatile="true" transient="true" derived="true">
@@ -2111,6 +2142,7 @@
         <details key="documentation" value="&lt;p>The AnalysisCaseUsages that are &lt;code>nestedUsages&lt;/code> of this Usage.&lt;/p>&#xA;"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Usage/nestedCase"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="variantMembership" ordered="false"
         upperBound="-1" eType="#//VariantMembership" volatile="true" transient="true"
@@ -2122,6 +2154,7 @@
         <details key="documentation" value="&lt;p>The &lt;code>ownedMemberships&lt;/code> of this Usage that are VariantMemberships. If &lt;code>isVariation&lt;/code> = true, then this must be all &lt;code>memberships&lt;/code> of the Usages. If &lt;code>isVariation&lt;/code> = false, then &lt;code>variantMembership&lt;/code>must be empty.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Namespace/ownedMembership"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="usage" upperBound="-1"
         eType="#//Usage" volatile="true" transient="true" derived="true">
@@ -2132,6 +2165,7 @@
         <details key="documentation" value="&lt;p>The Usages that are &lt;code>features&lt;/code> of this Usage (not necessarily owned).&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Type/feature"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="variant" ordered="false"
         upperBound="-1" eType="#//Usage" volatile="true" transient="true" derived="true">
@@ -2152,6 +2186,7 @@
         <details key="documentation" value="&lt;p>The ReferenceUsages that are &lt;code>nestedUsages&lt;/code> of this Usage.&lt;/p> &#xA;"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Usage/nestedUsage"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="nestedConnection" upperBound="-1"
         eType="#//ConnectorAsUsage" volatile="true" transient="true" derived="true">
@@ -2162,6 +2197,7 @@
         <details key="documentation" value="&lt;p>The ConnectorAsUsages that are &lt;code>nestedUsages&lt;/code> of this Usage. Note that this list includes BindingConnectorAsUsages and SuccessionAsUsages, even though these are ConnectorAsUsages but not ConnectionUsages.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Usage/nestedPart"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="nestedItem" upperBound="-1"
         eType="#//ItemUsage" volatile="true" transient="true" derived="true">
@@ -2172,6 +2208,7 @@
         <details key="documentation" value="&lt;p>The ItemUsages that are &lt;code>nestedUsages&lt;/code> of this Usage.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Usage/nestedOccurrence"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="nestedPart" upperBound="-1"
         eType="#//PartUsage" volatile="true" transient="true" derived="true">
@@ -2182,6 +2219,7 @@
         <details key="documentation" value="&lt;p>The PartUsages that are &lt;code>nestedUsages&lt;/code> of this Usage.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Usage/nestedItem"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="nestedInterface" upperBound="-1"
         eType="#//InterfaceUsage" volatile="true" transient="true" derived="true">
@@ -2192,6 +2230,7 @@
         <details key="documentation" value="&lt;p>The InterfaceUsages that are &lt;code>nestedUsages&lt;/code> of this Usage.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Usage/nestedConnection"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="nestedAttribute" upperBound="-1"
         eType="#//AttributeUsage" volatile="true" transient="true" derived="true">
@@ -2202,6 +2241,7 @@
         <details key="documentation" value="&lt;p>The AttributeUsages that are &lt;code>nestedUsages&lt;/code> of this Usage.&lt;/p>&#xA;"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Usage/nestedUsage"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="nestedView" upperBound="-1"
         eType="#//ViewUsage" volatile="true" transient="true" derived="true">
@@ -2212,6 +2252,7 @@
         <details key="documentation" value="&lt;p>The ViewUsages that are &lt;code>nestedUsages&lt;/code> of this Usage.&lt;/p> &#xA;"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Usage/nestedPart"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="nestedViewpoint" upperBound="-1"
         eType="#//ViewpointUsage" volatile="true" transient="true" derived="true">
@@ -2222,6 +2263,7 @@
         <details key="documentation" value="&lt;p>The ViewpointUsages of this Usage that are &lt;code>nestedUsages&lt;/code>.&lt;/p> &#xA;"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Usage/nestedRequirement"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="nestedRendering" upperBound="-1"
         eType="#//RenderingUsage" volatile="true" transient="true" derived="true">
@@ -2232,6 +2274,7 @@
         <details key="documentation" value="&lt;p>The RenderingUsages that are &lt;code>nestedUsages&lt;/code> of this Usage.&lt;/p> &#xA;"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Usage/nestedPart"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="nestedVerificationCase"
         upperBound="-1" eType="#//VerificationCaseUsage" volatile="true" transient="true"
@@ -2243,6 +2286,7 @@
         <details key="documentation" value="&lt;p>The VerificationCaseUsages that are &lt;code>nestedUsages&lt;/code> of this Usage.&lt;/p> &#xA;"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Usage/nestedCase"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="nestedEnumeration" upperBound="-1"
         eType="#//EnumerationUsage" volatile="true" transient="true" derived="true">
@@ -2253,6 +2297,7 @@
         <details key="documentation" value="&lt;p>The EnumerationUsages that are &lt;code>nestedUsages&lt;/code> of this Usage.&lt;p>"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Usage/nestedAttribute"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="nestedAllocation" upperBound="-1"
         eType="#//AllocationUsage" volatile="true" transient="true" derived="true">
@@ -2263,6 +2308,7 @@
         <details key="documentation" value="&lt;p>The AllocationUsages that are &lt;code>nestedUsages&lt;/code> of this Usage.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Usage/nestedConnection"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="nestedConcern" ordered="false"
         upperBound="-1" eType="#//ConcernUsage" volatile="true" transient="true" derived="true">
@@ -2273,6 +2319,7 @@
         <details key="documentation" value="&lt;p>The ConcernUsages that are &lt;code>nestedUsages&lt;/code> of this Usage.&lt;/p>&#xA;"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Usage/nestedRequirement"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="nestedOccurrence" upperBound="-1"
         eType="#//OccurrenceUsage" volatile="true" transient="true" derived="true">
@@ -2283,6 +2330,7 @@
         <details key="documentation" value="&lt;p>The OccurrenceUsages that are &lt;code>nestedUsages&lt;/code> of this Usage.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Usage/nestedUsage"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="definition" lowerBound="1"
         upperBound="-1" eType="#//Classifier" volatile="true" transient="true" derived="true">
@@ -2303,6 +2351,7 @@
         <details key="documentation" value="&lt;p>The UseCaseUsages that are &lt;code>nestedUsages&lt;/code> of this Usage.&lt;/p>&#xA;"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Usage/nestedCase"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isReference" ordered="false"
         lowerBound="1" eType="ecore:EDataType types.ecore#//Boolean" volatile="true"
@@ -2321,6 +2370,7 @@
         <details key="documentation" value="&lt;p>The FlowConnectionUsages that are &lt;code>nestedUsages&lt;/code> of this Usage.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Usage/nestedConnection"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Definition" eSuperTypes="#//Classifier">
@@ -2336,6 +2386,7 @@
         <details key="documentation" value="&lt;p>The PortUsages that are &lt;code>ownedUsages&lt;/code> of this Definition.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Definition/ownedUsage"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="directedUsage" upperBound="-1"
         eType="#//Usage" volatile="true" transient="true" derived="true">
@@ -2345,7 +2396,8 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>The &lt;code>usages&lt;/code> of this Definition that are &lt;code>directedFeatures&lt;/code>.&lt;/p>&#xA;"/>
       </eAnnotations>
-      <eAnnotations source="subsets" references="#//Definition/usage #//Type/directedFeature"/>
+      <eAnnotations source="subsets" references="#//Type/directedFeature #//Definition/usage"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="usage" upperBound="-1"
         eType="#//Usage" volatile="true" transient="true" derived="true">
@@ -2356,6 +2408,7 @@
         <details key="documentation" value="&lt;p>The Usages that are &lt;code>features&lt;/code> of this Definition (not necessarily owned).&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Type/feature"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedState" upperBound="-1"
         eType="#//StateUsage" volatile="true" transient="true" derived="true">
@@ -2366,6 +2419,7 @@
         <details key="documentation" value="&lt;p>The StateUsages that are &lt;tt>ownedUsages&lt;/tt> of this Definition.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Definition/ownedAction"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedConstraint" upperBound="-1"
         eType="#//ConstraintUsage" volatile="true" transient="true" derived="true">
@@ -2376,6 +2430,7 @@
         <details key="documentation" value="&lt;p>The ConstraintUsages that are &lt;code>ownedUsages&lt;/code> of this Definition.&lt;/p> &#xA;"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Definition/ownedOccurrence"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedTransition" ordered="false"
         upperBound="-1" eType="#//TransitionUsage" volatile="true" transient="true"
@@ -2387,6 +2442,7 @@
         <details key="documentation" value="&lt;p>The TransitionUsages that are &lt;tt>ownedUsages&lt;/tt> of this Definition.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Definition/ownedUsage"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedRequirement" upperBound="-1"
         eType="#//RequirementUsage" volatile="true" transient="true" derived="true">
@@ -2397,6 +2453,7 @@
         <details key="documentation" value="&lt;p>The RequirementUsages that are &lt;code>ownedUsages&lt;/code> of this Definition.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Definition/ownedConstraint"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedCalculation" upperBound="-1"
         eType="#//CalculationUsage" volatile="true" transient="true" derived="true">
@@ -2407,6 +2464,7 @@
         <details key="documentation" value="&lt;p>The CalculationUsages that are &lt;code>ownedUsages&lt;/code> of this Definition.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Definition/ownedAction"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isVariation" ordered="false"
         lowerBound="1" eType="ecore:EDataType types.ecore#//Boolean">
@@ -2424,6 +2482,7 @@
         <details key="documentation" value="&lt;p>The &lt;code>ownedMemberships&lt;/code> of this Definition that are VariantMemberships. If &lt;code>isVariation&lt;/code> = true, then this must be all &lt;code>ownedMemberships&lt;/code> of the Definition. If &lt;code>isVariation&lt;/code> = false, then &lt;code>variantMembership&lt;/code>must be empty.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Namespace/ownedMembership"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedAnalysisCase" upperBound="-1"
         eType="#//AnalysisCaseUsage" volatile="true" transient="true" derived="true">
@@ -2434,6 +2493,7 @@
         <details key="documentation" value="&lt;p>The AnalysisCaseUsages that are &lt;code>ownedUsages&lt;/code> of this Definition.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Definition/ownedCase"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="variant" ordered="false"
         upperBound="-1" eType="#//Usage" volatile="true" transient="true" derived="true">
@@ -2454,6 +2514,7 @@
         <details key="documentation" value="&lt;p>The CaseUsages that are &lt;code>ownedUsages&lt;/code> of this Definition.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Definition/ownedCalculation"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedReference" upperBound="-1"
         eType="#//ReferenceUsage" volatile="true" transient="true" derived="true">
@@ -2464,6 +2525,7 @@
         <details key="documentation" value="&lt;p>The ReferenceUsages that are &lt;code>ownedUsages&lt;/code> of this Definition.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Definition/ownedUsage"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedAction" upperBound="-1"
         eType="#//ActionUsage" volatile="true" transient="true" derived="true">
@@ -2474,6 +2536,7 @@
         <details key="documentation" value="&lt;p>The ActionUsages that are &lt;code>ownedUsages&lt;/code> of this Definition.&lt;/code>"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Definition/ownedOccurrence"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedConnection" upperBound="-1"
         eType="#//ConnectorAsUsage" volatile="true" transient="true" derived="true">
@@ -2484,6 +2547,7 @@
         <details key="documentation" value="&lt;p>The ConnectorAsUsages that are &lt;code>ownedUsages&lt;/code> of this Definition. Note that this list includes BindingConnectorAsUsages and SuccessionAsUsages, even though these are ConnectorAsUsages but not ConnectionUsages.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Definition/ownedPart"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedItem" upperBound="-1"
         eType="#//ItemUsage" volatile="true" transient="true" derived="true">
@@ -2494,6 +2558,7 @@
         <details key="documentation" value="&lt;p>The ItemUsages that are &lt;code>ownedUsages&lt;/code> of this Definition.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Definition/ownedOccurrence"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedPart" upperBound="-1"
         eType="#//PartUsage" volatile="true" transient="true" derived="true">
@@ -2504,6 +2569,7 @@
         <details key="documentation" value="&lt;p>The PartUsages that are &lt;code>ownedUsages&lt;/code> of this Definition.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Definition/ownedItem"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedInterface" upperBound="-1"
         eType="#//InterfaceUsage" volatile="true" transient="true" derived="true">
@@ -2514,6 +2580,7 @@
         <details key="documentation" value="&lt;p>The InterfaceUsages that are &lt;code>ownedUsages&lt;/code> of this Definition.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Definition/ownedConnection"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedAttribute" upperBound="-1"
         eType="#//AttributeUsage" volatile="true" transient="true" derived="true">
@@ -2524,6 +2591,7 @@
         <details key="documentation" value="&lt;p>The AttributeUsages that are &lt;code>ownedUsages&lt;/code> of this Definition.&lt;p>"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Definition/ownedUsage"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedView" upperBound="-1"
         eType="#//ViewUsage" volatile="true" transient="true" derived="true">
@@ -2534,6 +2602,7 @@
         <details key="documentation" value="&lt;p> The &lt;code>ownedUsages&lt;/code> of this Definition that are ViewUsages.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Definition/ownedPart"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedViewpoint" upperBound="-1"
         eType="#//ViewpointUsage" volatile="true" transient="true" derived="true">
@@ -2544,6 +2613,7 @@
         <details key="documentation" value="&lt;p>The &lt;code>ownedUsages&lt;/code> of this Definition that are ViewpointUsages.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Definition/ownedRequirement"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedRendering" upperBound="-1"
         eType="#//RenderingUsage" volatile="true" transient="true" derived="true">
@@ -2554,6 +2624,7 @@
         <details key="documentation" value="&lt;p>The &lt;code>usages&lt;/code> of this Definition that are RenderingUsages.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Definition/ownedPart"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedVerificationCase"
         upperBound="-1" eType="#//VerificationCaseUsage" volatile="true" transient="true"
@@ -2565,6 +2636,7 @@
         <details key="documentation" value="&lt;p>The &lt;code>ownedUsages&lt;/code> of this Definition that are VerificationCaseUsages.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Definition/ownedCase"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedEnumeration" upperBound="-1"
         eType="#//EnumerationUsage" volatile="true" transient="true" derived="true">
@@ -2575,6 +2647,7 @@
         <details key="documentation" value="&lt;p>The EnumerationUsages that are &lt;code>ownedUsages&lt;/code> of this Definition.&lt;p>"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Definition/ownedAttribute"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedAllocation" upperBound="-1"
         eType="#//AllocationUsage" volatile="true" transient="true" derived="true">
@@ -2585,6 +2658,7 @@
         <details key="documentation" value="&lt;p>The AllocationUsages that are &lt;code>ownedUsages&lt;/code> of this Definition.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Definition/ownedConnection"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedConcern" ordered="false"
         upperBound="-1" eType="#//ConcernUsage" volatile="true" transient="true" derived="true">
@@ -2595,6 +2669,7 @@
         <details key="documentation" value="&lt;p>The ConcernUsages that are &lt;code>ownedUsages&lt;/code> of this Definition.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Definition/ownedRequirement"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedOccurrence" upperBound="-1"
         eType="#//OccurrenceUsage" volatile="true" transient="true" derived="true">
@@ -2605,6 +2680,7 @@
         <details key="documentation" value="&lt;p>The OccurrenceUsages that are &lt;code>ownedUsages&lt;/code> of this Definition.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Definition/ownedUsage"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedUseCase" upperBound="-1"
         eType="#//UseCaseUsage" volatile="true" transient="true" derived="true">
@@ -2615,6 +2691,7 @@
         <details key="documentation" value="&lt;p>The UseCaseUsages that are &lt;code>ownedUsages&lt;/code> of this Definition.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Definition/ownedCase"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedFlow" ordered="false"
         upperBound="-1" eType="#//FlowConnectionUsage" volatile="true" transient="true"
@@ -2626,6 +2703,7 @@
         <details key="documentation" value="&lt;p>The FlowConnectionUsages that are &lt;code>ownedUsages&lt;/code> of this Definition.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Definition/ownedConnection"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedUsage" upperBound="-1"
         eType="#//Usage" volatile="true" transient="true" derived="true" eOpposite="#//Usage/owningDefinition">
@@ -2633,6 +2711,7 @@
         <details key="documentation" value="&lt;p>The Usages that are &lt;code>ownedFeatures&lt;/code> of this Definition.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Type/ownedFeature #//Definition/usage"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PortUsage" eSuperTypes="#//OccurrenceUsage">
@@ -2888,6 +2967,7 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>An Expression whose result is bound to the &lt;em>&lt;code>receiver&lt;/code>&lt;/em> input parameter of this AcceptActionUsage.&lt;/p> &#xA;"/>
       </eAnnotations>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="payloadParameter" ordered="false"
         lowerBound="1" eType="#//ReferenceUsage" volatile="true" transient="true"
@@ -2899,6 +2979,7 @@
         <details key="documentation" value="&lt;p>The &lt;code>nestedReference&lt;/code> of this AcceptActionUsage that redefines the &lt;code>payload&lt;/code> output parameter of the base AcceptActionUsage &lt;em>&lt;code>AcceptAction&lt;/code>&lt;/em> from the Systems model library.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Usage/nestedReference"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="payloadArgument" ordered="false"
         eType="#//Expression" volatile="true" transient="true" derived="true">
@@ -2908,6 +2989,7 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>An Expression whose result is bound to the &lt;code>&lt;em>payload&lt;/em>&lt;/code> parameter of this AcceptActionUsage. If provided, the AcceptActionUsage will only accept a &lt;code>&lt;em>Transfer&lt;/em>&lt;/code> with exactly this &lt;code>&lt;em>payload&lt;/em>&lt;/code>.&lt;/p> &#xA;"/>
       </eAnnotations>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ReferenceUsage" eSuperTypes="#//Usage">
@@ -3124,6 +3206,7 @@
         <details key="documentation" value="&lt;p>The &lt;code>itemDefinitions&lt;/code> of this PartUsage that are PartDefinitions.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//ItemUsage/itemDefinition"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PartDefinition" eSuperTypes="#//ItemDefinition">
@@ -3179,6 +3262,7 @@
         <details key="documentation" value="&lt;p>The &lt;code>features&lt;/code> of the AnalysisCaseUsage that are typed as AnalysisActions. Each &lt;code>analysisAction&lt;/code> ActionUsage must subset the &lt;code>analysisSteps&lt;/code> ActionUsage of the base AnalysisCaseDefinition AnalysisCase from the Systems model library.&lt;/p>&#xA;"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Type/feature"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="analysisCaseDefinition"
         ordered="false" lowerBound="1" eType="#//AnalysisCaseDefinition" volatile="true"
@@ -3296,6 +3380,7 @@
         <details key="documentation" value="&lt;p>The CalculationUsages that are &lt;code>actions&lt;/code> in this CalculationDefinition.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//ActionDefinition/action #//Function/expression"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ActionDefinition" eSuperTypes="#//OccurrenceDefinition #//Behavior">
@@ -3311,6 +3396,7 @@
         <details key="documentation" value="&lt;p>The ActionUsages that are Steps in this ActionDefinition, which define the actions that specify the behavior of the ActionDefinition.&lt;/p> &#xA;"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Behavior/step #//Definition/usage"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AnalysisCaseDefinition" eSuperTypes="#//CaseDefinition">
@@ -3374,6 +3460,7 @@
       </eAnnotations>
       <eAnnotations source="redefines" references="#//Connector/association"/>
       <eAnnotations source="subsets" references="#//ItemUsage/itemDefinition"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="InterfaceDefinition" eSuperTypes="#//ConnectionDefinition">
@@ -3445,6 +3532,7 @@
         <details key="documentation" value="&lt;p>The &lt;code>nestedUsages&lt;/code> of this ViewUsage that are ViewpointUsages for (additional) viewpoints satisfied by the ViewUsage.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Usage/nestedUsage"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="exposedNamespace" upperBound="-1"
         eType="#//Namespace" volatile="true" transient="true" derived="true">
@@ -3498,6 +3586,7 @@
         <details key="documentation" value="&lt;p>The &lt;code>usages&lt;/code> of this ViewDefinition that are ViewUsages.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Definition/usage"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="satisfiedViewpoint" upperBound="-1"
         eType="#//ViewpointUsage" volatile="true" transient="true" derived="true">
@@ -3508,6 +3597,7 @@
         <details key="documentation" value="&lt;p>The &lt;code>ownedUsages&lt;/code> of this ViewDefinition that are ViewpointUsages for viewpoints satisfied by the ViewDefinition.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Definition/ownedUsage"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="viewRendering" ordered="false"
         eType="#//RenderingUsage" volatile="true" transient="true" derived="true">
@@ -3598,6 +3688,7 @@
         <details key="documentation" value="&lt;p>The &lt;code>usages&lt;/code> of a RenderingDefinition that are RenderingUsages.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Definition/usage"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="VerificationCaseUsage" eSuperTypes="#//CaseUsage">
@@ -3704,6 +3795,7 @@
         <details key="documentation" value="&lt;p>The ActionUsages that refine the allocation mapping defined by this AllocationDefinition.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Definition/usage"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="UseCaseUsage" eSuperTypes="#//CaseUsage">
@@ -4197,6 +4289,7 @@
         <details key="documentation" value="&lt;p>The StateUsages that are the &lt;tt>steps&lt;/tt> of the StateDefinition, which specify the discrete states in the Behavior defined by the StateDefinition.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Behavior/step"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="entryAction" ordered="false"
         eType="#//ActionUsage" volatile="true" transient="true" derived="true">

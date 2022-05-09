@@ -52,7 +52,7 @@ public class CustomUML2EcoreConverter extends UML2EcoreConverter {
 							!property.getSubsettedProperties().isEmpty()) {
 						Property subsettedProperty = property.getSubsettedProperties().get(0);
 						if (subsettedProperty.getType() != property.getType()) {
-							System.out.println("Add annotation: " + feature.getName());
+							System.out.println("Add annotation: " + property.getQualifiedName());
 							EAnnotation annotation = EcoreFactory.eINSTANCE.createEAnnotation();
 							annotation.setSource(ANNOTATION_SYSML);
 							modelElement.getEAnnotations().add(annotation);

@@ -185,6 +185,7 @@ public class FeatureMembershipImpl extends OwningMembershipImpl implements Featu
 	 */
 	@Override
 	public void setOwningFeatureOfType(Feature newOwningFeatureOfType) {
+		throw new UnsupportedOperationException();
 	}
 
 	/**
@@ -270,41 +271,32 @@ public class FeatureMembershipImpl extends OwningMembershipImpl implements Featu
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public Feature getFeatureOfType() {
-		if (featureOfType != null && featureOfType.eIsProxy()) {
-			InternalEObject oldFeatureOfType = (InternalEObject)featureOfType;
-			featureOfType = (Feature)eResolveProxy(oldFeatureOfType);
-			if (featureOfType != oldFeatureOfType) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SysMLPackage.FEATURE_MEMBERSHIP__FEATURE_OF_TYPE, oldFeatureOfType, featureOfType));
-			}
-		}
-		return featureOfType;
+		// Note: featureOfType is not derived, but its subsetting of ownedMemberFeature
+		// must be implemented by hand.
+		return getOwnedMemberFeature();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public Feature basicGetFeatureOfType() {
-		return featureOfType;
+		return basicGetOwnedMemberFeature();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public void setFeatureOfType(Feature newFeatureOfType) {
-		Feature oldFeatureOfType = featureOfType;
-		featureOfType = newFeatureOfType;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.FEATURE_MEMBERSHIP__FEATURE_OF_TYPE, oldFeatureOfType, featureOfType));
+	    setOwnedMemberFeature(newFeatureOfType);
 	}
 
 	/**

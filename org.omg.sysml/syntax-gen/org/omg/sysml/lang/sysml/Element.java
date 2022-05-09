@@ -37,9 +37,10 @@ import org.eclipse.emf.ecore.EObject;
  * owner = owningRelationship.owningRelatedElement
  * qualifiedName =
  *     if owningNamespace = null then null
- *     else if owningNamespace.qualifiedName = null then escapedName()
+ *     else if owningNamespace.owner = null then escapedName()
+ *     else if owningNamespace.qualifiedName = null then null
  *     else owningNamespace.qualifiedName + '::' + escapedName()
- *     endif endif
+ *     endif endif endif
  * documentation = ownedElement->selectByKind(Documentation)
  * ownedAnnotation = ownedRelationship->selectByKind(Annotation)->
  *     select(a | a.annotatedElement = self)
@@ -51,10 +52,10 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwningMembership <em>Owning Membership</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwnedRelationship <em>Owned Relationship</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwningRelationship <em>Owning Relationship</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwningNamespace <em>Owning Namespace</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwningRelationship <em>Owning Relationship</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getElementId <em>Element Id</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwnedRelationship <em>Owned Relationship</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwner <em>Owner</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwnedElement <em>Owned Element</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getDocumentation <em>Documentation</em>}</li>
@@ -97,6 +98,7 @@ public interface Element extends EObject {
 	 * @see org.omg.sysml.lang.sysml.OwningMembership#getOwnedMemberElement
 	 * @model opposite="ownedMemberElement" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	OwningMembership getOwningMembership();
@@ -161,6 +163,7 @@ public interface Element extends EObject {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getElement_OwningNamespace()
 	 * @see org.omg.sysml.lang.sysml.Namespace#getOwnedMember
 	 * @model opposite="ownedMember" transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	Namespace getOwningNamespace();
@@ -218,6 +221,7 @@ public interface Element extends EObject {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getElement_OwnedElement()
 	 * @see org.omg.sysml.lang.sysml.Element#getOwner
 	 * @model opposite="owner" transient="true" volatile="true" derived="true"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<Element> getOwnedElement();
@@ -227,12 +231,13 @@ public interface Element extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>If this Element has an <code>owningNamespace</code>, then the full ownership-qualified name of the Element. This is defined as <code>qualifiedName</code> (if any) of the <code>owningNamespace</code> of the Element followed by the unqualified name of the Element (given by the first of its <code>elementNames</code>). The <code>qualifiedName<code> is represented in a form that is valid according to the KerML textual concrete syntax for qualified names (including use of unrestricted name notation and escaped characters, as necessary). Only a root Namespace has an empty <code>qualifiedName</code>.</p>
+	 * <p>The full ownership-qualified name of this Element, represented in a form that is valid according to the KerML textual concrete syntax for qualified names (including use of unrestricted name notation and escaped characters, as necessary). The <code>qualifiedName</code> is null if this Element has no <code>owningNamespace</code> or if there is not a complete ownership chain of named Namespaces from a root Namespace to this Element.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Qualified Name</em>' attribute.
 	 * @see #setQualifiedName(String)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getElement_QualifiedName()
 	 * @model dataType="org.omg.sysml.lang.types.String" transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	String getQualifiedName();
@@ -258,6 +263,7 @@ public interface Element extends EObject {
 	 * @see #setEffectiveName(String)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getElement_EffectiveName()
 	 * @model dataType="org.omg.sysml.lang.types.String" transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	String getEffectiveName();
@@ -289,6 +295,7 @@ public interface Element extends EObject {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getElement_Owner()
 	 * @see org.omg.sysml.lang.sysml.Element#getOwnedElement
 	 * @model opposite="ownedElement" transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	Element getOwner();
@@ -378,6 +385,7 @@ public interface Element extends EObject {
 	 * @see org.omg.sysml.lang.sysml.Documentation#getDocumentedElement
 	 * @model opposite="documentedElement" transient="true" volatile="true" derived="true"
 	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<Documentation> getDocumentation();
@@ -402,6 +410,7 @@ public interface Element extends EObject {
 	 * @see org.omg.sysml.lang.sysml.Annotation#getOwningAnnotatedElement
 	 * @model opposite="owningAnnotatedElement" transient="true" volatile="true" derived="true"
 	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<Annotation> getOwnedAnnotation();
@@ -426,6 +435,7 @@ public interface Element extends EObject {
 	 * @see org.omg.sysml.lang.sysml.TextualRepresentation#getRepresentedElement
 	 * @model opposite="representedElement" transient="true" volatile="true" derived="true"
 	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<TextualRepresentation> getTextualRepresentation();
@@ -475,7 +485,7 @@ public interface Element extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Return the fist of <code>effectiveName</code>, <code>shortName</code> or <code>elementId</code> of this Element that is non-null, either as is, if it has the form of a basic name, or, otherwise, represented as a restricted name according to the lexical structure of the KerML textual notation (i.e., surrounded by single quote characters and with special characters escaped).</p>
+	 * <p>Return <code>effectiveName</code>, if that is not null, otherwise <code>shortName</code>, if that is not null, otherwise null. If the returned name is non-null, it is returned as-is if it has the form of a basic name, or, otherwise, represented as a restricted name according to the lexical structure of the KerML textual notation (i.e., surrounded by single quote characters and with special characters escaped).</p>
 	 * <!-- end-model-doc -->
 	 * @model dataType="org.omg.sysml.lang.types.String" ordered="false"
 	 * @generated

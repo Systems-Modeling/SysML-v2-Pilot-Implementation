@@ -238,10 +238,8 @@ public class NamespaceImpl extends ElementImpl implements Namespace {
 		getMembership().stream().
 			filter(mem->mem.getMemberElement() == element).
 			forEach(mem->{
-				String elementId = mem.getMemberElementId();
 				String shortName = mem.getMemberShortName();
 				String name = mem.getMemberName();
-				names.add(elementId);
 				if (shortName != null) {
 					names.add(shortName);
 				}

@@ -39,10 +39,11 @@ public class Element_ownedElement_SettingDelegate extends BasicDerivedListSettin
 	}
 
 	@Override
-	protected EList<?> basicGet(InternalEObject owner) {
+	protected EList<Element> basicGet(InternalEObject owner) {
 		BasicEList<Element> ownedElements = new NonNotifyingEObjectEList<>(Element.class, owner, SysMLPackage.ELEMENT__OWNED_ELEMENT);
 		ownedElements.addAllUnique(((Element) owner).getOwnedRelationship().stream().
-				flatMap(relationship->relationship.getOwnedRelatedElement().stream()).collect(Collectors.toList()));
+				flatMap(relationship->relationship.getOwnedRelatedElement().stream()).
+				collect(Collectors.toList()));
 		return ownedElements;
 	}
 

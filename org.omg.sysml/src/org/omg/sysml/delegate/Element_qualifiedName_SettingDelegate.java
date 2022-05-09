@@ -26,7 +26,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.lang.sysml.impl.ElementImpl;
 
 public class Element_qualifiedName_SettingDelegate extends BasicDerivedPropertySettingDelegate {
 
@@ -42,12 +41,8 @@ public class Element_qualifiedName_SettingDelegate extends BasicDerivedPropertyS
 		} else if (owningNamespace.getOwner() == null) {
 			return ((Element) owner).escapedName();
 		} else {
-			String qualification = ((ElementImpl) owningNamespace).getQualifiedName();
-			if (qualification == null) {
-				return null;
-			} else {
-				return qualification + "::" + ((Element) owner).escapedName();
-			}
+			String qualification = owningNamespace.getQualifiedName();
+			return qualification == null? null: qualification + "::" + ((Element) owner).escapedName();
 		}
 	}
 

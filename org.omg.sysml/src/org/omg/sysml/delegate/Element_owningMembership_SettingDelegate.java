@@ -25,7 +25,7 @@ package org.omg.sysml.delegate;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.lang.sysml.Membership;
+import org.omg.sysml.lang.sysml.OwningMembership;
 import org.omg.sysml.lang.sysml.Relationship;
 
 public class Element_owningMembership_SettingDelegate extends BasicDerivedObjectSettingDelegate {
@@ -35,14 +35,14 @@ public class Element_owningMembership_SettingDelegate extends BasicDerivedObject
 	}
 
 	@Override
-	protected Membership basicGet(InternalEObject owner) {
+	protected OwningMembership basicGet(InternalEObject owner) {
 		Relationship owningRelationship = ((Element)owner).getOwningRelationship();
-		return owningRelationship instanceof Membership? (Membership)owningRelationship: null;
+		return owningRelationship instanceof OwningMembership? (OwningMembership)owningRelationship: null;
 	}
 	
 	@Override
 	protected void set(InternalEObject owner, Object newValue) {
-		((Element)owner).setOwningRelationship((Membership)newValue);
+		((Element)owner).setOwningRelationship((Relationship)newValue);
 	}
 
 }

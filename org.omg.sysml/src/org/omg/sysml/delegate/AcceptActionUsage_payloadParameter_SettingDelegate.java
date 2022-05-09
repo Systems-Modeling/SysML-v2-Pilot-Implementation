@@ -22,7 +22,6 @@
 
 package org.omg.sysml.delegate;
 
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.Feature;
@@ -37,9 +36,9 @@ public class AcceptActionUsage_payloadParameter_SettingDelegate extends BasicDer
 	}
 
 	@Override
-	protected EObject basicGet(InternalEObject owner) {
+	protected ReferenceUsage basicGet(InternalEObject owner) {
 		Feature payloadParameter = UsageUtil.getPayloadParameterOf((AcceptActionUsage)owner);
-		return payloadParameter instanceof ReferenceUsage? payloadParameter: null;
+		return payloadParameter instanceof ReferenceUsage? (ReferenceUsage) payloadParameter: null;
 	}
 
 }

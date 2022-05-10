@@ -28,19 +28,31 @@ import org.eclipse.xtext.resource.IResourceServiceProvider
 import org.eclipse.emf.ecore.resource.Resource
 import org.omg.sysml.lang.sysml.Element
 import org.omg.sysml.lang.sysml.Type
+import org.eclipse.emf.common.util.URI
 
 class SysMLLibraryUtil {
 	
-	public static final String DEFAULT_MODEL_LIBRARY_DIRECTORY = "/resource/sysml.library";
+	public static final String DEFAULT_MODEL_LIBRARY_PATH = "/resource/sysml.library";
 	
-	static String modelLibraryDirectory = DEFAULT_MODEL_LIBRARY_DIRECTORY;
+	static String modelLibraryPath = DEFAULT_MODEL_LIBRARY_PATH;
 	
-	def static setModelLibraryDirectory(String path) {
-		modelLibraryDirectory = path
+	def static setModelLibraryDirectory(String dir) {
+		val uri = URI.createFileURI(dir);
+		modelLibraryPath = uri.devicePath ?: uri.path;
+	}
+
+	def static getModelLibraryPath() {
+		modelLibraryPath
 	}
 	
 	def static isModelLibrary(Resource resource) {
-		return resource !== null && resource.URI.path.contains(modelLibraryDirectory)
+		if (resource === null) {
+			return false;
+		} else {
+			val path = resource.URI.devicePath ?: resource.URI.path;
+			if (path === null) return false;
+			return path.contains(modelLibraryPath);
+		}
 	}
 	
 	def static IModelLibraryProvider getInstance(Resource resource) {

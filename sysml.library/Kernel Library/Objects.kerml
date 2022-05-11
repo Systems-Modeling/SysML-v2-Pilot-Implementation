@@ -134,6 +134,6 @@ package Objects {
 		portion feature vertices : Point[0..*] ordered subsets structuredSpaceObjectCells;
 		
 		derived feature redefines innerSpaceDimension = 
-			(if notEmpty(faces)? 2 else (if notEmpty(edges)? 1 else 0));
+			if notEmpty(faces) ? 2 else if notEmpty(edges) ? 1 else 0;
 	  }
 }

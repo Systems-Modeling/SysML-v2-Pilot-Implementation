@@ -90,7 +90,7 @@ package ShapeItems {
 	}
 
 	/**
-	 * A Circle is an Ellipse with equal axes.
+	 * A Circle is an Ellipse with semiaxes equal to its radius.
 	 */
 	item def Circle :> Ellipse {
 		attribute :>> radius [1] = semiMajorAxis;
@@ -326,7 +326,6 @@ package ShapeItems {
 		}
 	}
 
-
 	/**
 	 * A ConeOrCylinder is Shell that a Cone or a Cylinder with a given elliptical base,
 	 * height, width (perpendicular distance from the base to the center of the top side or vertex),
@@ -361,8 +360,8 @@ package ShapeItems {
 		assert constraint { isEmpty(af) == notEmpty(vertices) }
 
 		/* Bind face edges to specific edges */
-		connection : SelfLink [1] connect base.edges [0..*] to be [0..*];
-		connection : SelfLink [1] connect cf.edges [0..*] to be [0..*];
+		binding [1] bind base.edges [0..*] = be [0..*];
+		binding [1] bind cf.edges [0..*] = be [0..*];
 
 		/* Coincident edges */
 		connection :WithinBoth connect be [2] to be [2];
@@ -379,8 +378,8 @@ package ShapeItems {
 
 		item apex :>> vertices;
 
-		/* Bind face vertices to vertices */
-		connection : SelfLink [1] connect cf.vertices [0..*] to apex [0..*];
+		/* Bind face vertices to specific vertices */
+		binding [1] bind cf.vertices [0..*] = apex [0..*];
 	}
 
 	/**
@@ -416,7 +415,7 @@ package ShapeItems {
 	item def Cylinder :> ConeOrCylinder {
 		item :>> af [1];
 
-		connection : SelfLink [1] connect cf.edges [0..*] to ae [0..*];
+		binding [1] bind cf.edges [0..*] = ae [0..*];
 
 		/* Coincident edges */
 		connection :WithinBoth connect ae [2] to ae [2];
@@ -514,42 +513,42 @@ package ShapeItems {
 		assert constraint { ( isEmpty(tfrv) == isEmpty(trrv) ) }
 
 		/* Bind face edges to specific edges */
-		connection : SelfLink [1] connect tf.edges [0..1] to tfe [0..1];
-		connection : SelfLink [1] connect tf.edges [0..1] to tre [0..1];
-		connection : SelfLink [1] connect tf.edges [0..1] to tsle [0..1];
-		connection : SelfLink [1] connect bf.edges [0..1] to bfe [0..1];
-		connection : SelfLink [1] connect bf.edges [0..1] to bre [0..1];
-		connection : SelfLink [1] connect bf.edges [0..1] to bsle [0..1];
-		connection : SelfLink [1] connect bf.edges [0..1] to bsre [0..1];
+		binding [1] bind tf.edges [0..1] = tfe [0..1];
+		binding [1] bind tf.edges [0..1] = tfe [0..1];
+		binding [1] bind tf.edges [0..1] = tre [0..1];
+		binding [1] bind tf.edges [0..1] = tsle [0..1];
+		binding [1] bind bf.edges [0..1] = bfe [0..1];
+		binding [1] bind bf.edges [0..1] = bre [0..1];
+		binding [1] bind bf.edges [0..1] = bsle [0..1];
+		binding [1] bind bf.edges [0..1] = bsre [0..1];
 
-		connection : SelfLink [1] connect ff.edges [0..1] to tfe [0..1];
-		connection : SelfLink [1] connect ff.edges [0..1] to bfe [0..1];
-		connection : SelfLink [1] connect ff.edges [0..1] to ufle [0..1];
+		binding [1] bind ff.edges [0..1] = tfe [0..1];
+		binding [1] bind ff.edges [0..1] = bfe [0..1];
+		binding [1] bind ff.edges [0..1] = ufle [0..1];
 
-		connection : SelfLink [1] connect rf.edges [0..1] to tre [0..1];
-		connection : SelfLink [1] connect rf.edges [0..1] to bre [0..1];
-		connection : SelfLink [1] connect rf.edges [0..1] to urle [0..1];
+		binding [1] bind rf.edges [0..1] = tre [0..1];
+		binding [1] bind rf.edges [0..1] = bre [0..1];
+		binding [1] bind rf.edges [0..1] = urle [0..1];
 
-		/* connection : SelfLink edge connect vertices to specific vertices */
+		/* Bind edge vertices to specific vertices */
+		binding [1] bind tfe.vertices [0..1] = tflv [0..1];
+		binding [1] bind tre.vertices [0..1] = trlv [0..1];
+		binding [1] bind tsle.vertices [0..1] = tflv [0..1];
+		binding [1] bind tsle.vertices [0..1] = trlv [0..1];
 
-		connection : SelfLink [1] connect tfe.vertices [0..1] to tflv [0..1];
-		connection : SelfLink [1] connect tre.vertices [0..1] to trlv [0..1];
-		connection : SelfLink [1] connect tsle.vertices [0..1] to tflv [0..1];
-		connection : SelfLink [1] connect tsle.vertices [0..1] to trlv [0..1];
+		binding [1] bind bfe.vertices [0..1] = bflv [0..1];
+		binding [1] bind bfe.vertices [0..1] = bfrv [0..1];
+		binding [1] bind bre.vertices [0..1] = brlv [0..1];
+		binding [1] bind bre.vertices [0..1] = brrv [0..1];
+		binding [1] bind bsle.vertices [0..1] = bflv [0..1];
+		binding [1] bind bsle.vertices [0..1] = brlv [0..1];
+		binding [1] bind bsre.vertices [0..1] = bfrv [0..1];
+		binding [1] bind bsre.vertices [0..1] = brrv [0..1];
 
-		connection : SelfLink [1] connect bfe.vertices [0..1] to bflv [0..1];
-		connection : SelfLink [1] connect bfe.vertices [0..1] to bfrv [0..1];
-		connection : SelfLink [1] connect bre.vertices [0..1] to brlv [0..1];
-		connection : SelfLink [1] connect bre.vertices [0..1] to brrv [0..1];
-		connection : SelfLink [1] connect bsle.vertices [0..1] to bflv [0..1];
-		connection : SelfLink [1] connect bsle.vertices [0..1] to brlv [0..1];
-		connection : SelfLink [1] connect bsre.vertices [0..1] to bfrv [0..1];
-		connection : SelfLink [1] connect bsre.vertices [0..1] to brrv [0..1];
-
-		connection : SelfLink [1] connect ufle.vertices [0..1] to tflv [0..1];
-		connection : SelfLink [1] connect ufle.vertices [0..1] to bflv [0..1];
-		connection : SelfLink [1] connect urle.vertices [0..1] to trlv [0..1];
-		connection : SelfLink [1] connect urle.vertices [0..1] to brlv [0..1];
+		binding [1] bind ufle.vertices [0..1] = tflv [0..1];
+		binding [1] bind ufle.vertices [0..1] = bflv [0..1];
+		binding [1] bind urle.vertices [0..1] = trlv [0..1];
+		binding [1] bind urle.vertices [0..1] = brlv [0..1];
 
 		/* Edge coincidence */
 		connection :WithinBoth connect tfe [2] to tfe [2];
@@ -587,11 +586,11 @@ package ShapeItems {
 		item :>> vertices;
 
 		/* Bind face edges to specific edges */
-		connection : SelfLink [1] connect tf.edges [0..1] to bsre [0..1];
+		binding [1] bind tf.edges [0..1] = bsre [0..1];
 
-		/* Bind edge vertices to vertices */
-		connection : SelfLink [1] connect tfe.vertices  [0..1] to bfrv [0..1];
-		connection : SelfLink [1] connect tre.vertices  [0..1] to bfrv [0..1];
+		/* Bind edge vertices to specific vertices */
+		binding [1] bind tfe.vertices  [0..1] = bfrv [0..1];
+		binding [1] bind tre.vertices  [0..1] = bfrv [0..1];
 	}
 
 	/**
@@ -642,27 +641,25 @@ package ShapeItems {
 		item :>> vertices;
 
 		/* Bind face edges to specific edges */
+		binding [1] bind tf.edges [0..1] = tsre [0..1];
+		binding [1] bind ff.edges [0..1] = ufre [0..1];
+		binding [1] bind rf.edges [0..1] = urre [0..1];
 
-		connection : SelfLink [1] connect tf.edges [0..1] to tsre [0..1];
-		connection : SelfLink [1] connect ff.edges [0..1] to ufre [0..1];
-		connection : SelfLink [1] connect rf.edges [0..1] to urre [0..1];
+		binding [1] bind srf.edges [0..1] = tsre [0..1];
+		binding [1] bind srf.edges [0..1] = bsre [0..1];
+		binding [1] bind srf.edges [0..1] = ufre [0..1];
+		binding [1] bind srf.edges [0..1] = urre [0..1];
 
-		connection : SelfLink [1] connect srf.edges [0..1] to tsre [0..1];
-		connection : SelfLink [1] connect srf.edges [0..1] to bsre [0..1];
-		connection : SelfLink [1] connect srf.edges [0..1] to ufre [0..1];
-		connection : SelfLink [1] connect srf.edges [0..1] to urre [0..1];
+		/* Bind edge vertices to specific vertices */
+		binding [1] bind tfe.vertices  [0..1] = tfrv [0..1];
+		binding [1] bind tre.vertices  [0..1] = trrv [0..1];
+		binding [1] bind tsre.vertices [0..1] = tfrv [0..1];
+		binding [1] bind tsre.vertices [0..1] = trrv [0..1];
 
-		/* connection : SelfLink edge connect vertices to vertices */
-
-		connection : SelfLink [1] connect tfe.vertices  [0..1] to tfrv [0..1];
-		connection : SelfLink [1] connect tre.vertices  [0..1] to trrv [0..1];
-		connection : SelfLink [1] connect tsre.vertices [0..1] to tfrv [0..1];
-		connection : SelfLink [1] connect tsre.vertices [0..1] to trrv [0..1];
-
-		connection : SelfLink [1] connect ufre.vertices [0..1] to tfrv [0..1];
-		connection : SelfLink [1] connect ufre.vertices [0..1] to bfrv [0..1];
-		connection : SelfLink [1] connect urre.vertices [0..1] to trrv [0..1];
-		connection : SelfLink [1] connect urre.vertices [0..1] to brrv [0..1];
+		binding [1] bind ufre.vertices [0..1] = tfrv [0..1];
+		binding [1] bind ufre.vertices [0..1] = bfrv [0..1];
+		binding [1] bind urre.vertices [0..1] = trrv [0..1];
+		binding [1] bind urre.vertices [0..1] = brrv [0..1];
 
 		/* Edge coincidence */
 

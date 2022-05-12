@@ -26,7 +26,7 @@ package Actions {
 	abstract action def Action :> Performance {
 		ref action self: Action :>> Performance::self;
 		ref action incomingTransfers :>> Performance::incomingTransfers;
-			
+		
 		/**
 		 * The starting snapshot of an Action. 
 		 */
@@ -117,7 +117,10 @@ package Actions {
 	 * A SendAction is an Action used to type a SendActionUsage. It initiates an outgoingTransferFromSelf 
 	 * to a designated receiver Occurrence with a given payload.
 	 */
-	action def SendAction(in payload[0..*], in receiver: Occurrence[1]) {
+	action def SendAction {
+		in payload[0..*];
+		in receiver: Occurrence[1];
+		
 	    ref outgoingTransfer: TransferBefore[1] :>> outgoingTransfersFromSelf :> receiver.incomingTransfers {
 	    	ref :>> source: SendAction {
 	    		ref :>> sourceOutput = payload;
@@ -135,7 +138,10 @@ package Actions {
 	 * incomingTransferFromSelf that is one of the incomingTransfers of a given receiver Occurrence, 
 	 * outputting the payload from the Transfer.
 	 */
-	action def AcceptAction(inout payload[0..*], in receiver: Occurrence[1]) {
+	action def AcceptAction {
+		inout payload[0..*];
+		in receiver: Occurrence[1] default this;
+		
 		ref incomingTransfer: TransferBefore[1] :>> incomingTransfersToSelf :> receiver.incomingTransfers {
 			ref :>> target: AcceptAction {
 				ref :>> targetInput = payload;

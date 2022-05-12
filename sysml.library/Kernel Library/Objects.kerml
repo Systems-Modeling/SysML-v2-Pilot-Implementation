@@ -31,9 +31,19 @@ package Objects {
 		step involvingPerformances: Performance[0..*] subsets performances;
 		
 		/**
-		 * Performances which are enacted by this object.
+		 * Performances that are enacted by this object.
 		 */
 		abstract step enactedPerformances: Performance[0..*] subsets involvingPerformances, timeEnclosedOccurrences;
+		
+		/**
+		 * Performances that are owned by this object.
+		 */
+		composite step ownedPerformances: Performance[0..*] subsets enactedPerformances {
+			/**
+			 * The owning object is the "this" reference for an owned performance.
+			 */
+			feature redefines this = that;
+		}
 
 		/**
 		 * A space boundary that is a structured space object.

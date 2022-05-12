@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -187,23 +187,11 @@ public class ConjugatedPortDefinitionImpl extends PortDefinitionImpl implements 
   		return false;
 	}
 	
-	// Additional subsets/redefinitions
-	
-	@Override
-	public String basicGetName() {
-		String name = super.basicGetName();
-		if (name == null) {
-			PortDefinition originalPortDefinition = getOriginalPortDefinition();
-			if (originalPortDefinition != null) {
-				name = originalPortDefinition.getName();
-				if (name != null) {
-					name = "~" + name;
-				}
-			}
-		}
-		return name;
-	}
-	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Conjugation getOwnedConjugator() {
 		return getOwnedPortConjugator();
@@ -240,6 +228,25 @@ public class ConjugatedPortDefinitionImpl extends PortDefinitionImpl implements 
   		return false;
 	}
 
+	// Additional subsets/redefinitions
+	
+	@Override
+	public String getName() {
+		String name = super.getName();
+		if (name == null) {
+			PortDefinition originalPortDefinition = getOriginalPortDefinition();
+			if (originalPortDefinition != null) {
+				name = originalPortDefinition.getName();
+				if (name != null) {
+					name = "~" + name;
+				}
+			}
+		}
+		return name;
+	}
+	
+	//
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

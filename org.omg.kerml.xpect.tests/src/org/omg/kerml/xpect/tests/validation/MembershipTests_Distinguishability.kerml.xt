@@ -15,32 +15,16 @@ XPECT_SETUP org.omg.kerml.xpect.tests.validation.KerMLValidationTest
 END_SETUP 
 */
 package test{
-	//* XPECT warnings ---
-	 "Duplicate owned member name" at "A"
-	 "Duplicate owned member name" at "A"
-	 "Duplicate owned member name" at "A"
-	--- */ 
+	// XPECT warnings ---> "Duplicate of other element name" at "A"
 	classifier A {}
-	//* XPECT warnings ---
-	    "Duplicate owned member name" at "A"
-	    "Duplicate owned member name" at "A"
-	    "Duplicate owned member name" at "A"
-	    --- */
+	// XPECT warnings ---> "Duplicate of other element name" at "A"
 	package A{
 		classifier A {}
 		alias A_alias for A;
 	}
-	//* XPECT warnings ---
-		"Duplicate owned member name" at "A"
-		"Duplicate owned member name" at "A"
-		"Duplicate owned member name" at "A"
-	---	*/
+	// XPECT warnings ---> "Duplicate of other element name" at "A"
 	package A{}
-	//* XPECT warnings --- 
-	   "Duplicate owned member name" at "A"
-	   "Duplicate owned member name" at "A"
-	   "Duplicate owned member name" at "A"
-	--- */
+	// XPECT warnings ---> "Duplicate of other element name" at "A"
 	feature A: A::A_alias;
 	feature B: A::A_alias;
 	
@@ -55,7 +39,6 @@ package test{
 	classifier E :> D {
 		// XPECT warnings --> "Duplicate of inherited member name" at "F"
 		classifier F {}
-	}
-	
+	}	
 
 }

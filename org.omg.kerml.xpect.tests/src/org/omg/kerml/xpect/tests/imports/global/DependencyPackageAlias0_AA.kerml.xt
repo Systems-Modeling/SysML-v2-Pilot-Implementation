@@ -27,22 +27,3 @@ package test{
  --- */
 	import PackageAlias1::AA;
 }
-//*
-package PackageAlias1{
-	class A_alias is A;
-	class A{
-		class a{}
-		class a_alias is a;
-	}
-	class AA_alias is AA;
-	class AA{
-		class aa{}
-		class aa_alias is aa;
-	}
-}
-*/
-//*
-	missing in scopes are
-   	   	PackageAlias1.A_alias, PackageAlias1.A_alias.a, PackageAlias1.A_alias.a_alias,
-    	PackageAlias1.AA_alias, PackageAlias1.AA_alias.aa, PackageAlias1.AA_alias.aa_alias,
- */

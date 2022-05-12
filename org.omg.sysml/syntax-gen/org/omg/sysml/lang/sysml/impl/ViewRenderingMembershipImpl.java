@@ -72,7 +72,7 @@ public class ViewRenderingMembershipImpl extends FeatureMembershipImpl implement
 	 */
 	@Override
 	public void setOwnedRendering(RenderingUsage newOwnedRendering) {
-		super.setOwnedMemberElement(newOwnedRendering);
+		super.setOwnedMemberFeature(newOwnedRendering);
 	}
 
 	/**

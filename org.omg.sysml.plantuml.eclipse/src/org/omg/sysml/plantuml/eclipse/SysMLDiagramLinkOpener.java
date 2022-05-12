@@ -24,8 +24,6 @@
 
 package org.omg.sysml.plantuml.eclipse;
 
-import java.util.UUID;
-
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IPath;
@@ -57,9 +55,9 @@ public class SysMLDiagramLinkOpener implements ILinkOpener {
     }
 
     public static URI getEObjectLink(EObject eObj) {
-        UUID uuid = Activator.registerEObject(eObj);
-        if (uuid == null) return null;
-        return URI.createGenericURI(SYSML_PLINK_SCHEME, uuid.toString(), null);
+        String id = Activator.registerEObject(eObj);
+        if (id == null) return null;
+        return URI.createGenericURI(SYSML_PLINK_SCHEME, id, null);
     }
 
     
@@ -97,12 +95,7 @@ public class SysMLDiagramLinkOpener implements ILinkOpener {
     private EObject getEObject(URI uri) {
         String str = uri.opaquePart();
         if (str == null) return null;
-        try {
-            UUID uuid = UUID.fromString(str);
-            return Activator.findEObject(uuid);
-        } catch (IllegalArgumentException e) {
-            return null;
-        }
+        return Activator.findEObject(str);
     }
 
     @Override

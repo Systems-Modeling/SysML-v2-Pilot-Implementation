@@ -278,7 +278,7 @@ public class FeatureAdapter extends TypeAdapter {
 	
 	public boolean isComputeRedefinitions() {
 		EList<Redefinition> ownedRedefinitions = getTarget().getOwnedRedefinition();
-		return isComputeRedefinitions && ownedRedefinitions.isEmpty();
+		return isAddImplicitGeneralTypes && isComputeRedefinitions && ownedRedefinitions.isEmpty();
 	}
 	
 	/**
@@ -287,8 +287,10 @@ public class FeatureAdapter extends TypeAdapter {
 	public void addComputedRedefinitions(Element skip) {
 		if (isComputeRedefinitions()) {
 			removeImplicitGeneralType(SysMLPackage.eINSTANCE.getRedefinition());
-			addRedefinitions(skip);
+			// NOTE: Set flag before adding redefinitions, to avoid possible infinite
+			// recursion if computeImplicitGeneralTypes is called again on this Feature.
 			isComputeRedefinitions = false;
+			addRedefinitions(skip);
 		}
 	}
 	
@@ -464,7 +466,7 @@ public class FeatureAdapter extends TypeAdapter {
 			if (value != null) {
 				ElementUtil.transform(value);
 				Feature result = value.getResult();
-				if (target.getOwnedSpecialization().isEmpty()) {
+				if (target.getOwnedSpecialization().isEmpty() && target.getDirection() == null) {
 					addImplicitGeneralType(SysMLPackage.eINSTANCE.getSubsetting(), result);
 				}
 				if (valuation.isInitial()) {

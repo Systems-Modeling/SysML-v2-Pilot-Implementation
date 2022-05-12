@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2021-2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -12,7 +12,7 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Lesser General Public License for more details.
  *  
- * You should have received a copy of theGNU Lesser General Public License
+ * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  *  
  * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
@@ -154,6 +154,21 @@ public abstract class ModelLevelFunction {
 	protected static Element argumentValue(InvocationExpression invocation, int i, Element target) {
 		EList<Element> argumentValues = evaluateArgument(invocation, i, target);
 		return argumentValues == null || argumentValues.size() != 1? null: argumentValues.get(0);
+	}
+	
+	protected static EList<Element> expressionValue(InvocationExpression invocation, int i, Element target) {
+		Element value = argumentValue(invocation, i, target);
+		return value instanceof Expression? ((Expression)value).evaluate(target): null;
+	}
+	
+	protected static Boolean booleanExpressionValue(InvocationExpression invocation, int i, Element target) {
+		EList<Element> values = expressionValue(invocation, i, target);
+		if (values.size() != 1) {
+			return null;
+		} else {
+			Element value = values.get(0);
+			return value instanceof LiteralBoolean? ((LiteralBoolean)value).isValue(): null;
+		}
 	}
 	
 	protected static Boolean booleanValue(InvocationExpression invocation, int i, Element target) {

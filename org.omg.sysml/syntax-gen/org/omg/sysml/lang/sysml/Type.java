@@ -57,6 +57,10 @@ import org.eclipse.emf.common.util.EList;
  * disjointType = disjoiningTypeDisjoining.disjoiningType
  * allSupertypes()->includes(Kernel Library::Anything)
  * directedFeature = feature->select(direction <> null)
+ * featureMembership = ownedMembership->union(
+ *     inheritedMembership->selectByKind(FeatureMembership))
+ * feature = featureMembership.ownedMemberFeature
+ * ownedFeature = ownedFeatureMembership.ownedMemberFeature
  * <!-- end-model-doc -->
  *
  * <p>
@@ -76,11 +80,11 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.omg.sysml.lang.sysml.Type#isSufficient <em>Is Sufficient</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedConjugator <em>Owned Conjugator</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#isConjugated <em>Is Conjugated</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Type#getFeatureMembership <em>Feature Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getInheritedFeature <em>Inherited Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getMultiplicity <em>Multiplicity</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getDirectedFeature <em>Directed Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedDisjoining <em>Owned Disjoining</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Type#getFeatureMembership <em>Feature Membership</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getType()
@@ -106,7 +110,7 @@ public interface Type extends Namespace {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>ownedMemberships</code> of this Type that are FeatureMemberships, for which the Type is the <code>owningType</code>. Each such FeatureMembership identifies a <code>feature</code> of the Type.</p>
+	 * <p>The <code>ownedMemberships</code> of this Type that are FeatureMemberships, for which the Type is the <code>owningType</code>. Each such FeatureMembership identifies an <code>ownedFeature</code> of the Type.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Feature Membership</em>' reference list.
@@ -200,7 +204,7 @@ public interface Type extends Namespace {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>memberFeatures</code> of the <code>featureMemberships</code> of this Type.</p>
+	 * <p>The <code>ownedMemberFeatures</code> of the <code>featureMemberships</code> of this Type.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Feature</em>' reference list.
@@ -315,7 +319,7 @@ public interface Type extends Namespace {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>All Memberships inherited by this Type via Generalization or Conjugation.</p>
+	 * <p>All Memberships inherited by this Type via Generalization or Conjugation. These are included in the derived union for the <code>memberships</code> of the Type.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Inherited Membership</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getType_InheritedMembership()
@@ -465,8 +469,7 @@ public interface Type extends Namespace {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>All FeatureMemberships that have the Type as source. Each FeatureMembership identifies a Feature of the Type.</p>
-	 * 
+	 * <p>The FeatureMemberships for <code>features</code> of this Type, which include all <code>ownedFeatureMemberships</code> and those <code>inheritedFeatureMemberships</code> that are FeatureMemberships (but <em>not</em> <code>importedMemberships</code>).</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Feature Membership</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getType_FeatureMembership()
@@ -573,7 +576,7 @@ public interface Type extends Namespace {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Disjoinings that are among the <code>ownedRelationships</owned> of this Type (identify their <code>typeDisjoined</code> also as an <code>owningRelatedElement</code>).</p>
+	 * <p>The <code>ownedRelationships</code> of this Type that are Disjoinings, for which the Type is the <code>typeDisjoined</code> Type.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Disjoining</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getType_OwnedDisjoining()

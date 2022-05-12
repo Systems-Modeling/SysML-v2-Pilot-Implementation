@@ -30,4 +30,3 @@ package Test3{
  		classifier CC specializes Test3::A::alias_protected{}
 	}
 }
-//alias_protected is c_public

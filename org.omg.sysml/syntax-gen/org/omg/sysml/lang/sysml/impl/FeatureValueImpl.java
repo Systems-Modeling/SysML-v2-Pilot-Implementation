@@ -48,7 +48,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  *
  * @generated
  */
-public class FeatureValueImpl extends MembershipImpl implements FeatureValue {
+public class FeatureValueImpl extends OwningMembershipImpl implements FeatureValue {
 	/**
 	 * The cached value of the '{@link #getFeatureWithValue() <em>Feature With Value</em>}' reference.
 	 * <!-- begin-user-doc -->

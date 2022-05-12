@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2021-2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -124,11 +124,11 @@ public class ExpressionAdapter extends StepAdapter {
 	}
 	
 	protected void computeInput() {
-		if (getTarget().getInput().isEmpty()) {
-			for (Feature parameter: getTypeParameters()) {
-				createFeatureForParameter(parameter);
-			}
-		}
+//		if (getTarget().getInput().isEmpty()) {
+//			for (Feature parameter: getTypeParameters()) {
+//				createFeatureForParameter(parameter);
+//			}
+//		}
 	}
 	
 	protected void computeOutput() {
@@ -149,9 +149,9 @@ public class ExpressionAdapter extends StepAdapter {
 				expression.getOwningMembership() instanceof FeatureValue) {
 			addImplicitFeaturingTypesIfNecessary();
 		}
-		computeInput();
+//		computeInput();
 		computeOutput();
-		createResultConnector(getTarget().getResult());
+		createResultConnector(expression.getResult());
 	}
 		
 }

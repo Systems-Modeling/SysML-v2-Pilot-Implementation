@@ -32,11 +32,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Scanner;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.BasicEList;
@@ -455,17 +452,13 @@ public class SysMLInteractive extends SysMLUtil {
     }
 
     private class LinkProvider implements SysML2PlantUMLLinkProvider {
-    	private Map<EObject, UUID> elementMap = new HashMap<EObject, UUID>(); 
-
         @Override
         public String getLinkString(EObject eObj) {
-        	UUID uuid = elementMap.get(eObj);
-        	if (uuid == null) {
-        		uuid = UUID.randomUUID();
-        		elementMap.put(eObj,  uuid);
-        	}
-
-            return "psysml:" + uuid.toString();
+            if (!(eObj instanceof Element)) return null;
+            Element e = (Element) eObj;
+            String id = e.getElementId();
+            if (id == null) return null;
+            return "psysml:" + id;
         }
 
         @Override

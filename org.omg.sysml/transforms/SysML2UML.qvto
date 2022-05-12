@@ -77,11 +77,11 @@ mapping SysML::Element::toClass(): UML::Class
 
 // Namespace
 
-query SysML::Namespace::ownedMemberMemberships(): OrderedSet(SysML::Membership) {
-	return self.ownedMembership[ownedMemberElement <> null];
+query SysML::Namespace::ownedMemberMemberships(): OrderedSet(SysML::OwningMembership) {
+	return self.ownedMembership[SysML::OwningMembership];
 }
 
-query SysML::Namespace::ownedFeatureMemberships(): OrderedSet(SysML::Membership) {
+query SysML::Namespace::ownedFeatureMemberships(): OrderedSet(SysML::OwningMembership) {
 	return self.ownedMemberMemberships()[ownedMemberElement.oclIsKindOf(SysML::Feature)];
 }
 
@@ -90,7 +90,7 @@ query SysML::Namespace::ownedMembers(): Sequence(SysML::Element) {
 }
 
 query SysML::Namespace::members(): Sequence(SysML::Element) {
-	return self.ownedMembership.memberElement();
+	return self.ownedMembership.memberElement;
 }
 
 query SysML::Namespace::features(): Sequence(SysML::Feature) {
@@ -113,25 +113,18 @@ mapping SysML::Namespace::toNamespace(): UML::Namespace
 
 // Membership
 
-query SysML::Membership::memberElement(): SysML::Element {
-	return 
-		if self.memberElement <> null then self.memberElement
-		else self.ownedMemberElement
-		endif;
-}
-
-helper SysML::Membership::mapToPackageableElement(): UML::PackageableElement {
+helper SysML::OwningMembership::mapToPackageableElement(): UML::PackageableElement {
 	var element := self.ownedMemberElement.map toPackageableElement();
 	element.visibility := toVisibilityKind(self.visibility);
 	return element;
 }
 
 helper SysML::Membership::mapToFeature(): UML::Feature {
-	return self.memberElement().oclAsType(SysML::Feature).map toProperty();
+	return self.memberElement.oclAsType(SysML::Feature).map toProperty();
 }
 
 helper SysML::FeatureMembership::mapToFeature(): UML::Feature {
-	var feature := self.memberElement().oclAsType(SysML::Feature);
+	var feature := self.memberElement.oclAsType(SysML::Feature);
 	var umlFeature: UML::Feature;
 	if feature.oclIsKindOf(SysML::Connector) then {
 		umlFeature := feature.oclAsType(SysML::Connector).map toConnector();

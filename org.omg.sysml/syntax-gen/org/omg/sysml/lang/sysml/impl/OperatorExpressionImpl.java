@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -26,7 +26,6 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
-import java.util.stream.Collectors;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -245,13 +244,12 @@ public class OperatorExpressionImpl extends InvocationExpressionImpl implements 
 
 		@Override
 		protected List<Expression> delegateList() {
-			return getOwnedFeature().stream().filter(f -> f instanceof Expression).map(f -> (Expression) f)
-					.collect(Collectors.toList());
+			return getArgument();
 		}
 
 		@Override
 		protected void delegateAdd(Expression object) {
-			TypeUtil.addOwnedFeatureTo(OperatorExpressionImpl.this, object).
+			TypeUtil.addOwnedParameterTo(OperatorExpressionImpl.this, object).
 				setVisibility(VisibilityKind.PRIVATE);
 		}
 

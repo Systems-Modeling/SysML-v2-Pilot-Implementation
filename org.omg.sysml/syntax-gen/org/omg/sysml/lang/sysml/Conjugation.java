@@ -40,8 +40,8 @@ package org.omg.sysml.lang.sysml;
  * </p>
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.Conjugation#getOriginalType <em>Original Type</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Conjugation#getOwningType <em>Owning Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Conjugation#getConjugatedType <em>Conjugated Type</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Conjugation#getOwningType <em>Owning Type</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getConjugation()

@@ -374,11 +374,10 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generate
+	 * @generated
 	 */
 	public OwningMembership basicGetOwningMembership() {
-		Relationship owningRelationship = getOwningRelationship();
-		return owningRelationship instanceof OwningMembership? (OwningMembership)owningRelationship: null;
+		return (OwningMembership)OWNING_MEMBERSHIP__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**

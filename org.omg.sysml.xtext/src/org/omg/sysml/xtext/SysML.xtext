@@ -91,7 +91,7 @@ Documentation returns SysML::Documentation :
 /* Textual Representation */
 
 TextualRepresentation returns SysML::TextualRepresentation :
-    ( 'rep' Identification? ( 'about' ownedRelationship += Annotation )? )?
+    ( 'rep' Identification? )?
     'language' language = STRING_VALUE 
     body = REGULAR_COMMENT
 ;

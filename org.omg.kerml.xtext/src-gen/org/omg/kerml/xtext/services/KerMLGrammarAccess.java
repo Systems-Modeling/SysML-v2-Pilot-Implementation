@@ -506,38 +506,22 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.OwnedRelatedElement");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cElementKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final Keyword cLessThanSignKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
-		private final Assignment cShortNameAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
-		private final RuleCall cShortNameNameParserRuleCall_1_1_0 = (RuleCall)cShortNameAssignment_1_1.eContents().get(0);
-		private final Keyword cGreaterThanSignKeyword_1_2 = (Keyword)cGroup_1.eContents().get(2);
+		private final RuleCall cIdentificationParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
 		private final RuleCall cElementBodyParserRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
 		
 		//OwnedRelatedElement returns SysML::Element :
-		//    'element' ( '<' shortName = Name '>' )? ElementBody
+		//    'element' Identification? ElementBody
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'element' ( '<' shortName = Name '>' )? ElementBody
+		//'element' Identification? ElementBody
 		public Group getGroup() { return cGroup; }
 		
 		//'element'
 		public Keyword getElementKeyword_0() { return cElementKeyword_0; }
 		
-		//( '<' shortName = Name '>' )?
-		public Group getGroup_1() { return cGroup_1; }
-		
-		//'<'
-		public Keyword getLessThanSignKeyword_1_0() { return cLessThanSignKeyword_1_0; }
-		
-		//shortName = Name
-		public Assignment getShortNameAssignment_1_1() { return cShortNameAssignment_1_1; }
-		
-		//Name
-		public RuleCall getShortNameNameParserRuleCall_1_1_0() { return cShortNameNameParserRuleCall_1_1_0; }
-		
-		//'>'
-		public Keyword getGreaterThanSignKeyword_1_2() { return cGreaterThanSignKeyword_1_2; }
+		//Identification?
+		public RuleCall getIdentificationParserRuleCall_1() { return cIdentificationParserRuleCall_1; }
 		
 		//ElementBody
 		public RuleCall getElementBodyParserRuleCall_2() { return cElementBodyParserRuleCall_2; }
@@ -546,22 +530,18 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.OwnedRelatedRelationship");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cRelationshipKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final Keyword cLessThanSignKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
-		private final Assignment cShortNameAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
-		private final RuleCall cShortNameNameParserRuleCall_1_1_0 = (RuleCall)cShortNameAssignment_1_1.eContents().get(0);
-		private final Keyword cGreaterThanSignKeyword_1_2 = (Keyword)cGroup_1.eContents().get(2);
+		private final RuleCall cIdentificationParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
 		private final RuleCall cRelationshipRelatedElementsParserRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
 		private final RuleCall cRelationshipBodyParserRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
 		
 		//OwnedRelatedRelationship returns SysML::Relationship :
-		//    'relationship' ( '<' shortName = Name '>' )?
+		//    'relationship' Identification?
 		//    RelationshipRelatedElements
 		//    RelationshipBody
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'relationship' ( '<' shortName = Name '>' )?
+		//'relationship' Identification?
 		//RelationshipRelatedElements
 		//RelationshipBody
 		public Group getGroup() { return cGroup; }
@@ -569,20 +549,8 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//'relationship'
 		public Keyword getRelationshipKeyword_0() { return cRelationshipKeyword_0; }
 		
-		//( '<' shortName = Name '>' )?
-		public Group getGroup_1() { return cGroup_1; }
-		
-		//'<'
-		public Keyword getLessThanSignKeyword_1_0() { return cLessThanSignKeyword_1_0; }
-		
-		//shortName = Name
-		public Assignment getShortNameAssignment_1_1() { return cShortNameAssignment_1_1; }
-		
-		//Name
-		public RuleCall getShortNameNameParserRuleCall_1_1_0() { return cShortNameNameParserRuleCall_1_1_0; }
-		
-		//'>'
-		public Keyword getGreaterThanSignKeyword_1_2() { return cGreaterThanSignKeyword_1_2; }
+		//Identification?
+		public RuleCall getIdentificationParserRuleCall_1() { return cIdentificationParserRuleCall_1; }
 		
 		//RelationshipRelatedElements
 		public RuleCall getRelationshipRelatedElementsParserRuleCall_2() { return cRelationshipRelatedElementsParserRuleCall_2; }
@@ -801,42 +769,26 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Group cGroup_0 = (Group)cGroup.eContents().get(0);
 		private final Keyword cCommentKeyword_0_0 = (Keyword)cGroup_0.eContents().get(0);
-		private final Group cGroup_0_1 = (Group)cGroup_0.eContents().get(1);
-		private final Keyword cLessThanSignKeyword_0_1_0 = (Keyword)cGroup_0_1.eContents().get(0);
-		private final Assignment cShortNameAssignment_0_1_1 = (Assignment)cGroup_0_1.eContents().get(1);
-		private final RuleCall cShortNameNameParserRuleCall_0_1_1_0 = (RuleCall)cShortNameAssignment_0_1_1.eContents().get(0);
-		private final Keyword cGreaterThanSignKeyword_0_1_2 = (Keyword)cGroup_0_1.eContents().get(2);
+		private final RuleCall cIdentificationParserRuleCall_0_1 = (RuleCall)cGroup_0.eContents().get(1);
 		private final Assignment cBodyAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cBodyREGULAR_COMMENTTerminalRuleCall_1_0 = (RuleCall)cBodyAssignment_1.eContents().get(0);
 		
 		//OwnedComment returns SysML::Comment :
-		//    ( 'comment' ( '<' shortName = Name '>' )? )? body = REGULAR_COMMENT
+		//    ( 'comment' Identification? )? body = REGULAR_COMMENT
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//( 'comment' ( '<' shortName = Name '>' )? )? body = REGULAR_COMMENT
+		//( 'comment' Identification? )? body = REGULAR_COMMENT
 		public Group getGroup() { return cGroup; }
 		
-		//( 'comment' ( '<' shortName = Name '>' )? )?
+		//( 'comment' Identification? )?
 		public Group getGroup_0() { return cGroup_0; }
 		
 		//'comment'
 		public Keyword getCommentKeyword_0_0() { return cCommentKeyword_0_0; }
 		
-		//( '<' shortName = Name '>' )?
-		public Group getGroup_0_1() { return cGroup_0_1; }
-		
-		//'<'
-		public Keyword getLessThanSignKeyword_0_1_0() { return cLessThanSignKeyword_0_1_0; }
-		
-		//shortName = Name
-		public Assignment getShortNameAssignment_0_1_1() { return cShortNameAssignment_0_1_1; }
-		
-		//Name
-		public RuleCall getShortNameNameParserRuleCall_0_1_1_0() { return cShortNameNameParserRuleCall_0_1_1_0; }
-		
-		//'>'
-		public Keyword getGreaterThanSignKeyword_0_1_2() { return cGreaterThanSignKeyword_0_1_2; }
+		//Identification?
+		public RuleCall getIdentificationParserRuleCall_0_1() { return cIdentificationParserRuleCall_0_1; }
 		
 		//body = REGULAR_COMMENT
 		public Assignment getBodyAssignment_1() { return cBodyAssignment_1; }
@@ -846,54 +798,70 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	public class OwnedDocumentationElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.OwnedDocumentation");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cDocKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final Keyword cLessThanSignKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
-		private final Assignment cShortNameAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
-		private final RuleCall cShortNameNameParserRuleCall_1_1_0 = (RuleCall)cShortNameAssignment_1_1.eContents().get(0);
-		private final Keyword cGreaterThanSignKeyword_1_2 = (Keyword)cGroup_1.eContents().get(2);
-		private final Assignment cBodyAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cBodyREGULAR_COMMENTTerminalRuleCall_2_0 = (RuleCall)cBodyAssignment_2.eContents().get(0);
+		private final RuleCall cDocumentationParserRuleCall = (RuleCall)rule.eContents().get(1);
 		
 		//OwnedDocumentation returns SysML::Documentation :
-		//    'doc' ( '<' shortName = Name '>' )? body = REGULAR_COMMENT
+		//    Documentation
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'doc' ( '<' shortName = Name '>' )? body = REGULAR_COMMENT
+		//Documentation
+		public RuleCall getDocumentationParserRuleCall() { return cDocumentationParserRuleCall; }
+	}
+	public class TextualRepresentationElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.TextualRepresentation");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Group cGroup_0 = (Group)cGroup.eContents().get(0);
+		private final Keyword cRepKeyword_0_0 = (Keyword)cGroup_0.eContents().get(0);
+		private final RuleCall cIdentificationParserRuleCall_0_1 = (RuleCall)cGroup_0.eContents().get(1);
+		private final Keyword cLanguageKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cLanguageAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cLanguageSTRING_VALUETerminalRuleCall_2_0 = (RuleCall)cLanguageAssignment_2.eContents().get(0);
+		private final Assignment cBodyAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cBodyREGULAR_COMMENTTerminalRuleCall_3_0 = (RuleCall)cBodyAssignment_3.eContents().get(0);
+		
+		///* Textual Representation */
+		//TextualRepresentation returns SysML::TextualRepresentation :
+		//    ( 'rep' Identification? )?
+		//    'language' language = STRING_VALUE
+		//    body = REGULAR_COMMENT
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//( 'rep' Identification? )?
+		//'language' language = STRING_VALUE
+		//body = REGULAR_COMMENT
 		public Group getGroup() { return cGroup; }
 		
-		//'doc'
-		public Keyword getDocKeyword_0() { return cDocKeyword_0; }
+		//( 'rep' Identification? )?
+		public Group getGroup_0() { return cGroup_0; }
 		
-		//( '<' shortName = Name '>' )?
-		public Group getGroup_1() { return cGroup_1; }
+		//'rep'
+		public Keyword getRepKeyword_0_0() { return cRepKeyword_0_0; }
 		
-		//'<'
-		public Keyword getLessThanSignKeyword_1_0() { return cLessThanSignKeyword_1_0; }
+		//Identification?
+		public RuleCall getIdentificationParserRuleCall_0_1() { return cIdentificationParserRuleCall_0_1; }
 		
-		//shortName = Name
-		public Assignment getShortNameAssignment_1_1() { return cShortNameAssignment_1_1; }
+		//'language'
+		public Keyword getLanguageKeyword_1() { return cLanguageKeyword_1; }
 		
-		//Name
-		public RuleCall getShortNameNameParserRuleCall_1_1_0() { return cShortNameNameParserRuleCall_1_1_0; }
+		//language = STRING_VALUE
+		public Assignment getLanguageAssignment_2() { return cLanguageAssignment_2; }
 		
-		//'>'
-		public Keyword getGreaterThanSignKeyword_1_2() { return cGreaterThanSignKeyword_1_2; }
+		//STRING_VALUE
+		public RuleCall getLanguageSTRING_VALUETerminalRuleCall_2_0() { return cLanguageSTRING_VALUETerminalRuleCall_2_0; }
 		
 		//body = REGULAR_COMMENT
-		public Assignment getBodyAssignment_2() { return cBodyAssignment_2; }
+		public Assignment getBodyAssignment_3() { return cBodyAssignment_3; }
 		
 		//REGULAR_COMMENT
-		public RuleCall getBodyREGULAR_COMMENTTerminalRuleCall_2_0() { return cBodyREGULAR_COMMENTTerminalRuleCall_2_0; }
+		public RuleCall getBodyREGULAR_COMMENTTerminalRuleCall_3_0() { return cBodyREGULAR_COMMENTTerminalRuleCall_3_0; }
 	}
 	public class OwnedTextualRepresentationAnnotationElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.OwnedTextualRepresentationAnnotation");
 		private final Assignment cOwnedRelatedElementAssignment = (Assignment)rule.eContents().get(1);
 		private final RuleCall cOwnedRelatedElementOwnedTextualRepresentationParserRuleCall_0 = (RuleCall)cOwnedRelatedElementAssignment.eContents().get(0);
 		
-		///* Textual Representation */
 		//OwnedTextualRepresentationAnnotation returns SysML::Annotation :
 		//    ownedRelatedElement += OwnedTextualRepresentation
 		//;
@@ -907,117 +875,15 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	public class OwnedTextualRepresentationElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.OwnedTextualRepresentation");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Group cGroup_0 = (Group)cGroup.eContents().get(0);
-		private final Keyword cRepKeyword_0_0 = (Keyword)cGroup_0.eContents().get(0);
-		private final Assignment cShortNameAssignment_0_1 = (Assignment)cGroup_0.eContents().get(1);
-		private final RuleCall cShortNameNameParserRuleCall_0_1_0 = (RuleCall)cShortNameAssignment_0_1.eContents().get(0);
-		private final Keyword cLanguageKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cLanguageAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cLanguageSTRING_VALUETerminalRuleCall_2_0 = (RuleCall)cLanguageAssignment_2.eContents().get(0);
-		private final Assignment cBodyAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cBodyREGULAR_COMMENTTerminalRuleCall_3_0 = (RuleCall)cBodyAssignment_3.eContents().get(0);
+		private final RuleCall cTextualRepresentationParserRuleCall = (RuleCall)rule.eContents().get(1);
 		
 		//OwnedTextualRepresentation returns SysML::TextualRepresentation :
-		//    ( 'rep' ( shortName = Name )? )?
-		//    'language' language = STRING_VALUE body = REGULAR_COMMENT
+		//    TextualRepresentation
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//( 'rep' ( shortName = Name )? )?
-		//'language' language = STRING_VALUE body = REGULAR_COMMENT
-		public Group getGroup() { return cGroup; }
-		
-		//( 'rep' ( shortName = Name )? )?
-		public Group getGroup_0() { return cGroup_0; }
-		
-		//'rep'
-		public Keyword getRepKeyword_0_0() { return cRepKeyword_0_0; }
-		
-		//( shortName = Name )?
-		public Assignment getShortNameAssignment_0_1() { return cShortNameAssignment_0_1; }
-		
-		//Name
-		public RuleCall getShortNameNameParserRuleCall_0_1_0() { return cShortNameNameParserRuleCall_0_1_0; }
-		
-		//'language'
-		public Keyword getLanguageKeyword_1() { return cLanguageKeyword_1; }
-		
-		//language = STRING_VALUE
-		public Assignment getLanguageAssignment_2() { return cLanguageAssignment_2; }
-		
-		//STRING_VALUE
-		public RuleCall getLanguageSTRING_VALUETerminalRuleCall_2_0() { return cLanguageSTRING_VALUETerminalRuleCall_2_0; }
-		
-		//body = REGULAR_COMMENT
-		public Assignment getBodyAssignment_3() { return cBodyAssignment_3; }
-		
-		//REGULAR_COMMENT
-		public RuleCall getBodyREGULAR_COMMENTTerminalRuleCall_3_0() { return cBodyREGULAR_COMMENTTerminalRuleCall_3_0; }
-	}
-	public class TextualRepresentationElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.TextualRepresentation");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Group cGroup_0 = (Group)cGroup.eContents().get(0);
-		private final Keyword cRepKeyword_0_0 = (Keyword)cGroup_0.eContents().get(0);
-		private final RuleCall cIdentificationParserRuleCall_0_1 = (RuleCall)cGroup_0.eContents().get(1);
-		private final Group cGroup_0_2 = (Group)cGroup_0.eContents().get(2);
-		private final Keyword cAboutKeyword_0_2_0 = (Keyword)cGroup_0_2.eContents().get(0);
-		private final Assignment cOwnedRelationshipAssignment_0_2_1 = (Assignment)cGroup_0_2.eContents().get(1);
-		private final RuleCall cOwnedRelationshipAnnotationParserRuleCall_0_2_1_0 = (RuleCall)cOwnedRelationshipAssignment_0_2_1.eContents().get(0);
-		private final Keyword cLanguageKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cLanguageAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cLanguageSTRING_VALUETerminalRuleCall_2_0 = (RuleCall)cLanguageAssignment_2.eContents().get(0);
-		private final Assignment cBodyAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cBodyREGULAR_COMMENTTerminalRuleCall_3_0 = (RuleCall)cBodyAssignment_3.eContents().get(0);
-		
-		//TextualRepresentation returns SysML::TextualRepresentation :
-		//    ( 'rep' Identification? ( 'about' ownedRelationship += Annotation )? )?
-		//    'language' language = STRING_VALUE
-		//    body = REGULAR_COMMENT
-		//;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//( 'rep' Identification? ( 'about' ownedRelationship += Annotation )? )?
-		//'language' language = STRING_VALUE
-		//body = REGULAR_COMMENT
-		public Group getGroup() { return cGroup; }
-		
-		//( 'rep' Identification? ( 'about' ownedRelationship += Annotation )? )?
-		public Group getGroup_0() { return cGroup_0; }
-		
-		//'rep'
-		public Keyword getRepKeyword_0_0() { return cRepKeyword_0_0; }
-		
-		//Identification?
-		public RuleCall getIdentificationParserRuleCall_0_1() { return cIdentificationParserRuleCall_0_1; }
-		
-		//( 'about' ownedRelationship += Annotation )?
-		public Group getGroup_0_2() { return cGroup_0_2; }
-		
-		//'about'
-		public Keyword getAboutKeyword_0_2_0() { return cAboutKeyword_0_2_0; }
-		
-		//ownedRelationship += Annotation
-		public Assignment getOwnedRelationshipAssignment_0_2_1() { return cOwnedRelationshipAssignment_0_2_1; }
-		
-		//Annotation
-		public RuleCall getOwnedRelationshipAnnotationParserRuleCall_0_2_1_0() { return cOwnedRelationshipAnnotationParserRuleCall_0_2_1_0; }
-		
-		//'language'
-		public Keyword getLanguageKeyword_1() { return cLanguageKeyword_1; }
-		
-		//language = STRING_VALUE
-		public Assignment getLanguageAssignment_2() { return cLanguageAssignment_2; }
-		
-		//STRING_VALUE
-		public RuleCall getLanguageSTRING_VALUETerminalRuleCall_2_0() { return cLanguageSTRING_VALUETerminalRuleCall_2_0; }
-		
-		//body = REGULAR_COMMENT
-		public Assignment getBodyAssignment_3() { return cBodyAssignment_3; }
-		
-		//REGULAR_COMMENT
-		public RuleCall getBodyREGULAR_COMMENTTerminalRuleCall_3_0() { return cBodyREGULAR_COMMENTTerminalRuleCall_3_0; }
+		//TextualRepresentation
+		public RuleCall getTextualRepresentationParserRuleCall() { return cTextualRepresentationParserRuleCall; }
 	}
 	public class NamespaceElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.Namespace");
@@ -6868,8 +6734,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Keyword cCommercialAtKeyword_0_0 = (Keyword)cAlternatives_0.eContents().get(0);
 		private final Keyword cMetadataKeyword_0_1 = (Keyword)cAlternatives_0.eContents().get(1);
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final Assignment cShortNameAssignment_1_0 = (Assignment)cGroup_1.eContents().get(0);
-		private final RuleCall cShortNameNameParserRuleCall_1_0_0 = (RuleCall)cShortNameAssignment_1_0.eContents().get(0);
+		private final RuleCall cIdentificationParserRuleCall_1_0 = (RuleCall)cGroup_1.eContents().get(0);
 		private final Alternatives cAlternatives_1_1 = (Alternatives)cGroup_1.eContents().get(1);
 		private final Keyword cColonKeyword_1_1_0 = (Keyword)cAlternatives_1_1.eContents().get(0);
 		private final Group cGroup_1_1_1 = (Group)cAlternatives_1_1.eContents().get(1);
@@ -6880,13 +6745,13 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final RuleCall cTypeBodyParserRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
 		
 		//OwnedMetadataFeature returns SysML::MetadataFeature :
-		//    ( '@' | 'metadata' ) ( shortName = Name ( ':' | 'typed' 'by' ) )?
+		//    ( '@' | 'metadata' ) ( Identification ( ':' | 'typed' 'by' ) )?
 		//    ownedRelationship += MetadataTyping
 		//    TypeBody
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//( '@' | 'metadata' ) ( shortName = Name ( ':' | 'typed' 'by' ) )?
+		//( '@' | 'metadata' ) ( Identification ( ':' | 'typed' 'by' ) )?
 		//ownedRelationship += MetadataTyping
 		//TypeBody
 		public Group getGroup() { return cGroup; }
@@ -6900,14 +6765,11 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//'metadata'
 		public Keyword getMetadataKeyword_0_1() { return cMetadataKeyword_0_1; }
 		
-		//( shortName = Name ( ':' | 'typed' 'by' ) )?
+		//( Identification ( ':' | 'typed' 'by' ) )?
 		public Group getGroup_1() { return cGroup_1; }
 		
-		//shortName = Name
-		public Assignment getShortNameAssignment_1_0() { return cShortNameAssignment_1_0; }
-		
-		//Name
-		public RuleCall getShortNameNameParserRuleCall_1_0_0() { return cShortNameNameParserRuleCall_1_0_0; }
+		//Identification
+		public RuleCall getIdentificationParserRuleCall_1_0() { return cIdentificationParserRuleCall_1_0; }
 		
 		//( ':' | 'typed' 'by' )
 		public Alternatives getAlternatives_1_1() { return cAlternatives_1_1; }
@@ -7353,9 +7215,9 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	private final OwnedCommentAnnotationElements pOwnedCommentAnnotation;
 	private final OwnedCommentElements pOwnedComment;
 	private final OwnedDocumentationElements pOwnedDocumentation;
+	private final TextualRepresentationElements pTextualRepresentation;
 	private final OwnedTextualRepresentationAnnotationElements pOwnedTextualRepresentationAnnotation;
 	private final OwnedTextualRepresentationElements pOwnedTextualRepresentation;
-	private final TextualRepresentationElements pTextualRepresentation;
 	private final NamespaceElements pNamespace;
 	private final NamespaceDeclarationElements pNamespaceDeclaration;
 	private final NamespaceBodyElements pNamespaceBody;
@@ -7546,9 +7408,9 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		this.pOwnedCommentAnnotation = new OwnedCommentAnnotationElements();
 		this.pOwnedComment = new OwnedCommentElements();
 		this.pOwnedDocumentation = new OwnedDocumentationElements();
+		this.pTextualRepresentation = new TextualRepresentationElements();
 		this.pOwnedTextualRepresentationAnnotation = new OwnedTextualRepresentationAnnotationElements();
 		this.pOwnedTextualRepresentation = new OwnedTextualRepresentationElements();
-		this.pTextualRepresentation = new TextualRepresentationElements();
 		this.pNamespace = new NamespaceElements();
 		this.pNamespaceDeclaration = new NamespaceDeclarationElements();
 		this.pNamespaceBody = new NamespaceBodyElements();
@@ -7905,7 +7767,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//OwnedRelatedElement returns SysML::Element :
-	//    'element' ( '<' shortName = Name '>' )? ElementBody
+	//    'element' Identification? ElementBody
 	//;
 	public OwnedRelatedElementElements getOwnedRelatedElementAccess() {
 		return pOwnedRelatedElement;
@@ -7916,7 +7778,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//OwnedRelatedRelationship returns SysML::Relationship :
-	//    'relationship' ( '<' shortName = Name '>' )?
+	//    'relationship' Identification?
 	//    RelationshipRelatedElements
 	//    RelationshipBody
 	//;
@@ -8003,7 +7865,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//OwnedComment returns SysML::Comment :
-	//    ( 'comment' ( '<' shortName = Name '>' )? )? body = REGULAR_COMMENT
+	//    ( 'comment' Identification? )? body = REGULAR_COMMENT
 	//;
 	public OwnedCommentElements getOwnedCommentAccess() {
 		return pOwnedComment;
@@ -8014,7 +7876,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//OwnedDocumentation returns SysML::Documentation :
-	//    'doc' ( '<' shortName = Name '>' )? body = REGULAR_COMMENT
+	//    Documentation
 	//;
 	public OwnedDocumentationElements getOwnedDocumentationAccess() {
 		return pOwnedDocumentation;
@@ -8025,6 +7887,19 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	///* Textual Representation */
+	//TextualRepresentation returns SysML::TextualRepresentation :
+	//    ( 'rep' Identification? )?
+	//    'language' language = STRING_VALUE
+	//    body = REGULAR_COMMENT
+	//;
+	public TextualRepresentationElements getTextualRepresentationAccess() {
+		return pTextualRepresentation;
+	}
+	
+	public ParserRule getTextualRepresentationRule() {
+		return getTextualRepresentationAccess().getRule();
+	}
+	
 	//OwnedTextualRepresentationAnnotation returns SysML::Annotation :
 	//    ownedRelatedElement += OwnedTextualRepresentation
 	//;
@@ -8037,8 +7912,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//OwnedTextualRepresentation returns SysML::TextualRepresentation :
-	//    ( 'rep' ( shortName = Name )? )?
-	//    'language' language = STRING_VALUE body = REGULAR_COMMENT
+	//    TextualRepresentation
 	//;
 	public OwnedTextualRepresentationElements getOwnedTextualRepresentationAccess() {
 		return pOwnedTextualRepresentation;
@@ -8046,19 +7920,6 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	
 	public ParserRule getOwnedTextualRepresentationRule() {
 		return getOwnedTextualRepresentationAccess().getRule();
-	}
-	
-	//TextualRepresentation returns SysML::TextualRepresentation :
-	//    ( 'rep' Identification? ( 'about' ownedRelationship += Annotation )? )?
-	//    'language' language = STRING_VALUE
-	//    body = REGULAR_COMMENT
-	//;
-	public TextualRepresentationElements getTextualRepresentationAccess() {
-		return pTextualRepresentation;
-	}
-	
-	public ParserRule getTextualRepresentationRule() {
-		return getTextualRepresentationAccess().getRule();
 	}
 	
 	///* NAMESPACES */
@@ -9947,7 +9808,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//OwnedMetadataFeature returns SysML::MetadataFeature :
-	//    ( '@' | 'metadata' ) ( shortName = Name ( ':' | 'typed' 'by' ) )?
+	//    ( '@' | 'metadata' ) ( Identification ( ':' | 'typed' 'by' ) )?
 	//    ownedRelationship += MetadataTyping
 	//    TypeBody
 	//;

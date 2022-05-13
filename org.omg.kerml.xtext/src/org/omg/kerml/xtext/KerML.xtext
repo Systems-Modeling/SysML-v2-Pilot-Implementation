@@ -1,6 +1,6 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2018, 2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2018-2022 Model Driven Solutions, Inc.
  * Copyright (c) 2018 IncQuery Labs Ltd.
  * Copyright (c) 2019 Maplesoft (Waterloo Maple, Inc.)
  * Copyright (c) 2019 Mgnite Inc.
@@ -15,7 +15,7 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Lesser General Public License for more details.
  *
- * You should have received a copy of theGNU Lesser General Public License
+ * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  *
  * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
@@ -110,11 +110,11 @@ fragment RelationshipOwnedElement returns SysML::Relationship:
 ;
 
 OwnedRelatedElement returns SysML::Element :
-    'element' ( '<' shortName = Name '>' )? ElementBody
+    'element' Identification? ElementBody
 ;
 
 OwnedRelatedRelationship returns SysML::Relationship :
-	'relationship' ( '<' shortName = Name '>' )? 
+	'relationship' Identification? 
 	RelationshipRelatedElements
 	RelationshipBody
 ;
@@ -154,28 +154,27 @@ OwnedCommentAnnotation returns SysML::Annotation :
 ;
 
 OwnedComment returns SysML::Comment :
-	( 'comment' ( '<' shortName = Name '>' )? )? body = REGULAR_COMMENT
+	( 'comment' Identification? )? body = REGULAR_COMMENT
 ;
 
 OwnedDocumentation returns SysML::Documentation :
-	'doc' ( '<' shortName = Name '>' )? body = REGULAR_COMMENT
+	Documentation
 ;
 
 /* Textual Representation */
+
+TextualRepresentation returns SysML::TextualRepresentation :
+    ( 'rep' Identification? )?
+    'language' language = STRING_VALUE 
+    body = REGULAR_COMMENT
+;
 
 OwnedTextualRepresentationAnnotation returns SysML::Annotation :
 	ownedRelatedElement += OwnedTextualRepresentation
 ;
 
 OwnedTextualRepresentation returns SysML::TextualRepresentation :
-	( 'rep' ( shortName = Name )? )? 
-	'language' language = STRING_VALUE body = REGULAR_COMMENT
-;
-
-TextualRepresentation returns SysML::TextualRepresentation :
-    ( 'rep' Identification? ( 'about' ownedRelationship += Annotation )? )?
-    'language' language = STRING_VALUE 
-    body = REGULAR_COMMENT
+	TextualRepresentation
 ;
 
 /* NAMESPACES */
@@ -1074,7 +1073,7 @@ OwnedMetadataFeatureAnnotation returns SysML::Annotation :
 ;
 
 OwnedMetadataFeature returns SysML::MetadataFeature :
-	( '@' | 'metadata' ) ( shortName = Name ( ':' | 'typed' 'by' ) )? 
+	( '@' | 'metadata' ) ( Identification ( ':' | 'typed' 'by' ) )? 
 	ownedRelationship += MetadataTyping 
 	TypeBody
 ;

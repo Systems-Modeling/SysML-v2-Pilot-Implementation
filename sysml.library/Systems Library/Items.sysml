@@ -46,7 +46,6 @@ package Items {
 
 			item envelopingShape: Item :>> self;
 
-			  /* Could use existential to avoid introducing features to enveloping shapes. */
 			item envelopingItem [1]; /* Shape constraint below, to avoid envelopingShape being a portion. */
 
 			assert constraint { envelopingItem.shape.spaceTimeCoincidentOccurrences->includes(envelopingShape) &
@@ -75,9 +74,9 @@ package Items {
 		}
 
 		/**
-		 * Voids  are inner space occurrences that have "nothing (material) in them" (TBD). *sufficient, need assertion*
+		 * Voids are inner space occurrences of this Item.
 		 */
-		item voids :> innerSpaceOccurrences [0..*];
+		item voids :>> innerSpaceOccurrences [0..*];
 
 		/**
 		 * An Item is solid if it has no voids.
@@ -104,8 +103,8 @@ package Items {
 	 * Touching occurrences are just outside each other and happen at the same time.
 	 */
 	connection def Touches :> JustOutsideOf, HappensWhile {
-		end touchedOccurrence [0..*] :>> separateSpaceToo, thisOccurrence;
-		end touchedOccurrenceToo [0..*] :>> separateSpaceToo, thatOccurrence;
+		end item touchedItemToo [0..*] :>> separateSpaceToo, thisOccurrence;
+		end item touchedItem [0..*] :>> separateSpace, thatOccurrence;
 	}
 
 	/**

@@ -630,7 +630,7 @@ package Occurrences {
 	}
 
 	/**
-	 * InnerSpaceOf is an OutsideOf asserting that one occurrence (innerSpace) is the interior
+	 * InnerSpaceOf is an OutsideOf asserting that one occurrence (innerSpace) is the space interior
 	 * of an occurrence (hOccurrence) formed from an inner space boundary of another occurrence (outerSpace). 
 	 */
 	assoc InnerSpaceOf specializes OutsideOf {
@@ -649,8 +649,8 @@ package Occurrences {
 	}
 
 	/**
-	 * SurroundedBy is an OutsideOf asserting that one occurrence (surrounded) is included
-	 * in space by an inner space occurrence of the other (surrounding).
+	 * SurroundedBy is an OutsideOf asserting that one occurrence (surrounded space) is included
+	 * in space by an inner space occurrence of another (surrounding space).
 	 */
 	assoc SurroundedBy specializes OutsideOf {
 		end feature surroundingSpace: Occurrence[0..*] redefines separateSpaceToo;

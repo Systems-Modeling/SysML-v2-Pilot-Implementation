@@ -7,10 +7,16 @@ package Items {
 	private import Objects::objects;
 	private import Parts::Part;
 	private import Parts::parts;
+	private import Occurrences::HappensWhile;
+	private import Occurrences::JustOutsideOf;
+	private import Objects::StructuredSpaceObject;
 	private import Constraints::ConstraintCheck;
 	private import Constraints::constraintChecks;
+	private import CollectionFunctions::contains;
+	private import SequenceFunctions::isEmpty;
 	private import SequenceFunctions::notEmpty;
 	private import SequenceFunctions::includes;
+	private import SequenceFunctions::union;
 	private import ControlFunctions::forAll;
 	
 	/**
@@ -29,29 +35,54 @@ package Items {
 		item shape : Item :>> spaceBoundary;
 		
 		/**
-		 * Other shapes that spatially envelop this Item.
+		 * Each enveloping shape is the shape of an Item that includes this Item in space and time.
 		 */
-		item envelopingShapes : Item[0..*] {
-			attribute :>> innerSpaceDimension = shape.innerSpaceDimension;
+		item envelopingShapes : Item[0..*] {  /* envelopingBoundaries?	Occurrence::enclosed => included, envelopingBoundaries -> enclose ?*/
+
+			  /* Enables 2 dim items to be enveloped by 2 or 3 dim shapes. */
+			attribute :>> innerSpaceDimension = (Item::innerSpaceDimension == 3  | Item::outerSpaceDimension == 3
+							     ? 2 : Item::outerSpaceDimension-1);   /* Curves bounding flat surfaces SHOULD BE COPLANAR ? */
+			assert constraint { Item::innerSpaceDimension < 3 implies notEmpty(outerSpaceDimension) }
+
+			item envelopingShape: Item :>> self;
+
+			  /* Could use existential to avoid introducing features to enveloping shapes. */
+			item envelopingItem [1]; /* Shape constraint below, to avoid envelopingShape being a portion. */
+
+			assert constraint { envelopingItem.shape.spaceTimeCoincidentOccurrences->includes(envelopingShape) &
+					    envelopingItem.spaceTimeEnclosedOccurrences->includes(Item::self) }
 		}
 		
 		/**
-		 * An Item is enveloped by all its envelopingShapes. That is, for each envelopingShape, there
-		 * is an Item with that shape that encloses this Item in space for its entire lifetime.
+		 * Bounding shapes are enveloping shapes that are structured space objects with every face or every edge
+		 * intersecting this Item.
 		 */
-		assert constraint envelopingShapeConstraint { 
-			envelopingShapes->forAll { in envelopingShape : Item;
-				item envelopingItem {
-					item :>> shape = envelopingShape; 
-				}
-				envelopingItem.spaceTimeEnclosedOccurrences->includes(Item::self)
+		item boundingShapes : StructuredSpaceObject [0..*] :> envelopingShapes {
+
+			item boundingShape: Item :>> self;
+
+			item :>> faces {
+				item face :>> self;
+				item inter [1];
+				assert constraint { contains(inter.intersectionsOf, union(face, boundingShape)) }
+			}
+			item :>> edges {
+				item edge :>> self;
+				item inter [1];
+				assert constraint { isEmpty(faces) implies
+							contains(inter.intersectionsOf, union(edge, boundingShape)) }
 			}
 		}
-		
+
 		/**
-		 * An Item is solid if it is three-dimensional and has a non-empty shape (boundary).
+		 * Voids  are inner space occurrences that have "nothing (material) in them" (TBD). *sufficient, need assertion*
 		 */
-		attribute isSolid = innerSpaceDimension == 3 and notEmpty(shape);
+		item voids :> innerSpaceOccurrences [0..*];
+
+		/**
+		 * An Item is solid if it has no voids.
+		 */
+		attribute isSolid = isEmpty(voids);
 		
 		/**
 		 * The Items that are composite subitems of this Item.
@@ -67,9 +98,16 @@ package Items {
 		 * Constraints that have been checked by this item.
 		 */
 		abstract ref constraint checkedConstraints: ConstraintCheck[0..*] :> constraintChecks, enactedPerformances;
-
 	}
 	
+	/**
+	 * Touching occurrences are just outside each other and happen at the same time.
+	 */
+	connection def Touches :> JustOutsideOf, HappensWhile {
+		end touchedOccurrence [0..*] :>> separateSpaceToo, thisOccurrence;
+		end touchedOccurrenceToo [0..*] :>> separateSpaceToo, thatOccurrence;
+	}
+
 	/**
 	 * items is the base feature of all ItemUsages.
 	 */

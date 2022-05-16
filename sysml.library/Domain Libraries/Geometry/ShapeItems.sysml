@@ -8,7 +8,6 @@ package ShapeItems {
 	private import SI::m;
 	private import Occurrences::WithinBoth;
 	private import Objects::*;
-	private import Links::SelfLink;	
 	private import Items::Item;
 	private import SequenceFunctions::isEmpty;
 	private import SequenceFunctions::notEmpty;
@@ -135,8 +134,8 @@ package ShapeItems {
 	}
 
 	/**
-	 * A Triangle is three-sided Polygon  with given length (base), width (perpindicular distance
-	 * from base to apex), and offset of this perpindicular at the base from the center of the base.
+	 * A Triangle is three-sided Polygon  with given length (base), width (perpendicular distance
+	 * from base to apex), and offset of this perpendicular at the base from the center of the base.
 	 */
 	 item def Triangle :> Polygon {
 
@@ -276,7 +275,7 @@ package ShapeItems {
 	}
 
 	/**
-	 * A Hyperboloid is a ConicSurface with only hypebolic cross-sections.
+	 * A Hyperboloid is a ConicSurface with only hyperbolic cross-sections.
 	 */
 	item def Hyperboloid :> ConicSurface {
 		attribute transverseAxis : LengthValue [1] :> scalarQuantities;
@@ -317,8 +316,8 @@ package ShapeItems {
 	 */
 	item def RectangularToroid :> Toroid {
 
-		attribute rectangleLength [1] :>> length;
-		attribute rectangleWidth [1] :>> width;
+		attribute rectangleLength : LengthValue [1] :> scalarQuantities;
+		attribute rectangleWidth  : LengthValue [1] :> scalarQuantities;
 
 		item :>> revolvedCurve: Rectangle [1] {
 			attribute :>> length = rectangleLength;
@@ -682,19 +681,25 @@ package ShapeItems {
 		attribute :>> width [1];
 		attribute :>> height [1];
 	
-		item :>> tf  : Rectangle;
-		item :>> bf  : Rectangle;
-		item :>> ff  : Rectangle;
-		item :>> rf  : Rectangle;
-		item :>> slf : Rectangle;
-		item :>> srf : Rectangle;
+		item :>> tf  : Rectangle { attribute :>> length = RectangularCuboid::length;
+								   attribute :>> width	= RectangularCuboid::height; }
+		item :>> bf  : Rectangle { attribute :>> length = RectangularCuboid::length;
+								   attribute :>> width	= RectangularCuboid::height; }
+		item :>> ff  : Rectangle { attribute :>> length = RectangularCuboid::length;
+								   attribute :>> width	= RectangularCuboid::width; }
+		item :>> rf  : Rectangle { attribute :>> length = RectangularCuboid::length;
+								   attribute :>> width	= RectangularCuboid::width; }
+		item :>> slf : Rectangle { attribute :>> length = RectangularCuboid::height;
+								   attribute :>> width	= RectangularCuboid::width; }
+		item :>> srf : Rectangle { attribute :>> length = RectangularCuboid::height;
+								   attribute :>> width	= RectangularCuboid::width; }
 	}
 	alias Box for RectangularCuboid;
 
 	/**
 	 * A Pyramid is a Polyhedron with the sides of a polygon (base) forming the bases of triangles
-	 * that join at an apex point.  Its height is the perpindicular distance from the base to the apex,
-	 * and its offsets are between this perpindicular at the base and the center of the base.
+	 * that join at an apex point.	Its height is the perpendicular distance from the base to the apex,
+	 * and its offsets are between this perpendicular at the base and the center of the base.
 	 */
 	item def Pyramid :> Polyhedron { 
 

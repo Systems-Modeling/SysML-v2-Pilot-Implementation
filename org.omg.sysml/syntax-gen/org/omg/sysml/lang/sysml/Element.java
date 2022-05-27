@@ -37,9 +37,10 @@ import org.eclipse.emf.ecore.EObject;
  * owner = owningRelationship.owningRelatedElement
  * qualifiedName =
  *     if owningNamespace = null then null
- *     else if owningNamespace.qualifiedName = null then escapedName()
+ *     else if owningNamespace.owner = null then escapedName()
+ *     else if owningNamespace.qualifiedName = null then null
  *     else owningNamespace.qualifiedName + '::' + escapedName()
- *     endif endif
+ *     endif endif endif
  * documentation = ownedElement->selectByKind(Documentation)
  * ownedAnnotation = ownedRelationship->selectByKind(Annotation)->
  *     select(a | a.annotatedElement = self)
@@ -227,7 +228,7 @@ public interface Element extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>If this Element has an <code>owningNamespace</code>, then the full ownership-qualified name of the Element. This is defined as <code>qualifiedName</code> (if any) of the <code>owningNamespace</code> of the Element followed by the unqualified name of the Element (given by the first of its <code>elementNames</code>). The <code>qualifiedName<code> is represented in a form that is valid according to the KerML textual concrete syntax for qualified names (including use of unrestricted name notation and escaped characters, as necessary). Only a root Namespace has an empty <code>qualifiedName</code>.</p>
+	 * <p>The full ownership-qualified name of this Element, represented in a form that is valid according to the KerML textual concrete syntax for qualified names (including use of unrestricted name notation and escaped characters, as necessary). The <code>qualifiedName</code> is null if this Element has no <code>owningNamespace</code> or if there is not a complete ownership chain of named Namespaces from a root Namespace to this Element.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Qualified Name</em>' attribute.
 	 * @see #setQualifiedName(String)
@@ -475,7 +476,7 @@ public interface Element extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Return the fist of <code>effectiveName</code>, <code>shortName</code> or <code>elementId</code> of this Element that is non-null, either as is, if it has the form of a basic name, or, otherwise, represented as a restricted name according to the lexical structure of the KerML textual notation (i.e., surrounded by single quote characters and with special characters escaped).</p>
+	 * <p>Return <code>effectiveName</code>, if that is not null, otherwise <code>shortName</code>, if that is not null, otherwise null. If the returned name is non-null, it is returned as-is if it has the form of a basic name, or, otherwise, represented as a restricted name according to the lexical structure of the KerML textual notation (i.e., surrounded by single quote characters and with special characters escaped).</p>
 	 * <!-- end-model-doc -->
 	 * @model dataType="org.omg.sysml.lang.types.String" ordered="false"
 	 * @generated

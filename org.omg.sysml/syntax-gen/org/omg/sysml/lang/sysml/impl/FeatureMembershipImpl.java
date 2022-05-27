@@ -51,8 +51,8 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureMembershipImpl#getFeatureOfType <em>Feature Of Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureMembershipImpl#getOwningRelatedElement <em>Owning Related Element</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureMembershipImpl#getOwningFeatureOfType <em>Owning Feature Of Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureMembershipImpl#getFeaturingType <em>Featuring Type</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureMembershipImpl#getOwningFeatureOfType <em>Owning Feature Of Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureMembershipImpl#getOwnedMemberFeature <em>Owned Member Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureMembershipImpl#getOwningType <em>Owning Type</em>}</li>
  * </ul>
@@ -544,12 +544,12 @@ public class FeatureMembershipImpl extends OwningMembershipImpl implements Featu
 			case SysMLPackage.FEATURE_MEMBERSHIP__FEATURE_OF_TYPE:
 				if (resolve) return getFeatureOfType();
 				return basicGetFeatureOfType();
-			case SysMLPackage.FEATURE_MEMBERSHIP__OWNING_FEATURE_OF_TYPE:
-				if (resolve) return getOwningFeatureOfType();
-				return basicGetOwningFeatureOfType();
 			case SysMLPackage.FEATURE_MEMBERSHIP__FEATURING_TYPE:
 				if (resolve) return getFeaturingType();
 				return basicGetFeaturingType();
+			case SysMLPackage.FEATURE_MEMBERSHIP__OWNING_FEATURE_OF_TYPE:
+				if (resolve) return getOwningFeatureOfType();
+				return basicGetOwningFeatureOfType();
 			case SysMLPackage.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE:
 				if (resolve) return getOwnedMemberFeature();
 				return basicGetOwnedMemberFeature();
@@ -571,11 +571,11 @@ public class FeatureMembershipImpl extends OwningMembershipImpl implements Featu
 			case SysMLPackage.FEATURE_MEMBERSHIP__FEATURE_OF_TYPE:
 				setFeatureOfType((Feature)newValue);
 				return;
-			case SysMLPackage.FEATURE_MEMBERSHIP__OWNING_FEATURE_OF_TYPE:
-				setOwningFeatureOfType((Feature)newValue);
-				return;
 			case SysMLPackage.FEATURE_MEMBERSHIP__FEATURING_TYPE:
 				setFeaturingType((Type)newValue);
+				return;
+			case SysMLPackage.FEATURE_MEMBERSHIP__OWNING_FEATURE_OF_TYPE:
+				setOwningFeatureOfType((Feature)newValue);
 				return;
 			case SysMLPackage.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE:
 				setOwnedMemberFeature((Feature)newValue);
@@ -598,11 +598,11 @@ public class FeatureMembershipImpl extends OwningMembershipImpl implements Featu
 			case SysMLPackage.FEATURE_MEMBERSHIP__FEATURE_OF_TYPE:
 				setFeatureOfType((Feature)null);
 				return;
-			case SysMLPackage.FEATURE_MEMBERSHIP__OWNING_FEATURE_OF_TYPE:
-				setOwningFeatureOfType((Feature)null);
-				return;
 			case SysMLPackage.FEATURE_MEMBERSHIP__FEATURING_TYPE:
 				setFeaturingType((Type)null);
+				return;
+			case SysMLPackage.FEATURE_MEMBERSHIP__OWNING_FEATURE_OF_TYPE:
+				setOwningFeatureOfType((Feature)null);
 				return;
 			case SysMLPackage.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE:
 				setOwnedMemberFeature((Feature)null);
@@ -630,10 +630,10 @@ public class FeatureMembershipImpl extends OwningMembershipImpl implements Featu
 				return isSetSource();
 			case SysMLPackage.FEATURE_MEMBERSHIP__TARGET:
 				return isSetTarget();
-			case SysMLPackage.FEATURE_MEMBERSHIP__OWNING_FEATURE_OF_TYPE:
-				return basicGetOwningFeatureOfType() != null;
 			case SysMLPackage.FEATURE_MEMBERSHIP__FEATURING_TYPE:
 				return isSetFeaturingType();
+			case SysMLPackage.FEATURE_MEMBERSHIP__OWNING_FEATURE_OF_TYPE:
+				return basicGetOwningFeatureOfType() != null;
 			case SysMLPackage.FEATURE_MEMBERSHIP__OWNED_MEMBER_ELEMENT:
 				return isSetOwnedMemberElement();
 			case SysMLPackage.FEATURE_MEMBERSHIP__MEMBERSHIP_OWNING_NAMESPACE:
@@ -656,8 +656,8 @@ public class FeatureMembershipImpl extends OwningMembershipImpl implements Featu
 		if (baseClass == TypeFeaturing.class) {
 			switch (derivedFeatureID) {
 				case SysMLPackage.FEATURE_MEMBERSHIP__FEATURE_OF_TYPE: return SysMLPackage.TYPE_FEATURING__FEATURE_OF_TYPE;
-				case SysMLPackage.FEATURE_MEMBERSHIP__OWNING_FEATURE_OF_TYPE: return SysMLPackage.TYPE_FEATURING__OWNING_FEATURE_OF_TYPE;
 				case SysMLPackage.FEATURE_MEMBERSHIP__FEATURING_TYPE: return SysMLPackage.TYPE_FEATURING__FEATURING_TYPE;
+				case SysMLPackage.FEATURE_MEMBERSHIP__OWNING_FEATURE_OF_TYPE: return SysMLPackage.TYPE_FEATURING__OWNING_FEATURE_OF_TYPE;
 				default: return -1;
 			}
 		}
@@ -674,8 +674,8 @@ public class FeatureMembershipImpl extends OwningMembershipImpl implements Featu
 		if (baseClass == TypeFeaturing.class) {
 			switch (baseFeatureID) {
 				case SysMLPackage.TYPE_FEATURING__FEATURE_OF_TYPE: return SysMLPackage.FEATURE_MEMBERSHIP__FEATURE_OF_TYPE;
-				case SysMLPackage.TYPE_FEATURING__OWNING_FEATURE_OF_TYPE: return SysMLPackage.FEATURE_MEMBERSHIP__OWNING_FEATURE_OF_TYPE;
 				case SysMLPackage.TYPE_FEATURING__FEATURING_TYPE: return SysMLPackage.FEATURE_MEMBERSHIP__FEATURING_TYPE;
+				case SysMLPackage.TYPE_FEATURING__OWNING_FEATURE_OF_TYPE: return SysMLPackage.FEATURE_MEMBERSHIP__OWNING_FEATURE_OF_TYPE;
 				default: return -1;
 			}
 		}

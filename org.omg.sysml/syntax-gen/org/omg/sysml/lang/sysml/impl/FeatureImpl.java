@@ -47,6 +47,7 @@ import org.omg.sysml.util.TypeUtil;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureChaining;
 import org.omg.sysml.lang.sysml.FeatureDirectionKind;
+import org.omg.sysml.lang.sysml.FeatureInverting;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.Membership;
@@ -69,24 +70,25 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * </p>
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getOwnedRelationship <em>Owned Relationship</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getOwnedTypeFeaturing <em>Owned Type Featuring</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getOwningFeatureMembership <em>Owning Feature Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getOwningType <em>Owning Type</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getEndOwningType <em>End Owning Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#isUnique <em>Is Unique</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#isOrdered <em>Is Ordered</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getType <em>Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getOwnedRedefinition <em>Owned Redefinition</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getOwnedSubsetting <em>Owned Subsetting</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getOwningFeatureMembership <em>Owning Feature Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#isComposite <em>Is Composite</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#isPortion <em>Is Portion</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getEndOwningType <em>End Owning Type</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#isEnd <em>Is End</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getOwnedTyping <em>Owned Typing</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getFeaturingType <em>Featuring Type</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getOwnedTypeFeaturing <em>Owned Type Featuring</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getChainingFeature <em>Chaining Feature</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getOwnedFeatureChaining <em>Owned Feature Chaining</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#isDerived <em>Is Derived</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getChainingFeature <em>Chaining Feature</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getOwnedFeatureInverting <em>Owned Feature Inverting</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getOwnedFeatureChaining <em>Owned Feature Chaining</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#isReadOnly <em>Is Read Only</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#isEnd <em>Is End</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#isPortion <em>Is Portion</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getDirection <em>Direction</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#isNonunique <em>Is Nonunique</em>}</li>
  * </ul>
@@ -427,23 +429,23 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	protected boolean isComposite = false;
 	
 	/**
-	 * The default value of the '{@link #isPortion() <em>Is Portion</em>}' attribute.
+	 * The default value of the '{@link #isEnd() <em>Is End</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isPortion()
+	 * @see #isEnd()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final boolean IS_PORTION_EDEFAULT = false;
+	protected static final boolean IS_END_EDEFAULT = false;
 	/**
-	 * The cached value of the '{@link #isPortion() <em>Is Portion</em>}' attribute.
+	 * The cached value of the '{@link #isEnd() <em>Is End</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isPortion()
+	 * @see #isEnd()
 	 * @generated
 	 * @ordered
 	 */
-	protected boolean isPortion = IS_PORTION_EDEFAULT;
+	protected boolean isEnd = IS_END_EDEFAULT;
 	/**
 	 * The default value of the '{@link #isDerived() <em>Is Derived</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -481,23 +483,23 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 */
 	protected boolean isReadOnly = IS_READ_ONLY_EDEFAULT;
 	/**
-	 * The default value of the '{@link #isEnd() <em>Is End</em>}' attribute.
+	 * The default value of the '{@link #isPortion() <em>Is Portion</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isEnd()
+	 * @see #isPortion()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final boolean IS_END_EDEFAULT = false;
+	protected static final boolean IS_PORTION_EDEFAULT = false;
 	/**
-	 * The cached value of the '{@link #isEnd() <em>Is End</em>}' attribute.
+	 * The cached value of the '{@link #isPortion() <em>Is Portion</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isEnd()
+	 * @see #isPortion()
 	 * @generated
 	 * @ordered
 	 */
-	protected boolean isEnd = IS_END_EDEFAULT;
+	protected boolean isPortion = IS_PORTION_EDEFAULT;
 	/**
 	 * The default value of the '{@link #getDirection() <em>Direction</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -716,6 +718,30 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 * @generated NOT
 	 */
 	@Override
+	public EList<FeatureInverting> getOwnedFeatureInverting() {
+		EList<FeatureInverting> invertings = new NonNotifyingEObjectEList<>(FeatureInverting.class, this, SysMLPackage.FEATURE__OWNED_FEATURE_INVERTING);
+		getOwnedRelationship().stream().
+			filter(rel->(rel instanceof FeatureInverting) && ((FeatureInverting)rel).getFeatureInverted() == this).
+			map(FeatureInverting.class::cast).
+			forEachOrdered(invertings::add);
+		return invertings;
+	}
+
+	/**
+	 * The array of superset feature identifiers for the '{@link #getOwnedFeatureInverting() <em>Owned Feature Inverting</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedFeatureInverting()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int[] OWNED_FEATURE_INVERTING_ESUPERSETS = new int[] {SysMLPackage.FEATURE__OWNED_RELATIONSHIP};
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
 	public EList<FeatureChaining> getOwnedFeatureChaining() {
 		return new DerivedSubsetEObjectEList<>(FeatureChaining.class, this, SysMLPackage.FEATURE__OWNED_FEATURE_CHAINING, new int[] {SysMLPackage.FEATURE__OWNED_RELATIONSHIP});
 	}
@@ -908,9 +934,17 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case SysMLPackage.FEATURE__OWNED_TYPE_FEATURING:
+				return getOwnedTypeFeaturing();
+			case SysMLPackage.FEATURE__OWNING_FEATURE_MEMBERSHIP:
+				if (resolve) return getOwningFeatureMembership();
+				return basicGetOwningFeatureMembership();
 			case SysMLPackage.FEATURE__OWNING_TYPE:
 				if (resolve) return getOwningType();
 				return basicGetOwningType();
+			case SysMLPackage.FEATURE__END_OWNING_TYPE:
+				if (resolve) return getEndOwningType();
+				return basicGetEndOwningType();
 			case SysMLPackage.FEATURE__IS_UNIQUE:
 				return isUnique();
 			case SysMLPackage.FEATURE__IS_ORDERED:
@@ -921,32 +955,26 @@ public class FeatureImpl extends TypeImpl implements Feature {
 				return getOwnedRedefinition();
 			case SysMLPackage.FEATURE__OWNED_SUBSETTING:
 				return getOwnedSubsetting();
-			case SysMLPackage.FEATURE__OWNING_FEATURE_MEMBERSHIP:
-				if (resolve) return getOwningFeatureMembership();
-				return basicGetOwningFeatureMembership();
 			case SysMLPackage.FEATURE__IS_COMPOSITE:
 				return isComposite();
-			case SysMLPackage.FEATURE__IS_PORTION:
-				return isPortion();
-			case SysMLPackage.FEATURE__END_OWNING_TYPE:
-				if (resolve) return getEndOwningType();
-				return basicGetEndOwningType();
+			case SysMLPackage.FEATURE__IS_END:
+				return isEnd();
 			case SysMLPackage.FEATURE__OWNED_TYPING:
 				return getOwnedTyping();
 			case SysMLPackage.FEATURE__FEATURING_TYPE:
 				return getFeaturingType();
-			case SysMLPackage.FEATURE__OWNED_TYPE_FEATURING:
-				return getOwnedTypeFeaturing();
-			case SysMLPackage.FEATURE__CHAINING_FEATURE:
-				return getChainingFeature();
-			case SysMLPackage.FEATURE__OWNED_FEATURE_CHAINING:
-				return getOwnedFeatureChaining();
 			case SysMLPackage.FEATURE__IS_DERIVED:
 				return isDerived();
+			case SysMLPackage.FEATURE__CHAINING_FEATURE:
+				return getChainingFeature();
+			case SysMLPackage.FEATURE__OWNED_FEATURE_INVERTING:
+				return getOwnedFeatureInverting();
+			case SysMLPackage.FEATURE__OWNED_FEATURE_CHAINING:
+				return getOwnedFeatureChaining();
 			case SysMLPackage.FEATURE__IS_READ_ONLY:
 				return isReadOnly();
-			case SysMLPackage.FEATURE__IS_END:
-				return isEnd();
+			case SysMLPackage.FEATURE__IS_PORTION:
+				return isPortion();
 			case SysMLPackage.FEATURE__DIRECTION:
 				return getDirection();
 			case SysMLPackage.FEATURE__IS_NONUNIQUE:
@@ -964,8 +992,18 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case SysMLPackage.FEATURE__OWNED_TYPE_FEATURING:
+				getOwnedTypeFeaturing().clear();
+				getOwnedTypeFeaturing().addAll((Collection<? extends TypeFeaturing>)newValue);
+				return;
+			case SysMLPackage.FEATURE__OWNING_FEATURE_MEMBERSHIP:
+				setOwningFeatureMembership((FeatureMembership)newValue);
+				return;
 			case SysMLPackage.FEATURE__OWNING_TYPE:
 				setOwningType((Type)newValue);
+				return;
+			case SysMLPackage.FEATURE__END_OWNING_TYPE:
+				setEndOwningType((Type)newValue);
 				return;
 			case SysMLPackage.FEATURE__IS_UNIQUE:
 				setIsUnique((Boolean)newValue);
@@ -985,17 +1023,11 @@ public class FeatureImpl extends TypeImpl implements Feature {
 				getOwnedSubsetting().clear();
 				getOwnedSubsetting().addAll((Collection<? extends Subsetting>)newValue);
 				return;
-			case SysMLPackage.FEATURE__OWNING_FEATURE_MEMBERSHIP:
-				setOwningFeatureMembership((FeatureMembership)newValue);
-				return;
 			case SysMLPackage.FEATURE__IS_COMPOSITE:
 				setIsComposite((Boolean)newValue);
 				return;
-			case SysMLPackage.FEATURE__IS_PORTION:
-				setIsPortion((Boolean)newValue);
-				return;
-			case SysMLPackage.FEATURE__END_OWNING_TYPE:
-				setEndOwningType((Type)newValue);
+			case SysMLPackage.FEATURE__IS_END:
+				setIsEnd((Boolean)newValue);
 				return;
 			case SysMLPackage.FEATURE__OWNED_TYPING:
 				getOwnedTyping().clear();
@@ -1005,26 +1037,26 @@ public class FeatureImpl extends TypeImpl implements Feature {
 				getFeaturingType().clear();
 				getFeaturingType().addAll((Collection<? extends Type>)newValue);
 				return;
-			case SysMLPackage.FEATURE__OWNED_TYPE_FEATURING:
-				getOwnedTypeFeaturing().clear();
-				getOwnedTypeFeaturing().addAll((Collection<? extends TypeFeaturing>)newValue);
+			case SysMLPackage.FEATURE__IS_DERIVED:
+				setIsDerived((Boolean)newValue);
 				return;
 			case SysMLPackage.FEATURE__CHAINING_FEATURE:
 				getChainingFeature().clear();
 				getChainingFeature().addAll((Collection<? extends Feature>)newValue);
 				return;
+			case SysMLPackage.FEATURE__OWNED_FEATURE_INVERTING:
+				getOwnedFeatureInverting().clear();
+				getOwnedFeatureInverting().addAll((Collection<? extends FeatureInverting>)newValue);
+				return;
 			case SysMLPackage.FEATURE__OWNED_FEATURE_CHAINING:
 				getOwnedFeatureChaining().clear();
 				getOwnedFeatureChaining().addAll((Collection<? extends FeatureChaining>)newValue);
 				return;
-			case SysMLPackage.FEATURE__IS_DERIVED:
-				setIsDerived((Boolean)newValue);
-				return;
 			case SysMLPackage.FEATURE__IS_READ_ONLY:
 				setIsReadOnly((Boolean)newValue);
 				return;
-			case SysMLPackage.FEATURE__IS_END:
-				setIsEnd((Boolean)newValue);
+			case SysMLPackage.FEATURE__IS_PORTION:
+				setIsPortion((Boolean)newValue);
 				return;
 			case SysMLPackage.FEATURE__DIRECTION:
 				setDirection((FeatureDirectionKind)newValue);
@@ -1044,8 +1076,17 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case SysMLPackage.FEATURE__OWNED_TYPE_FEATURING:
+				getOwnedTypeFeaturing().clear();
+				return;
+			case SysMLPackage.FEATURE__OWNING_FEATURE_MEMBERSHIP:
+				setOwningFeatureMembership((FeatureMembership)null);
+				return;
 			case SysMLPackage.FEATURE__OWNING_TYPE:
 				setOwningType((Type)null);
+				return;
+			case SysMLPackage.FEATURE__END_OWNING_TYPE:
+				setEndOwningType((Type)null);
 				return;
 			case SysMLPackage.FEATURE__IS_UNIQUE:
 				setIsUnique(IS_UNIQUE_EDEFAULT);
@@ -1062,17 +1103,11 @@ public class FeatureImpl extends TypeImpl implements Feature {
 			case SysMLPackage.FEATURE__OWNED_SUBSETTING:
 				getOwnedSubsetting().clear();
 				return;
-			case SysMLPackage.FEATURE__OWNING_FEATURE_MEMBERSHIP:
-				setOwningFeatureMembership((FeatureMembership)null);
-				return;
 			case SysMLPackage.FEATURE__IS_COMPOSITE:
 				setIsComposite(IS_COMPOSITE_EDEFAULT);
 				return;
-			case SysMLPackage.FEATURE__IS_PORTION:
-				setIsPortion(IS_PORTION_EDEFAULT);
-				return;
-			case SysMLPackage.FEATURE__END_OWNING_TYPE:
-				setEndOwningType((Type)null);
+			case SysMLPackage.FEATURE__IS_END:
+				setIsEnd(IS_END_EDEFAULT);
 				return;
 			case SysMLPackage.FEATURE__OWNED_TYPING:
 				getOwnedTyping().clear();
@@ -1080,23 +1115,23 @@ public class FeatureImpl extends TypeImpl implements Feature {
 			case SysMLPackage.FEATURE__FEATURING_TYPE:
 				getFeaturingType().clear();
 				return;
-			case SysMLPackage.FEATURE__OWNED_TYPE_FEATURING:
-				getOwnedTypeFeaturing().clear();
+			case SysMLPackage.FEATURE__IS_DERIVED:
+				setIsDerived(IS_DERIVED_EDEFAULT);
 				return;
 			case SysMLPackage.FEATURE__CHAINING_FEATURE:
 				getChainingFeature().clear();
 				return;
+			case SysMLPackage.FEATURE__OWNED_FEATURE_INVERTING:
+				getOwnedFeatureInverting().clear();
+				return;
 			case SysMLPackage.FEATURE__OWNED_FEATURE_CHAINING:
 				getOwnedFeatureChaining().clear();
-				return;
-			case SysMLPackage.FEATURE__IS_DERIVED:
-				setIsDerived(IS_DERIVED_EDEFAULT);
 				return;
 			case SysMLPackage.FEATURE__IS_READ_ONLY:
 				setIsReadOnly(IS_READ_ONLY_EDEFAULT);
 				return;
-			case SysMLPackage.FEATURE__IS_END:
-				setIsEnd(IS_END_EDEFAULT);
+			case SysMLPackage.FEATURE__IS_PORTION:
+				setIsPortion(IS_PORTION_EDEFAULT);
 				return;
 			case SysMLPackage.FEATURE__DIRECTION:
 				setDirection(DIRECTION_EDEFAULT);
@@ -1118,8 +1153,14 @@ public class FeatureImpl extends TypeImpl implements Feature {
 		switch (featureID) {
 			case SysMLPackage.FEATURE__OWNED_RELATIONSHIP:
 				return ownedRelationship != null && !ownedRelationship.isEmpty();
+			case SysMLPackage.FEATURE__OWNED_TYPE_FEATURING:
+				return !getOwnedTypeFeaturing().isEmpty();
+			case SysMLPackage.FEATURE__OWNING_FEATURE_MEMBERSHIP:
+				return basicGetOwningFeatureMembership() != null;
 			case SysMLPackage.FEATURE__OWNING_TYPE:
 				return basicGetOwningType() != null;
+			case SysMLPackage.FEATURE__END_OWNING_TYPE:
+				return basicGetEndOwningType() != null;
 			case SysMLPackage.FEATURE__IS_UNIQUE:
 				return isUnique != IS_UNIQUE_EDEFAULT;
 			case SysMLPackage.FEATURE__IS_ORDERED:
@@ -1130,30 +1171,26 @@ public class FeatureImpl extends TypeImpl implements Feature {
 				return !getOwnedRedefinition().isEmpty();
 			case SysMLPackage.FEATURE__OWNED_SUBSETTING:
 				return !getOwnedSubsetting().isEmpty();
-			case SysMLPackage.FEATURE__OWNING_FEATURE_MEMBERSHIP:
-				return basicGetOwningFeatureMembership() != null;
 			case SysMLPackage.FEATURE__IS_COMPOSITE:
 				return isComposite != IS_COMPOSITE_EDEFAULT;
-			case SysMLPackage.FEATURE__IS_PORTION:
-				return isPortion != IS_PORTION_EDEFAULT;
-			case SysMLPackage.FEATURE__END_OWNING_TYPE:
-				return basicGetEndOwningType() != null;
+			case SysMLPackage.FEATURE__IS_END:
+				return isEnd != IS_END_EDEFAULT;
 			case SysMLPackage.FEATURE__OWNED_TYPING:
 				return !getOwnedTyping().isEmpty();
 			case SysMLPackage.FEATURE__FEATURING_TYPE:
 				return !getFeaturingType().isEmpty();
-			case SysMLPackage.FEATURE__OWNED_TYPE_FEATURING:
-				return !getOwnedTypeFeaturing().isEmpty();
-			case SysMLPackage.FEATURE__CHAINING_FEATURE:
-				return !getChainingFeature().isEmpty();
-			case SysMLPackage.FEATURE__OWNED_FEATURE_CHAINING:
-				return !getOwnedFeatureChaining().isEmpty();
 			case SysMLPackage.FEATURE__IS_DERIVED:
 				return isDerived != IS_DERIVED_EDEFAULT;
+			case SysMLPackage.FEATURE__CHAINING_FEATURE:
+				return !getChainingFeature().isEmpty();
+			case SysMLPackage.FEATURE__OWNED_FEATURE_INVERTING:
+				return !getOwnedFeatureInverting().isEmpty();
+			case SysMLPackage.FEATURE__OWNED_FEATURE_CHAINING:
+				return !getOwnedFeatureChaining().isEmpty();
 			case SysMLPackage.FEATURE__IS_READ_ONLY:
 				return isReadOnly != IS_READ_ONLY_EDEFAULT;
-			case SysMLPackage.FEATURE__IS_END:
-				return isEnd != IS_END_EDEFAULT;
+			case SysMLPackage.FEATURE__IS_PORTION:
+				return isPortion != IS_PORTION_EDEFAULT;
 			case SysMLPackage.FEATURE__DIRECTION:
 				return direction != DIRECTION_EDEFAULT;
 			case SysMLPackage.FEATURE__IS_NONUNIQUE:
@@ -1200,14 +1237,14 @@ public class FeatureImpl extends TypeImpl implements Feature {
 		result.append(isOrdered);
 		result.append(", isComposite: ");
 		result.append(isComposite);
-		result.append(", isPortion: ");
-		result.append(isPortion);
+		result.append(", isEnd: ");
+		result.append(isEnd);
 		result.append(", isDerived: ");
 		result.append(isDerived);
 		result.append(", isReadOnly: ");
 		result.append(isReadOnly);
-		result.append(", isEnd: ");
-		result.append(isEnd);
+		result.append(", isPortion: ");
+		result.append(isPortion);
 		result.append(", direction: ");
 		result.append(direction);
 		result.append(')');

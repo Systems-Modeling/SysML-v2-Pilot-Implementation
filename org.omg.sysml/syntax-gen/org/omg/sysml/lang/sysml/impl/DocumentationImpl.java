@@ -156,10 +156,10 @@ public class DocumentationImpl extends CommentImpl implements Documentation {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.DOCUMENTATION__ANNOTATED_ELEMENT:
-				return isSetAnnotatedElement();
 			case SysMLPackage.DOCUMENTATION__OWNER:
 				return isSetOwner();
+			case SysMLPackage.DOCUMENTATION__ANNOTATED_ELEMENT:
+				return isSetAnnotatedElement();
 			case SysMLPackage.DOCUMENTATION__DOCUMENTED_ELEMENT:
 				return isSetDocumentedElement();
 		}

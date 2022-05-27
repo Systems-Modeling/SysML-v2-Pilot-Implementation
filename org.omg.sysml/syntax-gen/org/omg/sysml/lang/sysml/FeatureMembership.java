@@ -29,7 +29,7 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>FeatureMembership is a Membership for a Feature in a Type that is also a TypeFeaturing Relationship between the Feature and the Type.</p>
+ * <p>FeatureMembership is an OwningMembership for a Feature in a Type that is also a TypeFeaturing Relationship between the Feature and the Type.</p>
  * 
  * <!-- end-model-doc -->
  *
@@ -113,7 +113,7 @@ public interface FeatureMembership extends OwningMembership, TypeFeaturing {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>A <code>memberFeature</code> that is owned by this FeatureMembership and hence an <code>ownedFeature</code> of the <code>owningType</code>.</p>
+	 * <p>The Feature that this FeatureMembership relates to its <code>owningType</code>, making it an <code>ownedFeature</code> of the <code>owningType</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Member Feature</em>' reference.
 	 * @see #setOwnedMemberFeature(Feature)

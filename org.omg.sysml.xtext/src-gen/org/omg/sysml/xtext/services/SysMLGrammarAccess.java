@@ -342,10 +342,6 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Group cGroup_0 = (Group)cGroup.eContents().get(0);
 		private final Keyword cRepKeyword_0_0 = (Keyword)cGroup_0.eContents().get(0);
 		private final RuleCall cIdentificationParserRuleCall_0_1 = (RuleCall)cGroup_0.eContents().get(1);
-		private final Group cGroup_0_2 = (Group)cGroup_0.eContents().get(2);
-		private final Keyword cAboutKeyword_0_2_0 = (Keyword)cGroup_0_2.eContents().get(0);
-		private final Assignment cOwnedRelationshipAssignment_0_2_1 = (Assignment)cGroup_0_2.eContents().get(1);
-		private final RuleCall cOwnedRelationshipAnnotationParserRuleCall_0_2_1_0 = (RuleCall)cOwnedRelationshipAssignment_0_2_1.eContents().get(0);
 		private final Keyword cLanguageKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cLanguageAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cLanguageSTRING_VALUETerminalRuleCall_2_0 = (RuleCall)cLanguageAssignment_2.eContents().get(0);
@@ -354,18 +350,18 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		
 		///* Textual Representation */
 		//TextualRepresentation returns SysML::TextualRepresentation :
-		//    ( 'rep' Identification? ( 'about' ownedRelationship += Annotation )? )?
+		//    ( 'rep' Identification? )?
 		//    'language' language = STRING_VALUE
 		//    body = REGULAR_COMMENT
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//( 'rep' Identification? ( 'about' ownedRelationship += Annotation )? )?
+		//( 'rep' Identification? )?
 		//'language' language = STRING_VALUE
 		//body = REGULAR_COMMENT
 		public Group getGroup() { return cGroup; }
 		
-		//( 'rep' Identification? ( 'about' ownedRelationship += Annotation )? )?
+		//( 'rep' Identification? )?
 		public Group getGroup_0() { return cGroup_0; }
 		
 		//'rep'
@@ -373,18 +369,6 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		
 		//Identification?
 		public RuleCall getIdentificationParserRuleCall_0_1() { return cIdentificationParserRuleCall_0_1; }
-		
-		//( 'about' ownedRelationship += Annotation )?
-		public Group getGroup_0_2() { return cGroup_0_2; }
-		
-		//'about'
-		public Keyword getAboutKeyword_0_2_0() { return cAboutKeyword_0_2_0; }
-		
-		//ownedRelationship += Annotation
-		public Assignment getOwnedRelationshipAssignment_0_2_1() { return cOwnedRelationshipAssignment_0_2_1; }
-		
-		//Annotation
-		public RuleCall getOwnedRelationshipAnnotationParserRuleCall_0_2_1_0() { return cOwnedRelationshipAnnotationParserRuleCall_0_2_1_0; }
 		
 		//'language'
 		public Keyword getLanguageKeyword_1() { return cLanguageKeyword_1; }
@@ -15491,7 +15475,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	
 	///* Textual Representation */
 	//TextualRepresentation returns SysML::TextualRepresentation :
-	//    ( 'rep' Identification? ( 'about' ownedRelationship += Annotation )? )?
+	//    ( 'rep' Identification? )?
 	//    'language' language = STRING_VALUE
 	//    body = REGULAR_COMMENT
 	//;

@@ -53,7 +53,6 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	protected AbstractElementAlias match_OwnedComment_CommentKeyword_0_0_q;
 	protected AbstractElementAlias match_OwnedMetadataFeature_ColonKeyword_1_1_0_or___TypedKeyword_1_1_1_0_ByKeyword_1_1_1_1__;
 	protected AbstractElementAlias match_OwnedMetadataFeature_CommercialAtKeyword_0_0_or_MetadataKeyword_0_1;
-	protected AbstractElementAlias match_OwnedTextualRepresentation_RepKeyword_0_0_q;
 	protected AbstractElementAlias match_PackageBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__;
 	protected AbstractElementAlias match_Parameter_FeatureKeyword_0_1_q;
 	protected AbstractElementAlias match_PrefixComment_CommentKeyword_0_0_q;
@@ -113,7 +112,6 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 		match_OwnedComment_CommentKeyword_0_0_q = new TokenAlias(false, true, grammarAccess.getOwnedCommentAccess().getCommentKeyword_0_0());
 		match_OwnedMetadataFeature_ColonKeyword_1_1_0_or___TypedKeyword_1_1_1_0_ByKeyword_1_1_1_1__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getOwnedMetadataFeatureAccess().getTypedKeyword_1_1_1_0()), new TokenAlias(false, false, grammarAccess.getOwnedMetadataFeatureAccess().getByKeyword_1_1_1_1())), new TokenAlias(false, false, grammarAccess.getOwnedMetadataFeatureAccess().getColonKeyword_1_1_0()));
 		match_OwnedMetadataFeature_CommercialAtKeyword_0_0_or_MetadataKeyword_0_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getOwnedMetadataFeatureAccess().getCommercialAtKeyword_0_0()), new TokenAlias(false, false, grammarAccess.getOwnedMetadataFeatureAccess().getMetadataKeyword_0_1()));
-		match_OwnedTextualRepresentation_RepKeyword_0_0_q = new TokenAlias(false, true, grammarAccess.getOwnedTextualRepresentationAccess().getRepKeyword_0_0());
 		match_PackageBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getPackageBodyAccess().getLeftCurlyBracketKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getPackageBodyAccess().getRightCurlyBracketKeyword_1_2())), new TokenAlias(false, false, grammarAccess.getPackageBodyAccess().getSemicolonKeyword_0()));
 		match_Parameter_FeatureKeyword_0_1_q = new TokenAlias(false, true, grammarAccess.getParameterAccess().getFeatureKeyword_0_1());
 		match_PrefixComment_CommentKeyword_0_0_q = new TokenAlias(false, true, grammarAccess.getPrefixCommentAccess().getCommentKeyword_0_0());
@@ -214,8 +212,6 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 				emit_OwnedMetadataFeature_ColonKeyword_1_1_0_or___TypedKeyword_1_1_1_0_ByKeyword_1_1_1_1__(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_OwnedMetadataFeature_CommercialAtKeyword_0_0_or_MetadataKeyword_0_1.equals(syntax))
 				emit_OwnedMetadataFeature_CommercialAtKeyword_0_0_or_MetadataKeyword_0_1(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_OwnedTextualRepresentation_RepKeyword_0_0_q.equals(syntax))
-				emit_OwnedTextualRepresentation_RepKeyword_0_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_PackageBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__.equals(syntax))
 				emit_PackageBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_Parameter_FeatureKeyword_0_1_q.equals(syntax))
@@ -1063,7 +1059,8 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 *     ':' | ('typed' 'by')
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     shortName=Name (ambiguity) ownedRelationship+=MetadataTyping
+	 *     name=Name (ambiguity) ownedRelationship+=MetadataTyping
+	 *     shortName=Name '>' (ambiguity) ownedRelationship+=MetadataTyping
 	 */
 	protected void emit_OwnedMetadataFeature_ColonKeyword_1_1_0_or___TypedKeyword_1_1_1_0_ByKeyword_1_1_1_1__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -1074,21 +1071,11 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 *     '@' | 'metadata'
 	 *
 	 * This ambiguous syntax occurs at:
+	 *     (rule start) (ambiguity) '<' shortName=Name
+	 *     (rule start) (ambiguity) name=Name
 	 *     (rule start) (ambiguity) ownedRelationship+=MetadataTyping
-	 *     (rule start) (ambiguity) shortName=Name
 	 */
 	protected void emit_OwnedMetadataFeature_CommercialAtKeyword_0_0_or_MetadataKeyword_0_1(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
-	/**
-	 * Ambiguous syntax:
-	 *     'rep'?
-	 *
-	 * This ambiguous syntax occurs at:
-	 *     (rule start) (ambiguity) 'language' language=STRING_VALUE
-	 */
-	protected void emit_OwnedTextualRepresentation_RepKeyword_0_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	

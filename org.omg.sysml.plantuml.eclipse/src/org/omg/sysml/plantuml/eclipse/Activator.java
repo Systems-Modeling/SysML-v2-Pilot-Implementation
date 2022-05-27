@@ -24,13 +24,11 @@
 
 package org.omg.sysml.plantuml.eclipse;
 
-import com.google.common.collect.BiMap;
-import com.google.common.collect.HashBiMap;
-
+import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
 
 import org.eclipse.emf.ecore.EObject;
+import org.omg.sysml.lang.sysml.Element;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 
@@ -60,26 +58,26 @@ public class Activator implements BundleActivator {
         //this.bundleContext = null;
     }
 
-    private BiMap<UUID, EObject> elementsMap = HashBiMap.create();
+    private Map<String, Element> elementsMap = new HashMap<String, Element>();
 
-    private synchronized EObject get(UUID uuid) {
-        return elementsMap.get(uuid);
+    private synchronized Element get(String id) {
+        return elementsMap.get(id);
     }
 
-    private synchronized UUID register(EObject eObj) {
-        Map<EObject, UUID> map = elementsMap.inverse();
-        UUID uuid = map.get(eObj);
-        if (uuid != null) return uuid;
-        uuid = UUID.randomUUID();
-        elementsMap.put(uuid, eObj);
-        return uuid;
+    private synchronized String register(EObject eObj) {
+        if (!(eObj instanceof Element)) return null;
+        Element e = (Element) eObj;
+        String id = e.getElementId();
+        if (id == null) return null;
+        elementsMap.put(id, e);
+        return id;
     }
 
-    public static EObject findEObject(UUID uuid) {
-        return getDefault().get(uuid);
+    public static EObject findEObject(String id) {
+        return getDefault().get(id);
     }
 
-    public static UUID registerEObject(EObject eObj) {
+    public static String registerEObject(EObject eObj) {
         return getDefault().register(eObj);
     }
 

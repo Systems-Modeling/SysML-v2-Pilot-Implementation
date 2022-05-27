@@ -24,6 +24,7 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
@@ -61,14 +62,14 @@ public class OwningMembershipImpl extends MembershipImpl implements OwningMember
 	 */
 	protected static final String OWNED_MEMBER_ELEMENT_ID_EDEFAULT = null;
 	/**
-	 * The default value of the '{@link #getOwnedMemberShortName() <em>Owned Member Short Name</em>}' attribute.
+	 * The cached setting delegate for the '{@link #getOwnedMemberShortName() <em>Owned Member Short Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getOwnedMemberShortName()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String OWNED_MEMBER_SHORT_NAME_EDEFAULT = null;
+	protected EStructuralFeature.Internal.SettingDelegate OWNED_MEMBER_SHORT_NAME__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.OWNING_MEMBERSHIP__OWNED_MEMBER_SHORT_NAME).getSettingDelegate();
 	/**
 	 * The default value of the '{@link #getOwnedMemberName() <em>Owned Member Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -143,22 +144,11 @@ public class OwningMembershipImpl extends MembershipImpl implements OwningMember
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public String getOwnedMemberShortName() {
-		Element ownedMemberElement = getOwnedMemberElement();
-		return ownedMemberElement == null? null: ownedMemberElement.getShortName();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	@Override
-	public void setOwnedMemberShortName(String newOwnedMemberShortName) {
-		throw new UnsupportedOperationException();
+		return (String)OWNED_MEMBER_SHORT_NAME__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
@@ -166,8 +156,19 @@ public class OwningMembershipImpl extends MembershipImpl implements OwningMember
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
+	public void setOwnedMemberShortName(String newOwnedMemberShortName) {
+		OWNED_MEMBER_SHORT_NAME__ESETTING_DELEGATE.dynamicSet(this, null, 0, newOwnedMemberShortName);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * Generation with setting delegate was not executed properly, therefore code was edited manually
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
 	public boolean isSetOwnedMemberShortName() {
-		return OWNED_MEMBER_SHORT_NAME_EDEFAULT == null ? getOwnedMemberShortName() != null : !OWNED_MEMBER_SHORT_NAME_EDEFAULT.equals(getOwnedMemberShortName());
+		return OWNED_MEMBER_SHORT_NAME__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 	}
 
 	/**
@@ -448,7 +449,7 @@ public class OwningMembershipImpl extends MembershipImpl implements OwningMember
 				setOwnedMemberElementId(OWNED_MEMBER_ELEMENT_ID_EDEFAULT);
 				return;
 			case SysMLPackage.OWNING_MEMBERSHIP__OWNED_MEMBER_SHORT_NAME:
-				setOwnedMemberShortName(OWNED_MEMBER_SHORT_NAME_EDEFAULT);
+				OWNED_MEMBER_SHORT_NAME__ESETTING_DELEGATE.dynamicUnset(this, null, 0);
 				return;
 			case SysMLPackage.OWNING_MEMBERSHIP__OWNED_MEMBER_NAME:
 				setOwnedMemberName(OWNED_MEMBER_NAME_EDEFAULT);

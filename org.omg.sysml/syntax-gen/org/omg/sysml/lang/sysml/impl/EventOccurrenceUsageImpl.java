@@ -3,11 +3,10 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.omg.sysml.lang.sysml.EventOccurrenceUsage;
 import org.omg.sysml.lang.sysml.OccurrenceUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.util.FeatureUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -23,6 +22,16 @@ import org.omg.sysml.util.FeatureUtil;
  * @generated
  */
 public class EventOccurrenceUsageImpl extends OccurrenceUsageImpl implements EventOccurrenceUsage {
+	/**
+	 * The cached setting delegate for the '{@link #getEventOccurrence() <em>Event Occurrence</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getEventOccurrence()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate EVENT_OCCURRENCE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.EVENT_OCCURRENCE_USAGE__EVENT_OCCURRENCE).getSettingDelegate();
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -49,27 +58,26 @@ public class EventOccurrenceUsageImpl extends OccurrenceUsageImpl implements Eve
 	 */
 	@Override
 	public OccurrenceUsage getEventOccurrence() {
-		OccurrenceUsage eventOccurrence = basicGetEventOccurrence();
-		return eventOccurrence != null && eventOccurrence.eIsProxy() ? (OccurrenceUsage)eResolveProxy((InternalEObject)eventOccurrence) : eventOccurrence;
+		return (OccurrenceUsage)EVENT_OCCURRENCE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public OccurrenceUsage basicGetEventOccurrence() {
-		return FeatureUtil.getReferencedFeatureOf(this, OccurrenceUsage.class);
+		return (OccurrenceUsage)EVENT_OCCURRENCE__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setEventOccurrence(OccurrenceUsage newEventOccurrence) {
-		throw new UnsupportedOperationException();
+		EVENT_OCCURRENCE__ESETTING_DELEGATE.dynamicSet(this, null, 0, newEventOccurrence);
 	}
 
 	// Additional overrides
@@ -135,7 +143,7 @@ public class EventOccurrenceUsageImpl extends OccurrenceUsageImpl implements Eve
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case SysMLPackage.EVENT_OCCURRENCE_USAGE__EVENT_OCCURRENCE:
-				return basicGetEventOccurrence() != null;
+				return EVENT_OCCURRENCE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 		}
 		return super.eIsSet(featureID);
 	}

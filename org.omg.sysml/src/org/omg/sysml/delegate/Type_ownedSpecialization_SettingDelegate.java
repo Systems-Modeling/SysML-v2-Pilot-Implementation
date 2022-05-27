@@ -41,7 +41,7 @@ public class Type_ownedSpecialization_SettingDelegate extends BasicDerivedListSe
 		((Type)owner).getOwnedRelationship().stream().
 			filter(Specialization.class::isInstance).
 			map(Specialization.class::cast).
-			filter(gen->gen.getSpecific() == this).
+			filter(gen->gen.getSpecific() == owner).
 			forEachOrdered(generalizations::add);
 		return generalizations;
 	}

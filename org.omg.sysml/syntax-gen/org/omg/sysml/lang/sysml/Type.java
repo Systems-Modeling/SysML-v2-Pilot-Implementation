@@ -185,6 +185,7 @@ public interface Type extends Namespace {
 	 * @see org.omg.sysml.lang.sysml.Feature#getOwningType
 	 * @model opposite="owningType" transient="true" volatile="true" derived="true"
 	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<Feature> getOwnedFeature();
@@ -213,6 +214,7 @@ public interface Type extends Namespace {
 	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='typeWithFeature'"
 	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<Feature> getFeature();
@@ -241,6 +243,7 @@ public interface Type extends Namespace {
 	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='typeWithInput'"
 	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<Feature> getInput();
@@ -269,6 +272,7 @@ public interface Type extends Namespace {
 	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='typeWithOutput'"
 	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<Feature> getOutput();
@@ -354,6 +358,7 @@ public interface Type extends Namespace {
 	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='typeWithEndFeature'"
 	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<Feature> getEndFeature();
@@ -416,6 +421,7 @@ public interface Type extends Namespace {
 	 * @see org.omg.sysml.lang.sysml.Conjugation#getOwningType
 	 * @model opposite="owningType" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	Conjugation getOwnedConjugator();
@@ -446,6 +452,7 @@ public interface Type extends Namespace {
 	 * @see #setIsConjugated(boolean)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getType_IsConjugated()
 	 * @model dataType="org.omg.sysml.lang.types.Boolean" required="true" transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	boolean isConjugated();
@@ -609,6 +616,7 @@ public interface Type extends Namespace {
 	 * @see org.omg.sysml.lang.sysml.Specialization#getOwningType
 	 * @model opposite="owningType" transient="true" volatile="true" derived="true"
 	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<Specialization> getOwnedSpecialization();
@@ -650,6 +658,7 @@ public interface Type extends Namespace {
 	 * @see org.omg.sysml.lang.sysml.Feature#getEndOwningType
 	 * @model opposite="endOwningType" transient="true" volatile="true" derived="true"
 	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<Feature> getOwnedEndFeature();

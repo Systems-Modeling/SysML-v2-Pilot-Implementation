@@ -10,6 +10,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.UniqueEList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
@@ -54,6 +55,16 @@ public class MetadataUsageImpl extends ItemUsageImpl implements MetadataUsage {
 	 * @ordered
 	 */
 	protected EList<Annotation> annotation;
+
+	/**
+	 * The cached setting delegate for the '{@link #getAnnotatedElement() <em>Annotated Element</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAnnotatedElement()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate ANNOTATED_ELEMENT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.ANNOTATING_ELEMENT__ANNOTATED_ELEMENT).getSettingDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -257,7 +268,7 @@ public class MetadataUsageImpl extends ItemUsageImpl implements MetadataUsage {
 			case SysMLPackage.METADATA_USAGE__ANNOTATION:
 				return annotation != null && !annotation.isEmpty();
 			case SysMLPackage.METADATA_USAGE__ANNOTATED_ELEMENT:
-				return !getAnnotatedElement().isEmpty();
+				return ANNOTATED_ELEMENT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.METADATA_USAGE__TYPE:
 				return isSetType();
 			case SysMLPackage.METADATA_USAGE__METACLASS:

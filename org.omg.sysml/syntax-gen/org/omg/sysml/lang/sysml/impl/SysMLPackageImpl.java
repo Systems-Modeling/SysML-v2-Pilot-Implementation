@@ -8980,10 +8980,10 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		createRedefinesAnnotations();
 		// subsets
 		createSubsetsAnnotations();
-		// union
-		createUnionAnnotations();
 		// http://www.omg.org/spec/SysML
 		createSysMLAnnotations();
+		// union
+		createUnionAnnotations();
 	}
 
 	/**
@@ -12949,6 +12949,11 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	protected void createSysMLAnnotations() {
 		String source = "http://www.omg.org/spec/SysML";
 		addAnnotation
+		  (getDisjoining_OwningType(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
 		  (getElement_OwningMembership(),
 		   source,
 		   new String[] {
@@ -12994,12 +12999,82 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   new String[] {
 		   });
 		addAnnotation
+		  (getOwningMembership_OwnedMemberShortName(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getMembership_MemberElementId(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
 		  (getNamespace_OwnedImport(),
 		   source,
 		   new String[] {
 		   });
 		addAnnotation
+		  (getNamespace_Member(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getNamespace_OwnedMember(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getAnnotatingElement_AnnotatedElement(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getType_OwnedSpecialization(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
 		  (getType_OwnedFeatureMembership(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getType_OwnedFeature(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getType_OwnedEndFeature(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getType_Feature(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getType_Input(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getType_Output(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getType_EndFeature(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getType_OwnedConjugator(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getType_IsConjugated(),
 		   source,
 		   new String[] {
 		   });
@@ -13390,6 +13465,11 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   });
 		addAnnotation
 		  (getAllocationDefinition_Allocation(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getEventOccurrenceUsage_EventOccurrence(),
 		   source,
 		   new String[] {
 		   });

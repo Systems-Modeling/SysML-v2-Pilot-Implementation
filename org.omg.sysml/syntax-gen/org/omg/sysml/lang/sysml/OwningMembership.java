@@ -78,6 +78,7 @@ public interface OwningMembership extends Membership {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getOwningMembership_OwnedMemberShortName()
 	 * @model dataType="org.omg.sysml.lang.types.String" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="redefines"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	String getOwnedMemberShortName();

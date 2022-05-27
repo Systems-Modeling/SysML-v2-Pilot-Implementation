@@ -68,7 +68,6 @@ import org.omg.sysml.util.NonNotifyingEObjectEList;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getOwnedUsage <em>Owned Usage</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getOwnedPort <em>Owned Port</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getDirectedUsage <em>Directed Usage</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getUsage <em>Usage</em>}</li>
@@ -99,20 +98,12 @@ import org.omg.sysml.util.NonNotifyingEObjectEList;
  *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getOwnedOccurrence <em>Owned Occurrence</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getOwnedUseCase <em>Owned Use Case</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getOwnedFlow <em>Owned Flow</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getOwnedUsage <em>Owned Usage</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class DefinitionImpl extends ClassifierImpl implements Definition {
-	/**
-	 * The cached setting delegate for the '{@link #getOwnedUsage() <em>Owned Usage</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOwnedUsage()
-	 * @generated
-	 * @ordered
-	 */
-	protected EStructuralFeature.Internal.SettingDelegate OWNED_USAGE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.DEFINITION__OWNED_USAGE).getSettingDelegate();
 	/**
 	 * The cached setting delegate for the '{@link #getOwnedPort() <em>Owned Port</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -383,6 +374,15 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate OWNED_FLOW__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.DEFINITION__OWNED_FLOW).getSettingDelegate();
+	/**
+	 * The cached setting delegate for the '{@link #getOwnedUsage() <em>Owned Usage</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedUsage()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate OWNED_USAGE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.DEFINITION__OWNED_USAGE).getSettingDelegate();
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -775,8 +775,6 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case SysMLPackage.DEFINITION__OWNED_USAGE:
-				return getOwnedUsage();
 			case SysMLPackage.DEFINITION__OWNED_PORT:
 				return getOwnedPort();
 			case SysMLPackage.DEFINITION__DIRECTED_USAGE:
@@ -837,6 +835,8 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 				return getOwnedUseCase();
 			case SysMLPackage.DEFINITION__OWNED_FLOW:
 				return getOwnedFlow();
+			case SysMLPackage.DEFINITION__OWNED_USAGE:
+				return getOwnedUsage();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -850,10 +850,6 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case SysMLPackage.DEFINITION__OWNED_USAGE:
-				getOwnedUsage().clear();
-				getOwnedUsage().addAll((Collection<? extends Usage>)newValue);
-				return;
 			case SysMLPackage.DEFINITION__OWNED_PORT:
 				getOwnedPort().clear();
 				getOwnedPort().addAll((Collection<? extends PortUsage>)newValue);
@@ -973,6 +969,10 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 				getOwnedFlow().clear();
 				getOwnedFlow().addAll((Collection<? extends FlowConnectionUsage>)newValue);
 				return;
+			case SysMLPackage.DEFINITION__OWNED_USAGE:
+				getOwnedUsage().clear();
+				getOwnedUsage().addAll((Collection<? extends Usage>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -985,9 +985,6 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.DEFINITION__OWNED_USAGE:
-				getOwnedUsage().clear();
-				return;
 			case SysMLPackage.DEFINITION__OWNED_PORT:
 				getOwnedPort().clear();
 				return;
@@ -1078,6 +1075,9 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 			case SysMLPackage.DEFINITION__OWNED_FLOW:
 				getOwnedFlow().clear();
 				return;
+			case SysMLPackage.DEFINITION__OWNED_USAGE:
+				getOwnedUsage().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -1090,8 +1090,6 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.DEFINITION__OWNED_USAGE:
-				return OWNED_USAGE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.DEFINITION__OWNED_PORT:
 				return OWNED_PORT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.DEFINITION__DIRECTED_USAGE:
@@ -1152,6 +1150,8 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 				return OWNED_USE_CASE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.DEFINITION__OWNED_FLOW:
 				return OWNED_FLOW__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
+			case SysMLPackage.DEFINITION__OWNED_USAGE:
+				return OWNED_USAGE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 		}
 		return super.eIsSet(featureID);
 	}

@@ -26,6 +26,7 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.omg.sysml.expressions.ModelLevelFunction;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
@@ -56,6 +57,16 @@ import org.omg.sysml.util.TypeUtil;
  */
 public class InvocationExpressionImpl extends ExpressionImpl implements InvocationExpression {
 	
+	/**
+	 * The cached setting delegate for the '{@link #getArgument() <em>Argument</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getArgument()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate ARGUMENT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.INVOCATION_EXPRESSION__ARGUMENT).getSettingDelegate();
+
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -181,7 +192,7 @@ public class InvocationExpressionImpl extends ExpressionImpl implements Invocati
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case SysMLPackage.INVOCATION_EXPRESSION__ARGUMENT:
-				return !getArgument().isEmpty();
+				return ARGUMENT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 		}
 		return super.eIsSet(featureID);
 	}

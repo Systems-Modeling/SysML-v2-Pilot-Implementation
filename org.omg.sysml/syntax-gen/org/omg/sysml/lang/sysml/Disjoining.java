@@ -18,8 +18,8 @@ package org.omg.sysml.lang.sysml;
  * </p>
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.Disjoining#getTypeDisjoined <em>Type Disjoined</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Disjoining#getDisjoiningType <em>Disjoining Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Disjoining#getOwningType <em>Owning Type</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Disjoining#getDisjoiningType <em>Disjoining Type</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getDisjoining()
@@ -85,6 +85,7 @@ public interface Disjoining extends Relationship {
 	 * @see org.omg.sysml.lang.sysml.Type#getOwnedDisjoining
 	 * @model opposite="ownedDisjoining" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	Type getOwningType();

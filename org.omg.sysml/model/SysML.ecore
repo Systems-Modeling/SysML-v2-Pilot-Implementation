@@ -716,6 +716,7 @@
         <details key="documentation" value="&lt;p>All the &lt;code>memberFeatures&lt;/code> of the &lt;code>inheritedMemberships&lt;/code> of this Type.&lt;/p>&#xA;"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Type/feature"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="multiplicity" ordered="false"
         eType="#//Multiplicity" volatile="true" transient="true" derived="true">
@@ -736,6 +737,7 @@
         <details key="documentation" value="&lt;p>The &lt;code>features&lt;/code> of this Type that have a non-null &lt;code>direction&lt;/code>.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Type/feature"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedDisjoining" ordered="false"
         upperBound="-1" eType="#//Disjoining" volatile="true" transient="true" derived="true"
@@ -744,6 +746,7 @@
         <details key="documentation" value="&lt;p>The &lt;code>ownedRelationships&lt;/code> of this Type that are Disjoinings, for which the Type is the &lt;code>typeDisjoined&lt;/code> Type.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Element/ownedRelationship"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="featureMembership" upperBound="-1"
         eType="#//FeatureMembership" volatile="true" transient="true" derived="true">
@@ -753,6 +756,7 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>The FeatureMemberships for &lt;code>features&lt;/code> of this Type, which include all &lt;code>ownedFeatureMemberships&lt;/code> and those &lt;code>inheritedFeatureMemberships&lt;/code> that are FeatureMemberships (but &lt;em>not&lt;/em> &lt;code>importedMemberships&lt;/code>).&lt;/p>"/>
       </eAnnotations>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Specialization" eSuperTypes="#//Relationship">

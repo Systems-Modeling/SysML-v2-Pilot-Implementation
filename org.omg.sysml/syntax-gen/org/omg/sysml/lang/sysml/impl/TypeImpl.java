@@ -57,7 +57,6 @@ import org.omg.sysml.lang.sysml.Specialization;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.VisibilityKind;
 import org.omg.sysml.util.FeatureUtil;
-import org.omg.sysml.util.NonNotifyingEObjectEList;
 import org.omg.sysml.util.TypeUtil;
 
 /**
@@ -233,6 +232,46 @@ public class TypeImpl extends NamespaceImpl implements Type {
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate IS_CONJUGATED__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.TYPE__IS_CONJUGATED).getSettingDelegate();
+
+	/**
+	 * The cached setting delegate for the '{@link #getInheritedFeature() <em>Inherited Feature</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getInheritedFeature()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate INHERITED_FEATURE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.TYPE__INHERITED_FEATURE).getSettingDelegate();
+
+	/**
+	 * The cached setting delegate for the '{@link #getDirectedFeature() <em>Directed Feature</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDirectedFeature()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate DIRECTED_FEATURE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.TYPE__DIRECTED_FEATURE).getSettingDelegate();
+
+	/**
+	 * The cached setting delegate for the '{@link #getOwnedDisjoining() <em>Owned Disjoining</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedDisjoining()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate OWNED_DISJOINING__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.TYPE__OWNED_DISJOINING).getSettingDelegate();
+
+	/**
+	 * The cached setting delegate for the '{@link #getFeatureMembership() <em>Feature Membership</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getFeatureMembership()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate FEATURE_MEMBERSHIP__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.TYPE__FEATURE_MEMBERSHIP).getSettingDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -471,34 +510,23 @@ public class TypeImpl extends NamespaceImpl implements Type {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<FeatureMembership> getFeatureMembership() {
-		EList<FeatureMembership> featureMemberships = new NonNotifyingEObjectEList<>(FeatureMembership.class, this, SysMLPackage.TYPE__FEATURE_MEMBERSHIP);
-		featureMemberships.addAll(getOwnedFeatureMembership());
-		getInheritedMembership().stream().
-			filter(FeatureMembership.class::isInstance).
-			map(FeatureMembership.class::cast).
-			forEachOrdered(featureMemberships::add);
-		return featureMemberships;
+		return (EList<FeatureMembership>)FEATURE_MEMBERSHIP__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<Feature> getInheritedFeature() {
-		EList<Feature> features = new NonNotifyingEObjectEList<>(Feature.class, this, SysMLPackage.TYPE__INHERITED_FEATURE);
-		getInheritedMembership().stream().
-			filter(FeatureMembership.class::isInstance).
-			map(FeatureMembership.class::cast).
-			map(FeatureMembership::getOwnedMemberFeature).
-			filter(f->f != null).
-			forEachOrdered(features::add);
-		return features;
+		return (EList<Feature>)INHERITED_FEATURE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
@@ -552,31 +580,23 @@ public class TypeImpl extends NamespaceImpl implements Type {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<Feature> getDirectedFeature() {
-		EList<Feature> directedFeatures = new NonNotifyingEObjectEList<>(Feature.class, this, SysMLPackage.TYPE__DIRECTED_FEATURE);
-		getFeature().stream().
-			filter(f->f.getDirection() != null).
-			forEachOrdered(directedFeatures::add);
-		return directedFeatures;
+		return (EList<Feature>)DIRECTED_FEATURE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<Disjoining> getOwnedDisjoining() {
-		EList<Disjoining> disjoinings = new NonNotifyingEObjectEList<>(Disjoining.class, this, SysMLPackage.TYPE__OWNED_DISJOINING);
-		getOwnedRelationship().stream().
-			filter(Disjoining.class::isInstance).
-			map(Disjoining.class::cast).
-			filter(gen->gen.getTypeDisjoined() == this).
-			forEachOrdered(disjoinings::add);
-		return disjoinings;
+		return (EList<Disjoining>)OWNED_DISJOINING__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
@@ -999,15 +1019,15 @@ public class TypeImpl extends NamespaceImpl implements Type {
 			case SysMLPackage.TYPE__IS_CONJUGATED:
 				return IS_CONJUGATED__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.TYPE__INHERITED_FEATURE:
-				return !getInheritedFeature().isEmpty();
+				return INHERITED_FEATURE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.TYPE__MULTIPLICITY:
 				return basicGetMultiplicity() != null;
 			case SysMLPackage.TYPE__DIRECTED_FEATURE:
-				return !getDirectedFeature().isEmpty();
+				return DIRECTED_FEATURE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.TYPE__OWNED_DISJOINING:
-				return !getOwnedDisjoining().isEmpty();
+				return OWNED_DISJOINING__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.TYPE__FEATURE_MEMBERSHIP:
-				return !getFeatureMembership().isEmpty();
+				return FEATURE_MEMBERSHIP__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 		}
 		return super.eIsSet(featureID);
 	}

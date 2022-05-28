@@ -483,6 +483,7 @@ public interface Type extends Namespace {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getType_FeatureMembership()
 	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='type'"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<FeatureMembership> getFeatureMembership();
@@ -511,6 +512,7 @@ public interface Type extends Namespace {
 	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='inheritingType'"
 	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<Feature> getInheritedFeature();
@@ -567,6 +569,7 @@ public interface Type extends Namespace {
 	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='typeWithDirectedFeature'"
 	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<Feature> getDirectedFeature();
@@ -591,6 +594,7 @@ public interface Type extends Namespace {
 	 * @see org.omg.sysml.lang.sysml.Disjoining#getOwningType
 	 * @model opposite="owningType" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<Disjoining> getOwnedDisjoining();

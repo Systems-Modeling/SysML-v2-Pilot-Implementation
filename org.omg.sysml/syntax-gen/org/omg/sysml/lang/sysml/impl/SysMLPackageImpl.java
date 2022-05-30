@@ -13099,6 +13099,11 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   new String[] {
 		   });
 		addAnnotation
+		  (getSpecialization_OwningType(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
 		  (getFeature_OwnedRedefinition(),
 		   source,
 		   new String[] {

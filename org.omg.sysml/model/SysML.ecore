@@ -789,6 +789,7 @@
         <details key="documentation" value="&lt;p>The Type that is the &lt;code>specific&lt;/code> Type of this Specialization and owns it as its &lt;code>owningRelatedElement&lt;/code>.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Specialization/specific #//Relationship/owningRelatedElement"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FeatureMembership" eSuperTypes="#//OwningMembership #//TypeFeaturing">

@@ -149,6 +149,7 @@ public interface Specialization extends Relationship {
 	 * @see org.omg.sysml.lang.sysml.Type#getOwnedSpecialization
 	 * @model opposite="ownedSpecialization" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	Type getOwningType();

@@ -1,5 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
+ * Copyright (c) 2022 Siemens AG
  * Copyright (c) 2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify

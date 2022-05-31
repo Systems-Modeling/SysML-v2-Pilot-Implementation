@@ -884,6 +884,7 @@
         <details key="documentation" value="&lt;p>The Type that is the &lt;code>owningType&lt;/code> of the &lt;code>owningFeatureMembership&lt;/code> of this Type.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Element/owningNamespace #//Feature/featuringType"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isUnique" ordered="false"
         lowerBound="1" eType="ecore:EDataType types.ecore#//Boolean" defaultValueLiteral="true">
@@ -976,6 +977,7 @@
         <details key="documentation" value="&lt;p>The &lt;code>ownedRelationships&lt;/code> of this Feature that are TypeFeaturings, for which the Feature is the &lt;code>featureOfType&lt;/code>.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Element/ownedRelationship"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="chainingFeature" unique="false"
         lowerBound="1" upperBound="-1" eType="#//Feature" volatile="true" transient="true"
@@ -986,6 +988,7 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>The Features that are chained together to determine the values of this Feature, derived from the &lt;code>chainingFeatures&lt;/code> of the &lt;code>ownedFeatureChainings&lt;/code> of this Feature, in the same order. The values of a Feature with chainingFeatures are the same as values of the last Feature in the chain, which can be found by starting with the values of the first Feature (for each instance of the original Feature's domain), then on each of those to the values of the second Feature in chainingFeatures, and so on, to values of the last Feature. The Features related to a Feature by a FeatureChaining are identified as its chainingFeatures.&lt;/p>"/>
       </eAnnotations>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedFeatureChaining" lowerBound="1"
         upperBound="-1" eType="#//FeatureChaining" volatile="true" transient="true"

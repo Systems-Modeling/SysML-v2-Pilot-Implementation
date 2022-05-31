@@ -105,6 +105,7 @@ public interface Feature extends Type {
 	 * @see org.omg.sysml.lang.sysml.TypeFeaturing#getOwningFeatureOfType
 	 * @model opposite="owningFeatureOfType" transient="true" volatile="true" derived="true"
 	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<TypeFeaturing> getOwnedTypeFeaturing();
@@ -121,6 +122,7 @@ public interface Feature extends Type {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_ChainingFeature()
 	 * @model required="true" transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='chainedFeature'"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<Feature> getChainingFeature();
@@ -229,6 +231,7 @@ public interface Feature extends Type {
 	 * @see org.omg.sysml.lang.sysml.Type#getOwnedFeature
 	 * @model opposite="ownedFeature" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	Type getOwningType();

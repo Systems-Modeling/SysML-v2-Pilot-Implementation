@@ -95,6 +95,15 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  */
 public class FeatureImpl extends TypeImpl implements Feature {
 	
+	/**
+	 * The cached setting delegate for the '{@link #getOwningType() <em>Owning Type</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwningType()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate OWNING_TYPE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.FEATURE__OWNING_TYPE).getSettingDelegate();
 	public static final String FEATURE_TRANSFER_SOURCE_OUTPUT = "Transfers::Transfer::transferSource::sourceOutput";
 	public static final String FEATURE_TRANSFER_TARGET_INPUT = "Transfers::Transfer::transferTarget::targetInput";
 	
@@ -252,8 +261,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 */
 	@Override
 	public Type getOwningType() {
-		Type owningType = basicGetOwningType();
-		return owningType != null && owningType.eIsProxy() ? (Type)eResolveProxy((InternalEObject)owningType) : owningType;
+		return (Type)OWNING_TYPE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
@@ -477,6 +485,24 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate OWNED_TYPING__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.FEATURE__OWNED_TYPING).getSettingDelegate();
+	/**
+	 * The cached setting delegate for the '{@link #getOwnedTypeFeaturing() <em>Owned Type Featuring</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedTypeFeaturing()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate OWNED_TYPE_FEATURING__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.FEATURE__OWNED_TYPE_FEATURING).getSettingDelegate();
+	/**
+	 * The cached setting delegate for the '{@link #getChainingFeature() <em>Chaining Feature</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getChainingFeature()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate CHAINING_FEATURE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.FEATURE__CHAINING_FEATURE).getSettingDelegate();
 	/**
 	 * The cached setting delegate for the '{@link #getOwnedFeatureChaining() <em>Owned Feature Chaining</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -716,16 +742,12 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<TypeFeaturing> getOwnedTypeFeaturing() {
-		EList<TypeFeaturing> featurings = new NonNotifyingEObjectEList<>(TypeFeaturing.class, this, SysMLPackage.FEATURE__OWNED_TYPE_FEATURING);
-		getOwnedRelationship().stream().
-			filter(rel->(rel instanceof TypeFeaturing) && ((TypeFeaturing)rel).getFeatureOfType() == this).
-			map(TypeFeaturing.class::cast).
-			forEachOrdered(featurings::add);
-		return featurings;
+		return (EList<TypeFeaturing>)OWNED_TYPE_FEATURING__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
@@ -741,15 +763,12 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<Feature> getChainingFeature() {
-		EList<Feature> chainingFeatures = new NonNotifyingEObjectEList<>(Feature.class, this, SysMLPackage.FEATURE__CHAINING_FEATURE, false);
-		getOwnedFeatureChaining().stream().
-			map(FeatureChaining::getChainingFeature).
-			forEachOrdered(chainingFeatures::add);
-		return chainingFeatures;
+		return (EList<Feature>)CHAINING_FEATURE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
@@ -1162,7 +1181,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 			case SysMLPackage.FEATURE__OWNED_RELATIONSHIP:
 				return ownedRelationship != null && !ownedRelationship.isEmpty();
 			case SysMLPackage.FEATURE__OWNING_TYPE:
-				return basicGetOwningType() != null;
+				return OWNING_TYPE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.FEATURE__IS_UNIQUE:
 				return isUnique != IS_UNIQUE_EDEFAULT;
 			case SysMLPackage.FEATURE__IS_ORDERED:
@@ -1186,9 +1205,9 @@ public class FeatureImpl extends TypeImpl implements Feature {
 			case SysMLPackage.FEATURE__FEATURING_TYPE:
 				return !getFeaturingType().isEmpty();
 			case SysMLPackage.FEATURE__OWNED_TYPE_FEATURING:
-				return !getOwnedTypeFeaturing().isEmpty();
+				return OWNED_TYPE_FEATURING__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.FEATURE__CHAINING_FEATURE:
-				return !getChainingFeature().isEmpty();
+				return CHAINING_FEATURE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.FEATURE__OWNED_FEATURE_CHAINING:
 				return OWNED_FEATURE_CHAINING__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.FEATURE__IS_DERIVED:

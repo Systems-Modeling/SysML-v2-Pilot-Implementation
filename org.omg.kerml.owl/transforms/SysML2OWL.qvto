@@ -157,7 +157,7 @@ query SysML::Namespace::URL(): String {
 }
 
 helper SysML::Namespace::mapToDeclarations() {
-	self.ownedMembership.ownedMemberElement->mapToDeclarations();
+	self.ownedMember->mapToDeclarations();
 }
 
 //mapping SysML::Package::toDeclaration(): Declaration {
@@ -205,8 +205,8 @@ query SysML::Type::IRI(): String {
 	return ElementIRI(self) + '-Class';
 }
 
-query SysML::Type::ownedFeatures(): List(SysML::Feature) {
-	return self.ownedMembership.ownedMemberElement[SysML::Feature];
+query SysML::Type::ownedFeatures(): OrderedSet(SysML::Feature) {
+	return self.ownedFeature;
 }
 
 query SysML::Type::implicitSuperclass(): SysML::Type {
@@ -227,7 +227,7 @@ query SysML::Type::superclasses(): Sequence(SysML::Type) {
 }
 
 query SysML::Type::feature(featureName: String): SysML::Feature {
-	var members := self.ownedMembership.ownedMemberElement->union(self.ownedMembership.memberElement);
+	var members := self.ownedMembership.memberElement;
 	var namedFeature := members[SysML::Feature]![name = featureName];
 	if namedFeature = null then {
 		namedFeature := self.superclasses().feature(featureName)![true];
@@ -237,7 +237,7 @@ query SysML::Type::feature(featureName: String): SysML::Feature {
 
 helper SysML::Type::mapToDeclarations() {
 	self.map toDeclaration();
-	self.ownedMembership.ownedMemberElement->forEach(element) {
+	self.ownedMember->forEach(element) {
 //		log('  ownedMember: ' + valueOf(element.name));
 		element.mapToDeclarations();
 	};
@@ -312,7 +312,7 @@ query SysML::Feature::range(): SysML::Type {
 helper SysML::Feature::mapToDeclarations() {
 	self.map toDeclaration();
 	self.type->mapToDeclarations();
-	self.ownedMembership.ownedMemberElement->mapToDeclarations();
+	self.ownedMember->mapToDeclarations();
 }
 
 helper newMinCardinality(cardinality: Integer, objectProperty: OWL::ObjectProperty, domain: OWL::Class) {

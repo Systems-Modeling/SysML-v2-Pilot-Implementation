@@ -43,14 +43,14 @@ public class GlobalNameRedefinitionTest extends SysMLInteractiveTest {
 		
 		SysMLInteractiveResult result1 = instance.eval("y = 1;");
 		System.out.println(result1);
-		String id1 = result1.getRootElement().getOwnedElement().get(0).getIdentifier();
+		String id1 = result1.getRootElement().getOwnedElement().get(0).getElementId();
 		
 		SysMLInteractiveResult result2 = instance.eval("y = 2;");
 		System.out.println(result2);
-		String id2 = result2.getRootElement().getOwnedElement().get(0).getIdentifier();
+		String id2 = result2.getRootElement().getOwnedElement().get(0).getElementId();
 		
 		System.out.println(instance.show("y"));
-		String resolvedIdentifier = instance.resolve("y").getIdentifier();
+		String resolvedIdentifier = instance.resolve("y").getElementId();
 		
 		assertNotEquals(id1, id2);
 		assertEquals(id2, resolvedIdentifier);
@@ -67,14 +67,14 @@ public class GlobalNameRedefinitionTest extends SysMLInteractiveTest {
 		
 		SysMLInteractiveResult result1 = instance.eval("y = 1;");
 		System.out.println(result1);
-		String id1 = result1.getRootElement().getOwnedElement().get(0).getIdentifier();
+		String id1 = result1.getRootElement().getOwnedElement().get(0).getElementId();
 		
 		SysMLInteractiveResult result2 = instance.eval("y = 2;");
 		System.out.println(result2);
-		String id2 = result2.getRootElement().getOwnedElement().get(0).getIdentifier();
+		String id2 = result2.getRootElement().getOwnedElement().get(0).getElementId();
 		
 		System.out.println(instance.show("y"));
-		String resolvedIdentifier = instance.resolve("y").getIdentifier();
+		String resolvedIdentifier = instance.resolve("y").getElementId();
 		
 		assertNotEquals(id1, id2);
 		assertEquals(id2, resolvedIdentifier);
@@ -86,11 +86,11 @@ public class GlobalNameRedefinitionTest extends SysMLInteractiveTest {
 		
 		SysMLInteractiveResult result1 = instance.eval("y = 1;");
 		System.out.println(result1);
-		String id1 = result1.getRootElement().getOwnedElement().get(0).getIdentifier();
+		String id1 = result1.getRootElement().getOwnedElement().get(0).getElementId();
 		
 		SysMLInteractiveResult result2 = instance.eval("Y = 2;");
 		System.out.println(result2);
-		String id2 = result2.getRootElement().getOwnedElement().get(0).getIdentifier();
+		String id2 = result2.getRootElement().getOwnedElement().get(0).getElementId();
 		
 		System.out.println(instance.show("y"));
 		Element resolvedElement1 = instance.resolve("y");
@@ -102,8 +102,8 @@ public class GlobalNameRedefinitionTest extends SysMLInteractiveTest {
 		assertNotNull(resolvedElement2);
 		
 		assertNotEquals(id1, id2);
-		assertEquals(id1, resolvedElement1.getIdentifier());
-		assertEquals(id2, resolvedElement2.getIdentifier());
+		assertEquals(id1, resolvedElement1.getElementId());
+		assertEquals(id2, resolvedElement2.getElementId());
 	}
 	
 }

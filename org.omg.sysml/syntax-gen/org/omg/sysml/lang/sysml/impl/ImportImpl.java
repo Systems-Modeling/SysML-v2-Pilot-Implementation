@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -41,6 +41,7 @@ import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Import;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
+import org.omg.sysml.lang.sysml.OwningMembership;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.VisibilityKind;
 import org.omg.sysml.util.ElementUtil;
@@ -501,7 +502,8 @@ public class ImportImpl extends RelationshipImpl implements Import {
 		if (isRecursive) {
 			excludedNamespaces.add(importedNamespace);
 			for (Membership membership: namespaceMembership) {
-				Element member = importedMemberName == null? membership.getOwnedMemberElement(): membership.getMemberElement();
+				Element member = importedMemberName != null || membership instanceof OwningMembership? 
+						membership.getMemberElement(): null;
 				if (member instanceof Namespace) {
 					importMembershipFrom((Namespace)member, null, importedMembership, nonpublicMembership, 
 							excludedNamespaces, excludedTypes, true);

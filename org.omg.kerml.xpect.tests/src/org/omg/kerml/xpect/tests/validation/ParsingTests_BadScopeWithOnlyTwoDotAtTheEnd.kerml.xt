@@ -19,7 +19,7 @@ package test{
 	classifier non{}
 	classifier A{
 		// XPECT errors ---> "Couldn't resolve reference to Feature 'non'." at "non"
-		feature aa is non;
+		feature aa subsets non;
 		feature a: A;
 	}
 	classifier B{

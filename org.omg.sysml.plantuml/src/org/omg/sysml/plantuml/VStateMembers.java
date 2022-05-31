@@ -89,7 +89,7 @@ public class VStateMembers extends VBehavior {
 
     @Override
     public String caseFeatureMembership(FeatureMembership fm) {
-        return doSwitch(fm.getMemberFeature());
+        return doSwitch(fm.getOwnedMemberFeature());
     }
 
     @Override

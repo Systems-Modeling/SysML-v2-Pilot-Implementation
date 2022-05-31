@@ -88,7 +88,7 @@ class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 		    }
 			subsettingFeature.scope_owningNamespace(context, reference)
 		} else if (context instanceof Specialization)
-			(context.eContainer as Element).scope_owningNamespace(context, reference)
+			(context.eContainer as Element).scope_nonExpressionNamespace(context, reference)
 		else if (context instanceof FeatureChaining)
 			context.scope_featureChaining(reference)
 		else if (context instanceof Membership)

@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2021-2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -266,7 +266,7 @@ public class UsageUtil {
 	public static Stream<Feature> getTransitionFeaturesOf(TransitionUsage usage, TransitionFeatureKind kind) {
 		return usage.getOwnedFeatureMembership().stream().
 				filter(mem->(mem instanceof TransitionFeatureMembership) && ((TransitionFeatureMembership)mem).getKind() == kind).
-				map(mem->mem.getMemberFeature()).
+				map(mem->mem.getOwnedMemberFeature()).
 				filter(f->f != null);
 	}
 	
@@ -287,7 +287,7 @@ public class UsageUtil {
 	public static Feature getTransitionLinkFeatureOf(TransitionUsage transition) {
 		return transition.getOwnedFeatureMembership().stream().
 				filter(m->!(m instanceof TransitionFeatureMembership || m instanceof ParameterMembership)).
-				map(FeatureMembership::getMemberFeature).
+				map(FeatureMembership::getOwnedMemberFeature).
 				findFirst().orElse(null);
 	}
 	

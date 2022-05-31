@@ -19,7 +19,7 @@ END_SETUP
 package test{
 	feature A{
 		feature a {}
-		feature aa is a;
+		alias aa for a;
 	}
 	alias AA for A;
 	//* XPECT scope at AA ---

@@ -42,7 +42,7 @@ import org.omg.sysml.lang.sysml.VariantMembership;
  *
  * @generated
  */
-public class VariantMembershipImpl extends MembershipImpl implements VariantMembership {
+public class VariantMembershipImpl extends OwningMembershipImpl implements VariantMembership {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

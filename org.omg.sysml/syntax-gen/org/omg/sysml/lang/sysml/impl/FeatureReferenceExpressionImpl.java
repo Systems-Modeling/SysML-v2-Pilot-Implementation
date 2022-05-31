@@ -141,16 +141,17 @@ public class FeatureReferenceExpressionImpl extends ExpressionImpl implements Fe
 								return value.evaluate(target);
 							}
 						}
+					} else {
+						EList<Element> result = new BasicEList<>();
+						result.add(referent);
+						return result;
 					}
 				}
 			}
 		}
-		if (referent.getFeaturingType().isEmpty()) {
-			EList<Element> result = new BasicEList<>();
-			result.add(referent);
-			return result;
-		}
-		return new BasicEList<>();
+		EList<Element> result = new BasicEList<>();
+		result.add(referent);
+		return result;
 	}
 	
 	/**

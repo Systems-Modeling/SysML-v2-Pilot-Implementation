@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2021-2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -23,7 +23,6 @@ package org.omg.sysml.adapter;
 
 import org.eclipse.emf.common.util.EList;
 import org.omg.sysml.lang.sysml.Expression;
-import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.SelectExpression;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.util.ElementUtil;
@@ -43,14 +42,12 @@ public class SelectExpressionAdapter extends OperatorExpressionAdapter {
 	@Override
 	protected void addResultTyping() {
 		SelectExpression target = getTarget();
-		EList<Feature> ownedFeatures = target.getOwnedFeature();
-		if (!ownedFeatures.isEmpty()) {
-			Feature collectionExpression = ownedFeatures.get(0);
-			if (collectionExpression instanceof Expression) {
-				ElementUtil.transform(collectionExpression);
-				TypeUtil.addImplicitGeneralTypeTo(target.getResult(),
-						SysMLPackage.eINSTANCE.getSubsetting(), ((Expression)collectionExpression).getResult());
-			}
+		EList<Expression> arguments = target.getArgument();
+		if (!arguments.isEmpty()) {
+			Expression collectionExpression = arguments.get(0);
+			ElementUtil.transform(collectionExpression);
+			TypeUtil.addImplicitGeneralTypeTo(target.getResult(),
+					SysMLPackage.eINSTANCE.getSubsetting(), ((Expression)collectionExpression).getResult());
 		}
 	}
 	

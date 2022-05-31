@@ -127,7 +127,7 @@ public interface Annotation extends Relationship {
 	 * </p>
 	 * <ul>
 	 *   <li>'{@link org.omg.sysml.lang.sysml.Annotation#getAnnotatedElement() <em>Annotated Element</em>}'</li>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Relationship#getOwningRelatedElement() <em>Owning Related Element</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Relationship#getOwnedRelatedElement() <em>Owned Related Element</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

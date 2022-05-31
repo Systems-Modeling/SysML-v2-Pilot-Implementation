@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -23,22 +23,23 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import java.util.Collection;
-import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.uml2.common.util.DerivedEObjectEList;
 import org.omg.sysml.expressions.ModelLevelFunction;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
-import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.InvocationExpression;
+import org.omg.sysml.lang.sysml.ParameterMembership;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
 import org.omg.sysml.util.ExpressionUtil;
+import org.omg.sysml.util.FeatureUtil;
 import org.omg.sysml.util.ImplicitGeneralizationMap;
+import org.omg.sysml.util.NonNotifyingEObjectEList;
+import org.omg.sysml.util.TypeUtil;
 
 
 /**
@@ -117,7 +118,12 @@ public class InvocationExpressionImpl extends ExpressionImpl implements Invocati
 	 */
 	@Override
 	public EList<Expression> getArgument() {
-		return new DerivedEObjectEList<Expression>(Expression.class, this, SysMLPackage.INVOCATION_EXPRESSION__ARGUMENT, new int[] {SysMLPackage.INVOCATION_EXPRESSION__OWNED_FEATURE});
+		EList<Expression> arguments = new NonNotifyingEObjectEList<Expression>(Expression.class, this, SysMLPackage.INVOCATION_EXPRESSION__ARGUMENT, false);
+		TypeUtil.getOwnedFeaturesByMembershipIn(this, ParameterMembership.class).
+			filter(FeatureUtil::isInputParameter).
+			map(FeatureUtil::getValueExpressionFor).
+			forEachOrdered(arguments::add);
+		return arguments;
 	}
 	
 	/**
@@ -178,10 +184,6 @@ public class InvocationExpressionImpl extends ExpressionImpl implements Invocati
 				return !getArgument().isEmpty();
 		}
 		return super.eIsSet(featureID);
-	}
-
-	public List<? extends Feature> getArguments() {
-		return super.getOwnedFeature();
 	}
 
 } // InvocationExpressionImpl

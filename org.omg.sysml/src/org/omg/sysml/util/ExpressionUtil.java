@@ -131,12 +131,25 @@ public class ExpressionUtil {
 		return SysMLLibraryUtil.getLibraryType(element, "KerML::" + metaclassName, "SysML::" + metaclassName);
 	}
 	
+	public static InvocationExpression getInvocationExpressionFor(Expression argument) {
+		Element parameter = argument.getOwningNamespace();
+		if (parameter instanceof FeatureReferenceExpression) {
+			parameter = parameter.getOwningNamespace();
+		}
+		if (parameter == null) {
+			return null;
+		} else {
+			Element type = parameter.getOwningNamespace();
+			return type instanceof InvocationExpression? (InvocationExpression)type: null;
+		}
+	}
+	
 	public static Expression getRootExpressionFor(Expression expression) {
 		Expression root = expression;
-		Type type = root.getOwningType();
-		while (type instanceof InvocationExpression) {
-			root = (Expression)type;
-			type = root.getOwningType();
+		InvocationExpression invocation = getInvocationExpressionFor(expression);
+		while (invocation != null) {
+			root = invocation;
+			invocation = getInvocationExpressionFor(root);
 		}
 		return root;
 	}

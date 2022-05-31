@@ -51,8 +51,8 @@ public interface Documentation extends Comment {
 	 * This feature redefines the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.AnnotatingElement#getAnnotatedElement() <em>Annotated Element</em>}'</li>
 	 *   <li>'{@link org.omg.sysml.lang.sysml.Element#getOwner() <em>Owner</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.AnnotatingElement#getAnnotatedElement() <em>Annotated Element</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

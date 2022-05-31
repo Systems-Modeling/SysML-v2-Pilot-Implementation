@@ -1192,6 +1192,7 @@
         <details key="documentation" value="&lt;p>The &lt;code>conjugatedType&lt;/code> of this Type that is also its &lt;code>owningRelatedElement&lt;/code>.&lt;/p>&#xA;"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Conjugation/conjugatedType #//Relationship/owningRelatedElement"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Multiplicity" eSuperTypes="#//Feature">

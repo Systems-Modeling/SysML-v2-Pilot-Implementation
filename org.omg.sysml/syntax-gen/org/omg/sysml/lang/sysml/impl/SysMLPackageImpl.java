@@ -13144,6 +13144,11 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   new String[] {
 		   });
 		addAnnotation
+		  (getConjugation_OwningType(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
 		  (getClassifier_OwnedSubclassification(),
 		   source,
 		   new String[] {

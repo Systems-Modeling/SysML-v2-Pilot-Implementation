@@ -37,7 +37,7 @@ package Items {
 		/**
 		 * Each enveloping shape is the shape of an Item that includes this Item in space and time.
 		 */
-		item envelopingShapes : Item[0..*] {  /* envelopingBoundaries?	Occurrence::enclosed => included, envelopingBoundaries -> enclose ?*/
+		item envelopingShapes : Item[0..*] {
 
 			  /* Enables 2 dim items to be enveloped by 2 or 3 dim shapes. */
 			attribute :>> innerSpaceDimension = (Item::innerSpaceDimension == 3  | Item::outerSpaceDimension == 3
@@ -100,7 +100,7 @@ package Items {
 	}
 	
 	/**
-	 * Touching occurrences are just outside each other and happen at the same time.
+	 * Touching items are just outside each other and happen at the same time.
 	 */
 	connection def Touches :> JustOutsideOf, HappensWhile {
 		end item touchedItemToo [0..*] :>> separateSpaceToo, thisOccurrence;

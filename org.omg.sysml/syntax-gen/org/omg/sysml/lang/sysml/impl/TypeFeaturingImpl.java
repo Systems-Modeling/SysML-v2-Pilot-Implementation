@@ -29,6 +29,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.UniqueEList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -68,6 +69,16 @@ public class TypeFeaturingImpl extends RelationshipImpl implements TypeFeaturing
 	 * @ordered
 	 */
 	protected Feature featureOfType;
+
+	/**
+	 * The cached setting delegate for the '{@link #getOwningFeatureOfType() <em>Owning Feature Of Type</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwningFeatureOfType()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate OWNING_FEATURE_OF_TYPE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.TYPE_FEATURING__OWNING_FEATURE_OF_TYPE).getSettingDelegate();
 
 	/**
 	 * The cached value of the '{@link #getFeaturingType() <em>Featuring Type</em>}' reference.
@@ -214,31 +225,26 @@ public class TypeFeaturingImpl extends RelationshipImpl implements TypeFeaturing
 	 */
 	@Override
 	public Feature getOwningFeatureOfType() {
-		Feature owningFeatureOfType = basicGetOwningFeatureOfType();
-		return owningFeatureOfType != null && owningFeatureOfType.eIsProxy() ? (Feature)eResolveProxy((InternalEObject)owningFeatureOfType) : owningFeatureOfType;
+		return (Feature)OWNING_FEATURE_OF_TYPE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Feature basicGetOwningFeatureOfType() {
-		Element owner = super.getOwningRelatedElement();
-		return owner instanceof Feature? (Feature)owner: null;
+		return (Feature)OWNING_FEATURE_OF_TYPE__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setOwningFeatureOfType(Feature newOwningFeatureOfType) {
-		if (getFeatureOfType() != newOwningFeatureOfType) {
-			setFeatureOfType(newOwningFeatureOfType);
-		}
-		setOwningRelatedElement(newOwningFeatureOfType);
+		OWNING_FEATURE_OF_TYPE__ESETTING_DELEGATE.dynamicSet(this, null, 0, newOwningFeatureOfType);
 	}
 
 	/**
@@ -365,7 +371,7 @@ public class TypeFeaturingImpl extends RelationshipImpl implements TypeFeaturing
 			case SysMLPackage.TYPE_FEATURING__TARGET:
 				return isSetTarget();
 			case SysMLPackage.TYPE_FEATURING__OWNING_FEATURE_OF_TYPE:
-				return basicGetOwningFeatureOfType() != null;
+				return OWNING_FEATURE_OF_TYPE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.TYPE_FEATURING__FEATURING_TYPE:
 				return isSetFeaturingType();
 		}

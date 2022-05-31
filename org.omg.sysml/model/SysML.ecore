@@ -1310,6 +1310,7 @@
         <details key="documentation" value="&lt;p>The parameters of this Behavior, which are all its &lt;code>directedFeatures&lt;/code>, whose values are passed into and/or out of a performance of the Behavior.&lt;/p>&#xA;"/>
       </eAnnotations>
       <eAnnotations source="redefines" references="#//Type/directedFeature"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Step" eSuperTypes="#//Feature">

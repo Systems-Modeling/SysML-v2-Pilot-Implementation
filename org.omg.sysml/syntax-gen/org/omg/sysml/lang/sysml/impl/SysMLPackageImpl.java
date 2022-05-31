@@ -13159,6 +13159,11 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   new String[] {
 		   });
 		addAnnotation
+		  (getBehavior_Parameter(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
 		  (getInvocationExpression_Argument(),
 		   source,
 		   new String[] {

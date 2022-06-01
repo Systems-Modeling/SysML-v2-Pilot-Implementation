@@ -1420,6 +1420,7 @@
         <details key="documentation" value="&lt;p>&lt;p>The &lt;code>result&lt;/code> parameter of the Expression, derived as the single &lt;code>parameter&lt;/code> of the Expression with direction &lt;code>out&lt;/code>. The result of an Expression must either be inherited from its &lt;code>function&lt;/code> or (directly or indirectly) redefine the &lt;code>result&lt;/code> parameter of its &lt;code>function&lt;/code>.&lt;/p>&#xA;"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Behavior/parameter #//Type/output"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isModelLevelEvaluable"
         ordered="false" lowerBound="1" eType="ecore:EDataType types.ecore#//Boolean"

@@ -28,6 +28,7 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.BasicInternalEList;
 import org.eclipse.uml2.common.util.UnionEObjectEList;
@@ -59,6 +60,15 @@ import org.omg.sysml.util.TypeUtil;
  */
 public class ExpressionImpl extends StepImpl implements Expression {
 	
+	/**
+	 * The cached setting delegate for the '{@link #getResult() <em>Result</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getResult()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate RESULT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.EXPRESSION__RESULT).getSettingDelegate();
 	/**
 	 * The default value of the '{@link #isModelLevelEvaluable() <em>Is Model Level Evaluable</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -186,27 +196,26 @@ public class ExpressionImpl extends StepImpl implements Expression {
 	 */
 	@Override
 	public Feature getResult() {
-		Feature result = basicGetResult();
-		return result != null && result.eIsProxy() ? (Feature)eResolveProxy((InternalEObject)result) : result;
+		return (Feature)RESULT__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Feature basicGetResult() {
-		return TypeUtil.getOwnedResultParameterOf(this);
+		return (Feature)RESULT__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setResult(Feature newResult) {
-		throw new UnsupportedOperationException();
+		RESULT__ESETTING_DELEGATE.dynamicSet(this, null, 0, newResult);
 	}
 	
 	/**
@@ -340,7 +349,7 @@ public class ExpressionImpl extends StepImpl implements Expression {
 			case SysMLPackage.EXPRESSION__FUNCTION:
 				return isSetFunction();
 			case SysMLPackage.EXPRESSION__RESULT:
-				return basicGetResult() != null;
+				return RESULT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.EXPRESSION__IS_MODEL_LEVEL_EVALUABLE:
 				return isModelLevelEvaluable() != IS_MODEL_LEVEL_EVALUABLE_EDEFAULT;
 		}

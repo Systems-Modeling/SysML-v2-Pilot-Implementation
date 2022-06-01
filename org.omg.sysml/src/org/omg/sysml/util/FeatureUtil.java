@@ -260,6 +260,32 @@ public class FeatureUtil {
 		}
 	}
 	
+	public static Feature chainFeatures(Feature... features) {
+		Feature chainedFeature = SysMLFactory.eINSTANCE.createFeature();
+		for (Feature feature: features) {
+			EList<Feature> chainingFeatures = feature.getChainingFeature();
+			if (chainingFeatures.isEmpty()) {
+				addChainingFeature(chainedFeature, feature);
+			} else {
+				for (Feature chainingFeature: chainingFeatures) {
+					addChainingFeature(chainedFeature, chainingFeature);
+				}
+			}
+		}
+		return chainedFeature;
+	}
+	
+	public static Feature chainFeatures(List<Feature> features) {
+		return chainFeatures((Feature[])features.toArray());
+	}
+	
+	public static Feature addChainingFeature(Feature chainedFeature, Feature chainingFeature) {
+		FeatureChaining featureChaining = SysMLFactory.eINSTANCE.createFeatureChaining();
+		featureChaining.setChainingFeature(chainingFeature);
+		chainedFeature.getOwnedRelationship().add(featureChaining);
+		return chainedFeature;
+	}
+	
 	// Steps
 	
 	public static boolean isPerformanceFeature(Feature step) {

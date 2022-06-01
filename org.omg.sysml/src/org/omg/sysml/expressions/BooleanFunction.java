@@ -25,7 +25,7 @@ import org.eclipse.emf.common.util.EList;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.InvocationExpression;
 
-public abstract class BooleanFunction extends ModelLevelFunction {
+public abstract class BooleanFunction extends LibraryFunction {
 	
 	protected EList<Element> unaryBooleanOp(boolean x) {
 		return null;

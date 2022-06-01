@@ -41,9 +41,9 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
 
-public abstract class ModelLevelFunction {
+public abstract class LibraryFunction {
 	
-	private static Map<String, ModelLevelFunction> functionMap = null;
+	private static Map<String, LibraryFunction> functionMap = null;
 	
 	protected static void initializeFunctionMap() {
 		functionMap = new HashMap<>();
@@ -79,6 +79,7 @@ public abstract class ModelLevelFunction {
 		put(new GreaterThanFunction());
 		put(new GreaterThanOrEqualFunction());
 		
+		put(new DotFunction());
 		put(new ConditionalFunction());
 		put(new ConditionalAndFunction());
 		put(new ConditionalOrFunction());
@@ -88,20 +89,20 @@ public abstract class ModelLevelFunction {
 		put(new StringSubstringFunction());
 	}
 	
-	protected static void put(ModelLevelFunction functionImpl) {
+	protected static void put(LibraryFunction functionImpl) {
 		for (String name: functionImpl.getFunctionNames()) {
 			functionMap.put(name, functionImpl);
 		}
 	}
 	
-	public static Map<String, ModelLevelFunction> getFunctionMap() {
+	public static Map<String, LibraryFunction> getFunctionMap() {
 		if (functionMap == null) {
 			initializeFunctionMap();
 		}
 		return functionMap;
 	}
 	
-	public static ModelLevelFunction getFunctionImpl(Function function) {
+	public static LibraryFunction getFunctionEval(Function function) {
 		return function == null? null: 
 			getFunctionMap().get(function.getQualifiedName());
 	}

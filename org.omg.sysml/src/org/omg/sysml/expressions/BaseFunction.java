@@ -32,7 +32,7 @@ import org.omg.sysml.lang.sysml.LiteralExpression;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.util.TypeUtil;
 
-public abstract class BaseFunction extends ModelLevelFunction {
+public abstract class BaseFunction extends LibraryFunction {
 
 	protected static Type getTypeArgument(InvocationExpression invocation) {
 		EList<Feature> ownedFeatures = invocation.getOwnedFeature();

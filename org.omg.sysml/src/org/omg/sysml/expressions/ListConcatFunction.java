@@ -21,6 +21,7 @@
 
 package org.omg.sysml.expressions;
 
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.InvocationExpression;
@@ -38,8 +39,14 @@ public class ListConcatFunction extends BaseFunction {
 		if (list == null) {
 			return null;
 		} else {
-			list.addAll(evaluateArgument(invocation, 1, target));
-			return list;
+			EList<Element> result = new BasicEList<>(list);
+			list = evaluateArgument(invocation, 1, target);
+			if (list == null) {
+				return null;
+			} else {
+				result.addAll(list);
+				return result;
+			}
 		}
 	}
 

@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
+import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.LiteralBoolean;
 import org.omg.sysml.lang.sysml.LiteralInfinity;
 import org.omg.sysml.lang.sysml.LiteralInteger;
@@ -52,12 +53,28 @@ public class SysMLInteractiveUtil {
 	}
 	
 	public static String nameOf(Element element) {
-		return element instanceof LiteralBoolean? Boolean.valueOf(((LiteralBoolean)element).isValue()).toString():
-			   element instanceof LiteralString? ((LiteralString)element).getValue().toString():
-			   element instanceof LiteralInteger? Integer.valueOf(((LiteralInteger)element).getValue()).toString():
-			   element instanceof LiteralRational? Double.valueOf(((LiteralRational)element).getValue()).toString():
-			   element instanceof LiteralInfinity? "*":
-			   element.getName();
+		if (element instanceof Feature && !((Feature)element).getOwnedFeatureChaining().isEmpty()) {
+			String name = "";
+			for (Feature chainingFeature: ((Feature)element).getChainingFeature()) {
+				String nextName = chainingFeature.getName();
+				if (nextName == null) {
+					nextName = "";
+				}
+				if (name == "") {
+					name = nextName;
+				} else {
+					name += "." + nextName;
+				}
+			}
+			return name;
+		} else {
+			return element instanceof LiteralBoolean? Boolean.valueOf(((LiteralBoolean)element).isValue()).toString():
+				   element instanceof LiteralString? ((LiteralString)element).getValue().toString():
+				   element instanceof LiteralInteger? Integer.valueOf(((LiteralInteger)element).getValue()).toString():
+				   element instanceof LiteralRational? Double.valueOf(((LiteralRational)element).getValue()).toString():
+				   element instanceof LiteralInfinity? "*":
+				   element.getName();
+		}
 	}
 
 	private static void formatExplicitElement(StringBuilder buffer, String indentation, Element element, Relationship relationship) {

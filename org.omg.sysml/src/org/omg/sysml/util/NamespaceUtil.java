@@ -59,9 +59,16 @@ public class NamespaceUtil {
 				map(type::cast);
 	}
 
-	public static Membership addOwnedMemberTo(Namespace namespace, Element element) {
+	public static OwningMembership addOwnedMemberTo(Namespace namespace, Element element) {
 		OwningMembership membership = SysMLFactory.eINSTANCE.createOwningMembership();
 		membership.setOwnedMemberElement(element);
+		namespace.getOwnedRelationship().add(membership);
+		return membership;
+	}
+
+	public static Membership addMemberTo(Namespace namespace, Element element) {
+		Membership membership = SysMLFactory.eINSTANCE.createMembership();
+		membership.setMemberElement(element);
 		namespace.getOwnedRelationship().add(membership);
 		return membership;
 	}

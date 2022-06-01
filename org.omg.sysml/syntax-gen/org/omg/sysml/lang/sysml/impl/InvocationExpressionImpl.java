@@ -26,7 +26,7 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.omg.sysml.expressions.ModelLevelFunction;
+import org.omg.sysml.expressions.LibraryFunction;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Function;
@@ -85,12 +85,12 @@ public class InvocationExpressionImpl extends ExpressionImpl implements Invocati
 	
 	@Override
 	public EList<Element> evaluate(Element target) {
-		ModelLevelFunction function = getModelLevelFunctionImpl();
+		LibraryFunction function = getModelLevelFunctionImpl();
 		return function == null? null: function.invoke(this, target);
 	}
 	
-	protected ModelLevelFunction getModelLevelFunctionImpl() {
-		return ModelLevelFunction.getFunctionImpl(getFunction());
+	protected LibraryFunction getModelLevelFunctionImpl() {
+		return LibraryFunction.getFunctionEval(getFunction());
 	}
 
 	/**

@@ -25,7 +25,7 @@ import org.eclipse.emf.common.util.EList;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.InvocationExpression;
 
-public class StringSubstringFunction extends ModelLevelFunction {
+public class StringSubstringFunction extends LibraryFunction {
 
 	@Override
 	public String getPackageName() {

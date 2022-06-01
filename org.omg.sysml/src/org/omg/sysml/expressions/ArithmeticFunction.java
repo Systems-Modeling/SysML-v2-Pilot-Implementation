@@ -25,7 +25,7 @@ import org.eclipse.emf.common.util.EList;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.InvocationExpression;
 
-public abstract class ArithmeticFunction extends ModelLevelFunction {
+public abstract class ArithmeticFunction extends LibraryFunction {
 	
 	protected EList<Element> unaryIntegerOp(int x) {
 		return null;

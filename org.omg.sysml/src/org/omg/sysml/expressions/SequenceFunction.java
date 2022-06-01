@@ -21,7 +21,7 @@
 
 package org.omg.sysml.expressions;
 
-public abstract class SequenceFunction extends ModelLevelFunction {
+public abstract class SequenceFunction extends LibraryFunction {
 
 	@Override
 	public String getPackageName() {

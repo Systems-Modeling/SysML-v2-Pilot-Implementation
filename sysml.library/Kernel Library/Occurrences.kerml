@@ -86,7 +86,12 @@ package Occurrences {
 		 * Occurrences that this one completely includes in both space and time,
 		 * and vice-versa, including this one.
 		 */
-		feature spaceTimeCoincidentOccurrences: Occurrence[1..*] subsets spaceTimeEnclosedOccurrences;		
+		feature spaceTimeCoincidentOccurrences: Occurrence[1..*] subsets spaceTimeEnclosedOccurrences;
+
+		/**
+		 * Occurrences that have no space between them and this one.
+		 */
+		feature matingOccurrences: Occurrence[1..*] subsets occurrences;
 
 		/**
 		 * The number of variables needed to identify space points in this occurrence, from 0
@@ -622,9 +627,13 @@ package Occurrences {
 	 * MatesWith is an OutsideOf asserting that two occurrences have no space between them.
 	 */
 	assoc MatesWith specializes JustOutsideOf {
+		end feature matingSpaceToo: Occurrence[0..*] redefines separateSpaceToo
+		  subsets matingSpace.matingOccurrences;
+		end feature matingSpace: Occurrence[0..*] redefines separateSpace
+		  subsets matingSpaceToo.matingOccurrences;
 		feature inBetweenOccurrence: Occurrence [1] {
 			portion feature redefines spaceBoundary [1];
-			inv { contains(unionsOf, union(separateSpaceToo, separateSpace)) }
+			inv { contains(unionsOf, union(matingSpaceToo, matingSpace)) }
 			portion feature redefines spaceInterior [0];
 		}
 	}

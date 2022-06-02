@@ -29,7 +29,7 @@ import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.uml2.common.util.DerivedEObjectEList;
-import org.omg.sysml.expressions.functions.LibraryFunctionFactory;
+import org.omg.sysml.expressions.LibraryFunctionFactory;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Function;

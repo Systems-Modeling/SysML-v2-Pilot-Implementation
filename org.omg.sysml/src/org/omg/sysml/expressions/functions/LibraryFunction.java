@@ -25,6 +25,7 @@ import java.util.List;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.omg.sysml.expressions.ExpressionEvaluator;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.InvocationExpression;
@@ -84,9 +85,13 @@ public abstract class LibraryFunction {
 		return invocation.getArgument().size();
 	}
 	
+	protected static EList<Element> evaluate(Expression expression, Element target) {
+		return ExpressionEvaluator.evaluate(expression, target);
+	}
+	
 	protected static EList<Element> evaluateArgument(InvocationExpression invocation, int i, Element target) {
 		EList<Expression> arguments = invocation.getArgument();
-		return i >= arguments.size()? new BasicEList<>(): arguments.get(i).evaluate(target);
+		return i >= arguments.size()? new BasicEList<>(): evaluate(arguments.get(i), target);
 	}
 	
 	protected static Element argumentValue(InvocationExpression invocation, int i, Element target) {
@@ -96,7 +101,7 @@ public abstract class LibraryFunction {
 	
 	protected static EList<Element> expressionValue(InvocationExpression invocation, int i, Element target) {
 		Element value = argumentValue(invocation, i, target);
-		return value instanceof Expression? ((Expression)value).evaluate(target): null;
+		return value instanceof Expression? evaluate((Expression)value, target): null;
 	}
 	
 	protected static Boolean booleanExpressionValue(InvocationExpression invocation, int i, Element target) {

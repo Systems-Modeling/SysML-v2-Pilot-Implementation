@@ -53,6 +53,7 @@ import org.eclipse.xtext.validation.IResourceValidator;
 import org.eclipse.xtext.validation.Issue;
 import org.omg.kerml.xtext.KerMLStandaloneSetup;
 import org.omg.kerml.xtext.naming.KerMLQualifiedNameConverter;
+import org.omg.sysml.expressions.ExpressionEvaluator;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Membership;
@@ -215,11 +216,12 @@ public class SysMLInteractive extends SysMLUtil {
 	}
 	
 	public String eval(String input, String targetName, List<String> help) {
-		this.counter++;
 		if (Strings.isNullOrEmpty(input)) {
+			this.counter++;
 			return help.isEmpty()? "": SysMLInteractiveHelp.getEvalHelp();
 		}
 		if (input == null || input.isEmpty()) {
+			this.counter++;
 			return "";
 		}
 		Element target = null;
@@ -228,6 +230,7 @@ public class SysMLInteractive extends SysMLUtil {
 		} else {
 			target = this.resolve(targetName);
 			if (target == null) {
+				this.counter++;
 				return "ERROR:Couldn't resolve reference to Element '" + targetName + "'";
 			}
 			input = "calc{import " + targetName + "::*;\n" + input + "}";
@@ -238,7 +241,7 @@ public class SysMLInteractive extends SysMLUtil {
 		} else {
 			Type calc = (Type)((Namespace)result.getRootElement()).getOwnedMember().get(0);
 			Expression expr = (Expression)TypeUtil.getFeatureByMembershipIn(calc, ResultExpressionMembership.class);
-			List<Element> elements = expr.evaluate(target);
+			List<Element> elements = ExpressionEvaluator.evaluate(expr, target);
 			this.removeResource();
 			return elements == null? "": 
 				elements.stream().map(SysMLInteractiveUtil::formatElement).collect(Collectors.joining());

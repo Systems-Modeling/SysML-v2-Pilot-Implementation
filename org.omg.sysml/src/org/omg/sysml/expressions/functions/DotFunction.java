@@ -44,7 +44,7 @@ public class DotFunction extends ControlFunction {
 		EList<Expression> arguments = invocation.getArgument();
 		if (!arguments.isEmpty()) {
 			Expression sourceArgument = arguments.get(0);
-			EList<Element> list = sourceArgument.evaluate(target);			
+			EList<Element> list = evaluate(sourceArgument, target);			
 			if (list != null) {
 				Element targetFeature = ExpressionUtil.getTargetFeatureFor(invocation);
 				FeatureReferenceExpression featureReference = SysMLFactory.eINSTANCE.createFeatureReferenceExpression();
@@ -52,7 +52,7 @@ public class DotFunction extends ControlFunction {
 				if (targetFeature instanceof Feature) {
 					EList<Element> result = new BasicEList<>();
 					for (Element element: list) {
-						EList<Element> value = featureReference.evaluate(element);
+						EList<Element> value = evaluate(featureReference, element);
 						if (value != null) {
 							result.addAll(value);
 						}

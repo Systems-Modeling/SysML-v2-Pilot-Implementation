@@ -156,5 +156,11 @@ public class ExpressionUtil {
 	public static String[] getOperatorQualifiedNames(String op) {
 		return Stream.of(OperatorExpressionAdapter.LIBRARY_PACKAGE_NAMES).map(pack -> pack + "::'" + op + "'").toArray(String[]::new);
 	}
+	
+	public static final String SELF_REFERENCE_FEATURE = "Base::Anything::self";
+	
+	public static Feature getSelfReferenceFeature(Element context) {
+		return (Feature)SysMLLibraryUtil.getLibraryType(context, SELF_REFERENCE_FEATURE);
+	}
 
 }

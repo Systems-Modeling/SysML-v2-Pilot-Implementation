@@ -11,9 +11,9 @@ package Occurrences {
 	private import Links::*;
 	private import Collections::Set;
 	private import Collections::OrderedSet;
-	private import CollectionFunctions::isEmpty;
-	private import CollectionFunctions::notEmpty;
 	private import CollectionFunctions::contains;
+	private import SequenceFunctions::isEmpty;
+	private import SequenceFunctions::notEmpty;
 	private import SequenceFunctions::includes;
 	private import SequenceFunctions::union;
 

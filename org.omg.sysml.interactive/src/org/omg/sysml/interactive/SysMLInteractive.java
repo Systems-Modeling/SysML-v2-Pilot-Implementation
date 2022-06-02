@@ -174,11 +174,28 @@ public class SysMLInteractive extends SysMLUtil {
 			validator.validate(resource, CheckMode.ALL, CancelIndicator.NullImpl);
 	}
 	
-	public SysMLInteractiveResult eval(String input) {
-		return eval(input, true);
+	public Element resolve(String name) {
+		List<Resource> resources = this.resourceSet.getResources();
+		if (!resources.isEmpty()) {
+			IScope scope = scopeProvider.getScope(
+					resources.get(resources.size() - 1), 
+					SysMLPackage.eINSTANCE.getNamespace_Member(), 
+					Predicates.alwaysTrue());
+			IEObjectDescription description = scope.getSingleElement(
+					this.qualifiedNameConverter.toQualifiedName(name));
+			if (description != null) {
+				EObject object = description.getEObjectOrProxy();
+				return object instanceof Element? (Element)object: null;
+			}
+		}
+		return null;
 	}
 	
-	public SysMLInteractiveResult eval(String input, boolean isAddResource) {
+	public SysMLInteractiveResult process(String input) {
+		return process(input, true);
+	}
+	
+	public SysMLInteractiveResult process(String input, boolean isAddResource) {
 		this.next();
 		try {
 			this.parse(input);
@@ -197,21 +214,41 @@ public class SysMLInteractive extends SysMLUtil {
 		}
 	}
 	
-	public Element resolve(String name) {
-		List<Resource> resources = this.resourceSet.getResources();
-		if (!resources.isEmpty()) {
-			IScope scope = scopeProvider.getScope(
-					resources.get(resources.size() - 1), 
-					SysMLPackage.eINSTANCE.getNamespace_Member(), 
-					Predicates.alwaysTrue());
-			IEObjectDescription description = scope.getSingleElement(
-					this.qualifiedNameConverter.toQualifiedName(name));
-			if (description != null) {
-				EObject object = description.getEObjectOrProxy();
-				return object instanceof Element? (Element)object: null;
-			}
+	public String eval(String input, String targetName, List<String> help) {
+		this.counter++;
+		if (Strings.isNullOrEmpty(input)) {
+			return help.isEmpty()? "": SysMLInteractiveHelp.getEvalHelp();
 		}
-		return null;
+		if (input == null || input.isEmpty()) {
+			return "";
+		}
+		Element target = null;
+		if (Strings.isNullOrEmpty(targetName)) {
+			input = "calc{\n" + input + "}";
+		} else {
+			target = this.resolve(targetName);
+			if (target == null) {
+				return "ERROR:Couldn't resolve reference to Element '" + targetName + "'";
+			}
+			input = "calc{import " + targetName + "::*;\n" + input + "}";
+		}
+		SysMLInteractiveResult result = this.process(input, false);
+		if (result.hasErrors()) {
+			return result.toString();
+		} else {
+			Type calc = (Type)((Namespace)result.getRootElement()).getOwnedMember().get(0);
+			Expression expr = (Expression)TypeUtil.getFeatureByMembershipIn(calc, ResultExpressionMembership.class);
+			List<Element> elements = expr.evaluate(target);
+			this.removeResource();
+			return elements == null? "": 
+				elements.stream().map(SysMLInteractiveUtil::formatElement).collect(Collectors.joining());
+		}
+	}
+	
+	public String eval(String input, String targetName) {
+		return "-h".equals(input)? 
+				eval(null, null, Collections.singletonList("true")):
+				eval(input, targetName, Collections.emptyList());
 	}
 	
 	public String listLibrary() {
@@ -234,7 +271,7 @@ public class SysMLInteractive extends SysMLUtil {
 		if (!query.endsWith(";")) {
 			query += ";";
 		}
-		SysMLInteractiveResult result = this.eval("import " + query, false);
+		SysMLInteractiveResult result = this.process("import " + query, false);
 		if (result.hasErrors()) {
 			return result.toString();
 		} else {
@@ -484,37 +521,9 @@ public class SysMLInteractive extends SysMLUtil {
 		getSysML2PlantUMLSvc().setGraphVizPath(path);
 	}
 	
-	public void evaluate(String name, String input) {
-		if (input != null && !input.isEmpty()) {
-			Element target = null;
-			if (name != null && !name.isEmpty()) {
-				target = this.resolve(name);
-				if (target == null) {
-					System.out.println("ERROR:Couldn't resolve reference to Element '" + name + "'");
-					return;
-				}
-			}
-			input = "calc{" + input + "}";
-			SysMLInteractiveResult result = this.eval(input, false);
-			if (result.hasErrors()) {
-				System.out.print(result);
-			} else {
-				Type calc = (Type)((Namespace)result.getRootElement()).getOwnedMember().get(0);
-				Expression expr = (Expression)TypeUtil.getFeatureByMembershipIn(calc, ResultExpressionMembership.class);
-				List<Element> elements = expr.evaluate(target);
-				if (elements != null) {
-					for (Element element: elements) {
-						System.out.print(SysMLInteractiveUtil.formatElement(element));
-					}
-				}
-				this.removeResource();
-			}
-		}
-	}
-	
 	public void run(String input) {
 		if (input != null && !input.isEmpty()) {
-			System.out.print(this.eval(input));
+			System.out.print(this.process(input));
 		}
 	}
 	
@@ -570,7 +579,7 @@ public class SysMLInteractive extends SysMLUtil {
 		    	        			name = i == -1? argument: argument.substring(0, i);
 		    	        			argument = i == -1? null: argument.substring(i + 1).trim();
 	        					}
-	        					this.evaluate(name, argument);
+	        					System.out.print(eval(argument, name));
 	        				}
 	        			} else {
 	        				System.out.println("ERROR:Invalid command '" + input + "'");

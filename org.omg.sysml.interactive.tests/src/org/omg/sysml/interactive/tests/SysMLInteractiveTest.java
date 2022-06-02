@@ -52,7 +52,7 @@ public abstract class SysMLInteractiveTest {
 		if (instance == null) {
 			instance = getSysMLInteractiveInstance();
 		}
-		SysMLInteractiveResult result = instance.eval(input);
+		SysMLInteractiveResult result = instance.process(input);
 		assertTrue("'" + input + "':\n" + result.formatIssues(), result.getIssues().isEmpty());
 		Element root = result.getRootElement();
 		assertTrue(root instanceof Namespace);

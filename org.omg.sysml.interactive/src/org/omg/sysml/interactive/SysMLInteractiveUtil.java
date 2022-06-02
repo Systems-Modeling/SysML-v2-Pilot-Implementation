@@ -56,7 +56,7 @@ public class SysMLInteractiveUtil {
 		if (element instanceof Feature && !((Feature)element).getOwnedFeatureChaining().isEmpty()) {
 			String name = "";
 			for (Feature chainingFeature: ((Feature)element).getChainingFeature()) {
-				String nextName = chainingFeature.getName();
+				String nextName = chainingFeature.getEffectiveName();
 				if (nextName == null) {
 					nextName = "";
 				}
@@ -73,7 +73,7 @@ public class SysMLInteractiveUtil {
 				   element instanceof LiteralInteger? Integer.valueOf(((LiteralInteger)element).getValue()).toString():
 				   element instanceof LiteralRational? Double.valueOf(((LiteralRational)element).getValue()).toString():
 				   element instanceof LiteralInfinity? "*":
-				   element.getName();
+				   element.getEffectiveName();
 		}
 	}
 

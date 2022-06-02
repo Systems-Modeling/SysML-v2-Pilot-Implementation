@@ -26,7 +26,8 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.omg.sysml.expressions.LibraryFunction;
+import org.omg.sysml.expressions.functions.LibraryFunction;
+import org.omg.sysml.expressions.functions.LibraryFunctionFactory;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Function;
@@ -90,7 +91,7 @@ public class InvocationExpressionImpl extends ExpressionImpl implements Invocati
 	}
 	
 	protected LibraryFunction getModelLevelFunctionImpl() {
-		return LibraryFunction.getFunctionEval(getFunction());
+		return LibraryFunctionFactory.getLibraryFunction(getFunction());
 	}
 
 	/**

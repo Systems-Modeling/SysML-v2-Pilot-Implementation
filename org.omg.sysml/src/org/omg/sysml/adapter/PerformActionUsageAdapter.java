@@ -37,8 +37,8 @@ public class PerformActionUsageAdapter extends ActionUsageAdapter {
 	@Override
 	public void addDefaultGeneralType() {
 		super.addDefaultGeneralType();
-		if (isEnactedPerformance()) {
-			addDefaultGeneralType("enactedPerformance");
+		if (isPerformedAction()) {
+			addDefaultGeneralType("performedAction");
 		}
 	}
 		

@@ -3,6 +3,8 @@ package EVSample {
     import SI::*;
     import StateSpaceRepresentation::*;
 
+    attribute <'A⋅h'> 'ampere hour'  : ElectricChargeUnit = A*h;
+
     part def Vehicle {
         attribute mass :> ISQ::mass;
 

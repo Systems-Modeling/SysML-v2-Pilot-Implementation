@@ -1757,8 +1757,6 @@ else
       <ownedComment xmi:id="c29d3a6b-0704-4615-9d69-ae4d9bb8ec9a" annotatedElement="de6687e9-efe9-4fb7-88cc-56c4d760442f">
         <body>&lt;p>The &lt;code>kind&lt;/code> of an AddressedConcernMembership must be &lt;code>requirement&lt;/code>.&lt;/p></body>
       </ownedComment>
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="ef7b6cf0-3707-4b05-8941-32bc4adf50c0" name="" visibility="public"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="b89623a0-3b24-4c60-a90f-4542043401de" name="" visibility="public" value="*"/>
       <defaultValue xmi:type="uml:InstanceValue" xmi:id="13299538-2b57-4aed-8519-d9af9ed10158" name="" visibility="public" instance="88d51804-a25f-454f-abff-d7cec0f3ae1a"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="ea1ba2f4-1ee5-4cf1-9ff8-2966213d116f" name="ownedConcern" visibility="public" type="239221a4-785b-4526-b45d-0a747816cd1b" aggregation="composite" redefinedProperty="8d8ad8e5-05f6-4913-94ce-c865031fc5f6" association="d717b823-6820-4d94-ad3b-6b0ec3d9b378">
@@ -3608,15 +3606,13 @@ endif</body>
       <ownedComment xmi:id="7abf2830-99e0-4c50-9600-582e7c07313c" annotatedElement="d66e399b-91ac-4c34-90fe-5495eefabac9">
         <body>&lt;p>The owned Requirement that acts as the &lt;code>constraint&lt;/code> for this RequirementVerificationMembership. This will either be the &lt;code>verifiedRequirement&lt;/code>, or it will subset the &lt;code>verifiedRequirement&lt;/code>.&lt;/p></body>
       </ownedComment>
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="c00e7ea8-f935-4ac5-a442-97e3a501592c" name="" visibility="public" value="1"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="b096d98e-18d0-4cd5-8e23-d15cc46703ee" name="" visibility="public" value="1"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="c9c61647-259a-4f77-acf8-e0e9e0ebab25" name="kind" visibility="public" type="6d72d7bc-e8f0-4f8a-863f-58eec2c12068" redefinedProperty="4103afed-d240-48d3-b873-06eb1fda77d9">
       <ownedComment xmi:id="094c96fc-dcef-466f-9760-1e6067956953" annotatedElement="c9c61647-259a-4f77-acf8-e0e9e0ebab25">
         <body>&lt;p>The &lt;code>kind&lt;/code> of a RequirementVerificationMembership must be &lt;code>requirement&lt;/code>.&lt;/p></body>
       </ownedComment>
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="62afe7b5-85df-4d60-9252-f6ddc2e71454" name="" visibility="public"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="5b23fef1-31d0-4ae8-8a4a-9628e0a3c21e" name="" visibility="public" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="62afe7b5-85df-4d60-9252-f6ddc2e71454" name="" visibility="public" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="5b23fef1-31d0-4ae8-8a4a-9628e0a3c21e" name="" visibility="public" value="1"/>
       <defaultValue xmi:type="uml:InstanceValue" xmi:id="affbf2a1-7afb-4243-860e-3e95c14df810" name="" visibility="public" instance="88d51804-a25f-454f-abff-d7cec0f3ae1a"/>
     </ownedAttribute>
     <ownedAttribute xmi:id="98c4e874-50a2-4a67-8e4a-4d5683d1aafb" name="verifiedRequirement" visibility="public" type="7248aae3-2934-47cd-bf16-f9aca7f25ad7" isDerived="true" redefinedProperty="97b5bde3-a770-48b5-814d-f6023a915f73" association="c31b5140-fafc-43a3-b2bc-5a566d66a9e9">

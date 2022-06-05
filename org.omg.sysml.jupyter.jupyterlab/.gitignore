@@ -5,4 +5,5 @@ build
 data
 log
 scrap
-/.gradle/
+.gradle
+yarn.lock

@@ -1453,6 +1453,7 @@
         <details key="documentation" value="&lt;p>The &lt;code>result&lt;/code> parameter of the Function, derived as the single &lt;code>parameter&lt;/code> of the Function with direction &lt;code>out&lt;/code>.&lt;/p>&#xA;&#xA;&lt;p>The object or value that is the result of evaluating the Function.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Behavior/parameter #//Type/output"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isModelLevelEvaluable"
         ordered="false" lowerBound="1" eType="ecore:EDataType types.ecore#//Boolean"
@@ -1460,6 +1461,7 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>Whether this Function can be used as the &lt;code>function&lt;/code> of a model-level evaluable InvocationExpression.&lt;/p>"/>
       </eAnnotations>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ElementFilterMembership" eSuperTypes="#//OwningMembership">

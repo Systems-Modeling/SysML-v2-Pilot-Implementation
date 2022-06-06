@@ -13174,6 +13174,16 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   new String[] {
 		   });
 		addAnnotation
+		  (getFunction_Result(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getFunction_IsModelLevelEvaluable(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
 		  (getInvocationExpression_Argument(),
 		   source,
 		   new String[] {

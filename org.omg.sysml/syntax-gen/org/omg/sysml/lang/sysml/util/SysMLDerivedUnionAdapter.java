@@ -2067,6 +2067,9 @@ public class SysMLDerivedUnionAdapter extends AdapterImpl {
 			case SysMLPackage.FEATURE_CHAINING__OWNED_RELATED_ELEMENT:
 				notifyChanged(notification, eClass, SysMLPackage.Literals.RELATIONSHIP__RELATED_ELEMENT);
 				break;
+			case SysMLPackage.FEATURE_CHAINING__FEATURE_CHAINED:
+				notifyChanged(notification, eClass, SysMLPackage.Literals.RELATIONSHIP__RELATED_ELEMENT);
+				break;
 		}
 	}
 

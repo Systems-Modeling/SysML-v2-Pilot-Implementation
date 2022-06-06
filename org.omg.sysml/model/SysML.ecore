@@ -1067,7 +1067,8 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>The Element that is documented by this Documentation.&lt;/p>"/>
       </eAnnotations>
-      <eAnnotations source="redefines" references="#//Element/owner #//AnnotatingElement/annotatedElement"/>
+      <eAnnotations source="redefines" references="#//AnnotatingElement/annotatedElement"/>
+      <eAnnotations source="subsets" references="#//Element/owner"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Comment" eSuperTypes="#//AnnotatingElement">
@@ -1536,7 +1537,8 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>The Feature whose values are partly determined by values of the &lt;code>chainingFeature&lt;/code>, as described in &lt;code>Feature::chainingFeature&lt;/code>.&lt;/p>"/>
       </eAnnotations>
-      <eAnnotations source="redefines" references="#//Relationship/source #//Relationship/owningRelatedElement"/>
+      <eAnnotations source="redefines" references="#//Relationship/source"/>
+      <eAnnotations source="subsets" references="#//Relationship/owningRelatedElement"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Definition" eSuperTypes="#//Classifier">

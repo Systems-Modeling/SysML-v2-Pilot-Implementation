@@ -5229,7 +5229,7 @@ endif endif endif</body>
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="c68b9f77-40db-4410-8052-44c791296b79" name="" visibility="public" value="1"/>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="fc7f5f41-b9fb-4019-b27c-e5884b7fecae" name="" visibility="public" value="1"/>
     </ownedAttribute>
-    <ownedAttribute xmi:id="42372418-3f63-4e47-baa1-4035ead2d928" name="featureChained" visibility="public" type="124e57c2-e7ac-4bbd-8ae3-b74186c4259c" isDerived="true" redefinedProperty="7aa626dc-3421-4c50-845b-0e7252b338a3 53d1b371-a5c5-4812-87a8-a61e672f7314" association="1080ea47-758c-4f64-ac8b-95aac1b2c580">
+    <ownedAttribute xmi:id="42372418-3f63-4e47-baa1-4035ead2d928" name="featureChained" visibility="public" type="124e57c2-e7ac-4bbd-8ae3-b74186c4259c" isDerived="true" redefinedProperty="7aa626dc-3421-4c50-845b-0e7252b338a3" subsettedProperty="53d1b371-a5c5-4812-87a8-a61e672f7314" association="1080ea47-758c-4f64-ac8b-95aac1b2c580">
       <ownedComment xmi:id="ef13e2f5-8c79-49dd-b33d-d447e254efc1" annotatedElement="42372418-3f63-4e47-baa1-4035ead2d928">
         <body>&lt;p>The Feature whose values are partly determined by values of the &lt;code>chainingFeature&lt;/code>, as described in &lt;code>Feature::chainingFeature&lt;/code>.&lt;/p></body>
       </ownedComment>
@@ -5816,7 +5816,7 @@ endif</body>
       <body>&lt;p>Documentation is a Comment that specifically documents a &lt;code>documentedElement&lt;/code>, which must be its &lt;code>owner&lt;/code>.&lt;/p></body>
     </ownedComment>
     <generalization xmi:id="45b9df34-36c4-4986-9789-0bffe8fecbce" general="40a5660e-4260-4601-ac14-6da99c5449cf"/>
-    <ownedAttribute xmi:id="6a7858b5-3913-48b8-82a4-919ce5daabd0" name="documentedElement" visibility="public" type="fff854cf-ff36-41d3-94f6-fb13f8063186" isDerived="true" redefinedProperty="5b67d4ab-f48e-41ba-af2d-16d57429f489 b751b60a-19dd-4d98-8640-63506920779b" association="ce0e0672-de3c-4d80-98e0-025c1927223c">
+    <ownedAttribute xmi:id="6a7858b5-3913-48b8-82a4-919ce5daabd0" name="documentedElement" visibility="public" type="fff854cf-ff36-41d3-94f6-fb13f8063186" isDerived="true" redefinedProperty="b751b60a-19dd-4d98-8640-63506920779b" subsettedProperty="5b67d4ab-f48e-41ba-af2d-16d57429f489" association="ce0e0672-de3c-4d80-98e0-025c1927223c">
       <ownedComment xmi:id="980880cd-0829-419c-874d-02b30602a227" annotatedElement="6a7858b5-3913-48b8-82a4-919ce5daabd0">
         <body>&lt;p>The Element that is documented by this Documentation.&lt;/p></body>
       </ownedComment>

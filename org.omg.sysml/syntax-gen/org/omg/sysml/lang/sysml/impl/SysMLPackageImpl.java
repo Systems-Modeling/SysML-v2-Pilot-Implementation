@@ -9123,7 +9123,6 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   new String[] {
 		   },
 		   new URI[] {
-			 URI.createURI(eNS_URI).appendFragment("//Element/owner"),
 			 URI.createURI(eNS_URI).appendFragment("//AnnotatingElement/annotatedElement")
 		   });
 		addAnnotation
@@ -9340,8 +9339,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   new String[] {
 		   },
 		   new URI[] {
-			 URI.createURI(eNS_URI).appendFragment("//Relationship/source"),
-			 URI.createURI(eNS_URI).appendFragment("//Relationship/owningRelatedElement")
+			 URI.createURI(eNS_URI).appendFragment("//Relationship/source")
 		   });
 		addAnnotation
 		  (getSubclassification_Superclassifier(),
@@ -10507,6 +10505,14 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 			 URI.createURI(eNS_URI).appendFragment("//Relationship/relatedElement")
 		   });
 		addAnnotation
+		  (getDocumentation_DocumentedElement(),
+		   source,
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("//Element/owner")
+		   });
+		addAnnotation
 		  (getAnnotation_OwningAnnotatedElement(),
 		   source,
 		   new String[] {
@@ -10607,6 +10613,14 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   new URI[] {
 			 URI.createURI(eNS_URI).appendFragment("//Relationship/owningRelatedElement"),
 			 URI.createURI(eNS_URI).appendFragment("//FeatureInverting/featureInverted")
+		   });
+		addAnnotation
+		  (getFeatureChaining_FeatureChained(),
+		   source,
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("//Relationship/owningRelatedElement")
 		   });
 		addAnnotation
 		  (getDefinition_OwnedPort(),

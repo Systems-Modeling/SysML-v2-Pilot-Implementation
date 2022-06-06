@@ -1717,6 +1717,7 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>Steps that map incoming events to the timing of occurrences of the &lt;code>transitionStep&lt;/code>. The values of &lt;code>triggerStep&lt;/code> subset the list of acceptable events to be received by a Behavior or the object that performs it.&lt;/p>&#xA;"/>
       </eAnnotations>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="effectStep" ordered="false"
         upperBound="-1" eType="#//Step" volatile="true" transient="true" derived="true">
@@ -1726,6 +1727,7 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>Steps that represent occurrences that are side effects of the &lt;code>transitionStep&lt;/code> occurring.&lt;/p>&#xA;"/>
       </eAnnotations>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="guardExpression" ordered="false"
         upperBound="-1" eType="#//Expression" volatile="true" transient="true" derived="true">
@@ -1735,6 +1737,7 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>Expressions that must evaluate to true before the &lt;code>transitionStep&lt;/code> can occur.&lt;/p>&#xA;"/>
       </eAnnotations>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Connector" eSuperTypes="#//Feature #//Relationship">

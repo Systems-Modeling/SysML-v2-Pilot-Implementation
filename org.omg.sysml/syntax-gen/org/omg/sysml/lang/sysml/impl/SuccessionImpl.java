@@ -25,16 +25,14 @@ package org.omg.sysml.lang.sysml.impl;
 import java.util.Collection;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.omg.sysml.lang.sysml.AcceptActionUsage;
-import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.Succession;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.TransitionUsage;
-import org.omg.sysml.util.NonNotifyingEObjectEList;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object
@@ -52,6 +50,36 @@ import org.omg.sysml.util.NonNotifyingEObjectEList;
  * @generated
  */
 public class SuccessionImpl extends ConnectorImpl implements Succession {
+
+	/**
+	 * The cached setting delegate for the '{@link #getTriggerStep() <em>Trigger Step</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTriggerStep()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate TRIGGER_STEP__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.SUCCESSION__TRIGGER_STEP).getSettingDelegate();
+
+	/**
+	 * The cached setting delegate for the '{@link #getEffectStep() <em>Effect Step</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getEffectStep()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate EFFECT_STEP__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.SUCCESSION__EFFECT_STEP).getSettingDelegate();
+
+	/**
+	 * The cached setting delegate for the '{@link #getGuardExpression() <em>Guard Expression</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getGuardExpression()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate GUARD_EXPRESSION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.SUCCESSION__GUARD_EXPRESSION).getSettingDelegate();
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -73,49 +101,34 @@ public class SuccessionImpl extends ConnectorImpl implements Succession {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<Step> getTriggerStep() {
-		EList<Step> triggerSteps = new NonNotifyingEObjectEList<>(Step.class, this, SysMLPackage.SUCCESSION__TRIGGER_STEP);
-		Step transitionStep = getTransitionStep();
-		if (transitionStep instanceof TransitionUsage) {
-			EList<AcceptActionUsage> triggers = ((TransitionUsageImpl)transitionStep).getTriggerAction();
-			triggerSteps.addAll(triggers);
-		}
-		return triggerSteps;
+		return (EList<Step>)TRIGGER_STEP__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<Step> getEffectStep() {
-		EList<Step> effectSteps = new NonNotifyingEObjectEList<>(Step.class, this, SysMLPackage.SUCCESSION__EFFECT_STEP);
-		Step transitionStep = getTransitionStep();
-		if (transitionStep instanceof TransitionUsage) {
-			EList<ActionUsage> effects = ((TransitionUsageImpl)transitionStep).getEffectAction();
-			effectSteps.addAll(effects);
-		}
-		return effectSteps;
+		return (EList<Step>)EFFECT_STEP__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<Expression> getGuardExpression() {
-		EList<Expression> guardExpressions = new NonNotifyingEObjectEList<>(Expression.class, this, SysMLPackage.SUCCESSION__GUARD_EXPRESSION);
-		Step transitionStep = getTransitionStep();
-		if (transitionStep instanceof TransitionUsage) {
-			EList<Expression> guards = ((TransitionUsageImpl)transitionStep).getGuardExpression();
-			guardExpressions.addAll(guards);
-		}
-		return guardExpressions;
+		return (EList<Expression>)GUARD_EXPRESSION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
@@ -234,11 +247,11 @@ public class SuccessionImpl extends ConnectorImpl implements Succession {
 			case SysMLPackage.SUCCESSION__TRANSITION_STEP:
 				return basicGetTransitionStep() != null;
 			case SysMLPackage.SUCCESSION__TRIGGER_STEP:
-				return !getTriggerStep().isEmpty();
+				return TRIGGER_STEP__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.SUCCESSION__EFFECT_STEP:
-				return !getEffectStep().isEmpty();
+				return EFFECT_STEP__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.SUCCESSION__GUARD_EXPRESSION:
-				return !getGuardExpression().isEmpty();
+				return GUARD_EXPRESSION__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 		}
 		return super.eIsSet(featureID);
 	}

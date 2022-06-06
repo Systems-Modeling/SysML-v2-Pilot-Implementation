@@ -13199,6 +13199,21 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   new String[] {
 		   });
 		addAnnotation
+		  (getSuccession_TriggerStep(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getSuccession_EffectStep(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getSuccession_GuardExpression(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
 		  (getItemFlow_ItemFeature(),
 		   source,
 		   new String[] {

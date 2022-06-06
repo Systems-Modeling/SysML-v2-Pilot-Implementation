@@ -46,7 +46,9 @@ import org.omg.sysml.lang.sysml.ItemFlowEnd;
 import org.omg.sysml.lang.sysml.ItemFlowFeature;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.Redefinition;
+import org.omg.sysml.lang.sysml.Specialization;
 import org.omg.sysml.lang.sysml.Subsetting;
+import org.omg.sysml.lang.sysml.Type;
 
 public class VPath extends VTraverser {
     private boolean initialized;
@@ -302,7 +304,7 @@ public class VPath extends VTraverser {
     }
     
     public RefPC makeRefPCItemFlowEnd(ItemFlowEnd ife) {
-        PC pc = makePC(ife);
+        PC pc = makeSubsettedFeaturePC(ife);
         if (pc == null) return null;
         Feature ioTarget = getIOTarget(ife);
         pc = new PCItemFlowEnd(ife, pc, ioTarget);
@@ -465,7 +467,7 @@ public class VPath extends VTraverser {
         return null;
     }
 
-    private PC makePC(Feature f) {
+    private PC makeSubsettedFeaturePC(Feature f) {
         for (Subsetting ss: f.getOwnedSubsetting()) {
             Feature sf = ss.getSubsettedFeature();
             List<FeatureChaining> fcs = sf.getOwnedFeatureChaining();
@@ -478,8 +480,7 @@ public class VPath extends VTraverser {
         return null;
     }
 
-    private RefPC makeRefPC(Feature f) {
-        PC pc = makePC(f);
+    private RefPC makeRefPC(Feature f, PC pc) {
         if (pc == null) return null;
         InheritKey ik = getInheritKey(f);
         return new RefPC(pc, ik);
@@ -490,8 +491,15 @@ public class VPath extends VTraverser {
     }
 
     private String addContext(Feature f) {
-        if (!f.isEnd()) return null;
-        RefPC rpc = makeRefPC(f);
+        PC pc;
+        if (f.isEnd()) {
+            pc = makeSubsettedFeaturePC(f);
+        } else {
+            List<FeatureChaining> fcs = f.getOwnedFeatureChaining();
+            if (fcs.isEmpty()) return null;
+            pc = new PCFeatureChain(f);
+        }
+        RefPC rpc = makeRefPC(f, pc);
         if (rpc == null) {
             return null;
         } else {
@@ -587,6 +595,18 @@ public class VPath extends VTraverser {
     }
 
     VPath() {
+    }
+
+    @Override
+    public String caseType(Type typ) {
+        for (Specialization sp: typ.getOwnedSpecialization()) {
+            Type g = sp.getGeneral();
+            // Type s = sp.getSpecific();
+            if (g == null) continue;
+            visit(g);
+            // visit(s); // Typically this will cause double traverse but checkVisit() stops it..
+        }
+        return null;
     }
 
     @Override

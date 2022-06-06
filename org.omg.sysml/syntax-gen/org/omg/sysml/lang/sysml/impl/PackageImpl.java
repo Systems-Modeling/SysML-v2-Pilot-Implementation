@@ -27,16 +27,14 @@ import java.util.Collection;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.lang.sysml.ElementFilterMembership;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.util.ExpressionUtil;
-import org.omg.sysml.util.NamespaceUtil;
-import org.omg.sysml.util.NonNotifyingEObjectEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -52,6 +50,16 @@ import org.omg.sysml.util.NonNotifyingEObjectEList;
  * @generated
  */
 public class PackageImpl extends NamespaceImpl implements org.omg.sysml.lang.sysml.Package {
+	/**
+	 * The cached setting delegate for the '{@link #getFilterCondition() <em>Filter Condition</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getFilterCondition()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate FILTER_CONDITION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.PACKAGE__FILTER_CONDITION).getSettingDelegate();
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -74,13 +82,12 @@ public class PackageImpl extends NamespaceImpl implements org.omg.sysml.lang.sys
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<Expression> getFilterCondition() {
-		EList<Expression> filterConditions = new NonNotifyingEObjectEList<>(Expression.class, this, SysMLPackage.PACKAGE__FILTER_CONDITION);
-		NamespaceUtil.getOwnedMembersByMembershipIn(this, ElementFilterMembership.class, Expression.class).forEachOrdered(filterConditions::add);
-		return filterConditions;
+		return (EList<Expression>)FILTER_CONDITION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	@Override
@@ -163,7 +170,7 @@ public class PackageImpl extends NamespaceImpl implements org.omg.sysml.lang.sys
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case SysMLPackage.PACKAGE__FILTER_CONDITION:
-				return !getFilterCondition().isEmpty();
+				return FILTER_CONDITION__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 		}
 		return super.eIsSet(featureID);
 	}

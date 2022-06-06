@@ -13229,6 +13229,16 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   new String[] {
 		   });
 		addAnnotation
+		  (getAssociation_SourceType(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getAssociation_TargetType(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
 		  (getItemFlow_ItemFeature(),
 		   source,
 		   new String[] {

@@ -30,6 +30,7 @@ import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.BasicInternalEList;
@@ -39,8 +40,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.uml2.common.util.UnionEObjectEList;
 import org.omg.sysml.lang.sysml.Association;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.util.NonNotifyingEObjectEList;
-import org.omg.sysml.util.TypeUtil;
 import org.omg.sysml.lang.sysml.Connector;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
@@ -75,6 +74,26 @@ public class AssociationImpl extends ClassifierImpl implements Association {
 	 * @ordered
 	 */
 	protected EList<Element> ownedRelatedElement;
+
+	/**
+	 * The cached setting delegate for the '{@link #getSourceType() <em>Source Type</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSourceType()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate SOURCE_TYPE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.ASSOCIATION__SOURCE_TYPE).getSettingDelegate();
+
+	/**
+	 * The cached setting delegate for the '{@link #getTargetType() <em>Target Type</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTargetType()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate TARGET_TYPE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.ASSOCIATION__TARGET_TYPE).getSettingDelegate();
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -295,27 +314,26 @@ public class AssociationImpl extends ClassifierImpl implements Association {
 	 */
 	@Override
 	public Type getSourceType() {
-		Type sourceType = basicGetSourceType();
-		return sourceType != null && sourceType.eIsProxy() ? (Type)eResolveProxy((InternalEObject)sourceType) : sourceType;
+		return (Type)SOURCE_TYPE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Type basicGetSourceType() {
-		return TypeUtil.getSourceTypeOf(this);
+		return (Type)SOURCE_TYPE__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setSourceType(Type newSourceType) {
-		throw new UnsupportedOperationException();
+		SOURCE_TYPE__ESETTING_DELEGATE.dynamicSet(this, null, 0, newSourceType);
 	}
 
 	/**
@@ -330,13 +348,12 @@ public class AssociationImpl extends ClassifierImpl implements Association {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<Type> getTargetType() {
-		EList<Type> targetType = new NonNotifyingEObjectEList<>(Type.class, this, SysMLPackage.ASSOCIATION__TARGET_TYPE);
-		TypeUtil.addTargetTypes(this, targetType);
-		return targetType;
+		return (EList<Type>)TARGET_TYPE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 	
 	/**

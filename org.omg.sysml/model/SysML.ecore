@@ -1837,6 +1837,7 @@
       </eAnnotations>
       <eAnnotations source="redefines" references="#//Relationship/source"/>
       <eAnnotations source="subsets" references="#//Association/relatedType"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="targetType" ordered="false"
         lowerBound="1" upperBound="-1" eType="#//Type" volatile="true" transient="true"
@@ -1849,6 +1850,7 @@
       </eAnnotations>
       <eAnnotations source="redefines" references="#//Relationship/target"/>
       <eAnnotations source="subsets" references="#//Association/relatedType"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="associationEnd" ordered="false"
         lowerBound="2" upperBound="-1" eType="#//Feature" volatile="true" transient="true"

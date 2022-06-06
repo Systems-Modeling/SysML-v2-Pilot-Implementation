@@ -1783,6 +1783,7 @@
         <details key="documentation" value="&lt;p>These are the ends of the Connector, which show what Features it relates. The connectorEnds of a Connector are the features of the Connector that redefine the end Features of the Connector association.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="redefines" references="#//Type/endFeature"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="sourceFeature" ordered="false"
         eType="#//Feature" volatile="true" transient="true" derived="true">
@@ -1794,6 +1795,7 @@
       </eAnnotations>
       <eAnnotations source="redefines" references="#//Relationship/source"/>
       <eAnnotations source="subsets" references="#//Connector/relatedFeature"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="targetFeature" ordered="false"
         lowerBound="1" upperBound="-1" eType="#//Feature" volatile="true" transient="true"
@@ -1806,6 +1808,7 @@
       </eAnnotations>
       <eAnnotations source="redefines" references="#//Relationship/target"/>
       <eAnnotations source="subsets" references="#//Connector/relatedFeature"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Association" eSuperTypes="#//Classifier #//Relationship">

@@ -1674,6 +1674,7 @@
         <details key="documentation" value="&lt;p>The Feature that is accessed by this FeatureChainExpression, derived as its second &lt;code>member&lt;/code> Feature (the first being its one &lt;code>argument&lt;/code> Expression). This Feature must redefine the &lt;em>&lt;code>target&lt;/code> Feature of the Function &lt;em>&lt;code>ControlFunctions::'.'&lt;/code>&lt;/em>.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Namespace/member"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SelectExpression" eSuperTypes="#//OperatorExpression">

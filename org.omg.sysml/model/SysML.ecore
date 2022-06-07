@@ -2021,6 +2021,7 @@
         <details key="documentation" value="&lt;p>A PortioningFeature typed by the &lt;code>occurrenceDefinitions&lt;/code> of this OccurrenceUsage, thereby restricting the values of the OccurrenceUsage to be general portions, time slices or snapshots of instances of those definitions, consistence with the &lt;code>portionKind&lt;/code>.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Type/ownedFeature"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="individualDefinition" ordered="false"
         eType="#//OccurrenceDefinition" volatile="true" transient="true" derived="true">
@@ -2031,6 +2032,7 @@
         <details key="documentation" value="&lt;p>The one &lt;code>occurrenceDefinition&lt;/code> that has &lt;code>isIndividual = true&lt;/code> (if any).&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//OccurrenceUsage/occurrenceDefinition"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isIndividual" ordered="false"
         lowerBound="1" eType="ecore:EDataType types.ecore#//Boolean" defaultValueLiteral="false">

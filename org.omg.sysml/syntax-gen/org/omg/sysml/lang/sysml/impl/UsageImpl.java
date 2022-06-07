@@ -30,7 +30,6 @@ import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.AllocationUsage;
@@ -77,6 +76,7 @@ import org.omg.sysml.util.UsageUtil;
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedUsage <em>Nested Usage</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getOwningUsage <em>Owning Usage</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getOwningDefinition <em>Owning Definition</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedPort <em>Nested Port</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedAction <em>Nested Action</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedState <em>Nested State</em>}</li>
@@ -109,7 +109,6 @@ import org.omg.sysml.util.UsageUtil;
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedUseCase <em>Nested Use Case</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#isReference <em>Is Reference</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedFlow <em>Nested Flow</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getOwningDefinition <em>Owning Definition</em>}</li>
  * </ul>
  *
  * @generated
@@ -124,6 +123,24 @@ public class UsageImpl extends FeatureImpl implements Usage {
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate NESTED_USAGE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.USAGE__NESTED_USAGE).getSettingDelegate();
+	/**
+	 * The cached setting delegate for the '{@link #getOwningUsage() <em>Owning Usage</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwningUsage()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate OWNING_USAGE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.USAGE__OWNING_USAGE).getSettingDelegate();
+	/**
+	 * The cached setting delegate for the '{@link #getOwningDefinition() <em>Owning Definition</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwningDefinition()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate OWNING_DEFINITION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.USAGE__OWNING_DEFINITION).getSettingDelegate();
 	/**
 	 * The cached setting delegate for the '{@link #getNestedPort() <em>Nested Port</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -206,6 +223,15 @@ public class UsageImpl extends FeatureImpl implements Usage {
 	 */
 	protected boolean isVariation = IS_VARIATION_EDEFAULT;
 	/**
+	 * The cached setting delegate for the '{@link #getDirectedUsage() <em>Directed Usage</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDirectedUsage()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate DIRECTED_USAGE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.USAGE__DIRECTED_USAGE).getSettingDelegate();
+	/**
 	 * The cached setting delegate for the '{@link #getNestedCase() <em>Nested Case</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -241,6 +267,15 @@ public class UsageImpl extends FeatureImpl implements Usage {
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate USAGE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.USAGE__USAGE).getSettingDelegate();
+	/**
+	 * The cached setting delegate for the '{@link #getVariant() <em>Variant</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getVariant()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate VARIANT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.USAGE__VARIANT).getSettingDelegate();
 	/**
 	 * The cached setting delegate for the '{@link #getNestedReference() <em>Nested Reference</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -434,28 +469,26 @@ public class UsageImpl extends FeatureImpl implements Usage {
 	 */
 	@Override
 	public Usage getOwningUsage() {
-		Usage owningUsage = basicGetOwningUsage();
-		return owningUsage != null && owningUsage.eIsProxy() ? (Usage)eResolveProxy((InternalEObject)owningUsage) : owningUsage;
+		return (Usage)OWNING_USAGE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Usage basicGetOwningUsage() {
-		Type owningType = getOwningType();
-		return owningType instanceof Usage? (Usage)owningType: null;
+		return (Usage)OWNING_USAGE__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setOwningUsage(Usage newOwningUsage) {
-		throw new UnsupportedOperationException();
+		OWNING_USAGE__ESETTING_DELEGATE.dynamicSet(this, null, 0, newOwningUsage);
 	}
 
 	/**
@@ -465,28 +498,26 @@ public class UsageImpl extends FeatureImpl implements Usage {
 	 */
 	@Override
 	public Definition getOwningDefinition() {
-		Definition owningDefinition = basicGetOwningDefinition();
-		return owningDefinition != null && owningDefinition.eIsProxy() ? (Definition)eResolveProxy((InternalEObject)owningDefinition) : owningDefinition;
+		return (Definition)OWNING_DEFINITION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Definition basicGetOwningDefinition() {
-		Type owningType = getOwningType();
-		return owningType instanceof Definition? (Definition)owningType: null;
+		return (Definition)OWNING_DEFINITION__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setOwningDefinition(Definition newOwningDefinition) {
-		throw new UnsupportedOperationException();
+		OWNING_DEFINITION__ESETTING_DELEGATE.dynamicSet(this, null, 0, newOwningDefinition);
 	}
 
 	/**
@@ -581,15 +612,12 @@ public class UsageImpl extends FeatureImpl implements Usage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<Usage> getDirectedUsage() {
-		EList<Usage> flows = new NonNotifyingEObjectEList<>(Usage.class, this, SysMLPackage.DEFINITION__DIRECTED_USAGE);
-		getUsage().stream().
-			filter(usage->usage.getDirection() != null).
-			forEachOrdered(flows::add);
-		return flows;
+		return (EList<Usage>)DIRECTED_USAGE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
@@ -606,15 +634,12 @@ public class UsageImpl extends FeatureImpl implements Usage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<Usage> getVariant() {
-		EList<Usage> variants = new NonNotifyingEObjectEList<>(Usage.class, this, SysMLPackage.USAGE__VARIANT);
-		getVariantMembership().stream().
-			map(VariantMembership::getOwnedVariantUsage).
-			forEachOrdered(variants::add);
-		return variants;
+		return (EList<Usage>)VARIANT__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
@@ -945,6 +970,9 @@ public class UsageImpl extends FeatureImpl implements Usage {
 			case SysMLPackage.USAGE__OWNING_USAGE:
 				if (resolve) return getOwningUsage();
 				return basicGetOwningUsage();
+			case SysMLPackage.USAGE__OWNING_DEFINITION:
+				if (resolve) return getOwningDefinition();
+				return basicGetOwningDefinition();
 			case SysMLPackage.USAGE__NESTED_PORT:
 				return getNestedPort();
 			case SysMLPackage.USAGE__NESTED_ACTION:
@@ -1009,9 +1037,6 @@ public class UsageImpl extends FeatureImpl implements Usage {
 				return isReference();
 			case SysMLPackage.USAGE__NESTED_FLOW:
 				return getNestedFlow();
-			case SysMLPackage.USAGE__OWNING_DEFINITION:
-				if (resolve) return getOwningDefinition();
-				return basicGetOwningDefinition();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -1031,6 +1056,9 @@ public class UsageImpl extends FeatureImpl implements Usage {
 				return;
 			case SysMLPackage.USAGE__OWNING_USAGE:
 				setOwningUsage((Usage)newValue);
+				return;
+			case SysMLPackage.USAGE__OWNING_DEFINITION:
+				setOwningDefinition((Definition)newValue);
 				return;
 			case SysMLPackage.USAGE__NESTED_PORT:
 				getNestedPort().clear();
@@ -1158,9 +1186,6 @@ public class UsageImpl extends FeatureImpl implements Usage {
 				getNestedFlow().clear();
 				getNestedFlow().addAll((Collection<? extends FlowConnectionUsage>)newValue);
 				return;
-			case SysMLPackage.USAGE__OWNING_DEFINITION:
-				setOwningDefinition((Definition)newValue);
-				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -1178,6 +1203,9 @@ public class UsageImpl extends FeatureImpl implements Usage {
 				return;
 			case SysMLPackage.USAGE__OWNING_USAGE:
 				setOwningUsage((Usage)null);
+				return;
+			case SysMLPackage.USAGE__OWNING_DEFINITION:
+				setOwningDefinition((Definition)null);
 				return;
 			case SysMLPackage.USAGE__NESTED_PORT:
 				getNestedPort().clear();
@@ -1275,9 +1303,6 @@ public class UsageImpl extends FeatureImpl implements Usage {
 			case SysMLPackage.USAGE__NESTED_FLOW:
 				getNestedFlow().clear();
 				return;
-			case SysMLPackage.USAGE__OWNING_DEFINITION:
-				setOwningDefinition((Definition)null);
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -1295,7 +1320,9 @@ public class UsageImpl extends FeatureImpl implements Usage {
 			case SysMLPackage.USAGE__NESTED_USAGE:
 				return NESTED_USAGE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.USAGE__OWNING_USAGE:
-				return basicGetOwningUsage() != null;
+				return OWNING_USAGE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
+			case SysMLPackage.USAGE__OWNING_DEFINITION:
+				return OWNING_DEFINITION__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.USAGE__NESTED_PORT:
 				return NESTED_PORT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.USAGE__NESTED_ACTION:
@@ -1313,7 +1340,7 @@ public class UsageImpl extends FeatureImpl implements Usage {
 			case SysMLPackage.USAGE__IS_VARIATION:
 				return isVariation != IS_VARIATION_EDEFAULT;
 			case SysMLPackage.USAGE__DIRECTED_USAGE:
-				return !getDirectedUsage().isEmpty();
+				return DIRECTED_USAGE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.USAGE__NESTED_CASE:
 				return NESTED_CASE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.USAGE__NESTED_ANALYSIS_CASE:
@@ -1323,7 +1350,7 @@ public class UsageImpl extends FeatureImpl implements Usage {
 			case SysMLPackage.USAGE__USAGE:
 				return USAGE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.USAGE__VARIANT:
-				return !getVariant().isEmpty();
+				return VARIANT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.USAGE__NESTED_REFERENCE:
 				return NESTED_REFERENCE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.USAGE__NESTED_CONNECTION:
@@ -1360,8 +1387,6 @@ public class UsageImpl extends FeatureImpl implements Usage {
 				return isReference() != IS_REFERENCE_EDEFAULT;
 			case SysMLPackage.USAGE__NESTED_FLOW:
 				return NESTED_FLOW__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
-			case SysMLPackage.USAGE__OWNING_DEFINITION:
-				return basicGetOwningDefinition() != null;
 		}
 		return super.eIsSet(featureID);
 	}

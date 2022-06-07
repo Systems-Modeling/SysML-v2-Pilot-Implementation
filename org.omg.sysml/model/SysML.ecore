@@ -2065,6 +2065,7 @@
         <details key="documentation" value="&lt;p>The Usage in which this Usage is nested (if any).&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Feature/owningType"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="owningDefinition" ordered="false"
         eType="#//Definition" volatile="true" transient="true" derived="true" eOpposite="#//Definition/ownedUsage">
@@ -2072,6 +2073,7 @@
         <details key="documentation" value="&lt;p>The Definition that owns this Usage (if any).&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Feature/owningType"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="nestedPort" upperBound="-1"
         eType="#//PortUsage" volatile="true" transient="true" derived="true">
@@ -2166,6 +2168,7 @@
         <details key="documentation" value="&lt;p>The &lt;code>usages&lt;/code> of this Usage that are &lt;code>directedFeatures&lt;/code>.&lt;/p>&#xA;"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Usage/usage #//Type/directedFeature"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="nestedCase" upperBound="-1"
         eType="#//CaseUsage" volatile="true" transient="true" derived="true">
@@ -2221,6 +2224,7 @@
         <details key="documentation" value="&lt;p>The Usages which represent the variants of this Usage as a variation point Usage, if &lt;code>isVariation&lt;/code> = true. If &lt;code>isVariation&lt;/code> = false, the there must be no &lt;code>variants&lt;/code>.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Namespace/ownedMember"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="nestedReference" upperBound="-1"
         eType="#//ReferenceUsage" volatile="true" transient="true" derived="true">

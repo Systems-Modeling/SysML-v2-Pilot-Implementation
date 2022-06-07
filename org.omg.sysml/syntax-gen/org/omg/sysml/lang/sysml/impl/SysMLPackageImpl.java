@@ -13274,6 +13274,16 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   new String[] {
 		   });
 		addAnnotation
+		  (getUsage_OwningUsage(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getUsage_OwningDefinition(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
 		  (getUsage_NestedPort(),
 		   source,
 		   new String[] {
@@ -13309,6 +13319,11 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   new String[] {
 		   });
 		addAnnotation
+		  (getUsage_DirectedUsage(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
 		  (getUsage_NestedCase(),
 		   source,
 		   new String[] {
@@ -13325,6 +13340,11 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   });
 		addAnnotation
 		  (getUsage_Usage(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getUsage_Variant(),
 		   source,
 		   new String[] {
 		   });

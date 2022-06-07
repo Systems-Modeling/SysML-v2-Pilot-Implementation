@@ -48,6 +48,7 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedUsage <em>Nested Usage</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getOwningUsage <em>Owning Usage</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Usage#getOwningDefinition <em>Owning Definition</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedPort <em>Nested Port</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedAction <em>Nested Action</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedState <em>Nested State</em>}</li>
@@ -80,7 +81,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedUseCase <em>Nested Use Case</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#isReference <em>Is Reference</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedFlow <em>Nested Flow</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Usage#getOwningDefinition <em>Owning Definition</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage()
@@ -142,6 +142,7 @@ public interface Usage extends Feature {
 	 * @see org.omg.sysml.lang.sysml.Usage#getNestedUsage
 	 * @model opposite="nestedUsage" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	Usage getOwningUsage();
@@ -180,6 +181,7 @@ public interface Usage extends Feature {
 	 * @see org.omg.sysml.lang.sysml.Definition#getOwnedUsage
 	 * @model opposite="ownedUsage" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	Definition getOwningDefinition();
@@ -437,6 +439,7 @@ public interface Usage extends Feature {
 	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body=' /usageWithDirectedUsage'"
 	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<Usage> getDirectedUsage();
@@ -485,6 +488,7 @@ public interface Usage extends Feature {
 	 * @model transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='owningVariationUsage'"
 	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<Usage> getVariant();

@@ -320,7 +320,7 @@ package Occurrences {
 		 */
 		feature spaceBoundaryOf: Occurrence[0..*] subsets spaceShotOf {
 			feature spaceBounderOf: Occurrence redefines self;
-			inv { spaceBounderOf.spaceBoundary == Occurrence::self }
+			inv { spaceBounderOf.spaceBoundary == that.that }
 		}
 
 		inv { !isClosed implies contains(self.unionsOf, union(spaceBoundary, spaceInterior)) }

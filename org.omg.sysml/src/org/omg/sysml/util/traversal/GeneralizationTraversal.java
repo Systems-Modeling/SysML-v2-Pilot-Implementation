@@ -50,7 +50,7 @@ import org.omg.sysml.util.traversal.facade.impl.BandedGraphProcessingFacade;
  * @author Ed Seidewitz
  *
  */
-public class NestedFeatureTraversal extends Traversal {
+public class GeneralizationTraversal extends Traversal {
 	
 	public enum DebugLevel {
 		INFO,
@@ -60,9 +60,11 @@ public class NestedFeatureTraversal extends Traversal {
 	
 	public DebugLevel currentDebug = DebugLevel.TRACE;
 	
-	private HashMap<Element, ArrayList<Element>> pathToElement = new HashMap<Element, ArrayList<Element>>();
+	private HashMap<Element, ArrayList<ArrayList<Element>>> pathToElement =
+			new HashMap<Element, ArrayList<ArrayList<Element>>>();
+	private HashMap<Element, Integer> workingIndex = new HashMap<Element, Integer>();
 	
-	public NestedFeatureTraversal() {
+	public GeneralizationTraversal() {
 		super(null);
 	}
 
@@ -70,16 +72,16 @@ public class NestedFeatureTraversal extends Traversal {
 	 * Create an Element visitor for the given element.
 	 */
 	@Override
-	public NestedFeatureVisitor createVisitor(Element element) {
-		return new NestedFeatureVisitor(element, this);
+	public TypeVisitor createVisitor(Element element) {
+		return new TypeVisitor(element, this);
 	}
 	
-	public NestedFeatureVisitor createVisitor(Element element, Element visitingFrom) {
-		return new NestedFeatureVisitor(element, this, visitingFrom);
+	public TypeVisitor createVisitor(Element element, Element visitingFrom) {
+		return new TypeVisitor(element, this, visitingFrom);
 	}
 	
-	public BandedRelationshipVisitor createRelationshipVisitor(Relationship element, Element visitingFrom) {
-		return new BandedRelationshipVisitor(element, this, visitingFrom);
+	public GeneralizationRelationshipVisitor createRelationshipVisitor(Relationship element, Element visitingFrom) {
+		return new GeneralizationRelationshipVisitor(element, this, visitingFrom);
 	}
 	
 	/**
@@ -128,10 +130,13 @@ public class NestedFeatureTraversal extends Traversal {
 	
 	public String describePaths() {
 		String description = "";
-		for (ArrayList<Element> thisPath : pathToElement.values()) {
-			description = description + "\nNext path:\n";
-			for (Element el : thisPath) {
-				description = description + BandedGraphProcessingFacade.descriptionOf(el) + ", ";
+		for (Element thisKey : pathToElement.keySet()) {
+			ArrayList<ArrayList<Element>> allPaths= pathToElement.get(thisKey);
+			for (ArrayList<Element> thisPath : allPaths) {
+				description = description + "\nNext path:\n";
+				for (Element el : thisPath) {
+					description = description + BandedGraphProcessingFacade.descriptionOf(el) + ", ";
+				}
 			}
 		}
 		return description;
@@ -140,60 +145,25 @@ public class NestedFeatureTraversal extends Traversal {
 	public String writePathConstraint() {
 		String description = "";
 		for (Element pathKey : pathToElement.keySet()) {
-			ArrayList<Element> thisPath = pathToElement.get(pathKey);
-			int counter = 0;
-			int lowMultiplicity = 1;
-			int highMultiplicity = 1;
-			description = description + "\nNext constraint:\n";
-			description = description + "# of ";
-			for (Element el : thisPath) {
-				
-				if (counter < thisPath.size() - 1) {
-					description = description + describeElement(el, false);
-					description = description +".";
-				}
-				else {
-					description = description + describeElement(el, true);
-				}
-				MultiplicityRange mult = null;
-				Expression lowerExpr = null;
-				Expression upperExpr = null;
-				
-				if (el instanceof Usage) {
-					mult = getMultiplicity((Usage) el);
-				}
-				if (mult != null) {
-					lowerExpr = mult.getLowerBound();
-					upperExpr = mult.getUpperBound();
-				}
-				if (lowerExpr == null && upperExpr != null) {
-					int newUpper = 1;
-					newUpper = decodeMultExpression(upperExpr);
-					highMultiplicity = highMultiplicity * newUpper;
-					if (newUpper == 0) {
-						lowMultiplicity = 0;
-					}
-				}
-				else if (lowerExpr != null && upperExpr != null) {
-					int newLower = 1;
-					int newUpper = 1;
-					newLower = decodeMultExpression(lowerExpr);
-					newUpper = decodeMultExpression(upperExpr);
-					lowMultiplicity = lowMultiplicity * newLower;
-					highMultiplicity = highMultiplicity * newUpper;
-				}
-				counter++;
-			}
-			if (lowMultiplicity == highMultiplicity) {
-				//description = description + describeElement(pathKey) + " " + pathKey.getIdentifier() +  " : ";
-				description = description + "= " + String.valueOf(lowMultiplicity);
-			}
-			else if (lowMultiplicity != highMultiplicity) {
-				//description = description + describeElement(pathKey) + " " + pathKey.getIdentifier() +  " : ";
-				description = description + ">= " + String.valueOf(lowMultiplicity);
-				description = description + " and <= " + String.valueOf(highMultiplicity);
-			}
 			
+			ArrayList<ArrayList<Element>> allPaths = pathToElement.get(pathKey);
+			for (ArrayList<Element> thisPath : allPaths) {
+				int counter = 0;
+				if (thisPath.size() < 2) {
+					continue;
+				}
+				description = description + "\nNext constraint:\n";
+				String subSet = "";
+				String superSet = "";
+				for (Element el : thisPath) {
+					if (counter < thisPath.size() - 1) {
+						description = description + describeElement(el, false);
+						description += " subsets ";
+						description = description + describeElement(thisPath.get(counter + 1), false) + "\n";
+					}
+					counter++;
+				}
+			}
 		}
 		
 		return description;
@@ -241,28 +211,42 @@ public class NestedFeatureTraversal extends Traversal {
 		return s;
 	}
 	
-	public ArrayList<Element> getBaseFeatures() {
-		ArrayList<Element> baseElements = new ArrayList<Element>();
-		for (Element object : pathToElement.keySet()) {
-			if (pathToElement.get(object).size() == 1) {
-				baseElements.add(object);
+	public void mapIntoPath(Element element, ArrayList<Element> workingPath) {
+		if (pathToElement.containsKey(element)) {
+			ArrayList<ArrayList<Element>> allPaths = pathToElement.get(element);
+			ArrayList<Element> latestPath = allPaths.get(workingIndex.get(element));
+			
+			if (latestPath.size() > 1) {
+				allPaths.add(workingPath);
+				workingIndex.put(element, workingIndex.get(element) + 1);
+			}
+			else {
+				latestPath.clear();
+				latestPath.addAll(workingPath);
 			}
 		}
-		return baseElements;
-	}
-	
-	public void mapIntoPath(Element element, ArrayList<Element> workingPath) {
-		pathToElement.put(element, workingPath);
 	}
 	
 	public ArrayList<Element> getPathFor(Element element) {
-		return pathToElement.get(element);
+		Integer indexForElement =  workingIndex.get(element);
+		if (indexForElement == null) {
+			return null;
+		}
+		return pathToElement.get(element).get(indexForElement);
 	}
 	
 	public void startNewPath(Element indexElement) {
+		if (pathToElement.containsKey(indexElement)) {
+			if (pathToElement.get(indexElement).get(0).size() > 0) {
+				return;
+			}
+		}
+		ArrayList<ArrayList<Element>> emptyListOfLists = new ArrayList<ArrayList<Element>>();
 		ArrayList<Element> selfList = new ArrayList<Element>();
 		selfList.add(indexElement);
-		pathToElement.put(indexElement, selfList);
+		emptyListOfLists.add(selfList);
+		pathToElement.put(indexElement, emptyListOfLists);
+		workingIndex.put(indexElement, 0);
 	}
 	
 	public DebugLevel getCurrentDebug() {
@@ -274,6 +258,11 @@ public class NestedFeatureTraversal extends Traversal {
 			return ((LiteralInteger) expr).getValue();
 		}
 		return 1;
+	}
+	
+	public void clearElementMap() {
+		this.elementMap.clear();
+		return;
 	}
 	
 }

@@ -27,9 +27,12 @@ package org.omg.sysml.xtext.util;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.omg.kerml.xtext.util.KerMLTraversalUtil;
 import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
 import org.omg.sysml.util.traversal.facade.impl.DefaultElementProcessingFacadeImpl;
+import org.omg.sysml.util.traversal.GeneralizationTraversal;
 import org.omg.sysml.util.traversal.NestedFeatureTraversal;
 import org.omg.sysml.util.traversal.Traversal;
 import org.omg.sysml.util.traversal.facade.ElementProcessingFacade;
@@ -48,12 +51,18 @@ public class SysML2SequenceConstraints extends KerMLTraversalUtil {
 	private boolean isAddDerivedElements = false;
 	private boolean isAddImplicitElements = false;
 	private String outputPath = null;
+	
+	// hold multiple traversals to build paths for banded graphs, get multiplicities, look for specialization of types, etc.
+	protected NestedFeatureTraversal nestedTraversal;
+	protected GeneralizationTraversal generalTraversal;
 
 	public SysML2SequenceConstraints() {
 		super();
 		SysMLStandaloneSetup.doSetup();
 		this.addExtension(".sysml");
 		this.traversal = new NestedFeatureTraversal();
+		nestedTraversal = new NestedFeatureTraversal();
+		generalTraversal = new GeneralizationTraversal();
 	}
 	
 	public void run(String[] args) {
@@ -82,7 +91,8 @@ public class SysML2SequenceConstraints extends KerMLTraversalUtil {
 				System.out.println(pathString);
 			}*/
 			System.out.println("Found paths:");
-			System.out.print(this.getTraversal().writePathConstraint());
+			System.out.print(nestedTraversal.writePathConstraint());
+			System.out.print(generalTraversal.writePathConstraint());
 			System.out.println("\nCompleted path listing.");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -120,6 +130,28 @@ public class SysML2SequenceConstraints extends KerMLTraversalUtil {
 	
 	public NestedFeatureTraversal getTraversal() {
 		return ((NestedFeatureTraversal) this.traversal);
+	}
+	
+	/**
+	 * Visit each of the top-level model Elements in each of the current input Resources.
+	 * Traversal must be initialized before processing.
+	 */
+	@Override
+	public void process() {
+		for (Resource resource: this.inputResources) {
+			for (EObject object : resource.getContents()) {
+				if (object instanceof Element) {
+					nestedTraversal.visit((Element) object);
+				}
+			}
+		}
+		// go through all lowest level Types within the packages found
+		ArrayList<Element> baseFeatures = nestedTraversal.getBaseFeatures();
+		for (Element object : nestedTraversal.getBaseFeatures()) {
+			generalTraversal.startNewPath(object);
+			generalTraversal.visit((Element) object);
+			generalTraversal.clearElementMap();
+		}
 	}
 	
 	/**

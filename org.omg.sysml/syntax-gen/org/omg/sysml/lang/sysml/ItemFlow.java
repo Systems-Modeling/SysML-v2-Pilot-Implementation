@@ -136,6 +136,7 @@ public interface ItemFlow extends Connector, Step {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getItemFlow_ItemFlowEnd()
 	 * @model lower="2" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="redefines"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<ItemFlowEnd> getItemFlowEnd();
@@ -184,6 +185,7 @@ public interface ItemFlow extends Connector, Step {
 	 * @return the value of the '<em>Item Flow Feature</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getItemFlow_ItemFlowFeature()
 	 * @model lower="2" transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<ItemFlowFeature> getItemFlowFeature();

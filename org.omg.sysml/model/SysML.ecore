@@ -1921,6 +1921,7 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>The type of the item transferred, derived as the &lt;code>type&lt;/code> of the &lt;code>feature&lt;/code> of the ItemFlow that directly or indirectly redefines &lt;em>&lt;code>Transfer::item&lt;/code>&lt;/em>.&lt;/p>&#xA;&#xA;&#xA;&lt;p>This is the Type of the item transferred.&lt;/p>"/>
       </eAnnotations>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="targetInputFeature" unique="false"
         upperBound="-1" eType="#//Feature" volatile="true" transient="true" derived="true">
@@ -1947,6 +1948,7 @@
         <details key="documentation" value="&lt;p>A &lt;code>connectorEnd&lt;/code> of this ItemFlow. (IMPL)&lt;/p>&#xA;&#xA;&lt;p>TBD. Uses a class from the Interactions IMPL package.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="redefines" references="#//Connector/connectorEnd"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="itemFeature" ordered="false"
         lowerBound="1" upperBound="-1" eType="#//ItemFeature" volatile="true" transient="true"
@@ -1963,6 +1965,7 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>The &lt;code>sourceOutputFeatures&lt;/code> and &lt;code>targetInputFeatures&lt;/code> of this ItemFlow. (IMPL).&lt;/p>"/>
       </eAnnotations>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Interaction" eSuperTypes="#//Association #//Behavior">

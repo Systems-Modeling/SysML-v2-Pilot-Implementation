@@ -66,6 +66,33 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
 public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 	
 	/**
+	 * The cached setting delegate for the '{@link #getParameter() <em>Parameter</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getParameter()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate PARAMETER__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.STEP__PARAMETER).getSettingDelegate();
+	/**
+	 * The cached setting delegate for the '{@link #getItemType() <em>Item Type</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getItemType()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate ITEM_TYPE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.ITEM_FLOW__ITEM_TYPE).getSettingDelegate();
+	/**
+	 * The cached setting delegate for the '{@link #getItemFlowEnd() <em>Item Flow End</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getItemFlowEnd()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate ITEM_FLOW_END__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.ITEM_FLOW__ITEM_FLOW_END).getSettingDelegate();
+	/**
 	 * The cached setting delegate for the '{@link #getItemFeature() <em>Item Feature</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -74,6 +101,16 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate ITEM_FEATURE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.ITEM_FLOW__ITEM_FEATURE).getSettingDelegate();
+
+	/**
+	 * The cached setting delegate for the '{@link #getItemFlowFeature() <em>Item Flow Feature</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getItemFlowFeature()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate ITEM_FLOW_FEATURE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.ITEM_FLOW__ITEM_FLOW_FEATURE).getSettingDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -142,18 +179,12 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<Classifier> getItemType() {
-		EList<Classifier> itemType = new NonNotifyingEObjectEList<>(Classifier.class, this, SysMLPackage.ITEM_FLOW__ITEM_TYPE);
-		getItemFeature().get(0).getType();
-		getItemFeature().stream().
-			flatMap(f->f.getType().stream()).
-			filter(t->t instanceof Classifier).
-			map(t->(Classifier)t).
-			forEachOrdered(itemType::add);
-		return itemType;
+		return (EList<Classifier>)ITEM_TYPE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 	
 	/**
@@ -182,17 +213,12 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<ItemFlowEnd> getItemFlowEnd() {
-		EList<ItemFlowEnd> itemFlows = 
-				new NonNotifyingEObjectEList<>(ItemFlowEnd.class, this, SysMLPackage.ITEM_FLOW__ITEM_FLOW_END);
-		getConnectorEnd().stream().
-			filter(end->end instanceof ItemFlowEnd).
-			map(end->(ItemFlowEnd)end).
-			forEachOrdered(itemFlows::add);
-		return itemFlows;
+		return (EList<ItemFlowEnd>)ITEM_FLOW_END__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
@@ -207,16 +233,12 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<ItemFlowFeature> getItemFlowFeature() {
-		EList<ItemFlowFeature> itemFlowFeatures = 
-				new EObjectResolvingEList<ItemFlowFeature>(ItemFlowFeature.class, this, SysMLPackage.ITEM_FLOW__ITEM_FLOW_FEATURE);
-		getItemFlowEnd().stream().
-			map(end->(ItemFlowFeature)end.getOwnedFeature().get(0)).
-			forEachOrdered(itemFlowFeatures::add);
-		return itemFlowFeatures;
+		return (EList<ItemFlowFeature>)ITEM_FLOW_FEATURE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
@@ -386,7 +408,7 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 			case SysMLPackage.ITEM_FLOW__CONNECTOR_END:
 				return isSetConnectorEnd();
 			case SysMLPackage.ITEM_FLOW__ITEM_TYPE:
-				return !getItemType().isEmpty();
+				return ITEM_TYPE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.ITEM_FLOW__TARGET_INPUT_FEATURE:
 				return !getTargetInputFeature().isEmpty();
 			case SysMLPackage.ITEM_FLOW__SOURCE_OUTPUT_FEATURE:
@@ -396,7 +418,7 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 			case SysMLPackage.ITEM_FLOW__ITEM_FEATURE:
 				return ITEM_FEATURE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.ITEM_FLOW__ITEM_FLOW_FEATURE:
-				return !getItemFlowFeature().isEmpty();
+				return ITEM_FLOW_FEATURE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 		}
 		return super.eIsSet(featureID);
 	}

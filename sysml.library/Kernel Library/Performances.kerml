@@ -19,13 +19,6 @@ package Performances {
 		feature self: Performance redefines Occurrence::self;
 		
 		/**
-		 * The "context" Occurrence within which this Performance is taking place. By default, this is the 
-		 * Performance itself. For all subperformances, it is the owning Performance. And, for all 
-		 * ownedPerformances of an Object, it is the owning Object.
-		 */
-		feature this : Occurrence[1] default self;
-		
-		/**
 		 * Objects that are involved in this Performance.
 		 */
 		feature involvedObjects: Object[0..*];
@@ -41,9 +34,15 @@ package Performances {
 		step enclosedPerformances: Performance[0..*] subsets performances, timeEnclosedOccurrences;
 		
 		/**
-		 * enclosedPerformances that are composite.
+		 * enclosedPerformances that are composite. 
 		 */
 		composite step subperformances: Performance[0..*] subsets enclosedPerformances {
+			/**
+			 * The "this" context of a subperformance is the same as that of its owning Performance.
+			 * This means that the context for any Performance that is in a composition tree rooted
+			 * in a Performance that is not itself owned by an Object is the root Performance. If the
+			 * root Performance is an ownedPerformance of an Object, then that Object is the context.
+			 */
 			feature redefines this = (that as Performance).this;
 		}
 		

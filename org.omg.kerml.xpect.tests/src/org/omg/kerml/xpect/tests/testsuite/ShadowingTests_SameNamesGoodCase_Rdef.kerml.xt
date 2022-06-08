@@ -22,10 +22,13 @@ package test{
 	}
 	//XPECT linkedName at A --> test.A
 	//* XPECT scope at A ---
-		    A, A.a1, B.A, B.A.a2, B, B.b, 
-		    test.A, test.A.a1, test.B, test.B.A, test.B.A.a2, test.B.b,
-				    A.self, A.a1.self,  B.A.self,  B.A.a2.self,  B.self,  B.b.self,  
-		    test.A.self,  test.A.a1.self,  test.B.self,  test.B.A.self,  test.B.A.a2.self,  test.B.b.self, 
+		A, A.a1, A.a1.self, A.a1.that, A.a1.that.self, A.self, A.that, A.that.self, B,
+		B.A, B.A.a2, B.A.a2.self, B.A.a2.that, B.A.a2.that.self, B.A.self, B.A.that,
+		B.A.that.self, B.b, B.b.self, B.b.that, B.b.that.self, B.self, B.that, B.that.self, test.A,
+		test.A.a1, test.A.a1.self, test.A.a1.that, test.A.a1.that.self, test.A.self, test.A.that,
+		test.A.that.self, test.B, test.B.A, test.B.A.a2, test.B.A.a2.self, test.B.A.a2.that,
+		test.B.A.a2.that.self, test.B.A.self, test.B.A.that, test.B.A.that.self, test.B.b, test.B.b.self,
+		test.B.b.that, test.B.b.that.self, test.B.self, test.B.that, test.B.that.self
 		--- */
 	feature B subsets A{
 		feature A{
@@ -33,11 +36,14 @@ package test{
 		}
 		//XPECT linkedName at a1 --> test.A.a1
 		//* XPECT scope at a1 ---
-		    A, A.a1, B, B.A, B.A.a2, B.b, a1, test.A, test.A.a1, test.B, test.B.A,
-		    test.B.A.a2, test.B.b,
-			
-		    A.self,  A.a1.self,  B.self,  B.A.self,  B.A.a2.self,  B.b.self,  a1.self,  test.A.self,  test.A.a1.self,  test.B.self,  test.B.A.self, 
-		    test.B.A.a2.self,  test.B.b.self, self
+		A, A.a1, A.a1.self, A.a1.that, A.a1.that.self, A.self, A.that, A.that.self, B,
+		B.A, B.A.a2, B.A.a2.self, B.A.a2.that, B.A.a2.that.self, B.A.self, B.A.that,
+		B.A.that.self, B.b, B.b.self, B.b.that, B.b.that.self, B.self, B.that, B.that.self, a1,
+		a1.self, a1.that, a1.that.self, self, test.A, test.A.a1, test.A.a1.self, test.A.a1.that,
+		test.A.a1.that.self, test.A.self, test.A.that, test.A.that.self, test.B, test.B.A, test.B.A.a2,
+		test.B.A.a2.self, test.B.A.a2.that, test.B.A.a2.that.self, test.B.A.self, test.B.A.that,
+		test.B.A.that.self, test.B.b, test.B.b.self, test.B.b.that, test.B.b.that.self, test.B.self,
+		test.B.that, test.B.that.self, that, that.self
 		--- */
 		feature b redefines a1{}
 	}

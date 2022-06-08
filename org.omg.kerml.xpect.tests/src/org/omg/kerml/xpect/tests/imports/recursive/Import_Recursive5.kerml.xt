@@ -42,20 +42,29 @@ package RecursiveImport {
   import P::S::**;
   	
 	//* XPECT scope at T1::X1 ---
-	P.Q.R.Z, P.Q.R.Z.self, P.Q.Y, P.Q.Y.self, P.S.S1, P.S.S1.self, P.S.T.T1,
-	P.S.T.T1.X1, P.S.T.T1.X1.self, P.S.T.T1.self, P.S.T.U.U1, P.S.T.U.U1.self, P.X, P.X.X1,
-	P.X.X1.self, P.X.self, RecursiveImport.P.Q.R.Z, RecursiveImport.P.Q.R.Z.self,
-	RecursiveImport.P.Q.Y, RecursiveImport.P.Q.Y.self, RecursiveImport.P.S.S1,
-	RecursiveImport.P.S.S1.self, RecursiveImport.P.S.T.T1, RecursiveImport.P.S.T.T1.X1,
-	RecursiveImport.P.S.T.T1.X1.self, RecursiveImport.P.S.T.T1.self, RecursiveImport.P.S.T.U.U1,
-	RecursiveImport.P.S.T.U.U1.self, RecursiveImport.P.X, RecursiveImport.P.X.X1, RecursiveImport.P.X.X1.self,
-	RecursiveImport.P.X.self, RecursiveImport.S.S1, RecursiveImport.S.S1.self, RecursiveImport.S.T.T1,
-	RecursiveImport.S.T.T1.X1, RecursiveImport.S.T.T1.X1.self, RecursiveImport.S.T.T1.self,
-	RecursiveImport.S.T.U.U1, RecursiveImport.S.T.U.U1.self, RecursiveImport.S1, RecursiveImport.T.T1,
+	P.Q.R.Z, P.Q.R.Z.self, P.Q.R.Z.self.that, P.Q.Y, P.Q.Y.self, P.Q.Y.self.that,
+	P.S.S1, P.S.S1.self, P.S.S1.self.that, P.S.T.T1, P.S.T.T1.X1, P.S.T.T1.X1.self,
+	P.S.T.T1.X1.self.that, P.S.T.T1.self, P.S.T.T1.self.that, P.S.T.U.U1, P.S.T.U.U1.self,
+	P.S.T.U.U1.self.that, P.X, P.X.X1, P.X.X1.self, P.X.X1.self.that, P.X.self, P.X.self.that,
+	RecursiveImport.P.Q.R.Z, RecursiveImport.P.Q.R.Z.self, RecursiveImport.P.Q.R.Z.self.that,
+	RecursiveImport.P.Q.Y, RecursiveImport.P.Q.Y.self, RecursiveImport.P.Q.Y.self.that,
+	RecursiveImport.P.S.S1, RecursiveImport.P.S.S1.self, RecursiveImport.P.S.S1.self.that,
+	RecursiveImport.P.S.T.T1, RecursiveImport.P.S.T.T1.X1, RecursiveImport.P.S.T.T1.X1.self,
+	RecursiveImport.P.S.T.T1.X1.self.that, RecursiveImport.P.S.T.T1.self, RecursiveImport.P.S.T.T1.self.that,
+	RecursiveImport.P.S.T.U.U1, RecursiveImport.P.S.T.U.U1.self, RecursiveImport.P.S.T.U.U1.self.that,
+	RecursiveImport.P.X, RecursiveImport.P.X.X1, RecursiveImport.P.X.X1.self,
+	RecursiveImport.P.X.X1.self.that, RecursiveImport.P.X.self, RecursiveImport.P.X.self.that, RecursiveImport.S.S1,
+	RecursiveImport.S.S1.self, RecursiveImport.S.S1.self.that, RecursiveImport.S.T.T1,
+	RecursiveImport.S.T.T1.X1, RecursiveImport.S.T.T1.X1.self, RecursiveImport.S.T.T1.X1.self.that,
+	RecursiveImport.S.T.T1.self, RecursiveImport.S.T.T1.self.that, RecursiveImport.S.T.U.U1,
+	RecursiveImport.S.T.U.U1.self, RecursiveImport.S.T.U.U1.self.that, RecursiveImport.S1, RecursiveImport.T.T1,
 	RecursiveImport.T.T1.X1, RecursiveImport.T.U.U1, RecursiveImport.T1, RecursiveImport.T1.X1,
 	RecursiveImport.U.U1, RecursiveImport.U1, RecursiveImport.X1, RecursiveImport.x1,
-	RecursiveImport.x1.self, S.S1, S.S1.self, S.T.T1, S.T.T1.X1, S.T.T1.X1.self, S.T.T1.self, S.T.U.U1,
-	S.T.U.U1.self, S1, T.T1, T.T1.X1, T.U.U1, T1, T1.X1, U.U1, U1, X1, x1, x1.self
+	RecursiveImport.x1.self, RecursiveImport.x1.self.that, RecursiveImport.x1.that,
+	RecursiveImport.x1.that.self, S.S1, S.S1.self, S.S1.self.that, S.T.T1, S.T.T1.X1, S.T.T1.X1.self,
+	S.T.T1.X1.self.that, S.T.T1.self, S.T.T1.self.that, S.T.U.U1, S.T.U.U1.self, S.T.U.U1.self.that, S1,
+	T.T1, T.T1.X1, T.U.U1, T1, T1.X1, U.U1, U1, X1, x1, x1.self, x1.self.that, x1.that,
+	x1.that.self
 --- */
 	
 	x1: T1::X1;

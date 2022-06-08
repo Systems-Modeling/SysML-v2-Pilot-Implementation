@@ -26,23 +26,25 @@ package Classes {
 		// The below pass the junit test but if change scope at VisibilityPackage.c_Private get an Error "Reference type is not visible in this scope." 
 		//* XPECT scope at c_public ---
 			Classes.Try, Classes.Try.feature4, Classes.Try.featurepublic,
-			Classes.Try.featurepublic.c_public, Classes.Try.self, Classes.c_Public, Classes.c_Public.c_public,
-			Classes.c_public, Try, Try.feature4, Try.featurepublic, Try.featurepublic.c_public, Try.self,
-			VisibilityPackage.c_Public, VisibilityPackage.c_Public.c_public, VisibilityPackage.c_Public_alias,
+			Classes.Try.featurepublic.c_public, Classes.Try.self, Classes.Try.self.that, Classes.c_Public,
+			Classes.c_Public.c_public, Classes.c_public, Try, Try.feature4, Try.featurepublic,
+			Try.featurepublic.c_public, Try.self, Try.self.that, VisibilityPackage.c_Public,
+			VisibilityPackage.c_Public.c_public, VisibilityPackage.c_Public_alias,
 			VisibilityPackage.c_Public_alias.alias_public, VisibilityPackage.c_Public_alias.c_public, VisibilityPackage.c_clazz,
 			VisibilityPackage.c_clazz.c_Public, VisibilityPackage.c_clazz.c_Public.c_publicc, c_Public, c_Public.c_public,
-			c_public, feature4, featurepublic, featurepublic.c_public, self
-	--- */
+			c_public, feature4, featurepublic, featurepublic.c_public, self, self.that
+		--- */
 		feature feature4 : c_public;
 		//XPECT linkedName at c_Public --> VisibilityPackage.c_Public
 		//* XPECT scope at c_Public ---
 			Classes.Try, Classes.Try.feature4, Classes.Try.featurepublic,
-			Classes.Try.featurepublic.c_public, Classes.Try.self, Classes.c_Public, Classes.c_Public.c_public,
-			Classes.c_public, Try, Try.feature4, Try.featurepublic, Try.featurepublic.c_public, Try.self,
-			VisibilityPackage.c_Public, VisibilityPackage.c_Public.c_public, VisibilityPackage.c_Public_alias,
+			Classes.Try.featurepublic.c_public, Classes.Try.self, Classes.Try.self.that, Classes.c_Public,
+			Classes.c_Public.c_public, Classes.c_public, Try, Try.feature4, Try.featurepublic,
+			Try.featurepublic.c_public, Try.self, Try.self.that, VisibilityPackage.c_Public,
+			VisibilityPackage.c_Public.c_public, VisibilityPackage.c_Public_alias,
 			VisibilityPackage.c_Public_alias.alias_public, VisibilityPackage.c_Public_alias.c_public, VisibilityPackage.c_clazz,
 			VisibilityPackage.c_clazz.c_Public, VisibilityPackage.c_clazz.c_Public.c_publicc, c_Public, c_Public.c_public,
-			c_public, feature4, featurepublic, featurepublic.c_public, self
+			c_public, feature4, featurepublic, featurepublic.c_public, self, self.that
 		--- */
 		feature featurepublic : c_Public;
 	}

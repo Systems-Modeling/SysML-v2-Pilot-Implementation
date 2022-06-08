@@ -27,29 +27,41 @@ package test{
 	feature C subsets B{
 		//XPECT linkedName at b --> test.B.b
 		//* XPECT scope at b ---
- 		A, A.a, A.a.aa, B, B.b, B.b.aa, C, C.c2, C.c2.aa, D, D.d, 
- 		b, b.aa,
- 		test.A, test.A.a, test.A.a.aa, test.B, test.B.b, test.B.b.aa, test.C,
-		test.C.c2, test.C.c2.aa, test.D, test.D.d,
-		  		A.self,  A.a.self,  A.a.aa.self,  B.self,  B.b.self,  B.b.aa.self,  C.self,  C.c2.self,  C.c2.aa.self,  D.self,  D.d.self,  
- 		b.self,  b.aa.self, 
- 		test.A.self,  test.A.a.self,  test.A.a.aa.self,  test.B.self,  test.B.b.self,  test.B.b.aa.self,  test.C.self, 
-		test.C.c2.self,  test.C.c2.aa.self,  test.D.self,  test.D.d.self, self
-	--- */
+		A, A.a, A.a.aa, A.a.aa.self, A.a.aa.that, A.a.aa.that.self, A.a.self, A.a.that,
+		A.a.that.self, A.self, A.that, A.that.self, B, B.b, B.b.aa, B.b.aa.self, B.b.aa.that,
+		B.b.aa.that.self, B.b.self, B.b.that, B.b.that.self, B.self, B.that, B.that.self, C, C.c2,
+		C.c2.aa, C.c2.aa.self, C.c2.aa.that, C.c2.aa.that.self, C.c2.self, C.c2.that,
+		C.c2.that.self, C.self, C.that, C.that.self, D, D.d, D.d.self, D.d.that, D.d.that.self, D.self,
+		D.that, D.that.self, b, b.aa, b.aa.self, b.aa.that, b.aa.that.self, b.self, b.that,
+		b.that.self, self, test.A, test.A.a, test.A.a.aa, test.A.a.aa.self, test.A.a.aa.that,
+		test.A.a.aa.that.self, test.A.a.self, test.A.a.that, test.A.a.that.self, test.A.self, test.A.that,
+		test.A.that.self, test.B, test.B.b, test.B.b.aa, test.B.b.aa.self, test.B.b.aa.that,
+		test.B.b.aa.that.self, test.B.b.self, test.B.b.that, test.B.b.that.self, test.B.self, test.B.that,
+		test.B.that.self, test.C, test.C.c2, test.C.c2.aa, test.C.c2.aa.self, test.C.c2.aa.that,
+		test.C.c2.aa.that.self, test.C.c2.self, test.C.c2.that, test.C.c2.that.self, test.C.self, test.C.that,
+		test.C.that.self, test.D, test.D.d, test.D.d.self, test.D.d.that, test.D.d.that.self,
+		test.D.self, test.D.that, test.D.that.self, that, that.self
+		--- */
 		feature c2 redefines b {}
 	}
 	feature D subsets C.c2{
 		//XPECT linkedName at aa --> test.A.a.aa
 		//* XPECT scope at aa ---
- 		A, A.a, A.a.aa, B, B.b, B.b.aa, 
-		C,C.c2, C.c2.aa, D, D.d, aa,
-		test.A, test.A.a, test.A.a.aa, test.B, test.B.b, test.B.b.aa,
-		test.C, test.C.c2, test.C.c2.aa, test.D, test.D.d,
-		 		A.self,  A.a.self,  A.a.aa.self,  B.self,  B.b.self,  B.b.aa.self,  
-		C.self, C.c2.self,  C.c2.aa.self,  D.self,  D.d.self,  aa.self, 
-		test.A.self,  test.A.a.self,  test.A.a.aa.self,  test.B.self,  test.B.b.self,  test.B.b.aa.self, 
-		test.C.self,  test.C.c2.self,  test.C.c2.aa.self,  test.D.self,  test.D.d.self, self
-	--- */
+		A, A.a, A.a.aa, A.a.aa.self, A.a.aa.that, A.a.aa.that.self, A.a.self, A.a.that,
+		A.a.that.self, A.self, A.that, A.that.self, B, B.b, B.b.aa, B.b.aa.self, B.b.aa.that,
+		B.b.aa.that.self, B.b.self, B.b.that, B.b.that.self, B.self, B.that, B.that.self, C, C.c2,
+		C.c2.aa, C.c2.aa.self, C.c2.aa.that, C.c2.aa.that.self, C.c2.self, C.c2.that,
+		C.c2.that.self, C.self, C.that, C.that.self, D, D.d, D.d.self, D.d.that, D.d.that.self, D.self,
+		D.that, D.that.self, aa, aa.self, aa.that, aa.that.self, self, test.A, test.A.a,
+		test.A.a.aa, test.A.a.aa.self, test.A.a.aa.that, test.A.a.aa.that.self, test.A.a.self,
+		test.A.a.that, test.A.a.that.self, test.A.self, test.A.that, test.A.that.self, test.B,
+		test.B.b, test.B.b.aa, test.B.b.aa.self, test.B.b.aa.that, test.B.b.aa.that.self,
+		test.B.b.self, test.B.b.that, test.B.b.that.self, test.B.self, test.B.that, test.B.that.self,
+		test.C, test.C.c2, test.C.c2.aa, test.C.c2.aa.self, test.C.c2.aa.that,
+		test.C.c2.aa.that.self, test.C.c2.self, test.C.c2.that, test.C.c2.that.self, test.C.self, test.C.that,
+		test.C.that.self, test.D, test.D.d, test.D.d.self, test.D.d.that, test.D.d.that.self,
+		test.D.self, test.D.that, test.D.that.self, that, that.self
+		--- */
 		feature d redefines aa {}
 	}
 }

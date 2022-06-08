@@ -19,8 +19,9 @@ END_SETUP
 package test{
 	feature A {}
 	//* XPECT scope at test::A ---
-	   	A, B, test.A, test.B,
-		A.self,  B.self,  test.A.self,  test.B.self, 
+	A, A.self, A.that, A.that.self, B, B.self, B.that, B.that.self, test.A,
+	test.A.self, test.A.that, test.A.that.self, test.B, test.B.self, test.B.that,
+	test.B.that.self
   	--- */
 	feature B subsets test::A{}
 }

@@ -29,29 +29,67 @@ package test{
 		feature c1 : a {}
 		//XPECT linkedName at b --> test.B.b
 		//* XPECT scope at b ---
- 		A, A.a, A.a.aa, B, B.a, B.a.aa, B.b, B.b.aa, C, C.a, C.a.aa, C.b, C.b.aa, C.c1, C.c1.aa, C.c2, C.c2.aa, D, D.aa, D.d, 
- 		a, a.aa, b, b.aa, c1, c1.aa, c2, c2.aa,
- 		test.A, test.A.a, test.A.a.aa, test.B, test.B.a, test.B.a.aa, test.B.b, test.B.b.aa, test.C, test.C.a, test.C.a.aa,
-		test.C.b, test.C.b.aa, test.C.c1, test.C.c1.aa, test.C.c2, test.C.c2.aa, test.D, test.D.aa, test.D.d,
-		 		A.self,  A.a.self,  A.a.aa.self,  B.self,  B.a.self,  B.a.aa.self,  B.b.self,  B.b.aa.self,  C.self,  C.a.self,  C.a.aa.self,  C.b.self,  C.b.aa.self,  C.c1.self,  C.c1.aa.self,  C.c2.self,  C.c2.aa.self,  D.self,  D.aa.self,  D.d.self,  
- 		a.self,  a.aa.self,  b.self,  b.aa.self,  c1.self,  c1.aa.self,  c2.self,  c2.aa.self, 
- 		test.A.self,  test.A.a.self,  test.A.a.aa.self,  test.B.self,  test.B.a.self,  test.B.a.aa.self,  test.B.b.self,  test.B.b.aa.self,  test.C.self,  test.C.a.self,  test.C.a.aa.self, 
-		test.C.b.self,  test.C.b.aa.self,  test.C.c1.self,  test.C.c1.aa.self,  test.C.c2.self,  test.C.c2.aa.self,  test.D.self,  test.D.aa.self,  test.D.d.self, self 
-	--- */
+		A, A.a, A.a.aa, A.a.aa.self, A.a.aa.that, A.a.aa.that.self, A.a.self, A.a.that,
+		A.a.that.self, A.self, A.that, A.that.self, B, B.a, B.a.aa, B.a.aa.self, B.a.aa.that,
+		B.a.aa.that.self, B.a.self, B.a.that, B.a.that.self, B.b, B.b.aa, B.b.aa.self, B.b.aa.that,
+		B.b.aa.that.self, B.b.self, B.b.that, B.b.that.self, B.self, B.that, B.that.self, C, C.a, C.a.aa,
+		C.a.aa.self, C.a.aa.that, C.a.aa.that.self, C.a.self, C.a.that, C.a.that.self, C.b, C.b.aa,
+		C.b.aa.self, C.b.aa.that, C.b.aa.that.self, C.b.self, C.b.that, C.b.that.self, C.c1,
+		C.c1.aa, C.c1.aa.self, C.c1.aa.that, C.c1.aa.that.self, C.c1.self, C.c1.that,
+		C.c1.that.self, C.c2, C.c2.aa, C.c2.aa.self, C.c2.aa.that, C.c2.aa.that.self, C.c2.self,
+		C.c2.that, C.c2.that.self, C.self, C.that, C.that.self, D, D.aa, D.aa.self, D.aa.that,
+		D.aa.that.self, D.d, D.d.self, D.d.that, D.d.that.self, D.self, D.that, D.that.self, a, a.aa,
+		a.aa.self, a.aa.that, a.aa.that.self, a.self, a.that, a.that.self, b, b.aa, b.aa.self,
+		b.aa.that, b.aa.that.self, b.self, b.that, b.that.self, c1, c1.aa, c1.aa.self, c1.aa.that,
+		c1.aa.that.self, c1.self, c1.that, c1.that.self, c2, c2.aa, c2.aa.self, c2.aa.that,
+		c2.aa.that.self, c2.self, c2.that, c2.that.self, self, test.A, test.A.a, test.A.a.aa,
+		test.A.a.aa.self, test.A.a.aa.that, test.A.a.aa.that.self, test.A.a.self, test.A.a.that,
+		test.A.a.that.self, test.A.self, test.A.that, test.A.that.self, test.B, test.B.a, test.B.a.aa,
+		test.B.a.aa.self, test.B.a.aa.that, test.B.a.aa.that.self, test.B.a.self, test.B.a.that,
+		test.B.a.that.self, test.B.b, test.B.b.aa, test.B.b.aa.self, test.B.b.aa.that,
+		test.B.b.aa.that.self, test.B.b.self, test.B.b.that, test.B.b.that.self, test.B.self, test.B.that,
+		test.B.that.self, test.C, test.C.a, test.C.a.aa, test.C.a.aa.self, test.C.a.aa.that,
+		test.C.a.aa.that.self, test.C.a.self, test.C.a.that, test.C.a.that.self, test.C.b, test.C.b.aa,
+		test.C.b.aa.self, test.C.b.aa.that, test.C.b.aa.that.self, test.C.b.self, test.C.b.that,
+		test.C.b.that.self, test.C.c1, test.C.c1.aa, test.C.c1.aa.self, test.C.c1.aa.that,
+		test.C.c1.aa.that.self, test.C.c1.self, test.C.c1.that, test.C.c1.that.self, test.C.c2, test.C.c2.aa,
+		test.C.c2.aa.self, test.C.c2.aa.that, test.C.c2.aa.that.self, test.C.c2.self, test.C.c2.that,
+		test.C.c2.that.self, test.C.self, test.C.that, test.C.that.self, test.D, test.D.aa, test.D.aa.self,
+		test.D.aa.that, test.D.aa.that.self, test.D.d, test.D.d.self, test.D.d.that,
+		test.D.d.that.self, test.D.self, test.D.that, test.D.that.self, that, that.self
+		--- */
 		feature c2 : b {}
 	}
 	feature D : C::a{
 		//XPECT linkedName at aa --> test.A.a.aa
 		//* XPECT scope at aa ---
- 		A, A.a, A.a.aa, B, B.a, B.a.aa, B.b, B.b.aa, 
-		C, C.a, C.a.aa, C.b, C.b.aa, C.c1, C.c1.aa, C.c2, C.c2.aa, D, D.aa, D.d, aa, d,
-		test.A, test.A.a, test.A.a.aa, test.B, test.B.a, test.B.a.aa, test.B.b, test.B.b.aa,
-		test.C, test.C.a, test.C.a.aa, test.C.b, test.C.b.aa, test.C.c1, test.C.c1.aa, test.C.c2, test.C.c2.aa, test.D, test.D.aa, test.D.d,
-		 		A.self,  A.a.self,  A.a.aa.self,  B.self,  B.a.self,  B.a.aa.self,  B.b.self,  B.b.aa.self,  
-		C.self,  C.a.self,  C.a.aa.self,  C.b.self,  C.b.aa.self,  C.c1.self,  C.c1.aa.self,  C.c2.self,  C.c2.aa.self,  D.self,  D.aa.self,  D.d.self,  aa.self,  d.self, 
-		test.A.self,  test.A.a.self,  test.A.a.aa.self,  test.B.self,  test.B.a.self,  test.B.a.aa.self,  test.B.b.self,  test.B.b.aa.self, 
-		test.C.self,  test.C.a.self,  test.C.a.aa.self,  test.C.b.self,  test.C.b.aa.self,  test.C.c1.self,  test.C.c1.aa.self,  test.C.c2.self,  test.C.c2.aa.self,  test.D.self,  test.D.aa.self,  test.D.d.self,self 
-	--- */
+		A, A.a, A.a.aa, A.a.aa.self, A.a.aa.that, A.a.aa.that.self, A.a.self, A.a.that,
+		A.a.that.self, A.self, A.that, A.that.self, B, B.a, B.a.aa, B.a.aa.self, B.a.aa.that,
+		B.a.aa.that.self, B.a.self, B.a.that, B.a.that.self, B.b, B.b.aa, B.b.aa.self, B.b.aa.that,
+		B.b.aa.that.self, B.b.self, B.b.that, B.b.that.self, B.self, B.that, B.that.self, C, C.a, C.a.aa,
+		C.a.aa.self, C.a.aa.that, C.a.aa.that.self, C.a.self, C.a.that, C.a.that.self, C.b, C.b.aa,
+		C.b.aa.self, C.b.aa.that, C.b.aa.that.self, C.b.self, C.b.that, C.b.that.self, C.c1,
+		C.c1.aa, C.c1.aa.self, C.c1.aa.that, C.c1.aa.that.self, C.c1.self, C.c1.that,
+		C.c1.that.self, C.c2, C.c2.aa, C.c2.aa.self, C.c2.aa.that, C.c2.aa.that.self, C.c2.self,
+		C.c2.that, C.c2.that.self, C.self, C.that, C.that.self, D, D.aa, D.aa.self, D.aa.that,
+		D.aa.that.self, D.d, D.d.self, D.d.that, D.d.that.self, D.self, D.that, D.that.self, aa,
+		aa.self, aa.that, aa.that.self, d, d.self, d.that, d.that.self, self, test.A, test.A.a,
+		test.A.a.aa, test.A.a.aa.self, test.A.a.aa.that, test.A.a.aa.that.self, test.A.a.self,
+		test.A.a.that, test.A.a.that.self, test.A.self, test.A.that, test.A.that.self, test.B,
+		test.B.a, test.B.a.aa, test.B.a.aa.self, test.B.a.aa.that, test.B.a.aa.that.self,
+		test.B.a.self, test.B.a.that, test.B.a.that.self, test.B.b, test.B.b.aa, test.B.b.aa.self,
+		test.B.b.aa.that, test.B.b.aa.that.self, test.B.b.self, test.B.b.that, test.B.b.that.self,
+		test.B.self, test.B.that, test.B.that.self, test.C, test.C.a, test.C.a.aa, test.C.a.aa.self,
+		test.C.a.aa.that, test.C.a.aa.that.self, test.C.a.self, test.C.a.that, test.C.a.that.self,
+		test.C.b, test.C.b.aa, test.C.b.aa.self, test.C.b.aa.that, test.C.b.aa.that.self,
+		test.C.b.self, test.C.b.that, test.C.b.that.self, test.C.c1, test.C.c1.aa, test.C.c1.aa.self,
+		test.C.c1.aa.that, test.C.c1.aa.that.self, test.C.c1.self, test.C.c1.that, test.C.c1.that.self,
+		test.C.c2, test.C.c2.aa, test.C.c2.aa.self, test.C.c2.aa.that, test.C.c2.aa.that.self,
+		test.C.c2.self, test.C.c2.that, test.C.c2.that.self, test.C.self, test.C.that,
+		test.C.that.self, test.D, test.D.aa, test.D.aa.self, test.D.aa.that, test.D.aa.that.self,
+		test.D.d, test.D.d.self, test.D.d.that, test.D.d.that.self, test.D.self, test.D.that,
+		test.D.that.self, that, that.self
+		--- */
 		feature d : aa  {}
 	}
 }

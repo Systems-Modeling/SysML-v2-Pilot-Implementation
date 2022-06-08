@@ -27,17 +27,26 @@ package test{
 		feature B : A {
 			//XPECT linkedName at a1 --> OuterPackage.A.a1
 			//* XPECT scope at a1 ---
-			inner.A, inner.A.a1, test.inner.A, test.inner.A.a1,
-		    b, a1, 
-		    A, A.a1, B, B.a1, B.b, inner, inner.B, inner.B.a1, inner.B.b,
-		    test.A, test.A.a2, test.inner, test.inner.B, test.inner.B.a1, test.inner.B.b,
-		    OuterPackage.A, OuterPackage.A.a1, OuterPackage.B, OuterPackage.B.b, OuterPackage.B.b.a1,
-						inner.A.self,  inner.A.a1.self,  test.inner.A.self,  test.inner.A.a1.self, 
-		    b.self,  a1.self,  
-		    A.self,  A.a1.self,  B.self,  B.a1.self,  B.b.self,  inner.self,  inner.B.self,  inner.B.a1.self,  inner.B.b.self, 
-		    test.A.self,  test.A.a2.self,  test.inner.self,  test.inner.B.self,  test.inner.B.a1.self,  test.inner.B.b.self, 
-		    OuterPackage.A.self,  OuterPackage.A.a1.self,  OuterPackage.B.self,  OuterPackage.B.b.self,  OuterPackage.B.b.a1.self, self
-		--- */
+			A, A.a1, A.a1.self, A.a1.that, A.a1.that.self, A.self, A.that, A.that.self, B,
+			B.a1, B.a1.self, B.a1.that, B.a1.that.self, B.b, B.b.self, B.b.that, B.b.that.self,
+			B.self, B.that, B.that.self, OuterPackage.A, OuterPackage.A.a1, OuterPackage.A.a1.self,
+			OuterPackage.A.a1.that, OuterPackage.A.a1.that.self, OuterPackage.A.self, OuterPackage.A.that,
+			OuterPackage.A.that.self, OuterPackage.B, OuterPackage.B.b, OuterPackage.B.b.a1,
+			OuterPackage.B.b.a1.self, OuterPackage.B.b.a1.that, OuterPackage.B.b.a1.that.self, OuterPackage.B.b.self,
+			OuterPackage.B.b.that, OuterPackage.B.b.that.self, OuterPackage.B.self, OuterPackage.B.that,
+			OuterPackage.B.that.self, a1, a1.self, a1.that, a1.that.self, b, b.self, b.that, b.that.self, inner,
+			inner.A, inner.A.a1, inner.A.a1.self, inner.A.a1.that, inner.A.a1.that.self,
+			inner.A.self, inner.A.that, inner.A.that.self, inner.B, inner.B.a1, inner.B.a1.self,
+			inner.B.a1.that, inner.B.a1.that.self, inner.B.b, inner.B.b.self, inner.B.b.that,
+			inner.B.b.that.self, inner.B.self, inner.B.that, inner.B.that.self, inner.self, inner.that,
+			inner.that.self, self, test.A, test.A.a2, test.A.a2.self, test.A.a2.that, test.A.a2.that.self,
+			test.A.self, test.A.that, test.A.that.self, test.inner, test.inner.A, test.inner.A.a1,
+			test.inner.A.a1.self, test.inner.A.a1.that, test.inner.A.a1.that.self, test.inner.A.self,
+			test.inner.A.that, test.inner.A.that.self, test.inner.B, test.inner.B.a1, test.inner.B.a1.self,
+			test.inner.B.a1.that, test.inner.B.a1.that.self, test.inner.B.b, test.inner.B.b.self,
+			test.inner.B.b.that, test.inner.B.b.that.self, test.inner.B.self, test.inner.B.that,
+			test.inner.B.that.self, test.inner.self, test.inner.that, test.inner.that.self, that, that.self
+			--- */
 			feature b : a1{}
 		}
 	}

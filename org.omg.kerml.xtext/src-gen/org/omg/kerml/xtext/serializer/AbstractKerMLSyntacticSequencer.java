@@ -37,6 +37,7 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	protected AbstractElementAlias match_Disjoining_DisjoiningKeyword_0_0_q;
 	protected AbstractElementAlias match_ElementBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__;
 	protected AbstractElementAlias match_FeatureConjugationPart_ConjugatesKeyword_0_1_or_TildeKeyword_0_0;
+	protected AbstractElementAlias match_FeatureInverting_InvertingKeyword_0_0_q;
 	protected AbstractElementAlias match_FeatureTyping_ColonKeyword_3_0_or___TypedKeyword_3_1_0_ByKeyword_3_1_1__;
 	protected AbstractElementAlias match_FeatureTyping_SpecializationKeyword_0_0_q;
 	protected AbstractElementAlias match_FeatureValue_EqualsSignKeyword_0_1_1_0_q;
@@ -96,6 +97,7 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 		match_Disjoining_DisjoiningKeyword_0_0_q = new TokenAlias(false, true, grammarAccess.getDisjoiningAccess().getDisjoiningKeyword_0_0());
 		match_ElementBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getElementBodyAccess().getLeftCurlyBracketKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getElementBodyAccess().getRightCurlyBracketKeyword_1_2())), new TokenAlias(false, false, grammarAccess.getElementBodyAccess().getSemicolonKeyword_0()));
 		match_FeatureConjugationPart_ConjugatesKeyword_0_1_or_TildeKeyword_0_0 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getFeatureConjugationPartAccess().getConjugatesKeyword_0_1()), new TokenAlias(false, false, grammarAccess.getFeatureConjugationPartAccess().getTildeKeyword_0_0()));
+		match_FeatureInverting_InvertingKeyword_0_0_q = new TokenAlias(false, true, grammarAccess.getFeatureInvertingAccess().getInvertingKeyword_0_0());
 		match_FeatureTyping_ColonKeyword_3_0_or___TypedKeyword_3_1_0_ByKeyword_3_1_1__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getFeatureTypingAccess().getTypedKeyword_3_1_0()), new TokenAlias(false, false, grammarAccess.getFeatureTypingAccess().getByKeyword_3_1_1())), new TokenAlias(false, false, grammarAccess.getFeatureTypingAccess().getColonKeyword_3_0()));
 		match_FeatureTyping_SpecializationKeyword_0_0_q = new TokenAlias(false, true, grammarAccess.getFeatureTypingAccess().getSpecializationKeyword_0_0());
 		match_FeatureValue_EqualsSignKeyword_0_1_1_0_q = new TokenAlias(false, true, grammarAccess.getFeatureValueAccess().getEqualsSignKeyword_0_1_1_0());
@@ -180,6 +182,8 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 				emit_ElementBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_FeatureConjugationPart_ConjugatesKeyword_0_1_or_TildeKeyword_0_0.equals(syntax))
 				emit_FeatureConjugationPart_ConjugatesKeyword_0_1_or_TildeKeyword_0_0(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_FeatureInverting_InvertingKeyword_0_0_q.equals(syntax))
+				emit_FeatureInverting_InvertingKeyword_0_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_FeatureTyping_ColonKeyword_3_0_or___TypedKeyword_3_1_0_ByKeyword_3_1_1__.equals(syntax))
 				emit_FeatureTyping_ColonKeyword_3_0_or___TypedKeyword_3_1_0_ByKeyword_3_1_1__(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_FeatureTyping_SpecializationKeyword_0_0_q.equals(syntax))
@@ -591,6 +595,18 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	
 	/**
 	 * Ambiguous syntax:
+	 *     'inverting'?
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     (rule start) (ambiguity) 'inverse' featureInverted=[Feature|QualifiedName]
+	 *     (rule start) (ambiguity) 'inverse' ownedRelatedElement+=OwnedFeatureChain
+	 */
+	protected void emit_FeatureInverting_InvertingKeyword_0_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Ambiguous syntax:
 	 *     ':' | ('typed' 'by')
 	 *
 	 * This ambiguous syntax occurs at:
@@ -758,6 +774,7 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 *     ownedRelationship+=FeatureValue (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedDisjoining (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedFeatureChaining (ambiguity) (rule end)
+	 *     ownedRelationship+=OwnedFeatureInverting (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedFeatureTyping (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedMultiplicity (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedRedefinition (ambiguity) (rule end)
@@ -1647,6 +1664,7 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 *     ownedRelationship+=OwnedConjugation (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedDisjoining (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedFeatureChaining (ambiguity) (rule end)
+	 *     ownedRelationship+=OwnedFeatureInverting (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedFeatureTyping (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedMultiplicity (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedRedefinition (ambiguity) (rule end)

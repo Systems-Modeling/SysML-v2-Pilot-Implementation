@@ -206,7 +206,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 				forEachOrdered(types::add);
 		types.addAll(TypeUtil.getImplicitGeneralTypesFor(this, SysMLPackage.eINSTANCE.getFeatureTyping()));
 		Feature lastChainingFeature = FeatureUtil.getLastChainingFeatureOf(this);
-		if (lastChainingFeature != null) {
+		if (lastChainingFeature != null && !visitedFeatures.contains(lastChainingFeature)) {
 			((FeatureImpl)lastChainingFeature).getTypes(types, visitedFeatures);
 		}
 	}

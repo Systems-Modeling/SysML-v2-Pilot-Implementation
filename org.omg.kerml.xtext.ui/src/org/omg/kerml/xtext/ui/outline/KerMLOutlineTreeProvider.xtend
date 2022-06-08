@@ -43,6 +43,7 @@ import org.omg.sysml.lang.sysml.FeatureChaining
 import org.omg.sysml.lang.sysml.Disjoining
 import org.omg.sysml.lang.sysml.FeatureValue
 import org.omg.sysml.lang.sysml.OwningMembership
+import org.omg.sysml.lang.sysml.FeatureInverting
 
 /**
  * Customization of the default outline structure.
@@ -440,6 +441,23 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		if (disjoiningType !== null) {
 			createNode(parentNode, disjoiningType, disjoiningType._image, disjoiningType._text, 
 				!(disjoiningType instanceof Feature) || (disjoiningType as Feature).ownedFeatureChaining.empty)
+		}
+	}
+	
+	def boolean _isLeaf(FeatureInverting inverting) {
+		inverting.invertingFeature === null
+	}
+	
+	def void _createChildren(IOutlineNode parentNode, FeatureInverting inverting) {
+		val featureInverted = inverting.featureInverted
+		if (featureInverted !== null && featureInverted !== inverting.eContainer) {
+			createNode(parentNode, featureInverted, featureInverted._image, featureInverted._text,  
+				featureInverted.ownedFeatureChaining.empty)			
+		}
+		val invertingFeature = inverting.invertingFeature
+		if (invertingFeature !== null) {
+			createNode(parentNode, invertingFeature, invertingFeature._image, invertingFeature._text, 
+				invertingFeature.ownedFeatureChaining.empty)
 		}
 	}
 	

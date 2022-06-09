@@ -40,9 +40,9 @@ package Objects {
 		 */
 		composite step ownedPerformances: Performance[0..*] subsets enactedPerformances {
 			/**
-			 * The owning object is the "this" reference for all ownedPerformances.
+			 * The owning object is the default "this" reference for all ownedPerformances.
 			 */
-			feature redefines this = that;
+			feature redefines this default that;
 		}
 
 		/**

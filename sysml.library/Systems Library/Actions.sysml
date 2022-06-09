@@ -40,7 +40,9 @@ package Actions {
 		/**
 		 * The subperformances of this Action that are Actions. 
 		 */
-		action subactions: Action[0..*] :> actions, subperformances;
+		action subactions: Action[0..*] :> actions, subperformances {
+			ref occurrence :>> this = (that as Action).this;
+		}
 	
 		/**
 		 * The subactions of this Action that are SendActions. 

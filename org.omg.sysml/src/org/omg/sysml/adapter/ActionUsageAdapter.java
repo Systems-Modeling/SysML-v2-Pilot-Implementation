@@ -73,14 +73,22 @@ public class ActionUsageAdapter extends OccurrenceUsageAdapter {
 	}
 	
 	protected String getSubactionType() {
-		return isSubaction()? "subaction": null;	
+		return isSubaction()? "subaction": 
+			   isOwnedAction()? "ownedAction":
+			   null;	
 	}
 		
 	public boolean isSubaction() {
 		ActionUsage target = getTarget();
 		Type owningType = target.getOwningType();
 		return target.isComposite() && (owningType instanceof ActionDefinition || owningType instanceof ActionUsage);
-	}	
+	}
+	
+	public boolean isOwnedAction() {
+		ActionUsage target = getTarget();
+		Type owningType = target.getOwningType();
+		return target.isComposite() && (owningType instanceof PartDefinition || owningType instanceof PartUsage);
+	}
 	
 	// Used in subclasses.
 	public boolean isPerformedAction() {		

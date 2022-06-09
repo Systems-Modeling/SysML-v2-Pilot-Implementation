@@ -23,9 +23,9 @@ package Parts {
 		part done: Part :>> Item::done;
 		
 		/**
-		 * Ports that are on this Part.
+		 * Ports that are owned by this Part.
 		 */
-		abstract port portsOnPart: Port[0..*] :> ports;
+		abstract port ownedPorts: Port[0..*] :> ports, timeEnclosedOccurrences;
 		
 		/**
 		 * Actions that are performed by this Part.
@@ -33,9 +33,21 @@ package Parts {
 		abstract ref action performedActions: Action[0..*] :> enactedPerformances;
 		
 		/**
+		 * Performed actions that are owned by this Part.
+		 */
+		abstract action ownedActions: Action[0..*] :> performedActions, ownedPerformances {
+		 	ref part :>> this = that as Part;
+		}
+		
+		/**
 		 * States that are exhibited by this Part.
 		 */
 		abstract ref state exhibitedStates: StateAction[0..*] :> performedActions;
+		
+		/**
+		 * Exhibited states that are owned by this Part.
+		 */
+		abstract state ownedStates: StateAction[0..*] :> exhibitedStates, ownedActions;
 	}
 	
 	/** 

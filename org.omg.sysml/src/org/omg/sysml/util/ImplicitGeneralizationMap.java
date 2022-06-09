@@ -145,6 +145,7 @@ public class ImplicitGeneralizationMap {
 		put(ActionDefinitionImpl.class, "base", "Actions::Action");		
 		put(ActionUsageImpl.class, "base", "Actions::actions");
 		put(ActionUsageImpl.class, "subaction", "Actions::Action::subactions");
+		put(ActionUsageImpl.class, "ownedAction", "Parts::Part::ownedActions");
 		put(ActionUsageImpl.class, "enclosedPerformance", "Performances::performance::enclosedPerformance");
 		put(ActionUsageImpl.class, "ownedPerformance", "Objects::Object::ownedPerformances");
 		
@@ -252,7 +253,7 @@ public class ImplicitGeneralizationMap {
 		
 		put(PortDefinitionImpl.class, "base", "Ports::Port");
 		put(PortUsageImpl.class, "base", "Ports::ports");
-		put(PortUsageImpl.class, "portOnPart", "Parts::Part::portsOnPart");
+		put(PortUsageImpl.class, "ownedPort", "Parts::Part::ownedPort");
 		put(PortUsageImpl.class, "subport", "Ports::Port::subports");
 		
 		put(RenderingDefinitionImpl.class, "base", "Views::Rendering");
@@ -273,6 +274,7 @@ public class ImplicitGeneralizationMap {
 		put(StateUsageImpl.class, "base", "States::stateActions");
 		put(StateUsageImpl.class, "substate", "States::StateAction::substates");
 		put(StateUsageImpl.class, "exclusiveState", "States::StateAction::exclusiveStates");
+		put(StateUsageImpl.class, "ownedAction", "Parts::Part::ownedStates");
 		
 		put(SuccessionAsUsageImpl.class, "base", "Links::links");
 		put(SuccessionAsUsageImpl.class, "binary", "Occurrences::happensBeforeLinks");

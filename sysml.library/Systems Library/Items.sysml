@@ -86,7 +86,7 @@ package Items {
 		/**
 		 * The Items that are composite subitems of this Item.
 		 */
-		abstract item subitems: Item[0..*];
+		abstract item subitems: Item[0..*] :> items;
 		
 		/**
 		 * The subitems of this Item that are Parts.

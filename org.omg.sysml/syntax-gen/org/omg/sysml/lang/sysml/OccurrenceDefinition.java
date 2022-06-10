@@ -53,6 +53,7 @@ public interface OccurrenceDefinition extends Definition, org.omg.sysml.lang.sys
 	 * @model transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='individualDefinition'"
 	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	LifeClass getLifeClass();

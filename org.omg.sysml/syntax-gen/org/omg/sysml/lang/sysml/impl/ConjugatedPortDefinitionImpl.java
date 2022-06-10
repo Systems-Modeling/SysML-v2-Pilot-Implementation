@@ -23,7 +23,7 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.omg.sysml.lang.sysml.ConjugatedPortDefinition;
 import org.omg.sysml.lang.sysml.Conjugation;
 import org.omg.sysml.lang.sysml.Namespace;
@@ -46,6 +46,26 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * @generated
  */
 public class ConjugatedPortDefinitionImpl extends PortDefinitionImpl implements ConjugatedPortDefinition {
+	/**
+	 * The cached setting delegate for the '{@link #getOwnedPortConjugator() <em>Owned Port Conjugator</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedPortConjugator()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate OWNED_PORT_CONJUGATOR__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.CONJUGATED_PORT_DEFINITION__OWNED_PORT_CONJUGATOR).getSettingDelegate();
+
+	/**
+	 * The cached setting delegate for the '{@link #getOriginalPortDefinition() <em>Original Port Definition</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOriginalPortDefinition()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate ORIGINAL_PORT_DEFINITION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.CONJUGATED_PORT_DEFINITION__ORIGINAL_PORT_DEFINITION).getSettingDelegate();
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -72,29 +92,26 @@ public class ConjugatedPortDefinitionImpl extends PortDefinitionImpl implements 
 	 */
 	@Override
 	public PortConjugation getOwnedPortConjugator() {
-		PortConjugation ownedPortConjugator = basicGetOwnedPortConjugator();
-		return ownedPortConjugator != null && ownedPortConjugator.eIsProxy() ? (PortConjugation)eResolveProxy((InternalEObject)ownedPortConjugator) : ownedPortConjugator;
+		return (PortConjugation)OWNED_PORT_CONJUGATOR__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public PortConjugation basicGetOwnedPortConjugator() {
-		return (PortConjugation) getOwnedRelationship().stream().
-				filter(PortConjugation.class::isInstance).
-				findFirst().orElse(null);
+		return (PortConjugation)OWNED_PORT_CONJUGATOR__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setOwnedPortConjugator(PortConjugation newOwnedPortConjugator) {
-		throw new UnsupportedOperationException();
+		OWNED_PORT_CONJUGATOR__ESETTING_DELEGATE.dynamicSet(this, null, 0, newOwnedPortConjugator);
 	}
 
 	/**
@@ -113,28 +130,26 @@ public class ConjugatedPortDefinitionImpl extends PortDefinitionImpl implements 
 	 */
 	@Override
 	public PortDefinition getOriginalPortDefinition() {
-		PortDefinition originalPortDefinition = basicGetOriginalPortDefinition();
-		return originalPortDefinition != null && originalPortDefinition.eIsProxy() ? (PortDefinition)eResolveProxy((InternalEObject)originalPortDefinition) : originalPortDefinition;
+		return (PortDefinition)ORIGINAL_PORT_DEFINITION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public PortDefinition basicGetOriginalPortDefinition() {
-		PortConjugation conjugator = getOwnedPortConjugator();
-		return conjugator != null? conjugator.getOriginalPortDefinition(): null;
+		return (PortDefinition)ORIGINAL_PORT_DEFINITION__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setOriginalPortDefinition(PortDefinition newOriginalPortDefinition) {
-		throw new UnsupportedOperationException();
+		ORIGINAL_PORT_DEFINITION__ESETTING_DELEGATE.dynamicSet(this, null, 0, newOriginalPortDefinition);
 	}
 
 	/**

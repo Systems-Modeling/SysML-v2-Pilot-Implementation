@@ -58,7 +58,6 @@ import org.omg.sysml.lang.sysml.VariantMembership;
 import org.omg.sysml.lang.sysml.VerificationCaseUsage;
 import org.omg.sysml.lang.sysml.ViewUsage;
 import org.omg.sysml.lang.sysml.ViewpointUsage;
-import org.omg.sysml.util.NonNotifyingEObjectEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -212,6 +211,15 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate OWNED_ANALYSIS_CASE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.DEFINITION__OWNED_ANALYSIS_CASE).getSettingDelegate();
+	/**
+	 * The cached setting delegate for the '{@link #getVariant() <em>Variant</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getVariant()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate VARIANT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.DEFINITION__VARIANT).getSettingDelegate();
 	/**
 	 * The cached setting delegate for the '{@link #getOwnedCase() <em>Owned Case</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -736,15 +744,12 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<Usage> getVariant() {
-		EList<Usage> variants = new NonNotifyingEObjectEList<>(Usage.class, this, SysMLPackage.DEFINITION__VARIANT);
-		getVariantMembership().stream().
-			map(VariantMembership::getOwnedVariantUsage).
-			forEachOrdered(variants::add);
-		return variants;
+		return (EList<Usage>)VARIANT__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
@@ -1113,7 +1118,7 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 			case SysMLPackage.DEFINITION__OWNED_ANALYSIS_CASE:
 				return OWNED_ANALYSIS_CASE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.DEFINITION__VARIANT:
-				return !getVariant().isEmpty();
+				return VARIANT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.DEFINITION__OWNED_CASE:
 				return OWNED_CASE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.DEFINITION__OWNED_REFERENCE:

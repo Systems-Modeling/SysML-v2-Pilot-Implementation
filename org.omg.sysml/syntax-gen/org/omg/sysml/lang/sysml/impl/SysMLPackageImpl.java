@@ -13479,6 +13479,11 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   new String[] {
 		   });
 		addAnnotation
+		  (getDefinition_Variant(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
 		  (getDefinition_OwnedCase(),
 		   source,
 		   new String[] {

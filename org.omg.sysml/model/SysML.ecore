@@ -2553,6 +2553,7 @@
         <details key="documentation" value="&lt;p>The Usages which represent the variants of this Definition as a variation point Definition, if &lt;code>isVariation&lt;/code> = true. If &lt;code>isVariation&lt;/code> = false, the there must be no &lt;code>variants&lt;/code>.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Namespace/ownedMember"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedCase" upperBound="-1"
         eType="#//CaseUsage" volatile="true" transient="true" derived="true">

@@ -46,7 +46,6 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedUsage <em>Owned Usage</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedPort <em>Owned Port</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Definition#getDirectedUsage <em>Directed Usage</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Definition#getUsage <em>Usage</em>}</li>
@@ -77,6 +76,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedOccurrence <em>Owned Occurrence</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedUseCase <em>Owned Use Case</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedFlow <em>Owned Flow</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedUsage <em>Owned Usage</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition()
@@ -865,6 +865,7 @@ public interface Definition extends Classifier {
 	 * @model transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='owningVariationDefinition'"
 	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<Usage> getVariant();

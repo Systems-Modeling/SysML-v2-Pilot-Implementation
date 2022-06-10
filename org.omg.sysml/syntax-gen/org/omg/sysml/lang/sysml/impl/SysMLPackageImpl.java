@@ -13579,6 +13579,11 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   new String[] {
 		   });
 		addAnnotation
+		  (getPortDefinition_ConjugatedPortDefinition(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
 		  (getAcceptActionUsage_ReceiverArgument(),
 		   source,
 		   new String[] {

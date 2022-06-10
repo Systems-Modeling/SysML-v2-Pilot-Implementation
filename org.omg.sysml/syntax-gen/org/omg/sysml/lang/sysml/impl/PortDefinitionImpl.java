@@ -24,7 +24,7 @@ package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.ecore.EClass;
 
-import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.omg.sysml.lang.sysml.ConjugatedPortDefinition;
 import org.omg.sysml.lang.sysml.PortDefinition;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -43,6 +43,16 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * @generated
  */
 public class PortDefinitionImpl extends OccurrenceDefinitionImpl implements PortDefinition {
+
+	/**
+	 * The cached setting delegate for the '{@link #getConjugatedPortDefinition() <em>Conjugated Port Definition</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getConjugatedPortDefinition()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate CONJUGATED_PORT_DEFINITION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.PORT_DEFINITION__CONJUGATED_PORT_DEFINITION).getSettingDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -70,29 +80,26 @@ public class PortDefinitionImpl extends OccurrenceDefinitionImpl implements Port
 	 */
 	@Override
 	public ConjugatedPortDefinition getConjugatedPortDefinition() {
-		ConjugatedPortDefinition conjugatedPortDefinition = basicGetConjugatedPortDefinition();
-		return conjugatedPortDefinition != null && conjugatedPortDefinition.eIsProxy() ? (ConjugatedPortDefinition)eResolveProxy((InternalEObject)conjugatedPortDefinition) : conjugatedPortDefinition;
+		return (ConjugatedPortDefinition)CONJUGATED_PORT_DEFINITION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public ConjugatedPortDefinition basicGetConjugatedPortDefinition() {
-		return (ConjugatedPortDefinition) getOwnedMember().stream().
-				filter(member->member instanceof ConjugatedPortDefinition).
-				findFirst().orElse(null);
+		return (ConjugatedPortDefinition)CONJUGATED_PORT_DEFINITION__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setConjugatedPortDefinition(ConjugatedPortDefinition newConjugatedPortDefinition) {
-		throw new UnsupportedOperationException();
+		CONJUGATED_PORT_DEFINITION__ESETTING_DELEGATE.dynamicSet(this, null, 0, newConjugatedPortDefinition);
 	}
 
 	/**
@@ -149,7 +156,7 @@ public class PortDefinitionImpl extends OccurrenceDefinitionImpl implements Port
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case SysMLPackage.PORT_DEFINITION__CONJUGATED_PORT_DEFINITION:
-				return basicGetConjugatedPortDefinition() != null;
+				return CONJUGATED_PORT_DEFINITION__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 		}
 		return super.eIsSet(featureID);
 	}

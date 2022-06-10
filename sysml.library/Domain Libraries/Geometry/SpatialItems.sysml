@@ -62,8 +62,8 @@ package SpatialItems {
 			item :>> localClock default (that as SpatialItem).localClock;
 			attribute :>> coordinateFrame {
 				attribute :>> transformation[1] {
-				 	attribute :>> source = (that.that.that as SpatialItem).coordinateFrame;
-				 	attribute :>> target = that;
+				 	attribute :>> source default (that.that.that as SpatialItem).coordinateFrame;
+				 	attribute :>> target default that;
 				}
 			}
 		}

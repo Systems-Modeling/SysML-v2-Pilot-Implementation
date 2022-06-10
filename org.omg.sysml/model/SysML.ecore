@@ -2889,6 +2889,7 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>The ActionUsage of this StateUsage to be performed on entry to the state specified by the StateUsage. This is derived as the owned ActionUsage related to the StateDefinition by a StateSubactionMembership  with &lt;tt>kind&lt;/tt> = &lt;tt>entry&lt;/tt>.&lt;/p>"/>
       </eAnnotations>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="doAction" ordered="false"
         eType="#//ActionUsage" volatile="true" transient="true" derived="true">
@@ -2898,6 +2899,7 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>The ActionUsage of this StateUsage to be performed while in the state specified by the StateUsage. This is derived as the owned ActionUsage related to the StateDefinition by a StateSubactionMembership  with &lt;tt>kind&lt;/tt> = &lt;tt>do&lt;/tt>.&lt;/p>"/>
       </eAnnotations>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="exitAction" ordered="false"
         eType="#//ActionUsage" volatile="true" transient="true" derived="true">
@@ -2907,6 +2909,7 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>The ActionUsage of this StateUsage to be performed on exit from the state specified by the StateUsage. This is derived as the owned ActionUsage related to the StateDefinition by a StateSubactionMembership  with &lt;tt>kind&lt;/tt> = &lt;tt>exit&lt;/tt>.&lt;/p>"/>
       </eAnnotations>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isParallel" ordered="false"
         lowerBound="1" eType="ecore:EDataType types.ecore#//Boolean" defaultValueLiteral="false">

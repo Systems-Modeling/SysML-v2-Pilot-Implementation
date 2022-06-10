@@ -27,11 +27,10 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.Behavior;
-import org.omg.sysml.lang.sysml.StateSubactionKind;
 import org.omg.sysml.lang.sysml.StateUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
@@ -55,6 +54,33 @@ import org.omg.sysml.util.NonNotifyingEObjectEList;
  */
 public class StateUsageImpl extends ActionUsageImpl implements StateUsage {
 
+	/**
+	 * The cached setting delegate for the '{@link #getEntryAction() <em>Entry Action</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getEntryAction()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate ENTRY_ACTION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.STATE_USAGE__ENTRY_ACTION).getSettingDelegate();
+	/**
+	 * The cached setting delegate for the '{@link #getDoAction() <em>Do Action</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDoAction()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate DO_ACTION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.STATE_USAGE__DO_ACTION).getSettingDelegate();
+	/**
+	 * The cached setting delegate for the '{@link #getExitAction() <em>Exit Action</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getExitAction()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate EXIT_ACTION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.STATE_USAGE__EXIT_ACTION).getSettingDelegate();
 	/**
 	 * The default value of the '{@link #isParallel() <em>Is Parallel</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -124,27 +150,26 @@ public class StateUsageImpl extends ActionUsageImpl implements StateUsage {
 	 */
 	@Override
 	public ActionUsage getEntryAction() {
-		ActionUsage entryAction = basicGetEntryAction();
-		return entryAction != null && entryAction.eIsProxy() ? (ActionUsage)eResolveProxy((InternalEObject)entryAction) : entryAction;
+		return (ActionUsage)ENTRY_ACTION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public ActionUsage basicGetEntryAction() {
-		return StateDefinitionImpl.getStateSubaction(this, StateSubactionKind.ENTRY);
+		return (ActionUsage)ENTRY_ACTION__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setEntryAction(ActionUsage newEntryAction) {
-		throw new UnsupportedOperationException();
+		ENTRY_ACTION__ESETTING_DELEGATE.dynamicSet(this, null, 0, newEntryAction);
 	}
 
 	/**
@@ -154,27 +179,26 @@ public class StateUsageImpl extends ActionUsageImpl implements StateUsage {
 	 */
 	@Override
 	public ActionUsage getDoAction() {
-		ActionUsage doAction = basicGetDoAction();
-		return doAction != null && doAction.eIsProxy() ? (ActionUsage)eResolveProxy((InternalEObject)doAction) : doAction;
+		return (ActionUsage)DO_ACTION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public ActionUsage basicGetDoAction() {
-		return StateDefinitionImpl.getStateSubaction(this, StateSubactionKind.DO);
+		return (ActionUsage)DO_ACTION__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setDoAction(ActionUsage newDoAction) {
-		throw new UnsupportedOperationException();
+		DO_ACTION__ESETTING_DELEGATE.dynamicSet(this, null, 0, newDoAction);
 	}
 
 	/**
@@ -184,27 +208,26 @@ public class StateUsageImpl extends ActionUsageImpl implements StateUsage {
 	 */
 	@Override
 	public ActionUsage getExitAction() {
-		ActionUsage exitAction = basicGetExitAction();
-		return exitAction != null && exitAction.eIsProxy() ? (ActionUsage)eResolveProxy((InternalEObject)exitAction) : exitAction;
+		return (ActionUsage)EXIT_ACTION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public ActionUsage basicGetExitAction() {
-		return StateDefinitionImpl.getStateSubaction(this, StateSubactionKind.EXIT);
+		return (ActionUsage)EXIT_ACTION__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setExitAction(ActionUsage newExitAction) {
-		throw new UnsupportedOperationException();
+		EXIT_ACTION__ESETTING_DELEGATE.dynamicSet(this, null, 0, newExitAction);
 	}
 
 	/**
@@ -343,11 +366,11 @@ public class StateUsageImpl extends ActionUsageImpl implements StateUsage {
 			case SysMLPackage.STATE_USAGE__STATE_DEFINITION:
 				return isSetStateDefinition();
 			case SysMLPackage.STATE_USAGE__ENTRY_ACTION:
-				return basicGetEntryAction() != null;
+				return ENTRY_ACTION__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.STATE_USAGE__DO_ACTION:
-				return basicGetDoAction() != null;
+				return DO_ACTION__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.STATE_USAGE__EXIT_ACTION:
-				return basicGetExitAction() != null;
+				return EXIT_ACTION__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.STATE_USAGE__IS_PARALLEL:
 				return isParallel != IS_PARALLEL_EDEFAULT;
 		}

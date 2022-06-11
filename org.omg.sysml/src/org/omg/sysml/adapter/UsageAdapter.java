@@ -158,10 +158,17 @@ public class UsageAdapter extends FeatureAdapter {
 	
 	protected void addVariationTyping() {
 		Usage usage = getTarget();
-		Definition variationDefinition = UsageUtil.getOwningVariationDefinitionFor(usage);
-		if (variationDefinition != null && UsageUtil.isVariant(getTarget())) {
-			addImplicitGeneralType(SysMLPackage.eINSTANCE.getFeatureTyping(), variationDefinition);
-		}		
+		if (UsageUtil.isVariant(usage)) {
+			Definition variationDefinition = UsageUtil.getOwningVariationDefinitionFor(usage);
+			if (variationDefinition != null) {
+				addImplicitGeneralType(SysMLPackage.eINSTANCE.getFeatureTyping(), variationDefinition);
+			} else {
+				Usage variationUsage = UsageUtil.getOwningVariationUsageFor(usage);
+				if (variationUsage != null) {
+					addImplicitGeneralType(SysMLPackage.eINSTANCE.getSubsetting(), variationUsage);
+				}
+			}
+		}
 	}
 	
 	@Override

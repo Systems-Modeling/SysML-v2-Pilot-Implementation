@@ -21,9 +21,11 @@ END_SETUP
 package Classes {
 	alias aliass for VisibilityPackage::c_Public::c_public;
 	alias Aliass for VisibilityPackage::c_Public;
-	feature Try{
+	feature Try : Aliass {
 		//scope are the same for at aliass and at Aliass
 		//* XPECT scope at aliass ---
+		   c_public, c_public.self, Try.c_public, Try.c_public.self, 
+		   Classes.Try.c_public, Classes.Try.c_public.self, 
 		   aliass, feature4, featurepublic,
 		   featurepublic.c_public, Try.featurepublic.c_public, Classes.Try.featurepublic.c_public,
 		   Aliass, Aliass.c_public, 
@@ -43,6 +45,8 @@ package Classes {
 		feature feature4 subsets aliass;
 		//XPECT linkedName at Aliass --> VisibilityPackage.c_Public
 		//* XPECT scope at Aliass ---
+		   c_public, c_public.self, Try.c_public, Try.c_public.self, 
+		   Classes.Try.c_public, Classes.Try.c_public.self, 
 		   aliass, feature4, featurepublic,
 		   featurepublic.c_public, Try.featurepublic.c_public, Classes.Try.featurepublic.c_public,
 		   Aliass, Aliass.c_public, 

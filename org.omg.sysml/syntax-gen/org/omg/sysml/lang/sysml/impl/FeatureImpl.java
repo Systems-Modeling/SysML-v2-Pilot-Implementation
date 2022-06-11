@@ -820,8 +820,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 */
 	public boolean isFeaturedWithin(Type type) {
 		List<Type> featuringTypes = getFeaturingType();
-		return featuringTypes.isEmpty() ||
-			   featuringTypes.stream().anyMatch(featuringType->
+		return featuringTypes.stream().anyMatch(featuringType->
 			   		type != null && TypeUtil.conforms(featuringType, type) ||
 					featuringType instanceof Feature &&
 					((Feature)featuringType).isFeaturedWithin(type));

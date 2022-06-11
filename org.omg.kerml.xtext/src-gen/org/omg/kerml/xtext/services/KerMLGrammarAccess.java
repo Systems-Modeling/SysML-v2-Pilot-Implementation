@@ -1434,9 +1434,10 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final RuleCall cFeatureTypingParserRuleCall_24 = (RuleCall)cAlternatives.eContents().get(24);
 		private final RuleCall cSubclassificationParserRuleCall_25 = (RuleCall)cAlternatives.eContents().get(25);
 		private final RuleCall cDisjoiningParserRuleCall_26 = (RuleCall)cAlternatives.eContents().get(26);
-		private final RuleCall cSubsettingParserRuleCall_27 = (RuleCall)cAlternatives.eContents().get(27);
-		private final RuleCall cRedefinitionParserRuleCall_28 = (RuleCall)cAlternatives.eContents().get(28);
-		private final RuleCall cTypeFeaturingParserRuleCall_29 = (RuleCall)cAlternatives.eContents().get(29);
+		private final RuleCall cFeatureInvertingParserRuleCall_27 = (RuleCall)cAlternatives.eContents().get(27);
+		private final RuleCall cSubsettingParserRuleCall_28 = (RuleCall)cAlternatives.eContents().get(28);
+		private final RuleCall cRedefinitionParserRuleCall_29 = (RuleCall)cAlternatives.eContents().get(29);
+		private final RuleCall cTypeFeaturingParserRuleCall_30 = (RuleCall)cAlternatives.eContents().get(30);
 		
 		///* Namespace Elements */
 		//NonFeatureElement returns SysML::Element :
@@ -1467,6 +1468,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//    | FeatureTyping
 		//    | Subclassification
 		//    | Disjoining
+		//    | FeatureInverting
 		//    | Subsetting
 		//    | Redefinition
 		//    | TypeFeaturing
@@ -1500,6 +1502,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//| FeatureTyping
 		//| Subclassification
 		//| Disjoining
+		//| FeatureInverting
 		//| Subsetting
 		//| Redefinition
 		//| TypeFeaturing
@@ -1586,14 +1589,17 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//Disjoining
 		public RuleCall getDisjoiningParserRuleCall_26() { return cDisjoiningParserRuleCall_26; }
 		
+		//FeatureInverting
+		public RuleCall getFeatureInvertingParserRuleCall_27() { return cFeatureInvertingParserRuleCall_27; }
+		
 		//Subsetting
-		public RuleCall getSubsettingParserRuleCall_27() { return cSubsettingParserRuleCall_27; }
+		public RuleCall getSubsettingParserRuleCall_28() { return cSubsettingParserRuleCall_28; }
 		
 		//Redefinition
-		public RuleCall getRedefinitionParserRuleCall_28() { return cRedefinitionParserRuleCall_28; }
+		public RuleCall getRedefinitionParserRuleCall_29() { return cRedefinitionParserRuleCall_29; }
 		
 		//TypeFeaturing
-		public RuleCall getTypeFeaturingParserRuleCall_29() { return cTypeFeaturingParserRuleCall_29; }
+		public RuleCall getTypeFeaturingParserRuleCall_30() { return cTypeFeaturingParserRuleCall_30; }
 	}
 	public class FeatureElementElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.FeatureElement");
@@ -3050,9 +3056,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final RuleCall cFeatureConjugationPartParserRuleCall_1_0_1_1 = (RuleCall)cAlternatives_1_0_1.eContents().get(1);
 		private final RuleCall cFeatureSpecializationPartParserRuleCall_1_1 = (RuleCall)cAlternatives_1.eContents().get(1);
 		private final RuleCall cFeatureConjugationPartParserRuleCall_1_2 = (RuleCall)cAlternatives_1.eContents().get(2);
-		private final RuleCall cChainingPartParserRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
-		private final RuleCall cDisjoiningPartParserRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
-		private final RuleCall cTypeFeaturingPartParserRuleCall_4 = (RuleCall)cGroup.eContents().get(4);
+		private final RuleCall cFeatureRelationshipPartParserRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
 		
 		//fragment FeatureDeclaration returns SysML::Feature :
 		//    ( isSufficient ?= 'all' )?
@@ -3060,9 +3064,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//    | FeatureSpecializationPart
 		//    | FeatureConjugationPart
 		//    )
-		//    ChainingPart?
-		//    DisjoiningPart?
-		//    TypeFeaturingPart?
+		//    FeatureRelationshipPart*
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -3071,9 +3073,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//| FeatureSpecializationPart
 		//| FeatureConjugationPart
 		//)
-		//ChainingPart?
-		//DisjoiningPart?
-		//TypeFeaturingPart?
+		//FeatureRelationshipPart*
 		public Group getGroup() { return cGroup; }
 		
 		//( isSufficient ?= 'all' )?
@@ -3109,14 +3109,36 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//FeatureConjugationPart
 		public RuleCall getFeatureConjugationPartParserRuleCall_1_2() { return cFeatureConjugationPartParserRuleCall_1_2; }
 		
-		//ChainingPart?
-		public RuleCall getChainingPartParserRuleCall_2() { return cChainingPartParserRuleCall_2; }
+		//FeatureRelationshipPart*
+		public RuleCall getFeatureRelationshipPartParserRuleCall_2() { return cFeatureRelationshipPartParserRuleCall_2; }
+	}
+	public class FeatureRelationshipPartElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.FeatureRelationshipPart");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cChainingPartParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cDisjoiningPartParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cInvertingPartParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
+		private final RuleCall cTypeFeaturingPartParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
 		
-		//DisjoiningPart?
-		public RuleCall getDisjoiningPartParserRuleCall_3() { return cDisjoiningPartParserRuleCall_3; }
+		//fragment FeatureRelationshipPart returns SysML::Feature :
+		//    ChainingPart | DisjoiningPart | InvertingPart | TypeFeaturingPart
+		//;
+		@Override public ParserRule getRule() { return rule; }
 		
-		//TypeFeaturingPart?
-		public RuleCall getTypeFeaturingPartParserRuleCall_4() { return cTypeFeaturingPartParserRuleCall_4; }
+		//ChainingPart | DisjoiningPart | InvertingPart | TypeFeaturingPart
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//ChainingPart
+		public RuleCall getChainingPartParserRuleCall_0() { return cChainingPartParserRuleCall_0; }
+		
+		//DisjoiningPart
+		public RuleCall getDisjoiningPartParserRuleCall_1() { return cDisjoiningPartParserRuleCall_1; }
+		
+		//InvertingPart
+		public RuleCall getInvertingPartParserRuleCall_2() { return cInvertingPartParserRuleCall_2; }
+		
+		//TypeFeaturingPart
+		public RuleCall getTypeFeaturingPartParserRuleCall_3() { return cTypeFeaturingPartParserRuleCall_3; }
 	}
 	public class ChainingPartElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.ChainingPart");
@@ -3137,6 +3159,34 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		
 		//FeatureChain
 		public RuleCall getFeatureChainParserRuleCall_1() { return cFeatureChainParserRuleCall_1; }
+	}
+	public class InvertingPartElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.InvertingPart");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cInverseKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Keyword cOfKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cOwnedRelationshipAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cOwnedRelationshipOwnedFeatureInvertingParserRuleCall_2_0 = (RuleCall)cOwnedRelationshipAssignment_2.eContents().get(0);
+		
+		//fragment InvertingPart returns SysML::Feature :
+		//    'inverse' 'of' ownedRelationship += OwnedFeatureInverting
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'inverse' 'of' ownedRelationship += OwnedFeatureInverting
+		public Group getGroup() { return cGroup; }
+		
+		//'inverse'
+		public Keyword getInverseKeyword_0() { return cInverseKeyword_0; }
+		
+		//'of'
+		public Keyword getOfKeyword_1() { return cOfKeyword_1; }
+		
+		//ownedRelationship += OwnedFeatureInverting
+		public Assignment getOwnedRelationshipAssignment_2() { return cOwnedRelationshipAssignment_2; }
+		
+		//OwnedFeatureInverting
+		public RuleCall getOwnedRelationshipOwnedFeatureInvertingParserRuleCall_2_0() { return cOwnedRelationshipOwnedFeatureInvertingParserRuleCall_2_0; }
 	}
 	public class TypeFeaturingPartElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.TypeFeaturingPart");
@@ -3538,6 +3588,139 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		
 		//OwnedRedefinition
 		public RuleCall getOwnedRelationshipOwnedRedefinitionParserRuleCall_1_0() { return cOwnedRelationshipOwnedRedefinitionParserRuleCall_1_0; }
+	}
+	public class FeatureInvertingElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.FeatureInverting");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Group cGroup_0 = (Group)cGroup.eContents().get(0);
+		private final Keyword cInvertingKeyword_0_0 = (Keyword)cGroup_0.eContents().get(0);
+		private final RuleCall cIdentificationParserRuleCall_0_1 = (RuleCall)cGroup_0.eContents().get(1);
+		private final Keyword cInverseKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Alternatives cAlternatives_2 = (Alternatives)cGroup.eContents().get(2);
+		private final Assignment cFeatureInvertedAssignment_2_0 = (Assignment)cAlternatives_2.eContents().get(0);
+		private final CrossReference cFeatureInvertedFeatureCrossReference_2_0_0 = (CrossReference)cFeatureInvertedAssignment_2_0.eContents().get(0);
+		private final RuleCall cFeatureInvertedFeatureQualifiedNameParserRuleCall_2_0_0_1 = (RuleCall)cFeatureInvertedFeatureCrossReference_2_0_0.eContents().get(1);
+		private final Assignment cOwnedRelatedElementAssignment_2_1 = (Assignment)cAlternatives_2.eContents().get(1);
+		private final RuleCall cOwnedRelatedElementOwnedFeatureChainParserRuleCall_2_1_0 = (RuleCall)cOwnedRelatedElementAssignment_2_1.eContents().get(0);
+		private final Keyword cOfKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Alternatives cAlternatives_4 = (Alternatives)cGroup.eContents().get(4);
+		private final Assignment cInvertingFeatureAssignment_4_0 = (Assignment)cAlternatives_4.eContents().get(0);
+		private final CrossReference cInvertingFeatureFeatureCrossReference_4_0_0 = (CrossReference)cInvertingFeatureAssignment_4_0.eContents().get(0);
+		private final RuleCall cInvertingFeatureFeatureQualifiedNameParserRuleCall_4_0_0_1 = (RuleCall)cInvertingFeatureFeatureCrossReference_4_0_0.eContents().get(1);
+		private final Assignment cOwnedRelatedElementAssignment_4_1 = (Assignment)cAlternatives_4.eContents().get(1);
+		private final RuleCall cOwnedRelatedElementOwnedFeatureChainParserRuleCall_4_1_0 = (RuleCall)cOwnedRelatedElementAssignment_4_1.eContents().get(0);
+		private final Keyword cSemicolonKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		
+		///* Feature Inverting */
+		//FeatureInverting returns SysML::FeatureInverting :
+		//    ( 'inverting' Identification? )?
+		//    'inverse'
+		//    ( featureInverted = [SysML::Feature| QualifiedName]
+		//    | ownedRelatedElement += OwnedFeatureChain )
+		//    'of'
+		//    ( invertingFeature = [SysML::Feature | QualifiedName]
+		//    | ownedRelatedElement += OwnedFeatureChain ) ';'
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//( 'inverting' Identification? )?
+		//'inverse'
+		//( featureInverted = [SysML::Feature| QualifiedName]
+		//| ownedRelatedElement += OwnedFeatureChain )
+		//'of'
+		//( invertingFeature = [SysML::Feature | QualifiedName]
+		//| ownedRelatedElement += OwnedFeatureChain ) ';'
+		public Group getGroup() { return cGroup; }
+		
+		//( 'inverting' Identification? )?
+		public Group getGroup_0() { return cGroup_0; }
+		
+		//'inverting'
+		public Keyword getInvertingKeyword_0_0() { return cInvertingKeyword_0_0; }
+		
+		//Identification?
+		public RuleCall getIdentificationParserRuleCall_0_1() { return cIdentificationParserRuleCall_0_1; }
+		
+		//'inverse'
+		public Keyword getInverseKeyword_1() { return cInverseKeyword_1; }
+		
+		//( featureInverted = [SysML::Feature| QualifiedName]
+		//| ownedRelatedElement += OwnedFeatureChain )
+		public Alternatives getAlternatives_2() { return cAlternatives_2; }
+		
+		//featureInverted = [SysML::Feature| QualifiedName]
+		public Assignment getFeatureInvertedAssignment_2_0() { return cFeatureInvertedAssignment_2_0; }
+		
+		//[SysML::Feature| QualifiedName]
+		public CrossReference getFeatureInvertedFeatureCrossReference_2_0_0() { return cFeatureInvertedFeatureCrossReference_2_0_0; }
+		
+		//QualifiedName
+		public RuleCall getFeatureInvertedFeatureQualifiedNameParserRuleCall_2_0_0_1() { return cFeatureInvertedFeatureQualifiedNameParserRuleCall_2_0_0_1; }
+		
+		//ownedRelatedElement += OwnedFeatureChain
+		public Assignment getOwnedRelatedElementAssignment_2_1() { return cOwnedRelatedElementAssignment_2_1; }
+		
+		//OwnedFeatureChain
+		public RuleCall getOwnedRelatedElementOwnedFeatureChainParserRuleCall_2_1_0() { return cOwnedRelatedElementOwnedFeatureChainParserRuleCall_2_1_0; }
+		
+		//'of'
+		public Keyword getOfKeyword_3() { return cOfKeyword_3; }
+		
+		//( invertingFeature = [SysML::Feature | QualifiedName]
+		//| ownedRelatedElement += OwnedFeatureChain )
+		public Alternatives getAlternatives_4() { return cAlternatives_4; }
+		
+		//invertingFeature = [SysML::Feature | QualifiedName]
+		public Assignment getInvertingFeatureAssignment_4_0() { return cInvertingFeatureAssignment_4_0; }
+		
+		//[SysML::Feature | QualifiedName]
+		public CrossReference getInvertingFeatureFeatureCrossReference_4_0_0() { return cInvertingFeatureFeatureCrossReference_4_0_0; }
+		
+		//QualifiedName
+		public RuleCall getInvertingFeatureFeatureQualifiedNameParserRuleCall_4_0_0_1() { return cInvertingFeatureFeatureQualifiedNameParserRuleCall_4_0_0_1; }
+		
+		//ownedRelatedElement += OwnedFeatureChain
+		public Assignment getOwnedRelatedElementAssignment_4_1() { return cOwnedRelatedElementAssignment_4_1; }
+		
+		//OwnedFeatureChain
+		public RuleCall getOwnedRelatedElementOwnedFeatureChainParserRuleCall_4_1_0() { return cOwnedRelatedElementOwnedFeatureChainParserRuleCall_4_1_0; }
+		
+		//';'
+		public Keyword getSemicolonKeyword_5() { return cSemicolonKeyword_5; }
+	}
+	public class OwnedFeatureInvertingElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.OwnedFeatureInverting");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final Assignment cInvertingFeatureAssignment_0 = (Assignment)cAlternatives.eContents().get(0);
+		private final CrossReference cInvertingFeatureFeatureCrossReference_0_0 = (CrossReference)cInvertingFeatureAssignment_0.eContents().get(0);
+		private final RuleCall cInvertingFeatureFeatureQualifiedNameParserRuleCall_0_0_1 = (RuleCall)cInvertingFeatureFeatureCrossReference_0_0.eContents().get(1);
+		private final Assignment cOwnedRelatedElementAssignment_1 = (Assignment)cAlternatives.eContents().get(1);
+		private final RuleCall cOwnedRelatedElementOwnedFeatureChainParserRuleCall_1_0 = (RuleCall)cOwnedRelatedElementAssignment_1.eContents().get(0);
+		
+		//OwnedFeatureInverting returns SysML::FeatureInverting :
+		//      invertingFeature = [SysML::Feature | QualifiedName]
+		//    | ownedRelatedElement += OwnedFeatureChain
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//  invertingFeature = [SysML::Feature | QualifiedName]
+		//| ownedRelatedElement += OwnedFeatureChain
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//invertingFeature = [SysML::Feature | QualifiedName]
+		public Assignment getInvertingFeatureAssignment_0() { return cInvertingFeatureAssignment_0; }
+		
+		//[SysML::Feature | QualifiedName]
+		public CrossReference getInvertingFeatureFeatureCrossReference_0_0() { return cInvertingFeatureFeatureCrossReference_0_0; }
+		
+		//QualifiedName
+		public RuleCall getInvertingFeatureFeatureQualifiedNameParserRuleCall_0_0_1() { return cInvertingFeatureFeatureQualifiedNameParserRuleCall_0_0_1; }
+		
+		//ownedRelatedElement += OwnedFeatureChain
+		public Assignment getOwnedRelatedElementAssignment_1() { return cOwnedRelatedElementAssignment_1; }
+		
+		//OwnedFeatureChain
+		public RuleCall getOwnedRelatedElementOwnedFeatureChainParserRuleCall_1_0() { return cOwnedRelatedElementOwnedFeatureChainParserRuleCall_1_0; }
 	}
 	public class TypeFeaturingElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.TypeFeaturing");
@@ -7267,7 +7450,9 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	private final FeatureDirectionElements eFeatureDirection;
 	private final FeatureElements pFeature;
 	private final FeatureDeclarationElements pFeatureDeclaration;
+	private final FeatureRelationshipPartElements pFeatureRelationshipPart;
 	private final ChainingPartElements pChainingPart;
+	private final InvertingPartElements pInvertingPart;
 	private final TypeFeaturingPartElements pTypeFeaturingPart;
 	private final FeatureSpecializationPartElements pFeatureSpecializationPart;
 	private final MultiplicityPartElements pMultiplicityPart;
@@ -7278,6 +7463,8 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	private final SubsetsElements pSubsets;
 	private final RedefinitionsElements pRedefinitions;
 	private final RedefinesElements pRedefines;
+	private final FeatureInvertingElements pFeatureInverting;
+	private final OwnedFeatureInvertingElements pOwnedFeatureInverting;
 	private final TypeFeaturingElements pTypeFeaturing;
 	private final OwnedTypeFeaturingElements pOwnedTypeFeaturing;
 	private final FeatureTypingElements pFeatureTyping;
@@ -7460,7 +7647,9 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		this.eFeatureDirection = new FeatureDirectionElements();
 		this.pFeature = new FeatureElements();
 		this.pFeatureDeclaration = new FeatureDeclarationElements();
+		this.pFeatureRelationshipPart = new FeatureRelationshipPartElements();
 		this.pChainingPart = new ChainingPartElements();
+		this.pInvertingPart = new InvertingPartElements();
 		this.pTypeFeaturingPart = new TypeFeaturingPartElements();
 		this.pFeatureSpecializationPart = new FeatureSpecializationPartElements();
 		this.pMultiplicityPart = new MultiplicityPartElements();
@@ -7471,6 +7660,8 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		this.pSubsets = new SubsetsElements();
 		this.pRedefinitions = new RedefinitionsElements();
 		this.pRedefines = new RedefinesElements();
+		this.pFeatureInverting = new FeatureInvertingElements();
+		this.pOwnedFeatureInverting = new OwnedFeatureInvertingElements();
 		this.pTypeFeaturing = new TypeFeaturingElements();
 		this.pOwnedTypeFeaturing = new OwnedTypeFeaturingElements();
 		this.pFeatureTyping = new FeatureTypingElements();
@@ -8155,6 +8346,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	//    | FeatureTyping
 	//    | Subclassification
 	//    | Disjoining
+	//    | FeatureInverting
 	//    | Subsetting
 	//    | Redefinition
 	//    | TypeFeaturing
@@ -8579,9 +8771,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	//    | FeatureSpecializationPart
 	//    | FeatureConjugationPart
 	//    )
-	//    ChainingPart?
-	//    DisjoiningPart?
-	//    TypeFeaturingPart?
+	//    FeatureRelationshipPart*
 	//;
 	public FeatureDeclarationElements getFeatureDeclarationAccess() {
 		return pFeatureDeclaration;
@@ -8589,6 +8779,17 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	
 	public ParserRule getFeatureDeclarationRule() {
 		return getFeatureDeclarationAccess().getRule();
+	}
+	
+	//fragment FeatureRelationshipPart returns SysML::Feature :
+	//    ChainingPart | DisjoiningPart | InvertingPart | TypeFeaturingPart
+	//;
+	public FeatureRelationshipPartElements getFeatureRelationshipPartAccess() {
+		return pFeatureRelationshipPart;
+	}
+	
+	public ParserRule getFeatureRelationshipPartRule() {
+		return getFeatureRelationshipPartAccess().getRule();
 	}
 	
 	//fragment ChainingPart returns SysML::Feature :
@@ -8600,6 +8801,17 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	
 	public ParserRule getChainingPartRule() {
 		return getChainingPartAccess().getRule();
+	}
+	
+	//fragment InvertingPart returns SysML::Feature :
+	//    'inverse' 'of' ownedRelationship += OwnedFeatureInverting
+	//;
+	public InvertingPartElements getInvertingPartAccess() {
+		return pInvertingPart;
+	}
+	
+	public ParserRule getInvertingPartRule() {
+		return getInvertingPartAccess().getRule();
 	}
 	
 	//fragment TypeFeaturingPart returns SysML::Feature :
@@ -8716,6 +8928,36 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	
 	public ParserRule getRedefinesRule() {
 		return getRedefinesAccess().getRule();
+	}
+	
+	///* Feature Inverting */
+	//FeatureInverting returns SysML::FeatureInverting :
+	//    ( 'inverting' Identification? )?
+	//    'inverse'
+	//    ( featureInverted = [SysML::Feature| QualifiedName]
+	//    | ownedRelatedElement += OwnedFeatureChain )
+	//    'of'
+	//    ( invertingFeature = [SysML::Feature | QualifiedName]
+	//    | ownedRelatedElement += OwnedFeatureChain ) ';'
+	//;
+	public FeatureInvertingElements getFeatureInvertingAccess() {
+		return pFeatureInverting;
+	}
+	
+	public ParserRule getFeatureInvertingRule() {
+		return getFeatureInvertingAccess().getRule();
+	}
+	
+	//OwnedFeatureInverting returns SysML::FeatureInverting :
+	//      invertingFeature = [SysML::Feature | QualifiedName]
+	//    | ownedRelatedElement += OwnedFeatureChain
+	//;
+	public OwnedFeatureInvertingElements getOwnedFeatureInvertingAccess() {
+		return pOwnedFeatureInverting;
+	}
+	
+	public ParserRule getOwnedFeatureInvertingRule() {
+		return getOwnedFeatureInvertingAccess().getRule();
 	}
 	
 	///* Type Featuring */

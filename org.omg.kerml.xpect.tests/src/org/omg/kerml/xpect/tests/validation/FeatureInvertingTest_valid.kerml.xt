@@ -1,0 +1,38 @@
+//* XPECT_SETUP org.omg.kerml.xpect.tests.expression.KerMLExpressionTest
+        ResourceSet {
+                ThisFile {}
+                File {from ="/library/Base.kerml"}
+                File {from ="/library/Occurrences.kerml"}
+                File {from ="/library/Objects.kerml"}
+
+        }
+        Workspace {
+                JavaProject {
+                        SrcFolder {
+                                ThisFile {}
+                                File {from ="/library/Base.kerml"}
+                                File {from ="/library/Occurrences.kerml"}
+                 				File {from ="/library/Objects.kerml"}
+
+                        }
+                }
+        }
+END_SETUP
+*/
+
+// XPECT noErrors ---> ""
+package Inverses {
+	class A {
+		feature f : B inverse of B::g disjoint from h;
+		feature h : B;
+	}
+	
+	class B {
+		feature g : A;
+	}
+	
+	inverse B::g of A::f;
+	inverting Invert inverse B::g.f of A::h;
+	
+	feature gg : A featured by B inverse of A::f;
+}

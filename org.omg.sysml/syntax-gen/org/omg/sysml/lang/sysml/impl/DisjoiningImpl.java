@@ -106,12 +106,15 @@ public class DisjoiningImpl extends RelationshipImpl implements Disjoining {
 	 * @generated NOT
 	 */
 	public Type basicGetDisjoiningType() {
+		// Xtext workaround
 		if (disjoiningType == null) {
+			// Handle a disjoiningType that is a Feature chain.
 			EList<Element> ownedRelatedElements = getOwnedRelatedElement();
 			if (!ownedRelatedElements.isEmpty()) {
 				disjoiningType = (Feature)ownedRelatedElements.get(ownedRelatedElements.size() - 1);
 			}
 		}
+		
 		return disjoiningType;
 	}
 
@@ -243,17 +246,21 @@ public class DisjoiningImpl extends RelationshipImpl implements Disjoining {
 	 * @generated NOT
 	 */
 	public Type basicGetTypeDisjoined() {
+		// Xtext workaround
 		if (typeDisjoined == null) {
 			Element owner = getOwningRelatedElement();
 			if (owner instanceof Type) {
+				// Handle a Disjoining owned by the typeDisjoined.
 				typeDisjoined = (Type)owner;
 			} else {
+				// Handle a typeDisjoined that is a Feature chain.
 				EList<Element> ownedRelatedElements = getOwnedRelatedElement();
 				if (!ownedRelatedElements.isEmpty()) {
 					typeDisjoined = (Feature)ownedRelatedElements.get(0);
 				}
 			}
 		}
+		
 		return typeDisjoined;
 	}
 

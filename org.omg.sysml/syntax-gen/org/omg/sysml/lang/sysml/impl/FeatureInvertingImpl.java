@@ -78,13 +78,17 @@ public class FeatureInvertingImpl extends RelationshipImpl implements FeatureInv
 		return SysMLPackage.Literals.FEATURE_INVERTING;
 	}
 
+	@Override
+	public Feature getFeatureInverted() {
+		return featureInverted == null? basicGetFeatureInverted(): getFeatureInvertedGen();
+	}	
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public Feature getFeatureInverted() {
+	public Feature getFeatureInvertedGen() {
 		if (featureInverted != null && featureInverted.eIsProxy()) {
 			InternalEObject oldFeatureInverted = (InternalEObject)featureInverted;
 			featureInverted = (Feature)eResolveProxy(oldFeatureInverted);
@@ -99,9 +103,24 @@ public class FeatureInvertingImpl extends RelationshipImpl implements FeatureInv
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public Feature basicGetFeatureInverted() {
+		// Xtext workaround
+		if (featureInverted == null) {
+			Element owner = getOwningRelatedElement();
+			if (owner instanceof Feature) {
+				// Handle FeatureInverting owned by the invertingFeature.
+				featureInverted = (Feature)owner;
+			} else {
+				// Handle featureInverted that is a Feature chain.
+				EList<Element> ownedRelatedElements = getOwnedRelatedElement();
+				if (!ownedRelatedElements.isEmpty()) {
+					featureInverted = (Feature)ownedRelatedElements.get(0);
+				}
+			}
+		}
+		
 		return featureInverted;
 	}
 
@@ -170,13 +189,17 @@ public class FeatureInvertingImpl extends RelationshipImpl implements FeatureInv
 			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.FEATURE_INVERTING__OWNING_RELATED_ELEMENT, newOwningRelatedElement, newOwningRelatedElement));
 	}
 
+	@Override
+	public Feature getInvertingFeature() {
+		return invertingFeature == null? basicGetInvertingFeature(): getInvertingFeatureGen();
+	}
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public Feature getInvertingFeature() {
+	public Feature getInvertingFeatureGen() {
 		if (invertingFeature != null && invertingFeature.eIsProxy()) {
 			InternalEObject oldInvertingFeature = (InternalEObject)invertingFeature;
 			invertingFeature = (Feature)eResolveProxy(oldInvertingFeature);
@@ -191,9 +214,18 @@ public class FeatureInvertingImpl extends RelationshipImpl implements FeatureInv
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public Feature basicGetInvertingFeature() {
+		// Xtext workaround
+		if (invertingFeature == null) {
+			// Handle invertingFeature that is a Feature chain.
+			EList<Element> ownedRelatedElements = getOwnedRelatedElement();
+			if (!ownedRelatedElements.isEmpty()) {
+				invertingFeature = (Feature)ownedRelatedElements.get(ownedRelatedElements.size() - 1);
+			}
+		}
+		
 		return invertingFeature;
 	}
 

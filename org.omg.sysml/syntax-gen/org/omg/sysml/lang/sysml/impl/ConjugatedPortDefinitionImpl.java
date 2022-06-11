@@ -228,10 +228,10 @@ public class ConjugatedPortDefinitionImpl extends PortDefinitionImpl implements 
   		return false;
 	}
 
-	// Additional subsets/redefinitions
+	// Operation overrides
 	
 	@Override
-	public String getName() {
+	public String effectiveName() {
 		String name = super.getName();
 		if (name == null) {
 			PortDefinition originalPortDefinition = getOriginalPortDefinition();

@@ -47,35 +47,38 @@ import org.eclipse.emf.common.util.EList;
  * isEnd = owningFeatureMembership <> null and owningFeatureMembership.oclIsKindOf(EndFeatureMembership)
  * multiplicity <> null implies multiplicity.featuringType = featuringType 
  * allSupertypes()->includes(KernelLibrary::things)
- * chainingFeatures->excludes(self)
- * ownedFeatureChaining = ownedRelationship->selectByKind(FeatureChaining)
- * chainingFeature = ownedFeatureChaining.chainingFeature
  * chainingfeatureChainings->notEmpty() implies (owningFeatureMembership <> null implies owningFeatureMembership.isDerived)
+ * chainingFeatures->excludes(self)
+ * invertedFeature = invertedFeatureInverting.featureInverted
  * chainingFeatures->size() <> 1
+ * chainingFeature = ownedFeatureChaining.chainingFeature
+ * inverseFeature = invertingFeatureInverting.featureInverse
+ * ownedFeatureChaining = ownedRelationship->selectByKind(FeatureChaining)
  * <!-- end-model-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwnedTypeFeaturing <em>Owned Type Featuring</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwningFeatureMembership <em>Owning Feature Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwningType <em>Owning Type</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Feature#getEndOwningType <em>End Owning Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isUnique <em>Is Unique</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isOrdered <em>Is Ordered</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getType <em>Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwnedRedefinition <em>Owned Redefinition</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwnedSubsetting <em>Owned Subsetting</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwningFeatureMembership <em>Owning Feature Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isComposite <em>Is Composite</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Feature#isPortion <em>Is Portion</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Feature#getEndOwningType <em>End Owning Type</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Feature#isEnd <em>Is End</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwnedTyping <em>Owned Typing</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getFeaturingType <em>Featuring Type</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwnedTypeFeaturing <em>Owned Type Featuring</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Feature#getChainingFeature <em>Chaining Feature</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwnedFeatureChaining <em>Owned Feature Chaining</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isDerived <em>Is Derived</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Feature#getChainingFeature <em>Chaining Feature</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwnedFeatureInverting <em>Owned Feature Inverting</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwnedFeatureChaining <em>Owned Feature Chaining</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isReadOnly <em>Is Read Only</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Feature#isEnd <em>Is End</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Feature#isPortion <em>Is Portion</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getDirection <em>Direction</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isNonunique <em>Is Nonunique</em>}</li>
  * </ul>
@@ -119,11 +122,35 @@ public interface Feature extends Type {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Chaining Feature</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_ChainingFeature()
-	 * @model required="true" transient="true" volatile="true" derived="true"
+	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='chainedFeature'"
 	 * @generated
 	 */
 	EList<Feature> getChainingFeature();
+
+	/**
+	 * Returns the value of the '<em><b>Owned Feature Inverting</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.FeatureInverting}.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.FeatureInverting#getOwningFeature <em>Owning Feature</em>}'.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Element#getOwnedRelationship() <em>Owned Relationship</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The <code>ownedRelationships</code> of this Feature that are FeatureInvertings, for which the Feature is the <code>featureInverted</code>.</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Owned Feature Inverting</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_OwnedFeatureInverting()
+	 * @see org.omg.sysml.lang.sysml.FeatureInverting#getOwningFeature
+	 * @model opposite="owningFeature" transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="subsets"
+	 * @generated
+	 */
+	EList<FeatureInverting> getOwnedFeatureInverting();
 
 	/**
 	 * Returns the value of the '<em><b>Owned Feature Chaining</b></em>' reference list.
@@ -143,7 +170,7 @@ public interface Feature extends Type {
 	 * @return the value of the '<em>Owned Feature Chaining</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_OwnedFeatureChaining()
 	 * @see org.omg.sysml.lang.sysml.FeatureChaining#getFeatureChained
-	 * @model opposite="featureChained" required="true" transient="true" volatile="true" derived="true"
+	 * @model opposite="featureChained" transient="true" volatile="true" derived="true"
 	 *        annotation="subsets"
 	 * @generated
 	 */

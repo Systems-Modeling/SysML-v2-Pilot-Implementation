@@ -54,13 +54,13 @@ import org.eclipse.emf.common.util.EList;
  *         feature->select(direction = _'in' or direction = inout)
  *     endif
  * inheritedMembership = inheritedMemberships(Set{})
- * disjointType = disjoiningTypeDisjoining.disjoiningType
- * allSupertypes()->includes(Kernel Library::Anything)
- * directedFeature = feature->select(direction <> null)
- * featureMembership = ownedMembership->union(
- *     inheritedMembership->selectByKind(FeatureMembership))
  * feature = featureMembership.ownedMemberFeature
  * ownedFeature = ownedFeatureMembership.ownedMemberFeature
+ * allSupertypes()->includes(Kernel Library::Anything)
+ * featureMembership = ownedMembership->union(
+ *     inheritedMembership->selectByKind(FeatureMembership))
+ * disjointType = disjoiningTypeDisjoining.disjoiningType
+ * directedFeature = feature->select(direction <> null)
  * <!-- end-model-doc -->
  *
  * <p>
@@ -69,14 +69,14 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedSpecialization <em>Owned Specialization</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedFeatureMembership <em>Owned Feature Membership</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedFeature <em>Owned Feature</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedEndFeature <em>Owned End Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getFeature <em>Feature</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedFeature <em>Owned Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getInput <em>Input</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getOutput <em>Output</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#isAbstract <em>Is Abstract</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getInheritedMembership <em>Inherited Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getEndFeature <em>End Feature</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedEndFeature <em>Owned End Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#isSufficient <em>Is Sufficient</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedConjugator <em>Owned Conjugator</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#isConjugated <em>Is Conjugated</em>}</li>
@@ -469,7 +469,7 @@ public interface Type extends Namespace {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The FeatureMemberships for <code>features</code> of this Type, which include all <code>ownedFeatureMemberships</code> and those <code>inheritedFeatureMemberships</code> that are FeatureMemberships (but <em>not</em> <code>importedMemberships</code>).</p>
+	 * <p>The FeatureMemberships for <code>features</code> of this Type, which include all <code>ownedFeatureMemberships</code> and those <code>inheritedMemberships</code> that are FeatureMemberships (but does <em>not</em> include any <code>importedMemberships</code>).</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Feature Membership</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getType_FeatureMembership()

@@ -44,7 +44,7 @@ package SpatialItems {
 		 * The CurrentPositionOf the originPoint must always be a zero vector.
 		 */
 		assert constraint originPointConstraint {
-			isZeroVector(CurrentPositionOf(originPoint, SpatialItem::self))
+			isZeroVector(CurrentPositionOf(originPoint, that))
 		}
 	}
 

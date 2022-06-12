@@ -44,7 +44,7 @@ package SpatialItems {
 		 * The CurrentPositionOf the originPoint must always be a zero vector.
 		 */
 		assert constraint originPointConstraint {
-			isZeroVector(CurrentPositionOf(originPoint, SpatialItem::self))
+			isZeroVector(CurrentPositionOf(originPoint, that))
 		}
 	}
 
@@ -59,11 +59,11 @@ package SpatialItems {
 		 * and, by default, they have the same localClock as the CompoundSpatialItem.
 		 */
 		item componentItems : SpatialItem[1..*] ordered :> subitems {
-			item nestedLocalClock :>> localClock default localClock;
-			attribute nestedCoordinateFrame :>> coordinateFrame {
+			item :>> localClock default (that as SpatialItem).localClock;
+			attribute :>> coordinateFrame {
 				attribute :>> transformation[1] {
-				 	attribute :>> source = coordinateFrame;
-				 	attribute :>> target = nestedCoordinateFrame;
+				 	attribute :>> source default (that.that.that as SpatialItem).coordinateFrame;
+				 	attribute :>> target default that;
 				}
 			}
 		}

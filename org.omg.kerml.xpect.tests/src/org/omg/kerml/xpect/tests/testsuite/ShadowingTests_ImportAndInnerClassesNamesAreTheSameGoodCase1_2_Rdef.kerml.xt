@@ -24,12 +24,15 @@ package test{
 		feature a2{}
 	}
 	//* XPECT scope at OuterPackage::A.a1 ---
-	   OuterPackage.B.b,
-		   A, A.a2, B, OuterPackage.B.b.a1,
-		   OuterPackage.A,		   OuterPackage.A.a1, OuterPackage.B, test.A, test.A.a2, test.B,
-  OuterPackage.B.b.self, 
-		   A.self,  A.a2.self,  B.self,  OuterPackage.B.b.a1.self, 
-		   OuterPackage.A.self, 		   OuterPackage.A.a1.self,  OuterPackage.B.self,  test.A.self,  test.A.a2.self,  test.B.self, 
-		--- */
+	A, A.a2, A.a2.self, A.a2.that, A.a2.that.self, A.self, A.that, A.that.self, B,
+	B.self, B.that, B.that.self, OuterPackage.A, OuterPackage.A.a1, OuterPackage.A.a1.self,
+	OuterPackage.A.a1.that, OuterPackage.A.a1.that.self, OuterPackage.A.self, OuterPackage.A.that,
+	OuterPackage.A.that.self, OuterPackage.B, OuterPackage.B.b, OuterPackage.B.b.a1,
+	OuterPackage.B.b.a1.self, OuterPackage.B.b.a1.that, OuterPackage.B.b.a1.that.self, OuterPackage.B.b.self,
+	OuterPackage.B.b.that, OuterPackage.B.b.that.self, OuterPackage.B.self, OuterPackage.B.that,
+	OuterPackage.B.that.self, test.A, test.A.a2, test.A.a2.self, test.A.a2.that, test.A.a2.that.self,
+	test.A.self, test.A.that, test.A.that.self, test.B, test.B.self, test.B.that,
+	test.B.that.self
+	--- */
 	feature B subsets OuterPackage::A.a1 {} 
 }

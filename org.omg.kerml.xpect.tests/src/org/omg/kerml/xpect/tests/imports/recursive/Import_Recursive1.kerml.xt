@@ -31,12 +31,18 @@ package RecursiveImport {
 	}
 
 	//* XPECT scope at X ---
-	P.Q.R.Z, P.Q.R.Z.self, P.Q.Y, P.Q.Y.self, P.X, P.X.self, Q.R.Z, Q.Y, R.Z,
-	RecursiveImport.P.Q.R.Z, RecursiveImport.P.Q.R.Z.self, RecursiveImport.P.Q.Y,
-	RecursiveImport.P.Q.Y.self, RecursiveImport.P.X, RecursiveImport.P.X.self, RecursiveImport.Q.R.Z,
-	RecursiveImport.Q.Y, RecursiveImport.R.Z, RecursiveImport.X, RecursiveImport.Y, RecursiveImport.Z,
-	RecursiveImport.x, RecursiveImport.x.self, RecursiveImport.y, RecursiveImport.y.self,
-	RecursiveImport.z, RecursiveImport.z.self, X, Y, Z, x, x.self, y, y.self, z, z.self
+	P.Q.R.Z, P.Q.R.Z.self, P.Q.R.Z.self.that, P.Q.Y, P.Q.Y.self, P.Q.Y.self.that,
+	P.X, P.X.self, P.X.self.that, Q.R.Z, Q.Y, R.Z, RecursiveImport.P.Q.R.Z,
+	RecursiveImport.P.Q.R.Z.self, RecursiveImport.P.Q.R.Z.self.that, RecursiveImport.P.Q.Y,
+	RecursiveImport.P.Q.Y.self, RecursiveImport.P.Q.Y.self.that, RecursiveImport.P.X, RecursiveImport.P.X.self,
+	RecursiveImport.P.X.self.that, RecursiveImport.Q.R.Z, RecursiveImport.Q.Y, RecursiveImport.R.Z,
+	RecursiveImport.X, RecursiveImport.Y, RecursiveImport.Z, RecursiveImport.x,
+	RecursiveImport.x.self, RecursiveImport.x.self.that, RecursiveImport.x.that,
+	RecursiveImport.x.that.self, RecursiveImport.y, RecursiveImport.y.self, RecursiveImport.y.self.that,
+	RecursiveImport.y.that, RecursiveImport.y.that.self, RecursiveImport.z, RecursiveImport.z.self,
+	RecursiveImport.z.self.that, RecursiveImport.z.that, RecursiveImport.z.that.self, X, Y, Z, x, x.self,
+	x.self.that, x.that, x.that.self, y, y.self, y.self.that, y.that, y.that.self, z, z.self,
+	z.self.that, z.that, z.that.self
 	--- */
 
 	feature x: X;

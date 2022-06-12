@@ -37,19 +37,26 @@ package test{
 	classifier EE specializes D {
 		//XPECT linkedName at b --> OuterPackage.B.b
 		//* XPECT scope at b ---
-		   D, D.b, D.b.a1, D.c, D.c.self, D.f, D.f.a1, D.f.self, EE, EE.b, EE.b.a1, EE.c,
-		   EE.c.self, EE.f, EE.f.a1, EE.f.self, EE.self, EE.try, EE.try.a1, EE.try.self,
-		   OuterPackage.A, OuterPackage.A.a1, OuterPackage.B, OuterPackage.B.b, OuterPackage.B.b.a1,
-		   OuterPackage2.B, OuterPackage2.B.b, OuterPackage2.B.b.a1, OuterPackage2.C, OuterPackage2.C.b,
-		   OuterPackage2.C.b.a1, OuterPackage2.C.c, OuterPackage2.C.c.self, OuterPackage3.C, OuterPackage3.C.b,
-		   OuterPackage3.C.b.a1, OuterPackage3.C.c, OuterPackage3.C.c.self, OuterPackage3.D, OuterPackage3.D.b,
-		   OuterPackage3.D.b.a1, OuterPackage3.D.c, OuterPackage3.D.c.self, OuterPackage3.D.f,
-		   OuterPackage3.D.f.a1, OuterPackage3.D.f.self, b, b.a1, c, c.self, f, f.a1, f.self, self, test.D,
-		   test.D.b, test.D.b.a1, test.D.c, test.D.c.self, test.D.f, test.D.f.a1, test.D.f.self,
-		   test.EE, test.EE.b, test.EE.b.a1, test.EE.c, test.EE.c.self, test.EE.f, test.EE.f.a1,
-		   test.EE.f.self, test.EE.self, test.EE.try, test.EE.try.a1, test.EE.try.self, try, try.a1,
-		   try.self
-	--- */
+		   D, D.b, D.b.a1, D.c, D.c.self, D.c.that, D.c.that.self, D.f, D.f.a1, D.f.self,
+		   D.f.that, D.f.that.self, EE, EE.b, EE.b.a1, EE.c, EE.c.self, EE.c.that, EE.c.that.self,
+		   EE.f, EE.f.a1, EE.f.self, EE.f.that, EE.f.that.self, EE.self, EE.self.that, EE.try,
+		   EE.try.a1, EE.try.self, EE.try.that, EE.try.that.self, OuterPackage.A, OuterPackage.A.a1,
+		   OuterPackage.B, OuterPackage.B.b, OuterPackage.B.b.a1, OuterPackage2.B, OuterPackage2.B.b,
+		   OuterPackage2.B.b.a1, OuterPackage2.C, OuterPackage2.C.b, OuterPackage2.C.b.a1, OuterPackage2.C.c,
+		   OuterPackage2.C.c.self, OuterPackage2.C.c.that, OuterPackage2.C.c.that.self, OuterPackage3.C,
+		   OuterPackage3.C.b, OuterPackage3.C.b.a1, OuterPackage3.C.c, OuterPackage3.C.c.self,
+		   OuterPackage3.C.c.that, OuterPackage3.C.c.that.self, OuterPackage3.D, OuterPackage3.D.b,
+		   OuterPackage3.D.b.a1, OuterPackage3.D.c, OuterPackage3.D.c.self, OuterPackage3.D.c.that,
+		   OuterPackage3.D.c.that.self, OuterPackage3.D.f, OuterPackage3.D.f.a1, OuterPackage3.D.f.self,
+		   OuterPackage3.D.f.that, OuterPackage3.D.f.that.self, b, b.a1, c, c.self, c.that, c.that.self, f, f.a1,
+		   f.self, f.that, f.that.self, self, self.that, test.D, test.D.b, test.D.b.a1, test.D.c,
+		   test.D.c.self, test.D.c.that, test.D.c.that.self, test.D.f, test.D.f.a1, test.D.f.self,
+		   test.D.f.that, test.D.f.that.self, test.EE, test.EE.b, test.EE.b.a1, test.EE.c,
+		   test.EE.c.self, test.EE.c.that, test.EE.c.that.self, test.EE.f, test.EE.f.a1, test.EE.f.self,
+		   test.EE.f.that, test.EE.f.that.self, test.EE.self, test.EE.self.that, test.EE.try,
+		   test.EE.try.a1, test.EE.try.self, test.EE.try.that, test.EE.try.that.self, try, try.a1,
+		   try.self, try.that, try.that.self
+		--- */
 		feature try : b;
 	}
 }

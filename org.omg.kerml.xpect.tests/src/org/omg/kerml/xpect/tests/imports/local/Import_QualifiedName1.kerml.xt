@@ -26,9 +26,12 @@ package Import_QualifiedName {
 		}
 		//* XPECT scope at P2a::A ---
 			   Import_QualifiedName.P1.A, Import_QualifiedName.P1.A.self,
-			   Import_QualifiedName.P2.P2a.A, Import_QualifiedName.P2.P2a.A.self, Import_QualifiedName.P2.x,
-			   Import_QualifiedName.P2.x.self, P1.A, P1.A.self, P2.P2a.A, P2.P2a.A.self, P2.x, P2.x.self, P2a.A, P2a.A.self,
-			   x, x.self
+			   Import_QualifiedName.P1.A.self.that, Import_QualifiedName.P2.P2a.A, Import_QualifiedName.P2.P2a.A.self,
+			   Import_QualifiedName.P2.P2a.A.self.that, Import_QualifiedName.P2.x, Import_QualifiedName.P2.x.self,
+			   Import_QualifiedName.P2.x.self.that, Import_QualifiedName.P2.x.that, Import_QualifiedName.P2.x.that.self, P1.A,
+			   P1.A.self, P1.A.self.that, P2.P2a.A, P2.P2a.A.self, P2.P2a.A.self.that, P2.x, P2.x.self,
+			   P2.x.self.that, P2.x.that, P2.x.that.self, P2a.A, P2a.A.self, P2a.A.self.that, x, x.self,
+			   x.self.that, x.that, x.that.self
 		--- */
 		// The following should not fail.
 		// A is a member of P2a because of the import.

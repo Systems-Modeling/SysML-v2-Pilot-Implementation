@@ -22,13 +22,20 @@ package test{
 	}
 	
 	//* XPECT scope at A ---
-		A, A.f, A.f.self, A.f_Id, A.f_Id.self, A.self, A_Id, A_Id.f, A_Id.f.self,
-		A_Id.f_Id, A_Id.f_Id.self, A_Id.self, B, B.f, B.f.self, B.f_Id, B.f_Id.self, B.self, g,
-		g.self, h, h.self, test.A, test.A.f, test.A.f.self, test.A.f_Id, test.A.f_Id.self,
-		test.A.self, test.A_Id, test.A_Id.f, test.A_Id.f.self, test.A_Id.f_Id, test.A_Id.f_Id.self,
-		test.A_Id.self, test.B, test.B.f, test.B.f.self, test.B.f_Id, test.B.f_Id.self, test.B.self,
-		test.g, test.g.self, test.h, test.h.self
-		--- */
+		A, A.f, A.f.self, A.f.that, A.f.that.self, A.f_Id, A.f_Id.self, A.f_Id.that,
+		A.f_Id.that.self, A.self, A.self.that, A_Id, A_Id.f, A_Id.f.self, A_Id.f.that, A_Id.f.that.self,
+		A_Id.f_Id, A_Id.f_Id.self, A_Id.f_Id.that, A_Id.f_Id.that.self, A_Id.self, A_Id.self.that,
+		B, B.f, B.f.self, B.f.that, B.f.that.self, B.f_Id, B.f_Id.self, B.f_Id.that,
+		B.f_Id.that.self, B.self, B.self.that, g, g.self, g.that, g.that.self, h, h.self, h.that,
+		h.that.self, test.A, test.A.f, test.A.f.self, test.A.f.that, test.A.f.that.self,
+		test.A.f_Id, test.A.f_Id.self, test.A.f_Id.that, test.A.f_Id.that.self, test.A.self,
+		test.A.self.that, test.A_Id, test.A_Id.f, test.A_Id.f.self, test.A_Id.f.that,
+		test.A_Id.f.that.self, test.A_Id.f_Id, test.A_Id.f_Id.self, test.A_Id.f_Id.that,
+		test.A_Id.f_Id.that.self, test.A_Id.self, test.A_Id.self.that, test.B, test.B.f, test.B.f.self,
+		test.B.f.that, test.B.f.that.self, test.B.f_Id, test.B.f_Id.self, test.B.f_Id.that,
+		test.B.f_Id.that.self, test.B.self, test.B.self.that, test.g, test.g.self, test.g.that,
+		test.g.that.self, test.h, test.h.self, test.h.that, test.h.that.self
+	--- */
 	classifier B conjugates A;
 
 	//XPECT linkedName at B::f --> test.A.f	

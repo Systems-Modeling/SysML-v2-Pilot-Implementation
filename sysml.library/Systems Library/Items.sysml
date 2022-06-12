@@ -49,7 +49,7 @@ package Items {
 			item envelopingItem [1]; /* Shape constraint below, to avoid envelopingShape being a portion. */
 
 			assert constraint { envelopingItem.shape.spaceTimeCoincidentOccurrences->includes(envelopingShape) &
-					    envelopingItem.spaceTimeEnclosedOccurrences->includes(Item::self) }
+					    envelopingItem.spaceTimeEnclosedOccurrences->includes(that) }
 		}
 		
 		/**
@@ -86,7 +86,7 @@ package Items {
 		/**
 		 * The Items that are composite subitems of this Item.
 		 */
-		abstract item subitems: Item[0..*];
+		abstract item subitems: Item[0..*] :> items;
 		
 		/**
 		 * The subitems of this Item that are Parts.

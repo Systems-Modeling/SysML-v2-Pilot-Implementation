@@ -24,12 +24,19 @@ package Import_Private {
 		private import P1::*;
 	}
 	//* XPECT scope at P1::A ---
-	   B, B.self, Import_Private.P1.A, Import_Private.P1.A.self, Import_Private.P3.B,
-	   Import_Private.P3.B.self, Import_Private.P4.A, Import_Private.P4.A.self, Import_Private.P4.z1,
-	   Import_Private.P4.z1.self, Import_Private.x, Import_Private.x.self, Import_Private.y,
-	   Import_Private.y.self, Import_Private.y1, Import_Private.y1.self, Import_Private.z,
-	   Import_Private.z.self, P1.A, P1.A.self, P3.B, P3.B.self, P4.A, P4.A.self, P4.z1, P4.z1.self, x,
-	   x.self, y, y.self, y1, y1.self, z, z.self
+	   B, B.self, B.self.that, Import_Private.P1.A, Import_Private.P1.A.self,
+	   Import_Private.P1.A.self.that, Import_Private.P3.B, Import_Private.P3.B.self, Import_Private.P3.B.self.that,
+	   Import_Private.P4.A, Import_Private.P4.A.self, Import_Private.P4.A.self.that, Import_Private.P4.z1,
+	   Import_Private.P4.z1.self, Import_Private.P4.z1.self.that, Import_Private.P4.z1.that,
+	   Import_Private.P4.z1.that.self, Import_Private.x, Import_Private.x.self, Import_Private.x.self.that,
+	   Import_Private.x.that, Import_Private.x.that.self, Import_Private.y, Import_Private.y.self,
+	   Import_Private.y.that, Import_Private.y.that.self, Import_Private.y1, Import_Private.y1.self,
+	   Import_Private.y1.that, Import_Private.y1.that.self, Import_Private.z, Import_Private.z.self,
+	   Import_Private.z.self.that, Import_Private.z.that, Import_Private.z.that.self, P1.A, P1.A.self,
+	   P1.A.self.that, P3.B, P3.B.self, P3.B.self.that, P4.A, P4.A.self, P4.A.self.that, P4.z1,
+	   P4.z1.self, P4.z1.self.that, P4.z1.that, P4.z1.that.self, x, x.self, x.self.that, x.that,
+	   x.that.self, y, y.self, y.that, y.that.self, y1, y1.self, y1.that, y1.that.self, z, z.self,
+	   z.self.that, z.that, z.that.self
 	--- */
 	x: P1::A;
 	

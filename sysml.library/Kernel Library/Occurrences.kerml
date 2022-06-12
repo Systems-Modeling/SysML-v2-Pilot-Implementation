@@ -35,6 +35,13 @@ package Occurrences {
 		feature sameLifeOccurrences: Occurrence[1..*] subsets things;
 
 		/**
+		 * The "context" Occurrence within which this Occurrence takes place. By default, it is this
+		 * Occurrence itself. However, this is overridden for ownedPerformances of Objects and
+		 * subperformances of Performances.
+		 */
+		feature this : Occurrence[1] default self;
+		
+		/**
 		 * Occurrences that end before this occurrence starts.
 		 */
 		feature predecessors: Occurrence[0..*] subsets occurrences;
@@ -320,7 +327,7 @@ package Occurrences {
 		 */
 		feature spaceBoundaryOf: Occurrence[0..*] subsets spaceShotOf {
 			feature spaceBounderOf: Occurrence redefines self;
-			inv { spaceBounderOf.spaceBoundary == Occurrence::self }
+			inv { spaceBounderOf.spaceBoundary == that.that }
 		}
 
 		inv { !isClosed implies contains(self.unionsOf, union(spaceBoundary, spaceInterior)) }

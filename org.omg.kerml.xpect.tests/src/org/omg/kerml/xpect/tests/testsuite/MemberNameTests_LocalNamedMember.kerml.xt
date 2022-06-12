@@ -23,10 +23,16 @@ package test{
 	
 	// besides "A_alias", we can reference...
 	//* XPECT scope at A_alias ---
-	    A, A.self, A_Id, A_Id.self, A_Id_alias, A_Id_alias.self, A_alias, A_alias.self,
-	    a, a.self, a_Id, a_Id.self, a_Id_1, a_Id_1.self, test.A, test.A.self, test.A_Id,
-	    test.A_Id.self, test.A_Id_alias, test.A_Id_alias.self, test.A_alias, test.A_alias.self, test.a,
-	    test.a.self, test.a_Id, test.a_Id.self, test.a_Id_1, test.a_Id_1.self
+	    A, A.self, A.self.that, A_Id, A_Id.self, A_Id.self.that, A_Id_alias,
+	    A_Id_alias.self, A_Id_alias.self.that, A_alias, A_alias.self, A_alias.self.that, a, a.self,
+	    a.self.that, a.that, a.that.self, a_Id, a_Id.self, a_Id.self.that, a_Id.that,
+	    a_Id.that.self, a_Id_1, a_Id_1.self, a_Id_1.self.that, a_Id_1.that, a_Id_1.that.self, test.A,
+	    test.A.self, test.A.self.that, test.A_Id, test.A_Id.self, test.A_Id.self.that,
+	    test.A_Id_alias, test.A_Id_alias.self, test.A_Id_alias.self.that, test.A_alias,
+	    test.A_alias.self, test.A_alias.self.that, test.a, test.a.self, test.a.self.that, test.a.that,
+	    test.a.that.self, test.a_Id, test.a_Id.self, test.a_Id.self.that, test.a_Id.that,
+	    test.a_Id.that.self, test.a_Id_1, test.a_Id_1.self, test.a_Id_1.self.that, test.a_Id_1.that,
+	    test.a_Id_1.that.self
 	--- */
 	//XPECT linkedName at A_alias --> test.A
 	feature a: A_alias;

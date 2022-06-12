@@ -59,20 +59,39 @@ public class ActionUsageAdapter extends OccurrenceUsageAdapter {
 		String subactionType = getSubactionType();
 		if (subactionType != null) {
 			addDefaultGeneralType(subactionType);
+		} 
+		if (isOwnedPerformance()) {
+			addDefaultGeneralType("ownedPerformance");
+		} else if (isEnclosedPerformance()) {
+			addDefaultGeneralType("enclosedPerformance");
 		}
 	}
 	
+	@Override
+	protected String getDefaultSupertype() {
+		return getDefaultSupertype("base");
+	}
+	
 	protected String getSubactionType() {
-		return isSubaction()? "subaction": null;	
+		return isSubaction()? "subaction": 
+			   isOwnedAction()? "ownedAction":
+			   null;	
 	}
 		
 	public boolean isSubaction() {
-		Type owningType = getTarget().getOwningType();
-		return owningType instanceof ActionDefinition || owningType instanceof ActionUsage;
-	}	
+		ActionUsage target = getTarget();
+		Type owningType = target.getOwningType();
+		return target.isComposite() && (owningType instanceof ActionDefinition || owningType instanceof ActionUsage);
+	}
+	
+	public boolean isOwnedAction() {
+		ActionUsage target = getTarget();
+		Type owningType = target.getOwningType();
+		return target.isComposite() && (owningType instanceof PartDefinition || owningType instanceof PartUsage);
+	}
 	
 	// Used in subclasses.
-	public boolean isEnactedPerformance() {		
+	public boolean isPerformedAction() {		
 		Type owningType = getTarget().getOwningType();
 		return owningType instanceof PartDefinition || owningType instanceof PartUsage;
 	}

@@ -46,6 +46,11 @@ public class VActionMembers extends VBehavior {
     }
 
     public String caseFeature(Feature f) {
+        if (VSSRMembers.isStateSpaceMember(f)) {
+            if (!addRecLine(f, true)) return null;
+            VSSRMembers vs = new VSSRMembers(this);
+            return vs.start(f);
+        }
         FeatureDirectionKind fdk = f.getDirection();
         if (fdk == null) return null;
         switch (fdk) {

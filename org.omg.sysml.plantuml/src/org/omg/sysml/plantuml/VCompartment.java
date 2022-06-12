@@ -84,6 +84,7 @@ public class VCompartment extends VStructure {
     }
 
     protected boolean rec(Namespace n, Membership m, Element e, boolean force) {
+        if (parent == null) return false;
         VTree subtree = parent.subtree(n, m, e, force);
         if (subtree == null) return false;
         subtrees.add(subtree);
@@ -626,7 +627,7 @@ public class VCompartment extends VStructure {
         }
     }
 
-    private void startType(Type typ) {
+    public void startType(Type typ) {
         traverse(typ);
         addFeatures(featureEntries, 0);
     }

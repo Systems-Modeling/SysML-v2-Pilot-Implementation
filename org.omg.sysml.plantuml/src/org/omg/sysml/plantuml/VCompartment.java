@@ -77,6 +77,8 @@ public class VCompartment extends VStructure {
 
     private VTree parent;
 
+    private Type currentType;
+
     private final boolean compartmentMost;
 
     protected boolean isCompartmentMost() {
@@ -95,8 +97,17 @@ public class VCompartment extends VStructure {
         return rec(getCurrentNamespace(), m, e, force);
     }
 
-    private boolean recCurrentMembership(Element e, boolean force) {
+    private Membership getMembership(Element e) {
         Membership ms = getCurrentMembership();
+        if (ms != null) return ms;
+        for (Membership m: currentType.getInheritedMembership()) {
+            if (e.equals(m.getMemberElement())) return m;
+        }
+        return null;
+    }
+
+    private boolean recCurrentMembership(Element e, boolean force) {
+        Membership ms = getMembership(e);
         if (ms == null) return false;
         return rec(ms, e, force);
     }
@@ -628,6 +639,7 @@ public class VCompartment extends VStructure {
     }
 
     public void startType(Type typ) {
+        this.currentType = typ;
         traverse(typ);
         addFeatures(featureEntries, 0);
     }

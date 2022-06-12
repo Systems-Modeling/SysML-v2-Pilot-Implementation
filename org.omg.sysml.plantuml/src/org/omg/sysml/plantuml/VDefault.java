@@ -104,7 +104,7 @@ public class VDefault extends VTraverser {
     protected void addSpecializations(Type typ) {
         for (Specialization s: typ.getOwnedSpecialization()) {
             Type gt = s.getGeneral();
-            if (gt == null || gt.getName() == null) continue;
+            if (gt == null) continue;
             addPRelation(null, typ, gt, s, null);
         }
     }

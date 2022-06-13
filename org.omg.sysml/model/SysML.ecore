@@ -3183,6 +3183,7 @@
         <details key="documentation" value="&lt;p>The owned ConstraintUsages that represent assumptions of this RequirementDefinition, derived as the &lt;code>ownedConstraints&lt;/code> of the &lt;code>RequirementConstraintMemberships&lt;/code> of the RequirementDefinition with &lt;code>kind&lt;/code> = &lt;code>assumption&lt;/code>.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Type/ownedFeature"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="requiredConstraint" upperBound="-1"
         eType="#//ConstraintUsage" volatile="true" transient="true" derived="true">
@@ -3193,6 +3194,7 @@
         <details key="documentation" value="&lt;p>The owned ConstraintUsages that represent requirements of this RequirementDefinition, derived as the &lt;code>ownedConstraints&lt;/code> of the &lt;code>RequirementConstraintMemberships&lt;/code> of the RequirementDefinition with &lt;code>kind&lt;/code> = &lt;code>requirement&lt;/code>.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Type/ownedFeature"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="subjectParameter" ordered="false"
         lowerBound="1" eType="#//Usage" volatile="true" transient="true" derived="true">
@@ -3203,6 +3205,7 @@
         <details key="documentation" value="&lt;p>The &lt;code>parameter&lt;/code> of this RequirementDefinition that is owned via a SubjectMembership, which must redefine, directly or indirectly, the &lt;code>subject&lt;/code> parameter of the base RequirementDefinition RequirementCheck from the Systems model library.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Behavior/parameter #//Definition/ownedUsage"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="framedConcern" upperBound="-1"
         eType="#//ConcernUsage" volatile="true" transient="true" derived="true">
@@ -3213,6 +3216,7 @@
         <details key="documentation" value="&lt;p>The Concerns framed by this RequirementDefinition, derived as the &lt;code>ownedConcerns&lt;/code> of all &lt;code>FramedConcernMemberships&lt;/code> of the RequirementDefinition.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//RequirementDefinition/requiredConstraint"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="actorParameter" upperBound="-1"
         eType="#//PartUsage" volatile="true" transient="true" derived="true">
@@ -3223,6 +3227,7 @@
         <details key="documentation" value="&lt;p>The &lt;code>parameters&lt;/code> of this RequirementDefinition that are owned via ActorMemberships, which must subset, directly or indirectly, the PartUsage &lt;em>&lt;code>actors&lt;/code>&lt;/em> of the base RequirementDefinition &lt;em>RequirementCheck&lt;/em> from the Systems model library.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Definition/ownedPart #//Behavior/parameter"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="stakeholderParameter" upperBound="-1"
         eType="#//PartUsage" volatile="true" transient="true" derived="true">
@@ -3233,6 +3238,7 @@
         <details key="documentation" value="&lt;p>The &lt;code>parameters&lt;/code> of this RequirementDefinition that are owned via StakeholderMemberships, which must subset, directly or indirectly, the PartUsage &lt;em>&lt;code>stakeholders&lt;/code>&lt;/em> of the base RequirementDefinition &lt;em>RequirementCheck&lt;/em> from the Systems model library.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Definition/ownedPart #//Behavior/parameter"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ConstraintDefinition" eSuperTypes="#//OccurrenceDefinition #//Predicate">

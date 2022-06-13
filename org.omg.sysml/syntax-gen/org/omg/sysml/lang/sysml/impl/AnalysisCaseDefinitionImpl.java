@@ -27,12 +27,10 @@ import java.util.Collection;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.uml2.common.util.DerivedEObjectEList;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.AnalysisCaseDefinition;
 import org.omg.sysml.lang.sysml.Expression;
-import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
@@ -51,6 +49,26 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  */
 public class AnalysisCaseDefinitionImpl extends CaseDefinitionImpl implements AnalysisCaseDefinition {
 	
+	/**
+	 * The cached setting delegate for the '{@link #getAnalysisAction() <em>Analysis Action</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAnalysisAction()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate ANALYSIS_ACTION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.ANALYSIS_CASE_DEFINITION__ANALYSIS_ACTION).getSettingDelegate();
+
+	/**
+	 * The cached setting delegate for the '{@link #getResultExpression() <em>Result Expression</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getResultExpression()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate RESULT_EXPRESSION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.ANALYSIS_CASE_DEFINITION__RESULT_EXPRESSION).getSettingDelegate();
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -73,12 +91,12 @@ public class AnalysisCaseDefinitionImpl extends CaseDefinitionImpl implements An
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<ActionUsage> getAnalysisAction() {
-		return new DerivedEObjectEList<>(ActionUsage.class, this, SysMLPackage.ANALYSIS_CASE_DEFINITION__ANALYSIS_ACTION, new int[] {SysMLPackage.ANALYSIS_CASE_DEFINITION__ACTION});
-
+		return (EList<ActionUsage>)ANALYSIS_ACTION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
@@ -88,34 +106,26 @@ public class AnalysisCaseDefinitionImpl extends CaseDefinitionImpl implements An
 	 */
 	@Override
 	public Expression getResultExpression() {
-		Expression resultExpression = basicGetResultExpression();
-		return resultExpression != null && resultExpression.eIsProxy() ? (Expression)eResolveProxy((InternalEObject)resultExpression) : resultExpression;
+		return (Expression)RESULT_EXPRESSION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Expression basicGetResultExpression() {
-		EList<Feature> ownedFeatures = getOwnedFeature();
-		for (int i = ownedFeatures.size() - 1; i >= 0; i--) {
-			Feature ownedFeature = ownedFeatures.get(i);
-			if (ownedFeature instanceof Expression) {
-				return (Expression)ownedFeature;
-			}
-		}
-		return null;
+		return (Expression)RESULT_EXPRESSION__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setResultExpression(Expression newResultExpression) {
-		throw new UnsupportedOperationException();
+		RESULT_EXPRESSION__ESETTING_DELEGATE.dynamicSet(this, null, 0, newResultExpression);
 	}
 
 	/**
@@ -182,9 +192,9 @@ public class AnalysisCaseDefinitionImpl extends CaseDefinitionImpl implements An
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case SysMLPackage.ANALYSIS_CASE_DEFINITION__ANALYSIS_ACTION:
-				return !getAnalysisAction().isEmpty();
+				return ANALYSIS_ACTION__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.ANALYSIS_CASE_DEFINITION__RESULT_EXPRESSION:
-				return basicGetResultExpression() != null;
+				return RESULT_EXPRESSION__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 		}
 		return super.eIsSet(featureID);
 	}

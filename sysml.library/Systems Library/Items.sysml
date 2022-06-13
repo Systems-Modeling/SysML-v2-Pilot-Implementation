@@ -35,7 +35,8 @@ package Items {
 		item shape : Item :>> spaceBoundary;
 		
 		/**
-		 * Each enveloping shape is the shape of an Item that includes this Item in space and time.
+		 * Each enveloping shape is the shape of an Item that spacially overlaps this Item for its
+		 * entire lifetime.
 		 */
 		item envelopingShapes : Item[0..*] {
 
@@ -54,7 +55,7 @@ package Items {
 		}
 		
 		/**
-		 * Bounding shapes are enveloping shapes that are structured space objects with every face or every edge
+		 * envelopingShapes that are structured space objects with every face or every edge
 		 * intersecting this Item.
 		 */
 		item boundingShapes : StructuredSpaceObject [0..*] :> envelopingShapes {
@@ -95,7 +96,7 @@ package Items {
 		abstract part subparts: Part[0..*] :> subitems, parts;
 		
 		/**
-		 * Constraints that have been checked by this item.
+		 * Constraints that have been checked by this Item.
 		 */
 		abstract ref constraint checkedConstraints: ConstraintCheck[0..*] :> constraintChecks, enactedPerformances;
 	}

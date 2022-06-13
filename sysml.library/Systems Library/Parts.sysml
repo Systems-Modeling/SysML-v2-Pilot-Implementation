@@ -35,19 +35,22 @@ package Parts {
 		abstract ref action performedActions: Action[0..*] :> actions, enactedPerformances;
 		
 		/**
-		 * Performed actions that are owned by this Part.
+		 * Actions that are owned by this Part.
 		 */
 		abstract action ownedActions: Action[0..*] :> actions, ownedPerformances {
+			/**
+			 * The "this" reference of an ownedAction is always its owning Part.
+			 */
 		 	ref part :>> this : Part = that as Part;
 		}
 		
 		/**
-		 * States that are exhibited by this Part.
+		 * StateActions that are exhibited by this Part.
 		 */
 		abstract ref state exhibitedStates: StateAction[0..*] :> stateActions, performedActions;
 		
 		/**
-		 * Exhibited states that are owned by this Part.
+		 * StateActions that are owned by this Part.
 		 */
 		abstract state ownedStates: StateAction[0..*] :> stateActions, ownedActions;
 	}

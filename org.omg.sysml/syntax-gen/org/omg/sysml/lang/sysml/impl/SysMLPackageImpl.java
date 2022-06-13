@@ -13729,6 +13729,11 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   new String[] {
 		   });
 		addAnnotation
+		  (getAnalysisCaseUsage_ResultExpression(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
 		  (getCalculationDefinition_Calculation(),
 		   source,
 		   new String[] {

@@ -34,7 +34,6 @@ import org.omg.sysml.lang.sysml.AnalysisCaseDefinition;
 import org.omg.sysml.lang.sysml.AnalysisCaseUsage;
 import org.omg.sysml.lang.sysml.CaseDefinition;
 import org.omg.sysml.lang.sysml.Expression;
-import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
@@ -63,6 +62,16 @@ public class AnalysisCaseUsageImpl extends CaseUsageImpl implements AnalysisCase
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate ANALYSIS_ACTION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.ANALYSIS_CASE_USAGE__ANALYSIS_ACTION).getSettingDelegate();
+
+	/**
+	 * The cached setting delegate for the '{@link #getResultExpression() <em>Result Expression</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getResultExpression()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate RESULT_EXPRESSION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.ANALYSIS_CASE_USAGE__RESULT_EXPRESSION).getSettingDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -101,34 +110,26 @@ public class AnalysisCaseUsageImpl extends CaseUsageImpl implements AnalysisCase
 	 */
 	@Override
 	public Expression getResultExpression() {
-		Expression resultExpression = basicGetResultExpression();
-		return resultExpression != null && resultExpression.eIsProxy() ? (Expression)eResolveProxy((InternalEObject)resultExpression) : resultExpression;
+		return (Expression)RESULT_EXPRESSION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Expression basicGetResultExpression() {
-		EList<Feature> ownedFeatures = getOwnedFeature();
-		for (int i = ownedFeatures.size() - 1; i >= 0; i--) {
-			Feature ownedFeature = ownedFeatures.get(i);
-			if (ownedFeature instanceof Expression) {
-				return (Expression)ownedFeature;
-			}
-		}
-		return null;
+		return (Expression)RESULT_EXPRESSION__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setResultExpression(Expression newResultExpression) {
-		throw new UnsupportedOperationException();
+		RESULT_EXPRESSION__ESETTING_DELEGATE.dynamicSet(this, null, 0, newResultExpression);
 	}
 
 	/**
@@ -291,7 +292,7 @@ public class AnalysisCaseUsageImpl extends CaseUsageImpl implements AnalysisCase
 			case SysMLPackage.ANALYSIS_CASE_USAGE__ANALYSIS_CASE_DEFINITION:
 				return isSetAnalysisCaseDefinition();
 			case SysMLPackage.ANALYSIS_CASE_USAGE__RESULT_EXPRESSION:
-				return basicGetResultExpression() != null;
+				return RESULT_EXPRESSION__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 		}
 		return super.eIsSet(featureID);
 	}

@@ -22,6 +22,7 @@
 package org.omg.sysml.expressions.functions;
 
 import org.eclipse.emf.common.util.EList;
+import org.omg.sysml.expressions.util.EvaluationUtil;
 import org.omg.sysml.lang.sysml.Element;
 
 public class MinusFunction extends ArithmeticFunction {
@@ -33,22 +34,22 @@ public class MinusFunction extends ArithmeticFunction {
 	
 	@Override
 	protected EList<Element> unaryIntegerOp(int x) {
-		return integerResult(-x);
+		return EvaluationUtil.integerResult(-x);
 	}
 	
 	@Override
 	protected EList<Element> unaryRealOp(double x) {
-		return realResult(-x);
+		return EvaluationUtil.realResult(-x);
 	}
 
 	@Override
 	protected EList<Element> binaryIntegerOp(int x, int y) {
-		return integerResult(x - y);
+		return EvaluationUtil.integerResult(x - y);
 	}
 	
 	@Override
 	protected EList<Element> binaryRealOp(double x, double y) {
-		return realResult(x - y);
+		return EvaluationUtil.realResult(x - y);
 	}
 
 }

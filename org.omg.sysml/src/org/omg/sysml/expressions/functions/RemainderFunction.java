@@ -22,6 +22,7 @@
 package org.omg.sysml.expressions.functions;
 
 import org.eclipse.emf.common.util.EList;
+import org.omg.sysml.expressions.util.EvaluationUtil;
 import org.omg.sysml.lang.sysml.Element;
 
 public class RemainderFunction extends ArithmeticFunction {
@@ -33,12 +34,12 @@ public class RemainderFunction extends ArithmeticFunction {
 	
 	@Override
 	protected EList<Element> binaryIntegerOp(int x, int y) {
-		return y == 0? nullList(): integerResult(x % y);
+		return y == 0? EvaluationUtil.nullList(): EvaluationUtil.integerResult(x % y);
 	}
 	
 	@Override
 	protected EList<Element> binaryRealOp(double x, double y) {
-		return y == 0.0? nullList(): realResult(x % y);
+		return y == 0.0? EvaluationUtil.nullList(): EvaluationUtil.realResult(x % y);
 	}
 
 }

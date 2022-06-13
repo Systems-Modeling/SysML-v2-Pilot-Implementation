@@ -22,6 +22,7 @@
 package org.omg.sysml.expressions.functions;
 
 import org.eclipse.emf.common.util.EList;
+import org.omg.sysml.expressions.util.EvaluationUtil;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.InvocationExpression;
 
@@ -34,30 +35,30 @@ public class PlusFunction extends ArithmeticFunction {
 	
 	@Override
 	protected EList<Element> unaryIntegerOp(int x) {
-		return integerResult(x);
+		return EvaluationUtil.integerResult(x);
 	}
 	
 	@Override
 	protected EList<Element> unaryRealOp(double x) {
-		return realResult(x);
+		return EvaluationUtil.realResult(x);
 	}
 
 	@Override
 	protected EList<Element> binaryIntegerOp(int x, int y) {
-		return integerResult(x + y);
+		return EvaluationUtil.integerResult(x + y);
 	}
 	
 	@Override
 	protected EList<Element> binaryRealOp(double x, double y) {
-		return realResult(x + y);
+		return EvaluationUtil.realResult(x + y);
 	}
 
 	@Override
 	public EList<Element> invoke(InvocationExpression invocation, Element target) {
-		String x_string = stringValue(invocation, 0, target);
+		String x_string = EvaluationUtil.stringValue(invocation, 0, target);
 		if (x_string != null) {
-			String y_string = stringValue(invocation, 1, target);
-			return y_string == null? nullList(): stringResult(x_string + y_string);
+			String y_string = EvaluationUtil.stringValue(invocation, 1, target);
+			return y_string == null? EvaluationUtil.nullList(): EvaluationUtil.stringResult(x_string + y_string);
 		}
 		return super.invoke(invocation, target);
 	}

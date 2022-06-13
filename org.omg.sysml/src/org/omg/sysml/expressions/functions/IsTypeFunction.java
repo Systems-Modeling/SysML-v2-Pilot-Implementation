@@ -21,6 +21,7 @@
 package org.omg.sysml.expressions.functions;
 
 import org.eclipse.emf.common.util.EList;
+import org.omg.sysml.expressions.util.EvaluationUtil;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.InvocationExpression;
 import org.omg.sysml.lang.sysml.Type;
@@ -36,9 +37,9 @@ public class IsTypeFunction extends BaseFunction {
 	public EList<Element> invoke(InvocationExpression invocation, Element target) {
 		Type testedType = getTypeArgument(invocation);
 		if (testedType != null) {
-			EList<Element> values = evaluateArgument(invocation, 0, target);
+			EList<Element> values = EvaluationUtil.evaluateArgument(invocation, 0, target);
 			if (values != null) {
-				return booleanResult(!values.isEmpty() && isType(invocation, values.get(0), testedType));
+				return EvaluationUtil.booleanResult(!values.isEmpty() && isType(invocation, values.get(0), testedType));
 			}
 		}
 		return null;

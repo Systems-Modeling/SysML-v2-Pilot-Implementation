@@ -22,6 +22,7 @@
 package org.omg.sysml.expressions.functions;
 
 import org.eclipse.emf.common.util.EList;
+import org.omg.sysml.expressions.util.EvaluationUtil;
 import org.omg.sysml.lang.sysml.Element;
 
 public class PowerFunction extends ArithmeticFunction {
@@ -33,12 +34,12 @@ public class PowerFunction extends ArithmeticFunction {
 	
 	@Override
 	protected EList<Element> binaryIntegerOp(int x, int y) {
-		return realResult(Math.pow(x, y));
+		return EvaluationUtil.realResult(Math.pow(x, y));
 	}
 	
 	@Override
 	protected EList<Element> binaryRealOp(double x, double y) {
-		return realResult(Math.pow(x, y));
+		return EvaluationUtil.realResult(Math.pow(x, y));
 	}
 
 }

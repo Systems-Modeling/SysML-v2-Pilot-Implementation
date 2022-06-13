@@ -23,6 +23,7 @@ package org.omg.sysml.expressions.functions;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
+import org.omg.sysml.expressions.util.EvaluationUtil;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.InvocationExpression;
 import org.omg.sysml.lang.sysml.Type;
@@ -45,7 +46,7 @@ public class AsFunction extends BaseFunction {
 	public EList<Element> invoke(InvocationExpression invocation, Element target) {
 		Type targetType = getTypeArgument(invocation);
 		if (targetType != null) {
-			EList<Element> values = evaluateArgument(invocation, 0, target);
+			EList<Element> values = EvaluationUtil.evaluateArgument(invocation, 0, target);
 			if (values != null) {
 				EList<Element> results = new BasicEList<>();
 				values.stream().

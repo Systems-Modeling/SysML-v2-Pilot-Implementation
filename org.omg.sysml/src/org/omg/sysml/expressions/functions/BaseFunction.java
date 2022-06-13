@@ -25,6 +25,7 @@ import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
+import org.omg.sysml.expressions.util.EvaluationUtil;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.InvocationExpression;
@@ -32,7 +33,7 @@ import org.omg.sysml.lang.sysml.LiteralExpression;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.util.TypeUtil;
 
-public abstract class BaseFunction extends LibraryFunction {
+public abstract class BaseFunction implements LibraryFunction {
 
 	protected static Type getTypeArgument(InvocationExpression invocation) {
 		EList<Feature> ownedFeatures = invocation.getOwnedFeature();
@@ -46,7 +47,7 @@ public abstract class BaseFunction extends LibraryFunction {
 	}
 	
 	protected static List<Type> getType(Element context, Element element) {
-		return element instanceof LiteralExpression? Collections.singletonList(getPrimitiveType(context, element.eClass())):
+		return element instanceof LiteralExpression? Collections.singletonList(EvaluationUtil.getPrimitiveType(context, element.eClass())):
 			   element instanceof Feature? ((Feature)element).getType():
 			   Collections.emptyList();
 	}

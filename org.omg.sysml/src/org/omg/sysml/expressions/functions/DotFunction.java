@@ -23,6 +23,7 @@ package org.omg.sysml.expressions.functions;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
+import org.omg.sysml.expressions.util.EvaluationUtil;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
@@ -44,7 +45,7 @@ public class DotFunction extends ControlFunction {
 		EList<Expression> arguments = invocation.getArgument();
 		if (!arguments.isEmpty()) {
 			Expression sourceArgument = arguments.get(0);
-			EList<Element> list = evaluate(sourceArgument, target);			
+			EList<Element> list = EvaluationUtil.evaluate(sourceArgument, target);			
 			if (list != null) {
 				Element targetFeature = ExpressionUtil.getTargetFeatureFor(invocation);
 				FeatureReferenceExpression featureReference = SysMLFactory.eINSTANCE.createFeatureReferenceExpression();
@@ -52,7 +53,7 @@ public class DotFunction extends ControlFunction {
 				if (targetFeature instanceof Feature) {
 					EList<Element> result = new BasicEList<>();
 					for (Element element: list) {
-						EList<Element> value = evaluate(featureReference, element);
+						EList<Element> value = EvaluationUtil.evaluate(featureReference, element);
 						if (value != null) {
 							result.addAll(value);
 						}

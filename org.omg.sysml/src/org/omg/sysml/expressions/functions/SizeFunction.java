@@ -21,6 +21,7 @@
 package org.omg.sysml.expressions.functions;
 
 import org.eclipse.emf.common.util.EList;
+import org.omg.sysml.expressions.util.EvaluationUtil;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.InvocationExpression;
 
@@ -33,8 +34,8 @@ public class SizeFunction extends SequenceFunction {
 
 	@Override
 	public EList<Element> invoke(InvocationExpression invocation, Element target) {
-		EList<Element> list = evaluateArgument(invocation, 0, target);
-		return list == null? null: integerResult(list.size());
+		EList<Element> list = EvaluationUtil.evaluateArgument(invocation, 0, target);
+		return list == null? null: EvaluationUtil.integerResult(list.size());
 	}
 
 }

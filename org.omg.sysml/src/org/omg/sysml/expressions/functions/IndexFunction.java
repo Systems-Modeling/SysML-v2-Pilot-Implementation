@@ -22,6 +22,7 @@
 package org.omg.sysml.expressions.functions;
 
 import org.eclipse.emf.common.util.EList;
+import org.omg.sysml.expressions.util.EvaluationUtil;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.InvocationExpression;
 
@@ -34,11 +35,11 @@ public class IndexFunction extends BaseFunction {
 
 	@Override
 	public EList<Element> invoke(InvocationExpression invocation, Element target) {
-		EList<Element> list = evaluateArgument(invocation, 0, target);
-		Integer index = integerValue(invocation, 1, target);
+		EList<Element> list = EvaluationUtil.evaluateArgument(invocation, 0, target);
+		Integer index = EvaluationUtil.integerValue(invocation, 1, target);
 		return list == null || index == null? null:
-			   index == null || index < 1 || index > list.size()? nullList():
-			   singletonList(list.get(index - 1));
+			   index == null || index < 1 || index > list.size()? EvaluationUtil.nullList():
+			   EvaluationUtil.singletonList(list.get(index - 1));
 	}
 
 }

@@ -22,10 +22,11 @@
 package org.omg.sysml.expressions.functions;
 
 import org.eclipse.emf.common.util.EList;
+import org.omg.sysml.expressions.util.EvaluationUtil;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.InvocationExpression;
 
-public class StringLengthFunction extends LibraryFunction {
+public class StringLengthFunction implements LibraryFunction {
 	
 	@Override
 	public String getPackageName() {
@@ -39,8 +40,8 @@ public class StringLengthFunction extends LibraryFunction {
 
 	@Override
 	public EList<Element> invoke(InvocationExpression invocation, Element target) {
-		String x = stringValue(invocation, 0, target);
-		return x == null? null: integerResult(x.length());
+		String x = EvaluationUtil.stringValue(invocation, 0, target);
+		return x == null? null: EvaluationUtil.integerResult(x.length());
 	}
 
 }

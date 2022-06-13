@@ -22,6 +22,7 @@
 package org.omg.sysml.expressions.functions;
 
 import org.eclipse.emf.common.util.EList;
+import org.omg.sysml.expressions.util.EvaluationUtil;
 import org.omg.sysml.lang.sysml.Element;
 
 public class LessThanOrEqualFunction extends ArithmeticFunction {
@@ -33,17 +34,17 @@ public class LessThanOrEqualFunction extends ArithmeticFunction {
 	
 	@Override
 	protected EList<Element> binaryIntegerOp(int x, int y) {
-		return booleanResult(x <= y);
+		return EvaluationUtil.booleanResult(x <= y);
 	}
 	
 	@Override
 	protected EList<Element> binaryRealOp(double x, double y) {
-		return booleanResult(x <= y);
+		return EvaluationUtil.booleanResult(x <= y);
 	}
 
 	@Override
 	protected EList<Element> binaryStringOp(String x, String y) {
-		return booleanResult(x.compareTo(y) <= 0);
+		return EvaluationUtil.booleanResult(x.compareTo(y) <= 0);
 	}
 
 }

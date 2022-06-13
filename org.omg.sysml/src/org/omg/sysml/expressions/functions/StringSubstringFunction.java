@@ -22,10 +22,11 @@
 package org.omg.sysml.expressions.functions;
 
 import org.eclipse.emf.common.util.EList;
+import org.omg.sysml.expressions.util.EvaluationUtil;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.InvocationExpression;
 
-public class StringSubstringFunction extends LibraryFunction {
+public class StringSubstringFunction implements LibraryFunction {
 
 	@Override
 	public String getPackageName() {
@@ -39,12 +40,12 @@ public class StringSubstringFunction extends LibraryFunction {
 
 	@Override
 	public EList<Element> invoke(InvocationExpression invocation, Element target) {
-		String x = stringValue(invocation, 0, target);
-		Integer lower = integerValue(invocation, 1, target);
-		Integer upper = integerValue(invocation, 2, target);
+		String x = EvaluationUtil.stringValue(invocation, 0, target);
+		Integer lower = EvaluationUtil.integerValue(invocation, 1, target);
+		Integer upper = EvaluationUtil.integerValue(invocation, 2, target);
 		return x == null || lower == null || upper == null? null:
-			   lower < 1 || upper > x.length() || lower > upper + 1 ? nullList(): 
-			   stringResult(x.substring(lower - 1, upper));
+			   lower < 1 || upper > x.length() || lower > upper + 1 ? EvaluationUtil.nullList(): 
+			   EvaluationUtil.stringResult(x.substring(lower - 1, upper));
 	}
 
 }

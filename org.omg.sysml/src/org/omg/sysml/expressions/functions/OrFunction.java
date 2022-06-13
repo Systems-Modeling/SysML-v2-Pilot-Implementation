@@ -22,6 +22,7 @@
 package org.omg.sysml.expressions.functions;
 
 import org.eclipse.emf.common.util.EList;
+import org.omg.sysml.expressions.util.EvaluationUtil;
 import org.omg.sysml.lang.sysml.Element;
 
 public class OrFunction extends BooleanFunction {
@@ -33,7 +34,7 @@ public class OrFunction extends BooleanFunction {
 	
 	@Override
 	protected EList<Element> binaryBooleanOp(boolean x, boolean y) {
-		return booleanResult(x | y);
+		return EvaluationUtil.booleanResult(x | y);
 	}
 
 }

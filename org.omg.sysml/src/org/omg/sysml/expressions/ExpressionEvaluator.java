@@ -26,6 +26,7 @@ import java.util.List;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.omg.sysml.expressions.functions.LibraryFunction;
+import org.omg.sysml.expressions.util.EvaluationUtil;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
@@ -59,13 +60,11 @@ public class ExpressionEvaluator {
 	}
 	
 	public static EList<Element> evaluateNull(NullExpression expression, Element target) {
-		return new BasicEList<>();
+		return EvaluationUtil.nullList();
 	}
 	
 	public static EList<Element> evaluateLiteral(LiteralExpression expression, Element target) {
-		EList<Element> result = new BasicEList<Element>();
-		result.add(expression);
-		return result;
+		return EvaluationUtil.singletonList(expression);
 	}
 	
 	public static EList<Element> evaluateFeatureReference(FeatureReferenceExpression expression, Element target) {
@@ -83,9 +82,7 @@ public class ExpressionEvaluator {
 				}
 			}
 		}
-		EList<Element> result = new BasicEList<>();
-		result.add(referent);
-		return result;
+		return EvaluationUtil.singletonList(referent);
 	}
 	
 	public static EList<Element> evaluateInvocation(InvocationExpression expression, Element target) {
@@ -130,13 +127,9 @@ public class ExpressionEvaluator {
 					return value.evaluate(type);
 				}
 			}
-			EList<Element> result = new BasicEList<>();
-			result.add(typeFeature);
-			return result;
+			return EvaluationUtil.singletonList(typeFeature);
 		} else {
-			EList<Element> result = new BasicEList<>();
-			result.add(feature);
-			return result;
+			return EvaluationUtil.singletonList(feature);
 		}
 	}
 	

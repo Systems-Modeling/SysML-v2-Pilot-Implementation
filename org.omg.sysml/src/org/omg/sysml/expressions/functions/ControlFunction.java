@@ -21,7 +21,7 @@
 
 package org.omg.sysml.expressions.functions;
 
-public abstract class ControlFunction extends LibraryFunction {
+public abstract class ControlFunction implements LibraryFunction {
 
 	@Override
 	public String getPackageName() {

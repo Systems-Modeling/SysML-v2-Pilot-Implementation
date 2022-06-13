@@ -3375,6 +3375,7 @@
         <details key="documentation" value="&lt;p>The &lt;code>ownedFeature&lt;/code> of this CaseUsage that is owned via an ObjectiveMembership, and that must redefine, directly or indirectly, the &lt;code>objective&lt;/code> RequirementUsage of the base CaseDefinition Case from the Systems model library.&lt;/p> &#xA;"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Usage/nestedRequirement"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="caseDefinition" ordered="false"
         lowerBound="1" eType="#//CaseDefinition" volatile="true" transient="true"
@@ -3396,6 +3397,7 @@
         <details key="documentation" value="&lt;p>The &lt;code>parameter&lt;/code> of this CaseUsage that is owned via a SubjectMembership, which must redefine, directly or indirectly, the &lt;code>subject&lt;/code> parameter of the base CaseDefinition Case from the Systems model library.&lt;/p>&#xA;"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Behavior/parameter #//Usage/nestedUsage"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="actorParameter" upperBound="-1"
         eType="#//PartUsage" volatile="true" transient="true" derived="true">
@@ -3406,6 +3408,7 @@
         <details key="documentation" value="&lt;p>The &lt;code>parameters&lt;/code> of this CaseUsage that are owned via ActorMemberships, which must subset, directly or indirectly, the PartUsage &lt;em>&lt;code>actors&lt;/code>&lt;/em> of the base CaseDefinition &lt;em>Case&lt;/em> from the Systems model library.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Usage/nestedPart #//Step/parameter"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CaseDefinition" eSuperTypes="#//CalculationDefinition">

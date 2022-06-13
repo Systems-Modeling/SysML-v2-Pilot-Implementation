@@ -52,7 +52,7 @@ public class LiteralExpressionImpl extends ExpressionImpl implements LiteralExpr
 	
 	@Override
 	public EList<Element> evaluate(Element target) {
-		return ExpressionEvaluator.evaluateLiteral(this, target);
+		return ExpressionEvaluator.INSTANCE.evaluateLiteral(this, target);
 	}
 
 	/**

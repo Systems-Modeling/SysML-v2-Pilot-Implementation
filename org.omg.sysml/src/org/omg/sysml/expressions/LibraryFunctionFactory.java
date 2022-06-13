@@ -90,12 +90,12 @@ public class LibraryFunctionFactory {
 		return functionMap;
 	}
 
-	public static LibraryFunction getLibraryFunction(Function function) {
+	public LibraryFunction getLibraryFunction(Function function) {
 		return function == null? null: 
 			INSTANCE.getFunctionMap().get(function.getQualifiedName());
 	}
 
-	public static boolean isModelLevelEvaluable(Function function) {
+	public boolean isModelLevelEvaluable(Function function) {
 		LibraryFunction fn = getLibraryFunction(function);
 		return fn != null && fn.isModelLevelEvaluable();
 	}

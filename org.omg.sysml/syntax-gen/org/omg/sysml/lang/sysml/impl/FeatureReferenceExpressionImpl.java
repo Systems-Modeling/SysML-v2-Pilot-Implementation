@@ -101,7 +101,7 @@ public class FeatureReferenceExpressionImpl extends ExpressionImpl implements Fe
 	
 	@Override
 	public EList<Element> evaluate(Element target) {
-		return ExpressionEvaluator.evaluateFeatureReference(this, target);
+		return ExpressionEvaluator.INSTANCE.evaluateFeatureReference(this, target);
 	}
 	
 	/**

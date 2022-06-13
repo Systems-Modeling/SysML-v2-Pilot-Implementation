@@ -135,7 +135,7 @@ public class FunctionImpl extends BehaviorImpl implements Function {
 	 */
 	@Override
 	public boolean isModelLevelEvaluable() {
-		return LibraryFunctionFactory.isModelLevelEvaluable(this);
+		return LibraryFunctionFactory.INSTANCE.isModelLevelEvaluable(this);
 	}
 
 	/**

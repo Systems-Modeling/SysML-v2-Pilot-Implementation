@@ -84,7 +84,7 @@ public class InvocationExpressionImpl extends ExpressionImpl implements Invocati
 	
 	@Override
 	public EList<Element> evaluate(Element target) {
-		return isModelLevelEvaluable()? ExpressionEvaluator.evaluateInvocation(this, target): null;
+		return isModelLevelEvaluable()? ExpressionEvaluator.INSTANCE.evaluateInvocation(this, target): null;
 	}
 	
 	/**

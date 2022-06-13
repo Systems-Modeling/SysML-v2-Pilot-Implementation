@@ -62,7 +62,7 @@ public class EvaluationUtil {
 	}
 
 	public static EList<Element> evaluate(Expression expression, Element target) {
-		return ExpressionEvaluator.evaluate(expression, target);
+		return ExpressionEvaluator.INSTANCE.evaluate(expression, target);
 	}
 
 	public static EList<Element> evaluateArgument(InvocationExpression invocation, int i, Element target) {

@@ -44,8 +44,20 @@ import org.omg.sysml.util.NamespaceUtil;
 import org.omg.sysml.util.TypeUtil;
 
 public class ExpressionEvaluator {
+	
+	public static final ExpressionEvaluator INSTANCE = new ExpressionEvaluator();
 
-	public static EList<Element> evaluate(Expression expression, Element target) {
+	protected LibraryFunctionFactory libraryFunctionFactory = LibraryFunctionFactory.INSTANCE;
+	
+	public LibraryFunctionFactory getLibraryFunctionFactory() {
+		return libraryFunctionFactory;
+	}
+	
+	public void setLibraryFunctionFactory(LibraryFunctionFactory libraryFunctionFactory) {
+		this.libraryFunctionFactory = libraryFunctionFactory;
+	}
+	
+	public EList<Element> evaluate(Expression expression, Element target) {
 		if (expression instanceof NullExpression) {
 			return evaluateNull((NullExpression)expression, target);
 		} else if (expression instanceof LiteralExpression) {
@@ -59,15 +71,15 @@ public class ExpressionEvaluator {
 		}		
 	}
 	
-	public static EList<Element> evaluateNull(NullExpression expression, Element target) {
+	public EList<Element> evaluateNull(NullExpression expression, Element target) {
 		return EvaluationUtil.nullList();
 	}
 	
-	public static EList<Element> evaluateLiteral(LiteralExpression expression, Element target) {
+	public EList<Element> evaluateLiteral(LiteralExpression expression, Element target) {
 		return EvaluationUtil.singletonList(expression);
 	}
 	
-	public static EList<Element> evaluateFeatureReference(FeatureReferenceExpression expression, Element target) {
+	public EList<Element> evaluateFeatureReference(FeatureReferenceExpression expression, Element target) {
 		Feature referent = expression.getReferent();
 		if (target instanceof Type) {
 			if (referent != null) {
@@ -85,12 +97,12 @@ public class ExpressionEvaluator {
 		return EvaluationUtil.singletonList(referent);
 	}
 	
-	public static EList<Element> evaluateInvocation(InvocationExpression expression, Element target) {
-		LibraryFunction function = LibraryFunctionFactory.getLibraryFunction(expression.getFunction());
+	public EList<Element> evaluateInvocation(InvocationExpression expression, Element target) {
+		LibraryFunction function = libraryFunctionFactory.getLibraryFunction(expression.getFunction());
 		return function == null? null: function.invoke(expression, target);
 	}
 	
-	protected static EList<Element> evaluateFeatureChain(EList<Feature> chainingFeatures, Type type) {
+	protected EList<Element> evaluateFeatureChain(EList<Feature> chainingFeatures, Type type) {
 		List<Feature> subchainingFeatures = chainingFeatures.subList(1, chainingFeatures.size());
 		FeatureReferenceExpression featureRefExpr = SysMLFactory.eINSTANCE.createFeatureReferenceExpression();
 		if (chainingFeatures.size() == 2) {
@@ -113,7 +125,7 @@ public class ExpressionEvaluator {
 		
 	}
 	
-	protected static EList<Element> evaluateFeature(Feature feature, Type type) {
+	protected EList<Element> evaluateFeature(Feature feature, Type type) {
 		Feature typeFeature = type.getFeature().stream().
 				map(FeatureImpl.class::cast).
 				filter(
@@ -124,7 +136,7 @@ public class ExpressionEvaluator {
 			if (featureValue != null) {
 				Expression value = featureValue.getValue();
 				if (value != null) {
-					return value.evaluate(type);
+					return evaluate(value, type);
 				}
 			}
 			return EvaluationUtil.singletonList(typeFeature);

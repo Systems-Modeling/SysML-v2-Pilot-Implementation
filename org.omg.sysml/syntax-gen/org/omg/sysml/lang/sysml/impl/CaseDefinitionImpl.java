@@ -25,16 +25,12 @@ package org.omg.sysml.lang.sysml.impl;
 import java.util.Collection;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-import org.omg.sysml.lang.sysml.ActorMembership;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.omg.sysml.lang.sysml.CaseDefinition;
-import org.omg.sysml.lang.sysml.ObjectiveMembership;
 import org.omg.sysml.lang.sysml.PartUsage;
 import org.omg.sysml.lang.sysml.RequirementUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Usage;
-import org.omg.sysml.util.NonNotifyingEObjectEList;
-import org.omg.sysml.util.TypeUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -52,6 +48,36 @@ import org.omg.sysml.util.TypeUtil;
  * @generated
  */
 public class CaseDefinitionImpl extends CalculationDefinitionImpl implements CaseDefinition {
+
+	/**
+	 * The cached setting delegate for the '{@link #getObjectiveRequirement() <em>Objective Requirement</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getObjectiveRequirement()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate OBJECTIVE_REQUIREMENT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.CASE_DEFINITION__OBJECTIVE_REQUIREMENT).getSettingDelegate();
+
+	/**
+	 * The cached setting delegate for the '{@link #getSubjectParameter() <em>Subject Parameter</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSubjectParameter()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate SUBJECT_PARAMETER__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.CASE_DEFINITION__SUBJECT_PARAMETER).getSettingDelegate();
+
+	/**
+	 * The cached setting delegate for the '{@link #getActorParameter() <em>Actor Parameter</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getActorParameter()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate ACTOR_PARAMETER__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.CASE_DEFINITION__ACTOR_PARAMETER).getSettingDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -79,39 +105,37 @@ public class CaseDefinitionImpl extends CalculationDefinitionImpl implements Cas
 	 */
 	@Override
 	public Usage getSubjectParameter() {
-		Usage subjectParameter = basicGetSubjectParameter();
-		return subjectParameter != null && subjectParameter.eIsProxy() ? (Usage)eResolveProxy((InternalEObject)subjectParameter) : subjectParameter;
+		return (Usage)SUBJECT_PARAMETER__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Usage basicGetSubjectParameter() {
-		return TypeUtil.basicGetSubjectParameterOf(this);
+		return (Usage)SUBJECT_PARAMETER__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setSubjectParameter(Usage newSubjectParameter) {
-		throw new UnsupportedOperationException();
+		SUBJECT_PARAMETER__ESETTING_DELEGATE.dynamicSet(this, null, 0, newSubjectParameter);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<PartUsage> getActorParameter() {
-		EList<PartUsage> actorParameters = new NonNotifyingEObjectEList<>(PartUsage.class, this, SysMLPackage.CASE_DEFINITION__ACTOR_PARAMETER);
-		TypeUtil.addOwnedFeaturesByMembership(this, ActorMembership.class, PartUsage.class, actorParameters);
-		return actorParameters;
+		return (EList<PartUsage>)ACTOR_PARAMETER__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
@@ -121,27 +145,26 @@ public class CaseDefinitionImpl extends CalculationDefinitionImpl implements Cas
 	 */
 	@Override
 	public RequirementUsage getObjectiveRequirement() {
-		RequirementUsage objectiveRequirement = basicGetObjectiveRequirement();
-		return objectiveRequirement != null && objectiveRequirement.eIsProxy() ? (RequirementUsage)eResolveProxy((InternalEObject)objectiveRequirement) : objectiveRequirement;
+		return (RequirementUsage)OBJECTIVE_REQUIREMENT__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public RequirementUsage basicGetObjectiveRequirement() {
-		return (RequirementUsage)TypeUtil.getOwnedFeatureByMembershipIn(this, ObjectiveMembership.class);
+		return (RequirementUsage)OBJECTIVE_REQUIREMENT__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setObjectiveRequirement(RequirementUsage newObjectiveRequirement) {
-		throw new UnsupportedOperationException();
+		OBJECTIVE_REQUIREMENT__ESETTING_DELEGATE.dynamicSet(this, null, 0, newObjectiveRequirement);
 	}
 
 	/**
@@ -217,11 +240,11 @@ public class CaseDefinitionImpl extends CalculationDefinitionImpl implements Cas
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case SysMLPackage.CASE_DEFINITION__OBJECTIVE_REQUIREMENT:
-				return basicGetObjectiveRequirement() != null;
+				return OBJECTIVE_REQUIREMENT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.CASE_DEFINITION__SUBJECT_PARAMETER:
-				return basicGetSubjectParameter() != null;
+				return SUBJECT_PARAMETER__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.CASE_DEFINITION__ACTOR_PARAMETER:
-				return !getActorParameter().isEmpty();
+				return ACTOR_PARAMETER__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 		}
 		return super.eIsSet(featureID);
 	}

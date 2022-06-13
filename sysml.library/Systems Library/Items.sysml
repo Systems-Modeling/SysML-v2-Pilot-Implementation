@@ -39,17 +39,18 @@ package Items {
 		 */
 		item envelopingShapes : Item[0..*] {
 
-			  /* Enables 2 dim items to be enveloped by 2 or 3 dim shapes. */
-			attribute :>> innerSpaceDimension = (Item::innerSpaceDimension == 3  | Item::outerSpaceDimension == 3
-							     ? 2 : Item::outerSpaceDimension-1);   /* Curves bounding flat surfaces SHOULD BE COPLANAR ? */
-			assert constraint { Item::innerSpaceDimension < 3 implies notEmpty(outerSpaceDimension) }
-
-			item envelopingShape: Item :>> self;
+			 /** Enables two dimensional items to be enveloped by two or three dimensional shapes. */
+			attribute :>> innerSpaceDimension = 
+				if (that as Item).innerSpaceDimension == 3  | (that as Item).outerSpaceDimension == 3? 2 
+				else (that as Item).outerSpaceDimension - 1; 
+			assert constraint { (that as Item).innerSpaceDimension < 3 implies notEmpty(outerSpaceDimension) }
 
 			item envelopingItem [1]; /* Shape constraint below, to avoid envelopingShape being a portion. */
 
-			assert constraint { envelopingItem.shape.spaceTimeCoincidentOccurrences->includes(envelopingShape) &
-					    envelopingItem.spaceTimeEnclosedOccurrences->includes(that) }
+			assert constraint { 
+				envelopingItem.shape.spaceTimeCoincidentOccurrences->includes(that) and
+				envelopingItem.spaceTimeEnclosedOccurrences->includes(that.that) 
+			}
 		}
 		
 		/**

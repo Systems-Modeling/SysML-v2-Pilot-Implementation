@@ -13814,6 +13814,16 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   new String[] {
 		   });
 		addAnnotation
+		  (getViewDefinition_ViewRendering(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getViewDefinition_ViewCondition(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
 		  (getRenderingDefinition_Rendering(),
 		   source,
 		   new String[] {

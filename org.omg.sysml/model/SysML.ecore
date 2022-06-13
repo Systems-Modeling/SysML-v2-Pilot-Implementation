@@ -3694,6 +3694,7 @@
         <details key="documentation" value="&lt;p>The RenderingUsage to be used to render views defined by this ViewDefinition. Derived as the &lt;code>referencedRendering&lt;/code> of the ViewRenderingMembership of the ViewDefinition. A ViewDefinition may have at most one.&lt;p>"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Definition/ownedUsage"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="viewCondition" upperBound="-1"
         eType="#//Expression" volatile="true" transient="true" derived="true">
@@ -3704,6 +3705,7 @@
         <details key="documentation" value="&lt;p>The Expressions related to this ViewDefinition by ElementFilterMemberships, which specify conditions on Elements to be rendered in a view.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Namespace/ownedMember"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ViewpointUsage" eSuperTypes="#//RequirementUsage">

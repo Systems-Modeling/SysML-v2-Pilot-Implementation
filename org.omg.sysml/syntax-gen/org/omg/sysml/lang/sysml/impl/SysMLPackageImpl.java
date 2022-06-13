@@ -13659,6 +13659,36 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   new String[] {
 		   });
 		addAnnotation
+		  (getRequirementUsage_RequiredConstraint(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getRequirementUsage_AssumedConstraint(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getRequirementUsage_SubjectParameter(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getRequirementUsage_FramedConcern(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getRequirementUsage_ActorParameter(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getRequirementUsage_StakeholderParameter(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
 		  (getPartUsage_PartDefinition(),
 		   source,
 		   new String[] {

@@ -47,10 +47,8 @@ import org.omg.sysml.lang.sysml.ViewDefinition;
 import org.omg.sysml.lang.sysml.ViewUsage;
 import org.omg.sysml.lang.sysml.ViewpointUsage;
 import org.omg.sysml.util.ExpressionUtil;
-import org.omg.sysml.util.NamespaceUtil;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
 import org.omg.sysml.util.TypeUtil;
-import org.omg.sysml.util.UsageUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -81,6 +79,26 @@ public class ViewUsageImpl extends PartUsageImpl implements ViewUsage {
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate SATISFIED_VIEWPOINT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.VIEW_USAGE__SATISFIED_VIEWPOINT).getSettingDelegate();
+
+	/**
+	 * The cached setting delegate for the '{@link #getViewRendering() <em>View Rendering</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getViewRendering()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate VIEW_RENDERING__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.VIEW_USAGE__VIEW_RENDERING).getSettingDelegate();
+
+	/**
+	 * The cached setting delegate for the '{@link #getViewCondition() <em>View Condition</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getViewCondition()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate VIEW_CONDITION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.VIEW_USAGE__VIEW_CONDITION).getSettingDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -172,28 +190,26 @@ public class ViewUsageImpl extends PartUsageImpl implements ViewUsage {
 	 */
 	@Override
 	public RenderingUsage getViewRendering() {
-		RenderingUsage viewRendering = basicGetViewRendering();
-		return viewRendering != null && viewRendering.eIsProxy() ? (RenderingUsage)eResolveProxy((InternalEObject)viewRendering) : viewRendering;
+		return (RenderingUsage)VIEW_RENDERING__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public RenderingUsage basicGetViewRendering() {
-		EList<RenderingUsage> renderings = getNestedRendering();
-		return renderings.isEmpty()? UsageUtil.getViewRenderingOf(this): renderings.get(0);
+		return (RenderingUsage)VIEW_RENDERING__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setViewRendering(RenderingUsage newViewRendering) {
-		throw new UnsupportedOperationException();
+		VIEW_RENDERING__ESETTING_DELEGATE.dynamicSet(this, null, 0, newViewRendering);
 	}
 
 	public Stream<Expose> getExposeImports() {
@@ -206,13 +222,12 @@ public class ViewUsageImpl extends PartUsageImpl implements ViewUsage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<Expression> getViewCondition() {
-		EList<Expression> viewConditions = new NonNotifyingEObjectEList<>(Expression.class, this, SysMLPackage.VIEW_DEFINITION__VIEW_CONDITION);
-		NamespaceUtil.getOwnedMembersByMembershipIn(this, ElementFilterMembership.class, Expression.class).forEachOrdered(viewConditions::add);
-		return viewConditions;
+		return (EList<Expression>)VIEW_CONDITION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 	
 	public EList<Expression> getAllViewConditions() {
@@ -346,9 +361,9 @@ public class ViewUsageImpl extends PartUsageImpl implements ViewUsage {
 			case SysMLPackage.VIEW_USAGE__EXPOSED_NAMESPACE:
 				return !getExposedNamespace().isEmpty();
 			case SysMLPackage.VIEW_USAGE__VIEW_RENDERING:
-				return basicGetViewRendering() != null;
+				return VIEW_RENDERING__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.VIEW_USAGE__VIEW_CONDITION:
-				return !getViewCondition().isEmpty();
+				return VIEW_CONDITION__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.VIEW_USAGE__VIEWED_ELEMENT:
 				return !getViewedElement().isEmpty();
 		}

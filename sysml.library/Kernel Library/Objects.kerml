@@ -38,7 +38,7 @@ package Objects {
 		/**
 		 * Performances that are owned by this object.
 		 */
-		composite step ownedPerformances: Performance[0..*] subsets enactedPerformances {
+		composite step ownedPerformances: Performance[0..*] subsets involvingPerformances, timeEnclosedOccurrences {
 			/**
 			 * The owning object is the default "this" reference for all ownedPerformances.
 			 */

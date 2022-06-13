@@ -10,7 +10,9 @@ package Parts {
 	private import Ports::Port;
 	private import Ports::ports;
 	private import Actions::Action;
+	private import Actions::actions;
 	private import States::StateAction;
+	private import States::stateActions;
 	
 	/**
 	 * Part is the most general class of objects that represent all or a part of a system.
@@ -30,24 +32,24 @@ package Parts {
 		/**
 		 * Actions that are performed by this Part.
 		 */
-		abstract ref action performedActions: Action[0..*] :> enactedPerformances;
+		abstract ref action performedActions: Action[0..*] :> actions, enactedPerformances;
 		
 		/**
 		 * Performed actions that are owned by this Part.
 		 */
-		abstract action ownedActions: Action[0..*] :> performedActions, ownedPerformances {
-		 	ref part :>> this = that as Part;
+		abstract action ownedActions: Action[0..*] :> actions, ownedPerformances {
+		 	ref part :>> this : Part = that as Part;
 		}
 		
 		/**
 		 * States that are exhibited by this Part.
 		 */
-		abstract ref state exhibitedStates: StateAction[0..*] :> performedActions;
+		abstract ref state exhibitedStates: StateAction[0..*] :> stateActions, performedActions;
 		
 		/**
 		 * Exhibited states that are owned by this Part.
 		 */
-		abstract state ownedStates: StateAction[0..*] :> exhibitedStates, ownedActions;
+		abstract state ownedStates: StateAction[0..*] :> stateActions, ownedActions;
 	}
 	
 	/** 

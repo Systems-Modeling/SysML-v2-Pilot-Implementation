@@ -7,8 +7,8 @@ package 'Analysis Case Usage Example' {
 			// ...
 		}
 		
-		attribute cityScenario :> FuelEconomyAnalysis::scenario = ( //* ... */ );
-		attribute highwayScenario :> FuelEconomyAnalysis::scenario = ( //* ... */ );
+		attribute cityScenario : Scenario = ( //* ... */ );
+		attribute highwayScenario : Scenario = ( //* ... */ );
 		
 		analysis cityAnalysis : FuelEconomyAnalysis {
 			subject vehicle = vehicle_c1;

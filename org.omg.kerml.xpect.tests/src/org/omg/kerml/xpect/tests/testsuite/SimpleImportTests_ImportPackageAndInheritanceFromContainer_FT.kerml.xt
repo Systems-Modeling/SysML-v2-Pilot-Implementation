@@ -21,15 +21,14 @@ package test{
 		import test::*;
 		//XPECT linkedName at A --> test.A
 		//*XPECT scope at A ---
-		   test.A.A, test.A.A.a, test.A.A.a.a,
-		   a.A, a.A.a, a.a,
- 		   a, A, A.a,  A.a.a, test.A.a.a, test.A.a.A, test.A.a.A.a,
- 		   test.A, test.A.a, 
-		   test.A.A.self,  test.A.A.a.self, 
-		   a.A.self,
- 		   a.self,  A.self,  A.a.self, test.A.a.A.self,
- 		   test.A.self,  test.A.a.self,  self
-		   --- */
+		A, A.a, A.a.a, A.a.self, A.a.that, A.a.that.self, A.self, A.that, A.that.self,
+		a, a.A, a.A.a, a.A.self, a.A.that, a.A.that.self, a.a, a.self, a.that,
+		a.that.self, self, test.A, test.A.A, test.A.A.a, test.A.A.a.a, test.A.A.a.self,
+		test.A.A.a.that, test.A.A.a.that.self, test.A.A.self, test.A.A.that, test.A.A.that.self,
+		test.A.a, test.A.a.A, test.A.a.A.a, test.A.a.A.self, test.A.a.A.that,
+		test.A.a.A.that.self, test.A.a.a, test.A.a.self, test.A.a.that, test.A.a.that.self, test.A.self,
+		test.A.that, test.A.that.self, that, that.self
+		--- */
 		feature a : A;
 	}
 }

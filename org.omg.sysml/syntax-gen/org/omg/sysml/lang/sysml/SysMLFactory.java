@@ -501,6 +501,15 @@ public interface SysMLFactory extends EFactory {
 	FeatureTyping createFeatureTyping();
 
 	/**
+	 * Returns a new object of class '<em>Feature Inverting</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Feature Inverting</em>'.
+	 * @generated
+	 */
+	FeatureInverting createFeatureInverting();
+
+	/**
 	 * Returns a new object of class '<em>Feature Chaining</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

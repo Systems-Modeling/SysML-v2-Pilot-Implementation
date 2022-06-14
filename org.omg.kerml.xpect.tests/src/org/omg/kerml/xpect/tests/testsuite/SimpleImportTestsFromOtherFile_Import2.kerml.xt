@@ -31,10 +31,11 @@ package test {
 		//XPECT linkedName at b --> OuterPackage.B.b
 		//* XPECT scope at b ---
 		   A, A.a1, B, B.b, B.b.a1, OuterPackage.A, OuterPackage.A.a1, OuterPackage.B,
-		   OuterPackage.B.b, OuterPackage.B.b.a1, Try, Try.b, Try.b.a1, Try.self, Try.try, Try.try.a1,
-		   Try.try.self, b, b.a1, self, test.A, test.A.a1, test.B, test.B.b, test.B.b.a1, test.Try,
-		   test.Try.b, test.Try.b.a1, test.Try.self, test.Try.try, test.Try.try.a1, test.Try.try.self,
-		   try, try.a1, try.self
+		   OuterPackage.B.b, OuterPackage.B.b.a1, Try, Try.b, Try.b.a1, Try.self, Try.self.that, Try.try,
+		   Try.try.a1, Try.try.self, Try.try.that, Try.try.that.self, b, b.a1, self, self.that,
+		   test.A, test.A.a1, test.B, test.B.b, test.B.b.a1, test.Try, test.Try.b, test.Try.b.a1,
+		   test.Try.self, test.Try.self.that, test.Try.try, test.Try.try.a1, test.Try.try.self,
+		   test.Try.try.that, test.Try.try.that.self, try, try.a1, try.self, try.that, try.that.self
 	--- */
 		feature try : b;
 	}

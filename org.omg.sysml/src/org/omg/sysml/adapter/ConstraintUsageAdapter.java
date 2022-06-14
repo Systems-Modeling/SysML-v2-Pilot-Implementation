@@ -23,8 +23,6 @@ package org.omg.sysml.adapter;
 
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.ConstraintUsage;
-import org.omg.sysml.lang.sysml.ItemDefinition;
-import org.omg.sysml.lang.sysml.ItemUsage;
 import org.omg.sysml.lang.sysml.RequirementDefinition;
 import org.omg.sysml.lang.sysml.RequirementUsage;
 import org.omg.sysml.lang.sysml.Type;
@@ -90,17 +88,15 @@ public class ConstraintUsageAdapter extends OccurrenceUsageAdapter {
 			addRequirementSubsetting();
 		}
 		super.computeImplicitGeneralTypes();
+		if (isOwnedPerformance()) {
+			addDefaultGeneralType("ownedPerformance");
+		} 
 		if (isSubperformance()) {
-			addSubsetting(getDefaultSupertype("subperformance"));
+			addDefaultGeneralType("subperformance");
 		}
-		if (isEnactedPerformance()) {
-			addSubsetting(getDefaultSupertype("enactedPerformance"));
+		if (isEnclosedPerformance()) {
+			addDefaultGeneralType("enclosedPerformance");
 		}
-	}
-	
-	public boolean isEnactedPerformance() {
-		Type owningType = getTarget().getOwningType();
-		return owningType instanceof ItemDefinition || owningType instanceof ItemUsage;
 	}
 	
 	// Transformation

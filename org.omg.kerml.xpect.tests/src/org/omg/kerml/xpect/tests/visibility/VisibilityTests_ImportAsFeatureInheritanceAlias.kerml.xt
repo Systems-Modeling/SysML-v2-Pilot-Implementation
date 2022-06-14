@@ -31,11 +31,11 @@ package Classes {
 		//XPECT linkedName at c_public --> VisibilityPackage.c_Public.c_public
 		/* XPECT scope at c_public ---
 		Classes.Try, Classes.Try.c_public, Classes.Try.feature4, Classes.Try.self,
-		Classes.aliass, Classes.aliass.c_public, Try, Try.c_public, Try.feature4, Try.self,
-		VisibilityPackage.c_Public, VisibilityPackage.c_Public.c_public, VisibilityPackage.c_Public_alias,
-		VisibilityPackage.c_Public_alias.alias_public, VisibilityPackage.c_Public_alias.c_public, VisibilityPackage.c_clazz,
-		VisibilityPackage.c_clazz.c_Public, VisibilityPackage.c_clazz.c_Public.c_publicc, aliass, aliass.c_public,
-		c_protected, c_public, feature4, self
+		Classes.Try.self.that, Classes.aliass, Classes.aliass.c_public, Try, Try.c_public, Try.feature4,
+		Try.self, Try.self.that, VisibilityPackage.c_Public, VisibilityPackage.c_Public.c_public,
+		VisibilityPackage.c_Public_alias, VisibilityPackage.c_Public_alias.alias_public,
+		VisibilityPackage.c_Public_alias.c_public, VisibilityPackage.c_clazz, VisibilityPackage.c_clazz.c_Public,
+		VisibilityPackage.c_clazz.c_Public.c_publicc, aliass, aliass.c_public, c_protected, c_public, feature4, self, self.that
 		--- */
 		// The following are not visible because qualified names currently require public visibility:
 		//  Classes.Try.c_protected, Classes.aliass.c_protected, Try.c_protected, aliass.c_protected

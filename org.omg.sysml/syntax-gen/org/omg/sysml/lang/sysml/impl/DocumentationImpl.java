@@ -108,6 +108,29 @@ public class DocumentationImpl extends CommentImpl implements Documentation {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<Element> getAnnotatedElement() {
+		EList<Element> annotatedElement = new UniqueEList<Element>();
+		Element documentedElement = getDocumentedElement();
+		if (documentedElement != null) {
+			annotatedElement.add(documentedElement);
+		}
+		return new UnionEObjectEList<Element>(this, SysMLPackage.Literals.ANNOTATING_ELEMENT__ANNOTATED_ELEMENT, annotatedElement.size(), annotatedElement.toArray());
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetAnnotatedElement() {
+  		return false;
+	}
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -158,72 +181,10 @@ public class DocumentationImpl extends CommentImpl implements Documentation {
 		switch (featureID) {
 			case SysMLPackage.DOCUMENTATION__ANNOTATED_ELEMENT:
 				return isSetAnnotatedElement();
-			case SysMLPackage.DOCUMENTATION__OWNER:
-				return isSetOwner();
 			case SysMLPackage.DOCUMENTATION__DOCUMENTED_ELEMENT:
 				return isSetDocumentedElement();
 		}
 		return super.eIsSet(featureID);
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<Element> getAnnotatedElement() {
-		EList<Element> annotatedElement = new UniqueEList<Element>();
-		Element documentedElement = getDocumentedElement();
-		if (documentedElement != null) {
-			annotatedElement.add(documentedElement);
-		}
-		return new UnionEObjectEList<Element>(this, SysMLPackage.Literals.ANNOTATING_ELEMENT__ANNOTATED_ELEMENT, annotatedElement.size(), annotatedElement.toArray());
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetAnnotatedElement() {
-  		return false;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Element getOwner() {
-		return getDocumentedElement();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Element basicGetOwner() {
-		return basicGetDocumentedElement();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setOwner(Element newOwner) {
-		setDocumentedElement(newOwner);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetOwner() {
-  		return false;
-	}
-	
 } //DocumentationImpl

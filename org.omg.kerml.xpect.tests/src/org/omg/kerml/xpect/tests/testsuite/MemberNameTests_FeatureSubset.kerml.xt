@@ -23,20 +23,39 @@ package testt {
 	alias B for A;
 	//XPECT linkedName at B::a --> testt.A.a
 	//* XPECT scope at B::a ---
-   		A, A_Id, A.a, A.a_Id, A_Id.a, A_Id.a_Id, B, B.a, B.a_Id, C, D, 
-   		testt.A, testt.A_Id, testt.A.a, testt.A.a_Id, testt.A_Id.a, testt.A_Id.a_Id, testt.B, testt.B.a, testt.B.a_Id, testt.C, testt.D,
-		   		A.self,  A_Id.self,  A.a.self,  A.a_Id.self,  A_Id.a.self,  A_Id.a_Id.self,  B.self,  B.a.self,  B.a_Id.self,  C.self,  D.self,  
-   		testt.A.self,  testt.A_Id.self,  testt.A.a.self,  testt.A.a_Id.self,  testt.A_Id.a.self,  testt.A_Id.a_Id.self,  testt.B.self,  testt.B.a.self,  testt.B.a_Id.self,  testt.C.self,  testt.D.self,
-   		testt 
+	A, A.a, A.a.self, A.a.that, A.a.that.self, A.a_Id, A.a_Id.self, A.a_Id.that,
+	A.a_Id.that.self, A.self, A.that, A.that.self, A_Id, A_Id.a, A_Id.a.self, A_Id.a.that,
+	A_Id.a.that.self, A_Id.a_Id, A_Id.a_Id.self, A_Id.a_Id.that, A_Id.a_Id.that.self, A_Id.self,
+	A_Id.that, A_Id.that.self, B, B.a, B.a.self, B.a.that, B.a.that.self, B.a_Id, B.a_Id.self,
+	B.a_Id.that, B.a_Id.that.self, B.self, B.that, B.that.self, C, C.self, C.that, C.that.self,
+	D, D.self, D.that, D.that.self, testt, testt.A, testt.A.a, testt.A.a.self,
+	testt.A.a.that, testt.A.a.that.self, testt.A.a_Id, testt.A.a_Id.self, testt.A.a_Id.that,
+	testt.A.a_Id.that.self, testt.A.self, testt.A.that, testt.A.that.self, testt.A_Id, testt.A_Id.a,
+	testt.A_Id.a.self, testt.A_Id.a.that, testt.A_Id.a.that.self, testt.A_Id.a_Id,
+	testt.A_Id.a_Id.self, testt.A_Id.a_Id.that, testt.A_Id.a_Id.that.self, testt.A_Id.self,
+	testt.A_Id.that, testt.A_Id.that.self, testt.B, testt.B.a, testt.B.a.self, testt.B.a.that,
+	testt.B.a.that.self, testt.B.a_Id, testt.B.a_Id.self, testt.B.a_Id.that, testt.B.a_Id.that.self,
+	testt.B.self, testt.B.that, testt.B.that.self, testt.C, testt.C.self, testt.C.that,
+	testt.C.that.self, testt.D, testt.D.self, testt.D.that, testt.D.that.self
 	--- */
 	alias C for B::a;
 	
 	//XPECT linkedName at a_Id --> testt.A.a
 	//* XPECT scope at B.a_Id ---
-   		A, A_Id, A.a, A.a_Id, A_Id.a, A_Id.a_Id, B, B.a, B.a_Id, C, D, 
-   		testt.A, testt.A_Id, testt.A.a, testt.A.a_Id, testt.A_Id.a, testt.A_Id.a_Id, testt.B, testt.B.a, testt.B.a_Id, testt.C, testt.D,
-		   		A.self,  A_Id.self,  A.a.self,  A.a_Id.self,  A_Id.a.self,  A_Id.a_Id.self,  B.self,  B.a.self,  B.a_Id.self,  C.self,  D.self,  
-   		testt.A.self,  testt.A_Id.self,  testt.A.a.self,  testt.A.a_Id.self,  testt.A_Id.a.self,  testt.A_Id.a_Id.self,  testt.B.self,  testt.B.a.self,  testt.B.a_Id.self,  testt.C.self,  testt.D.self, 
+	A, A.a, A.a.self, A.a.that, A.a.that.self, A.a_Id, A.a_Id.self, A.a_Id.that,
+	A.a_Id.that.self, A.self, A.that, A.that.self, A_Id, A_Id.a, A_Id.a.self, A_Id.a.that,
+	A_Id.a.that.self, A_Id.a_Id, A_Id.a_Id.self, A_Id.a_Id.that, A_Id.a_Id.that.self, A_Id.self,
+	A_Id.that, A_Id.that.self, B, B.a, B.a.self, B.a.that, B.a.that.self, B.a_Id, B.a_Id.self,
+	B.a_Id.that, B.a_Id.that.self, B.self, B.that, B.that.self, C, C.self, C.that, C.that.self,
+	D, D.self, D.that, D.that.self, testt.A, testt.A.a, testt.A.a.self,
+	testt.A.a.that, testt.A.a.that.self, testt.A.a_Id, testt.A.a_Id.self, testt.A.a_Id.that,
+	testt.A.a_Id.that.self, testt.A.self, testt.A.that, testt.A.that.self, testt.A_Id, testt.A_Id.a,
+	testt.A_Id.a.self, testt.A_Id.a.that, testt.A_Id.a.that.self, testt.A_Id.a_Id,
+	testt.A_Id.a_Id.self, testt.A_Id.a_Id.that, testt.A_Id.a_Id.that.self, testt.A_Id.self,
+	testt.A_Id.that, testt.A_Id.that.self, testt.B, testt.B.a, testt.B.a.self, testt.B.a.that,
+	testt.B.a.that.self, testt.B.a_Id, testt.B.a_Id.self, testt.B.a_Id.that, testt.B.a_Id.that.self,
+	testt.B.self, testt.B.that, testt.B.that.self, testt.C, testt.C.self, testt.C.that,
+	testt.C.that.self, testt.D, testt.D.self, testt.D.that, testt.D.that.self
 	--- */
 	feature D subsets B.a_Id;
 }

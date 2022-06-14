@@ -38,12 +38,24 @@ public class ItemFlowAdapter extends ConnectorAdapter {
 	public ItemFlow getTarget() {
 		return (ItemFlow)super.getTarget();
 	}
+	
+	@Override
+	public void addDefaultGeneralType() {
+		super.addDefaultGeneralType();
+		if (isOwnedPerformance()) {
+			addDefaultGeneralType("ownedPerformance");
+		}
+		if (isSubperformance()) {
+			addDefaultGeneralType("subperformance");
+		}
+		if (isEnclosedPerformance()) {
+			addDefaultGeneralType("enclosedPerformance");
+		}
+	}
 
 	@Override
 	protected String getDefaultSupertype() {
-		return isSubperformance()? 
-				getDefaultSupertype("subperformance"):
-				getDefaultSupertype("base");
+		return getDefaultSupertype("base");
 	}
 	
 	@Override

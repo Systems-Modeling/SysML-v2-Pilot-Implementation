@@ -119,8 +119,7 @@ public interface Namespace extends Element {
 	 * let elementMemberships : Sequence(Membership) = 
 	 *     memberships->select(memberElement = element) 
 	 * in
-	 *     memberships.memberElementId->
-	 *         union(memberships.memberShortName)->
+	 *     memberships.memberShortName->
 	 *         union(memberships.memberName)->
 	 *         asSet()
 	 * <!-- end-model-doc -->

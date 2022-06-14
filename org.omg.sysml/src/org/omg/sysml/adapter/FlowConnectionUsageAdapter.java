@@ -42,8 +42,14 @@ public class FlowConnectionUsageAdapter extends ConnectionUsageAdapter {
 	@Override
 	public void addDefaultGeneralType() {
 		super.addDefaultGeneralType();
+		if (isOwnedPerformance()) {
+			addDefaultGeneralType("ownedPerformance");
+		} 
 		if (isSubperformance()) {
 			addDefaultGeneralType("subperformance");
+		} 
+		if (isEnclosedPerformance()) {
+			addDefaultGeneralType("enclosedPerformance");
 		}
 	}
 	

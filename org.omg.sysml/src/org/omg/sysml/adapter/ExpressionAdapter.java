@@ -70,10 +70,16 @@ public class ExpressionAdapter extends StepAdapter {
 	// Implicit Generalization
 	
 	@Override
-	public void computeImplicitGeneralTypes() {
-		super.computeImplicitGeneralTypes();
+	public void addDefaultGeneralType() {
+		super.addDefaultGeneralType();
+		if (isOwnedPerformance()) {
+			addDefaultGeneralType("ownedPerformance");
+		}
 		if (isSubperformance()) {
-			addDefaultGeneralType(getGeneralizationEClass(), getDefaultSupertype("subperformance"));
+			addDefaultGeneralType("subperformance");
+		}
+		if (isEnclosedPerformance()) {
+			addDefaultGeneralType("enclosedPerformance");
 		}
 	}
 

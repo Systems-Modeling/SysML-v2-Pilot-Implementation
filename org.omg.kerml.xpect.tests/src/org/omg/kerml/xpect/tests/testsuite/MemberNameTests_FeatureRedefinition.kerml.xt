@@ -23,11 +23,12 @@ package testt {
 	alias B for A;
 	//XPECT linkedName at B::a --> testt.A.a
 	//* XPECT scope at B::a ---
-   		A, A.a, B, B.a, C,
-   		testt.A, testt.A.a, testt.B, testt.B.a, testt.C,
-		A.self,  A.a.self,  B.self,  B.a.self,  C.self, 
-   		testt.A.self,  testt.A.a.self,  testt.B.self,  testt.B.a.self,  testt.C.self, 
-		testt
+	A, A.a, A.a.self, A.a.that, A.a.that.self, A.self, A.that, A.that.self, B, B.a,
+	B.a.self, B.a.that, B.a.that.self, B.self, B.that, B.that.self, C, C.self, C.that,
+	C.that.self, testt, testt.A, testt.A.a, testt.A.a.self, testt.A.a.that, testt.A.a.that.self,
+	testt.A.self, testt.A.that, testt.A.that.self, testt.B, testt.B.a, testt.B.a.self,
+	testt.B.a.that, testt.B.a.that.self, testt.B.self, testt.B.that, testt.B.that.self, testt.C,
+	testt.C.self, testt.C.that, testt.C.that.self
 	--- */
 	alias C for B::a;
 }

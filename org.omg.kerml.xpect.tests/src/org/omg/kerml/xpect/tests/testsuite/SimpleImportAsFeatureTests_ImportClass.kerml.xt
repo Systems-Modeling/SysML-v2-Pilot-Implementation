@@ -23,9 +23,10 @@ package test{
 	classifier C {
 		//XPECT linkedName at A --> OuterPackage.A
 		//* XPECT scope at A ---
-		   A, A.a1, C, C.c, C.c.a1, C.self, OuterPackage.A, OuterPackage.A.a1,
-		   OuterPackage.B, OuterPackage.B.b, OuterPackage.B.b.a1, c, c.a1, self, test.A, test.A.a1,
-		   test.C, test.C.c, test.C.c.a1, test.C.self
+		   A, A.a1, C, C.c, C.c.a1, C.self, C.self.that, OuterPackage.A,
+		   OuterPackage.A.a1, OuterPackage.B, OuterPackage.B.b, OuterPackage.B.b.a1, c, c.a1, self,
+		   self.that, test.A, test.A.a1, test.C, test.C.c, test.C.c.a1, test.C.self,
+		   test.C.self.that
 		--- */
 		feature c: A;
 	}

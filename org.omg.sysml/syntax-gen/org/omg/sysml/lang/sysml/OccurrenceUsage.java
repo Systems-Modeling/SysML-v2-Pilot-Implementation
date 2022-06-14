@@ -14,12 +14,6 @@ import org.eclipse.emf.common.util.EList;
  * 
  * <p>An OccurrenceUsage must subset, directly or indirectly, the base Feature <em><code>occurrences</code></em> from the Kernel model library.</p>
  * 
- * if portionKind = null then portioningFeature = null
- * else 
- *     portioningFeature <> null and
- *     portionKind = portioningFeature.portionKind and
- *     occurrenceDefinition.asSet() = portioningFeature.type.asSet()
- * endif
  * let individualDefinitions : Sequence(OccurrenceDefinition) = 
  *     occurrenceDefinition->
  *         selectByKind(OccurrenceDefinition)->
@@ -27,6 +21,12 @@ import org.eclipse.emf.common.util.EList;
  * if individualDefinitions->isEmpty() then null
  * else individualDefinitions->at(1) endif
  * isIndividual implies individualDefinition <> null
+ * if portionKind = null then portioningFeature = null
+ * else 
+ *     portioningFeature <> null and
+ *     portionKind = portioningFeature.portionKind and
+ *     occurrenceDefinition.asSet() = portioningFeature.type.asSet()
+ * endif
  * <!-- end-model-doc -->
  *
  * <p>

@@ -244,15 +244,16 @@ public interface Membership extends Relationship {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Whether this Membership is distinguishable from a given <code>other</code> Membership. By default, this is true if this Membership has no <code>memberShortName</code> or <code>memberName</code>; or each of the <code>memberShortName</code> and <code>memberName</code> are different than both of those of the <code>other</code> Membership; or the metaclass of the <code>memberElement</code> of this Membership is different than the metaclass of the <code>memberElement</code> of the <code>other</code> Membership. But this may be overridden in specializations of Membership.</p>
+	 * <p>Whether this Membership is distinguishable from a given <code>other</code> Membership. By default, this is true if this Membership has no <code>memberShortName</code> or <code>memberName</code>; or each of the <code>memberShortName</code> and <code>memberName</code> are different than both of those of the <code>other</code> Membership; or neither of the metaclasses of the <code>memberElement</code> of this Membership and the <code>memberElement</code> of the <code>other</code> Membership conform to the other. But this may be overridden in specializations of Membership.</p>
 	 * 
-	 * memberElement.oclType() <> other.memberElement.oclType() or
+	 * not (memberElement.oclKindOf(other.memberElement.oclType()) or
+	 *      other.memberElement.oclKindOf(memberElement.oclType())) or
 	 * (shortMemberName = null or
 	 *     (shortMemberName <> other.shortMemberName and
 	 *      shortMemberName <> other.memberName)) and
 	 * (memberName = null or
 	 *     (memberName <> other.shortMemberName and
-	 *      memberName <> other.memberName))
+	 *      memberName <> other.memberName)))
 	 * 
 	 * <!-- end-model-doc -->
 	 * @model dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false" otherRequired="true" otherOrdered="false"

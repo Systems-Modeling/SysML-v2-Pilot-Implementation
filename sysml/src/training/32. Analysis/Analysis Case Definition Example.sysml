@@ -21,6 +21,12 @@ package 'Analysis Case Definition Example' {
         attribute fuelEconomy_highway : DistancePerVolumeValue;
     }
     
+    attribute def Scenario {
+		time : TimeValue;
+		position : LengthValue;
+		velocity : SpeedValue;    	
+	}
+    
 	analysis def FuelEconomyAnalysis {
 		subject vehicle : Vehicle;
 		return fuelEconomyResult : DistancePerVolumeValue;
@@ -41,11 +47,7 @@ package 'Analysis Case Definition Example' {
 			}
 		}
 	    
-		in attribute scenario[*] {
-			time : TimeValue;
-			position : LengthValue;
-			velocity : SpeedValue;
-		}
+		in attribute scenario : Scenario[*];
 	
 		action solveForPower {
 			out power : PowerValue[*];

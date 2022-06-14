@@ -24,32 +24,51 @@ package Import_QualifiedName {
 		package P2a{
 			import P1::*;
 			//* XPECT scope at A ---
-			   A, A.self, Import_QualifiedName.P1.A, Import_QualifiedName.P1.A.self,
-			   Import_QualifiedName.P2.P2a.A, Import_QualifiedName.P2.P2a.A.self, Import_QualifiedName.P2.P2a.x,
-			   Import_QualifiedName.P2.P2a.x.self, Import_QualifiedName.P2.y, Import_QualifiedName.P2.y.self,
-			   Import_QualifiedName.P3.z, Import_QualifiedName.P3.z.self, P1.A, P1.A.self, P2.P2a.A, P2.P2a.A.self,
-			   P2.P2a.x, P2.P2a.x.self, P2.y, P2.y.self, P2a.A, P2a.A.self, P2a.x, P2a.x.self, P3.z,
-			   P3.z.self, x, x.self, y, y.self
+			   A, A.self, A.self.that, Import_QualifiedName.P1.A,
+			   Import_QualifiedName.P1.A.self, Import_QualifiedName.P1.A.self.that, Import_QualifiedName.P2.P2a.A,
+			   Import_QualifiedName.P2.P2a.A.self, Import_QualifiedName.P2.P2a.A.self.that, Import_QualifiedName.P2.P2a.x,
+			   Import_QualifiedName.P2.P2a.x.self, Import_QualifiedName.P2.P2a.x.self.that, Import_QualifiedName.P2.P2a.x.that,
+			   Import_QualifiedName.P2.P2a.x.that.self, Import_QualifiedName.P2.y, Import_QualifiedName.P2.y.self,
+			   Import_QualifiedName.P2.y.self.that, Import_QualifiedName.P2.y.that, Import_QualifiedName.P2.y.that.self,
+			   Import_QualifiedName.P3.z, Import_QualifiedName.P3.z.self, Import_QualifiedName.P3.z.self.that,
+			   Import_QualifiedName.P3.z.that, Import_QualifiedName.P3.z.that.self, P1.A, P1.A.self, P1.A.self.that, P2.P2a.A,
+			   P2.P2a.A.self, P2.P2a.A.self.that, P2.P2a.x, P2.P2a.x.self, P2.P2a.x.self.that, P2.P2a.x.that,
+			   P2.P2a.x.that.self, P2.y, P2.y.self, P2.y.self.that, P2.y.that, P2.y.that.self, P2a.A, P2a.A.self,
+			   P2a.A.self.that, P2a.x, P2a.x.self, P2a.x.self.that, P2a.x.that, P2a.x.that.self, P3.z,
+			   P3.z.self, P3.z.self.that, P3.z.that, P3.z.that.self, x, x.self, x.self.that, x.that,
+			   x.that.self, y, y.self, y.self.that, y.that, y.that.self
 			--- */
 			x: A;
 		}
 		//* XPECT scope at P2a::A ---
 			   Import_QualifiedName.P1.A, Import_QualifiedName.P1.A.self,
-			   Import_QualifiedName.P2.P2a.A, Import_QualifiedName.P2.P2a.A.self, Import_QualifiedName.P2.P2a.x,
-			   Import_QualifiedName.P2.P2a.x.self, Import_QualifiedName.P2.y, Import_QualifiedName.P2.y.self,
-			   Import_QualifiedName.P3.z, Import_QualifiedName.P3.z.self, P1.A, P1.A.self, P2.P2a.A, P2.P2a.A.self,
-			   P2.P2a.x, P2.P2a.x.self, P2.y, P2.y.self, P2a.A, P2a.A.self, P2a.x, P2a.x.self, P3.z,
-			   P3.z.self, y, y.self
+			   Import_QualifiedName.P1.A.self.that, Import_QualifiedName.P2.P2a.A, Import_QualifiedName.P2.P2a.A.self,
+			   Import_QualifiedName.P2.P2a.A.self.that, Import_QualifiedName.P2.P2a.x, Import_QualifiedName.P2.P2a.x.self,
+			   Import_QualifiedName.P2.P2a.x.self.that, Import_QualifiedName.P2.P2a.x.that, Import_QualifiedName.P2.P2a.x.that.self,
+			   Import_QualifiedName.P2.y, Import_QualifiedName.P2.y.self, Import_QualifiedName.P2.y.self.that,
+			   Import_QualifiedName.P2.y.that, Import_QualifiedName.P2.y.that.self, Import_QualifiedName.P3.z,
+			   Import_QualifiedName.P3.z.self, Import_QualifiedName.P3.z.self.that, Import_QualifiedName.P3.z.that,
+			   Import_QualifiedName.P3.z.that.self, P1.A, P1.A.self, P1.A.self.that, P2.P2a.A, P2.P2a.A.self, P2.P2a.A.self.that,
+			   P2.P2a.x, P2.P2a.x.self, P2.P2a.x.self.that, P2.P2a.x.that, P2.P2a.x.that.self, P2.y,
+			   P2.y.self, P2.y.self.that, P2.y.that, P2.y.that.self, P2a.A, P2a.A.self, P2a.A.self.that,
+			   P2a.x, P2a.x.self, P2a.x.self.that, P2a.x.that, P2a.x.that.self, P3.z, P3.z.self,
+			   P3.z.self.that, P3.z.that, P3.z.that.self, y, y.self, y.self.that, y.that, y.that.self
 		--- */
 		y: P2a::A;  
 	}
 	package P3{
 		//* XPECT scope at P2a::A ---
 			   Import_QualifiedName.P1.A, Import_QualifiedName.P1.A.self,
-			   Import_QualifiedName.P2.P2a.A, Import_QualifiedName.P2.P2a.A.self, Import_QualifiedName.P2.P2a.x,
-			   Import_QualifiedName.P2.P2a.x.self, Import_QualifiedName.P2.y, Import_QualifiedName.P2.y.self,
-			   Import_QualifiedName.P3.z, Import_QualifiedName.P3.z.self, P1.A, P1.A.self, P2.P2a.A, P2.P2a.A.self,
-			   P2.P2a.x, P2.P2a.x.self, P2.y, P2.y.self, P3.z, P3.z.self, z, z.self
+			   Import_QualifiedName.P1.A.self.that, Import_QualifiedName.P2.P2a.A, Import_QualifiedName.P2.P2a.A.self,
+			   Import_QualifiedName.P2.P2a.A.self.that, Import_QualifiedName.P2.P2a.x, Import_QualifiedName.P2.P2a.x.self,
+			   Import_QualifiedName.P2.P2a.x.self.that, Import_QualifiedName.P2.P2a.x.that, Import_QualifiedName.P2.P2a.x.that.self,
+			   Import_QualifiedName.P2.y, Import_QualifiedName.P2.y.self, Import_QualifiedName.P2.y.self.that,
+			   Import_QualifiedName.P2.y.that, Import_QualifiedName.P2.y.that.self, Import_QualifiedName.P3.z,
+			   Import_QualifiedName.P3.z.self, Import_QualifiedName.P3.z.self.that, Import_QualifiedName.P3.z.that,
+			   Import_QualifiedName.P3.z.that.self, P1.A, P1.A.self, P1.A.self.that, P2.P2a.A, P2.P2a.A.self, P2.P2a.A.self.that,
+			   P2.P2a.x, P2.P2a.x.self, P2.P2a.x.self.that, P2.P2a.x.that, P2.P2a.x.that.self, P2.y,
+			   P2.y.self, P2.y.self.that, P2.y.that, P2.y.that.self, P3.z, P3.z.self, P3.z.self.that,
+			   P3.z.that, P3.z.that.self, z, z.self, z.self.that, z.that, z.that.self
 		--- */
 		z: P2::P2a::A;
 	}

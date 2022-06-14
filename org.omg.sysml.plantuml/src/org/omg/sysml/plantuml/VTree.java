@@ -193,7 +193,6 @@ public class VTree extends VStructure {
 
     protected void addCompartmentType(Type typ) {
         addRel(typ, null);
-    	if (checkVisited(typ)) return;
         if (typ instanceof Usage) {
             addType(typ, "comp usage ");
         } else {

@@ -1,7 +1,7 @@
 /**
  * This package defines the representations for measurement references.
  */
-package UnitsAndScales {
+package MeasurementReferences {
 	private import Collections::Array;
 	private import Collections::List;
 	private import ScalarValues::*;
@@ -83,10 +83,9 @@ package UnitsAndScales {
 	 * as the dimension or component of a scalar quantity is itself.
 	 */
 	abstract attribute def ScalarMeasurementReference :> VectorMeasurementReference {
-		ref attribute :>> self: ScalarMeasurementReference[1];
 		attribute :>> dimensions = ();
 		attribute :>> isOrthogonal = true;
-		attribute :>> mRefs = ScalarMeasurementReference::self;
+		attribute :>> mRefs = self;
 		attribute quantityDimension: QuantityDimension[1];
 	}
 	
@@ -99,9 +98,8 @@ package UnitsAndScales {
 	 * the next higher element (Object, Item or Part) in a composite structure.
 	 */
 	attribute def CoordinateFrame :> VectorMeasurementReference {
-		ref attribute :>> self: CoordinateFrame[1];
 		attribute transformation: CoordinateTransformation[0..1] {
-			attribute :>> target = CoordinateFrame::self;
+			attribute :>> target = that;
 		}
 	}
 

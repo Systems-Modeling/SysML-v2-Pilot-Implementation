@@ -21,10 +21,17 @@ package test{
 		feature a;
 	}
 	//* XPECT scope at A ---
- 		A, A.a, B, B.a, B.b, C, C.a, C.b, C.c, D,
- 		test.A, test.A.a, test.B, test.B.a, test.B.b, test.C, test.C.a, test.C.b, test.C.c, test.D, 
-		 		A.self,  A.a.self,  B.self,  B.a.self,  B.b.self,  C.self,  C.a.self,  C.b.self,  C.c.self,  D.self, 
- 		test.A.self,  test.A.a.self,  test.B.self,  test.B.a.self,  test.B.b.self,  test.C.self,  test.C.a.self,  test.C.b.self,  test.C.c.self,  test.D.self, 
+		A, A.a, A.a.self, A.a.that, A.a.that.self, A.self, A.that, A.that.self, B, B.a,
+		B.a.self, B.a.that, B.a.that.self, B.b, B.b.self, B.b.that, B.b.that.self, B.self,
+		B.that, B.that.self, C, C.a, C.a.self, C.a.that, C.a.that.self, C.b, C.b.self,
+		C.b.that, C.b.that.self, C.c, C.c.self, C.c.that, C.c.that.self, C.self, C.that,
+		C.that.self, D, D.self, D.that, D.that.self, test.A, test.A.a, test.A.a.self, test.A.a.that,
+		test.A.a.that.self, test.A.self, test.A.that, test.A.that.self, test.B, test.B.a, test.B.a.self,
+		test.B.a.that, test.B.a.that.self, test.B.b, test.B.b.self, test.B.b.that, test.B.b.that.self,
+		test.B.self, test.B.that, test.B.that.self, test.C, test.C.a, test.C.a.self, test.C.a.that,
+		test.C.a.that.self, test.C.b, test.C.b.self, test.C.b.that, test.C.b.that.self, test.C.c,
+		test.C.c.self, test.C.c.that, test.C.c.that.self, test.C.self, test.C.that, test.C.that.self,
+		test.D, test.D.self, test.D.that, test.D.that.self
 	--- */
 	feature B : A{
 	//scope test a here get Caused by: java.lang.RuntimeException: The EReference 'Element.ownedRelationship' found at ...	--- */
@@ -32,19 +39,33 @@ package test{
 		feature b : a {}
 	}
 	//* XPECT scope at B ---
- 		A, A.a, B, B.a, B.b, C, C.a, C.b, C.c, D,
- 		test.A, test.A.a, test.B, test.B.a, test.B.b, test.C, test.C.a, test.C.b, test.C.c, test.D, 
-		 		A.self,  A.a.self,  B.self,  B.a.self,  B.b.self,  C.self,  C.a.self,  C.b.self,  C.c.self,  D.self, 
- 		test.A.self,  test.A.a.self,  test.B.self,  test.B.a.self,  test.B.b.self,  test.C.self,  test.C.a.self,  test.C.b.self,  test.C.c.self,  test.D.self, 
+		A, A.a, A.a.self, A.a.that, A.a.that.self, A.self, A.that, A.that.self, B, B.a,
+		B.a.self, B.a.that, B.a.that.self, B.b, B.b.self, B.b.that, B.b.that.self, B.self,
+		B.that, B.that.self, C, C.a, C.a.self, C.a.that, C.a.that.self, C.b, C.b.self,
+		C.b.that, C.b.that.self, C.c, C.c.self, C.c.that, C.c.that.self, C.self, C.that,
+		C.that.self, D, D.self, D.that, D.that.self, test.A, test.A.a, test.A.a.self, test.A.a.that,
+		test.A.a.that.self, test.A.self, test.A.that, test.A.that.self, test.B, test.B.a, test.B.a.self,
+		test.B.a.that, test.B.a.that.self, test.B.b, test.B.b.self, test.B.b.that, test.B.b.that.self,
+		test.B.self, test.B.that, test.B.that.self, test.C, test.C.a, test.C.a.self, test.C.a.that,
+		test.C.a.that.self, test.C.b, test.C.b.self, test.C.b.that, test.C.b.that.self, test.C.c,
+		test.C.c.self, test.C.c.that, test.C.c.that.self, test.C.self, test.C.that, test.C.that.self,
+		test.D, test.D.self, test.D.that, test.D.that.self
 	--- */
 	feature C : B{
 		feature c : a;
 	}
 	//* XPECT scope at C::a ---
- 		A, A.a, B, B.a, B.b, C, C.a, C.b, C.c, D,
- 		test.A, test.A.a, test.B, test.B.a, test.B.b, test.C, test.C.a, test.C.b, test.C.c, test.D, 
-		 		A.self,  A.a.self,  B.self,  B.a.self,  B.b.self,  C.self,  C.a.self,  C.b.self,  C.c.self,  D.self, 
- 		test.A.self,  test.A.a.self,  test.B.self,  test.B.a.self,  test.B.b.self,  test.C.self,  test.C.a.self,  test.C.b.self,  test.C.c.self,  test.D.self, 
+		A, A.a, A.a.self, A.a.that, A.a.that.self, A.self, A.that, A.that.self, B, B.a,
+		B.a.self, B.a.that, B.a.that.self, B.b, B.b.self, B.b.that, B.b.that.self, B.self,
+		B.that, B.that.self, C, C.a, C.a.self, C.a.that, C.a.that.self, C.b, C.b.self,
+		C.b.that, C.b.that.self, C.c, C.c.self, C.c.that, C.c.that.self, C.self, C.that,
+		C.that.self, D, D.self, D.that, D.that.self, test.A, test.A.a, test.A.a.self, test.A.a.that,
+		test.A.a.that.self, test.A.self, test.A.that, test.A.that.self, test.B, test.B.a, test.B.a.self,
+		test.B.a.that, test.B.a.that.self, test.B.b, test.B.b.self, test.B.b.that, test.B.b.that.self,
+		test.B.self, test.B.that, test.B.that.self, test.C, test.C.a, test.C.a.self, test.C.a.that,
+		test.C.a.that.self, test.C.b, test.C.b.self, test.C.b.that, test.C.b.that.self, test.C.c,
+		test.C.c.self, test.C.c.that, test.C.c.that.self, test.C.self, test.C.that, test.C.that.self,
+		test.D, test.D.self, test.D.that, test.D.that.self
 	--- */
 	feature D : C::a;
 }

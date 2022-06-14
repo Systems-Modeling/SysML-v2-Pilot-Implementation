@@ -25,13 +25,13 @@ package org.omg.sysml.lang.sysml.impl;
 import java.util.Collection;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.CaseDefinition;
 import org.omg.sysml.lang.sysml.RequirementUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.VerificationCaseDefinition;
 import org.omg.sysml.lang.sysml.VerificationCaseUsage;
-import org.omg.sysml.util.NonNotifyingEObjectEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -49,6 +49,16 @@ import org.omg.sysml.util.NonNotifyingEObjectEList;
  */
 public class VerificationCaseUsageImpl extends CaseUsageImpl implements VerificationCaseUsage {
 	
+	/**
+	 * The cached setting delegate for the '{@link #getVerifiedRequirement() <em>Verified Requirement</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getVerifiedRequirement()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate VERIFIED_REQUIREMENT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.VERIFICATION_CASE_USAGE__VERIFIED_REQUIREMENT).getSettingDelegate();
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -102,16 +112,12 @@ public class VerificationCaseUsageImpl extends CaseUsageImpl implements Verifica
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<RequirementUsage> getVerifiedRequirement() {
-		EList<RequirementUsage> verifiedRequirements = new NonNotifyingEObjectEList<>(RequirementUsage.class, this, SysMLPackage.VERIFICATION_CASE_DEFINITION__VERIFIED_REQUIREMENT);
-		RequirementUsage objective = getObjectiveRequirement();
-		if (objective != null) {
-			VerificationCaseDefinitionImpl.getVerifiedRequirements(objective).forEachOrdered(verifiedRequirements::add);
-		}
-		return verifiedRequirements;
+		return (EList<RequirementUsage>)VERIFIED_REQUIREMENT__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 
@@ -181,7 +187,7 @@ public class VerificationCaseUsageImpl extends CaseUsageImpl implements Verifica
 			case SysMLPackage.VERIFICATION_CASE_USAGE__VERIFICATION_CASE_DEFINITION:
 				return basicGetVerificationCaseDefinition() != null;
 			case SysMLPackage.VERIFICATION_CASE_USAGE__VERIFIED_REQUIREMENT:
-				return !getVerifiedRequirement().isEmpty();
+				return VERIFIED_REQUIREMENT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 		}
 		return super.eIsSet(featureID);
 	}

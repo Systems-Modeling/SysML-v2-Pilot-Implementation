@@ -13839,6 +13839,11 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   new String[] {
 		   });
 		addAnnotation
+		  (getVerificationCaseUsage_VerifiedRequirement(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
 		  (getAllocationDefinition_Allocation(),
 		   source,
 		   new String[] {

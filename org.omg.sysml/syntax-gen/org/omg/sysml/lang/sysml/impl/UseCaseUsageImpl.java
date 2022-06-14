@@ -7,14 +7,13 @@ import java.util.Collection;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.omg.sysml.lang.sysml.CaseDefinition;
-import org.omg.sysml.lang.sysml.IncludeUseCaseUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.UseCaseDefinition;
 import org.omg.sysml.lang.sysml.UseCaseUsage;
-import org.omg.sysml.util.NonNotifyingEObjectEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -31,6 +30,16 @@ import org.omg.sysml.util.NonNotifyingEObjectEList;
  * @generated
  */
 public class UseCaseUsageImpl extends CaseUsageImpl implements UseCaseUsage {
+	/**
+	 * The cached setting delegate for the '{@link #getIncludedUseCase() <em>Included Use Case</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getIncludedUseCase()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate INCLUDED_USE_CASE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.USE_CASE_USAGE__INCLUDED_USE_CASE).getSettingDelegate();
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -93,17 +102,12 @@ public class UseCaseUsageImpl extends CaseUsageImpl implements UseCaseUsage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<UseCaseUsage> getIncludedUseCase() {
-		EList<UseCaseUsage> includedUseCases = new NonNotifyingEObjectEList<>(UseCaseUsage.class, this, SysMLPackage.USE_CASE_USAGE__INCLUDED_USE_CASE);
-		getOwnedFeature().stream().
-			filter(IncludeUseCaseUsage.class::isInstance).
-			map(IncludeUseCaseUsage.class::cast).
-			map(IncludeUseCaseUsage::getUseCaseIncluded).
-			forEachOrdered(includedUseCases::add);
-		return includedUseCases;
+		return (EList<UseCaseUsage>)INCLUDED_USE_CASE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
@@ -174,7 +178,7 @@ public class UseCaseUsageImpl extends CaseUsageImpl implements UseCaseUsage {
 			case SysMLPackage.USE_CASE_USAGE__USE_CASE_DEFINITION:
 				return isSetUseCaseDefinition();
 			case SysMLPackage.USE_CASE_USAGE__INCLUDED_USE_CASE:
-				return !getIncludedUseCase().isEmpty();
+				return INCLUDED_USE_CASE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 		}
 		return super.eIsSet(featureID);
 	}

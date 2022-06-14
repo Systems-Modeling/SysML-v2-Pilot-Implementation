@@ -3,11 +3,10 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.ecore.EClass;
-import org.omg.sysml.lang.sysml.OccurrenceUsage;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.omg.sysml.lang.sysml.PortionKind;
 import org.omg.sysml.lang.sysml.PortioningFeature;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.lang.sysml.Type;
 
 /**
  * <!-- begin-user-doc -->
@@ -24,15 +23,14 @@ import org.omg.sysml.lang.sysml.Type;
  */
 public class PortioningFeatureImpl extends FeatureImpl implements PortioningFeature {
 	/**
-	 * The default value of the '{@link #getPortionKind() <em>Portion Kind</em>}' attribute.
+	 * The cached setting delegate for the '{@link #getPortionKind() <em>Portion Kind</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getPortionKind()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final PortionKind PORTION_KIND_EDEFAULT = PortionKind.TIMESLICE;
-
+	protected EStructuralFeature.Internal.SettingDelegate PORTION_KIND__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.PORTIONING_FEATURE__PORTION_KIND).getSettingDelegate();
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -55,24 +53,21 @@ public class PortioningFeatureImpl extends FeatureImpl implements PortioningFeat
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public PortionKind getPortionKind() {
-		Type owningType = getOwningType();
-		return owningType instanceof OccurrenceUsage?
-				((OccurrenceUsage)owningType).getPortionKind():
-			    null;
+		return (PortionKind)PORTION_KIND__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setPortionKind(PortionKind newPortionKind) {
-		throw new UnsupportedOperationException();
+		PORTION_KIND__ESETTING_DELEGATE.dynamicSet(this, null, 0, newPortionKind);
 	}
 
 	/**
@@ -113,7 +108,7 @@ public class PortioningFeatureImpl extends FeatureImpl implements PortioningFeat
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case SysMLPackage.PORTIONING_FEATURE__PORTION_KIND:
-				setPortionKind(PORTION_KIND_EDEFAULT);
+				PORTION_KIND__ESETTING_DELEGATE.dynamicUnset(this, null, 0);
 				return;
 		}
 		super.eUnset(featureID);
@@ -128,7 +123,7 @@ public class PortioningFeatureImpl extends FeatureImpl implements PortioningFeat
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case SysMLPackage.PORTIONING_FEATURE__PORTION_KIND:
-				return getPortionKind() != PORTION_KIND_EDEFAULT;
+				return PORTION_KIND__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 		}
 		return super.eIsSet(featureID);
 	}

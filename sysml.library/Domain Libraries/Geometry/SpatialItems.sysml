@@ -6,9 +6,7 @@ package SpatialItems {
 	private import Objects::Point;
 	private import SpatialFrames::SpatialFrame;
 	private import Quantities::VectorQuantityValue;
-	private import UnitsAndScales::VectorMeasurementReference;
-	private import UnitsAndScales::CoordinateFrame;
-	private import UnitsAndScales::CoordinateTransformation;
+	private import MeasurementReferences::CoordinateFrame;
 	private import Time::Clock;
 	private import Time::TimeInstantValue;
 	private import ISQ::Cartesian3dSpatialCoordinateFrame;
@@ -28,7 +26,7 @@ package SpatialItems {
 		ref item localClock : Clock[1] default Time::defaultClock;
 		
 		/**
-		 * The three-dimensional VectorMeasurementReference to be used as the measurement reference for position 
+		 * The three-dimensional CoordinateFrame to be used as the measurement reference for position 
 		 * and displacement vector values relative to this SpatialItem.
 		 */
 		attribute coordinateFrame : CoordinateFrame[1] default Cartesian3dSpatialCoordinateFrame() {

@@ -457,7 +457,7 @@ package VehicleModel_1_simplified{
 
             // (from Ed's model) the following defines new quantities and units used in fuel economy reqts and analysis
             import Quantities::*;
-            import UnitsAndScales::DerivedUnit;
+            import MeasurementReferences::DerivedUnit;
             import SIPrefixes::kilo;
             
             /* should we add quantity and unit as key words? */

@@ -7,10 +7,10 @@ package VehicleGeometryAndCoordinateFrames {
     import ShapeItems::*;
     import SpatialItems::*;
 
-    import UnitsAndScales::CoordinateFrame;
-    import UnitsAndScales::TranslationRotationSequence;
-    import UnitsAndScales::Translation;
-    import UnitsAndScales::Rotation;
+    import MeasurementReferences::CoordinateFrame;
+    import MeasurementReferences::TranslationRotationSequence;
+    import MeasurementReferences::Translation;
+    import MeasurementReferences::Rotation;
     
     private import Collections::Array;
     private import ScalarValues::Boolean;

@@ -3731,6 +3731,7 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>The features that identify the stakeholders with concerns addressed by this ViewpointUsage, derived as the owned and inherited &lt;code>stakeholderParameters&lt;/code> of the &lt;code>framedConcerns&lt;/code> of this ViewpointUsage.&lt;/p>"/>
       </eAnnotations>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ViewpointDefinition" eSuperTypes="#//RequirementDefinition">

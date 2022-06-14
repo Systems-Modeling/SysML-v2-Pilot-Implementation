@@ -13824,6 +13824,11 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   new String[] {
 		   });
 		addAnnotation
+		  (getViewpointUsage_ViewpointStakeholder(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
 		  (getRenderingDefinition_Rendering(),
 		   source,
 		   new String[] {

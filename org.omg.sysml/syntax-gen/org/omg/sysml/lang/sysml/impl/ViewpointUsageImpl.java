@@ -25,15 +25,14 @@ package org.omg.sysml.lang.sysml.impl;
 import java.util.Collection;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.omg.sysml.lang.sysml.PartUsage;
 import org.omg.sysml.lang.sysml.RequirementDefinition;
-import org.omg.sysml.lang.sysml.StakeholderMembership;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.ViewpointDefinition;
 import org.omg.sysml.lang.sysml.ViewpointUsage;
-import org.omg.sysml.util.NonNotifyingEObjectEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -50,6 +49,16 @@ import org.omg.sysml.util.NonNotifyingEObjectEList;
  * @generated
  */
 public class ViewpointUsageImpl extends RequirementUsageImpl implements ViewpointUsage {
+
+	/**
+	 * The cached setting delegate for the '{@link #getViewpointStakeholder() <em>Viewpoint Stakeholder</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getViewpointStakeholder()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate VIEWPOINT_STAKEHOLDER__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.VIEWPOINT_USAGE__VIEWPOINT_STAKEHOLDER).getSettingDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -113,18 +122,12 @@ public class ViewpointUsageImpl extends RequirementUsageImpl implements Viewpoin
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<PartUsage> getViewpointStakeholder() {
-		EList<PartUsage> stakeholders = new NonNotifyingEObjectEList<>(PartUsage.class, this, SysMLPackage.VIEWPOINT_DEFINITION__VIEWPOINT_STAKEHOLDER);
-		getFramedConcern().stream().
-			flatMap(concern->concern.getFeature().stream()).
-			filter(PartUsage.class::isInstance).
-			map(PartUsage.class::cast).
-			filter(usage->usage.getOwningMembership() instanceof StakeholderMembership).
-			forEachOrdered(stakeholders::add);
-		return stakeholders;
+		return (EList<PartUsage>)VIEWPOINT_STAKEHOLDER__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
@@ -195,7 +198,7 @@ public class ViewpointUsageImpl extends RequirementUsageImpl implements Viewpoin
 			case SysMLPackage.VIEWPOINT_USAGE__VIEWPOINT_DEFINITION:
 				return isSetViewpointDefinition();
 			case SysMLPackage.VIEWPOINT_USAGE__VIEWPOINT_STAKEHOLDER:
-				return !getViewpointStakeholder().isEmpty();
+				return VIEWPOINT_STAKEHOLDER__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 		}
 		return super.eIsSet(featureID);
 	}

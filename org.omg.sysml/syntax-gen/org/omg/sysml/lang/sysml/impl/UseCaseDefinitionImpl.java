@@ -7,11 +7,10 @@ import java.util.Collection;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
-import org.omg.sysml.lang.sysml.IncludeUseCaseUsage;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.UseCaseDefinition;
 import org.omg.sysml.lang.sysml.UseCaseUsage;
-import org.omg.sysml.util.NonNotifyingEObjectEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -27,6 +26,16 @@ import org.omg.sysml.util.NonNotifyingEObjectEList;
  * @generated
  */
 public class UseCaseDefinitionImpl extends CaseDefinitionImpl implements UseCaseDefinition {
+	/**
+	 * The cached setting delegate for the '{@link #getIncludedUseCase() <em>Included Use Case</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getIncludedUseCase()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate INCLUDED_USE_CASE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.USE_CASE_DEFINITION__INCLUDED_USE_CASE).getSettingDelegate();
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -49,17 +58,12 @@ public class UseCaseDefinitionImpl extends CaseDefinitionImpl implements UseCase
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<UseCaseUsage> getIncludedUseCase() {
-		EList<UseCaseUsage> includedUseCases = new NonNotifyingEObjectEList<>(UseCaseUsage.class, this, SysMLPackage.USE_CASE_DEFINITION__INCLUDED_USE_CASE);
-		getOwnedFeature().stream().
-			filter(IncludeUseCaseUsage.class::isInstance).
-			map(IncludeUseCaseUsage.class::cast).
-			map(IncludeUseCaseUsage::getUseCaseIncluded).
-			forEachOrdered(includedUseCases::add);
-		return includedUseCases;
+		return (EList<UseCaseUsage>)INCLUDED_USE_CASE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
@@ -117,7 +121,7 @@ public class UseCaseDefinitionImpl extends CaseDefinitionImpl implements UseCase
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case SysMLPackage.USE_CASE_DEFINITION__INCLUDED_USE_CASE:
-				return !getIncludedUseCase().isEmpty();
+				return INCLUDED_USE_CASE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 		}
 		return super.eIsSet(featureID);
 	}

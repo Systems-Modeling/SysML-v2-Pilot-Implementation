@@ -3850,6 +3850,7 @@
         <details key="documentation" value="&lt;p>A EnumerationUsage of this EnumerationDefinition with a fixed value, distinct from the value of all other &lt;code>enumerationValues&lt;/code>, which specifies one of the allowed instances of the EnumerationDefinition.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="redefines" references="#//Definition/variant"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AttributeDefinition" eSuperTypes="#//Definition #//DataType">

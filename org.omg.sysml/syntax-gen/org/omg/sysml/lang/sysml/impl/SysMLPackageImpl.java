@@ -13844,6 +13844,11 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   new String[] {
 		   });
 		addAnnotation
+		  (getEnumerationDefinition_EnumeratedValue(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
 		  (getAllocationDefinition_Allocation(),
 		   source,
 		   new String[] {

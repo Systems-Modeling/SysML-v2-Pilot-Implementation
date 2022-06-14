@@ -27,7 +27,7 @@ import java.util.Collection;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.uml2.common.util.DerivedEObjectEList;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.omg.sysml.lang.sysml.EnumerationDefinition;
 import org.omg.sysml.lang.sysml.EnumerationUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -47,6 +47,16 @@ import org.omg.sysml.lang.sysml.Usage;
  * @generated
  */
 public class EnumerationDefinitionImpl extends AttributeDefinitionImpl implements EnumerationDefinition {
+	/**
+	 * The cached setting delegate for the '{@link #getEnumeratedValue() <em>Enumerated Value</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getEnumeratedValue()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate ENUMERATED_VALUE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.ENUMERATION_DEFINITION__ENUMERATED_VALUE).getSettingDelegate();
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -69,11 +79,12 @@ public class EnumerationDefinitionImpl extends AttributeDefinitionImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<EnumerationUsage> getEnumeratedValue() {
-		return new DerivedEObjectEList<>(EnumerationUsage.class, this, SysMLPackage.ENUMERATION_DEFINITION__ENUMERATED_VALUE, new int[] {SysMLPackage.DEFINITION__VARIANT});
+		return (EList<EnumerationUsage>)ENUMERATED_VALUE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**

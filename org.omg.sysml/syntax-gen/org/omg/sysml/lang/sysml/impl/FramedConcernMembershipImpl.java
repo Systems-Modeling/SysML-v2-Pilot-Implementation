@@ -3,6 +3,7 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.omg.sysml.lang.sysml.FramedConcernMembership;
@@ -10,7 +11,6 @@ import org.omg.sysml.lang.sysml.ConcernUsage;
 import org.omg.sysml.lang.sysml.ConstraintUsage;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.util.FeatureUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -27,6 +27,16 @@ import org.omg.sysml.util.FeatureUtil;
  * @generated
  */
 public class FramedConcernMembershipImpl extends RequirementConstraintMembershipImpl implements FramedConcernMembership {
+	/**
+	 * The cached setting delegate for the '{@link #getReferencedConcern() <em>Referenced Concern</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getReferencedConcern()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate REFERENCED_CONCERN__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.FRAMED_CONCERN_MEMBERSHIP__REFERENCED_CONCERN).getSettingDelegate();
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -93,27 +103,26 @@ public class FramedConcernMembershipImpl extends RequirementConstraintMembership
 	 */
 	@Override
 	public ConcernUsage getReferencedConcern() {
-		ConcernUsage referencedConcern = basicGetReferencedConcern();
-		return referencedConcern != null && referencedConcern.eIsProxy() ? (ConcernUsage)eResolveProxy((InternalEObject)referencedConcern) : referencedConcern;
+		return (ConcernUsage)REFERENCED_CONCERN__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public ConcernUsage basicGetReferencedConcern() {
-		return FeatureUtil.getReferencedFeatureOf(getOwnedConcern(), ConcernUsage.class);
+		return (ConcernUsage)REFERENCED_CONCERN__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setReferencedConcern(ConcernUsage newReferencedConcern) {
-		throw new UnsupportedOperationException();
+		REFERENCED_CONCERN__ESETTING_DELEGATE.dynamicSet(this, null, 0, newReferencedConcern);
 	}
 
 	/**

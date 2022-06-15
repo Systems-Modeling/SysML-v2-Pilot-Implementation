@@ -4520,6 +4520,7 @@
         <details key="documentation" value="&lt;p>The &lt;tt>conjugatedPortDefinition&lt;/tt> of the &lt;tt>portDefinition&lt;/tt> of this ConjugatedPortTyping, which is the derived &lt;tt>type&lt;/tt> of the ConjugatedPortTyping considered as a FeatureTyping.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="redefines" references="#//FeatureTyping/type"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ObjectiveMembership" eSuperTypes="#//FeatureMembership">

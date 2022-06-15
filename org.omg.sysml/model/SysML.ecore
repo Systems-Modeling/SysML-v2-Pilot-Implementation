@@ -4694,6 +4694,7 @@
         <details key="documentation" value="&lt;p>The UseCaseUsage to be included by this IncludeUseCaseUsage. It is the &lt;code>subsettedFeature&lt;/code> of the first owned Subsetting Relationship of the IncludeUseCaseUsage.&lt;/p> &#xA;"/>
       </eAnnotations>
       <eAnnotations source="redefines" references="#//PerformActionUsage/performedAction"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
   </eClassifiers>
 </ecore:EPackage>

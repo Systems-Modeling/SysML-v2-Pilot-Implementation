@@ -3,8 +3,7 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.EventOccurrenceUsage;
 import org.omg.sysml.lang.sysml.Feature;
@@ -13,7 +12,6 @@ import org.omg.sysml.lang.sysml.OccurrenceUsage;
 import org.omg.sysml.lang.sysml.PerformActionUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.UseCaseUsage;
-import org.omg.sysml.util.FeatureUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -29,6 +27,16 @@ import org.omg.sysml.util.FeatureUtil;
  * @generated
  */
 public class IncludeUseCaseUsageImpl extends UseCaseUsageImpl implements IncludeUseCaseUsage {
+	/**
+	 * The cached setting delegate for the '{@link #getUseCaseIncluded() <em>Use Case Included</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getUseCaseIncluded()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate USE_CASE_INCLUDED__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.INCLUDE_USE_CASE_USAGE__USE_CASE_INCLUDED).getSettingDelegate();
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -55,27 +63,26 @@ public class IncludeUseCaseUsageImpl extends UseCaseUsageImpl implements Include
 	 */
 	@Override
 	public UseCaseUsage getUseCaseIncluded() {
-		UseCaseUsage useCaseIncluded = basicGetUseCaseIncluded();
-		return useCaseIncluded != null && useCaseIncluded.eIsProxy() ? (UseCaseUsage)eResolveProxy((InternalEObject)useCaseIncluded) : useCaseIncluded;
+		return (UseCaseUsage)USE_CASE_INCLUDED__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public UseCaseUsage basicGetUseCaseIncluded() {
-		return FeatureUtil.getReferencedFeatureOf(this, UseCaseUsage.class);
+		return (UseCaseUsage)USE_CASE_INCLUDED__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setUseCaseIncluded(UseCaseUsage newUseCaseIncluded) {
-		throw new UnsupportedOperationException();
+		USE_CASE_INCLUDED__ESETTING_DELEGATE.dynamicSet(this, null, 0, newUseCaseIncluded);
 	}
 
 	/**

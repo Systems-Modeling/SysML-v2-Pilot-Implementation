@@ -3988,6 +3988,7 @@
         <details key="documentation" value="&lt;p> The RequirementUsage that is identified as being verified. This is derived as being the first RequirementUsage subset by the &lt;code>ownedRequirement&lt;/code>, if there is one, and, otherwise, the &lt;code>ownedRequirement&lt;/code> itself.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="redefines" references="#//RequirementConstraintMembership/referencedConstraint"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="RequirementConstraintMembership" eSuperTypes="#//FeatureMembership">

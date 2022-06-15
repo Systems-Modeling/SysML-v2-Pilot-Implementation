@@ -23,12 +23,12 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.ConstraintUsage;
 import org.omg.sysml.lang.sysml.RequirementUsage;
 import org.omg.sysml.lang.sysml.RequirementVerificationMembership;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.util.FeatureUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -45,6 +45,16 @@ import org.omg.sysml.util.FeatureUtil;
  * @generated
  */
 public class RequirementVerificationMembershipImpl extends RequirementConstraintMembershipImpl implements RequirementVerificationMembership {
+
+	/**
+	 * The cached setting delegate for the '{@link #getVerifiedRequirement() <em>Verified Requirement</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getVerifiedRequirement()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate VERIFIED_REQUIREMENT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.REQUIREMENT_VERIFICATION_MEMBERSHIP__VERIFIED_REQUIREMENT).getSettingDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -72,26 +82,26 @@ public class RequirementVerificationMembershipImpl extends RequirementConstraint
 	 */
 	@Override
 	public RequirementUsage getVerifiedRequirement() {
-		RequirementUsage verifiedRequirement = basicGetVerifiedRequirement();
-		return verifiedRequirement != null && verifiedRequirement.eIsProxy() ? (RequirementUsage)eResolveProxy((InternalEObject)verifiedRequirement) : verifiedRequirement;
+		return (RequirementUsage)VERIFIED_REQUIREMENT__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public RequirementUsage basicGetVerifiedRequirement() {
-		return FeatureUtil.getReferencedFeatureOf(getOwnedRequirement(), RequirementUsage.class);
+		return (RequirementUsage)VERIFIED_REQUIREMENT__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setVerifiedRequirement(RequirementUsage newVerifiedRequirement) {
+		VERIFIED_REQUIREMENT__ESETTING_DELEGATE.dynamicSet(this, null, 0, newVerifiedRequirement);
 	}
 
 	/**

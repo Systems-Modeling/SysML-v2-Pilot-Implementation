@@ -13869,6 +13869,11 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   new String[] {
 		   });
 		addAnnotation
+		  (getRequirementVerificationMembership_VerifiedRequirement(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
 		  (getEventOccurrenceUsage_EventOccurrence(),
 		   source,
 		   new String[] {

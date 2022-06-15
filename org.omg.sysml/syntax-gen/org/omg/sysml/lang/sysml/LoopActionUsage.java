@@ -37,6 +37,7 @@ public interface LoopActionUsage extends ActionUsage {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getLoopActionUsage_BodyAction()
 	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='loopAction'"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	ActionUsage getBodyAction();

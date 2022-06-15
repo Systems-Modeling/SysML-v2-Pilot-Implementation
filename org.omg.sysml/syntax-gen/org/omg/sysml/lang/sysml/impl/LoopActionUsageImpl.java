@@ -3,12 +3,10 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.LoopActionUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.util.TypeUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -24,6 +22,16 @@ import org.omg.sysml.util.TypeUtil;
  * @generated
  */
 public abstract class LoopActionUsageImpl extends ActionUsageImpl implements LoopActionUsage {
+	/**
+	 * The cached setting delegate for the '{@link #getBodyAction() <em>Body Action</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getBodyAction()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate BODY_ACTION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.LOOP_ACTION_USAGE__BODY_ACTION).getSettingDelegate();
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -50,27 +58,26 @@ public abstract class LoopActionUsageImpl extends ActionUsageImpl implements Loo
 	 */
 	@Override
 	public ActionUsage getBodyAction() {
-		ActionUsage bodyAction = basicGetBodyAction();
-		return bodyAction != null && bodyAction.eIsProxy() ? (ActionUsage)eResolveProxy((InternalEObject)bodyAction) : bodyAction;
+		return (ActionUsage)BODY_ACTION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public ActionUsage basicGetBodyAction() {
-		return TypeUtil.getOwnedParameterOf(this, 1, ActionUsage.class);
+		return (ActionUsage)BODY_ACTION__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setBodyAction(ActionUsage newBodyAction) {
-		throw new UnsupportedOperationException();
+		BODY_ACTION__ESETTING_DELEGATE.dynamicSet(this, null, 0, newBodyAction);
 	}
 
 	/**
@@ -127,7 +134,7 @@ public abstract class LoopActionUsageImpl extends ActionUsageImpl implements Loo
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case SysMLPackage.LOOP_ACTION_USAGE__BODY_ACTION:
-				return basicGetBodyAction() != null;
+				return BODY_ACTION__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 		}
 		return super.eIsSet(featureID);
 	}

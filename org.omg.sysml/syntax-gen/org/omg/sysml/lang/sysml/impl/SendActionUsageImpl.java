@@ -24,14 +24,11 @@ package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.ecore.EClass;
 
-import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Expression;
-import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.SendActionUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.util.FeatureUtil;
-import org.omg.sysml.util.UsageUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -49,6 +46,24 @@ import org.omg.sysml.util.UsageUtil;
  */
 public class SendActionUsageImpl extends ActionUsageImpl implements SendActionUsage {
 
+	/**
+	 * The cached setting delegate for the '{@link #getReceiverArgument() <em>Receiver Argument</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getReceiverArgument()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate RECEIVER_ARGUMENT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.SEND_ACTION_USAGE__RECEIVER_ARGUMENT).getSettingDelegate();
+	/**
+	 * The cached setting delegate for the '{@link #getPayloadArgument() <em>Payload Argument</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPayloadArgument()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate PAYLOAD_ARGUMENT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.SEND_ACTION_USAGE__PAYLOAD_ARGUMENT).getSettingDelegate();
 	/**
 	 * The cached value of the BindingConnector from the result of the target Expression of this SendAction to 
 	 * its ItemFeature.
@@ -81,28 +96,26 @@ public class SendActionUsageImpl extends ActionUsageImpl implements SendActionUs
 	 */
 	@Override
 	public Expression getReceiverArgument() {
-		Expression receiverArgument = basicGetReceiverArgument();
-		return receiverArgument != null && receiverArgument.eIsProxy() ? (Expression)eResolveProxy((InternalEObject)receiverArgument) : receiverArgument;
+		return (Expression)RECEIVER_ARGUMENT__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Expression basicGetReceiverArgument() {
-		Feature receiverParameter = UsageUtil.getReceiverParameterOf(this);
-		return receiverParameter == null? null: FeatureUtil.getValueExpressionFor(receiverParameter);
+		return (Expression)RECEIVER_ARGUMENT__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setReceiverArgument(Expression newReceiverArgument) {
-		throw new UnsupportedOperationException();
+		RECEIVER_ARGUMENT__ESETTING_DELEGATE.dynamicSet(this, null, 0, newReceiverArgument);
 	}
 
 	/**
@@ -112,28 +125,26 @@ public class SendActionUsageImpl extends ActionUsageImpl implements SendActionUs
 	 */
 	@Override
 	public Expression getPayloadArgument() {
-		Expression payloadArgument = basicGetPayloadArgument();
-		return payloadArgument != null && payloadArgument.eIsProxy() ? (Expression)eResolveProxy((InternalEObject)payloadArgument) : payloadArgument;
+		return (Expression)PAYLOAD_ARGUMENT__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Expression basicGetPayloadArgument() {
-		Feature itemsParameter = UsageUtil.getPayloadParameterOf(this);
-		return itemsParameter == null? null: FeatureUtil.getValueExpressionFor(itemsParameter);
+		return (Expression)PAYLOAD_ARGUMENT__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setPayloadArgument(Expression newPayloadArgument) {
-		throw new UnsupportedOperationException();
+		PAYLOAD_ARGUMENT__ESETTING_DELEGATE.dynamicSet(this, null, 0, newPayloadArgument);
 	}
 
 	/**
@@ -199,9 +210,9 @@ public class SendActionUsageImpl extends ActionUsageImpl implements SendActionUs
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case SysMLPackage.SEND_ACTION_USAGE__RECEIVER_ARGUMENT:
-				return basicGetReceiverArgument() != null;
+				return RECEIVER_ARGUMENT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.SEND_ACTION_USAGE__PAYLOAD_ARGUMENT:
-				return basicGetPayloadArgument() != null;
+				return PAYLOAD_ARGUMENT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 		}
 		return super.eIsSet(featureID);
 	}

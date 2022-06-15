@@ -4291,6 +4291,7 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>The Expression whose result, if true, determines that the &lt;code>bodyAction&lt;/code> should continue to be performed. Derived as the owned Expression that redefines the &lt;em>&lt;code>whileTest&lt;/code>&lt;/em> parameter of the WhileLoopActionUsage.&lt;/p> &#xA;"/>
       </eAnnotations>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="untilArgument" ordered="false"
         eType="#//Expression" volatile="true" transient="true" derived="true">
@@ -4300,6 +4301,7 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>The Expression whose result, if false, determines that the &lt;code>bodyAction&lt;/code> should continue to be performed. Derived as the owned Expression that redefines the &lt;em>&lt;code>untilTest&lt;/code>&lt;em> &lt;/em>&lt;/em>parameter of the WhileLoopActionUsage.&lt;/p> &#xA;"/>
       </eAnnotations>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ViewRenderingMembership" eSuperTypes="#//FeatureMembership">

@@ -13919,6 +13919,16 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   new String[] {
 		   });
 		addAnnotation
+		  (getForLoopActionUsage_SeqArgument(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getForLoopActionUsage_LoopVariable(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
 		  (getStateDefinition_State(),
 		   source,
 		   new String[] {

@@ -4215,6 +4215,7 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>The Expression whose result provides the sequence of values to be passed to each &lt;code>bodyAction&lt;/code> performance. Derived as the &lt;code>value&lt;/code> Expression of the FeatureValue for the redefined &lt;em>&lt;code>seq&lt;/code>&lt;em> &lt;/em>&lt;/em>parameter of the ForLoopActionUsage.&lt;/p> &#xA;"/>
       </eAnnotations>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="loopVariable" ordered="false"
         lowerBound="1" eType="#//ReferenceUsage" volatile="true" transient="true"
@@ -4225,6 +4226,7 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>The &lt;code>feature&lt;/code> of this ForLoopActionUsage that acts as the loop variable, which is assigned the successive elements of the input sequence on each iteration. Derived as the &lt;code>feature&lt;/code> that subsets the library ReferenceUsage &lt;em>&lt;code>ForLoopAction::var&lt;/code>&lt;/em>.&lt;/p> "/>
       </eAnnotations>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LoopActionUsage" abstract="true" eSuperTypes="#//ActionUsage">

@@ -13968,6 +13968,11 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   source,
 		   new String[] {
 		   });
+		addAnnotation
+		  (getAssertConstraintUsage_AssertedConstraint(),
+		   source,
+		   new String[] {
+		   });
 	}
 
 } //SysMLPackageImpl

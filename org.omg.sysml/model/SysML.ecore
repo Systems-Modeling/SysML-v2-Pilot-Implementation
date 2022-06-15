@@ -4493,6 +4493,7 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>The ConstraintUsage to be performed by the AssertConstraintUsage. It is the &lt;tt>subsettedFeature&lt;/tt> of the first owned Subsetting Relationship of the AssertConstraintUsage.&lt;/p>"/>
       </eAnnotations>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ConjugatedPortTyping" eSuperTypes="#//FeatureTyping">

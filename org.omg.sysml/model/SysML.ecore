@@ -4102,6 +4102,7 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>The Expression whose value is an occurrence in the domain of the &lt;code>referent&lt;/code> Feature, for which the value of the &lt;code>referent&lt;/code> will be set to the result of the &lt;code>valueExpression&lt;/code> by this AssignmentActionUsage. Derived as the &lt;code>value&lt;/code> of the FeatureValue of the redefined &lt;em>&lt;code>target&lt;/code>&lt;/em> parameter of the AssignmentActionUsage.&lt;/p>"/>
       </eAnnotations>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="valueExpression" ordered="false"
         lowerBound="1" eType="#//Expression" volatile="true" transient="true" derived="true">
@@ -4111,6 +4112,7 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>The Expression whose result is to be assigned to the &lt;code>referent&lt;/code> Feature. Derived as the &lt;code>value&lt;/code> of the FeatureValue of the redefined &lt;em>&lt;code>replacementValues&lt;/code>&lt;/em> parameter of the AssignmentActionUsage.&lt;/p>"/>
       </eAnnotations>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="referent" ordered="false"
         lowerBound="1" eType="#//Feature" volatile="true" transient="true" derived="true">
@@ -4121,6 +4123,7 @@
         <details key="documentation" value="&lt;p>The Feature whose value is to be set, derived as an unowned &lt;code>member&lt;/code> of the AssignmentActionUsage. It shall not be a FeatureChain. It is redefined by the &lt;em>&lt;code>target::accessedFeature&lt;/code>&lt;/em> of the AssignmentActionUsage.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Namespace/member"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ForkNode" eSuperTypes="#//ControlNode">

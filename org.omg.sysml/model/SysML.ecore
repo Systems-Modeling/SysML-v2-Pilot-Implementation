@@ -4387,6 +4387,7 @@
         <details key="documentation" value="&lt;p>The StateUsage to be exhibited by the ExhibitStateUsage. It is the &lt;tt>subsettedFeature&lt;/tt> of the first owned Subsetting Relationship of the ExhibitStateUsage.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="redefines" references="#//PerformActionUsage/performedAction"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="StateDefinition" eSuperTypes="#//ActionDefinition">

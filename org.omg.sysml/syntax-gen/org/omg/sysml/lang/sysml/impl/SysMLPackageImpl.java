@@ -13959,6 +13959,11 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   new String[] {
 		   });
 		addAnnotation
+		  (getExhibitStateUsage_ExhibitedState(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
 		  (getStateDefinition_State(),
 		   source,
 		   new String[] {

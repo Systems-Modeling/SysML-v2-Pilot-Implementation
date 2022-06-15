@@ -3,12 +3,12 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.RenderingUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.ViewRenderingMembership;
-import org.omg.sysml.util.FeatureUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -25,6 +25,16 @@ import org.omg.sysml.util.FeatureUtil;
  * @generated
  */
 public class ViewRenderingMembershipImpl extends FeatureMembershipImpl implements ViewRenderingMembership {
+	/**
+	 * The cached setting delegate for the '{@link #getReferencedRendering() <em>Referenced Rendering</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getReferencedRendering()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate REFERENCED_RENDERING__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.VIEW_RENDERING_MEMBERSHIP__REFERENCED_RENDERING).getSettingDelegate();
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -91,27 +101,26 @@ public class ViewRenderingMembershipImpl extends FeatureMembershipImpl implement
 	 */
 	@Override
 	public RenderingUsage getReferencedRendering() {
-		RenderingUsage referencedRendering = basicGetReferencedRendering();
-		return referencedRendering != null && referencedRendering.eIsProxy() ? (RenderingUsage)eResolveProxy((InternalEObject)referencedRendering) : referencedRendering;
+		return (RenderingUsage)REFERENCED_RENDERING__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public RenderingUsage basicGetReferencedRendering() {
-		return FeatureUtil.getReferencedFeatureOf(getOwnedRendering(), RenderingUsage.class);
+		return (RenderingUsage)REFERENCED_RENDERING__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setReferencedRendering(RenderingUsage newReferencedRendering) {
-		throw new UnsupportedOperationException();
+		REFERENCED_RENDERING__ESETTING_DELEGATE.dynamicSet(this, null, 0, newReferencedRendering);
 	}
 
 	/**
@@ -181,7 +190,7 @@ public class ViewRenderingMembershipImpl extends FeatureMembershipImpl implement
 			case SysMLPackage.VIEW_RENDERING_MEMBERSHIP__OWNED_RENDERING:
 				return isSetOwnedRendering();
 			case SysMLPackage.VIEW_RENDERING_MEMBERSHIP__REFERENCED_RENDERING:
-				return basicGetReferencedRendering() != null;
+				return REFERENCED_RENDERING__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 		}
 		return super.eIsSet(featureID);
 	}

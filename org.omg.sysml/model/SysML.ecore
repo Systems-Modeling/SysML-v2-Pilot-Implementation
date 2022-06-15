@@ -4143,6 +4143,7 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>The ActionUsage that is to be performed if the result of the &lt;code>ifArgument&lt;/code> is false. Derived as the owned ActionUsage that redefines &lt;em>&lt;code>elseClause&lt;/code>&lt;em> &lt;/em>&lt;/em>parameter of the IfActionUsage.&lt;/p> &#xA;"/>
       </eAnnotations>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="thenAction" ordered="false"
         lowerBound="1" eType="#//ActionUsage" volatile="true" transient="true" derived="true">
@@ -4152,6 +4153,7 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>The ActionUsage that is to be performed if the result of the &lt;code>ifArgument&lt;/code> is true. Derived as the owned ActionUsage that redefines the &lt;em>&lt;code>thenClause&lt;/code>&lt;/em> parameter of the IfActionUsage.&lt;/p> &#xA;"/>
       </eAnnotations>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ifArgument" ordered="false"
         lowerBound="1" eType="#//Expression" volatile="true" transient="true" derived="true">
@@ -4161,6 +4163,7 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>The Expression whose result determines whether the &lt;code>thenAction&lt;/code> or (optionally) the &lt;code>elseAction&lt;/code> is performed. Derived as the &lt;code>value&lt;/code> Expression of the FeatureValue for the redefined &lt;em>&lt;code>ifTest&lt;/code>&lt;/em> parameter of the IfActionUsage.&lt;/p> &#xA;"/>
       </eAnnotations>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PerformActionUsage" eSuperTypes="#//ActionUsage #//EventOccurrenceUsage">

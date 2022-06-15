@@ -13894,6 +13894,21 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   new String[] {
 		   });
 		addAnnotation
+		  (getIfActionUsage_ElseAction(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getIfActionUsage_ThenAction(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getIfActionUsage_IfArgument(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
 		  (getEventOccurrenceUsage_EventOccurrence(),
 		   source,
 		   new String[] {

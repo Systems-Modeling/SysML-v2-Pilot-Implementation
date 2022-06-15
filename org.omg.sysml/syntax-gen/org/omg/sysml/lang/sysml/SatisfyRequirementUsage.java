@@ -64,6 +64,7 @@ public interface SatisfyRequirementUsage extends RequirementUsage, AssertConstra
 	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='requirementSatisfaction'"
 	 *        annotation="redefines"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	RequirementUsage getSatisfiedRequirement();
@@ -94,6 +95,7 @@ public interface SatisfyRequirementUsage extends RequirementUsage, AssertConstra
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getSatisfyRequirementUsage_SatisfyingFeature()
 	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='satisfiedRequirement'"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	Feature getSatisfyingFeature();

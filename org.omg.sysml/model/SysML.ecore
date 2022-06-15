@@ -4612,6 +4612,7 @@
         <details key="documentation" value="&lt;p>The RequirementUsage that is satisfied by the &lt;tt>satisfyingSubject&lt;/tt> of this SatisfyRequirementUsage. It is the &lt;tt>subsettedFeature&lt;/tt> of the first owned Subsetting Relationship of the SatisfyRequirementUsage.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="redefines" references="#//AssertConstraintUsage/assertedConstraint"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="satisfyingFeature" ordered="false"
         lowerBound="1" eType="#//Feature" volatile="true" transient="true" derived="true">
@@ -4621,6 +4622,7 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>The Feature that represents the actual subject that is asserted to satisfy the &lt;tt>satisfiedRequirement&lt;/tt>. The &lt;tt>satisfyingFeature&lt;/tt> must be the target of a BindingConnector from the &lt;tt>subjectParameter&lt;/tt> of the &lt;tt>satisfiedRequirement&lt;/tt>.&lt;/p>"/>
       </eAnnotations>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SubjectMembership" eSuperTypes="#//ParameterMembership">

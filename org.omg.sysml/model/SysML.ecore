@@ -4021,6 +4021,7 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p> The ConstraintUsage that is referenced through this RequirementConstraintMembership. This is derived as being the first ConstraintUsage subset by the &lt;code>ownedConstraint&lt;/code>, if there is one, and, otherwise, the &lt;code>ownedConstraint&lt;/code> itself.&lt;/p>"/>
       </eAnnotations>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="RequirementConstraintKind">

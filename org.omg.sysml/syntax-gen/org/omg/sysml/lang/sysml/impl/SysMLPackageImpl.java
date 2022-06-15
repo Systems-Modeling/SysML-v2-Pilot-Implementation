@@ -13874,6 +13874,11 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   new String[] {
 		   });
 		addAnnotation
+		  (getRequirementConstraintMembership_ReferencedConstraint(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
 		  (getEventOccurrenceUsage_EventOccurrence(),
 		   source,
 		   new String[] {

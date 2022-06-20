@@ -18,6 +18,7 @@ package ISQAcoustics {
     // Quantity definitions referenced from other ISQ packages
     private import ISQMechanics::PowerValue;
     private import ISQMechanics::PressureValue;
+    private import ISQSpaceTime::CartesianSpatial3dCoordinateFrame;
     private import ISQSpaceTime::SpeedValue;
     private import ISQSpaceTime::Cartesian3dVelocityCoordinateFrame;
     private import ISQSpaceTime::AccelerationValue;
@@ -84,7 +85,7 @@ package ISQAcoustics {
         attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> num: Real[3];
-        attribute :>> mRef: Cartesian3dSpatialCoordinateFrame[1];
+        attribute :>> mRef: CartesianSpatial3dCoordinateFrame[1];
     }
     attribute soundParticleDisplacementVector: Cartesian3dSoundParticleDisplacementVector :> vectorQuantities;
 

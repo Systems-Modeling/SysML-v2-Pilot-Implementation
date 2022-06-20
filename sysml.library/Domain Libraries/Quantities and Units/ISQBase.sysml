@@ -33,16 +33,6 @@ package ISQBase {
     attribute length: LengthValue [*] nonunique :> scalarQuantities;
 
     /**
-     * General spatial coordinate system
-     */
-    attribute def Cartesian3dSpatialCoordinateFrame :> VectorMeasurementReference {
-        attribute :>> dimensions = 3;
-        attribute :>> isBound = true;
-        attribute :>> isOrthogonal = true;
-        attribute :>> mRefs: LengthValue[3];
-    }
-
-    /**
      * source: item 3-9 duration, time
      * symbol(s): `t`
      * application domain: generic

@@ -11,6 +11,7 @@
  */
 package ISQSpaceTime {
     private import ScalarValues::Real;
+    private import ScalarValues::String;
     private import Quantities::*;
     private import MeasurementReferences::*;
     private import ISQBase::*;
@@ -155,13 +156,132 @@ package ISQSpaceTime {
      * definition: vector (ISO 80000-2) quantity from the origin of a coordinate system to a point in space
      * remarks: Position vectors are so-called bounded vectors, i.e. their magnitude (ISO 80000-2) and direction depend on the particular coordinate system used.
      */
-    attribute def Cartesian3dPositionVector :> VectorQuantityValue {
+
+    /**
+     * Most general spatial 3D coordinate frame
+     */
+    attribute def Spatial3dCoordinateFrame :> '3dCoordinateFrame' {
+        attribute :>> isBound = true;
+    }
+
+    /**
+     * Orthogonal Cartesian spatial 3D coordinate frame
+     *
+     * source: ISO 80000-2 item 2-17.1 Cartesian coordinates
+     *
+     * The components of a vector expressed on a Cartesian coordinate frame are all LengthValues, and denoted with symbols `x`, `y`, `z`.
+
+     * Note 1: The Cartesian basis vectors `vec(e_x)`, `vec(e_y)` and `vec(e_z)` form an orthonormal right-handed coordinate frame.
+     * Note 2: The measurement units for the 3 dimensions are typically the same, but may be different.
+     */
+    attribute def CartesianSpatial3dCoordinateFrame :> Spatial3dCoordinateFrame {
+        attribute xUnit : LengthUnit;
+        attribute yUnit : LengthUnit;
+        attribute zUnit : LengthUnit;
+        attribute :>> mRefs = (xUnit, yUnit, zUnit);
+        attribute :>> isOrthogonal = true;
+    }
+
+    /**
+     * Cylindrical spatial 3D coordinate frame
+     *
+     * source: ISO 80000-2 item 2-17.2 cylindrical coordinates
+     *
+     * The components of a (position) vector to a point P in a cylindrical coordinate frame are:
+     * - radialDistance (symbol `ρ`) defined by LengthValue, that is the radial distance from the cylinder axis to P
+     * - azimuth (symbol `φ`) defined by AngularMeasure, that is the angle between the azimuth reference direction and the line segment 
+     * from the cylinder axis, in the plane that is orthogonal to the cylinder axis and intersects P
+     * - z coordinate (symbol `z`) defined by LengthValue, the coordinate along the clyinder axis.
+     *
+     * Note 1: The basis vectors `vec(e_ρ)(φ)`, `vec(e_φ)(φ)` and `vec(e_z)` form an orthonormal right-handed coordinate frame.
+     * Note 2: In order to enable transformation to and from a CartesianSpatial3dCoordinateFrame the `vec(e_x)` Cartesian basis vector is aligned
+     * with the `φ=0` direction in the cylindrical frame, and the `vec(e_z)` Cartesian basis vector is aligned with
+     * the `vec(e_z)` cylindrical basis vector.
+     * Note 3: If `z = 0`, then `ρ` and `φ` are polar coordinates in the XY-plane.
+     * Note 4: See also https://en.wikipedia.org/wiki/Cylindrical_coordinate_system .
+     */
+    attribute def CylindricalSpatial3dCoordinateFrame :> Spatial3dCoordinateFrame {
+        attribute radialDistanceUnit : LengthUnit;
+        attribute azimuthUnit : AngularMeasureUnit;
+        attribute zUnit : LengthUnit;
+        attribute :>> mRefs = (radialDistanceUnit, azimuthUnit, zUnit);
+        attribute :>> isOrthogonal = true;
+    }
+
+    /**
+     * Spherical spatial 3D coordinate frame
+     *
+     * source: ISO 80000-2 item 2-17.3 spherical coordinates
+     *
+     * The components of a (position) vector to a point P specified in a spherical coordinate frame are:
+     * - radialDistance (symbol `r`) defined by LengthValue, that is the distance from the origin to P
+     * - inclination (symbol `θ`) defined by AngularMeasure, that is the angle between the zenith direction and the line segment from origin to P
+     * - azimuth (symbol `φ`) defined by AngularMeasure, that is the angle between the azimuth reference direction and the line segment 
+     * from the origin to the orthogonal projection of P on the reference plane, normal to the zenith direction.
+     *
+     * Note 1: The basis vectors `e_r(θ,φ)`, `e_φ(φ)` and `e_φ(φ)` form an orthonormal right-handed frame.
+     * Note 2: In order to transform to and from a CartesianSpatial3dCoordinateFrame the `e_x` Cartesian basis vector is aligned
+     * with the `θ=π/4` and `φ=0` direction in the spherical frame, and the `e_z` Cartesian basis vector is aligned 
+     * with the `θ=0`, i.e. zenith, direction in the spherical frame.
+     * Note 3: If `θ = π/4`, then `ρ` and `φ` are polar coordinates in the XY-plane.
+     * Note 4: See also https://en.wikipedia.org/wiki/Spherical_coordinate_system .
+     */
+    attribute def SphericalSpatial3dCoordinateFrame :> Spatial3dCoordinateFrame {
+        attribute radialDistanceUnit : LengthUnit;
+        attribute inclinationUnit : AngularMeasureUnit;
+        attribute azimuthUnit : AngularMeasureUnit;
+        attribute :>> mRefs = (radialDistanceUnit, inclinationUnit, azimuthUnit);
+        attribute :>> isOrthogonal = true;
+    }
+
+    attribute def GeoSpatial3dCoordinateFrame :> Spatial3dCoordinateFrame {
+        attribute latitudeUnit : AngularMeasureUnit;
+        attribute longitudeUnit : AngularMeasureUnit;
+        attribute altitudeUnit : LengthUnit;
+        attribute standardReference : String default "WSG84";
+        attribute :>> mRefs = (longitudeUnit, latitudeUnit, altitudeUnit);
+        attribute :>> isOrthogonal = true;
+    }
+
+	attribute def Position3dVector :> VectorQuantityValue {
         attribute :>> dimensions = 3;
         attribute :>> isBound = true;
         attribute :>> num: Real[3];
-        attribute :>> mRef: Cartesian3dSpatialCoordinateFrame[1];
+        attribute :>> mRef: Spatial3dCoordinateFrame[1];
+	}
+    attribute position3dVector: Position3dVector :> vectorQuantities;
+
+    attribute def CartesianPosition3dVector :> Position3dVector {
+        attribute :>> mRef : CartesianSpatial3dCoordinateFrame[1];
+        attribute x : LengthValue = num[1] [mRef.mRefs[1]];
+        attribute y : LengthValue = num[2] [mRef.mRefs[2]];
+        attribute z : LengthValue = num[3] [mRef.mRefs[3]];
     }
-    attribute positionVector: Cartesian3dPositionVector :> vectorQuantities;
+    attribute cartesianPosition3dVector : CartesianPosition3dVector :> position3dVector;
+
+    attribute def CylindricalPosition3dVector :> Position3dVector {
+        attribute :>> mRef : CylindricalSpatial3dCoordinateFrame[1];
+        attribute radialDistance : LengthValue = num[1] [mRef.mRefs[1]];
+        attribute azimuth : AngularMeasureUnit = num[2] [mRef.mRefs[2]];
+        attribute height : LengthValue = num[3] [mRef.mRefs[3]];
+    }
+    attribute cylindricalPosition3dVector : CylindricalPosition3dVector :> position3dVector;
+
+    attribute def SphericalPosition3dVector :> Position3dVector {
+        attribute :>> mRef : SphericalSpatial3dCoordinateFrame[1];
+        attribute radialDistance : LengthValue = num[1] [mRef.mRefs[1]];
+        attribute inclination : AngularMeasureUnit = num[2] [mRef.mRefs[2]];
+        attribute azimuth : AngularMeasureUnit = num[3] [mRef.mRefs[3]];
+    }
+    attribute sphericalPosition3dVector : SphericalPosition3dVector :> position3dVector;
+
+    attribute def GeoSpatialPosition3dVector :> Position3dVector {
+        attribute :>> mRef : GeoSpatial3dCoordinateFrame[1];
+        attribute <lat> latitude : AngularMeasureUnit = num[1] [mRef.mRefs[1]];
+        attribute <lon> longitude : AngularMeasureUnit = num[2] [mRef.mRefs[2]];
+        attribute <alt> altitude : LengthValue = num[3] [mRef.mRefs[3]];
+    }
+    attribute geoSpatialPosition3dVector : GeoSpatialPosition3dVector :> position3dVector;
 
     /**
      * source: item 3-1.11 displacement
@@ -174,11 +294,15 @@ package ISQSpaceTime {
      * definition: vector (ISO 80000-2) quantity between any two points in space
      * remarks: Displacement vectors are so-called free vectors, i.e. their magnitude (ISO 80000-2) and direction do not depend on a particular coordinate system. The magnitude of this vector is also called displacement.
      */
-    attribute def Cartesian3dDisplacementVector :> VectorQuantityValue {
+	abstract attribute def Displacement3dVector :> VectorQuantityValue {
         attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> num: Real[3];
-        attribute :>> mRef: Cartesian3dSpatialCoordinateFrame[1];
+	}
+    attribute displacement3dVector: Displacement3dVector :> vectorQuantities;
+
+    attribute def Cartesian3dDisplacementVector :> Displacement3dVector {
+        attribute :>> mRef: CartesianSpatial3dCoordinateFrame[1];
     }
     attribute displacementVector: Cartesian3dDisplacementVector :> vectorQuantities;
 

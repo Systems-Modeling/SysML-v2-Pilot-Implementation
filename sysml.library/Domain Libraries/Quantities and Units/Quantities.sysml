@@ -10,6 +10,7 @@ package Quantities {
 	private import ScalarValues::Boolean;
 	private import ScalarValues::String;
 	private import VectorValues::NumericalVectorValue;
+	private import VectorValues::ThreeVectorValue;
 	
 	/**
 	 * The value of a quantity is a tuple of one or more numbers (i.e. mathematical number values) and a reference to a measurement reference.
@@ -48,6 +49,22 @@ package Quantities {
 	abstract attribute tensorQuantities: TensorQuantityValue[*] nonunique;
 	abstract attribute vectorQuantities: VectorQuantityValue[*] nonunique :> tensorQuantities;
 	abstract attribute scalarQuantities: ScalarQuantityValue[*] nonunique :> vectorQuantities;
+
+
+	/**
+	 * Most general representation of real 2-vector quantities
+	 */
+	abstract attribute def TwoVectorQuantityValue :> VectorQuantityValue {
+        attribute :>> dimensions = 2;
+        attribute :>> num: Real[2];
+	}
+
+	/**
+	 * Most general representation of real 3-vector quantities
+	 */
+	abstract attribute def ThreeVectorQuantityValue :> VectorQuantityValue, ThreeVectorValue {
+        attribute :>> num: Real[3];
+	}
 
     /*
      * Define generic aliases QuantityValue and quantities for the top level quantity attribute def and attribute.

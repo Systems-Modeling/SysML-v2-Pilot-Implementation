@@ -104,6 +104,13 @@ package MeasurementReferences {
 	}
 
 	/**
+     * Most general 3-dimensional coordinate frame
+     */
+    attribute def '3dCoordinateFrame' :> CoordinateFrame {
+        attribute :>> dimensions = 3;
+    }
+
+    /**
 	 * CoordinateTransformation is the most general representation of the transformation of a target coordinate frame 
 	 * with respect to a source coordinate frame.
 	 */

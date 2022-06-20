@@ -484,7 +484,7 @@ package sfriedenthal_VehicleModel_1_simplified{
 
             part def Context {
                 attribute time:TimeValue;
-                attribute spatialCF: Cartesian3dSpatialCoordinateFrame[1] { :>> mRefs = (m, m, m); }
+                attribute spatialCF: CartesianSpatial3dCoordinateFrame[1] { :>> mRefs = (m, m, m); }
                 attribute velocityCF: Cartesian3dVelocityCoordinateFrame[1] = spatialCF/s { :>> isBound = false; }
                 attribute accelerationCF: Cartesian3dAccelerationCoordinateFrame[1] = velocityCF/s { :>> isBound = false; }
             }
@@ -1589,7 +1589,7 @@ package sfriedenthal_VehicleModel_1_simplified{
                 perform transportPassenger.c.passenger1GetOutOfVehicle.lockDoor_out;
             }
             part vehicle_b_1:>vehicle_b {
-                attribute :>> positionVector = (0,0,0) [spatialCF];
+                attribute :>> position3dVector = (0,0,0) [spatialCF];
                 perform transportPassenger.b.providePower redefines providePower;
                 perform transportPassenger.trigger;
             }
@@ -1705,4 +1705,3 @@ package sfriedenthal_VehicleModel_1_simplified{
         // implies operator
     }
 }
-

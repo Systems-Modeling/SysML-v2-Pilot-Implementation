@@ -9,7 +9,7 @@ package SpatialItems {
 	private import MeasurementReferences::CoordinateFrame;
 	private import Time::Clock;
 	private import Time::TimeInstantValue;
-	private import ISQ::Cartesian3dSpatialCoordinateFrame;
+	private import ISQ::CartesianSpatial3dCoordinateFrame;
 	private import VectorFunctions::isZeroVector;
 	private import ControlFunctions::forAll;
 	
@@ -29,7 +29,7 @@ package SpatialItems {
 		 * The three-dimensional CoordinateFrame to be used as the measurement reference for position 
 		 * and displacement vector values relative to this SpatialItem.
 		 */
-		attribute coordinateFrame : CoordinateFrame[1] default Cartesian3dSpatialCoordinateFrame() {
+		attribute coordinateFrame : CoordinateFrame[1] default CartesianSpatial3dCoordinateFrame() {
 			attribute :>> dimensions = 3;
 		}
 		
@@ -77,7 +77,7 @@ package SpatialItems {
 	
 	/**
 	 * The PositionOf a Point relative to a SpatialItem, at a specific TimeInstantValue relative to a given Clock,
-	 * is a positionVector that is a VectorQuantityValue in the coordinateFrame of the SpatialItem.
+	 * is a position3dVector that is a VectorQuantityValue in the coordinateFrame of the SpatialItem.
 	 * The default Clock is the localClock of the SpatialItem.
 	 */
 	calc def PositionOf :> SpatialFrames::PositionOf {
@@ -85,7 +85,7 @@ package SpatialItems {
 		in timeInstant : TimeInstantValue[1];
 		in enclosingItem :>> 'frame' : SpatialItem[1];
 		in clock : Clock[1] default enclosingItem.localClock;
-		return positionVector : VectorQuantityValue[1] {
+		return position3dVector : VectorQuantityValue[1] {
 			attribute :>> mRef = enclosingItem.coordinateFrame;
 			attribute :>> isBound = true;
 		}
@@ -99,7 +99,7 @@ package SpatialItems {
 		in point : Point[1];
 		in enclosingItem :>> 'frame' : SpatialItem[1];
 		in clock : Clock[1] default enclosingItem.localClock;
-		return positionVector : VectorQuantityValue[1] {
+		return position3dVector : VectorQuantityValue[1] {
 			attribute :>> mRef = enclosingItem.coordinateFrame;
 			attribute :>> isBound = true;
 		}

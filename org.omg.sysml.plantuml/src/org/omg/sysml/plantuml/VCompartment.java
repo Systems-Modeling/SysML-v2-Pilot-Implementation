@@ -563,6 +563,7 @@ public class VCompartment extends VStructure {
             text = text.substring(toBeRemoved.length()).trim();
         }
         appendText(text, false);
+        addEvaluatedResults(f, currentType);
         append('\n');
         return true;
     }
@@ -588,6 +589,7 @@ public class VCompartment extends VStructure {
             if (fe.prefix != null) {
                 append(fe.prefix);
             }
+
             if (fe.f instanceof EnumerationUsage) {
                 if (getFeatureName(fe.f) == null) {
                     appendTextOfEnum(fe.f);
@@ -609,7 +611,9 @@ public class VCompartment extends VStructure {
                 if (text == null) continue;
                 append(" { ");
                 appendText(text, true);
-                append(" }\n");
+                append(" }");
+                addEvaluatedResults(fe.f, currentType);
+                append('\n');
             } else if (getFeatureName(fe.f) == null) {
                 addAnonymouseFeatureText(fe.f);
                 append('\n');

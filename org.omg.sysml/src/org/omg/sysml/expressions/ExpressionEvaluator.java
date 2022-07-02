@@ -1,6 +1,7 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2022 Mgnite Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -27,14 +28,19 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.omg.sysml.expressions.functions.LibraryFunction;
 import org.omg.sysml.expressions.util.EvaluationUtil;
+import org.omg.sysml.lang.sysml.ConstraintUsage;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureReferenceExpression;
 import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.InvocationExpression;
+import org.omg.sysml.lang.sysml.LiteralBoolean;
 import org.omg.sysml.lang.sysml.LiteralExpression;
 import org.omg.sysml.lang.sysml.NullExpression;
+import org.omg.sysml.lang.sysml.RequirementConstraintMembership;
+import org.omg.sysml.lang.sysml.RequirementUsage;
+import org.omg.sysml.lang.sysml.ResultExpressionMembership;
 import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.impl.FeatureImpl;
@@ -64,6 +70,8 @@ public class ExpressionEvaluator {
 			return evaluateLiteral((LiteralExpression)expression, target);
 		} else if (expression instanceof FeatureReferenceExpression) {
 			return evaluateFeatureReference((FeatureReferenceExpression)expression, target);
+		} else if (expression instanceof ConstraintUsage) {
+			return evaluateConstraintUsage((ConstraintUsage) expression, target);
 		} else if (expression instanceof InvocationExpression) {
 			return evaluateInvocation((InvocationExpression)expression, target);
 		} else {
@@ -81,7 +89,9 @@ public class ExpressionEvaluator {
 	
 	public EList<Element> evaluateFeatureReference(FeatureReferenceExpression expression, Element target) {
 		Feature referent = expression.getReferent();
-		if (target instanceof Type) {
+        if (referent instanceof Expression) {
+            return evaluate((Expression) referent, target);
+        } else if (target instanceof Type) {
 			if (referent != null) {
 				if (TypeUtil.conforms(referent, ExpressionUtil.getSelfReferenceFeature(expression))) {
 					EList<Element> result = new BasicEList<>();
@@ -144,5 +154,37 @@ public class ExpressionEvaluator {
 			return EvaluationUtil.singletonList(feature);
 		}
 	}
-	
+
+    protected EList<Element> evaluateConstraintUsage(ConstraintUsage cu, Element target) {
+        Boolean b
+            = cu.getFeatureMembership().stream()
+            .filter((x) -> { return (x instanceof ResultExpressionMembership)
+                              || (x instanceof RequirementConstraintMembership); })
+            .map((x) -> {
+                Feature f = x.getOwnedMemberFeature();
+                if (f instanceof Expression) {
+                    // ISSUE: Currently RequirementConstraintCheck does not work properly because it uses allTrue().
+                    if ((cu instanceof RequirementUsage)
+                        && (x instanceof ResultExpressionMembership)) return true;
+                    EList<Element> r = evaluate((Expression) f, target);
+                    if (r == null) return null;
+                    for (Element e: r) {
+                        if (e instanceof LiteralBoolean) {
+                            LiteralBoolean lb = (LiteralBoolean) e;
+                            if (!lb.isValue()) return false;
+                        } else {
+                            return null;
+                        }
+                    }
+                    return true;
+                } else {
+                    return true;
+                }
+            }).reduce(true, (x, y) -> {
+                if (x == null || y == null) return null;
+                else return x && y;
+            });
+        if (b == null) return null;
+        return EvaluationUtil.booleanResult(b);
+    }
 }

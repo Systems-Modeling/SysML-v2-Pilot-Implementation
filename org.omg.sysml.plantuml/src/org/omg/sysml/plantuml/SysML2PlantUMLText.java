@@ -527,8 +527,16 @@ public class SysML2PlantUMLText {
     private List<Integer> inheritingIdices;
 
     
-    void pushNamespace(Namespace ns) {
+    boolean pushNamespace(Namespace ns) {
+        if (namespaces.contains(ns)) return false;
         namespaces.add(ns);
+        return true;
+    }
+
+    Namespace getCurrentNamespace() {
+        int size = namespaces.size();
+        if (size == 0) return null;
+        return namespaces.get(size - 1);
     }
 
     void inheriting() {

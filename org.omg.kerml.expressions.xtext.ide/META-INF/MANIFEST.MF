@@ -3,7 +3,7 @@ Automatic-Module-Name: org.omg.kerml.expressions.xtext.ide
 Bundle-ManifestVersion: 2
 Bundle-Name: org.omg.kerml.xtext.ide
 Bundle-Vendor: SysML v2 Submission Team
-Bundle-Version: 0.24.0.qualifier
+Bundle-Version: 0.25.0.qualifier
 Bundle-SymbolicName: org.omg.kerml.expressions.xtext.ide; singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.omg.kerml.expressions.xtext,

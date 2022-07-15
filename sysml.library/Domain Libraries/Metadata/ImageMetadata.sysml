@@ -53,9 +53,9 @@ package ImageMetadata {
 		/*
 		 * Icon metadata can be used to annotate a model element with an image to be used
 		 * to show render the element on a diagram and/or a small image to be used as an
-		 * adornment on a graphical or textual redndering. Alternatively, other metadata
-		 * can be annotated with an Icon to indicate that any model element annotated
-		 * by the containing metadata can be rendered according to the Icon.
+		 * adornment on a graphical or textual rendering. Alternatively, another metadata
+		 * definition can be annotated with an Icon to indicate that any model element 
+		 * annotated by the containing metadata can be rendered according to the Icon.
 		 */
 		 
 		attribute fullImage : Image[0..1] {

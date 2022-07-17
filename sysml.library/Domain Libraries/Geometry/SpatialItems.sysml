@@ -17,8 +17,6 @@ package SpatialItems {
 	 * A SpatialItem is an Item with a three-dimensional spatial extent that also acts as a SpatialFrame of reference.
 	 */
 	item def SpatialItem :> SpatialFrame {
-		ref item :>> self : SpatialItem;
-
 		/**
 		 * A local Clock to be used as the corresponding time reference within this SpatialItem. 
 		 * By default this is the global defaultClock.
@@ -29,9 +27,7 @@ package SpatialItems {
 		 * The three-dimensional CoordinateFrame to be used as the measurement reference for position 
 		 * and displacement vector values relative to this SpatialItem.
 		 */
-		attribute coordinateFrame : CoordinateFrame[1] default CartesianSpatial3dCoordinateFrame() {
-			attribute :>> dimensions = 3;
-		}
+		attribute coordinateFrame : CoordinateFrame[1] default CartesianSpatial3dCoordinateFrame();
 		
 		/**
 		 * The Point at the origin of the coordinateFrame of this SpatialItem.
@@ -59,6 +55,7 @@ package SpatialItems {
 		item componentItems : SpatialItem[1..*] ordered :> subitems {
 			item :>> localClock default (that as SpatialItem).localClock;
 			attribute :>> coordinateFrame {
+			    attribute :>> mRefs default (that.that.that as SpatialItem).coordinateFrame.mRefs;
 				attribute :>> transformation[1] {
 				 	attribute :>> source default (that.that.that as SpatialItem).coordinateFrame;
 				 	attribute :>> target default that;

@@ -1,7 +1,7 @@
 package ParametersOfInterestMetadata {
 	doc
 	/*
-	 * This package contains definitions of metadata identify key parameters of interest,
+	 * This package contains definitions of metadata to identify key parameters of interest,
 	 * including measures of effectiveness (MOE) and other key measures of performance (MOP).
 	 */
 	 

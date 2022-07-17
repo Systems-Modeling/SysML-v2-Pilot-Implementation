@@ -30,7 +30,7 @@ package CauseAndEffect {
 	metadata def CausationMetadata {
 		doc
 		/*
-		 * CauseEffectMetadata allows for the specification of additional metadata about
+		 * CausationMetadata allows for the specification of additional metadata about
 		 * a cause-effect connection or usage.
 		 */
 		 

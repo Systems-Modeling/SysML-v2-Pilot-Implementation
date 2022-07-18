@@ -39,7 +39,17 @@ package DerivationConnections {
 			doc /* The original requirement must not be a derived requirement. */
 			
 			derivedRequirements->SequenceFunctions::excludes(originalRequirement)
-		}		
+		}
+		
+		private assert constraint originalImpliesDerived {
+			doc 
+			/* 
+			 * Whenever the originalRequirement is satisfied, all of the derivedRequirements must also
+			 * be satisfied.
+			 */
+			 
+			originalRequirement.result implies ControlFunctions::allTrue(derivedRequirements.result)
+		}	
 	}
 	
 	abstract connection derivations : Derivation[*] {

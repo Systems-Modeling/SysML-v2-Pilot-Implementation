@@ -62,7 +62,7 @@ package ImageMetadata {
 			doc
 			/*
 			 * A full-sized image that can be used to render the annotated element on a
-			 * a graphical view, potentially as an alternative to its standard rendering.
+			 * graphical view, potentially as an alternative to its standard rendering.
 			 */
 		}
 		

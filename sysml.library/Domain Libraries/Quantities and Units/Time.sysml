@@ -203,11 +203,11 @@ package Time {
     	attribute second: Natural;
     	attribute microsecond: Natural;
     	attribute hourOffset: Integer;
-    	attribute minuteOffest: Integer;
-    	attribute :>> num = getElapsedUtcTime(year, month, day, hour, minute, second, microsecond, hourOffset, minuteOffest);
+    	attribute minuteOffset: Integer;
+    	attribute :>> num = getElapsedUtcTime(year, month, day, hour, minute, second, microsecond, hourOffset, minuteOffset);
     	attribute :>> mRef = UTC;
     	private calc getElapsedUtcTime(year: Integer, month: Natural, day: Natural, hour: Natural, minute: Natural, second: Natural,
-    			microsecond: Natural, hourOffset: Integer, minuteOffest: Integer) : Real {
+    			microsecond: Natural, hourOffset: Integer, minuteOffset: Integer) : Real {
     		attribute x: Real;
     		// TO DO: implement summation of ISO 8601 date and time components in x
     		x

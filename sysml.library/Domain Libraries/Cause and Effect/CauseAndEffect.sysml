@@ -31,7 +31,7 @@ package CauseAndEffect {
 		doc
 		/*
 		 * CausationMetadata allows for the specification of additional metadata about
-		 * a cause-effect connection or usage.
+		 * a cause-effect connection definition or usage.
 		 */
 		 
 		ref :> annotatedElement : SysML::ConnectionDefinition;

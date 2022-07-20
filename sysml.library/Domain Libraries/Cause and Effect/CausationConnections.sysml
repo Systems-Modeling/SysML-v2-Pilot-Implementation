@@ -27,10 +27,10 @@ package CausationConnections {
 		 
 		private import SequenceFunctions::*;
 		 
-		occurrence causes[1..*] :>> causes :> participant {
+		ref occurrence causes[1..*] :>> causes :> participant {
 			doc /* The causing occurrences. */
 		}
-		occurrence effects[1..*] :>> effects :> participant {
+		ref occurrence effects[1..*] :>> effects :> participant {
 			doc /* The effect occurrences caused by the causing occurrences. */
 		}
 		
@@ -54,19 +54,21 @@ package CausationConnections {
 		doc
 		/*
 		 * A Causation is a binary Multicausation in which a single cause occurrence
-		 * causes a single effect occurrence.
+		 * causes a single effect occurrence. (However, a single cause can separately
+		 * have multiple effects, and a single effect can have separate Causation
+		 * connections with multiple causes.)
 		 */
 		 
-		end occurrence theCause :>> causes :> source {
+		end occurrence theCause[*] :>> causes :> source {
 			doc /* The single causing occurrence. */
 		}
 		
-		end occurrence theEffect :>> effects :> target {
+		end occurrence theEffect[*] :>> effects :> target {
 			doc /* The single effect occurrence resulting from the cause. */
 		}
 	}
 	
-	abstract connection causations : Causation[*] {
+	abstract connection causations : Causation[*] :> multicausations {
 		doc /* causations is the base feature for Causation ConnectionUsages. */
 	}
 }

@@ -34,5 +34,6 @@ package RequirementDerivation {
 		 
 		:> annotatedElement : SysML::ConnectionDefinition;
 		:> annotatedElement : SysML::ConnectionUsage;
+		:>> baseType = derivations as SysML::Usage;
 	}	
 }

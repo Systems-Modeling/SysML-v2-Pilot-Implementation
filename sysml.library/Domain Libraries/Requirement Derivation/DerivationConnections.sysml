@@ -5,7 +5,7 @@ package DerivationConnections {
 	 */
 	
 	requirement originalRequirements[*] {
-		doc /* originalRequirements are the original requirements Derivation connections. */
+		doc /* originalRequirements are the original requirements in Derivation connections. */
 	}
 	requirement derivedRequirements[*] {
 		doc /* derivedRequiremetns are the derived requirments in Derivation connections. */
@@ -15,12 +15,12 @@ package DerivationConnections {
 		doc
 		/*
 		 * A Derivation connection asserts that one or more derivedRequirements are derived from
-		 * a single originalRequirements. This means that any subject that satisfies the
+		 * a single originalRequirement. This means that any subject that satisfies the
 		 * originalRequirement should, in itself or though other things related to it, satisfy
 		 * each of the derivedRequirements.
 		 * 
 		 * A connection usage typed by Derivation must have requirement usages for all its ends.
-		 * The single end for the original requirement should subset originalRequirement, while
+		 * The single end for the originalRequirement should subset originalRequirement, while
 		 * the rest of the ends should subset derivedRequirements.
 		 */
 		 

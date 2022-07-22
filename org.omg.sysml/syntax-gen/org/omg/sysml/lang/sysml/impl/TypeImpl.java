@@ -655,7 +655,7 @@ public class TypeImpl extends NamespaceImpl implements Type {
 				inheritedMemberships.addAll(((TypeImpl)originalType).getMembership(excludedNamespaces, excludedTypes, includeProtected));
 			}
 		}
-		for (Type general: TypeUtil.getSupertypesOf(this)) {
+		for (Type general: TypeUtil.getGeneralTypesOf(this)) {
 			if (general != null && !excludedTypes.contains(general)) {
 				inheritedMemberships.addAll(((TypeImpl)general).getNonPrivateMembership(excludedNamespaces, excludedTypes, includeProtected));
 			}

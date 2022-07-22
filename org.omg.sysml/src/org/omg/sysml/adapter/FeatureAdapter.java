@@ -138,8 +138,20 @@ public class FeatureAdapter extends TypeAdapter {
 				collect(Collectors.toList());
 	}
 	
-	protected boolean isSubperformance() {
+	protected boolean isEnclosedPerformance() {
 		return FeatureUtil.isPerformanceFeature(getTarget());
+	}
+	
+	protected boolean isSubperformance() {
+		return isEnclosedPerformance() && getTarget().isComposite();
+	}
+	
+	protected boolean isOwnedPerformance() {
+		Feature target = getTarget();
+		Type owningType = target.getOwningType();
+		return target.isComposite() && 
+				(owningType instanceof Structure || 
+				 owningType instanceof Feature && hasStructureType((Feature)owningType));
 	}
 	
 	protected boolean isAssociationEnd() {
@@ -173,9 +185,13 @@ public class FeatureAdapter extends TypeAdapter {
 	}
 	
 	public boolean hasStructureType() {
-		return getTarget().getOwnedTyping().stream().
+		return hasStructureType(getTarget());
+	}
+	
+	public static boolean hasStructureType(Feature feature) {
+		return feature.getOwnedTyping().stream().
 				map(FeatureTyping::getType).anyMatch(Structure.class::isInstance) ||
-				getImplicitGeneralTypes(SysMLPackage.Literals.FEATURE_TYPING).stream().anyMatch(Structure.class::isInstance);
+				TypeUtil.getImplicitGeneralTypesFor(feature, SysMLPackage.Literals.FEATURE_TYPING).stream().anyMatch(Structure.class::isInstance);
 	}
 	
 	public boolean hasDataType() {

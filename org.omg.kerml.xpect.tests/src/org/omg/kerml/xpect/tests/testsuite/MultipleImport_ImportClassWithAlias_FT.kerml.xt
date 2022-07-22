@@ -22,16 +22,21 @@ package test{
 	alias aliass for OuterPackage::A;
 	//XPECT linkedName at aliass --> OuterPackage.A
 	feature C {
-			//* XPECT scope at aliass---
-		   c.a1, C.c.a1, test.C.c.a1,
-		   C, C.c, aliass, aliass.a1, c, 
-		   OuterPackage.A, OuterPackage.A.a1, OuterPackage.B, OuterPackage.B.b, OuterPackage.B.b.a1,
-		   test.C, test.C.c, test.aliass, test.aliass.a1,
-		   c.a1.self,  C.c.a1.self,  test.C.c.a1.self, 
-		   C.self,  C.c.self,  aliass.self,  aliass.a1.self,  c.self,  
-		   OuterPackage.A.self,  OuterPackage.A.a1.self,  OuterPackage.B.self,  OuterPackage.B.b.self,  OuterPackage.B.b.a1.self, 
-		   test.C.self,  test.C.c.self,  test.aliass.self,  test.aliass.a1.self,  self		   
-	--- */
+		//* XPECT scope at aliass---
+		   C, C.c, C.c.a1, C.c.a1.self, C.c.a1.that, C.c.a1.that.self, C.c.self, C.c.that,
+		   C.c.that.self, C.self, C.that, C.that.self, OuterPackage.A, OuterPackage.A.a1,
+		   OuterPackage.A.a1.self, OuterPackage.A.a1.that, OuterPackage.A.a1.that.self, OuterPackage.A.self,
+		   OuterPackage.A.that, OuterPackage.A.that.self, OuterPackage.B, OuterPackage.B.b,
+		   OuterPackage.B.b.a1, OuterPackage.B.b.a1.self, OuterPackage.B.b.a1.that,
+		   OuterPackage.B.b.a1.that.self, OuterPackage.B.b.self, OuterPackage.B.b.that, OuterPackage.B.b.that.self,
+		   OuterPackage.B.self, OuterPackage.B.that, OuterPackage.B.that.self, aliass, aliass.a1,
+		   aliass.a1.self, aliass.a1.that, aliass.a1.that.self, aliass.self, aliass.that,
+		   aliass.that.self, c, c.a1, c.a1.self, c.a1.that, c.a1.that.self, c.self, c.that, c.that.self,
+		   self, test.C, test.C.c, test.C.c.a1, test.C.c.a1.self, test.C.c.a1.that,
+		   test.C.c.a1.that.self, test.C.c.self, test.C.c.that, test.C.c.that.self, test.C.self, test.C.that,
+		   test.C.that.self, test.aliass, test.aliass.a1, test.aliass.a1.self, test.aliass.a1.that,
+		   test.aliass.a1.that.self, test.aliass.self, test.aliass.that, test.aliass.that.self, that, that.self
+		--- */
 		feature c : aliass;
 	}
 }

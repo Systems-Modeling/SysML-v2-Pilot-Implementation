@@ -39,21 +39,23 @@ public class PortUsageAdapter extends UsageAdapter {
 
 	@Override
 	protected String getDefaultSupertype() {
-		return isPortOnPart()?
-					getDefaultSupertype("portOnPart"):
+		return isOwnedPort()?
+					getDefaultSupertype("ownedPort"):
 			   isSubport()?
 					getDefaultSupertype("subport"):
 					getDefaultSupertype("base");
 	}
 	
-	public boolean isPortOnPart() {
-		Type owningType = getTarget().getOwningType();
-		return owningType instanceof PartDefinition || owningType instanceof PartUsage;		
+	public boolean isOwnedPort() {
+		PortUsage target = getTarget();
+		Type owningType = target.getOwningType();
+		return target.isComposite() && (owningType instanceof PartDefinition || owningType instanceof PartUsage);		
 	}
 	
 	public boolean isSubport() {
-		Type owningType = getTarget().getOwningType();
-		return owningType instanceof PortDefinition || owningType instanceof PortUsage;
+		PortUsage target = getTarget();
+		Type owningType = target.getOwningType();
+		return target.isComposite() && (owningType instanceof PortDefinition || owningType instanceof PortUsage);
 	}
 	
 	@Override

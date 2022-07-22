@@ -48,10 +48,15 @@ public interface Documentation extends Comment {
 	 * Returns the value of the '<em><b>Documented Element</b></em>' reference.
 	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Element#getDocumentation <em>Documentation</em>}'.
 	 * <p>
-	 * This feature redefines the following features:
+	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
 	 *   <li>'{@link org.omg.sysml.lang.sysml.Element#getOwner() <em>Owner</em>}'</li>
+	 * </ul>
+	 * <p>
+	 * This feature redefines the following features:
+	 * </p>
+	 * <ul>
 	 *   <li>'{@link org.omg.sysml.lang.sysml.AnnotatingElement#getAnnotatedElement() <em>Annotated Element</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
@@ -65,6 +70,7 @@ public interface Documentation extends Comment {
 	 * @see org.omg.sysml.lang.sysml.Element#getDocumentation
 	 * @model opposite="documentation" required="true" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="redefines"
+	 *        annotation="subsets"
 	 * @generated
 	 */
 	Element getDocumentedElement();

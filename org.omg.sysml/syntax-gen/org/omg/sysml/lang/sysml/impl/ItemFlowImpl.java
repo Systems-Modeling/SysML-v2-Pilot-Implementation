@@ -32,7 +32,6 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.Classifier;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.util.FeatureUtil;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
 import org.omg.sysml.util.TypeUtil;
 import org.omg.sysml.lang.sysml.Feature;
@@ -270,14 +269,6 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 	 */
 	public boolean isSetConnectorEnd() {
   		return false;
-	}
-
-	@Override
-	public boolean basicIsComposite() {
-		if (!isComposite && FeatureUtil.isPerformanceFeature(this)) {
-			isComposite = true;
-		}
-		return isComposite;
 	}
 
 	/**

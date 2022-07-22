@@ -46,7 +46,7 @@ public class StateUsageAdapter extends ActionUsageAdapter {
 	
 	public boolean isExclusiveState() {
 		Type owningType = getTarget().getOwningType();
-		return !UsageUtil.isParallelState(owningType);
+		return isSubstate() && !UsageUtil.isParallelState(owningType);
 	}
 		
 	public boolean isSubstate() {

@@ -40,8 +40,8 @@ public class IncludeUseCaseUsageAdapter extends UseCaseUsageAdapter {
 	@Override
 	public void addDefaultGeneralType() {
 		super.addDefaultGeneralType();
-		if (isEnactedPerformance()) {
-			addDefaultGeneralType("enactedPerformance");
+		if (isPerformedAction()) {
+			addDefaultGeneralType("performedAction");
 		}
 	}
 		

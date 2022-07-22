@@ -26,12 +26,18 @@ package test{
 --- */
 	classifier B specializes A{
 		//* XPECT scope at aa ---
-	    A, A.a, A.a.self, A.aa, A.aa.self, A.self, B, B.a, B.a.self, B.aa, B.aa.self,
-	    B.b, B.b.self, B.b_alias, B.b_alias.self, B.self, a, a.self, aa, aa.self, b, b.self,
-	    b_alias, b_alias.self, self, test.A, test.A.a, test.A.a.self, test.A.aa, test.A.aa.self,
-	    test.A.self, test.B, test.B.a, test.B.a.self, test.B.aa, test.B.aa.self, test.B.b,
-	    test.B.b.self, test.B.b_alias, test.B.b_alias.self, test.B.self
---- */
+	    A, A.a, A.a.self, A.a.self.that, A.aa, A.aa.self, A.aa.self.that, A.self,
+	    A.self.that, B, B.a, B.a.self, B.a.self.that, B.aa, B.aa.self, B.aa.self.that, B.b,
+	    B.b.self, B.b.self.that, B.b.that, B.b.that.self, B.b_alias, B.b_alias.self,
+	    B.b_alias.self.that, B.b_alias.that, B.b_alias.that.self, B.self, B.self.that, a, a.self,
+	    a.self.that, aa, aa.self, aa.self.that, b, b.self, b.self.that, b.that, b.that.self,
+	    b_alias, b_alias.self, b_alias.self.that, b_alias.that, b_alias.that.self, self,
+	    self.that, test.A, test.A.a, test.A.a.self, test.A.a.self.that, test.A.aa, test.A.aa.self,
+	    test.A.aa.self.that, test.A.self, test.A.self.that, test.B, test.B.a, test.B.a.self,
+	    test.B.a.self.that, test.B.aa, test.B.aa.self, test.B.aa.self.that, test.B.b, test.B.b.self,
+	    test.B.b.self.that, test.B.b.that, test.B.b.that.self, test.B.b_alias, test.B.b_alias.self,
+	    test.B.b_alias.self.that, test.B.b_alias.that, test.B.b_alias.that.self, test.B.self, test.B.self.that
+		--- */
 //		XPECT linkedName at aa --> test.A.a
 		feature b: aa;
 		alias b_alias for b;

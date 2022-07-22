@@ -22,35 +22,55 @@ package Classes {
 	alias aliass for VisibilityPackage::c_Public;
 	//XPECT linkedName at aliass --> VisibilityPackage.c_Public
 	//* XPECT scope at aliass ---
-	  	 Try.feature4, Classes.Try.feature4, 
-	  	 Classes.Try, Classes.Try.c_public, Classes.aliass,	Classes.aliass.c_public, 
-	  	 Try, Try.c_public, 
-	  	 aliass, aliass.c_public,
-	  	 VisibilityPackage.c_clazz, VisibilityPackage.c_clazz.c_Public, VisibilityPackage.c_Public, VisibilityPackage.c_Public.c_public, VisibilityPackage.c_Public_alias.alias_public, VisibilityPackage.c_Public_alias.c_public, 
-		 VisibilityPackage.c_Public_alias,
-		 
-		 Try.feature4.self, Classes.Try.feature4.self, 
-	  	 Classes.Try.self, Classes.Try.c_public.self, Classes.aliass.self,	Classes.aliass.c_public.self, 
-	  	 Try.self, Try.c_public.self, 
-	  	 aliass.self, aliass.c_public.self,
-	  	 VisibilityPackage.c_clazz.self, VisibilityPackage.c_clazz.c_Public.self, VisibilityPackage.c_Public.self, VisibilityPackage.c_Public.c_public.self, VisibilityPackage.c_Public_alias.alias_public.self, VisibilityPackage.c_Public_alias.c_public.self, 
-		 VisibilityPackage.c_Public_alias.self,
+	Classes.Try, Classes.Try.c_public, Classes.Try.c_public.self,
+	Classes.Try.c_public.that, Classes.Try.c_public.that.self, Classes.Try.feature4,
+	Classes.Try.feature4.self, Classes.Try.feature4.that, Classes.Try.feature4.that.self, Classes.Try.self,
+	Classes.Try.that, Classes.Try.that.self, Classes.aliass, Classes.aliass.c_public,
+	Classes.aliass.c_public.self, Classes.aliass.c_public.that, Classes.aliass.c_public.that.self,
+	Classes.aliass.self, Classes.aliass.that, Classes.aliass.that.self, Try, Try.c_public,
+	Try.c_public.self, Try.c_public.that, Try.c_public.that.self, Try.feature4, Try.feature4.self,
+	Try.feature4.that, Try.feature4.that.self, Try.self, Try.that, Try.that.self,
+	VisibilityPackage.c_Public, VisibilityPackage.c_Public.c_public, VisibilityPackage.c_Public.c_public.self,
+	VisibilityPackage.c_Public.c_public.that, VisibilityPackage.c_Public.c_public.that.self, VisibilityPackage.c_Public.self,
+	VisibilityPackage.c_Public.that, VisibilityPackage.c_Public.that.self, VisibilityPackage.c_Public_alias,
+	VisibilityPackage.c_Public_alias.alias_public, VisibilityPackage.c_Public_alias.alias_public.self,
+	VisibilityPackage.c_Public_alias.alias_public.that, VisibilityPackage.c_Public_alias.alias_public.that.self,
+	VisibilityPackage.c_Public_alias.c_public, VisibilityPackage.c_Public_alias.c_public.self,
+	VisibilityPackage.c_Public_alias.c_public.that, VisibilityPackage.c_Public_alias.c_public.that.self,
+	VisibilityPackage.c_Public_alias.self, VisibilityPackage.c_Public_alias.that,
+	VisibilityPackage.c_Public_alias.that.self, VisibilityPackage.c_clazz, VisibilityPackage.c_clazz.c_Public,
+	VisibilityPackage.c_clazz.c_Public.self, VisibilityPackage.c_clazz.c_Public.that,
+	VisibilityPackage.c_clazz.c_Public.that.self, VisibilityPackage.c_clazz.self, VisibilityPackage.c_clazz.that,
+	VisibilityPackage.c_clazz.that.self, aliass, aliass.c_public, aliass.c_public.self, aliass.c_public.that,
+	aliass.c_public.that.self, aliass.self, aliass.that, aliass.that.self
 	--- */
 	feature Try : aliass{
 		//XPECT linkedName at c_public --> VisibilityPackage.c_Public.c_public
 		//* XPECT scope at c_public ---
-	      	Classes.Try, Classes.Try.c_public, Classes.Try.feature4, Classes.aliass, Classes.aliass.c_public, 
-	      	Try, Try.c_public, Try.feature4,
-			aliass, aliass.c_public, c_public, feature4,
-	  	 	VisibilityPackage.c_clazz, VisibilityPackage.c_clazz.c_Public, VisibilityPackage.c_Public, VisibilityPackage.c_Public.c_public, VisibilityPackage.c_Public_alias.alias_public, VisibilityPackage.c_Public_alias.c_public, 
-		 	VisibilityPackage.c_Public_alias,
-			
-			Classes.Try.self,Classes.Try.c_public.self,Classes.Try.feature4.self,Classes.aliass.self,Classes.aliass.c_public.self,
-	      	Try.self,Try.c_public.self,Try.feature4.self,
-			aliass.self,aliass.c_public.self,c_public.self,feature4.self,
-	  	    VisibilityPackage.c_clazz.self,VisibilityPackage.c_clazz.c_Public.self,VisibilityPackage.c_Public.self,VisibilityPackage.c_Public.c_public.self,VisibilityPackage.c_Public_alias.alias_public.self,VisibilityPackage.c_Public_alias.c_public.self,
-		 	VisibilityPackage.c_Public_alias.self,self
-	--- */
+		Classes.Try, Classes.Try.c_public, Classes.Try.c_public.self,
+		Classes.Try.c_public.that, Classes.Try.c_public.that.self, Classes.Try.feature4,
+		Classes.Try.feature4.self, Classes.Try.feature4.that, Classes.Try.feature4.that.self, Classes.Try.self,
+		Classes.Try.that, Classes.Try.that.self, Classes.aliass, Classes.aliass.c_public,
+		Classes.aliass.c_public.self, Classes.aliass.c_public.that, Classes.aliass.c_public.that.self,
+		Classes.aliass.self, Classes.aliass.that, Classes.aliass.that.self, Try, Try.c_public,
+		Try.c_public.self, Try.c_public.that, Try.c_public.that.self, Try.feature4, Try.feature4.self,
+		Try.feature4.that, Try.feature4.that.self, Try.self, Try.that, Try.that.self,
+		VisibilityPackage.c_Public, VisibilityPackage.c_Public.c_public, VisibilityPackage.c_Public.c_public.self,
+		VisibilityPackage.c_Public.c_public.that, VisibilityPackage.c_Public.c_public.that.self, VisibilityPackage.c_Public.self,
+		VisibilityPackage.c_Public.that, VisibilityPackage.c_Public.that.self, VisibilityPackage.c_Public_alias,
+		VisibilityPackage.c_Public_alias.alias_public, VisibilityPackage.c_Public_alias.alias_public.self,
+		VisibilityPackage.c_Public_alias.alias_public.that, VisibilityPackage.c_Public_alias.alias_public.that.self,
+		VisibilityPackage.c_Public_alias.c_public, VisibilityPackage.c_Public_alias.c_public.self,
+		VisibilityPackage.c_Public_alias.c_public.that, VisibilityPackage.c_Public_alias.c_public.that.self,
+		VisibilityPackage.c_Public_alias.self, VisibilityPackage.c_Public_alias.that,
+		VisibilityPackage.c_Public_alias.that.self, VisibilityPackage.c_clazz, VisibilityPackage.c_clazz.c_Public,
+		VisibilityPackage.c_clazz.c_Public.self, VisibilityPackage.c_clazz.c_Public.that,
+		VisibilityPackage.c_clazz.c_Public.that.self, VisibilityPackage.c_clazz.self, VisibilityPackage.c_clazz.that,
+		VisibilityPackage.c_clazz.that.self, aliass, aliass.c_public, aliass.c_public.self, aliass.c_public.that,
+		aliass.c_public.that.self, aliass.self, aliass.that, aliass.that.self, c_public, c_public.self,
+		c_public.that, c_public.that.self, feature4, feature4.self, feature4.that, feature4.that.self,
+		self, that, that.self
+		--- */
 		feature feature4 : c_public;
 	}
 }

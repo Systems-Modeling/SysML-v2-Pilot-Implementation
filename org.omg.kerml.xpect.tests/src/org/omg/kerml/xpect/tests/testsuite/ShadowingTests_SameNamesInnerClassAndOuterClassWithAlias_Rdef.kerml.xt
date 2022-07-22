@@ -22,13 +22,15 @@ package test{
 		feature A{
 			//XPECT linkedName at A --> test.A1.A
 			//* XPECT scope at A ---
-			A.B.B, A1.A.B.B, test.A.A.B.B, test.A1.A.B.B,
-		    A, A.B, A1, A1.A, A1.A.B, 
-		    test.A, test.A.A, test.A.A.B, test.A1, test.A1.A, test.A1.A.B,
-			 
-		    A.self,  A.B.self,  A1.self,  A1.A.self,  A1.A.B.self,  
-		    test.A.self,  test.A.A.self,  test.A.A.B.self,  test.A1.self,  test.A1.A.self,  test.A1.A.B.self, self
-		--- */
+			A, A.B, A.B.B, A.B.self, A.B.that, A.B.that.self, A.self, A.that, A.that.self,
+			A1, A1.A, A1.A.B, A1.A.B.B, A1.A.B.self, A1.A.B.that, A1.A.B.that.self, A1.A.self,
+			A1.A.that, A1.A.that.self, A1.self, A1.that, A1.that.self, self, test.A, test.A.A,
+			test.A.A.B, test.A.A.B.B, test.A.A.B.self, test.A.A.B.that, test.A.A.B.that.self,
+			test.A.A.self, test.A.A.that, test.A.A.that.self, test.A.self, test.A.that, test.A.that.self,
+			test.A1, test.A1.A, test.A1.A.B, test.A1.A.B.B, test.A1.A.B.self, test.A1.A.B.that,
+			test.A1.A.B.that.self, test.A1.A.self, test.A1.A.that, test.A1.A.that.self, test.A1.self,
+			test.A1.that, test.A1.that.self, that, that.self
+			--- */
 			feature B redefines A{}
 		}
 	}

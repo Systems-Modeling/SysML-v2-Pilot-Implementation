@@ -11,7 +11,7 @@
       <option name="HAS_PARENS" value="true" />
       <option name="HAS_STRING_ESCAPES" value="true" />
     </options>
-    <keywords keywords="about;abstract;alias;all;and;as;assoc;behavior;binding;bool;by;class;classifier;comment;composite;conjugate;conjugates;conjugation;connector;datatype;default;derived;disjoining;disjoint;doc;element;else;end;expr;false;feature;featured;featuring;filter;first;flow;for;from;function;hastype;if;implies;import;in;inout;interaction;inv;is;istype;language;member;metaclass;metadata;multiplicity;namespace;nonunique;not;null;of;or;ordered;out;package;portion;predicate;private;protected;public;readonly;redefines;redefinition;relationship;rep;return;specialization;specializes;step;struct;subclassifier;subset;subsets;subtype;succession;then;to;true;type;typed;typing;xor" ignore_case="false" />
+    <keywords keywords="about;abstract;alias;all;and;as;assoc;behavior;binding;bool;by;chains;class;classifier;comment;composite;conjugate;conjugates;conjugation;connector;datatype;default;derived;disjoining;disjoint;doc;element;else;end;expr;false;feature;featured;featuring;filter;first;flow;for;from;function;hastype;if;implies;import;in;inout;interaction;inv;inverse;inverting;istype;language;member;metaclass;metadata;multiplicity;namespace;nonunique;not;null;of;or;ordered;out;package;portion;predicate;private;protected;public;readonly;redefines;redefinition;relationship;rep;return;specialization;specializes;step;struct;subclassifier;subset;subsets;subtype;succession;then;to;true;type;typed;typing;xor" ignore_case="false" />
     <keywords2 keywords="!;!=;%;&amp;;&amp;&amp;;*;**;+;-;-&gt;;..;.?;/;:;::;:=;:&gt;;:&gt;&gt;;&lt;;&lt;=;=;==;=&gt;;&gt;;&gt;=;?;??;@;^;^^;|;||;~" />
   </highlighting>
   <extensionMap>

@@ -294,6 +294,7 @@ NonFeatureElement returns SysML::Element :
 	| FeatureTyping
 	| Subclassification
 	| Disjoining
+	| FeatureInverting
 	| Subsetting
 	| Redefinition
 	| TypeFeaturing
@@ -514,13 +515,19 @@ fragment FeatureDeclaration returns SysML::Feature :
 	| FeatureSpecializationPart
 	| FeatureConjugationPart
 	)
-	ChainingPart?
-	DisjoiningPart?
-	TypeFeaturingPart?
+	FeatureRelationshipPart*
+;
+
+fragment FeatureRelationshipPart returns SysML::Feature :
+	ChainingPart | DisjoiningPart | InvertingPart | TypeFeaturingPart
 ;
 
 fragment ChainingPart returns SysML::Feature :
 	'chains' FeatureChain
+;
+
+fragment InvertingPart returns SysML::Feature :
+	'inverse' 'of' ownedRelationship += OwnedFeatureInverting
 ;
 
 fragment TypeFeaturingPart returns SysML::Feature :
@@ -567,6 +574,23 @@ fragment Redefinitions returns SysML::Feature :
 
 fragment Redefines returns SysML::Feature :
 	( ':>>' | 'redefines' ) ownedRelationship += OwnedRedefinition
+;
+
+/* Feature Inverting */
+
+FeatureInverting returns SysML::FeatureInverting :
+	( 'inverting' Identification? )?
+	'inverse' 
+	( featureInverted = [SysML::Feature| QualifiedName] 
+	| ownedRelatedElement += OwnedFeatureChain )
+	'of' 
+	( invertingFeature = [SysML::Feature | QualifiedName]
+	| ownedRelatedElement += OwnedFeatureChain ) ';'
+;
+
+OwnedFeatureInverting returns SysML::FeatureInverting :
+	  invertingFeature = [SysML::Feature | QualifiedName]
+	| ownedRelatedElement += OwnedFeatureChain
 ;
 
 /* Type Featuring */

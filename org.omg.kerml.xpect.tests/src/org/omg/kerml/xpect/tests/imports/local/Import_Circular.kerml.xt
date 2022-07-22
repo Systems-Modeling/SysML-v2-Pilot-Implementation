@@ -36,17 +36,32 @@ package Import_Circular {
 		y: B;
 	}
 	//* XPECT scope at P1::A ---
-	   Import_Circular.P1.A, Import_Circular.P1.A.self, Import_Circular.P1.B,
-	   Import_Circular.P1.B.self, Import_Circular.P2.A, Import_Circular.P2.A.self, Import_Circular.P2.B,
-	   Import_Circular.P2.B.self, Import_Circular.Test1.A, Import_Circular.Test1.A.self, Import_Circular.Test1.B,
-	   Import_Circular.Test1.B.self, Import_Circular.Test1.x, Import_Circular.Test1.x.self, Import_Circular.Test1.y,
-	   Import_Circular.Test1.y.self, Import_Circular.Test2.A, Import_Circular.Test2.A.self, Import_Circular.Test2.B,
-	   Import_Circular.Test2.B.self, Import_Circular.Test2.x, Import_Circular.Test2.x.self, Import_Circular.Test2.y,
-	   Import_Circular.Test2.y.self, Import_Circular.x, Import_Circular.x.self, Import_Circular.y,
-	   Import_Circular.y.self, P1.A, P1.A.self, P1.B, P1.B.self, P2.A, P2.A.self, P2.B, P2.B.self, Test1.A,
-	   Test1.A.self, Test1.B, Test1.B.self, Test1.x, Test1.x.self, Test1.y, Test1.y.self, Test2.A,
-	   Test2.A.self, Test2.B, Test2.B.self, Test2.x, Test2.x.self, Test2.y, Test2.y.self, x, x.self,
-	   y, y.self
+	   Import_Circular.P1.A, Import_Circular.P1.A.self,
+	   Import_Circular.P1.A.self.that, Import_Circular.P1.B, Import_Circular.P1.B.self,
+	   Import_Circular.P1.B.self.that, Import_Circular.P2.A, Import_Circular.P2.A.self,
+	   Import_Circular.P2.A.self.that, Import_Circular.P2.B, Import_Circular.P2.B.self,
+	   Import_Circular.P2.B.self.that, Import_Circular.Test1.A, Import_Circular.Test1.A.self,
+	   Import_Circular.Test1.A.self.that, Import_Circular.Test1.B, Import_Circular.Test1.B.self,
+	   Import_Circular.Test1.B.self.that, Import_Circular.Test1.x, Import_Circular.Test1.x.self,
+	   Import_Circular.Test1.x.self.that, Import_Circular.Test1.x.that, Import_Circular.Test1.x.that.self,
+	   Import_Circular.Test1.y, Import_Circular.Test1.y.self, Import_Circular.Test1.y.self.that,
+	   Import_Circular.Test1.y.that, Import_Circular.Test1.y.that.self, Import_Circular.Test2.A,
+	   Import_Circular.Test2.A.self, Import_Circular.Test2.A.self.that, Import_Circular.Test2.B,
+	   Import_Circular.Test2.B.self, Import_Circular.Test2.B.self.that, Import_Circular.Test2.x,
+	   Import_Circular.Test2.x.self, Import_Circular.Test2.x.self.that, Import_Circular.Test2.x.that,
+	   Import_Circular.Test2.x.that.self, Import_Circular.Test2.y, Import_Circular.Test2.y.self,
+	   Import_Circular.Test2.y.self.that, Import_Circular.Test2.y.that, Import_Circular.Test2.y.that.self,
+	   Import_Circular.x, Import_Circular.x.self, Import_Circular.x.self.that, Import_Circular.x.that,
+	   Import_Circular.x.that.self, Import_Circular.y, Import_Circular.y.self, Import_Circular.y.self.that,
+	   Import_Circular.y.that, Import_Circular.y.that.self, P1.A, P1.A.self, P1.A.self.that, P1.B, P1.B.self,
+	   P1.B.self.that, P2.A, P2.A.self, P2.A.self.that, P2.B, P2.B.self, P2.B.self.that, Test1.A,
+	   Test1.A.self, Test1.A.self.that, Test1.B, Test1.B.self, Test1.B.self.that, Test1.x,
+	   Test1.x.self, Test1.x.self.that, Test1.x.that, Test1.x.that.self, Test1.y, Test1.y.self,
+	   Test1.y.self.that, Test1.y.that, Test1.y.that.self, Test2.A, Test2.A.self, Test2.A.self.that,
+	   Test2.B, Test2.B.self, Test2.B.self.that, Test2.x, Test2.x.self, Test2.x.self.that,
+	   Test2.x.that, Test2.x.that.self, Test2.y, Test2.y.self, Test2.y.self.that, Test2.y.that,
+	   Test2.y.that.self, x, x.self, x.self.that, x.that, x.that.self, y, y.self, y.self.that, y.that,
+	   y.that.self
 	--- */	
 	x: P1::A;
 	

@@ -30,7 +30,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.UniqueEList;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
@@ -72,16 +71,6 @@ public class MetadataFeatureImpl extends FeatureImpl implements MetadataFeature 
 	 * @ordered
 	 */
 	protected EList<Annotation> annotation;
-
-	/**
-	 * The cached setting delegate for the '{@link #getAnnotatedElement() <em>Annotated Element</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getAnnotatedElement()
-	 * @generated
-	 * @ordered
-	 */
-	protected EStructuralFeature.Internal.SettingDelegate ANNOTATED_ELEMENT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.ANNOTATING_ELEMENT__ANNOTATED_ELEMENT).getSettingDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -276,7 +265,7 @@ public class MetadataFeatureImpl extends FeatureImpl implements MetadataFeature 
 			case SysMLPackage.METADATA_FEATURE__ANNOTATION:
 				return annotation != null && !annotation.isEmpty();
 			case SysMLPackage.METADATA_FEATURE__ANNOTATED_ELEMENT:
-				return ANNOTATED_ELEMENT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
+				return !getAnnotatedElement().isEmpty();
 			case SysMLPackage.METADATA_FEATURE__TYPE:
 				return isSetType();
 			case SysMLPackage.METADATA_FEATURE__METACLASS:

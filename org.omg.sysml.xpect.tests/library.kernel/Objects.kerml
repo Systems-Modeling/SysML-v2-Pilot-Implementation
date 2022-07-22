@@ -31,9 +31,19 @@ package Objects {
 		step involvingPerformances: Performance[0..*] subsets performances;
 		
 		/**
-		 * Performances which are enacted by this object.
+		 * Performances that are enacted by this object.
 		 */
 		abstract step enactedPerformances: Performance[0..*] subsets involvingPerformances, timeEnclosedOccurrences;
+		
+		/**
+		 * Performances that are owned by this object.
+		 */
+		composite step ownedPerformances: Performance[0..*] subsets enactedPerformances {
+			/**
+			 * The owning object is the "this" reference for all ownedPerformances.
+			 */
+			feature redefines this = that;
+		}
 
 		/**
 		 * A space boundary that is a structured space object.
@@ -117,12 +127,15 @@ package Objects {
 		  }
 
 		portion feature faces : Surface[0..*] ordered subsets structuredSpaceObjectCells {
+			feature redefines edges subsets StructuredSpaceObject::edges;
+			feature redefines vertices subsets StructuredSpaceObject::vertices;
 			derived feature redefines spaceBoundary; 
 			inv { isEmpty(spaceBoundary) == isEmpty(union(edges, vertices)) }
 			inv { notEmpty(spaceBoundary) implies contains(spaceBoundary.unionsOf, union(edges, vertices)) }
 		}
 
 		portion feature edges : Curve[0..*] ordered subsets structuredSpaceObjectCells {
+			feature redefines vertices subsets StructuredSpaceObject::vertices;
 			derived feature redefines spaceBoundary;
 			inv { isEmpty(spaceBoundary) == isEmpty(vertices) }
 			inv { notEmpty(spaceBoundary) implies contains(spaceBoundary.unionsOf, vertices) }
@@ -131,18 +144,6 @@ package Objects {
 		portion feature vertices : Point[0..*] ordered subsets structuredSpaceObjectCells;
 		
 		derived feature redefines innerSpaceDimension = 
-			(if notEmpty(faces)? 2 else (if notEmpty(edges)? 1 else 0));
-
-		connector feE :WithinBoth
-			from thisOccurrence :> faces.edges [0..*]
-			to thatOccurrence :> edges [0..*];
-
-		connector evV :WithinBoth
-			from thisOccurrence :> edges.vertices [0..*]
-			to thatOccurrence :> vertices [0..*];
-
-		connector fvV :WithinBoth
-			from thisOccurrence :> faces.vertices [0..*]
-			to thatOccurrence :> vertices [0..*];
+			if notEmpty(faces) ? 2 else if notEmpty(edges) ? 1 else 0;
 	  }
 }

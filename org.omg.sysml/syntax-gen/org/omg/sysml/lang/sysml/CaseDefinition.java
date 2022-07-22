@@ -92,8 +92,8 @@ public interface CaseDefinition extends CalculationDefinition {
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Behavior#getParameter() <em>Parameter</em>}'</li>
 	 *   <li>'{@link org.omg.sysml.lang.sysml.Definition#getOwnedPart() <em>Owned Part</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Behavior#getParameter() <em>Parameter</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

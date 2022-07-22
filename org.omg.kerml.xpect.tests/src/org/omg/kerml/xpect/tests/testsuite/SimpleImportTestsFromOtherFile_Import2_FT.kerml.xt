@@ -22,33 +22,51 @@ package test {
 	import OuterPackage::*;
 	//XPECT linkedName at B --> OuterPackage.B
 	//* XPECT scope at B ---
-	   		B.b, Try.b, Try.try, test.Try.b, test.Try.try, test.B.b,
-	       B.b.a1, test.B.b.a1, Try.try.a1, test.Try.try.a1, Try.b.a1, test.Try.b.a1,
-		   Try, A, A.a1, B,
-		   test.Try, test.A, test.A.a1, test.B, 
-		   OuterPackage.A,OuterPackage.A.a1, OuterPackage.B, OuterPackage.B.b, OuterPackage.B.b.a1,
-		   B.b.self,  Try.b.self,  Try.try.self,  test.Try.b.self,  test.Try.try.self,  test.B.b.self, 
-	       B.b.a1.self,  test.B.b.a1.self,  Try.try.a1.self,  test.Try.try.a1.self,  Try.b.a1.self,  test.Try.b.a1.self, 
-		   Try.self,  A.self,  A.a1.self,  B.self, 
-		   test.Try.self,  test.A.self,  test.A.a1.self,  test.B.self,  
-		   OuterPackage.A.self, OuterPackage.A.a1.self,  OuterPackage.B.self,  OuterPackage.B.b.self,  OuterPackage.B.b.a1.self, 
+	A, A.a1, A.a1.self, A.a1.that, A.a1.that.self, A.self, A.that, A.that.self, B,
+	B.b, B.b.a1, B.b.a1.self, B.b.a1.that, B.b.a1.that.self, B.b.self, B.b.that,
+	B.b.that.self, B.self, B.that, B.that.self, OuterPackage.A, OuterPackage.A.a1,
+	OuterPackage.A.a1.self, OuterPackage.A.a1.that, OuterPackage.A.a1.that.self, OuterPackage.A.self,
+	OuterPackage.A.that, OuterPackage.A.that.self, OuterPackage.B, OuterPackage.B.b,
+	OuterPackage.B.b.a1, OuterPackage.B.b.a1.self, OuterPackage.B.b.a1.that,
+	OuterPackage.B.b.a1.that.self, OuterPackage.B.b.self, OuterPackage.B.b.that, OuterPackage.B.b.that.self,
+	OuterPackage.B.self, OuterPackage.B.that, OuterPackage.B.that.self, Try, Try.b, Try.b.a1,
+	Try.b.a1.self, Try.b.a1.that, Try.b.a1.that.self, Try.b.self, Try.b.that, Try.b.that.self,
+	Try.self, Try.that, Try.that.self, Try.try, Try.try.a1, Try.try.a1.self, Try.try.a1.that,
+	Try.try.a1.that.self, Try.try.self, Try.try.that, Try.try.that.self, test.A, test.A.a1,
+	test.A.a1.self, test.A.a1.that, test.A.a1.that.self, test.A.self, test.A.that,
+	test.A.that.self, test.B, test.B.b, test.B.b.a1, test.B.b.a1.self, test.B.b.a1.that,
+	test.B.b.a1.that.self, test.B.b.self, test.B.b.that, test.B.b.that.self, test.B.self, test.B.that,
+	test.B.that.self, test.Try, test.Try.b, test.Try.b.a1, test.Try.b.a1.self, test.Try.b.a1.that,
+	test.Try.b.a1.that.self, test.Try.b.self, test.Try.b.that, test.Try.b.that.self, test.Try.self,
+	test.Try.that, test.Try.that.self, test.Try.try, test.Try.try.a1, test.Try.try.a1.self,
+	test.Try.try.a1.that, test.Try.try.a1.that.self, test.Try.try.self, test.Try.try.that,
+	test.Try.try.that.self
 	--- */
 	feature Try : B{
 		//XPECT linkedName at b --> OuterPackage.B.b
 		//* XPECT scope at b ---
-		   b.a1, try.a1,
-		   B.b.a1, test.B.b.a1, Try.try.a1, test.Try.try.a1, Try.b.a1, test.Try.b.a1,
-		   b, try,
-		   Try, Try.b, Try.try, A, A.a1, B, B.b,
-		   test.Try, test.Try.try, test.Try.b, test.A, test.A.a1, test.B, test.B.b, 
-		   OuterPackage.A,OuterPackage.A.a1, OuterPackage.B, OuterPackage.B.b, OuterPackage.B.b.a1,
-		    b.a1.self,  try.a1.self, 
-		   B.b.a1.self,  test.B.b.a1.self,  Try.try.a1.self,  test.Try.try.a1.self,  Try.b.a1.self,  test.Try.b.a1.self, 
-		   b.self,  try.self, 
-		   Try.self,  Try.b.self,  Try.try.self,  A.self,  A.a1.self,  B.self,  B.b.self, 
-		   test.Try.self,  test.Try.try.self,  test.Try.b.self,  test.A.self,  test.A.a1.self,  test.B.self,  test.B.b.self,  
-		   OuterPackage.A.self, OuterPackage.A.a1.self,  OuterPackage.B.self,  OuterPackage.B.b.self,  OuterPackage.B.b.a1.self, self
-	--- */
+		   A, A.a1, A.a1.self, A.a1.that, A.a1.that.self, A.self, A.that, A.that.self, B,
+		   B.b, B.b.a1, B.b.a1.self, B.b.a1.that, B.b.a1.that.self, B.b.self, B.b.that,
+		   B.b.that.self, B.self, B.that, B.that.self, OuterPackage.A, OuterPackage.A.a1,
+		   OuterPackage.A.a1.self, OuterPackage.A.a1.that, OuterPackage.A.a1.that.self, OuterPackage.A.self,
+		   OuterPackage.A.that, OuterPackage.A.that.self, OuterPackage.B, OuterPackage.B.b,
+		   OuterPackage.B.b.a1, OuterPackage.B.b.a1.self, OuterPackage.B.b.a1.that,
+		   OuterPackage.B.b.a1.that.self, OuterPackage.B.b.self, OuterPackage.B.b.that, OuterPackage.B.b.that.self,
+		   OuterPackage.B.self, OuterPackage.B.that, OuterPackage.B.that.self, Try, Try.b, Try.b.a1,
+		   Try.b.a1.self, Try.b.a1.that, Try.b.a1.that.self, Try.b.self, Try.b.that, Try.b.that.self,
+		   Try.self, Try.that, Try.that.self, Try.try, Try.try.a1, Try.try.a1.self, Try.try.a1.that,
+		   Try.try.a1.that.self, Try.try.self, Try.try.that, Try.try.that.self, b, b.a1, b.a1.self, b.a1.that,
+		   b.a1.that.self, b.self, b.that, b.that.self, self, test.A, test.A.a1, test.A.a1.self,
+		   test.A.a1.that, test.A.a1.that.self, test.A.self, test.A.that, test.A.that.self, test.B,
+		   test.B.b, test.B.b.a1, test.B.b.a1.self, test.B.b.a1.that, test.B.b.a1.that.self,
+		   test.B.b.self, test.B.b.that, test.B.b.that.self, test.B.self, test.B.that, test.B.that.self,
+		   test.Try, test.Try.b, test.Try.b.a1, test.Try.b.a1.self, test.Try.b.a1.that,
+		   test.Try.b.a1.that.self, test.Try.b.self, test.Try.b.that, test.Try.b.that.self, test.Try.self,
+		   test.Try.that, test.Try.that.self, test.Try.try, test.Try.try.a1, test.Try.try.a1.self,
+		   test.Try.try.a1.that, test.Try.try.a1.that.self, test.Try.try.self, test.Try.try.that,
+		   test.Try.try.that.self, that, that.self, try, try.a1, try.a1.self, try.a1.that, try.a1.that.self,
+		   try.self, try.that, try.that.self
+		--- */
 		feature try : b;
 	}
 }

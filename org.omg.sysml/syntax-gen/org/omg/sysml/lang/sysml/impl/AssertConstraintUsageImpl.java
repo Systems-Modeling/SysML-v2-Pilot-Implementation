@@ -126,15 +126,6 @@ public class AssertConstraintUsageImpl extends ConstraintUsageImpl implements As
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public BindingConnector basicGetAssertionConnector() {
-		return assertionConnector;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override

@@ -45,20 +45,18 @@ public class CustomUML2EcoreConverter extends UML2EcoreConverter {
 				Property property = (Property)element;
 				if (property.isDerived() && !property.isDerivedUnion()) {
 					EStructuralFeature feature = (EStructuralFeature)modelElement;
-					
-					// NOTE: This is a temporary limitation to add annotations only when
-					// the default derivation applies.
+					EAnnotation annotation = EcoreFactory.eINSTANCE.createEAnnotation();
+					annotation.setSource(ANNOTATION_SYSML);
+					modelElement.getEAnnotations().add(annotation);
+					System.out.print("Add annotation: " + property.getQualifiedName());
 					if (feature instanceof EReference && feature.isMany() && 
 							!property.getSubsettedProperties().isEmpty()) {
 						Property subsettedProperty = property.getSubsettedProperties().get(0);
 						if (subsettedProperty.getType() != property.getType()) {
-							System.out.println("Add annotation: " + property.getQualifiedName());
-							EAnnotation annotation = EcoreFactory.eINSTANCE.createEAnnotation();
-							annotation.setSource(ANNOTATION_SYSML);
-							modelElement.getEAnnotations().add(annotation);
+							System.out.print(" (default)");
 						}
 					}
-					
+					System.out.println();					
 				}
 				if (modelElement instanceof EReference && 
 						AggregationKind.COMPOSITE_LITERAL.equals(((Property) element).getAggregation())) {

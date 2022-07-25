@@ -150,6 +150,7 @@ public interface Feature extends Type {
 	 * @see org.omg.sysml.lang.sysml.FeatureInverting#getOwningFeature
 	 * @model opposite="owningFeature" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<FeatureInverting> getOwnedFeatureInverting();
@@ -351,6 +352,7 @@ public interface Feature extends Type {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_Type()
 	 * @model required="true" transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='typedFeature'"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<Type> getType();
@@ -456,6 +458,7 @@ public interface Feature extends Type {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_FeaturingType()
 	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='featureOfType'"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<Type> getFeaturingType();
@@ -484,6 +487,7 @@ public interface Feature extends Type {
 	 * @see org.omg.sysml.lang.sysml.FeatureMembership#getOwnedMemberFeature
 	 * @model opposite="ownedMemberFeature" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	FeatureMembership getOwningFeatureMembership();
@@ -642,6 +646,7 @@ public interface Feature extends Type {
 	 * @see org.omg.sysml.lang.sysml.Type#getOwnedEndFeature
 	 * @model opposite="ownedEndFeature" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	Type getEndOwningType();
@@ -669,6 +674,7 @@ public interface Feature extends Type {
 	 * @see #setIsNonunique(boolean)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_IsNonunique()
 	 * @model default="false" dataType="org.omg.sysml.lang.types.Boolean" required="true" transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	boolean isNonunique();

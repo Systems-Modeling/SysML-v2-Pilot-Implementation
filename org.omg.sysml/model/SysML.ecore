@@ -425,6 +425,7 @@
         <details key="documentation" value="&lt;p>The FeatureMembership that owns this Feature as an &lt;code>ownedMemberFeature&lt;/code>, determining its &lt;code>owningType&lt;/code>.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Element/owningMembership"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="owningType" ordered="false"
         eType="#//Type" volatile="true" transient="true" derived="true" eOpposite="#//Type/ownedFeature">
@@ -440,6 +441,7 @@
         <details key="documentation" value="&lt;p>The Type that is related to this Feature by an EndFeatureMembership in which the Feature is an &lt;code>ownedMemberFeature&lt;/code>.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Feature/owningType"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isUnique" ordered="false"
         lowerBound="1" eType="ecore:EDataType types.ecore#//Boolean" defaultValueLiteral="true">
@@ -461,6 +463,7 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>Types that restrict the values of this Feature, such that the values must be instances of all the types. The types of a Feature are derived from its &lt;code>ownedFeatureTypings&lt;/code> and the &lt;code>types&lt;/code> of its &lt;code>ownedSubsettings&lt;/code>.&lt;/p>&#xA;"/>
       </eAnnotations>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedRedefinition" ordered="false"
         upperBound="-1" eType="#//Redefinition" volatile="true" transient="true" derived="true">
@@ -510,6 +513,7 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>Types that feature this Feature, such that any instance in the domain of the Feature must be classified by all of these Types, including at least all the &lt;code>featuringTypes&lt;/code> of its &lt;code>ownedTypeFeaturings&lt;/code>.&lt;/p>"/>
       </eAnnotations>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isDerived" ordered="false"
         lowerBound="1" eType="ecore:EDataType types.ecore#//Boolean" defaultValueLiteral="false">
@@ -534,6 +538,7 @@
         <details key="documentation" value="&lt;p>The &lt;code>ownedRelationships&lt;/code> of this Feature that are FeatureInvertings, for which the Feature is the &lt;code>featureInverted&lt;/code>.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Element/ownedRelationship"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedFeatureChaining" upperBound="-1"
         eType="#//FeatureChaining" volatile="true" transient="true" derived="true"
@@ -564,7 +569,9 @@
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isNonunique" ordered="false"
         lowerBound="1" eType="ecore:EDataType types.ecore#//Boolean" volatile="true"
-        transient="true" defaultValueLiteral="false" derived="true"/>
+        transient="true" defaultValueLiteral="false" derived="true">
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Type" eSuperTypes="#//Namespace">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">

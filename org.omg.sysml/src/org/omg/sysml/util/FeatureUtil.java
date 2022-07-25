@@ -33,8 +33,10 @@ import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.adapter.FeatureAdapter;
 import org.omg.sysml.lang.sysml.Behavior;
+import org.omg.sysml.lang.sysml.Conjugation;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
@@ -50,8 +52,10 @@ import org.omg.sysml.lang.sysml.ReturnParameterMembership;
 import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLFactory;
+import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.TypeFeaturing;
+import org.omg.sysml.lang.sysml.impl.FeatureImpl;
 
 public class FeatureUtil {
 	
@@ -60,14 +64,6 @@ public class FeatureUtil {
 
 	protected static FeatureAdapter getFeatureAdapter(Feature target) {
 		return (FeatureAdapter)ElementUtil.getElementAdapter(target);
-	}
-	
-	// Caching
-	
-	public static EList<Type> cacheTypesOf(Feature feature, Supplier<EList<Type>> supplier) {	
-		FeatureAdapter adapter = getFeatureAdapter(feature);
-		EList<Type> types = adapter.getTypes();
-		return types == null? adapter.setTypes(supplier.get()): types;
 	}
 	
 	// Utility
@@ -101,6 +97,61 @@ public class FeatureUtil {
 		}
 	}
 	
+	// Typing
+	
+	public static EList<Type> cacheTypesOf(Feature feature, Supplier<EList<Type>> supplier) {	
+		FeatureAdapter adapter = getFeatureAdapter(feature);
+		EList<Type> types = adapter.getTypes();
+		return types == null? adapter.setTypes(supplier.get()): types;
+	}
+	
+	public static EList<Type> getAllTypesOf(Feature feature) {
+		return FeatureUtil.cacheTypesOf(feature, ()->{
+			EList<Type> types = new NonNotifyingEObjectEList<Type>(Type.class, (InternalEObject)feature, SysMLPackage.FEATURE__TYPE);
+			getTypesOf(feature, types, new HashSet<Feature>());
+			removeRedundantTypes(types);
+			return types;
+		});
+	}
+	
+	private static void getTypesOf(Feature feature, List<Type> types, Set<Feature> visitedFeatures) {
+		visitedFeatures.add(feature);
+		getFeatureTypesOf(feature, types, visitedFeatures);		
+		Conjugation conjugator = feature.getOwnedConjugator();
+		if (conjugator != null) {
+			Type originalType = conjugator.getOriginalType();
+			if (originalType instanceof Feature && !visitedFeatures.contains(originalType)) {
+				getTypesOf((Feature)originalType, types, visitedFeatures);
+			}
+		}
+		for (Feature subsettedFeature: FeatureUtil.getSubsettedFeaturesOf(feature)) {
+			if (subsettedFeature != null && !visitedFeatures.contains(subsettedFeature)) {
+				getTypesOf((Feature)subsettedFeature, types, visitedFeatures);
+			}
+		}		
+	}
+	
+	private static void getFeatureTypesOf(Feature feature, List<Type> types, Set<Feature> visitedFeatures) {
+		feature.getOwnedTyping().stream().
+				map(typing->typing.getType()).
+				filter(type->type != null).
+				forEachOrdered(types::add);
+		types.addAll(TypeUtil.getImplicitGeneralTypesFor(feature, SysMLPackage.eINSTANCE.getFeatureTyping()));
+		Feature lastChainingFeature = FeatureUtil.getLastChainingFeatureOf(feature);
+		if (lastChainingFeature != null && !visitedFeatures.contains(lastChainingFeature)) {
+			getTypesOf((Feature)lastChainingFeature, types, visitedFeatures);
+		}
+	}
+	
+	protected static void removeRedundantTypes(List<Type> types) {
+		for (int i = types.size() - 1; i >= 0 ; i--) {
+			Type type = types.get(i);
+			if (types.stream().anyMatch(otherType->otherType != type && TypeUtil.conforms(otherType, type))) {
+				types.remove(i);
+			}
+		}
+	}
+
 	// Subsetting and redefinition
 	
 	public static List<Feature> getSubsettedFeaturesOf(Feature feature) {
@@ -163,7 +214,22 @@ public class FeatureUtil {
 				collect(Collectors.toList());
 	}
 
-	// Feature values
+	public static boolean checkIsOrdered(FeatureImpl feature, Set<Feature> visited) {
+		if (feature.isOrdered()) {
+			return true;
+		} else {
+			visited.add(feature);
+			for (Feature subsettedFeature: FeatureUtil.getSubsettedFeaturesOf(feature)) {
+				if (subsettedFeature != null && !visited.contains(subsettedFeature) && 
+						checkIsOrdered(((FeatureImpl)subsettedFeature), visited)) {
+					return true;
+				}
+			}
+			return false;
+		}
+	}
+
+// Feature values
 	
 	public static FeatureValue getValuationFor(Feature feature) {
 		return (FeatureValue)feature.getOwnedMembership().stream().

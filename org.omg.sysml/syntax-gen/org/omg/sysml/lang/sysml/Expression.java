@@ -139,6 +139,7 @@ public interface Expression extends Step {
 	 * @see #setIsModelLevelEvaluable(boolean)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getExpression_IsModelLevelEvaluable()
 	 * @model dataType="org.omg.sysml.lang.types.Boolean" required="true" transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	boolean isModelLevelEvaluable();

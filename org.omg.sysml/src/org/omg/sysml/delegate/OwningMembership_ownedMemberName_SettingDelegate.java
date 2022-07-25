@@ -1,6 +1,5 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2022 Siemens AG
  * Copyright (c) 2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
@@ -25,18 +24,17 @@ package org.omg.sysml.delegate;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.lang.sysml.Membership;
+import org.omg.sysml.lang.sysml.OwningMembership;
 
-public class Membership_memberElementId_SettingDelegate extends BasicDerivedPropertySettingDelegate {
+public class OwningMembership_ownedMemberName_SettingDelegate extends BasicDerivedPropertySettingDelegate  {
 
-	public Membership_memberElementId_SettingDelegate(EStructuralFeature eStructuralFeature) {
+	public OwningMembership_ownedMemberName_SettingDelegate(EStructuralFeature eStructuralFeature) {
 		super(eStructuralFeature);
 	}
 
 	@Override
-	protected String basicGet(InternalEObject owner) {
-		Element memberElement = ((Membership)owner).getMemberElement();
-		return memberElement == null? null: memberElement.getElementId();
+	protected Object basicGet(InternalEObject owner) {
+		Element ownedMemberElement = ((OwningMembership) owner).getOwnedMemberElement();
+		return ownedMemberElement == null? null: ownedMemberElement.getEffectiveName();
 	}
-
 }

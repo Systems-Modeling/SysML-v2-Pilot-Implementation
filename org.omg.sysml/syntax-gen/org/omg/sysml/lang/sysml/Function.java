@@ -52,7 +52,7 @@ public interface Function extends Behavior {
 	 * Returns the value of the '<em><b>Expression</b></em>' reference list.
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Expression}.
 	 * <p>
-	 * This feature redefines the following features:
+	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
 	 *   <li>'{@link org.omg.sysml.lang.sysml.Behavior#getStep() <em>Step</em>}'</li>
@@ -73,7 +73,8 @@ public interface Function extends Behavior {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFunction_Expression()
 	 * @model transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='computedFunction'"
-	 *        annotation="redefines"
+	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<Expression> getExpression();

@@ -1,7 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2022 Siemens AG
- * Copyright (c) 2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -24,19 +23,21 @@ package org.omg.sysml.delegate;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.lang.sysml.Membership;
+import org.omg.sysml.lang.sysml.Namespace;
+import org.omg.sysml.lang.sysml.Step;
+import org.omg.sysml.lang.sysml.Succession;
+import org.omg.sysml.lang.sysml.TransitionUsage;
 
-public class Membership_memberElementId_SettingDelegate extends BasicDerivedPropertySettingDelegate {
+public class Succession_transitionStep_SettingDelegate extends BasicDerivedObjectSettingDelegate {
 
-	public Membership_memberElementId_SettingDelegate(EStructuralFeature eStructuralFeature) {
+	public Succession_transitionStep_SettingDelegate(EStructuralFeature eStructuralFeature) {
 		super(eStructuralFeature);
 	}
 
 	@Override
-	protected String basicGet(InternalEObject owner) {
-		Element memberElement = ((Membership)owner).getMemberElement();
-		return memberElement == null? null: memberElement.getElementId();
+	protected Step basicGet(InternalEObject succession) {
+		Namespace owner = ((Succession)succession).getOwningNamespace();
+		return owner instanceof TransitionUsage? (Step)owner: null;
 	}
 
 }

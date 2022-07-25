@@ -1,6 +1,5 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2022 Siemens AG
  * Copyright (c) 2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
@@ -22,21 +21,32 @@
 
 package org.omg.sysml.delegate;
 
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.lang.sysml.Membership;
+import org.omg.sysml.lang.sysml.OwningMembership;
 
-public class Membership_memberElementId_SettingDelegate extends BasicDerivedPropertySettingDelegate {
+public class OwningMembership_ownedMemberElement_SettingDelegate extends BasicDerivedObjectSettingDelegate {
 
-	public Membership_memberElementId_SettingDelegate(EStructuralFeature eStructuralFeature) {
+	public OwningMembership_ownedMemberElement_SettingDelegate(EStructuralFeature eStructuralFeature) {
 		super(eStructuralFeature);
 	}
 
 	@Override
-	protected String basicGet(InternalEObject owner) {
-		Element memberElement = ((Membership)owner).getMemberElement();
-		return memberElement == null? null: memberElement.getElementId();
+	protected EObject basicGet(InternalEObject owner) {
+		EList<Element> ownedRelatedElements = ((OwningMembership)owner).getOwnedRelatedElement();
+		return ownedRelatedElements.isEmpty()? null: ownedRelatedElements.get(0);
 	}
+	
+	@Override
+    protected void set(InternalEObject owner, Object newOwnedMemberElement) {
+		if (newOwnedMemberElement != null) { 
+			EList<Element> ownedRelatedElements = ((OwningMembership)owner).getOwnedRelatedElement();
+			ownedRelatedElements.remove(((OwningMembership)owner).getOwnedMemberElement());
+			ownedRelatedElements.add(0, (Element)newOwnedMemberElement);
+		}
+    }
 
 }

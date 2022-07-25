@@ -973,6 +973,7 @@
         <details key="documentation" value="&lt;p>The &lt;code>elementId&lt;/code> of the &lt;code>ownedMemberElement&lt;/code>.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="redefines" references="#//Membership/memberElementId"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="ownedMemberShortName" ordered="false"
         eType="ecore:EDataType types.ecore#//String" volatile="true" transient="true"
@@ -990,6 +991,7 @@
         <details key="documentation" value="&lt;p>The &lt;code>effectiveName&lt;/code> of the &lt;code>ownedMemberElement&lt;/code>.&lt;/p>&#xA;"/>
       </eAnnotations>
       <eAnnotations source="redefines" references="#//Membership/memberName"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedMemberElement" ordered="false"
         lowerBound="1" eType="#//Element" volatile="true" transient="true" derived="true"
@@ -999,6 +1001,7 @@
       </eAnnotations>
       <eAnnotations source="redefines" references="#//Membership/memberElement"/>
       <eAnnotations source="subsets" references="#//Relationship/ownedRelatedElement"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Membership" eSuperTypes="#//Relationship">
@@ -2380,6 +2383,7 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>Whether this Expression meets the constraints necessary to be evaluated at &lt;em>model level&lt;/em>, that is, using metadata within the model.&lt;/p>"/>
       </eAnnotations>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Function" eSuperTypes="#//Behavior">
@@ -2394,7 +2398,8 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>The Expressions that are steps in the calculation of the &lt;code>result&lt;/code> of this Function.&lt;/p>&#xA;&#xA;&lt;p>The set of expressions that represent computational steps or parts of a system of equations within the Function.&lt;/p>&#xA;"/>
       </eAnnotations>
-      <eAnnotations source="redefines" references="#//Behavior/step"/>
+      <eAnnotations source="subsets" references="#//Behavior/step"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="result" ordered="false"
         lowerBound="1" eType="#//Feature" volatile="true" transient="true" derived="true">
@@ -2546,6 +2551,7 @@
         <details key="documentation" value="&lt;p>A Step that is typed by the Behavior &lt;em>TransitionPerformance&lt;/em> (from the Model Library) that has this Succession as its &lt;em>&lt;code>transitionLink&lt;/code>&lt;/em>.&lt;/p>&#xA;"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Type/ownedFeature"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="triggerStep" ordered="false"
         upperBound="-1" eType="#//Step" volatile="true" transient="true" derived="true">

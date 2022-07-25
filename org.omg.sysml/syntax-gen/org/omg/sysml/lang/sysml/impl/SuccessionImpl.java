@@ -26,13 +26,10 @@ import java.util.Collection;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.Expression;
-import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.Succession;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.lang.sysml.TransitionUsage;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object
@@ -50,6 +47,16 @@ import org.omg.sysml.lang.sysml.TransitionUsage;
  * @generated
  */
 public class SuccessionImpl extends ConnectorImpl implements Succession {
+
+	/**
+	 * The cached setting delegate for the '{@link #getTransitionStep() <em>Transition Step</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTransitionStep()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate TRANSITION_STEP__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.SUCCESSION__TRANSITION_STEP).getSettingDelegate();
 
 	/**
 	 * The cached setting delegate for the '{@link #getTriggerStep() <em>Trigger Step</em>}' reference list.
@@ -138,29 +145,26 @@ public class SuccessionImpl extends ConnectorImpl implements Succession {
 	 */
 	@Override
 	public Step getTransitionStep() {
-		Step transitionStep = basicGetTransitionStep();
-		return transitionStep != null && transitionStep.eIsProxy() ? (Step)eResolveProxy((InternalEObject)transitionStep) : transitionStep;
+		return (Step)TRANSITION_STEP__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Step basicGetTransitionStep() {
-		Namespace owner = getOwningNamespace();
-		return owner instanceof TransitionUsage?
-				(Step)owner: null;
+		return (Step)TRANSITION_STEP__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setTransitionStep(Step newTransitionStep) {
-		throw new UnsupportedOperationException();
+		TRANSITION_STEP__ESETTING_DELEGATE.dynamicSet(this, null, 0, newTransitionStep);
 	}
 
 	/**
@@ -245,7 +249,7 @@ public class SuccessionImpl extends ConnectorImpl implements Succession {
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case SysMLPackage.SUCCESSION__TRANSITION_STEP:
-				return basicGetTransitionStep() != null;
+				return TRANSITION_STEP__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.SUCCESSION__TRIGGER_STEP:
 				return TRIGGER_STEP__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.SUCCESSION__EFFECT_STEP:

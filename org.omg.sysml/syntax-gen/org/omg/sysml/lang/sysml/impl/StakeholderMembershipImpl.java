@@ -3,7 +3,7 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.PartUsage;
 import org.omg.sysml.lang.sysml.StakeholderMembership;
@@ -23,6 +23,16 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * @generated
  */
 public class StakeholderMembershipImpl extends ParameterMembershipImpl implements StakeholderMembership {
+	/**
+	 * The cached setting delegate for the '{@link #getOwnedStakeholderParameter() <em>Owned Stakeholder Parameter</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedStakeholderParameter()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate OWNED_STAKEHOLDER_PARAMETER__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.STAKEHOLDER_MEMBERSHIP__OWNED_STAKEHOLDER_PARAMETER).getSettingDelegate();
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -49,28 +59,75 @@ public class StakeholderMembershipImpl extends ParameterMembershipImpl implement
 	 */
 	@Override
 	public PartUsage getOwnedStakeholderParameter() {
-		PartUsage ownedStakeholderParameter = basicGetOwnedStakeholderParameter();
-		return ownedStakeholderParameter != null && ownedStakeholderParameter.eIsProxy() ? (PartUsage)eResolveProxy((InternalEObject)ownedStakeholderParameter) : ownedStakeholderParameter;
+		return (PartUsage)OWNED_STAKEHOLDER_PARAMETER__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public PartUsage basicGetOwnedStakeholderParameter() {
-		Feature ownedMemberParameter = super.basicGetOwnedMemberParameter();
-		return ownedMemberParameter instanceof PartUsage? (PartUsage)ownedMemberParameter: null;
+		return (PartUsage)OWNED_STAKEHOLDER_PARAMETER__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setOwnedStakeholderParameter(PartUsage newOwnedStakeholderParameter) {
-		throw new UnsupportedOperationException();
+		OWNED_STAKEHOLDER_PARAMETER__ESETTING_DELEGATE.dynamicSet(this, null, 0, newOwnedStakeholderParameter);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetOwnedStakeholderParameter() {
+		return basicGetOwnedStakeholderParameter() != null;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Feature getOwnedMemberParameter() {
+		return getOwnedStakeholderParameter();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Feature basicGetOwnedMemberParameter() {
+		return basicGetOwnedStakeholderParameter();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setOwnedMemberParameter(Feature newOwnedMemberParameter) {
+		if (newOwnedMemberParameter != null && !(newOwnedMemberParameter instanceof PartUsage)) {
+			throw new IllegalArgumentException("newOwnedMemberParameter must be an instance of PartUsage");
+		}
+		setOwnedStakeholderParameter((PartUsage) newOwnedMemberParameter);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetOwnedMemberParameter() {
+  		return false;
 	}
 
 	/**
@@ -126,8 +183,10 @@ public class StakeholderMembershipImpl extends ParameterMembershipImpl implement
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case SysMLPackage.STAKEHOLDER_MEMBERSHIP__OWNED_MEMBER_PARAMETER:
+				return isSetOwnedMemberParameter();
 			case SysMLPackage.STAKEHOLDER_MEMBERSHIP__OWNED_STAKEHOLDER_PARAMETER:
-				return basicGetOwnedStakeholderParameter() != null;
+				return isSetOwnedStakeholderParameter();
 		}
 		return super.eIsSet(featureID);
 	}

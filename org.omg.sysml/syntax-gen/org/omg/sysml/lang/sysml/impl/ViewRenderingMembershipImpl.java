@@ -4,7 +4,6 @@ package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.RenderingUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -25,6 +24,15 @@ import org.omg.sysml.lang.sysml.ViewRenderingMembership;
  * @generated
  */
 public class ViewRenderingMembershipImpl extends FeatureMembershipImpl implements ViewRenderingMembership {
+	/**
+	 * The cached setting delegate for the '{@link #getOwnedRendering() <em>Owned Rendering</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedRendering()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate OWNED_RENDERING__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.VIEW_RENDERING_MEMBERSHIP__OWNED_RENDERING).getSettingDelegate();
 	/**
 	 * The cached setting delegate for the '{@link #getReferencedRendering() <em>Referenced Rendering</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -61,28 +69,26 @@ public class ViewRenderingMembershipImpl extends FeatureMembershipImpl implement
 	 */
 	@Override
 	public RenderingUsage getOwnedRendering() {
-		RenderingUsage ownedRendering = basicGetOwnedRendering();
-		return ownedRendering != null && ownedRendering.eIsProxy() ? (RenderingUsage)eResolveProxy((InternalEObject)ownedRendering) : ownedRendering;
+		return (RenderingUsage)OWNED_RENDERING__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public RenderingUsage basicGetOwnedRendering() {
-		Feature ownedMemberFeature = super.basicGetOwnedMemberFeature();
-		return ownedMemberFeature instanceof RenderingUsage? (RenderingUsage)ownedMemberFeature: null;
+		return (RenderingUsage)OWNED_RENDERING__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setOwnedRendering(RenderingUsage newOwnedRendering) {
-		super.setOwnedMemberFeature(newOwnedRendering);
+		OWNED_RENDERING__ESETTING_DELEGATE.dynamicSet(this, null, 0, newOwnedRendering);
 	}
 
 	/**

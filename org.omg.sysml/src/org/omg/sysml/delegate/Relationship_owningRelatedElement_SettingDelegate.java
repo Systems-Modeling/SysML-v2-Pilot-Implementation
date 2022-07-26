@@ -21,38 +21,30 @@
 
 package org.omg.sysml.delegate;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.lang.sysml.OwningMembership;
+import org.omg.sysml.lang.sysml.SysMLPackage;
 
-public class OwningMembership_ownedMemberElement_SettingDelegate extends BasicDerivedObjectSettingDelegate {
+/**
+ * Relationship::owningRelatedElement is not actually derived, but this class reproduces the basic get and set
+ * functionality for that property, as a base for implementing the delegates for other derived properties based
+ * on owningRelatedElement.
+ */
+public abstract class Relationship_owningRelatedElement_SettingDelegate extends BasicDerivedObjectSettingDelegate {
 
-	public OwningMembership_ownedMemberElement_SettingDelegate(EStructuralFeature eStructuralFeature) {
+	public Relationship_owningRelatedElement_SettingDelegate(EStructuralFeature eStructuralFeature) {
 		super(eStructuralFeature);
 	}
 
 	@Override
-	protected Element basicGet(InternalEObject owner) {
-		return ((OwningMembership)owner).getOwnedRelatedElement().stream().findFirst().orElse(null);
+	protected Element basicGet(InternalEObject relationship) {
+		if (relationship.eContainerFeatureID() != SysMLPackage.RELATIONSHIP__OWNING_RELATED_ELEMENT) return null;
+		return (Element)relationship.eInternalContainer();
 	}
-	
-	protected <T> T basicGet(InternalEObject owner, Class<T> kind) {
-		return ((OwningMembership)owner).getOwnedRelatedElement().stream().
-				findFirst().
-				filter(kind::isInstance).
-				map(kind::cast).
-				orElse(null);
-	}
-	
-	@Override
-    protected void set(InternalEObject owner, Object newOwnedMemberElement) {
-		if (newOwnedMemberElement != null) { 
-			EList<Element> ownedRelatedElements = ((OwningMembership)owner).getOwnedRelatedElement();
-			ownedRelatedElements.remove(((OwningMembership)owner).getOwnedMemberElement());
-			ownedRelatedElements.add(0, (Element)newOwnedMemberElement);
-		}
-    }
 
+	@Override
+	public void set(InternalEObject relationship, Object newOwningRelatedElement) {
+		relationship.eBasicSetContainer((InternalEObject)newOwningRelatedElement, SysMLPackage.RELATIONSHIP__OWNING_RELATED_ELEMENT, null);
+	}
 }

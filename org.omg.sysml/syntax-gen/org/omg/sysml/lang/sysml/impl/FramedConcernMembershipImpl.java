@@ -4,12 +4,9 @@ package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.InternalEObject;
-
 import org.omg.sysml.lang.sysml.FramedConcernMembership;
 import org.omg.sysml.lang.sysml.ConcernUsage;
 import org.omg.sysml.lang.sysml.ConstraintUsage;
-import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
@@ -27,6 +24,15 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * @generated
  */
 public class FramedConcernMembershipImpl extends RequirementConstraintMembershipImpl implements FramedConcernMembership {
+	/**
+	 * The cached setting delegate for the '{@link #getOwnedConcern() <em>Owned Concern</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedConcern()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate OWNED_CONCERN__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.FRAMED_CONCERN_MEMBERSHIP__OWNED_CONCERN).getSettingDelegate();
 	/**
 	 * The cached setting delegate for the '{@link #getReferencedConcern() <em>Referenced Concern</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -63,28 +69,26 @@ public class FramedConcernMembershipImpl extends RequirementConstraintMembership
 	 */
 	@Override
 	public ConcernUsage getOwnedConcern() {
-		ConcernUsage ownedConcern = basicGetOwnedConcern();
-		return ownedConcern != null && ownedConcern.eIsProxy() ? (ConcernUsage)eResolveProxy((InternalEObject)ownedConcern) : ownedConcern;
+		return (ConcernUsage)OWNED_CONCERN__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public ConcernUsage basicGetOwnedConcern() {
-		Feature ownedConstraint = super.basicGetOwnedConstraint();
-		return ownedConstraint instanceof ConcernUsage? (ConcernUsage)ownedConstraint: null;
+		return (ConcernUsage)OWNED_CONCERN__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setOwnedConcern(ConcernUsage newOwnedConcern) {
-		super.setOwnedConstraint(newOwnedConcern);
+		OWNED_CONCERN__ESETTING_DELEGATE.dynamicSet(this, null, 0, newOwnedConcern);
 	}
 
 	/**

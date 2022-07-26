@@ -72,6 +72,16 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 	protected EStructuralFeature.Internal.SettingDelegate MEMBER_ELEMENT_ID__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.MEMBERSHIP__MEMBER_ELEMENT_ID).getSettingDelegate();
 
 	/**
+	 * The cached setting delegate for the '{@link #getMembershipOwningNamespace() <em>Membership Owning Namespace</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMembershipOwningNamespace()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate MEMBERSHIP_OWNING_NAMESPACE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.MEMBERSHIP__MEMBERSHIP_OWNING_NAMESPACE).getSettingDelegate();
+
+	/**
 	 * The default value of the '{@link #getMemberShortName() <em>Member Short Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -329,28 +339,26 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 	 */
 	@Override
 	public Namespace getMembershipOwningNamespace() {
-		Namespace membershipOwningNamespace = basicGetMembershipOwningNamespace();
-		return membershipOwningNamespace != null && membershipOwningNamespace.eIsProxy() ? (Namespace)eResolveProxy((InternalEObject)membershipOwningNamespace) : membershipOwningNamespace;
+		return (Namespace)MEMBERSHIP_OWNING_NAMESPACE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Namespace basicGetMembershipOwningNamespace() {
-		Element owningRelatedElement = super.getOwningRelatedElement();
-		return owningRelatedElement instanceof Namespace? (Namespace)owningRelatedElement: null;
+		return (Namespace)MEMBERSHIP_OWNING_NAMESPACE__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setMembershipOwningNamespace(Namespace newMembershipOwningNamespace) {
-		super.basicSetOwningRelatedElement(newMembershipOwningNamespace, null);
+		MEMBERSHIP_OWNING_NAMESPACE__ESETTING_DELEGATE.dynamicSet(this, null, 0, newMembershipOwningNamespace);
 	}
 
 	/**

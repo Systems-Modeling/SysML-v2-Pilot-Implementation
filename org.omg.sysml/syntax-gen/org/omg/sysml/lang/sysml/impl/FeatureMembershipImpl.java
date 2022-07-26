@@ -27,6 +27,7 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -79,6 +80,36 @@ public class FeatureMembershipImpl extends OwningMembershipImpl implements Featu
 	 * @ordered
 	 */
 	protected Type featuringType;
+
+	/**
+	 * The cached setting delegate for the '{@link #getOwningFeatureOfType() <em>Owning Feature Of Type</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwningFeatureOfType()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate OWNING_FEATURE_OF_TYPE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.TYPE_FEATURING__OWNING_FEATURE_OF_TYPE).getSettingDelegate();
+
+	/**
+	 * The cached setting delegate for the '{@link #getOwnedMemberFeature() <em>Owned Member Feature</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedMemberFeature()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate OWNED_MEMBER_FEATURE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE).getSettingDelegate();
+
+	/**
+	 * The cached setting delegate for the '{@link #getOwningType() <em>Owning Type</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwningType()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate OWNING_TYPE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.FEATURE_MEMBERSHIP__OWNING_TYPE).getSettingDelegate();
 
 	/**
 	 * The default value of the '{@link #getDirection() <em>Direction</em>}' attribute.
@@ -165,8 +196,7 @@ public class FeatureMembershipImpl extends OwningMembershipImpl implements Featu
 	 */
 	@Override
 	public Feature getOwningFeatureOfType() {
-		Feature owningFeatureOfType = basicGetOwningFeatureOfType();
-		return owningFeatureOfType != null && owningFeatureOfType.eIsProxy() ? (Feature)eResolveProxy((InternalEObject)owningFeatureOfType) : owningFeatureOfType;
+		return (Feature)OWNING_FEATURE_OF_TYPE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
@@ -195,28 +225,26 @@ public class FeatureMembershipImpl extends OwningMembershipImpl implements Featu
 	 */
 	@Override
 	public Type getOwningType() {
-		Type owningType = basicGetOwningType();
-		return owningType != null && owningType.eIsProxy() ? (Type)eResolveProxy((InternalEObject)owningType) : owningType;
+		return (Type)OWNING_TYPE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Type basicGetOwningType() {
-		Element owningNamespace = super.basicGetMembershipOwningNamespace();
-		return owningNamespace instanceof Type? (Type)owningNamespace: null;
+		return (Type)OWNING_TYPE__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setOwningType(Type newOwningType) {
-		super.setMembershipOwningNamespace(newOwningType);
+		OWNING_TYPE__ESETTING_DELEGATE.dynamicSet(this, null, 0, newOwningType);
 	}
 
 	/**
@@ -235,28 +263,26 @@ public class FeatureMembershipImpl extends OwningMembershipImpl implements Featu
 	 */
 	@Override
 	public Feature getOwnedMemberFeature() {
-		Feature ownedMemberFeature = basicGetOwnedMemberFeature();
-		return ownedMemberFeature != null && ownedMemberFeature.eIsProxy() ? (Feature)eResolveProxy((InternalEObject)ownedMemberFeature) : ownedMemberFeature;
+		return (Feature)OWNED_MEMBER_FEATURE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Feature basicGetOwnedMemberFeature() {
-		Element ownedMemberElement = super.basicGetOwnedMemberElement();
-		return ownedMemberElement instanceof Feature? (Feature)ownedMemberElement: null;
+		return (Feature)OWNED_MEMBER_FEATURE__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setOwnedMemberFeature(Feature newOwnedMemberFeature) {
-		super.setOwnedMemberElement(newOwnedMemberFeature);
+		OWNED_MEMBER_FEATURE__ESETTING_DELEGATE.dynamicSet(this, null, 0, newOwnedMemberFeature);
 	}
 
 	/**
@@ -625,7 +651,7 @@ public class FeatureMembershipImpl extends OwningMembershipImpl implements Featu
 			case SysMLPackage.FEATURE_MEMBERSHIP__FEATURING_TYPE:
 				return isSetFeaturingType();
 			case SysMLPackage.FEATURE_MEMBERSHIP__OWNING_FEATURE_OF_TYPE:
-				return basicGetOwningFeatureOfType() != null;
+				return OWNING_FEATURE_OF_TYPE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.FEATURE_MEMBERSHIP__OWNED_MEMBER_ELEMENT:
 				return isSetOwnedMemberElement();
 			case SysMLPackage.FEATURE_MEMBERSHIP__MEMBERSHIP_OWNING_NAMESPACE:

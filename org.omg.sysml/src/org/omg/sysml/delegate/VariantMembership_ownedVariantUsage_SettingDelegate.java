@@ -21,38 +21,19 @@
 
 package org.omg.sysml.delegate;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.lang.sysml.OwningMembership;
+import org.omg.sysml.lang.sysml.Usage;
 
-public class OwningMembership_ownedMemberElement_SettingDelegate extends BasicDerivedObjectSettingDelegate {
+public class VariantMembership_ownedVariantUsage_SettingDelegate extends OwningMembership_ownedMemberElement_SettingDelegate {
 
-	public OwningMembership_ownedMemberElement_SettingDelegate(EStructuralFeature eStructuralFeature) {
+	public VariantMembership_ownedVariantUsage_SettingDelegate(EStructuralFeature eStructuralFeature) {
 		super(eStructuralFeature);
 	}
 
 	@Override
-	protected Element basicGet(InternalEObject owner) {
-		return ((OwningMembership)owner).getOwnedRelatedElement().stream().findFirst().orElse(null);
+	protected Usage basicGet(InternalEObject membership) {
+		return basicGet(membership, Usage.class);
 	}
 	
-	protected <T> T basicGet(InternalEObject owner, Class<T> kind) {
-		return ((OwningMembership)owner).getOwnedRelatedElement().stream().
-				findFirst().
-				filter(kind::isInstance).
-				map(kind::cast).
-				orElse(null);
-	}
-	
-	@Override
-    protected void set(InternalEObject owner, Object newOwnedMemberElement) {
-		if (newOwnedMemberElement != null) { 
-			EList<Element> ownedRelatedElements = ((OwningMembership)owner).getOwnedRelatedElement();
-			ownedRelatedElements.remove(((OwningMembership)owner).getOwnedMemberElement());
-			ownedRelatedElements.add(0, (Element)newOwnedMemberElement);
-		}
-    }
-
 }

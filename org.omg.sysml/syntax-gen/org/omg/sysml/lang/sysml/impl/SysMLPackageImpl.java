@@ -9812,6 +9812,14 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 			 URI.createURI(eNS_URI).appendFragment("//AssertConstraintUsage/assertedConstraint")
 		   });
 		addAnnotation
+		  (getStakeholderMembership_OwnedStakeholderParameter(),
+		   source,
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("//ParameterMembership/ownedMemberParameter")
+		   });
+		addAnnotation
 		  (getIncludeUseCaseUsage_UseCaseIncluded(),
 		   source,
 		   new String[] {
@@ -11338,14 +11346,6 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   },
 		   new URI[] {
 			 URI.createURI(eNS_URI).appendFragment("//Type/ownedFeature")
-		   });
-		addAnnotation
-		  (getStakeholderMembership_OwnedStakeholderParameter(),
-		   source,
-		   new String[] {
-		   },
-		   new URI[] {
-			 URI.createURI(eNS_URI).appendFragment("//ParameterMembership/ownedMemberParameter")
 		   });
 		addAnnotation
 		  (getConjugatedPortTyping_PortDefinition(),
@@ -13464,6 +13464,11 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   new String[] {
 		   });
 		addAnnotation
+		  (getMembership_MembershipOwningNamespace(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
 		  (getAnnotatingElement_AnnotatedElement(),
 		   source,
 		   new String[] {
@@ -13475,6 +13480,16 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   });
 		addAnnotation
 		  (getSpecialization_OwningType(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getFeatureMembership_OwnedMemberFeature(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getFeatureMembership_OwningType(),
 		   source,
 		   new String[] {
 		   });
@@ -13959,6 +13974,11 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   new String[] {
 		   });
 		addAnnotation
+		  (getVariantMembership_OwnedVariantUsage(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
 		  (getAnalysisCaseUsage_AnalysisAction(),
 		   source,
 		   new String[] {
@@ -14179,7 +14199,37 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   new String[] {
 		   });
 		addAnnotation
+		  (getObjectiveMembership_OwnedObjectiveRequirement(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getSubjectMembership_OwnedSubjectParameter(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getParameterMembership_OwnedMemberParameter(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getActorMembership_OwnedActorParameter(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getFramedConcernMembership_OwnedConcern(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
 		  (getFramedConcernMembership_ReferencedConcern(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getRequirementConstraintMembership_OwnedConstraint(),
 		   source,
 		   new String[] {
 		   });
@@ -14195,6 +14245,11 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   });
 		addAnnotation
 		  (getSatisfyRequirementUsage_SatisfyingFeature(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getStakeholderMembership_OwnedStakeholderParameter(),
 		   source,
 		   new String[] {
 		   });
@@ -14220,6 +14275,16 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   });
 		addAnnotation
 		  (getStateDefinition_State(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getStateSubactionMembership_Action(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getTransitionFeatureMembership_TransitionFeature(),
 		   source,
 		   new String[] {
 		   });
@@ -14299,6 +14364,11 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   new String[] {
 		   });
 		addAnnotation
+		  (getRequirementVerificationMembership_OwnedRequirement(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
 		  (getRequirementVerificationMembership_VerifiedRequirement(),
 		   source,
 		   new String[] {
@@ -14314,12 +14384,27 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   new String[] {
 		   });
 		addAnnotation
+		  (getViewRenderingMembership_OwnedRendering(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
 		  (getViewRenderingMembership_ReferencedRendering(),
 		   source,
 		   new String[] {
 		   });
 		addAnnotation
+		  (getResultExpressionMembership_OwnedResultExpression(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
 		  (getFeatureChainExpression_TargetFeature(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getElementFilterMembership_Condition(),
 		   source,
 		   new String[] {
 		   });

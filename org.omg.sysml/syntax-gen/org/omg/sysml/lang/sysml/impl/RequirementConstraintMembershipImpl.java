@@ -25,7 +25,6 @@ package org.omg.sysml.lang.sysml.impl;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.omg.sysml.lang.sysml.ConstraintUsage;
@@ -70,6 +69,16 @@ public class RequirementConstraintMembershipImpl extends FeatureMembershipImpl i
 	 * @ordered
 	 */
 	protected RequirementConstraintKind kind = KIND_EDEFAULT;
+
+	/**
+	 * The cached setting delegate for the '{@link #getOwnedConstraint() <em>Owned Constraint</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedConstraint()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate OWNED_CONSTRAINT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.REQUIREMENT_CONSTRAINT_MEMBERSHIP__OWNED_CONSTRAINT).getSettingDelegate();
 
 	/**
 	 * The cached setting delegate for the '{@link #getReferencedConstraint() <em>Referenced Constraint</em>}' reference.
@@ -130,28 +139,26 @@ public class RequirementConstraintMembershipImpl extends FeatureMembershipImpl i
 	 */
 	@Override
 	public ConstraintUsage getOwnedConstraint() {
-		ConstraintUsage ownedConstraint = basicGetOwnedConstraint();
-		return ownedConstraint != null && ownedConstraint.eIsProxy() ? (ConstraintUsage)eResolveProxy((InternalEObject)ownedConstraint) : ownedConstraint;
+		return (ConstraintUsage)OWNED_CONSTRAINT__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public ConstraintUsage basicGetOwnedConstraint() {
-		Feature ownedMemberFeature = super.basicGetOwnedMemberFeature();
-		return ownedMemberFeature instanceof ConstraintUsage? (ConstraintUsage)ownedMemberFeature: null;
+		return (ConstraintUsage)OWNED_CONSTRAINT__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setOwnedConstraint(ConstraintUsage newOwnedConstraint) {
-		super.setOwnedMemberFeature(newOwnedConstraint);
+		OWNED_CONSTRAINT__ESETTING_DELEGATE.dynamicSet(this, null, 0, newOwnedConstraint);
 	}
 
 	/**

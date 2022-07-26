@@ -1890,7 +1890,7 @@ else
       <body>&lt;p>A StakeholderMembership is a ParameterMembership that identifies a PartUsage as a stakeholder parameter, which specifies a role played by an entity with Concerns framed by the parametered requirement.&lt;/p></body>
     </ownedComment>
     <generalization xmi:id="1c87ed36-bc7f-4a7b-b78d-4ff6bc60b07c" general="fa0fe3ef-c7be-41f2-a235-78f97a4e35cb"/>
-    <ownedAttribute xmi:id="1cfd3353-ec12-48ee-a8e6-e4db271172d0" name="ownedStakeholderParameter" visibility="public" type="8bedee11-2930-45cc-ae64-110be5d577c7" aggregation="composite" subsettedProperty="34d5222b-28dc-443a-bcaa-396d3b3ec6aa" association="f69bfec2-1553-42db-9c1a-edc051087e18">
+    <ownedAttribute xmi:id="1cfd3353-ec12-48ee-a8e6-e4db271172d0" name="ownedStakeholderParameter" visibility="public" type="8bedee11-2930-45cc-ae64-110be5d577c7" aggregation="composite" redefinedProperty="34d5222b-28dc-443a-bcaa-396d3b3ec6aa" association="f69bfec2-1553-42db-9c1a-edc051087e18">
       <ownedComment xmi:id="34454b4c-8491-4eb8-baaa-b28ee366daf7" annotatedElement="1cfd3353-ec12-48ee-a8e6-e4db271172d0">
         <body>&lt;p>The PartUsage specifying the stakeholder.&lt;/p></body>
       </ownedComment>
@@ -7087,7 +7087,7 @@ endif</body>
 </body>
     </ownedComment>
     <generalization xmi:id="9f847177-ed0d-4b38-b84b-84d4d62fa7bf" general="2b6b71d4-57a9-4df4-badc-6ee2bfd7f8ba"/>
-    <ownedAttribute xmi:id="7413c86e-1cfb-4727-b275-a5fafde797fa" name="expression" visibility="public" type="b32c4dd3-88a2-4418-b414-e75ceb0bb432" isDerived="true" redefinedProperty="c559f3c7-96bd-45da-a2c7-1770af2759aa" association="1b51ec71-10a2-4699-bfdc-e890d607b68b">
+    <ownedAttribute xmi:id="7413c86e-1cfb-4727-b275-a5fafde797fa" name="expression" visibility="public" type="b32c4dd3-88a2-4418-b414-e75ceb0bb432" isDerived="true" subsettedProperty="c559f3c7-96bd-45da-a2c7-1770af2759aa" association="1b51ec71-10a2-4699-bfdc-e890d607b68b">
       <ownedComment xmi:id="c77e75fd-e18d-433d-bf92-25a38f1d12b9" annotatedElement="7413c86e-1cfb-4727-b275-a5fafde797fa">
         <body>&lt;p>The Expressions that are steps in the calculation of the &lt;code>result&lt;/code> of this Function.&lt;/p>
 </body>

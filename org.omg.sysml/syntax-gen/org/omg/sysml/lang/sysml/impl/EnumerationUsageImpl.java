@@ -28,8 +28,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.UniqueEList;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.uml2.common.util.UnionEObjectEList;
 import org.omg.sysml.lang.sysml.DataType;
 import org.omg.sysml.lang.sysml.EnumerationDefinition;
@@ -51,6 +50,16 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * @generated
  */
 public class EnumerationUsageImpl extends AttributeUsageImpl implements EnumerationUsage {
+	/**
+	 * The cached setting delegate for the '{@link #getEnumerationDefinition() <em>Enumeration Definition</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getEnumerationDefinition()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate ENUMERATION_DEFINITION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.ENUMERATION_USAGE__ENUMERATION_DEFINITION).getSettingDelegate();
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -77,33 +86,26 @@ public class EnumerationUsageImpl extends AttributeUsageImpl implements Enumerat
 	 */
 	@Override
 	public EnumerationDefinition getEnumerationDefinition() {
-		EnumerationDefinition enumerationDefinition = basicGetEnumerationDefinition();
-		return enumerationDefinition != null && enumerationDefinition.eIsProxy() ? (EnumerationDefinition)eResolveProxy((InternalEObject)enumerationDefinition) : enumerationDefinition;
+		return (EnumerationDefinition)ENUMERATION_DEFINITION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public EnumerationDefinition basicGetEnumerationDefinition() {
-		EList<DataType> definitions = super.getAttributeDefinition();
-		if (definitions.isEmpty()) {
-			return null;
-		} else {
-			DataType definition = definitions.get(0);
-			return definition instanceof EnumerationDefinition? (EnumerationDefinition)definition: null;
-		}
+		return (EnumerationDefinition)ENUMERATION_DEFINITION__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setEnumerationDefinition(EnumerationDefinition newEnumerationDefinition) {
-		throw new UnsupportedOperationException();
+		ENUMERATION_DEFINITION__ESETTING_DELEGATE.dynamicSet(this, null, 0, newEnumerationDefinition);
 	}
 
 	/**

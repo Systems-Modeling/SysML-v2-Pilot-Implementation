@@ -29,8 +29,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.UniqueEList;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.uml2.common.util.UnionEObjectEList;
 
 import org.omg.sysml.lang.sysml.Behavior;
@@ -60,15 +59,32 @@ import org.omg.sysml.util.TypeUtil;
 public class CalculationUsageImpl extends ActionUsageImpl implements CalculationUsage {
 
 	/**
-	 * The default value of the '{@link #isModelLevelEvaluable() <em>Is Model Level Evaluable</em>}' attribute.
+	 * The cached setting delegate for the '{@link #getResult() <em>Result</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getResult()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate RESULT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.EXPRESSION__RESULT).getSettingDelegate();
+	/**
+	 * The cached setting delegate for the '{@link #isModelLevelEvaluable() <em>Is Model Level Evaluable</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #isModelLevelEvaluable()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final boolean IS_MODEL_LEVEL_EVALUABLE_EDEFAULT = false;
-	
+	protected EStructuralFeature.Internal.SettingDelegate IS_MODEL_LEVEL_EVALUABLE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.EXPRESSION__IS_MODEL_LEVEL_EVALUABLE).getSettingDelegate();
+	/**
+	 * The cached setting delegate for the '{@link #getCalculationDefinition() <em>Calculation Definition</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCalculationDefinition()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate CALCULATION_DEFINITION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.CALCULATION_USAGE__CALCULATION_DEFINITION).getSettingDelegate();
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -95,8 +111,7 @@ public class CalculationUsageImpl extends ActionUsageImpl implements Calculation
 	 */
 	@Override
 	public Feature getResult() {
-		Feature result = basicGetResult();
-		return result != null && result.eIsProxy() ? (Feature)eResolveProxy((InternalEObject)result) : result;
+		return (Feature)RESULT__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
@@ -145,29 +160,26 @@ public class CalculationUsageImpl extends ActionUsageImpl implements Calculation
 	 */
 	@Override
 	public Function getCalculationDefinition() {
-		Function calculationDefinition = basicGetCalculationDefinition();
-		return calculationDefinition != null && calculationDefinition.eIsProxy() ? (Function)eResolveProxy((InternalEObject)calculationDefinition) : calculationDefinition;
+		return (Function)CALCULATION_DEFINITION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Function basicGetCalculationDefinition() {
-		return (Function)super.getActionDefinition().stream().
-				filter(Function.class::isInstance).
-				findFirst().orElse(null);
+		return (Function)CALCULATION_DEFINITION__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setCalculationDefinition(Function newCalculationDefinition) {
-		throw new UnsupportedOperationException();
+		CALCULATION_DEFINITION__ESETTING_DELEGATE.dynamicSet(this, null, 0, newCalculationDefinition);
 	}
 
 	/**
@@ -329,7 +341,7 @@ public class CalculationUsageImpl extends ActionUsageImpl implements Calculation
 				setResult((Feature)null);
 				return;
 			case SysMLPackage.CALCULATION_USAGE__IS_MODEL_LEVEL_EVALUABLE:
-				setIsModelLevelEvaluable(IS_MODEL_LEVEL_EVALUABLE_EDEFAULT);
+				IS_MODEL_LEVEL_EVALUABLE__ESETTING_DELEGATE.dynamicUnset(this, null, 0);
 				return;
 			case SysMLPackage.CALCULATION_USAGE__CALCULATION_DEFINITION:
 				setCalculationDefinition((Function)null);
@@ -351,9 +363,9 @@ public class CalculationUsageImpl extends ActionUsageImpl implements Calculation
 			case SysMLPackage.CALCULATION_USAGE__FUNCTION:
 				return isSetFunction();
 			case SysMLPackage.CALCULATION_USAGE__RESULT:
-				return basicGetResult() != null;
+				return RESULT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.CALCULATION_USAGE__IS_MODEL_LEVEL_EVALUABLE:
-				return isModelLevelEvaluable() != IS_MODEL_LEVEL_EVALUABLE_EDEFAULT;
+				return IS_MODEL_LEVEL_EVALUABLE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.CALCULATION_USAGE__ACTION_DEFINITION:
 				return isSetActionDefinition();
 			case SysMLPackage.CALCULATION_USAGE__CALCULATION_DEFINITION:

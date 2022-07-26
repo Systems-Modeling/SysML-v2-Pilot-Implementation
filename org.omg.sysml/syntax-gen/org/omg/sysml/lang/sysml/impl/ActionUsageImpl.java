@@ -25,6 +25,7 @@ package org.omg.sysml.lang.sysml.impl;
 import java.util.Collection;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.Feature;
@@ -50,6 +51,25 @@ import org.omg.sysml.util.TypeUtil;
  */
 public class ActionUsageImpl extends OccurrenceUsageImpl implements ActionUsage {
 	
+	/**
+	 * The cached setting delegate for the '{@link #getParameter() <em>Parameter</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getParameter()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate PARAMETER__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.STEP__PARAMETER).getSettingDelegate();
+	/**
+	 * The cached setting delegate for the '{@link #getActionDefinition() <em>Action Definition</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getActionDefinition()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate ACTION_DEFINITION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.ACTION_USAGE__ACTION_DEFINITION).getSettingDelegate();
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -93,16 +113,12 @@ public class ActionUsageImpl extends OccurrenceUsageImpl implements ActionUsage 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<Behavior> getActionDefinition() {
-		EList<Behavior> behaviors = new NonNotifyingEObjectEList<>(Behavior.class, this, SysMLPackage.ACTION_USAGE__ACTION_DEFINITION);
-		super.getOccurrenceDefinition().stream().
-			filter(type->type instanceof Behavior).
-			map(type->(Behavior)type).
-			forEachOrdered(behaviors::add);
-		return behaviors;
+		return (EList<Behavior>)ACTION_DEFINITION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**

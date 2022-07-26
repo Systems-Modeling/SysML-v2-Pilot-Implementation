@@ -28,7 +28,6 @@ import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.AnalysisCaseDefinition;
 import org.omg.sysml.lang.sysml.AnalysisCaseUsage;
@@ -62,6 +61,16 @@ public class AnalysisCaseUsageImpl extends CaseUsageImpl implements AnalysisCase
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate ANALYSIS_ACTION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.ANALYSIS_CASE_USAGE__ANALYSIS_ACTION).getSettingDelegate();
+
+	/**
+	 * The cached setting delegate for the '{@link #getAnalysisCaseDefinition() <em>Analysis Case Definition</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAnalysisCaseDefinition()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate ANALYSIS_CASE_DEFINITION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.ANALYSIS_CASE_USAGE__ANALYSIS_CASE_DEFINITION).getSettingDelegate();
 
 	/**
 	 * The cached setting delegate for the '{@link #getResultExpression() <em>Result Expression</em>}' reference.
@@ -139,28 +148,26 @@ public class AnalysisCaseUsageImpl extends CaseUsageImpl implements AnalysisCase
 	 */
 	@Override
 	public AnalysisCaseDefinition getAnalysisCaseDefinition() {
-		AnalysisCaseDefinition analysisCaseDefinition = basicGetAnalysisCaseDefinition();
-		return analysisCaseDefinition != null && analysisCaseDefinition.eIsProxy() ? (AnalysisCaseDefinition)eResolveProxy((InternalEObject)analysisCaseDefinition) : analysisCaseDefinition;
+		return (AnalysisCaseDefinition)ANALYSIS_CASE_DEFINITION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public AnalysisCaseDefinition basicGetAnalysisCaseDefinition() {
-		CaseDefinition caseDefinition = super.basicGetCaseDefinition();
-		return caseDefinition instanceof AnalysisCaseDefinition? (AnalysisCaseDefinition)caseDefinition: null;
+		return (AnalysisCaseDefinition)ANALYSIS_CASE_DEFINITION__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setAnalysisCaseDefinition(AnalysisCaseDefinition newAnalysisCaseDefinition) {
-		throw new UnsupportedOperationException();
+		ANALYSIS_CASE_DEFINITION__ESETTING_DELEGATE.dynamicSet(this, null, 0, newAnalysisCaseDefinition);
 	}
 
 	/**

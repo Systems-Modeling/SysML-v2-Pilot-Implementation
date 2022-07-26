@@ -26,8 +26,6 @@ import java.util.Collection;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.InternalEObject;
-import org.omg.sysml.lang.sysml.CaseDefinition;
 import org.omg.sysml.lang.sysml.RequirementUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.VerificationCaseDefinition;
@@ -49,6 +47,15 @@ import org.omg.sysml.lang.sysml.VerificationCaseUsage;
  */
 public class VerificationCaseUsageImpl extends CaseUsageImpl implements VerificationCaseUsage {
 	
+	/**
+	 * The cached setting delegate for the '{@link #getVerificationCaseDefinition() <em>Verification Case Definition</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getVerificationCaseDefinition()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate VERIFICATION_CASE_DEFINITION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.VERIFICATION_CASE_USAGE__VERIFICATION_CASE_DEFINITION).getSettingDelegate();
 	/**
 	 * The cached setting delegate for the '{@link #getVerifiedRequirement() <em>Verified Requirement</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -85,28 +92,26 @@ public class VerificationCaseUsageImpl extends CaseUsageImpl implements Verifica
 	 */
 	@Override
 	public VerificationCaseDefinition getVerificationCaseDefinition() {
-		VerificationCaseDefinition verificationCaseDefinition = basicGetVerificationCaseDefinition();
-		return verificationCaseDefinition != null && verificationCaseDefinition.eIsProxy() ? (VerificationCaseDefinition)eResolveProxy((InternalEObject)verificationCaseDefinition) : verificationCaseDefinition;
+		return (VerificationCaseDefinition)VERIFICATION_CASE_DEFINITION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public VerificationCaseDefinition basicGetVerificationCaseDefinition() {
-		CaseDefinition definition = super.basicGetCaseDefinition();
-		return definition instanceof VerificationCaseDefinition? (VerificationCaseDefinition)definition: null;
+		return (VerificationCaseDefinition)VERIFICATION_CASE_DEFINITION__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setVerificationCaseDefinition(VerificationCaseDefinition newVerificationCaseDefinition) {
-		throw new UnsupportedOperationException();
+		VERIFICATION_CASE_DEFINITION__ESETTING_DELEGATE.dynamicSet(this, null, 0, newVerificationCaseDefinition);
 	}
 
 	/**
@@ -185,7 +190,7 @@ public class VerificationCaseUsageImpl extends CaseUsageImpl implements Verifica
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case SysMLPackage.VERIFICATION_CASE_USAGE__VERIFICATION_CASE_DEFINITION:
-				return basicGetVerificationCaseDefinition() != null;
+				return VERIFICATION_CASE_DEFINITION__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.VERIFICATION_CASE_USAGE__VERIFIED_REQUIREMENT:
 				return VERIFIED_REQUIREMENT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 		}

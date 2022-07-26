@@ -31,7 +31,6 @@ import org.eclipse.emf.common.util.UniqueEList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.uml2.common.util.UnionEObjectEList;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.ElementFilterMembership;
@@ -70,6 +69,16 @@ import org.omg.sysml.util.TypeUtil;
  */
 public class ViewUsageImpl extends PartUsageImpl implements ViewUsage {
 	
+	/**
+	 * The cached setting delegate for the '{@link #getViewDefinition() <em>View Definition</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getViewDefinition()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate VIEW_DEFINITION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.VIEW_USAGE__VIEW_DEFINITION).getSettingDelegate();
+
 	/**
 	 * The cached setting delegate for the '{@link #getSatisfiedViewpoint() <em>Satisfied Viewpoint</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -126,29 +135,26 @@ public class ViewUsageImpl extends PartUsageImpl implements ViewUsage {
 	 */
 	@Override
 	public ViewDefinition getViewDefinition() {
-		ViewDefinition viewDefinition = basicGetViewDefinition();
-		return viewDefinition != null && viewDefinition.eIsProxy() ? (ViewDefinition)eResolveProxy((InternalEObject)viewDefinition) : viewDefinition;
+		return (ViewDefinition)VIEW_DEFINITION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public ViewDefinition basicGetViewDefinition() {
-		return (ViewDefinition) super.getPartDefinition().stream().
-				filter(ViewDefinition.class::isInstance).
-				findFirst().orElse(null);
+		return (ViewDefinition)VIEW_DEFINITION__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setViewDefinition(ViewDefinition newViewDefinition) {
-		throw new UnsupportedOperationException();
+		VIEW_DEFINITION__ESETTING_DELEGATE.dynamicSet(this, null, 0, newViewDefinition);
 	}
 
 	/**

@@ -25,10 +25,10 @@ package org.omg.sysml.lang.sysml.impl;
 import java.util.Collection;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.omg.sysml.lang.sysml.DataType;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.util.NonNotifyingEObjectEList;
 import org.omg.sysml.lang.sysml.AttributeUsage;
 
 /**
@@ -46,6 +46,16 @@ import org.omg.sysml.lang.sysml.AttributeUsage;
  */
 public class AttributeUsageImpl extends UsageImpl implements AttributeUsage {
 	
+	/**
+	 * The cached setting delegate for the '{@link #getAttributeDefinition() <em>Attribute Definition</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAttributeDefinition()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate ATTRIBUTE_DEFINITION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.ATTRIBUTE_USAGE__ATTRIBUTE_DEFINITION).getSettingDelegate();
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -68,16 +78,12 @@ public class AttributeUsageImpl extends UsageImpl implements AttributeUsage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<DataType> getAttributeDefinition() {
-		EList<DataType> dataTypes = new NonNotifyingEObjectEList<>(DataType.class, this, SysMLPackage.ATTRIBUTE_USAGE__ATTRIBUTE_DEFINITION);
-		super.getType().stream().
-			filter(type->type instanceof DataType).
-			map(type->(DataType)type).
-			forEachOrdered(dataTypes::add);
-		return dataTypes;
+		return (EList<DataType>)ATTRIBUTE_DEFINITION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**

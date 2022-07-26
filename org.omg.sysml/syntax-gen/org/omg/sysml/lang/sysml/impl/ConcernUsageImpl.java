@@ -3,8 +3,7 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.omg.sysml.lang.sysml.ConcernDefinition;
 import org.omg.sysml.lang.sysml.ConcernUsage;
 import org.omg.sysml.lang.sysml.RequirementDefinition;
@@ -24,6 +23,16 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * @generated
  */
 public class ConcernUsageImpl extends RequirementUsageImpl implements ConcernUsage {
+	/**
+	 * The cached setting delegate for the '{@link #getConcernDefinition() <em>Concern Definition</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getConcernDefinition()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate CONCERN_DEFINITION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.CONCERN_USAGE__CONCERN_DEFINITION).getSettingDelegate();
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -50,28 +59,26 @@ public class ConcernUsageImpl extends RequirementUsageImpl implements ConcernUsa
 	 */
 	@Override
 	public ConcernDefinition getConcernDefinition() {
-		ConcernDefinition concernDefinition = basicGetConcernDefinition();
-		return concernDefinition != null && concernDefinition.eIsProxy() ? (ConcernDefinition)eResolveProxy((InternalEObject)concernDefinition) : concernDefinition;
+		return (ConcernDefinition)CONCERN_DEFINITION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public ConcernDefinition basicGetConcernDefinition() {
-		RequirementDefinition definition = super.basicGetRequirementDefinition();
-		return definition instanceof ConcernDefinition? (ConcernDefinition)definition: null;
+		return (ConcernDefinition)CONCERN_DEFINITION__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setConcernDefinition(ConcernDefinition newConcernDefinition) {
-		throw new UnsupportedOperationException();
+		CONCERN_DEFINITION__ESETTING_DELEGATE.dynamicSet(this, null, 0, newConcernDefinition);
 	}
 
 	/**

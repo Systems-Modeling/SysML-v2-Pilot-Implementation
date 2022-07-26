@@ -29,7 +29,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.BasicInternalEList;
 import org.eclipse.uml2.common.util.UnionEObjectEList;
 import org.omg.sysml.lang.sysml.Behavior;
@@ -60,6 +59,15 @@ import org.omg.sysml.util.TypeUtil;
  */
 public class ExpressionImpl extends StepImpl implements Expression {
 	
+	/**
+	 * The cached setting delegate for the '{@link #getFunction() <em>Function</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getFunction()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate FUNCTION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.EXPRESSION__FUNCTION).getSettingDelegate();
 	/**
 	 * The cached setting delegate for the '{@link #getResult() <em>Result</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -104,29 +112,26 @@ public class ExpressionImpl extends StepImpl implements Expression {
 	 */
 	@Override
 	public Function getFunction() {
-		Function function = basicGetFunction();
-		return function != null && function.eIsProxy() ? (Function)eResolveProxy((InternalEObject)function) : function;
+		return (Function)FUNCTION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Function basicGetFunction() {
-		return (Function)super.getBehavior().stream().
-				filter(Function.class::isInstance).
-				findFirst().orElse(null);
+		return (Function)FUNCTION__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setFunction(Function newFunction) {
-		throw new UnsupportedOperationException();
+		FUNCTION__ESETTING_DELEGATE.dynamicSet(this, null, 0, newFunction);
 	}
 
 	/**

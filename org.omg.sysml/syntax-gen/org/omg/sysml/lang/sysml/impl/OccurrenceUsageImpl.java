@@ -15,7 +15,6 @@ import org.omg.sysml.lang.sysml.OccurrenceUsage;
 import org.omg.sysml.lang.sysml.PortionKind;
 import org.omg.sysml.lang.sysml.PortioningFeature;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.util.NonNotifyingEObjectEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -35,6 +34,16 @@ import org.omg.sysml.util.NonNotifyingEObjectEList;
  * @generated
  */
 public class OccurrenceUsageImpl extends UsageImpl implements OccurrenceUsage {
+	/**
+	 * The cached setting delegate for the '{@link #getOccurrenceDefinition() <em>Occurrence Definition</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOccurrenceDefinition()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate OCCURRENCE_DEFINITION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.OCCURRENCE_USAGE__OCCURRENCE_DEFINITION).getSettingDelegate();
+
 	/**
 	 * The cached setting delegate for the '{@link #getPortioningFeature() <em>Portioning Feature</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -117,17 +126,12 @@ public class OccurrenceUsageImpl extends UsageImpl implements OccurrenceUsage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<org.omg.sysml.lang.sysml.Class> getOccurrenceDefinition() {
-		EList<org.omg.sysml.lang.sysml.Class> definitions =
-				new NonNotifyingEObjectEList<>(org.omg.sysml.lang.sysml.Class.class, this, SysMLPackage.OCCURRENCE_USAGE__OCCURRENCE_DEFINITION);
-		super.getDefinition().stream().
-			filter(org.omg.sysml.lang.sysml.Class.class::isInstance).
-			map(org.omg.sysml.lang.sysml.Class.class::cast).
-			forEachOrdered(definitions::add);
-		return definitions;
+		return (EList<org.omg.sysml.lang.sysml.Class>)OCCURRENCE_DEFINITION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**

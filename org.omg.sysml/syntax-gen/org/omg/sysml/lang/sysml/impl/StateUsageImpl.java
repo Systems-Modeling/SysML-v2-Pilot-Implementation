@@ -33,7 +33,6 @@ import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.StateUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.util.NonNotifyingEObjectEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -54,6 +53,15 @@ import org.omg.sysml.util.NonNotifyingEObjectEList;
  */
 public class StateUsageImpl extends ActionUsageImpl implements StateUsage {
 
+	/**
+	 * The cached setting delegate for the '{@link #getStateDefinition() <em>State Definition</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getStateDefinition()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate STATE_DEFINITION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.STATE_USAGE__STATE_DEFINITION).getSettingDelegate();
 	/**
 	 * The cached setting delegate for the '{@link #getEntryAction() <em>Entry Action</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -122,16 +130,12 @@ public class StateUsageImpl extends ActionUsageImpl implements StateUsage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<Behavior> getStateDefinition() {
-		EList<Behavior> behaviors = new NonNotifyingEObjectEList<>(Behavior.class, this, SysMLPackage.STATE_USAGE__STATE_DEFINITION);
-		super.getType().stream().
-			filter(type->type instanceof Behavior).
-			map(type->(Behavior)type).
-			forEachOrdered(behaviors::add);
-		return behaviors;
+		return (EList<Behavior>)STATE_DEFINITION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**

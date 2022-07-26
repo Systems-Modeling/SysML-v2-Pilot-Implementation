@@ -347,6 +347,7 @@
         <details key="documentation" value="&lt;p>The Classifiers that are the types of this Usage. Nominally, these are Definitions, but other kinds of Kernel Classifiers are also allowed, to permit use of Classifiers from the Kernel Library.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="redefines" references="#//Feature/type"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="nestedUseCase" upperBound="-1"
         eType="#//UseCaseUsage" volatile="true" transient="true" derived="true">
@@ -2029,6 +2030,7 @@
         <details key="documentation" value="&lt;p>The &lt;code>types&lt;/code> of this PortUsage, which must all be PortDefinitions.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="redefines" references="#//Feature/type"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="OccurrenceUsage" eSuperTypes="#//Usage">
@@ -2044,6 +2046,7 @@
         <details key="documentation" value="&lt;p>The Classes that are the types of this OccurrenceUsage. Nominally, these are OccurrenceDefinitions, but other kinds of Kernel Classes are also allowed, to permit use of Classes from the Kernel Library.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="redefines" references="#//Usage/definition"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="portioningFeature" ordered="false"
         eType="#//PortioningFeature" volatile="true" transient="true" derived="true">
@@ -2217,6 +2220,7 @@
         <details key="documentation" value="&lt;p>The Behaviors that are the types of this StateUsage. Nominally, these would be StateDefinitions, but non-Activity Behaviors are also allowed, to permit use of Behaviors from the Kernel Library.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="redefines" references="#//Step/behavior"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="entryAction" ordered="false"
         eType="#//ActionUsage" volatile="true" transient="true" derived="true">
@@ -2268,6 +2272,7 @@
         <details key="documentation" value="&lt;p>The Behaviors that are the types of this ActionUsage. Nominally, these would be ActionDefinitions, but other kinds of Kernel Behaviors are also allowed, to permit use of Behaviors from the Kernel Library.&lt;/p> &#xA;"/>
       </eAnnotations>
       <eAnnotations source="redefines" references="#//Step/behavior #//OccurrenceUsage/occurrenceDefinition"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Step" eSuperTypes="#//Feature">
@@ -2283,6 +2288,7 @@
         <details key="documentation" value="&lt;p>The Behaviors that type this Step.&lt;/p>&#xA;"/>
       </eAnnotations>
       <eAnnotations source="redefines" references="#//Feature/type"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="parameter" upperBound="-1"
         eType="#//Feature" volatile="true" transient="true" derived="true">
@@ -2336,6 +2342,7 @@
         <details key="documentation" value="&lt;p>The (single) Predicate the is the type of this Constraint Usage. Nominally, this will be ConstraintDefinition, but non-ConstraintDefinition Predicates are also allowed, to permit use of Predicates from the Kernel Library.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="redefines" references="#//BooleanExpression/predicate"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BooleanExpression" eSuperTypes="#//Expression">
@@ -2351,6 +2358,7 @@
         <details key="documentation" value="&lt;p>The Predicate that types the Expression.&lt;/p>&#xA;&lt;p>The Predicate that types the Expression.&lt;/p>&#xA;"/>
       </eAnnotations>
       <eAnnotations source="redefines" references="#//Expression/function"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Expression" eSuperTypes="#//Step">
@@ -2372,6 +2380,7 @@
         <details key="documentation" value="&lt;p>The Function that types this Expression.&lt;/p>&#xA;&#xA;&lt;p>This is the Function that types the Expression.&lt;/p>&#xA;"/>
       </eAnnotations>
       <eAnnotations source="redefines" references="#//Step/behavior"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="result" ordered="false"
         lowerBound="1" eType="#//Feature" volatile="true" transient="true" derived="true">
@@ -2617,6 +2626,7 @@
         <details key="documentation" value="&lt;p>The Associations that type the Connector.&lt;/p>&#xA;"/>
       </eAnnotations>
       <eAnnotations source="redefines" references="#//Feature/type"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isDirected" ordered="false"
         lowerBound="1" eType="ecore:EDataType types.ecore#//Boolean" defaultValueLiteral="false">
@@ -2729,6 +2739,7 @@
         <details key="documentation" value="&lt;p>The RequirementDefinition that is the single type of this RequirementUsage.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="redefines" references="#//ConstraintUsage/constraintDefinition"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="reqId" ordered="false"
         eType="ecore:EDataType types.ecore#//String">
@@ -2915,6 +2926,7 @@
         <details key="documentation" value="&lt;p>The ConcernDefinition that is the single type of this ConcernUsage.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="redefines" references="#//RequirementUsage/requirementDefinition"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ConcernDefinition" eSuperTypes="#//RequirementDefinition">
@@ -2952,6 +2964,7 @@
         <details key="documentation" value="&lt;p>The Structures that are the &lt;code>definitions&lt;/code> of this ItemUsage. Nominally, these are ItemDefinitions, but other kinds of Kernel Structures are also allowed, to permit use of Structures from the Kernel Library.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="redefines" references="#//Usage/definition"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PartDefinition" eSuperTypes="#//ItemDefinition">
@@ -2977,6 +2990,7 @@
         <details key="documentation" value="&lt;p>The Function that is the type of this CalculationUsage. Nominally, this would be a CalculationDefinition, but a kernel Function is also allowed, to permit use of Functions from the Kernel Library.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="redefines" references="#//Expression/function #//ActionUsage/actionDefinition"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="VariantMembership" eSuperTypes="#//OwningMembership">
@@ -3019,6 +3033,7 @@
         <details key="documentation" value="&lt;p>The AnalysisCaseDefinition that is the type of this AnalysisCaseUsage.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="redefines" references="#//CaseUsage/caseDefinition"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="resultExpression" ordered="false"
         eType="#//Expression" volatile="true" transient="true" derived="true">
@@ -3057,6 +3072,7 @@
         <details key="documentation" value="&lt;p>The CaseDefinition that is the type of this CaseUsage.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="redefines" references="#//CalculationUsage/calculationDefinition"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="subjectParameter" ordered="false"
         lowerBound="1" eType="#//Usage" volatile="true" transient="true" derived="true">
@@ -3197,6 +3213,7 @@
         <details key="documentation" value="&lt;p>The InterfaceDefinitions that type this InterfaceUsage.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="redefines" references="#//ConnectionUsage/connectionDefinition"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ConnectionUsage" eSuperTypes="#//ConnectorAsUsage #//PartUsage">
@@ -3265,6 +3282,7 @@
         <details key="documentation" value="&lt;p>The DataTypes that are the types of this AttributeUsage. Nominally, these are AttributeDefinitions, but other kinds of kernel DataTypes are also allowed, to permit use of DataTypes from the Kernel Library.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="redefines" references="#//Feature/type"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DataType" eSuperTypes="#//Classifier">
@@ -3286,6 +3304,7 @@
         <details key="documentation" value="&lt;p>The definition of this ViewUsage.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="redefines" references="#//PartUsage/partDefinition"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="satisfiedViewpoint" upperBound="-1"
         eType="#//ViewpointUsage" volatile="true" transient="true" derived="true">
@@ -3402,6 +3421,7 @@
         <details key="documentation" value="&lt;p>The ViewpointDefinition that defines this ViewUsage.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="redefines" references="#//RequirementUsage/requirementDefinition"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="viewpointStakeholder" upperBound="-1"
         eType="#//PartUsage" volatile="true" transient="true" derived="true">
@@ -3443,6 +3463,7 @@
         <details key="documentation" value="&lt;p>The RenderingDefinition that defines this RenderingUsage.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="redefines" references="#//PartUsage/partDefinition"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="RenderingDefinition" eSuperTypes="#//PartDefinition">
@@ -3475,6 +3496,7 @@
         <details key="documentation" value="&lt;p>The VerificationCase that defines this VerificationCaseUsage.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//CaseUsage/caseDefinition"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="verifiedRequirement" upperBound="-1"
         eType="#//RequirementUsage" volatile="true" transient="true" derived="true">
@@ -3515,6 +3537,7 @@
         <details key="documentation" value="&lt;p>The single EnumerationDefinition that is the type of this EnumerationUsage.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="redefines" references="#//AttributeUsage/attributeDefinition"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="EnumerationDefinition" eSuperTypes="#//AttributeDefinition">
@@ -3552,6 +3575,7 @@
         <details key="documentation" value="&lt;p>The AllocationDefinitions that are the types of this AllocationUsage.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="redefines" references="#//ConnectionUsage/connectionDefinition"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AllocationDefinition" eSuperTypes="#//ConnectionDefinition">
@@ -3584,6 +3608,7 @@
         <details key="documentation" value="&lt;p>The UseCaseDefinition that is the type of this UseCaseUsage.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="redefines" references="#//CaseUsage/caseDefinition"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="includedUseCase" upperBound="-1"
         eType="#//UseCaseUsage" volatile="true" transient="true" derived="true">
@@ -4428,6 +4453,7 @@
         <details key="body" value="definedMetadata"/>
       </eAnnotations>
       <eAnnotations source="redefines" references="#//MetadataFeature/metaclass #//ItemUsage/itemDefinition"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MetadataFeature" eSuperTypes="#//Feature #//AnnotatingElement">
@@ -4443,6 +4469,7 @@
         <details key="documentation" value="&lt;p>The &lt;code>type&lt;/code> of this AnnotatingFeature, which must be a DataType.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="redefines" references="#//Feature/type"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Metaclass" eSuperTypes="#//Structure">

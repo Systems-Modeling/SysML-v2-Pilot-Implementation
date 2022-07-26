@@ -26,7 +26,6 @@ import java.util.Collection;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.CaseDefinition;
 import org.omg.sysml.lang.sysml.CaseUsage;
 import org.omg.sysml.lang.sysml.Function;
@@ -62,6 +61,16 @@ public class CaseUsageImpl extends CalculationUsageImpl implements CaseUsage {
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate OBJECTIVE_REQUIREMENT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.CASE_USAGE__OBJECTIVE_REQUIREMENT).getSettingDelegate();
+
+	/**
+	 * The cached setting delegate for the '{@link #getCaseDefinition() <em>Case Definition</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCaseDefinition()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate CASE_DEFINITION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.CASE_USAGE__CASE_DEFINITION).getSettingDelegate();
 
 	/**
 	 * The cached setting delegate for the '{@link #getSubjectParameter() <em>Subject Parameter</em>}' reference.
@@ -177,28 +186,26 @@ public class CaseUsageImpl extends CalculationUsageImpl implements CaseUsage {
 	 */
 	@Override
 	public CaseDefinition getCaseDefinition() {
-		CaseDefinition caseDefinition = basicGetCaseDefinition();
-		return caseDefinition != null && caseDefinition.eIsProxy() ? (CaseDefinition)eResolveProxy((InternalEObject)caseDefinition) : caseDefinition;
+		return (CaseDefinition)CASE_DEFINITION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public CaseDefinition basicGetCaseDefinition() {
-		Function calculationDefinition = super.basicGetCalculationDefinition();
-		return calculationDefinition instanceof CaseDefinition? (CaseDefinition)calculationDefinition: null;
+		return (CaseDefinition)CASE_DEFINITION__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setCaseDefinition(CaseDefinition newCaseDefinition) {
-		throw new UnsupportedOperationException();
+		CASE_DEFINITION__ESETTING_DELEGATE.dynamicSet(this, null, 0, newCaseDefinition);
 	}
 
 	/**

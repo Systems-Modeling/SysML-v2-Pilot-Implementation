@@ -63,7 +63,6 @@ import org.omg.sysml.lang.sysml.VariantMembership;
 import org.omg.sysml.lang.sysml.VerificationCaseUsage;
 import org.omg.sysml.lang.sysml.ViewUsage;
 import org.omg.sysml.lang.sysml.ViewpointUsage;
-import org.omg.sysml.util.NonNotifyingEObjectEList;
 import org.omg.sysml.util.UsageUtil;
 
 /**
@@ -402,6 +401,15 @@ public class UsageImpl extends FeatureImpl implements Usage {
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate NESTED_OCCURRENCE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.USAGE__NESTED_OCCURRENCE).getSettingDelegate();
+	/**
+	 * The cached setting delegate for the '{@link #getDefinition() <em>Definition</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDefinition()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate DEFINITION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.USAGE__DEFINITION).getSettingDelegate();
 	/**
 	 * The cached setting delegate for the '{@link #getNestedUseCase() <em>Nested Use Case</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -854,17 +862,12 @@ public class UsageImpl extends FeatureImpl implements Usage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<Classifier> getDefinition() {
-		EList<Classifier> definitions =
-				new NonNotifyingEObjectEList<>(Classifier.class, this, SysMLPackage.USAGE__DEFINITION);
-		super.getType().stream().
-			filter(Classifier.class::isInstance).
-			map(Classifier.class::cast).
-			forEachOrdered(definitions::add);
-		return definitions;
+		return (EList<Classifier>)DEFINITION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**

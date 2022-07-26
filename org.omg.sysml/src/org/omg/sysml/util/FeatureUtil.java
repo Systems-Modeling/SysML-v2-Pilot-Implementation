@@ -105,6 +105,23 @@ public class FeatureUtil {
 		return types == null? adapter.setTypes(supplier.get()): types;
 	}
 	
+	public static <T> T getFirstTypeOf(Feature feature, Class<T> kind) {
+		return FeatureUtil.getAllTypesOf(feature).stream().
+				filter(kind::isInstance).
+				map(kind::cast).
+				findFirst().
+				orElse(null);
+	}
+	
+	public static <T> EList<T> getAllTypesOf(Feature feature, Class<T> kind, int featureId) {		
+		EList<T> types = new NonNotifyingEObjectEList<T>(kind, (InternalEObject)feature, featureId);
+	    getAllTypesOf(feature).stream().
+	    	filter(kind::isInstance).
+	    	map(kind::cast).
+	    	forEachOrdered(types::add);
+		return types;
+	}
+	
 	public static EList<Type> getAllTypesOf(Feature feature) {
 		return FeatureUtil.cacheTypesOf(feature, ()->{
 			EList<Type> types = new NonNotifyingEObjectEList<Type>(Type.class, (InternalEObject)feature, SysMLPackage.FEATURE__TYPE);

@@ -30,6 +30,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.UniqueEList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
@@ -73,6 +74,25 @@ public class MetadataFeatureImpl extends FeatureImpl implements MetadataFeature 
 	protected EList<Annotation> annotation;
 
 	/**
+	 * The cached setting delegate for the '{@link #getAnnotatedElement() <em>Annotated Element</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAnnotatedElement()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate ANNOTATED_ELEMENT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.ANNOTATING_ELEMENT__ANNOTATED_ELEMENT).getSettingDelegate();
+	/**
+	 * The cached setting delegate for the '{@link #getMetaclass() <em>Metaclass</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMetaclass()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate METACLASS__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.METADATA_FEATURE__METACLASS).getSettingDelegate();
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -110,33 +130,26 @@ public class MetadataFeatureImpl extends FeatureImpl implements MetadataFeature 
 	 */
 	@Override
 	public Metaclass getMetaclass() {
-		Metaclass metaclass = basicGetMetaclass();
-		return metaclass != null && metaclass.eIsProxy() ? (Metaclass)eResolveProxy((InternalEObject)metaclass) : metaclass;
+		return (Metaclass)METACLASS__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Metaclass basicGetMetaclass() {
-		EList<Type> types = super.getType();
-		if (types.isEmpty()) {
-			return null;
-		} else {
-			Type type = types.get(0);
-			return type instanceof Metaclass? (Metaclass)type: null;
-		}
+		return (Metaclass)METACLASS__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setMetaclass(Metaclass newMetaclass) {
-		throw new UnsupportedOperationException();
+		METACLASS__ESETTING_DELEGATE.dynamicSet(this, null, 0, newMetaclass);
 	}
 
 	/**
@@ -265,7 +278,7 @@ public class MetadataFeatureImpl extends FeatureImpl implements MetadataFeature 
 			case SysMLPackage.METADATA_FEATURE__ANNOTATION:
 				return annotation != null && !annotation.isEmpty();
 			case SysMLPackage.METADATA_FEATURE__ANNOTATED_ELEMENT:
-				return !getAnnotatedElement().isEmpty();
+				return ANNOTATED_ELEMENT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.METADATA_FEATURE__TYPE:
 				return isSetType();
 			case SysMLPackage.METADATA_FEATURE__METACLASS:

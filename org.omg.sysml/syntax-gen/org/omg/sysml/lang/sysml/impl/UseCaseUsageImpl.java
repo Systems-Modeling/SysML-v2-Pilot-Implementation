@@ -8,8 +8,6 @@ import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.InternalEObject;
-
 import org.omg.sysml.lang.sysml.CaseDefinition;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.UseCaseDefinition;
@@ -30,6 +28,15 @@ import org.omg.sysml.lang.sysml.UseCaseUsage;
  * @generated
  */
 public class UseCaseUsageImpl extends CaseUsageImpl implements UseCaseUsage {
+	/**
+	 * The cached setting delegate for the '{@link #getUseCaseDefinition() <em>Use Case Definition</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getUseCaseDefinition()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate USE_CASE_DEFINITION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.USE_CASE_USAGE__USE_CASE_DEFINITION).getSettingDelegate();
 	/**
 	 * The cached setting delegate for the '{@link #getIncludedUseCase() <em>Included Use Case</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -66,28 +73,26 @@ public class UseCaseUsageImpl extends CaseUsageImpl implements UseCaseUsage {
 	 */
 	@Override
 	public UseCaseDefinition getUseCaseDefinition() {
-		UseCaseDefinition useCaseDefinition = basicGetUseCaseDefinition();
-		return useCaseDefinition != null && useCaseDefinition.eIsProxy() ? (UseCaseDefinition)eResolveProxy((InternalEObject)useCaseDefinition) : useCaseDefinition;
+		return (UseCaseDefinition)USE_CASE_DEFINITION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public UseCaseDefinition basicGetUseCaseDefinition() {
-		CaseDefinition definition = super.basicGetCaseDefinition();
-		return definition instanceof UseCaseDefinition? (UseCaseDefinition)definition: null;
+		return (UseCaseDefinition)USE_CASE_DEFINITION__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setUseCaseDefinition(UseCaseDefinition newUseCaseDefinition) {
-		throw new UnsupportedOperationException();
+		USE_CASE_DEFINITION__ESETTING_DELEGATE.dynamicSet(this, null, 0, newUseCaseDefinition);
 	}
 
 	/**

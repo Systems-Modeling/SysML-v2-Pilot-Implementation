@@ -25,11 +25,11 @@ package org.omg.sysml.lang.sysml.impl;
 import java.util.Collection;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.omg.sysml.lang.sysml.AssociationStructure;
 import org.omg.sysml.lang.sysml.InterfaceUsage;
 import org.omg.sysml.lang.sysml.InterfaceDefinition;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.util.NonNotifyingEObjectEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -46,6 +46,16 @@ import org.omg.sysml.util.NonNotifyingEObjectEList;
  */
 public class InterfaceUsageImpl extends ConnectionUsageImpl implements InterfaceUsage {
 	
+	/**
+	 * The cached setting delegate for the '{@link #getInterfaceDefinition() <em>Interface Definition</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getInterfaceDefinition()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate INTERFACE_DEFINITION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.INTERFACE_USAGE__INTERFACE_DEFINITION).getSettingDelegate();
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -89,17 +99,12 @@ public class InterfaceUsageImpl extends ConnectionUsageImpl implements Interface
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<InterfaceDefinition> getInterfaceDefinition() {
-		EList<InterfaceDefinition> interfaceDefinitions = 
-				new NonNotifyingEObjectEList<>(InterfaceDefinition.class, this, SysMLPackage.INTERFACE_USAGE__INTERFACE_DEFINITION);
-		super.getConnectionDefinition().stream().
-			filter(InterfaceDefinition.class::isInstance).
-			map(InterfaceDefinition.class::cast).
-			forEachOrdered(interfaceDefinitions::add);
-		return interfaceDefinitions;
+		return (EList<InterfaceDefinition>)INTERFACE_DEFINITION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**

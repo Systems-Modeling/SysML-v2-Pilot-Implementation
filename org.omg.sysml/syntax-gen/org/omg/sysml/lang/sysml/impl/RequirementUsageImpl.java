@@ -30,8 +30,6 @@ import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.omg.sysml.lang.sysml.PartUsage;
 import org.omg.sysml.lang.sysml.Comment;
@@ -67,6 +65,16 @@ import org.omg.sysml.util.NonNotifyingEObjectEList;
  * @generated
  */
 public class RequirementUsageImpl extends ConstraintUsageImpl implements RequirementUsage {
+
+	/**
+	 * The cached setting delegate for the '{@link #getRequirementDefinition() <em>Requirement Definition</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getRequirementDefinition()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate REQUIREMENT_DEFINITION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.REQUIREMENT_USAGE__REQUIREMENT_DEFINITION).getSettingDelegate();
 
 	/**
 	 * The default value of the '{@link #getReqId() <em>Req Id</em>}' attribute.
@@ -174,28 +182,26 @@ public class RequirementUsageImpl extends ConstraintUsageImpl implements Require
 	 */
 	@Override
 	public RequirementDefinition getRequirementDefinition() {
-		RequirementDefinition requirementDefinition = basicGetRequirementDefinition();
-		return requirementDefinition != null && requirementDefinition.eIsProxy() ? (RequirementDefinition)eResolveProxy((InternalEObject)requirementDefinition) : requirementDefinition;
+		return (RequirementDefinition)REQUIREMENT_DEFINITION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public RequirementDefinition basicGetRequirementDefinition() {
-		Predicate definition = super.basicGetConstraintDefinition();
-		return definition instanceof RequirementDefinition? (RequirementDefinition)definition: null;
+		return (RequirementDefinition)REQUIREMENT_DEFINITION__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setRequirementDefinition(RequirementDefinition newRequirementDefinition) {
-		throw new UnsupportedOperationException();
+		REQUIREMENT_DEFINITION__ESETTING_DELEGATE.dynamicSet(this, null, 0, newRequirementDefinition);
 	}
 
 	/**

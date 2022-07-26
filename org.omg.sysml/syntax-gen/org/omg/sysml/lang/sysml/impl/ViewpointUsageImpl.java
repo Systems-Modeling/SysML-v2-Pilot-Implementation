@@ -93,7 +93,7 @@ public class ViewpointUsageImpl extends RequirementUsageImpl implements Viewpoin
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public ViewpointDefinition basicGetViewpointDefinition() {
 		RequirementDefinition definition = super.basicGetRequirementDefinition();
@@ -103,7 +103,7 @@ public class ViewpointUsageImpl extends RequirementUsageImpl implements Viewpoin
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setViewpointDefinition(ViewpointDefinition newViewpointDefinition) {

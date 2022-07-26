@@ -8,11 +8,11 @@ import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.omg.sysml.lang.sysml.AllocationDefinition;
 import org.omg.sysml.lang.sysml.AllocationUsage;
 import org.omg.sysml.lang.sysml.AssociationStructure;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.util.NonNotifyingEObjectEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -28,6 +28,16 @@ import org.omg.sysml.util.NonNotifyingEObjectEList;
  * @generated
  */
 public class AllocationUsageImpl extends ConnectionUsageImpl implements AllocationUsage {
+
+	/**
+	 * The cached setting delegate for the '{@link #getAllocationDefinition() <em>Allocation Definition</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAllocationDefinition()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate ALLOCATION_DEFINITION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.ALLOCATION_USAGE__ALLOCATION_DEFINITION).getSettingDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -51,16 +61,12 @@ public class AllocationUsageImpl extends ConnectionUsageImpl implements Allocati
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<AllocationDefinition> getAllocationDefinition() {
-		EList<AllocationDefinition> definitions = new NonNotifyingEObjectEList<>(AllocationDefinition.class, this, SysMLPackage.ALLOCATION_USAGE__ALLOCATION_DEFINITION);
-		super.getConnectionDefinition().stream().
-			filter(AllocationDefinition.class::isInstance).
-			map(AllocationDefinition.class::cast).
-			forEachOrdered(definitions::add);
-		return definitions;
+		return (EList<AllocationDefinition>)ALLOCATION_DEFINITION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**

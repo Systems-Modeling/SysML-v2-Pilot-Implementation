@@ -25,11 +25,11 @@ package org.omg.sysml.lang.sysml.impl;
 import java.util.Collection;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.omg.sysml.lang.sysml.PortDefinition;
 import org.omg.sysml.lang.sysml.PortUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.util.NonNotifyingEObjectEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -46,6 +46,16 @@ import org.omg.sysml.util.NonNotifyingEObjectEList;
  */
 public class PortUsageImpl extends OccurrenceUsageImpl implements PortUsage {
 	
+	/**
+	 * The cached setting delegate for the '{@link #getPortDefinition() <em>Port Definition</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPortDefinition()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate PORT_DEFINITION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.PORT_USAGE__PORT_DEFINITION).getSettingDelegate();
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -68,32 +78,12 @@ public class PortUsageImpl extends OccurrenceUsageImpl implements PortUsage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<PortDefinition> getPortDefinition() {
-		EList<PortDefinition> portDefinitions =
-				new NonNotifyingEObjectEList<>(PortDefinition.class, this, SysMLPackage.PORT_USAGE__PORT_DEFINITION);
-		super.getType().stream().
-			filter(PortDefinition.class::isInstance).
-			map(PortDefinition.class::cast).
-			forEachOrdered(portDefinitions::add);
-		return portDefinitions;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public PortDefinition basicGetPortDefinition() {
-		EList<Type> types = super.getType();
-		if (types.isEmpty()) {
-			return null;
-		} else {
-			Type type = types.get(0);
-			return type instanceof PortDefinition? (PortDefinition)type: null;
-		}
+		return (EList<PortDefinition>)PORT_DEFINITION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**

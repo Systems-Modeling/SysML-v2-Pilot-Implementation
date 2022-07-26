@@ -23,7 +23,7 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.omg.sysml.lang.sysml.BooleanExpression;
 import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.Predicate;
@@ -43,6 +43,16 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * @generated
  */
 public class BooleanExpressionImpl extends ExpressionImpl implements BooleanExpression {
+
+	/**
+	 * The cached setting delegate for the '{@link #getPredicate() <em>Predicate</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPredicate()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate PREDICATE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.BOOLEAN_EXPRESSION__PREDICATE).getSettingDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -70,28 +80,26 @@ public class BooleanExpressionImpl extends ExpressionImpl implements BooleanExpr
 	 */
 	@Override
 	public Predicate getPredicate() {
-		Predicate predicate = basicGetPredicate();
-		return predicate != null && predicate.eIsProxy() ? (Predicate)eResolveProxy((InternalEObject)predicate) : predicate;
+		return (Predicate)PREDICATE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Predicate basicGetPredicate() {
-		Function function = super.basicGetFunction();
-		return function instanceof Predicate? (Predicate)function: null;
+		return (Predicate)PREDICATE__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setPredicate(Predicate newPredicate) {
-		throw new UnsupportedOperationException();
+		PREDICATE__ESETTING_DELEGATE.dynamicSet(this, null, 0, newPredicate);
 	}
 
 	/**

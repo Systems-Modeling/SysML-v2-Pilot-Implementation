@@ -13229,6 +13229,11 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   new String[] {
 		   });
 		addAnnotation
+		  (getUsage_Definition(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
 		  (getUsage_NestedUseCase(),
 		   source,
 		   new String[] {
@@ -13644,6 +13649,16 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   new String[] {
 		   });
 		addAnnotation
+		  (getPortUsage_PortDefinition(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getOccurrenceUsage_OccurrenceDefinition(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
 		  (getOccurrenceUsage_PortioningFeature(),
 		   source,
 		   new String[] {
@@ -13679,6 +13694,11 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   new String[] {
 		   });
 		addAnnotation
+		  (getStateUsage_StateDefinition(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
 		  (getStateUsage_EntryAction(),
 		   source,
 		   new String[] {
@@ -13694,6 +13714,16 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   new String[] {
 		   });
 		addAnnotation
+		  (getActionUsage_ActionDefinition(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getStep_Behavior(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
 		  (getStep_Parameter(),
 		   source,
 		   new String[] {
@@ -13705,6 +13735,21 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   });
 		addAnnotation
 		  (getBehavior_Parameter(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getConstraintUsage_ConstraintDefinition(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getBooleanExpression_Predicate(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getExpression_Function(),
 		   source,
 		   new String[] {
 		   });
@@ -13799,6 +13844,11 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   new String[] {
 		   });
 		addAnnotation
+		  (getConnector_Association(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
 		  (getConnector_ConnectorEnd(),
 		   source,
 		   new String[] {
@@ -13820,6 +13870,11 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   });
 		addAnnotation
 		  (getAssociation_TargetType(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getRequirementUsage_RequirementDefinition(),
 		   source,
 		   new String[] {
 		   });
@@ -13884,12 +13939,32 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   new String[] {
 		   });
 		addAnnotation
+		  (getConcernUsage_ConcernDefinition(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
 		  (getPartUsage_PartDefinition(),
 		   source,
 		   new String[] {
 		   });
 		addAnnotation
+		  (getItemUsage_ItemDefinition(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getCalculationUsage_CalculationDefinition(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
 		  (getAnalysisCaseUsage_AnalysisAction(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getAnalysisCaseUsage_AnalysisCaseDefinition(),
 		   source,
 		   new String[] {
 		   });
@@ -13900,6 +13975,11 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   });
 		addAnnotation
 		  (getCaseUsage_ObjectiveRequirement(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getCaseUsage_CaseDefinition(),
 		   source,
 		   new String[] {
 		   });
@@ -13949,7 +14029,22 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   new String[] {
 		   });
 		addAnnotation
+		  (getInterfaceUsage_InterfaceDefinition(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
 		  (getConnectionUsage_ConnectionDefinition(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getAttributeUsage_AttributeDefinition(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getViewUsage_ViewDefinition(),
 		   source,
 		   new String[] {
 		   });
@@ -13989,6 +14084,11 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   new String[] {
 		   });
 		addAnnotation
+		  (getViewpointUsage_ViewpointDefinition(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
 		  (getViewpointUsage_ViewpointStakeholder(),
 		   source,
 		   new String[] {
@@ -13999,7 +14099,17 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   new String[] {
 		   });
 		addAnnotation
+		  (getRenderingUsage_RenderingDefinition(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
 		  (getRenderingDefinition_Rendering(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getVerificationCaseUsage_VerificationCaseDefinition(),
 		   source,
 		   new String[] {
 		   });
@@ -14009,12 +14119,27 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   new String[] {
 		   });
 		addAnnotation
+		  (getEnumerationUsage_EnumerationDefinition(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
 		  (getEnumerationDefinition_EnumeratedValue(),
 		   source,
 		   new String[] {
 		   });
 		addAnnotation
+		  (getAllocationUsage_AllocationDefinition(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
 		  (getAllocationDefinition_Allocation(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getUseCaseUsage_UseCaseDefinition(),
 		   source,
 		   new String[] {
 		   });
@@ -14175,6 +14300,16 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   });
 		addAnnotation
 		  (getRequirementVerificationMembership_VerifiedRequirement(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getMetadataUsage_MetadataDefinition(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getMetadataFeature_Metaclass(),
 		   source,
 		   new String[] {
 		   });

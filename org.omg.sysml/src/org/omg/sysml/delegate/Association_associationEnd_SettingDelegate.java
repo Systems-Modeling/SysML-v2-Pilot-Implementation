@@ -1,6 +1,5 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2022 Siemens AG
  * Copyright (c) 2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
@@ -27,28 +26,16 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.util.NonNotifyingEObjectEList;
 
-public class Type_endFeature_SettingDelegate extends BasicDerivedListSettingDelegate  {
+public class Association_associationEnd_SettingDelegate extends Type_endFeature_SettingDelegate {
 
-	public Type_endFeature_SettingDelegate(EStructuralFeature eStructuralFeature) {
+	public Association_associationEnd_SettingDelegate(EStructuralFeature eStructuralFeature) {
 		super(eStructuralFeature);
 	}
 
 	@Override
 	protected EList<? extends Feature> basicGet(InternalEObject owner) {
-		return basicGet(owner, Feature.class, SysMLPackage.TYPE__END_FEATURE);
-	}
-
-	protected <T> EList<T> basicGet(InternalEObject owner, Class<T> kind, int featureId) {
-		EList<T> endFeatures = new NonNotifyingEObjectEList<>(kind, owner, featureId);
-		((Type)owner).getFeature().stream().
-			filter(Feature::isEnd).
-			filter(kind::isInstance).
-			map(kind::cast).
-			forEachOrdered(endFeatures::add);
-		return endFeatures;
+		return basicGet(owner, Feature.class, SysMLPackage.ASSOCIATION__ASSOCIATION_END);
 	}
 
 }

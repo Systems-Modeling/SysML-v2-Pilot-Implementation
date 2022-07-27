@@ -27,11 +27,11 @@ import java.util.Collection;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.omg.sysml.lang.sysml.InterfaceDefinition;
 import org.omg.sysml.lang.sysml.PortUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Usage;
-import org.omg.sysml.util.NonNotifyingEObjectEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -47,6 +47,16 @@ import org.omg.sysml.util.NonNotifyingEObjectEList;
  * @generated
  */
 public class InterfaceDefinitionImpl extends ConnectionDefinitionImpl implements InterfaceDefinition {
+
+	/**
+	 * The cached setting delegate for the '{@link #getInterfaceEnd() <em>Interface End</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getInterfaceEnd()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate INTERFACE_END__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.INTERFACE_DEFINITION__INTERFACE_END).getSettingDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -70,15 +80,12 @@ public class InterfaceDefinitionImpl extends ConnectionDefinitionImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<PortUsage> getInterfaceEnd() {
-		EList<PortUsage> ends = new NonNotifyingEObjectEList<>(PortUsage.class, this, SysMLPackage.INTERFACE_DEFINITION__INTERFACE_END);
-		super.getAssociationEnd().stream().
-			filter(end->end instanceof PortUsage).
-			forEachOrdered(end->ends.add((PortUsage)end));
-		return ends;
+		return (EList<PortUsage>)INTERFACE_END__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**

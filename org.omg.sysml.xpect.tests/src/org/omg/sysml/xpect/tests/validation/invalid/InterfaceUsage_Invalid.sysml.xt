@@ -44,8 +44,10 @@ package 'Interface Example' {
 	}
 	interface def FuelInterface3 {
 		end supplierPort : FuelOutPort;
-		//XPECT errors --> "An interface definition end must be a port." at "end part consumerPort : Fuel;"
-		end part consumerPort : Fuel;
+		end consumerPort : FuelInPort;
+		
+		//XPECT errors --> "An interface definition end must be a port." at "end part notPort : Fuel;"
+		end part notPort : Fuel;
 	}
 	
 	part def Vehicle;

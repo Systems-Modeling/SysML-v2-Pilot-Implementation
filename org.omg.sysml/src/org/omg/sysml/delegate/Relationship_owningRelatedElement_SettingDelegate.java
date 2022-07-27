@@ -21,9 +21,9 @@
 
 package org.omg.sysml.delegate;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
@@ -37,10 +37,10 @@ public abstract class Relationship_owningRelatedElement_SettingDelegate extends 
 		super(eStructuralFeature);
 	}
 
-	@Override
-	protected Element basicGet(InternalEObject relationship) {
+	protected <T> T basicGet(InternalEObject relationship, Class<T> kind) {
 		if (relationship.eContainerFeatureID() != SysMLPackage.RELATIONSHIP__OWNING_RELATED_ELEMENT) return null;
-		return (Element)relationship.eInternalContainer();
+		EObject container = relationship.eContainer();
+		return kind.isInstance(container)? kind.cast(container): null;
 	}
 
 	@Override

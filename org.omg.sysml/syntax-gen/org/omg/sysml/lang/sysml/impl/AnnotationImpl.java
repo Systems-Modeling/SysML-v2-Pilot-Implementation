@@ -29,6 +29,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.UniqueEList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -69,6 +70,16 @@ public class AnnotationImpl extends RelationshipImpl implements Annotation {
 	 * @ordered
 	 */
 	protected Element annotatedElement;
+
+	/**
+	 * The cached setting delegate for the '{@link #getOwningAnnotatedElement() <em>Owning Annotated Element</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwningAnnotatedElement()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate OWNING_ANNOTATED_ELEMENT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.ANNOTATION__OWNING_ANNOTATED_ELEMENT).getSettingDelegate();
 
 	/**
 	 * The cached value of the '{@link #getAnnotatingElement() <em>Annotating Element</em>}' reference.
@@ -288,28 +299,26 @@ public class AnnotationImpl extends RelationshipImpl implements Annotation {
 	 */
 	@Override
 	public Element getOwningAnnotatedElement() {
-		Element owningAnnotatedElement = basicGetOwningAnnotatedElement();
-		return owningAnnotatedElement != null && owningAnnotatedElement.eIsProxy() ? (Element)eResolveProxy((InternalEObject)owningAnnotatedElement) : owningAnnotatedElement;
+		return (Element)OWNING_ANNOTATED_ELEMENT__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Element basicGetOwningAnnotatedElement() {
-		Element owningRelatedElement = super.getOwningRelatedElement();
-		return owningRelatedElement instanceof AnnotatingElement? null: owningRelatedElement;
+		return (Element)OWNING_ANNOTATED_ELEMENT__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setOwningAnnotatedElement(Element newOwningAnnotatedElement) {
-		super.basicSetOwningRelatedElement(newOwningAnnotatedElement, null);
+		OWNING_ANNOTATED_ELEMENT__ESETTING_DELEGATE.dynamicSet(this, null, 0, newOwningAnnotatedElement);
 	}
 
 	/**
@@ -475,7 +484,7 @@ public class AnnotationImpl extends RelationshipImpl implements Annotation {
 			case SysMLPackage.ANNOTATION__SOURCE:
 				return isSetSource();
 			case SysMLPackage.ANNOTATION__OWNING_ANNOTATED_ELEMENT:
-				return basicGetOwningAnnotatedElement() != null;
+				return OWNING_ANNOTATED_ELEMENT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.ANNOTATION__ANNOTATING_ELEMENT:
 				return isSetAnnotatingElement();
 		}

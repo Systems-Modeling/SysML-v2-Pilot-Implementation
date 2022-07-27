@@ -9,6 +9,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.UniqueEList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -58,6 +59,16 @@ public class FeatureInvertingImpl extends RelationshipImpl implements FeatureInv
 	 * @ordered
 	 */
 	protected Feature invertingFeature;
+
+	/**
+	 * The cached setting delegate for the '{@link #getOwningFeature() <em>Owning Feature</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwningFeature()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate OWNING_FEATURE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.FEATURE_INVERTING__OWNING_FEATURE).getSettingDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -258,28 +269,26 @@ public class FeatureInvertingImpl extends RelationshipImpl implements FeatureInv
 	 */
 	@Override
 	public Feature getOwningFeature() {
-		Feature owningFeature = basicGetOwningFeature();
-		return owningFeature != null && owningFeature.eIsProxy() ? (Feature)eResolveProxy((InternalEObject)owningFeature) : owningFeature;
+		return (Feature)OWNING_FEATURE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated MPT
+	 * @generated
 	 */
 	public Feature basicGetOwningFeature() {
-		Element element = this.getOwningRelatedElement();
-		return element instanceof Feature? (Feature)element: null;
+		return (Feature)OWNING_FEATURE__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setOwningFeature(Feature newOwningFeature) {
-		throw new UnsupportedOperationException();
+		OWNING_FEATURE__ESETTING_DELEGATE.dynamicSet(this, null, 0, newOwningFeature);
 	}
 
 	/**
@@ -408,7 +417,7 @@ public class FeatureInvertingImpl extends RelationshipImpl implements FeatureInv
 			case SysMLPackage.FEATURE_INVERTING__INVERTING_FEATURE:
 				return isSetInvertingFeature();
 			case SysMLPackage.FEATURE_INVERTING__OWNING_FEATURE:
-				return basicGetOwningFeature() != null;
+				return OWNING_FEATURE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 		}
 		return super.eIsSet(featureID);
 	}

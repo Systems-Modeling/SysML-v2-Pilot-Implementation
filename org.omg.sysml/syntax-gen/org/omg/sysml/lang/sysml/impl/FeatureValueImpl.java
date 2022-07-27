@@ -24,6 +24,7 @@ package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.omg.sysml.lang.sysml.Element;
@@ -58,6 +59,15 @@ public class FeatureValueImpl extends OwningMembershipImpl implements FeatureVal
 	 * @ordered
 	 */
 	protected Feature featureWithValue;
+	/**
+	 * The cached setting delegate for the '{@link #getValue() <em>Value</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getValue()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate VALUE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.FEATURE_VALUE__VALUE).getSettingDelegate();
 	/**
 	 * The default value of the '{@link #isInitial() <em>Is Initial</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -118,28 +128,26 @@ public class FeatureValueImpl extends OwningMembershipImpl implements FeatureVal
 	 */
 	@Override
 	public Expression getValue() {
-		Expression value = basicGetValue();
-		return value != null && value.eIsProxy() ? (Expression)eResolveProxy((InternalEObject)value) : value;
+		return (Expression)VALUE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Expression basicGetValue() {
-		Element ownedMemberElement = super.basicGetOwnedMemberElement();
-		return ownedMemberElement instanceof Expression? (Expression)ownedMemberElement: null;
+		return (Expression)VALUE__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> 
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setValue(Expression newValue) {
-		super.setOwnedMemberElement(newValue);
+		VALUE__ESETTING_DELEGATE.dynamicSet(this, null, 0, newValue);
 	}
 
 	/**

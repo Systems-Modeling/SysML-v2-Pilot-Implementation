@@ -23,7 +23,6 @@ package org.omg.sysml.delegate;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Type;
 
 public class FeatureMembership_owningType_SettingDelegate extends Membership_membershipOwningNamespace_SettingDelegate {
@@ -34,8 +33,7 @@ public class FeatureMembership_owningType_SettingDelegate extends Membership_mem
 
 	@Override
 	public Type basicGet(InternalEObject membership) {
-		Element owningNamespace = super.basicGet(membership);
-		return owningNamespace instanceof Type? (Type)owningNamespace: null;
+		return basicGet(membership, Type.class);
 	}
 
 }

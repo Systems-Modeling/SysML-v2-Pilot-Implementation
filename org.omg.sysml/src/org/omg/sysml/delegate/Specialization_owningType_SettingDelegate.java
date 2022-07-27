@@ -21,7 +21,6 @@
 
 package org.omg.sysml.delegate;
 
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.Element;
@@ -35,18 +34,20 @@ public class Specialization_owningType_SettingDelegate extends BasicDerivedObjec
 	}
 
 	@Override
-	protected EObject basicGet(InternalEObject owner) {
-		Element element = ((Specialization)owner).getOwningRelatedElement();
-		return element instanceof Type? (Type)element: null;
+	protected Type basicGet(InternalEObject owner) {
+		return basicGet(owner, Type.class);
 	}
 	
-	protected void set(InternalEObject owner, Type newOwningType)
-	{
+	protected <T> T basicGet(InternalEObject owner, Class<T> kind) {
+		Element element = ((Specialization)owner).getOwningRelatedElement();
+		return kind.isInstance(element)? kind.cast(element): null;
+	}
+	
+	protected void set(InternalEObject owner, Type newOwningType) {
 		if (((Specialization)owner).getSpecific() != newOwningType) {
 			((Specialization)owner).setSpecific(newOwningType);
 		}
 		((Specialization)owner).setOwningRelatedElement(newOwningType);
 	}
-	
 
 }

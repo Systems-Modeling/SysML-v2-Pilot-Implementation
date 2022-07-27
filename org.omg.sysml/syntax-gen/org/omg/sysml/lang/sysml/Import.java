@@ -233,6 +233,7 @@ public interface Import extends Relationship {
 	 * @model opposite="ownedImport" required="true" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="redefines"
 	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	Namespace getImportOwningNamespace();

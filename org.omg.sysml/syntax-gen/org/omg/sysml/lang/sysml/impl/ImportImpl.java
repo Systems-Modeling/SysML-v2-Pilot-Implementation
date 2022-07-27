@@ -32,6 +32,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -155,6 +156,16 @@ public class ImportImpl extends RelationshipImpl implements Import {
 	protected boolean isImportAll = IS_IMPORT_ALL_EDEFAULT;
 
 	/**
+	 * The cached setting delegate for the '{@link #getImportOwningNamespace() <em>Import Owning Namespace</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getImportOwningNamespace()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate IMPORT_OWNING_NAMESPACE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.IMPORT__IMPORT_OWNING_NAMESPACE).getSettingDelegate();
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -272,28 +283,26 @@ public class ImportImpl extends RelationshipImpl implements Import {
 	 */
 	@Override
 	public Namespace getImportOwningNamespace() {
-		Namespace importOwningNamespace = basicGetImportOwningNamespace();
-		return importOwningNamespace != null && importOwningNamespace.eIsProxy() ? (Namespace)eResolveProxy((InternalEObject)importOwningNamespace) : importOwningNamespace;
+		return (Namespace)IMPORT_OWNING_NAMESPACE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Namespace basicGetImportOwningNamespace() {
-		Element owningRelatedElement = super.getOwningRelatedElement();
-		return owningRelatedElement instanceof Namespace? (Namespace)owningRelatedElement: null;
+		return (Namespace)IMPORT_OWNING_NAMESPACE__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setImportOwningNamespace(Namespace newImportOwningNamespace) {
-		super.basicSetOwningRelatedElement(newImportOwningNamespace, null);
+		IMPORT_OWNING_NAMESPACE__ESETTING_DELEGATE.dynamicSet(this, null, 0, newImportOwningNamespace);
 	}
 
 	/**

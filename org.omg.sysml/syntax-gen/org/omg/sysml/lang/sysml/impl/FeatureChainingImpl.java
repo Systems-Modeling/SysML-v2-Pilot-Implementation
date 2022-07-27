@@ -9,6 +9,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.UniqueEList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -46,6 +47,16 @@ public class FeatureChainingImpl extends RelationshipImpl implements FeatureChai
 	 * @ordered
 	 */
 	protected Feature chainingFeature;
+
+	/**
+	 * The cached setting delegate for the '{@link #getFeatureChained() <em>Feature Chained</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getFeatureChained()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate FEATURE_CHAINED__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.FEATURE_CHAINING__FEATURE_CHAINED).getSettingDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -122,28 +133,26 @@ public class FeatureChainingImpl extends RelationshipImpl implements FeatureChai
 	 */
 	@Override
 	public Feature getFeatureChained() {
-		Feature featureChained = basicGetFeatureChained();
-		return featureChained != null && featureChained.eIsProxy() ? (Feature)eResolveProxy((InternalEObject)featureChained) : featureChained;
+		return (Feature)FEATURE_CHAINED__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Feature basicGetFeatureChained() {
-		Element owningRelatedElement = getOwningRelatedElement();
-		return owningRelatedElement instanceof Feature? (Feature)owningRelatedElement: null;
+		return (Feature)FEATURE_CHAINED__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setFeatureChained(Feature newFeatureChained) {
-		super.basicSetOwningRelatedElement(newFeatureChained, null);
+		FEATURE_CHAINED__ESETTING_DELEGATE.dynamicSet(this, null, 0, newFeatureChained);
 	}
 
 	/**

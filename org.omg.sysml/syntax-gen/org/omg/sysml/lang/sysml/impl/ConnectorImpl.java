@@ -38,8 +38,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.uml2.common.util.UnionEObjectEList;
 import org.omg.sysml.lang.sysml.Association;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.util.ConnectorUtil;
-import org.omg.sysml.util.NonNotifyingEObjectEList;
 import org.omg.sysml.lang.sysml.Connector;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
@@ -77,6 +75,15 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	 * @ordered
 	 */
 	protected EList<Element> ownedRelatedElement;
+	/**
+	 * The cached setting delegate for the '{@link #getRelatedFeature() <em>Related Feature</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getRelatedFeature()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate RELATED_FEATURE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.CONNECTOR__RELATED_FEATURE).getSettingDelegate();
 	/**
 	 * The cached setting delegate for the '{@link #getAssociation() <em>Association</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -320,22 +327,14 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
+		@Override
 	public EList<Feature> getRelatedFeature() {
-		return ConnectorUtil.getRelatedFeaturesOf(this);
+		return (EList<Feature>)RELATED_FEATURE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 	
-	/**
-	 * The array of subset feature identifiers for the '{@link #getRelatedFeature() <em>Related Feature</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getRelatedFeature()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final int[] RELATED_FEATURE_ESUBSETS = new int[] {SysMLPackage.CONNECTOR__SOURCE_FEATURE, SysMLPackage.CONNECTOR__TARGET_FEATURE};
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -401,13 +400,12 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<Feature> getConnectorEnd() {
-		EList<Feature> connectorEnds = new NonNotifyingEObjectEList<>(Feature.class, this, SysMLPackage.CONNECTOR__CONNECTOR_END);
-		getOwnedFeature().stream().filter(f->f.isEnd()).forEachOrdered(connectorEnds::add);
-		return connectorEnds;
+		return (EList<Feature>)CONNECTOR_END__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 	
 	/**
@@ -664,12 +662,12 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 				return getOwningRelatedElement() != null;
 			case SysMLPackage.CONNECTOR__OWNED_RELATED_ELEMENT:
 				return ownedRelatedElement != null && !ownedRelatedElement.isEmpty();
-			case SysMLPackage.CONNECTOR__RELATED_FEATURE:
-				return isSetRelatedFeature();
 			case SysMLPackage.CONNECTOR__TYPE:
 				return isSetType();
 			case SysMLPackage.CONNECTOR__END_FEATURE:
 				return isSetEndFeature();
+			case SysMLPackage.CONNECTOR__RELATED_FEATURE:
+				return isSetRelatedFeature();
 			case SysMLPackage.CONNECTOR__ASSOCIATION:
 				return isSetAssociation();
 			case SysMLPackage.CONNECTOR__IS_DIRECTED:

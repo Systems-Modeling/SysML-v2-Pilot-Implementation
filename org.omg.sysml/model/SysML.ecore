@@ -800,6 +800,7 @@
         <details key="documentation" value="&lt;p>The &lt;code>ownedRelationships&lt;/code> of this Namespace that are Memberships, for which the Namespace is the &lt;code>membershipOwningNamespace&lt;/code>.&lt;/p>&#xA;"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Namespace/membership #//Element/ownedRelationship"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedMember" upperBound="-1"
         eType="#//Element" volatile="true" transient="true" derived="true" eOpposite="#//Element/owningNamespace">
@@ -1212,6 +1213,7 @@
         <details key="documentation" value="&lt;p>The &lt;code>annotatedElement&lt;/code> of this Annotation, when it is also its &lt;code>owningRelatedElement&lt;/code>."/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Annotation/annotatedElement #//Relationship/ownedRelatedElement"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="annotatingElement" ordered="false"
         lowerBound="1" eType="#//AnnotatingElement" eOpposite="#//AnnotatingElement/annotation">
@@ -1300,6 +1302,7 @@
       </eAnnotations>
       <eAnnotations source="redefines" references="#//Relationship/source"/>
       <eAnnotations source="subsets" references="#//Relationship/owningRelatedElement"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Specialization" eSuperTypes="#//Relationship">
@@ -1540,6 +1543,7 @@
       </eAnnotations>
       <eAnnotations source="redefines" references="#//Specialization/owningType"/>
       <eAnnotations source="subsets" references="#//Subsetting/subsettingFeature"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FeatureTyping" eSuperTypes="#//Specialization">
@@ -1573,6 +1577,7 @@
       </eAnnotations>
       <eAnnotations source="redefines" references="#//Specialization/owningType"/>
       <eAnnotations source="subsets" references="#//FeatureTyping/typedFeature"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FeatureInverting" eSuperTypes="#//Relationship">
@@ -1605,6 +1610,7 @@
         <details key="documentation" value="&lt;p>A &lt;code>featureInverted&lt;/code> that is also an &lt;code>owningRelatedElement&lt;code>.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Relationship/owningRelatedElement #//FeatureInverting/featureInverted"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FeatureChaining" eSuperTypes="#//Relationship">
@@ -1629,6 +1635,7 @@
       </eAnnotations>
       <eAnnotations source="redefines" references="#//Relationship/source"/>
       <eAnnotations source="subsets" references="#//Relationship/owningRelatedElement"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Definition" eSuperTypes="#//Classifier">
@@ -2017,6 +2024,7 @@
         <details key="documentation" value="&lt;p>The Classfier that owns this Subclassification relationship, which must also be its &lt;code>subclassifier&lt;/code>.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="redefines" references="#//Specialization/owningType"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PortUsage" eSuperTypes="#//OccurrenceUsage">
@@ -2208,6 +2216,7 @@
         <details key="documentation" value="&lt;p>The ConjugatedPortDefinition that is conjugate to the &lt;tt>originalPortDefinition&lt;/tt>.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="redefines" references="#//Conjugation/owningType"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="StateUsage" eSuperTypes="#//ActionUsage">
@@ -2616,8 +2625,8 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>The Features that are related by this Connector considered as a Relationship, derived as the subsetted Features of the &lt;code>connectorEnds&lt;/code> of the Connector.&lt;/p>&#xA;"/>
       </eAnnotations>
-      <eAnnotations source="union"/>
       <eAnnotations source="redefines" references="#//Relationship/relatedElement"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="association" ordered="false"
         lowerBound="1" upperBound="-1" eType="#//Association" volatile="true" transient="true"
@@ -2688,8 +2697,8 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>The &lt;code>types&lt;/code> of the &lt;code>endFeatures&lt;/code> of the Association, which are the &lt;code>relatedElements&lt;/code> of the Association considered as a Relationship.&lt;/p>&#xA;"/>
       </eAnnotations>
-      <eAnnotations source="union"/>
       <eAnnotations source="redefines" references="#//Relationship/relatedElement"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="sourceType" ordered="false"
         eType="#//Type" volatile="true" transient="true" derived="true">
@@ -2726,6 +2735,7 @@
         <details key="documentation" value="&lt;p>The &lt;code>features&lt;/code> of the Association that identifying the things that can be related by it. An Association must have at least two &lt;code>associationEnds&lt;/code>. When it has exactly two, the Association is called a &lt;em>binary&lt;/em> Association.&lt;/p> &#xA;&#xA;&lt;p>The ends of the Association determine which elements are eligible to be related by instances of the Association.&lt;/p>&#xA;"/>
       </eAnnotations>
       <eAnnotations source="redefines" references="#//Type/endFeature"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="RequirementUsage" eSuperTypes="#//ConstraintUsage">
@@ -3256,6 +3266,7 @@
         <details key="documentation" value="&lt;p>The PortUsages that are the &lt;code>associationEnds&lt;/code> of this InterfaceDefinition.&#xA;&#xA;"/>
       </eAnnotations>
       <eAnnotations source="redefines" references="#//ConnectionDefinition/connectionEnd"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ConnectionDefinition" eSuperTypes="#//PartDefinition #//AssociationStructure">
@@ -3271,6 +3282,7 @@
         <details key="documentation" value="&lt;p>The Usages that define the things related by the ConnectionDefinition.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="redefines" references="#//Association/associationEnd"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AttributeUsage" eSuperTypes="#//Usage">
@@ -3667,6 +3679,7 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>The Features that receive the ItemFlow. They must be owned &lt;code>outputs&lt;/code> of the target participant of the ItemFlow. If there are no such Features, then the ItemFlow must be abstract.&lt;/p>&#xA;&lt;p>The Feature that receives the ItemFlow.&lt;/p>"/>
       </eAnnotations>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="sourceOutputFeature" unique="false"
         upperBound="-1" eType="#//Feature" volatile="true" transient="true" derived="true">
@@ -3676,6 +3689,7 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>The Feature that originates the ItemFlow.&lt;/p>&#xA;&#xA;&lt;p>The Feature that originates the ItemFlow.&lt;/p>"/>
       </eAnnotations>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="itemFlowEnd" ordered="false"
         lowerBound="2" upperBound="-1" eType="#//ItemFlowEnd" volatile="true" transient="true"
@@ -4615,6 +4629,7 @@
         <details key="documentation" value="&lt;p>The Expression that provides the value of the &lt;code>featureWithValue&lt;/code> as its &lt;code>result&lt;/code>.&lt;/p>&#xA;&#xA;&lt;p>The Expression that provides the value as a result.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="redefines" references="#//OwningMembership/ownedMemberElement"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isInitial" ordered="false"
         lowerBound="1" eType="ecore:EDataType types.ecore#//Boolean" defaultValueLiteral="false">

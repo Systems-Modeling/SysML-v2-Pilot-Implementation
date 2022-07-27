@@ -24,6 +24,7 @@ package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -68,6 +69,16 @@ public class SubclassificationImpl extends SpecializationImpl implements Subclas
 	 * @ordered
 	 */
 	protected Classifier subclassifier;
+
+	/**
+	 * The cached setting delegate for the '{@link #getOwningClassifier() <em>Owning Classifier</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwningClassifier()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate OWNING_CLASSIFIER__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.SUBCLASSIFICATION__OWNING_CLASSIFIER).getSettingDelegate();
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -141,28 +152,25 @@ public class SubclassificationImpl extends SpecializationImpl implements Subclas
 	 */
 	@Override
 	public Classifier getOwningClassifier() {
-		Classifier owningClassifier = basicGetOwningClassifier();
-		return owningClassifier != null && owningClassifier.eIsProxy() ? (Classifier)eResolveProxy((InternalEObject)owningClassifier) : owningClassifier;
+		return (Classifier)OWNING_CLASSIFIER__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Classifier basicGetOwningClassifier() {
-		Type owningType = super.basicGetOwningType();
-		return owningType instanceof Classifier ? (org.omg.sysml.lang.sysml.Classifier) owningType : null;
+		return (Classifier)OWNING_CLASSIFIER__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated NOT // derived
+	 * @generated
 	 */
 	@Override
 	public void setOwningClassifier(Classifier newOwningClassifier) {
-		super.setOwningType(newOwningClassifier);
+		OWNING_CLASSIFIER__ESETTING_DELEGATE.dynamicSet(this, null, 0, newOwningClassifier);
 	}
 
 	/**

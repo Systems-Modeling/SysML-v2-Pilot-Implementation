@@ -288,6 +288,7 @@ public interface Namespace extends Element {
 	 * @see org.omg.sysml.lang.sysml.Membership#getMembershipOwningNamespace
 	 * @model opposite="membershipOwningNamespace" transient="true" volatile="true" derived="true"
 	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<Membership> getOwnedMembership();

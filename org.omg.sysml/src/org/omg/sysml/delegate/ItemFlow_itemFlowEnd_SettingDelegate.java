@@ -1,6 +1,7 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2022 Siemens AG
+ * Copyright (c) 2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -24,12 +25,11 @@ package org.omg.sysml.delegate;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.omg.sysml.lang.sysml.ItemFlow;
 import org.omg.sysml.lang.sysml.ItemFlowEnd;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
 
-public class ItemFlow_itemFlowEnd_SettingDelegate extends BasicDerivedListSettingDelegate {
+public class ItemFlow_itemFlowEnd_SettingDelegate extends Connector_connectorEnd_SettingDelegate {
 
 	public ItemFlow_itemFlowEnd_SettingDelegate(EStructuralFeature eStructuralFeature) {
 		super(eStructuralFeature);
@@ -39,7 +39,7 @@ public class ItemFlow_itemFlowEnd_SettingDelegate extends BasicDerivedListSettin
 	protected EList<?> basicGet(InternalEObject owner) {
 		EList<ItemFlowEnd> itemFlows = 
 				new NonNotifyingEObjectEList<>(ItemFlowEnd.class, owner, SysMLPackage.ITEM_FLOW__ITEM_FLOW_END);
-		((ItemFlow)owner).getConnectorEnd().stream().
+		super.basicGet(owner).stream().
 			filter(end->end instanceof ItemFlowEnd).
 			map(end->(ItemFlowEnd)end).
 			forEachOrdered(itemFlows::add);

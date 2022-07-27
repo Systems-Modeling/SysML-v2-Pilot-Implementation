@@ -6851,7 +6851,7 @@ endif</body>
     </ownedRule>
     <generalization xmi:id="67a6c9bd-9a31-448a-995c-64fa8c61ab9f" general="124e57c2-e7ac-4bbd-8ae3-b74186c4259c"/>
     <generalization xmi:id="f34a1ef1-4ecd-40c8-becb-22fa68055c46" general="d00373f6-e7de-4c9f-9b9a-35937ead2cb2"/>
-    <ownedAttribute xmi:id="610b8f39-4aed-4ab9-b580-ee8d04ddf349" name="relatedFeature" visibility="public" type="124e57c2-e7ac-4bbd-8ae3-b74186c4259c" isOrdered="true" isUnique="false" isDerived="true" isDerivedUnion="true" redefinedProperty="e81d47df-5f0a-4544-bfe7-9955c8a986fc" association="714450ea-a8c2-4175-9fcc-8df756333746">
+    <ownedAttribute xmi:id="610b8f39-4aed-4ab9-b580-ee8d04ddf349" name="relatedFeature" visibility="public" type="124e57c2-e7ac-4bbd-8ae3-b74186c4259c" isOrdered="true" isUnique="false" isDerived="true" redefinedProperty="e81d47df-5f0a-4544-bfe7-9955c8a986fc" association="714450ea-a8c2-4175-9fcc-8df756333746">
       <ownedComment xmi:id="562ee1a4-2c46-4672-a660-3634fa13e117" annotatedElement="610b8f39-4aed-4ab9-b580-ee8d04ddf349">
         <body>&lt;p>The Features that are related by this Connector considered as a Relationship, derived as the subsetted Features of the &lt;code>connectorEnds&lt;/code> of the Connector.&lt;/p>
 </body>
@@ -7458,7 +7458,7 @@ valueConnector.featuringType = featureWithValue.featuringType</body>
     </ownedRule>
     <generalization xmi:id="d7e6efad-8738-49d5-9752-358783b3af2b" general="c57280e7-ce5c-4959-96d9-7fa4e8e3e5da"/>
     <generalization xmi:id="30b704ca-516c-4961-abb4-5c1fc51a879b" general="d00373f6-e7de-4c9f-9b9a-35937ead2cb2"/>
-    <ownedAttribute xmi:id="d73d35b2-4798-48a1-8e2f-61265e3d8812" name="relatedType" visibility="public" type="4e5f8972-c473-4bc0-8edf-bb508993d08e" isOrdered="true" isUnique="false" isDerived="true" isDerivedUnion="true" redefinedProperty="e81d47df-5f0a-4544-bfe7-9955c8a986fc" association="f2b2b3cf-58f6-4ee0-807f-71f4c57e57d3">
+    <ownedAttribute xmi:id="d73d35b2-4798-48a1-8e2f-61265e3d8812" name="relatedType" visibility="public" type="4e5f8972-c473-4bc0-8edf-bb508993d08e" isOrdered="true" isUnique="false" isDerived="true" redefinedProperty="e81d47df-5f0a-4544-bfe7-9955c8a986fc" association="f2b2b3cf-58f6-4ee0-807f-71f4c57e57d3">
       <ownedComment xmi:id="52a1f6e0-54e6-42f8-91e1-8a6faf065261" annotatedElement="d73d35b2-4798-48a1-8e2f-61265e3d8812">
         <body>&lt;p>The &lt;code>types&lt;/code> of the &lt;code>endFeatures&lt;/code> of the Association, which are the &lt;code>relatedElements&lt;/code> of the Association considered as a Relationship.&lt;/p>
 </body>

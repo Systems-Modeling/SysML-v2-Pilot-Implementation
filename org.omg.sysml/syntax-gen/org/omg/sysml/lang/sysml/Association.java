@@ -65,7 +65,6 @@ public interface Association extends Classifier, Relationship {
 	 * <ul>
 	 *   <li>'{@link org.omg.sysml.lang.sysml.Relationship#getRelatedElement() <em>Related Element</em>}'</li>
 	 * </ul>
-	 * This feature is a derived union.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Related Type</em>' reference list isn't clear,
@@ -80,8 +79,8 @@ public interface Association extends Classifier, Relationship {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getAssociation_RelatedType()
 	 * @model lower="2" transient="true" changeable="false" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='association'"
-	 *        annotation="union"
 	 *        annotation="redefines"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<Type> getRelatedType();
@@ -182,6 +181,7 @@ public interface Association extends Classifier, Relationship {
 	 * @model lower="2" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='associationWithEnd'"
 	 *        annotation="redefines"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<Feature> getAssociationEnd();

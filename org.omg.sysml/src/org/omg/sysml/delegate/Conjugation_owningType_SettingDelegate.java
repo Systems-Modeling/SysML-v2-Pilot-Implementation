@@ -1,6 +1,7 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2022 Siemens AG
+ * Copyright (c) 2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -21,7 +22,6 @@
 
 package org.omg.sysml.delegate;
 
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.Conjugation;
@@ -35,7 +35,7 @@ public class Conjugation_owningType_SettingDelegate extends BasicDerivedObjectSe
 	}
 
 	@Override
-	protected EObject basicGet(InternalEObject owner) {
+	protected Type basicGet(InternalEObject owner) {
 		Element elementOwner = ((Conjugation)owner).getOwningRelatedElement();
 		return elementOwner instanceof Type? (Type)elementOwner: null;
 	}

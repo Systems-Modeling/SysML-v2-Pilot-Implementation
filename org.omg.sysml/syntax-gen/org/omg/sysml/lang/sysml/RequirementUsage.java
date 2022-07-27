@@ -253,6 +253,7 @@ public interface RequirementUsage extends ConstraintUsage {
 	 * @return the value of the '<em>Text</em>' attribute list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getRequirementUsage_Text()
 	 * @model dataType="org.omg.sysml.lang.types.String" transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<String> getText();

@@ -26,8 +26,6 @@ import java.util.Collection;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.InternalEObject;
-
 import org.omg.sysml.lang.sysml.PartUsage;
 import org.omg.sysml.lang.sysml.RequirementDefinition;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -50,6 +48,15 @@ import org.omg.sysml.lang.sysml.ViewpointUsage;
  */
 public class ViewpointUsageImpl extends RequirementUsageImpl implements ViewpointUsage {
 
+	/**
+	 * The cached setting delegate for the '{@link #getViewpointDefinition() <em>Viewpoint Definition</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getViewpointDefinition()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate VIEWPOINT_DEFINITION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.VIEWPOINT_USAGE__VIEWPOINT_DEFINITION).getSettingDelegate();
 	/**
 	 * The cached setting delegate for the '{@link #getViewpointStakeholder() <em>Viewpoint Stakeholder</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -86,8 +93,7 @@ public class ViewpointUsageImpl extends RequirementUsageImpl implements Viewpoin
 	 */
 	@Override
 	public ViewpointDefinition getViewpointDefinition() {
-		ViewpointDefinition viewpointDefinition = basicGetViewpointDefinition();
-		return viewpointDefinition != null && viewpointDefinition.eIsProxy() ? (ViewpointDefinition)eResolveProxy((InternalEObject)viewpointDefinition) : viewpointDefinition;
+		return (ViewpointDefinition)VIEWPOINT_DEFINITION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
@@ -96,8 +102,7 @@ public class ViewpointUsageImpl extends RequirementUsageImpl implements Viewpoin
 	 * @generated
 	 */
 	public ViewpointDefinition basicGetViewpointDefinition() {
-		RequirementDefinition definition = super.basicGetRequirementDefinition();
-		return definition instanceof ViewpointDefinition? (ViewpointDefinition)definition: null;
+		return (ViewpointDefinition)VIEWPOINT_DEFINITION__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
@@ -107,7 +112,7 @@ public class ViewpointUsageImpl extends RequirementUsageImpl implements Viewpoin
 	 */
 	@Override
 	public void setViewpointDefinition(ViewpointDefinition newViewpointDefinition) {
-		throw new UnsupportedOperationException();
+		VIEWPOINT_DEFINITION__ESETTING_DELEGATE.dynamicSet(this, null, 0, newViewpointDefinition);
 	}
 
 	/**

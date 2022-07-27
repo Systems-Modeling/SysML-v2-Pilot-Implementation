@@ -134,6 +134,7 @@ public interface TextualRepresentation extends AnnotatingElement {
 	 *        annotation="redefines"
 	 *        annotation="subsets"
 	 *        annotation="http://www.omg.org/spec/SysML"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	Element getRepresentedElement();

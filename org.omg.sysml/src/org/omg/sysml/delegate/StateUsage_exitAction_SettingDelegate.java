@@ -1,6 +1,7 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2022 Siemens AG
+ * Copyright (c) 2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -26,7 +27,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.StateSubactionKind;
 import org.omg.sysml.lang.sysml.StateUsage;
-import org.omg.sysml.lang.sysml.impl.StateDefinitionImpl;
+import org.omg.sysml.util.UsageUtil;
 
 public class StateUsage_exitAction_SettingDelegate extends BasicDerivedObjectSettingDelegate {
 
@@ -36,7 +37,7 @@ public class StateUsage_exitAction_SettingDelegate extends BasicDerivedObjectSet
 
 	@Override
 	protected EObject basicGet(InternalEObject owner) {
-		return StateDefinitionImpl.getStateSubaction((StateUsage)owner, StateSubactionKind.EXIT);
+		return UsageUtil.getStateSubaction((StateUsage)owner, StateSubactionKind.EXIT);
 	}
 
 }

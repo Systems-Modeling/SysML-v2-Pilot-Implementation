@@ -18,14 +18,13 @@
  * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
  *  
  *******************************************************************************/
-/**
- */
+
+
 package org.omg.sysml.lang.sysml.impl;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -71,14 +70,14 @@ import org.omg.sysml.util.TypeUtil;
  *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeImpl#getOwnedRelationship <em>Owned Relationship</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeImpl#getOwnedSpecialization <em>Owned Specialization</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeImpl#getOwnedFeatureMembership <em>Owned Feature Membership</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeImpl#getOwnedFeature <em>Owned Feature</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeImpl#getOwnedEndFeature <em>Owned End Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeImpl#getFeature <em>Feature</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeImpl#getOwnedFeature <em>Owned Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeImpl#getInput <em>Input</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeImpl#getOutput <em>Output</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeImpl#isAbstract <em>Is Abstract</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeImpl#getInheritedMembership <em>Inherited Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeImpl#getEndFeature <em>End Feature</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeImpl#getOwnedEndFeature <em>Owned End Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeImpl#isSufficient <em>Is Sufficient</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeImpl#getOwnedConjugator <em>Owned Conjugator</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeImpl#isConjugated <em>Is Conjugated</em>}</li>
@@ -114,26 +113,6 @@ public class TypeImpl extends NamespaceImpl implements Type {
 	protected EStructuralFeature.Internal.SettingDelegate OWNED_FEATURE_MEMBERSHIP__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.TYPE__OWNED_FEATURE_MEMBERSHIP).getSettingDelegate();
 
 	/**
-	 * The cached setting delegate for the '{@link #getOwnedFeature() <em>Owned Feature</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOwnedFeature()
-	 * @generated
-	 * @ordered
-	 */
-	protected EStructuralFeature.Internal.SettingDelegate OWNED_FEATURE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.TYPE__OWNED_FEATURE).getSettingDelegate();
-
-	/**
-	 * The cached setting delegate for the '{@link #getOwnedEndFeature() <em>Owned End Feature</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOwnedEndFeature()
-	 * @generated
-	 * @ordered
-	 */
-	protected EStructuralFeature.Internal.SettingDelegate OWNED_END_FEATURE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.TYPE__OWNED_END_FEATURE).getSettingDelegate();
-
-	/**
 	 * The cached setting delegate for the '{@link #getFeature() <em>Feature</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -142,6 +121,16 @@ public class TypeImpl extends NamespaceImpl implements Type {
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate FEATURE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.TYPE__FEATURE).getSettingDelegate();
+
+	/**
+	 * The cached setting delegate for the '{@link #getOwnedFeature() <em>Owned Feature</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedFeature()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate OWNED_FEATURE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.TYPE__OWNED_FEATURE).getSettingDelegate();
 
 	/**
 	 * The cached setting delegate for the '{@link #getInput() <em>Input</em>}' reference list.
@@ -184,6 +173,16 @@ public class TypeImpl extends NamespaceImpl implements Type {
 	protected boolean isAbstract = IS_ABSTRACT_EDEFAULT;
 
 	/**
+	 * The cached setting delegate for the '{@link #getInheritedMembership() <em>Inherited Membership</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getInheritedMembership()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate INHERITED_MEMBERSHIP__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.TYPE__INHERITED_MEMBERSHIP).getSettingDelegate();
+
+	/**
 	 * The cached setting delegate for the '{@link #getEndFeature() <em>End Feature</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -192,6 +191,16 @@ public class TypeImpl extends NamespaceImpl implements Type {
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate END_FEATURE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.TYPE__END_FEATURE).getSettingDelegate();
+
+	/**
+	 * The cached setting delegate for the '{@link #getOwnedEndFeature() <em>Owned End Feature</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedEndFeature()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate OWNED_END_FEATURE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.TYPE__OWNED_END_FEATURE).getSettingDelegate();
 
 	/**
 	 * The default value of the '{@link #isSufficient() <em>Is Sufficient</em>}' attribute.
@@ -242,6 +251,16 @@ public class TypeImpl extends NamespaceImpl implements Type {
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate INHERITED_FEATURE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.TYPE__INHERITED_FEATURE).getSettingDelegate();
+
+	/**
+	 * The cached setting delegate for the '{@link #getMultiplicity() <em>Multiplicity</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMultiplicity()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate MULTIPLICITY__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.TYPE__MULTIPLICITY).getSettingDelegate();
 
 	/**
 	 * The cached setting delegate for the '{@link #getDirectedFeature() <em>Directed Feature</em>}' reference list.
@@ -310,7 +329,7 @@ public class TypeImpl extends NamespaceImpl implements Type {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int[] MEMBERSHIP_ESUBSETS = new int[] {SysMLPackage.TYPE__IMPORTED_MEMBERSHIP, SysMLPackage.TYPE__OWNED_MEMBERSHIP, SysMLPackage.TYPE__INHERITED_MEMBERSHIP};
+	protected static final int[] MEMBERSHIP_ESUBSETS = new int[] {SysMLPackage.TYPE__OWNED_MEMBERSHIP, SysMLPackage.TYPE__IMPORTED_MEMBERSHIP, SysMLPackage.TYPE__INHERITED_MEMBERSHIP};
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -417,11 +436,12 @@ public class TypeImpl extends NamespaceImpl implements Type {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<Membership> getInheritedMembership() {
-		return TypeUtil.cacheInheritedMembershipOf(this, ()->inheritedMemberships(new BasicEList<>()));
+		return (EList<Membership>)INHERITED_MEMBERSHIP__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 	
 	/**
@@ -536,45 +556,26 @@ public class TypeImpl extends NamespaceImpl implements Type {
 	 */
 	@Override
 	public Multiplicity getMultiplicity() {
-		Multiplicity multiplicity = basicGetMultiplicity();
-		return multiplicity != null && multiplicity.eIsProxy() ? (Multiplicity)eResolveProxy((InternalEObject)multiplicity) : multiplicity;
+		return (Multiplicity)MULTIPLICITY__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Multiplicity basicGetMultiplicity() {
-		return getMultiplicity(new HashSet<Type>());	
+		return (Multiplicity)MULTIPLICITY__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 	
-	protected Multiplicity getMultiplicity(Set<Type> visited) {
-		Multiplicity multiplicity = (Multiplicity)getOwnedMembership().stream().
-				map(Membership::getMemberElement).
-				filter(Multiplicity.class::isInstance).
-				findFirst().orElse(null);
-		if (multiplicity == null) {
-			visited.add(this);
-			List<Type> superTypes = TypeUtil.getSupertypesOf(this);
-			if (!superTypes.isEmpty()) {
-				Type general = TypeUtil.getSupertypesOf(this).get(0);
-				if (general != null && !visited.contains(general)) { 
-					multiplicity = ((TypeImpl)general).getMultiplicity(visited);
-				}
-			}
-		}
-		return multiplicity;
-	}
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setMultiplicity(Multiplicity newMultiplicity) {
-		throw new UnsupportedOperationException();
+		MULTIPLICITY__ESETTING_DELEGATE.dynamicSet(this, null, 0, newMultiplicity);
 	}
 	
 	/**
@@ -796,12 +797,10 @@ public class TypeImpl extends NamespaceImpl implements Type {
 				return getOwnedSpecialization();
 			case SysMLPackage.TYPE__OWNED_FEATURE_MEMBERSHIP:
 				return getOwnedFeatureMembership();
-			case SysMLPackage.TYPE__OWNED_FEATURE:
-				return getOwnedFeature();
-			case SysMLPackage.TYPE__OWNED_END_FEATURE:
-				return getOwnedEndFeature();
 			case SysMLPackage.TYPE__FEATURE:
 				return getFeature();
+			case SysMLPackage.TYPE__OWNED_FEATURE:
+				return getOwnedFeature();
 			case SysMLPackage.TYPE__INPUT:
 				return getInput();
 			case SysMLPackage.TYPE__OUTPUT:
@@ -812,6 +811,8 @@ public class TypeImpl extends NamespaceImpl implements Type {
 				return getInheritedMembership();
 			case SysMLPackage.TYPE__END_FEATURE:
 				return getEndFeature();
+			case SysMLPackage.TYPE__OWNED_END_FEATURE:
+				return getOwnedEndFeature();
 			case SysMLPackage.TYPE__IS_SUFFICIENT:
 				return isSufficient();
 			case SysMLPackage.TYPE__OWNED_CONJUGATOR:
@@ -851,17 +852,13 @@ public class TypeImpl extends NamespaceImpl implements Type {
 				getOwnedFeatureMembership().clear();
 				getOwnedFeatureMembership().addAll((Collection<? extends FeatureMembership>)newValue);
 				return;
-			case SysMLPackage.TYPE__OWNED_FEATURE:
-				getOwnedFeature().clear();
-				getOwnedFeature().addAll((Collection<? extends Feature>)newValue);
-				return;
-			case SysMLPackage.TYPE__OWNED_END_FEATURE:
-				getOwnedEndFeature().clear();
-				getOwnedEndFeature().addAll((Collection<? extends Feature>)newValue);
-				return;
 			case SysMLPackage.TYPE__FEATURE:
 				getFeature().clear();
 				getFeature().addAll((Collection<? extends Feature>)newValue);
+				return;
+			case SysMLPackage.TYPE__OWNED_FEATURE:
+				getOwnedFeature().clear();
+				getOwnedFeature().addAll((Collection<? extends Feature>)newValue);
 				return;
 			case SysMLPackage.TYPE__INPUT:
 				getInput().clear();
@@ -881,6 +878,10 @@ public class TypeImpl extends NamespaceImpl implements Type {
 			case SysMLPackage.TYPE__END_FEATURE:
 				getEndFeature().clear();
 				getEndFeature().addAll((Collection<? extends Feature>)newValue);
+				return;
+			case SysMLPackage.TYPE__OWNED_END_FEATURE:
+				getOwnedEndFeature().clear();
+				getOwnedEndFeature().addAll((Collection<? extends Feature>)newValue);
 				return;
 			case SysMLPackage.TYPE__IS_SUFFICIENT:
 				setIsSufficient((Boolean)newValue);
@@ -928,14 +929,11 @@ public class TypeImpl extends NamespaceImpl implements Type {
 			case SysMLPackage.TYPE__OWNED_FEATURE_MEMBERSHIP:
 				getOwnedFeatureMembership().clear();
 				return;
-			case SysMLPackage.TYPE__OWNED_FEATURE:
-				getOwnedFeature().clear();
-				return;
-			case SysMLPackage.TYPE__OWNED_END_FEATURE:
-				getOwnedEndFeature().clear();
-				return;
 			case SysMLPackage.TYPE__FEATURE:
 				getFeature().clear();
+				return;
+			case SysMLPackage.TYPE__OWNED_FEATURE:
+				getOwnedFeature().clear();
 				return;
 			case SysMLPackage.TYPE__INPUT:
 				getInput().clear();
@@ -951,6 +949,9 @@ public class TypeImpl extends NamespaceImpl implements Type {
 				return;
 			case SysMLPackage.TYPE__END_FEATURE:
 				getEndFeature().clear();
+				return;
+			case SysMLPackage.TYPE__OWNED_END_FEATURE:
+				getOwnedEndFeature().clear();
 				return;
 			case SysMLPackage.TYPE__IS_SUFFICIENT:
 				setIsSufficient(IS_SUFFICIENT_EDEFAULT);
@@ -996,12 +997,10 @@ public class TypeImpl extends NamespaceImpl implements Type {
 				return OWNED_SPECIALIZATION__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.TYPE__OWNED_FEATURE_MEMBERSHIP:
 				return OWNED_FEATURE_MEMBERSHIP__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
-			case SysMLPackage.TYPE__OWNED_FEATURE:
-				return OWNED_FEATURE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
-			case SysMLPackage.TYPE__OWNED_END_FEATURE:
-				return OWNED_END_FEATURE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.TYPE__FEATURE:
 				return FEATURE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
+			case SysMLPackage.TYPE__OWNED_FEATURE:
+				return OWNED_FEATURE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.TYPE__INPUT:
 				return INPUT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.TYPE__OUTPUT:
@@ -1009,9 +1008,11 @@ public class TypeImpl extends NamespaceImpl implements Type {
 			case SysMLPackage.TYPE__IS_ABSTRACT:
 				return isAbstract != IS_ABSTRACT_EDEFAULT;
 			case SysMLPackage.TYPE__INHERITED_MEMBERSHIP:
-				return !getInheritedMembership().isEmpty();
+				return INHERITED_MEMBERSHIP__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.TYPE__END_FEATURE:
 				return END_FEATURE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
+			case SysMLPackage.TYPE__OWNED_END_FEATURE:
+				return OWNED_END_FEATURE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.TYPE__IS_SUFFICIENT:
 				return isSufficient != IS_SUFFICIENT_EDEFAULT;
 			case SysMLPackage.TYPE__OWNED_CONJUGATOR:
@@ -1021,7 +1022,7 @@ public class TypeImpl extends NamespaceImpl implements Type {
 			case SysMLPackage.TYPE__INHERITED_FEATURE:
 				return INHERITED_FEATURE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.TYPE__MULTIPLICITY:
-				return basicGetMultiplicity() != null;
+				return MULTIPLICITY__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.TYPE__DIRECTED_FEATURE:
 				return DIRECTED_FEATURE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.TYPE__OWNED_DISJOINING:

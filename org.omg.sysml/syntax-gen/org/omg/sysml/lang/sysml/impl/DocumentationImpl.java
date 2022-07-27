@@ -25,7 +25,7 @@ package org.omg.sysml.lang.sysml.impl;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.uml2.common.util.UnionEObjectEList;
 import org.omg.sysml.lang.sysml.Documentation;
 import org.omg.sysml.lang.sysml.Element;
@@ -45,6 +45,16 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * @generated
  */
 public class DocumentationImpl extends CommentImpl implements Documentation {
+	/**
+	 * The cached setting delegate for the '{@link #getDocumentedElement() <em>Documented Element</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDocumentedElement()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate DOCUMENTED_ELEMENT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.DOCUMENTATION__DOCUMENTED_ELEMENT).getSettingDelegate();
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -71,27 +81,26 @@ public class DocumentationImpl extends CommentImpl implements Documentation {
 	 */
 	@Override
 	public Element getDocumentedElement() {
-		Element documentedElement = basicGetDocumentedElement();
-		return documentedElement != null && documentedElement.eIsProxy() ? (Element)eResolveProxy((InternalEObject)documentedElement) : documentedElement;
+		return (Element)DOCUMENTED_ELEMENT__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Element basicGetDocumentedElement() {
-		return super.basicGetOwner();
+		return (Element)DOCUMENTED_ELEMENT__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setDocumentedElement(Element newDocumentedElement) {
-		throw new UnsupportedOperationException();
+		DOCUMENTED_ELEMENT__ESETTING_DELEGATE.dynamicSet(this, null, 0, newDocumentedElement);
 	}
 
 	/**

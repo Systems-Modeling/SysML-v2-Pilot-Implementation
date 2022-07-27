@@ -32,14 +32,12 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.omg.sysml.lang.sysml.PartUsage;
-import org.omg.sysml.lang.sysml.Comment;
 import org.omg.sysml.lang.sysml.ConcernUsage;
 import org.omg.sysml.lang.sysml.ConstraintUsage;
 import org.omg.sysml.lang.sysml.RequirementDefinition;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Usage;
 import org.omg.sysml.util.ElementUtil;
-import org.omg.sysml.util.NonNotifyingEObjectEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -82,6 +80,16 @@ public class RequirementDefinitionImpl extends ConstraintDefinitionImpl implemen
 	 * @ordered
 	 */
 	protected String reqId = REQ_ID_EDEFAULT;
+
+	/**
+	 * The cached setting delegate for the '{@link #getText() <em>Text</em>}' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getText()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate TEXT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.REQUIREMENT_DEFINITION__TEXT).getSettingDelegate();
 
 	/**
 	 * The cached setting delegate for the '{@link #getAssumedConstraint() <em>Assumed Constraint</em>}' reference list.
@@ -253,13 +261,12 @@ public class RequirementDefinitionImpl extends ConstraintDefinitionImpl implemen
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<String> getText() {
-		EList<String> text = new NonNotifyingEObjectEList<>(String.class, this, SysMLPackage.REQUIREMENT_DEFINITION__TEXT);
-		getDocumentation().stream().map(Comment::getBody).forEachOrdered(text::add);
-		return text;
+		return (EList<String>)TEXT__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 	
 	/**
@@ -443,7 +450,7 @@ public class RequirementDefinitionImpl extends ConstraintDefinitionImpl implemen
 			case SysMLPackage.REQUIREMENT_DEFINITION__REQ_ID:
 				return isSetReqId();
 			case SysMLPackage.REQUIREMENT_DEFINITION__TEXT:
-				return !getText().isEmpty();
+				return TEXT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.REQUIREMENT_DEFINITION__ASSUMED_CONSTRAINT:
 				return ASSUMED_CONSTRAINT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.REQUIREMENT_DEFINITION__REQUIRED_CONSTRAINT:

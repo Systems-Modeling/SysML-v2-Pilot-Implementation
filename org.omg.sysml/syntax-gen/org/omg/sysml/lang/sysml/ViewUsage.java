@@ -122,6 +122,7 @@ public interface ViewUsage extends PartUsage {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getViewUsage_ExposedNamespace()
 	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='exposingView'"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<Namespace> getExposedNamespace();
@@ -196,6 +197,7 @@ public interface ViewUsage extends PartUsage {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getViewUsage_ViewedElement()
 	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='viewer'"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<Element> getViewedElement();

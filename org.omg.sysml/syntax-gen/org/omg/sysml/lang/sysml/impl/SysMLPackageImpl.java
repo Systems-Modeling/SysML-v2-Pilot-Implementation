@@ -13329,6 +13329,11 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   new String[] {
 		   });
 		addAnnotation
+		  (getType_InheritedMembership(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
 		  (getType_EndFeature(),
 		   source,
 		   new String[] {
@@ -13350,6 +13355,11 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   });
 		addAnnotation
 		  (getType_InheritedFeature(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getType_Multiplicity(),
 		   source,
 		   new String[] {
 		   });
@@ -13385,6 +13395,11 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   });
 		addAnnotation
 		  (getNamespace_Member(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getNamespace_ImportedMembership(),
 		   source,
 		   new String[] {
 		   });
@@ -13464,12 +13479,22 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   new String[] {
 		   });
 		addAnnotation
+		  (getDocumentation_DocumentedElement(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
 		  (getAnnotatingElement_AnnotatedElement(),
 		   source,
 		   new String[] {
 		   });
 		addAnnotation
 		  (getAnnotation_OwningAnnotatedElement(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getTextualRepresentation_RepresentedElement(),
 		   source,
 		   new String[] {
 		   });
@@ -13944,6 +13969,11 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   new String[] {
 		   });
 		addAnnotation
+		  (getRequirementUsage_Text(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
 		  (getRequirementUsage_RequiredConstraint(),
 		   source,
 		   new String[] {
@@ -13970,6 +14000,11 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   });
 		addAnnotation
 		  (getRequirementUsage_StakeholderParameter(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getRequirementDefinition_Text(),
 		   source,
 		   new String[] {
 		   });
@@ -14134,12 +14169,22 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   new String[] {
 		   });
 		addAnnotation
+		  (getViewUsage_ExposedNamespace(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
 		  (getViewUsage_ViewRendering(),
 		   source,
 		   new String[] {
 		   });
 		addAnnotation
 		  (getViewUsage_ViewCondition(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getViewUsage_ViewedElement(),
 		   source,
 		   new String[] {
 		   });
@@ -14195,6 +14240,11 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   });
 		addAnnotation
 		  (getVerificationCaseUsage_VerifiedRequirement(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getVerificationCaseDefinition_VerifiedRequirement(),
 		   source,
 		   new String[] {
 		   });
@@ -14349,6 +14399,21 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   new String[] {
 		   });
 		addAnnotation
+		  (getStateDefinition_EntryAction(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getStateDefinition_DoAction(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getStateDefinition_ExitAction(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
 		  (getStateSubactionMembership_Action(),
 		   source,
 		   new String[] {
@@ -14469,12 +14534,27 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   new String[] {
 		   });
 		addAnnotation
+		  (getMultiplicityRange_LowerBound(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getMultiplicityRange_UpperBound(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
 		  (getFeatureValue_Value(),
 		   source,
 		   new String[] {
 		   });
 		addAnnotation
 		  (getFeatureChainExpression_TargetFeature(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getFeatureReferenceExpression_Referent(),
 		   source,
 		   new String[] {
 		   });

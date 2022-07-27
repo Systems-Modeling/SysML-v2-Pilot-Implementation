@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2022 Siemens AG
+ * Copyright (c) 2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -21,26 +21,12 @@
 
 package org.omg.sysml.delegate;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.InternalEObject;
-import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.lang.sysml.Namespace;
-import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.util.NamespaceUtil;
-import org.omg.sysml.util.NonNotifyingEObjectEList;
 
-public class Namespace_ownedMember_SettingDelegate extends BasicDerivedListSettingDelegate {
+public class Documentation_documentedElement_SettingDelegate extends Element_owner_SettingDelegate {
 
-	public Namespace_ownedMember_SettingDelegate(EStructuralFeature eStructuralFeature) {
+	public Documentation_documentedElement_SettingDelegate(EStructuralFeature eStructuralFeature) {
 		super(eStructuralFeature);
-	}
-
-	@Override
-	protected EList<?> basicGet(InternalEObject owner) {
-		EList<Element> ownedMembers = new NonNotifyingEObjectEList<>(Element.class, owner, SysMLPackage.NAMESPACE__OWNED_MEMBER);
-		NamespaceUtil.getOwnedMembersOf((Namespace)owner).forEachOrdered(ownedMembers::add);
-		return ownedMembers;
 	}
 
 }

@@ -23,9 +23,6 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import java.util.Collection;
-import java.util.stream.Stream;
-
-import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.UniqueEList;
 
@@ -33,11 +30,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.uml2.common.util.UnionEObjectEList;
 import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.lang.sysml.ElementFilterMembership;
-import org.omg.sysml.lang.sysml.Expose;
 import org.omg.sysml.lang.sysml.Expression;
-import org.omg.sysml.lang.sysml.Import;
-import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.PartDefinition;
 import org.omg.sysml.lang.sysml.RenderingUsage;
@@ -45,9 +38,6 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.ViewDefinition;
 import org.omg.sysml.lang.sysml.ViewUsage;
 import org.omg.sysml.lang.sysml.ViewpointUsage;
-import org.omg.sysml.util.ExpressionUtil;
-import org.omg.sysml.util.NonNotifyingEObjectEList;
-import org.omg.sysml.util.TypeUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -90,6 +80,16 @@ public class ViewUsageImpl extends PartUsageImpl implements ViewUsage {
 	protected EStructuralFeature.Internal.SettingDelegate SATISFIED_VIEWPOINT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.VIEW_USAGE__SATISFIED_VIEWPOINT).getSettingDelegate();
 
 	/**
+	 * The cached setting delegate for the '{@link #getExposedNamespace() <em>Exposed Namespace</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getExposedNamespace()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate EXPOSED_NAMESPACE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.VIEW_USAGE__EXPOSED_NAMESPACE).getSettingDelegate();
+
+	/**
 	 * The cached setting delegate for the '{@link #getViewRendering() <em>View Rendering</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -108,6 +108,16 @@ public class ViewUsageImpl extends PartUsageImpl implements ViewUsage {
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate VIEW_CONDITION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.VIEW_USAGE__VIEW_CONDITION).getSettingDelegate();
+
+	/**
+	 * The cached setting delegate for the '{@link #getViewedElement() <em>Viewed Element</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getViewedElement()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate VIEWED_ELEMENT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.VIEW_USAGE__VIEWED_ELEMENT).getSettingDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -180,13 +190,12 @@ public class ViewUsageImpl extends PartUsageImpl implements ViewUsage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<Namespace> getExposedNamespace() {
-		EList<Namespace> exposedNamespace = new NonNotifyingEObjectEList<>(Namespace.class, this, SysMLPackage.VIEW_USAGE__EXPOSED_NAMESPACE);
-		getExposeImports().map(Import::getImportedNamespace).forEachOrdered(exposedNamespace::add);
-		return exposedNamespace;
+		return (EList<Namespace>)EXPOSED_NAMESPACE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 	
 	/**
@@ -218,13 +227,6 @@ public class ViewUsageImpl extends PartUsageImpl implements ViewUsage {
 		VIEW_RENDERING__ESETTING_DELEGATE.dynamicSet(this, null, 0, newViewRendering);
 	}
 
-	public Stream<Expose> getExposeImports() {
-		return getOwnedImport().stream().
-				filter(Expose.class::isInstance).
-				map(Expose.class::cast);
-	}
-	
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -236,27 +238,15 @@ public class ViewUsageImpl extends PartUsageImpl implements ViewUsage {
 		return (EList<Expression>)VIEW_CONDITION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 	
-	public EList<Expression> getAllViewConditions() {
-		EList<Expression> viewConditions = getViewCondition();
-		TypeUtil.getInheritedMembersByMembershipIn(this, ElementFilterMembership.class, Expression.class).forEachOrdered(viewConditions::add);
-		return viewConditions;
-	}
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<Element> getViewedElement() {
-		EList<Element> viewedElements = new NonNotifyingEObjectEList<>(Element.class, this, SysMLPackage.VIEW_USAGE__VIEWED_ELEMENT);
-		getExposeImports().
-			flatMap(imp->imp.importedMembership(new BasicEList<>()).stream()).
-			map(Membership::getMemberElement).
-			forEachOrdered(viewedElements::add);
-		EList<Expression> viewConditions = getAllViewConditions();
-		viewedElements.removeIf(element->!ExpressionUtil.checkConditionsOn(element, viewConditions));
-		return viewedElements;
+		return (EList<Element>)VIEWED_ELEMENT__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
@@ -365,13 +355,13 @@ public class ViewUsageImpl extends PartUsageImpl implements ViewUsage {
 			case SysMLPackage.VIEW_USAGE__SATISFIED_VIEWPOINT:
 				return SATISFIED_VIEWPOINT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.VIEW_USAGE__EXPOSED_NAMESPACE:
-				return !getExposedNamespace().isEmpty();
+				return EXPOSED_NAMESPACE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.VIEW_USAGE__VIEW_RENDERING:
 				return VIEW_RENDERING__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.VIEW_USAGE__VIEW_CONDITION:
 				return VIEW_CONDITION__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.VIEW_USAGE__VIEWED_ELEMENT:
-				return !getViewedElement().isEmpty();
+				return VIEWED_ELEMENT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 		}
 		return super.eIsSet(featureID);
 	}

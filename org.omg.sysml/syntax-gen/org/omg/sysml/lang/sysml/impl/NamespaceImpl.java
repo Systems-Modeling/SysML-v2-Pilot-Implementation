@@ -49,7 +49,6 @@ import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.VisibilityKind;
-import org.omg.sysml.util.NamespaceUtil;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
 
 /**
@@ -111,6 +110,16 @@ public class NamespaceImpl extends ElementImpl implements Namespace {
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate MEMBER__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.NAMESPACE__MEMBER).getSettingDelegate();
+
+	/**
+	 * The cached setting delegate for the '{@link #getImportedMembership() <em>Imported Membership</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getImportedMembership()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate IMPORTED_MEMBERSHIP__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.NAMESPACE__IMPORTED_MEMBERSHIP).getSettingDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -200,11 +209,12 @@ public class NamespaceImpl extends ElementImpl implements Namespace {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
+		@Override
 	public EList<Membership> getImportedMembership() {
-		return NamespaceUtil.cacheImportedMembershipOf(this, 
-				()-> getImportedMembership(new HashSet<org.omg.sysml.lang.sysml.Namespace>(), new HashSet<Type>(), true));
+		return (EList<Membership>)IMPORTED_MEMBERSHIP__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
@@ -445,7 +455,7 @@ public class NamespaceImpl extends ElementImpl implements Namespace {
 			case SysMLPackage.NAMESPACE__MEMBER:
 				return MEMBER__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.NAMESPACE__IMPORTED_MEMBERSHIP:
-				return !getImportedMembership().isEmpty();
+				return IMPORTED_MEMBERSHIP__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 		}
 		return super.eIsSet(featureID);
 	}

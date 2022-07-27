@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2022 Siemens AG
+ * Copyright (c) 2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -21,26 +21,23 @@
 
 package org.omg.sysml.delegate;
 
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.lang.sysml.Namespace;
-import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.util.NamespaceUtil;
-import org.omg.sysml.util.NonNotifyingEObjectEList;
+import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.util.TypeUtil;
 
-public class Namespace_ownedMember_SettingDelegate extends BasicDerivedListSettingDelegate {
+public class Type_inheritedMembership_SettingDelegate extends BasicDerivedListSettingDelegate {
 
-	public Namespace_ownedMember_SettingDelegate(EStructuralFeature eStructuralFeature) {
+	public Type_inheritedMembership_SettingDelegate(EStructuralFeature eStructuralFeature) {
 		super(eStructuralFeature);
 	}
 
 	@Override
 	protected EList<?> basicGet(InternalEObject owner) {
-		EList<Element> ownedMembers = new NonNotifyingEObjectEList<>(Element.class, owner, SysMLPackage.NAMESPACE__OWNED_MEMBER);
-		NamespaceUtil.getOwnedMembersOf((Namespace)owner).forEachOrdered(ownedMembers::add);
-		return ownedMembers;
+		return TypeUtil.cacheInheritedMembershipOf((Type)owner, 
+				()->((Type)owner).inheritedMemberships(new BasicEList<>()));
 	}
 
 }

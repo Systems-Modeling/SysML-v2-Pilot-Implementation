@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2022 Siemens AG
+ * Copyright (c) 2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -21,26 +21,35 @@
 
 package org.omg.sysml.delegate;
 
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.lang.sysml.Namespace;
+import org.omg.sysml.lang.sysml.Expression;
+import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.util.NamespaceUtil;
+import org.omg.sysml.lang.sysml.ViewUsage;
+import org.omg.sysml.util.ExpressionUtil;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
+import org.omg.sysml.util.UsageUtil;
 
-public class Namespace_ownedMember_SettingDelegate extends BasicDerivedListSettingDelegate {
+public class ViewUsage_viewedElement_SettingDelegate extends BasicDerivedListSettingDelegate {
 
-	public Namespace_ownedMember_SettingDelegate(EStructuralFeature eStructuralFeature) {
+	public ViewUsage_viewedElement_SettingDelegate(EStructuralFeature eStructuralFeature) {
 		super(eStructuralFeature);
 	}
 
 	@Override
-	protected EList<?> basicGet(InternalEObject owner) {
-		EList<Element> ownedMembers = new NonNotifyingEObjectEList<>(Element.class, owner, SysMLPackage.NAMESPACE__OWNED_MEMBER);
-		NamespaceUtil.getOwnedMembersOf((Namespace)owner).forEachOrdered(ownedMembers::add);
-		return ownedMembers;
+	protected EList<Element> basicGet(InternalEObject owner) {
+		EList<Element> viewedElements = new NonNotifyingEObjectEList<>(Element.class, owner, SysMLPackage.VIEW_USAGE__VIEWED_ELEMENT);
+		UsageUtil.getExposeImportsOf((ViewUsage)owner).
+			flatMap(imp->imp.importedMembership(new BasicEList<>()).stream()).
+			map(Membership::getMemberElement).
+			forEachOrdered(viewedElements::add);
+		EList<Expression> viewConditions = UsageUtil.getAllViewConditionsOf((ViewUsage)owner);
+		viewedElements.removeIf(element->!ExpressionUtil.checkConditionsOn(element, viewConditions));
+		return viewedElements;
 	}
 
 }

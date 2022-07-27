@@ -28,8 +28,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.UniqueEList;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.uml2.common.util.UnionEObjectEList;
@@ -94,6 +93,16 @@ public class TextualRepresentationImpl extends AnnotatingElementImpl implements 
 	 * @ordered
 	 */
 	protected String body = BODY_EDEFAULT;
+
+	/**
+	 * The cached setting delegate for the '{@link #getRepresentedElement() <em>Represented Element</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getRepresentedElement()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate REPRESENTED_ELEMENT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.TEXTUAL_REPRESENTATION__REPRESENTED_ELEMENT).getSettingDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -175,27 +184,26 @@ public class TextualRepresentationImpl extends AnnotatingElementImpl implements 
 	 */
 	@Override
 	public Element getRepresentedElement() {
-		Element representedElement = basicGetRepresentedElement();
-		return representedElement != null && representedElement.eIsProxy() ? (Element)eResolveProxy((InternalEObject)representedElement) : representedElement;
+		return (Element)REPRESENTED_ELEMENT__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Element basicGetRepresentedElement() {
-		return super.basicGetOwner();
+		return (Element)REPRESENTED_ELEMENT__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setRepresentedElement(Element newRepresentedElement) {
-		throw new UnsupportedOperationException();
+		REPRESENTED_ELEMENT__ESETTING_DELEGATE.dynamicSet(this, null, 0, newRepresentedElement);
 	}
 
 	/**

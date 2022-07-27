@@ -1,6 +1,7 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2022 Siemens AG
+ * Copyright (c) 2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -27,8 +28,8 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.RequirementUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.VerificationCaseUsage;
-import org.omg.sysml.lang.sysml.impl.VerificationCaseDefinitionImpl;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
+import org.omg.sysml.util.UsageUtil;
 
 public class VerificationCaseUsage_verifiedRequirement_SettingDelegate extends BasicDerivedListSettingDelegate{
 
@@ -41,7 +42,7 @@ public class VerificationCaseUsage_verifiedRequirement_SettingDelegate extends B
 		EList<RequirementUsage> verifiedRequirements = new NonNotifyingEObjectEList<>(RequirementUsage.class, owner, SysMLPackage.VERIFICATION_CASE_DEFINITION__VERIFIED_REQUIREMENT);
 		RequirementUsage objective = ((VerificationCaseUsage)owner).getObjectiveRequirement();
 		if (objective != null) {
-			VerificationCaseDefinitionImpl.getVerifiedRequirements(objective).forEachOrdered(verifiedRequirements::add);
+			UsageUtil.getVerifiedRequirements(objective).forEachOrdered(verifiedRequirements::add);
 		}
 		return verifiedRequirements;
 	}

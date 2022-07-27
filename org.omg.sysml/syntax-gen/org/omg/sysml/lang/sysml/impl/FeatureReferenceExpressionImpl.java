@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -28,7 +28,7 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
-import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
@@ -36,7 +36,6 @@ import org.omg.sysml.lang.sysml.FeatureReferenceExpression;
 import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
 import org.omg.sysml.util.ExpressionUtil;
 import org.omg.sysml.util.FeatureUtil;
 import org.omg.sysml.util.TypeUtil;
@@ -55,10 +54,16 @@ import org.omg.sysml.util.TypeUtil;
  */
 public class FeatureReferenceExpressionImpl extends ExpressionImpl implements FeatureReferenceExpression {
 	
-	public static final String SELF_REFERENCE_FEATURE = "Base::Anything::self";
-	
-	private Feature selfReferenceFeature = null;
-	
+	/**
+	 * The cached setting delegate for the '{@link #getReferent() <em>Referent</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getReferent()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate REFERENT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.FEATURE_REFERENCE_EXPRESSION__REFERENT).getSettingDelegate();
+
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -82,36 +87,24 @@ public class FeatureReferenceExpressionImpl extends ExpressionImpl implements Fe
 	 */
 	@Override
 	public Feature getReferent() {
-		Feature referent = basicGetReferent();
-		return referent != null && referent.eIsProxy() ? (Feature)eResolveProxy((InternalEObject)referent) : referent;
+		return (Feature)REFERENT__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated NOT
+	 * @generated
 	 */
 	public Feature basicGetReferent() {
-		Element referent = ExpressionUtil.getReferentFor(this);
-		return referent instanceof Feature? (Feature)referent:
-			   referent == null? getSelfReferenceFeature():
-			   null;
+		return (Feature)REFERENT__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 	
-	protected Feature getSelfReferenceFeature() {
-		if (selfReferenceFeature == null) {
-			selfReferenceFeature = (Feature)SysMLLibraryUtil.getLibraryType(this, SELF_REFERENCE_FEATURE);
-		}
-		return selfReferenceFeature;
-	}
-
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setReferent(Feature newReferent) {
-		throw new UnsupportedOperationException();
+		REFERENT__ESETTING_DELEGATE.dynamicSet(this, null, 0, newReferent);
 	}
 	
 	@Override
@@ -124,7 +117,7 @@ public class FeatureReferenceExpressionImpl extends ExpressionImpl implements Fe
 		Feature referent = getReferent();
 		if (target instanceof Type) {
 			if (referent != null) {
-				if (TypeUtil.conforms(referent, getSelfReferenceFeature())) {
+				if (TypeUtil.conforms(referent, ExpressionUtil.getSelfReferenceFeatureFor(this))) {
 					EList<Element> result = new BasicEList<>();
 					result.add(target);
 					return result;
@@ -204,7 +197,7 @@ public class FeatureReferenceExpressionImpl extends ExpressionImpl implements Fe
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case SysMLPackage.FEATURE_REFERENCE_EXPRESSION__REFERENT:
-				return basicGetReferent() != null;
+				return REFERENT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 		}
 		return super.eIsSet(featureID);
 	}

@@ -51,6 +51,7 @@ public class VActionMembers extends VBehavior {
             VSSRMembers vs = new VSSRMembers(this);
             return vs.start(f);
         }
+        addFeatureValueBindings(f);
         FeatureDirectionKind fdk = f.getDirection();
         if (fdk == null) return null;
         switch (fdk) {

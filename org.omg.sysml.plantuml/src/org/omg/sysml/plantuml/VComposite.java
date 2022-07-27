@@ -159,6 +159,7 @@ public class VComposite extends VMixed {
     private void addTypeSimple(Type typ) {
         if (typ instanceof Feature) {
             Feature f = (Feature) typ;
+            addFeatureValueBindings(f);
             FeatureDirectionKind fdk = f.getDirection();
             if (fdk != null) {
                 String name = extractTitleName(f);

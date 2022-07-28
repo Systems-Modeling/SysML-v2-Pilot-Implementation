@@ -204,7 +204,7 @@ public class OwningMembershipImpl extends MembershipImpl implements OwningMember
 	 * <!-- begin-user-doc -->
 	 * Generation with setting delegate was not executed properly, therefore code was edited manually
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean isSetOwnedMemberName() {
 		return OWNED_MEMBER_NAME__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);

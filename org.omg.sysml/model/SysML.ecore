@@ -366,6 +366,7 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>Whether this Usage is a reference Usage, derived as the negation of &lt;code>isComposite&lt;/code>.&lt;p>"/>
       </eAnnotations>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="nestedFlow" ordered="false"
         upperBound="-1" eType="#//FlowConnectionUsage" volatile="true" transient="true"

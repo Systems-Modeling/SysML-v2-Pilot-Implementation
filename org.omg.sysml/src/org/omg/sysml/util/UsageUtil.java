@@ -80,8 +80,8 @@ public class UsageUtil {
 	
 	// References
 	
-	public static boolean isReference(Usage usage, boolean isComposite) {
-		return usage.getOwningFeatureMembership() == null || usage.getDirection() != null || usage.isEnd() || !isComposite;
+	public static boolean isComposite(Usage usage, boolean isComposite) {
+		return isComposite && usage.getOwningFeatureMembership() != null && usage.getDirection() == null && !usage.isEnd();
 	}
 	
 	// Variants

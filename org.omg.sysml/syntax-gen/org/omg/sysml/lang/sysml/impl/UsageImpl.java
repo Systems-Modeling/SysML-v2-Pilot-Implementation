@@ -420,15 +420,14 @@ public class UsageImpl extends FeatureImpl implements Usage {
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate NESTED_USE_CASE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.USAGE__NESTED_USE_CASE).getSettingDelegate();
 	/**
-	 * The default value of the '{@link #isReference() <em>Is Reference</em>}' attribute.
+	 * The cached setting delegate for the '{@link #isReference() <em>Is Reference</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #isReference()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final boolean IS_REFERENCE_EDEFAULT = false;
-	
+	protected EStructuralFeature.Internal.SettingDelegate IS_REFERENCE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.USAGE__IS_REFERENCE).getSettingDelegate();
 	/**
 	 * The cached setting delegate for the '{@link #getNestedFlow() <em>Nested Flow</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -446,7 +445,7 @@ public class UsageImpl extends FeatureImpl implements Usage {
 	 */
 	protected UsageImpl() {
 		super();
-		isComposite = !IS_REFERENCE_EDEFAULT;
+		isComposite = false;
 	}
 
 	/**
@@ -882,21 +881,21 @@ public class UsageImpl extends FeatureImpl implements Usage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public boolean isReference() {
-		return UsageUtil.isReference(this, isComposite);
+		return (Boolean)IS_REFERENCE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setIsReference(boolean newIsReference) {
-		setIsComposite(!newIsReference);
+		IS_REFERENCE__ESETTING_DELEGATE.dynamicSet(this, null, 0, newIsReference);
 	}
 	
 	/**
@@ -939,7 +938,7 @@ public class UsageImpl extends FeatureImpl implements Usage {
 
 	@Override
 	public boolean isComposite() {
-		return !isReference();
+		return UsageUtil.isComposite(this, isComposite);
 	}
 
 	@Override
@@ -1301,7 +1300,7 @@ public class UsageImpl extends FeatureImpl implements Usage {
 				getNestedUseCase().clear();
 				return;
 			case SysMLPackage.USAGE__IS_REFERENCE:
-				setIsReference(IS_REFERENCE_EDEFAULT);
+				IS_REFERENCE__ESETTING_DELEGATE.dynamicUnset(this, null, 0);
 				return;
 			case SysMLPackage.USAGE__NESTED_FLOW:
 				getNestedFlow().clear();
@@ -1387,7 +1386,7 @@ public class UsageImpl extends FeatureImpl implements Usage {
 			case SysMLPackage.USAGE__NESTED_USE_CASE:
 				return NESTED_USE_CASE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.USAGE__IS_REFERENCE:
-				return isReference() != IS_REFERENCE_EDEFAULT;
+				return IS_REFERENCE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.USAGE__NESTED_FLOW:
 				return NESTED_FLOW__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 		}

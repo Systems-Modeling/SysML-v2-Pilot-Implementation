@@ -35,7 +35,6 @@ import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.CalculationDefinition;
 import org.omg.sysml.lang.sysml.CalculationUsage;
-import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.util.TypeUtil;
 
@@ -183,27 +182,6 @@ public class CalculationDefinitionImpl extends ActionDefinitionImpl implements C
 	 * @generated
 	 */
 	@Override
-	public EList<Step> getStep() {
-		@SuppressWarnings("unchecked")
-		EList<Step> expression = (EList<Step>)((EList<?>)getExpression());
-		return expression;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetStep() {
-  		return false;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case SysMLPackage.CALCULATION_DEFINITION__EXPRESSION:
@@ -278,8 +256,6 @@ public class CalculationDefinitionImpl extends ActionDefinitionImpl implements C
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.CALCULATION_DEFINITION__STEP:
-				return isSetStep();
 			case SysMLPackage.CALCULATION_DEFINITION__EXPRESSION:
 				return isSetExpression();
 			case SysMLPackage.CALCULATION_DEFINITION__RESULT:

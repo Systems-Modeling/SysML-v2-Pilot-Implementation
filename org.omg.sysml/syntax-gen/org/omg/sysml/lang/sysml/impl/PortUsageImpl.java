@@ -119,8 +119,8 @@ public class PortUsageImpl extends OccurrenceUsageImpl implements PortUsage {
 	// Additional overrides	
 	
 	@Override
-	public boolean isReference() {
-		return true;
+	public boolean isComposite() {
+		return false;
 	}
 	
 	//

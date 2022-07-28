@@ -56,8 +56,8 @@ public class ReferenceUsageImpl extends UsageImpl implements ReferenceUsage {
 	// Additional overrides
 	
 	@Override
-	public boolean isReference() {
-		return true;
+	public boolean isComposite() {
+		return false;
 	}
 
 } //ReferenceUsageImpl

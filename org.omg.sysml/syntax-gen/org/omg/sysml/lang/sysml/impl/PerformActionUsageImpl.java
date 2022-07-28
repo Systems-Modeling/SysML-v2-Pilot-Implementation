@@ -161,8 +161,8 @@ public class PerformActionUsageImpl extends ActionUsageImpl implements PerformAc
 	// Additional overrides
 	
 	@Override
-	public boolean isReference() {
-		return true;
+	public boolean isComposite() {
+		return false;
 	}
 	
 	//

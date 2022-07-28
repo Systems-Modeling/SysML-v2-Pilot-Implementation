@@ -435,8 +435,8 @@ public class ConnectionUsageImpl extends ConnectorAsUsageImpl implements Connect
 	// Additional overrides
 
 	@Override
-	public boolean isReference() {
-		return UsageUtil.isReference(this, isComposite);
+	public boolean isComposite() {
+		return UsageUtil.isComposite(this, isComposite);
 	}
 	
 	//

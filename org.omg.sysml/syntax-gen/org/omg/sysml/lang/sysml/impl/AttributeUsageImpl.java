@@ -119,8 +119,8 @@ public class AttributeUsageImpl extends UsageImpl implements AttributeUsage {
 	// Additional overrides
 	
 	@Override
-	public boolean isReference() {
-		return true;
+	public boolean isComposite() {
+		return false;
 	}
 	
 	//

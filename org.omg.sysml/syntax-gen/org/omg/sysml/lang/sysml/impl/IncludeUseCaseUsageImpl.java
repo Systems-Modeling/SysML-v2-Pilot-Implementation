@@ -182,8 +182,8 @@ public class IncludeUseCaseUsageImpl extends UseCaseUsageImpl implements Include
 	}
 	
 	@Override
-	public boolean isReference() {
-		return true;
+	public boolean isComposite() {
+		return false;
 	}
 	
 	//

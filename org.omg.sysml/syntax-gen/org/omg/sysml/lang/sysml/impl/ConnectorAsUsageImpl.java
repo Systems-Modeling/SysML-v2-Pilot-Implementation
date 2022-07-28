@@ -128,8 +128,8 @@ public abstract class ConnectorAsUsageImpl extends UsageImpl implements Connecto
 	// Additional overrides	
 	
 	@Override
-	public boolean isReference() {
-		return true;
+	public boolean isComposite() {
+		return false;
 	}
 	
 	//

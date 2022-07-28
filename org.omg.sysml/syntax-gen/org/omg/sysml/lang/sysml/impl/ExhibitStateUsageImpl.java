@@ -201,8 +201,8 @@ public class ExhibitStateUsageImpl extends StateUsageImpl implements ExhibitStat
 	// Additional overrides
 	
 	@Override
-	public boolean isReference() {
-		return true;
+	public boolean isComposite() {
+		return false;
 	}
 	
 	//

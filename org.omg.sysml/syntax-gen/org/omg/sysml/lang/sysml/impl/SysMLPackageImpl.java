@@ -13229,6 +13229,11 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   new String[] {
 		   });
 		addAnnotation
+		  (getUsage_IsReference(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
 		  (getUsage_NestedFlow(),
 		   source,
 		   new String[] {

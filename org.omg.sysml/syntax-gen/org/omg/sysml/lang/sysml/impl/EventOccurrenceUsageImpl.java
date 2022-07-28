@@ -83,8 +83,8 @@ public class EventOccurrenceUsageImpl extends OccurrenceUsageImpl implements Eve
 	// Additional overrides
 	
 	@Override
-	public boolean isReference() {
-		return true;
+	public boolean isComposite() {
+		return false;
 	}
 
 	//

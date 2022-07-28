@@ -949,6 +949,7 @@ public interface Usage extends Feature {
 	 * @see #setIsReference(boolean)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_IsReference()
 	 * @model dataType="org.omg.sysml.lang.types.Boolean" required="true" transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	boolean isReference();

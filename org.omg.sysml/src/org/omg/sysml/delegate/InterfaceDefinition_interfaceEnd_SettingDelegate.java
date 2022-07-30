@@ -25,7 +25,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.PortUsage;
-import org.omg.sysml.lang.sysml.SysMLPackage;
 
 public class InterfaceDefinition_interfaceEnd_SettingDelegate extends ConnectionDefinition_connectionEnd_SettingDelegate {
 
@@ -35,7 +34,7 @@ public class InterfaceDefinition_interfaceEnd_SettingDelegate extends Connection
 
 	@Override
 	public EList<PortUsage> basicGet(InternalEObject owner) {
-		return basicGet(owner, PortUsage.class, SysMLPackage.INTERFACE_DEFINITION__INTERFACE_END);
+		return basicGet(owner, PortUsage.class);
 	}
 
 }

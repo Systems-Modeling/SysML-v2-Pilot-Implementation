@@ -24,7 +24,6 @@ package org.omg.sysml.delegate;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Usage;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
 
@@ -36,7 +35,7 @@ public class Usage_directedUsage_SettingDelegate extends BasicDerivedListSetting
 
 	@Override
 	protected EList<?> basicGet(InternalEObject owner) {
-		EList<Usage> flows = new NonNotifyingEObjectEList<>(Usage.class, owner, SysMLPackage.DEFINITION__DIRECTED_USAGE);
+		EList<Usage> flows = new NonNotifyingEObjectEList<>(Usage.class, owner, eStructuralFeature.getFeatureID());
 		((Usage)owner).getUsage().stream().
 			filter(usage->usage.getDirection() != null).
 			forEachOrdered(flows::add);

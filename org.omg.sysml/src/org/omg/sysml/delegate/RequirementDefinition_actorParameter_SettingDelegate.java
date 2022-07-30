@@ -27,7 +27,6 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.ActorMembership;
 import org.omg.sysml.lang.sysml.PartUsage;
 import org.omg.sysml.lang.sysml.RequirementDefinition;
-import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
 import org.omg.sysml.util.TypeUtil;
 
@@ -39,7 +38,7 @@ public class RequirementDefinition_actorParameter_SettingDelegate extends BasicD
 
 	@Override
 	protected EList<?> basicGet(InternalEObject owner) {
-		EList<PartUsage> actorParameters = new NonNotifyingEObjectEList<>(PartUsage.class, owner, SysMLPackage.REQUIREMENT_DEFINITION__ACTOR_PARAMETER);
+		EList<PartUsage> actorParameters = new NonNotifyingEObjectEList<>(PartUsage.class, owner, eStructuralFeature.getFeatureID());
 		TypeUtil.addOwnedFeaturesByMembership((RequirementDefinition)owner, ActorMembership.class, PartUsage.class, actorParameters);
 		return actorParameters;
 	}

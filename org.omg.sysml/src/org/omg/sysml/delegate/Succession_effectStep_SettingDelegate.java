@@ -27,7 +27,6 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.Succession;
-import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.TransitionUsage;
 import org.omg.sysml.lang.sysml.impl.TransitionUsageImpl;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
@@ -40,7 +39,7 @@ public class Succession_effectStep_SettingDelegate extends BasicDerivedListSetti
 
 	@Override
 	protected EList<?> basicGet(InternalEObject owner) {
-		EList<Step> effectSteps = new NonNotifyingEObjectEList<>(Step.class, owner, SysMLPackage.SUCCESSION__EFFECT_STEP);
+		EList<Step> effectSteps = new NonNotifyingEObjectEList<>(Step.class, owner, eStructuralFeature.getFeatureID());
 		Step transitionStep = ((Succession)owner).getTransitionStep();
 		if (transitionStep instanceof TransitionUsage) {
 			EList<ActionUsage> effects = ((TransitionUsageImpl)transitionStep).getEffectAction();

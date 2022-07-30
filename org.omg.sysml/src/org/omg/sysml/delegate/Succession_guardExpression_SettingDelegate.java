@@ -27,7 +27,6 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.Succession;
-import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.TransitionUsage;
 import org.omg.sysml.lang.sysml.impl.TransitionUsageImpl;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
@@ -40,7 +39,7 @@ public class Succession_guardExpression_SettingDelegate extends BasicDerivedList
 
 	@Override
 	protected EList<?> basicGet(InternalEObject owner) {
-		EList<Expression> guardExpressions = new NonNotifyingEObjectEList<>(Expression.class, owner, SysMLPackage.SUCCESSION__GUARD_EXPRESSION);
+		EList<Expression> guardExpressions = new NonNotifyingEObjectEList<>(Expression.class, owner, eStructuralFeature.getFeatureID());
 		Step transitionStep = ((Succession)owner).getTransitionStep();
 		if (transitionStep instanceof TransitionUsage) {
 			EList<Expression> guards = ((TransitionUsageImpl)transitionStep).getGuardExpression();

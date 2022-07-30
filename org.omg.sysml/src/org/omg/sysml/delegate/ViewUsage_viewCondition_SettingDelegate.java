@@ -26,7 +26,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.ElementFilterMembership;
 import org.omg.sysml.lang.sysml.Expression;
-import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.ViewUsage;
 import org.omg.sysml.util.NamespaceUtil;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
@@ -39,7 +38,7 @@ public class ViewUsage_viewCondition_SettingDelegate extends BasicDerivedListSet
 
 	@Override
 	protected EList<?> basicGet(InternalEObject owner) {
-		EList<Expression> viewConditions = new NonNotifyingEObjectEList<>(Expression.class, owner, SysMLPackage.VIEW_DEFINITION__VIEW_CONDITION);
+		EList<Expression> viewConditions = new NonNotifyingEObjectEList<>(Expression.class, owner, eStructuralFeature.getFeatureID());
 		NamespaceUtil.getOwnedMembersByMembershipIn((ViewUsage)owner, ElementFilterMembership.class, Expression.class).forEachOrdered(viewConditions::add);
 		return viewConditions;
 	}

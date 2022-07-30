@@ -26,7 +26,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.AllocationDefinition;
 import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.util.FeatureUtil;
 
 public class AllocationUsage_allocationDefinition_SettingDelegate extends BasicDerivedListSettingDelegate {
@@ -37,7 +36,7 @@ public class AllocationUsage_allocationDefinition_SettingDelegate extends BasicD
 
 	@Override
 	protected EList<AllocationDefinition> basicGet(InternalEObject owner) {
-		return FeatureUtil.getAllTypesOf((Feature)owner, AllocationDefinition.class, SysMLPackage.ALLOCATION_USAGE__ALLOCATION_DEFINITION);
+		return FeatureUtil.getAllTypesOf((Feature)owner, AllocationDefinition.class, eStructuralFeature.getFeatureID());
 	}
 
 }

@@ -25,7 +25,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.FeatureMembership;
-import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
 
@@ -37,7 +36,7 @@ public class Type_featureMembership_SettingDelegate extends BasicDerivedListSett
 
 	@Override
 	protected EList<?> basicGet(InternalEObject owner) {
-		EList<FeatureMembership> featureMemberships = new NonNotifyingEObjectEList<>(FeatureMembership.class, owner, SysMLPackage.TYPE__FEATURE_MEMBERSHIP);
+		EList<FeatureMembership> featureMemberships = new NonNotifyingEObjectEList<>(FeatureMembership.class, owner, eStructuralFeature.getFeatureID());
 		featureMemberships.addAll(((Type)owner).getOwnedFeatureMembership());
 		((Type)owner).getInheritedMembership().stream().
 			filter(FeatureMembership.class::isInstance).

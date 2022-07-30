@@ -26,7 +26,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.PartUsage;
 import org.omg.sysml.lang.sysml.StakeholderMembership;
-import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.ViewpointDefinition;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
 
@@ -38,7 +37,7 @@ public class ViewpointDefinition_viewpointStakeholder_SettingDelegate extends Ba
 
 	@Override
 	protected EList<?> basicGet(InternalEObject owner) {
-		EList<PartUsage> stakeholders = new NonNotifyingEObjectEList<>(PartUsage.class, owner, SysMLPackage.VIEWPOINT_DEFINITION__VIEWPOINT_STAKEHOLDER);
+		EList<PartUsage> stakeholders = new NonNotifyingEObjectEList<>(PartUsage.class, owner, eStructuralFeature.getFeatureID());
 		((ViewpointDefinition)owner).getFramedConcern().stream().
 			flatMap(concern->concern.getFeature().stream()).
 			filter(PartUsage.class::isInstance).

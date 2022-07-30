@@ -28,10 +28,8 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.BasicInternalEList;
-import org.eclipse.uml2.common.util.DerivedEObjectEList;
 import org.omg.sysml.lang.sysml.Association;
 import org.omg.sysml.lang.sysml.AssociationStructure;
 import org.omg.sysml.lang.sysml.Classifier;
@@ -47,7 +45,6 @@ import org.omg.sysml.lang.sysml.PortioningFeature;
 import org.omg.sysml.lang.sysml.Structure;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.util.ConnectorUtil;
-import org.omg.sysml.util.NonNotifyingEObjectEList;
 import org.omg.sysml.util.UsageUtil;
 
 /**
@@ -71,6 +68,36 @@ import org.omg.sysml.util.UsageUtil;
  * @generated
  */
 public class ConnectionUsageImpl extends ConnectorAsUsageImpl implements ConnectionUsage {
+
+	/**
+	 * The cached setting delegate for the '{@link #getOccurrenceDefinition() <em>Occurrence Definition</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOccurrenceDefinition()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate OCCURRENCE_DEFINITION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.OCCURRENCE_USAGE__OCCURRENCE_DEFINITION).getSettingDelegate();
+
+	/**
+	 * The cached setting delegate for the '{@link #getPortioningFeature() <em>Portioning Feature</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPortioningFeature()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate PORTIONING_FEATURE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.OCCURRENCE_USAGE__PORTIONING_FEATURE).getSettingDelegate();
+
+	/**
+	 * The cached setting delegate for the '{@link #getIndividualDefinition() <em>Individual Definition</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getIndividualDefinition()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate INDIVIDUAL_DEFINITION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.OCCURRENCE_USAGE__INDIVIDUAL_DEFINITION).getSettingDelegate();
 
 	/**
 	 * The default value of the '{@link #isIndividual() <em>Is Individual</em>}' attribute.
@@ -111,6 +138,16 @@ public class ConnectionUsageImpl extends ConnectorAsUsageImpl implements Connect
 	 * @ordered
 	 */
 	protected PortionKind portionKind = PORTION_KIND_EDEFAULT;
+
+	/**
+	 * The cached setting delegate for the '{@link #getItemDefinition() <em>Item Definition</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getItemDefinition()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate ITEM_DEFINITION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.ITEM_USAGE__ITEM_DEFINITION).getSettingDelegate();
 
 	/**
 	 * The cached setting delegate for the '{@link #getPartDefinition() <em>Part Definition</em>}' reference list.
@@ -154,17 +191,12 @@ public class ConnectionUsageImpl extends ConnectorAsUsageImpl implements Connect
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<org.omg.sysml.lang.sysml.Class> getOccurrenceDefinition() {
-		EList<org.omg.sysml.lang.sysml.Class> definitions =
-				new NonNotifyingEObjectEList<>(org.omg.sysml.lang.sysml.Class.class, this, SysMLPackage.CONNECTION_USAGE__OCCURRENCE_DEFINITION);
-		super.getDefinition().stream().
-			filter(org.omg.sysml.lang.sysml.Class.class::isInstance).
-			map(org.omg.sysml.lang.sysml.Class.class::cast).
-			forEachOrdered(definitions::add);
-		return definitions;
+		return (EList<org.omg.sysml.lang.sysml.Class>)OCCURRENCE_DEFINITION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
@@ -183,30 +215,26 @@ public class ConnectionUsageImpl extends ConnectorAsUsageImpl implements Connect
 	 */
 	@Override
 	public PortioningFeature getPortioningFeature() {
-		PortioningFeature portioningFeature = basicGetPortioningFeature();
-		return portioningFeature != null && portioningFeature.eIsProxy() ? (PortioningFeature)eResolveProxy((InternalEObject)portioningFeature) : portioningFeature;
+		return (PortioningFeature)PORTIONING_FEATURE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public PortioningFeature basicGetPortioningFeature() {
-		return getOwnedFeature().stream().
-				filter(PortioningFeature.class::isInstance).
-				map(PortioningFeature.class::cast).
-				findFirst().orElse(null);
+		return (PortioningFeature)PORTIONING_FEATURE__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setPortioningFeature(PortioningFeature newPortioningFeature) {
-		throw new UnsupportedOperationException();
+		PORTIONING_FEATURE__ESETTING_DELEGATE.dynamicSet(this, null, 0, newPortioningFeature);
 	}
 
 	/**
@@ -216,31 +244,26 @@ public class ConnectionUsageImpl extends ConnectorAsUsageImpl implements Connect
 	 */
 	@Override
 	public OccurrenceDefinition getIndividualDefinition() {
-		OccurrenceDefinition individualDefinition = basicGetIndividualDefinition();
-		return individualDefinition != null && individualDefinition.eIsProxy() ? (OccurrenceDefinition)eResolveProxy((InternalEObject)individualDefinition) : individualDefinition;
+		return (OccurrenceDefinition)INDIVIDUAL_DEFINITION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public OccurrenceDefinition basicGetIndividualDefinition() {
-		return getOccurrenceDefinition().stream().
-				filter(OccurrenceDefinition.class::isInstance).
-				map(OccurrenceDefinition.class::cast).
-				filter(OccurrenceDefinition::isIndividual).
-				findFirst().orElse(null);
+		return (OccurrenceDefinition)INDIVIDUAL_DEFINITION__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setIndividualDefinition(OccurrenceDefinition newIndividualDefinition) {
-		throw new UnsupportedOperationException();
+		INDIVIDUAL_DEFINITION__ESETTING_DELEGATE.dynamicSet(this, null, 0, newIndividualDefinition);
 	}
 
 	/**
@@ -292,11 +315,12 @@ public class ConnectionUsageImpl extends ConnectorAsUsageImpl implements Connect
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<Structure> getItemDefinition() {
-		return new DerivedEObjectEList<>(Structure.class, this, SysMLPackage.CONNECTION_USAGE__ITEM_DEFINITION, new int[] {SysMLPackage.CONNECTION_USAGE__OCCURRENCE_DEFINITION});
+		return (EList<Structure>)ITEM_DEFINITION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
@@ -397,28 +421,6 @@ public class ConnectionUsageImpl extends ConnectorAsUsageImpl implements Connect
 	 */
 	public boolean isSetDefinition() {
   		return false;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	@Override
-	public void setSourceFeature(Feature newSourceFeature) {
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	@Override
-	public EList<Feature> getTargetFeature() {
-		EList<Feature> targetFeatures = new NonNotifyingEObjectEList<>(Feature.class, this, SysMLPackage.CONNECTION_USAGE__TARGET_FEATURE);
-		ConnectorUtil.addTargetFeatures(this, targetFeatures);
-		return targetFeatures;
 	}
 
 	/**
@@ -561,9 +563,9 @@ public class ConnectionUsageImpl extends ConnectorAsUsageImpl implements Connect
 			case SysMLPackage.CONNECTION_USAGE__OCCURRENCE_DEFINITION:
 				return isSetOccurrenceDefinition();
 			case SysMLPackage.CONNECTION_USAGE__PORTIONING_FEATURE:
-				return basicGetPortioningFeature() != null;
+				return PORTIONING_FEATURE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.CONNECTION_USAGE__INDIVIDUAL_DEFINITION:
-				return basicGetIndividualDefinition() != null;
+				return INDIVIDUAL_DEFINITION__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.CONNECTION_USAGE__IS_INDIVIDUAL:
 				return isIndividual != IS_INDIVIDUAL_EDEFAULT;
 			case SysMLPackage.CONNECTION_USAGE__PORTION_KIND:

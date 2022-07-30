@@ -25,7 +25,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.RequirementUsage;
-import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.VerificationCaseDefinition;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
 import org.omg.sysml.util.UsageUtil;
@@ -38,7 +37,7 @@ public class VerificationCaseDefinition_verifiedRequirement_SettingDelegate exte
 
 	@Override
 	protected EList<?> basicGet(InternalEObject owner) {
-		EList<RequirementUsage> verifiedRequirements = new NonNotifyingEObjectEList<>(RequirementUsage.class, owner, SysMLPackage.VERIFICATION_CASE_DEFINITION__VERIFIED_REQUIREMENT);
+		EList<RequirementUsage> verifiedRequirements = new NonNotifyingEObjectEList<>(RequirementUsage.class, owner, eStructuralFeature.getFeatureID());
 		RequirementUsage objective = ((VerificationCaseDefinition)owner).getObjectiveRequirement();
 		if (objective != null) {
 			UsageUtil.getVerifiedRequirements(objective).forEachOrdered(verifiedRequirements::add);

@@ -283,7 +283,7 @@ public class OwningMembershipImpl extends MembershipImpl implements OwningMember
 	 * @generated
 	 */
 	public boolean isSetOwnedMemberElement() {
-		return OWNED_MEMBER_ELEMENT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
+		return basicGetOwnedMemberElement() != null;
 	}
 	
 	/**

@@ -26,7 +26,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
 
@@ -38,11 +37,11 @@ public class Type_endFeature_SettingDelegate extends BasicDerivedListSettingDele
 
 	@Override
 	protected EList<? extends Feature> basicGet(InternalEObject owner) {
-		return basicGet(owner, Feature.class, SysMLPackage.TYPE__END_FEATURE);
+		return basicGet(owner, Feature.class);
 	}
 
-	protected <T> EList<T> basicGet(InternalEObject owner, Class<T> kind, int featureId) {
-		EList<T> endFeatures = new NonNotifyingEObjectEList<>(kind, owner, featureId);
+	protected <T> EList<T> basicGet(InternalEObject owner, Class<T> kind) {
+		EList<T> endFeatures = new NonNotifyingEObjectEList<>(kind, owner, eStructuralFeature.getFeatureID());
 		((Type)owner).getFeature().stream().
 			filter(Feature::isEnd).
 			filter(kind::isInstance).

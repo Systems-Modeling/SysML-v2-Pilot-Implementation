@@ -26,7 +26,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.ItemFlowEnd;
-import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
 
 public class ItemFlow_itemFlowEnd_SettingDelegate extends Connector_connectorEnd_SettingDelegate {
@@ -36,12 +35,11 @@ public class ItemFlow_itemFlowEnd_SettingDelegate extends Connector_connectorEnd
 	}
 
 	@Override
-	protected EList<?> basicGet(InternalEObject owner) {
-		EList<ItemFlowEnd> itemFlows = 
-				new NonNotifyingEObjectEList<>(ItemFlowEnd.class, owner, SysMLPackage.ITEM_FLOW__ITEM_FLOW_END);
+	protected EList<ItemFlowEnd> basicGet(InternalEObject owner) {
+		EList<ItemFlowEnd> itemFlows = new NonNotifyingEObjectEList<>(ItemFlowEnd.class, owner, eStructuralFeature.getFeatureID());
 		super.basicGet(owner).stream().
-			filter(end->end instanceof ItemFlowEnd).
-			map(end->(ItemFlowEnd)end).
+			filter(ItemFlowEnd.class::isInstance).
+			map(ItemFlowEnd.class::cast).
 			forEachOrdered(itemFlows::add);
 		return itemFlows;
 	}

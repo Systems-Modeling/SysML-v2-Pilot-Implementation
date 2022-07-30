@@ -25,7 +25,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.ActionUsage;
-import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.TransitionFeatureKind;
 import org.omg.sysml.lang.sysml.TransitionUsage;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
@@ -40,7 +39,7 @@ public class TransitionUsage_effectAction_SettingDelegate extends BasicDerivedLi
 	@Override
 	protected EList<?> basicGet(InternalEObject owner) {
 		EList<ActionUsage> effectActions = 
-				new NonNotifyingEObjectEList<>(ActionUsage.class, owner, SysMLPackage.TRANSITION_USAGE__EFFECT_ACTION);
+				new NonNotifyingEObjectEList<>(ActionUsage.class, owner, eStructuralFeature.getFeatureID());
 		UsageUtil.getTransitionFeaturesOf((TransitionUsage)owner, TransitionFeatureKind.EFFECT).
 			filter(feature->feature instanceof ActionUsage).
 			map(feature->(ActionUsage)feature).

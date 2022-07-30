@@ -26,7 +26,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.StateDefinition;
-import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.util.FeatureUtil;
 
 public class StateUsage_stateDefinition_SettingDelegate extends BasicDerivedListSettingDelegate {
@@ -37,7 +36,7 @@ public class StateUsage_stateDefinition_SettingDelegate extends BasicDerivedList
 
 	@Override
 	protected EList<StateDefinition> basicGet(InternalEObject owner) {
-		return FeatureUtil.getAllTypesOf((Feature)owner, StateDefinition.class, SysMLPackage.STATE_USAGE__STATE_DEFINITION);
+		return FeatureUtil.getAllTypesOf((Feature)owner, StateDefinition.class, eStructuralFeature.getFeatureID());
 	}
 
 }

@@ -27,7 +27,6 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.Conjugation;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureDirectionKind;
-import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
 
@@ -39,7 +38,7 @@ public class Type_input_SettingDelegate extends BasicDerivedListSettingDelegate 
 
 	@Override
 	protected EList<?> basicGet(InternalEObject owner) {
-		EList<Feature> inputs = new NonNotifyingEObjectEList<>(Feature.class, owner, SysMLPackage.TYPE__INPUT);
+		EList<Feature> inputs = new NonNotifyingEObjectEList<>(Feature.class, owner, eStructuralFeature.getFeatureID());
 		Conjugation conjugator = ((Type) owner).getOwnedConjugator();
 		if (conjugator != null) {
 			inputs.addAll(conjugator.getOriginalType().getOutput());

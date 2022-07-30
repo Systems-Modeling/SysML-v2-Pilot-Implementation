@@ -26,7 +26,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.Connector;
 import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
 
 public class Connector_connectorEnd_SettingDelegate extends BasicDerivedListSettingDelegate {
@@ -36,9 +35,9 @@ public class Connector_connectorEnd_SettingDelegate extends BasicDerivedListSett
 	}
 
 	@Override
-	protected EList<?> basicGet(InternalEObject owner) {
-		EList<Feature> connectorEnds = new NonNotifyingEObjectEList<>(Feature.class, owner, SysMLPackage.CONNECTOR__CONNECTOR_END);
-		((Connector)owner).getOwnedFeature().stream().filter(f->f.isEnd()).forEachOrdered(connectorEnds::add);
+	protected EList<? extends Feature> basicGet(InternalEObject owner) {
+		EList<Feature> connectorEnds = new NonNotifyingEObjectEList<>(Feature.class, owner, eStructuralFeature.getFeatureID());
+		((Connector)owner).getOwnedFeature().stream().filter(Feature::isEnd).forEachOrdered(connectorEnds::add);
 		return connectorEnds;
 	}
 

@@ -1253,7 +1253,6 @@
       <eAnnotations source="redefines" references="#//AnnotatingElement/annotatedElement"/>
       <eAnnotations source="subsets" references="#//Element/owner"/>
       <eAnnotations source="http://www.omg.org/spec/SysML"/>
-      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Import" eSuperTypes="#//Relationship">
@@ -2623,8 +2622,8 @@
       <details key="documentation" value="&lt;p>A Connector is a usage of Associations, with links restricted to instances of the Type in which it is used (domain of the Connector). Associations restrict what kinds of things might be linked. The Connector further restricts these links to between values of two Features on instances of its&amp;nbsp;domain.&lt;/p>&#xA;&#xA;relatedFeature = connectorEnd.ownedSubsetting.subsettedFeature&#xA;relatedFeature->forAll(f | &#xA;    if featuringType->isEmpty() then f.isFeaturedWithin(null)&#xA;    else featuringType->exists(t | f.isFeaturedWithin(t))&#xA;    endif)&#xA;sourceFeature = &#xA;    if relatedFeature->size() = 2 then relatedFeature->at(1) &#xA;    else null &#xA;    endif&#xA;targetFeature =&#xA;    if sourceFeature = null then relatedFeature&#xA;    else relatedFeature->excluding(sourceFeature)&#xA;    endif&#xA;connectorEnd = feature->select(isEnd)&#xA;association->forAll(a |&#xA;    a.associationEnd->forAll(ae |&#xA;        connectorEnd->one(ce | &#xA;            ce.ownedRedefinition.redefinedFeature->includes(ae))))&#xA;"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="relatedFeature" unique="false"
-        lowerBound="2" upperBound="-1" eType="#//Feature" changeable="false" volatile="true"
-        transient="true" derived="true">
+        lowerBound="2" upperBound="-1" eType="#//Feature" volatile="true" transient="true"
+        derived="true">
       <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName">
         <details key="body" value="connector"/>
       </eAnnotations>
@@ -2695,8 +2694,8 @@
       <details key="documentation" value="&lt;p>An Association is a Relationship and a Classifier to enable classification of links between things (in the universe). The co-domains (&lt;code>types&lt;/code>) of the &lt;code>associationEnd&lt;/code> Features are the &lt;code>relatedTypes&lt;/code>, as co-domain and participants (linked things) of an Association identify each other.&lt;/p>&#xA;&#xA;relatedTypes = associationEnd.type&#xA;let numend : Natural = associationEnd->size() in&#xA;    allSupertypes()->includes(&#xA;        if numend = 2 then Kernel Library::BinaryLink&#xA;        else Kernel Library::Link)&#xA;oclIsKindOf(Structure) = oclIsKindOf(AssociationStructure)&#xA;allSupertypes()->includes(Kernel Library::Link)"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="relatedType" unique="false"
-        lowerBound="2" upperBound="-1" eType="#//Type" changeable="false" volatile="true"
-        transient="true" derived="true">
+        lowerBound="2" upperBound="-1" eType="#//Type" volatile="true" transient="true"
+        derived="true">
       <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName">
         <details key="body" value="association"/>
       </eAnnotations>

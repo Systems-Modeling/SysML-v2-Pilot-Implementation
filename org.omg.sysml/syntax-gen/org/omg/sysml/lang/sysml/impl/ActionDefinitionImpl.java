@@ -34,8 +34,6 @@ import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.util.NonNotifyingEObjectEList;
-import org.omg.sysml.util.TypeUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -63,6 +61,15 @@ public class ActionDefinitionImpl extends OccurrenceDefinitionImpl implements Ac
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate STEP__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.BEHAVIOR__STEP).getSettingDelegate();
+	/**
+	 * The cached setting delegate for the '{@link #getParameter() <em>Parameter</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getParameter()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate PARAMETER__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.BEHAVIOR__PARAMETER).getSettingDelegate();
 	/**
 	 * The cached setting delegate for the '{@link #getAction() <em>Action</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -106,13 +113,12 @@ public class ActionDefinitionImpl extends OccurrenceDefinitionImpl implements Ac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<Feature> getParameter() {
-		EList<Feature> parameters = new NonNotifyingEObjectEList<>(Feature.class, this, SysMLPackage.ACTION_DEFINITION__PARAMETER);
-		parameters.addAll(TypeUtil.getAllParametersOf(this));
-		return parameters;
+		return (EList<Feature>)PARAMETER__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
@@ -133,6 +139,24 @@ public class ActionDefinitionImpl extends OccurrenceDefinitionImpl implements Ac
 	@Override
 	public EList<ActionUsage> getAction() {
 		return (EList<ActionUsage>)ACTION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Feature> getDirectedFeature() {
+		return getParameter();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetDirectedFeature() {
+  		return false;
 	}
 
 	/**
@@ -253,22 +277,4 @@ public class ActionDefinitionImpl extends OccurrenceDefinitionImpl implements Ac
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<Feature> getDirectedFeature() {
-		return getParameter();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetDirectedFeature() {
-  		return false;
-	}
-
-} //ActivityImpl
+}

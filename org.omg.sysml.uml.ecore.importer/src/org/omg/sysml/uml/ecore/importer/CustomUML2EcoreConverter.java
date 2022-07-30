@@ -33,62 +33,62 @@ public class CustomUML2EcoreConverter extends UML2EcoreConverter {
 	public Collection<? extends EObject> convert(Collection<? extends EObject> eObjects, Map<String, String> options,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		Collection<? extends EObject> res = super.convert(eObjects, options, diagnostics, context);
-		processReferences(diagnostics);
+		customConvert(diagnostics);
 		return res;
 	}
 
-	private void processReferences(DiagnosticChain diagnostics) {
+	private void customConvert(DiagnosticChain diagnostics) {
 		for (Entry<Element, EModelElement> entry : elementToEModelElementMap.entrySet()) {
 			Element element = entry.getKey();
 			EModelElement modelElement = entry.getValue();
 			if (element instanceof Property && modelElement instanceof EStructuralFeature) {
 				Property property = (Property)element;
-				if (property.isDerived() && !property.isDerivedUnion()) {
-					EStructuralFeature feature = (EStructuralFeature)modelElement;
-					EAnnotation annotation = EcoreFactory.eINSTANCE.createEAnnotation();
-					annotation.setSource(ANNOTATION_SYSML);
-					modelElement.getEAnnotations().add(annotation);
-					System.out.print("Add annotation: " + property.getQualifiedName());
-					if (feature instanceof EReference && feature.isMany() && 
-							!property.getSubsettedProperties().isEmpty()) {
-						Property subsettedProperty = property.getSubsettedProperties().get(0);
-						if (subsettedProperty.getType() != property.getType()) {
-							System.out.print(" (default)");
-						}
-					}
-					System.out.println();					
-				}
 				if (modelElement instanceof EReference && 
-						AggregationKind.COMPOSITE_LITERAL.equals(((Property) element).getAggregation())) {
+						AggregationKind.COMPOSITE_LITERAL.equals(property.getAggregation())) {
 					EReference ref = (EReference)modelElement;
 					EList<Property> subsets = property.getSubsettedProperties();
 					EList<Property> redefines = property.getRedefinedProperties();
 					if (property.isDerived()) {
 						if (subsets.isEmpty() && redefines.isEmpty()) {
+							System.out.println("Make containment: " + property.getQualifiedName());
 							ref.setContainment(true);
-							System.out.println("Make containment: " + ref.getName());
+						} else if (!property.isDerivedUnion()){
+							System.out.println("Add annotation: " + property.getQualifiedName());
+							addSysMLAnnotation(property, ref);			
 						}
 					} else if (!ref.isMany()) {
 						if (subsets.stream().anyMatch(Property::isComposite) ||
 								redefines.stream().anyMatch(Property::isComposite)) {
-							System.out.println("Make derived: " + ref.getName());
-
-							ref.setDerived(true);
-							ref.setTransient(true);
-							ref.setVolatile(true);
-							ref.setContainment(false);
+							makeDerived(property, ref);
 
 							EReference opRef = ref.getEOpposite();
 							if (opRef != null) {
-								opRef.setDerived(true);
-								opRef.setTransient(true);
-								opRef.setVolatile(true);
+								makeDerived(property.getOpposite(), opRef);
 							}
 						}
 					}
+				} else if (property.isDerived() && !property.isDerivedUnion()) {
+					addSysMLAnnotation(property, (EStructuralFeature)modelElement);			
 				}
+
 			}
 		}
+	}
+	
+	private static void makeDerived(Property property, EReference ref) {
+		System.out.println("Make derived: " + property.getQualifiedName());
+		ref.setDerived(true);
+		ref.setTransient(true);
+		ref.setVolatile(true);
+		ref.setContainment(false);							
+		addSysMLAnnotation(property, ref);		
+	}
+	
+	private static void addSysMLAnnotation(Property property, EStructuralFeature feature) {
+		System.out.println("Add annotation: " + property.getQualifiedName());
+		EAnnotation annotation = EcoreFactory.eINSTANCE.createEAnnotation();
+		annotation.setSource(ANNOTATION_SYSML);
+		feature.getEAnnotations().add(annotation);
 	}
 	
 }

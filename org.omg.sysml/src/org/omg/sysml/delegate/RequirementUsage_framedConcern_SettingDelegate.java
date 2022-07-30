@@ -28,7 +28,6 @@ import org.omg.sysml.lang.sysml.ConcernUsage;
 import org.omg.sysml.lang.sysml.FramedConcernMembership;
 import org.omg.sysml.lang.sysml.RequirementConstraintKind;
 import org.omg.sysml.lang.sysml.RequirementUsage;
-import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
 import org.omg.sysml.util.UsageUtil;
 
@@ -40,7 +39,7 @@ public class RequirementUsage_framedConcern_SettingDelegate extends BasicDerived
 
 	@Override
 	protected EList<?> basicGet(InternalEObject owner) {
-		EList<ConcernUsage> concerns = new NonNotifyingEObjectEList<>(ConcernUsage.class, owner, SysMLPackage.REQUIREMENT_USAGE__FRAMED_CONCERN);
+		EList<ConcernUsage> concerns = new NonNotifyingEObjectEList<>(ConcernUsage.class, owner,eStructuralFeature.getFeatureID());
 		UsageUtil.getRequirementConstraints((RequirementUsage)owner, FramedConcernMembership.class, RequirementConstraintKind.REQUIREMENT).
 			map(ConcernUsage.class::cast).forEachOrdered(concerns::add);
 		return concerns;

@@ -25,7 +25,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.Disjoining;
-import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
 
@@ -37,7 +36,7 @@ public class Type_ownedDisjoining_SettingDelegate extends BasicDerivedListSettin
 
 	@Override
 	protected EList<?> basicGet(InternalEObject owner) {
-		EList<Disjoining> disjoinings = new NonNotifyingEObjectEList<>(Disjoining.class, owner, SysMLPackage.TYPE__OWNED_DISJOINING);
+		EList<Disjoining> disjoinings = new NonNotifyingEObjectEList<>(Disjoining.class, owner, eStructuralFeature.getFeatureID());
 		((Type)owner).getOwnedRelationship().stream().
 			filter(Disjoining.class::isInstance).
 			map(Disjoining.class::cast).

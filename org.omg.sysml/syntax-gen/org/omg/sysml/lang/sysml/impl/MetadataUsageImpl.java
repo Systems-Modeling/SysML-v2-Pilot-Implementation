@@ -27,8 +27,6 @@ import org.omg.sysml.lang.sysml.MetadataUsage;
 import org.omg.sysml.lang.sysml.Structure;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.util.ElementUtil;
-import org.omg.sysml.util.NonNotifyingEObjectEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -110,13 +108,12 @@ public class MetadataUsageImpl extends ItemUsageImpl implements MetadataUsage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<Element> getAnnotatedElement() {
-		EList<Element> annotatedElements = new NonNotifyingEObjectEList<>(Element.class, this, SysMLPackage.METADATA_USAGE__ANNOTATED_ELEMENT);
-		annotatedElements.addAll(ElementUtil.getAnnotatedElementOf(this));
-		return annotatedElements;
+		return (EList<Element>)ANNOTATED_ELEMENT__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
@@ -155,6 +152,85 @@ public class MetadataUsageImpl extends ItemUsageImpl implements MetadataUsage {
 	 */
 	public boolean isSetMetadataDefinition() {
 		return basicGetMetadataDefinition() != null;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Type> getType() {
+		@SuppressWarnings("unchecked")
+		EList<Type> definition = (EList<Type>)((EList<?>)getDefinition());
+		return definition;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetType() {
+  		return false;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Metaclass getMetaclass() {
+		return getMetadataDefinition();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Metaclass basicGetMetaclass() {
+		return basicGetMetadataDefinition();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setMetaclass(Metaclass newMetaclass) {
+		setMetadataDefinition(newMetaclass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetMetaclass() {
+  		return false;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Structure> getItemDefinition() {
+		EList<Structure> itemDefinition = new UniqueEList<Structure>();
+		Metaclass metadataDefinition = getMetadataDefinition();
+		if (metadataDefinition != null) {
+			itemDefinition.add(metadataDefinition);
+		}
+		return new UnionEObjectEList<Structure>(this, SysMLPackage.Literals.ITEM_USAGE__ITEM_DEFINITION, itemDefinition.size(), itemDefinition.toArray());
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetItemDefinition() {
+  		return false;
 	}
 
 	/**
@@ -327,85 +403,6 @@ public class MetadataUsageImpl extends ItemUsageImpl implements MetadataUsage {
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<Type> getType() {
-		@SuppressWarnings("unchecked")
-		EList<Type> definition = (EList<Type>)((EList<?>)getDefinition());
-		return definition;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetType() {
-  		return false;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Metaclass getMetaclass() {
-		return getMetadataDefinition();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Metaclass basicGetMetaclass() {
-		return basicGetMetadataDefinition();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setMetaclass(Metaclass newMetaclass) {
-		setMetadataDefinition(newMetaclass);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetMetaclass() {
-  		return false;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<Structure> getItemDefinition() {
-		EList<Structure> itemDefinition = new UniqueEList<Structure>();
-		Metaclass metadataDefinition = getMetadataDefinition();
-		if (metadataDefinition != null) {
-			itemDefinition.add(metadataDefinition);
-		}
-		return new UnionEObjectEList<Structure>(this, SysMLPackage.Literals.ITEM_USAGE__ITEM_DEFINITION, itemDefinition.size(), itemDefinition.toArray());
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetItemDefinition() {
-  		return false;
 	}
 
 } //MetadataUsageImpl

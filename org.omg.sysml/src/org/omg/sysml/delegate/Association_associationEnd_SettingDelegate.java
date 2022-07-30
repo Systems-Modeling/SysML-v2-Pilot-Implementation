@@ -25,7 +25,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.SysMLPackage;
 
 public class Association_associationEnd_SettingDelegate extends Type_endFeature_SettingDelegate {
 
@@ -35,7 +34,7 @@ public class Association_associationEnd_SettingDelegate extends Type_endFeature_
 
 	@Override
 	protected EList<? extends Feature> basicGet(InternalEObject owner) {
-		return basicGet(owner, Feature.class, SysMLPackage.ASSOCIATION__ASSOCIATION_END);
+		return basicGet(owner, Feature.class);
 	}
 
 }

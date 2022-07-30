@@ -27,7 +27,6 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.ActorMembership;
 import org.omg.sysml.lang.sysml.CaseDefinition;
 import org.omg.sysml.lang.sysml.PartUsage;
-import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
 import org.omg.sysml.util.TypeUtil;
 
@@ -39,7 +38,7 @@ public class CaseDefinition_actorParameter_SettingDelegate extends BasicDerivedL
 
 	@Override
 	protected EList<?> basicGet(InternalEObject owner) {
-		EList<PartUsage> actorParameters = new NonNotifyingEObjectEList<>(PartUsage.class, owner, SysMLPackage.CASE_DEFINITION__ACTOR_PARAMETER);
+		EList<PartUsage> actorParameters = new NonNotifyingEObjectEList<>(PartUsage.class, owner, eStructuralFeature.getFeatureID());
 		TypeUtil.addOwnedFeaturesByMembership((CaseDefinition)owner, ActorMembership.class, PartUsage.class, actorParameters);
 		return actorParameters;
 	}

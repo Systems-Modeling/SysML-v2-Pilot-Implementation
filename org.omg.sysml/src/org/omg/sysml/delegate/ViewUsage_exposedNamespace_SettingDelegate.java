@@ -26,7 +26,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.Import;
 import org.omg.sysml.lang.sysml.Namespace;
-import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.ViewUsage;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
 import org.omg.sysml.util.UsageUtil;
@@ -39,7 +38,7 @@ public class ViewUsage_exposedNamespace_SettingDelegate extends BasicDerivedList
 
 	@Override
 	protected EList<Namespace> basicGet(InternalEObject owner) {
-		EList<Namespace> exposedNamespace = new NonNotifyingEObjectEList<>(Namespace.class, owner, SysMLPackage.VIEW_USAGE__EXPOSED_NAMESPACE);
+		EList<Namespace> exposedNamespace = new NonNotifyingEObjectEList<>(Namespace.class, owner, eStructuralFeature.getFeatureID());
 		UsageUtil.getExposeImportsOf((ViewUsage)owner).map(Import::getImportedNamespace).forEachOrdered(exposedNamespace::add);
 		return exposedNamespace;
 	}

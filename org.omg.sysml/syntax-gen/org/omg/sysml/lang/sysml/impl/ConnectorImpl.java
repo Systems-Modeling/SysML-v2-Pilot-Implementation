@@ -583,6 +583,10 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 				getOwnedRelatedElement().clear();
 				getOwnedRelatedElement().addAll((Collection<? extends Element>)newValue);
 				return;
+			case SysMLPackage.CONNECTOR__RELATED_FEATURE:
+				getRelatedFeature().clear();
+				getRelatedFeature().addAll((Collection<? extends Feature>)newValue);
+				return;
 			case SysMLPackage.CONNECTOR__ASSOCIATION:
 				getAssociation().clear();
 				getAssociation().addAll((Collection<? extends Association>)newValue);
@@ -624,6 +628,9 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 				return;
 			case SysMLPackage.CONNECTOR__OWNED_RELATED_ELEMENT:
 				getOwnedRelatedElement().clear();
+				return;
+			case SysMLPackage.CONNECTOR__RELATED_FEATURE:
+				getRelatedFeature().clear();
 				return;
 			case SysMLPackage.CONNECTOR__ASSOCIATION:
 				getAssociation().clear();

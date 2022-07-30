@@ -27,7 +27,6 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.ElementFilterMembership;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Package;
-import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.util.NamespaceUtil;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
 
@@ -39,7 +38,7 @@ public class Package_filterCondition_SettingDelegate extends BasicDerivedListSet
 
 	@Override
 	protected EList<?> basicGet(InternalEObject owner) {
-		EList<Expression> filterConditions = new NonNotifyingEObjectEList<>(Expression.class, owner, SysMLPackage.PACKAGE__FILTER_CONDITION);
+		EList<Expression> filterConditions = new NonNotifyingEObjectEList<>(Expression.class, owner, eStructuralFeature.getFeatureID());
 		NamespaceUtil.getOwnedMembersByMembershipIn((Package)owner, ElementFilterMembership.class, Expression.class).forEachOrdered(filterConditions::add);
 		return filterConditions;
 	}

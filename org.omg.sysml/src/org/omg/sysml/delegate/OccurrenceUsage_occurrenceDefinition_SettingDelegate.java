@@ -26,7 +26,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.Class;
 import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.util.FeatureUtil;
 
 public class OccurrenceUsage_occurrenceDefinition_SettingDelegate extends BasicDerivedListSettingDelegate {
@@ -37,7 +36,7 @@ public class OccurrenceUsage_occurrenceDefinition_SettingDelegate extends BasicD
 
 	@Override
 	protected EList<Class> basicGet(InternalEObject owner) {
-		return FeatureUtil.getAllTypesOf((Feature)owner, Class.class, SysMLPackage.OCCURRENCE_USAGE__OCCURRENCE_DEFINITION);
+		return FeatureUtil.getAllTypesOf((Feature)owner, Class.class, eStructuralFeature.getFeatureID());
 	}
 
 }

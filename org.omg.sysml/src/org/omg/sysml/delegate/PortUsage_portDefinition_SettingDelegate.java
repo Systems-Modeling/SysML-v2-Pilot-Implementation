@@ -26,7 +26,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.PortDefinition;
-import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.util.FeatureUtil;
 
 public class PortUsage_portDefinition_SettingDelegate extends BasicDerivedListSettingDelegate {
@@ -37,7 +36,7 @@ public class PortUsage_portDefinition_SettingDelegate extends BasicDerivedListSe
 
 	@Override
 	protected EList<?> basicGet(InternalEObject owner) {
-		return FeatureUtil.getAllTypesOf((Feature)owner, PortDefinition.class, SysMLPackage.PORT_USAGE__PORT_DEFINITION);
+		return FeatureUtil.getAllTypesOf((Feature)owner, PortDefinition.class, eStructuralFeature.getFeatureID());
 	}
 
 }

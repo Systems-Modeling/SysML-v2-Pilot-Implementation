@@ -26,7 +26,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.ItemDefinition;
-import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.util.FeatureUtil;
 
 public class ItemUsage_itemDefinition_SettingDelegate extends BasicDerivedListSettingDelegate {
@@ -37,7 +36,7 @@ public class ItemUsage_itemDefinition_SettingDelegate extends BasicDerivedListSe
 
 	@Override
 	protected EList<ItemDefinition> basicGet(InternalEObject owner) {
-		return FeatureUtil.getAllTypesOf((Feature)owner, ItemDefinition.class, SysMLPackage.ITEM_USAGE__ITEM_DEFINITION);
+		return FeatureUtil.getAllTypesOf((Feature)owner, ItemDefinition.class, eStructuralFeature.getFeatureID());
 	}
 
 }

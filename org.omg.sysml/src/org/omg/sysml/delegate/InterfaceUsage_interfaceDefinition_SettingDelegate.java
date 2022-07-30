@@ -26,7 +26,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.InterfaceDefinition;
-import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.util.FeatureUtil;
 
 public class InterfaceUsage_interfaceDefinition_SettingDelegate extends BasicDerivedListSettingDelegate {
@@ -37,7 +36,7 @@ public class InterfaceUsage_interfaceDefinition_SettingDelegate extends BasicDer
 
 	@Override
 	protected EList<InterfaceDefinition> basicGet(InternalEObject owner) {
-		return FeatureUtil.getAllTypesOf((Feature)owner, InterfaceDefinition.class, SysMLPackage.INTERFACE_USAGE__INTERFACE_DEFINITION);
+		return FeatureUtil.getAllTypesOf((Feature)owner, InterfaceDefinition.class, eStructuralFeature.getFeatureID());
 	}
 
 }

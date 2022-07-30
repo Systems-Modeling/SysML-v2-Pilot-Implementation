@@ -25,7 +25,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
 
@@ -37,7 +36,7 @@ public class Type_directedFeature_SettingDelegate extends BasicDerivedListSettin
 
 	@Override
 	protected EList<?> basicGet(InternalEObject owner) {
-		EList<Feature> directedFeatures = new NonNotifyingEObjectEList<>(Feature.class, owner, SysMLPackage.TYPE__DIRECTED_FEATURE);
+		EList<Feature> directedFeatures = new NonNotifyingEObjectEList<>(Feature.class, owner, eStructuralFeature.getFeatureID());
 		((Type)owner).getFeature().stream().
 			filter(f->f.getDirection() != null).
 			forEachOrdered(directedFeatures::add);

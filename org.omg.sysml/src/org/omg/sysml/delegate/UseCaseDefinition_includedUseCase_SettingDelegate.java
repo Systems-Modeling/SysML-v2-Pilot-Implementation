@@ -25,7 +25,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.IncludeUseCaseUsage;
-import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.UseCaseDefinition;
 import org.omg.sysml.lang.sysml.UseCaseUsage;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
@@ -38,7 +37,7 @@ public class UseCaseDefinition_includedUseCase_SettingDelegate extends BasicDeri
 
 	@Override
 	protected EList<?> basicGet(InternalEObject owner) {
-		EList<UseCaseUsage> includedUseCases = new NonNotifyingEObjectEList<>(UseCaseUsage.class, owner, SysMLPackage.USE_CASE_DEFINITION__INCLUDED_USE_CASE);
+		EList<UseCaseUsage> includedUseCases = new NonNotifyingEObjectEList<>(UseCaseUsage.class, owner, eStructuralFeature.getFeatureID());
 		((UseCaseDefinition)owner).getOwnedFeature().stream().
 			filter(IncludeUseCaseUsage.class::isInstance).
 			map(IncludeUseCaseUsage.class::cast).

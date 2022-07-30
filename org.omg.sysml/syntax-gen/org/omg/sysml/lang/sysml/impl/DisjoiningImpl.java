@@ -33,8 +33,8 @@ import org.omg.sysml.lang.sysml.Type;
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.DisjoiningImpl#getTypeDisjoined <em>Type Disjoined</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.DisjoiningImpl#getOwningRelatedElement <em>Owning Related Element</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.DisjoiningImpl#getOwningType <em>Owning Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.DisjoiningImpl#getDisjoiningType <em>Disjoining Type</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.DisjoiningImpl#getOwningType <em>Owning Type</em>}</li>
  * </ul>
  *
  * @generated
@@ -51,16 +51,6 @@ public class DisjoiningImpl extends RelationshipImpl implements Disjoining {
 	protected Type typeDisjoined;
 
 	/**
-	 * The cached setting delegate for the '{@link #getOwningType() <em>Owning Type</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOwningType()
-	 * @generated
-	 * @ordered
-	 */
-	protected EStructuralFeature.Internal.SettingDelegate OWNING_TYPE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.DISJOINING__OWNING_TYPE).getSettingDelegate();
-
-	/**
 	 * The cached value of the '{@link #getDisjoiningType() <em>Disjoining Type</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -69,6 +59,16 @@ public class DisjoiningImpl extends RelationshipImpl implements Disjoining {
 	 * @ordered
 	 */
 	protected Type disjoiningType;
+
+	/**
+	 * The cached setting delegate for the '{@link #getOwningType() <em>Owning Type</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwningType()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate OWNING_TYPE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.DISJOINING__OWNING_TYPE).getSettingDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -392,12 +392,12 @@ public class DisjoiningImpl extends RelationshipImpl implements Disjoining {
 			case SysMLPackage.DISJOINING__TYPE_DISJOINED:
 				if (resolve) return getTypeDisjoined();
 				return basicGetTypeDisjoined();
-			case SysMLPackage.DISJOINING__OWNING_TYPE:
-				if (resolve) return getOwningType();
-				return basicGetOwningType();
 			case SysMLPackage.DISJOINING__DISJOINING_TYPE:
 				if (resolve) return getDisjoiningType();
 				return basicGetDisjoiningType();
+			case SysMLPackage.DISJOINING__OWNING_TYPE:
+				if (resolve) return getOwningType();
+				return basicGetOwningType();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -413,11 +413,11 @@ public class DisjoiningImpl extends RelationshipImpl implements Disjoining {
 			case SysMLPackage.DISJOINING__TYPE_DISJOINED:
 				setTypeDisjoined((Type)newValue);
 				return;
-			case SysMLPackage.DISJOINING__OWNING_TYPE:
-				setOwningType((Type)newValue);
-				return;
 			case SysMLPackage.DISJOINING__DISJOINING_TYPE:
 				setDisjoiningType((Type)newValue);
+				return;
+			case SysMLPackage.DISJOINING__OWNING_TYPE:
+				setOwningType((Type)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -434,11 +434,11 @@ public class DisjoiningImpl extends RelationshipImpl implements Disjoining {
 			case SysMLPackage.DISJOINING__TYPE_DISJOINED:
 				setTypeDisjoined((Type)null);
 				return;
-			case SysMLPackage.DISJOINING__OWNING_TYPE:
-				setOwningType((Type)null);
-				return;
 			case SysMLPackage.DISJOINING__DISJOINING_TYPE:
 				setDisjoiningType((Type)null);
+				return;
+			case SysMLPackage.DISJOINING__OWNING_TYPE:
+				setOwningType((Type)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -460,10 +460,10 @@ public class DisjoiningImpl extends RelationshipImpl implements Disjoining {
 				return isSetSource();
 			case SysMLPackage.DISJOINING__TARGET:
 				return isSetTarget();
-			case SysMLPackage.DISJOINING__OWNING_TYPE:
-				return OWNING_TYPE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.DISJOINING__DISJOINING_TYPE:
 				return isSetDisjoiningType();
+			case SysMLPackage.DISJOINING__OWNING_TYPE:
+				return OWNING_TYPE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 		}
 		return super.eIsSet(featureID);
 	}

@@ -27,7 +27,6 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.PartUsage;
 import org.omg.sysml.lang.sysml.RequirementUsage;
 import org.omg.sysml.lang.sysml.StakeholderMembership;
-import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
 import org.omg.sysml.util.TypeUtil;
 
@@ -39,7 +38,7 @@ public class RequirementUsage_stakeholderParameter_SettingDelegate extends Basic
 
 	@Override
 	protected EList<?> basicGet(InternalEObject owner) {
-		EList<PartUsage> stakeholderParameters = new NonNotifyingEObjectEList<>(PartUsage.class, owner, SysMLPackage.REQUIREMENT_USAGE__STAKEHOLDER_PARAMETER);
+		EList<PartUsage> stakeholderParameters = new NonNotifyingEObjectEList<>(PartUsage.class, owner, eStructuralFeature.getFeatureID());
 		TypeUtil.addOwnedFeaturesByMembership((RequirementUsage)owner, StakeholderMembership.class, PartUsage.class, stakeholderParameters);
 		return stakeholderParameters;
 	}

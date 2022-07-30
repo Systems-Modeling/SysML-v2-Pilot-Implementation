@@ -27,7 +27,6 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.omg.sysml.lang.sysml.ItemFlow;
 import org.omg.sysml.lang.sysml.ItemFlowFeature;
-import org.omg.sysml.lang.sysml.SysMLPackage;
 
 public class ItemFlow_itemFlowFeature_SettingDelegate extends BasicDerivedListSettingDelegate {
 
@@ -36,9 +35,9 @@ public class ItemFlow_itemFlowFeature_SettingDelegate extends BasicDerivedListSe
 	}
 
 	@Override
-	protected EList<?> basicGet(InternalEObject owner) {
+	protected EList<ItemFlowFeature> basicGet(InternalEObject owner) {
 		EList<ItemFlowFeature> itemFlowFeatures = 
-				new EObjectResolvingEList<ItemFlowFeature>(ItemFlowFeature.class, owner, SysMLPackage.ITEM_FLOW__ITEM_FLOW_FEATURE);
+				new EObjectResolvingEList<ItemFlowFeature>(ItemFlowFeature.class, owner, eStructuralFeature.getFeatureID());
 		((ItemFlow)owner).getItemFlowEnd().stream().
 			map(end->(ItemFlowFeature)end.getOwnedFeature().get(0)).
 			forEachOrdered(itemFlowFeatures::add);

@@ -26,7 +26,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Namespace;
-import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.util.NamespaceUtil;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
 
@@ -38,7 +37,7 @@ public class Namespace_ownedMember_SettingDelegate extends BasicDerivedListSetti
 
 	@Override
 	protected EList<?> basicGet(InternalEObject owner) {
-		EList<Element> ownedMembers = new NonNotifyingEObjectEList<>(Element.class, owner, SysMLPackage.NAMESPACE__OWNED_MEMBER);
+		EList<Element> ownedMembers = new NonNotifyingEObjectEList<>(Element.class, owner, eStructuralFeature.getFeatureID());
 		NamespaceUtil.getOwnedMembersOf((Namespace)owner).forEachOrdered(ownedMembers::add);
 		return ownedMembers;
 	}

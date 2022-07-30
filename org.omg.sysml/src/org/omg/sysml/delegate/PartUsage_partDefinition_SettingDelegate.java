@@ -26,7 +26,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.PartDefinition;
-import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.util.FeatureUtil;
 
 public class PartUsage_partDefinition_SettingDelegate extends BasicDerivedListSettingDelegate {
@@ -37,7 +36,7 @@ public class PartUsage_partDefinition_SettingDelegate extends BasicDerivedListSe
 
 	@Override
 	protected EList<PartDefinition> basicGet(InternalEObject owner) {
-		return FeatureUtil.getAllTypesOf((Feature)owner, PartDefinition.class, SysMLPackage.PART_USAGE__PART_DEFINITION);
+		return FeatureUtil.getAllTypesOf((Feature)owner, PartDefinition.class, eStructuralFeature.getFeatureID());
 	}
 
 }

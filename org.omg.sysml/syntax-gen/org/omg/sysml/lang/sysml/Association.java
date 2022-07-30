@@ -77,7 +77,7 @@ public interface Association extends Classifier, Relationship {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Related Type</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getAssociation_RelatedType()
-	 * @model lower="2" transient="true" changeable="false" volatile="true" derived="true"
+	 * @model lower="2" transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='association'"
 	 *        annotation="redefines"
 	 *        annotation="http://www.omg.org/spec/SysML"

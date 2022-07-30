@@ -25,7 +25,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.Expression;
-import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.TransitionFeatureKind;
 import org.omg.sysml.lang.sysml.TransitionUsage;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
@@ -40,7 +39,7 @@ public class TransitionUsage_guardExpression_SettingDelegate extends BasicDerive
 	@Override
 	protected EList<?> basicGet(InternalEObject owner) {
 		EList<Expression> guardExpressions = 
-				new NonNotifyingEObjectEList<>(Expression.class, owner, SysMLPackage.TRANSITION_USAGE__GUARD_EXPRESSION);
+				new NonNotifyingEObjectEList<>(Expression.class, owner, eStructuralFeature.getFeatureID());
 		UsageUtil.getTransitionFeaturesOf((TransitionUsage)owner, TransitionFeatureKind.GUARD).
 			filter(feature->feature instanceof Expression).
 			map(feature->(Expression)feature).

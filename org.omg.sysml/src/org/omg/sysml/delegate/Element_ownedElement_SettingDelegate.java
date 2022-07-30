@@ -29,7 +29,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
 
 public class Element_ownedElement_SettingDelegate extends BasicDerivedListSettingDelegate {
@@ -40,7 +39,7 @@ public class Element_ownedElement_SettingDelegate extends BasicDerivedListSettin
 
 	@Override
 	protected EList<Element> basicGet(InternalEObject owner) {
-		BasicEList<Element> ownedElements = new NonNotifyingEObjectEList<>(Element.class, owner, SysMLPackage.ELEMENT__OWNED_ELEMENT);
+		BasicEList<Element> ownedElements = new NonNotifyingEObjectEList<>(Element.class, owner, eStructuralFeature.getFeatureID());
 		ownedElements.addAllUnique(((Element) owner).getOwnedRelationship().stream().
 				flatMap(relationship->relationship.getOwnedRelatedElement().stream()).
 				collect(Collectors.toList()));

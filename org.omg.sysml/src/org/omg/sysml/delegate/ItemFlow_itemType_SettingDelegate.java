@@ -26,7 +26,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.Classifier;
 import org.omg.sysml.lang.sysml.ItemFlow;
-import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
 
 public class ItemFlow_itemType_SettingDelegate extends BasicDerivedListSettingDelegate {
@@ -36,8 +35,8 @@ public class ItemFlow_itemType_SettingDelegate extends BasicDerivedListSettingDe
 	}
 
 	@Override
-	protected EList<?> basicGet(InternalEObject owner) {
-		EList<Classifier> itemType = new NonNotifyingEObjectEList<>(Classifier.class, owner, SysMLPackage.ITEM_FLOW__ITEM_TYPE);
+	protected EList<Classifier> basicGet(InternalEObject owner) {
+		EList<Classifier> itemType = new NonNotifyingEObjectEList<>(Classifier.class, owner, eStructuralFeature.getFeatureID());
 		((ItemFlow)owner).getItemFeature().get(0).getType();
 		((ItemFlow)owner).getItemFeature().stream().
 			flatMap(f->f.getType().stream()).

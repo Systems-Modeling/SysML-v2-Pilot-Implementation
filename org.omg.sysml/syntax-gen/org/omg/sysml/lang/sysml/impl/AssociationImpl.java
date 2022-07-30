@@ -467,6 +467,10 @@ public class AssociationImpl extends ClassifierImpl implements Association {
 				getOwnedRelatedElement().clear();
 				getOwnedRelatedElement().addAll((Collection<? extends Element>)newValue);
 				return;
+			case SysMLPackage.ASSOCIATION__RELATED_TYPE:
+				getRelatedType().clear();
+				getRelatedType().addAll((Collection<? extends Type>)newValue);
+				return;
 			case SysMLPackage.ASSOCIATION__SOURCE_TYPE:
 				setSourceType((Type)newValue);
 				return;
@@ -500,6 +504,9 @@ public class AssociationImpl extends ClassifierImpl implements Association {
 				return;
 			case SysMLPackage.ASSOCIATION__OWNED_RELATED_ELEMENT:
 				getOwnedRelatedElement().clear();
+				return;
+			case SysMLPackage.ASSOCIATION__RELATED_TYPE:
+				getRelatedType().clear();
 				return;
 			case SysMLPackage.ASSOCIATION__SOURCE_TYPE:
 				setSourceType((Type)null);

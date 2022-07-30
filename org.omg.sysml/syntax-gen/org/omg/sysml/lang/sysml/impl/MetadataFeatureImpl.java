@@ -44,8 +44,6 @@ import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Metaclass;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.util.ElementUtil;
-import org.omg.sysml.util.NonNotifyingEObjectEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -114,13 +112,12 @@ public class MetadataFeatureImpl extends FeatureImpl implements MetadataFeature 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<Element> getAnnotatedElement() {
-		EList<Element> annotatedElements = new NonNotifyingEObjectEList<>(Element.class, this, SysMLPackage.METADATA_FEATURE__ANNOTATED_ELEMENT);
-		annotatedElements.addAll(ElementUtil.getAnnotatedElementOf(this));
-		return annotatedElements;
+		return (EList<Element>)ANNOTATED_ELEMENT__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
@@ -172,6 +169,30 @@ public class MetadataFeatureImpl extends FeatureImpl implements MetadataFeature 
 			annotation = new EObjectWithInverseResolvingEList<Annotation>(Annotation.class, this, SysMLPackage.METADATA_FEATURE__ANNOTATION, SysMLPackage.ANNOTATION__ANNOTATING_ELEMENT);
 		}
 		return annotation;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<Type> getType() {
+		EList<Type> type = new UniqueEList<Type>();
+		Metaclass metaclass = getMetaclass();
+		if (metaclass != null) {
+			type.add(metaclass);
+		}
+		return new UnionEObjectEList<Type>(this, SysMLPackage.Literals.FEATURE__TYPE, type.size(), type.toArray());
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetType() {
+  		return false;
 	}
 
 	/**
@@ -319,30 +340,6 @@ public class MetadataFeatureImpl extends FeatureImpl implements MetadataFeature 
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EList<Type> getType() {
-		EList<Type> type = new UniqueEList<Type>();
-		Metaclass metaclass = getMetaclass();
-		if (metaclass != null) {
-			type.add(metaclass);
-		}
-		return new UnionEObjectEList<Type>(this, SysMLPackage.Literals.FEATURE__TYPE, type.size(), type.toArray());
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetType() {
-  		return false;
 	}
 
 } //AnnotatingFeatureImpl

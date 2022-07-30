@@ -24,7 +24,6 @@ package org.omg.sysml.delegate;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Usage;
 import org.omg.sysml.lang.sysml.VariantMembership;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
@@ -37,7 +36,7 @@ public class Usage_variant_SettingDelegate extends BasicDerivedListSettingDelega
 
 	@Override
 	protected EList<?> basicGet(InternalEObject owner) {
-		EList<Usage> variants = new NonNotifyingEObjectEList<>(Usage.class, owner, SysMLPackage.USAGE__VARIANT);
+		EList<Usage> variants = new NonNotifyingEObjectEList<>(Usage.class, owner, eStructuralFeature.getFeatureID());
 		((Usage)owner).getVariantMembership().stream().
 			map(VariantMembership::getOwnedVariantUsage).
 			forEachOrdered(variants::add);

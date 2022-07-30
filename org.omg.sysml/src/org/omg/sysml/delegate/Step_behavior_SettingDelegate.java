@@ -26,7 +26,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.util.FeatureUtil;
 
 public class Step_behavior_SettingDelegate extends BasicDerivedListSettingDelegate {
@@ -37,7 +36,7 @@ public class Step_behavior_SettingDelegate extends BasicDerivedListSettingDelega
 
 	@Override
 	protected EList<Behavior> basicGet(InternalEObject owner) {
-		return FeatureUtil.getAllTypesOf((Feature)owner, Behavior.class, SysMLPackage.STEP__BEHAVIOR);
+		return FeatureUtil.getAllTypesOf((Feature)owner, Behavior.class, eStructuralFeature.getFeatureID());
 	}
 
 }

@@ -27,7 +27,6 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.InvocationExpression;
 import org.omg.sysml.lang.sysml.ParameterMembership;
-import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.util.FeatureUtil;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
 import org.omg.sysml.util.TypeUtil;
@@ -40,7 +39,7 @@ public class InvocationExpression_argument_SettingDelegate extends BasicDerivedL
 
 	@Override
 	protected EList<?> basicGet(InternalEObject owner) {
-		EList<Expression> arguments = new NonNotifyingEObjectEList<Expression>(Expression.class, owner, SysMLPackage.INVOCATION_EXPRESSION__ARGUMENT, false);
+		EList<Expression> arguments = new NonNotifyingEObjectEList<Expression>(Expression.class, owner, eStructuralFeature.getFeatureID(), false);
 		TypeUtil.getOwnedFeaturesByMembershipIn((InvocationExpression)owner, ParameterMembership.class).
 			filter(FeatureUtil::isInputParameter).
 			map(FeatureUtil::getValueExpressionFor).

@@ -26,7 +26,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.AnnotatingElement;
 import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.util.ElementUtil;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
 
@@ -38,7 +37,7 @@ public class AnnotatingElement_annotatedElement_SettingDelegate extends BasicDer
 
 	@Override
 	protected EList<?> basicGet(InternalEObject owner) {
-		EList<Element> annotatedElements = new NonNotifyingEObjectEList<>(Element.class, owner, SysMLPackage.ANNOTATING_ELEMENT__ANNOTATED_ELEMENT);
+		EList<Element> annotatedElements = new NonNotifyingEObjectEList<>(Element.class, owner, eStructuralFeature.getFeatureID());
 		annotatedElements.addAll(ElementUtil.getAnnotatedElementOf((AnnotatingElement)owner));
 		return annotatedElements;
 	}

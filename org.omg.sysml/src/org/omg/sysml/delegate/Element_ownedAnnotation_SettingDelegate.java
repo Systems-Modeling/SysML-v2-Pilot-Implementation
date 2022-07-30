@@ -27,7 +27,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.Annotation;
 import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
 
 public class Element_ownedAnnotation_SettingDelegate extends BasicDerivedListSettingDelegate {
@@ -38,7 +37,7 @@ public class Element_ownedAnnotation_SettingDelegate extends BasicDerivedListSet
 
 	@Override
 	protected EList<Annotation> basicGet(InternalEObject owner) {
-		EList<Annotation> annotations = new NonNotifyingEObjectEList<>(Element.class, owner, SysMLPackage.ELEMENT__OWNED_ANNOTATION);
+		EList<Annotation> annotations = new NonNotifyingEObjectEList<>(Element.class, owner, eStructuralFeature.getFeatureID());
 		((Element)owner).getOwnedRelationship().stream().
 			filter(Annotation.class::isInstance).
 			map(Annotation.class::cast).

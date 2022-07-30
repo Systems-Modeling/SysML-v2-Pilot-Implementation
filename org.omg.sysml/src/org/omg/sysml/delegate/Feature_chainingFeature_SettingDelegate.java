@@ -26,7 +26,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureChaining;
-import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
 
 public class Feature_chainingFeature_SettingDelegate extends BasicDerivedListSettingDelegate {
@@ -37,7 +36,7 @@ public class Feature_chainingFeature_SettingDelegate extends BasicDerivedListSet
 
 	@Override
 	protected EList<?> basicGet(InternalEObject owner) {
-		EList<Feature> chainingFeatures = new NonNotifyingEObjectEList<>(Feature.class, owner, SysMLPackage.FEATURE__CHAINING_FEATURE, false);
+		EList<Feature> chainingFeatures = new NonNotifyingEObjectEList<>(Feature.class, owner, eStructuralFeature.getFeatureID(), false);
 		((Feature)owner).getOwnedFeatureChaining().stream().
 			map(FeatureChaining::getChainingFeature).
 			forEachOrdered(chainingFeatures::add);

@@ -26,7 +26,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.AssociationStructure;
 import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.util.FeatureUtil;
 
 public class ConnectionUsage_connectionDefinition_SettingDelegate extends BasicDerivedListSettingDelegate {
@@ -37,7 +36,7 @@ public class ConnectionUsage_connectionDefinition_SettingDelegate extends BasicD
 
 	@Override
 	protected EList<AssociationStructure> basicGet(InternalEObject owner) {
-		return FeatureUtil.getAllTypesOf((Feature)owner, AssociationStructure.class, SysMLPackage.CONNECTION_USAGE__CONNECTION_DEFINITION);
+		return FeatureUtil.getAllTypesOf((Feature)owner, AssociationStructure.class, eStructuralFeature.getFeatureID());
 	}
 
 }

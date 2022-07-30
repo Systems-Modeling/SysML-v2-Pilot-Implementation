@@ -47,8 +47,6 @@ import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
-import org.omg.sysml.util.NonNotifyingEObjectEList;
-import org.omg.sysml.util.TypeUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -271,20 +269,20 @@ public class ConnectionDefinitionImpl extends PartDefinitionImpl implements Conn
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Type basicGetSourceType() {
-		return TypeUtil.getSourceTypeOf(this);
+		return (Type)SOURCE_TYPE__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setSourceType(Type newSourceType) {
-		throw new UnsupportedOperationException();
+		SOURCE_TYPE__ESETTING_DELEGATE.dynamicSet(this, null, 0, newSourceType);
 	}
 
 	/**
@@ -299,13 +297,12 @@ public class ConnectionDefinitionImpl extends PartDefinitionImpl implements Conn
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<Type> getTargetType() {
-		EList<Type> targetType = new NonNotifyingEObjectEList<>(Type.class, this, SysMLPackage.CONNECTION_DEFINITION__TARGET_TYPE);
-		TypeUtil.addTargetTypes(this, targetType);
-		return targetType;
+		return (EList<Type>)TARGET_TYPE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 	
 	/**
@@ -513,6 +510,10 @@ public class ConnectionDefinitionImpl extends PartDefinitionImpl implements Conn
 				getOwnedRelatedElement().clear();
 				getOwnedRelatedElement().addAll((Collection<? extends Element>)newValue);
 				return;
+			case SysMLPackage.CONNECTION_DEFINITION__RELATED_TYPE:
+				getRelatedType().clear();
+				getRelatedType().addAll((Collection<? extends Type>)newValue);
+				return;
 			case SysMLPackage.CONNECTION_DEFINITION__SOURCE_TYPE:
 				setSourceType((Type)newValue);
 				return;
@@ -551,6 +552,9 @@ public class ConnectionDefinitionImpl extends PartDefinitionImpl implements Conn
 				return;
 			case SysMLPackage.CONNECTION_DEFINITION__OWNED_RELATED_ELEMENT:
 				getOwnedRelatedElement().clear();
+				return;
+			case SysMLPackage.CONNECTION_DEFINITION__RELATED_TYPE:
+				getRelatedType().clear();
 				return;
 			case SysMLPackage.CONNECTION_DEFINITION__SOURCE_TYPE:
 				setSourceType((Type)null);

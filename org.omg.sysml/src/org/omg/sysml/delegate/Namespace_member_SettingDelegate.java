@@ -27,7 +27,6 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
-import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
 
 public class Namespace_member_SettingDelegate extends BasicDerivedListSettingDelegate {
@@ -38,7 +37,7 @@ public class Namespace_member_SettingDelegate extends BasicDerivedListSettingDel
 
 	@Override
 	protected EList<?> basicGet(InternalEObject owner) {
-		EList<Element> members = new NonNotifyingEObjectEList<>(Element.class, owner, SysMLPackage.NAMESPACE__MEMBER);
+		EList<Element> members = new NonNotifyingEObjectEList<>(Element.class, owner, eStructuralFeature.getFeatureID());
 		((Namespace)owner).getMembership().stream().
 			map(Membership::getMemberElement).
 			filter(m->m != null).

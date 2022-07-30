@@ -90,7 +90,7 @@ public interface Connector extends Feature, Relationship {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Related Feature</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getConnector_RelatedFeature()
-	 * @model lower="2" transient="true" changeable="false" volatile="true" derived="true"
+	 * @model lower="2" transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='connector'"
 	 *        annotation="redefines"
 	 *        annotation="http://www.omg.org/spec/SysML"

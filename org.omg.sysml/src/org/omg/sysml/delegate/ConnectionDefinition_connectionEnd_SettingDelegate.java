@@ -24,7 +24,6 @@ package org.omg.sysml.delegate;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Usage;
 
 public class ConnectionDefinition_connectionEnd_SettingDelegate extends Association_associationEnd_SettingDelegate {
@@ -35,7 +34,7 @@ public class ConnectionDefinition_connectionEnd_SettingDelegate extends Associat
 	
 	@Override
 	public EList<? extends Usage> basicGet(InternalEObject owner) {
-		return basicGet(owner, Usage.class, SysMLPackage.CONNECTION_DEFINITION__CONNECTION_END);
+		return basicGet(owner, Usage.class);
 	}
 
 }

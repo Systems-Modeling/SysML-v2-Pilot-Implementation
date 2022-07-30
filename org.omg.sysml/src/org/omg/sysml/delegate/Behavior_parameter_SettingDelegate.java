@@ -26,7 +26,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
 import org.omg.sysml.util.TypeUtil;
 
@@ -38,7 +37,7 @@ public class Behavior_parameter_SettingDelegate extends BasicDerivedListSettingD
 
 	@Override
 	protected EList<?> basicGet(InternalEObject owner) {
-		EList<Feature> parameters = new NonNotifyingEObjectEList<>(Feature.class, owner, SysMLPackage.BEHAVIOR__PARAMETER);
+		EList<Feature> parameters = new NonNotifyingEObjectEList<>(Feature.class, owner, eStructuralFeature.getFeatureID());
 		parameters.addAll(TypeUtil.getAllParametersOf((Behavior)owner));
 		return parameters;
 	}

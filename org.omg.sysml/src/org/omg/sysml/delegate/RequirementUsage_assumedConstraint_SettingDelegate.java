@@ -27,7 +27,6 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.ConstraintUsage;
 import org.omg.sysml.lang.sysml.RequirementConstraintKind;
 import org.omg.sysml.lang.sysml.RequirementUsage;
-import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
 import org.omg.sysml.util.UsageUtil;
 
@@ -39,7 +38,7 @@ public class RequirementUsage_assumedConstraint_SettingDelegate extends BasicDer
 
 	@Override
 	protected EList<?> basicGet(InternalEObject owner) {
-		EList<ConstraintUsage> constraints = new NonNotifyingEObjectEList<>(ConstraintUsage.class, owner, SysMLPackage.REQUIREMENT_USAGE__ASSUMED_CONSTRAINT);
+		EList<ConstraintUsage> constraints = new NonNotifyingEObjectEList<>(ConstraintUsage.class, owner, eStructuralFeature.getFeatureID());
 		UsageUtil.getRequirementConstraints((RequirementUsage)owner, RequirementConstraintKind.ASSUMPTION).forEachOrdered(constraints::add);
 		return constraints;
 	}

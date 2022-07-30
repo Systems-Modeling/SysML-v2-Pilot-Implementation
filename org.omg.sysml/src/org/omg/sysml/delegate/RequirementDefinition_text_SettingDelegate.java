@@ -26,7 +26,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.Comment;
 import org.omg.sysml.lang.sysml.RequirementDefinition;
-import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
 
 public class RequirementDefinition_text_SettingDelegate extends BasicDerivedListSettingDelegate {
@@ -37,7 +36,7 @@ public class RequirementDefinition_text_SettingDelegate extends BasicDerivedList
 
 	@Override
 	protected EList<?> basicGet(InternalEObject owner) {
-		EList<String> text = new NonNotifyingEObjectEList<>(String.class, owner, SysMLPackage.REQUIREMENT_DEFINITION__TEXT);
+		EList<String> text = new NonNotifyingEObjectEList<>(String.class, owner, eStructuralFeature.getFeatureID());
 		((RequirementDefinition)owner).getDocumentation().stream().map(Comment::getBody).forEachOrdered(text::add);
 		return text;
 	}

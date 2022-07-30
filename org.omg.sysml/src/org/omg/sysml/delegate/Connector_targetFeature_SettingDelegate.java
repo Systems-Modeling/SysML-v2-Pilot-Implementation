@@ -26,7 +26,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.Connector;
 import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.util.ConnectorUtil;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
 
@@ -38,7 +37,7 @@ public class Connector_targetFeature_SettingDelegate extends BasicDerivedListSet
 
 	@Override
 	protected EList<?> basicGet(InternalEObject owner) {
-		EList<Feature> targetFeatures = new NonNotifyingEObjectEList<>(Feature.class, owner, SysMLPackage.CONNECTOR__TARGET_FEATURE);
+		EList<Feature> targetFeatures = new NonNotifyingEObjectEList<>(Feature.class, owner, eStructuralFeature.getFeatureID());
 		ConnectorUtil.addTargetFeatures((Connector)owner, targetFeatures);
 		return targetFeatures;
 	}

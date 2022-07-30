@@ -28,7 +28,6 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Membership;
-import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.ViewUsage;
 import org.omg.sysml.util.ExpressionUtil;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
@@ -42,7 +41,7 @@ public class ViewUsage_viewedElement_SettingDelegate extends BasicDerivedListSet
 
 	@Override
 	protected EList<Element> basicGet(InternalEObject owner) {
-		EList<Element> viewedElements = new NonNotifyingEObjectEList<>(Element.class, owner, SysMLPackage.VIEW_USAGE__VIEWED_ELEMENT);
+		EList<Element> viewedElements = new NonNotifyingEObjectEList<>(Element.class, owner, eStructuralFeature.getFeatureID());
 		UsageUtil.getExposeImportsOf((ViewUsage)owner).
 			flatMap(imp->imp.importedMembership(new BasicEList<>()).stream()).
 			map(Membership::getMemberElement).

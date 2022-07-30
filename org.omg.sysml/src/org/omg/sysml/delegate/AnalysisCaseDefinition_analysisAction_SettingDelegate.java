@@ -24,9 +24,7 @@ package org.omg.sysml.delegate;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.uml2.common.util.DerivedEObjectEList;
-import org.omg.sysml.lang.sysml.ActionUsage;
-import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.lang.sysml.AnalysisCaseDefinition;
 
 public class AnalysisCaseDefinition_analysisAction_SettingDelegate extends BasicDerivedListSettingDelegate {
 
@@ -36,7 +34,7 @@ public class AnalysisCaseDefinition_analysisAction_SettingDelegate extends Basic
 
 	@Override
 	protected EList<?> basicGet(InternalEObject owner) {
-		return new DerivedEObjectEList<>(ActionUsage.class, owner, SysMLPackage.ANALYSIS_CASE_DEFINITION__ANALYSIS_ACTION, new int[] {SysMLPackage.ANALYSIS_CASE_DEFINITION__ACTION});
+		return ((AnalysisCaseDefinition)owner).getAction();
 	}
 
 }

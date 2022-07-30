@@ -25,7 +25,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.Association;
-import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
 
@@ -37,7 +36,7 @@ public class Association_relatedType_SettingDelegate extends BasicDerivedListSet
 
 	@Override
 	protected EList<Type> basicGet(InternalEObject owner) {
-		EList<Type> relatedTypes = new NonNotifyingEObjectEList<Type>(Type.class, owner, SysMLPackage.ASSOCIATION__RELATED_TYPE, false);
+		EList<Type> relatedTypes = new NonNotifyingEObjectEList<>(Type.class, owner, eStructuralFeature.getFeatureID(), false);
 		((Association)owner).getAssociationEnd().stream().
 			flatMap(end->end.getType().stream()).
 			forEachOrdered(relatedTypes::add);

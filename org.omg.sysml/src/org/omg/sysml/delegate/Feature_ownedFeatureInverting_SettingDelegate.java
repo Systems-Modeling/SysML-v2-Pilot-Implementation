@@ -26,7 +26,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureInverting;
-import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
 
 public class Feature_ownedFeatureInverting_SettingDelegate extends BasicDerivedListSettingDelegate {
@@ -37,7 +36,7 @@ public class Feature_ownedFeatureInverting_SettingDelegate extends BasicDerivedL
 
 	@Override
 	protected EList<?> basicGet(InternalEObject owner) {
-		EList<FeatureInverting> invertings = new NonNotifyingEObjectEList<>(FeatureInverting.class, owner, SysMLPackage.FEATURE__OWNED_FEATURE_INVERTING);
+		EList<FeatureInverting> invertings = new NonNotifyingEObjectEList<>(FeatureInverting.class, owner, eStructuralFeature.getFeatureID());
 		((Feature)owner).getOwnedRelationship().stream().
 			filter(rel->(rel instanceof FeatureInverting) && ((FeatureInverting)rel).getFeatureInverted() == owner).
 			map(FeatureInverting.class::cast).

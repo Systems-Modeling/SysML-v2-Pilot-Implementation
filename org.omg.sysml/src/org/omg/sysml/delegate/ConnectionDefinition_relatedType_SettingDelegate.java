@@ -22,18 +22,11 @@
 package org.omg.sysml.delegate;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.InternalEObject;
-import org.omg.sysml.lang.sysml.Namespace;
 
-public class Membership_membershipOwningNamespace_SettingDelegate extends Relationship_owningRelatedElement_SettingDelegate {
+public class ConnectionDefinition_relatedType_SettingDelegate extends Association_relatedType_SettingDelegate {
 
-	public Membership_membershipOwningNamespace_SettingDelegate(EStructuralFeature eStructuralFeature) {
+	public ConnectionDefinition_relatedType_SettingDelegate(EStructuralFeature eStructuralFeature) {
 		super(eStructuralFeature);
-	}
-	
-	@Override
-	protected Namespace basicGet(InternalEObject membership) {
-		return basicGet(membership, Namespace.class);
 	}
 
 }

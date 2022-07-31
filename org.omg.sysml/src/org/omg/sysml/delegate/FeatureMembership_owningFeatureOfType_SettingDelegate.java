@@ -21,19 +21,19 @@
 
 package org.omg.sysml.delegate;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.omg.sysml.lang.sysml.Namespace;
 
-public class Membership_membershipOwningNamespace_SettingDelegate extends Relationship_owningRelatedElement_SettingDelegate {
+public class FeatureMembership_owningFeatureOfType_SettingDelegate extends BasicDerivedObjectSettingDelegate {
 
-	public Membership_membershipOwningNamespace_SettingDelegate(EStructuralFeature eStructuralFeature) {
+	public FeatureMembership_owningFeatureOfType_SettingDelegate(EStructuralFeature eStructuralFeature) {
 		super(eStructuralFeature);
 	}
-	
+
 	@Override
-	protected Namespace basicGet(InternalEObject membership) {
-		return basicGet(membership, Namespace.class);
+	protected EObject basicGet(InternalEObject owner) {
+		return null;
 	}
 
 }

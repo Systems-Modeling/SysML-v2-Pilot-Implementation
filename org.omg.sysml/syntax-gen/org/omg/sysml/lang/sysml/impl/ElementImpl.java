@@ -27,7 +27,6 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 
@@ -266,6 +265,7 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	
 	/**
 	 * <!-- begin-user-doc -->
+	 * If there is not elementId, set it to a random UUID.
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
@@ -293,11 +293,12 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@Override
 	public Relationship getOwningRelationship() {
-		EObject container = eInternalContainer();
-		return container instanceof Relationship && ((Relationship)container).getOwnedRelatedElement().contains(this)? (Relationship)container: null;
+		if (eContainerFeatureID() != SysMLPackage.ELEMENT__OWNING_RELATIONSHIP) return null;
+		return (Relationship)eInternalContainer();
 	}
 
 	/**

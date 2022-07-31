@@ -308,10 +308,12 @@ public class FlowConnectionUsageImpl extends ConnectionUsageImpl implements Flow
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public EList<Feature> getConnectorEnd() {
-		return super.getConnectorEnd();
+		@SuppressWarnings("unchecked")
+		EList<Feature> itemFlowEnd = (EList<Feature>)((EList<?>)getItemFlowEnd());
+		return itemFlowEnd;
 	}
 
 	/**

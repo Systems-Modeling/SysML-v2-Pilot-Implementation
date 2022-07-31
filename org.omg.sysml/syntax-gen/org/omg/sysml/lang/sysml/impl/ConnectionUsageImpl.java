@@ -122,6 +122,7 @@ public class ConnectionUsageImpl extends ConnectorAsUsageImpl implements Connect
 	/**
 	 * The default value of the '{@link #getPortionKind() <em>Portion Kind</em>}' attribute.
 	 * <!-- begin-user-doc -->
+	 * Default portionKind to be empty (per 0..1 multiplicity in the MOF abstract syntax model).
 	 * <!-- end-user-doc -->
 	 * @see #getPortionKind()
 	 * @generated NOT
@@ -346,25 +347,6 @@ public class ConnectionUsageImpl extends ConnectorAsUsageImpl implements Connect
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	@Override
-	public EList<Feature> getRelatedFeature() {
-		EList<Feature> relatedFeatures = new BasicInternalEList<Feature>(Feature.class);
-		for (Object end: getConnectorEnd().toArray()) {
-			if (end != null) {
-				Feature subsettedFeature = ((Feature)end).firstSubsettedFeature();
-				if (subsettedFeature != null) {
-					relatedFeatures.add(subsettedFeature);
-				}
-			}
-		}
-		return relatedFeatures;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -422,6 +404,8 @@ public class ConnectionUsageImpl extends ConnectorAsUsageImpl implements Connect
 	public boolean isSetDefinition() {
   		return false;
 	}
+	
+	// Operations
 
 	/**
 	 * <!-- begin-user-doc -->

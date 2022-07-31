@@ -114,6 +114,7 @@ public class FeatureMembershipImpl extends OwningMembershipImpl implements Featu
 	/**
 	 * The default value of the '{@link #getDirection() <em>Direction</em>}' attribute.
 	 * <!-- begin-user-doc -->
+	 * The direction is empty by default, per its 0..1 multiplicity in the MOF abstract syntax model.
 	 * <!-- end-user-doc -->
 	 * @see #getDirection()
 	 * @generated NOT
@@ -202,20 +203,20 @@ public class FeatureMembershipImpl extends OwningMembershipImpl implements Featu
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Feature basicGetOwningFeatureOfType() {
-		return null;
+		return (Feature)OWNING_FEATURE_OF_TYPE__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setOwningFeatureOfType(Feature newOwningFeatureOfType) {
-		throw new UnsupportedOperationException();
+		OWNING_FEATURE_OF_TYPE__ESETTING_DELEGATE.dynamicSet(this, null, 0, newOwningFeatureOfType);
 	}
 
 	/**

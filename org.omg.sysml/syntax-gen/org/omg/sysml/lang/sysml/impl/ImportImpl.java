@@ -315,8 +315,9 @@ public class ImportImpl extends RelationshipImpl implements Import {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated NOT
+	 * <!-- begin-user-doc --> 
+	 * <!-- end-user-doc -->
+	 * @generated
 	 */
 	@Override
 	public EList<Element> getTarget() {
@@ -360,7 +361,11 @@ public class ImportImpl extends RelationshipImpl implements Import {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> 
+	 * Xtext workaround:
+	 * If importedNamespace is empty, then set it to the first ownedRelatedElement, if this is a namespace
+	 * (filling in the implicit import for a filter package). Otherwise, set it to the importOwningNamspace.
+	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	public Namespace basicGetImportedNamespace() {
@@ -379,7 +384,7 @@ public class ImportImpl extends RelationshipImpl implements Import {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setImportedNamespace(Namespace newImportedNamespace) {
@@ -387,15 +392,6 @@ public class ImportImpl extends RelationshipImpl implements Import {
 		importedNamespace = newImportedNamespace;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.IMPORT__IMPORTED_NAMESPACE, oldImportedNamespace, importedNamespace));
-//		Resource.Internal eInternalResource = eInternalResource();
-//		if (eInternalResource == null || !eInternalResource.isLoading()) {
-//			if (newImportedNamespace != null) {
-//				EList<Element> target = getTarget();
-//				if (!target.contains(newImportedNamespace)) {
-//					target.add(newImportedNamespace);
-//				}
-//			}
-//		}
 	}
 
 	/**

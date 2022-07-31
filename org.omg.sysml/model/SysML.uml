@@ -7237,7 +7237,7 @@ valueConnector.featuringType = featureWithValue.featuringType</body>
       </specification>
     </ownedRule>
     <generalization xmi:id="0e977c83-fb3e-4f9a-a38b-b846cb2c8446" general="4e4d3acc-bd44-41fc-9b96-5eff8ab0cf5d"/>
-    <ownedAttribute xmi:id="6507856f-a68c-4c3c-b4b5-f6a17faac658" name="featureWithValue" visibility="public" type="124e57c2-e7ac-4bbd-8ae3-b74186c4259c" subsettedProperty="cfd14843-bce5-4ee1-8fb3-a2fdd0237258" association="763cb753-fe4d-496a-a46f-1fe9f5e63a66">
+    <ownedAttribute xmi:id="6507856f-a68c-4c3c-b4b5-f6a17faac658" name="featureWithValue" visibility="public" type="124e57c2-e7ac-4bbd-8ae3-b74186c4259c" isDerived="true" subsettedProperty="cfd14843-bce5-4ee1-8fb3-a2fdd0237258" association="763cb753-fe4d-496a-a46f-1fe9f5e63a66">
       <ownedComment xmi:id="ed42fb2f-6cb0-4b99-9cea-d5b532c49a38" annotatedElement="6507856f-a68c-4c3c-b4b5-f6a17faac658">
         <body>&lt;p>The Feature to be provided a value.&lt;/p>
 </body>
@@ -7275,7 +7275,7 @@ valueConnector.featuringType = featureWithValue.featuringType</body>
     </ownedAttribute>
   </packagedElement>
   <packagedElement xmi:type="uml:Association" xmi:id="763cb753-fe4d-496a-a46f-1fe9f5e63a66" name="" visibility="public" memberEnd="6507856f-a68c-4c3c-b4b5-f6a17faac658 52cd36c4-3937-4c59-a74e-ebbc2fb3c1bf">
-    <ownedEnd xmi:id="52cd36c4-3937-4c59-a74e-ebbc2fb3c1bf" name="valuation" visibility="public" type="dbb63699-e461-4532-aa45-7e1a10f1f2c5" subsettedProperty="ec58580f-851c-4202-a5c6-27b2ec9ac376" association="763cb753-fe4d-496a-a46f-1fe9f5e63a66">
+    <ownedEnd xmi:id="52cd36c4-3937-4c59-a74e-ebbc2fb3c1bf" name="valuation" visibility="public" type="dbb63699-e461-4532-aa45-7e1a10f1f2c5" isDerived="true" subsettedProperty="ec58580f-851c-4202-a5c6-27b2ec9ac376" association="763cb753-fe4d-496a-a46f-1fe9f5e63a66">
       <ownedComment xmi:id="37d42f85-c845-49ab-a995-e7a36ce05bdf" annotatedElement="52cd36c4-3937-4c59-a74e-ebbc2fb3c1bf">
         <body>&lt;p>The (at most one) &lt;code>ownedMembership&lt;/code> of this Feature that is the FeatureValue that provides the value of the Feature.&lt;/p></body>
       </ownedComment>

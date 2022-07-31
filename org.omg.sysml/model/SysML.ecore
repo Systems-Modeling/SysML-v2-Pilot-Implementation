@@ -4626,7 +4626,7 @@
       <details key="documentation" value="&lt;p>A FeatureValue is a Membership that identifies a particular member Expression that provides the value of the Feature that owns the FeatureValue. The value is specified as either a bound value or an initial value, and as either a concrete or default value. A Feature can have at most one FeatureValue.&lt;/p>&#xA;&#xA;&lt;p>If &lt;code>isInitial = false&lt;/code>, then the result of the &lt;code>value&lt;/code> expression is bound to the &lt;code>featureWithValue&lt;/code> using a BindingConnector. Otherwise, the &lt;code>featureWithValue&lt;/code> is initialized using a FeatureWritePeformance.&lt;/p>&#xA;&#xA;&lt;p>If &lt;code>isDefault = false&lt;/code>, then the above semantics of the FeatureValue are realized for the given &lt;code>featureWithValue&lt;/code>. Otherwise, the semantics are realized for any individual of the &lt;code>featuringType&lt;/code> of the &lt;code>featureWithValue&lt;/code>, unless another value is explicitly given for the &lt;code>featureWithValue&lt;/code> for that individual.&lt;/p>&#xA;&#xA;value.featuringType = featureWithValue.featuringType&#xA;valueConnector.owningNamespace = featureWithValue and&#xA;valueConnector.relatedFeature->includes(featureWithValue) and&#xA;valueConnector.relatedFeature->includes(value.result) and&#xA;valueConnector.featuringType = featureWithValue.featuringType"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="featureWithValue" ordered="false"
-        lowerBound="1" eType="#//Feature">
+        lowerBound="1" eType="#//Feature" derived="true">
       <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName">
         <details key="body" value="valuation"/>
       </eAnnotations>
@@ -4634,6 +4634,7 @@
         <details key="documentation" value="&lt;p>The Feature to be provided a value.&lt;/p>&#xA;&#xA;&lt;p>The Feature to be provided a value.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Membership/membershipOwningNamespace"/>
+      <eAnnotations source="http://www.omg.org/spec/SysML"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="value" ordered="false"
         lowerBound="1" eType="#//Expression" volatile="true" transient="true" derived="true">

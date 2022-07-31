@@ -138,11 +138,11 @@ public class MultiplicityRangeImpl extends MultiplicityImpl implements Multiplic
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setUpperBound(Expression newUpperBound) {
-		throw new UnsupportedOperationException();
+		UPPER_BOUND__ESETTING_DELEGATE.dynamicSet(this, null, 0, newUpperBound);
 	}
 
 	/**

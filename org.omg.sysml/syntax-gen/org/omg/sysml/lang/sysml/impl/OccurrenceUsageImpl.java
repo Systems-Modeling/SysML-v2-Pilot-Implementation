@@ -106,6 +106,7 @@ public class OccurrenceUsageImpl extends UsageImpl implements OccurrenceUsage {
 	/**
 	 * The default value of the '{@link #getPortionKind() <em>Portion Kind</em>}' attribute.
 	 * <!-- begin-user-doc -->
+	 * Default for portionKind is null, per its 0..1 multiplicity in the MOF abstract syntax model.
 	 * <!-- end-user-doc -->
 	 * @see #getPortionKind()
 	 * @generated NOT

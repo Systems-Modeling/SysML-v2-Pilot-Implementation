@@ -332,6 +332,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	/**
 	 * The default value of the '{@link #getDirection() <em>Direction</em>}' attribute.
 	 * <!-- begin-user-doc -->
+	 * Direction is empty by default, per its 0..1 multiplicity in the MOF abstract syntax model.
 	 * <!-- end-user-doc -->
 	 * @see #getDirection()
 	 * @generated NOT
@@ -583,6 +584,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * Mark a feature as an end if it is owned via an EndFeatureMembership.
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
@@ -609,6 +611,8 @@ public class FeatureImpl extends TypeImpl implements Feature {
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * Set the direction to OUT if the Feature is owned via a ReturnParameterMembership or
+	 * to IN if the Feature is owned via a (non-return) ParameterMembership.
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */

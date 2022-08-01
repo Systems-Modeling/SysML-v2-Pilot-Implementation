@@ -105,6 +105,12 @@ public class SpecializationImpl extends RelationshipImpl implements Specializati
 		return SysMLPackage.Literals.SPECIALIZATION;
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * Xtext workaround.
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
 	@Override
 	public Type getGeneral() {
 		return general == null? basicGetGeneral(): getGeneralGen();
@@ -129,6 +135,8 @@ public class SpecializationImpl extends RelationshipImpl implements Specializati
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * Xtext workaround:
+	 * If general is empty, then set it to the last ownedRelatedElement (which will be a Feature chain).
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
@@ -164,6 +172,12 @@ public class SpecializationImpl extends RelationshipImpl implements Specializati
 		return general != null;
 	}
 	
+	/**
+	 * <!-- begin-user-doc -->
+	 * Xtext workaround.
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
 	@Override
 	public Type getSpecific() {
 		return specific == null? basicGetSpecific(): getSpecificGen();
@@ -188,6 +202,9 @@ public class SpecializationImpl extends RelationshipImpl implements Specializati
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * Xtext workaround:
+	 * If specific is empty, then set it to the owningRelatedElement, if that is a Type.
+	 * Otherwise set it to the first ownedRelatedElement (which will be a FeatureChain).
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */

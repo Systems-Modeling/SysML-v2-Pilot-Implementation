@@ -135,7 +135,9 @@ public class CommentImpl extends AnnotatingElementImpl implements Comment {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * Process the comment body per specification rules.
+	 * <!-- end-user-doc -->
 	 * @generated NOT 
 	 */
 	@Override

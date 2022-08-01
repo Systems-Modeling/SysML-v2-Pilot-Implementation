@@ -112,7 +112,9 @@ public class AnnotationImpl extends RelationshipImpl implements Annotation {
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * Xtext workaround
 	 * <!-- end-user-doc -->
+	 * @generated NOT
 	 */
 	public Element getAnnotatedElement() {
 		return annotatedElement == null? basicGetAnnotatedElement(): getAnnotatedElementGen();
@@ -137,6 +139,8 @@ public class AnnotationImpl extends RelationshipImpl implements Annotation {
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * Xtext workaround:
+	 * If the Annotation is not owned by an AnnotatingElement, then the annotatedElement is the owningRelatedElement.
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
@@ -168,6 +172,7 @@ public class AnnotationImpl extends RelationshipImpl implements Annotation {
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * Do not set owningAnnotatedElement using annotatedElement.
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
@@ -208,6 +213,12 @@ public class AnnotationImpl extends RelationshipImpl implements Annotation {
 		return ownedRelatedElement;
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * Xtext workaround.
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
 	@Override
 	public AnnotatingElement getAnnotatingElement() {
 		return annotatingElement == null? basicGetAnnotatingElement(): getAnnotatingElementGen();
@@ -232,6 +243,10 @@ public class AnnotationImpl extends RelationshipImpl implements Annotation {
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * Xtext workaround:
+	 * If there is no annotatingElement set, then set the AnnotatingElement to the owningRelatedElement,
+	 * if it is an AnnotatingElement, otherwise set it to the first ownedRelatedElement that is an
+	 * AnnotatingElement (if any).
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */

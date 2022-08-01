@@ -180,15 +180,6 @@ public class ConstraintUsageImpl extends OccurrenceUsageImpl implements Constrai
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public EList<Element> evaluate(Element target) {
-		return new BasicEList<>();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -370,6 +361,17 @@ public class ConstraintUsageImpl extends OccurrenceUsageImpl implements Constrai
 	@Override
 	public void setIsModelLevelEvaluable(boolean newIsModelLevelEvaluable) {
 		IS_MODEL_LEVEL_EVALUABLE__ESETTING_DELEGATE.dynamicSet(this, null, 0, newIsModelLevelEvaluable);
+	}
+
+	// Operations
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public EList<Element> evaluate(Element target) {
+		return new BasicEList<>();
 	}
 
 	// Additional

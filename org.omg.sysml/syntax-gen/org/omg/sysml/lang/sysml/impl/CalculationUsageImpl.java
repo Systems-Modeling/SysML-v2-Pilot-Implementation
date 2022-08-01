@@ -193,15 +193,6 @@ public class CalculationUsageImpl extends ActionUsageImpl implements Calculation
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public EList<Element> evaluate(Element target) {
-		return new BasicEList<>();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -277,6 +268,19 @@ public class CalculationUsageImpl extends ActionUsageImpl implements Calculation
 	public boolean isSetActionDefinition() {
   		return false;
 	}
+	
+	// Operations
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public EList<Element> evaluate(Element target) {
+		return new BasicEList<>();
+	}
+
+	//
 
 	/**
 	 * <!-- begin-user-doc -->

@@ -623,21 +623,34 @@ public class TypeImpl extends NamespaceImpl implements Type {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public EList<Membership> inheritedMemberships(EList<Type> excluded) {
-		return getInheritedMembership(new HashSet<Namespace>(), new HashSet<>(excluded), true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public EList<Feature> getOwnedEndFeature() {
 		return (EList<Feature>)OWNED_END_FEATURE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+	}
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isSetMembership() {
+		return super.isSetMembership()
+			|| eIsSet(SysMLPackage.TYPE__INHERITED_MEMBERSHIP);
+	}
+
+	// Operations
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public EList<Membership> inheritedMemberships(EList<Type> excluded) {
+		return getInheritedMembership(new HashSet<Namespace>(), new HashSet<>(excluded), true);
 	}
 
 	public EList<Membership> getInheritedMembership(Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean includeProtected) {
@@ -706,17 +719,6 @@ public class TypeImpl extends NamespaceImpl implements Type {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public boolean isSetMembership() {
-		return super.isSetMembership()
-			|| eIsSet(SysMLPackage.TYPE__INHERITED_MEMBERSHIP);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	public FeatureDirectionKind directionOf(Feature feature) {
@@ -755,6 +757,8 @@ public class TypeImpl extends NamespaceImpl implements Type {
 			return superTypes;
 		}
 	}
+	
+	//
 	
 	/**
 	 * <!-- begin-user-doc -->

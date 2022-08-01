@@ -241,6 +241,8 @@ public class ExpressionImpl extends StepImpl implements Expression {
 	public void setIsModelLevelEvaluable(boolean newIsModelLevelEvaluable) {
 		IS_MODEL_LEVEL_EVALUABLE__ESETTING_DELEGATE.dynamicSet(this, null, 0, newIsModelLevelEvaluable);
 	}
+	
+	// Operations
 
 	/**
 	 * <!-- begin-user-doc -->

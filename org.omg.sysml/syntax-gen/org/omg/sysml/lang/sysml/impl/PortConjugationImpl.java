@@ -90,6 +90,12 @@ public class PortConjugationImpl extends ConjugationImpl implements PortConjugat
 		return SysMLPackage.Literals.PORT_CONJUGATION;
 	}
 	
+	/**
+	 * <!-- begin-user-doc -->
+	 * Xtext workaround.
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
 	@Override
 	public PortDefinition getOriginalPortDefinition() {
 		return originalPortDefinition == null? basicGetOriginalPortDefinition(): getOriginalPortDefinitionGen();
@@ -114,6 +120,9 @@ public class PortConjugationImpl extends ConjugationImpl implements PortConjugat
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * Xtext workaround:
+	 * If the originalPortDefinition is empty, then set it to the owner of the conjugatedPortDefinition
+	 * (if that is a PortDefinition).
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */

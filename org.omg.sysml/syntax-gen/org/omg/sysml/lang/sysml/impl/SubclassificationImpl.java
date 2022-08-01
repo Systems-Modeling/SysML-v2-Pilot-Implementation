@@ -181,6 +181,12 @@ public class SubclassificationImpl extends SpecializationImpl implements Subclas
 		return basicGetOwningClassifier() != null;
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * Xtext workaround.
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
 	@Override
 	public org.omg.sysml.lang.sysml.Classifier getSubclassifier() {
 		return subclassifier == null ? basicGetSubclassifier() : getSubclassifierGen();
@@ -205,8 +211,9 @@ public class SubclassificationImpl extends SpecializationImpl implements Subclas
 
 	/**
 	 * <!-- begin-user-doc --> 
-	 * If the Superclassing has a Classifier as its owner,
-	 * the use this as the default value of the subclass property. 
+	 * Xtext workaround:
+	 * If the subclassifier is empty, then set it to the owningRelatedElement,
+	 * if this is a Classifier.
 	 * <!-- end-user-doc -->
 	 * 
 	 * @generated NOT

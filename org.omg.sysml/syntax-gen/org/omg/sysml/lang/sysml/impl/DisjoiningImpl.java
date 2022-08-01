@@ -132,6 +132,10 @@ public class DisjoiningImpl extends RelationshipImpl implements Disjoining {
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * Xtext workaround:
+	 * If a Disjoining is parsed targeting a Feature chain, then the disjoiningType will be empty,
+	 * but the Disjoining will own the disjoiningType. So, in this case, the disjoiningType should
+	 * be set to the (last) ownedRelatedelement.
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
@@ -243,6 +247,11 @@ public class DisjoiningImpl extends RelationshipImpl implements Disjoining {
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
 	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
 	@Override
 	public Type getTypeDisjoined() {
 		return typeDisjoined == null? basicGetTypeDisjoined(): getTypeDisjoinedGen();
@@ -267,11 +276,14 @@ public class DisjoiningImpl extends RelationshipImpl implements Disjoining {
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * Xtext workaround:
+	 * If the typedDisjoined (source) is empty, set it to the owningRelatedElement, if it is a Type.
+	 * Otherwise, set it to the first ownedRelatedElement, to the first ownedRelatedElement,
+	 * which will be a Feature chain.
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	public Type basicGetTypeDisjoined() {
-		// Xtext workaround
 		if (typeDisjoined == null) {
 			Element owner = getOwningRelatedElement();
 			if (owner instanceof Type) {

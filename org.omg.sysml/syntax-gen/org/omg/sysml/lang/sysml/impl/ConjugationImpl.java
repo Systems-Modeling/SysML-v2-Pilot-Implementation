@@ -107,6 +107,12 @@ public class ConjugationImpl extends RelationshipImpl implements Conjugation {
 		return SysMLPackage.Literals.CONJUGATION;
 	}
 	
+	/**
+	 * <!-- begin-user-doc -->
+	 * Xtext workaround.
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
 	@Override
 	public Type getConjugatedType() {
 		return conjugatedType == null? basicGetConjugatedType(): getConjugatedTypeGen();
@@ -131,6 +137,9 @@ public class ConjugationImpl extends RelationshipImpl implements Conjugation {
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * Xtext workaround:
+	 * If the conjugatedType is not set, then set it to the owningRelatedElement, if this is a Type,
+	 * otherwise set it to the first ownedRelatedElement.
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
@@ -214,6 +223,12 @@ public class ConjugationImpl extends RelationshipImpl implements Conjugation {
 			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.CONJUGATION__OWNING_RELATED_ELEMENT, newOwningRelatedElement, newOwningRelatedElement));
 	}
 	
+	/**
+	 * <!-- begin-user-doc -->
+	 * Xtext workaround.
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
 	@Override
 	public Type getOriginalType() {
 		return originalType == null? basicGetOriginalType(): getOriginalTypeGen();
@@ -238,6 +253,8 @@ public class ConjugationImpl extends RelationshipImpl implements Conjugation {
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * Xtext workaround:
+	 * If the originalType is not set, set it to the last ownedRelatedElement.
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */

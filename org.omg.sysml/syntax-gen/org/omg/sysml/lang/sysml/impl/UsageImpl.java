@@ -440,6 +440,7 @@ public class UsageImpl extends FeatureImpl implements Usage {
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * Default isComposite to false for Usages.  
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */

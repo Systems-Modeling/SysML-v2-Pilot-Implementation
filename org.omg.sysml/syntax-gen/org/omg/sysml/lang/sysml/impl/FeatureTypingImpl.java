@@ -96,13 +96,20 @@ public class FeatureTypingImpl extends SpecializationImpl implements FeatureTypi
 		return SysMLPackage.Literals.FEATURE_TYPING;
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * Xtext workaround.
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
 	@Override
 	public Type getType() {
 		return type == null? basicGetType(): getTypeGen();
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public Type getTypeGen() {
@@ -118,7 +125,11 @@ public class FeatureTypingImpl extends SpecializationImpl implements FeatureTypi
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> 
+	 * Xtext workaround:
+	 * If the type is empty, then set it to the first owned related element
+	 * (which will be a Feature chain).
+	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	public Type basicGetType() {
@@ -189,13 +200,20 @@ public class FeatureTypingImpl extends SpecializationImpl implements FeatureTypi
 		return basicGetOwningFeature() != null;
 	}
 
+	/**
+	 * <!-- begin-user-doc --> 
+	 * Xtext workaround.
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
 	@Override
 	public Feature getTypedFeature() {
 		return typedFeature == null ? basicGetTypedFeature() : getTypedFeatureGen();
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public Feature getTypedFeatureGen() {
@@ -211,7 +229,10 @@ public class FeatureTypingImpl extends SpecializationImpl implements FeatureTypi
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> 
+	 * Xtext workaround:
+	 * If the typedFeature is empty, then set it to the owningRelatedElement (if that is a Feature).
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
 	 */

@@ -108,6 +108,12 @@ public class FeatureInvertingImpl extends RelationshipImpl implements FeatureInv
 		return SysMLPackage.Literals.FEATURE_INVERTING;
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * Xtext workaround
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
 	@Override
 	public Feature getFeatureInverted() {
 		return featureInverted == null? basicGetFeatureInverted(): getFeatureInvertedGen();
@@ -132,15 +138,18 @@ public class FeatureInvertingImpl extends RelationshipImpl implements FeatureInv
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * Xtext workaround:
+	 * If the featureInverted is empty, then set it to the owningRelatedElement of the FeatureInverting,
+	 * if that is a Feature, otherwise set it to the first ownedRelatedElement (which will be a
+	 * Feature chain).
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	public Feature basicGetFeatureInverted() {
-		// Xtext workaround
 		if (featureInverted == null) {
 			Element owner = getOwningRelatedElement();
 			if (owner instanceof Feature) {
-				// Handle FeatureInverting owned by the invertingFeature.
+				// Handle FeatureInverting owned by the featureInverted.
 				featureInverted = (Feature)owner;
 			} else {
 				// Handle featureInverted that is a Feature chain.
@@ -219,6 +228,12 @@ public class FeatureInvertingImpl extends RelationshipImpl implements FeatureInv
 			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.FEATURE_INVERTING__OWNING_RELATED_ELEMENT, newOwningRelatedElement, newOwningRelatedElement));
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * Xtext workaround.
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
 	@Override
 	public Feature getInvertingFeature() {
 		return invertingFeature == null? basicGetInvertingFeature(): getInvertingFeatureGen();
@@ -243,11 +258,13 @@ public class FeatureInvertingImpl extends RelationshipImpl implements FeatureInv
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * Xtext workaround:
+	 * If the invertingFeature is empty, then set it to the last ownedRelatedElement
+	 * (which will be a Feature chain).
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	public Feature basicGetInvertingFeature() {
-		// Xtext workaround
 		if (invertingFeature == null) {
 			// Handle invertingFeature that is a Feature chain.
 			EList<Element> ownedRelatedElements = getOwnedRelatedElement();

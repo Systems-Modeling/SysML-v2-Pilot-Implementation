@@ -109,6 +109,12 @@ public class TypeFeaturingImpl extends RelationshipImpl implements TypeFeaturing
 		return SysMLPackage.Literals.TYPE_FEATURING;
 	}
 	
+	/**
+	 * <!-- begin-user-doc -->
+	 * Xtext workaround.
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
 	@Override
 	public Feature getFeatureOfType() {
 		return featureOfType == null? basicGetFeatureOfType(): getFeatureOfTypeGen();
@@ -133,7 +139,8 @@ public class TypeFeaturingImpl extends RelationshipImpl implements TypeFeaturing
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * If the TypeFeaturing has a Feature as its owningRelatedElement, then use this as the default value for its featureOfType property.
+	 * Xtext workaround:
+	 * If the featureOfType is empty, then set it to the owningRelatedElement (if this is a Feature).
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */

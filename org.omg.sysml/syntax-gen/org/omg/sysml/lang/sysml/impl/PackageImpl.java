@@ -90,12 +90,7 @@ public class PackageImpl extends NamespaceImpl implements org.omg.sysml.lang.sys
 		return (EList<Expression>)FILTER_CONDITION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
-	@Override
-	public EList<Membership> getImportedMembership(Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean isIncludeAll) {
-		EList<Membership> importedMemberships = super.getImportedMembership(excludedNamespaces, excludedTypes, isIncludeAll);
-		importedMemberships.removeIf(membership->!includeAsMember(membership.getMemberElement()));
-		return importedMemberships;
-	}
+	// Operations
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -115,6 +110,18 @@ public class PackageImpl extends NamespaceImpl implements org.omg.sysml.lang.sys
 		return ExpressionUtil.checkConditionOn(element, condition);
 	}
 	
+	// Additional
+	
+	@Override
+	public EList<Membership> getImportedMembership(Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean isIncludeAll) {
+		EList<Membership> importedMemberships = super.getImportedMembership(excludedNamespaces, excludedTypes, isIncludeAll);
+		importedMemberships.removeIf(membership->!includeAsMember(membership.getMemberElement()));
+		return importedMemberships;
+	}
+	
+	//
+	
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

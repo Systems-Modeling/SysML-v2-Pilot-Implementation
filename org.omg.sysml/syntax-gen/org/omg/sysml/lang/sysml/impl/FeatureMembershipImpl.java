@@ -143,51 +143,41 @@ public class FeatureMembershipImpl extends OwningMembershipImpl implements Featu
 	
 	/**
 	 * <!-- begin-user-doc -->
+	 * featuringType is not derived, but its subsetting of ownedMemberFeature
+	 * must be implemented by hand.
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public Type getFeaturingType() {
-		if (featuringType != null && featuringType.eIsProxy()) {
-			InternalEObject oldFeaturingType = (InternalEObject)featuringType;
-			featuringType = (Type)eResolveProxy(oldFeaturingType);
-			if (featuringType != oldFeaturingType) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SysMLPackage.FEATURE_MEMBERSHIP__FEATURING_TYPE, oldFeaturingType, featuringType));
-			}
-		}
-		return featuringType;
+		return getOwningType();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public Type basicGetFeaturingType() {
-		return featuringType;
+		return basicGetOwningType();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public void setFeaturingType(Type newFeaturingType) {
-		Type oldFeaturingType = featuringType;
-		featuringType = newFeaturingType;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.FEATURE_MEMBERSHIP__FEATURING_TYPE, oldFeaturingType, featuringType));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean isSetFeaturingType() {
-		return featuringType != null;
+		return basicGetFeaturingType() != null;
 	}
 
 	/**
@@ -297,13 +287,13 @@ public class FeatureMembershipImpl extends OwningMembershipImpl implements Featu
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * featureOfType is not derived, but its subsetting by ownedMemberFeature
+	 * must be implemented by hand.
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	@Override
 	public Feature getFeatureOfType() {
-		// Note: featureOfType is not derived, but its subsetting of ownedMemberFeature
-		// must be implemented by hand.
 		return getOwnedMemberFeature();
 	}
 
@@ -329,10 +319,10 @@ public class FeatureMembershipImpl extends OwningMembershipImpl implements Featu
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean isSetFeatureOfType() {
-		return featureOfType != null;
+		return basicGetFeatureOfType() != null;
 	}
 
 	/**

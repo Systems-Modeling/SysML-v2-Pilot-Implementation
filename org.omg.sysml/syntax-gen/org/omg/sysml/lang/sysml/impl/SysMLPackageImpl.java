@@ -13049,11 +13049,6 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   new String[] {
 		   });
 		addAnnotation
-		  (getRelationship_RelatedElement(),
-		   source,
-		   new String[] {
-		   });
-		addAnnotation
 		  (getMultiplicityRange_Bound(),
 		   source,
 		   new String[] {
@@ -13480,6 +13475,11 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   });
 		addAnnotation
 		  (getMembership_MembershipOwningNamespace(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getRelationship_RelatedElement(),
 		   source,
 		   new String[] {
 		   });

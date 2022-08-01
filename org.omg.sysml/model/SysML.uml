@@ -6440,7 +6440,7 @@ endif</body>
 </body>
     </ownedComment>
     <generalization xmi:id="499b05eb-c4f9-4ba9-8b94-2e549a478f22" general="fff854cf-ff36-41d3-94f6-fb13f8063186"/>
-    <ownedAttribute xmi:id="e81d47df-5f0a-4544-bfe7-9955c8a986fc" name="relatedElement" visibility="public" type="fff854cf-ff36-41d3-94f6-fb13f8063186" isOrdered="true" isUnique="false" isDerived="true" isDerivedUnion="true" association="855879d3-305e-463c-9bc2-73edc52e6d37">
+    <ownedAttribute xmi:id="e81d47df-5f0a-4544-bfe7-9955c8a986fc" name="relatedElement" visibility="public" type="fff854cf-ff36-41d3-94f6-fb13f8063186" isOrdered="true" isUnique="false" isDerived="true" association="855879d3-305e-463c-9bc2-73edc52e6d37">
       <ownedComment xmi:id="bdc92a46-d10b-4bbd-906c-8d87e9282586" annotatedElement="e81d47df-5f0a-4544-bfe7-9955c8a986fc">
         <body>&lt;p>The Elements that are related by this Relationship, derived as the union of the &lt;tt>source&lt;/tt> and &lt;tt>target&lt;/tt> Elements of the Relationship. Every Relationship must have at least two &lt;tt>relatedElements&lt;/tt>.&lt;/p></body>
       </ownedComment>

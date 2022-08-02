@@ -333,23 +333,15 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 	}
 	public class ImpliesOperatorElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.expressions.xtext.KerMLExpressions.ImpliesOperator");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final Keyword cEqualsSignGreaterThanSignKeyword_0 = (Keyword)cAlternatives.eContents().get(0);
-		private final Keyword cImpliesKeyword_1 = (Keyword)cAlternatives.eContents().get(1);
+		private final Keyword cImpliesKeyword = (Keyword)rule.eContents().get(1);
 		
 		//ImpliesOperator :
-		//    '=>' | 'implies'
+		//    'implies'
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'=>' | 'implies'
-		public Alternatives getAlternatives() { return cAlternatives; }
-		
-		//'=>'
-		public Keyword getEqualsSignGreaterThanSignKeyword_0() { return cEqualsSignGreaterThanSignKeyword_0; }
-		
 		//'implies'
-		public Keyword getImpliesKeyword_1() { return cImpliesKeyword_1; }
+		public Keyword getImpliesKeyword() { return cImpliesKeyword; }
 	}
 	public class OrExpressionReferenceElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.expressions.xtext.KerMLExpressions.OrExpressionReference");
@@ -472,23 +464,15 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 	}
 	public class ConditionalOrOperatorElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.expressions.xtext.KerMLExpressions.ConditionalOrOperator");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final Keyword cVerticalLineVerticalLineKeyword_0 = (Keyword)cAlternatives.eContents().get(0);
-		private final Keyword cOrKeyword_1 = (Keyword)cAlternatives.eContents().get(1);
+		private final Keyword cOrKeyword = (Keyword)rule.eContents().get(1);
 		
 		//ConditionalOrOperator :
-		//    '||' | 'or'
+		//    'or'
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'||' | 'or'
-		public Alternatives getAlternatives() { return cAlternatives; }
-		
-		//'||'
-		public Keyword getVerticalLineVerticalLineKeyword_0() { return cVerticalLineVerticalLineKeyword_0; }
-		
 		//'or'
-		public Keyword getOrKeyword_1() { return cOrKeyword_1; }
+		public Keyword getOrKeyword() { return cOrKeyword; }
 	}
 	public class XorExpressionReferenceElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.expressions.xtext.KerMLExpressions.XorExpressionReference");
@@ -567,23 +551,15 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 	}
 	public class XorOperatorElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.expressions.xtext.KerMLExpressions.XorOperator");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final Keyword cCircumflexAccentCircumflexAccentKeyword_0 = (Keyword)cAlternatives.eContents().get(0);
-		private final Keyword cXorKeyword_1 = (Keyword)cAlternatives.eContents().get(1);
+		private final Keyword cXorKeyword = (Keyword)rule.eContents().get(1);
 		
 		//XorOperator :
-		//    '^^' | 'xor'
+		//    'xor'
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'^^' | 'xor'
-		public Alternatives getAlternatives() { return cAlternatives; }
-		
-		//'^^'
-		public Keyword getCircumflexAccentCircumflexAccentKeyword_0() { return cCircumflexAccentCircumflexAccentKeyword_0; }
-		
 		//'xor'
-		public Keyword getXorKeyword_1() { return cXorKeyword_1; }
+		public Keyword getXorKeyword() { return cXorKeyword; }
 	}
 	public class AndExpressionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.expressions.xtext.KerMLExpressions.AndExpression");
@@ -674,23 +650,15 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 	}
 	public class ConditionalAndOperatorElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.expressions.xtext.KerMLExpressions.ConditionalAndOperator");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final Keyword cAmpersandAmpersandKeyword_0 = (Keyword)cAlternatives.eContents().get(0);
-		private final Keyword cAndKeyword_1 = (Keyword)cAlternatives.eContents().get(1);
+		private final Keyword cAndKeyword = (Keyword)rule.eContents().get(1);
 		
 		//ConditionalAndOperator :
-		//    '&&' | 'and'
+		//    'and'
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'&&' | 'and'
-		public Alternatives getAlternatives() { return cAlternatives; }
-		
-		//'&&'
-		public Keyword getAmpersandAmpersandKeyword_0() { return cAmpersandAmpersandKeyword_0; }
-		
 		//'and'
-		public Keyword getAndKeyword_1() { return cAndKeyword_1; }
+		public Keyword getAndKeyword() { return cAndKeyword; }
 	}
 	public class EqualityExpressionReferenceElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.expressions.xtext.KerMLExpressions.EqualityExpressionReference");
@@ -1357,16 +1325,15 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final Keyword cPlusSignKeyword_0 = (Keyword)cAlternatives.eContents().get(0);
 		private final Keyword cHyphenMinusKeyword_1 = (Keyword)cAlternatives.eContents().get(1);
-		private final Keyword cExclamationMarkKeyword_2 = (Keyword)cAlternatives.eContents().get(2);
-		private final Keyword cTildeKeyword_3 = (Keyword)cAlternatives.eContents().get(3);
-		private final Keyword cNotKeyword_4 = (Keyword)cAlternatives.eContents().get(4);
+		private final Keyword cTildeKeyword_2 = (Keyword)cAlternatives.eContents().get(2);
+		private final Keyword cNotKeyword_3 = (Keyword)cAlternatives.eContents().get(3);
 		
 		//UnaryOperator :
-		//    '+' | '-' | '!' | '~' | 'not'
+		//    '+' | '-' | '~' | 'not'
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'+' | '-' | '!' | '~' | 'not'
+		//'+' | '-' | '~' | 'not'
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//'+'
@@ -1375,14 +1342,11 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 		//'-'
 		public Keyword getHyphenMinusKeyword_1() { return cHyphenMinusKeyword_1; }
 		
-		//'!'
-		public Keyword getExclamationMarkKeyword_2() { return cExclamationMarkKeyword_2; }
-		
 		//'~'
-		public Keyword getTildeKeyword_3() { return cTildeKeyword_3; }
+		public Keyword getTildeKeyword_2() { return cTildeKeyword_2; }
 		
 		//'not'
-		public Keyword getNotKeyword_4() { return cNotKeyword_4; }
+		public Keyword getNotKeyword_3() { return cNotKeyword_3; }
 	}
 	public class ExtentExpressionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.expressions.xtext.KerMLExpressions.ExtentExpression");
@@ -3058,7 +3022,7 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 	}
 	
 	//ImpliesOperator :
-	//    '=>' | 'implies'
+	//    'implies'
 	//;
 	public ImpliesOperatorElements getImpliesOperatorAccess() {
 		return pImpliesOperator;
@@ -3115,7 +3079,7 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 	}
 	
 	//ConditionalOrOperator :
-	//    '||' | 'or'
+	//    'or'
 	//;
 	public ConditionalOrOperatorElements getConditionalOrOperatorAccess() {
 		return pConditionalOrOperator;
@@ -3160,7 +3124,7 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 	}
 	
 	//XorOperator :
-	//    '^^' | 'xor'
+	//    'xor'
 	//;
 	public XorOperatorElements getXorOperatorAccess() {
 		return pXorOperator;
@@ -3195,7 +3159,7 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 	}
 	
 	//ConditionalAndOperator :
-	//    '&&' | 'and'
+	//    'and'
 	//;
 	public ConditionalAndOperatorElements getConditionalAndOperatorAccess() {
 		return pConditionalAndOperator;
@@ -3465,7 +3429,7 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 	}
 	
 	//UnaryOperator :
-	//    '+' | '-' | '!' | '~' | 'not'
+	//    '+' | '-' | '~' | 'not'
 	//;
 	public UnaryOperatorElements getUnaryOperatorAccess() {
 		return pUnaryOperator;

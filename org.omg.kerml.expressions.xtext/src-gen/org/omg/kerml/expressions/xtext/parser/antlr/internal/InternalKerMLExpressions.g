@@ -629,19 +629,11 @@ ruleImpliesOperator returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRul
 @after {
 	leaveRule();
 }:
-	(
-		kw='=>'
-		{
-			$current.merge(kw);
-			newLeafNode(kw, grammarAccess.getImpliesOperatorAccess().getEqualsSignGreaterThanSignKeyword_0());
-		}
-		    |
-		kw='implies'
-		{
-			$current.merge(kw);
-			newLeafNode(kw, grammarAccess.getImpliesOperatorAccess().getImpliesKeyword_1());
-		}
-	)
+	kw='implies'
+	{
+		$current.merge(kw);
+		newLeafNode(kw, grammarAccess.getImpliesOperatorAccess().getImpliesKeyword());
+	}
 ;
 
 // Entry rule entryRuleOrExpressionReference
@@ -872,19 +864,11 @@ ruleConditionalOrOperator returns [AntlrDatatypeRuleToken current=new AntlrDatat
 @after {
 	leaveRule();
 }:
-	(
-		kw='||'
-		{
-			$current.merge(kw);
-			newLeafNode(kw, grammarAccess.getConditionalOrOperatorAccess().getVerticalLineVerticalLineKeyword_0());
-		}
-		    |
-		kw='or'
-		{
-			$current.merge(kw);
-			newLeafNode(kw, grammarAccess.getConditionalOrOperatorAccess().getOrKeyword_1());
-		}
-	)
+	kw='or'
+	{
+		$current.merge(kw);
+		newLeafNode(kw, grammarAccess.getConditionalOrOperatorAccess().getOrKeyword());
+	}
 ;
 
 // Entry rule entryRuleXorExpressionReference
@@ -1048,19 +1032,11 @@ ruleXorOperator returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleTok
 @after {
 	leaveRule();
 }:
-	(
-		kw='^^'
-		{
-			$current.merge(kw);
-			newLeafNode(kw, grammarAccess.getXorOperatorAccess().getCircumflexAccentCircumflexAccentKeyword_0());
-		}
-		    |
-		kw='xor'
-		{
-			$current.merge(kw);
-			newLeafNode(kw, grammarAccess.getXorOperatorAccess().getXorKeyword_1());
-		}
-	)
+	kw='xor'
+	{
+		$current.merge(kw);
+		newLeafNode(kw, grammarAccess.getXorOperatorAccess().getXorKeyword());
+	}
 ;
 
 // Entry rule entryRuleAndExpression
@@ -1219,19 +1195,11 @@ ruleConditionalAndOperator returns [AntlrDatatypeRuleToken current=new AntlrData
 @after {
 	leaveRule();
 }:
-	(
-		kw='&&'
-		{
-			$current.merge(kw);
-			newLeafNode(kw, grammarAccess.getConditionalAndOperatorAccess().getAmpersandAmpersandKeyword_0());
-		}
-		    |
-		kw='and'
-		{
-			$current.merge(kw);
-			newLeafNode(kw, grammarAccess.getConditionalAndOperatorAccess().getAndKeyword_1());
-		}
-	)
+	kw='and'
+	{
+		$current.merge(kw);
+		newLeafNode(kw, grammarAccess.getConditionalAndOperatorAccess().getAndKeyword());
+	}
 ;
 
 // Entry rule entryRuleEqualityExpressionReference
@@ -2402,22 +2370,16 @@ ruleUnaryOperator returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleT
 			newLeafNode(kw, grammarAccess.getUnaryOperatorAccess().getHyphenMinusKeyword_1());
 		}
 		    |
-		kw='!'
-		{
-			$current.merge(kw);
-			newLeafNode(kw, grammarAccess.getUnaryOperatorAccess().getExclamationMarkKeyword_2());
-		}
-		    |
 		kw='~'
 		{
 			$current.merge(kw);
-			newLeafNode(kw, grammarAccess.getUnaryOperatorAccess().getTildeKeyword_3());
+			newLeafNode(kw, grammarAccess.getUnaryOperatorAccess().getTildeKeyword_2());
 		}
 		    |
 		kw='not'
 		{
 			$current.merge(kw);
-			newLeafNode(kw, grammarAccess.getUnaryOperatorAccess().getNotKeyword_4());
+			newLeafNode(kw, grammarAccess.getUnaryOperatorAccess().getNotKeyword_3());
 		}
 	)
 ;

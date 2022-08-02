@@ -29,7 +29,7 @@ package Quantities {
         attribute covariantOrder: Natural;
 
         assert constraint orderSum { contravariantOrder + covariantOrder == order }
-        assert constraint boundMatch { (isBound == mRef.isBound) || (!isBound && mRef.isBound) }
+        assert constraint boundMatch { (isBound == mRef.isBound) or (not isBound and mRef.isBound) }
 	}
 	
 	abstract attribute def VectorQuantityValue :> TensorQuantityValue, NumericalVectorValue {

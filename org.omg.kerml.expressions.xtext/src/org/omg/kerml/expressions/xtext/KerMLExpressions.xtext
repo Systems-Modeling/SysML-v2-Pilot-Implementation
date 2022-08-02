@@ -90,7 +90,7 @@ ImpliesExpression returns SysML::Expression :
 ;
 
 ImpliesOperator :
-	'=>' | 'implies'
+	'implies'
 ;
 
 OrExpressionReference returns SysML::FeatureReferenceExpression :
@@ -112,7 +112,7 @@ OrOperator :
 ;
 
 ConditionalOrOperator :
-	'||' | 'or'
+	'or'
 ;
 
 XorExpressionReference returns SysML::FeatureReferenceExpression :
@@ -129,7 +129,7 @@ XorExpression returns SysML::Expression :
 ;
 
 XorOperator :
-	'^^' | 'xor'
+	'xor'
 ;
 
 AndExpression returns SysML::Expression :
@@ -143,7 +143,7 @@ AndOperator :
 ;
 
 ConditionalAndOperator :
-	'&&' | 'and'
+	'and'
 ;
 
 // Equality Expressions
@@ -259,7 +259,7 @@ UnaryExpression returns SysML::Expression:
 ;
 
 UnaryOperator :
-	'+' | '-' | '!' | '~' | 'not'
+	'+' | '-' | '~' | 'not'
 ;
 
 // Extent Expressions

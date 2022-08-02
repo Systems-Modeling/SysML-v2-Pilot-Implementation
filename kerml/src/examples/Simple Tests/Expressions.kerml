@@ -7,7 +7,7 @@ package Expressions {
 	aa : Boolean;
 	x = ToString(a * a + 3 == 4);
 	y = NumericalFunctions::'+'(1,2);
-	z : Boolean = aa & true ^^ zz | false => z;
+	z : Boolean = aa & true xor zz | false implies z;
 	zz : Boolean = aa and true xor aa or false implies z;
 	
 	b = x > y? x-y: y-x;
@@ -35,7 +35,7 @@ package Expressions {
 		}
 	}
 	
-	xx = x == 1 && y == 2? a:
+	xx = x == 1 and y == 2? a:
 	     x == 2? b:
 	     x == 3? c:
 	     0;

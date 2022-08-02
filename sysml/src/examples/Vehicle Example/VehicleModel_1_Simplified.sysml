@@ -1698,7 +1698,7 @@ package VehicleModel_1_simplified{
         package MandatorySafetyGroup {
             /* Parts that contribute to safety AND are mandatory. */
             import vehicle_b::**;
-            filter @Safety && Safety::isMandatory;
+            filter @Safety and Safety::isMandatory;
         }
     }
     package Views_Viewpoints{
@@ -1758,12 +1758,11 @@ package VehicleModel_1_simplified{
             attribute b;
             attribute c;
             attribute d;
-            constraint {(a>b) => (d>c)}
+            constraint {(a>b) implies (d>c)}
 
             constraint constraint1 {a>b}
             constraint constraint2 {d>c}
-            constraint {constraint1 () => constraint2()}
-            //constraint {constraint1() implies constraint2()}
+            constraint {constraint1 () implies constraint2()}
         }
         package RedundancyExample{
             import SequenceFunctions::size;

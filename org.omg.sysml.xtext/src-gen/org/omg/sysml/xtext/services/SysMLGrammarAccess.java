@@ -20905,7 +20905,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//ImpliesOperator :
-	//    '=>' | 'implies'
+	//    'implies'
 	//;
 	public KerMLExpressionsGrammarAccess.ImpliesOperatorElements getImpliesOperatorAccess() {
 		return gaKerMLExpressions.getImpliesOperatorAccess();
@@ -20962,7 +20962,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//ConditionalOrOperator :
-	//    '||' | 'or'
+	//    'or'
 	//;
 	public KerMLExpressionsGrammarAccess.ConditionalOrOperatorElements getConditionalOrOperatorAccess() {
 		return gaKerMLExpressions.getConditionalOrOperatorAccess();
@@ -21007,7 +21007,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//XorOperator :
-	//    '^^' | 'xor'
+	//    'xor'
 	//;
 	public KerMLExpressionsGrammarAccess.XorOperatorElements getXorOperatorAccess() {
 		return gaKerMLExpressions.getXorOperatorAccess();
@@ -21042,7 +21042,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//ConditionalAndOperator :
-	//    '&&' | 'and'
+	//    'and'
 	//;
 	public KerMLExpressionsGrammarAccess.ConditionalAndOperatorElements getConditionalAndOperatorAccess() {
 		return gaKerMLExpressions.getConditionalAndOperatorAccess();
@@ -21312,7 +21312,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//UnaryOperator :
-	//    '+' | '-' | '!' | '~' | 'not'
+	//    '+' | '-' | '~' | 'not'
 	//;
 	public KerMLExpressionsGrammarAccess.UnaryOperatorElements getUnaryOperatorAccess() {
 		return gaKerMLExpressions.getUnaryOperatorAccess();

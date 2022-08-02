@@ -1560,10 +1560,10 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *             (ownedRelationship+=FeatureValueExpression ownedRelationship+=EmptyFeatureWriteMember) | 
 	 *             ((ownedRelationship+=StepParameterMember ownedRelationship+=StepParameterMember*)? ownedRelationship+=ReturnParameterMember?)
 	 *         )? 
-	 *         ownedRelationship+=AliasMember? 
+	 *         ownedRelationship+=Import? 
 	 *         (
-	 *             (ownedRelationship+=NonFeatureMember | ownedRelationship+=FeatureMember | ownedRelationship+=Import | ownedRelationship+=ReturnFeatureMember)? 
-	 *             ownedRelationship+=AliasMember?
+	 *             (ownedRelationship+=NonFeatureMember | ownedRelationship+=FeatureMember | ownedRelationship+=AliasMember | ownedRelationship+=ReturnFeatureMember)? 
+	 *             ownedRelationship+=Import?
 	 *         )* 
 	 *         ownedRelationship+=ResultExpressionMember?
 	 *     )
@@ -1664,10 +1664,10 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *             (ownedRelationship+=FeatureValueExpression ownedRelationship+=EmptyFeatureWriteMember) | 
 	 *             ((ownedRelationship+=StepParameterMember ownedRelationship+=StepParameterMember*)? ownedRelationship+=ReturnParameterMember?)
 	 *         )? 
-	 *         ownedRelationship+=AliasMember? 
+	 *         ownedRelationship+=Import? 
 	 *         (
-	 *             (ownedRelationship+=NonFeatureMember | ownedRelationship+=FeatureMember | ownedRelationship+=Import | ownedRelationship+=ReturnFeatureMember)? 
-	 *             ownedRelationship+=AliasMember?
+	 *             (ownedRelationship+=NonFeatureMember | ownedRelationship+=FeatureMember | ownedRelationship+=AliasMember | ownedRelationship+=ReturnFeatureMember)? 
+	 *             ownedRelationship+=Import?
 	 *         )* 
 	 *         ownedRelationship+=ResultExpressionMember?
 	 *     )
@@ -1768,10 +1768,10 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *             (ownedRelationship+=FeatureValueExpression ownedRelationship+=EmptyFeatureWriteMember) | 
 	 *             ((ownedRelationship+=StepParameterMember ownedRelationship+=StepParameterMember*)? ownedRelationship+=ReturnParameterMember?)
 	 *         )? 
-	 *         ownedRelationship+=AliasMember? 
+	 *         ownedRelationship+=Import? 
 	 *         (
-	 *             (ownedRelationship+=NonFeatureMember | ownedRelationship+=FeatureMember | ownedRelationship+=Import | ownedRelationship+=ReturnFeatureMember)? 
-	 *             ownedRelationship+=AliasMember?
+	 *             (ownedRelationship+=NonFeatureMember | ownedRelationship+=FeatureMember | ownedRelationship+=AliasMember | ownedRelationship+=ReturnFeatureMember)? 
+	 *             ownedRelationship+=Import?
 	 *         )* 
 	 *         ownedRelationship+=ResultExpressionMember?
 	 *     )

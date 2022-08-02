@@ -59,7 +59,7 @@ package CollectionFunctions {
 			i <= 1? indexes[1]: arr.dimensions[i] * (index(arr, i-1, indexes) - 1) + indexes[i]
 		}
 		
-		n == 0 || (1..n)->exists {in i; indexes[i] > arr.dimensions[i]}? null: 
+		n == 0 or (1..n)->exists {in i; indexes[i] > arr.dimensions[i]}? null: 
 			arr.elements[index(arr, n, indexes)]
 	}	
 }

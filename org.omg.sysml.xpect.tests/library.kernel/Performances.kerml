@@ -38,12 +38,12 @@ package Performances {
 		 */
 		composite step subperformances: Performance[0..*] subsets enclosedPerformances {
 			/**
-			 * The "this" context of a subperformance is the same as that of its owning Performance.
+			 * The default "this" context of a subperformance is the same as that of its owning Performance.
 			 * This means that the context for any Performance that is in a composition tree rooted
 			 * in a Performance that is not itself owned by an Object is the root Performance. If the
 			 * root Performance is an ownedPerformance of an Object, then that Object is the context.
 			 */
-			feature redefines this = (that as Performance).this;
+			feature redefines this default (that as Performance).this;
 		}
 		
 		/**

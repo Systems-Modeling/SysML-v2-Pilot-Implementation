@@ -16,7 +16,7 @@ XPECT_SETUP org.omg.sysml.xpect.tests.expression.SysMLTests
                 	File {from ="/library.systems/Constraints.sysml"}
                 	File {from ="/library.domain/Quantities and Units/USCustomaryUnits.sysml"}
 					File {from ="/library.domain/Quantities and Units/Quantities.sysml"}
-					File {from ="/library.domain/Quantities and Units/UnitsAndScales.sysml"}
+					File {from ="/library.domain/Quantities and Units/MeasurementReferences.sysml"}
 					File {from ="/library.domain/Quantities and Units/ISQAtomicNuclear.sysml"}
 					File {from ="/library.domain/Quantities and Units/ISQChemistryMolecular.sysml"}
 					File {from ="/library.domain/Quantities and Units/ISQElectromagnetism.sysml"}
@@ -46,7 +46,7 @@ XPECT_SETUP org.omg.sysml.xpect.tests.expression.SysMLTests
                 				File {from ="/library.systems/Constraints.sysml"}
                 				File {from ="/library.domain/Quantities and Units/USCustomaryUnits.sysml"}
                                 File {from ="/library.domain/Quantities and Units/Quantities.sysml"}
-								File {from ="/library.domain/Quantities and Units/UnitsAndScales.sysml"}
+								File {from ="/library.domain/Quantities and Units/MeasurementReferences.sysml"}
 								File {from ="/library.domain/Quantities and Units/ISQAtomicNuclear.sysml"}
 								File {from ="/library.domain/Quantities and Units/ISQChemistryMolecular.sysml"}
 								File {from ="/library.domain/Quantities and Units/ISQElectromagnetism.sysml"}
@@ -64,7 +64,7 @@ END_SETUP
 */
 // XPECT noErrors ---> ""
 package '15_01-Constants' {
-	import UnitsAndScales::*;
+	import MeasurementReferences::*;
     import SI::*;
     import RealFunctions::*;
 

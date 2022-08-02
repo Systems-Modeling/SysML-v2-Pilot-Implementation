@@ -15,13 +15,11 @@ package DataFunctions {
 	abstract function '^'(x: DataValue[1], y: DataValue[1]): DataValue[1];
 	abstract function '%'(x: DataValue[1], y: DataValue[1]): DataValue[1];
 	
-	abstract function '!'(x: DataValue[1]): DataValue[1];
 	abstract function 'not'(x: DataValue[1]): DataValue[1];
-	abstract function '~'(x: DataValue[1]): DataValue[1];
-	
-	abstract function '|'(x: DataValue[1], y: DataValue[1]): DataValue[1];
-	abstract function '^^'(x: DataValue[1], y: DataValue[1]): DataValue[1];
 	abstract function 'xor'(x: DataValue[1], y: DataValue[1]): DataValue[1];
+
+	abstract function '~'(x: DataValue[1]): DataValue[1];	
+	abstract function '|'(x: DataValue[1], y: DataValue[1]): DataValue[1];
 	abstract function '&'(x: DataValue[1], y: DataValue[1]): DataValue[1];
 	
 	abstract function '<'(x: DataValue[1], y: DataValue[1]): Boolean[1];

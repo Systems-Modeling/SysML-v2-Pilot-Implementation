@@ -18,7 +18,7 @@ XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLTests
 		File {from ="/library.systems/Ports.sysml"}
 		File {from ="/library.systems/Constraints.sysml"}
 		File {from ="/library.domain/Quantities and Units/Quantities.sysml"}
-		File {from ="/library.domain/Quantities and Units/UnitsAndScales.sysml"}
+		File {from ="/library.domain/Quantities and Units/MeasurementReferences.sysml"}
 		File {from ="/library.domain/Quantities and Units/ISQBase.sysml"}
 		File {from ="/library.domain/Quantities and Units/ISQ.sysml"}
 		File {from ="/library.domain/Quantities and Units/ISQAtomicNuclear.sysml"}
@@ -51,7 +51,7 @@ XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLTests
 				File {from ="/library.systems/Ports.sysml"}
 				File {from ="/library.systems/Constraints.sysml"}
 				File {from ="/library.domain/Quantities and Units/Quantities.sysml"}
-				File {from ="/library.domain/Quantities and Units/UnitsAndScales.sysml"}
+				File {from ="/library.domain/Quantities and Units/MeasurementReferences.sysml"}
 				File {from ="/library.domain/Quantities and Units/ISQBase.sysml"}
 				File {from ="/library.domain/Quantities and Units/ISQ.sysml"}
 				File {from ="/library.domain/Quantities and Units/ISQAtomicNuclear.sysml"}

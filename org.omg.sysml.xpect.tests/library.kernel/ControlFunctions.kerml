@@ -17,7 +17,7 @@ package ControlFunctions {
 	    chain
 	}
 	
-	abstract function '?'(test: Boolean[1]): Anything[0..*] ordered nonunique {
+	abstract function 'if'(test: Boolean[1]): Anything[0..*] ordered nonunique {
 		in expr thenValue[0..1] (): Anything[0..*] ordered nonunique;
 		in expr elseValue[0..1] (): Anything[0..*] ordered nonunique;
 	}
@@ -26,31 +26,16 @@ package ControlFunctions {
 		in expr secondValue[0..1] (): Anything[0..*] ordered nonunique;
 	}
 	
-	abstract function '&&'(firstValue: Boolean[1]): Boolean[1] {
-		in expr secondValue[0..1] (): Boolean[1];
-	}
-	
 	function 'and'(firstValue: Boolean[1]): Boolean[1] {
-		in expr secondValue[0..1] (): Boolean[1];
-		firstValue && secondValue()
-	}
-	
-	abstract function '||'(firstValue: Boolean[1]): Boolean[1] {
 		in expr secondValue[0..1] (): Boolean[1];
 	}
 	
 	function 'or'(firstValue: Boolean[1]): Boolean[1] {
 		in expr secondValue[0..1] (): Boolean[1];
-		firstValue || secondValue()
-	}
-	
-	abstract function '=>'(firstValue: Boolean[1]): Boolean[1] {
-		in expr secondValue[0..1] (): Boolean[1];
 	}
 	
 	function 'implies'(firstValue: Boolean[1]): Boolean[1] {
 		in expr secondValue[0..1] (): Boolean[1];
-		firstValue => secondValue()
 	}
 	
 	abstract function collect(collection: Anything[0..*] ordered nonunique): Anything[0..*] ordered nonunique {

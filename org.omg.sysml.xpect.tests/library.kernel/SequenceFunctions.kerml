@@ -8,24 +8,24 @@ package SequenceFunctions {
 	private import ControlFunctions::*;
 	
 	function equals (x: Anything[0..*] ordered nonunique, y: Anything[0..*] ordered nonunique): Boolean[1] {
-		size(x) == size(y) &&
+		size(x) == size(y) and
 		(1..size(x))->forAll {in i; x[i] == y[i]}
 	}
 
 	function size(seq: Anything[0..*] nonunique): Natural[1] {
-		isEmpty(seq)? 0: size(tail(seq)) + 1
+		if isEmpty(seq)? 0 else size(tail(seq)) + 1
 	}
 	function isEmpty(seq: Anything[0..*] nonunique): Boolean[1] {
 		seq == null
 	}
 	function notEmpty(seq: Anything[0..*] nonunique): Boolean[1] {
-		!isEmpty(seq)
+		not isEmpty(seq)
 	}
 	function includes(seq1: Anything[0..*] nonunique, seq2: Anything[0..*] nonunique): Boolean[1] {
 		seq2->forAll {in x; seq1->exists{in y; x == y}}
 	}
 	function includesOnly(seq1: Anything[0..*] nonunique, seq2: Anything[0..*] nonunique): Boolean[1] {
-		seq1->includes(seq2) && seq2->includes(seq1)
+		seq1->includes(seq2) and seq2->includes(seq1)
 	}
 	function excludes(seq1: Anything[0..*] nonunique, seq2: Anything[0..*] nonunique): Boolean[1] {
 		seq2->forAll {in x; seq1->excludes(x)}

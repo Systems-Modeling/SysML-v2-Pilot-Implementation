@@ -38,11 +38,11 @@ package StatePerformances {
 		
 		private succession do[1] then accepted.endShot[0..1];
 		private succession acceptFirst first accepted.endShot[0..1] then acceptable.endShot[*] {
-			inv { !isAcceptFirst | size(acceptFirst) == size(acceptable) }
+			inv { isAcceptFirst implies size(acceptFirst) == size(acceptable) }
 		}
 		private succession acceptable::endShot[*] then exit[1];
 		private connector triggerDuring: HappensDuring from acceptable.endShot[*] to self[1] {
-			inv { !isTriggerDuring | !isEmpty(triggerDuring) }
+			inv { isTriggerDuring implies notEmpty(triggerDuring) }
 		}
 	}
 	
@@ -59,7 +59,7 @@ package StatePerformances {
 		
 		private binding transitionLinkSource.accepted[0..1] = trigger[1];
 		private connector linkAcceptFirst: HappensDuring from transitionLinkSource[0..1] to trigger.endShot[*] {
-			inv { !transitionLinkSource.isAcceptFirst | size(linkAcceptFirst) == size(trigger) }
+			inv { transitionLinkSource.isAcceptFirst implies size(linkAcceptFirst) == size(trigger) }
 		}
 		
 		private succession all transitionLinkSource.middle[1..*] then guard[*];

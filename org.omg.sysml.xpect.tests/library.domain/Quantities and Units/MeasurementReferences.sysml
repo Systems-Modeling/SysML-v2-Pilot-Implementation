@@ -1,7 +1,7 @@
 /**
  * This package defines the representations for measurement references.
  */
-package UnitsAndScales {
+package MeasurementReferences {
 	private import Collections::Array;
 	private import Collections::List;
 	private import ScalarValues::*;

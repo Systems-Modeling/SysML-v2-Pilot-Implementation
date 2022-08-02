@@ -56,10 +56,10 @@ package CollectionFunctions {
 		
 		// Assumes row-major ordering for elements.
 		private function index(arr: Array[1], i : Natural, indexes : Positive[1..*]) {
-			i <= 1? indexes[1]: arr.dimensions[i] * (index(arr, i-1, indexes) - 1) + indexes[i]
+			if i <= 1? indexes[1] else arr.dimensions[i] * (index(arr, i-1, indexes) - 1) + indexes[i]
 		}
 		
-		n == 0 || (1..n)->exists {in i; indexes[i] > arr.dimensions[i]}? null: 
-			arr.elements[index(arr, n, indexes)]
+		if n == 0 or (1..n)->exists {in i; indexes[i] > arr.dimensions[i]}? null 
+		else arr.elements[index(arr, n, indexes)]
 	}	
 }

@@ -13,7 +13,7 @@ package SequenceFunctions {
 	}
 
 	function size(seq: Anything[0..*] nonunique): Natural[1] {
-		isEmpty(seq)? 0: size(tail(seq)) + 1
+		if isEmpty(seq)? 0 else size(tail(seq)) + 1
 	}
 	function isEmpty(seq: Anything[0..*] nonunique): Boolean[1] {
 		seq == null

@@ -20820,11 +20820,9 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//ConditionalExpression returns SysML::Expression :
-	//      NullCoalescingExpression ( {SysML::OperatorExpression.operand += current}
-	//          operator = ConditionalOperator operand += OwnedExpressionReference ':' operand += OwnedExpressionReference
-	//      )?
-	//    | {SysML::OperatorExpression} 'if' operand += NullCoalescingExpression
-	//          operator = ConditionalOperator operand += OwnedExpressionReference 'else' operand += OwnedExpressionReference
+	//      NullCoalescingExpression
+	//    | {SysML::OperatorExpression} operator = ConditionalOperator operand += NullCoalescingExpression
+	//          '?' operand += OwnedExpressionReference 'else' operand += OwnedExpressionReference
 	//;
 	public KerMLExpressionsGrammarAccess.ConditionalExpressionElements getConditionalExpressionAccess() {
 		return gaKerMLExpressions.getConditionalExpressionAccess();
@@ -20835,7 +20833,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//ConditionalOperator :
-	//    '?'
+	//    'if'
 	//;
 	public KerMLExpressionsGrammarAccess.ConditionalOperatorElements getConditionalOperatorAccess() {
 		return gaKerMLExpressions.getConditionalOperatorAccess();

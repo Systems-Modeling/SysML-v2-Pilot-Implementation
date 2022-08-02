@@ -58,7 +58,7 @@ package VerificationCases {
 	 * true or false.
 	 */
 	calc def PassIf(in isPassing : Boolean) {
-		return verdict : VerdictKind = isPassing? VerdictKind::pass : VerdictKind::fail;
+		return verdict : VerdictKind = if isPassing? VerdictKind::pass else VerdictKind::fail;
 	}
 	
 	/**

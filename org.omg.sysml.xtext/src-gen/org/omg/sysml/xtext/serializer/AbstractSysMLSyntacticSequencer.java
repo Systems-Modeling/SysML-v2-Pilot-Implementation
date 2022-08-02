@@ -1074,10 +1074,10 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) (ambiguity) '*' (rule start)
-	 *     (rule start) (ambiguity) 'if' operand+=NullCoalescingExpression
 	 *     (rule start) (ambiguity) ('null' | ('(' ')')) (rule start)
 	 *     (rule start) (ambiguity) operand+=SelfReferenceExpression
 	 *     (rule start) (ambiguity) operator='all'
+	 *     (rule start) (ambiguity) operator=ConditionalOperator
 	 *     (rule start) (ambiguity) operator=UnaryOperator
 	 *     (rule start) (ambiguity) ownedRelationship+=ExpressionBodyMember
 	 *     (rule start) (ambiguity) ownedRelationship+=FeatureReferenceMember
@@ -1100,9 +1100,9 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     '('+
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) (ambiguity) 'if' operand+=NullCoalescingExpression
 	 *     (rule start) (ambiguity) operand+=SelfReferenceExpression
 	 *     (rule start) (ambiguity) operator='all'
+	 *     (rule start) (ambiguity) operator=ConditionalOperator
 	 *     (rule start) (ambiguity) operator=UnaryOperator
 	 *     (rule start) (ambiguity) {CollectExpression.operand+=}
 	 *     (rule start) (ambiguity) {FeatureChainExpression.operand+=}

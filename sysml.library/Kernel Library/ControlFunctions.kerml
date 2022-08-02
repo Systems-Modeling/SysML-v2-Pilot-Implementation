@@ -17,7 +17,7 @@ package ControlFunctions {
 	    chain
 	}
 	
-	abstract function '?'(test: Boolean[1]): Anything[0..*] ordered nonunique {
+	abstract function 'if'(test: Boolean[1]): Anything[0..*] ordered nonunique {
 		in expr thenValue[0..1] (): Anything[0..*] ordered nonunique;
 		in expr elseValue[0..1] (): Anything[0..*] ordered nonunique;
 	}

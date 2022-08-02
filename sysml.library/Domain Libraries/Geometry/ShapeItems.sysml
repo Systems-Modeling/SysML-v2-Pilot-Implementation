@@ -13,7 +13,7 @@ package ShapeItems {
 	private import SequenceFunctions::notEmpty;
 	private import SequenceFunctions::size;
 	private import SequenceFunctions::includes;
-	private import ControlFunctions::'?';
+	private import ControlFunctions::'if';
 	private import ControlFunctions::forAll;
 	private import ControlFunctions::exists;
 	private import Quantities::scalarQuantities;
@@ -130,7 +130,7 @@ package ShapeItems {
 		assert constraint { (1..size(edges))->forAll {in i;
 					(edges[i] as StructuredSpaceObject).vertices == (vertices[(2*i)-1], vertices[2*i]) and  
 					includes(((edges[i] as StructuredSpaceObject).vertices[2] as Item).matingOccurrences,
-						 (edges[i==size(edges) ? 1 : i+1]as StructuredSpaceObject).vertices[1]) } }
+						 (edges[if i==size(edges) ? 1 else i+1]as StructuredSpaceObject).vertices[1]) } }
 	}
 
 	/**
@@ -352,8 +352,8 @@ package ShapeItems {
 			attribute :>> semiMajorAxis = be.semiMajorAxis;
 			attribute :>> semiMinorAxis = be.semiMinorAxis;
 		}
-		assert constraint { size(ae) == ( isEmpty(af) ? 0 : 2 ) &
-				            size(edges) == (isEmpty(af) ? 2 : 4 )  }
+		assert constraint { size(ae) == (if isEmpty(af) ? 0 else 2) and
+				            size(edges) == (if isEmpty(af) ? 2 else 4)  }
 
 		item :>> vertices [0..1] = faces.vertices;
 		assert constraint { isEmpty(af) == notEmpty(vertices) }
@@ -458,7 +458,7 @@ package ShapeItems {
 		
 		item :>> edges = faces.edges;
 		
-		attribute :>> outerSpaceDimension = (size(faces) > 2 ? 3 : 2);
+		attribute :>> outerSpaceDimension = if size(faces) > 2 ? 3 else 2;
 
 		attribute :>> genus = 0;
 	}
@@ -726,7 +726,7 @@ package ShapeItems {
 					includes((wall[i] as Triangle).base.matingOccurrences,
 							 Pyramid::base.edges[i]) and
 					includes(((wall[i] as Triangle).edges[3] as Item).matingOccurrences,
-							 (wall[i==wallNumber ? 1 : i+1] as Triangle).edges[2]) } }
+							 (wall[if i==wallNumber ? 1 else i+1] as Triangle).edges[2]) } }
 
 		/* Meeting apices. */
 		connection :MatesWith connect apex [wallNumber] to apex [wallNumber];

@@ -26,9 +26,12 @@ package 'Fork Join Example' {
 		}
 		then joinNode;
 		
+		flow from monitorBrakePedal.brakePressure to braking.brakePressure;
+		flow from monitorTraction.modulationFrequency to braking.modulationFrequency; 
+		
 		action braking : Braking {
-			in brakePressure flow from monitorBrakePedal.brakePressure; 
-			in modulationFrequency flow from monitorTraction.modulationFrequency;
+			in brakePressure; 
+			in modulationFrequency;
 		}
 		then joinNode;
 		

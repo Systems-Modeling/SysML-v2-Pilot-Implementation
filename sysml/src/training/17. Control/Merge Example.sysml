@@ -17,18 +17,24 @@ package 'Merge Example' {
 			out item scene : Scene;
 		}
 		
+		flow from trigger.scene to focus.scene;
+		
 		then action focus : Focus {
-			in item scene flow from trigger.scene;
+			in item scene;
 			out item image;
 		}
 		
+		flow from focus.image to shoot.image;
+		
 		then action shoot : Shoot {
-			in item image flow from focus.image;
+			in item image ;
 			out item picture;
 		}
 		
+		flow from shoot.picture to display.picture;
+		
 		then action display : Display {
-			in item picture flow from shoot.picture;
+			in item picture;
 		}
 		
 		then continue;	

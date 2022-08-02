@@ -16,8 +16,10 @@ package 'Action Decomposition' {
 			out item image;
 		}
 		
+		flow from focus.image to shoot.image;
+
 		action shoot : Shoot {
-			in item image flow from focus.image; 
+			in item; 
 			out item picture = takePicture::picture;
 		}
 	}

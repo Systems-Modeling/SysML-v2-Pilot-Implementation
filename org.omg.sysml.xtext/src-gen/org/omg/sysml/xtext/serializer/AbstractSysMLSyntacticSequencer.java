@@ -1569,7 +1569,6 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     ownedRelationship+=PrefixMetadataMember PortUsageKeyword (ambiguity) (rule end)
 	 *     ownedRelationship+=PrefixMetadataMember RenderingDefKeyword (ambiguity) (rule end)
 	 *     ownedRelationship+=PrefixMetadataMember RenderingUsageKeyword (ambiguity) (rule end)
-	 *     ownedRelationship+=SourceItemFlowMember (ambiguity) (rule end)
 	 *     shortName=Name '>' (ambiguity) (rule end)
 	 *     shortName=Name '>' (ambiguity) ownedRelationship+=ConjugatedPortDefinitionMember
 	 *     shortName=Name '>' (ambiguity) ownedRelationship+=LifeClassMembership
@@ -1637,7 +1636,6 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     (rule start) (ambiguity) ownedRelationship+=FeatureValue
 	 *     (rule start) (ambiguity) ownedRelationship+=FeatureValueExpression
 	 *     (rule start) (ambiguity) ownedRelationship+=OwnedMultiplicity
-	 *     (rule start) (ambiguity) ownedRelationship+=SourceItemFlowMember
 	 */
 	protected void emit_EnumeratedValue_EnumerationUsageKeywordParserRuleCall_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -1831,7 +1829,6 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     (rule start) (ambiguity) ownedRelationship+=FeatureValue
 	 *     (rule start) (ambiguity) ownedRelationship+=FeatureValueExpression
 	 *     (rule start) (ambiguity) ownedRelationship+=OwnedMultiplicity
-	 *     (rule start) (ambiguity) ownedRelationship+=SourceItemFlowMember
 	 *     direction=FeatureDirection (ambiguity) '<' shortName=Name
 	 *     direction=FeatureDirection (ambiguity) DefinedByKeyword ownedRelationship+=FeatureTyping
 	 *     direction=FeatureDirection (ambiguity) RedefinesKeyword ownedRelationship+=OwnedRedefinition
@@ -2366,7 +2363,6 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     ownedRelationship+=OwnedSubsetting (ambiguity) (rule end)
 	 *     ownedRelationship+=PortioningFeatureMember ViewUsageKeyword (ambiguity) (rule end)
 	 *     ownedRelationship+=PrefixMetadataMember ViewUsageKeyword (ambiguity) (rule end)
-	 *     ownedRelationship+=SourceItemFlowMember (ambiguity) (rule end)
 	 *     shortName=Name '>' (ambiguity) (rule end)
 	 */
 	protected void emit_ViewBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {

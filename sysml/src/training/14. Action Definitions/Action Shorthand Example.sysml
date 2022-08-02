@@ -15,8 +15,10 @@ package 'Action Shorthand Example' {
 			out item image;
 		}
 		
+		flow from focus.image to shoot.image;
+		
 		then action shoot: Shoot {
-			in item image flow from focus.image;
+			in item;
 			out item picture = TakePicture::picture;
 		}
 	}

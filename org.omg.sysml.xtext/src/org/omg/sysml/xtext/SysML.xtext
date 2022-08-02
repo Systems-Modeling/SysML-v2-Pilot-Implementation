@@ -516,15 +516,11 @@ fragment UsageDeclaration returns SysML::Feature :
 ;
 
 fragment UsageCompletion returns SysML::Usage :
-	ValueOrFlowPart? UsageBody
+	ValuePart? UsageBody
 ;
 
 fragment UsageBody returns SysML::Usage :
 	DefinitionBody
-;
-
-fragment ValueOrFlowPart returns SysML::Feature :
-	ValuePart | ownedRelationship += SourceItemFlowMember
 ;
 
 fragment ValuePart returns SysML::Feature :
@@ -560,19 +556,6 @@ EmptyTargetParameter returns SysML::ReferenceUsage :
 	ownedRelationship += TargetFeatureMember
 ;
 
-SourceItemFlowMember returns SysML::OwningMembership :
-	ownedRelatedElement += SourceItemFlow // ownedMemberElement = SourceItemFlow
-;
-
-SourceItemFlow returns SysML::FlowConnectionUsage :
-	( FlowConnectionKeyword 
-	| {SysML::SuccessionFlowConnectionUsage} SuccessionFlowConnectionKeyword
-	) 
-	ownedRelationship += EmptyItemFeatureMember 
-	'from' ownedRelationship += ItemFlowEndMember
-	ownedRelationship += EmptyItemFlowEndMember
-;
-
 /* Reference Usages */
 
 ReferenceKeyword :
@@ -584,7 +567,7 @@ ReferenceUsageKeyword :
 ;
 
 DefaultReferenceUsage returns SysML::ReferenceUsage :
-	RefPrefix UsageDeclaration ValueOrFlowPart? UsageBody
+	RefPrefix UsageDeclaration ValuePart? UsageBody
 ;
 
 ReferenceUsage returns SysML::ReferenceUsage :
@@ -1128,10 +1111,6 @@ EmptyItemFeatureMember returns SysML::FeatureMembership :
 	ownedRelatedElement += EmptyItemFeature // ownedMemberFeature = EmptyItemFeature
 ;
 
-EmptyItemFlowEnd returns SysML::ItemFlowEnd :
-	ownedRelationship += EmptyItemFlowFeatureMember
-;
-
 ItemFlowFeatureMember returns SysML::FeatureMembership :
 	ownedRelatedElement += ItemFlowFeature // ownedMemberFeature = ItemFlowFeature
 ;
@@ -1142,18 +1121,6 @@ ItemFlowFeature returns SysML::ItemFlowFeature :
 
 ItemFlowRedefinition returns SysML::Redefinition :
 	redefinedFeature = [SysML::Feature|QualifiedName]
-;
-
-EmptyItemFlowEndMember returns SysML::EndFeatureMembership :
-	ownedRelatedElement += EmptyItemFlowEnd // ownedMemberFeature = EmptyItemFlowEnd
-;
-
-EmptyItemFlowFeatureMember returns SysML::FeatureMembership :
-	ownedRelatedElement += EmptyItemFlowFeature // ownedMemberFeature = EmptyItemFlowFeature
-;
-
-EmptyItemFlowFeature returns SysML::ItemFlowFeature :
-	{SysML::ItemFlowFeature}
 ;
 
 /* INTERFACES */
@@ -1426,7 +1393,7 @@ ActionUsageParameterMember returns SysML::ParameterMembership :
 ;
 
 ActionUsageParameter returns SysML::Usage :
-	Parameter ValueOrFlowPart? | {SysML::ReferenceUsage} ValueOrFlowPart
+	Parameter ValuePart? | {SysML::ReferenceUsage} ValuePart
 ;
 
 /* Action Nodes */
@@ -1465,7 +1432,7 @@ PayloadParameterMember returns SysML::ParameterMembership :
 ;
 
 PayloadParameter returns SysML::ReferenceUsage :
-	  Identification? PayloadParameterSpecializationPart ValueOrFlowPart?
+	  Identification? PayloadParameterSpecializationPart ValuePart?
 	| Identification? PayloadParameterSpecializationPart? TriggerValuePart
     | ownedRelationship += OwnedFeatureTyping ( ownedRelationship += OwnedMultiplicity )?
     | ownedRelationship += OwnedMultiplicity ownedRelationship += OwnedFeatureTyping
@@ -2360,7 +2327,7 @@ ViewUsageKeyword :
 ;
 
 ViewUsage returns SysML::ViewUsage :
-	OccurrenceUsagePrefix ViewUsageKeyword UsageDeclaration? ValueOrFlowPart? ViewBody
+	OccurrenceUsagePrefix ViewUsageKeyword UsageDeclaration? ValuePart? ViewBody
 ;
 
 fragment ViewBody returns SysML::ViewUsage :

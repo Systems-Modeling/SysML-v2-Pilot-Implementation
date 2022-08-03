@@ -40,7 +40,7 @@
 'assoc'=87
 'behavior'=95
 'binding'=91
-'bool'=98
+'bool'=101
 'by'=65
 'chains'=61
 'class'=85
@@ -60,7 +60,7 @@
 'element'=16
 'else'=112
 'end'=59
-'expr'=97
+'expr'=99
 'false'=104
 'feature'=60
 'featured'=64
@@ -70,7 +70,7 @@
 'flow'=106
 'for'=31
 'from'=22
-'function'=99
+'function'=97
 'hastype'=123
 'if'=113
 'implies'=115
@@ -97,7 +97,7 @@
 'out'=141
 'package'=38
 'portion'=56
-'predicate'=101
+'predicate'=100
 'private'=138
 'protected'=139
 'public'=137
@@ -106,7 +106,7 @@
 'redefinition'=77
 'relationship'=20
 'rep'=27
-'return'=100
+'return'=98
 'specialization'=48
 'specializes'=43
 'step'=96

@@ -4,9 +4,9 @@ package 'Fork Join Example' {
 	attribute def TurnKeyToOn;
 	attribute def BrakePressure;
 	
-	action def MonitorBrakePedal(out pressure : BrakePressure);
-	action def MonitorTraction(out modFreq : Real);
-	action def Braking(in brakePressure : BrakePressure, in modulationFrequency : Real);
+	action def MonitorBrakePedal { out pressure : BrakePressure; }
+	action def MonitorTraction { out modFreq : Real; }
+	action def Braking { in brakePressure : BrakePressure; in modulationFrequency : Real; }
 	
 	action def Brake {
 		action TurnOn;

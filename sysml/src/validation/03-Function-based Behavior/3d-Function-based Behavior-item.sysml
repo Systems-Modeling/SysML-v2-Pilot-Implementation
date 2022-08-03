@@ -28,10 +28,10 @@ package '3d-Function-based Behavior-item' {
 			port fuelInPort : ~FuelPort;
 		}
 		
-		action def PumpFuel (
-			in fuelIn : Fuel,
-			out fuelOut : Fuel
-		);
+		action def PumpFuel {
+			in fuelIn : Fuel;
+			out fuelOut : Fuel;
+		}
 		
 	}
 	
@@ -49,10 +49,10 @@ package '3d-Function-based Behavior-item' {
 				from storageTank.fuelOutPort.fuel to pump.fuelInPort.fuel;
 			
 			part pump : Pump {
-				perform action pumpFuel : PumpFuel (
-					in fuelIn = fuelInPort.fuel,
-					out fuelOut = fuelOutPort.fuel
-				);
+				perform action pumpFuel : PumpFuel {
+					in fuelIn = fuelInPort.fuel;
+					out fuelOut = fuelOutPort.fuel;
+				}
 			}
 			
 			flow of fuel : Fuel

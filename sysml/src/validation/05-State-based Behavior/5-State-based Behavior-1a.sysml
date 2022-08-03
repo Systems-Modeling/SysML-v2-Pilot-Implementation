@@ -29,7 +29,7 @@ package '5-State-based Behavior-1a' {
 		action def 'Provide Power';
 		action def 'Perform Self Test';
 		action def 'Apply Parking Brake';
-		action def 'Sense Temperature'(out temp: TemperatureValue);
+		action def 'Sense Temperature' { out temp: TemperatureValue; }
 		
 		attribute def FuelCmd;
 		
@@ -124,7 +124,7 @@ package '5-State-based Behavior-1a' {
 				/**
 				 * State-behavior actions may have input and output parameters.
 				 */
-				do 'sense temperature' (out temp);
+				do 'sense temperature' { out temp; }
 				
 				transition initial then normal;
 				
@@ -196,8 +196,10 @@ package '5-State-based Behavior-1a' {
 			 * In the context of the 'vehicle1_c1' part, the 'provide power' action
 			 * that is enabled in 'vehicle states' gets its input from the 'fuelCmdPort'.
 			 */
-			perform 'provide power' :>> VehicleA::'provide power' (in fuelCmd = fuelCmdPort.fuelCmd);
-				
+			perform 'provide power' :>> VehicleA::'provide power' {
+				in fuelCmd = fuelCmdPort.fuelCmd;
+			}
+			
 			/**
 			 * This allocates the state usage 'vehicle states' as the detailed
 			 * state-based behavior for 'vehicle1_c1' that fills in the generic

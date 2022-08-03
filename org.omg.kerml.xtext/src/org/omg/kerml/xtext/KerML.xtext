@@ -855,43 +855,7 @@ fragment SuccessionDeclaration returns SysML::Succession :
 
 Behavior returns SysML::Behavior :
 	( isAbstract ?= 'abstract')? 'behavior' 
-	BehaviorDeclaration TypeBody
-;
-
-fragment BehaviorDeclaration returns SysML::Behavior :
-	ClassifierDeclaration ParameterList?
-;
-
-fragment ParameterList returns SysML::Type :
-	'(' ( ownedRelationship += ParameterMember 
-		( ',' ownedRelationship += ParameterMember )* )? ')'
-;
-
-ParameterMember returns SysML::ParameterMembership :
-	ownedRelatedElement += Parameter // ownedMemberParameter = Parameter
-;
-
-Parameter returns SysML::Feature :
-      ( direction = FeatureDirection )? 'feature'? ParameterDeclaration
-    | {SysML::Step} ( direction = FeatureDirection )? 'step' ParameterDeclaration
-    | {SysML::Expression} ( direction = FeatureDirection )? 'expr' ParameterDeclaration
-    | {SysML::BooleanExpression} ( direction = FeatureDirection )? 'bool' ParameterDeclaration
-;
-
-fragment ParameterDeclaration returns SysML::Feature :
-	( isSufficient ?= 'all' )? 
-    ( Identification ParameterSpecializationPart? 
-	| ParameterSpecializationPart
-	)
-;
-
-fragment ParameterSpecializationPart returns SysML::Feature :
-	  ( -> ParameterSpecialization )+ MultiplicityPart? ParameterSpecialization*
-	| MultiplicityPart ParameterSpecialization*
-;
-
-fragment ParameterSpecialization returns SysML::Feature :
-	TypedBy | Subsets | Redefines
+	ClassifierDeclaration TypeBody
 ;
 
 /* Steps */
@@ -902,20 +866,7 @@ Step returns SysML::Step :
 ;
 
 fragment StepDeclaration returns SysML::Step :
-	FeatureDeclaration? ( ValuePart | StepParameterList )?
-;
-
-fragment StepParameterList returns SysML::Step :
-	'(' ( ownedRelationship += StepParameterMember
-	    ( ',' ownedRelationship += StepParameterMember )* )? ')'
-;
-
-StepParameterMember returns SysML::ParameterMembership :
-	ownedRelatedElement += StepParameter // ownedMemberParameter = StepParameter
-;
-
-StepParameter returns SysML::Feature :
-	Parameter ValuePart? 
+	FeatureDeclaration? ValuePart?
 ;
 
 /* FUNCTIONS */
@@ -924,23 +875,7 @@ StepParameter returns SysML::Feature :
 
 Function returns SysML::Function :
 	( isAbstract ?= 'abstract' )? 'function' 
-	FunctionDeclaration FunctionBody  
-;
-
-fragment FunctionDeclaration returns SysML::Function :
-	ClassifierDeclaration ParameterPart?
-;
-
-fragment ParameterPart returns SysML::Type :
-	  ParameterList ReturnParameterPart?
-;
-
-fragment ReturnParameterPart returns SysML::Type :
-	ownedRelationship += ReturnParameterMember
-;
-
-ReturnParameterMember returns SysML::ReturnParameterMembership :
-	'return'? ownedRelatedElement += Parameter // ownedMemberParameter = Parameter
+	ClassifierDeclaration FunctionBody  
 ;
 
 fragment FunctionBody returns SysML::Type :
@@ -973,19 +908,14 @@ Expression returns SysML::Expression :
 ;
 
 fragment ExpressionDeclaration returns SysML::Expression :
-	FeatureDeclaration? 
-	( ValuePart | StepParameterList ReturnParameterPart? )? 
+	FeatureDeclaration? ValuePart?
 ;
 
 /* Predicates */
 
 Predicate returns SysML::Predicate :
 	( isAbstract ?= 'abstract' )? 'predicate' 
-	PredicateDeclaration FunctionBody  
-;
-
-fragment PredicateDeclaration returns SysML::Predicate :
-	ClassifierDeclaration ParameterPart?
+	ClassifierDeclaration FunctionBody  
 ;
 
 /* Boolean Expressions */ 
@@ -1008,7 +938,7 @@ Invariant returns SysML::Invariant :
 
 Interaction returns SysML::Interaction :
 	( isAbstract ?= 'abstract' )? 'interaction' 
-	BehaviorDeclaration TypeBody
+	ClassifierDeclaration TypeBody
 ;
 
 /* Item Flows */

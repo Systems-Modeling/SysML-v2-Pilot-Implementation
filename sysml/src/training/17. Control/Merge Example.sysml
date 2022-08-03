@@ -3,9 +3,9 @@ package 'Merge Example' {
 	part def Image;
 	part def Picture;
 	
-	action def Focus(in item scene : Scene, out item image : Image);
-	action def Shoot(in item image : Image, out item picture : Picture);
-	action def Display(in item picture : Picture);
+	action def Focus { in item scene : Scene; out item image : Image; }
+	action def Shoot { in item image : Image; out item picture : Picture; }
+	action def Display { in item picture : Picture; }
 	action def TakePicture;
 	
 	action takePicture : TakePicture {

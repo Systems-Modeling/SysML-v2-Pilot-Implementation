@@ -76,8 +76,9 @@ package AHFNorway {
 			:>> portno = 6565;
 			attribute x:Boolean;
 			
-			action giveItems :> ServiceMethod (in itms:String, out ack:Boolean) 
-			 {  /* Forward itms and return an ack */
+			action giveItems :> ServiceMethod
+			 {  in itms:String; out ack:Boolean;
+			 	/* Forward itms and return an ack */
 			 	first start;
 			 	then send Return_AllItems(itms) to apisc.APIS_MQTT;
 			 	success = true;
@@ -92,7 +93,7 @@ package AHFNorway {
 					accept cl:CallGiveItems via tellu.APIS_HTTP
 					do action {
 						first start;
-						then action giveItems(in itms=cl.itms,out ack=x);
+						then action giveItems{ in itms=cl.itms; out ack=x; }
 						then send ResultGiveItems(x) to tellu.APIS_HTTP;
 					}
 				then WaitOnData;				

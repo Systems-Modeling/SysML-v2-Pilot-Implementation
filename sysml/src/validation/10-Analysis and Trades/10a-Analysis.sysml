@@ -60,7 +60,7 @@ package '10a-Analysis' {
 			 * By default, the subject of a nested analysis case bound to that
 			 * of its containing analysis case or analysis case definition.
 			 */
-			analysis massAnalysisCase : MassAnalysisCase () return mass;
+			analysis massAnalysisCase : MassAnalysisCase { return mass; }
 		}
 		
 		part massAnalysisContext {

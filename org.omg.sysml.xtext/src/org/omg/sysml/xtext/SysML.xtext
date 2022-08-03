@@ -1267,20 +1267,7 @@ ActionDefKeyword :
 ;
 
 ActionDefinition returns SysML::ActionDefinition :
-	OccurrenceDefinitionPrefix ActionDefKeyword ActionDeclaration ActionBody
-;
-
-fragment ActionDeclaration returns SysML::ActionDefinition :
-	DefinitionDeclaration ParameterList? 
-;
-
-fragment ParameterList returns SysML::Type :
-	'(' ( ownedRelationship += ParameterMember 
-		( ',' ownedRelationship += ParameterMember )* )? ')'
-;
-
-ParameterMember returns SysML::ParameterMembership :
-	ownedRelatedElement += Parameter // ownedMemberParameter = Parameter
+	OccurrenceDefinitionPrefix ActionDefKeyword DefinitionDeclaration ActionBody
 ;
 
 fragment ActionBody returns SysML::Type :
@@ -1323,42 +1310,6 @@ GuardedSuccessionMember returns SysML::FeatureMembership :
 	ownedRelatedElement += GuardedSuccession ';' // ownedMemberFeature = GuardedSuccession ';'
 ;
 
-/* Parameters */
-
-Parameter returns SysML::Usage :
-      {SysML::ReferenceUsage} ( direction = FeatureDirection )? ( ParameterDeclaration | ReferenceUsageKeyword ParameterDeclaration?)
-    | {SysML::AttributeUsage} ( direction = FeatureDirection )? AttributeUsageKeyword ParameterDeclaration?
-    | {SysML::OccurrenceUsage} ( direction = FeatureDirection )? OccurrenceUsageKeyword ParameterDeclaration?
-    | {SysML::ItemUsage} ( direction = FeatureDirection )? ItemUsageKeyword ParameterDeclaration?
-    | {SysML::PartUsage} ( direction = FeatureDirection )? PartUsageKeyword ParameterDeclaration?
-    | {SysML::ViewUsage} ( direction = FeatureDirection )? ViewUsageKeyword ParameterDeclaration?
-    | {SysML::RenderingUsage} ( direction = FeatureDirection )? RenderingUsageKeyword ParameterDeclaration?
-    | {SysML::ActionUsage} ( direction = FeatureDirection )? ActionUsageKeyword ParameterDeclaration?
-    | {SysML::CalculationUsage} ( direction = FeatureDirection )? CalculationUsageKeyword ParameterDeclaration?
-    | {SysML::StateUsage} ( direction = FeatureDirection )? StateUsageKeyword ParameterDeclaration?
-    | {SysML::ConstraintUsage} ( direction = FeatureDirection )? ConstraintUsageKeyword ParameterDeclaration?
-    | {SysML::RequirementUsage} ( direction = FeatureDirection )? RequirementUsageKeyword ParameterDeclaration?
-    | {SysML::ConcernUsage} ( direction = FeatureDirection )? ConcernUsageKeyword ParameterDeclaration?
-    | {SysML::AnalysisCaseUsage} ( direction = FeatureDirection )? AnalysisCaseUsageKeyword ParameterDeclaration?
-    | {SysML::VerificationCaseUsage} ( direction = FeatureDirection )? VerificationCaseUsageKeyword ParameterDeclaration?
-    | {SysML::UseCaseUsage} ( direction = FeatureDirection )? UseCaseUsageKeyword ParameterDeclaration?
-    | {SysML::ViewpointUsage} ( direction = FeatureDirection )? ViewpointUsageKeyword ParameterDeclaration?
-;
-
-fragment ParameterDeclaration returns SysML::Usage :
-	  Identification ParameterSpecializationPart? 
-	| ParameterSpecializationPart
-;
-
-fragment ParameterSpecializationPart returns SysML::Feature :
-	  ( -> ParameterSpecialization )+ MultiplicityPart? ParameterSpecialization*
-	| MultiplicityPart ParameterSpecialization*
-;
-
-fragment ParameterSpecialization returns SysML::Feature :
-	TypedBy | Subsets | Redefines
-;
-
 /* Action Usages */
 
 ActionUsageKeyword :
@@ -1376,24 +1327,11 @@ PerformActionUsage returns SysML::PerformActionUsage :
 fragment PerformActionUsageDeclaration returns SysML::ActionUsage :
    	( ownedRelationship += OwnedSubsetting FeatureSpecializationPart?
    	| ActionUsageKeyword UsageDeclaration? )
-    ( ValuePart | ActionUsageParameterList )?
+    ValuePart?
 ;
 
 fragment ActionUsageDeclaration returns SysML::Step :
-	  UsageDeclaration? ( ValuePart | ActionUsageParameterList )?
-;
-
-fragment ActionUsageParameterList returns SysML::Type :
-	'(' ( ownedRelationship += ActionUsageParameterMember 
-		  ( ',' ownedRelationship += ActionUsageParameterMember )* )? ')'
-;
-
-ActionUsageParameterMember returns SysML::ParameterMembership :
-	ownedRelatedElement += ActionUsageParameter // ownedMemberParameter = ActionUsageParameter
-;
-
-ActionUsageParameter returns SysML::Usage :
-	Parameter ValuePart? | {SysML::ReferenceUsage} ValuePart
+	  UsageDeclaration? ValuePart?
 ;
 
 /* Action Nodes */
@@ -1688,7 +1626,7 @@ StateDefKeyword :
 
 StateDefinition returns SysML::StateDefinition :
 	OccurrenceDefinitionPrefix
-	StateDefKeyword ActionDeclaration StateDefBody
+	StateDefKeyword DefinitionDeclaration StateDefBody
 ;
 
 fragment StateDefBody returns SysML::StateDefinition :
@@ -1792,7 +1730,7 @@ ExhibitStateUsage returns SysML::ExhibitStateUsage :
     ( ownedRelationship += OwnedSubsetting FeatureSpecializationPart?
     | StateUsageKeyword UsageDeclaration?
     )
-    ( ValuePart | ActionUsageParameterList )? StateUsageBody
+    ValuePart? StateUsageBody
 ;
 
 /* Transition Usages */
@@ -1888,22 +1826,8 @@ CalculationDefKeyword :
 ;
 
 CalculationDefinition returns SysML::CalculationDefinition :
-	OccurrenceDefinitionPrefix CalculationDefKeyword CalculationDeclaration 
-	( CalculationBody 
-	| '=' ownedRelationship += ResultExpressionMember ';'
-	)
-;
-
-fragment CalculationDeclaration returns SysML::CalculationDefinition :
-	DefinitionDeclaration ( ParameterList ReturnParameterPart? )?
-;
-
-fragment ReturnParameterPart returns SysML::Type :
-	ownedRelationship += ReturnParameterMember
-;
-
-ReturnParameterMember returns SysML::ReturnParameterMembership :
-	'return'? ownedRelatedElement += Parameter // ownedMemberParameter = Parameter
+	OccurrenceDefinitionPrefix CalculationDefKeyword DefinitionDeclaration 
+	CalculationBody
 ;
 
 fragment CalculationBody returns SysML::Type :
@@ -1915,10 +1839,10 @@ fragment CalculationBody returns SysML::Type :
 
 fragment CalculationBodyItem returns SysML::Type :
 	  ActionBodyItem
-	| ownedRelationship += ReturnParameterFlowUsageMember
+	| ownedRelationship += ReturnParameterMember
 ;
 
-ReturnParameterFlowUsageMember returns SysML::ReturnParameterMembership :
+ReturnParameterMember returns SysML::ReturnParameterMembership :
 	MemberPrefix 'return' 
 	ownedRelatedElement += UsageElement // ownedMemberParameter = UsageElement
 ;
@@ -1939,19 +1863,7 @@ CalculationUsage returns SysML::CalculationUsage :
 ;
 
 fragment CalculationUsageDeclaration returns SysML::Step :
-	  UsageDeclaration? ( ValuePart | CalculationUsageParameterPart )?
-;
-
-fragment CalculationUsageParameterPart returns SysML::Feature :
-	  ActionUsageParameterList CalculationReturnParameterPart?
-;
-
-fragment CalculationReturnParameterPart returns SysML::Feature :
-	ownedRelationship += CalculationReturnParameterMember
-;
-
-CalculationReturnParameterMember returns SysML::ReturnParameterMembership :
-	'return'? ownedRelatedElement += ActionUsageParameter // ownedMemberParameter = ActionUsageParameter
+	  UsageDeclaration? ValuePart?
 ;
 
 /* CONSTRAINTS */
@@ -1967,19 +1879,7 @@ ConstraintDefKeyword :
 ;
 
 ConstraintDefinition returns SysML::ConstraintDefinition :
-	OccurrenceDefinitionPrefix ConstraintDefKeyword ConstraintDeclaration CalculationBody  
-;
-
-fragment ConstraintDeclaration returns SysML::ConstraintDefinition :
-	DefinitionDeclaration ParameterList? EmptyReturnParameterPart
-;
-
-fragment EmptyReturnParameterPart returns SysML::Type :
-	ownedRelationship += EmptyReturnParameterMember
-;
-
-EmptyReturnParameterMember returns SysML::ReturnParameterMembership :
-	ownedRelatedElement += EmptyUsage // ownedMemberParameter = EmptyParameter
+	OccurrenceDefinitionPrefix ConstraintDefKeyword DefinitionDeclaration CalculationBody  
 ;
 
 /* Constraint Usages */
@@ -1997,7 +1897,7 @@ AssertConstraintUsage returns SysML::AssertConstraintUsage :
     ( ownedRelationship += OwnedSubsetting FeatureSpecializationPart?
     | ConstraintUsageKeyword UsageDeclaration? 
     )
-    CalculationUsageParameterPart? CalculationBody
+    CalculationBody
 ;
 
 /* REQUIREMENTS */
@@ -2013,7 +1913,7 @@ RequirementDefKeyword :
 ;
 
 RequirementDefinition returns SysML::RequirementDefinition :
-	OccurrenceDefinitionPrefix RequirementDefKeyword ConstraintDeclaration RequirementBody  
+	OccurrenceDefinitionPrefix RequirementDefKeyword DefinitionDeclaration RequirementBody  
 ;
 
 fragment RequirementBody returns SysML::Type :
@@ -2049,7 +1949,7 @@ enum RequirementConstraintKind returns SysML::RequirementConstraintKind :
 
 RequirementConstraintUsage returns SysML::ConstraintUsage :
       ownedRelationship += OwnedSubsetting FeatureSpecialization* 
-      CalculationUsageParameterPart? RequirementBody
+      RequirementBody
     | 'constraint' CalculationUsageDeclaration CalculationBody
 ;
 
@@ -2064,7 +1964,7 @@ enum FramedConcernKind returns SysML::RequirementConstraintKind :
 
 FramedConcernUsage returns SysML::ConcernUsage :
       ownedRelationship += OwnedSubsetting FeatureSpecialization* 
-      CalculationUsageParameterPart? RequirementBody
+      RequirementBody
     | ConcernUsageKeyword CalculationUsageDeclaration CalculationBody
 ;
 
@@ -2101,7 +2001,7 @@ SatisfyRequirementUsage returns SysML::SatisfyRequirementUsage :
 	( ownedRelationship += OwnedSubsetting FeatureSpecializationPart?
     | RequirementUsageKeyword UsageDeclaration? 
     )
-    ( ValuePart | ActionUsageParameterList )?
+    ValuePart?
     ( 'by' ownedRelationship += SatisfactionSubjectMember )?
      RequirementBody
 ;
@@ -2135,7 +2035,7 @@ ConcernDefKeyword :
 ;
 
 ConcernDefinition returns SysML::ConcernDefinition :
-	OccurrenceDefinitionPrefix ConcernDefKeyword ConstraintDeclaration RequirementBody  
+	OccurrenceDefinitionPrefix ConcernDefKeyword DefinitionDeclaration RequirementBody  
 ;
 
 ConcernUsageKeyword :
@@ -2159,7 +2059,7 @@ CaseDefKeyword :
 ;
 
 CaseDefinition returns SysML::CaseDefinition :
-	OccurrenceDefinitionPrefix CaseDefKeyword CalculationDeclaration CaseBody
+	OccurrenceDefinitionPrefix CaseDefKeyword DefinitionDeclaration CaseBody
 ;
 
 fragment CaseBody returns SysML::Type :
@@ -2210,7 +2110,7 @@ AnalysisCaseUsageKeyword :
 ;
 
 AnalysisCaseDefinition returns SysML::AnalysisCaseDefinition :
-	OccurrenceDefinitionPrefix AnalysisCaseDefKeyword CalculationDeclaration CaseBody
+	OccurrenceDefinitionPrefix AnalysisCaseDefKeyword DefinitionDeclaration CaseBody
 ;
 
 AnalysisCaseUsage returns SysML::AnalysisCaseUsage :
@@ -2232,7 +2132,7 @@ VerificationCaseUsageKeyword :
 ;
 
 VerificationCaseDefinition returns SysML::VerificationCaseDefinition :
-	OccurrenceDefinitionPrefix VerificationCaseDefKeyword CalculationDeclaration CaseBody
+	OccurrenceDefinitionPrefix VerificationCaseDefKeyword DefinitionDeclaration CaseBody
 ;
 
 VerificationCaseUsage returns SysML::VerificationCaseUsage :
@@ -2250,7 +2150,7 @@ enum RequirementVerificationKind returns SysML::RequirementConstraintKind :
 
 RequirementVerificationUsage returns SysML::RequirementUsage :
       ownedRelationship += OwnedSubsetting FeatureSpecialization* 
-      CalculationUsageParameterPart? RequirementBody
+      RequirementBody
     | 'requirement' CalculationUsageDeclaration RequirementBody
 ;
 
@@ -2269,7 +2169,7 @@ UseCaseUsageKeyword :
 ;
 
 UseCaseDefinition returns SysML::UseCaseDefinition :
-	OccurrenceDefinitionPrefix UseCaseDefKeyword CalculationDeclaration CaseBody
+	OccurrenceDefinitionPrefix UseCaseDefKeyword DefinitionDeclaration CaseBody
 ;
 
 UseCaseUsage returns SysML::UseCaseUsage :
@@ -2280,7 +2180,7 @@ IncludeUseCaseUsage returns SysML::IncludeUseCaseUsage :
 	OccurrenceUsagePrefix 'include' 
    	( ownedRelationship += OwnedSubsetting FeatureSpecializationPart?
    	| UseCaseUsageKeyword UsageDeclaration? )
-    ( ValuePart | ActionUsageParameterList )?
+    ValuePart?
 	CaseBody
 ;
 
@@ -2361,7 +2261,7 @@ ViewpointUsageKeyword :
 ;
 
 ViewpointDefinition returns SysML::ViewpointDefinition :
-	OccurrenceDefinitionPrefix ViewpointDefKeyword ConstraintDeclaration RequirementBody  
+	OccurrenceDefinitionPrefix ViewpointDefKeyword DefinitionDeclaration RequirementBody  
 ;
 
 ViewpointUsage returns SysML::ViewpointUsage :

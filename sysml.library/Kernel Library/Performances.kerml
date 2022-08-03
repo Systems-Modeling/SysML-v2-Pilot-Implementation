@@ -66,45 +66,44 @@ package Performances {
 	 * Evaluation is the most general class of functions that may be evaluated to compute
 	 * a result.
 	 */
-	abstract function Evaluation specializes Performance () result: Anything[0..*] nonunique;
+	abstract function Evaluation specializes Performance { return result: Anything[0..*] nonunique; }
 	
 	/**
 	 * BooleanEvaluation is a specialization of Evaluation that is the most general class of
 	 * Predicates that may be evaluated to produce a Boolean truth value.
 	 */
-	abstract predicate BooleanEvaluation specializes Evaluation (): Boolean[1];
+	abstract predicate BooleanEvaluation specializes Evaluation { return : Boolean[1]; }
 	
 	/**
 	 * LiteralEvaluation is a specialization of Evaluation for the case of LiteralExpressions.
 	 */				
-	abstract function LiteralEvaluation specializes Evaluation (): ScalarValue[1];
+	abstract function LiteralEvaluation specializes Evaluation { return : ScalarValue[1]; }
 	
 	/**
 	 * LiteralBooleanEvaluation is a specialization of LiteralEvaluation for the case of LiteralBooleans.
 	 * It is also a predicate and thus a specialization of BooleanEvaluation. 
 	 */
-	abstract predicate LiteralBooleanEvaluation specializes LiteralEvaluation, BooleanEvaluation (): Boolean[1];
-
+	abstract predicate LiteralBooleanEvaluation specializes LiteralEvaluation, BooleanEvaluation { return : Boolean[1]; }
 	/**
 	 * LiteralIntegerEvaluation is a specialization of LiteralEvaluation for the case of LiteralIntegers.
 	 */
-	abstract function LiteralIntegerEvaluation specializes LiteralEvaluation (): Integer[1];
+	abstract function LiteralIntegerEvaluation specializes LiteralEvaluation { return : Integer[1]; }
 
 	/**
 	 * LiteralRationalEvaluation is a specialization of LiteralEvaluation for the case of LiteralRationals.
 	 * (Note: Return type is Real to allow easy type conformance of LiteralRationals when a Real result is expected.)
 	 */
-	abstract function LiteralRationalEvaluation specializes LiteralEvaluation (): Real[1];
+	abstract function LiteralRationalEvaluation specializes LiteralEvaluation { return : Real[1]; }
 	
 	/**
 	 * LiteralStringEvaluation is a specialization of LiteralEvaluation for the case of LiteralStrings.
 	 */
-	abstract function LiteralStringEvaluation specializes LiteralEvaluation (): String[1];
+	abstract function LiteralStringEvaluation specializes LiteralEvaluation { return : String[1]; }
 	
 	/**
 	 * NullEvaluation is a specialization of Evaluation for the case of NullExpressions.
 	 */
-	function NullEvaluation specializes Evaluation (): Anything[0..0];
+	function NullEvaluation specializes Evaluation { return : Anything[0..0]; }
 
 	/** 
 	 * Involves asserts that the Behavior carried out by the involvingPerformance involves the

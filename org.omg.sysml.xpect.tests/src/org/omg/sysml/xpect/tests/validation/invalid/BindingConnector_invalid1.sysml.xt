@@ -46,10 +46,10 @@ package Example3 {
 
 	part def Vehicle;
 	part vehicle : Vehicle {
-		action myAction(
-			in myIn, 
-			out myOut
-		);
+		action myAction {
+			in myIn;
+			out myOut;
+		}
 		
 		part tankAssy {
 			port fuelTankPort {

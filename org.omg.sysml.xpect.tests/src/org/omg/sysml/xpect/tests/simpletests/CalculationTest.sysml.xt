@@ -62,24 +62,16 @@ package CalculationExample {
 		part trans : VehiclePart;
 	}
 	
-	calc def MassSum (partMasses : Real[0..*]) totalMass : Real {
-		sum(partMasses)
-	}
-	
-	calc ms: MassSum (
-		partMasses = (vehicle.eng.m, vehicle.trans.m))
-		totalMass = vehicle.m;
-		
-	calc def MassSum1 {
-		in partMasses : Real[0..*];
+	calc def MassSum {
+		in partMasses: Real[0..*];
 		return totalMass : Real = sum(partMasses);
 	}
 	
-	calc ms1: MassSum {
+	calc ms: MassSum {
 		in partMasses = (vehicle.eng.m, vehicle.trans.m);
 		return totalMass = vehicle.m;
 	}
-	
+		
 	part vehicles[*] = (vehicle, vehicle);
 	attribute masses1[*] = (vehicles as VehiclePart).m;
 	attribute masses2[*] = (vehicles as vehicle).m;

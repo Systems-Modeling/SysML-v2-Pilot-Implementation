@@ -61,9 +61,10 @@ package FeatureReferencingPerformances {
 	 * A FeatureReadEvaluation is a FeatureAccessPerformance that is a function providing as
 	 * its result the values of a feature on an occurrence at the time its evaluation ends.
 	 */
-	abstract function FeatureReadEvaluation specializes FeatureAccessPerformance, Evaluation 
-		(onOccurrence: Occurrence [1]) 
-		resultValues : Anything [*] nonunique redefines result redefines values;
+	abstract function FeatureReadEvaluation specializes FeatureAccessPerformance, Evaluation { 
+		in onOccurrence: Occurrence [1];
+		return resultValues : Anything [*] nonunique redefines result redefines values;
+	}
 
 	/**
 	 * A FeatureWritePerformance is a FeatureAccessPerformance that assigns the values of a 

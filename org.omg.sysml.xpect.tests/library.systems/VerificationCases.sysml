@@ -57,8 +57,9 @@ package VerificationCases {
 	 * PassIf returns a pass or fail VerdictKind depending on whether its argument is
 	 * true or false.
 	 */
-	calc def PassIf(in isPassing : Boolean) {
-		return verdict : VerdictKind = if isPassing? VerdictKind::pass else VerdictKind::fail;
+	calc def PassIf {
+		in attribute isPassing : Boolean;
+		return attribute verdict : VerdictKind = if isPassing? VerdictKind::pass else VerdictKind::fail;
 	}
 	
 	/**

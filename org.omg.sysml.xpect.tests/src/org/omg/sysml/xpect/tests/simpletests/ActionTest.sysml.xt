@@ -44,12 +44,12 @@ END_SETUP
 */
 // XPECT noErrors ---> ""
 package ActionTest {
-	action def A(in x);
+	action def A{ in x; }
 	
 	action a: A { 
 		first start;
 		
-		action b(in y = x);
+		action b { in y = x; }
 		
 		bind x = b.y;
 	}

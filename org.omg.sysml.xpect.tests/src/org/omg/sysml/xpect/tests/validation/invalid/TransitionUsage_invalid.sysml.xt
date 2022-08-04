@@ -44,7 +44,7 @@ package TransitionUsage_invalid {
 	
 	state def S2 parallel {
 		state S2_1;
-		// XPECT errors ---> "A parallel state cannot have successions or transitions." at "then S2_2"
+		// XPECT errors ---> "A parallel state cannot have successions or transitions." at "then S2_2;"
 		then S2_2;
 		state S2_2;
 	}
@@ -58,7 +58,7 @@ package TransitionUsage_invalid {
 	
 	state s2 parallel {
 		state s2_1;
-		// XPECT errors ---> "A parallel state cannot have successions or transitions." at "then s2_2"
+		// XPECT errors ---> "A parallel state cannot have successions or transitions." at "then s2_2;"
 		then s2_2;
 		state s2_2;
 	}

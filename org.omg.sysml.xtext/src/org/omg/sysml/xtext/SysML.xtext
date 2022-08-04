@@ -52,8 +52,12 @@ Annotation returns SysML::Annotation :
 	annotatedElement = [SysML::Element|QualifiedName]
 ;
 
-EmptyAnnotation returns SysML::Annotation :
-	{SysML::Annotation}
+OwnedAnnotation returns SysML::Annotation :
+	ownedRelatedElement += AnnotatingElement
+;
+
+AnnotatingMember returns SysML::OwningMembership :
+	ownedRelatedElement += AnnotatingElement // ownedMember = AnnotatingElement
 ;
 
 AnnotatingElement returns SysML::AnnotatingElement :
@@ -64,8 +68,8 @@ AnnotatingElement returns SysML::AnnotatingElement :
 	| MetadataUsage
 ;
 
-AnnotatingMember returns SysML::OwningMembership :
-	ownedRelatedElement += AnnotatingElement // ownedMember = AnnotatingElement
+fragment RelationshipBody returns SysML::Relationship :
+	';' | '{' ( ownedRelationship += OwnedAnnotation )* '}'
 ;
 
 /* Comments */
@@ -78,9 +82,9 @@ Comment returns SysML::Comment :
 	body = REGULAR_COMMENT
 ;
 
-PrefixComment returns SysML::Comment :
+@Deprecated
+PrefixComment returns SysML::PrefixComment :
 	( 'comment' Identification? )? 
-	ownedRelationship += EmptyAnnotation
 	body = PREFIX_COMMENT
 ;
 
@@ -145,12 +149,13 @@ MetadataTyping returns SysML::FeatureTyping :
 ;
 
 fragment MetadataBody returns SysML::Feature :
-	';' | 
-	'{' ( ownedRelationship += DefinitionMember 
-		| ownedRelationship += MetadataBodyUsageMember 
-		| ownedRelationship += AliasMember
-		| ownedRelationship += Import
-	)* '}'
+	  ';' 
+	| '{' ( ownedRelationship += DefinitionMember 
+		  | ownedRelationship += MetadataBodyUsageMember 
+		  | ownedRelationship += AliasMember
+		  | ownedRelationship += Import
+	      )* 
+	  '}'
 ;
 
 MetadataBodyUsageMember returns SysML::FeatureMembership :
@@ -177,7 +182,7 @@ fragment PackageDeclaration returns SysML::Package :
 ;
 
 fragment PackageBody returns SysML::Package :
-	  ';' 
+	 ';' 
 	| '{' ( // Note: PackageBodyElement is expanded here to avoid
 			// infinite loops in the incremental parser.
 		    ownedRelationship += PackageMember
@@ -215,13 +220,15 @@ ElementFilterMember returns SysML::ElementFilterMembership :
 AliasMember returns SysML::Membership :
 	MemberPrefix
 	'alias' ( '<' memberShortName = Name '>' )? ( memberName = Name )?
-	'for' memberElement = [SysML::Element|QualifiedName] ';'
+	'for' memberElement = [SysML::Element|QualifiedName]
+	RelationshipBody
 ;
 
 Import returns SysML::Import :
 	( visibility = VisibilityIndicator )?  
 	'import' ( isImportAll ?= 'all' )?
-	( ImportedNamespace | ImportedFilterPackage ) ';'
+	( ImportedNamespace | ImportedFilterPackage )
+	RelationshipBody
 ;
 
 fragment ImportedNamespace returns SysML::Import :
@@ -412,7 +419,8 @@ Dependency returns SysML::Dependency :
 	( ownedRelationship += PrefixMetadataAnnotation )?
 	'dependency' ( Identification? 'from' )?
     client += [SysML::Element|QualifiedName] ( ',' client += [SysML::Element|QualifiedName] )* 'to'
-    supplier += [SysML::Element|QualifiedName] ( ',' supplier += [SysML::Element|QualifiedName] )* ';'
+    supplier += [SysML::Element|QualifiedName] ( ',' supplier += [SysML::Element|QualifiedName] )*
+    RelationshipBody
 ;
 
 /* DEFINITION AND USAGE */
@@ -440,8 +448,7 @@ fragment DefinitionDeclaration returns SysML::Definition :
 ;
 
 fragment DefinitionBody returns SysML::Type :
-	  ';' 
-	| '{' DefinitionBodyItem* '}'
+	';' | '{' DefinitionBodyItem* '}'
 ;
 
 fragment DefinitionBodyItem returns SysML::Type :
@@ -709,8 +716,9 @@ EnumerationDefinition returns SysML::EnumerationDefinition :
 fragment EnumerationBody returns SysML::EnumerationDefinition :
 	  ';' 
 	| '{' ( ownedRelationship += AnnotatingMember
-		  | => ownedRelationship += EnumerationUsageMember )* 
-	   '}'
+		  | => ownedRelationship += EnumerationUsageMember 
+		  )* 
+	  '}'
 ;
 
 EnumerationUsageMember returns SysML::VariantMembership :
@@ -1140,8 +1148,7 @@ InterfaceDefinition returns SysML::InterfaceDefinition :
 ;
 
 fragment InterfaceBody returns SysML::Type :
-	  ';' 
-	| '{' InterfaceBodyItem* '}'
+	';' | '{' InterfaceBodyItem* '}'
 ;
 
 fragment InterfaceBodyItem returns SysML::Type :
@@ -1271,10 +1278,10 @@ ActionDefinition returns SysML::ActionDefinition :
 ;
 
 fragment ActionBody returns SysML::Type :
-	    ';' 
-		// Note: Using a syntactic predicate here seems to avoid a possible infinite loop
-		// while incrementally parsing.
-	  | '{' => ActionBodyItem* '}' 
+	  ';' 
+	  // Note: Using a syntactic predicate here seems to avoid a possible infinite loop
+	  // while incrementally parsing.
+	| '{' => ActionBodyItem* '}' 
 ;
 
 fragment ActionBodyItem returns SysML::Type :
@@ -1294,8 +1301,8 @@ fragment ActionBodyItem returns SysML::Type :
 ;
 
 InitialNodeMember returns SysML::Membership :
-	MemberPrefix 'first' memberElement = [SysML::Feature|QualifiedName] ';'
-	
+	MemberPrefix 'first' memberElement = [SysML::Feature|QualifiedName]
+	RelationshipBody	
 ;
 
 ActionNodeMember returns SysML::FeatureMembership :
@@ -1303,11 +1310,11 @@ ActionNodeMember returns SysML::FeatureMembership :
 ;
 
 TargetSuccessionMember returns SysML::FeatureMembership :
-	MemberPrefix ownedRelatedElement += ActionTargetSuccession ';' // ownedMemberFeature = ActionTargetSuccession ';'
+	MemberPrefix ownedRelatedElement += ActionTargetSuccession // ownedMemberFeature = ActionTargetSuccession
 ;
 
 GuardedSuccessionMember returns SysML::FeatureMembership :
-	ownedRelatedElement += GuardedSuccession ';' // ownedMemberFeature = GuardedSuccession ';'
+	ownedRelatedElement += GuardedSuccession // ownedMemberFeature = GuardedSuccession
 ;
 
 /* Action Usages */
@@ -1559,19 +1566,27 @@ fragment ControlNodePrefix returns SysML::OccurrenceUsage :
 ;
 
 MergeNode returns SysML::MergeNode :
-	ControlNodePrefix 'merge' UsageDeclaration? ';'
+	ControlNodePrefix 'merge' UsageDeclaration?
+	ActionNodeBody
 ;
 
 DecisionNode returns SysML::DecisionNode :
-	ControlNodePrefix 'decide' UsageDeclaration? ';'
+	ControlNodePrefix 'decide' UsageDeclaration?
+	ActionNodeBody
 ;
 
 JoinNode returns SysML::JoinNode :
-	ControlNodePrefix 'join' UsageDeclaration? ';'
+	ControlNodePrefix 'join' UsageDeclaration?
+	ActionNodeBody
 ;
 
 ForkNode returns SysML::ForkNode :
-	ControlNodePrefix 'fork' UsageDeclaration? ';'
+	ControlNodePrefix 'fork' UsageDeclaration?
+	ActionNodeBody
+;
+
+fragment ActionNodeBody returns SysML::ControlNode :
+	';' | '{' ( ownedRelationship += AnnotatingMember )* '}'
 ;
 
 EmptyParameterMember returns SysML::ParameterMembership :
@@ -1584,8 +1599,9 @@ EmptyUsage returns SysML::Usage :
 
 /* Action Succession */
 
-ActionTargetSuccession returns SysML::Feature :
-	TargetSuccession | GuardedTargetSuccession | DefaultTargetSuccession
+ActionTargetSuccession returns SysML::Usage :
+	( TargetSuccession | GuardedTargetSuccession | DefaultTargetSuccession )
+	UsageBody
 ;
 
 TargetSuccession returns SysML::SuccessionAsUsage :
@@ -1610,6 +1626,7 @@ GuardedSuccession returns SysML::TransitionUsage :
 	ownedRelationship += EmptyParameterMember
 	ownedRelationship += GuardExpressionMember
 	'then' ownedRelationship += TransitionSuccessionMember
+	UsageBody
 ;
 
 /* STATES */
@@ -1625,8 +1642,7 @@ StateDefKeyword :
 ;
 
 StateDefinition returns SysML::StateDefinition :
-	OccurrenceDefinitionPrefix
-	StateDefKeyword DefinitionDeclaration StateDefBody
+	OccurrenceDefinitionPrefix StateDefKeyword DefinitionDeclaration StateDefBody
 ;
 
 fragment StateDefBody returns SysML::StateDefinition :
@@ -1704,11 +1720,11 @@ PerformedActionUsage returns SysML::ActionUsage :
 ;
 
 TransitionUsageMember returns SysML::FeatureMembership :
-	MemberPrefix ownedRelatedElement += TransitionUsage ';' // ownedMemberFeature = TransitionUsage ';'
+	MemberPrefix ownedRelatedElement += TransitionUsage // ownedMemberFeature = TransitionUsage
 ;
 
 TargetTransitionUsageMember returns SysML::FeatureMembership :
-	MemberPrefix ownedRelatedElement += TargetTransitionUsage ';' // ownedMemberFeature = TargetTransitionUsage ';'
+	MemberPrefix ownedRelatedElement += TargetTransitionUsage // ownedMemberFeature = TargetTransitionUsage
 ;
 
 /* State Usages */
@@ -1748,6 +1764,7 @@ TransitionUsage returns SysML::TransitionUsage :
 	( ownedRelationship += GuardExpressionMember )?
 	( ownedRelationship += EffectBehaviorMember )?
 	'then' ownedRelationship += TransitionSuccessionMember
+	ActionBody
 ;
 
 TargetTransitionUsage returns SysML::TransitionUsage :
@@ -1765,6 +1782,7 @@ TargetTransitionUsage returns SysML::TransitionUsage :
 	  ( ownedRelationship += EffectBehaviorMember )?
 	)?
 	'then' ownedRelationship += TransitionSuccessionMember
+	ActionBody
 ;
 
 TransitionSourceMember returns SysML::Membership :
@@ -1831,10 +1849,12 @@ CalculationDefinition returns SysML::CalculationDefinition :
 ;
 
 fragment CalculationBody returns SysML::Type :
-	    ';' 
-	  | '{' => CalculationBodyItem*
-	        ( ownedRelationship += ResultExpressionMember )?
-	    '}' 
+	';' | '{' CalculationBodyPart '}' 
+;
+
+fragment CalculationBodyPart returns SysML::Type :
+	=> CalculationBodyItem*
+	( ownedRelationship += ResultExpressionMember )?
 ;
 
 fragment CalculationBodyItem returns SysML::Type :

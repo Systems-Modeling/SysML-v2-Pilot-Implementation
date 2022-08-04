@@ -39,8 +39,6 @@ import org.eclipse.uml2.common.util.UnionEObjectEList;
 import org.omg.sysml.lang.sysml.AnnotatingElement;
 import org.omg.sysml.lang.sysml.Annotation;
 import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.lang.sysml.OwningMembership;
-import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
@@ -134,22 +132,6 @@ public class AnnotationImpl extends RelationshipImpl implements Annotation {
 			Element owningRelatedElement = getOwningRelatedElement();
 			if (!(owningRelatedElement instanceof AnnotatingElement)) {
 				annotatedElement = owningRelatedElement;
-			} else {
-				// For a prefix annotation, use the lexically next relationship as the annotated
-				Element owner = owningRelatedElement.getOwner();
-				if (owner != null) {
-					EList<Relationship> ownedRelationships = owner.getOwnedRelationship();
-					int i = ownedRelationships.indexOf(owningRelatedElement.getOwningRelationship()) + 1;
-					if (i < ownedRelationships.size()) {
-						annotatedElement = ownedRelationships.get(i);
-						if (annotatedElement instanceof OwningMembership) {
-							Element ownedMember = ((OwningMembership)annotatedElement).getOwnedMemberElement();
-							if (ownedMember != null) {
-								annotatedElement = ownedMember;
-							}
-						}
-					}
-				}
 			}
 		}
 		return annotatedElement;

@@ -4525,4 +4525,5 @@
       <eAnnotations source="subsets" references="#//Namespace/ownedMember"/>
     </eStructuralFeatures>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PrefixComment" eSuperTypes="#//Comment"/>
 </ecore:EPackage>

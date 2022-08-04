@@ -143,6 +143,7 @@ import org.omg.sysml.lang.sysml.PortUsage;
 import org.omg.sysml.lang.sysml.PortionKind;
 import org.omg.sysml.lang.sysml.PortioningFeature;
 import org.omg.sysml.lang.sysml.Predicate;
+import org.omg.sysml.lang.sysml.PrefixComment;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.ReferenceUsage;
 import org.omg.sysml.lang.sysml.Relationship;
@@ -404,6 +405,7 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 			case SysMLPackage.LITERAL_INFINITY: return createLiteralInfinity();
 			case SysMLPackage.ELEMENT_FILTER_MEMBERSHIP: return createElementFilterMembership();
 			case SysMLPackage.PACKAGE: return createPackage();
+			case SysMLPackage.PREFIX_COMMENT: return createPrefixComment();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -824,6 +826,17 @@ public class SysMLFactoryImpl extends EFactoryImpl implements SysMLFactory {
 	public org.omg.sysml.lang.sysml.Package createPackage() {
 		PackageImpl package_ = new PackageImpl();
 		return package_;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public PrefixComment createPrefixComment() {
+		PrefixCommentImpl prefixComment = new PrefixCommentImpl();
+		return prefixComment;
 	}
 
 	/**

@@ -148,6 +148,7 @@ import org.omg.sysml.lang.sysml.PortUsage;
 import org.omg.sysml.lang.sysml.PortionKind;
 import org.omg.sysml.lang.sysml.PortioningFeature;
 import org.omg.sysml.lang.sysml.Predicate;
+import org.omg.sysml.lang.sysml.PrefixComment;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.ReferenceUsage;
 import org.omg.sysml.lang.sysml.Relationship;
@@ -457,6 +458,13 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * @generated
 	 */
 	private EClass packageEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass prefixCommentEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -2655,6 +2663,16 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	@Override
 	public EOperation getPackage__CheckCondition__Element_Expression() {
 		return packageEClass.getEOperations().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getPrefixComment() {
+		return prefixCommentEClass;
 	}
 
 	/**
@@ -7999,6 +8017,8 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		createEOperation(packageEClass, PACKAGE___INCLUDE_AS_MEMBER__ELEMENT);
 		createEOperation(packageEClass, PACKAGE___CHECK_CONDITION__ELEMENT_EXPRESSION);
 
+		prefixCommentEClass = createEClass(PREFIX_COMMENT);
+
 		// Create enums
 		visibilityKindEEnum = createEEnum(VISIBILITY_KIND);
 		featureDirectionKindEEnum = createEEnum(FEATURE_DIRECTION_KIND);
@@ -8235,6 +8255,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		literalInfinityEClass.getESuperTypes().add(this.getLiteralExpression());
 		elementFilterMembershipEClass.getESuperTypes().add(this.getOwningMembership());
 		packageEClass.getESuperTypes().add(this.getNamespace());
+		prefixCommentEClass.getESuperTypes().add(this.getComment());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(usageEClass, Usage.class, "Usage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -9004,6 +9025,8 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		op = initEOperation(getPackage__CheckCondition__Element_Expression(), theTypesPackage.getBoolean(), "checkCondition", 1, 1, IS_UNIQUE, !IS_ORDERED);
 		addEParameter(op, this.getElement(), "element", 1, 1, IS_UNIQUE, !IS_ORDERED);
 		addEParameter(op, this.getExpression(), "condition", 1, 1, IS_UNIQUE, !IS_ORDERED);
+
+		initEClass(prefixCommentEClass, PrefixComment.class, "PrefixComment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Initialize enums and add enum literals
 		initEEnum(visibilityKindEEnum, VisibilityKind.class, "VisibilityKind");

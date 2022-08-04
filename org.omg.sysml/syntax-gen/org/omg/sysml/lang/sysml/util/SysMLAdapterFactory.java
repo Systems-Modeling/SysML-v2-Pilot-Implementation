@@ -142,6 +142,7 @@ import org.omg.sysml.lang.sysml.PortDefinition;
 import org.omg.sysml.lang.sysml.PortUsage;
 import org.omg.sysml.lang.sysml.PortioningFeature;
 import org.omg.sysml.lang.sysml.Predicate;
+import org.omg.sysml.lang.sysml.PrefixComment;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.ReferenceUsage;
 import org.omg.sysml.lang.sysml.Relationship;
@@ -905,6 +906,10 @@ public class SysMLAdapterFactory extends AdapterFactoryImpl {
 				return createPackageAdapter();
 			}
 			@Override
+			public Adapter casePrefixComment(PrefixComment object) {
+				return createPrefixCommentAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -1411,6 +1416,20 @@ public class SysMLAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createPackageAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.omg.sysml.lang.sysml.PrefixComment <em>Prefix Comment</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.omg.sysml.lang.sysml.PrefixComment
+	 * @generated
+	 */
+	public Adapter createPrefixCommentAdapter() {
 		return null;
 	}
 

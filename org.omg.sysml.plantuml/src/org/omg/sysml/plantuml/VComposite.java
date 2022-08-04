@@ -169,7 +169,7 @@ public class VComposite extends VMixed {
                 vc.traverse(f);
                 String ret = vc.getString();
 
-                if (ret.isEmpty()) {
+                if (ret.isEmpty() && !isEmpty()) {
                     if (fdk == FeatureDirectionKind.OUT) {
                         addPUMLLine(f, "portout ", name);
                     } else {

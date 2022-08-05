@@ -1,7 +1,9 @@
-/**
- * This package defines basic trigonometric functions on real numbers.
- */
 package TrigFunctions {
+	doc
+	/*
+	 * This package defines basic trigonometric functions on real numbers.
+	 */
+
 	import ScalarValues::Real;
 	
 	feature pi : Real;

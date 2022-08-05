@@ -1,8 +1,10 @@
-/**
- * This package defines Functions on Rational values, including concrete specializations of the 
- * general arithmetic and comparison operations.
- */
 package RationalFunctions {
+	doc
+	/*
+	 * This package defines Functions on Rational values, including concrete specializations of the 
+	 * general arithmetic and comparison operations.
+	 */
+
 	import ScalarValues::*;
 	
 	function rat { in numer: Integer[1]; in denum: Integer[1]; return : Rational[1]; }

@@ -1,4 +1,6 @@
-/**
+package ISQMechanics {
+doc
+/*
  * International System of Quantities and Units
  * Generated on 2021-05-07T14:31:30Z from standard ISO-80000-4:2019 "Mechanics"
  * see also https://www.iso.org/obp/ui/#iso:std:iso:80000:-4:ed-2:v1:en
@@ -9,7 +11,7 @@
  * defined, as well as their typical Cartesian 3d VectorMeasurementReference (i.e. coordinate frame) 
  * or TensorMeasurementReference.
  */
-package ISQMechanics {
+
     private import ScalarValues::Real;
     private import Quantities::*;
     private import MeasurementReferences::*;
@@ -18,7 +20,7 @@ package ISQMechanics {
     // Quantity definitions referenced from other ISQ packages
     private import ISQThermodynamics::EnergyValue;
 
-    /**
+    /*
      * source: item 4-1 mass
      * symbol(s): `m`
      * application domain: generic
@@ -35,7 +37,9 @@ package ISQMechanics {
      * base unit MassUnit and quantity type MassValue.
      */
 
-    /**
+    attribute def MassDensityUnit :> DerivedUnit {
+    doc
+    /*
      * source: item 4-2 mass density, density
      * symbol(s): `ρ`, `ρ_m`
      * application domain: generic
@@ -46,7 +50,7 @@ package ISQMechanics {
      * definition: quantity representing the spatial distribution of mass of a continuous material: `ρ(vec(r)) = (dm)/(dV)` where `m` is mass of the material contained in an infinitesimal domain at point `vec(r)` and `V` is volume of this domain
      * remarks: None.
      */
-    attribute def MassDensityUnit :> DerivedUnit {
+    
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = -3; }
         private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq.M; :>> exponent = 1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF); }
@@ -62,7 +66,9 @@ package ISQMechanics {
     alias DensityValue for MassDensityValue;
     alias density for massDensity;
 
-    /**
+    attribute def SpecificVolumeUnit :> DerivedUnit {
+    doc
+    /*
      * source: item 4-3 specific volume
      * symbol(s): `v`
      * application domain: generic
@@ -73,7 +79,7 @@ package ISQMechanics {
      * definition: reciprocal of mass density `ρ` (item 4-2): `v = 1/ρ`
      * remarks: None.
      */
-    attribute def SpecificVolumeUnit :> DerivedUnit {
+    
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = 3; }
         private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq.M; :>> exponent = -1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF); }
@@ -85,7 +91,9 @@ package ISQMechanics {
     }
     attribute specificVolume: SpecificVolumeValue [*] nonunique :> scalarQuantities;
 
-    /**
+    attribute def RelativeMassDensityValue :> DimensionOneValue {
+    doc
+    /*
      * source: item 4-4 relative mass density, relative density
      * symbol(s): `d`
      * application domain: generic
@@ -96,12 +104,14 @@ package ISQMechanics {
      * definition: quotient of mass density of a substance `ρ` and mass density of a reference substance `ρ_0` : `d = ρ/ρ_0`
      * remarks: Conditions and material should be specified for the reference substance.
      */
-    attribute def RelativeMassDensityValue :> DimensionOneValue;
+    }
     attribute relativeMassDensity: RelativeMassDensityValue [*] nonunique :> scalarQuantities;
 
     alias relativeDensity for relativeMassDensity;
 
-    /**
+    attribute def SurfaceMassDensityUnit :> DerivedUnit {
+    doc
+    /*
      * source: item 4-5 surface mass density, surface density
      * symbol(s): `ρ_A`
      * application domain: generic
@@ -112,7 +122,7 @@ package ISQMechanics {
      * definition: quantity representing the areal distribution of mass of a continuous material: `ρ_A(vec(r)) = (dm)/(dA)` where `m` is the mass of the material at position `vec(r)` and `A` is area
      * remarks: The name "grammage" should not be used for this quantity.
      */
-    attribute def SurfaceMassDensityUnit :> DerivedUnit {
+    
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = -2; }
         private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq.M; :>> exponent = 1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF); }
@@ -128,7 +138,9 @@ package ISQMechanics {
     alias SurfaceDensityValue for SurfaceMassDensityValue;
     alias surfaceDensity for surfaceMassDensity;
 
-    /**
+    attribute def LinearMassDensityUnit :> DerivedUnit {
+    doc
+    /*
      * source: item 4-6 linear mass density, linear density
      * symbol(s): `ρ_I`
      * application domain: generic
@@ -139,7 +151,7 @@ package ISQMechanics {
      * definition: quantity representing the linear distribution of mass of a continuous material: `ρ_I(vec(r)) = (dm)/(dI)` where `m` is the mass of the material at position `vec(r)` and `l` is length
      * remarks: None.
      */
-    attribute def LinearMassDensityUnit :> DerivedUnit {
+    
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = -1; }
         private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq.M; :>> exponent = 1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF); }
@@ -155,7 +167,9 @@ package ISQMechanics {
     alias LinearDensityValue for LinearMassDensityValue;
     alias linearDensity for linearMassDensity;
 
-    /**
+    attribute def MomentOfInertiaUnit :> DerivedUnit {
+    doc
+    /*
      * source: item 4-7 moment of inertia (magnitude)
      * symbol(s): `J`
      * application domain: generic
@@ -166,7 +180,7 @@ package ISQMechanics {
      * definition: tensor (ISO 80000-2) quantity representing rotational inertia of a rigid body relative to a fixed centre of rotation expressed by the tensor product: `vec(L) = vec(vec(J)) vec(ω)` where `vec(L)` is angular momentum (item 4-11) of the body relative to the reference point and `vec(ω)` is its angular velocity (ISO 80000-3)
      * remarks: The calculation of the value requires an integration.
      */
-    attribute def MomentOfInertiaUnit :> DerivedUnit {
+    
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = 2; }
         private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq.M; :>> exponent = 1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, massPF); }
@@ -178,7 +192,9 @@ package ISQMechanics {
     }
     attribute momentOfInertia: MomentOfInertiaValue [*] nonunique :> scalarQuantities;
 
-    /**
+    attribute def Cartesian3dMomentOfInertiaMeasurementReference :> TensorMeasurementReference {
+    doc
+    /*
      * source: item 4-7 moment of inertia (tensor)
      * symbol(s): `vec(vec(J))`
      * application domain: generic
@@ -189,7 +205,7 @@ package ISQMechanics {
      * definition: tensor (ISO 80000-2) quantity representing rotational inertia of a rigid body relative to a fixed centre of rotation expressed by the tensor product: `vec(L) = vec(vec(J)) vec(ω)` where `vec(L)` is angular momentum (item 4-11) of the body relative to the reference point and `vec(ω)` is its angular velocity (ISO 80000-3)
      * remarks: The calculation of the value requires an integration.
      */
-    attribute def Cartesian3dMomentOfInertiaMeasurementReference :> TensorMeasurementReference {
+    
         attribute :>> dimensions = (3, 3);
         attribute :>> isBound = false;
         attribute :>> mRefs: MomentOfInertiaUnit[9];
@@ -202,7 +218,9 @@ package ISQMechanics {
     }
     attribute momentOfInertiaTensor: Cartesian3dMomentOfInertiaTensor :> tensorQuantities;
 
-    /**
+    attribute def MomentumUnit :> DerivedUnit {
+    doc
+    /*
      * source: item 4-8 momentum (magnitude)
      * symbol(s): `p`
      * application domain: generic
@@ -213,7 +231,7 @@ package ISQMechanics {
      * definition: product of mass `m` (item 4-1) of a body and velocity `vec(v)` (ISO 80000-3) of its centre of mass: `vec(p) = m  vec(v)`
      * remarks: None.
      */
-    attribute def MomentumUnit :> DerivedUnit {
+    
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = 1; }
         private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq.M; :>> exponent = 1; }
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -1; }
@@ -226,7 +244,9 @@ package ISQMechanics {
     }
     attribute momentum: MomentumValue [*] nonunique :> scalarQuantities;
 
-    /**
+    attribute def Cartesian3dMomentumCoordinateFrame :> VectorMeasurementReference {
+    doc
+    /*
      * source: item 4-8 momentum (vector)
      * symbol(s): `vec(p)`
      * application domain: generic
@@ -237,7 +257,7 @@ package ISQMechanics {
      * definition: product of mass `m` (item 4-1) of a body and velocity `vec(v)` (ISO 80000-3) of its centre of mass: `vec(p) = m  vec(v)`
      * remarks: None.
      */
-    attribute def Cartesian3dMomentumCoordinateFrame :> VectorMeasurementReference {
+    
         attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> isOrthogonal = true;
@@ -252,7 +272,9 @@ package ISQMechanics {
     }
     attribute momentumVector: Cartesian3dMomentumVector :> vectorQuantities;
 
-    /**
+    attribute def ForceUnit :> DerivedUnit {
+    doc
+    /*
      * source: item 4-9.1 force (magnitude)
      * symbol(s): `F`
      * application domain: generic
@@ -263,7 +285,7 @@ package ISQMechanics {
      * definition: vector (ISO 80000-2) quantity describing interaction between bodies or particles
      * remarks: None.
      */
-    attribute def ForceUnit :> DerivedUnit {
+    
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = 1; }
         private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq.M; :>> exponent = 1; }
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -2; }
@@ -276,7 +298,9 @@ package ISQMechanics {
     }
     attribute force: ForceValue [*] nonunique :> scalarQuantities;
 
-    /**
+    attribute def Cartesian3dForceCoordinateFrame :> VectorMeasurementReference {
+    doc
+    /*
      * source: item 4-9.1 force (vector)
      * symbol(s): `vec(F)`
      * application domain: generic
@@ -287,7 +311,7 @@ package ISQMechanics {
      * definition: vector (ISO 80000-2) quantity describing interaction between bodies or particles
      * remarks: None.
      */
-    attribute def Cartesian3dForceCoordinateFrame :> VectorMeasurementReference {
+    
         attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> isOrthogonal = true;
@@ -302,7 +326,9 @@ package ISQMechanics {
     }
     attribute forceVector: Cartesian3dForceVector :> vectorQuantities;
 
-    /**
+    attribute def Cartesian3dWeightVector :> VectorQuantityValue {
+    doc
+    /*
      * source: item 4-9.2 weight
      * symbol(s): `vec(F_g)`
      * application domain: generic
@@ -313,7 +339,7 @@ package ISQMechanics {
      * definition: force (item 4-9.1) acting on a body in the gravitational field of Earth: `vec(F_g) = m vec(g)` where `m` (item 4-1) is the mass of the body and `vec(g)` is the local acceleration of free fall (ISO 80000-3)
      * remarks: In colloquial language, the name "weight" continues to be used where "mass" is meant. This practice should be avoided. Weight is an example of a gravitational force. Weight comprises not only the local gravitational force but also the local centrifugal force due to the rotation of the Earth.
      */
-    attribute def Cartesian3dWeightVector :> VectorQuantityValue {
+    
         attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> num: Real[3];
@@ -321,7 +347,9 @@ package ISQMechanics {
     }
     attribute weightVector: Cartesian3dWeightVector :> vectorQuantities;
 
-    /**
+    attribute def Cartesian3dStaticFrictionForceVector :> VectorQuantityValue {
+    doc
+    /*
      * source: item 4-9.3 static friction force, static friction
      * symbol(s): `vec(F_s)`
      * application domain: generic
@@ -332,7 +360,7 @@ package ISQMechanics {
      * definition: force (item 4-9.1) resisting the motion before a body starts to slide on a surface
      * remarks: For the static friction coefficient, see item 4-23.1.
      */
-    attribute def Cartesian3dStaticFrictionForceVector :> VectorQuantityValue {
+    
         attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> num: Real[3];
@@ -342,7 +370,9 @@ package ISQMechanics {
 
     alias staticFrictionVector for staticFrictionForceVector;
 
-    /**
+    attribute def Cartesian3dKineticFrictionForceVector :> VectorQuantityValue {
+    doc
+    /*
      * source: item 4-9.4 kinetic friction force, dynamic friction force
      * symbol(s): `vec(F_μ)`
      * application domain: generic
@@ -353,7 +383,7 @@ package ISQMechanics {
      * definition: force (item 4-9.1) resisting the motion when a body slides on a surface
      * remarks: For the kinetic friction factor, see item 4-23.2.
      */
-    attribute def Cartesian3dKineticFrictionForceVector :> VectorQuantityValue {
+    
         attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> num: Real[3];
@@ -363,7 +393,9 @@ package ISQMechanics {
 
     alias dynamicFrictionForceVector for kineticFrictionForceVector;
 
-    /**
+    attribute def Cartesian3dRollingResistanceVector :> VectorQuantityValue {
+    doc
+    /*
      * source: item 4-9.5 rolling resistance, rolling drag, rolling friction force
      * symbol(s): `vec(F_"rr")`
      * application domain: generic
@@ -374,7 +406,7 @@ package ISQMechanics {
      * definition: force (item 4-9.1) resisting the motion when a body rolls on a surface
      * remarks: For the rolling resistance factor, see item 4-23.3.
      */
-    attribute def Cartesian3dRollingResistanceVector :> VectorQuantityValue {
+    
         attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> num: Real[3];
@@ -386,7 +418,9 @@ package ISQMechanics {
 
     alias rollingFrictionForceVector for rollingResistanceVector;
 
-    /**
+    attribute def Cartesian3dDragForceVector :> VectorQuantityValue {
+    doc
+    /*
      * source: item 4-9.6 drag force
      * symbol(s): `vec(F_D)`
      * application domain: generic
@@ -397,7 +431,7 @@ package ISQMechanics {
      * definition: force (item 4-9.1) resisting the motion of a body in a fluid
      * remarks: For the drag coefficient, see item 4-23.4.
      */
-    attribute def Cartesian3dDragForceVector :> VectorQuantityValue {
+    
         attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> num: Real[3];
@@ -405,7 +439,9 @@ package ISQMechanics {
     }
     attribute dragForceVector: Cartesian3dDragForceVector :> vectorQuantities;
 
-    /**
+    attribute def ImpulseUnit :> DerivedUnit {
+    doc
+    /*
      * source: item 4-10 impulse (magnitude)
      * symbol(s): `I`
      * application domain: generic
@@ -416,7 +452,7 @@ package ISQMechanics {
      * definition: vector (ISO 80000-2) quantity describing the effect of force acting during a time interval: `vec(I) = int_(t_1)^(t_2) vec(F)*dt` where `vec(F)` is force (item 4-9.1), `t` is time (ISO 80000-3) and `[t_1, t_2]` is considered time interval
      * remarks: For a time interval `[t_1, t_2]`, `vec(I)(t_1, t_2) = vec(p)(t_1) - vec(p)(t_2) = vec(Δp)` where `vec(p)` is momentum (item 4-8).
      */
-    attribute def ImpulseUnit :> DerivedUnit {
+    
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = 1; }
         private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq.M; :>> exponent = 1; }
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -1; }
@@ -429,7 +465,9 @@ package ISQMechanics {
     }
     attribute impulse: ImpulseValue [*] nonunique :> scalarQuantities;
 
-    /**
+    attribute def Cartesian3dImpulseCoordinateFrame :> VectorMeasurementReference {
+    doc
+    /*
      * source: item 4-10 impulse (vector)
      * symbol(s): `vec(I)`
      * application domain: generic
@@ -440,7 +478,7 @@ package ISQMechanics {
      * definition: vector (ISO 80000-2) quantity describing the effect of force acting during a time interval: `vec(I) = int_(t_1)^(t_2) vec(F)*dt` where `vec(F)` is force (item 4-9.1), `t` is time (ISO 80000-3) and `[t_1, t_2]` is considered time interval
      * remarks: For a time interval `[t_1, t_2]`, `vec(I)(t_1, t_2) = vec(p)(t_1) - vec(p)(t_2) = vec(Δp)` where `vec(p)` is momentum (item 4-8).
      */
-    attribute def Cartesian3dImpulseCoordinateFrame :> VectorMeasurementReference {
+    
         attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> isOrthogonal = true;
@@ -455,7 +493,9 @@ package ISQMechanics {
     }
     attribute impulseVector: Cartesian3dImpulseVector :> vectorQuantities;
 
-    /**
+    attribute def AngularMomentumUnit :> DerivedUnit {
+    doc
+    /*
      * source: item 4-11 angular momentum (magnitude)
      * symbol(s): `L`
      * application domain: generic
@@ -466,7 +506,7 @@ package ISQMechanics {
      * definition: vector (ISO 80000-2) quantity described by the vector product: `vec(L) = vec(r) xx vec(p)` where `vec(r)` is position vector (ISO 80000-3) with respect to the axis of rotation and `vec(p)` is momentum (item 4-8)
      * remarks: None.
      */
-    attribute def AngularMomentumUnit :> DerivedUnit {
+    
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = 2; }
         private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq.M; :>> exponent = 1; }
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -1; }
@@ -479,7 +519,9 @@ package ISQMechanics {
     }
     attribute angularMomentum: AngularMomentumValue [*] nonunique :> scalarQuantities;
 
-    /**
+    attribute def Cartesian3dAngularMomentumCoordinateFrame :> VectorMeasurementReference {
+    doc
+    /*
      * source: item 4-11 angular momentum (vector)
      * symbol(s): `vec(L)`
      * application domain: generic
@@ -490,7 +532,7 @@ package ISQMechanics {
      * definition: vector (ISO 80000-2) quantity described by the vector product: `vec(L) = vec(r) xx vec(p)` where `vec(r)` is position vector (ISO 80000-3) with respect to the axis of rotation and `vec(p)` is momentum (item 4-8)
      * remarks: None.
      */
-    attribute def Cartesian3dAngularMomentumCoordinateFrame :> VectorMeasurementReference {
+    
         attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> isOrthogonal = true;
@@ -505,7 +547,9 @@ package ISQMechanics {
     }
     attribute angularMomentumVector: Cartesian3dAngularMomentumVector :> vectorQuantities;
 
-    /**
+    attribute def MomentOfForceUnit :> DerivedUnit {
+    doc
+    /*
      * source: item 4-12.1 moment of force (magnitude)
      * symbol(s): `M`
      * application domain: generic
@@ -516,7 +560,7 @@ package ISQMechanics {
      * definition: vector (ISO 80000-2) quantity described by the vector product: `vec(M) = vec(r) xx vec(F)` where `vec(r)` is position vector (ISO 80000-3) with respect to the axis of rotation and `vec(F)` is force (item 4-9.1)
      * remarks: The bending moment of force is denoted by `vec(M)_b`.
      */
-    attribute def MomentOfForceUnit :> DerivedUnit {
+    
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = 2; }
         private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq.M; :>> exponent = 1; }
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -2; }
@@ -529,7 +573,9 @@ package ISQMechanics {
     }
     attribute momentOfForce: MomentOfForceValue [*] nonunique :> scalarQuantities;
 
-    /**
+    attribute def Cartesian3dMomentOfForceCoordinateFrame :> VectorMeasurementReference {
+    doc
+    /*
      * source: item 4-12.1 moment of force (vector)
      * symbol(s): `vec(M)`
      * application domain: generic
@@ -540,7 +586,7 @@ package ISQMechanics {
      * definition: vector (ISO 80000-2) quantity described by the vector product: `vec(M) = vec(r) xx vec(F)` where `vec(r)` is position vector (ISO 80000-3) with respect to the axis of rotation and `vec(F)` is force (item 4-9.1)
      * remarks: The bending moment of force is denoted by `vec(M)_b`.
      */
-    attribute def Cartesian3dMomentOfForceCoordinateFrame :> VectorMeasurementReference {
+    
         attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> isOrthogonal = true;
@@ -555,7 +601,9 @@ package ISQMechanics {
     }
     attribute momentOfForceVector: Cartesian3dMomentOfForceVector :> vectorQuantities;
 
-    /**
+    attribute def TorqueUnit :> DerivedUnit {
+    doc
+    /*
      * source: item 4-12.2 torque
      * symbol(s): `T`, `M_Q`
      * application domain: generic
@@ -566,7 +614,7 @@ package ISQMechanics {
      * definition: quantity described by the scalar product: `T = vec(M)*vec(e_Q)` where `vec(M)` is moment of force (item 4-12.1) and `vec(e_Q)` is unit vector of direction with respect to which the torque is considered
      * remarks: For example, torque is the twisting moment of force with respect to the longitudinal axis of a beam or shaft.
      */
-    attribute def TorqueUnit :> DerivedUnit {
+    
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = 2; }
         private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq.M; :>> exponent = 1; }
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -2; }
@@ -579,7 +627,9 @@ package ISQMechanics {
     }
     attribute torque: TorqueValue [*] nonunique :> scalarQuantities;
 
-    /**
+    attribute def AngularImpulseUnit :> DerivedUnit {
+    doc
+    /*
      * source: item 4-13 angular impulse (magnitude)
      * symbol(s): `H`
      * application domain: generic
@@ -590,7 +640,7 @@ package ISQMechanics {
      * definition: vector (ISO 80000-2) quantity describing the effect of moment of force during a time interval: `vec(H)(t_1; t_2) = int_(t_1)^(t_2) vec(M) dt` where `vec(M)` is moment of force (item 4-12.1), `t` is time (ISO 80000-3) and `[t_1, t_2]` is considered time interval
      * remarks: For a time interval `[t_1, t_2]`, `vec(H)(t_1, t_2) = vec(L)(t_1) - vec(L)(t_2) = vec(ΔL)` where `vec(L)` is angular momentum.
      */
-    attribute def AngularImpulseUnit :> DerivedUnit {
+    
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = 2; }
         private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq.M; :>> exponent = 1; }
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -1; }
@@ -603,7 +653,9 @@ package ISQMechanics {
     }
     attribute angularImpulse: AngularImpulseValue [*] nonunique :> scalarQuantities;
 
-    /**
+    attribute def Cartesian3dAngularImpulseCoordinateFrame :> VectorMeasurementReference {
+    doc
+    /*
      * source: item 4-13 angular impulse (vector)
      * symbol(s): `vec(H)`
      * application domain: generic
@@ -614,7 +666,7 @@ package ISQMechanics {
      * definition: vector (ISO 80000-2) quantity describing the effect of moment of force during a time interval: `vec(H)(t_1; t_2) = int_(t_1)^(t_2) vec(M) dt` where `vec(M)` is moment of force (item 4-12.1), `t` is time (ISO 80000-3) and `[t_1, t_2]` is considered time interval
      * remarks: For a time interval `[t_1, t_2]`, `vec(H)(t_1, t_2) = vec(L)(t_1) - vec(L)(t_2) = vec(ΔL)` where `vec(L)` is angular momentum.
      */
-    attribute def Cartesian3dAngularImpulseCoordinateFrame :> VectorMeasurementReference {
+    
         attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> isOrthogonal = true;
@@ -629,7 +681,9 @@ package ISQMechanics {
     }
     attribute angularImpulseVector: Cartesian3dAngularImpulseVector :> vectorQuantities;
 
-    /**
+    attribute def PressureUnit :> DerivedUnit {
+    doc
+    /*
      * source: item 4-14.1 pressure
      * symbol(s): `p`
      * application domain: generic
@@ -640,7 +694,7 @@ package ISQMechanics {
      * definition: quotient of the component of a force normal to a surface and its area: `p = (vec(e_n) * vec(F)) / A` where `vec(e_n)` is unit vector of the surface normal, `vec(F)` is force (item 4-9.1) and `A` is area (ISO 80000-3)
      * remarks: None.
      */
-    attribute def PressureUnit :> DerivedUnit {
+    
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = -1; }
         private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq.M; :>> exponent = 1; }
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -2; }
@@ -653,7 +707,9 @@ package ISQMechanics {
     }
     attribute pressure: PressureValue [*] nonunique :> scalarQuantities;
 
-    /**
+    attribute gaugePressure: PressureValue [*] nonunique :> scalarQuantities {
+    doc
+    /*
      * source: item 4-14.2 gauge pressure
      * symbol(s): `p_e`
      * application domain: generic
@@ -664,9 +720,11 @@ package ISQMechanics {
      * definition: pressure `p` (item 4-14.1) decremented by ambient pressure `p_amb` : `p_e = p - p_amb`
      * remarks: Often, `p_amb` is chosen as a standard pressure. Gauge pressure is positive or negative.
      */
-    attribute gaugePressure: PressureValue [*] nonunique :> scalarQuantities;
+    }
 
-    /**
+    attribute def StressUnit :> DerivedUnit {
+    doc
+    /*
      * source: item 4-15 stress (magnitude)
      * symbol(s): `σ`
      * application domain: generic
@@ -677,7 +735,7 @@ package ISQMechanics {
      * definition: tensor (ISO 80000-2) quantity representing state of tension of matter
      * remarks: Stress tensor is symmetric and has three normal-stress and three shear-stress (Cartesian) components.
      */
-    attribute def StressUnit :> DerivedUnit {
+    
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = -1; }
         private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq.M; :>> exponent = 1; }
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -2; }
@@ -690,7 +748,9 @@ package ISQMechanics {
     }
     attribute stress: StressValue [*] nonunique :> scalarQuantities;
 
-    /**
+    attribute def Cartesian3dStressMeasurementReference :> TensorMeasurementReference {
+    doc
+    /*
      * source: item 4-15 stress (tensor)
      * symbol(s): `vec(vec(σ))`
      * application domain: generic
@@ -701,7 +761,7 @@ package ISQMechanics {
      * definition: tensor (ISO 80000-2) quantity representing state of tension of matter
      * remarks: Stress tensor is symmetric and has three normal-stress and three shear-stress (Cartesian) components.
      */
-    attribute def Cartesian3dStressMeasurementReference :> TensorMeasurementReference {
+    
         attribute :>> dimensions = (3, 3);
         attribute :>> isBound = false;
         attribute :>> mRefs: StressUnit[9];
@@ -714,7 +774,9 @@ package ISQMechanics {
     }
     attribute stressTensor: Cartesian3dStressTensor :> tensorQuantities;
 
-    /**
+    attribute def NormalStressUnit :> DerivedUnit {
+    doc
+    /*
      * source: item 4-16.1 normal stress
      * symbol(s): `σ_n`, `σ`
      * application domain: generic
@@ -725,7 +787,7 @@ package ISQMechanics {
      * definition: scalar (ISO 80000-2) quantity describing surface action of a force into a body equal to: `σ_n = (d F_n)/(dA)` where `F_n` is the normal component of force (item 4-9.1) and `A` is the area (ISO 80000-3) of the surface element
      * remarks: A couple of mutually opposite forces of magnitude `F` acting on the opposite surfaces of a slice (layer) of homogenous solid matter normal to it, and evenly distributed, cause a constant normal stress `σ_n = F A` in the slice (layer).
      */
-    attribute def NormalStressUnit :> DerivedUnit {
+    
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = -1; }
         private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq.M; :>> exponent = 1; }
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -2; }
@@ -738,7 +800,9 @@ package ISQMechanics {
     }
     attribute normalStress: NormalStressValue [*] nonunique :> scalarQuantities;
 
-    /**
+    attribute def ShearStressUnit :> DerivedUnit {
+    doc
+    /*
      * source: item 4-16.2 shear stress
      * symbol(s): `τ_s`, `τ`
      * application domain: generic
@@ -749,7 +813,7 @@ package ISQMechanics {
      * definition: scalar (ISO 80000-2) quantity describing surface action of a force into a body equal to: `τ_s = (d F_t)/(dA)` where `F_t` is the tangential component of force (item 4-9.1) and `A` is the area (ISO 80000-3) of the surface element
      * remarks: A couple of mutually opposite forces of magnitude `F` acting on the opposite surfaces of a slice (layer) of homogenous solid matter parallel to it, and evenly distributed, cause a constant shear stress `τ = F/A` in the slice (layer).
      */
-    attribute def ShearStressUnit :> DerivedUnit {
+    
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = -1; }
         private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq.M; :>> exponent = 1; }
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -2; }
@@ -762,7 +826,9 @@ package ISQMechanics {
     }
     attribute shearStress: ShearStressValue [*] nonunique :> scalarQuantities;
 
-    /**
+    attribute def StrainUnit :> DimensionOneUnit {
+    doc
+    /*
      * source: item 4-17.1 strain (magnitude)
      * symbol(s): `ε`
      * application domain: generic
@@ -773,7 +839,7 @@ package ISQMechanics {
      * definition: tensor (ISO 80000-2) quantity representing the deformation of matter caused by stress
      * remarks: Strain tensor is symmetric and has three linear-strain and three shear strain (Cartesian) components.
      */
-    attribute def StrainUnit :> DimensionOneUnit;
+    }
 
     attribute def StrainValue :> ScalarQuantityValue {
         attribute :>> num: Real;
@@ -781,7 +847,9 @@ package ISQMechanics {
     }
     attribute strain: StrainValue [*] nonunique :> scalarQuantities;
 
-    /**
+    attribute def Cartesian3dStrainMeasurementReference :> TensorMeasurementReference {
+    doc
+    /*
      * source: item 4-17.1 strain (tensor)
      * symbol(s): `vec(vec(ε))`
      * application domain: generic
@@ -792,7 +860,7 @@ package ISQMechanics {
      * definition: tensor (ISO 80000-2) quantity representing the deformation of matter caused by stress
      * remarks: Strain tensor is symmetric and has three linear-strain and three shear strain (Cartesian) components.
      */
-    attribute def Cartesian3dStrainMeasurementReference :> TensorMeasurementReference {
+    
         attribute :>> dimensions = (3, 3);
         attribute :>> isBound = false;
         attribute :>> mRefs: StrainUnit[9];
@@ -805,7 +873,9 @@ package ISQMechanics {
     }
     attribute strainTensor: Cartesian3dStrainTensor :> tensorQuantities;
 
-    /**
+    attribute def RelativeLinearStrainValue :> DimensionOneValue {
+    doc
+    /*
      * source: item 4-17.2 relative linear strain
      * symbol(s): `ε`, `(e)`
      * application domain: generic
@@ -816,10 +886,12 @@ package ISQMechanics {
      * definition: quotient of change in length `Δl` (ISO 80000-3) of an object and its length `l` (ISO 80000-3): `ε = (Δl)/l`
      * remarks: None.
      */
-    attribute def RelativeLinearStrainValue :> DimensionOneValue;
+    }
     attribute relativeLinearStrain: RelativeLinearStrainValue [*] nonunique :> scalarQuantities;
 
-    /**
+    attribute def ShearStrainValue :> DimensionOneValue {
+    doc
+    /*
      * source: item 4-17.3 shear strain
      * symbol(s): `γ`
      * application domain: generic
@@ -830,10 +902,12 @@ package ISQMechanics {
      * definition: quotient of parallel displacement `Δx` (ISO 80000-3) of two surfaces of a layer and the thickness `d` (ISO 80000-3) of the layer: `γ = (Δx)/d`
      * remarks: None.
      */
-    attribute def ShearStrainValue :> DimensionOneValue;
+    }
     attribute shearStrain: ShearStrainValue [*] nonunique :> scalarQuantities;
 
-    /**
+    attribute def RelativeVolumeStrainValue :> DimensionOneValue {
+    doc
+    /*
      * source: item 4-17.4 relative volume strain
      * symbol(s): `θ`
      * application domain: generic
@@ -844,10 +918,12 @@ package ISQMechanics {
      * definition: quotient of change in volume `ΔV` (ISO 80000-3) of an object and its volume `V_0` (ISO 80000-3): `θ = (ΔV)/V_0`
      * remarks: None.
      */
-    attribute def RelativeVolumeStrainValue :> DimensionOneValue;
+    }
     attribute relativeVolumeStrain: RelativeVolumeStrainValue [*] nonunique :> scalarQuantities;
 
-    /**
+    attribute def PoissonNumberValue :> DimensionOneValue {
+    doc
+    /*
      * source: item 4-18 Poisson number
      * symbol(s): `μ`, `(v)`
      * application domain: generic
@@ -858,10 +934,12 @@ package ISQMechanics {
      * definition: quotient of change in width `Δb` (width is defined in ISO 80000-3) and change in length `Δl` (length is defined in ISO 80000-3) of an object: `μ = (Δb)/(Δl)`
      * remarks: None.
      */
-    attribute def PoissonNumberValue :> DimensionOneValue;
+    }
     attribute poissonNumber: PoissonNumberValue [*] nonunique :> scalarQuantities;
 
-    /**
+    attribute def ModulusOfElasticityUnit :> DerivedUnit {
+    doc
+    /*
      * source: item 4-19.1 modulus of elasticity, Young modulus
      * symbol(s): `E`, `E_m`, `Y`
      * application domain: generic
@@ -872,7 +950,7 @@ package ISQMechanics {
      * definition: quotient of normal stress `σ` (item 4-16.1) and relative linear strain `ε` (item 4-17.2): `E = σ/ε`
      * remarks: Conditions should be specified (e.g. adiabatic or isothermal process).
      */
-    attribute def ModulusOfElasticityUnit :> DerivedUnit {
+    
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = -1; }
         private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq.M; :>> exponent = 1; }
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -2; }
@@ -889,7 +967,9 @@ package ISQMechanics {
     alias YoungModulusValue for ModulusOfElasticityValue;
     alias youngModulus for modulusOfElasticity;
 
-    /**
+    attribute def ModulusOfRigidityUnit :> DerivedUnit {
+    doc
+    /*
      * source: item 4-19.2 modulus of rigidity, shear modulus
      * symbol(s): `G`
      * application domain: generic
@@ -900,7 +980,7 @@ package ISQMechanics {
      * definition: quotient of shear stress `τ` (item 4-16.2) and shear strain `γ` (item 4-17.3): `G = τ/γ`
      * remarks: Conditions should be specified (e.g. isentropic or isothermal process).
      */
-    attribute def ModulusOfRigidityUnit :> DerivedUnit {
+    
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = -1; }
         private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq.M; :>> exponent = 1; }
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -2; }
@@ -917,7 +997,9 @@ package ISQMechanics {
     alias ShearModulusValue for ModulusOfRigidityValue;
     alias shearModulus for modulusOfRigidity;
 
-    /**
+    attribute def ModulusOfCompressionUnit :> DerivedUnit {
+    doc
+    /*
      * source: item 4-19.3 modulus of compression, bulk modulus
      * symbol(s): `K`, `K_m`, `B`
      * application domain: generic
@@ -928,7 +1010,7 @@ package ISQMechanics {
      * definition: negative of the quotient of pressure `p` (item 4-14.1) and relative volume strain `θ` (item 4-17.4): `K = -(p/θ)`
      * remarks: Conditions should be specified (e.g. isentropic or isothermal process).
      */
-    attribute def ModulusOfCompressionUnit :> DerivedUnit {
+    
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = -1; }
         private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq.M; :>> exponent = 1; }
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -2; }
@@ -945,7 +1027,9 @@ package ISQMechanics {
     alias BulkModulusValue for ModulusOfCompressionValue;
     alias bulkModulus for modulusOfCompression;
 
-    /**
+    attribute def CompressibilityUnit :> DerivedUnit {
+    doc
+    /*
      * source: item 4-20 compressibility
      * symbol(s): `ϰ`
      * application domain: generic
@@ -956,7 +1040,7 @@ package ISQMechanics {
      * definition: negative relative change of volume `V` (ISO 80000-3) of an object under pressure `p` (item 4-14.1) expressed by: `ϰ = -(1/V)(dV)/(dp)`
      * remarks: Conditions should be specified (e.g. isentropic or isothermal process). See also ISO 80000-5.
      */
-    attribute def CompressibilityUnit :> DerivedUnit {
+    
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = 1; }
         private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq.M; :>> exponent = -1; }
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = 2; }
@@ -969,7 +1053,9 @@ package ISQMechanics {
     }
     attribute compressibility: CompressibilityValue [*] nonunique :> scalarQuantities;
 
-    /**
+    attribute def SecondAxialMomentOfAreaUnit :> DerivedUnit {
+    doc
+    /*
      * source: item 4-21.1 second axial moment of area
      * symbol(s): `I_a`
      * application domain: generic
@@ -980,7 +1066,7 @@ package ISQMechanics {
      * definition: geometrical characteristic of a shape of a body equal to: `I_a = int int_M r_Q^2 dA` where `M` is the two-dimensional domain of the cross-section of a plane and considered body, `r_Q` is radial distance (ISO 80000-3) from a Q-axis in the plane of the surface considered and `A` is area (ISO 80000-3)
      * remarks: This quantity is often referred to wrongly as "moment of inertia" (item 4-7). The subscript, `a`, may be omitted when there is no risk of confusion.
      */
-    attribute def SecondAxialMomentOfAreaUnit :> DerivedUnit {
+    
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = 4; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = lengthPF; }
     }
@@ -991,7 +1077,9 @@ package ISQMechanics {
     }
     attribute secondAxialMomentOfArea: SecondAxialMomentOfAreaValue [*] nonunique :> scalarQuantities;
 
-    /**
+    attribute def SecondPolarMomentOfAreaUnit :> DerivedUnit {
+    doc
+    /*
      * source: item 4-21.2 second polar moment of area
      * symbol(s): `I_p`
      * application domain: generic
@@ -1002,7 +1090,7 @@ package ISQMechanics {
      * definition: geometrical characteristic of a shape of a body equal to: `I_p = int int_M r_Q^2 * dA` where `M` is the two-dimensional domain of the cross-section of a plane and considered body, `r_Q` is radial distance (ISO 80000-3) from a Q-axis perpendicular to the plane of the surface considered and `A` is area (ISO 80000-3)
      * remarks: This quantity is often referred to wrongly as "moment of inertia" (item 4-7). The subscript, `p`, may be omitted when there is no risk of confusion.
      */
-    attribute def SecondPolarMomentOfAreaUnit :> DerivedUnit {
+    
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = 4; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = lengthPF; }
     }
@@ -1013,7 +1101,9 @@ package ISQMechanics {
     }
     attribute secondPolarMomentOfArea: SecondPolarMomentOfAreaValue [*] nonunique :> scalarQuantities;
 
-    /**
+    attribute def SectionModulusUnit :> DerivedUnit {
+    doc
+    /*
      * source: item 4-22 section modulus
      * symbol(s): `Z`, `(W)`
      * application domain: generic
@@ -1024,7 +1114,7 @@ package ISQMechanics {
      * definition: geometrical characteristic of a shape of a body equal to: `Z = I_a/r_(Q_max)` where `I_a` is the second axial moment of area (item 4-21.1) and `r_(Q,max)` is the maximum radial distance (ISO 80000-3) of any point in the surface considered from the Q-axis with respect to which `I_a` is defined
      * remarks: None.
      */
-    attribute def SectionModulusUnit :> DerivedUnit {
+    
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = 3; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = lengthPF; }
     }
@@ -1035,7 +1125,9 @@ package ISQMechanics {
     }
     attribute sectionModulus: SectionModulusValue [*] nonunique :> scalarQuantities;
 
-    /**
+    attribute def StaticFrictionCoefficientValue :> DimensionOneValue {
+    doc
+    /*
      * source: item 4-23.1 static friction coefficient, static friction factor, coefficient of static friction
      * symbol(s): `μ_s`, `(f_s)`
      * application domain: generic
@@ -1046,14 +1138,16 @@ package ISQMechanics {
      * definition: proportionality factor between the maximum magnitude of the tangential component `F_max` of the static friction force (item 4-9.3) and the magnitude of the normal component `N` of the contact force (item 4-9.1) between two bodies at relative rest with respect to each other: `F_max = μ_s * N`
      * remarks: When it is not necessary to distinguish between dynamic friction factor and static friction factor, the name friction factor may be used for both.
      */
-    attribute def StaticFrictionCoefficientValue :> DimensionOneValue;
+    }
     attribute staticFrictionCoefficient: StaticFrictionCoefficientValue [*] nonunique :> scalarQuantities;
 
     alias staticFrictionFactor for staticFrictionCoefficient;
 
     alias coefficientOfStaticFriction for staticFrictionCoefficient;
 
-    /**
+    attribute def KineticFrictionFactorValue :> DimensionOneValue {
+    doc
+    /*
      * source: item 4-23.2 kinetic friction factor, dynamic friction factor
      * symbol(s): `μ`, `(f)`
      * application domain: generic
@@ -1064,12 +1158,14 @@ package ISQMechanics {
      * definition: proportionality factor between the magnitudes of the kinetic friction force, `F_μ` (item 4-9.4) and the normal component `N` of the contact force (item 4-9.1): `F_μ = μ * N`
      * remarks: When it is not necessary to distinguish between dynamic friction factor and static friction factor, the name friction factor may be used for both. The dynamic friction factor `µ` is independent in first approximation of the contact surface.
      */
-    attribute def KineticFrictionFactorValue :> DimensionOneValue;
+    }
     attribute kineticFrictionFactor: KineticFrictionFactorValue [*] nonunique :> scalarQuantities;
 
     alias dynamicFrictionFactor for kineticFrictionFactor;
 
-    /**
+    attribute def RollingResistanceFactorValue :> DimensionOneValue {
+    doc
+    /*
      * source: item 4-23.3 rolling resistance factor
      * symbol(s): `C_"rr"`
      * application domain: generic
@@ -1080,10 +1176,12 @@ package ISQMechanics {
      * definition: proportionality factor between the magnitude of the tangential component `F` and the magnitude of the normal component `N` of the force applied to a body rolling on a surface at constant speed: `F = C_(rr)*N`
      * remarks: Also known as rolling resistance coefficient, RRC.
      */
-    attribute def RollingResistanceFactorValue :> DimensionOneValue;
+    }
     attribute rollingResistanceFactor: RollingResistanceFactorValue [*] nonunique :> scalarQuantities;
 
-    /**
+    attribute def DragCoefficientValue :> DimensionOneValue {
+    doc
+    /*
      * source: item 4-23.4 drag coefficient, drag factor
      * symbol(s): `C_D`
      * application domain: generic
@@ -1094,12 +1192,14 @@ package ISQMechanics {
      * definition: factor proportional to magnitude `F_D` of the drag force (item 4-9.6) of a body moving in a fluid, dependent on the shape and speed `v` (ISO 80000-3) of a body: `F_D = 1/2 * C_D * ρ * v^2 * A` where `ρ` is mass density (item 4-2) of the fluid and `A` is cross-section area (ISO 80000-3) of the body
      * remarks: None.
      */
-    attribute def DragCoefficientValue :> DimensionOneValue;
+    }
     attribute dragCoefficient: DragCoefficientValue [*] nonunique :> scalarQuantities;
 
     alias dragFactor for dragCoefficient;
 
-    /**
+    attribute def DynamicViscosityUnit :> DerivedUnit {
+    doc
+    /*
      * source: item 4-24 dynamic viscosity, viscosity
      * symbol(s): `η`
      * application domain: generic
@@ -1110,7 +1210,7 @@ package ISQMechanics {
      * definition: for laminar flows, proportionality constant between shear stress `τ_(xz)` (item 4-16.2) in a fluid moving with a velocity `v_x` (ISO 80000-3) and gradient `(d v_x)/dz` perpendicular to the plane of shear: `τ_(xz) = η (d v_x)/(dz)`
      * remarks: None.
      */
-    attribute def DynamicViscosityUnit :> DerivedUnit {
+    
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = -1; }
         private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq.M; :>> exponent = 1; }
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -1; }
@@ -1127,7 +1227,9 @@ package ISQMechanics {
     alias ViscosityValue for DynamicViscosityValue;
     alias viscosity for dynamicViscosity;
 
-    /**
+    attribute def KinematicViscosityUnit :> DerivedUnit {
+    doc
+    /*
      * source: item 4-25 kinematic viscosity
      * symbol(s): `v`
      * application domain: generic
@@ -1138,7 +1240,7 @@ package ISQMechanics {
      * definition: quotient of dynamic viscosity `η` (item 4-24) and mass density `ρ` (item 4-2) of a fluid: `v = η/ρ`
      * remarks: None.
      */
-    attribute def KinematicViscosityUnit :> DerivedUnit {
+    
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = 2; }
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, durationPF); }
@@ -1150,7 +1252,9 @@ package ISQMechanics {
     }
     attribute kinematicViscosity: KinematicViscosityValue [*] nonunique :> scalarQuantities;
 
-    /**
+    attribute def SurfaceTensionUnit :> DerivedUnit {
+    doc
+    /*
      * source: item 4-26 surface tension
      * symbol(s): `γ`, `σ`
      * application domain: generic
@@ -1161,7 +1265,7 @@ package ISQMechanics {
      * definition: magnitude of a force acting against the enlargement of area portion of a surface separating a liquid from its surrounding
      * remarks: The concept of surface energy is closely related to surface tension and has the same dimension.
      */
-    attribute def SurfaceTensionUnit :> DerivedUnit {
+    
         private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq.M; :>> exponent = 1; }
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -2; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (massPF, durationPF); }
@@ -1173,7 +1277,9 @@ package ISQMechanics {
     }
     attribute surfaceTension: SurfaceTensionValue [*] nonunique :> scalarQuantities;
 
-    /**
+    attribute def PowerUnit :> DerivedUnit {
+    doc
+    /*
      * source: item 4-27.1 power
      * symbol(s): `P`
      * application domain: generic
@@ -1184,7 +1290,7 @@ package ISQMechanics {
      * definition: quotient of energy (ISO 80000-5) and duration (ISO 80000-3)
      * remarks: None.
      */
-    attribute def PowerUnit :> DerivedUnit {
+    
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = 2; }
         private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq.M; :>> exponent = 1; }
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -3; }
@@ -1197,7 +1303,9 @@ package ISQMechanics {
     }
     attribute power: PowerValue [*] nonunique :> scalarQuantities;
 
-    /**
+    attribute mechanicalPower: PowerValue [*] nonunique :> scalarQuantities {
+    doc
+    /*
      * source: item 4-27 mechanical power
      * symbol(s): `P`
      * application domain: mechanics
@@ -1208,9 +1316,11 @@ package ISQMechanics {
      * definition: scalar product of force `vec(F)` (item 4-9.1) acting to a body and its velocity `vec(v)` (ISO 80000-3): `P = vec(F) * vec(v)`
      * remarks: None.
      */
-    attribute mechanicalPower: PowerValue [*] nonunique :> scalarQuantities;
+    }
 
-    /**
+    attribute potentialEnergy: EnergyValue [*] nonunique :> scalarQuantities {
+    doc
+    /*
      * source: item 4-28.1 potential energy
      * symbol(s): `V`, `E_p`
      * application domain: generic
@@ -1221,9 +1331,11 @@ package ISQMechanics {
      * definition: for conservative force `vec(F)`, scalar additive quantity obeying condition `vec(F) = - nabla F`, if it exists
      * remarks: For the definition of energy, see ISO 80000-5. A force is conservative when the force field is irrotational, i.e. `rot(F) = 0` , or `vec(F)` is perpendicular to the speed of the body to ensure `vec(F) * d vec(r) = 0` .
      */
-    attribute potentialEnergy: EnergyValue [*] nonunique :> scalarQuantities;
+    }
 
-    /**
+    attribute kineticEnergy: EnergyValue [*] nonunique :> scalarQuantities {
+    doc
+    /*
      * source: item 4-28.2 kinetic energy
      * symbol(s): `T`, `E_k`
      * application domain: generic
@@ -1234,9 +1346,11 @@ package ISQMechanics {
      * definition: scalar (ISO 80000-2) quantity characterizing a moving body expressed by: `T = 1/2 m v^2` where `m` is mass (item 4-1) of the body and `v` is its speed (ISO 80000-3)
      * remarks: For the definition of energy, see ISO 80000-5.
      */
-    attribute kineticEnergy: EnergyValue [*] nonunique :> scalarQuantities;
+    }
 
-    /**
+    attribute mechanicalEnergy: EnergyValue [*] nonunique :> scalarQuantities {
+    doc
+    /*
      * source: item 4-28.3 mechanical energy
      * symbol(s): `E`, `W`
      * application domain: generic
@@ -1247,9 +1361,11 @@ package ISQMechanics {
      * definition: sum of kinetic energy `T` (item 4-28.2) and potential energy `V` (item 4-28.1): `E = T+V`
      * remarks: The symbols `E` and `W` are also used for other kinds of energy. This definition is understood in a classical way and it does not include thermal motion.
      */
-    attribute mechanicalEnergy: EnergyValue [*] nonunique :> scalarQuantities;
+    }
 
-    /**
+    attribute mechanicalWork: EnergyValue [*] nonunique :> scalarQuantities {
+    doc
+    /*
      * source: item 4-28.4 mechanical work, work
      * symbol(s): `A`, `W`
      * application domain: generic
@@ -1260,11 +1376,13 @@ package ISQMechanics {
      * definition: process quantity describing the total action of a force `vec(F)` (item 4-9.1) along a continuous curve `Γ` in three-dimensional space with infinitesimal displacement (ISO 80000-3) `dvec(r)`, as a line integral of their scalar product: `A = int_Γ vec(F) * d vec(r)`
      * remarks: The definition covers the case `A = - int_Γ p*dV` where `Γ` is a curve in the phase space and implies that work generally depends upon `Γ`, and that type of process must be defined (e.g. isentropic or isothermic).
      */
-    attribute mechanicalWork: EnergyValue [*] nonunique :> scalarQuantities;
+    }
 
     alias work for mechanicalWork;
 
-    /**
+    attribute def MechanicalEfficiencyValue :> DimensionOneValue {
+    doc
+    /*
      * source: item 4-29 mechanical efficiency
      * symbol(s): `η`
      * application domain: mechanics
@@ -1275,10 +1393,12 @@ package ISQMechanics {
      * definition: quotient of output power `P_"out"` (item 4-27) from a system and input power `P_"in"` (item 4-27) to this system: `η = P_"out"/P_"in"`
      * remarks: The system must be specified. This quantity is often expressed by the unit percent, symbol %.
      */
-    attribute def MechanicalEfficiencyValue :> DimensionOneValue;
+    }
     attribute mechanicalEfficiency: MechanicalEfficiencyValue [*] nonunique :> scalarQuantities;
 
-    /**
+    attribute def MassFlowUnit :> DerivedUnit {
+    doc
+    /*
      * source: item 4-30.1 mass flow (magnitude)
      * symbol(s): `j_m`
      * application domain: generic
@@ -1289,7 +1409,7 @@ package ISQMechanics {
      * definition: vector (ISO 80000-2) quantity characterizing a flowing fluid by the product of its local mass density `ρ` (item 4-2) and local velocity `vec(v)` (ISO 80000-3): `vec(j_m) = ρ vec(v)`
      * remarks: None.
      */
-    attribute def MassFlowUnit :> DerivedUnit {
+    
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = -2; }
         private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq.M; :>> exponent = 1; }
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -1; }
@@ -1302,7 +1422,9 @@ package ISQMechanics {
     }
     attribute massFlow: MassFlowValue [*] nonunique :> scalarQuantities;
 
-    /**
+    attribute def Cartesian3dMassFlowCoordinateFrame :> VectorMeasurementReference {
+    doc
+    /*
      * source: item 4-30.1 mass flow (vector)
      * symbol(s): `vec(j_m)`
      * application domain: generic
@@ -1313,7 +1435,7 @@ package ISQMechanics {
      * definition: vector (ISO 80000-2) quantity characterizing a flowing fluid by the product of its local mass density `ρ` (item 4-2) and local velocity `vec(v)` (ISO 80000-3): `vec(j_m) = ρ vec(v)`
      * remarks: None.
      */
-    attribute def Cartesian3dMassFlowCoordinateFrame :> VectorMeasurementReference {
+    
         attribute :>> dimensions = 3;
         attribute :>> isBound = false;
         attribute :>> isOrthogonal = true;
@@ -1328,7 +1450,9 @@ package ISQMechanics {
     }
     attribute massFlowVector: Cartesian3dMassFlowVector :> vectorQuantities;
 
-    /**
+    attribute def MassFlowRateUnit :> DerivedUnit {
+    doc
+    /*
      * source: item 4-30.2 mass flow rate
      * symbol(s): `q_m`
      * application domain: generic
@@ -1339,7 +1463,7 @@ package ISQMechanics {
      * definition: scalar (ISO 80000-2) quantity characterizing the total flow through the two-dimensional domain `A` with normal vector `vec(e)_n` of a flowing fluid with mass flow `vec(j)_m` (item 4-30.1) as an integral: `q_m = int int_A vec(j)_m * vec(e)_n dA` where `dA` is the area (ISO 80000-3) of an element of the two-dimensional domain `A`
      * remarks: None.
      */
-    attribute def MassFlowRateUnit :> DerivedUnit {
+    
         private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq.M; :>> exponent = 1; }
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (massPF, durationPF); }
@@ -1351,7 +1475,9 @@ package ISQMechanics {
     }
     attribute massFlowRate: MassFlowRateValue [*] nonunique :> scalarQuantities;
 
-    /**
+    attribute def MassChangeRateUnit :> DerivedUnit {
+    doc
+    /*
      * source: item 4-30.3 mass change rate
      * symbol(s): `q_m`
      * application domain: generic
@@ -1362,7 +1488,7 @@ package ISQMechanics {
      * definition: rate of increment of mass `m` (item 4-1): `q_m = (dm)/(dt)` where `dm` is the infinitesimal mass (item 4-1) increment and `dt` is the infinitesimal duration (ISO 80000-3)
      * remarks: None.
      */
-    attribute def MassChangeRateUnit :> DerivedUnit {
+    
         private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq.M; :>> exponent = 1; }
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (massPF, durationPF); }
@@ -1374,7 +1500,9 @@ package ISQMechanics {
     }
     attribute massChangeRate: MassChangeRateValue [*] nonunique :> scalarQuantities;
 
-    /**
+    attribute def VolumeFlowRateUnit :> DerivedUnit {
+    doc
+    /*
      * source: item 4-31 volume flow rate
      * symbol(s): `q_v`
      * application domain: generic
@@ -1385,7 +1513,7 @@ package ISQMechanics {
      * definition: scalar (ISO 80000-2) quantity characterizing the total flow through the two-dimensional domain `A` with the normal vector `vec(e)_n` of a flowing fluid with velocity `vec(v)` (ISO 80000-3) as an integral: `q_v = int int_A vec(v) * vec(e)_n dA` where `dA` is the area (ISO 80000-3) of an element of the two-dimensional domain `A`
      * remarks: None.
      */
-    attribute def VolumeFlowRateUnit :> DerivedUnit {
+    
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = 3; }
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -1; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = (lengthPF, durationPF); }
@@ -1397,7 +1525,9 @@ package ISQMechanics {
     }
     attribute volumeFlowRate: VolumeFlowRateValue [*] nonunique :> scalarQuantities;
 
-    /**
+    attribute def ActionQuantityUnit :> DerivedUnit {
+    doc
+    /*
      * source: item 4-32 action quantity
      * symbol(s): `S`
      * application domain: generic
@@ -1408,7 +1538,7 @@ package ISQMechanics {
      * definition: time integral of energy `E` over a time interval `(t_1, t_2)`: `S = int_(t_1)^(t_2) E dt`
      * remarks: The energy may be expressed by a Lagrangian or Hamiltonian function.
      */
-    attribute def ActionQuantityUnit :> DerivedUnit {
+    
         private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq.L; :>> exponent = 2; }
         private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq.M; :>> exponent = 1; }
         private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq.T; :>> exponent = -1; }

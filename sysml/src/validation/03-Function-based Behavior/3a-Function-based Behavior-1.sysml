@@ -3,10 +3,11 @@ package '3a-Function-based Behavior-1' {
 	import Usages::*;
 
 	package Definitions {
-		/**
-		 * The 'TorqueValue' type is aliased as 'Torque'.
-		 */
-		alias Torque for ISQ::TorqueValue;
+		alias Torque for ISQ::TorqueValue {
+			/*
+			 * The 'TorqueValue' type is aliased as 'Torque'.
+			 */
+		}
 		
 		attribute def FuelCmd;
 		
@@ -40,26 +41,29 @@ package '3a-Function-based Behavior-1' {
 		
 			// ITEM FLOW PART
 			
-			/**
-			 * This is a binding connector, just as was used to
-			 * model delegation between ports.
-			 */
-			bind 'generate torque'.fuelCmd = fuelCmd;
+			bind 'generate torque'.fuelCmd = fuelCmd {
+				/*
+				 * This is a binding connector, just as was used to
+				 * model delegation between ports.
+				 */
+			}
 			
-			/**
-			 * An action usage inherits parameters from its definition.
-			 * They act as its "pins".
-			 */
-			action 'generate torque': 'Generate Torque';
+			action 'generate torque': 'Generate Torque' {
+				/*
+				 * An action usage inherits parameters from its definition.
+				 * They act as its "pins".
+				 */
+			}
 			
-			/**
-			 * A flow is a connection between two actions that streams items from
-			 * an output parameter of one action to an input parameter of the other.
-			 * Note that streaming is a property of the connection, not the
-			 * actions or their parameters.
-			 */
 			flow 'generate torque'.engineTorque 
-			    to 'amplify torque'.engineTorque;
+			    to 'amplify torque'.engineTorque {
+				/*
+				 * A flow is a connection between two actions that streams items from
+				 * an output parameter of one action to an input parameter of the other.
+				 * Note that streaming is a property of the connection, not the
+				 * actions or their parameters.
+				 */
+			}
 			
 			action 'amplify torque': 'Amplify Torque';
 			
@@ -78,34 +82,37 @@ package '3a-Function-based Behavior-1' {
 			
 			// CONTROL FLOW PART
 
-			/**
-			 * A first is an assertion that one thing must occur
-			 * before another, acting like a "control flow". 'start' is
-			 * the start snapshot of the action, which acts like an
-			 * "initial node".
-			 */
-			first start then continue;
+			first start then continue {
+				/*
+				 * A first is an assertion that one thing must occur
+				 * before another, acting like a "control flow". 'start' is
+				 * the start snapshot of the action, which acts like an
+				 * "initial node".
+				 */
+			}
 			
-			/**
-			 * A merge node is necessary to prevent a loop of successions
-			 * from being unsatisfiable.
-			 */
-			merge continue;	
+			merge continue {
+				/*
+				 * A merge node is necessary to prevent a loop of successions
+				 * from being unsatisfiable.
+				 */
+			}
 			first continue then engineStarted;
 			
-			/**
-			 * An accept action accepts an incoming transfer of some item
-			 * from outside an action, in this case the "signal" 'EngineStart'.
-			 * Note that 'engineStarted' is the name of the action, while
-			 * 'engineStart' is the name of the received signal attribute.
-			 */
-			action engineStarted accept engineStart: EngineStart;			
+			action engineStarted accept engineStart: EngineStart {
+				/*
+				 * An accept action accepts an incoming transfer of some item
+				 * from outside an action, in this case the "signal" 'EngineStart'.
+				 * Note that 'engineStarted' is the name of the action, while
+				 * 'engineStart' is the name of the received signal attribute.
+				 */
+			}			
 			first engineStarted then engineStopped;
 					
 			action engineStopped accept engineOff: EngineOff;	
 			first engineStopped then continue;
 			
-			/**
+			/*
 			 * These successions act to "enable" the torque-related actions.
 			 * Each action on the right can only be performed following the
 			 * completion of a performance of 'engineStarted'.
@@ -115,12 +122,12 @@ package '3a-Function-based Behavior-1' {
 			first engineStarted then 'transfer torque';
 			first engineStarted then 'distribute torque';
 			
-			/**
+			/*
 			 * These successions act to "disable" the torque-related actions.
 			 * The performance of the actions on the left cannot continue
 			 * once there is a performance of 'engineStopped'.
 			 */
-			first 'generate torque' then engineStopped;		
+			first 'generate torque' then engineStopped;
 			first 'amplify torque' then engineStopped;		
 			first 'transfer torque' then engineStopped;		
 			first 'distribute torque' then engineStopped;		

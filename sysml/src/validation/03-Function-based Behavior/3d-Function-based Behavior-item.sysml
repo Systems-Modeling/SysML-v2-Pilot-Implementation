@@ -42,11 +42,12 @@ package '3d-Function-based Behavior-item' {
 			/* Storage Element */
 			part storageTank : StorageTank;
 			
-			/**
-			 * Note: Explicitly notating that the flow is "of fuel : Fuel" is optional.
-			 */
 			flow of  fuel : Fuel
-				from storageTank.fuelOutPort.fuel to pump.fuelInPort.fuel;
+				from storageTank.fuelOutPort.fuel to pump.fuelInPort.fuel {
+				/*
+				 * Note: Explicitly notating that the flow is "of fuel : Fuel" is optional.
+				 */					
+			}
 			
 			part pump : Pump {
 				perform action pumpFuel : PumpFuel {
@@ -59,10 +60,11 @@ package '3d-Function-based Behavior-item' {
 				from pump.fuelOutPort.fuel to vehicle.fuelInPort.fuel;
 			
 			part vehicle : Vehicle {
-				/** 
-				 * Note: The semantics of flowing to a "stored item" is tentative.
-				 */
-				flow fuelInPort.fuel to fuelTank.fuel;
+				flow fuelInPort.fuel to fuelTank.fuel {
+					/* 
+					 * Note: The semantics of flowing to a "stored item" is tentative.
+					 */					
+				}
 				
 				/* Storage Element */
 				part fuelTank : FuelTank {

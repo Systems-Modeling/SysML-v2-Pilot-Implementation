@@ -1,10 +1,12 @@
-/**
+package SI {
+doc
+/*
  * International System of (Measurement) Units -- Système International d'Unités (SI), as defined in ISO/IEC 80000
  *
  * Note 1: In accordance with ISO/IEC 80000 en-GB spelling is used for the names and definitions of the units.
  * Note 2: This is a representative but not yet complete list of measurement units.
  */
-package SI {
+
     private import MeasurementReferences::*;
     import ISQ::*;
     import SIPrefixes::*;

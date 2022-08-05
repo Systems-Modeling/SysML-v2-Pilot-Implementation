@@ -32,10 +32,10 @@ package '3a-Function-based Behavior-2' {
 
 			// ITEM FLOW PART
 			
-			/**
-			 * The binding connector shorthand can be used on action parameters.
-			 */
 			action 'generate torque': 'Generate Torque'{
+				/*
+				 * The binding connector shorthand can be used on action parameters.
+				 */
 				in fuelCmd = 'provide power'::fuelCmd;
 			}
 			

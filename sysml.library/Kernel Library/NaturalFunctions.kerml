@@ -1,8 +1,10 @@
-/**
- * This package defines functions on Natural values, including concrete specialization of the 
- * general arithmetic and comparison operations.
- */
 package NaturalFunctions {
+	doc
+	/*
+	 * This package defines functions on Natural values, including concrete specialization of the 
+	 * general arithmetic and comparison operations.
+	 */
+
 	import ScalarValues::*;
 	
 	function '+' specializes IntegerFunctions::'+' { in x: Natural[1]; in y: Natural[0..1]; return : Natural[1]; }

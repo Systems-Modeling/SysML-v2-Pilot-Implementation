@@ -62,8 +62,8 @@ package '10b-Trade-off Among Alternative Configurations' {
 	
 	package Analysis {
 
-		/** Evaluation function with criteria power, mass, efficency and cost. */
 		calc def EngineEvaluation {
+			doc /* Evaluation function with criteria power, mass, efficency and cost. */
 			in power : ISQ::PowerValue;
 			in mass : ISQ::MassValue; 
 			in efficiency : Real; 

@@ -1,8 +1,10 @@
-/**
- * This package contains a library model of the semantics of conditional transitions between occurrences, 
- * including the performance of specified Behaviors when the transition occurs.
- */
 package TransitionPerformances {
+	doc
+	/*
+	 * This package contains a library model of the semantics of conditional transitions between occurrences, 
+	 * including the performance of specified Behaviors when the transition occurs.
+	 */
+
 	private import ScalarValues::Boolean;
 	private import Occurrences::HappensBefore;
 	private import Performances::Performance;

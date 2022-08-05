@@ -1,8 +1,10 @@
-/**
- * This package defines functions on Collections (as defined in the Collections package). 
- * For functions on general sequences of values, see the SequenceFunctions package.
- */
 package CollectionFunctions {
+	doc
+	/*
+	 * This package defines functions on Collections (as defined in the Collections package). 
+	 * For functions on general sequences of values, see the SequenceFunctions package.
+	 */
+
 	private import Base::Anything;
 	private import ScalarValues::*;
 	private import SequenceFunctions::equals;

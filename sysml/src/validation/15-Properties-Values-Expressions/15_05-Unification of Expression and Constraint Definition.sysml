@@ -23,11 +23,12 @@ package '15_05-Unification of Expression and Constraint Definition' {
 		
 		part wheelAssy : WheelAssy[4];
 		
-		/** 
-		 * This constraint is computed, but not asserted. This means a tool can identify 
-		 * when it is violated without the model being inconsistent.
-		 */
 		constraint discBrakeConstraint : DiscBrakeConstraint {
+			doc
+			/*
+			 * This constraint is computed, but not asserted. This means a tool can identify 
+			 * when it is violated without the model being inconsistent.
+			 */
 			in wheelAssy = Vehicle_2::wheelAssy;
 		}
 	}
@@ -36,11 +37,13 @@ package '15_05-Unification of Expression and Constraint Definition' {
 		part wheel : Wheel[1];
 		part discBrakeAssy : DiscBrakeAssy[1];
 		
-		/**
-		 * This constraint is asserted to be true, which means that the model
-		 * is inconsistent if it the constraint is violated.
-		 */
 		assert constraint discBrakeFitConstraint_Alt: DiscBrakeFitConstraint_Alt {
+			doc
+			/*
+			 * This constraint is asserted to be true, which means that the model
+			 * is inconsistent if it the constraint is violated.
+			 */
+		
 			in discBrakeAssy = WheelAssy::discBrakeAssy;
 			in wheel = WheelAssy::wheel;
 		}

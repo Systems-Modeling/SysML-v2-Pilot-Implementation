@@ -1,8 +1,10 @@
-/**
- * This package contains a library model of the semantics of state-based behavior,
- * including the performance of (behavioral) states and the transitions between them.
- */
 package StatePerformances {
+	doc
+	/*
+	 * This package contains a library model of the semantics of state-based behavior,
+	 * including the performance of (behavioral) states and the transitions between them.
+	 */
+
 	private import ScalarValues::Boolean;
 	private import TransitionPerformances::TransitionPerformance;
 	private import Occurrences::HappensDuring;
@@ -14,13 +16,17 @@ package StatePerformances {
 		feature isTriggerDuring: Boolean;
 		feature isAcceptFirst: Boolean;
 
-		/**
-		 * All modeler-defined steps must subset this.
-		 */
-		abstract step middle[1..*];
+		abstract step middle[1..*] {
+			doc
+			/*
+			 * All modeler-defined steps must subset this.
+			 */
+		}
 		
-		// Note: All steps are implicitly considered to be enclosedPerformances,
-		// and hence happening during the state performance.
+		/* 
+		 * Note: All steps are implicitly considered to be enclosedPerformances,
+		 * and hence happening during the state performance.
+		 */
 		
 		step entry[1];
 		step do[1] subsets middle;

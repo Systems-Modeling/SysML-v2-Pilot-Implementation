@@ -1,8 +1,10 @@
-/**
- * This package defines functions on Complex values, including concrete specializations of the 
- * general arithmetic and comparison operations.
- */
 package ComplexFunctions {
+	doc
+	/*
+	 * This package defines functions on Complex values, including concrete specializations of the 
+	 * general arithmetic and comparison operations.
+	 */
+
 	import ScalarValues::*;
 		
 	feature i: Complex[1] = rect(0.0, 1.0);

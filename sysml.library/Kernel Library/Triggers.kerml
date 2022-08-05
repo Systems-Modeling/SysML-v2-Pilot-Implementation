@@ -126,7 +126,7 @@ package Triggers {
 		}
 		
 		return feature timeSignal : TimeSignal[1] = TimeSignal(timeInstant, clock, monitor) {
-		doc
+			doc
 			/*
 			 * The TimeSignal for the given timeInstant, as monitored by the monitor.
 			 */
@@ -139,40 +139,40 @@ package Triggers {
 	}
 	
 	function TriggerAfter {
-	doc
+		doc
 		/*
 		 * TriggerAfter returns a monitored TimeSignal to be sent to a receiver after
 		 * a certain time delay relative to a given Clock.
 		 */
 	
 		in feature delay : NumericalValue[1] {
-		doc
-		/*
-		 * The time duration, relative to the clock, after which the TimeSignal is sent.
-		 */
+			doc
+			/*
+			 * The time duration, relative to the clock, after which the TimeSignal is sent.
+			 */
 		}
 		
 		in feature receiver : Occurrence[1] {
-		doc
-		/*
-		 * The Occurrence to which the TimeSignal is to be sent.
-		 */
+			doc
+			/*
+			 * The Occurrence to which the TimeSignal is to be sent.
+			 */
 		}
 		
 		in feature clock : Clock[1] default defaultClock {
-		doc
-		/*
-		 * The Clock to be used as the reference for the time delay. The default is
-		 * the Clocks::defaultClock.
-		 */
+			doc
+			/*
+			 * The Clock to be used as the reference for the time delay. The default is
+			 * the Clocks::defaultClock.
+			 */
 		}
 		
 		in feature monitor : ChangeMonitor[1] default defaultMonitor {
-		doc
-		/*
-		 * The ChangeMonitor to be used to monitor the TimeSignal condition.
-		 * The default is the Observation::defaultMonitor.
-		 */
+			doc
+			/*
+			 * The ChangeMonitor to be used to monitor the TimeSignal condition.
+			 * The default is the Observation::defaultMonitor.
+			 */
 		}
 		
 		return signal : TimeSignal[1] = 

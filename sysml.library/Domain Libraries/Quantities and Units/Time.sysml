@@ -1,10 +1,10 @@
 package Time {
-doc
-/*
- * This package specifies concepts to support time-related quantities and metrology, beyond 
- * the quantities duration and time as defined in [ISO 80000-3]. Representations of the 
- * Gregorian calendar date and time of day as specified by the [ISO 8601-1] standard are used.
- */
+	doc
+	/*
+	 * This package specifies concepts to support time-related quantities and metrology, beyond 
+	 * the quantities duration and time as defined in [ISO 80000-3]. Representations of the 
+	 * Gregorian calendar date and time of day as specified by the [ISO 8601-1] standard are used.
+	 */
 
 	private import Occurrences::Occurrence;
 	private import ScalarValues::Real;
@@ -22,28 +22,28 @@ doc
     import ISQSpaceTime::time;
     
     readonly part defaultClock : Clock[1] = Clocks::defaultClock {
-    doc
-    /*
-     * defaultClock is a single Clock that can be used as a default.
-     */
+	    doc
+	    /*
+	     * defaultClock is a single Clock that can be used as a default.
+	     */
     }
 
 	part def Clock :> Clocks::Clock {
-	doc
-	/*
-	 * A Clock provides a currentTime as a TimeInstantValue that advances montonically over its lifetime.
-	 */
+		doc
+		/*
+		 * A Clock provides a currentTime as a TimeInstantValue that advances montonically over its lifetime.
+		 */
 	
 		attribute :>> currentTime : TimeInstantValue;
 	}
 	
 	calc def TimeOf :> Clocks::TimeOf {
-	doc
-	/*
-	 * TimeOf returns a TimeInstantValue for a given Occurrence relative to a given Clock. This TimeInstantValue is the 
-	 * time of the start of the Occurrence, which is considered to be synchronized with the snapshot of the Clock with a 
-	 * currentTime equal to the returned timeInstant.
-	 */
+		doc
+		/*
+		 * TimeOf returns a TimeInstantValue for a given Occurrence relative to a given Clock. This TimeInstantValue is the 
+		 * time of the start of the Occurrence, which is considered to be synchronized with the snapshot of the Clock with a 
+		 * currentTime equal to the returned timeInstant.
+		 */
 	
 		in o : Occurrence[1]; 
 		in clock : Clock[1] default defaultClock;
@@ -51,11 +51,11 @@ doc
 	}
 
 	calc def DurationOf :> Clocks::DurationOf {
-	doc
-	/*
-	 * DurationOf returns the duration of a given Occurrence relative to a given Clock, which is equal to the TimeOf 
-	 * the end snapshot of the Occurrence minus the TimeOf its start snapshot.
-	 */
+		doc
+		/*
+		 * DurationOf returns the duration of a given Occurrence relative to a given Clock, which is equal to the TimeOf 
+		 * the end snapshot of the Occurrence minus the TimeOf its start snapshot.
+		 */
 	
 		in o : Occurrence[1]; 
 		in clock : Clock[1] default defaultClock;
@@ -63,12 +63,12 @@ doc
 	}
 	
     attribute def TimeScale :> IntervalScale {
-	doc
-	/*
-	 * Generic time scale to express a time instant, including a textual definition of the meaning of zero time instant value
-	 * 
-	 * Attribute definitionalEpoch captures the specification of the time instant with value zero, also known as the (reference) epoch.
-	 */
+		doc
+		/*
+		 * Generic time scale to express a time instant, including a textual definition of the meaning of zero time instant value
+		 * 
+		 * Attribute definitionalEpoch captures the specification of the time instant with value zero, also known as the (reference) epoch.
+		 */
 	
 		attribute :>> unit: DurationUnit[1];
 		attribute definitionalEpoch: DefinitionalQuantityValue[1];
@@ -76,12 +76,12 @@ doc
     }
 
     attribute def TimeInstantValue :> ScalarQuantityValue {
-	doc
-	/*
-	 * Representation of a time instant quantity
-	 *
-	 * Also known as instant (of time), or, point in time.
-	 */
+		doc
+		/*
+		 * Representation of a time instant quantity
+		 *
+		 * Also known as instant (of time), or, point in time.
+		 */
 	
         attribute :>> num: Real[1];
         attribute :>> mRef: TimeScale[1];
@@ -89,56 +89,58 @@ doc
     attribute timeInstant: TimeInstantValue :> scalarQuantities;
 
 	abstract attribute def DateTime :> TimeInstantValue {
-	doc
-	/*
-	 * Generic representation of a time instant as a calendar date and time of day
-	 */
+		doc
+		/*
+		 * Generic representation of a time instant as a calendar date and time of day
+		 */
 	}
 
 	abstract attribute def Date :> TimeInstantValue {
-	doc
-	/*
-	 * Generic representation of a time instant as a calendar date
-	 */
+		doc
+		/*
+		 * Generic representation of a time instant as a calendar date
+		 */
 	}
 
 	abstract attribute def TimeOfDay :> TimeInstantValue {
-	doc
-	/*
-	 * Generic representation of a time instant as a time of day
-	 */
+		doc
+		/*
+		 * Generic representation of a time instant as a time of day
+		 */
 	}
 
 	attribute <UTC> 'Coordinated Universal Time' : TimeScale {
-	doc
-	/*
-	 * Representation of the Coordinated Universal Time (UTC) time scale
-	 *
-	 * UTC is the primary time standard by which the world regulates clocks and time. It is within about 1 second of mean solar time
-	 * at 0° longitude and is not adjusted for daylight saving time.
-	 * UTC is obtained from International Atomic Time (TAI) by the insertion of leap seconds according to the advice of
-	 * the International Earth Rotation and Reference Systems Service (IERS) to ensure approximate agreement
-	 * with the time derived from the rotation of the Earth.
-	 *
-	 * References:
-	 * ITU-R TF.460-6 (see https://www.itu.int/rec/R-REC-TF.460/en)
-	 * BIPM technical services: Time Metrology (see https://www.bipm.org/en/time-metrology)
-	 *
-	 * Introductions:
-	 * For UTC see https://en.wikipedia.org/wiki/Coordinated_Universal_Time
-	 * For TAI see https://en.wikipedia.org/wiki/International_Atomic_Time
-	 */
+		doc
+		/*
+		 * Representation of the Coordinated Universal Time (UTC) time scale
+		 *
+		 * UTC is the primary time standard by which the world regulates clocks and time. It is within about 1 second of mean solar time
+		 * at 0° longitude and is not adjusted for daylight saving time.
+		 * UTC is obtained from International Atomic Time (TAI) by the insertion of leap seconds according to the advice of
+		 * the International Earth Rotation and Reference Systems Service (IERS) to ensure approximate agreement
+		 * with the time derived from the rotation of the Earth.
+		 *
+		 * References:
+		 * ITU-R TF.460-6 (see https://www.itu.int/rec/R-REC-TF.460/en)
+		 * BIPM technical services: Time Metrology (see https://www.bipm.org/en/time-metrology)
+		 *
+		 * Introductions:
+		 * For UTC see https://en.wikipedia.org/wiki/Coordinated_Universal_Time
+		 * For TAI see https://en.wikipedia.org/wiki/International_Atomic_Time
+		 */
 	
 		attribute :>> unit = SI::s;
 		attribute :>> definitionalEpoch: DefinitionalQuantityValue { :>> num = 0; :>> definition = "UTC epoch at 1 January 1958 at 0 hour 0 minute 0 second"; }
 	}
 
-	attribute def UtcTimeInstantValue :> DateTime { :>> mRef = UTC {
-	doc
-	/*
-	 * Representation of a time instant expressed on the Coordinated Universal Time (UTC) time scale
-	 */
-	} }
+	attribute def UtcTimeInstantValue :> DateTime { 
+		:>> mRef = UTC {
+			doc
+			/*
+			 * Representation of a time instant expressed on the Coordinated Universal Time (UTC) time scale
+			 */
+		} 
+	}
 	attribute utcTimeInstant: UtcTimeInstantValue :> timeInstant;
 
 	/*
@@ -199,10 +201,10 @@ doc
     }
 
     attribute def Iso8601DateTime :> UtcTimeInstantValue {
-	doc
-	/*
-     * Representation of an ISO 8601-1 date and time in extended string format
-	 */
+		doc
+		/*
+	     * Representation of an ISO 8601-1 date and time in extended string format
+		 */
 	
     	attribute val: Iso8601DateTimeEncoding;
     	attribute :>> num = getElapsedUtcTime(val);
@@ -216,15 +218,15 @@ doc
     }
 
     attribute def Iso8601DateTimeStructure :> UtcTimeInstantValue {
-	doc
-	/*
-     * Representation of an ISO 8601 date and time with explicit date and time component attributes
-     *
-     * TO DO: Specify restrictions for attributes month (1 to 12), day (1 to 31), hour (0 to 23), minute (0 to 59), second (0 to 60), 
-     * microsecond (0 to 999999), hourOffset (-12 to +12), minuteOffset (-59 to +59)
-     * 
-     * The total time offset is equal to the summation of hourOffset and minuteOffset.
-	 */
+		doc
+		/*
+	     * Representation of an ISO 8601 date and time with explicit date and time component attributes
+	     *
+	     * TO DO: Specify restrictions for attributes month (1 to 12), day (1 to 31), hour (0 to 23), minute (0 to 59), second (0 to 60), 
+	     * microsecond (0 to 999999), hourOffset (-12 to +12), minuteOffset (-59 to +59)
+	     * 
+	     * The total time offset is equal to the summation of hourOffset and minuteOffset.
+		 */
 	
     	attribute year: Integer;
     	attribute month: Natural;
@@ -252,10 +254,10 @@ doc
     }
 
 	calc convertIso8601DateTimeToStructure {
-    doc
-    /*
-	 * Calculation to convert an ISO 8601 date and time instant from string to component structure representation
-     */
+	    doc
+	    /*
+		 * Calculation to convert an ISO 8601 date and time instant from string to component structure representation
+	     */
     
 		in iso8601DateTime: Iso8601DateTime;
 		/* Parse ISO 8601 string encoding to date and time components */
@@ -263,10 +265,10 @@ doc
 	}
 
 	calc convertIso8601StructureToDateTime {
-	doc
-	/*
-	 * Calculation to convert an ISO 8601 date and time instant from component structure to string representation
-	 */
+		doc
+		/*
+		 * Calculation to convert an ISO 8601 date and time instant from component structure to string representation
+		 */
 	
 		in iso8601DateTimeStructure: Iso8601DateTimeStructure;
 		attribute x: Iso8601DateTime;

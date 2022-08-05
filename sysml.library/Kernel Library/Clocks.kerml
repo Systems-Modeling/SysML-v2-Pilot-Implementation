@@ -10,10 +10,11 @@ package Clocks {
 	private import Occurrences::Occurrence;
 	private import ControlFunctions::forAll;
 	
-	readonly feature defaultClock : Clock[1] {
+	readonly feature universalClock : Clock[1] {
 		doc
 		/*
-		 * defaultClock is a single Clock that can be used as a default.
+		 * universalClock is a single Clock that can be used as a default universal
+		 * time reference.
 		 */
 	}
 	
@@ -58,7 +59,7 @@ package Clocks {
 		 */
 		
 		in o : Occurrence[1];
-		in clock : Clock[1] default defaultClock;
+		in clock : Clock[1] default localClock;
 		return timeInstant : NumericalValue[1];
 		
 		 inv startTimeConstraint {
@@ -106,7 +107,7 @@ package Clocks {
 		 */
 		
 		in o : Occurrence[1]; 
-		in clock : Clock[1] default defaultClock;
+		in clock : Clock[1] default localClock;
 		return duration : NumericalValue =
 			TimeOf(o.endShot, clock) - TimeOf(o.startShot, clock);
 	}

@@ -29,6 +29,13 @@ package Objects {
 
 		feature self: Object redefines Occurrence::self;
 		
+		composite subobjects: Object[0..*] subsets objects, suboccurrences {
+			doc
+			/*
+			 * The suboccurrences of this Object that are themselves Objects.
+			 */
+		}
+		
 		step involvingPerformances: Performance[0..*] subsets performances {
 			doc
 			/*

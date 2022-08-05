@@ -11,6 +11,7 @@ package Occurrences {
 	private import ScalarValues::Natural;
 	private import ScalarValues::Boolean;
 	private import Links::*;
+	private import Clocks::*;
 	private import Collections::Set;
 	private import Collections::OrderedSet;
 	private import CollectionFunctions::contains;
@@ -43,6 +44,29 @@ package Occurrences {
 			 * Occurrence itself. However, this is overridden for ownedPerformances of Objects and
 			 * subperformances of Performances.
 			 */
+		}
+		
+		feature localClock : Clock[1] default universalClock  {
+			doc
+			/*
+			 * A local Clock to be used as the corresponding time reference for this Occurrence
+			 * and, by default, all ownedOccurrences. By default this is the singleton universalClock.
+			 */
+		}
+		
+		composite feature suboccurrences: Occurrence[0..*] subsets occurrences {
+			doc
+			/*
+			 * Composite suboccurrences of this Occurrence.
+			 */
+			 
+			 feature redefines localClock default (that as Occurrence).localClock {
+			 	doc
+			 	/*
+			 	 * The localClock of a suboccurrence defaults to the localClock of its containing
+			 	 * Occurrence.
+			 	 */
+			 }
 		}
 		
 		feature predecessors: Occurrence[0..*] subsets occurrences {

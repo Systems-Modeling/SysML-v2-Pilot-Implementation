@@ -43,7 +43,7 @@ package Performances {
 			 */
 		}
 		
-		composite step subperformances: Performance[0..*] subsets enclosedPerformances {
+		composite step subperformances: Performance[0..*] subsets enclosedPerformances, suboccurrences {
 			doc
 			/*
 			 * enclosedPerformances that are composite. 

@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021-2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -24,27 +24,19 @@ import org.eclipse.emf.common.util.EList;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.InvocationExpression;
 
-public class ConditionalImpliesFunction extends ControlFunction {
+public class NullCoalescingFunction extends ControlFunction {
 
 	@Override
 	public String getOperatorName() {
-		return "implies";
+		return "'??'";
 	}
 
 	@Override
 	public EList<Element> invoke(InvocationExpression invocation, Element target) {
-		Boolean firstValue = booleanValue(invocation, 0, target);
-		if (firstValue != null) {
-			if (!firstValue) {
-				return booleanResult(true);
-			} else {
-				Boolean secondValue = booleanExpressionValue(invocation, 1, target);
-				if (secondValue != null) {
-					return booleanResult(secondValue);
-				}
-			}
-		}
-		return null;
+		EList<Element> list = evaluateArgument(invocation, 0, target);
+		return list == null? null:
+			   list.isEmpty()? expressionValue(invocation, 1, target):
+			   list;
 	}
 
 }

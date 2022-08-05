@@ -27,8 +27,8 @@ import org.omg.sysml.lang.sysml.InvocationExpression;
 public class ConditionalAndFunction extends ControlFunction {
 
 	@Override
-	public String[] getOperatorNames() {
-		return new String[]{"'&&'", "and"};
+	public String getOperatorName() {
+		return "and";
 	}
 
 	@Override

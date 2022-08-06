@@ -1,8 +1,8 @@
 package ISQ {
-doc
-/*
- * International system of quantities (ISQ), as defined in ISO/IEC 80000
- */
+    doc
+    /*
+      International system of quantities (ISQ), as defined in ISO/IEC 80000
+    */
 
 	private import ScalarValues::Real;
 	private import Quantities::*;
@@ -23,23 +23,21 @@ doc
 
     /* Additional quantity declarations */
 
-    attribute def TemperatureDifferenceUnit :> SimpleUnit {
-    doc
-    /*
-     * temperature difference
-     * 
-     * A separate temperature difference quantity and unit are needed in order to support °C, °F and centrigrade temperature differences
-     */
-    
-        private attribute thermodynamicTemperaturePF: QuantityPowerFactor[1] { :>> quantity = isq.'Θ'; :>> exponent = 1; }
-        attribute :>> quantityDimension { :>> quantityPowerFactors = thermodynamicTemperaturePF; }
-    }
-
     attribute def TemperatureDifferenceValue :> ScalarQuantityValue {
+        doc
+        /*
+          temperature difference
+          A separate temperature difference quantity and unit are needed in order to support °C, °F and centrigrade temperature differences
+        */
         attribute :>> num: Real;
         attribute :>> mRef: TemperatureDifferenceUnit[1];
     }
     
     attribute temperatureDifference: TemperatureDifferenceValue [*] nonunique :> scalarQuantities;
+
+    attribute def TemperatureDifferenceUnit :> SimpleUnit {    
+        private attribute thermodynamicTemperaturePF: QuantityPowerFactor[1] { :>> quantity = isq.'Θ'; :>> exponent = 1; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = thermodynamicTemperaturePF; }
+    }
 
 }

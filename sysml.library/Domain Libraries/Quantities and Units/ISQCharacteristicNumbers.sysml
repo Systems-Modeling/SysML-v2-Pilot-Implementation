@@ -2,7 +2,7 @@ package ISQCharacteristicNumbers {
     doc
     /*
      * International System of Quantities and Units
-     * Generated on 2022-08-07T14:44:27Z from standard ISO-80000-11:2019 "Characteristic numbers"
+     * Generated on 2022-08-07T19:40:39Z from standard ISO-80000-11:2019 "Characteristic numbers"
      * see also https://www.iso.org/obp/ui/#iso:std:iso:80000:-11:ed-2:v1:en
      * 
      * Note 1: In documentation comments, AsciiMath notation (see http://asciimath.org/) is used for mathematical concepts,
@@ -1094,11 +1094,11 @@ package ISQCharacteristicNumbers {
     }
     attribute fourierNumberForMassTransfer: FourierNumberForMassTransferValue :> scalarQuantities;
 
-    /* ISO-80000-11 item 11-6.2 Péclet number, Bodenstein number */
+    /* ISO-80000-11 item 11-6.2 Péclet number */
     attribute def 'PécletNumberForMassTransferValue' :> DimensionOneValue {
         doc
         /*
-         * source: item 11-6.2 Péclet number, Bodenstein number
+         * source: item 11-6.2 Péclet number
          * symbol(s): `Pe^"*"`, `Bd`, `Bod`
          * application domain: mass transfer
          * name: PécletNumber (specializes DimensionOneQuantity)
@@ -1110,8 +1110,6 @@ package ISQCharacteristicNumbers {
          */
     }
     attribute 'pécletNumberForMassTransfer': 'PécletNumberForMassTransferValue' :> scalarQuantities;
-
-    alias bodensteinNumber for 'pécletNumber';
 
     /* ISO-80000-11 item 11-6.3 Grashof number */
     attribute def GrashofNumberForMassTransferValue :> DimensionOneValue {
@@ -1181,11 +1179,11 @@ package ISQCharacteristicNumbers {
     }
     attribute graetzNumberForMassTransfer: GraetzNumberForMassTransferValue :> scalarQuantities;
 
-    /* ISO-80000-11 item 11-6.7 mass transfer factor, j-factor */
+    /* ISO-80000-11 item 11-6.7 mass transfer factor */
     attribute def MassTransferFactorValue :> DimensionOneValue {
         doc
         /*
-         * source: item 11-6.7 mass transfer factor, j-factor
+         * source: item 11-6.7 mass transfer factor
          * symbol(s): `j^"*"`
          * application domain: mass transfer
          * name: MassTransferFactor (specializes DimensionOneQuantity)
@@ -1197,8 +1195,6 @@ package ISQCharacteristicNumbers {
          */
     }
     attribute massTransferFactor: MassTransferFactorValue :> scalarQuantities;
-
-    alias jFactor for massTransferFactor;
 
     /* ISO-80000-11 item 11-6.8 Atwood number */
     attribute def AtwoodNumberValue :> DimensionOneValue {

@@ -498,6 +498,11 @@ public class SysML2PlantUMLStyle {
             return "<<exhibit state>> ";
 		}
 
+		@Override
+		public String caseSatisfyRequirementUsage(SatisfyRequirementUsage sru) {
+            return "<<requirement>> ";
+		}
+
         @Override
         public String caseIncludeUseCaseUsage(IncludeUseCaseUsage iucu) {
             return " include use case>> ";

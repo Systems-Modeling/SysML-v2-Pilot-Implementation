@@ -167,25 +167,39 @@ public abstract class VStructure extends VDefault {
         }
     }
 
+    private void insertShortName(StringBuilder sb, Element e) {
+        String shortName = e.getShortName();
+        if (shortName == null || shortName.isEmpty()) return;
+        sb.insert(0, "></b> ");
+        sb.insert(0, shortName);
+        sb.insert(0, " <b>~<");
+    }
+
     protected String extractTitleName(Element e) {
         String name = getNameAnyway(e);
-        if (!(e instanceof Feature)) return name;
-
-        Feature f = (Feature) e;
         StringBuilder sb = new StringBuilder();
-        boolean added = appendFeatureType(sb, ": ", f);
-        sb.append(' ');
-        added = appendSubsettingFeature(sb, ":> ", f) || added;
-        sb.insert(0, name);
-        /*
-        if (f instanceof Usage) {
-            Usage u = (Usage) f;
-            if (u.isVariation()) {
-                sb.insert(0, "<size:20><&layers> </size>");
-            }
+
+        if (e instanceof Feature) {
+            Feature f = (Feature) e;
+            boolean added = appendFeatureType(sb, ": ", f);
+            sb.append(' ');
+            added = appendSubsettingFeature(sb, ":> ", f) || added;
+            insertShortName(sb, e);
+            sb.insert(0, name);
+            /*
+              if (f instanceof Usage) {
+                  Usage u = (Usage) f;
+                  if (u.isVariation()) {
+                      sb.insert(0, "<size:20><&layers> </size>");
+                  }
+              }
+            */
+            insertActorLikeStyle(sb, f);
+        } else {
+            sb.append(name);
+            insertShortName(sb, e);
         }
-        */
-        insertActorLikeStyle(sb, f);
+
         return sb.toString();
     }
 
@@ -227,6 +241,9 @@ public abstract class VStructure extends VDefault {
         Feature target = sru.getSatisfyingFeature();
         if ((ru != null) && (target != null)) {
             addPRelation(target, ru, sru, "<<satisfy>>");
+        }
+        if (sru.equals(ru)) {
+            caseRequirementUsage(ru);
         }
         return "";
     }

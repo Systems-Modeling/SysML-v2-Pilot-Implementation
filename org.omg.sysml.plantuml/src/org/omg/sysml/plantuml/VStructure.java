@@ -34,9 +34,11 @@ import org.omg.sysml.lang.sysml.ConjugatedPortDefinition;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.LifeClass;
 import org.omg.sysml.lang.sysml.Membership;
+import org.omg.sysml.lang.sysml.MetadataUsage;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.PortioningFeature;
 import org.omg.sysml.lang.sysml.Redefinition;
@@ -167,7 +169,28 @@ public abstract class VStructure extends VDefault {
         }
     }
 
-    private void insertShortName(StringBuilder sb, Element e) {
+    private void insertMetadataUsageName(StringBuilder sb, MetadataUsage mu) {
+        List<FeatureTyping> tt = mu.getOwnedTyping();
+        for (FeatureTyping ft: tt) {
+            if (ft == null) continue;
+            Type typ = ft.getType();
+            if (typ == null) continue;
+            String shortName = typ.getShortName();
+            if (shortName == null || shortName.isEmpty()) continue;
+            sb.insert(0, "</i> ");
+            sb.insert(0, shortName);
+            sb.insert(0, " <i>#");
+        }
+    }
+
+    private void insertPrefixNames(StringBuilder sb, Element e) {
+        for (Element oe: e.getOwnedElement()) {
+            if (oe instanceof MetadataUsage) {
+                MetadataUsage mu = (MetadataUsage) oe;
+                insertMetadataUsageName(sb, mu);
+            }
+        }
+        
         String shortName = e.getShortName();
         if (shortName == null || shortName.isEmpty()) return;
         sb.insert(0, "></b> ");
@@ -184,8 +207,8 @@ public abstract class VStructure extends VDefault {
             boolean added = appendFeatureType(sb, ": ", f);
             sb.append(' ');
             added = appendSubsettingFeature(sb, ":> ", f) || added;
-            insertShortName(sb, e);
             sb.insert(0, name);
+            insertPrefixNames(sb, e);
             /*
               if (f instanceof Usage) {
                   Usage u = (Usage) f;
@@ -197,7 +220,7 @@ public abstract class VStructure extends VDefault {
             insertActorLikeStyle(sb, f);
         } else {
             sb.append(name);
-            insertShortName(sb, e);
+            insertPrefixNames(sb, e);
         }
 
         return sb.toString();

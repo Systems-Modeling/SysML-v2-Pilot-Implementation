@@ -369,8 +369,13 @@ public class SysML2PlantUMLStyle {
 		}
 
 		@Override
-		public String caseConnectionUsage(ConnectionUsage object) {
-            return " -[thickness=3]- ";
+		public String caseConnectionUsage(ConnectionUsage cu) {
+            String mName = Visitor.getMetadataUsageName(cu);
+            if (mName != null) {
+                return " -[thickness=3]-> ";
+            } else {
+                return " -[thickness=3]- ";
+            }
 		}
 
 		@Override

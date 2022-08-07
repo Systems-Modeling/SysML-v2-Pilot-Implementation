@@ -9,10 +9,10 @@ package ModelingMetadata {
 	private import RiskMetadata::Risk;
 	
 	enum def StatusKind {
-	doc
-	/*
-	 * StatusKind enumerates the possible statuses of work on a model element.
-	 */
+		doc
+		/*
+		 * StatusKind enumerates the possible statuses of work on a model element.
+		 */
 	
 		open {
 			doc

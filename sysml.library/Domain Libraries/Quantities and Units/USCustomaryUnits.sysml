@@ -1,10 +1,10 @@
 package <USCU> USCustomaryUnits {
-doc
-/*
- * Measurement unit declarations generated from NIST SP811 Appendix B
- *
- * See https://www.nist.gov/pml/special-publication-811/nist-guide-si-appendix-b-conversion-factors/nist-guide-si-appendix-b8
- */
+	doc
+	/*
+	 * Measurement unit declarations generated from NIST SP811 Appendix B
+	 *
+	 * See https://www.nist.gov/pml/special-publication-811/nist-guide-si-appendix-b-conversion-factors/nist-guide-si-appendix-b8
+	 */
 
     private import MeasurementReferences::*;
     import ISQ::*;
@@ -224,13 +224,15 @@ doc
     attribute <yd> 'yard' : LengthUnit { :>> unitConversion: ConversionByConvention { :>> referenceUnit = m; :>> conversionFactor = 9.144E-01; } }
 
 
-	/*
-	 * degree Fahrenheit interval scale for absolute (thermodynamic) temperature quantities
-	 *
-     * The interval scale is defined with an explicit transformation with respect to 
-     * the kelvin thermodynamic temperature scale that specifies the zero shift.
-	 */
 	attribute <'°F_abs'> 'degree fahrenheit (absolute temperature scale)' : IntervalScale {
+		doc
+		/*
+		 * degree Fahrenheit interval scale for absolute (thermodynamic) temperature quantities
+		 *
+	     * The interval scale is defined with an explicit transformation with respect to 
+	     * the kelvin thermodynamic temperature scale that specifies the zero shift.
+		 */
+		
 		:>> unit = '°F';
 		private attribute temperatureWaterAtFreezingPointInF: DefinitionalQuantityValue {
 			:>> num = 32.0;

@@ -116,7 +116,7 @@ package StateSpaceRepresentation {
     }
 
     abstract calc def GetDifference {
-    doc
+    	doc
 	    /*
 	     * Computes difference of stateSpace by one timestep, that is x(k+1) - x(k),
 	     * where k is the timestep number. 

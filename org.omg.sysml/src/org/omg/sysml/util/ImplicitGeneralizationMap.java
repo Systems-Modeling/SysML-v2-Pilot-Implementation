@@ -73,7 +73,9 @@ public class ImplicitGeneralizationMap {
 		put(FeatureImpl.class, "base", "Base::things");
 		put(FeatureImpl.class, "dataValue", "Base::dataValues");
 		put(FeatureImpl.class, "occurrence", "Occurrences::occurrences");
+		put(FeatureImpl.class, "suboccurrence", "Occurrences::Occurrence::suboccurrences");
 		put(FeatureImpl.class, "object", "Objects::objects");
+		put(FeatureImpl.class, "subobject", "Objects::Object::subobjects");
 		put(FeatureImpl.class, "participant", "Links::Link::participant");
 		put(FeatureImpl.class, "startingAt", "FeatureReferencingPerformances::FeatureAccessPerformance::onOccurrence::startingAt");
 		put(FeatureImpl.class, "accessedFeature", "FeatureReferencingPerformances::FeatureAccessPerformance::onOccurrence::startingAt::accessedFeature");
@@ -121,7 +123,6 @@ public class ImplicitGeneralizationMap {
 		put(StepImpl.class, "base", "Performances::performances");
 		put(StepImpl.class, "enclosedPerformance", "Performances::Performance::enclosedPerformances");
 		put(StepImpl.class, "subperformance", "Performances::Performance::subperformances");
-		put(StepImpl.class, "enactedPerformance", "Objects::Object::enactedPerformances");
 		put(StepImpl.class, "ownedPerformance", "Objects::Object::ownedPerformances");
 		put(StepImpl.class, "incomingTransfer", "Occurrences::Occurrence::incomingTransfers");
 		put(StepImpl.class, "featureWrite", "FeatureReferencingPerformances::FeatureWritePerformance");
@@ -190,9 +191,9 @@ public class ImplicitGeneralizationMap {
 		
 		put(ConstraintDefinitionImpl.class, "base", "Constraints::ConstraintCheck");
 		put(ConstraintUsageImpl.class, "base", "Constraints::constraintChecks");
+		put(ConstraintUsageImpl.class, "checkedConstraint", "Items::Item::checkedConstraints");
 		put(ConstraintUsageImpl.class, "enclosedPerformance", "Performances::Performance::enclosedEvaluations");
 		put(ConstraintUsageImpl.class, "subperformance", "Performances::Performance::subperformances");
-		put(ConstraintUsageImpl.class, "enactedPerformance", "Items::Item::checkedConstraints");
 		put(ConstraintUsageImpl.class, "ownedPerformance", "Objects::Object::ownedPerformances");
 		
 		put(DecisionNodeImpl.class, "subaction", "Actions::Action::decisions");

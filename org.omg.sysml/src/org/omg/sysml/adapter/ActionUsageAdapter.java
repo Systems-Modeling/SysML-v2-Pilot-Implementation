@@ -72,6 +72,11 @@ public class ActionUsageAdapter extends OccurrenceUsageAdapter {
 		return getDefaultSupertype("base");
 	}
 	
+	@Override
+	protected boolean isSuboccurrence() {
+		return super.isSuboccurrence() && !isSubaction();
+	}
+	
 	protected String getSubactionType() {
 		return isSubaction()? "subaction": 
 			   isOwnedAction()? "ownedAction":

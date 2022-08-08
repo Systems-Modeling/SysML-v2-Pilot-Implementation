@@ -29,7 +29,6 @@ package org.omg.sysml.plantuml;
 import java.util.List;
 
 import org.omg.sysml.lang.sysml.AnnotatingElement;
-import org.omg.sysml.lang.sysml.MetadataFeature;
 import org.omg.sysml.lang.sysml.Annotation;
 import org.omg.sysml.lang.sysml.Comment;
 import org.omg.sysml.lang.sysml.Connector;
@@ -39,9 +38,12 @@ import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureChainExpression;
 import org.omg.sysml.lang.sysml.FeatureReferenceExpression;
+import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.Import;
 import org.omg.sysml.lang.sysml.ItemFlow;
 import org.omg.sysml.lang.sysml.ItemFlowEnd;
+import org.omg.sysml.lang.sysml.Membership;
+import org.omg.sysml.lang.sysml.MetadataFeature;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.Specialization;
 import org.omg.sysml.lang.sysml.Subsetting;
@@ -99,6 +101,19 @@ public class VDefault extends VTraverser {
         }
         if (sb == null || sb.length() == 0) return null;
         return sb.toString();        
+    }
+
+    protected void addFeatureValueBindings(Feature f) {
+        for (Membership m: f.getOwnedMembership()) {
+            if (m instanceof FeatureValue) {
+                FeatureValue fv = (FeatureValue) m;
+                Expression v = fv.getValue();
+                Element tgt = resolveReference(v);
+                if (tgt != null) {
+                    addPRelation(f, tgt, fv, "=");
+                }
+            }
+        }
     }
 
     protected void addSpecializations(Type typ) {

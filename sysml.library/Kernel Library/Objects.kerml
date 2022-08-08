@@ -50,7 +50,7 @@ package Objects {
 			 */
 		}
 		
-		composite step ownedPerformances: Performance[0..*] subsets involvingPerformances, timeEnclosedOccurrences {
+		composite step ownedPerformances: Performance[0..*] subsets involvingPerformances, timeEnclosedOccurrences, suboccurrences {
 			doc
 			/*
 			 * Performances that are owned by this object.

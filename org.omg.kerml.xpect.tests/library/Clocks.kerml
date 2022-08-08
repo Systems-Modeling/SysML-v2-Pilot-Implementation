@@ -101,12 +101,20 @@ package Clocks {
 	 * BasicTimeOf returns the TimeOf an Occurrence as a Real number relative
 	 * to a BasicClock.
 	 */
-	function BasicTimeOf :> TimeOf(o : Occurrence[1], clock : BasicClock[1]) : Real[1];	
+	function BasicTimeOf :> TimeOf {
+		in o : Occurrence[1];
+		in clock : BasicClock[1];
+		return : Real[1];
+	}
 	
 	/**
 	 * BasicDurationOf returns the DurationOf an Occurrence as a Real number relative
 	 * to a BasicClock.
 	 */
-	function BasicDurationOf :> DurationOf(o : Occurrence[1], clock : BasicClock[1]) : Real[1];
+	function BasicDurationOf :> DurationOf {
+		in o : Occurrence[1];
+		in clock : BasicClock[1];
+		return : Real[1];
+	}
 
 }

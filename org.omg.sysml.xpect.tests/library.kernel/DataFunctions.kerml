@@ -7,32 +7,30 @@ package DataFunctions {
 	private import ScalarValues::Boolean;
 	private import ControlFunctions::reduce;
 	
-	abstract function '+'(x: DataValue[1], y: DataValue[0..1]): DataValue[1];
-	abstract function '-'(x: DataValue[1], y: DataValue[0..1]): DataValue[1];
-	abstract function '*'(x: DataValue[1], y: DataValue[1]): DataValue[1];
-	abstract function '/'(x: DataValue[1], y: DataValue[1]): DataValue[1];
-	abstract function '**'(x: DataValue[1], y: DataValue[1]): DataValue[1];
-	abstract function '^'(x: DataValue[1], y: DataValue[1]): DataValue[1];
-	abstract function '%'(x: DataValue[1], y: DataValue[1]): DataValue[1];
+	abstract function '+' { in x: DataValue[1]; in y: DataValue[0..1]; return : DataValue[1]; }
+	abstract function '-' { in x: DataValue[1]; in y: DataValue[0..1]; return : DataValue[1]; }
+	abstract function '*' { in x: DataValue[1]; in y: DataValue[1]; return : DataValue[1]; }
+	abstract function '/' { in x: DataValue[1]; in y: DataValue[1]; return : DataValue[1]; }
+	abstract function '**' { in x: DataValue[1]; in y: DataValue[1]; return : DataValue[1]; }
+	abstract function '^' { in x: DataValue[1]; in y: DataValue[1]; return : DataValue[1]; }
+	abstract function '%' { in x: DataValue[1]; in y: DataValue[1]; return : DataValue[1]; }
 	
-	abstract function '!'(x: DataValue[1]): DataValue[1];
-	abstract function 'not'(x: DataValue[1]): DataValue[1];
-	abstract function '~'(x: DataValue[1]): DataValue[1];
+	abstract function 'not' { in x: DataValue[1]; return : DataValue[1]; }
+	abstract function 'xor' { in x: DataValue[1]; in y: DataValue[1]; return : DataValue[1]; }
+
+	abstract function '~' { in x: DataValue[1]; return : DataValue[1]; }
+	abstract function '|' { in x: DataValue[1]; in y: DataValue[1]; return : DataValue[1]; }
+	abstract function '&' { in x: DataValue[1]; in y: DataValue[1]; return : DataValue[1]; }
 	
-	abstract function '|'(x: DataValue[1], y: DataValue[1]): DataValue[1];
-	abstract function '^^'(x: DataValue[1], y: DataValue[1]): DataValue[1];
-	abstract function 'xor'(x: DataValue[1], y: DataValue[1]): DataValue[1];
-	abstract function '&'(x: DataValue[1], y: DataValue[1]): DataValue[1];
+	abstract function '<' { in x: DataValue[1]; in y: DataValue[1]; return : Boolean[1]; }
+	abstract function '>' { in x: DataValue[1]; in y: DataValue[1]; return : Boolean[1]; }
+	abstract function '<=' { in x: DataValue[1]; in y: DataValue[1]; return : Boolean[1]; }
+	abstract function '>=' { in x: DataValue[1]; in y: DataValue[1]; return : Boolean[1]; }
 	
-	abstract function '<'(x: DataValue[1], y: DataValue[1]): Boolean[1];
-	abstract function '>'(x: DataValue[1], y: DataValue[1]): Boolean[1];
-	abstract function '<='(x: DataValue[1], y: DataValue[1]): Boolean[1];
-	abstract function '>='(x: DataValue[1], y: DataValue[1]): Boolean[1];
+	abstract function Max { in x: DataValue[1]; in y: DataValue[1]; return : DataValue[1]; }
+	abstract function Min { in x: DataValue[1]; in y: DataValue[1]; return : DataValue[1]; }
 	
-	abstract function Max(x: DataValue[1], y: DataValue[1]): DataValue[1];
-	abstract function Min(x: DataValue[1], y: DataValue[1]): DataValue[1];
+	abstract function '==' specializes BaseFunctions::'==' { in x: DataValue[0..1]; in y: DataValue[0..1]; return : Boolean[1]; }
 	
-	abstract function '==' specializes BaseFunctions::'=='(x: DataValue[0..1], y: DataValue[0..1]): Boolean[1];
-	
-	abstract function '..'(lower: DataValue[1], upper: DataValue[1]): DataValue[0..*] ordered;	
+	abstract function '..' { in lower: DataValue[1]; in upper: DataValue[1]; return : DataValue[0..*] ordered; }	
 }

@@ -330,7 +330,7 @@ package Occurrences {
 			inv { spaceBounderOf.spaceBoundary == that.that }
 		}
 
-		inv { !isClosed implies contains(self.unionsOf, union(spaceBoundary, spaceInterior)) }
+		inv { not isClosed implies contains(self.unionsOf, union(spaceBoundary, spaceInterior)) }
 		inv { innerSpaceDimension == 0 implies isEmpty(spaceBoundary) }
 
 		connector :SurroundedBy

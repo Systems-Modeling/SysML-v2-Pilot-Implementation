@@ -35,25 +35,27 @@ package Items {
 		item shape : Item :>> spaceBoundary;
 		
 		/**
-		 * Each enveloping shape is the shape of an Item that includes this Item in space and time.
+		 * Each enveloping shape is the shape of an Item that spacially overlaps this Item for its
+		 * entire lifetime.
 		 */
 		item envelopingShapes : Item[0..*] {
 
-			  /* Enables 2 dim items to be enveloped by 2 or 3 dim shapes. */
-			attribute :>> innerSpaceDimension = (Item::innerSpaceDimension == 3  | Item::outerSpaceDimension == 3
-							     ? 2 : Item::outerSpaceDimension-1);   /* Curves bounding flat surfaces SHOULD BE COPLANAR ? */
-			assert constraint { Item::innerSpaceDimension < 3 implies notEmpty(outerSpaceDimension) }
-
-			item envelopingShape: Item :>> self;
+			 /** Enables two dimensional items to be enveloped by two or three dimensional shapes. */
+			attribute :>> innerSpaceDimension = 
+				if (that as Item).innerSpaceDimension == 3  | (that as Item).outerSpaceDimension == 3? 2 
+				else (that as Item).outerSpaceDimension - 1; 
+			assert constraint { (that as Item).innerSpaceDimension < 3 implies notEmpty(outerSpaceDimension) }
 
 			item envelopingItem [1]; /* Shape constraint below, to avoid envelopingShape being a portion. */
 
-			assert constraint { envelopingItem.shape.spaceTimeCoincidentOccurrences->includes(envelopingShape) &
-					    envelopingItem.spaceTimeEnclosedOccurrences->includes(that) }
+			assert constraint { 
+				envelopingItem.shape.spaceTimeCoincidentOccurrences->includes(that) and
+				envelopingItem.spaceTimeEnclosedOccurrences->includes(that.that) 
+			}
 		}
 		
 		/**
-		 * Bounding shapes are enveloping shapes that are structured space objects with every face or every edge
+		 * envelopingShapes that are structured space objects with every face or every edge
 		 * intersecting this Item.
 		 */
 		item boundingShapes : StructuredSpaceObject [0..*] :> envelopingShapes {
@@ -86,7 +88,7 @@ package Items {
 		/**
 		 * The Items that are composite subitems of this Item.
 		 */
-		abstract item subitems: Item[0..*];
+		abstract item subitems: Item[0..*] :> items;
 		
 		/**
 		 * The subitems of this Item that are Parts.
@@ -94,7 +96,7 @@ package Items {
 		abstract part subparts: Part[0..*] :> subitems, parts;
 		
 		/**
-		 * Constraints that have been checked by this item.
+		 * Constraints that have been checked by this Item.
 		 */
 		abstract ref constraint checkedConstraints: ConstraintCheck[0..*] :> constraintChecks, enactedPerformances;
 	}

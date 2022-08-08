@@ -1,7 +1,7 @@
 /**
  * This package defines the representations for measurement references.
  */
-package UnitsAndScales {
+package MeasurementReferences {
 	private import Collections::Array;
 	private import Collections::List;
 	private import ScalarValues::*;
@@ -222,7 +222,10 @@ package UnitsAndScales {
 		attribute :>> isBound = false;
 		attribute unitPowerFactors: UnitPowerFactor[0..*] ordered;
 		attribute unitConversion: UnitConversion[0..1];
-        assert constraint hasValidUnitPowerFactors : VerifyUnitPowerFactors(unitPowerFactors, quantityDimension);
+        assert constraint hasValidUnitPowerFactors : VerifyUnitPowerFactors {
+        	in unitPowerFactors = MeasurementUnit::unitPowerFactors;
+        	in quantityDimension = MeasurementUnit::quantityDimension;
+		}
 	}
 
 
@@ -427,5 +430,8 @@ package UnitsAndScales {
 	 *
 	 * TODO: The implementation of this constraint requires reflection.
 	 */
-    constraint def VerifyUnitPowerFactors(unitPowerFactors: UnitPowerFactor[*] ordered, quantityDimension: QuantityDimension[1]);
+    constraint def VerifyUnitPowerFactors {
+    	in unitPowerFactors: UnitPowerFactor[*] ordered;
+    	in quantityDimension: QuantityDimension[1];
+	}
 }

@@ -50,7 +50,7 @@ package MetadataFeatureTest {
 		}
 	}
 	
-	function f(x): Boolean;
+	function f { in x; return : Boolean; }
 	
 	// XPECT errors --> "Must be model-level evaluable" at "filter f(A::y);"
 	filter f(A::y);

@@ -80,6 +80,7 @@ public abstract class ModelLevelFunction {
 		put(new GreaterThanOrEqualFunction());
 		
 		put(new ConditionalFunction());
+		put(new NullCoalescingFunction());
 		put(new ConditionalAndFunction());
 		put(new ConditionalOrFunction());
 		put(new ConditionalImpliesFunction());

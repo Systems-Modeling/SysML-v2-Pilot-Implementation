@@ -69,7 +69,7 @@ package ControlPerformances {
 		in redefines ifTest;
 		in elseClause : Occurrence[0..1];
 		succession ifTest[1] then elseClause[0..1];
-		inv { !ifTest() == elseClause->notEmpty() }
+		inv { not ifTest() == elseClause->notEmpty() }
 	}
 	
 	/**

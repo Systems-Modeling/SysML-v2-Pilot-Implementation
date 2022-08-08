@@ -7,34 +7,47 @@ package BaseFunctions {
 	private import Objects::Object;
 	private import ScalarValues::*;
 	
-	abstract function '=='(x: Anything[0..1], y: Anything[0..1]): Boolean[1];
-	function '!='(x: Anything[0..1], y: Anything[0..1]): Boolean[1] {
-		!(x == y)
+	abstract function '=='{ in x: Anything[0..1]; in y: Anything[0..1]; 
+		return : Boolean[1];
+	}
+	function '!='{ in x: Anything[0..1]; in y: Anything[0..1]; 
+		return : Boolean[1] = not (x == y);
 	}
 	
-	function ToString(x: Anything[0..1]): String;
+	function ToString{ in x: Anything[0..1]; 
+		return : String;
+	}
 	
-	function '['(seq: Anything[0..*] ordered nonunique, index: Anything[0..*] ordered nonunique): Anything[0..1];
-	function ','(seq1: Anything[0..*] ordered nonunique, seq2: Anything[0..*] ordered nonunique): Anything[0..*] ordered nonunique;
+	function '['{ in seq: Anything[0..*] ordered nonunique; in index: Anything[0..*] ordered nonunique; 
+		return : Anything[0..1];
+	}
+	function ','{ in seq1: Anything[0..*] ordered nonunique; seq2: Anything[0..*] ordered nonunique; 
+		return : Anything[0..*] ordered nonunique;
+	}
 	
-    abstract function 'all'(): Object[0..*] {
+    abstract function 'all'{
     	abstract feature all 'type': Object;
+    	return : Object[0..*];
     }
     
-	abstract function 'istype'(x: Anything[1]): Boolean[1] {
+	abstract function 'istype'{ in x: Anything[1];
 		abstract feature 'type': Anything;
+		return : Boolean[1];
 	}
 	
-	abstract function '@'(x: Anything[1]): Boolean[1] {
+	abstract function '@'{ in x: Anything[1];
 		abstract feature 'type': Anything;
+		return : Boolean[1];
 	}
 	
-	abstract function 'hastype'(x: Anything[1]): Boolean {
+	abstract function 'hastype'{ in x: Anything[1];
 		abstract feature 'type': Anything[1];
+		return : Boolean;
 	}
 	
-	abstract function 'as'(seq: Anything[0..*] ordered nonunique): Anything[0..*] ordered nonunique {
+	abstract function 'as'{ in seq: Anything[0..*] ordered nonunique; 
 		abstract feature 'type': Anything[1];
+		return : Anything[0..*] ordered nonunique;
 	}
 	
 }

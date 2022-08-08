@@ -120465,6 +120465,223 @@ public interface SysMLPackage extends EPackage {
 	int PACKAGE_OPERATION_COUNT = NAMESPACE_OPERATION_COUNT + 2;
 
 	/**
+	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.impl.PrefixCommentImpl <em>Prefix Comment</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.omg.sysml.lang.sysml.impl.PrefixCommentImpl
+	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getPrefixComment()
+	 * @generated
+	 */
+	int PREFIX_COMMENT = 164;
+
+	/**
+	 * The feature id for the '<em><b>Owning Membership</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREFIX_COMMENT__OWNING_MEMBERSHIP = COMMENT__OWNING_MEMBERSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owned Relationship</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREFIX_COMMENT__OWNED_RELATIONSHIP = COMMENT__OWNED_RELATIONSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owning Relationship</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREFIX_COMMENT__OWNING_RELATIONSHIP = COMMENT__OWNING_RELATIONSHIP;
+
+	/**
+	 * The feature id for the '<em><b>Owning Namespace</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREFIX_COMMENT__OWNING_NAMESPACE = COMMENT__OWNING_NAMESPACE;
+
+	/**
+	 * The feature id for the '<em><b>Element Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREFIX_COMMENT__ELEMENT_ID = COMMENT__ELEMENT_ID;
+
+	/**
+	 * The feature id for the '<em><b>Owner</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREFIX_COMMENT__OWNER = COMMENT__OWNER;
+
+	/**
+	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREFIX_COMMENT__OWNED_ELEMENT = COMMENT__OWNED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Documentation</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREFIX_COMMENT__DOCUMENTATION = COMMENT__DOCUMENTATION;
+
+	/**
+	 * The feature id for the '<em><b>Owned Annotation</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREFIX_COMMENT__OWNED_ANNOTATION = COMMENT__OWNED_ANNOTATION;
+
+	/**
+	 * The feature id for the '<em><b>Textual Representation</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREFIX_COMMENT__TEXTUAL_REPRESENTATION = COMMENT__TEXTUAL_REPRESENTATION;
+
+	/**
+	 * The feature id for the '<em><b>Alias Ids</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREFIX_COMMENT__ALIAS_IDS = COMMENT__ALIAS_IDS;
+
+	/**
+	 * The feature id for the '<em><b>Short Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREFIX_COMMENT__SHORT_NAME = COMMENT__SHORT_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Effective Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREFIX_COMMENT__EFFECTIVE_NAME = COMMENT__EFFECTIVE_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREFIX_COMMENT__NAME = COMMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREFIX_COMMENT__QUALIFIED_NAME = COMMENT__QUALIFIED_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Annotation</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREFIX_COMMENT__ANNOTATION = COMMENT__ANNOTATION;
+
+	/**
+	 * The feature id for the '<em><b>Annotated Element</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREFIX_COMMENT__ANNOTATED_ELEMENT = COMMENT__ANNOTATED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Locale</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREFIX_COMMENT__LOCALE = COMMENT__LOCALE;
+
+	/**
+	 * The feature id for the '<em><b>Body</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREFIX_COMMENT__BODY = COMMENT__BODY;
+
+	/**
+	 * The number of structural features of the '<em>Prefix Comment</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREFIX_COMMENT_FEATURE_COUNT = COMMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Escaped Name</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREFIX_COMMENT___ESCAPED_NAME = COMMENT___ESCAPED_NAME;
+
+	/**
+	 * The operation id for the '<em>Effective Name</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREFIX_COMMENT___EFFECTIVE_NAME = COMMENT___EFFECTIVE_NAME;
+
+	/**
+	 * The number of operations of the '<em>Prefix Comment</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREFIX_COMMENT_OPERATION_COUNT = COMMENT_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.VisibilityKind <em>Visibility Kind</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -120472,7 +120689,7 @@ public interface SysMLPackage extends EPackage {
 	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getVisibilityKind()
 	 * @generated
 	 */
-	int VISIBILITY_KIND = 164;
+	int VISIBILITY_KIND = 165;
 
 	/**
 	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.FeatureDirectionKind <em>Feature Direction Kind</em>}' enum.
@@ -120482,7 +120699,7 @@ public interface SysMLPackage extends EPackage {
 	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getFeatureDirectionKind()
 	 * @generated
 	 */
-	int FEATURE_DIRECTION_KIND = 165;
+	int FEATURE_DIRECTION_KIND = 166;
 
 
 	/**
@@ -120493,7 +120710,7 @@ public interface SysMLPackage extends EPackage {
 	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getTriggerKind()
 	 * @generated
 	 */
-	int TRIGGER_KIND = 170;
+	int TRIGGER_KIND = 171;
 
 	/**
 	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.PortionKind <em>Portion Kind</em>}' enum.
@@ -120503,7 +120720,7 @@ public interface SysMLPackage extends EPackage {
 	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getPortionKind()
 	 * @generated
 	 */
-	int PORTION_KIND = 166;
+	int PORTION_KIND = 167;
 
 	/**
 	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.TransitionFeatureKind <em>Transition Feature Kind</em>}' enum.
@@ -120513,7 +120730,7 @@ public interface SysMLPackage extends EPackage {
 	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getTransitionFeatureKind()
 	 * @generated
 	 */
-	int TRANSITION_FEATURE_KIND = 169;
+	int TRANSITION_FEATURE_KIND = 170;
 
 	/**
 	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.StateSubactionKind <em>State Subaction Kind</em>}' enum.
@@ -120523,7 +120740,7 @@ public interface SysMLPackage extends EPackage {
 	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getStateSubactionKind()
 	 * @generated
 	 */
-	int STATE_SUBACTION_KIND = 168;
+	int STATE_SUBACTION_KIND = 169;
 
 	/**
 	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.RequirementConstraintKind <em>Requirement Constraint Kind</em>}' enum.
@@ -120533,7 +120750,7 @@ public interface SysMLPackage extends EPackage {
 	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getRequirementConstraintKind()
 	 * @generated
 	 */
-	int REQUIREMENT_CONSTRAINT_KIND = 167;
+	int REQUIREMENT_CONSTRAINT_KIND = 168;
 
 	/**
 	 * Returns the meta object for class '{@link org.omg.sysml.lang.sysml.Subclassification <em>Subclassification</em>}'.
@@ -121792,6 +122009,16 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getPackage__CheckCondition__Element_Expression();
+
+	/**
+	 * Returns the meta object for class '{@link org.omg.sysml.lang.sysml.PrefixComment <em>Prefix Comment</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Prefix Comment</em>'.
+	 * @see org.omg.sysml.lang.sysml.PrefixComment
+	 * @generated
+	 */
+	EClass getPrefixComment();
 
 	/**
 	 * Returns the meta object for class '{@link org.omg.sysml.lang.sysml.Import <em>Import</em>}'.
@@ -127717,6 +127944,16 @@ public interface SysMLPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation PACKAGE___CHECK_CONDITION__ELEMENT_EXPRESSION = eINSTANCE.getPackage__CheckCondition__Element_Expression();
+
+		/**
+		 * The meta object literal for the '{@link org.omg.sysml.lang.sysml.impl.PrefixCommentImpl <em>Prefix Comment</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.omg.sysml.lang.sysml.impl.PrefixCommentImpl
+		 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getPrefixComment()
+		 * @generated
+		 */
+		EClass PREFIX_COMMENT = eINSTANCE.getPrefixComment();
 
 		/**
 		 * The meta object literal for the '{@link org.omg.sysml.lang.sysml.impl.ImportImpl <em>Import</em>}' class.

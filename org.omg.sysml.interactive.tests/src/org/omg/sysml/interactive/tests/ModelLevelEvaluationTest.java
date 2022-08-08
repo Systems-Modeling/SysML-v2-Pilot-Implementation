@@ -178,13 +178,12 @@ public class ModelLevelEvaluationTest extends SysMLInteractiveTest {
 		checkExpressionIsModelLevelEvaluable(instance, "not true");
 		checkExpressionIsModelLevelEvaluable(instance, "true & false");
 		checkExpressionIsModelLevelEvaluable(instance, "true | false");
-		checkExpressionIsModelLevelEvaluable(instance, "true ^^ false");
-		checkExpressionIsModelLevelEvaluable(instance, "true && false");
-		checkExpressionIsModelLevelEvaluable(instance, "true || false");
 		checkExpressionIsModelLevelEvaluable(instance, "true xor false");
 		checkExpressionIsModelLevelEvaluable(instance, "true and false");
 		checkExpressionIsModelLevelEvaluable(instance, "true or false");
 		checkExpressionIsModelLevelEvaluable(instance, "true implies false");
+		checkExpressionIsModelLevelEvaluable(instance, "if 1 > 2? true else false");
+		checkExpressionIsModelLevelEvaluable(instance, "true ?? false");
 	}
 
 	@Test
@@ -197,23 +196,23 @@ public class ModelLevelEvaluationTest extends SysMLInteractiveTest {
 
 	@Test
 	public void testNonModelLevelEvaluability() throws Exception {
-		eval("calc def f(x);");
+		eval("calc def f{ in x; }");
 		checkExpressionNotModelLevelEvaluable(null, "f(3 + 4)");
 	}
 	
 	@Test
 	public void testBooleanEvaluation() throws Exception {
-		assertEquals(false, evaluateBooleanValue(null, null, "!true"));
 		assertEquals(false, evaluateBooleanValue(null, null, "not true"));
 		assertEquals(false, evaluateBooleanValue(null, null, "true & false"));
 		assertEquals(true, evaluateBooleanValue(null, null, "true | false"));
-		assertEquals(true, evaluateBooleanValue(null, null, "true ^^ false"));
-		assertEquals(false, evaluateBooleanValue(null, null, "true && false"));
-		assertEquals(true, evaluateBooleanValue(null, null, "true || false"));
 		assertEquals(true, evaluateBooleanValue(null, null, "true xor false"));
 		assertEquals(false, evaluateBooleanValue(null, null, "true and false"));
 		assertEquals(true, evaluateBooleanValue(null, null, "true or false"));
 		assertEquals(false, evaluateBooleanValue(null, null, "true implies false"));
+		assertEquals(false, evaluateBooleanValue(null, null, "true implies false"));
+		assertEquals(false, evaluateBooleanValue(null, null, "if 1 > 2? true else false"));
+		assertEquals(true, evaluateBooleanValue(null, null, "true ?? false"));
+		assertEquals(false, evaluateBooleanValue(null, null, "null ?? false"));
 	}
 	
 	@Test

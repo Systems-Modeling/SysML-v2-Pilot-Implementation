@@ -67,6 +67,7 @@ import org.omg.sysml.lang.sysml.MetadataFeature
 import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil
 import org.omg.sysml.util.ImplicitGeneralizationMap
 import org.omg.sysml.lang.sysml.OwningMembership
+import org.omg.sysml.lang.sysml.PrefixComment
 
 /**
  * This class contains custom validation rules. 
@@ -131,6 +132,14 @@ class KerMLValidator extends AbstractKerMLValidator {
 	
 	@Inject
 	IScopeProvider scopeProvider
+	
+	/**
+	 * This is a temporary warning about the removal of prefix comments.
+	 */
+	@Check
+	def checkPrefixComment(PrefixComment c) {
+		warning("Prefix comments no longer supported; use doc comments instead", c, null, "Unsupported prefix comment");
+	}
 		
 	@Check
 	def checkElement(Element elm) {

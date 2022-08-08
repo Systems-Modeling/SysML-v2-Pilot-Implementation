@@ -8214,4 +8214,7 @@ endif</body>
       </ownedParameter>
     </ownedOperation>
   </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="__d5hUBN-Ee2d7rL-nK2ouQ" name="PrefixComment">
+    <generalization xmi:id="_H1zAYBN_Ee2d7rL-nK2ouQ" general="40a5660e-4260-4601-ac14-6da99c5449cf"/>
+  </packagedElement>
 </uml:Model>

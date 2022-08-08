@@ -1,8 +1,10 @@
-/**
- * This package contains a library model of the semantics of state-based behavior,
- * including the performance of (behavioral) states and the transitions between them.
- */
 package StatePerformances {
+	doc
+	/*
+	 * This package contains a library model of the semantics of state-based behavior,
+	 * including the performance of (behavioral) states and the transitions between them.
+	 */
+
 	private import ScalarValues::Boolean;
 	private import TransitionPerformances::TransitionPerformance;
 	private import Occurrences::HappensDuring;
@@ -14,13 +16,17 @@ package StatePerformances {
 		feature isTriggerDuring: Boolean;
 		feature isAcceptFirst: Boolean;
 
-		/**
-		 * All modeler-defined steps must subset this.
-		 */
-		abstract step middle[1..*];
+		abstract step middle[1..*] {
+			doc
+			/*
+			 * All modeler-defined steps must subset this.
+			 */
+		}
 		
-		// Note: All steps are implicitly considered to be enclosedPerformances,
-		// and hence happening during the state performance.
+		/* 
+		 * Note: All steps are implicitly considered to be enclosedPerformances,
+		 * and hence happening during the state performance.
+		 */
 		
 		step entry[1];
 		step do[1] subsets middle;
@@ -38,11 +44,11 @@ package StatePerformances {
 		
 		private succession do[1] then accepted.endShot[0..1];
 		private succession acceptFirst first accepted.endShot[0..1] then acceptable.endShot[*] {
-			inv { !isAcceptFirst | size(acceptFirst) == size(acceptable) }
+			inv { isAcceptFirst implies size(acceptFirst) == size(acceptable) }
 		}
 		private succession acceptable::endShot[*] then exit[1];
 		private connector triggerDuring: HappensDuring from acceptable.endShot[*] to self[1] {
-			inv { !isTriggerDuring | !isEmpty(triggerDuring) }
+			inv { isTriggerDuring implies notEmpty(triggerDuring) }
 		}
 	}
 	
@@ -59,7 +65,7 @@ package StatePerformances {
 		
 		private binding transitionLinkSource.accepted[0..1] = trigger[1];
 		private connector linkAcceptFirst: HappensDuring from transitionLinkSource[0..1] to trigger.endShot[*] {
-			inv { !transitionLinkSource.isAcceptFirst | size(linkAcceptFirst) == size(trigger) }
+			inv { transitionLinkSource.isAcceptFirst implies size(linkAcceptFirst) == size(trigger) }
 		}
 		
 		private succession all transitionLinkSource.middle[1..*] then guard[*];

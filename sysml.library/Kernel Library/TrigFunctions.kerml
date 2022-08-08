@@ -1,17 +1,19 @@
-/**
- * This package defines basic trigonometric functions on real numbers.
- */
 package TrigFunctions {
+	doc
+	/*
+	 * This package defines basic trigonometric functions on real numbers.
+	 */
+
 	import ScalarValues::Real;
 	
 	feature pi : Real;
 	inv piPrecision { RealFunctions::round(pi * 1E20) == 314159265358979323846.0 }
 	
-	function deg(theta_rad : Real) {
-		theta_rad * 180 / pi
+	function deg { in theta_rad : Real[1];
+		return : Real[1] = theta_rad * 180 / pi;
 	}
-	function rad(theta_deg : Real) {
-		theta_deg * pi / 180
+	function rad { in theta_deg : Real;
+		return : Real[1] = theta_deg * pi / 180;
 	}
 	
 	datatype UnitBoundedReal :> Real {
@@ -19,16 +21,16 @@ package TrigFunctions {
 		inv unitBound { -1.0 <= x & x <= 1.0 }
 	}
 	
-	function sin(theta : Real) : UnitBoundedReal;
-	function cos(theta : Real) : UnitBoundedReal;
-	function tan(theta : Real) : Real {
-		sin(theta) / cos(theta)
+	function sin { in theta : Real[1]; return : UnitBoundedReal[1]; }
+	function cos { in theta : Real[1]; return : UnitBoundedReal[1]; }
+	function tan { in theta : Real[1]; 
+        return : Real = sin(theta) / cos(theta);
 	}
-	function cot(theta : Real) : Real {
-		cos(theta) / sin(theta)
+	function cot { in theta : Real; 
+        return : Real = cos(theta) / sin(theta);
 	}
 	
-	function arcsin(x : UnitBoundedReal) : Real;
-	function arccos(x : UnitBoundedReal) : Real;
-	function arctan(x : Real) : Real;
+	function arcsin { in x : UnitBoundedReal[1]; return : Real[1]; }
+	function arccos { in x : UnitBoundedReal[1]; return : Real[1]; }
+	function arctan { in x : Real[1]; return : Real[1]; }
 }

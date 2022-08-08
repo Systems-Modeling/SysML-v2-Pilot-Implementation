@@ -140,6 +140,7 @@ import org.omg.sysml.lang.sysml.PortDefinition;
 import org.omg.sysml.lang.sysml.PortUsage;
 import org.omg.sysml.lang.sysml.PortioningFeature;
 import org.omg.sysml.lang.sysml.Predicate;
+import org.omg.sysml.lang.sysml.PrefixComment;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.ReferenceUsage;
 import org.omg.sysml.lang.sysml.Relationship;
@@ -2343,6 +2344,15 @@ public class SysMLSwitch<T> extends Switch<T> {
 				T result = casePackage(package_);
 				if (result == null) result = caseNamespace(package_);
 				if (result == null) result = caseElement(package_);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SysMLPackage.PREFIX_COMMENT: {
+				PrefixComment prefixComment = (PrefixComment)theEObject;
+				T result = casePrefixComment(prefixComment);
+				if (result == null) result = caseComment(prefixComment);
+				if (result == null) result = caseAnnotatingElement(prefixComment);
+				if (result == null) result = caseElement(prefixComment);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -4687,6 +4697,21 @@ public class SysMLSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T casePackage(org.omg.sysml.lang.sysml.Package object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Prefix Comment</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Prefix Comment</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casePrefixComment(PrefixComment object) {
 		return null;
 	}
 

@@ -28,6 +28,7 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -61,14 +62,24 @@ import org.omg.sysml.util.ElementUtil;
  */
 public class MembershipImpl extends RelationshipImpl implements Membership {
 	/**
-	 * The default value of the '{@link #getMemberElementId() <em>Member Element Id</em>}' attribute.
+	 * The cached setting delegate for the '{@link #getMemberElementId() <em>Member Element Id</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getMemberElementId()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String MEMBER_ELEMENT_ID_EDEFAULT = null;
+	protected EStructuralFeature.Internal.SettingDelegate MEMBER_ELEMENT_ID__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.MEMBERSHIP__MEMBER_ELEMENT_ID).getSettingDelegate();
+
+	/**
+	 * The cached setting delegate for the '{@link #getMembershipOwningNamespace() <em>Membership Owning Namespace</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMembershipOwningNamespace()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate MEMBERSHIP_OWNING_NAMESPACE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.MEMBERSHIP__MEMBERSHIP_OWNING_NAMESPACE).getSettingDelegate();
 
 	/**
 	 * The default value of the '{@link #getMemberShortName() <em>Member Short Name</em>}' attribute.
@@ -281,22 +292,21 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public String getMemberElementId() {
-		Element memberElement = getMemberElement();
-		return memberElement == null? null: memberElement.getElementId();
+		return (String)MEMBER_ELEMENT_ID__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setMemberElementId(String newMemberElementId) {
-		throw new UnsupportedOperationException();
+		MEMBER_ELEMENT_ID__ESETTING_DELEGATE.dynamicSet(this, null, 0, newMemberElementId);
 	}
 
 	/**
@@ -329,28 +339,26 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 	 */
 	@Override
 	public Namespace getMembershipOwningNamespace() {
-		Namespace membershipOwningNamespace = basicGetMembershipOwningNamespace();
-		return membershipOwningNamespace != null && membershipOwningNamespace.eIsProxy() ? (Namespace)eResolveProxy((InternalEObject)membershipOwningNamespace) : membershipOwningNamespace;
+		return (Namespace)MEMBERSHIP_OWNING_NAMESPACE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Namespace basicGetMembershipOwningNamespace() {
-		Element owningRelatedElement = super.getOwningRelatedElement();
-		return owningRelatedElement instanceof Namespace? (Namespace)owningRelatedElement: null;
+		return (Namespace)MEMBERSHIP_OWNING_NAMESPACE__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setMembershipOwningNamespace(Namespace newMembershipOwningNamespace) {
-		super.basicSetOwningRelatedElement(newMembershipOwningNamespace, null);
+		MEMBERSHIP_OWNING_NAMESPACE__ESETTING_DELEGATE.dynamicSet(this, null, 0, newMembershipOwningNamespace);
 	}
 
 	/**
@@ -576,7 +584,7 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case SysMLPackage.MEMBERSHIP__MEMBER_ELEMENT_ID:
-				setMemberElementId(MEMBER_ELEMENT_ID_EDEFAULT);
+				MEMBER_ELEMENT_ID__ESETTING_DELEGATE.dynamicUnset(this, null, 0);
 				return;
 			case SysMLPackage.MEMBERSHIP__MEMBERSHIP_OWNING_NAMESPACE:
 				setMembershipOwningNamespace((Namespace)null);
@@ -612,7 +620,7 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 			case SysMLPackage.MEMBERSHIP__TARGET:
 				return isSetTarget();
 			case SysMLPackage.MEMBERSHIP__MEMBER_ELEMENT_ID:
-				return MEMBER_ELEMENT_ID_EDEFAULT == null ? getMemberElementId() != null : !MEMBER_ELEMENT_ID_EDEFAULT.equals(getMemberElementId());
+				return MEMBER_ELEMENT_ID__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.MEMBERSHIP__MEMBERSHIP_OWNING_NAMESPACE:
 				return isSetMembershipOwningNamespace();
 			case SysMLPackage.MEMBERSHIP__MEMBER_SHORT_NAME:

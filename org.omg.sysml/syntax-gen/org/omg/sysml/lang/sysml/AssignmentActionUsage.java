@@ -39,6 +39,7 @@ public interface AssignmentActionUsage extends ActionUsage {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getAssignmentActionUsage_TargetArgument()
 	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='assignmentAction'"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	Expression getTargetArgument();
@@ -65,6 +66,7 @@ public interface AssignmentActionUsage extends ActionUsage {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getAssignmentActionUsage_ValueExpression()
 	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='assigningAction'"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	Expression getValueExpression();
@@ -98,6 +100,7 @@ public interface AssignmentActionUsage extends ActionUsage {
 	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='assignment'"
 	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	Feature getReferent();

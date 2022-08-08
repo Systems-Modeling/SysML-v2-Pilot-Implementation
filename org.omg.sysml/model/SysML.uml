@@ -699,7 +699,7 @@ else
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="314714f4-972a-4011-8ef9-46147211a8b9" name="" visibility="public"/>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="fa1b3d41-6155-4380-96c1-966b0d6bf116" name="" visibility="public" value="*"/>
     </ownedAttribute>
-    <ownedAttribute xmi:id="6d75f458-5fe0-4c99-8e0f-a41c252b972c" name="directedUsage" visibility="public" type="46068009-84f1-4001-a9bb-fc03fd6a381c" isOrdered="true" isDerived="true" subsettedProperty="db471ae1-04e1-47b7-b6bc-2d40afdda735 ee47daa4-a81f-4204-b23b-bfc54283691f" association="820df8ab-51c8-4d5a-bb66-70d583ab4d1b">
+    <ownedAttribute xmi:id="6d75f458-5fe0-4c99-8e0f-a41c252b972c" name="directedUsage" visibility="public" type="46068009-84f1-4001-a9bb-fc03fd6a381c" isOrdered="true" isDerived="true" subsettedProperty="ee47daa4-a81f-4204-b23b-bfc54283691f db471ae1-04e1-47b7-b6bc-2d40afdda735" association="820df8ab-51c8-4d5a-bb66-70d583ab4d1b">
       <ownedComment xmi:id="d585e16c-9cda-4878-870f-4b7676d01022" annotatedElement="6d75f458-5fe0-4c99-8e0f-a41c252b972c">
         <body>&lt;p>The &lt;code>usages&lt;/code> of this Definition that are &lt;code>directedFeatures&lt;/code>.&lt;/p>
 </body>
@@ -1890,7 +1890,7 @@ else
       <body>&lt;p>A StakeholderMembership is a ParameterMembership that identifies a PartUsage as a stakeholder parameter, which specifies a role played by an entity with Concerns framed by the parametered requirement.&lt;/p></body>
     </ownedComment>
     <generalization xmi:id="1c87ed36-bc7f-4a7b-b78d-4ff6bc60b07c" general="fa0fe3ef-c7be-41f2-a235-78f97a4e35cb"/>
-    <ownedAttribute xmi:id="1cfd3353-ec12-48ee-a8e6-e4db271172d0" name="ownedStakeholderParameter" visibility="public" type="8bedee11-2930-45cc-ae64-110be5d577c7" aggregation="composite" subsettedProperty="34d5222b-28dc-443a-bcaa-396d3b3ec6aa" association="f69bfec2-1553-42db-9c1a-edc051087e18">
+    <ownedAttribute xmi:id="1cfd3353-ec12-48ee-a8e6-e4db271172d0" name="ownedStakeholderParameter" visibility="public" type="8bedee11-2930-45cc-ae64-110be5d577c7" aggregation="composite" redefinedProperty="34d5222b-28dc-443a-bcaa-396d3b3ec6aa" association="f69bfec2-1553-42db-9c1a-edc051087e18">
       <ownedComment xmi:id="34454b4c-8491-4eb8-baaa-b28ee366daf7" annotatedElement="1cfd3353-ec12-48ee-a8e6-e4db271172d0">
         <body>&lt;p>The PartUsage specifying the stakeholder.&lt;/p></body>
       </ownedComment>
@@ -6440,7 +6440,7 @@ endif</body>
 </body>
     </ownedComment>
     <generalization xmi:id="499b05eb-c4f9-4ba9-8b94-2e549a478f22" general="fff854cf-ff36-41d3-94f6-fb13f8063186"/>
-    <ownedAttribute xmi:id="e81d47df-5f0a-4544-bfe7-9955c8a986fc" name="relatedElement" visibility="public" type="fff854cf-ff36-41d3-94f6-fb13f8063186" isOrdered="true" isUnique="false" isDerived="true" isDerivedUnion="true" association="855879d3-305e-463c-9bc2-73edc52e6d37">
+    <ownedAttribute xmi:id="e81d47df-5f0a-4544-bfe7-9955c8a986fc" name="relatedElement" visibility="public" type="fff854cf-ff36-41d3-94f6-fb13f8063186" isOrdered="true" isUnique="false" isDerived="true" association="855879d3-305e-463c-9bc2-73edc52e6d37">
       <ownedComment xmi:id="bdc92a46-d10b-4bbd-906c-8d87e9282586" annotatedElement="e81d47df-5f0a-4544-bfe7-9955c8a986fc">
         <body>&lt;p>The Elements that are related by this Relationship, derived as the union of the &lt;tt>source&lt;/tt> and &lt;tt>target&lt;/tt> Elements of the Relationship. Every Relationship must have at least two &lt;tt>relatedElements&lt;/tt>.&lt;/p></body>
       </ownedComment>
@@ -6851,7 +6851,7 @@ endif</body>
     </ownedRule>
     <generalization xmi:id="67a6c9bd-9a31-448a-995c-64fa8c61ab9f" general="124e57c2-e7ac-4bbd-8ae3-b74186c4259c"/>
     <generalization xmi:id="f34a1ef1-4ecd-40c8-becb-22fa68055c46" general="d00373f6-e7de-4c9f-9b9a-35937ead2cb2"/>
-    <ownedAttribute xmi:id="610b8f39-4aed-4ab9-b580-ee8d04ddf349" name="relatedFeature" visibility="public" type="124e57c2-e7ac-4bbd-8ae3-b74186c4259c" isOrdered="true" isUnique="false" isDerived="true" isDerivedUnion="true" redefinedProperty="e81d47df-5f0a-4544-bfe7-9955c8a986fc" association="714450ea-a8c2-4175-9fcc-8df756333746">
+    <ownedAttribute xmi:id="610b8f39-4aed-4ab9-b580-ee8d04ddf349" name="relatedFeature" visibility="public" type="124e57c2-e7ac-4bbd-8ae3-b74186c4259c" isOrdered="true" isUnique="false" isDerived="true" redefinedProperty="e81d47df-5f0a-4544-bfe7-9955c8a986fc" association="714450ea-a8c2-4175-9fcc-8df756333746">
       <ownedComment xmi:id="562ee1a4-2c46-4672-a660-3634fa13e117" annotatedElement="610b8f39-4aed-4ab9-b580-ee8d04ddf349">
         <body>&lt;p>The Features that are related by this Connector considered as a Relationship, derived as the subsetted Features of the &lt;code>connectorEnds&lt;/code> of the Connector.&lt;/p>
 </body>
@@ -7087,7 +7087,7 @@ endif</body>
 </body>
     </ownedComment>
     <generalization xmi:id="9f847177-ed0d-4b38-b84b-84d4d62fa7bf" general="2b6b71d4-57a9-4df4-badc-6ee2bfd7f8ba"/>
-    <ownedAttribute xmi:id="7413c86e-1cfb-4727-b275-a5fafde797fa" name="expression" visibility="public" type="b32c4dd3-88a2-4418-b414-e75ceb0bb432" isDerived="true" redefinedProperty="c559f3c7-96bd-45da-a2c7-1770af2759aa" association="1b51ec71-10a2-4699-bfdc-e890d607b68b">
+    <ownedAttribute xmi:id="7413c86e-1cfb-4727-b275-a5fafde797fa" name="expression" visibility="public" type="b32c4dd3-88a2-4418-b414-e75ceb0bb432" isDerived="true" subsettedProperty="c559f3c7-96bd-45da-a2c7-1770af2759aa" association="1b51ec71-10a2-4699-bfdc-e890d607b68b">
       <ownedComment xmi:id="c77e75fd-e18d-433d-bf92-25a38f1d12b9" annotatedElement="7413c86e-1cfb-4727-b275-a5fafde797fa">
         <body>&lt;p>The Expressions that are steps in the calculation of the &lt;code>result&lt;/code> of this Function.&lt;/p>
 </body>
@@ -7237,7 +7237,7 @@ valueConnector.featuringType = featureWithValue.featuringType</body>
       </specification>
     </ownedRule>
     <generalization xmi:id="0e977c83-fb3e-4f9a-a38b-b846cb2c8446" general="4e4d3acc-bd44-41fc-9b96-5eff8ab0cf5d"/>
-    <ownedAttribute xmi:id="6507856f-a68c-4c3c-b4b5-f6a17faac658" name="featureWithValue" visibility="public" type="124e57c2-e7ac-4bbd-8ae3-b74186c4259c" subsettedProperty="cfd14843-bce5-4ee1-8fb3-a2fdd0237258" association="763cb753-fe4d-496a-a46f-1fe9f5e63a66">
+    <ownedAttribute xmi:id="6507856f-a68c-4c3c-b4b5-f6a17faac658" name="featureWithValue" visibility="public" type="124e57c2-e7ac-4bbd-8ae3-b74186c4259c" isDerived="true" subsettedProperty="cfd14843-bce5-4ee1-8fb3-a2fdd0237258" association="763cb753-fe4d-496a-a46f-1fe9f5e63a66">
       <ownedComment xmi:id="ed42fb2f-6cb0-4b99-9cea-d5b532c49a38" annotatedElement="6507856f-a68c-4c3c-b4b5-f6a17faac658">
         <body>&lt;p>The Feature to be provided a value.&lt;/p>
 </body>
@@ -7275,7 +7275,7 @@ valueConnector.featuringType = featureWithValue.featuringType</body>
     </ownedAttribute>
   </packagedElement>
   <packagedElement xmi:type="uml:Association" xmi:id="763cb753-fe4d-496a-a46f-1fe9f5e63a66" name="" visibility="public" memberEnd="6507856f-a68c-4c3c-b4b5-f6a17faac658 52cd36c4-3937-4c59-a74e-ebbc2fb3c1bf">
-    <ownedEnd xmi:id="52cd36c4-3937-4c59-a74e-ebbc2fb3c1bf" name="valuation" visibility="public" type="dbb63699-e461-4532-aa45-7e1a10f1f2c5" subsettedProperty="ec58580f-851c-4202-a5c6-27b2ec9ac376" association="763cb753-fe4d-496a-a46f-1fe9f5e63a66">
+    <ownedEnd xmi:id="52cd36c4-3937-4c59-a74e-ebbc2fb3c1bf" name="valuation" visibility="public" type="dbb63699-e461-4532-aa45-7e1a10f1f2c5" isDerived="true" subsettedProperty="ec58580f-851c-4202-a5c6-27b2ec9ac376" association="763cb753-fe4d-496a-a46f-1fe9f5e63a66">
       <ownedComment xmi:id="37d42f85-c845-49ab-a995-e7a36ce05bdf" annotatedElement="52cd36c4-3937-4c59-a74e-ebbc2fb3c1bf">
         <body>&lt;p>The (at most one) &lt;code>ownedMembership&lt;/code> of this Feature that is the FeatureValue that provides the value of the Feature.&lt;/p></body>
       </ownedComment>
@@ -7458,7 +7458,7 @@ valueConnector.featuringType = featureWithValue.featuringType</body>
     </ownedRule>
     <generalization xmi:id="d7e6efad-8738-49d5-9752-358783b3af2b" general="c57280e7-ce5c-4959-96d9-7fa4e8e3e5da"/>
     <generalization xmi:id="30b704ca-516c-4961-abb4-5c1fc51a879b" general="d00373f6-e7de-4c9f-9b9a-35937ead2cb2"/>
-    <ownedAttribute xmi:id="d73d35b2-4798-48a1-8e2f-61265e3d8812" name="relatedType" visibility="public" type="4e5f8972-c473-4bc0-8edf-bb508993d08e" isOrdered="true" isUnique="false" isDerived="true" isDerivedUnion="true" redefinedProperty="e81d47df-5f0a-4544-bfe7-9955c8a986fc" association="f2b2b3cf-58f6-4ee0-807f-71f4c57e57d3">
+    <ownedAttribute xmi:id="d73d35b2-4798-48a1-8e2f-61265e3d8812" name="relatedType" visibility="public" type="4e5f8972-c473-4bc0-8edf-bb508993d08e" isOrdered="true" isUnique="false" isDerived="true" redefinedProperty="e81d47df-5f0a-4544-bfe7-9955c8a986fc" association="f2b2b3cf-58f6-4ee0-807f-71f4c57e57d3">
       <ownedComment xmi:id="52a1f6e0-54e6-42f8-91e1-8a6faf065261" annotatedElement="d73d35b2-4798-48a1-8e2f-61265e3d8812">
         <body>&lt;p>The &lt;code>types&lt;/code> of the &lt;code>endFeatures&lt;/code> of the Association, which are the &lt;code>relatedElements&lt;/code> of the Association considered as a Relationship.&lt;/p>
 </body>

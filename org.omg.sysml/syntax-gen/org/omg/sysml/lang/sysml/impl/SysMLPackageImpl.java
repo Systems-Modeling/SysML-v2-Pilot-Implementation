@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -8642,7 +8642,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		initEReference(getSuccession_GuardExpression(), this.getExpression(), null, "guardExpression", null, 0, -1, Succession.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
 
 		initEClass(connectorEClass, Connector.class, "Connector", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getConnector_RelatedFeature(), this.getFeature(), null, "relatedFeature", null, 2, -1, Connector.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEReference(getConnector_RelatedFeature(), this.getFeature(), null, "relatedFeature", null, 2, -1, Connector.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEReference(getConnector_Association(), this.getAssociation(), null, "association", null, 1, -1, Connector.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getConnector_IsDirected(), theTypesPackage.getBoolean(), "isDirected", "false", 1, 1, Connector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getConnector_ConnectorEnd(), this.getFeature(), null, "connectorEnd", null, 2, -1, Connector.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
@@ -8650,7 +8650,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		initEReference(getConnector_TargetFeature(), this.getFeature(), null, "targetFeature", null, 1, -1, Connector.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
 
 		initEClass(associationEClass, Association.class, "Association", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getAssociation_RelatedType(), this.getType(), null, "relatedType", null, 2, -1, Association.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEReference(getAssociation_RelatedType(), this.getType(), null, "relatedType", null, 2, -1, Association.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEReference(getAssociation_SourceType(), this.getType(), null, "sourceType", null, 0, 1, Association.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
 		initEReference(getAssociation_TargetType(), this.getType(), null, "targetType", null, 1, -1, Association.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
 		initEReference(getAssociation_AssociationEnd(), this.getFeature(), null, "associationEnd", null, 2, -1, Association.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
@@ -8974,7 +8974,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		initEReference(getMultiplicityRange_Bound(), this.getExpression(), null, "bound", null, 1, 2, MultiplicityRange.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
 		initEClass(featureValueEClass, FeatureValue.class, "FeatureValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getFeatureValue_FeatureWithValue(), this.getFeature(), null, "featureWithValue", null, 1, 1, FeatureValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getFeatureValue_FeatureWithValue(), this.getFeature(), null, "featureWithValue", null, 1, 1, FeatureValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
 		initEReference(getFeatureValue_Value(), this.getExpression(), null, "value", null, 1, 1, FeatureValue.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getFeatureValue_IsInitial(), theTypesPackage.getBoolean(), "isInitial", "false", 1, 1, FeatureValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getFeatureValue_IsDefault(), theTypesPackage.getBoolean(), "isDefault", "false", 1, 1, FeatureValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
@@ -9066,14 +9066,34 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		createResource(eNS_URI);
 
 		// Create annotations
+		// http://www.eclipse.org/emf/2002/Ecore
+		createEcoreAnnotations();
 		// subsets
 		createSubsetsAnnotations();
+		// http://www.omg.org/spec/SysML
+		createSysMLAnnotations();
 		// http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName
 		createEmofAnnotations();
 		// redefines
 		createRedefinesAnnotations();
 		// union
 		createUnionAnnotations();
+	}
+
+	/**
+	 * Initializes the annotations for <b>http://www.eclipse.org/emf/2002/Ecore</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createEcoreAnnotations() {
+		String source = "http://www.eclipse.org/emf/2002/Ecore";
+		addAnnotation
+		  (this,
+		   source,
+		   new String[] {
+			   "settingDelegates", "http://www.omg.org/spec/SysML"
+		   });
 	}
 
 	/**
@@ -9502,14 +9522,6 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 			 URI.createURI(eNS_URI).appendFragment("//Step/behavior")
 		   });
 		addAnnotation
-		  (getFunction_Expression(),
-		   source,
-		   new String[] {
-		   },
-		   new URI[] {
-			 URI.createURI(eNS_URI).appendFragment("//Behavior/step")
-		   });
-		addAnnotation
 		  (getConnector_RelatedFeature(),
 		   source,
 		   new String[] {
@@ -9821,6 +9833,14 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   },
 		   new URI[] {
 			 URI.createURI(eNS_URI).appendFragment("//AssertConstraintUsage/assertedConstraint")
+		   });
+		addAnnotation
+		  (getStakeholderMembership_OwnedStakeholderParameter(),
+		   source,
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("//ParameterMembership/ownedMemberParameter")
 		   });
 		addAnnotation
 		  (getIncludeUseCaseUsage_UseCaseIncluded(),
@@ -10659,8 +10679,8 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   new String[] {
 		   },
 		   new URI[] {
-			 URI.createURI(eNS_URI).appendFragment("//Definition/usage"),
-			 URI.createURI(eNS_URI).appendFragment("//Type/directedFeature")
+			 URI.createURI(eNS_URI).appendFragment("//Type/directedFeature"),
+			 URI.createURI(eNS_URI).appendFragment("//Definition/usage")
 		   });
 		addAnnotation
 		  (getDefinition_Usage(),
@@ -10943,6 +10963,14 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   new URI[] {
 			 URI.createURI(eNS_URI).appendFragment("//Behavior/parameter"),
 			 URI.createURI(eNS_URI).appendFragment("//Type/output")
+		   });
+		addAnnotation
+		  (getFunction_Expression(),
+		   source,
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("//Behavior/step")
 		   });
 		addAnnotation
 		  (getFunction_Result(),
@@ -11341,14 +11369,6 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   },
 		   new URI[] {
 			 URI.createURI(eNS_URI).appendFragment("//Type/ownedFeature")
-		   });
-		addAnnotation
-		  (getStakeholderMembership_OwnedStakeholderParameter(),
-		   source,
-		   new String[] {
-		   },
-		   new URI[] {
-			 URI.createURI(eNS_URI).appendFragment("//ParameterMembership/ownedMemberParameter")
 		   });
 		addAnnotation
 		  (getConjugatedPortTyping_PortDefinition(),
@@ -13052,7 +13072,872 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   new String[] {
 		   });
 		addAnnotation
+		  (getMultiplicityRange_Bound(),
+		   source,
+		   new String[] {
+		   });
+	}
+
+	/**
+	 * Initializes the annotations for <b>http://www.omg.org/spec/SysML</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createSysMLAnnotations() {
+		String source = "http://www.omg.org/spec/SysML";
+		addAnnotation
+		  (getUsage_NestedUsage(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getUsage_OwningUsage(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getUsage_OwningDefinition(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getUsage_NestedPort(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getUsage_NestedAction(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getUsage_NestedState(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getUsage_NestedConstraint(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getUsage_NestedTransition(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getUsage_NestedRequirement(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getUsage_NestedCalculation(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getUsage_DirectedUsage(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getUsage_NestedCase(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getUsage_NestedAnalysisCase(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getUsage_VariantMembership(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getUsage_Usage(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getUsage_Variant(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getUsage_NestedReference(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getUsage_NestedConnection(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getUsage_NestedItem(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getUsage_NestedPart(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getUsage_NestedInterface(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getUsage_NestedAttribute(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getUsage_NestedView(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getUsage_NestedViewpoint(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getUsage_NestedRendering(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getUsage_NestedVerificationCase(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getUsage_NestedEnumeration(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getUsage_NestedAllocation(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getUsage_NestedConcern(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getUsage_NestedOccurrence(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getUsage_Definition(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getUsage_NestedUseCase(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getUsage_IsReference(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getUsage_NestedFlow(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getFeature_OwnedTypeFeaturing(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getFeature_OwningFeatureMembership(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getFeature_OwningType(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getFeature_EndOwningType(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getFeature_Type(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getFeature_OwnedRedefinition(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getFeature_OwnedSubsetting(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getFeature_OwnedTyping(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getFeature_FeaturingType(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getFeature_ChainingFeature(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getFeature_OwnedFeatureInverting(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getFeature_OwnedFeatureChaining(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getFeature_IsNonunique(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getType_OwnedSpecialization(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getType_OwnedFeatureMembership(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getType_Feature(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getType_OwnedFeature(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getType_Input(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getType_Output(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getType_InheritedMembership(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getType_EndFeature(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getType_OwnedEndFeature(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getType_OwnedConjugator(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getType_IsConjugated(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getType_InheritedFeature(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getType_Multiplicity(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getType_DirectedFeature(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getType_OwnedDisjoining(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getType_FeatureMembership(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getNamespace_OwnedMembership(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getNamespace_OwnedMember(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getNamespace_OwnedImport(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getNamespace_Member(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getNamespace_ImportedMembership(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getElement_OwningMembership(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getElement_OwningNamespace(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getElement_Owner(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getElement_OwnedElement(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getElement_Documentation(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getElement_OwnedAnnotation(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getElement_TextualRepresentation(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getElement_EffectiveName(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getElement_QualifiedName(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getOwningMembership_OwnedMemberElementId(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getOwningMembership_OwnedMemberShortName(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getOwningMembership_OwnedMemberName(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getOwningMembership_OwnedMemberElement(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getMembership_MemberElementId(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getMembership_MembershipOwningNamespace(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
 		  (getRelationship_RelatedElement(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getDocumentation_DocumentedElement(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getAnnotatingElement_AnnotatedElement(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getAnnotation_OwningAnnotatedElement(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getTextualRepresentation_RepresentedElement(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getImport_ImportOwningNamespace(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getSpecialization_OwningType(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getFeatureMembership_OwnedMemberFeature(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getFeatureMembership_OwningType(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getTypeFeaturing_OwningFeatureOfType(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getConjugation_OwningType(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getDisjoining_OwningType(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getSubsetting_OwningFeature(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getFeatureTyping_OwningFeature(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getFeatureInverting_OwningFeature(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getFeatureChaining_FeatureChained(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getDefinition_OwnedPort(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getDefinition_DirectedUsage(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getDefinition_Usage(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getDefinition_OwnedState(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getDefinition_OwnedConstraint(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getDefinition_OwnedTransition(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getDefinition_OwnedRequirement(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getDefinition_OwnedCalculation(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getDefinition_VariantMembership(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getDefinition_OwnedAnalysisCase(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getDefinition_Variant(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getDefinition_OwnedCase(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getDefinition_OwnedReference(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getDefinition_OwnedAction(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getDefinition_OwnedConnection(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getDefinition_OwnedItem(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getDefinition_OwnedPart(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getDefinition_OwnedInterface(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getDefinition_OwnedAttribute(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getDefinition_OwnedView(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getDefinition_OwnedViewpoint(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getDefinition_OwnedRendering(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getDefinition_OwnedVerificationCase(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getDefinition_OwnedEnumeration(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getDefinition_OwnedAllocation(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getDefinition_OwnedConcern(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getDefinition_OwnedOccurrence(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getDefinition_OwnedUseCase(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getDefinition_OwnedFlow(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getDefinition_OwnedUsage(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getClassifier_OwnedSubclassification(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getSubclassification_OwningClassifier(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getPortUsage_PortDefinition(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getOccurrenceUsage_OccurrenceDefinition(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getOccurrenceUsage_PortioningFeature(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getOccurrenceUsage_IndividualDefinition(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getPortioningFeature_PortionKind(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getOccurrenceDefinition_LifeClass(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getPortDefinition_ConjugatedPortDefinition(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getConjugatedPortDefinition_OwnedPortConjugator(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getConjugatedPortDefinition_OriginalPortDefinition(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getPortConjugation_ConjugatedPortDefinition(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getStateUsage_StateDefinition(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getStateUsage_EntryAction(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getStateUsage_DoAction(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getStateUsage_ExitAction(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getActionUsage_ActionDefinition(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getStep_Behavior(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getStep_Parameter(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getBehavior_Step(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getBehavior_Parameter(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getConstraintUsage_ConstraintDefinition(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getBooleanExpression_Predicate(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getExpression_Function(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getExpression_Result(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getExpression_IsModelLevelEvaluable(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getFunction_Expression(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getFunction_Result(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getFunction_IsModelLevelEvaluable(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getTransitionUsage_Source(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getTransitionUsage_Target(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getTransitionUsage_TriggerAction(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getTransitionUsage_GuardExpression(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getTransitionUsage_EffectAction(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getTransitionUsage_Succession(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getAcceptActionUsage_ReceiverArgument(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getAcceptActionUsage_PayloadParameter(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getAcceptActionUsage_PayloadArgument(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getSuccession_TransitionStep(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getSuccession_TriggerStep(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getSuccession_EffectStep(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getSuccession_GuardExpression(),
 		   source,
 		   new String[] {
 		   });
@@ -13062,12 +13947,652 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   new String[] {
 		   });
 		addAnnotation
+		  (getConnector_Association(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getConnector_ConnectorEnd(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getConnector_SourceFeature(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getConnector_TargetFeature(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
 		  (getAssociation_RelatedType(),
 		   source,
 		   new String[] {
 		   });
 		addAnnotation
-		  (getMultiplicityRange_Bound(),
+		  (getAssociation_SourceType(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getAssociation_TargetType(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getAssociation_AssociationEnd(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getRequirementUsage_RequirementDefinition(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getRequirementUsage_Text(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getRequirementUsage_RequiredConstraint(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getRequirementUsage_AssumedConstraint(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getRequirementUsage_SubjectParameter(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getRequirementUsage_FramedConcern(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getRequirementUsage_ActorParameter(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getRequirementUsage_StakeholderParameter(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getRequirementDefinition_Text(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getRequirementDefinition_AssumedConstraint(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getRequirementDefinition_RequiredConstraint(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getRequirementDefinition_SubjectParameter(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getRequirementDefinition_FramedConcern(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getRequirementDefinition_ActorParameter(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getRequirementDefinition_StakeholderParameter(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getConcernUsage_ConcernDefinition(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getPartUsage_PartDefinition(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getItemUsage_ItemDefinition(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getCalculationUsage_CalculationDefinition(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getVariantMembership_OwnedVariantUsage(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getAnalysisCaseUsage_AnalysisAction(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getAnalysisCaseUsage_AnalysisCaseDefinition(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getAnalysisCaseUsage_ResultExpression(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getCaseUsage_ObjectiveRequirement(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getCaseUsage_CaseDefinition(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getCaseUsage_SubjectParameter(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getCaseUsage_ActorParameter(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getCaseDefinition_ObjectiveRequirement(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getCaseDefinition_SubjectParameter(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getCaseDefinition_ActorParameter(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getCalculationDefinition_Calculation(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getActionDefinition_Action(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getAnalysisCaseDefinition_AnalysisAction(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getAnalysisCaseDefinition_ResultExpression(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getInterfaceUsage_InterfaceDefinition(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getConnectionUsage_ConnectionDefinition(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getInterfaceDefinition_InterfaceEnd(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getConnectionDefinition_ConnectionEnd(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getAttributeUsage_AttributeDefinition(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getViewUsage_ViewDefinition(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getViewUsage_SatisfiedViewpoint(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getViewUsage_ExposedNamespace(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getViewUsage_ViewRendering(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getViewUsage_ViewCondition(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getViewUsage_ViewedElement(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getViewDefinition_View(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getViewDefinition_SatisfiedViewpoint(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getViewDefinition_ViewRendering(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getViewDefinition_ViewCondition(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getViewpointUsage_ViewpointDefinition(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getViewpointUsage_ViewpointStakeholder(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getViewpointDefinition_ViewpointStakeholder(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getRenderingUsage_RenderingDefinition(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getRenderingDefinition_Rendering(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getVerificationCaseUsage_VerificationCaseDefinition(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getVerificationCaseUsage_VerifiedRequirement(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getVerificationCaseDefinition_VerifiedRequirement(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getEnumerationUsage_EnumerationDefinition(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getEnumerationDefinition_EnumeratedValue(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getAllocationUsage_AllocationDefinition(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getAllocationDefinition_Allocation(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getUseCaseUsage_UseCaseDefinition(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getUseCaseUsage_IncludedUseCase(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getUseCaseDefinition_IncludedUseCase(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getItemFlow_ItemType(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getItemFlow_TargetInputFeature(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getItemFlow_SourceOutputFeature(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getItemFlow_ItemFlowEnd(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getItemFlow_ItemFeature(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getItemFlow_ItemFlowFeature(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getAssertConstraintUsage_AssertedConstraint(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getObjectiveMembership_OwnedObjectiveRequirement(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getSubjectMembership_OwnedSubjectParameter(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getParameterMembership_OwnedMemberParameter(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getActorMembership_OwnedActorParameter(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getFramedConcernMembership_OwnedConcern(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getFramedConcernMembership_ReferencedConcern(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getRequirementConstraintMembership_OwnedConstraint(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getRequirementConstraintMembership_ReferencedConstraint(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getSatisfyRequirementUsage_SatisfiedRequirement(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getSatisfyRequirementUsage_SatisfyingFeature(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getStakeholderMembership_OwnedStakeholderParameter(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getIncludeUseCaseUsage_UseCaseIncluded(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getPerformActionUsage_PerformedAction(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getEventOccurrenceUsage_EventOccurrence(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getConjugatedPortTyping_ConjugatedPortDefinition(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getStateDefinition_State(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getStateDefinition_EntryAction(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getStateDefinition_DoAction(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getStateDefinition_ExitAction(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getStateSubactionMembership_Action(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getTransitionFeatureMembership_TransitionFeature(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getExhibitStateUsage_ExhibitedState(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getForLoopActionUsage_SeqArgument(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getForLoopActionUsage_LoopVariable(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getLoopActionUsage_BodyAction(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getIfActionUsage_ElseAction(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getIfActionUsage_ThenAction(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getIfActionUsage_IfArgument(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getInvocationExpression_Argument(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getSendActionUsage_ReceiverArgument(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getSendActionUsage_PayloadArgument(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getWhileLoopActionUsage_WhileArgument(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getWhileLoopActionUsage_UntilArgument(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getAssignmentActionUsage_TargetArgument(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getAssignmentActionUsage_ValueExpression(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getAssignmentActionUsage_Referent(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getRequirementVerificationMembership_OwnedRequirement(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getRequirementVerificationMembership_VerifiedRequirement(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getMetadataUsage_MetadataDefinition(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getMetadataFeature_Metaclass(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getViewRenderingMembership_OwnedRendering(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getViewRenderingMembership_ReferencedRendering(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getResultExpressionMembership_OwnedResultExpression(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getMultiplicityRange_LowerBound(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getMultiplicityRange_UpperBound(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getFeatureValue_FeatureWithValue(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getFeatureValue_Value(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getFeatureChainExpression_TargetFeature(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getFeatureReferenceExpression_Referent(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getElementFilterMembership_Condition(),
+		   source,
+		   new String[] {
+		   });
+		addAnnotation
+		  (getPackage_FilterCondition(),
 		   source,
 		   new String[] {
 		   });

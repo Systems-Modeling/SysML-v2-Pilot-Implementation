@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -23,7 +23,7 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.ResultExpressionMembership;
@@ -43,6 +43,16 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * @generated
  */
 public class ResultExpressionMembershipImpl extends FeatureMembershipImpl implements ResultExpressionMembership {
+	/**
+	 * The cached setting delegate for the '{@link #getOwnedResultExpression() <em>Owned Result Expression</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedResultExpression()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate OWNED_RESULT_EXPRESSION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.RESULT_EXPRESSION_MEMBERSHIP__OWNED_RESULT_EXPRESSION).getSettingDelegate();
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -69,28 +79,26 @@ public class ResultExpressionMembershipImpl extends FeatureMembershipImpl implem
 	 */
 	@Override
 	public Expression getOwnedResultExpression() {
-		Expression ownedResultExpression = basicGetOwnedResultExpression();
-		return ownedResultExpression != null && ownedResultExpression.eIsProxy() ? (Expression)eResolveProxy((InternalEObject)ownedResultExpression) : ownedResultExpression;
+		return (Expression)OWNED_RESULT_EXPRESSION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Expression basicGetOwnedResultExpression() {
-		Feature ownedMemberFeature = super.basicGetOwnedMemberFeature();
-		return ownedMemberFeature instanceof Expression? (Expression)ownedMemberFeature: null;
+		return (Expression)OWNED_RESULT_EXPRESSION__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setOwnedResultExpression(Expression newOwnedResultExpression) {
-		super.setOwnedMemberFeature(newOwnedResultExpression);
+		OWNED_RESULT_EXPRESSION__ESETTING_DELEGATE.dynamicSet(this, null, 0, newOwnedResultExpression);
 	}
 
 	/**

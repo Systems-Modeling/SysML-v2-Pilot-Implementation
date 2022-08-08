@@ -33,16 +33,15 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.eclipse.uml2.common.util.DerivedSubsetEObjectEList;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.TypeFeaturing;
 import org.omg.sysml.util.FeatureUtil;
-import org.omg.sysml.util.NonNotifyingEObjectEList;
 import org.omg.sysml.util.TypeUtil;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureChaining;
@@ -53,7 +52,6 @@ import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.ParameterMembership;
-import org.omg.sysml.lang.sysml.Conjugation;
 import org.omg.sysml.lang.sysml.EndFeatureMembership;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.Relationship;
@@ -97,9 +95,42 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  */
 public class FeatureImpl extends TypeImpl implements Feature {
 	
-	public static final String FEATURE_TRANSFER_SOURCE_OUTPUT = "Transfers::Transfer::transferSource::sourceOutput";
-	public static final String FEATURE_TRANSFER_TARGET_INPUT = "Transfers::Transfer::transferTarget::targetInput";
-	
+	/**
+	 * The cached setting delegate for the '{@link #getOwnedTypeFeaturing() <em>Owned Type Featuring</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedTypeFeaturing()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate OWNED_TYPE_FEATURING__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.FEATURE__OWNED_TYPE_FEATURING).getSettingDelegate();
+	/**
+	 * The cached setting delegate for the '{@link #getOwningFeatureMembership() <em>Owning Feature Membership</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwningFeatureMembership()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate OWNING_FEATURE_MEMBERSHIP__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.FEATURE__OWNING_FEATURE_MEMBERSHIP).getSettingDelegate();
+	/**
+	 * The cached setting delegate for the '{@link #getOwningType() <em>Owning Type</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwningType()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate OWNING_TYPE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.FEATURE__OWNING_TYPE).getSettingDelegate();
+	/**
+	 * The cached setting delegate for the '{@link #getEndOwningType() <em>End Owning Type</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getEndOwningType()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate END_OWNING_TYPE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.FEATURE__END_OWNING_TYPE).getSettingDelegate();
 	/**
 	 * The default value of the '{@link #isUnique() <em>Is Unique</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -137,6 +168,33 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 */
 	protected boolean isOrdered = IS_ORDERED_EDEFAULT;
 	/**
+	 * The cached setting delegate for the '{@link #getType() <em>Type</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getType()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate TYPE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.FEATURE__TYPE).getSettingDelegate();
+	/**
+	 * The cached setting delegate for the '{@link #getOwnedRedefinition() <em>Owned Redefinition</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedRedefinition()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate OWNED_REDEFINITION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.FEATURE__OWNED_REDEFINITION).getSettingDelegate();
+	/**
+	 * The cached setting delegate for the '{@link #getOwnedSubsetting() <em>Owned Subsetting</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedSubsetting()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate OWNED_SUBSETTING__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.FEATURE__OWNED_SUBSETTING).getSettingDelegate();
+	/**
 	 * The default value of the '{@link #isComposite() <em>Is Composite</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -146,288 +204,14 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 */
 	protected static final boolean IS_COMPOSITE_EDEFAULT = false;
 	/**
+	 * The cached value of the '{@link #isComposite() <em>Is Composite</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @see #isComposite()
 	 * @generated
+	 * @ordered
 	 */
-	protected FeatureImpl() {
-		super();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EClass eStaticClass() {
-		return SysMLPackage.Literals.FEATURE;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public EList<Type> getType() {
-		return getAllTypes();
-	}
-	
-	public EList<Type> getAllTypes() {
-		return FeatureUtil.cacheTypesOf(this, ()->{
-			EList<Type> types = new NonNotifyingEObjectEList<Type>(Type.class, this, SysMLPackage.FEATURE__TYPE);
-			getTypes(types, new HashSet<Feature>());
-			removeRedundantTypes(types);
-			return types;
-		});
-	}
-	
-	protected void getTypes(List<Type> types, Set<Feature> visitedFeatures) {
-		visitedFeatures.add(this);
-		getFeatureTypes(types, visitedFeatures);		
-		Conjugation conjugator = getOwnedConjugator();
-		if (conjugator != null) {
-			Type originalType = conjugator.getOriginalType();
-			if (originalType instanceof Feature && !visitedFeatures.contains(originalType)) {
-				((FeatureImpl)originalType).getTypes(types, visitedFeatures);
-			}
-		}
-		for (Feature subsettedFeature: FeatureUtil.getSubsettedFeaturesOf(this)) {
-			if (subsettedFeature != null && !visitedFeatures.contains(subsettedFeature)) {
-				((FeatureImpl)subsettedFeature).getTypes(types, visitedFeatures);
-			}
-		}		
-	}
-	
-	protected void getFeatureTypes(List<Type> types, Set<Feature> visitedFeatures) {
-		getOwnedTyping().stream().
-				map(typing->typing.getType()).
-				filter(type->type != null).
-				forEachOrdered(types::add);
-		types.addAll(TypeUtil.getImplicitGeneralTypesFor(this, SysMLPackage.eINSTANCE.getFeatureTyping()));
-		Feature lastChainingFeature = FeatureUtil.getLastChainingFeatureOf(this);
-		if (lastChainingFeature != null && !visitedFeatures.contains(lastChainingFeature)) {
-			((FeatureImpl)lastChainingFeature).getTypes(types, visitedFeatures);
-		}
-	}
-	
-	protected static void removeRedundantTypes(List<Type> types) {
-		for (int i = types.size() - 1; i >= 0 ; i--) {
-			Type type = types.get(i);
-			if (types.stream().anyMatch(otherType->otherType != type && TypeUtil.conforms(otherType, type))) {
-				types.remove(i);
-			}
-		}
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Type getOwningType() {
-		Type owningType = basicGetOwningType();
-		return owningType != null && owningType.eIsProxy() ? (Type)eResolveProxy((InternalEObject)owningType) : owningType;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public Type basicGetOwningType() {
-		FeatureMembership membership = getOwningFeatureMembership();
-		return membership == null? null: membership.getOwningType();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public void setOwningType(Type newOwningType) {
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public boolean isUnique() {
-		return isUnique;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setIsUnique(boolean newIsUnique) {
-		boolean oldIsUnique = isUnique;
-		isUnique = newIsUnique;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.FEATURE__IS_UNIQUE, oldIsUnique, isUnique));
-	}
-	
-	private boolean isOrderChecked = false;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * Force the Feature to be ordered if any subsetted Feature is ordered.
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	@Override
-	public boolean isOrdered() {
-		return checkIsOrdered(this, new HashSet<Feature>());
-	}
-	
-	public static boolean checkIsOrdered(FeatureImpl feature, Set<Feature> visited) {
-		if (feature.isOrdered || feature.isOrderChecked) {
-			return feature.isOrdered;
-		} else {
-			visited.add(feature);
-			for (Feature subsettedFeature: FeatureUtil.getSubsettedFeaturesOf(feature)) {
-				if (subsettedFeature != null && !visited.contains(subsettedFeature) && 
-						checkIsOrdered(((FeatureImpl)subsettedFeature), visited)) {
-					return true;
-				}
-			}
-			return false;
-		}
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setIsOrdered(boolean newIsOrdered) {
-		boolean oldIsOrdered = isOrdered;
-		isOrdered = newIsOrdered;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.FEATURE__IS_ORDERED, oldIsOrdered, isOrdered));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	@Override
-	public EList<Redefinition> getOwnedRedefinition() {
-		return new DerivedSubsetEObjectEList<>(Redefinition.class, this, SysMLPackage.FEATURE__OWNED_REDEFINITION, new int[] {SysMLPackage.FEATURE__OWNED_SPECIALIZATION});
-	}
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public EList<Subsetting> getOwnedSubsetting() {
-		return new DerivedSubsetEObjectEList<>(Subsetting.class, this, SysMLPackage.FEATURE__OWNED_SUBSETTING, new int[] {SysMLPackage.FEATURE__OWNED_SPECIALIZATION});
-	}
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	@Override
-	public EList<FeatureTyping> getOwnedTyping() {
-		return new DerivedSubsetEObjectEList<>(FeatureTyping.class, this, SysMLPackage.FEATURE__OWNED_TYPING, new int[] {SysMLPackage.FEATURE__OWNED_SPECIALIZATION});
-	}
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	@Override
-	public EList<Type> getFeaturingType() {
-		EList<Type> featuringTypes = new NonNotifyingEObjectEList<>(Type.class, this, SysMLPackage.FEATURE__FEATURING_TYPE);
-		getOwnedTypeFeaturing().stream().
-			map(TypeFeaturing::getFeaturingType).
-			filter(featuring->featuring != null).
-			forEachOrdered(featuringTypes::add);
-		Type owningType = getOwningType();
-		if (owningType != null) {
-			featuringTypes.add(getOwningType());
-		}
-		FeatureUtil.forEachImplicitFeaturingTypeOf(this, featuringTypes::add);
-		Feature firstChainingFeature = FeatureUtil.getFirstChainingFeatureOf(this);
-		if (firstChainingFeature != null) {
-			featuringTypes.addAll(firstChainingFeature.getFeaturingType());
-		}
-		return featuringTypes;
-	}
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public FeatureMembership getOwningFeatureMembership() {
-		FeatureMembership owningFeatureMembership = basicGetOwningFeatureMembership();
-		return owningFeatureMembership != null && owningFeatureMembership.eIsProxy() ? (FeatureMembership)eResolveProxy((InternalEObject)owningFeatureMembership) : owningFeatureMembership;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public FeatureMembership basicGetOwningFeatureMembership() {
-		Membership owningMembership = super.basicGetOwningMembership();
-		return owningMembership instanceof FeatureMembership? (FeatureMembership)owningMembership: null;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	@Override
-	public void setOwningFeatureMembership(FeatureMembership newOwningFeatureMembership) {
-		super.setOwningMembership(newOwningFeatureMembership);;
-	}
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public boolean isComposite() {
-		return isComposite;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setIsComposite(boolean newIsComposite) {
-		boolean oldIsComposite = isComposite;
-		isComposite = newIsComposite;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.FEATURE__IS_COMPOSITE, oldIsComposite, isComposite));
-	}
-
-	/**
-	 * Locally cached value for isComposite. This allows isComposite to be set directly
-	 * on a Feature, and then propagated back to the owningFeatureMembership, once this
-	 * is set.
-	 */
-	protected boolean isComposite = false;
-	
+	protected boolean isComposite = IS_COMPOSITE_EDEFAULT;
 	/**
 	 * The default value of the '{@link #isEnd() <em>Is End</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -447,6 +231,24 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 */
 	protected boolean isEnd = IS_END_EDEFAULT;
 	/**
+	 * The cached setting delegate for the '{@link #getOwnedTyping() <em>Owned Typing</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedTyping()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate OWNED_TYPING__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.FEATURE__OWNED_TYPING).getSettingDelegate();
+	/**
+	 * The cached setting delegate for the '{@link #getFeaturingType() <em>Featuring Type</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getFeaturingType()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate FEATURING_TYPE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.FEATURE__FEATURING_TYPE).getSettingDelegate();
+	/**
 	 * The default value of the '{@link #isDerived() <em>Is Derived</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -464,6 +266,33 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 * @ordered
 	 */
 	protected boolean isDerived = IS_DERIVED_EDEFAULT;
+	/**
+	 * The cached setting delegate for the '{@link #getChainingFeature() <em>Chaining Feature</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getChainingFeature()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate CHAINING_FEATURE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.FEATURE__CHAINING_FEATURE).getSettingDelegate();
+	/**
+	 * The cached setting delegate for the '{@link #getOwnedFeatureInverting() <em>Owned Feature Inverting</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedFeatureInverting()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate OWNED_FEATURE_INVERTING__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.FEATURE__OWNED_FEATURE_INVERTING).getSettingDelegate();
+	/**
+	 * The cached setting delegate for the '{@link #getOwnedFeatureChaining() <em>Owned Feature Chaining</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedFeatureChaining()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate OWNED_FEATURE_CHAINING__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.FEATURE__OWNED_FEATURE_CHAINING).getSettingDelegate();
 	/**
 	 * The default value of the '{@link #isReadOnly() <em>Is Read Only</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -503,6 +332,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	/**
 	 * The default value of the '{@link #getDirection() <em>Direction</em>}' attribute.
 	 * <!-- begin-user-doc -->
+	 * Direction is empty by default, per its 0..1 multiplicity in the MOF abstract syntax model.
 	 * <!-- end-user-doc -->
 	 * @see #getDirection()
 	 * @generated NOT
@@ -519,17 +349,214 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 */
 	protected FeatureDirectionKind direction = DIRECTION_EDEFAULT;
 	/**
-	 * The default value of the '{@link #isNonunique() <em>Is Nonunique</em>}' attribute.
+	 * The cached setting delegate for the '{@link #isNonunique() <em>Is Nonunique</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #isNonunique()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final boolean IS_NONUNIQUE_EDEFAULT = false;
+	protected EStructuralFeature.Internal.SettingDelegate IS_NONUNIQUE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.FEATURE__IS_NONUNIQUE).getSettingDelegate();
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected FeatureImpl() {
+		super();
+	}
 
-	public boolean basicIsComposite() {
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return SysMLPackage.Literals.FEATURE;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+		@Override
+	public EList<Type> getType() {
+		return (EList<Type>)TYPE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+	}
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Type getOwningType() {
+		return (Type)OWNING_TYPE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Type basicGetOwningType() {
+		return (Type)OWNING_TYPE__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setOwningType(Type newOwningType) {
+		OWNING_TYPE__ESETTING_DELEGATE.dynamicSet(this, null, 0, newOwningType);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isUnique() {
+		return isUnique;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setIsUnique(boolean newIsUnique) {
+		boolean oldIsUnique = isUnique;
+		isUnique = newIsUnique;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.FEATURE__IS_UNIQUE, oldIsUnique, isUnique));
+	}
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * Force the Feature to be ordered if any subsetted Feature is ordered.
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public boolean isOrdered() {
+		return FeatureUtil.checkIsOrdered(this, new HashSet<Feature>());
+	}
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setIsOrdered(boolean newIsOrdered) {
+		boolean oldIsOrdered = isOrdered;
+		isOrdered = newIsOrdered;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.FEATURE__IS_ORDERED, oldIsOrdered, isOrdered));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public EList<Redefinition> getOwnedRedefinition() {
+		return (EList<Redefinition>)OWNED_REDEFINITION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+	}
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+		@Override
+	public EList<Subsetting> getOwnedSubsetting() {
+		return (EList<Subsetting>)OWNED_SUBSETTING__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+	}
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public EList<FeatureTyping> getOwnedTyping() {
+		return (EList<FeatureTyping>)OWNED_TYPING__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+	}
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public EList<Type> getFeaturingType() {
+		return (EList<Type>)FEATURING_TYPE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+	}
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public FeatureMembership getOwningFeatureMembership() {
+		return (FeatureMembership)OWNING_FEATURE_MEMBERSHIP__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public FeatureMembership basicGetOwningFeatureMembership() {
+		return (FeatureMembership)OWNING_FEATURE_MEMBERSHIP__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setOwningFeatureMembership(FeatureMembership newOwningFeatureMembership) {
+		OWNING_FEATURE_MEMBERSHIP__ESETTING_DELEGATE.dynamicSet(this, null, 0, newOwningFeatureMembership);
+	}
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isComposite() {
 		return isComposite;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setIsComposite(boolean newIsComposite) {
+		boolean oldIsComposite = isComposite;
+		isComposite = newIsComposite;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.FEATURE__IS_COMPOSITE, oldIsComposite, isComposite));
 	}
 
 	/**
@@ -557,6 +584,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * Mark a feature as an end if it is owned via an EndFeatureMembership.
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
@@ -583,6 +611,8 @@ public class FeatureImpl extends TypeImpl implements Feature {
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * Set the direction to OUT if the Feature is owned via a ReturnParameterMembership or
+	 * to IN if the Feature is owned via a (non-return) ParameterMembership.
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
@@ -619,45 +649,49 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 */
 	@Override
 	public Type getEndOwningType() {
-		Type endOwningType = basicGetEndOwningType();
-		return endOwningType != null && endOwningType.eIsProxy() ? (Type)eResolveProxy((InternalEObject)endOwningType) : endOwningType;
+		return (Type)END_OWNING_TYPE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Type basicGetEndOwningType() {
-		return isEnd()? basicGetOwningType(): null;
+		return (Type)END_OWNING_TYPE__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setEndOwningType(Type newEndOwningType) {
-		throw new UnsupportedOperationException();
+		END_OWNING_TYPE__ESETTING_DELEGATE.dynamicSet(this, null, 0, newEndOwningType);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * Xtext workaround.
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@Override
 	public boolean isNonunique() {
-		return !isUnique;
+		return (Boolean)IS_NONUNIQUE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * Xtext workaround.
+	 * (Can't set a false value for isUnique in the Xtext grammar.)
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@Override
 	public void setIsNonunique(boolean newIsNonunique) {
-		this.setIsUnique(!newIsNonunique);
+		IS_NONUNIQUE__ESETTING_DELEGATE.dynamicSet(this, null, 0, newIsNonunique);
 	}
 	
 	/**
@@ -676,16 +710,12 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<TypeFeaturing> getOwnedTypeFeaturing() {
-		EList<TypeFeaturing> featurings = new NonNotifyingEObjectEList<>(TypeFeaturing.class, this, SysMLPackage.FEATURE__OWNED_TYPE_FEATURING);
-		getOwnedRelationship().stream().
-			filter(rel->(rel instanceof TypeFeaturing) && ((TypeFeaturing)rel).getFeatureOfType() == this).
-			map(TypeFeaturing.class::cast).
-			forEachOrdered(featurings::add);
-		return featurings;
+		return (EList<TypeFeaturing>)OWNED_TYPE_FEATURING__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
@@ -701,30 +731,23 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<Feature> getChainingFeature() {
-		EList<Feature> chainingFeatures = new NonNotifyingEObjectEList<>(Feature.class, this, SysMLPackage.FEATURE__CHAINING_FEATURE, false);
-		getOwnedFeatureChaining().stream().
-			map(FeatureChaining::getChainingFeature).
-			forEachOrdered(chainingFeatures::add);
-		return chainingFeatures;
+		return (EList<Feature>)CHAINING_FEATURE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<FeatureInverting> getOwnedFeatureInverting() {
-		EList<FeatureInverting> invertings = new NonNotifyingEObjectEList<>(FeatureInverting.class, this, SysMLPackage.FEATURE__OWNED_FEATURE_INVERTING);
-		getOwnedRelationship().stream().
-			filter(rel->(rel instanceof FeatureInverting) && ((FeatureInverting)rel).getFeatureInverted() == this).
-			map(FeatureInverting.class::cast).
-			forEachOrdered(invertings::add);
-		return invertings;
+		return (EList<FeatureInverting>)OWNED_FEATURE_INVERTING__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
@@ -739,11 +762,12 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<FeatureChaining> getOwnedFeatureChaining() {
-		return new DerivedSubsetEObjectEList<>(FeatureChaining.class, this, SysMLPackage.FEATURE__OWNED_FEATURE_CHAINING, new int[] {SysMLPackage.FEATURE__OWNED_RELATIONSHIP});
+		return (EList<FeatureChaining>)OWNED_FEATURE_CHAINING__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
@@ -1136,7 +1160,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 				setDirection(DIRECTION_EDEFAULT);
 				return;
 			case SysMLPackage.FEATURE__IS_NONUNIQUE:
-				setIsNonunique(IS_NONUNIQUE_EDEFAULT);
+				IS_NONUNIQUE__ESETTING_DELEGATE.dynamicUnset(this, null, 0);
 				return;
 		}
 		super.eUnset(featureID);
@@ -1153,39 +1177,39 @@ public class FeatureImpl extends TypeImpl implements Feature {
 			case SysMLPackage.FEATURE__OWNED_RELATIONSHIP:
 				return ownedRelationship != null && !ownedRelationship.isEmpty();
 			case SysMLPackage.FEATURE__OWNED_TYPE_FEATURING:
-				return !getOwnedTypeFeaturing().isEmpty();
+				return OWNED_TYPE_FEATURING__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.FEATURE__OWNING_FEATURE_MEMBERSHIP:
-				return basicGetOwningFeatureMembership() != null;
+				return OWNING_FEATURE_MEMBERSHIP__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.FEATURE__OWNING_TYPE:
-				return basicGetOwningType() != null;
+				return OWNING_TYPE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.FEATURE__END_OWNING_TYPE:
-				return basicGetEndOwningType() != null;
+				return END_OWNING_TYPE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.FEATURE__IS_UNIQUE:
 				return isUnique != IS_UNIQUE_EDEFAULT;
 			case SysMLPackage.FEATURE__IS_ORDERED:
 				return isOrdered != IS_ORDERED_EDEFAULT;
 			case SysMLPackage.FEATURE__TYPE:
-				return !getType().isEmpty();
+				return TYPE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.FEATURE__OWNED_REDEFINITION:
-				return !getOwnedRedefinition().isEmpty();
+				return OWNED_REDEFINITION__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.FEATURE__OWNED_SUBSETTING:
-				return !getOwnedSubsetting().isEmpty();
+				return OWNED_SUBSETTING__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.FEATURE__IS_COMPOSITE:
 				return isComposite != IS_COMPOSITE_EDEFAULT;
 			case SysMLPackage.FEATURE__IS_END:
 				return isEnd != IS_END_EDEFAULT;
 			case SysMLPackage.FEATURE__OWNED_TYPING:
-				return !getOwnedTyping().isEmpty();
+				return OWNED_TYPING__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.FEATURE__FEATURING_TYPE:
-				return !getFeaturingType().isEmpty();
+				return FEATURING_TYPE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.FEATURE__IS_DERIVED:
 				return isDerived != IS_DERIVED_EDEFAULT;
 			case SysMLPackage.FEATURE__CHAINING_FEATURE:
-				return !getChainingFeature().isEmpty();
+				return CHAINING_FEATURE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.FEATURE__OWNED_FEATURE_INVERTING:
-				return !getOwnedFeatureInverting().isEmpty();
+				return OWNED_FEATURE_INVERTING__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.FEATURE__OWNED_FEATURE_CHAINING:
-				return !getOwnedFeatureChaining().isEmpty();
+				return OWNED_FEATURE_CHAINING__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.FEATURE__IS_READ_ONLY:
 				return isReadOnly != IS_READ_ONLY_EDEFAULT;
 			case SysMLPackage.FEATURE__IS_PORTION:
@@ -1193,7 +1217,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 			case SysMLPackage.FEATURE__DIRECTION:
 				return direction != DIRECTION_EDEFAULT;
 			case SysMLPackage.FEATURE__IS_NONUNIQUE:
-				return isNonunique() != IS_NONUNIQUE_EDEFAULT;
+				return IS_NONUNIQUE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 		}
 		return super.eIsSet(featureID);
 	}

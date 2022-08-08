@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -25,10 +25,9 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.util.NonNotifyingEObjectEList;
-import org.omg.sysml.util.TypeUtil;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -49,6 +48,25 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  */
 public class StepImpl extends FeatureImpl implements Step {
 	
+	/**
+	 * The cached setting delegate for the '{@link #getBehavior() <em>Behavior</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getBehavior()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate BEHAVIOR__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.STEP__BEHAVIOR).getSettingDelegate();
+	/**
+	 * The cached setting delegate for the '{@link #getParameter() <em>Parameter</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getParameter()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate PARAMETER__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.STEP__PARAMETER).getSettingDelegate();
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -71,16 +89,12 @@ public class StepImpl extends FeatureImpl implements Step {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<Behavior> getBehavior() {
-		EList<Behavior> behaviors = new NonNotifyingEObjectEList<Behavior>(Behavior.class, this, SysMLPackage.STEP__BEHAVIOR);
-		super.getType().stream().
-			filter(type->type instanceof Behavior).
-			map(type->(Behavior)type).
-			forEachOrdered(behaviors::add);
-		return behaviors;
+		return (EList<Behavior>)BEHAVIOR__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
@@ -95,13 +109,12 @@ public class StepImpl extends FeatureImpl implements Step {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<Feature> getParameter() {
-		EList<Feature> parameters = new NonNotifyingEObjectEList<>(Feature.class, this, SysMLPackage.STEP__PARAMETER);
-		parameters.addAll(TypeUtil.getAllParametersOf(this));
-		return parameters;
+		return (EList<Feature>)PARAMETER__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**

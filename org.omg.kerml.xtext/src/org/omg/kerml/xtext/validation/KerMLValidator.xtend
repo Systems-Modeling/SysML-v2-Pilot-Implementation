@@ -377,7 +377,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 		// Allow abstract associations and connectors to have less than two ends.
 		if (!(r instanceof Type && (r as Type).isAbstract)) {
 			val relatedElements = r.getRelatedElement
-			if (relatedElements !== null && relatedElements.length < 2)
+			if (relatedElements !== null && relatedElements.size < 2)
 				error(INVALID_RELATIONSHIP__RELATED_ELEMENTS_MSG, r, SysMLPackage.eINSTANCE.relationship_RelatedElement, INVALID_RELATIONSHIP__RELATED_ELEMENTS)	
 		}
 	}

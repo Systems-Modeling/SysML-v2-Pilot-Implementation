@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -23,7 +23,7 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.EventOccurrenceUsage;
 import org.omg.sysml.lang.sysml.ExhibitStateUsage;
@@ -32,7 +32,6 @@ import org.omg.sysml.lang.sysml.OccurrenceUsage;
 import org.omg.sysml.lang.sysml.PerformActionUsage;
 import org.omg.sysml.lang.sysml.StateUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.util.FeatureUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -48,6 +47,16 @@ import org.omg.sysml.util.FeatureUtil;
  * @generated
  */
 public class ExhibitStateUsageImpl extends StateUsageImpl implements ExhibitStateUsage {
+
+	/**
+	 * The cached setting delegate for the '{@link #getExhibitedState() <em>Exhibited State</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getExhibitedState()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate EXHIBITED_STATE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.EXHIBIT_STATE_USAGE__EXHIBITED_STATE).getSettingDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -75,17 +84,16 @@ public class ExhibitStateUsageImpl extends StateUsageImpl implements ExhibitStat
 	 */
 	@Override
 	public StateUsage getExhibitedState() {
-		StateUsage exhibitedState = basicGetExhibitedState();
-		return exhibitedState != null && exhibitedState.eIsProxy() ? (StateUsage)eResolveProxy((InternalEObject)exhibitedState) : exhibitedState;
+		return (StateUsage)EXHIBITED_STATE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public StateUsage basicGetExhibitedState() {
-		return FeatureUtil.getReferencedFeatureOf(this, StateUsage.class);
+		return (StateUsage)EXHIBITED_STATE__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	@Override
@@ -96,11 +104,11 @@ public class ExhibitStateUsageImpl extends StateUsageImpl implements ExhibitStat
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setExhibitedState(StateUsage newExhibitedState) {
-		throw new UnsupportedOperationException();
+		EXHIBITED_STATE__ESETTING_DELEGATE.dynamicSet(this, null, 0, newExhibitedState);
 	}
 
 	/**
@@ -193,8 +201,8 @@ public class ExhibitStateUsageImpl extends StateUsageImpl implements ExhibitStat
 	// Additional overrides
 	
 	@Override
-	public boolean isReference() {
-		return true;
+	public boolean isComposite() {
+		return false;
 	}
 	
 	//

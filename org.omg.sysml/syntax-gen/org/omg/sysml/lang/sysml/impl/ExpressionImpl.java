@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -28,7 +28,7 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.BasicInternalEList;
 import org.eclipse.uml2.common.util.UnionEObjectEList;
 import org.omg.sysml.lang.sysml.Behavior;
@@ -60,15 +60,32 @@ import org.omg.sysml.util.TypeUtil;
 public class ExpressionImpl extends StepImpl implements Expression {
 	
 	/**
-	 * The default value of the '{@link #isModelLevelEvaluable() <em>Is Model Level Evaluable</em>}' attribute.
+	 * The cached setting delegate for the '{@link #getFunction() <em>Function</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getFunction()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate FUNCTION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.EXPRESSION__FUNCTION).getSettingDelegate();
+	/**
+	 * The cached setting delegate for the '{@link #getResult() <em>Result</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getResult()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate RESULT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.EXPRESSION__RESULT).getSettingDelegate();
+	/**
+	 * The cached setting delegate for the '{@link #isModelLevelEvaluable() <em>Is Model Level Evaluable</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #isModelLevelEvaluable()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final boolean IS_MODEL_LEVEL_EVALUABLE_EDEFAULT = false;
-
+	protected EStructuralFeature.Internal.SettingDelegate IS_MODEL_LEVEL_EVALUABLE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.EXPRESSION__IS_MODEL_LEVEL_EVALUABLE).getSettingDelegate();
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -95,29 +112,26 @@ public class ExpressionImpl extends StepImpl implements Expression {
 	 */
 	@Override
 	public Function getFunction() {
-		Function function = basicGetFunction();
-		return function != null && function.eIsProxy() ? (Function)eResolveProxy((InternalEObject)function) : function;
+		return (Function)FUNCTION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Function basicGetFunction() {
-		return (Function)super.getBehavior().stream().
-				filter(Function.class::isInstance).
-				findFirst().orElse(null);
+		return (Function)FUNCTION__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setFunction(Function newFunction) {
-		throw new UnsupportedOperationException();
+		FUNCTION__ESETTING_DELEGATE.dynamicSet(this, null, 0, newFunction);
 	}
 
 	/**
@@ -186,48 +200,49 @@ public class ExpressionImpl extends StepImpl implements Expression {
 	 */
 	@Override
 	public Feature getResult() {
-		Feature result = basicGetResult();
-		return result != null && result.eIsProxy() ? (Feature)eResolveProxy((InternalEObject)result) : result;
+		return (Feature)RESULT__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Feature basicGetResult() {
-		return TypeUtil.getOwnedResultParameterOf(this);
+		return (Feature)RESULT__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setResult(Feature newResult) {
-		throw new UnsupportedOperationException();
+		RESULT__ESETTING_DELEGATE.dynamicSet(this, null, 0, newResult);
 	}
 	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public boolean isModelLevelEvaluable() {
-		return false;
+		return (Boolean)IS_MODEL_LEVEL_EVALUABLE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setIsModelLevelEvaluable(boolean newIsModelLevelEvaluable) {
-		throw new UnsupportedOperationException();
+		IS_MODEL_LEVEL_EVALUABLE__ESETTING_DELEGATE.dynamicSet(this, null, 0, newIsModelLevelEvaluable);
 	}
+	
+	// Operations
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -321,7 +336,7 @@ public class ExpressionImpl extends StepImpl implements Expression {
 				setResult((Feature)null);
 				return;
 			case SysMLPackage.EXPRESSION__IS_MODEL_LEVEL_EVALUABLE:
-				setIsModelLevelEvaluable(IS_MODEL_LEVEL_EVALUABLE_EDEFAULT);
+				IS_MODEL_LEVEL_EVALUABLE__ESETTING_DELEGATE.dynamicUnset(this, null, 0);
 				return;
 		}
 		super.eUnset(featureID);
@@ -340,9 +355,9 @@ public class ExpressionImpl extends StepImpl implements Expression {
 			case SysMLPackage.EXPRESSION__FUNCTION:
 				return isSetFunction();
 			case SysMLPackage.EXPRESSION__RESULT:
-				return basicGetResult() != null;
+				return RESULT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.EXPRESSION__IS_MODEL_LEVEL_EVALUABLE:
-				return isModelLevelEvaluable() != IS_MODEL_LEVEL_EVALUABLE_EDEFAULT;
+				return IS_MODEL_LEVEL_EVALUABLE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 		}
 		return super.eIsSet(featureID);
 	}

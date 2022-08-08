@@ -47,6 +47,7 @@ public interface UseCaseUsage extends CaseUsage {
 	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='definedUseCase'"
 	 *        annotation="redefines"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	UseCaseDefinition getUseCaseDefinition();
@@ -73,6 +74,7 @@ public interface UseCaseUsage extends CaseUsage {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUseCaseUsage_IncludedUseCase()
 	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='includingUseCase'"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<UseCaseUsage> getIncludedUseCase();

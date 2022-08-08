@@ -37,6 +37,7 @@ public interface PortioningFeature extends Feature {
 	 * @see #setPortionKind(PortionKind)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getPortioningFeature_PortionKind()
 	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	PortionKind getPortionKind();

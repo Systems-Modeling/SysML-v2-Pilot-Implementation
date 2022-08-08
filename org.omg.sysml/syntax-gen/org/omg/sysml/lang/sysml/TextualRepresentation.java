@@ -133,6 +133,7 @@ public interface TextualRepresentation extends AnnotatingElement {
 	 * @model opposite="textualRepresentation" required="true" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="redefines"
 	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	Element getRepresentedElement();

@@ -61,6 +61,7 @@ public interface Membership extends Relationship {
 	 * @see #setMemberElementId(String)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getMembership_MemberElementId()
 	 * @model dataType="org.omg.sysml.lang.types.String" required="true" transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	String getMemberElementId();
@@ -202,6 +203,7 @@ public interface Membership extends Relationship {
 	 * @model opposite="ownedMembership" required="true" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="redefines"
 	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	Namespace getMembershipOwningNamespace();

@@ -22,5 +22,11 @@
             class="org.omg.sysml.lang.types.TypesPackage"
             genModel="model/SysML.genmodel"/>
    </extension>
+   
+   <extension point = "org.eclipse.emf.ecore.setting_delegate">
+      <factory
+      		uri="http://www.omg.org/spec/SysML"
+      		class="org.omg.sysml.delegate.DerivedPropertySettingDelegateFactory" />
+   </extension>
 
 </plugin>

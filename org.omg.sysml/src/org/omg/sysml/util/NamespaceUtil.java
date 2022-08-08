@@ -50,6 +50,13 @@ public class NamespaceUtil {
 	}
 	
 	// Membership
+	
+	public static Stream<Element> getOwnedMembersOf(Namespace namespace) {
+		return namespace.getOwnedMembership().stream().
+			filter(OwningMembership.class::isInstance).
+			map(Membership::getMemberElement).
+			filter(m->m != null);
+	}
 
 	public static <M extends OwningMembership, T> Stream<T> getOwnedMembersByMembershipIn(Namespace namespace, Class<M> kind, Class<T> type) {
 		return namespace.getOwnedMembership().stream().

@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -27,9 +27,9 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.BasicInternalEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -39,8 +39,9 @@ import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object
- * '<em><b>Relationship</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> 
+ * An implementation of the model object '<em><b>Relationship</b></em>'. 
+ * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
@@ -56,8 +57,19 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  */
 public class RelationshipImpl extends ElementImpl implements Relationship {
 	/**
+	 * The cached setting delegate for the '{@link #getRelatedElement() <em>Related Element</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getRelatedElement()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate RELATED_ELEMENT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.RELATIONSHIP__RELATED_ELEMENT).getSettingDelegate();
+
+	/**
 	 * The cached value of the '{@link #getTarget() <em>Target</em>}' reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> 
+	 * <!-- end-user-doc -->
 	 * @see #getTarget()
 	 * @generated
 	 * @ordered
@@ -66,7 +78,8 @@ public class RelationshipImpl extends ElementImpl implements Relationship {
 
 	/**
 	 * The cached value of the '{@link #getSource() <em>Source</em>}' reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> 
+	 * <!-- end-user-doc -->
 	 * @see #getSource()
 	 * @generated
 	 * @ordered
@@ -84,7 +97,8 @@ public class RelationshipImpl extends ElementImpl implements Relationship {
 	protected EList<Element> ownedRelatedElement;
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected RelationshipImpl() {
@@ -92,7 +106,8 @@ public class RelationshipImpl extends ElementImpl implements Relationship {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -101,21 +116,20 @@ public class RelationshipImpl extends ElementImpl implements Relationship {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated NOT
+	 * <!-- begin-user-doc --> 
+	 * <!-- end-user-doc -->
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<Element> getRelatedElement() {
-		EList<Element> relatedElements = new BasicInternalEList<Element>(Element.class);
-		relatedElements.addAll(getSource());
-		relatedElements.addAll(getTarget());
-		return relatedElements;
+		return (EList<Element>)RELATED_ELEMENT__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * The array of subset feature identifiers for the '{@link #getRelatedElement() <em>Related Element</em>}' reference list.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc --> 
+	 * <!-- end-user-doc -->
 	 * @see #getRelatedElement()
 	 * @generated
 	 * @ordered
@@ -123,7 +137,8 @@ public class RelationshipImpl extends ElementImpl implements Relationship {
 	protected static final int[] RELATED_ELEMENT_ESUBSETS = new int[] {SysMLPackage.RELATIONSHIP__TARGET, SysMLPackage.RELATIONSHIP__SOURCE, SysMLPackage.RELATIONSHIP__OWNING_RELATED_ELEMENT, SysMLPackage.RELATIONSHIP__OWNED_RELATED_ELEMENT};
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -135,7 +150,8 @@ public class RelationshipImpl extends ElementImpl implements Relationship {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -145,7 +161,8 @@ public class RelationshipImpl extends ElementImpl implements Relationship {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public NotificationChain basicSetOwningRelatedElement(Element newOwningRelatedElement, NotificationChain msgs) {
@@ -154,7 +171,8 @@ public class RelationshipImpl extends ElementImpl implements Relationship {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -174,6 +192,13 @@ public class RelationshipImpl extends ElementImpl implements Relationship {
 			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.RELATIONSHIP__OWNING_RELATED_ELEMENT, newOwningRelatedElement, newOwningRelatedElement));
 	}
 	
+	/**
+	 * <!-- begin-user-doc --> 
+	 * Xtext workaround:
+	 * If target is empty, then add all ownedRelatedElements to it.
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
 	@Override
 	public EList<Element> getTarget() {
 		EList<Element> targets = getTargetGen();
@@ -183,7 +208,8 @@ public class RelationshipImpl extends ElementImpl implements Relationship {
 	}	
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EList<Element> getTargetGen() {
@@ -193,6 +219,13 @@ public class RelationshipImpl extends ElementImpl implements Relationship {
 		return target;
 	}
 	
+	/**
+	 * <!-- begin-user-doc --> 
+	 * Xtext workaround:
+	 * If source is empty, then add all owningRelatedElements to it.
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
 	@Override
 	public EList<Element> getSource() {
 		EList<Element> sources = getSourceGen();
@@ -204,7 +237,8 @@ public class RelationshipImpl extends ElementImpl implements Relationship {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EList<Element> getSourceGen() {
@@ -215,7 +249,8 @@ public class RelationshipImpl extends ElementImpl implements Relationship {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -233,7 +268,8 @@ public class RelationshipImpl extends ElementImpl implements Relationship {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -248,7 +284,8 @@ public class RelationshipImpl extends ElementImpl implements Relationship {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -261,7 +298,8 @@ public class RelationshipImpl extends ElementImpl implements Relationship {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -282,7 +320,8 @@ public class RelationshipImpl extends ElementImpl implements Relationship {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -309,7 +348,8 @@ public class RelationshipImpl extends ElementImpl implements Relationship {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -332,14 +372,15 @@ public class RelationshipImpl extends ElementImpl implements Relationship {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case SysMLPackage.RELATIONSHIP__RELATED_ELEMENT:
-				return isSetRelatedElement();
+				return RELATED_ELEMENT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.RELATIONSHIP__TARGET:
 				return target != null && !target.isEmpty();
 			case SysMLPackage.RELATIONSHIP__SOURCE:
@@ -350,17 +391,6 @@ public class RelationshipImpl extends ElementImpl implements Relationship {
 				return ownedRelatedElement != null && !ownedRelatedElement.isEmpty();
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetRelatedElement() {
-		return eIsSet(SysMLPackage.RELATIONSHIP__TARGET)
-			|| eIsSet(SysMLPackage.RELATIONSHIP__SOURCE)
-			|| eIsSet(SysMLPackage.RELATIONSHIP__OWNING_RELATED_ELEMENT)
-			|| eIsSet(SysMLPackage.RELATIONSHIP__OWNED_RELATED_ELEMENT);
 	}
 
 } // RelationshipImpl

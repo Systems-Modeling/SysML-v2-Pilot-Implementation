@@ -72,6 +72,7 @@ public interface PortDefinition extends OccurrenceDefinition, Structure {
 	 * @see org.omg.sysml.lang.sysml.ConjugatedPortDefinition#getOriginalPortDefinition
 	 * @model opposite="originalPortDefinition" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	ConjugatedPortDefinition getConjugatedPortDefinition();

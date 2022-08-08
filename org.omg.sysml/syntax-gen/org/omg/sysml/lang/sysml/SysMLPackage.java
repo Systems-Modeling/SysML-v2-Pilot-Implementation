@@ -43,6 +43,7 @@ import org.eclipse.emf.ecore.EReference;
  * <!-- end-user-doc -->
  * @see org.omg.sysml.lang.sysml.SysMLFactory
  * @model kind="package"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore settingDelegates='http://www.omg.org/spec/SysML'"
  * @generated
  */
 public interface SysMLPackage extends EPackage {
@@ -1820,6 +1821,46 @@ public interface SysMLPackage extends EPackage {
 	int OWNING_MEMBERSHIP = 5;
 
 	/**
+	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.impl.FeatureChainExpressionImpl <em>Feature Chain Expression</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.omg.sysml.lang.sysml.impl.FeatureChainExpressionImpl
+	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getFeatureChainExpression()
+	 * @generated
+	 */
+	int FEATURE_CHAIN_EXPRESSION = 157;
+
+	/**
+	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.impl.SelectExpressionImpl <em>Select Expression</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.omg.sysml.lang.sysml.impl.SelectExpressionImpl
+	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getSelectExpression()
+	 * @generated
+	 */
+	int SELECT_EXPRESSION = 150;
+
+	/**
+	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.impl.CollectExpressionImpl <em>Collect Expression</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.omg.sysml.lang.sysml.impl.CollectExpressionImpl
+	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getCollectExpression()
+	 * @generated
+	 */
+	int COLLECT_EXPRESSION = 152;
+
+	/**
+	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.impl.MetaclassImpl <em>Metaclass</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.omg.sysml.lang.sysml.impl.MetaclassImpl
+	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getMetaclass()
+	 * @generated
+	 */
+	int METACLASS = 138;
+
+	/**
 	 * The feature id for the '<em><b>Owning Membership</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2531,46 +2572,6 @@ public interface SysMLPackage extends EPackage {
 	int TYPE_OPERATION_COUNT = NAMESPACE_OPERATION_COUNT + 3;
 
 	/**
-	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.impl.FeatureChainExpressionImpl <em>Feature Chain Expression</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.omg.sysml.lang.sysml.impl.FeatureChainExpressionImpl
-	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getFeatureChainExpression()
-	 * @generated
-	 */
-	int FEATURE_CHAIN_EXPRESSION = 157;
-
-	/**
-	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.impl.SelectExpressionImpl <em>Select Expression</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.omg.sysml.lang.sysml.impl.SelectExpressionImpl
-	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getSelectExpression()
-	 * @generated
-	 */
-	int SELECT_EXPRESSION = 150;
-
-	/**
-	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.impl.CollectExpressionImpl <em>Collect Expression</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.omg.sysml.lang.sysml.impl.CollectExpressionImpl
-	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getCollectExpression()
-	 * @generated
-	 */
-	int COLLECT_EXPRESSION = 152;
-
-	/**
-	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.impl.MetaclassImpl <em>Metaclass</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.omg.sysml.lang.sysml.impl.MetaclassImpl
-	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getMetaclass()
-	 * @generated
-	 */
-	int METACLASS = 138;
-
-	/**
 	 * The feature id for the '<em><b>Owning Membership</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3263,6 +3264,26 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 */
 	int FEATURE_INVERTING = 23;
+
+	/**
+	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.impl.MetadataDefinitionImpl <em>Metadata Definition</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.omg.sysml.lang.sysml.impl.MetadataDefinitionImpl
+	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getMetadataDefinition()
+	 * @generated
+	 */
+	int METADATA_DEFINITION = 139;
+
+	/**
+	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.impl.MetadataUsageImpl <em>Metadata Usage</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.omg.sysml.lang.sysml.impl.MetadataUsageImpl
+	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getMetadataUsage()
+	 * @generated
+	 */
+	int METADATA_USAGE = 136;
 
 	/**
 	 * The feature id for the '<em><b>Owning Membership</b></em>' reference.
@@ -71672,26 +71693,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int ITEM_FLOW_FEATURE_OPERATION_COUNT = FEATURE_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.impl.MetadataDefinitionImpl <em>Metadata Definition</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.omg.sysml.lang.sysml.impl.MetadataDefinitionImpl
-	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getMetadataDefinition()
-	 * @generated
-	 */
-	int METADATA_DEFINITION = 139;
-
-	/**
-	 * The meta object id for the '{@link org.omg.sysml.lang.sysml.impl.MetadataUsageImpl <em>Metadata Usage</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.omg.sysml.lang.sysml.impl.MetadataUsageImpl
-	 * @see org.omg.sysml.lang.sysml.impl.SysMLPackageImpl#getMetadataUsage()
-	 * @generated
-	 */
-	int METADATA_USAGE = 136;
 
 	/**
 	 * The feature id for the '<em><b>Owning Membership</b></em>' reference.

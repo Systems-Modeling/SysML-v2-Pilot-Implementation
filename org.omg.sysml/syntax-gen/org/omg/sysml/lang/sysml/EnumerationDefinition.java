@@ -66,6 +66,7 @@ public interface EnumerationDefinition extends AttributeDefinition {
 	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='owningEnumerationDefinition'"
 	 *        annotation="redefines"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<EnumerationUsage> getEnumeratedValue();

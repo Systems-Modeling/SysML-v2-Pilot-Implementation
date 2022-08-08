@@ -122,7 +122,6 @@ public interface Relationship extends Element {
 	/**
 	 * Returns the value of the '<em><b>Related Element</b></em>' reference list.
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Element}.
-	 * This feature is a derived union.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Related Element</em>' reference list isn't clear,
@@ -136,7 +135,7 @@ public interface Relationship extends Element {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getRelationship_RelatedElement()
 	 * @model lower="2" transient="true" changeable="false" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='relationship'"
-	 *        annotation="union"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<Element> getRelatedElement();

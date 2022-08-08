@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -27,7 +27,7 @@ import java.util.Collection;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.uml2.common.util.DerivedEObjectEList;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.omg.sysml.lang.sysml.RenderingDefinition;
 import org.omg.sysml.lang.sysml.RenderingUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -46,6 +46,16 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * @generated
  */
 public class RenderingDefinitionImpl extends PartDefinitionImpl implements RenderingDefinition {
+
+	/**
+	 * The cached setting delegate for the '{@link #getRendering() <em>Rendering</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getRendering()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate RENDERING__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.RENDERING_DEFINITION__RENDERING).getSettingDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -69,11 +79,12 @@ public class RenderingDefinitionImpl extends PartDefinitionImpl implements Rende
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<RenderingUsage> getRendering() {
-		return new DerivedEObjectEList<>(RenderingUsage.class, this, SysMLPackage.DEFINITION__OWNED_RENDERING, new int[] {SysMLPackage.DEFINITION__OWNED_USAGE});
+		return (EList<RenderingUsage>)RENDERING__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 	
 	/**
@@ -131,7 +142,7 @@ public class RenderingDefinitionImpl extends PartDefinitionImpl implements Rende
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case SysMLPackage.RENDERING_DEFINITION__RENDERING:
-				return !getRendering().isEmpty();
+				return RENDERING__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 		}
 		return super.eIsSet(featureID);
 	}

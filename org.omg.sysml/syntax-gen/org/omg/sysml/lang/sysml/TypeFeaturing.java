@@ -133,6 +133,7 @@ public interface TypeFeaturing extends Relationship {
 	 * @see org.omg.sysml.lang.sysml.Feature#getOwnedTypeFeaturing
 	 * @model opposite="ownedTypeFeaturing" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	Feature getOwningFeatureOfType();

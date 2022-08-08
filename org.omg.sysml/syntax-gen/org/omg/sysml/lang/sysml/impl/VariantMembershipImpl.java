@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -23,7 +23,7 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Usage;
@@ -43,6 +43,16 @@ import org.omg.sysml.lang.sysml.VariantMembership;
  * @generated
  */
 public class VariantMembershipImpl extends OwningMembershipImpl implements VariantMembership {
+	/**
+	 * The cached setting delegate for the '{@link #getOwnedVariantUsage() <em>Owned Variant Usage</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedVariantUsage()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate OWNED_VARIANT_USAGE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.VARIANT_MEMBERSHIP__OWNED_VARIANT_USAGE).getSettingDelegate();
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -69,28 +79,26 @@ public class VariantMembershipImpl extends OwningMembershipImpl implements Varia
 	 */
 	@Override
 	public Usage getOwnedVariantUsage() {
-		Usage ownedVariantUsage = basicGetOwnedVariantUsage();
-		return ownedVariantUsage != null && ownedVariantUsage.eIsProxy() ? (Usage)eResolveProxy((InternalEObject)ownedVariantUsage) : ownedVariantUsage;
+		return (Usage)OWNED_VARIANT_USAGE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Usage basicGetOwnedVariantUsage() {
-		Element ownedMemberElement = super.basicGetOwnedMemberElement();
-		return ownedMemberElement instanceof Usage? (Usage)ownedMemberElement: null;
+		return (Usage)OWNED_VARIANT_USAGE__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setOwnedVariantUsage(Usage newOwnedVariantUsage) {
-		super.setOwnedMemberElement(newOwnedVariantUsage);
+		OWNED_VARIANT_USAGE__ESETTING_DELEGATE.dynamicSet(this, null, 0, newOwnedVariantUsage);
 	}
 	
 	/**

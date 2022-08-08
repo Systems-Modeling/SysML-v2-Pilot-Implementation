@@ -77,6 +77,7 @@ public interface FeatureMembership extends OwningMembership, TypeFeaturing {
 	 * @model opposite="ownedFeatureMembership" required="true" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="redefines"
 	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	Type getOwningType();
@@ -122,6 +123,7 @@ public interface FeatureMembership extends OwningMembership, TypeFeaturing {
 	 * @model opposite="owningFeatureMembership" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="redefines"
 	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	Feature getOwnedMemberFeature();

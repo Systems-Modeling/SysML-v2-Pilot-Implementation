@@ -98,6 +98,7 @@ public interface Element extends EObject {
 	 * @see org.omg.sysml.lang.sysml.OwningMembership#getOwnedMemberElement
 	 * @model opposite="ownedMemberElement" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	OwningMembership getOwningMembership();
@@ -162,6 +163,7 @@ public interface Element extends EObject {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getElement_OwningNamespace()
 	 * @see org.omg.sysml.lang.sysml.Namespace#getOwnedMember
 	 * @model opposite="ownedMember" transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	Namespace getOwningNamespace();
@@ -219,6 +221,7 @@ public interface Element extends EObject {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getElement_OwnedElement()
 	 * @see org.omg.sysml.lang.sysml.Element#getOwner
 	 * @model opposite="owner" transient="true" volatile="true" derived="true"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<Element> getOwnedElement();
@@ -234,6 +237,7 @@ public interface Element extends EObject {
 	 * @see #setQualifiedName(String)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getElement_QualifiedName()
 	 * @model dataType="org.omg.sysml.lang.types.String" transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	String getQualifiedName();
@@ -259,6 +263,7 @@ public interface Element extends EObject {
 	 * @see #setEffectiveName(String)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getElement_EffectiveName()
 	 * @model dataType="org.omg.sysml.lang.types.String" transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	String getEffectiveName();
@@ -290,6 +295,7 @@ public interface Element extends EObject {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getElement_Owner()
 	 * @see org.omg.sysml.lang.sysml.Element#getOwnedElement
 	 * @model opposite="ownedElement" transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	Element getOwner();
@@ -379,6 +385,7 @@ public interface Element extends EObject {
 	 * @see org.omg.sysml.lang.sysml.Documentation#getDocumentedElement
 	 * @model opposite="documentedElement" transient="true" volatile="true" derived="true"
 	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<Documentation> getDocumentation();
@@ -403,6 +410,7 @@ public interface Element extends EObject {
 	 * @see org.omg.sysml.lang.sysml.Annotation#getOwningAnnotatedElement
 	 * @model opposite="owningAnnotatedElement" transient="true" volatile="true" derived="true"
 	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<Annotation> getOwnedAnnotation();
@@ -427,6 +435,7 @@ public interface Element extends EObject {
 	 * @see org.omg.sysml.lang.sysml.TextualRepresentation#getRepresentedElement
 	 * @model opposite="representedElement" transient="true" volatile="true" derived="true"
 	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<TextualRepresentation> getTextualRepresentation();

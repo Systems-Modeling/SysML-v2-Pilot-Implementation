@@ -1,7 +1,7 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2020 California Institute of Technology/Jet Propulsion Laboratory
- * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -82,8 +82,6 @@ import org.omg.sysml.lang.sysml.ViewDefinition
 import org.omg.sysml.lang.sysml.ViewUsage
 import org.omg.sysml.lang.sysml.ViewpointDefinition
 import org.omg.sysml.lang.sysml.ViewpointUsage
-import org.omg.sysml.lang.sysml.impl.FeatureImpl
-import org.omg.sysml.util.UsageUtil
 import org.omg.sysml.lang.sysml.TransitionUsage
 import org.omg.sysml.lang.sysml.Succession
 import org.omg.sysml.lang.sysml.StateDefinition
@@ -93,6 +91,8 @@ import org.omg.sysml.lang.sysml.UseCaseUsage
 import org.omg.sysml.lang.sysml.UseCaseDefinition
 import org.omg.sysml.lang.sysml.MetadataUsage
 import org.omg.sysml.lang.sysml.Metaclass
+import org.omg.sysml.util.FeatureUtil
+import org.omg.sysml.util.UsageUtil
 
 /**
  * This class contains custom validation rules. 
@@ -213,7 +213,7 @@ class SysMLValidator extends KerMLValidator {
 	def checkAttributeUsageTypes(AttributeUsage usg){
 		checkAllTypes(usg, DataType, SysMLValidator.INVALID_ATTRIBUTEUSAGE_MSG, SysMLPackage.eINSTANCE.attributeUsage_AttributeDefinition, SysMLValidator.INVALID_ATTRIBUTEUSAGE)
 		if (!(usg instanceof EnumerationUsage)) {
-		val types = (usg as FeatureImpl).allTypes
+		val types = FeatureUtil.getAllTypesOf(usg)
 			if (types.exists[t | t instanceof EnumerationDefinition] && types.size > 1) {
 				error(INVALID_ENUMERATIONATTRIBUTEUSAGE_MSG, SysMLPackage.eINSTANCE.attributeUsage_AttributeDefinition, SysMLValidator.INVALID_ENUMERATIONATTRIBUTEUSAGE)
 			}
@@ -425,14 +425,14 @@ class SysMLValidator extends KerMLValidator {
 	}
 	
 	protected def boolean checkAllTypes(Feature f, Class<?> requiredType, String msg, EStructuralFeature ref, String eId){
-		val check = (f as FeatureImpl).allTypes.forall[u| requiredType.isInstance(u)]
+		val check = FeatureUtil.getAllTypesOf(f).forall[u| requiredType.isInstance(u)]
 		if (!check)
 			error (msg, ref, eId)
 		return check;
 	}
 	
 	protected def boolean checkAtLeastOneType(Feature f, Class<?> requiredType, String msg, EStructuralFeature ref, String eId){
-		val check = (f as FeatureImpl).allTypes.exists[u| requiredType.isInstance(u)]
+		val check = FeatureUtil.getAllTypesOf(f).exists[u| requiredType.isInstance(u)]
 		if (!check)
 			error (msg, ref, eId)
 		return check
@@ -440,7 +440,7 @@ class SysMLValidator extends KerMLValidator {
 	
 	//check types but must have exactly one type
 	protected def boolean checkOneType(Feature f, Class<?> requiredType, String msg, EReference ref, String eId){
-		val types = (f as FeatureImpl).allTypes
+		val types = FeatureUtil.getAllTypesOf(f)
 		val check = types.length == 1 && types.exists[u| requiredType.isInstance(u)]
 		if (!check)
 			error (msg, ref, eId)

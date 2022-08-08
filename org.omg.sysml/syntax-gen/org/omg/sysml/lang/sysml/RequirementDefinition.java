@@ -74,6 +74,7 @@ public interface RequirementDefinition extends ConstraintDefinition {
 	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='subjectOwningRequirementDefinition'"
 	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	Usage getSubjectParameter();
@@ -107,6 +108,7 @@ public interface RequirementDefinition extends ConstraintDefinition {
 	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='framingRequirementDefinition'"
 	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<ConcernUsage> getFramedConcern();
@@ -131,6 +133,7 @@ public interface RequirementDefinition extends ConstraintDefinition {
 	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='actorOwningRequirementDefinition'"
 	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<PartUsage> getActorParameter();
@@ -155,6 +158,7 @@ public interface RequirementDefinition extends ConstraintDefinition {
 	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='stakholderOwiningRequirementDefinition'"
 	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<PartUsage> getStakeholderParameter();
@@ -211,6 +215,7 @@ public interface RequirementDefinition extends ConstraintDefinition {
 	 * @return the value of the '<em>Text</em>' attribute list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getRequirementDefinition_Text()
 	 * @model dataType="org.omg.sysml.lang.types.String" transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<String> getText();
@@ -238,6 +243,7 @@ public interface RequirementDefinition extends ConstraintDefinition {
 	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='assumingRequirementDefinition'"
 	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<ConstraintUsage> getAssumedConstraint();
@@ -265,6 +271,7 @@ public interface RequirementDefinition extends ConstraintDefinition {
 	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='requiringRequirementDefinition'"
 	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<ConstraintUsage> getRequiredConstraint();

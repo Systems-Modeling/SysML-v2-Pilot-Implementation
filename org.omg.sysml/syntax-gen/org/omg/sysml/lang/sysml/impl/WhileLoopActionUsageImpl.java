@@ -1,13 +1,31 @@
+/*******************************************************************************
+ * SysML 2 Pilot Implementation
+ * Copyright (c) 2022 Model Driven Solutions, Inc.
+ *    
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *  
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ *  
+ * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
+ *******************************************************************************/
 /**
  */
 package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.WhileLoopActionUsage;
-import org.omg.sysml.util.TypeUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -24,6 +42,26 @@ import org.omg.sysml.util.TypeUtil;
  * @generated
  */
 public class WhileLoopActionUsageImpl extends LoopActionUsageImpl implements WhileLoopActionUsage {
+	/**
+	 * The cached setting delegate for the '{@link #getWhileArgument() <em>While Argument</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getWhileArgument()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate WHILE_ARGUMENT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.WHILE_LOOP_ACTION_USAGE__WHILE_ARGUMENT).getSettingDelegate();
+
+	/**
+	 * The cached setting delegate for the '{@link #getUntilArgument() <em>Until Argument</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getUntilArgument()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate UNTIL_ARGUMENT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.WHILE_LOOP_ACTION_USAGE__UNTIL_ARGUMENT).getSettingDelegate();
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -50,27 +88,26 @@ public class WhileLoopActionUsageImpl extends LoopActionUsageImpl implements Whi
 	 */
 	@Override
 	public Expression getWhileArgument() {
-		Expression whileArgument = basicGetWhileArgument();
-		return whileArgument != null && whileArgument.eIsProxy() ? (Expression)eResolveProxy((InternalEObject)whileArgument) : whileArgument;
+		return (Expression)WHILE_ARGUMENT__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Expression basicGetWhileArgument() {
-		return TypeUtil.getOwnedParameterOf(this, 0, Expression.class);
+		return (Expression)WHILE_ARGUMENT__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setWhileArgument(Expression newWhileArgument) {
-		throw new UnsupportedOperationException();
+		WHILE_ARGUMENT__ESETTING_DELEGATE.dynamicSet(this, null, 0, newWhileArgument);
 	}
 
 	/**
@@ -80,27 +117,26 @@ public class WhileLoopActionUsageImpl extends LoopActionUsageImpl implements Whi
 	 */
 	@Override
 	public Expression getUntilArgument() {
-		Expression untilArgument = basicGetUntilArgument();
-		return untilArgument != null && untilArgument.eIsProxy() ? (Expression)eResolveProxy((InternalEObject)untilArgument) : untilArgument;
+		return (Expression)UNTIL_ARGUMENT__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Expression basicGetUntilArgument() {
-		return TypeUtil.getOwnedParameterOf(this, 2, Expression.class);
+		return (Expression)UNTIL_ARGUMENT__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setUntilArgument(Expression newUntilArgument) {
-		throw new UnsupportedOperationException();
+		UNTIL_ARGUMENT__ESETTING_DELEGATE.dynamicSet(this, null, 0, newUntilArgument);
 	}
 
 	/**
@@ -166,9 +202,9 @@ public class WhileLoopActionUsageImpl extends LoopActionUsageImpl implements Whi
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case SysMLPackage.WHILE_LOOP_ACTION_USAGE__WHILE_ARGUMENT:
-				return basicGetWhileArgument() != null;
+				return WHILE_ARGUMENT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.WHILE_LOOP_ACTION_USAGE__UNTIL_ARGUMENT:
-				return basicGetUntilArgument() != null;
+				return UNTIL_ARGUMENT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 		}
 		return super.eIsSet(featureID);
 	}

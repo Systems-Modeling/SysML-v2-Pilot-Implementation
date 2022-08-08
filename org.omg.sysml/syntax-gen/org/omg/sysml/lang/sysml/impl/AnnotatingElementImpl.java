@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -29,6 +29,7 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -37,8 +38,6 @@ import org.omg.sysml.lang.sysml.AnnotatingElement;
 import org.omg.sysml.lang.sysml.Annotation;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.util.ElementUtil;
-import org.omg.sysml.util.NonNotifyingEObjectEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -66,6 +65,16 @@ public class AnnotatingElementImpl extends ElementImpl implements AnnotatingElem
 	protected EList<Annotation> annotation;
 
 	/**
+	 * The cached setting delegate for the '{@link #getAnnotatedElement() <em>Annotated Element</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAnnotatedElement()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate ANNOTATED_ELEMENT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.ANNOTATING_ELEMENT__ANNOTATED_ELEMENT).getSettingDelegate();
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -87,13 +96,12 @@ public class AnnotatingElementImpl extends ElementImpl implements AnnotatingElem
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<Element> getAnnotatedElement() {
-		EList<Element> annotatedElements = new NonNotifyingEObjectEList<>(Element.class, this, SysMLPackage.ANNOTATING_ELEMENT__ANNOTATED_ELEMENT);
-		annotatedElements.addAll(ElementUtil.getAnnotatedElementOf(this));
-		return annotatedElements;
+		return (EList<Element>)ANNOTATED_ELEMENT__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 	
 	/**
@@ -204,7 +212,7 @@ public class AnnotatingElementImpl extends ElementImpl implements AnnotatingElem
 			case SysMLPackage.ANNOTATING_ELEMENT__ANNOTATION:
 				return annotation != null && !annotation.isEmpty();
 			case SysMLPackage.ANNOTATING_ELEMENT__ANNOTATED_ELEMENT:
-				return !getAnnotatedElement().isEmpty();
+				return ANNOTATED_ELEMENT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 		}
 		return super.eIsSet(featureID);
 	}

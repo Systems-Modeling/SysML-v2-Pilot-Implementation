@@ -1,3 +1,22 @@
+/*******************************************************************************
+ * SysML 2 Pilot Implementation
+ * Copyright (c) 2022 Model Driven Solutions, Inc.
+ *    
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *  
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ *  
+ * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
+ *******************************************************************************/
 /**
  */
 package org.omg.sysml.lang.sysml.impl;
@@ -9,6 +28,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.UniqueEList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -60,6 +80,16 @@ public class DisjoiningImpl extends RelationshipImpl implements Disjoining {
 	protected Type disjoiningType;
 
 	/**
+	 * The cached setting delegate for the '{@link #getOwningType() <em>Owning Type</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwningType()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate OWNING_TYPE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.DISJOINING__OWNING_TYPE).getSettingDelegate();
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -102,6 +132,10 @@ public class DisjoiningImpl extends RelationshipImpl implements Disjoining {
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * Xtext workaround:
+	 * If a Disjoining is parsed targeting a Feature chain, then the disjoiningType will be empty,
+	 * but the Disjoining will own the disjoiningType. So, in this case, the disjoiningType should
+	 * be set to the (last) ownedRelatedelement.
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
@@ -147,31 +181,26 @@ public class DisjoiningImpl extends RelationshipImpl implements Disjoining {
 	 */
 	@Override
 	public Type getOwningType() {
-		Type owningType = basicGetOwningType();
-		return owningType != null && owningType.eIsProxy() ? (Type)eResolveProxy((InternalEObject)owningType) : owningType;
+		return (Type)OWNING_TYPE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Type basicGetOwningType() {
-		Element element = this.getOwningRelatedElement();
-		return element instanceof Type? (Type)element: null;
+		return (Type)OWNING_TYPE__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setOwningType(Type newOwningType) {
-		if (getTypeDisjoined() != newOwningType) {
-			setTypeDisjoined(newOwningType);
-		}
-		setOwningRelatedElement(newOwningType);
+		OWNING_TYPE__ESETTING_DELEGATE.dynamicSet(this, null, 0, newOwningType);
 	}
 
 	/**
@@ -218,6 +247,11 @@ public class DisjoiningImpl extends RelationshipImpl implements Disjoining {
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
 	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
 	@Override
 	public Type getTypeDisjoined() {
 		return typeDisjoined == null? basicGetTypeDisjoined(): getTypeDisjoinedGen();
@@ -242,11 +276,14 @@ public class DisjoiningImpl extends RelationshipImpl implements Disjoining {
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * Xtext workaround:
+	 * If the typedDisjoined (source) is empty, set it to the owningRelatedElement, if it is a Type.
+	 * Otherwise, set it to the first ownedRelatedElement, to the first ownedRelatedElement,
+	 * which will be a Feature chain.
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	public Type basicGetTypeDisjoined() {
-		// Xtext workaround
 		if (typeDisjoined == null) {
 			Element owner = getOwningRelatedElement();
 			if (owner instanceof Type) {
@@ -457,7 +494,7 @@ public class DisjoiningImpl extends RelationshipImpl implements Disjoining {
 			case SysMLPackage.DISJOINING__DISJOINING_TYPE:
 				return isSetDisjoiningType();
 			case SysMLPackage.DISJOINING__OWNING_TYPE:
-				return basicGetOwningType() != null;
+				return OWNING_TYPE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 		}
 		return super.eIsSet(featureID);
 	}

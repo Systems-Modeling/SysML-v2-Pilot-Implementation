@@ -37,6 +37,19 @@ public class OccurrenceUsageAdapter extends UsageAdapter {
 		return (OccurrenceUsage)super.getTarget();
 	}
 
+	@Override
+	public void addDefaultGeneralType() {
+		super.addDefaultGeneralType();
+		if (isSuboccurrence()) {
+			addDefaultGeneralType("suboccurrence");
+		}
+	}
+	
+	@Override
+	protected String getDefaultSupertype() {
+		return getDefaultSupertype("base");
+	}
+	
 	protected void addOccurrenceTyping() {
 		OccurrenceUsage target = getTarget();
 		Type owningType = target.getOwningType();

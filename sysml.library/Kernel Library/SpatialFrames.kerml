@@ -41,7 +41,7 @@ package SpatialFrames {
 		in point : Point[1];
 		in time : NumericalValue[1];
 		in frame : SpatialFrame[1] default defaultFrame;
-		in clock : Clock[1] default defaultClock;
+		in clock : Clock[1] default frame.localClock;
 		return positionVector : ThreeVectorValue[1];
 		
 		inv positionTimePrecondition {
@@ -77,7 +77,7 @@ package SpatialFrames {
 	
 		in point : Point[1];
 		in frame : SpatialFrame[1] default defaultFrame;
-		in clock : Clock[1] default defaultClock;
+		in clock : Clock[1] default frame.localClock;
 		return positionVector : ThreeVectorValue[1] =
 			PositionOf(point, clock.currentTime, frame, clock);
 	}
@@ -94,7 +94,7 @@ package SpatialFrames {
 		in point2 : Point[1];
 		in time : NumericalValue;
 		in frame : SpatialFrame[1] default defaultFrame;
-		in clock : Clock[1] default defaultClock;
+		in clock : Clock[1] default frame.localClock;
 		return displacementVector : ThreeVectorValue[1] =
 			PositionOf(point2, time, frame, clock) - PositionOf(point1, time, frame, clock);
 			
@@ -121,7 +121,7 @@ package SpatialFrames {
 		in point1 : Point[1];
 		in point2 : Point[1];
 		in frame : SpatialFrame[1] default defaultFrame;
-		in clock : Clock[1] default defaultClock;
+		in clock : Clock[1] default frame.localClock;
 		return displacementVector : ThreeVectorValue[1] =
 			DisplacementOf(point1, point2, clock.currentTime, frame, clock);
 	}
@@ -143,7 +143,7 @@ package SpatialFrames {
 		in point : Point[1];
 		in time : NumericalValue[1];
 		in frame : CartesianSpatialFrame[1];
-		in clock : Clock[1] default defaultClock;
+		in clock : Clock[1] default frame.localClock;
 		return positionVector : CartesianThreeVectorValue[1];
 	}
 	
@@ -155,7 +155,7 @@ package SpatialFrames {
 	
 		in point : Point[1];
 		in frame : CartesianSpatialFrame[1];
-		in clock : Clock[1] default defaultClock;
+		in clock : Clock[1] default frame.localClock;
 		return positionVector : CartesianThreeVectorValue[1];
 	}
 	
@@ -169,7 +169,7 @@ package SpatialFrames {
 		in point2 : Point[1];
 		in time : NumericalValue[1];
 		in frame : CartesianSpatialFrame[1];
-		in clock : Clock[1] default defaultClock;
+		in clock : Clock[1] default frame.localClock;
 		return displacementVector : CartesianThreeVectorValue[1];
 	}
 		
@@ -182,7 +182,7 @@ package SpatialFrames {
 		in point1 : Point[1];
 		in point2 : Point[1];
 		in frame : CartesianSpatialFrame[1];
-		in clock : Clock[1] default defaultClock;
+		in clock : Clock[1] default frame.localClock;
 		return displacementVector : CartesianThreeVectorValue[1];
 	}
 		

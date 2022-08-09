@@ -23,11 +23,11 @@ package SpatialItems {
 	
 		ref item :>> self : SpatialItem;
 
-		ref item localClock : Clock[1] default Time::defaultClock {
+		ref item :>> localClock : Clock[1] default Time::universalClock {
 			doc
 			/*
 			 * A local Clock to be used as the corresponding time reference within this SpatialItem. 
-			 * By default this is the global defaultClock.
+			 * By default this is the singleton universalClock.
 			 */
 			}
 		

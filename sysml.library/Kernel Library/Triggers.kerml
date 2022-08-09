@@ -109,11 +109,11 @@ package Triggers {
 			 */
 		}
 		
-		in feature clock : Clock[1] default defaultClock {
+		in feature clock : Clock[1] default localClock {
 			doc
 			/*
 			 * The Clock to be used as the reference for the timeInstant. The default is
-			 * the Clocks::defaultClock. 
+			 * the localClock, which will be bound when the function is invoked. 
 			 */
 		}
 		
@@ -159,11 +159,11 @@ package Triggers {
 			 */
 		}
 		
-		in feature clock : Clock[1] default defaultClock {
+		in feature clock : Clock[1] default localClock {
 			doc
 			/*
 			 * The Clock to be used as the reference for the time delay. The default is
-			 * the Clocks::defaultClock.
+			 * the localClock, which will be bound when the function is invoked. 
 			 */
 		}
 		

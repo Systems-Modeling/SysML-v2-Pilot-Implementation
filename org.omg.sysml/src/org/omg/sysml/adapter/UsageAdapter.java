@@ -85,7 +85,7 @@ public class UsageAdapter extends FeatureAdapter {
 	
 	@Override
 	protected String getDefaultSupertype() {
-		return getDefaultSupertype("base");
+		return super.getDefaultSupertype();
 	}
 	
 	// Computed Redefinitions

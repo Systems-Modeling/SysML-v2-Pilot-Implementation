@@ -107,7 +107,7 @@ package Items {
 			 */
 		}
 		
-		abstract item subitems: Item[0..*] :> items {
+		abstract item subitems: Item[0..*] :> items, subobjects {
 			doc
 			/*
 			 * The Items that are composite subitems of this Item.
@@ -121,7 +121,7 @@ package Items {
 			 */
 		}
 		
-		abstract ref constraint checkedConstraints: ConstraintCheck[0..*] :> constraintChecks, enactedPerformances {
+		abstract constraint checkedConstraints: ConstraintCheck[0..*] :> constraintChecks, ownedPerformances {
 			doc
 			/*
 			 * Constraints that have been checked by this Item.

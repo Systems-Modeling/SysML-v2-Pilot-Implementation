@@ -21,10 +21,10 @@ package Time {
     import ISQSpaceTime::TimeUnit;
     import ISQSpaceTime::time;
     
-    readonly part defaultClock : Clock[1] = Clocks::defaultClock {
-	    doc
+    readonly part universalClock : Clock[1] = Clocks::universalClock {
+   	 doc
 	    /*
-	     * defaultClock is a single Clock that can be used as a default.
+	     * universalClock is a single Clock that can be used as a default universal time reference.
 	     */
     }
 
@@ -46,7 +46,7 @@ package Time {
 		 */
 	
 		in o : Occurrence[1]; 
-		in clock : Clock[1] default defaultClock;
+		in clock : Clock[1] default localClock;
 		return timeInstant : TimeInstantValue[1];
 	}
 
@@ -58,7 +58,7 @@ package Time {
 		 */
 	
 		in o : Occurrence[1]; 
-		in clock : Clock[1] default defaultClock;
+		in clock : Clock[1] default localClock;
 		return duration : DurationValue;
 	}
 	
@@ -168,36 +168,36 @@ package Time {
 	 */
 
 	attribute def Iso8601DateTimeEncoding :> String {
-    doc
-    /*
-     * Extended string encoding of an ISO 8601-1 date and time
-     *
-     * The format of the string must comply with the following EBNF production:
-     * ['+' | '-'] YYYY '-' MM '-' DD 'T' hh ':' mm ':' ss ['.' fff [fff]] ('Z' | timezoneOffset )
-     * where:
-     *   YYYY is 4-or-more-digit year number, which can be negative for years before 0000;
-     *   MM is 2-digit month in year number, in which 01 is January, 02 is February, ..., 12 is December;
-     *   DD is 2-digit day in month number in range 01 to 28, 29, 30, 31 depending on month and leap year;
-     *   hh is 2-digit hour in day number in range 00 to 23;
-     *   mm is 2-digit minute in hour in range 00 to 59;
-     *   ss is 2-digit second in minute in range 00 to 60, in  in case of leap second;
-     *   ['.' fff [fff]] is an optional 3-digit millisecond or 6-digit microsecond fraction;
-     *   timezoneOffset is ('+' | '-') hhOffset ':' mmOffset, denoting the local timezone hour and minute offset w.r.t. UTC,
-     *   in which '+' specifies an offset ahead of UTC and '-' specifies an offset behind UTC;
-     *
-     * Note 1: All components are expressed with leading zeros.
-     * Note 2: 'Z' instead of timezoneOffset denotes a UTC time, i.e. zero time offset.
-     * Note 3: The ss value may only be 60 when a leap second is inserted.
-     *
-     * Examples of such a date and time value are:
-     * 2021-08-30T12:30:24Z (UTC date and time with second precision)
-     * 2018-01-23T23:14:44.304827Z (UTC date and time with microsecond precision)
-     * 1969-07-20T20:17:00Z (UTC date and time with second precision)
-     * 1969-07-20T15:17:00-05:00 (local date and time with second precision for a timezone 5 hour behind UTC)
-     * 1969-07-20T22:17:00+02:00 (local date and time with second precision for a timezone 2 hour ahead of UTC)
-     *
-     * TODO: Add constraint to verify ISO 8691 extended string encoding.
-     */
+	    doc
+	    /*
+	     * Extended string encoding of an ISO 8601-1 date and time
+	     *
+	     * The format of the string must comply with the following EBNF production:
+	     * ['+' | '-'] YYYY '-' MM '-' DD 'T' hh ':' mm ':' ss ['.' fff [fff]] ('Z' | timezoneOffset )
+	     * where:
+	     *   YYYY is 4-or-more-digit year number, which can be negative for years before 0000;
+	     *   MM is 2-digit month in year number, in which 01 is January, 02 is February, ..., 12 is December;
+	     *   DD is 2-digit day in month number in range 01 to 28, 29, 30, 31 depending on month and leap year;
+	     *   hh is 2-digit hour in day number in range 00 to 23;
+	     *   mm is 2-digit minute in hour in range 00 to 59;
+	     *   ss is 2-digit second in minute in range 00 to 60, in  in case of leap second;
+	     *   ['.' fff [fff]] is an optional 3-digit millisecond or 6-digit microsecond fraction;
+	     *   timezoneOffset is ('+' | '-') hhOffset ':' mmOffset, denoting the local timezone hour and minute offset w.r.t. UTC,
+	     *   in which '+' specifies an offset ahead of UTC and '-' specifies an offset behind UTC;
+	     *
+	     * Note 1: All components are expressed with leading zeros.
+	     * Note 2: 'Z' instead of timezoneOffset denotes a UTC time, i.e. zero time offset.
+	     * Note 3: The ss value may only be 60 when a leap second is inserted.
+	     *
+	     * Examples of such a date and time value are:
+	     * 2021-08-30T12:30:24Z (UTC date and time with second precision)
+	     * 2018-01-23T23:14:44.304827Z (UTC date and time with microsecond precision)
+	     * 1969-07-20T20:17:00Z (UTC date and time with second precision)
+	     * 1969-07-20T15:17:00-05:00 (local date and time with second precision for a timezone 5 hour behind UTC)
+	     * 1969-07-20T22:17:00+02:00 (local date and time with second precision for a timezone 2 hour ahead of UTC)
+	     *
+	     * TODO: Add constraint to verify ISO 8691 extended string encoding.
+	     */
     }
 
     attribute def Iso8601DateTime :> UtcTimeInstantValue {

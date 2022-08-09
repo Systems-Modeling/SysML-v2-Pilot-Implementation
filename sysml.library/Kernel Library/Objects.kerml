@@ -29,6 +29,13 @@ package Objects {
 
 		feature self: Object redefines Occurrence::self;
 		
+		composite subobjects: Object[0..*] subsets objects, suboccurrences {
+			doc
+			/*
+			 * The suboccurrences of this Object that are also Objects.
+			 */
+		}
+		
 		step involvingPerformances: Performance[0..*] subsets performances {
 			doc
 			/*
@@ -43,7 +50,7 @@ package Objects {
 			 */
 		}
 		
-		composite step ownedPerformances: Performance[0..*] subsets involvingPerformances, timeEnclosedOccurrences {
+		composite step ownedPerformances: Performance[0..*] subsets involvingPerformances, timeEnclosedOccurrences, suboccurrences {
 			doc
 			/*
 			 * Performances that are owned by this object.

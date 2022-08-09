@@ -113,7 +113,7 @@ package Triggers {
 			doc
 			/*
 			 * The Clock to be used as the reference for the timeInstant. The default is
-			 * the localClock at the point of invocation of the function. 
+			 * the localClock, which will be bound when the function is invoked. 
 			 */
 		}
 		
@@ -163,7 +163,7 @@ package Triggers {
 			doc
 			/*
 			 * The Clock to be used as the reference for the time delay. The default is
-			 * the localClock at the point of invocation of the function. 
+			 * the localClock, which will be bound when the function is invoked. 
 			 */
 		}
 		

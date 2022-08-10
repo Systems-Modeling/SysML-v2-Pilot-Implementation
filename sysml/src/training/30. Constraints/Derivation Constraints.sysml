@@ -17,7 +17,7 @@ package 'Derivation Constraints' {
 		in deltaT : TimeValue;
 		in force : ForceValue;
 
-		force * deltaT == mass * (finalSpeed - initialSpeed) &
+		force * deltaT == mass * (finalSpeed - initialSpeed) and
 		mass > 0[kg]
 	}
 	

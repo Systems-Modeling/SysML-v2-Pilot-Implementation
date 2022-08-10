@@ -21,7 +21,7 @@ package 'Change and Time Triggers' {
 		in controller : VehicleController;
 		
 		entry; then normal;
-		do senseTemperature { out temp; }
+		do senseTemperature;
 		
 		state normal;
 		accept at vehicle.maintenanceTime

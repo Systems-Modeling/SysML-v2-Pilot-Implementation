@@ -13,8 +13,8 @@ package 'Analytical Constraints' {
 	
 		attribute v_avg : SpeedValue = (v_i + v_f)/2;
 		
-		a == Acceleration(p, m, v_avg) &
-		v_f == Velocity(dt, v_i, a) &
+		a == Acceleration(p, m, v_avg) and
+		v_f == Velocity(dt, v_i, a) and
 		x_f == Position(dt, x_i, v_avg)
 	}
 	

@@ -53,9 +53,7 @@ package CollectionFunctions {
 		return : Anything[0..1] = (col.elements as Anything)[index];		
 	}
 	
-	function 'array[' specializes '[' { in arr: Array[1]; in indexes: Positive[n] ordered nonunique;
-		return : Anything[0..1];
-		
+	function 'array[' specializes BaseFunctions::'[' { in arr: Array[1]; in indexes: Positive[n] ordered nonunique;		
 		private feature n : Natural[1] = arr.rank;
 		
 		// Assumes row-major ordering for elements.

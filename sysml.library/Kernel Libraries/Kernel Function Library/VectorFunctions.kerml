@@ -109,8 +109,7 @@ package VectorFunctions {
 	 
 		in v: NumericalVectorValue[1]; 
 		in x: NumericalValue[1];
-		return w: NumericalVectorValue[1];
-		scalarVectorMult(x, v)
+		return w: NumericalVectorValue[1] = scalarVectorMult(x, v);
 	}
 	
 	abstract function vectorScalarDiv specializes DataFunctions::'/' {
@@ -171,13 +170,14 @@ package VectorFunctions {
 		 * The dimension of the NumericalVectorValue is equal to the number of components.
 		 */
 	 
-		in components: Real[*]; 
+		in components: Real[*] ordered nonunique; 
 		return : CartesianVectorValue[1] {
 			:>> dimension = size(components);
 			:>> elements = components;
 		}
 	}
-	function CartesianThreeVectorOf specializes CartesianVectorOf { in components: Real[3];
+	function CartesianThreeVectorOf specializes CartesianVectorOf { 
+		in components: Real[3] ordered nonunique;
 		return : CartesianThreeVectorValue[1];
 	}
 	

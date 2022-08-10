@@ -447,9 +447,24 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 */
 	@Override
 	public boolean isOrdered() {
-		return FeatureUtil.checkIsOrdered(this, new HashSet<Feature>());
+		return checkIsOrdered(this, new HashSet<Feature>());
 	}
 	
+	public static boolean checkIsOrdered(FeatureImpl feature, Set<Feature> visited) {
+		if (feature.isOrdered) {
+			return feature.isOrdered;
+		} else {
+			visited.add(feature);
+			for (Feature subsettedFeature: FeatureUtil.getSubsettedFeaturesOf(feature)) {
+				if (subsettedFeature != null && !visited.contains(subsettedFeature) && 
+						checkIsOrdered(((FeatureImpl)subsettedFeature), visited)) {
+					return true;
+				}
+			}
+			return false;
+		}
+	}
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

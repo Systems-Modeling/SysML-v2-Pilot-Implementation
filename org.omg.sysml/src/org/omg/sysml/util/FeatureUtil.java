@@ -55,7 +55,6 @@ import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.TypeFeaturing;
-import org.omg.sysml.lang.sysml.impl.FeatureImpl;
 
 public class FeatureUtil {
 	
@@ -229,21 +228,6 @@ public class FeatureUtil {
 		return type.getFeature().stream().
 				filter(f->TypeUtil.conforms(f, subsettedFeature)).
 				collect(Collectors.toList());
-	}
-
-	public static boolean checkIsOrdered(FeatureImpl feature, Set<Feature> visited) {
-		if (feature.isOrdered()) {
-			return true;
-		} else {
-			visited.add(feature);
-			for (Feature subsettedFeature: FeatureUtil.getSubsettedFeaturesOf(feature)) {
-				if (subsettedFeature != null && !visited.contains(subsettedFeature) && 
-						checkIsOrdered(((FeatureImpl)subsettedFeature), visited)) {
-					return true;
-				}
-			}
-			return false;
-		}
 	}
 
 // Feature values

@@ -11,9 +11,18 @@ package StateSpaceRepresentation {
     abstract attribute def Input :> VectorQuantityValue;
     abstract attribute def Output :> VectorQuantityValue;
 
-    abstract calc def GetNextState(input: Input, stateSpace: StateSpace, timeStep: DurationValue): StateSpace;
-    abstract calc def GetOutput(input: Input, stateSpace: StateSpace): Output;
-
+    abstract calc def GetNextState { 
+    	in input: Input; 
+    	in stateSpace: StateSpace; 
+    	in timeStep: DurationValue; 
+    	return : StateSpace;
+    }
+    abstract calc def GetOutput {
+    	in input: Input; 
+    	in stateSpace: StateSpace;
+    	return : Output;
+	}
+	
     /** Events to be received. */
     abstract action def StateSpaceEventDef;
     action def ZeroCrossingEventDef :> StateSpaceEventDef;
@@ -40,28 +49,35 @@ package StateSpaceRepresentation {
     }
 
     /** Computes the time derivative of stateSpace, which corresponds dx/dt = f(u, x), where u is input and x is stateSpace. */
-    abstract calc def GetDerivative(input: Input, stateSpace: StateSpace): StateDerivative;
-
+    abstract calc def GetDerivative {
+    	in input: Input;
+    	in stateSpace: StateSpace;
+    	return : StateDerivative;
+	}
+	
     /** Integrates stateSpace to compute the next stateSpace, which corresponds to x + int dx/dt dt.
      *  Its actual implementation should be given by a solver. */
-    abstract calc def Integrate (
-        in getDerivative: GetDerivative,
-        in input: Input,
-        in initialState: StateSpace,
-        in timeInterval: DurationValue) return result: StateSpace;
-
+    abstract calc def Integrate {
+        in getDerivative: GetDerivative;
+        in input: Input;
+        in initialState: StateSpace;
+        in timeInterval: DurationValue;
+        return result: StateSpace;
+	}
+	
     /** ContinuousStateSpaceDynamics represents continuous behavior.
         derivative needs to return a time derivative of stateSpace, i.e. dx/dt. */
     abstract action def ContinuousStateSpaceDynamics :> StateSpaceDynamics {
         abstract calc getDerivative: GetDerivative;
-        calc :>> getNextState: GetNextState(input: Input, stateSpace: StateSpace, timeStep: DurationValue) result: StateSpace {
+        calc :>> getNextState: GetNextState {
             // We compute nextState by Integrate defined above by giving derivative calc.
-            calc integrate: Integrate(
-                getDerivative = ContinuousStateSpaceDynamics::getDerivative,
-                input = GetNextState::input,
-                initialState = GetNextState::stateSpace,
-                timeInterval = GetNextState::timeStep
-            ) return resultState = result;
+            calc integrate: Integrate {
+                in getDerivative = ContinuousStateSpaceDynamics::getDerivative;
+                in input = GetNextState::input;
+                in initialState = GetNextState::stateSpace;
+                in timeInterval = GetNextState::timeStep;
+           }
+           return result = integrate.result;
         }
 
         // ContinuousStateSpaceDynamics may cause zero crossings anomaly.
@@ -70,15 +86,19 @@ package StateSpaceRepresentation {
 
     /** Computes difference of stateSpace by one timestep, that is x(k+1) - x(k),
          where k is the timestep number. */
-    abstract calc def GetDifference(input: Input, stateSpace: StateSpace): StateSpace;
-
+    abstract calc def GetDifference {
+    	in input: Input;
+    	in stateSpace: StateSpace;
+    	return : StateSpace;
+	}
+	
     /** DiscreteStateSpaceDynamics represents discrete behavior.
       * differences needs to return difference of the stateSpace for each timestep.  */
     abstract action def DiscreteStateSpaceDynamics :> StateSpaceDynamics {
         abstract calc getDifference: GetDifference;
-        calc :>> getNextState: GetNextState(input: Input, stateSpace: StateSpace, timeStep: DurationValue) result: StateSpace {
+        calc :>> getNextState: GetNextState {
             attribute diff: StateSpace = getDifference(input, stateSpace);
-            stateSpace + diff
+            return result = stateSpace + diff;
         }
     }
 }

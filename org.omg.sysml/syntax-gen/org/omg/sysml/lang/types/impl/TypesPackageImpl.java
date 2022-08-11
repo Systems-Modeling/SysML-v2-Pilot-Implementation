@@ -250,6 +250,8 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
 		// Create annotations
 		// http://www.eclipse.org/uml2/2.0.0/UML
 		createUMLAnnotations();
+		// http://www.eclipse.org/emf/2002/Ecore
+		createEcoreAnnotations();
 	}
 
 	/**
@@ -264,6 +266,22 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
 		   source,
 		   new String[] {
 			   "originalName", "primitiveTypes"
+		   });
+	}
+
+	/**
+	 * Initializes the annotations for <b>http://www.eclipse.org/emf/2002/Ecore</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createEcoreAnnotations() {
+		String source = "http://www.eclipse.org/emf/2002/Ecore";
+		addAnnotation
+		  (this,
+		   source,
+		   new String[] {
+			   "settingDelegates", "http://www.omg.org/spec/SysML"
 		   });
 	}
 

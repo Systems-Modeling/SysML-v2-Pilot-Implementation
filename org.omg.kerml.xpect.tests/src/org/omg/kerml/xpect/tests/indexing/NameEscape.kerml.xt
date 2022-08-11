@@ -27,5 +27,9 @@ sysml::Package: NameEscape
 
 package NameEscape {
 	
-	function '..'(parameter: Base::Anything): Base::Anything;
+	function '..' {
+		in parameter: Base::Anything;
+		return : Base::Anything;
+	}
+	
 }

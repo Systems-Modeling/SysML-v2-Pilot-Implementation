@@ -1,14 +1,32 @@
+/*******************************************************************************
+ * SysML 2 Pilot Implementation
+ * Copyright (c) 2022 Model Driven Solutions, Inc.
+ *    
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *  
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ *  
+ * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
+ *******************************************************************************/
 /**
  */
 package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.RenderingUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.ViewRenderingMembership;
-import org.omg.sysml.util.FeatureUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -25,6 +43,25 @@ import org.omg.sysml.util.FeatureUtil;
  * @generated
  */
 public class ViewRenderingMembershipImpl extends FeatureMembershipImpl implements ViewRenderingMembership {
+	/**
+	 * The cached setting delegate for the '{@link #getOwnedRendering() <em>Owned Rendering</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedRendering()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate OWNED_RENDERING__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.VIEW_RENDERING_MEMBERSHIP__OWNED_RENDERING).getSettingDelegate();
+	/**
+	 * The cached setting delegate for the '{@link #getReferencedRendering() <em>Referenced Rendering</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getReferencedRendering()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate REFERENCED_RENDERING__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.VIEW_RENDERING_MEMBERSHIP__REFERENCED_RENDERING).getSettingDelegate();
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -51,28 +88,26 @@ public class ViewRenderingMembershipImpl extends FeatureMembershipImpl implement
 	 */
 	@Override
 	public RenderingUsage getOwnedRendering() {
-		RenderingUsage ownedRendering = basicGetOwnedRendering();
-		return ownedRendering != null && ownedRendering.eIsProxy() ? (RenderingUsage)eResolveProxy((InternalEObject)ownedRendering) : ownedRendering;
+		return (RenderingUsage)OWNED_RENDERING__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public RenderingUsage basicGetOwnedRendering() {
-		Feature ownedMemberFeature = super.basicGetOwnedMemberFeature();
-		return ownedMemberFeature instanceof RenderingUsage? (RenderingUsage)ownedMemberFeature: null;
+		return (RenderingUsage)OWNED_RENDERING__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setOwnedRendering(RenderingUsage newOwnedRendering) {
-		super.setOwnedMemberFeature(newOwnedRendering);
+		OWNED_RENDERING__ESETTING_DELEGATE.dynamicSet(this, null, 0, newOwnedRendering);
 	}
 
 	/**
@@ -91,27 +126,26 @@ public class ViewRenderingMembershipImpl extends FeatureMembershipImpl implement
 	 */
 	@Override
 	public RenderingUsage getReferencedRendering() {
-		RenderingUsage referencedRendering = basicGetReferencedRendering();
-		return referencedRendering != null && referencedRendering.eIsProxy() ? (RenderingUsage)eResolveProxy((InternalEObject)referencedRendering) : referencedRendering;
+		return (RenderingUsage)REFERENCED_RENDERING__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public RenderingUsage basicGetReferencedRendering() {
-		return FeatureUtil.getReferencedFeatureOf(getOwnedRendering(), RenderingUsage.class);
+		return (RenderingUsage)REFERENCED_RENDERING__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setReferencedRendering(RenderingUsage newReferencedRendering) {
-		throw new UnsupportedOperationException();
+		REFERENCED_RENDERING__ESETTING_DELEGATE.dynamicSet(this, null, 0, newReferencedRendering);
 	}
 
 	/**
@@ -181,7 +215,7 @@ public class ViewRenderingMembershipImpl extends FeatureMembershipImpl implement
 			case SysMLPackage.VIEW_RENDERING_MEMBERSHIP__OWNED_RENDERING:
 				return isSetOwnedRendering();
 			case SysMLPackage.VIEW_RENDERING_MEMBERSHIP__REFERENCED_RENDERING:
-				return basicGetReferencedRendering() != null;
+				return REFERENCED_RENDERING__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 		}
 		return super.eIsSet(featureID);
 	}

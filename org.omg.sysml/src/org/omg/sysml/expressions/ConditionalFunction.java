@@ -28,7 +28,7 @@ public class ConditionalFunction extends ControlFunction {
 
 	@Override
 	public String getOperatorName() {
-		return "'?'";
+		return "if";
 	}
 
 	@Override

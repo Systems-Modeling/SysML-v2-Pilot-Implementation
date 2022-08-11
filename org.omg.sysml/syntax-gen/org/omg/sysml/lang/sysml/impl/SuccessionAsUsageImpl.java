@@ -1,3 +1,22 @@
+/*******************************************************************************
+ * SysML 2 Pilot Implementation
+ * Copyright (c) 2022 Model Driven Solutions, Inc.
+ *    
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *  
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ *  
+ * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
+ *******************************************************************************/
 /**
  */
 package org.omg.sysml.lang.sysml.impl;
@@ -7,17 +26,12 @@ import java.util.Collection;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-import org.omg.sysml.lang.sysml.AcceptActionUsage;
-import org.omg.sysml.lang.sysml.ActionUsage;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.omg.sysml.lang.sysml.Expression;
-import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.Succession;
 import org.omg.sysml.lang.sysml.SuccessionAsUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.lang.sysml.TransitionUsage;
-import org.omg.sysml.util.NonNotifyingEObjectEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -36,6 +50,43 @@ import org.omg.sysml.util.NonNotifyingEObjectEList;
  * @generated
  */
 public class SuccessionAsUsageImpl extends ConnectorAsUsageImpl implements SuccessionAsUsage {
+	/**
+	 * The cached setting delegate for the '{@link #getTransitionStep() <em>Transition Step</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTransitionStep()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate TRANSITION_STEP__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.SUCCESSION__TRANSITION_STEP).getSettingDelegate();
+	/**
+	 * The cached setting delegate for the '{@link #getTriggerStep() <em>Trigger Step</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTriggerStep()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate TRIGGER_STEP__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.SUCCESSION__TRIGGER_STEP).getSettingDelegate();
+	/**
+	 * The cached setting delegate for the '{@link #getEffectStep() <em>Effect Step</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getEffectStep()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate EFFECT_STEP__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.SUCCESSION__EFFECT_STEP).getSettingDelegate();
+	/**
+	 * The cached setting delegate for the '{@link #getGuardExpression() <em>Guard Expression</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getGuardExpression()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate GUARD_EXPRESSION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.SUCCESSION__GUARD_EXPRESSION).getSettingDelegate();
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62,77 +113,59 @@ public class SuccessionAsUsageImpl extends ConnectorAsUsageImpl implements Succe
 	 */
 	@Override
 	public Step getTransitionStep() {
-		Step transitionStep = basicGetTransitionStep();
-		return transitionStep != null && transitionStep.eIsProxy() ? (Step)eResolveProxy((InternalEObject)transitionStep) : transitionStep;
+		return (Step)TRANSITION_STEP__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Step basicGetTransitionStep() {
-		Namespace owner = getOwningNamespace();
-		return owner instanceof TransitionUsage?
-				(Step)owner: null;
+		return (Step)TRANSITION_STEP__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setTransitionStep(Step newTransitionStep) {
-		throw new UnsupportedOperationException();
+		TRANSITION_STEP__ESETTING_DELEGATE.dynamicSet(this, null, 0, newTransitionStep);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<Step> getTriggerStep() {
-		EList<Step> triggerSteps = new NonNotifyingEObjectEList<>(Step.class, this, SysMLPackage.SUCCESSION_AS_USAGE__TRIGGER_STEP);
-		Step transitionStep = getTransitionStep();
-		if (transitionStep instanceof TransitionUsage) {
-			EList<AcceptActionUsage> triggers = ((TransitionUsageImpl)transitionStep).getTriggerAction();
-			triggerSteps.addAll(triggers);
-		}
-		return triggerSteps;
+		return (EList<Step>)TRIGGER_STEP__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<Step> getEffectStep() {
-		EList<Step> effectSteps = new NonNotifyingEObjectEList<>(Step.class, this, SysMLPackage.SUCCESSION_AS_USAGE__EFFECT_STEP);
-		Step transitionStep = getTransitionStep();
-		if (transitionStep instanceof TransitionUsage) {
-			EList<ActionUsage> effects = ((TransitionUsageImpl)transitionStep).getEffectAction();
-			effectSteps.addAll(effects);
-		}
-		return effectSteps;
+		return (EList<Step>)EFFECT_STEP__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<Expression> getGuardExpression() {
-		EList<Expression> guardExpressions = new NonNotifyingEObjectEList<>(Expression.class, this, SysMLPackage.SUCCESSION__GUARD_EXPRESSION);
-		Step transitionStep = getTransitionStep();
-		if (transitionStep instanceof TransitionUsage) {
-			EList<Expression> guards = ((TransitionUsageImpl)transitionStep).getGuardExpression();
-			guardExpressions.addAll(guards);
-		}
-		return guardExpressions;
+		return (EList<Expression>)GUARD_EXPRESSION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
@@ -217,13 +250,13 @@ public class SuccessionAsUsageImpl extends ConnectorAsUsageImpl implements Succe
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case SysMLPackage.SUCCESSION_AS_USAGE__TRANSITION_STEP:
-				return basicGetTransitionStep() != null;
+				return TRANSITION_STEP__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.SUCCESSION_AS_USAGE__TRIGGER_STEP:
-				return !getTriggerStep().isEmpty();
+				return TRIGGER_STEP__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.SUCCESSION_AS_USAGE__EFFECT_STEP:
-				return !getEffectStep().isEmpty();
+				return EFFECT_STEP__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.SUCCESSION_AS_USAGE__GUARD_EXPRESSION:
-				return !getGuardExpression().isEmpty();
+				return GUARD_EXPRESSION__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 		}
 		return super.eIsSet(featureID);
 	}

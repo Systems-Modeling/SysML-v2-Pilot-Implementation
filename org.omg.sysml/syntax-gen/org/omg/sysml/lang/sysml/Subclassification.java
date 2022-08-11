@@ -80,6 +80,7 @@ public interface Subclassification extends Specialization {
 	 * @see org.omg.sysml.lang.sysml.Classifier#getOwnedSubclassification
 	 * @model opposite="ownedSubclassification" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="redefines"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	Classifier getOwningClassifier();

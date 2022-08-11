@@ -85,6 +85,7 @@ public interface Disjoining extends Relationship {
 	 * @see org.omg.sysml.lang.sysml.Type#getOwnedDisjoining
 	 * @model opposite="ownedDisjoining" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	Type getOwningType();

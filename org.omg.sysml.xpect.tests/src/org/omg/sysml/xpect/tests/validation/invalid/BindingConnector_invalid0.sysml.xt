@@ -6,10 +6,6 @@ XPECT_SETUP org.omg.sysml.xpect.tests.validation.invalid.SysMLTests
 		File {from ="/library.kernel/Links.kerml"}
        	File {from ="/library.kernel/Occurrences.kerml"}
        	File {from ="/library.kernel/Objects.kerml"}
-       	File {from ="/library.kernel/Performances.kerml"}
-		File {from ="/library.kernel/BaseFunctions.kerml"}
-		File {from ="/library.kernel/Transfers.kerml"}
-		File {from ="/library.systems/Actions.sysml"}
 		File {from ="/library.systems/Items.sysml"}
 		File {from ="/library.systems/Parts.sysml"}
 		File {from ="/library.systems/Ports.sysml"}
@@ -23,10 +19,6 @@ XPECT_SETUP org.omg.sysml.xpect.tests.validation.invalid.SysMLTests
 				File {from ="/library.kernel/Links.kerml"}
 				File {from ="/library.kernel/Occurrences.kerml"}
 		       	File {from ="/library.kernel/Objects.kerml"}
- 		      	File {from ="/library.kernel/Performances.kerml"}
-				File {from ="/library.kernel/BaseFunctions.kerml"}
-				File {from ="/library.kernel/Transfers.kerml"}
-				File {from ="/library.systems/Actions.sysml"}
 				File {from ="/library.systems/Items.sysml"}
 				File {from ="/library.systems/Parts.sysml"}
 				File {from ="/library.systems/Ports.sysml"}
@@ -37,48 +29,20 @@ XPECT_SETUP org.omg.sysml.xpect.tests.validation.invalid.SysMLTests
 END_SETUP 
 */
 
-package 'Control - Camera' {
-	//import 'Action Decomposition'::*;
-	part def Scene;
-	part def Image;
-	part def Picture;
-	
-	action def Focus(in scene : Scene, out image : Image);
-	action def Shoot(in image : Image, out picture : Picture);	
-	action def TakePicture(in scene : Scene, out picture : Picture);
-		
-	action takePicture : TakePicture (in scene, out picture) {
-		action focus : Focus (
-			in scene = takePicture::scene, 
-			out image
-		);
-		
-		action shoot : Shoot (
-			in image flow from focus.image, 
-			out picture = takePicture::picture
-		);
-	}
-	
-	part def Camera;
-	part def FocusingSubsystem;
-	part def ImagingSubsystem;
-	part def Image2;
-	part camera : Camera {
-		ref 'view' : Scene;
-		part photos : Picture[*];
-				
-		part autoFocus {
-			in ref 'view' : Scene = camera::'view';		
-			out ref realImage : Image;
+package BindingConnector_Invalid {
+	part def A1;
+	part def A2;
+	part b {				
+		part b1 {
+			out ref a : A1;
 		}
-		bind autoFocus.realImage = imager.focusedImage;
-		// XPECT warnings --> "Bound features should have conforming types" at "bind autoFocus.realImage = imager.focusedImage2;"
-		bind autoFocus.realImage = imager.focusedImage2;
+		bind b1.a = b2.a1;
+		// XPECT warnings --> "Bound features should have conforming types" at "bind b1.a = b2.a2;"
+		bind b1.a = b2.a2;
 		
-		part imager {
-			in ref focusedImage : Image;		
-			in ref focusedImage2 : Image2;		
-			out ref photo : Picture :> photos;
+		part b2 {
+			in ref a1: A1;		
+			in ref a2 : A2;		
 		}
 		
 	}

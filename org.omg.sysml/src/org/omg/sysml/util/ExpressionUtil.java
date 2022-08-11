@@ -27,6 +27,7 @@ import java.util.stream.Stream;
 
 import org.eclipse.emf.common.util.EList;
 import org.omg.sysml.adapter.ExpressionAdapter;
+import org.omg.sysml.adapter.FeatureReferenceExpressionAdapter;
 import org.omg.sysml.adapter.InvocationExpressionAdapter;
 import org.omg.sysml.adapter.OperatorExpressionAdapter;
 import org.omg.sysml.lang.sysml.Element;
@@ -65,6 +66,10 @@ public class ExpressionUtil {
 
 	public static List<Feature> getTypeFeaturesOf(InvocationExpression expression) {
 		return ((InvocationExpressionAdapter)getExpressionAdapter(expression)).getTypeFeatures();
+	}
+
+	public static Feature getSelfReferenceFeatureFor(FeatureReferenceExpression expression) {
+		return ((FeatureReferenceExpressionAdapter)getExpressionAdapter(expression)).getSelfReferenceFeature();
 	}
 
 	public static Element getReferentFor(FeatureReferenceExpression expression) {
@@ -157,5 +162,5 @@ public class ExpressionUtil {
 	public static String[] getOperatorQualifiedNames(String op) {
 		return Stream.of(OperatorExpressionAdapter.LIBRARY_PACKAGE_NAMES).map(pack -> pack + "::'" + op + "'").toArray(String[]::new);
 	}
-
+	
 }

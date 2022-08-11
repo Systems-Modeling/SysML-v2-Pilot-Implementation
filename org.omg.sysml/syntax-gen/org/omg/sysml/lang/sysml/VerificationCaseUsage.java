@@ -68,6 +68,7 @@ public interface VerificationCaseUsage extends CaseUsage {
 	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='definedVerificationCase'"
 	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	VerificationCaseDefinition getVerificationCaseDefinition();
@@ -94,6 +95,7 @@ public interface VerificationCaseUsage extends CaseUsage {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getVerificationCaseUsage_VerifiedRequirement()
 	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='verifyingCase'"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<RequirementUsage> getVerifiedRequirement();

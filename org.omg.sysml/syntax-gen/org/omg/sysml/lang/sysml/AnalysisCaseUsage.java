@@ -69,6 +69,7 @@ public interface AnalysisCaseUsage extends CaseUsage {
 	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='featuringAnalysisCase'"
 	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<ActionUsage> getAnalysisAction();
@@ -92,6 +93,7 @@ public interface AnalysisCaseUsage extends CaseUsage {
 	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='definedAnalysisCase'"
 	 *        annotation="redefines"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	AnalysisCaseDefinition getAnalysisCaseDefinition();
@@ -126,6 +128,7 @@ public interface AnalysisCaseUsage extends CaseUsage {
 	 * @model transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='analysisCase'"
 	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	Expression getResultExpression();

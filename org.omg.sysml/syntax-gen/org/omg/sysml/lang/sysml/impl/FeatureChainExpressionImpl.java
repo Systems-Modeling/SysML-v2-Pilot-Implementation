@@ -1,15 +1,32 @@
+/*******************************************************************************
+ * SysML 2 Pilot Implementation
+ * Copyright (c) 2022 Model Driven Solutions, Inc.
+ *    
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *  
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ *  
+ * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
+ *******************************************************************************/
 /**
  */
 package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.ecore.EClass;
 
-import org.eclipse.emf.ecore.InternalEObject;
-import org.omg.sysml.lang.sysml.Element;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureChainExpression;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.util.ExpressionUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -26,6 +43,15 @@ import org.omg.sysml.util.ExpressionUtil;
  */
 public class FeatureChainExpressionImpl extends OperatorExpressionImpl implements FeatureChainExpression {
 
+	/**
+	 * The cached setting delegate for the '{@link #getTargetFeature() <em>Target Feature</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTargetFeature()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate TARGET_FEATURE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.FEATURE_CHAIN_EXPRESSION__TARGET_FEATURE).getSettingDelegate();
 	private static final String FEATURE_CHAIN_FUNCTION = ".";
 
 	/**
@@ -59,28 +85,26 @@ public class FeatureChainExpressionImpl extends OperatorExpressionImpl implement
 	 */
 	@Override
 	public Feature getTargetFeature() {
-		Feature targetFeature = basicGetTargetFeature();
-		return targetFeature != null && targetFeature.eIsProxy() ? (Feature)eResolveProxy((InternalEObject)targetFeature) : targetFeature;
+		return (Feature)TARGET_FEATURE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Feature basicGetTargetFeature() {
-		Element targetFeature = ExpressionUtil.getTargetFeatureFor(this);
-		return targetFeature instanceof Feature? (Feature)targetFeature: null;
+		return (Feature)TARGET_FEATURE__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setTargetFeature(Feature newTargetFeature) {
-		throw new UnsupportedOperationException();
+		TARGET_FEATURE__ESETTING_DELEGATE.dynamicSet(this, null, 0, newTargetFeature);
 	}
 
 	/**
@@ -137,7 +161,7 @@ public class FeatureChainExpressionImpl extends OperatorExpressionImpl implement
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case SysMLPackage.FEATURE_CHAIN_EXPRESSION__TARGET_FEATURE:
-				return basicGetTargetFeature() != null;
+				return TARGET_FEATURE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 		}
 		return super.eIsSet(featureID);
 	}

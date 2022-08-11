@@ -71,6 +71,7 @@ public interface Documentation extends Comment {
 	 * @model opposite="documentation" required="true" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="redefines"
 	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	Element getDocumentedElement();

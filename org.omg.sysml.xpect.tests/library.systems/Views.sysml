@@ -29,7 +29,7 @@ package Views {
 		/**
 		 * An assertion that all viewpointSatisfactions are true.
 		 */
-		satisfy requirement viewpointConformance by View::self {
+		satisfy requirement viewpointConformance by that {
 			/** The required ViewpointChecks. */
 			require viewpointSatisfactions;
 		}

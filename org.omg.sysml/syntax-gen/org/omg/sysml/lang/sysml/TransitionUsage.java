@@ -68,6 +68,7 @@ public interface TransitionUsage extends ActionUsage {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getTransitionUsage_Source()
 	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='outgoingTransition'"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	ActionUsage getSource();
@@ -94,6 +95,7 @@ public interface TransitionUsage extends ActionUsage {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getTransitionUsage_Target()
 	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='incomingTransition'"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	ActionUsage getTarget();
@@ -127,6 +129,7 @@ public interface TransitionUsage extends ActionUsage {
 	 * @model transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='triggeredTransition'"
 	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<AcceptActionUsage> getTriggerAction();
@@ -150,6 +153,7 @@ public interface TransitionUsage extends ActionUsage {
 	 * @model transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='guardedTransition'"
 	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<Expression> getGuardExpression();
@@ -173,6 +177,7 @@ public interface TransitionUsage extends ActionUsage {
 	 * @model transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='activeTransition'"
 	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<ActionUsage> getEffectAction();
@@ -196,6 +201,7 @@ public interface TransitionUsage extends ActionUsage {
 	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='linkedTransition'"
 	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	Succession getSuccession();

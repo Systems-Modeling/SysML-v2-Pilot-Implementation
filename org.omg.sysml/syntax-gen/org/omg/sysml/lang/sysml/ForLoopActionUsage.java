@@ -38,6 +38,7 @@ public interface ForLoopActionUsage extends LoopActionUsage {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getForLoopActionUsage_SeqArgument()
 	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='forLoopAction'"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	Expression getSeqArgument();
@@ -68,6 +69,7 @@ public interface ForLoopActionUsage extends LoopActionUsage {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getForLoopActionUsage_LoopVariable()
 	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='forLoopAction'"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	ReferenceUsage getLoopVariable();

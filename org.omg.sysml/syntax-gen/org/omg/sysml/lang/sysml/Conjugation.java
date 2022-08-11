@@ -149,6 +149,7 @@ public interface Conjugation extends Relationship {
 	 * @see org.omg.sysml.lang.sysml.Type#getOwnedConjugator
 	 * @model opposite="ownedConjugator" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	Type getOwningType();

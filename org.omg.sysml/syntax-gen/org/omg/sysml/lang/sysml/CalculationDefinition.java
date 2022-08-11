@@ -67,6 +67,7 @@ public interface CalculationDefinition extends ActionDefinition, Function {
 	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='featuringCalculationDefinition'"
 	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<CalculationUsage> getCalculation();

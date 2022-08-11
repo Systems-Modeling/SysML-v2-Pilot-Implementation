@@ -75,6 +75,7 @@ public interface ConnectionUsage extends ConnectorAsUsage, PartUsage {
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='definedConnection'"
 	 *        annotation="redefines"
 	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<AssociationStructure> getConnectionDefinition();

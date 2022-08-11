@@ -60,9 +60,12 @@ package Triggers {
 		/**
 		 * The ChangeSignal for the condition, as monitored by the monitor.
 		 */
-		return feature signal : ChangeSignal[1] = ChangeSignal(condition, monitor);
+		return feature changeSignal : ChangeSignal[1] = ChangeSignal(condition, monitor);
 		
-		step :> monitor.startObservation(receiver, signal);			
+		step :> monitor.startObservation {
+			in observer = receiver;
+			in signal = changeSignal;
+		}		
 	}
 	
 	/**
@@ -95,9 +98,12 @@ package Triggers {
 		/**
 		 * The TimeSignal for the given timeInstant, as monitored by the monitor.
 		 */
-		return feature signal : TimeSignal[1] = TimeSignal(timeInstant, clock, monitor);
+		return feature timeSignal : TimeSignal[1] = TimeSignal(timeInstant, clock, monitor);
 		
-		step :> monitor.startObservation(receiver, signal);
+		step :> monitor.startObservation {
+			in observer = receiver;
+			in signal = timeSignal;
+		}
 	}
 	
 	/**

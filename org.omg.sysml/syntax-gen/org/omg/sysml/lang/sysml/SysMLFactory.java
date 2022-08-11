@@ -339,6 +339,15 @@ public interface SysMLFactory extends EFactory {
 	Package createPackage();
 
 	/**
+	 * Returns a new object of class '<em>Prefix Comment</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Prefix Comment</em>'.
+	 * @generated
+	 */
+	PrefixComment createPrefixComment();
+
+	/**
 	 * Returns a new object of class '<em>Import</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

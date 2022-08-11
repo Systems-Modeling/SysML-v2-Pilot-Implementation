@@ -86,6 +86,7 @@ public interface ItemFlow extends Connector, Step {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getItemFlow_TargetInputFeature()
 	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='itemFlowToInput'"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<Feature> getTargetInputFeature();
@@ -108,6 +109,7 @@ public interface ItemFlow extends Connector, Step {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getItemFlow_SourceOutputFeature()
 	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='itemFlowFromOutput'"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<Feature> getSourceOutputFeature();
@@ -136,6 +138,7 @@ public interface ItemFlow extends Connector, Step {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getItemFlow_ItemFlowEnd()
 	 * @model lower="2" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="redefines"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<ItemFlowEnd> getItemFlowEnd();
@@ -164,6 +167,7 @@ public interface ItemFlow extends Connector, Step {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getItemFlow_ItemFeature()
 	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<ItemFeature> getItemFeature();
@@ -183,6 +187,7 @@ public interface ItemFlow extends Connector, Step {
 	 * @return the value of the '<em>Item Flow Feature</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getItemFlow_ItemFlowFeature()
 	 * @model lower="2" transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<ItemFlowFeature> getItemFlowFeature();

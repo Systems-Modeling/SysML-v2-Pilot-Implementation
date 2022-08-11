@@ -74,6 +74,7 @@ public interface PortUsage extends OccurrenceUsage {
 	 * @model required="true" transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='definedPort'"
 	 *        annotation="redefines"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<PortDefinition> getPortDefinition();

@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -27,16 +27,13 @@ import java.util.Collection;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.uml2.common.util.DerivedEObjectEList;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.CalculationDefinition;
 import org.omg.sysml.lang.sysml.CalculationUsage;
-import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.util.TypeUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -57,14 +54,44 @@ import org.omg.sysml.util.TypeUtil;
 public class CalculationDefinitionImpl extends ActionDefinitionImpl implements CalculationDefinition {
 
 	/**
-	 * The default value of the '{@link #isModelLevelEvaluable() <em>Is Model Level Evaluable</em>}' attribute.
+	 * The cached setting delegate for the '{@link #getExpression() <em>Expression</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getExpression()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate EXPRESSION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.FUNCTION__EXPRESSION).getSettingDelegate();
+
+	/**
+	 * The cached setting delegate for the '{@link #getResult() <em>Result</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getResult()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate RESULT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.FUNCTION__RESULT).getSettingDelegate();
+
+	/**
+	 * The cached setting delegate for the '{@link #isModelLevelEvaluable() <em>Is Model Level Evaluable</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #isModelLevelEvaluable()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final boolean IS_MODEL_LEVEL_EVALUABLE_EDEFAULT = false;
+	protected EStructuralFeature.Internal.SettingDelegate IS_MODEL_LEVEL_EVALUABLE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.FUNCTION__IS_MODEL_LEVEL_EVALUABLE).getSettingDelegate();
+
+	/**
+	 * The cached setting delegate for the '{@link #getCalculation() <em>Calculation</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCalculation()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate CALCULATION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.CALCULATION_DEFINITION__CALCULATION).getSettingDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -88,21 +115,12 @@ public class CalculationDefinitionImpl extends ActionDefinitionImpl implements C
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	@Override
-	public EList<Expression> getExpression() {
-		return new DerivedEObjectEList<Expression>(Expression.class, this, SysMLPackage.CALCULATION_DEFINITION__EXPRESSION,
-				new int[] { SysMLPackage.TYPE__FEATURE });
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isSetExpression() {
-		return !getExpression().isEmpty();
+	@SuppressWarnings("unchecked")
+	@Override
+	public EList<Expression> getExpression() {
+		return (EList<Expression>)EXPRESSION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
@@ -112,79 +130,57 @@ public class CalculationDefinitionImpl extends ActionDefinitionImpl implements C
 	 */
 	@Override
 	public Feature getResult() {
-		Feature result = basicGetResult();
-		return result != null && result.eIsProxy() ? (Feature)eResolveProxy((InternalEObject)result) : result;
+		return (Feature)RESULT__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Feature basicGetResult() {
-		return TypeUtil.getOwnedResultParameterOf(this);
+		return (Feature)RESULT__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setResult(Feature newResult) {
-		throw new UnsupportedOperationException();
+		RESULT__ESETTING_DELEGATE.dynamicSet(this, null, 0, newResult);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public boolean isModelLevelEvaluable() {
-		return false;
+		return (Boolean)IS_MODEL_LEVEL_EVALUABLE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setIsModelLevelEvaluable(boolean newIsModelLevelEvaluable) {
-		throw new UnsupportedOperationException();
+		IS_MODEL_LEVEL_EVALUABLE__ESETTING_DELEGATE.dynamicSet(this, null, 0, newIsModelLevelEvaluable);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<CalculationUsage> getCalculation() {
-		return new DerivedEObjectEList<CalculationUsage>(CalculationUsage.class, this, SysMLPackage.CALCULATION_DEFINITION__CALCULATION,
-				new int[] { SysMLPackage.TYPE__FEATURE });
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EList<Step> getStep() {
-		@SuppressWarnings("unchecked")
-		EList<Step> expression = (EList<Step>)((EList<?>)getExpression());
-		return expression;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetStep() {
-  		return false;
+		return (EList<CalculationUsage>)CALCULATION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
@@ -250,7 +246,7 @@ public class CalculationDefinitionImpl extends ActionDefinitionImpl implements C
 				setResult((Feature)null);
 				return;
 			case SysMLPackage.CALCULATION_DEFINITION__IS_MODEL_LEVEL_EVALUABLE:
-				setIsModelLevelEvaluable(IS_MODEL_LEVEL_EVALUABLE_EDEFAULT);
+				IS_MODEL_LEVEL_EVALUABLE__ESETTING_DELEGATE.dynamicUnset(this, null, 0);
 				return;
 			case SysMLPackage.CALCULATION_DEFINITION__CALCULATION:
 				getCalculation().clear();
@@ -267,16 +263,14 @@ public class CalculationDefinitionImpl extends ActionDefinitionImpl implements C
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.CALCULATION_DEFINITION__STEP:
-				return isSetStep();
 			case SysMLPackage.CALCULATION_DEFINITION__EXPRESSION:
-				return isSetExpression();
+				return EXPRESSION__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.CALCULATION_DEFINITION__RESULT:
-				return basicGetResult() != null;
+				return RESULT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.CALCULATION_DEFINITION__IS_MODEL_LEVEL_EVALUABLE:
-				return isModelLevelEvaluable() != IS_MODEL_LEVEL_EVALUABLE_EDEFAULT;
+				return IS_MODEL_LEVEL_EVALUABLE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.CALCULATION_DEFINITION__CALCULATION:
-				return !getCalculation().isEmpty();
+				return CALCULATION__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 		}
 		return super.eIsSet(featureID);
 	}

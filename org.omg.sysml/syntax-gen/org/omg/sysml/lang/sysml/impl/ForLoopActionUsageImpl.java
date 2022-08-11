@@ -1,19 +1,32 @@
+/*******************************************************************************
+ * SysML 2 Pilot Implementation
+ * Copyright (c) 2022 Model Driven Solutions, Inc.
+ *    
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *  
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ *  
+ * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
+ *******************************************************************************/
 /**
  */
 package org.omg.sysml.lang.sysml.impl;
 
-import java.util.List;
-
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.omg.sysml.lang.sysml.Expression;
-import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.ForLoopActionUsage;
 import org.omg.sysml.lang.sysml.ReferenceUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.util.FeatureUtil;
-import org.omg.sysml.util.TypeUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -30,6 +43,26 @@ import org.omg.sysml.util.TypeUtil;
  * @generated
  */
 public class ForLoopActionUsageImpl extends LoopActionUsageImpl implements ForLoopActionUsage {
+	/**
+	 * The cached setting delegate for the '{@link #getSeqArgument() <em>Seq Argument</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSeqArgument()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate SEQ_ARGUMENT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.FOR_LOOP_ACTION_USAGE__SEQ_ARGUMENT).getSettingDelegate();
+
+	/**
+	 * The cached setting delegate for the '{@link #getLoopVariable() <em>Loop Variable</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLoopVariable()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate LOOP_VARIABLE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.FOR_LOOP_ACTION_USAGE__LOOP_VARIABLE).getSettingDelegate();
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -56,29 +89,26 @@ public class ForLoopActionUsageImpl extends LoopActionUsageImpl implements ForLo
 	 */
 	@Override
 	public ReferenceUsage getLoopVariable() {
-		ReferenceUsage loopVariable = basicGetLoopVariable();
-		return loopVariable != null && loopVariable.eIsProxy() ? (ReferenceUsage)eResolveProxy((InternalEObject)loopVariable) : loopVariable;
+		return (ReferenceUsage)LOOP_VARIABLE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public ReferenceUsage basicGetLoopVariable() {
-		return (ReferenceUsage)getOwnedFeature().stream().
-				findFirst().
-				filter(ReferenceUsage.class::isInstance).orElse(null);
+		return (ReferenceUsage)LOOP_VARIABLE__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setLoopVariable(ReferenceUsage newLoopVariable) {
-		throw new UnsupportedOperationException();
+		LOOP_VARIABLE__ESETTING_DELEGATE.dynamicSet(this, null, 0, newLoopVariable);
 	}
 
 	/**
@@ -88,28 +118,26 @@ public class ForLoopActionUsageImpl extends LoopActionUsageImpl implements ForLo
 	 */
 	@Override
 	public Expression getSeqArgument() {
-		Expression seqArgument = basicGetSeqArgument();
-		return seqArgument != null && seqArgument.eIsProxy() ? (Expression)eResolveProxy((InternalEObject)seqArgument) : seqArgument;
+		return (Expression)SEQ_ARGUMENT__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Expression basicGetSeqArgument() {
-		List<Feature> parameters = TypeUtil.getOwnedParametersOf(this);
-		return parameters.isEmpty()? null: FeatureUtil.getValueExpressionFor(parameters.get(0));
+		return (Expression)SEQ_ARGUMENT__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setSeqArgument(Expression newSeqArgument) {
-		throw new UnsupportedOperationException();
+		SEQ_ARGUMENT__ESETTING_DELEGATE.dynamicSet(this, null, 0, newSeqArgument);
 	}
 
 	/**
@@ -175,9 +203,9 @@ public class ForLoopActionUsageImpl extends LoopActionUsageImpl implements ForLo
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case SysMLPackage.FOR_LOOP_ACTION_USAGE__SEQ_ARGUMENT:
-				return basicGetSeqArgument() != null;
+				return SEQ_ARGUMENT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.FOR_LOOP_ACTION_USAGE__LOOP_VARIABLE:
-				return basicGetLoopVariable() != null;
+				return LOOP_VARIABLE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 		}
 		return super.eIsSet(featureID);
 	}

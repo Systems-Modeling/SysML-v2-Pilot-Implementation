@@ -113,6 +113,7 @@ public interface FeatureInverting extends Relationship {
 	 * @see org.omg.sysml.lang.sysml.Feature#getOwnedFeatureInverting
 	 * @model opposite="ownedFeatureInverting" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	Feature getOwningFeature();

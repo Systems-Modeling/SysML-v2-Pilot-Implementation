@@ -97,7 +97,9 @@ package Observation {
 		/**
 		 * Start an observation of a given ChangeSignal for a given Occurrence.
 		 */
-		step startObservation(in observer : Occurrence[1], in signal : ChangeSignal[1]) {
+		step startObservation { 
+			in observer : Occurrence[1]; 
+			in signal : ChangeSignal[1];
 			private composite step observation : ObserveChange {
 				in changeObserver = observer;
 				in changeSignal = signal;
@@ -111,7 +113,9 @@ package Observation {
 		/**
 		 * Cancel all observations of a given ChangeSignal for a given Occurrence. 
 		 */
-		step cancelObservation(in observer : Occurrence[1], in signal : ChangeSignal[1]) {
+		step cancelObservation { 
+			in observer : Occurrence[1]; 
+			in signal : ChangeSignal[1];
 			private feature observations[0..*] : ObserveChange = 
 				observations->select{in observation : ObserveChange; 
 					observation.changeObserver == observer and observation.changeSignal == signal

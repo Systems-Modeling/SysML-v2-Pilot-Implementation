@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -24,13 +24,12 @@ package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureValue;
-import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
@@ -50,14 +49,23 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  */
 public class FeatureValueImpl extends OwningMembershipImpl implements FeatureValue {
 	/**
-	 * The cached value of the '{@link #getFeatureWithValue() <em>Feature With Value</em>}' reference.
+	 * The cached setting delegate for the '{@link #getFeatureWithValue() <em>Feature With Value</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getFeatureWithValue()
 	 * @generated
 	 * @ordered
 	 */
-	protected Feature featureWithValue;
+	protected EStructuralFeature.Internal.SettingDelegate FEATURE_WITH_VALUE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.FEATURE_VALUE__FEATURE_WITH_VALUE).getSettingDelegate();
+	/**
+	 * The cached setting delegate for the '{@link #getValue() <em>Value</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getValue()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate VALUE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.FEATURE_VALUE__VALUE).getSettingDelegate();
 	/**
 	 * The default value of the '{@link #isInitial() <em>Is Initial</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -118,28 +126,26 @@ public class FeatureValueImpl extends OwningMembershipImpl implements FeatureVal
 	 */
 	@Override
 	public Expression getValue() {
-		Expression value = basicGetValue();
-		return value != null && value.eIsProxy() ? (Expression)eResolveProxy((InternalEObject)value) : value;
+		return (Expression)VALUE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Expression basicGetValue() {
-		Element ownedMemberElement = super.basicGetOwnedMemberElement();
-		return ownedMemberElement instanceof Expression? (Expression)ownedMemberElement: null;
+		return (Expression)VALUE__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> 
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setValue(Expression newValue) {
-		super.setOwnedMemberElement(newValue);
+		VALUE__ESETTING_DELEGATE.dynamicSet(this, null, 0, newValue);
 	}
 
 	/**
@@ -198,38 +204,31 @@ public class FeatureValueImpl extends OwningMembershipImpl implements FeatureVal
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Feature getFeatureWithValue() {
-		if (featureWithValue != null && featureWithValue.eIsProxy()) {
-			InternalEObject oldFeatureWithValue = (InternalEObject)featureWithValue;
-			featureWithValue = (Feature)eResolveProxy(oldFeatureWithValue);
-			if (featureWithValue != oldFeatureWithValue) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SysMLPackage.FEATURE_VALUE__FEATURE_WITH_VALUE, oldFeatureWithValue, featureWithValue));
-			}
-		}
-		return featureWithValue;
+		return (Feature)FEATURE_WITH_VALUE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Feature basicGetFeatureWithValue() {
-		Namespace owningNamespace = getMembershipOwningNamespace();
-		return owningNamespace instanceof Feature? (Feature)owningNamespace: null;
+		return (Feature)FEATURE_WITH_VALUE__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setFeatureWithValue(Feature newFeatureWithValue) {
+		FEATURE_WITH_VALUE__ESETTING_DELEGATE.dynamicSet(this, null, 0, newFeatureWithValue);
 	}
 
 	/**
@@ -350,7 +349,7 @@ public class FeatureValueImpl extends OwningMembershipImpl implements FeatureVal
 			case SysMLPackage.FEATURE_VALUE__OWNED_MEMBER_ELEMENT:
 				return isSetOwnedMemberElement();
 			case SysMLPackage.FEATURE_VALUE__FEATURE_WITH_VALUE:
-				return featureWithValue != null;
+				return FEATURE_WITH_VALUE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.FEATURE_VALUE__VALUE:
 				return isSetValue();
 			case SysMLPackage.FEATURE_VALUE__IS_INITIAL:

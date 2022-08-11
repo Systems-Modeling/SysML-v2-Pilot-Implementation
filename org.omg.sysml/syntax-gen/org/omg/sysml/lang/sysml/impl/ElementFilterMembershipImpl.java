@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -23,7 +23,7 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.ElementFilterMembership;
 import org.omg.sysml.lang.sysml.Expression;
@@ -43,6 +43,16 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * @generated
  */
 public class ElementFilterMembershipImpl extends OwningMembershipImpl implements ElementFilterMembership {
+	/**
+	 * The cached setting delegate for the '{@link #getCondition() <em>Condition</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCondition()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate CONDITION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.ELEMENT_FILTER_MEMBERSHIP__CONDITION).getSettingDelegate();
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -69,28 +79,26 @@ public class ElementFilterMembershipImpl extends OwningMembershipImpl implements
 	 */
 	@Override
 	public Expression getCondition() {
-		Expression condition = basicGetCondition();
-		return condition != null && condition.eIsProxy() ? (Expression)eResolveProxy((InternalEObject)condition) : condition;
+		return (Expression)CONDITION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Expression basicGetCondition() {
-		Element ownedMemberElement = super.basicGetOwnedMemberElement();
-		return ownedMemberElement instanceof Expression? (Expression)ownedMemberElement: null;
+		return (Expression)CONDITION__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setCondition(Expression newCondition) {
-		super.setOwnedMemberElement(newCondition);
+		CONDITION__ESETTING_DELEGATE.dynamicSet(this, null, 0, newCondition);
 	}
 
 	/**

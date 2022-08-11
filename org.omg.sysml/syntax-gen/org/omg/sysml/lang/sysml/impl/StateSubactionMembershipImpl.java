@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -24,7 +24,7 @@ package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.omg.sysml.lang.sysml.ActionUsage;
@@ -67,6 +67,16 @@ public class StateSubactionMembershipImpl extends FeatureMembershipImpl implemen
 	 * @ordered
 	 */
 	protected StateSubactionKind kind = KIND_EDEFAULT;
+
+	/**
+	 * The cached setting delegate for the '{@link #getAction() <em>Action</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAction()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate ACTION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.STATE_SUBACTION_MEMBERSHIP__ACTION).getSettingDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -117,28 +127,26 @@ public class StateSubactionMembershipImpl extends FeatureMembershipImpl implemen
 	 */
 	@Override
 	public ActionUsage getAction() {
-		ActionUsage action = basicGetAction();
-		return action != null && action.eIsProxy() ? (ActionUsage)eResolveProxy((InternalEObject)action) : action;
+		return (ActionUsage)ACTION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public ActionUsage basicGetAction() {
-		Feature ownedMemberFeature = super.basicGetOwnedMemberFeature();
-		return ownedMemberFeature instanceof ActionUsage? (ActionUsage)ownedMemberFeature: null;
+		return (ActionUsage)ACTION__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setAction(ActionUsage newAction) {
-		super.setOwnedMemberFeature(newAction);
+		ACTION__ESETTING_DELEGATE.dynamicSet(this, null, 0, newAction);
 	}
 
 	/**

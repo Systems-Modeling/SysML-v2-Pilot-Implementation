@@ -11,7 +11,7 @@ package Time {
 	private import ScalarValues::String;
 	private import Quantities::ScalarQuantityValue;
 	private import Quantities::scalarQuantities;
-    private import UnitsAndScales::*;
+    private import MeasurementReferences::*;
     import ISQBase::DurationValue;
     import ISQBase::DurationUnit;
     import ISQBase::duration;
@@ -178,11 +178,12 @@ package Time {
     attribute def Iso8601DateTime :> UtcTimeInstantValue {
     	attribute val: Iso8601DateTimeEncoding;
     	attribute :>> num = getElapsedUtcTime(val);
-    	private calc getElapsedUtcTime(iso8601DateTime: Iso8601DateTimeEncoding) : Real {
-    		/** Return the number of seconds elapsed since the UTC epoch. Can be negative when the date and time is earlier than the epoch. */
-    		attribute x: Real;
-    		// TO DO: implement summation of ISO 8601 date and time components in x
-    		x
+    	private calc getElapsedUtcTime {
+    		in iso8601DateTime: Iso8601DateTimeEncoding;
+    		/* Return the number of seconds elapsed since the UTC epoch. 
+    		 * Can be negative when the date and time is earlier than the epoch.
+    		 */
+    		return : Real;
     	}
     }
 
@@ -206,30 +207,38 @@ package Time {
     	attribute minuteOffest: Integer;
     	attribute :>> num = getElapsedUtcTime(year, month, day, hour, minute, second, microsecond, hourOffset, minuteOffest);
     	attribute :>> mRef = UTC;
-    	private calc getElapsedUtcTime(year: Integer, month: Natural, day: Natural, hour: Natural, minute: Natural, second: Natural,
-    			microsecond: Natural, hourOffset: Integer, minuteOffest: Integer) : Real {
-    		attribute x: Real;
-    		// TO DO: implement summation of ISO 8601 date and time components in x
-    		x
+    	private calc getElapsedUtcTime {
+    		in year: Integer; 
+    		in month: Natural; 
+    		in day: Natural;
+    		in hour: Natural;
+    		in minute: Natural;
+    		in second: Natural;
+    		in microsecond: Natural;
+    		in hourOffset: Integer;
+    		in minuteOffest: Integer;
+    		return : Real;
     	}
     }
 
     /**
 	 * Calculation to convert an ISO 8601 date and time instant from string to component structure representation
      */
-	calc convertIso8601DateTimeToStructure(iso8601DateTime: Iso8601DateTime) : Iso8601DateTimeStructure {
-		attribute x: Iso8601DateTimeStructure;
-		// TO DO: implement parsing ISO 8601 string encoding to date and time components
-		x
+	calc convertIso8601DateTimeToStructure {
+		in iso8601DateTime: Iso8601DateTime;
+		/* Parse ISO 8601 string encoding to date and time components */
+		return : Iso8601DateTimeStructure;
 	}
 
 	/**
 	 * Calculation to convert an ISO 8601 date and time instant from component structure to string representation
 	 */
-	calc convertIso8601StructureToDateTime(iso8601DateTimeStructure: Iso8601DateTimeStructure) : Iso8601DateTime {
+	calc convertIso8601StructureToDateTime {
+		in iso8601DateTimeStructure: Iso8601DateTimeStructure;
 		attribute x: Iso8601DateTime;
-		// TO DO: implement concatenation of ISO 8601 date and time components to string 
-		// year-month-dayThour:minute:second±hourOffset:minuteOffset
-		x
+		/* Concatenate ISO 8601 date and time components to string 
+		 *     year-month-dayThour:minute:second±hourOffset:minuteOffset
+		 */
+		return : Iso8601DateTime;
 	}
 }

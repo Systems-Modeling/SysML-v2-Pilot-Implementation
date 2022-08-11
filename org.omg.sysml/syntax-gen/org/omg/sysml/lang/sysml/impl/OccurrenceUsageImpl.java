@@ -1,3 +1,22 @@
+/*******************************************************************************
+ * SysML 2 Pilot Implementation
+ * Copyright (c) 2022 Model Driven Solutions, Inc.
+ *    
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *  
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ *  
+ * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
+ *******************************************************************************/
 /**
  */
 package org.omg.sysml.lang.sysml.impl;
@@ -7,8 +26,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.omg.sysml.lang.sysml.Classifier;
 import org.omg.sysml.lang.sysml.OccurrenceDefinition;
@@ -16,7 +34,6 @@ import org.omg.sysml.lang.sysml.OccurrenceUsage;
 import org.omg.sysml.lang.sysml.PortionKind;
 import org.omg.sysml.lang.sysml.PortioningFeature;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.util.NonNotifyingEObjectEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -36,6 +53,36 @@ import org.omg.sysml.util.NonNotifyingEObjectEList;
  * @generated
  */
 public class OccurrenceUsageImpl extends UsageImpl implements OccurrenceUsage {
+	/**
+	 * The cached setting delegate for the '{@link #getOccurrenceDefinition() <em>Occurrence Definition</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOccurrenceDefinition()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate OCCURRENCE_DEFINITION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.OCCURRENCE_USAGE__OCCURRENCE_DEFINITION).getSettingDelegate();
+
+	/**
+	 * The cached setting delegate for the '{@link #getPortioningFeature() <em>Portioning Feature</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPortioningFeature()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate PORTIONING_FEATURE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.OCCURRENCE_USAGE__PORTIONING_FEATURE).getSettingDelegate();
+
+	/**
+	 * The cached setting delegate for the '{@link #getIndividualDefinition() <em>Individual Definition</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getIndividualDefinition()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate INDIVIDUAL_DEFINITION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.OCCURRENCE_USAGE__INDIVIDUAL_DEFINITION).getSettingDelegate();
+
 	/**
 	 * The default value of the '{@link #isIndividual() <em>Is Individual</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -59,6 +106,7 @@ public class OccurrenceUsageImpl extends UsageImpl implements OccurrenceUsage {
 	/**
 	 * The default value of the '{@link #getPortionKind() <em>Portion Kind</em>}' attribute.
 	 * <!-- begin-user-doc -->
+	 * Default for portionKind is null, per its 0..1 multiplicity in the MOF abstract syntax model.
 	 * <!-- end-user-doc -->
 	 * @see #getPortionKind()
 	 * @generated NOT
@@ -98,17 +146,12 @@ public class OccurrenceUsageImpl extends UsageImpl implements OccurrenceUsage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<org.omg.sysml.lang.sysml.Class> getOccurrenceDefinition() {
-		EList<org.omg.sysml.lang.sysml.Class> definitions =
-				new NonNotifyingEObjectEList<>(org.omg.sysml.lang.sysml.Class.class, this, SysMLPackage.OCCURRENCE_USAGE__OCCURRENCE_DEFINITION);
-		super.getDefinition().stream().
-			filter(org.omg.sysml.lang.sysml.Class.class::isInstance).
-			map(org.omg.sysml.lang.sysml.Class.class::cast).
-			forEachOrdered(definitions::add);
-		return definitions;
+		return (EList<org.omg.sysml.lang.sysml.Class>)OCCURRENCE_DEFINITION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
@@ -127,30 +170,26 @@ public class OccurrenceUsageImpl extends UsageImpl implements OccurrenceUsage {
 	 */
 	@Override
 	public PortioningFeature getPortioningFeature() {
-		PortioningFeature portioningFeature = basicGetPortioningFeature();
-		return portioningFeature != null && portioningFeature.eIsProxy() ? (PortioningFeature)eResolveProxy((InternalEObject)portioningFeature) : portioningFeature;
+		return (PortioningFeature)PORTIONING_FEATURE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public PortioningFeature basicGetPortioningFeature() {
-		return getOwnedFeature().stream().
-				filter(PortioningFeature.class::isInstance).
-				map(PortioningFeature.class::cast).
-				findFirst().orElse(null);
+		return (PortioningFeature)PORTIONING_FEATURE__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setPortioningFeature(PortioningFeature newPortioningFeature) {
-		throw new UnsupportedOperationException();
+		PORTIONING_FEATURE__ESETTING_DELEGATE.dynamicSet(this, null, 0, newPortioningFeature);
 	}
 
 	/**
@@ -160,31 +199,26 @@ public class OccurrenceUsageImpl extends UsageImpl implements OccurrenceUsage {
 	 */
 	@Override
 	public OccurrenceDefinition getIndividualDefinition() {
-		OccurrenceDefinition individualDefinition = basicGetIndividualDefinition();
-		return individualDefinition != null && individualDefinition.eIsProxy() ? (OccurrenceDefinition)eResolveProxy((InternalEObject)individualDefinition) : individualDefinition;
+		return (OccurrenceDefinition)INDIVIDUAL_DEFINITION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public OccurrenceDefinition basicGetIndividualDefinition() {
-		return getOccurrenceDefinition().stream().
-				filter(OccurrenceDefinition.class::isInstance).
-				map(OccurrenceDefinition.class::cast).
-				filter(OccurrenceDefinition::isIndividual).
-				findFirst().orElse(null);
+		return (OccurrenceDefinition)INDIVIDUAL_DEFINITION__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setIndividualDefinition(OccurrenceDefinition newIndividualDefinition) {
-		throw new UnsupportedOperationException();
+		INDIVIDUAL_DEFINITION__ESETTING_DELEGATE.dynamicSet(this, null, 0, newIndividualDefinition);
 	}
 
 	/**
@@ -326,9 +360,9 @@ public class OccurrenceUsageImpl extends UsageImpl implements OccurrenceUsage {
 			case SysMLPackage.OCCURRENCE_USAGE__OCCURRENCE_DEFINITION:
 				return isSetOccurrenceDefinition();
 			case SysMLPackage.OCCURRENCE_USAGE__PORTIONING_FEATURE:
-				return basicGetPortioningFeature() != null;
+				return PORTIONING_FEATURE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.OCCURRENCE_USAGE__INDIVIDUAL_DEFINITION:
-				return basicGetIndividualDefinition() != null;
+				return INDIVIDUAL_DEFINITION__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.OCCURRENCE_USAGE__IS_INDIVIDUAL:
 				return isIndividual != IS_INDIVIDUAL_EDEFAULT;
 			case SysMLPackage.OCCURRENCE_USAGE__PORTION_KIND:

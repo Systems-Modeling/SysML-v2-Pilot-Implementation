@@ -1,3 +1,22 @@
+/*******************************************************************************
+ * SysML 2 Pilot Implementation
+ * Copyright (c) 2022 Model Driven Solutions, Inc.
+ *    
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *  
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ *  
+ * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
+ *******************************************************************************/
 /**
  */
 package org.omg.sysml.lang.sysml.impl;
@@ -9,6 +28,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.UniqueEList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -60,6 +80,16 @@ public class FeatureInvertingImpl extends RelationshipImpl implements FeatureInv
 	protected Feature invertingFeature;
 
 	/**
+	 * The cached setting delegate for the '{@link #getOwningFeature() <em>Owning Feature</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwningFeature()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate OWNING_FEATURE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.FEATURE_INVERTING__OWNING_FEATURE).getSettingDelegate();
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -78,6 +108,12 @@ public class FeatureInvertingImpl extends RelationshipImpl implements FeatureInv
 		return SysMLPackage.Literals.FEATURE_INVERTING;
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * Xtext workaround
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
 	@Override
 	public Feature getFeatureInverted() {
 		return featureInverted == null? basicGetFeatureInverted(): getFeatureInvertedGen();
@@ -102,15 +138,18 @@ public class FeatureInvertingImpl extends RelationshipImpl implements FeatureInv
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * Xtext workaround:
+	 * If the featureInverted is empty, then set it to the owningRelatedElement of the FeatureInverting,
+	 * if that is a Feature, otherwise set it to the first ownedRelatedElement (which will be a
+	 * Feature chain).
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	public Feature basicGetFeatureInverted() {
-		// Xtext workaround
 		if (featureInverted == null) {
 			Element owner = getOwningRelatedElement();
 			if (owner instanceof Feature) {
-				// Handle FeatureInverting owned by the invertingFeature.
+				// Handle FeatureInverting owned by the featureInverted.
 				featureInverted = (Feature)owner;
 			} else {
 				// Handle featureInverted that is a Feature chain.
@@ -189,6 +228,12 @@ public class FeatureInvertingImpl extends RelationshipImpl implements FeatureInv
 			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.FEATURE_INVERTING__OWNING_RELATED_ELEMENT, newOwningRelatedElement, newOwningRelatedElement));
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * Xtext workaround.
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
 	@Override
 	public Feature getInvertingFeature() {
 		return invertingFeature == null? basicGetInvertingFeature(): getInvertingFeatureGen();
@@ -213,11 +258,13 @@ public class FeatureInvertingImpl extends RelationshipImpl implements FeatureInv
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * Xtext workaround:
+	 * If the invertingFeature is empty, then set it to the last ownedRelatedElement
+	 * (which will be a Feature chain).
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	public Feature basicGetInvertingFeature() {
-		// Xtext workaround
 		if (invertingFeature == null) {
 			// Handle invertingFeature that is a Feature chain.
 			EList<Element> ownedRelatedElements = getOwnedRelatedElement();
@@ -258,28 +305,26 @@ public class FeatureInvertingImpl extends RelationshipImpl implements FeatureInv
 	 */
 	@Override
 	public Feature getOwningFeature() {
-		Feature owningFeature = basicGetOwningFeature();
-		return owningFeature != null && owningFeature.eIsProxy() ? (Feature)eResolveProxy((InternalEObject)owningFeature) : owningFeature;
+		return (Feature)OWNING_FEATURE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated MPT
+	 * @generated
 	 */
 	public Feature basicGetOwningFeature() {
-		Element element = this.getOwningRelatedElement();
-		return element instanceof Feature? (Feature)element: null;
+		return (Feature)OWNING_FEATURE__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setOwningFeature(Feature newOwningFeature) {
-		throw new UnsupportedOperationException();
+		OWNING_FEATURE__ESETTING_DELEGATE.dynamicSet(this, null, 0, newOwningFeature);
 	}
 
 	/**
@@ -408,7 +453,7 @@ public class FeatureInvertingImpl extends RelationshipImpl implements FeatureInv
 			case SysMLPackage.FEATURE_INVERTING__INVERTING_FEATURE:
 				return isSetInvertingFeature();
 			case SysMLPackage.FEATURE_INVERTING__OWNING_FEATURE:
-				return basicGetOwningFeature() != null;
+				return OWNING_FEATURE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 		}
 		return super.eIsSet(featureID);
 	}

@@ -63,6 +63,7 @@ public interface AcceptActionUsage extends ActionUsage {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getAcceptActionUsage_ReceiverArgument()
 	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='acceptActionUsage'"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	Expression getReceiverArgument();
@@ -96,6 +97,7 @@ public interface AcceptActionUsage extends ActionUsage {
 	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='owningAcceptActionUsage'"
 	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	ReferenceUsage getPayloadParameter();
@@ -123,6 +125,7 @@ public interface AcceptActionUsage extends ActionUsage {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getAcceptActionUsage_PayloadArgument()
 	 * @model transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='acceptingActionUsage'"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	Expression getPayloadArgument();

@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -23,14 +23,11 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.omg.sysml.lang.sysml.AcceptActionUsage;
 import org.omg.sysml.lang.sysml.Expression;
-import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.ReferenceUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.util.FeatureUtil;
-import org.omg.sysml.util.UsageUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -49,6 +46,34 @@ import org.omg.sysml.util.UsageUtil;
  */
 public class AcceptActionUsageImpl extends ActionUsageImpl implements AcceptActionUsage {
 	
+	/**
+	 * The cached setting delegate for the '{@link #getReceiverArgument() <em>Receiver Argument</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getReceiverArgument()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate RECEIVER_ARGUMENT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.ACCEPT_ACTION_USAGE__RECEIVER_ARGUMENT).getSettingDelegate();
+	/**
+	 * The cached setting delegate for the '{@link #getPayloadParameter() <em>Payload Parameter</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPayloadParameter()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate PAYLOAD_PARAMETER__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.ACCEPT_ACTION_USAGE__PAYLOAD_PARAMETER).getSettingDelegate();
+	/**
+	 * The cached setting delegate for the '{@link #getPayloadArgument() <em>Payload Argument</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPayloadArgument()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate PAYLOAD_ARGUMENT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.ACCEPT_ACTION_USAGE__PAYLOAD_ARGUMENT).getSettingDelegate();
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -75,28 +100,26 @@ public class AcceptActionUsageImpl extends ActionUsageImpl implements AcceptActi
 	 */
 	@Override
 	public Expression getReceiverArgument() {
-		Expression receiverArgument = basicGetReceiverArgument();
-		return receiverArgument != null && receiverArgument.eIsProxy() ? (Expression)eResolveProxy((InternalEObject)receiverArgument) : receiverArgument;
+		return (Expression)RECEIVER_ARGUMENT__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Expression basicGetReceiverArgument() {
-		Feature receiverParameter = UsageUtil.getReceiverParameterOf(this);
-		return receiverParameter == null? null: FeatureUtil.getValueExpressionFor(receiverParameter);
+		return (Expression)RECEIVER_ARGUMENT__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setReceiverArgument(Expression newReceiverArgument) {
-		throw new UnsupportedOperationException();
+		RECEIVER_ARGUMENT__ESETTING_DELEGATE.dynamicSet(this, null, 0, newReceiverArgument);
 	}
 	
 	/**
@@ -106,28 +129,26 @@ public class AcceptActionUsageImpl extends ActionUsageImpl implements AcceptActi
 	 */
 	@Override
 	public ReferenceUsage getPayloadParameter() {
-		ReferenceUsage payloadParameter = basicGetPayloadParameter();
-		return payloadParameter != null && payloadParameter.eIsProxy() ? (ReferenceUsage)eResolveProxy((InternalEObject)payloadParameter) : payloadParameter;
+		return (ReferenceUsage)PAYLOAD_PARAMETER__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public ReferenceUsage basicGetPayloadParameter() {
-		Feature payloadParameter = UsageUtil.getPayloadParameterOf(this);
-		return payloadParameter instanceof ReferenceUsage? (ReferenceUsage)payloadParameter: null;
+		return (ReferenceUsage)PAYLOAD_PARAMETER__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setPayloadParameter(ReferenceUsage newPayloadParameter) {
-		throw new UnsupportedOperationException();
+		PAYLOAD_PARAMETER__ESETTING_DELEGATE.dynamicSet(this, null, 0, newPayloadParameter);
 	}
 
 	/**
@@ -137,28 +158,26 @@ public class AcceptActionUsageImpl extends ActionUsageImpl implements AcceptActi
 	 */
 	@Override
 	public Expression getPayloadArgument() {
-		Expression payloadArgument = basicGetPayloadArgument();
-		return payloadArgument != null && payloadArgument.eIsProxy() ? (Expression)eResolveProxy((InternalEObject)payloadArgument) : payloadArgument;
+		return (Expression)PAYLOAD_ARGUMENT__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Expression basicGetPayloadArgument() {
-		Feature receiverParameter = UsageUtil.getPayloadParameterOf(this);
-		return receiverParameter == null? null: FeatureUtil.getValueExpressionFor(receiverParameter);
+		return (Expression)PAYLOAD_ARGUMENT__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setPayloadArgument(Expression newPayloadArgument) {
-		throw new UnsupportedOperationException();
+		PAYLOAD_ARGUMENT__ESETTING_DELEGATE.dynamicSet(this, null, 0, newPayloadArgument);
 	}
 
 	/**
@@ -233,11 +252,11 @@ public class AcceptActionUsageImpl extends ActionUsageImpl implements AcceptActi
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case SysMLPackage.ACCEPT_ACTION_USAGE__RECEIVER_ARGUMENT:
-				return basicGetReceiverArgument() != null;
+				return RECEIVER_ARGUMENT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.ACCEPT_ACTION_USAGE__PAYLOAD_PARAMETER:
-				return basicGetPayloadParameter() != null;
+				return PAYLOAD_PARAMETER__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.ACCEPT_ACTION_USAGE__PAYLOAD_ARGUMENT:
-				return basicGetPayloadArgument() != null;
+				return PAYLOAD_ARGUMENT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 		}
 		return super.eIsSet(featureID);
 	}

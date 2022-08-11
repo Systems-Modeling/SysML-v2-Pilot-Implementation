@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -27,15 +27,11 @@ import java.util.Collection;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
-import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.uml2.common.util.DerivedEObjectEList;
-import org.omg.sysml.expressions.ModelLevelFunction;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Function;
-import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.util.TypeUtil;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object
@@ -54,15 +50,32 @@ import org.omg.sysml.util.TypeUtil;
 public class FunctionImpl extends BehaviorImpl implements Function {
 
 	/**
-	 * The default value of the '{@link #isModelLevelEvaluable() <em>Is Model Level Evaluable</em>}' attribute.
+	 * The cached setting delegate for the '{@link #getExpression() <em>Expression</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getExpression()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate EXPRESSION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.FUNCTION__EXPRESSION).getSettingDelegate();
+	/**
+	 * The cached setting delegate for the '{@link #getResult() <em>Result</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getResult()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate RESULT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.FUNCTION__RESULT).getSettingDelegate();
+	/**
+	 * The cached setting delegate for the '{@link #isModelLevelEvaluable() <em>Is Model Level Evaluable</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #isModelLevelEvaluable()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final boolean IS_MODEL_LEVEL_EVALUABLE_EDEFAULT = false;
-
+	protected EStructuralFeature.Internal.SettingDelegate IS_MODEL_LEVEL_EVALUABLE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.FUNCTION__IS_MODEL_LEVEL_EVALUABLE).getSettingDelegate();
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -82,21 +95,12 @@ public class FunctionImpl extends BehaviorImpl implements Function {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated NOT // derived
-	 */
-	@Override
-	public EList<Expression> getExpression() {
-		return new DerivedEObjectEList<Expression>(Expression.class, this, SysMLPackage.FUNCTION__EXPRESSION,
-				new int[] { SysMLPackage.TYPE__FEATURE });
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isSetExpression() {
-		return !getExpression().isEmpty();
+	@SuppressWarnings("unchecked")
+	@Override
+	public EList<Expression> getExpression() {
+		return (EList<Expression>)EXPRESSION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
@@ -105,66 +109,44 @@ public class FunctionImpl extends BehaviorImpl implements Function {
 	 */
 	@Override
 	public Feature getResult() {
-		Feature result = basicGetResult();
-		return result != null && result.eIsProxy() ? (Feature)eResolveProxy((InternalEObject)result) : result;
+		return (Feature)RESULT__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated NOT // derived
+	 * @generated
 	 */
 	public Feature basicGetResult() {
-		return TypeUtil.getOwnedResultParameterOf(this);
+		return (Feature)RESULT__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated NOT // derived
+	 * @generated
 	 */
 	@Override
 	public void setResult(Feature newResult) {
-		throw new UnsupportedOperationException();
+		RESULT__ESETTING_DELEGATE.dynamicSet(this, null, 0, newResult);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public boolean isModelLevelEvaluable() {
-		return ModelLevelFunction.getFunctionImpl(this) != null;
+		return (Boolean)IS_MODEL_LEVEL_EVALUABLE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setIsModelLevelEvaluable(boolean newIsModelLevelEvaluable) {
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EList<Step> getStep() {
-		@SuppressWarnings("unchecked")
-		EList<Step> expression = (EList<Step>)((EList<?>)getExpression());
-		return expression;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetStep() {
-  		return false;
+		IS_MODEL_LEVEL_EVALUABLE__ESETTING_DELEGATE.dynamicSet(this, null, 0, newIsModelLevelEvaluable);
 	}
 
 	/**
@@ -221,7 +203,7 @@ public class FunctionImpl extends BehaviorImpl implements Function {
 				setResult((Feature)null);
 				return;
 			case SysMLPackage.FUNCTION__IS_MODEL_LEVEL_EVALUABLE:
-				setIsModelLevelEvaluable(IS_MODEL_LEVEL_EVALUABLE_EDEFAULT);
+				IS_MODEL_LEVEL_EVALUABLE__ESETTING_DELEGATE.dynamicUnset(this, null, 0);
 				return;
 		}
 		super.eUnset(featureID);
@@ -234,14 +216,12 @@ public class FunctionImpl extends BehaviorImpl implements Function {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.FUNCTION__STEP:
-				return isSetStep();
 			case SysMLPackage.FUNCTION__EXPRESSION:
-				return isSetExpression();
+				return EXPRESSION__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.FUNCTION__RESULT:
-				return basicGetResult() != null;
+				return RESULT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.FUNCTION__IS_MODEL_LEVEL_EVALUABLE:
-				return isModelLevelEvaluable() != IS_MODEL_LEVEL_EVALUABLE_EDEFAULT;
+				return IS_MODEL_LEVEL_EVALUABLE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 		}
 		return super.eIsSet(featureID);
 	}

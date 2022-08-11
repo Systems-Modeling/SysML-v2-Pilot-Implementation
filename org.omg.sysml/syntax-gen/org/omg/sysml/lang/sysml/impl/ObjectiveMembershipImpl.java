@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -23,7 +23,7 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.ObjectiveMembership;
 import org.omg.sysml.lang.sysml.RequirementUsage;
@@ -43,6 +43,16 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * @generated
  */
 public class ObjectiveMembershipImpl extends FeatureMembershipImpl implements ObjectiveMembership {
+	/**
+	 * The cached setting delegate for the '{@link #getOwnedObjectiveRequirement() <em>Owned Objective Requirement</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedObjectiveRequirement()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate OWNED_OBJECTIVE_REQUIREMENT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.OBJECTIVE_MEMBERSHIP__OWNED_OBJECTIVE_REQUIREMENT).getSettingDelegate();
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -69,28 +79,26 @@ public class ObjectiveMembershipImpl extends FeatureMembershipImpl implements Ob
 	 */
 	@Override
 	public RequirementUsage getOwnedObjectiveRequirement() {
-		RequirementUsage ownedObjectiveRequirement = basicGetOwnedObjectiveRequirement();
-		return ownedObjectiveRequirement != null && ownedObjectiveRequirement.eIsProxy() ? (RequirementUsage)eResolveProxy((InternalEObject)ownedObjectiveRequirement) : ownedObjectiveRequirement;
+		return (RequirementUsage)OWNED_OBJECTIVE_REQUIREMENT__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public RequirementUsage basicGetOwnedObjectiveRequirement() {
-		Feature ownedMemberFeature = super.basicGetOwnedMemberFeature();
-		return ownedMemberFeature instanceof RequirementUsage? (RequirementUsage)ownedMemberFeature: null;
+		return (RequirementUsage)OWNED_OBJECTIVE_REQUIREMENT__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setOwnedObjectiveRequirement(RequirementUsage newOwnedObjectiveRequirement) {
-		super.setOwnedMemberFeature(newOwnedObjectiveRequirement);
+		OWNED_OBJECTIVE_REQUIREMENT__ESETTING_DELEGATE.dynamicSet(this, null, 0, newOwnedObjectiveRequirement);
 	}
 
 	/**

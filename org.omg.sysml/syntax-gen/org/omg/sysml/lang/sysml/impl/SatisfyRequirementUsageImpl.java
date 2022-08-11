@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -24,20 +24,15 @@ package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.omg.sysml.lang.sysml.AssertConstraintUsage;
 import org.omg.sysml.lang.sysml.ConstraintUsage;
-import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.FeatureReferenceExpression;
-import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.Invariant;
 import org.omg.sysml.lang.sysml.RequirementUsage;
 import org.omg.sysml.lang.sysml.SatisfyRequirementUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.util.FeatureUtil;
-import org.omg.sysml.util.UsageUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -74,6 +69,26 @@ public class SatisfyRequirementUsageImpl extends RequirementUsageImpl implements
 	 * @ordered
 	 */
 	protected boolean isNegated = IS_NEGATED_EDEFAULT;
+
+	/**
+	 * The cached setting delegate for the '{@link #getSatisfiedRequirement() <em>Satisfied Requirement</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSatisfiedRequirement()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate SATISFIED_REQUIREMENT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.SATISFY_REQUIREMENT_USAGE__SATISFIED_REQUIREMENT).getSettingDelegate();
+
+	/**
+	 * The cached setting delegate for the '{@link #getSatisfyingFeature() <em>Satisfying Feature</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSatisfyingFeature()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate SATISFYING_FEATURE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.SATISFY_REQUIREMENT_USAGE__SATISFYING_FEATURE).getSettingDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -124,27 +139,26 @@ public class SatisfyRequirementUsageImpl extends RequirementUsageImpl implements
 	 */
 	@Override
 	public RequirementUsage getSatisfiedRequirement() {
-		RequirementUsage satisfiedRequirement = basicGetSatisfiedRequirement();
-		return satisfiedRequirement != null && satisfiedRequirement.eIsProxy() ? (RequirementUsage)eResolveProxy((InternalEObject)satisfiedRequirement) : satisfiedRequirement;
+		return (RequirementUsage)SATISFIED_REQUIREMENT__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public RequirementUsage basicGetSatisfiedRequirement() {
-		return FeatureUtil.getReferencedFeatureOf(this, RequirementUsage.class);
-}
+		return (RequirementUsage)SATISFIED_REQUIREMENT__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
+	}
 	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setSatisfiedRequirement(RequirementUsage newSatisfiedRequirement) {
-		throw new UnsupportedOperationException();
+		SATISFIED_REQUIREMENT__ESETTING_DELEGATE.dynamicSet(this, null, 0, newSatisfiedRequirement);
 	}
 
 	/**
@@ -163,34 +177,26 @@ public class SatisfyRequirementUsageImpl extends RequirementUsageImpl implements
 	 */
 	@Override
 	public Feature getSatisfyingFeature() {
-		Feature satisfyingFeature = basicGetSatisfyingFeature();
-		return satisfyingFeature != null && satisfyingFeature.eIsProxy() ? (Feature)eResolveProxy((InternalEObject)satisfyingFeature) : satisfyingFeature;
+		return (Feature)SATISFYING_FEATURE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Feature basicGetSatisfyingFeature() {
-		FeatureValue featureValue = UsageUtil.getSatisfyingFeatureValueOf(this);
-		if (featureValue != null) {
-			Expression value = featureValue.getValue();
-			if (value instanceof FeatureReferenceExpression) {
-				return FeatureUtil.getBasicFeatureOf(((FeatureReferenceExpression)value).getReferent());
-			}
-		}
-		return null;
+		return (Feature)SATISFYING_FEATURE__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setSatisfyingFeature(Feature newSatisfyingFeature) {
-		throw new UnsupportedOperationException();
+		SATISFYING_FEATURE__ESETTING_DELEGATE.dynamicSet(this, null, 0, newSatisfyingFeature);
 	}
 	
 //	@Override
@@ -323,7 +329,7 @@ public class SatisfyRequirementUsageImpl extends RequirementUsageImpl implements
 			case SysMLPackage.SATISFY_REQUIREMENT_USAGE__SATISFIED_REQUIREMENT:
 				return isSetSatisfiedRequirement();
 			case SysMLPackage.SATISFY_REQUIREMENT_USAGE__SATISFYING_FEATURE:
-				return basicGetSatisfyingFeature() != null;
+				return SATISFYING_FEATURE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 		}
 		return super.eIsSet(featureID);
 	}

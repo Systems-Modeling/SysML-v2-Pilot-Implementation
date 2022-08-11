@@ -39,8 +39,10 @@ import org.omg.sysml.lang.sysml.CaseDefinition;
 import org.omg.sysml.lang.sysml.CaseUsage;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.ItemDefinition;
 import org.omg.sysml.lang.sysml.Membership;
+import org.omg.sysml.lang.sysml.MetadataUsage;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.OccurrenceDefinition;
 import org.omg.sysml.lang.sysml.OccurrenceUsage;
@@ -213,27 +215,80 @@ public class SysML2PlantUMLText {
         return "";
     }
 
-    String styleString(Type typ) {
-        String ret = getStereotypeStyle(typ);
-        if (ret == null) {
-            ret = " <<(T,blue)" + individualPrefix(typ);
-        } else if (" ".equals(ret)) {
-            return ret;
-        } else if (!ret.startsWith("<<")) {
-            ret = "<<" + individualPrefix(typ) + ret;
-        }
-
-        if (typ instanceof Usage) {
-            Usage u = (Usage) typ;
-            if (u.isVariation()) {
-                if (ret.equals(" ")) {
-                    return " <<variation>> ";
+    public static String getMetadataUsageName(Element e) {
+        StringBuilder sb = null;
+        for (Element oe: e.getOwnedElement()) {
+            if (oe instanceof MetadataUsage) {
+                MetadataUsage mu = (MetadataUsage) oe;
+                if (sb == null) {
+                    sb = new StringBuilder();
                 }
-                ret = " <<variation>>\\n" + ret;
+                List<FeatureTyping> tt = mu.getOwnedTyping();
+                for (FeatureTyping ft: tt) {
+                    if (ft == null) continue;
+                    Type typ = ft.getType();
+                    if (typ == null) continue;
+                    String shortName = typ.getShortName();
+                    if (shortName == null || shortName.isEmpty()) continue;
+                    if (sb.length() == 0) {
+                        sb.append("<<");
+                    } else {
+                        sb.append(' ');
+                    }
+                    sb.append('#');
+                    sb.append(shortName);
+                }
             }
         }
-        if (ret.endsWith(" ")) return ret;
-        return ret + " " + getStereotypeName(typ) + ">> ";
+        if (sb == null) return null;
+        sb.append(">>");
+        return sb.toString();
+    }
+
+    private static void appendVariation(StringBuilder sb, Type typ) {
+        if (!(typ instanceof Usage)) return;
+        Usage u = (Usage) typ;
+        if (u.isVariation()) {
+            sb.append(" <<variation>>\\n");
+        }
+    }
+
+    private String addStereotypeStyle(StringBuilder sb, Type typ) {
+        String ss = getStereotypeStyle(typ);
+        if (ss == null) {
+            appendVariation(sb, typ);
+            sb.append(" <<(T,blue)");
+            sb.append(individualPrefix(typ));
+        } else if (" ".equals(ss)) {
+            return ss;
+        } else {
+            appendVariation(sb, typ);
+            if (!ss.startsWith("<<")) {
+                sb.append(" <<");
+                sb.append(individualPrefix(typ));
+            }
+            sb.append(ss);
+            if (ss.endsWith(" ")) return sb.toString();
+        }
+
+        sb.append(' ');
+        sb.append(getStereotypeName(typ));
+        sb.append(">> ");
+        return sb.toString();
+    }
+
+    String styleString(Type typ) {
+        StringBuilder sb = new StringBuilder();
+        String mName = getMetadataUsageName(typ);
+        if (mName == null) {
+            addStereotypeStyle(sb, typ);
+        } else {
+            if (showMetaclass) {
+                addStereotypeStyle(sb, typ);
+            }
+            sb.append(mName);
+        }
+        return sb.toString();
     }
 
     String styleValue(String key) {
@@ -516,11 +571,14 @@ public class SysML2PlantUMLText {
         return inherited;
     }
 
+    private boolean showMetaclass;
+    
     private void init() {
         idCounter = 1;
         this.idMap = new IDMap();
         this.namespaces = new ArrayList<>();
         this.inheritingIdices = new ArrayList<>();
+        this.showMetaclass = styleValue("showMetaclass") != null;
     }
 
     private List<Namespace> namespaces;

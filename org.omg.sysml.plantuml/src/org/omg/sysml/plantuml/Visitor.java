@@ -36,7 +36,6 @@ import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureChaining;
 import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.Membership;
-import org.omg.sysml.lang.sysml.MetadataUsage;
 import org.omg.sysml.lang.sysml.Multiplicity;
 import org.omg.sysml.lang.sysml.MultiplicityRange;
 import org.omg.sysml.lang.sysml.Namespace;
@@ -507,32 +506,6 @@ public abstract class Visitor extends SysMLSwitch<String> {
         appendSubsettingFeature(sb, ":> ", f);
     }
 
-    public static String getMetadataUsageName(Element e) {
-        StringBuilder sb = null;
-        for (Element oe: e.getOwnedElement()) {
-            if (oe instanceof MetadataUsage) {
-                MetadataUsage mu = (MetadataUsage) oe;
-                if (sb == null) {
-                    sb = new StringBuilder();
-                }
-                List<FeatureTyping> tt = mu.getOwnedTyping();
-                for (FeatureTyping ft: tt) {
-                    if (ft == null) continue;
-                    Type typ = ft.getType();
-                    if (typ == null) continue;
-                    String shortName = typ.getShortName();
-                    if (shortName == null || shortName.isEmpty()) continue;
-                    sb.insert(0, "</i> ");
-                    sb.insert(0, shortName);
-                    sb.insert(0, " <i>#");
-                }
-            }
-        }
-        if (sb == null) return null;
-        return sb.toString();
-    }
-    
-
     private void renderImportedPackage(org.omg.sysml.lang.sysml.Package pkg, Collection<Element> nonPkgs) {
         String name = pkg.getQualifiedName();
         if (name == null) return;
@@ -614,7 +587,7 @@ public abstract class Visitor extends SysMLSwitch<String> {
         String desc = pr.getDescription();
         if (desc == null) desc = "";
         if (pr.rel != null) {
-            String mName = getMetadataUsageName(pr.rel);
+            String mName = SysML2PlantUMLText.getMetadataUsageName(pr.rel);
             if (mName != null) {
                 desc = mName + desc;
             }

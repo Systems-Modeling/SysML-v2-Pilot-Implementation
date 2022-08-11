@@ -167,18 +167,6 @@ public abstract class VStructure extends VDefault {
         }
     }
 
-    private void insertPrefixNames(StringBuilder sb, Element e) {
-        String mName = getMetadataUsageName(e);
-        if (mName != null) {
-            sb.insert(0, mName);
-        }
-        String shortName = e.getShortName();
-        if (shortName == null || shortName.isEmpty()) return;
-        sb.insert(0, "></b> ");
-        sb.insert(0, shortName);
-        sb.insert(0, " <b>~<");
-    }
-
     protected String extractTitleName(Element e) {
         String name = getNameAnyway(e);
         StringBuilder sb = new StringBuilder();
@@ -189,7 +177,6 @@ public abstract class VStructure extends VDefault {
             sb.append(' ');
             added = appendSubsettingFeature(sb, ":> ", f) || added;
             sb.insert(0, name);
-            insertPrefixNames(sb, e);
             /*
               if (f instanceof Usage) {
                   Usage u = (Usage) f;
@@ -201,7 +188,6 @@ public abstract class VStructure extends VDefault {
             insertActorLikeStyle(sb, f);
         } else {
             sb.append(name);
-            insertPrefixNames(sb, e);
         }
 
         return sb.toString();

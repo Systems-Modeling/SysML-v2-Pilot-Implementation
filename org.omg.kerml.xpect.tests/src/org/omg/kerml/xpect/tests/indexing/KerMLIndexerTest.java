@@ -13,8 +13,9 @@ import org.eclipse.xpect.xtext.lib.setup.XtextWorkspaceSetup;
 import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.resource.IResourceDescription;
 import org.eclipse.xtext.resource.XtextResource;
+import org.junit.BeforeClass;
 import org.junit.runner.RunWith;
-
+import org.omg.kerml.xpect.KerMLXtextTests;
 import com.google.common.base.Function;
 import com.google.common.collect.Iterables;
 import com.google.inject.Inject;
@@ -30,6 +31,11 @@ import com.google.inject.Inject;
 @XpectTestFiles(fileExtensions = "xt")
 @XpectImport({ XtextStandaloneSetup.class, XtextWorkspaceSetup.class })
 public class KerMLIndexerTest {
+
+	@BeforeClass
+	public static void setup() {
+		KerMLXtextTests.setup();
+	}
 
 	protected static class EObjectDescriptionToStringMapper implements Function<IEObjectDescription, String> {
 		public String apply(IEObjectDescription desc) {

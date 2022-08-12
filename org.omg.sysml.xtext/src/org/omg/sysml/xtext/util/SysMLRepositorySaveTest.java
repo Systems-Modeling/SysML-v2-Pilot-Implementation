@@ -32,7 +32,7 @@ public class SysMLRepositorySaveTest extends SysMLRepositorySaveUtil {
 		"02-Parts Interconnection/2a-Parts Interconnection.sysml",
 		"03-Function-based Behavior/3a-Function-based Behavior-1.sysml",
 		"03-Function-based Behavior/3a-Function-based Behavior-2.sysml",
-		"03-Function-based Behavior/3a-Function-based Behavior-5.sysml",
+		"03-Function-based Behavior/3a-Function-based Behavior-3.sysml",
 		"04-Functional Allocation/4a-Functional Allocation.sysml",
 		"05-State-based Behavior/5-State-based Behavior-1.sysml",
 		"05-State-based Behavior/5-State-based Behavior-1a.sysml",
@@ -86,19 +86,19 @@ public class SysMLRepositorySaveTest extends SysMLRepositorySaveUtil {
 	
 	public static void main(String[] args) {
 		List<String> failedTests = new ArrayList<>();
-		try {
-			String[] args1 = Arrays.copyOf(args, args.length);
-			for (String testFile: TEST_FILES) {
+		String[] args1 = Arrays.copyOf(args, args.length);
+		for (String testFile: TEST_FILES) {
+			try {
 				SysMLRepositorySaveTest test = new SysMLRepositorySaveTest(testFile);
 				test.run(args1);
 				if (!test.isCommitted()) {
 					failedTests.add(testFile);
 				}
-				System.out.println();
+				System.out.println();				
+			} catch (Exception e) {
+				System.out.println("Error: " + e);
+				failedTests.add(testFile);
 			}
-			
-		} catch (Exception e) {
-			System.out.println("Error: " + e);
 		}
 		
 		if (failedTests.isEmpty()) {

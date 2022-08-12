@@ -80,14 +80,14 @@ package Transfers {
 		 * of the transfer.
 		 */	
 		private connector moving: HappensWhile[0..*] from sourceOutputLink.endShot[0..*] to startShot[0..1];
-		private inv { !isMove | size(moving) == size(sourceOutputLink) }
+		private inv { isMove implies size(moving) == size(sourceOutputLink) }
 		
 		/**
 		 * If isPush is true, then the transfer begins when the items are available
 		 * at the source.
 		 */
 		private connector pushing: HappensWhile[0..*] from sourceOutputLink.startShot[0..*] to startShot[0..1];
-		private inv { !isPush | size(pushing) == size(sourceOutputLink) }
+		private inv { isPush implies size(pushing) == size(sourceOutputLink) }
 		
 		/**
 		 * The input of each of the items to the target starts at the end of the transfer.

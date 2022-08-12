@@ -170,7 +170,7 @@ package Import_Filtered {
 	
 	package 'Safety & Security Features_1' {
 		import vehicle1_c1::**;
-		filter @Safety || @Security;
+		filter @Safety or @Security;
 		
 		//safety
 		classifier b :> seatBelt; 
@@ -191,7 +191,7 @@ package Import_Filtered {
 	}
 	
 	package 'Safety & Security Features_2' {
-		import vehicle1_c1::**[@Safety || @Security];
+		import vehicle1_c1::**[@Safety or @Security];
 		
 		//safety
 		classifier b :> seatBelt; 
@@ -212,7 +212,7 @@ package Import_Filtered {
 	}
 	
 	package 'Safety & Security Features_3' {
-		import vehicle1_c1::**[@Safety && @Security];
+		import vehicle1_c1::**[@Safety and @Security];
 		
 		// XPECT errors --> "Couldn't resolve reference to Classifier 'alarm'." at "alarm"
 		classifier a :> alarm; 

@@ -27,6 +27,7 @@ import java.util.stream.Stream;
 
 import org.eclipse.emf.common.util.EList;
 import org.omg.sysml.adapter.ExpressionAdapter;
+import org.omg.sysml.adapter.FeatureReferenceExpressionAdapter;
 import org.omg.sysml.adapter.InvocationExpressionAdapter;
 import org.omg.sysml.adapter.OperatorExpressionAdapter;
 import org.omg.sysml.lang.sysml.Element;
@@ -66,6 +67,10 @@ public class ExpressionUtil {
 		return ((InvocationExpressionAdapter)getExpressionAdapter(expression)).getTypeFeatures();
 	}
 
+	public static Feature getSelfReferenceFeatureFor(FeatureReferenceExpression expression) {
+		return ((FeatureReferenceExpressionAdapter)getExpressionAdapter(expression)).getSelfReferenceFeature();
+	}
+
 	public static Element getReferentFor(FeatureReferenceExpression expression) {
 		return expression.getOwnedMembership().stream().
 				filter(mem->!(mem instanceof ParameterMembership)).
@@ -74,7 +79,7 @@ public class ExpressionUtil {
 				findFirst().orElse(null);
 	}
 	
-	public static Element getTargetFeatureFor(InvocationExpression expression) {
+	public static Element getTargetFeatureFor(Expression expression) {
 		List<Membership> memberships = expression.getOwnedMembership();
 		return memberships.size() < 2? null: memberships.get(1).getMemberElement();
 	}

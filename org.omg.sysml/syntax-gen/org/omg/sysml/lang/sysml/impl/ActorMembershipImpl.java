@@ -1,10 +1,28 @@
+/*******************************************************************************
+ * SysML 2 Pilot Implementation
+ * Copyright (c) 2022 Model Driven Solutions, Inc.
+ *    
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *  
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ *  
+ * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
+ *******************************************************************************/
 /**
  */
 package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.omg.sysml.lang.sysml.ActorMembership;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.PartUsage;
@@ -24,6 +42,16 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * @generated
  */
 public class ActorMembershipImpl extends ParameterMembershipImpl implements ActorMembership {
+	/**
+	 * The cached setting delegate for the '{@link #getOwnedActorParameter() <em>Owned Actor Parameter</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedActorParameter()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate OWNED_ACTOR_PARAMETER__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.ACTOR_MEMBERSHIP__OWNED_ACTOR_PARAMETER).getSettingDelegate();
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -50,28 +78,26 @@ public class ActorMembershipImpl extends ParameterMembershipImpl implements Acto
 	 */
 	@Override
 	public PartUsage getOwnedActorParameter() {
-		PartUsage ownedActorParameter = basicGetOwnedActorParameter();
-		return ownedActorParameter != null && ownedActorParameter.eIsProxy() ? (PartUsage)eResolveProxy((InternalEObject)ownedActorParameter) : ownedActorParameter;
+		return (PartUsage)OWNED_ACTOR_PARAMETER__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public PartUsage basicGetOwnedActorParameter() {
-		Feature ownedActorParameter = super.basicGetOwnedMemberParameter();
-		return ownedActorParameter instanceof PartUsage? (PartUsage)ownedActorParameter: null;
+		return (PartUsage)OWNED_ACTOR_PARAMETER__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setOwnedActorParameter(PartUsage newOwnedActorParameter) {
-		super.setOwnedMemberParameter(newOwnedActorParameter);
+		OWNED_ACTOR_PARAMETER__ESETTING_DELEGATE.dynamicSet(this, null, 0, newOwnedActorParameter);
 	}
 
 	/**

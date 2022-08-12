@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -24,14 +24,13 @@ package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.ecore.EClass;
 
-import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.EventOccurrenceUsage;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.OccurrenceUsage;
 import org.omg.sysml.lang.sysml.PerformActionUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.util.FeatureUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -47,6 +46,16 @@ import org.omg.sysml.util.FeatureUtil;
  * @generated
  */
 public class PerformActionUsageImpl extends ActionUsageImpl implements PerformActionUsage {
+
+	/**
+	 * The cached setting delegate for the '{@link #getPerformedAction() <em>Performed Action</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPerformedAction()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate PERFORMED_ACTION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.PERFORM_ACTION_USAGE__PERFORMED_ACTION).getSettingDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -74,17 +83,16 @@ public class PerformActionUsageImpl extends ActionUsageImpl implements PerformAc
 	 */
 	@Override
 	public ActionUsage getPerformedAction() {
-		ActionUsage performedAction = basicGetPerformedAction();
-		return performedAction != null && performedAction.eIsProxy() ? (ActionUsage)eResolveProxy((InternalEObject)performedAction) : performedAction;
+		return (ActionUsage)PERFORMED_ACTION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public ActionUsage basicGetPerformedAction() {
-		return FeatureUtil.getReferencedFeatureOf(this, ActionUsage.class);
+		return (ActionUsage)PERFORMED_ACTION__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	@Override
@@ -95,11 +103,11 @@ public class PerformActionUsageImpl extends ActionUsageImpl implements PerformAc
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setPerformedAction(ActionUsage newPerformedAction) {
-		throw new UnsupportedOperationException();
+		PERFORMED_ACTION__ESETTING_DELEGATE.dynamicSet(this, null, 0, newPerformedAction);
 	}
 
 	/**
@@ -153,8 +161,8 @@ public class PerformActionUsageImpl extends ActionUsageImpl implements PerformAc
 	// Additional overrides
 	
 	@Override
-	public boolean isReference() {
-		return true;
+	public boolean isComposite() {
+		return false;
 	}
 	
 	//

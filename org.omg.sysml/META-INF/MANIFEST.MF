@@ -4,7 +4,7 @@ Bundle-Name: %pluginName
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-11
-Bundle-Version: 0.24.0.qualifier
+Bundle-Version: 0.26.0.qualifier
 Bundle-ClassPath: .,
  lib/sysml-v2-api-client-all.jar
 Bundle-SymbolicName: org.omg.sysml;singleton:=true
@@ -28,11 +28,14 @@ Export-Package: org.omg.sysml,
  org.omg.sysml.adapter,
  org.omg.sysml.expressions,
  org.omg.sysml.expressions.util,
+ org.omg.sysml.api,
+ org.omg.sysml.delegate,
  org.omg.sysml.lang.sysml,
  org.omg.sysml.lang.sysml.impl,
  org.omg.sysml.lang.sysml.util,
  org.omg.sysml.lang.types,
  org.omg.sysml.lang.types.impl,
+ org.omg.sysml.model,
  org.omg.sysml.qvt,
  org.omg.sysml.util,
  org.omg.sysml.util.traversal,

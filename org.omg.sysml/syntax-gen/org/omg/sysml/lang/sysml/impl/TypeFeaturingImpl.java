@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -29,6 +29,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.UniqueEList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -80,6 +81,16 @@ public class TypeFeaturingImpl extends RelationshipImpl implements TypeFeaturing
 	protected Type featuringType;
 
 	/**
+	 * The cached setting delegate for the '{@link #getOwningFeatureOfType() <em>Owning Feature Of Type</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwningFeatureOfType()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate OWNING_FEATURE_OF_TYPE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.TYPE_FEATURING__OWNING_FEATURE_OF_TYPE).getSettingDelegate();
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -98,6 +109,12 @@ public class TypeFeaturingImpl extends RelationshipImpl implements TypeFeaturing
 		return SysMLPackage.Literals.TYPE_FEATURING;
 	}
 	
+	/**
+	 * <!-- begin-user-doc -->
+	 * Xtext workaround.
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
 	@Override
 	public Feature getFeatureOfType() {
 		return featureOfType == null? basicGetFeatureOfType(): getFeatureOfTypeGen();
@@ -122,7 +139,8 @@ public class TypeFeaturingImpl extends RelationshipImpl implements TypeFeaturing
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * If the TypeFeaturing has a Feature as its owningRelatedElement, then use this as the default value for its featureOfType property.
+	 * Xtext workaround:
+	 * If the featureOfType is empty, then set it to the owningRelatedElement (if this is a Feature).
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
@@ -214,31 +232,26 @@ public class TypeFeaturingImpl extends RelationshipImpl implements TypeFeaturing
 	 */
 	@Override
 	public Feature getOwningFeatureOfType() {
-		Feature owningFeatureOfType = basicGetOwningFeatureOfType();
-		return owningFeatureOfType != null && owningFeatureOfType.eIsProxy() ? (Feature)eResolveProxy((InternalEObject)owningFeatureOfType) : owningFeatureOfType;
+		return (Feature)OWNING_FEATURE_OF_TYPE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Feature basicGetOwningFeatureOfType() {
-		Element owner = super.getOwningRelatedElement();
-		return owner instanceof Feature? (Feature)owner: null;
+		return (Feature)OWNING_FEATURE_OF_TYPE__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setOwningFeatureOfType(Feature newOwningFeatureOfType) {
-		if (getFeatureOfType() != newOwningFeatureOfType) {
-			setFeatureOfType(newOwningFeatureOfType);
-		}
-		setOwningRelatedElement(newOwningFeatureOfType);
+		OWNING_FEATURE_OF_TYPE__ESETTING_DELEGATE.dynamicSet(this, null, 0, newOwningFeatureOfType);
 	}
 
 	/**
@@ -367,7 +380,7 @@ public class TypeFeaturingImpl extends RelationshipImpl implements TypeFeaturing
 			case SysMLPackage.TYPE_FEATURING__FEATURING_TYPE:
 				return isSetFeaturingType();
 			case SysMLPackage.TYPE_FEATURING__OWNING_FEATURE_OF_TYPE:
-				return basicGetOwningFeatureOfType() != null;
+				return OWNING_FEATURE_OF_TYPE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 		}
 		return super.eIsSet(featureID);
 	}

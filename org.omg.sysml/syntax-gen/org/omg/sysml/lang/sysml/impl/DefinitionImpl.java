@@ -18,8 +18,7 @@
  * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
  *  
  *******************************************************************************/
-/**
- */
+
 package org.omg.sysml.lang.sysml.impl;
 
 import java.util.Collection;
@@ -27,8 +26,8 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.uml2.common.util.DerivedEObjectEList;
 import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.AllocationUsage;
 import org.omg.sysml.lang.sysml.AnalysisCaseUsage;
@@ -58,7 +57,6 @@ import org.omg.sysml.lang.sysml.VariantMembership;
 import org.omg.sysml.lang.sysml.VerificationCaseUsage;
 import org.omg.sysml.lang.sysml.ViewUsage;
 import org.omg.sysml.lang.sysml.ViewpointUsage;
-import org.omg.sysml.util.NonNotifyingEObjectEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -105,6 +103,78 @@ import org.omg.sysml.util.NonNotifyingEObjectEList;
  */
 public class DefinitionImpl extends ClassifierImpl implements Definition {
 	/**
+	 * The cached setting delegate for the '{@link #getOwnedPort() <em>Owned Port</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedPort()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate OWNED_PORT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.DEFINITION__OWNED_PORT).getSettingDelegate();
+	/**
+	 * The cached setting delegate for the '{@link #getDirectedUsage() <em>Directed Usage</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDirectedUsage()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate DIRECTED_USAGE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.DEFINITION__DIRECTED_USAGE).getSettingDelegate();
+	/**
+	 * The cached setting delegate for the '{@link #getUsage() <em>Usage</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getUsage()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate USAGE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.DEFINITION__USAGE).getSettingDelegate();
+	/**
+	 * The cached setting delegate for the '{@link #getOwnedState() <em>Owned State</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedState()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate OWNED_STATE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.DEFINITION__OWNED_STATE).getSettingDelegate();
+	/**
+	 * The cached setting delegate for the '{@link #getOwnedConstraint() <em>Owned Constraint</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedConstraint()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate OWNED_CONSTRAINT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.DEFINITION__OWNED_CONSTRAINT).getSettingDelegate();
+	/**
+	 * The cached setting delegate for the '{@link #getOwnedTransition() <em>Owned Transition</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedTransition()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate OWNED_TRANSITION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.DEFINITION__OWNED_TRANSITION).getSettingDelegate();
+	/**
+	 * The cached setting delegate for the '{@link #getOwnedRequirement() <em>Owned Requirement</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedRequirement()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate OWNED_REQUIREMENT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.DEFINITION__OWNED_REQUIREMENT).getSettingDelegate();
+	/**
+	 * The cached setting delegate for the '{@link #getOwnedCalculation() <em>Owned Calculation</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedCalculation()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate OWNED_CALCULATION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.DEFINITION__OWNED_CALCULATION).getSettingDelegate();
+	/**
 	 * The default value of the '{@link #isVariation() <em>Is Variation</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -122,6 +192,204 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 	 * @ordered
 	 */
 	protected boolean isVariation = IS_VARIATION_EDEFAULT;
+	/**
+	 * The cached setting delegate for the '{@link #getVariantMembership() <em>Variant Membership</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getVariantMembership()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate VARIANT_MEMBERSHIP__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.DEFINITION__VARIANT_MEMBERSHIP).getSettingDelegate();
+	/**
+	 * The cached setting delegate for the '{@link #getOwnedAnalysisCase() <em>Owned Analysis Case</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedAnalysisCase()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate OWNED_ANALYSIS_CASE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.DEFINITION__OWNED_ANALYSIS_CASE).getSettingDelegate();
+	/**
+	 * The cached setting delegate for the '{@link #getVariant() <em>Variant</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getVariant()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate VARIANT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.DEFINITION__VARIANT).getSettingDelegate();
+	/**
+	 * The cached setting delegate for the '{@link #getOwnedCase() <em>Owned Case</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedCase()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate OWNED_CASE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.DEFINITION__OWNED_CASE).getSettingDelegate();
+	/**
+	 * The cached setting delegate for the '{@link #getOwnedReference() <em>Owned Reference</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedReference()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate OWNED_REFERENCE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.DEFINITION__OWNED_REFERENCE).getSettingDelegate();
+	/**
+	 * The cached setting delegate for the '{@link #getOwnedAction() <em>Owned Action</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedAction()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate OWNED_ACTION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.DEFINITION__OWNED_ACTION).getSettingDelegate();
+	/**
+	 * The cached setting delegate for the '{@link #getOwnedConnection() <em>Owned Connection</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedConnection()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate OWNED_CONNECTION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.DEFINITION__OWNED_CONNECTION).getSettingDelegate();
+	/**
+	 * The cached setting delegate for the '{@link #getOwnedItem() <em>Owned Item</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedItem()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate OWNED_ITEM__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.DEFINITION__OWNED_ITEM).getSettingDelegate();
+	/**
+	 * The cached setting delegate for the '{@link #getOwnedPart() <em>Owned Part</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedPart()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate OWNED_PART__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.DEFINITION__OWNED_PART).getSettingDelegate();
+	/**
+	 * The cached setting delegate for the '{@link #getOwnedInterface() <em>Owned Interface</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedInterface()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate OWNED_INTERFACE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.DEFINITION__OWNED_INTERFACE).getSettingDelegate();
+	/**
+	 * The cached setting delegate for the '{@link #getOwnedAttribute() <em>Owned Attribute</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedAttribute()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate OWNED_ATTRIBUTE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.DEFINITION__OWNED_ATTRIBUTE).getSettingDelegate();
+	/**
+	 * The cached setting delegate for the '{@link #getOwnedView() <em>Owned View</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedView()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate OWNED_VIEW__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.DEFINITION__OWNED_VIEW).getSettingDelegate();
+	/**
+	 * The cached setting delegate for the '{@link #getOwnedViewpoint() <em>Owned Viewpoint</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedViewpoint()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate OWNED_VIEWPOINT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.DEFINITION__OWNED_VIEWPOINT).getSettingDelegate();
+	/**
+	 * The cached setting delegate for the '{@link #getOwnedRendering() <em>Owned Rendering</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedRendering()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate OWNED_RENDERING__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.DEFINITION__OWNED_RENDERING).getSettingDelegate();
+	/**
+	 * The cached setting delegate for the '{@link #getOwnedVerificationCase() <em>Owned Verification Case</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedVerificationCase()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate OWNED_VERIFICATION_CASE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.DEFINITION__OWNED_VERIFICATION_CASE).getSettingDelegate();
+	/**
+	 * The cached setting delegate for the '{@link #getOwnedEnumeration() <em>Owned Enumeration</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedEnumeration()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate OWNED_ENUMERATION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.DEFINITION__OWNED_ENUMERATION).getSettingDelegate();
+	/**
+	 * The cached setting delegate for the '{@link #getOwnedAllocation() <em>Owned Allocation</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedAllocation()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate OWNED_ALLOCATION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.DEFINITION__OWNED_ALLOCATION).getSettingDelegate();
+	/**
+	 * The cached setting delegate for the '{@link #getOwnedConcern() <em>Owned Concern</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedConcern()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate OWNED_CONCERN__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.DEFINITION__OWNED_CONCERN).getSettingDelegate();
+	/**
+	 * The cached setting delegate for the '{@link #getOwnedOccurrence() <em>Owned Occurrence</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedOccurrence()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate OWNED_OCCURRENCE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.DEFINITION__OWNED_OCCURRENCE).getSettingDelegate();
+	/**
+	 * The cached setting delegate for the '{@link #getOwnedUseCase() <em>Owned Use Case</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedUseCase()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate OWNED_USE_CASE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.DEFINITION__OWNED_USE_CASE).getSettingDelegate();
+	/**
+	 * The cached setting delegate for the '{@link #getOwnedFlow() <em>Owned Flow</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedFlow()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate OWNED_FLOW__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.DEFINITION__OWNED_FLOW).getSettingDelegate();
+	/**
+	 * The cached setting delegate for the '{@link #getOwnedUsage() <em>Owned Usage</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedUsage()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate OWNED_USAGE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.DEFINITION__OWNED_USAGE).getSettingDelegate();
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -144,245 +412,265 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<Usage> getUsage() {
-		return new DerivedEObjectEList<>(Usage.class, this, SysMLPackage.DEFINITION__OWNED_USAGE, new int[] {SysMLPackage.TYPE__OWNED_FEATURE});
+		return (EList<Usage>)USAGE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<PortUsage> getOwnedPort() {
-		return new DerivedEObjectEList<PortUsage>(PortUsage.class, this, SysMLPackage.DEFINITION__OWNED_PORT, new int[] {SysMLPackage.TYPE__OWNED_FEATURE});
+		return (EList<PortUsage>)OWNED_PORT__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<Usage> getDirectedUsage() {
-		EList<Usage> flows = new NonNotifyingEObjectEList<>(Usage.class, this, SysMLPackage.DEFINITION__DIRECTED_USAGE);
-		getDirectedFeature().stream().
-			map(Usage.class::cast).
-			forEachOrdered(flows::add);
-		return flows;
+		return (EList<Usage>)DIRECTED_USAGE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<ActionUsage> getOwnedAction() {
-		return new DerivedEObjectEList<ActionUsage>(ActionUsage.class, this, SysMLPackage.DEFINITION__OWNED_ACTION, new int[] {SysMLPackage.TYPE__OWNED_FEATURE});
+		return (EList<ActionUsage>)OWNED_ACTION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<ConnectorAsUsage> getOwnedConnection() {
-		return new DerivedEObjectEList<>(ConnectorAsUsage.class, this, SysMLPackage.DEFINITION__OWNED_CONNECTION, new int[] {SysMLPackage.TYPE__OWNED_FEATURE});
+		return (EList<ConnectorAsUsage>)OWNED_CONNECTION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<ItemUsage> getOwnedItem() {
-		return new DerivedEObjectEList<>(ItemUsage.class, this, SysMLPackage.DEFINITION__OWNED_ITEM, new int[] {SysMLPackage.TYPE__OWNED_FEATURE});
+		return (EList<ItemUsage>)OWNED_ITEM__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<PartUsage> getOwnedPart() {
-		return new DerivedEObjectEList<>(PartUsage.class, this, SysMLPackage.DEFINITION__OWNED_PART, new int[] {SysMLPackage.TYPE__OWNED_FEATURE});
+		return (EList<PartUsage>)OWNED_PART__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<InterfaceUsage> getOwnedInterface() {
-		return new DerivedEObjectEList<>(InterfaceUsage.class, this, SysMLPackage.DEFINITION__OWNED_INTERFACE, new int[] {SysMLPackage.TYPE__OWNED_FEATURE});
+		return (EList<InterfaceUsage>)OWNED_INTERFACE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<AttributeUsage> getOwnedAttribute() {
-		return new DerivedEObjectEList<>(AttributeUsage.class, this, SysMLPackage.DEFINITION__OWNED_ATTRIBUTE, new int[] {SysMLPackage.TYPE__OWNED_FEATURE});
+		return (EList<AttributeUsage>)OWNED_ATTRIBUTE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<ViewUsage> getOwnedView() {
-		return new DerivedEObjectEList<>(ViewUsage.class, this, SysMLPackage.DEFINITION__OWNED_VIEW, new int[] {SysMLPackage.TYPE__OWNED_FEATURE});
+		return (EList<ViewUsage>)OWNED_VIEW__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<ViewpointUsage> getOwnedViewpoint() {
-		return new DerivedEObjectEList<>(ViewpointUsage.class, this, SysMLPackage.DEFINITION__OWNED_VIEWPOINT, new int[] {SysMLPackage.TYPE__OWNED_FEATURE});
+		return (EList<ViewpointUsage>)OWNED_VIEWPOINT__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<RenderingUsage> getOwnedRendering() {
-		return new DerivedEObjectEList<>(RenderingUsage.class, this, SysMLPackage.DEFINITION__OWNED_RENDERING, new int[] {SysMLPackage.TYPE__OWNED_FEATURE});
+		return (EList<RenderingUsage>)OWNED_RENDERING__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<VerificationCaseUsage> getOwnedVerificationCase() {
-		return new DerivedEObjectEList<>(VerificationCaseUsage.class, this, SysMLPackage.DEFINITION__OWNED_VERIFICATION_CASE, new int[] {SysMLPackage.TYPE__OWNED_FEATURE});
+		return (EList<VerificationCaseUsage>)OWNED_VERIFICATION_CASE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<EnumerationUsage> getOwnedEnumeration() {
-		return new DerivedEObjectEList<>(EnumerationUsage.class, this, SysMLPackage.DEFINITION__OWNED_ENUMERATION, new int[] {SysMLPackage.TYPE__OWNED_FEATURE});
+		return (EList<EnumerationUsage>)OWNED_ENUMERATION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<AllocationUsage> getOwnedAllocation() {
-		return new DerivedEObjectEList<>(AllocationUsage.class, this, SysMLPackage.DEFINITION__OWNED_ALLOCATION, new int[] {SysMLPackage.TYPE__OWNED_FEATURE});
+		return (EList<AllocationUsage>)OWNED_ALLOCATION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<ConcernUsage> getOwnedConcern() {
-		return new DerivedEObjectEList<>(ConcernUsage.class, this, SysMLPackage.DEFINITION__OWNED_CONCERN, new int[] {SysMLPackage.TYPE__OWNED_FEATURE});
+		return (EList<ConcernUsage>)OWNED_CONCERN__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<OccurrenceUsage> getOwnedOccurrence() {
-		return new DerivedEObjectEList<>(OccurrenceUsage.class, this, SysMLPackage.DEFINITION__OWNED_OCCURRENCE, new int[] {SysMLPackage.TYPE__OWNED_FEATURE});
+		return (EList<OccurrenceUsage>)OWNED_OCCURRENCE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<UseCaseUsage> getOwnedUseCase() {
-		return new DerivedEObjectEList<>(UseCaseUsage.class, this, SysMLPackage.DEFINITION__OWNED_USE_CASE, new int[] {SysMLPackage.TYPE__OWNED_FEATURE});
+		return (EList<UseCaseUsage>)OWNED_USE_CASE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<FlowConnectionUsage> getOwnedFlow() {
-		return new DerivedEObjectEList<>(FlowConnectionUsage.class, this, SysMLPackage.DEFINITION__OWNED_FLOW, new int[] {SysMLPackage.TYPE__OWNED_FEATURE});
+		return (EList<FlowConnectionUsage>)OWNED_FLOW__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<StateUsage> getOwnedState() {
-		return new DerivedEObjectEList<StateUsage>(StateUsage.class, this, SysMLPackage.DEFINITION__OWNED_STATE, new int[] {SysMLPackage.TYPE__OWNED_FEATURE});
+		return (EList<StateUsage>)OWNED_STATE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<ConstraintUsage> getOwnedConstraint() {
-		return new DerivedEObjectEList<ConstraintUsage>(ConstraintUsage.class, this, SysMLPackage.DEFINITION__OWNED_CONSTRAINT, new int[] {SysMLPackage.TYPE__OWNED_FEATURE});
+		return (EList<ConstraintUsage>)OWNED_CONSTRAINT__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<TransitionUsage> getOwnedTransition() {
-		return new DerivedEObjectEList<TransitionUsage>(TransitionUsage.class, this, SysMLPackage.DEFINITION__OWNED_TRANSITION, new int[] {SysMLPackage.TYPE__OWNED_FEATURE});
+		return (EList<TransitionUsage>)OWNED_TRANSITION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<RequirementUsage> getOwnedRequirement() {
-		return new DerivedEObjectEList<RequirementUsage>(RequirementUsage.class, this, SysMLPackage.DEFINITION__OWNED_REQUIREMENT, new int[] {SysMLPackage.TYPE__OWNED_FEATURE});
+		return (EList<RequirementUsage>)OWNED_REQUIREMENT__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<CalculationUsage> getOwnedCalculation() {
-		return new DerivedEObjectEList<CalculationUsage>(CalculationUsage.class, this, SysMLPackage.DEFINITION__OWNED_CALCULATION, new int[] {SysMLPackage.TYPE__OWNED_FEATURE});
+		return (EList<CalculationUsage>)OWNED_CALCULATION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
@@ -411,65 +699,67 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<AnalysisCaseUsage> getOwnedAnalysisCase() {
-		return new DerivedEObjectEList<>(AnalysisCaseUsage.class, this, SysMLPackage.DEFINITION__OWNED_ANALYSIS_CASE, new int[] {SysMLPackage.TYPE__OWNED_FEATURE});
+		return (EList<AnalysisCaseUsage>)OWNED_ANALYSIS_CASE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<CaseUsage> getOwnedCase() {
-		return new DerivedEObjectEList<>(CaseUsage.class, this, SysMLPackage.DEFINITION__OWNED_CASE, new int[] {SysMLPackage.TYPE__OWNED_FEATURE});
+		return (EList<CaseUsage>)OWNED_CASE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<ReferenceUsage> getOwnedReference() {
-		return new DerivedEObjectEList<>(ReferenceUsage.class, this, SysMLPackage.DEFINITION__OWNED_REFERENCE, new int[] {SysMLPackage.TYPE__OWNED_FEATURE});
+		return (EList<ReferenceUsage>)OWNED_REFERENCE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<Usage> getOwnedUsage() {
-		return new DerivedEObjectEList<Usage>(Usage.class, this, SysMLPackage.DEFINITION__OWNED_USAGE, new int[] {SysMLPackage.TYPE__OWNED_FEATURE});
+		return (EList<Usage>)OWNED_USAGE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<Usage> getVariant() {
-		EList<Usage> variants = new NonNotifyingEObjectEList<>(Usage.class, this, SysMLPackage.DEFINITION__VARIANT);
-		getVariantMembership().stream().
-			map(VariantMembership::getOwnedVariantUsage).
-			forEachOrdered(variants::add);
-		return variants;
+		return (EList<Usage>)VARIANT__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<VariantMembership> getVariantMembership() {
-		return new DerivedEObjectEList<VariantMembership>(VariantMembership.class, this, SysMLPackage.DEFINITION__VARIANT_MEMBERSHIP, new int[] {SysMLPackage.ELEMENT__OWNED_RELATIONSHIP});
+		return (EList<VariantMembership>)VARIANT_MEMBERSHIP__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	// Additional Overrides
@@ -805,67 +1095,67 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case SysMLPackage.DEFINITION__OWNED_PORT:
-				return !getOwnedPort().isEmpty();
+				return OWNED_PORT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.DEFINITION__DIRECTED_USAGE:
-				return !getDirectedUsage().isEmpty();
+				return DIRECTED_USAGE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.DEFINITION__USAGE:
-				return !getUsage().isEmpty();
+				return USAGE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.DEFINITION__OWNED_STATE:
-				return !getOwnedState().isEmpty();
+				return OWNED_STATE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.DEFINITION__OWNED_CONSTRAINT:
-				return !getOwnedConstraint().isEmpty();
+				return OWNED_CONSTRAINT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.DEFINITION__OWNED_TRANSITION:
-				return !getOwnedTransition().isEmpty();
+				return OWNED_TRANSITION__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.DEFINITION__OWNED_REQUIREMENT:
-				return !getOwnedRequirement().isEmpty();
+				return OWNED_REQUIREMENT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.DEFINITION__OWNED_CALCULATION:
-				return !getOwnedCalculation().isEmpty();
+				return OWNED_CALCULATION__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.DEFINITION__IS_VARIATION:
 				return isVariation != IS_VARIATION_EDEFAULT;
 			case SysMLPackage.DEFINITION__VARIANT_MEMBERSHIP:
-				return !getVariantMembership().isEmpty();
+				return VARIANT_MEMBERSHIP__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.DEFINITION__OWNED_ANALYSIS_CASE:
-				return !getOwnedAnalysisCase().isEmpty();
+				return OWNED_ANALYSIS_CASE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.DEFINITION__VARIANT:
-				return !getVariant().isEmpty();
+				return VARIANT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.DEFINITION__OWNED_CASE:
-				return !getOwnedCase().isEmpty();
+				return OWNED_CASE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.DEFINITION__OWNED_REFERENCE:
-				return !getOwnedReference().isEmpty();
+				return OWNED_REFERENCE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.DEFINITION__OWNED_ACTION:
-				return !getOwnedAction().isEmpty();
+				return OWNED_ACTION__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.DEFINITION__OWNED_CONNECTION:
-				return !getOwnedConnection().isEmpty();
+				return OWNED_CONNECTION__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.DEFINITION__OWNED_ITEM:
-				return !getOwnedItem().isEmpty();
+				return OWNED_ITEM__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.DEFINITION__OWNED_PART:
-				return !getOwnedPart().isEmpty();
+				return OWNED_PART__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.DEFINITION__OWNED_INTERFACE:
-				return !getOwnedInterface().isEmpty();
+				return OWNED_INTERFACE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.DEFINITION__OWNED_ATTRIBUTE:
-				return !getOwnedAttribute().isEmpty();
+				return OWNED_ATTRIBUTE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.DEFINITION__OWNED_VIEW:
-				return !getOwnedView().isEmpty();
+				return OWNED_VIEW__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.DEFINITION__OWNED_VIEWPOINT:
-				return !getOwnedViewpoint().isEmpty();
+				return OWNED_VIEWPOINT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.DEFINITION__OWNED_RENDERING:
-				return !getOwnedRendering().isEmpty();
+				return OWNED_RENDERING__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.DEFINITION__OWNED_VERIFICATION_CASE:
-				return !getOwnedVerificationCase().isEmpty();
+				return OWNED_VERIFICATION_CASE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.DEFINITION__OWNED_ENUMERATION:
-				return !getOwnedEnumeration().isEmpty();
+				return OWNED_ENUMERATION__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.DEFINITION__OWNED_ALLOCATION:
-				return !getOwnedAllocation().isEmpty();
+				return OWNED_ALLOCATION__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.DEFINITION__OWNED_CONCERN:
-				return !getOwnedConcern().isEmpty();
+				return OWNED_CONCERN__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.DEFINITION__OWNED_OCCURRENCE:
-				return !getOwnedOccurrence().isEmpty();
+				return OWNED_OCCURRENCE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.DEFINITION__OWNED_USE_CASE:
-				return !getOwnedUseCase().isEmpty();
+				return OWNED_USE_CASE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.DEFINITION__OWNED_FLOW:
-				return !getOwnedFlow().isEmpty();
+				return OWNED_FLOW__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.DEFINITION__OWNED_USAGE:
-				return !getOwnedUsage().isEmpty();
+				return OWNED_USAGE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 		}
 		return super.eIsSet(featureID);
 	}

@@ -1,19 +1,32 @@
+/*******************************************************************************
+ * SysML 2 Pilot Implementation
+ * Copyright (c) 2022 Model Driven Solutions, Inc.
+ *    
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *  
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ *  
+ * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
+ *******************************************************************************/
 /**
  */
 package org.omg.sysml.lang.sysml.impl;
 
-import java.util.List;
-
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.Expression;
-import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.IfActionUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.util.FeatureUtil;
-import org.omg.sysml.util.TypeUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -31,6 +44,36 @@ import org.omg.sysml.util.TypeUtil;
  * @generated
  */
 public class IfActionUsageImpl extends ActionUsageImpl implements IfActionUsage {
+	/**
+	 * The cached setting delegate for the '{@link #getElseAction() <em>Else Action</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getElseAction()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate ELSE_ACTION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.IF_ACTION_USAGE__ELSE_ACTION).getSettingDelegate();
+
+	/**
+	 * The cached setting delegate for the '{@link #getThenAction() <em>Then Action</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getThenAction()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate THEN_ACTION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.IF_ACTION_USAGE__THEN_ACTION).getSettingDelegate();
+
+	/**
+	 * The cached setting delegate for the '{@link #getIfArgument() <em>If Argument</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getIfArgument()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate IF_ARGUMENT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.IF_ACTION_USAGE__IF_ARGUMENT).getSettingDelegate();
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -57,27 +100,26 @@ public class IfActionUsageImpl extends ActionUsageImpl implements IfActionUsage 
 	 */
 	@Override
 	public ActionUsage getElseAction() {
-		ActionUsage elseAction = basicGetElseAction();
-		return elseAction != null && elseAction.eIsProxy() ? (ActionUsage)eResolveProxy((InternalEObject)elseAction) : elseAction;
+		return (ActionUsage)ELSE_ACTION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public ActionUsage basicGetElseAction() {
-		return TypeUtil.getOwnedParameterOf(this, 2, ActionUsage.class);
+		return (ActionUsage)ELSE_ACTION__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setElseAction(ActionUsage newElseAction) {
-		throw new UnsupportedOperationException();
+		ELSE_ACTION__ESETTING_DELEGATE.dynamicSet(this, null, 0, newElseAction);
 	}
 
 	/**
@@ -87,27 +129,26 @@ public class IfActionUsageImpl extends ActionUsageImpl implements IfActionUsage 
 	 */
 	@Override
 	public ActionUsage getThenAction() {
-		ActionUsage thenAction = basicGetThenAction();
-		return thenAction != null && thenAction.eIsProxy() ? (ActionUsage)eResolveProxy((InternalEObject)thenAction) : thenAction;
+		return (ActionUsage)THEN_ACTION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public ActionUsage basicGetThenAction() {
-		return TypeUtil.getOwnedParameterOf(this, 1, ActionUsage.class);
+		return (ActionUsage)THEN_ACTION__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setThenAction(ActionUsage newThenAction) {
-		throw new UnsupportedOperationException();
+		THEN_ACTION__ESETTING_DELEGATE.dynamicSet(this, null, 0, newThenAction);
 	}
 
 	/**
@@ -117,28 +158,26 @@ public class IfActionUsageImpl extends ActionUsageImpl implements IfActionUsage 
 	 */
 	@Override
 	public Expression getIfArgument() {
-		Expression ifArgument = basicGetIfArgument();
-		return ifArgument != null && ifArgument.eIsProxy() ? (Expression)eResolveProxy((InternalEObject)ifArgument) : ifArgument;
+		return (Expression)IF_ARGUMENT__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Expression basicGetIfArgument() {
-		List<Feature> parameters = TypeUtil.getOwnedParametersOf(this);
-		return parameters.isEmpty()? null: FeatureUtil.getValueExpressionFor(parameters.get(0));
+		return (Expression)IF_ARGUMENT__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setIfArgument(Expression newIfArgument) {
-		throw new UnsupportedOperationException();
+		IF_ARGUMENT__ESETTING_DELEGATE.dynamicSet(this, null, 0, newIfArgument);
 	}
 
 	/**
@@ -213,11 +252,11 @@ public class IfActionUsageImpl extends ActionUsageImpl implements IfActionUsage 
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case SysMLPackage.IF_ACTION_USAGE__ELSE_ACTION:
-				return basicGetElseAction() != null;
+				return ELSE_ACTION__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.IF_ACTION_USAGE__THEN_ACTION:
-				return basicGetThenAction() != null;
+				return THEN_ACTION__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.IF_ACTION_USAGE__IF_ARGUMENT:
-				return basicGetIfArgument() != null;
+				return IF_ARGUMENT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 		}
 		return super.eIsSet(featureID);
 	}

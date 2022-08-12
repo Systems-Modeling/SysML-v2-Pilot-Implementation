@@ -45,6 +45,7 @@ public interface ViewRenderingMembership extends FeatureMembership {
 	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='viewRenderingMembership'"
 	 *        annotation="redefines"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	RenderingUsage getOwnedRendering();
@@ -71,6 +72,7 @@ public interface ViewRenderingMembership extends FeatureMembership {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getViewRenderingMembership_ReferencedRendering()
 	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='referencingRenderingMembership'"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	RenderingUsage getReferencedRendering();

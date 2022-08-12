@@ -37,28 +37,16 @@ END_SETUP
 package Test {
 	attribute def T;
 	
-	calc def C () : T;
+	calc def C { return T; }
 	
-	// XPECT errors --> "Only one return parameter is allowed." at ": T"
-	calc def C1 () : T {
-		// XPECT errors --> "Only one return parameter is allowed." at "return x : T;"
-		return x : T;
-	}
-	
-	calc def C2 {
+	calc def C1 {
 		// XPECT errors --> "Only one return parameter is allowed." at "return r1 : T;"
 		return r1 : T;
 		// XPECT errors --> "Only one return parameter is allowed." at "return r2 : T;"
 		return r2 : T;
 	}
 	
-	calc c : C () : T;
-	
-	// XPECT errors --> "Only one return parameter is allowed." at ": T"
-	calc c1 : C () : T {
-		// XPECT errors --> "Only one return parameter is allowed." at "return x : T;"
-		return x : T;
-	}
+	calc c : C { return T; }
 	
 	calc c2 : C {
 		// XPECT errors --> "Only one return parameter is allowed." at "return r1 : T;"

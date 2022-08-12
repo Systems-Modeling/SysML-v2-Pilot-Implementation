@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -30,6 +30,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.UniqueEList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
@@ -43,8 +44,6 @@ import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Metaclass;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.util.ElementUtil;
-import org.omg.sysml.util.NonNotifyingEObjectEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -73,6 +72,25 @@ public class MetadataFeatureImpl extends FeatureImpl implements MetadataFeature 
 	protected EList<Annotation> annotation;
 
 	/**
+	 * The cached setting delegate for the '{@link #getAnnotatedElement() <em>Annotated Element</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAnnotatedElement()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate ANNOTATED_ELEMENT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.ANNOTATING_ELEMENT__ANNOTATED_ELEMENT).getSettingDelegate();
+	/**
+	 * The cached setting delegate for the '{@link #getMetaclass() <em>Metaclass</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMetaclass()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate METACLASS__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.METADATA_FEATURE__METACLASS).getSettingDelegate();
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -94,13 +112,12 @@ public class MetadataFeatureImpl extends FeatureImpl implements MetadataFeature 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<Element> getAnnotatedElement() {
-		EList<Element> annotatedElements = new NonNotifyingEObjectEList<>(Element.class, this, SysMLPackage.METADATA_FEATURE__ANNOTATED_ELEMENT);
-		annotatedElements.addAll(ElementUtil.getAnnotatedElementOf(this));
-		return annotatedElements;
+		return (EList<Element>)ANNOTATED_ELEMENT__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
@@ -110,33 +127,26 @@ public class MetadataFeatureImpl extends FeatureImpl implements MetadataFeature 
 	 */
 	@Override
 	public Metaclass getMetaclass() {
-		Metaclass metaclass = basicGetMetaclass();
-		return metaclass != null && metaclass.eIsProxy() ? (Metaclass)eResolveProxy((InternalEObject)metaclass) : metaclass;
+		return (Metaclass)METACLASS__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Metaclass basicGetMetaclass() {
-		EList<Type> types = super.getType();
-		if (types.isEmpty()) {
-			return null;
-		} else {
-			Type type = types.get(0);
-			return type instanceof Metaclass? (Metaclass)type: null;
-		}
+		return (Metaclass)METACLASS__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setMetaclass(Metaclass newMetaclass) {
-		throw new UnsupportedOperationException();
+		METACLASS__ESETTING_DELEGATE.dynamicSet(this, null, 0, newMetaclass);
 	}
 
 	/**
@@ -159,6 +169,30 @@ public class MetadataFeatureImpl extends FeatureImpl implements MetadataFeature 
 			annotation = new EObjectWithInverseResolvingEList<Annotation>(Annotation.class, this, SysMLPackage.METADATA_FEATURE__ANNOTATION, SysMLPackage.ANNOTATION__ANNOTATING_ELEMENT);
 		}
 		return annotation;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<Type> getType() {
+		EList<Type> type = new UniqueEList<Type>();
+		Metaclass metaclass = getMetaclass();
+		if (metaclass != null) {
+			type.add(metaclass);
+		}
+		return new UnionEObjectEList<Type>(this, SysMLPackage.Literals.FEATURE__TYPE, type.size(), type.toArray());
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetType() {
+  		return false;
 	}
 
 	/**
@@ -265,7 +299,7 @@ public class MetadataFeatureImpl extends FeatureImpl implements MetadataFeature 
 			case SysMLPackage.METADATA_FEATURE__ANNOTATION:
 				return annotation != null && !annotation.isEmpty();
 			case SysMLPackage.METADATA_FEATURE__ANNOTATED_ELEMENT:
-				return !getAnnotatedElement().isEmpty();
+				return ANNOTATED_ELEMENT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.METADATA_FEATURE__TYPE:
 				return isSetType();
 			case SysMLPackage.METADATA_FEATURE__METACLASS:
@@ -306,30 +340,6 @@ public class MetadataFeatureImpl extends FeatureImpl implements MetadataFeature 
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EList<Type> getType() {
-		EList<Type> type = new UniqueEList<Type>();
-		Metaclass metaclass = getMetaclass();
-		if (metaclass != null) {
-			type.add(metaclass);
-		}
-		return new UnionEObjectEList<Type>(this, SysMLPackage.Literals.FEATURE__TYPE, type.size(), type.toArray());
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetType() {
-  		return false;
 	}
 
 } //AnnotatingFeatureImpl

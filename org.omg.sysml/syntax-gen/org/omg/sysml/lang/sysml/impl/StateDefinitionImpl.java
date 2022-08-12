@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -27,20 +27,12 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.uml2.common.util.DerivedEObjectEList;
 import org.omg.sysml.lang.sysml.ActionUsage;
-import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.StateDefinition;
-import org.omg.sysml.lang.sysml.StateSubactionKind;
-import org.omg.sysml.lang.sysml.StateSubactionMembership;
 import org.omg.sysml.lang.sysml.StateUsage;
-import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.util.NonNotifyingEObjectEList;
-import org.omg.sysml.util.TypeUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -61,6 +53,42 @@ import org.omg.sysml.util.TypeUtil;
  */
 public class StateDefinitionImpl extends ActionDefinitionImpl implements StateDefinition {
 
+	/**
+	 * The cached setting delegate for the '{@link #getState() <em>State</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getState()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate STATE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.STATE_DEFINITION__STATE).getSettingDelegate();
+	/**
+	 * The cached setting delegate for the '{@link #getEntryAction() <em>Entry Action</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getEntryAction()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate ENTRY_ACTION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.STATE_DEFINITION__ENTRY_ACTION).getSettingDelegate();
+	/**
+	 * The cached setting delegate for the '{@link #getDoAction() <em>Do Action</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDoAction()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate DO_ACTION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.STATE_DEFINITION__DO_ACTION).getSettingDelegate();
+	/**
+	 * The cached setting delegate for the '{@link #getExitAction() <em>Exit Action</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getExitAction()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate EXIT_ACTION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.STATE_DEFINITION__EXIT_ACTION).getSettingDelegate();
 	/**
 	 * The default value of the '{@link #isParallel() <em>Is Parallel</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -102,43 +130,12 @@ public class StateDefinitionImpl extends ActionDefinitionImpl implements StateDe
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
-	@Override
-	public EList<Step> getStep() {
-		return new DerivedEObjectEList<Step>(Step.class, this, SysMLPackage.STATE_DEFINITION__STEP,
-				new int[] { SysMLPackage.TYPE__FEATURE });
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	@Override
-	public EList<Feature> getParameter() {
-		EList<Feature> parameters = new NonNotifyingEObjectEList<>(Feature.class, this, SysMLPackage.STATE_DEFINITION__PARAMETER);
-		parameters.addAll(TypeUtil.getAllParametersOf(this));
-		return parameters;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<StateUsage> getState() {
-		return new DerivedEObjectEList<StateUsage>(StateUsage.class, this, SysMLPackage.STATE_DEFINITION__STATE,
-				new int[] { SysMLPackage.TYPE__FEATURE });
-	}
-
-	public static ActionUsage getStateSubaction(Type owner, StateSubactionKind kind) {
-		return owner.getOwnedFeatureMembership().stream().
-				filter(mem->(mem instanceof StateSubactionMembership) && ((StateSubactionMembership)mem).getKind() == kind).
-				map(mem->((StateSubactionMembership)mem).getAction()).
-				filter(action->action != null).
-				findAny().orElse(null);
+		return (EList<StateUsage>)STATE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
@@ -148,27 +145,26 @@ public class StateDefinitionImpl extends ActionDefinitionImpl implements StateDe
 	 */
 	@Override
 	public ActionUsage getEntryAction() {
-		ActionUsage entryAction = basicGetEntryAction();
-		return entryAction != null && entryAction.eIsProxy() ? (ActionUsage)eResolveProxy((InternalEObject)entryAction) : entryAction;
+		return (ActionUsage)ENTRY_ACTION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public ActionUsage basicGetEntryAction() {
-		return getStateSubaction(this, StateSubactionKind.ENTRY);
+		return (ActionUsage)ENTRY_ACTION__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setEntryAction(ActionUsage newEntryAction) {
-		throw new UnsupportedOperationException();
+		ENTRY_ACTION__ESETTING_DELEGATE.dynamicSet(this, null, 0, newEntryAction);
 	}
 
 	/**
@@ -178,27 +174,26 @@ public class StateDefinitionImpl extends ActionDefinitionImpl implements StateDe
 	 */
 	@Override
 	public ActionUsage getDoAction() {
-		ActionUsage doAction = basicGetDoAction();
-		return doAction != null && doAction.eIsProxy() ? (ActionUsage)eResolveProxy((InternalEObject)doAction) : doAction;
+		return (ActionUsage)DO_ACTION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public ActionUsage basicGetDoAction() {
-		return getStateSubaction(this, StateSubactionKind.DO);
+		return (ActionUsage)DO_ACTION__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setDoAction(ActionUsage newDoAction) {
-		throw new UnsupportedOperationException();
+		DO_ACTION__ESETTING_DELEGATE.dynamicSet(this, null, 0, newDoAction);
 	}
 
 	/**
@@ -208,27 +203,26 @@ public class StateDefinitionImpl extends ActionDefinitionImpl implements StateDe
 	 */
 	@Override
 	public ActionUsage getExitAction() {
-		ActionUsage exitAction = basicGetExitAction();
-		return exitAction != null && exitAction.eIsProxy() ? (ActionUsage)eResolveProxy((InternalEObject)exitAction) : exitAction;
+		return (ActionUsage)EXIT_ACTION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public ActionUsage basicGetExitAction() {
-		return getStateSubaction(this, StateSubactionKind.EXIT);
+		return (ActionUsage)EXIT_ACTION__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setExitAction(ActionUsage newExitAction) {
-		throw new UnsupportedOperationException();
+		EXIT_ACTION__ESETTING_DELEGATE.dynamicSet(this, null, 0, newExitAction);
 	}
 
 	/**
@@ -344,13 +338,13 @@ public class StateDefinitionImpl extends ActionDefinitionImpl implements StateDe
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case SysMLPackage.STATE_DEFINITION__STATE:
-				return !getState().isEmpty();
+				return STATE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.STATE_DEFINITION__ENTRY_ACTION:
-				return basicGetEntryAction() != null;
+				return ENTRY_ACTION__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.STATE_DEFINITION__DO_ACTION:
-				return basicGetDoAction() != null;
+				return DO_ACTION__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.STATE_DEFINITION__EXIT_ACTION:
-				return basicGetExitAction() != null;
+				return EXIT_ACTION__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.STATE_DEFINITION__IS_PARALLEL:
 				return isParallel != IS_PARALLEL_EDEFAULT;
 		}

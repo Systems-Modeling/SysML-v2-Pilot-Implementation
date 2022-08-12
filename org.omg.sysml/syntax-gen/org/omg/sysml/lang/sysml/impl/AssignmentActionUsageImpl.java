@@ -1,18 +1,32 @@
+/*******************************************************************************
+ * SysML 2 Pilot Implementation
+ * Copyright (c) 2022 Model Driven Solutions, Inc.
+ *    
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *  
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ *  
+ * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
+ *******************************************************************************/
 /**
  */
 package org.omg.sysml.lang.sysml.impl;
 
-import java.util.List;
-
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.omg.sysml.lang.sysml.AssignmentActionUsage;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.util.FeatureUtil;
-import org.omg.sysml.util.TypeUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -30,6 +44,36 @@ import org.omg.sysml.util.TypeUtil;
  * @generated
  */
 public class AssignmentActionUsageImpl extends ActionUsageImpl implements AssignmentActionUsage {
+	/**
+	 * The cached setting delegate for the '{@link #getTargetArgument() <em>Target Argument</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTargetArgument()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate TARGET_ARGUMENT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.ASSIGNMENT_ACTION_USAGE__TARGET_ARGUMENT).getSettingDelegate();
+
+	/**
+	 * The cached setting delegate for the '{@link #getValueExpression() <em>Value Expression</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getValueExpression()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate VALUE_EXPRESSION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.ASSIGNMENT_ACTION_USAGE__VALUE_EXPRESSION).getSettingDelegate();
+
+	/**
+	 * The cached setting delegate for the '{@link #getReferent() <em>Referent</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getReferent()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate REFERENT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.ASSIGNMENT_ACTION_USAGE__REFERENT).getSettingDelegate();
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -56,28 +100,26 @@ public class AssignmentActionUsageImpl extends ActionUsageImpl implements Assign
 	 */
 	@Override
 	public Expression getTargetArgument() {
-		Expression targetArgument = basicGetTargetArgument();
-		return targetArgument != null && targetArgument.eIsProxy() ? (Expression)eResolveProxy((InternalEObject)targetArgument) : targetArgument;
+		return (Expression)TARGET_ARGUMENT__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Expression basicGetTargetArgument() {
-		List<Feature> parameters = TypeUtil.getOwnedParametersOf(this);
-		return parameters.isEmpty()? null: FeatureUtil.getValueExpressionFor(parameters.get(0));
+		return (Expression)TARGET_ARGUMENT__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setTargetArgument(Expression newTargetArgument) {
-		throw new UnsupportedOperationException();
+		TARGET_ARGUMENT__ESETTING_DELEGATE.dynamicSet(this, null, 0, newTargetArgument);
 	}
 
 	/**
@@ -87,28 +129,26 @@ public class AssignmentActionUsageImpl extends ActionUsageImpl implements Assign
 	 */
 	@Override
 	public Expression getValueExpression() {
-		Expression valueExpression = basicGetValueExpression();
-		return valueExpression != null && valueExpression.eIsProxy() ? (Expression)eResolveProxy((InternalEObject)valueExpression) : valueExpression;
+		return (Expression)VALUE_EXPRESSION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Expression basicGetValueExpression() {
-		List<Feature> parameters = TypeUtil.getOwnedParametersOf(this);
-		return parameters.size() < 2? null: FeatureUtil.getValueExpressionFor(parameters.get(1));
+		return (Expression)VALUE_EXPRESSION__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setValueExpression(Expression newValueExpression) {
-		throw new UnsupportedOperationException();
+		VALUE_EXPRESSION__ESETTING_DELEGATE.dynamicSet(this, null, 0, newValueExpression);
 	}
 
 	/**
@@ -118,30 +158,26 @@ public class AssignmentActionUsageImpl extends ActionUsageImpl implements Assign
 	 */
 	@Override
 	public Feature getReferent() {
-		Feature referent = basicGetReferent();
-		return referent != null && referent.eIsProxy() ? (Feature)eResolveProxy((InternalEObject)referent) : referent;
+		return (Feature)REFERENT__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Feature basicGetReferent() {
-		return (Feature) getOwnedMembership().stream().
-				map(Membership::getMemberElement).
-				filter(e->e instanceof Feature && !FeatureUtil.isParameter((Feature)e)).
-				findFirst().orElse(null);
+		return (Feature)REFERENT__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setReferent(Feature newReferent) {
-		throw new UnsupportedOperationException();
+		REFERENT__ESETTING_DELEGATE.dynamicSet(this, null, 0, newReferent);
 	}
 
 	/**
@@ -216,11 +252,11 @@ public class AssignmentActionUsageImpl extends ActionUsageImpl implements Assign
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case SysMLPackage.ASSIGNMENT_ACTION_USAGE__TARGET_ARGUMENT:
-				return basicGetTargetArgument() != null;
+				return TARGET_ARGUMENT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.ASSIGNMENT_ACTION_USAGE__VALUE_EXPRESSION:
-				return basicGetValueExpression() != null;
+				return VALUE_EXPRESSION__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.ASSIGNMENT_ACTION_USAGE__REFERENT:
-				return basicGetReferent() != null;
+				return REFERENT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 		}
 		return super.eIsSet(featureID);
 	}

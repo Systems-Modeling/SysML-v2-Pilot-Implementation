@@ -82,6 +82,12 @@ public class RedefinitionImpl extends SubsettingImpl implements Redefinition {
 		return SysMLPackage.Literals.REDEFINITION;
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * Xtext workaround.
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
 	public Feature getRedefiningFeature() {
 		return redefiningFeature == null ? basicGetRedefiningFeature() : getRedefiningFeatureGen();
 	}
@@ -104,6 +110,9 @@ public class RedefinitionImpl extends SubsettingImpl implements Redefinition {
 
 	/**
 	 * <!-- begin-user-doc --> 
+	 * Xtext workaround:
+	 * If the redefiningFeature is empty, then set it to the owningRelatedElement, if that is a Feature.
+	 * Otherwise, set it to the first ownedRelatedElement (which will be a Feature chain).
 	 * <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
@@ -124,7 +133,8 @@ public class RedefinitionImpl extends SubsettingImpl implements Redefinition {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -136,7 +146,8 @@ public class RedefinitionImpl extends SubsettingImpl implements Redefinition {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> 
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
 	 */

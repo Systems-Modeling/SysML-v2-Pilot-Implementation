@@ -1,6 +1,6 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2019-2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2019-2022 Model Driven Solutions, Inc.
  * Copyright (c) 2020 Mgnite Inc.
  * Copyright (c) 2021 Twingineer LLC
  *    
@@ -23,7 +23,7 @@
  *  Ed Seidewitz, MDS
  *  Hisashi Miyashita, Mgnite
  *  Zoltan Ujhelyi, MDS
- *  Ivan Gomes
+ *  Ivan Gomes, Twingineer
  * 
  *****************************************************************************/
 package org.omg.sysml.interactive;
@@ -80,12 +80,10 @@ import com.google.inject.Injector;
 
 public class SysMLInteractive extends SysMLUtil {
 	
-	public static final String KERNEL_LIBRARY_DIRECTORY = "Kernel Library";
+	public static final String KERNEL_LIBRARIES_DIRECTORY = "Kernel Libraries";
 	public static final String SYSTEMS_LIBRARY_DIRECTORY = "Systems Library";
 	public static final String DOMAIN_LIBRARIES_DIRECTORY = "Domain Libraries";
-	public static final String QUANTITIES_AND_UNITS_DIRECTORY = DOMAIN_LIBRARIES_DIRECTORY + "/Quantities and Units";
-	public static final String GEOMETRY_DIRECTORY = DOMAIN_LIBRARIES_DIRECTORY + "/Geometry";
-	public static final String ANALYSIS_DIRECTORY = DOMAIN_LIBRARIES_DIRECTORY + "/Analysis";
+
 	public static final String KERML_EXTENSION = ".kerml";
 	public static final String SYSML_EXTENSION = ".sysml";
 	
@@ -121,7 +119,7 @@ public class SysMLInteractive extends SysMLUtil {
 				path += "/";
 			}
 			SysMLLibraryUtil.setModelLibraryDirectory(path);
-			this.readAll(path + KERNEL_LIBRARY_DIRECTORY, false, KERML_EXTENSION);
+			this.readAll(path + KERNEL_LIBRARIES_DIRECTORY, false, KERML_EXTENSION);
 			this.readAll(path + SYSTEMS_LIBRARY_DIRECTORY, false, SYSML_EXTENSION);
 			this.readAll(path + DOMAIN_LIBRARIES_DIRECTORY, false, SYSML_EXTENSION);
 		}

@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -24,7 +24,7 @@ package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Step;
@@ -66,6 +66,16 @@ public class TransitionFeatureMembershipImpl extends FeatureMembershipImpl imple
 	 * @ordered
 	 */
 	protected TransitionFeatureKind kind = KIND_EDEFAULT;
+
+	/**
+	 * The cached setting delegate for the '{@link #getTransitionFeature() <em>Transition Feature</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTransitionFeature()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate TRANSITION_FEATURE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.TRANSITION_FEATURE_MEMBERSHIP__TRANSITION_FEATURE).getSettingDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -116,28 +126,26 @@ public class TransitionFeatureMembershipImpl extends FeatureMembershipImpl imple
 	 */
 	@Override
 	public Step getTransitionFeature() {
-		Step transitionFeature = basicGetTransitionFeature();
-		return transitionFeature != null && transitionFeature.eIsProxy() ? (Step)eResolveProxy((InternalEObject)transitionFeature) : transitionFeature;
+		return (Step)TRANSITION_FEATURE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Step basicGetTransitionFeature() {
-		Feature ownedMemberFeature = super.basicGetOwnedMemberFeature();
-		return ownedMemberFeature instanceof Step? (Step)ownedMemberFeature: null;
+		return (Step)TRANSITION_FEATURE__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setTransitionFeature(Step newTransitionFeature) {
-		super.setOwnedMemberFeature(newTransitionFeature);
+		TRANSITION_FEATURE__ESETTING_DELEGATE.dynamicSet(this, null, 0, newTransitionFeature);
 	}
 
 	/**

@@ -66,6 +66,7 @@ public interface Succession extends Connector {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getSuccession_TriggerStep()
 	 * @model transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='succession'"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<Step> getTriggerStep();
@@ -87,6 +88,7 @@ public interface Succession extends Connector {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getSuccession_EffectStep()
 	 * @model transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='succession'"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<Step> getEffectStep();
@@ -108,6 +110,7 @@ public interface Succession extends Connector {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getSuccession_GuardExpression()
 	 * @model transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='succession'"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<Expression> getGuardExpression();
@@ -136,6 +139,7 @@ public interface Succession extends Connector {
 	 * @model transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='succession'"
 	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	Step getTransitionStep();

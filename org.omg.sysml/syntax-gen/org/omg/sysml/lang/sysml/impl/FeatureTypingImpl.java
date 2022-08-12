@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -25,6 +25,7 @@ package org.omg.sysml.lang.sysml.impl;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -69,6 +70,16 @@ public class FeatureTypingImpl extends SpecializationImpl implements FeatureTypi
 	protected Type type;
 
 	/**
+	 * The cached setting delegate for the '{@link #getOwningFeature() <em>Owning Feature</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwningFeature()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate OWNING_FEATURE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.FEATURE_TYPING__OWNING_FEATURE).getSettingDelegate();
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -85,13 +96,20 @@ public class FeatureTypingImpl extends SpecializationImpl implements FeatureTypi
 		return SysMLPackage.Literals.FEATURE_TYPING;
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * Xtext workaround.
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
 	@Override
 	public Type getType() {
 		return type == null? basicGetType(): getTypeGen();
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public Type getTypeGen() {
@@ -107,7 +125,11 @@ public class FeatureTypingImpl extends SpecializationImpl implements FeatureTypi
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> 
+	 * Xtext workaround:
+	 * If the type is empty, then set it to the first owned related element
+	 * (which will be a Feature chain).
+	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	public Type basicGetType() {
@@ -147,28 +169,26 @@ public class FeatureTypingImpl extends SpecializationImpl implements FeatureTypi
 	 */
 	@Override
 	public Feature getOwningFeature() {
-		Feature owningFeature = basicGetOwningFeature();
-		return owningFeature != null && owningFeature.eIsProxy() ? (Feature)eResolveProxy((InternalEObject)owningFeature) : owningFeature;
+		return (Feature)OWNING_FEATURE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Feature basicGetOwningFeature() {
-		Type owningType = super.basicGetOwningType();
-		return owningType instanceof Feature? (Feature) owningType : null;
+		return (Feature)OWNING_FEATURE__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setOwningFeature(Feature newOwningFeature) {
-		throw new UnsupportedOperationException();
+		OWNING_FEATURE__ESETTING_DELEGATE.dynamicSet(this, null, 0, newOwningFeature);
 	}
 
 	/**
@@ -180,13 +200,20 @@ public class FeatureTypingImpl extends SpecializationImpl implements FeatureTypi
 		return basicGetOwningFeature() != null;
 	}
 
+	/**
+	 * <!-- begin-user-doc --> 
+	 * Xtext workaround.
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
 	@Override
 	public Feature getTypedFeature() {
 		return typedFeature == null ? basicGetTypedFeature() : getTypedFeatureGen();
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public Feature getTypedFeatureGen() {
@@ -202,7 +229,10 @@ public class FeatureTypingImpl extends SpecializationImpl implements FeatureTypi
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> 
+	 * Xtext workaround:
+	 * If the typedFeature is empty, then set it to the owningRelatedElement (if that is a Feature).
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
 	 */

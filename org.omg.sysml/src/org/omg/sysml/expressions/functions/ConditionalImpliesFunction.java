@@ -28,8 +28,8 @@ import org.omg.sysml.lang.sysml.InvocationExpression;
 public class ConditionalImpliesFunction extends ControlFunction {
 
 	@Override
-	public String[] getOperatorNames() {
-		return new String[]{"implies"};
+	public String getOperatorName() {
+		return "implies";
 	}
 
 	@Override

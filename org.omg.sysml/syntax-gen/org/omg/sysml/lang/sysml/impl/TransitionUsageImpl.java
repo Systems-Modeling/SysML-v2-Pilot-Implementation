@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -25,18 +25,13 @@ package org.omg.sysml.lang.sysml.impl;
 import java.util.Collection;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.omg.sysml.lang.sysml.AcceptActionUsage;
 import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.Expression;
-import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Succession;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.lang.sysml.TransitionFeatureKind;
 import org.omg.sysml.lang.sysml.TransitionUsage;
-import org.omg.sysml.util.FeatureUtil;
-import org.omg.sysml.util.NonNotifyingEObjectEList;
-import org.omg.sysml.util.UsageUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -58,6 +53,66 @@ import org.omg.sysml.util.UsageUtil;
  */
 public class TransitionUsageImpl extends ActionUsageImpl implements TransitionUsage {
 	
+	/**
+	 * The cached setting delegate for the '{@link #getSource() <em>Source</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSource()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate SOURCE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.TRANSITION_USAGE__SOURCE).getSettingDelegate();
+
+	/**
+	 * The cached setting delegate for the '{@link #getTarget() <em>Target</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTarget()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate TARGET__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.TRANSITION_USAGE__TARGET).getSettingDelegate();
+
+	/**
+	 * The cached setting delegate for the '{@link #getTriggerAction() <em>Trigger Action</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTriggerAction()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate TRIGGER_ACTION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.TRANSITION_USAGE__TRIGGER_ACTION).getSettingDelegate();
+
+	/**
+	 * The cached setting delegate for the '{@link #getGuardExpression() <em>Guard Expression</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getGuardExpression()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate GUARD_EXPRESSION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.TRANSITION_USAGE__GUARD_EXPRESSION).getSettingDelegate();
+
+	/**
+	 * The cached setting delegate for the '{@link #getEffectAction() <em>Effect Action</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getEffectAction()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate EFFECT_ACTION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.TRANSITION_USAGE__EFFECT_ACTION).getSettingDelegate();
+
+	/**
+	 * The cached setting delegate for the '{@link #getSuccession() <em>Succession</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSuccession()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate SUCCESSION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.TRANSITION_USAGE__SUCCESSION).getSettingDelegate();
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -84,33 +139,26 @@ public class TransitionUsageImpl extends ActionUsageImpl implements TransitionUs
 	 */
 	@Override
 	public ActionUsage getSource() {
-		ActionUsage source = basicGetSource();
-		return source != null && source.eIsProxy() ? (ActionUsage)eResolveProxy((InternalEObject)source) : source;
+		return (ActionUsage)SOURCE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public ActionUsage basicGetSource() {
-		EList<Feature> relatedFeatures = getSuccession().getRelatedFeature();
-		if (relatedFeatures.isEmpty()) {
-			return null;
-		} else {
-			Feature source = FeatureUtil.getBasicFeatureOf(relatedFeatures.get(0));
-			return source instanceof ActionUsage? (ActionUsage)source: null;
-		}
+		return (ActionUsage)SOURCE__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setSource(ActionUsage newSource) {
-		throw new UnsupportedOperationException();
+		SOURCE__ESETTING_DELEGATE.dynamicSet(this, null, 0, newSource);
 	}
 
 	/**
@@ -120,81 +168,59 @@ public class TransitionUsageImpl extends ActionUsageImpl implements TransitionUs
 	 */
 	@Override
 	public ActionUsage getTarget() {
-		ActionUsage target = basicGetTarget();
-		return target != null && target.eIsProxy() ? (ActionUsage)eResolveProxy((InternalEObject)target) : target;
+		return (ActionUsage)TARGET__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public ActionUsage basicGetTarget() {
-		EList<Feature> relatedFeatures = getSuccession().getRelatedFeature();
-		if (relatedFeatures.size() < 2) {
-			return null;
-		} else {
-			Feature target = FeatureUtil.getBasicFeatureOf(relatedFeatures.get(1));
-			return target instanceof ActionUsage? (ActionUsage)target: null;
-		}
+		return (ActionUsage)TARGET__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setTarget(ActionUsage newTarget) {
-		throw new UnsupportedOperationException();
+		TARGET__ESETTING_DELEGATE.dynamicSet(this, null, 0, newTarget);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<AcceptActionUsage> getTriggerAction() {
-		EList<AcceptActionUsage> triggerActions = 
-				new NonNotifyingEObjectEList<>(AcceptActionUsage.class, this, SysMLPackage.TRANSITION_USAGE__TRIGGER_ACTION);
-		UsageUtil.getTransitionFeaturesOf(this, TransitionFeatureKind.TRIGGER).
-			filter(feature->feature instanceof AcceptActionUsage).
-			map(feature->(AcceptActionUsage)feature).
-			forEachOrdered(triggerActions::add);
-		return triggerActions;
+		return (EList<AcceptActionUsage>)TRIGGER_ACTION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<Expression> getGuardExpression() {
-		EList<Expression> guardExpressions = 
-				new NonNotifyingEObjectEList<>(Expression.class, this, SysMLPackage.TRANSITION_USAGE__GUARD_EXPRESSION);
-		UsageUtil.getTransitionFeaturesOf(this, TransitionFeatureKind.GUARD).
-			filter(feature->feature instanceof Expression).
-			map(feature->(Expression)feature).
-			forEachOrdered(guardExpressions::add);
-		return guardExpressions;
+		return (EList<Expression>)GUARD_EXPRESSION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<ActionUsage> getEffectAction() {
-		EList<ActionUsage> effectActions = 
-				new NonNotifyingEObjectEList<>(ActionUsage.class, this, SysMLPackage.TRANSITION_USAGE__EFFECT_ACTION);
-		UsageUtil.getTransitionFeaturesOf(this, TransitionFeatureKind.EFFECT).
-			filter(feature->feature instanceof ActionUsage).
-			map(feature->(ActionUsage)feature).
-			forEachOrdered(effectActions::add);
-		return effectActions;
+		return (EList<ActionUsage>)EFFECT_ACTION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
@@ -204,29 +230,26 @@ public class TransitionUsageImpl extends ActionUsageImpl implements TransitionUs
 	 */
 	@Override
 	public Succession getSuccession() {
-		Succession succession = basicGetSuccession();
-		return succession != null && succession.eIsProxy() ? (Succession)eResolveProxy((InternalEObject)succession) : succession;
+		return (Succession)SUCCESSION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Succession basicGetSuccession() {
-		return (Succession)getOwnedMember().stream().
-				filter(feature->feature instanceof Succession).
-				findFirst().orElse(null);
+		return (Succession)SUCCESSION__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setSuccession(Succession newSuccession) {
-		throw new UnsupportedOperationException();
+		SUCCESSION__ESETTING_DELEGATE.dynamicSet(this, null, 0, newSuccession);
 	}
 	
 	/**
@@ -329,17 +352,17 @@ public class TransitionUsageImpl extends ActionUsageImpl implements TransitionUs
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case SysMLPackage.TRANSITION_USAGE__SOURCE:
-				return basicGetSource() != null;
+				return SOURCE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.TRANSITION_USAGE__TARGET:
-				return basicGetTarget() != null;
+				return TARGET__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.TRANSITION_USAGE__TRIGGER_ACTION:
-				return !getTriggerAction().isEmpty();
+				return TRIGGER_ACTION__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.TRANSITION_USAGE__GUARD_EXPRESSION:
-				return !getGuardExpression().isEmpty();
+				return GUARD_EXPRESSION__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.TRANSITION_USAGE__EFFECT_ACTION:
-				return !getEffectAction().isEmpty();
+				return EFFECT_ACTION__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.TRANSITION_USAGE__SUCCESSION:
-				return basicGetSuccession() != null;
+				return SUCCESSION__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 		}
 		return super.eIsSet(featureID);
 	}

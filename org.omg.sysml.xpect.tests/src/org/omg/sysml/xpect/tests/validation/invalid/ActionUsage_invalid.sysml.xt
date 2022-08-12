@@ -35,7 +35,7 @@ END_SETUP
 package pkg {
 	part def ABlock;
 	action def AnActivity;
-	action def B() {
+	action def B {
 		// XPECT errors -->   "An action must be typed by action definitions." at "action a: ABlock;"
 		action a: ABlock;
 		// XPECT errors -->   "An action must be typed by action definitions." at "action b: ABlock, AnActivity;"

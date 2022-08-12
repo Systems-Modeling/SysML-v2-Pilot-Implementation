@@ -80,6 +80,7 @@ public interface FeatureValue extends OwningMembership {
 	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='expressedValuation'"
 	 *        annotation="redefines"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	Expression getValue();
@@ -167,9 +168,10 @@ public interface FeatureValue extends OwningMembership {
 	 * @return the value of the '<em>Feature With Value</em>' reference.
 	 * @see #setFeatureWithValue(Feature)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeatureValue_FeatureWithValue()
-	 * @model required="true" ordered="false"
+	 * @model required="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='valuation'"
 	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	Feature getFeatureWithValue();

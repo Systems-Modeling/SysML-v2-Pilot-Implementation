@@ -72,6 +72,7 @@ public class LibraryFunctionFactory {
 		put(new ConditionalAndFunction());
 		put(new ConditionalOrFunction());
 		put(new ConditionalImpliesFunction());
+		put(new NullCoalescingFunction());
 		
 		put(new StringLengthFunction());
 		put(new StringSubstringFunction());

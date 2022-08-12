@@ -10,7 +10,9 @@ package TransitionPerformances {
 	private import Transfers::Transfer;
 	private import ControlFunctions::allTrue;
 	
-	abstract behavior TransitionPerformance(in step transitionLinkSource: Performance[1]) {
+	abstract behavior TransitionPerformance {
+		in step transitionLinkSource: Performance[1];
+		
 		feature trigger: Transfer[*];
 		expr guard[*];
 		step effect[*];
@@ -38,7 +40,7 @@ package TransitionPerformances {
 	
 	assoc struct TPCGuardConstraint {
 		end feature constrainedHBLink: HappensBefore[0..1];
-		end expr constrainedGuard: Evaluation[*] () result: Boolean;
+		end bool constrainedGuard;
 		
 		private inv { allTrue(constrainedGuard()) }
 	}	

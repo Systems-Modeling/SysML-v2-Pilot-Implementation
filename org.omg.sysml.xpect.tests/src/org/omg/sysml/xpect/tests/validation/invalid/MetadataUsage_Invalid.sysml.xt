@@ -62,7 +62,7 @@ package Test {
 		}
 	}
 	
-	calc def f(x): Boolean;
+	calc def f { x : Boolean; }
 	
 	// XPECT errors --> "Must be model-level evaluable" at "filter f(A::y);"
 	filter f(A::y);

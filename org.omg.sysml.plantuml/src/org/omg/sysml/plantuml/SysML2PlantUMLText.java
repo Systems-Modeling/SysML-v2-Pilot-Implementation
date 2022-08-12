@@ -220,25 +220,29 @@ public class SysML2PlantUMLText {
         for (Element oe: e.getOwnedElement()) {
             if (oe instanceof MetadataUsage) {
                 MetadataUsage mu = (MetadataUsage) oe;
-                if (sb == null) {
-                    sb = new StringBuilder();
-                }
                 List<FeatureTyping> tt = mu.getOwnedTyping();
                 for (FeatureTyping ft: tt) {
                     if (ft == null) continue;
                     Type typ = ft.getType();
                     if (typ == null) continue;
-                    String shortName = typ.getShortName();
-                    if (shortName == null || shortName.isEmpty()) continue;
-                    if (sb.length() == 0) {
+                    String mName = typ.getShortName();
+                    if (mName == null || mName.isEmpty()) {
+                        mName = typ.getName();
+                        if (mName == null || mName.isEmpty()) {
+                            continue;
+                        }
+                    }
+                    if (sb == null) {
+                        sb = new StringBuilder();
                         sb.append("<<");
                     } else {
                         sb.append(' ');
                     }
                     sb.append('#');
-                    sb.append(shortName);
+                    sb.append(mName);
                 }
             }
+            if (sb != null) break; // Do not show more than one metadata.
         }
         if (sb == null) return null;
         sb.append(">>");

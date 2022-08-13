@@ -34,7 +34,7 @@ public class Function_isModelLevelEvaluable_SettingDelegate extends BasicDerived
 
 	@Override
 	protected Boolean basicGet(InternalEObject owner) {
-		return LibraryFunctionFactory.INSTANCE.isModelLevelEvaluable((Function)this);
+		return LibraryFunctionFactory.INSTANCE.isModelLevelEvaluable((Function)owner);
 	}
 
 }

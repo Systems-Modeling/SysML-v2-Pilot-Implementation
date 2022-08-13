@@ -557,6 +557,31 @@ public abstract class Visitor extends SysMLSwitch<String> {
         this.fullyQualifiedElement = null;
     }
 
+    private void addPRDesc(StringBuilder ss, PRelation pr) {
+        int idx = ss.length();
+        if (pr.rel != null) {
+            String mName = SysML2PlantUMLText.getMetadataUsageName(pr.rel);
+            if (mName != null) {
+                ss.append(mName);
+            }
+        }
+        String desc = pr.getDescription();
+        if (desc != null) {
+            if (idx < ss.length()) {
+                ss.append("\\n");
+            }
+            if (InheritKey.isDirectInherit(pr.ik)) {
+                ss.append('^');
+            }
+            desc = desc.replace("\r", "").replace("\n", "\\n");
+            ss.append(desc);
+        }
+        if (idx < ss.length()) {
+            ss.insert(idx, ": ");
+        }
+    }
+    
+
     private boolean outputPRelation(StringBuilder ss, PRelation pr) {
         if ((pr.src == null) && (pr.dest == null)) return true;
 
@@ -584,6 +609,9 @@ public abstract class Visitor extends SysMLSwitch<String> {
         ss.append(' ');
         addLink(ss, pr.rel, null);
 
+        addPRDesc(ss, pr);
+
+        /*
         String desc = pr.getDescription();
         if (desc == null) desc = "";
         if (pr.rel != null) {
@@ -601,6 +629,7 @@ public abstract class Visitor extends SysMLSwitch<String> {
             desc = desc.replace("\r", "").replace("\n", "\\n");
             ss.append(desc);
         }
+        */
         ss.append('\n');
 
         return true;

@@ -28,7 +28,7 @@ package org.omg.sysml.plantuml;
 
 import java.util.List;
 import java.util.regex.Pattern;
-
+import org.omg.sysml.expressions.util.EvaluationUtil;
 import org.omg.sysml.lang.sysml.ActorMembership;
 import org.omg.sysml.lang.sysml.ConjugatedPortDefinition;
 import org.omg.sysml.lang.sysml.Element;
@@ -62,6 +62,46 @@ public abstract class VStructure extends VDefault {
         }
     }
 
+    protected boolean addEvaluatedResults(Element elem, Element target) {
+        if (styleValue("evalExp") == null) return false;
+        if (!(elem instanceof Expression)) return false;
+        List<Element> elems = EvaluationUtil.evaluate((Expression) elem, target);
+        if (elems == null) return false;
+        int size = elems.size();
+        if (size == 0) return false;
+        if (size == 1) {
+            Element e = elems.get(0);
+            if (e == null) return false;
+            Object o = EvaluationUtil.valueOf(e);
+            if (EvaluationUtil.valueOf(elem).equals(o)) return false;
+            append(" <&arrow-thick-right> ");
+            if (o instanceof Element) {
+                append(e.getEffectiveName());
+            } else {
+                append(o);
+            }
+        } else {
+            append(" <&arrow-thick-right> ");
+            append('(');
+            boolean flag = false;
+            for (Element e: elems) {
+                Object o = EvaluationUtil.valueOf(e);
+                if (flag) {
+                    append(", ");
+                } else {
+                    flag = true;
+                }
+                if (o == e) {
+                    append(e.getEffectiveName());
+                } else {
+                    append(o);
+                }
+            }
+            append(')');
+        }
+        return true;
+    }
+
     private static Pattern patEq = Pattern.compile("^\\s*:?=");
     private boolean addFeatureMembershipText(Feature f) {
         boolean flag = false;
@@ -69,13 +109,16 @@ public abstract class VStructure extends VDefault {
             if (m instanceof FeatureValue) {
                 FeatureValue fv = (FeatureValue) m;
                 String text = getText(fv);
-                if (text == null) continue;
-                if (!patEq.matcher(text).lookingAt()) {
-                    append('=');
+                if (text != null) {
+                    if (!patEq.matcher(text).lookingAt()) {
+                        append('=');
+                    }
+                    appendText(text, true);
+                    append("; ");
+                    flag = true;
                 }
-                appendText(text, true);
-                append("; ");
-                flag = true;
+                Expression ex = fv.getValue();
+                flag = addEvaluatedResults(ex, f.getOwner()) || flag;
             } else if (m instanceof ResultExpressionMembership) {
                 ResultExpressionMembership rem = (ResultExpressionMembership) m;
                 Expression ex = rem.getOwnedResultExpression();

@@ -38,7 +38,6 @@ public class ItemFlow_itemType_SettingDelegate extends BasicDerivedListSettingDe
 	@Override
 	protected EList<Classifier> basicGet(InternalEObject owner) {
 		EList<Classifier> itemType = new NonNotifyingEObjectEList<>(Classifier.class, owner, eStructuralFeature.getFeatureID());
-		((ItemFlow)owner).getItemFeature().get(0).getType();
 		((ItemFlow)owner).getItemFeature().stream().
 			flatMap(f->f.getType().stream()).
 			filter(t->t instanceof Classifier).

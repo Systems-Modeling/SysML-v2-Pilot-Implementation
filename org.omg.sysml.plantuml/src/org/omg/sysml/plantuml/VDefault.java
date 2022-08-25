@@ -44,6 +44,7 @@ import org.omg.sysml.lang.sysml.ItemFlow;
 import org.omg.sysml.lang.sysml.ItemFlowEnd;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.MetadataFeature;
+import org.omg.sysml.lang.sysml.OwningMembership;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.Specialization;
 import org.omg.sysml.lang.sysml.Subsetting;
@@ -55,6 +56,7 @@ public class VDefault extends VTraverser {
         if (f == null) return null;
         if (f instanceof ItemFlowEnd) return f;
         for (Relationship rel: f.getOwnedRelationship()) {
+        	if (rel instanceof OwningMembership) continue;
             for (Element tgt: rel.getTarget()) {
                 if (tgt instanceof Feature) {
                     Element r = resolveReference((Feature) tgt);
@@ -179,7 +181,7 @@ public class VDefault extends VTraverser {
 
     @Override
     public String caseConnector(Connector c) {
-        addConnector(c, null);
+        addConnector(c, c.getName());
         return "";
     }
 

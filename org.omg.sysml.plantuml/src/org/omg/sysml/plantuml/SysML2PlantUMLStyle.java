@@ -180,6 +180,8 @@ public class SysML2PlantUMLStyle {
         add("COMPMOST", "Show as many memberships in a compartment as possible", " ", "compartmentMost", "true");
         add("COMPTREE", "Show nested ports in a compartment", " ", "compartmentTree", "true");
         add("SHOWIMPORTED", "Show imported elements", " ", "showImported", "true");
+        add("HIDEMETADATA", "Hide metadata", " ", "hideMetadata", "true");
+        add("SHOWMETACLASS", "Show metaclasses of metaobjects", " ", "showMetaclass", "true");
     }
 
     public static class StyleSwitch {
@@ -369,8 +371,13 @@ public class SysML2PlantUMLStyle {
 		}
 
 		@Override
-		public String caseConnectionUsage(ConnectionUsage object) {
-            return " -[thickness=3]- ";
+		public String caseConnectionUsage(ConnectionUsage cu) {
+            String mName = SysML2PlantUMLText.getMetadataUsageName(cu);
+            if (mName != null) {
+                return " -[thickness=3]-> ";
+            } else {
+                return " -[thickness=3]- ";
+            }
 		}
 
 		@Override
@@ -496,6 +503,11 @@ public class SysML2PlantUMLStyle {
 		@Override
 		public String caseExhibitStateUsage(ExhibitStateUsage esu) {
             return "<<exhibit state>> ";
+		}
+
+		@Override
+		public String caseSatisfyRequirementUsage(SatisfyRequirementUsage sru) {
+            return "<<requirement>> ";
 		}
 
         @Override

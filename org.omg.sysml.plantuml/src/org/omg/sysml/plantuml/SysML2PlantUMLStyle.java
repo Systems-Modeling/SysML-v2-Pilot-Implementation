@@ -180,7 +180,7 @@ public class SysML2PlantUMLStyle {
         add("COMPMOST", "Show as many memberships in a compartment as possible", " ", "compartmentMost", "true");
         add("COMPTREE", "Show nested ports in a compartment", " ", "compartmentTree", "true");
         add("SHOWIMPORTED", "Show imported elements", " ", "showImported", "true");
-        add("HIDEMETADATA", "hide metadata", " ", "hideMetadata", "true");
+        add("HIDEMETADATA", "Hide metadata", " ", "hideMetadata", "true");
         add("SHOWMETACLASS", "Show metaclasses of metaobjects", " ", "showMetaclass", "true");
     }
 

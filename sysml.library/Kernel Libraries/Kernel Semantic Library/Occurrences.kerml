@@ -457,6 +457,16 @@ package Occurrences {
 			end feature redefines source;
 			end feature redefines target;
 		}
+		
+		feature isDispatch : Boolean[1] default false;
+ 		feature dispatchScope: Occurrence [1] default self; /* Review: Not needed when isDispatch==false */
+ 		connector :HappensDuring from self[1] to dispatchScope[1];
+ 		
+ 		feature isRunToCompletion: Boolean [1] default true;
+		feature runToCompletionScope: Occurrence [1] default self;
+		connector :HappensDuring from self[1] to runToCompletionScope[1];
+ 
+ 		feature incomingTransferSort : IncomingTransferSort [0..*] default earlierFirstIncomingTransferSort;
 
 		feature all incomingTransfersToSelf subsets incomingTransfers {
 			doc
@@ -501,6 +511,16 @@ package Occurrences {
 	}
 
 	abstract feature occurrences: Occurrence[0..*] nonunique subsets things;
+	
+	predicate IncomingTransferSort specializes Performances::BooleanEvaluation {    
+		in t1: Transfers::Transfer [1]; /* Review: subset transfers? */
+		in t2: Transfers::Transfer [1];  
+		return t1First: Boolean [1]; }
+
+	feature earlierFirstIncomingTransferSort : IncomingTransferSort {
+		/* Review: return keyword causes error, includes/contains? */
+		inv { t1First == includes(t1.endShot.successors, t2.endShot) } }
+	
 
 	assoc all SelfSameLifeLink specializes BinaryLink {
 		doc

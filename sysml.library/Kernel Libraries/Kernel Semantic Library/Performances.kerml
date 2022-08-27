@@ -8,11 +8,13 @@ package Performances {
 	private import Base::things;
 	private import Occurrences::Occurrence;
 	private import Occurrences::occurrences;
+	private import Occurrences::HappensDuring;
 	private import Objects::Object;
 	private import Objects::BinaryLinkObject;
 	private import Transfers::transfers;
 	private import Transfers::transfersBefore;
 	private import ScalarValues::*;
+	private import SequenceFunctions::includes;
 	
 	abstract behavior Performance specializes Occurrence {
 		doc
@@ -36,12 +38,20 @@ package Performances {
 			 */
 		}
 		
+		feature redefines isDispatch default true;
+  		feature redefines dispatchScope default thisPerformance;
+  		
 		step enclosedPerformances: Performance[0..*] subsets performances, timeEnclosedOccurrences {
 			doc
 			/*
 			 * timeEnclosedOccurrences of this Performance that are also Performances.
 			 */
 		}
+		
+         /* Review: Top of performance composition tree.  Same as “this” for comp tree rooted in
+          * performance, otherwise the performance “just below this”. */
+		step thisPerformance: Performance [1] default self;  /* Review: Assumes steps are not timeEnclosed. */
+		connector :HappensDuring from self[1] to thisPerformance[1];  /* Review: Prolly want similar inv for "this". */
 		
 		composite step subperformances: Performance[0..*] subsets enclosedPerformances, suboccurrences {
 			doc
@@ -58,6 +68,8 @@ package Performances {
 				 * root Performance is an ownedPerformance of an Object, then that Object is the context.
 				 */
 			}
+		
+			step redefines thisPerformance default (that as Performance).thisPerformance;
 		}
 		
 		expr enclosedEvaluations: Evaluation[0..*] subsets evaluations, enclosedPerformances {

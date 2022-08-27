@@ -7,6 +7,7 @@ package TransitionPerformances {
 
 	private import ScalarValues::Boolean;
 	private import ScalarValues::Natural;
+	private import Occurrences::Occurrence;
 	private import Occurrences::HappensBefore;
 	private import Performances::Performance;
 	private import Performances::Evaluation;
@@ -21,6 +22,7 @@ package TransitionPerformances {
 		bool guard[*] subsets enclosedPerformances;
 		step effect[*] subsets enclosedPerformances;
 
+		feature triggerTarget : Occurrence [1] default this;
 		feature transitionLink: HappensBefore[0..1];
 		
 		private binding transitionLink.earlierOccurrence[0..1] = transitionLinkSource[1];

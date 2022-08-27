@@ -12,11 +12,13 @@ package StatePerformances {
 	private import Transfers::Transfer;
 	private import Performances::Performance;
 	private import ControlPerformances::DecisionPerformance;
+	private import ControlFunctions::forAll;
+	private import ControlFunctions::select;
+	private import ControlFunctions::collect;
 	private import SequenceFunctions::*;
 	
 	behavior StatePerformance specializes DecisionPerformance {
 		feature isTriggerDuring: Boolean default true;
-		feature isAcceptFirst: Boolean default true;
 
 		abstract step middle[1..*] {
 			doc
@@ -42,17 +44,66 @@ package StatePerformances {
 		private succession middle[*] then exit[1];
 
 		private inv { isEmpty(accepted) == isEmpty(acceptable) }
-
-		abstract feature acceptable: Transfer[*];
 		feature accepted: Transfer[0..1] subsets acceptable;
+		feature deferrable: Transfer[0..*] subsets acceptable;
+		abstract feature acceptable: Transfer[*] {
+			feature thatSP : StatePerformance [1] = that as StatePerformance;
+			feature accableT : Transfer redefines self;
+			feature accT : Transfer = thatSP.accepted;
+			  /* Review: accepted must be “earlier” than rest of acceptable in sort order.
+		 	   * TBD: Transfers arriving at same time. */
+			inv { accableT == accT | incomingTransferSort(accT, accableT) }
+   
+   	  			    /* Review: Ignore oSPs that start exiting later in time than thatSP,
+				     * taking exist.start as end of matching. */
+			   		/* Review:
+	       			 * 1) acceptable must not be accepted by any oSPs (earlier in
+	       			 *    time, see above) and must be later in sort order than any
+	       			 *    accepted of those, treating them as dispatched already, …
+	       			 * 2) … except if they were deferrable. */ 
+			inv { isDispatch implies
+				     allSubstatePerformances(dispatchScope)->forall{in oSP : StatePerformance;						
+						  oSP == thatSP | isEmpty(oSP.accepted) |
+	   					  includes(thatSP.exit.startShot.successors, oSP.exit.startShot) |
+						  ( oSP.accepted != accableT & 
+							( incomingTransferSort(oSP.accepted, accableT) |
+							  includes(oSP.deferrable, accableT) ) ) } }
+		}
+		
+		function allSubstatePerformances {
+			in p : Performance [1];
+			feature substatePerformances: StatePerformance [*] =
+				p.subperformances->select{in subp:Performance; subp istype StatePerformance};
+				/* Review: Check recursion. Use ( , ) instead of union? */
+			return  : StatePerformance [*] =
+				union(substatePerformances,  
+					  substatePerformances->collect{in sp:StatePerformance; allSubstatePerformances(sp) } );
+		}
 		
 		private succession do[1] then accepted.endShot[0..1];
-		private feature afNum: Natural [1] =
-			if ( not isAcceptFirst | isEmpty(acceptable)) ? 0 else size(acceptable)-1;
-		private succession acceptFirst[afNum] first accepted.endShot[0..1] then acceptable.endShot[*];
 		
 		private succession acceptable[*] then exit[1];
-	}
+		
+		feature redefines isRunToCompletion default this.isRunToCompletion;
+		feature redefines runToCompletionScope default this.runToCompletionScope; 
+		/* RTC taken as preventing all trans perfs in scope from overlapping entry
+	 	 * performances in time. */
+		inv { isRunToCompletion implies
+			     allSubtransitionPerformances(runToCompletionScope)->forall{in tp : TransitionPerformance;
+				    includes(tp.successors, entry) | includes(tp.predecessors, entry) }
+		}
+		
+		function allSubtransitionPerformances { /* Review: Assumes NonStateTransitionPerformances are also under RTC. */
+			in p : Performance [1];
+			feature subtransitionPerformances: TransitionPerformance [*] =
+	 			 p.subperformances->select{in subp:Performance;
+		 			   subp istype StateTransitionPerformance };
+			/* Review: Check recursion. Use ( , ) instead of union? */
+			return  : TransitionPerformance [*] =
+				union(subtransitionPerformances,  
+		      		subtransitionPerformances->collect{in sp:TransitionPerformance; 
+							 		allSubtransitionPerformances(sp) } ); }
+		}
 	
 	behavior StateTransitionPerformance specializes TransitionPerformance {
 		feature isTriggerDuring: Boolean[1];
@@ -64,7 +115,7 @@ package StatePerformances {
 		}
 		private succession transitionLinkSource.nonDoMiddle[*] then Performance::self[1];
 		
-		feature acceptable: Transfer [*] subsets transitionLinkSource.acceptable;
+		feature acceptable: Transfer [*] subsets transitionLinkSource.acceptable, triggerTarget.incomingTransfersToSelf;
 
 		feature trigger redefines TransitionPerformance::trigger subsets acceptable, transitionLinkSource.accepted {
 			feature redefines endShot;

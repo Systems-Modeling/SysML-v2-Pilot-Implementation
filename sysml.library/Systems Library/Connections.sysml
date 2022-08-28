@@ -38,6 +38,9 @@ package Connections {
 	
 		end source: Anything[0..*] :>> BinaryLinkObject::source;
 		end target: Anything[0..*] :>> BinaryLinkObject::target;
+
+		event occurrence sourceEvent [1] default source;
+		event occurrence targetEvent [1] default target;
 	}
 	
 	abstract connection def FlowConnection :> BinaryConnection, Transfer {

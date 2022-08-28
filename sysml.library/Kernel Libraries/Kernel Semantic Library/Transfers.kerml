@@ -11,6 +11,7 @@ package Transfers {
 	private import Performances::Performance;
 	private import Performances::performances;
 	private import ScalarValues::Boolean;
+	private import ScalarValues::Natural;
 	private import SequenceFunctions::*;
 	
 	interaction Transfer specializes Performance, BinaryLink {
@@ -39,22 +40,6 @@ package Transfers {
 			in feature targetInput: Occurrence[0..*];
 		}
 		
-		feature isMove: Boolean[1] = notEmpty(moving) {
-			doc
-			/*
-			 * If isMove is true, then all items leave the source at the start
-			 * of the transfer.
-			 */
-		}
-		
-		feature isPush: Boolean[1] = notEmpty(pushing) {
-			doc
-			/*
-			 * If isPush is true, then the transfer begins when the items are available
-			 * at the source.
-			 */
-		}
-		
 		feature isInstant: Boolean[1] = notEmpty(instant) {
 			doc
 			/*
@@ -69,27 +54,58 @@ package Transfers {
 			 */
 		}
 		
-		connector sourceOutputLink: BinaryLinkObject[1..*] {
+		feature itemNum: Natural [1] = size(item);
+		
+		private binding instant[0..1] of startShot[0..1] = endShot[0..1] {
+			doc
+			/*
+			 * If isInstant is true, then the start and end of the transfer happen at the same time.
+			 */
+		}
+	}
+	
+	  /* Review: Only FlowTransfers use directed features and support moving and pushing items.
+	   * Code is moved from Transfer.
+	   */
+	interaction FlowTransfer specializes Transfer {
+		
+		feature isMove: Boolean[1] default true {
+			doc
+			/*
+			 * If isMove is true, then all items leave the source at the start
+			 * of the transfer.
+			 */
+		}
+		
+		feature isPush: Boolean[1] default true {
+			doc
+			/*
+			 * If isPush is true, then the transfer begins when the items are available
+			 * at the source.
+			 */
+		}
+		
+		connector sourceOutputLink: BinaryLinkObject[itemNum] {
 			doc
 			/*
 			 * The output of the items from the sourceOutput.
 			 */
 		
 			end transferSource subsets source[1];
-			end transferPayload subsets item[1..*] subsets transferSource.sourceOutput;
+			end transferPayload subsets item[itemNum] subsets transferSource.sourceOutput;
 		}
 		
-		connector targetInputLink: BinaryLinkObject[1..*] {
+		connector targetInputLink: BinaryLinkObject[itemNum] {
 			doc
 			/*
 			 * The input of the items to the targetInput.
 			 */
 		
 			end transferTarget subsets target[1];
-			end transferPayload subsets item[1..*] subsets transferTarget.targetInput;
+			end transferPayload subsets item[itemNum] subsets transferTarget.targetInput;
 		}
 		
-		private connector sending: HappensDuring[1..*] from startShot[1] to sourceOutputLink[1..*] {
+		private connector sending: HappensDuring[itemNum] from startShot[1] to sourceOutputLink[itemNum] {
 			doc
 			/*
 			 * The start of the transfer happens during the output of each of the items from the
@@ -115,19 +131,16 @@ package Transfers {
 		}
 		private inv { isPush implies size(pushing) == size(sourceOutputLink) }
 		
-		private connector delivering: HappensWhile[1..*] from targetInputLink.startShot[1..*] to endShot[1] {
+		private connector delivering: HappensWhile[itemNum] from targetInputLink.startShot[itemNum] to endShot[1] {
 			doc
 			/*
 			 * The input of each of the items to the target starts at the end of the transfer.
 			 */
 		}
-		
-		private binding instant[0..1] of startShot[0..1] = endShot[0..1] {
-			doc
-			/*
-			 * If isInstant is true, then the start and end of the transfer happen at the same time.
-			 */
-		}
+	}
+	
+	  /* To avoid ambugity of using Transfer (which might be flow transfers) for messaging. */
+	interaction MessageTransfer specializes Transfer {
 	}
 	 
 	interaction TransferBefore specializes Transfer, HappensBefore {

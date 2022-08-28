@@ -7,8 +7,11 @@ package Actions {
 
 	private import Base::Anything;
 	private import ScalarValues::Positive;
+	private import ScalarValues::Natural;
 	private import SequenceFunctions::size;
+	private import SequenceFunctions::isEmpty;
 	private import Occurrences::Occurrence;
+	private import Occurrences::HappensWhile;
 	private import Performances::Performance;
 	private import Performances::performances;
 	private import FeatureReferencingPerformances::FeatureWritePerformance;
@@ -20,6 +23,8 @@ package Actions {
 	private import ControlPerformances::LoopPerformance;
 	private import TransitionPerformances::TransitionPerformance;
 	private import TransitionPerformances::NonStateTransitionPerformance;
+	private import Transfers::MessageTransfer;
+	private import Connections::FlowConnection;
 	
 	abstract action def Action :> Performance {
 		doc
@@ -159,7 +164,7 @@ package Actions {
 		 */
 	}
 	
-	action def SendAction {
+	action def SendAction  {
 		doc
 		/*
 		 * A SendAction is an Action used to type a SendActionUsage. It initiates an outgoingTransferFromSelf 
@@ -167,13 +172,16 @@ package Actions {
 		 */
 	
 		in payload[0..*];
-		in receiver: Occurrence[1];
+		in receiver: Occurrence[1]; /* Review: Rename to “sender”? */
+		/* Review: out/inout?  How to ensure the inverse multiplicity upper is 1? */
+	    inout ref sentMessage: MessageTransfer, FlowConnection[1]
+	    	:> receiver.outgoingTransfersFromSelf {
+				ref :>> item = payload;
+		}
+		/* Review: Message starts when action ends, or can outgoing transfers be queued up also? */
+  		action sa: SendAction = self; 
+  		connection :HappensWhile connect sentMessage.start to sa.done;
 		
-	    ref outgoingTransfer: TransferBefore[1] :>> outgoingTransfersFromSelf :> receiver.incomingTransfers {
-	    	ref :>> source: SendAction {
-	    		ref :>> sourceOutput = payload;
-	    	}
-	    }
 	}
 	
 	abstract action sendActions: SendAction[0..*] nonunique :> actions {
@@ -190,15 +198,9 @@ package Actions {
 		 * incomingTransferFromSelf that is one of the incomingTransfers of a given receiver Occurrence, 
 		 * outputting the payload from the Transfer.
 		 */
-	
-		inout payload[0..*];
-		in receiver: Occurrence[1] default this;
-		
-		ref incomingTransfer: TransferBefore[1] :>> incomingTransfersToSelf :> receiver.incomingTransfers {
-			ref :>> target: AcceptAction {
-				ref :>> targetInput = payload;
-			}
-		}
+	      /*  Not used as-is, abstract? */
+		inout payload[0..*]; /* Review: What's the in direction for? */
+		in receiver: Occurrence[1] default (this as Occurrence);
 	}
 	
 	abstract action acceptActions: AcceptAction[0..*] nonunique :> actions {
@@ -206,6 +208,19 @@ package Actions {
 		/*
 		 * acceptActions is the base feature for all AcceptActionUsages.
 		 */
+	}
+	
+	/* Review: Wrapping StateAction, bc guards are after standalone action ends.
+	   Ed: Could have guards on outgoing. Could be multiple outgoing edges. */
+	action def StandAloneAcceptAction :> AcceptAction {
+		/* Review: I guess states need to be in state defs. */
+		out :>> payload = saaaState.saaaTransition.apayload;
+		state def SaaaStart {}
+		state def Saaa {
+			state saaaStart : SaaaStart;  /* Review: Can this be bound to start? */
+    		transition saaaTransition first saaaStart accept apayload : Anything then done;
+		}
+    	state saaaState : Saaa {}
 	}
 	
 	abstract action def ControlAction :> Action {
@@ -264,6 +279,15 @@ package Actions {
 		 */
 	}
 	
+	action def TransitionAcceptAction :> AcceptAction {
+		out :>> payload = acceptedMessage.item;
+		ref acceptedMessage: MessageTransfer, FlowConnection[1]  
+				:> receiver.incomingTransfersToSelf;
+			/* Message ends before action does. */
+		action aa: AcceptAction = self; 
+		succession first acceptedMessage.done then aa.done;
+	}
+	
 	abstract action def TransitionAction :> Action, TransitionPerformance {
 		doc
 		/*
@@ -272,9 +296,14 @@ package Actions {
 		 */
 	
 		in transitionLinkSource : Action :>> TransitionPerformance::transitionLinkSource;
+		ref :>> trigger;
+		ref :>> triggerTarget;
 
-		action accepter: AcceptAction[0..1];
-		bind trigger = accepter.incomingTransfer;
+		attribute accNum: Natural [1] = if isEmpty(trigger) ? 0 else 1;
+		action accepter: TransitionAcceptAction[accNum];
+		
+		bind triggerTarget = accepter.receiver;
+		bind trigger = accepter.acceptedMessage;
 		
 		action effect: Action :>> TransitionPerformance::effect;		
 	}

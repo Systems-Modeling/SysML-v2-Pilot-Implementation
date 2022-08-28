@@ -27,8 +27,7 @@ package States {
 		do action doAction: Action :>> 'do' :> subactions;
 		exit action exitAction: Action :>> 'exit';
 		
-		attribute :>> isTriggerDuring = true;
-		attribute :>> isAcceptFirst = true;
+		attribute :>> isTriggerDuring; /* Review: defaults to true in kernel */
 		
 		ref state self: StateAction :>> Action::self, StatePerformance::self;
 		
@@ -87,6 +86,11 @@ package States {
 		
 		bind payload = accepter.payload;
 		bind receiver = accepter.receiver;
+		
+		/* Review: Accepter happens between guards and exit. */
+		bool :>> guard;  /* Review: Redefine in TransitionAciton?*/
+		private succession first guard[*] then accepter[accNum];
+		private succession first accepter[accNum] then transitionLinkSource.exit[1];
 	}
 	
 	abstract state stateActions: StateAction[0..*] nonunique :> actions {

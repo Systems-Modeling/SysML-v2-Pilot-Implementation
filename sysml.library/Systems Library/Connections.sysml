@@ -53,6 +53,8 @@ package Connections {
 	
 		end source: Occurrence[0..*] :>> BinaryConnection::source, Transfer::source;
 		end target: Occurrence[0..*] :>> BinaryConnection::target, Transfer::target;
+		
+		ref payload :>> Transfer::'item';
 	}
 	
 	abstract connection def SuccessionFlowConnection :> FlowConnection, TransferBefore {

@@ -88,9 +88,8 @@ package States {
 		bind receiver = accepter.receiver;
 		
 		/* Review: Accepter happens between guards and exit. */
-		bool :>> guard;  /* Review: Redefine in TransitionAciton?*/
 		private succession first guard[*] then accepter[accNum];
-		private succession first accepter[accNum] then transitionLinkSource.exit[1];
+		private succession first accepter[accNum] then transitionLinkSource.exitAction[1];
 	}
 	
 	abstract state stateActions: StateAction[0..*] nonunique :> actions {

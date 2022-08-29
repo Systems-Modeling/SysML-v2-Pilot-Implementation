@@ -171,16 +171,13 @@ package Actions {
 		 * to a designated receiver Occurrence with a given payload.
 		 */
 	
-		in payload[0..*];
+		in payload[0..*] = sentMessage.payload;
 		in receiver: Occurrence[1]; /* Review: Rename to “sender”? */
 		/* Review: out/inout?  How to ensure the inverse multiplicity upper is 1? */
 	    inout ref sentMessage: MessageTransfer, FlowConnection[1]
-	    	:> receiver.outgoingTransfersFromSelf {
-				ref :>> item = payload;
-		}
+	    	:> receiver.outgoingTransfersFromSelf;
 		/* Review: Message starts when action ends, or can outgoing transfers be queued up also? */
-  		action sa: SendAction = self; 
-  		connection :HappensWhile connect sentMessage.start to sa.done;
+  		connection :HappensWhile connect sentMessage.start to self.done;
 		
 	}
 	
@@ -218,7 +215,7 @@ package Actions {
 		state def SaaaStart {}
 		state def Saaa {
 			state saaaStart : SaaaStart;  /* Review: Can this be bound to start? */
-    		transition saaaTransition first saaaStart accept apayload : Anything then done;
+			transition saaaTransition first saaaStart accept apayload : Anything then done;
 		}
     	state saaaState : Saaa {}
 	}
@@ -279,15 +276,6 @@ package Actions {
 		 */
 	}
 	
-	action def TransitionAcceptAction :> AcceptAction {
-		out :>> payload = acceptedMessage.item;
-		ref acceptedMessage: MessageTransfer, FlowConnection[1]  
-				:> receiver.incomingTransfersToSelf;
-			/* Message ends before action does. */
-		action aa: AcceptAction = self; 
-		succession first acceptedMessage.done then aa.done;
-	}
-	
 	abstract action def TransitionAction :> Action, TransitionPerformance {
 		doc
 		/*
@@ -300,7 +288,13 @@ package Actions {
 		ref :>> triggerTarget;
 
 		attribute accNum: Natural [1] = if isEmpty(trigger) ? 0 else 1;
-		action accepter: TransitionAcceptAction[accNum];
+		action accepter: AcceptAction[accNum] {
+			out :>> payload = acceptedMessage.payload;
+			ref acceptedMessage: MessageTransfer, FlowConnection[1]  
+				:> receiver.incomingTransfersToSelf;
+			/* Message ends before action does. */
+			succession first acceptedMessage.done then self.done;	
+		}
 		
 		bind triggerTarget = accepter.receiver;
 		bind trigger = accepter.acceptedMessage;

@@ -217,10 +217,10 @@ package Actions {
 		/* Review: I guess states need to be in state defs. */
 		out :>> payload = saaaState.saaaTransition.apayload;
 		out :>> acceptedMessage = saaaState.saaaTransition.accepter.acceptedMessage;
-    	state saaaState  {
-    		state saaaStart = start;
+		state saaaState  {
+			state saaaStart = start;
 			transition saaaTransition first saaaStart accept apayload : Anything then done;
-    	}
+		}
 	}
 	
 	abstract action def ControlAction :> Action {

@@ -178,7 +178,6 @@ package Actions {
 	    	:> receiver.outgoingTransfersFromSelf;
 		/* Review: Message starts when action ends, or can outgoing transfers be queued up also? */
   		connection :HappensWhile connect sentMessage.start to self.done;
-		
 	}
 	
 	abstract action sendActions: SendAction[0..*] nonunique :> actions {
@@ -188,7 +187,7 @@ package Actions {
 		 */
 	}
 	
-	action def AcceptAction {
+	abstract action def AcceptAction {
 		doc
 		/*
 		 * An AcceptAction is an Action used to type an AcceptActionUsage. It completes an 
@@ -198,6 +197,11 @@ package Actions {
 	      /*  Not used as-is, abstract? */
 		inout payload[0..*]; /* Review: What's the in direction for? */
 		in receiver: Occurrence[1] default (this as Occurrence);
+		/* Review: out/inout?  */
+	    inout ref acceptedMessage: MessageTransfer, FlowConnection[1]
+	    	:> receiver.incomingTransfersToSelf;
+		/* Review: Message starts when action ends, or can outgoing transfers be queued up also? */
+  		connection :HappensWhile connect acceptedMessage.done to self.done;
 	}
 	
 	abstract action acceptActions: AcceptAction[0..*] nonunique :> actions {
@@ -212,12 +216,11 @@ package Actions {
 	action def StandAloneAcceptAction :> AcceptAction {
 		/* Review: I guess states need to be in state defs. */
 		out :>> payload = saaaState.saaaTransition.apayload;
-		state def SaaaStart {}
-		state def Saaa {
-			state saaaStart : SaaaStart;  /* Review: Can this be bound to start? */
+		out :>> acceptedMessage = saaaState.saaaTransition.accepter.acceptedMessage;
+    	state saaaState  {
+    		state saaaStart = start;
 			transition saaaTransition first saaaStart accept apayload : Anything then done;
-		}
-    	state saaaState : Saaa {}
+    	}
 	}
 	
 	abstract action def ControlAction :> Action {
@@ -284,20 +287,16 @@ package Actions {
 		 */
 	
 		in transitionLinkSource : Action :>> TransitionPerformance::transitionLinkSource;
-		ref :>> trigger;
-		ref :>> triggerTarget;
-
-		attribute accNum: Natural [1] = if isEmpty(trigger) ? 0 else 1;
-		action accepter: AcceptAction[accNum] {
-			out :>> payload = acceptedMessage.payload;
-			ref acceptedMessage: MessageTransfer, FlowConnection[1]  
-				:> receiver.incomingTransfersToSelf;
-			/* Message ends before action does. */
-			succession first acceptedMessage.done then self.done;	
-		}
+		/* Review: out/inout? */
+		out ref acceptedMessage : MessageTransfer, FlowConnection :>> trigger;
 		
-		bind triggerTarget = accepter.receiver;
-		bind trigger = accepter.acceptedMessage;
+		ref receiver :>> triggerTarget;
+
+		attribute accNum: Natural [1] = if isEmpty(acceptedMessage) ? 0 else 1;
+		action accepter: AcceptAction[accNum];
+		
+		bind receiver = accepter.receiver;
+		bind acceptedMessage = accepter.acceptedMessage;
 		
 		action effect: Action :>> TransitionPerformance::effect;		
 	}

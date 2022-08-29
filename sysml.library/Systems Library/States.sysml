@@ -82,7 +82,7 @@ package States {
 			TransitionAction::transitionLinkSource, StateTransitionPerformance::transitionLinkSource;
 			
 		out payload[0..*];
-		in receiver : Occurrence[1];
+		in :>> receiver;
 		
 		bind payload = accepter.payload;
 		bind receiver = accepter.receiver;

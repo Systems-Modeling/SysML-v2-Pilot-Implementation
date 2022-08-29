@@ -1,5 +1,4 @@
 package ServerSequenceRealization_2 {
-	import Transfers::TransferBefore;
 	import ServerSequenceModel::*;
 	import Configuration::*;
 	
@@ -101,7 +100,9 @@ package ServerSequenceRealization_2 {
  		bind consumer_2.consumerBehavior.subscribe.sentMessage = subscribe_message;
  		bind server_2.serverBehavior.delivering.effect.sentMessage = deliver_message;
  		  /* Accepts */
- 		bind consumer_2.consumerBehavior.subscribe.sentMessage = subscribe_message;
+ 		  /* Review: Could drop "acceptor" if parse used the out param on TransitionAction, I think.
+ 		   * Maybe could shorten navigation by binding and specializing type of events in parts. */
+ 		bind consumer_2.consumerBehavior.delivery.acceptedMessage = subscribe_message;
  		bind server_2.serverBehavior.subscribing.accepter.acceptedMessage = subscribe_message;
  		bind server_2.serverBehavior.delivering.accepter.acceptedMessage = publish_message;
 	}

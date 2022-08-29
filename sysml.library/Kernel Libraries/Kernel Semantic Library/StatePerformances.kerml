@@ -62,7 +62,7 @@ package StatePerformances {
 	       			 *    accepted of those, treating them as dispatched already, …
 	       			 * 2) … except if they were deferrable. */ 
 			inv { isDispatch implies
-				     allSubstatePerformances(dispatchScope)->forall{in oSP : StatePerformance;						
+				     allSubstatePerformances(dispatchScope)->forAll{in oSP : StatePerformance;						
 						  oSP == thatSP | isEmpty(oSP.accepted) |
 	   					  includes(thatSP.exit.startShot.successors, oSP.exit.startShot) |
 						  ( oSP.accepted != accableT & 
@@ -89,7 +89,7 @@ package StatePerformances {
 		/* RTC taken as preventing all trans perfs in scope from overlapping entry
 	 	 * performances in time. */
 		inv { isRunToCompletion implies
-			     allSubtransitionPerformances(runToCompletionScope)->forall{in tp : TransitionPerformance;
+			     allSubtransitionPerformances(runToCompletionScope)->forAll{in tp : TransitionPerformance;
 				    includes(tp.successors, entry) | includes(tp.predecessors, entry) }
 		}
 		

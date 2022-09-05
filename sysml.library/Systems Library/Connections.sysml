@@ -7,6 +7,7 @@ package Connections {
 
 	private import Base::Anything;
 	private import Occurrences::Occurrence;
+	private import Occurrences::HappensDuring;
 	private import Objects::LinkObject;
 	private import Objects::linkObjects;
 	private import Objects::BinaryLinkObject;
@@ -15,6 +16,7 @@ package Connections {
 	private import Transfers::transfers;
 	private import Transfers::TransferBefore;
 	private import Transfers::transfersBefore;
+	private import ScalarValues::Natural;
 	private import Parts::Part;
 	private import Parts::parts;
 	private import Actions::Action;
@@ -38,9 +40,6 @@ package Connections {
 	
 		end source: Anything[0..*] :>> BinaryLinkObject::source;
 		end target: Anything[0..*] :>> BinaryLinkObject::target;
-
-		event occurrence sourceEvent [1] default source;
-		event occurrence targetEvent [1] default target;
 	}
 	
 	abstract connection def FlowConnection :> BinaryConnection, Transfer {
@@ -54,6 +53,25 @@ package Connections {
 		end source: Occurrence[0..*] :>> BinaryConnection::source, Transfer::source;
 		end target: Occurrence[0..*] :>> BinaryConnection::target, Transfer::target;
 		
+		/* Review: Was defaulting to source/target, but these events are supposed to be "internal"
+		 * to source/target that happen before/after the transfer. See successions below.
+		 * Changed to start/done of the transfer, which still don't commit to implementation and
+		 * are sort of internal to source/target since they're supposed to happen at least at
+		 * the spatial boundary of the source/target. Alternatively could make start/endEvent
+		 * optional with no default, not sure. */
+		part fcp = self;
+		event occurrence sourceEvent [1] default fcp.start;
+		event occurrence targetEvent [1] default fcp.done;
+		
+		/* Review: Unless this is stated more generally somewhere. */
+		connection :HappensDuring connect sourceEvent to source[1];
+		connection :HappensDuring connect targetEvent to target[1];
+		
+		attribute seBeforeNum: Natural[1] = if sourceEvent==fcp.start ? 0 else 1;
+		attribute teAfterNum: Natural[1] = if targetEvent==fcp.done ? 0 else 1;
+		succession [seBeforeNum] first sourceEvent[0..1] then self[0..1];
+		succession [teAfterNum] first self[0..1] then targetEvent[0..1];
+
 		ref payload :>> Transfer::'item';
 	}
 	

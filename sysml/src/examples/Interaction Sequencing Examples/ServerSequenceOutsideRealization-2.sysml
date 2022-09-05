@@ -1,5 +1,5 @@
-package ServerSequenceRealization_2 {
-	import ServerSequenceModel::*;
+package ServerSequenceOutsideRealization_2 {
+	import ServerSequenceModelOutside::*;
 	import Configuration::*;
 	
 	package Configuration {
@@ -11,6 +11,11 @@ package ServerSequenceRealization_2 {
 		part producer_2[1] {
 			attribute someTopic : String;
 			private item somePublication;
+			/* Review: Requiring default sort (incoming transfers/events handled in order they arrive)
+			 * to make arrival/leave ordering in ServerSequenceModelOutside.sysml equivalent to accept/send
+			 * ordering in ServerSquenceRealization-2.sysml. Could bring back isAcceptFirst to
+			 * make this less wordy. */
+			feature :>> incomingTransferSort = Occurrences::earlierFirstIncomingTransferSort;
 			
 			port publicationPort : ~PublicationPort;
 			
@@ -20,13 +25,13 @@ package ServerSequenceRealization_2 {
 		}
 		
 		interface producer_2.publicationPort to server_2.publicationPort {
-			  /* Review: What if more than one connector to/from these ports? */
 			bind source::outgoingTransfersFromSelf = target::incomingTransfersToSelf;
 		}
 		
 		part server_2[1] {
 			port publicationPort : PublicationPort;
 			port subscriptionPort : SubscriptionPort;
+			feature :>> incomingTransferSort = Occurrences::earlierFirstIncomingTransferSort;
 			
 			exhibit state serverBehavior {
 				entry; then waitForSubscription;
@@ -54,6 +59,7 @@ package ServerSequenceRealization_2 {
 		
 		part consumer_2[1] {
 			attribute myTopic : String;
+			feature :>> incomingTransferSort = Occurrences::earlierFirstIncomingTransferSort;
 			
 			port subscriptionPort : ~SubscriptionPort;
 			
@@ -66,20 +72,6 @@ package ServerSequenceRealization_2 {
 	}
 	
 	part realization_2 : PubSubSequence {
-		part :>> producer :> producer_2 {
-			event producerBehavior.publish[1] :>> publish_source_event;
-		}
-
-		part :>> server :> server_2 {
-			event serverBehavior.subscribing.accepter[1] :>> subscribe_target_event;
-			event serverBehavior.delivering.accepter[1] :>> publish_target_event;
-			event serverBehavior.delivering.effect[1] :>> deliver_source_event;
-		}
-		
-		part :>> consumer :> consumer_2 {
-			event consumerBehavior.subscribe[1] :>> subscribe_source_event;
-			event consumerBehavior.delivery[1] :>> deliver_target_event;
-		}
 
 		/* Review: Setting source/target.
 		 * Could avoid referring the kernel by possibly 1) have "message" parse to
@@ -99,16 +91,7 @@ package ServerSequenceRealization_2 {
  			end :>> target = consumer;
  		}
  		
- 		/* Review: Binding sent/accept messages to spec model messages. */
-		  /* Sends */
- 		bind producer_2.producerBehavior.publish.sentMessage = publish_message;
- 		bind consumer_2.consumerBehavior.subscribe.sentMessage = subscribe_message;
- 		bind server_2.serverBehavior.delivering.effect.sentMessage = deliver_message;
- 		  /* Accepts */
- 		  /* Review: Maybe could shorten navigation by binding and specializing type of 
-		   * events in parts, then these would be event.acceptedMessage. */
- 		bind consumer_2.consumerBehavior.delivery.acceptedMessage = subscribe_message;
- 		bind server_2.serverBehavior.subscribing.accepter.acceptedMessage = subscribe_message;
- 		bind server_2.serverBehavior.delivering.accepter.acceptedMessage = publish_message;
+ 		/* Review: Bindings that were here not needed with earlierFirstIncomingTransferSort 
+ 		 * required in participants above. */
 	}
 }

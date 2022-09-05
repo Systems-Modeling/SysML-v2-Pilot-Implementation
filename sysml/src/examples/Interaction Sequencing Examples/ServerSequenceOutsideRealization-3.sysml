@@ -1,5 +1,5 @@
-package ServerSequenceRealization_3 {
-	import ServerSequenceModel::*;
+package ServerSequenceOutsideRealization_3 {
+	import ServerSequenceModelOutside::*;
 	import Configuration::*;
 	
 	package Configuration {
@@ -38,8 +38,11 @@ package ServerSequenceRealization_3 {
 			}
 			
 			/* Review: Assumes "flow" keyword parses to 1) type by FlowTransfer, FlowConnection
-			 * 2) bind source/target per "from"/"to" keywords. */
-			flow publish_request from producerBehavior.publish.request to publicationPort.publish;
+			 * 2) bind source/target per "from"/"to" keywords. 
+			 * Internal flows are instantaneous to make arrival/leave ordering in SequenceModelOutside.sysml
+			 * equivalent to ordering participant internals in ServerSequenceRealization-3.sysml. */
+			flow publish_request from producerBehavior.publish.request to publicationPort.publish
+				{ attribute :>> isInstant = true;}	
 		}
 		
 		interface publication_interface : PublicationInterface connect producer_3.publicationPort to server_3.publicationPort {
@@ -55,9 +58,12 @@ package ServerSequenceRealization_3 {
 				out ref :>> deliver;
 			}
 						
-			flow subscribe_request from subscriptionPort.subscribe to serverBehavior.subscribing.request;
-			flow publish_request from publicationPort.publish to serverBehavior.publishing.request;
-			flow deliver_response from serverBehavior.delivering.response to subscriptionPort.deliver;
+			flow subscribe_request from subscriptionPort.subscribe to serverBehavior.subscribing.request
+				{ attribute :>> isInstant = true;}
+			flow publish_request from publicationPort.publish to serverBehavior.publishing.request
+				{ attribute :>> isInstant = true;}
+			flow deliver_response from serverBehavior.delivering.response to subscriptionPort.deliver
+				{ attribute :>> isInstant = true;}
 			
 			perform action serverBehavior {
 				
@@ -100,8 +106,10 @@ package ServerSequenceRealization_3 {
 				in ref :>> deliver;
 			}
 			
-			flow subscribe_request from consumerBehavior.subscribe.request to subscriptionPort.subscribe;
-			flow deliver_response from subscriptionPort.deliver to consumerBehavior.delivery.response;
+			flow subscribe_request from consumerBehavior.subscribe.request to subscriptionPort.subscribe
+				{ attribute :>> isInstant = true;}
+			flow deliver_response from subscriptionPort.deliver to consumerBehavior.delivery.response
+				{ attribute :>> isInstant = true;}
 
 			perform action consumerBehavior {
 				action subscribe {

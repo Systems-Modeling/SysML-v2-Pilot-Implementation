@@ -57,6 +57,9 @@ public class LibraryFunctionFactory {
 		put(new PowerFunction());
 		put(new RemainderFunction());
 		
+		put(new SumFunction());
+		put(new ProdFunction());
+		
 		put(new NotFunction());
 		put(new OrFunction());
 		put(new XorFunction());

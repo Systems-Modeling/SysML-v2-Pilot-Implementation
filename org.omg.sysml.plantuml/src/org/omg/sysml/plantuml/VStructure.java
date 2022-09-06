@@ -231,35 +231,39 @@ public abstract class VStructure extends VDefault {
 
     protected String extractTitleName(Element e) {
         String name = getNameAnyway(e);
-        if (!(e instanceof Feature)) return name;
-
-        Feature f = (Feature) e;
         StringBuilder sb = new StringBuilder();
-        boolean added = appendFeatureType(sb, ": ", f);
-        sb.append(' ');
-        added = appendSubsettingFeature(sb, ":> ", f) || added;
-        sb.insert(0, name);
-        /*
-        if (f instanceof Usage) {
-            Usage u = (Usage) f;
-            if (u.isVariation()) {
-                sb.insert(0, "<size:20><&layers> </size>");
-            }
-        }
-        */
-        insertActorLikeStyle(sb, f);
 
-        if (e instanceof Expression) {
-            Element target = getCurrentNamespace();
-            if (!(target instanceof Usage)) {
-                target = e;
-            }
-            String str = getEvaluatedResults(e, target);
-            if (str != null) {
-                sb.append(str);
-            }
-        }
+        if (e instanceof Feature) {
+            Feature f = (Feature) e;
+            boolean added = appendFeatureType(sb, ": ", f);
+            sb.append(' ');
+            added = appendSubsettingFeature(sb, ":> ", f) || added;
+            sb.insert(0, name);
+            /*
+              if (f instanceof Usage) {
+                  Usage u = (Usage) f;
+                  if (u.isVariation()) {
+                      sb.insert(0, "<size:20><&layers> </size>");
+                  }
+              }
+            */
+            insertActorLikeStyle(sb, f);
 
+            if (e instanceof Expression) {
+                Element target = getCurrentNamespace();
+                if (!(target instanceof Usage)) {
+                    target = e;
+                }
+                String str = getEvaluatedResults(e, target);
+                if (str != null) {
+                    sb.append(str);
+                }
+            }
+
+        } else {
+            sb.append(name);
+        }
+ 
         return sb.toString();
     }
 

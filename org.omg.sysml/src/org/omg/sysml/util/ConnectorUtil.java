@@ -22,6 +22,7 @@
 package org.omg.sysml.util;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.util.BasicInternalEList;
@@ -156,15 +157,32 @@ public class ConnectorUtil {
 	public static Type getContextTypeFor(Connector connector) {
 		List<Type> commonFeaturingTypes = null;
 		for (Feature relatedFeature: connector.getRelatedFeature()) {
+			// getAllFeaturingTypesOf returns a breadth-first transitive traversal of all the
+			// the featuring type hierarchy for relatedFeatures. 
 			List<Type> featuringTypes = FeatureUtil.getAllFeaturingTypesOf(relatedFeature);
 			if (commonFeaturingTypes == null) {
 				commonFeaturingTypes = featuringTypes;
 			} else {
-				commonFeaturingTypes.removeIf(t->
-					featuringTypes.stream().noneMatch(f->
-						TypeUtil.conforms(f, t) || TypeUtil.conforms(t, f)));
+				int i = 0;
+				while (i < commonFeaturingTypes.size()) {
+					Type type = commonFeaturingTypes.get(i);
+					Optional<Type> subtype = featuringTypes.stream().filter(f->TypeUtil.conforms(f, type)).findFirst();
+					if (subtype.isPresent()) {
+						// If the featuringTypes of the next relatedFeature include a subtype of this type,
+						// then replace this type with the subtype in the list of commonFeaturingTypes.
+						commonFeaturingTypes.set(i, subtype.get());
+					} else if (featuringTypes.stream().noneMatch(f->TypeUtil.conforms(type, f))) {
+						// Otherwise, if this type doesn't conform to any of the featuringTypes of the
+						// next relatedFeature, remove it from the list of commonFeaturingTypes.
+						commonFeaturingTypes.remove(i);
+						i--;
+					}
+					i++;
+				}
 			}
 		}
+		// If any commonFeaturingTypes have been found across all relatedFeatures, then
+		// return the first (innermost) one.
 		return commonFeaturingTypes == null || commonFeaturingTypes.isEmpty()? 
 				null: commonFeaturingTypes.get(0);
 	}

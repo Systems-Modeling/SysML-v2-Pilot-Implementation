@@ -1043,7 +1043,18 @@ Message returns SysML::FlowConnectionUsage :
 fragment MessageDeclaration returns SysML::FlowConnectionUsage :
 	FeatureDeclaration? 
     ( 'of'  ownedRelationship += ItemFeatureMember )?
-    ( 'from' BinaryConnectorPart | ValuePart )?  
+    ( ValuePart 
+    | 'from' ownedRelationship += MessageEndMember 
+      'to' ownedRelationship += MessageEndMember
+    )?
+;
+
+MessageEndMember returns SysML::EndFeatureMembership :
+	ownedRelatedElement += MessageEnd // ownedMemberFeature = ItemFlowEnd
+;
+
+MessageEnd returns SysML::ItemFlowEnd :
+	ownedRelationship += OwnedSubsetting
 ;
 
 /* Flow Connection Usages */
@@ -1067,7 +1078,7 @@ SuccessionFlowConnectionUsage returns SysML::SuccessionFlowConnectionUsage :
 ;
 
 fragment FlowConnectionDeclaration returns SysML::FlowConnectionUsage :
-	( FeatureDeclaration? 
+	( UsageDeclaration? 
       ( 'of'  ownedRelationship += ItemFeatureMember
       | ownedRelationship += EmptyItemFeatureMember
       ) 'from'

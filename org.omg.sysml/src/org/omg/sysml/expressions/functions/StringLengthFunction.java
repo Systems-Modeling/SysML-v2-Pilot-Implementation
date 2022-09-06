@@ -22,6 +22,7 @@
 package org.omg.sysml.expressions.functions;
 
 import org.eclipse.emf.common.util.EList;
+import org.omg.sysml.expressions.ExpressionEvaluator;
 import org.omg.sysml.expressions.util.EvaluationUtil;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.InvocationExpression;
@@ -39,8 +40,8 @@ public class StringLengthFunction implements LibraryFunction {
 	}
 
 	@Override
-	public EList<Element> invoke(InvocationExpression invocation, Element target) {
-		String x = EvaluationUtil.stringValue(invocation, 0, target);
+	public EList<Element> invoke(InvocationExpression invocation, Element target, ExpressionEvaluator evaluator) {
+		String x = evaluator.stringValue(invocation, 0, target);
 		return x == null? null: EvaluationUtil.integerResult(x.length());
 	}
 

@@ -53,7 +53,7 @@ import org.eclipse.xtext.validation.IResourceValidator;
 import org.eclipse.xtext.validation.Issue;
 import org.omg.kerml.xtext.KerMLStandaloneSetup;
 import org.omg.kerml.xtext.naming.KerMLQualifiedNameConverter;
-import org.omg.sysml.expressions.util.EvaluationUtil;
+import org.omg.sysml.execution.expressions.ExpressionEvaluator;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Membership;
@@ -248,7 +248,7 @@ public class SysMLInteractive extends SysMLUtil {
 		} else {
 			Type calc = (Type)((Namespace)result.getRootElement()).getOwnedMember().get(0);
 			Expression expr = (Expression)TypeUtil.getFeatureByMembershipIn(calc, ResultExpressionMembership.class);
-			List<Element> elements = EvaluationUtil.evaluate(expr, target);
+			List<Element> elements = ExpressionEvaluator.INSTANCE.evaluate(expr, target);
 			this.removeResource();
 			return elements == null? "": 
 				elements.stream().map(SysMLInteractiveUtil::formatElement).collect(Collectors.joining());

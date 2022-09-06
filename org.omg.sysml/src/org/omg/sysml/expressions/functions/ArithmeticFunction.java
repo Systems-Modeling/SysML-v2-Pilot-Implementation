@@ -22,6 +22,7 @@
 package org.omg.sysml.expressions.functions;
 
 import org.eclipse.emf.common.util.EList;
+import org.omg.sysml.expressions.ExpressionEvaluator;
 import org.omg.sysml.expressions.util.EvaluationUtil;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.InvocationExpression;
@@ -54,13 +55,13 @@ public abstract class ArithmeticFunction implements LibraryFunction {
 	}
 
 	@Override
-	public EList<Element> invoke(InvocationExpression invocation, Element target) {
-		Integer x_int = EvaluationUtil.integerValue(invocation, 0, target);
-		Integer y_int = EvaluationUtil.integerValue(invocation, 1, target);
-		Double x_real = EvaluationUtil.realValue(invocation, 0, target);
-		Double y_real = EvaluationUtil.realValue(invocation, 1, target);
-		String x_string = EvaluationUtil.stringValue(invocation, 0, target);
-		String y_string = EvaluationUtil.stringValue(invocation, 1, target);
+	public EList<Element> invoke(InvocationExpression invocation, Element target, ExpressionEvaluator evaluator) {
+		Integer x_int = evaluator.integerValue(invocation, 0, target);
+		Integer y_int = evaluator.integerValue(invocation, 1, target);
+		Double x_real = evaluator.realValue(invocation, 0, target);
+		Double y_real = evaluator.realValue(invocation, 1, target);
+		String x_string = evaluator.stringValue(invocation, 0, target);
+		String y_string = evaluator.stringValue(invocation, 1, target);
 		return EvaluationUtil.numberOfArgs(invocation) == 1?
 					x_int != null? unaryIntegerOp(x_int):
 					x_real != null? unaryRealOp(x_real):

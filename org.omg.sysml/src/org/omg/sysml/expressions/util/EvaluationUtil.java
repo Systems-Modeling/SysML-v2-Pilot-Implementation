@@ -65,51 +65,6 @@ public class EvaluationUtil {
 		return ExpressionEvaluator.INSTANCE.evaluate(expression, target);
 	}
 
-	public static EList<Element> evaluateArgument(InvocationExpression invocation, int i, Element target) {
-		EList<Expression> arguments = invocation.getArgument();
-		return i >= arguments.size()? new BasicEList<>(): evaluate(arguments.get(i), target);
-	}
-
-	public static Element argumentValue(InvocationExpression invocation, int i, Element target) {
-		EList<Element> argumentValues = evaluateArgument(invocation, i, target);
-		return argumentValues == null || argumentValues.size() != 1? null: argumentValues.get(0);
-	}
-
-	public static EList<Element> expressionValue(InvocationExpression invocation, int i, Element target) {
-		Element value = argumentValue(invocation, i, target);
-		return value instanceof Expression? evaluate((Expression)value, target): null;
-	}
-
-	public static Boolean booleanExpressionValue(InvocationExpression invocation, int i, Element target) {
-		EList<Element> values = expressionValue(invocation, i, target);
-		if (values.size() != 1) {
-			return null;
-		} else {
-			Element value = values.get(0);
-			return value instanceof LiteralBoolean? ((LiteralBoolean)value).isValue(): null;
-		}
-	}
-
-	public static Boolean booleanValue(InvocationExpression invocation, int i, Element target) {
-		Element argument = argumentValue(invocation, i, target);
-		return argument instanceof LiteralBoolean? ((LiteralBoolean)argument).isValue(): null;
-	}
-
-	public static String stringValue(InvocationExpression invocation, int i, Element target) {
-		Element argument = argumentValue(invocation, i, target);
-		return argument instanceof LiteralString? ((LiteralString)argument).getValue(): null;
-	}
-
-	public static Integer integerValue(InvocationExpression invocation, int i, Element target) {
-		Element argument = argumentValue(invocation, i, target);
-		return argument instanceof LiteralInteger? ((LiteralInteger)argument).getValue(): null;
-	}
-
-	public static Double realValue(InvocationExpression invocation, int i, Element target) {
-		Element argument = argumentValue(invocation, i, target);
-		return argument instanceof LiteralRational? ((LiteralRational)argument).getValue(): null;
-	}
-
 	public static EList<Element> nullList() {
 		return new BasicEList<>();
 	}

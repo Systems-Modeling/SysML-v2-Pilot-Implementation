@@ -22,6 +22,7 @@
 package org.omg.sysml.expressions.functions;
 
 import org.eclipse.emf.common.util.EList;
+import org.omg.sysml.expressions.ExpressionEvaluator;
 import org.omg.sysml.expressions.util.EvaluationUtil;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.InvocationExpression;
@@ -54,13 +55,13 @@ public class PlusFunction extends ArithmeticFunction {
 	}
 
 	@Override
-	public EList<Element> invoke(InvocationExpression invocation, Element target) {
-		String x_string = EvaluationUtil.stringValue(invocation, 0, target);
+	public EList<Element> invoke(InvocationExpression invocation, Element target, ExpressionEvaluator evaluator) {
+		String x_string = evaluator.stringValue(invocation, 0, target);
 		if (x_string != null) {
-			String y_string = EvaluationUtil.stringValue(invocation, 1, target);
+			String y_string = evaluator.stringValue(invocation, 1, target);
 			return y_string == null? EvaluationUtil.nullList(): EvaluationUtil.stringResult(x_string + y_string);
 		}
-		return super.invoke(invocation, target);
+		return super.invoke(invocation, target, evaluator);
 	}
 
 }

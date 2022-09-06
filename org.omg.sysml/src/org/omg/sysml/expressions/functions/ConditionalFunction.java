@@ -21,7 +21,7 @@
 package org.omg.sysml.expressions.functions;
 
 import org.eclipse.emf.common.util.EList;
-import org.omg.sysml.expressions.util.EvaluationUtil;
+import org.omg.sysml.expressions.ExpressionEvaluator;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.InvocationExpression;
 
@@ -33,11 +33,11 @@ public class ConditionalFunction extends ControlFunction {
 	}
 
 	@Override
-	public EList<Element> invoke(InvocationExpression invocation, Element target) {
-		Boolean test = EvaluationUtil.booleanValue(invocation, 0, target);
+	public EList<Element> invoke(InvocationExpression invocation, Element target, ExpressionEvaluator evaluator) {
+		Boolean test = evaluator.booleanValue(invocation, 0, target);
 		return test == null? null:
-			   test? EvaluationUtil.expressionValue(invocation, 1, target):
-			   EvaluationUtil.expressionValue(invocation, 2, target);
+			   test? evaluator.expressionValue(invocation, 1, target):
+			   evaluator.expressionValue(invocation, 2, target);
 	}
 
 }

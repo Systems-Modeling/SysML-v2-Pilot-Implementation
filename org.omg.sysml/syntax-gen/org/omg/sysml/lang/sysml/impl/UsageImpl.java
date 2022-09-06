@@ -440,13 +440,13 @@ public class UsageImpl extends FeatureImpl implements Usage {
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * Default isComposite to false for Usages.  
+	 * Default isComposite to true (so isReference is false) for Usages.  
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	protected UsageImpl() {
 		super();
-		isComposite = false;
+		isComposite = true;
 	}
 
 	/**

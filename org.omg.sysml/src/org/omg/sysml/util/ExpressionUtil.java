@@ -40,6 +40,7 @@ import org.omg.sysml.lang.sysml.InvocationExpression;
 import org.omg.sysml.lang.sysml.LiteralBoolean;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.ParameterMembership;
+import org.omg.sysml.lang.sysml.ResultExpressionMembership;
 import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.TransitionFeatureKind;
 import org.omg.sysml.lang.sysml.TransitionFeatureMembership;
@@ -166,6 +167,10 @@ public class ExpressionUtil {
 	
 	public static Feature getSelfReferenceFeature(Element context) {
 		return (Feature)SysMLLibraryUtil.getLibraryType(context, SELF_REFERENCE_FEATURE);
+	}
+	
+	public static Expression getResultExpressionOf(Type type) {
+		return (Expression)TypeUtil.getFeatureByMembershipIn(type, ResultExpressionMembership.class);
 	}
 
 }

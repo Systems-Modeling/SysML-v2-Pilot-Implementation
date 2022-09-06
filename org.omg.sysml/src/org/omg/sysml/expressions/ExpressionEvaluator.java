@@ -30,8 +30,9 @@ import org.omg.sysml.expressions.util.EvaluationUtil;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.FeatureChaining;
 import org.omg.sysml.lang.sysml.FeatureReferenceExpression;
-import org.omg.sysml.lang.sysml.FeatureValue;
+import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.InvocationExpression;
 import org.omg.sysml.lang.sysml.LiteralExpression;
 import org.omg.sysml.lang.sysml.NullExpression;
@@ -98,8 +99,26 @@ public class ExpressionEvaluator {
 	}
 	
 	public EList<Element> evaluateInvocation(InvocationExpression expression, Element target) {
-		LibraryFunction function = libraryFunctionFactory.getLibraryFunction(expression.getFunction());
-		return function == null? null: function.invoke(expression, target);
+		LibraryFunction libraryFunction = libraryFunctionFactory.getLibraryFunction(expression.getFunction());
+		if (libraryFunction != null) {
+			return libraryFunction.invoke(expression, target);
+		} else {
+			Type type = expression.getOwnedTyping().stream().map(FeatureTyping::getType).findFirst().orElse(null);
+			target = expression;
+			if (type instanceof Feature) {
+				EList<FeatureChaining> featureChainings = ((Feature)type).getOwnedFeatureChaining();
+				if (!featureChainings.isEmpty()) {
+					target = featureChainings.get(0).getChainingFeature();
+				}
+			}
+			Type expressionType = type instanceof Feature? FeatureUtil.getBasicFeatureOf((Feature)type): type;
+			Expression resultExpression = ExpressionUtil.getResultExpressionOf(expressionType);
+			if (resultExpression == null) {
+				Feature resultParameter = TypeUtil.getResultParameterOf(expressionType);
+				resultExpression = FeatureUtil.getValueExpressionFor(resultParameter);
+			}
+			return resultExpression == null? null: evaluate(resultExpression, target);
+		}
 	}
 	
 	protected EList<Element> evaluateFeatureChain(EList<Feature> chainingFeatures, Type type) {
@@ -128,18 +147,11 @@ public class ExpressionEvaluator {
 	protected EList<Element> evaluateFeature(Feature feature, Type type) {
 		Feature typeFeature = type.getFeature().stream().
 				map(FeatureImpl.class::cast).
-				filter(
-						f->f == feature || FeatureUtil.getRedefinedFeaturesOf(f).contains(feature)).
+				filter(f->f == feature || FeatureUtil.getRedefinedFeaturesOf(f).contains(feature)).
 				findFirst().orElse(null);
 		if (typeFeature != null) {
-			FeatureValue featureValue = FeatureUtil.getValuationFor(typeFeature);
-			if (featureValue != null) {
-				Expression value = featureValue.getValue();
-				if (value != null) {
-					return evaluate(value, type);
-				}
-			}
-			return EvaluationUtil.singletonList(typeFeature);
+			Expression value = FeatureUtil.getValueExpressionFor(typeFeature);
+			return value != null? evaluate(value, type): EvaluationUtil.singletonList(typeFeature);
 		} else {
 			return EvaluationUtil.singletonList(feature);
 		}

@@ -339,15 +339,6 @@ public interface SysMLFactory extends EFactory {
 	Package createPackage();
 
 	/**
-	 * Returns a new object of class '<em>Prefix Comment</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Prefix Comment</em>'.
-	 * @generated
-	 */
-	PrefixComment createPrefixComment();
-
-	/**
 	 * Returns a new object of class '<em>Import</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -492,6 +483,24 @@ public interface SysMLFactory extends EFactory {
 	Multiplicity createMultiplicity();
 
 	/**
+	 * Returns a new object of class '<em>Intersecting</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Intersecting</em>'.
+	 * @generated
+	 */
+	Intersecting createIntersecting();
+
+	/**
+	 * Returns a new object of class '<em>Unioning</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Unioning</em>'.
+	 * @generated
+	 */
+	Unioning createUnioning();
+
+	/**
 	 * Returns a new object of class '<em>Disjoining</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -499,6 +508,15 @@ public interface SysMLFactory extends EFactory {
 	 * @generated
 	 */
 	Disjoining createDisjoining();
+
+	/**
+	 * Returns a new object of class '<em>Differencing</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Differencing</em>'.
+	 * @generated
+	 */
+	Differencing createDifferencing();
 
 	/**
 	 * Returns a new object of class '<em>Feature Typing</em>'.
@@ -526,6 +544,15 @@ public interface SysMLFactory extends EFactory {
 	 * @generated
 	 */
 	FeatureChaining createFeatureChaining();
+
+	/**
+	 * Returns a new object of class '<em>Reference Subsetting</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Reference Subsetting</em>'.
+	 * @generated
+	 */
+	ReferenceSubsetting createReferenceSubsetting();
 
 	/**
 	 * Returns a new object of class '<em>Association</em>'.
@@ -1138,6 +1165,15 @@ public interface SysMLFactory extends EFactory {
 	 * @generated
 	 */
 	BindingConnector createBindingConnector();
+
+	/**
+	 * Returns a new object of class '<em>Flow Connection Definition</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Flow Connection Definition</em>'.
+	 * @generated
+	 */
+	FlowConnectionDefinition createFlowConnectionDefinition();
 
 	/**
 	 * Returns a new object of class '<em>Succession Flow Connection Usage</em>'.

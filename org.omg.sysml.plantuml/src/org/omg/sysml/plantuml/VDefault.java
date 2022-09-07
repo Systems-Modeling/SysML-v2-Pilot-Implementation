@@ -86,22 +86,18 @@ public class VDefault extends VTraverser {
     }
 
     protected String itemFlowDesc(ItemFlow itf) {
-        StringBuilder sb = null;
-        for (Feature f: itf.getItemFeature()) {
-            if (sb == null) {
-                sb = new StringBuilder();
-            } else {
-                sb.append(", ");
-            }
+        StringBuilder sb = new StringBuilder();
+        Feature f = itf.getItemFeature();
+        if (f != null) {
             /* We do not use the effective name because it always get "item" for it.
-               Use getName() intead. */
+               Use getName() instead. */
             String name = f.getName();
             if (name != null) {
                 sb.append(name);
             }
             appendFeatureType(sb, ": ", f);
         }
-        if (sb == null || sb.length() == 0) return null;
+        if (sb.length() == 0) return null;
         return sb.toString();        
     }
 

@@ -850,38 +850,29 @@ ruleAnnotatingElement returns [EObject current=null]
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getAnnotatingElementAccess().getPrefixCommentParserRuleCall_1());
+			newCompositeNode(grammarAccess.getAnnotatingElementAccess().getDocumentationParserRuleCall_1());
 		}
-		this_PrefixComment_1=rulePrefixComment
+		this_Documentation_1=ruleDocumentation
 		{
-			$current = $this_PrefixComment_1.current;
+			$current = $this_Documentation_1.current;
 			afterParserOrEnumRuleCall();
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getAnnotatingElementAccess().getDocumentationParserRuleCall_2());
+			newCompositeNode(grammarAccess.getAnnotatingElementAccess().getTextualRepresentationParserRuleCall_2());
 		}
-		this_Documentation_2=ruleDocumentation
+		this_TextualRepresentation_2=ruleTextualRepresentation
 		{
-			$current = $this_Documentation_2.current;
+			$current = $this_TextualRepresentation_2.current;
 			afterParserOrEnumRuleCall();
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getAnnotatingElementAccess().getTextualRepresentationParserRuleCall_3());
+			newCompositeNode(grammarAccess.getAnnotatingElementAccess().getMetadataFeatureParserRuleCall_3());
 		}
-		this_TextualRepresentation_3=ruleTextualRepresentation
+		this_MetadataFeature_3=ruleMetadataFeature
 		{
-			$current = $this_TextualRepresentation_3.current;
-			afterParserOrEnumRuleCall();
-		}
-		    |
-		{
-			newCompositeNode(grammarAccess.getAnnotatingElementAccess().getMetadataFeatureParserRuleCall_4());
-		}
-		this_MetadataFeature_4=ruleMetadataFeature
-		{
-			$current = $this_MetadataFeature_4.current;
+			$current = $this_MetadataFeature_3.current;
 			afterParserOrEnumRuleCall();
 		}
 	)
@@ -993,62 +984,6 @@ ruleComment returns [EObject current=null]
 	)
 ;
 
-// Entry rule entryRulePrefixComment
-entryRulePrefixComment returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getPrefixCommentRule()); }
-	iv_rulePrefixComment=rulePrefixComment
-	{ $current=$iv_rulePrefixComment.current; }
-	EOF;
-
-// Rule PrefixComment
-rulePrefixComment returns [EObject current=null]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
-		(
-			otherlv_0='comment'
-			{
-				newLeafNode(otherlv_0, grammarAccess.getPrefixCommentAccess().getCommentKeyword_0_0());
-			}
-			(
-				{
-					if ($current==null) {
-						$current = createModelElement(grammarAccess.getPrefixCommentRule());
-					}
-					newCompositeNode(grammarAccess.getPrefixCommentAccess().getIdentificationParserRuleCall_0_1());
-				}
-				this_Identification_1=ruleIdentification[$current]
-				{
-					$current = $this_Identification_1.current;
-					afterParserOrEnumRuleCall();
-				}
-			)?
-		)?
-		(
-			(
-				lv_body_2_0=RULE_PREFIX_COMMENT
-				{
-					newLeafNode(lv_body_2_0, grammarAccess.getPrefixCommentAccess().getBodyPREFIX_COMMENTTerminalRuleCall_1_0());
-				}
-				{
-					if ($current==null) {
-						$current = createModelElement(grammarAccess.getPrefixCommentRule());
-					}
-					setWithLastConsumed(
-						$current,
-						"body",
-						lv_body_2_0,
-						"org.omg.kerml.expressions.xtext.KerMLExpressions.PREFIX_COMMENT");
-				}
-			)
-		)
-	)
-;
-
 // Entry rule entryRuleDocumentation
 entryRuleDocumentation returns [EObject current=null]:
 	{ newCompositeNode(grammarAccess.getDocumentationRule()); }
@@ -1101,87 +1036,6 @@ ruleDocumentation returns [EObject current=null]
 			)
 		)
 	)
-;
-
-// Entry rule entryRuleOwnedComment
-entryRuleOwnedComment returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getOwnedCommentRule()); }
-	iv_ruleOwnedComment=ruleOwnedComment
-	{ $current=$iv_ruleOwnedComment.current; }
-	EOF;
-
-// Rule OwnedComment
-ruleOwnedComment returns [EObject current=null]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
-		(
-			otherlv_0='comment'
-			{
-				newLeafNode(otherlv_0, grammarAccess.getOwnedCommentAccess().getCommentKeyword_0_0());
-			}
-			(
-				{
-					if ($current==null) {
-						$current = createModelElement(grammarAccess.getOwnedCommentRule());
-					}
-					newCompositeNode(grammarAccess.getOwnedCommentAccess().getIdentificationParserRuleCall_0_1());
-				}
-				this_Identification_1=ruleIdentification[$current]
-				{
-					$current = $this_Identification_1.current;
-					afterParserOrEnumRuleCall();
-				}
-			)?
-		)?
-		(
-			(
-				lv_body_2_0=RULE_REGULAR_COMMENT
-				{
-					newLeafNode(lv_body_2_0, grammarAccess.getOwnedCommentAccess().getBodyREGULAR_COMMENTTerminalRuleCall_1_0());
-				}
-				{
-					if ($current==null) {
-						$current = createModelElement(grammarAccess.getOwnedCommentRule());
-					}
-					setWithLastConsumed(
-						$current,
-						"body",
-						lv_body_2_0,
-						"org.omg.kerml.expressions.xtext.KerMLExpressions.REGULAR_COMMENT");
-				}
-			)
-		)
-	)
-;
-
-// Entry rule entryRuleOwnedDocumentation
-entryRuleOwnedDocumentation returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getOwnedDocumentationRule()); }
-	iv_ruleOwnedDocumentation=ruleOwnedDocumentation
-	{ $current=$iv_ruleOwnedDocumentation.current; }
-	EOF;
-
-// Rule OwnedDocumentation
-ruleOwnedDocumentation returns [EObject current=null]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	{
-		newCompositeNode(grammarAccess.getOwnedDocumentationAccess().getDocumentationParserRuleCall());
-	}
-	this_Documentation_0=ruleDocumentation
-	{
-		$current = $this_Documentation_0.current;
-		afterParserOrEnumRuleCall();
-	}
 ;
 
 // Entry rule entryRuleTextualRepresentation
@@ -1260,31 +1114,6 @@ ruleTextualRepresentation returns [EObject current=null]
 			)
 		)
 	)
-;
-
-// Entry rule entryRuleOwnedTextualRepresentation
-entryRuleOwnedTextualRepresentation returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getOwnedTextualRepresentationRule()); }
-	iv_ruleOwnedTextualRepresentation=ruleOwnedTextualRepresentation
-	{ $current=$iv_ruleOwnedTextualRepresentation.current; }
-	EOF;
-
-// Rule OwnedTextualRepresentation
-ruleOwnedTextualRepresentation returns [EObject current=null]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	{
-		newCompositeNode(grammarAccess.getOwnedTextualRepresentationAccess().getTextualRepresentationParserRuleCall());
-	}
-	this_TextualRepresentation_0=ruleTextualRepresentation
-	{
-		$current = $this_TextualRepresentation_0.current;
-		afterParserOrEnumRuleCall();
-	}
 ;
 
 // Entry rule entryRuleNamespace
@@ -14744,9 +14573,7 @@ RULE_UNRESTRICTED_NAME : '\'' ('\\' ('b'|'t'|'n'|'f'|'r'|'"'|'\''|'\\')|~(('\\'|
 
 RULE_STRING_VALUE : '"' ('\\' ('b'|'t'|'n'|'f'|'r'|'"'|'\''|'\\')|~(('\\'|'"')))* '"';
 
-RULE_REGULAR_COMMENT : '/*' ~('*') ( options {greedy=false;} : . )*'*/';
-
-RULE_PREFIX_COMMENT : '/**' ( options {greedy=false;} : . )*'*/';
+RULE_REGULAR_COMMENT : '/*' ( options {greedy=false;} : . )*'*/';
 
 RULE_ML_NOTE : '//*' ( options {greedy=false;} : . )*'*/';
 

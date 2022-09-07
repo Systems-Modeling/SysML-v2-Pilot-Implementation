@@ -10,6 +10,8 @@ package org.omg.sysml.lang.sysml;
  *
  * <!-- begin-model-doc -->
  * <p>A SuccessionFlowConnectionUsage is a FlowConnectionUsage that is also a SuccessionItemFlow.</p>
+ * 
+ * <p>A FlowConnectionUsage must subset the base SuccessionFlowConnectionUsage <em><code>successionFlowConnections</code></em> from the Systems model library.</p>
  * <!-- end-model-doc -->
  *
  *

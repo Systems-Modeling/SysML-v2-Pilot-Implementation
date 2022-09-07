@@ -513,14 +513,12 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.AnnotatingElement");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cCommentParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
-		private final RuleCall cPrefixCommentParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
-		private final RuleCall cDocumentationParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
-		private final RuleCall cTextualRepresentationParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
-		private final RuleCall cMetadataFeatureParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
+		private final RuleCall cDocumentationParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cTextualRepresentationParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
+		private final RuleCall cMetadataFeatureParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
 		
 		//AnnotatingElement returns SysML::AnnotatingElement :
 		//      Comment
-		//    | PrefixComment
 		//    | Documentation
 		//    | TextualRepresentation
 		//    | MetadataFeature
@@ -528,7 +526,6 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		@Override public ParserRule getRule() { return rule; }
 		
 		//  Comment
-		//| PrefixComment
 		//| Documentation
 		//| TextualRepresentation
 		//| MetadataFeature
@@ -537,17 +534,14 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//Comment
 		public RuleCall getCommentParserRuleCall_0() { return cCommentParserRuleCall_0; }
 		
-		//PrefixComment
-		public RuleCall getPrefixCommentParserRuleCall_1() { return cPrefixCommentParserRuleCall_1; }
-		
 		//Documentation
-		public RuleCall getDocumentationParserRuleCall_2() { return cDocumentationParserRuleCall_2; }
+		public RuleCall getDocumentationParserRuleCall_1() { return cDocumentationParserRuleCall_1; }
 		
 		//TextualRepresentation
-		public RuleCall getTextualRepresentationParserRuleCall_3() { return cTextualRepresentationParserRuleCall_3; }
+		public RuleCall getTextualRepresentationParserRuleCall_2() { return cTextualRepresentationParserRuleCall_2; }
 		
 		//MetadataFeature
-		public RuleCall getMetadataFeatureParserRuleCall_4() { return cMetadataFeatureParserRuleCall_4; }
+		public RuleCall getMetadataFeatureParserRuleCall_3() { return cMetadataFeatureParserRuleCall_3; }
 	}
 	public class CommentElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.Comment");
@@ -626,41 +620,6 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//REGULAR_COMMENT
 		public RuleCall getBodyREGULAR_COMMENTTerminalRuleCall_1_0() { return cBodyREGULAR_COMMENTTerminalRuleCall_1_0; }
 	}
-	public class PrefixCommentElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.PrefixComment");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Group cGroup_0 = (Group)cGroup.eContents().get(0);
-		private final Keyword cCommentKeyword_0_0 = (Keyword)cGroup_0.eContents().get(0);
-		private final RuleCall cIdentificationParserRuleCall_0_1 = (RuleCall)cGroup_0.eContents().get(1);
-		private final Assignment cBodyAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cBodyPREFIX_COMMENTTerminalRuleCall_1_0 = (RuleCall)cBodyAssignment_1.eContents().get(0);
-		
-		//@Deprecated
-		//PrefixComment returns SysML::PrefixComment :
-		//    ( 'comment' Identification? )?
-		//    body = PREFIX_COMMENT
-		//;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//( 'comment' Identification? )?
-		//body = PREFIX_COMMENT
-		public Group getGroup() { return cGroup; }
-		
-		//( 'comment' Identification? )?
-		public Group getGroup_0() { return cGroup_0; }
-		
-		//'comment'
-		public Keyword getCommentKeyword_0_0() { return cCommentKeyword_0_0; }
-		
-		//Identification?
-		public RuleCall getIdentificationParserRuleCall_0_1() { return cIdentificationParserRuleCall_0_1; }
-		
-		//body = PREFIX_COMMENT
-		public Assignment getBodyAssignment_1() { return cBodyAssignment_1; }
-		
-		//PREFIX_COMMENT
-		public RuleCall getBodyPREFIX_COMMENTTerminalRuleCall_1_0() { return cBodyPREFIX_COMMENTTerminalRuleCall_1_0; }
-	}
 	public class DocumentationElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.Documentation");
 		private final Group cGroup = (Group)rule.eContents().get(1);
@@ -688,74 +647,6 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		
 		//REGULAR_COMMENT
 		public RuleCall getBodyREGULAR_COMMENTTerminalRuleCall_2_0() { return cBodyREGULAR_COMMENTTerminalRuleCall_2_0; }
-	}
-	public class OwnedCommentAnnotationElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.OwnedCommentAnnotation");
-		private final Assignment cOwnedRelatedElementAssignment = (Assignment)rule.eContents().get(1);
-		private final Alternatives cOwnedRelatedElementAlternatives_0 = (Alternatives)cOwnedRelatedElementAssignment.eContents().get(0);
-		private final RuleCall cOwnedRelatedElementOwnedCommentParserRuleCall_0_0 = (RuleCall)cOwnedRelatedElementAlternatives_0.eContents().get(0);
-		private final RuleCall cOwnedRelatedElementOwnedDocumentationParserRuleCall_0_1 = (RuleCall)cOwnedRelatedElementAlternatives_0.eContents().get(1);
-		
-		//OwnedCommentAnnotation returns SysML::Annotation :
-		//    ownedRelatedElement += ( OwnedComment | OwnedDocumentation )
-		//;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//ownedRelatedElement += ( OwnedComment | OwnedDocumentation )
-		public Assignment getOwnedRelatedElementAssignment() { return cOwnedRelatedElementAssignment; }
-		
-		//( OwnedComment | OwnedDocumentation )
-		public Alternatives getOwnedRelatedElementAlternatives_0() { return cOwnedRelatedElementAlternatives_0; }
-		
-		//OwnedComment
-		public RuleCall getOwnedRelatedElementOwnedCommentParserRuleCall_0_0() { return cOwnedRelatedElementOwnedCommentParserRuleCall_0_0; }
-		
-		//OwnedDocumentation
-		public RuleCall getOwnedRelatedElementOwnedDocumentationParserRuleCall_0_1() { return cOwnedRelatedElementOwnedDocumentationParserRuleCall_0_1; }
-	}
-	public class OwnedCommentElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.OwnedComment");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Group cGroup_0 = (Group)cGroup.eContents().get(0);
-		private final Keyword cCommentKeyword_0_0 = (Keyword)cGroup_0.eContents().get(0);
-		private final RuleCall cIdentificationParserRuleCall_0_1 = (RuleCall)cGroup_0.eContents().get(1);
-		private final Assignment cBodyAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cBodyREGULAR_COMMENTTerminalRuleCall_1_0 = (RuleCall)cBodyAssignment_1.eContents().get(0);
-		
-		//OwnedComment returns SysML::Comment :
-		//    ( 'comment' Identification? )? body = REGULAR_COMMENT
-		//;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//( 'comment' Identification? )? body = REGULAR_COMMENT
-		public Group getGroup() { return cGroup; }
-		
-		//( 'comment' Identification? )?
-		public Group getGroup_0() { return cGroup_0; }
-		
-		//'comment'
-		public Keyword getCommentKeyword_0_0() { return cCommentKeyword_0_0; }
-		
-		//Identification?
-		public RuleCall getIdentificationParserRuleCall_0_1() { return cIdentificationParserRuleCall_0_1; }
-		
-		//body = REGULAR_COMMENT
-		public Assignment getBodyAssignment_1() { return cBodyAssignment_1; }
-		
-		//REGULAR_COMMENT
-		public RuleCall getBodyREGULAR_COMMENTTerminalRuleCall_1_0() { return cBodyREGULAR_COMMENTTerminalRuleCall_1_0; }
-	}
-	public class OwnedDocumentationElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.OwnedDocumentation");
-		private final RuleCall cDocumentationParserRuleCall = (RuleCall)rule.eContents().get(1);
-		
-		//OwnedDocumentation returns SysML::Documentation :
-		//    Documentation
-		//;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//Documentation
-		public RuleCall getDocumentationParserRuleCall() { return cDocumentationParserRuleCall; }
 	}
 	public class TextualRepresentationElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.TextualRepresentation");
@@ -805,34 +696,6 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		
 		//REGULAR_COMMENT
 		public RuleCall getBodyREGULAR_COMMENTTerminalRuleCall_3_0() { return cBodyREGULAR_COMMENTTerminalRuleCall_3_0; }
-	}
-	public class OwnedTextualRepresentationAnnotationElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.OwnedTextualRepresentationAnnotation");
-		private final Assignment cOwnedRelatedElementAssignment = (Assignment)rule.eContents().get(1);
-		private final RuleCall cOwnedRelatedElementOwnedTextualRepresentationParserRuleCall_0 = (RuleCall)cOwnedRelatedElementAssignment.eContents().get(0);
-		
-		//OwnedTextualRepresentationAnnotation returns SysML::Annotation :
-		//    ownedRelatedElement += OwnedTextualRepresentation
-		//;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//ownedRelatedElement += OwnedTextualRepresentation
-		public Assignment getOwnedRelatedElementAssignment() { return cOwnedRelatedElementAssignment; }
-		
-		//OwnedTextualRepresentation
-		public RuleCall getOwnedRelatedElementOwnedTextualRepresentationParserRuleCall_0() { return cOwnedRelatedElementOwnedTextualRepresentationParserRuleCall_0; }
-	}
-	public class OwnedTextualRepresentationElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.OwnedTextualRepresentation");
-		private final RuleCall cTextualRepresentationParserRuleCall = (RuleCall)rule.eContents().get(1);
-		
-		//OwnedTextualRepresentation returns SysML::TextualRepresentation :
-		//    TextualRepresentation
-		//;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//TextualRepresentation
-		public RuleCall getTextualRepresentationParserRuleCall() { return cTextualRepresentationParserRuleCall; }
 	}
 	public class NamespaceElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.Namespace");
@@ -6853,14 +6716,8 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	private final OwnedAnnotationElements pOwnedAnnotation;
 	private final AnnotatingElementElements pAnnotatingElement;
 	private final CommentElements pComment;
-	private final PrefixCommentElements pPrefixComment;
 	private final DocumentationElements pDocumentation;
-	private final OwnedCommentAnnotationElements pOwnedCommentAnnotation;
-	private final OwnedCommentElements pOwnedComment;
-	private final OwnedDocumentationElements pOwnedDocumentation;
 	private final TextualRepresentationElements pTextualRepresentation;
-	private final OwnedTextualRepresentationAnnotationElements pOwnedTextualRepresentationAnnotation;
-	private final OwnedTextualRepresentationElements pOwnedTextualRepresentation;
 	private final NamespaceElements pNamespace;
 	private final NamespaceDeclarationElements pNamespaceDeclaration;
 	private final NamespaceBodyElements pNamespaceBody;
@@ -7037,14 +6894,8 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		this.pOwnedAnnotation = new OwnedAnnotationElements();
 		this.pAnnotatingElement = new AnnotatingElementElements();
 		this.pComment = new CommentElements();
-		this.pPrefixComment = new PrefixCommentElements();
 		this.pDocumentation = new DocumentationElements();
-		this.pOwnedCommentAnnotation = new OwnedCommentAnnotationElements();
-		this.pOwnedComment = new OwnedCommentElements();
-		this.pOwnedDocumentation = new OwnedDocumentationElements();
 		this.pTextualRepresentation = new TextualRepresentationElements();
-		this.pOwnedTextualRepresentationAnnotation = new OwnedTextualRepresentationAnnotationElements();
-		this.pOwnedTextualRepresentation = new OwnedTextualRepresentationElements();
 		this.pNamespace = new NamespaceElements();
 		this.pNamespaceDeclaration = new NamespaceDeclarationElements();
 		this.pNamespaceBody = new NamespaceBodyElements();
@@ -7422,7 +7273,6 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	
 	//AnnotatingElement returns SysML::AnnotatingElement :
 	//      Comment
-	//    | PrefixComment
 	//    | Documentation
 	//    | TextualRepresentation
 	//    | MetadataFeature
@@ -7451,19 +7301,6 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		return getCommentAccess().getRule();
 	}
 	
-	//@Deprecated
-	//PrefixComment returns SysML::PrefixComment :
-	//    ( 'comment' Identification? )?
-	//    body = PREFIX_COMMENT
-	//;
-	public PrefixCommentElements getPrefixCommentAccess() {
-		return pPrefixComment;
-	}
-	
-	public ParserRule getPrefixCommentRule() {
-		return getPrefixCommentAccess().getRule();
-	}
-	
 	//Documentation returns SysML::Documentation :
 	//    'doc' Identification? body = REGULAR_COMMENT
 	//;
@@ -7473,39 +7310,6 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	
 	public ParserRule getDocumentationRule() {
 		return getDocumentationAccess().getRule();
-	}
-	
-	//OwnedCommentAnnotation returns SysML::Annotation :
-	//    ownedRelatedElement += ( OwnedComment | OwnedDocumentation )
-	//;
-	public OwnedCommentAnnotationElements getOwnedCommentAnnotationAccess() {
-		return pOwnedCommentAnnotation;
-	}
-	
-	public ParserRule getOwnedCommentAnnotationRule() {
-		return getOwnedCommentAnnotationAccess().getRule();
-	}
-	
-	//OwnedComment returns SysML::Comment :
-	//    ( 'comment' Identification? )? body = REGULAR_COMMENT
-	//;
-	public OwnedCommentElements getOwnedCommentAccess() {
-		return pOwnedComment;
-	}
-	
-	public ParserRule getOwnedCommentRule() {
-		return getOwnedCommentAccess().getRule();
-	}
-	
-	//OwnedDocumentation returns SysML::Documentation :
-	//    Documentation
-	//;
-	public OwnedDocumentationElements getOwnedDocumentationAccess() {
-		return pOwnedDocumentation;
-	}
-	
-	public ParserRule getOwnedDocumentationRule() {
-		return getOwnedDocumentationAccess().getRule();
 	}
 	
 	///* Textual Representation */
@@ -7520,28 +7324,6 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	
 	public ParserRule getTextualRepresentationRule() {
 		return getTextualRepresentationAccess().getRule();
-	}
-	
-	//OwnedTextualRepresentationAnnotation returns SysML::Annotation :
-	//    ownedRelatedElement += OwnedTextualRepresentation
-	//;
-	public OwnedTextualRepresentationAnnotationElements getOwnedTextualRepresentationAnnotationAccess() {
-		return pOwnedTextualRepresentationAnnotation;
-	}
-	
-	public ParserRule getOwnedTextualRepresentationAnnotationRule() {
-		return getOwnedTextualRepresentationAnnotationAccess().getRule();
-	}
-	
-	//OwnedTextualRepresentation returns SysML::TextualRepresentation :
-	//    TextualRepresentation
-	//;
-	public OwnedTextualRepresentationElements getOwnedTextualRepresentationAccess() {
-		return pOwnedTextualRepresentation;
-	}
-	
-	public ParserRule getOwnedTextualRepresentationRule() {
-		return getOwnedTextualRepresentationAccess().getRule();
 	}
 	
 	///* NAMESPACES */
@@ -10483,15 +10265,9 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//terminal REGULAR_COMMENT:
-	//    '/*' !('*') ->'*/';
+	//    '/*' ->'*/';
 	public TerminalRule getREGULAR_COMMENTRule() {
 		return gaKerMLExpressions.getREGULAR_COMMENTRule();
-	}
-	
-	//terminal PREFIX_COMMENT:
-	//    '/**'->'*/';
-	public TerminalRule getPREFIX_COMMENTRule() {
-		return gaKerMLExpressions.getPREFIX_COMMENTRule();
 	}
 	
 	//terminal ML_NOTE:

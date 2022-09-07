@@ -51,6 +51,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  *   <li>{@link org.omg.sysml.lang.sysml.impl.RelationshipImpl#getSource <em>Source</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.RelationshipImpl#getOwningRelatedElement <em>Owning Related Element</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.RelationshipImpl#getOwnedRelatedElement <em>Owned Related Element</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.RelationshipImpl#isImplied <em>Is Implied</em>}</li>
  * </ul>
  *
  * @generated
@@ -95,6 +96,26 @@ public class RelationshipImpl extends ElementImpl implements Relationship {
 	 * @ordered
 	 */
 	protected EList<Element> ownedRelatedElement;
+
+	/**
+	 * The default value of the '{@link #isImplied() <em>Is Implied</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isImplied()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean IS_IMPLIED_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isImplied() <em>Is Implied</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isImplied()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean isImplied = IS_IMPLIED_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc --> 
@@ -147,6 +168,29 @@ public class RelationshipImpl extends ElementImpl implements Relationship {
 			ownedRelatedElement = new EObjectContainmentWithInverseEList<Element>(Element.class, this, SysMLPackage.RELATIONSHIP__OWNED_RELATED_ELEMENT, SysMLPackage.ELEMENT__OWNING_RELATIONSHIP);
 		}
 		return ownedRelatedElement;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isImplied() {
+		return isImplied;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setIsImplied(boolean newIsImplied) {
+		boolean oldIsImplied = isImplied;
+		isImplied = newIsImplied;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.RELATIONSHIP__IS_IMPLIED, oldIsImplied, isImplied));
 	}
 
 	/**
@@ -315,6 +359,8 @@ public class RelationshipImpl extends ElementImpl implements Relationship {
 				return getOwningRelatedElement();
 			case SysMLPackage.RELATIONSHIP__OWNED_RELATED_ELEMENT:
 				return getOwnedRelatedElement();
+			case SysMLPackage.RELATIONSHIP__IS_IMPLIED:
+				return isImplied();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -328,6 +374,10 @@ public class RelationshipImpl extends ElementImpl implements Relationship {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case SysMLPackage.RELATIONSHIP__RELATED_ELEMENT:
+				getRelatedElement().clear();
+				getRelatedElement().addAll((Collection<? extends Element>)newValue);
+				return;
 			case SysMLPackage.RELATIONSHIP__TARGET:
 				getTarget().clear();
 				getTarget().addAll((Collection<? extends Element>)newValue);
@@ -343,6 +393,9 @@ public class RelationshipImpl extends ElementImpl implements Relationship {
 				getOwnedRelatedElement().clear();
 				getOwnedRelatedElement().addAll((Collection<? extends Element>)newValue);
 				return;
+			case SysMLPackage.RELATIONSHIP__IS_IMPLIED:
+				setIsImplied((Boolean)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -355,6 +408,9 @@ public class RelationshipImpl extends ElementImpl implements Relationship {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case SysMLPackage.RELATIONSHIP__RELATED_ELEMENT:
+				getRelatedElement().clear();
+				return;
 			case SysMLPackage.RELATIONSHIP__TARGET:
 				getTarget().clear();
 				return;
@@ -366,6 +422,9 @@ public class RelationshipImpl extends ElementImpl implements Relationship {
 				return;
 			case SysMLPackage.RELATIONSHIP__OWNED_RELATED_ELEMENT:
 				getOwnedRelatedElement().clear();
+				return;
+			case SysMLPackage.RELATIONSHIP__IS_IMPLIED:
+				setIsImplied(IS_IMPLIED_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -389,8 +448,26 @@ public class RelationshipImpl extends ElementImpl implements Relationship {
 				return getOwningRelatedElement() != null;
 			case SysMLPackage.RELATIONSHIP__OWNED_RELATED_ELEMENT:
 				return ownedRelatedElement != null && !ownedRelatedElement.isEmpty();
+			case SysMLPackage.RELATIONSHIP__IS_IMPLIED:
+				return isImplied != IS_IMPLIED_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuilder result = new StringBuilder(super.toString());
+		result.append(" (isImplied: ");
+		result.append(isImplied);
+		result.append(')');
+		return result.toString();
 	}
 
 } // RelationshipImpl

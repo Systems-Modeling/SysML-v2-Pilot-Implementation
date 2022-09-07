@@ -70,7 +70,7 @@ public interface FramedConcernMembership extends RequirementConstraintMembership
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p> The ConcernUsage that is referenced through this AddressedConcernMembership. This is derived as being the first ConcernUsage subset by the <code>ownedConcern</code>, if there is one, and, otherwise, the <code>ownedConcern</code> itself.</p>
+	 * <p> The ConcernUsage that is referenced through this AddressedConcernMembership. It is the <code>referencedConstraint</code> of the FramedConcernMembership considered as a RequirementConstraintMembership, which must be a ConcernUsage.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Referenced Concern</em>' reference.
 	 * @see #setReferencedConcern(ConcernUsage)

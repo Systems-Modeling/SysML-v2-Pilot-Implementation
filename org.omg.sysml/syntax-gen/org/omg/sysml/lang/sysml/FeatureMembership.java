@@ -29,7 +29,7 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>FeatureMembership is an OwningMembership for a Feature in a Type that is also a TypeFeaturing Relationship between the Feature and the Type.</p>
+ * <p>FeatureMembership is an OwningMembership for a Feature in a Type that is also a Featuring Relationship between the Feature and the Type, in which the <code>featuringType</code> is the <code>source</code> and the <code>featureOfType</code> is the <code>target</code>. A FeatureMembership is always owned by its <code>owningType</code>, which is the <code>featuringType</code> for the FeatureMembership considered as a Featuring.</p>
  * 
  * <!-- end-model-doc -->
  *
@@ -45,21 +45,16 @@ package org.omg.sysml.lang.sysml;
  * @model
  * @generated
  */
-public interface FeatureMembership extends OwningMembership, TypeFeaturing {
+public interface FeatureMembership extends OwningMembership, Featuring {
 	/**
 	 * Returns the value of the '<em><b>Owning Type</b></em>' reference.
 	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Type#getOwnedFeatureMembership <em>Owned Feature Membership</em>}'.
-	 * <p>
-	 * This feature subsets the following features:
-	 * </p>
-	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.TypeFeaturing#getFeaturingType() <em>Featuring Type</em>}'</li>
-	 * </ul>
 	 * <p>
 	 * This feature redefines the following features:
 	 * </p>
 	 * <ul>
 	 *   <li>'{@link org.omg.sysml.lang.sysml.Membership#getMembershipOwningNamespace() <em>Membership Owning Namespace</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Featuring#getType() <em>Type</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -76,7 +71,6 @@ public interface FeatureMembership extends OwningMembership, TypeFeaturing {
 	 * @see org.omg.sysml.lang.sysml.Type#getOwnedFeatureMembership
 	 * @model opposite="ownedFeatureMembership" required="true" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="redefines"
-	 *        annotation="subsets"
 	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
@@ -96,16 +90,11 @@ public interface FeatureMembership extends OwningMembership, TypeFeaturing {
 	 * Returns the value of the '<em><b>Owned Member Feature</b></em>' reference.
 	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Feature#getOwningFeatureMembership <em>Owning Feature Membership</em>}'.
 	 * <p>
-	 * This feature subsets the following features:
-	 * </p>
-	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.TypeFeaturing#getFeatureOfType() <em>Feature Of Type</em>}'</li>
-	 * </ul>
-	 * <p>
 	 * This feature redefines the following features:
 	 * </p>
 	 * <ul>
 	 *   <li>'{@link org.omg.sysml.lang.sysml.OwningMembership#getOwnedMemberElement() <em>Owned Member Element</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Featuring#getFeature() <em>Feature</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -122,7 +111,6 @@ public interface FeatureMembership extends OwningMembership, TypeFeaturing {
 	 * @see org.omg.sysml.lang.sysml.Feature#getOwningFeatureMembership
 	 * @model opposite="owningFeatureMembership" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="redefines"
-	 *        annotation="subsets"
 	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */

@@ -42,6 +42,7 @@ import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FlowConnectionUsage;
 import org.omg.sysml.lang.sysml.InterfaceUsage;
 import org.omg.sysml.lang.sysml.ItemUsage;
+import org.omg.sysml.lang.sysml.MetadataUsage;
 import org.omg.sysml.lang.sysml.OccurrenceUsage;
 import org.omg.sysml.lang.sysml.PartUsage;
 import org.omg.sysml.lang.sysml.CalculationUsage;
@@ -108,6 +109,7 @@ import org.omg.sysml.util.UsageUtil;
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedUseCase <em>Nested Use Case</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#isReference <em>Is Reference</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedFlow <em>Nested Flow</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedMetadata <em>Nested Metadata</em>}</li>
  * </ul>
  *
  * @generated
@@ -437,6 +439,16 @@ public class UsageImpl extends FeatureImpl implements Usage {
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate NESTED_FLOW__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.USAGE__NESTED_FLOW).getSettingDelegate();
+
+	/**
+	 * The cached setting delegate for the '{@link #getNestedMetadata() <em>Nested Metadata</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getNestedMetadata()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate NESTED_METADATA__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.USAGE__NESTED_METADATA).getSettingDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -844,6 +856,17 @@ public class UsageImpl extends FeatureImpl implements Usage {
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
+	public EList<MetadataUsage> getNestedMetadata() {
+		return (EList<MetadataUsage>)NESTED_METADATA__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
 	public EList<ActionUsage> getNestedAction() {
 		return (EList<ActionUsage>)NESTED_ACTION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
@@ -1040,6 +1063,8 @@ public class UsageImpl extends FeatureImpl implements Usage {
 				return isReference();
 			case SysMLPackage.USAGE__NESTED_FLOW:
 				return getNestedFlow();
+			case SysMLPackage.USAGE__NESTED_METADATA:
+				return getNestedMetadata();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -1189,6 +1214,10 @@ public class UsageImpl extends FeatureImpl implements Usage {
 				getNestedFlow().clear();
 				getNestedFlow().addAll((Collection<? extends FlowConnectionUsage>)newValue);
 				return;
+			case SysMLPackage.USAGE__NESTED_METADATA:
+				getNestedMetadata().clear();
+				getNestedMetadata().addAll((Collection<? extends MetadataUsage>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -1306,6 +1335,9 @@ public class UsageImpl extends FeatureImpl implements Usage {
 			case SysMLPackage.USAGE__NESTED_FLOW:
 				getNestedFlow().clear();
 				return;
+			case SysMLPackage.USAGE__NESTED_METADATA:
+				getNestedMetadata().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -1390,6 +1422,8 @@ public class UsageImpl extends FeatureImpl implements Usage {
 				return IS_REFERENCE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.USAGE__NESTED_FLOW:
 				return NESTED_FLOW__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
+			case SysMLPackage.USAGE__NESTED_METADATA:
+				return NESTED_METADATA__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 		}
 		return super.eIsSet(featureID);
 	}

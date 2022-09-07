@@ -269,6 +269,7 @@ DefinitionElement returns SysML::Element :
 	| MetadataDefinition
 	| PartDefinition
 	| ConnectionDefinition
+	| FlowConnectionDefinition
 	| InterfaceDefinition
 	| AllocationDefinition
 	| PortDefinition
@@ -1023,6 +1024,21 @@ EmptySourceEnd returns SysML::Feature :
 
 /* FLOW CONNECTIONS */
 
+
+/* Flow Connection Definitions */
+
+FlowConnectionKeyword :
+	'flow'
+;
+
+FlowConnectionDefKeyword :
+	FlowConnectionKeyword 'def'
+;
+
+FlowConnectionDefinition returns SysML::FlowConnectionDefinition :
+	OccurrenceDefinitionPrefix FlowConnectionDefKeyword Definition
+;
+
 /* Messages */
 
 MessageKeyword :
@@ -1051,10 +1067,6 @@ MessageEnd returns SysML::ItemFlowEnd :
 ;
 
 /* Flow Connection Usages */
-
-FlowConnectionKeyword :
-	'flow'
-;
 
 FlowConnectionUsage returns SysML::FlowConnectionUsage :
 	OccurrenceUsagePrefix FlowConnectionKeyword 

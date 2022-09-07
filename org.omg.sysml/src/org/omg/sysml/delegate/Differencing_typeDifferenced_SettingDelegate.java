@@ -22,11 +22,21 @@
 package org.omg.sysml.delegate;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.InternalEObject;
+import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.Relationship;
+import org.omg.sysml.lang.sysml.Type;
 
-public class FlowConnectionUsage_behavior_SettingDelegate extends Step_behavior_SettingDelegate {
+public class Differencing_typeDifferenced_SettingDelegate extends BasicDerivedObjectSettingDelegate {
 
-	public FlowConnectionUsage_behavior_SettingDelegate(EStructuralFeature eStructuralFeature) {
+	public Differencing_typeDifferenced_SettingDelegate(EStructuralFeature eStructuralFeature) {
 		super(eStructuralFeature);
+	}
+
+	@Override
+	protected Type basicGet(InternalEObject owner) {
+		Element owningRelatedElement = ((Relationship)owner).getOwningRelatedElement();
+		return owningRelatedElement instanceof Type? (Type) owningRelatedElement: null;
 	}
 
 }

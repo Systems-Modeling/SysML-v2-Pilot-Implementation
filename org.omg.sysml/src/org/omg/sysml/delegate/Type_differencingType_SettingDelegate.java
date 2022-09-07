@@ -21,20 +21,26 @@
 
 package org.omg.sysml.delegate;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.ItemFlow;
+import org.omg.sysml.lang.sysml.Differencing;
+import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.util.NonNotifyingEObjectEList;
 
-public class ItemFlow_sourceOutputFeature_SettingDelegate extends BasicDerivedObjectSettingDelegate {
+public class Type_differencingType_SettingDelegate extends BasicDerivedListSettingDelegate {
 
-	public ItemFlow_sourceOutputFeature_SettingDelegate(EStructuralFeature eStructuralFeature) {
+	public Type_differencingType_SettingDelegate(EStructuralFeature eStructuralFeature) {
 		super(eStructuralFeature);
 	}
 
 	@Override
-	protected Feature basicGet(InternalEObject owner) {
-		return ((ItemFlow)owner).getItemFlowFeature().stream().findFirst().orElse(null);
+	protected EList<Type> basicGet(InternalEObject owner) {
+		EList<Type> differencingTypes = new NonNotifyingEObjectEList<>(Type.class, owner, eStructuralFeature.getFeatureID());
+		((Type)owner).getOwnedDifferencing().stream().
+				map(Differencing::getDifferencingType).
+				forEachOrdered(differencingTypes::add);
+		return differencingTypes;
 	}
 
 }

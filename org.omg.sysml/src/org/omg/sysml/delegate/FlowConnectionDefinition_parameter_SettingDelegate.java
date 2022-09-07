@@ -22,19 +22,11 @@
 package org.omg.sysml.delegate;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.InternalEObject;
-import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.ItemFlow;
 
-public class ItemFlow_sourceOutputFeature_SettingDelegate extends BasicDerivedObjectSettingDelegate {
+public class FlowConnectionDefinition_parameter_SettingDelegate extends ActionDefinition_parameter_SettingDelegate {
 
-	public ItemFlow_sourceOutputFeature_SettingDelegate(EStructuralFeature eStructuralFeature) {
+	public FlowConnectionDefinition_parameter_SettingDelegate(EStructuralFeature eStructuralFeature) {
 		super(eStructuralFeature);
-	}
-
-	@Override
-	protected Feature basicGet(InternalEObject owner) {
-		return ((ItemFlow)owner).getItemFlowFeature().stream().findFirst().orElse(null);
 	}
 
 }

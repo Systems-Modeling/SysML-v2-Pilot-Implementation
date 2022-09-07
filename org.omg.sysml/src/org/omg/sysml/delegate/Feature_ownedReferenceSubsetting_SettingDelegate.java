@@ -24,17 +24,19 @@ package org.omg.sysml.delegate;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.ItemFlow;
+import org.omg.sysml.lang.sysml.ReferenceSubsetting;
 
-public class ItemFlow_sourceOutputFeature_SettingDelegate extends BasicDerivedObjectSettingDelegate {
+public class Feature_ownedReferenceSubsetting_SettingDelegate extends BasicDerivedObjectSettingDelegate {
 
-	public ItemFlow_sourceOutputFeature_SettingDelegate(EStructuralFeature eStructuralFeature) {
+	public Feature_ownedReferenceSubsetting_SettingDelegate(EStructuralFeature eStructuralFeature) {
 		super(eStructuralFeature);
 	}
 
 	@Override
-	protected Feature basicGet(InternalEObject owner) {
-		return ((ItemFlow)owner).getItemFlowFeature().stream().findFirst().orElse(null);
+	protected ReferenceSubsetting basicGet(InternalEObject owner) {
+		return (ReferenceSubsetting)((Feature)owner).getOwnedSubsetting().stream().
+			filter(ReferenceSubsetting.class::isInstance).
+			findFirst().orElse(null);
 	}
 
 }

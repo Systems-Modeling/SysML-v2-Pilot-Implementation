@@ -21,19 +21,22 @@
 
 package org.omg.sysml.delegate;
 
-import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
+import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.Interaction;
+import org.omg.sysml.util.FeatureUtil;
 
-public class FeatureMembership_owningFeatureOfType_SettingDelegate extends BasicDerivedObjectSettingDelegate {
+public class ItemFlow_interaction_SettingDelegate extends BasicDerivedListSettingDelegate {
 
-	public FeatureMembership_owningFeatureOfType_SettingDelegate(EStructuralFeature eStructuralFeature) {
+	public ItemFlow_interaction_SettingDelegate(EStructuralFeature eStructuralFeature) {
 		super(eStructuralFeature);
 	}
 
 	@Override
-	protected EObject basicGet(InternalEObject owner) {
-		return null;
+	protected EList<Interaction> basicGet(InternalEObject owner) {
+		return FeatureUtil.getAllTypesOf((Feature)owner, Interaction.class, eStructuralFeature.getFeatureID());
 	}
 
 }

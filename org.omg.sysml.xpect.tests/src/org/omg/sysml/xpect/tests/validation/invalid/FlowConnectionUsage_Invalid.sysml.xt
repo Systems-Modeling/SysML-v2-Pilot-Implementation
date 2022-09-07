@@ -3,9 +3,11 @@ XPECT_SETUP org.omg.sysml.xpect.tests.validation.invalid.SysMLTests
 	ResourceSet {
 		ThisFile {}
 		File {from ="/library.kernel/Base.kerml"}
+		File {from ="/library.kernel/Links.kerml"}
 		File {from ="/library.kernel/Occurrences.kerml"}
        	File {from ="/library.kernel/Objects.kerml"}
        	File {from ="/library.kernel/Performances.kerml"}
+       	File {from ="/library.kernel/Transfers.kerml"}
 		File {from ="/library.kernel/BaseFunctions.kerml"}
 		File {from ="/library.systems/Items.sysml"}
 		File {from ="/library.systems/Parts.sysml"}
@@ -17,9 +19,11 @@ XPECT_SETUP org.omg.sysml.xpect.tests.validation.invalid.SysMLTests
 			SrcFolder {
 				ThisFile {}
 				File {from ="/library.kernel/Base.kerml"}
+				File {from ="/library.kernel/Links.kerml"}
 				File {from ="/library.kernel/Occurrences.kerml"}
  		      	File {from ="/library.kernel/Objects.kerml"}
  		      	File {from ="/library.kernel/Performances.kerml"}
+ 		      	File {from ="/library.kernel/Transfers.kerml"}
 				File {from ="/library.kernel/BaseFunctions.kerml"}
 				File {from ="/library.systems/Items.sysml"}
 				File {from ="/library.systems/Parts.sysml"}
@@ -37,25 +41,25 @@ package P {
 	part def D;	
 	part def E;
 	
-	connection def DE {
+	flow def DE {
 		end : D[1];
 		end : E[1];
 	}
-	connection def BC {
+	flow def BC {
 		end : B[1];
 		end : C[1];
 	}
 	part apart : A {
-		part b :B[1];
-		part c: C[1];
+		part b : B[1];
+		part c : C[1];
 		
-		connection bc : BC connect b to c;
-		connection de : DE, BC connect b to c;
+		message bc : BC from b to c;
+		message de : DE, BC from b to c;
 		
-		// XPECT errors --> "A connection must be typed by connection definitions." at "connection :A connect b to c;"
-		connection :A connect b to c;
-		// XPECT errors --> "A connection must be typed by connection definitions." at "connection :apart connect b to c;"
-		connection :apart connect b to c;
+		// XPECT errors --> "A flow connection must be typed by flow connection definitions." at "message :A from b to c;"
+		message :A from b to c;
+		// XPECT errors --> "A flow connection must be typed by flow connection definitions." at "message :apart from b to c;"
+		message :apart from b to c;
 	}
 }
 

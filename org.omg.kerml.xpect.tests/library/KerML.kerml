@@ -1,10 +1,11 @@
-/**
- * This package contains a reflective KerML model of the KerML abstract syntax.
- * 
- * NOTE: This model is currently incomplete. It includes all KerML abstract syntax metaclasses,
- * but none of their properties.
- */
 package KerML {
+	doc
+	/*
+	 * This package contains a reflective KerML model of the KerML abstract syntax.
+	 * 
+	 * NOTE: This model is currently incomplete. It includes all KerML abstract syntax metaclasses,
+	 * but none of their properties.
+	 */
 	
 	metaclass Element;
 	metaclass Relationship :> Element;

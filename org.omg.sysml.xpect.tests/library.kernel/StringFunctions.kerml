@@ -1,8 +1,10 @@
-/**
- * This package defines functions on String values, including those corresponding to string concatenation 
- * and comparison operators in the KerML expression notation.
- */
 package StringFunctions {
+	doc
+	/*
+	 * This package defines functions on String values, including those corresponding to string concatenation 
+	 * and comparison operators in the KerML expression notation.
+	 */
+
 	import ScalarValues::*;
 	
 	function '+' specializes ScalarFunctions::'+' { in x: String[1]; in y:String[1]; return : String[1]; }

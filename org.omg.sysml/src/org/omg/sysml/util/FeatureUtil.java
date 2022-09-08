@@ -296,6 +296,7 @@ public class FeatureUtil {
 						&& Objects.equals(f.getFeaturingType(), type));
 			if (featuringRequired) {
 				TypeFeaturing featuring = SysMLFactory.eINSTANCE.createTypeFeaturing();
+				featuring.setIsImplied(true);
 				featuring.setFeaturingType(type);
 				featuring.setFeatureOfType(feature);
 				feature.getOwnedRelationship().add(featuring);

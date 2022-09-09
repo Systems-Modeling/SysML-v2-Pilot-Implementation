@@ -53,7 +53,7 @@ public class SourceEndAdapter extends FeatureAdapter {
 	public void addDefaultGeneralType() {
 		Type type = getTarget().getOwningType();
 		if (type instanceof Feature) {
-			addImplicitGeneralType(getGeneralizationEClass(), getSource((Feature)type));
+			addImplicitGeneralType(getSpecializationEClass(), getSource((Feature)type));
 		} else {
 			super.addDefaultGeneralType();
 		}

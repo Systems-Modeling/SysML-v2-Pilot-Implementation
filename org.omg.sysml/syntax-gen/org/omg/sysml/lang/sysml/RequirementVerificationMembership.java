@@ -56,7 +56,7 @@ public interface RequirementVerificationMembership extends RequirementConstraint
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p> The RequirementUsage that is identified as being verified. This is derived as being the first RequirementUsage subset by the <code>ownedRequirement</code>, if there is one, and, otherwise, the <code>ownedRequirement</code> itself.</p>
+	 * <p> The RequirementUsage that is identified as being verified. It is the <code>referencedConstraint</code> of the RequirementVerificationMembership considered as a RequirementConstraintMembership, which must be a RequirementUsage.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Verified Requirement</em>' reference.
 	 * @see #setVerifiedRequirement(RequirementUsage)

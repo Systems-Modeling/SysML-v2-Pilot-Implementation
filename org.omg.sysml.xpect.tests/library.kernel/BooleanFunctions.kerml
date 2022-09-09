@@ -1,8 +1,10 @@
-/**
- * This package defines functions on Boolean values, including those corresponding to 
- * (non-conditional) logical operators in the KerML expression notation.
- */
 package BooleanFunctions {
+	doc
+	/*
+	 * This package defines functions on Boolean values, including those corresponding to 
+	 * (non-conditional) logical operators in the KerML expression notation.
+	 */
+
 	import ScalarValues::*;
 	
 	function 'not' specializes ScalarFunctions::'not' { in x: Boolean[1]; return : Boolean[1]; }

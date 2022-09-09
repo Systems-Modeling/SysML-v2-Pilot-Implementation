@@ -508,10 +508,7 @@ terminal STRING_VALUE returns Ecore::EString:
 	'"' ('\\' ('b' | 't' | 'n' | 'f' | 'r' | '"' | "'" | '\\') | !('\\' | '"'))* '"';
 
 terminal REGULAR_COMMENT:
-	'/*' !('*') ->'*/';
-
-terminal PREFIX_COMMENT:
-	'/**'->'*/';
+	'/*' ->'*/';
 
 terminal ML_NOTE:
 	'//*'->'*/';

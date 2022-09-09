@@ -56,7 +56,7 @@ public interface SatisfyRequirementUsage extends RequirementUsage, AssertConstra
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The RequirementUsage that is satisfied by the <tt>satisfyingSubject</tt> of this SatisfyRequirementUsage. It is the <tt>subsettedFeature</tt> of the first owned Subsetting Relationship of the SatisfyRequirementUsage.</p>
+	 * <p>The RequirementUsage that is satisfied by the <code>satisfyingSubject</code> of this SatisfyRequirementUsage. It is the <code>assertedConstraint</code> of the SatisfyRequirementUsage considered as an AssertConstraintUsage, which must be a RequirementUsage.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Satisfied Requirement</em>' reference.
 	 * @see #setSatisfiedRequirement(RequirementUsage)

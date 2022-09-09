@@ -1,7 +1,9 @@
-/**
- * This package defines abstract functions that specialize the DataFunctions for use with ScalarValues. 
- */
 package ScalarFunctions {
+	doc
+	/*
+	 * This package defines abstract functions that specialize the DataFunctions for use with ScalarValues. 
+	 */
+
 	import ScalarValues::*;
 	
 	abstract function '+' specializes DataFunctions::'+' { in x: ScalarValue[1]; in y: ScalarValue[0..1]; return : ScalarValue[1]; }

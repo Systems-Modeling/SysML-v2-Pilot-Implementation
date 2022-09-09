@@ -120,7 +120,6 @@ OwnedAnnotation returns SysML::Annotation :
 
 AnnotatingElement returns SysML::AnnotatingElement :
 	  Comment
-	| PrefixComment
 	| Documentation
 	| TextualRepresentation
 	| MetadataFeature
@@ -136,26 +135,8 @@ Comment returns SysML::Comment :
 	body = REGULAR_COMMENT
 ;
 
-@Deprecated
-PrefixComment returns SysML::PrefixComment :
-	( 'comment' Identification? )? 
-	body = PREFIX_COMMENT
-;
-
 Documentation returns SysML::Documentation :
 	'doc' Identification? body = REGULAR_COMMENT
-;
-
-OwnedCommentAnnotation returns SysML::Annotation :
-	ownedRelatedElement += ( OwnedComment | OwnedDocumentation )
-;
-
-OwnedComment returns SysML::Comment :
-	( 'comment' Identification? )? body = REGULAR_COMMENT
-;
-
-OwnedDocumentation returns SysML::Documentation :
-	Documentation
 ;
 
 /* Textual Representation */
@@ -164,14 +145,6 @@ TextualRepresentation returns SysML::TextualRepresentation :
     ( 'rep' Identification? )?
     'language' language = STRING_VALUE 
     body = REGULAR_COMMENT
-;
-
-OwnedTextualRepresentationAnnotation returns SysML::Annotation :
-	ownedRelatedElement += OwnedTextualRepresentation
-;
-
-OwnedTextualRepresentation returns SysML::TextualRepresentation :
-	TextualRepresentation
 ;
 
 /* NAMESPACES */
@@ -211,11 +184,11 @@ NamespaceMember returns SysML::OwningMembership :
 ;
 
 NonFeatureMember returns SysML::OwningMembership : 
-	MemberPrefix ownedRelatedElement += MemberElement // ownedMemberElement = NonFeatureElement
+	MemberPrefix ownedRelatedElement += MemberElement 
 ;
 
 NamespaceFeatureMember returns SysML::OwningMembership :
-	MemberPrefix ownedRelatedElement += FeatureElement // ownedMemberElement = FeatureElement
+	MemberPrefix ownedRelatedElement += FeatureElement 
 ;
 
 AliasMember returns SysML::Membership :
@@ -384,11 +357,11 @@ FeatureMember returns SysML::OwningMembership :
 ;
 
 TypeFeatureMember returns SysML::OwningMembership :
-	MemberPrefix 'member' ownedRelatedElement += FeatureElement // ownedMemberElement = FeatureElement
+	MemberPrefix 'member' ownedRelatedElement += FeatureElement 
 ;
 
 OwnedFeatureMember returns SysML::FeatureMembership :
-	MemberPrefix ownedRelatedElement += FeatureElement // ownedMemberFeature = FeatureElement
+	MemberPrefix ownedRelatedElement += FeatureElement 
 ;
 
 /* Specialization */
@@ -685,16 +658,16 @@ fragment ValuePart returns SysML::Feature :
 
 FeatureValue returns SysML::FeatureValue :
 	( '=' | isDefault ?= 'default' ( '=' | isInitial ?= ':=' )? )
-	ownedRelatedElement += OwnedExpression // value = OwnedExpression
+	ownedRelatedElement += OwnedExpression
 ;
 
 FeatureValueExpression returns SysML::FeatureValue :
 	isInitial ?= ':='
-	ownedRelatedElement += OwnedExpression // value = OwnedExpression
+	ownedRelatedElement += OwnedExpression
 ;
 
 EmptyFeatureWriteMember returns SysML::OwningMembership :
-	ownedRelatedElement += EmptyFeatureWrite // ownedMemberElement = EmptyAssignmentAction
+	ownedRelatedElement += EmptyFeatureWrite 
 ;
 
 EmptyFeatureWrite returns SysML::Step :
@@ -703,7 +676,7 @@ EmptyFeatureWrite returns SysML::Step :
 ;
 
 EmptyTargetMember returns SysML::ParameterMembership :
-	ownedRelatedElement += EmptyTargetParameter // ownedMemberParameter = TargetParameter
+	ownedRelatedElement += EmptyTargetParameter
 ;
 
 EmptyTargetParameter returns SysML::ReferenceUsage :
@@ -711,7 +684,7 @@ EmptyTargetParameter returns SysML::ReferenceUsage :
 ;
 
 TargetFeatureMember returns SysML::FeatureMembership :
-	ownedRelatedElement += TargetFeature // ownedMemberFeature = TargetFeature
+	ownedRelatedElement += TargetFeature 
 ;
 
 TargetFeature returns SysML::Feature :
@@ -719,7 +692,7 @@ TargetFeature returns SysML::Feature :
 ;
 
 EmptyFeatureMember returns SysML::FeatureMembership :
-	ownedRelatedElement += EmptyFeature // ownedMemberFeature = EmptyFeature
+	ownedRelatedElement += EmptyFeature 
 ;
 
 EmptyParameterMember returns SysML::ParameterMembership :
@@ -741,7 +714,7 @@ MultiplicityRange returns SysML::MultiplicityRange :
 ;
 
 OwnedMultiplicity returns SysML::OwningMembership :
-	ownedRelatedElement += OwnedMultiplicityRange // ownedMemberElement = OwnedMultiplicityRange
+	ownedRelatedElement += OwnedMultiplicityRange 
 ;
 
 OwnedMultiplicityRange returns SysML::MultiplicityRange :
@@ -755,7 +728,7 @@ fragment MultiplicityBounds returns SysML::MultiplicityRange :
 ;
 
 MultiplicityExpressionMember returns SysML::OwningMembership :
-	ownedRelatedElement += ( LiteralExpression | FeatureReferenceExpression ) // ownedMemberElement = ( LiteralExpression | FeatureReferenceExpression )
+	ownedRelatedElement += ( LiteralExpression | FeatureReferenceExpression ) 
 ;
 
 /* CLASSIFICATION */
@@ -822,7 +795,7 @@ fragment NaryConnectorDeclaration returns SysML::Connector :
 ;
 
 ConnectorEndMember returns SysML::EndFeatureMembership :
-	ownedRelatedElement += ConnectorEnd // ownedMemberFeature = ConnectorEnd
+	ownedRelatedElement += ConnectorEnd 
 ;
 
 ConnectorEnd returns SysML::Feature :
@@ -902,12 +875,12 @@ fragment FunctionBodyPart returns SysML::Type :
 
 ReturnFeatureMember returns SysML::ReturnParameterMembership :
 	MemberPrefix 'return' 
-	ownedRelatedElement += FeatureElement // ownedMemberParameter = FeatureElement
+	ownedRelatedElement += FeatureElement 
 ;
 
 @Override
 ResultExpressionMember returns SysML::ResultExpressionMembership :
-	MemberPrefix ownedRelatedElement += OwnedExpression // ownedResultExpression = OwnedExpression
+	MemberPrefix ownedRelatedElement += OwnedExpression 
 ;
 
 /* Expressions */
@@ -974,7 +947,7 @@ fragment ItemFlowDeclaration returns SysML::ItemFlow :
 ;
 
 ItemFeatureMember returns SysML::FeatureMembership :
-	ownedRelatedElement += ItemFeature // ownedMemberFeature = ItemFeature
+	ownedRelatedElement += ItemFeature 
 ;
 
 ItemFeature returns SysML::ItemFeature :
@@ -987,7 +960,7 @@ ItemFeature returns SysML::ItemFeature :
 ;
 
 EmptyItemFeatureMember returns SysML::FeatureMembership :
-	ownedRelatedElement += EmptyItemFeature // ownedMemberFeature = EmptyItemFeature
+	ownedRelatedElement += EmptyItemFeature 
 ;
 
 EmptyItemFeature returns SysML::ItemFeature :
@@ -995,7 +968,7 @@ EmptyItemFeature returns SysML::ItemFeature :
 ;
 
 ItemFlowEndMember returns SysML::EndFeatureMembership :
-	ownedRelatedElement += ItemFlowEnd // ownedMemberFeature = ItemFlowEnd
+	ownedRelatedElement += ItemFlowEnd 
 ;
 
 ItemFlowEnd returns SysML::ItemFlowEnd :
@@ -1014,7 +987,7 @@ FeatureChainPrefix returns SysML::Feature :
 ;
 
 ItemFlowFeatureMember returns SysML::FeatureMembership :
-	ownedRelatedElement += ItemFlowFeature // ownedMemberFeature = ItemFlowFeature
+	ownedRelatedElement += ItemFlowFeature 
 ;
 
 ItemFlowFeature returns SysML::ItemFlowFeature :

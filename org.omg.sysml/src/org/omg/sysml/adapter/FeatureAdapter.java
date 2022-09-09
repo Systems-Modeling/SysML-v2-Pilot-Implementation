@@ -127,7 +127,7 @@ public class FeatureAdapter extends TypeAdapter {
 	// Implicit Generalization
 
 	@Override
-	protected EClass getGeneralizationEClass() {
+	protected EClass getSpecializationEClass() {
 		return SysMLPackage.eINSTANCE.getSubsetting();
 	}
 	
@@ -164,7 +164,7 @@ public class FeatureAdapter extends TypeAdapter {
 	public void addDefaultGeneralType() {
 		super.addDefaultGeneralType();
 		if (isAssociationEnd() && 
-				!isImplicitGeneralizationDeclaredFor(SysMLPackage.eINSTANCE.getRedefinition())) {
+				!isImplicitSpecializationDeclaredFor(SysMLPackage.eINSTANCE.getRedefinition())) {
 			addDefaultGeneralType("participant");
 		}
 	}

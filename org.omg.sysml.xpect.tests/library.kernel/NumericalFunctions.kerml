@@ -1,7 +1,9 @@
-/**
- * This package defines abstract functions on Numerical values for general arithmetic and comparison operations.
- */
 package NumericalFunctions {
+	doc
+	/*
+	 * This package defines abstract functions on Numerical values for general arithmetic and comparison operations.
+	 */
+
 	import ScalarValues::*;
 	private import ControlFunctions::reduce;
 	

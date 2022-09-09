@@ -1,9 +1,11 @@
-/**
- * This package contains a basic set of primitive scalar (non-collection) data types. 
- * These include Boolean and String types and a hierarchy of concrete Number types, from 
- * the most general type of Complex numbers to the most specific type of Positive integers.</p>
- */
 package ScalarValues {
+	doc
+	/*
+	 * This package contains a basic set of primitive scalar (non-collection) data types. 
+	 * These include Boolean and String types and a hierarchy of concrete Number types, from 
+	 * the most general type of Complex numbers to the most specific type of Positive integers.</p>
+	 */
+
 	private import Base::DataValue;
 	
 	abstract datatype ScalarValue specializes DataValue;

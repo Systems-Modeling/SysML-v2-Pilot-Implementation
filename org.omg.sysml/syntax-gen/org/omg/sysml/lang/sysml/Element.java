@@ -45,6 +45,7 @@ import org.eclipse.emf.ecore.EObject;
  * ownedAnnotation = ownedRelationship->selectByKind(Annotation)->
  *     select(a | a.annotatedElement = self)
  * effectiveName()
+ * ownedRelationship->exists(isImplied) implies isImpliedIncluded
  * <!-- end-model-doc -->
  *
  * <p>
@@ -63,9 +64,10 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getTextualRepresentation <em>Textual Representation</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getAliasIds <em>Alias Ids</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getShortName <em>Short Name</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Element#getEffectiveName <em>Effective Name</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getName <em>Name</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Element#getEffectiveName <em>Effective Name</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getQualifiedName <em>Qualified Name</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Element#isImpliedIncluded <em>Is Implied Included</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getElement()
@@ -251,6 +253,32 @@ public interface Element extends EObject {
 	 * @generated
 	 */
 	void setQualifiedName(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Is Implied Included</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Whether all necessary implied Relationships have been included in the <code>ownedRelationships</code> of this Element. This property may be true, even if there are not actually any <code>ownedRelationships</code> with <code>isImplied = true</code>, meaning that no such Relationships are actually implied for this Element. However, if it is false, then <code>ownedRelationships</code> may <em>not</em> contain any implied Relationships. That is, either <em>all</em> required implied Relationships must be included, or none of them.</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Is Implied Included</em>' attribute.
+	 * @see #setIsImpliedIncluded(boolean)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getElement_IsImpliedIncluded()
+	 * @model default="false" dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false"
+	 * @generated
+	 */
+	boolean isImpliedIncluded();
+
+	/**
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Element#isImpliedIncluded <em>Is Implied Included</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Is Implied Included</em>' attribute.
+	 * @see #isImpliedIncluded()
+	 * @generated
+	 */
+	void setIsImpliedIncluded(boolean value);
 
 	/**
 	 * Returns the value of the '<em><b>Effective Name</b></em>' attribute.

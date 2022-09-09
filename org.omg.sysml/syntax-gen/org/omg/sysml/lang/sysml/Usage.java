@@ -81,6 +81,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedUseCase <em>Nested Use Case</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#isReference <em>Is Reference</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedFlow <em>Nested Flow</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedMetadata <em>Nested Metadata</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage()
@@ -987,6 +988,30 @@ public interface Usage extends Feature {
 	 * @generated
 	 */
 	EList<FlowConnectionUsage> getNestedFlow();
+
+	/**
+	 * Returns the value of the '<em><b>Nested Metadata</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.MetadataUsage}.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Usage#getNestedItem() <em>Nested Item</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The MetadataUsages that are <code>nestedUsages</code> of this Usage.</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Nested Metadata</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedMetadata()
+	 * @model transient="true" volatile="true" derived="true"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='metadataOwningUsage'"
+	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
+	 * @generated
+	 */
+	EList<MetadataUsage> getNestedMetadata();
 
 	/**
 	 * Returns the value of the '<em><b>Nested Action</b></em>' reference list.

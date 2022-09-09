@@ -46,7 +46,6 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	protected AbstractElementAlias match_MetadataFeatureDeclaration_DefinedByKeywordParserRuleCall_0_1_q;
 	protected AbstractElementAlias match_NullExpression_NullKeyword_1_0_or___LeftParenthesisKeyword_1_1_0_RightParenthesisKeyword_1_1_1__;
 	protected AbstractElementAlias match_PackageBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__;
-	protected AbstractElementAlias match_PrefixComment_CommentKeyword_0_0_q;
 	protected AbstractElementAlias match_RelationshipBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__;
 	protected AbstractElementAlias match_RequirementBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__;
 	protected AbstractElementAlias match_SatisfyRequirementUsage_AssertKeyword_1_q;
@@ -85,7 +84,6 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 		match_MetadataFeatureDeclaration_DefinedByKeywordParserRuleCall_0_1_q = new TokenAlias(false, true, grammarAccess.getMetadataFeatureDeclarationAccess().getDefinedByKeywordParserRuleCall_0_1());
 		match_NullExpression_NullKeyword_1_0_or___LeftParenthesisKeyword_1_1_0_RightParenthesisKeyword_1_1_1__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getNullExpressionAccess().getLeftParenthesisKeyword_1_1_0()), new TokenAlias(false, false, grammarAccess.getNullExpressionAccess().getRightParenthesisKeyword_1_1_1())), new TokenAlias(false, false, grammarAccess.getNullExpressionAccess().getNullKeyword_1_0()));
 		match_PackageBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getPackageBodyAccess().getLeftCurlyBracketKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getPackageBodyAccess().getRightCurlyBracketKeyword_1_2())), new TokenAlias(false, false, grammarAccess.getPackageBodyAccess().getSemicolonKeyword_0()));
-		match_PrefixComment_CommentKeyword_0_0_q = new TokenAlias(false, true, grammarAccess.getPrefixCommentAccess().getCommentKeyword_0_0());
 		match_RelationshipBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getRelationshipBodyAccess().getLeftCurlyBracketKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getRelationshipBodyAccess().getRightCurlyBracketKeyword_1_2())), new TokenAlias(false, false, grammarAccess.getRelationshipBodyAccess().getSemicolonKeyword_0()));
 		match_RequirementBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getRequirementBodyAccess().getLeftCurlyBracketKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getRequirementBodyAccess().getRightCurlyBracketKeyword_1_2())), new TokenAlias(false, false, grammarAccess.getRequirementBodyAccess().getSemicolonKeyword_0()));
 		match_SatisfyRequirementUsage_AssertKeyword_1_q = new TokenAlias(false, true, grammarAccess.getSatisfyRequirementUsageAccess().getAssertKeyword_1());
@@ -148,6 +146,8 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 			return getEnumerationDefKeywordToken(semanticObject, ruleCall, node);
 		else if (ruleCall.getRule() == grammarAccess.getEnumerationUsageKeywordRule())
 			return getEnumerationUsageKeywordToken(semanticObject, ruleCall, node);
+		else if (ruleCall.getRule() == grammarAccess.getFlowConnectionDefKeywordRule())
+			return getFlowConnectionDefKeywordToken(semanticObject, ruleCall, node);
 		else if (ruleCall.getRule() == grammarAccess.getFlowConnectionKeywordRule())
 			return getFlowConnectionKeywordToken(semanticObject, ruleCall, node);
 		else if (ruleCall.getRule() == grammarAccess.getInterfaceDefKeywordRule())
@@ -483,6 +483,17 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 		if (node != null)
 			return getTokenText(node);
 		return "enum";
+	}
+	
+	/**
+	 * FlowConnectionDefKeyword :
+	 * 	FlowConnectionKeyword 'def'
+	 * ;
+	 */
+	protected String getFlowConnectionDefKeywordToken(EObject semanticObject, RuleCall ruleCall, INode node) {
+		if (node != null)
+			return getTokenText(node);
+		return "flow def";
 	}
 	
 	/**
@@ -924,8 +935,6 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 				emit_NullExpression_NullKeyword_1_0_or___LeftParenthesisKeyword_1_1_0_RightParenthesisKeyword_1_1_1__(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_PackageBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__.equals(syntax))
 				emit_PackageBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_PrefixComment_CommentKeyword_0_0_q.equals(syntax))
-				emit_PrefixComment_CommentKeyword_0_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_RelationshipBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__.equals(syntax))
 				emit_RelationshipBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_RequirementBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__.equals(syntax))
@@ -1329,6 +1338,7 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     (rule start) ConnectionUsageKeyword (ambiguity) (rule start)
 	 *     (rule start) EnumerationUsageKeyword (ambiguity) (rule start)
 	 *     (rule start) EnumerationUsageKeyword? (ambiguity) (rule start)
+	 *     (rule start) FlowConnectionDefKeyword (ambiguity) (rule start)
 	 *     (rule start) ItemDefKeyword (ambiguity) (rule start)
 	 *     (rule start) ItemUsageKeyword (ambiguity) (rule start)
 	 *     (rule start) MessageKeyword (ambiguity) (rule start)
@@ -1363,6 +1373,7 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     isAbstract?='abstract' ConnectionDefKeyword (ambiguity) (rule end)
 	 *     isAbstract?='abstract' ConnectionUsageKeyword (ambiguity) (rule end)
 	 *     isAbstract?='abstract' EnumerationUsageKeyword (ambiguity) (rule end)
+	 *     isAbstract?='abstract' FlowConnectionDefKeyword (ambiguity) (rule end)
 	 *     isAbstract?='abstract' ItemDefKeyword (ambiguity) (rule end)
 	 *     isAbstract?='abstract' ItemUsageKeyword (ambiguity) (rule end)
 	 *     isAbstract?='abstract' MessageKeyword (ambiguity) (rule end)
@@ -1447,6 +1458,7 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     isVariation?='variation' ConnectionDefKeyword (ambiguity) (rule end)
 	 *     isVariation?='variation' ConnectionUsageKeyword (ambiguity) (rule end)
 	 *     isVariation?='variation' EnumerationUsageKeyword (ambiguity) (rule end)
+	 *     isVariation?='variation' FlowConnectionDefKeyword (ambiguity) (rule end)
 	 *     isVariation?='variation' ItemDefKeyword (ambiguity) (rule end)
 	 *     isVariation?='variation' ItemUsageKeyword (ambiguity) (rule end)
 	 *     isVariation?='variation' MessageKeyword (ambiguity) (rule end)
@@ -1472,6 +1484,7 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     ownedRelationship+=ItemFlowEndMember (ambiguity) (rule end)
 	 *     ownedRelationship+=LifeClassMembership AllocationDefKeyword (ambiguity) (rule end)
 	 *     ownedRelationship+=LifeClassMembership ConnectionDefKeyword (ambiguity) (rule end)
+	 *     ownedRelationship+=LifeClassMembership FlowConnectionDefKeyword (ambiguity) (rule end)
 	 *     ownedRelationship+=LifeClassMembership ItemDefKeyword (ambiguity) (rule end)
 	 *     ownedRelationship+=LifeClassMembership OccurrenceDefKeyword (ambiguity) (rule end)
 	 *     ownedRelationship+=LifeClassMembership OccurrenceDefKeyword (ambiguity) ownedRelationship+=LifeClassMembership
@@ -1505,6 +1518,7 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     ownedRelationship+=PrefixMetadataMember ConnectionDefKeyword (ambiguity) (rule end)
 	 *     ownedRelationship+=PrefixMetadataMember ConnectionUsageKeyword (ambiguity) (rule end)
 	 *     ownedRelationship+=PrefixMetadataMember EnumerationUsageKeyword (ambiguity) (rule end)
+	 *     ownedRelationship+=PrefixMetadataMember FlowConnectionDefKeyword (ambiguity) (rule end)
 	 *     ownedRelationship+=PrefixMetadataMember ItemDefKeyword (ambiguity) (rule end)
 	 *     ownedRelationship+=PrefixMetadataMember ItemUsageKeyword (ambiguity) (rule end)
 	 *     ownedRelationship+=PrefixMetadataMember MessageKeyword (ambiguity) (rule end)
@@ -1758,17 +1772,6 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     shortName=Name '>' (ambiguity) (rule end)
 	 */
 	protected void emit_PackageBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
-	/**
-	 * Ambiguous syntax:
-	 *     'comment'?
-	 *
-	 * This ambiguous syntax occurs at:
-	 *     (rule start) (ambiguity) body=PREFIX_COMMENT
-	 */
-	protected void emit_PrefixComment_CommentKeyword_0_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	

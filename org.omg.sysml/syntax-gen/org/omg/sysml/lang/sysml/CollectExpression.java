@@ -9,7 +9,7 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A CollectExpression is an OperatorExpression whoise operator is <code>"collect"</code>, which resolves to the library Function <em><code>ControlFunctions::collect</code></em>.</p>
+ * <p>A CollectExpression is an OperatorExpression whose operator is <code>"collect"</code>, which resolves to the library Function <em><code>ControlFunctions::collect</code></em>.</p>
  * <!-- end-model-doc -->
  *
  *

@@ -66,9 +66,10 @@ import org.omg.sysml.util.ElementUtil;
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getTextualRepresentation <em>Textual Representation</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getAliasIds <em>Alias Ids</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getShortName <em>Short Name</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getEffectiveName <em>Effective Name</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getEffectiveName <em>Effective Name</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getQualifiedName <em>Qualified Name</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#isImpliedIncluded <em>Is Implied Included</em>}</li>
  * </ul>
  *
  * @generated
@@ -205,16 +206,6 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	protected String shortName = SHORT_NAME_EDEFAULT;
 
 	/**
-	 * The cached setting delegate for the '{@link #getEffectiveName() <em>Effective Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getEffectiveName()
-	 * @generated
-	 * @ordered
-	 */
-	protected EStructuralFeature.Internal.SettingDelegate EFFECTIVE_NAME__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.ELEMENT__EFFECTIVE_NAME).getSettingDelegate();
-
-	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -235,6 +226,16 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	protected String name = NAME_EDEFAULT;
 
 	/**
+	 * The cached setting delegate for the '{@link #getEffectiveName() <em>Effective Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getEffectiveName()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate EFFECTIVE_NAME__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.ELEMENT__EFFECTIVE_NAME).getSettingDelegate();
+
+	/**
 	 * The cached setting delegate for the '{@link #getQualifiedName() <em>Qualified Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -243,6 +244,26 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate QUALIFIED_NAME__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.ELEMENT__QUALIFIED_NAME).getSettingDelegate();
+
+	/**
+	 * The default value of the '{@link #isImpliedIncluded() <em>Is Implied Included</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isImpliedIncluded()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean IS_IMPLIED_INCLUDED_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isImpliedIncluded() <em>Is Implied Included</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isImpliedIncluded()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean isImpliedIncluded = IS_IMPLIED_INCLUDED_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -577,6 +598,29 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isImpliedIncluded() {
+		return isImpliedIncluded;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setIsImpliedIncluded(boolean newIsImpliedIncluded) {
+		boolean oldIsImpliedIncluded = isImpliedIncluded;
+		isImpliedIncluded = newIsImpliedIncluded;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.ELEMENT__IS_IMPLIED_INCLUDED, oldIsImpliedIncluded, isImpliedIncluded));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
 	 * Get the effective name for this element, which by default is just its regular name.
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -708,12 +752,14 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 				return getAliasIds();
 			case SysMLPackage.ELEMENT__SHORT_NAME:
 				return getShortName();
-			case SysMLPackage.ELEMENT__EFFECTIVE_NAME:
-				return getEffectiveName();
 			case SysMLPackage.ELEMENT__NAME:
 				return getName();
+			case SysMLPackage.ELEMENT__EFFECTIVE_NAME:
+				return getEffectiveName();
 			case SysMLPackage.ELEMENT__QUALIFIED_NAME:
 				return getQualifiedName();
+			case SysMLPackage.ELEMENT__IS_IMPLIED_INCLUDED:
+				return isImpliedIncluded();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -769,14 +815,17 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 			case SysMLPackage.ELEMENT__SHORT_NAME:
 				setShortName((String)newValue);
 				return;
-			case SysMLPackage.ELEMENT__EFFECTIVE_NAME:
-				setEffectiveName((String)newValue);
-				return;
 			case SysMLPackage.ELEMENT__NAME:
 				setName((String)newValue);
 				return;
+			case SysMLPackage.ELEMENT__EFFECTIVE_NAME:
+				setEffectiveName((String)newValue);
+				return;
 			case SysMLPackage.ELEMENT__QUALIFIED_NAME:
 				setQualifiedName((String)newValue);
+				return;
+			case SysMLPackage.ELEMENT__IS_IMPLIED_INCLUDED:
+				setIsImpliedIncluded((Boolean)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -826,14 +875,17 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 			case SysMLPackage.ELEMENT__SHORT_NAME:
 				setShortName(SHORT_NAME_EDEFAULT);
 				return;
-			case SysMLPackage.ELEMENT__EFFECTIVE_NAME:
-				EFFECTIVE_NAME__ESETTING_DELEGATE.dynamicUnset(this, null, 0);
-				return;
 			case SysMLPackage.ELEMENT__NAME:
 				setName(NAME_EDEFAULT);
 				return;
+			case SysMLPackage.ELEMENT__EFFECTIVE_NAME:
+				EFFECTIVE_NAME__ESETTING_DELEGATE.dynamicUnset(this, null, 0);
+				return;
 			case SysMLPackage.ELEMENT__QUALIFIED_NAME:
 				QUALIFIED_NAME__ESETTING_DELEGATE.dynamicUnset(this, null, 0);
+				return;
+			case SysMLPackage.ELEMENT__IS_IMPLIED_INCLUDED:
+				setIsImpliedIncluded(IS_IMPLIED_INCLUDED_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -871,12 +923,14 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 				return aliasIds != null && !aliasIds.isEmpty();
 			case SysMLPackage.ELEMENT__SHORT_NAME:
 				return SHORT_NAME_EDEFAULT == null ? shortName != null : !SHORT_NAME_EDEFAULT.equals(shortName);
-			case SysMLPackage.ELEMENT__EFFECTIVE_NAME:
-				return EFFECTIVE_NAME__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.ELEMENT__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case SysMLPackage.ELEMENT__EFFECTIVE_NAME:
+				return EFFECTIVE_NAME__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.ELEMENT__QUALIFIED_NAME:
 				return QUALIFIED_NAME__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
+			case SysMLPackage.ELEMENT__IS_IMPLIED_INCLUDED:
+				return isImpliedIncluded != IS_IMPLIED_INCLUDED_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -915,6 +969,8 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 		result.append(shortName);
 		result.append(", name: ");
 		result.append(name);
+		result.append(", isImpliedIncluded: ");
+		result.append(isImpliedIncluded);
 		result.append(')');
 		return result.toString();
 	}

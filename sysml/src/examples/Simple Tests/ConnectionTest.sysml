@@ -36,4 +36,11 @@ package ConnectionTest {
 		end end1 :> d1 :> q;
 		end end2 :> d2;
 	}
+	
+	flow def F {
+		end p : P;
+		end q;
+	}
+	
+	message : F from p to p;
 }

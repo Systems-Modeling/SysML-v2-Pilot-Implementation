@@ -312,38 +312,29 @@ ruleAnnotatingElement returns [EObject current=null]
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getAnnotatingElementAccess().getPrefixCommentParserRuleCall_1());
+			newCompositeNode(grammarAccess.getAnnotatingElementAccess().getDocumentationParserRuleCall_1());
 		}
-		this_PrefixComment_1=rulePrefixComment
+		this_Documentation_1=ruleDocumentation
 		{
-			$current = $this_PrefixComment_1.current;
+			$current = $this_Documentation_1.current;
 			afterParserOrEnumRuleCall();
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getAnnotatingElementAccess().getDocumentationParserRuleCall_2());
+			newCompositeNode(grammarAccess.getAnnotatingElementAccess().getTextualRepresentationParserRuleCall_2());
 		}
-		this_Documentation_2=ruleDocumentation
+		this_TextualRepresentation_2=ruleTextualRepresentation
 		{
-			$current = $this_Documentation_2.current;
+			$current = $this_TextualRepresentation_2.current;
 			afterParserOrEnumRuleCall();
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getAnnotatingElementAccess().getTextualRepresentationParserRuleCall_3());
+			newCompositeNode(grammarAccess.getAnnotatingElementAccess().getMetadataUsageParserRuleCall_3());
 		}
-		this_TextualRepresentation_3=ruleTextualRepresentation
+		this_MetadataUsage_3=ruleMetadataUsage
 		{
-			$current = $this_TextualRepresentation_3.current;
-			afterParserOrEnumRuleCall();
-		}
-		    |
-		{
-			newCompositeNode(grammarAccess.getAnnotatingElementAccess().getMetadataUsageParserRuleCall_4());
-		}
-		this_MetadataUsage_4=ruleMetadataUsage
-		{
-			$current = $this_MetadataUsage_4.current;
+			$current = $this_MetadataUsage_3.current;
 			afterParserOrEnumRuleCall();
 		}
 	)
@@ -496,62 +487,6 @@ ruleComment returns [EObject current=null]
 						"body",
 						lv_body_6_0,
 						"org.omg.kerml.expressions.xtext.KerMLExpressions.REGULAR_COMMENT");
-				}
-			)
-		)
-	)
-;
-
-// Entry rule entryRulePrefixComment
-entryRulePrefixComment returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getPrefixCommentRule()); }
-	iv_rulePrefixComment=rulePrefixComment
-	{ $current=$iv_rulePrefixComment.current; }
-	EOF;
-
-// Rule PrefixComment
-rulePrefixComment returns [EObject current=null]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
-		(
-			otherlv_0='comment'
-			{
-				newLeafNode(otherlv_0, grammarAccess.getPrefixCommentAccess().getCommentKeyword_0_0());
-			}
-			(
-				{
-					if ($current==null) {
-						$current = createModelElement(grammarAccess.getPrefixCommentRule());
-					}
-					newCompositeNode(grammarAccess.getPrefixCommentAccess().getIdentificationParserRuleCall_0_1());
-				}
-				this_Identification_1=ruleIdentification[$current]
-				{
-					$current = $this_Identification_1.current;
-					afterParserOrEnumRuleCall();
-				}
-			)?
-		)?
-		(
-			(
-				lv_body_2_0=RULE_PREFIX_COMMENT
-				{
-					newLeafNode(lv_body_2_0, grammarAccess.getPrefixCommentAccess().getBodyPREFIX_COMMENTTerminalRuleCall_1_0());
-				}
-				{
-					if ($current==null) {
-						$current = createModelElement(grammarAccess.getPrefixCommentRule());
-					}
-					setWithLastConsumed(
-						$current,
-						"body",
-						lv_body_2_0,
-						"org.omg.kerml.expressions.xtext.KerMLExpressions.PREFIX_COMMENT");
 				}
 			)
 		)
@@ -2395,155 +2330,164 @@ ruleDefinitionElement returns [EObject current=null]
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getDefinitionElementAccess().getInterfaceDefinitionParserRuleCall_11());
+			newCompositeNode(grammarAccess.getDefinitionElementAccess().getFlowConnectionDefinitionParserRuleCall_11());
 		}
-		this_InterfaceDefinition_11=ruleInterfaceDefinition
+		this_FlowConnectionDefinition_11=ruleFlowConnectionDefinition
 		{
-			$current = $this_InterfaceDefinition_11.current;
+			$current = $this_FlowConnectionDefinition_11.current;
 			afterParserOrEnumRuleCall();
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getDefinitionElementAccess().getAllocationDefinitionParserRuleCall_12());
+			newCompositeNode(grammarAccess.getDefinitionElementAccess().getInterfaceDefinitionParserRuleCall_12());
 		}
-		this_AllocationDefinition_12=ruleAllocationDefinition
+		this_InterfaceDefinition_12=ruleInterfaceDefinition
 		{
-			$current = $this_AllocationDefinition_12.current;
+			$current = $this_InterfaceDefinition_12.current;
 			afterParserOrEnumRuleCall();
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getDefinitionElementAccess().getPortDefinitionParserRuleCall_13());
+			newCompositeNode(grammarAccess.getDefinitionElementAccess().getAllocationDefinitionParserRuleCall_13());
 		}
-		this_PortDefinition_13=rulePortDefinition
+		this_AllocationDefinition_13=ruleAllocationDefinition
 		{
-			$current = $this_PortDefinition_13.current;
+			$current = $this_AllocationDefinition_13.current;
 			afterParserOrEnumRuleCall();
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getDefinitionElementAccess().getActionDefinitionParserRuleCall_14());
+			newCompositeNode(grammarAccess.getDefinitionElementAccess().getPortDefinitionParserRuleCall_14());
 		}
-		this_ActionDefinition_14=ruleActionDefinition
+		this_PortDefinition_14=rulePortDefinition
 		{
-			$current = $this_ActionDefinition_14.current;
+			$current = $this_PortDefinition_14.current;
 			afterParserOrEnumRuleCall();
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getDefinitionElementAccess().getCalculationDefinitionParserRuleCall_15());
+			newCompositeNode(grammarAccess.getDefinitionElementAccess().getActionDefinitionParserRuleCall_15());
 		}
-		this_CalculationDefinition_15=ruleCalculationDefinition
+		this_ActionDefinition_15=ruleActionDefinition
 		{
-			$current = $this_CalculationDefinition_15.current;
+			$current = $this_ActionDefinition_15.current;
 			afterParserOrEnumRuleCall();
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getDefinitionElementAccess().getStateDefinitionParserRuleCall_16());
+			newCompositeNode(grammarAccess.getDefinitionElementAccess().getCalculationDefinitionParserRuleCall_16());
 		}
-		this_StateDefinition_16=ruleStateDefinition
+		this_CalculationDefinition_16=ruleCalculationDefinition
 		{
-			$current = $this_StateDefinition_16.current;
+			$current = $this_CalculationDefinition_16.current;
 			afterParserOrEnumRuleCall();
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getDefinitionElementAccess().getConstraintDefinitionParserRuleCall_17());
+			newCompositeNode(grammarAccess.getDefinitionElementAccess().getStateDefinitionParserRuleCall_17());
 		}
-		this_ConstraintDefinition_17=ruleConstraintDefinition
+		this_StateDefinition_17=ruleStateDefinition
 		{
-			$current = $this_ConstraintDefinition_17.current;
+			$current = $this_StateDefinition_17.current;
 			afterParserOrEnumRuleCall();
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getDefinitionElementAccess().getRequirementDefinitionParserRuleCall_18());
+			newCompositeNode(grammarAccess.getDefinitionElementAccess().getConstraintDefinitionParserRuleCall_18());
 		}
-		this_RequirementDefinition_18=ruleRequirementDefinition
+		this_ConstraintDefinition_18=ruleConstraintDefinition
 		{
-			$current = $this_RequirementDefinition_18.current;
+			$current = $this_ConstraintDefinition_18.current;
 			afterParserOrEnumRuleCall();
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getDefinitionElementAccess().getConcernDefinitionParserRuleCall_19());
+			newCompositeNode(grammarAccess.getDefinitionElementAccess().getRequirementDefinitionParserRuleCall_19());
 		}
-		this_ConcernDefinition_19=ruleConcernDefinition
+		this_RequirementDefinition_19=ruleRequirementDefinition
 		{
-			$current = $this_ConcernDefinition_19.current;
+			$current = $this_RequirementDefinition_19.current;
 			afterParserOrEnumRuleCall();
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getDefinitionElementAccess().getCaseDefinitionParserRuleCall_20());
+			newCompositeNode(grammarAccess.getDefinitionElementAccess().getConcernDefinitionParserRuleCall_20());
 		}
-		this_CaseDefinition_20=ruleCaseDefinition
+		this_ConcernDefinition_20=ruleConcernDefinition
 		{
-			$current = $this_CaseDefinition_20.current;
+			$current = $this_ConcernDefinition_20.current;
 			afterParserOrEnumRuleCall();
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getDefinitionElementAccess().getAnalysisCaseDefinitionParserRuleCall_21());
+			newCompositeNode(grammarAccess.getDefinitionElementAccess().getCaseDefinitionParserRuleCall_21());
 		}
-		this_AnalysisCaseDefinition_21=ruleAnalysisCaseDefinition
+		this_CaseDefinition_21=ruleCaseDefinition
 		{
-			$current = $this_AnalysisCaseDefinition_21.current;
+			$current = $this_CaseDefinition_21.current;
 			afterParserOrEnumRuleCall();
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getDefinitionElementAccess().getVerificationCaseDefinitionParserRuleCall_22());
+			newCompositeNode(grammarAccess.getDefinitionElementAccess().getAnalysisCaseDefinitionParserRuleCall_22());
 		}
-		this_VerificationCaseDefinition_22=ruleVerificationCaseDefinition
+		this_AnalysisCaseDefinition_22=ruleAnalysisCaseDefinition
 		{
-			$current = $this_VerificationCaseDefinition_22.current;
+			$current = $this_AnalysisCaseDefinition_22.current;
 			afterParserOrEnumRuleCall();
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getDefinitionElementAccess().getUseCaseDefinitionParserRuleCall_23());
+			newCompositeNode(grammarAccess.getDefinitionElementAccess().getVerificationCaseDefinitionParserRuleCall_23());
 		}
-		this_UseCaseDefinition_23=ruleUseCaseDefinition
+		this_VerificationCaseDefinition_23=ruleVerificationCaseDefinition
 		{
-			$current = $this_UseCaseDefinition_23.current;
+			$current = $this_VerificationCaseDefinition_23.current;
 			afterParserOrEnumRuleCall();
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getDefinitionElementAccess().getViewDefinitionParserRuleCall_24());
+			newCompositeNode(grammarAccess.getDefinitionElementAccess().getUseCaseDefinitionParserRuleCall_24());
 		}
-		this_ViewDefinition_24=ruleViewDefinition
+		this_UseCaseDefinition_24=ruleUseCaseDefinition
 		{
-			$current = $this_ViewDefinition_24.current;
+			$current = $this_UseCaseDefinition_24.current;
 			afterParserOrEnumRuleCall();
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getDefinitionElementAccess().getViewpointDefinitionParserRuleCall_25());
+			newCompositeNode(grammarAccess.getDefinitionElementAccess().getViewDefinitionParserRuleCall_25());
 		}
-		this_ViewpointDefinition_25=ruleViewpointDefinition
+		this_ViewDefinition_25=ruleViewDefinition
 		{
-			$current = $this_ViewpointDefinition_25.current;
+			$current = $this_ViewDefinition_25.current;
 			afterParserOrEnumRuleCall();
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getDefinitionElementAccess().getRenderingDefinitionParserRuleCall_26());
+			newCompositeNode(grammarAccess.getDefinitionElementAccess().getViewpointDefinitionParserRuleCall_26());
 		}
-		this_RenderingDefinition_26=ruleRenderingDefinition
+		this_ViewpointDefinition_26=ruleViewpointDefinition
 		{
-			$current = $this_RenderingDefinition_26.current;
+			$current = $this_ViewpointDefinition_26.current;
 			afterParserOrEnumRuleCall();
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getDefinitionElementAccess().getExtendedDefinitionParserRuleCall_27());
+			newCompositeNode(grammarAccess.getDefinitionElementAccess().getRenderingDefinitionParserRuleCall_27());
 		}
-		this_ExtendedDefinition_27=ruleExtendedDefinition
+		this_RenderingDefinition_27=ruleRenderingDefinition
 		{
-			$current = $this_ExtendedDefinition_27.current;
+			$current = $this_RenderingDefinition_27.current;
+			afterParserOrEnumRuleCall();
+		}
+		    |
+		{
+			newCompositeNode(grammarAccess.getDefinitionElementAccess().getExtendedDefinitionParserRuleCall_28());
+		}
+		this_ExtendedDefinition_28=ruleExtendedDefinition
+		{
+			$current = $this_ExtendedDefinition_28.current;
 			afterParserOrEnumRuleCall();
 		}
 	)
@@ -9345,6 +9289,110 @@ ruleEmptySourceEnd returns [EObject current=null]
 	)
 ;
 
+// Entry rule entryRuleFlowConnectionKeyword
+entryRuleFlowConnectionKeyword returns [String current=null]:
+	{ newCompositeNode(grammarAccess.getFlowConnectionKeywordRule()); }
+	iv_ruleFlowConnectionKeyword=ruleFlowConnectionKeyword
+	{ $current=$iv_ruleFlowConnectionKeyword.current.getText(); }
+	EOF;
+
+// Rule FlowConnectionKeyword
+ruleFlowConnectionKeyword returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	kw='flow'
+	{
+		$current.merge(kw);
+		newLeafNode(kw, grammarAccess.getFlowConnectionKeywordAccess().getFlowKeyword());
+	}
+;
+
+// Entry rule entryRuleFlowConnectionDefKeyword
+entryRuleFlowConnectionDefKeyword returns [String current=null]:
+	{ newCompositeNode(grammarAccess.getFlowConnectionDefKeywordRule()); }
+	iv_ruleFlowConnectionDefKeyword=ruleFlowConnectionDefKeyword
+	{ $current=$iv_ruleFlowConnectionDefKeyword.current.getText(); }
+	EOF;
+
+// Rule FlowConnectionDefKeyword
+ruleFlowConnectionDefKeyword returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		{
+			newCompositeNode(grammarAccess.getFlowConnectionDefKeywordAccess().getFlowConnectionKeywordParserRuleCall_0());
+		}
+		this_FlowConnectionKeyword_0=ruleFlowConnectionKeyword
+		{
+			$current.merge(this_FlowConnectionKeyword_0);
+		}
+		{
+			afterParserOrEnumRuleCall();
+		}
+		kw='def'
+		{
+			$current.merge(kw);
+			newLeafNode(kw, grammarAccess.getFlowConnectionDefKeywordAccess().getDefKeyword_1());
+		}
+	)
+;
+
+// Entry rule entryRuleFlowConnectionDefinition
+entryRuleFlowConnectionDefinition returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getFlowConnectionDefinitionRule()); }
+	iv_ruleFlowConnectionDefinition=ruleFlowConnectionDefinition
+	{ $current=$iv_ruleFlowConnectionDefinition.current; }
+	EOF;
+
+// Rule FlowConnectionDefinition
+ruleFlowConnectionDefinition returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		{
+			if ($current==null) {
+				$current = createModelElement(grammarAccess.getFlowConnectionDefinitionRule());
+			}
+			newCompositeNode(grammarAccess.getFlowConnectionDefinitionAccess().getOccurrenceDefinitionPrefixParserRuleCall_0());
+		}
+		this_OccurrenceDefinitionPrefix_0=ruleOccurrenceDefinitionPrefix[$current]
+		{
+			$current = $this_OccurrenceDefinitionPrefix_0.current;
+			afterParserOrEnumRuleCall();
+		}
+		{
+			newCompositeNode(grammarAccess.getFlowConnectionDefinitionAccess().getFlowConnectionDefKeywordParserRuleCall_1());
+		}
+		ruleFlowConnectionDefKeyword
+		{
+			afterParserOrEnumRuleCall();
+		}
+		{
+			if ($current==null) {
+				$current = createModelElement(grammarAccess.getFlowConnectionDefinitionRule());
+			}
+			newCompositeNode(grammarAccess.getFlowConnectionDefinitionAccess().getDefinitionParserRuleCall_2());
+		}
+		this_Definition_2=ruleDefinition[$current]
+		{
+			$current = $this_Definition_2.current;
+			afterParserOrEnumRuleCall();
+		}
+	)
+;
+
 // Entry rule entryRuleMessageKeyword
 entryRuleMessageKeyword returns [String current=null]:
 	{ newCompositeNode(grammarAccess.getMessageKeywordRule()); }
@@ -9609,28 +9657,6 @@ ruleMessageEnd returns [EObject current=null]
 			}
 		)
 	)
-;
-
-// Entry rule entryRuleFlowConnectionKeyword
-entryRuleFlowConnectionKeyword returns [String current=null]:
-	{ newCompositeNode(grammarAccess.getFlowConnectionKeywordRule()); }
-	iv_ruleFlowConnectionKeyword=ruleFlowConnectionKeyword
-	{ $current=$iv_ruleFlowConnectionKeyword.current.getText(); }
-	EOF;
-
-// Rule FlowConnectionKeyword
-ruleFlowConnectionKeyword returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	kw='flow'
-	{
-		$current.merge(kw);
-		newLeafNode(kw, grammarAccess.getFlowConnectionKeywordAccess().getFlowKeyword());
-	}
 ;
 
 // Entry rule entryRuleFlowConnectionUsage
@@ -27419,9 +27445,7 @@ RULE_UNRESTRICTED_NAME : '\'' ('\\' ('b'|'t'|'n'|'f'|'r'|'"'|'\''|'\\')|~(('\\'|
 
 RULE_STRING_VALUE : '"' ('\\' ('b'|'t'|'n'|'f'|'r'|'"'|'\''|'\\')|~(('\\'|'"')))* '"';
 
-RULE_REGULAR_COMMENT : '/*' ~('*') ( options {greedy=false;} : . )*'*/';
-
-RULE_PREFIX_COMMENT : '/**' ( options {greedy=false;} : . )*'*/';
+RULE_REGULAR_COMMENT : '/*' ( options {greedy=false;} : . )*'*/';
 
 RULE_ML_NOTE : '//*' ( options {greedy=false;} : . )*'*/';
 

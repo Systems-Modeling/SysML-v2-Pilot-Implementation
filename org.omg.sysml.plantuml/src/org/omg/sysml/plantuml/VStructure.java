@@ -37,7 +37,6 @@ import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.LifeClass;
 import org.omg.sysml.lang.sysml.Membership;
-import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.PortioningFeature;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.RequirementUsage;
@@ -206,9 +205,8 @@ public abstract class VStructure extends VDefault {
     }
 
     @Override
-    public String caseNamespace(Namespace pkg) {
-        String name = pkg.getName();
-        if (name == null) return super.caseNamespace(pkg);
+    public String casePackage(org.omg.sysml.lang.sysml.Package pkg) {
+        String name = getNameAnyway(pkg, true, false);
         flushContexts();
         append("package ");
         addNameWithId(pkg, name, true);

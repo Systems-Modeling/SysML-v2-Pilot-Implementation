@@ -36,7 +36,7 @@ public class RequirementConstraintMembership_referencedConstraint_SettingDelegat
 
 	@Override
 	protected EObject basicGet(InternalEObject owner) {
-		return FeatureUtil.getReferencedFeatureOf(((RequirementConstraintMembership)owner).getOwnedConstraint(), ConstraintUsage.class);
+		return FeatureUtil.getEffectiveReferencedFeatureOf(((RequirementConstraintMembership)owner).getOwnedConstraint(), ConstraintUsage.class);
 	}
 
 }

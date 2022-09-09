@@ -44,11 +44,11 @@ public class Specialization_owningType_SettingDelegate extends BasicDerivedObjec
 		return kind.isInstance(element)? kind.cast(element): null;
 	}
 	
-	protected void set(InternalEObject owner, Type newOwningType) {
-		if (((Specialization)owner).getSpecific() != newOwningType) {
-			((Specialization)owner).setSpecific(newOwningType);
+	@Override
+	protected void set(InternalEObject owner, Object newOwningType) {
+		if (newOwningType != null) {
+			((Specialization)owner).setOwningRelatedElement((Type)newOwningType);
 		}
-		((Specialization)owner).setOwningRelatedElement(newOwningType);
 	}
 
 }

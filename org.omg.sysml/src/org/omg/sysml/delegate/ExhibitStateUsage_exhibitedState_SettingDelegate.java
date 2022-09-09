@@ -36,7 +36,7 @@ public class ExhibitStateUsage_exhibitedState_SettingDelegate extends BasicDeriv
 
 	@Override
 	protected EObject basicGet(InternalEObject owner) {
-		return FeatureUtil.getReferencedFeatureOf((ExhibitStateUsage)owner, StateUsage.class);
+		return FeatureUtil.getEffectiveReferencedFeatureOf((ExhibitStateUsage)owner, StateUsage.class);
 	}
 
 }

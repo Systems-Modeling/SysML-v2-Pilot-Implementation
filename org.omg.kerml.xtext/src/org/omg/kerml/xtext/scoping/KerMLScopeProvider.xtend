@@ -33,20 +33,20 @@ import com.google.inject.Inject
 import java.util.Set
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EReference
-import org.eclipse.xtext.scoping.IScope
-import org.omg.sysml.lang.sysml.Element
-import org.omg.sysml.lang.sysml.Membership
-import org.omg.sysml.lang.sysml.SysMLPackage
-import org.omg.sysml.lang.sysml.Import
 import org.eclipse.xtext.scoping.IGlobalScopeProvider
+import org.eclipse.xtext.scoping.IScope
+import org.omg.sysml.lang.sysml.SysMLPackage
 import org.omg.sysml.lang.sysml.Conjugation
 import org.omg.sysml.lang.sysml.Connector
-import org.omg.sysml.lang.sysml.Subsetting
-import org.omg.sysml.lang.sysml.Namespace
-import org.omg.sysml.lang.sysml.Specialization
+import org.omg.sysml.lang.sysml.Element
 import org.omg.sysml.lang.sysml.FeatureChaining
+import org.omg.sysml.lang.sysml.Import
+import org.omg.sysml.lang.sysml.Membership
+import org.omg.sysml.lang.sysml.Namespace
+import org.omg.sysml.lang.sysml.ReferenceSubsetting
+import org.omg.sysml.lang.sysml.Specialization
+import org.omg.sysml.lang.sysml.Subsetting
 import org.omg.sysml.util.NamespaceUtil
-import org.omg.sysml.util.ConnectorUtil
 
 class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 
@@ -81,10 +81,8 @@ class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 			}
 		    var subsettingFeature = context.subsettingFeature
 		    var owningType = subsettingFeature?.owningType
-			if (owningType instanceof Connector) {
-		    	if (ConnectorUtil.isConnectorEndSubsettingOf(owningType, context)) {
-		    		return owningType.scope_owningNamespace(context, reference)
-		    	}
+			if (owningType instanceof Connector && context instanceof ReferenceSubsetting) {
+		    	return owningType.scope_owningNamespace(context, reference)
 		    }
 			subsettingFeature.scope_owningNamespace(context, reference)
 		} else if (context instanceof Specialization)
@@ -119,10 +117,8 @@ class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 			if (owningRelationship instanceof Subsetting) {
 				featureChained = owningRelationship.subsettingFeature
 				owningNamespace = featureChained?.owningNamespace
-				if (owningNamespace instanceof Connector) {
-					if (ConnectorUtil.isConnectorEndSubsettingOf(owningNamespace, owningRelationship)) {
-			    		featureChained = owningNamespace
-			    	}
+				if (owningNamespace instanceof Connector && owningRelationship instanceof ReferenceSubsetting) {
+			    	featureChained = owningNamespace as Connector
 			    }
 			}
 			featureChained.scope_relativeNamespace(owningNamespace, ch, reference)

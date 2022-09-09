@@ -180,6 +180,8 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 			return getRedefinesKeywordToken(semanticObject, ruleCall, node);
 		else if (ruleCall.getRule() == grammarAccess.getReferenceUsageKeywordRule())
 			return getReferenceUsageKeywordToken(semanticObject, ruleCall, node);
+		else if (ruleCall.getRule() == grammarAccess.getReferencesKeywordRule())
+			return getReferencesKeywordToken(semanticObject, ruleCall, node);
 		else if (ruleCall.getRule() == grammarAccess.getRenderingDefKeywordRule())
 			return getRenderingDefKeywordToken(semanticObject, ruleCall, node);
 		else if (ruleCall.getRule() == grammarAccess.getRenderingUsageKeywordRule())
@@ -673,6 +675,17 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	}
 	
 	/**
+	 * ReferencesKeyword :
+	 * 	'::>' | 'references'
+	 * ;
+	 */
+	protected String getReferencesKeywordToken(EObject semanticObject, RuleCall ruleCall, INode node) {
+		if (node != null)
+			return getTokenText(node);
+		return "::>";
+	}
+	
+	/**
 	 * RenderingDefKeyword :
 	 * 	RenderingKeyword 'def'
 	 * ;
@@ -1018,6 +1031,7 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     ownedRelationship+=NodeParameterMember (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedMultiplicity (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedRedefinition (ambiguity) (rule end)
+	 *     ownedRelationship+=OwnedReferenceSubsetting (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedSubclassification (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedSubsetting (ambiguity) (rule end)
 	 *     ownedRelationship+=PortioningFeatureMember 'perform' ActionUsageKeyword (ambiguity) (rule end)
@@ -1075,6 +1089,7 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     ownedRelationship+=FeatureTyping (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedMultiplicity (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedRedefinition (ambiguity) (rule end)
+	 *     ownedRelationship+=OwnedReferenceSubsetting (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedSubsetting (ambiguity) (rule end)
 	 *     ownedRelationship+=PortioningFeatureMember 'decide' (ambiguity) (rule end)
 	 *     ownedRelationship+=PortioningFeatureMember 'fork' (ambiguity) (rule end)
@@ -1256,6 +1271,7 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     ownedRelationship+=LifeClassMembership VerificationCaseDefKeyword (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedMultiplicity (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedRedefinition (ambiguity) (rule end)
+	 *     ownedRelationship+=OwnedReferenceSubsetting (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedSubclassification (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedSubsetting (ambiguity) (rule end)
 	 *     ownedRelationship+=PortioningFeatureMember 'include' UseCaseUsageKeyword (ambiguity) (rule end)
@@ -1493,6 +1509,7 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     ownedRelationship+=MessageEndMember (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedMultiplicity (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedRedefinition (ambiguity) (rule end)
+	 *     ownedRelationship+=OwnedReferenceSubsetting (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedSubclassification (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedSubclassification (ambiguity) ownedRelationship+=ConjugatedPortDefinitionMember
 	 *     ownedRelationship+=OwnedSubclassification (ambiguity) ownedRelationship+=LifeClassMembership
@@ -1567,6 +1584,7 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     ownedRelationship+=NodeParameterMember (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedMultiplicity (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedRedefinition (ambiguity) (rule end)
+	 *     ownedRelationship+=OwnedReferenceSubsetting (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedSubsetting (ambiguity) (rule end)
 	 *     shortName=Name '>' (ambiguity) (rule end)
 	 */
@@ -1590,6 +1608,7 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     (rule start) (ambiguity) (';' | ('{' '}')) (rule start)
 	 *     (rule start) (ambiguity) DefinedByKeyword ownedRelationship+=FeatureTyping
 	 *     (rule start) (ambiguity) RedefinesKeyword ownedRelationship+=OwnedRedefinition
+	 *     (rule start) (ambiguity) ReferencesKeyword ownedRelationship+=OwnedReferenceSubsetting
 	 *     (rule start) (ambiguity) SubsetsKeyword ownedRelationship+=OwnedSubsetting
 	 *     (rule start) (ambiguity) isNonunique?='nonunique'
 	 *     (rule start) (ambiguity) isOrdered?='ordered'
@@ -1653,6 +1672,7 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     ownedRelationship+=LifeClassMembership InterfaceDefKeyword (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedMultiplicity (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedRedefinition (ambiguity) (rule end)
+	 *     ownedRelationship+=OwnedReferenceSubsetting (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedSubclassification (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedSubsetting (ambiguity) (rule end)
 	 *     ownedRelationship+=PortioningFeatureMember InterfaceUsageKeyword (ambiguity) (rule end)
@@ -1732,6 +1752,7 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     ownedRelationship+=MetadataTyping (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedMultiplicity (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedRedefinition (ambiguity) (rule end)
+	 *     ownedRelationship+=OwnedReferenceSubsetting (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedSubsetting (ambiguity) (rule end)
 	 */
 	protected void emit_MetadataBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
@@ -1859,6 +1880,7 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     ownedRelationship+=LifeClassMembership ViewpointDefKeyword (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedMultiplicity (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedRedefinition (ambiguity) (rule end)
+	 *     ownedRelationship+=OwnedReferenceSubsetting (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedSubclassification (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedSubsetting (ambiguity) (rule end)
 	 *     ownedRelationship+=PortioningFeatureMember 'assert'? 'satisfy' RequirementUsageKeyword (ambiguity) (rule end)
@@ -1902,6 +1924,7 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     (rule start) (ambiguity) 'satisfy' RequirementUsageKeyword (';' | ('{' '}')) (rule start)
 	 *     (rule start) (ambiguity) 'satisfy' RequirementUsageKeyword DefinedByKeyword ownedRelationship+=FeatureTyping
 	 *     (rule start) (ambiguity) 'satisfy' RequirementUsageKeyword RedefinesKeyword ownedRelationship+=OwnedRedefinition
+	 *     (rule start) (ambiguity) 'satisfy' RequirementUsageKeyword ReferencesKeyword ownedRelationship+=OwnedReferenceSubsetting
 	 *     (rule start) (ambiguity) 'satisfy' RequirementUsageKeyword SubsetsKeyword ownedRelationship+=OwnedSubsetting
 	 *     (rule start) (ambiguity) 'satisfy' RequirementUsageKeyword isNonunique?='nonunique'
 	 *     (rule start) (ambiguity) 'satisfy' RequirementUsageKeyword isOrdered?='ordered'
@@ -1909,7 +1932,7 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     (rule start) (ambiguity) 'satisfy' RequirementUsageKeyword ownedRelationship+=FeatureValue
 	 *     (rule start) (ambiguity) 'satisfy' RequirementUsageKeyword ownedRelationship+=FeatureValueExpression
 	 *     (rule start) (ambiguity) 'satisfy' RequirementUsageKeyword ownedRelationship+=OwnedMultiplicity
-	 *     (rule start) (ambiguity) 'satisfy' ownedRelationship+=OwnedSubsetting
+	 *     (rule start) (ambiguity) 'satisfy' ownedRelationship+=OwnedReferenceSubsetting
 	 *     (rule start) (ambiguity) isNegated?='not'
 	 *     direction=FeatureDirection (ambiguity) 'satisfy' RequirementUsageKeyword '<' shortName=Name
 	 *     direction=FeatureDirection (ambiguity) 'satisfy' RequirementUsageKeyword 'by' ownedRelationship+=SatisfactionSubjectMember
@@ -1929,6 +1952,7 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     direction=FeatureDirection (ambiguity) 'satisfy' RequirementUsageKeyword (';' | ('{' '}')) (rule end)
 	 *     direction=FeatureDirection (ambiguity) 'satisfy' RequirementUsageKeyword DefinedByKeyword ownedRelationship+=FeatureTyping
 	 *     direction=FeatureDirection (ambiguity) 'satisfy' RequirementUsageKeyword RedefinesKeyword ownedRelationship+=OwnedRedefinition
+	 *     direction=FeatureDirection (ambiguity) 'satisfy' RequirementUsageKeyword ReferencesKeyword ownedRelationship+=OwnedReferenceSubsetting
 	 *     direction=FeatureDirection (ambiguity) 'satisfy' RequirementUsageKeyword SubsetsKeyword ownedRelationship+=OwnedSubsetting
 	 *     direction=FeatureDirection (ambiguity) 'satisfy' RequirementUsageKeyword isNonunique?='nonunique'
 	 *     direction=FeatureDirection (ambiguity) 'satisfy' RequirementUsageKeyword isOrdered?='ordered'
@@ -1936,7 +1960,7 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     direction=FeatureDirection (ambiguity) 'satisfy' RequirementUsageKeyword ownedRelationship+=FeatureValue
 	 *     direction=FeatureDirection (ambiguity) 'satisfy' RequirementUsageKeyword ownedRelationship+=FeatureValueExpression
 	 *     direction=FeatureDirection (ambiguity) 'satisfy' RequirementUsageKeyword ownedRelationship+=OwnedMultiplicity
-	 *     direction=FeatureDirection (ambiguity) 'satisfy' ownedRelationship+=OwnedSubsetting
+	 *     direction=FeatureDirection (ambiguity) 'satisfy' ownedRelationship+=OwnedReferenceSubsetting
 	 *     direction=FeatureDirection (ambiguity) isNegated?='not'
 	 *     isAbstract?='abstract' (ambiguity) 'satisfy' RequirementUsageKeyword '<' shortName=Name
 	 *     isAbstract?='abstract' (ambiguity) 'satisfy' RequirementUsageKeyword 'by' ownedRelationship+=SatisfactionSubjectMember
@@ -1956,6 +1980,7 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     isAbstract?='abstract' (ambiguity) 'satisfy' RequirementUsageKeyword (';' | ('{' '}')) (rule end)
 	 *     isAbstract?='abstract' (ambiguity) 'satisfy' RequirementUsageKeyword DefinedByKeyword ownedRelationship+=FeatureTyping
 	 *     isAbstract?='abstract' (ambiguity) 'satisfy' RequirementUsageKeyword RedefinesKeyword ownedRelationship+=OwnedRedefinition
+	 *     isAbstract?='abstract' (ambiguity) 'satisfy' RequirementUsageKeyword ReferencesKeyword ownedRelationship+=OwnedReferenceSubsetting
 	 *     isAbstract?='abstract' (ambiguity) 'satisfy' RequirementUsageKeyword SubsetsKeyword ownedRelationship+=OwnedSubsetting
 	 *     isAbstract?='abstract' (ambiguity) 'satisfy' RequirementUsageKeyword isNonunique?='nonunique'
 	 *     isAbstract?='abstract' (ambiguity) 'satisfy' RequirementUsageKeyword isOrdered?='ordered'
@@ -1963,7 +1988,7 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     isAbstract?='abstract' (ambiguity) 'satisfy' RequirementUsageKeyword ownedRelationship+=FeatureValue
 	 *     isAbstract?='abstract' (ambiguity) 'satisfy' RequirementUsageKeyword ownedRelationship+=FeatureValueExpression
 	 *     isAbstract?='abstract' (ambiguity) 'satisfy' RequirementUsageKeyword ownedRelationship+=OwnedMultiplicity
-	 *     isAbstract?='abstract' (ambiguity) 'satisfy' ownedRelationship+=OwnedSubsetting
+	 *     isAbstract?='abstract' (ambiguity) 'satisfy' ownedRelationship+=OwnedReferenceSubsetting
 	 *     isAbstract?='abstract' (ambiguity) isNegated?='not'
 	 *     isDerived?='derived' (ambiguity) 'satisfy' RequirementUsageKeyword '<' shortName=Name
 	 *     isDerived?='derived' (ambiguity) 'satisfy' RequirementUsageKeyword 'by' ownedRelationship+=SatisfactionSubjectMember
@@ -1983,6 +2008,7 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     isDerived?='derived' (ambiguity) 'satisfy' RequirementUsageKeyword (';' | ('{' '}')) (rule end)
 	 *     isDerived?='derived' (ambiguity) 'satisfy' RequirementUsageKeyword DefinedByKeyword ownedRelationship+=FeatureTyping
 	 *     isDerived?='derived' (ambiguity) 'satisfy' RequirementUsageKeyword RedefinesKeyword ownedRelationship+=OwnedRedefinition
+	 *     isDerived?='derived' (ambiguity) 'satisfy' RequirementUsageKeyword ReferencesKeyword ownedRelationship+=OwnedReferenceSubsetting
 	 *     isDerived?='derived' (ambiguity) 'satisfy' RequirementUsageKeyword SubsetsKeyword ownedRelationship+=OwnedSubsetting
 	 *     isDerived?='derived' (ambiguity) 'satisfy' RequirementUsageKeyword isNonunique?='nonunique'
 	 *     isDerived?='derived' (ambiguity) 'satisfy' RequirementUsageKeyword isOrdered?='ordered'
@@ -1990,7 +2016,7 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     isDerived?='derived' (ambiguity) 'satisfy' RequirementUsageKeyword ownedRelationship+=FeatureValue
 	 *     isDerived?='derived' (ambiguity) 'satisfy' RequirementUsageKeyword ownedRelationship+=FeatureValueExpression
 	 *     isDerived?='derived' (ambiguity) 'satisfy' RequirementUsageKeyword ownedRelationship+=OwnedMultiplicity
-	 *     isDerived?='derived' (ambiguity) 'satisfy' ownedRelationship+=OwnedSubsetting
+	 *     isDerived?='derived' (ambiguity) 'satisfy' ownedRelationship+=OwnedReferenceSubsetting
 	 *     isDerived?='derived' (ambiguity) isNegated?='not'
 	 *     isEnd?='end' (ambiguity) 'satisfy' RequirementUsageKeyword '<' shortName=Name
 	 *     isEnd?='end' (ambiguity) 'satisfy' RequirementUsageKeyword 'by' ownedRelationship+=SatisfactionSubjectMember
@@ -2010,6 +2036,7 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     isEnd?='end' (ambiguity) 'satisfy' RequirementUsageKeyword (';' | ('{' '}')) (rule end)
 	 *     isEnd?='end' (ambiguity) 'satisfy' RequirementUsageKeyword DefinedByKeyword ownedRelationship+=FeatureTyping
 	 *     isEnd?='end' (ambiguity) 'satisfy' RequirementUsageKeyword RedefinesKeyword ownedRelationship+=OwnedRedefinition
+	 *     isEnd?='end' (ambiguity) 'satisfy' RequirementUsageKeyword ReferencesKeyword ownedRelationship+=OwnedReferenceSubsetting
 	 *     isEnd?='end' (ambiguity) 'satisfy' RequirementUsageKeyword SubsetsKeyword ownedRelationship+=OwnedSubsetting
 	 *     isEnd?='end' (ambiguity) 'satisfy' RequirementUsageKeyword isNonunique?='nonunique'
 	 *     isEnd?='end' (ambiguity) 'satisfy' RequirementUsageKeyword isOrdered?='ordered'
@@ -2017,7 +2044,7 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     isEnd?='end' (ambiguity) 'satisfy' RequirementUsageKeyword ownedRelationship+=FeatureValue
 	 *     isEnd?='end' (ambiguity) 'satisfy' RequirementUsageKeyword ownedRelationship+=FeatureValueExpression
 	 *     isEnd?='end' (ambiguity) 'satisfy' RequirementUsageKeyword ownedRelationship+=OwnedMultiplicity
-	 *     isEnd?='end' (ambiguity) 'satisfy' ownedRelationship+=OwnedSubsetting
+	 *     isEnd?='end' (ambiguity) 'satisfy' ownedRelationship+=OwnedReferenceSubsetting
 	 *     isEnd?='end' (ambiguity) isNegated?='not'
 	 *     isIndividual?='individual' (ambiguity) 'satisfy' RequirementUsageKeyword '<' shortName=Name
 	 *     isIndividual?='individual' (ambiguity) 'satisfy' RequirementUsageKeyword 'by' ownedRelationship+=SatisfactionSubjectMember
@@ -2037,6 +2064,7 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     isIndividual?='individual' (ambiguity) 'satisfy' RequirementUsageKeyword (';' | ('{' '}')) (rule end)
 	 *     isIndividual?='individual' (ambiguity) 'satisfy' RequirementUsageKeyword DefinedByKeyword ownedRelationship+=FeatureTyping
 	 *     isIndividual?='individual' (ambiguity) 'satisfy' RequirementUsageKeyword RedefinesKeyword ownedRelationship+=OwnedRedefinition
+	 *     isIndividual?='individual' (ambiguity) 'satisfy' RequirementUsageKeyword ReferencesKeyword ownedRelationship+=OwnedReferenceSubsetting
 	 *     isIndividual?='individual' (ambiguity) 'satisfy' RequirementUsageKeyword SubsetsKeyword ownedRelationship+=OwnedSubsetting
 	 *     isIndividual?='individual' (ambiguity) 'satisfy' RequirementUsageKeyword isNonunique?='nonunique'
 	 *     isIndividual?='individual' (ambiguity) 'satisfy' RequirementUsageKeyword isOrdered?='ordered'
@@ -2044,7 +2072,7 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     isIndividual?='individual' (ambiguity) 'satisfy' RequirementUsageKeyword ownedRelationship+=FeatureValue
 	 *     isIndividual?='individual' (ambiguity) 'satisfy' RequirementUsageKeyword ownedRelationship+=FeatureValueExpression
 	 *     isIndividual?='individual' (ambiguity) 'satisfy' RequirementUsageKeyword ownedRelationship+=OwnedMultiplicity
-	 *     isIndividual?='individual' (ambiguity) 'satisfy' ownedRelationship+=OwnedSubsetting
+	 *     isIndividual?='individual' (ambiguity) 'satisfy' ownedRelationship+=OwnedReferenceSubsetting
 	 *     isIndividual?='individual' (ambiguity) isNegated?='not'
 	 *     isReadOnly?='readonly' (ambiguity) 'satisfy' RequirementUsageKeyword '<' shortName=Name
 	 *     isReadOnly?='readonly' (ambiguity) 'satisfy' RequirementUsageKeyword 'by' ownedRelationship+=SatisfactionSubjectMember
@@ -2064,6 +2092,7 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     isReadOnly?='readonly' (ambiguity) 'satisfy' RequirementUsageKeyword (';' | ('{' '}')) (rule end)
 	 *     isReadOnly?='readonly' (ambiguity) 'satisfy' RequirementUsageKeyword DefinedByKeyword ownedRelationship+=FeatureTyping
 	 *     isReadOnly?='readonly' (ambiguity) 'satisfy' RequirementUsageKeyword RedefinesKeyword ownedRelationship+=OwnedRedefinition
+	 *     isReadOnly?='readonly' (ambiguity) 'satisfy' RequirementUsageKeyword ReferencesKeyword ownedRelationship+=OwnedReferenceSubsetting
 	 *     isReadOnly?='readonly' (ambiguity) 'satisfy' RequirementUsageKeyword SubsetsKeyword ownedRelationship+=OwnedSubsetting
 	 *     isReadOnly?='readonly' (ambiguity) 'satisfy' RequirementUsageKeyword isNonunique?='nonunique'
 	 *     isReadOnly?='readonly' (ambiguity) 'satisfy' RequirementUsageKeyword isOrdered?='ordered'
@@ -2071,7 +2100,7 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     isReadOnly?='readonly' (ambiguity) 'satisfy' RequirementUsageKeyword ownedRelationship+=FeatureValue
 	 *     isReadOnly?='readonly' (ambiguity) 'satisfy' RequirementUsageKeyword ownedRelationship+=FeatureValueExpression
 	 *     isReadOnly?='readonly' (ambiguity) 'satisfy' RequirementUsageKeyword ownedRelationship+=OwnedMultiplicity
-	 *     isReadOnly?='readonly' (ambiguity) 'satisfy' ownedRelationship+=OwnedSubsetting
+	 *     isReadOnly?='readonly' (ambiguity) 'satisfy' ownedRelationship+=OwnedReferenceSubsetting
 	 *     isReadOnly?='readonly' (ambiguity) isNegated?='not'
 	 *     isReference?='ref' (ambiguity) 'satisfy' RequirementUsageKeyword '<' shortName=Name
 	 *     isReference?='ref' (ambiguity) 'satisfy' RequirementUsageKeyword 'by' ownedRelationship+=SatisfactionSubjectMember
@@ -2091,6 +2120,7 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     isReference?='ref' (ambiguity) 'satisfy' RequirementUsageKeyword (';' | ('{' '}')) (rule end)
 	 *     isReference?='ref' (ambiguity) 'satisfy' RequirementUsageKeyword DefinedByKeyword ownedRelationship+=FeatureTyping
 	 *     isReference?='ref' (ambiguity) 'satisfy' RequirementUsageKeyword RedefinesKeyword ownedRelationship+=OwnedRedefinition
+	 *     isReference?='ref' (ambiguity) 'satisfy' RequirementUsageKeyword ReferencesKeyword ownedRelationship+=OwnedReferenceSubsetting
 	 *     isReference?='ref' (ambiguity) 'satisfy' RequirementUsageKeyword SubsetsKeyword ownedRelationship+=OwnedSubsetting
 	 *     isReference?='ref' (ambiguity) 'satisfy' RequirementUsageKeyword isNonunique?='nonunique'
 	 *     isReference?='ref' (ambiguity) 'satisfy' RequirementUsageKeyword isOrdered?='ordered'
@@ -2098,7 +2128,7 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     isReference?='ref' (ambiguity) 'satisfy' RequirementUsageKeyword ownedRelationship+=FeatureValue
 	 *     isReference?='ref' (ambiguity) 'satisfy' RequirementUsageKeyword ownedRelationship+=FeatureValueExpression
 	 *     isReference?='ref' (ambiguity) 'satisfy' RequirementUsageKeyword ownedRelationship+=OwnedMultiplicity
-	 *     isReference?='ref' (ambiguity) 'satisfy' ownedRelationship+=OwnedSubsetting
+	 *     isReference?='ref' (ambiguity) 'satisfy' ownedRelationship+=OwnedReferenceSubsetting
 	 *     isReference?='ref' (ambiguity) isNegated?='not'
 	 *     isVariation?='variation' (ambiguity) 'satisfy' RequirementUsageKeyword '<' shortName=Name
 	 *     isVariation?='variation' (ambiguity) 'satisfy' RequirementUsageKeyword 'by' ownedRelationship+=SatisfactionSubjectMember
@@ -2118,6 +2148,7 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     isVariation?='variation' (ambiguity) 'satisfy' RequirementUsageKeyword (';' | ('{' '}')) (rule end)
 	 *     isVariation?='variation' (ambiguity) 'satisfy' RequirementUsageKeyword DefinedByKeyword ownedRelationship+=FeatureTyping
 	 *     isVariation?='variation' (ambiguity) 'satisfy' RequirementUsageKeyword RedefinesKeyword ownedRelationship+=OwnedRedefinition
+	 *     isVariation?='variation' (ambiguity) 'satisfy' RequirementUsageKeyword ReferencesKeyword ownedRelationship+=OwnedReferenceSubsetting
 	 *     isVariation?='variation' (ambiguity) 'satisfy' RequirementUsageKeyword SubsetsKeyword ownedRelationship+=OwnedSubsetting
 	 *     isVariation?='variation' (ambiguity) 'satisfy' RequirementUsageKeyword isNonunique?='nonunique'
 	 *     isVariation?='variation' (ambiguity) 'satisfy' RequirementUsageKeyword isOrdered?='ordered'
@@ -2125,7 +2156,7 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     isVariation?='variation' (ambiguity) 'satisfy' RequirementUsageKeyword ownedRelationship+=FeatureValue
 	 *     isVariation?='variation' (ambiguity) 'satisfy' RequirementUsageKeyword ownedRelationship+=FeatureValueExpression
 	 *     isVariation?='variation' (ambiguity) 'satisfy' RequirementUsageKeyword ownedRelationship+=OwnedMultiplicity
-	 *     isVariation?='variation' (ambiguity) 'satisfy' ownedRelationship+=OwnedSubsetting
+	 *     isVariation?='variation' (ambiguity) 'satisfy' ownedRelationship+=OwnedReferenceSubsetting
 	 *     isVariation?='variation' (ambiguity) isNegated?='not'
 	 *     ownedRelationship+=PortioningFeatureMember (ambiguity) 'satisfy' RequirementUsageKeyword '<' shortName=Name
 	 *     ownedRelationship+=PortioningFeatureMember (ambiguity) 'satisfy' RequirementUsageKeyword 'by' ownedRelationship+=SatisfactionSubjectMember
@@ -2145,6 +2176,7 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     ownedRelationship+=PortioningFeatureMember (ambiguity) 'satisfy' RequirementUsageKeyword (';' | ('{' '}')) (rule end)
 	 *     ownedRelationship+=PortioningFeatureMember (ambiguity) 'satisfy' RequirementUsageKeyword DefinedByKeyword ownedRelationship+=FeatureTyping
 	 *     ownedRelationship+=PortioningFeatureMember (ambiguity) 'satisfy' RequirementUsageKeyword RedefinesKeyword ownedRelationship+=OwnedRedefinition
+	 *     ownedRelationship+=PortioningFeatureMember (ambiguity) 'satisfy' RequirementUsageKeyword ReferencesKeyword ownedRelationship+=OwnedReferenceSubsetting
 	 *     ownedRelationship+=PortioningFeatureMember (ambiguity) 'satisfy' RequirementUsageKeyword SubsetsKeyword ownedRelationship+=OwnedSubsetting
 	 *     ownedRelationship+=PortioningFeatureMember (ambiguity) 'satisfy' RequirementUsageKeyword isNonunique?='nonunique'
 	 *     ownedRelationship+=PortioningFeatureMember (ambiguity) 'satisfy' RequirementUsageKeyword isOrdered?='ordered'
@@ -2152,7 +2184,7 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     ownedRelationship+=PortioningFeatureMember (ambiguity) 'satisfy' RequirementUsageKeyword ownedRelationship+=FeatureValue
 	 *     ownedRelationship+=PortioningFeatureMember (ambiguity) 'satisfy' RequirementUsageKeyword ownedRelationship+=FeatureValueExpression
 	 *     ownedRelationship+=PortioningFeatureMember (ambiguity) 'satisfy' RequirementUsageKeyword ownedRelationship+=OwnedMultiplicity
-	 *     ownedRelationship+=PortioningFeatureMember (ambiguity) 'satisfy' ownedRelationship+=OwnedSubsetting
+	 *     ownedRelationship+=PortioningFeatureMember (ambiguity) 'satisfy' ownedRelationship+=OwnedReferenceSubsetting
 	 *     ownedRelationship+=PortioningFeatureMember (ambiguity) isNegated?='not'
 	 *     ownedRelationship+=PrefixMetadataMember (ambiguity) 'satisfy' RequirementUsageKeyword '<' shortName=Name
 	 *     ownedRelationship+=PrefixMetadataMember (ambiguity) 'satisfy' RequirementUsageKeyword 'by' ownedRelationship+=SatisfactionSubjectMember
@@ -2172,6 +2204,7 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     ownedRelationship+=PrefixMetadataMember (ambiguity) 'satisfy' RequirementUsageKeyword (';' | ('{' '}')) (rule end)
 	 *     ownedRelationship+=PrefixMetadataMember (ambiguity) 'satisfy' RequirementUsageKeyword DefinedByKeyword ownedRelationship+=FeatureTyping
 	 *     ownedRelationship+=PrefixMetadataMember (ambiguity) 'satisfy' RequirementUsageKeyword RedefinesKeyword ownedRelationship+=OwnedRedefinition
+	 *     ownedRelationship+=PrefixMetadataMember (ambiguity) 'satisfy' RequirementUsageKeyword ReferencesKeyword ownedRelationship+=OwnedReferenceSubsetting
 	 *     ownedRelationship+=PrefixMetadataMember (ambiguity) 'satisfy' RequirementUsageKeyword SubsetsKeyword ownedRelationship+=OwnedSubsetting
 	 *     ownedRelationship+=PrefixMetadataMember (ambiguity) 'satisfy' RequirementUsageKeyword isNonunique?='nonunique'
 	 *     ownedRelationship+=PrefixMetadataMember (ambiguity) 'satisfy' RequirementUsageKeyword isOrdered?='ordered'
@@ -2179,7 +2212,7 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     ownedRelationship+=PrefixMetadataMember (ambiguity) 'satisfy' RequirementUsageKeyword ownedRelationship+=FeatureValue
 	 *     ownedRelationship+=PrefixMetadataMember (ambiguity) 'satisfy' RequirementUsageKeyword ownedRelationship+=FeatureValueExpression
 	 *     ownedRelationship+=PrefixMetadataMember (ambiguity) 'satisfy' RequirementUsageKeyword ownedRelationship+=OwnedMultiplicity
-	 *     ownedRelationship+=PrefixMetadataMember (ambiguity) 'satisfy' ownedRelationship+=OwnedSubsetting
+	 *     ownedRelationship+=PrefixMetadataMember (ambiguity) 'satisfy' ownedRelationship+=OwnedReferenceSubsetting
 	 *     ownedRelationship+=PrefixMetadataMember (ambiguity) isNegated?='not'
 	 */
 	protected void emit_SatisfyRequirementUsage_AssertKeyword_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
@@ -2293,6 +2326,7 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     ownedRelationship+=FeatureValue (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedMultiplicity (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedRedefinition (ambiguity) (rule end)
+	 *     ownedRelationship+=OwnedReferenceSubsetting (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedSubsetting (ambiguity) (rule end)
 	 *     ownedRelationship+=PortioningFeatureMember ViewUsageKeyword (ambiguity) (rule end)
 	 *     ownedRelationship+=PrefixMetadataMember ViewUsageKeyword (ambiguity) (rule end)

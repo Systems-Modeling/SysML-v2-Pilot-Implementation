@@ -334,7 +334,7 @@ fragment MultiplicityPart returns SysML::Feature :
 ;
 
 fragment FeatureSpecialization returns SysML::Feature :
-	Typings | Subsettings | Redefinitions
+	Typings | Subsettings | References | Redefinitions
 ;
 
 fragment Typings returns SysML::Feature :
@@ -361,6 +361,14 @@ SubsetsKeyword :
 	':>' | 'subsets'
 ;
 
+fragment References returns SysML::Feature :
+	ReferencesKeyword ownedRelationship += OwnedReferenceSubsetting
+;
+
+ReferencesKeyword :
+	'::>' | 'references'
+;
+
 fragment Redefinitions returns SysML::Feature :
 	Redefines ( ',' ownedRelationship += OwnedRedefinition )*
 ;
@@ -381,8 +389,13 @@ FeatureTyping returns SysML::FeatureTyping :
 
 // OwnedFeatureTyping inherited from Expression syntax.
 
-OwnedSubsetting returns SysML::Subsetting:
+OwnedSubsetting returns SysML::Subsetting :
 	  subsettedFeature = [SysML::Feature|QualifiedName]
+	| ownedRelatedElement += OwnedFeatureChain
+;
+
+OwnedReferenceSubsetting returns SysML::ReferenceSubsetting :
+	  referencedFeature = [SysML::Feature|QualifiedName]
 	| ownedRelatedElement += OwnedFeatureChain
 ;
 
@@ -575,9 +588,8 @@ ReferenceUsage returns SysML::ReferenceUsage :
 	RefPrefix ReferenceUsageKeyword Usage
 ;
 
-// TODO: Find a better way to handle variant references than using ReferenceUsage.
 VariantReference returns SysML::ReferenceUsage :
-	ownedRelationship += OwnedSubsetting 
+	ownedRelationship += OwnedReferenceSubsetting 
 	FeatureSpecialization* UsageBody
 ;
 
@@ -808,7 +820,7 @@ PortioningFeature returns SysML::PortioningFeature :
 
 EventOccurrenceUsage returns SysML::EventOccurrenceUsage :
 	 OccurrenceUsagePrefix 'event'
-	( ownedRelationship += OwnedSubsetting FeatureSpecializationPart?
+	( ownedRelationship += OwnedReferenceSubsetting FeatureSpecializationPart?
    	| OccurrenceUsageKeyword UsageDeclaration? )
     UsageCompletion
 ;
@@ -936,8 +948,8 @@ ConnectorEndMember returns SysML::EndFeatureMembership :
 ;
 
 ConnectorEnd returns SysML::Feature :
-	( name = Name ':>' )? 
-	ownedRelationship += OwnedSubsetting
+	( name = Name ReferencesKeyword )? 
+	ownedRelationship += OwnedReferenceSubsetting
 	( ownedRelationship += OwnedMultiplicity )?
 ;
 
@@ -1063,7 +1075,7 @@ MessageEndMember returns SysML::EndFeatureMembership :
 ;
 
 MessageEnd returns SysML::ItemFlowEnd :
-	ownedRelationship += OwnedSubsetting
+	ownedRelationship += OwnedReferenceSubsetting
 ;
 
 /* Flow Connection Usages */
@@ -1121,8 +1133,8 @@ ItemFlowEnd returns SysML::ItemFlowEnd :
 	ownedRelationship += ItemFlowFeatureMember
 ;
 
-ItemFlowEndSubsetting returns SysML::Subsetting :
-	  subsettedFeature = [SysML::Feature | QualifiedName] '.'
+ItemFlowEndSubsetting returns SysML::ReferenceSubsetting :
+	  referencedFeature = [SysML::Feature | QualifiedName] '.'
 	| ownedRelatedElement += FeatureChainPrefix
 ;
 
@@ -1237,8 +1249,8 @@ InterfaceEndMember returns SysML::EndFeatureMembership :
 ;
 
 InterfaceEnd returns SysML::PortUsage :
-	( name = Name ':>' )? 
-	ownedRelationship += OwnedSubsetting
+	( name = Name ReferencesKeyword )? 
+	ownedRelationship += OwnedReferenceSubsetting
 	( ownedRelationship += OwnedMultiplicity )?
 ;
 
@@ -1348,7 +1360,7 @@ PerformActionUsage returns SysML::PerformActionUsage :
 ;
 
 fragment PerformActionUsageDeclaration returns SysML::ActionUsage :
-   	( ownedRelationship += OwnedSubsetting FeatureSpecializationPart?
+   	( ownedRelationship += OwnedReferenceSubsetting FeatureSpecializationPart?
    	| ActionUsageKeyword UsageDeclaration? )
     ValuePart?
 ;
@@ -1759,7 +1771,7 @@ fragment StateUsageBody returns SysML::StateUsage :
 
 ExhibitStateUsage returns SysML::ExhibitStateUsage :
     OccurrenceUsagePrefix 'exhibit' 
-    ( ownedRelationship += OwnedSubsetting FeatureSpecializationPart?
+    ( ownedRelationship += OwnedReferenceSubsetting FeatureSpecializationPart?
     | StateUsageKeyword UsageDeclaration?
     )
     ValuePart? StateUsageBody
@@ -1930,7 +1942,7 @@ ConstraintUsage returns SysML::ConstraintUsage :
 
 AssertConstraintUsage returns SysML::AssertConstraintUsage :
 	OccurrenceUsagePrefix 'assert' ( isNegated ?= 'not' )?
-    ( ownedRelationship += OwnedSubsetting FeatureSpecializationPart?
+    ( ownedRelationship += OwnedReferenceSubsetting FeatureSpecializationPart?
     | ConstraintUsageKeyword UsageDeclaration? 
     )
     CalculationBody
@@ -1984,7 +1996,7 @@ enum RequirementConstraintKind returns SysML::RequirementConstraintKind :
 ;
 
 RequirementConstraintUsage returns SysML::ConstraintUsage :
-      ownedRelationship += OwnedSubsetting FeatureSpecialization* 
+      ownedRelationship += OwnedReferenceSubsetting FeatureSpecialization* 
       RequirementBody
     | 'constraint' CalculationUsageDeclaration CalculationBody
 ;
@@ -1999,7 +2011,7 @@ enum FramedConcernKind returns SysML::RequirementConstraintKind :
 ;
 
 FramedConcernUsage returns SysML::ConcernUsage :
-      ownedRelationship += OwnedSubsetting FeatureSpecialization* 
+      ownedRelationship += OwnedReferenceSubsetting FeatureSpecialization* 
       RequirementBody
     | ConcernUsageKeyword CalculationUsageDeclaration CalculationBody
 ;
@@ -2034,7 +2046,7 @@ RequirementUsage returns SysML::RequirementUsage :
 
 SatisfyRequirementUsage returns SysML::SatisfyRequirementUsage :
 	OccurrenceUsagePrefix 'assert'? ( isNegated ?= 'not' )? 'satisfy' 
-	( ownedRelationship += OwnedSubsetting FeatureSpecializationPart?
+	( ownedRelationship += OwnedReferenceSubsetting FeatureSpecializationPart?
     | RequirementUsageKeyword UsageDeclaration? 
     )
     ValuePart?
@@ -2185,7 +2197,7 @@ enum RequirementVerificationKind returns SysML::RequirementConstraintKind :
 ;
 
 RequirementVerificationUsage returns SysML::RequirementUsage :
-      ownedRelationship += OwnedSubsetting FeatureSpecialization* 
+      ownedRelationship += OwnedReferenceSubsetting FeatureSpecialization* 
       RequirementBody
     | 'requirement' CalculationUsageDeclaration RequirementBody
 ;
@@ -2214,7 +2226,7 @@ UseCaseUsage returns SysML::UseCaseUsage :
 
 IncludeUseCaseUsage returns SysML::IncludeUseCaseUsage :
 	OccurrenceUsagePrefix 'include' 
-   	( ownedRelationship += OwnedSubsetting FeatureSpecializationPart?
+   	( ownedRelationship += OwnedReferenceSubsetting FeatureSpecializationPart?
    	| UseCaseUsageKeyword UsageDeclaration? )
     ValuePart?
 	CaseBody
@@ -2253,7 +2265,7 @@ ViewRenderingMember returns SysML::ViewRenderingMembership :
 ;
 
 ViewRenderingUsage returns SysML::RenderingUsage :
-	 ownedRelationship += OwnedSubsetting FeatureSpecialization* UsageBody
+	 ownedRelationship += OwnedReferenceSubsetting FeatureSpecialization* UsageBody
 ;
 
 /* View Usages */

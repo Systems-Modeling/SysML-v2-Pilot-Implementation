@@ -36,7 +36,7 @@ public class PerformActionUsage_performedAction_SettingDelegate extends BasicDer
 
 	@Override
 	protected EObject basicGet(InternalEObject owner) {
-		return FeatureUtil.getReferencedFeatureOf((PerformActionUsage)owner, ActionUsage.class);
+		return FeatureUtil.getEffectiveReferencedFeatureOf((PerformActionUsage)owner, ActionUsage.class);
 	}
 
 }

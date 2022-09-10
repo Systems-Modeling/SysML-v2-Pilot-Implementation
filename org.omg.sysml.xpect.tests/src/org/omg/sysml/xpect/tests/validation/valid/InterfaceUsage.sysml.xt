@@ -73,11 +73,11 @@ package 'Interface Example' {
 			port redefines engineFuelPort;
 		}
 		interface original: FuelInterface connect 
-			supplierPort :> tankAssy.fuelTankPort to 
-			consumerPort :> eng.engineFuelPort;
+			supplierPort ::> tankAssy.fuelTankPort to 
+			consumerPort ::> eng.engineFuelPort;
 		
 		interface opposite : FuelInterface connect 
-			consumerPort :> eng.engineFuelPort to
-			supplierPort :> tankAssy.fuelTankPort; 
+			consumerPort ::> eng.engineFuelPort to
+			supplierPort ::> tankAssy.fuelTankPort; 
 	} 
 }

@@ -1,0 +1,35 @@
+//*
+XPECT_SETUP org.omg.kerml.xpect.tests.validation.KerMLValidationTest
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library/Base.kerml"}
+       	File {from ="/library/Links.kerml"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library/Base.kerml"}
+		       	File {from ="/library/Links.kerml"}
+			}
+		}
+	}
+END_SETUP 
+*/
+package ReferenceSubsetting_invalid {
+	feature a;
+	feature b references a;
+	feature c references a subsets b;
+	//XPECT errors --> "At most one reference subsetting is allowed" at "c"
+	feature d references b references c;
+	
+	connector cc {
+		end x ::> a;
+		//*XPECT errors --- 
+		   "At most one reference subsetting is allowed" at "c"
+		   "At most one reference subsetting is allowed" at "d"
+		   ---
+		  */
+		end y ::> b ::> c ::> d;
+	}
+}

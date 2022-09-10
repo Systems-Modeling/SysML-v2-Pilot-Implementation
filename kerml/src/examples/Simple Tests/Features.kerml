@@ -5,7 +5,7 @@ package Features {
 	feature f;
 	feature g;
 	
-	feature x typed by A, B subsets f subsets g;
+	feature x typed by A, B references f subsets g;
 	
 	// Equivalent declaration:
 	feature x1 subsets g typed by A subsets f typed by B;

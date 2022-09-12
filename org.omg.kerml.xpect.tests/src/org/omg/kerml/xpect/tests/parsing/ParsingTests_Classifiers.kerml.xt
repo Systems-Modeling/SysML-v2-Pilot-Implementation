@@ -31,5 +31,5 @@ package Classifiers {
 	
 	classifier D disjoint from C differences A, B;
 	classifier E specializes C intersects A, B;
-	classifier F unions A, B;
+	classifier F unions A unions B;
 }

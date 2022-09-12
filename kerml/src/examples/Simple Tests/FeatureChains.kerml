@@ -1,4 +1,4 @@
-package Q {
+package FeatureChains {
 	classifier F {
 		feature a : A;
 	}
@@ -29,4 +29,6 @@ package Q {
 	
 	feature h1 unions f, b.f, b.a;
 	feature h2 differences b.f, b.a intersects f.a, g disjoint from h1;
+	
+	feature b_f_a chains b chains f.a;
 }

@@ -1901,12 +1901,12 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		
 		//fragment UnioningPart returns SysML::Type :
 		//    'unions' ownedRelationship += Unioning
-		//    ( ',' ownedRelationship += Unioning )+
+		//    ( ',' ownedRelationship += Unioning )*
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//'unions' ownedRelationship += Unioning
-		//( ',' ownedRelationship += Unioning )+
+		//( ',' ownedRelationship += Unioning )*
 		public Group getGroup() { return cGroup; }
 		
 		//'unions'
@@ -1918,7 +1918,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//Unioning
 		public RuleCall getOwnedRelationshipUnioningParserRuleCall_1_0() { return cOwnedRelationshipUnioningParserRuleCall_1_0; }
 		
-		//( ',' ownedRelationship += Unioning )+
+		//( ',' ownedRelationship += Unioning )*
 		public Group getGroup_2() { return cGroup_2; }
 		
 		//','
@@ -1943,12 +1943,12 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		
 		//fragment IntersectingPart returns SysML::Type :
 		//    'intersects' ownedRelationship += Intersecting
-		//    ( ',' ownedRelationship += Intersecting )+
+		//    ( ',' ownedRelationship += Intersecting )*
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//'intersects' ownedRelationship += Intersecting
-		//( ',' ownedRelationship += Intersecting )+
+		//( ',' ownedRelationship += Intersecting )*
 		public Group getGroup() { return cGroup; }
 		
 		//'intersects'
@@ -1960,7 +1960,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//Intersecting
 		public RuleCall getOwnedRelationshipIntersectingParserRuleCall_1_0() { return cOwnedRelationshipIntersectingParserRuleCall_1_0; }
 		
-		//( ',' ownedRelationship += Intersecting )+
+		//( ',' ownedRelationship += Intersecting )*
 		public Group getGroup_2() { return cGroup_2; }
 		
 		//','
@@ -1985,12 +1985,12 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		
 		//fragment DifferencingPart returns SysML::Type :
 		//    'differences' ownedRelationship += Differencing
-		//    ( ',' ownedRelationship += Differencing )+
+		//    ( ',' ownedRelationship += Differencing )*
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//'differences' ownedRelationship += Differencing
-		//( ',' ownedRelationship += Differencing )+
+		//( ',' ownedRelationship += Differencing )*
 		public Group getGroup() { return cGroup; }
 		
 		//'differences'
@@ -2002,7 +2002,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//Differencing
 		public RuleCall getOwnedRelationshipDifferencingParserRuleCall_1_0() { return cOwnedRelationshipDifferencingParserRuleCall_1_0; }
 		
-		//( ',' ownedRelationship += Differencing )+
+		//( ',' ownedRelationship += Differencing )*
 		public Group getGroup_2() { return cGroup_2; }
 		
 		//','
@@ -3217,21 +3217,33 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.ChainingPart");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cChainsKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final RuleCall cFeatureChainParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
+		private final Alternatives cAlternatives_1 = (Alternatives)cGroup.eContents().get(1);
+		private final Assignment cOwnedRelationshipAssignment_1_0 = (Assignment)cAlternatives_1.eContents().get(0);
+		private final RuleCall cOwnedRelationshipOwnedFeatureChainingParserRuleCall_1_0_0 = (RuleCall)cOwnedRelationshipAssignment_1_0.eContents().get(0);
+		private final RuleCall cFeatureChainParserRuleCall_1_1 = (RuleCall)cAlternatives_1.eContents().get(1);
 		
 		//fragment ChainingPart returns SysML::Feature :
-		//    'chains' FeatureChain
+		//    'chains' ( ownedRelationship += OwnedFeatureChaining | FeatureChain )
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'chains' FeatureChain
+		//'chains' ( ownedRelationship += OwnedFeatureChaining | FeatureChain )
 		public Group getGroup() { return cGroup; }
 		
 		//'chains'
 		public Keyword getChainsKeyword_0() { return cChainsKeyword_0; }
 		
+		//( ownedRelationship += OwnedFeatureChaining | FeatureChain )
+		public Alternatives getAlternatives_1() { return cAlternatives_1; }
+		
+		//ownedRelationship += OwnedFeatureChaining
+		public Assignment getOwnedRelationshipAssignment_1_0() { return cOwnedRelationshipAssignment_1_0; }
+		
+		//OwnedFeatureChaining
+		public RuleCall getOwnedRelationshipOwnedFeatureChainingParserRuleCall_1_0_0() { return cOwnedRelationshipOwnedFeatureChainingParserRuleCall_1_0_0; }
+		
 		//FeatureChain
-		public RuleCall getFeatureChainParserRuleCall_1() { return cFeatureChainParserRuleCall_1; }
+		public RuleCall getFeatureChainParserRuleCall_1_1() { return cFeatureChainParserRuleCall_1_1; }
 	}
 	public class InvertingPartElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.InvertingPart");
@@ -7998,7 +8010,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	
 	//fragment UnioningPart returns SysML::Type :
 	//    'unions' ownedRelationship += Unioning
-	//    ( ',' ownedRelationship += Unioning )+
+	//    ( ',' ownedRelationship += Unioning )*
 	//;
 	public UnioningPartElements getUnioningPartAccess() {
 		return pUnioningPart;
@@ -8010,7 +8022,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	
 	//fragment IntersectingPart returns SysML::Type :
 	//    'intersects' ownedRelationship += Intersecting
-	//    ( ',' ownedRelationship += Intersecting )+
+	//    ( ',' ownedRelationship += Intersecting )*
 	//;
 	public IntersectingPartElements getIntersectingPartAccess() {
 		return pIntersectingPart;
@@ -8022,7 +8034,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	
 	//fragment DifferencingPart returns SysML::Type :
 	//    'differences' ownedRelationship += Differencing
-	//    ( ',' ownedRelationship += Differencing )+
+	//    ( ',' ownedRelationship += Differencing )*
 	//;
 	public DifferencingPartElements getDifferencingPartAccess() {
 		return pDifferencingPart;
@@ -8372,7 +8384,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//fragment ChainingPart returns SysML::Feature :
-	//    'chains' FeatureChain
+	//    'chains' ( ownedRelationship += OwnedFeatureChaining | FeatureChain )
 	//;
 	public ChainingPartElements getChainingPartAccess() {
 		return pChainingPart;
@@ -9584,7 +9596,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	///* EXPRESSIONS */
 	///* Operator Expressions */
 	//OwnedExpressionMember returns SysML::FeatureMembership :
-	//    ownedRelatedElement += OwnedExpression // ownedMemberFeature = OwnedExpression
+	//    ownedRelatedElement += OwnedExpression
 	//;
 	public KerMLExpressionsGrammarAccess.OwnedExpressionMemberElements getOwnedExpressionMemberAccess() {
 		return gaKerMLExpressions.getOwnedExpressionMemberAccess();
@@ -9678,7 +9690,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//ImpliesExpressionMember returns SysML::FeatureMembership :
-	//    ownedRelatedElement += ImpliesExpression // ownedMemberFeature = ImpliesExpression
+	//    ownedRelatedElement += ImpliesExpression
 	//;
 	public KerMLExpressionsGrammarAccess.ImpliesExpressionMemberElements getImpliesExpressionMemberAccess() {
 		return gaKerMLExpressions.getImpliesExpressionMemberAccess();
@@ -9723,7 +9735,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//OrExpressionMember returns SysML::FeatureMembership :
-	//    ownedRelatedElement += OrExpression // ownedMemberFeature = OrExpression
+	//    ownedRelatedElement += OrExpression
 	//;
 	public KerMLExpressionsGrammarAccess.OrExpressionMemberElements getOrExpressionMemberAccess() {
 		return gaKerMLExpressions.getOrExpressionMemberAccess();
@@ -9780,7 +9792,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//XorExpressionMember returns SysML::FeatureMembership :
-	//    ownedRelatedElement += XorExpression // ownedMemberFeature = XorExpression
+	//    ownedRelatedElement += XorExpression
 	//;
 	public KerMLExpressionsGrammarAccess.XorExpressionMemberElements getXorExpressionMemberAccess() {
 		return gaKerMLExpressions.getXorExpressionMemberAccess();
@@ -9861,7 +9873,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//EqualityExpressionMember returns SysML::FeatureMembership :
-	//    ownedRelatedElement += EqualityExpression // ownedMemberParameter = EqualityExpression
+	//    ownedRelatedElement += EqualityExpression
 	//;
 	public KerMLExpressionsGrammarAccess.EqualityExpressionMemberElements getEqualityExpressionMemberAccess() {
 		return gaKerMLExpressions.getEqualityExpressionMemberAccess();
@@ -9922,7 +9934,6 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	
 	//TypeReferenceMember returns SysML::FeatureMembership :
 	//    ownedRelatedElement += TypeReference
-	//    // ownedMemberFeature = TypeReference
 	//;
 	public KerMLExpressionsGrammarAccess.TypeReferenceMemberElements getTypeReferenceMemberAccess() {
 		return gaKerMLExpressions.getTypeReferenceMemberAccess();
@@ -9966,7 +9977,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//SelfReferenceMember returns SysML::ReturnParameterMembership :
-	//    ownedRelatedElement += EmptyFeature // ownedMemberFeature = EmptyFeature
+	//    ownedRelatedElement += EmptyFeature
 	//;
 	public KerMLExpressionsGrammarAccess.SelfReferenceMemberElements getSelfReferenceMemberAccess() {
 		return gaKerMLExpressions.getSelfReferenceMemberAccess();
@@ -10175,7 +10186,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//FunctionReferenceMember returns SysML::FeatureMembership :
-	//    ownedRelatedElement += FunctionReference // ownedMemberFeature = FunctionReference
+	//    ownedRelatedElement += FunctionReference
 	//;
 	public KerMLExpressionsGrammarAccess.FunctionReferenceMemberElements getFunctionReferenceMemberAccess() {
 		return gaKerMLExpressions.getFunctionReferenceMemberAccess();
@@ -10198,7 +10209,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	
 	//FeatureChainMember returns SysML::Membership :
 	//      memberElement = [SysML::Feature | QualifiedName]
-	//    | {SysML::OwningMembership} ownedRelatedElement += OwnedFeatureChain // ownedMemberElement = OwnedFeatureChain
+	//    | {SysML::OwningMembership} ownedRelatedElement += OwnedFeatureChain
 	//;
 	public KerMLExpressionsGrammarAccess.FeatureChainMemberElements getFeatureChainMemberAccess() {
 		return gaKerMLExpressions.getFeatureChainMemberAccess();
@@ -10238,7 +10249,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//ExpressionBodyMember returns SysML::FeatureMembership :
-	//    ownedRelatedElement += ExpressionBody // ownedMemberFeature = ExpressionBody
+	//    ownedRelatedElement += ExpressionBody
 	//;
 	public KerMLExpressionsGrammarAccess.ExpressionBodyMemberElements getExpressionBodyMemberAccess() {
 		return gaKerMLExpressions.getExpressionBodyMemberAccess();
@@ -10249,7 +10260,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//BodyParameterMember returns SysML::ParameterMembership :
-	//    'in' ownedRelatedElement += BodyParameter // ownedMemberParameter = BodyParameter
+	//    'in' ownedRelatedElement += BodyParameter
 	//;
 	public KerMLExpressionsGrammarAccess.BodyParameterMemberElements getBodyParameterMemberAccess() {
 		return gaKerMLExpressions.getBodyParameterMemberAccess();
@@ -10380,7 +10391,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//ArgumentMember returns SysML::ParameterMembership :
-	//    ownedRelatedElement += Argument // ownedMemberParameter = Argument
+	//    ownedRelatedElement += Argument
 	//;
 	public KerMLExpressionsGrammarAccess.ArgumentMemberElements getArgumentMemberAccess() {
 		return gaKerMLExpressions.getArgumentMemberAccess();
@@ -10414,7 +10425,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//NamedArgumentMember returns SysML::ParameterMembership :
-	//    ownedRelatedElement += NamedArgument // ownedMemberFeature = NamedArgument
+	//    ownedRelatedElement += NamedArgument
 	//;
 	public KerMLExpressionsGrammarAccess.NamedArgumentMemberElements getNamedArgumentMemberAccess() {
 		return gaKerMLExpressions.getNamedArgumentMemberAccess();
@@ -10447,7 +10458,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//ArgumentValue returns SysML::FeatureValue :
-	//    ownedRelatedElement += OwnedExpression // value = OwnedExpression
+	//    ownedRelatedElement += OwnedExpression
 	//;
 	public KerMLExpressionsGrammarAccess.ArgumentValueElements getArgumentValueAccess() {
 		return gaKerMLExpressions.getArgumentValueAccess();

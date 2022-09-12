@@ -345,17 +345,17 @@ fragment DisjoiningPart returns SysML::Type :
 
 fragment UnioningPart returns SysML::Type :
 	'unions' ownedRelationship += Unioning
-	( ',' ownedRelationship += Unioning )+ 
+	( ',' ownedRelationship += Unioning )* 
 ;
 
 fragment IntersectingPart returns SysML::Type :
 	'intersects' ownedRelationship += Intersecting
-	( ',' ownedRelationship += Intersecting )+ 
+	( ',' ownedRelationship += Intersecting )* 
 ;
 
 fragment DifferencingPart returns SysML::Type :
 	'differences' ownedRelationship += Differencing
-	( ',' ownedRelationship += Differencing )+ 
+	( ',' ownedRelationship += Differencing )* 
 ;
 
 fragment TypeBody returns SysML::Type :
@@ -534,7 +534,7 @@ fragment FeatureRelationshipPart returns SysML::Feature :
 ;
 
 fragment ChainingPart returns SysML::Feature :
-	'chains' FeatureChain
+	'chains' ( ownedRelationship += OwnedFeatureChaining | FeatureChain )
 ;
 
 fragment InvertingPart returns SysML::Feature :

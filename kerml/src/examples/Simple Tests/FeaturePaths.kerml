@@ -27,4 +27,6 @@ package Q {
 	
 	disjoint b.f.a from b.a;
 	
-}		
+	feature h1 unions f, b.f, b.a;
+	feature h2 differences b.f, b.a intersects f.a, g disjoint from h1;
+}

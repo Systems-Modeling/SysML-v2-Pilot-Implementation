@@ -323,8 +323,7 @@ fragment TypeDeclaration returns SysML::Type :
     ( isSufficient ?= 'all' )? Identification?
     ( ownedRelationship += OwnedMultiplicity )? 
     ( SpecializationPart | ConjugationPart )+
-    DisjoiningPart?
-;
+    TypeRelationshipPart*;
 
 fragment SpecializationPart returns SysML::Type :
       ( ':>' | 'specializes' ) ownedRelationship += OwnedSpecialization
@@ -335,9 +334,28 @@ fragment ConjugationPart returns SysML::Type :
 	( '~' | 'conjugates' ) ownedRelationship += OwnedConjugation
 ;
 
+fragment TypeRelationshipPart returns SysML::Type :
+	DisjoiningPart | UnioningPart | IntersectingPart | DifferencingPart
+;
+
 fragment DisjoiningPart returns SysML::Type :
 	'disjoint' 'from' ownedRelationship += OwnedDisjoining
 	( ',' ownedRelationship += OwnedDisjoining )* 
+;
+
+fragment UnioningPart returns SysML::Type :
+	'unions' ownedRelationship += Unioning
+	( ',' ownedRelationship += Unioning )+ 
+;
+
+fragment IntersectingPart returns SysML::Type :
+	'intersects' ownedRelationship += Intersecting
+	( ',' ownedRelationship += Intersecting )+ 
+;
+
+fragment DifferencingPart returns SysML::Type :
+	'differences' ownedRelationship += Differencing
+	( ',' ownedRelationship += Differencing )+ 
 ;
 
 fragment TypeBody returns SysML::Type :
@@ -418,6 +436,23 @@ OwnedDisjoining returns SysML::Disjoining :
 	| ownedRelatedElement += OwnedFeatureChain
 ;
 
+/* Unioning, Intersecting and Differencing */
+
+Unioning returns SysML::Unioning :
+	  unioningType = [SysML::Type | QualifiedName]
+	| ownedRelatedElement += OwnedFeatureChain
+;
+
+Intersecting returns SysML::Intersecting :
+	  intersectingType = [SysML::Type | QualifiedName]
+	| ownedRelatedElement += OwnedFeatureChain
+;
+
+Differencing returns SysML::Differencing :
+	  differencingType = [SysML::Type | QualifiedName]
+	| ownedRelatedElement += OwnedFeatureChain
+;
+
 /* CLASSIFIERS */
 
 /* Classifiers */
@@ -431,7 +466,7 @@ fragment ClassifierDeclaration returns SysML::Classifier :
     (isSufficient ?= 'all' )? Identification?
 	( ownedRelationship += OwnedMultiplicity )?
 	( SuperclassingPart | ClassifierConjugationPart )?
-	DisjoiningPart?
+	TypeRelationshipPart*
 ;
 
 fragment SuperclassingPart returns SysML::Classifier :
@@ -495,7 +530,7 @@ fragment FeatureDeclaration returns SysML::Feature :
 ;
 
 fragment FeatureRelationshipPart returns SysML::Feature :
-	ChainingPart | DisjoiningPart | InvertingPart | TypeFeaturingPart
+	TypeRelationshipPart | ChainingPart | InvertingPart | TypeFeaturingPart
 ;
 
 fragment ChainingPart returns SysML::Feature :
@@ -1016,16 +1051,6 @@ ItemFlowRedefinition returns SysML::Redefinition :
 Metaclass returns SysML::Metaclass :
 	( isAbstract ?= 'abstract' )? 'metaclass' 
 	ClassifierDeclaration TypeBody
-;
-
-OwnedMetadataFeatureAnnotation returns SysML::Annotation :
-	ownedRelatedElement += OwnedMetadataFeature
-;
-
-OwnedMetadataFeature returns SysML::MetadataFeature :
-	( '@' | 'metadata' ) ( Identification ( ':' | 'typed' 'by' ) )? 
-	ownedRelationship += MetadataTyping 
-	TypeBody
 ;
 
 MetadataFeature returns SysML::MetadataFeature :

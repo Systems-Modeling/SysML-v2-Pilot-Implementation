@@ -599,6 +599,7 @@ public class VPath extends VTraverser {
 
     @Override
     public String caseType(Type typ) {
+    	if (checkVisited(typ)) return null;
         for (Specialization sp: typ.getOwnedSpecialization()) {
             Type g = sp.getGeneral();
             // Type s = sp.getSpecific();

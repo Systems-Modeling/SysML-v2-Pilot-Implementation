@@ -16,14 +16,16 @@ END_SETUP
 */
 
 package test{
+	classifier non{}
 	classifier A{
-		classifier a1{}
+		//XPECT errors ---> "Couldn't resolve reference to Feature 'non'." at "non"
+		feature aa subsets non;
+		feature a: A;
 	}
-	classifier B specializes A{
-		classifier A{
-			classifier a2{}
-		}
-		// XPECT errors ---> "Couldn't resolve reference to Classifier 'A::a1'." at "A::a1"
-		classifier b specializes A::a1{}
+	classifier B{
+		  //* XPECT errors ---
+			"Couldn't resolve reference to Type 'test'." at "test"
+		--- */
+		feature b: test:A::a;
 	}
 }

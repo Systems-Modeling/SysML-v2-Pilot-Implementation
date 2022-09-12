@@ -1,5 +1,5 @@
 //* 
-XPECT_SETUP org.omg.kerml.xpect.tests.validation.KerMLValidationTest
+XPECT_SETUP org.omg.kerml.xpect.tests.parsing.KerMLParsingTest
 	ResourceSet {
 		ThisFile {}
 		File {from ="/library/Base.kerml"}
@@ -24,9 +24,12 @@ package test{
 	}
 	classifier B{
 		//* XPECT errors ---
-			"Couldn't resolve reference to Type 'Test3::A'." at "Test3::A"
-			"Couldn't resolve reference to Type 'a'." at "a"
-		--- */
-		feature b: Test3::A:a;
+		"Relationships must have at least two related elements" at ""
+		"no viable alternative at input '..'" at ".."
+		"no viable alternative at input '..'" at "test"
+		"no viable alternative at input 'A'" at "A"
+		---
+		*/
+		feature b: test::A..a;
 	}
 }

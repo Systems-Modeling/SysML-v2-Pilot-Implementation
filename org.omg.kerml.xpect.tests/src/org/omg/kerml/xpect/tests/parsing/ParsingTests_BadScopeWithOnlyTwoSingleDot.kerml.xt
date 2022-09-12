@@ -1,5 +1,5 @@
 //* 
-XPECT_SETUP org.omg.kerml.xpect.tests.validation.KerMLValidationTest
+XPECT_SETUP org.omg.kerml.xpect.tests.parsing.KerMLParsingTest
 	ResourceSet {
 		ThisFile {}
 		File {from ="/library/Base.kerml"}
@@ -24,12 +24,12 @@ package test{
 	}
 	classifier B{
 		//* XPECT errors ---
-		"Relationships must have at least two related elements" at ""
-		"no viable alternative at input '..'" at ".."
+        "Relationships must have at least two related elements" at ""
 		"no viable alternative at input '..'" at "test"
+		"no viable alternative at input '::'" at "::"
 		"no viable alternative at input 'A'" at "A"
-		---
-		*/
-		feature b: test::A..a;
+		--- */
+		feature b: test..A::a;
 	}
 }
+

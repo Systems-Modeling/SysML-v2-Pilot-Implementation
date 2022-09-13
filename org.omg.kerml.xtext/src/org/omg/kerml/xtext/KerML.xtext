@@ -307,7 +307,7 @@ fragment PackageBody returns SysML::Namespace :
 
 ElementFilterMember returns SysML::ElementFilterMembership :
 	MemberPrefix
-	'filter' ownedRelatedElement += OwnedExpression ';' // condition = OwnedExpression ';'
+	'filter' ownedRelatedElement += OwnedExpression ';'
 ;
 
 /* TYPES */
@@ -323,7 +323,8 @@ fragment TypeDeclaration returns SysML::Type :
     ( isSufficient ?= 'all' )? Identification?
     ( ownedRelationship += OwnedMultiplicity )? 
     ( SpecializationPart | ConjugationPart )+
-    TypeRelationshipPart*;
+    TypeRelationshipPart*
+;
 
 fragment SpecializationPart returns SysML::Type :
       ( ':>' | 'specializes' ) ownedRelationship += OwnedSpecialization

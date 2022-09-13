@@ -126,14 +126,14 @@ PrefixMetadataUsage returns SysML::MetadataUsage :
 ;
 
 MetadataUsage returns SysML::MetadataUsage :
-	MetadataUsageKeyword MetadataFeatureDeclaration 
+	MetadataUsageKeyword MetadataUsageDeclaration 
 	( 'about' ownedRelationship += Annotation 
 		( ',' ownedRelationship += Annotation )*
 	)?
 	MetadataBody
 ;
 
-fragment MetadataFeatureDeclaration returns SysML::MetadataFeature :
+fragment MetadataUsageDeclaration returns SysML::MetadataUsage :
 	( Identification? DefinedByKeyword )? ownedRelationship += MetadataTyping
 ;
 

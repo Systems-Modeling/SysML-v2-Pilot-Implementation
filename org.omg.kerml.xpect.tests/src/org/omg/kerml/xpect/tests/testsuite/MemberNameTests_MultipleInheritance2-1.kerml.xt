@@ -3,7 +3,7 @@
    xpect throws RuntimeException error when test.A.a but not test.A.AA
  */
 //* 
-XPECT_SETUP org.omg.kerml.xpect.tests.testsuite.KerMLXtextTest
+XPECT_SETUP org.omg.kerml.xpect.tests.parsing.KerMLParsingTest
 	ResourceSet {
 		ThisFile {}
 		File {from ="/library/Base.kerml"}

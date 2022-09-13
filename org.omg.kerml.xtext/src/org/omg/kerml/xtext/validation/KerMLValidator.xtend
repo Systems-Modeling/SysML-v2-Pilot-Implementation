@@ -68,6 +68,7 @@ import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil
 import org.omg.sysml.util.ImplicitGeneralizationMap
 import org.omg.sysml.lang.sysml.OwningMembership
 import org.omg.sysml.lang.sysml.ReferenceSubsetting
+import org.eclipse.emf.ecore.EObject
 
 /**
  * This class contains custom validation rules. 
@@ -85,6 +86,15 @@ class KerMLValidator extends AbstractKerMLValidator {
 	
 	public static val INVALID_REFERENCESUBSETTING_TOO_MANY = 'Invalid ReferenceSubsetting - Too many'
 	public static val INVALID_REFERENCESUBSETTING_TOO_MANY_MSG = 'At most one reference subsetting is allowed'
+
+	public static val INVALID_FEATURECHAINING_TOO_FEW = 'Invalid FeatureChaining - Too few'
+	public static val INVALID_FEATURECHAINING_TOO_FEW_MSG = 'Cannot have only one feature chaining'
+	public static val INVALID_UNIONING_TOO_FEW = 'Invalid Unioning - Too few'
+	public static val INVALID_UNIONING_TOO_FEW_MSG = 'Cannot have only one unioning'
+	public static val INVALID_INTERSECTING_TOO_FEW = 'Invalid Intersecting - Too few'
+	public static val INVALID_INTERSECTING_TOO_FEW_MSG = 'Cannot have only one intersecting'
+	public static val INVALID_DIFFERENCING_TOO_FEW = 'Invalid Differencing - Too few'
+	public static val INVALID_DIFFERENCING_TOO_FEW_MSG = 'Cannot have only one differencing'
 	
 	public static val INVALID_CONNECTOR_END__CONTEXT = 'Invalid Connector end - Context'
 	public static val INVALID_CONNECTOR_END__CONTEXT_MSG = "Should be an accessible feature (use dot notation for nesting)"
@@ -229,6 +239,19 @@ class KerMLValidator extends AbstractKerMLValidator {
 	}
 	
 	@Check
+	def checkType(Type t) {
+		checkNotOne(t.ownedUnioning, INVALID_UNIONING_TOO_FEW_MSG, INVALID_UNIONING_TOO_FEW)
+		checkNotOne(t.ownedIntersecting, INVALID_INTERSECTING_TOO_FEW_MSG, INVALID_INTERSECTING_TOO_FEW)
+		checkNotOne(t.ownedDifferencing, INVALID_DIFFERENCING_TOO_FEW_MSG, INVALID_DIFFERENCING_TOO_FEW)
+	}
+	
+	def checkNotOne( List<? extends EObject> list, String msg, String code) {
+		if (list.size == 1) {
+			error(msg, list.get(0), null, code)
+		}
+	}
+	
+	@Check
 	def checkClassifier(Classifier c){
 		val defaultSupertype = ImplicitGeneralizationMap.getDefaultSupertypeFor(c.getClass())
 		if (!TypeUtil.conforms(c, SysMLLibraryUtil.getLibraryType(c, defaultSupertype)))
@@ -245,6 +268,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 			for (var i = 1; i < refSubsettings.size; i++)
 				error(INVALID_REFERENCESUBSETTING_TOO_MANY_MSG, refSubsettings.get(i), null, INVALID_REFERENCESUBSETTING_TOO_MANY)
 		}
+		checkNotOne(f.ownedFeatureChaining, INVALID_FEATURECHAINING_TOO_FEW_MSG, INVALID_FEATURECHAINING_TOO_FEW)
 	}
 	
 	@Check

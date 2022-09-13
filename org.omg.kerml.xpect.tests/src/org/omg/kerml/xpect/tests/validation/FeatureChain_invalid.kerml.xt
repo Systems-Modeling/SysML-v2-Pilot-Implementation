@@ -1,4 +1,4 @@
-//* XPECT_SETUP org.omg.kerml.xpect.tests.expression.KerMLExpressionTest
+//* XPECT_SETUP org.omg.kerml.xpect.tests.validation.KerMLValidationTest
         ResourceSet {
                 ThisFile {}
                 File {from ="/library/Base.kerml"}
@@ -35,6 +35,7 @@ package P {
     struct V {
     	feature n : Integer;
     	feature m : Real;
+    	struct S;
     }
     
     feature v1 : V {
@@ -53,6 +54,16 @@ package P {
     feature v1_m : Real = v1::m;
     // XPECT warnings ---> "Should be an accessible feature (use dot notation for nesting)" at "v2::m"
     feature v2_m : Real = v1.n + v2::m;
+    
     // XPECT errors ---> "Must be a valid feature" at "m::mm"
 	feature v2_m_mm = v2.m::mm;
+    // XPECT errors ---> "Must be a valid feature" at "S"
+    feature v1_S : Integer = v1.S;    
+    // XPECT errors ---> "Must be a valid feature" at "V"
+    feature v2_V : Integer = V;
+    
+    // XPECT errors ---> "Cannot have only one feature chaining" at "v1"
+    feature v1_ chains v1;
+ 
+    binding v1.n = v2.n;
 }

@@ -1,5 +1,5 @@
 //* 
-XPECT_SETUP org.omg.kerml.xpect.tests.validation.KerMLValidationTest
+XPECT_SETUP org.omg.kerml.xpect.tests.parsing.KerMLParsingTest
 	ResourceSet {
 		ThisFile {}
 		File {from ="/library/Base.kerml"}
@@ -18,14 +18,15 @@ END_SETUP
 package test{
 	classifier non{}
 	classifier A{
-		//XPECT errors ---> "Couldn't resolve reference to Feature 'non'." at "non"
+		// XPECT errors ---> "Couldn't resolve reference to Feature 'non'." at "non"
 		feature aa subsets non;
 		feature a: A;
 	}
 	classifier B{
-		  //* XPECT errors ---
-			"Couldn't resolve reference to Type 'test'." at "test"
+		//* XPECT errors ---
+			"Couldn't resolve reference to Type 'Test3::A'." at "Test3::A"
+			"Couldn't resolve reference to Type 'a'." at "a"
 		--- */
-		feature b: test:A::a;
+		feature b: Test3::A:a;
 	}
 }

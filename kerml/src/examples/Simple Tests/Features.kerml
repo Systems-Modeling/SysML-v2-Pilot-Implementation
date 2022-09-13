@@ -17,10 +17,15 @@ package Features {
 	
 	feature y1 : A :> x featured by C;
 	
+	feature z unions f, g disjoint from y;
+	feature z1 intersects f,g differences y, y1, z;
+	
 	classifier Person;
 	
 	abstract feature person : Person; // Default subsets Base::things.
 	feature child subsets person;
+	
+	feature adult differences person, child;
 	
 	classifier Fuel;
 	

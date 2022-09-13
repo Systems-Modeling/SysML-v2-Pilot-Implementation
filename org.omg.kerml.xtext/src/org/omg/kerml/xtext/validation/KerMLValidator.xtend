@@ -67,6 +67,7 @@ import org.omg.sysml.lang.sysml.MetadataFeature
 import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil
 import org.omg.sysml.util.ImplicitGeneralizationMap
 import org.omg.sysml.lang.sysml.OwningMembership
+import org.omg.sysml.lang.sysml.ReferenceSubsetting
 
 /**
  * This class contains custom validation rules. 
@@ -81,6 +82,9 @@ class KerMLValidator extends AbstractKerMLValidator {
 	public static val INVALID_SUBSETTING_MULTIPLICITYCONFORMANCE = 'Invalid Subsetting - Multiplicity conformance'
 	public static val INVALID_REDEFINITION_MULTIPLICITYCONFORMANCE = 'Invalid Redefinition - Multiplicity conformance'
 	public static val INVALID_SUBSETTING_UNIQUENESS_CONFORMANCE = 'Invalid Subsetting - Uniqueness conformance'
+	
+	public static val INVALID_REFERENCESUBSETTING_TOO_MANY = 'Invalid ReferenceSubsetting - Too many'
+	public static val INVALID_REFERENCESUBSETTING_TOO_MANY_MSG = 'At most one reference subsetting is allowed'
 	
 	public static val INVALID_CONNECTOR_END__CONTEXT = 'Invalid Connector end - Context'
 	public static val INVALID_CONNECTOR_END__CONTEXT_MSG = "Should be an accessible feature (use dot notation for nesting)"
@@ -236,6 +240,11 @@ class KerMLValidator extends AbstractKerMLValidator {
 		val types = f.type;
 		if (types !== null && types.isEmpty)
 			error(INVALID_FEATURE__NO_TYPE_MSG, f, SysMLPackage.eINSTANCE.feature_Type, INVALID_FEATURE__NO_TYPE)
+		val refSubsettings = f.ownedRelationship.filter[r | r instanceof ReferenceSubsetting].toList
+		if (refSubsettings.size > 1) {
+			for (var i = 1; i < refSubsettings.size; i++)
+				error(INVALID_REFERENCESUBSETTING_TOO_MANY_MSG, refSubsettings.get(i), null, INVALID_REFERENCESUBSETTING_TOO_MANY)
+		}
 	}
 	
 	@Check

@@ -525,7 +525,7 @@ fragment MultiplicityPart returns SysML::Feature :
 ;
 
 fragment FeatureSpecialization returns SysML::Feature :
-	Typings | Subsettings | Redefinitions
+	Typings | Subsettings | References | Redefinitions
 ;
 
 fragment Typings returns SysML::Feature :
@@ -542,6 +542,14 @@ fragment Subsettings returns SysML::Feature :
 
 fragment Subsets returns SysML::Feature :
 	( ':>' | 'subsets' ) ownedRelationship += OwnedSubsetting 
+;
+
+fragment References returns SysML::Feature :
+	ReferencesKeyword ownedRelationship += OwnedReferenceSubsetting
+;
+
+ReferencesKeyword :
+	'::>' | 'references'
 ;
 
 fragment Redefinitions returns SysML::Feature :
@@ -617,6 +625,11 @@ Subsetting returns SysML::Subsetting :
 
 OwnedSubsetting returns SysML::Subsetting:
 	  subsettedFeature = [SysML::Feature | QualifiedName]
+	| ownedRelatedElement += OwnedFeatureChain
+;
+
+OwnedReferenceSubsetting returns SysML::ReferenceSubsetting:
+	  referencedFeature = [SysML::Feature | QualifiedName]
 	| ownedRelatedElement += OwnedFeatureChain
 ;
 
@@ -799,8 +812,8 @@ ConnectorEndMember returns SysML::EndFeatureMembership :
 ;
 
 ConnectorEnd returns SysML::Feature :
-	( name = Name ':>' )? 
-	ownedRelationship += OwnedSubsetting
+	( name = Name ReferencesKeyword )? 
+	ownedRelationship += OwnedReferenceSubsetting
 	( ownedRelationship += OwnedMultiplicity )?
 ;
 
@@ -976,8 +989,8 @@ ItemFlowEnd returns SysML::ItemFlowEnd :
 	ownedRelationship += ItemFlowFeatureMember
 ;
 
-ItemFlowEndSubsetting returns SysML::Subsetting :
-	  subsettedFeature = [SysML::Feature | QualifiedName] '.'
+ItemFlowEndSubsetting returns SysML::ReferenceSubsetting :
+	  referencedFeature = [SysML::Feature | QualifiedName] '.'
 	| ownedRelatedElement += FeatureChainPrefix
 ;
 

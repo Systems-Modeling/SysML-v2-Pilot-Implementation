@@ -33,6 +33,7 @@ import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.SatisfyRequirementUsage;
 import org.omg.sysml.lang.sysml.SourceEnd;
+import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.TransitionFeatureMembership;
 import org.omg.sysml.lang.sysml.TransitionUsage;
 import org.omg.sysml.lang.sysml.Type;
@@ -53,7 +54,7 @@ public class SourceEndAdapter extends FeatureAdapter {
 	public void addDefaultGeneralType() {
 		Type type = getTarget().getOwningType();
 		if (type instanceof Feature) {
-			addImplicitGeneralType(getSpecializationEClass(), getSource((Feature)type));
+			addImplicitGeneralType(SysMLPackage.eINSTANCE.getReferenceSubsetting(), getSource((Feature)type));
 		} else {
 			super.addDefaultGeneralType();
 		}

@@ -22,9 +22,9 @@
 package org.omg.sysml.adapter;
 
 import org.eclipse.emf.common.util.EList;
-import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
+import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.TargetEnd;
 import org.omg.sysml.lang.sysml.Type;
 
@@ -41,29 +41,24 @@ public class TargetEndAdapter extends FeatureAdapter {
 	}
 
 	@Override
-	public void computeImplicitGeneralTypes() {
-		addComputedRedefinitions(null);
-	}
-	
-	@Override
-	public void addComputedRedefinitions(Element skip) {
-		addDefaultGeneralType();
-		super.addComputedRedefinitions(skip);
-	}
-	
-	@Override
-	public Type getLibraryType(String... defaultNames) {
+	public void addDefaultGeneralType() {
 		Type type = getTarget().getOwningType();
 		if (type instanceof Feature) {
-			Feature feature = (Feature)type;
-			type = feature.getOwningType();
-			if (type != null) {
-				EList<FeatureMembership> memberships = type.getOwnedFeatureMembership();
-				int i = memberships.indexOf(feature.getOwningFeatureMembership()) + 1;
-				return i < memberships.size()? memberships.get(i).getOwnedMemberFeature(): null;
-			}
+			addImplicitGeneralType(SysMLPackage.eINSTANCE.getReferenceSubsetting(), getTargetFeature((Feature)type));
+		} else {
+			super.addDefaultGeneralType();
 		}
-		return null;
+	}
+		
+	private static Feature getTargetFeature(Feature feature) {
+		Type type = feature.getOwningType();
+		if (type == null) {
+			return null;
+		} else {
+			EList<FeatureMembership> memberships = type.getOwnedFeatureMembership();
+			int i = memberships.indexOf(feature.getOwningFeatureMembership()) + 1;
+			return i < memberships.size()? memberships.get(i).getOwnedMemberFeature(): null;
+		}
 	}
 
 }

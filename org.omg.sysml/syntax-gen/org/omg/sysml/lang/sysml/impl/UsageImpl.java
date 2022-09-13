@@ -23,7 +23,6 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import java.util.Collection;
-import java.util.Optional;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
@@ -64,6 +63,7 @@ import org.omg.sysml.lang.sysml.VariantMembership;
 import org.omg.sysml.lang.sysml.VerificationCaseUsage;
 import org.omg.sysml.lang.sysml.ViewUsage;
 import org.omg.sysml.lang.sysml.ViewpointUsage;
+import org.omg.sysml.util.FeatureUtil;
 import org.omg.sysml.util.UsageUtil;
 
 /**
@@ -967,18 +967,13 @@ public class UsageImpl extends FeatureImpl implements Usage {
 
 	@Override
 	public Feature namingFeature() {
-		return getVariantSubsettedFeature().orElseGet(super::namingFeature);
-	}
-	
-	protected Optional<Feature> getVariantSubsettedFeature() {
 		if (UsageUtil.getOwningVariantMembershipFor(this) != null) {
-			Feature subsettedFeature = firstSubsettedFeature();
-			if (subsettedFeature != null && 
-					subsettedFeature != UsageUtil.getOwningVariationUsageFor(this)) {
-				return Optional.of(subsettedFeature);
+			Feature referencedFeature = FeatureUtil.getReferencedFeatureOf(this);
+			if (referencedFeature != null) {
+				return referencedFeature;
 			}
 		}
-		return Optional.empty();
+		return super.namingFeature();
 	}
 	
 	//

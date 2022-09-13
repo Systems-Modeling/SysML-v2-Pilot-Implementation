@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2021-2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -32,7 +32,7 @@ import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.ItemFlow;
 import org.omg.sysml.lang.sysml.Namespace;
-import org.omg.sysml.lang.sysml.Subsetting;
+import org.omg.sysml.lang.sysml.ReferenceSubsetting;
 import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
@@ -63,17 +63,10 @@ public class ConnectorUtil {
 
 	// Connector ends
 	
-	public static boolean isConnectorEndSubsettingOf(Connector connector, Subsetting subsetting) {
-		Feature feature = subsetting.getSubsettingFeature();
-    	return connector.getConnectorEnd().contains(feature) &&
-	    	   FeatureUtil.getFirstOwnedSubsettingOf(feature).orElse(null) == subsetting;
-	}
-	
 	public static Feature addConnectorEndTo(Connector connector, Feature relatedFeature) {
 		Feature endFeature = SysMLFactory.eINSTANCE.createFeature();
-		Subsetting subsetting = SysMLFactory.eINSTANCE.createSubsetting();
-		subsetting.setSubsettedFeature(relatedFeature);
-		subsetting.setSubsettingFeature(endFeature);
+		ReferenceSubsetting subsetting = SysMLFactory.eINSTANCE.createReferenceSubsetting();
+		subsetting.setReferencedFeature(relatedFeature);
 		endFeature.getOwnedRelationship().add(subsetting);
 		endFeature.setIsEnd(true);
 		FeatureMembership membership = SysMLFactory.eINSTANCE.createFeatureMembership();
@@ -104,9 +97,10 @@ public class ConnectorUtil {
 		EList<Feature> relatedFeatures = new BasicInternalEList<Feature>(Feature.class);
 		for (Object end: connector.getConnectorEnd().toArray()) {
 			if (end != null) {
-				Feature subsettedFeature = ((Feature)end).firstSubsettedFeature();
-				if (subsettedFeature != null) {
-					relatedFeatures.add(subsettedFeature);
+				ElementUtil.transform((Feature)end);
+				Feature referencedFeature = FeatureUtil.getReferencedFeatureOf((Feature)end);
+				if (referencedFeature != null) {
+					relatedFeatures.add(referencedFeature);
 				}
 			}
 		}

@@ -47,6 +47,7 @@ import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.InvocationExpression;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.Redefinition;
+import org.omg.sysml.lang.sysml.ReferenceSubsetting;
 import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.Structure;
 import org.omg.sysml.lang.sysml.Subsetting;
@@ -231,11 +232,13 @@ public class FeatureAdapter extends TypeAdapter {
 		Feature target = getTarget();
 		Stream<Feature> implicitSubsettedFeatures = getImplicitGeneralTypesOnly(SysMLPackage.Literals.SUBSETTING).stream().
 				map(Feature.class::cast);
+		Stream<Feature> implicitReferencedFeatures = getImplicitGeneralTypesOnly(SysMLPackage.Literals.REFERENCE_SUBSETTING).stream().
+				map(Feature.class::cast);
 		Stream<Feature> ownedSubsettedFeatures = target.getOwnedSubsetting().stream().
 				filter(s->!(s instanceof Redefinition)).
 				map(Subsetting::getSubsettedFeature).
 				filter(f->f != null);
-		return Stream.concat(ownedSubsettedFeatures, implicitSubsettedFeatures);
+		return Stream.concat(ownedSubsettedFeatures, Stream.concat(implicitReferencedFeatures,implicitSubsettedFeatures));
 	}
 	
 	public List<Feature> getSubsettedFeatures() {
@@ -249,6 +252,14 @@ public class FeatureAdapter extends TypeAdapter {
 				map(Feature.class::cast);		
 		return Stream.concat(Stream.concat(subsettedFeatures, ownedRedefinedFeatures), implicitRedefinedFeatures).
 				collect(Collectors.toList());
+	}
+	
+	public Feature getReferencedFeature() {
+		Feature target = getTarget();
+		ReferenceSubsetting ownedReferenceSubsetting = target.getOwnedReferenceSubsetting();
+		return ownedReferenceSubsetting != null? ownedReferenceSubsetting.getReferencedFeature():
+			 getImplicitGeneralTypesOnly(SysMLPackage.Literals.REFERENCE_SUBSETTING).stream().
+				map(Feature.class::cast).findFirst().orElse(null);
 	}
 	
 	public List<Feature> getRedefinedFeatures() {

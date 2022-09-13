@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2022 Siemens AG
+ * Copyright (c) 2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -21,22 +21,12 @@
 
 package org.omg.sysml.delegate;
 
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.InternalEObject;
-import org.omg.sysml.lang.sysml.AssertConstraintUsage;
-import org.omg.sysml.lang.sysml.ConstraintUsage;
-import org.omg.sysml.util.FeatureUtil;
 
-public class AssertConstraintUsage_assertedConstraint_SettingDelegate extends BasicDerivedObjectSettingDelegate {
+public class ReferenceSubsetting_referencingFeature_SettingDelegate extends Subsetting_owningFeature_SettingDelegate {
 
-	public AssertConstraintUsage_assertedConstraint_SettingDelegate(EStructuralFeature eStructuralFeature) {
+	public ReferenceSubsetting_referencingFeature_SettingDelegate(EStructuralFeature eStructuralFeature) {
 		super(eStructuralFeature);
-	}
-
-	@Override
-	protected EObject basicGet(InternalEObject owner) {
-		return FeatureUtil.getEffectiveReferencedFeatureOf((AssertConstraintUsage)owner, ConstraintUsage.class);
 	}
 
 }

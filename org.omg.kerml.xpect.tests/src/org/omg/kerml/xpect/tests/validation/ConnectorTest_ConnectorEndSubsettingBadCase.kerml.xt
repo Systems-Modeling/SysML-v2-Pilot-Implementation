@@ -23,8 +23,9 @@ package test{
 	
 	connector c {
 		feature f;
-		end a :> x :> f;
+		end a ::> x :> f;
 		//XPECT errors --> "Couldn't resolve reference to Feature 'f'." at "f"
-		end b :> f;
+		end b ::> f;
+		end c ::> y;
 	}
 }

@@ -36,7 +36,7 @@ public class IncludeUseCaseUsage_useCaseIncluded_SettingDelegate extends BasicDe
 
 	@Override
 	protected EObject basicGet(InternalEObject owner) {
-		return FeatureUtil.getReferencedFeatureOf((IncludeUseCaseUsage)owner, UseCaseUsage.class);
+		return FeatureUtil.getEffectiveReferencedFeatureOf((IncludeUseCaseUsage)owner, UseCaseUsage.class);
 	}
 
 }

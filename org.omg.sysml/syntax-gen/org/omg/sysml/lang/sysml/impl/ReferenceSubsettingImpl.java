@@ -3,13 +3,13 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
+import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.ReferenceSubsetting;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -70,11 +70,21 @@ public class ReferenceSubsettingImpl extends SubsettingImpl implements Reference
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * Xtext workaround.
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public Feature getReferencedFeature() {
+		return referencedFeature == null? basicGetReferencedFeature(): getReferencedFeatureGen();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Feature getReferencedFeatureGen() {
 		if (referencedFeature != null && referencedFeature.eIsProxy()) {
 			InternalEObject oldReferencedFeature = (InternalEObject)referencedFeature;
 			referencedFeature = (Feature)eResolveProxy(oldReferencedFeature);
@@ -87,11 +97,20 @@ public class ReferenceSubsettingImpl extends SubsettingImpl implements Reference
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc --> 
+	 * Xtext workaround:
+	 * If the referencedFeature is empty, then set it to the last ownedRelatedElement
+	 * (which will be a Feature chain).
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public Feature basicGetReferencedFeature() {
+		if (referencedFeature == null) {
+			EList<Element> ownedRelatedElements = getOwnedRelatedElement();
+			if (!ownedRelatedElements.isEmpty()) {
+				referencedFeature = (Feature)ownedRelatedElements.get(ownedRelatedElements.size() - 1);
+			}
+		}
 		return referencedFeature;
 	}
 

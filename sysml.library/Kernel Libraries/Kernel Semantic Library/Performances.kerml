@@ -50,7 +50,7 @@ package Performances {
 		
          /* Review: Top of performance composition tree.  Same as “this” for comp tree rooted in
           * performance, otherwise the performance “just below this”. */
-		step thisPerformance: Performance [1] default self;  /* Review: Assumes steps are not timeEnclosed. */
+		feature thisPerformance: Performance [1] default self;  /* Review: Are steps timeEnclosed (ST4MD-376)? */
 		connector :HappensDuring from self[1] to thisPerformance[1];  /* Review: Prolly want similar inv for "this". */
 		
 		composite step subperformances: Performance[0..*] subsets enclosedPerformances, suboccurrences {

@@ -172,12 +172,18 @@ package Actions {
 		 */
 	
 		in payload[0..*] = sentMessage.payload;
-		in receiver: Occurrence[1]; /* Review: Rename to “sender”? */
-		/* Review: out/inout?  How to ensure the inverse multiplicity upper is 1? */
-	    inout ref sentMessage: MessageTransfer, FlowConnection[1]
-	    	:> receiver.outgoingTransfersFromSelf;
-		/* Review: Message starts when action ends, or can outgoing transfers be queued up also? */
-  		connection :HappensWhile connect sentMessage.start to self.done;
+		/* Review: Usage can bind sender to self to have send be transfer source,
+		 * combined with a receiver to give transfer target.  The "to" keyword
+		 * could parse to this.  Would be symmetrical to support the "via" keyword
+		 * with sends also,  where it would parse to binding the sender, without a
+		 * receiver. Then ports wouldn't need "forwarding" semantics. */
+		in sender: Occurrence[1];
+		in receiver: Occurrence[0..1];
+		/* Review: How to ensure the inverse multiplicity upper is 1? */
+	    ref sentMessage: MessageTransfer, FlowConnection[1]
+	    	:> sender.outgoingTransfersFromSelf;
+	    bind receiver.incomingTransfersToSelf[0..1] = sentMessage[1];
+  		first self then sentMessage;
 	}
 	
 	abstract action sendActions: SendAction[0..*] nonunique :> actions {
@@ -194,14 +200,13 @@ package Actions {
 		 * incomingTransferFromSelf that is one of the incomingTransfers of a given receiver Occurrence, 
 		 * outputting the payload from the Transfer.
 		 */
-	      /*  Not used as-is, abstract? */
-		inout payload[0..*]; /* Review: What's the in direction for? */
+		/*  Review: Not used as-is, abstract? */
+		inout payload[0..*];
 		in receiver: Occurrence[1] default (this as Occurrence);
 		/* Review: out/inout?  */
-	    inout ref acceptedMessage: MessageTransfer, FlowConnection[1]
-	    	:> receiver.incomingTransfersToSelf;
-		/* Review: Message starts when action ends, or can outgoing transfers be queued up also? */
-  		connection :HappensWhile connect acceptedMessage.done to self.done;
+		inout ref acceptedMessage: MessageTransfer, FlowConnection[1]
+			:> receiver.incomingTransfersToSelf;
+		first acceptedMessage then self.done;
 	}
 	
 	abstract action acceptActions: AcceptAction[0..*] nonunique :> actions {
@@ -214,12 +219,10 @@ package Actions {
 	/* Review: Wrapping StateAction, bc guards are after standalone action ends.
 	   Ed: Could have guards on outgoing. Could be multiple outgoing edges. */
 	action def StandAloneAcceptAction :> AcceptAction {
-		/* Review: I guess states need to be in state defs. */
 		out :>> payload = saaaState.saaaTransition.apayload;
 		out :>> acceptedMessage = saaaState.saaaTransition.accepter.acceptedMessage;
 		state saaaState  {
-			state saaaStart = start;
-			transition saaaTransition first saaaStart accept apayload : Anything then done;
+			transition saaaTransition first start accept apayload: Anything via receiver then done;
 		}
 	}
 	

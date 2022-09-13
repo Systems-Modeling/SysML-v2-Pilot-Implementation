@@ -14,7 +14,8 @@ package ServerSequenceRealization_2 {
 			
 			port publicationPort : ~PublicationPort;
 			
-			perform action producerBehavior {
+			perform action producerBehavior {	
+				/* Review: See SendAction note on "via" when sending out through ports. Avoids port forwarding. */
 				action publish send Publish(someTopic, somePublication) to publicationPort;
 			}
 		}
@@ -58,6 +59,8 @@ package ServerSequenceRealization_2 {
 			port subscriptionPort : ~SubscriptionPort;
 			
 			perform action consumerBehavior {
+				/* Review: This should send to subscriptionPort, right?
+				 * See SendAction note on "via" when sending out through ports. Avoids port forwarding. */
 				action subscribe send Subscribe(myTopic, consumer_2) to server_2;
 				then action delivery accept Deliver via consumer_2;
 			}

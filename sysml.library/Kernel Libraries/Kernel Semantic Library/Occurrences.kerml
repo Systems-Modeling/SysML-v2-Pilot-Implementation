@@ -67,6 +67,8 @@ package Occurrences {
 			 	 * Occurrence.
 			 	 */
 			 }
+			 
+			 feature redefines incomingTransferSort default (that as Occurrence).incomingTransferSort;
 		}
 		
 		feature predecessors: Occurrence[0..*] subsets occurrences {

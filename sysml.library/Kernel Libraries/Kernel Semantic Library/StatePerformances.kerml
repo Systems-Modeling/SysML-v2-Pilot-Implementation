@@ -40,7 +40,6 @@ package StatePerformances {
 
 		private succession entry[1] then middle[*];
 		private succession do.startShot[1] then nonDoMiddle.startShot[*];
-		private succession nonDoMiddle.endShot[*] then do.endShot[1];
 		private succession middle[*] then exit[1];
 
 		private inv { isEmpty(accepted) == isEmpty(acceptable) }
@@ -79,8 +78,6 @@ package StatePerformances {
 				union(substatePerformances,  
 					  substatePerformances->collect{in sp:StatePerformance; allSubstatePerformances(sp) } );
 		}
-		
-		private succession do[1] then accepted.endShot[0..1];
 		
 		private succession acceptable[*] then exit[1];
 		
@@ -124,7 +121,7 @@ package StatePerformances {
 		private feature tdNum: Natural [1] = if not isTriggerDuring ? 0 else size(trigger);
 		private connector linkTriggerDuring: HappensDuring[tdNum] from trigger.endShot[*] to transitionLinkSource[0..1];
 		
-		private succession all transitionLinkSource.middle[1..*] then guard[*];
+		private succession all acceptable[0..*] then guard[*];
 		private succession guard[*] then transitionLinkSource.exit[1];
 	}
 }

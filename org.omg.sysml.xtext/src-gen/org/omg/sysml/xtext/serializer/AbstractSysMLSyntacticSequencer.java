@@ -43,7 +43,7 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	protected AbstractElementAlias match_MetadataBodyUsage_RefKeyword_0_q;
 	protected AbstractElementAlias match_MetadataBodyUsage___ColonGreaterThanSignGreaterThanSignKeyword_1_0_or_RedefinesKeyword_1_1__q;
 	protected AbstractElementAlias match_MetadataBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__;
-	protected AbstractElementAlias match_MetadataFeatureDeclaration_DefinedByKeywordParserRuleCall_0_1_q;
+	protected AbstractElementAlias match_MetadataUsageDeclaration_DefinedByKeywordParserRuleCall_0_1_q;
 	protected AbstractElementAlias match_NullExpression_NullKeyword_1_0_or___LeftParenthesisKeyword_1_1_0_RightParenthesisKeyword_1_1_1__;
 	protected AbstractElementAlias match_PackageBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__;
 	protected AbstractElementAlias match_RelationshipBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__;
@@ -81,7 +81,7 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 		match_MetadataBodyUsage_RefKeyword_0_q = new TokenAlias(false, true, grammarAccess.getMetadataBodyUsageAccess().getRefKeyword_0());
 		match_MetadataBodyUsage___ColonGreaterThanSignGreaterThanSignKeyword_1_0_or_RedefinesKeyword_1_1__q = new AlternativeAlias(false, true, new TokenAlias(false, false, grammarAccess.getMetadataBodyUsageAccess().getColonGreaterThanSignGreaterThanSignKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getMetadataBodyUsageAccess().getRedefinesKeyword_1_1()));
 		match_MetadataBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getMetadataBodyAccess().getLeftCurlyBracketKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getMetadataBodyAccess().getRightCurlyBracketKeyword_1_2())), new TokenAlias(false, false, grammarAccess.getMetadataBodyAccess().getSemicolonKeyword_0()));
-		match_MetadataFeatureDeclaration_DefinedByKeywordParserRuleCall_0_1_q = new TokenAlias(false, true, grammarAccess.getMetadataFeatureDeclarationAccess().getDefinedByKeywordParserRuleCall_0_1());
+		match_MetadataUsageDeclaration_DefinedByKeywordParserRuleCall_0_1_q = new TokenAlias(false, true, grammarAccess.getMetadataUsageDeclarationAccess().getDefinedByKeywordParserRuleCall_0_1());
 		match_NullExpression_NullKeyword_1_0_or___LeftParenthesisKeyword_1_1_0_RightParenthesisKeyword_1_1_1__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getNullExpressionAccess().getLeftParenthesisKeyword_1_1_0()), new TokenAlias(false, false, grammarAccess.getNullExpressionAccess().getRightParenthesisKeyword_1_1_1())), new TokenAlias(false, false, grammarAccess.getNullExpressionAccess().getNullKeyword_1_0()));
 		match_PackageBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getPackageBodyAccess().getLeftCurlyBracketKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getPackageBodyAccess().getRightCurlyBracketKeyword_1_2())), new TokenAlias(false, false, grammarAccess.getPackageBodyAccess().getSemicolonKeyword_0()));
 		match_RelationshipBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getRelationshipBodyAccess().getLeftCurlyBracketKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getRelationshipBodyAccess().getRightCurlyBracketKeyword_1_2())), new TokenAlias(false, false, grammarAccess.getRelationshipBodyAccess().getSemicolonKeyword_0()));
@@ -942,8 +942,8 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 				emit_MetadataBodyUsage___ColonGreaterThanSignGreaterThanSignKeyword_1_0_or_RedefinesKeyword_1_1__q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_MetadataBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__.equals(syntax))
 				emit_MetadataBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_MetadataFeatureDeclaration_DefinedByKeywordParserRuleCall_0_1_q.equals(syntax))
-				emit_MetadataFeatureDeclaration_DefinedByKeywordParserRuleCall_0_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_MetadataUsageDeclaration_DefinedByKeywordParserRuleCall_0_1_q.equals(syntax))
+				emit_MetadataUsageDeclaration_DefinedByKeywordParserRuleCall_0_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_NullExpression_NullKeyword_1_0_or___LeftParenthesisKeyword_1_1_0_RightParenthesisKeyword_1_1_1__.equals(syntax))
 				emit_NullExpression_NullKeyword_1_0_or___LeftParenthesisKeyword_1_1_0_RightParenthesisKeyword_1_1_1__(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_PackageBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__.equals(syntax))
@@ -1766,7 +1766,7 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) MetadataUsageKeyword (ambiguity) ownedRelationship+=MetadataTyping
 	 */
-	protected void emit_MetadataFeatureDeclaration_DefinedByKeywordParserRuleCall_0_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_MetadataUsageDeclaration_DefinedByKeywordParserRuleCall_0_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
@@ -1822,7 +1822,6 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) 'assert'? 'satisfy' RequirementUsageKeyword (ambiguity) (rule start)
-	 *     (rule start) 'requirement' (ambiguity) (rule start)
 	 *     (rule start) (ambiguity) (rule start)
 	 *     (rule start) ConcernDefKeyword (ambiguity) (rule start)
 	 *     (rule start) ConcernUsageKeyword (ambiguity) (rule start)
@@ -1888,6 +1887,7 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     ownedRelationship+=PortioningFeatureMember RequirementUsageKeyword (ambiguity) (rule end)
 	 *     ownedRelationship+=PortioningFeatureMember ViewpointUsageKeyword (ambiguity) (rule end)
 	 *     ownedRelationship+=PrefixMetadataMember 'assert'? 'satisfy' RequirementUsageKeyword (ambiguity) (rule end)
+	 *     ownedRelationship+=PrefixMetadataMember (ambiguity) (rule end)
 	 *     ownedRelationship+=PrefixMetadataMember ConcernDefKeyword (ambiguity) (rule end)
 	 *     ownedRelationship+=PrefixMetadataMember ConcernUsageKeyword (ambiguity) (rule end)
 	 *     ownedRelationship+=PrefixMetadataMember RequirementDefKeyword (ambiguity) (rule end)

@@ -1,4 +1,4 @@
-package 'Streaming Interface Example' {
+package 'Flow Connection Interface Example' {
 	import 'Port Example'::*;
 	
 	part def Vehicle;

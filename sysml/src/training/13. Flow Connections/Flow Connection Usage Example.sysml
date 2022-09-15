@@ -1,12 +1,7 @@
-package 'Streaming Example' {
+package 'Flow Connection Interface Example' {
 	import 'Port Example'::*;
 	
 	part def Vehicle;
-	
-	interface def FuelInterface {
-		end supplierPort : FuelOutPort;
-		end consumerPort : FuelInPort;
-	}
 	
 	part vehicle : Vehicle {
 		part tankAssy : FuelTankAssembly;

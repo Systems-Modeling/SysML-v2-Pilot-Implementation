@@ -55,7 +55,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  */
 public abstract class SysMLUtil {
 
-	protected final ResourceSet resourceSet;
+	private final ResourceSet resourceSet;
 	protected final Set<Resource> inputResources = new HashSet<Resource>();
 	protected final List<String> extensions = new ArrayList<String>();
 	protected final ResourceDescriptionsData index;
@@ -69,6 +69,7 @@ public abstract class SysMLUtil {
 	protected SysMLUtil(ResourceDescriptionsData resourceDescriptionData) {
 		SysMLPackage.eINSTANCE.getName();
 		this.resourceSet = new ResourceSetImpl();
+		//this.resourceSet = new XtextResourceSet();
 		this.resourceSet.getLoadOptions().put(XtextResource.OPTION_ENCODING, "UTF-8");
 		this.index = resourceDescriptionData;
 		ResourceDescriptionsData.ResourceSetAdapter.installResourceDescriptionsData(this.resourceSet, this.index);
@@ -93,13 +94,20 @@ public abstract class SysMLUtil {
 			System.out.println(line);
 		}
 	}
+
+	/**
+	 * Get the managed resource set
+	 */
+    public ResourceSet getResourceSet() {
+        return resourceSet;
+    }
 	
 	/**
 	 * Add a resource to the Xtext index.
 	 * 
 	 * @param 	resource		the resource to be added
 	 */
-	protected void addResourceToIndex(Resource resource) {
+	public void addResourceToIndex(Resource resource) {
 		URI uri = resource.getURI();
 		IResourceServiceProvider resourceServiceProvider = IResourceServiceProvider.Registry.INSTANCE.getResourceServiceProvider(uri);
 		Manager manager = resourceServiceProvider.getResourceDescriptionManager();

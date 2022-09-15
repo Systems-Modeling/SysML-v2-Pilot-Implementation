@@ -37,14 +37,18 @@ import java.util.Scanner;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
 import org.eclipse.xtext.nodemodel.ICompositeNode;
 import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 import org.eclipse.xtext.parser.IParseResult;
 import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.resource.XtextResource;
+import org.eclipse.xtext.resource.XtextResourceFactory;
 import org.eclipse.xtext.scoping.IGlobalScopeProvider;
 import org.eclipse.xtext.scoping.IScope;
 import org.eclipse.xtext.util.CancelIndicator;
@@ -107,6 +111,25 @@ public class SysMLInteractive extends SysMLUtil {
 	
 	@Inject
 	private IResourceValidator validator;
+
+    @Inject
+    private XtextResourceFactory xtextResourceFactory;
+
+	public XtextResource createNonPersistentXtextResource(String name) {
+		XtextResource xres = (XtextResource) xtextResourceFactory.createResource(URI.createURI(name));
+		getResourceSet().getResources().add(xres);
+		return xres;
+	}
+
+    private Resource dummyResource;
+
+    private Resource getDummyResource() {
+        if (dummyResource == null) {
+            this.dummyResource = new ResourceImpl(URI.createURI("dummy"));
+            getResourceSet().getResources().add(dummyResource);
+        }
+        return dummyResource;
+    }
 	
 	@Inject
 	private SysMLInteractive() {
@@ -124,13 +147,13 @@ public class SysMLInteractive extends SysMLUtil {
 			this.readAll(path + DOMAIN_LIBRARIES_DIRECTORY, false, SYSML_EXTENSION);
 		}
 	}
-	
+
 	public void setApiBasePath(String apiBasePath) {
 		this.apiBasePath = apiBasePath;
 	}
 	
 	public int next() {
-		this.resource = (XtextResource)this.createResource(this.counter + SYSML_EXTENSION);
+		this.resource = createNonPersistentXtextResource(this.counter + SYSML_EXTENSION);
 		this.addInputResource(this.resource);
 		return this.counter++;
 	}
@@ -174,19 +197,20 @@ public class SysMLInteractive extends SysMLUtil {
 	}
 	
 	public Element resolve(String name) {
-		List<Resource> resources = this.resourceSet.getResources();
-		if (!resources.isEmpty()) {
-			IScope scope = scopeProvider.getScope(
-					resources.get(resources.size() - 1), 
-					SysMLPackage.eINSTANCE.getNamespace_Member(), 
-					Predicates.alwaysTrue());
-			IEObjectDescription description = scope.getSingleElement(
-					this.qualifiedNameConverter.toQualifiedName(name));
-			if (description != null) {
-				EObject object = description.getEObjectOrProxy();
-				return object instanceof Element? (Element)object: null;
-			}
-		}
+        IScope scope = scopeProvider
+            .getScope(/* The specified resource, context, is EXCLUDED in the global scope
+                         because it is regarded as a local scope.  Thus we use
+                         a dummy resource to include all of the other resources
+                         in the scope. */
+                      getDummyResource(),
+                      SysMLPackage.eINSTANCE.getNamespace_Member(), 
+                      Predicates.alwaysTrue());
+        IEObjectDescription description = scope.getSingleElement(
+			this.qualifiedNameConverter.toQualifiedName(name));
+        if (description != null) {
+            EObject object = description.getEObjectOrProxy();
+            return object instanceof Element? (Element)object: null;
+        }
 		return null;
 	}
 	
@@ -256,7 +280,7 @@ public class SysMLInteractive extends SysMLUtil {
 		this.counter++;
 		try {
 			List<Membership> globalMemberships = 
-					resourceSet.getResources().stream().
+					getResourceSet().getResources().stream().
 					filter(r->!inputResources.contains(r)).
 					flatMap(r->r.getContents().stream()).
 					filter(Namespace.class::isInstance).

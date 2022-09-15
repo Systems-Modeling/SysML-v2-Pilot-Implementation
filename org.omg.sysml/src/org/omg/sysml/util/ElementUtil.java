@@ -170,7 +170,7 @@ public class ElementUtil {
 
 	public static String processCommentBody(String body) {
 		if (body != null) {
-			body = body.replaceFirst("/\\*\\*", "").replaceFirst("/\\*", "").replaceFirst("^\\s*", "");			
+			body = body.replaceFirst("/\\*", "").replaceFirst("^\\s*", "");		
 			if (body.endsWith("*/")) {
 				body = body.substring(0, body.length()-2);
 			}

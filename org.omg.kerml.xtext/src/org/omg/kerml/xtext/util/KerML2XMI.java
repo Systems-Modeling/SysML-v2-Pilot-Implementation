@@ -78,7 +78,7 @@ public class KerML2XMI extends SysMLUtil {
 			}
 		};
 		
-		this.resourceSet.getResources().add(resource);
+		getResourceSet().getResources().add(resource);
 		return resource;
 	}
 	
@@ -112,7 +112,7 @@ public class KerML2XMI extends SysMLUtil {
 		this.resolveAllInputResources();
 		
 		Set<Resource> outputResources = new HashSet<Resource>();
- 		for (Object object: this.resourceSet.getResources().toArray()) {
+ 		for (Object object: getResourceSet().getResources().toArray()) {
 			Resource resource = (Resource)object;
 			Resource outputResource = this.createOutputResource(this.getOutputPath(resource.getURI().toFileString()));
 			outputResource.getContents().addAll(resource.getContents());

@@ -16,7 +16,7 @@ cache:
 install: skip
 script:
   - ./mvnw clean --batch-mode
-  - ./mvnw install --batch-mode
+  - ./mvnw install -Dxpect.tests.skip=true --batch-mode
 deploy:
   - provider: script
     script: .ci/deploy.sh

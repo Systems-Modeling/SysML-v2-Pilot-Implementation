@@ -2,4 +2,4 @@
 
 set -e
 
-./mvnw deploy --settings "`dirname "$0"`/settings.xml" --batch-mode
+./mvnw deploy -Dxpect.tests.skip=true --settings "`dirname "$0"`/settings.xml" --batch-mode

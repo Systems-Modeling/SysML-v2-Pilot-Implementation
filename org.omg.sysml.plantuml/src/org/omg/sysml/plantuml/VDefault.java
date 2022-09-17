@@ -31,6 +31,7 @@ import java.util.List;
 import org.omg.sysml.lang.sysml.AnnotatingElement;
 import org.omg.sysml.lang.sysml.Annotation;
 import org.omg.sysml.lang.sysml.Comment;
+import org.omg.sysml.lang.sysml.ConnectionUsage;
 import org.omg.sysml.lang.sysml.Connector;
 import org.omg.sysml.lang.sysml.Dependency;
 import org.omg.sysml.lang.sysml.Element;
@@ -179,6 +180,12 @@ public class VDefault extends VTraverser {
     public String caseConnector(Connector c) {
         addConnector(c, c.getName());
         return "";
+    }
+
+    @Override
+    public String caseConnectionUsage(ConnectionUsage cu) {
+    	addConnector(cu, null);
+    	return "";
     }
 
     @Override

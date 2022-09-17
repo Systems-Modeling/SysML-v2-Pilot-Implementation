@@ -218,8 +218,8 @@ public class VPath extends VTraverser {
             this.f = f;
         }
         
-        public PCFeature(Feature f) {
-        	super(f);
+        public PCFeature(Subsetting ss, Feature f) {
+        	super(ss);
         	this.f = f;
         }
     }
@@ -473,7 +473,7 @@ public class VPath extends VTraverser {
             Feature sf = ss.getSubsettedFeature();
             List<FeatureChaining> fcs = sf.getOwnedFeatureChaining();
             if (fcs.isEmpty()) {
-                return new PCFeature(sf);
+                return new PCFeature(ss, sf);
             } else {
                 return new PCFeatureChain(sf);
             }

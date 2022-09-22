@@ -77,7 +77,7 @@ package Connections {
 		 */
 	}
 	
-	abstract message flowConnections: FlowConnection[0..*] nonunique :> binaryConnections, transfers of Anything {
+	abstract message flowConnections: FlowConnection[0..*] nonunique :> binaryConnections, transfers {
 		doc
 		/*
 		 * flowConnections is the base feature of all FlowConnectionUsages.
@@ -87,7 +87,7 @@ package Connections {
 		end target: Occurrence[0..*] :>> FlowConnection::target, binaryConnections::target, transfers::target;
 	}
 	
-	abstract message successionFlowConnections: SuccessionFlowConnection[0..*] nonunique :> flowConnections, transfersBefore of Anything {
+	abstract message successionFlowConnections: SuccessionFlowConnection[0..*] nonunique :> flowConnections, transfersBefore {
 		doc
 		/*
 		 * successionFlowConnections is the base feature of all SuccessionFlowConnectionUsages.

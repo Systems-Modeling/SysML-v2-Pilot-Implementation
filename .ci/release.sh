@@ -2,5 +2,5 @@
 
 set -e
 
-./mvnw versions:set -Dxpect.tests.skip=true -DremoveSnapshot=true --batch-mode
+./mvnw versions:set -DremoveSnapshot=true --batch-mode
 . "`dirname "$0"`/deploy.sh"

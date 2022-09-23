@@ -219,8 +219,7 @@ public class SysMLInteractive extends SysMLUtil {
 		this.counter++;
 		try {
 			List<Membership> globalMemberships = 
-					resourceSet.getResources().stream().
-					filter(r->!inputResources.contains(r)).
+					this.getLibraryResources().stream().
 					flatMap(r->r.getContents().stream()).
 					filter(Namespace.class::isInstance).
 					flatMap(n->((Namespace)n).visibleMemberships(new BasicEList<>(), false, false).stream()).
@@ -324,7 +323,7 @@ public class SysMLInteractive extends SysMLUtil {
 			Element element = this.resolve(name);
 			if (element == null) {
 				return "ERROR:Couldn't resolve reference to Element '" + name + "'\n";
-			} else if (!inputResources.contains(element.eResource())) {
+			} else if (!this.isInputResource(element.eResource())) {
 				return "ERROR:'" + name + "' is a library element\n";
 			} else {
 				String modelName = element.getName() + " " + new Date();

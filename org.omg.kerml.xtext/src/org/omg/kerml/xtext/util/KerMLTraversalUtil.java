@@ -79,7 +79,7 @@ public class KerMLTraversalUtil extends SysMLUtil {
 	 * Traversal must be initialized before processing.
 	 */
 	public void process() {
-		for (Resource resource: this.inputResources) {
+		for (Resource resource: this.getInputResources()) {
 			for (EObject object : resource.getContents()) {
 				if (object instanceof Element) {
 					this.traversal.visit((Element) object);

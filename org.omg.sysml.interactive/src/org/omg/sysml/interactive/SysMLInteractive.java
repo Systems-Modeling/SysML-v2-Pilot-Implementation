@@ -39,7 +39,6 @@ import java.util.stream.Collectors;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtext.nodemodel.ICompositeNode;
 import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 import org.eclipse.xtext.parser.IParseResult;
@@ -57,6 +56,7 @@ import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.RenderingUsage;
+import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.ViewUsage;
 import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
@@ -125,9 +125,13 @@ public class SysMLInteractive extends SysMLUtil {
 	}
 	
 	public int next() {
-		this.resource = (XtextResource)this.createResource(this.counter + SYSML_EXTENSION);
+		createResource(this.counter);
 		this.addInputResource(this.resource);
 		return this.counter++;
+	}
+	
+	protected void createResource(int counter) {
+		this.resource = (XtextResource)this.createResource(counter + SYSML_EXTENSION);
 	}
 	
 	public XtextResource getResource() {
@@ -192,20 +196,23 @@ public class SysMLInteractive extends SysMLUtil {
 	}
 	
 	public Element resolve(String name) {
-		List<Resource> resources = this.resourceSet.getResources();
-		if (!resources.isEmpty()) {
-			IScope scope = scopeProvider.getScope(
-					resources.get(resources.size() - 1), 
-					SysMLPackage.eINSTANCE.getNamespace_Member(), 
-					Predicates.alwaysTrue());
-			IEObjectDescription description = scope.getSingleElement(
-					this.qualifiedNameConverter.toQualifiedName(name));
-			if (description != null) {
-				EObject object = description.getEObjectOrProxy();
-				return object instanceof Element? (Element)object: null;
-			}
+		if (this.resource == null) {
+			// Create a dummy "local" resource so all library resources are part of global scope.
+			createResource(0);
+			this.resource.getContents().add(SysMLFactory.eINSTANCE.createNamespace());
 		}
-		return null;
+		IScope scope = scopeProvider.getScope(
+				this.resource, 
+				SysMLPackage.eINSTANCE.getNamespace_Member(), 
+				Predicates.alwaysTrue());
+		IEObjectDescription description = scope.getSingleElement(
+				this.qualifiedNameConverter.toQualifiedName(name));
+		if (description == null) {
+			return null;
+		} else {
+			EObject object = description.getEObjectOrProxy();
+			return object instanceof Element? (Element)object: null;
+		}
 	}
 	
 	public String listLibrary() {

@@ -39,6 +39,7 @@ import java.util.stream.Collectors;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtext.nodemodel.ICompositeNode;
 import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 import org.eclipse.xtext.parser.IParseResult;
@@ -93,6 +94,8 @@ public class SysMLInteractive extends SysMLUtil {
 	protected Traversal traversal;
 	
     protected SysML2PlantUMLSvc sysml2PlantUMLSvc;
+    
+    private Resource dummyResource;
 
     @Inject
 	private IGlobalScopeProvider scopeProvider;
@@ -125,13 +128,9 @@ public class SysMLInteractive extends SysMLUtil {
 	}
 	
 	public int next() {
-		createResource(this.counter);
+		this.resource = (XtextResource)this.createResource(counter + SYSML_EXTENSION);
 		this.addInputResource(this.resource);
 		return this.counter++;
-	}
-	
-	protected void createResource(int counter) {
-		this.resource = (XtextResource)this.createResource(counter + SYSML_EXTENSION);
 	}
 	
 	public XtextResource getResource() {
@@ -195,14 +194,17 @@ public class SysMLInteractive extends SysMLUtil {
 		}
 	}
 	
-	public Element resolve(String name) {
-		if (this.resource == null) {
-			// Create a dummy "local" resource so all library resources are part of global scope.
-			createResource(0);
-			this.resource.getContents().add(SysMLFactory.eINSTANCE.createNamespace());
+	private Resource getDummyResource() {
+		if (this.dummyResource == null) {
+			this.dummyResource = this.createResource("dummy" + SYSML_EXTENSION);
+			this.dummyResource.getContents().add(SysMLFactory.eINSTANCE.createNamespace());
 		}
+		return this.dummyResource;
+	}
+	
+	public Element resolve(String name) {
 		IScope scope = scopeProvider.getScope(
-				this.resource, 
+				this.getDummyResource(), 
 				SysMLPackage.eINSTANCE.getNamespace_Member(), 
 				Predicates.alwaysTrue());
 		IEObjectDescription description = scope.getSingleElement(

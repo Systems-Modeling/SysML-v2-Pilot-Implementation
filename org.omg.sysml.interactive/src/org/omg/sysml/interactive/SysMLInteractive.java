@@ -57,6 +57,7 @@ import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.RenderingUsage;
+import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.ViewUsage;
 import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
@@ -93,6 +94,8 @@ public class SysMLInteractive extends SysMLUtil {
 	protected Traversal traversal;
 	
     protected SysML2PlantUMLSvc sysml2PlantUMLSvc;
+    
+    private Resource dummyResource;
 
     @Inject
 	private IGlobalScopeProvider scopeProvider;
@@ -125,7 +128,7 @@ public class SysMLInteractive extends SysMLUtil {
 	}
 	
 	public int next() {
-		this.resource = (XtextResource)this.createResource(this.counter + SYSML_EXTENSION);
+		this.resource = (XtextResource)this.createResource(counter + SYSML_EXTENSION);
 		this.addInputResource(this.resource);
 		return this.counter++;
 	}
@@ -191,29 +194,34 @@ public class SysMLInteractive extends SysMLUtil {
 		}
 	}
 	
-	public Element resolve(String name) {
-		List<Resource> resources = this.resourceSet.getResources();
-		if (!resources.isEmpty()) {
-			IScope scope = scopeProvider.getScope(
-					resources.get(resources.size() - 1), 
-					SysMLPackage.eINSTANCE.getNamespace_Member(), 
-					Predicates.alwaysTrue());
-			IEObjectDescription description = scope.getSingleElement(
-					this.qualifiedNameConverter.toQualifiedName(name));
-			if (description != null) {
-				EObject object = description.getEObjectOrProxy();
-				return object instanceof Element? (Element)object: null;
-			}
+	private Resource getDummyResource() {
+		if (this.dummyResource == null) {
+			this.dummyResource = this.createResource("dummy" + SYSML_EXTENSION);
+			this.dummyResource.getContents().add(SysMLFactory.eINSTANCE.createNamespace());
 		}
-		return null;
+		return this.dummyResource;
+	}
+	
+	public Element resolve(String name) {
+		IScope scope = scopeProvider.getScope(
+				this.getDummyResource(), 
+				SysMLPackage.eINSTANCE.getNamespace_Member(), 
+				Predicates.alwaysTrue());
+		IEObjectDescription description = scope.getSingleElement(
+				this.qualifiedNameConverter.toQualifiedName(name));
+		if (description == null) {
+			return null;
+		} else {
+			EObject object = description.getEObjectOrProxy();
+			return object instanceof Element? (Element)object: null;
+		}
 	}
 	
 	public String listLibrary() {
 		this.counter++;
 		try {
 			List<Membership> globalMemberships = 
-					resourceSet.getResources().stream().
-					filter(r->!inputResources.contains(r)).
+					this.getLibraryResources().stream().
 					flatMap(r->r.getContents().stream()).
 					filter(Namespace.class::isInstance).
 					flatMap(n->((Namespace)n).visibleMemberships(new BasicEList<>(), false, false).stream()).
@@ -317,7 +325,7 @@ public class SysMLInteractive extends SysMLUtil {
 			Element element = this.resolve(name);
 			if (element == null) {
 				return "ERROR:Couldn't resolve reference to Element '" + name + "'\n";
-			} else if (!inputResources.contains(element.eResource())) {
+			} else if (!this.isInputResource(element.eResource())) {
 				return "ERROR:'" + name + "' is a library element\n";
 			} else {
 				String modelName = element.getName() + " " + new Date();

@@ -1,6 +1,6 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2021-2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -98,7 +98,7 @@ public class KerML2JSON extends KerMLTraversalUtil {
 				} else if ("-g".equals(args[i])) {
 					this.isAddImplicitElements = true;
 				} else if ("-v".equals(args[i])) {
-					this.isVerbose = true;
+					this.setVerbose(true);
 				}
 				i++;
 			}
@@ -141,7 +141,7 @@ public class KerML2JSON extends KerMLTraversalUtil {
 		JsonElementProcessingFacade processingFacade = new JsonElementProcessingFacade();	
 		processingFacade.setTraversal(this.initialize(processingFacade));
 		processingFacade.setIsIncludeDerived(this.isAddDerivedElements);
-		processingFacade.setIsVerbose(this.isVerbose);
+		processingFacade.setIsVerbose(this.isVerbose());
 	}
 	
 	/**

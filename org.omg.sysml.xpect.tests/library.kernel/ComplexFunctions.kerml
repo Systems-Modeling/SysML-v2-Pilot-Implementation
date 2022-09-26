@@ -1,8 +1,10 @@
-/**
- * This package defines functions on Complex values, including concrete specializations of the 
- * general arithmetic and comparison operations.
- */
 package ComplexFunctions {
+	doc
+	/*
+	 * This package defines functions on Complex values, including concrete specializations of the 
+	 * general arithmetic and comparison operations.
+	 */
+
 	import ScalarValues::*;
 		
 	feature i: Complex[1] = rect(0.0, 1.0);
@@ -13,10 +15,10 @@ package ComplexFunctions {
 	function re { in x: Complex[1]; return : Real[1]; }
 	function im { in x: Complex[1]; return : Real[1]; }
 	
-	function isZero specializes NumericalFunctions::isZero { in x : Complex;
+	function isZero specializes NumericalFunctions::isZero { in x : Complex[1];
 		return : Boolean[1] = re(x) == 0.0 and im(x) == 0.0;
 	}
-	function isUnit specializes NumericalFunctions::isUnit { in x : Complex;
+	function isUnit specializes NumericalFunctions::isUnit { in x : Complex[1];
 		return : Boolean[1] = re(x) == 1.0 and im(x) == 0.0;
 	}
 	

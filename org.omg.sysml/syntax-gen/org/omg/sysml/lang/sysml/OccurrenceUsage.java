@@ -20,13 +20,13 @@ import org.eclipse.emf.common.util.EList;
  *         select(isIndividual) in
  * if individualDefinitions->isEmpty() then null
  * else individualDefinitions->at(1) endif
- * isIndividual implies individualDefinition <> null
  * if portionKind = null then portioningFeature = null
  * else 
  *     portioningFeature <> null and
  *     portionKind = portioningFeature.portionKind and
  *     occurrenceDefinition.asSet() = portioningFeature.type.asSet()
  * endif
+ * isIndividual implies individualDefinition <> null
  * <!-- end-model-doc -->
  *
  * <p>

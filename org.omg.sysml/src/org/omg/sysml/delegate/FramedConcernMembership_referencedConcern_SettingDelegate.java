@@ -36,7 +36,7 @@ public class FramedConcernMembership_referencedConcern_SettingDelegate extends B
 
 	@Override
 	protected EObject basicGet(InternalEObject owner) {
-		return FeatureUtil.getReferencedFeatureOf(((FramedConcernMembership)owner).getOwnedConcern(), ConcernUsage.class);
+		return FeatureUtil.getEffectiveReferencedFeatureOf(((FramedConcernMembership)owner).getOwnedConcern(), ConcernUsage.class);
 	}
 
 }

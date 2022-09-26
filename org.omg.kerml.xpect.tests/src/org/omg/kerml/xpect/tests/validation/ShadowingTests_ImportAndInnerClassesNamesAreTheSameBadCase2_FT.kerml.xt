@@ -1,5 +1,5 @@
 //* 
-XPECT_SETUP org.omg.kerml.xpect.tests.validation.KerMLValidationTest
+XPECT_SETUP org.omg.kerml.xpect.tests.parsing.KerMLParsingTest
 	ResourceSet {
 		ThisFile {}
 		File {from ="/library/Base.kerml"}

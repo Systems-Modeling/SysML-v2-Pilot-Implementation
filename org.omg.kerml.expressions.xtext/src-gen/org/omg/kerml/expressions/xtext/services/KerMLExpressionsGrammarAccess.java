@@ -2719,7 +2719,6 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 	private final TerminalRule tUNRESTRICTED_NAME;
 	private final TerminalRule tSTRING_VALUE;
 	private final TerminalRule tREGULAR_COMMENT;
-	private final TerminalRule tPREFIX_COMMENT;
 	private final TerminalRule tML_NOTE;
 	private final TerminalRule tSL_NOTE;
 	private final TerminalRule tWS;
@@ -2823,7 +2822,6 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 		this.tUNRESTRICTED_NAME = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.expressions.xtext.KerMLExpressions.UNRESTRICTED_NAME");
 		this.tSTRING_VALUE = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.expressions.xtext.KerMLExpressions.STRING_VALUE");
 		this.tREGULAR_COMMENT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.expressions.xtext.KerMLExpressions.REGULAR_COMMENT");
-		this.tPREFIX_COMMENT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.expressions.xtext.KerMLExpressions.PREFIX_COMMENT");
 		this.tML_NOTE = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.expressions.xtext.KerMLExpressions.ML_NOTE");
 		this.tSL_NOTE = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.expressions.xtext.KerMLExpressions.SL_NOTE");
 		this.tWS = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.expressions.xtext.KerMLExpressions.WS");
@@ -3935,15 +3933,9 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 	}
 	
 	//terminal REGULAR_COMMENT:
-	//    '/*' !('*') ->'*/';
+	//    '/*' ->'*/';
 	public TerminalRule getREGULAR_COMMENTRule() {
 		return tREGULAR_COMMENT;
-	}
-	
-	//terminal PREFIX_COMMENT:
-	//    '/**'->'*/';
-	public TerminalRule getPREFIX_COMMENTRule() {
-		return tPREFIX_COMMENT;
 	}
 	
 	//terminal ML_NOTE:

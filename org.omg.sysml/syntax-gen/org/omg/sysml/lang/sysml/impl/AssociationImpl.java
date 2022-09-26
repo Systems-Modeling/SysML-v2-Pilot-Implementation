@@ -53,6 +53,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.AssociationImpl#getOwningRelatedElement <em>Owning Related Element</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.AssociationImpl#getOwnedRelatedElement <em>Owned Related Element</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.AssociationImpl#isImplied <em>Is Implied</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.AssociationImpl#getRelatedType <em>Related Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.AssociationImpl#getSourceType <em>Source Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.AssociationImpl#getTargetType <em>Target Type</em>}</li>
@@ -72,6 +73,26 @@ public class AssociationImpl extends ClassifierImpl implements Association {
 	 * @ordered
 	 */
 	protected EList<Element> ownedRelatedElement;
+
+	/**
+	 * The default value of the '{@link #isImplied() <em>Is Implied</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isImplied()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean IS_IMPLIED_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isImplied() <em>Is Implied</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isImplied()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean isImplied = IS_IMPLIED_EDEFAULT;
 
 	/**
 	 * The cached setting delegate for the '{@link #getRelatedType() <em>Related Type</em>}' reference list.
@@ -140,6 +161,29 @@ public class AssociationImpl extends ClassifierImpl implements Association {
 			ownedRelatedElement = new EObjectContainmentWithInverseEList<Element>(Element.class, this, SysMLPackage.ASSOCIATION__OWNED_RELATED_ELEMENT, SysMLPackage.ELEMENT__OWNING_RELATIONSHIP);
 		}
 		return ownedRelatedElement;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isImplied() {
+		return isImplied;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setIsImplied(boolean newIsImplied) {
+		boolean oldIsImplied = isImplied;
+		isImplied = newIsImplied;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.ASSOCIATION__IS_IMPLIED, oldIsImplied, isImplied));
 	}
 
 	/**
@@ -431,6 +475,8 @@ public class AssociationImpl extends ClassifierImpl implements Association {
 				return getOwningRelatedElement();
 			case SysMLPackage.ASSOCIATION__OWNED_RELATED_ELEMENT:
 				return getOwnedRelatedElement();
+			case SysMLPackage.ASSOCIATION__IS_IMPLIED:
+				return isImplied();
 			case SysMLPackage.ASSOCIATION__RELATED_TYPE:
 				return getRelatedType();
 			case SysMLPackage.ASSOCIATION__SOURCE_TYPE:
@@ -452,6 +498,10 @@ public class AssociationImpl extends ClassifierImpl implements Association {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case SysMLPackage.ASSOCIATION__RELATED_ELEMENT:
+				getRelatedElement().clear();
+				getRelatedElement().addAll((Collection<? extends Element>)newValue);
+				return;
 			case SysMLPackage.ASSOCIATION__TARGET:
 				getTarget().clear();
 				getTarget().addAll((Collection<? extends Element>)newValue);
@@ -466,6 +516,9 @@ public class AssociationImpl extends ClassifierImpl implements Association {
 			case SysMLPackage.ASSOCIATION__OWNED_RELATED_ELEMENT:
 				getOwnedRelatedElement().clear();
 				getOwnedRelatedElement().addAll((Collection<? extends Element>)newValue);
+				return;
+			case SysMLPackage.ASSOCIATION__IS_IMPLIED:
+				setIsImplied((Boolean)newValue);
 				return;
 			case SysMLPackage.ASSOCIATION__RELATED_TYPE:
 				getRelatedType().clear();
@@ -493,6 +546,9 @@ public class AssociationImpl extends ClassifierImpl implements Association {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case SysMLPackage.ASSOCIATION__RELATED_ELEMENT:
+				getRelatedElement().clear();
+				return;
 			case SysMLPackage.ASSOCIATION__TARGET:
 				getTarget().clear();
 				return;
@@ -504,6 +560,9 @@ public class AssociationImpl extends ClassifierImpl implements Association {
 				return;
 			case SysMLPackage.ASSOCIATION__OWNED_RELATED_ELEMENT:
 				getOwnedRelatedElement().clear();
+				return;
+			case SysMLPackage.ASSOCIATION__IS_IMPLIED:
+				setIsImplied(IS_IMPLIED_EDEFAULT);
 				return;
 			case SysMLPackage.ASSOCIATION__RELATED_TYPE:
 				getRelatedType().clear();
@@ -538,6 +597,8 @@ public class AssociationImpl extends ClassifierImpl implements Association {
 				return getOwningRelatedElement() != null;
 			case SysMLPackage.ASSOCIATION__OWNED_RELATED_ELEMENT:
 				return ownedRelatedElement != null && !ownedRelatedElement.isEmpty();
+			case SysMLPackage.ASSOCIATION__IS_IMPLIED:
+				return isImplied != IS_IMPLIED_EDEFAULT;
 			case SysMLPackage.ASSOCIATION__END_FEATURE:
 				return isSetEndFeature();
 			case SysMLPackage.ASSOCIATION__RELATED_TYPE:
@@ -565,6 +626,7 @@ public class AssociationImpl extends ClassifierImpl implements Association {
 				case SysMLPackage.ASSOCIATION__SOURCE: return SysMLPackage.RELATIONSHIP__SOURCE;
 				case SysMLPackage.ASSOCIATION__OWNING_RELATED_ELEMENT: return SysMLPackage.RELATIONSHIP__OWNING_RELATED_ELEMENT;
 				case SysMLPackage.ASSOCIATION__OWNED_RELATED_ELEMENT: return SysMLPackage.RELATIONSHIP__OWNED_RELATED_ELEMENT;
+				case SysMLPackage.ASSOCIATION__IS_IMPLIED: return SysMLPackage.RELATIONSHIP__IS_IMPLIED;
 				default: return -1;
 			}
 		}
@@ -584,10 +646,27 @@ public class AssociationImpl extends ClassifierImpl implements Association {
 				case SysMLPackage.RELATIONSHIP__SOURCE: return SysMLPackage.ASSOCIATION__SOURCE;
 				case SysMLPackage.RELATIONSHIP__OWNING_RELATED_ELEMENT: return SysMLPackage.ASSOCIATION__OWNING_RELATED_ELEMENT;
 				case SysMLPackage.RELATIONSHIP__OWNED_RELATED_ELEMENT: return SysMLPackage.ASSOCIATION__OWNED_RELATED_ELEMENT;
+				case SysMLPackage.RELATIONSHIP__IS_IMPLIED: return SysMLPackage.ASSOCIATION__IS_IMPLIED;
 				default: return -1;
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuilder result = new StringBuilder(super.toString());
+		result.append(" (isImplied: ");
+		result.append(isImplied);
+		result.append(')');
+		return result.toString();
 	}
 
 } // AssociationImpl

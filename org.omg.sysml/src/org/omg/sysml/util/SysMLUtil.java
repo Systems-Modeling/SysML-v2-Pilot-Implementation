@@ -30,6 +30,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -41,6 +42,8 @@ import org.eclipse.xtext.resource.IResourceServiceProvider;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.resource.impl.ResourceDescriptionsData;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+
+import com.google.common.base.Predicates;
 
 
 /**
@@ -55,12 +58,12 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  */
 public abstract class SysMLUtil {
 
-	protected final ResourceSet resourceSet;
-	protected final Set<Resource> inputResources = new HashSet<Resource>();
-	protected final List<String> extensions = new ArrayList<String>();
-	protected final ResourceDescriptionsData index;
+	private final ResourceSet resourceSet;
+	private final Set<Resource> inputResources = new HashSet<Resource>();
+	private final List<String> extensions = new ArrayList<String>();
+	private final ResourceDescriptionsData index;
 	
-	protected boolean isVerbose = true;
+	private boolean isVerbose = true;
 	
 	protected SysMLUtil() {
 		this(new ResourceDescriptionsData(new ArrayList<>()));
@@ -93,13 +96,22 @@ public abstract class SysMLUtil {
 			System.out.println(line);
 		}
 	}
-	
+
+	/**
+	 * Get the managed resource set.
+	 * 
+	 * @return the resource set
+	 */
+    public ResourceSet getResourceSet() {
+        return resourceSet;
+    }
+    
 	/**
 	 * Add a resource to the Xtext index.
 	 * 
 	 * @param 	resource		the resource to be added
 	 */
-	protected void addResourceToIndex(Resource resource) {
+	public void addResourceToIndex(Resource resource) {
 		URI uri = resource.getURI();
 		IResourceServiceProvider resourceServiceProvider = IResourceServiceProvider.Registry.INSTANCE.getResourceServiceProvider(uri);
 		Manager manager = resourceServiceProvider.getResourceDescriptionManager();
@@ -144,6 +156,26 @@ public abstract class SysMLUtil {
 		if (resource.getResourceSet() == this.resourceSet) {
 			this.inputResources.add(resource);
 		}
+	}
+	
+	/**
+	 * Return all the input resources.
+	 * 
+	 * @return the input resources.
+	 */
+	public Set<Resource> getInputResources() {
+		return this.inputResources;
+	}
+	
+	/**
+	 * Return all the library resources, that is, resources that are not input resources.
+	 * 
+	 * @return the library resources
+	 */
+	public Set<Resource> getLibraryResources() {
+		return this.getResourceSet().getResources().stream().
+				filter(Predicates.not(this::isInputResource)).
+				collect(Collectors.toSet());
 	}
 	
 	/**

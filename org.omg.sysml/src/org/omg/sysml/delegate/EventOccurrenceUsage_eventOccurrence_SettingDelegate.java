@@ -35,7 +35,7 @@ public class EventOccurrenceUsage_eventOccurrence_SettingDelegate extends BasicD
 
 	@Override
 	protected EObject basicGet(InternalEObject owner) {
-		return FeatureUtil.getReferencedFeatureOf((OccurrenceUsage)owner, OccurrenceUsage.class);
+		return FeatureUtil.getEffectiveReferencedFeatureOf((OccurrenceUsage)owner, OccurrenceUsage.class);
 	}
 
 }

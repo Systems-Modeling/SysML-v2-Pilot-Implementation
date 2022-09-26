@@ -36,6 +36,7 @@ import org.omg.sysml.lang.sysml.ActorMembership;
 import org.omg.sysml.lang.sysml.AnalysisCaseUsage;
 import org.omg.sysml.lang.sysml.AttributeUsage;
 import org.omg.sysml.lang.sysml.BindingConnector;
+import org.omg.sysml.lang.sysml.ConnectionUsage;
 import org.omg.sysml.lang.sysml.Connector;
 import org.omg.sysml.lang.sysml.ConstraintUsage;
 import org.omg.sysml.lang.sysml.Definition;
@@ -302,6 +303,12 @@ public class VCompartment extends VStructure {
     @Override
     public String caseConnector(Connector c) {
     	addFeature(c, null);
+    	return "";
+    }
+
+    @Override
+    public String caseConnectionUsage(ConnectionUsage cu) {
+    	addFeature(cu, null);
     	return "";
     }
     

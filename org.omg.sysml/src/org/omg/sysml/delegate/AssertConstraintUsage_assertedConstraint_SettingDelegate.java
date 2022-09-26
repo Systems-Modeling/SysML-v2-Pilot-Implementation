@@ -36,7 +36,7 @@ public class AssertConstraintUsage_assertedConstraint_SettingDelegate extends Ba
 
 	@Override
 	protected EObject basicGet(InternalEObject owner) {
-		return FeatureUtil.getReferencedFeatureOf((AssertConstraintUsage)owner, ConstraintUsage.class);
+		return FeatureUtil.getEffectiveReferencedFeatureOf((AssertConstraintUsage)owner, ConstraintUsage.class);
 	}
 
 }

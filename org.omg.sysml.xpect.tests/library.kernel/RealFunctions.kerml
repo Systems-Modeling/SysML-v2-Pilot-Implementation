@@ -1,8 +1,10 @@
-/**
- * This package defines Functions on Real values, including concrete specializations of the 
- * general arithmetic and comparison operations.
- */
 package RealFunctions {
+	doc
+	/*
+	 * This package defines Functions on Real values, including concrete specializations of the 
+	 * general arithmetic and comparison operations.
+	 */
+
 	import ScalarValues::*;
 	
 	function re :> ComplexFunctions::re{ in x: Real[1]; 

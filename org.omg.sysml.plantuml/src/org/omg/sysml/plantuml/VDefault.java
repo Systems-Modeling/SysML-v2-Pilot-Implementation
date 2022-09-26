@@ -31,6 +31,7 @@ import java.util.List;
 import org.omg.sysml.lang.sysml.AnnotatingElement;
 import org.omg.sysml.lang.sysml.Annotation;
 import org.omg.sysml.lang.sysml.Comment;
+import org.omg.sysml.lang.sysml.ConnectionUsage;
 import org.omg.sysml.lang.sysml.Connector;
 import org.omg.sysml.lang.sysml.Dependency;
 import org.omg.sysml.lang.sysml.Element;
@@ -86,22 +87,18 @@ public class VDefault extends VTraverser {
     }
 
     protected String itemFlowDesc(ItemFlow itf) {
-        StringBuilder sb = null;
-        for (Feature f: itf.getItemFeature()) {
-            if (sb == null) {
-                sb = new StringBuilder();
-            } else {
-                sb.append(", ");
-            }
+        StringBuilder sb = new StringBuilder();
+        Feature f = itf.getItemFeature();
+        if (f != null) {
             /* We do not use the effective name because it always get "item" for it.
-               Use getName() intead. */
+               Use getName() instead. */
             String name = f.getName();
             if (name != null) {
                 sb.append(name);
             }
             appendFeatureType(sb, ": ", f);
         }
-        if (sb == null || sb.length() == 0) return null;
+        if (sb.length() == 0) return null;
         return sb.toString();        
     }
 
@@ -183,6 +180,12 @@ public class VDefault extends VTraverser {
     public String caseConnector(Connector c) {
         addConnector(c, c.getName());
         return "";
+    }
+
+    @Override
+    public String caseConnectionUsage(ConnectionUsage cu) {
+    	addConnector(cu, null);
+    	return "";
     }
 
     @Override

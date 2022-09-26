@@ -48,9 +48,9 @@ public abstract class VTraverser extends Visitor {
     }
 
     protected boolean checkVisited(Namespace n) {
-    	boolean flag = visited.contains(n);
+    	if (visited.contains(n)) return true;
     	visited.add(n);
-    	return flag;
+    	return false;
     }
 
     private List<Set<Namespace>> listOfVisited = new ArrayList<Set<Namespace>>();

@@ -25,6 +25,7 @@
 package org.omg.sysml.plantuml;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -391,11 +392,9 @@ public class SysML2PlantUMLText {
     }
 
     private List<EObject> setupVisualizationMode(EObject eObj) {
-        List<EObject> eObjs = new ArrayList<EObject>(1);
-        eObjs.add(eObj);
         MODE mode = getMode(eObj);
         setMode(mode);
-        return eObjs;
+        return Arrays.asList(eObj);
     }
 
     private List<? extends EObject> matchMode(EObject eObj) {
@@ -415,7 +414,7 @@ public class SysML2PlantUMLText {
                 // This case "e" has owned elements belonging to the same diagram mode but e is NOT.
                 // So we choose the mode for owned elements.  E.g a package has some state machines.
                 setMode(mc);
-                return e.getOwnedElement();
+                return Arrays.asList(e);
             }
         }
         return setupVisualizationMode(eObj);

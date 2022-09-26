@@ -171,7 +171,7 @@ public interface Association extends Classifier, Relationship {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>features</code> of the Association that identifying the things that can be related by it. An Association must have at least two <code>associationEnds</code>. When it has exactly two, the Association is called a <em>binary</em> Association.</p> 
+	 * <p>The <code>features</code> of the Association that identify the things that can be related by it. An Association must have at least two <code>associationEnds</code>. When it has exactly two, the Association is called a <em>binary</em> Association.</p> 
 	 * 
 	 * <p>The ends of the Association determine which elements are eligible to be related by instances of the Association.</p>
 	 * 

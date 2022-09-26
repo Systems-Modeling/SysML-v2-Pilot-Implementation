@@ -45,6 +45,6 @@ public abstract class Relationship_owningRelatedElement_SettingDelegate extends 
 
 	@Override
 	public void set(InternalEObject relationship, Object newOwningRelatedElement) {
-		relationship.eBasicSetContainer((InternalEObject)newOwningRelatedElement, SysMLPackage.RELATIONSHIP__OWNING_RELATED_ELEMENT, null);
+		// relationship.eBasicSetContainer((InternalEObject)newOwningRelatedElement, SysMLPackage.RELATIONSHIP__OWNING_RELATED_ELEMENT, null);
 	}
 }

@@ -37,7 +37,7 @@ public class RequirementVerificationMembership_verifiedRequirement_SettingDelega
 
 	@Override
 	protected EObject basicGet(InternalEObject owner) {
-		return FeatureUtil.getReferencedFeatureOf(((RequirementVerificationMembership)owner).getOwnedRequirement(), RequirementUsage.class);
+		return FeatureUtil.getEffectiveReferencedFeatureOf(((RequirementVerificationMembership)owner).getOwnedRequirement(), RequirementUsage.class);
 	}
 
 }

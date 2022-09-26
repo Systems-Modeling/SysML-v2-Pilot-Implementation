@@ -178,6 +178,10 @@ public class FeatureUtil {
 		return getFeatureAdapter(feature).getSubsettedNotRedefinedFeatures().collect(Collectors.toList());
 	}
 
+	public static Feature getReferencedFeatureOf(Feature feature) {
+		return getFeatureAdapter(feature).getReferencedFeature();
+	}
+
 	public static Optional<Subsetting> getFirstOwnedSubsettingOf(Feature feature) {
 		return feature.getOwnedSubsetting().stream().
 				filter(subsetting->!(subsetting instanceof Redefinition)).findFirst();
@@ -189,15 +193,10 @@ public class FeatureUtil {
 		feature.getOwnedRelationship().add(subsetting);
 		return subsetting;
 	}
-
-	public static <T extends Feature> T getReferencedFeatureOf(T feature, Class<T> kind) {
-		return feature.getOwnedSubsetting().stream().
-				filter(sub->!(sub instanceof Redefinition)).
-				map(Subsetting::getSubsettedFeature).
-				map(FeatureUtil::getBasicFeatureOf).
-				filter(kind::isInstance).
-				map(kind::cast).
-				findFirst().orElse(feature);
+	
+	public static <T extends Feature> T getEffectiveReferencedFeatureOf(T feature, Class<T> kind) {
+		Feature referencedFeature = getBasicFeatureOf(getReferencedFeatureOf(feature));
+		return kind.isInstance(referencedFeature)? kind.cast(referencedFeature): feature;
 	}
 
 	public static List<Feature> getRedefinedFeaturesOf(Feature feature) {
@@ -296,6 +295,7 @@ public class FeatureUtil {
 						&& Objects.equals(f.getFeaturingType(), type));
 			if (featuringRequired) {
 				TypeFeaturing featuring = SysMLFactory.eINSTANCE.createTypeFeaturing();
+				featuring.setIsImplied(true);
 				featuring.setFeaturingType(type);
 				featuring.setFeatureOfType(feature);
 				feature.getOwnedRelationship().add(featuring);

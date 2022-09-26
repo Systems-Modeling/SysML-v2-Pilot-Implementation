@@ -46,14 +46,14 @@ export function defineSysMLv2Mode(): void {
                 "import", "in", "include", "individual", "inout", "interface", "istype", "item", "join", "language",
                 "loop", "merge", "message", "metadata", "nonunique", "not", "objective", "occurrence", "of", "or",
                 "ordered", "out", "package", "parallel", "part", "perform", "port", "private", "protected", "public",
-                "readonly", "redefines", "ref", "render", "rendering", "rep", "require", "requirement", "return",
-                "satisfy", "send", "snapshot", "specializes", "stakeholder", "state", "subject", "subsets",
+                "readonly", "redefines", "ref", "references", "render", "rendering", "rep", "require", "requirement",
+                "return", "satisfy", "send", "snapshot", "specializes", "stakeholder", "state", "subject", "subsets",
                 "succession", "then", "timeslice", "to", "transition", "until", "use", "variant", "variation",
                 "verification", "verify", "via", "view", "viewpoint", "when", "while", "xor"
             ].reduce(f_wordify, {}),
             defKeywords: [
                 "action", "allocation", "analysis", "attribute", "binding", "calc", "case", "comment", "concern",
-                "connection", "constraint", "def", "doc", "enum", "interface", "item", "metadata", "objective",
+                "connection", "constraint", "def", "doc", "enum", "flow", "interface", "item", "metadata", "objective",
                 "occurrence", "package", "part", "port", "ref", "rendering", "rep", "requirement", "snapshot", "state",
                 "subject", "succession", "timeslice", "transition", "verification", "view", "viewpoint"
             ].reduce(f_wordify, {}),

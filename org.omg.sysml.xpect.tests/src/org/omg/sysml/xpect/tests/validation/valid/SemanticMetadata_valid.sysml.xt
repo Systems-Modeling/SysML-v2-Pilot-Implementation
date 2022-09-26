@@ -16,6 +16,9 @@ XPECT_SETUP org.omg.sysml.xpect.tests.validation.valid.SysMLTests
        	File {from ="/library.kernel/KerML.kerml"}
        	File {from ="/library.systems/Attributes.sysml"}
        	File {from ="/library.systems/Items.sysml"}
+       	File {from ="/library.systems/Parts.sysml"}
+        File {from ="/library.systems/Constraints.sysml"}
+        File {from ="/library.systems/Requirements.sysml"}
        	File {from ="/library.systems/Metadata.sysml"}
        	File {from ="/library.systems/SysML.sysml"}
 	}
@@ -37,7 +40,10 @@ XPECT_SETUP org.omg.sysml.xpect.tests.validation.valid.SysMLTests
 		       	File {from ="/library.kernel/KerML.kerml"}
 		       	File {from ="/library.systems/Attributes.sysml"}
 		       	File {from ="/library.systems/Items.sysml"}
-       			File {from ="/library.systems/Metadata.sysml"}
+		        File {from ="/library.systems/Parts.sysml"}
+		        File {from ="/library.systems/Constraints.sysml"}
+		        File {from ="/library.systems/Requirements.sysml"}
+		       	File {from ="/library.systems/Metadata.sysml"}
 		       	File {from ="/library.systems/SysML.sysml"}
 			}
 		}
@@ -46,6 +52,7 @@ END_SETUP
 */
 // XPECT noErrors ---> ""
 package SemanticMetadata_valid {
+	import Metaobjects::SemanticMetadata;
 
 	item def C {
 		ref x;
@@ -71,4 +78,16 @@ package SemanticMetadata_valid {
 		ref :>> y;
 	}
 	
+    requirement def G;
+	requirement gs : G[*] nonunique;
+	metadata def g :> SemanticMetadata {
+	    :>> baseType = gs as SysML::RequirementUsage;
+	}
+	
+	requirement r1;
+	#g requirement r2 {
+		actor #B a;
+		assume #g constraint b;
+		require #g r1;
+	}
 }

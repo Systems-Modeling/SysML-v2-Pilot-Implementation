@@ -108,6 +108,12 @@ public class DisjoiningImpl extends RelationshipImpl implements Disjoining {
 		return SysMLPackage.Literals.DISJOINING;
 	}
 	
+	/**
+	 * <!-- begin-user-doc -->
+	 * Xtext workaround
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
 	@Override
 	public Type getDisjoiningType() {
 		return disjoiningType == null? basicGetDisjoiningType(): getDisjoiningTypeGen();
@@ -140,7 +146,6 @@ public class DisjoiningImpl extends RelationshipImpl implements Disjoining {
 	 * @generated NOT
 	 */
 	public Type basicGetDisjoiningType() {
-		// Xtext workaround
 		if (disjoiningType == null) {
 			// Handle a disjoiningType that is a Feature chain.
 			EList<Element> ownedRelatedElements = getOwnedRelatedElement();

@@ -488,7 +488,7 @@ public abstract class Visitor extends SysMLSwitch<String> {
             if (ft == null) continue;
             Type typ = ft.getType();
             if (typ == null) continue;
-            String typeName = typ.getName();
+            String typeName = typ.getEffectiveName();
             if (typeName == null) continue;
             if (added) {
                 sb.append(", ");

@@ -34,6 +34,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.omg.sysml.lang.sysml.ConnectionUsage;
 import org.omg.sysml.lang.sysml.Connector;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
@@ -217,8 +218,8 @@ public class VPath extends VTraverser {
             this.f = f;
         }
         
-        public PCFeature(Feature f) {
-        	super(f);
+        public PCFeature(Subsetting ss, Feature f) {
+        	super(ss);
         	this.f = f;
         }
     }
@@ -472,7 +473,7 @@ public class VPath extends VTraverser {
             Feature sf = ss.getSubsettedFeature();
             List<FeatureChaining> fcs = sf.getOwnedFeatureChaining();
             if (fcs.isEmpty()) {
-                return new PCFeature(sf);
+                return new PCFeature(ss, sf);
             } else {
                 return new PCFeatureChain(sf);
             }
@@ -599,11 +600,11 @@ public class VPath extends VTraverser {
 
     @Override
     public String caseType(Type typ) {
-    	if (checkVisited(typ)) return null;
         for (Specialization sp: typ.getOwnedSpecialization()) {
             Type g = sp.getGeneral();
             // Type s = sp.getSpecific();
             if (g == null) continue;
+            if (checkVisited(g)) continue;
             visit(g);
             // visit(s); // Typically this will cause double traverse but checkVisit() stops it..
         }
@@ -628,7 +629,7 @@ public class VPath extends VTraverser {
     @Override
     public String caseConnector(Connector c) {
         /* VTraverser.traverse() do not duplicatedly traverse features already visited.
-           Thus VPath visits ends without counting on travserse(). */
+           Thus VPath visits ends without counting on traverse(). */
         for (Feature f: c.getConnectorEnd()) {
             visit(f);
         }

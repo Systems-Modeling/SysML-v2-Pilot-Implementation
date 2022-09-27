@@ -40,6 +40,7 @@
 
   <modules>
     <module>org.omg.sysml</module>
+    <module>org.omg.sysml.execution</module>
     <module>org.omg.kerml.expressions.xtext</module>
     <module>org.omg.kerml.xtext</module>
     <module>org.omg.sysml.xtext</module>

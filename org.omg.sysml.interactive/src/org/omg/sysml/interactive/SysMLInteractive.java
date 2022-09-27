@@ -238,7 +238,7 @@ public class SysMLInteractive extends SysMLUtil {
 			target = this.resolve(targetName);
 			if (target == null) {
 				this.counter++;
-				return "ERROR:Couldn't resolve reference to Element '" + targetName + "'";
+				return "ERROR:Couldn't resolve reference to Element '" + targetName + "'\n";
 			}
 			input = "calc{import " + targetName + "::*;\n" + input + "}";
 		}

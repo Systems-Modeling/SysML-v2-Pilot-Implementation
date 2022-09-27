@@ -23,10 +23,10 @@ package org.omg.sysml.execution.expressions;
 
 import org.eclipse.emf.common.util.EList;
 import org.omg.sysml.expressions.ModelLevelExpressionEvaluator;
+import org.omg.sysml.expressions.util.EvaluationUtil;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.FeatureChaining;
 import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.InvocationExpression;
@@ -46,20 +46,23 @@ public class ExpressionEvaluator extends ModelLevelExpressionEvaluator {
 			return super.evaluateInvocation(expression, target);
 		} else {
 			Type type = expression.getOwnedTyping().stream().map(FeatureTyping::getType).findFirst().orElse(null);
-			target = expression;
-			if (type instanceof Feature) {
-				EList<FeatureChaining> featureChainings = ((Feature)type).getOwnedFeatureChaining();
-				if (!featureChainings.isEmpty()) {
-					target = featureChainings.get(0).getChainingFeature();
+			Expression resultExpression = ExpressionUtil.getResultExpressionOf(type);
+			if (resultExpression == null) {
+				Feature resultParameter = TypeUtil.getResultParameterOf(type);
+				if (resultParameter != null) {
+					resultExpression = FeatureUtil.getValueExpressionFor(resultParameter);
 				}
 			}
-			Type expressionType = type instanceof Feature? FeatureUtil.getBasicFeatureOf((Feature)type): type;
-			Expression resultExpression = ExpressionUtil.getResultExpressionOf(expressionType);
 			if (resultExpression == null) {
-				Feature resultParameter = TypeUtil.getResultParameterOf(expressionType);
-				resultExpression = FeatureUtil.getValueExpressionFor(resultParameter);
+				return EvaluationUtil.singletonList(expression);
+			} else {
+				Feature targetFeature = EvaluationUtil.getTargetFeatureFor(target);
+				if (type instanceof Feature) {
+					targetFeature = FeatureUtil.chainFeatures(targetFeature, (Feature)type);
+				}
+				EList<Element> results = evaluate(resultExpression, FeatureUtil.chainFeatures(targetFeature, expression));
+				return results == null? EvaluationUtil.singletonList(resultExpression): results;
 			}
-			return resultExpression == null? null: evaluate(resultExpression, target);
 		}
 	}
 	

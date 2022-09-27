@@ -31,21 +31,19 @@ import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureReferenceExpression;
-import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.InvocationExpression;
 import org.omg.sysml.lang.sysml.LiteralExpression;
 import org.omg.sysml.lang.sysml.NullExpression;
 import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.lang.sysml.impl.FeatureImpl;
 import org.omg.sysml.util.ExpressionUtil;
 import org.omg.sysml.util.FeatureUtil;
 import org.omg.sysml.util.NamespaceUtil;
 import org.omg.sysml.util.TypeUtil;
 
-public class ExpressionEvaluator {
+public class ModelLevelExpressionEvaluator {
 	
-	public static final ExpressionEvaluator INSTANCE = new ExpressionEvaluator();
+	public static final ModelLevelExpressionEvaluator INSTANCE = new ModelLevelExpressionEvaluator();
 
 	protected LibraryFunctionFactory libraryFunctionFactory = LibraryFunctionFactory.INSTANCE;
 	
@@ -81,11 +79,13 @@ public class ExpressionEvaluator {
 	
 	public EList<Element> evaluateFeatureReference(FeatureReferenceExpression expression, Element target) {
 		Feature referent = expression.getReferent();
-		if (target instanceof Type) {
+		if (target == null || target instanceof Type) {
 			if (referent != null) {
 				if (TypeUtil.conforms(referent, ExpressionUtil.getSelfReferenceFeature(expression))) {
 					EList<Element> result = new BasicEList<>();
-					result.add(target);
+					if (target != null) {
+						result.add(target);
+					}
 					return result;
 				} else if (referent.getOwnedFeatureChaining().isEmpty()){
 					return evaluateFeature(referent, (Type)target);
@@ -126,23 +126,17 @@ public class ExpressionEvaluator {
 	}
 	
 	protected EList<Element> evaluateFeature(Feature feature, Type type) {
-		Feature typeFeature = type.getFeature().stream().
-				map(FeatureImpl.class::cast).
-				filter(
-						f->f == feature || FeatureUtil.getRedefinedFeaturesOf(f).contains(feature)).
+		Feature typeFeature = type == null? feature: 
+			type.getFeature().stream().
+				filter(f->f == feature || FeatureUtil.getRedefinedFeaturesOf(f).contains(feature)).
 				findFirst().orElse(null);
 		if (typeFeature != null) {
-			FeatureValue featureValue = FeatureUtil.getValuationFor(typeFeature);
-			if (featureValue != null) {
-				Expression value = featureValue.getValue();
-				if (value != null) {
-					return evaluate(value, type);
-				}
+			Expression value = FeatureUtil.getValueExpressionFor(typeFeature);
+			if (value != null) {
+				return evaluate(value, type);
 			}
-			return EvaluationUtil.singletonList(typeFeature);
-		} else {
-			return EvaluationUtil.singletonList(feature);
 		}
+		return EvaluationUtil.singletonList(feature);
 	}
 	
 }

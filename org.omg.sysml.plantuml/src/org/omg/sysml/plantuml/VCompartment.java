@@ -652,7 +652,11 @@ public class VCompartment extends VStructure {
     public void startType(Type typ) {
         this.currentType = typ;
         traverse(typ);
+        /* In order to evaluate features properly,
+           we need to restore `typ` namespace because traverse() above did popNamespace()  */
+        pushNamespace(typ);
         addFeatures(featureEntries, 0);
+        popNamespace();
     }
 
     public List<VTree> process(VTree parent, Type typ) {

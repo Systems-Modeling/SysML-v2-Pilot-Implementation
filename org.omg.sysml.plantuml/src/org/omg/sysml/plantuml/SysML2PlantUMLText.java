@@ -616,6 +616,24 @@ public class SysML2PlantUMLText {
         }
     }
 
+    Element getEvalTarget() {
+        int size = namespaces.size();
+    	if (size == 0) return null;
+
+        if (inheritingIdices.isEmpty()) {
+            for (int i = 0; i < size; i++) {
+                Namespace ns = namespaces.get(i);
+                if (ns instanceof Type) {
+                    return ns;
+                }
+            }
+            return null;
+        } else {
+            int idx = inheritingIdices.get(0);
+            return namespaces.get(idx);
+        }
+    }
+
     InheritKey makeInheritKey(Feature ref) {
         return InheritKey.construct(namespaces, inheritingIdices, ref);
     }

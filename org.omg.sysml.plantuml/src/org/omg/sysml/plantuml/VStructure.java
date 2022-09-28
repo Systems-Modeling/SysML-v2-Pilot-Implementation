@@ -136,7 +136,8 @@ public abstract class VStructure extends VDefault {
                     flag = true;
                 }
                 Expression ex = fv.getValue();
-                flag = addEvaluatedResults(ex, f.getOwner()) || flag;
+                Element evalTarget = getEvalTarget();
+                flag = addEvaluatedResults(ex, evalTarget) || flag;
             } else if (m instanceof ResultExpressionMembership) {
                 ResultExpressionMembership rem = (ResultExpressionMembership) m;
                 Expression ex = rem.getOwnedResultExpression();

@@ -41,9 +41,10 @@ public class DotFunction extends ControlFunction {
 	@Override
 	public EList<Element> invoke(InvocationExpression invocation, Element target) {
 		EList<Element> list = EvaluationUtil.evaluateArgument(invocation, 0, target);			
-		if (list != null && target == null || target instanceof Type) {
+		if (list != null) {
 			Element targetFeature = ExpressionUtil.getTargetFeatureFor(invocation);
 			if (targetFeature instanceof Feature) {
+				Type type = target instanceof Type? (Type)target: null;
 				EList<Element> result = new BasicEList<>();
 				for (Element element: list) {
 					if (element instanceof Feature) {
@@ -56,7 +57,7 @@ public class DotFunction extends ControlFunction {
 							chainingFeatures.addAll(targetChainingFeatures);
 						}
 						EList<Element> value = ModelLevelExpressionEvaluator.INSTANCE.
-								evaluateFeatureChain(chainingFeatures, (Type)target);
+								evaluateFeatureChain(chainingFeatures, type);
 						if (value != null) {
 							result.addAll(value);
 						}

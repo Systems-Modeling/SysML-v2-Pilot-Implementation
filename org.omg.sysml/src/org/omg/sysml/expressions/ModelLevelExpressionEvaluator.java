@@ -21,6 +21,7 @@
 
 package org.omg.sysml.expressions;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.emf.common.util.BasicEList;
@@ -31,16 +32,15 @@ import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureReferenceExpression;
-import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.InvocationExpression;
 import org.omg.sysml.lang.sysml.LiteralExpression;
 import org.omg.sysml.lang.sysml.NullExpression;
-import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.util.ExpressionUtil;
 import org.omg.sysml.util.FeatureUtil;
-import org.omg.sysml.util.NamespaceUtil;
 import org.omg.sysml.util.TypeUtil;
+
+import com.google.common.base.Predicates;
 
 public class ModelLevelExpressionEvaluator {
 	
@@ -80,22 +80,8 @@ public class ModelLevelExpressionEvaluator {
 	
 	public EList<Element> evaluateFeatureReference(FeatureReferenceExpression expression, Element target) {
 		Feature referent = expression.getReferent();
-		if (target == null || target instanceof Type) {
-			if (referent != null) {
-				if (TypeUtil.conforms(referent, ExpressionUtil.getSelfReferenceFeature(expression))) {
-					EList<Element> result = new BasicEList<>();
-					if (target != null) {
-						result.add(target);
-					}
-					return result;
-				} else if (referent.getOwnedFeatureChaining().isEmpty()){
-					return evaluateFeature(referent, (Type)target);
-				} else {
-					return evaluateFeatureChain(referent.getChainingFeature(), (Type)target);
-				}
-			}
-		}
-		return EvaluationUtil.singletonList(referent);
+		return referent == null? null:
+			   evaluateFeature(referent, target instanceof Type? (Type)target: null);
 	}
 	
 	public EList<Element> evaluateInvocation(InvocationExpression expression, Element target) {
@@ -103,71 +89,57 @@ public class ModelLevelExpressionEvaluator {
 		return function == null? null: function.invoke(expression, target);
 	}
 	
-	public EList<Element> evaluateFeatureChain(EList<Feature> chainingFeatures, Type type) {
-		List<Feature> subchainingFeatures = chainingFeatures.subList(1, chainingFeatures.size());
-		FeatureReferenceExpression featureRefExpr = SysMLFactory.eINSTANCE.createFeatureReferenceExpression();
-		if (chainingFeatures.size() == 2) {
-			NamespaceUtil.addMemberTo(featureRefExpr, chainingFeatures.get(1));
-		} else {
-			NamespaceUtil.addOwnedMemberTo(featureRefExpr, FeatureUtil.chainFeatures(subchainingFeatures));
-		}
-		EList<Element> result = new BasicEList<>();
-		for (Element value: evaluateFeature(chainingFeatures.get(0), type)) {
-			Element target = value instanceof Feature? FeatureUtil.chainFeatures(getTargetFeature(type), (Feature)value): value;
-			EList<Element> featureValue = evaluateFeatureReference(featureRefExpr, target);
-			if (featureValue == null) {
-				result.add(FeatureUtil.chainFeatures((Feature)value, FeatureUtil.chainFeatures(subchainingFeatures)));
-			} else {
-				result.addAll(featureValue);
-			}
-		}
-		return result;		
-	}
-	
-	protected Feature getTargetFeature(Element target) {
-		Feature targetFeature;
-		if (target instanceof Feature) {
-			targetFeature = (Feature)target;
-		} else if (target instanceof Type) {
-				FeatureTyping featureTyping = SysMLFactory.eINSTANCE.createFeatureTyping();
-				featureTyping.setType((Type)target);
-				targetFeature = SysMLFactory.eINSTANCE.createFeature();
-				targetFeature.getOwnedRelationship().add(featureTyping);
-		} else {
-			targetFeature = SysMLFactory.eINSTANCE.createFeature();
-		}
-		return targetFeature;
-	}
-	
 	public EList<Element> evaluateFeature(Feature feature, Type type) {
-		if (type instanceof Feature) {
-			List<Feature> chainingFeatures = ((Feature)type).getChainingFeature();
-			if (!chainingFeatures.isEmpty()) {
-				int i = chainingFeatures.size();
-				while (i > 0) {
-					Expression value = getValueExpression(feature, 
-							FeatureUtil.chainFeatures(chainingFeatures.subList(0, i)));
-					if (value != null) {
-						return evaluate(value, type);
-					}
-					i--;
-				}
-				return EvaluationUtil.singletonList(feature);
-			}
+		if (type != null && TypeUtil.conforms(feature, ExpressionUtil.getSelfReferenceFeature(feature))) {
+			// Evaluate "self" feature.
+			return EvaluationUtil.singletonList(EvaluationUtil.getTargetFeatureFor(type));
+		} else if (!feature.getOwnedFeatureChaining().isEmpty()) {
+			// Evaluate feature with a feature chain.
+			return evaluateFeatureChain(feature.getChainingFeature(), type);
+		} else {
+			// Evaluate regular feature.
+			// Note: If "type" has a feature chain, than this represents a nested context, to be searched
+			// in reverse from the last to the first chaining feature.
+			List<? extends Type> types =
+				type instanceof Feature && !((Feature) type).getOwnedFeatureChaining().isEmpty()?
+					((Feature)type).getChainingFeature():
+					Collections.singletonList(type);
+			Collections.reverse(types);
+			return types.stream().
+					map(t->EvaluationUtil.getValueExpressionFor(feature, t)).
+					filter(Predicates.notNull()).
+					map(v->evaluate(v, type)).
+					filter(Predicates.notNull()).
+					findFirst().
+					orElseGet(()->EvaluationUtil.singletonList(feature));
 		}
-		Expression value = getValueExpression(feature, type);
-		return value == null? EvaluationUtil.singletonList(feature): evaluate(value, type);
 	}
 	
-	protected Expression getValueExpression(Feature feature, Type type) {
-		if (type instanceof Feature) {
-			type = FeatureUtil.getBasicFeatureOf((Feature)type);
+	public EList<Element> evaluateFeatureChain(List<Feature> chainingFeatures, Type type) {
+		EList<Element> values = evaluateFeature(chainingFeatures.get(0), type);
+		if (chainingFeatures.size() == 1) {
+			return values;
+		} else {
+			// Evaluate the chain of features other than the first, with each value from the
+			// result of evaluating the first chaining feature.
+			List<Feature> subchainingFeatures = chainingFeatures.subList(1, chainingFeatures.size());
+			EList<Element> result = new BasicEList<>();
+			for (Element value: values) {
+				EList<Element> featureValue = null;
+				if (value instanceof Type) {
+					Type target = value instanceof Feature? 
+							FeatureUtil.chainFeatures(EvaluationUtil.getTargetFeatureFor(type), (Feature)value): 
+							(Type)value;
+					featureValue = evaluateFeatureChain(subchainingFeatures, target);
+				}
+				if (featureValue == null) {
+					result.add(FeatureUtil.chainFeatures((Feature)value, FeatureUtil.chainFeatures(subchainingFeatures)));
+				} else {
+					result.addAll(featureValue);
+				}
+			}
+			return result;
 		}
-		Feature typeFeature = type == null? feature: 
-			type.getFeature().stream().
-				filter(f->f == feature || FeatureUtil.getRedefinedFeaturesOf(f).contains(feature)).
-				findFirst().orElse(feature);
-		return FeatureUtil.getValueExpressionFor(typeFeature);
 	}
 	
 }

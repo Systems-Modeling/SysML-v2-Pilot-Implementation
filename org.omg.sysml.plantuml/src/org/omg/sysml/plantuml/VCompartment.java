@@ -267,7 +267,11 @@ public class VCompartment extends VStructure {
                                       boolean norec,
                                       FeatureEntry parent) {
         Membership ms = getCurrentMembership();
-        if (ms instanceof ReturnParameterMembership) return null; // To filter "result" parameter out.
+        if (ms instanceof ReturnParameterMembership) {
+            Element e = ms.getMemberElement();
+             // To filter empty "result" parameter.
+            if (e.getOwnedRelationship().isEmpty()) return null;
+        }
 
         if (!norec && (alias == null) && (prefix == null)) {
             if (recCurrentMembership(f, false)) return null;

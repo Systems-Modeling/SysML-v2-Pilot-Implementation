@@ -46,9 +46,9 @@ import org.omg.sysml.util.FeatureUtil;
 import org.omg.sysml.util.NamespaceUtil;
 import org.omg.sysml.util.TypeUtil;
 
-public class ExpressionEvaluator {
+public class ModelLevelExpressionEvaluator {
 	
-	public static final ExpressionEvaluator INSTANCE = new ExpressionEvaluator();
+	public static final ModelLevelExpressionEvaluator INSTANCE = new ModelLevelExpressionEvaluator();
 
 	protected LibraryFunctionFactory libraryFunctionFactory = LibraryFunctionFactory.INSTANCE;
 	

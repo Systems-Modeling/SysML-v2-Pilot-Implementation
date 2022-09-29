@@ -26,7 +26,7 @@ import java.util.List;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.omg.sysml.expressions.ExpressionEvaluator;
+import org.omg.sysml.expressions.ModelLevelExpressionEvaluator;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.InvocationExpression;
@@ -62,7 +62,7 @@ public class EvaluationUtil {
 	}
 
 	public static EList<Element> evaluate(Expression expression, Element target) {
-		return ExpressionEvaluator.INSTANCE.evaluate(expression, target);
+		return ModelLevelExpressionEvaluator.INSTANCE.evaluate(expression, target);
 	}
 
 	public static EList<Element> nullList() {

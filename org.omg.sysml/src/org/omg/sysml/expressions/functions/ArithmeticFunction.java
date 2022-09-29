@@ -22,7 +22,7 @@
 package org.omg.sysml.expressions.functions;
 
 import org.eclipse.emf.common.util.EList;
-import org.omg.sysml.expressions.ExpressionEvaluator;
+import org.omg.sysml.expressions.ModelLevelExpressionEvaluator;
 import org.omg.sysml.expressions.util.EvaluationUtil;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.InvocationExpression;
@@ -55,7 +55,7 @@ public abstract class ArithmeticFunction implements LibraryFunction {
 	}
 
 	@Override
-	public EList<Element> invoke(InvocationExpression invocation, Element target, ExpressionEvaluator evaluator) {
+	public EList<Element> invoke(InvocationExpression invocation, Element target, ModelLevelExpressionEvaluator evaluator) {
 		Integer x_int = evaluator.integerValue(invocation, 0, target);
 		Integer y_int = evaluator.integerValue(invocation, 1, target);
 		Double x_real = evaluator.realValue(invocation, 0, target);

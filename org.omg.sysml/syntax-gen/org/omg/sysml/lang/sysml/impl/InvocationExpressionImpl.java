@@ -26,7 +26,7 @@ import java.util.Collection;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.omg.sysml.expressions.ExpressionEvaluator;
+import org.omg.sysml.expressions.ModelLevelExpressionEvaluator;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Function;
@@ -91,7 +91,7 @@ public class InvocationExpressionImpl extends ExpressionImpl implements Invocati
 	
 	@Override
 	public EList<Element> evaluate(Element target) {
-		return isModelLevelEvaluable()? ExpressionEvaluator.INSTANCE.evaluateInvocation(this, target): null;
+		return isModelLevelEvaluable()? ModelLevelExpressionEvaluator.INSTANCE.evaluateInvocation(this, target): null;
 	}
 	
 	/**

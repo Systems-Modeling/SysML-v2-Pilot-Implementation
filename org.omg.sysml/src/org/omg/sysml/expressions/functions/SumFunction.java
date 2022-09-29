@@ -22,7 +22,7 @@
 package org.omg.sysml.expressions.functions;
 
 import org.eclipse.emf.common.util.EList;
-import org.omg.sysml.expressions.ExpressionEvaluator;
+import org.omg.sysml.expressions.ModelLevelExpressionEvaluator;
 import org.omg.sysml.expressions.util.EvaluationUtil;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.InvocationExpression;
@@ -42,7 +42,7 @@ public class SumFunction implements LibraryFunction {
 	}
 
 	@Override
-	public EList<Element> invoke(InvocationExpression invocation, Element target, ExpressionEvaluator evaluator) {
+	public EList<Element> invoke(InvocationExpression invocation, Element target, ModelLevelExpressionEvaluator evaluator) {
 		EList<Element> list = evaluator.evaluateArgument(invocation, 0, target);
 		if (list == null) {
 			return null;

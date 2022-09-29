@@ -25,7 +25,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.omg.sysml.expressions.ExpressionEvaluator;
+import org.omg.sysml.expressions.ModelLevelExpressionEvaluator;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureReferenceExpression;
@@ -110,7 +110,7 @@ public class FeatureReferenceExpressionImpl extends ExpressionImpl implements Fe
 	
 	@Override
 	public EList<Element> evaluate(Element target) {
-		return ExpressionEvaluator.INSTANCE.evaluateFeatureReference(this, target);
+		return ModelLevelExpressionEvaluator.INSTANCE.evaluateFeatureReference(this, target);
 	}
 	
 	/**

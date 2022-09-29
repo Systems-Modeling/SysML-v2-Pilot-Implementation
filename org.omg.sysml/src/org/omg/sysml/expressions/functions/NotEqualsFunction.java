@@ -22,7 +22,7 @@
 package org.omg.sysml.expressions.functions;
 
 import org.eclipse.emf.common.util.EList;
-import org.omg.sysml.expressions.ExpressionEvaluator;
+import org.omg.sysml.expressions.ModelLevelExpressionEvaluator;
 import org.omg.sysml.expressions.util.EvaluationUtil;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.InvocationExpression;
@@ -35,7 +35,7 @@ public class NotEqualsFunction extends BaseFunction {
 	}
 
 	@Override
-	public EList<Element> invoke(InvocationExpression invocation, Element target, ExpressionEvaluator evaluator) {
+	public EList<Element> invoke(InvocationExpression invocation, Element target, ModelLevelExpressionEvaluator evaluator) {
 		EList<Element> x = evaluator.evaluateArgument(invocation, 0, target);
 		EList<Element> y = evaluator.evaluateArgument(invocation, 1, target);
 		return x == null || y == null? null: EvaluationUtil.booleanResult(!EvaluationUtil.equal(x, y));

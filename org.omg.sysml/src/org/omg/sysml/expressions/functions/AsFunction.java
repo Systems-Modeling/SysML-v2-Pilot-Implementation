@@ -23,7 +23,7 @@ package org.omg.sysml.expressions.functions;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
-import org.omg.sysml.expressions.ExpressionEvaluator;
+import org.omg.sysml.expressions.ModelLevelExpressionEvaluator;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.InvocationExpression;
 import org.omg.sysml.lang.sysml.Type;
@@ -43,7 +43,7 @@ public class AsFunction extends BaseFunction {
 	}
 	
 	@Override
-	public EList<Element> invoke(InvocationExpression invocation, Element target, ExpressionEvaluator evaluator) {
+	public EList<Element> invoke(InvocationExpression invocation, Element target, ModelLevelExpressionEvaluator evaluator) {
 		Type targetType = getTypeArgument(invocation);
 		if (targetType != null) {
 			EList<Element> values = evaluator.evaluateArgument(invocation, 0, target);

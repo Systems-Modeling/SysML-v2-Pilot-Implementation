@@ -109,13 +109,18 @@ public class ModelLevelExpressionEvaluator {
 					((Feature)type).getChainingFeature():
 					Collections.singletonList(type);
 			Collections.reverse(types);
-			return types.stream().
+			Expression valueExpression = types.stream().
 					map(t->EvaluationUtil.getValueExpressionFor(feature, t)).
 					filter(Predicates.notNull()).
-					map(v->evaluate(v, type)).
-					filter(Predicates.notNull()).
 					findFirst().
-					orElseGet(()->EvaluationUtil.singletonList(feature));
+					orElseGet(()->EvaluationUtil.getValueExpressionFor(feature, null));
+			if (valueExpression != null) {
+				EList<Element> results = evaluate(valueExpression, type);
+				if (results != null) {
+					return results;
+				}
+			}
+			return EvaluationUtil.singletonList(feature);
 		}
 	}
 	
@@ -129,17 +134,13 @@ public class ModelLevelExpressionEvaluator {
 			List<Feature> subchainingFeatures = chainingFeatures.subList(1, chainingFeatures.size());
 			EList<Element> result = new BasicEList<>();
 			for (Element value: values) {
-				EList<Element> featureValue = null;
-				if (value instanceof Type) {
+				if (!(value instanceof Type)) {
+					result.add(FeatureUtil.chainFeatures((Feature)value, FeatureUtil.chainFeatures(subchainingFeatures)));
+				} else {
 					Type target = value instanceof Feature? 
 							FeatureUtil.chainFeatures(EvaluationUtil.getTargetFeatureFor(type), (Feature)value): 
 							(Type)value;
-					featureValue = evaluateFeatureChain(subchainingFeatures, target);
-				}
-				if (featureValue == null) {
-					result.add(FeatureUtil.chainFeatures((Feature)value, FeatureUtil.chainFeatures(subchainingFeatures)));
-				} else {
-					result.addAll(featureValue);
+					result.addAll(evaluateFeatureChain(subchainingFeatures, target));
 				}
 			}
 			return result;

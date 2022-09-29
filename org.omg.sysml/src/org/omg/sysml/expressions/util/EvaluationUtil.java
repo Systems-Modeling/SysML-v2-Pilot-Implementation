@@ -150,11 +150,13 @@ public class EvaluationUtil {
 	}
 
 	public static Expression getValueExpressionFor(Feature feature, Type type) {
-		Feature typeFeature = type == null? feature: 
-			type.getFeature().stream().
-				filter(f->f == feature || FeatureUtil.getRedefinedFeaturesOf(f).contains(feature)).
-				findFirst().orElse(feature);
-		return FeatureUtil.getValueExpressionFor(typeFeature);
+		Feature typeFeature = 
+				type != null? type.getFeature().stream().
+					filter(f->f == feature || FeatureUtil.getRedefinedFeaturesOf(f).contains(feature)).
+					findFirst().orElse(null):
+				feature.getOwningType() == null? feature:
+				null;
+		return typeFeature == null? null: FeatureUtil.getValueExpressionFor(typeFeature);
 	}
 
 }

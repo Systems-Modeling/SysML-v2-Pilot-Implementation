@@ -41,11 +41,11 @@ public class GlobalNameRedefinitionTest extends SysMLInteractiveTest {
 	public void testRedefinitionShadowing() throws Exception {
 		SysMLInteractive instance = getSysMLInteractiveInstance();
 		
-		SysMLInteractiveResult result1 = instance.eval("y = 1;");
+		SysMLInteractiveResult result1 = instance.process("y = 1;");
 		System.out.println(result1);
 		String id1 = result1.getRootElement().getOwnedElement().get(0).getElementId();
 		
-		SysMLInteractiveResult result2 = instance.eval("y = 2;");
+		SysMLInteractiveResult result2 = instance.process("y = 2;");
 		System.out.println(result2);
 		String id2 = result2.getRootElement().getOwnedElement().get(0).getElementId();
 		
@@ -62,14 +62,14 @@ public class GlobalNameRedefinitionTest extends SysMLInteractiveTest {
 		
 		// This is used to ensure later requests will get identifiers 9 and 10
 		for (int i=1; i<9; i++) {
-			instance.eval("x = 1;");
+			instance.process("x = 1;");
 		}
 		
-		SysMLInteractiveResult result1 = instance.eval("y = 1;");
+		SysMLInteractiveResult result1 = instance.process("y = 1;");
 		System.out.println(result1);
 		String id1 = result1.getRootElement().getOwnedElement().get(0).getElementId();
 		
-		SysMLInteractiveResult result2 = instance.eval("y = 2;");
+		SysMLInteractiveResult result2 = instance.process("y = 2;");
 		System.out.println(result2);
 		String id2 = result2.getRootElement().getOwnedElement().get(0).getElementId();
 		
@@ -84,11 +84,11 @@ public class GlobalNameRedefinitionTest extends SysMLInteractiveTest {
 	public void testNoShadowingCaseSensitive() throws Exception {
 		SysMLInteractive instance = getSysMLInteractiveInstance();
 		
-		SysMLInteractiveResult result1 = instance.eval("y = 1;");
+		SysMLInteractiveResult result1 = instance.process("y = 1;");
 		System.out.println(result1);
 		String id1 = result1.getRootElement().getOwnedElement().get(0).getElementId();
 		
-		SysMLInteractiveResult result2 = instance.eval("Y = 2;");
+		SysMLInteractiveResult result2 = instance.process("Y = 2;");
 		System.out.println(result2);
 		String id2 = result2.getRootElement().getOwnedElement().get(0).getElementId();
 		

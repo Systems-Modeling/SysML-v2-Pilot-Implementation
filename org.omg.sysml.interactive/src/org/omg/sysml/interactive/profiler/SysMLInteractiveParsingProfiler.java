@@ -55,7 +55,7 @@ public class SysMLInteractiveParsingProfiler {
 		for (int i = 1; i < args.length; i++) {
 			System.out.println("Loading input " + args[i]);
 			Stopwatch watch = Stopwatch.createStarted();
-			SysMLInteractiveResult results = instance.eval(Files.lines(Paths.get(args[i])).collect(Collectors.joining("\n")));
+			SysMLInteractiveResult results = instance.process(Files.lines(Paths.get(args[i])).collect(Collectors.joining("\n")));
 			if (results.hasErrors()) {
 				System.out.println(results.formatIssues());
 			} else {

@@ -151,8 +151,12 @@ public abstract class Visitor extends SysMLSwitch<String> {
         s2p.popIdMap(keep);
     }
 
-    protected void pushNamespace(Namespace ns) {
-        s2p.pushNamespace(ns);
+    protected boolean pushNamespace(Namespace ns) {
+        return s2p.pushNamespace(ns);
+    }
+
+    protected Namespace getCurrentNamespace() {
+        return s2p.getCurrentNamespace();
     }
 
     protected void inheriting() {
@@ -169,6 +173,10 @@ public abstract class Visitor extends SysMLSwitch<String> {
 
     protected InheritKey makeInheritKey(Membership ref) {
         return s2p.makeInheritKey(ref);
+    }
+
+    protected Element getEvalTarget() {
+        return s2p.getEvalTarget();
     }
 
     protected boolean matchCurrentInheritings(InheritKey ik) {

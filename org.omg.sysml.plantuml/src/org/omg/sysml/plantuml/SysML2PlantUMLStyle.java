@@ -182,6 +182,7 @@ public class SysML2PlantUMLStyle {
         add("SHOWIMPORTED", "Show imported elements", " ", "showImported", "true");
         add("HIDEMETADATA", "Hide metadata", " ", "hideMetadata", "true");
         add("SHOWMETACLASS", "Show metaclasses of metaobjects", " ", "showMetaclass", "true");
+        add("EVAL", "Evaluate expressions", " ", "evalExp", "true");
     }
 
     public static class StyleSwitch {

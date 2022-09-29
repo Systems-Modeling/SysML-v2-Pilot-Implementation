@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2021-2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -33,7 +33,6 @@ import org.omg.sysml.adapter.OperatorExpressionAdapter;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.FeatureChainExpression;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureReferenceExpression;
 import org.omg.sysml.lang.sysml.FeatureTyping;
@@ -80,7 +79,7 @@ public class ExpressionUtil {
 				findFirst().orElse(null);
 	}
 	
-	public static Element getTargetFeatureFor(FeatureChainExpression expression) {
+	public static Element getTargetFeatureFor(Expression expression) {
 		List<Membership> memberships = expression.getOwnedMembership();
 		return memberships.size() < 2? null: memberships.get(1).getMemberElement();
 	}
@@ -163,4 +162,10 @@ public class ExpressionUtil {
 		return Stream.of(OperatorExpressionAdapter.LIBRARY_PACKAGE_NAMES).map(pack -> pack + "::'" + op + "'").toArray(String[]::new);
 	}
 	
+	public static final String SELF_REFERENCE_FEATURE = "Base::Anything::self";
+	
+	public static Feature getSelfReferenceFeature(Element context) {
+		return (Feature)SysMLLibraryUtil.getLibraryType(context, SELF_REFERENCE_FEATURE);
+	}
+
 }

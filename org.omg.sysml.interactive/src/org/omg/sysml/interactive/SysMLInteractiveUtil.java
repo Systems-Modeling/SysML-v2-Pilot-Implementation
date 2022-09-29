@@ -7,6 +7,12 @@ import java.util.stream.Collectors;
 
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
+import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.LiteralBoolean;
+import org.omg.sysml.lang.sysml.LiteralInfinity;
+import org.omg.sysml.lang.sysml.LiteralInteger;
+import org.omg.sysml.lang.sysml.LiteralRational;
+import org.omg.sysml.lang.sysml.LiteralString;
 import org.eclipse.emf.ecore.EClass;
 import org.omg.sysml.lang.sysml.CalculationUsage;
 import org.omg.sysml.lang.sysml.Membership;
@@ -37,7 +43,7 @@ public class SysMLInteractiveUtil {
 	
 	private static void formatElement(StringBuilder buffer, String indentation, Element element, String relationshipTag) {
 		String shortName = element.getShortName();
-		String name = element.getEffectiveName();
+		String name = nameOf(element);
 		buffer.append(indentation + 
 				relationshipTag + 
 				element.eClass().getName() + 
@@ -46,6 +52,31 @@ public class SysMLInteractiveUtil {
 				" (" + element.getElementId() + ")\n");
 	}
 	
+	public static String nameOf(Element element) {
+		if (element instanceof Feature && !((Feature)element).getOwnedFeatureChaining().isEmpty()) {
+			String name = "";
+			for (Feature chainingFeature: ((Feature)element).getChainingFeature()) {
+				String nextName = chainingFeature.getEffectiveName();
+				if (nextName == null) {
+					nextName = "";
+				}
+				if (name == "") {
+					name = nextName;
+				} else {
+					name += "." + nextName;
+				}
+			}
+			return name;
+		} else {
+			return element instanceof LiteralBoolean? Boolean.valueOf(((LiteralBoolean)element).isValue()).toString():
+				   element instanceof LiteralString? ((LiteralString)element).getValue().toString():
+				   element instanceof LiteralInteger? Integer.valueOf(((LiteralInteger)element).getValue()).toString():
+				   element instanceof LiteralRational? Double.valueOf(((LiteralRational)element).getValue()).toString():
+				   element instanceof LiteralInfinity? "*":
+				   element.getEffectiveName();
+		}
+	}
+
 	private static void formatExplicitElement(StringBuilder buffer, String indentation, Element element, Relationship relationship) {
 		formatElement(buffer, indentation, element, formatRelationship(relationship));
 	}

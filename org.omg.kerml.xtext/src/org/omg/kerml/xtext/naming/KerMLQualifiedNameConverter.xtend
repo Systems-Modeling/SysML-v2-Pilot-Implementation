@@ -50,11 +50,13 @@ class KerMLQualifiedNameConverter implements IQualifiedNameConverter {
 		
 		while (j < n) {
 			val c = qualifiedNameAsText.charAt(j)
-			val delim = "\'\\.:".indexOf(c)
+			val delim = "\'\\:".indexOf(c)
 			if (isDelimitable && delim > 1) {
-				segments.add(ElementUtil.unescapeString(qualifiedNameAsText.substring(i, j)));
-				i = j + delim - 1;
-				j = i - 1;
+				if (j + 1 < n && ":". indexOf(qualifiedNameAsText.charAt(j + 1)) == 0) {
+					segments.add(ElementUtil.unescapeString(qualifiedNameAsText.substring(i, j)));
+					i = j + 2;
+					j = i - 1;
+				}
 			} else if (delim == 0) {
 				isDelimitable = !isDelimitable
 			} else if (delim == 1) {

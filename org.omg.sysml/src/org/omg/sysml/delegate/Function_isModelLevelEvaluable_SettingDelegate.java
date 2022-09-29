@@ -23,7 +23,7 @@ package org.omg.sysml.delegate;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.omg.sysml.expressions.ModelLevelFunction;
+import org.omg.sysml.expressions.LibraryFunctionFactory;
 import org.omg.sysml.lang.sysml.Function;
 
 public class Function_isModelLevelEvaluable_SettingDelegate extends BasicDerivedPropertySettingDelegate {
@@ -33,8 +33,8 @@ public class Function_isModelLevelEvaluable_SettingDelegate extends BasicDerived
 	}
 
 	@Override
-	protected Object basicGet(InternalEObject owner) {
-		return ModelLevelFunction.getFunctionImpl((Function)owner) != null;
+	protected Boolean basicGet(InternalEObject owner) {
+		return LibraryFunctionFactory.INSTANCE.isModelLevelEvaluable((Function)owner);
 	}
 
 }

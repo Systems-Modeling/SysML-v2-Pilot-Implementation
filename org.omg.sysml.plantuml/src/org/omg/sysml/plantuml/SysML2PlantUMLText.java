@@ -588,8 +588,16 @@ public class SysML2PlantUMLText {
     private List<Integer> inheritingIdices;
 
     
-    void pushNamespace(Namespace ns) {
+    boolean pushNamespace(Namespace ns) {
+        if (namespaces.contains(ns)) return false;
         namespaces.add(ns);
+        return true;
+    }
+
+    Namespace getCurrentNamespace() {
+        int size = namespaces.size();
+        if (size == 0) return null;
+        return namespaces.get(size - 1);
     }
 
     void inheriting() {
@@ -605,6 +613,24 @@ public class SysML2PlantUMLText {
         int idxI = inheritingIdices.get(sizeI);
         if (idxI == idx) {
             inheritingIdices.remove(sizeI);
+        }
+    }
+
+    Element getEvalTarget() {
+        int size = namespaces.size();
+    	if (size == 0) return null;
+
+        if (inheritingIdices.isEmpty()) {
+            for (int i = 0; i < size; i++) {
+                Namespace ns = namespaces.get(i);
+                if (ns instanceof Type) {
+                    return ns;
+                }
+            }
+            return null;
+        } else {
+            int idx = inheritingIdices.get(0);
+            return namespaces.get(idx);
         }
     }
 

@@ -18,27 +18,20 @@
  * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
  *  
  *******************************************************************************/
-/**
- */
+
 package org.omg.sysml.lang.sysml.impl;
 
-import java.util.Optional;
-
-import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.omg.sysml.expressions.ModelLevelExpressionEvaluator;
 import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureReferenceExpression;
-import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.lang.sysml.Type;
+
 import org.omg.sysml.util.ExpressionUtil;
-import org.omg.sysml.util.FeatureUtil;
-import org.omg.sysml.util.TypeUtil;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Feature
@@ -95,7 +88,10 @@ public class FeatureReferenceExpressionImpl extends ExpressionImpl implements Fe
 	 * @generated
 	 */
 	public Feature basicGetReferent() {
-		return (Feature)REFERENT__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
+		Element referent = ExpressionUtil.getReferentFor(this);
+		return referent instanceof Feature? (Feature)referent:
+			   referent == null? ExpressionUtil.getSelfReferenceFeature(this):
+			   null;
 	}
 	
 	/**
@@ -114,37 +110,7 @@ public class FeatureReferenceExpressionImpl extends ExpressionImpl implements Fe
 	
 	@Override
 	public EList<Element> evaluate(Element target) {
-		Feature referent = getReferent();
-		if (target instanceof Type) {
-			if (referent != null) {
-				if (TypeUtil.conforms(referent, ExpressionUtil.getSelfReferenceFeatureFor(this))) {
-					EList<Element> result = new BasicEList<>();
-					result.add(target);
-					return result;
-				} else {
-					Optional<FeatureImpl> feature = ((Type)target).getFeature().stream().
-							map(FeatureImpl.class::cast).
-							filter(f->f == referent || FeatureUtil.getRedefinedFeaturesOf(f).contains(referent)).
-							findFirst();
-					if (feature.isPresent()) {
-						FeatureValue featureValue = FeatureUtil.getValuationFor(feature.get());
-						if (featureValue != null) {
-							Expression value = featureValue.getValue();
-							if (value != null) {
-								return value.evaluate(target);
-							}
-						}
-					} else {
-						EList<Element> result = new BasicEList<>();
-						result.add(referent);
-						return result;
-					}
-				}
-			}
-		}
-		EList<Element> result = new BasicEList<>();
-		result.add(referent);
-		return result;
+		return ModelLevelExpressionEvaluator.INSTANCE.evaluateFeatureReference(this, target);
 	}
 	
 	/**

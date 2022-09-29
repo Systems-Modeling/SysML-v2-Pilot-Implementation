@@ -53,17 +53,22 @@ import org.eclipse.xtext.validation.IResourceValidator;
 import org.eclipse.xtext.validation.Issue;
 import org.omg.kerml.xtext.KerMLStandaloneSetup;
 import org.omg.kerml.xtext.naming.KerMLQualifiedNameConverter;
+import org.omg.sysml.expressions.util.EvaluationUtil;
 import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.RenderingUsage;
+import org.omg.sysml.lang.sysml.ResultExpressionMembership;
 import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.ViewUsage;
 import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
 import org.omg.sysml.plantuml.SysML2PlantUMLLinkProvider;
 import org.omg.sysml.plantuml.SysML2PlantUMLSvc;
 import org.omg.sysml.util.SysMLUtil;
+import org.omg.sysml.util.TypeUtil;
 import org.omg.sysml.util.traversal.Traversal;
 import org.omg.sysml.util.traversal.facade.impl.ApiElementProcessingFacade;
 import org.omg.sysml.util.traversal.facade.impl.JsonElementProcessingFacade;
@@ -171,29 +176,6 @@ public class SysMLInteractive extends SysMLUtil {
 			validator.validate(resource, CheckMode.ALL, CancelIndicator.NullImpl);
 	}
 	
-	public SysMLInteractiveResult eval(String input) {
-		return eval(input, true);
-	}
-	
-	public SysMLInteractiveResult eval(String input, boolean isAddResource) {
-		this.next();
-		try {
-			this.parse(input);
-			List<Issue> issues = this.validate();
-			Element rootElement = this.getRootElement();
-			SysMLInteractiveResult result = new SysMLInteractiveResult(rootElement, issues);
-			if (result.hasErrors()) {
-				this.removeResource();
-			} else if (isAddResource) {
-				this.addResourceToIndex(resource);
-			}
-			return result;
-		} catch (Exception e) {
-			this.removeResource();
-			return new SysMLInteractiveResult(e);
-		}
-	}
-	
 	private Resource getDummyResource() {
 		if (this.dummyResource == null) {
 			this.dummyResource = this.createResource("dummy" + SYSML_EXTENSION);
@@ -217,6 +199,68 @@ public class SysMLInteractive extends SysMLUtil {
 		}
 	}
 	
+	public SysMLInteractiveResult process(String input) {
+		return process(input, true);
+	}
+	
+	public SysMLInteractiveResult process(String input, boolean isAddResource) {
+		this.next();
+		try {
+			this.parse(input);
+			List<Issue> issues = this.validate();
+			Element rootElement = this.getRootElement();
+			SysMLInteractiveResult result = new SysMLInteractiveResult(rootElement, issues);
+			if (result.hasErrors()) {
+				this.removeResource();
+			} else if (isAddResource) {
+				this.addResourceToIndex(resource);
+			}
+			return result;
+		} catch (Exception e) {
+			this.removeResource();
+			return new SysMLInteractiveResult(e);
+		}
+	}
+	
+	public String eval(String input, String targetName, List<String> help) {
+		if (Strings.isNullOrEmpty(input)) {
+			this.counter++;
+			return help.isEmpty()? "": SysMLInteractiveHelp.getEvalHelp();
+		}
+		if (input == null || input.isEmpty()) {
+			this.counter++;
+			return "";
+		}
+		Element target = null;
+		if (Strings.isNullOrEmpty(targetName)) {
+			input = "calc{\n" + input + "}";
+		} else {
+			target = this.resolve(targetName);
+			if (target == null) {
+				this.counter++;
+				return "ERROR:Couldn't resolve reference to Element '" + targetName + "'\n";
+			}
+			input = "calc{import " + targetName + "::*;\n" + input + "}";
+		}
+		SysMLInteractiveResult result = this.process(input, false);
+		if (result.hasErrors()) {
+			return result.toString();
+		} else {
+			Type calc = (Type)((Namespace)result.getRootElement()).getOwnedMember().get(0);
+			Expression expr = (Expression)TypeUtil.getFeatureByMembershipIn(calc, ResultExpressionMembership.class);
+			List<Element> elements = EvaluationUtil.evaluate(expr, target);
+			this.removeResource();
+			return elements == null? "": 
+				elements.stream().map(SysMLInteractiveUtil::formatElement).collect(Collectors.joining());
+		}
+	}
+	
+	public String eval(String input, String targetName) {
+		return "-h".equals(input)? 
+				eval(null, null, Collections.singletonList("true")):
+				eval(input, targetName, Collections.emptyList());
+	}
+	
 	public String listLibrary() {
 		this.counter++;
 		try {
@@ -236,7 +280,7 @@ public class SysMLInteractive extends SysMLUtil {
 		if (!query.endsWith(";")) {
 			query += ";";
 		}
-		SysMLInteractiveResult result = this.eval("import " + query, false);
+		SysMLInteractiveResult result = this.process("import " + query, false);
 		if (result.hasErrors()) {
 			return result.toString();
 		} else {
@@ -488,60 +532,75 @@ public class SysMLInteractive extends SysMLUtil {
 	
 	public void run(String input) {
 		if (input != null && !input.isEmpty()) {
-			System.out.print(this.eval(input));
+			System.out.print(this.process(input));
 		}
 	}
 	
 	public void run() {
         try (Scanner in = new Scanner(System.in)) {
 	        do {
-	        	System.out.print(this.counter + "> ");
-	        	String input = in.nextLine().trim();
-	        	if (input.startsWith("%")) {
-	        		if ("%".equals(input)) {
-	        			input = "";
-	        			String line = in.nextLine();
-	        			while (!"%".equals(line.trim())) {
-	        				if ("%%".equals(line.trim())) {
-	        					input = null;
-	        					break;
-	        				}
-	        				input += line + "\n";
-	        				line = in.nextLine();
-	        			}
-		        		run(input);
-	        		} else {
-	        			int i = input.indexOf(' ');
-	        			String command = i == -1? input: input.substring(0, i);
-	        			String argument = i == -1? "": input.substring(i + 1).trim();
-	        			
-	        			if ("%exit".equals(command)) {
-	        				break;
-	        			} else if ("%list".equals(command)) {
-	        				System.out.print(this.list(argument));
-	        			} else if ("%show".equals(command)) {
-	        				if (!"".equals(argument)) {
-	        					System.out.print(this.show(argument));
-	        				}
-	        			} else if ("%publish".equals(command)) {
-	        				if (!"".equals(argument)) {
-	        					System.out.print(this.publish(argument));
-	        				}
-	        			} else if ("%viz".equals(command)) {
-	        				if (!"".equals(argument)) {
-	        					System.out.print(this.viz(argument));
-	        				}
-	        			} else if ("%view".equals(command)) {
-	        				if (!"".equals(argument)) {
-	        					System.out.print(this.view(argument));
-	        				}
-	        			} else {
-	        				System.out.println("ERROR:Invalid command '" + input + "'");
-	        			}
-	        		}
-	        	} else {
-	        		run(input);
-	        	}
+	        	try {
+					System.out.print(this.counter + "> ");
+					String input = in.nextLine().trim();
+					if (input.startsWith("%")) {
+						if ("%".equals(input)) {
+							input = "";
+							String line = in.nextLine();
+							while (!"%".equals(line.trim())) {
+								if ("%%".equals(line.trim())) {
+									input = null;
+									break;
+								}
+								input += line + "\n";
+								line = in.nextLine();
+							}
+							run(input);
+						} else {
+							int i = input.indexOf(' ');
+							String command = i == -1? input: input.substring(0, i);
+							String argument = i == -1? "": input.substring(i + 1).trim();
+							
+							if ("%exit".equals(command)) {
+								break;
+							} else if ("%list".equals(command)) {
+								System.out.print(this.list(argument));
+							} else if ("%show".equals(command)) {
+								if (!"".equals(argument)) {
+									System.out.print(this.show(argument));
+								}
+							} else if ("%publish".equals(command)) {
+								if (!"".equals(argument)) {
+									System.out.print(this.publish(argument));
+								}
+							} else if ("%viz".equals(command)) {
+								if (!"".equals(argument)) {
+									System.out.print(this.viz(argument));
+								}
+							} else if ("%view".equals(command)) {
+								if (!"".equals(argument)) {
+									System.out.print(this.view(argument));
+								}
+							} else if ("%eval".equals(command)) {
+								if (!"".equals(argument)) {
+									String name = null;
+									if (argument.startsWith("--target ") || argument.startsWith("--target=")) {
+										argument = argument.substring(9);
+					        			i = argument.indexOf(' ');
+					        			name = i == -1? argument: argument.substring(0, i);
+					        			argument = i == -1? null: argument.substring(i + 1).trim();
+									}
+									System.out.print(eval(argument, name));
+								}
+							} else {
+								System.out.println("ERROR:Invalid command '" + input + "'");
+							}
+						}
+					} else {
+						run(input);
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 	        } while(true);
         }
     }

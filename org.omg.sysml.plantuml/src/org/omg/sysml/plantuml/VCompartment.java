@@ -267,7 +267,11 @@ public class VCompartment extends VStructure {
                                       boolean norec,
                                       FeatureEntry parent) {
         Membership ms = getCurrentMembership();
-        if (ms instanceof ReturnParameterMembership) return null; // To filter "result" parameter out.
+        if (ms instanceof ReturnParameterMembership) {
+            Element e = ms.getMemberElement();
+             // To filter empty "result" parameter.
+            if (e.getOwnedRelationship().isEmpty()) return null;
+        }
 
         if (!norec && (alias == null) && (prefix == null)) {
             if (recCurrentMembership(f, false)) return null;
@@ -570,6 +574,7 @@ public class VCompartment extends VStructure {
             text = text.substring(toBeRemoved.length()).trim();
         }
         appendText(text, false);
+        addEvaluatedResults(f, currentType);
         append('\n');
         return true;
     }
@@ -595,6 +600,7 @@ public class VCompartment extends VStructure {
             if (fe.prefix != null) {
                 append(fe.prefix);
             }
+
             if (fe.f instanceof EnumerationUsage) {
                 if (getFeatureName(fe.f) == null) {
                     appendTextOfEnum(fe.f);
@@ -616,7 +622,9 @@ public class VCompartment extends VStructure {
                 if (text == null) continue;
                 append(" { ");
                 appendText(text, true);
-                append(" }\n");
+                append(" }");
+                addEvaluatedResults(fe.f, currentType);
+                append('\n');
             } else if (getFeatureName(fe.f) == null) {
                 addAnonymouseFeatureText(fe.f);
                 append('\n');
@@ -648,7 +656,11 @@ public class VCompartment extends VStructure {
     public void startType(Type typ) {
         this.currentType = typ;
         traverse(typ);
+        /* In order to evaluate features properly,
+           we need to restore `typ` namespace because traverse() above did popNamespace()  */
+        pushNamespace(typ);
         addFeatures(featureEntries, 0);
+        popNamespace();
     }
 
     public List<VTree> process(VTree parent, Type typ) {

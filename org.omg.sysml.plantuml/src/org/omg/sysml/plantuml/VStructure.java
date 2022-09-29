@@ -1,7 +1,7 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation, PlantUML Visualization
  * Copyright (c) 2020-2022 Mgnite Inc.
- * Copyright (c) 2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2021-2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -28,6 +28,8 @@ package org.omg.sysml.plantuml;
 
 import java.util.List;
 import java.util.regex.Pattern;
+
+import org.omg.sysml.execution.expressions.ExpressionEvaluator;
 import org.omg.sysml.expressions.util.EvaluationUtil;
 import org.omg.sysml.lang.sysml.ActorMembership;
 import org.omg.sysml.lang.sysml.ConjugatedPortDefinition;
@@ -66,7 +68,7 @@ public abstract class VStructure extends VDefault {
         if (styleValue("evalExp") == null) return null;
         if (!(elem instanceof Expression)) return null;
 
-        List<Element> elems = EvaluationUtil.evaluate((Expression) elem, target);
+        List<Element> elems = ExpressionEvaluator.INSTANCE.evaluate((Expression) elem, target);
         StringBuilder sb = new StringBuilder();
         if (elems != null) {
             int size = elems.size();

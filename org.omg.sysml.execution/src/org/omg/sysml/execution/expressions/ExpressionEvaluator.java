@@ -22,6 +22,7 @@
 package org.omg.sysml.execution.expressions;
 
 import org.eclipse.emf.common.util.EList;
+import org.omg.sysml.expressions.ModelLevelExpressionEvaluator;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
@@ -34,7 +35,7 @@ import org.omg.sysml.util.ExpressionUtil;
 import org.omg.sysml.util.FeatureUtil;
 import org.omg.sysml.util.TypeUtil;
 
-public class ExpressionEvaluator extends org.omg.sysml.expressions.ExpressionEvaluator {
+public class ExpressionEvaluator extends ModelLevelExpressionEvaluator {
 	
 	public static final ExpressionEvaluator INSTANCE = new ExpressionEvaluator();
 	

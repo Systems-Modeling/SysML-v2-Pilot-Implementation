@@ -238,7 +238,7 @@ public class SysMLInteractive extends SysMLUtil {
 			target = this.resolve(targetName);
 			if (target == null) {
 				this.counter++;
-				return "ERROR:Couldn't resolve reference to Element '" + targetName + "'";
+				return "ERROR:Couldn't resolve reference to Element '" + targetName + "'\n";
 			}
 			input = "calc{import " + targetName + "::*;\n" + input + "}";
 		}
@@ -539,64 +539,68 @@ public class SysMLInteractive extends SysMLUtil {
 	public void run() {
         try (Scanner in = new Scanner(System.in)) {
 	        do {
-	        	System.out.print(this.counter + "> ");
-	        	String input = in.nextLine().trim();
-	        	if (input.startsWith("%")) {
-	        		if ("%".equals(input)) {
-	        			input = "";
-	        			String line = in.nextLine();
-	        			while (!"%".equals(line.trim())) {
-	        				if ("%%".equals(line.trim())) {
-	        					input = null;
-	        					break;
-	        				}
-	        				input += line + "\n";
-	        				line = in.nextLine();
-	        			}
-		        		run(input);
-	        		} else {
-	        			int i = input.indexOf(' ');
-	        			String command = i == -1? input: input.substring(0, i);
-	        			String argument = i == -1? "": input.substring(i + 1).trim();
-	        			
-	        			if ("%exit".equals(command)) {
-	        				break;
-	        			} else if ("%list".equals(command)) {
-	        				System.out.print(this.list(argument));
-	        			} else if ("%show".equals(command)) {
-	        				if (!"".equals(argument)) {
-	        					System.out.print(this.show(argument));
-	        				}
-	        			} else if ("%publish".equals(command)) {
-	        				if (!"".equals(argument)) {
-	        					System.out.print(this.publish(argument));
-	        				}
-	        			} else if ("%viz".equals(command)) {
-	        				if (!"".equals(argument)) {
-	        					System.out.print(this.viz(argument));
-	        				}
-	        			} else if ("%view".equals(command)) {
-	        				if (!"".equals(argument)) {
-	        					System.out.print(this.view(argument));
-	        				}
-	        			} else if ("%eval".equals(command)) {
-	        				if (!"".equals(argument)) {
-	        					String name = null;
-	        					if (argument.startsWith("--target ") || argument.startsWith("--target=")) {
-		        					argument = argument.substring(9);
-		    	        			i = argument.indexOf(' ');
-		    	        			name = i == -1? argument: argument.substring(0, i);
-		    	        			argument = i == -1? null: argument.substring(i + 1).trim();
-	        					}
-	        					System.out.print(eval(argument, name));
-	        				}
-	        			} else {
-	        				System.out.println("ERROR:Invalid command '" + input + "'");
-	        			}
-	        		}
-	        	} else {
-	        		run(input);
-	        	}
+	        	try {
+					System.out.print(this.counter + "> ");
+					String input = in.nextLine().trim();
+					if (input.startsWith("%")) {
+						if ("%".equals(input)) {
+							input = "";
+							String line = in.nextLine();
+							while (!"%".equals(line.trim())) {
+								if ("%%".equals(line.trim())) {
+									input = null;
+									break;
+								}
+								input += line + "\n";
+								line = in.nextLine();
+							}
+							run(input);
+						} else {
+							int i = input.indexOf(' ');
+							String command = i == -1? input: input.substring(0, i);
+							String argument = i == -1? "": input.substring(i + 1).trim();
+							
+							if ("%exit".equals(command)) {
+								break;
+							} else if ("%list".equals(command)) {
+								System.out.print(this.list(argument));
+							} else if ("%show".equals(command)) {
+								if (!"".equals(argument)) {
+									System.out.print(this.show(argument));
+								}
+							} else if ("%publish".equals(command)) {
+								if (!"".equals(argument)) {
+									System.out.print(this.publish(argument));
+								}
+							} else if ("%viz".equals(command)) {
+								if (!"".equals(argument)) {
+									System.out.print(this.viz(argument));
+								}
+							} else if ("%view".equals(command)) {
+								if (!"".equals(argument)) {
+									System.out.print(this.view(argument));
+								}
+							} else if ("%eval".equals(command)) {
+								if (!"".equals(argument)) {
+									String name = null;
+									if (argument.startsWith("--target ") || argument.startsWith("--target=")) {
+										argument = argument.substring(9);
+					        			i = argument.indexOf(' ');
+					        			name = i == -1? argument: argument.substring(0, i);
+					        			argument = i == -1? null: argument.substring(i + 1).trim();
+									}
+									System.out.print(eval(argument, name));
+								}
+							} else {
+								System.out.println("ERROR:Invalid command '" + input + "'");
+							}
+						}
+					} else {
+						run(input);
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 	        } while(true);
         }
     }

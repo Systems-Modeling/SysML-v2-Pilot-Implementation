@@ -24,15 +24,11 @@ package org.omg.sysml.expressions.functions;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.omg.sysml.expressions.ModelLevelExpressionEvaluator;
-import org.omg.sysml.expressions.util.EvaluationUtil;
 import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.FeatureReferenceExpression;
 import org.omg.sysml.lang.sysml.InvocationExpression;
-import org.omg.sysml.lang.sysml.SysMLFactory;
+import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.util.ExpressionUtil;
-import org.omg.sysml.util.NamespaceUtil;
 
 public class DotFunction extends ControlFunction {
 
@@ -43,24 +39,29 @@ public class DotFunction extends ControlFunction {
 
 	@Override
 	public EList<Element> invoke(InvocationExpression invocation, Element target, ModelLevelExpressionEvaluator evaluator) {
-		EList<Expression> arguments = invocation.getArgument();
-		if (!arguments.isEmpty()) {
-			Expression sourceArgument = arguments.get(0);
-			EList<Element> list = EvaluationUtil.evaluate(sourceArgument, target);			
-			if (list != null) {
-				Element targetFeature = ExpressionUtil.getTargetFeatureFor(invocation);
-				FeatureReferenceExpression featureReference = SysMLFactory.eINSTANCE.createFeatureReferenceExpression();
-				NamespaceUtil.addMemberTo(featureReference, targetFeature);
-				if (targetFeature instanceof Feature) {
-					EList<Element> result = new BasicEList<>();
-					for (Element element: list) {
-						EList<Element> value = EvaluationUtil.evaluate(featureReference, element);
+		EList<Element> list = evaluator.evaluateArgument(invocation, 0, target);			
+		if (list != null) {
+			Element targetFeature = ExpressionUtil.getTargetFeatureFor(invocation);
+			if (targetFeature instanceof Feature) {
+				Type type = target instanceof Type? (Type)target: null;
+				EList<Element> result = new BasicEList<>();
+				for (Element element: list) {
+					if (element instanceof Feature) {
+						EList<Feature> chainingFeatures = new BasicEList<>();
+						chainingFeatures.add((Feature)element);
+						EList<Feature> targetChainingFeatures = ((Feature) targetFeature).getChainingFeature();
+						if (targetChainingFeatures.isEmpty()) {
+							chainingFeatures.add((Feature)targetFeature);
+						} else {
+							chainingFeatures.addAll(targetChainingFeatures);
+						}
+						EList<Element> value = evaluator.evaluateFeatureChain(chainingFeatures, type);
 						if (value != null) {
 							result.addAll(value);
 						}
 					}
-					return result;
 				}
+				return result;
 			}
 		}
 		return null;

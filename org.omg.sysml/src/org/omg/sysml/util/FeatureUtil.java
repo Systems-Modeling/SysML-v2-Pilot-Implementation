@@ -343,7 +343,8 @@ public class FeatureUtil {
 	}
 	
 	public static Feature chainFeatures(List<Feature> features) {
-		return chainFeatures((Feature[])features.toArray());
+		Feature[] featuresArray = new Feature[features.size()];
+		return chainFeatures(features.toArray(featuresArray));
 	}
 	
 	public static Feature addChainingFeature(Feature chainedFeature, Feature chainingFeature) {

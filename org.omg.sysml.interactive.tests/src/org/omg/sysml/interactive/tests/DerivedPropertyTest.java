@@ -1,3 +1,24 @@
+/*******************************************************************************
+ * SysML 2 Pilot Implementation
+ * Copyright (c) 2021-2022 Model Driven Solutions, Inc.
+ *    
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *  
+ * You should have received a copy of theGNU Lesser General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ *  
+ * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
+ *  
+ *******************************************************************************/
+
 package org.omg.sysml.interactive.tests;
 
 import static org.junit.Assert.assertEquals;
@@ -21,7 +42,7 @@ public class DerivedPropertyTest extends SysMLInteractiveTest {
 
 	@Test
 	public void testOwnedUsage() throws Exception {
-		List<Element> members = eval("part def P { attribute x; item y; part def Q; }");
+		List<Element> members = process("part def P { attribute x; item y; part def Q; }");
 		assertFalse("No members", members.isEmpty());
 		Element member = members.get(0);
 		assertTrue("No definition", member instanceof Definition);
@@ -33,7 +54,7 @@ public class DerivedPropertyTest extends SysMLInteractiveTest {
 	
 	@Test
 	public void testPayloadArgument() throws Exception {
-		List<Element> members = eval("action { accept after 5; }");
+		List<Element> members = process("action { accept after 5; }");
 		assertFalse("No members", members.isEmpty());
 		Element member = members.get(0);
 		assertTrue("Not ActionUsage", member instanceof ActionUsage);

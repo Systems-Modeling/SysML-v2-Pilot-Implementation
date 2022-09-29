@@ -29,6 +29,8 @@ import org.eclipse.emf.ecore.EClass;
 import org.omg.sysml.expressions.ModelLevelExpressionEvaluator;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
+import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.InvocationExpression;
 import org.omg.sysml.lang.sysml.LiteralBoolean;
 import org.omg.sysml.lang.sysml.LiteralInfinity;
@@ -39,6 +41,7 @@ import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
+import org.omg.sysml.util.FeatureUtil;
 
 public class EvaluationUtil {
 
@@ -130,6 +133,28 @@ public class EvaluationUtil {
 			}
 			return true;
 		}
+	}
+
+	public static Feature getTargetFeatureFor(Element target) {
+		if (target instanceof Feature) {
+			return (Feature)target;
+		} else {
+			Feature targetFeature = SysMLFactory.eINSTANCE.createFeature();
+			if (target instanceof Type) {
+				FeatureTyping featureTyping = SysMLFactory.eINSTANCE.createFeatureTyping();
+				featureTyping.setType((Type)target);
+				targetFeature.getOwnedRelationship().add(featureTyping);
+			}
+			return targetFeature;
+		}
+	}
+
+	public static Expression getValueExpressionFor(Feature feature, Type type) {
+		Feature typeFeature = type == null? feature: 
+			type.getFeature().stream().
+				filter(f->f == feature || FeatureUtil.getRedefinedFeaturesOf(f).contains(feature)).
+				findFirst().orElse(feature);
+		return FeatureUtil.getValueExpressionFor(typeFeature);
 	}
 
 }

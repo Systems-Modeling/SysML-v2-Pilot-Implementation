@@ -574,7 +574,7 @@ public class VCompartment extends VStructure {
             text = text.substring(toBeRemoved.length()).trim();
         }
         appendText(text, false);
-        addEvaluatedResults(f, currentType);
+        addEvaluatedResults(f, getEvalTarget());
         append('\n');
         return true;
     }
@@ -623,7 +623,7 @@ public class VCompartment extends VStructure {
                 append(" { ");
                 appendText(text, true);
                 append(" }");
-                addEvaluatedResults(fe.f, currentType);
+                addEvaluatedResults(fe.f, getEvalTarget());
                 append('\n');
             } else if (getFeatureName(fe.f) == null) {
                 addAnonymouseFeatureText(fe.f);

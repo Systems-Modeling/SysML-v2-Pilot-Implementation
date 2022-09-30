@@ -43,6 +43,7 @@ import org.omg.sysml.lang.sysml.FeatureChainExpression;
 import org.omg.sysml.lang.sysml.FeatureChaining;
 import org.omg.sysml.lang.sysml.FeatureReferenceExpression;
 import org.omg.sysml.lang.sysml.FlowConnectionUsage;
+import org.omg.sysml.lang.sysml.ItemFlowEnd;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.OccurrenceDefinition;
 import org.omg.sysml.lang.sysml.OccurrenceUsage;
@@ -153,6 +154,7 @@ public class VSequence extends VDefault {
 
     private Pair getEventParticipant(Element e) {
         if (e == null) return null;
+
         if (e instanceof FeatureChainExpression) {
         	FeatureChainExpression fce = (FeatureChainExpression) e;
             e = next(fce, true);
@@ -249,16 +251,31 @@ public class VSequence extends VDefault {
         return super.getString();
     }
 
+    private Element getEndForEvent(Feature f) {
+        // Need to extract the target from ItemFlowEnd.
+        if (f instanceof ItemFlowEnd) {
+            ItemFlowEnd ife = (ItemFlowEnd) f;
+            Feature iot = VPath.getIOTarget(ife);
+            if (iot != null) return iot;
+            for (Subsetting ss: ife.getOwnedSubsetting()) {
+                return ss.getSubsettedFeature();
+            }
+            return null;
+        } else {
+            return getEnd(f);
+        }
+    }
+
     @Override
     public String caseFlowConnectionUsage(FlowConnectionUsage fcu) {
         List<Feature> ends = fcu.getConnectorEnd();
         int size = ends.size();
         if (size < 2) return "";
-        Element end1 = getEnd(ends.get(0));
+        Element end1 = getEndForEvent(ends.get(0));
         Pair p1 = getEventParticipant(end1);
         if (p1 == null) return "";
         for (int i = 1; i < size; i++) {
-            Element end2 = getEnd(ends.get(i));
+            Element end2 = getEndForEvent(ends.get(i));
             Pair p2 = getEventParticipant(end2);
             if (p2 == null) return "";
             addMessage(p1, p2, fcu);

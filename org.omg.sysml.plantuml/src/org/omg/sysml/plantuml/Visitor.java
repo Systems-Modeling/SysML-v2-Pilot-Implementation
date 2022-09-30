@@ -281,24 +281,6 @@ public abstract class Visitor extends SysMLSwitch<String> {
         close();
     }
 
-    private String compId(InheritKey ik, Element e) {
-        if (e == null) return "[*]";
-        Integer ii = getVPath().getId(ik, e);
-        if (ii == null) {
-            if (!checkId(e)) {
-                if (e instanceof Subsetting) {
-                    Subsetting ss = (Subsetting) e;
-                    e = ss.getSubsettedFeature();
-                    if (!checkId(e)) return null;
-                } else {
-                	return null;
-                }
-            }
-            ii = getId(e);
-        }
-        return 'E' + ii.toString();
-    }
-
     private int appendId(StringBuilder ss, Element e, boolean force) {
         if (e == null) {
             ss.append("[*]");
@@ -514,6 +496,12 @@ public abstract class Visitor extends SysMLSwitch<String> {
         appendSubsettingFeature(sb, ":> ", f);
     }
 
+    private boolean exists(Element e) {
+        Integer ii = getVPath().getId(null, e);
+        if (ii != null) return true;
+        return checkId(e);
+    }
+
     private void renderImportedPackage(org.omg.sysml.lang.sysml.Package pkg, Collection<Element> nonPkgs) {
         String name = pkg.getQualifiedName();
         if (name == null) return;
@@ -524,7 +512,7 @@ public abstract class Visitor extends SysMLSwitch<String> {
         append(" {\n");
         for (Element dest: nonPkgs) {
         	// pkg cannot be inherit so that pass null as an inheritKey.
-            if (compId(null, dest) != null) continue;
+            if (exists(dest)) continue;
             if (pkg.equals(dest.getOwner())) {
                 visit(dest);
             }
@@ -534,9 +522,9 @@ public abstract class Visitor extends SysMLSwitch<String> {
 
     private void sortOutDestinations(Collection<org.omg.sysml.lang.sysml.Package> pkgs, Collection<Element> nonPkgs) {
         for (PRelation pr: pRelations) {
-            if (compId(pr.ik, pr.src) == null) continue;
-            Element dest = pr.dest;
-            if (compId(pr.ik, dest) != null) continue;
+            if (pr.compSrcId(s2p) == null) continue;
+            if (pr.compDestId(s2p) != null) continue;
+            Element dest = pr.getDestElement();
             if (dest instanceof org.omg.sysml.lang.sysml.Package) {
                 pkgs.add((org.omg.sysml.lang.sysml.Package) dest);
             } else {
@@ -558,7 +546,7 @@ public abstract class Visitor extends SysMLSwitch<String> {
             renderImportedPackage(pkg, nonPkgs);
         }
         for (Element e: nonPkgs) {
-            if (compId(null, e) != null) continue;
+            if (exists(e)) continue;
             this.fullyQualifiedElement = e;
             visit(e);
         }
@@ -591,11 +579,11 @@ public abstract class Visitor extends SysMLSwitch<String> {
     
 
     private boolean outputPRelation(StringBuilder ss, PRelation pr) {
-        if ((pr.src == null) && (pr.dest == null)) return true;
+        if (pr.isInvalid()) return true;
 
-        String srcId = compId(pr.ik, pr.src);
+        String srcId = pr.compSrcId(s2p);
         if (srcId == null) return false;
-        String destId = compId(pr.ik, pr.dest);
+        String destId = pr.compDestId(s2p);
         if (destId == null) return false;
 
         String relStr = getRelStyle(pr.rel);
@@ -608,7 +596,10 @@ public abstract class Visitor extends SysMLSwitch<String> {
         ss.append(relStr);
 
         if (pr.rel instanceof Membership) {
-            addMultiplicityString(ss, pr.dest);
+            Element dest = pr.getDestElement();
+            if (dest != null) {
+                addMultiplicityString(ss, dest);
+            }
         } else {
             addMultiplicityString(ss, pr.rel);
         }

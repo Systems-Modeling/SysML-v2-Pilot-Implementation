@@ -31,10 +31,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.omg.sysml.execution.expressions.ExpressionEvaluator;
+import org.omg.sysml.expressions.util.EvaluationUtil;
 import org.omg.sysml.lang.sysml.ActionDefinition;
 import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.CaseDefinition;
@@ -55,6 +57,7 @@ import org.omg.sysml.lang.sysml.StateUsage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
 import org.omg.sysml.plantuml.SysML2PlantUMLStyle.StyleSwitch;
+import org.omg.sysml.util.FeatureUtil;
 
 import com.google.inject.Inject;
 
@@ -633,23 +636,28 @@ public class SysML2PlantUMLText {
         if (!(e instanceof Expression)) return null;
         Expression ex = (Expression) e;
 
-        int size = namespaces.size();
-    	if (size > 0) {
-            if (inheritingIdices.isEmpty()) {
-                for (int i = 0; i < size; i++) {
-                    Namespace ns = namespaces.get(i);
-                    if (ns instanceof Type) {
-                        return evalInternal(ex, ns);
-                    }
+    	List<Namespace> targetNamespaces =
+    		inheritingIdices.isEmpty()? namespaces:
+    		inheritingIdices.stream().map(namespaces::get).collect(Collectors.toList());
+    	
+    	// Create nested feature context as a feature chain target.
+        Feature evalTarget = null;
+        for (int i = targetNamespaces.size() - 1; i >= 0; i--) {
+            Namespace ns = targetNamespaces.get(i);
+            if (ns instanceof Type) {
+                Feature target = EvaluationUtil.getTargetFeatureFor(ns);
+                if (evalTarget == null) {
+                	evalTarget = target;
+                } else {
+                	evalTarget = FeatureUtil.chainFeatures(target, evalTarget);
                 }
-            } else {
-                int idx = inheritingIdices.get(0);
-                Namespace ns = namespaces.get(idx);
-                List<Element> ret = evalInternal(ex, ns);
-                if (ret != null) return ret;
+                if (!(ns instanceof Feature)) {
+                	break;
+                }
             }
         }
-        return evalInternal(ex, null);
+        
+        return evalInternal(ex, evalTarget);
     }
 
     InheritKey makeInheritKey(Feature ref) {

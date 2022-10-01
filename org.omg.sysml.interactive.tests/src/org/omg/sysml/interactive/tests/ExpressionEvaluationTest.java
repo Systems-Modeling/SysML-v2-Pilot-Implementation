@@ -152,7 +152,7 @@ public class ExpressionEvaluationTest extends SysMLInteractiveTest {
 			+ "	\n"
 			+ "	attribute max1 = 3;\n"
 			+ "	\n"
-			+ "	part p {\n"
+			+ "	part p1 {\n"
 			+ "		attribute value1 = 2;\n"
 			+ "		attribute value2 = 4;\n"
 			+ "		\n"
@@ -163,17 +163,24 @@ public class ExpressionEvaluationTest extends SysMLInteractiveTest {
 			+ "		\n"
 			+ "		constraint c2 { MaxValue(max = max1, value = value2) }\n"
 			+ "	}\n"
+			+ "	\n"
+			+ "	part p2 :> p1 {\n"
+			+ "		attribute :>> value1 = 4;\n"
+			+ "		attribute :>> value2 = 2;\n"
+			+ "	}\n"
 			+ "}";
 	
 	@Test
 	public void testEvaluation5() throws Exception {
 		SysMLInteractive instance = getSysMLInteractiveInstance();
 		process(instance, evalTest5);
-		assertElement("LiteralBoolean true", instance.eval("p.c1()", "EvalTest5"));
-		assertElement("LiteralBoolean false", instance.eval("p.c2()", "EvalTest5"));
-		assertElement("LiteralBoolean true", instance.eval("MaxValue(max1, p.value1)", "EvalTest5"));
-		assertElement("LiteralBoolean false", instance.eval("MaxValue(max1, p.value2)", "EvalTest5"));
-		assertElement("LiteralBoolean true", instance.eval("MaxValue(max1 * 2, p.value1 + p.value2)", "EvalTest5"));
+		assertElement("LiteralBoolean true", instance.eval("p1.c1()", "EvalTest5"));
+		assertElement("LiteralBoolean false", instance.eval("p1.c2()", "EvalTest5"));
+		assertElement("LiteralBoolean false", instance.eval("p2.c1()", "EvalTest5"));
+		assertElement("LiteralBoolean true", instance.eval("p2.c2()", "EvalTest5"));
+		assertElement("LiteralBoolean true", instance.eval("MaxValue(max1, p1.value1)", "EvalTest5"));
+		assertElement("LiteralBoolean false", instance.eval("MaxValue(max1, p1.value2)", "EvalTest5"));
+		assertElement("LiteralBoolean true", instance.eval("MaxValue(max1 * 2, p1.value1 + p1.value2)", "EvalTest5"));
 	}
 	
 	// Tests calc and calc def invocation.

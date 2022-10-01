@@ -34,11 +34,13 @@ import java.util.regex.Pattern;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.omg.sysml.execution.expressions.ExpressionEvaluator;
 import org.omg.sysml.lang.sysml.ActionDefinition;
 import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.CaseDefinition;
 import org.omg.sysml.lang.sysml.CaseUsage;
 import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.ItemDefinition;
@@ -616,22 +618,38 @@ public class SysML2PlantUMLText {
         }
     }
 
-    Element getEvalTarget() {
-        int size = namespaces.size();
-    	if (size == 0) return null;
+    private List<Element> evalInternal(Expression ex, Element target) {
+        List<Element> ret = ExpressionEvaluator.INSTANCE.evaluate(ex, target);
+        if (ret == null) return null;
+        int size = ret.size();
+        if (size == 0) return null;
+        if (size > 1) return ret;
+        Element e = ret.get(0);
+        if (ex.equals(e)) return null;
+        return ret;
+    }
 
-        if (inheritingIdices.isEmpty()) {
-            for (int i = 0; i < size; i++) {
-                Namespace ns = namespaces.get(i);
-                if (ns instanceof Type) {
-                    return ns;
+    List<Element> eval(Element e) {
+        if (!(e instanceof Expression)) return null;
+        Expression ex = (Expression) e;
+
+        int size = namespaces.size();
+    	if (size > 0) {
+            if (inheritingIdices.isEmpty()) {
+                for (int i = 0; i < size; i++) {
+                    Namespace ns = namespaces.get(i);
+                    if (ns instanceof Type) {
+                        return evalInternal(ex, ns);
+                    }
                 }
+            } else {
+                int idx = inheritingIdices.get(0);
+                Namespace ns = namespaces.get(idx);
+                List<Element> ret = evalInternal(ex, ns);
+                if (ret != null) return ret;
             }
-            return null;
-        } else {
-            int idx = inheritingIdices.get(0);
-            return namespaces.get(idx);
         }
+        return evalInternal(ex, null);
     }
 
     InheritKey makeInheritKey(Feature ref) {

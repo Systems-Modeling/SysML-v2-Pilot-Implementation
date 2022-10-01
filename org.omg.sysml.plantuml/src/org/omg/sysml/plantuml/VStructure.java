@@ -29,7 +29,6 @@ package org.omg.sysml.plantuml;
 import java.util.List;
 import java.util.regex.Pattern;
 
-import org.omg.sysml.execution.expressions.ExpressionEvaluator;
 import org.omg.sysml.expressions.util.EvaluationUtil;
 import org.omg.sysml.lang.sysml.ActorMembership;
 import org.omg.sysml.lang.sysml.ConjugatedPortDefinition;
@@ -46,7 +45,6 @@ import org.omg.sysml.lang.sysml.ResultExpressionMembership;
 import org.omg.sysml.lang.sysml.SatisfyRequirementUsage;
 import org.omg.sysml.lang.sysml.StakeholderMembership;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.lang.sysml.Usage;
 
 public abstract class VStructure extends VDefault {
     protected void appendText(String text, boolean unfold) {
@@ -64,59 +62,48 @@ public abstract class VStructure extends VDefault {
         }
     }
 
-    protected String getEvaluatedResults(Element elem, Element target) {
+    protected String getEvaluatedResults(Element elem) {
         if (styleValue("evalExp") == null) return null;
-        if (!(elem instanceof Expression)) return null;
-
-        List<Element> elems = ExpressionEvaluator.INSTANCE.evaluate((Expression) elem, target);
+        List<Element> elems = eval(elem);
         StringBuilder sb = new StringBuilder();
-        if (elems != null) {
-            int size = elems.size();
-            if (size == 1) {
-                Element e = elems.get(0);
-                if (e == null) return null;
+        if (elems == null) return null;
+        int size = elems.size();
+        if (size == 1) {
+            Element e = elems.get(0);
+            if (e == null) return null;
+            Object o = EvaluationUtil.valueOf(e);
+            sb.append(" <&arrow-thick-right> ");
+            if (o instanceof Element) {
+                sb.append(e.getEffectiveName());
+            } else {
+                sb.append(o);
+            }
+            return sb.toString();
+        } else if (size > 1) {
+            sb.append(" <&arrow-thick-right> ");
+            sb.append('(');
+            boolean flag = false;
+            for (Element e: elems) {
                 Object o = EvaluationUtil.valueOf(e);
-                if (EvaluationUtil.valueOf(elem).equals(o)) return null;
-                sb.append(" <&arrow-thick-right> ");
-                if (o instanceof Element) {
+                if (flag) {
+                    sb.append(", ");
+                } else {
+                    flag = true;
+                }
+                if (o == e) {
                     sb.append(e.getEffectiveName());
                 } else {
                     sb.append(o);
                 }
-                return sb.toString();
-            } else if (size > 1) {
-                sb.append(" <&arrow-thick-right> ");
-                sb.append('(');
-                boolean flag = false;
-                for (Element e: elems) {
-                    Object o = EvaluationUtil.valueOf(e);
-                    if (flag) {
-                        sb.append(", ");
-                    } else {
-                        flag = true;
-                    }
-                    if (o == e) {
-                        sb.append(e.getEffectiveName());
-                    } else {
-                        sb.append(o);
-                    }
-                }
-                sb.append(')');
-                return sb.toString();
             }
-        } 
-        /* For target debugging
-           sb.append(" <&caret-left> ");
-           sb.append(elem.getName());
-           sb.append('#');
-           sb.append(target == null ? target : target.getName());
-           return sb.toString();
-        */
+            sb.append(')');
+            return sb.toString();
+        }
         return null;
     }
 
-    protected boolean addEvaluatedResults(Element elem, Element target) {
-        String str = getEvaluatedResults(elem, target);
+    protected boolean addEvaluatedResults(Element elem) {
+        String str = getEvaluatedResults(elem);
         if (str == null) return false;
         append(str);
         return true;
@@ -138,8 +125,7 @@ public abstract class VStructure extends VDefault {
                     flag = true;
                 }
                 Expression ex = fv.getValue();
-                Element evalTarget = getEvalTarget();
-                flag = addEvaluatedResults(ex, evalTarget) || flag;
+                flag = addEvaluatedResults(ex) || flag;
             } else if (m instanceof ResultExpressionMembership) {
                 ResultExpressionMembership rem = (ResultExpressionMembership) m;
                 Expression ex = rem.getOwnedResultExpression();
@@ -252,11 +238,7 @@ public abstract class VStructure extends VDefault {
             insertActorLikeStyle(sb, f);
 
             if (e instanceof Expression) {
-                Element target = getCurrentNamespace();
-                if (!(target instanceof Usage)) {
-                    target = e;
-                }
-                String str = getEvaluatedResults(e, target);
+                String str = getEvaluatedResults(e);
                 if (str != null) {
                     sb.append(str);
                 }

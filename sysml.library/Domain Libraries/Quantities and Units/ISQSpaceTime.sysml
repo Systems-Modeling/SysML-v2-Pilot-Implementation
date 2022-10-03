@@ -5,8 +5,8 @@
  *
  * Note 1: In documentation comments, AsciiMath notation (see http://asciimath.org/) is used for mathematical concepts,
  * with Greek letters in Unicode encoding. In running text, AsciiMath is placed between backticks.
- * Note 2: For vector and tensor quantities currently the unit and quantity value type for their (scalar) magnitude is 
- * defined, as well as their typical Cartesian 3d VectorMeasurementReference (i.e. coordinate frame) 
+ * Note 2: For vector and tensor quantities currently the unit and quantity value type for their (scalar) magnitude is
+ * defined, as well as their typical Cartesian 3d VectorMeasurementReference (i.e. coordinate frame)
  * or TensorMeasurementReference.
  */
 package ISQSpaceTime {
@@ -145,36 +145,26 @@ package ISQSpaceTime {
      */
     attribute radialDistance: LengthValue [*] nonunique :> scalarQuantities;
 
-    /**
-     * source: item 3-1.10 position vector
-     * symbol(s): `vec(r)`
-     * application domain: generic
-     * name: PositionVector
-     * quantity dimension: L^1
-     * measurement unit(s): m
-     * tensor order: 1
-     * definition: vector (ISO 80000-2) quantity from the origin of a coordinate system to a point in space
-     * remarks: Position vectors are so-called bounded vectors, i.e. their magnitude (ISO 80000-2) and direction depend on the particular coordinate system used.
-     */
-
-    /**
-     * Most general spatial 3D coordinate frame
-     */
     attribute def Spatial3dCoordinateFrame :> '3dCoordinateFrame' {
         attribute :>> isBound = true;
+        doc
+        /*
+         * Most general spatial 3D coordinate frame
+         */
     }
 
-    /**
-     * Orthogonal Cartesian spatial 3D coordinate frame
-     *
-     * source: ISO 80000-2 item 2-17.1 Cartesian coordinates
-     *
-     * The components of a vector expressed on a Cartesian coordinate frame are all LengthValues, and denoted with symbols `x`, `y`, `z`.
-
-     * Note 1: The Cartesian basis vectors `vec(e_x)`, `vec(e_y)` and `vec(e_z)` form an orthonormal right-handed coordinate frame.
-     * Note 2: The measurement units for the 3 dimensions are typically the same, but may be different.
-     */
     attribute def CartesianSpatial3dCoordinateFrame :> Spatial3dCoordinateFrame {
+        doc
+        /*
+         * Cartesian spatial 3D coordinate frame
+         *
+         * source: ISO 80000-2 item 2-17.1 Cartesian coordinates
+         *
+         * The components of a vector expressed on a Cartesian spatial coordinate frame are all LengthValues, and denoted with symbols `x`, `y`, `z`.
+         *
+         * Note 1: The Cartesian basis vectors `vec(e_x)`, `vec(e_y)` and `vec(e_z)` form an orthonormal right-handed coordinate frame.
+         * Note 2: The measurement units for the 3 dimensions are typically the same, but may be different.
+         */
         attribute xUnit : LengthUnit;
         attribute yUnit : LengthUnit;
         attribute zUnit : LengthUnit;
@@ -182,25 +172,27 @@ package ISQSpaceTime {
         attribute :>> isOrthogonal = true;
     }
 
-    /**
-     * Cylindrical spatial 3D coordinate frame
-     *
-     * source: ISO 80000-2 item 2-17.2 cylindrical coordinates
-     *
-     * The components of a (position) vector to a point P in a cylindrical coordinate frame are:
-     * - radialDistance (symbol `ρ`) defined by LengthValue, that is the radial distance from the cylinder axis to P
-     * - azimuth (symbol `φ`) defined by AngularMeasure, that is the angle between the azimuth reference direction and the line segment 
-     * from the cylinder axis, in the plane that is orthogonal to the cylinder axis and intersects P
-     * - z coordinate (symbol `z`) defined by LengthValue, the coordinate along the clyinder axis.
-     *
-     * Note 1: The basis vectors `vec(e_ρ)(φ)`, `vec(e_φ)(φ)` and `vec(e_z)` form an orthonormal right-handed coordinate frame.
-     * Note 2: In order to enable transformation to and from a CartesianSpatial3dCoordinateFrame the `vec(e_x)` Cartesian basis vector is aligned
-     * with the `φ=0` direction in the cylindrical frame, and the `vec(e_z)` Cartesian basis vector is aligned with
-     * the `vec(e_z)` cylindrical basis vector.
-     * Note 3: If `z = 0`, then `ρ` and `φ` are polar coordinates in the XY-plane.
-     * Note 4: See also https://en.wikipedia.org/wiki/Cylindrical_coordinate_system .
-     */
     attribute def CylindricalSpatial3dCoordinateFrame :> Spatial3dCoordinateFrame {
+        doc
+        /*
+         * Cylindrical spatial 3D coordinate frame
+         *
+         * source: ISO 80000-2 item 2-17.2 cylindrical coordinates
+         *
+         * The components of a (position) vector to a point P in a cylindrical coordinate frame are:
+         * - radialDistance (symbol `ρ`) defined by LengthValue, that is the radial distance from the cylinder axis to P
+         * - azimuth (symbol `φ`) defined by AngularMeasure, that is the angle between the azimuth reference direction and the line segment
+         * from the cylinder axis, in the plane that is orthogonal to the cylinder axis and intersects P
+         * - z coordinate (symbol `z`) defined by LengthValue, the coordinate along the clyinder axis.
+         *
+         * Note 1: The basis vectors `vec(e_ρ)(φ)`, `vec(e_φ)(φ)` and `vec(e_z)` form an orthonormal right-handed coordinate frame, where
+         * `vec(e_φ)` is tangent to the circular arc in the `φ` direction.
+         * Note 2: In order to enable transformation to and from a CartesianSpatial3dCoordinateFrame the `vec(e_x)` Cartesian basis vector is aligned
+         * with the `φ=0` direction in the cylindrical frame, and the `vec(e_z)` Cartesian basis vector is aligned with
+         * the `vec(e_z)` cylindrical basis vector.
+         * Note 3: If `z = 0`, then `ρ` and `φ` are polar coordinates in the XY-plane.
+         * Note 4: See also https://en.wikipedia.org/wiki/Cylindrical_coordinate_system .
+         */
         attribute radialDistanceUnit : LengthUnit;
         attribute azimuthUnit : AngularMeasureUnit;
         attribute zUnit : LengthUnit;
@@ -208,25 +200,27 @@ package ISQSpaceTime {
         attribute :>> isOrthogonal = true;
     }
 
-    /**
-     * Spherical spatial 3D coordinate frame
-     *
-     * source: ISO 80000-2 item 2-17.3 spherical coordinates
-     *
-     * The components of a (position) vector to a point P specified in a spherical coordinate frame are:
-     * - radialDistance (symbol `r`) defined by LengthValue, that is the distance from the origin to P
-     * - inclination (symbol `θ`) defined by AngularMeasure, that is the angle between the zenith direction and the line segment from origin to P
-     * - azimuth (symbol `φ`) defined by AngularMeasure, that is the angle between the azimuth reference direction and the line segment 
-     * from the origin to the orthogonal projection of P on the reference plane, normal to the zenith direction.
-     *
-     * Note 1: The basis vectors `e_r(θ,φ)`, `e_φ(φ)` and `e_φ(φ)` form an orthonormal right-handed frame.
-     * Note 2: In order to transform to and from a CartesianSpatial3dCoordinateFrame the `e_x` Cartesian basis vector is aligned
-     * with the `θ=π/4` and `φ=0` direction in the spherical frame, and the `e_z` Cartesian basis vector is aligned 
-     * with the `θ=0`, i.e. zenith, direction in the spherical frame.
-     * Note 3: If `θ = π/4`, then `ρ` and `φ` are polar coordinates in the XY-plane.
-     * Note 4: See also https://en.wikipedia.org/wiki/Spherical_coordinate_system .
-     */
     attribute def SphericalSpatial3dCoordinateFrame :> Spatial3dCoordinateFrame {
+        doc
+        /*
+         * Spherical spatial 3D coordinate frame
+         *
+         * source: ISO 80000-2 item 2-17.3 spherical coordinates
+         *
+         * The components of a (position) vector to a point P specified in a spherical coordinate frame are:
+         * - radialDistance (symbol `r`) defined by LengthValue, that is the distance from the origin to P
+         * - inclination (symbol `θ`) defined by AngularMeasure, that is the angle between the zenith direction and the line segment from origin to P
+         * - azimuth (symbol `φ`) defined by AngularMeasure, that is the angle between the azimuth reference direction and the line segment
+         * from the origin to the orthogonal projection of P on the reference plane, normal to the zenith direction.
+         *
+         * Note 1: The basis vectors `vec(e_r)(θ,φ)`, `vec(e_θ)(θ,φ)` and `vec(e_φ)(φ)` form an orthonormal right-handed frame, where
+         * `vec(e_θ)` and `vec(e_φ)` are tangent to the respective circular arcs in the `θ` and `φ` directions.
+         * Note 2: In order to transform to and from a CartesianSpatial3dCoordinateFrame the `vec(e_x)` Cartesian basis vector is aligned
+         * with the `θ=π/4` and `φ=0` direction in the spherical frame, and the `vec(e_z)` Cartesian basis vector is aligned
+         * with the `θ=0` zenith direction in the spherical frame.
+         * Note 3: If `θ = π/4`, then `ρ` and `φ` are polar coordinates in the XY-plane.
+         * Note 4: See also https://en.wikipedia.org/wiki/Spherical_coordinate_system .
+         */
         attribute radialDistanceUnit : LengthUnit;
         attribute inclinationUnit : AngularMeasureUnit;
         attribute azimuthUnit : AngularMeasureUnit;
@@ -234,54 +228,94 @@ package ISQSpaceTime {
         attribute :>> isOrthogonal = true;
     }
 
-    attribute def GeoSpatial3dCoordinateFrame :> Spatial3dCoordinateFrame {
+     attribute def PlanetarySpatial3dCoordinateFrame :> Spatial3dCoordinateFrame {
+        doc
+        /*
+         * Planetary spatial 3D coordinate frame
+         *
+         * A planetary spatial 3D coordinate frame is a generalization for any planet of the geographic coordinate frame and geocentric coordinate
+         * for Earth. In such coordinate frames, typically the origin is located at the planet's centre of gravity, and the surface of the planet
+         * is approximated by a reference ellipsoid centred on the origin, with its major axes oriented along the south to north pole vector and
+         * the equatorial plane.
+         *
+         * The components of a (position) vector to a point P specified in a planetary coordinate frame are:
+         * - latitude (symbol `lat` or `φ`) defined by AngularMeasure, that is the angle between the equatorial plane and the vector from
+         *   the origin to P, similar to the inclination in a spherical spatial coordinate frame. Typically, the zero reference latitude is chosen
+         *   for positions in the equatorial plane, with positive latitude for positions in the northern hemisphere and negative latitude for positions
+         *   in the southern hemisphere.
+         * - longitude (symbol `long` or `λ`) defined by AngularMeasure, that is the angle between a reference meridian and the meridian
+         *   passing through P, similar to the azimuth of a spherical spatial coordinate frame. The convention is to connotate positive longitude
+         *   with eastward direction and negative longitude with westward direction. The reference meridian for `long=0` is chosen to pass
+         *   through a particular feature of the planet, e.g., for Earth typically the position of the British Royal Observatory in Greenwich, UK.
+         * - altitude (symbol `h`) defined by LengthValue, that is the distance between P and the reference ellipsoid
+         *   in the normal direction to the ellipsoid. Positive altitude specifies a position above the reference ellipsoid surface,
+         *   while a negative value specifies a position below.
+         *
+         * Note 1: The reference meridian is also called prime meridian.
+         * Note 2: The basis vectors `vec(e_φ)(φ)`, `vec(e_λ)(λ)` and `vec(e_h)(φ,λ)` form an orthonormal right-handed frame, where
+         * `vec(e_φ)` and `vec(e_λ)` are tangent to the reference ellipsoid in the respective latitude and longitude directions,
+         * and `vec(e_h)` is normal to the reference ellipsoid.
+         * Note 3: In order to transform to and from a CartesianSpatial3dCoordinateFrame the `vec(e_x)` Cartesian basis vector is aligned
+         * with the `φ=0` and `λ=0` direction in the planetary frame, and the `vec(e_z)` Cartesian basis vector is aligned
+         * with the `λ=π/2` (north pole) direction in the planetary frame.
+         * Note 4: See also https://en.wikipedia.org/wiki/Planetary_coordinate_system .
+         */
         attribute latitudeUnit : AngularMeasureUnit;
         attribute longitudeUnit : AngularMeasureUnit;
         attribute altitudeUnit : LengthUnit;
-        attribute standardReference : String default "WSG84";
         attribute :>> mRefs = (longitudeUnit, latitudeUnit, altitudeUnit);
         attribute :>> isOrthogonal = true;
     }
 
-	attribute def Position3dVector :> VectorQuantityValue {
-        attribute :>> dimensions = 3;
+	attribute def Position3dVector :> '3dVectorQuantityValue' {
+	    doc
+        /*
+         * source: item 3-1.10 position vector
+         * symbol(s): `vec(r)`
+         * application domain: generic
+         * name: PositionVector
+         * quantity dimension: L^1
+         * measurement unit(s): m
+         * tensor order: 1
+         * definition: vector (ISO 80000-2) quantity from the origin of a coordinate system to a point in space
+         * remarks: Position vectors are so-called bounded vectors, i.e. their magnitude (ISO 80000-2) and direction depend on the particular coordinate system used.
+         */
         attribute :>> isBound = true;
-        attribute :>> num: Real[3];
         attribute :>> mRef: Spatial3dCoordinateFrame[1];
 	}
     attribute position3dVector: Position3dVector :> vectorQuantities;
 
     attribute def CartesianPosition3dVector :> Position3dVector {
-        attribute :>> mRef : CartesianSpatial3dCoordinateFrame[1];
         attribute x : LengthValue = num[1] [mRef.mRefs[1]];
         attribute y : LengthValue = num[2] [mRef.mRefs[2]];
         attribute z : LengthValue = num[3] [mRef.mRefs[3]];
+        attribute :>> mRef : CartesianSpatial3dCoordinateFrame[1];
     }
     attribute cartesianPosition3dVector : CartesianPosition3dVector :> position3dVector;
 
     attribute def CylindricalPosition3dVector :> Position3dVector {
+        attribute <'ρ'> radialDistance : LengthValue = num[1] [mRef.mRefs[1]];
+        attribute <'φ'> azimuth : AngularMeasureUnit = num[2] [mRef.mRefs[2]];
+        attribute <h> height : LengthValue = num[3] [mRef.mRefs[3]];
         attribute :>> mRef : CylindricalSpatial3dCoordinateFrame[1];
-        attribute radialDistance : LengthValue = num[1] [mRef.mRefs[1]];
-        attribute azimuth : AngularMeasureUnit = num[2] [mRef.mRefs[2]];
-        attribute height : LengthValue = num[3] [mRef.mRefs[3]];
     }
     attribute cylindricalPosition3dVector : CylindricalPosition3dVector :> position3dVector;
 
     attribute def SphericalPosition3dVector :> Position3dVector {
+        attribute <r> radialDistance : LengthValue = num[1] [mRef.mRefs[1]];
+        attribute <'θ'> inclination : AngularMeasureUnit = num[2] [mRef.mRefs[2]];
+        attribute <'φ'> azimuth : AngularMeasureUnit = num[3] [mRef.mRefs[3]];
         attribute :>> mRef : SphericalSpatial3dCoordinateFrame[1];
-        attribute radialDistance : LengthValue = num[1] [mRef.mRefs[1]];
-        attribute inclination : AngularMeasureUnit = num[2] [mRef.mRefs[2]];
-        attribute azimuth : AngularMeasureUnit = num[3] [mRef.mRefs[3]];
     }
     attribute sphericalPosition3dVector : SphericalPosition3dVector :> position3dVector;
 
-    attribute def GeoSpatialPosition3dVector :> Position3dVector {
-        attribute :>> mRef : GeoSpatial3dCoordinateFrame[1];
+    attribute def PlanetaryPosition3dVector :> Position3dVector {
         attribute <lat> latitude : AngularMeasureUnit = num[1] [mRef.mRefs[1]];
-        attribute <lon> longitude : AngularMeasureUnit = num[2] [mRef.mRefs[2]];
-        attribute <alt> altitude : LengthValue = num[3] [mRef.mRefs[3]];
+        attribute <long> longitude : AngularMeasureUnit = num[2] [mRef.mRefs[2]];
+        attribute <h> altitude : LengthValue = num[3] [mRef.mRefs[3]];
+        attribute :>> mRef : PlanetarySpatial3dCoordinateFrame[1];
     }
-    attribute geoSpatialPosition3dVector : GeoSpatialPosition3dVector :> position3dVector;
+    attribute planetaryPosition3dVector : PlanetaryPosition3dVector :> position3dVector;
 
     /**
      * source: item 3-1.11 displacement
@@ -294,17 +328,35 @@ package ISQSpaceTime {
      * definition: vector (ISO 80000-2) quantity between any two points in space
      * remarks: Displacement vectors are so-called free vectors, i.e. their magnitude (ISO 80000-2) and direction do not depend on a particular coordinate system. The magnitude of this vector is also called displacement.
      */
-	abstract attribute def Displacement3dVector :> VectorQuantityValue {
-        attribute :>> dimensions = 3;
+	abstract attribute def Displacement3dVector :> '3dVectorQuantityValue' {
         attribute :>> isBound = false;
-        attribute :>> num: Real[3];
+        attribute :>> mRef: Spatial3dCoordinateFrame[1];
 	}
     attribute displacement3dVector: Displacement3dVector :> vectorQuantities;
 
-    attribute def Cartesian3dDisplacementVector :> Displacement3dVector {
+    attribute def CartesianDisplacement3dVector :> Displacement3dVector {
+        attribute x : LengthValue = num[1] [mRef.mRefs[1]];
+        attribute y : LengthValue = num[2] [mRef.mRefs[2]];
+        attribute z : LengthValue = num[3] [mRef.mRefs[3]];
         attribute :>> mRef: CartesianSpatial3dCoordinateFrame[1];
     }
-    attribute displacementVector: Cartesian3dDisplacementVector :> vectorQuantities;
+    attribute cartesianDisplacementVector: CartesianDisplacement3dVector :> displacement3dVector;
+
+    attribute def CylindricalDisplacement3dVector :> Displacement3dVector {
+        attribute <'ρ'> radialDistance : LengthValue = num[1] [mRef.mRefs[1]];
+        attribute <'φ'> azimuth : AngularMeasureUnit = num[2] [mRef.mRefs[2]];
+        attribute <h> height : LengthValue = num[3] [mRef.mRefs[3]];
+        attribute :>> mRef: CylindricalSpatial3dCoordinateFrame[1];
+    }
+    attribute cylindricalDisplacementVector: CylindricalSpatial3dCoordinateFrame :> displacement3dVector;
+
+    attribute def SphericalDisplacement3dVector :> Displacement3dVector {
+        attribute <r> radialDistance : LengthValue = num[1] [mRef.mRefs[1]];
+        attribute <'θ'> inclination : AngularMeasureUnit = num[2] [mRef.mRefs[2]];
+        attribute <'φ'> azimuth : AngularMeasureUnit = num[3] [mRef.mRefs[3]];
+        attribute :>> mRef: SphericalSpatial3dCoordinateFrame[1];
+    }
+    attribute sphericalDisplacementVector: SphericalSpatial3dCoordinateFrame :> displacement3dVector;
 
     /**
      * source: item 3-1.12 radius of curvature

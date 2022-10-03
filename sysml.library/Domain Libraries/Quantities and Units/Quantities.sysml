@@ -52,14 +52,6 @@ package Quantities {
 
 
 	/**
-	 * Most general representation of real 2-vector quantities
-	 */
-	abstract attribute def TwoVectorQuantityValue :> VectorQuantityValue {
-        attribute :>> dimensions = 2;
-        attribute :>> num: Real[2];
-	}
-
-	/**
 	 * Most general representation of real 3-vector quantities
 	 */
 	abstract attribute def '3dVectorQuantityValue' :> VectorQuantityValue, ThreeVectorValue {

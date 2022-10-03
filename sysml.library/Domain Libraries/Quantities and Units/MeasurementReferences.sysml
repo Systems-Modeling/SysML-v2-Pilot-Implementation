@@ -129,11 +129,11 @@ package MeasurementReferences {
 	 * the respective basis vectors of the target frame via direction vectors in the source frame. An empty sequence of
 	 * basisDirections signifies no change of orientation of the target coordinate frame.
 	 */
-	 attribute def CoordinateFramePlacement :> CoordinateTransformation {
-	 	attribute origin : VectorQuantityValue[1];
-	 	attribute basisDirections : VectorQuantityValue[0..*] ordered;
-	 	assert constraint { origin.dimensions == source.dimensions }
-	 	assert constraint { size(basisDirections) == 0 or size(basisDirections) == source.dimensions[1]}
+	attribute def CoordinateFramePlacement :> CoordinateTransformation {
+		attribute origin : VectorQuantityValue[1];
+		attribute basisDirections : VectorQuantityValue[0..*] ordered;
+		assert constraint { origin.dimensions == source.dimensions }
+		assert constraint { size(basisDirections) == 0 or size(basisDirections) == source.dimensions[1]}
         assert constraint { basisDirections->forAll { in basisDirection : VectorQuantityValue; 
             basisDirection.dimensions == source.dimensions }
         }

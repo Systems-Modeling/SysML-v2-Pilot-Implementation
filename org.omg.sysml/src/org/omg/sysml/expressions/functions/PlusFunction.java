@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2021-2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -22,10 +22,8 @@
 package org.omg.sysml.expressions.functions;
 
 import org.eclipse.emf.common.util.EList;
-import org.omg.sysml.expressions.ModelLevelExpressionEvaluator;
 import org.omg.sysml.expressions.util.EvaluationUtil;
 import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.lang.sysml.InvocationExpression;
 
 public class PlusFunction extends ArithmeticFunction {
 
@@ -55,13 +53,8 @@ public class PlusFunction extends ArithmeticFunction {
 	}
 
 	@Override
-	public EList<Element> invoke(InvocationExpression invocation, Element target, ModelLevelExpressionEvaluator evaluator) {
-		String x_string = evaluator.stringValue(invocation, 0, target);
-		if (x_string != null) {
-			String y_string = evaluator.stringValue(invocation, 1, target);
-			return y_string == null? EvaluationUtil.nullList(): EvaluationUtil.stringResult(x_string + y_string);
-		}
-		return super.invoke(invocation, target, evaluator);
+	protected EList<Element> binaryStringOp(String x, String y) {
+		return EvaluationUtil.stringResult(x + y);
 	}
 
 }

@@ -175,8 +175,8 @@ public abstract class Visitor extends SysMLSwitch<String> {
         return s2p.makeInheritKey(ref);
     }
 
-    protected Element getEvalTarget() {
-        return s2p.getEvalTarget();
+    protected List<Element> eval(Element e) {
+        return s2p.eval(e);
     }
 
     protected boolean matchCurrentInheritings(InheritKey ik) {

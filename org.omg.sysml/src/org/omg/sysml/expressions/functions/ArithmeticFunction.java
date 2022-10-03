@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2021-2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -22,6 +22,7 @@
 package org.omg.sysml.expressions.functions;
 
 import org.eclipse.emf.common.util.EList;
+import org.omg.sysml.expressions.ModelLevelExpressionEvaluator;
 import org.omg.sysml.expressions.util.EvaluationUtil;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.InvocationExpression;
@@ -54,22 +55,18 @@ public abstract class ArithmeticFunction implements LibraryFunction {
 	}
 
 	@Override
-	public EList<Element> invoke(InvocationExpression invocation, Element target) {
-		Integer x_int = EvaluationUtil.integerValue(invocation, 0, target);
-		Integer y_int = EvaluationUtil.integerValue(invocation, 1, target);
-		Double x_real = EvaluationUtil.realValue(invocation, 0, target);
-		Double y_real = EvaluationUtil.realValue(invocation, 1, target);
-		String x_string = EvaluationUtil.stringValue(invocation, 0, target);
-		String y_string = EvaluationUtil.stringValue(invocation, 1, target);
+	public EList<Element> invoke(InvocationExpression invocation, Element target, ModelLevelExpressionEvaluator evaluator) {
+		Object x = EvaluationUtil.valueOf(evaluator.argumentValue(invocation, 0, target));
+		Object y = EvaluationUtil.valueOf(evaluator.argumentValue(invocation, 1, target));
 		return EvaluationUtil.numberOfArgs(invocation) == 1?
-					x_int != null? unaryIntegerOp(x_int):
-					x_real != null? unaryRealOp(x_real):
+					x instanceof Integer? unaryIntegerOp((Integer)x):
+					x instanceof Double? unaryRealOp((Integer)y):
 					EvaluationUtil.nullList():
-			   x_int != null && y_int != null? binaryIntegerOp(x_int, y_int):
-			   x_real != null && y_int != null? binaryRealOp(x_real, y_int):
-			   x_int != null && y_real != null? binaryRealOp(x_int, y_real):
-			   x_real != null && y_real != null? binaryRealOp(x_real, y_real):
-			   x_string != null && y_string != null? binaryStringOp(x_string, y_string):
+			   x instanceof Integer && y instanceof Integer? binaryIntegerOp((Integer)x, (Integer)y):
+			   x instanceof Double && y instanceof Integer? binaryRealOp((Double)x, (Integer)y):
+			   x instanceof Integer && y instanceof Double? binaryRealOp((Integer)x, (Double)y):
+			   x instanceof Double && y instanceof Double? binaryRealOp((Double)x, (Double)y):
+			   x instanceof String && y instanceof String? binaryStringOp((String)x, (String)y):
 			   null;
 	}
 

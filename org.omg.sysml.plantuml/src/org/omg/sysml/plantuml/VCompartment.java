@@ -574,7 +574,7 @@ public class VCompartment extends VStructure {
             text = text.substring(toBeRemoved.length()).trim();
         }
         appendText(text, false);
-        addEvaluatedResults(f, currentType);
+        addEvaluatedResults(f);
         append('\n');
         return true;
     }
@@ -623,7 +623,7 @@ public class VCompartment extends VStructure {
                 append(" { ");
                 appendText(text, true);
                 append(" }");
-                addEvaluatedResults(fe.f, currentType);
+                addEvaluatedResults(fe.f);
                 append('\n');
             } else if (getFeatureName(fe.f) == null) {
                 addAnonymouseFeatureText(fe.f);
@@ -655,10 +655,7 @@ public class VCompartment extends VStructure {
 
     public void startType(Type typ) {
         this.currentType = typ;
-        traverse(typ);
-        /* In order to evaluate features properly,
-           we need to restore `typ` namespace because traverse() above did popNamespace()  */
-        pushNamespace(typ);
+        traverse(typ, false, true);
         addFeatures(featureEntries, 0);
         popNamespace();
     }

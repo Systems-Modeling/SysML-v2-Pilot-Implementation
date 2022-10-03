@@ -8,6 +8,8 @@ import java.util.stream.Collectors;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.FeatureReferenceExpression;
+import org.omg.sysml.lang.sysml.InvocationExpression;
 import org.omg.sysml.lang.sysml.LiteralBoolean;
 import org.omg.sysml.lang.sysml.LiteralInfinity;
 import org.omg.sysml.lang.sysml.LiteralInteger;
@@ -16,6 +18,7 @@ import org.omg.sysml.lang.sysml.LiteralString;
 import org.eclipse.emf.ecore.EClass;
 import org.omg.sysml.lang.sysml.CalculationUsage;
 import org.omg.sysml.lang.sysml.Membership;
+import org.omg.sysml.lang.sysml.OperatorExpression;
 import org.omg.sysml.lang.sysml.OwningMembership;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.Type;
@@ -53,7 +56,9 @@ public class SysMLInteractiveUtil {
 	}
 	
 	public static String nameOf(Element element) {
-		if (element instanceof Feature && !((Feature)element).getOwnedFeatureChaining().isEmpty()) {
+		if (element == null) {
+			return "";
+		} else if (element instanceof Feature && !((Feature)element).getOwnedFeatureChaining().isEmpty()) {
 			String name = "";
 			for (Feature chainingFeature: ((Feature)element).getChainingFeature()) {
 				String nextName = chainingFeature.getEffectiveName();
@@ -73,6 +78,9 @@ public class SysMLInteractiveUtil {
 				   element instanceof LiteralInteger? Integer.valueOf(((LiteralInteger)element).getValue()).toString():
 				   element instanceof LiteralRational? Double.valueOf(((LiteralRational)element).getValue()).toString():
 				   element instanceof LiteralInfinity? "*":
+				   element instanceof FeatureReferenceExpression? nameOf(((FeatureReferenceExpression)element).getReferent()):
+				   element instanceof OperatorExpression? ((OperatorExpression)element).getOperator():
+				   element instanceof InvocationExpression? nameOf(((InvocationExpression)element).getFunction()):
 				   element.getEffectiveName();
 		}
 	}

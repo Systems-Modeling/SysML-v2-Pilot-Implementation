@@ -118,7 +118,7 @@ public abstract class VTraverser extends Visitor {
         }
     }
 
-    public String traverse(Namespace ns, boolean noInherit) {
+    public String traverse(Namespace ns, boolean noInherit, boolean noPopNamespace) {
         VPath vpath = getVPath();
         if (!pushNamespace(ns)) return null;
         vpath.enter(ns);
@@ -133,12 +133,14 @@ public abstract class VTraverser extends Visitor {
             }
         }
         vpath.leave(ns);
-        popNamespace();
+        if (!noPopNamespace) {
+            popNamespace();
+        }
         return "";
     }
 
     public String traverse(Namespace ns) {
-        return traverse(ns, false);
+        return traverse(ns, false, false);
     }
 
     protected String visitMembership(Membership m) {

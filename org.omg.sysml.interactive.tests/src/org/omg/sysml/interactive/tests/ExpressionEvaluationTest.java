@@ -29,6 +29,10 @@ import org.omg.sysml.interactive.SysMLInteractive;
 
 public class ExpressionEvaluationTest extends SysMLInteractiveTest {
 
+	protected void assertElement(String expected, String actual) {
+		assertTrue("expected: " + expected + " actual: " + actual, actual.startsWith(expected));
+	}
+	
 	public final String evalTest1 =
 			"package EvalTest1 {\n"
 			+ "	part p1 {\n"
@@ -45,6 +49,17 @@ public class ExpressionEvaluationTest extends SysMLInteractiveTest {
 			+ "	\n"
 			+ "}";
 	
+	@Test
+	public void testEvaluation1() throws Exception {
+		SysMLInteractive instance = getSysMLInteractiveInstance();
+		process(instance, evalTest1);
+		assertElement("LiteralInteger 3", instance.eval("p11.a2", "EvalTest1"));
+		assertElement("LiteralInteger 2", instance.eval("p11.p11.a2", "EvalTest1"));
+		assertElement("LiteralInteger 2", instance.eval("p11.p12.a2", "EvalTest1"));
+		assertElement("LiteralInteger 2", instance.eval("p1.p11.a2", "EvalTest1"));
+	}
+	
+	// Tests inheritance and outer scopes.
 	public final String evalTest2 =
 			"package EvalTest2 {\n"
 			+ "	part p1 {\n"
@@ -58,6 +73,17 @@ public class ExpressionEvaluationTest extends SysMLInteractiveTest {
 			+ "	}\n"
 			+ "}";
 
+	@Test
+	public void testEvaluation2() throws Exception {
+		SysMLInteractive instance = getSysMLInteractiveInstance();
+		process(instance, evalTest2);
+		assertElement("LiteralInteger 1", instance.eval("p1.a1", "EvalTest2"));
+		assertElement("LiteralInteger 2", instance.eval("p2.a2", "EvalTest2"));
+		assertElement("LiteralInteger 1", instance.eval("p2.p21.a1", "EvalTest2"));
+		assertElement("LiteralInteger 3", instance.eval("p2.p21.a21", "EvalTest2"));
+	}
+	
+	// Tests different inheritance contexts.	
 	public final String evalTest3 =
 			"package EvalTest3 {\n"
 			+ "	part p1 {\n"
@@ -73,47 +99,6 @@ public class ExpressionEvaluationTest extends SysMLInteractiveTest {
 			+ "	}\n"
 			+ "}";
 	
-	public final String evalTest4 =
-			"package EvalTest4 {\n"
-			+ "	part p1 {\n"
-			+ "	    attribute a1;\n"
-			+ "	    attribute a2 default 3;\n"
-			+ "	    constraint c11 { return result = a1 < 2; }\n"
-			+ "	    constraint c12 { return result = a2 < 5; }\n"
-			+ "	}\n"
-			+ "	\n"
-			+ "	part p2 :> p1 {\n"
-			+ "		attribute :>> a1 = 1;\n"
-			+ "		attribute :>> a2 = 7;\n"
-			+ "	}\n"
-			+ "}";
-	
-	protected void assertElement(String expected, String actual) {
-		assertTrue("expected: " + expected + " actual: " + actual, actual.startsWith(expected));
-	}
-	
-	@Test
-	public void testEvaluation1() throws Exception {
-		SysMLInteractive instance = getSysMLInteractiveInstance();
-		process(instance, evalTest1);
-		assertElement("LiteralInteger 3", instance.eval("p11.a2", "EvalTest1"));
-		assertElement("LiteralInteger 2", instance.eval("p11.p11.a2", "EvalTest1"));
-		assertElement("LiteralInteger 2", instance.eval("p11.p12.a2", "EvalTest1"));
-		assertElement("LiteralInteger 2", instance.eval("p1.p11.a2", "EvalTest1"));
-	}
-	
-	// Tests inheritance and outer scopes.
-	@Test
-	public void testEvaluation2() throws Exception {
-		SysMLInteractive instance = getSysMLInteractiveInstance();
-		process(instance, evalTest2);
-		assertElement("LiteralInteger 1", instance.eval("p1.a1", "EvalTest2"));
-		assertElement("LiteralInteger 2", instance.eval("p2.a2", "EvalTest2"));
-		assertElement("LiteralInteger 1", instance.eval("p2.p21.a1", "EvalTest2"));
-		assertElement("LiteralInteger 3", instance.eval("p2.p21.a21", "EvalTest2"));
-	}
-	
-	// Tests different inheritance contexts.	
 	@Test
 	public void testEvaluation3() throws Exception {
 		SysMLInteractive instance = getSysMLInteractiveInstance();
@@ -127,17 +112,118 @@ public class ExpressionEvaluationTest extends SysMLInteractiveTest {
 	}
 
 	// Tests inherited context with a redefined (bound) outer features.
+	public final String evalTest4 =
+			"package EvalTest4 {\n"
+			+ "	part p1 {\n"
+			+ "	    attribute a1;\n"
+			+ "	    attribute a2 default 3;\n"
+			+ "	    constraint c11 { a1 < 2 }\n"
+			+ "	    constraint c12 { a2 < 5 }\n"
+			+ "	}\n"
+			+ "	\n"
+			+ "	part p2 :> p1 {\n"
+			+ "		attribute :>> a1 = 1;\n"
+			+ "		attribute :>> a2 = 7;\n"
+			+ "	}\n"
+			+ "}";
+	
 	@Test
 	public void testEvaluation4() throws Exception {
 		SysMLInteractive instance = getSysMLInteractiveInstance();
 		process(instance, evalTest4);		
 		assertElement("AttributeUsage a1", instance.eval("p1.a1", "EvalTest4"));
 		assertElement("LiteralInteger 3", instance.eval("p1.a2", "EvalTest4"));
-		assertElement("ReferenceUsage result", instance.eval("p1.c11.result", "EvalTest4"));
-		assertElement("LiteralBoolean true", instance.eval("p1.c12.result", "EvalTest4"));
+		assertElement("OperatorExpression <", instance.eval("p1.c11()", "EvalTest4"));
+		assertElement("LiteralBoolean true", instance.eval("p1.c12()", "EvalTest4"));
 		assertElement("LiteralInteger 1", instance.eval("p2.a1", "EvalTest4"));
 		assertElement("LiteralInteger 7", instance.eval("p2.a2", "EvalTest4"));
-		assertElement("LiteralBoolean true", instance.eval("p2.c11.result", "EvalTest4"));
-		assertElement("LiteralBoolean true", instance.eval("p2.c12.result", "EvalTest4"));
+		assertElement("LiteralBoolean true", instance.eval("p2.c11()", "EvalTest4"));
+		assertElement("LiteralBoolean false", instance.eval("p2.c12()", "EvalTest4"));
+	}
+	
+	// Tests functional invocation of constraints.
+	public final String evalTest5 =
+			"package EvalTest5 {\n"
+			+ "	constraint def MaxValue {\n"
+			+ "		in max;\n"
+			+ "		in value;\n"
+			+ "		value <= max\n"
+			+ "	}\n"
+			+ "	\n"
+			+ "	attribute max1 = 3;\n"
+			+ "	\n"
+			+ "	part p1 {\n"
+			+ "		attribute value1 = 2;\n"
+			+ "		attribute value2 = 4;\n"
+			+ "		\n"
+			+ "		constraint c1 : MaxValue {\n"
+			+ "			in max = max1;\n"
+			+ "			in value = value1;\n"
+			+ "		}\n"
+			+ "		\n"
+			+ "		constraint c2 { MaxValue(max = max1, value = value2) }\n"
+			+ "	}\n"
+			+ "	\n"
+			+ "	part p2 :> p1 {\n"
+			+ "		attribute :>> value1 = 4;\n"
+			+ "		attribute :>> value2 = 2;\n"
+			+ "	}\n"
+			+ "}";
+	
+	@Test
+	public void testEvaluation5() throws Exception {
+		SysMLInteractive instance = getSysMLInteractiveInstance();
+		process(instance, evalTest5);
+		assertElement("LiteralBoolean true", instance.eval("p1.c1()", "EvalTest5"));
+		assertElement("LiteralBoolean false", instance.eval("p1.c2()", "EvalTest5"));
+		assertElement("LiteralBoolean false", instance.eval("p2.c1()", "EvalTest5"));
+		assertElement("LiteralBoolean true", instance.eval("p2.c2()", "EvalTest5"));
+		assertElement("LiteralBoolean true", instance.eval("MaxValue(max1, p1.value1)", "EvalTest5"));
+		assertElement("LiteralBoolean false", instance.eval("MaxValue(max1, p1.value2)", "EvalTest5"));
+		assertElement("LiteralBoolean true", instance.eval("MaxValue(max1 * 2, p1.value1 + p1.value2)", "EvalTest5"));
+	}
+	
+	// Tests calc and calc def invocation.
+	public final String evalTest6 =
+			"package EvalTest6 {\n"
+			+ "	calc def A {\n"
+			+ "		in x;\n"
+			+ "		in y;\n"
+			+ "		\n"
+			+ "		x + y\n"
+			+ "	}\n"
+			+ "	\n"
+			+ "	part p1 {\n"
+			+ "		attribute a = 10;\n"
+			+ "\n"
+			+ "		calc b {\n"
+			+ "			in u;\n"
+			+ "			in v;\n"
+			+ "			in w;\n"
+			+ "			\n"
+			+ "			return r = A(u, v * w) + a;\n"
+			+ "		}\n"
+			+ "		\n"
+			+ "		ref z1 = b(1, 2, 3);\n"
+			+ "	}\n"
+			+ "	\n"
+			+ "	part p2 :> p1 {\n"
+			+ "		attribute :>> a = 20;\n"
+			+ "\n"
+			+ "		ref z2 = b(1, 2, 3);\n"
+			+ "	}\n"
+			+ "}";
+	
+	@Test
+	public void testEvaluation6() throws Exception {
+		SysMLInteractive instance = getSysMLInteractiveInstance();
+		process(instance, evalTest6);
+		assertElement("LiteralInteger 10", instance.eval("p1.a", "EvalTest6"));
+		assertElement("LiteralInteger 17", instance.eval("p1.z1", "EvalTest6"));
+		assertElement("LiteralInteger 20", instance.eval("p2.a", "EvalTest6"));
+		assertElement("LiteralInteger 27", instance.eval("p2.z1", "EvalTest6"));
+		assertElement("LiteralInteger 27", instance.eval("p2.z2", "EvalTest6"));
+		assertElement("LiteralInteger 17", instance.eval("p1.b(1,2,3)", "EvalTest6"));
+		assertElement("LiteralInteger 27", instance.eval("p2.b(1,2,3)", "EvalTest6"));
 	}
 }

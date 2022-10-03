@@ -21,6 +21,7 @@
 package org.omg.sysml.expressions.functions;
 
 import org.eclipse.emf.common.util.EList;
+import org.omg.sysml.expressions.ModelLevelExpressionEvaluator;
 import org.omg.sysml.expressions.util.EvaluationUtil;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.InvocationExpression;
@@ -33,9 +34,9 @@ public class IncludesFunction extends SequenceFunction {
 	}
 	
 	@Override
-	public EList<Element> invoke(InvocationExpression invocation, Element target) {
-		EList<Element> list = EvaluationUtil.evaluateArgument(invocation, 0, target);
-		Element value = EvaluationUtil.argumentValue(invocation, 1, target);
+	public EList<Element> invoke(InvocationExpression invocation, Element target, ModelLevelExpressionEvaluator evaluator) {
+		EList<Element> list = evaluator.evaluateArgument(invocation, 0, target);
+		Element value = evaluator.argumentValue(invocation, 1, target);
 		return list == null && value == null? null: 
 			EvaluationUtil.booleanResult(list.stream().anyMatch(x->EvaluationUtil.equal(x, value)));
 	}

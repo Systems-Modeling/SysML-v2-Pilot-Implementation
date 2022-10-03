@@ -44,7 +44,7 @@ package P {
 		part c : C[1] {
 			part d : D[5];
 		}
-		connect P::a[0..1]  to cd :> c.d[1];
+		connect P::a[0..1]  to cd ::> c.d[1];
 	}
 	
 	part def E {

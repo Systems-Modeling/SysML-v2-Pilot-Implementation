@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -23,7 +23,7 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.SubjectMembership;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -43,6 +43,16 @@ import org.omg.sysml.lang.sysml.Usage;
  * @generated
  */
 public class SubjectMembershipImpl extends ParameterMembershipImpl implements SubjectMembership {
+	/**
+	 * The cached setting delegate for the '{@link #getOwnedSubjectParameter() <em>Owned Subject Parameter</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedSubjectParameter()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate OWNED_SUBJECT_PARAMETER__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.SUBJECT_MEMBERSHIP__OWNED_SUBJECT_PARAMETER).getSettingDelegate();
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -69,28 +79,26 @@ public class SubjectMembershipImpl extends ParameterMembershipImpl implements Su
 	 */
 	@Override
 	public Usage getOwnedSubjectParameter() {
-		Usage ownedSubjectParameter = basicGetOwnedSubjectParameter();
-		return ownedSubjectParameter != null && ownedSubjectParameter.eIsProxy() ? (Usage)eResolveProxy((InternalEObject)ownedSubjectParameter) : ownedSubjectParameter;
+		return (Usage)OWNED_SUBJECT_PARAMETER__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Usage basicGetOwnedSubjectParameter() {
-		Feature ownedMemberParameter = super.basicGetOwnedMemberParameter();
-		return ownedMemberParameter instanceof Usage? (Usage)ownedMemberParameter: null;
+		return (Usage)OWNED_SUBJECT_PARAMETER__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setOwnedSubjectParameter(Usage newOwnedSubjectParameter) {
-		super.setOwnedMemberParameter(newOwnedSubjectParameter);
+		OWNED_SUBJECT_PARAMETER__ESETTING_DELEGATE.dynamicSet(this, null, 0, newOwnedSubjectParameter);
 	}
 
 	/**

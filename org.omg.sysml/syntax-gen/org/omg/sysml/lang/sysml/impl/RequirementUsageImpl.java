@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -29,25 +29,17 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.omg.sysml.lang.sysml.FramedConcernMembership;
 import org.omg.sysml.lang.sysml.PartUsage;
-import org.omg.sysml.lang.sysml.ActorMembership;
-import org.omg.sysml.lang.sysml.Comment;
 import org.omg.sysml.lang.sysml.ConcernUsage;
 import org.omg.sysml.lang.sysml.ConstraintUsage;
 import org.omg.sysml.lang.sysml.Predicate;
-import org.omg.sysml.lang.sysml.RequirementConstraintKind;
 import org.omg.sysml.lang.sysml.RequirementDefinition;
 import org.omg.sysml.lang.sysml.RequirementUsage;
-import org.omg.sysml.lang.sysml.StakeholderMembership;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Usage;
 import org.omg.sysml.util.ElementUtil;
-import org.omg.sysml.util.NonNotifyingEObjectEList;
-import org.omg.sysml.util.TypeUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -73,6 +65,16 @@ import org.omg.sysml.util.TypeUtil;
 public class RequirementUsageImpl extends ConstraintUsageImpl implements RequirementUsage {
 
 	/**
+	 * The cached setting delegate for the '{@link #getRequirementDefinition() <em>Requirement Definition</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getRequirementDefinition()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate REQUIREMENT_DEFINITION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.REQUIREMENT_USAGE__REQUIREMENT_DEFINITION).getSettingDelegate();
+
+	/**
 	 * The default value of the '{@link #getReqId() <em>Req Id</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -91,6 +93,76 @@ public class RequirementUsageImpl extends ConstraintUsageImpl implements Require
 	 * @ordered
 	 */
 	protected String reqId = REQ_ID_EDEFAULT;
+
+	/**
+	 * The cached setting delegate for the '{@link #getText() <em>Text</em>}' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getText()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate TEXT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.REQUIREMENT_USAGE__TEXT).getSettingDelegate();
+
+	/**
+	 * The cached setting delegate for the '{@link #getRequiredConstraint() <em>Required Constraint</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getRequiredConstraint()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate REQUIRED_CONSTRAINT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.REQUIREMENT_USAGE__REQUIRED_CONSTRAINT).getSettingDelegate();
+
+	/**
+	 * The cached setting delegate for the '{@link #getAssumedConstraint() <em>Assumed Constraint</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAssumedConstraint()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate ASSUMED_CONSTRAINT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.REQUIREMENT_USAGE__ASSUMED_CONSTRAINT).getSettingDelegate();
+
+	/**
+	 * The cached setting delegate for the '{@link #getSubjectParameter() <em>Subject Parameter</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSubjectParameter()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate SUBJECT_PARAMETER__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.REQUIREMENT_USAGE__SUBJECT_PARAMETER).getSettingDelegate();
+
+	/**
+	 * The cached setting delegate for the '{@link #getFramedConcern() <em>Framed Concern</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getFramedConcern()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate FRAMED_CONCERN__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.REQUIREMENT_USAGE__FRAMED_CONCERN).getSettingDelegate();
+
+	/**
+	 * The cached setting delegate for the '{@link #getActorParameter() <em>Actor Parameter</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getActorParameter()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate ACTOR_PARAMETER__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.REQUIREMENT_USAGE__ACTOR_PARAMETER).getSettingDelegate();
+
+	/**
+	 * The cached setting delegate for the '{@link #getStakeholderParameter() <em>Stakeholder Parameter</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getStakeholderParameter()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate STAKEHOLDER_PARAMETER__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.REQUIREMENT_USAGE__STAKEHOLDER_PARAMETER).getSettingDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -118,28 +190,26 @@ public class RequirementUsageImpl extends ConstraintUsageImpl implements Require
 	 */
 	@Override
 	public RequirementDefinition getRequirementDefinition() {
-		RequirementDefinition requirementDefinition = basicGetRequirementDefinition();
-		return requirementDefinition != null && requirementDefinition.eIsProxy() ? (RequirementDefinition)eResolveProxy((InternalEObject)requirementDefinition) : requirementDefinition;
+		return (RequirementDefinition)REQUIREMENT_DEFINITION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public RequirementDefinition basicGetRequirementDefinition() {
-		Predicate definition = super.basicGetConstraintDefinition();
-		return definition instanceof RequirementDefinition? (RequirementDefinition)definition: null;
+		return (RequirementDefinition)REQUIREMENT_DEFINITION__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setRequirementDefinition(RequirementDefinition newRequirementDefinition) {
-		throw new UnsupportedOperationException();
+		REQUIREMENT_DEFINITION__ESETTING_DELEGATE.dynamicSet(this, null, 0, newRequirementDefinition);
 	}
 
 	/**
@@ -158,51 +228,48 @@ public class RequirementUsageImpl extends ConstraintUsageImpl implements Require
 	 */
 	@Override
 	public Usage getSubjectParameter() {
-		Usage subjectParameter = basicGetSubjectParameter();
-		return subjectParameter != null && subjectParameter.eIsProxy() ? (Usage)eResolveProxy((InternalEObject)subjectParameter) : subjectParameter;
+		return (Usage)SUBJECT_PARAMETER__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Usage basicGetSubjectParameter() {
-		return TypeUtil.basicGetSubjectParameterOf(this);
+		return (Usage)SUBJECT_PARAMETER__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setSubjectParameter(Usage newSubjectParameter) {
-		throw new UnsupportedOperationException();
+		SUBJECT_PARAMETER__ESETTING_DELEGATE.dynamicSet(this, null, 0, newSubjectParameter);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<PartUsage> getActorParameter() {
-		EList<PartUsage> actorParameters = new NonNotifyingEObjectEList<>(PartUsage.class, this, SysMLPackage.REQUIREMENT_USAGE__ACTOR_PARAMETER);
-		TypeUtil.addOwnedFeaturesByMembership(this, ActorMembership.class, PartUsage.class, actorParameters);
-		return actorParameters;
+		return (EList<PartUsage>)ACTOR_PARAMETER__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<PartUsage> getStakeholderParameter() {
-		EList<PartUsage> stakeholderParameters = new NonNotifyingEObjectEList<>(PartUsage.class, this, SysMLPackage.REQUIREMENT_USAGE__STAKEHOLDER_PARAMETER);
-		TypeUtil.addOwnedFeaturesByMembership(this, StakeholderMembership.class, PartUsage.class, stakeholderParameters);
-		return stakeholderParameters;
+		return (EList<PartUsage>)STAKEHOLDER_PARAMETER__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
@@ -244,50 +311,45 @@ public class RequirementUsageImpl extends ConstraintUsageImpl implements Require
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<String> getText() {
-		EList<String> text = new NonNotifyingEObjectEList<>(String.class, this, SysMLPackage.REQUIREMENT_USAGE__TEXT);
-		getDocumentation().stream().map(Comment::getBody).forEachOrdered(text::add);
-		return text;
+		return (EList<String>)TEXT__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<ConstraintUsage> getAssumedConstraint() {
-		EList<ConstraintUsage> constraints = new NonNotifyingEObjectEList<>(ConstraintUsage.class, this, SysMLPackage.REQUIREMENT_USAGE__ASSUMED_CONSTRAINT);
-		RequirementDefinitionImpl.getRequirementConstraints(this, RequirementConstraintKind.ASSUMPTION).forEachOrdered(constraints::add);
-		return constraints;
+		return (EList<ConstraintUsage>)ASSUMED_CONSTRAINT__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<ConstraintUsage> getRequiredConstraint() {
-		EList<ConstraintUsage> constraints = new NonNotifyingEObjectEList<>(ConstraintUsage.class, this, SysMLPackage.REQUIREMENT_USAGE__REQUIRED_CONSTRAINT);
-		RequirementDefinitionImpl.getRequirementConstraints(this, RequirementConstraintKind.REQUIREMENT).forEachOrdered(constraints::add);
-		return constraints;
+		return (EList<ConstraintUsage>)REQUIRED_CONSTRAINT__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<ConcernUsage> getFramedConcern() {
-		EList<ConcernUsage> concerns = new NonNotifyingEObjectEList<>(ConcernUsage.class, this, SysMLPackage.REQUIREMENT_USAGE__FRAMED_CONCERN);
-		RequirementDefinitionImpl.getRequirementConstraints(this, FramedConcernMembership.class, RequirementConstraintKind.REQUIREMENT).
-			map(ConcernUsage.class::cast).forEachOrdered(concerns::add);
-		return concerns;
+		return (EList<ConcernUsage>)FRAMED_CONCERN__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
@@ -492,19 +554,19 @@ public class RequirementUsageImpl extends ConstraintUsageImpl implements Require
 			case SysMLPackage.REQUIREMENT_USAGE__REQ_ID:
 				return isSetReqId();
 			case SysMLPackage.REQUIREMENT_USAGE__TEXT:
-				return !getText().isEmpty();
+				return TEXT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.REQUIREMENT_USAGE__REQUIRED_CONSTRAINT:
-				return !getRequiredConstraint().isEmpty();
+				return REQUIRED_CONSTRAINT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.REQUIREMENT_USAGE__ASSUMED_CONSTRAINT:
-				return !getAssumedConstraint().isEmpty();
+				return ASSUMED_CONSTRAINT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.REQUIREMENT_USAGE__SUBJECT_PARAMETER:
-				return basicGetSubjectParameter() != null;
+				return SUBJECT_PARAMETER__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.REQUIREMENT_USAGE__FRAMED_CONCERN:
-				return !getFramedConcern().isEmpty();
+				return FRAMED_CONCERN__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.REQUIREMENT_USAGE__ACTOR_PARAMETER:
-				return !getActorParameter().isEmpty();
+				return ACTOR_PARAMETER__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.REQUIREMENT_USAGE__STAKEHOLDER_PARAMETER:
-				return !getStakeholderParameter().isEmpty();
+				return STAKEHOLDER_PARAMETER__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 		}
 		return super.eIsSet(featureID);
 	}

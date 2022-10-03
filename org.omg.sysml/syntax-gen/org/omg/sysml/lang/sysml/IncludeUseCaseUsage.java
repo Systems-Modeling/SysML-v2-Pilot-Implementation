@@ -9,7 +9,7 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>An IncludeUseCaseUsage is a UseCaseUsage that represents the inclusion of a UseCaseUsage by a UseCaseDefinition or UseCaseUsage. The UseCaseUsage to be included (which may be the IncludeUseCaseUsage itself) is related to the <code>includedUseCase</code> by a Subsetting Relationship. An IncludeUseCaseUsage is also a PerformActionUsage, with its <code>includedUseCase</code> as the <code>performedAction</code>.</p>
+ * <p>An IncludeUseCaseUsage is a UseCaseUsage that represents the inclusion of a UseCaseUsage by a UseCaseDefinition or UseCaseUsage. Unless it is the IncludeUseCaseUsage itself, the UseCaseUsage to be included is related to the <code>includedUseCase</code> by a ReferenceSubsetting Relationship. An IncludeUseCaseUsage is also a PerformActionUsage, with its <code>includedUseCase</code> as the <code>performedAction</code>.</p>
  * 
  * <p>If the IncludeUseCaseUsage is owned by a UseCaseDefinition or UseCaseUsage, then it also subsets the UseCaseUsage <em><code>UseCase::includedUseCases</code></em> from the Systems model library.</p>
  * 
@@ -48,6 +48,7 @@ public interface IncludeUseCaseUsage extends UseCaseUsage, PerformActionUsage {
 	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='useCaseInclusion'"
 	 *        annotation="redefines"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	UseCaseUsage getUseCaseIncluded();

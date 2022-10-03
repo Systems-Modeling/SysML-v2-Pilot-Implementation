@@ -32,7 +32,7 @@ import org.eclipse.emf.common.util.EList;
  * <!-- begin-model-doc -->
  * <p>A Type is a Namespace that is the most general kind of Element supporting the semantics of classification. A Type may be a Classifier or a Feature, defining conditions on what is classified by the Type (see also the description of <code>isSufficient</code>).</p>
  * 
- * ownedGeneralization = ownedRelationship->selectByKind(Generalization)->
+ * ownedSpecialization = ownedRelationship->selectByKind(Specialization)->
  *     select(g | g.special = self)
  *     
  * multiplicity = feature->select(oclIsKindOf(Multiplicity))
@@ -54,13 +54,19 @@ import org.eclipse.emf.common.util.EList;
  *         feature->select(direction = _'in' or direction = inout)
  *     endif
  * inheritedMembership = inheritedMemberships(Set{})
- * feature = featureMembership.ownedMemberFeature
  * ownedFeature = ownedFeatureMembership.ownedMemberFeature
+ * intersectingType->excludes(self)
+ * differencingType = ownedDifferencing.differencingType
  * allSupertypes()->includes(Kernel Library::Anything)
+ * disjointType = disjoiningTypeDisjoining.disjoiningType
+ * intersectingType = ownedIntersecting.intersectingType
+ * unioningType = ownedUnioning.unioningType
+ * directedFeature = feature->select(direction <> null)
+ * differencingType->excludes(self)
  * featureMembership = ownedMembership->union(
  *     inheritedMembership->selectByKind(FeatureMembership))
- * disjointType = disjoiningTypeDisjoining.disjoiningType
- * directedFeature = feature->select(direction <> null)
+ * feature = featureMembership.ownedMemberFeature
+ * unioningType->excludes(self)
  * <!-- end-model-doc -->
  *
  * <p>
@@ -82,9 +88,15 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.omg.sysml.lang.sysml.Type#isConjugated <em>Is Conjugated</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getInheritedFeature <em>Inherited Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getMultiplicity <em>Multiplicity</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Type#getDirectedFeature <em>Directed Feature</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Type#getUnioningType <em>Unioning Type</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedIntersecting <em>Owned Intersecting</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Type#getIntersectingType <em>Intersecting Type</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedUnioning <em>Owned Unioning</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedDisjoining <em>Owned Disjoining</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getFeatureMembership <em>Feature Membership</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Type#getDifferencingType <em>Differencing Type</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedDifferencing <em>Owned Differencing</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Type#getDirectedFeature <em>Directed Feature</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getType()
@@ -118,6 +130,7 @@ public interface Type extends Namespace {
 	 * @see org.omg.sysml.lang.sysml.FeatureMembership#getOwningType
 	 * @model opposite="owningType" transient="true" volatile="true" derived="true"
 	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<FeatureMembership> getOwnedFeatureMembership();
@@ -148,10 +161,8 @@ public interface Type extends Namespace {
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * <p>Return all Types related to this Type as supertypes directly or transitively by Generalization Relationships.</p>
-	 *  result = let g : Bag = generalization.general in
-	 *    g->union(g->collect(allSupertypes()))->flatten()->asSet()->including(self)
-	 * ownedGeneralization->
-	 *     closure(general.ownedGeneralization).general->
+	 * ownedSpecialization->
+	 *     closure(general.ownedSpecialization).general->
 	 *     including(self)
 	 * <!-- end-model-doc -->
 	 * @model required="true" ordered="false"
@@ -184,6 +195,7 @@ public interface Type extends Namespace {
 	 * @see org.omg.sysml.lang.sysml.Feature#getOwningType
 	 * @model opposite="owningType" transient="true" volatile="true" derived="true"
 	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<Feature> getOwnedFeature();
@@ -212,6 +224,7 @@ public interface Type extends Namespace {
 	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='typeWithFeature'"
 	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<Feature> getFeature();
@@ -240,6 +253,7 @@ public interface Type extends Namespace {
 	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='typeWithInput'"
 	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<Feature> getInput();
@@ -268,6 +282,7 @@ public interface Type extends Namespace {
 	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='typeWithOutput'"
 	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<Feature> getOutput();
@@ -326,6 +341,7 @@ public interface Type extends Namespace {
 	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='inheritingType'"
 	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<Membership> getInheritedMembership();
@@ -353,6 +369,7 @@ public interface Type extends Namespace {
 	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='typeWithEndFeature'"
 	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<Feature> getEndFeature();
@@ -415,6 +432,7 @@ public interface Type extends Namespace {
 	 * @see org.omg.sysml.lang.sysml.Conjugation#getOwningType
 	 * @model opposite="owningType" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	Conjugation getOwnedConjugator();
@@ -445,6 +463,7 @@ public interface Type extends Namespace {
 	 * @see #setIsConjugated(boolean)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getType_IsConjugated()
 	 * @model dataType="org.omg.sysml.lang.types.Boolean" required="true" transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	boolean isConjugated();
@@ -475,9 +494,52 @@ public interface Type extends Namespace {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getType_FeatureMembership()
 	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='type'"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<FeatureMembership> getFeatureMembership();
+
+	/**
+	 * Returns the value of the '<em><b>Differencing Type</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Type}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The interpretations of a Type with <code>differencingTypes</code> are asserted to be those of the first of those Types, but not including those of the remaining types. For example, a Classifier might be the difference of a Classifier for people and another for people of a particular nationality, leaving people who are not of that nationality. Similarly, a feature of people might be the difference between a feature for their children and a Classifier for people of a particular sex, identifying their children not of that sex (because the interpretations of the children feature that identify those of that sex are also interpretations of the Classifier for that sex).<p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Differencing Type</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getType_DifferencingType()
+	 * @model transient="true" volatile="true" derived="true"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='differencedType'"
+	 *        annotation="http://www.omg.org/spec/SysML"
+	 * @generated
+	 */
+	EList<Type> getDifferencingType();
+
+	/**
+	 * Returns the value of the '<em><b>Owned Differencing</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Differencing}.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Differencing#getTypeDifferenced <em>Type Differenced</em>}'.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Element#getOwnedRelationship() <em>Owned Relationship</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The <code>ownedRelationships</code> of this Type that are Differencings, having this Type as their <code>typeDifferenced</code>.</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Owned Differencing</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getType_OwnedDifferencing()
+	 * @see org.omg.sysml.lang.sysml.Differencing#getTypeDifferenced
+	 * @model opposite="typeDifferenced" transient="true" volatile="true" derived="true"
+	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
+	 * @generated
+	 */
+	EList<Differencing> getOwnedDifferencing();
 
 	/**
 	 * Returns the value of the '<em><b>Inherited Feature</b></em>' reference list.
@@ -503,6 +565,7 @@ public interface Type extends Namespace {
 	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='inheritingType'"
 	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<Feature> getInheritedFeature();
@@ -526,6 +589,7 @@ public interface Type extends Namespace {
 	 * @model transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='typeWithMultiplicity'"
 	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	Multiplicity getMultiplicity();
@@ -539,6 +603,90 @@ public interface Type extends Namespace {
 	 * @generated
 	 */
 	void setMultiplicity(Multiplicity value);
+
+	/**
+	 * Returns the value of the '<em><b>Unioning Type</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Type}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The interpretations of a Type with code>unioningTypes</code> are asserted to be the same as those of all the <code>unioningTypes</code> together, which are the Types  derived from the <code>unioningType</code> of the <code>ownedUnionings</code> of this Type.  For example, a Classifier for people might be the union of Classifiers for all the sexes. Similarly, a feature for people's children might be the union of features dividing them in the same ways as people in general.</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Unioning Type</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getType_UnioningType()
+	 * @model transient="true" volatile="true" derived="true"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='unionedType'"
+	 *        annotation="http://www.omg.org/spec/SysML"
+	 * @generated
+	 */
+	EList<Type> getUnioningType();
+
+	/**
+	 * Returns the value of the '<em><b>Owned Intersecting</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Intersecting}.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Intersecting#getTypeIntersected <em>Type Intersected</em>}'.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Element#getOwnedRelationship() <em>Owned Relationship</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The <code>ownedRelationships</code> of this Type that are Intersectings, have the Type as their <code>typeIntersected</code>.</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Owned Intersecting</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getType_OwnedIntersecting()
+	 * @see org.omg.sysml.lang.sysml.Intersecting#getTypeIntersected
+	 * @model opposite="typeIntersected" transient="true" volatile="true" derived="true"
+	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
+	 * @generated
+	 */
+	EList<Intersecting> getOwnedIntersecting();
+
+	/**
+	 * Returns the value of the '<em><b>Intersecting Type</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Type}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The interpretations of a Type with code>intersectingTypes</code> are asserted to be those in common among the <code>intersectingTypes</code>, which are the Types derived from the <code>intersectingType</code> of the <code>ownedIntersectings</code> of this Type.  For example, a Classifier might be an intersection of Classifiers for people of a particular sex and of a particular nationality.  Similarly, a feature for people's children of a particular sex might be the intersection of a feature for their children and a Classifier for people of that sex (because the interpretations of the children feature that identify those of that sex are also interpretations of the Classifier for that sex).<p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Intersecting Type</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getType_IntersectingType()
+	 * @model transient="true" volatile="true" derived="true"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='intersectedType'"
+	 *        annotation="http://www.omg.org/spec/SysML"
+	 * @generated
+	 */
+	EList<Type> getIntersectingType();
+
+	/**
+	 * Returns the value of the '<em><b>Owned Unioning</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Unioning}.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Unioning#getTypeUnioned <em>Type Unioned</em>}'.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Element#getOwnedRelationship() <em>Owned Relationship</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The <code>ownedRelationships</code> of this Type that are Unionings, having the Type as their <code>typeUnioned</code>.</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Owned Unioning</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getType_OwnedUnioning()
+	 * @see org.omg.sysml.lang.sysml.Unioning#getTypeUnioned
+	 * @model opposite="typeUnioned" transient="true" volatile="true" derived="true"
+	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
+	 * @generated
+	 */
+	EList<Unioning> getOwnedUnioning();
 
 	/**
 	 * Returns the value of the '<em><b>Directed Feature</b></em>' reference list.
@@ -559,6 +707,7 @@ public interface Type extends Namespace {
 	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='typeWithDirectedFeature'"
 	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<Feature> getDirectedFeature();
@@ -583,6 +732,7 @@ public interface Type extends Namespace {
 	 * @see org.omg.sysml.lang.sysml.Disjoining#getOwningType
 	 * @model opposite="owningType" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<Disjoining> getOwnedDisjoining();
@@ -608,6 +758,7 @@ public interface Type extends Namespace {
 	 * @see org.omg.sysml.lang.sysml.Specialization#getOwningType
 	 * @model opposite="owningType" transient="true" volatile="true" derived="true"
 	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<Specialization> getOwnedSpecialization();
@@ -649,6 +800,7 @@ public interface Type extends Namespace {
 	 * @see org.omg.sysml.lang.sysml.Feature#getEndOwningType
 	 * @model opposite="endOwningType" transient="true" volatile="true" derived="true"
 	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<Feature> getOwnedEndFeature();

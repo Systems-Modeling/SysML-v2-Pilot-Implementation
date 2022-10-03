@@ -29,7 +29,7 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>An BooleanExpression is a Boolean-valued Expression whose type is a Predicate. It represents a logical condition resulting from the evaluation of the Predicate.</p>
+ * <p>A BooleanExpression is a Boolean-valued Expression whose type is a Predicate. It represents a logical condition resulting from the evaluation of the Predicate.</p>
  * 
  * <p>A BooleanExpression must subset, directly or indirectly, the Expression <em>booleanEvaluations</em> from the Base model library, which is typed by the base Predicate <em>BooleanEvaluation</em>. As a result, a BooleanExpression must always be typed by BooleanEvaluation or a subclass of BooleanEvaluation.</p>
  * 
@@ -72,6 +72,7 @@ public interface BooleanExpression extends Expression {
 	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='typedBooleanExpression'"
 	 *        annotation="redefines"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	Predicate getPredicate();

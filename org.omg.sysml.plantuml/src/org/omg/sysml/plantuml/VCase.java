@@ -67,8 +67,8 @@ public class VCase extends VTree {
 
     private String addCase(Type typ) {
         String name = getNameAnyway(typ);
-        addRecLine(name, typ, true);
-        addSpecializations(typ);
+        int id = addRecLine(name, typ, true);
+        addSpecializations(id, typ);
 
         VCaseMembers v = new VCaseMembers(this);
         v.processCase(typ);
@@ -83,15 +83,16 @@ public class VCase extends VTree {
         if ("obj".equals(name)) name = null;
         VRequirement vr = new VRequirement(this);
         List<VTree> subtrees = processCompartment(vr, ru);
+        int id = -1;
         if (subtrees != null || name != null) {
             if (name == null) {
-                addPUMLLine(ru, "comp usage ", " <U+00AB>objective<U+00BB> ", "");
+                id = addPUMLLine(ru, "comp usage ", " <U+00AB>objective<U+00BB> ", "");
             } else {
-                addPUMLLine(ru, "comp usage ", name, " <<objective>> ");
+                id = addPUMLLine(ru, "comp usage ", name, " <<objective>> ");
             }
             processSubtrees(vr, subtrees);
         }
-        addSpecializations(ru);
+        addSpecializations(id, ru);
         return "";
     }
 

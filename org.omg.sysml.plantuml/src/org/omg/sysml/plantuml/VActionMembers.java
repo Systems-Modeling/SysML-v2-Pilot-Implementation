@@ -1,6 +1,6 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation, PlantUML Visualization
- * Copyright (c) 2020 Mgnite Inc.
+ * Copyright (c) 2020-2022 Mgnite Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -47,10 +47,11 @@ public class VActionMembers extends VBehavior {
 
     public String caseFeature(Feature f) {
         if (VSSRMembers.isStateSpaceMember(f)) {
-            if (!addRecLine(f, true)) return null;
+            if (addRecLine(f, true) < 0) return null;
             VSSRMembers vs = new VSSRMembers(this);
             return vs.start(f);
         }
+        addFeatureValueBindings(f);
         FeatureDirectionKind fdk = f.getDirection();
         if (fdk == null) return null;
         switch (fdk) {

@@ -29,9 +29,9 @@ package org.omg.sysml.plantuml;
 import java.util.List;
 
 import org.omg.sysml.lang.sysml.AnnotatingElement;
-import org.omg.sysml.lang.sysml.MetadataFeature;
 import org.omg.sysml.lang.sysml.Annotation;
 import org.omg.sysml.lang.sysml.Comment;
+import org.omg.sysml.lang.sysml.ConnectionUsage;
 import org.omg.sysml.lang.sysml.Connector;
 import org.omg.sysml.lang.sysml.Dependency;
 import org.omg.sysml.lang.sysml.Element;
@@ -39,9 +39,13 @@ import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureChainExpression;
 import org.omg.sysml.lang.sysml.FeatureReferenceExpression;
+import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.Import;
 import org.omg.sysml.lang.sysml.ItemFlow;
 import org.omg.sysml.lang.sysml.ItemFlowEnd;
+import org.omg.sysml.lang.sysml.Membership;
+import org.omg.sysml.lang.sysml.MetadataFeature;
+import org.omg.sysml.lang.sysml.OwningMembership;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.Specialization;
 import org.omg.sysml.lang.sysml.Subsetting;
@@ -53,6 +57,7 @@ public class VDefault extends VTraverser {
         if (f == null) return null;
         if (f instanceof ItemFlowEnd) return f;
         for (Relationship rel: f.getOwnedRelationship()) {
+        	if (rel instanceof OwningMembership) continue;
             for (Element tgt: rel.getTarget()) {
                 if (tgt instanceof Feature) {
                     Element r = resolveReference((Feature) tgt);
@@ -82,30 +87,41 @@ public class VDefault extends VTraverser {
     }
 
     protected String itemFlowDesc(ItemFlow itf) {
-        StringBuilder sb = null;
-        for (Feature f: itf.getItemFeature()) {
-            if (sb == null) {
-                sb = new StringBuilder();
-            } else {
-                sb.append(", ");
-            }
+        StringBuilder sb = new StringBuilder();
+        Feature f = itf.getItemFeature();
+        if (f != null) {
             /* We do not use the effective name because it always get "item" for it.
-               Use getName() intead. */
+               Use getName() instead. */
             String name = f.getName();
             if (name != null) {
                 sb.append(name);
             }
             appendFeatureType(sb, ": ", f);
         }
-        if (sb == null || sb.length() == 0) return null;
+        if (sb.length() == 0) return null;
         return sb.toString();        
     }
 
-    protected void addSpecializations(Type typ) {
+    protected void addFeatureValueBindings(Feature f) {
+        for (Membership m: f.getOwnedMembership()) {
+            if (m instanceof FeatureValue) {
+                FeatureValue fv = (FeatureValue) m;
+                Expression v = fv.getValue();
+                Element tgt = resolveReference(v);
+                if (tgt != null) {
+                    addPRelation(f, tgt, fv, "=");
+                }
+            }
+        }
+    }
+
+    protected void addSpecializations(int typId, Type typ) {
+        if (typId < 0) return;
         for (Specialization s: typ.getOwnedSpecialization()) {
             Type gt = s.getGeneral();
             if (gt == null) continue;
-            addPRelation(null, typ, gt, s, null);
+            PRelation pr = new PRelation(typId, gt, s, null);
+            addPRelation(pr);
         }
     }
 
@@ -123,7 +139,7 @@ public class VDefault extends VTraverser {
         return addPUMLLine(typ, keyword, name, styleString(typ));
     }
 
-    protected boolean addRecLine(String name, Type typ, boolean withStyle) {
+    protected int addRecLine(String name, Type typ, boolean withStyle) {
         String keyword;
         if (typ instanceof Usage) {
             keyword = "rec usage ";
@@ -131,14 +147,13 @@ public class VDefault extends VTraverser {
             keyword = "rec def ";
         }
         if (withStyle) {
-            addPUMLLine(typ, keyword, name);
+            return addPUMLLine(typ, keyword, name);
         } else {
-            addPUMLLine(typ, keyword, name, null);
+            return addPUMLLine(typ, keyword, name, null);
         }
-        return true;
     }
 
-    protected boolean addRecLine(Type typ, boolean withStyle) {
+    protected int addRecLine(Type typ, boolean withStyle) {
     	String name = getNameAnyway(typ);
         return addRecLine(name, typ, withStyle);
     }
@@ -164,8 +179,14 @@ public class VDefault extends VTraverser {
 
     @Override
     public String caseConnector(Connector c) {
-        addConnector(c, null);
+        addConnector(c, c.getName());
         return "";
+    }
+
+    @Override
+    public String caseConnectionUsage(ConnectionUsage cu) {
+    	addConnector(cu, null);
+    	return "";
     }
 
     @Override

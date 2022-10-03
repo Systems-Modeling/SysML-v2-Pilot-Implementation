@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -29,6 +29,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.UniqueEList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -58,7 +59,7 @@ import org.omg.sysml.lang.sysml.TypeFeaturing;
  *
  * @generated
  */
-public class TypeFeaturingImpl extends RelationshipImpl implements TypeFeaturing {
+public class TypeFeaturingImpl extends FeaturingImpl implements TypeFeaturing {
 	/**
 	 * The cached value of the '{@link #getFeatureOfType() <em>Feature Of Type</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -80,6 +81,16 @@ public class TypeFeaturingImpl extends RelationshipImpl implements TypeFeaturing
 	protected Type featuringType;
 
 	/**
+	 * The cached setting delegate for the '{@link #getOwningFeatureOfType() <em>Owning Feature Of Type</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwningFeatureOfType()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate OWNING_FEATURE_OF_TYPE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.TYPE_FEATURING__OWNING_FEATURE_OF_TYPE).getSettingDelegate();
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -98,6 +109,12 @@ public class TypeFeaturingImpl extends RelationshipImpl implements TypeFeaturing
 		return SysMLPackage.Literals.TYPE_FEATURING;
 	}
 	
+	/**
+	 * <!-- begin-user-doc -->
+	 * Xtext workaround.
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
 	@Override
 	public Feature getFeatureOfType() {
 		return featureOfType == null? basicGetFeatureOfType(): getFeatureOfTypeGen();
@@ -122,7 +139,8 @@ public class TypeFeaturingImpl extends RelationshipImpl implements TypeFeaturing
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * If the TypeFeaturing has a Feature as its owningRelatedElement, then use this as the default value for its featureOfType property.
+	 * Xtext workaround:
+	 * If the featureOfType is empty, then set it to the owningRelatedElement (if this is a Feature).
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
@@ -214,31 +232,26 @@ public class TypeFeaturingImpl extends RelationshipImpl implements TypeFeaturing
 	 */
 	@Override
 	public Feature getOwningFeatureOfType() {
-		Feature owningFeatureOfType = basicGetOwningFeatureOfType();
-		return owningFeatureOfType != null && owningFeatureOfType.eIsProxy() ? (Feature)eResolveProxy((InternalEObject)owningFeatureOfType) : owningFeatureOfType;
+		return (Feature)OWNING_FEATURE_OF_TYPE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Feature basicGetOwningFeatureOfType() {
-		Element owner = super.getOwningRelatedElement();
-		return owner instanceof Feature? (Feature)owner: null;
+		return (Feature)OWNING_FEATURE_OF_TYPE__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setOwningFeatureOfType(Feature newOwningFeatureOfType) {
-		if (getFeatureOfType() != newOwningFeatureOfType) {
-			setFeatureOfType(newOwningFeatureOfType);
-		}
-		setOwningRelatedElement(newOwningFeatureOfType);
+		OWNING_FEATURE_OF_TYPE__ESETTING_DELEGATE.dynamicSet(this, null, 0, newOwningFeatureOfType);
 	}
 
 	/**
@@ -362,12 +375,16 @@ public class TypeFeaturingImpl extends RelationshipImpl implements TypeFeaturing
 				return getOwningRelatedElement() != null;
 			case SysMLPackage.TYPE_FEATURING__SOURCE:
 				return isSetSource();
+			case SysMLPackage.TYPE_FEATURING__FEATURE:
+				return isSetFeature();
 			case SysMLPackage.TYPE_FEATURING__TARGET:
 				return isSetTarget();
+			case SysMLPackage.TYPE_FEATURING__TYPE:
+				return isSetType();
 			case SysMLPackage.TYPE_FEATURING__FEATURING_TYPE:
 				return isSetFeaturingType();
 			case SysMLPackage.TYPE_FEATURING__OWNING_FEATURE_OF_TYPE:
-				return basicGetOwningFeatureOfType() != null;
+				return OWNING_FEATURE_OF_TYPE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -401,6 +418,43 @@ public class TypeFeaturingImpl extends RelationshipImpl implements TypeFeaturing
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public Feature getFeature() {
+		return getFeatureOfType();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Feature basicGetFeature() {
+		return basicGetFeatureOfType();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setFeature(Feature newFeature) {
+		setFeatureOfType(newFeature);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetFeature() {
+  		return false;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public EList<Element> getTarget() {
 		EList<Element> target = new UniqueEList<Element>();
@@ -417,6 +471,43 @@ public class TypeFeaturingImpl extends RelationshipImpl implements TypeFeaturing
 	 * @generated
 	 */
 	public boolean isSetTarget() {
+  		return false;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Type getType() {
+		return getFeaturingType();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Type basicGetType() {
+		return basicGetFeaturingType();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setType(Type newType) {
+		setFeaturingType(newType);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetType() {
   		return false;
 	}
 

@@ -106,6 +106,7 @@ public interface Namespace extends Element {
 	 * @see org.omg.sysml.lang.sysml.Import#getImportOwningNamespace
 	 * @model opposite="importOwningNamespace" transient="true" volatile="true" derived="true"
 	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<Import> getOwnedImport();
@@ -228,6 +229,7 @@ public interface Namespace extends Element {
 	 * @see org.omg.sysml.lang.sysml.Element#getOwningNamespace
 	 * @model opposite="owningNamespace" transient="true" volatile="true" derived="true"
 	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<Element> getOwnedMember();
@@ -256,6 +258,7 @@ public interface Namespace extends Element {
 	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='importingNamespace'"
 	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<Membership> getImportedMembership();
@@ -286,6 +289,7 @@ public interface Namespace extends Element {
 	 * @see org.omg.sysml.lang.sysml.Membership#getMembershipOwningNamespace
 	 * @model opposite="membershipOwningNamespace" transient="true" volatile="true" derived="true"
 	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<Membership> getOwnedMembership();

@@ -27,7 +27,7 @@ public interface StakeholderMembership extends ParameterMembership {
 	/**
 	 * Returns the value of the '<em><b>Owned Stakeholder Parameter</b></em>' reference.
 	 * <p>
-	 * This feature subsets the following features:
+	 * This feature redefines the following features:
 	 * </p>
 	 * <ul>
 	 *   <li>'{@link org.omg.sysml.lang.sysml.ParameterMembership#getOwnedMemberParameter() <em>Owned Member Parameter</em>}'</li>
@@ -42,7 +42,8 @@ public interface StakeholderMembership extends ParameterMembership {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getStakeholderMembership_OwnedStakeholderParameter()
 	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='owningStakeholderMembership'"
-	 *        annotation="subsets"
+	 *        annotation="redefines"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	PartUsage getOwnedStakeholderParameter();

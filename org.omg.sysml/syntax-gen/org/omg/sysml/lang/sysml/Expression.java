@@ -74,6 +74,7 @@ public interface Expression extends Step {
 	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='typedExpression'"
 	 *        annotation="redefines"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	Function getFunction();
@@ -113,6 +114,7 @@ public interface Expression extends Step {
 	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='computingExpression'"
 	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	Feature getResult();
@@ -138,6 +140,7 @@ public interface Expression extends Step {
 	 * @see #setIsModelLevelEvaluable(boolean)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getExpression_IsModelLevelEvaluable()
 	 * @model dataType="org.omg.sysml.lang.types.Boolean" required="true" transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	boolean isModelLevelEvaluable();
@@ -156,7 +159,7 @@ public interface Expression extends Step {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>If this Expression <code>isModelLevelEvaluable</code>, then evaluate it using the <code>target</code> as the context Element for resolving Feature names and testing classification. The result is a collection of Elements, each of which must be a LiteralExpression or an AnnotatingFeature.</p>
+	 * <p>If this Expression <code>isModelLevelEvaluable</code>, then evaluate it using the <code>target</code> as the context Element for resolving Feature names and testing classification. The result is a collection of Elements, each of which must be a LiteralExpression or a Feature that is not an Expression.</p>
 	 * isModelLevelEvaluable
 	 * <!-- end-model-doc -->
 	 * @model unique="false" targetRequired="true" targetOrdered="false"

@@ -29,9 +29,13 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>An AssertConstraintUsage is a ConstraintUsage that is also an Invariant and, so, is asserted to be true (by default). The asserted ConstraintUsage (which may be the AssertConstraintUsage itself) is related to the AssertConstraintUsage by a Subsetting relationship.</p>
+ * <p>An AssertConstraintUsage is a ConstraintUsage that is also an Invariant and, so, is asserted to be true (by default). Unless it is the AssertConstraintUsage itself, the asserted ConstraintUsage is related to the AssertConstraintUsage by a ReferenceSubsetting relationship.</p>
  * 
- * <p>If the AssertConstraintUsage is owned by a Part, then it also subsets the <code>assertedConstraints</code> property of that Part (as defined in the library model for Part), otherwise it subsets <code>constraintChecks</code>, as required for a regular ConstraintUsage.</p>
+ * <p>If the AssertConstraintUsage is owned by a PartDefinition or PartUsage, then it also subsets the <em><code>assertedConstraints</code></em> feature of the PartDefinition <em><code>Part</code></em> from the System Library model <em><code>Parts</code></em>.</p>
+ * assertedConstraint =
+ *     if ownedReferenceSubsetting = null then self
+ *     else ownedReferenceSubsetting.referencedFeature.oclAsType(ConstraintUsage)
+ *     endif
  * <!-- end-model-doc -->
  *
  * <p>
@@ -51,13 +55,14 @@ public interface AssertConstraintUsage extends ConstraintUsage, Invariant {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The ConstraintUsage to be performed by the AssertConstraintUsage. It is the <tt>subsettedFeature</tt> of the first owned Subsetting Relationship of the AssertConstraintUsage.</p>
+	 * <p>The ConstraintUsage to be performed by the AssertConstraintUsage. It is the <code>referenceFeature</code> of the <code>ownedReferenceSubsetting</code> for the AssertConstraintUsage, if there is one, and, otherwise, the AssertConstraintUsage itself.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Asserted Constraint</em>' reference.
 	 * @see #setAssertedConstraint(ConstraintUsage)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getAssertConstraintUsage_AssertedConstraint()
 	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='constraintAssertion'"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	ConstraintUsage getAssertedConstraint();

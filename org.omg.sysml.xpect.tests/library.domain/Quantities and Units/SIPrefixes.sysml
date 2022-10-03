@@ -1,8 +1,10 @@
-/**
- * Definition of SI unit prefixes as specified in ISO/IEC 80000-1
- */
 package SIPrefixes {
-	private import UnitsAndScales::*;
+	doc
+	/*
+	 * Definition of SI unit prefixes as specified in ISO/IEC 80000-1
+	 */
+
+	private import MeasurementReferences::*;
 
 	/*
 	 * ISO/IEC 80000-1 prefixes for decimal multiples and sub-multiples

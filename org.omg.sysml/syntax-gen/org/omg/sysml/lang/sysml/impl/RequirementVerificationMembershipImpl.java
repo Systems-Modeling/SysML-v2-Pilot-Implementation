@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -23,12 +23,11 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.omg.sysml.lang.sysml.ConstraintUsage;
 import org.omg.sysml.lang.sysml.RequirementUsage;
 import org.omg.sysml.lang.sysml.RequirementVerificationMembership;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.util.FeatureUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -45,6 +44,25 @@ import org.omg.sysml.util.FeatureUtil;
  * @generated
  */
 public class RequirementVerificationMembershipImpl extends RequirementConstraintMembershipImpl implements RequirementVerificationMembership {
+
+	/**
+	 * The cached setting delegate for the '{@link #getOwnedRequirement() <em>Owned Requirement</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedRequirement()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate OWNED_REQUIREMENT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.REQUIREMENT_VERIFICATION_MEMBERSHIP__OWNED_REQUIREMENT).getSettingDelegate();
+	/**
+	 * The cached setting delegate for the '{@link #getVerifiedRequirement() <em>Verified Requirement</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getVerifiedRequirement()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate VERIFIED_REQUIREMENT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.REQUIREMENT_VERIFICATION_MEMBERSHIP__VERIFIED_REQUIREMENT).getSettingDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -72,26 +90,26 @@ public class RequirementVerificationMembershipImpl extends RequirementConstraint
 	 */
 	@Override
 	public RequirementUsage getVerifiedRequirement() {
-		RequirementUsage verifiedRequirement = basicGetVerifiedRequirement();
-		return verifiedRequirement != null && verifiedRequirement.eIsProxy() ? (RequirementUsage)eResolveProxy((InternalEObject)verifiedRequirement) : verifiedRequirement;
+		return (RequirementUsage)VERIFIED_REQUIREMENT__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public RequirementUsage basicGetVerifiedRequirement() {
-		return FeatureUtil.getReferencedFeatureOf(getOwnedRequirement(), RequirementUsage.class);
+		return (RequirementUsage)VERIFIED_REQUIREMENT__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setVerifiedRequirement(RequirementUsage newVerifiedRequirement) {
+		VERIFIED_REQUIREMENT__ESETTING_DELEGATE.dynamicSet(this, null, 0, newVerifiedRequirement);
 	}
 
 	/**
@@ -110,27 +128,26 @@ public class RequirementVerificationMembershipImpl extends RequirementConstraint
 	 */
 	@Override
 	public RequirementUsage getOwnedRequirement() {
-		RequirementUsage ownedRequirement = basicGetOwnedRequirement();
-		return ownedRequirement != null && ownedRequirement.eIsProxy() ? (RequirementUsage)eResolveProxy((InternalEObject)ownedRequirement) : ownedRequirement;
+		return (RequirementUsage)OWNED_REQUIREMENT__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public RequirementUsage basicGetOwnedRequirement() {
-		ConstraintUsage constraint = super.basicGetOwnedConstraint();
-		return constraint instanceof RequirementUsage? (RequirementUsage)constraint: null;
+		return (RequirementUsage)OWNED_REQUIREMENT__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setOwnedRequirement(RequirementUsage newOwnedRequirement) {
+		OWNED_REQUIREMENT__ESETTING_DELEGATE.dynamicSet(this, null, 0, newOwnedRequirement);
 	}
 	
 	/**
@@ -140,80 +157,6 @@ public class RequirementVerificationMembershipImpl extends RequirementConstraint
 	 */
 	public boolean isSetOwnedRequirement() {
 		return basicGetOwnedRequirement() != null;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case SysMLPackage.REQUIREMENT_VERIFICATION_MEMBERSHIP__OWNED_REQUIREMENT:
-				if (resolve) return getOwnedRequirement();
-				return basicGetOwnedRequirement();
-			case SysMLPackage.REQUIREMENT_VERIFICATION_MEMBERSHIP__VERIFIED_REQUIREMENT:
-				if (resolve) return getVerifiedRequirement();
-				return basicGetVerifiedRequirement();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case SysMLPackage.REQUIREMENT_VERIFICATION_MEMBERSHIP__OWNED_REQUIREMENT:
-				setOwnedRequirement((RequirementUsage)newValue);
-				return;
-			case SysMLPackage.REQUIREMENT_VERIFICATION_MEMBERSHIP__VERIFIED_REQUIREMENT:
-				setVerifiedRequirement((RequirementUsage)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void eUnset(int featureID) {
-		switch (featureID) {
-			case SysMLPackage.REQUIREMENT_VERIFICATION_MEMBERSHIP__OWNED_REQUIREMENT:
-				setOwnedRequirement((RequirementUsage)null);
-				return;
-			case SysMLPackage.REQUIREMENT_VERIFICATION_MEMBERSHIP__VERIFIED_REQUIREMENT:
-				setVerifiedRequirement((RequirementUsage)null);
-				return;
-		}
-		super.eUnset(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case SysMLPackage.REQUIREMENT_VERIFICATION_MEMBERSHIP__OWNED_CONSTRAINT:
-				return isSetOwnedConstraint();
-			case SysMLPackage.REQUIREMENT_VERIFICATION_MEMBERSHIP__REFERENCED_CONSTRAINT:
-				return isSetReferencedConstraint();
-			case SysMLPackage.REQUIREMENT_VERIFICATION_MEMBERSHIP__OWNED_REQUIREMENT:
-				return isSetOwnedRequirement();
-			case SysMLPackage.REQUIREMENT_VERIFICATION_MEMBERSHIP__VERIFIED_REQUIREMENT:
-				return isSetVerifiedRequirement();
-		}
-		return super.eIsSet(featureID);
 	}
 
 	/**
@@ -296,6 +239,80 @@ public class RequirementVerificationMembershipImpl extends RequirementConstraint
 	 */
 	public boolean isSetReferencedConstraint() {
   		return false;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
+			case SysMLPackage.REQUIREMENT_VERIFICATION_MEMBERSHIP__OWNED_REQUIREMENT:
+				if (resolve) return getOwnedRequirement();
+				return basicGetOwnedRequirement();
+			case SysMLPackage.REQUIREMENT_VERIFICATION_MEMBERSHIP__VERIFIED_REQUIREMENT:
+				if (resolve) return getVerifiedRequirement();
+				return basicGetVerifiedRequirement();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
+			case SysMLPackage.REQUIREMENT_VERIFICATION_MEMBERSHIP__OWNED_REQUIREMENT:
+				setOwnedRequirement((RequirementUsage)newValue);
+				return;
+			case SysMLPackage.REQUIREMENT_VERIFICATION_MEMBERSHIP__VERIFIED_REQUIREMENT:
+				setVerifiedRequirement((RequirementUsage)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eUnset(int featureID) {
+		switch (featureID) {
+			case SysMLPackage.REQUIREMENT_VERIFICATION_MEMBERSHIP__OWNED_REQUIREMENT:
+				setOwnedRequirement((RequirementUsage)null);
+				return;
+			case SysMLPackage.REQUIREMENT_VERIFICATION_MEMBERSHIP__VERIFIED_REQUIREMENT:
+				setVerifiedRequirement((RequirementUsage)null);
+				return;
+		}
+		super.eUnset(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
+			case SysMLPackage.REQUIREMENT_VERIFICATION_MEMBERSHIP__OWNED_CONSTRAINT:
+				return isSetOwnedConstraint();
+			case SysMLPackage.REQUIREMENT_VERIFICATION_MEMBERSHIP__REFERENCED_CONSTRAINT:
+				return isSetReferencedConstraint();
+			case SysMLPackage.REQUIREMENT_VERIFICATION_MEMBERSHIP__OWNED_REQUIREMENT:
+				return isSetOwnedRequirement();
+			case SysMLPackage.REQUIREMENT_VERIFICATION_MEMBERSHIP__VERIFIED_REQUIREMENT:
+				return isSetVerifiedRequirement();
+		}
+		return super.eIsSet(featureID);
 	}
 
 } //RequirementVerificationMembershipImpl

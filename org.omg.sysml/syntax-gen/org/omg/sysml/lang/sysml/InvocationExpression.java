@@ -61,13 +61,14 @@ public interface InvocationExpression extends Expression {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>An Expression owned by the InvocationExpression whose <code>result</code> is bound to an input <code>parameter</code> of the InvocationExpression.</p>
+	 * <p>The <code>value</code> <code>Expressions</code> of the <code>FeatureValues</code> of the input <code>parameters</code> of the <code>InvocationExpression</code>.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Argument</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getInvocationExpression_Argument()
 	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='invocation'"
 	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<Expression> getArgument();

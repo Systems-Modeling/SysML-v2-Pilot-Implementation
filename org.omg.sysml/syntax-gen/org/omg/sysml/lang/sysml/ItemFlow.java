@@ -31,7 +31,7 @@ import org.eclipse.emf.common.util.EList;
  * <!-- begin-model-doc -->
  * <p>An ItemFlow is a Step that represents the transfer of objects or values from one Feature to another. ItemFlows can take non-zero time to complete.</p>
  * 
- * <p>An ItemFlow must be typed by the Interaction <em>Transfer</em> from the Kernel library, or a specialization of it.</p>
+ * <p>An ItemFlow must be typed by the Interaction <em><code>Transfer</code></em> from the Kernel Semantic Library, or a specialization of it.</p>
  * 
  * <!-- end-model-doc -->
  *
@@ -45,6 +45,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.omg.sysml.lang.sysml.ItemFlow#getItemFlowEnd <em>Item Flow End</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.ItemFlow#getItemFeature <em>Item Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.ItemFlow#getItemFlowFeature <em>Item Flow Feature</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.ItemFlow#getInteraction <em>Interaction</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getItemFlow()
@@ -70,8 +71,7 @@ public interface ItemFlow extends Connector, Step {
 	EList<Classifier> getItemType();
 
 	/**
-	 * Returns the value of the '<em><b>Target Input Feature</b></em>' reference list.
-	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Feature}.
+	 * Returns the value of the '<em><b>Target Input Feature</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Target Input Feature</em>' reference list isn't
@@ -79,20 +79,31 @@ public interface ItemFlow extends Connector, Step {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Features that receive the ItemFlow. They must be owned <code>outputs</code> of the target participant of the ItemFlow. If there are no such Features, then the ItemFlow must be abstract.</p>
+	 * <p>The Feature that receives the ItemFlow. It must be an owned <code>output</code> of the target participant of the ItemFlow. If there is no such Feature, then the ItemFlow must be abstract.</p>
 	 * <p>The Feature that receives the ItemFlow.</p>
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Target Input Feature</em>' reference list.
+	 * @return the value of the '<em>Target Input Feature</em>' reference.
+	 * @see #setTargetInputFeature(Feature)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getItemFlow_TargetInputFeature()
 	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='itemFlowToInput'"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
-	EList<Feature> getTargetInputFeature();
+	Feature getTargetInputFeature();
 
 	/**
-	 * Returns the value of the '<em><b>Source Output Feature</b></em>' reference list.
-	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Feature}.
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.ItemFlow#getTargetInputFeature <em>Target Input Feature</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Target Input Feature</em>' reference.
+	 * @see #getTargetInputFeature()
+	 * @generated
+	 */
+	void setTargetInputFeature(Feature value);
+
+	/**
+	 * Returns the value of the '<em><b>Source Output Feature</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Source Output Feature</em>' reference list isn't
@@ -100,17 +111,29 @@ public interface ItemFlow extends Connector, Step {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Feature that originates the ItemFlow.</p>
+	 * <p>The Feature that originates the ItemFlow. It must be an owned <code>output</code> of the <code>source</code>  of the ItemFlow. If there is no such Feature, then the ItemFlow must be abstract.</p>
 	 * 
 	 * <p>The Feature that originates the ItemFlow.</p>
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Source Output Feature</em>' reference list.
+	 * @return the value of the '<em>Source Output Feature</em>' reference.
+	 * @see #setSourceOutputFeature(Feature)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getItemFlow_SourceOutputFeature()
 	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='itemFlowFromOutput'"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
-	EList<Feature> getSourceOutputFeature();
+	Feature getSourceOutputFeature();
+
+	/**
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.ItemFlow#getSourceOutputFeature <em>Source Output Feature</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Source Output Feature</em>' reference.
+	 * @see #getSourceOutputFeature()
+	 * @generated
+	 */
+	void setSourceOutputFeature(Feature value);
 
 	/**
 	 * Returns the value of the '<em><b>Item Flow End</b></em>' reference list.
@@ -136,13 +159,13 @@ public interface ItemFlow extends Connector, Step {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getItemFlow_ItemFlowEnd()
 	 * @model lower="2" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="redefines"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<ItemFlowEnd> getItemFlowEnd();
 
 	/**
-	 * Returns the value of the '<em><b>Item Feature</b></em>' reference list.
-	 * The list contents are of type {@link org.omg.sysml.lang.sysml.ItemFeature}.
+	 * Returns the value of the '<em><b>Item Feature</b></em>' reference.
 	 * <p>
 	 * This feature subsets the following features:
 	 * </p>
@@ -160,13 +183,25 @@ public interface ItemFlow extends Connector, Step {
 	 * 
 	 * <p>This Feature represents the Item in transit between the source and the target during the transfer.</p>
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Item Feature</em>' reference list.
+	 * @return the value of the '<em>Item Feature</em>' reference.
+	 * @see #setItemFeature(ItemFeature)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getItemFlow_ItemFeature()
-	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
+	 * @model transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
-	EList<ItemFeature> getItemFeature();
+	ItemFeature getItemFeature();
+
+	/**
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.ItemFlow#getItemFeature <em>Item Feature</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Item Feature</em>' reference.
+	 * @see #getItemFeature()
+	 * @generated
+	 */
+	void setItemFeature(ItemFeature value);
 
 	/**
 	 * Returns the value of the '<em><b>Item Flow Feature</b></em>' reference list.
@@ -183,8 +218,33 @@ public interface ItemFlow extends Connector, Step {
 	 * @return the value of the '<em>Item Flow Feature</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getItemFlow_ItemFlowFeature()
 	 * @model lower="2" transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<ItemFlowFeature> getItemFlowFeature();
+
+	/**
+	 * Returns the value of the '<em><b>Interaction</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Interaction}.
+	 * <p>
+	 * This feature redefines the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Connector#getAssociation() <em>Association</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Step#getBehavior() <em>Behavior</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The Interactions that type this ItemFlow. Interactions are both Associations (which type Connectors) and Behaviors (which type Steps).</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Interaction</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getItemFlow_Interaction()
+	 * @model required="true" transient="true" volatile="true" derived="true"
+	 *        annotation="redefines"
+	 *        annotation="http://www.omg.org/spec/SysML"
+	 * @generated
+	 */
+	EList<Interaction> getInteraction();
 
 } // ItemFlow

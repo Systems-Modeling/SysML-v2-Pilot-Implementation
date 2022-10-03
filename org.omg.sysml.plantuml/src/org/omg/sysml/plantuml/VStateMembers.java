@@ -49,7 +49,7 @@ public class VStateMembers extends VBehavior {
         // Bold
         sb.append("**");
         sb.append(sam.getKind().getName());
-        sb.append("**/ ");
+        sb.append("** ");
 
         String name;
         if ((au instanceof SendActionUsage)

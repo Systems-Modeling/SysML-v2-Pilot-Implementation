@@ -32,8 +32,8 @@ public interface MetadataUsage extends ItemUsage, MetadataFeature {
 	 * This feature redefines the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.MetadataFeature#getMetaclass() <em>Metaclass</em>}'</li>
 	 *   <li>'{@link org.omg.sysml.lang.sysml.ItemUsage#getItemDefinition() <em>Item Definition</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.MetadataFeature#getMetaclass() <em>Metaclass</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -47,6 +47,7 @@ public interface MetadataUsage extends ItemUsage, MetadataFeature {
 	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='definedMetadata'"
 	 *        annotation="redefines"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	Metaclass getMetadataDefinition();

@@ -30,6 +30,34 @@ package org.omg.sysml.lang.sysml;
  *
  * <!-- begin-model-doc -->
  * <p>A TextualRepresentation is an AnnotatingElement whose <code>body</code> represents the <code>representedElement</code> in a given <code>language</code>. The <code>representedElement</code> must be the <code>owner</code> of the TextualRepresentation. The named <code>language</code> can be a natural language, in which case the <code>body</code> is an informal representation, or an artifical language, in which case the <code>body</code> is expected to be a formal, machine-parsable representation.</p>
+ * 
+ * <p>If the named <code>language</code> of a TextualRepresentation is machine-parsable, then the <code>body</code> text should be legal input text as defined for that <code>language</code>. The interpretation of the named language string shall be case insensitive. The following <code>language</code> names are defined to correspond to the given standard languages:</p>
+ * 
+ * <table border="1" cellpadding="1" cellspacing="1" width="498">
+ * 	<thead>
+ * 	</thead>
+ * 	<tbody>
+ * 		<tr>
+ * 			<td style="text-align: center; width: 154px;"><code>kerml</code></td>
+ * 			<td style="width: 332px;">Kernel Modeling Language</td>
+ * 		</tr>
+ * 		<tr>
+ * 			<td style="text-align: center; width: 154px;"><code>ocl</code></td>
+ * 			<td style="width: 332px;">Object Constraint Language</td>
+ * 		</tr>
+ * 		<tr>
+ * 			<td style="text-align: center; width: 154px;"><code>alf</code></td>
+ * 			<td style="width: 332px;">Action Language for fUML</td>
+ * 		</tr>
+ * 	</tbody>
+ * </table>
+ * 
+ * <p>Other specifications may define specific <code>language</code> strings, other than those shown in&nbsp;<mms-view-link mms-doc-id="_19_0_4_12e503d9_1655498859928_646482_53332" mms-element-id="MMS_1656305537944_6a3ca48e-424a-4a4d-8ce2-56df128ebabe" mms-pe-id="_hidden_MMS_1656305558930_8d3925ff-003f-4024-a594-14317550f480_pei">[cf:Standard Language Names.vlink]</mms-view-link>, to be used to indicate the use of languages from those specifications in KerML TextualRepresentations.</p>
+ * 
+ * <p>If the <code>language</code> of a TextualRepresentation is &quot;<code>kerml</code>&quot;, then the <code>body</code> text shall be a legal representation of the <code>representedElement</code> in the KerML textual concrete syntax. A conforming tool can use such a TextualRepresentation Annotation to record the original KerML concrete syntax text from which an Element was parsed. In this case, it is a tool responsibility to ensure that the <code>body</code> of the TextualRepresentation remains correct (or the Annotation is removed) if the annotated Element changes other than by re-parsing the <code>body</code> text.</p>
+ * 
+ * <p>An Element with a TextualRepresentation in a language other than KerML is essentially a semantically &quot;opaque&quot; Element specified in the other language. However, a conforming KerML tool may interpret such an element consistently with the specification of the named language.</p>
+ * 
  * <!-- end-model-doc -->
  *
  * <p>
@@ -85,7 +113,7 @@ public interface TextualRepresentation extends AnnotatingElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The annotation text for the Comment.</p>
+	 * <p>The textual representation of the <code>representedElement</code> in the given <code>language</code>.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Body</em>' attribute.
@@ -133,6 +161,7 @@ public interface TextualRepresentation extends AnnotatingElement {
 	 * @model opposite="textualRepresentation" required="true" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="redefines"
 	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	Element getRepresentedElement();

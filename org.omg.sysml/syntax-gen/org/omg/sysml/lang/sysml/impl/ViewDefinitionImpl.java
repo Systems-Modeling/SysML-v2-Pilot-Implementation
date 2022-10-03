@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -27,18 +27,13 @@ import java.util.Collection;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.uml2.common.util.DerivedEObjectEList;
-import org.omg.sysml.lang.sysml.ElementFilterMembership;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.RenderingUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.ViewDefinition;
 import org.omg.sysml.lang.sysml.ViewUsage;
 import org.omg.sysml.lang.sysml.ViewpointUsage;
-import org.omg.sysml.util.NamespaceUtil;
-import org.omg.sysml.util.NonNotifyingEObjectEList;
-import org.omg.sysml.util.UsageUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -57,6 +52,45 @@ import org.omg.sysml.util.UsageUtil;
  * @generated
  */
 public class ViewDefinitionImpl extends PartDefinitionImpl implements ViewDefinition {
+
+	/**
+	 * The cached setting delegate for the '{@link #getView() <em>View</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getView()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate VIEW__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.VIEW_DEFINITION__VIEW).getSettingDelegate();
+	/**
+	 * The cached setting delegate for the '{@link #getSatisfiedViewpoint() <em>Satisfied Viewpoint</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSatisfiedViewpoint()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate SATISFIED_VIEWPOINT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.VIEW_DEFINITION__SATISFIED_VIEWPOINT).getSettingDelegate();
+
+	/**
+	 * The cached setting delegate for the '{@link #getViewRendering() <em>View Rendering</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getViewRendering()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate VIEW_RENDERING__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.VIEW_DEFINITION__VIEW_RENDERING).getSettingDelegate();
+
+	/**
+	 * The cached setting delegate for the '{@link #getViewCondition() <em>View Condition</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getViewCondition()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate VIEW_CONDITION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.VIEW_DEFINITION__VIEW_CONDITION).getSettingDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -80,21 +114,23 @@ public class ViewDefinitionImpl extends PartDefinitionImpl implements ViewDefini
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<ViewUsage> getView() {
-		return new DerivedEObjectEList<>(ViewUsage.class, this, SysMLPackage.VIEW_DEFINITION__VIEW, new int[] {SysMLPackage.DEFINITION__USAGE});
+		return (EList<ViewUsage>)VIEW__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<ViewpointUsage> getSatisfiedViewpoint() {
-		return new DerivedEObjectEList<>(ViewpointUsage.class, this, SysMLPackage.VIEW_DEFINITION__SATISFIED_VIEWPOINT, new int[] {SysMLPackage.DEFINITION__OWNED_USAGE});
+		return (EList<ViewpointUsage>)SATISFIED_VIEWPOINT__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
@@ -104,40 +140,37 @@ public class ViewDefinitionImpl extends PartDefinitionImpl implements ViewDefini
 	 */
 	@Override
 	public RenderingUsage getViewRendering() {
-		RenderingUsage viewRendering = basicGetViewRendering();
-		return viewRendering != null && viewRendering.eIsProxy() ? (RenderingUsage)eResolveProxy((InternalEObject)viewRendering) : viewRendering;
+		return (RenderingUsage)VIEW_RENDERING__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public RenderingUsage basicGetViewRendering() {
-		EList<RenderingUsage> renderings = getOwnedRendering();
-		return renderings.isEmpty()? UsageUtil.getViewRenderingOf(this): renderings.get(0);
+		return (RenderingUsage)VIEW_RENDERING__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setViewRendering(RenderingUsage newViewRendering) {
-		throw new UnsupportedOperationException();
+		VIEW_RENDERING__ESETTING_DELEGATE.dynamicSet(this, null, 0, newViewRendering);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<Expression> getViewCondition() {
-		EList<Expression> viewConditions = new NonNotifyingEObjectEList<>(Expression.class, this, SysMLPackage.VIEW_DEFINITION__VIEW_CONDITION);
-		NamespaceUtil.getOwnedMembersByMembershipIn(this, ElementFilterMembership.class, Expression.class).forEachOrdered(viewConditions::add);
-		return viewConditions;
+		return (EList<Expression>)VIEW_CONDITION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
@@ -222,13 +255,13 @@ public class ViewDefinitionImpl extends PartDefinitionImpl implements ViewDefini
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case SysMLPackage.VIEW_DEFINITION__VIEW:
-				return !getView().isEmpty();
+				return VIEW__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.VIEW_DEFINITION__SATISFIED_VIEWPOINT:
-				return !getSatisfiedViewpoint().isEmpty();
+				return SATISFIED_VIEWPOINT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.VIEW_DEFINITION__VIEW_RENDERING:
-				return basicGetViewRendering() != null;
+				return VIEW_RENDERING__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.VIEW_DEFINITION__VIEW_CONDITION:
-				return !getViewCondition().isEmpty();
+				return VIEW_CONDITION__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 		}
 		return super.eIsSet(featureID);
 	}

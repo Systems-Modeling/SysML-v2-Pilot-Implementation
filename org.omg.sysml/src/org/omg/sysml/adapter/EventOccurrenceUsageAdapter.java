@@ -41,7 +41,7 @@ public class EventOccurrenceUsageAdapter extends OccurrenceUsageAdapter {
 	public void addDefaultGeneralType() {
 		super.addDefaultGeneralType();
 		if (isSuboccurrence()) {
-			addImplicitGeneralType(getGeneralizationEClass(), 
+			addImplicitGeneralType(getSpecializationEClass(), 
 					getLibraryType(getDefaultSupertype("suboccurrence")));;
 		}
 	}

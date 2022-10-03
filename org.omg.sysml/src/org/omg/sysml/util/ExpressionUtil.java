@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2021-2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -27,12 +27,12 @@ import java.util.stream.Stream;
 
 import org.eclipse.emf.common.util.EList;
 import org.omg.sysml.adapter.ExpressionAdapter;
+import org.omg.sysml.adapter.FeatureReferenceExpressionAdapter;
 import org.omg.sysml.adapter.InvocationExpressionAdapter;
 import org.omg.sysml.adapter.OperatorExpressionAdapter;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.FeatureChainExpression;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureReferenceExpression;
 import org.omg.sysml.lang.sysml.FeatureTyping;
@@ -40,6 +40,7 @@ import org.omg.sysml.lang.sysml.InvocationExpression;
 import org.omg.sysml.lang.sysml.LiteralBoolean;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.ParameterMembership;
+import org.omg.sysml.lang.sysml.ResultExpressionMembership;
 import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.TransitionFeatureKind;
 import org.omg.sysml.lang.sysml.TransitionFeatureMembership;
@@ -67,6 +68,10 @@ public class ExpressionUtil {
 		return ((InvocationExpressionAdapter)getExpressionAdapter(expression)).getTypeFeatures();
 	}
 
+	public static Feature getSelfReferenceFeatureFor(FeatureReferenceExpression expression) {
+		return ((FeatureReferenceExpressionAdapter)getExpressionAdapter(expression)).getSelfReferenceFeature();
+	}
+
 	public static Element getReferentFor(FeatureReferenceExpression expression) {
 		return expression.getOwnedMembership().stream().
 				filter(mem->!(mem instanceof ParameterMembership)).
@@ -75,7 +80,7 @@ public class ExpressionUtil {
 				findFirst().orElse(null);
 	}
 	
-	public static Element getTargetFeatureFor(FeatureChainExpression expression) {
+	public static Element getTargetFeatureFor(Expression expression) {
 		List<Membership> memberships = expression.getOwnedMembership();
 		return memberships.size() < 2? null: memberships.get(1).getMemberElement();
 	}
@@ -156,6 +161,16 @@ public class ExpressionUtil {
 
 	public static String[] getOperatorQualifiedNames(String op) {
 		return Stream.of(OperatorExpressionAdapter.LIBRARY_PACKAGE_NAMES).map(pack -> pack + "::'" + op + "'").toArray(String[]::new);
+	}
+	
+	public static final String SELF_REFERENCE_FEATURE = "Base::Anything::self";
+	
+	public static Feature getSelfReferenceFeature(Element context) {
+		return (Feature)SysMLLibraryUtil.getLibraryType(context, SELF_REFERENCE_FEATURE);
+	}
+	
+	public static Expression getResultExpressionOf(Type type) {
+		return (Expression)TypeUtil.getFeatureByMembershipIn(type, ResultExpressionMembership.class);
 	}
 
 }

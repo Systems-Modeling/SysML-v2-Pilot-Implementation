@@ -84,6 +84,7 @@ public interface StateUsage extends ActionUsage {
 	 * @model required="true" transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='definedState'"
 	 *        annotation="redefines"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	EList<Behavior> getStateDefinition();
@@ -100,6 +101,7 @@ public interface StateUsage extends ActionUsage {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getStateUsage_EntryAction()
 	 * @model transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='enteredState'"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	ActionUsage getEntryAction();
@@ -126,6 +128,7 @@ public interface StateUsage extends ActionUsage {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getStateUsage_DoAction()
 	 * @model transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='activeState'"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	ActionUsage getDoAction();
@@ -152,6 +155,7 @@ public interface StateUsage extends ActionUsage {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getStateUsage_ExitAction()
 	 * @model transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='exitedState'"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	ActionUsage getExitAction();

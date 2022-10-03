@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2021, 2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -47,6 +47,7 @@ import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.InvocationExpression;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.Redefinition;
+import org.omg.sysml.lang.sysml.ReferenceSubsetting;
 import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.Structure;
 import org.omg.sysml.lang.sysml.Subsetting;
@@ -127,7 +128,7 @@ public class FeatureAdapter extends TypeAdapter {
 	// Implicit Generalization
 
 	@Override
-	protected EClass getGeneralizationEClass() {
+	protected EClass getSpecializationEClass() {
 		return SysMLPackage.eINSTANCE.getSubsetting();
 	}
 	
@@ -164,7 +165,7 @@ public class FeatureAdapter extends TypeAdapter {
 	public void addDefaultGeneralType() {
 		super.addDefaultGeneralType();
 		if (isAssociationEnd() && 
-				!isImplicitGeneralizationDeclaredFor(SysMLPackage.eINSTANCE.getRedefinition())) {
+				!isImplicitSpecializationDeclaredFor(SysMLPackage.eINSTANCE.getRedefinition())) {
 			addDefaultGeneralType("participant");
 		}
 	}
@@ -172,16 +173,36 @@ public class FeatureAdapter extends TypeAdapter {
 	@Override
 	protected String getDefaultSupertype() {
 		return getDefaultSupertype(
-			hasStructureType()? "object":
-			hasClassType()? "occurrence":
+			hasStructureType()? isSubobject()? "subobject": "object":
+			hasClassType()? isSuboccurrence()? "suboccurrence": "occurrence":
 			hasDataType()? "dataValue":
 			"base");
 	}
 	
+	protected boolean isSuboccurrence() {
+		Feature target = getTarget();
+		Type owningType = target.getOwningType();
+		return target.isComposite() && 
+				(owningType instanceof org.omg.sysml.lang.sysml.Class ||
+				 owningType instanceof Feature && (hasClassType((Feature)owningType)));
+	}
+	
 	public boolean hasClassType() {
-		return getTarget().getOwnedTyping().stream().
+		return hasClassType(getTarget());
+	}
+	
+	public boolean hasClassType(Feature feature) {
+		return feature.getOwnedTyping().stream().
 				map(FeatureTyping::getType).anyMatch(org.omg.sysml.lang.sysml.Class.class::isInstance) ||
 				getImplicitGeneralTypes(SysMLPackage.Literals.FEATURE_TYPING).stream().anyMatch(org.omg.sysml.lang.sysml.Class.class::isInstance);
+	}
+	
+	protected boolean isSubobject() {
+		Feature target = getTarget();
+		Type owningType = target.getOwningType();
+		return target.isComposite() && 
+				(owningType instanceof org.omg.sysml.lang.sysml.Structure ||
+				 owningType instanceof Feature && (hasStructureType((Feature)owningType)));
 	}
 	
 	public boolean hasStructureType() {
@@ -211,11 +232,13 @@ public class FeatureAdapter extends TypeAdapter {
 		Feature target = getTarget();
 		Stream<Feature> implicitSubsettedFeatures = getImplicitGeneralTypesOnly(SysMLPackage.Literals.SUBSETTING).stream().
 				map(Feature.class::cast);
+		Stream<Feature> implicitReferencedFeatures = getImplicitGeneralTypesOnly(SysMLPackage.Literals.REFERENCE_SUBSETTING).stream().
+				map(Feature.class::cast);
 		Stream<Feature> ownedSubsettedFeatures = target.getOwnedSubsetting().stream().
 				filter(s->!(s instanceof Redefinition)).
 				map(Subsetting::getSubsettedFeature).
 				filter(f->f != null);
-		return Stream.concat(ownedSubsettedFeatures, implicitSubsettedFeatures);
+		return Stream.concat(ownedSubsettedFeatures, Stream.concat(implicitReferencedFeatures,implicitSubsettedFeatures));
 	}
 	
 	public List<Feature> getSubsettedFeatures() {
@@ -229,6 +252,14 @@ public class FeatureAdapter extends TypeAdapter {
 				map(Feature.class::cast);		
 		return Stream.concat(Stream.concat(subsettedFeatures, ownedRedefinedFeatures), implicitRedefinedFeatures).
 				collect(Collectors.toList());
+	}
+	
+	public Feature getReferencedFeature() {
+		Feature target = getTarget();
+		ReferenceSubsetting ownedReferenceSubsetting = target.getOwnedReferenceSubsetting();
+		return ownedReferenceSubsetting != null? ownedReferenceSubsetting.getReferencedFeature():
+			 getImplicitGeneralTypesOnly(SysMLPackage.Literals.REFERENCE_SUBSETTING).stream().
+				map(Feature.class::cast).findFirst().orElse(null);
 	}
 	
 	public List<Feature> getRedefinedFeatures() {

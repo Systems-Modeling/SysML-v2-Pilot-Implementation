@@ -36,6 +36,7 @@ import org.omg.sysml.lang.sysml.ActorMembership;
 import org.omg.sysml.lang.sysml.AnalysisCaseUsage;
 import org.omg.sysml.lang.sysml.AttributeUsage;
 import org.omg.sysml.lang.sysml.BindingConnector;
+import org.omg.sysml.lang.sysml.ConnectionUsage;
 import org.omg.sysml.lang.sysml.Connector;
 import org.omg.sysml.lang.sysml.ConstraintUsage;
 import org.omg.sysml.lang.sysml.Definition;
@@ -266,7 +267,11 @@ public class VCompartment extends VStructure {
                                       boolean norec,
                                       FeatureEntry parent) {
         Membership ms = getCurrentMembership();
-        if (ms instanceof ReturnParameterMembership) return null; // To filter "result" parameter out.
+        if (ms instanceof ReturnParameterMembership) {
+            Element e = ms.getMemberElement();
+             // To filter empty "result" parameter.
+            if (e.getOwnedRelationship().isEmpty()) return null;
+        }
 
         if (!norec && (alias == null) && (prefix == null)) {
             if (recCurrentMembership(f, false)) return null;
@@ -302,6 +307,12 @@ public class VCompartment extends VStructure {
     @Override
     public String caseConnector(Connector c) {
     	addFeature(c, null);
+    	return "";
+    }
+
+    @Override
+    public String caseConnectionUsage(ConnectionUsage cu) {
+    	addFeature(cu, null);
     	return "";
     }
     
@@ -563,6 +574,7 @@ public class VCompartment extends VStructure {
             text = text.substring(toBeRemoved.length()).trim();
         }
         appendText(text, false);
+        addEvaluatedResults(f);
         append('\n');
         return true;
     }
@@ -588,6 +600,7 @@ public class VCompartment extends VStructure {
             if (fe.prefix != null) {
                 append(fe.prefix);
             }
+
             if (fe.f instanceof EnumerationUsage) {
                 if (getFeatureName(fe.f) == null) {
                     appendTextOfEnum(fe.f);
@@ -609,7 +622,9 @@ public class VCompartment extends VStructure {
                 if (text == null) continue;
                 append(" { ");
                 appendText(text, true);
-                append(" }\n");
+                append(" }");
+                addEvaluatedResults(fe.f);
+                append('\n');
             } else if (getFeatureName(fe.f) == null) {
                 addAnonymouseFeatureText(fe.f);
                 append('\n');
@@ -640,8 +655,9 @@ public class VCompartment extends VStructure {
 
     public void startType(Type typ) {
         this.currentType = typ;
-        traverse(typ);
+        traverse(typ, false, true);
         addFeatures(featureEntries, 0);
+        popNamespace();
     }
 
     public List<VTree> process(VTree parent, Type typ) {

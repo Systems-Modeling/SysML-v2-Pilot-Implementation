@@ -128,7 +128,7 @@ public class VTree extends VStructure {
     public String caseObjectiveMembership(ObjectiveMembership om) {
         RequirementUsage ru = om.getOwnedObjectiveRequirement();
         addRel(ru, om, "<<objective>>");
-        addReq("comp usage ", ru, ru.getReqId());
+        addReq("comp usage ", ru);
         return "";
     }
 
@@ -222,13 +222,10 @@ public class VTree extends VStructure {
         return super.caseNamespace(p);
     }
 
-    private void addReq(String keyword, Type typ, String reqId) {
+    private void addReq(String keyword, Type typ) {
     	if (checkVisited(typ)) return;
         String name = extractTitleName(typ);
         if (name == null) return;
-        if (reqId != null) {
-            name = " <b>~<" + reqId + "></b> " + name;
-        }
         addType(typ, name, keyword);
         process(new VRequirement(this), typ);
     }
@@ -236,14 +233,14 @@ public class VTree extends VStructure {
     @Override
     public String caseRequirementDefinition(RequirementDefinition rd) {
         addRel(rd, null);
-        addReq("comp def ", rd, rd.getReqId());
+        addReq("comp def ", rd);
         return "";
     }
 
     @Override
     public String caseRequirementUsage(RequirementUsage ru) {
         addRel(ru, null);
-        addReq("comp usage ", ru, ru.getReqId());
+        addReq("comp usage ", ru);
         return "";
     }
 

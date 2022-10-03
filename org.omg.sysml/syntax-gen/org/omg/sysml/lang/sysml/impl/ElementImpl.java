@@ -23,14 +23,11 @@ package org.omg.sysml.lang.sysml.impl;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 import java.util.UUID;
-import java.util.stream.Collectors;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -39,18 +36,15 @@ import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.eclipse.uml2.common.util.DerivedEObjectEList;
 import org.omg.sysml.lang.sysml.Annotation;
 import org.omg.sysml.lang.sysml.Documentation;
 import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.OwningMembership;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.TextualRepresentation;
 import org.omg.sysml.util.ElementUtil;
-import org.omg.sysml.util.NonNotifyingEObjectEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -72,9 +66,10 @@ import org.omg.sysml.util.NonNotifyingEObjectEList;
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getTextualRepresentation <em>Textual Representation</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getAliasIds <em>Alias Ids</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getShortName <em>Short Name</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getEffectiveName <em>Effective Name</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getEffectiveName <em>Effective Name</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getQualifiedName <em>Qualified Name</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#isImpliedIncluded <em>Is Implied Included</em>}</li>
  * </ul>
  *
  * @generated
@@ -89,6 +84,26 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	 * @ordered
 	 */
 	protected EList<Relationship> ownedRelationship;
+
+	/**
+	 * The cached setting delegate for the '{@link #getOwningMembership() <em>Owning Membership</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwningMembership()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate OWNING_MEMBERSHIP__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.ELEMENT__OWNING_MEMBERSHIP).getSettingDelegate();
+
+	/**
+	 * The cached setting delegate for the '{@link #getOwningNamespace() <em>Owning Namespace</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwningNamespace()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate OWNING_NAMESPACE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.ELEMENT__OWNING_NAMESPACE).getSettingDelegate();
 
 	/**
 	 * The default value of the '{@link #getElementId() <em>Element Id</em>}' attribute.
@@ -109,6 +124,56 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	 * @ordered
 	 */
 	protected String elementId = ELEMENT_ID_EDEFAULT;
+
+	/**
+	 * The cached setting delegate for the '{@link #getOwner() <em>Owner</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwner()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate OWNER__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.ELEMENT__OWNER).getSettingDelegate();
+
+	/**
+	 * The cached setting delegate for the '{@link #getOwnedElement() <em>Owned Element</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedElement()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate OWNED_ELEMENT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.ELEMENT__OWNED_ELEMENT).getSettingDelegate();
+
+	/**
+	 * The cached setting delegate for the '{@link #getDocumentation() <em>Documentation</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDocumentation()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate DOCUMENTATION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.ELEMENT__DOCUMENTATION).getSettingDelegate();
+
+	/**
+	 * The cached setting delegate for the '{@link #getOwnedAnnotation() <em>Owned Annotation</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedAnnotation()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate OWNED_ANNOTATION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.ELEMENT__OWNED_ANNOTATION).getSettingDelegate();
+
+	/**
+	 * The cached setting delegate for the '{@link #getTextualRepresentation() <em>Textual Representation</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTextualRepresentation()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate TEXTUAL_REPRESENTATION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.ELEMENT__TEXTUAL_REPRESENTATION).getSettingDelegate();
 
 	/**
 	 * The cached value of the '{@link #getAliasIds() <em>Alias Ids</em>}' attribute list.
@@ -141,16 +206,6 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	protected String shortName = SHORT_NAME_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getEffectiveName() <em>Effective Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getEffectiveName()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String EFFECTIVE_NAME_EDEFAULT = null;
-
-	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -171,14 +226,44 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	protected String name = NAME_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getQualifiedName() <em>Qualified Name</em>}' attribute.
+	 * The cached setting delegate for the '{@link #getEffectiveName() <em>Effective Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getEffectiveName()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate EFFECTIVE_NAME__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.ELEMENT__EFFECTIVE_NAME).getSettingDelegate();
+
+	/**
+	 * The cached setting delegate for the '{@link #getQualifiedName() <em>Qualified Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getQualifiedName()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String QUALIFIED_NAME_EDEFAULT = null;
+	protected EStructuralFeature.Internal.SettingDelegate QUALIFIED_NAME__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.ELEMENT__QUALIFIED_NAME).getSettingDelegate();
+
+	/**
+	 * The default value of the '{@link #isImpliedIncluded() <em>Is Implied Included</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isImpliedIncluded()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean IS_IMPLIED_INCLUDED_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isImpliedIncluded() <em>Is Implied Included</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isImpliedIncluded()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean isImpliedIncluded = IS_IMPLIED_INCLUDED_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -201,6 +286,7 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	
 	/**
 	 * <!-- begin-user-doc -->
+	 * If there is not elementId, set it to a random UUID.
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
@@ -228,11 +314,12 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@Override
 	public Relationship getOwningRelationship() {
-		EObject container = eInternalContainer();
-		return container instanceof Relationship && ((Relationship)container).getOwnedRelatedElement().contains(this)? (Relationship)container: null;
+		if (eContainerFeatureID() != SysMLPackage.ELEMENT__OWNING_RELATIONSHIP) return null;
+		return (Relationship)eInternalContainer();
 	}
 
 	/**
@@ -274,29 +361,26 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	 */
 	@Override
 	public Element getOwner() {
-		Element owner = basicGetOwner();
-		return owner != null && owner.eIsProxy() ? (Element)eResolveProxy((InternalEObject)owner) : owner;
+		return (Element)OWNER__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Element basicGetOwner() {
-		Relationship owningRelationship = getOwningRelationship();
-		return owningRelationship != null && owningRelationship.getOwnedRelatedElement().contains(this)? 
-						owningRelationship.getOwningRelatedElement(): null;
+		return (Element)OWNER__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setOwner(Element newOwner) {
-		throw new UnsupportedOperationException();
+		OWNER__ESETTING_DELEGATE.dynamicSet(this, null, 0, newOwner);
 	}
 
 	/**
@@ -306,28 +390,26 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	 */
 	@Override
 	public OwningMembership getOwningMembership() {
-		OwningMembership owningMembership = basicGetOwningMembership();
-		return owningMembership != null && owningMembership.eIsProxy() ? (OwningMembership)eResolveProxy((InternalEObject)owningMembership) : owningMembership;
+		return (OwningMembership)OWNING_MEMBERSHIP__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public OwningMembership basicGetOwningMembership() {
-		Relationship owningRelationship = getOwningRelationship();
-		return owningRelationship instanceof OwningMembership? (OwningMembership)owningRelationship: null;
+		return (OwningMembership)OWNING_MEMBERSHIP__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setOwningMembership(OwningMembership newOwningMembership) {
-		setOwningRelationship(newOwningMembership);
+		OWNING_MEMBERSHIP__ESETTING_DELEGATE.dynamicSet(this, null, 0, newOwningMembership);
 	}
 
 	/**
@@ -337,39 +419,37 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	 */
 	@Override
 	public Namespace getOwningNamespace() {
-		Namespace owningNamespace = basicGetOwningNamespace();
-		return owningNamespace != null && owningNamespace.eIsProxy() ? (Namespace)eResolveProxy((InternalEObject)owningNamespace) : owningNamespace;
+		return (Namespace)OWNING_NAMESPACE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Namespace basicGetOwningNamespace() {
-		Membership membership = getOwningMembership();
-		return membership == null? null: membership.getMembershipOwningNamespace();
+		return (Namespace)OWNING_NAMESPACE__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@Override
 	public void setOwningNamespace(Namespace newOwningNamespace) {
-		throw new UnsupportedOperationException();
+		OWNING_NAMESPACE__ESETTING_DELEGATE.dynamicSet(this, null, 0, newOwningNamespace);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
-	public BasicEList<Element> getOwnedElement() {
-		BasicEList<Element> ownedElements = new NonNotifyingEObjectEList<>(Element.class, this, SysMLPackage.ELEMENT__OWNED_ELEMENT);
-		ownedElements.addAllUnique(getOwnedRelationship().stream().
-				flatMap(relationship->relationship.getOwnedRelatedElement().stream()).collect(Collectors.toList()));
-		return ownedElements;
+	@SuppressWarnings("unchecked")
+		@Override
+	public EList<Element> getOwnedElement() {
+		return (EList<Element>)OWNED_ELEMENT__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
@@ -415,27 +495,23 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<Documentation> getDocumentation() {
-		return new DerivedEObjectEList<Documentation>(Documentation.class, this, SysMLPackage.ELEMENT__DOCUMENTATION, new int[] {SysMLPackage.ELEMENT__OWNED_RELATIONSHIP});
+		return (EList<Documentation>)DOCUMENTATION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<Annotation> getOwnedAnnotation() {
-		EList<Annotation> annotations = new NonNotifyingEObjectEList<>(Element.class, this, SysMLPackage.ELEMENT__OWNED_ANNOTATION);
-		getOwnedRelationship().stream().
-			filter(Annotation.class::isInstance).
-			map(Annotation.class::cast).
-			filter(ann->ann.getAnnotatedElement() == this).
-			forEachOrdered(annotations::add);
-		return annotations;
+		return (EList<Annotation>)OWNED_ANNOTATION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
@@ -452,11 +528,12 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<TextualRepresentation> getTextualRepresentation() {
-		return new DerivedEObjectEList<TextualRepresentation>(TextualRepresentation.class, this, SysMLPackage.ELEMENT__TEXTUAL_REPRESENTATION, new int[] {SysMLPackage.ELEMENT__OWNED_RELATIONSHIP});
+		return (EList<TextualRepresentation>)TEXTUAL_REPRESENTATION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
@@ -502,50 +579,68 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public String getQualifiedName() {
-		Namespace owningNamespace = getOwningNamespace();
-		if (owningNamespace == null) {
-			return null;
-		} else if (owningNamespace.getOwner() == null) {
-			return escapedName();
-		} else {
-			String qualification = owningNamespace.getQualifiedName();
-			return qualification == null? null: qualification + "::" + escapedName();
-		}
+		return (String)QUALIFIED_NAME__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setQualifiedName(String newQualifiedName) {
-		throw new UnsupportedOperationException();
+		QUALIFIED_NAME__ESETTING_DELEGATE.dynamicSet(this, null, 0, newQualifiedName);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isImpliedIncluded() {
+		return isImpliedIncluded;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setIsImpliedIncluded(boolean newIsImpliedIncluded) {
+		boolean oldIsImpliedIncluded = isImpliedIncluded;
+		isImpliedIncluded = newIsImpliedIncluded;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.ELEMENT__IS_IMPLIED_INCLUDED, oldIsImpliedIncluded, isImpliedIncluded));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * Get the effective name for this element, which by default is just its regular name.
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@Override
 	public String getEffectiveName() {
-		return effectiveName();
+		return (String)EFFECTIVE_NAME__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setEffectiveName(String newEffectiveName) {
-		throw new UnsupportedOperationException();
+		EFFECTIVE_NAME__ESETTING_DELEGATE.dynamicSet(this, null, 0, newEffectiveName);
 	}
+	
+	// Operations
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -570,6 +665,8 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	public String effectiveName() {
 		return getName();
 	}
+	
+	//
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -655,12 +752,14 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 				return getAliasIds();
 			case SysMLPackage.ELEMENT__SHORT_NAME:
 				return getShortName();
-			case SysMLPackage.ELEMENT__EFFECTIVE_NAME:
-				return getEffectiveName();
 			case SysMLPackage.ELEMENT__NAME:
 				return getName();
+			case SysMLPackage.ELEMENT__EFFECTIVE_NAME:
+				return getEffectiveName();
 			case SysMLPackage.ELEMENT__QUALIFIED_NAME:
 				return getQualifiedName();
+			case SysMLPackage.ELEMENT__IS_IMPLIED_INCLUDED:
+				return isImpliedIncluded();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -716,14 +815,17 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 			case SysMLPackage.ELEMENT__SHORT_NAME:
 				setShortName((String)newValue);
 				return;
-			case SysMLPackage.ELEMENT__EFFECTIVE_NAME:
-				setEffectiveName((String)newValue);
-				return;
 			case SysMLPackage.ELEMENT__NAME:
 				setName((String)newValue);
 				return;
+			case SysMLPackage.ELEMENT__EFFECTIVE_NAME:
+				setEffectiveName((String)newValue);
+				return;
 			case SysMLPackage.ELEMENT__QUALIFIED_NAME:
 				setQualifiedName((String)newValue);
+				return;
+			case SysMLPackage.ELEMENT__IS_IMPLIED_INCLUDED:
+				setIsImpliedIncluded((Boolean)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -773,14 +875,17 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 			case SysMLPackage.ELEMENT__SHORT_NAME:
 				setShortName(SHORT_NAME_EDEFAULT);
 				return;
-			case SysMLPackage.ELEMENT__EFFECTIVE_NAME:
-				setEffectiveName(EFFECTIVE_NAME_EDEFAULT);
-				return;
 			case SysMLPackage.ELEMENT__NAME:
 				setName(NAME_EDEFAULT);
 				return;
+			case SysMLPackage.ELEMENT__EFFECTIVE_NAME:
+				EFFECTIVE_NAME__ESETTING_DELEGATE.dynamicUnset(this, null, 0);
+				return;
 			case SysMLPackage.ELEMENT__QUALIFIED_NAME:
-				setQualifiedName(QUALIFIED_NAME_EDEFAULT);
+				QUALIFIED_NAME__ESETTING_DELEGATE.dynamicUnset(this, null, 0);
+				return;
+			case SysMLPackage.ELEMENT__IS_IMPLIED_INCLUDED:
+				setIsImpliedIncluded(IS_IMPLIED_INCLUDED_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -799,31 +904,33 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 			case SysMLPackage.ELEMENT__OWNED_RELATIONSHIP:
 				return ownedRelationship != null && !ownedRelationship.isEmpty();
 			case SysMLPackage.ELEMENT__OWNING_MEMBERSHIP:
-				return basicGetOwningMembership() != null;
+				return OWNING_MEMBERSHIP__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.ELEMENT__OWNING_NAMESPACE:
-				return basicGetOwningNamespace() != null;
+				return OWNING_NAMESPACE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.ELEMENT__ELEMENT_ID:
 				return ELEMENT_ID_EDEFAULT == null ? elementId != null : !ELEMENT_ID_EDEFAULT.equals(elementId);
 			case SysMLPackage.ELEMENT__OWNER:
-				return basicGetOwner() != null;
+				return OWNER__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.ELEMENT__OWNED_ELEMENT:
-				return !getOwnedElement().isEmpty();
+				return OWNED_ELEMENT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.ELEMENT__DOCUMENTATION:
-				return !getDocumentation().isEmpty();
+				return DOCUMENTATION__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.ELEMENT__OWNED_ANNOTATION:
-				return !getOwnedAnnotation().isEmpty();
+				return OWNED_ANNOTATION__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.ELEMENT__TEXTUAL_REPRESENTATION:
-				return !getTextualRepresentation().isEmpty();
+				return TEXTUAL_REPRESENTATION__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.ELEMENT__ALIAS_IDS:
 				return aliasIds != null && !aliasIds.isEmpty();
 			case SysMLPackage.ELEMENT__SHORT_NAME:
 				return SHORT_NAME_EDEFAULT == null ? shortName != null : !SHORT_NAME_EDEFAULT.equals(shortName);
-			case SysMLPackage.ELEMENT__EFFECTIVE_NAME:
-				return EFFECTIVE_NAME_EDEFAULT == null ? getEffectiveName() != null : !EFFECTIVE_NAME_EDEFAULT.equals(getEffectiveName());
 			case SysMLPackage.ELEMENT__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case SysMLPackage.ELEMENT__EFFECTIVE_NAME:
+				return EFFECTIVE_NAME__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.ELEMENT__QUALIFIED_NAME:
-				return QUALIFIED_NAME_EDEFAULT == null ? getQualifiedName() != null : !QUALIFIED_NAME_EDEFAULT.equals(getQualifiedName());
+				return QUALIFIED_NAME__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
+			case SysMLPackage.ELEMENT__IS_IMPLIED_INCLUDED:
+				return isImpliedIncluded != IS_IMPLIED_INCLUDED_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -862,6 +969,8 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 		result.append(shortName);
 		result.append(", name: ");
 		result.append(name);
+		result.append(", isImpliedIncluded: ");
+		result.append(isImpliedIncluded);
 		result.append(')');
 		return result.toString();
 	}

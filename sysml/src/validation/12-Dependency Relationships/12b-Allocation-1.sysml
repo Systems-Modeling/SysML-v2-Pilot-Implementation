@@ -14,7 +14,7 @@ package '12b-Allocation-1' {
 	}
 	
 	package LogicalModel {
-		action def GenerateTorque(out torque :> ISQ::torque);
+		action def GenerateTorque { out torque :> ISQ::torque; }
 		
 		part def LogicalElement;
 		part def TorqueGenerator :> LogicalElement {
@@ -49,7 +49,7 @@ package '12b-Allocation-1' {
 	}
 	
 	allocation torqueGenAlloc : LogicalToPhysical 
-		allocate logical :> torqueGenerator to physical :> powerTrain {
+		allocate logical ::> torqueGenerator to physical ::> powerTrain {
 			
 		allocate torqueGenerator.generateTorque to powerTrain.engine.generateTorque;		
 	}

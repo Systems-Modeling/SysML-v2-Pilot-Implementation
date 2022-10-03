@@ -1,3 +1,22 @@
+/*******************************************************************************
+ * SysML 2 Pilot Implementation
+ * Copyright (c) 2022 Model Driven Solutions, Inc.
+ *    
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *  
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ *  
+ * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
+ *******************************************************************************/
 /**
  */
 package org.omg.sysml.lang.sysml.impl;
@@ -9,6 +28,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.UniqueEList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -46,6 +66,16 @@ public class FeatureChainingImpl extends RelationshipImpl implements FeatureChai
 	 * @ordered
 	 */
 	protected Feature chainingFeature;
+
+	/**
+	 * The cached setting delegate for the '{@link #getFeatureChained() <em>Feature Chained</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getFeatureChained()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate FEATURE_CHAINED__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.FEATURE_CHAINING__FEATURE_CHAINED).getSettingDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -122,28 +152,26 @@ public class FeatureChainingImpl extends RelationshipImpl implements FeatureChai
 	 */
 	@Override
 	public Feature getFeatureChained() {
-		Feature featureChained = basicGetFeatureChained();
-		return featureChained != null && featureChained.eIsProxy() ? (Feature)eResolveProxy((InternalEObject)featureChained) : featureChained;
+		return (Feature)FEATURE_CHAINED__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Feature basicGetFeatureChained() {
-		Element owningRelatedElement = getOwningRelatedElement();
-		return owningRelatedElement instanceof Feature? (Feature)owningRelatedElement: null;
+		return (Feature)FEATURE_CHAINED__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setFeatureChained(Feature newFeatureChained) {
-		super.basicSetOwningRelatedElement(newFeatureChained, null);
+		FEATURE_CHAINED__ESETTING_DELEGATE.dynamicSet(this, null, 0, newFeatureChained);
 	}
 
 	/**

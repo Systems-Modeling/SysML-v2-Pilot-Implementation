@@ -109,6 +109,7 @@ public interface FeatureTyping extends Specialization {
 	 * @model opposite="ownedTyping" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="redefines"
 	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	Feature getOwningFeature();

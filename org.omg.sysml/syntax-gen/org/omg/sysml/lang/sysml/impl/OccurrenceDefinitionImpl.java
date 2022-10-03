@@ -1,11 +1,29 @@
+/*******************************************************************************
+ * SysML 2 Pilot Implementation
+ * Copyright (c) 2022 Model Driven Solutions, Inc.
+ *    
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *  
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ *  
+ * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
+ *******************************************************************************/
 /**
  */
 package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.omg.sysml.lang.sysml.LifeClass;
 import org.omg.sysml.lang.sysml.OccurrenceDefinition;
@@ -26,6 +44,16 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * @generated
  */
 public class OccurrenceDefinitionImpl extends DefinitionImpl implements OccurrenceDefinition {
+	/**
+	 * The cached setting delegate for the '{@link #getLifeClass() <em>Life Class</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLifeClass()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate LIFE_CLASS__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.OCCURRENCE_DEFINITION__LIFE_CLASS).getSettingDelegate();
+
 	/**
 	 * The default value of the '{@link #isIndividual() <em>Is Individual</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -72,30 +100,26 @@ public class OccurrenceDefinitionImpl extends DefinitionImpl implements Occurren
 	 */
 	@Override
 	public LifeClass getLifeClass() {
-		LifeClass lifeClass = basicGetLifeClass();
-		return lifeClass != null && lifeClass.eIsProxy() ? (LifeClass)eResolveProxy((InternalEObject)lifeClass) : lifeClass;
+		return (LifeClass)LIFE_CLASS__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public LifeClass basicGetLifeClass() {
-		return getOwnedMember().stream().
-				filter(LifeClass.class::isInstance).
-				map(LifeClass.class::cast).
-				findFirst().orElse(null);
+		return (LifeClass)LIFE_CLASS__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setLifeClass(LifeClass newLifeClass) {
-		throw new UnsupportedOperationException();
+		LIFE_CLASS__ESETTING_DELEGATE.dynamicSet(this, null, 0, newLifeClass);
 	}
 
 	/**
@@ -183,7 +207,7 @@ public class OccurrenceDefinitionImpl extends DefinitionImpl implements Occurren
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case SysMLPackage.OCCURRENCE_DEFINITION__LIFE_CLASS:
-				return basicGetLifeClass() != null;
+				return LIFE_CLASS__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.OCCURRENCE_DEFINITION__IS_INDIVIDUAL:
 				return isIndividual != IS_INDIVIDUAL_EDEFAULT;
 		}

@@ -173,86 +173,14 @@ ruleConditionalExpression returns [EObject current=null]
 	leaveRule();
 }:
 	(
-		(
-			{
-				newCompositeNode(grammarAccess.getConditionalExpressionAccess().getNullCoalescingExpressionParserRuleCall_0_0());
-			}
-			this_NullCoalescingExpression_0=ruleNullCoalescingExpression
-			{
-				$current = $this_NullCoalescingExpression_0.current;
-				afterParserOrEnumRuleCall();
-			}
-			(
-				(
-					{
-						$current = forceCreateModelElementAndAdd(
-							grammarAccess.getConditionalExpressionAccess().getOperatorExpressionOperandAction_0_1_0(),
-							$current);
-					}
-				)
-				(
-					(
-						{
-							newCompositeNode(grammarAccess.getConditionalExpressionAccess().getOperatorConditionalOperatorParserRuleCall_0_1_1_0());
-						}
-						lv_operator_2_0=ruleConditionalOperator
-						{
-							if ($current==null) {
-								$current = createModelElementForParent(grammarAccess.getConditionalExpressionRule());
-							}
-							set(
-								$current,
-								"operator",
-								lv_operator_2_0,
-								"org.omg.kerml.expressions.xtext.KerMLExpressions.ConditionalOperator");
-							afterParserOrEnumRuleCall();
-						}
-					)
-				)
-				(
-					(
-						{
-							newCompositeNode(grammarAccess.getConditionalExpressionAccess().getOperandOwnedExpressionReferenceParserRuleCall_0_1_2_0());
-						}
-						lv_operand_3_0=ruleOwnedExpressionReference
-						{
-							if ($current==null) {
-								$current = createModelElementForParent(grammarAccess.getConditionalExpressionRule());
-							}
-							add(
-								$current,
-								"operand",
-								lv_operand_3_0,
-								"org.omg.kerml.expressions.xtext.KerMLExpressions.OwnedExpressionReference");
-							afterParserOrEnumRuleCall();
-						}
-					)
-				)
-				otherlv_4=':'
-				{
-					newLeafNode(otherlv_4, grammarAccess.getConditionalExpressionAccess().getColonKeyword_0_1_3());
-				}
-				(
-					(
-						{
-							newCompositeNode(grammarAccess.getConditionalExpressionAccess().getOperandOwnedExpressionReferenceParserRuleCall_0_1_4_0());
-						}
-						lv_operand_5_0=ruleOwnedExpressionReference
-						{
-							if ($current==null) {
-								$current = createModelElementForParent(grammarAccess.getConditionalExpressionRule());
-							}
-							add(
-								$current,
-								"operand",
-								lv_operand_5_0,
-								"org.omg.kerml.expressions.xtext.KerMLExpressions.OwnedExpressionReference");
-							afterParserOrEnumRuleCall();
-						}
-					)
-				)
-			)?
-		)
+		{
+			newCompositeNode(grammarAccess.getConditionalExpressionAccess().getNullCoalescingExpressionParserRuleCall_0());
+		}
+		this_NullCoalescingExpression_0=ruleNullCoalescingExpression
+		{
+			$current = $this_NullCoalescingExpression_0.current;
+			afterParserOrEnumRuleCall();
+		}
 		    |
 		(
 			(
@@ -262,35 +190,12 @@ ruleConditionalExpression returns [EObject current=null]
 						$current);
 				}
 			)
-			otherlv_7='if'
-			{
-				newLeafNode(otherlv_7, grammarAccess.getConditionalExpressionAccess().getIfKeyword_1_1());
-			}
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getConditionalExpressionAccess().getOperandNullCoalescingExpressionParserRuleCall_1_2_0());
+						newCompositeNode(grammarAccess.getConditionalExpressionAccess().getOperatorConditionalOperatorParserRuleCall_1_1_0());
 					}
-					lv_operand_8_0=ruleNullCoalescingExpression
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getConditionalExpressionRule());
-						}
-						add(
-							$current,
-							"operand",
-							lv_operand_8_0,
-							"org.omg.kerml.expressions.xtext.KerMLExpressions.NullCoalescingExpression");
-						afterParserOrEnumRuleCall();
-					}
-				)
-			)
-			(
-				(
-					{
-						newCompositeNode(grammarAccess.getConditionalExpressionAccess().getOperatorConditionalOperatorParserRuleCall_1_3_0());
-					}
-					lv_operator_9_0=ruleConditionalOperator
+					lv_operator_2_0=ruleConditionalOperator
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getConditionalExpressionRule());
@@ -298,7 +203,7 @@ ruleConditionalExpression returns [EObject current=null]
 						set(
 							$current,
 							"operator",
-							lv_operator_9_0,
+							lv_operator_2_0,
 							"org.omg.kerml.expressions.xtext.KerMLExpressions.ConditionalOperator");
 						afterParserOrEnumRuleCall();
 					}
@@ -307,9 +212,9 @@ ruleConditionalExpression returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getConditionalExpressionAccess().getOperandOwnedExpressionReferenceParserRuleCall_1_4_0());
+						newCompositeNode(grammarAccess.getConditionalExpressionAccess().getOperandNullCoalescingExpressionParserRuleCall_1_2_0());
 					}
-					lv_operand_10_0=ruleOwnedExpressionReference
+					lv_operand_3_0=ruleNullCoalescingExpression
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getConditionalExpressionRule());
@@ -317,22 +222,45 @@ ruleConditionalExpression returns [EObject current=null]
 						add(
 							$current,
 							"operand",
-							lv_operand_10_0,
+							lv_operand_3_0,
+							"org.omg.kerml.expressions.xtext.KerMLExpressions.NullCoalescingExpression");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+			otherlv_4='?'
+			{
+				newLeafNode(otherlv_4, grammarAccess.getConditionalExpressionAccess().getQuestionMarkKeyword_1_3());
+			}
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getConditionalExpressionAccess().getOperandOwnedExpressionReferenceParserRuleCall_1_4_0());
+					}
+					lv_operand_5_0=ruleOwnedExpressionReference
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getConditionalExpressionRule());
+						}
+						add(
+							$current,
+							"operand",
+							lv_operand_5_0,
 							"org.omg.kerml.expressions.xtext.KerMLExpressions.OwnedExpressionReference");
 						afterParserOrEnumRuleCall();
 					}
 				)
 			)
-			otherlv_11='else'
+			otherlv_6='else'
 			{
-				newLeafNode(otherlv_11, grammarAccess.getConditionalExpressionAccess().getElseKeyword_1_5());
+				newLeafNode(otherlv_6, grammarAccess.getConditionalExpressionAccess().getElseKeyword_1_5());
 			}
 			(
 				(
 					{
 						newCompositeNode(grammarAccess.getConditionalExpressionAccess().getOperandOwnedExpressionReferenceParserRuleCall_1_6_0());
 					}
-					lv_operand_12_0=ruleOwnedExpressionReference
+					lv_operand_7_0=ruleOwnedExpressionReference
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getConditionalExpressionRule());
@@ -340,7 +268,7 @@ ruleConditionalExpression returns [EObject current=null]
 						add(
 							$current,
 							"operand",
-							lv_operand_12_0,
+							lv_operand_7_0,
 							"org.omg.kerml.expressions.xtext.KerMLExpressions.OwnedExpressionReference");
 						afterParserOrEnumRuleCall();
 					}
@@ -365,10 +293,10 @@ ruleConditionalOperator returns [AntlrDatatypeRuleToken current=new AntlrDatatyp
 @after {
 	leaveRule();
 }:
-	kw='?'
+	kw='if'
 	{
 		$current.merge(kw);
-		newLeafNode(kw, grammarAccess.getConditionalOperatorAccess().getQuestionMarkKeyword());
+		newLeafNode(kw, grammarAccess.getConditionalOperatorAccess().getIfKeyword());
 	}
 ;
 
@@ -629,19 +557,11 @@ ruleImpliesOperator returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRul
 @after {
 	leaveRule();
 }:
-	(
-		kw='=>'
-		{
-			$current.merge(kw);
-			newLeafNode(kw, grammarAccess.getImpliesOperatorAccess().getEqualsSignGreaterThanSignKeyword_0());
-		}
-		    |
-		kw='implies'
-		{
-			$current.merge(kw);
-			newLeafNode(kw, grammarAccess.getImpliesOperatorAccess().getImpliesKeyword_1());
-		}
-	)
+	kw='implies'
+	{
+		$current.merge(kw);
+		newLeafNode(kw, grammarAccess.getImpliesOperatorAccess().getImpliesKeyword());
+	}
 ;
 
 // Entry rule entryRuleOrExpressionReference
@@ -872,19 +792,11 @@ ruleConditionalOrOperator returns [AntlrDatatypeRuleToken current=new AntlrDatat
 @after {
 	leaveRule();
 }:
-	(
-		kw='||'
-		{
-			$current.merge(kw);
-			newLeafNode(kw, grammarAccess.getConditionalOrOperatorAccess().getVerticalLineVerticalLineKeyword_0());
-		}
-		    |
-		kw='or'
-		{
-			$current.merge(kw);
-			newLeafNode(kw, grammarAccess.getConditionalOrOperatorAccess().getOrKeyword_1());
-		}
-	)
+	kw='or'
+	{
+		$current.merge(kw);
+		newLeafNode(kw, grammarAccess.getConditionalOrOperatorAccess().getOrKeyword());
+	}
 ;
 
 // Entry rule entryRuleXorExpressionReference
@@ -1048,19 +960,11 @@ ruleXorOperator returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleTok
 @after {
 	leaveRule();
 }:
-	(
-		kw='^^'
-		{
-			$current.merge(kw);
-			newLeafNode(kw, grammarAccess.getXorOperatorAccess().getCircumflexAccentCircumflexAccentKeyword_0());
-		}
-		    |
-		kw='xor'
-		{
-			$current.merge(kw);
-			newLeafNode(kw, grammarAccess.getXorOperatorAccess().getXorKeyword_1());
-		}
-	)
+	kw='xor'
+	{
+		$current.merge(kw);
+		newLeafNode(kw, grammarAccess.getXorOperatorAccess().getXorKeyword());
+	}
 ;
 
 // Entry rule entryRuleAndExpression
@@ -1219,19 +1123,11 @@ ruleConditionalAndOperator returns [AntlrDatatypeRuleToken current=new AntlrData
 @after {
 	leaveRule();
 }:
-	(
-		kw='&&'
-		{
-			$current.merge(kw);
-			newLeafNode(kw, grammarAccess.getConditionalAndOperatorAccess().getAmpersandAmpersandKeyword_0());
-		}
-		    |
-		kw='and'
-		{
-			$current.merge(kw);
-			newLeafNode(kw, grammarAccess.getConditionalAndOperatorAccess().getAndKeyword_1());
-		}
-	)
+	kw='and'
+	{
+		$current.merge(kw);
+		newLeafNode(kw, grammarAccess.getConditionalAndOperatorAccess().getAndKeyword());
+	}
 ;
 
 // Entry rule entryRuleEqualityExpressionReference
@@ -2402,22 +2298,16 @@ ruleUnaryOperator returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleT
 			newLeafNode(kw, grammarAccess.getUnaryOperatorAccess().getHyphenMinusKeyword_1());
 		}
 		    |
-		kw='!'
-		{
-			$current.merge(kw);
-			newLeafNode(kw, grammarAccess.getUnaryOperatorAccess().getExclamationMarkKeyword_2());
-		}
-		    |
 		kw='~'
 		{
 			$current.merge(kw);
-			newLeafNode(kw, grammarAccess.getUnaryOperatorAccess().getTildeKeyword_3());
+			newLeafNode(kw, grammarAccess.getUnaryOperatorAccess().getTildeKeyword_2());
 		}
 		    |
 		kw='not'
 		{
 			$current.merge(kw);
-			newLeafNode(kw, grammarAccess.getUnaryOperatorAccess().getNotKeyword_4());
+			newLeafNode(kw, grammarAccess.getUnaryOperatorAccess().getNotKeyword_3());
 		}
 	)
 ;
@@ -4548,9 +4438,7 @@ RULE_UNRESTRICTED_NAME : '\'' ('\\' ('b'|'t'|'n'|'f'|'r'|'"'|'\''|'\\')|~(('\\'|
 
 RULE_STRING_VALUE : '"' ('\\' ('b'|'t'|'n'|'f'|'r'|'"'|'\''|'\\')|~(('\\'|'"')))* '"';
 
-RULE_REGULAR_COMMENT : '/*' ~('*') ( options {greedy=false;} : . )*'*/';
-
-RULE_PREFIX_COMMENT : '/**' ( options {greedy=false;} : . )*'*/';
+RULE_REGULAR_COMMENT : '/*' ( options {greedy=false;} : . )*'*/';
 
 RULE_ML_NOTE : '//*' ( options {greedy=false;} : . )*'*/';
 

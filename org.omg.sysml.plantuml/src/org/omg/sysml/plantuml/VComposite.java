@@ -72,12 +72,12 @@ public class VComposite extends VMixed {
     public String caseUsage(Usage f) {
         String featureText = getFeatureText(f);
         if (featureText.isEmpty()) return "";
-        addPUMLLine(f, "rec usage ", featureText);
+        int id = addPUMLLine(f, "rec usage ", featureText);
 
         VComposite vc = new VComposite(this);
         vc.traverse(f);
         vc.closeBlock();
-        addSpecializations(f);
+        addSpecializations(id, f);
 
         return "";
     }
@@ -159,6 +159,7 @@ public class VComposite extends VMixed {
     private void addTypeSimple(Type typ) {
         if (typ instanceof Feature) {
             Feature f = (Feature) typ;
+            addFeatureValueBindings(f);
             FeatureDirectionKind fdk = f.getDirection();
             if (fdk != null) {
                 String name = extractTitleName(f);
@@ -168,7 +169,7 @@ public class VComposite extends VMixed {
                 vc.traverse(f);
                 String ret = vc.getString();
 
-                if (ret.isEmpty()) {
+                if (ret.isEmpty() && !isEmpty()) {
                     if (fdk == FeatureDirectionKind.OUT) {
                         addPUMLLine(f, "portout ", name);
                     } else {

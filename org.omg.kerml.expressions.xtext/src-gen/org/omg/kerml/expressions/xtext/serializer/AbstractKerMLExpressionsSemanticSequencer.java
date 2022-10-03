@@ -141,7 +141,6 @@ public abstract class AbstractKerMLExpressionsSemanticSequencer extends Abstract
 				}
 				else if (rule == grammarAccess.getOwnedExpressionRule()
 						|| rule == grammarAccess.getConditionalExpressionRule()
-						|| action == grammarAccess.getConditionalExpressionAccess().getOperatorExpressionOperandAction_0_1_0()
 						|| rule == grammarAccess.getNullCoalescingExpressionRule()
 						|| action == grammarAccess.getNullCoalescingExpressionAccess().getOperatorExpressionOperandAction_1_0()
 						|| rule == grammarAccess.getImpliesExpressionRule()
@@ -260,7 +259,6 @@ public abstract class AbstractKerMLExpressionsSemanticSequencer extends Abstract
 			case SysMLPackage.OPERATOR_EXPRESSION:
 				if (rule == grammarAccess.getOwnedExpressionRule()
 						|| rule == grammarAccess.getConditionalExpressionRule()
-						|| action == grammarAccess.getConditionalExpressionAccess().getOperatorExpressionOperandAction_0_1_0()
 						|| rule == grammarAccess.getNullCoalescingExpressionRule()
 						|| action == grammarAccess.getNullCoalescingExpressionAccess().getOperatorExpressionOperandAction_1_0()
 						|| rule == grammarAccess.getImpliesExpressionRule()
@@ -342,7 +340,6 @@ public abstract class AbstractKerMLExpressionsSemanticSequencer extends Abstract
 	 * Contexts:
 	 *     OwnedExpression returns OperatorExpression
 	 *     ConditionalExpression returns OperatorExpression
-	 *     ConditionalExpression.OperatorExpression_0_1_0 returns OperatorExpression
 	 *     NullCoalescingExpression returns OperatorExpression
 	 *     NullCoalescingExpression.OperatorExpression_1_0 returns OperatorExpression
 	 *     ImpliesExpression returns OperatorExpression
@@ -381,13 +378,7 @@ public abstract class AbstractKerMLExpressionsSemanticSequencer extends Abstract
 	 *
 	 * Constraint:
 	 *     (
-	 *         (
-	 *             operand+=ConditionalExpression_OperatorExpression_0_1_0 
-	 *             operator=ConditionalOperator 
-	 *             operand+=OwnedExpressionReference 
-	 *             operand+=OwnedExpressionReference
-	 *         ) | 
-	 *         (operand+=NullCoalescingExpression operator=ConditionalOperator operand+=OwnedExpressionReference operand+=OwnedExpressionReference) | 
+	 *         (operator=ConditionalOperator operand+=NullCoalescingExpression operand+=OwnedExpressionReference operand+=OwnedExpressionReference) | 
 	 *         (operand+=NullCoalescingExpression_OperatorExpression_1_0 operator=NullCoalescingOperator operand+=ImpliesExpressionReference) | 
 	 *         (operand+=ImpliesExpression_OperatorExpression_1_0 operator=ImpliesOperator operand+=OrExpressionReference) | 
 	 *         (
@@ -480,7 +471,6 @@ public abstract class AbstractKerMLExpressionsSemanticSequencer extends Abstract
 	 * Contexts:
 	 *     OwnedExpression returns FeatureReferenceExpression
 	 *     ConditionalExpression returns FeatureReferenceExpression
-	 *     ConditionalExpression.OperatorExpression_0_1_0 returns FeatureReferenceExpression
 	 *     NullCoalescingExpression returns FeatureReferenceExpression
 	 *     NullCoalescingExpression.OperatorExpression_1_0 returns FeatureReferenceExpression
 	 *     ImpliesExpression returns FeatureReferenceExpression
@@ -751,7 +741,6 @@ public abstract class AbstractKerMLExpressionsSemanticSequencer extends Abstract
 	 * Contexts:
 	 *     OwnedExpression returns InvocationExpression
 	 *     ConditionalExpression returns InvocationExpression
-	 *     ConditionalExpression.OperatorExpression_0_1_0 returns InvocationExpression
 	 *     NullCoalescingExpression returns InvocationExpression
 	 *     NullCoalescingExpression.OperatorExpression_1_0 returns InvocationExpression
 	 *     ImpliesExpression returns InvocationExpression
@@ -807,7 +796,6 @@ public abstract class AbstractKerMLExpressionsSemanticSequencer extends Abstract
 	 * Contexts:
 	 *     OwnedExpression returns LiteralBoolean
 	 *     ConditionalExpression returns LiteralBoolean
-	 *     ConditionalExpression.OperatorExpression_0_1_0 returns LiteralBoolean
 	 *     NullCoalescingExpression returns LiteralBoolean
 	 *     NullCoalescingExpression.OperatorExpression_1_0 returns LiteralBoolean
 	 *     ImpliesExpression returns LiteralBoolean
@@ -864,7 +852,6 @@ public abstract class AbstractKerMLExpressionsSemanticSequencer extends Abstract
 	 * Contexts:
 	 *     OwnedExpression returns LiteralInfinity
 	 *     ConditionalExpression returns LiteralInfinity
-	 *     ConditionalExpression.OperatorExpression_0_1_0 returns LiteralInfinity
 	 *     NullCoalescingExpression returns LiteralInfinity
 	 *     NullCoalescingExpression.OperatorExpression_1_0 returns LiteralInfinity
 	 *     ImpliesExpression returns LiteralInfinity
@@ -915,7 +902,6 @@ public abstract class AbstractKerMLExpressionsSemanticSequencer extends Abstract
 	 * Contexts:
 	 *     OwnedExpression returns LiteralInteger
 	 *     ConditionalExpression returns LiteralInteger
-	 *     ConditionalExpression.OperatorExpression_0_1_0 returns LiteralInteger
 	 *     NullCoalescingExpression returns LiteralInteger
 	 *     NullCoalescingExpression.OperatorExpression_1_0 returns LiteralInteger
 	 *     ImpliesExpression returns LiteralInteger
@@ -972,7 +958,6 @@ public abstract class AbstractKerMLExpressionsSemanticSequencer extends Abstract
 	 * Contexts:
 	 *     OwnedExpression returns LiteralRational
 	 *     ConditionalExpression returns LiteralRational
-	 *     ConditionalExpression.OperatorExpression_0_1_0 returns LiteralRational
 	 *     NullCoalescingExpression returns LiteralRational
 	 *     NullCoalescingExpression.OperatorExpression_1_0 returns LiteralRational
 	 *     ImpliesExpression returns LiteralRational
@@ -1029,7 +1014,6 @@ public abstract class AbstractKerMLExpressionsSemanticSequencer extends Abstract
 	 * Contexts:
 	 *     OwnedExpression returns LiteralString
 	 *     ConditionalExpression returns LiteralString
-	 *     ConditionalExpression.OperatorExpression_0_1_0 returns LiteralString
 	 *     NullCoalescingExpression returns LiteralString
 	 *     NullCoalescingExpression.OperatorExpression_1_0 returns LiteralString
 	 *     ImpliesExpression returns LiteralString
@@ -1134,7 +1118,6 @@ public abstract class AbstractKerMLExpressionsSemanticSequencer extends Abstract
 	 * Contexts:
 	 *     OwnedExpression returns NullExpression
 	 *     ConditionalExpression returns NullExpression
-	 *     ConditionalExpression.OperatorExpression_0_1_0 returns NullExpression
 	 *     NullCoalescingExpression returns NullExpression
 	 *     NullCoalescingExpression.OperatorExpression_1_0 returns NullExpression
 	 *     ImpliesExpression returns NullExpression
@@ -1280,7 +1263,6 @@ public abstract class AbstractKerMLExpressionsSemanticSequencer extends Abstract
 	 * Contexts:
 	 *     OwnedExpression returns CollectExpression
 	 *     ConditionalExpression returns CollectExpression
-	 *     ConditionalExpression.OperatorExpression_0_1_0 returns CollectExpression
 	 *     NullCoalescingExpression returns CollectExpression
 	 *     NullCoalescingExpression.OperatorExpression_1_0 returns CollectExpression
 	 *     ImpliesExpression returns CollectExpression
@@ -1330,7 +1312,6 @@ public abstract class AbstractKerMLExpressionsSemanticSequencer extends Abstract
 	 * Contexts:
 	 *     OwnedExpression returns FeatureChainExpression
 	 *     ConditionalExpression returns FeatureChainExpression
-	 *     ConditionalExpression.OperatorExpression_0_1_0 returns FeatureChainExpression
 	 *     NullCoalescingExpression returns FeatureChainExpression
 	 *     NullCoalescingExpression.OperatorExpression_1_0 returns FeatureChainExpression
 	 *     ImpliesExpression returns FeatureChainExpression
@@ -1382,7 +1363,6 @@ public abstract class AbstractKerMLExpressionsSemanticSequencer extends Abstract
 	 * Contexts:
 	 *     OwnedExpression returns SelectExpression
 	 *     ConditionalExpression returns SelectExpression
-	 *     ConditionalExpression.OperatorExpression_0_1_0 returns SelectExpression
 	 *     NullCoalescingExpression returns SelectExpression
 	 *     NullCoalescingExpression.OperatorExpression_1_0 returns SelectExpression
 	 *     ImpliesExpression returns SelectExpression

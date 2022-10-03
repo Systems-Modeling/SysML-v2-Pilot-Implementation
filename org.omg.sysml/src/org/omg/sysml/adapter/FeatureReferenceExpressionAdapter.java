@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2021, 2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -27,6 +27,7 @@ import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureReferenceExpression;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
 import org.omg.sysml.util.ExpressionUtil;
 import org.omg.sysml.util.TypeUtil;
 
@@ -39,6 +40,19 @@ public class FeatureReferenceExpressionAdapter extends ExpressionAdapter {
 	@Override
 	public FeatureReferenceExpression getTarget() {
 		return (FeatureReferenceExpression)super.getTarget();
+	}
+	
+	// Caching
+	
+	public static final String SELF_REFERENCE_FEATURE = "Base::Anything::self";
+	
+	private Feature selfReferenceFeature = null;
+	
+	public Feature getSelfReferenceFeature() {
+		if (selfReferenceFeature == null) {
+			selfReferenceFeature = (Feature)SysMLLibraryUtil.getLibraryType(getTarget(), SELF_REFERENCE_FEATURE);
+		}
+		return selfReferenceFeature;
 	}
 	
 	// Transformation

@@ -45,8 +45,10 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  */
 public class LiteralBooleanImpl extends LiteralExpressionImpl implements LiteralBoolean {
 	/**
-	 * The default value of the '{@link #isValue() <em>Value</em>}' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The default value of the '{@link #isValue() <em>Value</em>}' attribute. 
+	 * <!-- begin-user-doc --> 
+	 * Default value for a LiteralBoolean is true.
+	 * <!-- end-user-doc -->
 	 * 
 	 * @see #isValue()
 	 * @generated NOT

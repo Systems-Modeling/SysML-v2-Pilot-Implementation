@@ -24,6 +24,7 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
@@ -52,33 +53,41 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  */
 public class OwningMembershipImpl extends MembershipImpl implements OwningMembership {
 	/**
-	 * The default value of the '{@link #getOwnedMemberElementId() <em>Owned Member Element Id</em>}' attribute.
+	 * The cached setting delegate for the '{@link #getOwnedMemberElementId() <em>Owned Member Element Id</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getOwnedMemberElementId()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String OWNED_MEMBER_ELEMENT_ID_EDEFAULT = null;
+	protected EStructuralFeature.Internal.SettingDelegate OWNED_MEMBER_ELEMENT_ID__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.OWNING_MEMBERSHIP__OWNED_MEMBER_ELEMENT_ID).getSettingDelegate();
 	/**
-	 * The default value of the '{@link #getOwnedMemberShortName() <em>Owned Member Short Name</em>}' attribute.
+	 * The cached setting delegate for the '{@link #getOwnedMemberShortName() <em>Owned Member Short Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getOwnedMemberShortName()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String OWNED_MEMBER_SHORT_NAME_EDEFAULT = null;
+	protected EStructuralFeature.Internal.SettingDelegate OWNED_MEMBER_SHORT_NAME__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.OWNING_MEMBERSHIP__OWNED_MEMBER_SHORT_NAME).getSettingDelegate();
 	/**
-	 * The default value of the '{@link #getOwnedMemberName() <em>Owned Member Name</em>}' attribute.
+	 * The cached setting delegate for the '{@link #getOwnedMemberName() <em>Owned Member Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getOwnedMemberName()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String OWNED_MEMBER_NAME_EDEFAULT = null;
-
+	protected EStructuralFeature.Internal.SettingDelegate OWNED_MEMBER_NAME__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.OWNING_MEMBERSHIP__OWNED_MEMBER_NAME).getSettingDelegate();
+	/**
+	 * The cached setting delegate for the '{@link #getOwnedMemberElement() <em>Owned Member Element</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedMemberElement()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate OWNED_MEMBER_ELEMENT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.OWNING_MEMBERSHIP__OWNED_MEMBER_ELEMENT).getSettingDelegate();
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -114,81 +123,71 @@ public class OwningMembershipImpl extends MembershipImpl implements OwningMember
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public String getOwnedMemberElementId() {
-		return super.getMemberElementId();
+		return (String)OWNED_MEMBER_ELEMENT_ID__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setOwnedMemberElementId(String newOwnedMemberElementId) {
-		throw new UnsupportedOperationException();
+		OWNED_MEMBER_ELEMENT_ID__ESETTING_DELEGATE.dynamicSet(this, null, 0, newOwnedMemberElementId);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * Generation with setting delegate was not executed properly, therefore code was edited manually
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean isSetOwnedMemberElementId() {
+		return OWNED_MEMBER_ELEMENT_ID__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 */
-	public boolean isSetOwnedMemberElementId() {
-		return OWNED_MEMBER_ELEMENT_ID_EDEFAULT == null ? getOwnedMemberElementId() != null : !OWNED_MEMBER_ELEMENT_ID_EDEFAULT.equals(getOwnedMemberElementId());
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
 	 */
 	@Override
 	public String getOwnedMemberShortName() {
-		Element ownedMemberElement = getOwnedMemberElement();
-		return ownedMemberElement == null? null: ownedMemberElement.getShortName();
+		return (String)OWNED_MEMBER_SHORT_NAME__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setOwnedMemberShortName(String newOwnedMemberShortName) {
-		throw new UnsupportedOperationException();
+		OWNED_MEMBER_SHORT_NAME__ESETTING_DELEGATE.dynamicSet(this, null, 0, newOwnedMemberShortName);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * Generation with setting delegate was not executed properly, therefore code was edited manually
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean isSetOwnedMemberShortName() {
+		return OWNED_MEMBER_SHORT_NAME__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 */
-	public boolean isSetOwnedMemberShortName() {
-		return OWNED_MEMBER_SHORT_NAME_EDEFAULT == null ? getOwnedMemberShortName() != null : !OWNED_MEMBER_SHORT_NAME_EDEFAULT.equals(getOwnedMemberShortName());
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
 	 */
 	@Override
 	public String getOwnedMemberName() {
-		Element ownedMemberElement = getOwnedMemberElement();
-		return ownedMemberElement == null? null: ownedMemberElement.getEffectiveName();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	@Override
-	public void setOwnedMemberName(String newOwnedMemberName) {
-		throw new UnsupportedOperationException();
+		return (String)OWNED_MEMBER_NAME__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
@@ -196,8 +195,19 @@ public class OwningMembershipImpl extends MembershipImpl implements OwningMember
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
+	public void setOwnedMemberName(String newOwnedMemberName) {
+		OWNED_MEMBER_NAME__ESETTING_DELEGATE.dynamicSet(this, null, 0, newOwnedMemberName);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * Generation with setting delegate was not executed properly, therefore code was edited manually
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
 	public boolean isSetOwnedMemberName() {
-		return OWNED_MEMBER_NAME_EDEFAULT == null ? getOwnedMemberName() != null : !OWNED_MEMBER_NAME_EDEFAULT.equals(getOwnedMemberName());
+		return OWNED_MEMBER_NAME__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 	}
 
 	/**
@@ -244,36 +254,31 @@ public class OwningMembershipImpl extends MembershipImpl implements OwningMember
 	 */
 	@Override
 	public Element getOwnedMemberElement() {
-		Element ownedMemberElement = basicGetOwnedMemberElement();
-		return ownedMemberElement != null && ownedMemberElement.eIsProxy() ? (Element)eResolveProxy((InternalEObject)ownedMemberElement) : ownedMemberElement;
+		return (Element)OWNED_MEMBER_ELEMENT__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Element basicGetOwnedMemberElement() {
-		EList<Element> ownedRelatedElements = getOwnedRelatedElement();
-		return ownedRelatedElements.isEmpty()? null: ownedRelatedElements.get(0);
+		return (Element)OWNED_MEMBER_ELEMENT__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setOwnedMemberElement(Element newOwnedMemberElement) {
-		if (newOwnedMemberElement != null) { 
-			EList<Element> ownedRelatedElements = super.getOwnedRelatedElement();
-			ownedRelatedElements.remove(getOwnedMemberElement());
-			ownedRelatedElements.add(0, newOwnedMemberElement);
-		}
+		OWNED_MEMBER_ELEMENT__ESETTING_DELEGATE.dynamicSet(this, null, 0, newOwnedMemberElement);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * Generation with setting delegate was not executed properly, therefore code was edited manually
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -445,13 +450,13 @@ public class OwningMembershipImpl extends MembershipImpl implements OwningMember
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case SysMLPackage.OWNING_MEMBERSHIP__OWNED_MEMBER_ELEMENT_ID:
-				setOwnedMemberElementId(OWNED_MEMBER_ELEMENT_ID_EDEFAULT);
+				OWNED_MEMBER_ELEMENT_ID__ESETTING_DELEGATE.dynamicUnset(this, null, 0);
 				return;
 			case SysMLPackage.OWNING_MEMBERSHIP__OWNED_MEMBER_SHORT_NAME:
-				setOwnedMemberShortName(OWNED_MEMBER_SHORT_NAME_EDEFAULT);
+				OWNED_MEMBER_SHORT_NAME__ESETTING_DELEGATE.dynamicUnset(this, null, 0);
 				return;
 			case SysMLPackage.OWNING_MEMBERSHIP__OWNED_MEMBER_NAME:
-				setOwnedMemberName(OWNED_MEMBER_NAME_EDEFAULT);
+				OWNED_MEMBER_NAME__ESETTING_DELEGATE.dynamicUnset(this, null, 0);
 				return;
 			case SysMLPackage.OWNING_MEMBERSHIP__OWNED_MEMBER_ELEMENT:
 				setOwnedMemberElement((Element)null);

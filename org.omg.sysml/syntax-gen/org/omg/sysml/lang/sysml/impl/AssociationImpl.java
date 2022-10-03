@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -30,18 +30,15 @@ import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.BasicInternalEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.uml2.common.util.UnionEObjectEList;
 import org.omg.sysml.lang.sysml.Association;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.util.NonNotifyingEObjectEList;
-import org.omg.sysml.util.TypeUtil;
-import org.omg.sysml.lang.sysml.Connector;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Relationship;
@@ -54,8 +51,9 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.AssociationImpl#getOwnedRelatedElement <em>Owned Related Element</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.AssociationImpl#getOwningRelatedElement <em>Owning Related Element</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.AssociationImpl#getOwnedRelatedElement <em>Owned Related Element</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.AssociationImpl#isImplied <em>Is Implied</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.AssociationImpl#getRelatedType <em>Related Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.AssociationImpl#getSourceType <em>Source Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.AssociationImpl#getTargetType <em>Target Type</em>}</li>
@@ -75,6 +73,66 @@ public class AssociationImpl extends ClassifierImpl implements Association {
 	 * @ordered
 	 */
 	protected EList<Element> ownedRelatedElement;
+
+	/**
+	 * The default value of the '{@link #isImplied() <em>Is Implied</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isImplied()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean IS_IMPLIED_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isImplied() <em>Is Implied</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isImplied()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean isImplied = IS_IMPLIED_EDEFAULT;
+
+	/**
+	 * The cached setting delegate for the '{@link #getRelatedType() <em>Related Type</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getRelatedType()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate RELATED_TYPE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.ASSOCIATION__RELATED_TYPE).getSettingDelegate();
+
+	/**
+	 * The cached setting delegate for the '{@link #getSourceType() <em>Source Type</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSourceType()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate SOURCE_TYPE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.ASSOCIATION__SOURCE_TYPE).getSettingDelegate();
+
+	/**
+	 * The cached setting delegate for the '{@link #getTargetType() <em>Target Type</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTargetType()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate TARGET_TYPE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.ASSOCIATION__TARGET_TYPE).getSettingDelegate();
+
+	/**
+	 * The cached setting delegate for the '{@link #getAssociationEnd() <em>Association End</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAssociationEnd()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate ASSOCIATION_END__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.ASSOCIATION__ASSOCIATION_END).getSettingDelegate();
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -103,6 +161,29 @@ public class AssociationImpl extends ClassifierImpl implements Association {
 			ownedRelatedElement = new EObjectContainmentWithInverseEList<Element>(Element.class, this, SysMLPackage.ASSOCIATION__OWNED_RELATED_ELEMENT, SysMLPackage.ELEMENT__OWNING_RELATIONSHIP);
 		}
 		return ownedRelatedElement;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isImplied() {
+		return isImplied;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setIsImplied(boolean newIsImplied) {
+		boolean oldIsImplied = isImplied;
+		isImplied = newIsImplied;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.ASSOCIATION__IS_IMPLIED, oldIsImplied, isImplied));
 	}
 
 	/**
@@ -209,25 +290,13 @@ public class AssociationImpl extends ClassifierImpl implements Association {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated NOT // derived
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<Type> getRelatedType() {
-		EList<Type> relatedTypes = new BasicInternalEList<Type>(Type.class);
-		getAssociationEnd().stream().flatMap(end -> end.getType().stream()).forEachOrdered(relatedTypes::add);
-		return relatedTypes;
+		return (EList<Type>)RELATED_TYPE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
-
-	/**
-	 * The array of subset feature identifiers for the '{@link #getRelatedType() <em>Related Type</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getRelatedType()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final int[] RELATED_TYPE_ESUBSETS = new int[] {SysMLPackage.ASSOCIATION__SOURCE_TYPE, SysMLPackage.ASSOCIATION__TARGET_TYPE};
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -240,43 +309,12 @@ public class AssociationImpl extends ClassifierImpl implements Association {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated NOT // derived
+	 * @generated
 	 */
-	public Connector getOwningConnector() {
-		Connector owningConnector = basicGetOwningConnector();
-		return owningConnector != null && owningConnector.eIsProxy()? 
-				(Connector) eResolveProxy((InternalEObject) owningConnector): 
-				owningConnector;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated NOT // derived
-	 */
-	public Connector basicGetOwningConnector() {
-		Element owner = this.getOwner();
-		return owner instanceof Connector ? (Connector) owner : null;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated NOT // derived
-	 */
-	public void setOwningConnector(Connector newOwningConnector) {
-		this.setOwner(newOwningConnector);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated NOT // derived
-	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<Feature> getAssociationEnd() {
-		return super.getEndFeature();
+		return (EList<Feature>)ASSOCIATION_END__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
@@ -295,27 +333,26 @@ public class AssociationImpl extends ClassifierImpl implements Association {
 	 */
 	@Override
 	public Type getSourceType() {
-		Type sourceType = basicGetSourceType();
-		return sourceType != null && sourceType.eIsProxy() ? (Type)eResolveProxy((InternalEObject)sourceType) : sourceType;
+		return (Type)SOURCE_TYPE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Type basicGetSourceType() {
-		return TypeUtil.getSourceTypeOf(this);
+		return (Type)SOURCE_TYPE__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setSourceType(Type newSourceType) {
-		throw new UnsupportedOperationException();
+		SOURCE_TYPE__ESETTING_DELEGATE.dynamicSet(this, null, 0, newSourceType);
 	}
 
 	/**
@@ -330,13 +367,12 @@ public class AssociationImpl extends ClassifierImpl implements Association {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<Type> getTargetType() {
-		EList<Type> targetType = new NonNotifyingEObjectEList<>(Type.class, this, SysMLPackage.ASSOCIATION__TARGET_TYPE);
-		TypeUtil.addTargetTypes(this, targetType);
-		return targetType;
+		return (EList<Type>)TARGET_TYPE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 	
 	/**
@@ -366,7 +402,7 @@ public class AssociationImpl extends ClassifierImpl implements Association {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int[] RELATED_ELEMENT_ESUBSETS = new int[] {SysMLPackage.ASSOCIATION__OWNED_RELATED_ELEMENT, SysMLPackage.ASSOCIATION__OWNING_RELATED_ELEMENT, SysMLPackage.ASSOCIATION__TARGET, SysMLPackage.ASSOCIATION__SOURCE};
+	protected static final int[] RELATED_ELEMENT_ESUBSETS = new int[] {SysMLPackage.ASSOCIATION__TARGET, SysMLPackage.ASSOCIATION__SOURCE, SysMLPackage.ASSOCIATION__OWNING_RELATED_ELEMENT, SysMLPackage.ASSOCIATION__OWNED_RELATED_ELEMENT};
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -384,12 +420,12 @@ public class AssociationImpl extends ClassifierImpl implements Association {
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case SysMLPackage.ASSOCIATION__OWNED_RELATED_ELEMENT:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedRelatedElement()).basicAdd(otherEnd, msgs);
 			case SysMLPackage.ASSOCIATION__OWNING_RELATED_ELEMENT:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
 				return basicSetOwningRelatedElement((Element)otherEnd, msgs);
+			case SysMLPackage.ASSOCIATION__OWNED_RELATED_ELEMENT:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedRelatedElement()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -401,10 +437,10 @@ public class AssociationImpl extends ClassifierImpl implements Association {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case SysMLPackage.ASSOCIATION__OWNED_RELATED_ELEMENT:
-				return ((InternalEList<?>)getOwnedRelatedElement()).basicRemove(otherEnd, msgs);
 			case SysMLPackage.ASSOCIATION__OWNING_RELATED_ELEMENT:
 				return basicSetOwningRelatedElement(null, msgs);
+			case SysMLPackage.ASSOCIATION__OWNED_RELATED_ELEMENT:
+				return ((InternalEList<?>)getOwnedRelatedElement()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -431,14 +467,16 @@ public class AssociationImpl extends ClassifierImpl implements Association {
 		switch (featureID) {
 			case SysMLPackage.ASSOCIATION__RELATED_ELEMENT:
 				return getRelatedElement();
-			case SysMLPackage.ASSOCIATION__OWNED_RELATED_ELEMENT:
-				return getOwnedRelatedElement();
-			case SysMLPackage.ASSOCIATION__OWNING_RELATED_ELEMENT:
-				return getOwningRelatedElement();
 			case SysMLPackage.ASSOCIATION__TARGET:
 				return getTarget();
 			case SysMLPackage.ASSOCIATION__SOURCE:
 				return getSource();
+			case SysMLPackage.ASSOCIATION__OWNING_RELATED_ELEMENT:
+				return getOwningRelatedElement();
+			case SysMLPackage.ASSOCIATION__OWNED_RELATED_ELEMENT:
+				return getOwnedRelatedElement();
+			case SysMLPackage.ASSOCIATION__IS_IMPLIED:
+				return isImplied();
 			case SysMLPackage.ASSOCIATION__RELATED_TYPE:
 				return getRelatedType();
 			case SysMLPackage.ASSOCIATION__SOURCE_TYPE:
@@ -460,12 +498,9 @@ public class AssociationImpl extends ClassifierImpl implements Association {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case SysMLPackage.ASSOCIATION__OWNED_RELATED_ELEMENT:
-				getOwnedRelatedElement().clear();
-				getOwnedRelatedElement().addAll((Collection<? extends Element>)newValue);
-				return;
-			case SysMLPackage.ASSOCIATION__OWNING_RELATED_ELEMENT:
-				setOwningRelatedElement((Element)newValue);
+			case SysMLPackage.ASSOCIATION__RELATED_ELEMENT:
+				getRelatedElement().clear();
+				getRelatedElement().addAll((Collection<? extends Element>)newValue);
 				return;
 			case SysMLPackage.ASSOCIATION__TARGET:
 				getTarget().clear();
@@ -474,6 +509,20 @@ public class AssociationImpl extends ClassifierImpl implements Association {
 			case SysMLPackage.ASSOCIATION__SOURCE:
 				getSource().clear();
 				getSource().addAll((Collection<? extends Element>)newValue);
+				return;
+			case SysMLPackage.ASSOCIATION__OWNING_RELATED_ELEMENT:
+				setOwningRelatedElement((Element)newValue);
+				return;
+			case SysMLPackage.ASSOCIATION__OWNED_RELATED_ELEMENT:
+				getOwnedRelatedElement().clear();
+				getOwnedRelatedElement().addAll((Collection<? extends Element>)newValue);
+				return;
+			case SysMLPackage.ASSOCIATION__IS_IMPLIED:
+				setIsImplied((Boolean)newValue);
+				return;
+			case SysMLPackage.ASSOCIATION__RELATED_TYPE:
+				getRelatedType().clear();
+				getRelatedType().addAll((Collection<? extends Type>)newValue);
 				return;
 			case SysMLPackage.ASSOCIATION__SOURCE_TYPE:
 				setSourceType((Type)newValue);
@@ -497,17 +546,26 @@ public class AssociationImpl extends ClassifierImpl implements Association {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.ASSOCIATION__OWNED_RELATED_ELEMENT:
-				getOwnedRelatedElement().clear();
-				return;
-			case SysMLPackage.ASSOCIATION__OWNING_RELATED_ELEMENT:
-				setOwningRelatedElement((Element)null);
+			case SysMLPackage.ASSOCIATION__RELATED_ELEMENT:
+				getRelatedElement().clear();
 				return;
 			case SysMLPackage.ASSOCIATION__TARGET:
 				getTarget().clear();
 				return;
 			case SysMLPackage.ASSOCIATION__SOURCE:
 				getSource().clear();
+				return;
+			case SysMLPackage.ASSOCIATION__OWNING_RELATED_ELEMENT:
+				setOwningRelatedElement((Element)null);
+				return;
+			case SysMLPackage.ASSOCIATION__OWNED_RELATED_ELEMENT:
+				getOwnedRelatedElement().clear();
+				return;
+			case SysMLPackage.ASSOCIATION__IS_IMPLIED:
+				setIsImplied(IS_IMPLIED_EDEFAULT);
+				return;
+			case SysMLPackage.ASSOCIATION__RELATED_TYPE:
+				getRelatedType().clear();
 				return;
 			case SysMLPackage.ASSOCIATION__SOURCE_TYPE:
 				setSourceType((Type)null);
@@ -531,18 +589,20 @@ public class AssociationImpl extends ClassifierImpl implements Association {
 		switch (featureID) {
 			case SysMLPackage.ASSOCIATION__RELATED_ELEMENT:
 				return isSetRelatedElement();
-			case SysMLPackage.ASSOCIATION__OWNED_RELATED_ELEMENT:
-				return ownedRelatedElement != null && !ownedRelatedElement.isEmpty();
-			case SysMLPackage.ASSOCIATION__OWNING_RELATED_ELEMENT:
-				return getOwningRelatedElement() != null;
 			case SysMLPackage.ASSOCIATION__TARGET:
 				return isSetTarget();
 			case SysMLPackage.ASSOCIATION__SOURCE:
 				return isSetSource();
-			case SysMLPackage.ASSOCIATION__RELATED_TYPE:
-				return isSetRelatedType();
+			case SysMLPackage.ASSOCIATION__OWNING_RELATED_ELEMENT:
+				return getOwningRelatedElement() != null;
+			case SysMLPackage.ASSOCIATION__OWNED_RELATED_ELEMENT:
+				return ownedRelatedElement != null && !ownedRelatedElement.isEmpty();
+			case SysMLPackage.ASSOCIATION__IS_IMPLIED:
+				return isImplied != IS_IMPLIED_EDEFAULT;
 			case SysMLPackage.ASSOCIATION__END_FEATURE:
 				return isSetEndFeature();
+			case SysMLPackage.ASSOCIATION__RELATED_TYPE:
+				return isSetRelatedType();
 			case SysMLPackage.ASSOCIATION__SOURCE_TYPE:
 				return isSetSourceType();
 			case SysMLPackage.ASSOCIATION__TARGET_TYPE:
@@ -561,11 +621,12 @@ public class AssociationImpl extends ClassifierImpl implements Association {
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
 		if (baseClass == Relationship.class) {
 			switch (derivedFeatureID) {
-				case SysMLPackage.ASSOCIATION__OWNED_RELATED_ELEMENT: return SysMLPackage.RELATIONSHIP__OWNED_RELATED_ELEMENT;
-				case SysMLPackage.ASSOCIATION__OWNING_RELATED_ELEMENT: return SysMLPackage.RELATIONSHIP__OWNING_RELATED_ELEMENT;
 				case SysMLPackage.ASSOCIATION__RELATED_ELEMENT: return SysMLPackage.RELATIONSHIP__RELATED_ELEMENT;
 				case SysMLPackage.ASSOCIATION__TARGET: return SysMLPackage.RELATIONSHIP__TARGET;
 				case SysMLPackage.ASSOCIATION__SOURCE: return SysMLPackage.RELATIONSHIP__SOURCE;
+				case SysMLPackage.ASSOCIATION__OWNING_RELATED_ELEMENT: return SysMLPackage.RELATIONSHIP__OWNING_RELATED_ELEMENT;
+				case SysMLPackage.ASSOCIATION__OWNED_RELATED_ELEMENT: return SysMLPackage.RELATIONSHIP__OWNED_RELATED_ELEMENT;
+				case SysMLPackage.ASSOCIATION__IS_IMPLIED: return SysMLPackage.RELATIONSHIP__IS_IMPLIED;
 				default: return -1;
 			}
 		}
@@ -580,15 +641,32 @@ public class AssociationImpl extends ClassifierImpl implements Association {
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
 		if (baseClass == Relationship.class) {
 			switch (baseFeatureID) {
-				case SysMLPackage.RELATIONSHIP__OWNED_RELATED_ELEMENT: return SysMLPackage.ASSOCIATION__OWNED_RELATED_ELEMENT;
-				case SysMLPackage.RELATIONSHIP__OWNING_RELATED_ELEMENT: return SysMLPackage.ASSOCIATION__OWNING_RELATED_ELEMENT;
 				case SysMLPackage.RELATIONSHIP__RELATED_ELEMENT: return SysMLPackage.ASSOCIATION__RELATED_ELEMENT;
 				case SysMLPackage.RELATIONSHIP__TARGET: return SysMLPackage.ASSOCIATION__TARGET;
 				case SysMLPackage.RELATIONSHIP__SOURCE: return SysMLPackage.ASSOCIATION__SOURCE;
+				case SysMLPackage.RELATIONSHIP__OWNING_RELATED_ELEMENT: return SysMLPackage.ASSOCIATION__OWNING_RELATED_ELEMENT;
+				case SysMLPackage.RELATIONSHIP__OWNED_RELATED_ELEMENT: return SysMLPackage.ASSOCIATION__OWNED_RELATED_ELEMENT;
+				case SysMLPackage.RELATIONSHIP__IS_IMPLIED: return SysMLPackage.ASSOCIATION__IS_IMPLIED;
 				default: return -1;
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuilder result = new StringBuilder(super.toString());
+		result.append(" (isImplied: ");
+		result.append(isImplied);
+		result.append(')');
+		return result.toString();
 	}
 
 } // AssociationImpl

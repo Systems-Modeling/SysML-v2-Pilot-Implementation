@@ -1,16 +1,32 @@
+/*******************************************************************************
+ * SysML 2 Pilot Implementation
+ * Copyright (c) 2022 Model Driven Solutions, Inc.
+ *    
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *  
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ *  
+ * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
+ *******************************************************************************/
 /**
  */
 package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.omg.sysml.lang.sysml.FramedConcernMembership;
 import org.omg.sysml.lang.sysml.ConcernUsage;
 import org.omg.sysml.lang.sysml.ConstraintUsage;
-import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.util.FeatureUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -27,6 +43,25 @@ import org.omg.sysml.util.FeatureUtil;
  * @generated
  */
 public class FramedConcernMembershipImpl extends RequirementConstraintMembershipImpl implements FramedConcernMembership {
+	/**
+	 * The cached setting delegate for the '{@link #getOwnedConcern() <em>Owned Concern</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedConcern()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate OWNED_CONCERN__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.FRAMED_CONCERN_MEMBERSHIP__OWNED_CONCERN).getSettingDelegate();
+	/**
+	 * The cached setting delegate for the '{@link #getReferencedConcern() <em>Referenced Concern</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getReferencedConcern()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate REFERENCED_CONCERN__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.FRAMED_CONCERN_MEMBERSHIP__REFERENCED_CONCERN).getSettingDelegate();
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -53,28 +88,26 @@ public class FramedConcernMembershipImpl extends RequirementConstraintMembership
 	 */
 	@Override
 	public ConcernUsage getOwnedConcern() {
-		ConcernUsage ownedConcern = basicGetOwnedConcern();
-		return ownedConcern != null && ownedConcern.eIsProxy() ? (ConcernUsage)eResolveProxy((InternalEObject)ownedConcern) : ownedConcern;
+		return (ConcernUsage)OWNED_CONCERN__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public ConcernUsage basicGetOwnedConcern() {
-		Feature ownedConstraint = super.basicGetOwnedConstraint();
-		return ownedConstraint instanceof ConcernUsage? (ConcernUsage)ownedConstraint: null;
+		return (ConcernUsage)OWNED_CONCERN__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setOwnedConcern(ConcernUsage newOwnedConcern) {
-		super.setOwnedConstraint(newOwnedConcern);
+		OWNED_CONCERN__ESETTING_DELEGATE.dynamicSet(this, null, 0, newOwnedConcern);
 	}
 
 	/**
@@ -93,27 +126,26 @@ public class FramedConcernMembershipImpl extends RequirementConstraintMembership
 	 */
 	@Override
 	public ConcernUsage getReferencedConcern() {
-		ConcernUsage referencedConcern = basicGetReferencedConcern();
-		return referencedConcern != null && referencedConcern.eIsProxy() ? (ConcernUsage)eResolveProxy((InternalEObject)referencedConcern) : referencedConcern;
+		return (ConcernUsage)REFERENCED_CONCERN__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public ConcernUsage basicGetReferencedConcern() {
-		return FeatureUtil.getReferencedFeatureOf(getOwnedConcern(), ConcernUsage.class);
+		return (ConcernUsage)REFERENCED_CONCERN__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setReferencedConcern(ConcernUsage newReferencedConcern) {
-		throw new UnsupportedOperationException();
+		REFERENCED_CONCERN__ESETTING_DELEGATE.dynamicSet(this, null, 0, newReferencedConcern);
 	}
 
 	/**

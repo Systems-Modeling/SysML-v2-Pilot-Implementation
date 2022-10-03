@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -24,6 +24,7 @@ package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -61,6 +62,16 @@ public class PortConjugationImpl extends ConjugationImpl implements PortConjugat
 	protected PortDefinition originalPortDefinition;
 
 	/**
+	 * The cached setting delegate for the '{@link #getConjugatedPortDefinition() <em>Conjugated Port Definition</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getConjugatedPortDefinition()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate CONJUGATED_PORT_DEFINITION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.PORT_CONJUGATION__CONJUGATED_PORT_DEFINITION).getSettingDelegate();
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -79,6 +90,12 @@ public class PortConjugationImpl extends ConjugationImpl implements PortConjugat
 		return SysMLPackage.Literals.PORT_CONJUGATION;
 	}
 	
+	/**
+	 * <!-- begin-user-doc -->
+	 * Xtext workaround.
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
 	@Override
 	public PortDefinition getOriginalPortDefinition() {
 		return originalPortDefinition == null? basicGetOriginalPortDefinition(): getOriginalPortDefinitionGen();
@@ -103,6 +120,9 @@ public class PortConjugationImpl extends ConjugationImpl implements PortConjugat
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * Xtext workaround:
+	 * If the originalPortDefinition is empty, then set it to the owner of the conjugatedPortDefinition
+	 * (if that is a PortDefinition).
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
@@ -144,32 +164,30 @@ public class PortConjugationImpl extends ConjugationImpl implements PortConjugat
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public ConjugatedPortDefinition getConjugatedPortDefinition() {
-		ConjugatedPortDefinition conjugatedPortDefinition = basicGetConjugatedPortDefinition();
-		return conjugatedPortDefinition != null && conjugatedPortDefinition.eIsProxy() ? (ConjugatedPortDefinition)eResolveProxy((InternalEObject)conjugatedPortDefinition) : conjugatedPortDefinition;
+		return (ConjugatedPortDefinition)CONJUGATED_PORT_DEFINITION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public ConjugatedPortDefinition basicGetConjugatedPortDefinition() {
-		Type owningType = super.basicGetOwningType();
-		return owningType instanceof ConjugatedPortDefinition? (ConjugatedPortDefinition)owningType: null;
+		return (ConjugatedPortDefinition)CONJUGATED_PORT_DEFINITION__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setConjugatedPortDefinition(ConjugatedPortDefinition newConjugatedPortDefinition) {
-		throw new UnsupportedOperationException();
+		CONJUGATED_PORT_DEFINITION__ESETTING_DELEGATE.dynamicSet(this, null, 0, newConjugatedPortDefinition);
 	}
 
 	/**

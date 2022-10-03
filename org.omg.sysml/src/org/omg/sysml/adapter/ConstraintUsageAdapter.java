@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2021, 2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -23,6 +23,8 @@ package org.omg.sysml.adapter;
 
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.ConstraintUsage;
+import org.omg.sysml.lang.sysml.ItemDefinition;
+import org.omg.sysml.lang.sysml.ItemUsage;
 import org.omg.sysml.lang.sysml.RequirementDefinition;
 import org.omg.sysml.lang.sysml.RequirementUsage;
 import org.omg.sysml.lang.sysml.Type;
@@ -88,6 +90,9 @@ public class ConstraintUsageAdapter extends OccurrenceUsageAdapter {
 			addRequirementSubsetting();
 		}
 		super.computeImplicitGeneralTypes();
+		if (isCheckedConstraint()) {
+			addDefaultGeneralType("checkedConstraint");
+		}
 		if (isOwnedPerformance()) {
 			addDefaultGeneralType("ownedPerformance");
 		} 
@@ -97,6 +102,19 @@ public class ConstraintUsageAdapter extends OccurrenceUsageAdapter {
 		if (isEnclosedPerformance()) {
 			addDefaultGeneralType("enclosedPerformance");
 		}
+	}
+	
+	@Override
+	protected String getDefaultSupertype() {
+		return getDefaultSupertype("base");
+	}
+	
+	protected boolean isCheckedConstraint() {
+		ConstraintUsage target = getTarget();
+		Type owningType = target.getOwningType();
+		return target.isComposite() &&
+				(owningType instanceof ItemDefinition || owningType instanceof ItemUsage);
+				
 	}
 	
 	// Transformation

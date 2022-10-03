@@ -25,6 +25,7 @@ package org.omg.sysml.lang.sysml.impl;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -69,6 +70,16 @@ public class SubsettingImpl extends SpecializationImpl implements Subsetting {
 	protected Feature subsettedFeature;
 
 	/**
+	 * The cached setting delegate for the '{@link #getOwningFeature() <em>Owning Feature</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwningFeature()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate OWNING_FEATURE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.SUBSETTING__OWNING_FEATURE).getSettingDelegate();
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -85,13 +96,20 @@ public class SubsettingImpl extends SpecializationImpl implements Subsetting {
 		return SysMLPackage.Literals.SUBSETTING;
 	}
 	
+	/**
+	 * <!-- begin-user-doc -->
+	 * Xtext workaround.
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
 	@Override
 	public Feature getSubsettedFeature() {
 		return subsettedFeature == null? basicGetSubsettedFeature(): getSubsettedFeatureGen();
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public Feature getSubsettedFeatureGen() {
@@ -107,7 +125,11 @@ public class SubsettingImpl extends SpecializationImpl implements Subsetting {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> 
+	 * Xtext workaround:
+	 * If the subsettedFeature is empty, then set it to the last ownedRelatedElement
+	 * (which will be a Feature chain).
+	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	public Feature basicGetSubsettedFeature() {
@@ -140,12 +162,19 @@ public class SubsettingImpl extends SpecializationImpl implements Subsetting {
 		return basicGetSubsettedFeature() != null;
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * Xtext workaround.
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
 	public Feature getSubsettingFeature() {
 		return subsettingFeature == null ? basicGetSubsettingFeature() : getSubsettingFeatureGen();
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> 
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public Feature getSubsettingFeatureGen() {
@@ -162,6 +191,9 @@ public class SubsettingImpl extends SpecializationImpl implements Subsetting {
 
 	/**
 	 * <!-- begin-user-doc --> 
+	 * Xtext workaround:
+	 * If the subsettingFeature is empty, then set it to the owningRelatedFeature, if this is a Feature.
+	 * Otherwise set it to the first ownedRelatedElement (which will be a Feature chain).
 	 * <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
@@ -207,27 +239,25 @@ public class SubsettingImpl extends SpecializationImpl implements Subsetting {
 	 */
 	@Override
 	public Feature getOwningFeature() {
-		Feature owningFeature = basicGetOwningFeature();
-		return owningFeature != null && owningFeature.eIsProxy() ? (Feature)eResolveProxy((InternalEObject)owningFeature) : owningFeature;
+		return (Feature)OWNING_FEATURE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Feature basicGetOwningFeature() {
-		Type owningType = super.basicGetOwningType();
-		return owningType instanceof Feature? (Feature) owningType : null;
+		return (Feature)OWNING_FEATURE__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated NOT // derived
+	 * @generated
 	 */
+	@Override
 	public void setOwningFeature(Feature newOwningFeature) {
-		super.setOwningType(newOwningFeature);
+		OWNING_FEATURE__ESETTING_DELEGATE.dynamicSet(this, null, 0, newOwningFeature);
 	}
 
 	/**

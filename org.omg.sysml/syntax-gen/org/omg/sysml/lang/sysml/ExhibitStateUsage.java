@@ -28,7 +28,7 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>An ExhibitStateUsage is a StateUsage that represents the exhibiting of a StateUsage. The StateUsage to be exhibited (which may be the ExhibitStateUsage itself) is related to the ExhibitStateUsage by a Subsetting Relationship. An ExhibitStateUsage is also a PerformActionUsage, with its <code>exhibitedState</code> as the <code>performedAction</code>.</p>
+ * <p>An ExhibitStateUsage is a StateUsage that represents the exhibiting of a StateUsage. Unless it is the StateUsage itself, the StateUsage to be exhibited is related to the ExhibitStateUsage by a ReferenceSubsetting Relationship. An ExhibitStateUsage is also a PerformActionUsage, with its <code>exhibitedState</code> as the <code>performedAction</code>.</p>
  * 
  * <p>If the ExhibitStateUsage is owned by a PartDefinition or PartUsage, then it also subsets the StateUsage <em><code>Part::exhibitedStates</code></em> from the Systems model library.</p>
  * 
@@ -61,7 +61,7 @@ public interface ExhibitStateUsage extends StateUsage, PerformActionUsage {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The StateUsage to be exhibited by the ExhibitStateUsage. It is the <tt>subsettedFeature</tt> of the first owned Subsetting Relationship of the ExhibitStateUsage.</p>
+	 * <p>The StateUsage to be exhibited by the ExhibitStateUsage. It is the <code>performedAction</code> of the ExhibitStateUsage considered as an PerformActionUsage, which must be an StateUsage.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Exhibited State</em>' reference.
 	 * @see #setExhibitedState(StateUsage)
@@ -69,6 +69,7 @@ public interface ExhibitStateUsage extends StateUsage, PerformActionUsage {
 	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='exhibitingState'"
 	 *        annotation="redefines"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	StateUsage getExhibitedState();

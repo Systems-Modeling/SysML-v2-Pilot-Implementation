@@ -149,9 +149,10 @@ public interface Subsetting extends Specialization {
 	 * @see #setOwningFeature(Feature)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getSubsetting_OwningFeature()
 	 * @see org.omg.sysml.lang.sysml.Feature#getOwnedSubsetting
-	 * @model opposite="ownedSubsetting" required="true" transient="true" volatile="true" derived="true" ordered="false"
+	 * @model opposite="ownedSubsetting" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="redefines"
 	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	Feature getOwningFeature();

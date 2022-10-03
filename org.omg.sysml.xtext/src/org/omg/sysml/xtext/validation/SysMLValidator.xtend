@@ -1,7 +1,7 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2020 California Institute of Technology/Jet Propulsion Laboratory
- * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -82,8 +82,6 @@ import org.omg.sysml.lang.sysml.ViewDefinition
 import org.omg.sysml.lang.sysml.ViewUsage
 import org.omg.sysml.lang.sysml.ViewpointDefinition
 import org.omg.sysml.lang.sysml.ViewpointUsage
-import org.omg.sysml.lang.sysml.impl.FeatureImpl
-import org.omg.sysml.util.UsageUtil
 import org.omg.sysml.lang.sysml.TransitionUsage
 import org.omg.sysml.lang.sysml.Succession
 import org.omg.sysml.lang.sysml.StateDefinition
@@ -93,6 +91,11 @@ import org.omg.sysml.lang.sysml.UseCaseUsage
 import org.omg.sysml.lang.sysml.UseCaseDefinition
 import org.omg.sysml.lang.sysml.MetadataUsage
 import org.omg.sysml.lang.sysml.Metaclass
+import org.omg.sysml.util.FeatureUtil
+import org.omg.sysml.util.UsageUtil
+import org.omg.sysml.lang.sysml.FlowConnectionUsage
+import org.omg.sysml.lang.sysml.Interaction
+import org.omg.sysml.lang.sysml.FlowConnectionDefinition
 
 /**
  * This class contains custom validation rules. 
@@ -124,6 +127,10 @@ class SysMLValidator extends KerMLValidator {
 	public static val INVALID_INDIVIDUALUSAGE_MSG = 'An individual must be typed by one individual definition.'
 	public static val INVALID_CONNECTIONUSAGE = 'Invalid ConnectionUsage - invalid type'
 	public static val INVALID_CONNECTIONUSAGE_MSG = 'A connection must be typed by connection definitions.'
+	public static val INVALID_FLOWCONNECTIONUSAGE = 'Invalid FlowConnectionUsage - invalid type'
+	public static val INVALID_FLOWCONNECTIONUSAGE_MSG = 'A flow connection must be typed by flow connection definitions.'
+	public static val INVALID_FLOWCONNECTIONDEFINITION_END = 'Invalid FlowConnectionDefinition - invalid end'
+	public static val INVALID_FLOWCONNECTIONDEFINITION_END_MSG = 'A flow connection definition can have only two ends.'
 	public static val INVALID_INTERFACEUSAGE = 'Invalid InterfaceUsage - invalid type'
 	public static val INVALID_INTERFACEUSAGE_MSG = 'An interface must be typed by interface definitions.'
 	public static val INVALID_INTERFACEDEFINITION_END = 'Invalid InterfaceDefinition - invalid end'
@@ -213,7 +220,7 @@ class SysMLValidator extends KerMLValidator {
 	def checkAttributeUsageTypes(AttributeUsage usg){
 		checkAllTypes(usg, DataType, SysMLValidator.INVALID_ATTRIBUTEUSAGE_MSG, SysMLPackage.eINSTANCE.attributeUsage_AttributeDefinition, SysMLValidator.INVALID_ATTRIBUTEUSAGE)
 		if (!(usg instanceof EnumerationUsage)) {
-		val types = (usg as FeatureImpl).allTypes
+		val types = FeatureUtil.getAllTypesOf(usg)
 			if (types.exists[t | t instanceof EnumerationDefinition] && types.size > 1) {
 				error(INVALID_ENUMERATIONATTRIBUTEUSAGE_MSG, SysMLPackage.eINSTANCE.attributeUsage_AttributeDefinition, SysMLValidator.INVALID_ENUMERATIONATTRIBUTEUSAGE)
 			}
@@ -241,7 +248,7 @@ class SysMLValidator extends KerMLValidator {
 	}
 	@Check //All types must be Behaviors
 	def checkActionUsageTypes(ActionUsage usg){
-		if (!(usg instanceof StateUsage || usg instanceof CalculationUsage) )
+		if (!(usg instanceof StateUsage || usg instanceof CalculationUsage || usg instanceof FlowConnectionUsage) )
 			checkAllTypes(usg, Behavior, SysMLValidator.INVALID_ACTIONUSAGE_MSG, SysMLPackage.eINSTANCE.actionUsage_ActionDefinition, SysMLValidator.INVALID_ACTIONUSAGE)
 	}	
 	@Check //Must have exactly one type, which is a Predicate.
@@ -278,8 +285,12 @@ class SysMLValidator extends KerMLValidator {
 	}
 	@Check //All types must be Associations.
 	def checkConnectionUsageTypes(ConnectionUsage usg){
-		if (!(usg instanceof InterfaceUsage || usg instanceof AllocationUsage))	
-			checkAllTypes(usg, Association, SysMLValidator.INVALID_CONNECTIONUSAGE_MSG, SysMLPackage.eINSTANCE.connector_Association, SysMLValidator.INVALID_CONNECTIONUSAGE)
+		if (!(usg instanceof FlowConnectionUsage || usg instanceof InterfaceUsage || usg instanceof AllocationUsage))	
+			checkAllTypes(usg, Association, SysMLValidator.INVALID_CONNECTIONUSAGE_MSG, SysMLPackage.eINSTANCE.connectionUsage_ConnectionDefinition, SysMLValidator.INVALID_CONNECTIONUSAGE)
+	}
+	@Check //All types must be Interactions.
+	def checkFlowConnectionUsageTypes(FlowConnectionUsage usg){
+		checkAllTypes(usg, Interaction, SysMLValidator.INVALID_FLOWCONNECTIONUSAGE_MSG, SysMLPackage.eINSTANCE.flowConnectionUsage_FlowConnectionDefinition, SysMLValidator.INVALID_FLOWCONNECTIONUSAGE)
 	}
 	@Check //All types must be InterfaceDefinitions.
 	def checkInterfaceUsageTypes(InterfaceUsage usg){
@@ -287,7 +298,7 @@ class SysMLValidator extends KerMLValidator {
 	}
 	@Check //All types must be AllocationDefinitions.
 	def checkAllocationUsageTypes(AllocationUsage usg){
-		checkAllTypes(usg, AllocationDefinition, SysMLValidator.INVALID_ALLOCATIONUSAGE_MSG, SysMLPackage.eINSTANCE.connector_Association, SysMLValidator.INVALID_ALLOCATIONUSAGE)
+		checkAllTypes(usg, AllocationDefinition, SysMLValidator.INVALID_ALLOCATIONUSAGE_MSG, SysMLPackage.eINSTANCE.allocationUsage_AllocationDefinition, SysMLValidator.INVALID_ALLOCATIONUSAGE)
 	}
 	@Check //All types must be PortDefinitions. 
 	def checkPortUsageTypes(PortUsage usg){
@@ -327,10 +338,20 @@ class SysMLValidator extends KerMLValidator {
 	def checkMetadataUsageTypes(MetadataUsage usg){
 		checkOneType(usg, Metaclass, SysMLValidator.INVALID_METADATAUSAGE_MSG, SysMLPackage.eINSTANCE.metadataUsage_MetadataDefinition, SysMLValidator.INVALID_METADATAUSAGE)
 	}
+	
+	@Check //At most two owned ends
+	def checkFlowConnectionDefinitionEnds(FlowConnectionDefinition cdef) {
+		val ends = cdef.ownedEndFeature
+		if (ends.size > 2) {
+			for (var i = 2; i < ends.size; i++) {
+				error(INVALID_FLOWCONNECTIONDEFINITION_END_MSG, ends.get(i), null, INVALID_FLOWCONNECTIONDEFINITION_END)
+			}
+		}
+	}
 
 	@Check //Ends must be ports
-	def checkInterfaceDefinitionEnds(InterfaceDefinition usg) {
-		for (end: usg.ownedFeature.filter[isEnd]) {
+	def checkInterfaceDefinitionEnds(InterfaceDefinition idef) {
+		for (end: idef.ownedFeature.filter[isEnd]) {
 			if (!(end instanceof PortUsage)) {
 				error(INVALID_INTERFACEDEFINITION_END_MSG, end, null, INVALID_INTERFACEDEFINITION_END)
 			}
@@ -425,14 +446,14 @@ class SysMLValidator extends KerMLValidator {
 	}
 	
 	protected def boolean checkAllTypes(Feature f, Class<?> requiredType, String msg, EStructuralFeature ref, String eId){
-		val check = (f as FeatureImpl).allTypes.forall[u| requiredType.isInstance(u)]
+		val check = FeatureUtil.getAllTypesOf(f).forall[u| requiredType.isInstance(u)]
 		if (!check)
 			error (msg, ref, eId)
 		return check;
 	}
 	
 	protected def boolean checkAtLeastOneType(Feature f, Class<?> requiredType, String msg, EStructuralFeature ref, String eId){
-		val check = (f as FeatureImpl).allTypes.exists[u| requiredType.isInstance(u)]
+		val check = FeatureUtil.getAllTypesOf(f).exists[u| requiredType.isInstance(u)]
 		if (!check)
 			error (msg, ref, eId)
 		return check
@@ -440,7 +461,7 @@ class SysMLValidator extends KerMLValidator {
 	
 	//check types but must have exactly one type
 	protected def boolean checkOneType(Feature f, Class<?> requiredType, String msg, EReference ref, String eId){
-		val types = (f as FeatureImpl).allTypes
+		val types = FeatureUtil.getAllTypesOf(f)
 		val check = types.length == 1 && types.exists[u| requiredType.isInstance(u)]
 		if (!check)
 			error (msg, ref, eId)

@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -26,8 +26,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.UniqueEList;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.uml2.common.util.UnionEObjectEList;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
@@ -52,6 +51,16 @@ import org.omg.sysml.lang.sysml.ViewRenderingMembership;
  */
 public class RenderingUsageImpl extends PartUsageImpl implements RenderingUsage {
 	
+	/**
+	 * The cached setting delegate for the '{@link #getRenderingDefinition() <em>Rendering Definition</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getRenderingDefinition()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate RENDERING_DEFINITION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.RENDERING_USAGE__RENDERING_DEFINITION).getSettingDelegate();
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -78,29 +87,26 @@ public class RenderingUsageImpl extends PartUsageImpl implements RenderingUsage 
 	 */
 	@Override
 	public RenderingDefinition getRenderingDefinition() {
-		RenderingDefinition renderingDefinition = basicGetRenderingDefinition();
-		return renderingDefinition != null && renderingDefinition.eIsProxy() ? (RenderingDefinition)eResolveProxy((InternalEObject)renderingDefinition) : renderingDefinition;
+		return (RenderingDefinition)RENDERING_DEFINITION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public RenderingDefinition basicGetRenderingDefinition() {
-		return (RenderingDefinition)super.getPartDefinition().stream().
-				filter(RenderingDefinition.class::isInstance).
-				findFirst().orElse(null);
+		return (RenderingDefinition)RENDERING_DEFINITION__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setRenderingDefinition(RenderingDefinition newRenderingDefinition) {
-		throw new UnsupportedOperationException();
+		RENDERING_DEFINITION__ESETTING_DELEGATE.dynamicSet(this, null, 0, newRenderingDefinition);
 	}
 
 	/**

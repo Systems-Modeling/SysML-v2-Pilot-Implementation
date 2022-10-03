@@ -1,19 +1,25 @@
-/**
- * This package contains a library model of the semantics of conditional transitions between occurrences, 
- * including the performance of specified Behaviors when the transition occurs.
- */
 package TransitionPerformances {
+	doc
+	/*
+	 * This package contains a library model of the semantics of conditional transitions between occurrences, 
+	 * including the performance of specified Behaviors when the transition occurs.
+	 */
+
 	private import ScalarValues::Boolean;
+	private import ScalarValues::Natural;
 	private import Occurrences::HappensBefore;
 	private import Performances::Performance;
 	private import Performances::Evaluation;
 	private import Transfers::Transfer;
 	private import ControlFunctions::allTrue;
+	private import SequenceFunctions::size;
 	
-	abstract behavior TransitionPerformance(in step transitionLinkSource: Performance[1]) {
+	abstract behavior TransitionPerformance {
+		in step transitionLinkSource: Performance[1];
+		
 		feature trigger: Transfer[*];
-		expr guard[*];
-		step effect[*];
+		bool guard[*] subsets enclosedPerformances;
+		step effect[*] subsets enclosedPerformances;
 
 		feature transitionLink: HappensBefore[0..1];
 		
@@ -30,15 +36,17 @@ package TransitionPerformances {
 	}
 	
 	behavior NonStateTransitionPerformance specializes TransitionPerformance {
-		private succession transitionLinkSource[1] then trigger[*];
-		private succession transitionLinkSource[1] then guard[*];
-		
+		feature isTriggerAfter: Boolean default true;
+		private succession transitionLinkSource[1] then Performance::self[1];
+		private feature taNum: Natural [1] = if isTriggerAfter ? size(trigger) else 0;
+		private succession triggerAfter [taNum] first transitionLinkSource[0..1] then trigger.endShot[*];
+				
 		private succession all guard[*] then transitionLink.laterOccurrence[0..1];
 	}
 	
 	assoc struct TPCGuardConstraint {
 		end feature constrainedHBLink: HappensBefore[0..1];
-		end expr constrainedGuard: Evaluation[*] () result: Boolean;
+		end bool constrainedGuard;
 		
 		private inv { allTrue(constrainedGuard()) }
 	}	

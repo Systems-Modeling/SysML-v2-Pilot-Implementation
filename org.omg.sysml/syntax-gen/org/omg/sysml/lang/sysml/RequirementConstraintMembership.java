@@ -97,6 +97,7 @@ public interface RequirementConstraintMembership extends FeatureMembership {
 	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='requirementConstraintMembership'"
 	 *        annotation="redefines"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	ConstraintUsage getOwnedConstraint();
@@ -116,13 +117,14 @@ public interface RequirementConstraintMembership extends FeatureMembership {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p> The ConstraintUsage that is referenced through this RequirementConstraintMembership. This is derived as being the first ConstraintUsage subset by the <code>ownedConstraint</code>, if there is one, and, otherwise, the <code>ownedConstraint</code> itself.</p>
+	 * <p> The ConstraintUsage that is referenced through this RequirementConstraintMembership. This is derived as <code>referencedFeature</code> of the <code>ownedReferenceSubsetting</code> of the <code>ownedConstraint</code>, if there is one, and, otherwise, the <code>ownedConstraint</code> itself.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Referenced Constraint</em>' reference.
 	 * @see #setReferencedConstraint(ConstraintUsage)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getRequirementConstraintMembership_ReferencedConstraint()
 	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='referencingConstraintMembership'"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	ConstraintUsage getReferencedConstraint();

@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -24,7 +24,7 @@ package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.omg.sysml.lang.sysml.ConstraintUsage;
@@ -32,7 +32,6 @@ import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.RequirementConstraintKind;
 import org.omg.sysml.lang.sysml.RequirementConstraintMembership;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.util.FeatureUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -70,6 +69,26 @@ public class RequirementConstraintMembershipImpl extends FeatureMembershipImpl i
 	 * @ordered
 	 */
 	protected RequirementConstraintKind kind = KIND_EDEFAULT;
+
+	/**
+	 * The cached setting delegate for the '{@link #getOwnedConstraint() <em>Owned Constraint</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedConstraint()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate OWNED_CONSTRAINT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.REQUIREMENT_CONSTRAINT_MEMBERSHIP__OWNED_CONSTRAINT).getSettingDelegate();
+
+	/**
+	 * The cached setting delegate for the '{@link #getReferencedConstraint() <em>Referenced Constraint</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getReferencedConstraint()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate REFERENCED_CONSTRAINT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.REQUIREMENT_CONSTRAINT_MEMBERSHIP__REFERENCED_CONSTRAINT).getSettingDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -120,28 +139,26 @@ public class RequirementConstraintMembershipImpl extends FeatureMembershipImpl i
 	 */
 	@Override
 	public ConstraintUsage getOwnedConstraint() {
-		ConstraintUsage ownedConstraint = basicGetOwnedConstraint();
-		return ownedConstraint != null && ownedConstraint.eIsProxy() ? (ConstraintUsage)eResolveProxy((InternalEObject)ownedConstraint) : ownedConstraint;
+		return (ConstraintUsage)OWNED_CONSTRAINT__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public ConstraintUsage basicGetOwnedConstraint() {
-		Feature ownedMemberFeature = super.basicGetOwnedMemberFeature();
-		return ownedMemberFeature instanceof ConstraintUsage? (ConstraintUsage)ownedMemberFeature: null;
+		return (ConstraintUsage)OWNED_CONSTRAINT__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setOwnedConstraint(ConstraintUsage newOwnedConstraint) {
-		super.setOwnedMemberFeature(newOwnedConstraint);
+		OWNED_CONSTRAINT__ESETTING_DELEGATE.dynamicSet(this, null, 0, newOwnedConstraint);
 	}
 
 	/**
@@ -160,27 +177,26 @@ public class RequirementConstraintMembershipImpl extends FeatureMembershipImpl i
 	 */
 	@Override
 	public ConstraintUsage getReferencedConstraint() {
-		ConstraintUsage referencedConstraint = basicGetReferencedConstraint();
-		return referencedConstraint != null && referencedConstraint.eIsProxy() ? (ConstraintUsage)eResolveProxy((InternalEObject)referencedConstraint) : referencedConstraint;
+		return (ConstraintUsage)REFERENCED_CONSTRAINT__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public ConstraintUsage basicGetReferencedConstraint() {
-		return FeatureUtil.getReferencedFeatureOf(getOwnedConstraint(), ConstraintUsage.class);
+		return (ConstraintUsage)REFERENCED_CONSTRAINT__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setReferencedConstraint(ConstraintUsage newReferencedConstraint) {
-		throw new UnsupportedOperationException();
+		REFERENCED_CONSTRAINT__ESETTING_DELEGATE.dynamicSet(this, null, 0, newReferencedConstraint);
 	}
 
 	/**
@@ -301,7 +317,7 @@ public class RequirementConstraintMembershipImpl extends FeatureMembershipImpl i
 			case SysMLPackage.REQUIREMENT_CONSTRAINT_MEMBERSHIP__OWNED_CONSTRAINT:
 				return isSetOwnedConstraint();
 			case SysMLPackage.REQUIREMENT_CONSTRAINT_MEMBERSHIP__REFERENCED_CONSTRAINT:
-				return basicGetReferencedConstraint() != null;
+				return REFERENCED_CONSTRAINT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 		}
 		return super.eIsSet(featureID);
 	}

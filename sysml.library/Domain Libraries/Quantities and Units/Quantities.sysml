@@ -76,7 +76,7 @@ package Quantities {
 		/*
 		 * A SystemOfQuantities represents the essentials of [VIM] concept "system of quantities" (https://jcgm.bipm.org/vim/en/1.3.html), defined as a
 		 * "set of quantities together with a set of noncontradictory equations relating those quantities".
-		 * In order to establish such a set of noncontradictory equations a set of base quantities is selected. Subsequently the system of quantities is
+		 * In order to establish such a set of noncontradictory equations a set of base quantities is selected. Subsequently the system of quantities is 
 		 * completed by adding derived quantities which are products of powers of the base quantities.
 		 */
 	

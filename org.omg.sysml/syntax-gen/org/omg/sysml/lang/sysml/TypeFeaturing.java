@@ -29,7 +29,7 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A TypeFeaturing is a Relationship between a Type and a Feature that is featured by that Type. Every instance in the domain of the <code>featureOfType</code> must be classified by the <code>featuringType</code>. This means that sequences that are classified by the <code>featureOfType</code> must have a prefix subsequence that is classified by the <code>featuringType</code>.</p>
+ * <p>A TypeFeaturing is a Featuring Relationship in which the <code>featureOfType</code> is the <code>source</code> and the <code>featuringType</code> is the target. A TypeFeaturing may be owned by its <code>featureOfType</code>.</p>
  * <!-- end-model-doc -->
  *
  * <p>
@@ -45,7 +45,7 @@ package org.omg.sysml.lang.sysml;
  * @model
  * @generated
  */
-public interface TypeFeaturing extends Relationship {
+public interface TypeFeaturing extends Featuring {
 	/**
 	 * Returns the value of the '<em><b>Feature Of Type</b></em>' reference.
 	 * <p>
@@ -53,11 +53,12 @@ public interface TypeFeaturing extends Relationship {
 	 * </p>
 	 * <ul>
 	 *   <li>'{@link org.omg.sysml.lang.sysml.Relationship#getSource() <em>Source</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Featuring#getFeature() <em>Feature</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Feature that is featured by the <code>featuringType</code>.</p>
+	 * <p>The Feature that is featured by the <code>featuringType</code>. It is the <code>source</code> of the Relationship.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Feature Of Type</em>' reference.
 	 * @see #setFeatureOfType(Feature)
@@ -86,17 +87,18 @@ public interface TypeFeaturing extends Relationship {
 	 * </p>
 	 * <ul>
 	 *   <li>'{@link org.omg.sysml.lang.sysml.Relationship#getTarget() <em>Target</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Featuring#getType() <em>Type</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Type that features the <code>featureOfType</code>.</p>
+	 * <p>The Type that features the <code>featureOfType</code>. It is the <code>target</code> of the Relationship.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Featuring Type</em>' reference.
 	 * @see #setFeaturingType(Type)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getTypeFeaturing_FeaturingType()
 	 * @model required="true" ordered="false"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='typedFeaturing'"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='typeFeaturingOfType'"
 	 *        annotation="redefines"
 	 * @generated
 	 */
@@ -133,6 +135,7 @@ public interface TypeFeaturing extends Relationship {
 	 * @see org.omg.sysml.lang.sysml.Feature#getOwnedTypeFeaturing
 	 * @model opposite="ownedTypeFeaturing" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	Feature getOwningFeatureOfType();

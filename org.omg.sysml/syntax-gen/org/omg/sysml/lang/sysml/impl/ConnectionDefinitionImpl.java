@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -30,9 +30,9 @@ import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.BasicInternalEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -40,15 +40,12 @@ import org.eclipse.uml2.common.util.UnionEObjectEList;
 import org.omg.sysml.lang.sysml.Association;
 import org.omg.sysml.lang.sysml.AssociationStructure;
 import org.omg.sysml.lang.sysml.ConnectionDefinition;
-import org.omg.sysml.lang.sysml.Connector;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
-import org.omg.sysml.util.NonNotifyingEObjectEList;
-import org.omg.sysml.util.TypeUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -58,8 +55,9 @@ import org.omg.sysml.util.TypeUtil;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectionDefinitionImpl#getOwnedRelatedElement <em>Owned Related Element</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectionDefinitionImpl#getOwningRelatedElement <em>Owning Related Element</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectionDefinitionImpl#getOwnedRelatedElement <em>Owned Related Element</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectionDefinitionImpl#isImplied <em>Is Implied</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectionDefinitionImpl#getRelatedType <em>Related Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectionDefinitionImpl#getSourceType <em>Source Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectionDefinitionImpl#getTargetType <em>Target Type</em>}</li>
@@ -79,6 +77,63 @@ public class ConnectionDefinitionImpl extends PartDefinitionImpl implements Conn
 	 * @ordered
 	 */
 	protected EList<Element> ownedRelatedElement;
+
+	/**
+	 * The default value of the '{@link #isImplied() <em>Is Implied</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isImplied()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean IS_IMPLIED_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isImplied() <em>Is Implied</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isImplied()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean isImplied = IS_IMPLIED_EDEFAULT;
+
+	/**
+	 * The cached setting delegate for the '{@link #getRelatedType() <em>Related Type</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getRelatedType()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate RELATED_TYPE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.ASSOCIATION__RELATED_TYPE).getSettingDelegate();
+	/**
+	 * The cached setting delegate for the '{@link #getSourceType() <em>Source Type</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSourceType()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate SOURCE_TYPE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.ASSOCIATION__SOURCE_TYPE).getSettingDelegate();
+	/**
+	 * The cached setting delegate for the '{@link #getTargetType() <em>Target Type</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTargetType()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate TARGET_TYPE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.ASSOCIATION__TARGET_TYPE).getSettingDelegate();
+	/**
+	 * The cached setting delegate for the '{@link #getConnectionEnd() <em>Connection End</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getConnectionEnd()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate CONNECTION_END__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.CONNECTION_DEFINITION__CONNECTION_END).getSettingDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -203,24 +258,36 @@ public class ConnectionDefinitionImpl extends PartDefinitionImpl implements Conn
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT // derived
+	 * @generated
 	 */
 	@Override
-	public EList<Type> getRelatedType() {
-		EList<Type> relatedTypes = new BasicInternalEList<Type>(Type.class);
-		getAssociationEnd().stream().flatMap(end -> end.getType().stream()).forEachOrdered(relatedTypes::add);
-		return relatedTypes;
+	public boolean isImplied() {
+		return isImplied;
 	}
 
 	/**
-	 * The array of subset feature identifiers for the '{@link #getRelatedType() <em>Related Type</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getRelatedType()
 	 * @generated
-	 * @ordered
 	 */
-	protected static final int[] RELATED_TYPE_ESUBSETS = new int[] {SysMLPackage.CONNECTION_DEFINITION__SOURCE_TYPE, SysMLPackage.CONNECTION_DEFINITION__TARGET_TYPE};
+	@Override
+	public void setIsImplied(boolean newIsImplied) {
+		boolean oldIsImplied = isImplied;
+		isImplied = newIsImplied;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.CONNECTION_DEFINITION__IS_IMPLIED, oldIsImplied, isImplied));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public EList<Type> getRelatedType() {
+		return (EList<Type>)RELATED_TYPE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+	}
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -234,11 +301,20 @@ public class ConnectionDefinitionImpl extends PartDefinitionImpl implements Conn
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT // derived
+	 * @generated
 	 */
-	public Connector basicGetOwningConnector() {
-		Element owner = this.getOwner();
-		return owner instanceof Connector ? (Connector) owner : null;
+	@Override
+	public Type getSourceType() {
+		return (Type)SOURCE_TYPE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Type basicGetSourceType() {
+		return (Type)SOURCE_TYPE__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
@@ -247,28 +323,8 @@ public class ConnectionDefinitionImpl extends PartDefinitionImpl implements Conn
 	 * @generated
 	 */
 	@Override
-	public Type getSourceType() {
-		Type sourceType = basicGetSourceType();
-		return sourceType != null && sourceType.eIsProxy() ? (Type)eResolveProxy((InternalEObject)sourceType) : sourceType;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public Type basicGetSourceType() {
-		return TypeUtil.getSourceTypeOf(this);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	@Override
 	public void setSourceType(Type newSourceType) {
-		throw new UnsupportedOperationException();
+		SOURCE_TYPE__ESETTING_DELEGATE.dynamicSet(this, null, 0, newSourceType);
 	}
 
 	/**
@@ -283,13 +339,12 @@ public class ConnectionDefinitionImpl extends PartDefinitionImpl implements Conn
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<Type> getTargetType() {
-		EList<Type> targetType = new NonNotifyingEObjectEList<>(Type.class, this, SysMLPackage.CONNECTION_DEFINITION__TARGET_TYPE);
-		TypeUtil.addTargetTypes(this, targetType);
-		return targetType;
+		return (EList<Type>)TARGET_TYPE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 	
 	/**
@@ -304,15 +359,12 @@ public class ConnectionDefinitionImpl extends PartDefinitionImpl implements Conn
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<Usage> getConnectionEnd() {
-		EList<Usage> connectionEnds = new NonNotifyingEObjectEList<>(Usage.class, this, SysMLPackage.CONNECTION_DEFINITION__CONNECTION_END);
-		super.getEndFeature().stream().
-			filter(Usage.class::isInstance).map(Usage.class::cast).
-			forEachOrdered(connectionEnds::add);
-		return connectionEnds;
+		return (EList<Usage>)CONNECTION_END__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
@@ -327,11 +379,13 @@ public class ConnectionDefinitionImpl extends PartDefinitionImpl implements Conn
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public EList<Feature> getAssociationEnd() {
-		return super.getEndFeature();
+		@SuppressWarnings("unchecked")
+		EList<Feature> connectionEnd = (EList<Feature>)((EList<?>)getConnectionEnd());
+		return connectionEnd;
 	}
 
 	/**
@@ -362,7 +416,7 @@ public class ConnectionDefinitionImpl extends PartDefinitionImpl implements Conn
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int[] RELATED_ELEMENT_ESUBSETS = new int[] {SysMLPackage.CONNECTION_DEFINITION__OWNED_RELATED_ELEMENT, SysMLPackage.CONNECTION_DEFINITION__OWNING_RELATED_ELEMENT, SysMLPackage.CONNECTION_DEFINITION__TARGET, SysMLPackage.CONNECTION_DEFINITION__SOURCE};
+	protected static final int[] RELATED_ELEMENT_ESUBSETS = new int[] {SysMLPackage.CONNECTION_DEFINITION__TARGET, SysMLPackage.CONNECTION_DEFINITION__SOURCE, SysMLPackage.CONNECTION_DEFINITION__OWNING_RELATED_ELEMENT, SysMLPackage.CONNECTION_DEFINITION__OWNED_RELATED_ELEMENT};
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -401,12 +455,12 @@ public class ConnectionDefinitionImpl extends PartDefinitionImpl implements Conn
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case SysMLPackage.CONNECTION_DEFINITION__OWNED_RELATED_ELEMENT:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedRelatedElement()).basicAdd(otherEnd, msgs);
 			case SysMLPackage.CONNECTION_DEFINITION__OWNING_RELATED_ELEMENT:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
 				return basicSetOwningRelatedElement((Element)otherEnd, msgs);
+			case SysMLPackage.CONNECTION_DEFINITION__OWNED_RELATED_ELEMENT:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedRelatedElement()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -419,10 +473,10 @@ public class ConnectionDefinitionImpl extends PartDefinitionImpl implements Conn
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case SysMLPackage.CONNECTION_DEFINITION__OWNED_RELATED_ELEMENT:
-				return ((InternalEList<?>)getOwnedRelatedElement()).basicRemove(otherEnd, msgs);
 			case SysMLPackage.CONNECTION_DEFINITION__OWNING_RELATED_ELEMENT:
 				return basicSetOwningRelatedElement(null, msgs);
+			case SysMLPackage.CONNECTION_DEFINITION__OWNED_RELATED_ELEMENT:
+				return ((InternalEList<?>)getOwnedRelatedElement()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -451,14 +505,16 @@ public class ConnectionDefinitionImpl extends PartDefinitionImpl implements Conn
 		switch (featureID) {
 			case SysMLPackage.CONNECTION_DEFINITION__RELATED_ELEMENT:
 				return getRelatedElement();
-			case SysMLPackage.CONNECTION_DEFINITION__OWNED_RELATED_ELEMENT:
-				return getOwnedRelatedElement();
-			case SysMLPackage.CONNECTION_DEFINITION__OWNING_RELATED_ELEMENT:
-				return getOwningRelatedElement();
 			case SysMLPackage.CONNECTION_DEFINITION__TARGET:
 				return getTarget();
 			case SysMLPackage.CONNECTION_DEFINITION__SOURCE:
 				return getSource();
+			case SysMLPackage.CONNECTION_DEFINITION__OWNING_RELATED_ELEMENT:
+				return getOwningRelatedElement();
+			case SysMLPackage.CONNECTION_DEFINITION__OWNED_RELATED_ELEMENT:
+				return getOwnedRelatedElement();
+			case SysMLPackage.CONNECTION_DEFINITION__IS_IMPLIED:
+				return isImplied();
 			case SysMLPackage.CONNECTION_DEFINITION__RELATED_TYPE:
 				return getRelatedType();
 			case SysMLPackage.CONNECTION_DEFINITION__SOURCE_TYPE:
@@ -483,12 +539,9 @@ public class ConnectionDefinitionImpl extends PartDefinitionImpl implements Conn
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case SysMLPackage.CONNECTION_DEFINITION__OWNED_RELATED_ELEMENT:
-				getOwnedRelatedElement().clear();
-				getOwnedRelatedElement().addAll((Collection<? extends Element>)newValue);
-				return;
-			case SysMLPackage.CONNECTION_DEFINITION__OWNING_RELATED_ELEMENT:
-				setOwningRelatedElement((Element)newValue);
+			case SysMLPackage.CONNECTION_DEFINITION__RELATED_ELEMENT:
+				getRelatedElement().clear();
+				getRelatedElement().addAll((Collection<? extends Element>)newValue);
 				return;
 			case SysMLPackage.CONNECTION_DEFINITION__TARGET:
 				getTarget().clear();
@@ -497,6 +550,20 @@ public class ConnectionDefinitionImpl extends PartDefinitionImpl implements Conn
 			case SysMLPackage.CONNECTION_DEFINITION__SOURCE:
 				getSource().clear();
 				getSource().addAll((Collection<? extends Element>)newValue);
+				return;
+			case SysMLPackage.CONNECTION_DEFINITION__OWNING_RELATED_ELEMENT:
+				setOwningRelatedElement((Element)newValue);
+				return;
+			case SysMLPackage.CONNECTION_DEFINITION__OWNED_RELATED_ELEMENT:
+				getOwnedRelatedElement().clear();
+				getOwnedRelatedElement().addAll((Collection<? extends Element>)newValue);
+				return;
+			case SysMLPackage.CONNECTION_DEFINITION__IS_IMPLIED:
+				setIsImplied((Boolean)newValue);
+				return;
+			case SysMLPackage.CONNECTION_DEFINITION__RELATED_TYPE:
+				getRelatedType().clear();
+				getRelatedType().addAll((Collection<? extends Type>)newValue);
 				return;
 			case SysMLPackage.CONNECTION_DEFINITION__SOURCE_TYPE:
 				setSourceType((Type)newValue);
@@ -525,17 +592,26 @@ public class ConnectionDefinitionImpl extends PartDefinitionImpl implements Conn
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.CONNECTION_DEFINITION__OWNED_RELATED_ELEMENT:
-				getOwnedRelatedElement().clear();
-				return;
-			case SysMLPackage.CONNECTION_DEFINITION__OWNING_RELATED_ELEMENT:
-				setOwningRelatedElement((Element)null);
+			case SysMLPackage.CONNECTION_DEFINITION__RELATED_ELEMENT:
+				getRelatedElement().clear();
 				return;
 			case SysMLPackage.CONNECTION_DEFINITION__TARGET:
 				getTarget().clear();
 				return;
 			case SysMLPackage.CONNECTION_DEFINITION__SOURCE:
 				getSource().clear();
+				return;
+			case SysMLPackage.CONNECTION_DEFINITION__OWNING_RELATED_ELEMENT:
+				setOwningRelatedElement((Element)null);
+				return;
+			case SysMLPackage.CONNECTION_DEFINITION__OWNED_RELATED_ELEMENT:
+				getOwnedRelatedElement().clear();
+				return;
+			case SysMLPackage.CONNECTION_DEFINITION__IS_IMPLIED:
+				setIsImplied(IS_IMPLIED_EDEFAULT);
+				return;
+			case SysMLPackage.CONNECTION_DEFINITION__RELATED_TYPE:
+				getRelatedType().clear();
 				return;
 			case SysMLPackage.CONNECTION_DEFINITION__SOURCE_TYPE:
 				setSourceType((Type)null);
@@ -563,18 +639,20 @@ public class ConnectionDefinitionImpl extends PartDefinitionImpl implements Conn
 		switch (featureID) {
 			case SysMLPackage.CONNECTION_DEFINITION__RELATED_ELEMENT:
 				return isSetRelatedElement();
-			case SysMLPackage.CONNECTION_DEFINITION__OWNED_RELATED_ELEMENT:
-				return ownedRelatedElement != null && !ownedRelatedElement.isEmpty();
-			case SysMLPackage.CONNECTION_DEFINITION__OWNING_RELATED_ELEMENT:
-				return getOwningRelatedElement() != null;
 			case SysMLPackage.CONNECTION_DEFINITION__TARGET:
 				return isSetTarget();
 			case SysMLPackage.CONNECTION_DEFINITION__SOURCE:
 				return isSetSource();
-			case SysMLPackage.CONNECTION_DEFINITION__RELATED_TYPE:
-				return isSetRelatedType();
+			case SysMLPackage.CONNECTION_DEFINITION__OWNING_RELATED_ELEMENT:
+				return getOwningRelatedElement() != null;
+			case SysMLPackage.CONNECTION_DEFINITION__OWNED_RELATED_ELEMENT:
+				return ownedRelatedElement != null && !ownedRelatedElement.isEmpty();
+			case SysMLPackage.CONNECTION_DEFINITION__IS_IMPLIED:
+				return isImplied != IS_IMPLIED_EDEFAULT;
 			case SysMLPackage.CONNECTION_DEFINITION__END_FEATURE:
 				return isSetEndFeature();
+			case SysMLPackage.CONNECTION_DEFINITION__RELATED_TYPE:
+				return isSetRelatedType();
 			case SysMLPackage.CONNECTION_DEFINITION__SOURCE_TYPE:
 				return isSetSourceType();
 			case SysMLPackage.CONNECTION_DEFINITION__TARGET_TYPE:
@@ -596,11 +674,12 @@ public class ConnectionDefinitionImpl extends PartDefinitionImpl implements Conn
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
 		if (baseClass == Relationship.class) {
 			switch (derivedFeatureID) {
-				case SysMLPackage.CONNECTION_DEFINITION__OWNED_RELATED_ELEMENT: return SysMLPackage.RELATIONSHIP__OWNED_RELATED_ELEMENT;
-				case SysMLPackage.CONNECTION_DEFINITION__OWNING_RELATED_ELEMENT: return SysMLPackage.RELATIONSHIP__OWNING_RELATED_ELEMENT;
 				case SysMLPackage.CONNECTION_DEFINITION__RELATED_ELEMENT: return SysMLPackage.RELATIONSHIP__RELATED_ELEMENT;
 				case SysMLPackage.CONNECTION_DEFINITION__TARGET: return SysMLPackage.RELATIONSHIP__TARGET;
 				case SysMLPackage.CONNECTION_DEFINITION__SOURCE: return SysMLPackage.RELATIONSHIP__SOURCE;
+				case SysMLPackage.CONNECTION_DEFINITION__OWNING_RELATED_ELEMENT: return SysMLPackage.RELATIONSHIP__OWNING_RELATED_ELEMENT;
+				case SysMLPackage.CONNECTION_DEFINITION__OWNED_RELATED_ELEMENT: return SysMLPackage.RELATIONSHIP__OWNED_RELATED_ELEMENT;
+				case SysMLPackage.CONNECTION_DEFINITION__IS_IMPLIED: return SysMLPackage.RELATIONSHIP__IS_IMPLIED;
 				default: return -1;
 			}
 		}
@@ -630,11 +709,12 @@ public class ConnectionDefinitionImpl extends PartDefinitionImpl implements Conn
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
 		if (baseClass == Relationship.class) {
 			switch (baseFeatureID) {
-				case SysMLPackage.RELATIONSHIP__OWNED_RELATED_ELEMENT: return SysMLPackage.CONNECTION_DEFINITION__OWNED_RELATED_ELEMENT;
-				case SysMLPackage.RELATIONSHIP__OWNING_RELATED_ELEMENT: return SysMLPackage.CONNECTION_DEFINITION__OWNING_RELATED_ELEMENT;
 				case SysMLPackage.RELATIONSHIP__RELATED_ELEMENT: return SysMLPackage.CONNECTION_DEFINITION__RELATED_ELEMENT;
 				case SysMLPackage.RELATIONSHIP__TARGET: return SysMLPackage.CONNECTION_DEFINITION__TARGET;
 				case SysMLPackage.RELATIONSHIP__SOURCE: return SysMLPackage.CONNECTION_DEFINITION__SOURCE;
+				case SysMLPackage.RELATIONSHIP__OWNING_RELATED_ELEMENT: return SysMLPackage.CONNECTION_DEFINITION__OWNING_RELATED_ELEMENT;
+				case SysMLPackage.RELATIONSHIP__OWNED_RELATED_ELEMENT: return SysMLPackage.CONNECTION_DEFINITION__OWNED_RELATED_ELEMENT;
+				case SysMLPackage.RELATIONSHIP__IS_IMPLIED: return SysMLPackage.CONNECTION_DEFINITION__IS_IMPLIED;
 				default: return -1;
 			}
 		}
@@ -653,6 +733,22 @@ public class ConnectionDefinitionImpl extends PartDefinitionImpl implements Conn
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuilder result = new StringBuilder(super.toString());
+		result.append(" (isImplied: ");
+		result.append(isImplied);
+		result.append(')');
+		return result.toString();
 	}
 
 } //ConnectionDefinitionImpl

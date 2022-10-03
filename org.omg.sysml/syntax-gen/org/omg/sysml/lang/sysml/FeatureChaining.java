@@ -85,6 +85,7 @@ public interface FeatureChaining extends Relationship {
 	 * @model opposite="ownedFeatureChaining" required="true" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="redefines"
 	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	Feature getFeatureChained();

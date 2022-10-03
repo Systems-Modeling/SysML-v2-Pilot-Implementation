@@ -33,8 +33,10 @@ import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.adapter.FeatureAdapter;
 import org.omg.sysml.lang.sysml.Behavior;
+import org.omg.sysml.lang.sysml.Conjugation;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
@@ -50,6 +52,7 @@ import org.omg.sysml.lang.sysml.ReturnParameterMembership;
 import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLFactory;
+import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.TypeFeaturing;
 
@@ -60,14 +63,6 @@ public class FeatureUtil {
 
 	protected static FeatureAdapter getFeatureAdapter(Feature target) {
 		return (FeatureAdapter)ElementUtil.getElementAdapter(target);
-	}
-	
-	// Caching
-	
-	public static EList<Type> cacheTypesOf(Feature feature, Supplier<EList<Type>> supplier) {	
-		FeatureAdapter adapter = getFeatureAdapter(feature);
-		EList<Type> types = adapter.getTypes();
-		return types == null? adapter.setTypes(supplier.get()): types;
 	}
 	
 	// Utility
@@ -101,6 +96,78 @@ public class FeatureUtil {
 		}
 	}
 	
+	// Typing
+	
+	public static EList<Type> cacheTypesOf(Feature feature, Supplier<EList<Type>> supplier) {	
+		FeatureAdapter adapter = getFeatureAdapter(feature);
+		EList<Type> types = adapter.getTypes();
+		return types == null? adapter.setTypes(supplier.get()): types;
+	}
+	
+	public static <T> T getFirstTypeOf(Feature feature, Class<T> kind) {
+		return FeatureUtil.getAllTypesOf(feature).stream().
+				filter(kind::isInstance).
+				map(kind::cast).
+				findFirst().
+				orElse(null);
+	}
+	
+	public static <T> EList<T> getAllTypesOf(Feature feature, Class<T> kind, int featureId) {		
+		EList<T> types = new NonNotifyingEObjectEList<T>(kind, (InternalEObject)feature, featureId);
+	    getAllTypesOf(feature).stream().
+	    	filter(kind::isInstance).
+	    	map(kind::cast).
+	    	forEachOrdered(types::add);
+		return types;
+	}
+	
+	public static EList<Type> getAllTypesOf(Feature feature) {
+		return FeatureUtil.cacheTypesOf(feature, ()->{
+			EList<Type> types = new NonNotifyingEObjectEList<Type>(Type.class, (InternalEObject)feature, SysMLPackage.FEATURE__TYPE);
+			getTypesOf(feature, types, new HashSet<Feature>());
+			removeRedundantTypes(types);
+			return types;
+		});
+	}
+	
+	private static void getTypesOf(Feature feature, List<Type> types, Set<Feature> visitedFeatures) {
+		visitedFeatures.add(feature);
+		getFeatureTypesOf(feature, types, visitedFeatures);		
+		Conjugation conjugator = feature.getOwnedConjugator();
+		if (conjugator != null) {
+			Type originalType = conjugator.getOriginalType();
+			if (originalType instanceof Feature && !visitedFeatures.contains(originalType)) {
+				getTypesOf((Feature)originalType, types, visitedFeatures);
+			}
+		}
+		for (Feature subsettedFeature: FeatureUtil.getSubsettedFeaturesOf(feature)) {
+			if (subsettedFeature != null && !visitedFeatures.contains(subsettedFeature)) {
+				getTypesOf((Feature)subsettedFeature, types, visitedFeatures);
+			}
+		}		
+	}
+	
+	private static void getFeatureTypesOf(Feature feature, List<Type> types, Set<Feature> visitedFeatures) {
+		feature.getOwnedTyping().stream().
+				map(typing->typing.getType()).
+				filter(type->type != null).
+				forEachOrdered(types::add);
+		types.addAll(TypeUtil.getImplicitGeneralTypesFor(feature, SysMLPackage.eINSTANCE.getFeatureTyping()));
+		Feature lastChainingFeature = FeatureUtil.getLastChainingFeatureOf(feature);
+		if (lastChainingFeature != null && !visitedFeatures.contains(lastChainingFeature)) {
+			getTypesOf((Feature)lastChainingFeature, types, visitedFeatures);
+		}
+	}
+	
+	protected static void removeRedundantTypes(List<Type> types) {
+		for (int i = types.size() - 1; i >= 0 ; i--) {
+			Type type = types.get(i);
+			if (types.stream().anyMatch(otherType->otherType != type && TypeUtil.conforms(otherType, type))) {
+				types.remove(i);
+			}
+		}
+	}
+
 	// Subsetting and redefinition
 	
 	public static List<Feature> getSubsettedFeaturesOf(Feature feature) {
@@ -109,6 +176,10 @@ public class FeatureUtil {
 
 	public static List<Feature> getSubsettedNotRedefinedFeaturesOf(Feature feature) {
 		return getFeatureAdapter(feature).getSubsettedNotRedefinedFeatures().collect(Collectors.toList());
+	}
+
+	public static Feature getReferencedFeatureOf(Feature feature) {
+		return getFeatureAdapter(feature).getReferencedFeature();
 	}
 
 	public static Optional<Subsetting> getFirstOwnedSubsettingOf(Feature feature) {
@@ -122,15 +193,10 @@ public class FeatureUtil {
 		feature.getOwnedRelationship().add(subsetting);
 		return subsetting;
 	}
-
-	public static <T extends Feature> T getReferencedFeatureOf(T feature, Class<T> kind) {
-		return feature.getOwnedSubsetting().stream().
-				filter(sub->!(sub instanceof Redefinition)).
-				map(Subsetting::getSubsettedFeature).
-				map(FeatureUtil::getBasicFeatureOf).
-				filter(kind::isInstance).
-				map(kind::cast).
-				findFirst().orElse(feature);
+	
+	public static <T extends Feature> T getEffectiveReferencedFeatureOf(T feature, Class<T> kind) {
+		Feature referencedFeature = getBasicFeatureOf(getReferencedFeatureOf(feature));
+		return kind.isInstance(referencedFeature)? kind.cast(referencedFeature): feature;
 	}
 
 	public static List<Feature> getRedefinedFeaturesOf(Feature feature) {
@@ -163,7 +229,7 @@ public class FeatureUtil {
 				collect(Collectors.toList());
 	}
 
-	// Feature values
+// Feature values
 	
 	public static FeatureValue getValuationFor(Feature feature) {
 		return (FeatureValue)feature.getOwnedMembership().stream().
@@ -229,6 +295,7 @@ public class FeatureUtil {
 						&& Objects.equals(f.getFeaturingType(), type));
 			if (featuringRequired) {
 				TypeFeaturing featuring = SysMLFactory.eINSTANCE.createTypeFeaturing();
+				featuring.setIsImplied(true);
 				featuring.setFeaturingType(type);
 				featuring.setFeatureOfType(feature);
 				feature.getOwnedRelationship().add(featuring);
@@ -258,6 +325,33 @@ public class FeatureUtil {
 			EList<FeatureChaining> featureChainings = feature.getOwnedFeatureChaining();
 			return featureChainings.isEmpty()? feature: featureChainings.get(featureChainings.size()-1).getChainingFeature();
 		}
+	}
+	
+	public static Feature chainFeatures(Feature... features) {
+		Feature chainedFeature = SysMLFactory.eINSTANCE.createFeature();
+		for (Feature feature: features) {
+			EList<Feature> chainingFeatures = feature.getChainingFeature();
+			if (chainingFeatures.isEmpty()) {
+				addChainingFeature(chainedFeature, feature);
+			} else {
+				for (Feature chainingFeature: chainingFeatures) {
+					addChainingFeature(chainedFeature, chainingFeature);
+				}
+			}
+		}
+		return chainedFeature;
+	}
+	
+	public static Feature chainFeatures(List<Feature> features) {
+		Feature[] featuresArray = new Feature[features.size()];
+		return chainFeatures(features.toArray(featuresArray));
+	}
+	
+	public static Feature addChainingFeature(Feature chainedFeature, Feature chainingFeature) {
+		FeatureChaining featureChaining = SysMLFactory.eINSTANCE.createFeatureChaining();
+		featureChaining.setChainingFeature(chainingFeature);
+		chainedFeature.getOwnedRelationship().add(featureChaining);
+		return chainedFeature;
 	}
 	
 	// Steps

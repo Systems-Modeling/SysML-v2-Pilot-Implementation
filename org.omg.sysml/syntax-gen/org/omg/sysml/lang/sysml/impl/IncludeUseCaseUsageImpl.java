@@ -1,10 +1,28 @@
+/*******************************************************************************
+ * SysML 2 Pilot Implementation
+ * Copyright (c) 2022 Model Driven Solutions, Inc.
+ *    
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *  
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ *  
+ * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
+ *******************************************************************************/
 /**
  */
 package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.EventOccurrenceUsage;
 import org.omg.sysml.lang.sysml.Feature;
@@ -13,7 +31,6 @@ import org.omg.sysml.lang.sysml.OccurrenceUsage;
 import org.omg.sysml.lang.sysml.PerformActionUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.UseCaseUsage;
-import org.omg.sysml.util.FeatureUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -29,6 +46,16 @@ import org.omg.sysml.util.FeatureUtil;
  * @generated
  */
 public class IncludeUseCaseUsageImpl extends UseCaseUsageImpl implements IncludeUseCaseUsage {
+	/**
+	 * The cached setting delegate for the '{@link #getUseCaseIncluded() <em>Use Case Included</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getUseCaseIncluded()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate USE_CASE_INCLUDED__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.INCLUDE_USE_CASE_USAGE__USE_CASE_INCLUDED).getSettingDelegate();
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -55,27 +82,26 @@ public class IncludeUseCaseUsageImpl extends UseCaseUsageImpl implements Include
 	 */
 	@Override
 	public UseCaseUsage getUseCaseIncluded() {
-		UseCaseUsage useCaseIncluded = basicGetUseCaseIncluded();
-		return useCaseIncluded != null && useCaseIncluded.eIsProxy() ? (UseCaseUsage)eResolveProxy((InternalEObject)useCaseIncluded) : useCaseIncluded;
+		return (UseCaseUsage)USE_CASE_INCLUDED__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public UseCaseUsage basicGetUseCaseIncluded() {
-		return FeatureUtil.getReferencedFeatureOf(this, UseCaseUsage.class);
+		return (UseCaseUsage)USE_CASE_INCLUDED__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setUseCaseIncluded(UseCaseUsage newUseCaseIncluded) {
-		throw new UnsupportedOperationException();
+		USE_CASE_INCLUDED__ESETTING_DELEGATE.dynamicSet(this, null, 0, newUseCaseIncluded);
 	}
 
 	/**
@@ -175,8 +201,8 @@ public class IncludeUseCaseUsageImpl extends UseCaseUsageImpl implements Include
 	}
 	
 	@Override
-	public boolean isReference() {
-		return true;
+	public boolean isComposite() {
+		return false;
 	}
 	
 	//

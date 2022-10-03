@@ -77,11 +77,6 @@ package ElementFilterTest {
 	
 	package 'Safety & Security Features' {
 		import vehicle1_c1::**;
-		filter @Safety || @Security;
-	}
-	
-	package 'Safety & Security Features1' {
-		import vehicle1_c1::**;
 		filter @Safety or @Security;
 	}
 	

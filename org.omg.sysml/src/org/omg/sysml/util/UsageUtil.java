@@ -25,6 +25,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import org.eclipse.emf.common.util.EList;
 import org.omg.sysml.adapter.UsageAdapter;
 import org.omg.sysml.lang.sysml.AcceptActionUsage;
 import org.omg.sysml.lang.sysml.ActionUsage;
@@ -33,6 +34,9 @@ import org.omg.sysml.lang.sysml.FramedConcernMembership;
 import org.omg.sysml.lang.sysml.ConcernUsage;
 import org.omg.sysml.lang.sysml.ConstraintUsage;
 import org.omg.sysml.lang.sysml.Definition;
+import org.omg.sysml.lang.sysml.ElementFilterMembership;
+import org.omg.sysml.lang.sysml.Expose;
+import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureValue;
@@ -63,6 +67,7 @@ import org.omg.sysml.lang.sysml.VariantMembership;
 import org.omg.sysml.lang.sysml.VerificationCaseDefinition;
 import org.omg.sysml.lang.sysml.VerificationCaseUsage;
 import org.omg.sysml.lang.sysml.ViewRenderingMembership;
+import org.omg.sysml.lang.sysml.ViewUsage;
 
 public class UsageUtil {
 	
@@ -75,8 +80,8 @@ public class UsageUtil {
 	
 	// References
 	
-	public static boolean isReference(Usage usage, boolean isComposite) {
-		return usage.getOwningFeatureMembership() == null || usage.getDirection() != null || usage.isEnd() || !isComposite;
+	public static boolean isComposite(Usage usage, boolean isComposite) {
+		return isComposite && usage.getOwningFeatureMembership() != null && usage.getDirection() == null && !usage.isEnd();
 	}
 	
 	// Variants
@@ -189,6 +194,24 @@ public class UsageUtil {
 		return concern.getOwningFeatureMembership() instanceof FramedConcernMembership;
 	}
 	
+	public static <T extends RequirementConstraintMembership> Stream<ConstraintUsage> getRequirementConstraints(Type owner, Class<T> membershipClass, RequirementConstraintKind kind) {
+		return owner.getOwnedFeatureMembership().stream().
+				filter(mem->membershipClass.isInstance(mem) && ((RequirementConstraintMembership)mem).getKind() == kind).
+				map(mem->((RequirementConstraintMembership)mem).getOwnedConstraint()).
+				filter(constraint->constraint != null);
+	}
+
+	public static Stream<ConstraintUsage> getRequirementConstraints(Type owner, RequirementConstraintKind kind) {
+		return getRequirementConstraints(owner, RequirementConstraintMembership.class, kind);
+	}
+		
+	public static Stream<RequirementUsage> getVerifiedRequirements(Type owner) {
+		return owner.getOwnedFeatureMembership().stream().
+				filter(RequirementVerificationMembership.class::isInstance).
+				map(mem->((RequirementVerificationMembership)mem).getVerifiedRequirement()).
+				filter(constraint->constraint != null);
+	}
+
 	// States
 	
 	public static boolean isParallelState(Type type) {
@@ -207,13 +230,19 @@ public class UsageUtil {
 			   null;
 	}
 	
+	public static ActionUsage getStateSubaction(Type owner, StateSubactionKind kind) {
+		return getStateSubactionMembershipsOf(owner, kind).stream().
+				map(StateSubactionMembership::getAction).
+				filter(action->action != null).
+				findAny().orElse(null);
+	}
+
 	public static List<StateSubactionMembership> getStateSubactionMembershipsOf(Type type, StateSubactionKind kind) {
 		return type.getOwnedFeatureMembership().stream().
 				filter(StateSubactionMembership.class::isInstance).
 				map(StateSubactionMembership.class::cast).
 				filter(m->m.getKind() == kind).
-				collect(Collectors.toList());
-				
+				collect(Collectors.toList());				
 	}
 	
 	public static boolean hasInitialTransition(Type type) {
@@ -301,5 +330,17 @@ public class UsageUtil {
 				findFirst().
 				orElse(null);
 	}
-		
+
+	public static Stream<Expose> getExposeImportsOf(Type view) {
+		return view.getOwnedImport().stream().
+				filter(Expose.class::isInstance).
+				map(Expose.class::cast);
+	}
+
+	public static EList<Expression> getAllViewConditionsOf(ViewUsage view) {
+		EList<Expression> viewConditions = view.getViewCondition();
+		TypeUtil.getInheritedMembersByMembershipIn(view, ElementFilterMembership.class, Expression.class).forEachOrdered(viewConditions::add);
+		return viewConditions;
+	}
+
 }

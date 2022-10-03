@@ -45,7 +45,7 @@ package PartUsage {
 	
 	item def I;
 	part def D :> I { // also specializes library part def Part
-		port p :> portsOnPart;
+		port p :> ownedPorts;
 	}
 	
 	item i : I;

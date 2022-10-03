@@ -99,8 +99,8 @@ public interface FeatureInverting extends Relationship {
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Relationship#getOwningRelatedElement() <em>Owning Related Element</em>}'</li>
 	 *   <li>'{@link org.omg.sysml.lang.sysml.FeatureInverting#getFeatureInverted() <em>Feature Inverted</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Relationship#getOwningRelatedElement() <em>Owning Related Element</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -113,6 +113,7 @@ public interface FeatureInverting extends Relationship {
 	 * @see org.omg.sysml.lang.sysml.Feature#getOwnedFeatureInverting
 	 * @model opposite="ownedFeatureInverting" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	Feature getOwningFeature();

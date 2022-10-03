@@ -1,6 +1,6 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2019-2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2019-2022 Model Driven Solutions, Inc.
  * Copyright (c) 2020 Mgnite Inc.
  * Copyright (c) 2021 Twingineer LLC
  *    
@@ -23,7 +23,7 @@
  *  Ed Seidewitz, MDS
  *  Hisashi Miyashita, Mgnite
  *  Zoltan Ujhelyi, MDS
- *  Ivan Gomes
+ *  Ivan Gomes, Twingineer
  * 
  *****************************************************************************/
 package org.omg.sysml.interactive;
@@ -53,16 +53,22 @@ import org.eclipse.xtext.validation.IResourceValidator;
 import org.eclipse.xtext.validation.Issue;
 import org.omg.kerml.xtext.KerMLStandaloneSetup;
 import org.omg.kerml.xtext.naming.KerMLQualifiedNameConverter;
+import org.omg.sysml.execution.expressions.ExpressionEvaluator;
 import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.RenderingUsage;
+import org.omg.sysml.lang.sysml.ResultExpressionMembership;
+import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.ViewUsage;
 import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
 import org.omg.sysml.plantuml.SysML2PlantUMLLinkProvider;
 import org.omg.sysml.plantuml.SysML2PlantUMLSvc;
 import org.omg.sysml.util.SysMLUtil;
+import org.omg.sysml.util.TypeUtil;
 import org.omg.sysml.util.traversal.Traversal;
 import org.omg.sysml.util.traversal.facade.impl.ApiElementProcessingFacade;
 import org.omg.sysml.util.traversal.facade.impl.JsonElementProcessingFacade;
@@ -75,12 +81,10 @@ import com.google.inject.Injector;
 
 public class SysMLInteractive extends SysMLUtil {
 	
-	public static final String KERNEL_LIBRARY_DIRECTORY = "Kernel Library";
+	public static final String KERNEL_LIBRARIES_DIRECTORY = "Kernel Libraries";
 	public static final String SYSTEMS_LIBRARY_DIRECTORY = "Systems Library";
 	public static final String DOMAIN_LIBRARIES_DIRECTORY = "Domain Libraries";
-	public static final String QUANTITIES_AND_UNITS_DIRECTORY = DOMAIN_LIBRARIES_DIRECTORY + "/Quantities and Units";
-	public static final String GEOMETRY_DIRECTORY = DOMAIN_LIBRARIES_DIRECTORY + "/Geometry";
-	public static final String ANALYSIS_DIRECTORY = DOMAIN_LIBRARIES_DIRECTORY + "/Analysis";
+
 	public static final String KERML_EXTENSION = ".kerml";
 	public static final String SYSML_EXTENSION = ".sysml";
 	
@@ -95,6 +99,8 @@ public class SysMLInteractive extends SysMLUtil {
 	protected Traversal traversal;
 	
     protected SysML2PlantUMLSvc sysml2PlantUMLSvc;
+    
+    private Resource dummyResource;
 
     @Inject
 	private IGlobalScopeProvider scopeProvider;
@@ -116,7 +122,7 @@ public class SysMLInteractive extends SysMLUtil {
 				path += "/";
 			}
 			SysMLLibraryUtil.setModelLibraryDirectory(path);
-			this.readAll(path + KERNEL_LIBRARY_DIRECTORY, false, KERML_EXTENSION);
+			this.readAll(path + KERNEL_LIBRARIES_DIRECTORY, false, KERML_EXTENSION);
 			this.readAll(path + SYSTEMS_LIBRARY_DIRECTORY, false, SYSML_EXTENSION);
 			this.readAll(path + DOMAIN_LIBRARIES_DIRECTORY, false, SYSML_EXTENSION);
 		}
@@ -127,7 +133,7 @@ public class SysMLInteractive extends SysMLUtil {
 	}
 	
 	public int next() {
-		this.resource = (XtextResource)this.createResource(this.counter + SYSML_EXTENSION);
+		this.resource = (XtextResource)this.createResource(counter + SYSML_EXTENSION);
 		this.addInputResource(this.resource);
 		return this.counter++;
 	}
@@ -170,11 +176,34 @@ public class SysMLInteractive extends SysMLUtil {
 			validator.validate(resource, CheckMode.ALL, CancelIndicator.NullImpl);
 	}
 	
-	public SysMLInteractiveResult eval(String input) {
-		return eval(input, true);
+	private Resource getDummyResource() {
+		if (this.dummyResource == null) {
+			this.dummyResource = this.createResource("dummy" + SYSML_EXTENSION);
+			this.dummyResource.getContents().add(SysMLFactory.eINSTANCE.createNamespace());
+		}
+		return this.dummyResource;
 	}
 	
-	public SysMLInteractiveResult eval(String input, boolean isAddResource) {
+	public Element resolve(String name) {
+		IScope scope = scopeProvider.getScope(
+				this.getDummyResource(), 
+				SysMLPackage.eINSTANCE.getNamespace_Member(), 
+				Predicates.alwaysTrue());
+		IEObjectDescription description = scope.getSingleElement(
+				this.qualifiedNameConverter.toQualifiedName(name));
+		if (description == null) {
+			return null;
+		} else {
+			EObject object = description.getEObjectOrProxy();
+			return object instanceof Element? (Element)object: null;
+		}
+	}
+	
+	public SysMLInteractiveResult process(String input) {
+		return process(input, true);
+	}
+	
+	public SysMLInteractiveResult process(String input, boolean isAddResource) {
 		this.next();
 		try {
 			this.parse(input);
@@ -193,29 +222,50 @@ public class SysMLInteractive extends SysMLUtil {
 		}
 	}
 	
-	public Element resolve(String name) {
-		List<Resource> resources = this.resourceSet.getResources();
-		if (!resources.isEmpty()) {
-			IScope scope = scopeProvider.getScope(
-					resources.get(resources.size() - 1), 
-					SysMLPackage.eINSTANCE.getNamespace_Member(), 
-					Predicates.alwaysTrue());
-			IEObjectDescription description = scope.getSingleElement(
-					this.qualifiedNameConverter.toQualifiedName(name));
-			if (description != null) {
-				EObject object = description.getEObjectOrProxy();
-				return object instanceof Element? (Element)object: null;
-			}
+	public String eval(String input, String targetName, List<String> help) {
+		if (Strings.isNullOrEmpty(input)) {
+			this.counter++;
+			return help.isEmpty()? "": SysMLInteractiveHelp.getEvalHelp();
 		}
-		return null;
+		if (input == null || input.isEmpty()) {
+			this.counter++;
+			return "";
+		}
+		Element target = null;
+		if (Strings.isNullOrEmpty(targetName)) {
+			input = "calc{\n" + input + "}";
+		} else {
+			target = this.resolve(targetName);
+			if (target == null) {
+				this.counter++;
+				return "ERROR:Couldn't resolve reference to Element '" + targetName + "'\n";
+			}
+			input = "calc{import " + targetName + "::*;\n" + input + "}";
+		}
+		SysMLInteractiveResult result = this.process(input, false);
+		if (result.hasErrors()) {
+			return result.toString();
+		} else {
+			Type calc = (Type)((Namespace)result.getRootElement()).getOwnedMember().get(0);
+			Expression expr = (Expression)TypeUtil.getFeatureByMembershipIn(calc, ResultExpressionMembership.class);
+			List<Element> elements = ExpressionEvaluator.INSTANCE.evaluate(expr, target);
+			this.removeResource();
+			return elements == null? "": 
+				elements.stream().map(SysMLInteractiveUtil::formatElement).collect(Collectors.joining());
+		}
+	}
+	
+	public String eval(String input, String targetName) {
+		return "-h".equals(input)? 
+				eval(null, null, Collections.singletonList("true")):
+				eval(input, targetName, Collections.emptyList());
 	}
 	
 	public String listLibrary() {
 		this.counter++;
 		try {
 			List<Membership> globalMemberships = 
-					resourceSet.getResources().stream().
-					filter(r->!inputResources.contains(r)).
+					this.getLibraryResources().stream().
 					flatMap(r->r.getContents().stream()).
 					filter(Namespace.class::isInstance).
 					flatMap(n->((Namespace)n).visibleMemberships(new BasicEList<>(), false, false).stream()).
@@ -230,7 +280,7 @@ public class SysMLInteractive extends SysMLUtil {
 		if (!query.endsWith(";")) {
 			query += ";";
 		}
-		SysMLInteractiveResult result = this.eval("import " + query, false);
+		SysMLInteractiveResult result = this.process("import " + query, false);
 		if (result.hasErrors()) {
 			return result.toString();
 		} else {
@@ -319,7 +369,7 @@ public class SysMLInteractive extends SysMLUtil {
 			Element element = this.resolve(name);
 			if (element == null) {
 				return "ERROR:Couldn't resolve reference to Element '" + name + "'\n";
-			} else if (!inputResources.contains(element.eResource())) {
+			} else if (!this.isInputResource(element.eResource())) {
 				return "ERROR:'" + name + "' is a library element\n";
 			} else {
 				String modelName = element.getName() + " " + new Date();
@@ -482,60 +532,75 @@ public class SysMLInteractive extends SysMLUtil {
 	
 	public void run(String input) {
 		if (input != null && !input.isEmpty()) {
-			System.out.print(this.eval(input));
+			System.out.print(this.process(input));
 		}
 	}
 	
 	public void run() {
         try (Scanner in = new Scanner(System.in)) {
 	        do {
-	        	System.out.print(this.counter + "> ");
-	        	String input = in.nextLine().trim();
-	        	if (input.startsWith("%")) {
-	        		if ("%".equals(input)) {
-	        			input = "";
-	        			String line = in.nextLine();
-	        			while (!"%".equals(line.trim())) {
-	        				if ("%%".equals(line.trim())) {
-	        					input = null;
-	        					break;
-	        				}
-	        				input += line + "\n";
-	        				line = in.nextLine();
-	        			}
-		        		run(input);
-	        		} else {
-	        			int i = input.indexOf(' ');
-	        			String command = i == -1? input: input.substring(0, i);
-	        			String argument = i == -1? "": input.substring(i + 1).trim();
-	        			
-	        			if ("%exit".equals(command)) {
-	        				break;
-	        			} else if ("%list".equals(command)) {
-	        				System.out.print(this.list(argument));
-	        			} else if ("%show".equals(command)) {
-	        				if (!"".equals(argument)) {
-	        					System.out.print(this.show(argument));
-	        				}
-	        			} else if ("%publish".equals(command)) {
-	        				if (!"".equals(argument)) {
-	        					System.out.print(this.publish(argument));
-	        				}
-	        			} else if ("%viz".equals(command)) {
-	        				if (!"".equals(argument)) {
-	        					System.out.print(this.viz(argument));
-	        				}
-	        			} else if ("%view".equals(command)) {
-	        				if (!"".equals(argument)) {
-	        					System.out.print(this.view(argument));
-	        				}
-	        			} else {
-	        				System.out.println("ERROR:Invalid command '" + input + "'");
-	        			}
-	        		}
-	        	} else {
-	        		run(input);
-	        	}
+	        	try {
+					System.out.print(this.counter + "> ");
+					String input = in.nextLine().trim();
+					if (input.startsWith("%")) {
+						if ("%".equals(input)) {
+							input = "";
+							String line = in.nextLine();
+							while (!"%".equals(line.trim())) {
+								if ("%%".equals(line.trim())) {
+									input = null;
+									break;
+								}
+								input += line + "\n";
+								line = in.nextLine();
+							}
+							run(input);
+						} else {
+							int i = input.indexOf(' ');
+							String command = i == -1? input: input.substring(0, i);
+							String argument = i == -1? "": input.substring(i + 1).trim();
+							
+							if ("%exit".equals(command)) {
+								break;
+							} else if ("%list".equals(command)) {
+								System.out.print(this.list(argument));
+							} else if ("%show".equals(command)) {
+								if (!"".equals(argument)) {
+									System.out.print(this.show(argument));
+								}
+							} else if ("%publish".equals(command)) {
+								if (!"".equals(argument)) {
+									System.out.print(this.publish(argument));
+								}
+							} else if ("%viz".equals(command)) {
+								if (!"".equals(argument)) {
+									System.out.print(this.viz(argument));
+								}
+							} else if ("%view".equals(command)) {
+								if (!"".equals(argument)) {
+									System.out.print(this.view(argument));
+								}
+							} else if ("%eval".equals(command)) {
+								if (!"".equals(argument)) {
+									String name = null;
+									if (argument.startsWith("--target ") || argument.startsWith("--target=")) {
+										argument = argument.substring(9);
+					        			i = argument.indexOf(' ');
+					        			name = i == -1? argument: argument.substring(0, i);
+					        			argument = i == -1? null: argument.substring(i + 1).trim();
+									}
+									System.out.print(eval(argument, name));
+								}
+							} else {
+								System.out.println("ERROR:Invalid command '" + input + "'");
+							}
+						}
+					} else {
+						run(input);
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 	        } while(true);
         }
     }

@@ -1,7 +1,9 @@
-/**
- * This package defines classifiers and features that are related to the typing of objects, including link objects.
- */
 package Objects {
+	doc
+	/*
+	 * This package defines classifiers and features that are related to the typing of objects, including link objects.
+	 */
+
 	private import Base::Anything;
 	private import Base::things;
 	private import Links::*;
@@ -19,77 +21,110 @@ package Objects {
 	private import ScalarValues::Integer;
 	private import ScalarValues::Natural;
 	
-	/**
-	 * Object is the most general class of structural occurrences that may change over time.
-	 */
 	abstract struct Object specializes Occurrence {
+		doc
+		/*
+		 * Object is the most general class of structural occurrences that may change over time.
+		 */
+
 		feature self: Object redefines Occurrence::self;
 		
-		/**
-		 * Performances in which this object is involved.
-		 */
-		step involvingPerformances: Performance[0..*] subsets performances;
-		
-		/**
-		 * Performances that are enacted by this object.
-		 */
-		abstract step enactedPerformances: Performance[0..*] subsets involvingPerformances, timeEnclosedOccurrences;
-		
-		/**
-		 * Performances that are owned by this object.
-		 */
-		composite step ownedPerformances: Performance[0..*] subsets enactedPerformances {
-			/**
-			 * The owning object is the "this" reference for all ownedPerformances.
+		composite subobjects: Object[0..*] subsets objects, suboccurrences {
+			doc
+			/*
+			 * The suboccurrences of this Object that are also Objects.
 			 */
-			feature redefines this = that;
+		}
+		
+		step involvingPerformances: Performance[0..*] subsets performances {
+			doc
+			/*
+			 * Performances in which this object is involved.
+			 */
+		}
+		
+		abstract step enactedPerformances: Performance[0..*] subsets involvingPerformances, timeEnclosedOccurrences {
+			doc
+			/*
+			 * Performances that are enacted by this object.
+			 */
+		}
+		
+		composite step ownedPerformances: Performance[0..*] subsets involvingPerformances, timeEnclosedOccurrences, suboccurrences {
+			doc
+			/*
+			 * Performances that are owned by this object.
+			 */
+			 
+			feature redefines this default that {
+				doc
+				/*
+				 * The owning object is the default "this" reference for all ownedPerformances.
+				 */
+			}
 		}
 
-		/**
-		 * A space boundary that is a structured space object.
-		 */
-		portion structuredSpaceBoundary : StructuredSpaceObject[0..1] subsets spaceBoundary;
+		portion structuredSpaceBoundary : StructuredSpaceObject[0..1] subsets spaceBoundary {
+			doc
+			/*
+			 * A space boundary that is a structured space object.
+			 */
+		}
 	}
 	
-	/**
-	 * LinkObject is the most general association structure, being both a Link and an Object.
-	 */
-	abstract assoc struct LinkObject specializes Link, Object disjoint from SelfLink, SelfSameLifeLink, HappensLink; 
+	abstract assoc struct LinkObject specializes Link, Object disjoint from SelfLink, SelfSameLifeLink, HappensLink {
+		doc
+		/*
+		 * LinkObject is the most general association structure, being both a Link and an Object.
+		 */
+	}
 	
-	/**
-	 * BinaryLinkObject is the most general binary association structure, being both a 
-	 * BinaryLink and a LinkObject.
-	 */
-	assoc struct BinaryLinkObject specializes BinaryLink, LinkObject;
+	assoc struct BinaryLinkObject specializes BinaryLink, LinkObject {
+		doc
+		/*
+		 * BinaryLinkObject is the most general binary association structure, being both a 
+		 * BinaryLink and a LinkObject.
+		 */
+	}
 	
-	/**
-	 * objects is a specialization of occurrences restricted to type Object.
-	 */
-	abstract feature objects: Object[0..*] nonunique subsets occurrences;
+	abstract feature objects: Object[0..*] nonunique subsets occurrences {
+		doc
+		/*
+		 * objects is a specialization of occurrences restricted to type Object.
+		 */
+	}
 	
-	/**
-	 * linkObjects is a specializations of links and objects restricted to type LinkObjects. 
-	 */
-	abstract feature linkObjects: LinkObject[0..*] nonunique subsets links, objects;
+	abstract feature linkObjects: LinkObject[0..*] nonunique subsets links, objects {
+		doc
+		/*
+		 * linkObjects is a specializations of links and objects restricted to type LinkObjects. 
+		 */
+	}
 	
-	/**
-	 * binaryLinkObjects is a specialization of binaryLinks and linkObjects restricted to 
-	 * type BinaryLinkObjects.
-	 */
-	abstract feature binaryLinkObjects: BinaryLinkObject[0..*] nonunique subsets binaryLinks, linkObjects;
+	abstract feature binaryLinkObjects: BinaryLinkObject[0..*] nonunique subsets binaryLinks, linkObjects {
+		doc
+		/*
+		 * binaryLinkObjects is a specialization of binaryLinks and linkObjects restricted to 
+		 * type BinaryLinkObjects.
+		 */
+	}
 	
 
-	/**
-	 * A Body is an Object of inner space dimension 3.
-	 */
 	struct all Body specializes Object {
+		doc
+		/*
+		 * A Body is an Object of inner space dimension 3.
+		 */
+
 		feature redefines innerSpaceDimension = 3;
 	}
 
-	/**
-	 * A Surface is an Object of inner space dimension 2.
-	 */
 	struct all Surface specializes Object {
+		doc
+		/*
+		 * A Surface is an Object of inner space dimension 2.
+		 */
+		
 		feature redefines innerSpaceDimension = 2;
 		  /* The number of  "holes" in this Surface, assuming it isClosed. */
 		feature genus : Natural[0..1] default 0;
@@ -97,29 +132,34 @@ package Objects {
 		inv { notEmpty(genus) implies isClosed }
 	}
 
-	/*
-	 * A Curve is an Object of inner space dimension 1.
-	 */
 	struct all Curve specializes Object {
+		doc
+		/*
+		 * A Curve is an Object of inner space dimension 1.
+		 */
+
 		feature redefines innerSpaceDimension = 1;
 	}
 
-	/*
-	 * A Point is an Object of inner space dimension 0.
-	 */
 	struct all Point specializes Object {
+		doc
+		/*
+		 * A Point is an Object of inner space dimension 0.
+		 */
+		 
 		feature redefines innerSpaceDimension = 0;
 	}
 
-	/*
-	 * A StructuredSpaceObject is an Object that is broken up into smaller structured space objects (cells) of
-	 * the same or lower inner space dimension: faces that are surfaces, edges that are curves, and vertices
-	 * that are points, with edges and vertices on the boundary of faces, and vertices on the boundary of
-	 * edges. Cells overlap when a structured space object is closed, as required to be a space boundary of
-	 * an object (faces overlap at their edges and/or vertices, while edges overlap at their vertices). The
-	 * inner space dimension of structured space object is the highest of their cells.
-	 */
 	abstract struct StructuredSpaceObject specializes Object {
+		doc
+		/*
+		 * A StructuredSpaceObject is an Object that is broken up into smaller structured space objects (cells) of
+		 * the same or lower inner space dimension: faces that are surfaces, edges that are curves, and vertices
+		 * that are points, with edges and vertices on the boundary of faces, and vertices on the boundary of
+		 * edges. Cells meet when a structured space object is closed, as required to be a space boundary of
+		 * an object (faces meet at their edges and/or vertices, while edges meet at their vertices). The
+		 * inner space dimension of structured space object is the highest of their cells.
+		 */
 
 		abstract portion feature structuredSpaceObjectCells : StructuredSpaceObject[1..*] subsets Occurrence::spaceSlices
 		  { feature cellOrientation : Integer [0..1];

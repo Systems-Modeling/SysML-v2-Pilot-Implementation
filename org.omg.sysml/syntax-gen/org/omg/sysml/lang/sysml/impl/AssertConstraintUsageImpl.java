@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -24,14 +24,13 @@ package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.omg.sysml.lang.sysml.AssertConstraintUsage;
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.ConstraintUsage;
 import org.omg.sysml.lang.sysml.Invariant;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.util.FeatureUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -67,6 +66,15 @@ public class AssertConstraintUsageImpl extends ConstraintUsageImpl implements As
 	 * @ordered
 	 */
 	protected boolean isNegated = IS_NEGATED_EDEFAULT;
+	/**
+	 * The cached setting delegate for the '{@link #getAssertedConstraint() <em>Asserted Constraint</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAssertedConstraint()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate ASSERTED_CONSTRAINT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.ASSERT_CONSTRAINT_USAGE__ASSERTED_CONSTRAINT).getSettingDelegate();
 	/**
 	 * The cached value of the BindingConnector from the result of the
 	 * this ConstraintUsage to the result of a LiteralBoolean true.
@@ -118,10 +126,11 @@ public class AssertConstraintUsageImpl extends ConstraintUsageImpl implements As
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
-	public BindingConnector basicGetAssertionConnector() {
-		return assertionConnector;
+	@Override
+	public ConstraintUsage getAssertedConstraint() {
+		return (ConstraintUsage)ASSERTED_CONSTRAINT__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
@@ -129,29 +138,18 @@ public class AssertConstraintUsageImpl extends ConstraintUsageImpl implements As
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public ConstraintUsage getAssertedConstraint() {
-		ConstraintUsage assertedConstraint = basicGetAssertedConstraint();
-		return assertedConstraint != null && assertedConstraint.eIsProxy() ? (ConstraintUsage)eResolveProxy((InternalEObject)assertedConstraint) : assertedConstraint;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
 	public ConstraintUsage basicGetAssertedConstraint() {
-		return FeatureUtil.getReferencedFeatureOf(this, ConstraintUsage.class);
+		return (ConstraintUsage)ASSERTED_CONSTRAINT__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setAssertedConstraint(ConstraintUsage newAssertedConstraint) {
-		throw new UnsupportedOperationException();
+		ASSERTED_CONSTRAINT__ESETTING_DELEGATE.dynamicSet(this, null, 0, newAssertedConstraint);
 	}
 
 	/**
@@ -218,7 +216,7 @@ public class AssertConstraintUsageImpl extends ConstraintUsageImpl implements As
 			case SysMLPackage.ASSERT_CONSTRAINT_USAGE__IS_NEGATED:
 				return isNegated != IS_NEGATED_EDEFAULT;
 			case SysMLPackage.ASSERT_CONSTRAINT_USAGE__ASSERTED_CONSTRAINT:
-				return basicGetAssertedConstraint() != null;
+				return ASSERTED_CONSTRAINT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 		}
 		return super.eIsSet(featureID);
 	}

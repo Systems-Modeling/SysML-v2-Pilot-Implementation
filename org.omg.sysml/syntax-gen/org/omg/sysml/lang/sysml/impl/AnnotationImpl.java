@@ -29,18 +29,16 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.UniqueEList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
-import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.uml2.common.util.UnionEObjectEList;
 
 import org.omg.sysml.lang.sysml.AnnotatingElement;
 import org.omg.sysml.lang.sysml.Annotation;
 import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.lang.sysml.OwningMembership;
-import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
@@ -52,7 +50,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * </p>
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.AnnotationImpl#getAnnotatedElement <em>Annotated Element</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.AnnotationImpl#getOwnedRelatedElement <em>Owned Related Element</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.AnnotationImpl#getOwningRelatedElement <em>Owning Related Element</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.AnnotationImpl#getOwningAnnotatedElement <em>Owning Annotated Element</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.AnnotationImpl#getAnnotatingElement <em>Annotating Element</em>}</li>
  * </ul>
@@ -69,6 +67,16 @@ public class AnnotationImpl extends RelationshipImpl implements Annotation {
 	 * @ordered
 	 */
 	protected Element annotatedElement;
+
+	/**
+	 * The cached setting delegate for the '{@link #getOwningAnnotatedElement() <em>Owning Annotated Element</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwningAnnotatedElement()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate OWNING_ANNOTATED_ELEMENT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.ANNOTATION__OWNING_ANNOTATED_ELEMENT).getSettingDelegate();
 
 	/**
 	 * The cached value of the '{@link #getAnnotatingElement() <em>Annotating Element</em>}' reference.
@@ -101,7 +109,9 @@ public class AnnotationImpl extends RelationshipImpl implements Annotation {
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * Xtext workaround
 	 * <!-- end-user-doc -->
+	 * @generated NOT
 	 */
 	public Element getAnnotatedElement() {
 		return annotatedElement == null? basicGetAnnotatedElement(): getAnnotatedElementGen();
@@ -126,6 +136,8 @@ public class AnnotationImpl extends RelationshipImpl implements Annotation {
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * Xtext workaround:
+	 * If the Annotation is not owned by an AnnotatingElement, then the annotatedElement is the owningRelatedElement.
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
@@ -134,22 +146,6 @@ public class AnnotationImpl extends RelationshipImpl implements Annotation {
 			Element owningRelatedElement = getOwningRelatedElement();
 			if (!(owningRelatedElement instanceof AnnotatingElement)) {
 				annotatedElement = owningRelatedElement;
-			} else {
-				// For a prefix annotation, use the lexically next relationship as the annotated
-				Element owner = owningRelatedElement.getOwner();
-				if (owner != null) {
-					EList<Relationship> ownedRelationships = owner.getOwnedRelationship();
-					int i = ownedRelationships.indexOf(owningRelatedElement.getOwningRelationship()) + 1;
-					if (i < ownedRelationships.size()) {
-						annotatedElement = ownedRelationships.get(i);
-						if (annotatedElement instanceof OwningMembership) {
-							Element ownedMember = ((OwningMembership)annotatedElement).getOwnedMemberElement();
-							if (ownedMember != null) {
-								annotatedElement = ownedMember;
-							}
-						}
-					}
-				}
 			}
 		}
 		return annotatedElement;
@@ -157,6 +153,7 @@ public class AnnotationImpl extends RelationshipImpl implements Annotation {
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * Do not set owningAnnotatedElement using annotatedElement.
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
@@ -190,13 +187,49 @@ public class AnnotationImpl extends RelationshipImpl implements Annotation {
 	 * @generated
 	 */
 	@Override
-	public EList<Element> getOwnedRelatedElement() {
-		if (ownedRelatedElement == null) {
-			ownedRelatedElement = new EObjectContainmentWithInverseEList<Element>(Element.class, this, SysMLPackage.ANNOTATION__OWNED_RELATED_ELEMENT, SysMLPackage.ELEMENT__OWNING_RELATIONSHIP);
-		}
-		return ownedRelatedElement;
+	public Element getOwningRelatedElement() {
+		if (eContainerFeatureID() != SysMLPackage.ANNOTATION__OWNING_RELATED_ELEMENT) return null;
+		return (Element)eInternalContainer();
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetOwningRelatedElement(Element newOwningRelatedElement, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newOwningRelatedElement, SysMLPackage.ANNOTATION__OWNING_RELATED_ELEMENT, msgs);
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setOwningRelatedElement(Element newOwningRelatedElement) {
+		if (newOwningRelatedElement != eInternalContainer() || (eContainerFeatureID() != SysMLPackage.ANNOTATION__OWNING_RELATED_ELEMENT && newOwningRelatedElement != null)) {
+			if (EcoreUtil.isAncestor(this, newOwningRelatedElement))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newOwningRelatedElement != null)
+				msgs = ((InternalEObject)newOwningRelatedElement).eInverseAdd(this, SysMLPackage.ELEMENT__OWNED_RELATIONSHIP, Element.class, msgs);
+			msgs = basicSetOwningRelatedElement(newOwningRelatedElement, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.ANNOTATION__OWNING_RELATED_ELEMENT, newOwningRelatedElement, newOwningRelatedElement));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * Xtext workaround.
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
 	@Override
 	public AnnotatingElement getAnnotatingElement() {
 		return annotatingElement == null? basicGetAnnotatingElement(): getAnnotatingElementGen();
@@ -221,6 +254,10 @@ public class AnnotationImpl extends RelationshipImpl implements Annotation {
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * Xtext workaround:
+	 * If there is no annotatingElement set, then set the AnnotatingElement to the owningRelatedElement,
+	 * if it is an AnnotatingElement, otherwise set it to the first ownedRelatedElement that is an
+	 * AnnotatingElement (if any).
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
@@ -288,28 +325,26 @@ public class AnnotationImpl extends RelationshipImpl implements Annotation {
 	 */
 	@Override
 	public Element getOwningAnnotatedElement() {
-		Element owningAnnotatedElement = basicGetOwningAnnotatedElement();
-		return owningAnnotatedElement != null && owningAnnotatedElement.eIsProxy() ? (Element)eResolveProxy((InternalEObject)owningAnnotatedElement) : owningAnnotatedElement;
+		return (Element)OWNING_ANNOTATED_ELEMENT__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Element basicGetOwningAnnotatedElement() {
-		Element owningRelatedElement = super.getOwningRelatedElement();
-		return owningRelatedElement instanceof AnnotatingElement? null: owningRelatedElement;
+		return (Element)OWNING_ANNOTATED_ELEMENT__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setOwningAnnotatedElement(Element newOwningAnnotatedElement) {
-		super.basicSetOwningRelatedElement(newOwningAnnotatedElement, null);
+		OWNING_ANNOTATED_ELEMENT__ESETTING_DELEGATE.dynamicSet(this, null, 0, newOwningAnnotatedElement);
 	}
 
 	/**
@@ -365,12 +400,13 @@ public class AnnotationImpl extends RelationshipImpl implements Annotation {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case SysMLPackage.ANNOTATION__OWNED_RELATED_ELEMENT:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedRelatedElement()).basicAdd(otherEnd, msgs);
+			case SysMLPackage.ANNOTATION__OWNING_RELATED_ELEMENT:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetOwningRelatedElement((Element)otherEnd, msgs);
 			case SysMLPackage.ANNOTATION__ANNOTATING_ELEMENT:
 				if (annotatingElement != null)
 					msgs = ((InternalEObject)annotatingElement).eInverseRemove(this, SysMLPackage.ANNOTATING_ELEMENT__ANNOTATION, AnnotatingElement.class, msgs);
@@ -387,12 +423,26 @@ public class AnnotationImpl extends RelationshipImpl implements Annotation {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case SysMLPackage.ANNOTATION__OWNED_RELATED_ELEMENT:
-				return ((InternalEList<?>)getOwnedRelatedElement()).basicRemove(otherEnd, msgs);
+			case SysMLPackage.ANNOTATION__OWNING_RELATED_ELEMENT:
+				return basicSetOwningRelatedElement(null, msgs);
 			case SysMLPackage.ANNOTATION__ANNOTATING_ELEMENT:
 				return basicSetAnnotatingElement(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+		switch (eContainerFeatureID()) {
+			case SysMLPackage.ANNOTATION__OWNING_RELATED_ELEMENT:
+				return eInternalContainer().eInverseRemove(this, SysMLPackage.ELEMENT__OWNED_RELATIONSHIP, Element.class, msgs);
+		}
+		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
 
 	/**
@@ -468,14 +518,14 @@ public class AnnotationImpl extends RelationshipImpl implements Annotation {
 		switch (featureID) {
 			case SysMLPackage.ANNOTATION__ANNOTATED_ELEMENT:
 				return isSetAnnotatedElement();
-			case SysMLPackage.ANNOTATION__OWNED_RELATED_ELEMENT:
-				return ownedRelatedElement != null && !ownedRelatedElement.isEmpty();
+			case SysMLPackage.ANNOTATION__OWNING_RELATED_ELEMENT:
+				return getOwningRelatedElement() != null;
 			case SysMLPackage.ANNOTATION__TARGET:
 				return isSetTarget();
 			case SysMLPackage.ANNOTATION__SOURCE:
 				return isSetSource();
 			case SysMLPackage.ANNOTATION__OWNING_ANNOTATED_ELEMENT:
-				return basicGetOwningAnnotatedElement() != null;
+				return OWNING_ANNOTATED_ELEMENT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.ANNOTATION__ANNOTATING_ELEMENT:
 				return isSetAnnotatingElement();
 		}

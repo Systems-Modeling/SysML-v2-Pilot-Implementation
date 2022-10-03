@@ -56,7 +56,7 @@ public interface RequirementVerificationMembership extends RequirementConstraint
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p> The RequirementUsage that is identified as being verified. This is derived as being the first RequirementUsage subset by the <code>ownedRequirement</code>, if there is one, and, otherwise, the <code>ownedRequirement</code> itself.</p>
+	 * <p> The RequirementUsage that is identified as being verified. It is the <code>referencedConstraint</code> of the RequirementVerificationMembership considered as a RequirementConstraintMembership, which must be a RequirementUsage.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Verified Requirement</em>' reference.
 	 * @see #setVerifiedRequirement(RequirementUsage)
@@ -64,6 +64,7 @@ public interface RequirementVerificationMembership extends RequirementConstraint
 	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='requirementVerification'"
 	 *        annotation="redefines"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	RequirementUsage getVerifiedRequirement();
@@ -101,6 +102,7 @@ public interface RequirementVerificationMembership extends RequirementConstraint
 	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='requirementVerificationMembership'"
 	 *        annotation="redefines"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	RequirementUsage getOwnedRequirement();

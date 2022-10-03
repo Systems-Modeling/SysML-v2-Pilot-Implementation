@@ -134,7 +134,7 @@ public class KerMLRepositorySaveUtil extends KerMLTraversalUtil {
 				} else if ("-g".equals(args[i])) {
 					this.isAddImplicitElements = true;
 				} else if ("-v".equals(args[i])) {
-					this.isVerbose = true;
+					this.setVerbose(true);
 				}
 				i++;
 			}
@@ -175,7 +175,7 @@ public class KerMLRepositorySaveUtil extends KerMLTraversalUtil {
 		
 		ApiElementProcessingFacade processingFacade = new ApiElementProcessingFacade(this.projectName, this.getBasePath());	
 		processingFacade.setTraversal(this.initialize(processingFacade));
-		processingFacade.setIsVerbose(this.isVerbose);
+		processingFacade.setIsVerbose(this.isVerbose());
 		processingFacade.setIsIncludeDerived(this.isAddDerivedElements);
 	}
 	

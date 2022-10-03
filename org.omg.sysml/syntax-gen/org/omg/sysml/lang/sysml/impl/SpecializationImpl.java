@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -27,6 +27,7 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -76,6 +77,16 @@ public class SpecializationImpl extends RelationshipImpl implements Specializati
 	protected Type general;
 
 	/**
+	 * The cached setting delegate for the '{@link #getOwningType() <em>Owning Type</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwningType()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate OWNING_TYPE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.SPECIALIZATION__OWNING_TYPE).getSettingDelegate();
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -94,6 +105,12 @@ public class SpecializationImpl extends RelationshipImpl implements Specializati
 		return SysMLPackage.Literals.SPECIALIZATION;
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * Xtext workaround.
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
 	@Override
 	public Type getGeneral() {
 		return general == null? basicGetGeneral(): getGeneralGen();
@@ -118,6 +135,8 @@ public class SpecializationImpl extends RelationshipImpl implements Specializati
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * Xtext workaround:
+	 * If general is empty, then set it to the last ownedRelatedElement (which will be a Feature chain).
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
@@ -153,6 +172,12 @@ public class SpecializationImpl extends RelationshipImpl implements Specializati
 		return general != null;
 	}
 	
+	/**
+	 * <!-- begin-user-doc -->
+	 * Xtext workaround.
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
 	@Override
 	public Type getSpecific() {
 		return specific == null? basicGetSpecific(): getSpecificGen();
@@ -177,6 +202,9 @@ public class SpecializationImpl extends RelationshipImpl implements Specializati
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * Xtext workaround:
+	 * If specific is empty, then set it to the owningRelatedElement, if that is a Type.
+	 * Otherwise set it to the first ownedRelatedElement (which will be a FeatureChain).
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
@@ -271,30 +299,26 @@ public class SpecializationImpl extends RelationshipImpl implements Specializati
 	 */
 	@Override
 	public Type getOwningType() {
-		Type owningType = basicGetOwningType();
-		return owningType != null && owningType.eIsProxy() ? (Type)eResolveProxy((InternalEObject)owningType) : owningType;
+		return (Type)OWNING_TYPE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Type basicGetOwningType() {
-		Element element = this.getOwningRelatedElement();
-		return element instanceof Type? (Type)element: null;
+		return (Type)OWNING_TYPE__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@Override
 	public void setOwningType(Type newOwningType) {
-		if (getSpecific() != newOwningType) {
-			setSpecific(newOwningType);
-		}
-		setOwningRelatedElement(newOwningType);
+		OWNING_TYPE__ESETTING_DELEGATE.dynamicSet(this, null, 0, newOwningType);
 	}
 
 	/**
@@ -430,7 +454,7 @@ public class SpecializationImpl extends RelationshipImpl implements Specializati
 			case SysMLPackage.SPECIALIZATION__GENERAL:
 				return isSetGeneral();
 			case SysMLPackage.SPECIALIZATION__OWNING_TYPE:
-				return basicGetOwningType() != null;
+				return OWNING_TYPE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 		}
 		return super.eIsSet(featureID);
 	}

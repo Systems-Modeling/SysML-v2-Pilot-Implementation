@@ -56,7 +56,7 @@ public interface SatisfyRequirementUsage extends RequirementUsage, AssertConstra
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The RequirementUsage that is satisfied by the <tt>satisfyingSubject</tt> of this SatisfyRequirementUsage. It is the <tt>subsettedFeature</tt> of the first owned Subsetting Relationship of the SatisfyRequirementUsage.</p>
+	 * <p>The RequirementUsage that is satisfied by the <code>satisfyingSubject</code> of this SatisfyRequirementUsage. It is the <code>assertedConstraint</code> of the SatisfyRequirementUsage considered as an AssertConstraintUsage, which must be a RequirementUsage.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Satisfied Requirement</em>' reference.
 	 * @see #setSatisfiedRequirement(RequirementUsage)
@@ -64,6 +64,7 @@ public interface SatisfyRequirementUsage extends RequirementUsage, AssertConstra
 	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='requirementSatisfaction'"
 	 *        annotation="redefines"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	RequirementUsage getSatisfiedRequirement();
@@ -94,6 +95,7 @@ public interface SatisfyRequirementUsage extends RequirementUsage, AssertConstra
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getSatisfyRequirementUsage_SatisfyingFeature()
 	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='satisfiedRequirement'"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	Feature getSatisfyingFeature();

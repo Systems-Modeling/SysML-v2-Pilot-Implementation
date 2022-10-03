@@ -50,6 +50,13 @@ public class NamespaceUtil {
 	}
 	
 	// Membership
+	
+	public static Stream<Element> getOwnedMembersOf(Namespace namespace) {
+		return namespace.getOwnedMembership().stream().
+			filter(OwningMembership.class::isInstance).
+			map(Membership::getMemberElement).
+			filter(m->m != null);
+	}
 
 	public static <M extends OwningMembership, T> Stream<T> getOwnedMembersByMembershipIn(Namespace namespace, Class<M> kind, Class<T> type) {
 		return namespace.getOwnedMembership().stream().
@@ -59,9 +66,16 @@ public class NamespaceUtil {
 				map(type::cast);
 	}
 
-	public static Membership addOwnedMemberTo(Namespace namespace, Element element) {
+	public static OwningMembership addOwnedMemberTo(Namespace namespace, Element element) {
 		OwningMembership membership = SysMLFactory.eINSTANCE.createOwningMembership();
 		membership.setOwnedMemberElement(element);
+		namespace.getOwnedRelationship().add(membership);
+		return membership;
+	}
+
+	public static Membership addMemberTo(Namespace namespace, Element element) {
+		Membership membership = SysMLFactory.eINSTANCE.createMembership();
+		membership.setMemberElement(element);
 		namespace.getOwnedRelationship().add(membership);
 		return membership;
 	}

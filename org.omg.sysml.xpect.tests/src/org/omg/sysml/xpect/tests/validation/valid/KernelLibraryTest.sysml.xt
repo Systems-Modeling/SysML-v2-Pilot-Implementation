@@ -89,15 +89,18 @@ package KernelLibraryTest {
 		}
 	}
 	
-	calc def MassSum (partMasses : Real[0..*]) totalMass : Real {
+	calc def MassSum {
+		in partMasses : Real[0..*];
+		return totalMass : Real;
+		
 		sum(partMasses)
 	}
 	
-	calc ms: MassSum (
-		partMasses = (vehicle.eng.m, vehicle.trans.m))
+	calc ms: MassSum {
+		in partMasses = (vehicle.eng.m, vehicle.trans.m);
+	}
 	
 	totalMass = vehicle.m;
-		
-	
+
 }
 

@@ -170,7 +170,7 @@ public class ElementUtil {
 
 	public static String processCommentBody(String body) {
 		if (body != null) {
-			body = body.replaceFirst("/\\*\\*", "").replaceFirst("/\\*", "").replaceFirst("^\\s*", "");			
+			body = body.replaceFirst("/\\*", "").replaceFirst("^\\s*", "");		
 			if (body.endsWith("*/")) {
 				body = body.substring(0, body.length()-2);
 			}
@@ -231,17 +231,18 @@ public class ElementUtil {
 	
 	public static void transformAll(Element root, boolean addImplicitElements) {
 		if (addImplicitElements && root instanceof Type) {
+			root.setIsImpliedIncluded(true);
 			TypeUtil.insertImplicitBindingConnectors((Type) root);
 		}
 		transform(root);
 		for (Relationship relationship: root.getOwnedRelationship()) {
-			transformAll(relationship, addImplicitElements);
+			// transformAll(relationship, addImplicitElements);
 			for (Element element: relationship.getOwnedRelatedElement()) {
 				transformAll(element, addImplicitElements);
 			}
 		}
 		if (addImplicitElements && root instanceof Type) {
-			TypeUtil.insertImplicitGeneralizations((Type)root);
+			TypeUtil.insertImplicitSpecializations((Type)root);
 		}
 		if (addImplicitElements && root instanceof Feature) {
 			FeatureUtil.insertImplicitTypeFeaturings((Feature)root);

@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -25,7 +25,7 @@ package org.omg.sysml.lang.sysml.impl;
 import java.util.Collection;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.uml2.common.util.DerivedSubsetEObjectEList;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.omg.sysml.lang.sysml.Classifier;
 import org.omg.sysml.lang.sysml.Subclassification;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -45,6 +45,16 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  */
 public class ClassifierImpl extends TypeImpl implements Classifier {
 	
+	/**
+	 * The cached setting delegate for the '{@link #getOwnedSubclassification() <em>Owned Subclassification</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedSubclassification()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate OWNED_SUBCLASSIFICATION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.CLASSIFIER__OWNED_SUBCLASSIFICATION).getSettingDelegate();
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -67,11 +77,12 @@ public class ClassifierImpl extends TypeImpl implements Classifier {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EList<Subclassification> getOwnedSubclassification() {
-		return new DerivedSubsetEObjectEList<>(Subclassification.class, this, SysMLPackage.CLASSIFIER__OWNED_SUBCLASSIFICATION, new int[] {SysMLPackage.TYPE__OWNED_SPECIALIZATION});
+		return (EList<Subclassification>)OWNED_SUBCLASSIFICATION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
@@ -129,7 +140,7 @@ public class ClassifierImpl extends TypeImpl implements Classifier {
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case SysMLPackage.CLASSIFIER__OWNED_SUBCLASSIFICATION:
-				return !getOwnedSubclassification().isEmpty();
+				return OWNED_SUBCLASSIFICATION__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 		}
 		return super.eIsSet(featureID);
 	}

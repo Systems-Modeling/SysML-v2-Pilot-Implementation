@@ -37,7 +37,6 @@ import org.omg.sysml.lang.sysml.ActorMembership;
 import org.omg.sysml.lang.sysml.AllocationUsage;
 import org.omg.sysml.lang.sysml.AnalysisCaseDefinition;
 import org.omg.sysml.lang.sysml.AnalysisCaseUsage;
-import org.omg.sysml.lang.sysml.MetadataFeature;
 import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Class;
@@ -52,6 +51,7 @@ import org.omg.sysml.lang.sysml.ExhibitStateUsage;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureTyping;
+import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.FlowConnectionUsage;
 import org.omg.sysml.lang.sysml.Import;
 import org.omg.sysml.lang.sysml.IncludeUseCaseUsage;
@@ -59,6 +59,7 @@ import org.omg.sysml.lang.sysml.ItemDefinition;
 import org.omg.sysml.lang.sysml.ItemFlow;
 import org.omg.sysml.lang.sysml.ItemUsage;
 import org.omg.sysml.lang.sysml.Membership;
+import org.omg.sysml.lang.sysml.MetadataFeature;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.ObjectiveMembership;
 import org.omg.sysml.lang.sysml.OwningMembership;
@@ -179,6 +180,9 @@ public class SysML2PlantUMLStyle {
         add("COMPMOST", "Show as many memberships in a compartment as possible", " ", "compartmentMost", "true");
         add("COMPTREE", "Show nested ports in a compartment", " ", "compartmentTree", "true");
         add("SHOWIMPORTED", "Show imported elements", " ", "showImported", "true");
+        add("HIDEMETADATA", "Hide metadata", " ", "hideMetadata", "true");
+        add("SHOWMETACLASS", "Show metaclasses of metaobjects", " ", "showMetaclass", "true");
+        add("EVAL", "Evaluate expressions", " ", "evalExp", "true");
     }
 
     public static class StyleSwitch {
@@ -368,8 +372,13 @@ public class SysML2PlantUMLStyle {
 		}
 
 		@Override
-		public String caseConnectionUsage(ConnectionUsage object) {
-            return " -[thickness=3]- ";
+		public String caseConnectionUsage(ConnectionUsage cu) {
+            String mName = SysML2PlantUMLText.getMetadataUsageName(cu);
+            if (mName != null) {
+                return " -[thickness=3]-> ";
+            } else {
+                return " -[thickness=3]- ";
+            }
 		}
 
 		@Override
@@ -455,6 +464,11 @@ public class SysML2PlantUMLStyle {
 		}
 
 		@Override
+		public String caseFeatureValue(FeatureValue fv) {
+            return " -[thickness=5]- ";
+		}
+
+		@Override
 		public String caseSpecialization(Specialization object) {
             return " --|> ";
 		}
@@ -490,6 +504,11 @@ public class SysML2PlantUMLStyle {
 		@Override
 		public String caseExhibitStateUsage(ExhibitStateUsage esu) {
             return "<<exhibit state>> ";
+		}
+
+		@Override
+		public String caseSatisfyRequirementUsage(SatisfyRequirementUsage sru) {
+            return "<<requirement>> ";
 		}
 
         @Override

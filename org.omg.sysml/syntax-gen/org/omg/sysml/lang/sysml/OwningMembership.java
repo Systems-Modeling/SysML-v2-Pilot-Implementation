@@ -46,6 +46,7 @@ public interface OwningMembership extends Membership {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getOwningMembership_OwnedMemberElementId()
 	 * @model dataType="org.omg.sysml.lang.types.String" required="true" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="redefines"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	String getOwnedMemberElementId();
@@ -78,6 +79,7 @@ public interface OwningMembership extends Membership {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getOwningMembership_OwnedMemberShortName()
 	 * @model dataType="org.omg.sysml.lang.types.String" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="redefines"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	String getOwnedMemberShortName();
@@ -111,6 +113,7 @@ public interface OwningMembership extends Membership {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getOwningMembership_OwnedMemberName()
 	 * @model dataType="org.omg.sysml.lang.types.String" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="redefines"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	String getOwnedMemberName();
@@ -143,7 +146,7 @@ public interface OwningMembership extends Membership {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Element that becomes an <code>ownedMember</code> of the <code>membershipOwningNamespace</code> due to this OwningMembership.</p>
+	 * <p>The Element that becomes an <code>ownedMember</code> of the <code>membershipOwningNamespace</code> due to this OwningMembership. Derived as the first <code>ownedRelatedElement</code> of the OwningRelationship.</p>
 	 * 
 	 * 
 	 * <!-- end-model-doc -->
@@ -154,6 +157,7 @@ public interface OwningMembership extends Membership {
 	 * @model opposite="owningMembership" required="true" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="redefines"
 	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	Element getOwnedMemberElement();

@@ -23,7 +23,7 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.ParameterMembership;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -41,6 +41,16 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * @generated
  */
 public class ParameterMembershipImpl extends FeatureMembershipImpl implements ParameterMembership {
+	/**
+	 * The cached setting delegate for the '{@link #getOwnedMemberParameter() <em>Owned Member Parameter</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedMemberParameter()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate OWNED_MEMBER_PARAMETER__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.PARAMETER_MEMBERSHIP__OWNED_MEMBER_PARAMETER).getSettingDelegate();
+
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -64,27 +74,26 @@ public class ParameterMembershipImpl extends FeatureMembershipImpl implements Pa
 	 */
 	@Override
 	public Feature getOwnedMemberParameter() {
-		Feature ownedMemberParameter = basicGetOwnedMemberParameter();
-		return ownedMemberParameter != null && ownedMemberParameter.eIsProxy() ? (Feature)eResolveProxy((InternalEObject)ownedMemberParameter) : ownedMemberParameter;
+		return (Feature)OWNED_MEMBER_PARAMETER__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Feature basicGetOwnedMemberParameter() {
-		return super.basicGetOwnedMemberFeature();
+		return (Feature)OWNED_MEMBER_PARAMETER__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> 
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void setOwnedMemberParameter(Feature newOwnedMemberParameter) {
-		super.setOwnedMemberFeature(newOwnedMemberParameter);
+		OWNED_MEMBER_PARAMETER__ESETTING_DELEGATE.dynamicSet(this, null, 0, newOwnedMemberParameter);
 	}
 
 	/**

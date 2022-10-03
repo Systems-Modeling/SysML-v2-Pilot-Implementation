@@ -115,11 +115,13 @@ public class VDefault extends VTraverser {
         }
     }
 
-    protected void addSpecializations(Type typ) {
+    protected void addSpecializations(int typId, Type typ) {
+        if (typId < 0) return;
         for (Specialization s: typ.getOwnedSpecialization()) {
             Type gt = s.getGeneral();
             if (gt == null) continue;
-            addPRelation(null, typ, gt, s, null);
+            PRelation pr = new PRelation(typId, gt, s, null);
+            addPRelation(pr);
         }
     }
 
@@ -137,7 +139,7 @@ public class VDefault extends VTraverser {
         return addPUMLLine(typ, keyword, name, styleString(typ));
     }
 
-    protected boolean addRecLine(String name, Type typ, boolean withStyle) {
+    protected int addRecLine(String name, Type typ, boolean withStyle) {
         String keyword;
         if (typ instanceof Usage) {
             keyword = "rec usage ";
@@ -145,14 +147,13 @@ public class VDefault extends VTraverser {
             keyword = "rec def ";
         }
         if (withStyle) {
-            addPUMLLine(typ, keyword, name);
+            return addPUMLLine(typ, keyword, name);
         } else {
-            addPUMLLine(typ, keyword, name, null);
+            return addPUMLLine(typ, keyword, name, null);
         }
-        return true;
     }
 
-    protected boolean addRecLine(Type typ, boolean withStyle) {
+    protected int addRecLine(Type typ, boolean withStyle) {
     	String name = getNameAnyway(typ);
         return addRecLine(name, typ, withStyle);
     }

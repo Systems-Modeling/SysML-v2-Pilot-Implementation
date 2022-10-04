@@ -1,5 +1,5 @@
 package SimpleVehicleModel{
-    import Definitions::*;  
+    import Definitions::*;
     import ISQ::*;
     package Definitions{
         import PartDefinitions::*;
@@ -24,7 +24,7 @@ package SimpleVehicleModel{
                 attribute acceleration:>ISQ::acceleration;
                 attribute electricalPower:>ISQ::power;
                 attribute Tmax:>ISQ::temperature;
-                attribute maintenanceTime: Time::DateTime; 
+                attribute maintenanceTime: Time::DateTime;
                 attribute brakePedalDepressed: Boolean;
                 port ignitionCmdPort:IgnitionCmdPort;
                 port pwrCmdPort:PwrCmdPort;
@@ -39,8 +39,8 @@ package SimpleVehicleModel{
                     ref controller : VehicleController;
                     state operatingStates {
                         entry action initial;
-                        state off;                    
-                        state starting;                    
+                        state off;
+                        state starting;
                         state on {
                             entry performSelfTest;
                             do providePower;
@@ -56,12 +56,12 @@ package SimpleVehicleModel{
                                 if ignitionCmd.ignitionOnOff==IgnitionOnOff::on and brakePedalDepressed
                             do send StartSignal() to controller
                             then starting;
-                        
+
                         transition starting_To_on
                             first starting
                             accept VehicleOnSignal
                             then on;
-                        
+
                         transition on_To_off
                             first on
                             accept VehicleOffSignal
@@ -77,7 +77,7 @@ package SimpleVehicleModel{
 
                         state normal;
                         state maintenance;
-                        state degraded;                    
+                        state degraded;
 
                         transition initial then normal;
 
@@ -88,7 +88,7 @@ package SimpleVehicleModel{
 
                         transition normal_To_degraded
                             first normal
-                            accept when senseTemperature.temp > Tmax 
+                            accept when senseTemperature.temp > Tmax
                             do send OverTemp() to controller
                             then degraded;
 
@@ -160,9 +160,9 @@ package SimpleVehicleModel{
                 port controlPort:ControlPort;
                 exhibit state controllerStates parallel {
                     state operatingStates {
-                        entry action initial; 
+                        entry action initial;
                         state off;
-                        state on;    
+                        state on;
                         transition initial then off;
                         transition 'off-on'
                             first off
@@ -173,7 +173,7 @@ package SimpleVehicleModel{
                             accept OffSignal
                             then off;
                     }
-                }  
+                }
             }
             part def CruiseController:>Software {
                 port setSpeedPort:~SetSpeedPort;
@@ -211,7 +211,7 @@ package SimpleVehicleModel{
             part def TransmissionAutomatic;
             part def TransmissionManual;
             part def Sunroof;
-            
+
             //create abstract physical element to support allocation def from logical to Physical
             part def PhysicalComponent:>PhysicalItem, Parts::Part;
             //logical Components
@@ -261,10 +261,10 @@ package SimpleVehicleModel{
             }
             port def ShankPort{
                 attribute threadDia;
-                attribute threadPitch;   
+                attribute threadPitch;
                 attribute shaftLength;
             }
-            
+
             port def VehicleToRoadPort;
             port def ControlPort;
             port def CruiseControlPort;
@@ -277,7 +277,7 @@ package SimpleVehicleModel{
             port def HandPort :> DriverCmdPort {
                 out item ignitionCmd:IgnitionCmd subsets driverCmd;
                 out item pwrCmd:PwrCmd subsets driverCmd;
-            }  
+            }
         }
         package ItemDefinitions{
             item def PwrCmd{
@@ -301,7 +301,7 @@ package SimpleVehicleModel{
             item def IgnitionCmd:>DriverCmd{
                 attribute ignitionOnOff:IgnitionOnOff;
             }
-            
+
             attribute def VehicleStartSignal;
             attribute def VehicleOnSignal;
             attribute def VehicleOffSignal;
@@ -322,7 +322,7 @@ package SimpleVehicleModel{
                 end fuelInPort:~FuelPort;
                 flow fuelOutPort.fuel to fuelInPort.fuel;
             }
-            
+
             interface def WheelFastenerInterface{
                 end lugNutPort:LugNutPort;
                 end shankPort:ShankPort;
@@ -376,10 +376,10 @@ package SimpleVehicleModel{
             action def SenseTemperature{
                 out temp: ISQ::TemperatureValue;
             }
-        }    
+        }
         package StateDefinitions {
             state def VehicleStates;
-            state def ControllerStates;  
+            state def ControllerStates;
             state def CruiseControllerStates;
         }
         package RequirementDefinitions{
@@ -399,11 +399,11 @@ package SimpleVehicleModel{
                 doc /* The engine shall generate torque as a function of RPM as shown in Table 1. */
                 subject generateTorque:ActionDefinitions::GenerateTorque;
             }
-            requirement def DrivePowerOutputRequirement { 
+            requirement def DrivePowerOutputRequirement {
                 doc /* The engine shall provide a connection point to transfer torque to the transmission.*/
             }
             requirement def FuelEconomyRequirement {
-                doc /* The vehicle shall maintain an average fuel economomy of at least x miles per gallon for the nominal 
+                doc /* The vehicle shall maintain an average fuel economomy of at least x miles per gallon for the nominal
                 driving scenario */
                 attribute actualFuelEconomy :> distancePerVolume;
                 attribute requiredFuelEconomy :> distancePerVolume;
@@ -420,14 +420,14 @@ package SimpleVehicleModel{
             import SI::*;
             import USCustomaryUnits::*;
             alias Torque for ISQ::TorqueValue;
-            
+
             enum def Colors {black;grey;red;}
             enum def DiameterChoices:>ISQ::LengthValue{
                 enum = 60 [mm];
                 enum = 80 [mm];
                 enum = 100 [mm];
             }
-            attribute cylinderDiameter: DiameterChoices = 80 [mm]; 
+            attribute cylinderDiameter: DiameterChoices = 80 [mm];
             enum def IgnitionOnOff {on;off;}
             enum def FuelKind {gas;diesel;}
 
@@ -435,12 +435,12 @@ package SimpleVehicleModel{
             timePerDistance :> scalarQuantities = time / distance;
             volumePerDistance :> scalarQuantities = volume / distance;
             volumePerTime :> scalarQuantities = volume / time;
-            
+
             // kpl is approx .425 * mpg
             kpl : DerivedUnit = km / L;
             rpm : DerivedUnit = 1 / SI::min;
             kW : DerivedUnit = kilo * W;
-            
+
         }
         package IndividualDefinitions{
             individual def VehicleRoadContext_1:>GenericContext::Context;
@@ -452,8 +452,8 @@ package SimpleVehicleModel{
             individual def RearAxleAssembly_1:>AxleAssembly;
             individual def Road_1:>Road;
         }
-        package MetadataDefinitions { 
-            import AnalysisTooling::*;   
+        package MetadataDefinitions {
+            import AnalysisTooling::*;
             metadata def Safety {
                 attribute isMandatory : Boolean;
             }
@@ -461,10 +461,10 @@ package SimpleVehicleModel{
         }
         package KeyWord_MetadataDefinitions{
             import Metaobjects::SemanticMetadata;
-            
+
             // the following is used to define the key word failureMode
             state failureModes[*] nonunique;
-            
+
             // with alias <fm>
             metadata def <fm> failureMode :> SemanticMetadata {
                 :>> baseType = failureModes as SysML::StateUsage;
@@ -475,8 +475,8 @@ package SimpleVehicleModel{
             part def Context {
                 attribute time:TimeValue;
                 attribute spatialCF: CartesianSpatial3dCoordinateFrame[1] { :>> mRefs = (m, m, m); }
-                attribute velocityCF: Cartesian3dVelocityCoordinateFrame[1] = spatialCF/s;
-                attribute accelarationCF: Cartesian3dAccelerationCoordinateFrame[1] = velocityCF/s;
+                attribute velocityCF: CartesianVelocity3dCoordinateFrame[1] = spatialCF/s;
+                attribute accelarationCF: CartesianAcceleration3dCoordinateFrame[1] = velocityCF/s;
             }
         }
     }
@@ -519,7 +519,7 @@ package SimpleVehicleModel{
                         attribute redefines mass=75[kg];
                         ref item redefines fuel{
                             attribute redefines fuelMass=50[kg];
-                        }   
+                        }
                     }
                     part frontAxleAssembly:AxleAssembly{
                         attribute mass :> ISQ::mass=800[kg];
@@ -536,7 +536,7 @@ package SimpleVehicleModel{
                     }
                 }
             }
-            package ActionTree{  
+            package ActionTree{
             }
             package Requirements{
             }
@@ -546,7 +546,7 @@ package SimpleVehicleModel{
             import ShapeItems::Box;
             import ParametersOfInterestMetadata::mop;
             import ModelingMetadata::*; // incudes status info
-            
+
             package PartsTree{
                 part vehicle_b : Vehicle{
                     #mop attribute mass redefines mass=dryMass+cargoMass+fuelTank.fuel.fuelMass;
@@ -567,14 +567,14 @@ package SimpleVehicleModel{
                     perform ActionTree::applyParkingBrake redefines applyParkingBrake;
                     perform ActionTree::senseTemperature redefines senseTemperature;
                     exhibit state vehicleStates redefines vehicleStates;
-                    
-                    // Example vehicle with simple enveloping shape that is a solid 
+
+                    // Example vehicle with simple enveloping shape that is a solid
                     item :> envelopingShapes : Box[1] {
                         length1:>> length = 4800 [mm];
                         width1:>> width = 1840 [mm];
                         height1:>> height = 1350 [mm];
                     }
-                    
+
                     part fuelTank:FuelTank{
                         attribute redefines mass=75[kg];
                         ref item redefines fuel{
@@ -588,7 +588,7 @@ package SimpleVehicleModel{
                         part frontAxle:FrontAxle;
                         part frontWheels:Wheel[2];
                     }
-                    
+
                     part rearAxleAssembly:AxleAssembly{
                         attribute mass :> ISQ::mass=875[kg];
                         attribute driveTrainEfficiency:Real = 0.6;
@@ -627,20 +627,20 @@ package SimpleVehicleModel{
                                 }
                             }
                         }
-                        
+
                         bind shaftPort_d=differential.shaftPort_d;
                         connect differential.leftDiffPort to rearAxle.leftHalfAxle.leftAxleToDiffPort;
                         connect differential.rightDiffPort to rearAxle.rightHalfAxle.rightAxleToDiffPort;
-                        
-                        interface wheelToleftHalAxleInterface:WheelHubInterface 
+
+                        interface wheelToleftHalAxleInterface:WheelHubInterface
                             connect rearWheel1.lugNutCompositePort [1] to rearAxle.leftHalfAxle.shankCompositePort [1];
                         interface wheelTorightHalAxleInterface:WheelHubInterface
                             connect rearWheel2.lugNutCompositePort [1] to rearAxle.rightHalfAxle.shankCompositePort [1];
-                        
+
                     }
                     part starterMotor:StarterMotor;
                     part engine:Engine{
-                        perform providePower.generateTorque redefines generateTorque;            
+                        perform providePower.generateTorque redefines generateTorque;
                         part cylinders:Cylinder[4..6];
                         part alternator{
                             action generateElectricity;
@@ -652,7 +652,7 @@ package SimpleVehicleModel{
                             requirement drivePowerOuputRequirement :>> drivePowerOutputRequirement{
                                 port torqueOutPort redefines torqueOutPort=vehicle_b.engine.drivePwrPort;
                             }
-                        } 
+                        }
                     }
                     part transmission:Transmission{
                         attribute mass :> ISQ::mass=100[kg];
@@ -672,11 +672,11 @@ package SimpleVehicleModel{
                         }
                     }
                     part speedSensor:SpeedSensor;
-                    
+
                     // parts in bodyAssy and interioer are marked as safety or security features
                     part bodyAssy:BodyAssy{
                         part body:Body{
-                            attribute :>> color = Colors::red;  
+                            attribute :>> color = Colors::red;
                         }
                         part bumper {@Safety{isMandatory = true;}}
                         part keylessEntry {@Security;}
@@ -687,7 +687,7 @@ package SimpleVehicleModel{
                         part frontSeat[2];
                         part driverAirBag {@Safety{isMandatory = false;}}
                     }
-                    
+
                     //connections
                     bind engine.fuelCmdPort=fuelCmdPort;
 
@@ -699,18 +699,18 @@ package SimpleVehicleModel{
                     //allocate flow from action flows to connections
 
                     allocate ActionTree::providePower.generateToAmplify to engineToTransmissionInterface;
-                    
+
                     bind engine.ignitionCmdPort=ignitionCmdPort;
                     connect starterMotor.gearPort to engine.flyWheelPort;
                     connect vehicleSoftware.vehicleController.controlPort to engine.engineControlPort;
                     bind vehicle_b.setSpeedPort = vehicleSoftware.vehicleController.cruiseController.setSpeedPort;
                     connect speedSensor.speedSensorPort to vehicleSoftware.vehicleController.cruiseController.speedSensorPort;
                     connect vehicleSoftware.vehicleController.cruiseController.cruiseControlPort to engine.engineControlPort;
-                    connect transmission.shaftPort_a to driveshaft.shaftPort_b; 
+                    connect transmission.shaftPort_a to driveshaft.shaftPort_b;
                     connect driveshaft.shaftPort_c to rearAxleAssembly.shaftPort_d;
                     bind rearAxleAssembly.rearWheel1.wheelToRoadPort=vehicleToRoadPort.wheelToRoadPort1;
                     bind rearAxleAssembly.rearWheel2.wheelToRoadPort=vehicleToRoadPort.wheelToRoadPort2;
-                    
+
                     // assert the vehicle features (e.g, mass, reliability) satisfy the requirements
                     satisfy Requirements::vehicleSpecification by vehicle_b{
                         // attribute redefines vehicleMassRequirement.massActual = vehicle_b.mass;
@@ -731,7 +731,7 @@ package SimpleVehicleModel{
                     action amplifyTorque:AmplifyTorque;
                     action transferTorque:TransferTorque;
                     action distributeTorque:DistributeTorque;
-                    
+
                     //named flow
                     flow generateToAmplify from generateTorque.engineTorque to amplifyTorque.engineTorque;
                     //unnamed flows
@@ -741,7 +741,7 @@ package SimpleVehicleModel{
                 action performSelfTest: PerformSelfTest;
                 action applyParkingBrake: ApplyParkingBrake;
                 action senseTemperature: SenseTemperature;
-            }                   
+            }
             package DiscreteInteractions{
                 occurrence CruiseControl1{
                     part vehicle_b:>PartsTree::vehicle_b{
@@ -803,7 +803,7 @@ package SimpleVehicleModel{
                                         event occurrence setSpeedReceived=setSpeedPort.setSpeedReceived;
                                         then event sendSensedSpeed.target;
                                     }
-                                    port redefines cruiseControlPort{             
+                                    port redefines cruiseControlPort{
                                         event sendFuelCmd.source;
                                     }
                                 }
@@ -824,21 +824,21 @@ package SimpleVehicleModel{
                 import ModelingMetadata::*; // incudes status info
                 item marketSurvey;
                 dependency from vehicleSpecification to marketSurvey;
-                
+
                 requirement vehicleSpecification{
                     subject vehicle:Vehicle;
                     requirement <'1'> vehicleMassRequirement: MassRequirement {
                         doc /* The total mass of the vehicle shall be less than or equal to the required mass.
                         Assume total mass includes a full tank of gas of 60 kg*/
-                        attribute redefines massRequired=2000 [kg];                     
+                        attribute redefines massRequired=2000 [kg];
                         attribute redefines massActual = vehicle.dryMass + fuelMassActual;
                         attribute fuelMassActual:>ISQ::mass;
                         attribute fuelMassMax:>ISQ::mass = 60 [kg];
                         assume constraint {fuelMassActual==fuelMassMax}
                     }
-                    
+
                     allocate vehicleMassRequirement to PartsTree::vehicle_b.mass;
-                    
+
                     requirement <'2'> vehicleFuelEconomyRequirements{
                         doc /* fuel economy requirements group */
                         attribute assumedCargoMass:>ISQ::mass;
@@ -849,11 +849,11 @@ package SimpleVehicleModel{
                         requirement <'2_2'> highwayFuelEconomyRequirement:FuelEconomyRequirement{
                             redefines requiredFuelEconomy= 12.75 [km / L];
                             assume constraint {assumedCargoMass<=500 [kg]}
-                            
+
                             //StatusInfo is contained in ModelingMetadata library
                             // StatusKind has values for open, closed, tbd, tbr, tbd
                             @StatusInfo {
-                                status = StatusKind::closed;     
+                                status = StatusKind::closed;
                                 originator = "Bob";
                                 owner = "Mary";
                             }
@@ -864,7 +864,7 @@ package SimpleVehicleModel{
                     subject engine1:Engine;
                     requirement <'1'> engineMassRequirement: MassRequirement {
                         doc /* The total mass of the engine shall be less than or equal to the required mass.*/
-                        attribute redefines massRequired=200 [kg];                     
+                        attribute redefines massRequired=200 [kg];
                         attribute redefines massActual = engine1.mass;
                     }
                     requirement torqueGenerationRequirement : TorqueGenerationRequirement{
@@ -885,7 +885,7 @@ package SimpleVehicleModel{
                 }
 
             }
-        }    
+        }
         package Engine4Cyl_Variant{
             import ModelingMetadata::*; // incudes refinement
             part engine:Engine{
@@ -984,11 +984,11 @@ package SimpleVehicleModel{
         import VehicleConfigurations::VehicleConfiguration_b::**;
         package FuelEconomyAnalysisModel{
             import SampledFunctions::SampledFunction;
-              
+
             /*
             This analysis model was provided by Hisashi Miyashita on January 27, 2021
               We use the simplest fuel consumption analysis model introduced in:
-              Akcelik, R. "Fuel efficiency and other objectives in traffic system management." Traffic Engineering and Control 22.2 (1981): 54-65. 
+              Akcelik, R. "Fuel efficiency and other objectives in traffic system management." Traffic Engineering and Control 22.2 (1981): 54-65.
 
               Fuel consumption rate f can be decomposed to:
               f = f_a + f_b * tpd_avg,
@@ -1008,7 +1008,7 @@ package SimpleVehicleModel{
               BSFC means Brake-Specific Fuel Consumption, defined as gram/power.  SGG is the specific gravity of gasoline.
               The high octane gasoline is about 0.76[l/kg].
             */
-            
+
             attribute def Scenario :> SampledFunction {
                 attribute wayPoint[1..*] {
                     attribute elapseTime[1] :> ISQ::time;
@@ -1017,15 +1017,15 @@ package SimpleVehicleModel{
             }
 
             //calc def FuelConsumption (bestFuelConsumption: Real, idlingFuelConsumption: Real, tpd_avg: Real) : KilometersPerLitre {
-            
+
             calc def FuelConsumption {
                 in bestFuelConsumption: Real;
-                in idlingFuelConsumption: Real; 
+                in idlingFuelConsumption: Real;
                 in tpd_avg:>timePerDistance;
                 attribute f = bestFuelConsumption + idlingFuelConsumption * tpd_avg;
                 return dpv :> distancePerVolume = 1/f;
             }
-            
+
             calc def AverageTravelTimePerDistance {
                 in scenario: Scenario;
                 return tpd_avg:>timePerDistance;
@@ -1056,17 +1056,17 @@ package SimpleVehicleModel{
                 return : Real;
             }
 
-            analysis fuelEconomyAnalysis  {    
-                subject = vehicle_b; 
-                
+            analysis fuelEconomyAnalysis  {
+                subject = vehicle_b;
+
                 objective fuelEconomyAnalysisObjective {
                     doc /*estimate the vehicle fuel economy*/
                     require vehicleSpecification.vehicleFuelEconomyRequirements;
                 }
-                
+
                 in attribute scenario: Scenario;
                 // define a series of waypoints
-                
+
                 attribute distance = TraveledDistance(scenario);
                 attribute tpd_avg = AverageTravelTimePerDistance(scenario);
                 attribute bsfc = ComputeBSFC(vehicle_b.engine);
@@ -1081,17 +1081,17 @@ package SimpleVehicleModel{
         package ReliabilityAnalyis{
         }
         package VehicleTradeOffAnalysis{
-            /* The following example provides the rationale for selecting the engine4cyl. 
+            /* The following example provides the rationale for selecting the engine4cyl.
             The rationale could be contained in the vehicle configuration with the selected engine.
             The rationale and risk are contained in a metadata library. */
-            
+
             @Rationale about engineTradeOffAnalysis::vehicle_b_engine4cyl{
-                explanation = VehicleAnalysis::VehicleTradeOffAnalysis::engineTradeOffAnalysis;          
-                text = "the engine4cyl was evaluated to have a higher objective function compared to the engine6cyl based on the trade-off analyiss"; 
+                explanation = VehicleAnalysis::VehicleTradeOffAnalysis::engineTradeOffAnalysis;
+                text = "the engine4cyl was evaluated to have a higher objective function compared to the engine6cyl based on the trade-off analyiss";
             }
-            
+
             // The following risk for the engine4cyl could have been included as part of the objective evaluaiton criteria
-            
+
             @Risk about engineTradeOffAnalysis::vehicle_b_engine4cyl {
                 totalRisk = medium;
                 technicalRisk = medium;
@@ -1104,13 +1104,13 @@ package SimpleVehicleModel{
                     impact = 0.5;
                 }
             }
-            
-                
+
+
             import TradeStudies::*;
             //objective function with criterion engine mass, engine power, and engine cost
             calc def EngineEvaluation {
                 in engineMass:>ISQ::mass;
-                in enginePower:>ISQ::power; 
+                in enginePower:>ISQ::power;
                 in engineFuelEfficiency:Real;
                 in engineCost:Real;
                 return eval:Real;
@@ -1130,19 +1130,19 @@ package SimpleVehicleModel{
                 return eval:Real;
             }
             analysis engineTradeOffAnalysis:TradeStudy{
-                subject vehicleAlternatives[2]:>vehicle_b;   
-                
-                part vehicle_b_engine4cyl:>vehicleAlternatives{   
+                subject vehicleAlternatives[2]:>vehicle_b;
+
+                part vehicle_b_engine4cyl:>vehicleAlternatives{
                     part engine redefines engine{
                         part cylinders :>> cylinders [4];
                         attribute mass redefines mass=180 [kg];
                         attribute peakHorsePower redefines peakHorsePower = 180 [W];
                         attribute fuelEfficiency redefines fuelEfficiency=.6;
-                        attribute cost redefines cost = 1000;                     
+                        attribute cost redefines cost = 1000;
                     }
                 }
-                part vehicle_b_engine6cyl:>vehicleAlternatives{   
-                    part engine redefines engine{  
+                part vehicle_b_engine6cyl:>vehicleAlternatives{
+                    part engine redefines engine{
                         part cylinders redefines cylinders [6];
                         attribute mass redefines mass=220 [kg];
                         attribute peakHorsePower redefines peakHorsePower = 220 [W];
@@ -1150,21 +1150,21 @@ package SimpleVehicleModel{
                         attribute cost redefines cost = 1500;
                     }
                 }
-                
+
                 // the objective includes the objectiveFunction to select the maximum
                 objective :MaximizeObjective;
                     /*Select vehicle alternative with the engine whose evaluation function returns the max value*/
-                
-                
+
+
                 // Use the following if the evaluation function is different for each alternative
                 calc :> evaluationFunction{
                     in part vehicle:>vehicle_b_engine4cyl;
-                    return attribute eval:Real=EngineEvaluation_4cyl (vehicle.engine.mass, vehicle.engine.peakHorsePower, vehicle.engine.fuelEfficiency, vehicle.engine.cost); 
+                    return attribute eval:Real=EngineEvaluation_4cyl (vehicle.engine.mass, vehicle.engine.peakHorsePower, vehicle.engine.fuelEfficiency, vehicle.engine.cost);
                 }
                 calc :> evaluationFunction{
                     in part vehicle:>vehicle_b_engine6cyl;
-                    return attribute eval:Real=EngineEvaluation_6cyl (vehicle.engine.mass, vehicle.engine.peakHorsePower, vehicle.engine.fuelEfficiency, vehicle.engine.cost); 
-                }                                                  
+                    return attribute eval:Real=EngineEvaluation_6cyl (vehicle.engine.mass, vehicle.engine.peakHorsePower, vehicle.engine.fuelEfficiency, vehicle.engine.cost);
+                }
                 return part selectedVehicle:>vehicle_b;
             }
         }
@@ -1189,7 +1189,7 @@ package SimpleVehicleModel{
                     verify vehicleSpecification.vehicleMassRequirement{
                         redefines massActual=weighVehicle.massMeasured;
                     }
-                }     
+                }
                 // method kinds are test, demo, analyze, should also include inspection, similarity
                @ VerificationMethod{
                     kind = (VerificationMethodKind::test, VerificationMethodKind::analyze);
@@ -1223,7 +1223,7 @@ package SimpleVehicleModel{
         individual a:VehicleRoadContext_1{
             //timeslice t0_t2:VehicleRoadContext_1{
             timeslice t0_t2_a{
-                snapshot t0_a {             
+                snapshot t0_a {
                     attribute t0 redefines time=0 [s];
                     snapshot t0_r:Road_1{
                         :>>Road::incline =0;
@@ -1305,7 +1305,7 @@ package SimpleVehicleModel{
                 }
             }
             part def Passenger;
-            
+
             requirement transportRequirements;
             use case def TransportPassenger{
                 objective TransportObjective {
@@ -1320,7 +1320,7 @@ package SimpleVehicleModel{
                 include use case getInVehicle_a:>getInVehicle [1..5];
                 include use case getOutOfVehicle_a:>getOutOfVehicle [1..5];
             }
-            
+
             use case getInVehicle:GetInVehicle {
                 action unlockDoor_in [0..1];
                 then action openDoor_in;
@@ -1349,11 +1349,11 @@ package SimpleVehicleModel{
         }
         package TransportPassengerScenario{
             import ContextDefinitions::TransportPassenger;
-            
+
             // action defined by Use Case Def
             // this version uses nesting vs fork and join for concurrent actions
             action transportPassenger:TransportPassenger{
-                first start; 
+                first start;
                 then action a{
                     action driverGetInVehicle subsets getInVehicle_a[1];
                     action passenger1GetInVehicle subsets getInVehicle_a[1];
@@ -1361,7 +1361,7 @@ package SimpleVehicleModel{
                 then action trigger accept ignitionCmd:IgnitionCmd;
                 then action b{
                     action driveVehicleToDestination;
-                    action providePower;   
+                    action providePower;
                 }
                 then action c{
                     action driverGetOutOfVehicle subsets getOutOfVehicle_a[1];
@@ -1369,7 +1369,7 @@ package SimpleVehicleModel{
                 }
                 then done;
             }
-            
+
             //this version uses forks and joins
             action transportPassenger_1:TransportPassenger{
                 // declare actions
@@ -1384,9 +1384,9 @@ package SimpleVehicleModel{
                 join join2;
                 join join3;
                 action trigger accept ignitionCmd:IgnitionCmd;
-                
+
                 // define control flow
-                first start;               
+                first start;
                 then fork fork1;
                     then driverGetInVehicle;
                     then passenger1GetInVehicle;
@@ -1395,7 +1395,7 @@ package SimpleVehicleModel{
                 first join1 then trigger;
                 first trigger then fork2;
                 //succession trigger if trigger.ignitionCmd.ignitionOnOff==IgnitionOnOff::on then fork2;
-                
+
                 fork fork2;
                     then driveVehicleToDestination;
                     then providePower;
@@ -1403,7 +1403,7 @@ package SimpleVehicleModel{
                 first providePower then join2;
                 first join2 then fork3;
 
-                fork fork3; 
+                fork fork3;
                     then driverGetOutOfVehicle;
                     then passenger1GetOutOfVehicle;
                 first driverGetOutOfVehicle then join3;
@@ -1412,7 +1412,7 @@ package SimpleVehicleModel{
                 first join3 then done;
             }
         }
-        
+
         part missionContext:ContextDefinitions::MissionContext{
             #moe attribute transportTime :> ISQ::time;
             perform transportPassenger;
@@ -1421,10 +1421,10 @@ package SimpleVehicleModel{
             part driver:ContextDefinitions::Driver = transportPassenger.driver{
                 perform transportPassenger.a.driverGetInVehicle.unlockDoor_in;
                 perform transportPassenger.a.driverGetInVehicle.openDoor_in;
-                perform transportPassenger.a.driverGetInVehicle.enterVehicle; 
+                perform transportPassenger.a.driverGetInVehicle.enterVehicle;
                 perform transportPassenger.a.driverGetInVehicle.closeDoor_in;
                 perform transportPassenger.c.driverGetOutOfVehicle.openDoor_out;
-                perform transportPassenger.c.driverGetOutOfVehicle.exitVehicle; 
+                perform transportPassenger.c.driverGetOutOfVehicle.exitVehicle;
                 perform transportPassenger.c.driverGetOutOfVehicle.closeDoor_out;
                 perform transportPassenger.c.driverGetOutOfVehicle.lockDoor_out;
                 perform transportPassenger.b.driveVehicleToDestination;
@@ -1432,10 +1432,10 @@ package SimpleVehicleModel{
             part passenger1:ContextDefinitions::Passenger = transportPassenger.passenger {
                 perform transportPassenger.a.passenger1GetInVehicle.unlockDoor_in;
                 perform transportPassenger.a.passenger1GetInVehicle.openDoor_in;
-                perform transportPassenger.a.passenger1GetInVehicle.enterVehicle; 
+                perform transportPassenger.a.passenger1GetInVehicle.enterVehicle;
                 perform transportPassenger.a.passenger1GetInVehicle.closeDoor_in;
                 perform transportPassenger.c.passenger1GetOutOfVehicle.openDoor_out;
-                perform transportPassenger.c.passenger1GetOutOfVehicle.exitVehicle; 
+                perform transportPassenger.c.passenger1GetOutOfVehicle.exitVehicle;
                 perform transportPassenger.c.passenger1GetOutOfVehicle.closeDoor_out;
                 perform transportPassenger.c.passenger1GetOutOfVehicle.lockDoor_out;
             }
@@ -1522,12 +1522,12 @@ package SimpleVehicleModel{
             }
         }
         package ViewDefinitions{
-            //Import Views to access rendering method library 
+            //Import Views to access rendering method library
             import Views::*;
             view def TreeView{
                 render asTreeDiagram;
             }
-            view def NestedView; 
+            view def NestedView;
             view def RelationshipView;
             view def TableView;
             view def PartsTreeView:>TreeView {
@@ -1546,5 +1546,5 @@ package SimpleVehicleModel{
             }
         }
     }
-    
+
 }

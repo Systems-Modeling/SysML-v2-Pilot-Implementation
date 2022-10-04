@@ -11,6 +11,13 @@ package SimpleQuadcopter {
     import MeasurementReferences::Translation;
     import MeasurementReferences::Rotation;
 
+    part motorShape : SpatialItem {
+        item :>> shape : Cylinder {
+            :>> radius = 18 [mm];
+            :>> height = 30 [mm];
+        }
+    }
+    
     part def Strut :> CompoundSpatialItem {
         // By default will get same coordinateFrame.mRefs as owning CompoundSpatialItem, i.e.:
         // attribute :>> coordinateFrame { :>> mRefs = (mm, mm, mm); }
@@ -31,7 +38,7 @@ package SimpleQuadcopter {
 
         /* motorCutout is a construction shape: a cylinder of the same shape as the  */
         part motorCutout : SpatialItem {
-            item :>> shape = PropellerMotorAssy::motor.shape;
+            item :>> shape = motorShape.shape;
             attribute :>> coordinateFrame {
                 :>> transformation : TranslationRotationSequence {
                     :>> elements = (Translation( (175, 0, -1)[source]));
@@ -67,10 +74,7 @@ package SimpleQuadcopter {
         }
 
         part motor : SpatialItem {
-            item :>> shape : Cylinder {
-                :>> radius = 18 [mm];
-                :>> height = 30 [mm];
-            }
+            item :>> shape = motorShape.shape;
             attribute :>> coordinateFrame {
                 :>> transformation : TranslationRotationSequence {
                     :>> elements = (Translation( (175, 0, 0)[source]));

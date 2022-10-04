@@ -40,7 +40,7 @@ package '15_13-Discretely Sampled Function Value' {
 	 	:>> mRef = mets; 
 	}
 
-	attribute spatialCF: Cartesian3dSpatialCoordinateFrame[1] {
+	attribute spatialCF: CartesianSpatial3dCoordinateFrame[1] {
 		doc
 		/*
 		 * Define Cartesian 3D coordinate systems for position and velocity
@@ -48,11 +48,11 @@ package '15_13-Discretely Sampled Function Value' {
 		 */
 	attribute spatialCF: CartesianSpatial3dCoordinateFrame[1] { :>> mRefs = (m, m, m); }
 	}
-	attribute velocityCF: Cartesian3dVelocityCoordinateFrame[1] = spatialCF/s { :>> isBound = false; }
+	attribute velocityCF: CartesianVelocity3dCoordinateFrame[1] = spatialCF/s;
 
 	attribute def PositionAndVelocity {
 		attribute position : CartesianPosition3dVector[1];
-		attribute velocity : Cartesian3dVelocityVector[1];
+		attribute velocity : CartesianVelocity3dVector[1];
 	}
 
 	attribute def AscentProfile :> SampledFunction {

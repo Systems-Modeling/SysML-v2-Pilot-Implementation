@@ -11,7 +11,6 @@ package SpatialItems {
 	private import MeasurementReferences::CoordinateFrame;
 	private import Time::Clock;
 	private import Time::TimeInstantValue;
-	private import ISQ::CartesianSpatial3dCoordinateFrame;
 	private import VectorFunctions::isZeroVector;
 	private import ControlFunctions::forAll;
 	
@@ -29,14 +28,15 @@ package SpatialItems {
 			 */
 			}
 		
-		attribute coordinateFrame : CoordinateFrame[1] default Cartesian3dSpatialCoordinateFrame() {
-			doc
-			/*
-			 * The three-dimensional CoordinateFrame to be used as the measurement reference for position 
-			 * and displacement vector values relative to this SpatialItem.
-			 */
-		attribute coordinateFrame : CoordinateFrame[1] default CartesianSpatial3dCoordinateFrame();
-		
+		attribute coordinateFrame : CoordinateFrame[1] default ISQ::universalCartesianSpatial3dCoordinateFrame {
+            doc
+            /*
+             * The three-dimensional CoordinateFrame to be used as the measurement reference for position 
+             * and displacement vector values relative to this SpatialItem.
+             * By default this is the singleton universalCartesianSpatial3dCoordinateFrame.
+             */
+        }
+        		
 		item originPoint : Point[1] :> spaceShots {
 			doc
 			/*
@@ -158,5 +158,4 @@ package SpatialItems {
 			attribute :>> isBound = false;
 		}
 	}
-
 }

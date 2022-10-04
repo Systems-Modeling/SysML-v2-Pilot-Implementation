@@ -22,7 +22,7 @@ package Time {
     import ISQSpaceTime::time;
     
     readonly part universalClock : Clock[1] = Clocks::universalClock {
-   	 doc
+   	    doc
 	    /*
 	     * universalClock is a single Clock that can be used as a default universal time reference.
 	     */

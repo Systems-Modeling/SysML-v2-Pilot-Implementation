@@ -37,11 +37,6 @@ package ISQBase {
         attribute :>> quantityDimension { :>> quantityPowerFactors = lengthPF; }
     }
 
-    attribute def Cartesian3dSpatialCoordinateFrame :> VectorMeasurementReference {
-        doc
-        /*
-         * General spatial coordinate system
-         */
     /* ISO-80000-3 item 3-9 duration, time */
     attribute def DurationValue :> ScalarQuantityValue {
         doc

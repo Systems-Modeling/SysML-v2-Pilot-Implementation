@@ -118,10 +118,10 @@ package MeasurementReferences {
     	/*
          * Most general 3-dimensional coordinate frame
          */
-        
         attribute :>> dimensions = 3;
     }
 
+    abstract attribute def CoordinateTransformation {
         doc
         /*
 	     * CoordinateTransformation is the most general representation of the transformation of a target VectorMeasurementReference 

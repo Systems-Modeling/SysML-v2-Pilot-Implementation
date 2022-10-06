@@ -116,8 +116,7 @@ public class ExpressionUtil {
 			return true;
 		} else {
 			EList<Element> result = condition.evaluate(element);
-			return result == null || // If condition is ill-formed, ignore it.
-					result.size() == 1 && result.get(0) instanceof LiteralBoolean && 
+			return result != null && result.size() == 1 && result.get(0) instanceof LiteralBoolean && 
 					((LiteralBoolean)result.get(0)).isValue();
 		}
 	}

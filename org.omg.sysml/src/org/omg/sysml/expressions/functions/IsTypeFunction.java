@@ -43,7 +43,7 @@ public class IsTypeFunction extends BaseFunction {
 				return EvaluationUtil.booleanResult(!values.isEmpty() && isType(invocation, values.get(0), testedType));
 			}
 		}
-		return null;
+		return EvaluationUtil.singletonList(invocation);
 	}
 
 }

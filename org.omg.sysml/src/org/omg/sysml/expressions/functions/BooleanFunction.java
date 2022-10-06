@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2021, 2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -29,11 +29,11 @@ import org.omg.sysml.lang.sysml.InvocationExpression;
 
 public abstract class BooleanFunction implements LibraryFunction {
 	
-	protected EList<Element> unaryBooleanOp(boolean x) {
+	protected EList<Element> unaryBooleanOp(Boolean x) {
 		return null;
 	}
 	
-	protected EList<Element> binaryBooleanOp(boolean x, boolean y) {
+	protected EList<Element> binaryBooleanOp(Boolean x, Boolean y) {
 		return null;
 	}
 	
@@ -46,9 +46,9 @@ public abstract class BooleanFunction implements LibraryFunction {
 	public EList<Element> invoke(InvocationExpression invocation, Element target, ModelLevelExpressionEvaluator evaluator) {
 		Boolean x_bool = evaluator.booleanValue(invocation, 0, target);
 		Boolean y_bool = evaluator.booleanValue(invocation, 1, target);
-		return x_bool != null && y_bool != null? binaryBooleanOp(x_bool, y_bool):
-			   x_bool != null && EvaluationUtil.numberOfArgs(invocation) == 1? unaryBooleanOp(x_bool):
-			   null;
+		EList<Element> results = EvaluationUtil.numberOfArgs(invocation) == 1? unaryBooleanOp(x_bool):
+			binaryBooleanOp(x_bool, y_bool);
+		return results == null? EvaluationUtil.singletonList(invocation): results;
 	}
 
 }

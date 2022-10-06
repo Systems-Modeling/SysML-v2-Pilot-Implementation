@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021-2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -26,19 +26,21 @@ import org.omg.sysml.expressions.util.EvaluationUtil;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.InvocationExpression;
 
-public class ConditionalFunction extends ControlFunction {
-
-	@Override
-	public String getOperatorName() {
-		return "if";
-	}
+public abstract class ConditionalLogicalFunction extends ControlFunction {
+	
+	protected abstract boolean firstValueTest(Boolean firstValue);
+	protected abstract boolean firstValueResult();
 
 	@Override
 	public EList<Element> invoke(InvocationExpression invocation, Element target, ModelLevelExpressionEvaluator evaluator) {
-		Boolean test = evaluator.booleanValue(invocation, 0, target);
-		return test == null? EvaluationUtil.singletonList(invocation):
-			   test? evaluator.expressionValue(invocation, 1, target):
-			   evaluator.expressionValue(invocation, 2, target);
+		Boolean firstValue = evaluator.booleanValue(invocation, 0, target);
+		if (firstValueTest(firstValue)) {
+			return EvaluationUtil.booleanResult(firstValueResult());
+		} else {
+			Boolean secondValue = evaluator.booleanExpressionValue(invocation, 1, target);
+			return secondValue == null? EvaluationUtil.singletonList(invocation):
+				EvaluationUtil.booleanResult(secondValue);
+		}		
 	}
 
 }

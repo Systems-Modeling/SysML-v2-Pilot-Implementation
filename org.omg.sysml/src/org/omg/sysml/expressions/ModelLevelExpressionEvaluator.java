@@ -93,7 +93,7 @@ public class ModelLevelExpressionEvaluator {
 	
 	public EList<Element> evaluateInvocation(InvocationExpression expression, Element target) {
 		LibraryFunction function = libraryFunctionFactory.getLibraryFunction(expression.getFunction());
-		return function == null? null: function.invoke(expression, target, this);
+		return function == null? EvaluationUtil.singletonList(expression): function.invoke(expression, target, this);
 	}
 	
 	public EList<Element> evaluateFeature(Feature feature, Type type) {

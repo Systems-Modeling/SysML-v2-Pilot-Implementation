@@ -24,6 +24,7 @@ package org.omg.sysml.expressions.functions;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.omg.sysml.expressions.ModelLevelExpressionEvaluator;
+import org.omg.sysml.expressions.util.EvaluationUtil;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.InvocationExpression;
@@ -64,7 +65,7 @@ public class DotFunction extends ControlFunction {
 				return result;
 			}
 		}
-		return null;
+		return EvaluationUtil.singletonList(invocation);
 	}
 
 }

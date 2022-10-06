@@ -36,7 +36,8 @@ public class NotEmptyFunction extends SequenceFunction {
 	@Override
 	public EList<Element> invoke(InvocationExpression invocation, Element target, ModelLevelExpressionEvaluator evaluator) {
 		EList<Element> list = evaluator.evaluateArgument(invocation, 0, target);
-		return list == null? null: EvaluationUtil.booleanResult(!list.isEmpty());
+		return list == null? EvaluationUtil.singletonList(invocation): 
+			EvaluationUtil.booleanResult(!list.isEmpty());
 	}
 
 }

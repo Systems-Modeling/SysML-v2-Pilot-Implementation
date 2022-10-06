@@ -36,11 +36,11 @@ public class IsTypeFunction extends BaseFunction {
 	
 	@Override
 	public EList<Element> invoke(InvocationExpression invocation, Element target, ModelLevelExpressionEvaluator evaluator) {
-		Type testedType = getTypeArgument(invocation);
+		Type testedType = EvaluationUtil.getTypeArgument(invocation);
 		if (testedType != null) {
 			EList<Element> values = evaluator.evaluateArgument(invocation, 0, target);
 			if (values != null) {
-				return EvaluationUtil.booleanResult(!values.isEmpty() && isType(invocation, values.get(0), testedType));
+				return EvaluationUtil.booleanResult(!values.isEmpty() && EvaluationUtil.isType(invocation, values.get(0), testedType));
 			}
 		}
 		return EvaluationUtil.singletonList(invocation);

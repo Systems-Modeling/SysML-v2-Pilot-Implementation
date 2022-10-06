@@ -21,6 +21,7 @@
 
 package org.omg.sysml.expressions.util;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,6 +35,7 @@ import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.InvocationExpression;
 import org.omg.sysml.lang.sysml.LiteralBoolean;
+import org.omg.sysml.lang.sysml.LiteralExpression;
 import org.omg.sysml.lang.sysml.LiteralInfinity;
 import org.omg.sysml.lang.sysml.LiteralInteger;
 import org.omg.sysml.lang.sysml.LiteralRational;
@@ -45,6 +47,7 @@ import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
 import org.omg.sysml.util.ElementUtil;
 import org.omg.sysml.util.FeatureUtil;
+import org.omg.sysml.util.TypeUtil;
 
 import com.google.common.base.Predicates;
 
@@ -214,11 +217,41 @@ public class EvaluationUtil {
 					orElse(null);
 	}
 	
-	public static boolean isMetaclassFeature(Type type) {
-		return type instanceof MetadataFeature &&
-				((MetadataFeature)type).getAnnotatedElement().stream().
-					map(ElementUtil::getMetaclassFeatureFor).
-					anyMatch(Predicates.equalTo(type));
+	public static boolean isMetaclassFeature(Element element) {
+		return getMetaclassReferenceOf(element) != null;
+	}
+	
+	public static Element getMetaclassReferenceOf(Element element) {
+		return !(element instanceof MetadataFeature)? null:
+			((MetadataFeature)element).getAnnotatedElement().stream().
+				filter(elm->ElementUtil.getMetaclassFeatureFor(elm) == element).
+				findFirst().orElse(null);
+	}
+
+	public static Type getTypeArgument(InvocationExpression invocation) {
+		EList<Feature> ownedFeatures = invocation.getOwnedFeature();
+		if (ownedFeatures.size() >= 2) {
+			EList<Type> types = ownedFeatures.get(1).getType();
+			if (!types.isEmpty()) {
+				return types.get(0);
+			}
+		}
+		return null;
+	}
+
+	public static List<Type> getType(Element context, Element element) {
+		return element instanceof LiteralExpression? Collections.singletonList(getPrimitiveType(context, element.eClass())):
+			   element instanceof Feature? ((Feature)element).getType():
+			   Collections.emptyList();
+	}
+
+	public static boolean isType(Element context, Element element, Type type) {
+		return getType(context, element).stream().
+				anyMatch(elementType->TypeUtil.conforms(elementType, type));
+	}
+
+	public static boolean isMetatype(Element element, Type targetType) {
+		return TypeUtil.conforms(ElementUtil.getMetaclassOf(element), targetType);
 	}
 
 }

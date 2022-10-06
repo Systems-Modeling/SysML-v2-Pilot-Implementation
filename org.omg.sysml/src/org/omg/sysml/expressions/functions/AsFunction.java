@@ -27,7 +27,7 @@ import org.omg.sysml.expressions.ModelLevelExpressionEvaluator;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.InvocationExpression;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.util.ExpressionUtil;
+import org.omg.sysml.util.ElementUtil;
 import org.omg.sysml.util.TypeUtil;
 
 public class AsFunction extends BaseFunction {
@@ -39,7 +39,7 @@ public class AsFunction extends BaseFunction {
 	
 	protected static boolean isTypeOrMetatype(Element context, Element element, Type targetType) {
 		return isType(context, element, targetType) ||
-			   TypeUtil.conforms(ExpressionUtil.getMetaclassOf(element), targetType);
+			   TypeUtil.conforms(ElementUtil.getMetaclassOf(element), targetType);
 	}
 	
 	@Override

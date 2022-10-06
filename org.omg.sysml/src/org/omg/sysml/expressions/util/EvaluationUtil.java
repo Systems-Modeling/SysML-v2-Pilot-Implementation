@@ -22,6 +22,7 @@
 package org.omg.sysml.expressions.util;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
@@ -37,14 +38,24 @@ import org.omg.sysml.lang.sysml.LiteralInfinity;
 import org.omg.sysml.lang.sysml.LiteralInteger;
 import org.omg.sysml.lang.sysml.LiteralRational;
 import org.omg.sysml.lang.sysml.LiteralString;
+import org.omg.sysml.lang.sysml.MetadataFeature;
 import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
+import org.omg.sysml.util.ElementUtil;
 import org.omg.sysml.util.FeatureUtil;
+
+import com.google.common.base.Predicates;
 
 public class EvaluationUtil {
 
+	public static final String ANNOTATED_ELEMENT_FEATURE = "Metaobjects::Metaobject::annotatingElement";
+	
+	public static Feature getAnnotatedElementFeature(Element context) {
+		return (Feature)SysMLLibraryUtil.getLibraryType(context, ANNOTATED_ELEMENT_FEATURE);
+	}
+	
 	public static Type getPrimitiveType(Element context, EClass eClass) {
 		return 
 			eClass == SysMLPackage.eINSTANCE.getLiteralBoolean()? 
@@ -82,30 +93,71 @@ public class EvaluationUtil {
 		}
 	}
 
-	public static EList<Element> booleanResult(boolean value) {
+	public static EList<Element> results(Object object) {
+		EList<Element> results = new BasicEList<>();
+		if (object instanceof List) {
+			((List<?>)object).stream().
+				map(EvaluationUtil::elementFor).
+				filter(Predicates.notNull()).
+				forEachOrdered(results::add);
+		} else if (object != null) {
+			Element element = elementFor(object);
+			if (object != null) {
+				results.add(element);
+			}
+		}
+		return results;
+	}
+	
+	public static Element elementFor(Object object) {
+		return object instanceof Boolean? literalBoolean((Boolean)object):
+			   object instanceof String? literalString((String)object):
+			   object instanceof Integer? literalInteger((Integer)object):
+			   object instanceof Double? literalRational((Double)object):
+			   object instanceof Element? ElementUtil.getMetaclassFeatureFor((Element)object):
+			   null;
+	}
+	
+	public static LiteralBoolean literalBoolean(boolean value) {
 		LiteralBoolean literal = SysMLFactory.eINSTANCE.createLiteralBoolean();
 		literal.setValue(value);
-		return singletonList(literal);
+		return literal;
+	}
+
+	public static LiteralString literalString(String value) {
+		LiteralString literal = SysMLFactory.eINSTANCE.createLiteralString();
+		literal.setValue(value);
+		return literal;
+	}
+
+	public static LiteralInteger literalInteger(int value) {
+		LiteralInteger literal = SysMLFactory.eINSTANCE.createLiteralInteger();
+		literal.setValue(value);
+		return literal;
+	}
+
+	public static LiteralRational literalRational(double value) {
+		LiteralRational literal = SysMLFactory.eINSTANCE.createLiteralRational();
+		literal.setValue(value);
+		return literal;
+	}
+	
+	public static EList<Element> booleanResult(boolean value) {
+		return singletonList(literalBoolean(value));
 	}
 
 	public static EList<Element> stringResult(String value) {
-		LiteralString literal = SysMLFactory.eINSTANCE.createLiteralString();
-		literal.setValue(value);
-		return singletonList(literal);
+		return singletonList(literalString(value));
 	}
 
 	public static EList<Element> integerResult(int value) {
-		LiteralInteger literal = SysMLFactory.eINSTANCE.createLiteralInteger();
-		literal.setValue(value);
-		return singletonList(literal);
+		return singletonList(literalInteger(value));
 	}
 
 	public static EList<Element> realResult(double value) {
-		LiteralRational literal = SysMLFactory.eINSTANCE.createLiteralRational();
-		literal.setValue(value);
-		return singletonList(literal);
+		return singletonList(literalRational(value));
 	}
-
+	
 	public static Object valueOf(Element element) {
 		return element instanceof LiteralBoolean? Boolean.valueOf(((LiteralBoolean)element).isValue()):
 			   element instanceof LiteralString? ((LiteralString)element).getValue():
@@ -148,14 +200,25 @@ public class EvaluationUtil {
 			return targetFeature;
 		}
 	}
+	
+	public static Optional<Feature> getTypeFeatureFor(Feature feature, Type type) {
+		return type.getFeature().stream().
+				filter(f->f == feature || FeatureUtil.getRedefinedFeaturesOf(f).contains(feature)).
+				findFirst();
+	}
 
 	public static Expression getValueExpressionFor(Feature feature, Type type) {
 		return type == null? FeatureUtil.getValueExpressionFor(feature):
-			   type.getFeature().stream().
-					filter(f->f == feature || FeatureUtil.getRedefinedFeaturesOf(f).contains(feature)).
-					findFirst().
+			   getTypeFeatureFor(feature, type).
 					map(FeatureUtil::getValueExpressionFor).
 					orElse(null);
+	}
+	
+	public static boolean isMetaclassFeature(Type type) {
+		return type instanceof MetadataFeature &&
+				((MetadataFeature)type).getAnnotatedElement().stream().
+					map(ElementUtil::getMetaclassFeatureFor).
+					anyMatch(Predicates.equalTo(type));
 	}
 
 }

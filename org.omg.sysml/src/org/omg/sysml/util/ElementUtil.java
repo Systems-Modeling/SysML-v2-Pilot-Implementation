@@ -40,9 +40,11 @@ import org.omg.sysml.lang.sysml.Annotation;
 import org.omg.sysml.lang.sysml.Comment;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.Metaclass;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
 
 public class ElementUtil {
 	
@@ -147,25 +149,27 @@ public class ElementUtil {
 	}
 	
 	/**
-	 * Get all the MetadataFeatures relevant to this Element.
+	 * Get all the MetadataFeatures owned by this Element.
+	 * 
 	 */
 	public static List<MetadataFeature> getAllMetadataFeaturesOf(Element element) {
-		List<MetadataFeature> annotatingFeatures =  element.getOwnedAnnotation().stream().
+		// Get MetadataFeatures owned via Annotations.
+		List<MetadataFeature> metadataFeatures =  element.getOwnedAnnotation().stream().
 				map(Annotation::getAnnotatingElement).
 				filter(MetadataFeature.class::isInstance).
 				map(MetadataFeature.class::cast).
 				collect(Collectors.toList());
+		
+		// Include MetadataFeatures that are members of the Element if it is a Namespace.
 		if (element instanceof Namespace) {
-			/**
-			 * Include MetadataFeatures that are members of a Namespace.
-			 */
 			(((Namespace)element).getOwnedMember()).stream().
 				filter(MetadataFeature.class::isInstance).
 				map(MetadataFeature.class::cast).
 				filter(feature->feature.getAnnotatedElement().contains(element)).
-				forEach(annotatingFeatures::add);
-			}
-		return annotatingFeatures;
+				forEach(metadataFeatures::add);
+		}
+
+		return metadataFeatures;
 	}
 
 	public static String processCommentBody(String body) {
@@ -210,6 +214,19 @@ public class ElementUtil {
 		getElementAdapter(element).clearCaches();
 	}
 	
+	// Metaclass
+	
+	public static Metaclass getMetaclassOf(Element element) {
+		String metaclassName = element.eClass().getName();
+		return (Metaclass)SysMLLibraryUtil.getLibraryType(element, 
+				"KerML::Root::" + metaclassName,  "KerML::Core::" + metaclassName, "KerML::Kernel::" + metaclassName, 
+				"SysML::" + metaclassName);
+	}
+
+	public static Feature getMetaclassFeatureFor(Element element) {
+		return element == null? null: getElementAdapter(element).getMetaclassFeature();
+	}
+
 	// Transformation 
 	
 	public static void transformAll(ResourceSet resourceSet, boolean addImplicitElements) {

@@ -26,8 +26,10 @@ import java.util.List;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.omg.sysml.expressions.functions.LibraryFunction;
 import org.omg.sysml.expressions.util.EvaluationUtil;
+import org.omg.sysml.lang.sysml.AnnotatingElement;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
@@ -38,6 +40,7 @@ import org.omg.sysml.lang.sysml.LiteralExpression;
 import org.omg.sysml.lang.sysml.LiteralInteger;
 import org.omg.sysml.lang.sysml.LiteralRational;
 import org.omg.sysml.lang.sysml.LiteralString;
+import org.omg.sysml.lang.sysml.MetadataFeature;
 import org.omg.sysml.lang.sysml.NullExpression;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.util.ExpressionUtil;
@@ -95,11 +98,27 @@ public class ModelLevelExpressionEvaluator {
 	
 	public EList<Element> evaluateFeature(Feature feature, Type type) {
 		if (type != null && TypeUtil.conforms(feature, ExpressionUtil.getSelfReferenceFeature(feature))) {
-			// Evaluate "self" feature.
+			// Evaluate "self" feature. (Note: Must be checked before test for feature chain because "self" has chaining features.)
 			return EvaluationUtil.singletonList(EvaluationUtil.getTargetFeatureFor(type));
+			
 		} else if (!feature.getOwnedFeatureChaining().isEmpty()) {
 			// Evaluate feature with a feature chain.
 			return evaluateFeatureChain(feature.getChainingFeature(), type);
+			
+		} else if (type instanceof MetadataFeature && TypeUtil.conforms(feature, EvaluationUtil.getAnnotatedElementFeature(feature))) {
+			// Evaluate "annotatedElement" feature.
+			return EvaluationUtil.results(((MetadataFeature)type).getAnnotatedElement());
+			
+		} else if (EvaluationUtil.isMetaclassFeature(type)) {
+			if (feature instanceof Expression) {
+				return EvaluationUtil.singletonList(feature);
+			} else {
+				// Evaluate feature as a metafeature of the element annotated by "type" as its metaclass feature.
+				Element element = ((AnnotatingElement)type).getAnnotatedElement().get(0);
+				EStructuralFeature eFeature = element.eClass().getEStructuralFeature(feature.getName());
+				return eFeature == null? null: EvaluationUtil.results(element.eGet(eFeature, true));
+			}
+			
 		} else {
 			// Evaluate regular feature.
 			// Note: If "type" has a feature chain, than this represents a nested context, to be searched
@@ -109,17 +128,21 @@ public class ModelLevelExpressionEvaluator {
 					((Feature)type).getChainingFeature():
 					Collections.singletonList(type);
 			Collections.reverse(types);
+			
+			// Find the most specific value expression binding for the feature and evaluate it.		
 			Expression valueExpression = types.stream().
 					map(t->EvaluationUtil.getValueExpressionFor(feature, t)).
 					filter(Predicates.notNull()).
 					findFirst().
-					orElseGet(()->EvaluationUtil.getValueExpressionFor(feature, null));
+					orElseGet(()->EvaluationUtil.getValueExpressionFor(feature, null));			
 			if (valueExpression != null) {
 				EList<Element> results = evaluate(valueExpression, type);
 				if (results != null) {
 					return results;
 				}
 			}
+			
+			// If no value expression is found, or it is unevaluable, return the unevaluated feature.
 			return EvaluationUtil.singletonList(feature);
 		}
 	}
@@ -166,7 +189,7 @@ public class ModelLevelExpressionEvaluator {
 
 	public Boolean booleanExpressionValue(InvocationExpression invocation, int i, Element target) {
 		EList<Element> values = expressionValue(invocation, i, target);
-		if (values.size() != 1) {
+		if (values == null || values.size() != 1) {
 			return null;
 		} else {
 			Element value = values.get(0);

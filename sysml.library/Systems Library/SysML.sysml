@@ -92,7 +92,7 @@ package SysML {
 	}		
 			
 	metadata def ConjugatedPortTyping specializes FeatureTyping {
-		ref item portDefinition : PortDefinition[1..1] subsets target;
+//		ref item portDefinition : PortDefinition[1..1] subsets target;
 		derived ref item conjugatedPortDefinition : ConjugatedPortDefinition[1..1] redefines type;
 	}		
 			

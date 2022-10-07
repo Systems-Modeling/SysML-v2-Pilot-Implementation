@@ -217,8 +217,19 @@ public class ElementUtil {
 	// Metaclass
 	
 	public static Metaclass getMetaclassOf(Element element) {
+		Element context = element;
+		
+		// Use the annotated element of a MetadataFeature as the context, because, if it
+		// is a metaclass feature, it will not be contained in a resource.
+		if (element instanceof MetadataFeature) {
+			List<Element> annotatedElements = ((MetadataFeature)element).getAnnotatedElement();
+			if (!annotatedElements.isEmpty()) {
+				context = annotatedElements.get(0);
+			}
+		}
+		
 		String metaclassName = element.eClass().getName();
-		return (Metaclass)SysMLLibraryUtil.getLibraryType(element, 
+		return (Metaclass)SysMLLibraryUtil.getLibraryType(context, 
 				"KerML::Root::" + metaclassName,  "KerML::Core::" + metaclassName, "KerML::Kernel::" + metaclassName, 
 				"SysML::" + metaclassName);
 	}

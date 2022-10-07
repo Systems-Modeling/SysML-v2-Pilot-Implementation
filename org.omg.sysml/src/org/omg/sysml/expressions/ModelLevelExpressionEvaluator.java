@@ -47,8 +47,6 @@ import org.omg.sysml.util.ExpressionUtil;
 import org.omg.sysml.util.FeatureUtil;
 import org.omg.sysml.util.TypeUtil;
 
-import com.google.common.base.Predicates;
-
 public class ModelLevelExpressionEvaluator {
 	
 	public static final ModelLevelExpressionEvaluator INSTANCE = new ModelLevelExpressionEvaluator();
@@ -109,19 +107,8 @@ public class ModelLevelExpressionEvaluator {
 			// Evaluate "annotatedElement" feature.
 			return EvaluationUtil.results(((MetadataFeature)type).getAnnotatedElement());
 			
-		} else if (EvaluationUtil.isMetaclassFeature(type)) {
-			if (feature instanceof Expression) {
-				return EvaluationUtil.singletonList(feature);
-			} else {
-				// Evaluate feature as a metafeature of the element annotated by "type" as its metaclass feature.
-				Element element = ((AnnotatingElement)type).getAnnotatedElement().get(0);
-				EStructuralFeature eFeature = element.eClass().getEStructuralFeature(feature.getName());
-				return eFeature == null? null: EvaluationUtil.results(element.eGet(eFeature, true));
-			}
-			
 		} else {
-			// Evaluate regular feature.
-			// Note: If "type" has a feature chain, than this represents a nested context, to be searched
+			// If "type" has a feature chain, than this represents a nested context, to be searched
 			// in reverse from the last to the first chaining feature.
 			List<? extends Type> types =
 				type instanceof Feature && !((Feature) type).getOwnedFeatureChaining().isEmpty()?
@@ -129,12 +116,29 @@ public class ModelLevelExpressionEvaluator {
 					Collections.singletonList(type);
 			Collections.reverse(types);
 			
-			// Find the most specific value expression binding for the feature and evaluate it.		
-			Expression valueExpression = types.stream().
-					map(t->EvaluationUtil.getValueExpressionFor(feature, t)).
-					filter(Predicates.notNull()).
-					findFirst().
-					orElseGet(()->EvaluationUtil.getValueExpressionFor(feature, null));			
+			// Find the most specific type with a binding for the feature and evaluate it.	
+			for (Type t: types) {
+				if (EvaluationUtil.isMetaclassFeature(t)) {
+					if (!(feature instanceof Expression)) {
+						// Evaluate the feature as a reflective metaclass attribute.
+						Element element = ((AnnotatingElement)t).getAnnotatedElement().get(0);
+						EStructuralFeature eFeature = element.eClass().getEStructuralFeature(feature.getName());
+						if (eFeature != null) {
+							return EvaluationUtil.results(element.eGet(eFeature, true));
+						}
+					}
+				} else {
+					// Evaluate the feature as a regular binding.
+					Expression valueExpression = EvaluationUtil.getValueExpressionFor(feature, t);
+					if (valueExpression != null) {
+						EList<Element> results = evaluate(valueExpression, type);
+						if (results != null) {
+							return results;
+						}
+					}
+				}
+			}
+			Expression valueExpression = EvaluationUtil.getValueExpressionFor(feature, null);			
 			if (valueExpression != null) {
 				EList<Element> results = evaluate(valueExpression, type);
 				if (results != null) {

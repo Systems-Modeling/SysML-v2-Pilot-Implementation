@@ -14,6 +14,10 @@ package Actions {
 	private import Occurrences::HappensWhile;
 	private import Performances::Performance;
 	private import Performances::performances;
+	private import Performances::SendPerformance;
+	private import Performances::sendPerformances;
+	private import Performances::AcceptPerformance;
+	private import Performances::acceptPerformances;
 	private import FeatureReferencingPerformances::FeatureWritePerformance;
 	private import Transfers::TransferBefore;
 	private import ControlPerformances::MergePerformance;
@@ -164,66 +168,48 @@ package Actions {
 		 */
 	}
 	
-	action def SendAction  {
+	action def SendAction :> SendPerformance {
 		doc
 		/*
 		 * A SendAction is an Action used to type a SendActionUsage. It initiates an outgoingTransferFromSelf 
 		 * to a designated receiver Occurrence with a given payload.
 		 */
 	
-		in payload[0..*] = sentMessage.payload;
-		/* Review: Usage can bind sender to self to have send be transfer source,
-		 * combined with a receiver to give transfer target.  The "to" keyword
-		 * could parse to this.  Would be symmetrical to support the "via" keyword
-		 * with sends also,  where it would parse to binding the sender, without a
-		 * receiver. Then ports wouldn't need "forwarding" semantics. */
-		in sender: Occurrence[1];
-		in receiver: Occurrence[0..1];
-		/* Review: How to ensure the inverse multiplicity upper is 1? */
-	    ref sentMessage: MessageTransfer, FlowConnection[1]
-	    	:> sender.outgoingTransfersFromSelf;
-	    bind receiver.incomingTransfersToSelf[0..1] = sentMessage[1];
-  		first self then sentMessage;
+		in payload :>> sentItem;
+	    ref sentMessage :>> sentTransfer: MessageTransfer, FlowConnection;
 	}
 	
-	abstract action sendActions: SendAction[0..*] nonunique :> actions {
+	abstract action sendActions: SendAction[0..*] nonunique :> sendPerformances, actions {
 		doc
 		/*
 		 * sendActions is the base feature for all SendActionUsages.
 		 */
 	}
 	
-	abstract action def AcceptAction {
+	action def AcceptMessageAction :> AcceptPerformance {
 		doc
 		/*
 		 * An AcceptAction is an Action used to type an AcceptActionUsage. It completes an 
 		 * incomingTransferFromSelf that is one of the incomingTransfers of a given receiver Occurrence, 
 		 * outputting the payload from the Transfer.
 		 */
-		/*  Review: Not used as-is, abstract? */
-		inout payload[0..*];
-		in receiver: Occurrence[1] default (this as Occurrence);
-		/* Review: out/inout?  */
-		inout ref acceptedMessage: MessageTransfer, FlowConnection[1]
-			:> receiver.incomingTransfersToSelf;
-		first acceptedMessage then self.done;
+		inout payload :>> acceptedItem;
+		ref acceptedMessage :>> acceptedTransfer: MessageTransfer, FlowConnection;
 	}
 	
-	abstract action acceptActions: AcceptAction[0..*] nonunique :> actions {
+	action def AcceptAction :> AcceptMessageAction {
+		out :>> payload = aState.aTransition.apayload;
+		out :>> acceptedMessage = aState.aTransition.accepter.acceptedMessage;
+		state aState  {
+			transition aTransition first start accept apayload: Anything via receiver then done;
+		}
+	}
+	
+	abstract action acceptActions: AcceptAction[0..*] nonunique :> acceptPerformances, actions {
 		doc
 		/*
 		 * acceptActions is the base feature for all AcceptActionUsages.
 		 */
-	}
-	
-	/* Review: Wrapping StateAction, bc guards are after standalone action ends.
-	   Ed: Could have guards on outgoing. Could be multiple outgoing edges. */
-	action def StandAloneAcceptAction :> AcceptAction {
-		out :>> payload = saaaState.saaaTransition.apayload;
-		out :>> acceptedMessage = saaaState.saaaTransition.accepter.acceptedMessage;
-		state saaaState  {
-			transition saaaTransition first start accept apayload: Anything via receiver then done;
-		}
 	}
 	
 	abstract action def ControlAction :> Action {
@@ -295,8 +281,7 @@ package Actions {
 		
 		ref receiver :>> triggerTarget;
 
-		attribute accNum: Natural [1] = if isEmpty(acceptedMessage) ? 0 else 1;
-		action accepter: AcceptAction[accNum];
+		action :>> accepter: AcceptMessageAction;
 		
 		bind receiver = accepter.receiver;
 		bind acceptedMessage = accepter.acceptedMessage;

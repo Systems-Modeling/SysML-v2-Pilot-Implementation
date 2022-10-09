@@ -7,9 +7,11 @@ package TransitionPerformances {
 
 	private import ScalarValues::Boolean;
 	private import ScalarValues::Natural;
+	private import SequenceFunctions::isEmpty;
 	private import Occurrences::Occurrence;
 	private import Occurrences::HappensBefore;
 	private import Performances::Performance;
+	private import Performances::AcceptPerformance;
 	private import Performances::Evaluation;
 	private import Transfers::Transfer;
 	private import ControlFunctions::allTrue;
@@ -35,6 +37,9 @@ package TransitionPerformances {
 			
 		private succession all trigger[*] then guard[*];
 		private succession all guard[*] then effect[*];
+
+		feature accNum: Natural [1] = if isEmpty(trigger) ? 0 else 1;
+		step accepter: AcceptPerformance[accNum] subsets timeEnclosedOccurrences;
 	}
 	
 	behavior NonStateTransitionPerformance specializes TransitionPerformance {

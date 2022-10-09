@@ -67,7 +67,7 @@ package Transfers {
 	  /* Review: Only FlowTransfers use directed features and support moving and pushing items.
 	   * Code is moved from Transfer.
 	   */
-	interaction FlowTransfer specializes Transfer {
+	interaction FlowTransfer specializes Transfer disjoint from MessageTransfer {
 		
 		feature isMove: Boolean[1] default true {
 			doc

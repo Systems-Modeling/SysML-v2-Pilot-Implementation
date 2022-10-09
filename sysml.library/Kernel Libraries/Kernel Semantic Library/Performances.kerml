@@ -11,6 +11,7 @@ package Performances {
 	private import Occurrences::HappensDuring;
 	private import Objects::Object;
 	private import Objects::BinaryLinkObject;
+	private import Transfers::Transfer;
 	private import Transfers::transfers;
 	private import Transfers::transfersBefore;
 	private import ScalarValues::*;
@@ -168,6 +169,44 @@ package Performances {
 	 
 		return : Anything[0..0];
 	}
+	
+	behavior SendPerformance specializes Performance  {
+		doc
+		/*
+		 * A SendPerformance is a Peformance used to type a SendActionUsage. It initiates an outgoingTransferFromSelf 
+		 * to a designated receiver Occurrence with a given payload.
+		 */
+	
+		in feature sentItem [0..*] = sentTransfer.item;
+		/* Review: Usage can bind sender to self to have send be transfer source,
+		 * combined with a receiver to give transfer target.  The "to" keyword
+		 * could parse to this.	 Would be symmetrical to support the "via" keyword
+		 * with sends also,  where it would parse to binding the sender, without a
+		 * receiver. Then ports wouldn't need "forwarding" semantics. */
+		in feature sender: Occurrence[1];
+		in feature receiver: Occurrence[0..1];
+		/* Review: How to ensure the inverse multiplicity upper is 1? */
+		feature sentTransfer: Transfer [1] subsets sender.outgoingTransfersFromSelf;
+		binding receiver.incomingTransfersToSelf[0..1] = sentTransfer[1];
+		/* Review: Allows for bufferring sends.  Require transfer to start before send ends? */
+		succession self then sentTransfer;
+	}
+	
+	behavior AcceptPerformance specializes Performance {
+		doc
+		/*
+		 * An AcceptPerformance is an Action used to type an AcceptActionUsage. It completes an 
+		 * incomingTransferFromSelf that is one of the incomingTransfers of a given receiver Occurrence, 
+		 * outputting the payload from the Transfer.
+		 */
+		/*  Review: Not used as-is, abstract? */
+		inout feature acceptedItem[0..*] = acceptedTransfer.item;
+		in feature receiver: Occurrence[1] default this;
+		/* Review: out/inout?  */
+		inout feature acceptedTransfer: Transfer[1]
+			subsets receiver.incomingTransfersToSelf;
+		succession acceptedTransfer then self.endShot;
+	}
 
 	assoc Involves specializes BinaryLinkObject {
 		doc
@@ -189,7 +228,7 @@ package Performances {
 	 	end feature performerObject: Object[0..*] redefines involvedObject subsets performance.performers;
 	 	end feature performance: Performance[0..*] redefines involvingPerformance subsets performerObject.enactedPerformances;
 	 }
-	
+
 	abstract step performances: Performance[0..*] nonunique subsets occurrences {
 		doc
 		/*
@@ -211,7 +250,7 @@ package Performances {
 		 */
 	}
 	
-	abstract expr trueEvaluations :> booleanEvaluations {
+	abstract expr trueEvaluations subsets booleanEvaluations {
 		doc
 		/*
 		 * trueEvaluations is a subset of booleanEvaluations that result in true. It is the most general
@@ -221,7 +260,7 @@ package Performances {
 		true
 	}
 	
-	abstract expr falseEvaluations :> booleanEvaluations {
+	abstract expr falseEvaluations subsets booleanEvaluations {
 		doc
 		/*
 		 * falseEvaluations is a subset of booleanEvaluations that result in true. It is the most general
@@ -274,4 +313,17 @@ package Performances {
 		 */
 	}
 	
+	abstract step sendPerformances: SendPerformance[0..*] nonunique subsets performances {
+		doc
+		/*
+		 * sendPerformances is the base feature for all SendActionUsages.
+		 */
+	}
+		
+	abstract step acceptPerformances: AcceptPerformance[0..*] nonunique subsets performances {
+		doc
+		/*
+		 * acceptPerformances is the base feature for all AcceptActionUsages.
+		 */
+	}
 }

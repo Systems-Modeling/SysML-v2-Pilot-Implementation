@@ -43,23 +43,27 @@ package StatePerformances {
 		private succession middle[*] then exit[1];
 
 		private inv { isEmpty(accepted) == isEmpty(acceptable) }
-		feature accepted: Transfer[0..1] subsets acceptable;
-		feature deferrable: Transfer[0..*] subsets acceptable;
+		feature accepted: Transfer[0..1] subsets acceptable {
+			doc
+			/* A transfer to the trigger target of an outgoing transition performance
+			 * for an outoging successon that is taken for this state occurrence.
+			 */
+		}
+		feature deferrable: Transfer[0..*] subsets acceptable {
+			doc
+			/* Transfers to trigger targets of outgoing transition performances can be
+			 * considered for acceptance more than once.
+			 */
+		}
 		abstract feature acceptable: Transfer[*] {
+			doc
+			/*
+			 * Transfers that might be accepted. 
+			 */
 			feature thatSP : StatePerformance [1] = that as StatePerformance;
 			feature accableT : Transfer redefines self;
 			feature accT : Transfer = thatSP.accepted;
-			  /* Review: accepted must be “earlier” than rest of acceptable in sort order.
-		 	   * TBD: Transfers arriving at same time. */
-			inv { accableT == accT | incomingTransferSort(accT, accableT) }
-   
-   	  			    /* Review: Ignore oSPs that start exiting later in time than thatSP,
-				     * taking exist.start as end of matching. */
-			   		/* Review:
-	       			 * 1) acceptable must not be accepted by any oSPs (earlier in
-	       			 *    time, see above) and must be later in sort order than any
-	       			 *    accepted of those, treating them as dispatched already, …
-	       			 * 2) … except if they were deferrable. */ 
+			inv { accableT == accT | incomingTransferSort(accT, accableT) }  
 			inv { isDispatch implies
 				     allSubstatePerformances(dispatchScope)->forAll{in oSP : StatePerformance;						
 						  oSP == thatSP | isEmpty(oSP.accepted) |
@@ -73,7 +77,6 @@ package StatePerformances {
 			in p : Performance [1];
 			feature substatePerformances: StatePerformance [*] =
 				p.subperformances->select{in subp:Performance; subp istype StatePerformance};
-				/* Review: Check recursion. Use ( , ) instead of union? */
 			return  : StatePerformance [*] =
 				union(substatePerformances,  
 					  substatePerformances->collect{in sp:StatePerformance; allSubstatePerformances(sp) } );
@@ -83,19 +86,16 @@ package StatePerformances {
 		
 		feature redefines isRunToCompletion default this.isRunToCompletion;
 		feature redefines runToCompletionScope default this.runToCompletionScope; 
-		/* RTC taken as preventing all trans perfs in scope from overlapping entry
-	 	 * performances in time. */
 		inv { isRunToCompletion implies
 			     allSubtransitionPerformances(runToCompletionScope)->forAll{in tp : TransitionPerformance;
 				    includes(tp.successors, entry) | includes(tp.predecessors, entry) }
 		}
 		
-		function allSubtransitionPerformances { /* Review: Assumes NonStateTransitionPerformances are also under RTC. */
+		function allSubtransitionPerformances {
 			in p : Performance [1];
 			feature subtransitionPerformances: TransitionPerformance [*] =
 	 			 p.subperformances->select{in subp:Performance;
 		 			   subp istype StateTransitionPerformance };
-			/* Review: Check recursion. Use ( , ) instead of union? */
 			return  : TransitionPerformance [*] =
 				union(subtransitionPerformances,  
 		      		subtransitionPerformances->collect{in sp:TransitionPerformance; 
@@ -123,5 +123,7 @@ package StatePerformances {
 		
 		private succession all acceptable[0..*] then guard[*];
 		private succession guard[*] then transitionLinkSource.exit[1];
+
+		private succession accept[accNum] then transitionLinkSource.exit[1];
 	}
 }

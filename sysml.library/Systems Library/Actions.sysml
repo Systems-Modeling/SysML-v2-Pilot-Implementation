@@ -168,11 +168,11 @@ package Actions {
 		 */
 	}
 	
-	action def SendAction :> SendPerformance {
+	action def SendAction :> Action, SendPerformance {
 		doc
 		/*
-		 * A SendAction is an Action used to type a SendActionUsage. It initiates an outgoingTransferFromSelf 
-		 * to a designated receiver Occurrence with a given payload.
+		 * A SendAction is an Action used to type SendActionUsages. It initiates an outgoingTransferFromSelf 
+		 * from a designated sender Occurrence with a given payload, optionally to a designated receiver.
 		 */
 	
 		in payload :>> sentItem;
@@ -186,20 +186,25 @@ package Actions {
 		 */
 	}
 	
-	action def AcceptMessageAction :> AcceptPerformance {
+	action def AcceptMessageAction :> Action, AcceptPerformance {
 		doc
 		/*
-		 * An AcceptAction is an Action used to type an AcceptActionUsage. It completes an 
-		 * incomingTransferFromSelf that is one of the incomingTransfers of a given receiver Occurrence, 
-		 * outputting the payload from the Transfer.
+		 * An AcceptMessageAction is an Action that selects an incomingTransferToSelf
+		 * of a designated receiver Occurrence, providing its payload as output.
 		 */
 		inout payload :>> acceptedItem;
 		ref acceptedMessage :>> acceptedTransfer: MessageTransfer, FlowConnection;
 	}
 	
 	action def AcceptAction :> AcceptMessageAction {
-		out :>> payload = aState.aTransition.apayload;
-		out :>> acceptedMessage = aState.aTransition.accepter.acceptedMessage;
+		doc
+		/*
+		 * An AcceptAction is an AcceptMessageAction used to type AcceptActionUsages. It
+		 * waits for a payload or message of the specified kind to be accepted by a state
+		 * transition.
+		 */
+		inout :>> payload = aState.aTransition.apayload;
+		inout :>> acceptedMessage = aState.aTransition.accepter.acceptedMessage;
 		state aState  {
 			transition aTransition first start accept apayload: Anything via receiver then done;
 		}
@@ -271,7 +276,7 @@ package Actions {
 	abstract action def TransitionAction :> Action, TransitionPerformance {
 		doc
 		/*
-		 * A TransitionAction is a TransitionPerformance whose transitionLinkSource is an Action.
+		 * A TransitionAction is a TransitionPerformance with an Action as transitionLinkSource.
 		 * It is the base type of all TransitionUsages.
 		 */
 	
@@ -281,7 +286,7 @@ package Actions {
 		
 		ref receiver :>> triggerTarget;
 
-		action :>> accepter: AcceptMessageAction;
+		action accepter: AcceptMessageAction :>> 'accept';
 		
 		bind receiver = accepter.receiver;
 		bind acceptedMessage = accepter.acceptedMessage;

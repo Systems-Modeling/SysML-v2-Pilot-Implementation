@@ -18,8 +18,7 @@ package Transfers {
 		doc
 		/*
 		 * Transfer is the most general interaction used for typing item flows. It represents the
-		 * transfer of items from an output feature of the source of the interaction to an input
-		 * feature of the target of the interaction.
+		 * transfer of items from the source of the interaction the target of the interaction.
 		 */
 	
 		end feature source: Occurrence[0..*] redefines BinaryLink::source {
@@ -64,11 +63,14 @@ package Transfers {
 		}
 	}
 	
-	  /* Review: Only FlowTransfers use directed features and support moving and pushing items.
-	   * Code is moved from Transfer.
-	   */
 	interaction FlowTransfer specializes Transfer disjoint from MessageTransfer {
-		
+		doc
+		/*
+		 * FlowTransfers are transfers identifying an output feature of the source from which
+		 * to pick up items and an input feature of the target to drop them off.  They can
+		 * start when items are available at the source and move or copy them to the target.
+		 */
+		 
 		feature isMove: Boolean[1] default true {
 			doc
 			/*

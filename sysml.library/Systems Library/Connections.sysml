@@ -53,15 +53,21 @@ package Connections {
 		end source: Occurrence[0..*] :>> BinaryConnection::source, Transfer::source;
 		end target: Occurrence[0..*] :>> BinaryConnection::target, Transfer::target;
 		
-		/* Review: Was defaulting to source/target, but these events are supposed to be "internal"
-		 * to source/target that happen before/after the transfer. See successions below.
-		 * Changed to start/done of the transfer, which still don't commit to implementation and
-		 * are sort of internal to source/target since they're supposed to happen at least at
-		 * the spatial boundary of the source/target. Alternatively could make start/endEvent
-		 * optional with no default, not sure. */
 		part fcp = self;
-		event occurrence sourceEvent [1] default fcp.start;
-		event occurrence targetEvent [1] default fcp.done;
+		event occurrence sourceEvent [1] default fcp.start {
+			doc
+			/* 
+			 * An occurrence happening during the source of this flow connection
+			 * that is either the start of the connection or happens before it.
+			 */
+		}
+		event occurrence targetEvent [1] default fcp.done {
+			doc
+			/* 
+			 * An occurrence happening during the target of this flow connection
+			 * that is either the end of the connection or happens after it.
+			 */
+		}
 		
 		/* Review: Unless this is stated more generally somewhere. */
 		connection :HappensDuring connect sourceEvent to source[1];
@@ -72,7 +78,7 @@ package Connections {
 		succession [seBeforeNum] first sourceEvent[0..1] then self[0..1];
 		succession [teAfterNum] first self[0..1] then targetEvent[0..1];
 
-		ref payload :>> Transfer::'item';
+		ref payload :>> 'item';
 	}
 	
 	abstract connection def SuccessionFlowConnection :> FlowConnection, TransferBefore {

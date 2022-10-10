@@ -39,7 +39,9 @@ package TransitionPerformances {
 		private succession all guard[*] then effect[*];
 
 		feature accNum: Natural [1] = if isEmpty(trigger) ? 0 else 1;
-		step accepter: AcceptPerformance[accNum] subsets timeEnclosedOccurrences;
+		step accept: AcceptPerformance[accNum] subsets timeEnclosedOccurrences;
+
+		private succession guard[*] then accept[accNum];
 	}
 	
 	behavior NonStateTransitionPerformance specializes TransitionPerformance {

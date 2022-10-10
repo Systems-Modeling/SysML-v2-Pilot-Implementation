@@ -49,9 +49,13 @@ package Performances {
 			 */
 		}
 		
-         /* Review: Top of performance composition tree.  Same as “this” for comp tree rooted in
-          * performance, otherwise the performance “just below this”. */
-		feature thisPerformance: Performance [1] default self;  /* Review: Are steps timeEnclosed (ST4MD-376)? */
+		/* Review: Are steps timeEnclosed (ST4MD-376)? */
+		feature thisPerformance: Performance [1] default self {
+			doc
+			/*
+			 * Defaults to the root of the subperformance composition tree.
+			 */
+		}  
 		connector :HappensDuring from self[1] to thisPerformance[1];  /* Review: Prolly want similar inv for "this". */
 		
 		composite step subperformances: Performance[0..*] subsets enclosedPerformances, suboccurrences {
@@ -173,16 +177,11 @@ package Performances {
 	behavior SendPerformance specializes Performance  {
 		doc
 		/*
-		 * A SendPerformance is a Peformance used to type a SendActionUsage. It initiates an outgoingTransferFromSelf 
-		 * to a designated receiver Occurrence with a given payload.
+		 * A SendPerformance is a Performance that initiates an outgoingTransferFromSelf 
+		 * from a designated sender Occurrence with a given item, optionally to a designated receiver.
 		 */
 	
 		in feature sentItem [0..*] = sentTransfer.item;
-		/* Review: Usage can bind sender to self to have send be transfer source,
-		 * combined with a receiver to give transfer target.  The "to" keyword
-		 * could parse to this.	 Would be symmetrical to support the "via" keyword
-		 * with sends also,  where it would parse to binding the sender, without a
-		 * receiver. Then ports wouldn't need "forwarding" semantics. */
 		in feature sender: Occurrence[1];
 		in feature receiver: Occurrence[0..1];
 		/* Review: How to ensure the inverse multiplicity upper is 1? */
@@ -195,14 +194,11 @@ package Performances {
 	behavior AcceptPerformance specializes Performance {
 		doc
 		/*
-		 * An AcceptPerformance is an Action used to type an AcceptActionUsage. It completes an 
-		 * incomingTransferFromSelf that is one of the incomingTransfers of a given receiver Occurrence, 
-		 * outputting the payload from the Transfer.
+		 * An AcceptPerformance is an Performance that selects an incomingTransferToSelf
+		 * of a desigated receiver Occurrence, providing its payload as output.
 		 */
-		/*  Review: Not used as-is, abstract? */
 		inout feature acceptedItem[0..*] = acceptedTransfer.item;
 		in feature receiver: Occurrence[1] default this;
-		/* Review: out/inout?  */
 		inout feature acceptedTransfer: Transfer[1]
 			subsets receiver.incomingTransfersToSelf;
 		succession acceptedTransfer then self.endShot;
@@ -316,14 +312,14 @@ package Performances {
 	abstract step sendPerformances: SendPerformance[0..*] nonunique subsets performances {
 		doc
 		/*
-		 * sendPerformances is the base feature for all SendActionUsages.
+		 * sendPerformances is a specialization of performances for SendPerformances.
 		 */
 	}
 		
 	abstract step acceptPerformances: AcceptPerformance[0..*] nonunique subsets performances {
 		doc
 		/*
-		 * acceptPerformances is the base feature for all AcceptActionUsages.
+		 * acceptPerformances is a specialization of performances for AcceptPerformances.
 		 */
 	}
 }

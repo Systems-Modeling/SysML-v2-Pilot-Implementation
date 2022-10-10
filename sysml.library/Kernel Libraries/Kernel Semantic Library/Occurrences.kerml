@@ -460,15 +460,31 @@ package Occurrences {
 			end feature redefines target;
 		}
 		
-		feature isDispatch : Boolean[1] default false;
- 		feature dispatchScope: Occurrence [1] default self; /* Review: Not needed when isDispatch==false */
+		feature isDispatch : Boolean[1] default false {
+			doc
+			/*
+			 * Determines whether transfers to the dispatch scope might be accepted more than once.
+			 */
+		}
+ 		feature dispatchScope: Occurrence [1] default self;
  		connector :HappensDuring from self[1] to dispatchScope[1];
  		
- 		feature isRunToCompletion: Boolean [1] default true;
+ 		feature isRunToCompletion: Boolean [1] default true {
+			doc
+			/*
+			 * Determines whether transition performances might happen during state entry behaviors
+			 * within the run to completion scope.
+			 */
+		}
 		feature runToCompletionScope: Occurrence [1] default self;
 		connector :HappensDuring from self[1] to runToCompletionScope[1];
  
- 		feature incomingTransferSort : IncomingTransferSort [0..*] default earlierFirstIncomingTransferSort;
+ 		feature incomingTransferSort : IncomingTransferSort [0..*] default earlierFirstIncomingTransferSort {
+			doc
+			/*
+			 * Determines the order in which transfers to the dispatch scope are considered for acceptance.
+			 */
+		}
 
 		feature all incomingTransfersToSelf subsets incomingTransfers {
 			doc
@@ -515,7 +531,7 @@ package Occurrences {
 	abstract feature occurrences: Occurrence[0..*] nonunique subsets things;
 	
 	predicate IncomingTransferSort specializes Performances::BooleanEvaluation {    
-		in t1: Transfers::Transfer [1]; /* Review: subset transfers? */
+		in t1: Transfers::Transfer [1];
 		in t2: Transfers::Transfer [1];  
 		return t1First: Boolean [1]; }
 

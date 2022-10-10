@@ -28,9 +28,13 @@ import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureTyping;
+import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.InvocationExpression;
+import org.omg.sysml.lang.sysml.Redefinition;
+import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.util.ElementUtil;
 import org.omg.sysml.util.ExpressionUtil;
 import org.omg.sysml.util.FeatureUtil;
 import org.omg.sysml.util.TypeUtil;
@@ -60,10 +64,55 @@ public class ExpressionEvaluator extends ModelLevelExpressionEvaluator {
 				if (type instanceof Feature) {
 					targetFeature = FeatureUtil.chainFeatures(targetFeature, (Feature)type);
 				}
-				EList<Element> results = evaluate(resultExpression, FeatureUtil.chainFeatures(targetFeature, expression));
+				EList<Element> results = evaluate(resultExpression, 
+						FeatureUtil.chainFeatures(targetFeature, instantiateInvocation(expression, targetFeature)));
 				return results == null? EvaluationUtil.singletonList(resultExpression): results;
 			}
 		}
 	}
 	
+	protected InvocationExpression instantiateInvocation(InvocationExpression expression, Element target) {
+		InvocationExpression instantiation = SysMLFactory.eINSTANCE.createInvocationExpression();
+		
+		// Copy typing from original expression.
+		for (FeatureTyping typing: expression.getOwnedTyping()) {
+			FeatureTyping newTyping = SysMLFactory.eINSTANCE.createFeatureTyping();
+			newTyping.setType(typing.getType());
+			instantiation.getOwnedRelationship().add(newTyping);
+		}
+		
+		// Add implicit generalization.
+		ElementUtil.transform(instantiation);
+		
+		// Add parameters corresponding to parameters in original expression.
+		for (Feature parameter: TypeUtil.getOwnedParametersOf(expression)) {
+			Feature newParameter = SysMLFactory.eINSTANCE.createFeature();
+			newParameter.setDirection(parameter.getDirection());
+			for (Redefinition redefinition: parameter.getOwnedRedefinition()) {
+				Redefinition newRedefinition = SysMLFactory.eINSTANCE.createRedefinition();
+				newRedefinition.setRedefinedFeature(redefinition.getRedefinedFeature());
+				newParameter.getOwnedRelationship().add(newRedefinition);
+			}
+			
+			Expression valueExpression = FeatureUtil.getValueExpressionFor(parameter);
+			if (valueExpression != null) {
+				// Evaluate the value expression for the original parameter with the given target,
+				// NOT including the bindings in the original invocation expression.
+				EList<Element> values = evaluate(valueExpression, target);
+				if (values != null) {
+					// Set the value expression for the new parameter to an expression representing
+					// the evaluated result of the original value expression.
+					Expression evaluatedExpression = EvaluationUtil.expressionFor(values);
+					if (evaluatedExpression != null) {
+						FeatureValue newFeatureValue = SysMLFactory.eINSTANCE.createFeatureValue();
+						newFeatureValue.setValue(evaluatedExpression);
+						newParameter.getOwnedRelationship().add(newFeatureValue);
+					}
+				}
+			}
+			
+			TypeUtil.addOwnedFeatureTo(instantiation, newParameter);
+		}
+		return instantiation;
+	}
 }

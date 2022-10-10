@@ -102,7 +102,7 @@ public class ExpressionEvaluator extends ModelLevelExpressionEvaluator {
 				if (values != null) {
 					// Set the value expression for the new parameter to an expression representing
 					// the evaluated result of the original value expression.
-					Expression evaluatedExpression = EvaluationUtil.expressionFor(values);
+					Expression evaluatedExpression = EvaluationUtil.expressionFor(values, expression);
 					if (evaluatedExpression != null) {
 						FeatureValue newFeatureValue = SysMLFactory.eINSTANCE.createFeatureValue();
 						newFeatureValue.setValue(evaluatedExpression);

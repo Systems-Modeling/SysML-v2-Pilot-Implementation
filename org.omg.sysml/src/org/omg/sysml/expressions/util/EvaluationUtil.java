@@ -42,12 +42,12 @@ import org.omg.sysml.lang.sysml.LiteralInteger;
 import org.omg.sysml.lang.sysml.LiteralRational;
 import org.omg.sysml.lang.sysml.LiteralString;
 import org.omg.sysml.lang.sysml.MetadataFeature;
-import org.omg.sysml.lang.sysml.OperatorExpression;
 import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
 import org.omg.sysml.util.ElementUtil;
+import org.omg.sysml.util.ExpressionUtil;
 import org.omg.sysml.util.FeatureUtil;
 import org.omg.sysml.util.NamespaceUtil;
 import org.omg.sysml.util.TypeUtil;
@@ -99,7 +99,7 @@ public class EvaluationUtil {
 		}
 	}
 	
-	public static Expression expressionFor(EList<Element> results) {
+	public static Expression expressionFor(EList<Element> results, Element context) {
 		if (!results.stream().allMatch(
 				elm->elm instanceof Feature && 
 				(!(elm instanceof Expression) || elm instanceof LiteralExpression))) {
@@ -109,14 +109,18 @@ public class EvaluationUtil {
 		} else {
 			Expression expression = expressionFor(results.get(0));
 			if (results.size() > 1) {
+				Type listOp = SysMLLibraryUtil.getLibraryType(context, ExpressionUtil.getOperatorQualifiedNames(","));
 				for (int i = 1; i < results.size(); i++) {
-					OperatorExpression listExpr = SysMLFactory.eINSTANCE.createOperatorExpression();
-					listExpr.setOperator(",");
-					listExpr.getOperand().add(expression);
-					listExpr.getOperand().add(expressionFor(results.get(i)));
+					FeatureTyping typing = SysMLFactory.eINSTANCE.createFeatureTyping();
+					typing.setType(listOp);
+					InvocationExpression listExpr = SysMLFactory.eINSTANCE.createInvocationExpression();
+					listExpr.getOwnedRelationship().add(typing);
+					TypeUtil.addOwnedParameterTo(listExpr, expression);
+					TypeUtil.addOwnedParameterTo(listExpr, expressionFor(results.get(i)));
 					expression = listExpr;
 				}
 			}
+			ElementUtil.transformAll(expression, false);
 			return expression;
 		}
 	}

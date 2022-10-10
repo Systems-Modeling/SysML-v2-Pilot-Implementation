@@ -22,6 +22,8 @@
 
 package org.omg.sysml.delegate;
 
+import java.util.List;
+
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -42,6 +44,7 @@ public class ItemFlow_itemFlowFeature_SettingDelegate extends BasicDerivedListSe
 				new EObjectResolvingEList<ItemFlowFeature>(ItemFlowFeature.class, owner, eStructuralFeature.getFeatureID());
 		((ItemFlow)owner).getItemFlowEnd().stream().
 			map(Type::getOwnedFeature).
+			flatMap(List::stream).
 			filter(ItemFlowFeature.class::isInstance).
 			map(ItemFlowFeature.class::cast).
 			forEachOrdered(itemFlowFeatures::add);

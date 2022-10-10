@@ -88,9 +88,9 @@ public class ExpressionEvaluator extends ModelLevelExpressionEvaluator {
 		for (Feature parameter: TypeUtil.getOwnedParametersOf(expression)) {
 			Feature newParameter = SysMLFactory.eINSTANCE.createFeature();
 			newParameter.setDirection(parameter.getDirection());
-			for (Redefinition redefinition: parameter.getOwnedRedefinition()) {
+			for (Feature redefinedFeature: FeatureUtil.getRedefinedFeaturesWithComputedOf(parameter, null)) {
 				Redefinition newRedefinition = SysMLFactory.eINSTANCE.createRedefinition();
-				newRedefinition.setRedefinedFeature(redefinition.getRedefinedFeature());
+				newRedefinition.setRedefinedFeature(redefinedFeature);
 				newParameter.getOwnedRelationship().add(newRedefinition);
 			}
 			

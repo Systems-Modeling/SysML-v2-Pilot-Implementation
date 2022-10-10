@@ -69,7 +69,6 @@ package Connections {
 			 */
 		}
 		
-		/* Review: Unless this is stated more generally somewhere. */
 		connection :HappensDuring connect sourceEvent to source[1];
 		connection :HappensDuring connect targetEvent to target[1];
 		

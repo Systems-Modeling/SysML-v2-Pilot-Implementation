@@ -56,7 +56,7 @@ package Performances {
 			 * Defaults to the root of the subperformance composition tree.
 			 */
 		}  
-		connector :HappensDuring from self[1] to thisPerformance[1];  /* Review: Prolly want similar inv for "this". */
+		connector :HappensDuring from self[1] to thisPerformance[1];
 		
 		composite step subperformances: Performance[0..*] subsets enclosedPerformances, suboccurrences {
 			doc
@@ -184,7 +184,6 @@ package Performances {
 		in feature sentItem [0..*] = sentTransfer.item;
 		in feature sender: Occurrence[1];
 		in feature receiver: Occurrence[0..1];
-		/* Review: How to ensure the inverse multiplicity upper is 1? */
 		feature sentTransfer: Transfer [1] subsets sender.outgoingTransfersFromSelf;
 		binding receiver.incomingTransfersToSelf[0..1] = sentTransfer[1];
 		/* Review: Allows for bufferring sends.  Require transfer to start before send ends? */

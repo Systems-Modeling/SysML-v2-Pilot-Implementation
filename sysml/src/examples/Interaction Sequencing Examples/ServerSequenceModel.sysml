@@ -31,9 +31,6 @@ package ServerSequenceModel {
 			then event occurrence deliver_source_event;
 		}
 		
-		/* Review: Assumes "message" keyword parses to bind start/endEvent per "from"/"to" keywords.
-		 * This keyword and "FlowConnection" might be confusing now, bc they don't mean specifically
-		 * MessageTransfer or FlowTransfer. See comments about "message" keyword in ServerSequenceRealization-2.sysml. */
 		message subscribe_message from consumer.subscribe_source_event to server.subscribe_target_event;
 		message deliver_message from server.deliver_source_event to consumer.deliver_target_event;
 		

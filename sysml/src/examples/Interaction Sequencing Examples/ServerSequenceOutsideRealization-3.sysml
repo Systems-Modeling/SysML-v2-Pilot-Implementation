@@ -37,9 +37,7 @@ package ServerSequenceOutsideRealization_3 {
 				}
 			}
 			
-			/* Review: Assumes "flow" keyword parses to 1) type by FlowTransfer, FlowConnection
-			 * 2) bind source/target per "from"/"to" keywords. 
-			 * Internal flows are instantaneous to make arrival/leave ordering in SequenceModelOutside.sysml
+			/* Internal flows are instantaneous to make arrival/leave ordering in SequenceModelOutside.sysml
 			 * equivalent to ordering participant internals in ServerSequenceRealization-3.sysml. */
 			flow publish_request from producerBehavior.publish.request to publicationPort.publish
 				{ attribute :>> isInstant = true;}	

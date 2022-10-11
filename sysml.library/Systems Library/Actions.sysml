@@ -14,12 +14,11 @@ package Actions {
 	private import Occurrences::HappensWhile;
 	private import Performances::Performance;
 	private import Performances::performances;
-	private import Performances::SendPerformance;
-	private import Performances::sendPerformances;
-	private import Performances::AcceptPerformance;
-	private import Performances::acceptPerformances;
+	private import Transfers::SendPerformance;
+	private import Transfers::sendPerformances;
+	private import Transfers::AcceptPerformance;
+	private import Transfers::acceptPerformances;
 	private import FeatureReferencingPerformances::FeatureWritePerformance;
-	private import Transfers::TransferBefore;
 	private import ControlPerformances::MergePerformance;
 	private import ControlPerformances::DecisionPerformance;
 	private import ControlPerformances::IfThenPerformance;
@@ -282,7 +281,7 @@ package Actions {
 	
 		in transitionLinkSource : Action :>> TransitionPerformance::transitionLinkSource;
 		/* Review: out/inout? */
-		out ref acceptedMessage : MessageTransfer, FlowConnection :>> trigger;
+		ref acceptedMessage : MessageTransfer, FlowConnection :>> trigger;
 		
 		ref receiver :>> triggerTarget;
 

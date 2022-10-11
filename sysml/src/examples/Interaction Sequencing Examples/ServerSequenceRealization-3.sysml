@@ -37,8 +37,6 @@ package ServerSequenceRealization_3 {
 				}
 			}
 			
-			/* Review: Assumes "flow" keyword parses to 1) type by FlowTransfer, FlowConnection
-			 * 2) bind source/target per "from"/"to" keywords. */
 			flow publish_request from producerBehavior.publish.request to publicationPort.publish;
 		}
 		

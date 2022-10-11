@@ -11,7 +11,7 @@ package TransitionPerformances {
 	private import Occurrences::Occurrence;
 	private import Occurrences::HappensBefore;
 	private import Performances::Performance;
-	private import Performances::AcceptPerformance;
+	private import Transfers::AcceptPerformance;
 	private import Performances::Evaluation;
 	private import Transfers::Transfer;
 	private import ControlFunctions::allTrue;

@@ -174,35 +174,6 @@ package Performances {
 		return : Anything[0..0];
 	}
 	
-	behavior SendPerformance specializes Performance  {
-		doc
-		/*
-		 * A SendPerformance is a Performance that initiates an outgoingTransferFromSelf 
-		 * from a designated sender Occurrence with a given item, optionally to a designated receiver.
-		 */
-	
-		in feature sentItem [0..*] = sentTransfer.item;
-		in feature sender: Occurrence[1];
-		in feature receiver: Occurrence[0..1];
-		feature sentTransfer: Transfer [1] subsets sender.outgoingTransfersFromSelf;
-		binding receiver.incomingTransfersToSelf[0..1] = sentTransfer[1];
-		/* Review: Allows for bufferring sends.  Require transfer to start before send ends? */
-		succession self then sentTransfer;
-	}
-	
-	behavior AcceptPerformance specializes Performance {
-		doc
-		/*
-		 * An AcceptPerformance is an Performance that selects an incomingTransferToSelf
-		 * of a desigated receiver Occurrence, providing its payload as output.
-		 */
-		inout feature acceptedItem[0..*] = acceptedTransfer.item;
-		in feature receiver: Occurrence[1] default this;
-		inout feature acceptedTransfer: Transfer[1]
-			subsets receiver.incomingTransfersToSelf;
-		succession acceptedTransfer then self.endShot;
-	}
-
 	assoc Involves specializes BinaryLinkObject {
 		doc
 		/*
@@ -305,20 +276,6 @@ package Performances {
 		doc
 		/*
 		 * nullEvaluations is a specialization of evaluations restricted to type NullEvaluation.
-		 */
-	}
-	
-	abstract step sendPerformances: SendPerformance[0..*] nonunique subsets performances {
-		doc
-		/*
-		 * sendPerformances is a specialization of performances for SendPerformances.
-		 */
-	}
-		
-	abstract step acceptPerformances: AcceptPerformance[0..*] nonunique subsets performances {
-		doc
-		/*
-		 * acceptPerformances is a specialization of performances for AcceptPerformances.
 		 */
 	}
 }

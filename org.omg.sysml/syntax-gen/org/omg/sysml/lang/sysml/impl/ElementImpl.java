@@ -70,6 +70,7 @@ import org.omg.sysml.util.ElementUtil;
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getEffectiveName <em>Effective Name</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getQualifiedName <em>Qualified Name</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#isImpliedIncluded <em>Is Implied Included</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#isLibraryElement <em>Is Library Element</em>}</li>
  * </ul>
  *
  * @generated
@@ -264,6 +265,16 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	 * @ordered
 	 */
 	protected boolean isImpliedIncluded = IS_IMPLIED_INCLUDED_EDEFAULT;
+
+	/**
+	 * The cached setting delegate for the '{@link #isLibraryElement() <em>Is Library Element</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isLibraryElement()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate IS_LIBRARY_ELEMENT__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.ELEMENT__IS_LIBRARY_ELEMENT).getSettingDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -621,6 +632,26 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isLibraryElement() {
+		return (Boolean)IS_LIBRARY_ELEMENT__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setIsLibraryElement(boolean newIsLibraryElement) {
+		IS_LIBRARY_ELEMENT__ESETTING_DELEGATE.dynamicSet(this, null, 0, newIsLibraryElement);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
 	 * Get the effective name for this element, which by default is just its regular name.
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -666,6 +697,16 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 		return getName();
 	}
 	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public Namespace libraryNamespace() {
+		Relationship owningRelationship = getOwningRelationship();
+		return owningRelationship == null? null: owningRelationship.libraryNamespace();
+	}
+
 	//
 
 	/**
@@ -760,6 +801,8 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 				return getQualifiedName();
 			case SysMLPackage.ELEMENT__IS_IMPLIED_INCLUDED:
 				return isImpliedIncluded();
+			case SysMLPackage.ELEMENT__IS_LIBRARY_ELEMENT:
+				return isLibraryElement();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -827,6 +870,9 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 			case SysMLPackage.ELEMENT__IS_IMPLIED_INCLUDED:
 				setIsImpliedIncluded((Boolean)newValue);
 				return;
+			case SysMLPackage.ELEMENT__IS_LIBRARY_ELEMENT:
+				setIsLibraryElement((Boolean)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -887,6 +933,9 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 			case SysMLPackage.ELEMENT__IS_IMPLIED_INCLUDED:
 				setIsImpliedIncluded(IS_IMPLIED_INCLUDED_EDEFAULT);
 				return;
+			case SysMLPackage.ELEMENT__IS_LIBRARY_ELEMENT:
+				IS_LIBRARY_ELEMENT__ESETTING_DELEGATE.dynamicUnset(this, null, 0);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -931,6 +980,8 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 				return QUALIFIED_NAME__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.ELEMENT__IS_IMPLIED_INCLUDED:
 				return isImpliedIncluded != IS_IMPLIED_INCLUDED_EDEFAULT;
+			case SysMLPackage.ELEMENT__IS_LIBRARY_ELEMENT:
+				return IS_LIBRARY_ELEMENT__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -947,6 +998,8 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 				return escapedName();
 			case SysMLPackage.ELEMENT___EFFECTIVE_NAME:
 				return effectiveName();
+			case SysMLPackage.ELEMENT___LIBRARY_NAMESPACE:
+				return libraryNamespace();
 		}
 		return super.eInvoke(operationID, arguments);
 	}

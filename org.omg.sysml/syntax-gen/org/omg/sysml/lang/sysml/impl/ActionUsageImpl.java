@@ -22,16 +22,19 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.Behavior;
+import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.util.UsageUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -204,6 +207,28 @@ public class ActionUsageImpl extends OccurrenceUsageImpl implements ActionUsage 
   		return false;
 	}
 
+	// Operations
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public EList<Feature> inputParameters() {
+		return UsageUtil.getOwnedInputParametersOf(this);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public Expression argument(int i) {
+		return UsageUtil.getArgumentOf(this, i);
+	}
+	
+	//
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -324,6 +349,22 @@ public class ActionUsageImpl extends OccurrenceUsageImpl implements ActionUsage 
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch (operationID) {
+			case SysMLPackage.ACTION_USAGE___INPUT_PARAMETERS:
+				return inputParameters();
+			case SysMLPackage.ACTION_USAGE___ARGUMENT__INT:
+				return argument((Integer)arguments.get(0));
+		}
+		return super.eInvoke(operationID, arguments);
 	}
 
 } //ActionImpl

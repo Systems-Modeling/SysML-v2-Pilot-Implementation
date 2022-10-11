@@ -46,6 +46,8 @@ import org.eclipse.emf.ecore.EObject;
  *     select(a | a.annotatedElement = self)
  * effectiveName()
  * ownedRelationship->exists(isImplied) implies isImpliedIncluded
+ * isLibraryElement = libraryNamespace() <>null
+ * 
  * <!-- end-model-doc -->
  *
  * <p>
@@ -68,6 +70,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getEffectiveName <em>Effective Name</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getQualifiedName <em>Qualified Name</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#isImpliedIncluded <em>Is Implied Included</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Element#isLibraryElement <em>Is Library Element</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getElement()
@@ -281,6 +284,32 @@ public interface Element extends EObject {
 	void setIsImpliedIncluded(boolean value);
 
 	/**
+	 * Returns the value of the '<em><b>Is Library Element</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Whether this Element is contained in the ownership tree of a library model.</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Is Library Element</em>' attribute.
+	 * @see #setIsLibraryElement(boolean)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getElement_IsLibraryElement()
+	 * @model dataType="org.omg.sysml.lang.types.Boolean" required="true" transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://www.omg.org/spec/SysML"
+	 * @generated
+	 */
+	boolean isLibraryElement();
+
+	/**
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Element#isLibraryElement <em>Is Library Element</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Is Library Element</em>' attribute.
+	 * @see #isLibraryElement()
+	 * @generated
+	 */
+	void setIsLibraryElement(boolean value);
+
+	/**
 	 * Returns the value of the '<em><b>Effective Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -316,7 +345,7 @@ public interface Element extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The owner of this Element, derived as the <tt>owningRelatedElement</tt> of the <tt>owningRelationship</tt> of this Element, if any.</p>
+	 * <p>The owner of this Element, derived as the <code>owningRelatedElement</code> of the <code>owningRelationship</code> of this Element, if any.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owner</em>' reference.
 	 * @see #setOwner(Element)
@@ -531,5 +560,18 @@ public interface Element extends EObject {
 	 * @generated
 	 */
 	String effectiveName();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>By default, return whether the library Namespace of the <code>owningRelationship</code> of this Element, if it has one.</p>
+	 * if owningRelationship <> null then owningRelationship.libraryNamespace()
+	 * else null endif
+	 * <!-- end-model-doc -->
+	 * @model ordered="false"
+	 * @generated
+	 */
+	Namespace libraryNamespace();
 	
 } // Element

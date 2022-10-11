@@ -68,8 +68,8 @@ public interface ReferenceSubsetting extends Subsetting {
 	 * This feature redefines the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Subsetting#getSubsettingFeature() <em>Subsetting Feature</em>}'</li>
 	 *   <li>'{@link org.omg.sysml.lang.sysml.Subsetting#getOwningFeature() <em>Owning Feature</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Subsetting#getSubsettingFeature() <em>Subsetting Feature</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -77,6 +77,9 @@ public interface ReferenceSubsetting extends Subsetting {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The Feature that owns this ReferenceSubsetting relationship, which is also its <code>subsettingFeature</code>.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Referencing Feature</em>' reference.
 	 * @see #setReferencingFeature(Feature)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getReferenceSubsetting_ReferencingFeature()

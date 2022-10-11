@@ -122,7 +122,7 @@ public interface TransitionUsage extends ActionUsage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The AcceptActionUsages that define the triggers of this TransitionUsage, derived as the <code>ownedFeatures</code> of this TransitionUsage related to it by a TransitionFeatureMembership with <code>kind</code> = <code>trigger</code>.</p>
+	 * <p>The AcceptActionUsages that define the triggers of this TransitionUsage, derived as the <code>ownedFeatures</code> of this TransitionUsage related to it by a TransitionFeatureMembership with <code>kind</code> = <code>trigger</code>. All <code>triggerActions</code> must be directly typed by <em><code>AcceptMessageAction</code></em> from the Systems model library.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Trigger Action</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getTransitionUsage_TriggerAction()

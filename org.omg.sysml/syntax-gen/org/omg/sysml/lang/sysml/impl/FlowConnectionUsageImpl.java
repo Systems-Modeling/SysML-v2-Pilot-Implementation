@@ -21,6 +21,7 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 import org.eclipse.emf.common.util.EList;
 
@@ -31,6 +32,7 @@ import org.omg.sysml.lang.sysml.Association;
 import org.omg.sysml.lang.sysml.AssociationStructure;
 import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.Classifier;
+import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FlowConnectionUsage;
 import org.omg.sysml.lang.sysml.Interaction;
@@ -41,6 +43,7 @@ import org.omg.sysml.lang.sysml.ItemFlowFeature;
 import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.util.UsageUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -502,6 +505,26 @@ public class FlowConnectionUsageImpl extends ConnectionUsageImpl implements Flow
   		return false;
 	}
 
+	// Operations
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public EList<Feature> inputParameters() {
+		return UsageUtil.getOwnedInputParametersOf(this);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public Expression argument(int i) {
+		return UsageUtil.getArgumentOf(this, i);
+	}
+
 	// Additional overrides
 	
 	@Override
@@ -764,6 +787,49 @@ public class FlowConnectionUsageImpl extends ConnectionUsageImpl implements Flow
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
+		if (baseClass == Step.class) {
+			switch (baseOperationID) {
+				default: return -1;
+			}
+		}
+		if (baseClass == ActionUsage.class) {
+			switch (baseOperationID) {
+				case SysMLPackage.ACTION_USAGE___INPUT_PARAMETERS: return SysMLPackage.FLOW_CONNECTION_USAGE___INPUT_PARAMETERS;
+				case SysMLPackage.ACTION_USAGE___ARGUMENT__INT: return SysMLPackage.FLOW_CONNECTION_USAGE___ARGUMENT__INT;
+				default: return -1;
+			}
+		}
+		if (baseClass == ItemFlow.class) {
+			switch (baseOperationID) {
+				default: return -1;
+			}
+		}
+		return super.eDerivedOperationID(baseOperationID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch (operationID) {
+			case SysMLPackage.FLOW_CONNECTION_USAGE___INPUT_PARAMETERS:
+				return inputParameters();
+			case SysMLPackage.FLOW_CONNECTION_USAGE___ARGUMENT__INT:
+				return argument((Integer)arguments.get(0));
+		}
+		return super.eInvoke(operationID, arguments);
 	}
 
 } //FlowConnectionUsageImpl

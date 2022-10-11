@@ -58,7 +58,7 @@ public interface PortUsage extends OccurrenceUsage {
 	 * This feature redefines the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Feature#getType() <em>Type</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.OccurrenceUsage#getOccurrenceDefinition() <em>Occurrence Definition</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>

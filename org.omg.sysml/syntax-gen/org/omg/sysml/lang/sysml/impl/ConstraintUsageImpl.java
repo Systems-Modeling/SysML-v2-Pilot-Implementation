@@ -370,6 +370,15 @@ public class ConstraintUsageImpl extends OccurrenceUsageImpl implements Constrai
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
+	public boolean modelLevelEvaluable(EList<Feature> visited) {
+		return false;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
 	public EList<Element> evaluate(Element target) {
 		return new BasicEList<>();
 	}
@@ -590,6 +599,7 @@ public class ConstraintUsageImpl extends OccurrenceUsageImpl implements Constrai
 		}
 		if (baseClass == Expression.class) {
 			switch (baseOperationID) {
+				case SysMLPackage.EXPRESSION___MODEL_LEVEL_EVALUABLE__ELIST: return SysMLPackage.CONSTRAINT_USAGE___MODEL_LEVEL_EVALUABLE__ELIST;
 				case SysMLPackage.EXPRESSION___EVALUATE__ELEMENT: return SysMLPackage.CONSTRAINT_USAGE___EVALUATE__ELEMENT;
 				default: return -1;
 			}
@@ -608,8 +618,11 @@ public class ConstraintUsageImpl extends OccurrenceUsageImpl implements Constrai
 	 * @generated
 	 */
 	@Override
+	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
+			case SysMLPackage.CONSTRAINT_USAGE___MODEL_LEVEL_EVALUABLE__ELIST:
+				return modelLevelEvaluable((EList<Feature>)arguments.get(0));
 			case SysMLPackage.CONSTRAINT_USAGE___EVALUATE__ELEMENT:
 				return evaluate((Element)arguments.get(0));
 		}

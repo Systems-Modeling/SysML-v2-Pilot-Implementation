@@ -68,7 +68,7 @@ public interface StateUsage extends ActionUsage {
 	 * This feature redefines the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Step#getBehavior() <em>Behavior</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.ActionUsage#getActionDefinition() <em>Action Definition</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>

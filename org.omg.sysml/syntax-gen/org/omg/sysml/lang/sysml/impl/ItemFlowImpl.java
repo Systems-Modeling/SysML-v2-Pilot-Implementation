@@ -161,9 +161,9 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public EList<Behavior> getBehavior() {
+		@SuppressWarnings("unchecked")
 		EList<Behavior> interaction = (EList<Behavior>)((EList<?>)getInteraction());
 		return interaction;
 	}

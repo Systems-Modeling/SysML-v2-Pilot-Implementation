@@ -1,6 +1,5 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2022 Siemens AG
  * Copyright (c) 2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
@@ -27,15 +26,15 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.SendActionUsage;
 
-public class SendActionUsage_payloadArgument_SettingDelegate extends BasicDerivedObjectSettingDelegate {
+public class SendActionUsage_senderArgument_SettingDelegate extends BasicDerivedObjectSettingDelegate {
 
-	public SendActionUsage_payloadArgument_SettingDelegate(EStructuralFeature eStructuralFeature) {
+	public SendActionUsage_senderArgument_SettingDelegate(EStructuralFeature eStructuralFeature) {
 		super(eStructuralFeature);
 	}
 
 	@Override
 	protected Expression basicGet(InternalEObject action) {
-		return ((SendActionUsage)action).argument(1);
+		return ((SendActionUsage)action).argument(2);
 	}
 
 }

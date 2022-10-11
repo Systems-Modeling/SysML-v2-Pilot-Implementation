@@ -1,6 +1,5 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2022 Siemens AG
  * Copyright (c) 2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
@@ -22,20 +21,22 @@
 
 package org.omg.sysml.delegate;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.omg.sysml.lang.sysml.Expression;
-import org.omg.sysml.lang.sysml.SendActionUsage;
+import org.omg.sysml.lang.sysml.ConjugatedPortDefinition;
+import org.omg.sysml.lang.sysml.ConjugatedPortTyping;
 
-public class SendActionUsage_payloadArgument_SettingDelegate extends BasicDerivedObjectSettingDelegate {
+public class ConjugatedPortTyping_portDefinition_SettingDelegate extends BasicDerivedObjectSettingDelegate {
 
-	public SendActionUsage_payloadArgument_SettingDelegate(EStructuralFeature eStructuralFeature) {
+	public ConjugatedPortTyping_portDefinition_SettingDelegate(EStructuralFeature eStructuralFeature) {
 		super(eStructuralFeature);
 	}
 
 	@Override
-	protected Expression basicGet(InternalEObject action) {
-		return ((SendActionUsage)action).argument(1);
+	protected EObject basicGet(InternalEObject owner) {
+		ConjugatedPortDefinition conjugatedPortDefinition = ((ConjugatedPortTyping)owner).getConjugatedPortDefinition();
+		return conjugatedPortDefinition == null? null: conjugatedPortDefinition.getOriginalPortDefinition();
 	}
-
+	
 }

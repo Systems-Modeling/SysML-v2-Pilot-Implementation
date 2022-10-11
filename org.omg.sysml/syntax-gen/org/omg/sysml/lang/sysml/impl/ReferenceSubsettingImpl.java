@@ -238,10 +238,10 @@ public class ReferenceSubsettingImpl extends SubsettingImpl implements Reference
 		switch (featureID) {
 			case SysMLPackage.REFERENCE_SUBSETTING__SUBSETTED_FEATURE:
 				return isSetSubsettedFeature();
-			case SysMLPackage.REFERENCE_SUBSETTING__SUBSETTING_FEATURE:
-				return isSetSubsettingFeature();
 			case SysMLPackage.REFERENCE_SUBSETTING__OWNING_FEATURE:
 				return isSetOwningFeature();
+			case SysMLPackage.REFERENCE_SUBSETTING__SUBSETTING_FEATURE:
+				return isSetSubsettingFeature();
 			case SysMLPackage.REFERENCE_SUBSETTING__REFERENCED_FEATURE:
 				return isSetReferencedFeature();
 			case SysMLPackage.REFERENCE_SUBSETTING__REFERENCING_FEATURE:

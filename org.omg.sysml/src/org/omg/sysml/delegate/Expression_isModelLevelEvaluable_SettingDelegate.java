@@ -21,8 +21,10 @@
 
 package org.omg.sysml.delegate;
 
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
+import org.omg.sysml.lang.sysml.Expression;
 
 public class Expression_isModelLevelEvaluable_SettingDelegate extends BasicDerivedPropertySettingDelegate {
 
@@ -31,8 +33,8 @@ public class Expression_isModelLevelEvaluable_SettingDelegate extends BasicDeriv
 	}
 
 	@Override
-	protected Object basicGet(InternalEObject owner) {
-		return false;
+	protected Boolean basicGet(InternalEObject expression) {
+		return ((Expression)expression).modelLevelEvaluable(new BasicEList<>());
 	}
 
 }

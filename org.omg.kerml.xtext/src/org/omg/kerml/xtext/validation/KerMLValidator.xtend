@@ -291,8 +291,8 @@ class KerMLValidator extends AbstractKerMLValidator {
 		}
 		if (!annotatedElementFeatures.empty) {
 			for (element: mf.annotatedElement) {
-				val metaclass = ExpressionUtil.getMetaclassOf(element)
-				if (!annotatedElementFeatures.exists[f | f.type.forall[t | TypeUtil.conforms(metaclass, t)]]) {
+				val metaclass = ElementUtil.getMetaclassOf(element)
+				if (metaclass !== null && !annotatedElementFeatures.exists[f | f.type.forall[t | TypeUtil.conforms(metaclass, t)]]) {
 					error(INVALID_METADATA_FEATURE__BAD_ELEMENT_MSG.replace("{metaclass}", metaclass.name), mf, null, INVALID_METADATA_FEATURE__BAD_ELEMENT)
 				}
 			}

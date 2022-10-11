@@ -47,29 +47,29 @@ import org.eclipse.emf.common.util.EList;
  * isEnd = owningFeatureMembership <> null and owningFeatureMembership.oclIsKindOf(EndFeatureMembership)
  * multiplicity <> null implies multiplicity.featuringType = featuringType 
  * allSupertypes()->includes(KernelLibrary::things)
- * chainingFeatures->size() <> 1
- * invertedFeature = invertedFeatureInverting.featureInverted
- * chainingFeature = ownedFeatureChaining.chainingFeature
- * ownedFeatureChaining = ownedRelationship->selectByKind(FeatureChaining)
- * chainingfeatureChainings->notEmpty() implies (owningFeatureMembership <> null implies owningFeatureMembership.isDerived)
  * chainingFeatures->excludes(self)
+ * ownedFeatureChaining = ownedRelationship->selectByKind(FeatureChaining)
+ * chainingFeature = ownedFeatureChaining.chainingFeature
+ * chainingfeatureChainings->notEmpty() implies (owningFeatureMembership <> null implies owningFeatureMembership.isDerived)
+ * chainingFeatures->size() <> 1
  * inverseFeature = invertingFeatureInverting.featureInverse
+ * invertedFeature = invertedFeatureInverting.featureInverted
  * <!-- end-model-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwningFeatureMembership <em>Owning Feature Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwningType <em>Owning Type</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Feature#getEndOwningType <em>End Owning Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isUnique <em>Is Unique</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isOrdered <em>Is Ordered</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getType <em>Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwnedRedefinition <em>Owned Redefinition</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwnedSubsetting <em>Owned Subsetting</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwningFeatureMembership <em>Owning Feature Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isComposite <em>Is Composite</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isEnd <em>Is End</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Feature#getEndOwningType <em>End Owning Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwnedTyping <em>Owned Typing</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getFeaturingType <em>Featuring Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwnedTypeFeaturing <em>Owned Type Featuring</em>}</li>
@@ -635,7 +635,7 @@ public interface Feature extends Type {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The one <code>ownedSubsetting</code> of this Feature, if any, that is a ReferenceSubsettings, for which the Feature is the <code>referencingFeature</code>.</p>
+	 * <p>The one <code>ownedSubsetting</code> of this Feature, if any, that is a ReferenceSubsetting, for which the Feature is the <code>referencingFeature</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Reference Subsetting</em>' reference.
 	 * @see #setOwnedReferenceSubsetting(ReferenceSubsetting)
@@ -757,19 +757,7 @@ public interface Feature extends Type {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>By default, the naming feature of a Feature is given by its first <code>redefinedFeature</code>, if any.</p>
-	 * firstRedefinedFeature()
-	 * <!-- end-model-doc -->
-	 * @model ordered="false"
-	 * @generated
-	 */
-	Feature namingFeature();
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * <p>Return the first Feature that is redefined by this Feature, if any.</p>
+	 * <p>By default, the naming feature of a Feature is given by its first redefined Feature, if any.</p>
 	 * let redefinitions : Sequence(Redefinition) = ownedRedefinition in
 	 * if redefinitions->isEmpty() then
 	 *     null
@@ -780,24 +768,6 @@ public interface Feature extends Type {
 	 * @model ordered="false"
 	 * @generated
 	 */
-	Feature firstRedefinedFeature();
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * <p>Get the first Feature that is subsetted by this Feature but <emph>not</emph> redefined, if any.</p>
-	 * let subsettings : Sequence(Subsetting) = 
-	 *     ownedSubsetting->reject(oclIsKindOf(Redefinition)) in
-	 * if subsettings->isEmpty() then
-	 *     null
-	 * else
-	 *     subsettings->at(1).subsettedFeature
-	 * endif
-	 * <!-- end-model-doc -->
-	 * @model ordered="false"
-	 * @generated
-	 */
-	Feature firstSubsettedFeature();
+	Feature namingFeature();
 
 } // Feature

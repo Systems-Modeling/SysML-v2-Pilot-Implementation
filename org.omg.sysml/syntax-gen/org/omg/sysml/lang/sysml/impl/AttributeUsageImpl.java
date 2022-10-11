@@ -28,8 +28,8 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.omg.sysml.lang.sysml.DataType;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.AttributeUsage;
+import org.omg.sysml.lang.sysml.Classifier;
 
 /**
  * <!-- begin-user-doc -->
@@ -100,11 +100,10 @@ public class AttributeUsageImpl extends UsageImpl implements AttributeUsage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public EList<Type> getType() {
+	public EList<Classifier> getDefinition() {
 		@SuppressWarnings("unchecked")
-		EList<Type> definition = (EList<Type>)((EList<?>)getDefinition());
-		return definition;
+		EList<Classifier> attributeDefinition = (EList<Classifier>)((EList<?>)getAttributeDefinition());
+		return attributeDefinition;
 	}
 
 	/**
@@ -112,7 +111,7 @@ public class AttributeUsageImpl extends UsageImpl implements AttributeUsage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isSetType() {
+	public boolean isSetDefinition() {
   		return false;
 	}
 
@@ -179,8 +178,8 @@ public class AttributeUsageImpl extends UsageImpl implements AttributeUsage {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.ATTRIBUTE_USAGE__TYPE:
-				return isSetType();
+			case SysMLPackage.ATTRIBUTE_USAGE__DEFINITION:
+				return isSetDefinition();
 			case SysMLPackage.ATTRIBUTE_USAGE__ATTRIBUTE_DEFINITION:
 				return isSetAttributeDefinition();
 		}

@@ -24,11 +24,8 @@ package org.omg.sysml.delegate;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.AcceptActionUsage;
 import org.omg.sysml.lang.sysml.Expression;
-import org.omg.sysml.util.FeatureUtil;
-import org.omg.sysml.util.UsageUtil;
 
 public class AcceptActionUsage_payloadArgument_SettingDelegate extends BasicDerivedObjectSettingDelegate {
 	
@@ -38,8 +35,7 @@ public class AcceptActionUsage_payloadArgument_SettingDelegate extends BasicDeri
 
 	@Override
 	protected Expression basicGet(InternalEObject action) {
-		Feature receiverParameter = UsageUtil.getPayloadParameterOf((AcceptActionUsage)action);
-		return receiverParameter == null? null: FeatureUtil.getValueExpressionFor(receiverParameter);
+		return ((AcceptActionUsage)action).argument(1);
 	}
 
 }

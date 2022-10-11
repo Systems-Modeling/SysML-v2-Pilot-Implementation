@@ -263,25 +263,6 @@ public class StateUsageImpl extends ActionUsageImpl implements StateUsage {
 	 * @generated
 	 */
 	@Override
-	public EList<Behavior> getBehavior() {
-		return getActionDefinition();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetBehavior() {
-  		return false;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case SysMLPackage.STATE_USAGE__STATE_DEFINITION:
@@ -365,8 +346,8 @@ public class StateUsageImpl extends ActionUsageImpl implements StateUsage {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.STATE_USAGE__BEHAVIOR:
-				return isSetBehavior();
+			case SysMLPackage.STATE_USAGE__ACTION_DEFINITION:
+				return isSetActionDefinition();
 			case SysMLPackage.STATE_USAGE__STATE_DEFINITION:
 				return isSetStateDefinition();
 			case SysMLPackage.STATE_USAGE__ENTRY_ACTION:
@@ -395,6 +376,24 @@ public class StateUsageImpl extends ActionUsageImpl implements StateUsage {
 		result.append(isParallel);
 		result.append(')');
 		return result.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Behavior> getActionDefinition() {
+		return getStateDefinition();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetActionDefinition() {
+  		return false;
 	}
 
 } //StateUsageImpl

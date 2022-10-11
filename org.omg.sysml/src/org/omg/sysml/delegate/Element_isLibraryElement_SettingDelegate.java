@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2022 Siemens AG
+ * Copyright (c) 2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -21,30 +21,19 @@
 
 package org.omg.sysml.delegate;
 
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.omg.sysml.lang.sysml.ConjugatedPortDefinition;
-import org.omg.sysml.lang.sysml.ConjugatedPortTyping;
-import org.omg.sysml.lang.sysml.PortDefinition;
+import org.omg.sysml.lang.sysml.Element;
 
-public class ConjugatedPortTyping_conjugatedPortDefinition_SettingDelegate extends BasicDerivedObjectSettingDelegate {
+public class Element_isLibraryElement_SettingDelegate extends BasicDerivedPropertySettingDelegate {
 
-	public ConjugatedPortTyping_conjugatedPortDefinition_SettingDelegate(EStructuralFeature eStructuralFeature) {
+	public Element_isLibraryElement_SettingDelegate(EStructuralFeature eStructuralFeature) {
 		super(eStructuralFeature);
 	}
 
 	@Override
-	protected EObject basicGet(InternalEObject owner) {
-		PortDefinition originalPortDefinition = ((ConjugatedPortTyping)owner).getPortDefinition();
-		return originalPortDefinition == null? null: originalPortDefinition.getConjugatedPortDefinition();
-	}
-	
-	@Override
-	protected void set(InternalEObject owner, Object newConjugatedPortDefinition) {
-		((ConjugatedPortTyping)owner).setPortDefinition(newConjugatedPortDefinition == null? null: 
-			((ConjugatedPortDefinition)newConjugatedPortDefinition).getOriginalPortDefinition());
-		
+	protected Boolean basicGet(InternalEObject element) {
+		return ((Element)element).libraryNamespace() != null;
 	}
 
 }

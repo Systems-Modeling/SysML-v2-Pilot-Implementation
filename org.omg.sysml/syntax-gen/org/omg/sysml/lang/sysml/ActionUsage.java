@@ -75,4 +75,36 @@ public interface ActionUsage extends OccurrenceUsage, Step {
 	 */
 	EList<Behavior> getActionDefinition();
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Return the owned input <code>parameters</code> of this ActionUsage.</p>
+	 * input->select(f | f.owner = self)
+	 * <!-- end-model-doc -->
+	 * @model ordered="false"
+	 * @generated
+	 */
+	EList<Feature> inputParameters();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Return the <code>i<code>-th argument Expression of an ActionUsage, defined as the <code>value</code> Expression of the FeatureValue of the <code>i<code>-th owned <code>parameter</code> of the ActionUsage. Return null if the ActionUsage has less than <code>i<code> owned <code>parameters</code> or the <code>i<code>-th owned <code>parameter</code> has no FeatureValue.</code>
+	 * let ownedInputParameters : Sequence(Feature) = input->select(owner = self) in
+	 * if ownedInputParameters->size() < i then null
+	 * else
+	 *     let featureValue : Sequence(FeatureValue) = ownedInputParameters->at(i).
+	 *         ownedMembership->select(oclIsKindOf(FeatureValue)) in
+	 *     if featureValue->isEmpty() then null
+	 *     else featureValue->at(1).value
+	 *     endif
+	 * endif
+	 * <!-- end-model-doc -->
+	 * @model ordered="false" iDataType="org.omg.sysml.lang.types.Integer" iRequired="true" iOrdered="false"
+	 * @generated
+	 */
+	Expression argument(int i);
+
 } // Action

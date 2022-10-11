@@ -329,15 +329,6 @@ public class ConnectionUsageImpl extends ConnectorAsUsageImpl implements Connect
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isSetItemDefinition() {
-		return !getItemDefinition().isEmpty();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public EList<PartDefinition> getPartDefinition() {
@@ -555,7 +546,7 @@ public class ConnectionUsageImpl extends ConnectorAsUsageImpl implements Connect
 			case SysMLPackage.CONNECTION_USAGE__PORTION_KIND:
 				return portionKind != PORTION_KIND_EDEFAULT;
 			case SysMLPackage.CONNECTION_USAGE__ITEM_DEFINITION:
-				return isSetItemDefinition();
+				return ITEM_DEFINITION__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.CONNECTION_USAGE__PART_DEFINITION:
 				return PART_DEFINITION__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.CONNECTION_USAGE__ASSOCIATION:

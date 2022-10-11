@@ -51,10 +51,10 @@ public interface ItemUsage extends OccurrenceUsage {
 	 * Returns the value of the '<em><b>Item Definition</b></em>' reference list.
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Structure}.
 	 * <p>
-	 * This feature redefines the following features:
+	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Usage#getDefinition() <em>Definition</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.OccurrenceUsage#getOccurrenceDefinition() <em>Occurrence Definition</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -65,7 +65,7 @@ public interface ItemUsage extends OccurrenceUsage {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getItemUsage_ItemDefinition()
 	 * @model required="true" transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='definedItem'"
-	 *        annotation="redefines"
+	 *        annotation="subsets"
 	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */

@@ -87,7 +87,14 @@ package ServerSequenceOutsideRealization_2 {
  			end :>> target = consumer;
  		}
  		
- 		/* Review: Bindings that were here not needed with earlierFirstIncomingTransferSort 
- 		 * required in participants above. */
+ 		/* Binding sent/accept messages to specification model messages. */
+		  /* Sends */
+ 		bind producer_2.producerBehavior.publish.sentMessage = publish_message;
+ 		bind consumer_2.consumerBehavior.subscribe.sentMessage = subscribe_message;
+ 		bind server_2.serverBehavior.delivering.effect.sentMessage = deliver_message;
+ 		  /* Accepts */
+ 		bind consumer_2.consumerBehavior.delivery.acceptedMessage = subscribe_message;
+ 		bind server_2.serverBehavior.subscribing.accepter.acceptedMessage = subscribe_message;
+ 		bind server_2.serverBehavior.delivering.accepter.acceptedMessage = publish_message;
 	}
 }

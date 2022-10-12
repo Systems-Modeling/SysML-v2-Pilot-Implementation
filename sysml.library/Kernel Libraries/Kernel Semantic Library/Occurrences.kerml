@@ -472,7 +472,7 @@ package Occurrences {
  		feature isRunToCompletion: Boolean [1] default true {
 			doc
 			/*
-			 * Determines whether transition performances might happen during state entry behaviors
+			 * Determines whether transition performances might happen during state entry performances
 			 * within the run to completion scope.
 			 */
 		}
@@ -482,7 +482,7 @@ package Occurrences {
  		feature incomingTransferSort : IncomingTransferSort [0..*] default earlierFirstIncomingTransferSort {
 			doc
 			/*
-			 * Determines the order in which transfers to the dispatch scope are considered for acceptance.
+			 * Determines which transfer to accept when multiple are available and which of the unaccepted transfers are never to be accepted (dispatched).
 			 */
 		}
 

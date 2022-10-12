@@ -141,7 +141,6 @@ package Transfers {
 		}
 	}
 	
-	  /* To avoid ambugity of using Transfer (which might be flow transfers) for messaging. */
 	interaction MessageTransfer specializes Transfer {
 	}
 	 
@@ -186,8 +185,8 @@ package Transfers {
 	behavior SendPerformance specializes Performance  {
 		doc
 		/*
-		 * A SendPerformance is a Performance that initiates an outgoingTransferFromSelf 
-		 * from a designated sender Occurrence with a given item, optionally to a designated receiver.
+		 * SendPerformances are Performance that require an outgoingTransferFromSelf 
+		 * from a designated sender Occurrence carrying a given item, optionally to a designated receiver.
 		 */
 	
 		in feature sentItem [0..*] = sentTransfer.item;
@@ -202,8 +201,8 @@ package Transfers {
 	behavior AcceptPerformance specializes Performance {
 		doc
 		/*
-		 * An AcceptPerformance is an Performance that selects an incomingTransferToSelf
-		 * of a desigated receiver Occurrence, providing its payload as output.
+		 * AcceptPerformance is a performance that requires an incomingTransferToSelf
+		 * of a desigated receiver Occurrence, providing its item as output.
 		 */
 		inout feature acceptedItem[0..*] = acceptedTransfer.item;
 		in feature receiver: Occurrence[1] default this;

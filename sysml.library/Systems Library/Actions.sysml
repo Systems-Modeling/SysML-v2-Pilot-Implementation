@@ -188,7 +188,7 @@ package Actions {
 	action def AcceptMessageAction :> Action, AcceptPerformance {
 		doc
 		/*
-		 * An AcceptMessageAction is an Action that selects an incomingTransferToSelf
+		 * An AcceptMessageAction is an Action that identifies an incomingTransferToSelf
 		 * of a designated receiver Occurrence, providing its payload as output.
 		 */
 		inout payload :>> acceptedItem;
@@ -280,7 +280,6 @@ package Actions {
 		 */
 	
 		in transitionLinkSource : Action :>> TransitionPerformance::transitionLinkSource;
-		/* Review: out/inout? */
 		ref acceptedMessage : MessageTransfer, FlowConnection :>> trigger;
 		
 		ref receiver :>> triggerTarget;

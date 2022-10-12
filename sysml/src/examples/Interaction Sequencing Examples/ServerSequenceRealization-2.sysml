@@ -80,12 +80,12 @@ package ServerSequenceRealization_2 {
 		}
 
 		message :>> publish_message: Transfers::MessageTransfer {
- 			end :>> source = producer;
- 			end :>> target = server;
+ 			end :>> source = producer.publicationPort;
+ 			end :>> target = server.publicationPort;
  		}
 		message :>> subscribe_message: Transfers::MessageTransfer {
- 			end :>> source = consumer;
- 			end :>> target = server;
+ 			end :>> source = consumer.subscriptionPort;
+ 			end :>> target = server.subscriptionPort;
  		}
 		message :>> deliver_message: Transfers::MessageTransfer {
  			end :>> source = server;

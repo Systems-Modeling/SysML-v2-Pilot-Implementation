@@ -56,9 +56,9 @@ public abstract class VStructure extends VDefault {
         }
         text = text.trim();
         if (text.endsWith(";")) {
-        	append(text, 0, text.length() - 1);
+        	cQuote(text.substring(0, text.length() - 1));
         } else {
-        	append(text);
+        	cQuote(text);
         }
     }
 

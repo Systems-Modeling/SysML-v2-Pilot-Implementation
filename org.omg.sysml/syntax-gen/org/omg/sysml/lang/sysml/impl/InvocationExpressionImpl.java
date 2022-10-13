@@ -80,8 +80,9 @@ public class InvocationExpressionImpl extends ExpressionImpl implements Invocati
 	
 	public boolean functionIsModelLevelEvaluable() {
 		Type type = ExpressionUtil.getExpressionTypeOf(this);
-		return type instanceof Function && ((Function)type).isModelLevelEvaluable() || 
-			   !(type instanceof Expression);
+		return type instanceof Function? 
+				((Function)type).isModelLevelEvaluable(): 
+				!(type instanceof Expression);
 	}
 	
 	public boolean argumentsAreModelLevelEvaluable(EList<Feature> visited) {

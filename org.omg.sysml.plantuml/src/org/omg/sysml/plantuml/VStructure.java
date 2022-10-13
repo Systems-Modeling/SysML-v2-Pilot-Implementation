@@ -47,7 +47,8 @@ import org.omg.sysml.lang.sysml.StakeholderMembership;
 import org.omg.sysml.lang.sysml.Type;
 
 public abstract class VStructure extends VDefault {
-    protected void appendText(String text, boolean unfold) {
+    protected boolean appendText(String text, boolean unfold) {
+        if (text == null) return false;
         text = text.replace("\r", "");
         if (unfold) {
             text = text.replace("\n", "");
@@ -55,11 +56,13 @@ public abstract class VStructure extends VDefault {
             text = text.replace("\n", "\\n");
         }
         text = text.trim();
+        if (text.isEmpty()) return false;
         if (text.endsWith(";")) {
         	cQuote(text.substring(0, text.length() - 1));
         } else {
         	cQuote(text);
         }
+        return true;
     }
 
     protected String getEvaluatedResults(Element elem) {
@@ -109,23 +112,30 @@ public abstract class VStructure extends VDefault {
         return true;
     }
 
-    private static Pattern patEq = Pattern.compile("^\\s*:?=");
+    protected boolean appendFeatureValue(FeatureValue fv) {
+        Expression ex = fv.getValue();
+        String text = getText(ex);
+        if (text != null) {
+            append(' ');
+            if (fv.isDefault()) {
+                append("<b> default </b>");
+            } else if (fv.isInitial()) {
+                text = ":= " + text; 
+            } else {
+                text = "= " + text; 
+            }
+            boolean flag = appendText(text, true);
+            return addEvaluatedResults(ex) || flag;
+        } else {
+            return addEvaluatedResults(ex);
+        }
+    }
+
     private boolean addFeatureMembershipText(Feature f) {
         boolean flag = false;
         for (Membership m: f.getOwnedMembership()) {
             if (m instanceof FeatureValue) {
-                FeatureValue fv = (FeatureValue) m;
-                String text = getText(fv);
-                if (text != null) {
-                    if (!patEq.matcher(text).lookingAt()) {
-                        append('=');
-                    }
-                    appendText(text, true);
-                    append("; ");
-                    flag = true;
-                }
-                Expression ex = fv.getValue();
-                flag = addEvaluatedResults(ex) || flag;
+                return appendFeatureValue((FeatureValue) m);
             } else if (m instanceof ResultExpressionMembership) {
                 ResultExpressionMembership rem = (ResultExpressionMembership) m;
                 Expression ex = rem.getOwnedResultExpression();

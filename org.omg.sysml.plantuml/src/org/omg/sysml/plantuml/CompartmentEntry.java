@@ -33,6 +33,7 @@ import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.EnumerationUsage;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureDirectionKind;
+import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.FlowConnectionUsage;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.OwningMembership;
@@ -79,6 +80,9 @@ class CompartmentEntry implements Comparable<CompartmentEntry> {
     private static ToTitle toTitle = new ToTitle();
 
     public String getTitle() {
+        if (om instanceof FeatureValue) {
+            return "values";
+        }
         if (isParameter()) {
             return "parameters";
         }

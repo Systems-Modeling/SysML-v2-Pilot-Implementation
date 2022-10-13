@@ -34,7 +34,6 @@ import org.omg.sysml.lang.sysml.ActionDefinition;
 import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.ActorMembership;
 import org.omg.sysml.lang.sysml.AnalysisCaseUsage;
-import org.omg.sysml.lang.sysml.AttributeUsage;
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.ConnectionUsage;
 import org.omg.sysml.lang.sysml.Connector;
@@ -45,11 +44,9 @@ import org.omg.sysml.lang.sysml.EnumerationDefinition;
 import org.omg.sysml.lang.sysml.EnumerationUsage;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.FeatureDirectionKind;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.FeatureValue;
-import org.omg.sysml.lang.sysml.FlowConnectionUsage;
 import org.omg.sysml.lang.sysml.ItemFlow;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
@@ -66,13 +63,11 @@ import org.omg.sysml.lang.sysml.StateDefinition;
 import org.omg.sysml.lang.sysml.StateUsage;
 import org.omg.sysml.lang.sysml.SubjectMembership;
 import org.omg.sysml.lang.sysml.Succession;
-import org.omg.sysml.lang.sysml.SuccessionFlowConnectionUsage;
 import org.omg.sysml.lang.sysml.SuccessionItemFlow;
 import org.omg.sysml.lang.sysml.TransitionUsage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
 import org.omg.sysml.lang.sysml.VariantMembership;
-import org.omg.sysml.lang.sysml.util.SysMLSwitch;
 
 public class VCompartment extends VStructure {
     private List<VTree> subtrees = new ArrayList<VTree>();
@@ -348,8 +343,8 @@ public class VCompartment extends VStructure {
         return "";
     }
 
-    private String addTitle(String prev, CompartmentEntry fe) {
-        String title = fe.getTitle();
+    private String addTitle(String prev, CompartmentEntry ce) {
+        String title = ce.getTitle();
         if (title.equals(prev)) return prev;
         append("-- ");
         append(title);
@@ -441,7 +436,43 @@ public class VCompartment extends VStructure {
         }
         appendText(text, false);
         addEvaluatedResults(f);
-        append('\n');
+        return true;
+    }
+
+    private boolean addCompartmentEntry(CompartmentEntry ce) {
+        if (ce.f instanceof EnumerationUsage) {
+            if (getFeatureName(ce.f) == null) {
+                appendTextOfEnum(ce.f);
+            } else {
+                return addFeatureText(ce.f, ce.isInherited);
+            }
+        } else if (ce.f instanceof Connector) {
+            addConnectorText((Connector) ce.f, ce.isInherited);
+        } else if (ce.f instanceof ConstraintUsage) {
+            return appendFeatureText(ce.f, "constraint");
+        } else if (ce.om instanceof FeatureValue) {
+            return appendFeatureValue((FeatureValue) ce.om);
+        } else if (ce.f instanceof Expression) {
+            String name = getFeatureName(ce.f);
+            if (name != null) {
+                append(name);
+            }
+            String text = getText(ce.f);
+            if (text == null) {
+                if (name == null) {
+                    return false;
+                }
+            } else {
+                append(" { ");
+                appendText(text, true);
+                append(" }");
+                addEvaluatedResults(ce.f);
+            }
+        } else if (getFeatureName(ce.f) == null) {
+            addAnonymouseFeatureText(ce.f);
+        } else {
+            return addFeatureText(ce.f, false);
+        }
         return true;
     }
 
@@ -450,55 +481,29 @@ public class VCompartment extends VStructure {
         final int size = es.size();
         String title = null;
         for (int i = 0; i < size; i++) {
-            CompartmentEntry fe = es.get(i);
+            CompartmentEntry ce = es.get(i);
             if (level == 0) {
-                title = addTitle(title, fe);
+                title = addTitle(title, ce);
             } else {
                 for (int j = 0; j < level; j++) {
                     append("|_");
                 }
                 append(' ');
             }
-            append(fe.getParameterPrefix());
-            if (fe.isInherited) {
+            append(ce.getParameterPrefix());
+            if (ce.isInherited) {
                 append('^');
             }
-            if (fe.prefix != null) {
-                append(fe.prefix);
+            if (ce.prefix != null) {
+                append(ce.prefix);
             }
 
-            if (fe.f instanceof EnumerationUsage) {
-                if (getFeatureName(fe.f) == null) {
-                    appendTextOfEnum(fe.f);
-                } else {
-                    addFeatureText(fe.f, fe.isInherited);
-                }
-                append('\n');
-            } else if (fe.f instanceof Connector) {
-                addConnectorText((Connector) fe.f, fe.isInherited);
-                append('\n');
-            } else if (fe.f instanceof ConstraintUsage) {
-                appendFeatureText(fe.f, "constraint");
-            } else if (fe.f instanceof Expression) {
-                String name = getFeatureName(fe.f);
-                if (name != null) {
-                    append(name);
-                }
-                String text = getText(fe.f);
-                if (text == null) continue;
-                append(" { ");
-                appendText(text, true);
-                append(" }");
-                addEvaluatedResults(fe.f);
-                append('\n');
-            } else if (getFeatureName(fe.f) == null) {
-                addAnonymouseFeatureText(fe.f);
-                append('\n');
-            } else if (addFeatureText(fe.f, false)) {
+            if (addCompartmentEntry(ce)) {
+                // Aliases
                 boolean first = true;
                 for (int j = i + 1; j < size; j++) {
                     CompartmentEntry fe2 = es.get(j);
-                    if (fe.f.equals(fe2.f)) {
+                    if (ce.f.equals(fe2.f)) {
                         if (fe2.alias != null) {
                             if (first) append(" <b>alias</b> ");
                             append(fe2.alias);
@@ -513,8 +518,8 @@ public class VCompartment extends VStructure {
                 append('\n');
             }
 
-            if (fe.children != null) {
-                addCompartmentEntries(fe.children, level + 1);
+            if (ce.children != null) {
+                addCompartmentEntries(ce.children, level + 1);
             }
         }
     }

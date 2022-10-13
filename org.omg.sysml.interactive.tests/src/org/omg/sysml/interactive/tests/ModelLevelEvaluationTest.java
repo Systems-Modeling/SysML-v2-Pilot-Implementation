@@ -343,6 +343,13 @@ public class ModelLevelEvaluationTest extends SysMLInteractiveTest {
 		assertFalse(evaluateBooleanValue(instance, 
 				checkMetaclassFeature(instance, "p"), 
 				"@SysML::AttributeUsage"));
+
+		assertTrue(evaluateBooleanValue(instance, 
+				checkMetaclassFeature(instance, "p"), 
+				"hastype SysML::PartUsage"));
+		assertFalse(evaluateBooleanValue(instance, 
+				checkMetaclassFeature(instance, "p"), 
+				"hastype SysML::ItemUsage"));
 	}
 	
 	@Test
@@ -351,6 +358,7 @@ public class ModelLevelEvaluationTest extends SysMLInteractiveTest {
 		process(instance, "abstract part def P { attribute x; }");
 		
 		assertTrue(evaluateBooleanValue(instance, null, "P.metadata[1] istype SysML::PartDefinition"));
+		assertTrue(evaluateBooleanValue(instance, null, "P.metadata @SysML::PartDefinition"));
 		assertEquals("P", evaluateStringValue(instance, null, "P.metadata.annotatedElement.name[1]"));
 		assertEquals("P", evaluateStringValue(instance, null, "(P.metadata[1] as KerML::Element).name"));
 		assertTrue(evaluateBooleanValue(instance, null, "(P.metadata as SysML::PartDefinition).isAbstract"));
@@ -368,6 +376,9 @@ public class ModelLevelEvaluationTest extends SysMLInteractiveTest {
 		assertTrue(evaluateBooleanValue(instance, null, "P.metadata[1] istype M1"));
 		assertTrue(evaluateBooleanValue(instance, null, "P.metadata[2] istype M2"));
 		assertTrue(evaluateBooleanValue(instance, null, "P.metadata[3] istype SysML::PartDefinition"));
+		assertTrue(evaluateBooleanValue(instance, null, "P.metadata @ M1"));
+		assertTrue(evaluateBooleanValue(instance, null, "P.metadata @ M2"));
+		assertTrue(evaluateBooleanValue(instance, null, "P.metadata @ SysML::PartDefinition"));
 		assertEquals("P", evaluateStringValue(instance, null, "P.metadata.annotatedElement.name[1]"));
 		assertEquals(1, evaluateIntegerValue(instance, null, "(P.metadata as M1).a"));
 	}

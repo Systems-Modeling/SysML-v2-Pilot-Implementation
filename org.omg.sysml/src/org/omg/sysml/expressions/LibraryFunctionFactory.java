@@ -48,6 +48,7 @@ public class LibraryFunctionFactory {
 		put(new IndexFunction());
 		
 		put(new IsTypeFunction());
+		put(new HasTypeFunction());
 		put(new AtFunction());
 		
 		put(new PlusFunction());

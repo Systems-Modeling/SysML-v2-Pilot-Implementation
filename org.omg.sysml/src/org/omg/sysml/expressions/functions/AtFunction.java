@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2021-2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -21,11 +21,30 @@
 
 package org.omg.sysml.expressions.functions;
 
-public class AtFunction extends IsTypeFunction {
+import org.eclipse.emf.common.util.EList;
+import org.omg.sysml.expressions.ModelLevelExpressionEvaluator;
+import org.omg.sysml.expressions.util.EvaluationUtil;
+import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.InvocationExpression;
+import org.omg.sysml.lang.sysml.Type;
+
+public class AtFunction extends BaseFunction {
 	
 	@Override
 	public String getOperatorName() {
 		return "'@'";
+	}
+
+	@Override
+	public EList<Element> invoke(InvocationExpression invocation, Element target, ModelLevelExpressionEvaluator evaluator) {
+		Type testedType = EvaluationUtil.getTypeArgument(invocation);
+		if (testedType != null) {
+			EList<Element> values = evaluator.evaluateArgument(invocation, 0, target);
+			if (values != null) {
+				return EvaluationUtil.booleanResult(values.stream().anyMatch(value->EvaluationUtil.isType(invocation, value, testedType)));
+			}
+		}
+		return EvaluationUtil.singletonList(invocation);
 	}
 
 }

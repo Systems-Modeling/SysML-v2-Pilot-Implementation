@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021-2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -27,11 +27,11 @@ import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.InvocationExpression;
 import org.omg.sysml.lang.sysml.Type;
 
-public class IsTypeFunction extends BaseFunction {
+public class HasTypeFunction extends BaseFunction {
 
 	@Override
 	public String getOperatorName() {
-		return "istype";
+		return "hastype";
 	}
 	
 	@Override
@@ -40,7 +40,7 @@ public class IsTypeFunction extends BaseFunction {
 		if (testedType != null) {
 			EList<Element> values = evaluator.evaluateArgument(invocation, 0, target);
 			if (values != null) {
-				return EvaluationUtil.booleanResult(values.stream().allMatch(value->EvaluationUtil.isType(invocation, value, testedType)));
+				return EvaluationUtil.booleanResult(values.stream().allMatch(value->EvaluationUtil.hasType(invocation, value, testedType)));
 			}
 		}
 		return EvaluationUtil.singletonList(invocation);

@@ -32,17 +32,17 @@ package BaseFunctions {
     	return : Object[0..*];
     }
     
-	abstract function 'istype'{ in x: Anything[1];
+	abstract function 'istype'{ in x: Anything[0..*];
 		abstract feature 'type': Anything;
 		return : Boolean[1];
 	}
 	
-	abstract function '@'{ in x: Anything[1];
+	abstract function '@'{ in x: Anything[0..*];
 		abstract feature 'type': Anything;
 		return : Boolean[1];
 	}
 	
-	abstract function 'hastype'{ in x: Anything[1];
+	abstract function 'hastype'{ in x: Anything[0..*];
 		abstract feature 'type': Anything[1];
 		return : Boolean;
 	}

@@ -56,7 +56,7 @@ import com.google.common.base.Predicates;
 
 public class EvaluationUtil {
 
-	public static final String ANNOTATED_ELEMENT_FEATURE = "Metaobjects::Metaobject::annotatingElement";
+	public static final String ANNOTATED_ELEMENT_FEATURE = "Metaobjects::Metaobject::annotatedElement";
 	
 	public static Feature getAnnotatedElementFeature(Element context) {
 		return (Feature)SysMLLibraryUtil.getLibraryType(context, ANNOTATED_ELEMENT_FEATURE);

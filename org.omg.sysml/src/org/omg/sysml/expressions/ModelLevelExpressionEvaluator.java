@@ -40,9 +40,11 @@ import org.omg.sysml.lang.sysml.LiteralExpression;
 import org.omg.sysml.lang.sysml.LiteralInteger;
 import org.omg.sysml.lang.sysml.LiteralRational;
 import org.omg.sysml.lang.sysml.LiteralString;
+import org.omg.sysml.lang.sysml.MetadataAccessExpression;
 import org.omg.sysml.lang.sysml.MetadataFeature;
 import org.omg.sysml.lang.sysml.NullExpression;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.util.ElementUtil;
 import org.omg.sysml.util.ExpressionUtil;
 import org.omg.sysml.util.FeatureUtil;
 import org.omg.sysml.util.TypeUtil;
@@ -68,6 +70,8 @@ public class ModelLevelExpressionEvaluator {
 			return evaluateLiteral((LiteralExpression)expression, target);
 		} else if (expression instanceof FeatureReferenceExpression) {
 			return evaluateFeatureReference((FeatureReferenceExpression)expression, target);
+		} else if (expression instanceof MetadataAccessExpression) {
+			return evaluateMetadataAccess((MetadataAccessExpression)expression, target);
 		} else if (expression instanceof InvocationExpression) {
 			return evaluateInvocation((InvocationExpression)expression, target);
 		} else {
@@ -89,6 +93,17 @@ public class ModelLevelExpressionEvaluator {
 			   evaluateFeature(referent, target instanceof Type? (Type)target: null);
 	}
 	
+	public EList<Element> evaluateMetadataAccess(MetadataAccessExpression expression, Element target) {
+		Element referencedElement = expression.getReferencedElement();
+		EList<Element> metadataFeatures = new BasicEList<>();
+		metadataFeatures.addAll(ElementUtil.getAllMetadataFeaturesOf(referencedElement));
+		MetadataFeature metaclassFeature = ElementUtil.getMetaclassFeatureFor(referencedElement);
+		if (metaclassFeature != null) {
+			metadataFeatures.add(metaclassFeature);
+		}
+		return metadataFeatures;
+	}
+	
 	public EList<Element> evaluateInvocation(InvocationExpression expression, Element target) {
 		LibraryFunction function = libraryFunctionFactory.getLibraryFunction(expression.getFunction());
 		return function == null? EvaluationUtil.singletonList(expression): function.invoke(expression, target, this);
@@ -103,10 +118,6 @@ public class ModelLevelExpressionEvaluator {
 			// Evaluate feature with a feature chain.
 			return evaluateFeatureChain(feature.getChainingFeature(), type);
 			
-		} else if (type instanceof MetadataFeature && TypeUtil.conforms(feature, EvaluationUtil.getAnnotatedElementFeature(feature))) {
-			// Evaluate "annotatedElement" feature.
-			return EvaluationUtil.results(((MetadataFeature)type).getAnnotatedElement());
-			
 		} else {
 			// If "type" has a feature chain, than this represents a nested context, to be searched
 			// in reverse from the last to the first chaining feature.
@@ -114,11 +125,14 @@ public class ModelLevelExpressionEvaluator {
 				type instanceof Feature && !((Feature) type).getOwnedFeatureChaining().isEmpty()?
 					((Feature)type).getChainingFeature():
 					Collections.singletonList(type);
-			Collections.reverse(types);
 			
 			// Find the most specific type with a binding for the feature and evaluate it.	
-			for (Type t: types) {
-				if (EvaluationUtil.isMetaclassFeature(t)) {
+			for (int i = types.size() - 1; i >= 0; i--) {
+				Type t = types.get(i);
+				if (t instanceof MetadataFeature && TypeUtil.conforms(feature, EvaluationUtil.getAnnotatedElementFeature(feature))) {
+					// Evaluate "Metaobject::annotatedElement" feature.
+					return EvaluationUtil.results(((MetadataFeature)t).getAnnotatedElement());
+				} else if (EvaluationUtil.isMetaclassFeature(t)) {
 					if (!(feature instanceof Expression)) {
 						// Evaluate the feature as a reflective metaclass attribute.
 						Element element = ((AnnotatingElement)t).getAnnotatedElement().get(0);
@@ -156,7 +170,7 @@ public class ModelLevelExpressionEvaluator {
 		if (chainingFeatures.size() == 1) {
 			return values;
 		} else {
-			// Evaluate the chain of features other than the first, with each value from the
+			// Evaluate the chain of features other than the first, on each value from the
 			// result of evaluating the first chaining feature.
 			List<Feature> subchainingFeatures = chainingFeatures.subList(1, chainingFeatures.size());
 			EList<Element> result = new BasicEList<>();

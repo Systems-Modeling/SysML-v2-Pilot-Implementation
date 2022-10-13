@@ -28,7 +28,6 @@ import org.omg.sysml.expressions.util.EvaluationUtil;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.InvocationExpression;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.util.ElementUtil;
 
 public class AsFunction extends BaseFunction {
 
@@ -44,13 +43,9 @@ public class AsFunction extends BaseFunction {
 			EList<Element> values = evaluator.evaluateArgument(invocation, 0, target);
 			if (values != null) {
 				EList<Element> results = new BasicEList<>();
-				for (Element value: values) {
-					if (EvaluationUtil.isType(invocation, value, targetType)) {
-						results.add(value);
-					} else if (EvaluationUtil.isMetatype(value, targetType)) {
-						results.add(ElementUtil.getMetaclassFeatureFor(value));
-					}
-				}
+				values.stream().
+					filter(value->EvaluationUtil.isType(invocation, value, targetType)).
+					forEachOrdered(results::add);
 				return results;
 			}
 		}

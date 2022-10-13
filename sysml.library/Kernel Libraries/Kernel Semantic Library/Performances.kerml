@@ -10,6 +10,7 @@ package Performances {
 	private import Occurrences::occurrences;
 	private import Objects::Object;
 	private import Objects::BinaryLinkObject;
+	private import Metaobjects::Metaobject;
 	private import Transfers::transfers;
 	private import Transfers::transfersBefore;
 	private import ScalarValues::*;
@@ -100,6 +101,15 @@ package Performances {
 		 */
 	 
 		return : Boolean[1];
+	}
+	
+	abstract function MetadataAccessEvaluation specializes Evaluation {
+		doc
+		/*
+		 * MetadataAccessEvaluation is a specialization of Evaluation for the case of MetadataAccessExpressions.
+		 */
+		
+		return : Metaobject[1..*];
 	}
 	
 	abstract function LiteralEvaluation specializes Evaluation {
@@ -217,6 +227,13 @@ package Performances {
 		 */
 	
 		false
+	}
+	
+	abstract expr metadataAccessEvaluations: MetadataAccessEvaluation[0..*] nonunique subsets evaluations {
+		doc
+		/*
+		 * metadataAccessEvaluations is a specialization of evaluations restricted to type MetadataAccessEvaluation. 
+		 */
 	}
 	
 	abstract expr literalEvaluations: LiteralEvaluation[0..*] nonunique subsets evaluations {

@@ -234,7 +234,7 @@ public class ElementUtil {
 				"SysML::" + metaclassName);
 	}
 
-	public static Feature getMetaclassFeatureFor(Element element) {
+	public static MetadataFeature getMetaclassFeatureFor(Element element) {
 		return element == null? null: getElementAdapter(element).getMetaclassFeature();
 	}
 

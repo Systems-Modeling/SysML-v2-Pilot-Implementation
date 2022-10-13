@@ -316,6 +316,7 @@ BaseExpression returns SysML::Expression :
 	  NullExpression
 	| LiteralExpression 
 	| FeatureReferenceExpression 
+	| MetadataAccessExpression
 	| InvocationExpression 
 	| BodyExpression
 	| '(' SequenceExpression ')'
@@ -367,6 +368,12 @@ FeatureReferenceExpression returns SysML::FeatureReferenceExpression :
 
 FeatureReferenceMember returns SysML::Membership :
 	memberElement = [SysML::Feature | QualifiedName]
+;
+
+// Metadata Access Expressions
+
+MetadataAccessExpression returns SysML::MetadataAccessExpression :
+	referencedElement = [SysML::Element | QualifiedName] '.' 'metadata'
 ;
 
 // Invocation Expressions

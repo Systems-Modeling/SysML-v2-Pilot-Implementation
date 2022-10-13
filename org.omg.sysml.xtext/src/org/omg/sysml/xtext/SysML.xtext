@@ -33,7 +33,7 @@ grammar org.omg.sysml.xtext.SysML with org.omg.kerml.expressions.xtext.KerMLExpr
 import "http://www.eclipse.org/emf/2002/Ecore" as Ecore
 import "http://www.omg.org/spec/SysML/2.0" as SysML
 
-/* ROOT PACKAGE */
+/* ROOT NAMESPACE */
 
 RootNamespace returns SysML::Namespace :
 	{SysML::Namespace} PackageBodyElement*
@@ -170,6 +170,12 @@ Package returns SysML::Package :
 	PackageDeclaration PackageBody 
 ;
 
+LibraryPackage returns SysML::LibraryPackage :
+	( isStandard ?= 'standard' )? 'library'
+	( ownedRelationship += PrefixMetadataMember )?
+	PackageDeclaration PackageBody
+;
+
 fragment PackageDeclaration returns SysML::Package :
 	'package' Identification?
 ;
@@ -259,6 +265,7 @@ enum VisibilityIndicator returns SysML::VisibilityKind:
 
 DefinitionElement returns SysML::Element :
 	  Package
+	| LibraryPackage
 	| AnnotatingElement
 	| Dependency
 	| AttributeDefinition
@@ -926,7 +933,11 @@ PortConjugation returns SysML::PortConjugation :
 ;
 
 ConjugatedPortTyping returns SysML::ConjugatedPortTyping :
-	'~' portDefinition = [SysML::PortDefinition | QualifiedName]
+	conjugatedPortDefinition = [SysML::ConjugatedPortDefinition | ConjugatedQualifiedName]
+;
+
+ConjugatedQualifiedName :
+	'~' QualifiedName
 ;
 
 /* Port Usages */
@@ -1458,7 +1469,10 @@ SendNode returns SysML::SendActionUsage :
 
 fragment SendNodeDeclaration returns SysML::ActionUsage :
 	ActionNodeUsageDeclaration? 'send' ownedRelationship += NodeParameterMember 
-	'to' ownedRelationship += NodeParameterMember
+	( 'via' ownedRelationship += NodeParameterMember 
+	  ( 'to' ownedRelationship += NodeParameterMember | ownedRelationship += EmptyParameterMember )
+	| ownedRelationship += EmptyParameterMember 'to' ownedRelationship += NodeParameterMember
+	)
 ;
 
 NodeParameterMember returns SysML::ParameterMembership :

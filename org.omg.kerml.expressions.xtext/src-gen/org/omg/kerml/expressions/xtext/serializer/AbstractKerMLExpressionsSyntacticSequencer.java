@@ -22,16 +22,16 @@ import org.omg.kerml.expressions.xtext.services.KerMLExpressionsGrammarAccess;
 public abstract class AbstractKerMLExpressionsSyntacticSequencer extends AbstractSyntacticSequencer {
 
 	protected KerMLExpressionsGrammarAccess grammarAccess;
-	protected AbstractElementAlias match_BaseExpression_LeftParenthesisKeyword_5_0_a;
-	protected AbstractElementAlias match_BaseExpression_LeftParenthesisKeyword_5_0_p;
+	protected AbstractElementAlias match_BaseExpression_LeftParenthesisKeyword_6_0_a;
+	protected AbstractElementAlias match_BaseExpression_LeftParenthesisKeyword_6_0_p;
 	protected AbstractElementAlias match_NullExpression_NullKeyword_1_0_or___LeftParenthesisKeyword_1_1_0_RightParenthesisKeyword_1_1_1__;
 	protected AbstractElementAlias match_SequenceExpression_CommaKeyword_1_0_q;
 	
 	@Inject
 	protected void init(IGrammarAccess access) {
 		grammarAccess = (KerMLExpressionsGrammarAccess) access;
-		match_BaseExpression_LeftParenthesisKeyword_5_0_a = new TokenAlias(true, true, grammarAccess.getBaseExpressionAccess().getLeftParenthesisKeyword_5_0());
-		match_BaseExpression_LeftParenthesisKeyword_5_0_p = new TokenAlias(true, false, grammarAccess.getBaseExpressionAccess().getLeftParenthesisKeyword_5_0());
+		match_BaseExpression_LeftParenthesisKeyword_6_0_a = new TokenAlias(true, true, grammarAccess.getBaseExpressionAccess().getLeftParenthesisKeyword_6_0());
+		match_BaseExpression_LeftParenthesisKeyword_6_0_p = new TokenAlias(true, false, grammarAccess.getBaseExpressionAccess().getLeftParenthesisKeyword_6_0());
 		match_NullExpression_NullKeyword_1_0_or___LeftParenthesisKeyword_1_1_0_RightParenthesisKeyword_1_1_1__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getNullExpressionAccess().getLeftParenthesisKeyword_1_1_0()), new TokenAlias(false, false, grammarAccess.getNullExpressionAccess().getRightParenthesisKeyword_1_1_1())), new TokenAlias(false, false, grammarAccess.getNullExpressionAccess().getNullKeyword_1_0()));
 		match_SequenceExpression_CommaKeyword_1_0_q = new TokenAlias(false, true, grammarAccess.getSequenceExpressionAccess().getCommaKeyword_1_0());
 	}
@@ -48,10 +48,10 @@ public abstract class AbstractKerMLExpressionsSyntacticSequencer extends Abstrac
 		List<INode> transitionNodes = collectNodes(fromNode, toNode);
 		for (AbstractElementAlias syntax : transition.getAmbiguousSyntaxes()) {
 			List<INode> syntaxNodes = getNodesFor(transitionNodes, syntax);
-			if (match_BaseExpression_LeftParenthesisKeyword_5_0_a.equals(syntax))
-				emit_BaseExpression_LeftParenthesisKeyword_5_0_a(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_BaseExpression_LeftParenthesisKeyword_5_0_p.equals(syntax))
-				emit_BaseExpression_LeftParenthesisKeyword_5_0_p(semanticObject, getLastNavigableState(), syntaxNodes);
+			if (match_BaseExpression_LeftParenthesisKeyword_6_0_a.equals(syntax))
+				emit_BaseExpression_LeftParenthesisKeyword_6_0_a(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_BaseExpression_LeftParenthesisKeyword_6_0_p.equals(syntax))
+				emit_BaseExpression_LeftParenthesisKeyword_6_0_p(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_NullExpression_NullKeyword_1_0_or___LeftParenthesisKeyword_1_1_0_RightParenthesisKeyword_1_1_1__.equals(syntax))
 				emit_NullExpression_NullKeyword_1_0_or___LeftParenthesisKeyword_1_1_0_RightParenthesisKeyword_1_1_1__(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_SequenceExpression_CommaKeyword_1_0_q.equals(syntax))
@@ -74,6 +74,7 @@ public abstract class AbstractKerMLExpressionsSyntacticSequencer extends Abstrac
 	 *     (rule start) (ambiguity) ownedRelationship+=ExpressionBodyMember
 	 *     (rule start) (ambiguity) ownedRelationship+=FeatureReferenceMember
 	 *     (rule start) (ambiguity) ownedRelationship+=OwnedFeatureTyping
+	 *     (rule start) (ambiguity) referencedElement=[Element|QualifiedName]
 	 *     (rule start) (ambiguity) value=BooleanValue
 	 *     (rule start) (ambiguity) value=DECIMAL_VALUE
 	 *     (rule start) (ambiguity) value=RealValue
@@ -83,7 +84,7 @@ public abstract class AbstractKerMLExpressionsSyntacticSequencer extends Abstrac
 	 *     (rule start) (ambiguity) {OperatorExpression.operand+=}
 	 *     (rule start) (ambiguity) {SelectExpression.operand+=}
 	 */
-	protected void emit_BaseExpression_LeftParenthesisKeyword_5_0_a(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_BaseExpression_LeftParenthesisKeyword_6_0_a(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
@@ -101,7 +102,7 @@ public abstract class AbstractKerMLExpressionsSyntacticSequencer extends Abstrac
 	 *     (rule start) (ambiguity) {OperatorExpression.operand+=}
 	 *     (rule start) (ambiguity) {SelectExpression.operand+=}
 	 */
-	protected void emit_BaseExpression_LeftParenthesisKeyword_5_0_p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_BaseExpression_LeftParenthesisKeyword_6_0_p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	

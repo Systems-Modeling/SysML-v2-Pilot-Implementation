@@ -52,6 +52,7 @@ import org.omg.sysml.lang.sysml.ItemFeature;
 import org.omg.sysml.lang.sysml.ItemFlow;
 import org.omg.sysml.lang.sysml.ItemFlowEnd;
 import org.omg.sysml.lang.sysml.ItemFlowFeature;
+import org.omg.sysml.lang.sysml.LibraryPackage;
 import org.omg.sysml.lang.sysml.LiteralBoolean;
 import org.omg.sysml.lang.sysml.LiteralInfinity;
 import org.omg.sysml.lang.sysml.LiteralInteger;
@@ -59,6 +60,7 @@ import org.omg.sysml.lang.sysml.LiteralRational;
 import org.omg.sysml.lang.sysml.LiteralString;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Metaclass;
+import org.omg.sysml.lang.sysml.MetadataAccessExpression;
 import org.omg.sysml.lang.sysml.MetadataFeature;
 import org.omg.sysml.lang.sysml.Multiplicity;
 import org.omg.sysml.lang.sysml.MultiplicityRange;
@@ -511,6 +513,9 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 			case SysMLPackage.ITEM_FLOW_FEATURE:
 				sequence_ItemFlowFeature(context, (ItemFlowFeature) semanticObject); 
 				return; 
+			case SysMLPackage.LIBRARY_PACKAGE:
+				sequence_Identification_LibraryPackage_PackageBody(context, (LibraryPackage) semanticObject); 
+				return; 
 			case SysMLPackage.LITERAL_BOOLEAN:
 				sequence_LiteralBoolean(context, (LiteralBoolean) semanticObject); 
 				return; 
@@ -542,6 +547,9 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 				else break;
 			case SysMLPackage.METACLASS:
 				sequence_ClassifierConjugationPart_ClassifierDeclaration_DifferencingPart_DisjoiningPart_Identification_IntersectingPart_Metaclass_SuperclassingPart_TypeBody_UnioningPart(context, (Metaclass) semanticObject); 
+				return; 
+			case SysMLPackage.METADATA_ACCESS_EXPRESSION:
+				sequence_MetadataAccessExpression(context, (MetadataAccessExpression) semanticObject); 
 				return; 
 			case SysMLPackage.METADATA_FEATURE:
 				sequence_Identification_MetadataBody_MetadataFeature_MetadataFeatureDeclaration(context, (MetadataFeature) semanticObject); 
@@ -1114,8 +1122,8 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *                 (
 	 *                     (ownedRelationship+=OwnedFeatureChaining | ownedRelationship+=OwnedFeatureInverting)? 
 	 *                     (ownedRelationship+=Differencing ownedRelationship+=Differencing*)? 
-	 *                     (ownedRelationship+=Unioning ownedRelationship+=Unioning*)? 
 	 *                     (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*)? 
+	 *                     (ownedRelationship+=Unioning ownedRelationship+=Unioning*)? 
 	 *                     (ownedRelationship+=OwnedDisjoining ownedRelationship+=OwnedDisjoining*)? 
 	 *                     (ownedRelationship+=OwnedTypeFeaturing ownedRelationship+=OwnedTypeFeaturing*)? 
 	 *                     (ownedRelationship+=OwnedFeatureChaining ownedRelationship+=OwnedFeatureChaining+)?
@@ -1599,8 +1607,8 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *                 (
 	 *                     (ownedRelationship+=OwnedFeatureChaining | ownedRelationship+=OwnedFeatureInverting)? 
 	 *                     (ownedRelationship+=Differencing ownedRelationship+=Differencing*)? 
-	 *                     (ownedRelationship+=Unioning ownedRelationship+=Unioning*)? 
 	 *                     (ownedRelationship+=Intersecting ownedRelationship+=Intersecting*)? 
+	 *                     (ownedRelationship+=Unioning ownedRelationship+=Unioning*)? 
 	 *                     (ownedRelationship+=OwnedDisjoining ownedRelationship+=OwnedDisjoining*)? 
 	 *                     (ownedRelationship+=OwnedTypeFeaturing ownedRelationship+=OwnedTypeFeaturing*)? 
 	 *                     (ownedRelationship+=OwnedFeatureChaining ownedRelationship+=OwnedFeatureChaining+)?
@@ -2436,6 +2444,25 @@ public abstract class AbstractKerMLSemanticSequencer extends KerMLExpressionsSem
 	 *     )
 	 */
 	protected void sequence_FunctionBodyPart(ISerializationContext context, Expression semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     OwnedRelatedElement returns LibraryPackage
+	 *     MemberElement returns LibraryPackage
+	 *     NonFeatureElement returns LibraryPackage
+	 *     LibraryPackage returns LibraryPackage
+	 *
+	 * Constraint:
+	 *     (
+	 *         isStandard?='standard'? 
+	 *         ((shortName=Name name=Name?) | name=Name)? 
+	 *         (ownedRelationship+=NamespaceMember | ownedRelationship+=ElementFilterMember | ownedRelationship+=AliasMember | ownedRelationship+=Import)*
+	 *     )
+	 */
+	protected void sequence_Identification_LibraryPackage_PackageBody(ISerializationContext context, LibraryPackage semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

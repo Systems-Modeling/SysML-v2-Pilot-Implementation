@@ -246,7 +246,8 @@ NonFeatureElement returns SysML::Element :
 	  Element
 	| Relationship
 	| Namespace
-	| Package 
+	| Package
+	| LibraryPackage 
 	| Multiplicity
 	| Type
 	| Classifier 
@@ -288,6 +289,11 @@ FeatureElement returns SysML::Feature :
 
 Package returns SysML::Package :
 	PackageDeclaration PackageBody 
+;
+
+LibraryPackage returns SysML::LibraryPackage :
+	( isStandard ?= 'standard' )? 'library'
+	PackageDeclaration PackageBody
 ;
 
 fragment PackageDeclaration returns SysML::Package :

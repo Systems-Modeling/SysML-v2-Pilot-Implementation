@@ -550,10 +550,21 @@ public class VCompartment extends VStructure {
 
     private void addDocumentations() {
     	if (documentations == null) return;
+
+        boolean single = documentations.size() == 1;
     	/* PlantUML needs to be updated to support centering.  */
         append("==== //    documentation  //\n");
         for (Documentation doc: documentations) {
-            append("* ");
+            String name = doc.getName();
+            if (name != null && !name.isEmpty()) {
+                append("\"\"");
+                appendText(name, true);
+                append("\"\": ");
+            } else {
+                if (!single) {
+                    append("* ");
+                }
+            }
             appendText(doc.getBody(), true);
             append('\n');
         }

@@ -27,7 +27,6 @@
 package org.omg.sysml.plantuml;
 
 import java.util.List;
-import java.util.regex.Pattern;
 
 import org.omg.sysml.expressions.util.EvaluationUtil;
 import org.omg.sysml.lang.sysml.ActorMembership;

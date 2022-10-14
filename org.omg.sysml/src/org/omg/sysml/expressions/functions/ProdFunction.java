@@ -45,7 +45,7 @@ public class ProdFunction implements LibraryFunction {
 	public EList<Element> invoke(InvocationExpression invocation, Element target, ModelLevelExpressionEvaluator evaluator) {
 		EList<Element> list = evaluator.evaluateArgument(invocation, 0, target);
 		if (list == null) {
-			return null;
+			return EvaluationUtil.singletonList(invocation);
 		} else {
 			int intResult = 1;
 			Double realResult = null;
@@ -53,7 +53,7 @@ public class ProdFunction implements LibraryFunction {
 				if (element instanceof LiteralInteger) {
 					int value = ((LiteralInteger)element).getValue();
 					if (realResult != null) {
-						realResult += value;
+						realResult *= value;
 					} else {
 						intResult *= value;
 					}
@@ -63,7 +63,7 @@ public class ProdFunction implements LibraryFunction {
 					}
 					realResult *= ((LiteralRational)element).getValue();
 				} else {
-					return null;
+					return EvaluationUtil.singletonList(invocation);
 				}
 			}
 			return realResult == null? 

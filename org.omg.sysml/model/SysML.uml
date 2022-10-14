@@ -746,7 +746,7 @@ general ->
       </specification>
     </ownedRule>
     <generalization xmi:id="4e892f3f-f416-4249-a2cf-49da9cd9991d" general="3253c8ca-91ac-429a-b0eb-1eea1c482bca"/>
-    <ownedAttribute xmi:id="4c3c66de-b2c3-40e1-9037-18bfb5a18c19" name="stateDefinition" visibility="public" type="2b6b71d4-57a9-4df4-badc-6ee2bfd7f8ba" isOrdered="true" isDerived="true" redefinedProperty="1f2423e8-9b61-4497-af7c-8de89dbda20c" association="546ddf66-c707-46a0-8983-112e7fb3f760">
+    <ownedAttribute xmi:id="4c3c66de-b2c3-40e1-9037-18bfb5a18c19" name="stateDefinition" visibility="public" type="2b6b71d4-57a9-4df4-badc-6ee2bfd7f8ba" isOrdered="true" isDerived="true" redefinedProperty="5ef4cd7f-9d79-44b5-ad54-30bbd8f1b16b" association="546ddf66-c707-46a0-8983-112e7fb3f760">
       <ownedComment xmi:id="f919b2f1-0e5c-4a7b-9110-95e1e5d02c13" annotatedElement="4c3c66de-b2c3-40e1-9037-18bfb5a18c19">
         <body>&lt;p>The Behaviors that are the types of this StateUsage. Nominally, these would be StateDefinitions, but non-Activity Behaviors are also allowed, to permit use of Behaviors from the Kernel Library.&lt;/p></body>
       </ownedComment>
@@ -2540,7 +2540,7 @@ else
 &lt;p>An ItemUsage must subset, directly or indirectly, the base ItemUsage &lt;code>items&lt;/code> from the Systems model library.&lt;/p></body>
     </ownedComment>
     <generalization xmi:id="de1189c6-e20d-47bf-b11d-b80a40b6ec31" general="da9d7196-5acc-4b5d-bfad-15a6229d604d"/>
-    <ownedAttribute xmi:id="18ab486b-757f-4c4d-8569-01e9cf669e5f" name="itemDefinition" visibility="public" type="eabb05a5-3e97-41e1-9668-d9bf801193a6" isOrdered="true" isDerived="true" redefinedProperty="201738a1-0499-47ef-8c07-ab15564d86c0" association="e1e0ea17-ed4b-46fd-ae36-0596aa463ba4">
+    <ownedAttribute xmi:id="18ab486b-757f-4c4d-8569-01e9cf669e5f" name="itemDefinition" visibility="public" type="eabb05a5-3e97-41e1-9668-d9bf801193a6" isOrdered="true" isDerived="true" redefinedProperty="48d91227-fa8b-4b65-a4f8-d27701f010c0" association="e1e0ea17-ed4b-46fd-ae36-0596aa463ba4">
       <ownedComment xmi:id="d8522bde-8470-4d49-b0d9-149a8edd4083" annotatedElement="18ab486b-757f-4c4d-8569-01e9cf669e5f">
         <body>&lt;p>The Structures that are the &lt;code>definitions&lt;/code> of this ItemUsage. Nominally, these are ItemDefinitions, but other kinds of Kernel Structures are also allowed, to permit use of Structures from the Kernel Library.&lt;/p></body>
       </ownedComment>
@@ -2597,7 +2597,7 @@ else
       </specification>
     </ownedRule>
     <generalization xmi:id="ec4ad4e0-e51b-4489-884d-f81dc9af4856" general="da9d7196-5acc-4b5d-bfad-15a6229d604d"/>
-    <ownedAttribute xmi:id="6ffbdc03-bffe-4fe8-841d-7ff7cbc5ed6e" name="portDefinition" visibility="public" type="33b8dad8-751d-4025-b226-108cc30128ef" isOrdered="true" isDerived="true" redefinedProperty="b727584c-d321-46a6-ab44-17b1304bc1b6" association="69486941-f79d-4a72-b385-244a7bb06b8d">
+    <ownedAttribute xmi:id="6ffbdc03-bffe-4fe8-841d-7ff7cbc5ed6e" name="portDefinition" visibility="public" type="33b8dad8-751d-4025-b226-108cc30128ef" isOrdered="true" isDerived="true" redefinedProperty="48d91227-fa8b-4b65-a4f8-d27701f010c0" association="69486941-f79d-4a72-b385-244a7bb06b8d">
       <ownedComment xmi:id="b102bcc2-b61d-4490-9735-be10e3d280b5" annotatedElement="6ffbdc03-bffe-4fe8-841d-7ff7cbc5ed6e">
         <body>&lt;p>The &lt;code>types&lt;/code> of this PortUsage, which must all be PortDefinitions.&lt;/p></body>
       </ownedComment>
@@ -3026,7 +3026,7 @@ endif</body>
 &lt;p>An AttributeUsage must subset, directly or indirectly, the base AttributeUsage &lt;code>attributeValues&lt;/code> from the Systems model library.&lt;/p></body>
     </ownedComment>
     <generalization xmi:id="b8aca072-99c0-40f8-a375-a93a71933c33" general="46068009-84f1-4001-a9bb-fc03fd6a381c"/>
-    <ownedAttribute xmi:id="0e5e08ee-b091-4594-bce0-e3cf0d351488" name="attributeDefinition" visibility="public" type="8fb1addf-512a-4250-97a3-5fb06485a999" isOrdered="true" isDerived="true" redefinedProperty="b727584c-d321-46a6-ab44-17b1304bc1b6" association="9358a6ec-830f-4b6b-8f4a-ff481b52fe55">
+    <ownedAttribute xmi:id="0e5e08ee-b091-4594-bce0-e3cf0d351488" name="attributeDefinition" visibility="public" type="8fb1addf-512a-4250-97a3-5fb06485a999" isOrdered="true" isDerived="true" redefinedProperty="201738a1-0499-47ef-8c07-ab15564d86c0" association="9358a6ec-830f-4b6b-8f4a-ff481b52fe55">
       <ownedComment xmi:id="7ec935e2-04df-4e7c-8406-158cf6695da3" annotatedElement="0e5e08ee-b091-4594-bce0-e3cf0d351488">
         <body>&lt;p>The DataTypes that are the types of this AttributeUsage. Nominally, these are AttributeDefinitions, but other kinds of kernel DataTypes are also allowed, to permit use of DataTypes from the Kernel Library.&lt;/p></body>
       </ownedComment>
@@ -5091,7 +5091,7 @@ endif endif endif</body>
       <ownedComment xmi:id="862d4115-5aae-4a59-b957-f27a4fe3c0b6" annotatedElement="077a3948-ff80-405a-b769-123a0a235d1f">
         <body>&lt;p>The Feature that this FeatureMembership relates to its &lt;code>owningType&lt;/code>, making it an &lt;code>ownedFeature&lt;/code> of the &lt;code>owningType&lt;/code>.&lt;/p></body>
       </ownedComment>
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="16b88811-93e7-402f-804c-cd1179a63d95" name="" visibility="public"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="16b88811-93e7-402f-804c-cd1179a63d95" name="" visibility="public" value="1"/>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="1931599f-0123-49f8-aacf-7e7f9e003a09" name="" visibility="public" value="1"/>
     </ownedAttribute>
   </packagedElement>
@@ -6224,7 +6224,7 @@ endif</body>
       <ownedComment xmi:id="1a2957db-12f0-41ee-899c-fde650c7b39e" annotatedElement="7db21a79-717f-4f97-b646-7e6ab9106c43">
         <body>&lt;p>The Real value that is the result of evaluating this Expression.&lt;/p></body>
       </ownedComment>
-      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#double"/>
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Real"/>
     </ownedAttribute>
   </packagedElement>
   <packagedElement xmi:type="uml:Association" xmi:id="688933df-72ee-4c19-bbdd-04b161fffa61" name="" visibility="public" memberEnd="a42a34a1-0748-4b76-b3b6-a6770814f850 f7b8fa23-31d7-4311-9742-5754a2260720">

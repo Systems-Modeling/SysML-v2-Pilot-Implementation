@@ -20,13 +20,7 @@
  *******************************************************************************/
 package org.omg.sysml.expressions.functions;
 
-import org.eclipse.emf.common.util.EList;
-import org.omg.sysml.expressions.ModelLevelExpressionEvaluator;
-import org.omg.sysml.expressions.util.EvaluationUtil;
-import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.lang.sysml.InvocationExpression;
-
-public class ConditionalAndFunction extends ControlFunction {
+public class ConditionalAndFunction extends ConditionalLogicalFunction {
 
 	@Override
 	public String getOperatorName() {
@@ -34,19 +28,13 @@ public class ConditionalAndFunction extends ControlFunction {
 	}
 
 	@Override
-	public EList<Element> invoke(InvocationExpression invocation, Element target, ModelLevelExpressionEvaluator evaluator) {
-		Boolean firstValue = evaluator.booleanValue(invocation, 0, target);
-		if (firstValue != null) {
-			if (!firstValue) {
-				return EvaluationUtil.booleanResult(false);
-			} else {
-				Boolean secondValue = evaluator.booleanExpressionValue(invocation, 1, target);
-				if (secondValue != null) {
-					return EvaluationUtil.booleanResult(secondValue);
-				}
-			}
-		}
-		return null;
+	protected boolean firstValueTest(Boolean firstValue) {
+		return firstValue != Boolean.TRUE;
+	}
+
+	@Override
+	protected boolean firstValueResult() {
+		return false;
 	}
 
 }

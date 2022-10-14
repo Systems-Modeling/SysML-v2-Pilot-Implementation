@@ -41,7 +41,7 @@ import org.omg.sysml.lang.sysml.LiteralString;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.OperatorExpression;
 import org.omg.sysml.lang.sysml.ResultExpressionMembership;
-import org.omg.sysml.util.ExpressionUtil;
+import org.omg.sysml.util.ElementUtil;
 import org.omg.sysml.util.TypeUtil;
 
 public class ModelLevelEvaluationTest extends SysMLInteractiveTest {
@@ -135,7 +135,7 @@ public class ModelLevelEvaluationTest extends SysMLInteractiveTest {
 		Element target = instance.resolve(elementName);
 		assertNotNull(target);
 		
-		Feature metaclassFeature = ExpressionUtil.getMetaclassFeatureFor(target);
+		Feature metaclassFeature = ElementUtil.getMetaclassFeatureFor(target);
 		assertNotNull(metaclassFeature);
 		
 		return metaclassFeature;

@@ -44,7 +44,7 @@ public class StringSubstringFunction implements LibraryFunction {
 		String x = evaluator.stringValue(invocation, 0, target);
 		Integer lower = evaluator.integerValue(invocation, 1, target);
 		Integer upper = evaluator.integerValue(invocation, 2, target);
-		return x == null || lower == null || upper == null? null:
+		return x == null || lower == null || upper == null? EvaluationUtil.singletonList(invocation):
 			   lower < 1 || upper > x.length() || lower > upper + 1 ? EvaluationUtil.nullList(): 
 			   EvaluationUtil.stringResult(x.substring(lower - 1, upper));
 	}

@@ -104,7 +104,7 @@ public class ExpressionEvaluationTest extends SysMLInteractiveTest {
 		SysMLInteractive instance = getSysMLInteractiveInstance();
 		process(instance, evalTest3);		
 		assertElement("AttributeUsage a1", instance.eval("p1.a1", "EvalTest3"));
-		assertElement("AttributeUsage a2", instance.eval("p1.a2", "EvalTest3"));
+		assertElement("OperatorExpression +", instance.eval("p1.a2", "EvalTest3"));
 		assertElement("LiteralInteger 11", instance.eval("p11.a1", "EvalTest3"));
 		assertElement("LiteralInteger 14", instance.eval("p11.a2", "EvalTest3"));
 		assertElement("LiteralInteger 12", instance.eval("p12.a1", "EvalTest3"));

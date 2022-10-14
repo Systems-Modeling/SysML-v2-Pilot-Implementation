@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2021, 2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -28,13 +28,13 @@ import org.omg.sysml.lang.sysml.Element;
 public class XorFunction extends BooleanFunction {
 
 	@Override
-	public String[] getOperatorNames() {
-		return new String[]{"'^^'", "xor"};
+	public String getOperatorName() {
+		return "xor";
 	}
 	
 	@Override
-	protected EList<Element> binaryBooleanOp(boolean x, boolean y) {
-		return EvaluationUtil.booleanResult(x ^ y);
+	protected EList<Element> binaryBooleanOp(Boolean x, Boolean y) {
+		return EvaluationUtil.booleanResult(x == Boolean.TRUE ^ y == Boolean.TRUE);
 	}
 
 }

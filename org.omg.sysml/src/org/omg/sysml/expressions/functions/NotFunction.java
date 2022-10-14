@@ -33,8 +33,8 @@ public class NotFunction extends BooleanFunction {
 	}
 	
 	@Override
-	protected EList<Element> unaryBooleanOp(boolean x) {
-		return EvaluationUtil.booleanResult(!x);
+	protected EList<Element> unaryBooleanOp(Boolean x) {
+		return EvaluationUtil.booleanResult(x != Boolean.TRUE);
 	}
 
 }

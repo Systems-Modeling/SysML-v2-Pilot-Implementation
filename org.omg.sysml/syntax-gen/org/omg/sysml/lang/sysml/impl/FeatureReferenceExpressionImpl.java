@@ -31,8 +31,6 @@ import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureReferenceExpression;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
-import org.omg.sysml.util.ExpressionUtil;
-
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Feature
  * Reference Expression</b></em>'. <!-- end-user-doc -->
@@ -88,10 +86,7 @@ public class FeatureReferenceExpressionImpl extends ExpressionImpl implements Fe
 	 * @generated
 	 */
 	public Feature basicGetReferent() {
-		Element referent = ExpressionUtil.getReferentFor(this);
-		return referent instanceof Feature? (Feature)referent:
-			   referent == null? ExpressionUtil.getSelfReferenceFeature(this):
-			   null;
+		return (Feature)REFERENT__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 	
 	/**

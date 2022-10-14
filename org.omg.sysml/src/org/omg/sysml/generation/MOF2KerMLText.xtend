@@ -195,39 +195,11 @@ class MOF2KerMLText {
 	}
 	
 	def toPropertyList(List<? extends org.eclipse.uml2.uml.Property> properties) {
-		toNameList(properties.filter[isNavigable].toList)
+		properties.filter[isNavigable].toList.toNameList
 	}
 	
-	def toNameList(List<? extends NamedElement> elements) {
-		var result = "";		
-		if (!elements.empty) {
-			for (element: elements) {
-				val name = element.toName
-				if (name != "" ) {
-					if (result !== "") {
-						result += ", "
-					}
-					result += name
-				}
-			}
-		}
-		result
-	}
-	
-	def toQualifiedNameList(List<? extends NamedElement> elements) {
-		var result = "";		
-		if (!elements.empty) {
-			for (element: elements) {
-				val qualifiedName = element.qualifiedName
-				if (qualifiedName !== null) {
-					if (result !== "") {
-						result += ", "
-					}
-					result += qualifiedName
-				}
-			}
-		}
-		result
+	def String toNameList(List<? extends NamedElement> elements) {
+		'''«FOR element: elements SEPARATOR ", "»«element.toName»«ENDFOR»'''
 	}
 	
 	def String getReservedWords() {
@@ -241,7 +213,7 @@ class MOF2KerMLText {
 		 nonunique not null of or ordered out package portion predicate private 
 		 protected public readonly references redefines redefinition relationship rep 
 		 return specialization specializes step struct subclassifier subset subsets 
-		 subtype succession then to true type typed typing unions xor"
+		 subtype succession then to true type typed typing unions xor "
 	}
 	
 	def toName(NamedElement element) {

@@ -47,16 +47,16 @@ import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
 import org.omg.sysml.util.ElementUtil;
 import org.omg.sysml.util.FeatureUtil;
+import org.omg.sysml.util.ImplicitGeneralizationMap;
 import org.omg.sysml.util.TypeUtil;
 
 import com.google.common.base.Predicates;
 
 public class EvaluationUtil {
 
-	public static final String ANNOTATED_ELEMENT_FEATURE = "Metaobjects::Metaobject::annotatingElement";
-	
-	public static Feature getAnnotatedElementFeature(Element context) {
-		return (Feature)SysMLLibraryUtil.getLibraryType(context, ANNOTATED_ELEMENT_FEATURE);
+	public static Feature getAnnotatedElementFeature(MetadataFeature context) {
+		return (Feature)SysMLLibraryUtil.getLibraryType(context, 
+				ImplicitGeneralizationMap.getDefaultSupertypeFor(context.getClass(), "annotatedElement"));
 	}
 	
 	public static Type getPrimitiveType(Element context, EClass eClass) {

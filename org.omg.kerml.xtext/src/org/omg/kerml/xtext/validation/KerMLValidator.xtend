@@ -67,7 +67,9 @@ import org.omg.sysml.lang.sysml.MetadataFeature
 import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil
 import org.omg.sysml.util.ImplicitGeneralizationMap
 import org.omg.sysml.lang.sysml.OwningMembership
-import org.omg.sysml.lang.sysml.PrefixComment
+import org.omg.sysml.lang.sysml.ReferenceSubsetting
+import org.eclipse.emf.ecore.EObject
+import org.omg.sysml.expressions.util.EvaluationUtil
 
 /**
  * This class contains custom validation rules. 
@@ -82,6 +84,18 @@ class KerMLValidator extends AbstractKerMLValidator {
 	public static val INVALID_SUBSETTING_MULTIPLICITYCONFORMANCE = 'Invalid Subsetting - Multiplicity conformance'
 	public static val INVALID_REDEFINITION_MULTIPLICITYCONFORMANCE = 'Invalid Redefinition - Multiplicity conformance'
 	public static val INVALID_SUBSETTING_UNIQUENESS_CONFORMANCE = 'Invalid Subsetting - Uniqueness conformance'
+	
+	public static val INVALID_REFERENCESUBSETTING_TOO_MANY = 'Invalid ReferenceSubsetting - Too many'
+	public static val INVALID_REFERENCESUBSETTING_TOO_MANY_MSG = 'At most one reference subsetting is allowed'
+
+	public static val INVALID_FEATURECHAINING_TOO_FEW = 'Invalid FeatureChaining - Too few'
+	public static val INVALID_FEATURECHAINING_TOO_FEW_MSG = 'Cannot have only one feature chaining'
+	public static val INVALID_UNIONING_TOO_FEW = 'Invalid Unioning - Too few'
+	public static val INVALID_UNIONING_TOO_FEW_MSG = 'Cannot have only one unioning'
+	public static val INVALID_INTERSECTING_TOO_FEW = 'Invalid Intersecting - Too few'
+	public static val INVALID_INTERSECTING_TOO_FEW_MSG = 'Cannot have only one intersecting'
+	public static val INVALID_DIFFERENCING_TOO_FEW = 'Invalid Differencing - Too few'
+	public static val INVALID_DIFFERENCING_TOO_FEW_MSG = 'Cannot have only one differencing'
 	
 	public static val INVALID_CONNECTOR_END__CONTEXT = 'Invalid Connector end - Context'
 	public static val INVALID_CONNECTOR_END__CONTEXT_MSG = "Should be an accessible feature (use dot notation for nesting)"
@@ -133,14 +147,6 @@ class KerMLValidator extends AbstractKerMLValidator {
 	@Inject
 	IScopeProvider scopeProvider
 	
-	/**
-	 * This is a temporary warning about the removal of prefix comments.
-	 */
-	@Check
-	def checkPrefixComment(PrefixComment c) {
-		warning("Prefix comments no longer supported; use doc comments instead", c, null, "Unsupported prefix comment");
-	}
-		
 	@Check
 	def checkElement(Element elm) {
 		if (elm.shortName !== null || elm.getEffectiveName !== null) {
@@ -234,6 +240,19 @@ class KerMLValidator extends AbstractKerMLValidator {
 	}
 	
 	@Check
+	def checkType(Type t) {
+		checkNotOne(t.ownedUnioning, INVALID_UNIONING_TOO_FEW_MSG, INVALID_UNIONING_TOO_FEW)
+		checkNotOne(t.ownedIntersecting, INVALID_INTERSECTING_TOO_FEW_MSG, INVALID_INTERSECTING_TOO_FEW)
+		checkNotOne(t.ownedDifferencing, INVALID_DIFFERENCING_TOO_FEW_MSG, INVALID_DIFFERENCING_TOO_FEW)
+	}
+	
+	def checkNotOne( List<? extends EObject> list, String msg, String code) {
+		if (list.size == 1) {
+			error(msg, list.get(0), null, code)
+		}
+	}
+	
+	@Check
 	def checkClassifier(Classifier c){
 		val defaultSupertype = ImplicitGeneralizationMap.getDefaultSupertypeFor(c.getClass())
 		if (!TypeUtil.conforms(c, SysMLLibraryUtil.getLibraryType(c, defaultSupertype)))
@@ -245,6 +264,12 @@ class KerMLValidator extends AbstractKerMLValidator {
 		val types = f.type;
 		if (types !== null && types.isEmpty)
 			error(INVALID_FEATURE__NO_TYPE_MSG, f, SysMLPackage.eINSTANCE.feature_Type, INVALID_FEATURE__NO_TYPE)
+		val refSubsettings = f.ownedRelationship.filter[r | r instanceof ReferenceSubsetting].toList
+		if (refSubsettings.size > 1) {
+			for (var i = 1; i < refSubsettings.size; i++)
+				error(INVALID_REFERENCESUBSETTING_TOO_MANY_MSG, refSubsettings.get(i), null, INVALID_REFERENCESUBSETTING_TOO_MANY)
+		}
+		checkNotOne(f.ownedFeatureChaining, INVALID_FEATURECHAINING_TOO_FEW_MSG, INVALID_FEATURECHAINING_TOO_FEW)
 	}
 	
 	@Check
@@ -261,24 +286,18 @@ class KerMLValidator extends AbstractKerMLValidator {
 	}
 	
 	def void checkMetadataAnnotatedElements(MetadataFeature mf) {
-		var annotatedElementFeatures = FeatureUtil.getAllSubsettingFeaturesIn(mf, mf.annotatedElementFeature);
+		var annotatedElementFeatures = FeatureUtil.getAllSubsettingFeaturesIn(mf, EvaluationUtil.getAnnotatedElementFeature(mf));
 		if (annotatedElementFeatures.exists[!abstract]) {
 			annotatedElementFeatures = annotatedElementFeatures.filter[!abstract].toList
 		}
 		if (!annotatedElementFeatures.empty) {
 			for (element: mf.annotatedElement) {
-				val metaclass = ExpressionUtil.getMetaclassOf(element)
+				val metaclass = ElementUtil.getMetaclassOf(element)
 				if (!annotatedElementFeatures.exists[f | f.type.forall[t | TypeUtil.conforms(metaclass, t)]]) {
 					error(INVALID_METADATA_FEATURE__BAD_ELEMENT_MSG.replace("{metaclass}", metaclass.name), mf, null, INVALID_METADATA_FEATURE__BAD_ELEMENT)
 				}
 			}
 		}
-	}
-	
-	def Feature getAnnotatedElementFeature(Element element) {
-		SysMLLibraryUtil.getLibraryType(element, 
-						ImplicitGeneralizationMap.getDefaultSupertypeFor(element.getClass(), "annotatedElement"))
-						as Feature
 	}
 	
 	def void checkMetadataBody(Type t) {

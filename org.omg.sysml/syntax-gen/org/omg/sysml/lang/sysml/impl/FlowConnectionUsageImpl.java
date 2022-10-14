@@ -26,10 +26,14 @@ import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.omg.sysml.lang.sysml.ActionUsage;
+import org.omg.sysml.lang.sysml.Association;
+import org.omg.sysml.lang.sysml.AssociationStructure;
 import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.Classifier;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FlowConnectionUsage;
+import org.omg.sysml.lang.sysml.Interaction;
 import org.omg.sysml.lang.sysml.ItemFeature;
 import org.omg.sysml.lang.sysml.ItemFlow;
 import org.omg.sysml.lang.sysml.ItemFlowEnd;
@@ -46,7 +50,6 @@ import org.omg.sysml.lang.sysml.Type;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.FlowConnectionUsageImpl#getBehavior <em>Behavior</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FlowConnectionUsageImpl#getParameter <em>Parameter</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FlowConnectionUsageImpl#getItemType <em>Item Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FlowConnectionUsageImpl#getTargetInputFeature <em>Target Input Feature</em>}</li>
@@ -54,20 +57,12 @@ import org.omg.sysml.lang.sysml.Type;
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FlowConnectionUsageImpl#getItemFlowEnd <em>Item Flow End</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FlowConnectionUsageImpl#getItemFeature <em>Item Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FlowConnectionUsageImpl#getItemFlowFeature <em>Item Flow Feature</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.FlowConnectionUsageImpl#getFlowConnectionDefinition <em>Flow Connection Definition</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class FlowConnectionUsageImpl extends ConnectionUsageImpl implements FlowConnectionUsage {
-	/**
-	 * The cached setting delegate for the '{@link #getBehavior() <em>Behavior</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getBehavior()
-	 * @generated
-	 * @ordered
-	 */
-	protected EStructuralFeature.Internal.SettingDelegate BEHAVIOR__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.STEP__BEHAVIOR).getSettingDelegate();
 	/**
 	 * The cached setting delegate for the '{@link #getParameter() <em>Parameter</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -87,7 +82,7 @@ public class FlowConnectionUsageImpl extends ConnectionUsageImpl implements Flow
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate ITEM_TYPE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.ITEM_FLOW__ITEM_TYPE).getSettingDelegate();
 	/**
-	 * The cached setting delegate for the '{@link #getTargetInputFeature() <em>Target Input Feature</em>}' reference list.
+	 * The cached setting delegate for the '{@link #getTargetInputFeature() <em>Target Input Feature</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getTargetInputFeature()
@@ -96,7 +91,7 @@ public class FlowConnectionUsageImpl extends ConnectionUsageImpl implements Flow
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate TARGET_INPUT_FEATURE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.ITEM_FLOW__TARGET_INPUT_FEATURE).getSettingDelegate();
 	/**
-	 * The cached setting delegate for the '{@link #getSourceOutputFeature() <em>Source Output Feature</em>}' reference list.
+	 * The cached setting delegate for the '{@link #getSourceOutputFeature() <em>Source Output Feature</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getSourceOutputFeature()
@@ -114,7 +109,7 @@ public class FlowConnectionUsageImpl extends ConnectionUsageImpl implements Flow
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate ITEM_FLOW_END__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.ITEM_FLOW__ITEM_FLOW_END).getSettingDelegate();
 	/**
-	 * The cached setting delegate for the '{@link #getItemFeature() <em>Item Feature</em>}' reference list.
+	 * The cached setting delegate for the '{@link #getItemFeature() <em>Item Feature</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getItemFeature()
@@ -132,6 +127,16 @@ public class FlowConnectionUsageImpl extends ConnectionUsageImpl implements Flow
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate ITEM_FLOW_FEATURE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.ITEM_FLOW__ITEM_FLOW_FEATURE).getSettingDelegate();
+
+	/**
+	 * The cached setting delegate for the '{@link #getFlowConnectionDefinition() <em>Flow Connection Definition</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getFlowConnectionDefinition()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate FLOW_CONNECTION_DEFINITION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.FLOW_CONNECTION_USAGE__FLOW_CONNECTION_DEFINITION).getSettingDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -157,10 +162,9 @@ public class FlowConnectionUsageImpl extends ConnectionUsageImpl implements Flow
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public EList<Behavior> getBehavior() {
-		return (EList<Behavior>)BEHAVIOR__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+		return getActionDefinition();
 	}
 
 	/**
@@ -169,7 +173,47 @@ public class FlowConnectionUsageImpl extends ConnectionUsageImpl implements Flow
 	 * @generated
 	 */
 	public boolean isSetBehavior() {
-		return !getBehavior().isEmpty();
+  		return false;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<org.omg.sysml.lang.sysml.Class> getOccurrenceDefinition() {
+		@SuppressWarnings("unchecked")
+		EList<org.omg.sysml.lang.sysml.Class> actionDefinition = (EList<org.omg.sysml.lang.sysml.Class>)((EList<?>)getActionDefinition());
+		return actionDefinition;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetOccurrenceDefinition() {
+  		return false;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Behavior> getActionDefinition() {
+		@SuppressWarnings("unchecked")
+		EList<Behavior> flowConnectionDefinition = (EList<Behavior>)((EList<?>)getFlowConnectionDefinition());
+		return flowConnectionDefinition;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetActionDefinition() {
+  		return false;
 	}
 
 	/**
@@ -208,10 +252,9 @@ public class FlowConnectionUsageImpl extends ConnectionUsageImpl implements Flow
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
-	public EList<Feature> getTargetInputFeature() {
-		return (EList<Feature>)TARGET_INPUT_FEATURE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+	public Feature getTargetInputFeature() {
+		return (Feature)TARGET_INPUT_FEATURE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
@@ -219,10 +262,47 @@ public class FlowConnectionUsageImpl extends ConnectionUsageImpl implements Flow
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
+	public Feature basicGetTargetInputFeature() {
+		return (Feature)TARGET_INPUT_FEATURE__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
-	public EList<Feature> getSourceOutputFeature() {
-		return (EList<Feature>)SOURCE_OUTPUT_FEATURE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+	public void setTargetInputFeature(Feature newTargetInputFeature) {
+		TARGET_INPUT_FEATURE__ESETTING_DELEGATE.dynamicSet(this, null, 0, newTargetInputFeature);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Feature getSourceOutputFeature() {
+		return (Feature)SOURCE_OUTPUT_FEATURE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Feature basicGetSourceOutputFeature() {
+		return (Feature)SOURCE_OUTPUT_FEATURE__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setSourceOutputFeature(Feature newSourceOutputFeature) {
+		SOURCE_OUTPUT_FEATURE__ESETTING_DELEGATE.dynamicSet(this, null, 0, newSourceOutputFeature);
 	}
 
 	/**
@@ -250,10 +330,28 @@ public class FlowConnectionUsageImpl extends ConnectionUsageImpl implements Flow
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
-	public EList<ItemFeature> getItemFeature() {
-		return (EList<ItemFeature>)ITEM_FEATURE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+	public ItemFeature getItemFeature() {
+		return (ItemFeature)ITEM_FEATURE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ItemFeature basicGetItemFeature() {
+		return (ItemFeature)ITEM_FEATURE__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setItemFeature(ItemFeature newItemFeature) {
+		ITEM_FEATURE__ESETTING_DELEGATE.dynamicSet(this, null, 0, newItemFeature);
 	}
 
 	/**
@@ -267,6 +365,45 @@ public class FlowConnectionUsageImpl extends ConnectionUsageImpl implements Flow
 		return (EList<ItemFlowFeature>)ITEM_FLOW_FEATURE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<Interaction> getInteraction() {
+		return getFlowConnectionDefinition();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetInteraction() {
+  		return false;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public EList<Interaction> getFlowConnectionDefinition() {
+		return (EList<Interaction>)FLOW_CONNECTION_DEFINITION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetFlowConnectionDefinition() {
+		return !getFlowConnectionDefinition().isEmpty();
+	}
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -325,6 +462,46 @@ public class FlowConnectionUsageImpl extends ConnectionUsageImpl implements Flow
   		return false;
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Association> getAssociation() {
+		@SuppressWarnings("unchecked")
+		EList<Association> connectionDefinition = (EList<Association>)((EList<?>)getConnectionDefinition());
+		return connectionDefinition;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetAssociation() {
+  		return false;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<AssociationStructure> getConnectionDefinition() {
+		@SuppressWarnings("unchecked")
+		EList<AssociationStructure> flowConnectionDefinition = (EList<AssociationStructure>)((EList<?>)getFlowConnectionDefinition());
+		return flowConnectionDefinition;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetConnectionDefinition() {
+  		return false;
+	}
+
 	// Additional overrides
 	
 	@Override
@@ -349,18 +526,27 @@ public class FlowConnectionUsageImpl extends ConnectionUsageImpl implements Flow
 				return getBehavior();
 			case SysMLPackage.FLOW_CONNECTION_USAGE__PARAMETER:
 				return getParameter();
+			case SysMLPackage.FLOW_CONNECTION_USAGE__ACTION_DEFINITION:
+				return getActionDefinition();
 			case SysMLPackage.FLOW_CONNECTION_USAGE__ITEM_TYPE:
 				return getItemType();
 			case SysMLPackage.FLOW_CONNECTION_USAGE__TARGET_INPUT_FEATURE:
-				return getTargetInputFeature();
+				if (resolve) return getTargetInputFeature();
+				return basicGetTargetInputFeature();
 			case SysMLPackage.FLOW_CONNECTION_USAGE__SOURCE_OUTPUT_FEATURE:
-				return getSourceOutputFeature();
+				if (resolve) return getSourceOutputFeature();
+				return basicGetSourceOutputFeature();
 			case SysMLPackage.FLOW_CONNECTION_USAGE__ITEM_FLOW_END:
 				return getItemFlowEnd();
 			case SysMLPackage.FLOW_CONNECTION_USAGE__ITEM_FEATURE:
-				return getItemFeature();
+				if (resolve) return getItemFeature();
+				return basicGetItemFeature();
 			case SysMLPackage.FLOW_CONNECTION_USAGE__ITEM_FLOW_FEATURE:
 				return getItemFlowFeature();
+			case SysMLPackage.FLOW_CONNECTION_USAGE__INTERACTION:
+				return getInteraction();
+			case SysMLPackage.FLOW_CONNECTION_USAGE__FLOW_CONNECTION_DEFINITION:
+				return getFlowConnectionDefinition();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -382,29 +568,38 @@ public class FlowConnectionUsageImpl extends ConnectionUsageImpl implements Flow
 				getParameter().clear();
 				getParameter().addAll((Collection<? extends Feature>)newValue);
 				return;
+			case SysMLPackage.FLOW_CONNECTION_USAGE__ACTION_DEFINITION:
+				getActionDefinition().clear();
+				getActionDefinition().addAll((Collection<? extends Behavior>)newValue);
+				return;
 			case SysMLPackage.FLOW_CONNECTION_USAGE__ITEM_TYPE:
 				getItemType().clear();
 				getItemType().addAll((Collection<? extends Classifier>)newValue);
 				return;
 			case SysMLPackage.FLOW_CONNECTION_USAGE__TARGET_INPUT_FEATURE:
-				getTargetInputFeature().clear();
-				getTargetInputFeature().addAll((Collection<? extends Feature>)newValue);
+				setTargetInputFeature((Feature)newValue);
 				return;
 			case SysMLPackage.FLOW_CONNECTION_USAGE__SOURCE_OUTPUT_FEATURE:
-				getSourceOutputFeature().clear();
-				getSourceOutputFeature().addAll((Collection<? extends Feature>)newValue);
+				setSourceOutputFeature((Feature)newValue);
 				return;
 			case SysMLPackage.FLOW_CONNECTION_USAGE__ITEM_FLOW_END:
 				getItemFlowEnd().clear();
 				getItemFlowEnd().addAll((Collection<? extends ItemFlowEnd>)newValue);
 				return;
 			case SysMLPackage.FLOW_CONNECTION_USAGE__ITEM_FEATURE:
-				getItemFeature().clear();
-				getItemFeature().addAll((Collection<? extends ItemFeature>)newValue);
+				setItemFeature((ItemFeature)newValue);
 				return;
 			case SysMLPackage.FLOW_CONNECTION_USAGE__ITEM_FLOW_FEATURE:
 				getItemFlowFeature().clear();
 				getItemFlowFeature().addAll((Collection<? extends ItemFlowFeature>)newValue);
+				return;
+			case SysMLPackage.FLOW_CONNECTION_USAGE__INTERACTION:
+				getInteraction().clear();
+				getInteraction().addAll((Collection<? extends Interaction>)newValue);
+				return;
+			case SysMLPackage.FLOW_CONNECTION_USAGE__FLOW_CONNECTION_DEFINITION:
+				getFlowConnectionDefinition().clear();
+				getFlowConnectionDefinition().addAll((Collection<? extends Interaction>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -424,23 +619,32 @@ public class FlowConnectionUsageImpl extends ConnectionUsageImpl implements Flow
 			case SysMLPackage.FLOW_CONNECTION_USAGE__PARAMETER:
 				getParameter().clear();
 				return;
+			case SysMLPackage.FLOW_CONNECTION_USAGE__ACTION_DEFINITION:
+				getActionDefinition().clear();
+				return;
 			case SysMLPackage.FLOW_CONNECTION_USAGE__ITEM_TYPE:
 				getItemType().clear();
 				return;
 			case SysMLPackage.FLOW_CONNECTION_USAGE__TARGET_INPUT_FEATURE:
-				getTargetInputFeature().clear();
+				setTargetInputFeature((Feature)null);
 				return;
 			case SysMLPackage.FLOW_CONNECTION_USAGE__SOURCE_OUTPUT_FEATURE:
-				getSourceOutputFeature().clear();
+				setSourceOutputFeature((Feature)null);
 				return;
 			case SysMLPackage.FLOW_CONNECTION_USAGE__ITEM_FLOW_END:
 				getItemFlowEnd().clear();
 				return;
 			case SysMLPackage.FLOW_CONNECTION_USAGE__ITEM_FEATURE:
-				getItemFeature().clear();
+				setItemFeature((ItemFeature)null);
 				return;
 			case SysMLPackage.FLOW_CONNECTION_USAGE__ITEM_FLOW_FEATURE:
 				getItemFlowFeature().clear();
+				return;
+			case SysMLPackage.FLOW_CONNECTION_USAGE__INTERACTION:
+				getInteraction().clear();
+				return;
+			case SysMLPackage.FLOW_CONNECTION_USAGE__FLOW_CONNECTION_DEFINITION:
+				getFlowConnectionDefinition().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -462,8 +666,14 @@ public class FlowConnectionUsageImpl extends ConnectionUsageImpl implements Flow
 				return isSetBehavior();
 			case SysMLPackage.FLOW_CONNECTION_USAGE__PARAMETER:
 				return isSetParameter();
+			case SysMLPackage.FLOW_CONNECTION_USAGE__OCCURRENCE_DEFINITION:
+				return isSetOccurrenceDefinition();
+			case SysMLPackage.FLOW_CONNECTION_USAGE__ACTION_DEFINITION:
+				return isSetActionDefinition();
 			case SysMLPackage.FLOW_CONNECTION_USAGE__CONNECTOR_END:
 				return isSetConnectorEnd();
+			case SysMLPackage.FLOW_CONNECTION_USAGE__ASSOCIATION:
+				return isSetAssociation();
 			case SysMLPackage.FLOW_CONNECTION_USAGE__ITEM_TYPE:
 				return ITEM_TYPE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.FLOW_CONNECTION_USAGE__TARGET_INPUT_FEATURE:
@@ -476,6 +686,12 @@ public class FlowConnectionUsageImpl extends ConnectionUsageImpl implements Flow
 				return ITEM_FEATURE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.FLOW_CONNECTION_USAGE__ITEM_FLOW_FEATURE:
 				return ITEM_FLOW_FEATURE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
+			case SysMLPackage.FLOW_CONNECTION_USAGE__INTERACTION:
+				return isSetInteraction();
+			case SysMLPackage.FLOW_CONNECTION_USAGE__CONNECTION_DEFINITION:
+				return isSetConnectionDefinition();
+			case SysMLPackage.FLOW_CONNECTION_USAGE__FLOW_CONNECTION_DEFINITION:
+				return isSetFlowConnectionDefinition();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -494,6 +710,12 @@ public class FlowConnectionUsageImpl extends ConnectionUsageImpl implements Flow
 				default: return -1;
 			}
 		}
+		if (baseClass == ActionUsage.class) {
+			switch (derivedFeatureID) {
+				case SysMLPackage.FLOW_CONNECTION_USAGE__ACTION_DEFINITION: return SysMLPackage.ACTION_USAGE__ACTION_DEFINITION;
+				default: return -1;
+			}
+		}
 		if (baseClass == ItemFlow.class) {
 			switch (derivedFeatureID) {
 				case SysMLPackage.FLOW_CONNECTION_USAGE__ITEM_TYPE: return SysMLPackage.ITEM_FLOW__ITEM_TYPE;
@@ -502,6 +724,7 @@ public class FlowConnectionUsageImpl extends ConnectionUsageImpl implements Flow
 				case SysMLPackage.FLOW_CONNECTION_USAGE__ITEM_FLOW_END: return SysMLPackage.ITEM_FLOW__ITEM_FLOW_END;
 				case SysMLPackage.FLOW_CONNECTION_USAGE__ITEM_FEATURE: return SysMLPackage.ITEM_FLOW__ITEM_FEATURE;
 				case SysMLPackage.FLOW_CONNECTION_USAGE__ITEM_FLOW_FEATURE: return SysMLPackage.ITEM_FLOW__ITEM_FLOW_FEATURE;
+				case SysMLPackage.FLOW_CONNECTION_USAGE__INTERACTION: return SysMLPackage.ITEM_FLOW__INTERACTION;
 				default: return -1;
 			}
 		}
@@ -522,6 +745,12 @@ public class FlowConnectionUsageImpl extends ConnectionUsageImpl implements Flow
 				default: return -1;
 			}
 		}
+		if (baseClass == ActionUsage.class) {
+			switch (baseFeatureID) {
+				case SysMLPackage.ACTION_USAGE__ACTION_DEFINITION: return SysMLPackage.FLOW_CONNECTION_USAGE__ACTION_DEFINITION;
+				default: return -1;
+			}
+		}
 		if (baseClass == ItemFlow.class) {
 			switch (baseFeatureID) {
 				case SysMLPackage.ITEM_FLOW__ITEM_TYPE: return SysMLPackage.FLOW_CONNECTION_USAGE__ITEM_TYPE;
@@ -530,6 +759,7 @@ public class FlowConnectionUsageImpl extends ConnectionUsageImpl implements Flow
 				case SysMLPackage.ITEM_FLOW__ITEM_FLOW_END: return SysMLPackage.FLOW_CONNECTION_USAGE__ITEM_FLOW_END;
 				case SysMLPackage.ITEM_FLOW__ITEM_FEATURE: return SysMLPackage.FLOW_CONNECTION_USAGE__ITEM_FEATURE;
 				case SysMLPackage.ITEM_FLOW__ITEM_FLOW_FEATURE: return SysMLPackage.FLOW_CONNECTION_USAGE__ITEM_FLOW_FEATURE;
+				case SysMLPackage.ITEM_FLOW__INTERACTION: return SysMLPackage.FLOW_CONNECTION_USAGE__INTERACTION;
 				default: return -1;
 			}
 		}

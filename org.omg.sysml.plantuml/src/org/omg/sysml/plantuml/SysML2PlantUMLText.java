@@ -25,22 +25,29 @@
 package org.omg.sysml.plantuml;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.omg.sysml.execution.expressions.ExpressionEvaluator;
+import org.omg.sysml.expressions.util.EvaluationUtil;
 import org.omg.sysml.lang.sysml.ActionDefinition;
 import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.CaseDefinition;
 import org.omg.sysml.lang.sysml.CaseUsage;
 import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.ItemDefinition;
 import org.omg.sysml.lang.sysml.Membership;
+import org.omg.sysml.lang.sysml.MetadataUsage;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.OccurrenceDefinition;
 import org.omg.sysml.lang.sysml.OccurrenceUsage;
@@ -50,6 +57,7 @@ import org.omg.sysml.lang.sysml.StateUsage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
 import org.omg.sysml.plantuml.SysML2PlantUMLStyle.StyleSwitch;
+import org.omg.sysml.util.FeatureUtil;
 
 import com.google.inject.Inject;
 
@@ -213,27 +221,84 @@ public class SysML2PlantUMLText {
         return "";
     }
 
-    String styleString(Type typ) {
-        String ret = getStereotypeStyle(typ);
-        if (ret == null) {
-            ret = " <<(T,blue)" + individualPrefix(typ);
-        } else if (" ".equals(ret)) {
-            return ret;
-        } else if (!ret.startsWith("<<")) {
-            ret = "<<" + individualPrefix(typ) + ret;
+    public static String getMetadataUsageName(Element e) {
+        StringBuilder sb = null;
+        for (Element oe: e.getOwnedElement()) {
+            if (oe instanceof MetadataUsage) {
+                MetadataUsage mu = (MetadataUsage) oe;
+                List<FeatureTyping> tt = mu.getOwnedTyping();
+                for (FeatureTyping ft: tt) {
+                    if (ft == null) continue;
+                    Type typ = ft.getType();
+                    if (typ == null) continue;
+                    String mName = typ.getShortName();
+                    if (mName == null || mName.isEmpty()) {
+                        mName = typ.getName();
+                        if (mName == null || mName.isEmpty()) {
+                            continue;
+                        }
+                    }
+                    if (sb == null) {
+                        sb = new StringBuilder();
+                        sb.append("<<");
+                    } else {
+                        sb.append(' ');
+                    }
+                    sb.append('#');
+                    sb.append(mName);
+                }
+            }
+            if (sb != null) break; // Do not show more than one metadata.
+        }
+        if (sb == null) return null;
+        sb.append(">>");
+        return sb.toString();
+    }
+
+    private static void appendVariation(StringBuilder sb, Type typ) {
+        if (!(typ instanceof Usage)) return;
+        Usage u = (Usage) typ;
+        if (u.isVariation()) {
+            sb.append(" <<variation>>\\n");
+        }
+    }
+
+    private String addStereotypeStyle(StringBuilder sb, Type typ) {
+        String ss = getStereotypeStyle(typ);
+        if (ss == null) {
+            appendVariation(sb, typ);
+            sb.append(" <<(T,blue)");
+            sb.append(individualPrefix(typ));
+        } else if (" ".equals(ss)) {
+            return ss;
+        } else {
+            appendVariation(sb, typ);
+            if (!ss.startsWith("<<")) {
+                sb.append(" <<");
+                sb.append(individualPrefix(typ));
+            }
+            sb.append(ss);
+            if (ss.endsWith(" ")) return sb.toString();
         }
 
-        if (typ instanceof Usage) {
-            Usage u = (Usage) typ;
-            if (u.isVariation()) {
-                if (ret.equals(" ")) {
-                    return " <<variation>> ";
-                }
-                ret = " <<variation>>\\n" + ret;
+        sb.append(' ');
+        sb.append(getStereotypeName(typ));
+        sb.append(">> ");
+        return sb.toString();
+    }
+
+    String styleString(Type typ) {
+        StringBuilder sb = new StringBuilder();
+        String mName = getMetadataUsageName(typ);
+        if (mName == null) {
+            addStereotypeStyle(sb, typ);
+        } else {
+            if (showMetaclass) {
+                addStereotypeStyle(sb, typ);
             }
+            sb.append(mName);
         }
-        if (ret.endsWith(" ")) return ret;
-        return ret + " " + getStereotypeName(typ) + ">> ";
+        return sb.toString();
     }
 
     String styleValue(String key) {
@@ -332,11 +397,9 @@ public class SysML2PlantUMLText {
     }
 
     private List<EObject> setupVisualizationMode(EObject eObj) {
-        List<EObject> eObjs = new ArrayList<EObject>(1);
-        eObjs.add(eObj);
         MODE mode = getMode(eObj);
         setMode(mode);
-        return eObjs;
+        return Arrays.asList(eObj);
     }
 
     private List<? extends EObject> matchMode(EObject eObj) {
@@ -356,7 +419,7 @@ public class SysML2PlantUMLText {
                 // This case "e" has owned elements belonging to the same diagram mode but e is NOT.
                 // So we choose the mode for owned elements.  E.g a package has some state machines.
                 setMode(mc);
-                return e.getOwnedElement();
+                return Arrays.asList(e);
             }
         }
         return setupVisualizationMode(eObj);
@@ -516,19 +579,30 @@ public class SysML2PlantUMLText {
         return inherited;
     }
 
+    private boolean showMetaclass;
+    
     private void init() {
         idCounter = 1;
         this.idMap = new IDMap();
         this.namespaces = new ArrayList<>();
         this.inheritingIdices = new ArrayList<>();
+        this.showMetaclass = styleValue("showMetaclass") != null;
     }
 
     private List<Namespace> namespaces;
     private List<Integer> inheritingIdices;
 
     
-    void pushNamespace(Namespace ns) {
+    boolean pushNamespace(Namespace ns) {
+        if (namespaces.contains(ns)) return false;
         namespaces.add(ns);
+        return true;
+    }
+
+    Namespace getCurrentNamespace() {
+        int size = namespaces.size();
+        if (size == 0) return null;
+        return namespaces.get(size - 1);
     }
 
     void inheriting() {
@@ -545,6 +619,45 @@ public class SysML2PlantUMLText {
         if (idxI == idx) {
             inheritingIdices.remove(sizeI);
         }
+    }
+
+    private List<Element> evalInternal(Expression ex, Element target) {
+        List<Element> ret = ExpressionEvaluator.INSTANCE.evaluate(ex, target);
+        if (ret == null) return null;
+        int size = ret.size();
+        if (size == 0) return null;
+        if (size > 1) return ret;
+        Element e = ret.get(0);
+        if (ex.equals(e)) return null;
+        return ret;
+    }
+
+    List<Element> eval(Element e) {
+        if (!(e instanceof Expression)) return null;
+        Expression ex = (Expression) e;
+
+    	List<Namespace> targetNamespaces =
+    		inheritingIdices.isEmpty()? namespaces:
+    		inheritingIdices.stream().map(namespaces::get).collect(Collectors.toList());
+    	
+    	// Create nested feature context as a feature chain target.
+        Feature evalTarget = null;
+        for (int i = targetNamespaces.size() - 1; i >= 0; i--) {
+            Namespace ns = targetNamespaces.get(i);
+            if (ns instanceof Type) {
+                Feature target = EvaluationUtil.getTargetFeatureFor(ns);
+                if (evalTarget == null) {
+                	evalTarget = target;
+                } else {
+                	evalTarget = FeatureUtil.chainFeatures(target, evalTarget);
+                }
+                if (!(ns instanceof Feature)) {
+                	break;
+                }
+            }
+        }
+        
+        return evalInternal(ex, evalTarget);
     }
 
     InheritKey makeInheritKey(Feature ref) {

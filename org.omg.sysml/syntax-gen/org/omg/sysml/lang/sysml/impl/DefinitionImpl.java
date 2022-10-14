@@ -38,6 +38,7 @@ import org.omg.sysml.lang.sysml.EnumerationUsage;
 import org.omg.sysml.lang.sysml.FlowConnectionUsage;
 import org.omg.sysml.lang.sysml.InterfaceUsage;
 import org.omg.sysml.lang.sysml.ItemUsage;
+import org.omg.sysml.lang.sysml.MetadataUsage;
 import org.omg.sysml.lang.sysml.OccurrenceUsage;
 import org.omg.sysml.lang.sysml.PartUsage;
 import org.omg.sysml.lang.sysml.CalculationUsage;
@@ -96,6 +97,7 @@ import org.omg.sysml.lang.sysml.ViewpointUsage;
  *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getOwnedOccurrence <em>Owned Occurrence</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getOwnedUseCase <em>Owned Use Case</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getOwnedFlow <em>Owned Flow</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getOwnedMetadata <em>Owned Metadata</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getOwnedUsage <em>Owned Usage</em>}</li>
  * </ul>
  *
@@ -382,6 +384,15 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate OWNED_FLOW__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.DEFINITION__OWNED_FLOW).getSettingDelegate();
 	/**
+	 * The cached setting delegate for the '{@link #getOwnedMetadata() <em>Owned Metadata</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedMetadata()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate OWNED_METADATA__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.DEFINITION__OWNED_METADATA).getSettingDelegate();
+	/**
 	 * The cached setting delegate for the '{@link #getOwnedUsage() <em>Owned Usage</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -625,6 +636,17 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
+	public EList<MetadataUsage> getOwnedMetadata() {
+		return (EList<MetadataUsage>)OWNED_METADATA__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
 	public EList<StateUsage> getOwnedState() {
 		return (EList<StateUsage>)OWNED_STATE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
@@ -839,6 +861,8 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 				return getOwnedUseCase();
 			case SysMLPackage.DEFINITION__OWNED_FLOW:
 				return getOwnedFlow();
+			case SysMLPackage.DEFINITION__OWNED_METADATA:
+				return getOwnedMetadata();
 			case SysMLPackage.DEFINITION__OWNED_USAGE:
 				return getOwnedUsage();
 		}
@@ -973,6 +997,10 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 				getOwnedFlow().clear();
 				getOwnedFlow().addAll((Collection<? extends FlowConnectionUsage>)newValue);
 				return;
+			case SysMLPackage.DEFINITION__OWNED_METADATA:
+				getOwnedMetadata().clear();
+				getOwnedMetadata().addAll((Collection<? extends MetadataUsage>)newValue);
+				return;
 			case SysMLPackage.DEFINITION__OWNED_USAGE:
 				getOwnedUsage().clear();
 				getOwnedUsage().addAll((Collection<? extends Usage>)newValue);
@@ -1079,6 +1107,9 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 			case SysMLPackage.DEFINITION__OWNED_FLOW:
 				getOwnedFlow().clear();
 				return;
+			case SysMLPackage.DEFINITION__OWNED_METADATA:
+				getOwnedMetadata().clear();
+				return;
 			case SysMLPackage.DEFINITION__OWNED_USAGE:
 				getOwnedUsage().clear();
 				return;
@@ -1154,6 +1185,8 @@ public class DefinitionImpl extends ClassifierImpl implements Definition {
 				return OWNED_USE_CASE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.DEFINITION__OWNED_FLOW:
 				return OWNED_FLOW__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
+			case SysMLPackage.DEFINITION__OWNED_METADATA:
+				return OWNED_METADATA__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.DEFINITION__OWNED_USAGE:
 				return OWNED_USAGE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 		}

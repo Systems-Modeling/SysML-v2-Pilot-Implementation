@@ -1,5 +1,5 @@
 //* 
-XPECT_SETUP org.omg.kerml.xpect.tests.validation.KerMLValidationTest
+XPECT_SETUP org.omg.kerml.xpect.tests.parsing.KerMLParsingTest
 	ResourceSet {
 		ThisFile {}
 		File {from ="/library/Base.kerml"}
@@ -37,27 +37,25 @@ XPECT_SETUP org.omg.kerml.xpect.tests.validation.KerMLValidationTest
 END_SETUP 
 */
 package MetadataFeatureTest {
-	import ScalarValues::*;
-	import ControlFunctions::collect;
 	
 	metaclass A {
 		feature :>> annotatedElement : KerML::Feature;
-		feature x : Integer;
-		feature y : String;
-		feature z : Boolean;
+		feature x : ScalarValues::Integer;
+		feature y : ScalarValues::String;
+		feature z : ScalarValues::Boolean;
 		feature u {
-			feature v : Integer;
+			feature v : ScalarValues::Integer;
 		}
 	}
 	
-	function f { in x; return : Boolean; }
+	function f { in x; return : ScalarValues::Boolean; }
 	
 	// XPECT errors --> "Must be model-level evaluable" at "filter f(A::y);"
 	filter f(A::y);
 	// XPECT errors --> "Must be model-level evaluable" at "filter ~A::z;"
 	filter ~A::z;
-	// XPECT errors --> "Must be model-level evaluable" at "filter A::y->collect {in x; x};"
-	filter A::y->collect {in x; x};
+	// XPECT errors --> "Must be model-level evaluable" at "filter A::y->ControlFunctions::collect {in x; x};"
+	filter A::y->ControlFunctions::collect {in x; x};
 	// XPECT errors --> "Must be model-level evaluable" at "filter A(null, 1, "", false);"
 	filter A(null, 1, "", false);
 	

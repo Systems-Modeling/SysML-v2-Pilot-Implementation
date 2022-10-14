@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2021-2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -48,18 +48,18 @@ public abstract class SysMLInteractiveTest {
 		return instance;
 	}
 	
-	public List<Element> eval(SysMLInteractive instance, String input) {
+	public List<Element> process(SysMLInteractive instance, String input) {
 		if (instance == null) {
 			instance = getSysMLInteractiveInstance();
 		}
-		SysMLInteractiveResult result = instance.eval(input);
+		SysMLInteractiveResult result = instance.process(input);
 		assertTrue("'" + input + "':\n" + result.formatIssues(), result.getIssues().isEmpty());
 		Element root = result.getRootElement();
 		assertTrue(root instanceof Namespace);
 		return ((Namespace)root).getOwnedMember();
 	}
 	
-	public List<Element> eval(String input) {
-		return eval(null, input);
+	public List<Element> process(String input) {
+		return process(null, input);
 	}
 }

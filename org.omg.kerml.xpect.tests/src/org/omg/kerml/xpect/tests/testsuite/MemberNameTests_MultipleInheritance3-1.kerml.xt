@@ -2,7 +2,7 @@
    This change enabled to add xpect linking test.
  */
 //* 
-XPECT_SETUP org.omg.kerml.xpect.tests.testsuite.KerMLXtextTest
+XPECT_SETUP org.omg.kerml.xpect.tests.parsing.KerMLParsingTest
 	ResourceSet {
 		ThisFile {}
 		File {from ="/library/Base.kerml"}

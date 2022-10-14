@@ -22,12 +22,15 @@
 
 package org.omg.sysml.delegate;
 
+import java.util.List;
+
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.omg.sysml.lang.sysml.ItemFlow;
 import org.omg.sysml.lang.sysml.ItemFlowFeature;
+import org.omg.sysml.lang.sysml.Type;
 
 public class ItemFlow_itemFlowFeature_SettingDelegate extends BasicDerivedListSettingDelegate {
 
@@ -40,7 +43,10 @@ public class ItemFlow_itemFlowFeature_SettingDelegate extends BasicDerivedListSe
 		EList<ItemFlowFeature> itemFlowFeatures = 
 				new EObjectResolvingEList<ItemFlowFeature>(ItemFlowFeature.class, owner, eStructuralFeature.getFeatureID());
 		((ItemFlow)owner).getItemFlowEnd().stream().
-			map(end->(ItemFlowFeature)end.getOwnedFeature().get(0)).
+			map(Type::getOwnedFeature).
+			flatMap(List::stream).
+			filter(ItemFlowFeature.class::isInstance).
+			map(ItemFlowFeature.class::cast).
 			forEachOrdered(itemFlowFeatures::add);
 		return itemFlowFeatures;
 	}

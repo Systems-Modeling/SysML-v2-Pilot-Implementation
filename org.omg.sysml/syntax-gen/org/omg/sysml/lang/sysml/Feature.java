@@ -47,20 +47,19 @@ import org.eclipse.emf.common.util.EList;
  * isEnd = owningFeatureMembership <> null and owningFeatureMembership.oclIsKindOf(EndFeatureMembership)
  * multiplicity <> null implies multiplicity.featuringType = featuringType 
  * allSupertypes()->includes(KernelLibrary::things)
+ * chainingFeatures->size() <> 1
+ * invertedFeature = invertedFeatureInverting.featureInverted
+ * chainingFeature = ownedFeatureChaining.chainingFeature
+ * ownedFeatureChaining = ownedRelationship->selectByKind(FeatureChaining)
  * chainingfeatureChainings->notEmpty() implies (owningFeatureMembership <> null implies owningFeatureMembership.isDerived)
  * chainingFeatures->excludes(self)
- * invertedFeature = invertedFeatureInverting.featureInverted
- * chainingFeatures->size() <> 1
- * chainingFeature = ownedFeatureChaining.chainingFeature
  * inverseFeature = invertingFeatureInverting.featureInverse
- * ownedFeatureChaining = ownedRelationship->selectByKind(FeatureChaining)
  * <!-- end-model-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwnedTypeFeaturing <em>Owned Type Featuring</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwningFeatureMembership <em>Owning Feature Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwningType <em>Owning Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getEndOwningType <em>End Owning Type</em>}</li>
@@ -73,6 +72,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isEnd <em>Is End</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwnedTyping <em>Owned Typing</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getFeaturingType <em>Featuring Type</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwnedTypeFeaturing <em>Owned Type Featuring</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isDerived <em>Is Derived</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getChainingFeature <em>Chaining Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwnedFeatureInverting <em>Owned Feature Inverting</em>}</li>
@@ -80,6 +80,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isReadOnly <em>Is Read Only</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isPortion <em>Is Portion</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getDirection <em>Direction</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwnedReferenceSubsetting <em>Owned Reference Subsetting</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isNonunique <em>Is Nonunique</em>}</li>
  * </ul>
  *
@@ -621,6 +622,41 @@ public interface Feature extends Type {
 	 * @generated
 	 */
 	void setDirection(FeatureDirectionKind value);
+
+	/**
+	 * Returns the value of the '<em><b>Owned Reference Subsetting</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.ReferenceSubsetting#getReferencingFeature <em>Referencing Feature</em>}'.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Feature#getOwnedSubsetting() <em>Owned Subsetting</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The one <code>ownedSubsetting</code> of this Feature, if any, that is a ReferenceSubsettings, for which the Feature is the <code>referencingFeature</code>.</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Owned Reference Subsetting</em>' reference.
+	 * @see #setOwnedReferenceSubsetting(ReferenceSubsetting)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_OwnedReferenceSubsetting()
+	 * @see org.omg.sysml.lang.sysml.ReferenceSubsetting#getReferencingFeature
+	 * @model opposite="referencingFeature" transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="subsets"
+	 *        annotation="http://www.omg.org/spec/SysML"
+	 * @generated
+	 */
+	ReferenceSubsetting getOwnedReferenceSubsetting();
+
+	/**
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Feature#getOwnedReferenceSubsetting <em>Owned Reference Subsetting</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Owned Reference Subsetting</em>' reference.
+	 * @see #getOwnedReferenceSubsetting()
+	 * @generated
+	 */
+	void setOwnedReferenceSubsetting(ReferenceSubsetting value);
 
 	/**
 	 * Returns the value of the '<em><b>End Owning Type</b></em>' reference.

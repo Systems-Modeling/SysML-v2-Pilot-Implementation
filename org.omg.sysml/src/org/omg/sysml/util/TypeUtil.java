@@ -301,15 +301,22 @@ public class TypeUtil {
 		return membership;
 	}
 	
-	public static ParameterMembership addOwnedParameterTo(Type type, Expression value) {
+	private static <T extends FeatureMembership> T addBoundFeatureTo(Type type, Expression value, T membership) {
 		Feature feature = SysMLFactory.eINSTANCE.createFeature();
 		if (value != null) {
 			FeatureUtil.addFeatureValueTo(feature, value);
 		}
-		ParameterMembership membership = SysMLFactory.eINSTANCE.createParameterMembership();
 		membership.setOwnedMemberFeature(feature);
 		type.getOwnedRelationship().add(membership);
 		return membership;
+	}
+	
+	public static FeatureMembership addBoundFeatureTo(Type type, Expression value) {
+		return addBoundFeatureTo(type, value, SysMLFactory.eINSTANCE.createFeatureMembership());
+	}
+	
+	public static ParameterMembership addOwnedParameterTo(Type type, Expression value) {
+		return addBoundFeatureTo(type, value, SysMLFactory.eINSTANCE.createParameterMembership());
 	}
 	
 	// Implicit general types
@@ -318,8 +325,8 @@ public class TypeUtil {
 		getTypeAdapter(type).setIsAddImplicitGeneralTypes(isAddImplicitGeneralTypes);
 	}
 	
-	public static boolean isImplicitGeneralizationDeclaredFor(Type type, EClass eClass) {
-		return getTypeAdapter(type).isImplicitGeneralizationDeclaredFor(eClass);
+	public static boolean isImplicitSpecializationDeclaredFor(Type type, EClass eClass) {
+		return getTypeAdapter(type).isImplicitSpecializationDeclaredFor(eClass);
 	}
 	
 	public static boolean isImplicitGeneralTypesEmpty(Type type) {
@@ -359,15 +366,16 @@ public class TypeUtil {
 	}
 
 	/**
-	 * Physically insert implicit generalizations into the model.
+	 * Physically insert implicit specializations into the model.
 	 */
-	public static void insertImplicitGeneralizations(Type type) {
+	public static void insertImplicitSpecializations(Type type) {
 		TypeAdapter adapter = getTypeAdapter(type);
 		adapter.forEachImplicitGeneralType((eClass, general)->{
-			Specialization newGeneralization = (Specialization)SysMLFactory.eINSTANCE.create(eClass);
-			newGeneralization.setGeneral(general);
-			newGeneralization.setSpecific(type);
-			type.getOwnedRelationship().add(newGeneralization);			
+			Specialization newSpecialization = (Specialization)SysMLFactory.eINSTANCE.create(eClass);
+			newSpecialization.setIsImplied(true);
+			newSpecialization.setGeneral(general);
+			newSpecialization.setSpecific(type);
+			type.getOwnedRelationship().add(newSpecialization);			
 		});
 		adapter.cleanImplicitGeneralTypes();
 	}
@@ -385,6 +393,7 @@ public class TypeUtil {
 		TypeAdapter adapter = getTypeAdapter(type);
 		List<Membership> createdMemberships = new ArrayList<>();
 		adapter.forEachImplicitBindingConnector((connector, eClass)->{
+			connector.setIsImplied(true);
 			if (eClass == SysMLPackage.Literals.FEATURE_MEMBERSHIP) {
 				createdMemberships.add(TypeUtil.addOwnedFeatureTo(type, connector));
 			} else {

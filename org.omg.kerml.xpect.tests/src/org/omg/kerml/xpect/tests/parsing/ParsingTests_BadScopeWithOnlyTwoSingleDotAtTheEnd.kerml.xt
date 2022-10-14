@@ -1,0 +1,35 @@
+//* 
+XPECT_SETUP org.omg.kerml.xpect.tests.parsing.KerMLParsingTest
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library/Base.kerml"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library/Base.kerml"}
+			}
+		}
+	}
+END_SETUP 
+*/
+
+package test{
+	classifier non{}
+	classifier A{
+		// XPECT errors ---> "Couldn't resolve reference to Feature 'non'." at "non"
+		feature aa subsets non;
+		feature a: A;
+	}
+	classifier B{
+		//* XPECT errors ---
+		"Relationships must have at least two related elements" at ""
+		"no viable alternative at input '..'" at ".."
+		"no viable alternative at input '..'" at "test"
+		"no viable alternative at input 'A'" at "A"
+		---
+		*/
+		feature b: test::A..a;
+	}
+}

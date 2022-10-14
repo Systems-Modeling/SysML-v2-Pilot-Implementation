@@ -42,19 +42,15 @@ import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
 public abstract class VTraverser extends Visitor {
     private Set<Namespace> visited;
 
-    private Namespace currentNamespace;
-    protected Namespace getCurrentNamespace() {
-        return currentNamespace;
-    }
     private Membership currentMembership;
     protected Membership getCurrentMembership() {
         return currentMembership;
     }
 
     protected boolean checkVisited(Namespace n) {
-    	boolean flag = visited.contains(n);
+    	if (visited.contains(n)) return true;
     	visited.add(n);
-    	return flag;
+    	return false;
     }
 
     private List<Set<Namespace>> listOfVisited = new ArrayList<Set<Namespace>>();
@@ -122,11 +118,10 @@ public abstract class VTraverser extends Visitor {
         }
     }
 
-    public String traverse(Namespace ns, boolean noInherit) {
+    public String traverse(Namespace ns, boolean noInherit, boolean noPopNamespace) {
         VPath vpath = getVPath();
-        pushNamespace(ns);
+        if (!pushNamespace(ns)) return null;
         vpath.enter(ns);
-        this.currentNamespace = ns;
         Set<Element> covered = new HashSet<Element>();
         traverseInternal(ns, covered);
         if (!noInherit) {
@@ -137,14 +132,15 @@ public abstract class VTraverser extends Visitor {
                 traverseRest(vpath);
             }
         }
-        this.currentNamespace = null;
         vpath.leave(ns);
-        popNamespace();
+        if (!noPopNamespace) {
+            popNamespace();
+        }
         return "";
     }
 
     public String traverse(Namespace ns) {
-        return traverse(ns, false);
+        return traverse(ns, false, false);
     }
 
     protected String visitMembership(Membership m) {

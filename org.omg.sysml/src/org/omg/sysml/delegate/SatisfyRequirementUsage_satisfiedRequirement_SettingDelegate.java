@@ -36,7 +36,7 @@ public class SatisfyRequirementUsage_satisfiedRequirement_SettingDelegate extend
 
 	@Override
 	protected EObject basicGet(InternalEObject owner) {
-		return FeatureUtil.getReferencedFeatureOf(((SatisfyRequirementUsage)owner), RequirementUsage.class);
+		return FeatureUtil.getEffectiveReferencedFeatureOf(((SatisfyRequirementUsage)owner), RequirementUsage.class);
 	}
 
 }

@@ -1,0 +1,65 @@
+//*
+XPECT_SETUP org.omg.sysml.xpect.tests.validation.invalid.SysMLTests
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library.kernel/Base.kerml"}
+		File {from ="/library.kernel/Links.kerml"}
+		File {from ="/library.kernel/Occurrences.kerml"}
+       	File {from ="/library.kernel/Objects.kerml"}
+       	File {from ="/library.kernel/Performances.kerml"}
+       	File {from ="/library.kernel/Transfers.kerml"}
+		File {from ="/library.kernel/BaseFunctions.kerml"}
+		File {from ="/library.systems/Items.sysml"}
+		File {from ="/library.systems/Parts.sysml"}
+		File {from ="/library.systems/Ports.sysml"}
+		File {from ="/library.systems/Connections.sysml"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library.kernel/Base.kerml"}
+				File {from ="/library.kernel/Links.kerml"}
+				File {from ="/library.kernel/Occurrences.kerml"}
+ 		      	File {from ="/library.kernel/Objects.kerml"}
+ 		      	File {from ="/library.kernel/Performances.kerml"}
+ 		      	File {from ="/library.kernel/Transfers.kerml"}
+				File {from ="/library.kernel/BaseFunctions.kerml"}
+				File {from ="/library.systems/Items.sysml"}
+				File {from ="/library.systems/Parts.sysml"}
+				File {from ="/library.systems/Ports.sysml"}
+				File {from ="/library.systems/Connections.sysml"}
+			}
+		}
+	}
+END_SETUP 
+*/
+package P {
+	part def A;	
+	part def B;	
+	part def C;	
+	part def D;	
+	part def E;
+	
+	flow def DE {
+		end : D[1];
+		end : E[1];
+	}
+	flow def BC {
+		end : B[1];
+		end : C[1];
+	}
+	part apart : A {
+		part b : B[1];
+		part c : C[1];
+		
+		message bc : BC from b to c;
+		message de : DE, BC from b to c;
+		
+		// XPECT errors --> "A flow connection must be typed by flow connection definitions." at "message :A from b to c;"
+		message :A from b to c;
+		// XPECT errors --> "A flow connection must be typed by flow connection definitions." at "message :apart from b to c;"
+		message :apart from b to c;
+	}
+}
+

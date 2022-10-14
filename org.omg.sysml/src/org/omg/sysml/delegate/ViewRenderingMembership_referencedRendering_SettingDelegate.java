@@ -36,7 +36,7 @@ public class ViewRenderingMembership_referencedRendering_SettingDelegate extends
 
 	@Override
 	protected EObject basicGet(InternalEObject owner) {
-		return FeatureUtil.getReferencedFeatureOf(((ViewRenderingMembership)owner).getOwnedRendering(), RenderingUsage.class);
+		return FeatureUtil.getEffectiveReferencedFeatureOf(((ViewRenderingMembership)owner).getOwnedRendering(), RenderingUsage.class);
 	}
 
 }

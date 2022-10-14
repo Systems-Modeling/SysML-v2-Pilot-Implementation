@@ -39,9 +39,12 @@ package Performances {
 			 */
 		}
 		
+<<<<<<< HEAD
 		feature redefines isDispatch default true;
   		feature redefines dispatchScope default thisPerformance;
   		
+=======
+>>>>>>> refs/heads/master
 		step enclosedPerformances: Performance[0..*] subsets performances, timeEnclosedOccurrences {
 			doc
 			/*
@@ -49,6 +52,7 @@ package Performances {
 			 */
 		}
 		
+<<<<<<< HEAD
 		step thisPerformance: Performance [1] subsets enclosedPerformances default self {
 			doc
 			/*
@@ -73,6 +77,23 @@ package Performances {
 			}
 		
 			step redefines thisPerformance default (that as Performance).thisPerformance;
+=======
+		composite step subperformances: Performance[0..*] subsets enclosedPerformances, suboccurrences {
+			doc
+			/*
+			 * enclosedPerformances that are composite. 
+			 */
+		
+			feature redefines this default (that as Performance).this {
+				doc
+				/*
+				 * The default "this" context of a subperformance is the same as that of its owning Performance.
+				 * This means that the context for any Performance that is in a composition tree rooted
+				 * in a Performance that is not itself owned by an Object is the root Performance. If the
+				 * root Performance is an ownedPerformance of an Object, then that Object is the context.
+				 */
+			}
+>>>>>>> refs/heads/master
 		}
 		
 		expr enclosedEvaluations: Evaluation[0..*] subsets evaluations, enclosedPerformances {
@@ -171,7 +192,11 @@ package Performances {
 	 
 		return : Anything[0..0];
 	}
+<<<<<<< HEAD
 	
+=======
+
+>>>>>>> refs/heads/master
 	assoc Involves specializes BinaryLinkObject {
 		doc
 		/*
@@ -200,31 +225,68 @@ package Performances {
 		 */
 	}
 	
+<<<<<<< HEAD
 	abstract expr evaluations: Evaluation[0..*] nonunique subsets performances {
 		doc
 		/*
 		 * evaluations is a specialization of performances for evaluations of Functions.
+=======
+	abstract step performances: Performance[0..*] nonunique subsets occurrences {
+		doc
+		/*
+		 * performances is the most general feature for performances of Behaviors.
+>>>>>>> refs/heads/master
 		 */
 	}
 	
+<<<<<<< HEAD
 	abstract expr booleanEvaluations: BooleanEvaluation[0..*] nonunique subsets evaluations {
 		doc
 		/*
 		 * booleanEvaluations is a specialization of evaluations restricted to type BooleanEvaluation.
+=======
+	abstract expr evaluations: Evaluation[0..*] nonunique subsets performances {
+		doc
+		/*
+		 * evaluations is a specialization of performances for evaluations of Functions.
+>>>>>>> refs/heads/master
 		 */
 	}
 	
+<<<<<<< HEAD
 	abstract expr trueEvaluations subsets booleanEvaluations {
 		doc
 		/*
 		 * trueEvaluations is a subset of booleanEvaluations that result in true. It is the most general
 		 * feature of invariants that are not negated. 
 		 */
+=======
+	abstract expr booleanEvaluations: BooleanEvaluation[0..*] nonunique subsets evaluations {
+		doc
+		/*
+		 * booleanEvaluations is a specialization of evaluations restricted to type BooleanEvaluation.
+		 */
+	}
+>>>>>>> refs/heads/master
 	
+<<<<<<< HEAD
+=======
+	abstract expr trueEvaluations :> booleanEvaluations {
+		doc
+		/*
+		 * trueEvaluations is a subset of booleanEvaluations that result in true. It is the most general
+		 * feature of invariants that are not negated. 
+		 */
+	
+>>>>>>> refs/heads/master
 		true
 	}
 	
+<<<<<<< HEAD
 	abstract expr falseEvaluations subsets booleanEvaluations {
+=======
+	abstract expr falseEvaluations :> booleanEvaluations {
+>>>>>>> refs/heads/master
 		doc
 		/*
 		 * falseEvaluations is a subset of booleanEvaluations that result in true. It is the most general
@@ -276,4 +338,8 @@ package Performances {
 		 * nullEvaluations is a specialization of evaluations restricted to type NullEvaluation.
 		 */
 	}
+<<<<<<< HEAD
+=======
+	
+>>>>>>> refs/heads/master
 }

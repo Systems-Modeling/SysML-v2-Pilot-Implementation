@@ -32,7 +32,7 @@ import org.eclipse.emf.common.util.EList;
  * <!-- begin-model-doc -->
  * <p>A RequirementDefinition is a ConstraintDefinition that defines a requirement as a constraint that is used in the context of a specification of a that a valid solution must satisfy. The specification is relative to a specified subject, possibly in collaboration with one or more external actors.</p>
  * 
- * <p>A RequirementDefinition must subclass, directly or indirectly, the base RequirementDefinition <em>RequirementCheck</em> from the Systems model library.</p>
+ * <p>A RequirementDefinition must subclass, directly or indirectly, the base RequirementDefinition <em><code>RequirementCheck</code></em> from the Systems model library.</p>
  * <!-- end-model-doc -->
  *
  * <p>
@@ -145,8 +145,8 @@ public interface RequirementDefinition extends ConstraintDefinition {
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Behavior#getParameter() <em>Parameter</em>}'</li>
 	 *   <li>'{@link org.omg.sysml.lang.sysml.Definition#getOwnedPart() <em>Owned Part</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Behavior#getParameter() <em>Parameter</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

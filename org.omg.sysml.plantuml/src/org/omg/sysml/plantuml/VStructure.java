@@ -1,7 +1,7 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation, PlantUML Visualization
  * Copyright (c) 2020-2022 Mgnite Inc.
- * Copyright (c) 2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2021-2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -29,6 +29,7 @@ package org.omg.sysml.plantuml;
 import java.util.List;
 import java.util.regex.Pattern;
 
+import org.omg.sysml.expressions.util.EvaluationUtil;
 import org.omg.sysml.lang.sysml.ActorMembership;
 import org.omg.sysml.lang.sysml.ConjugatedPortDefinition;
 import org.omg.sysml.lang.sysml.Element;
@@ -37,7 +38,6 @@ import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.LifeClass;
 import org.omg.sysml.lang.sysml.Membership;
-import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.PortioningFeature;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.RequirementUsage;
@@ -62,6 +62,53 @@ public abstract class VStructure extends VDefault {
         }
     }
 
+    protected String getEvaluatedResults(Element elem) {
+        if (styleValue("evalExp") == null) return null;
+        List<Element> elems = eval(elem);
+        StringBuilder sb = new StringBuilder();
+        if (elems == null) return null;
+        int size = elems.size();
+        if (size == 1) {
+            Element e = elems.get(0);
+            if (e == null) return null;
+            Object o = EvaluationUtil.valueOf(e);
+            sb.append(" <&arrow-thick-right> ");
+            if (o instanceof Element) {
+                sb.append(e.getEffectiveName());
+            } else {
+                sb.append(o);
+            }
+            return sb.toString();
+        } else if (size > 1) {
+            sb.append(" <&arrow-thick-right> ");
+            sb.append('(');
+            boolean flag = false;
+            for (Element e: elems) {
+                Object o = EvaluationUtil.valueOf(e);
+                if (flag) {
+                    sb.append(", ");
+                } else {
+                    flag = true;
+                }
+                if (o == e) {
+                    sb.append(e.getEffectiveName());
+                } else {
+                    sb.append(o);
+                }
+            }
+            sb.append(')');
+            return sb.toString();
+        }
+        return null;
+    }
+
+    protected boolean addEvaluatedResults(Element elem) {
+        String str = getEvaluatedResults(elem);
+        if (str == null) return false;
+        append(str);
+        return true;
+    }
+
     private static Pattern patEq = Pattern.compile("^\\s*:?=");
     private boolean addFeatureMembershipText(Feature f) {
         boolean flag = false;
@@ -69,13 +116,16 @@ public abstract class VStructure extends VDefault {
             if (m instanceof FeatureValue) {
                 FeatureValue fv = (FeatureValue) m;
                 String text = getText(fv);
-                if (text == null) continue;
-                if (!patEq.matcher(text).lookingAt()) {
-                    append('=');
+                if (text != null) {
+                    if (!patEq.matcher(text).lookingAt()) {
+                        append('=');
+                    }
+                    appendText(text, true);
+                    append("; ");
+                    flag = true;
                 }
-                appendText(text, true);
-                append("; ");
-                flag = true;
+                Expression ex = fv.getValue();
+                flag = addEvaluatedResults(ex) || flag;
             } else if (m instanceof ResultExpressionMembership) {
                 ResultExpressionMembership rem = (ResultExpressionMembership) m;
                 Expression ex = rem.getOwnedResultExpression();
@@ -169,23 +219,35 @@ public abstract class VStructure extends VDefault {
 
     protected String extractTitleName(Element e) {
         String name = getNameAnyway(e);
-        if (!(e instanceof Feature)) return name;
-
-        Feature f = (Feature) e;
         StringBuilder sb = new StringBuilder();
-        boolean added = appendFeatureType(sb, ": ", f);
-        sb.append(' ');
-        added = appendSubsettingFeature(sb, ":> ", f) || added;
-        sb.insert(0, name);
-        /*
-        if (f instanceof Usage) {
-            Usage u = (Usage) f;
-            if (u.isVariation()) {
-                sb.insert(0, "<size:20><&layers> </size>");
+
+        if (e instanceof Feature) {
+            Feature f = (Feature) e;
+            boolean added = appendFeatureType(sb, ": ", f);
+            sb.append(' ');
+            added = appendSubsettingFeature(sb, ":> ", f) || added;
+            sb.insert(0, name);
+            /*
+              if (f instanceof Usage) {
+                  Usage u = (Usage) f;
+                  if (u.isVariation()) {
+                      sb.insert(0, "<size:20><&layers> </size>");
+                  }
+              }
+            */
+            insertActorLikeStyle(sb, f);
+
+            if (e instanceof Expression) {
+                String str = getEvaluatedResults(e);
+                if (str != null) {
+                    sb.append(str);
+                }
             }
+
+        } else {
+            sb.append(name);
         }
-        */
-        insertActorLikeStyle(sb, f);
+ 
         return sb.toString();
     }
 
@@ -196,15 +258,14 @@ public abstract class VStructure extends VDefault {
     }
 
     protected boolean addType(Type typ, String name, String keyword) {
-        addPUMLLine(typ, keyword, name);
-        addSpecializations(typ);
+        int id = addPUMLLine(typ, keyword, name);
+        addSpecializations(id, typ);
         return true;
     }
 
     @Override
-    public String caseNamespace(Namespace pkg) {
-        String name = pkg.getName();
-        if (name == null) return super.caseNamespace(pkg);
+    public String casePackage(org.omg.sysml.lang.sysml.Package pkg) {
+        String name = getNameAnyway(pkg, true, false);
         flushContexts();
         append("package ");
         addNameWithId(pkg, name, true);

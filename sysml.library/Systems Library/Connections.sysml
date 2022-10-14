@@ -42,7 +42,7 @@ package Connections {
 		end target: Anything[0..*] :>> BinaryLinkObject::target;
 	}
 	
-	abstract connection def FlowConnection :> BinaryConnection, Transfer {
+	abstract flow def FlowConnection :> BinaryConnection, Transfer {
 		doc
 		/*
 		 * FlowConnection is the class of binary connections that represent a transfer 
@@ -80,7 +80,7 @@ package Connections {
 		ref payload :>> 'item';
 	}
 	
-	abstract connection def SuccessionFlowConnection :> FlowConnection, TransferBefore {
+	abstract flow def SuccessionFlowConnection :> FlowConnection, TransferBefore {
 		doc
 		/*
 		 * SuccessionFlowConnection is the subclass of flow connections that represent 
@@ -105,7 +105,7 @@ package Connections {
 		 */
 	}
 	
-	abstract connection flowConnections: FlowConnection[0..*] nonunique :> binaryConnections, transfers {
+	abstract message flowConnections: FlowConnection[0..*] nonunique :> binaryConnections, transfers {
 		doc
 		/*
 		 * flowConnections is the base feature of all FlowConnectionUsages.
@@ -115,7 +115,7 @@ package Connections {
 		end target: Occurrence[0..*] :>> FlowConnection::target, binaryConnections::target, transfers::target;
 	}
 	
-	abstract connection successionFlowConnections: SuccessionFlowConnection[0..*] nonunique :> flowConnections, transfersBefore {
+	abstract message successionFlowConnections: SuccessionFlowConnection[0..*] nonunique :> flowConnections, transfersBefore {
 		doc
 		/*
 		 * successionFlowConnections is the base feature of all SuccessionFlowConnectionUsages.

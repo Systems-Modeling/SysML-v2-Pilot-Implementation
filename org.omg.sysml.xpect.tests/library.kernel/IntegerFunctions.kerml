@@ -1,8 +1,10 @@
-/**
- * This package defines functions on Integer values, including concrete specializations of the 
- * general arithmetic and comparison operations.
- */
 package IntegerFunctions {
+	doc
+	/*
+	 * This package defines functions on Integer values, including concrete specializations of the 
+	 * general arithmetic and comparison operations.
+	 */
+
 	import ScalarValues::*;
 	
 	function abs specializes RationalFunctions::abs { in x: Integer[1]; return : Natural[1]; }

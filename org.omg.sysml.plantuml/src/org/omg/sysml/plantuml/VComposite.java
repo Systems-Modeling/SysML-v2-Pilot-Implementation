@@ -72,12 +72,12 @@ public class VComposite extends VMixed {
     public String caseUsage(Usage f) {
         String featureText = getFeatureText(f);
         if (featureText.isEmpty()) return "";
-        addPUMLLine(f, "rec usage ", featureText);
+        int id = addPUMLLine(f, "rec usage ", featureText);
 
         VComposite vc = new VComposite(this);
         vc.traverse(f);
         vc.closeBlock();
-        addSpecializations(f);
+        addSpecializations(id, f);
 
         return "";
     }

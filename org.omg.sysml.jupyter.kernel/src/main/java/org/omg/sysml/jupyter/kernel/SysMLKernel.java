@@ -54,7 +54,16 @@ public class SysMLKernel extends BaseKernel {
         Optional<String> libraryPath = Optional.ofNullable(System.getenv(ISysML.LIBRARY_PATH_KEY));
         // Replace with Optional#or in Java 9+
         if (!libraryPath.isPresent()) {
-            libraryPath = Arrays.stream(System.getProperty("java.class.path", "").split(File.pathSeparator)).filter(path -> !path.isEmpty()).map(path -> Paths.get(path)).map(path -> !path.toFile().isDirectory() ? path.getParent() : path).map(path -> path.resolve("sysml.library")).filter(Files::exists).map(Path::normalize).map(Path::toString).findFirst();
+            libraryPath = Arrays.stream(System.getProperty("java.class.path", "")
+            		.split(File.pathSeparator))
+            		.filter(path -> !path.isEmpty())
+            		.map(path -> Paths.get(path))
+            		.map(path -> !path.toFile().isDirectory() ? path.getParent() : path)
+            		.map(path -> path.resolve("sysml.library"))
+            		.filter(Files::exists)
+            		.map(Path::normalize)
+            		.map(Path::toString)
+            		.findFirst();
         }
         libraryPath.ifPresent(path -> Arrays.stream(path.split(File.pathSeparator)).forEach(interactive::loadLibrary));
 
@@ -63,6 +72,7 @@ public class SysMLKernel extends BaseKernel {
         Optional.ofNullable(System.getenv(ISysML.GRAPHVIZ_PATH_KEY)).ifPresent(interactive::setGraphVizPath);
 
         this.magics = new Magics();
+        this.magics.registerMagics(Eval.class);
         this.magics.registerMagics(Listing.class);
         this.magics.registerMagics(Show.class);
         this.magics.registerMagics(Publish.class);
@@ -88,7 +98,7 @@ public class SysMLKernel extends BaseKernel {
             }
         }
 
-        SysMLInteractiveResult result = interactive.eval(expr);
+        SysMLInteractiveResult result = interactive.process(expr);
         if (!result.getSyntaxErrors().isEmpty()) {
             result.getSyntaxErrors().forEach(System.err::println);
         }

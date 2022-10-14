@@ -18,8 +18,7 @@
  * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
  *  
  *******************************************************************************/
-/**
- */
+
 package org.omg.sysml.lang.sysml.impl;
 
 import java.util.Collection;
@@ -27,7 +26,7 @@ import java.util.Collection;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.omg.sysml.expressions.ModelLevelFunction;
+import org.omg.sysml.expressions.ModelLevelExpressionEvaluator;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Function;
@@ -92,14 +91,9 @@ public class InvocationExpressionImpl extends ExpressionImpl implements Invocati
 	
 	@Override
 	public EList<Element> evaluate(Element target) {
-		ModelLevelFunction function = getModelLevelFunctionImpl();
-		return function == null? null: function.invoke(this, target);
+		return isModelLevelEvaluable()? ModelLevelExpressionEvaluator.INSTANCE.evaluateInvocation(this, target): null;
 	}
 	
-	protected ModelLevelFunction getModelLevelFunctionImpl() {
-		return ModelLevelFunction.getFunctionImpl(getFunction());
-	}
-
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated

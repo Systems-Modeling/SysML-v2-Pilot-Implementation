@@ -32,6 +32,11 @@ import org.omg.sysml.plantuml.SysML2PlantUMLStyle;
 
 public class SysMLInteractiveHelp {
 	
+	private static final String EVAL_HELP_STRING =
+			  "Usage: %eval [--target=<NAME>] <EXPR>\n\n"
+			+ "Print the results of evaluating <EXPR> on the target given by <NAME>, which must be fully qualified.\n"
+			+ "If a target is not given, then evaluate <EXPR> in global scope.";
+
 	private static final String LIST_HELP_STRING =
 			  "Usage: %list [<QUERY>]\n\n"
 			+ "If <QUERY> is not given, then list all loaded library packages.\n"
@@ -90,8 +95,12 @@ public class SysMLInteractiveHelp {
 			  "Usage: %export <NAME>\n\n"
 			+ "Save a file containing the complete JSON representation of the abstract syntax tree rooted in <NAME>.\n"
 		    + "<NAME> must be fully qualified.\n";
-    
-    public static String getListHelp() {
+ 
+	public static String getEvalHelp() {
+		return EVAL_HELP_STRING;
+	}
+ 
+	public static String getListHelp() {
     	return LIST_HELP_STRING;
     }
 

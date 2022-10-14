@@ -27,10 +27,12 @@ import java.util.Collection;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.omg.sysml.lang.sysml.Association;
 import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.Classifier;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.Interaction;
 import org.omg.sysml.lang.sysml.ItemFeature;
 import org.omg.sysml.lang.sysml.ItemFlow;
 import org.omg.sysml.lang.sysml.ItemFlowEnd;
@@ -46,7 +48,6 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.ItemFlowImpl#getBehavior <em>Behavior</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ItemFlowImpl#getParameter <em>Parameter</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ItemFlowImpl#getItemType <em>Item Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ItemFlowImpl#getTargetInputFeature <em>Target Input Feature</em>}</li>
@@ -54,21 +55,13 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ItemFlowImpl#getItemFlowEnd <em>Item Flow End</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ItemFlowImpl#getItemFeature <em>Item Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ItemFlowImpl#getItemFlowFeature <em>Item Flow Feature</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ItemFlowImpl#getInteraction <em>Interaction</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 	
-	/**
-	 * The cached setting delegate for the '{@link #getBehavior() <em>Behavior</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getBehavior()
-	 * @generated
-	 * @ordered
-	 */
-	protected EStructuralFeature.Internal.SettingDelegate BEHAVIOR__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.STEP__BEHAVIOR).getSettingDelegate();
 	/**
 	 * The cached setting delegate for the '{@link #getParameter() <em>Parameter</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -88,7 +81,7 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate ITEM_TYPE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.ITEM_FLOW__ITEM_TYPE).getSettingDelegate();
 	/**
-	 * The cached setting delegate for the '{@link #getTargetInputFeature() <em>Target Input Feature</em>}' reference list.
+	 * The cached setting delegate for the '{@link #getTargetInputFeature() <em>Target Input Feature</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getTargetInputFeature()
@@ -97,7 +90,7 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate TARGET_INPUT_FEATURE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.ITEM_FLOW__TARGET_INPUT_FEATURE).getSettingDelegate();
 	/**
-	 * The cached setting delegate for the '{@link #getSourceOutputFeature() <em>Source Output Feature</em>}' reference list.
+	 * The cached setting delegate for the '{@link #getSourceOutputFeature() <em>Source Output Feature</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getSourceOutputFeature()
@@ -115,7 +108,7 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate ITEM_FLOW_END__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.ITEM_FLOW__ITEM_FLOW_END).getSettingDelegate();
 	/**
-	 * The cached setting delegate for the '{@link #getItemFeature() <em>Item Feature</em>}' reference list.
+	 * The cached setting delegate for the '{@link #getItemFeature() <em>Item Feature</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getItemFeature()
@@ -133,6 +126,16 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate ITEM_FLOW_FEATURE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.ITEM_FLOW__ITEM_FLOW_FEATURE).getSettingDelegate();
+
+	/**
+	 * The cached setting delegate for the '{@link #getInteraction() <em>Interaction</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getInteraction()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate INTERACTION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.ITEM_FLOW__INTERACTION).getSettingDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -161,7 +164,8 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 	@SuppressWarnings("unchecked")
 	@Override
 	public EList<Behavior> getBehavior() {
-		return (EList<Behavior>)BEHAVIOR__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+		EList<Behavior> interaction = (EList<Behavior>)((EList<?>)getInteraction());
+		return interaction;
 	}
 
 	/**
@@ -170,7 +174,7 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 	 * @generated
 	 */
 	public boolean isSetBehavior() {
-		return !getBehavior().isEmpty();
+  		return false;
 	}
 
 	/**
@@ -209,10 +213,9 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
-	public EList<ItemFeature> getItemFeature() {
-		return (EList<ItemFeature>)ITEM_FEATURE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+	public ItemFeature getItemFeature() {
+		return (ItemFeature)ITEM_FEATURE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
@@ -220,12 +223,49 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
+	public ItemFeature basicGetItemFeature() {
+		return (ItemFeature)ITEM_FEATURE__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
-	public EList<Feature> getSourceOutputFeature() {
-		return (EList<Feature>)SOURCE_OUTPUT_FEATURE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+	public void setItemFeature(ItemFeature newItemFeature) {
+		ITEM_FEATURE__ESETTING_DELEGATE.dynamicSet(this, null, 0, newItemFeature);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Feature getSourceOutputFeature() {
+		return (Feature)SOURCE_OUTPUT_FEATURE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Feature basicGetSourceOutputFeature() {
+		return (Feature)SOURCE_OUTPUT_FEATURE__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setSourceOutputFeature(Feature newSourceOutputFeature) {
+		SOURCE_OUTPUT_FEATURE__ESETTING_DELEGATE.dynamicSet(this, null, 0, newSourceOutputFeature);
+	}
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -264,10 +304,48 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public EList<Feature> getTargetInputFeature() {
-		return (EList<Feature>)TARGET_INPUT_FEATURE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+	public EList<Interaction> getInteraction() {
+		return (EList<Interaction>)INTERACTION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetInteraction() {
+		return !getInteraction().isEmpty();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Feature getTargetInputFeature() {
+		return (Feature)TARGET_INPUT_FEATURE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Feature basicGetTargetInputFeature() {
+		return (Feature)TARGET_INPUT_FEATURE__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setTargetInputFeature(Feature newTargetInputFeature) {
+		TARGET_INPUT_FEATURE__ESETTING_DELEGATE.dynamicSet(this, null, 0, newTargetInputFeature);
+	}
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -332,6 +410,26 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<Association> getAssociation() {
+		@SuppressWarnings("unchecked")
+		EList<Association> interaction = (EList<Association>)((EList<?>)getInteraction());
+		return interaction;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetAssociation() {
+  		return false;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -342,15 +440,20 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 			case SysMLPackage.ITEM_FLOW__ITEM_TYPE:
 				return getItemType();
 			case SysMLPackage.ITEM_FLOW__TARGET_INPUT_FEATURE:
-				return getTargetInputFeature();
+				if (resolve) return getTargetInputFeature();
+				return basicGetTargetInputFeature();
 			case SysMLPackage.ITEM_FLOW__SOURCE_OUTPUT_FEATURE:
-				return getSourceOutputFeature();
+				if (resolve) return getSourceOutputFeature();
+				return basicGetSourceOutputFeature();
 			case SysMLPackage.ITEM_FLOW__ITEM_FLOW_END:
 				return getItemFlowEnd();
 			case SysMLPackage.ITEM_FLOW__ITEM_FEATURE:
-				return getItemFeature();
+				if (resolve) return getItemFeature();
+				return basicGetItemFeature();
 			case SysMLPackage.ITEM_FLOW__ITEM_FLOW_FEATURE:
 				return getItemFlowFeature();
+			case SysMLPackage.ITEM_FLOW__INTERACTION:
+				return getInteraction();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -377,24 +480,25 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 				getItemType().addAll((Collection<? extends Classifier>)newValue);
 				return;
 			case SysMLPackage.ITEM_FLOW__TARGET_INPUT_FEATURE:
-				getTargetInputFeature().clear();
-				getTargetInputFeature().addAll((Collection<? extends Feature>)newValue);
+				setTargetInputFeature((Feature)newValue);
 				return;
 			case SysMLPackage.ITEM_FLOW__SOURCE_OUTPUT_FEATURE:
-				getSourceOutputFeature().clear();
-				getSourceOutputFeature().addAll((Collection<? extends Feature>)newValue);
+				setSourceOutputFeature((Feature)newValue);
 				return;
 			case SysMLPackage.ITEM_FLOW__ITEM_FLOW_END:
 				getItemFlowEnd().clear();
 				getItemFlowEnd().addAll((Collection<? extends ItemFlowEnd>)newValue);
 				return;
 			case SysMLPackage.ITEM_FLOW__ITEM_FEATURE:
-				getItemFeature().clear();
-				getItemFeature().addAll((Collection<? extends ItemFeature>)newValue);
+				setItemFeature((ItemFeature)newValue);
 				return;
 			case SysMLPackage.ITEM_FLOW__ITEM_FLOW_FEATURE:
 				getItemFlowFeature().clear();
 				getItemFlowFeature().addAll((Collection<? extends ItemFlowFeature>)newValue);
+				return;
+			case SysMLPackage.ITEM_FLOW__INTERACTION:
+				getInteraction().clear();
+				getInteraction().addAll((Collection<? extends Interaction>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -418,19 +522,22 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 				getItemType().clear();
 				return;
 			case SysMLPackage.ITEM_FLOW__TARGET_INPUT_FEATURE:
-				getTargetInputFeature().clear();
+				setTargetInputFeature((Feature)null);
 				return;
 			case SysMLPackage.ITEM_FLOW__SOURCE_OUTPUT_FEATURE:
-				getSourceOutputFeature().clear();
+				setSourceOutputFeature((Feature)null);
 				return;
 			case SysMLPackage.ITEM_FLOW__ITEM_FLOW_END:
 				getItemFlowEnd().clear();
 				return;
 			case SysMLPackage.ITEM_FLOW__ITEM_FEATURE:
-				getItemFeature().clear();
+				setItemFeature((ItemFeature)null);
 				return;
 			case SysMLPackage.ITEM_FLOW__ITEM_FLOW_FEATURE:
 				getItemFlowFeature().clear();
+				return;
+			case SysMLPackage.ITEM_FLOW__INTERACTION:
+				getInteraction().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -454,6 +561,8 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 				return isSetParameter();
 			case SysMLPackage.ITEM_FLOW__CONNECTOR_END:
 				return isSetConnectorEnd();
+			case SysMLPackage.ITEM_FLOW__ASSOCIATION:
+				return isSetAssociation();
 			case SysMLPackage.ITEM_FLOW__ITEM_TYPE:
 				return ITEM_TYPE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.ITEM_FLOW__TARGET_INPUT_FEATURE:
@@ -466,6 +575,8 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 				return ITEM_FEATURE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.ITEM_FLOW__ITEM_FLOW_FEATURE:
 				return ITEM_FLOW_FEATURE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
+			case SysMLPackage.ITEM_FLOW__INTERACTION:
+				return isSetInteraction();
 		}
 		return super.eIsSet(featureID);
 	}

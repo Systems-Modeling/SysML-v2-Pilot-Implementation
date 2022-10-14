@@ -379,7 +379,7 @@ public class ConstraintUsageImpl extends OccurrenceUsageImpl implements Constrai
 	@Override
 	public Feature namingFeature() {
 		return UsageUtil.isAssumptionConstraint(this) || UsageUtil.isRequirementConstraint(this)? 
-				FeatureUtil.getReferencedFeatureOf(this, ConstraintUsage.class):
+				FeatureUtil.getEffectiveReferencedFeatureOf(this, ConstraintUsage.class):
 			    super.namingFeature();
 	}
 	

@@ -31,9 +31,13 @@ XPECT_SETUP org.omg.sysml.xpect.tests.validation.invalid.SysMLTests
 END_SETUP 
 */
 package P {
-	part def ABlock;	part def B;	part def C;	part def D;	part def E;
+	part def A;	
+	part def B;	
+	part def C;	
+	part def D;	
+	part def E;
 	
-	connection def AB {
+	connection def DE {
 		end : D[1];
 		end : E[1];
 	}
@@ -41,15 +45,15 @@ package P {
 		end : B[1];
 		end : C[1];
 	}
-	part apart : ABlock {
-		part b : B[1];
+	part apart : A {
+		part b :B[1];
 		part c: C[1];
 		
-		connection ab : AB connect b to c;
-		connection bc : AB, BC connect b to c;
+		connection bc : BC connect b to c;
+		connection de : DE, BC connect b to c;
 		
-		// XPECT errors --> "A connection must be typed by connection definitions." at "connection :ABlock connect b to c;"
-		connection :ABlock connect b to c;
+		// XPECT errors --> "A connection must be typed by connection definitions." at "connection :A connect b to c;"
+		connection :A connect b to c;
 		// XPECT errors --> "A connection must be typed by connection definitions." at "connection :apart connect b to c;"
 		connection :apart connect b to c;
 	}

@@ -38,7 +38,7 @@ import "http://www.omg.org/spec/SysML/2.0" as SysML
 /* Operator Expressions */ 
 
 OwnedExpressionMember returns SysML::FeatureMembership :
-	ownedRelatedElement += OwnedExpression // ownedMemberFeature = OwnedExpression
+	ownedRelatedElement += OwnedExpression 
 ;
 
 OwnedExpression returns SysML::Expression :
@@ -79,7 +79,7 @@ ImpliesExpressionReference returns SysML::FeatureReferenceExpression :
 ;
 
 ImpliesExpressionMember returns SysML::FeatureMembership :
-	ownedRelatedElement += ImpliesExpression // ownedMemberFeature = ImpliesExpression
+	ownedRelatedElement += ImpliesExpression 
 ;
 
 ImpliesExpression returns SysML::Expression :
@@ -96,7 +96,7 @@ OrExpressionReference returns SysML::FeatureReferenceExpression :
 ;
 
 OrExpressionMember returns SysML::FeatureMembership :
-	ownedRelatedElement += OrExpression // ownedMemberFeature = OrExpression
+	ownedRelatedElement += OrExpression 
 ;
 
 OrExpression returns SysML::Expression :
@@ -118,7 +118,7 @@ XorExpressionReference returns SysML::FeatureReferenceExpression :
 ;
 
 XorExpressionMember returns SysML::FeatureMembership :
-	ownedRelatedElement += XorExpression // ownedMemberFeature = XorExpression
+	ownedRelatedElement += XorExpression 
 ;
 
 XorExpression returns SysML::Expression :
@@ -151,7 +151,7 @@ EqualityExpressionReference returns SysML::FeatureReferenceExpression :
 ;
 
 EqualityExpressionMember returns SysML::FeatureMembership :
-	ownedRelatedElement += EqualityExpression // ownedMemberParameter = EqualityExpression
+	ownedRelatedElement += EqualityExpression 
 ;
 
 EqualityExpression returns SysML::Expression :
@@ -179,7 +179,7 @@ ClassificationOperator :
 
 TypeReferenceMember returns SysML::FeatureMembership :
 	ownedRelatedElement += TypeReference
-	// ownedMemberFeature = TypeReference
+	
 ;
 
 TypeReference returns SysML::Feature :
@@ -195,7 +195,7 @@ SelfReferenceExpression returns SysML::FeatureReferenceExpression :
 ;
 
 SelfReferenceMember returns SysML::ReturnParameterMembership :
-	ownedRelatedElement += EmptyFeature // ownedMemberFeature = EmptyFeature
+	ownedRelatedElement += EmptyFeature 
 ;
 
 EmptyFeature returns SysML::Feature :
@@ -298,7 +298,7 @@ FunctionReferenceExpression returns SysML::FeatureReferenceExpression :
 ;
 
 FunctionReferenceMember returns SysML::FeatureMembership :
-	ownedRelatedElement += FunctionReference // ownedMemberFeature = FunctionReference
+	ownedRelatedElement += FunctionReference 
 ;
 
 FunctionReference returns SysML::Expression :
@@ -307,7 +307,7 @@ FunctionReference returns SysML::Expression :
 
 FeatureChainMember returns SysML::Membership :
 	  memberElement = [SysML::Feature | QualifiedName]
-	| {SysML::OwningMembership} ownedRelatedElement += OwnedFeatureChain // ownedMemberElement = OwnedFeatureChain
+	| {SysML::OwningMembership} ownedRelatedElement += OwnedFeatureChain 
 ;
 
 /* Base Expressions */
@@ -328,7 +328,7 @@ BodyExpression returns SysML::FeatureReferenceExpression :
 ;
 
 ExpressionBodyMember returns SysML::FeatureMembership :
-	ownedRelatedElement += ExpressionBody // ownedMemberFeature = ExpressionBody
+	ownedRelatedElement += ExpressionBody 
 ;
 
 // This default production is overridden in the KerML and SysML grammars.
@@ -338,11 +338,11 @@ ExpressionBody returns SysML::Expression :
 ;
 
 ResultExpressionMember returns SysML::ResultExpressionMembership :
-	ownedRelatedElement += OwnedExpression // ownedResultExpression = OwnedExpression
+	ownedRelatedElement += OwnedExpression 
 ;
 
 BodyParameterMember returns SysML::ParameterMembership :
-	'in' ownedRelatedElement += BodyParameter // ownedMemberParameter = BodyParameter
+	'in' ownedRelatedElement += BodyParameter 
 ;
 
 BodyParameter returns SysML::Feature :
@@ -404,7 +404,7 @@ fragment PositionalArgumentList returns SysML::Expression :
 ;
 
 ArgumentMember returns SysML::ParameterMembership :
-	ownedRelatedElement += Argument // ownedMemberParameter = Argument
+	ownedRelatedElement += Argument 
 ;
 
 Argument returns SysML::Feature :
@@ -417,7 +417,7 @@ fragment NamedArgumentList returns SysML::Expression :
 ;
 
 NamedArgumentMember returns SysML::ParameterMembership :
-	ownedRelatedElement += NamedArgument // ownedMemberFeature = NamedArgument
+	ownedRelatedElement += NamedArgument 
 ;
 
 NamedArgument returns SysML::Feature :
@@ -429,7 +429,7 @@ ParameterRedefinition returns SysML::Redefinition:
 ;
 
 ArgumentValue returns SysML::FeatureValue :
-	ownedRelatedElement += OwnedExpression // value = OwnedExpression
+	ownedRelatedElement += OwnedExpression
 ;
 
 // Null Expressions
@@ -508,10 +508,7 @@ terminal STRING_VALUE returns Ecore::EString:
 	'"' ('\\' ('b' | 't' | 'n' | 'f' | 'r' | '"' | "'" | '\\') | !('\\' | '"'))* '"';
 
 terminal REGULAR_COMMENT:
-	'/*' !('*') ->'*/';
-
-terminal PREFIX_COMMENT:
-	'/**'->'*/';
+	'/*' ->'*/';
 
 terminal ML_NOTE:
 	'//*'->'*/';

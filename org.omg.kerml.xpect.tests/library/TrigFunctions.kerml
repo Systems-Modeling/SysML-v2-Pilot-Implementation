@@ -1,7 +1,9 @@
-/**
- * This package defines basic trigonometric functions on real numbers.
- */
 package TrigFunctions {
+	doc
+	/*
+	 * This package defines basic trigonometric functions on real numbers.
+	 */
+
 	import ScalarValues::Real;
 	
 	feature pi : Real;
@@ -15,8 +17,7 @@ package TrigFunctions {
 	}
 	
 	datatype UnitBoundedReal :> Real {
-		private x :>> self;
-		inv unitBound { -1.0 <= x & x <= 1.0 }
+		inv unitBound { -1.0 <= that & that <= 1.0 }
 	}
 	
 	function sin { in theta : Real[1]; return : UnitBoundedReal[1]; }

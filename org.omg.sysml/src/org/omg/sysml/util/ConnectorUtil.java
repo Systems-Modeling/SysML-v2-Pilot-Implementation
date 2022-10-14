@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2021-2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -22,6 +22,7 @@
 package org.omg.sysml.util;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.util.BasicInternalEList;
@@ -31,7 +32,7 @@ import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.ItemFlow;
 import org.omg.sysml.lang.sysml.Namespace;
-import org.omg.sysml.lang.sysml.Subsetting;
+import org.omg.sysml.lang.sysml.ReferenceSubsetting;
 import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
@@ -62,17 +63,10 @@ public class ConnectorUtil {
 
 	// Connector ends
 	
-	public static boolean isConnectorEndSubsettingOf(Connector connector, Subsetting subsetting) {
-		Feature feature = subsetting.getSubsettingFeature();
-    	return connector.getConnectorEnd().contains(feature) &&
-	    	   FeatureUtil.getFirstOwnedSubsettingOf(feature).orElse(null) == subsetting;
-	}
-	
 	public static Feature addConnectorEndTo(Connector connector, Feature relatedFeature) {
 		Feature endFeature = SysMLFactory.eINSTANCE.createFeature();
-		Subsetting subsetting = SysMLFactory.eINSTANCE.createSubsetting();
-		subsetting.setSubsettedFeature(relatedFeature);
-		subsetting.setSubsettingFeature(endFeature);
+		ReferenceSubsetting subsetting = SysMLFactory.eINSTANCE.createReferenceSubsetting();
+		subsetting.setReferencedFeature(relatedFeature);
 		endFeature.getOwnedRelationship().add(subsetting);
 		endFeature.setIsEnd(true);
 		FeatureMembership membership = SysMLFactory.eINSTANCE.createFeatureMembership();
@@ -103,9 +97,10 @@ public class ConnectorUtil {
 		EList<Feature> relatedFeatures = new BasicInternalEList<Feature>(Feature.class);
 		for (Object end: connector.getConnectorEnd().toArray()) {
 			if (end != null) {
-				Feature subsettedFeature = ((Feature)end).firstSubsettedFeature();
-				if (subsettedFeature != null) {
-					relatedFeatures.add(subsettedFeature);
+				ElementUtil.transform((Feature)end);
+				Feature referencedFeature = FeatureUtil.getReferencedFeatureOf((Feature)end);
+				if (referencedFeature != null) {
+					relatedFeatures.add(referencedFeature);
 				}
 			}
 		}
@@ -156,15 +151,32 @@ public class ConnectorUtil {
 	public static Type getContextTypeFor(Connector connector) {
 		List<Type> commonFeaturingTypes = null;
 		for (Feature relatedFeature: connector.getRelatedFeature()) {
+			// getAllFeaturingTypesOf returns a breadth-first transitive traversal of all the
+			// the featuring type hierarchy for relatedFeatures. 
 			List<Type> featuringTypes = FeatureUtil.getAllFeaturingTypesOf(relatedFeature);
 			if (commonFeaturingTypes == null) {
 				commonFeaturingTypes = featuringTypes;
 			} else {
-				commonFeaturingTypes.removeIf(t->
-					featuringTypes.stream().noneMatch(f->
-						TypeUtil.conforms(f, t) || TypeUtil.conforms(t, f)));
+				int i = 0;
+				while (i < commonFeaturingTypes.size()) {
+					Type type = commonFeaturingTypes.get(i);
+					Optional<Type> subtype = featuringTypes.stream().filter(f->TypeUtil.conforms(f, type)).findFirst();
+					if (subtype.isPresent()) {
+						// If the featuringTypes of the next relatedFeature include a subtype of this type,
+						// then replace this type with the subtype in the list of commonFeaturingTypes.
+						commonFeaturingTypes.set(i, subtype.get());
+					} else if (featuringTypes.stream().noneMatch(f->TypeUtil.conforms(type, f))) {
+						// Otherwise, if this type doesn't conform to any of the featuringTypes of the
+						// next relatedFeature, remove it from the list of commonFeaturingTypes.
+						commonFeaturingTypes.remove(i);
+						i--;
+					}
+					i++;
+				}
 			}
 		}
+		// If any commonFeaturingTypes have been found across all relatedFeatures, then
+		// return the first (innermost) one.
 		return commonFeaturingTypes == null || commonFeaturingTypes.isEmpty()? 
 				null: commonFeaturingTypes.get(0);
 	}

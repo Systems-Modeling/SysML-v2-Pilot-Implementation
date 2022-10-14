@@ -4,7 +4,7 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 
   <properties>
-    <revision>0.27.0-SNAPSHOT</revision>
+    <revision>0.28.0-SNAPSHOT</revision>
     <tycho-version>2.5.0</tycho-version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <eclipse-repository>https://download.eclipse.org/releases/2021-09</eclipse-repository>
@@ -40,6 +40,7 @@
 
   <modules>
     <module>org.omg.sysml</module>
+    <module>org.omg.sysml.execution</module>
     <module>org.omg.kerml.expressions.xtext</module>
     <module>org.omg.kerml.xtext</module>
     <module>org.omg.sysml.xtext</module>

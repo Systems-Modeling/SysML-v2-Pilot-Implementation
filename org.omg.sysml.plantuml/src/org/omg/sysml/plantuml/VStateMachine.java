@@ -35,8 +35,8 @@ public class VStateMachine extends VDefault {
         if (isParallel) {
             name = name + "\\n" + "<b>parallel</b>";
         }
-        addRecLine(name, typ, withStyle);
-        addSpecializations(typ);
+        int id = addRecLine(name, typ, withStyle);
+        addSpecializations(id, typ);
         VStateMembers v = new VStateMembers(this);
         v.startStateUsage(typ);
         append("\n");

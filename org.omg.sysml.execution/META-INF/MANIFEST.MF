@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.omg.sysml.execution;singleton:=true
+Bundle-Version: 0.28.0.qualifier
+Automatic-Module-Name: org.omg.sysml.execution
+Bundle-RequiredExecutionEnvironment: JavaSE-11
+Bundle-Name: org.omg.sysml.execution
+Bundle-Vendor: SysML v2 Submission Team
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.omg.sysml;bundle-version="0.28.0"
+Export-Package: org.omg.sysml.execution.expressions

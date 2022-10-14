@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2021-2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -41,13 +41,13 @@ import org.omg.sysml.lang.sysml.LiteralString;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.OperatorExpression;
 import org.omg.sysml.lang.sysml.ResultExpressionMembership;
-import org.omg.sysml.util.ExpressionUtil;
+import org.omg.sysml.util.ElementUtil;
 import org.omg.sysml.util.TypeUtil;
 
 public class ModelLevelEvaluationTest extends SysMLInteractiveTest {
 	
 	protected Expression checkFilterExpression(SysMLInteractive instance, String text) {
-		List<Element> members = eval(instance, "package test { filter (" + text + ") == null; }");
+		List<Element> members = process(instance, "package test { filter (" + text + ") == null; }");
 		assertFalse("'" + text +"': No members", members.isEmpty());
 		Element member = members.get(0);
 		assertTrue("'" + text + "': No package", member instanceof org.omg.sysml.lang.sysml.Package);
@@ -61,7 +61,7 @@ public class ModelLevelEvaluationTest extends SysMLInteractiveTest {
 	}
 	
 	protected Expression checkExpression(SysMLInteractive instance, String text) {
-		List<Element> members = eval(instance, "calc test { " + text + " }");
+		List<Element> members = process(instance, "calc test { " + text + " }");
 		assertFalse("'" + text +"': No Members", members.isEmpty());
 		Element member = members.get(0);
 		assertTrue("'" + text + "': Not an expression", member instanceof Expression);
@@ -135,7 +135,7 @@ public class ModelLevelEvaluationTest extends SysMLInteractiveTest {
 		Element target = instance.resolve(elementName);
 		assertNotNull(target);
 		
-		Feature metaclassFeature = ExpressionUtil.getMetaclassFeatureFor(target);
+		Feature metaclassFeature = ElementUtil.getMetaclassFeatureFor(target);
 		assertNotNull(metaclassFeature);
 		
 		return metaclassFeature;
@@ -196,7 +196,7 @@ public class ModelLevelEvaluationTest extends SysMLInteractiveTest {
 
 	@Test
 	public void testNonModelLevelEvaluability() throws Exception {
-		eval("calc def f{ in x; }");
+		process("calc def f{ in x; }");
 		checkExpressionNotModelLevelEvaluable(null, "f(3 + 4)");
 	}
 	
@@ -266,7 +266,7 @@ public class ModelLevelEvaluationTest extends SysMLInteractiveTest {
 	@Test
 	public void testFeatureReferenceEvaluation() throws Exception {
 		SysMLInteractive instance = getSysMLInteractiveInstance();
-		eval(instance, 
+		process(instance, 
 				"metadata def Annotation { attribute a; } " +
 		        "attribute x {@Annotation{a = 1;}}");
 		
@@ -278,7 +278,7 @@ public class ModelLevelEvaluationTest extends SysMLInteractiveTest {
 	@Test
 	public void testEnumeratedValueEvaluation() throws Exception {
 		SysMLInteractive instance = getSysMLInteractiveInstance();
-		eval(instance, 
+		process(instance, 
 				"metadata def Annotation { attribute a; } " +
 			    "enum def E { e; }" +
 		        "attribute x {@Annotation{a = E::e;}}");
@@ -292,7 +292,7 @@ public class ModelLevelEvaluationTest extends SysMLInteractiveTest {
 	@Test
 	public void testSelfReferenceEvaluation() throws Exception {
 		SysMLInteractive instance = getSysMLInteractiveInstance();
-		eval(instance, 
+		process(instance, 
 				"metadata def Annotation; " +
 		        "attribute x {@Annotation;}");
 		
@@ -303,7 +303,7 @@ public class ModelLevelEvaluationTest extends SysMLInteractiveTest {
 	@Test
 	public void testIsTypeEvaluation() throws Exception {
 		SysMLInteractive instance = getSysMLInteractiveInstance();
-		eval(instance, 
+		process(instance, 
 				"metadata def Annotation { attribute a; attribute b; } " +
 			    "enum def E { e; }" +
 		        "attribute x {@Annotation{a = E::e; b = 2;}}");
@@ -316,7 +316,7 @@ public class ModelLevelEvaluationTest extends SysMLInteractiveTest {
 	@Test
 	public void testSelfIsTypeEvaluation() throws Exception {
 		SysMLInteractive instance = getSysMLInteractiveInstance();
-		eval(instance, 
+		process(instance, 
 				"metadata def Annotation; " +
 				"attribute x {@Annotation;}");
 		
@@ -328,7 +328,7 @@ public class ModelLevelEvaluationTest extends SysMLInteractiveTest {
 	@Test
 	public void testSelfIsMetaclassEvaluation() throws Exception {
 		SysMLInteractive instance = getSysMLInteractiveInstance();
-		eval(instance, "attribute a; part p;");
+		process(instance, "attribute a; part p;");
 		
 		assertTrue(evaluateBooleanValue(instance, 
 				checkMetaclassFeature(instance, "a"), 

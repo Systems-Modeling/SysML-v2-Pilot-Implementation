@@ -117,7 +117,7 @@ public interface RequirementConstraintMembership extends FeatureMembership {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p> The ConstraintUsage that is referenced through this RequirementConstraintMembership. This is derived as being the first ConstraintUsage subset by the <code>ownedConstraint</code>, if there is one, and, otherwise, the <code>ownedConstraint</code> itself.</p>
+	 * <p> The ConstraintUsage that is referenced through this RequirementConstraintMembership. This is derived as <code>referencedFeature</code> of the <code>ownedReferenceSubsetting</code> of the <code>ownedConstraint</code>, if there is one, and, otherwise, the <code>ownedConstraint</code> itself.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Referenced Constraint</em>' reference.
 	 * @see #setReferencedConstraint(ConstraintUsage)

@@ -21,26 +21,20 @@
 
 package org.omg.sysml.delegate;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.ItemFlow;
 
-public class ItemFlow_targetInputFeature_SettingDelegate extends BasicDerivedListSettingDelegate {
+public class ItemFlow_targetInputFeature_SettingDelegate extends BasicDerivedObjectSettingDelegate {
 
 	public ItemFlow_targetInputFeature_SettingDelegate(EStructuralFeature eStructuralFeature) {
 		super(eStructuralFeature);
 	}
 
 	@Override
-	protected EList<Feature> basicGet(InternalEObject owner) {
-		EList<Feature> targetInputFeature = new EObjectResolvingEList<Feature>(Feature.class, owner, eStructuralFeature.getFeatureID());
-		((ItemFlow)owner).getItemFlowFeature().stream().
-			skip(1).findFirst().
-			ifPresent(targetInputFeature::add);
-		return targetInputFeature;
+	protected Feature basicGet(InternalEObject owner) {
+		return ((ItemFlow)owner).getItemFlowFeature().stream().skip(1).findFirst().orElse(null);
 	}
 
 }

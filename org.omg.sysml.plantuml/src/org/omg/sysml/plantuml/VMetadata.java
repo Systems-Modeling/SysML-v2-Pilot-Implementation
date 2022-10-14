@@ -36,8 +36,11 @@ import org.omg.sysml.lang.sysml.MetadataFeature;
 import org.omg.sysml.util.FeatureUtil;
 
 public class VMetadata extends Visitor {
+    private boolean hideMetadata;
+    
     public VMetadata(Visitor v) {
     	super(v, true);
+        hideMetadata = styleBooleanValue("hideMetadata");
 	}
     
     private final String metadataTitle = "«metadata»";
@@ -130,6 +133,7 @@ public class VMetadata extends Visitor {
     }
 
 	public void addMetadataFeature(MetadataFeature af) {
+        if (hideMetadata) return;
         addMetadataFeatureInternal(af);
         List<Element> es = af.getAnnotatedElement();
         for (Element e: es) {
@@ -138,6 +142,7 @@ public class VMetadata extends Visitor {
     }
 
 	public void addMetadataFeature(MetadataFeature af, Element annotatedElement) {
+        if (hideMetadata) return;
         addMetadataFeatureInternal(af);
         if (annotatedElement != null) {
         	addPRelation(null, af, annotatedElement, af, null);

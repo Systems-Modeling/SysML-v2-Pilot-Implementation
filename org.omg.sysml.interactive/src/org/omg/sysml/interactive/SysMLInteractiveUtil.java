@@ -7,9 +7,20 @@ import java.util.stream.Collectors;
 
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
+import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.FeatureReferenceExpression;
+import org.omg.sysml.lang.sysml.InvocationExpression;
+import org.omg.sysml.lang.sysml.LiteralBoolean;
+import org.omg.sysml.lang.sysml.LiteralInfinity;
+import org.omg.sysml.lang.sysml.LiteralInteger;
+import org.omg.sysml.lang.sysml.LiteralRational;
+import org.omg.sysml.lang.sysml.LiteralString;
 import org.eclipse.emf.ecore.EClass;
+import org.omg.sysml.expressions.util.EvaluationUtil;
 import org.omg.sysml.lang.sysml.CalculationUsage;
 import org.omg.sysml.lang.sysml.Membership;
+import org.omg.sysml.lang.sysml.MetadataFeature;
+import org.omg.sysml.lang.sysml.OperatorExpression;
 import org.omg.sysml.lang.sysml.OwningMembership;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.Type;
@@ -36,16 +47,49 @@ public class SysMLInteractiveUtil {
 	}
 	
 	private static void formatElement(StringBuilder buffer, String indentation, Element element, String relationshipTag) {
-		String shortName = element.getShortName();
-		String name = element.getEffectiveName();
-		buffer.append(indentation + 
-				relationshipTag + 
-				element.eClass().getName() + 
-				(shortName == null? "": " <" + shortName + ">") +
-				(name == null? "": " " + name) + 
-				" (" + element.getElementId() + ")\n");
+		buffer.append(indentation + relationshipTag + element.eClass().getName());		
+		if (EvaluationUtil.isMetaclassFeature(element)) {
+			formatElement(buffer, " ", ((MetadataFeature)element).getAnnotatedElement().get(0), "");
+		} else {		
+			String shortName = element.getShortName();
+			String name = nameOf(element);
+			buffer.append(
+					(shortName == null? "": " <" + shortName + ">") +
+					(name == null? "": " " + name) + 
+					" (" + element.getElementId() + ")\n");
+		}
 	}
 	
+	public static String nameOf(Element element) {
+		if (element == null) {
+			return "";
+		} else if (element instanceof Feature && !((Feature)element).getOwnedFeatureChaining().isEmpty()) {
+			String name = "";
+			for (Feature chainingFeature: ((Feature)element).getChainingFeature()) {
+				String nextName = chainingFeature.getEffectiveName();
+				if (nextName == null) {
+					nextName = "";
+				}
+				if (name == "") {
+					name = nextName;
+				} else {
+					name += "." + nextName;
+				}
+			}
+			return name;
+		} else {
+			return element instanceof LiteralBoolean? Boolean.valueOf(((LiteralBoolean)element).isValue()).toString():
+				   element instanceof LiteralString? ((LiteralString)element).getValue().toString():
+				   element instanceof LiteralInteger? Integer.valueOf(((LiteralInteger)element).getValue()).toString():
+				   element instanceof LiteralRational? Double.valueOf(((LiteralRational)element).getValue()).toString():
+				   element instanceof LiteralInfinity? "*":
+				   element instanceof FeatureReferenceExpression? nameOf(((FeatureReferenceExpression)element).getReferent()):
+				   element instanceof OperatorExpression? ((OperatorExpression)element).getOperator():
+				   element instanceof InvocationExpression? nameOf(((InvocationExpression)element).getFunction()):
+				   element.getEffectiveName();
+		}
+	}
+
 	private static void formatExplicitElement(StringBuilder buffer, String indentation, Element element, Relationship relationship) {
 		formatElement(buffer, indentation, element, formatRelationship(relationship));
 	}

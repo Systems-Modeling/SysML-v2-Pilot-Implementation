@@ -35,6 +35,7 @@ import java.util.stream.Stream;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.omg.sysml.lang.sysml.MetadataFeature;
+import org.omg.sysml.expressions.util.EvaluationUtil;
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
@@ -90,7 +91,7 @@ public class TypeAdapter extends NamespaceAdapter {
 	}
 	
 	/**
-	 * Contains the required ends for implicit generalizations like implicit
+	 * Contains the required ends for implicit specializations like implicit
 	 * superclassing, subsetting, featuretyping and redefinitions for future access.
 	 * The lists must not contain null values and the current type.
 	 */
@@ -156,15 +157,15 @@ public class TypeAdapter extends NamespaceAdapter {
 		return types.isEmpty() ? null : types.get(0);
 	}
 	
-	public boolean isImplicitGeneralizationDeclaredFor(EClass eClass) {
+	public boolean isImplicitSpecializationDeclaredFor(EClass eClass) {
 		return implicitGeneralTypes.containsKey(eClass);
 	}
 	
-	public boolean isImplicitGeneralizationFor(EClass eClass, Type general) {
+	public boolean isImplicitSpecializationFor(EClass eClass, Type general) {
 		return implicitGeneralTypes.getOrDefault(eClass, Collections.emptyList()).contains(general);
 	}
 	
-	protected static boolean hasNoConformingGeneralizations(Type type, Class<?> kind, Type defaultGeneral) {
+	protected static boolean hasNoConformingSpecializations(Type type, Class<?> kind, Type defaultGeneral) {
 		return type.getOwnedRelationship().stream().
 				filter(kind::isInstance).
 				map(Specialization.class::cast).
@@ -172,7 +173,7 @@ public class TypeAdapter extends NamespaceAdapter {
 	}
 
 	public void addImplicitGeneralType(EClass eClass, Type general) {
-		if (isAddImplicitGeneralTypes && general != null && general != getTarget() && !isImplicitGeneralizationFor(eClass, general)) {
+		if (isAddImplicitGeneralTypes && general != null && general != getTarget() && !isImplicitSpecializationFor(eClass, general)) {
 			implicitGeneralTypes.computeIfAbsent(eClass, e -> new ArrayList<>()).add(general);
 		}
 	}
@@ -224,7 +225,7 @@ public class TypeAdapter extends NamespaceAdapter {
 		isAddImplicitGeneralTypes = false;
 	}
 	
-	// Implicit Generalization Computation
+	// Implicit Specialization Computation
 	
 	boolean isComputeImplicitGeneralTypes = true;
 	
@@ -237,20 +238,20 @@ public class TypeAdapter extends NamespaceAdapter {
 	
 	public void addDefaultGeneralType() {
 		for (Type baseType: getBaseTypes()) {
-			addImplicitGeneralType(getGeneralizationEClass(), baseType);
+			addImplicitGeneralType(getSpecializationEClass(), baseType);
 		}
-		addDefaultGeneralType(getGeneralizationEClass(), getDefaultSupertype());
+		addDefaultGeneralType(getSpecializationEClass(), getDefaultSupertype());
 	}
 	
 	public void addDefaultGeneralType(String kind) {
-		addDefaultGeneralType(getGeneralizationEClass(), getDefaultSupertype(kind));
+		addDefaultGeneralType(getSpecializationEClass(), getDefaultSupertype(kind));
 	}
 	
 	public void addDefaultGeneralType(EClass generalizationEClass, String... superTypeNames) {
 		addImplicitGeneralType(generalizationEClass, getLibraryType(superTypeNames));
 	}
 	
-	protected EClass getGeneralizationEClass() {
+	protected EClass getSpecializationEClass() {
 		return SysMLPackage.eINSTANCE.getSpecialization();
 	}
 	
@@ -295,6 +296,7 @@ public class TypeAdapter extends NamespaceAdapter {
 						map(expr->expr.evaluate(target)).
 						filter(results->results != null && !results.isEmpty()).
 						map(results->results.get(0)).
+						map(EvaluationUtil::getMetaclassReferenceOf).
 						filter(Type.class::isInstance).
 						map(Type.class::cast).
 						forEachOrdered(baseTypes::add);

@@ -727,31 +727,43 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 		private final RuleCall cOperatorClassificationOperatorParserRuleCall_1_2_0 = (RuleCall)cOperatorAssignment_1_2.eContents().get(0);
 		private final Assignment cOwnedRelationshipAssignment_1_3 = (Assignment)cGroup_1.eContents().get(3);
 		private final RuleCall cOwnedRelationshipTypeReferenceMemberParserRuleCall_1_3_0 = (RuleCall)cOwnedRelationshipAssignment_1_3.eContents().get(0);
+		private final Group cGroup_2 = (Group)cAlternatives.eContents().get(2);
+		private final Action cOperatorExpressionAction_2_0 = (Action)cGroup_2.eContents().get(0);
+		private final Assignment cOperandAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
+		private final RuleCall cOperandMetadataReferenceParserRuleCall_2_1_0 = (RuleCall)cOperandAssignment_2_1.eContents().get(0);
+		private final Assignment cOperatorAssignment_2_2 = (Assignment)cGroup_2.eContents().get(2);
+		private final RuleCall cOperatorMetaClassificationOperatorParserRuleCall_2_2_0 = (RuleCall)cOperatorAssignment_2_2.eContents().get(0);
+		private final Assignment cOwnedRelationshipAssignment_2_3 = (Assignment)cGroup_2.eContents().get(3);
+		private final RuleCall cOwnedRelationshipTypeReferenceMemberParserRuleCall_2_3_0 = (RuleCall)cOwnedRelationshipAssignment_2_3.eContents().get(0);
 		
 		//// Classification Expressions
 		//ClassificationExpression returns SysML::Expression :
 		//      RelationalExpression ( {SysML::OperatorExpression.operand += current}
-		//        operator = ClassificationOperator ownedRelationship += TypeReferenceMember )?
+		//      operator = ClassificationOperator ownedRelationship += TypeReferenceMember )?
 		//    | {SysML::OperatorExpression} operand += SelfReferenceExpression
-		//        operator = ClassificationOperator ownedRelationship += TypeReferenceMember
+		//      operator = ClassificationOperator ownedRelationship += TypeReferenceMember
+		//    | {SysML::OperatorExpression} operand += MetadataReference
+		//      operator = MetaClassificationOperator ownedRelationship += TypeReferenceMember
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//  RelationalExpression ( {SysML::OperatorExpression.operand += current}
-		//    operator = ClassificationOperator ownedRelationship += TypeReferenceMember )?
+		//  operator = ClassificationOperator ownedRelationship += TypeReferenceMember )?
 		//| {SysML::OperatorExpression} operand += SelfReferenceExpression
-		//    operator = ClassificationOperator ownedRelationship += TypeReferenceMember
+		//  operator = ClassificationOperator ownedRelationship += TypeReferenceMember
+		//| {SysML::OperatorExpression} operand += MetadataReference
+		//  operator = MetaClassificationOperator ownedRelationship += TypeReferenceMember
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//RelationalExpression ( {SysML::OperatorExpression.operand += current}
-		//  operator = ClassificationOperator ownedRelationship += TypeReferenceMember )?
+		//operator = ClassificationOperator ownedRelationship += TypeReferenceMember )?
 		public Group getGroup_0() { return cGroup_0; }
 		
 		//RelationalExpression
 		public RuleCall getRelationalExpressionParserRuleCall_0_0() { return cRelationalExpressionParserRuleCall_0_0; }
 		
 		//( {SysML::OperatorExpression.operand += current}
-		//       operator = ClassificationOperator ownedRelationship += TypeReferenceMember )?
+		//     operator = ClassificationOperator ownedRelationship += TypeReferenceMember )?
 		public Group getGroup_0_1() { return cGroup_0_1; }
 		
 		//{SysML::OperatorExpression.operand += current}
@@ -770,7 +782,7 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 		public RuleCall getOwnedRelationshipTypeReferenceMemberParserRuleCall_0_1_2_0() { return cOwnedRelationshipTypeReferenceMemberParserRuleCall_0_1_2_0; }
 		
 		//{SysML::OperatorExpression} operand += SelfReferenceExpression
-		//       operator = ClassificationOperator ownedRelationship += TypeReferenceMember
+		//     operator = ClassificationOperator ownedRelationship += TypeReferenceMember
 		public Group getGroup_1() { return cGroup_1; }
 		
 		//{SysML::OperatorExpression}
@@ -793,6 +805,31 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 		
 		//TypeReferenceMember
 		public RuleCall getOwnedRelationshipTypeReferenceMemberParserRuleCall_1_3_0() { return cOwnedRelationshipTypeReferenceMemberParserRuleCall_1_3_0; }
+		
+		//{SysML::OperatorExpression} operand += MetadataReference
+		//     operator = MetaClassificationOperator ownedRelationship += TypeReferenceMember
+		public Group getGroup_2() { return cGroup_2; }
+		
+		//{SysML::OperatorExpression}
+		public Action getOperatorExpressionAction_2_0() { return cOperatorExpressionAction_2_0; }
+		
+		//operand += MetadataReference
+		public Assignment getOperandAssignment_2_1() { return cOperandAssignment_2_1; }
+		
+		//MetadataReference
+		public RuleCall getOperandMetadataReferenceParserRuleCall_2_1_0() { return cOperandMetadataReferenceParserRuleCall_2_1_0; }
+		
+		//operator = MetaClassificationOperator
+		public Assignment getOperatorAssignment_2_2() { return cOperatorAssignment_2_2; }
+		
+		//MetaClassificationOperator
+		public RuleCall getOperatorMetaClassificationOperatorParserRuleCall_2_2_0() { return cOperatorMetaClassificationOperatorParserRuleCall_2_2_0; }
+		
+		//ownedRelationship += TypeReferenceMember
+		public Assignment getOwnedRelationshipAssignment_2_3() { return cOwnedRelationshipAssignment_2_3; }
+		
+		//TypeReferenceMember
+		public RuleCall getOwnedRelationshipTypeReferenceMemberParserRuleCall_2_3_0() { return cOwnedRelationshipTypeReferenceMemberParserRuleCall_2_3_0; }
 	}
 	public class ClassificationOperatorElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.expressions.xtext.KerMLExpressions.ClassificationOperator");
@@ -821,6 +858,46 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 		
 		//'as'
 		public Keyword getAsKeyword_3() { return cAsKeyword_3; }
+	}
+	public class MetaClassificationOperatorElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.expressions.xtext.KerMLExpressions.MetaClassificationOperator");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final Keyword cCommercialAtCommercialAtKeyword_0 = (Keyword)cAlternatives.eContents().get(0);
+		private final Keyword cMetaKeyword_1 = (Keyword)cAlternatives.eContents().get(1);
+		
+		//MetaClassificationOperator :
+		//    '@@' | 'meta'
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'@@' | 'meta'
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//'@@'
+		public Keyword getCommercialAtCommercialAtKeyword_0() { return cCommercialAtCommercialAtKeyword_0; }
+		
+		//'meta'
+		public Keyword getMetaKeyword_1() { return cMetaKeyword_1; }
+	}
+	public class MetadataReferenceElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.expressions.xtext.KerMLExpressions.MetadataReference");
+		private final Assignment cReferencedElementAssignment = (Assignment)rule.eContents().get(1);
+		private final CrossReference cReferencedElementElementCrossReference_0 = (CrossReference)cReferencedElementAssignment.eContents().get(0);
+		private final RuleCall cReferencedElementElementQualifiedNameParserRuleCall_0_1 = (RuleCall)cReferencedElementElementCrossReference_0.eContents().get(1);
+		
+		//MetadataReference returns SysML::MetadataAccessExpression :
+		//    referencedElement = [SysML::Element | QualifiedName]
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//referencedElement = [SysML::Element | QualifiedName]
+		public Assignment getReferencedElementAssignment() { return cReferencedElementAssignment; }
+		
+		//[SysML::Element | QualifiedName]
+		public CrossReference getReferencedElementElementCrossReference_0() { return cReferencedElementElementCrossReference_0; }
+		
+		//QualifiedName
+		public RuleCall getReferencedElementElementQualifiedNameParserRuleCall_0_1() { return cReferencedElementElementQualifiedNameParserRuleCall_0_1; }
 	}
 	public class TypeReferenceMemberElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.expressions.xtext.KerMLExpressions.TypeReferenceMember");
@@ -2692,6 +2769,8 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 	private final EqualityOperatorElements pEqualityOperator;
 	private final ClassificationExpressionElements pClassificationExpression;
 	private final ClassificationOperatorElements pClassificationOperator;
+	private final MetaClassificationOperatorElements pMetaClassificationOperator;
+	private final MetadataReferenceElements pMetadataReference;
 	private final TypeReferenceMemberElements pTypeReferenceMember;
 	private final TypeReferenceElements pTypeReference;
 	private final ReferenceTypingElements pReferenceTyping;
@@ -2796,6 +2875,8 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 		this.pEqualityOperator = new EqualityOperatorElements();
 		this.pClassificationExpression = new ClassificationExpressionElements();
 		this.pClassificationOperator = new ClassificationOperatorElements();
+		this.pMetaClassificationOperator = new MetaClassificationOperatorElements();
+		this.pMetadataReference = new MetadataReferenceElements();
 		this.pTypeReferenceMember = new TypeReferenceMemberElements();
 		this.pTypeReference = new TypeReferenceElements();
 		this.pReferenceTyping = new ReferenceTypingElements();
@@ -3206,9 +3287,11 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 	//// Classification Expressions
 	//ClassificationExpression returns SysML::Expression :
 	//      RelationalExpression ( {SysML::OperatorExpression.operand += current}
-	//        operator = ClassificationOperator ownedRelationship += TypeReferenceMember )?
+	//      operator = ClassificationOperator ownedRelationship += TypeReferenceMember )?
 	//    | {SysML::OperatorExpression} operand += SelfReferenceExpression
-	//        operator = ClassificationOperator ownedRelationship += TypeReferenceMember
+	//      operator = ClassificationOperator ownedRelationship += TypeReferenceMember
+	//    | {SysML::OperatorExpression} operand += MetadataReference
+	//      operator = MetaClassificationOperator ownedRelationship += TypeReferenceMember
 	//;
 	public ClassificationExpressionElements getClassificationExpressionAccess() {
 		return pClassificationExpression;
@@ -3227,6 +3310,28 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 	
 	public ParserRule getClassificationOperatorRule() {
 		return getClassificationOperatorAccess().getRule();
+	}
+	
+	//MetaClassificationOperator :
+	//    '@@' | 'meta'
+	//;
+	public MetaClassificationOperatorElements getMetaClassificationOperatorAccess() {
+		return pMetaClassificationOperator;
+	}
+	
+	public ParserRule getMetaClassificationOperatorRule() {
+		return getMetaClassificationOperatorAccess().getRule();
+	}
+	
+	//MetadataReference returns SysML::MetadataAccessExpression :
+	//    referencedElement = [SysML::Element | QualifiedName]
+	//;
+	public MetadataReferenceElements getMetadataReferenceAccess() {
+		return pMetadataReference;
+	}
+	
+	public ParserRule getMetadataReferenceRule() {
+		return getMetadataReferenceAccess().getRule();
 	}
 	
 	//TypeReferenceMember returns SysML::FeatureMembership :

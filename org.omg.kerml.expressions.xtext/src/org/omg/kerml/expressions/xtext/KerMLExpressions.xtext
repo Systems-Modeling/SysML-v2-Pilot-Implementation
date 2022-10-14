@@ -168,18 +168,27 @@ EqualityOperator :
 
 ClassificationExpression returns SysML::Expression :
 	  RelationalExpression ( {SysML::OperatorExpression.operand += current}
-		operator = ClassificationOperator ownedRelationship += TypeReferenceMember )?
+	  operator = ClassificationOperator ownedRelationship += TypeReferenceMember )?
 	| {SysML::OperatorExpression} operand += SelfReferenceExpression 
-		operator = ClassificationOperator ownedRelationship += TypeReferenceMember
+	  operator = ClassificationOperator ownedRelationship += TypeReferenceMember
+	| {SysML::OperatorExpression} operand += MetadataReference
+	  operator = MetaClassificationOperator ownedRelationship += TypeReferenceMember
 ;
 
 ClassificationOperator :
 	'hastype' | 'istype' | '@' | 'as'
 ;
 
+MetaClassificationOperator :
+	'@@' | 'meta'
+;
+
+MetadataReference returns SysML::MetadataAccessExpression :
+	referencedElement = [SysML::Element | QualifiedName]
+;
+
 TypeReferenceMember returns SysML::FeatureMembership :
 	ownedRelatedElement += TypeReference
-	
 ;
 
 TypeReference returns SysML::Feature :

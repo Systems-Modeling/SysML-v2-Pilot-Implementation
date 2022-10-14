@@ -20151,9 +20151,11 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	//// Classification Expressions
 	//ClassificationExpression returns SysML::Expression :
 	//      RelationalExpression ( {SysML::OperatorExpression.operand += current}
-	//        operator = ClassificationOperator ownedRelationship += TypeReferenceMember )?
+	//      operator = ClassificationOperator ownedRelationship += TypeReferenceMember )?
 	//    | {SysML::OperatorExpression} operand += SelfReferenceExpression
-	//        operator = ClassificationOperator ownedRelationship += TypeReferenceMember
+	//      operator = ClassificationOperator ownedRelationship += TypeReferenceMember
+	//    | {SysML::OperatorExpression} operand += MetadataReference
+	//      operator = MetaClassificationOperator ownedRelationship += TypeReferenceMember
 	//;
 	public KerMLExpressionsGrammarAccess.ClassificationExpressionElements getClassificationExpressionAccess() {
 		return gaKerMLExpressions.getClassificationExpressionAccess();
@@ -20172,6 +20174,28 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	
 	public ParserRule getClassificationOperatorRule() {
 		return getClassificationOperatorAccess().getRule();
+	}
+	
+	//MetaClassificationOperator :
+	//    '@@' | 'meta'
+	//;
+	public KerMLExpressionsGrammarAccess.MetaClassificationOperatorElements getMetaClassificationOperatorAccess() {
+		return gaKerMLExpressions.getMetaClassificationOperatorAccess();
+	}
+	
+	public ParserRule getMetaClassificationOperatorRule() {
+		return getMetaClassificationOperatorAccess().getRule();
+	}
+	
+	//MetadataReference returns SysML::MetadataAccessExpression :
+	//    referencedElement = [SysML::Element | QualifiedName]
+	//;
+	public KerMLExpressionsGrammarAccess.MetadataReferenceElements getMetadataReferenceAccess() {
+		return gaKerMLExpressions.getMetadataReferenceAccess();
+	}
+	
+	public ParserRule getMetadataReferenceRule() {
+		return getMetadataReferenceAccess().getRule();
 	}
 	
 	//TypeReferenceMember returns SysML::FeatureMembership :

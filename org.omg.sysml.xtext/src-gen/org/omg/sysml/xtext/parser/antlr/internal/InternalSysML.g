@@ -24874,6 +24874,73 @@ ruleClassificationExpression returns [EObject current=null]
 				)
 			)
 		)
+		    |
+		(
+			(
+				{
+					$current = forceCreateModelElement(
+						grammarAccess.getClassificationExpressionAccess().getOperatorExpressionAction_2_0(),
+						$current);
+				}
+			)
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getClassificationExpressionAccess().getOperandMetadataReferenceParserRuleCall_2_1_0());
+					}
+					lv_operand_9_0=ruleMetadataReference
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getClassificationExpressionRule());
+						}
+						add(
+							$current,
+							"operand",
+							lv_operand_9_0,
+							"org.omg.kerml.expressions.xtext.KerMLExpressions.MetadataReference");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getClassificationExpressionAccess().getOperatorMetaClassificationOperatorParserRuleCall_2_2_0());
+					}
+					lv_operator_10_0=ruleMetaClassificationOperator
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getClassificationExpressionRule());
+						}
+						set(
+							$current,
+							"operator",
+							lv_operator_10_0,
+							"org.omg.kerml.expressions.xtext.KerMLExpressions.MetaClassificationOperator");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getClassificationExpressionAccess().getOwnedRelationshipTypeReferenceMemberParserRuleCall_2_3_0());
+					}
+					lv_ownedRelationship_11_0=ruleTypeReferenceMember
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getClassificationExpressionRule());
+						}
+						add(
+							$current,
+							"ownedRelationship",
+							lv_ownedRelationship_11_0,
+							"org.omg.kerml.expressions.xtext.KerMLExpressions.TypeReferenceMember");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+		)
 	)
 ;
 
@@ -24916,6 +24983,69 @@ ruleClassificationOperator returns [AntlrDatatypeRuleToken current=new AntlrData
 			$current.merge(kw);
 			newLeafNode(kw, grammarAccess.getClassificationOperatorAccess().getAsKeyword_3());
 		}
+	)
+;
+
+// Entry rule entryRuleMetaClassificationOperator
+entryRuleMetaClassificationOperator returns [String current=null]:
+	{ newCompositeNode(grammarAccess.getMetaClassificationOperatorRule()); }
+	iv_ruleMetaClassificationOperator=ruleMetaClassificationOperator
+	{ $current=$iv_ruleMetaClassificationOperator.current.getText(); }
+	EOF;
+
+// Rule MetaClassificationOperator
+ruleMetaClassificationOperator returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		kw='@@'
+		{
+			$current.merge(kw);
+			newLeafNode(kw, grammarAccess.getMetaClassificationOperatorAccess().getCommercialAtCommercialAtKeyword_0());
+		}
+		    |
+		kw='meta'
+		{
+			$current.merge(kw);
+			newLeafNode(kw, grammarAccess.getMetaClassificationOperatorAccess().getMetaKeyword_1());
+		}
+	)
+;
+
+// Entry rule entryRuleMetadataReference
+entryRuleMetadataReference returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getMetadataReferenceRule()); }
+	iv_ruleMetadataReference=ruleMetadataReference
+	{ $current=$iv_ruleMetadataReference.current; }
+	EOF;
+
+// Rule MetadataReference
+ruleMetadataReference returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			{
+				if ($current==null) {
+					$current = createModelElement(grammarAccess.getMetadataReferenceRule());
+				}
+			}
+			{
+				newCompositeNode(grammarAccess.getMetadataReferenceAccess().getReferencedElementElementCrossReference_0());
+			}
+			ruleQualifiedName
+			{
+				afterParserOrEnumRuleCall();
+			}
+		)
 	)
 ;
 

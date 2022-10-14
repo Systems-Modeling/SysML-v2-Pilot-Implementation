@@ -43,7 +43,7 @@ package SemanticMetadata_valid {
     }
 	
 	metaclass B :> A {
-		feature :>> baseType = f as KerML::Type;
+		feature :>> baseType = f meta KerML::Type;
 	}
 	
 	class C1 {

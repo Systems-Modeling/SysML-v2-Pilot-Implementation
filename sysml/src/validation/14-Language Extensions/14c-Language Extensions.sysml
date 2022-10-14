@@ -88,40 +88,40 @@ package '14c-Language-Extensions' {
 		}
 		
 		metadata def <situation> SituationMetadata :> SemanticMetadata {
-			:>> baseType default situations as SysML::Usage;
+			:>> baseType default situations meta SysML::Usage;
 		}
 		
 		metadata def <cause> CauseMetadata :> SituationMetadata {
-			:>> baseType = causes as SysML::Usage;
+			:>> baseType = causes meta SysML::Usage;
 		}
 		
 		metadata def <failure> FailureModeMetadata :> SituationMetadata {
-			:>> baseType = failureModes as SysML::Usage;
+			:>> baseType = failureModes meta SysML::Usage;
 		}
 		
 		metadata def <effect> EffectMetadata :> SituationMetadata {
-			:>> baseType = effects as SysML::Usage;
+			:>> baseType = effects meta SysML::Usage;
 		}
 		
 		metadata def <fmea> FMEAItemMetadata :> SituationMetadata {
 			:> annotatedElement : SysML::ItemDefinition;
 			:> annotatedElement : SysML::ItemUsage;
-			:>> baseType = fmeaItems as SysML::Usage;
+			:>> baseType = fmeaItems meta SysML::Usage;
 		}
 		
 		metadata def <causation> CausationMetadata :> SemanticMetadata {
 			:>> annotatedElement : SysML::SuccessionAsUsage;
-			:>> baseType = causations as SysML::Usage;
+			:>> baseType = causations meta SysML::Usage;
 		}
 		
 		metadata def <fmeaspec> FMEARequirementMetadata :> SemanticMetadata {
 			:>> annotatedElement : SysML::RequirementUsage;
-			:>> baseType = fmeaRequirements as SysML::Usage;
+			:>> baseType = fmeaRequirements meta SysML::Usage;
 		}
 		
 		metadata def <violation> ViolationMetadata :> SemanticMetadata {
 			:>> annotatedElement : SysML::ConnectionUsage;
-			:>> baseType = violations as SysML::Usage;
+			:>> baseType = violations meta SysML::Usage;
 		}
 		
 		abstract metadata def ControllingMeasureMetadata :> SemanticMetadata {
@@ -129,11 +129,11 @@ package '14c-Language-Extensions' {
 		}
 		
 		metadata def <prevention> PreventionMetadata :> ControllingMeasureMetadata {
-			:>> baseType = preventions as SysML::Usage;
+			:>> baseType = preventions meta SysML::Usage;
 		}
 		
 		metadata def <mitigation> MitigationMetadata :> ControllingMeasureMetadata {
-			:>> baseType = mitigations as SysML::Usage;
+			:>> baseType = mitigations meta SysML::Usage;
 		}
 		
 	}

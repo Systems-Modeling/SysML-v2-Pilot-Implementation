@@ -66,7 +66,7 @@ package SemanticMetadata_valid {
     }
 	
 	metadata def B :> A {
-		ref :>> baseType = f as SysML::Usage;
+		ref :>> baseType = f meta SysML::Usage;
 	}
 	
 	#B def C1 {
@@ -81,7 +81,7 @@ package SemanticMetadata_valid {
     requirement def G;
 	requirement gs : G[*] nonunique;
 	metadata def g :> SemanticMetadata {
-	    :>> baseType = gs as SysML::RequirementUsage;
+	    :>> baseType = gs meta SysML::RequirementUsage;
 	}
 	
 	requirement r1;

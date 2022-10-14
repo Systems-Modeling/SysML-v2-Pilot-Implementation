@@ -32,6 +32,7 @@ import org.omg.sysml.expressions.ModelLevelExpressionEvaluator;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.FeatureReferenceExpression;
 import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.InvocationExpression;
 import org.omg.sysml.lang.sysml.LiteralBoolean;
@@ -46,8 +47,10 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
 import org.omg.sysml.util.ElementUtil;
+import org.omg.sysml.util.ExpressionUtil;
 import org.omg.sysml.util.FeatureUtil;
 import org.omg.sysml.util.ImplicitGeneralizationMap;
+import org.omg.sysml.util.NamespaceUtil;
 import org.omg.sysml.util.TypeUtil;
 
 import com.google.common.base.Predicates;
@@ -94,6 +97,46 @@ public class EvaluationUtil {
 			result.add(element);
 			return result;
 		}
+	}
+	
+	public static Expression expressionFor(EList<Element> results, Element context) {
+		if (!results.stream().allMatch(
+				elm->elm instanceof Feature && 
+				(!(elm instanceof Expression) || elm instanceof LiteralExpression))) {
+			return null;
+		} else if (results.isEmpty()) {
+			return SysMLFactory.eINSTANCE.createNullExpression();
+		} else {
+			Expression expression = expressionFor(results.get(0));
+			if (results.size() > 1) {
+				Type listOp = SysMLLibraryUtil.getLibraryType(context, ExpressionUtil.getOperatorQualifiedNames(","));
+				for (int i = 1; i < results.size(); i++) {
+					FeatureTyping typing = SysMLFactory.eINSTANCE.createFeatureTyping();
+					typing.setType(listOp);
+					InvocationExpression listExpr = SysMLFactory.eINSTANCE.createInvocationExpression();
+					listExpr.getOwnedRelationship().add(typing);
+					TypeUtil.addOwnedParameterTo(listExpr, expression);
+					TypeUtil.addOwnedParameterTo(listExpr, expressionFor(results.get(i)));
+					expression = listExpr;
+				}
+			}
+			ElementUtil.transformAll(expression, false);
+			return expression;
+		}
+	}
+	
+	public static Expression expressionFor(Element result) {
+		if (result instanceof LiteralExpression) {
+			Object value = valueOf(result);
+			return value == null? literalInfinity(): (Expression)elementFor(value);
+		} else if (result instanceof Feature) {
+			FeatureReferenceExpression featureRef = SysMLFactory.eINSTANCE.createFeatureReferenceExpression();
+			NamespaceUtil.addMemberTo(featureRef, result);
+			return featureRef;
+		} else {
+			return null;
+		}
+			   
 	}
 
 	public static EList<Element> results(Object object) {
@@ -143,6 +186,10 @@ public class EvaluationUtil {
 		LiteralRational literal = SysMLFactory.eINSTANCE.createLiteralRational();
 		literal.setValue(value);
 		return literal;
+	}
+	
+	public static LiteralInfinity literalInfinity() {
+		return SysMLFactory.eINSTANCE.createLiteralInfinity();
 	}
 	
 	public static EList<Element> booleanResult(boolean value) {

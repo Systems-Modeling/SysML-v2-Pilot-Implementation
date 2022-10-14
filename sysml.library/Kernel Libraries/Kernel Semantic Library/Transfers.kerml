@@ -17,8 +17,8 @@ package Transfers {
 	interaction Transfer specializes Performance, BinaryLink {
 		doc
 		/*
-		 * Transfer is the most general interaction used for typing item flows. It represents the
-		 * transfer of items from the source of the interaction the target of the interaction.
+		 * A Transfer represents the transfer of items from the source of the interaction 
+		 * to the target of the interaction.
 		 */
 	
 		end feature source: Occurrence[0..*] redefines BinaryLink::source {
@@ -63,11 +63,19 @@ package Transfers {
 		}
 	}
 	
+	interaction MessageTransfer specializes Transfer {
+		doc
+		/*
+		 * A MessageTransfer is a Transfer that is created by a SendPerformance and accepted
+		 * by an AcceptPerformance.
+		 */
+	}
+	 
 	interaction FlowTransfer specializes Transfer disjoint from MessageTransfer {
 		doc
 		/*
-		 * FlowTransfers are transfers identifying an output feature of the source from which
-		 * to pick up items and an input feature of the target to drop them off.  They can
+		 * A FlowTransfer is a Transfer identifying an output feature of the source from which
+		 * to pick up items and an input feature of the target to drop them off. They can
 		 * start when items are available at the source and move or copy them to the target.
 		 */
 		 
@@ -141,9 +149,6 @@ package Transfers {
 		}
 	}
 	
-	interaction MessageTransfer specializes Transfer {
-	}
-	 
 	interaction TransferBefore specializes Transfer, HappensBefore {
 		doc
 		/*
@@ -160,26 +165,56 @@ package Transfers {
 	  	private succession self then target;
 	}
 	
+	interaction FlowTransferBefore specializes FlowTransfer, TransferBefore {
+		doc
+		/*
+		 * FlowTransferbefore is a FlowTransfer that is also a TransferBefore. 
+		 */
+	}
+	
 	step transfers: Transfer[0..*] nonunique subsets performances, binaryLinks {
 		doc
 		/*
 		 * transfers is a specialization of performances and binaryLinks restricted to type 
-		 * Transfer. It is the default subsetting for streaming item flows.
+		 * Transfer.
 		 */
 	
 		end feature source: Occurrence[0..*] redefines Transfer::source, binaryLinks::source;
 		end feature target: Occurrence[0..*] redefines Transfer::target, binaryLinks::target;
+	}
+	
+	step messageTransfers: MessageTransfer[0..*] nonunique subsets transfers {
+		doc
+		/*
+		 * messageTransfers is a specialization of transfers restricted to type MessageTransfers.
+		 */
+	}
+	
+	step flowTransfers: FlowTransfer[0..*] nonunique subsets transfers {
+		doc
+		/*
+		 * flowTransfers is a specialization of transfers restricted to type FlowTransfers.
+		 * It is the default subsetting for non-succession item flows.
+		 */
 	}
 	  
 	step transfersBefore: TransferBefore[0..*] nonunique subsets transfers, happensBeforeLinks {
 		doc
 		/*
 		 * transfersBefore is a specialization of transfers and happensBeforeLinks restricted to
-		 * type TransferBefore. It is the default subsetting for succession (non-streaming) item flows.
+		 * type TransferBefore.
 		 */
 	
 		end feature source: Occurrence[0..*] redefines transfers::source, HappensBefore::earlierOccurrence;
 		end feature target: Occurrence[0..*] redefines transfers::target, HappensBefore::laterOccurrence;
+	}
+	
+	step flowTransfersBefore: FlowTransferBefore[0..*] nonunique subsets flowTransfers, transfersBefore {
+		doc
+		/*
+		 * flowTransfersBefore is a specialization of flowTransfers and transfersBefore that is restricted
+		 * to type FlowTransferBefore. IT is the default subsetting for succession item flows.
+		 */
 	}
 
 	behavior SendPerformance specializes Performance  {
@@ -192,9 +227,9 @@ package Transfers {
 		in feature sentItem [0..*] = sentTransfer.item;
 		in feature sender: Occurrence[1] = this;
 		in feature receiver: Occurrence[0..1];
-		feature sentTransfer: Transfer [1] subsets sender.outgoingTransfersFromSelf;
+		feature sentTransfer: MessageTransfer [1] subsets sender.outgoingTransfersFromSelf;
 		binding receiver.incomingTransfersToSelf[0..1] = sentTransfer[1];
-		/* Review: Allows for bufferring sends.  Require transfer to start before send ends? */
+
 		succession self then sentTransfer;
 	}
 	
@@ -206,7 +241,7 @@ package Transfers {
 		 */
 		inout feature acceptedItem[0..*] = acceptedTransfer.item;
 		in feature receiver: Occurrence[1] default this;
-		inout feature acceptedTransfer: Transfer[1]
+		inout feature acceptedTransfer: MessageTransfer[1]
 			subsets receiver.incomingTransfersToSelf;
 		succession acceptedTransfer then self.endShot;
 	}

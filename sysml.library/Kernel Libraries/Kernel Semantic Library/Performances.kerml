@@ -49,14 +49,12 @@ package Performances {
 			 */
 		}
 		
-		/* Review: Are steps timeEnclosed (ST4MD-376)? */
-		feature thisPerformance: Performance [1] default self {
+		step thisPerformance: Performance [1] subsets enclosedPerformances default self {
 			doc
 			/*
 			 * Defaults to the root of the subperformance composition tree.
 			 */
 		}  
-		connector :HappensDuring from self[1] to thisPerformance[1];
 		
 		composite step subperformances: Performance[0..*] subsets enclosedPerformances, suboccurrences {
 			doc

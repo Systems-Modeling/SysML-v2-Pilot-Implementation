@@ -482,7 +482,8 @@ package Occurrences {
  		feature incomingTransferSort : IncomingTransferSort [0..*] default earlierFirstIncomingTransferSort {
 			doc
 			/*
-			 * Determines which transfer to accept when multiple are available and which of the unaccepted transfers are never to be accepted (dispatched).
+			 * Determines which transfer to accept when multiple are available and which of the unaccepted 
+			 * transfers are never to be accepted (dispatched).
 			 */
 		}
 
@@ -533,12 +534,12 @@ package Occurrences {
 	predicate IncomingTransferSort specializes Performances::BooleanEvaluation {    
 		in t1: Transfers::Transfer [1];
 		in t2: Transfers::Transfer [1];  
-		return t1First: Boolean [1]; }
+		return t1First: Boolean [1]; 
+	}
 
-	feature earlierFirstIncomingTransferSort : IncomingTransferSort {
-		/* Review: return keyword causes error, includes/contains? */
-		inv { t1First == includes(t1.endShot.successors, t2.endShot) } }
-	
+	bool earlierFirstIncomingTransferSort : IncomingTransferSort {
+		return t1First = includes(t1.endShot.successors, t2.endShot);
+	}
 
 	assoc all SelfSameLifeLink specializes BinaryLink {
 		doc

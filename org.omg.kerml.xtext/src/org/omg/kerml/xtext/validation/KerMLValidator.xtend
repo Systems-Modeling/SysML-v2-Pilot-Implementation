@@ -69,6 +69,7 @@ import org.omg.sysml.util.ImplicitGeneralizationMap
 import org.omg.sysml.lang.sysml.OwningMembership
 import org.omg.sysml.lang.sysml.ReferenceSubsetting
 import org.eclipse.emf.ecore.EObject
+import org.omg.sysml.expressions.util.EvaluationUtil
 
 /**
  * This class contains custom validation rules. 
@@ -285,24 +286,18 @@ class KerMLValidator extends AbstractKerMLValidator {
 	}
 	
 	def void checkMetadataAnnotatedElements(MetadataFeature mf) {
-		var annotatedElementFeatures = FeatureUtil.getAllSubsettingFeaturesIn(mf, mf.annotatedElementFeature);
+		var annotatedElementFeatures = FeatureUtil.getAllSubsettingFeaturesIn(mf, EvaluationUtil.getAnnotatedElementFeature(mf));
 		if (annotatedElementFeatures.exists[!abstract]) {
 			annotatedElementFeatures = annotatedElementFeatures.filter[!abstract].toList
 		}
 		if (!annotatedElementFeatures.empty) {
 			for (element: mf.annotatedElement) {
-				val metaclass = ExpressionUtil.getMetaclassOf(element)
+				val metaclass = ElementUtil.getMetaclassOf(element)
 				if (!annotatedElementFeatures.exists[f | f.type.forall[t | TypeUtil.conforms(metaclass, t)]]) {
 					error(INVALID_METADATA_FEATURE__BAD_ELEMENT_MSG.replace("{metaclass}", metaclass.name), mf, null, INVALID_METADATA_FEATURE__BAD_ELEMENT)
 				}
 			}
 		}
-	}
-	
-	def Feature getAnnotatedElementFeature(Element element) {
-		SysMLLibraryUtil.getLibraryType(element, 
-						ImplicitGeneralizationMap.getDefaultSupertypeFor(element.getClass(), "annotatedElement"))
-						as Feature
 	}
 	
 	def void checkMetadataBody(Type t) {

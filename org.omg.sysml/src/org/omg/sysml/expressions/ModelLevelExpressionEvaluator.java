@@ -103,7 +103,7 @@ public class ModelLevelExpressionEvaluator {
 			// Evaluate feature with a feature chain.
 			return evaluateFeatureChain(feature.getChainingFeature(), type);
 			
-		} else if (type instanceof MetadataFeature && TypeUtil.conforms(feature, EvaluationUtil.getAnnotatedElementFeature(feature))) {
+		} else if (type instanceof MetadataFeature && TypeUtil.conforms(feature, EvaluationUtil.getAnnotatedElementFeature(((MetadataFeature)type)))) {
 			// Evaluate "annotatedElement" feature.
 			return EvaluationUtil.results(((MetadataFeature)type).getAnnotatedElement());
 			

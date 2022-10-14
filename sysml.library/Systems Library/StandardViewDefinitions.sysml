@@ -21,7 +21,7 @@ package StandardViewDefinitions {
              * element.
              * The typical rendering in graphical notation is as a graph of nodes and edges. 
              */
-        filter @Package | @Membership;
+        filter @Package or @Membership;
     }
 
     view def <pv> PackageView {
@@ -30,7 +30,7 @@ package StandardViewDefinitions {
              * Owned or imported packages are presented as nodes and their members can 
              * be presented in textual compartments.
              */
-        filter @Package | @Membership;
+        filter @Package or @Membership;
     }
     
     view def <duv> DefinitionAndUsageView {
@@ -38,7 +38,7 @@ package StandardViewDefinitions {
              * View definition to present Definition and Usage members of exposed model 
              * element(s), as well as the relationships between them.
              */
-        filter @Definition | @Usage | @Dependency | @Specialization | @Disjoining;
+        filter @Definition or @Usage or @Dependency or @Specialization or @Disjoining;
     }
 
     view def <tv> TreeView {
@@ -47,7 +47,7 @@ package StandardViewDefinitions {
              * relationships as edges.
              * The typical rendering in graphical notation is as a graph of nodes and edges.
              */
-        filter @Definition | @Usage;
+        filter @Definition or @Usage;
     }
     
     view def <iv> InterconnectionView {

@@ -27,7 +27,7 @@ package Actions {
 	private import TransitionPerformances::TransitionPerformance;
 	private import TransitionPerformances::NonStateTransitionPerformance;
 	private import Transfers::MessageTransfer;
-	private import Connections::FlowConnection;
+	private import Connections::MessageConnection;
 	
 	abstract action def Action :> Performance {
 		doc
@@ -175,10 +175,10 @@ package Actions {
 		 */
 	
 		in payload :>> sentItem;
-	    ref sentMessage :>> sentTransfer: MessageTransfer, FlowConnection;
+	    ref sentMessage :>> sentTransfer: MessageTransfer, MessageConnection;
 	}
 	
-	abstract action sendActions: SendAction[0..*] nonunique :> sendPerformances, actions {
+	abstract action sendActions: SendAction[0..*] nonunique :> actions, sendPerformances {
 		doc
 		/*
 		 * sendActions is the base feature for all SendActionUsages.
@@ -192,27 +192,27 @@ package Actions {
 		 * of a designated receiver Occurrence, providing its payload as output.
 		 */
 		inout payload :>> acceptedItem;
-		ref acceptedMessage :>> acceptedTransfer: MessageTransfer, FlowConnection;
+		ref acceptedMessage :>> acceptedTransfer: MessageTransfer, MessageConnection;
 	}
 	
 	action def AcceptAction :> AcceptMessageAction {
 		doc
 		/*
-		 * An AcceptAction is an AcceptMessageAction used to type AcceptActionUsages. It
-		 * waits for a payload or message of the specified kind to be accepted by a state
-		 * transition.
+		 * An AcceptAction is an AcceptMessageAction used to type AcceptActionUsages that are
+		 * not accepters for TransitionActions. It waits for a payload or message of the specified 
+		 * kind to be accepted by a nested state transition.
 		 */
 		inout :>> payload = aState.aTransition.apayload;
-		inout :>> acceptedMessage = aState.aTransition.accepter.acceptedMessage;
+		ref :>> acceptedMessage = aState.aTransition.accepter.acceptedMessage;
 		state aState  {
 			transition aTransition first start accept apayload: Anything via receiver then done;
 		}
 	}
 	
-	abstract action acceptActions: AcceptAction[0..*] nonunique :> acceptPerformances, actions {
+	abstract action acceptActions: AcceptAction[0..*] nonunique :> actions, acceptPerformances {
 		doc
 		/*
-		 * acceptActions is the base feature for all AcceptActionUsages.
+		 * acceptActions is the base feature for standalone AcceptActionUsages.
 		 */
 	}
 	
@@ -280,11 +280,11 @@ package Actions {
 		 */
 	
 		in transitionLinkSource : Action :>> TransitionPerformance::transitionLinkSource;
-		ref acceptedMessage : MessageTransfer, FlowConnection :>> trigger;
+		ref acceptedMessage : MessageTransfer, MessageConnection :>> trigger;
 		
 		ref receiver :>> triggerTarget;
 
-		action accepter: AcceptMessageAction :>> 'accept';
+		action accepter : AcceptMessageAction :>> 'accept' :> acceptPerformances;
 		
 		bind receiver = accepter.receiver;
 		bind acceptedMessage = accepter.acceptedMessage;

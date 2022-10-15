@@ -225,7 +225,7 @@ package Transfers {
 		 */
 	
 		in feature sentItem [0..*] = sentTransfer.item;
-		in feature sender: Occurrence[1] = this;
+		in feature sender: Occurrence[1] default this;
 		in feature receiver: Occurrence[0..1];
 		feature sentTransfer: MessageTransfer [1] subsets sender.outgoingTransfersFromSelf;
 		binding receiver.incomingTransfersToSelf[0..1] = sentTransfer[1];
@@ -241,8 +241,7 @@ package Transfers {
 		 */
 		inout feature acceptedItem[0..*] = acceptedTransfer.item;
 		in feature receiver: Occurrence[1] default this;
-		inout feature acceptedTransfer: MessageTransfer[1]
-			subsets receiver.incomingTransfersToSelf;
+		feature acceptedTransfer: MessageTransfer[1] subsets receiver.incomingTransfersToSelf;
 		succession acceptedTransfer then self.endShot;
 	}
 

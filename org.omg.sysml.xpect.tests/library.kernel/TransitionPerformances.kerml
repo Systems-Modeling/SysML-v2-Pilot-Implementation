@@ -7,8 +7,11 @@ package TransitionPerformances {
 
 	private import ScalarValues::Boolean;
 	private import ScalarValues::Natural;
+	private import SequenceFunctions::isEmpty;
+	private import Occurrences::Occurrence;
 	private import Occurrences::HappensBefore;
 	private import Performances::Performance;
+	private import Transfers::AcceptPerformance;
 	private import Performances::Evaluation;
 	private import Transfers::Transfer;
 	private import ControlFunctions::allTrue;
@@ -21,6 +24,7 @@ package TransitionPerformances {
 		bool guard[*] subsets enclosedPerformances;
 		step effect[*] subsets enclosedPerformances;
 
+		feature triggerTarget : Occurrence [1] default this;
 		feature transitionLink: HappensBefore[0..1];
 		
 		private binding transitionLink.earlierOccurrence[0..1] = transitionLinkSource[1];
@@ -33,6 +37,14 @@ package TransitionPerformances {
 			
 		private succession all trigger[*] then guard[*];
 		private succession all guard[*] then effect[*];
+
+		feature accNum: Natural [1] = if isEmpty(trigger) ? 0 else 1;
+		step accept: AcceptPerformance[accNum] subsets timeEnclosedOccurrences {
+			feature redefines receiver = triggerTarget;
+			feature redefines acceptedTransfer = trigger;
+		}
+
+		private succession guard[*] then accept[accNum];
 	}
 	
 	behavior NonStateTransitionPerformance specializes TransitionPerformance {

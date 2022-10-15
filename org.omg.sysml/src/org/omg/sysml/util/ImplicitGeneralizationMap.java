@@ -141,6 +141,7 @@ public class ImplicitGeneralizationMap {
 		// SysML
 		
 		put(AcceptActionUsageImpl.class, "base", "Actions::acceptActions");
+		put(AcceptActionUsageImpl.class, "trigger", "Actions::acceptMessageActions");
 		put(AcceptActionUsageImpl.class, "subaction", "Actions::Action::acceptSubactions");
 		
 		put(ActionDefinitionImpl.class, "base", "Actions::Action");		

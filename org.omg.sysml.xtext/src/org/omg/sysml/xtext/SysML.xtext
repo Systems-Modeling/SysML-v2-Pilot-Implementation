@@ -1458,7 +1458,11 @@ SendNode returns SysML::SendActionUsage :
 
 fragment SendNodeDeclaration returns SysML::ActionUsage :
 	ActionNodeUsageDeclaration? 'send' ownedRelationship += NodeParameterMember 
-	'to' ownedRelationship += NodeParameterMember
+	( 'via' ownedRelationship += NodeParameterMember 
+	  ( 'to' ownedRelationship += NodeParameterMember )?
+	| ownedRelationship += EmptyParameterMember
+	  'to' ownedRelationship += NodeParameterMember
+	)
 ;
 
 NodeParameterMember returns SysML::ParameterMembership :

@@ -13953,27 +13953,101 @@ ruleSendNodeDeclaration[EObject in_current]  returns [EObject current=in_current
 				}
 			)
 		)
-		otherlv_3='to'
-		{
-			newLeafNode(otherlv_3, grammarAccess.getSendNodeDeclarationAccess().getToKeyword_3());
-		}
 		(
 			(
+				otherlv_3='via'
 				{
-					newCompositeNode(grammarAccess.getSendNodeDeclarationAccess().getOwnedRelationshipNodeParameterMemberParserRuleCall_4_0());
+					newLeafNode(otherlv_3, grammarAccess.getSendNodeDeclarationAccess().getViaKeyword_3_0_0());
 				}
-				lv_ownedRelationship_4_0=ruleNodeParameterMember
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getSendNodeDeclarationRule());
+				(
+					(
+						{
+							newCompositeNode(grammarAccess.getSendNodeDeclarationAccess().getOwnedRelationshipNodeParameterMemberParserRuleCall_3_0_1_0());
+						}
+						lv_ownedRelationship_4_0=ruleNodeParameterMember
+						{
+							if ($current==null) {
+								$current = createModelElementForParent(grammarAccess.getSendNodeDeclarationRule());
+							}
+							add(
+								$current,
+								"ownedRelationship",
+								lv_ownedRelationship_4_0,
+								"org.omg.sysml.xtext.SysML.NodeParameterMember");
+							afterParserOrEnumRuleCall();
+						}
+					)
+				)
+				(
+					otherlv_5='to'
+					{
+						newLeafNode(otherlv_5, grammarAccess.getSendNodeDeclarationAccess().getToKeyword_3_0_2_0());
 					}
-					add(
-						$current,
-						"ownedRelationship",
-						lv_ownedRelationship_4_0,
-						"org.omg.sysml.xtext.SysML.NodeParameterMember");
-					afterParserOrEnumRuleCall();
+					(
+						(
+							{
+								newCompositeNode(grammarAccess.getSendNodeDeclarationAccess().getOwnedRelationshipNodeParameterMemberParserRuleCall_3_0_2_1_0());
+							}
+							lv_ownedRelationship_6_0=ruleNodeParameterMember
+							{
+								if ($current==null) {
+									$current = createModelElementForParent(grammarAccess.getSendNodeDeclarationRule());
+								}
+								add(
+									$current,
+									"ownedRelationship",
+									lv_ownedRelationship_6_0,
+									"org.omg.sysml.xtext.SysML.NodeParameterMember");
+								afterParserOrEnumRuleCall();
+							}
+						)
+					)
+				)?
+			)
+			    |
+			(
+				(
+					(
+						{
+							newCompositeNode(grammarAccess.getSendNodeDeclarationAccess().getOwnedRelationshipEmptyParameterMemberParserRuleCall_3_1_0_0());
+						}
+						lv_ownedRelationship_7_0=ruleEmptyParameterMember
+						{
+							if ($current==null) {
+								$current = createModelElementForParent(grammarAccess.getSendNodeDeclarationRule());
+							}
+							add(
+								$current,
+								"ownedRelationship",
+								lv_ownedRelationship_7_0,
+								"org.omg.sysml.xtext.SysML.EmptyParameterMember");
+							afterParserOrEnumRuleCall();
+						}
+					)
+				)
+				otherlv_8='to'
+				{
+					newLeafNode(otherlv_8, grammarAccess.getSendNodeDeclarationAccess().getToKeyword_3_1_1());
 				}
+				(
+					(
+						{
+							newCompositeNode(grammarAccess.getSendNodeDeclarationAccess().getOwnedRelationshipNodeParameterMemberParserRuleCall_3_1_2_0());
+						}
+						lv_ownedRelationship_9_0=ruleNodeParameterMember
+						{
+							if ($current==null) {
+								$current = createModelElementForParent(grammarAccess.getSendNodeDeclarationRule());
+							}
+							add(
+								$current,
+								"ownedRelationship",
+								lv_ownedRelationship_9_0,
+								"org.omg.sysml.xtext.SysML.NodeParameterMember");
+							afterParserOrEnumRuleCall();
+						}
+					)
+				)
 			)
 		)
 	)

@@ -202,8 +202,9 @@ public class ImplicitGeneralizationMap {
 
 		put(ExhibitStateUsageImpl.class, "performedAction", "Parts::Part::exhibitedStates");
 		
-		put(FlowConnectionDefinitionImpl.class, "binary", "Connections::FlowConnection");		
+		put(FlowConnectionDefinitionImpl.class, "binary", "Connections::MessageConnection");		
 		put(FlowConnectionUsageImpl.class, "base", "Connections::flowConnections");
+		put(FlowConnectionUsageImpl.class, "message", "Connections::messageConnections");
 		put(FlowConnectionUsageImpl.class, "enclosedPerformance", "Performances::Performance::enclosedTransfers");
 		put(FlowConnectionUsageImpl.class, "subperformance", "Performances::Performance::subperformances");
 		put(FlowConnectionUsageImpl.class, "ownedPerformance", "Objects::Object::ownedPerformances");

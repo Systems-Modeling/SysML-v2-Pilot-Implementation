@@ -96,6 +96,9 @@ import org.omg.sysml.util.UsageUtil
 import org.omg.sysml.lang.sysml.FlowConnectionUsage
 import org.omg.sysml.lang.sysml.Interaction
 import org.omg.sysml.lang.sysml.FlowConnectionDefinition
+import org.omg.sysml.lang.sysml.SendActionUsage
+import org.omg.sysml.lang.sysml.FeatureReferenceExpression
+import org.omg.sysml.lang.sysml.FeatureChainExpression
 
 /**
  * This class contains custom validation rules. 
@@ -193,6 +196,9 @@ class SysMLValidator extends KerMLValidator {
 	public static val INVALID_RETURNPARAMETERMEMBERSHIP_MSG = 'Only one return parameter is allowed.'
 	public static val INVALID_REQUIREMENTVERIFICATIONMEMBERSHIP = 'Invalid RequirementVerificationMembership - not allowed.'
 	public static val INVALID_REQUIREMENTVERIFICATIONMEMBERSHIP_MSG = 'A requirement verification must be in the objective of a verification case.'
+	
+	public static val INVALID_SENDACTIONUSAGE_RECEIVER = 'Invalid SendActionUsage - PortUsage receiver'
+	public static val INVALID_SENDACTIONUSAGE_RECEIVER_MSG = 'Sending to a port should generally use "via" instead of "to".'
 	
 	@Check
 	def checkUsage(Usage usage) {
@@ -386,6 +392,17 @@ class SysMLValidator extends KerMLValidator {
 	def checkRequirementVerificationMembership(RequirementVerificationMembership mem) {
 		if (!UsageUtil.isLegalVerification(mem)) {
 			error(INVALID_REQUIREMENTVERIFICATIONMEMBERSHIP_MSG, null, INVALID_REQUIREMENTVERIFICATIONMEMBERSHIP)
+		}
+	}
+	
+	@Check
+	def checkSendActionUsage(SendActionUsage usg) {
+		val receiverArgument = usg.receiverArgument
+		if (receiverArgument instanceof FeatureReferenceExpression && 
+				(receiverArgument as FeatureReferenceExpression).referent instanceof PortUsage ||
+			receiverArgument instanceof FeatureChainExpression &&
+				FeatureUtil.getBasicFeatureOf((receiverArgument as FeatureChainExpression).targetFeature) instanceof PortUsage) {
+			warning(INVALID_SENDACTIONUSAGE_RECEIVER_MSG, receiverArgument, null, INVALID_SENDACTIONUSAGE_RECEIVER)
 		}
 	}
 	

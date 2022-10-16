@@ -15,7 +15,7 @@ package ServerSequenceRealization_2 {
 			port publicationPort : ~PublicationPort;
 			
 			perform action producerBehavior {	
-				action publish send Publish(someTopic, somePublication) to publicationPort;
+				action publish send Publish(someTopic, somePublication) via publicationPort;
 			}
 		}
 		

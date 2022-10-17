@@ -45,6 +45,7 @@ package Occurrences {
 			 * subperformances of Performances.
 			 */
 		}
+		connector :HappensDuring from self[1] to this[1];
 		
 		feature localClock : Clock[1] default universalClock  {
 			doc

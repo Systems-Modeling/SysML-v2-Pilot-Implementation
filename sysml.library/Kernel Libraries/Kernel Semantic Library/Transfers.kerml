@@ -66,8 +66,9 @@ package Transfers {
 	interaction MessageTransfer specializes Transfer {
 		doc
 		/*
-		 * A MessageTransfer is a Transfer that is created by a SendPerformance and accepted
-		 * by an AcceptPerformance.
+		 * A MessageTransfer is a Transfer that does not specify where items are picked
+		 * up and dropped off (see FlowTransfer).  They are sent by SendPerformances and
+		 * accepted by AcceptPerformances.
 		 */
 	}
 	 

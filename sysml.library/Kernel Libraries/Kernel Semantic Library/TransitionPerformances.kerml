@@ -11,16 +11,17 @@ package TransitionPerformances {
 	private import Occurrences::Occurrence;
 	private import Occurrences::HappensBefore;
 	private import Performances::Performance;
-	private import Transfers::AcceptPerformance;
 	private import Performances::Evaluation;
-	private import Transfers::Transfer;
+	private import Transfers::MessageTransfer;
+	private import Transfers::AcceptPerformance;
+	private import Transfers::acceptPerformances;
 	private import ControlFunctions::allTrue;
 	private import SequenceFunctions::size;
 	
 	abstract behavior TransitionPerformance {
-		in step transitionLinkSource: Performance[1];
+		in feature transitionLinkSource: Performance[1];
 		
-		feature trigger: Transfer[*];
+		feature trigger: MessageTransfer[*];
 		bool guard[*] subsets enclosedPerformances;
 		step effect[*] subsets enclosedPerformances;
 
@@ -39,7 +40,7 @@ package TransitionPerformances {
 		private succession all guard[*] then effect[*];
 
 		feature accNum: Natural [1] = if isEmpty(trigger) ? 0 else 1;
-		step accept: AcceptPerformance[accNum] subsets timeEnclosedOccurrences {
+		step accept: AcceptPerformance[accNum] subsets timeEnclosedOccurrences, acceptPerformances {
 			feature redefines receiver = triggerTarget;
 			feature redefines acceptedTransfer = trigger;
 		}

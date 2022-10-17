@@ -49,12 +49,13 @@ package Performances {
 			 */
 		}
 		
-		step thisPerformance: Performance [1] subsets enclosedPerformances default self {
+		feature thisPerformance: Performance [1] default self {
 			doc
 			/*
 			 * Defaults to the root of the subperformance composition tree.
 			 */
-		}  
+		}
+		connector :HappensDuring from self[1] to thisPerformance[1]; 
 		
 		composite step subperformances: Performance[0..*] subsets enclosedPerformances, suboccurrences {
 			doc
@@ -72,7 +73,7 @@ package Performances {
 				 */
 			}
 		
-			step redefines thisPerformance default (that as Performance).thisPerformance;
+			feature redefines thisPerformance default (that as Performance).thisPerformance;
 		}
 		
 		expr enclosedEvaluations: Evaluation[0..*] subsets evaluations, enclosedPerformances {

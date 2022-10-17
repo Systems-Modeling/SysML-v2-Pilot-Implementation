@@ -1509,7 +1509,7 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     ownedRelationship+=LifeClassMembership OccurrenceDefKeyword (ambiguity) ownedRelationship+=LifeClassMembership
 	 *     ownedRelationship+=LifeClassMembership PartDefKeyword (ambiguity) (rule end)
 	 *     ownedRelationship+=LifeClassMembership RenderingDefKeyword (ambiguity) (rule end)
-	 *     ownedRelationship+=MessageEndMember (ambiguity) (rule end)
+	 *     ownedRelationship+=MessageEventMember (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedMultiplicity (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedRedefinition (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedReferenceSubsetting (ambiguity) (rule end)

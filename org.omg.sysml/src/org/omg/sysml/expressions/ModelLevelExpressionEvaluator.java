@@ -129,7 +129,7 @@ public class ModelLevelExpressionEvaluator {
 			// Find the most specific type with a binding for the feature and evaluate it.	
 			for (int i = types.size() - 1; i >= 0; i--) {
 				Type t = types.get(i);
-				if (t instanceof MetadataFeature && TypeUtil.conforms(feature, EvaluationUtil.getAnnotatedElementFeature(feature))) {
+				if (t instanceof MetadataFeature && TypeUtil.conforms(feature, EvaluationUtil.getAnnotatedElementFeature((MetadataFeature)t))) {
 					// Evaluate "Metaobject::annotatedElement" feature.
 					return EvaluationUtil.results(((MetadataFeature)t).getAnnotatedElement());
 				} else if (EvaluationUtil.isMetaclassFeature(t)) {

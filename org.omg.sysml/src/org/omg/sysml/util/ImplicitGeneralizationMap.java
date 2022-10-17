@@ -87,7 +87,7 @@ public class ImplicitGeneralizationMap {
 		put(InvariantImpl.class, "base", "Performances::trueEvaluations");
 		put(InvariantImpl.class, "negated", "Performances::falseEvaluations");
 		
-		put(ItemFlowImpl.class, "base", "Transfers::transfers");
+		put(ItemFlowImpl.class, "base", "Transfers::flowTransfers");
 		put(ItemFlowImpl.class, "enclosedPerformance", "Performances::Performance::enclosedTransfers");
 		put(ItemFlowImpl.class, "subperformance", "Performances::Performance::subperformances");
 		put(ItemFlowImpl.class, "ownedPerformance", "Objects::Object::ownedPerformances");
@@ -133,7 +133,7 @@ public class ImplicitGeneralizationMap {
 		
 		put(SuccessionImpl.class, "binary", "Occurrences::happensBeforeLinks");
 		
-		put(SuccessionItemFlowImpl.class, "base", "Transfers::transfersBefore");
+		put(SuccessionItemFlowImpl.class, "base", "Transfers::flowTransfersBefore");
 		put(SuccessionItemFlowImpl.class, "enclosedperformance", "Performances::Performance::enclosedTransfersBefore");
 		put(SuccessionItemFlowImpl.class, "subperformance", "Performances::Performance::subperformances");
 		put(SuccessionItemFlowImpl.class, "ownedPerformance", "Objects::Object::ownedPerformances");
@@ -143,6 +143,7 @@ public class ImplicitGeneralizationMap {
 		// SysML
 		
 		put(AcceptActionUsageImpl.class, "base", "Actions::acceptActions");
+		put(AcceptActionUsageImpl.class, "trigger", "Actions::acceptMessageActions");
 		put(AcceptActionUsageImpl.class, "subaction", "Actions::Action::acceptSubactions");
 		
 		put(ActionDefinitionImpl.class, "base", "Actions::Action");		
@@ -204,8 +205,9 @@ public class ImplicitGeneralizationMap {
 
 		put(ExhibitStateUsageImpl.class, "performedAction", "Parts::Part::exhibitedStates");
 		
-		put(FlowConnectionDefinitionImpl.class, "binary", "Connections::FlowConnection");		
+		put(FlowConnectionDefinitionImpl.class, "binary", "Connections::MessageConnection");		
 		put(FlowConnectionUsageImpl.class, "base", "Connections::flowConnections");
+		put(FlowConnectionUsageImpl.class, "message", "Connections::messageConnections");
 		put(FlowConnectionUsageImpl.class, "enclosedPerformance", "Performances::Performance::enclosedTransfers");
 		put(FlowConnectionUsageImpl.class, "subperformance", "Performances::Performance::subperformances");
 		put(FlowConnectionUsageImpl.class, "ownedPerformance", "Objects::Object::ownedPerformances");

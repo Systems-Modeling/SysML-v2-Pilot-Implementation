@@ -1076,16 +1076,16 @@ fragment MessageDeclaration returns SysML::FlowConnectionUsage :
 	FeatureDeclaration? 
     ( 'of'  ownedRelationship += ItemFeatureMember )?
     ( ValuePart 
-    | 'from' ownedRelationship += MessageEndMember 
-      'to' ownedRelationship += MessageEndMember
+    | 'from' ownedRelationship += MessageEventMember 
+      'to' ownedRelationship += MessageEventMember
     )?
 ;
 
-MessageEndMember returns SysML::EndFeatureMembership :
-	ownedRelatedElement += MessageEnd 
+MessageEventMember returns SysML::ParameterMembership :
+	ownedRelatedElement += MessageEvent 
 ;
 
-MessageEnd returns SysML::ItemFlowEnd :
+MessageEvent returns SysML::EventOccurrenceUsage :
 	ownedRelationship += OwnedReferenceSubsetting
 ;
 
@@ -1470,8 +1470,11 @@ SendNode returns SysML::SendActionUsage :
 fragment SendNodeDeclaration returns SysML::ActionUsage :
 	ActionNodeUsageDeclaration? 'send' ownedRelationship += NodeParameterMember 
 	( 'via' ownedRelationship += NodeParameterMember 
-	  ( 'to' ownedRelationship += NodeParameterMember | ownedRelationship += EmptyParameterMember )
-	| ownedRelationship += EmptyParameterMember 'to' ownedRelationship += NodeParameterMember
+	  ( 'to' ownedRelationship += NodeParameterMember 
+	  | ownedRelationship += EmptyParameterMember
+	  )
+	| ownedRelationship += EmptyParameterMember 
+	  'to' ownedRelationship += NodeParameterMember
 	)
 ;
 

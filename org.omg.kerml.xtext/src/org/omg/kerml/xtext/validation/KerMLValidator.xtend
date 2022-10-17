@@ -72,6 +72,7 @@ import org.eclipse.emf.ecore.EObject
 import org.omg.sysml.lang.sysml.LiteralBoolean
 import org.omg.sysml.lang.sysml.Expression
 import org.omg.sysml.lang.sysml.OperatorExpression
+import org.omg.sysml.expressions.util.EvaluationUtil
 
 /**
  * This class contains custom validation rules. 
@@ -125,7 +126,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 	public static val INVALID_IMPORT__NAME_NOT_RESOLVED_MSG = "Couldn't resolve reference to Element '{name}'."
 	public static val INVALID_ELEMENT_FILTER_MEMBERSHIP__NOT_MODEL_LEVEL = "Invalid ElementFilterMembership - Not model-level"
 	public static val INVALID_ELEMENT_FILTER_MEMBERSHIP__NOT_MODEL_LEVEL_MSG = "Must be model-level evaluable"
-	public static val INVALID_ELEMENT_FILTER_MEMBERSHIP__FEATURE_VALUE_NOT_BOOLEAN = "Invalid ELementFilterMembershio - Condition not Boolean"
+	public static val INVALID_ELEMENT_FILTER_MEMBERSHIP__FEATURE_VALUE_NOT_BOOLEAN = "Invalid ElementFilterMembership - Condition not Boolean"
 	public static val INVALID_ELEMENT_FILTER_MEMBERSHIP__FEATURE_VALUE_NOT_BOOLEAN_MSG = "Must have a Boolean result"
 	public static val INVALID_METADATA_FEATURE__ABSTRACT_TYPE = "Invalid MetadataFeature - Abstract type"
 	public static val INVALID_METADATA_FEATURE__ABSTRACT_TYPE_MSG = "Must have a concrete type"
@@ -256,6 +257,10 @@ class KerMLValidator extends AbstractKerMLValidator {
 			(condition as OperatorExpression).argument.forall[isBoolean]
 	}
 	
+	def getBooleanType(Element context) {
+		SysMLLibraryUtil.getLibraryElement(context, "ScalarValues::Boolean") as Type
+	}
+	
 	def isBooleanOperator(String operator) {
 		newArrayList("not", "xor", "&", "|").contains(operator)
 	}
@@ -307,26 +312,18 @@ class KerMLValidator extends AbstractKerMLValidator {
 	}
 	
 	def void checkMetadataAnnotatedElements(MetadataFeature mf) {
-		var annotatedElementFeatures = FeatureUtil.getAllSubsettingFeaturesIn(mf, mf.annotatedElementFeature);
+		var annotatedElementFeatures = FeatureUtil.getAllSubsettingFeaturesIn(mf, EvaluationUtil.getAnnotatedElementFeature(mf));
 		if (annotatedElementFeatures.exists[!abstract]) {
 			annotatedElementFeatures = annotatedElementFeatures.filter[!abstract].toList
 		}
 		if (!annotatedElementFeatures.empty) {
 			for (element: mf.annotatedElement) {
 				val metaclass = ElementUtil.getMetaclassOf(element)
-				if (metaclass !== null && !annotatedElementFeatures.exists[f | 
-					f.type.forall[t | TypeUtil.conforms(metaclass, t)]
-				]) {
+				if (metaclass !== null && !annotatedElementFeatures.exists[f | f.type.forall[t | TypeUtil.conforms(metaclass, t)]]) {
 					error(INVALID_METADATA_FEATURE__BAD_ELEMENT_MSG.replace("{metaclass}", metaclass.name), mf, null, INVALID_METADATA_FEATURE__BAD_ELEMENT)
 				}
 			}
 		}
-	}
-	
-	def Feature getAnnotatedElementFeature(Element element) {
-		SysMLLibraryUtil.getLibraryType(element, 
-						ImplicitGeneralizationMap.getDefaultSupertypeFor(element.getClass(), "annotatedElement"))
-						as Feature
 	}
 	
 	def void checkMetadataBody(Type t) {
@@ -341,19 +338,15 @@ class KerMLValidator extends AbstractKerMLValidator {
 			error(INVALID_METADATA_FEATURE__BAD_REDEFINITION_MSG, f, null, INVALID_METADATA_FEATURE__BAD_REDEFINITION)
 		}
 		
-		// Feature value, if any, must be model-level evaluable and have a Boolean result.
+		// Feature value, if any, must be model-level evaluable.
 		val fv = FeatureUtil.getValuationFor(f)
 		val value = fv?.value
-		if (value !== null  && !value.isModelLevelEvaluable) {
+		if (value !== null && !value.isModelLevelEvaluable) {
 			error(INVALID_METADATA_FEATURE__FEATURE_VALUE_NOT_MODEL_LEVEL_MSG, fv, SysMLPackage.eINSTANCE.featureValue_Value, INVALID_METADATA_FEATURE__FEATURE_VALUE_NOT_MODEL_LEVEL)
 		}
 		
 		// Must have a valid metadata body.
 		checkMetadataBody(f)		
-	}
-	
-	def getBooleanType(Element context) {
-		SysMLLibraryUtil.getLibraryElement(context, "ScalarValues::Boolean") as Type
 	}
 	
 	@Check

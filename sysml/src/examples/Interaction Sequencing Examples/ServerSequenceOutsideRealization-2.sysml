@@ -1,5 +1,5 @@
-package ServerSequenceRealization_2 {
-	import ServerSequenceModel::*;
+package ServerSequenceOutsideRealization_2 {
+	import ServerSequenceModelOutside::*;
 	import Configuration::*;
 	
 	package Configuration {
@@ -11,10 +11,14 @@ package ServerSequenceRealization_2 {
 		part producer_2[1] {
 			attribute someTopic : String;
 			private item somePublication;
+			/* Requiring FIFO sort (as opposed to just default) to make arrival/leave ordering
+			 * in ServerSequenceModelOutside.sysml equivalent to accept/send ordering in
+			 * ServerSquenceRealization-2.sysml. */
+			feature :>> incomingTransferSort = Occurrences::earlierFirstIncomingTransferSort;
 			
 			port publicationPort : ~PublicationPort;
 			
-			perform action producerBehavior {	
+			perform action producerBehavior {
 				action publish send Publish(someTopic, somePublication) via publicationPort;
 			}
 		}
@@ -26,6 +30,7 @@ package ServerSequenceRealization_2 {
 		part server_2[1] {
 			port publicationPort : PublicationPort;
 			port subscriptionPort : SubscriptionPort;
+			feature :>> incomingTransferSort = Occurrences::earlierFirstIncomingTransferSort;
 			
 			exhibit state serverBehavior {
 				entry; then waitForSubscription;
@@ -52,6 +57,7 @@ package ServerSequenceRealization_2 {
 		
 		part consumer_2[1] {
 			attribute myTopic : String;
+			feature :>> incomingTransferSort = Occurrences::earlierFirstIncomingTransferSort;
 			
 			port subscriptionPort : ~SubscriptionPort;
 			
@@ -64,20 +70,9 @@ package ServerSequenceRealization_2 {
 	}
 	
 	part realization_2 : PubSubSequence {
-		part :>> producer :> producer_2 {
-			event producerBehavior.publish[1] :>> publish_source_event;
-		}
-
-		part :>> server :> server_2 {
-			event serverBehavior.subscribing.accepter[1] :>> subscribe_target_event;
-			event serverBehavior.delivering.accepter[1] :>> publish_target_event;
-			event serverBehavior.delivering.effect[1] :>> deliver_source_event;
-		}
-		
-		part :>> consumer :> consumer_2 {
-			event consumerBehavior.subscribe[1] :>> subscribe_source_event;
-			event consumerBehavior.delivery[1] :>> deliver_target_event;
-		}
+		part :>> producer :> producer_2;
+		part :>> server :> server_2;
+		part :>> consumer :> consumer_2;
 
 		message :>> publish_message: Transfers::MessageTransfer {
  			end :>> source = producer.publicationPort;

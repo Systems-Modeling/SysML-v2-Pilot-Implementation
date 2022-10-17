@@ -1,5 +1,5 @@
 package KerML {
-	import ScalarValues::*;
+	private import ScalarValues::*;
 	import Kernel::*;
 	
 	package Root {

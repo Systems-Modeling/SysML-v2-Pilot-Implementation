@@ -36,7 +36,7 @@ package Objects {
 			 */
 		}
 		
-		step involvingPerformances: Performance[0..*] subsets performances {
+		feature involvingPerformances: Performance[0..*] subsets performances {
 			doc
 			/*
 			 * Performances in which this object is involved.

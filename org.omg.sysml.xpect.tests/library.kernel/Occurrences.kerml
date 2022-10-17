@@ -67,6 +67,8 @@ package Occurrences {
 			 	 * Occurrence.
 			 	 */
 			 }
+			 
+			 feature redefines incomingTransferSort default (that as Occurrence).incomingTransferSort;
 		}
 		
 		feature predecessors: Occurrence[0..*] subsets occurrences {
@@ -237,8 +239,8 @@ package Occurrences {
 		inv { isEmpty(middleTimeSlice) == (startShot == endShot) }
 
 		connector :HappensJustBefore
-			from earlierOccurrence :> startShot [1]
-			to laterOccurrence :> middleTimeSlice [0..1] {
+			from earlierOccurrence references startShot [1]
+			to laterOccurrence references middleTimeSlice [0..1] {
 			doc
 			/*
 			 * The startShot happens immediately before the middle time slice.
@@ -253,8 +255,8 @@ package Occurrences {
 		}
 
 		 connector :HappensJustBefore
-			from earlierOccurrence :> middleTimeSlice [0..1]
-			to laterOccurrence :> endShot [1] {
+			from earlierOccurrence references middleTimeSlice [0..1]
+			to laterOccurrence references endShot [1] {
 			doc
 			/*
 			 * The endShot happens after the middle time slice.
@@ -305,11 +307,11 @@ package Occurrences {
 			feature union: Occurrence[0..1];
 
 			connector :Within
-				  from smallerOccurrence :> elements [0..*]
-				  to largerOccurrence :> union [1];
+				  from smallerOccurrence references elements [0..*]
+				  to largerOccurrence references union [1];
 			connector :Within
-				  from smallerOccurrence :> union.spaceTimeEnclosedPoints [0..*]
-				  to largerOccurrence :> elements [1..*];
+				  from smallerOccurrence references union.spaceTimeEnclosedPoints [0..*]
+				  to largerOccurrence references elements [1..*];
 		}
 		binding unionsOf.union[0..1] = self[1];
 
@@ -328,14 +330,14 @@ package Occurrences {
 			feature intersection: Occurrence[0..1];
 
 			connector :Within
-				  from smallerOccurrence :> intersection [1]
-				  to largerOccurrence :> elements [0..*];
+				  from smallerOccurrence references intersection [1]
+				  to largerOccurrence references elements [0..*];
 			connector :Without
-				  from separateOccurrenceToo :> elements.notIntersection [0..*]
-				  to separateOccurrence :> intersection [1];
+				  from separateOccurrenceToo references elements.notIntersection [0..*]
+				  to separateOccurrence references intersection [1];
 			connector :Without
-				  from separateOccurrenceToo :> elements.notIntersection [0..*]
-				  to separateOccurrence :> elements [1..*];
+				  from separateOccurrenceToo references elements.notIntersection [0..*]
+				  to separateOccurrence references elements [1..*];
 		}
 		binding intersectionsOf.intersection[0..1] = self[1];
 
@@ -357,8 +359,8 @@ package Occurrences {
 			}
 
 			connector :Without
-				  from separateOccurrenceToo :> interdiff.notSubtrahend [0..*]
-				  to separateOccurrence :> subtrahend [1..*];
+				  from separateOccurrenceToo references interdiff.notSubtrahend [0..*] 
+				  to separateOccurrence references subtrahend [1..*];
 
 			inv { isEmpty(difference) == isEmpty(interdiff) }
 			inv { notEmpty(difference) implies (difference.intersectionsOf == interdiff) }
@@ -426,12 +428,12 @@ package Occurrences {
 		inv { innerSpaceDimension == 0 implies isEmpty(spaceBoundary) }
 
 		connector :SurroundedBy
-			from surroundingSpace :> spaceBoundary.outer [1]
-			to surroundedSpace :> spaceInterior [0..*];
+			from surroundingSpace references spaceBoundary.outer [1]
+			to surroundedSpace references spaceInterior [0..*];
 
 		connector :SurroundedBy
-			from surroundingSpace :> spaceInterior [1]
-			to surroundedSpace :> spaceBoundary.inner [0..*];
+			from surroundingSpace references spaceInterior [1]
+			to surroundedSpace references spaceBoundary.inner [0..*];
 
 		feature innerSpaceOccurrences: Occurrence [0..*] {
 			doc
@@ -456,6 +458,33 @@ package Occurrences {
 
 			end feature redefines source;
 			end feature redefines target;
+		}
+		
+		feature isDispatch : Boolean[1] default false {
+			doc
+			/*
+			 * Determines whether transfers to the dispatch scope might be accepted more than once.
+			 */
+		}
+ 		feature dispatchScope: Occurrence [1] default self;
+ 		connector :HappensDuring from self[1] to dispatchScope[1];
+ 		
+ 		feature isRunToCompletion: Boolean [1] default true {
+			doc
+			/*
+			 * Determines whether transition performances might happen during state entry performances
+			 * within the run to completion scope.
+			 */
+		}
+		feature runToCompletionScope: Occurrence [1] default self;
+		connector :HappensDuring from self[1] to runToCompletionScope[1];
+ 
+ 		feature incomingTransferSort : IncomingTransferSort [0..*] default earlierFirstIncomingTransferSort {
+			doc
+			/*
+			 * Determines which transfer to accept when multiple are available and which of the unaccepted 
+			 * transfers are never to be accepted (dispatched).
+			 */
 		}
 
 		feature all incomingTransfersToSelf subsets incomingTransfers {
@@ -501,6 +530,16 @@ package Occurrences {
 	}
 
 	abstract feature occurrences: Occurrence[0..*] nonunique subsets things;
+	
+	predicate IncomingTransferSort specializes Performances::BooleanEvaluation {    
+		in t1: Transfers::Transfer [1];
+		in t2: Transfers::Transfer [1];  
+		return t1First: Boolean [1]; 
+	}
+
+	bool earlierFirstIncomingTransferSort : IncomingTransferSort {
+		return t1First = includes(t1.endShot.successors, t2.endShot);
+	}
 
 	assoc all SelfSameLifeLink specializes BinaryLink {
 		doc
@@ -576,8 +615,8 @@ package Occurrences {
 		end feature thatOccurrence: Occurrence[1..*] redefines longerOccurrence;
 
 		connector :HappensDuring
-			from shorterOccurrence :> thatOccurrence [1]
-			to longerOccurrence :> thisOccurrence  [1];
+			from shorterOccurrence references thatOccurrence [1]
+			to longerOccurrence references thisOccurrence  [1];
 	}
 
 	assoc InsideOf specializes BinaryLink {
@@ -625,8 +664,8 @@ package Occurrences {
 		  subsets thisOccurrence.spaceTimeCoincidentOccurrences;
 
 		connector :Within
-			from smallerOccurrence :> thatOccurrence [1]
-			to largerOccurrence :> thisOccurrence [1];
+			from smallerOccurrence references thatOccurrence [1]
+			to largerOccurrence references thisOccurrence [1];
 	}
 
 	assoc PortionOf specializes Within {
@@ -766,8 +805,8 @@ package Occurrences {
 		 */
 
 		connector :MatesWith [1..*]
-			from separateSpace :> separateSpace.spaceSlices [0..*]
-			to separateSpaceToo :> separateSpaceToo.spaceSlices [0..*];
+			from separateSpace references separateSpace.spaceSlices [0..*]
+			to separateSpaceToo references separateSpaceToo.spaceSlices [0..*];
 	}
 
 	assoc MatesWith specializes JustOutsideOf {
@@ -819,7 +858,7 @@ package Occurrences {
 		end feature surroundedSpace: Occurrence[0..*] redefines separateSpace;
 
 		connector :InsideOf
-			from smallerOccurrence :> surroundedSpace [0..1]
-			to largerOccurrence :> surroundingSpace.innerSpaceOccurrences [1..*];
+			from smallerOccurrence references surroundedSpace [0..1]
+			to largerOccurrence references surroundingSpace.innerSpaceOccurrences [1..*];
 	}
 }

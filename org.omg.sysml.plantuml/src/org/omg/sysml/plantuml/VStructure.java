@@ -114,15 +114,14 @@ public abstract class VStructure extends VDefault {
 
     protected boolean appendFeatureValue(FeatureValue fv) {
         Expression ex = fv.getValue();
-        String text = getText(ex);
+        String text = getText(fv);
         if (text != null) {
-            append(' ');
             if (fv.isDefault()) {
                 append("<b> default </b>");
-            } else if (fv.isInitial()) {
-                text = ":= " + text; 
-            } else {
-                text = "= " + text; 
+                int pos = text.indexOf("default");
+                if (pos >= 0) {
+                    text = text.substring(pos + "default".length()); // 
+                }
             }
             boolean flag = appendText(text, true);
             return addEvaluatedResults(ex) || flag;

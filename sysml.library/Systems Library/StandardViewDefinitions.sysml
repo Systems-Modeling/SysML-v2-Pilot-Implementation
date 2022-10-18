@@ -58,7 +58,7 @@ package StandardViewDefinitions {
     view def <afv> ActionFlowView specializes InterconnectionView {
         doc /*
              * View definition to present connections between actions.
-             * Valid nodes and edges in an AtionFlowView are:
+             * Valid nodes and edges in an ActionFlowView are:
              * - Actions with nested actions
              * - Parameters with direction
              * - Flow connection usages (e.g., kinds of transfers from output to input)

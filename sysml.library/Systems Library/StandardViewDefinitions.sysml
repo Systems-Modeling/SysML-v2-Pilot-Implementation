@@ -1,64 +1,60 @@
 package StandardViewDefinitions {
     doc /*
-         * This package defines the standard view definitions for the SysML language. 
+         * This package defines the standard view definitions for the SysML language.
          */
     import SysML::*;
-    
+
     view def <cv> ContainmentView {
         doc /*
-             * View definition to present the hierarchical membership structure of model 
+             * View definition to present the hierarchical membership structure of model
              * elements starting from an exposed root element.
-             * The typical rendering in graphical notation is as an indented list of rows, 
-             * consisting of dynamically collapsible-expandable nodes that represent 
+             * The typical rendering in graphical notation is as an indented list of rows,
+             * consisting of dynamically collapsible-expandable nodes that represent
              * branches and leaves of the tree.
              */
     }
-    
+
     view def <mv> MemberView {
         doc /*
              * View definition to present any members of exposed model element(s).
-             * This is the most general view, that enables presentation of any model 
+             * This is the most general view, that enables presentation of any model
              * element.
-             * The typical rendering in graphical notation is as a graph of nodes and edges. 
+             * The typical rendering in graphical notation is as a graph of nodes and edges.
              */
-        filter @Package or @Membership;
     }
 
     view def <pv> PackageView {
         doc /*
              * View definition to present package structure and content.
-             * Owned or imported packages are presented as nodes and their members can 
+             * Owned or imported packages are presented as nodes and their members can
              * be presented in textual compartments.
              */
-        filter @Package or @Membership;
     }
-    
+
     view def <duv> DefinitionAndUsageView {
         doc /*
-             * View definition to present Definition and Usage members of exposed model 
+             * View definition to present Definition and Usage members of exposed model
              * element(s), as well as the relationships between them.
              */
-        filter @Definition or @Usage or @Dependency or @Specialization or @Disjoining;
     }
 
     view def <tv> TreeView {
         doc /*
-             * View definition to present exposed features as nodes, and membership 
+             * View definition to present exposed features as nodes, and membership
              * relationships as edges.
              * The typical rendering in graphical notation is as a graph of nodes and edges.
              */
-        filter @Definition or @Usage;
     }
-    
+
     view def <iv> InterconnectionView {
         doc /*
-             * View definition to present exposed features as nodes, nested features as 
-             * nested nodes, and connections between features 
-             * as edges between (nested) nodes. Nested nodes may present boundary features 
+             * View definition to present exposed features as nodes, nested features as
+             * nested nodes, and connections between features
+             * as edges between (nested) nodes. Nested nodes may present boundary features
              * (e.g., ports, parameters).
              */
     }
-    
+
     view def <afv> ActionFlowView specializes InterconnectionView {
         doc /*
              * View definition to present connections between actions.
@@ -66,7 +62,7 @@ package StandardViewDefinitions {
              * - Actions with nested actions
              * - Parameters with direction
              * - Flow connection usages (e.g., kinds of transfers from output to input)
-             * - Binding connections between parameters (e.g., delegate a parameter from 
+             * - Binding connections between parameters (e.g., delegate a parameter from
              *   one level of nesting to another)
              * - Proxy connection points
              * - Swim lanes
@@ -78,7 +74,7 @@ package StandardViewDefinitions {
              * - Compartments on actions and parameters
              */
     }
-    
+
     view def <stv> StateTransitionView specializes InterconnectionView {
         doc /*
              * View definition to present states and their transitions.
@@ -89,10 +85,10 @@ package StandardViewDefinitions {
              * - Compartments on states
              */
     }
-    
+
     view def <sv> SequenceView {
         doc /*
-             * View definition to present time ordering of event occurrences on lifelines 
+             * View definition to present time ordering of event occurrences on lifelines
              * of exposed features.
              * Valid nodes and edges in a SequenceView are:
              * - Features such as parts with their lifelines
@@ -101,12 +97,12 @@ package StandardViewDefinitions {
              * - Succession between event occurrences
              * - Nested sequence view (e.g., a reference to a view)
              * - Compartments
-             * The typical rendering in graphical notation depicts the exposed features 
-             * horizontally along the top, with vertical lifelines. The time axis is 
+             * The typical rendering in graphical notation depicts the exposed features
+             * horizontally along the top, with vertical lifelines. The time axis is
              * vertical, with time increasing from top to bottom.
              */
     }
-    
+
     view def <ucv> UseCaseView {
         doc /*
              * View definition to present exposed use cases.
@@ -116,11 +112,11 @@ package StandardViewDefinitions {
              * - Include relationship
              * - Objective
              * - Compartments
-             * - Binding connection between an actor and an input parameter with same 
+             * - Binding connection between an actor and an input parameter with same
              *   name (TBC)
              */
     }
-    
+
     view def <rv> RequirementView {
         doc /*
              * View definition to present exposed requirements and their relationships.
@@ -133,7 +129,7 @@ package StandardViewDefinitions {
              * - Verified by
              */
     }
-    
+
     view def <acv> AnalysisCaseView {
         doc /*
              * View definition to present exposed analysis cases and their relationships.
@@ -144,14 +140,14 @@ package StandardViewDefinitions {
              * - Action
              * - Calculation
              * - Compartments
-             * - Binding connection between an actor and an input parameter with same 
+             * - Binding connection between an actor and an input parameter with same
              *   name (TBC)
              */
     }
-    
+
     view def <vcv> VerificationCaseView {
         doc /*
-             * View definition to present exposed verification cases and their 
+             * View definition to present exposed verification cases and their
              * relationships.
              * Valid nodes and edges in a VerificationCaseView are:
              * - Verification case, with subject, i.e., unit/article under verification
@@ -161,11 +157,11 @@ package StandardViewDefinitions {
              * - Requirement
              * - Verify relationship
              * - Compartments
-             * - Binding connection between an actor and an input parameter with same 
+             * - Binding connection between an actor and an input parameter with same
              *   name (TBC)
              */
     }
-    
+
     view def <vvv> ViewAndViewpointView {
         doc /*
              * View definition to present exposed View and Viewpoint .
@@ -178,24 +174,24 @@ package StandardViewDefinitions {
              * - Concern definition
              * - Concern Usage
              * - Expose
-             * - Exposed element 
+             * - Exposed element
              * - Subclassification
              * - Defined by
              * - Subset
              * - Redefinition
              */
     }
-    
+
     view def <lev> LanguageExtensionView {
         doc /*
-             * View definition to present an exposed metadata definition used to extend 
+             * View definition to present an exposed metadata definition used to extend
              * a library concept.
              */
     }
-    
+
     view def <gv> GridView {
         doc /*
-             * View definition to present exposed model elements and their relationships, 
+             * View definition to present exposed model elements and their relationships,
              * arranged in a rectangular grid.
              * GridView is the generalization of the following more specialized views:
              * - Tabular view
@@ -203,17 +199,17 @@ package StandardViewDefinitions {
              * - Relationship matrix view
              */
     }
-    
+
     view def <gev> GeometryView {
         doc /*
-             * View definition to present a visualization of exposed spatial items in two 
+             * View definition to present a visualization of exposed spatial items in two
              * or three dimensions
              * Valid nodes and edges in a GeometryView are:
              * - Spatial item, including shape
              * - Coordinate frame
-             * - Feature related to spatial item, such as a quantity (e.g. temperature) 
+             * - Feature related to spatial item, such as a quantity (e.g. temperature)
              *   of which values are to be rendered on a color scale
-             * The typical rendering in graphical notation would include a number of 
+             * The typical rendering in graphical notation would include a number of
              * visualization parameters, such as:
              * - 2D or 3D view
              * - viewing direction

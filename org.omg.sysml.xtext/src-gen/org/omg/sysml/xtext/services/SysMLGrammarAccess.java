@@ -8139,39 +8139,33 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Keyword cViaKeyword_3_0_0 = (Keyword)cGroup_3_0.eContents().get(0);
 		private final Assignment cOwnedRelationshipAssignment_3_0_1 = (Assignment)cGroup_3_0.eContents().get(1);
 		private final RuleCall cOwnedRelationshipNodeParameterMemberParserRuleCall_3_0_1_0 = (RuleCall)cOwnedRelationshipAssignment_3_0_1.eContents().get(0);
-		private final Alternatives cAlternatives_3_0_2 = (Alternatives)cGroup_3_0.eContents().get(2);
-		private final Group cGroup_3_0_2_0 = (Group)cAlternatives_3_0_2.eContents().get(0);
-		private final Keyword cToKeyword_3_0_2_0_0 = (Keyword)cGroup_3_0_2_0.eContents().get(0);
-		private final Assignment cOwnedRelationshipAssignment_3_0_2_0_1 = (Assignment)cGroup_3_0_2_0.eContents().get(1);
-		private final RuleCall cOwnedRelationshipNodeParameterMemberParserRuleCall_3_0_2_0_1_0 = (RuleCall)cOwnedRelationshipAssignment_3_0_2_0_1.eContents().get(0);
-		private final Assignment cOwnedRelationshipAssignment_3_0_2_1 = (Assignment)cAlternatives_3_0_2.eContents().get(1);
-		private final RuleCall cOwnedRelationshipEmptyParameterMemberParserRuleCall_3_0_2_1_0 = (RuleCall)cOwnedRelationshipAssignment_3_0_2_1.eContents().get(0);
-		private final Group cGroup_3_1 = (Group)cAlternatives_3.eContents().get(1);
-		private final Assignment cOwnedRelationshipAssignment_3_1_0 = (Assignment)cGroup_3_1.eContents().get(0);
-		private final RuleCall cOwnedRelationshipEmptyParameterMemberParserRuleCall_3_1_0_0 = (RuleCall)cOwnedRelationshipAssignment_3_1_0.eContents().get(0);
-		private final Keyword cToKeyword_3_1_1 = (Keyword)cGroup_3_1.eContents().get(1);
-		private final Assignment cOwnedRelationshipAssignment_3_1_2 = (Assignment)cGroup_3_1.eContents().get(2);
-		private final RuleCall cOwnedRelationshipNodeParameterMemberParserRuleCall_3_1_2_0 = (RuleCall)cOwnedRelationshipAssignment_3_1_2.eContents().get(0);
+		private final Assignment cOwnedRelationshipAssignment_3_1 = (Assignment)cAlternatives_3.eContents().get(1);
+		private final RuleCall cOwnedRelationshipEmptyParameterMemberParserRuleCall_3_1_0 = (RuleCall)cOwnedRelationshipAssignment_3_1.eContents().get(0);
+		private final Alternatives cAlternatives_4 = (Alternatives)cGroup.eContents().get(4);
+		private final Group cGroup_4_0 = (Group)cAlternatives_4.eContents().get(0);
+		private final Keyword cToKeyword_4_0_0 = (Keyword)cGroup_4_0.eContents().get(0);
+		private final Assignment cOwnedRelationshipAssignment_4_0_1 = (Assignment)cGroup_4_0.eContents().get(1);
+		private final RuleCall cOwnedRelationshipNodeParameterMemberParserRuleCall_4_0_1_0 = (RuleCall)cOwnedRelationshipAssignment_4_0_1.eContents().get(0);
+		private final Assignment cOwnedRelationshipAssignment_4_1 = (Assignment)cAlternatives_4.eContents().get(1);
+		private final RuleCall cOwnedRelationshipEmptyParameterMemberParserRuleCall_4_1_0 = (RuleCall)cOwnedRelationshipAssignment_4_1.eContents().get(0);
 		
 		//fragment SendNodeDeclaration returns SysML::ActionUsage :
 		//    ActionNodeUsageDeclaration? 'send' ownedRelationship += NodeParameterMember
 		//    ( 'via' ownedRelationship += NodeParameterMember
-		//      ( 'to' ownedRelationship += NodeParameterMember
-		//      | ownedRelationship += EmptyParameterMember
-		//      )
 		//    | ownedRelationship += EmptyParameterMember
-		//      'to' ownedRelationship += NodeParameterMember
+		//    )
+		//    ( 'to' ownedRelationship += NodeParameterMember
+		//    | ownedRelationship += EmptyParameterMember
 		//    )
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//ActionNodeUsageDeclaration? 'send' ownedRelationship += NodeParameterMember
 		//( 'via' ownedRelationship += NodeParameterMember
-		//  ( 'to' ownedRelationship += NodeParameterMember
-		//  | ownedRelationship += EmptyParameterMember
-		//  )
 		//| ownedRelationship += EmptyParameterMember
-		//  'to' ownedRelationship += NodeParameterMember
+		//)
+		//( 'to' ownedRelationship += NodeParameterMember
+		//| ownedRelationship += EmptyParameterMember
 		//)
 		public Group getGroup() { return cGroup; }
 		
@@ -8188,18 +8182,11 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		public RuleCall getOwnedRelationshipNodeParameterMemberParserRuleCall_2_0() { return cOwnedRelationshipNodeParameterMemberParserRuleCall_2_0; }
 		
 		//( 'via' ownedRelationship += NodeParameterMember
-		//  ( 'to' ownedRelationship += NodeParameterMember
-		//  | ownedRelationship += EmptyParameterMember
-		//  )
 		//| ownedRelationship += EmptyParameterMember
-		//  'to' ownedRelationship += NodeParameterMember
 		//)
 		public Alternatives getAlternatives_3() { return cAlternatives_3; }
 		
 		//'via' ownedRelationship += NodeParameterMember
-		//     ( 'to' ownedRelationship += NodeParameterMember
-		//     | ownedRelationship += EmptyParameterMember
-		//     )
 		public Group getGroup_3_0() { return cGroup_3_0; }
 		
 		//'via'
@@ -8211,47 +8198,34 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//NodeParameterMember
 		public RuleCall getOwnedRelationshipNodeParameterMemberParserRuleCall_3_0_1_0() { return cOwnedRelationshipNodeParameterMemberParserRuleCall_3_0_1_0; }
 		
+		//ownedRelationship += EmptyParameterMember
+		public Assignment getOwnedRelationshipAssignment_3_1() { return cOwnedRelationshipAssignment_3_1; }
+		
+		//EmptyParameterMember
+		public RuleCall getOwnedRelationshipEmptyParameterMemberParserRuleCall_3_1_0() { return cOwnedRelationshipEmptyParameterMemberParserRuleCall_3_1_0; }
+		
 		//( 'to' ownedRelationship += NodeParameterMember
 		//| ownedRelationship += EmptyParameterMember
 		//)
-		public Alternatives getAlternatives_3_0_2() { return cAlternatives_3_0_2; }
+		public Alternatives getAlternatives_4() { return cAlternatives_4; }
 		
 		//'to' ownedRelationship += NodeParameterMember
-		public Group getGroup_3_0_2_0() { return cGroup_3_0_2_0; }
+		public Group getGroup_4_0() { return cGroup_4_0; }
 		
 		//'to'
-		public Keyword getToKeyword_3_0_2_0_0() { return cToKeyword_3_0_2_0_0; }
+		public Keyword getToKeyword_4_0_0() { return cToKeyword_4_0_0; }
 		
 		//ownedRelationship += NodeParameterMember
-		public Assignment getOwnedRelationshipAssignment_3_0_2_0_1() { return cOwnedRelationshipAssignment_3_0_2_0_1; }
+		public Assignment getOwnedRelationshipAssignment_4_0_1() { return cOwnedRelationshipAssignment_4_0_1; }
 		
 		//NodeParameterMember
-		public RuleCall getOwnedRelationshipNodeParameterMemberParserRuleCall_3_0_2_0_1_0() { return cOwnedRelationshipNodeParameterMemberParserRuleCall_3_0_2_0_1_0; }
+		public RuleCall getOwnedRelationshipNodeParameterMemberParserRuleCall_4_0_1_0() { return cOwnedRelationshipNodeParameterMemberParserRuleCall_4_0_1_0; }
 		
 		//ownedRelationship += EmptyParameterMember
-		public Assignment getOwnedRelationshipAssignment_3_0_2_1() { return cOwnedRelationshipAssignment_3_0_2_1; }
+		public Assignment getOwnedRelationshipAssignment_4_1() { return cOwnedRelationshipAssignment_4_1; }
 		
 		//EmptyParameterMember
-		public RuleCall getOwnedRelationshipEmptyParameterMemberParserRuleCall_3_0_2_1_0() { return cOwnedRelationshipEmptyParameterMemberParserRuleCall_3_0_2_1_0; }
-		
-		//ownedRelationship += EmptyParameterMember
-		//     'to' ownedRelationship += NodeParameterMember
-		public Group getGroup_3_1() { return cGroup_3_1; }
-		
-		//ownedRelationship += EmptyParameterMember
-		public Assignment getOwnedRelationshipAssignment_3_1_0() { return cOwnedRelationshipAssignment_3_1_0; }
-		
-		//EmptyParameterMember
-		public RuleCall getOwnedRelationshipEmptyParameterMemberParserRuleCall_3_1_0_0() { return cOwnedRelationshipEmptyParameterMemberParserRuleCall_3_1_0_0; }
-		
-		//'to'
-		public Keyword getToKeyword_3_1_1() { return cToKeyword_3_1_1; }
-		
-		//ownedRelationship += NodeParameterMember
-		public Assignment getOwnedRelationshipAssignment_3_1_2() { return cOwnedRelationshipAssignment_3_1_2; }
-		
-		//NodeParameterMember
-		public RuleCall getOwnedRelationshipNodeParameterMemberParserRuleCall_3_1_2_0() { return cOwnedRelationshipNodeParameterMemberParserRuleCall_3_1_2_0; }
+		public RuleCall getOwnedRelationshipEmptyParameterMemberParserRuleCall_4_1_0() { return cOwnedRelationshipEmptyParameterMemberParserRuleCall_4_1_0; }
 	}
 	public class NodeParameterMemberElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.NodeParameterMember");
@@ -17805,11 +17779,10 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	//fragment SendNodeDeclaration returns SysML::ActionUsage :
 	//    ActionNodeUsageDeclaration? 'send' ownedRelationship += NodeParameterMember
 	//    ( 'via' ownedRelationship += NodeParameterMember
-	//      ( 'to' ownedRelationship += NodeParameterMember
-	//      | ownedRelationship += EmptyParameterMember
-	//      )
 	//    | ownedRelationship += EmptyParameterMember
-	//      'to' ownedRelationship += NodeParameterMember
+	//    )
+	//    ( 'to' ownedRelationship += NodeParameterMember
+	//    | ownedRelationship += EmptyParameterMember
 	//    )
 	//;
 	public SendNodeDeclarationElements getSendNodeDeclarationAccess() {

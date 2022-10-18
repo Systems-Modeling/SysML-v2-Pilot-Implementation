@@ -145,7 +145,7 @@ public class UsageUtil {
 	
 	public static Expression getArgumentOf(ActionUsage action, int i) {
 		List<Feature> parameters = getOwnedInputParametersOf(action);
-		return parameters.size() <= i? null: FeatureUtil.getValueExpressionFor(parameters.get(i - 1));
+		return parameters.size() < i? null: FeatureUtil.getValueExpressionFor(parameters.get(i - 1));
 	}
 	
 	// Constraints

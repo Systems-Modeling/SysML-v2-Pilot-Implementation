@@ -14093,97 +14093,72 @@ ruleSendNodeDeclaration[EObject in_current]  returns [EObject current=in_current
 						}
 					)
 				)
+			)
+			    |
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getSendNodeDeclarationAccess().getOwnedRelationshipEmptyParameterMemberParserRuleCall_3_1_0());
+					}
+					lv_ownedRelationship_5_0=ruleEmptyParameterMember
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getSendNodeDeclarationRule());
+						}
+						add(
+							$current,
+							"ownedRelationship",
+							lv_ownedRelationship_5_0,
+							"org.omg.sysml.xtext.SysML.EmptyParameterMember");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+		)
+		(
+			(
+				otherlv_6='to'
+				{
+					newLeafNode(otherlv_6, grammarAccess.getSendNodeDeclarationAccess().getToKeyword_4_0_0());
+				}
 				(
 					(
-						otherlv_5='to'
 						{
-							newLeafNode(otherlv_5, grammarAccess.getSendNodeDeclarationAccess().getToKeyword_3_0_2_0_0());
+							newCompositeNode(grammarAccess.getSendNodeDeclarationAccess().getOwnedRelationshipNodeParameterMemberParserRuleCall_4_0_1_0());
 						}
-						(
-							(
-								{
-									newCompositeNode(grammarAccess.getSendNodeDeclarationAccess().getOwnedRelationshipNodeParameterMemberParserRuleCall_3_0_2_0_1_0());
-								}
-								lv_ownedRelationship_6_0=ruleNodeParameterMember
-								{
-									if ($current==null) {
-										$current = createModelElementForParent(grammarAccess.getSendNodeDeclarationRule());
-									}
-									add(
-										$current,
-										"ownedRelationship",
-										lv_ownedRelationship_6_0,
-										"org.omg.sysml.xtext.SysML.NodeParameterMember");
-									afterParserOrEnumRuleCall();
-								}
-							)
-						)
-					)
-					    |
-					(
-						(
-							{
-								newCompositeNode(grammarAccess.getSendNodeDeclarationAccess().getOwnedRelationshipEmptyParameterMemberParserRuleCall_3_0_2_1_0());
+						lv_ownedRelationship_7_0=ruleNodeParameterMember
+						{
+							if ($current==null) {
+								$current = createModelElementForParent(grammarAccess.getSendNodeDeclarationRule());
 							}
-							lv_ownedRelationship_7_0=ruleEmptyParameterMember
-							{
-								if ($current==null) {
-									$current = createModelElementForParent(grammarAccess.getSendNodeDeclarationRule());
-								}
-								add(
-									$current,
-									"ownedRelationship",
-									lv_ownedRelationship_7_0,
-									"org.omg.sysml.xtext.SysML.EmptyParameterMember");
-								afterParserOrEnumRuleCall();
-							}
-						)
+							add(
+								$current,
+								"ownedRelationship",
+								lv_ownedRelationship_7_0,
+								"org.omg.sysml.xtext.SysML.NodeParameterMember");
+							afterParserOrEnumRuleCall();
+						}
 					)
 				)
 			)
 			    |
 			(
 				(
-					(
-						{
-							newCompositeNode(grammarAccess.getSendNodeDeclarationAccess().getOwnedRelationshipEmptyParameterMemberParserRuleCall_3_1_0_0());
+					{
+						newCompositeNode(grammarAccess.getSendNodeDeclarationAccess().getOwnedRelationshipEmptyParameterMemberParserRuleCall_4_1_0());
+					}
+					lv_ownedRelationship_8_0=ruleEmptyParameterMember
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getSendNodeDeclarationRule());
 						}
-						lv_ownedRelationship_8_0=ruleEmptyParameterMember
-						{
-							if ($current==null) {
-								$current = createModelElementForParent(grammarAccess.getSendNodeDeclarationRule());
-							}
-							add(
-								$current,
-								"ownedRelationship",
-								lv_ownedRelationship_8_0,
-								"org.omg.sysml.xtext.SysML.EmptyParameterMember");
-							afterParserOrEnumRuleCall();
-						}
-					)
-				)
-				otherlv_9='to'
-				{
-					newLeafNode(otherlv_9, grammarAccess.getSendNodeDeclarationAccess().getToKeyword_3_1_1());
-				}
-				(
-					(
-						{
-							newCompositeNode(grammarAccess.getSendNodeDeclarationAccess().getOwnedRelationshipNodeParameterMemberParserRuleCall_3_1_2_0());
-						}
-						lv_ownedRelationship_10_0=ruleNodeParameterMember
-						{
-							if ($current==null) {
-								$current = createModelElementForParent(grammarAccess.getSendNodeDeclarationRule());
-							}
-							add(
-								$current,
-								"ownedRelationship",
-								lv_ownedRelationship_10_0,
-								"org.omg.sysml.xtext.SysML.NodeParameterMember");
-							afterParserOrEnumRuleCall();
-						}
-					)
+						add(
+							$current,
+							"ownedRelationship",
+							lv_ownedRelationship_8_0,
+							"org.omg.sysml.xtext.SysML.EmptyParameterMember");
+						afterParserOrEnumRuleCall();
+					}
 				)
 			)
 		)

@@ -31,7 +31,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.omg.sysml.lang.sysml.MetadataFeature;
 import org.omg.sysml.lang.sysml.Annotation;
 import org.omg.sysml.lang.sysml.Comment;
 import org.omg.sysml.lang.sysml.Connector;
@@ -41,13 +40,15 @@ import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureChainExpression;
 import org.omg.sysml.lang.sysml.FeatureChaining;
+import org.omg.sysml.lang.sysml.FeatureDirectionKind;
 import org.omg.sysml.lang.sysml.FeatureReferenceExpression;
 import org.omg.sysml.lang.sysml.FlowConnectionUsage;
-import org.omg.sysml.lang.sysml.ItemFlowEnd;
+import org.omg.sysml.lang.sysml.MetadataFeature;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.OccurrenceDefinition;
 import org.omg.sysml.lang.sysml.OccurrenceUsage;
 import org.omg.sysml.lang.sysml.Redefinition;
+import org.omg.sysml.lang.sysml.ReferenceSubsetting;
 import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.Succession;
 import org.omg.sysml.lang.sysml.Type;
@@ -251,34 +252,32 @@ public class VSequence extends VDefault {
         return super.getString();
     }
 
-    private Element getEndForEvent(Feature f) {
-        // Need to extract the target from ItemFlowEnd.
-        if (f instanceof ItemFlowEnd) {
-            ItemFlowEnd ife = (ItemFlowEnd) f;
-            Feature iot = VPath.getIOTarget(ife);
-            if (iot != null) return iot;
-            for (Subsetting ss: ife.getOwnedSubsetting()) {
-                return ss.getSubsettedFeature();
-            }
-            return null;
-        } else {
-            return getEnd(f);
-        }
+    private Feature getEventOccurrenceRef(Feature p) {
+        if (!(p instanceof OccurrenceUsage)) return null;
+        if (p.getDirection() != FeatureDirectionKind.IN) return null;
+        ReferenceSubsetting rs = p.getOwnedReferenceSubsetting();
+        if (rs == null) return null;
+        return rs.getSubsettedFeature();
     }
 
     @Override
     public String caseFlowConnectionUsage(FlowConnectionUsage fcu) {
-        List<Feature> ends = fcu.getConnectorEnd();
-        int size = ends.size();
-        if (size < 2) return "";
-        Element end1 = getEndForEvent(ends.get(0));
-        Pair p1 = getEventParticipant(end1);
-        if (p1 == null) return "";
-        for (int i = 1; i < size; i++) {
-            Element end2 = getEndForEvent(ends.get(i));
-            Pair p2 = getEventParticipant(end2);
-            if (p2 == null) return "";
-            addMessage(p1, p2, fcu);
+        List<Feature> params = fcu.getParameter();
+        int size = params.size();
+        for (int i = 0; i < size; i++) {
+            Feature from = getEventOccurrenceRef(params.get(i));
+            if (from != null) {
+                Pair p1 = getEventParticipant(from);
+                if (p1 == null) return "";
+                for (int j = i + 1; j < size; j++) {
+                    Feature to = getEventOccurrenceRef(params.get(j));
+                    if (to != null) {
+                        Pair p2 = getEventParticipant(to);
+                        if (p2 == null) continue;
+                        addMessage(p1, p2, fcu);
+                    }
+                }
+            }
         }
         return "";
     }

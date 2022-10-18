@@ -291,7 +291,7 @@ public class VPath extends VTraverser {
            iff : ItemFlowFeature :>> ioTarget: ReferenceUsage;
       }
     */
-    static Feature getIOTarget(ItemFlowEnd ife) {
+    private static Feature getIOTarget(ItemFlowEnd ife) {
         for (FeatureMembership fm: ife.getOwnedFeatureMembership()) {
             Feature f = fm.getOwnedMemberFeature();
             if (f instanceof ItemFlowFeature) {

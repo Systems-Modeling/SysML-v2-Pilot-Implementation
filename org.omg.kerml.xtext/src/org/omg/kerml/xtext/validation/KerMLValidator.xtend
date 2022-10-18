@@ -148,6 +148,9 @@ class KerMLValidator extends AbstractKerMLValidator {
 	public static val INVALID_INVOCATION_EXPRESSION__DUPLICATE_REDEFINITION_MSG = "Feature already bound"
 	public static val INVALID_TYPE_MULTIPLICITY__TOO_MANY = "Invalid Type - Too many multiplicities"
 	public static val INVALID_TYPE_MULTIPLICITY__TOO_MANY_MSG = "Only one multiplicity is allowed"
+	public static val INVALID_CAST_EXPRESSION__CAST_TYPE = "Invalid cast Expression - Cast type conformance"
+	public static val INVALID_CAST_EXPRESSION__CAST_TYPE_MSG = "Cast argument should have conforming types"
+	
 	
 	@Inject
 	IScopeProvider scopeProvider
@@ -408,6 +411,22 @@ class KerMLValidator extends AbstractKerMLValidator {
 	}
 	
 	@Check
+	def checkCastExpression(OperatorExpression e) {
+		if (e.operator == "as") {
+			val params = TypeUtil.getOwnedParametersOf(e)
+			if (params.length >= 2) {
+				val arg = FeatureUtil.getValueExpressionFor(params.get(0))
+				if (arg !== null) {
+					val argTypes = arg.result.type
+					val targetTypes = params.get(1).type
+					if (!typesConform(argTypes, targetTypes))
+						warning(INVALID_CAST_EXPRESSION__CAST_TYPE_MSG, e, null, INVALID_CAST_EXPRESSION__CAST_TYPE)
+					}
+			}
+		}
+	}
+	
+	@Check
 	def checkTypeMultiplicity(Type t) {
 		var multiplicityMemberships = t.ownedMembership.filter[memberElement instanceof Multiplicity];
 		if (multiplicityMemberships.size > 1) {
@@ -461,6 +480,16 @@ class KerMLValidator extends AbstractKerMLValidator {
 		doCheckBindingConnector(bc, bc)
 	}
 	
+	@Check
+	def checkImplicitBindingConnectors(Type type) {
+		TypeUtil.forEachImplicitBindingConnectorOf(type, [connector, kind | 
+			if (type instanceof FeatureReferenceExpression) {
+				connector.doCheckConnector(type, kind) 
+			}
+			connector.doCheckBindingConnector(type)
+		])
+	}
+	
 	private def doCheckBindingConnector(BindingConnector bc, Element location) {
 		val rf = bc.relatedFeature
 		if (rf.length !== 2) {
@@ -482,23 +511,16 @@ class KerMLValidator extends AbstractKerMLValidator {
 			val f1types = rf.get(0).type
 			val f2types = rf.get(1).type
 						 
-			val f1ConformsTof2 = f2types.map[conformsFrom(f1types)]
-			val f2ConformsTof1 = f1types.map[conformsFrom(f2types)]
-			
-			if (f1ConformsTof2.filter[!empty].length != f2types.length &&
-				f2ConformsTof1.filter[!empty].length != f1types.length)
+			if (!typesConform(f1types, f2types))
 				warning(INVALID_BINDINGCONNECTOR__BINDING_TYPE_MSG, location, SysMLPackage.eINSTANCE.type_EndFeature, INVALID_BINDINGCONNECTOR__BINDING_TYPE)
 //		}
 	}
 	
-	@Check
-	def checkImplicitBindingConnectors(Type type) {
-		TypeUtil.forEachImplicitBindingConnectorOf(type, [connector, kind | 
-			if (type instanceof FeatureReferenceExpression) {
-				connector.doCheckConnector(type, kind) 
-			}
-			connector.doCheckBindingConnector(type)
-		])
+	def typesConform(List<Type> t1, List<Type> t2) {
+		val t1ConformsTot2 = t2.map[conformsFrom(t1)]
+		val t2ConformsTot1 = t1.map[conformsFrom(t2)]
+		t1ConformsTot2.filter[!empty].length == t2.length ||
+			t2ConformsTot1.filter[!empty].length == t1.length
 	}
 	
 	@Check 

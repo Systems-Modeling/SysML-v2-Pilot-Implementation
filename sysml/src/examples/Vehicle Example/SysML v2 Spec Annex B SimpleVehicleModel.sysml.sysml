@@ -467,7 +467,7 @@ package SimpleVehicleModel{
             
             // with alias <fm>
             metadata def <fm> failureMode :> SemanticMetadata {
-                :>> baseType = failureModes as SysML::StateUsage;
+                :>> baseType = failureModes meta SysML::StateUsage;
             }
         }
         package GenericContext {

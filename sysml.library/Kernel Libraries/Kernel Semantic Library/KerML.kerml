@@ -1,4 +1,4 @@
-package KerML {
+standard library package KerML {
 	private import ScalarValues::*;
 	import Kernel::*;
 	

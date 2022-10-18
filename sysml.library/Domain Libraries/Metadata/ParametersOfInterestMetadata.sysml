@@ -1,4 +1,4 @@
-package ParametersOfInterestMetadata {
+standard library package ParametersOfInterestMetadata {
 	doc
 	/*
 	 * This package contains definitions of metadata to identify key parameters of interest,

@@ -1,4 +1,4 @@
-package Transfers {
+standard library package Transfers {
 	doc
 	/*
 	 * This package defines the transfer interactions used to type item flows.

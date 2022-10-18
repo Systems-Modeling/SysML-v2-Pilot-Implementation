@@ -1,4 +1,4 @@
-package CauseAndEffect {
+standard library package CauseAndEffect {
 	doc /* This package provides language-extension metadata for cause-effect modeling. */
 	
 	import CausationConnections::*;

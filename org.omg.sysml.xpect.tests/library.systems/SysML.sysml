@@ -1,4 +1,4 @@
-package SysML {
+standard library package SysML {
 	private import ScalarValues::*;
 	import KerML::Kernel::*;
 	

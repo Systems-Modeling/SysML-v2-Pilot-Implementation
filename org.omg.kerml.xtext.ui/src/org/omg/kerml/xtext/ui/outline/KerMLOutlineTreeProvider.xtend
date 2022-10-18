@@ -44,6 +44,7 @@ import org.omg.sysml.lang.sysml.Disjoining
 import org.omg.sysml.lang.sysml.FeatureValue
 import org.omg.sysml.lang.sysml.OwningMembership
 import org.omg.sysml.lang.sysml.FeatureInverting
+import org.omg.sysml.lang.sysml.LibraryPackage
 
 /**
  * Customization of the default outline structure.
@@ -53,7 +54,11 @@ import org.omg.sysml.lang.sysml.FeatureInverting
 class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	
 	def String metaclassText(Element element) {
-		element?.eClass.name
+		var text = element?.eClass.name
+		if (element.isLibraryElement) {
+			text += ' lib'
+		}
+		text
 	}
 	
 	def String idText(Element element) {
@@ -61,9 +66,9 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		if (element?.shortName !== null) {
 			text += ' <' + element.shortName + '>'
 		}
-		val name = element?.getEffectiveName;
+		val name = element?.getEffectiveName
 		if (name !== null) {
-			text += ' ' + name;
+			text += ' ' + name
 		}
 		text
 	}
@@ -89,7 +94,7 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 			text += ' owns'
 		}
 		if (membership.visibility !== null) {
-			text += ' ' + membership.visibility._text;
+			text += ' ' + membership.visibility._text
 		}
 		text
 	}
@@ -100,9 +105,9 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		if (shortName !== null) {
 			text += ' <' + shortName + '>'
 		}
-		val name = membership.memberName;
+		val name = membership.memberName
 		if (name !== null) {
-			text += ' ' + name;
+			text += ' ' + name
 		}
 		text
 	}
@@ -112,12 +117,12 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	}
 	
 	def String _text(FeatureValue featureValue) {
-		var text = featureValue.metaclassText;
+		var text = featureValue.metaclassText
 		if (featureValue.isDefault) {
-			text += ' default';
+			text += ' default'
 		}
 		if (featureValue.isInitial) {
-			text += ' initial';
+			text += ' initial'
 		}
 		text
 	}	
@@ -152,9 +157,6 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		var text = type.metaclassText
 		if (type.isAbstract) {
 			text += ' abstract'
-		}
-		if (type.shortName !== null) {
-			text += ' <' + type.shortName + '>'
 		}
 		text
 	}
@@ -242,6 +244,14 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	
 	def String _text(NullExpression expression) {
 		expression.metaclassText + ' null'
+	}
+	
+	def String _text(LibraryPackage pkg) {
+		var prefixText = pkg.metaclassText
+		if (pkg.isStandard) {
+			prefixText += ' std'
+		}
+		prefixText + pkg.idText
 	}
 	
 	def boolean _isLeaf(Relationship relationship) {

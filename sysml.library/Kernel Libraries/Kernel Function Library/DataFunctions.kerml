@@ -1,4 +1,4 @@
-package DataFunctions {
+standard library package DataFunctions {
 	doc
 	/*
 	 * This package defines the abstract base functions corresponding to all the unary and binary operators 

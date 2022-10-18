@@ -1,4 +1,4 @@
-package AHFProfileLib {
+library package AHFProfileLib {
 	// Systems and Services and their functionalities
 	import ScalarValues::*;
 	
@@ -66,7 +66,7 @@ package AHFProfileLib {
 	}
 }
 
-package AHFProfileMetadata{
+library package AHFProfileMetadata{
 	import Metaobjects::SemanticMetadata;
 	import AHFProfileLib::*;
 

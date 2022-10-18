@@ -1,4 +1,4 @@
-package Connections {
+standard library package Connections {
 	doc
 	/*
 	 * This package defines the base types for connections and related structural elements 

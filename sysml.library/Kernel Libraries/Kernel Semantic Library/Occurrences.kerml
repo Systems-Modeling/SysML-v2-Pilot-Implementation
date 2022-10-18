@@ -1,4 +1,4 @@
-package Occurrences {
+standard library package Occurrences {
 	doc
 	/*
 	 * This package defines modeling constructs for anything existing or occurring in time and space, with

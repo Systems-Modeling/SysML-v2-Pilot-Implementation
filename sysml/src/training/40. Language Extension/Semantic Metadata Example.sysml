@@ -1,4 +1,4 @@
-package 'Semantic Metadata Example' {
+library package 'Semantic Metadata Example' {
 	import 'Model Library Example'::*;
 	import Metaobjects::SemanticMetadata;
 

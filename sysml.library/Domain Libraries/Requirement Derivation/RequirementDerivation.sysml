@@ -1,4 +1,4 @@
-package RequirementDerivation {
+standard library package RequirementDerivation {
 	doc /* This package provides language-extension metadata for modeling requirement derivation. */
 	
 	import DerivationConnections::*;

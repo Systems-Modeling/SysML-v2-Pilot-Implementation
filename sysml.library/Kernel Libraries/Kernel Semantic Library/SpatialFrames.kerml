@@ -1,4 +1,4 @@
-package SpatialFrames {
+standard library package SpatialFrames {
 	doc
 	/*
 	 * This package models spatial frames of reference for quantifying the position of points 

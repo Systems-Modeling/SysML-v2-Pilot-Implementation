@@ -1,4 +1,4 @@
-package Performances {
+standard library package Performances {
 	doc
 	/*
 	 * This package defines classifiers and features that related to the typing of performances and evaluations.

@@ -1,4 +1,4 @@
-package BaseFunctions {
+standard library package BaseFunctions {
 	doc
 	/*
 	 * This package defines a basic set of functions defined on all kinds of values. 

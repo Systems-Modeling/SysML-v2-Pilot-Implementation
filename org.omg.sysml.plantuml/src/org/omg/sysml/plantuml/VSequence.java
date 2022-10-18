@@ -377,12 +377,12 @@ public class VSequence extends VDefault {
         }
 
         private static List<FeatureChaining> getFC(EventOccurrenceUsage ocu) {
-            for (Subsetting ss: ocu.getOwnedSubsetting()) {
-                Feature sf = ss.getSubsettedFeature();
-                List<FeatureChaining> fcs = sf.getOwnedFeatureChaining();
-                if (!fcs.isEmpty()) return fcs;
-            }
-            return null;
+            ReferenceSubsetting rs = ocu.getOwnedReferenceSubsetting();
+            if (rs == null) return null;
+            Feature sf = rs.getSubsettedFeature();
+            List<FeatureChaining> fcs = sf.getOwnedFeatureChaining();
+            if (fcs.isEmpty()) return null;
+            return fcs;
         }
 
         public static FCMessage create(EventOccurrenceUsage eou) {

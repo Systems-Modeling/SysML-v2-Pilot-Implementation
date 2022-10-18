@@ -1,5 +1,5 @@
 //* 
-XPECT_SETUP org.omg.kerml.xpect.tests.validation.KerMLValidationTest
+XPECT_SETUP org.omg.kerml.xpect.tests.parsing.KerMLParsingTest
 	ResourceSet {
 		ThisFile {}
 		File {from ="/library/Base.kerml"}
@@ -8,7 +8,7 @@ XPECT_SETUP org.omg.kerml.xpect.tests.validation.KerMLValidationTest
        	File {from ="/library/Objects.kerml"}
       	File {from ="/library/Metaobjects.kerml"}
        	File {from ="/library/Performances.kerml"}
-       	File {from ="/library/BaseFunctions.kerml"}
+       	File {from ="/library/ScalarValues.kerml"}
         File {from ="/library/KerML.kerml"}
 	}
 	Workspace {
@@ -21,7 +21,7 @@ XPECT_SETUP org.omg.kerml.xpect.tests.validation.KerMLValidationTest
 		       	File {from ="/library/Objects.kerml"}
 		       	File {from ="/library/Metaobjects.kerml"}
 		       	File {from ="/library/Performances.kerml"}
-		       	File {from ="/library/BaseFunctions.kerml"}
+		       	File {from ="/library/ScalarValues.kerml"}
 		       	File {from ="/library/KerML.kerml"}
 			}
 		}
@@ -29,32 +29,35 @@ XPECT_SETUP org.omg.kerml.xpect.tests.validation.KerMLValidationTest
 END_SETUP 
 */
 // XPECT noErrors ---> ""
-package SemanticMetadata_valid {
-
-	class C {
-		feature x;
-	}
-	feature f : C {
-		feature y;
-	}
-
-    abstract metaclass A :> Metaobjects::SemanticMetadata {
-    	feature :>> baseType; // Testing that baseType can be left unbound.
-    }
+package MetadataTest {
+	import 'User Defined Extensions'::*;
 	
-	metaclass B :> A {
-		feature :>> baseType = f meta KerML::Type;
-	}
-	
-	class C1 {
-		@B;
-		feature :>> x;
+	library package 'User Defined Extensions' {
+		
+		datatype ClassificationLevel :> ScalarValues::Natural;
+		feature uncl[1] : ClassificationLevel = 0;
+		feature conf[1] : ClassificationLevel = 1;
+		feature secret[1] : ClassificationLevel = 2;
+		
+		metaclass Classified {
+			feature :>> annotatedElement : KerML::Feature;
+			feature classificationLevel : ClassificationLevel;
+		}
+		
+		metaclass Security;
 	}
 	
-	feature f1 {
-		@B;
-		feature :>> x;
-		feature :>> y;
+	feature x {
+		metadata Classified {
+			classificationLevel = conf;
+		}
+	}
+	
+	feature y {
+		@Classified {
+			classificationLevel = conf;
+		}
+		@Security;
 	}
 	
 }

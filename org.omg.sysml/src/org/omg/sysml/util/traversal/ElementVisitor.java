@@ -1,6 +1,6 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2019-2020 Model Driven Solutions, Inc.
+ * Copyright (c) 2019-2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -26,7 +26,7 @@ package org.omg.sysml.util.traversal;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.impl.ElementImpl;
-import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
+import org.omg.sysml.util.ElementUtil;
 import org.omg.sysml.util.traversal.facade.ElementProcessingFacade;
 
 /**
@@ -131,7 +131,7 @@ public class ElementVisitor {
 	 */
 	protected void postProcess() {
 		Element element = this.getElement();
-		if (!SysMLLibraryUtil.isModelLibrary(element.eResource())) {
+		if (!ElementUtil.isStandardLibraryElement(element)) {
 			Traversal traversal = this.getTraversal();
 			if (element instanceof Relationship) {
 				for (Element relatedElement: ((Relationship)element).getRelatedElement()) {

@@ -35,10 +35,10 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
 import org.omg.sysml.model.DataIdentity;
 import org.omg.sysml.model.DataVersion;
 import org.omg.sysml.model.Identified;
+import org.omg.sysml.util.ElementUtil;
 import org.omg.sysml.util.traversal.Traversal;
 import org.omg.sysml.util.traversal.facade.ElementProcessingFacade;
 
@@ -191,7 +191,7 @@ public class JsonElementProcessingFacade implements ElementProcessingFacade {
 		org.omg.sysml.model.Data apiElement = new org.omg.sysml.model.Data();
 		EClass eClass = element.eClass();
 		apiElement.put("@type", eClass.getName());
-		boolean isLibraryElement = SysMLLibraryUtil.isModelLibrary(element.eResource());
+		boolean isLibraryElement = ElementUtil.isStandardLibraryElement(element);
 		for (EStructuralFeature feature: eClass.getEAllStructuralFeatures()) {
 			String name = feature.getName();
 			if ((this.isIncludeDerived() || !feature.isDerived()) && 

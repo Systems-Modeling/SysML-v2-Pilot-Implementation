@@ -40,6 +40,7 @@ import org.omg.sysml.lang.sysml.Annotation;
 import org.omg.sysml.lang.sysml.Comment;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.LibraryPackage;
 import org.omg.sysml.lang.sysml.Metaclass;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.Relationship;
@@ -127,6 +128,12 @@ public class ElementUtil {
 		return element.getDocumentation().stream().
 				map(Comment::getBody).
 				findFirst().orElse(null);
+	}
+	
+	public static boolean isStandardLibraryElement(Element element) {
+		Namespace libraryNamespace = element.libraryNamespace();
+		return libraryNamespace instanceof LibraryPackage && 
+				((LibraryPackage)libraryNamespace).isStandard();
 	}
 	
 	// Annotation

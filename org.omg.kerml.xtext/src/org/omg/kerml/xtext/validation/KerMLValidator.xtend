@@ -73,6 +73,7 @@ import org.omg.sysml.lang.sysml.LiteralBoolean
 import org.omg.sysml.lang.sysml.Expression
 import org.omg.sysml.lang.sysml.OperatorExpression
 import org.omg.sysml.expressions.util.EvaluationUtil
+import org.omg.sysml.lang.sysml.LibraryPackage
 
 /**
  * This class contains custom validation rules. 
@@ -150,6 +151,8 @@ class KerMLValidator extends AbstractKerMLValidator {
 	public static val INVALID_TYPE_MULTIPLICITY__TOO_MANY_MSG = "Only one multiplicity is allowed"
 	public static val INVALID_CAST_EXPRESSION__CAST_TYPE = "Invalid cast Expression - Cast type conformance"
 	public static val INVALID_CAST_EXPRESSION__CAST_TYPE_MSG = "Cast argument should have conforming types"
+	public static val INVALID_LIBRARY_PACKAGE__NOT_STANDARD = "Invalid LibraryPackage - Bad isStandard"
+	public static val INVALID_LIBRARY_PACKAGE__NOT_STANDARD_MSG = "User library packages should not be marked as standard"
 	
 	
 	@Inject
@@ -266,6 +269,14 @@ class KerMLValidator extends AbstractKerMLValidator {
 	
 	def isBooleanOperator(String operator) {
 		newArrayList("not", "xor", "&", "|").contains(operator)
+	}
+	
+	@Check
+	def checkLibraryPackage(LibraryPackage pkg) {
+		// Note: Can't suppress the warning in Xtend.
+		if (pkg.isStandard && !SysMLLibraryUtil.isModelLibrary(pkg.eResource)) {
+			warning(INVALID_LIBRARY_PACKAGE__NOT_STANDARD_MSG, pkg, SysMLPackage.eINSTANCE.libraryPackage_IsStandard, INVALID_LIBRARY_PACKAGE__NOT_STANDARD)
+		}
 	}
 	
 	@Check

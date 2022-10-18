@@ -21,7 +21,9 @@
 
 package org.omg.sysml.expressions.util;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
@@ -30,21 +32,36 @@ import org.omg.sysml.expressions.ModelLevelExpressionEvaluator;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.FeatureReferenceExpression;
 import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.InvocationExpression;
 import org.omg.sysml.lang.sysml.LiteralBoolean;
+import org.omg.sysml.lang.sysml.LiteralExpression;
 import org.omg.sysml.lang.sysml.LiteralInfinity;
 import org.omg.sysml.lang.sysml.LiteralInteger;
 import org.omg.sysml.lang.sysml.LiteralRational;
 import org.omg.sysml.lang.sysml.LiteralString;
+import org.omg.sysml.lang.sysml.MetadataFeature;
 import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
+import org.omg.sysml.util.ElementUtil;
+import org.omg.sysml.util.ExpressionUtil;
 import org.omg.sysml.util.FeatureUtil;
+import org.omg.sysml.util.ImplicitGeneralizationMap;
+import org.omg.sysml.util.NamespaceUtil;
+import org.omg.sysml.util.TypeUtil;
+
+import com.google.common.base.Predicates;
 
 public class EvaluationUtil {
 
+	public static Feature getAnnotatedElementFeature(MetadataFeature context) {
+		return (Feature)SysMLLibraryUtil.getLibraryType(context, 
+				ImplicitGeneralizationMap.getDefaultSupertypeFor(context.getClass(), "annotatedElement"));
+	}
+	
 	public static Type getPrimitiveType(Element context, EClass eClass) {
 		return 
 			eClass == SysMLPackage.eINSTANCE.getLiteralBoolean()? 
@@ -81,31 +98,116 @@ public class EvaluationUtil {
 			return result;
 		}
 	}
+	
+	public static Expression expressionFor(EList<Element> results, Element context) {
+		if (!results.stream().allMatch(
+				elm->elm instanceof Feature && 
+				(!(elm instanceof Expression) || elm instanceof LiteralExpression))) {
+			return null;
+		} else if (results.isEmpty()) {
+			return SysMLFactory.eINSTANCE.createNullExpression();
+		} else {
+			Expression expression = expressionFor(results.get(0));
+			if (results.size() > 1) {
+				Type listOp = SysMLLibraryUtil.getLibraryType(context, ExpressionUtil.getOperatorQualifiedNames(","));
+				for (int i = 1; i < results.size(); i++) {
+					FeatureTyping typing = SysMLFactory.eINSTANCE.createFeatureTyping();
+					typing.setType(listOp);
+					InvocationExpression listExpr = SysMLFactory.eINSTANCE.createInvocationExpression();
+					listExpr.getOwnedRelationship().add(typing);
+					TypeUtil.addOwnedParameterTo(listExpr, expression);
+					TypeUtil.addOwnedParameterTo(listExpr, expressionFor(results.get(i)));
+					expression = listExpr;
+				}
+			}
+			ElementUtil.transformAll(expression, false);
+			return expression;
+		}
+	}
+	
+	public static Expression expressionFor(Element result) {
+		if (result instanceof LiteralExpression) {
+			Object value = valueOf(result);
+			return value == null? literalInfinity(): (Expression)elementFor(value);
+		} else if (result instanceof Feature) {
+			FeatureReferenceExpression featureRef = SysMLFactory.eINSTANCE.createFeatureReferenceExpression();
+			NamespaceUtil.addMemberTo(featureRef, result);
+			return featureRef;
+		} else {
+			return null;
+		}
+			   
+	}
 
-	public static EList<Element> booleanResult(boolean value) {
+	public static EList<Element> results(Object object) {
+		EList<Element> results = new BasicEList<>();
+		if (object instanceof List) {
+			((List<?>)object).stream().
+				map(EvaluationUtil::elementFor).
+				filter(Predicates.notNull()).
+				forEachOrdered(results::add);
+		} else if (object != null) {
+			Element element = elementFor(object);
+			if (object != null) {
+				results.add(element);
+			}
+		}
+		return results;
+	}
+	
+	public static Element elementFor(Object object) {
+		return object instanceof Boolean? literalBoolean((Boolean)object):
+			   object instanceof String? literalString((String)object):
+			   object instanceof Integer? literalInteger((Integer)object):
+			   object instanceof Double? literalRational((Double)object):
+			   object instanceof Element? ElementUtil.getMetaclassFeatureFor((Element)object):
+			   null;
+	}
+	
+	public static LiteralBoolean literalBoolean(boolean value) {
 		LiteralBoolean literal = SysMLFactory.eINSTANCE.createLiteralBoolean();
 		literal.setValue(value);
-		return singletonList(literal);
+		return literal;
+	}
+
+	public static LiteralString literalString(String value) {
+		LiteralString literal = SysMLFactory.eINSTANCE.createLiteralString();
+		literal.setValue(value);
+		return literal;
+	}
+
+	public static LiteralInteger literalInteger(int value) {
+		LiteralInteger literal = SysMLFactory.eINSTANCE.createLiteralInteger();
+		literal.setValue(value);
+		return literal;
+	}
+
+	public static LiteralRational literalRational(double value) {
+		LiteralRational literal = SysMLFactory.eINSTANCE.createLiteralRational();
+		literal.setValue(value);
+		return literal;
+	}
+	
+	public static LiteralInfinity literalInfinity() {
+		return SysMLFactory.eINSTANCE.createLiteralInfinity();
+	}
+	
+	public static EList<Element> booleanResult(boolean value) {
+		return singletonList(literalBoolean(value));
 	}
 
 	public static EList<Element> stringResult(String value) {
-		LiteralString literal = SysMLFactory.eINSTANCE.createLiteralString();
-		literal.setValue(value);
-		return singletonList(literal);
+		return singletonList(literalString(value));
 	}
 
 	public static EList<Element> integerResult(int value) {
-		LiteralInteger literal = SysMLFactory.eINSTANCE.createLiteralInteger();
-		literal.setValue(value);
-		return singletonList(literal);
+		return singletonList(literalInteger(value));
 	}
 
 	public static EList<Element> realResult(double value) {
-		LiteralRational literal = SysMLFactory.eINSTANCE.createLiteralRational();
-		literal.setValue(value);
-		return singletonList(literal);
+		return singletonList(literalRational(value));
 	}
-
+	
 	public static Object valueOf(Element element) {
 		return element instanceof LiteralBoolean? Boolean.valueOf(((LiteralBoolean)element).isValue()):
 			   element instanceof LiteralString? ((LiteralString)element).getValue():
@@ -148,14 +250,55 @@ public class EvaluationUtil {
 			return targetFeature;
 		}
 	}
+	
+	public static Optional<Feature> getTypeFeatureFor(Feature feature, Type type) {
+		return type.getFeature().stream().
+				filter(f->f == feature || FeatureUtil.getRedefinedFeaturesOf(f).contains(feature)).
+				findFirst();
+	}
 
 	public static Expression getValueExpressionFor(Feature feature, Type type) {
 		return type == null? FeatureUtil.getValueExpressionFor(feature):
-			   type.getFeature().stream().
-					filter(f->f == feature || FeatureUtil.getRedefinedFeaturesOf(f).contains(feature)).
-					findFirst().
+			   getTypeFeatureFor(feature, type).
 					map(FeatureUtil::getValueExpressionFor).
 					orElse(null);
+	}
+	
+	public static boolean isMetaclassFeature(Element element) {
+		return getMetaclassReferenceOf(element) != null;
+	}
+	
+	public static Element getMetaclassReferenceOf(Element element) {
+		return !(element instanceof MetadataFeature)? null:
+			((MetadataFeature)element).getAnnotatedElement().stream().
+				filter(elm->ElementUtil.getMetaclassFeatureFor(elm) == element).
+				findFirst().orElse(null);
+	}
+
+	public static Type getTypeArgument(InvocationExpression invocation) {
+		EList<Feature> ownedFeatures = invocation.getOwnedFeature();
+		if (ownedFeatures.size() >= 2) {
+			EList<Type> types = ownedFeatures.get(1).getType();
+			if (!types.isEmpty()) {
+				return types.get(0);
+			}
+		}
+		return null;
+	}
+
+	public static List<Type> getType(Element context, Element element) {
+		return element instanceof LiteralExpression? Collections.singletonList(getPrimitiveType(context, element.eClass())):
+			   element instanceof Feature? ((Feature)element).getType():
+			   Collections.emptyList();
+	}
+
+	public static boolean isType(Element context, Element element, Type type) {
+		return getType(context, element).stream().
+				anyMatch(elementType->TypeUtil.conforms(elementType, type));
+	}
+
+	public static boolean isMetatype(Element element, Type targetType) {
+		return TypeUtil.conforms(ElementUtil.getMetaclassOf(element), targetType);
 	}
 
 }

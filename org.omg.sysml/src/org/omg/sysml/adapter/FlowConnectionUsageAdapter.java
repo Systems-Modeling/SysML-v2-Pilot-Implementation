@@ -55,7 +55,9 @@ public class FlowConnectionUsageAdapter extends ConnectionUsageAdapter {
 	
 	@Override
 	protected String getDefaultSupertype() {
-		return getDefaultSupertype("base");
+		return getTarget().getOwnedFeature().stream().noneMatch(Feature::isEnd)?
+				getDefaultSupertype("message"):
+				getDefaultSupertype("base");
 	}
 	
 	@Override

@@ -45,7 +45,7 @@ public class SumFunction implements LibraryFunction {
 	public EList<Element> invoke(InvocationExpression invocation, Element target, ModelLevelExpressionEvaluator evaluator) {
 		EList<Element> list = evaluator.evaluateArgument(invocation, 0, target);
 		if (list == null) {
-			return null;
+			return EvaluationUtil.singletonList(invocation);
 		} else {
 			int intResult = 0;
 			Double realResult = null;
@@ -63,7 +63,7 @@ public class SumFunction implements LibraryFunction {
 					}
 					realResult += ((LiteralRational)element).getValue();
 				} else {
-					return null;
+					return EvaluationUtil.singletonList(invocation);
 				}
 			}
 			return realResult == null? 

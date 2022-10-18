@@ -24,11 +24,11 @@ package org.omg.sysml.expressions.functions;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.omg.sysml.expressions.ModelLevelExpressionEvaluator;
+import org.omg.sysml.expressions.util.EvaluationUtil;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.InvocationExpression;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.util.ExpressionUtil;
-import org.omg.sysml.util.TypeUtil;
+import org.omg.sysml.util.ElementUtil;
 
 public class AsFunction extends BaseFunction {
 
@@ -37,25 +37,24 @@ public class AsFunction extends BaseFunction {
 		return "as";
 	}
 	
-	protected static boolean isTypeOrMetatype(Element context, Element element, Type targetType) {
-		return isType(context, element, targetType) ||
-			   TypeUtil.conforms(ExpressionUtil.getMetaclassOf(element), targetType);
-	}
-	
 	@Override
 	public EList<Element> invoke(InvocationExpression invocation, Element target, ModelLevelExpressionEvaluator evaluator) {
-		Type targetType = getTypeArgument(invocation);
+		Type targetType = EvaluationUtil.getTypeArgument(invocation);
 		if (targetType != null) {
 			EList<Element> values = evaluator.evaluateArgument(invocation, 0, target);
 			if (values != null) {
 				EList<Element> results = new BasicEList<>();
-				values.stream().
-					filter(value->isTypeOrMetatype(invocation, value, targetType)).
-					forEachOrdered(results::add);
+				for (Element value: values) {
+					if (EvaluationUtil.isType(invocation, value, targetType)) {
+						results.add(value);
+					} else if (EvaluationUtil.isMetatype(value, targetType)) {
+						results.add(ElementUtil.getMetaclassFeatureFor(value));
+					}
+				}
 				return results;
 			}
 		}
-		return null;
+		return EvaluationUtil.singletonList(invocation);
 	}
 
 }

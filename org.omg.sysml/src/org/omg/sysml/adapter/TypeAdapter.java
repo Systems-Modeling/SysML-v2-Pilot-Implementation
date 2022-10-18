@@ -35,6 +35,7 @@ import java.util.stream.Stream;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.omg.sysml.lang.sysml.MetadataFeature;
+import org.omg.sysml.expressions.util.EvaluationUtil;
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
@@ -295,6 +296,7 @@ public class TypeAdapter extends NamespaceAdapter {
 						map(expr->expr.evaluate(target)).
 						filter(results->results != null && !results.isEmpty()).
 						map(results->results.get(0)).
+						map(EvaluationUtil::getMetaclassReferenceOf).
 						filter(Type.class::isInstance).
 						map(Type.class::cast).
 						forEachOrdered(baseTypes::add);

@@ -141,7 +141,7 @@ public class UsageUtil {
 
 	public static Feature getReceiverParameterOf(ActionUsage action) {
 		List<Feature> parameters = TypeUtil.getOwnedParametersOf(action);
-		return parameters.size() < 2? null: parameters.get(1);
+		return parameters.size() < 3? null: parameters.get(2);
 	}
 	
 	// Constraints

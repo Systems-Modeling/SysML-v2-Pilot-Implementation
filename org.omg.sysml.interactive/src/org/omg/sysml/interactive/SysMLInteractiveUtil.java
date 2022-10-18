@@ -16,8 +16,10 @@ import org.omg.sysml.lang.sysml.LiteralInteger;
 import org.omg.sysml.lang.sysml.LiteralRational;
 import org.omg.sysml.lang.sysml.LiteralString;
 import org.eclipse.emf.ecore.EClass;
+import org.omg.sysml.expressions.util.EvaluationUtil;
 import org.omg.sysml.lang.sysml.CalculationUsage;
 import org.omg.sysml.lang.sysml.Membership;
+import org.omg.sysml.lang.sysml.MetadataFeature;
 import org.omg.sysml.lang.sysml.OperatorExpression;
 import org.omg.sysml.lang.sysml.OwningMembership;
 import org.omg.sysml.lang.sysml.Relationship;
@@ -45,14 +47,17 @@ public class SysMLInteractiveUtil {
 	}
 	
 	private static void formatElement(StringBuilder buffer, String indentation, Element element, String relationshipTag) {
-		String shortName = element.getShortName();
-		String name = nameOf(element);
-		buffer.append(indentation + 
-				relationshipTag + 
-				element.eClass().getName() + 
-				(shortName == null? "": " <" + shortName + ">") +
-				(name == null? "": " " + name) + 
-				" (" + element.getElementId() + ")\n");
+		buffer.append(indentation + relationshipTag + element.eClass().getName());		
+		if (EvaluationUtil.isMetaclassFeature(element)) {
+			formatElement(buffer, " ", ((MetadataFeature)element).getAnnotatedElement().get(0), "");
+		} else {		
+			String shortName = element.getShortName();
+			String name = nameOf(element);
+			buffer.append(
+					(shortName == null? "": " <" + shortName + ">") +
+					(name == null? "": " " + name) + 
+					" (" + element.getElementId() + ")\n");
+		}
 	}
 	
 	public static String nameOf(Element element) {

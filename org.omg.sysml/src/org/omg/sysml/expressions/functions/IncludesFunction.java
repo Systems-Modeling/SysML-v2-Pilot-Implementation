@@ -37,8 +37,9 @@ public class IncludesFunction extends SequenceFunction {
 	public EList<Element> invoke(InvocationExpression invocation, Element target, ModelLevelExpressionEvaluator evaluator) {
 		EList<Element> list = evaluator.evaluateArgument(invocation, 0, target);
 		Element value = evaluator.argumentValue(invocation, 1, target);
-		return list == null && value == null? null: 
-			EvaluationUtil.booleanResult(list.stream().anyMatch(x->EvaluationUtil.equal(x, value)));
+		Boolean result = list == null && value == null? null: list.stream().anyMatch(x->EvaluationUtil.equal(x, value));
+		return result == null? EvaluationUtil.singletonList(invocation): 
+			EvaluationUtil.booleanResult(result);
 	}
 
 }

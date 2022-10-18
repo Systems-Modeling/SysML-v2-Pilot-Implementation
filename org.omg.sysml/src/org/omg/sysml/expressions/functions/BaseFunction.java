@@ -21,41 +21,7 @@
 
 package org.omg.sysml.expressions.functions;
 
-import java.util.Collections;
-import java.util.List;
-
-import org.eclipse.emf.common.util.EList;
-import org.omg.sysml.expressions.util.EvaluationUtil;
-import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.InvocationExpression;
-import org.omg.sysml.lang.sysml.LiteralExpression;
-import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.util.TypeUtil;
-
 public abstract class BaseFunction implements LibraryFunction {
-
-	protected static Type getTypeArgument(InvocationExpression invocation) {
-		EList<Feature> ownedFeatures = invocation.getOwnedFeature();
-		if (ownedFeatures.size() >= 2) {
-			EList<Type> types = ownedFeatures.get(1).getType();
-			if (!types.isEmpty()) {
-				return types.get(0);
-			}
-		}
-		return null;
-	}
-	
-	protected static List<Type> getType(Element context, Element element) {
-		return element instanceof LiteralExpression? Collections.singletonList(EvaluationUtil.getPrimitiveType(context, element.eClass())):
-			   element instanceof Feature? ((Feature)element).getType():
-			   Collections.emptyList();
-	}
-	
-	protected static boolean isType(Element context, Element element, Type type) {
-		return getType(context, element).stream().
-				anyMatch(elementType->TypeUtil.conforms(elementType, type));
-	}
 
 	@Override
 	public String getPackageName() {

@@ -67,7 +67,7 @@ public abstract class ArithmeticFunction implements LibraryFunction {
 			   x instanceof Integer && y instanceof Double? binaryRealOp((Integer)x, (Double)y):
 			   x instanceof Double && y instanceof Double? binaryRealOp((Double)x, (Double)y):
 			   x instanceof String && y instanceof String? binaryStringOp((String)x, (String)y):
-			   null;
+			   EvaluationUtil.singletonList(invocation);
 	}
 
 }

@@ -21,6 +21,9 @@ package org.omg.sysml.adapter;
 
 import org.omg.sysml.lang.sysml.AcceptActionUsage;
 import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.FeatureMembership;
+import org.omg.sysml.lang.sysml.TransitionFeatureKind;
+import org.omg.sysml.lang.sysml.TransitionFeatureMembership;
 
 public class AcceptActionUsageAdapter extends ActionUsageAdapter {
 
@@ -37,6 +40,21 @@ public class AcceptActionUsageAdapter extends ActionUsageAdapter {
 	@Override
 	public void computeImplicitGeneralTypes() {
 		addComputedRedefinitions(null);
+	}
+	
+	@Override
+	public void addDefaultGeneralType() {
+		// Don't add a default type for a transition trigger action because such
+		// an action will always redefine TransitionAction::accepter anyway.
+		if (!isTriggerAction()) {
+			super.addDefaultGeneralType();
+		}
+	}
+	
+	public boolean isTriggerAction() {
+		FeatureMembership owningFeatureMembership = getTarget().getOwningFeatureMembership();
+		return owningFeatureMembership instanceof TransitionFeatureMembership &&
+				((TransitionFeatureMembership)owningFeatureMembership).getKind() == TransitionFeatureKind.TRIGGER;
 	}
 	
 	// Computed Redefinition

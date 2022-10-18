@@ -1,0 +1,68 @@
+/*****************************************************************************
+ * SysML 2 Pilot Implementation
+ * Copyright (c) 2022 Model Driven Solutions, Inc.
+ *    
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ *
+ * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
+ * 
+ * Contributors:
+ *  Ed Seidewitz
+ * 
+ *****************************************************************************/
+
+modeltype UML uses "http://www.eclipse.org/uml2/5.0.0/UML";
+
+transformation PrepareMetamodelPackages(in export: UML, out prepared: UML);
+
+main() {
+	var syntax := export.objects()[Package]![name = "1. Abstract Syntax"];
+	assert fatal (syntax <> null) with log ("Abstract Syntax not found.");
+	
+	var model = object Model { 
+		name := "sysml";
+		URI := "http://www.omg.org/spec/SysML/2.0";
+	};
+	syntax.ownedMember[Package].map Package(model);
+
+}
+
+mapping Package::Package(inout model: Model) {
+	log("Top-level package " + nameOf(self));
+	if self <> model then {
+		var package = object Package {
+			name := self.name;
+		};
+		model.packagedElement += package;
+		self.ownedMember[Package]->map Namespace(package);
+		package.packagedElement[Package]->destroy();
+	} endif;
+}
+
+mapping Package::Namespace(inout package: Package) 
+	when { self.name = null or not self.name.endsWith("TBD") } {
+	log("Package " + if self.namespace = null then "" else nameOf(self.namespace) + "::" endif + nameOf(self));
+	self.ownedMember[Package]->map Namespace(package);
+	if self <> package then {
+		package.packagedElement += self.packagedElement;
+	} endif;
+}
+
+query nameOf(element: NamedElement): String {
+	return 
+		if element = null then "<null>"
+		else if element.name = null or element.name = "" then "<empty>"
+		else element.name
+		endif endif
+}

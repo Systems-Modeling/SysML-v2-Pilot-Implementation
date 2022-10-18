@@ -301,15 +301,22 @@ public class TypeUtil {
 		return membership;
 	}
 	
-	public static ParameterMembership addOwnedParameterTo(Type type, Expression value) {
+	private static <T extends FeatureMembership> T addBoundFeatureTo(Type type, Expression value, T membership) {
 		Feature feature = SysMLFactory.eINSTANCE.createFeature();
 		if (value != null) {
 			FeatureUtil.addFeatureValueTo(feature, value);
 		}
-		ParameterMembership membership = SysMLFactory.eINSTANCE.createParameterMembership();
 		membership.setOwnedMemberFeature(feature);
 		type.getOwnedRelationship().add(membership);
 		return membership;
+	}
+	
+	public static FeatureMembership addBoundFeatureTo(Type type, Expression value) {
+		return addBoundFeatureTo(type, value, SysMLFactory.eINSTANCE.createFeatureMembership());
+	}
+	
+	public static ParameterMembership addOwnedParameterTo(Type type, Expression value) {
+		return addBoundFeatureTo(type, value, SysMLFactory.eINSTANCE.createParameterMembership());
 	}
 	
 	// Implicit general types

@@ -38,7 +38,7 @@ public class IndexFunction extends BaseFunction {
 	public EList<Element> invoke(InvocationExpression invocation, Element target, ModelLevelExpressionEvaluator evaluator) {
 		EList<Element> list = evaluator.evaluateArgument(invocation, 0, target);
 		Integer index = evaluator.integerValue(invocation, 1, target);
-		return list == null || index == null? null:
+		return list == null || index == null? EvaluationUtil.singletonList(invocation):
 			   index == null || index < 1 || index > list.size()? EvaluationUtil.nullList():
 			   EvaluationUtil.singletonList(list.get(index - 1));
 	}

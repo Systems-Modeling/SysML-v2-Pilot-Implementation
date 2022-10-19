@@ -102,8 +102,8 @@ standard library package OccurrenceFunctions {
 		in index: Positive[1];
 		
 		private composite step : addAt {
-			inout seq1 = group;
-			in seq2 = create(occ);
+			inout seq = group;
+			in values = create(occ);
 			in startIndex = index;
 		}
 		
@@ -120,8 +120,8 @@ standard library package OccurrenceFunctions {
 		inout occ: Occurrence[0..1];
 		
 		private composite step removeStep : remove {
-			inout seq1 = group;
-			in seq2 = occ;
+			inout seq = group;
+			in values = occ;
 		}
 		private succession removeStep then destroyStep;
 		private composite step destroyStep : destroy {
@@ -142,8 +142,8 @@ standard library package OccurrenceFunctions {
 		private feature oldOcc = group[index];
 		
 		private composite step removeStep : remove {
-			inout seq1 = group;
-			in index;
+			inout seq = group;
+			in index = removeOldAt::index;
 		}
 		private succession removeStep then destroyStep;
 		private composite step destroyStep : destroy {

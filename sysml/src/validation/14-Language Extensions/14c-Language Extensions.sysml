@@ -1,7 +1,7 @@
 package '14c-Language-Extensions' {
 	import ScalarValues::*;
 	
-	package FMEALibrary {
+	library package FMEALibrary {
 		
 		abstract occurrence def Situation;
 		
@@ -74,7 +74,7 @@ package '14c-Language-Extensions' {
 		
 	}
 	
-	package FMEAMetadata {
+	library package FMEAMetadata {
 		import Metaobjects::SemanticMetadata;
 		import FMEALibrary::*;
 

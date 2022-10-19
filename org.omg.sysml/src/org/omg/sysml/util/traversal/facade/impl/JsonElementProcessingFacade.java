@@ -32,6 +32,7 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.omg.sysml.lang.sysml.Element;
@@ -197,11 +198,21 @@ public class JsonElementProcessingFacade implements ElementProcessingFacade {
 			if ((this.isIncludeDerived() || !feature.isDerived()) && 
 					( name == null || !(name.endsWith("_comp") || apiElement.containsKey(name)))) {
 				Object value = element.eGet(feature);
-				if (feature instanceof EReference) {
-					value = isLibraryElement? null:
-							feature.isMany()?
-								getIdentified((List<Element>)value):
-								getIdentified((Element)value);
+				if (value != null) {
+					if (feature instanceof EReference) {
+						value = isLibraryElement? null:
+								feature.isMany()?
+									getIdentified((List<Element>)value):
+									getIdentified((Element)value);
+					} else if (feature.getEType() instanceof EEnum) {
+						if (feature.isMany()) {
+							value = ((List<Element>)value).stream().
+									map(v->v == null? null: v.toString()).
+									collect(Collectors.toList());
+						} else {
+							value = value.toString();
+						}
+					}
 				}
 				apiElement.put(name, value);
 			}

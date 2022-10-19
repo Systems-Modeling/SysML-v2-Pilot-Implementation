@@ -33,6 +33,7 @@ public class SysMLRepositorySaveTest extends SysMLRepositorySaveUtil {
 		"03-Function-based Behavior/3a-Function-based Behavior-1.sysml",
 		"03-Function-based Behavior/3a-Function-based Behavior-2.sysml",
 		"03-Function-based Behavior/3a-Function-based Behavior-3.sysml",
+		"03-Function-based Behavior/3d-Function-based Behavior-item.sysml",
 		"04-Functional Allocation/4a-Functional Allocation.sysml",
 		"05-State-based Behavior/5-State-based Behavior-1.sysml",
 		"05-State-based Behavior/5-State-based Behavior-1a.sysml",

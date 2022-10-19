@@ -47,21 +47,21 @@ standard library package SequenceFunctions {
 	function intersection{ in seq1: Anything[0..*] ordered nonunique; in seq2: Anything[0..*] ordered nonunique;
 		return : Anything[0..*] ordered nonunique = seq1->select {in x; seq2->includes(x)};
 	}
-	function including{ in seq1: Anything[0..*] ordered nonunique; in seq2: Anything[0..*] ordered nonunique;
-		return : Anything[0..*] ordered nonunique = union(seq1, seq2);
+	function including{ in seq: Anything[0..*] ordered nonunique; in values: Anything[0..*] ordered nonunique;
+		return : Anything[0..*] ordered nonunique = union(seq, values);
 	}
-	function includingAt{ in seq1: Anything[0..*] ordered nonunique; in seq2: Anything[0..*] ordered nonunique;
+	function includingAt{ in seq: Anything[0..*] ordered nonunique; in values: Anything[0..*] ordered nonunique;
 		in index: Positive[1];
 		return : Anything[0..*] ordered nonunique = 
-			(seq1->subsequence(1, index - 1), seq2, seq1->subsequence(index + 1));
+			(seq->subsequence(1, index - 1), values, seq->subsequence(index + 1));
 	}
-	function excluding{ in seq1: Anything[0..*] ordered nonunique; in seq2: Anything[0..*] ordered nonunique;
-		return : Anything[0..*] ordered nonunique = seq1->reject {in x; seq2->includes(x)};
+	function excluding{ in seq: Anything[0..*] ordered nonunique; in values: Anything[0..*];
+		return : Anything[0..*] ordered nonunique = seq->reject {in x; values->includes(x)};
 	}
-	function excludingAt{ in seq1: Anything[0..*] ordered nonunique;
+	function excludingAt{ in seq: Anything[0..*] ordered nonunique;
 		in startIndex: Positive[1]; in endIndex: Positive[1] default startIndex;
 		return : Anything[0..*] ordered nonunique = 
-			(seq1->subsequence(1, startIndex - 1), seq1->subsequence(endIndex + 1));
+			(seq->subsequence(1, startIndex - 1), seq->subsequence(endIndex + 1));
 	}
 	
 	function subsequence{ in seq: Anything[0..*] ordered nonunique; 
@@ -72,31 +72,31 @@ standard library package SequenceFunctions {
 		return : Anything[0..1] = seq[1];
 	}
 	function tail{ in seq: Anything[0..*] ordered nonunique;
-		return : Anything[0..*] ordered nonunique = subsequence(seq, 2, size(seq));
+		return : Anything[0..*] ordered nonunique = subsequence(seq, 2);
 	}
 	function last{ in seq: Anything[0..*] ordered nonunique;
 		return : Anything[0..1] = seq[size(seq)];
 	}
 	
-	function '[' specializes BaseFunctions::'[' { in seq: Anything[0..*] ordered nonunique; in index: Positive[1];
+	function '[' specializes BaseFunctions::'[' { in seq: Anything[0..*] ordered nonunique; in index: Natural[1];
 		return : Anything[0..1];
 	}	
 	
-	behavior add { inout seq1: Anything[0..*] ordered nonunique; in seq2: Anything[0..*] ordered nonunique;
-		private feature newSeq = seq1->including(seq2);
+	behavior add { inout seq: Anything[0..*] ordered nonunique; in values: Anything[0..*] ordered nonunique;
+		private feature newSeq = seq->including(values);
 		feature redefines endShot: add;
-		connector :SelfSameLifeLink from endShot.seq1 to newSeq;
+		connector :SelfSameLifeLink from endShot.seq to newSeq;
 	}	
-	behavior addAt { inout seq: Anything[0..*] ordered nonunique; in seq2: Anything[0..*] ordered nonunique;
+	behavior addAt { inout seq: Anything[0..*] ordered nonunique; in values: Anything[0..*] ordered nonunique;
 		in index: Positive[1];
-		private feature newSeq = seq->includingAt(seq2, index);
+		private feature newSeq = seq->includingAt(values, index);
 		feature redefines endShot: addAt;
 		connector :SelfSameLifeLink from endShot.seq to newSeq;
 	}
-	behavior remove{ inout seq1: Anything[0..*] ordered nonunique; in seq2: Anything[0..*] ordered nonunique;
-		private feature newSeq = seq1->excluding(seq2);
+	behavior remove{ inout seq: Anything[0..*] ordered nonunique; in values: Anything[0..*];
+		private feature newSeq = seq->excluding(values);
 		feature redefines endShot: remove;
-		connector :SelfSameLifeLink from endShot.seq1 to newSeq;
+		connector :SelfSameLifeLink from endShot.seq to newSeq;
 	}
 	behavior removeAt{ inout seq: Anything[0..*] ordered nonunique;
 		in startIndex: Positive[1]; in endIndex: Positive[1] default startIndex;

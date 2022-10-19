@@ -131,6 +131,11 @@ standard library package OccurrenceFunctions {
 	}
 	
 	behavior removeOldAt {
+		doc
+		/*
+		 * Removes the occurrence at a given index in an ordered group of occurrences 
+		 * and destroy it.
+		 */
 		inout group: Occurrence[0..*] ordered nonunique;
 		in index: Positive[1];
 		

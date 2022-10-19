@@ -2908,24 +2908,14 @@ ruleBaseExpression returns [EObject current=null]
 			afterParserOrEnumRuleCall();
 		}
 		    |
-		(
-			otherlv_5='('
-			{
-				newLeafNode(otherlv_5, grammarAccess.getBaseExpressionAccess().getLeftParenthesisKeyword_5_0());
-			}
-			{
-				newCompositeNode(grammarAccess.getBaseExpressionAccess().getSequenceExpressionParserRuleCall_5_1());
-			}
-			this_SequenceExpression_6=ruleSequenceExpression
-			{
-				$current = $this_SequenceExpression_6.current;
-				afterParserOrEnumRuleCall();
-			}
-			otherlv_7=')'
-			{
-				newLeafNode(otherlv_7, grammarAccess.getBaseExpressionAccess().getRightParenthesisKeyword_5_2());
-			}
-		)
+		{
+			newCompositeNode(grammarAccess.getBaseExpressionAccess().getParenthesizedExpressionParserRuleCall_5());
+		}
+		this_ParenthesizedExpression_5=ruleParenthesizedExpression
+		{
+			$current = $this_ParenthesizedExpression_5.current;
+			afterParserOrEnumRuleCall();
+		}
 	)
 ;
 
@@ -3183,6 +3173,41 @@ ruleBodyParameter returns [EObject current=null]
 				afterParserOrEnumRuleCall();
 			}
 		)
+	)
+;
+
+// Entry rule entryRuleParenthesizedExpression
+entryRuleParenthesizedExpression returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getParenthesizedExpressionRule()); }
+	iv_ruleParenthesizedExpression=ruleParenthesizedExpression
+	{ $current=$iv_ruleParenthesizedExpression.current; }
+	EOF;
+
+// Rule ParenthesizedExpression
+ruleParenthesizedExpression returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		otherlv_0='('
+		{
+			newLeafNode(otherlv_0, grammarAccess.getParenthesizedExpressionAccess().getLeftParenthesisKeyword_0());
+		}
+		{
+			newCompositeNode(grammarAccess.getParenthesizedExpressionAccess().getSequenceExpressionParserRuleCall_1());
+		}
+		this_SequenceExpression_1=ruleSequenceExpression
+		{
+			$current = $this_SequenceExpression_1.current;
+			afterParserOrEnumRuleCall();
+		}
+		otherlv_2=')'
+		{
+			newLeafNode(otherlv_2, grammarAccess.getParenthesizedExpressionAccess().getRightParenthesisKeyword_2());
+		}
 	)
 ;
 

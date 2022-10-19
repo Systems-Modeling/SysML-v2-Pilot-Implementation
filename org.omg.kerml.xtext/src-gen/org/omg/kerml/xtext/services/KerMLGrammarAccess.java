@@ -1620,7 +1620,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		
 		//ElementFilterMember returns SysML::ElementFilterMembership :
 		//    MemberPrefix
-		//    'filter' ownedRelatedElement += OwnedExpression ';' // condition = OwnedExpression ';'
+		//    'filter' ownedRelatedElement += OwnedExpression ';'
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -1696,7 +1696,8 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//    ( isSufficient ?= 'all' )? Identification?
 		//    ( ownedRelationship += OwnedMultiplicity )?
 		//    ( SpecializationPart | ConjugationPart )+
-		//    TypeRelationshipPart*;
+		//    TypeRelationshipPart*
+		//;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//( isSufficient ?= 'all' )? Identification?
@@ -7925,7 +7926,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	
 	//ElementFilterMember returns SysML::ElementFilterMembership :
 	//    MemberPrefix
-	//    'filter' ownedRelatedElement += OwnedExpression ';' // condition = OwnedExpression ';'
+	//    'filter' ownedRelatedElement += OwnedExpression ';'
 	//;
 	public ElementFilterMemberElements getElementFilterMemberAccess() {
 		return pElementFilterMember;
@@ -7953,7 +7954,8 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	//    ( isSufficient ?= 'all' )? Identification?
 	//    ( ownedRelationship += OwnedMultiplicity )?
 	//    ( SpecializationPart | ConjugationPart )+
-	//    TypeRelationshipPart*;
+	//    TypeRelationshipPart*
+	//;
 	public TypeDeclarationElements getTypeDeclarationAccess() {
 		return pTypeDeclaration;
 	}
@@ -10226,7 +10228,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	//    | FeatureReferenceExpression
 	//    | InvocationExpression
 	//    | BodyExpression
-	//    | '(' SequenceExpression ')'
+	//    | ParenthesizedExpression
 	//;
 	public KerMLExpressionsGrammarAccess.BaseExpressionElements getBaseExpressionAccess() {
 		return gaKerMLExpressions.getBaseExpressionAccess();
@@ -10282,6 +10284,17 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//// Sequence Expressions
+	//ParenthesizedExpression returns SysML::Expression :
+	//    '(' SequenceExpression ')'
+	//;
+	public KerMLExpressionsGrammarAccess.ParenthesizedExpressionElements getParenthesizedExpressionAccess() {
+		return gaKerMLExpressions.getParenthesizedExpressionAccess();
+	}
+	
+	public ParserRule getParenthesizedExpressionRule() {
+		return getParenthesizedExpressionAccess().getRule();
+	}
+	
 	//SequenceExpression returns SysML::Expression :
 	//    OwnedExpression
 	//    ( ','

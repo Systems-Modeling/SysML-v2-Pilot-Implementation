@@ -318,7 +318,7 @@ BaseExpression returns SysML::Expression :
 	| FeatureReferenceExpression 
 	| InvocationExpression 
 	| BodyExpression
-	| '(' SequenceExpression ')'
+	| ParenthesizedExpression
 ;
 
 // Expression Bodies
@@ -350,6 +350,10 @@ BodyParameter returns SysML::Feature :
 ;
 
 // Sequence Expressions
+
+ParenthesizedExpression returns SysML::Expression :
+	'(' SequenceExpression ')'
+;
 
 SequenceExpression returns SysML::Expression :
 	OwnedExpression

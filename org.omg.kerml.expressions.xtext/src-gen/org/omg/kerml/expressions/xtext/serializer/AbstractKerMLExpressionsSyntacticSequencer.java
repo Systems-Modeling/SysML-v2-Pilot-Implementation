@@ -22,17 +22,17 @@ import org.omg.kerml.expressions.xtext.services.KerMLExpressionsGrammarAccess;
 public abstract class AbstractKerMLExpressionsSyntacticSequencer extends AbstractSyntacticSequencer {
 
 	protected KerMLExpressionsGrammarAccess grammarAccess;
-	protected AbstractElementAlias match_BaseExpression_LeftParenthesisKeyword_5_0_a;
-	protected AbstractElementAlias match_BaseExpression_LeftParenthesisKeyword_5_0_p;
 	protected AbstractElementAlias match_NullExpression_NullKeyword_1_0_or___LeftParenthesisKeyword_1_1_0_RightParenthesisKeyword_1_1_1__;
+	protected AbstractElementAlias match_ParenthesizedExpression_LeftParenthesisKeyword_0_a;
+	protected AbstractElementAlias match_ParenthesizedExpression_LeftParenthesisKeyword_0_p;
 	protected AbstractElementAlias match_SequenceExpression_CommaKeyword_1_0_q;
 	
 	@Inject
 	protected void init(IGrammarAccess access) {
 		grammarAccess = (KerMLExpressionsGrammarAccess) access;
-		match_BaseExpression_LeftParenthesisKeyword_5_0_a = new TokenAlias(true, true, grammarAccess.getBaseExpressionAccess().getLeftParenthesisKeyword_5_0());
-		match_BaseExpression_LeftParenthesisKeyword_5_0_p = new TokenAlias(true, false, grammarAccess.getBaseExpressionAccess().getLeftParenthesisKeyword_5_0());
 		match_NullExpression_NullKeyword_1_0_or___LeftParenthesisKeyword_1_1_0_RightParenthesisKeyword_1_1_1__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getNullExpressionAccess().getLeftParenthesisKeyword_1_1_0()), new TokenAlias(false, false, grammarAccess.getNullExpressionAccess().getRightParenthesisKeyword_1_1_1())), new TokenAlias(false, false, grammarAccess.getNullExpressionAccess().getNullKeyword_1_0()));
+		match_ParenthesizedExpression_LeftParenthesisKeyword_0_a = new TokenAlias(true, true, grammarAccess.getParenthesizedExpressionAccess().getLeftParenthesisKeyword_0());
+		match_ParenthesizedExpression_LeftParenthesisKeyword_0_p = new TokenAlias(true, false, grammarAccess.getParenthesizedExpressionAccess().getLeftParenthesisKeyword_0());
 		match_SequenceExpression_CommaKeyword_1_0_q = new TokenAlias(false, true, grammarAccess.getSequenceExpressionAccess().getCommaKeyword_1_0());
 	}
 	
@@ -48,18 +48,31 @@ public abstract class AbstractKerMLExpressionsSyntacticSequencer extends Abstrac
 		List<INode> transitionNodes = collectNodes(fromNode, toNode);
 		for (AbstractElementAlias syntax : transition.getAmbiguousSyntaxes()) {
 			List<INode> syntaxNodes = getNodesFor(transitionNodes, syntax);
-			if (match_BaseExpression_LeftParenthesisKeyword_5_0_a.equals(syntax))
-				emit_BaseExpression_LeftParenthesisKeyword_5_0_a(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_BaseExpression_LeftParenthesisKeyword_5_0_p.equals(syntax))
-				emit_BaseExpression_LeftParenthesisKeyword_5_0_p(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_NullExpression_NullKeyword_1_0_or___LeftParenthesisKeyword_1_1_0_RightParenthesisKeyword_1_1_1__.equals(syntax))
+			if (match_NullExpression_NullKeyword_1_0_or___LeftParenthesisKeyword_1_1_0_RightParenthesisKeyword_1_1_1__.equals(syntax))
 				emit_NullExpression_NullKeyword_1_0_or___LeftParenthesisKeyword_1_1_0_RightParenthesisKeyword_1_1_1__(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_ParenthesizedExpression_LeftParenthesisKeyword_0_a.equals(syntax))
+				emit_ParenthesizedExpression_LeftParenthesisKeyword_0_a(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_ParenthesizedExpression_LeftParenthesisKeyword_0_p.equals(syntax))
+				emit_ParenthesizedExpression_LeftParenthesisKeyword_0_p(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_SequenceExpression_CommaKeyword_1_0_q.equals(syntax))
 				emit_SequenceExpression_CommaKeyword_1_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else acceptNodes(getLastNavigableState(), syntaxNodes);
 		}
 	}
 
+	/**
+	 * Ambiguous syntax:
+	 *     'null' | ('(' ')')
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     (rule start) '('* (ambiguity) (rule start)
+	 *     (rule start) '('+ (ambiguity) ','? ')' (rule start)
+	 *     (rule start) (ambiguity) (rule start)
+	 */
+	protected void emit_NullExpression_NullKeyword_1_0_or___LeftParenthesisKeyword_1_1_0_RightParenthesisKeyword_1_1_1__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
 	/**
 	 * Ambiguous syntax:
 	 *     '('*
@@ -83,7 +96,7 @@ public abstract class AbstractKerMLExpressionsSyntacticSequencer extends Abstrac
 	 *     (rule start) (ambiguity) {OperatorExpression.operand+=}
 	 *     (rule start) (ambiguity) {SelectExpression.operand+=}
 	 */
-	protected void emit_BaseExpression_LeftParenthesisKeyword_5_0_a(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_ParenthesizedExpression_LeftParenthesisKeyword_0_a(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
@@ -92,28 +105,25 @@ public abstract class AbstractKerMLExpressionsSyntacticSequencer extends Abstrac
 	 *     '('+
 	 *
 	 * This ambiguous syntax occurs at:
+	 *     (rule start) (ambiguity) '*' ','? ')' (rule start)
+	 *     (rule start) (ambiguity) ('null' | ('(' ')')) ','? ')' (rule start)
 	 *     (rule start) (ambiguity) operand+=SelfReferenceExpression
 	 *     (rule start) (ambiguity) operator='all'
 	 *     (rule start) (ambiguity) operator=ConditionalOperator
 	 *     (rule start) (ambiguity) operator=UnaryOperator
+	 *     (rule start) (ambiguity) ownedRelationship+=ExpressionBodyMember
+	 *     (rule start) (ambiguity) ownedRelationship+=FeatureReferenceMember
+	 *     (rule start) (ambiguity) ownedRelationship+=OwnedFeatureTyping
+	 *     (rule start) (ambiguity) value=BooleanValue
+	 *     (rule start) (ambiguity) value=DECIMAL_VALUE
+	 *     (rule start) (ambiguity) value=RealValue
+	 *     (rule start) (ambiguity) value=STRING_VALUE
 	 *     (rule start) (ambiguity) {CollectExpression.operand+=}
 	 *     (rule start) (ambiguity) {FeatureChainExpression.operand+=}
 	 *     (rule start) (ambiguity) {OperatorExpression.operand+=}
 	 *     (rule start) (ambiguity) {SelectExpression.operand+=}
 	 */
-	protected void emit_BaseExpression_LeftParenthesisKeyword_5_0_p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
-	/**
-	 * Ambiguous syntax:
-	 *     'null' | ('(' ')')
-	 *
-	 * This ambiguous syntax occurs at:
-	 *     (rule start) '('* (ambiguity) (rule start)
-	 *     (rule start) (ambiguity) (rule start)
-	 */
-	protected void emit_NullExpression_NullKeyword_1_0_or___LeftParenthesisKeyword_1_1_0_RightParenthesisKeyword_1_1_1__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_ParenthesizedExpression_LeftParenthesisKeyword_0_p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
@@ -122,6 +132,8 @@ public abstract class AbstractKerMLExpressionsSyntacticSequencer extends Abstrac
 	 *     ','?
 	 *
 	 * This ambiguous syntax occurs at:
+	 *     (rule start) '('+ '*' (ambiguity) ')' (rule start)
+	 *     (rule start) '('+ ('null' | ('(' ')')) (ambiguity) ')' (rule start)
 	 *     operand+=AdditiveExpression (ambiguity) ')' (rule end)
 	 *     operand+=AndExpression (ambiguity) ')' (rule end)
 	 *     operand+=BodyExpression (ambiguity) ')' (rule end)
@@ -141,10 +153,17 @@ public abstract class AbstractKerMLExpressionsSyntacticSequencer extends Abstrac
 	 *     operand+=XorExpression (ambiguity) ')' (rule end)
 	 *     operand+=XorExpressionReference (ambiguity) ')' (rule end)
 	 *     ownedRelationship+=ArgumentMember ')' (ambiguity) ')' (rule end)
+	 *     ownedRelationship+=ExpressionBodyMember (ambiguity) ')' (rule end)
 	 *     ownedRelationship+=FeatureChainMember (ambiguity) ')' (rule end)
+	 *     ownedRelationship+=FeatureReferenceMember (ambiguity) ')' (rule end)
 	 *     ownedRelationship+=NamedArgumentMember ')' (ambiguity) ')' (rule end)
+	 *     ownedRelationship+=OwnedFeatureTyping '(' ')' (ambiguity) ')' (rule end)
 	 *     ownedRelationship+=ReferenceTyping '(' ')' (ambiguity) ')' (rule end)
 	 *     ownedRelationship+=TypeReferenceMember (ambiguity) ')' (rule end)
+	 *     value=BooleanValue (ambiguity) ')' (rule end)
+	 *     value=DECIMAL_VALUE (ambiguity) ')' (rule end)
+	 *     value=RealValue (ambiguity) ')' (rule end)
+	 *     value=STRING_VALUE (ambiguity) ')' (rule end)
 	 */
 	protected void emit_SequenceExpression_CommaKeyword_1_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);

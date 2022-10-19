@@ -30,7 +30,12 @@ class MOF2SysMLText extends MOF2KerMLText {
 	
 	override generate(Model model) {
 		'''
-		package SysML {
+		standard library package SysML {
+			doc 
+			/*
+			 * This package contains a reflective KerML model of the KerML abstract syntax.
+			 */
+			 
 			private import ScalarValues::*;
 			import KerML::Kernel::*;
 			

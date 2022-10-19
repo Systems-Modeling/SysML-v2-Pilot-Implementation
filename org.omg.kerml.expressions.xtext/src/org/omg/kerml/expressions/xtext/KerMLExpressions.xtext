@@ -161,7 +161,7 @@ EqualityExpression returns SysML::Expression :
 ;
 
 EqualityOperator :
-	'==' | '!=' 
+	'==' | '!=' | '===' | '!=='
 ;
 
 // Classification Expressions

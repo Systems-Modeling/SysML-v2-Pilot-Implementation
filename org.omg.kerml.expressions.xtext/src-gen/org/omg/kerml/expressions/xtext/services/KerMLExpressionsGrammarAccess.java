@@ -693,13 +693,15 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final Keyword cEqualsSignEqualsSignKeyword_0 = (Keyword)cAlternatives.eContents().get(0);
 		private final Keyword cExclamationMarkEqualsSignKeyword_1 = (Keyword)cAlternatives.eContents().get(1);
+		private final Keyword cEqualsSignEqualsSignEqualsSignKeyword_2 = (Keyword)cAlternatives.eContents().get(2);
+		private final Keyword cExclamationMarkEqualsSignEqualsSignKeyword_3 = (Keyword)cAlternatives.eContents().get(3);
 		
 		//EqualityOperator :
-		//    '==' | '!='
+		//    '==' | '!=' | '===' | '!=='
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'==' | '!='
+		//'==' | '!=' | '===' | '!=='
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//'=='
@@ -707,6 +709,12 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 		
 		//'!='
 		public Keyword getExclamationMarkEqualsSignKeyword_1() { return cExclamationMarkEqualsSignKeyword_1; }
+		
+		//'==='
+		public Keyword getEqualsSignEqualsSignEqualsSignKeyword_2() { return cEqualsSignEqualsSignEqualsSignKeyword_2; }
+		
+		//'!=='
+		public Keyword getExclamationMarkEqualsSignEqualsSignKeyword_3() { return cExclamationMarkEqualsSignEqualsSignKeyword_3; }
 	}
 	public class ClassificationExpressionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.expressions.xtext.KerMLExpressions.ClassificationExpression");
@@ -3274,7 +3282,7 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 	}
 	
 	//EqualityOperator :
-	//    '==' | '!='
+	//    '==' | '!=' | '===' | '!=='
 	//;
 	public EqualityOperatorElements getEqualityOperatorAccess() {
 		return pEqualityOperator;

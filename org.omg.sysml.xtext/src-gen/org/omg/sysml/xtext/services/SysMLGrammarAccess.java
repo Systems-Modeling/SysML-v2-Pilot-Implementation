@@ -20128,7 +20128,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//EqualityOperator :
-	//    '==' | '!='
+	//    '==' | '!=' | '===' | '!=='
 	//;
 	public KerMLExpressionsGrammarAccess.EqualityOperatorElements getEqualityOperatorAccess() {
 		return gaKerMLExpressions.getEqualityOperatorAccess();

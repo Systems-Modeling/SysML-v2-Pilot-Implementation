@@ -16,14 +16,12 @@ standard library package OccurrenceFunctions {
 	private import SequenceFunctions::removeAt;
 	private import ControlFunctions::forAll;
 	 
-	function '==='{ 
+	function '==='  specializes BaseFunctions::'===' { 
 		doc
 		/*
 		 * Test whether two occurrences are portions of the same life. That is, whether they 
 		 * represent different portions of the same entity (colloquially, whether they have
 		 * the same "identity").
-		 * 
-		 * This is the function invoked by the "===" operator in the KerML expression syntax.
 		 */
 		 
 		in x: Occurrence[0..1]; 
@@ -32,27 +30,6 @@ standard library package OccurrenceFunctions {
 		return : Boolean[1] = x.portionOfLife == y.portionOfLife;
 	}
 	
-	function '!==' {
-		doc
-		/*
-		 * Test whether two occurrences are not portions of the same life. That is, the 
-		 * opposite of testing with '==='.
-		 * 
-		 * This is the function invoked by the "!==" operator in the KerML expression syntax.
-		 */
-	}
-	
-	function same{ in x: Occurrence[0..*] ordered nonunique; in y: Occurrence[0..*] ordered nonunique; 
-		doc
-		/*
-		 * Test whether two sequences have consist of the same occurrences (as determined by '==='),
-		 * in the same order.
-		 */
-		return : Boolean[1] =
-			size(x) == size(y) and
-			(1..size(x))->forAll {in i; '==='(x[i], y[i])};
-	}
-
 	function isDuring {
 		doc
 		/*

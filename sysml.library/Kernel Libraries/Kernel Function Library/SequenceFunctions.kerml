@@ -16,6 +16,12 @@ standard library package SequenceFunctions {
 			(1..size(x))->forAll {in i; x[i] == y[i]};
 	}
 
+	function same{ in x: Anything[0..*] ordered nonunique; in y: Anything[0..*] ordered nonunique;
+		return : Boolean[1] =
+			size(x) == size(y) and
+			(1..size(x))->forAll {in i; x[i] === y[i]};
+	}
+
 	function size{ in seq: Anything[0..*] nonunique;
 		return : Natural[1] = if isEmpty(seq)? 0 else size(tail(seq)) + 1;
 	}

@@ -18,6 +18,13 @@ standard library package BaseFunctions {
 		return : Boolean[1] = not (x == y);
 	}
 	
+	abstract function '==='{ in x: Anything[0..1]; in y: Anything[0..1]; 
+		return : Boolean[1];
+	}
+	function '!=='{ in x: Anything[0..1]; in y: Anything[0..1]; 
+		return : Boolean[1] = not (x === y);
+	}
+	
 	function ToString{ in x: Anything[0..1]; 
 		return : String;
 	}

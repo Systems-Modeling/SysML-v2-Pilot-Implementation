@@ -8483,7 +8483,7 @@ valueConnector.featuringType = featureWithValue.featuringType</body>
         <ownedComment xmi:id="1a2957db-12f0-41ee-899c-fde650c7b39e" annotatedElement="7db21a79-717f-4f97-b646-7e6ab9106c43">
           <body>&lt;p>The Real value that is the result of evaluating this Expression.&lt;/p></body>
         </ownedComment>
-        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#double"/>
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Real"/>
       </ownedAttribute>
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="2daeff7e-c419-4650-9c23-f4968721bb13" name="" visibility="public" memberEnd="3ce4d97a-335f-4af1-a207-886338882c07 c0f8dc86-2ff1-47ca-84b8-9bb4bd72168a">

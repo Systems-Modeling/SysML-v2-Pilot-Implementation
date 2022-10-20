@@ -66,7 +66,12 @@ class MOF2KerMLText {
 	
 	def generate(Model model) {
 		'''
-		package KerML {
+		standard library package KerML {
+			doc 
+			/*
+			 * This package contains a reflective KerML model of the KerML abstract syntax.
+			 */
+			 
 			private import ScalarValues::*;
 			import Kernel::*;
 			

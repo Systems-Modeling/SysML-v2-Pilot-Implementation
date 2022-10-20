@@ -10,6 +10,7 @@ XPECT_SETUP org.omg.kerml.xpect.tests.imports.local.KerMLImportLocalTest
 		    File {from ="/library/ScalarValues.kerml"}
 		    File {from ="/library/BaseFunctions.kerml"}
 		    File {from ="/library/ControlFunctions.kerml"}
+		    File {from ="/library/KerML.kerml"}
 	}
 	Workspace {
 		JavaProject {
@@ -23,6 +24,7 @@ XPECT_SETUP org.omg.kerml.xpect.tests.imports.local.KerMLImportLocalTest
 		       	File {from ="/library/ScalarValues.kerml"}
 		       	File {from ="/library/BaseFunctions.kerml"}
 		       	File {from ="/library/ControlFunctions.kerml"}
+		       	File {from ="/library/KerML.kerml"}
 			}
 		}
 	}

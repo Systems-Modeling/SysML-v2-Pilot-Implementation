@@ -26,6 +26,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.omg.sysml.expressions.ModelLevelExpressionEvaluator;
 import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.LiteralExpression;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
@@ -44,9 +45,11 @@ public class LiteralExpressionImpl extends ExpressionImpl implements LiteralExpr
 	protected LiteralExpressionImpl() {
 		super();
 	}
+	
+	// Additional overrides
 
 	@Override
-	public boolean isModelLevelEvaluable() {
+	public boolean modelLevelEvaluable(EList<Feature> visited) {
 		return true;
 	}
 	
@@ -54,6 +57,8 @@ public class LiteralExpressionImpl extends ExpressionImpl implements LiteralExpr
 	public EList<Element> evaluate(Element target) {
 		return ModelLevelExpressionEvaluator.INSTANCE.evaluateLiteral(this, target);
 	}
+	
+	//
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->

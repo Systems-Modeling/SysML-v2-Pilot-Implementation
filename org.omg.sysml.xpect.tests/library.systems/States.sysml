@@ -1,4 +1,4 @@
-package States {
+standard library package States {
 	doc
 	/*
 	 * This package defines the base types for states and related behavioral elements in the

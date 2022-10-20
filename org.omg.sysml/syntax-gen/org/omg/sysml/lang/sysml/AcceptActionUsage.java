@@ -29,10 +29,16 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>An AcceptActionUsage is an ActionUsage that is typed, directly or indirectly, by the ActionDefinition <code><em>AcceptAction</em></code> from the Systems model library. It specifies the acceptance of an <em><code>incomingTransfer</code></em> from the <code><em>Occurrence</em></code> given by the result of its <code>receiverArgument</code> Expression. The payload of the accepted <em><code>Transfer</em></code> is output on its <code>payloadParameter</code>.</p>
+ * <p>An AcceptActionUsage is an ActionUsage that is typed, directly or indirectly, by the ActionDefinition <code><em>AcceptAction</em></code> from the Systems model library (unless it is owned by a TransitionAction, in which case it is typed by <code><em>AcceptMessageAction</em></code>). It specifies the acceptance of an <em><code>incomingTransfer</code></em> from the <code><em>Occurrence</em></code> given by the result of its <code>receiverArgument</code> Expression. (If no <code>receiverArgument</code> is provided, the default is the <em><code>this</code></em> context of the AcceptActionUsage.) The payload of the accepted <em><code>Transfer</em></code> is output on its <code>payloadParameter</code>.</p>
  * 
  * <p>Which <em><code>Transfers</em></code> may be accepted is determined by the typing and binding of the <code>payloadParameter</code>. If the <code>triggerKind</code> has any value other than <code>accept</code>, then the <code>payloadParameter</code> must be bound to a <code>payloadArgument</code> that is an InvocationExpression whose <code>function</code> is determined by the <code>triggerKind</code>.</p>
  * 
+ * receiverArgument = argument(2)
+ * payloadArgument = argument(1)
+ * payloadParameter = 
+ *  if parameter->isEmpty() then null
+ *  else parameter->at(1) endif
+ * inputParameters->size() >= 2
  * <!-- end-model-doc -->
  *
  * <p>
@@ -61,7 +67,7 @@ public interface AcceptActionUsage extends ActionUsage {
 	 * @return the value of the '<em>Receiver Argument</em>' reference.
 	 * @see #setReceiverArgument(Expression)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getAcceptActionUsage_ReceiverArgument()
-	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
+	 * @model transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='acceptActionUsage'"
 	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
@@ -85,6 +91,7 @@ public interface AcceptActionUsage extends ActionUsage {
 	 * </p>
 	 * <ul>
 	 *   <li>'{@link org.omg.sysml.lang.sysml.Usage#getNestedReference() <em>Nested Reference</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Step#getParameter() <em>Parameter</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -1,4 +1,4 @@
-package Objects {
+standard library package Objects {
 	doc
 	/*
 	 * This package defines classifiers and features that are related to the typing of objects, including link objects.

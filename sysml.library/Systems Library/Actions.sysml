@@ -1,4 +1,4 @@
-package Actions {
+standard library package Actions {
 	doc
 	/*
 	 * This package defines the base types for actions and related behavioral elements in the

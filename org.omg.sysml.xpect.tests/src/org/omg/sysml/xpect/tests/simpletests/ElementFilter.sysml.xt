@@ -10,11 +10,13 @@ XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLTests
        	File {from ="/library.kernel/ScalarValues.kerml"}
        	File {from ="/library.kernel/BaseFunctions.kerml"}
        	File {from ="/library.kernel/ControlFunctions.kerml"}
+       	File {from ="/library.kernel/KerML.kerml"}
        	File {from ="/library.systems/Attributes.sysml"}
  		File {from ="/library.systems/Items.sysml"}
  		File {from ="/library.systems/Parts.sysml"}
  		File {from ="/library.systems/Ports.sysml"}
  		File {from ="/library.systems/Metadata.sysml"}
+ 		File {from ="/library.systems/SysML.sysml"}
 	}
 	Workspace {
 		JavaProject {
@@ -28,11 +30,13 @@ XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLTests
 		       	File {from ="/library.kernel/ScalarValues.kerml"}
 		       	File {from ="/library.kernel/BaseFunctions.kerml"}
 		       	File {from ="/library.kernel/ControlFunctions.kerml"}
+		       	File {from ="/library.kernel/KerML.kerml"}
 		       	File {from ="/library.systems/Attributes.sysml"}
 				File {from ="/library.systems/Items.sysml"}
 				File {from ="/library.systems/Parts.sysml"}
  				File {from ="/library.systems/Ports.sysml"}
  				File {from ="/library.systems/Metadata.sysml"}
+ 				File {from ="/library.systems/SysML.sysml"}
 			}
 		}
 	}
@@ -40,7 +44,7 @@ END_SETUP
 */
 // XPECT noErrors ---> ""
 package ElementFilterTest {
-	abstract attribute def PartInfo {
+	abstract metadata def PartInfo {
 		attribute isMandatory: ScalarValues::Boolean[0..1];
 	}
 	metadata def Safety :> PartInfo;

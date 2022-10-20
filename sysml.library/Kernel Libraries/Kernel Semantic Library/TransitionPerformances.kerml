@@ -1,4 +1,4 @@
-package TransitionPerformances {
+standard library package TransitionPerformances {
 	doc
 	/*
 	 * This package contains a library model of the semantics of conditional transitions between occurrences, 

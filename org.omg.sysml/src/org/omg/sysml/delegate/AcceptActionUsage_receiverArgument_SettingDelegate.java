@@ -26,9 +26,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.AcceptActionUsage;
 import org.omg.sysml.lang.sysml.Expression;
-import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.util.FeatureUtil;
-import org.omg.sysml.util.UsageUtil;
 
 public class AcceptActionUsage_receiverArgument_SettingDelegate extends BasicDerivedObjectSettingDelegate {
 
@@ -37,9 +34,8 @@ public class AcceptActionUsage_receiverArgument_SettingDelegate extends BasicDer
 	}
 
 	@Override
-	protected Expression basicGet(InternalEObject owner) {
-		Feature receiverParameter = UsageUtil.getReceiverParameterOf((AcceptActionUsage)owner);
-		return receiverParameter == null? null: FeatureUtil.getValueExpressionFor(receiverParameter);
+	protected Expression basicGet(InternalEObject action) {
+		return ((AcceptActionUsage)action).argument(2);
 	}
 
 }

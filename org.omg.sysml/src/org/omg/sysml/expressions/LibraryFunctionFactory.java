@@ -38,7 +38,6 @@ public class LibraryFunctionFactory {
 		
 		put(new EqualsFunction());
 		put(new NotEqualsFunction());
-		put(new AsFunction());
 		
 		put(new SizeFunction());
 		put(new IsEmptyFunction());
@@ -48,8 +47,13 @@ public class LibraryFunctionFactory {
 		put(new IndexFunction());
 		
 		put(new IsTypeFunction());
+		put(new HasTypeFunction());
 		put(new AtFunction());
-		
+		put(new AtAtFunction());
+
+		put(new AsFunction());
+		put(new MetaFunction());
+
 		put(new PlusFunction());
 		put(new MinusFunction());
 		put(new TimesFunction());

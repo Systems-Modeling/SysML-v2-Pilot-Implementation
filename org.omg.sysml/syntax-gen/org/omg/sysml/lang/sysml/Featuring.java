@@ -9,9 +9,9 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A Featuring is a Relationship between a Type and a Feature that is featured by that Type. Every instance in the domain of the <code>featureOfType</code> must be classified by the <code>featuringType</code>. This means that sequences that are classified by the <code>featureOfType</code> must have a prefix subsequence that is classified by the <code>featuringType</code>.</p>
+ * <p>Featuring is a Relationship between a Type and a Feature that is featured by that Type. Every instance in the domain of the <code>feature</code> must be classified by the <code>type</code>. This means that sequences that are classified by the <code>feature</code> must have a prefix subsequence that is classified by the <code>type</code>.</p>
  * 
- * <p>Featuring is abstract and does not commit to which of <code>featureOfType</code> or <code>featuredType</code> are the source or target. This commitment is made in the subclasses of Featuring, TypeFeaturing and FeatureMembership, which are directed differently.</p>
+ * <p>Featuring is abstract and does not commit to which of <code>feature</code> or <code>type</code> are the source or target. This commitment is made in the subclasses of Featuring, TypeFeaturing and FeatureMembership, which are directed differently.</p>
  * <!-- end-model-doc -->
  *
  * <p>

@@ -1,10 +1,15 @@
-package SysML {
+standard library package SysML {
+	doc 
+	/*
+	 * This package contains a reflective KerML model of the KerML abstract syntax.
+	 */
+	 
 	private import ScalarValues::*;
 	import KerML::Kernel::*;
 	
 	metadata def AcceptActionUsage specializes ActionUsage {
-		derived ref item receiverArgument : Expression[1..1];
-		derived ref item payloadParameter : ReferenceUsage[1..1] subsets nestedReference;
+		derived ref item receiverArgument : Expression[0..1];
+		derived ref item payloadParameter : ReferenceUsage[1..1] subsets nestedReference, parameter;
 		derived ref item payloadArgument : Expression[0..1];
 	}		
 			
@@ -92,8 +97,8 @@ package SysML {
 	}		
 			
 	metadata def ConjugatedPortTyping specializes FeatureTyping {
-//		ref item portDefinition : PortDefinition[1..1] subsets target;
-		derived ref item conjugatedPortDefinition : ConjugatedPortDefinition[1..1] redefines type;
+		ref item conjugatedPortDefinition : ConjugatedPortDefinition[1..1] redefines type;
+		derived ref item portDefinition : PortDefinition[1..1];
 	}		
 			
 	metadata def ConnectionDefinition specializes AssociationStructure, PartDefinition {
@@ -352,8 +357,9 @@ package SysML {
 	}		
 			
 	metadata def SendActionUsage specializes ActionUsage {
-		derived ref item receiverArgument : Expression[1..1];
+		derived ref item receiverArgument : Expression[0..1];
 		derived ref item payloadArgument : Expression[1..1];
+		derived ref item senderArgument : Expression[0..1];
 	}		
 			
 	metadata def StakeholderMembership specializes ParameterMembership {

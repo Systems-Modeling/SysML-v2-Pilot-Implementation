@@ -1,4 +1,4 @@
-package Performances {
+standard library package Performances {
 	doc
 	/*
 	 * This package defines classifiers and features that related to the typing of performances and evaluations.
@@ -11,8 +11,10 @@ package Performances {
 	private import Occurrences::HappensDuring;
 	private import Objects::Object;
 	private import Objects::BinaryLinkObject;
+	private import Metaobjects::Metaobject;
 	private import Transfers::Transfer;
 	private import Transfers::transfers;
+	private import Transfers::TransferBefore;
 	private import Transfers::transfersBefore;
 	private import ScalarValues::*;
 	private import SequenceFunctions::includes;
@@ -49,12 +51,13 @@ package Performances {
 			 */
 		}
 		
-		step thisPerformance: Performance [1] subsets enclosedPerformances default self {
+		feature thisPerformance: Performance [1] default self {
 			doc
 			/*
 			 * Defaults to the root of the subperformance composition tree.
 			 */
-		}  
+		}
+		connector :HappensDuring from self[1] to thisPerformance[1]; 
 		
 		composite step subperformances: Performance[0..*] subsets enclosedPerformances, suboccurrences {
 			doc
@@ -72,7 +75,7 @@ package Performances {
 				 */
 			}
 		
-			step redefines thisPerformance default (that as Performance).thisPerformance;
+			feature redefines thisPerformance default (that as Performance).thisPerformance;
 		}
 		
 		expr enclosedEvaluations: Evaluation[0..*] subsets evaluations, enclosedPerformances {
@@ -82,14 +85,14 @@ package Performances {
 			 */
 		}
 		
-		step enclosedTransfers: Transfers::Transfer[0..*] subsets transfers, enclosedPerformances {
+		step enclosedTransfers: Transfer[0..*] subsets transfers, enclosedPerformances {
 			doc
 			/*
 			 * enclosedPerformances of this performance that are transfers.
 			 */
 		}
 		
-		step enclosedTransfersBefore: Transfers::TransferBefore[0..*] subsets transfersBefore, enclosedTransfers {
+		step enclosedTransfersBefore: TransferBefore[0..*] subsets transfersBefore, enclosedTransfers {
 			doc
 			/*
 			 * enclosedTransfers of this performance that are transfers-before.
@@ -115,6 +118,15 @@ package Performances {
 		 */
 	 
 		return : Boolean[1];
+	}
+	
+	abstract function MetadataAccessEvaluation specializes Evaluation {
+		doc
+		/*
+		 * MetadataAccessEvaluation is a specialization of Evaluation for the case of MetadataAccessExpressions.
+		 */
+		
+		return : Metaobject[1..*];
 	}
 	
 	abstract function LiteralEvaluation specializes Evaluation {
@@ -171,7 +183,7 @@ package Performances {
 	 
 		return : Anything[0..0];
 	}
-	
+
 	assoc Involves specializes BinaryLinkObject {
 		doc
 		/*
@@ -232,6 +244,13 @@ package Performances {
 		 */
 	
 		false
+	}
+	
+	abstract expr metadataAccessEvaluations: MetadataAccessEvaluation[0..*] nonunique subsets evaluations {
+		doc
+		/*
+		 * metadataAccessEvaluations is a specialization of evaluations restricted to type MetadataAccessEvaluation. 
+		 */
 	}
 	
 	abstract expr literalEvaluations: LiteralEvaluation[0..*] nonunique subsets evaluations {

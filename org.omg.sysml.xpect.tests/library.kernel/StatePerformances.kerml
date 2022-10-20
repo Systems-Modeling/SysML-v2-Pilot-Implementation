@@ -1,4 +1,4 @@
-package StatePerformances {
+standard library package StatePerformances {
 	doc
 	/*
 	 * This package contains a library model of the semantics of state-based behavior,

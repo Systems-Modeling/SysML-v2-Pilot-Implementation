@@ -297,6 +297,10 @@ public class EvaluationUtil {
 				anyMatch(elementType->TypeUtil.conforms(elementType, type));
 	}
 
+	public static boolean hasType(Element context, Element element, Type type) {
+		return getType(context, element).contains(type);
+	}
+
 	public static boolean isMetatype(Element element, Type targetType) {
 		return TypeUtil.conforms(ElementUtil.getMetaclassOf(element), targetType);
 	}

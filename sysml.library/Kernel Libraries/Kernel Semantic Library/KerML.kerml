@@ -1,4 +1,9 @@
-package KerML {
+standard library package KerML {
+	doc 
+	/*
+	 * This package contains a reflective KerML model of the KerML abstract syntax.
+	 */
+	 
 	private import ScalarValues::*;
 	import Kernel::*;
 	
@@ -31,6 +36,7 @@ package KerML {
 			feature isImpliedIncluded : Boolean[1..1];
 			derived feature effectiveName : String[0..1];
 			derived feature qualifiedName : String[0..1];
+			derived feature isLibraryElement : Boolean[1..1];
 			
 			feature owningRelationship : Relationship[0..1];
 			composite feature ownedRelationship : Relationship[0..*];
@@ -365,6 +371,10 @@ package KerML {
 				
 		metaclass ItemFlowFeature specializes Feature;		
 				
+		metaclass LibraryPackage specializes Package {
+			feature isStandard : Boolean[1..1];
+		}		
+				
 		metaclass LiteralBoolean specializes LiteralExpression {
 			feature value : Boolean[1..1];
 		}		
@@ -386,6 +396,10 @@ package KerML {
 		}		
 				
 		metaclass Metaclass specializes Structure;		
+				
+		metaclass MetadataAccessExpression specializes Expression {
+			feature referencedElement : Element[1..1];
+		}		
 				
 		metaclass MetadataFeature specializes AnnotatingElement, Feature {
 			derived feature 'metaclass' : Metaclass[1..1] redefines 'type';

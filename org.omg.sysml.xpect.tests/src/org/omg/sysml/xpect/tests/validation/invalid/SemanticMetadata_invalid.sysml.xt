@@ -58,7 +58,7 @@ package SemanticMetadata_invalid {
     }
 	
 	metadata def B :> A {
-		ref :>> baseType = f as SysML::Usage;
+		ref :>> baseType = f meta SysML::Usage;
 	}
 	
 	item def C1 {

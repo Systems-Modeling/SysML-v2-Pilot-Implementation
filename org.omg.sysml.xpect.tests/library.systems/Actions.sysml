@@ -1,4 +1,4 @@
-package Actions {
+standard library package Actions {
 	doc
 	/*
 	 * This package defines the base types for actions and related behavioral elements in the
@@ -280,11 +280,11 @@ package Actions {
 		 */
 	
 		in transitionLinkSource : Action :>> TransitionPerformance::transitionLinkSource;
-		ref acceptedMessage : MessageTransfer, MessageConnection :>> trigger;
+		ref acceptedMessage : MessageConnection :>> trigger;
 		
 		ref receiver :>> triggerTarget;
 
-		action accepter : AcceptMessageAction :>> 'accept' :> acceptPerformances;
+		action accepter : AcceptMessageAction :>> 'accept';
 		
 		bind receiver = accepter.receiver;
 		bind acceptedMessage = accepter.acceptedMessage;

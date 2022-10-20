@@ -199,6 +199,8 @@ class SysMLValidator extends KerMLValidator {
 	
 	public static val INVALID_SENDACTIONUSAGE_RECEIVER = 'Invalid SendActionUsage - PortUsage receiver'
 	public static val INVALID_SENDACTIONUSAGE_RECEIVER_MSG = 'Sending to a port should generally use "via" instead of "to".'
+	public static val INVALID_SENDACTIONUSAGE_NO_ARGS = 'Invalid SendActionUsage - No arguments'
+	public static val INVALID_SENDACTIONUSAGE_NO_ARGS_MSG = 'A send action must have at least one of "via" or "to".'
 	
 	@Check
 	def checkUsage(Usage usage) {
@@ -397,8 +399,11 @@ class SysMLValidator extends KerMLValidator {
 	
 	@Check
 	def checkSendActionUsage(SendActionUsage usg) {
+		val senderArgument = usg.senderArgument
 		val receiverArgument = usg.receiverArgument
-		if (receiverArgument instanceof FeatureReferenceExpression && 
+		if (senderArgument === null && receiverArgument === null) {
+			error(INVALID_SENDACTIONUSAGE_NO_ARGS_MSG, usg, null, INVALID_SENDACTIONUSAGE_NO_ARGS_MSG)
+		} else if (receiverArgument instanceof FeatureReferenceExpression && 
 				(receiverArgument as FeatureReferenceExpression).referent instanceof PortUsage ||
 			receiverArgument instanceof FeatureChainExpression &&
 				FeatureUtil.getBasicFeatureOf((receiverArgument as FeatureChainExpression).targetFeature) instanceof PortUsage) {

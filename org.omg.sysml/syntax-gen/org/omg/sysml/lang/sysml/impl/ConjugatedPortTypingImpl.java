@@ -23,20 +23,13 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.uml2.common.util.UnionEObjectEList;
 import org.omg.sysml.lang.sysml.ConjugatedPortDefinition;
 import org.omg.sysml.lang.sysml.ConjugatedPortTyping;
-import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.PortDefinition;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
@@ -57,23 +50,23 @@ import org.omg.sysml.lang.sysml.Type;
  */
 public class ConjugatedPortTypingImpl extends FeatureTypingImpl implements ConjugatedPortTyping {
 	/**
-	 * The cached value of the '{@link #getPortDefinition() <em>Port Definition</em>}' reference.
+	 * The cached setting delegate for the '{@link #getPortDefinition() <em>Port Definition</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getPortDefinition()
 	 * @generated
 	 * @ordered
 	 */
-	protected PortDefinition portDefinition;
+	protected EStructuralFeature.Internal.SettingDelegate PORT_DEFINITION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.CONJUGATED_PORT_TYPING__PORT_DEFINITION).getSettingDelegate();
 	/**
-	 * The cached setting delegate for the '{@link #getConjugatedPortDefinition() <em>Conjugated Port Definition</em>}' reference.
+	 * The cached value of the '{@link #getConjugatedPortDefinition() <em>Conjugated Port Definition</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getConjugatedPortDefinition()
 	 * @generated
 	 * @ordered
 	 */
-	protected EStructuralFeature.Internal.SettingDelegate CONJUGATED_PORT_DEFINITION__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.CONJUGATED_PORT_TYPING__CONJUGATED_PORT_DEFINITION).getSettingDelegate();
+	protected ConjugatedPortDefinition conjugatedPortDefinition;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -100,15 +93,7 @@ public class ConjugatedPortTypingImpl extends FeatureTypingImpl implements Conju
 	 */
 	@Override
 	public PortDefinition getPortDefinition() {
-		if (portDefinition != null && portDefinition.eIsProxy()) {
-			InternalEObject oldPortDefinition = (InternalEObject)portDefinition;
-			portDefinition = (PortDefinition)eResolveProxy(oldPortDefinition);
-			if (portDefinition != oldPortDefinition) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SysMLPackage.CONJUGATED_PORT_TYPING__PORT_DEFINITION, oldPortDefinition, portDefinition));
-			}
-		}
-		return portDefinition;
+		return (PortDefinition)PORT_DEFINITION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
 	}
 
 	/**
@@ -117,7 +102,7 @@ public class ConjugatedPortTypingImpl extends FeatureTypingImpl implements Conju
 	 * @generated
 	 */
 	public PortDefinition basicGetPortDefinition() {
-		return portDefinition;
+		return (PortDefinition)PORT_DEFINITION__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
 	}
 
 	/**
@@ -127,19 +112,7 @@ public class ConjugatedPortTypingImpl extends FeatureTypingImpl implements Conju
 	 */
 	@Override
 	public void setPortDefinition(PortDefinition newPortDefinition) {
-		PortDefinition oldPortDefinition = portDefinition;
-		portDefinition = newPortDefinition;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.CONJUGATED_PORT_TYPING__PORT_DEFINITION, oldPortDefinition, portDefinition));
-		Resource.Internal eInternalResource = eInternalResource();
-		if (eInternalResource == null || !eInternalResource.isLoading()) {
-			if (newPortDefinition != null) {
-				EList<Element> target = getTarget();
-				if (!target.contains(newPortDefinition)) {
-					target.add(newPortDefinition);
-				}
-			}
-		}
+		PORT_DEFINITION__ESETTING_DELEGATE.dynamicSet(this, null, 0, newPortDefinition);
 	}
 
 	/**
@@ -149,7 +122,15 @@ public class ConjugatedPortTypingImpl extends FeatureTypingImpl implements Conju
 	 */
 	@Override
 	public ConjugatedPortDefinition getConjugatedPortDefinition() {
-		return (ConjugatedPortDefinition)CONJUGATED_PORT_DEFINITION__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+		if (conjugatedPortDefinition != null && conjugatedPortDefinition.eIsProxy()) {
+			InternalEObject oldConjugatedPortDefinition = (InternalEObject)conjugatedPortDefinition;
+			conjugatedPortDefinition = (ConjugatedPortDefinition)eResolveProxy(oldConjugatedPortDefinition);
+			if (conjugatedPortDefinition != oldConjugatedPortDefinition) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SysMLPackage.CONJUGATED_PORT_TYPING__CONJUGATED_PORT_DEFINITION, oldConjugatedPortDefinition, conjugatedPortDefinition));
+			}
+		}
+		return conjugatedPortDefinition;
 	}
 
 	/**
@@ -158,7 +139,7 @@ public class ConjugatedPortTypingImpl extends FeatureTypingImpl implements Conju
 	 * @generated
 	 */
 	public ConjugatedPortDefinition basicGetConjugatedPortDefinition() {
-		return (ConjugatedPortDefinition)CONJUGATED_PORT_DEFINITION__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false);
+		return conjugatedPortDefinition;
 	}
 
 	/**
@@ -168,7 +149,10 @@ public class ConjugatedPortTypingImpl extends FeatureTypingImpl implements Conju
 	 */
 	@Override
 	public void setConjugatedPortDefinition(ConjugatedPortDefinition newConjugatedPortDefinition) {
-		CONJUGATED_PORT_DEFINITION__ESETTING_DELEGATE.dynamicSet(this, null, 0, newConjugatedPortDefinition);
+		ConjugatedPortDefinition oldConjugatedPortDefinition = conjugatedPortDefinition;
+		conjugatedPortDefinition = newConjugatedPortDefinition;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.CONJUGATED_PORT_TYPING__CONJUGATED_PORT_DEFINITION, oldConjugatedPortDefinition, conjugatedPortDefinition));
 	}
 
 	/**
@@ -177,7 +161,7 @@ public class ConjugatedPortTypingImpl extends FeatureTypingImpl implements Conju
 	 * @generated
 	 */
 	public boolean isSetConjugatedPortDefinition() {
-		return basicGetConjugatedPortDefinition() != null;
+		return conjugatedPortDefinition != null;
 	}
 
 	/**
@@ -196,40 +180,6 @@ public class ConjugatedPortTypingImpl extends FeatureTypingImpl implements Conju
 				return basicGetConjugatedPortDefinition();
 		}
 		return super.eGet(featureID, resolve, coreType);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EList<Element> getTarget() {
-		EList<Element> target = new UniqueEList<Element>();
-		Type general = getGeneral();
-		if (general != null) {
-			target.add(general);
-		}
-		return new UnionEObjectEList<Element>(this, SysMLPackage.Literals.RELATIONSHIP__TARGET, target.size(), target.toArray());
-	}
-
-	/**
-	 * The array of subset feature identifiers for the '{@link #getTarget() <em>Target</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTarget()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final int[] TARGET_ESUBSETS = new int[] {SysMLPackage.CONJUGATED_PORT_TYPING__PORT_DEFINITION};
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetTarget() {
-  		return false;
 	}
 
 	/**
@@ -317,12 +267,10 @@ public class ConjugatedPortTypingImpl extends FeatureTypingImpl implements Conju
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.CONJUGATED_PORT_TYPING__TARGET:
-				return isSetTarget();
 			case SysMLPackage.CONJUGATED_PORT_TYPING__TYPE:
 				return isSetType();
 			case SysMLPackage.CONJUGATED_PORT_TYPING__PORT_DEFINITION:
-				return portDefinition != null;
+				return PORT_DEFINITION__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.CONJUGATED_PORT_TYPING__CONJUGATED_PORT_DEFINITION:
 				return isSetConjugatedPortDefinition();
 		}

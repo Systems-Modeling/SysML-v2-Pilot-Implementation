@@ -22,8 +22,8 @@ import org.omg.kerml.xtext.services.KerMLGrammarAccess;
 public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 
 	protected KerMLGrammarAccess grammarAccess;
-	protected AbstractElementAlias match_BaseExpression_LeftParenthesisKeyword_5_0_a;
-	protected AbstractElementAlias match_BaseExpression_LeftParenthesisKeyword_5_0_p;
+	protected AbstractElementAlias match_BaseExpression_LeftParenthesisKeyword_6_0_a;
+	protected AbstractElementAlias match_BaseExpression_LeftParenthesisKeyword_6_0_p;
 	protected AbstractElementAlias match_BinaryConnectorDeclaration_FromKeyword_0_0_1_q;
 	protected AbstractElementAlias match_BinaryConnectorDeclaration_FromKeyword_0_1_1_q;
 	protected AbstractElementAlias match_BindingConnectorDeclaration_OfKeyword_0_0_1_q;
@@ -74,8 +74,8 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	@Inject
 	protected void init(IGrammarAccess access) {
 		grammarAccess = (KerMLGrammarAccess) access;
-		match_BaseExpression_LeftParenthesisKeyword_5_0_a = new TokenAlias(true, true, grammarAccess.getBaseExpressionAccess().getLeftParenthesisKeyword_5_0());
-		match_BaseExpression_LeftParenthesisKeyword_5_0_p = new TokenAlias(true, false, grammarAccess.getBaseExpressionAccess().getLeftParenthesisKeyword_5_0());
+		match_BaseExpression_LeftParenthesisKeyword_6_0_a = new TokenAlias(true, true, grammarAccess.getBaseExpressionAccess().getLeftParenthesisKeyword_6_0());
+		match_BaseExpression_LeftParenthesisKeyword_6_0_p = new TokenAlias(true, false, grammarAccess.getBaseExpressionAccess().getLeftParenthesisKeyword_6_0());
 		match_BinaryConnectorDeclaration_FromKeyword_0_0_1_q = new TokenAlias(false, true, grammarAccess.getBinaryConnectorDeclarationAccess().getFromKeyword_0_0_1());
 		match_BinaryConnectorDeclaration_FromKeyword_0_1_1_q = new TokenAlias(false, true, grammarAccess.getBinaryConnectorDeclarationAccess().getFromKeyword_0_1_1());
 		match_BindingConnectorDeclaration_OfKeyword_0_0_1_q = new TokenAlias(false, true, grammarAccess.getBindingConnectorDeclarationAccess().getOfKeyword_0_0_1());
@@ -148,10 +148,10 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 		List<INode> transitionNodes = collectNodes(fromNode, toNode);
 		for (AbstractElementAlias syntax : transition.getAmbiguousSyntaxes()) {
 			List<INode> syntaxNodes = getNodesFor(transitionNodes, syntax);
-			if (match_BaseExpression_LeftParenthesisKeyword_5_0_a.equals(syntax))
-				emit_BaseExpression_LeftParenthesisKeyword_5_0_a(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_BaseExpression_LeftParenthesisKeyword_5_0_p.equals(syntax))
-				emit_BaseExpression_LeftParenthesisKeyword_5_0_p(semanticObject, getLastNavigableState(), syntaxNodes);
+			if (match_BaseExpression_LeftParenthesisKeyword_6_0_a.equals(syntax))
+				emit_BaseExpression_LeftParenthesisKeyword_6_0_a(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_BaseExpression_LeftParenthesisKeyword_6_0_p.equals(syntax))
+				emit_BaseExpression_LeftParenthesisKeyword_6_0_p(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_BinaryConnectorDeclaration_FromKeyword_0_0_1_q.equals(syntax))
 				emit_BinaryConnectorDeclaration_FromKeyword_0_0_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_BinaryConnectorDeclaration_FromKeyword_0_1_1_q.equals(syntax))
@@ -255,6 +255,7 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) (ambiguity) '*' (rule start)
 	 *     (rule start) (ambiguity) ('null' | ('(' ')')) (rule start)
+	 *     (rule start) (ambiguity) operand+=MetadataReference
 	 *     (rule start) (ambiguity) operand+=SelfReferenceExpression
 	 *     (rule start) (ambiguity) operator='all'
 	 *     (rule start) (ambiguity) operator=ConditionalOperator
@@ -262,6 +263,7 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 *     (rule start) (ambiguity) ownedRelationship+=ExpressionBodyMember
 	 *     (rule start) (ambiguity) ownedRelationship+=FeatureReferenceMember
 	 *     (rule start) (ambiguity) ownedRelationship+=OwnedFeatureTyping
+	 *     (rule start) (ambiguity) referencedElement=[Element|QualifiedName]
 	 *     (rule start) (ambiguity) value=BooleanValue
 	 *     (rule start) (ambiguity) value=DECIMAL_VALUE
 	 *     (rule start) (ambiguity) value=RealValue
@@ -271,7 +273,7 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 *     (rule start) (ambiguity) {OperatorExpression.operand+=}
 	 *     (rule start) (ambiguity) {SelectExpression.operand+=}
 	 */
-	protected void emit_BaseExpression_LeftParenthesisKeyword_5_0_a(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_BaseExpression_LeftParenthesisKeyword_6_0_a(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
@@ -280,6 +282,7 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 *     '('+
 	 *
 	 * This ambiguous syntax occurs at:
+	 *     (rule start) (ambiguity) operand+=MetadataReference
 	 *     (rule start) (ambiguity) operand+=SelfReferenceExpression
 	 *     (rule start) (ambiguity) operator='all'
 	 *     (rule start) (ambiguity) operator=ConditionalOperator
@@ -289,7 +292,7 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 *     (rule start) (ambiguity) {OperatorExpression.operand+=}
 	 *     (rule start) (ambiguity) {SelectExpression.operand+=}
 	 */
-	protected void emit_BaseExpression_LeftParenthesisKeyword_5_0_p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_BaseExpression_LeftParenthesisKeyword_6_0_p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
@@ -973,7 +976,9 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 *     ';' | ('{' '}')
 	 *
 	 * This ambiguous syntax occurs at:
+	 *     (rule start) 'library' 'package' (ambiguity) (rule start)
 	 *     (rule start) 'package' (ambiguity) (rule start)
+	 *     isStandard?='standard' 'library' 'package' (ambiguity) (rule end)
 	 *     name=Name (ambiguity) (rule end)
 	 *     shortName=Name '>' (ambiguity) (rule end)
 	 */

@@ -109,6 +109,8 @@ public class ImplicitGeneralizationMap {
 		put(MetadataFeatureImpl.class, "annotatedElement", "Metaobjects::Metaobject::annotatedElement");
 		put(MetadataFeatureImpl.class, "baseType", "Metaobjects::SemanticMetadata::baseType");
 		
+		put(MetadataAccessExpressionImpl.class, "base", "Performances::metadataAccessEvaluations");
+
 		put(MultiplicityImpl.class, "base", "Base::naturals");
 		put(MultiplicityImpl.class, "feature", "Base::exactlyOne");
 		put(MultiplicityImpl.class, "classifier", "Base::zeroOrOne");

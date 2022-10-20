@@ -1,0 +1,20 @@
+//* 
+XPECT_SETUP org.omg.kerml.xpect.tests.validation.KerMLValidationTest
+	ResourceSet {
+		ThisFile {}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+			}
+		}
+	}
+END_SETUP 
+*/
+//XPECT warnings --> "User library packages should not be marked as standard" at "standard"
+standard library package LibraryPackage_invalid_notStandard {
+	
+	library package LibraryPackage_valid;
+	
+}

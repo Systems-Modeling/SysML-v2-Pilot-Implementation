@@ -40,7 +40,7 @@ public class IsTypeFunction extends BaseFunction {
 		if (testedType != null) {
 			EList<Element> values = evaluator.evaluateArgument(invocation, 0, target);
 			if (values != null) {
-				return EvaluationUtil.booleanResult(!values.isEmpty() && EvaluationUtil.isType(invocation, values.get(0), testedType));
+				return EvaluationUtil.booleanResult(values.stream().allMatch(value->EvaluationUtil.isType(invocation, value, testedType)));
 			}
 		}
 		return EvaluationUtil.singletonList(invocation);

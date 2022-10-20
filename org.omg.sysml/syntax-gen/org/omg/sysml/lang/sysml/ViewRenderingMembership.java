@@ -65,7 +65,7 @@ public interface ViewRenderingMembership extends FeatureMembership {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p> The RenderingUsage that is referenced through this ViewRenderingMembership. This is derived as being the first RenderingUsage subset by the <code>ownedRendering</code>, if there is one, and, otherwise, the <code>ownedRendering</code> itself.</p>
+	 * <p> The RenderingUsage that is referenced through this ViewRenderingMembership. It is the <code>referenceFeature</code> of the <code>ownedReferenceSubsetting</code> for the <code>ownedRendering</code>, if there is one, and, otherwise, the <code>ownedRendering</code> itself.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Referenced Rendering</em>' reference.
 	 * @see #setReferencedRendering(RenderingUsage)

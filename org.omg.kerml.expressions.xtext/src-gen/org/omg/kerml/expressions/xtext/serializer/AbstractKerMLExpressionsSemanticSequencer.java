@@ -31,6 +31,7 @@ import org.omg.sysml.lang.sysml.LiteralInteger;
 import org.omg.sysml.lang.sysml.LiteralRational;
 import org.omg.sysml.lang.sysml.LiteralString;
 import org.omg.sysml.lang.sysml.Membership;
+import org.omg.sysml.lang.sysml.MetadataAccessExpression;
 import org.omg.sysml.lang.sysml.NullExpression;
 import org.omg.sysml.lang.sysml.OperatorExpression;
 import org.omg.sysml.lang.sysml.OwningMembership;
@@ -253,6 +254,53 @@ public abstract class AbstractKerMLExpressionsSemanticSequencer extends Abstract
 					return; 
 				}
 				else break;
+			case SysMLPackage.METADATA_ACCESS_EXPRESSION:
+				if (rule == grammarAccess.getOwnedExpressionRule()
+						|| rule == grammarAccess.getConditionalExpressionRule()
+						|| rule == grammarAccess.getNullCoalescingExpressionRule()
+						|| action == grammarAccess.getNullCoalescingExpressionAccess().getOperatorExpressionOperandAction_1_0()
+						|| rule == grammarAccess.getImpliesExpressionRule()
+						|| action == grammarAccess.getImpliesExpressionAccess().getOperatorExpressionOperandAction_1_0()
+						|| rule == grammarAccess.getOrExpressionRule()
+						|| action == grammarAccess.getOrExpressionAccess().getOperatorExpressionOperandAction_1_0()
+						|| rule == grammarAccess.getXorExpressionRule()
+						|| action == grammarAccess.getXorExpressionAccess().getOperatorExpressionOperandAction_1_0()
+						|| rule == grammarAccess.getAndExpressionRule()
+						|| action == grammarAccess.getAndExpressionAccess().getOperatorExpressionOperandAction_1_0()
+						|| rule == grammarAccess.getEqualityExpressionRule()
+						|| action == grammarAccess.getEqualityExpressionAccess().getOperatorExpressionOperandAction_1_0()
+						|| rule == grammarAccess.getClassificationExpressionRule()
+						|| action == grammarAccess.getClassificationExpressionAccess().getOperatorExpressionOperandAction_0_1_0()
+						|| rule == grammarAccess.getRelationalExpressionRule()
+						|| action == grammarAccess.getRelationalExpressionAccess().getOperatorExpressionOperandAction_1_0()
+						|| rule == grammarAccess.getRangeExpressionRule()
+						|| action == grammarAccess.getRangeExpressionAccess().getOperatorExpressionOperandAction_1_0()
+						|| rule == grammarAccess.getAdditiveExpressionRule()
+						|| action == grammarAccess.getAdditiveExpressionAccess().getOperatorExpressionOperandAction_1_0()
+						|| rule == grammarAccess.getMultiplicativeExpressionRule()
+						|| action == grammarAccess.getMultiplicativeExpressionAccess().getOperatorExpressionOperandAction_1_0()
+						|| rule == grammarAccess.getExponentiationExpressionRule()
+						|| action == grammarAccess.getExponentiationExpressionAccess().getOperatorExpressionOperandAction_1_0()
+						|| rule == grammarAccess.getUnaryExpressionRule()
+						|| rule == grammarAccess.getExtentExpressionRule()
+						|| rule == grammarAccess.getPrimaryExpressionRule()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getFeatureChainExpressionOperandAction_1_0()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getOperatorExpressionOperandAction_2_0_0_0()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getOperatorExpressionOperandAction_2_0_1_0()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getCollectExpressionOperandAction_2_0_2_0()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getSelectExpressionOperandAction_2_0_3_0()
+						|| rule == grammarAccess.getBaseExpressionRule()
+						|| rule == grammarAccess.getSequenceExpressionRule()
+						|| action == grammarAccess.getSequenceExpressionAccess().getOperatorExpressionOperandAction_1_1_0()
+						|| rule == grammarAccess.getMetadataAccessExpressionRule()) {
+					sequence_MetadataAccessExpression(context, (MetadataAccessExpression) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getMetadataReferenceRule()) {
+					sequence_MetadataReference(context, (MetadataAccessExpression) semanticObject); 
+					return; 
+				}
+				else break;
 			case SysMLPackage.NULL_EXPRESSION:
 				sequence_NullExpression(context, (NullExpression) semanticObject); 
 				return; 
@@ -393,6 +441,7 @@ public abstract class AbstractKerMLExpressionsSemanticSequencer extends Abstract
 	 *         (operand+=EqualityExpression_OperatorExpression_1_0 operator=EqualityOperator operand+=ClassificationExpression) | 
 	 *         (operand+=ClassificationExpression_OperatorExpression_0_1_0 operator=ClassificationOperator ownedRelationship+=TypeReferenceMember) | 
 	 *         (operand+=SelfReferenceExpression operator=ClassificationOperator ownedRelationship+=TypeReferenceMember) | 
+	 *         (operand+=MetadataReference operator=MetaClassificationOperator ownedRelationship+=TypeReferenceMember) | 
 	 *         (operand+=RelationalExpression_OperatorExpression_1_0 operator=RelationalOperator operand+=RangeExpression) | 
 	 *         (operand+=RangeExpression_OperatorExpression_1_0 operator='..' operand+=AdditiveExpression) | 
 	 *         (operand+=AdditiveExpression_OperatorExpression_1_0 operator=AdditiveOperator operand+=MultiplicativeExpression) | 
@@ -1062,6 +1111,79 @@ public abstract class AbstractKerMLExpressionsSemanticSequencer extends Abstract
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getLiteralStringAccess().getValueSTRING_VALUETerminalRuleCall_0(), semanticObject.getValue());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     OwnedExpression returns MetadataAccessExpression
+	 *     ConditionalExpression returns MetadataAccessExpression
+	 *     NullCoalescingExpression returns MetadataAccessExpression
+	 *     NullCoalescingExpression.OperatorExpression_1_0 returns MetadataAccessExpression
+	 *     ImpliesExpression returns MetadataAccessExpression
+	 *     ImpliesExpression.OperatorExpression_1_0 returns MetadataAccessExpression
+	 *     OrExpression returns MetadataAccessExpression
+	 *     OrExpression.OperatorExpression_1_0 returns MetadataAccessExpression
+	 *     XorExpression returns MetadataAccessExpression
+	 *     XorExpression.OperatorExpression_1_0 returns MetadataAccessExpression
+	 *     AndExpression returns MetadataAccessExpression
+	 *     AndExpression.OperatorExpression_1_0 returns MetadataAccessExpression
+	 *     EqualityExpression returns MetadataAccessExpression
+	 *     EqualityExpression.OperatorExpression_1_0 returns MetadataAccessExpression
+	 *     ClassificationExpression returns MetadataAccessExpression
+	 *     ClassificationExpression.OperatorExpression_0_1_0 returns MetadataAccessExpression
+	 *     RelationalExpression returns MetadataAccessExpression
+	 *     RelationalExpression.OperatorExpression_1_0 returns MetadataAccessExpression
+	 *     RangeExpression returns MetadataAccessExpression
+	 *     RangeExpression.OperatorExpression_1_0 returns MetadataAccessExpression
+	 *     AdditiveExpression returns MetadataAccessExpression
+	 *     AdditiveExpression.OperatorExpression_1_0 returns MetadataAccessExpression
+	 *     MultiplicativeExpression returns MetadataAccessExpression
+	 *     MultiplicativeExpression.OperatorExpression_1_0 returns MetadataAccessExpression
+	 *     ExponentiationExpression returns MetadataAccessExpression
+	 *     ExponentiationExpression.OperatorExpression_1_0 returns MetadataAccessExpression
+	 *     UnaryExpression returns MetadataAccessExpression
+	 *     ExtentExpression returns MetadataAccessExpression
+	 *     PrimaryExpression returns MetadataAccessExpression
+	 *     PrimaryExpression.FeatureChainExpression_1_0 returns MetadataAccessExpression
+	 *     PrimaryExpression.OperatorExpression_2_0_0_0 returns MetadataAccessExpression
+	 *     PrimaryExpression.OperatorExpression_2_0_1_0 returns MetadataAccessExpression
+	 *     PrimaryExpression.CollectExpression_2_0_2_0 returns MetadataAccessExpression
+	 *     PrimaryExpression.SelectExpression_2_0_3_0 returns MetadataAccessExpression
+	 *     BaseExpression returns MetadataAccessExpression
+	 *     SequenceExpression returns MetadataAccessExpression
+	 *     SequenceExpression.OperatorExpression_1_1_0 returns MetadataAccessExpression
+	 *     MetadataAccessExpression returns MetadataAccessExpression
+	 *
+	 * Constraint:
+	 *     referencedElement=[Element|QualifiedName]
+	 */
+	protected void sequence_MetadataAccessExpression(ISerializationContext context, MetadataAccessExpression semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, SysMLPackage.Literals.METADATA_ACCESS_EXPRESSION__REFERENCED_ELEMENT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SysMLPackage.Literals.METADATA_ACCESS_EXPRESSION__REFERENCED_ELEMENT));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getMetadataAccessExpressionAccess().getReferencedElementElementQualifiedNameParserRuleCall_0_0_1(), semanticObject.eGet(SysMLPackage.Literals.METADATA_ACCESS_EXPRESSION__REFERENCED_ELEMENT, false));
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     MetadataReference returns MetadataAccessExpression
+	 *
+	 * Constraint:
+	 *     referencedElement=[Element|QualifiedName]
+	 */
+	protected void sequence_MetadataReference(ISerializationContext context, MetadataAccessExpression semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, SysMLPackage.Literals.METADATA_ACCESS_EXPRESSION__REFERENCED_ELEMENT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SysMLPackage.Literals.METADATA_ACCESS_EXPRESSION__REFERENCED_ELEMENT));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getMetadataReferenceAccess().getReferencedElementElementQualifiedNameParserRuleCall_0_1(), semanticObject.eGet(SysMLPackage.Literals.METADATA_ACCESS_EXPRESSION__REFERENCED_ELEMENT, false));
 		feeder.finish();
 	}
 	

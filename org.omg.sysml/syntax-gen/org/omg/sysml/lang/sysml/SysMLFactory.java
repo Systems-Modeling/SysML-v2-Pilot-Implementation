@@ -339,6 +339,15 @@ public interface SysMLFactory extends EFactory {
 	Package createPackage();
 
 	/**
+	 * Returns a new object of class '<em>Library Package</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Library Package</em>'.
+	 * @generated
+	 */
+	LibraryPackage createLibraryPackage();
+
+	/**
 	 * Returns a new object of class '<em>Import</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1507,6 +1516,15 @@ public interface SysMLFactory extends EFactory {
 	 * @generated
 	 */
 	NullExpression createNullExpression();
+
+	/**
+	 * Returns a new object of class '<em>Metadata Access Expression</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Metadata Access Expression</em>'.
+	 * @generated
+	 */
+	MetadataAccessExpression createMetadataAccessExpression();
 
 	/**
 	 * Returns a new object of class '<em>Collect Expression</em>'.

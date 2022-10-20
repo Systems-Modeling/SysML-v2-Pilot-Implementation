@@ -1,4 +1,4 @@
-package SequenceFunctions {
+standard library package SequenceFunctions {
 	doc
 	/*
 	 * This package defines functions that operate on general sequences of values. (For functions that

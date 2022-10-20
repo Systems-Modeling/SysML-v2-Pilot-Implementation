@@ -69,7 +69,11 @@ import org.omg.sysml.util.ImplicitGeneralizationMap
 import org.omg.sysml.lang.sysml.OwningMembership
 import org.omg.sysml.lang.sysml.ReferenceSubsetting
 import org.eclipse.emf.ecore.EObject
+import org.omg.sysml.lang.sysml.LiteralBoolean
+import org.omg.sysml.lang.sysml.Expression
+import org.omg.sysml.lang.sysml.OperatorExpression
 import org.omg.sysml.expressions.util.EvaluationUtil
+import org.omg.sysml.lang.sysml.LibraryPackage
 
 /**
  * This class contains custom validation rules. 
@@ -123,6 +127,8 @@ class KerMLValidator extends AbstractKerMLValidator {
 	public static val INVALID_IMPORT__NAME_NOT_RESOLVED_MSG = "Couldn't resolve reference to Element '{name}'."
 	public static val INVALID_ELEMENT_FILTER_MEMBERSHIP__NOT_MODEL_LEVEL = "Invalid ElementFilterMembership - Not model-level"
 	public static val INVALID_ELEMENT_FILTER_MEMBERSHIP__NOT_MODEL_LEVEL_MSG = "Must be model-level evaluable"
+	public static val INVALID_ELEMENT_FILTER_MEMBERSHIP__FEATURE_VALUE_NOT_BOOLEAN = "Invalid ElementFilterMembership - Condition not Boolean"
+	public static val INVALID_ELEMENT_FILTER_MEMBERSHIP__FEATURE_VALUE_NOT_BOOLEAN_MSG = "Must have a Boolean result"
 	public static val INVALID_METADATA_FEATURE__ABSTRACT_TYPE = "Invalid MetadataFeature - Abstract type"
 	public static val INVALID_METADATA_FEATURE__ABSTRACT_TYPE_MSG = "Must have a concrete type"
 	public static val INVALID_METADATA_FEATURE__BAD_ELEMENT = "Invalid MetadataFeature - Bad annotated element"
@@ -143,6 +149,11 @@ class KerMLValidator extends AbstractKerMLValidator {
 	public static val INVALID_INVOCATION_EXPRESSION__DUPLICATE_REDEFINITION_MSG = "Feature already bound"
 	public static val INVALID_TYPE_MULTIPLICITY__TOO_MANY = "Invalid Type - Too many multiplicities"
 	public static val INVALID_TYPE_MULTIPLICITY__TOO_MANY_MSG = "Only one multiplicity is allowed"
+	public static val INVALID_CAST_EXPRESSION__CAST_TYPE = "Invalid cast Expression - Cast type conformance"
+	public static val INVALID_CAST_EXPRESSION__CAST_TYPE_MSG = "Cast argument should have conforming types"
+	public static val INVALID_LIBRARY_PACKAGE__NOT_STANDARD = "Invalid LibraryPackage - Bad isStandard"
+	public static val INVALID_LIBRARY_PACKAGE__NOT_STANDARD_MSG = "User library packages should not be marked as standard"
+	
 	
 	@Inject
 	IScopeProvider scopeProvider
@@ -234,8 +245,37 @@ class KerMLValidator extends AbstractKerMLValidator {
 	@Check
 	def checkElementFilterMembership(ElementFilterMembership efm) {
 		val condition = efm.condition
-		if (condition !== null && !condition.isModelLevelEvaluable) {
-			error(INVALID_ELEMENT_FILTER_MEMBERSHIP__NOT_MODEL_LEVEL_MSG, efm, SysMLPackage.eINSTANCE.elementFilterMembership_Condition, INVALID_ELEMENT_FILTER_MEMBERSHIP__NOT_MODEL_LEVEL)
+		if (condition !== null)
+			if (!condition.isModelLevelEvaluable)
+				error(INVALID_ELEMENT_FILTER_MEMBERSHIP__NOT_MODEL_LEVEL_MSG, efm, SysMLPackage.eINSTANCE.elementFilterMembership_Condition, INVALID_ELEMENT_FILTER_MEMBERSHIP__NOT_MODEL_LEVEL)
+			else if (!condition.isBoolean)
+				error(INVALID_ELEMENT_FILTER_MEMBERSHIP__FEATURE_VALUE_NOT_BOOLEAN_MSG, efm, SysMLPackage.eINSTANCE.elementFilterMembership_Condition, INVALID_ELEMENT_FILTER_MEMBERSHIP__FEATURE_VALUE_NOT_BOOLEAN)
+	}
+	
+	def boolean isBoolean(Expression condition) {
+		TypeUtil.conforms(condition.result, getBooleanType(condition)) ||
+		// LiteralBooleans currently don't have an inferred Boolean result type.
+		condition instanceof LiteralBoolean ||
+		// Non-conditional "Boolean" operations in DataFunctions actually have result DataValue.
+		// This infers that they are actually BooleanFunctions if their arguments are Boolean.
+		condition instanceof OperatorExpression && 
+			(condition as OperatorExpression).operator.booleanOperator && 
+			(condition as OperatorExpression).argument.forall[isBoolean]
+	}
+	
+	def getBooleanType(Element context) {
+		SysMLLibraryUtil.getLibraryElement(context, "ScalarValues::Boolean") as Type
+	}
+	
+	def isBooleanOperator(String operator) {
+		newArrayList("not", "xor", "&", "|").contains(operator)
+	}
+	
+	@Check
+	def checkLibraryPackage(LibraryPackage pkg) {
+		// Note: Can't suppress the warning in Xtend.
+		if (pkg.isStandard && !SysMLLibraryUtil.isModelLibrary(pkg.eResource)) {
+			warning(INVALID_LIBRARY_PACKAGE__NOT_STANDARD_MSG, pkg, SysMLPackage.eINSTANCE.libraryPackage_IsStandard, INVALID_LIBRARY_PACKAGE__NOT_STANDARD)
 		}
 	}
 	
@@ -293,7 +333,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 		if (!annotatedElementFeatures.empty) {
 			for (element: mf.annotatedElement) {
 				val metaclass = ElementUtil.getMetaclassOf(element)
-				if (!annotatedElementFeatures.exists[f | f.type.forall[t | TypeUtil.conforms(metaclass, t)]]) {
+				if (metaclass !== null && !annotatedElementFeatures.exists[f | f.type.forall[t | TypeUtil.conforms(metaclass, t)]]) {
 					error(INVALID_METADATA_FEATURE__BAD_ELEMENT_MSG.replace("{metaclass}", metaclass.name), mf, null, INVALID_METADATA_FEATURE__BAD_ELEMENT)
 				}
 			}
@@ -382,6 +422,22 @@ class KerMLValidator extends AbstractKerMLValidator {
 	}
 	
 	@Check
+	def checkCastExpression(OperatorExpression e) {
+		if (e.operator == "as") {
+			val params = TypeUtil.getOwnedParametersOf(e)
+			if (params.length >= 2) {
+				val arg = FeatureUtil.getValueExpressionFor(params.get(0))
+				if (arg !== null) {
+					val argTypes = arg.result.type
+					val targetTypes = params.get(1).type
+					if (!typesConform(argTypes, targetTypes))
+						warning(INVALID_CAST_EXPRESSION__CAST_TYPE_MSG, e, null, INVALID_CAST_EXPRESSION__CAST_TYPE)
+					}
+			}
+		}
+	}
+	
+	@Check
 	def checkTypeMultiplicity(Type t) {
 		var multiplicityMemberships = t.ownedMembership.filter[memberElement instanceof Multiplicity];
 		if (multiplicityMemberships.size > 1) {
@@ -435,6 +491,16 @@ class KerMLValidator extends AbstractKerMLValidator {
 		doCheckBindingConnector(bc, bc)
 	}
 	
+	@Check
+	def checkImplicitBindingConnectors(Type type) {
+		TypeUtil.forEachImplicitBindingConnectorOf(type, [connector, kind | 
+			if (type instanceof FeatureReferenceExpression) {
+				connector.doCheckConnector(type, kind) 
+			}
+			connector.doCheckBindingConnector(type)
+		])
+	}
+	
 	private def doCheckBindingConnector(BindingConnector bc, Element location) {
 		val rf = bc.relatedFeature
 		if (rf.length !== 2) {
@@ -456,23 +522,16 @@ class KerMLValidator extends AbstractKerMLValidator {
 			val f1types = rf.get(0).type
 			val f2types = rf.get(1).type
 						 
-			val f1ConformsTof2 = f2types.map[conformsFrom(f1types)]
-			val f2ConformsTof1 = f1types.map[conformsFrom(f2types)]
-			
-			if (f1ConformsTof2.filter[!empty].length != f2types.length &&
-				f2ConformsTof1.filter[!empty].length != f1types.length)
+			if (!typesConform(f1types, f2types))
 				warning(INVALID_BINDINGCONNECTOR__BINDING_TYPE_MSG, location, SysMLPackage.eINSTANCE.type_EndFeature, INVALID_BINDINGCONNECTOR__BINDING_TYPE)
 //		}
 	}
 	
-	@Check
-	def checkImplicitBindingConnectors(Type type) {
-		TypeUtil.forEachImplicitBindingConnectorOf(type, [connector, kind | 
-			if (type instanceof FeatureReferenceExpression) {
-				connector.doCheckConnector(type, kind) 
-			}
-			connector.doCheckBindingConnector(type)
-		])
+	def typesConform(List<Type> t1, List<Type> t2) {
+		val t1ConformsTot2 = t2.map[conformsFrom(t1)]
+		val t2ConformsTot1 = t1.map[conformsFrom(t2)]
+		t1ConformsTot2.filter[!empty].length == t2.length ||
+			t2ConformsTot1.filter[!empty].length == t1.length
 	}
 	
 	@Check 

@@ -22,12 +22,13 @@
 
 package org.omg.sysml.delegate;
 
+import java.util.List;
+
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.AcceptActionUsage;
 import org.omg.sysml.lang.sysml.ReferenceUsage;
-import org.omg.sysml.util.UsageUtil;
 
 public class AcceptActionUsage_payloadParameter_SettingDelegate extends BasicDerivedObjectSettingDelegate {
 
@@ -37,8 +38,13 @@ public class AcceptActionUsage_payloadParameter_SettingDelegate extends BasicDer
 
 	@Override
 	protected ReferenceUsage basicGet(InternalEObject owner) {
-		Feature payloadParameter = UsageUtil.getPayloadParameterOf((AcceptActionUsage)owner);
-		return payloadParameter instanceof ReferenceUsage? (ReferenceUsage) payloadParameter: null;
+		List<Feature> parameters = ((AcceptActionUsage)owner).getParameter();
+		if (parameters.isEmpty()) {
+			return null;
+		} else {
+			Feature parameter = parameters.get(0);
+			return parameter instanceof ReferenceUsage? (ReferenceUsage)parameter: null;
+		}
 	}
 
 }

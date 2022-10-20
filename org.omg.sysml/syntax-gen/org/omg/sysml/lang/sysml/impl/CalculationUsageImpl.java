@@ -276,6 +276,15 @@ public class CalculationUsageImpl extends ActionUsageImpl implements Calculation
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
+	public boolean modelLevelEvaluable(EList<Feature> visited) {
+		return false;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
 	public EList<Element> evaluate(Element target) {
 		return new BasicEList<>();
 	}
@@ -422,6 +431,7 @@ public class CalculationUsageImpl extends ActionUsageImpl implements Calculation
 	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
 		if (baseClass == Expression.class) {
 			switch (baseOperationID) {
+				case SysMLPackage.EXPRESSION___MODEL_LEVEL_EVALUABLE__ELIST: return SysMLPackage.CALCULATION_USAGE___MODEL_LEVEL_EVALUABLE__ELIST;
 				case SysMLPackage.EXPRESSION___EVALUATE__ELEMENT: return SysMLPackage.CALCULATION_USAGE___EVALUATE__ELEMENT;
 				default: return -1;
 			}
@@ -435,8 +445,11 @@ public class CalculationUsageImpl extends ActionUsageImpl implements Calculation
 	 * @generated
 	 */
 	@Override
+	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
+			case SysMLPackage.CALCULATION_USAGE___MODEL_LEVEL_EVALUABLE__ELIST:
+				return modelLevelEvaluable((EList<Feature>)arguments.get(0));
 			case SysMLPackage.CALCULATION_USAGE___EVALUATE__ELEMENT:
 				return evaluate((Element)arguments.get(0));
 		}

@@ -29,7 +29,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.omg.sysml.lang.sysml.PortDefinition;
 import org.omg.sysml.lang.sysml.PortUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.lang.sysml.Type;
 
 /**
  * <!-- begin-user-doc -->
@@ -100,11 +99,10 @@ public class PortUsageImpl extends OccurrenceUsageImpl implements PortUsage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public EList<Type> getType() {
+	public EList<org.omg.sysml.lang.sysml.Class> getOccurrenceDefinition() {
 		@SuppressWarnings("unchecked")
-		EList<Type> definition = (EList<Type>)((EList<?>)getDefinition());
-		return definition;
+		EList<org.omg.sysml.lang.sysml.Class> portDefinition = (EList<org.omg.sysml.lang.sysml.Class>)((EList<?>)getPortDefinition());
+		return portDefinition;
 	}
 
 	/**
@@ -112,7 +110,7 @@ public class PortUsageImpl extends OccurrenceUsageImpl implements PortUsage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isSetType() {
+	public boolean isSetOccurrenceDefinition() {
   		return false;
 	}
 
@@ -179,8 +177,8 @@ public class PortUsageImpl extends OccurrenceUsageImpl implements PortUsage {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.PORT_USAGE__TYPE:
-				return isSetType();
+			case SysMLPackage.PORT_USAGE__OCCURRENCE_DEFINITION:
+				return isSetOccurrenceDefinition();
 			case SysMLPackage.PORT_USAGE__PORT_DEFINITION:
 				return isSetPortDefinition();
 		}

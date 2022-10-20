@@ -45,6 +45,10 @@ class SysMLLibraryUtil {
 		modelLibraryPath
 	}
 	
+	@Deprecated
+	/**
+	 * @deprecated Use LibraryPackage::isStandard or ElementUtil::isStandardLibraryElement instead
+	 */
 	def static isModelLibrary(Resource resource) {
 		if (resource === null) {
 			return false;

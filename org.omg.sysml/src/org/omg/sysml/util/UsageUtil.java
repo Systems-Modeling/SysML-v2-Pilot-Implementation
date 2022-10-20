@@ -25,6 +25,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.omg.sysml.adapter.UsageAdapter;
 import org.omg.sysml.lang.sysml.AcceptActionUsage;
@@ -132,16 +133,19 @@ public class UsageUtil {
 		return usage.getOwningFeatureMembership() instanceof StakeholderMembership;
 	}	
 	
-	// Send and Accept Actions
+	// Actions
 	
-	public static Feature getPayloadParameterOf(ActionUsage action) {
-		List<Feature> parameters = TypeUtil.getOwnedParametersOf(action);
-		return parameters.isEmpty()? null: parameters.get(0);
+	public static EList<Feature> getOwnedInputParametersOf(ActionUsage action) {
+		EList<Feature> inputParameters = new BasicEList<>();
+		action.getInput().stream().
+			filter(f->f.getOwner() == action).
+			forEachOrdered(inputParameters::add);
+		return inputParameters;
 	}
-
-	public static Feature getReceiverParameterOf(ActionUsage action) {
-		List<Feature> parameters = TypeUtil.getOwnedParametersOf(action);
-		return parameters.size() < 3? null: parameters.get(2);
+	
+	public static Expression getArgumentOf(ActionUsage action, int i) {
+		List<Feature> parameters = getOwnedInputParametersOf(action);
+		return parameters.size() < i? null: FeatureUtil.getValueExpressionFor(parameters.get(i - 1));
 	}
 	
 	// Constraints

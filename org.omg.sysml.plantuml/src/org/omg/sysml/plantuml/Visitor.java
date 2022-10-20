@@ -255,6 +255,20 @@ public abstract class Visitor extends SysMLSwitch<String> {
         append('"');
     }
 
+    private static final String creoleSpecials = "<'-_*/=#~";
+
+    protected void cQuote(String s) {
+        int len = s.length();
+        for (int i = 0; i < len; i++) {
+        	char ch = s.charAt(i);
+            if (creoleSpecials.indexOf(ch) >= 0) {
+                append(String.format("<U+%04X>", (int) ch));
+            } else {
+                append(ch);
+            }
+        }
+    }
+
     protected int addNameWithId(Element e, String name, boolean force) {
         quote(name);
         append(" as ");

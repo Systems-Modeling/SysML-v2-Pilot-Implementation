@@ -2,7 +2,7 @@ standard library package OccurrenceFunctions {
 	doc
 	/*
 	 * This package defines utility functions that operate on occurrences, primarily related to 
-	 * the existance of those occurrences over time.
+	 * time during which those occurrences exist.
 	 */
 	
 	private import Occurrences::Occurrence;
@@ -35,8 +35,6 @@ standard library package OccurrenceFunctions {
 		doc
 		/*
 		 * Test whether a performance of this function happens during the input occurrence.
-		 * This means that the input occurrence will also transitively happen during any 
-		 * the time-enclosing invoker of the function, which is usually what is of interest.
 		 */
 		
 		in occ: Occurrence[1];

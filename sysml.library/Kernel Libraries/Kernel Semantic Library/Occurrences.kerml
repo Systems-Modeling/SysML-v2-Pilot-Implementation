@@ -545,7 +545,7 @@ standard library package Occurrences {
 	assoc all SelfSameLifeLink specializes BinaryLink {
 		doc
 		/*
-		 * SelfSameLifeLink is a binary association that is equivalent to SelfLink it the
+		 * SelfSameLifeLink is a binary association that is equivalent to SelfLink if the
 		 * linked things are DataValues, but asserts that the link things are portions of
 		 * the same Life if they are Occurrences. A SelfSameLink is not itself an Occurrence
 		 * (SelfSameLifeLink is disjoint with LinkObject).

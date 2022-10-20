@@ -38,6 +38,8 @@ public class LibraryFunctionFactory {
 		
 		put(new EqualsFunction());
 		put(new NotEqualsFunction());
+		put(new SameFunction());
+		put(new NotSameFunction());
 		
 		put(new SizeFunction());
 		put(new IsEmptyFunction());

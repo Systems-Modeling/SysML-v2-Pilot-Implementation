@@ -248,6 +248,8 @@ public class ModelLevelEvaluationTest extends SysMLInteractiveTest {
 		assertEquals(true, evaluateBooleanValue(null, null, "2 >= 2"));
 		assertEquals(true, evaluateBooleanValue(null, null, "2 == 2"));
 		assertEquals(false, evaluateBooleanValue(null, null, "2 != 2"));
+		assertEquals(true, evaluateBooleanValue(null, null, "2 === 2"));
+		assertEquals(false, evaluateBooleanValue(null, null, "2 !== 2"));
 
 		assertEquals(true, evaluateBooleanValue(null, null, "\"a\" < \"b\""));
 		assertEquals(false, evaluateBooleanValue(null, null, "\"a\" > \"b\""));
@@ -255,6 +257,8 @@ public class ModelLevelEvaluationTest extends SysMLInteractiveTest {
 		assertEquals(false, evaluateBooleanValue(null, null, "\"a\" >= \"b\""));
 		assertEquals(false, evaluateBooleanValue(null, null, "\"a\" == \"b\""));
 		assertEquals(true, evaluateBooleanValue(null, null, "\"a\" != \"b\""));
+		assertEquals(false, evaluateBooleanValue(null, null, "\"a\" === \"b\""));
+		assertEquals(true, evaluateBooleanValue(null, null, "\"a\" !== \"b\""));
 	}
 	
 	@Test

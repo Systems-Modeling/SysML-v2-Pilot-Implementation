@@ -9,6 +9,11 @@ standard library package DataFunctions {
 	private import ScalarValues::Boolean;
 	private import ControlFunctions::reduce;
 	
+	function '===' specializes BaseFunctions::'==='{ in x: DataValue[0..1]; in y: DataValue[0..1]; 
+		return : Boolean[1] = x == y;
+	}
+	
+	
 	abstract function '+' { in x: DataValue[1]; in y: DataValue[0..1]; return : DataValue[1]; }
 	abstract function '-' { in x: DataValue[1]; in y: DataValue[0..1]; return : DataValue[1]; }
 	abstract function '*' { in x: DataValue[1]; in y: DataValue[1]; return : DataValue[1]; }

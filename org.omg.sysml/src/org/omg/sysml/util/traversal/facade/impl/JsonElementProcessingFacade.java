@@ -158,11 +158,10 @@ public class JsonElementProcessingFacade implements ElementProcessingFacade {
 	 * Create an Identified object containing the identifier of the given element.
 	 * 
 	 * @param 	element				the Element to be identified
-	 * @return	an Identified object the the given Element (or null if the input is null).
+	 * @return	an Identified object for the given Element (or null if the input is null).
 	 */
 	protected Identified getIdentified(Element element) {
-		Object identifier = this.traversal.getIdentifier(element);
-		return identifier instanceof UUID? identified((UUID)identifier): null;
+		return element == null? null: identified(UUID.fromString(element.getElementId()));
 	}
 	
 	/**

@@ -51,6 +51,7 @@ package MetadataTest {
 		metadata Classified {
 			classificationLevel = conf;
 		}
+		metadata Security;
 	}
 	
 	feature y {

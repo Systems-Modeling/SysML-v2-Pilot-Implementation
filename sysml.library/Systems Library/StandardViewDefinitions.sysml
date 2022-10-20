@@ -17,8 +17,7 @@ standard library package StandardViewDefinitions {
     view def <mv> MemberView {
         doc /*
              * View definition to present any members of exposed model element(s).
-             * This is the most general view, that enables presentation of any model
-             * element.
+             * This is the most general view, enabling presentation of any model element.
              * The typical rendering in graphical notation is as a graph of nodes and edges.
              */
     }
@@ -157,14 +156,14 @@ standard library package StandardViewDefinitions {
              * - Requirement
              * - Verify relationship
              * - Compartments
-             * - Binding connection between an actor and an input parameter with same
-             *   name (TBC)
+             * - Binding connection between an actor and an input parameter with the
+             *   same name
              */
     }
 
     view def <vvv> ViewAndViewpointView {
         doc /*
-             * View definition to present exposed View and Viewpoint .
+             * View definition to present exposed View and Viewpoint.
              * Valid nodes and edges in a ViewAndViewpointView are:
              * - View definition
              * - View usage

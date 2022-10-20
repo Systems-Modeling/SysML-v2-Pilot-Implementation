@@ -39,6 +39,7 @@ import org.omg.sysml.lang.sysml.ConnectionUsage;
 import org.omg.sysml.lang.sysml.Connector;
 import org.omg.sysml.lang.sysml.ConstraintUsage;
 import org.omg.sysml.lang.sysml.Definition;
+import org.omg.sysml.lang.sysml.Documentation;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.EnumerationDefinition;
 import org.omg.sysml.lang.sysml.EnumerationUsage;
@@ -274,7 +275,10 @@ public class VCompartment extends VStructure {
     @Override
     public String caseOwningMembership(OwningMembership m) {
         Element e = m.getOwnedMemberElement();
-        rec(m, e, true);
+        if (e instanceof Documentation) {
+            return visitMembership(m);
+        }
+        rec(m, e, false);
         return "";
     }
 
@@ -346,9 +350,16 @@ public class VCompartment extends VStructure {
     private String addTitle(String prev, CompartmentEntry ce) {
         String title = ce.getTitle();
         if (title.equals(prev)) return prev;
-        append("-- ");
+
+        /* Still PlantUML fails the indentation and need to be updated.
+         * if (prev != null) {
+         *     append("____\n");
+         * }
+         * append("==== ");
+         */
+        append("--");
         append(title);
-        append(" --\n");
+        append("--\n");
         return title;
     }
 
@@ -480,6 +491,9 @@ public class VCompartment extends VStructure {
         Collections.sort(es);
         final int size = es.size();
         String title = null;
+        if (documentations != null) {
+            title = "";
+        }
         for (int i = 0; i < size; i++) {
             CompartmentEntry ce = es.get(i);
             if (level == 0) {
@@ -524,9 +538,48 @@ public class VCompartment extends VStructure {
         }
     }
 
+    private List<Documentation> documentations;
+    private boolean addDocumentation(Documentation doc) {
+        if (!currentType.equals(doc.getDocumentedElement())) return false;
+        if (documentations == null) {
+            documentations = new ArrayList<>(1);
+        }
+        documentations.add(doc);
+        return true;
+    }
+
+    private void addDocumentations() {
+    	if (documentations == null) return;
+
+        boolean flag = false;
+    	/* PlantUML needs to be updated to support centering.
+         * Before that, we do not add a title to documentation compartment.
+         * append("==== //    documentation  //\n");
+         */ 
+        for (Documentation doc: documentations) {
+            String name = doc.getName();
+            if (name != null && !name.isEmpty()) {
+                append("\"\"");
+                appendText(name, true);
+                append("\"\": ");
+            }
+            if (flag) {
+                append(".. ..\n");
+            } else {
+                flag = true;
+            }
+            String body = doc.getBody();
+            if (body != null) {
+                appendText(body.trim(), false);
+            }
+            append('\n');
+        }
+    }
+
     public void startType(Type typ) {
         this.currentType = typ;
         traverse(typ, false, true);
+        addDocumentations();
         addCompartmentEntries(compartmentEntries, 0);
         popNamespace();
     }
@@ -585,4 +638,11 @@ public class VCompartment extends VStructure {
         addEntry(fv, null);
         return "";
     }
+
+    @Override
+    public String caseDocumentation(Documentation doc) {
+        if (addDocumentation(doc)) return "";
+        return null;
+    }
+    
 }

@@ -26,6 +26,8 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	protected AbstractElementAlias match_ActionBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__;
 	protected AbstractElementAlias match_ActionNodeBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__;
 	protected AbstractElementAlias match_AllocationUsageDeclaration_AllocateKeywordParserRuleCall_1_0_or___AllocationUsageKeywordParserRuleCall_0_0_AllocateKeywordParserRuleCall_0_2_0__;
+	protected AbstractElementAlias match_BaseExpression_LeftParenthesisKeyword_5_0_a;
+	protected AbstractElementAlias match_BaseExpression_LeftParenthesisKeyword_5_0_p;
 	protected AbstractElementAlias match_BindingConnector_BindingKeywordParserRuleCall_1_0_q;
 	protected AbstractElementAlias match_CaseBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_3__;
 	protected AbstractElementAlias match_Comment_CommentKeyword_0_0_q;
@@ -44,8 +46,6 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	protected AbstractElementAlias match_MetadataUsageDeclaration_DefinedByKeywordParserRuleCall_0_1_q;
 	protected AbstractElementAlias match_NullExpression_NullKeyword_1_0_or___LeftParenthesisKeyword_1_1_0_RightParenthesisKeyword_1_1_1__;
 	protected AbstractElementAlias match_PackageBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__;
-	protected AbstractElementAlias match_ParenthesizedExpression_LeftParenthesisKeyword_0_a;
-	protected AbstractElementAlias match_ParenthesizedExpression_LeftParenthesisKeyword_0_p;
 	protected AbstractElementAlias match_RelationshipBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__;
 	protected AbstractElementAlias match_RequirementBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__;
 	protected AbstractElementAlias match_SatisfyRequirementUsage_AssertKeyword_1_q;
@@ -64,6 +64,8 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 		match_ActionBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getActionBodyAccess().getLeftCurlyBracketKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getActionBodyAccess().getRightCurlyBracketKeyword_1_2())), new TokenAlias(false, false, grammarAccess.getActionBodyAccess().getSemicolonKeyword_0()));
 		match_ActionNodeBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getActionNodeBodyAccess().getLeftCurlyBracketKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getActionNodeBodyAccess().getRightCurlyBracketKeyword_1_2())), new TokenAlias(false, false, grammarAccess.getActionNodeBodyAccess().getSemicolonKeyword_0()));
 		match_AllocationUsageDeclaration_AllocateKeywordParserRuleCall_1_0_or___AllocationUsageKeywordParserRuleCall_0_0_AllocateKeywordParserRuleCall_0_2_0__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getAllocationUsageDeclarationAccess().getAllocationUsageKeywordParserRuleCall_0_0()), new TokenAlias(false, false, grammarAccess.getAllocationUsageDeclarationAccess().getAllocateKeywordParserRuleCall_0_2_0())), new TokenAlias(false, false, grammarAccess.getAllocationUsageDeclarationAccess().getAllocateKeywordParserRuleCall_1_0()));
+		match_BaseExpression_LeftParenthesisKeyword_5_0_a = new TokenAlias(true, true, grammarAccess.getBaseExpressionAccess().getLeftParenthesisKeyword_5_0());
+		match_BaseExpression_LeftParenthesisKeyword_5_0_p = new TokenAlias(true, false, grammarAccess.getBaseExpressionAccess().getLeftParenthesisKeyword_5_0());
 		match_BindingConnector_BindingKeywordParserRuleCall_1_0_q = new TokenAlias(false, true, grammarAccess.getBindingConnectorAccess().getBindingKeywordParserRuleCall_1_0());
 		match_CaseBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_3__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getCaseBodyAccess().getLeftCurlyBracketKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getCaseBodyAccess().getRightCurlyBracketKeyword_1_3())), new TokenAlias(false, false, grammarAccess.getCaseBodyAccess().getSemicolonKeyword_0()));
 		match_Comment_CommentKeyword_0_0_q = new TokenAlias(false, true, grammarAccess.getCommentAccess().getCommentKeyword_0_0());
@@ -82,8 +84,6 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 		match_MetadataUsageDeclaration_DefinedByKeywordParserRuleCall_0_1_q = new TokenAlias(false, true, grammarAccess.getMetadataUsageDeclarationAccess().getDefinedByKeywordParserRuleCall_0_1());
 		match_NullExpression_NullKeyword_1_0_or___LeftParenthesisKeyword_1_1_0_RightParenthesisKeyword_1_1_1__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getNullExpressionAccess().getLeftParenthesisKeyword_1_1_0()), new TokenAlias(false, false, grammarAccess.getNullExpressionAccess().getRightParenthesisKeyword_1_1_1())), new TokenAlias(false, false, grammarAccess.getNullExpressionAccess().getNullKeyword_1_0()));
 		match_PackageBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getPackageBodyAccess().getLeftCurlyBracketKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getPackageBodyAccess().getRightCurlyBracketKeyword_1_2())), new TokenAlias(false, false, grammarAccess.getPackageBodyAccess().getSemicolonKeyword_0()));
-		match_ParenthesizedExpression_LeftParenthesisKeyword_0_a = new TokenAlias(true, true, grammarAccess.getParenthesizedExpressionAccess().getLeftParenthesisKeyword_0());
-		match_ParenthesizedExpression_LeftParenthesisKeyword_0_p = new TokenAlias(true, false, grammarAccess.getParenthesizedExpressionAccess().getLeftParenthesisKeyword_0());
 		match_RelationshipBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getRelationshipBodyAccess().getLeftCurlyBracketKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getRelationshipBodyAccess().getRightCurlyBracketKeyword_1_2())), new TokenAlias(false, false, grammarAccess.getRelationshipBodyAccess().getSemicolonKeyword_0()));
 		match_RequirementBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getRequirementBodyAccess().getLeftCurlyBracketKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getRequirementBodyAccess().getRightCurlyBracketKeyword_1_2())), new TokenAlias(false, false, grammarAccess.getRequirementBodyAccess().getSemicolonKeyword_0()));
 		match_SatisfyRequirementUsage_AssertKeyword_1_q = new TokenAlias(false, true, grammarAccess.getSatisfyRequirementUsageAccess().getAssertKeyword_1());
@@ -908,6 +908,10 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 				emit_ActionNodeBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_AllocationUsageDeclaration_AllocateKeywordParserRuleCall_1_0_or___AllocationUsageKeywordParserRuleCall_0_0_AllocateKeywordParserRuleCall_0_2_0__.equals(syntax))
 				emit_AllocationUsageDeclaration_AllocateKeywordParserRuleCall_1_0_or___AllocationUsageKeywordParserRuleCall_0_0_AllocateKeywordParserRuleCall_0_2_0__(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_BaseExpression_LeftParenthesisKeyword_5_0_a.equals(syntax))
+				emit_BaseExpression_LeftParenthesisKeyword_5_0_a(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_BaseExpression_LeftParenthesisKeyword_5_0_p.equals(syntax))
+				emit_BaseExpression_LeftParenthesisKeyword_5_0_p(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_BindingConnector_BindingKeywordParserRuleCall_1_0_q.equals(syntax))
 				emit_BindingConnector_BindingKeywordParserRuleCall_1_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_CaseBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_3__.equals(syntax))
@@ -944,10 +948,6 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 				emit_NullExpression_NullKeyword_1_0_or___LeftParenthesisKeyword_1_1_0_RightParenthesisKeyword_1_1_1__(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_PackageBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__.equals(syntax))
 				emit_PackageBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_ParenthesizedExpression_LeftParenthesisKeyword_0_a.equals(syntax))
-				emit_ParenthesizedExpression_LeftParenthesisKeyword_0_a(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_ParenthesizedExpression_LeftParenthesisKeyword_0_p.equals(syntax))
-				emit_ParenthesizedExpression_LeftParenthesisKeyword_0_p(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_RelationshipBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__.equals(syntax))
 				emit_RelationshipBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_RequirementBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__.equals(syntax))
@@ -1130,6 +1130,51 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     ownedRelationship+=PrefixMetadataMember (ambiguity) ownedRelationship+=ConnectorEndMember
 	 */
 	protected void emit_AllocationUsageDeclaration_AllocateKeywordParserRuleCall_1_0_or___AllocationUsageKeywordParserRuleCall_0_0_AllocateKeywordParserRuleCall_0_2_0__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Ambiguous syntax:
+	 *     '('*
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     (rule start) (ambiguity) '*' (rule start)
+	 *     (rule start) (ambiguity) ('null' | ('(' ')')) (rule start)
+	 *     (rule start) (ambiguity) operand+=SelfReferenceExpression
+	 *     (rule start) (ambiguity) operator='all'
+	 *     (rule start) (ambiguity) operator=ConditionalOperator
+	 *     (rule start) (ambiguity) operator=UnaryOperator
+	 *     (rule start) (ambiguity) ownedRelationship+=ExpressionBodyMember
+	 *     (rule start) (ambiguity) ownedRelationship+=FeatureReferenceMember
+	 *     (rule start) (ambiguity) ownedRelationship+=OwnedFeatureTyping
+	 *     (rule start) (ambiguity) value=BooleanValue
+	 *     (rule start) (ambiguity) value=DECIMAL_VALUE
+	 *     (rule start) (ambiguity) value=RealValue
+	 *     (rule start) (ambiguity) value=STRING_VALUE
+	 *     (rule start) (ambiguity) {CollectExpression.operand+=}
+	 *     (rule start) (ambiguity) {FeatureChainExpression.operand+=}
+	 *     (rule start) (ambiguity) {OperatorExpression.operand+=}
+	 *     (rule start) (ambiguity) {SelectExpression.operand+=}
+	 */
+	protected void emit_BaseExpression_LeftParenthesisKeyword_5_0_a(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Ambiguous syntax:
+	 *     '('+
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     (rule start) (ambiguity) operand+=SelfReferenceExpression
+	 *     (rule start) (ambiguity) operator='all'
+	 *     (rule start) (ambiguity) operator=ConditionalOperator
+	 *     (rule start) (ambiguity) operator=UnaryOperator
+	 *     (rule start) (ambiguity) {CollectExpression.operand+=}
+	 *     (rule start) (ambiguity) {FeatureChainExpression.operand+=}
+	 *     (rule start) (ambiguity) {OperatorExpression.operand+=}
+	 *     (rule start) (ambiguity) {SelectExpression.operand+=}
+	 */
+	protected void emit_BaseExpression_LeftParenthesisKeyword_5_0_p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
@@ -1731,7 +1776,6 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) '('* (ambiguity) (rule start)
-	 *     (rule start) '('+ (ambiguity) ','? ')' (rule start)
 	 *     (rule start) (ambiguity) (rule start)
 	 */
 	protected void emit_NullExpression_NullKeyword_1_0_or___LeftParenthesisKeyword_1_1_0_RightParenthesisKeyword_1_1_1__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
@@ -1749,60 +1793,6 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     shortName=Name '>' (ambiguity) (rule end)
 	 */
 	protected void emit_PackageBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
-	/**
-	 * Ambiguous syntax:
-	 *     '('*
-	 *
-	 * This ambiguous syntax occurs at:
-	 *     (rule start) (ambiguity) '*' (rule start)
-	 *     (rule start) (ambiguity) ('null' | ('(' ')')) (rule start)
-	 *     (rule start) (ambiguity) operand+=SelfReferenceExpression
-	 *     (rule start) (ambiguity) operator='all'
-	 *     (rule start) (ambiguity) operator=ConditionalOperator
-	 *     (rule start) (ambiguity) operator=UnaryOperator
-	 *     (rule start) (ambiguity) ownedRelationship+=ExpressionBodyMember
-	 *     (rule start) (ambiguity) ownedRelationship+=FeatureReferenceMember
-	 *     (rule start) (ambiguity) ownedRelationship+=OwnedFeatureTyping
-	 *     (rule start) (ambiguity) value=BooleanValue
-	 *     (rule start) (ambiguity) value=DECIMAL_VALUE
-	 *     (rule start) (ambiguity) value=RealValue
-	 *     (rule start) (ambiguity) value=STRING_VALUE
-	 *     (rule start) (ambiguity) {CollectExpression.operand+=}
-	 *     (rule start) (ambiguity) {FeatureChainExpression.operand+=}
-	 *     (rule start) (ambiguity) {OperatorExpression.operand+=}
-	 *     (rule start) (ambiguity) {SelectExpression.operand+=}
-	 */
-	protected void emit_ParenthesizedExpression_LeftParenthesisKeyword_0_a(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
-	/**
-	 * Ambiguous syntax:
-	 *     '('+
-	 *
-	 * This ambiguous syntax occurs at:
-	 *     (rule start) (ambiguity) '*' ','? ')' (rule start)
-	 *     (rule start) (ambiguity) ('null' | ('(' ')')) ','? ')' (rule start)
-	 *     (rule start) (ambiguity) operand+=SelfReferenceExpression
-	 *     (rule start) (ambiguity) operator='all'
-	 *     (rule start) (ambiguity) operator=ConditionalOperator
-	 *     (rule start) (ambiguity) operator=UnaryOperator
-	 *     (rule start) (ambiguity) ownedRelationship+=ExpressionBodyMember
-	 *     (rule start) (ambiguity) ownedRelationship+=FeatureReferenceMember
-	 *     (rule start) (ambiguity) ownedRelationship+=OwnedFeatureTyping
-	 *     (rule start) (ambiguity) value=BooleanValue
-	 *     (rule start) (ambiguity) value=DECIMAL_VALUE
-	 *     (rule start) (ambiguity) value=RealValue
-	 *     (rule start) (ambiguity) value=STRING_VALUE
-	 *     (rule start) (ambiguity) {CollectExpression.operand+=}
-	 *     (rule start) (ambiguity) {FeatureChainExpression.operand+=}
-	 *     (rule start) (ambiguity) {OperatorExpression.operand+=}
-	 *     (rule start) (ambiguity) {SelectExpression.operand+=}
-	 */
-	protected void emit_ParenthesizedExpression_LeftParenthesisKeyword_0_p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
@@ -2234,8 +2224,6 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     ','?
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) '('+ '*' (ambiguity) ')' (rule start)
-	 *     (rule start) '('+ ('null' | ('(' ')')) (ambiguity) ')' (rule start)
 	 *     operand+=AdditiveExpression (ambiguity) ')' (rule end)
 	 *     operand+=AndExpression (ambiguity) ')' (rule end)
 	 *     operand+=BodyExpression (ambiguity) ')' (rule end)
@@ -2255,17 +2243,10 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     operand+=XorExpression (ambiguity) ')' (rule end)
 	 *     operand+=XorExpressionReference (ambiguity) ')' (rule end)
 	 *     ownedRelationship+=ArgumentMember ')' (ambiguity) ')' (rule end)
-	 *     ownedRelationship+=ExpressionBodyMember (ambiguity) ')' (rule end)
 	 *     ownedRelationship+=FeatureChainMember (ambiguity) ')' (rule end)
-	 *     ownedRelationship+=FeatureReferenceMember (ambiguity) ')' (rule end)
 	 *     ownedRelationship+=NamedArgumentMember ')' (ambiguity) ')' (rule end)
-	 *     ownedRelationship+=OwnedFeatureTyping '(' ')' (ambiguity) ')' (rule end)
 	 *     ownedRelationship+=ReferenceTyping '(' ')' (ambiguity) ')' (rule end)
 	 *     ownedRelationship+=TypeReferenceMember (ambiguity) ')' (rule end)
-	 *     value=BooleanValue (ambiguity) ')' (rule end)
-	 *     value=DECIMAL_VALUE (ambiguity) ')' (rule end)
-	 *     value=RealValue (ambiguity) ')' (rule end)
-	 *     value=STRING_VALUE (ambiguity) ')' (rule end)
 	 */
 	protected void emit_SequenceExpression_CommaKeyword_1_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);

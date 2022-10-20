@@ -34,7 +34,6 @@ import org.omg.sysml.lang.sysml.ActionDefinition;
 import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.ActorMembership;
 import org.omg.sysml.lang.sysml.AnalysisCaseUsage;
-import org.omg.sysml.lang.sysml.AttributeUsage;
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.ConnectionUsage;
 import org.omg.sysml.lang.sysml.Connector;
@@ -45,10 +44,9 @@ import org.omg.sysml.lang.sysml.EnumerationDefinition;
 import org.omg.sysml.lang.sysml.EnumerationUsage;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.FeatureDirectionKind;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureTyping;
-import org.omg.sysml.lang.sysml.FlowConnectionUsage;
+import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.ItemFlow;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
@@ -65,13 +63,11 @@ import org.omg.sysml.lang.sysml.StateDefinition;
 import org.omg.sysml.lang.sysml.StateUsage;
 import org.omg.sysml.lang.sysml.SubjectMembership;
 import org.omg.sysml.lang.sysml.Succession;
-import org.omg.sysml.lang.sysml.SuccessionFlowConnectionUsage;
 import org.omg.sysml.lang.sysml.SuccessionItemFlow;
 import org.omg.sysml.lang.sysml.TransitionUsage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
 import org.omg.sysml.lang.sysml.VariantMembership;
-import org.omg.sysml.lang.sysml.util.SysMLSwitch;
 
 public class VCompartment extends VStructure {
     private List<VTree> subtrees = new ArrayList<VTree>();
@@ -119,153 +115,9 @@ public class VCompartment extends VStructure {
         return null;
     }
 
-    protected static class FeatureEntry implements Comparable<FeatureEntry> {
-        public final Feature f;
-        public final String alias;
-        public final String prefix;
-        public final boolean isInherited;
+    private List<CompartmentEntry> compartmentEntries = new ArrayList<CompartmentEntry>();
 
-        public String getParameterPrefix() {
-            FeatureDirectionKind fdk = f.getDirection();
-            if (fdk == null) return "";
-            switch (fdk) {
-            case IN:
-                return "<b>in</b> ";
-            case OUT:
-                return "<b>out</b> ";
-            case INOUT:
-                return "<b>inout</b> ";
-            }
-            return null; // MUST NOT happen.
-        }
-
-        public boolean isParameter() {
-            return f.getDirection() != null;
-        }
-
-        private static class ToTitle extends SysMLSwitch<String> {
-            public String caseBindingConnector(BindingConnector bc) {
-                return "bindings";
-            }
-            public String caseFlowConnectionUsage(FlowConnectionUsage fcu) {
-                return "flows";
-            }
-            public String caseSuccessionFlowConnectionUsage(SuccessionFlowConnectionUsage sfcu) {
-                return "succession flows";
-            }
-        }
-        private static ToTitle toTitle = new ToTitle();
-
-        public String getTitle() {
-            if (isParameter()) {
-                return "parameters";
-            }
-            String s = toTitle.doSwitch(f);
-            if (s != null) return s;
-            s = SysML2PlantUMLText.getStereotypeName(f);
-            if (s.endsWith("s")) {
-                return s + "es";
-            } else {
-                return s + "s";
-            }
-        }
-
-        private static int featureParameterCompare(Feature f1, Feature f2) {
-            FeatureDirectionKind fdk1 = f1.getDirection();
-            FeatureDirectionKind fdk2 = f2.getDirection();
-            if (fdk1 == null) {
-                if (fdk2 == null) return 0;
-                return 1;
-            }
-            if (fdk2 == null) return -1;
-            if (fdk1.ordinal() < fdk2.ordinal()) return -1;
-            if (fdk1.ordinal() > fdk2.ordinal()) return 1;
-            return 0;
-        }
-
-        private static int featureMetaclassCompare(Feature f1, Feature f2) {
-            if (f1 instanceof AttributeUsage) {
-                if (!(f2 instanceof AttributeUsage)) {
-                    return -1;
-                }
-            } else if (f2 instanceof AttributeUsage) {
-                return 1;
-            } else if (f1 instanceof Usage) {
-                if (!(f2 instanceof Usage)) {
-                    return -1;
-                }
-            } else if (f2 instanceof Usage) {
-                return 1;
-            }
-            
-            String ec1 = f1.eClass().getName();
-            String ec2 = f2.eClass().getName();
-            return ec1.compareTo(ec2);
-        }
-
-        /*
-        private static int featureTypeCompare(Feature f1, Feature f2) {
-            List<Type> ts1 = f1.getType();
-            List<Type> ts2 = f2.getType();
-        }
-        */
-
-        private static int featureNameCompare(Feature f1, Feature f2) {
-            String name1 = f1.getName();
-            String name2 = f2.getName();
-            if (name1 == null) {
-                if (name2 == null) return 0;
-                return -1;
-            }
-            if (name2 == null) return 1;
-            return name1.compareTo(name2);
-        }
-
-        private static int featureCompare(Feature f1, Feature f2) {
-            int v = featureParameterCompare(f1, f2);
-            if (v != 0) return v;
-            v = featureMetaclassCompare(f1, f2);
-            if (v != 0) return v;
-            // The order or EnumerationUsage needs to be stable.
-            if (f1 instanceof EnumerationUsage) return 0;
-            return featureNameCompare(f1, f2);
-        }
-
-        public int compareTo(FeatureEntry o) {
-            int v = featureCompare(f, o.f);
-            if (v != 0) return v;
-            if (alias == null) {
-                if (o.alias == null) return 0;
-                return -1;
-            }
-            if (o.alias == null) return 1;
-            return alias.compareTo(o.alias);
-        }
-
-        public List<FeatureEntry> children;
-        public void add(FeatureEntry fe) {
-            if (children == null) {
-                children = new ArrayList<FeatureEntry>();
-            }
-            children.add(fe);
-        }
-
-        public FeatureEntry(Feature f, String alias, String prefix, boolean isInherited) {
-            this.f = f;
-            this.alias = alias;
-            this.prefix = prefix;
-            this.isInherited = isInherited;
-            this.children = null;
-        }
-    }
-
-    private List<FeatureEntry> featureEntries = new ArrayList<FeatureEntry>();
-
-    protected FeatureEntry addFeature(Feature f,
-                                      String alias,
-                                      String prefix,
-                                      boolean norec,
-                                      FeatureEntry parent) {
+    private CompartmentEntry add(CompartmentEntry ce, CompartmentEntry parent, boolean norec) {
         Membership ms = getCurrentMembership();
         if (ms instanceof ReturnParameterMembership) {
             Element e = ms.getMemberElement();
@@ -273,52 +125,64 @@ public class VCompartment extends VStructure {
             if (e.getOwnedRelationship().isEmpty()) return null;
         }
 
-        if (!norec && (alias == null) && (prefix == null)) {
-            if (recCurrentMembership(f, false)) return null;
+        if (!norec) {
+            if (recCurrentMembership(ce.f, false)) return null;
         }
-        FeatureEntry fe = new FeatureEntry(f, alias, prefix, isInherited());
+
+        if (ce == null) return null;
         if (parent == null) {
-            featureEntries.add(fe);
+            compartmentEntries.add(ce);
         } else {
-            parent.add(fe);
+            parent.add(ce);
         }
-        return fe;
+        return ce;
     }
 
-    protected FeatureEntry addFeature(Feature f,
-                                      String alias,
-                                      String prefix,
-                                      boolean norec) {
-        return addFeature(f, alias, prefix, norec, null);
+    private CompartmentEntry addAlias(Membership ms) {
+        return add(CompartmentEntry.alias(ms, isInherited()), null, true);
     }
 
-    protected FeatureEntry addFeature(Feature f,
-                                      String alias) {
-        return addFeature(f, alias, null, isCompartmentMost());
+    private CompartmentEntry addTreeItem(Membership ms, CompartmentEntry parent) {
+        return add(CompartmentEntry.alias(ms, isInherited()), parent, true);
     }
 
+    private CompartmentEntry addTreeRoot(Feature f) {
+        return add(CompartmentEntry.feature(f, isInherited()), null, true);
+    }
+
+    protected CompartmentEntry addEntry(Feature f, boolean norec) {
+        return add(CompartmentEntry.feature(f, isInherited()), null, norec);
+    }
+
+    protected CompartmentEntry addEntry(Feature f) {
+        return addEntry(f, isCompartmentMost());
+    }
+
+    protected CompartmentEntry addEntry(OwningMembership om, String prefix) {
+        return add(CompartmentEntry.feature(om, prefix, isInherited()), null, true);
+    }
 
     @Override
     public String caseFeature(Feature f) {
-        addFeature(f, null);
+        addEntry(f);
         return "";
     }
     
     @Override
     public String caseConnector(Connector c) {
-    	addFeature(c, null);
+    	addEntry(c);
     	return "";
     }
 
     @Override
     public String caseConnectionUsage(ConnectionUsage cu) {
-    	addFeature(cu, null);
+    	addEntry(cu);
     	return "";
     }
     
     @Override
     public String caseItemFlow(ItemFlow itf) {
-    	addFeature(itf, null);
+    	addEntry(itf);
     	return "";
     }
 
@@ -328,7 +192,7 @@ public class VCompartment extends VStructure {
     }
 
     private class CompTree {
-        private final FeatureEntry parent;
+        private final CompartmentEntry parent;
 
         public void process(Feature f) {
             for (Membership m: f.getOwnedMembership()) {
@@ -339,7 +203,7 @@ public class VCompartment extends VStructure {
                     // Do not show it
                 } else if (e instanceof Feature) {
                 	Feature f2 = (Feature) e;
-                    FeatureEntry fe = addFeature(f2, m.getMemberName(), null, true, parent);
+                    CompartmentEntry fe = addTreeItem(m, parent);
                     CompTree ct = new CompTree(fe);
                     ct.process(f2);
                 } else {
@@ -348,7 +212,7 @@ public class VCompartment extends VStructure {
             }
         }
 
-        private CompTree(FeatureEntry fe) {
+        private CompTree(CompartmentEntry fe) {
             this.parent = fe;
         }
     }
@@ -357,7 +221,7 @@ public class VCompartment extends VStructure {
         boolean compartmentTree = styleValue("compartmentTree") != null;
 
         if (!(isCompartmentMost() || compartmentTree)) return null;
-        FeatureEntry fe = addFeature(f, null, null, true);
+        CompartmentEntry fe = addTreeRoot(f);
         if (compartmentTree) {
             CompTree ct = new CompTree(fe);
             ct.process(f);
@@ -372,7 +236,7 @@ public class VCompartment extends VStructure {
 
     @Override
     public String caseTransitionUsage(TransitionUsage tu) {
-        addFeature(tu, null, null, true);
+        addEntry(tu, true);
         return "";
     }
 
@@ -416,10 +280,7 @@ public class VCompartment extends VStructure {
 
     @Override
     public String caseMembership(Membership m) {
-        Element e = m.getMemberElement();
-        if (e instanceof Feature) {
-            addFeature((Feature) e, m.getMemberName(), null, true);
-        }
+        if (addAlias(m) == null) return null;
         return "";
     }
 
@@ -429,7 +290,7 @@ public class VCompartment extends VStructure {
             Element e = vm.getMemberElement();
             if (e instanceof EnumerationUsage) {
                 EnumerationUsage eu = (EnumerationUsage) e;
-            	addFeature(eu, null, null, true);
+            	addEntry(eu, true);
                 return "";
             }
         }
@@ -477,13 +338,13 @@ public class VCompartment extends VStructure {
                 // Do not show empty ReferenceUsage.
                 if (isEmptyFeature(u)) return "";
             }
-            addFeature(u, null);
+            addEntry(u);
         }
         return "";
     }
 
-    private String addTitle(String prev, FeatureEntry fe) {
-        String title = fe.getTitle();
+    private String addTitle(String prev, CompartmentEntry ce) {
+        String title = ce.getTitle();
         if (title.equals(prev)) return prev;
         append("-- ");
         append(title);
@@ -506,7 +367,7 @@ public class VCompartment extends VStructure {
             Subsetting ss = (Subsetting) e;
             e = ss.getSubsettedFeature();
         }*/
-        append(getText(e));
+        appendText(getText(e), true);
     }
 
     private void addConnectorText(Connector c, boolean isInherited) {
@@ -575,64 +436,74 @@ public class VCompartment extends VStructure {
         }
         appendText(text, false);
         addEvaluatedResults(f);
-        append('\n');
         return true;
     }
 
-    private void addFeatures(List<FeatureEntry> es, int level) {
+    private boolean addCompartmentEntry(CompartmentEntry ce) {
+        if (ce.f instanceof EnumerationUsage) {
+            if (getFeatureName(ce.f) == null) {
+                appendTextOfEnum(ce.f);
+            } else {
+                return addFeatureText(ce.f, ce.isInherited);
+            }
+        } else if (ce.f instanceof Connector) {
+            addConnectorText((Connector) ce.f, ce.isInherited);
+        } else if (ce.f instanceof ConstraintUsage) {
+            return appendFeatureText(ce.f, "constraint");
+        } else if (ce.om instanceof FeatureValue) {
+            return appendFeatureValue((FeatureValue) ce.om);
+        } else if (ce.f instanceof Expression) {
+            String name = getFeatureName(ce.f);
+            if (name != null) {
+                append(name);
+            }
+            String text = getText(ce.f);
+            if (text == null) {
+                if (name == null) {
+                    return false;
+                }
+            } else {
+                append(" { ");
+                appendText(text, true);
+                append(" }");
+                addEvaluatedResults(ce.f);
+            }
+        } else if (getFeatureName(ce.f) == null) {
+            addAnonymouseFeatureText(ce.f);
+        } else {
+            return addFeatureText(ce.f, false);
+        }
+        return true;
+    }
+
+    private void addCompartmentEntries(List<CompartmentEntry> es, int level) {
         Collections.sort(es);
         final int size = es.size();
         String title = null;
         for (int i = 0; i < size; i++) {
-            FeatureEntry fe = es.get(i);
+            CompartmentEntry ce = es.get(i);
             if (level == 0) {
-                title = addTitle(title, fe);
+                title = addTitle(title, ce);
             } else {
                 for (int j = 0; j < level; j++) {
                     append("|_");
                 }
                 append(' ');
             }
-            append(fe.getParameterPrefix());
-            if (fe.isInherited) {
+            append(ce.getParameterPrefix());
+            if (ce.isInherited) {
                 append('^');
             }
-            if (fe.prefix != null) {
-                append(fe.prefix);
+            if (ce.prefix != null) {
+                append(ce.prefix);
             }
 
-            if (fe.f instanceof EnumerationUsage) {
-                if (getFeatureName(fe.f) == null) {
-                    appendTextOfEnum(fe.f);
-                } else {
-                    addFeatureText(fe.f, fe.isInherited);
-                }
-                append('\n');
-            } else if (fe.f instanceof Connector) {
-                addConnectorText((Connector) fe.f, fe.isInherited);
-                append('\n');
-            } else if (fe.f instanceof ConstraintUsage) {
-                appendFeatureText(fe.f, "constraint");
-            } else if (fe.f instanceof Expression) {
-                String name = getFeatureName(fe.f);
-                if (name != null) {
-                    append(name);
-                }
-                String text = getText(fe.f);
-                if (text == null) continue;
-                append(" { ");
-                appendText(text, true);
-                append(" }");
-                addEvaluatedResults(fe.f);
-                append('\n');
-            } else if (getFeatureName(fe.f) == null) {
-                addAnonymouseFeatureText(fe.f);
-                append('\n');
-            } else if (addFeatureText(fe.f, false)) {
+            if (addCompartmentEntry(ce)) {
+                // Aliases
                 boolean first = true;
                 for (int j = i + 1; j < size; j++) {
-                    FeatureEntry fe2 = es.get(j);
-                    if (fe.f.equals(fe2.f)) {
+                    CompartmentEntry fe2 = es.get(j);
+                    if (ce.f.equals(fe2.f)) {
                         if (fe2.alias != null) {
                             if (first) append(" <b>alias</b> ");
                             append(fe2.alias);
@@ -647,8 +518,8 @@ public class VCompartment extends VStructure {
                 append('\n');
             }
 
-            if (fe.children != null) {
-                addFeatures(fe.children, level + 1);
+            if (ce.children != null) {
+                addCompartmentEntries(ce.children, level + 1);
             }
         }
     }
@@ -656,14 +527,14 @@ public class VCompartment extends VStructure {
     public void startType(Type typ) {
         this.currentType = typ;
         traverse(typ, false, true);
-        addFeatures(featureEntries, 0);
+        addCompartmentEntries(compartmentEntries, 0);
         popNamespace();
     }
 
     public List<VTree> process(VTree parent, Type typ) {
         this.parent = parent;
         subtrees.clear();
-        featureEntries.clear();
+        compartmentEntries.clear();
         startType(typ);
         return subtrees;
     }
@@ -707,5 +578,11 @@ public class VCompartment extends VStructure {
     public String caseActionUsage(ActionUsage au) {
         if (!mixedMode) return null;
         return recCurrent(au, true);
+    }
+
+    @Override
+    public String caseFeatureValue(FeatureValue fv) {
+        addEntry(fv, null);
+        return "";
     }
 }

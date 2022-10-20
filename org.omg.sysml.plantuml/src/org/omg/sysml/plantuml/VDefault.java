@@ -30,6 +30,7 @@ import java.util.List;
 
 import org.omg.sysml.lang.sysml.AnnotatingElement;
 import org.omg.sysml.lang.sysml.Annotation;
+import org.omg.sysml.lang.sysml.AssignmentActionUsage;
 import org.omg.sysml.lang.sysml.Comment;
 import org.omg.sysml.lang.sysml.ConnectionUsage;
 import org.omg.sysml.lang.sysml.Connector;
@@ -239,6 +240,12 @@ public class VDefault extends VTraverser {
     public String caseImport(Import imp) {
         VImport v = new VImport(this);
         v.addImport(imp);
+        return "";
+    }
+
+    @Override
+    public String caseAssignmentActionUsage(AssignmentActionUsage aau) {
+        // TO be ignored.
         return "";
     }
 

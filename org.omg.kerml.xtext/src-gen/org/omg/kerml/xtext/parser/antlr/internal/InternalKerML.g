@@ -12102,6 +12102,18 @@ ruleEqualityOperator returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRu
 			$current.merge(kw);
 			newLeafNode(kw, grammarAccess.getEqualityOperatorAccess().getExclamationMarkEqualsSignKeyword_1());
 		}
+		    |
+		kw='==='
+		{
+			$current.merge(kw);
+			newLeafNode(kw, grammarAccess.getEqualityOperatorAccess().getEqualsSignEqualsSignEqualsSignKeyword_2());
+		}
+		    |
+		kw='!=='
+		{
+			$current.merge(kw);
+			newLeafNode(kw, grammarAccess.getEqualityOperatorAccess().getExclamationMarkEqualsSignEqualsSignKeyword_3());
+		}
 	)
 ;
 

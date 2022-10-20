@@ -9953,7 +9953,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//EqualityOperator :
-	//    '==' | '!='
+	//    '==' | '!=' | '===' | '!=='
 	//;
 	public KerMLExpressionsGrammarAccess.EqualityOperatorElements getEqualityOperatorAccess() {
 		return gaKerMLExpressions.getEqualityOperatorAccess();

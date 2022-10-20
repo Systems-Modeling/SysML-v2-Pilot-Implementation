@@ -1,7 +1,8 @@
 standard library package OccurrenceFunctions {
 	doc
 	/*
-	 * This package defines functions that operate on occurrences that exist over time.
+	 * This package defines utility functions that operate on occurrences, primarily related to 
+	 * the existance of those occurrences over time.
 	 */
 	
 	private import Occurrences::Occurrence;
@@ -33,8 +34,9 @@ standard library package OccurrenceFunctions {
 	function isDuring {
 		doc
 		/*
-		 * Test whether a performance of this function happens during the input occurrence
-		 * (which means it will also be during any time-enclosed invoker of the function).
+		 * Test whether a performance of this function happens during the input occurrence.
+		 * This means that the input occurrence will also transitively happen during any 
+		 * the time-enclosing invoker of the function, which is usually what is of interest.
 		 */
 		
 		in occ: Occurrence[1];

@@ -595,7 +595,7 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		createNode(parentNode, modelElement, image, text.toString, isLeaf);
 	}
 	
-	private def AbstractOutlineNode createNode(IOutlineNode parentNode, EObject modelElement, Image image, String text,
+	protected def AbstractOutlineNode createNode(IOutlineNode parentNode, EObject modelElement, Image image, String text,
 			boolean isLeaf) {
 		if (modelElement.eResource !== null) {
 			super.createEObjectNode(parentNode, modelElement, image, text, isLeaf)

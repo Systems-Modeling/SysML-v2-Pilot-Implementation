@@ -16,6 +16,7 @@ import org.omg.sysml.lang.sysml.StateUsage
 import org.omg.sysml.lang.sysml.StateDefinition
 import org.omg.sysml.lang.sysml.TriggerInvocationExpression
 import org.omg.sysml.lang.sysml.Expression
+import org.omg.sysml.lang.sysml.ConjugatedPortTyping
 
 /**
  * Customization of the default outline structure.
@@ -68,7 +69,7 @@ class SysMLOutlineTreeProvider extends KerMLOutlineTreeProvider {
 		if (requirementDef.text !== null) {
 			createEStructuralFeatureNode(parentNode, requirementDef, 
 				SysMLPackage.eINSTANCE.requirementDefinition_Text, 
-				_image(requirementDef.text), 'text ' + requirementDef.text , true
+				_image(requirementDef.text), 'text ' + requirementDef.text, true
 			)
 		}
 		super._createChildren(parentNode, requirementDef)
@@ -82,10 +83,22 @@ class SysMLOutlineTreeProvider extends KerMLOutlineTreeProvider {
 		if (requirement.text !== null) {
 			createEStructuralFeatureNode(parentNode, requirement, 
 				SysMLPackage.eINSTANCE.requirementDefinition_Text, 
-				_image(requirement.text), 'text ' + requirement.text , true
+				_image(requirement.text), 'text ' + requirement.text, true
 			)
 		}
 		super._createChildren(parentNode, requirement)
 	}
 	
+	def boolean _isLeaf(ConjugatedPortTyping typing) {
+		typing.conjugatedPortDefinition === null
+	}
+	
+	def void _createChildren(IOutlineNode parentNode, ConjugatedPortTyping typing) {
+		if (typing.conjugatedPortDefinition !== null) {
+			createEObjectNode(parentNode, typing.conjugatedPortDefinition, 
+				_image(typing.conjugatedPortDefinition), typing.conjugatedPortDefinition._text, false
+			)
+		}
+	}
+
 }

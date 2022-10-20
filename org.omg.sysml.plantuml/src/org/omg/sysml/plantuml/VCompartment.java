@@ -552,8 +552,10 @@ public class VCompartment extends VStructure {
     	if (documentations == null) return;
 
         boolean flag = false;
-    	/* PlantUML needs to be updated to support centering.  */
-        append("==== //    documentation  //\n");
+    	/* PlantUML needs to be updated to support centering.
+         * Before that, we do not add a title to documentation compartment.
+         * append("==== //    documentation  //\n");
+         */ 
         for (Documentation doc: documentations) {
             String name = doc.getName();
             if (name != null && !name.isEmpty()) {
@@ -566,7 +568,10 @@ public class VCompartment extends VStructure {
             } else {
                 flag = true;
             }
-            appendText(doc.getBody(), false);
+            String body = doc.getBody();
+            if (body != null) {
+                appendText(body.trim(), false);
+            }
             append('\n');
         }
     }

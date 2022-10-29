@@ -6527,7 +6527,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Assignment cOwnedRelationshipAssignment = (Assignment)rule.eContents().get(1);
 		private final RuleCall cOwnedRelationshipItemFlowRedefinitionParserRuleCall_0 = (RuleCall)cOwnedRelationshipAssignment.eContents().get(0);
 		
-		//ItemFlowFeature returns SysML::ItemFlowFeature :
+		//ItemFlowFeature returns SysML::Feature :
 		//    ownedRelationship += ItemFlowRedefinition
 		//;
 		@Override public ParserRule getRule() { return rule; }
@@ -9524,7 +9524,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		return getItemFlowFeatureMemberAccess().getRule();
 	}
 	
-	//ItemFlowFeature returns SysML::ItemFlowFeature :
+	//ItemFlowFeature returns SysML::Feature :
 	//    ownedRelationship += ItemFlowRedefinition
 	//;
 	public ItemFlowFeatureElements getItemFlowFeatureAccess() {

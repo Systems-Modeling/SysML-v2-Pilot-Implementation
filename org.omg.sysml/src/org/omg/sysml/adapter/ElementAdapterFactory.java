@@ -272,11 +272,6 @@ public class ElementAdapterFactory {
 		}
 		
 		@Override
-		public ElementAdapter caseItemFlowFeature(ItemFlowFeature element) {
-			return new ItemFlowFeatureAdapter(element);
-		}
-		
-		@Override
 		public ElementAdapter caseItemUsage(ItemUsage element) {
 			return new ItemUsageAdapter(element);
 		}

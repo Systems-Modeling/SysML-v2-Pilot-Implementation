@@ -60,7 +60,6 @@ import org.omg.sysml.lang.sysml.Subsetting
 import org.omg.sysml.lang.sysml.Redefinition
 import org.omg.sysml.lang.sysml.LiteralInfinity
 import org.omg.sysml.lang.sysml.LiteralInteger
-import org.omg.sysml.lang.sysml.ItemFlowFeature
 import org.omg.sysml.lang.sysml.Multiplicity
 import org.omg.sysml.lang.sysml.FeatureChainExpression
 import org.omg.sysml.lang.sysml.MetadataFeature
@@ -74,6 +73,7 @@ import org.omg.sysml.lang.sysml.Expression
 import org.omg.sysml.lang.sysml.OperatorExpression
 import org.omg.sysml.expressions.util.EvaluationUtil
 import org.omg.sysml.lang.sysml.LibraryPackage
+import org.omg.sysml.lang.sysml.ItemFlowEnd
 
 /**
  * This class contains custom validation rules. 
@@ -623,7 +623,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 					!subsettedFeaturingTypes.forall[t | 
 						subsettingFeaturingTypes.exists[ f | 
 							f.conformsTo(t) || f instanceof Feature && (f as Feature).isFeaturedWithin(t)]]) {
-				if (subsettingFeature instanceof ItemFlowFeature) {
+				if (subsettingFeature.owningType instanceof ItemFlowEnd) {
 					error("Must be an accessible feature (use dot notation for nesting)", sub, 
 					SysMLPackage.eINSTANCE.subsetting_SubsettedFeature, INVALID_SUBSETTING_OWNINGTYPECONFORMANCE)
 				} else {

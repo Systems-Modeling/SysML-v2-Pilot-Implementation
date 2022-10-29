@@ -87,10 +87,15 @@ public class ImplicitGeneralizationMap {
 		put(InvariantImpl.class, "base", "Performances::trueEvaluations");
 		put(InvariantImpl.class, "negated", "Performances::falseEvaluations");
 		
+		put(ItemFeatureImpl.class, "payload", "Transfers::Transfer::item");
+		
 		put(ItemFlowImpl.class, "base", "Transfers::flowTransfers");
 		put(ItemFlowImpl.class, "enclosedPerformance", "Performances::Performance::enclosedTransfers");
 		put(ItemFlowImpl.class, "subperformance", "Performances::Performance::subperformances");
 		put(ItemFlowImpl.class, "ownedPerformance", "Objects::Object::ownedPerformances");
+		
+		put(ItemFlowEndImpl.class, "sourceOutput", "Transfers::Transfer::source::sourceOutput");
+		put(ItemFlowEndImpl.class, "targetInput", "Transfers::Transfer::target::targetInput");
 		
 		put(LiteralBooleanImpl.class, "base", "Performances::literalBooleanEvaluations");
 		

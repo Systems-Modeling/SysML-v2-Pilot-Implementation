@@ -1162,7 +1162,7 @@ ItemFlowFeatureMember returns SysML::FeatureMembership :
 	ownedRelatedElement += ItemFlowFeature 
 ;
 
-ItemFlowFeature returns SysML::ItemFlowFeature :
+ItemFlowFeature returns SysML::ReferenceUsage :
 	ownedRelationship += ItemFlowRedefinition
 ;
 

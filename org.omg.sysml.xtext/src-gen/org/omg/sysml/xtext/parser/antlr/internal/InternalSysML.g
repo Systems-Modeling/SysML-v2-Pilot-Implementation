@@ -7857,7 +7857,7 @@ ruleMultiplicitySourceEnd returns [EObject current=null]
 		(
 			{
 				$current = forceCreateModelElement(
-					grammarAccess.getMultiplicitySourceEndAccess().getSourceEndAction_0(),
+					grammarAccess.getMultiplicitySourceEndAccess().getFeatureAction_0(),
 					$current);
 			}
 		)
@@ -7937,7 +7937,7 @@ ruleEmptyTargetEnd returns [EObject current=null]
 	(
 		{
 			$current = forceCreateModelElement(
-				grammarAccess.getEmptyTargetEndAccess().getTargetEndAction(),
+				grammarAccess.getEmptyTargetEndAccess().getFeatureAction(),
 				$current);
 		}
 	)
@@ -9537,7 +9537,7 @@ ruleEmptySourceEnd returns [EObject current=null]
 	(
 		{
 			$current = forceCreateModelElement(
-				grammarAccess.getEmptySourceEndAccess().getSourceEndAction(),
+				grammarAccess.getEmptySourceEndAccess().getFeatureAction(),
 				$current);
 		}
 	)
@@ -10552,30 +10552,6 @@ rulePayloadFeatureSpecializationPart[EObject in_current]  returns [EObject curre
 				}
 			)+
 		)
-	)
-;
-
-// Entry rule entryRuleEmptyPayloadFeature
-entryRuleEmptyPayloadFeature returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getEmptyPayloadFeatureRule()); }
-	iv_ruleEmptyPayloadFeature=ruleEmptyPayloadFeature
-	{ $current=$iv_ruleEmptyPayloadFeature.current; }
-	EOF;
-
-// Rule EmptyPayloadFeature
-ruleEmptyPayloadFeature returns [EObject current=null]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
-		{
-			$current = forceCreateModelElement(
-				grammarAccess.getEmptyPayloadFeatureAccess().getItemFeatureAction(),
-				$current);
-		}
 	)
 ;
 

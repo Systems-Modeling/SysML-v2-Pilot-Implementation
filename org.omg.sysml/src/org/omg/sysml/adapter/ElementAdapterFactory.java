@@ -387,11 +387,6 @@ public class ElementAdapterFactory {
 		}
 		
 		@Override
-		public ElementAdapter caseSourceEnd(SourceEnd element) {
-			return new SourceEndAdapter(element);
-		}
-		
-		@Override
 		public ElementAdapter caseStateDefinition(StateDefinition element) {
 			return new StateDefinitionAdapter(element);
 		}
@@ -417,8 +412,8 @@ public class ElementAdapterFactory {
 		}
 		
 		@Override
-		public ElementAdapter caseTargetEnd(TargetEnd element) {
-			return new TargetEndAdapter(element);
+		public ElementAdapter caseSuccessionAsUsage(SuccessionAsUsage element) {
+			return new SuccessionAsUsageAdapter(element);
 		}
 		
 		@Override

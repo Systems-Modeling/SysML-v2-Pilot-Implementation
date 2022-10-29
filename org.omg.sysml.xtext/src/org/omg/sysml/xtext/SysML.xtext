@@ -848,7 +848,7 @@ MultiplicitySourceEndMember returns SysML::EndFeatureMembership :
 ;
 
 MultiplicitySourceEnd returns SysML::Feature :
-	{SysML::SourceEnd} ( ownedRelationship += OwnedMultiplicity )?
+	{SysML::Feature} ( ownedRelationship += OwnedMultiplicity )?
 ;
 
 EmptyTargetEndMember returns SysML::EndFeatureMembership :
@@ -856,7 +856,7 @@ EmptyTargetEndMember returns SysML::EndFeatureMembership :
 ;
 
 EmptyTargetEnd returns SysML::Feature :
-	{SysML::TargetEnd}
+	{SysML::Feature}
 ;
 
 /* ITEMS */
@@ -1042,7 +1042,7 @@ EmptySourceEndMember returns SysML::EndFeatureMembership :
 ;
 
 EmptySourceEnd returns SysML::Feature :
-	{SysML::SourceEnd}
+	{SysML::Feature}
 ;
 
 /* FLOW CONNECTIONS */

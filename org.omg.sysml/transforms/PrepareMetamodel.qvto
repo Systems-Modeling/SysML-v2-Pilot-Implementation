@@ -1,6 +1,6 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2019 Model Driven Solutions, Inc.
+ * Copyright (c) 2019, 2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -42,10 +42,17 @@ main() {
 	if featureClass <> null then {
 		featureClass.addNonuniqueAttribute();
 	} endif;
+	
+	var operatorExpressionClass := prepared.objects()[Class]![name = "OperatorExpression"];
+	assert warning (operatorExpressionClass <> null) with log ("OperatorExpression class not found.");
+	if operatorExpressionClass <> null then {
+		operatorExpressionClass.addOperandAttribute();
+	} endif;
+	
 }
 
 helper Class::addNonuniqueAttribute() {
-    var booleanType := self.oclAsType(Class).ownedAttribute![name = "isUnique"].type;
+    var booleanType := self.ownedAttribute![name = "isUnique"].type;
 	var isNonuniqueProperty := object Property {
 		name := "isNonunique";
 		type := booleanType;
@@ -57,7 +64,21 @@ helper Class::addNonuniqueAttribute() {
 		}
 	};
 	self.oclAsType(Class).ownedAttribute += isNonuniqueProperty;
-	log("Added Property " + isNonuniqueProperty.featureQualifiedName());
+	log("Added Property " + isNonuniqueProperty.featureQualifiedName() + ": " + nameOf(booleanType));
+}
+
+helper Class::addOperandAttribute() {
+	var expressionClass := self.allAttributes()![name = "argument"].type;
+	var operandProperty := object Property {
+		name := "operand";
+		type := expressionClass;
+		lower := 0;
+		upper := -1;
+		isDerived := true;
+		aggregation := AggregationKind::composite;
+	};
+	self.oclAsType(Class).ownedAttribute += operandProperty;
+	log("Added Property " + operandProperty.featureQualifiedName() + ": " + nameOf(expressionClass));
 }
 
 mapping Package::Namespace(inout model: Model) 

@@ -1001,6 +1001,7 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 *     (rule start) 'step' (ambiguity) ownedRelationship+=OwnedRedefinition
 	 *     (rule start) 'succession' 'flow' (ambiguity) ownedRelationship+=OwnedRedefinition
 	 *     (rule start) 'succession' (ambiguity) ownedRelationship+=OwnedRedefinition
+	 *     (rule start) (ambiguity) ownedRelationship+=OwnedRedefinition
 	 *     direction=FeatureDirection 'binding' (ambiguity) ownedRelationship+=OwnedRedefinition
 	 *     direction=FeatureDirection 'bool' (ambiguity) ownedRelationship+=OwnedRedefinition
 	 *     direction=FeatureDirection 'connector' (ambiguity) ownedRelationship+=OwnedRedefinition
@@ -1261,6 +1262,7 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 *     (rule start) 'step' (ambiguity) ownedRelationship+=OwnedSubsetting
 	 *     (rule start) 'succession' 'flow' (ambiguity) ownedRelationship+=OwnedSubsetting
 	 *     (rule start) 'succession' (ambiguity) ownedRelationship+=OwnedSubsetting
+	 *     (rule start) (ambiguity) ownedRelationship+=OwnedSubsetting
 	 *     direction=FeatureDirection 'binding' (ambiguity) ownedRelationship+=OwnedSubsetting
 	 *     direction=FeatureDirection 'bool' (ambiguity) ownedRelationship+=OwnedSubsetting
 	 *     direction=FeatureDirection 'connector' (ambiguity) ownedRelationship+=OwnedSubsetting
@@ -1462,13 +1464,17 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 *     (rule start) 'connector' (ambiguity) (rule start)
 	 *     (rule start) 'datatype' (ambiguity) (rule start)
 	 *     (rule start) 'feature' (ambiguity) (rule start)
+	 *     (rule start) 'flow' (ambiguity) (rule start)
 	 *     (rule start) 'interaction' (ambiguity) (rule start)
 	 *     (rule start) 'metaclass' (ambiguity) (rule start)
 	 *     (rule start) 'step' (ambiguity) (rule start)
 	 *     (rule start) 'struct' (ambiguity) (rule start)
+	 *     (rule start) 'succession' 'flow' (ambiguity) (rule start)
 	 *     direction=FeatureDirection 'connector' (ambiguity) (rule end)
 	 *     direction=FeatureDirection 'feature' (ambiguity) (rule end)
+	 *     direction=FeatureDirection 'flow' (ambiguity) (rule end)
 	 *     direction=FeatureDirection 'step' (ambiguity) (rule end)
+	 *     direction=FeatureDirection 'succession' 'flow' (ambiguity) (rule end)
 	 *     isAbstract?='abstract' 'assoc' 'struct' (ambiguity) (rule end)
 	 *     isAbstract?='abstract' 'assoc' (ambiguity) (rule end)
 	 *     isAbstract?='abstract' 'behavior' (ambiguity) (rule end)
@@ -1477,27 +1483,39 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 *     isAbstract?='abstract' 'connector' (ambiguity) (rule end)
 	 *     isAbstract?='abstract' 'datatype' (ambiguity) (rule end)
 	 *     isAbstract?='abstract' 'feature' (ambiguity) (rule end)
+	 *     isAbstract?='abstract' 'flow' (ambiguity) (rule end)
 	 *     isAbstract?='abstract' 'interaction' (ambiguity) (rule end)
 	 *     isAbstract?='abstract' 'metaclass' (ambiguity) (rule end)
 	 *     isAbstract?='abstract' 'step' (ambiguity) (rule end)
 	 *     isAbstract?='abstract' 'struct' (ambiguity) (rule end)
+	 *     isAbstract?='abstract' 'succession' 'flow' (ambiguity) (rule end)
 	 *     isComposite?='composite' 'connector' (ambiguity) (rule end)
 	 *     isComposite?='composite' 'feature' (ambiguity) (rule end)
+	 *     isComposite?='composite' 'flow' (ambiguity) (rule end)
 	 *     isComposite?='composite' 'step' (ambiguity) (rule end)
+	 *     isComposite?='composite' 'succession' 'flow' (ambiguity) (rule end)
 	 *     isDerived?='derived' 'connector' (ambiguity) (rule end)
 	 *     isDerived?='derived' 'feature' (ambiguity) (rule end)
+	 *     isDerived?='derived' 'flow' (ambiguity) (rule end)
 	 *     isDerived?='derived' 'step' (ambiguity) (rule end)
+	 *     isDerived?='derived' 'succession' 'flow' (ambiguity) (rule end)
 	 *     isEnd?='end' 'connector' (ambiguity) (rule end)
 	 *     isEnd?='end' 'feature' (ambiguity) (rule end)
+	 *     isEnd?='end' 'flow' (ambiguity) (rule end)
 	 *     isEnd?='end' 'step' (ambiguity) (rule end)
+	 *     isEnd?='end' 'succession' 'flow' (ambiguity) (rule end)
 	 *     isNonunique?='nonunique' (ambiguity) (rule end)
 	 *     isOrdered?='ordered' (ambiguity) (rule end)
 	 *     isPortion?='portion' 'connector' (ambiguity) (rule end)
 	 *     isPortion?='portion' 'feature' (ambiguity) (rule end)
+	 *     isPortion?='portion' 'flow' (ambiguity) (rule end)
 	 *     isPortion?='portion' 'step' (ambiguity) (rule end)
+	 *     isPortion?='portion' 'succession' 'flow' (ambiguity) (rule end)
 	 *     isReadOnly?='readonly' 'connector' (ambiguity) (rule end)
 	 *     isReadOnly?='readonly' 'feature' (ambiguity) (rule end)
+	 *     isReadOnly?='readonly' 'flow' (ambiguity) (rule end)
 	 *     isReadOnly?='readonly' 'step' (ambiguity) (rule end)
+	 *     isReadOnly?='readonly' 'succession' 'flow' (ambiguity) (rule end)
 	 *     isSufficient?='all' (ambiguity) (rule end)
 	 *     name=Name (ambiguity) (rule end)
 	 *     ownedRelationship+=ClassifierConjugation (ambiguity) (rule end)
@@ -1508,6 +1526,7 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 *     ownedRelationship+=FeatureConjugation (ambiguity) (rule end)
 	 *     ownedRelationship+=FeatureValue (ambiguity) (rule end)
 	 *     ownedRelationship+=Intersecting (ambiguity) (rule end)
+	 *     ownedRelationship+=ItemFeatureMember (ambiguity) (rule end)
 	 *     ownedRelationship+=ItemFlowEndMember (ambiguity) (rule end)
 	 *     ownedRelationship+=MultiplicityExpressionMember ']' (ambiguity) (rule end)
 	 *     ownedRelationship+=OwnedConjugation (ambiguity) (rule end)
@@ -1555,6 +1574,7 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 *     (rule start) 'step' (ambiguity) ownedRelationship+=OwnedFeatureTyping
 	 *     (rule start) 'succession' 'flow' (ambiguity) ownedRelationship+=OwnedFeatureTyping
 	 *     (rule start) 'succession' (ambiguity) ownedRelationship+=OwnedFeatureTyping
+	 *     (rule start) (ambiguity) ownedRelationship+=OwnedFeatureTyping
 	 *     direction=FeatureDirection 'binding' (ambiguity) ownedRelationship+=OwnedFeatureTyping
 	 *     direction=FeatureDirection 'bool' (ambiguity) ownedRelationship+=OwnedFeatureTyping
 	 *     direction=FeatureDirection 'connector' (ambiguity) ownedRelationship+=OwnedFeatureTyping

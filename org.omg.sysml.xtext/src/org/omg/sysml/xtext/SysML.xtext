@@ -1073,12 +1073,13 @@ Message returns SysML::FlowConnectionUsage :
 ;
 
 fragment MessageDeclaration returns SysML::FlowConnectionUsage :
-	FeatureDeclaration? 
-    ( 'of'  ownedRelationship += ItemFeatureMember )?
-    ( ValuePart 
-    | 'from' ownedRelationship += MessageEventMember 
-      'to' ownedRelationship += MessageEventMember
-    )?
+	  UsageDeclaration? ValuePart?
+      ( 'of' ownedRelationship += ItemFeatureMember )?
+      ( 'from' ownedRelationship += MessageEventMember 
+        'to' ownedRelationship += MessageEventMember
+      )?
+    | ownedRelationship += MessageEventMember 'to' 
+	  ownedRelationship += MessageEventMember
 ;
 
 MessageEventMember returns SysML::ParameterMembership :
@@ -1106,45 +1107,45 @@ SuccessionFlowConnectionUsage returns SysML::SuccessionFlowConnectionUsage :
 ;
 
 fragment FlowConnectionDeclaration returns SysML::FlowConnectionUsage :
-	( UsageDeclaration? 
-      ( 'of'  ownedRelationship += ItemFeatureMember
-      | ownedRelationship += EmptyItemFeatureMember
-      ) 'from'
-    | ownedRelationship += EmptyItemFeatureMember
-    )
-	ownedRelationship += ItemFlowEndMember 'to' 
-	ownedRelationship += ItemFlowEndMember
+	  UsageDeclaration? ValuePart?
+      ( 'of'  ownedRelationship += ItemFeatureMember )?
+      ( 'from' ownedRelationship += FlowEndMember 
+        'to' ownedRelationship += FlowEndMember )?
+    | ownedRelationship += FlowEndMember 'to' 
+	  ownedRelationship += FlowEndMember
 ;
 
-/* Item Flow Members */
+/* Flow Members */
 
 ItemFeatureMember returns SysML::FeatureMembership :
 	ownedRelatedElement += ItemFeature 
 ;
 
 ItemFeature returns SysML::ItemFeature :
-	( name = Name DefinedByKeyword )? 
-	( ownedRelationship += OwnedFeatureTyping 
-	  ( ownedRelationship += OwnedMultiplicity )?
-	| ownedRelationship += OwnedMultiplicity
-	  ( ownedRelationship += OwnedFeatureTyping )?
-	)
+	  PayloadFeature
 ;
 
-EmptyItemFeature returns SysML::ItemFeature :
-	{SysML::ItemFeature}
+fragment PayloadFeature returns SysML::Feature :
+	  Identification? PayloadFeatureSpecializationPart ValuePart?
+    | ownedRelationship += OwnedFeatureTyping ( ownedRelationship += OwnedMultiplicity )?
+    | ownedRelationship += OwnedMultiplicity ownedRelationship += OwnedFeatureTyping
 ;
 
-ItemFlowEndMember returns SysML::EndFeatureMembership :
-	ownedRelatedElement += ItemFlowEnd 
+fragment PayloadFeatureSpecializationPart returns SysML::Feature :
+	  ( -> FeatureSpecialization )+ MultiplicityPart? FeatureSpecialization*
+	| MultiplicityPart FeatureSpecialization+
 ;
 
-ItemFlowEnd returns SysML::ItemFlowEnd :
-	( ownedRelationship += ItemFlowEndSubsetting )?
-	ownedRelationship += ItemFlowFeatureMember
+FlowEndMember returns SysML::EndFeatureMembership :
+	ownedRelatedElement += FlowEnd 
 ;
 
-ItemFlowEndSubsetting returns SysML::ReferenceSubsetting :
+FlowEnd returns SysML::ItemFlowEnd :
+	( ownedRelationship += FlowEndSubsetting )?
+	ownedRelationship += FlowFeatureMember
+;
+
+FlowEndSubsetting returns SysML::ReferenceSubsetting :
 	  referencedFeature = [SysML::Feature | QualifiedName] '.'
 	| ownedRelatedElement += FeatureChainPrefix
 ;
@@ -1154,19 +1155,15 @@ FeatureChainPrefix returns SysML::Feature :
 	ownedRelationship += OwnedFeatureChaining '.'
 ;
 
-EmptyItemFeatureMember returns SysML::FeatureMembership :
-	ownedRelatedElement += EmptyItemFeature 
+FlowFeatureMember returns SysML::FeatureMembership :
+	ownedRelatedElement += FlowFeature 
 ;
 
-ItemFlowFeatureMember returns SysML::FeatureMembership :
-	ownedRelatedElement += ItemFlowFeature 
+FlowFeature returns SysML::ReferenceUsage :
+	ownedRelationship += FlowRedefinition
 ;
 
-ItemFlowFeature returns SysML::ReferenceUsage :
-	ownedRelationship += ItemFlowRedefinition
-;
-
-ItemFlowRedefinition returns SysML::Redefinition :
+FlowRedefinition returns SysML::Redefinition :
 	redefinedFeature = [SysML::Feature|QualifiedName]
 ;
 
@@ -1416,15 +1413,8 @@ PayloadParameterMember returns SysML::ParameterMembership :
 ;
 
 PayloadParameter returns SysML::ReferenceUsage :
-	  Identification? PayloadParameterSpecializationPart ValuePart?
-	| Identification? PayloadParameterSpecializationPart? TriggerValuePart
-    | ownedRelationship += OwnedFeatureTyping ( ownedRelationship += OwnedMultiplicity )?
-    | ownedRelationship += OwnedMultiplicity ownedRelationship += OwnedFeatureTyping
-;
-
-fragment PayloadParameterSpecializationPart returns SysML::Feature :
-	  ( -> FeatureSpecialization )+ MultiplicityPart? FeatureSpecialization*
-	| MultiplicityPart FeatureSpecialization+
+	  PayloadFeature
+	| Identification? PayloadFeatureSpecializationPart? TriggerValuePart
 ;
 
 fragment TriggerValuePart returns SysML::Feature :

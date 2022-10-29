@@ -991,14 +991,13 @@ SuccessionItemFlow returns SysML::SuccessionItemFlow :
 ;
 
 fragment ItemFlowDeclaration returns SysML::ItemFlow :
-	( FeatureDeclaration? 
-      ( 'of'  ownedRelationship += ItemFeatureMember
-      | ownedRelationship += EmptyItemFeatureMember
-      ) 'from'
-    | ( isSufficient ?= 'all' )? ownedRelationship += EmptyItemFeatureMember
-    )
-	ownedRelationship += ItemFlowEndMember 'to' 
-	ownedRelationship += ItemFlowEndMember
+	  FeatureDeclaration? ValuePart?
+      ( 'of'  ownedRelationship += ItemFeatureMember )?
+	  ( 'from' ownedRelationship += ItemFlowEndMember 
+	    'to' ownedRelationship += ItemFlowEndMember )?
+    | ( isSufficient ?= 'all' )?
+      ownedRelationship += ItemFlowEndMember 'to'
+	  ownedRelationship += ItemFlowEndMember
 ;
 
 ItemFeatureMember returns SysML::FeatureMembership :
@@ -1006,20 +1005,14 @@ ItemFeatureMember returns SysML::FeatureMembership :
 ;
 
 ItemFeature returns SysML::ItemFeature :
-	( name = Name ':' )? 
-	(  ownedRelationship += OwnedFeatureTyping 
-	  ( ownedRelationship += OwnedMultiplicity )?
-	| ownedRelationship += OwnedMultiplicity
-	  ( ownedRelationship += OwnedFeatureTyping )?
-	)
+	  Identification? ItemFeatureSpecializationPart ValuePart?
+    | ownedRelationship += OwnedFeatureTyping ( ownedRelationship += OwnedMultiplicity )?
+    | ownedRelationship += OwnedMultiplicity ownedRelationship += OwnedFeatureTyping
 ;
 
-EmptyItemFeatureMember returns SysML::FeatureMembership :
-	ownedRelatedElement += EmptyItemFeature 
-;
-
-EmptyItemFeature returns SysML::ItemFeature :
-	{SysML::ItemFeature}
+fragment ItemFeatureSpecializationPart returns SysML::Feature :
+	  ( -> FeatureSpecialization )+ MultiplicityPart? FeatureSpecialization*
+	| MultiplicityPart FeatureSpecialization+
 ;
 
 ItemFlowEndMember returns SysML::EndFeatureMembership :

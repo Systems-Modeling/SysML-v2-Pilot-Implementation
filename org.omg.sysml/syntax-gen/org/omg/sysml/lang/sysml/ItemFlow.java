@@ -44,7 +44,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.omg.sysml.lang.sysml.ItemFlow#getSourceOutputFeature <em>Source Output Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.ItemFlow#getItemFlowEnd <em>Item Flow End</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.ItemFlow#getItemFeature <em>Item Feature</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.ItemFlow#getItemFlowFeature <em>Item Flow Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.ItemFlow#getInteraction <em>Interaction</em>}</li>
  * </ul>
  *
@@ -139,7 +138,7 @@ public interface ItemFlow extends Connector, Step {
 	 * Returns the value of the '<em><b>Item Flow End</b></em>' reference list.
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.ItemFlowEnd}.
 	 * <p>
-	 * This feature redefines the following features:
+	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
 	 *   <li>'{@link org.omg.sysml.lang.sysml.Connector#getConnectorEnd() <em>Connector End</em>}'</li>
@@ -151,14 +150,14 @@ public interface ItemFlow extends Connector, Step {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>A <code>connectorEnd</code> of this ItemFlow. (IMPL)</p>
+	 * <p>The <code>connectorEnds</code> of this ItemFlow that are ItemFlowEnds.</p>
 	 * 
 	 * <p>TBD. Uses a class from the Interactions IMPL package.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Item Flow End</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getItemFlow_ItemFlowEnd()
-	 * @model lower="2" transient="true" volatile="true" derived="true" ordered="false"
-	 *        annotation="redefines"
+	 * @model upper="2" transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="subsets"
 	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
@@ -179,7 +178,8 @@ public interface ItemFlow extends Connector, Step {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Feature representing the Item in transit between the source and the target during the transfer. (IMPL)</p>
+	 * <p>The Feature of the ItemFlow that is an ItemFeature,
+	 * representing the payload in transit between the <code><em>source</em></code> and the <code><em>target</em><code> during a transfer over the ItemFlow.</p>
 	 * 
 	 * <p>This Feature represents the Item in transit between the source and the target during the transfer.</p>
 	 * <!-- end-model-doc -->
@@ -202,26 +202,6 @@ public interface ItemFlow extends Connector, Step {
 	 * @generated
 	 */
 	void setItemFeature(ItemFeature value);
-
-	/**
-	 * Returns the value of the '<em><b>Item Flow Feature</b></em>' reference list.
-	 * The list contents are of type {@link org.omg.sysml.lang.sysml.ItemFlowFeature}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Item Flow Feature</em>' reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * <p>The <code>sourceOutputFeatures</code> and <code>targetInputFeatures</code> of this ItemFlow. (IMPL).</p>
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Item Flow Feature</em>' reference list.
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getItemFlow_ItemFlowFeature()
-	 * @model lower="2" transient="true" volatile="true" derived="true" ordered="false"
-	 *        annotation="http://www.omg.org/spec/SysML"
-	 * @generated
-	 */
-	EList<ItemFlowFeature> getItemFlowFeature();
 
 	/**
 	 * Returns the value of the '<em><b>Interaction</b></em>' reference list.

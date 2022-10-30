@@ -46,7 +46,6 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedUsage <em>Owned Usage</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedPort <em>Owned Port</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Definition#getDirectedUsage <em>Directed Usage</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Definition#getUsage <em>Usage</em>}</li>
@@ -78,6 +77,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedUseCase <em>Owned Use Case</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedFlow <em>Owned Flow</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedMetadata <em>Owned Metadata</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedUsage <em>Owned Usage</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition()

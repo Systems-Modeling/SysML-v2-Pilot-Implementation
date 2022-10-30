@@ -43,7 +43,6 @@ import org.omg.sysml.lang.sysml.FeatureChaining;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureReferenceExpression;
 import org.omg.sysml.lang.sysml.ItemFlowEnd;
-import org.omg.sysml.lang.sysml.ItemFlowFeature;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.Specialization;
@@ -288,16 +287,14 @@ public class VPath extends VTraverser {
     /*
       ife : ItemFlowEnd :> baseTarget (e.g. action) {
            // ReferenceUsage
-           iff : ItemFlowFeature :>> ioTarget: ReferenceUsage;
+           iff : Feature :>> ioTarget: ReferenceUsage;
       }
     */
     private static Feature getIOTarget(ItemFlowEnd ife) {
         for (FeatureMembership fm: ife.getOwnedFeatureMembership()) {
             Feature f = fm.getOwnedMemberFeature();
-            if (f instanceof ItemFlowFeature) {
-                for (Redefinition rd: f.getOwnedRedefinition()) {
-                    return rd.getRedefinedFeature();
-                }
+            for (Redefinition rd: f.getOwnedRedefinition()) {
+                return rd.getRedefinedFeature();
             }
         }
         return null;

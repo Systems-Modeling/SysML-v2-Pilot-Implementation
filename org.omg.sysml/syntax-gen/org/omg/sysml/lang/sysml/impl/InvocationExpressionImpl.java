@@ -70,8 +70,38 @@ public class InvocationExpressionImpl extends ExpressionImpl implements Invocati
 	protected InvocationExpressionImpl() {
 		super();
 	}
+		
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return SysMLPackage.Literals.INVOCATION_EXPRESSION;
+	}
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public EList<Expression> getArgument() {
+		return (EList<Expression>)ARGUMENT__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+	}
 	
 	// Additional overrides
+
+	@Override
+	public Function getFunction() {
+		// TODO: Invoke expressions/features using subsetting instead of feature typing.
+		Type type = ExpressionUtil.getExpressionTypeOf(this);
+		return type instanceof Function? (Function)type:
+			   type instanceof Expression? ((Expression)type).getFunction():
+			   (Function)SysMLLibraryUtil.getLibraryType(this, 
+					   ImplicitGeneralizationMap.getDefaultSupertypeFor(FunctionImpl.class, "base"));
+	}
 
 	@Override
 	public boolean modelLevelEvaluable(EList<Feature> visited) {
@@ -100,35 +130,6 @@ public class InvocationExpressionImpl extends ExpressionImpl implements Invocati
 	}
 	
 	//
-	
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EClass eStaticClass() {
-		return SysMLPackage.Literals.INVOCATION_EXPRESSION;
-	}
-	
-	@Override
-	public Function getFunction() {
-		Type type = ExpressionUtil.getExpressionTypeOf(this);
-		return type instanceof Function? (Function)type:
-			   type instanceof Expression? ((Expression)type).getFunction():
-			   (Function)SysMLLibraryUtil.getLibraryType(this, 
-					   ImplicitGeneralizationMap.getDefaultSupertypeFor(FunctionImpl.class, "base"));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public EList<Expression> getArgument() {
-		return (EList<Expression>)ARGUMENT__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
-	}
 	
 	/**
 	 * <!-- begin-user-doc -->

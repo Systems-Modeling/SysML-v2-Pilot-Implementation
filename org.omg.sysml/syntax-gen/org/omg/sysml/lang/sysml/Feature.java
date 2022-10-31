@@ -46,30 +46,33 @@ import org.eclipse.emf.common.util.EList;
  * ownedTyping = ownedGeneralization->selectByKind(FeatureTyping)
  * isEnd = owningFeatureMembership <> null and owningFeatureMembership.oclIsKindOf(EndFeatureMembership)
  * multiplicity <> null implies multiplicity.featuringType = featuringType 
- * allSupertypes()->includes(KernelLibrary::things)
+ * allSupertypes()->includes(resolve("Base::things"))
  * chainingFeatures->excludes(self)
  * ownedFeatureChaining = ownedRelationship->selectByKind(FeatureChaining)
  * chainingFeature = ownedFeatureChaining.chainingFeature
- * chainingfeatureChainings->notEmpty() implies (owningFeatureMembership <> null implies owningFeatureMembership.isDerived)
  * chainingFeatures->size() <> 1
  * inverseFeature = invertingFeatureInverting.featureInverse
  * invertedFeature = invertedFeatureInverting.featureInverted
+ * ownedTyping.type->exists(selectByKind(Class)) implies
+ *     allSupertypes()->includes(resolve("Occurrences::occurrences"))
+ * ownedTyping.type->exists(selectByKind(DataType)) implies
+ *     allSupertypes()->includes(resolve("Base::dataValues"))
  * <!-- end-model-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwningFeatureMembership <em>Owning Feature Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwningType <em>Owning Type</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Feature#getEndOwningType <em>End Owning Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isUnique <em>Is Unique</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isOrdered <em>Is Ordered</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getType <em>Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwnedRedefinition <em>Owned Redefinition</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwnedSubsetting <em>Owned Subsetting</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwningFeatureMembership <em>Owning Feature Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isComposite <em>Is Composite</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isEnd <em>Is End</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Feature#getEndOwningType <em>End Owning Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwnedTyping <em>Owned Typing</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getFeaturingType <em>Featuring Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwnedTypeFeaturing <em>Owned Type Featuring</em>}</li>
@@ -351,7 +354,7 @@ public interface Feature extends Type {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Type</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_Type()
-	 * @model required="true" transient="true" volatile="true" derived="true"
+	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='typedFeature'"
 	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated

@@ -71,7 +71,7 @@ public interface ConnectionUsage extends ConnectorAsUsage, PartUsage {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Connection Definition</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getConnectionUsage_ConnectionDefinition()
-	 * @model required="true" transient="true" volatile="true" derived="true"
+	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='definedConnection'"
 	 *        annotation="redefines"
 	 *        annotation="subsets"

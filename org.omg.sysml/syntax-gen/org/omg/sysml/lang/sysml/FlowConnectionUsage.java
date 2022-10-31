@@ -47,7 +47,7 @@ public interface FlowConnectionUsage extends ConnectionUsage, ActionUsage, ItemF
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Flow Connection Definition</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFlowConnectionUsage_FlowConnectionDefinition()
-	 * @model required="true" transient="true" volatile="true" derived="true"
+	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='definedFlowConnection'"
 	 *        annotation="redefines"
 	 *        annotation="http://www.omg.org/spec/SysML"

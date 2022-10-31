@@ -41,7 +41,6 @@ import org.omg.sysml.lang.sysml.ItemFlow;
 import org.omg.sysml.lang.sysml.ItemFlowEnd;
 import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.util.UsageUtil;
 
 /**
@@ -380,26 +379,6 @@ public class FlowConnectionUsageImpl extends ConnectionUsageImpl implements Flow
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Type> getType() {
-		@SuppressWarnings("unchecked")
-		EList<Type> definition = (EList<Type>)((EList<?>)getDefinition());
-		return definition;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetType() {
-  		return false;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EList<Feature> getDirectedFeature() {
 		return getParameter();
 	}
@@ -620,8 +599,6 @@ public class FlowConnectionUsageImpl extends ConnectionUsageImpl implements Flow
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.FLOW_CONNECTION_USAGE__TYPE:
-				return isSetType();
 			case SysMLPackage.FLOW_CONNECTION_USAGE__DIRECTED_FEATURE:
 				return isSetDirectedFeature();
 			case SysMLPackage.FLOW_CONNECTION_USAGE__BEHAVIOR:

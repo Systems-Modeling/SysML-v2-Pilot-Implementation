@@ -31,7 +31,10 @@ package org.omg.sysml.lang.sysml;
  * 
  * <p>Classes serve to subdivide Classifiers into two kinds of objects: those that have some definition beyond their property values and those that are defined entirely by their values. Classes are the first kind. Two objects that are classified by a given Class can have entirely identical descriptions and properties and still be treated as separate. Classes are intended for the construction of models representing real world things which can be separate entities even if all measurable properties are the same.</p>
  * 
- * allSupertypes()->includes(Kernel Library::Occurrence)
+ * allSupertypes()->includes(resolve("Occurrences::Occurrence"))
+ * ownedGeneralization.general->
+ *     forAll(not oclIsKindOf(DataType) and 
+ *            not oclIsKindOf(Association))
  * <!-- end-model-doc -->
  *
  *

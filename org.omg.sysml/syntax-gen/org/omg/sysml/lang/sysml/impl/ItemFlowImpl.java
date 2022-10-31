@@ -30,7 +30,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.omg.sysml.lang.sysml.Association;
 import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.Classifier;
-import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Interaction;
 import org.omg.sysml.lang.sysml.ItemFeature;
@@ -319,27 +318,6 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public EList<Type> getType() {
-		@SuppressWarnings("unchecked")
-		EList<Type> association = (EList<Type>)((EList<?>)getAssociation());
-		return association;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetType() {
-  		return false;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EList<Feature> getDirectedFeature() {
 		return getParameter();
 	}
@@ -490,8 +468,6 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.ITEM_FLOW__TYPE:
-				return isSetType();
 			case SysMLPackage.ITEM_FLOW__DIRECTED_FEATURE:
 				return isSetDirectedFeature();
 			case SysMLPackage.ITEM_FLOW__BEHAVIOR:

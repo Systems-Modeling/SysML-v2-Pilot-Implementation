@@ -220,7 +220,7 @@ public interface ItemFlow extends Connector, Step {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Interaction</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getItemFlow_Interaction()
-	 * @model required="true" transient="true" volatile="true" derived="true"
+	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="redefines"
 	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated

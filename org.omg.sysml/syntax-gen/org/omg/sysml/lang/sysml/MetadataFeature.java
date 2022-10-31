@@ -63,7 +63,7 @@ public interface MetadataFeature extends Feature, AnnotatingElement {
 	 * @return the value of the '<em>Metaclass</em>' reference.
 	 * @see #setMetaclass(Metaclass)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getMetadataFeature_Metaclass()
-	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
+	 * @model transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='typedMetadata'"
 	 *        annotation="redefines"
 	 *        annotation="http://www.omg.org/spec/SysML"

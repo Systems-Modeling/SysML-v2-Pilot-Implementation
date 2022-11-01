@@ -35,50 +35,7 @@ main() {
 		URI := "http://www.omg.org/spec/SysML/2.0";
 	};
 	syntax.map Namespace(model);
-	model.packagedElement[Package]->destroy();
-
-	var featureClass := prepared.objects()[Class]![name = "Feature"];
-	assert warning (featureClass <> null) with log ("Feature class not found.");
-	if featureClass <> null then {
-		featureClass.addNonuniqueAttribute();
-	} endif;
-	
-	var operatorExpressionClass := prepared.objects()[Class]![name = "OperatorExpression"];
-	assert warning (operatorExpressionClass <> null) with log ("OperatorExpression class not found.");
-	if operatorExpressionClass <> null then {
-		operatorExpressionClass.addOperandAttribute();
-	} endif;
-	
-}
-
-helper Class::addNonuniqueAttribute() {
-    var booleanType := self.ownedAttribute![name = "isUnique"].type;
-	var isNonuniqueProperty := object Property {
-		name := "isNonunique";
-		type := booleanType;
-		lower := 1;
-		upper := 1;
-		isDerived := true;
-		defaultValue := object LiteralBoolean {
-			value := false;
-		}
-	};
-	self.oclAsType(Class).ownedAttribute += isNonuniqueProperty;
-	log("Added Property " + isNonuniqueProperty.featureQualifiedName() + ": " + nameOf(booleanType));
-}
-
-helper Class::addOperandAttribute() {
-	var expressionClass := self.allAttributes()![name = "argument"].type;
-	var operandProperty := object Property {
-		name := "operand";
-		type := expressionClass;
-		lower := 0;
-		upper := -1;
-		isDerived := true;
-		aggregation := AggregationKind::composite;
-	};
-	self.oclAsType(Class).ownedAttribute += operandProperty;
-	log("Added Property " + operandProperty.featureQualifiedName() + ": " + nameOf(expressionClass));
+	model.packagedElement[Package]->destroy();	
 }
 
 mapping Package::Namespace(inout model: Model) 

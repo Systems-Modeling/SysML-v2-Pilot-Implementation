@@ -68,16 +68,16 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * </p>
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getOwnedRelationship <em>Owned Relationship</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getOwningFeatureMembership <em>Owning Feature Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getOwningType <em>Owning Type</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getEndOwningType <em>End Owning Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#isUnique <em>Is Unique</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#isOrdered <em>Is Ordered</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getType <em>Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getOwnedRedefinition <em>Owned Redefinition</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getOwnedSubsetting <em>Owned Subsetting</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getOwningFeatureMembership <em>Owning Feature Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#isComposite <em>Is Composite</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#isEnd <em>Is End</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getEndOwningType <em>End Owning Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getOwnedTyping <em>Owned Typing</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getFeaturingType <em>Featuring Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getOwnedTypeFeaturing <em>Owned Type Featuring</em>}</li>
@@ -97,15 +97,6 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
 public class FeatureImpl extends TypeImpl implements Feature {
 	
 	/**
-	 * The cached setting delegate for the '{@link #getOwningFeatureMembership() <em>Owning Feature Membership</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOwningFeatureMembership()
-	 * @generated
-	 * @ordered
-	 */
-	protected EStructuralFeature.Internal.SettingDelegate OWNING_FEATURE_MEMBERSHIP__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.FEATURE__OWNING_FEATURE_MEMBERSHIP).getSettingDelegate();
-	/**
 	 * The cached setting delegate for the '{@link #getOwningType() <em>Owning Type</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -114,15 +105,6 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate OWNING_TYPE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.FEATURE__OWNING_TYPE).getSettingDelegate();
-	/**
-	 * The cached setting delegate for the '{@link #getEndOwningType() <em>End Owning Type</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getEndOwningType()
-	 * @generated
-	 * @ordered
-	 */
-	protected EStructuralFeature.Internal.SettingDelegate END_OWNING_TYPE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.FEATURE__END_OWNING_TYPE).getSettingDelegate();
 	/**
 	 * The default value of the '{@link #isUnique() <em>Is Unique</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -187,6 +169,15 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate OWNED_SUBSETTING__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.FEATURE__OWNED_SUBSETTING).getSettingDelegate();
 	/**
+	 * The cached setting delegate for the '{@link #getOwningFeatureMembership() <em>Owning Feature Membership</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwningFeatureMembership()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate OWNING_FEATURE_MEMBERSHIP__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.FEATURE__OWNING_FEATURE_MEMBERSHIP).getSettingDelegate();
+	/**
 	 * The default value of the '{@link #isComposite() <em>Is Composite</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -222,6 +213,15 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 * @ordered
 	 */
 	protected boolean isEnd = IS_END_EDEFAULT;
+	/**
+	 * The cached setting delegate for the '{@link #getEndOwningType() <em>End Owning Type</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getEndOwningType()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate END_OWNING_TYPE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.FEATURE__END_OWNING_TYPE).getSettingDelegate();
 	/**
 	 * The cached setting delegate for the '{@link #getOwnedTyping() <em>Owned Typing</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -359,14 +359,14 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate OWNED_REFERENCE_SUBSETTING__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.FEATURE__OWNED_REFERENCE_SUBSETTING).getSettingDelegate();
 	/**
-	 * The cached setting delegate for the '{@link #isNonunique() <em>Is Nonunique</em>}' attribute.
+	 * The default value of the '{@link #isNonunique() <em>Is Nonunique</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #isNonunique()
 	 * @generated
 	 * @ordered
 	 */
-	protected EStructuralFeature.Internal.SettingDelegate IS_NONUNIQUE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)SysMLPackage.Literals.FEATURE__IS_NONUNIQUE).getSettingDelegate();
+	protected static final boolean IS_NONUNIQUE_EDEFAULT = false;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -733,7 +733,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 */
 	@Override
 	public boolean isNonunique() {
-		return (Boolean)IS_NONUNIQUE__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+		return !isUnique();
 	}
 
 	/**
@@ -745,7 +745,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 */
 	@Override
 	public void setIsNonunique(boolean newIsNonunique) {
-		IS_NONUNIQUE__ESETTING_DELEGATE.dynamicSet(this, null, 0, newIsNonunique);
+		setIsUnique(!newIsNonunique);
 	}
 	
 	/**
@@ -1011,15 +1011,9 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case SysMLPackage.FEATURE__OWNING_FEATURE_MEMBERSHIP:
-				if (resolve) return getOwningFeatureMembership();
-				return basicGetOwningFeatureMembership();
 			case SysMLPackage.FEATURE__OWNING_TYPE:
 				if (resolve) return getOwningType();
 				return basicGetOwningType();
-			case SysMLPackage.FEATURE__END_OWNING_TYPE:
-				if (resolve) return getEndOwningType();
-				return basicGetEndOwningType();
 			case SysMLPackage.FEATURE__IS_UNIQUE:
 				return isUnique();
 			case SysMLPackage.FEATURE__IS_ORDERED:
@@ -1030,10 +1024,16 @@ public class FeatureImpl extends TypeImpl implements Feature {
 				return getOwnedRedefinition();
 			case SysMLPackage.FEATURE__OWNED_SUBSETTING:
 				return getOwnedSubsetting();
+			case SysMLPackage.FEATURE__OWNING_FEATURE_MEMBERSHIP:
+				if (resolve) return getOwningFeatureMembership();
+				return basicGetOwningFeatureMembership();
 			case SysMLPackage.FEATURE__IS_COMPOSITE:
 				return isComposite();
 			case SysMLPackage.FEATURE__IS_END:
 				return isEnd();
+			case SysMLPackage.FEATURE__END_OWNING_TYPE:
+				if (resolve) return getEndOwningType();
+				return basicGetEndOwningType();
 			case SysMLPackage.FEATURE__OWNED_TYPING:
 				return getOwnedTyping();
 			case SysMLPackage.FEATURE__FEATURING_TYPE:
@@ -1072,14 +1072,8 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case SysMLPackage.FEATURE__OWNING_FEATURE_MEMBERSHIP:
-				setOwningFeatureMembership((FeatureMembership)newValue);
-				return;
 			case SysMLPackage.FEATURE__OWNING_TYPE:
 				setOwningType((Type)newValue);
-				return;
-			case SysMLPackage.FEATURE__END_OWNING_TYPE:
-				setEndOwningType((Type)newValue);
 				return;
 			case SysMLPackage.FEATURE__IS_UNIQUE:
 				setIsUnique((Boolean)newValue);
@@ -1099,11 +1093,17 @@ public class FeatureImpl extends TypeImpl implements Feature {
 				getOwnedSubsetting().clear();
 				getOwnedSubsetting().addAll((Collection<? extends Subsetting>)newValue);
 				return;
+			case SysMLPackage.FEATURE__OWNING_FEATURE_MEMBERSHIP:
+				setOwningFeatureMembership((FeatureMembership)newValue);
+				return;
 			case SysMLPackage.FEATURE__IS_COMPOSITE:
 				setIsComposite((Boolean)newValue);
 				return;
 			case SysMLPackage.FEATURE__IS_END:
 				setIsEnd((Boolean)newValue);
+				return;
+			case SysMLPackage.FEATURE__END_OWNING_TYPE:
+				setEndOwningType((Type)newValue);
 				return;
 			case SysMLPackage.FEATURE__OWNED_TYPING:
 				getOwnedTyping().clear();
@@ -1159,14 +1159,8 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.FEATURE__OWNING_FEATURE_MEMBERSHIP:
-				setOwningFeatureMembership((FeatureMembership)null);
-				return;
 			case SysMLPackage.FEATURE__OWNING_TYPE:
 				setOwningType((Type)null);
-				return;
-			case SysMLPackage.FEATURE__END_OWNING_TYPE:
-				setEndOwningType((Type)null);
 				return;
 			case SysMLPackage.FEATURE__IS_UNIQUE:
 				setIsUnique(IS_UNIQUE_EDEFAULT);
@@ -1183,11 +1177,17 @@ public class FeatureImpl extends TypeImpl implements Feature {
 			case SysMLPackage.FEATURE__OWNED_SUBSETTING:
 				getOwnedSubsetting().clear();
 				return;
+			case SysMLPackage.FEATURE__OWNING_FEATURE_MEMBERSHIP:
+				setOwningFeatureMembership((FeatureMembership)null);
+				return;
 			case SysMLPackage.FEATURE__IS_COMPOSITE:
 				setIsComposite(IS_COMPOSITE_EDEFAULT);
 				return;
 			case SysMLPackage.FEATURE__IS_END:
 				setIsEnd(IS_END_EDEFAULT);
+				return;
+			case SysMLPackage.FEATURE__END_OWNING_TYPE:
+				setEndOwningType((Type)null);
 				return;
 			case SysMLPackage.FEATURE__OWNED_TYPING:
 				getOwnedTyping().clear();
@@ -1223,7 +1223,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 				setOwnedReferenceSubsetting((ReferenceSubsetting)null);
 				return;
 			case SysMLPackage.FEATURE__IS_NONUNIQUE:
-				IS_NONUNIQUE__ESETTING_DELEGATE.dynamicUnset(this, null, 0);
+				setIsNonunique(IS_NONUNIQUE_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -1239,12 +1239,8 @@ public class FeatureImpl extends TypeImpl implements Feature {
 		switch (featureID) {
 			case SysMLPackage.FEATURE__OWNED_RELATIONSHIP:
 				return ownedRelationship != null && !ownedRelationship.isEmpty();
-			case SysMLPackage.FEATURE__OWNING_FEATURE_MEMBERSHIP:
-				return OWNING_FEATURE_MEMBERSHIP__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.FEATURE__OWNING_TYPE:
 				return OWNING_TYPE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
-			case SysMLPackage.FEATURE__END_OWNING_TYPE:
-				return END_OWNING_TYPE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.FEATURE__IS_UNIQUE:
 				return isUnique != IS_UNIQUE_EDEFAULT;
 			case SysMLPackage.FEATURE__IS_ORDERED:
@@ -1255,10 +1251,14 @@ public class FeatureImpl extends TypeImpl implements Feature {
 				return OWNED_REDEFINITION__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.FEATURE__OWNED_SUBSETTING:
 				return OWNED_SUBSETTING__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
+			case SysMLPackage.FEATURE__OWNING_FEATURE_MEMBERSHIP:
+				return OWNING_FEATURE_MEMBERSHIP__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.FEATURE__IS_COMPOSITE:
 				return isComposite != IS_COMPOSITE_EDEFAULT;
 			case SysMLPackage.FEATURE__IS_END:
 				return isEnd != IS_END_EDEFAULT;
+			case SysMLPackage.FEATURE__END_OWNING_TYPE:
+				return END_OWNING_TYPE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.FEATURE__OWNED_TYPING:
 				return OWNED_TYPING__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.FEATURE__FEATURING_TYPE:
@@ -1282,7 +1282,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 			case SysMLPackage.FEATURE__OWNED_REFERENCE_SUBSETTING:
 				return OWNED_REFERENCE_SUBSETTING__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case SysMLPackage.FEATURE__IS_NONUNIQUE:
-				return IS_NONUNIQUE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
+				return isNonunique() != IS_NONUNIQUE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}

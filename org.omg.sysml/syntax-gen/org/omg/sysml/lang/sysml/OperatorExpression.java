@@ -83,7 +83,7 @@ public interface OperatorExpression extends InvocationExpression {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Operand</em>' containment reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getOperatorExpression_Operand()
-	 * @model containment="true" transient="true" volatile="true" derived="true" ordered="false"
+	 * @model containment="true" transient="true" volatile="true" derived="true"
 	 * @generated
 	 */
 	EList<Expression> getOperand();

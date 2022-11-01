@@ -193,9 +193,13 @@ public class JsonElementProcessingFacade implements ElementProcessingFacade {
 		apiElement.put("@type", eClass.getName());
 		boolean isLibraryElement = ElementUtil.isStandardLibraryElement(element);
 		for (EStructuralFeature feature: eClass.getEAllStructuralFeatures()) {
-			String name = feature.getName();
+			String className = eClass.getName();
+			String featureName = feature.getName();
 			if ((this.isIncludeDerived() || !feature.isDerived()) && 
-					( name == null || !(name.endsWith("_comp") || apiElement.containsKey(name)))) {
+					// Skip implementation-specific features.
+					!("Feature".equals(className) && "isNonunique".equals(featureName) || 
+					  "OperatorExpression".equals(className) && "operand".equals(featureName) || 
+					  apiElement.containsKey(featureName))) {
 				Object value = element.eGet(feature);
 				if (value != null) {
 					if (feature instanceof EReference) {
@@ -213,7 +217,7 @@ public class JsonElementProcessingFacade implements ElementProcessingFacade {
 						}
 					}
 				}
-				apiElement.put(name, value);
+				apiElement.put(featureName, value);
 			}
 		}
 		return new DataVersion().payload(apiElement).

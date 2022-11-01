@@ -713,7 +713,6 @@ public interface Feature extends Type {
 	 * @see #setIsNonunique(boolean)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_IsNonunique()
 	 * @model default="false" dataType="org.omg.sysml.lang.types.Boolean" required="true" transient="true" volatile="true" derived="true" ordered="false"
-	 *        annotation="http://www.omg.org/spec/SysML"
 	 * @generated
 	 */
 	boolean isNonunique();

@@ -8,7 +8,6 @@ Export-Package: org.omg.sysml.plantuml
 Import-Package: com.google.common.collect,
  com.google.inject;version="1.3.0",
  net.sourceforge.plantuml;version="1.2022.7.himi1",
- org.eclipse.elk.core,
  org.eclipse.emf.common,
  org.eclipse.emf.common.util,
  org.eclipse.emf.ecore,

@@ -549,7 +549,7 @@ public class VCompartment extends VStructure {
     	if (documentations == null) return;
 
         boolean flag = false;
-        append("##//documentation//##\n");
+        append("##//documentations//##\n");
         for (Documentation doc: documentations) {
             String name = doc.getName();
             if (name != null && !name.isEmpty()) {

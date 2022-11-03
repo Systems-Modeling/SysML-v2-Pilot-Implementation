@@ -49,6 +49,7 @@ fragment Identification returns SysML::Element :
 ;
 
 Element returns SysML::Element :
+	( ownedRelationship += PrefixMetadataAnnotation )*
     'element' Identification? ElementBody
 ;
 
@@ -64,6 +65,7 @@ fragment OwnedElement returns SysML::Element :
 /* Relationships */
 
 Relationship returns SysML::Relationship :
+	( ownedRelationship += PrefixMetadataAnnotation )*
     'relationship' Identification?
     RelationshipRelatedElements
     RelationshipBody
@@ -150,6 +152,7 @@ TextualRepresentation returns SysML::TextualRepresentation :
 /* NAMESPACES */
 
 Namespace returns SysML::Namespace :
+	( ownedRelationship += PrefixMetadataMember )*
 	NamespaceDeclaration NamespaceBody
 ;
 
@@ -288,11 +291,13 @@ FeatureElement returns SysML::Feature :
 /* PACKAGES */
 
 Package returns SysML::Package :
+	( ownedRelationship += PrefixMetadataMember )*
 	PackageDeclaration PackageBody 
 ;
 
 LibraryPackage returns SysML::LibraryPackage :
 	( isStandard ?= 'standard' )? 'library'
+	( ownedRelationship += PrefixMetadataMember )*
 	PackageDeclaration PackageBody
 ;
 
@@ -320,8 +325,16 @@ ElementFilterMember returns SysML::ElementFilterMembership :
 
 /* Types */
 
+fragment TypeExtensionKeyword returns SysML::Type :
+	ownedRelationship += PrefixMetadataMember
+;
+
+fragment TypePrefix returns SysML::Type :
+	( isAbstract ?= 'abstract' )? TypeExtensionKeyword*
+;
+
 Type returns SysML::Type :
-    ( isAbstract ?= 'abstract' )? 'type' 
+    TypePrefix 'type' 
     TypeDeclaration TypeBody
 ;
 
@@ -465,7 +478,7 @@ Differencing returns SysML::Differencing :
 /* Classifiers */
 
 Classifier returns SysML::Classifier :
-	( isAbstract ?= 'abstract' )? 'classifier' 
+	TypePrefix 'classifier' 
 	ClassifierDeclaration TypeBody
 ;
 
@@ -508,7 +521,11 @@ ClassifierConjugation returns SysML::Conjugation :
 
 /* Features */
 
-fragment FeaturePrefix returns SysML::Feature :	
+enum FeatureDirection returns SysML::FeatureDirectionKind:
+	in = 'in' | out = 'out' | inout = 'inout'
+;
+
+fragment BasicFeaturePrefix returns SysML::Feature :	
 	( direction = FeatureDirection )?
 	( isAbstract ?= 'abstract' )?
 	( isComposite ?= 'composite' | isPortion ?= 'portion' )? 
@@ -517,13 +534,20 @@ fragment FeaturePrefix returns SysML::Feature :
 	( isEnd ?= 'end' )?
 ;
 
-enum FeatureDirection returns SysML::FeatureDirectionKind:
-	in = 'in' | out = 'out' | inout = 'inout'
+fragment FeatureExtensionKeyword returns SysML::Feature :
+	ownedRelationship += PrefixMetadataMember
+;
+
+fragment FeaturePrefix returns SysML::Feature :
+	BasicFeaturePrefix FeatureExtensionKeyword*
 ;
 
 Feature returns SysML::Feature :
-	FeaturePrefix 
-	( 'feature'? FeatureDeclaration | 'feature' ) 
+	BasicFeaturePrefix 
+	( FeatureExtensionKeyword* 'feature'? FeatureDeclaration
+	| FeatureExtensionKeyword+ 'feature'?
+	| 'feature'
+	) 
 	ValuePart? TypeBody
 ;
 
@@ -791,21 +815,21 @@ MultiplicityExpressionMember returns SysML::OwningMembership :
 /* Data Types */
 
 DataType returns SysML::DataType :
-	( isAbstract ?= 'abstract' )? 'datatype' 
+	TypePrefix 'datatype' 
 	ClassifierDeclaration TypeBody
 ;
 
 /* Classes */
 
 Class returns SysML::Class :
-	( isAbstract ?= 'abstract' )? 'class' 
+	TypePrefix 'class' 
 	ClassifierDeclaration TypeBody
 ;
 
 /* STRUCTURES */
 
 Structure returns SysML::Structure :
-	( isAbstract ?= 'abstract' )? 'struct' 
+	TypePrefix 'struct' 
 	ClassifierDeclaration TypeBody
 ;
 
@@ -813,12 +837,12 @@ Structure returns SysML::Structure :
 /* ASSOCIATIONS */
 
 Association returns SysML::Association :
-	( isAbstract ?= 'abstract' )? 'assoc' 
+	TypePrefix 'assoc' 
 	ClassifierDeclaration TypeBody
 ;
 
 AssociationStructure returns SysML::AssociationStructure :
-	( isAbstract ?= 'abstract' )? 'assoc' 'struct'
+	TypePrefix 'assoc' 'struct'
 	ClassifierDeclaration TypeBody
 ;
 
@@ -890,7 +914,7 @@ fragment SuccessionDeclaration returns SysML::Succession :
 /* Behaviors */
 
 Behavior returns SysML::Behavior :
-	( isAbstract ?= 'abstract')? 'behavior' 
+	TypePrefix 'behavior' 
 	ClassifierDeclaration TypeBody
 ;
 
@@ -910,7 +934,7 @@ fragment StepDeclaration returns SysML::Step :
 /* Functions */
 
 Function returns SysML::Function :
-	( isAbstract ?= 'abstract' )? 'function' 
+	TypePrefix 'function' 
 	ClassifierDeclaration FunctionBody  
 ;
 
@@ -952,7 +976,7 @@ fragment ExpressionDeclaration returns SysML::Expression :
 /* Predicates */
 
 Predicate returns SysML::Predicate :
-	( isAbstract ?= 'abstract' )? 'predicate' 
+	TypePrefix 'predicate' 
 	ClassifierDeclaration FunctionBody  
 ;
 
@@ -975,7 +999,7 @@ Invariant returns SysML::Invariant :
 /* Interactions */
 
 Interaction returns SysML::Interaction :
-	( isAbstract ?= 'abstract' )? 'interaction' 
+	TypePrefix 'interaction' 
 	ClassifierDeclaration TypeBody
 ;
 
@@ -1049,8 +1073,20 @@ ItemFlowRedefinition returns SysML::Redefinition :
 /* METADATA */
 
 Metaclass returns SysML::Metaclass :
-	( isAbstract ?= 'abstract' )? 'metaclass' 
+	TypePrefix 'metaclass' 
 	ClassifierDeclaration TypeBody
+;
+
+PrefixMetadataAnnotation returns SysML::Annotation :
+	'#' ownedRelatedElement += PrefixMetadataFeature
+;
+
+PrefixMetadataMember returns SysML::OwningMembership :
+	'#' ownedRelatedElement += PrefixMetadataFeature 
+;
+
+PrefixMetadataFeature returns SysML::MetadataFeature :
+	ownedRelationship += MetadataTyping
 ;
 
 MetadataFeature returns SysML::MetadataFeature :

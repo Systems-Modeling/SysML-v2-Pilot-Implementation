@@ -1343,7 +1343,7 @@ rulePackage returns [EObject current=null]
 					afterParserOrEnumRuleCall();
 				}
 			)
-		)?
+		)*
 		{
 			if ($current==null) {
 				$current = createModelElement(grammarAccess.getPackageRule());
@@ -1421,7 +1421,7 @@ ruleLibraryPackage returns [EObject current=null]
 					afterParserOrEnumRuleCall();
 				}
 			)
-		)?
+		)*
 		{
 			if ($current==null) {
 				$current = createModelElement(grammarAccess.getLibraryPackageRule());
@@ -3879,7 +3879,7 @@ ruleDependency returns [EObject current=null]
 					afterParserOrEnumRuleCall();
 				}
 			)
-		)?
+		)*
 		otherlv_1='dependency'
 		{
 			newLeafNode(otherlv_1, grammarAccess.getDependencyAccess().getDependencyKeyword_1());
@@ -4104,7 +4104,7 @@ ruleDefinitionPrefix[EObject in_current]  returns [EObject current=in_current]
 				$current = $this_DefinitionExtensionKeyword_1.current;
 				afterParserOrEnumRuleCall();
 			}
-		)?
+		)*
 	)
 ;
 
@@ -4884,7 +4884,7 @@ ruleUsagePrefix[EObject in_current]  returns [EObject current=in_current]
 				$current = $this_UsageExtensionKeyword_1.current;
 				afterParserOrEnumRuleCall();
 			}
-		)?
+		)*
 	)
 ;
 
@@ -6270,17 +6270,19 @@ ruleExtendedDefinition returns [EObject current=null]
 				afterParserOrEnumRuleCall();
 			}
 		)?
-		{
-			if ($current==null) {
-				$current = createModelElement(grammarAccess.getExtendedDefinitionRule());
+		(
+			{
+				if ($current==null) {
+					$current = createModelElement(grammarAccess.getExtendedDefinitionRule());
+				}
+				newCompositeNode(grammarAccess.getExtendedDefinitionAccess().getDefinitionExtensionKeywordParserRuleCall_1());
 			}
-			newCompositeNode(grammarAccess.getExtendedDefinitionAccess().getDefinitionExtensionKeywordParserRuleCall_1());
-		}
-		this_DefinitionExtensionKeyword_1=ruleDefinitionExtensionKeyword[$current]
-		{
-			$current = $this_DefinitionExtensionKeyword_1.current;
-			afterParserOrEnumRuleCall();
-		}
+			this_DefinitionExtensionKeyword_1=ruleDefinitionExtensionKeyword[$current]
+			{
+				$current = $this_DefinitionExtensionKeyword_1.current;
+				afterParserOrEnumRuleCall();
+			}
+		)+
 		otherlv_2='def'
 		{
 			newLeafNode(otherlv_2, grammarAccess.getExtendedDefinitionAccess().getDefKeyword_2());
@@ -6326,17 +6328,19 @@ ruleExtendedUsage returns [EObject current=null]
 			$current = $this_BasicUsagePrefix_0.current;
 			afterParserOrEnumRuleCall();
 		}
-		{
-			if ($current==null) {
-				$current = createModelElement(grammarAccess.getExtendedUsageRule());
+		(
+			{
+				if ($current==null) {
+					$current = createModelElement(grammarAccess.getExtendedUsageRule());
+				}
+				newCompositeNode(grammarAccess.getExtendedUsageAccess().getUsageExtensionKeywordParserRuleCall_1());
 			}
-			newCompositeNode(grammarAccess.getExtendedUsageAccess().getUsageExtensionKeywordParserRuleCall_1());
-		}
-		this_UsageExtensionKeyword_1=ruleUsageExtensionKeyword[$current]
-		{
-			$current = $this_UsageExtensionKeyword_1.current;
-			afterParserOrEnumRuleCall();
-		}
+			this_UsageExtensionKeyword_1=ruleUsageExtensionKeyword[$current]
+			{
+				$current = $this_UsageExtensionKeyword_1.current;
+				afterParserOrEnumRuleCall();
+			}
+		)+
 		{
 			if ($current==null) {
 				$current = createModelElement(grammarAccess.getExtendedUsageRule());
@@ -6996,7 +7000,7 @@ ruleOccurrenceDefinitionPrefix[EObject in_current]  returns [EObject current=in_
 				$current = $this_DefinitionExtensionKeyword_3.current;
 				afterParserOrEnumRuleCall();
 			}
-		)?
+		)*
 	)
 ;
 
@@ -7103,7 +7107,7 @@ ruleIndividualDefinition returns [EObject current=null]
 				$current = $this_DefinitionExtensionKeyword_2.current;
 				afterParserOrEnumRuleCall();
 			}
-		)?
+		)*
 		otherlv_3='def'
 		{
 			newLeafNode(otherlv_3, grammarAccess.getIndividualDefinitionAccess().getDefKeyword_3());
@@ -7315,7 +7319,7 @@ ruleOccurrenceUsagePrefix[EObject in_current]  returns [EObject current=in_curre
 				$current = $this_UsageExtensionKeyword_4.current;
 				afterParserOrEnumRuleCall();
 			}
-		)?
+		)*
 	)
 ;
 
@@ -7420,7 +7424,7 @@ ruleIndividualUsage returns [EObject current=null]
 				$current = $this_UsageExtensionKeyword_2.current;
 				afterParserOrEnumRuleCall();
 			}
-		)?
+		)*
 		{
 			if ($current==null) {
 				$current = createModelElement(grammarAccess.getIndividualUsageRule());
@@ -7526,7 +7530,7 @@ rulePortionUsage returns [EObject current=null]
 				$current = $this_UsageExtensionKeyword_4.current;
 				afterParserOrEnumRuleCall();
 			}
-		)?
+		)*
 		{
 			if ($current==null) {
 				$current = createModelElement(grammarAccess.getPortionUsageRule());
@@ -19788,7 +19792,7 @@ ruleSubjectUsage returns [EObject current=null]
 				$current = $this_UsageExtensionKeyword_1.current;
 				afterParserOrEnumRuleCall();
 			}
-		)?
+		)*
 		{
 			if ($current==null) {
 				$current = createModelElement(grammarAccess.getSubjectUsageRule());
@@ -19948,7 +19952,7 @@ ruleRequirementConstraintUsage returns [EObject current=null]
 							$current = $this_UsageExtensionKeyword_3.current;
 							afterParserOrEnumRuleCall();
 						}
-					)?
+					)*
 					{
 						newCompositeNode(grammarAccess.getRequirementConstraintUsageAccess().getConstraintUsageKeywordParserRuleCall_1_0_0_1());
 					}
@@ -19958,17 +19962,19 @@ ruleRequirementConstraintUsage returns [EObject current=null]
 					}
 				)
 				    |
-				{
-					if ($current==null) {
-						$current = createModelElement(grammarAccess.getRequirementConstraintUsageRule());
+				(
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getRequirementConstraintUsageRule());
+						}
+						newCompositeNode(grammarAccess.getRequirementConstraintUsageAccess().getUsageExtensionKeywordParserRuleCall_1_0_1());
 					}
-					newCompositeNode(grammarAccess.getRequirementConstraintUsageAccess().getUsageExtensionKeywordParserRuleCall_1_0_1());
-				}
-				this_UsageExtensionKeyword_5=ruleUsageExtensionKeyword[$current]
-				{
-					$current = $this_UsageExtensionKeyword_5.current;
-					afterParserOrEnumRuleCall();
-				}
+					this_UsageExtensionKeyword_5=ruleUsageExtensionKeyword[$current]
+					{
+						$current = $this_UsageExtensionKeyword_5.current;
+						afterParserOrEnumRuleCall();
+					}
+				)+
 			)
 			{
 				if ($current==null) {
@@ -20141,7 +20147,7 @@ ruleFramedConcernUsage returns [EObject current=null]
 							$current = $this_UsageExtensionKeyword_3.current;
 							afterParserOrEnumRuleCall();
 						}
-					)?
+					)*
 					{
 						newCompositeNode(grammarAccess.getFramedConcernUsageAccess().getConcernUsageKeywordParserRuleCall_1_0_0_1());
 					}
@@ -20151,17 +20157,19 @@ ruleFramedConcernUsage returns [EObject current=null]
 					}
 				)
 				    |
-				{
-					if ($current==null) {
-						$current = createModelElement(grammarAccess.getFramedConcernUsageRule());
+				(
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getFramedConcernUsageRule());
+						}
+						newCompositeNode(grammarAccess.getFramedConcernUsageAccess().getUsageExtensionKeywordParserRuleCall_1_0_1());
 					}
-					newCompositeNode(grammarAccess.getFramedConcernUsageAccess().getUsageExtensionKeywordParserRuleCall_1_0_1());
-				}
-				this_UsageExtensionKeyword_5=ruleUsageExtensionKeyword[$current]
-				{
-					$current = $this_UsageExtensionKeyword_5.current;
-					afterParserOrEnumRuleCall();
-				}
+					this_UsageExtensionKeyword_5=ruleUsageExtensionKeyword[$current]
+					{
+						$current = $this_UsageExtensionKeyword_5.current;
+						afterParserOrEnumRuleCall();
+					}
+				)+
 			)
 			{
 				if ($current==null) {
@@ -20270,7 +20278,7 @@ ruleActorUsage returns [EObject current=null]
 				$current = $this_UsageExtensionKeyword_1.current;
 				afterParserOrEnumRuleCall();
 			}
-		)?
+		)*
 		{
 			if ($current==null) {
 				$current = createModelElement(grammarAccess.getActorUsageRule());
@@ -20366,7 +20374,7 @@ ruleStakeholderUsage returns [EObject current=null]
 				$current = $this_UsageExtensionKeyword_1.current;
 				afterParserOrEnumRuleCall();
 			}
-		)?
+		)*
 		{
 			if ($current==null) {
 				$current = createModelElement(grammarAccess.getStakeholderUsageRule());
@@ -21315,7 +21323,7 @@ ruleObjectiveRequirementUsage returns [EObject current=null]
 				$current = $this_UsageExtensionKeyword_0.current;
 				afterParserOrEnumRuleCall();
 			}
-		)?
+		)*
 		{
 			if ($current==null) {
 				$current = createModelElement(grammarAccess.getObjectiveRequirementUsageRule());
@@ -21974,7 +21982,7 @@ ruleRequirementVerificationUsage returns [EObject current=null]
 							$current = $this_UsageExtensionKeyword_3.current;
 							afterParserOrEnumRuleCall();
 						}
-					)?
+					)*
 					{
 						newCompositeNode(grammarAccess.getRequirementVerificationUsageAccess().getRequirementUsageKeywordParserRuleCall_1_0_0_1());
 					}
@@ -21984,17 +21992,19 @@ ruleRequirementVerificationUsage returns [EObject current=null]
 					}
 				)
 				    |
-				{
-					if ($current==null) {
-						$current = createModelElement(grammarAccess.getRequirementVerificationUsageRule());
+				(
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getRequirementVerificationUsageRule());
+						}
+						newCompositeNode(grammarAccess.getRequirementVerificationUsageAccess().getUsageExtensionKeywordParserRuleCall_1_0_1());
 					}
-					newCompositeNode(grammarAccess.getRequirementVerificationUsageAccess().getUsageExtensionKeywordParserRuleCall_1_0_1());
-				}
-				this_UsageExtensionKeyword_5=ruleUsageExtensionKeyword[$current]
-				{
-					$current = $this_UsageExtensionKeyword_5.current;
-					afterParserOrEnumRuleCall();
-				}
+					this_UsageExtensionKeyword_5=ruleUsageExtensionKeyword[$current]
+					{
+						$current = $this_UsageExtensionKeyword_5.current;
+						afterParserOrEnumRuleCall();
+					}
+				)+
 			)
 			{
 				if ($current==null) {

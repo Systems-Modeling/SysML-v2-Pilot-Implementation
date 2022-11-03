@@ -21,7 +21,7 @@
  *  Ed Seidewitz, MDS
  * 
  *****************************************************************************/
- package org.omg.sysml.xtext.ui
+ package org.omg.kerml.xtext.ui
 
 import org.eclipse.xtext.ide.editor.syntaxcoloring.ISemanticHighlightingCalculator
 import org.eclipse.xtext.resource.XtextResource
@@ -32,7 +32,7 @@ import org.eclipse.xtext.impl.RuleCallImpl
 import org.eclipse.xtext.service.OperationCanceledManager
 import com.google.inject.Inject
 
-class SysMLUserKeywordHighlightingCalculator implements ISemanticHighlightingCalculator {
+class KerMLUserKeywordHighlightingCalculator implements ISemanticHighlightingCalculator {
 	
 	@Inject
 	OperationCanceledManager cancelManager;

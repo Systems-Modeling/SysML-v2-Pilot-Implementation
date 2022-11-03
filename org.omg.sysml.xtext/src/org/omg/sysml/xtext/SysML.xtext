@@ -166,13 +166,13 @@ MetadataBodyUsage returns SysML::ReferenceUsage :
 /* Packages */
 
 Package returns SysML::Package :
-	( ownedRelationship += PrefixMetadataMember )?
+	( ownedRelationship += PrefixMetadataMember )*
 	PackageDeclaration PackageBody 
 ;
 
 LibraryPackage returns SysML::LibraryPackage :
 	( isStandard ?= 'standard' )? 'library'
-	( ownedRelationship += PrefixMetadataMember )?
+	( ownedRelationship += PrefixMetadataMember )*
 	PackageDeclaration PackageBody
 ;
 
@@ -430,7 +430,7 @@ MultiplicityExpressionMember returns SysML::OwningMembership :
 /* DEPENDENCIES */
 
 Dependency returns SysML::Dependency :
-	( ownedRelationship += PrefixMetadataAnnotation )?
+	( ownedRelationship += PrefixMetadataAnnotation )*
 	'dependency' ( Identification? 'from' )?
     client += [SysML::Element|QualifiedName] ( ',' client += [SysML::Element|QualifiedName] )* 'to'
     supplier += [SysML::Element|QualifiedName] ( ',' supplier += [SysML::Element|QualifiedName] )*
@@ -450,7 +450,7 @@ fragment DefinitionExtensionKeyword returns SysML::Definition :
 ;
 
 fragment DefinitionPrefix returns SysML::Definition :
-	BasicDefinitionPrefix? DefinitionExtensionKeyword?
+	BasicDefinitionPrefix? DefinitionExtensionKeyword*
 ;
 
 fragment Definition returns SysML::Definition :
@@ -525,7 +525,7 @@ fragment UsageExtensionKeyword returns SysML::Usage :
 ;
 
 fragment UsagePrefix returns SysML::Usage :
-	BasicUsagePrefix UsageExtensionKeyword?
+	BasicUsagePrefix UsageExtensionKeyword*
 ;
 
 fragment Usage returns SysML::Usage :
@@ -680,11 +680,11 @@ VariantUsageElement returns SysML::Usage :
 /* EXTENSION */
 
 ExtendedDefinition returns SysML::Definition :
-	BasicDefinitionPrefix? DefinitionExtensionKeyword 'def' Definition
+	BasicDefinitionPrefix? DefinitionExtensionKeyword+ 'def' Definition
 ;
 
 ExtendedUsage returns SysML::Usage :
-	BasicUsagePrefix UsageExtensionKeyword Usage
+	BasicUsagePrefix UsageExtensionKeyword+ Usage
 ;
 
 /* ATTRIBUTES */
@@ -761,7 +761,7 @@ OccurrenceDefKeyword :
 fragment OccurrenceDefinitionPrefix returns SysML::OccurrenceDefinition :
 	BasicDefinitionPrefix?
 	( isIndividual ?= 'individual' ownedRelationship += LifeClassMembership )?
-	DefinitionExtensionKeyword?
+	DefinitionExtensionKeyword*
 ;
 
 OccurrenceDefinition returns SysML::OccurrenceDefinition :
@@ -770,7 +770,7 @@ OccurrenceDefinition returns SysML::OccurrenceDefinition :
 
 IndividualDefinition returns SysML::OccurrenceDefinition :
 	BasicDefinitionPrefix? isIndividual ?= 'individual' 
-	DefinitionExtensionKeyword? 'def' Definition
+	DefinitionExtensionKeyword* 'def' Definition
 	ownedRelationship += LifeClassMembership
 ;
 
@@ -793,7 +793,7 @@ fragment OccurrenceUsagePrefix returns SysML::OccurrenceUsage :
 	  ( isIndividual ?= 'individual' )?
 	  ( portionKind = PortionKind
 	    ownedRelationship += PortioningFeatureMember )?
-	  UsageExtensionKeyword?
+	  UsageExtensionKeyword*
 ;
 
 OccurrenceUsage returns SysML::OccurrenceUsage :
@@ -802,14 +802,14 @@ OccurrenceUsage returns SysML::OccurrenceUsage :
 
 IndividualUsage returns SysML::OccurrenceUsage :
 	BasicUsagePrefix isIndividual ?= 'individual' 
-	UsageExtensionKeyword? Usage
+	UsageExtensionKeyword* Usage
 ;
 
 PortionUsage returns SysML::OccurrenceUsage :
 	BasicUsagePrefix ( isIndividual ?= 'individual' )?
 	portionKind = PortionKind
 	ownedRelationship += PortioningFeatureMember
-	UsageExtensionKeyword? Usage
+	UsageExtensionKeyword* Usage
 ;
 
 enum PortionKind returns SysML::PortionKind :
@@ -1989,7 +1989,7 @@ SubjectMember returns SysML::SubjectMembership :
 ;
 
 SubjectUsage returns SysML::ReferenceUsage :
-	'subject' UsageExtensionKeyword? Usage
+	'subject' UsageExtensionKeyword* Usage
 ;
 
 RequirementConstraintMember returns SysML::RequirementConstraintMembership :
@@ -2004,7 +2004,7 @@ enum RequirementConstraintKind returns SysML::RequirementConstraintKind :
 RequirementConstraintUsage returns SysML::ConstraintUsage :
       ownedRelationship += OwnedReferenceSubsetting FeatureSpecialization* 
       RequirementBody
-    | ( UsageExtensionKeyword? ConstraintUsageKeyword | UsageExtensionKeyword )
+    | ( UsageExtensionKeyword* ConstraintUsageKeyword | UsageExtensionKeyword+ )
       CalculationUsageDeclaration CalculationBody
 ;
 
@@ -2020,7 +2020,7 @@ enum FramedConcernKind returns SysML::RequirementConstraintKind :
 FramedConcernUsage returns SysML::ConcernUsage :
       ownedRelationship += OwnedReferenceSubsetting FeatureSpecialization* 
       RequirementBody
-    | ( UsageExtensionKeyword? ConcernUsageKeyword | UsageExtensionKeyword ) 
+    | ( UsageExtensionKeyword* ConcernUsageKeyword | UsageExtensionKeyword+ ) 
       CalculationUsageDeclaration CalculationBody
 ;
 
@@ -2030,7 +2030,7 @@ ActorMember returns SysML::ActorMembership :
 ;
 
 ActorUsage returns SysML::PartUsage :
-      'actor' UsageExtensionKeyword? Usage
+      'actor' UsageExtensionKeyword* Usage
 ;
 
 StakeholderMember returns SysML::StakeholderMembership :
@@ -2039,7 +2039,7 @@ StakeholderMember returns SysML::StakeholderMembership :
 ;
 
 StakeholderUsage returns SysML::PartUsage :
-      'stakeholder' UsageExtensionKeyword? Usage
+      'stakeholder' UsageExtensionKeyword* Usage
 ;
 
 /* Requirement Usages */
@@ -2138,7 +2138,7 @@ ObjectiveMember returns SysML::ObjectiveMembership :
 ;
 
 ObjectiveRequirementUsage returns SysML::RequirementUsage :
-	UsageExtensionKeyword? CalculationUsageDeclaration RequirementBody
+	UsageExtensionKeyword* CalculationUsageDeclaration RequirementBody
 ;
 
 /* Case Usages */
@@ -2207,7 +2207,7 @@ enum RequirementVerificationKind returns SysML::RequirementConstraintKind :
 RequirementVerificationUsage returns SysML::RequirementUsage :
       ownedRelationship += OwnedReferenceSubsetting FeatureSpecialization* 
       RequirementBody
-    | ( UsageExtensionKeyword? RequirementUsageKeyword | UsageExtensionKeyword )
+    | ( UsageExtensionKeyword* RequirementUsageKeyword | UsageExtensionKeyword+ )
       CalculationUsageDeclaration RequirementBody
 ;
 

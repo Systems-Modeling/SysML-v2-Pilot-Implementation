@@ -72,6 +72,7 @@ Relationship returns SysML::Relationship :
 ;
 
 OwnedRelationship returns SysML::Relationship :
+	( ownedRelationship += PrefixMetadataAnnotation )*
     'relationship' Identification?
     ( 'to' RelationshipTargetList )?
     RelationshipBody
@@ -325,12 +326,9 @@ ElementFilterMember returns SysML::ElementFilterMembership :
 
 /* Types */
 
-fragment TypeExtensionKeyword returns SysML::Type :
-	ownedRelationship += PrefixMetadataMember
-;
-
 fragment TypePrefix returns SysML::Type :
-	( isAbstract ?= 'abstract' )? TypeExtensionKeyword*
+	( isAbstract ?= 'abstract' )? 
+	( ownedRelationship += PrefixMetadataMember )*
 ;
 
 Type returns SysML::Type :
@@ -525,27 +523,20 @@ enum FeatureDirection returns SysML::FeatureDirectionKind:
 	in = 'in' | out = 'out' | inout = 'inout'
 ;
 
-fragment BasicFeaturePrefix returns SysML::Feature :	
+fragment FeaturePrefix returns SysML::Feature :	
 	( direction = FeatureDirection )?
 	( isAbstract ?= 'abstract' )?
 	( isComposite ?= 'composite' | isPortion ?= 'portion' )? 
 	( isReadOnly ?= 'readonly' )?
 	( isDerived ?= 'derived' )?
 	( isEnd ?= 'end' )?
-;
-
-fragment FeatureExtensionKeyword returns SysML::Feature :
-	ownedRelationship += PrefixMetadataMember
-;
-
-fragment FeaturePrefix returns SysML::Feature :
-	BasicFeaturePrefix FeatureExtensionKeyword*
+	( ownedRelationship += PrefixMetadataMember )*
 ;
 
 Feature returns SysML::Feature :
-	BasicFeaturePrefix 
-	( FeatureExtensionKeyword* 'feature'? FeatureDeclaration
-	| FeatureExtensionKeyword+ 'feature'?
+	FeaturePrefix
+	( 'feature'? FeatureDeclaration
+	| ownedRelationship += PrefixMetadataMember
 	| 'feature'
 	) 
 	ValuePart? TypeBody

@@ -39,8 +39,7 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	protected AbstractElementAlias match_FeatureTyping_ColonKeyword_3_0_or___TypedKeyword_3_1_0_ByKeyword_3_1_1__;
 	protected AbstractElementAlias match_FeatureTyping_SpecializationKeyword_0_0_q;
 	protected AbstractElementAlias match_FeatureValue_EqualsSignKeyword_0_1_1_0_q;
-	protected AbstractElementAlias match_Feature_FeatureKeyword_1_0_1_q;
-	protected AbstractElementAlias match_Feature_FeatureKeyword_1_1_1_q;
+	protected AbstractElementAlias match_Feature_FeatureKeyword_1_0_0_q;
 	protected AbstractElementAlias match_Invariant_TrueKeyword_2_0_q;
 	protected AbstractElementAlias match_MetadataBodyFeature_FeatureKeyword_0_q;
 	protected AbstractElementAlias match_MetadataBodyFeature___ColonGreaterThanSignGreaterThanSignKeyword_1_0_or_RedefinesKeyword_1_1__q;
@@ -90,8 +89,7 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 		match_FeatureTyping_ColonKeyword_3_0_or___TypedKeyword_3_1_0_ByKeyword_3_1_1__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getFeatureTypingAccess().getTypedKeyword_3_1_0()), new TokenAlias(false, false, grammarAccess.getFeatureTypingAccess().getByKeyword_3_1_1())), new TokenAlias(false, false, grammarAccess.getFeatureTypingAccess().getColonKeyword_3_0()));
 		match_FeatureTyping_SpecializationKeyword_0_0_q = new TokenAlias(false, true, grammarAccess.getFeatureTypingAccess().getSpecializationKeyword_0_0());
 		match_FeatureValue_EqualsSignKeyword_0_1_1_0_q = new TokenAlias(false, true, grammarAccess.getFeatureValueAccess().getEqualsSignKeyword_0_1_1_0());
-		match_Feature_FeatureKeyword_1_0_1_q = new TokenAlias(false, true, grammarAccess.getFeatureAccess().getFeatureKeyword_1_0_1());
-		match_Feature_FeatureKeyword_1_1_1_q = new TokenAlias(false, true, grammarAccess.getFeatureAccess().getFeatureKeyword_1_1_1());
+		match_Feature_FeatureKeyword_1_0_0_q = new TokenAlias(false, true, grammarAccess.getFeatureAccess().getFeatureKeyword_1_0_0());
 		match_Invariant_TrueKeyword_2_0_q = new TokenAlias(false, true, grammarAccess.getInvariantAccess().getTrueKeyword_2_0());
 		match_MetadataBodyFeature_FeatureKeyword_0_q = new TokenAlias(false, true, grammarAccess.getMetadataBodyFeatureAccess().getFeatureKeyword_0());
 		match_MetadataBodyFeature___ColonGreaterThanSignGreaterThanSignKeyword_1_0_or_RedefinesKeyword_1_1__q = new AlternativeAlias(false, true, new TokenAlias(false, false, grammarAccess.getMetadataBodyFeatureAccess().getColonGreaterThanSignGreaterThanSignKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getMetadataBodyFeatureAccess().getRedefinesKeyword_1_1()));
@@ -180,10 +178,8 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 				emit_FeatureTyping_SpecializationKeyword_0_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_FeatureValue_EqualsSignKeyword_0_1_1_0_q.equals(syntax))
 				emit_FeatureValue_EqualsSignKeyword_0_1_1_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_Feature_FeatureKeyword_1_0_1_q.equals(syntax))
-				emit_Feature_FeatureKeyword_1_0_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_Feature_FeatureKeyword_1_1_1_q.equals(syntax))
-				emit_Feature_FeatureKeyword_1_1_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_Feature_FeatureKeyword_1_0_0_q.equals(syntax))
+				emit_Feature_FeatureKeyword_1_0_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_Invariant_TrueKeyword_2_0_q.equals(syntax))
 				emit_Invariant_TrueKeyword_2_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_MetadataBodyFeature_FeatureKeyword_0_q.equals(syntax))
@@ -726,24 +722,7 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 *     ownedRelationship+=PrefixMetadataMember (ambiguity) name=Name
 	 *     ownedRelationship+=PrefixMetadataMember (ambiguity) ownedRelationship+=OwnedMultiplicity
 	 */
-	protected void emit_Feature_FeatureKeyword_1_0_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
-	/**
-	 * Ambiguous syntax:
-	 *     'feature'?
-	 *
-	 * This ambiguous syntax occurs at:
-	 *     ownedRelationship+=PrefixMetadataMember (ambiguity) '{' ownedRelationship+=AliasMember
-	 *     ownedRelationship+=PrefixMetadataMember (ambiguity) '{' ownedRelationship+=FeatureMember
-	 *     ownedRelationship+=PrefixMetadataMember (ambiguity) '{' ownedRelationship+=Import
-	 *     ownedRelationship+=PrefixMetadataMember (ambiguity) '{' ownedRelationship+=NonFeatureMember
-	 *     ownedRelationship+=PrefixMetadataMember (ambiguity) (';' | ('{' '}')) (rule end)
-	 *     ownedRelationship+=PrefixMetadataMember (ambiguity) ownedRelationship+=FeatureValue
-	 *     ownedRelationship+=PrefixMetadataMember (ambiguity) ownedRelationship+=FeatureValueExpression
-	 */
-	protected void emit_Feature_FeatureKeyword_1_1_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_Feature_FeatureKeyword_1_0_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
@@ -1650,7 +1629,7 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 *     ownedRelationship+=PrefixMetadataMember 'classifier' (ambiguity) (rule end)
 	 *     ownedRelationship+=PrefixMetadataMember 'connector' (ambiguity) (rule end)
 	 *     ownedRelationship+=PrefixMetadataMember 'datatype' (ambiguity) (rule end)
-	 *     ownedRelationship+=PrefixMetadataMember 'feature'? (ambiguity) (rule end)
+	 *     ownedRelationship+=PrefixMetadataMember 'feature' (ambiguity) (rule end)
 	 *     ownedRelationship+=PrefixMetadataMember 'flow' (ambiguity) (rule end)
 	 *     ownedRelationship+=PrefixMetadataMember 'interaction' (ambiguity) (rule end)
 	 *     ownedRelationship+=PrefixMetadataMember 'metaclass' (ambiguity) (rule end)
@@ -1658,6 +1637,7 @@ public abstract class AbstractKerMLSyntacticSequencer extends AbstractSyntacticS
 	 *     ownedRelationship+=PrefixMetadataMember 'struct' (ambiguity) (rule end)
 	 *     ownedRelationship+=PrefixMetadataMember 'succession' 'flow' (ambiguity) (rule end)
 	 *     ownedRelationship+=PrefixMetadataMember 'succession' (ambiguity) (rule end)
+	 *     ownedRelationship+=PrefixMetadataMember (ambiguity) (rule end)
 	 *     ownedRelationship+=Unioning (ambiguity) (rule end)
 	 *     shortName=Name '>' (ambiguity) (rule end)
 	 */

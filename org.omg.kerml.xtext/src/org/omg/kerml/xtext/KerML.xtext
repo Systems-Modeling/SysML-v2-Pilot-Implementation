@@ -891,9 +891,12 @@ BindingConnector returns SysML::BindingConnector :
 ;
 
 fragment BindingConnectorDeclaration returns SysML::BindingConnector :
-	( FeatureDeclaration? 'of' | isSufficient ?= 'all' 'of'? )?
-	ownedRelationship += ConnectorEndMember '=' 
-	ownedRelationship += ConnectorEndMember
+	  FeatureDeclaration
+	  ( 'of' ownedRelationship += ConnectorEndMember 
+	    '=' ownedRelationship += ConnectorEndMember )?
+	| ( isSufficient ?= 'all' )?
+	  ( 'of'? ownedRelationship += ConnectorEndMember 
+	    '=' ownedRelationship += ConnectorEndMember )?
 ;
 
 /* Successions */
@@ -904,9 +907,12 @@ Succession returns SysML::Succession :
 ;
 
 fragment SuccessionDeclaration returns SysML::Succession :
-	( FeatureDeclaration? 'first' | isSufficient ?= 'all' 'first'? )?
-	ownedRelationship += ConnectorEndMember 'then' 
-	ownedRelationship += ConnectorEndMember
+	  FeatureDeclaration
+	  ( 'first' ownedRelationship += ConnectorEndMember 
+	    'then' ownedRelationship += ConnectorEndMember )?
+    | ( isSufficient ?= 'all' )?
+	  ( 'first'? ownedRelationship += ConnectorEndMember 
+	    'then' ownedRelationship += ConnectorEndMember )?
 ;
 
 /* BEHAVIORS */

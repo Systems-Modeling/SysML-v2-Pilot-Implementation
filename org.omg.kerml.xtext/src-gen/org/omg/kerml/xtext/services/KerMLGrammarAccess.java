@@ -5526,71 +5526,107 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	public class BindingConnectorDeclarationElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.BindingConnectorDeclaration");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Alternatives cAlternatives_0 = (Alternatives)cGroup.eContents().get(0);
-		private final Group cGroup_0_0 = (Group)cAlternatives_0.eContents().get(0);
-		private final RuleCall cFeatureDeclarationParserRuleCall_0_0_0 = (RuleCall)cGroup_0_0.eContents().get(0);
-		private final Keyword cOfKeyword_0_0_1 = (Keyword)cGroup_0_0.eContents().get(1);
-		private final Group cGroup_0_1 = (Group)cAlternatives_0.eContents().get(1);
-		private final Assignment cIsSufficientAssignment_0_1_0 = (Assignment)cGroup_0_1.eContents().get(0);
-		private final Keyword cIsSufficientAllKeyword_0_1_0_0 = (Keyword)cIsSufficientAssignment_0_1_0.eContents().get(0);
-		private final Keyword cOfKeyword_0_1_1 = (Keyword)cGroup_0_1.eContents().get(1);
-		private final Assignment cOwnedRelationshipAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cOwnedRelationshipConnectorEndMemberParserRuleCall_1_0 = (RuleCall)cOwnedRelationshipAssignment_1.eContents().get(0);
-		private final Keyword cEqualsSignKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Assignment cOwnedRelationshipAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cOwnedRelationshipConnectorEndMemberParserRuleCall_3_0 = (RuleCall)cOwnedRelationshipAssignment_3.eContents().get(0);
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
+		private final RuleCall cFeatureDeclarationParserRuleCall_0_0 = (RuleCall)cGroup_0.eContents().get(0);
+		private final Group cGroup_0_1 = (Group)cGroup_0.eContents().get(1);
+		private final Keyword cOfKeyword_0_1_0 = (Keyword)cGroup_0_1.eContents().get(0);
+		private final Assignment cOwnedRelationshipAssignment_0_1_1 = (Assignment)cGroup_0_1.eContents().get(1);
+		private final RuleCall cOwnedRelationshipConnectorEndMemberParserRuleCall_0_1_1_0 = (RuleCall)cOwnedRelationshipAssignment_0_1_1.eContents().get(0);
+		private final Keyword cEqualsSignKeyword_0_1_2 = (Keyword)cGroup_0_1.eContents().get(2);
+		private final Assignment cOwnedRelationshipAssignment_0_1_3 = (Assignment)cGroup_0_1.eContents().get(3);
+		private final RuleCall cOwnedRelationshipConnectorEndMemberParserRuleCall_0_1_3_0 = (RuleCall)cOwnedRelationshipAssignment_0_1_3.eContents().get(0);
+		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
+		private final Assignment cIsSufficientAssignment_1_0 = (Assignment)cGroup_1.eContents().get(0);
+		private final Keyword cIsSufficientAllKeyword_1_0_0 = (Keyword)cIsSufficientAssignment_1_0.eContents().get(0);
+		private final Group cGroup_1_1 = (Group)cGroup_1.eContents().get(1);
+		private final Keyword cOfKeyword_1_1_0 = (Keyword)cGroup_1_1.eContents().get(0);
+		private final Assignment cOwnedRelationshipAssignment_1_1_1 = (Assignment)cGroup_1_1.eContents().get(1);
+		private final RuleCall cOwnedRelationshipConnectorEndMemberParserRuleCall_1_1_1_0 = (RuleCall)cOwnedRelationshipAssignment_1_1_1.eContents().get(0);
+		private final Keyword cEqualsSignKeyword_1_1_2 = (Keyword)cGroup_1_1.eContents().get(2);
+		private final Assignment cOwnedRelationshipAssignment_1_1_3 = (Assignment)cGroup_1_1.eContents().get(3);
+		private final RuleCall cOwnedRelationshipConnectorEndMemberParserRuleCall_1_1_3_0 = (RuleCall)cOwnedRelationshipAssignment_1_1_3.eContents().get(0);
 		
 		//fragment BindingConnectorDeclaration returns SysML::BindingConnector :
-		//    ( FeatureDeclaration? 'of' | isSufficient ?= 'all' 'of'? )?
-		//    ownedRelationship += ConnectorEndMember '='
-		//    ownedRelationship += ConnectorEndMember
+		//      FeatureDeclaration
+		//      ( 'of' ownedRelationship += ConnectorEndMember
+		//        '=' ownedRelationship += ConnectorEndMember )?
+		//    | ( isSufficient ?= 'all' )?
+		//      ( 'of'? ownedRelationship += ConnectorEndMember
+		//        '=' ownedRelationship += ConnectorEndMember )?
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//( FeatureDeclaration? 'of' | isSufficient ?= 'all' 'of'? )?
-		//ownedRelationship += ConnectorEndMember '='
-		//ownedRelationship += ConnectorEndMember
-		public Group getGroup() { return cGroup; }
+		//  FeatureDeclaration
+		//  ( 'of' ownedRelationship += ConnectorEndMember
+		//    '=' ownedRelationship += ConnectorEndMember )?
+		//| ( isSufficient ?= 'all' )?
+		//  ( 'of'? ownedRelationship += ConnectorEndMember
+		//    '=' ownedRelationship += ConnectorEndMember )?
+		public Alternatives getAlternatives() { return cAlternatives; }
 		
-		//( FeatureDeclaration? 'of' | isSufficient ?= 'all' 'of'? )?
-		public Alternatives getAlternatives_0() { return cAlternatives_0; }
+		//FeatureDeclaration
+		//( 'of' ownedRelationship += ConnectorEndMember
+		//  '=' ownedRelationship += ConnectorEndMember )?
+		public Group getGroup_0() { return cGroup_0; }
 		
-		//FeatureDeclaration? 'of'
-		public Group getGroup_0_0() { return cGroup_0_0; }
+		//FeatureDeclaration
+		public RuleCall getFeatureDeclarationParserRuleCall_0_0() { return cFeatureDeclarationParserRuleCall_0_0; }
 		
-		//FeatureDeclaration?
-		public RuleCall getFeatureDeclarationParserRuleCall_0_0_0() { return cFeatureDeclarationParserRuleCall_0_0_0; }
-		
-		//'of'
-		public Keyword getOfKeyword_0_0_1() { return cOfKeyword_0_0_1; }
-		
-		//isSufficient ?= 'all' 'of'?
+		//( 'of' ownedRelationship += ConnectorEndMember
+		//  '=' ownedRelationship += ConnectorEndMember )?
 		public Group getGroup_0_1() { return cGroup_0_1; }
 		
-		//isSufficient ?= 'all'
-		public Assignment getIsSufficientAssignment_0_1_0() { return cIsSufficientAssignment_0_1_0; }
-		
-		//'all'
-		public Keyword getIsSufficientAllKeyword_0_1_0_0() { return cIsSufficientAllKeyword_0_1_0_0; }
-		
-		//'of'?
-		public Keyword getOfKeyword_0_1_1() { return cOfKeyword_0_1_1; }
+		//'of'
+		public Keyword getOfKeyword_0_1_0() { return cOfKeyword_0_1_0; }
 		
 		//ownedRelationship += ConnectorEndMember
-		public Assignment getOwnedRelationshipAssignment_1() { return cOwnedRelationshipAssignment_1; }
+		public Assignment getOwnedRelationshipAssignment_0_1_1() { return cOwnedRelationshipAssignment_0_1_1; }
 		
 		//ConnectorEndMember
-		public RuleCall getOwnedRelationshipConnectorEndMemberParserRuleCall_1_0() { return cOwnedRelationshipConnectorEndMemberParserRuleCall_1_0; }
+		public RuleCall getOwnedRelationshipConnectorEndMemberParserRuleCall_0_1_1_0() { return cOwnedRelationshipConnectorEndMemberParserRuleCall_0_1_1_0; }
 		
 		//'='
-		public Keyword getEqualsSignKeyword_2() { return cEqualsSignKeyword_2; }
+		public Keyword getEqualsSignKeyword_0_1_2() { return cEqualsSignKeyword_0_1_2; }
 		
 		//ownedRelationship += ConnectorEndMember
-		public Assignment getOwnedRelationshipAssignment_3() { return cOwnedRelationshipAssignment_3; }
+		public Assignment getOwnedRelationshipAssignment_0_1_3() { return cOwnedRelationshipAssignment_0_1_3; }
 		
 		//ConnectorEndMember
-		public RuleCall getOwnedRelationshipConnectorEndMemberParserRuleCall_3_0() { return cOwnedRelationshipConnectorEndMemberParserRuleCall_3_0; }
+		public RuleCall getOwnedRelationshipConnectorEndMemberParserRuleCall_0_1_3_0() { return cOwnedRelationshipConnectorEndMemberParserRuleCall_0_1_3_0; }
+		
+		//( isSufficient ?= 'all' )?
+		//     ( 'of'? ownedRelationship += ConnectorEndMember
+		//       '=' ownedRelationship += ConnectorEndMember )?
+		public Group getGroup_1() { return cGroup_1; }
+		
+		//( isSufficient ?= 'all' )?
+		public Assignment getIsSufficientAssignment_1_0() { return cIsSufficientAssignment_1_0; }
+		
+		//'all'
+		public Keyword getIsSufficientAllKeyword_1_0_0() { return cIsSufficientAllKeyword_1_0_0; }
+		
+		//( 'of'? ownedRelationship += ConnectorEndMember
+		//  '=' ownedRelationship += ConnectorEndMember )?
+		public Group getGroup_1_1() { return cGroup_1_1; }
+		
+		//'of'?
+		public Keyword getOfKeyword_1_1_0() { return cOfKeyword_1_1_0; }
+		
+		//ownedRelationship += ConnectorEndMember
+		public Assignment getOwnedRelationshipAssignment_1_1_1() { return cOwnedRelationshipAssignment_1_1_1; }
+		
+		//ConnectorEndMember
+		public RuleCall getOwnedRelationshipConnectorEndMemberParserRuleCall_1_1_1_0() { return cOwnedRelationshipConnectorEndMemberParserRuleCall_1_1_1_0; }
+		
+		//'='
+		public Keyword getEqualsSignKeyword_1_1_2() { return cEqualsSignKeyword_1_1_2; }
+		
+		//ownedRelationship += ConnectorEndMember
+		public Assignment getOwnedRelationshipAssignment_1_1_3() { return cOwnedRelationshipAssignment_1_1_3; }
+		
+		//ConnectorEndMember
+		public RuleCall getOwnedRelationshipConnectorEndMemberParserRuleCall_1_1_3_0() { return cOwnedRelationshipConnectorEndMemberParserRuleCall_1_1_3_0; }
 	}
 	public class SuccessionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.Succession");
@@ -5625,71 +5661,107 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	public class SuccessionDeclarationElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.SuccessionDeclaration");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Alternatives cAlternatives_0 = (Alternatives)cGroup.eContents().get(0);
-		private final Group cGroup_0_0 = (Group)cAlternatives_0.eContents().get(0);
-		private final RuleCall cFeatureDeclarationParserRuleCall_0_0_0 = (RuleCall)cGroup_0_0.eContents().get(0);
-		private final Keyword cFirstKeyword_0_0_1 = (Keyword)cGroup_0_0.eContents().get(1);
-		private final Group cGroup_0_1 = (Group)cAlternatives_0.eContents().get(1);
-		private final Assignment cIsSufficientAssignment_0_1_0 = (Assignment)cGroup_0_1.eContents().get(0);
-		private final Keyword cIsSufficientAllKeyword_0_1_0_0 = (Keyword)cIsSufficientAssignment_0_1_0.eContents().get(0);
-		private final Keyword cFirstKeyword_0_1_1 = (Keyword)cGroup_0_1.eContents().get(1);
-		private final Assignment cOwnedRelationshipAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cOwnedRelationshipConnectorEndMemberParserRuleCall_1_0 = (RuleCall)cOwnedRelationshipAssignment_1.eContents().get(0);
-		private final Keyword cThenKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Assignment cOwnedRelationshipAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cOwnedRelationshipConnectorEndMemberParserRuleCall_3_0 = (RuleCall)cOwnedRelationshipAssignment_3.eContents().get(0);
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
+		private final RuleCall cFeatureDeclarationParserRuleCall_0_0 = (RuleCall)cGroup_0.eContents().get(0);
+		private final Group cGroup_0_1 = (Group)cGroup_0.eContents().get(1);
+		private final Keyword cFirstKeyword_0_1_0 = (Keyword)cGroup_0_1.eContents().get(0);
+		private final Assignment cOwnedRelationshipAssignment_0_1_1 = (Assignment)cGroup_0_1.eContents().get(1);
+		private final RuleCall cOwnedRelationshipConnectorEndMemberParserRuleCall_0_1_1_0 = (RuleCall)cOwnedRelationshipAssignment_0_1_1.eContents().get(0);
+		private final Keyword cThenKeyword_0_1_2 = (Keyword)cGroup_0_1.eContents().get(2);
+		private final Assignment cOwnedRelationshipAssignment_0_1_3 = (Assignment)cGroup_0_1.eContents().get(3);
+		private final RuleCall cOwnedRelationshipConnectorEndMemberParserRuleCall_0_1_3_0 = (RuleCall)cOwnedRelationshipAssignment_0_1_3.eContents().get(0);
+		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
+		private final Assignment cIsSufficientAssignment_1_0 = (Assignment)cGroup_1.eContents().get(0);
+		private final Keyword cIsSufficientAllKeyword_1_0_0 = (Keyword)cIsSufficientAssignment_1_0.eContents().get(0);
+		private final Group cGroup_1_1 = (Group)cGroup_1.eContents().get(1);
+		private final Keyword cFirstKeyword_1_1_0 = (Keyword)cGroup_1_1.eContents().get(0);
+		private final Assignment cOwnedRelationshipAssignment_1_1_1 = (Assignment)cGroup_1_1.eContents().get(1);
+		private final RuleCall cOwnedRelationshipConnectorEndMemberParserRuleCall_1_1_1_0 = (RuleCall)cOwnedRelationshipAssignment_1_1_1.eContents().get(0);
+		private final Keyword cThenKeyword_1_1_2 = (Keyword)cGroup_1_1.eContents().get(2);
+		private final Assignment cOwnedRelationshipAssignment_1_1_3 = (Assignment)cGroup_1_1.eContents().get(3);
+		private final RuleCall cOwnedRelationshipConnectorEndMemberParserRuleCall_1_1_3_0 = (RuleCall)cOwnedRelationshipAssignment_1_1_3.eContents().get(0);
 		
 		//fragment SuccessionDeclaration returns SysML::Succession :
-		//    ( FeatureDeclaration? 'first' | isSufficient ?= 'all' 'first'? )?
-		//    ownedRelationship += ConnectorEndMember 'then'
-		//    ownedRelationship += ConnectorEndMember
+		//      FeatureDeclaration
+		//      ( 'first' ownedRelationship += ConnectorEndMember
+		//        'then' ownedRelationship += ConnectorEndMember )?
+		//    | ( isSufficient ?= 'all' )?
+		//      ( 'first'? ownedRelationship += ConnectorEndMember
+		//        'then' ownedRelationship += ConnectorEndMember )?
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//( FeatureDeclaration? 'first' | isSufficient ?= 'all' 'first'? )?
-		//ownedRelationship += ConnectorEndMember 'then'
-		//ownedRelationship += ConnectorEndMember
-		public Group getGroup() { return cGroup; }
+		//  FeatureDeclaration
+		//  ( 'first' ownedRelationship += ConnectorEndMember
+		//    'then' ownedRelationship += ConnectorEndMember )?
+		//| ( isSufficient ?= 'all' )?
+		//  ( 'first'? ownedRelationship += ConnectorEndMember
+		//    'then' ownedRelationship += ConnectorEndMember )?
+		public Alternatives getAlternatives() { return cAlternatives; }
 		
-		//( FeatureDeclaration? 'first' | isSufficient ?= 'all' 'first'? )?
-		public Alternatives getAlternatives_0() { return cAlternatives_0; }
+		//FeatureDeclaration
+		//( 'first' ownedRelationship += ConnectorEndMember
+		//  'then' ownedRelationship += ConnectorEndMember )?
+		public Group getGroup_0() { return cGroup_0; }
 		
-		//FeatureDeclaration? 'first'
-		public Group getGroup_0_0() { return cGroup_0_0; }
+		//FeatureDeclaration
+		public RuleCall getFeatureDeclarationParserRuleCall_0_0() { return cFeatureDeclarationParserRuleCall_0_0; }
 		
-		//FeatureDeclaration?
-		public RuleCall getFeatureDeclarationParserRuleCall_0_0_0() { return cFeatureDeclarationParserRuleCall_0_0_0; }
-		
-		//'first'
-		public Keyword getFirstKeyword_0_0_1() { return cFirstKeyword_0_0_1; }
-		
-		//isSufficient ?= 'all' 'first'?
+		//( 'first' ownedRelationship += ConnectorEndMember
+		//  'then' ownedRelationship += ConnectorEndMember )?
 		public Group getGroup_0_1() { return cGroup_0_1; }
 		
-		//isSufficient ?= 'all'
-		public Assignment getIsSufficientAssignment_0_1_0() { return cIsSufficientAssignment_0_1_0; }
-		
-		//'all'
-		public Keyword getIsSufficientAllKeyword_0_1_0_0() { return cIsSufficientAllKeyword_0_1_0_0; }
-		
-		//'first'?
-		public Keyword getFirstKeyword_0_1_1() { return cFirstKeyword_0_1_1; }
+		//'first'
+		public Keyword getFirstKeyword_0_1_0() { return cFirstKeyword_0_1_0; }
 		
 		//ownedRelationship += ConnectorEndMember
-		public Assignment getOwnedRelationshipAssignment_1() { return cOwnedRelationshipAssignment_1; }
+		public Assignment getOwnedRelationshipAssignment_0_1_1() { return cOwnedRelationshipAssignment_0_1_1; }
 		
 		//ConnectorEndMember
-		public RuleCall getOwnedRelationshipConnectorEndMemberParserRuleCall_1_0() { return cOwnedRelationshipConnectorEndMemberParserRuleCall_1_0; }
+		public RuleCall getOwnedRelationshipConnectorEndMemberParserRuleCall_0_1_1_0() { return cOwnedRelationshipConnectorEndMemberParserRuleCall_0_1_1_0; }
 		
 		//'then'
-		public Keyword getThenKeyword_2() { return cThenKeyword_2; }
+		public Keyword getThenKeyword_0_1_2() { return cThenKeyword_0_1_2; }
 		
 		//ownedRelationship += ConnectorEndMember
-		public Assignment getOwnedRelationshipAssignment_3() { return cOwnedRelationshipAssignment_3; }
+		public Assignment getOwnedRelationshipAssignment_0_1_3() { return cOwnedRelationshipAssignment_0_1_3; }
 		
 		//ConnectorEndMember
-		public RuleCall getOwnedRelationshipConnectorEndMemberParserRuleCall_3_0() { return cOwnedRelationshipConnectorEndMemberParserRuleCall_3_0; }
+		public RuleCall getOwnedRelationshipConnectorEndMemberParserRuleCall_0_1_3_0() { return cOwnedRelationshipConnectorEndMemberParserRuleCall_0_1_3_0; }
+		
+		//( isSufficient ?= 'all' )?
+		//     ( 'first'? ownedRelationship += ConnectorEndMember
+		//       'then' ownedRelationship += ConnectorEndMember )?
+		public Group getGroup_1() { return cGroup_1; }
+		
+		//( isSufficient ?= 'all' )?
+		public Assignment getIsSufficientAssignment_1_0() { return cIsSufficientAssignment_1_0; }
+		
+		//'all'
+		public Keyword getIsSufficientAllKeyword_1_0_0() { return cIsSufficientAllKeyword_1_0_0; }
+		
+		//( 'first'? ownedRelationship += ConnectorEndMember
+		//  'then' ownedRelationship += ConnectorEndMember )?
+		public Group getGroup_1_1() { return cGroup_1_1; }
+		
+		//'first'?
+		public Keyword getFirstKeyword_1_1_0() { return cFirstKeyword_1_1_0; }
+		
+		//ownedRelationship += ConnectorEndMember
+		public Assignment getOwnedRelationshipAssignment_1_1_1() { return cOwnedRelationshipAssignment_1_1_1; }
+		
+		//ConnectorEndMember
+		public RuleCall getOwnedRelationshipConnectorEndMemberParserRuleCall_1_1_1_0() { return cOwnedRelationshipConnectorEndMemberParserRuleCall_1_1_1_0; }
+		
+		//'then'
+		public Keyword getThenKeyword_1_1_2() { return cThenKeyword_1_1_2; }
+		
+		//ownedRelationship += ConnectorEndMember
+		public Assignment getOwnedRelationshipAssignment_1_1_3() { return cOwnedRelationshipAssignment_1_1_3; }
+		
+		//ConnectorEndMember
+		public RuleCall getOwnedRelationshipConnectorEndMemberParserRuleCall_1_1_3_0() { return cOwnedRelationshipConnectorEndMemberParserRuleCall_1_1_3_0; }
 	}
 	public class BehaviorElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.Behavior");
@@ -9383,9 +9455,12 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//fragment BindingConnectorDeclaration returns SysML::BindingConnector :
-	//    ( FeatureDeclaration? 'of' | isSufficient ?= 'all' 'of'? )?
-	//    ownedRelationship += ConnectorEndMember '='
-	//    ownedRelationship += ConnectorEndMember
+	//      FeatureDeclaration
+	//      ( 'of' ownedRelationship += ConnectorEndMember
+	//        '=' ownedRelationship += ConnectorEndMember )?
+	//    | ( isSufficient ?= 'all' )?
+	//      ( 'of'? ownedRelationship += ConnectorEndMember
+	//        '=' ownedRelationship += ConnectorEndMember )?
 	//;
 	public BindingConnectorDeclarationElements getBindingConnectorDeclarationAccess() {
 		return pBindingConnectorDeclaration;
@@ -9409,9 +9484,12 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//fragment SuccessionDeclaration returns SysML::Succession :
-	//    ( FeatureDeclaration? 'first' | isSufficient ?= 'all' 'first'? )?
-	//    ownedRelationship += ConnectorEndMember 'then'
-	//    ownedRelationship += ConnectorEndMember
+	//      FeatureDeclaration
+	//      ( 'first' ownedRelationship += ConnectorEndMember
+	//        'then' ownedRelationship += ConnectorEndMember )?
+	//    | ( isSufficient ?= 'all' )?
+	//      ( 'first'? ownedRelationship += ConnectorEndMember
+	//        'then' ownedRelationship += ConnectorEndMember )?
 	//;
 	public SuccessionDeclarationElements getSuccessionDeclarationAccess() {
 		return pSuccessionDeclaration;

@@ -8674,90 +8674,132 @@ ruleBindingConnectorDeclaration[EObject in_current]  returns [EObject current=in
 }:
 	(
 		(
+			{
+				if ($current==null) {
+					$current = createModelElement(grammarAccess.getBindingConnectorDeclarationRule());
+				}
+				newCompositeNode(grammarAccess.getBindingConnectorDeclarationAccess().getFeatureDeclarationParserRuleCall_0_0());
+			}
+			this_FeatureDeclaration_0=ruleFeatureDeclaration[$current]
+			{
+				$current = $this_FeatureDeclaration_0.current;
+				afterParserOrEnumRuleCall();
+			}
+			(
+				otherlv_1='of'
+				{
+					newLeafNode(otherlv_1, grammarAccess.getBindingConnectorDeclarationAccess().getOfKeyword_0_1_0());
+				}
+				(
+					(
+						{
+							newCompositeNode(grammarAccess.getBindingConnectorDeclarationAccess().getOwnedRelationshipConnectorEndMemberParserRuleCall_0_1_1_0());
+						}
+						lv_ownedRelationship_2_0=ruleConnectorEndMember
+						{
+							if ($current==null) {
+								$current = createModelElementForParent(grammarAccess.getBindingConnectorDeclarationRule());
+							}
+							add(
+								$current,
+								"ownedRelationship",
+								lv_ownedRelationship_2_0,
+								"org.omg.kerml.xtext.KerML.ConnectorEndMember");
+							afterParserOrEnumRuleCall();
+						}
+					)
+				)
+				otherlv_3='='
+				{
+					newLeafNode(otherlv_3, grammarAccess.getBindingConnectorDeclarationAccess().getEqualsSignKeyword_0_1_2());
+				}
+				(
+					(
+						{
+							newCompositeNode(grammarAccess.getBindingConnectorDeclarationAccess().getOwnedRelationshipConnectorEndMemberParserRuleCall_0_1_3_0());
+						}
+						lv_ownedRelationship_4_0=ruleConnectorEndMember
+						{
+							if ($current==null) {
+								$current = createModelElementForParent(grammarAccess.getBindingConnectorDeclarationRule());
+							}
+							add(
+								$current,
+								"ownedRelationship",
+								lv_ownedRelationship_4_0,
+								"org.omg.kerml.xtext.KerML.ConnectorEndMember");
+							afterParserOrEnumRuleCall();
+						}
+					)
+				)
+			)?
+		)
+		    |
+		(
 			(
 				(
+					lv_isSufficient_5_0='all'
+					{
+						newLeafNode(lv_isSufficient_5_0, grammarAccess.getBindingConnectorDeclarationAccess().getIsSufficientAllKeyword_1_0_0());
+					}
 					{
 						if ($current==null) {
 							$current = createModelElement(grammarAccess.getBindingConnectorDeclarationRule());
 						}
-						newCompositeNode(grammarAccess.getBindingConnectorDeclarationAccess().getFeatureDeclarationParserRuleCall_0_0_0());
+						setWithLastConsumed($current, "isSufficient", lv_isSufficient_5_0 != null, "all");
 					}
-					this_FeatureDeclaration_0=ruleFeatureDeclaration[$current]
-					{
-						$current = $this_FeatureDeclaration_0.current;
-						afterParserOrEnumRuleCall();
-					}
-				)?
-				otherlv_1='of'
-				{
-					newLeafNode(otherlv_1, grammarAccess.getBindingConnectorDeclarationAccess().getOfKeyword_0_0_1());
-				}
-			)
-			    |
+				)
+			)?
 			(
 				(
+					otherlv_6='of'
+					{
+						newLeafNode(otherlv_6, grammarAccess.getBindingConnectorDeclarationAccess().getOfKeyword_1_1_0());
+					}
+				)?
+				(
 					(
-						lv_isSufficient_2_0='all'
 						{
-							newLeafNode(lv_isSufficient_2_0, grammarAccess.getBindingConnectorDeclarationAccess().getIsSufficientAllKeyword_0_1_0_0());
+							newCompositeNode(grammarAccess.getBindingConnectorDeclarationAccess().getOwnedRelationshipConnectorEndMemberParserRuleCall_1_1_1_0());
 						}
+						lv_ownedRelationship_7_0=ruleConnectorEndMember
 						{
 							if ($current==null) {
-								$current = createModelElement(grammarAccess.getBindingConnectorDeclarationRule());
+								$current = createModelElementForParent(grammarAccess.getBindingConnectorDeclarationRule());
 							}
-							setWithLastConsumed($current, "isSufficient", lv_isSufficient_2_0 != null, "all");
+							add(
+								$current,
+								"ownedRelationship",
+								lv_ownedRelationship_7_0,
+								"org.omg.kerml.xtext.KerML.ConnectorEndMember");
+							afterParserOrEnumRuleCall();
 						}
 					)
 				)
+				otherlv_8='='
+				{
+					newLeafNode(otherlv_8, grammarAccess.getBindingConnectorDeclarationAccess().getEqualsSignKeyword_1_1_2());
+				}
 				(
-					otherlv_3='of'
-					{
-						newLeafNode(otherlv_3, grammarAccess.getBindingConnectorDeclarationAccess().getOfKeyword_0_1_1());
-					}
-				)?
-			)
-		)?
-		(
-			(
-				{
-					newCompositeNode(grammarAccess.getBindingConnectorDeclarationAccess().getOwnedRelationshipConnectorEndMemberParserRuleCall_1_0());
-				}
-				lv_ownedRelationship_4_0=ruleConnectorEndMember
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getBindingConnectorDeclarationRule());
-					}
-					add(
-						$current,
-						"ownedRelationship",
-						lv_ownedRelationship_4_0,
-						"org.omg.kerml.xtext.KerML.ConnectorEndMember");
-					afterParserOrEnumRuleCall();
-				}
-			)
-		)
-		otherlv_5='='
-		{
-			newLeafNode(otherlv_5, grammarAccess.getBindingConnectorDeclarationAccess().getEqualsSignKeyword_2());
-		}
-		(
-			(
-				{
-					newCompositeNode(grammarAccess.getBindingConnectorDeclarationAccess().getOwnedRelationshipConnectorEndMemberParserRuleCall_3_0());
-				}
-				lv_ownedRelationship_6_0=ruleConnectorEndMember
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getBindingConnectorDeclarationRule());
-					}
-					add(
-						$current,
-						"ownedRelationship",
-						lv_ownedRelationship_6_0,
-						"org.omg.kerml.xtext.KerML.ConnectorEndMember");
-					afterParserOrEnumRuleCall();
-				}
-			)
+					(
+						{
+							newCompositeNode(grammarAccess.getBindingConnectorDeclarationAccess().getOwnedRelationshipConnectorEndMemberParserRuleCall_1_1_3_0());
+						}
+						lv_ownedRelationship_9_0=ruleConnectorEndMember
+						{
+							if ($current==null) {
+								$current = createModelElementForParent(grammarAccess.getBindingConnectorDeclarationRule());
+							}
+							add(
+								$current,
+								"ownedRelationship",
+								lv_ownedRelationship_9_0,
+								"org.omg.kerml.xtext.KerML.ConnectorEndMember");
+							afterParserOrEnumRuleCall();
+						}
+					)
+				)
+			)?
 		)
 	)
 ;
@@ -8829,90 +8871,132 @@ ruleSuccessionDeclaration[EObject in_current]  returns [EObject current=in_curre
 }:
 	(
 		(
+			{
+				if ($current==null) {
+					$current = createModelElement(grammarAccess.getSuccessionDeclarationRule());
+				}
+				newCompositeNode(grammarAccess.getSuccessionDeclarationAccess().getFeatureDeclarationParserRuleCall_0_0());
+			}
+			this_FeatureDeclaration_0=ruleFeatureDeclaration[$current]
+			{
+				$current = $this_FeatureDeclaration_0.current;
+				afterParserOrEnumRuleCall();
+			}
+			(
+				otherlv_1='first'
+				{
+					newLeafNode(otherlv_1, grammarAccess.getSuccessionDeclarationAccess().getFirstKeyword_0_1_0());
+				}
+				(
+					(
+						{
+							newCompositeNode(grammarAccess.getSuccessionDeclarationAccess().getOwnedRelationshipConnectorEndMemberParserRuleCall_0_1_1_0());
+						}
+						lv_ownedRelationship_2_0=ruleConnectorEndMember
+						{
+							if ($current==null) {
+								$current = createModelElementForParent(grammarAccess.getSuccessionDeclarationRule());
+							}
+							add(
+								$current,
+								"ownedRelationship",
+								lv_ownedRelationship_2_0,
+								"org.omg.kerml.xtext.KerML.ConnectorEndMember");
+							afterParserOrEnumRuleCall();
+						}
+					)
+				)
+				otherlv_3='then'
+				{
+					newLeafNode(otherlv_3, grammarAccess.getSuccessionDeclarationAccess().getThenKeyword_0_1_2());
+				}
+				(
+					(
+						{
+							newCompositeNode(grammarAccess.getSuccessionDeclarationAccess().getOwnedRelationshipConnectorEndMemberParserRuleCall_0_1_3_0());
+						}
+						lv_ownedRelationship_4_0=ruleConnectorEndMember
+						{
+							if ($current==null) {
+								$current = createModelElementForParent(grammarAccess.getSuccessionDeclarationRule());
+							}
+							add(
+								$current,
+								"ownedRelationship",
+								lv_ownedRelationship_4_0,
+								"org.omg.kerml.xtext.KerML.ConnectorEndMember");
+							afterParserOrEnumRuleCall();
+						}
+					)
+				)
+			)?
+		)
+		    |
+		(
 			(
 				(
+					lv_isSufficient_5_0='all'
+					{
+						newLeafNode(lv_isSufficient_5_0, grammarAccess.getSuccessionDeclarationAccess().getIsSufficientAllKeyword_1_0_0());
+					}
 					{
 						if ($current==null) {
 							$current = createModelElement(grammarAccess.getSuccessionDeclarationRule());
 						}
-						newCompositeNode(grammarAccess.getSuccessionDeclarationAccess().getFeatureDeclarationParserRuleCall_0_0_0());
+						setWithLastConsumed($current, "isSufficient", lv_isSufficient_5_0 != null, "all");
 					}
-					this_FeatureDeclaration_0=ruleFeatureDeclaration[$current]
-					{
-						$current = $this_FeatureDeclaration_0.current;
-						afterParserOrEnumRuleCall();
-					}
-				)?
-				otherlv_1='first'
-				{
-					newLeafNode(otherlv_1, grammarAccess.getSuccessionDeclarationAccess().getFirstKeyword_0_0_1());
-				}
-			)
-			    |
+				)
+			)?
 			(
 				(
+					otherlv_6='first'
+					{
+						newLeafNode(otherlv_6, grammarAccess.getSuccessionDeclarationAccess().getFirstKeyword_1_1_0());
+					}
+				)?
+				(
 					(
-						lv_isSufficient_2_0='all'
 						{
-							newLeafNode(lv_isSufficient_2_0, grammarAccess.getSuccessionDeclarationAccess().getIsSufficientAllKeyword_0_1_0_0());
+							newCompositeNode(grammarAccess.getSuccessionDeclarationAccess().getOwnedRelationshipConnectorEndMemberParserRuleCall_1_1_1_0());
 						}
+						lv_ownedRelationship_7_0=ruleConnectorEndMember
 						{
 							if ($current==null) {
-								$current = createModelElement(grammarAccess.getSuccessionDeclarationRule());
+								$current = createModelElementForParent(grammarAccess.getSuccessionDeclarationRule());
 							}
-							setWithLastConsumed($current, "isSufficient", lv_isSufficient_2_0 != null, "all");
+							add(
+								$current,
+								"ownedRelationship",
+								lv_ownedRelationship_7_0,
+								"org.omg.kerml.xtext.KerML.ConnectorEndMember");
+							afterParserOrEnumRuleCall();
 						}
 					)
 				)
+				otherlv_8='then'
+				{
+					newLeafNode(otherlv_8, grammarAccess.getSuccessionDeclarationAccess().getThenKeyword_1_1_2());
+				}
 				(
-					otherlv_3='first'
-					{
-						newLeafNode(otherlv_3, grammarAccess.getSuccessionDeclarationAccess().getFirstKeyword_0_1_1());
-					}
-				)?
-			)
-		)?
-		(
-			(
-				{
-					newCompositeNode(grammarAccess.getSuccessionDeclarationAccess().getOwnedRelationshipConnectorEndMemberParserRuleCall_1_0());
-				}
-				lv_ownedRelationship_4_0=ruleConnectorEndMember
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getSuccessionDeclarationRule());
-					}
-					add(
-						$current,
-						"ownedRelationship",
-						lv_ownedRelationship_4_0,
-						"org.omg.kerml.xtext.KerML.ConnectorEndMember");
-					afterParserOrEnumRuleCall();
-				}
-			)
-		)
-		otherlv_5='then'
-		{
-			newLeafNode(otherlv_5, grammarAccess.getSuccessionDeclarationAccess().getThenKeyword_2());
-		}
-		(
-			(
-				{
-					newCompositeNode(grammarAccess.getSuccessionDeclarationAccess().getOwnedRelationshipConnectorEndMemberParserRuleCall_3_0());
-				}
-				lv_ownedRelationship_6_0=ruleConnectorEndMember
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getSuccessionDeclarationRule());
-					}
-					add(
-						$current,
-						"ownedRelationship",
-						lv_ownedRelationship_6_0,
-						"org.omg.kerml.xtext.KerML.ConnectorEndMember");
-					afterParserOrEnumRuleCall();
-				}
-			)
+					(
+						{
+							newCompositeNode(grammarAccess.getSuccessionDeclarationAccess().getOwnedRelationshipConnectorEndMemberParserRuleCall_1_1_3_0());
+						}
+						lv_ownedRelationship_9_0=ruleConnectorEndMember
+						{
+							if ($current==null) {
+								$current = createModelElementForParent(grammarAccess.getSuccessionDeclarationRule());
+							}
+							add(
+								$current,
+								"ownedRelationship",
+								lv_ownedRelationship_9_0,
+								"org.omg.kerml.xtext.KerML.ConnectorEndMember");
+							afterParserOrEnumRuleCall();
+						}
+					)
+				)
+			)?
 		)
 	)
 ;

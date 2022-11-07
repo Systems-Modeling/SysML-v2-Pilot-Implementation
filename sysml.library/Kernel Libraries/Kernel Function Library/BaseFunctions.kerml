@@ -71,7 +71,7 @@ standard library package BaseFunctions {
 	
 	abstract function 'meta'{ 
 		in seq: Metaobject[0..*] ordered nonunique; 
-		return : Anything[0..*] ordered nonunique;
+		return : Metaobject[0..*] ordered nonunique;
 	}
 	
 }
